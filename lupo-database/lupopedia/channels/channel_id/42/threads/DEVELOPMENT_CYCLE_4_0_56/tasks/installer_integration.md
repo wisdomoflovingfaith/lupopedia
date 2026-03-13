@@ -47,7 +47,7 @@ lupopedia.conditional:
       success_criteria: ["header applied correctly"]
 
 lupopedia.headers:
-  lupopedia.version: "1.0"
+  lupopedia.version: "4.0.73"
   lupopedia.schema: "task"
   file_path_from_root: "lupo-database/lupopedia/channels/lupo-channels/42/threads/DEVELOPMENT_CYCLE_4_0_56/tasks/installer_integration.md"
   file_hash: "fb6b1c8a33b7688882b536b56df00232a0f8e9d2e6a821a5376bd17c665cc0b6"
@@ -87,7 +87,7 @@ lupopedia.close:
 
 ---
 lupopedia.headers:
-  lupopedia.version: "1.0"
+  lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
   file_path_from_root: "channels\0\tasks\active\installer_integration.md"

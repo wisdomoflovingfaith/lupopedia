@@ -1,7 +1,7 @@
 # LUPOPEDIA HEADERS (replaces FLARE)
 ---
 lupopedia.headers:
-  lupopedia.version: "1.0"
+  lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   file_path_from_root: ".\docs\channels\doctrine\PACK_BEHAVIOR_DOCTRINE.md"
   file_hash: "65a77d345761ef6fd5f3555aa6209def32fd8689ef42d8b7e5273c383e250ec5"
@@ -32,7 +32,7 @@ lupopedia.footer:
 
 ---
 lupopedia.headers:
-  lupopedia.version: "1.0"
+  lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
   file_path_from_root: "docs\channels\doctrine\PACK_BEHAVIOR_DOCTRINE.md"

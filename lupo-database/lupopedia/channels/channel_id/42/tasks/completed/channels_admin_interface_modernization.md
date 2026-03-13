@@ -47,7 +47,7 @@ lupopedia.conditional:
       success_criteria: ["header applied correctly"]
 
 lupopedia.headers:
-  lupopedia.version: "1.0"
+  lupopedia.version: "4.0.73"
   lupopedia.schema: "task"
   file_path_from_root: "lupo-database/lupopedia/channels/lupo-channels/42/tasks/completed/channels_admin_interface_modernization.md"
   file_hash: "6e7c2c98c33cae50b0d3978d5d071aa39edfccf95a32c3317c0043487551a7fe"
@@ -87,7 +87,7 @@ lupopedia.close:
 
 ---
 lupopedia.headers:
-  lupopedia.version: "1.0"
+  lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
   file_path_from_root: "channels\42\tasks\completed\channels_admin_interface_modernization.md"

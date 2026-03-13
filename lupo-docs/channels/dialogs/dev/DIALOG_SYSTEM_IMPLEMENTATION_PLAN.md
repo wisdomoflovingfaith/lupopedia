@@ -1,7 +1,7 @@
 # LUPOPEDIA HEADERS (replaces FLARE)
 ---
 lupopedia.headers:
-  lupopedia.version: "1.0"
+  lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   file_path_from_root: ".\docs\channels\dialogs\dev\DIALOG_SYSTEM_IMPLEMENTATION_PLAN.md"
   file_hash: "ec9efb847507d581d0e5a9ac8b248fb0304eedaf10838dccce9a93c53830a586"
@@ -32,7 +32,7 @@ lupopedia.footer:
 
 ---
 lupopedia.headers:
-  lupopedia.version: "1.0"
+  lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
   file_path_from_root: "docs\channels\dialogs\dev\DIALOG_SYSTEM_IMPLEMENTATION_PLAN.md"

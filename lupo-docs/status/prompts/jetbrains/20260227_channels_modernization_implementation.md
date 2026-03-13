@@ -1,7 +1,7 @@
 # LUPOPEDIA HEADERS (replaces FLARE)
 ---
 lupopedia.headers:
-  lupopedia.version: "1.0"
+  lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   file_path_from_root: ".\prompts\jetbrains\20260227_channels_modernization_implementation.md"
   file_hash: "7a1d0736125759d2b51515728acb8e3128ace61edb0c764a93c55cafb4a2e80e"

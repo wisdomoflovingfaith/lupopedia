@@ -1,7 +1,7 @@
 # LUPOPEDIA HEADERS (replaces FLARE)
 ---
 lupopedia.headers:
-  lupopedia.version: "1.0"
+  lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   file_path_from_root: ".\docs\channels\schema\migrations\analysis\DIALOGUE_GRAPH_SCHEMA.md"
   file_hash: "1e451279ad0124b8261b096ff13340419a6dba1b9656afe393aabf0cbd10458c"
@@ -32,7 +32,7 @@ lupopedia.footer:
 
 ---
 lupopedia.headers:
-  lupopedia.version: "1.0"
+  lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
   file_path_from_root: "docs\channels\schema\migrations\analysis\DIALOGUE_GRAPH_SCHEMA.md"

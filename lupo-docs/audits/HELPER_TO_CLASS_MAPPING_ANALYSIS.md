@@ -1,7 +1,7 @@
 # LUPOPEDIA HEADERS (replaces FLARE)
 ---
 lupopedia.headers:
-  lupopedia.version: "1.0"
+  lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   file_path_from_root: ".\docs\HELPER_TO_CLASS_MAPPING_ANALYSIS.md"
   file_hash: "86ab652c2d69f801682e86253eaa19c080ecc7ea3d6b452eda67cc97b35f285c"
@@ -32,7 +32,7 @@ lupopedia.footer:
 
 ---
 lupopedia.headers:
-  lupopedia.version: "1.0"
+  lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
   file_path_from_root: "docs\HELPER_TO_CLASS_MAPPING_ANALYSIS.md"

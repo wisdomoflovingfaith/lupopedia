@@ -1,7 +1,7 @@
 # LUPOPEDIA HEADERS (replaces FLARE)
 ---
 lupopedia.headers:
-  lupopedia.version: "1.0"
+  lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   file_path_from_root: ".\docs\status\kiro_actor_420_preservation_doctrine_4_0_43.md"
   file_hash: "8d2dc7af0f534af12ceacd6542829597750da6a0af8dd496de657be9367ef0cc"
@@ -32,7 +32,7 @@ lupopedia.footer:
 
 ---
 lupopedia.headers:
-  lupopedia.version: "1.0"
+  lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
   file_path_from_root: "docs\status\kiro_actor_420_preservation_doctrine_4_0_43.md"

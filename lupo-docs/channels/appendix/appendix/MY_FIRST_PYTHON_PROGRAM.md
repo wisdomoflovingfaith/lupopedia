@@ -1,7 +1,7 @@
 # LUPOPEDIA HEADERS (replaces FLARE)
 ---
 lupopedia.headers:
-  lupopedia.version: "1.0"
+  lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   file_path_from_root: ".\docs\channels\appendix\appendix\MY_FIRST_PYTHON_PROGRAM.md"
   file_hash: "46ab48e9bee80d42eafe40182673f02b08ded1b244f4adf44a5457997d27be71"
@@ -32,7 +32,7 @@ lupopedia.footer:
 
 ---
 lupopedia.headers:
-  lupopedia.version: "1.0"
+  lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
   file_path_from_root: "docs\channels\appendix\appendix\MY_FIRST_PYTHON_PROGRAM.md"

@@ -1,7 +1,7 @@
 # FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
 ---
 lupopedia.headers:
-  lupopedia.version: "1.0"
+  lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   file_path_from_root: ".\channels\0\roles\orphan_repair_agent.md"
   file_hash: "4f92e779c962c53080568a57fc92f451cbaf49e600755ef45cdc1d29f4ca8929"
@@ -32,7 +32,7 @@ lupopedia.footer:
 
 ---
 lupopedia.headers:
-  lupopedia.version: "1.0"
+  lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
   file_path_from_root: "channels\0\roles\orphan_repair_agent.md"

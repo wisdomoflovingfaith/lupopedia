@@ -1,7 +1,7 @@
 # LUPOPEDIA HEADERS (replaces FLARE)
 ---
 lupopedia.headers:
-  lupopedia.version: "1.0"
+  lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   file_path_from_root: ".\docs\database\lupopedia\tables\livehelp_leavemessage_migration.md"
   file_hash: "162d56d3f8d7fce6d7d4b0d1fbd9fccef96e14958d021010e3bb2eb92f0428bd"
@@ -32,7 +32,7 @@ lupopedia.footer:
 
 ---
 lupopedia.headers:
-  lupopedia.version: "1.0"
+  lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
   file_path_from_root: "docs\database\lupopedia\tables\livehelp_leavemessage_migration.md"

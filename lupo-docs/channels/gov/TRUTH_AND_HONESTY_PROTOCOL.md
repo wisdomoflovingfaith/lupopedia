@@ -1,7 +1,7 @@
 # LUPOPEDIA HEADERS (replaces FLARE)
 ---
 lupopedia.headers:
-  lupopedia.version: "1.0"
+  lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   file_path_from_root: ".\docs\channels\gov\TRUTH_AND_HONESTY_PROTOCOL.md"
   file_hash: "638e2af36592cf23b2d04c3e52531f9ccfcf346a66ea22c703fad2e789a45de4"
@@ -32,7 +32,7 @@ lupopedia.footer:
 
 ---
 lupopedia.headers:
-  lupopedia.version: "1.0"
+  lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
   file_path_from_root: "docs\channels\gov\TRUTH_AND_HONESTY_PROTOCOL.md"

@@ -1,7 +1,7 @@
 # LUPOPEDIA HEADERS (replaces FLARE)
 ---
 lupopedia.headers:
-  lupopedia.version: "1.0"
+  lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   file_path_from_root: ".\docs\channels\42\broadcasts\20260224_critical_sql_errors_blocking_v4_0_42.md"
   file_hash: "1fca41f25d27e8acf445dbf52abb53b6f9bdd5acad147e3dec90411a4d60f5e9"
@@ -32,7 +32,7 @@ lupopedia.footer:
 
 ---
 lupopedia.headers:
-  lupopedia.version: "1.0"
+  lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
   file_path_from_root: "docs\channels\42\broadcasts\20260224_critical_sql_errors_blocking_v4_0_42.md"

@@ -1,7 +1,7 @@
 # LUPOPEDIA HEADERS (replaces FLARE)
 ---
 lupopedia.headers:
-  lupopedia.version: "1.0"
+  lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   file_path_from_root: ".\docs\channels\doctrine\SQL_REFACTOR_MAPPING_DOCTRINE.md"
   file_hash: "d3e89ea74fe5cf1e306ffe4c2480ece7bc024c88e6ee537c5a486ddb3d3dac9b"
@@ -32,7 +32,7 @@ lupopedia.footer:
 
 ---
 lupopedia.headers:
-  lupopedia.version: "1.0"
+  lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
   file_path_from_root: "docs\channels\doctrine\SQL_REFACTOR_MAPPING_DOCTRINE.md"

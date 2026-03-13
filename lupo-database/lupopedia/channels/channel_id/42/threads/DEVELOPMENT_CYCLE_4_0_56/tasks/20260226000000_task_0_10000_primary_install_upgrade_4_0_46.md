@@ -47,7 +47,7 @@ lupopedia.conditional:
       success_criteria: ["header applied correctly"]
 
 lupopedia.headers:
-  lupopedia.version: "1.0"
+  lupopedia.version: "4.0.73"
   lupopedia.schema: "task"
   file_path_from_root: "lupo-database/lupopedia/channels/lupo-channels/42/threads/DEVELOPMENT_CYCLE_4_0_56/tasks/20260226000000_task_0_10000_primary_install_upgrade_4_0_46.md"
   file_hash: "c6fed163d8e8691ad659d24c32420c848131ac580feab16eb4c4470b00f84a6b"
@@ -87,7 +87,7 @@ lupopedia.close:
 
 ---
 lupopedia.headers:
-  lupopedia.version: "1.0"
+  lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
   file_path_from_root: "channels\0\tasks\active\20260226000000_task_0_10000_primary_install_upgrade_4_0_46.md"

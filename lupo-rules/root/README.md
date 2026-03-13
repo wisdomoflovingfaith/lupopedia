@@ -1,22 +1,35 @@
 ---
+lupopedia.init:
+  orchestrator_actor: "any"
+  rule_set_version: "4.0.73+"
+  applies_to: ["audit", "code-gen", "db-sync", "migration", "header-sync"]
+  enforcement: strict
+
+lupopedia.metadata:
+  comment: "Snapshot of metadata for this file or entity at artifact creation."
+
 lupopedia.headers:
   actor_id: 1
   actor_name: "wolfie"
   delegation_chain: "wolfie:root"
-  lupopedia.version: "1.0"
+  lupopedia.version: "4.0.73"
   lupopedia.schema: "index"
   file_path_from_root: "lupo-rules/root/README.md"
   web_path: "http://www.lupopedia.com/rules/root"
-  last_modified_utc: "20260310"
-  system_version: "4.0.68"
+  last_modified_utc: "20260313"
+  system_version: "4.0.73"
   artifact_type: "index"
   artifact_kind: "root_rules"
   purpose: "Index of root rule .md files (all IDE agents and code-writing agents follow these); derived from .cursor/rules/*.mdc; attached to actor_id 1 in lupo_metadata"
   tags: ["root", "rules", "doctrine", "actor_1"]
+
 lupopedia.footer:
-  version: "4.0.68"
-  last_verified: "20260310"
+  version: "4.0.73"
+  last_verified: "20260313"
   last_verified_by: "wolfie"
+  orchestrator: "cursor"
+  next_action:
+    - "Sync rule content to lupo_orchestrator_rules when table is available"
 ---
 # file: Root rules index — session: L-LUPO-WOLFIE — delegation: wolfie:root — web_path: http://www.lupopedia.com/rules/root
 

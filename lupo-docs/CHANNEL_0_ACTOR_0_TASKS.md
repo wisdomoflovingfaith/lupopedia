@@ -1,6 +1,6 @@
 ---
 lupopedia.headers:
-  lupopedia.version: "1.0"
+  lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   file_path_from_root: "docs/CHANNEL_0_ACTOR_0_TASKS.md"
   web_path: "http://www.lupopedia.com/docs/CHANNEL_0_ACTOR_0_TASKS"

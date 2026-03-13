@@ -1,7 +1,7 @@
 # LUPOPEDIA HEADERS (replaces FLARE)
 ---
 lupopedia.headers:
-  lupopedia.version: "1.0"
+  lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   file_path_from_root: ".\docs\channels\schema\migrations\analysis\PHASE8_OPERATOR_CONSOLE_EVENT_INSTRUMENTATION_REPORT.md"
   file_hash: "b6371ca53ab8ca755fd187a8b95fe34afb5ec372a1f6e95e227202162e64837c"
@@ -32,7 +32,7 @@ lupopedia.footer:
 
 ---
 lupopedia.headers:
-  lupopedia.version: "1.0"
+  lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
   file_path_from_root: "docs\channels\schema\migrations\analysis\PHASE8_OPERATOR_CONSOLE_EVENT_INSTRUMENTATION_REPORT.md"

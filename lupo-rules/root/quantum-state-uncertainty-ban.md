@@ -1,14 +1,23 @@
 ---
+lupopedia.init:
+  orchestrator_actor: "any"
+  rule_set_version: "4.0.73+"
+  applies_to: ["audit", "code-gen", "db-sync", "migration", "header-sync"]
+  enforcement: strict
+
+lupopedia.metadata:
+  comment: "Snapshot of metadata for this file or entity at artifact creation."
+
 lupopedia.headers:
   actor_id: 1
   actor_name: "wolfie"
   delegation_chain: "wolfie:root"
-  lupopedia.version: "1.0"
+  lupopedia.version: "4.0.73"
   lupopedia.schema: "cursor_rule"
   file_path_from_root: "lupo-rules/root/quantum-state-uncertainty-ban.md"
   web_path: "http://www.lupopedia.com/rules/root/quantum-state-uncertainty-ban"
-  last_modified_utc: "20260310"
-  system_version: "4.0.68"
+  last_modified_utc: "20260313"
+  system_version: "4.0.73"
   rule_name: "Quantum State & Uncertainty-Metadata Ban"
   rule_type: "constraint"
   artifact_type: "rule"
@@ -18,9 +27,12 @@ lupopedia.headers:
   source_path: ".cursor/rules/quantum-state-uncertainty-ban.mdc"
 
 lupopedia.footer:
-  version: "4.0.68"
-  last_verified: "20260310"
+  version: "4.0.73"
+  last_verified: "20260313"
   last_verified_by: "wolfie"
+  orchestrator: "cursor"
+  next_action:
+    - "Keep in sync with .cursor/rules/quantum-state-uncertainty-ban.mdc"
 ---
 # file: Rule — Quantum State & Uncertainty-Metadata Ban — session: L-LUPO-WOLFIE — delegation: wolfie:root — web_path: http://www.lupopedia.com/rules/root/quantum-state-uncertainty-ban
 

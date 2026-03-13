@@ -1,7 +1,7 @@
 # LUPOPEDIA HEADERS (replaces FLARE)
 ---
 lupopedia.headers:
-  lupopedia.version: "1.0"
+  lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   file_path_from_root: ".\docs\channels\architecture\WOLFIE_COGNITIVE_ARCHITECTURE.md"
   file_hash: "d55ca6599f8680e5223d33c4baf87e6674eafba9ae524c74542d0d0825a7376f"
@@ -32,7 +32,7 @@ lupopedia.footer:
 
 ---
 lupopedia.headers:
-  lupopedia.version: "1.0"
+  lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
   file_path_from_root: "docs\channels\architecture\WOLFIE_COGNITIVE_ARCHITECTURE.md"

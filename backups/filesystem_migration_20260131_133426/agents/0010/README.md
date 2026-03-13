@@ -1,7 +1,7 @@
 # FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
 ---
 lupopedia.headers:
-  lupopedia.version: "1.0"
+  lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   file_path_from_root: ".\backups\filesystem_migration_20260131_133426\agents\0010\README.md"
   file_hash: "c3d68eafdb5df5f0db83fbcb42dc202e561f16842109b13f74cfeaab4422197d"
@@ -32,7 +32,7 @@ lupopedia.footer:
 
 ---
 lupopedia.headers:
-  lupopedia.version: "1.0"
+  lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
   file_path_from_root: "backups\filesystem_migration_20260131_133426\agents\0010\README.md"

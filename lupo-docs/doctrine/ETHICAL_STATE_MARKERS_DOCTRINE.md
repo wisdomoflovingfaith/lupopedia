@@ -1,7 +1,7 @@
 # LUPOPEDIA HEADERS (replaces FLARE)
 ---
 lupopedia.headers:
-  lupopedia.version: "1.0"
+  lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   file_path_from_root: ".\docs\doctrine\ETHICAL_STATE_MARKERS_DOCTRINE.md"
   file_hash: "272668da57e269db28d6b4e9085e5ad2c71a2001ae4b5f4ccd935c6e452d925b"
@@ -32,7 +32,7 @@ lupopedia.footer:
 
 ---
 lupopedia.headers:
-  lupopedia.version: "1.0"
+  lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
   file_path_from_root: "docs\doctrine\ETHICAL_STATE_MARKERS_DOCTRINE.md"

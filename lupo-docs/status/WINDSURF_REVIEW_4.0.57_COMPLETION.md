@@ -2,7 +2,7 @@
 
 ---
 lupopedia.headers:
-  lupopedia.version: "1.0"
+  lupopedia.version: "4.0.73"
   lupopedia.schema: "review"
   file_path_from_root: "docs/status/WINDSURF_REVIEW_4.0.57_COMPLETION.md"
   web_path: "http://www.lupopedia.com/status/WINDSURF_REVIEW_4.0.57_COMPLETION"

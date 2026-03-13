@@ -1,7 +1,7 @@
 # LUPOPEDIA HEADERS (replaces FLARE)
 ---
 lupopedia.headers:
-  lupopedia.version: "1.0"
+  lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   file_path_from_root: ".\docs\channels\gov\MOOD_FRAMEWORK_GOVERNANCE.md"
   file_hash: "3f806cdf457495ff3eb5ffe2d689c83cd7a9de8ea421fbe53af1e0be5bd0d76f"
@@ -32,7 +32,7 @@ lupopedia.footer:
 
 ---
 lupopedia.headers:
-  lupopedia.version: "1.0"
+  lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
   file_path_from_root: "docs\channels\gov\MOOD_FRAMEWORK_GOVERNANCE.md"

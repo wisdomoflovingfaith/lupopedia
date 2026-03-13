@@ -47,7 +47,7 @@ lupopedia.conditional:
       success_criteria: ["header applied correctly"]
 
 lupopedia.headers:
-  lupopedia.version: "1.0"
+  lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   file_path_from_root: "lupo-database\lupopedia\channels\lupo-channels\42\threads\DEVELOPMENT_CYCLE_4_0_55\thread-005-database-fallback-planning.md"
   file_hash: "551f5f53c40873183550771491b57e256546bfe3440682b9fd461f632dc3db26"

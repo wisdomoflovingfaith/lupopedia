@@ -47,7 +47,7 @@ lupopedia.conditional:
       success_criteria: ["header applied correctly"]
 
 lupopedia.headers:
-  lupopedia.version: "1.0"
+  lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   file_path_from_root: "lupo-docs\status\FLARE_ENHANCEMENTS_REPORT_4.0.56.md"
   file_hash: "61184058c59232a589ac8d9f9cc7acf4cb70569ec97abfdbd1c4f59ba114acaa"

@@ -1,7 +1,7 @@
 # LUPOPEDIA HEADERS (replaces FLARE)
 ---
 lupopedia.headers:
-  lupopedia.version: "1.0"
+  lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   file_path_from_root: ".\docs\database\lupopedia\tables\MIGRATION_MAPPING_REFERENCE.md"
   file_hash: "df289e0f079d8d4ec8273077d48b72ec36ba1dad29a5eb3e115e8b4a3a9461f3"
@@ -32,7 +32,7 @@ lupopedia.footer:
 
 ---
 lupopedia.headers:
-  lupopedia.version: "1.0"
+  lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
   file_path_from_root: "docs\database\lupopedia\tables\MIGRATION_MAPPING_REFERENCE.md"

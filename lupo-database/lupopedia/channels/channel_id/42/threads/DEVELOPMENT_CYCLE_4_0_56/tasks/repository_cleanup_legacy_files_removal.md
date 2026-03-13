@@ -47,7 +47,7 @@ lupopedia.conditional:
       success_criteria: ["header applied correctly"]
 
 lupopedia.headers:
-  lupopedia.version: "1.0"
+  lupopedia.version: "4.0.73"
   lupopedia.schema: "task"
   file_path_from_root: "lupo-database/lupopedia/channels/lupo-channels/42/threads/DEVELOPMENT_CYCLE_4_0_56/tasks/repository_cleanup_legacy_files_removal.md"
   file_hash: "fcc4832bae545d1981d46bf0fdc2e7efdb135a6f2d57b00111ccf8aef2778290"
@@ -87,7 +87,7 @@ lupopedia.close:
 
 ---
 lupopedia.headers:
-  lupopedia.version: "1.0"
+  lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
   file_path_from_root: "channels\42\tasks\active\repository_cleanup_legacy_files_removal.md"

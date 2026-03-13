@@ -1,7 +1,7 @@
 # LUPOPEDIA HEADERS (replaces FLARE) — see http://www.lupopedia.com/flare_apply
 ---
 lupopedia.headers:
-  lupopedia.version: "1.0"
+  lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   file_path_from_root: "docs/doctrine/FLARE/FLARE_APPLY.md"
   web_path: "http://www.lupopedia.com/flare_apply"

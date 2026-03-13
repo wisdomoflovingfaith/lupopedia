@@ -47,7 +47,7 @@ lupopedia.conditional:
       success_criteria: ["header applied correctly"]
 
 lupopedia.headers:
-  lupopedia.version: "1.0"
+  lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   file_path_from_root: "docs\status\CONFIG_CANONICALIZATION_REPORT.md"
   file_hash: "36b569141e39285be86df74dad6b8082165bc3e827cc301f07e16b1d05c62b68"

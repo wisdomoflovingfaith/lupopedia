@@ -1,7 +1,7 @@
 # LUPOPEDIA HEADERS (replaces FLARE)
 ---
 lupopedia.headers:
-  lupopedia.version: "1.0"
+  lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   file_path_from_root: ".\docs\channels\42\broadcasts\20260224_windsurf_checklist_acknowledged.md"
   file_hash: "18f9694d2031df88ce01866d3f5042c0360eae9a50142561b31cc77dc9195ffe"
@@ -32,7 +32,7 @@ lupopedia.footer:
 
 ---
 lupopedia.headers:
-  lupopedia.version: "1.0"
+  lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
   file_path_from_root: "docs\channels\42\broadcasts\20260224_windsurf_checklist_acknowledged.md"

@@ -1,7 +1,7 @@
 # LUPOPEDIA HEADERS (replaces FLARE)
 ---
 lupopedia.headers:
-  lupopedia.version: "1.0"
+  lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   file_path_from_root: ".\prompts\windsurf\20260227_ide_agent_guidelines_update.md"
   file_hash: "cb8908d6e9a0f39863e138281f95e6eadbe3118114cb46150b90bd01c73b66f6"
@@ -32,7 +32,7 @@ lupopedia.footer:
 
 ---
 lupopedia.headers:
-  lupopedia.version: "1.0"
+  lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
   file_path_from_root: "prompts\windsurf\20260227_ide_agent_guidelines_update.md"

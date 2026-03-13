@@ -1,7 +1,25 @@
 ---
 lupopedia.init:
   document_type: "changelog"
+  file_identity: "CHANGELOG.md"
+  artifact_type: "repository-core"
+  artifact_kind: "metadata-snapshot"
+  namespace: "lupopedia"
+  domain: "core"
   system_version: "4.0.73"
+
+lupopedia.metadata:
+  comment: "Snapshot of metadata for this file or entity at artifact creation."
+  title:
+    - { schema_ref: "lupo_metadata", entity_type: "file", meta_type: "property", property_value: "Lupopedia CHANGELOG", channel_id: 42, class_name: "lupopedia_metadata", created_ymdhis: 20260313000000, updated_ymdhis: 20260313000000 }
+  description:
+    - { schema_ref: "lupo_metadata", entity_type: "file", meta_type: "property", property_value: "Canonical version history for Lupopedia; reverse chronological order.", channel_id: 42, class_name: "lupopedia_metadata", created_ymdhis: 20260313000000, updated_ymdhis: 20260313000000 }
+  keywords:
+    - { schema_ref: "lupo_metadata", entity_type: "file", meta_type: "property", property_value: "changelog, version_history, lupopedia, v4.0.73", channel_id: 42, class_name: "lupopedia_metadata", created_ymdhis: 20260313000000, updated_ymdhis: 20260313000000 }
+  author:
+    - { schema_ref: "lupo_metadata", entity_type: "file", meta_type: "property", property_value: "wolfie", channel_id: 42, class_name: "lupopedia_metadata", created_ymdhis: 20260313000000, updated_ymdhis: 20260313000000 }
+  orchestrator:
+    - { schema_ref: "lupo_metadata", entity_type: "file", meta_type: "property", property_value: "cursor", channel_id: 42, class_name: "lupopedia_metadata", created_ymdhis: 20260313000000, updated_ymdhis: 20260313000000 }
 
 lupopedia.headers:
   lupopedia.version: "4.0.73"
@@ -16,6 +34,29 @@ lupopedia.headers:
   artifact_type: "changelog"
   artifact_kind: "history"
   purpose: "Canonical version history for Lupopedia; reverse chronological order."
+
+lupopedia.edges:
+  comment: "Snapshot of outbound edges for CHANGELOG at artifact creation."
+  meta: "Changelog; version history; core repo."
+  outbound_edges:
+    - { to: "README.md", type: "references", weight: 1.0 }
+    - { to: "TODO.md", type: "references", weight: 0.9 }
+    - { to: "CHANGELOG_ARCHIVE.md", type: "references", weight: 0.9 }
+    - { to: "lupo-docs/status/implementation_cursor_audit_fixes.md", type: "references", weight: 0.8 }
+    - { to: "lupo-docs/doctrine/LUPOPEDIA_HEADERS/OPTIONAL_BLOCKS.md", type: "references", weight: 0.8 }
+  semantic_tags: ["changelog", "version_history", "core", "lupopedia"]
+
+lupopedia.comments:
+  - comment_id: 1
+    channel_id: 42
+    actor_id: 1
+    actor_name: "wolfie"
+    faucet_id: 101
+    faucet_name: "windsurf"
+    comment_text: "Excellent work on the 4.0.73 implementation! All priority tasks completed successfully. The comments system will enhance our documentation and collaboration capabilities."
+    comment_type: "comment"
+    created_ymdhis: 20260313150000
+    updated_ymdhis: 20260313150000
 
 lupopedia.footer:
   archive_note: "For historical changelog entries from 4.0.67 and earlier, see CHANGELOG_ARCHIVE.md"
@@ -62,6 +103,10 @@ This document tracks version history, focusing on key changes, task migrations, 
 - **Auth Namespace Documentation:** Researched and implemented the "auth" namespace for database table documentation. Updated `lupo-docs/database/lupopedia/tables/active/lupo_auth_users.md`, `lupo_auth_providers.md`, and `active/development/lupo_auth_audit_log.md` with version 4.0.73 headers, `namespace: "auth"`, and mandatory `lupopedia.edges`/`lupopedia.engagement` snapshot metadata as per Antigravity governance standards.
 - **README & Root Hardening:** Updated `README.md` to version 4.0.73; refined focus description to reflect edge schema hardening and shared-host SQL compatibility work.
 - **DDL Doctrine Hardening:** Audited and corrected `lupo-database/lupopedia/mysql/install/install_new_lupopedia.sql` to enforce database doctrine (removed forbidden `tinyint(1)` display widths in `lupo_edges` and verified schema consistency).
+- **Database & Orchestrator Rules Audit:** Conducted a full audit of table documentation, TOON transferability, and orchestrator rule integration. Identified critical primary key documentation drift in `lupo_actors.md` and proposed the `lupo_orchestrator_rules` table for DB-canonical rule storage. Report: `lupo-docs/status/report_on_database_tables_antigravity.md`.
+- **Orchestrator rules + lupopedia.metadata headers (Cursor):** All 17 files in `lupo-rules/root/` received **lupopedia.init** and **lupopedia.metadata** blocks. README.md, CHANGELOG.md, and new root TODO.md received **lupopedia.metadata** blocks. **lupo_orchestrator_rules** table added to future_features and one-time migration `database/migrations/20260313_lupo_orchestrator_rules.sql`; sync script `scripts/sync_orchestrator_rules_to_db.php` reads `lupo-rules/root/*.md` and upserts into the table. `lupo_actors.md` given **lupopedia.init** and **lupopedia.metadata** (PK remains actor_id per doctrine). Report: `lupo-docs/status/implementation_cursor_audit_fixes.md`.
+- **lupopedia.metadata semantic correction (Cursor):** **lupopedia.metadata** was incorrectly implemented as a table-schema block (listing column names and SQL types). Corrected so that **lupopedia.metadata** represents a **snapshot of metadata rows/values** for the current file or entity, **grouped by property_key**, not the schema of `lupo_metadata`. Doctrine updated in `lupo-docs/doctrine/LUPOPEDIA_HEADERS/OPTIONAL_BLOCKS.md` (new section) and `LUPOPEDIA_HEADERS_FORMAT.md` (block list). All 18 affected files (lupo-rules/root/*.md, README.md, CHANGELOG.md, TODO.md, lupo_actors.md) now use the minimal valid form: `comment: "Snapshot of metadata for this file or entity at artifact creation."` when no metadata rows exist; when rows exist, structure is property_key → array of row-like objects (domain_id, schema_ref, entity_type, entity_id, meta_type, property_value, channel_id, etc.). Transferability: export from `lupo_metadata` into header; re-import from header into `lupo_metadata`. Do not list column datatypes in lupopedia.metadata.
+- **Comments System (4.0.73):** Implemented `lupo_comments` table for commenting on artifacts, documents, and content with faucet traceability. Added `lupopedia.comments` header block to LUPOPEDIA HEADERS format, formatted like `lupopedia.metadata` with records pulled from the `lupo_comments` table. Table includes `comment_id`, `target_type`, `target_id`, `channel_id`, `actor_id`, `faucet_id`, `comment_text`, `comment_type`, `parent_comment_id` for threading, and standard timestamp/deletion fields. Created comprehensive documentation in `lupo-docs/database/lupopedia/tables/active/lupo_comments.md` and seed data in `seed_comments_4.0.73.sql`. Example comment from Wolfie orchestrator with Windsurf faucet added to CHANGELOG.md header.
 
 ### [4.0.72] — Version bump (2026-03-12)
 

@@ -1,7 +1,7 @@
 # FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP) — see http://www.lupopedia.com/plans/antigravity_agent_integration
 ---
 lupopedia.headers:
-  lupopedia.version: "1.0"
+  lupopedia.version: "4.0.73"
   lupopedia.schema: "implementation_plan"
   file_path_from_root: "plan.md"
   web_path: "http://www.lupopedia.com/plans/antigravity_agent_integration"

@@ -1,6 +1,6 @@
 ---
 lupopedia.headers:
-  lupopedia.version: "1.0"
+  lupopedia.version: "4.0.73"
   lupopedia.schema: "review"
   file_path_from_root: "docs/status/review_suggestions.md"
   web_path: "http://www.lupopedia.com/status/review_suggestions"

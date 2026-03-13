@@ -47,7 +47,7 @@ lupopedia.conditional:
       success_criteria: ["header applied correctly"]
 
 lupopedia.headers:
-  lupopedia.version: "1.0"
+  lupopedia.version: "4.0.73"
   lupopedia.schema: "task"
   file_path_from_root: "lupo-database/lupopedia/channels/lupo-channels/42/tasks/completed/legacy_table_optimization_review.md"
   file_hash: "2ddb455bff479c135646d7aa0c60597d33bd24652ce542336d21282060674f2a"
@@ -87,7 +87,7 @@ lupopedia.close:
 
 ---
 lupopedia.headers:
-  lupopedia.version: "1.0"
+  lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
   file_path_from_root: "channels\42\tasks\completed\legacy_table_optimization_review.md"

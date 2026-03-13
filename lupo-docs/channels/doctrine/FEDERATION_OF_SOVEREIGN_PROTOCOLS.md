@@ -1,7 +1,7 @@
 # LUPOPEDIA HEADERS (replaces FLARE)
 ---
 lupopedia.headers:
-  lupopedia.version: "1.0"
+  lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   file_path_from_root: ".\docs\channels\doctrine\FEDERATION_OF_SOVEREIGN_PROTOCOLS.md"
   file_hash: "a800e57a5c6d0eb5adb8ab9ea32f756e21df8eeae4f18c47ceb1bd5afc21c1bd"
@@ -32,7 +32,7 @@ lupopedia.footer:
 
 ---
 lupopedia.headers:
-  lupopedia.version: "1.0"
+  lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
   file_path_from_root: "docs\channels\doctrine\FEDERATION_OF_SOVEREIGN_PROTOCOLS.md"

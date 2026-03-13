@@ -1,7 +1,7 @@
 # FLARE Header
 ---
 lupopedia.headers:
-  lupopedia.version: "1.0"
+  lupopedia.version: "4.0.73"
   lupopedia.schema: "task"
   file_path_from_root: "lupo-database/lupopedia/channels/channel_id/42/tasks/completed/task-017-doctor-system-health.md"
   system_version: "4.0.62"

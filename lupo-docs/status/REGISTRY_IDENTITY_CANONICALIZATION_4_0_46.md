@@ -1,7 +1,7 @@
 # LUPOPEDIA HEADERS (replaces FLARE)
 ---
 lupopedia.headers:
-  lupopedia.version: "1.0"
+  lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   file_path_from_root: ".\docs\status\REGISTRY_IDENTITY_CANONICALIZATION_4_0_46.md"
   file_hash: "91812d64db1fed58574a107fde973fa9a029db7fb83969c2589066b7afe52202"
@@ -32,7 +32,7 @@ lupopedia.footer:
 
 ---
 lupopedia.headers:
-  lupopedia.version: "1.0"
+  lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
   file_path_from_root: "docs\status\REGISTRY_IDENTITY_CANONICALIZATION_4_0_46.md"

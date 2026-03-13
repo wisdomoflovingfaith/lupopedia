@@ -1,7 +1,7 @@
 # LUPOPEDIA HEADERS (replaces FLARE)
 ---
 lupopedia.headers:
-  lupopedia.version: "1.0"
+  lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   file_path_from_root: ".\docs\channels\schema\migrations\analysis\CROSS_FRAME_COMMUNICATION_PRESERVATION_ANALYSIS.md"
   file_hash: "84f78f161a82be485d5d3db2e1c1a8c51b09e32eedc5ebba88692842e3e55d8b"
@@ -32,7 +32,7 @@ lupopedia.footer:
 
 ---
 lupopedia.headers:
-  lupopedia.version: "1.0"
+  lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
   file_path_from_root: "docs\channels\schema\migrations\analysis\CROSS_FRAME_COMMUNICATION_PRESERVATION_ANALYSIS.md"

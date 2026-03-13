@@ -1,7 +1,7 @@
 # LUPOPEDIA HEADERS (replaces FLARE)
 ---
 lupopedia.headers:
-  lupopedia.version: "1.0"
+  lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   file_path_from_root: ".\docs\channels\overview\big-rock-1\ACTIVE_Period_Completion_Checklist.md"
   file_hash: "1e0f9bbebb515dbb44e8a4f549280de3b5c08c80845ee8a43ba84b9a87bd6f49"
@@ -32,7 +32,7 @@ lupopedia.footer:
 
 ---
 lupopedia.headers:
-  lupopedia.version: "1.0"
+  lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
   file_path_from_root: "docs\channels\overview\big-rock-1\ACTIVE_Period_Completion_Checklist.md"

@@ -2,7 +2,7 @@
 
 ---
 lupopedia.headers:
-  lupopedia.version: "1.0"
+  lupopedia.version: "4.0.73"
   lupopedia.schema: "optimization_plan"
   lupopedia.edges: []
   file_path_from_root: "docs/plans/file_opt_4.1.0.md"

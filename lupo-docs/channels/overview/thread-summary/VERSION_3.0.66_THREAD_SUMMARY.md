@@ -1,7 +1,7 @@
 # LUPOPEDIA HEADERS (replaces FLARE)
 ---
 lupopedia.headers:
-  lupopedia.version: "1.0"
+  lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   file_path_from_root: ".\docs\channels\overview\thread-summary\VERSION_3.0.66_THREAD_SUMMARY.md"
   file_hash: "7e0f74fad12f3f8014d6e7265716cb6af07aa1f6f9f227d4ce6d6c2ddc957c6d"
@@ -32,7 +32,7 @@ lupopedia.footer:
 
 ---
 lupopedia.headers:
-  lupopedia.version: "1.0"
+  lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
   file_path_from_root: "docs\channels\overview\thread-summary\VERSION_3.0.66_THREAD_SUMMARY.md"

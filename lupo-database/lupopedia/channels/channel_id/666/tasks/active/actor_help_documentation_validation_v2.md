@@ -4,7 +4,7 @@
 lupopedia.init:
   requirements:
     flare:
-      version: ">=4.0.55"
+      version: ">=4.0.73"
   execution_mode: "advisory"
   pre_actions:
     - type: dependency_check
@@ -47,12 +47,12 @@ lupopedia.conditional:
       success_criteria: ["header applied correctly"]
 
 lupopedia.headers:
-  lupopedia.version: "1.0"
+  lupopedia.version: "4.0.73"
   lupopedia.schema: "task"
   file_path_from_root: "lupo-database/lupopedia/channels/lupo-channels/666/tasks/active/actor_help_documentation_validation_v2.md"
   file_hash: "def27004b16fa670935c4822c44700a29b8c6d405398de5db961ceeca91c74e3"
   last_updated_utc: "20260304"
-  system_version: "4.0.56"
+  system_version: "4.0.73"
   channel_id: 1
   actor_id: 1004
   delegation_chain: "1004:10000"
@@ -60,7 +60,7 @@ lupopedia.headers:
   artifact_kind: "documentation"
   purpose: "Documentation for actor_help_documentation_validation_v2.md"
   mood_rgb: "4169E1"
-  traits: ["flare", "indexed", "v4.0.56"]
+  traits: ["flare", "indexed", "v4.0.73"]
   tags: ["lupo-database", "lupopedia", "channels", "lupo-channels", "666", "tasks"]
   lupo_agent: "antigravity"
 
@@ -85,7 +85,7 @@ lupopedia.close:
 lupopedia.headers:
   file_path_from_root: "channels/42/tasks/active/actor_help_documentation_validation_v2.md"
   file_hash: "<?php echo hash_file('channels/42/tasks/active/actor_help_documentation_validation_v2.md'); ?>"
-  system_version: "4.0.50"
+  system_version: "4.0.73"
   channel_id: 42
   actor_id: 1002
   last_modified_utc: "<?php echo gmdate('YmdHis'); ?>"
@@ -94,7 +94,7 @@ lupopedia.headers:
   purpose: "Validate and remediate actor help documentation against defined standards with corrected actor priorities and comprehensive validation framework"
   mood_rgb: "FF6B35"
   artifact_kind: "validation_task"
-  traits: ["critical", "documentation", "validation", "v4.0.50", "remediation"]
+  traits: ["critical", "documentation", "validation", "v4.0.73", "remediation"]
   tags: ["actor_help", "documentation", "validation", "completeness", "lilith_reviewed"]
   lupo_agent: "windsurf"
 
@@ -110,7 +110,7 @@ lupopedia.edges:
   semantic_tags: ["actor_help", "documentation", "validation", "completeness", "remediation", "lilith_reviewed"]
 
   last_updated_utc: "<?php echo gmdate('YmdHis'); ?>"
-  system_version: "4.0.50"
+  system_version: "4.0.73"
 lupopedia.footer:
   last_verified_utc: "<?php echo gmdate('YmdHis'); ?>"
   last_verified_by: "windsurf"

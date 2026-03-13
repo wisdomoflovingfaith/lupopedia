@@ -1,7 +1,7 @@
 # LUPOPEDIA HEADERS (replaces FLARE)
 ---
 lupopedia.headers:
-  lupopedia.version: "1.0"
+  lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   file_path_from_root: ".\docs\channels\architecture\WOLFIE_SYNCHRONIZATION_PROTOCOL_CORRECTION_v0_5.md"
   file_hash: "dc6cbff61ebf3a5d5f3e3b761cead040401cc7f81e1e11aeac2ec08295bff454"
@@ -32,7 +32,7 @@ lupopedia.footer:
 
 ---
 lupopedia.headers:
-  lupopedia.version: "1.0"
+  lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
   file_path_from_root: "docs\channels\architecture\WOLFIE_SYNCHRONIZATION_PROTOCOL_CORRECTION_v0_5.md"

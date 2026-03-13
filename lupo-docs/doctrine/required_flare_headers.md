@@ -1,6 +1,6 @@
 ---
 lupopedia.headers:
-  lupopedia.version: "1.0"
+  lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   file_path_from_root: "lupo-docs/doctrine/required_flare_headers.md"
   last_modified_utc: "20260312"

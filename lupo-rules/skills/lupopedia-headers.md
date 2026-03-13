@@ -3,7 +3,7 @@ lupopedia.headers:
   actor_id: 1
   actor_name: "wolfie"
   delegation_chain: "wolfie:root"
-  lupopedia.version: "1.0"
+  lupopedia.version: "4.0.73"
   lupopedia.schema: "rule"
   file_path_from_root: "lupo-rules/skills/lupopedia-headers.md"
   web_path: "http://www.lupopedia.com/rules/skills/lupopedia-headers"

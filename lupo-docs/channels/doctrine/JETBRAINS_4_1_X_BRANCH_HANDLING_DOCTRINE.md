@@ -1,7 +1,7 @@
 # LUPOPEDIA HEADERS (replaces FLARE)
 ---
 lupopedia.headers:
-  lupopedia.version: "1.0"
+  lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   file_path_from_root: ".\docs\channels\doctrine\JETBRAINS_4_1_X_BRANCH_HANDLING_DOCTRINE.md"
   file_hash: "5bc7e6622aa945ca17e0259934d748a20d88e585ffcc450759e1d37175c4ce67"
@@ -32,7 +32,7 @@ lupopedia.footer:
 
 ---
 lupopedia.headers:
-  lupopedia.version: "1.0"
+  lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
   file_path_from_root: "docs\channels\doctrine\JETBRAINS_4_1_X_BRANCH_HANDLING_DOCTRINE.md"

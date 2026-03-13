@@ -47,7 +47,7 @@ lupopedia.conditional:
       success_criteria: ["header applied correctly"]
 
 lupopedia.headers:
-  lupopedia.version: "1.0"
+  lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   file_path_from_root: "lupo-database\lupopedia\channels\lupo-channels\42\collections\channels-collection.md"
   file_hash: "b43398c3ed39f44c631a380563ae1dc620638552c1066fc3b203cda475005760"

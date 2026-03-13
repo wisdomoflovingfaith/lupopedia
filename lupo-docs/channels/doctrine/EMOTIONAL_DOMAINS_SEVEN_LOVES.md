@@ -1,7 +1,7 @@
 # LUPOPEDIA HEADERS (replaces FLARE)
 ---
 lupopedia.headers:
-  lupopedia.version: "1.0"
+  lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   file_path_from_root: ".\docs\channels\doctrine\EMOTIONAL_DOMAINS_SEVEN_LOVES.md"
   file_hash: "1c2d089188c2af84c8c1d6ff9f8ad5bf6b2e37dbb1cf989e1e33ca3d8d32f4a8"
@@ -32,7 +32,7 @@ lupopedia.footer:
 
 ---
 lupopedia.headers:
-  lupopedia.version: "1.0"
+  lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
   file_path_from_root: "docs\channels\doctrine\EMOTIONAL_DOMAINS_SEVEN_LOVES.md"

@@ -1,7 +1,7 @@
 # LUPOPEDIA HEADERS (replaces FLARE)
 ---
 lupopedia.headers:
-  lupopedia.version: "1.0"
+  lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   file_path_from_root: ".\docs\channels\gov\PLURALISTIC_EMOTION_MODEL_GOVERNANCE.md"
   file_hash: "beacc473d3afab2e27dfc80ff4f68c4f826e5e076d3115eed9d69ccd285dda12"
@@ -32,7 +32,7 @@ lupopedia.footer:
 
 ---
 lupopedia.headers:
-  lupopedia.version: "1.0"
+  lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
   file_path_from_root: "docs\channels\gov\PLURALISTIC_EMOTION_MODEL_GOVERNANCE.md"

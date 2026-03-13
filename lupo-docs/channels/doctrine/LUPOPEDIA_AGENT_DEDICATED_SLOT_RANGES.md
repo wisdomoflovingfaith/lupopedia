@@ -1,7 +1,7 @@
 # LUPOPEDIA HEADERS (replaces FLARE)
 ---
 lupopedia.headers:
-  lupopedia.version: "1.0"
+  lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   file_path_from_root: ".\docs\channels\doctrine\LUPOPEDIA_AGENT_DEDICATED_SLOT_RANGES.md"
   file_hash: "ce6676254b7219b1c5750d4faae104690ac454f8bd30da774b59dc583f348aa0"
@@ -32,7 +32,7 @@ lupopedia.footer:
 
 ---
 lupopedia.headers:
-  lupopedia.version: "1.0"
+  lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
   file_path_from_root: "docs\channels\doctrine\LUPOPEDIA_AGENT_DEDICATED_SLOT_RANGES.md"

@@ -1,12 +1,12 @@
 # FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
 ---
 lupopedia.headers:
-  lupopedia.version: "1.0"
+  lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   file_path_from_root: ".\channels\0\tasks\active\broadcast_normalization.md"
   file_hash: "f49fcfc0f832e9a5de98ed39e58ade49e12b8ea3ab3d962a42d2d80c85892066"
   last_updated_utc: "20260228155738"
-  system_version: "4.0.51"
+  system_version: "4.0.73"
   channel_id: 1
   actor_id: 1002
   delegation_chain: "1002:10000"
@@ -14,7 +14,7 @@ lupopedia.headers:
   artifact_kind: "documentation"
   purpose: "Documentation file with LUPOPEDIA HEADERS applied"
   mood_rgb: "4169E1"
-  traits: ["flare", "indexed", "v4.0.51"]
+  traits: ["flare", "indexed", "v4.0.73"]
   tags: ["documentation", "flare_applied"]
   lupo_agent: "windsurf"
 
@@ -32,7 +32,7 @@ lupopedia.footer:
 
 ---
 lupopedia.headers:
-  lupopedia.version: "1.0"
+  lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
   file_path_from_root: "channels\0\tasks\active\broadcast_normalization.md"
@@ -40,7 +40,7 @@ lupopedia.headers:
   file_path_from_root: "channels\0\tasks\active\broadcast_normalization.md"
   file_hash: "2e88aa239490c7d8217e3905eef443aa87ca0253b3e01dd6ee8abd7ae54ed34e"
   last_updated_utc: "20260228"
-  system_version: "4.0.50"
+  system_version: "4.0.73"
   channel_id: 1
   actor_id: 1002
   delegation_chain: null
@@ -48,12 +48,12 @@ lupopedia.headers:
   artifact_kind: "documentation"
   purpose: "Documentation for broadcast_normalization.md"
   mood_rgb: "4169E1"
-  traits: ["flare", "indexed", "v4.0.50"]
+  traits: ["flare", "indexed", "v4.0.73"]
   tags: ["channels", "0", "tasks", "active", "broadcast_normalizationmd"]
   lupo_agent: "windsurf"
 
   needs_review: ["delegation_chain"]
-  system_version: "4.0.50"
+  system_version: "4.0.73"
   last_updated_utc: "20260228"
 lupopedia.footer:
   last_verified: "20260228"
@@ -105,7 +105,7 @@ to_actor_id: <actor_id>
 channel_id: <channel_id>
 delegation_chain: "<from>:<to>"
 created_utc: "YYYY-MM-DDTHH:MM:SSZ"
-system_version: "4.0.45"
+system_version: "4.0.73"
 artifact_type: "broadcast"
 ```
 

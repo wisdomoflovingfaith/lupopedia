@@ -1,7 +1,7 @@
 # LUPOPEDIA HEADERS (replaces FLARE)
 ---
 lupopedia.headers:
-  lupopedia.version: "1.0"
+  lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   file_path_from_root: ".\docs\database\lupopedia\tables\lupo_actor_handshakes.md"
   file_hash: "4c9298ef2cb9229e3f0dcf615bb71cc4e744bac79d6f2851739b7cc0683cb5f7"

@@ -4,7 +4,7 @@
 lupopedia.init:
   requirements:
     flare:
-      version: ">=4.0.55"
+      version: ">=4.0.73"
   execution_mode: "advisory"
   pre_actions:
     - type: dependency_check
@@ -47,12 +47,12 @@ lupopedia.conditional:
       success_criteria: ["header applied correctly"]
 
 lupopedia.headers:
-  lupopedia.version: "1.0"
+  lupopedia.version: "4.0.73"
   lupopedia.schema: "task"
   file_path_from_root: "lupo-database/lupopedia/channels/lupo-channels/666/tasks/active/database_documentation_remaining_tables.md"
   file_hash: "5b1d2942d12b8ef106458b58cf85de6a8cd0a686d0d5ad8cbf45f0ef506adb67"
   last_updated_utc: "20260304"
-  system_version: "4.0.56"
+  system_version: "4.0.73"
   channel_id: 1
   actor_id: 1004
   delegation_chain: "1004:10000"
@@ -60,7 +60,7 @@ lupopedia.headers:
   artifact_kind: "documentation"
   purpose: "FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)"
   mood_rgb: "4169E1"
-  traits: ["flare", "indexed", "v4.0.56"]
+  traits: ["flare", "indexed", "v4.0.73"]
   tags: ["lupo-database", "lupopedia", "channels", "lupo-channels", "666", "tasks"]
   lupo_agent: "antigravity"
 
@@ -88,7 +88,7 @@ lupopedia.close:
 lupopedia.headers: 
   file_path_from_root: "channels/42/tasks/active/database_documentation_remaining_tables.md"
   file_hash: "6003680b50d8128c10fbec96776b5ef7534a7671846ea82f79235864d913610c"
-  system_version: "4.0.50"
+  system_version: "4.0.73"
   channel_id: 42
   actor_id: 1007
   last_modified_utc: "20260227"
@@ -111,7 +111,7 @@ lupopedia.edges:
   semantic_tags: ["database_optimization", "performance", "enhancement", "federation"]
 
   last_updated_utc: "20260228"
-  system_version: "4.0.50"
+  system_version: "4.0.73"
   last_updated_utc: "20260228"
 lupopedia.footer:
   last_verified: "20260227"

@@ -1,7 +1,7 @@
 # LUPOPEDIA HEADERS (replaces FLARE)
 ---
 lupopedia.headers:
-  lupopedia.version: "1.0"
+  lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   file_path_from_root: ".\docs\audits\DEPARTMENTS_GROUPS_ROLES_IMPLEMENTATION_PLAN.md"
   file_hash: "1b5526bb1d21e6d2ad5af33ae206b469863f20fec07af962548802e42345474b"
@@ -32,7 +32,7 @@ lupopedia.footer:
 
 ---
 lupopedia.headers:
-  lupopedia.version: "1.0"
+  lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
   file_path_from_root: "docs\audits\DEPARTMENTS_GROUPS_ROLES_IMPLEMENTATION_PLAN.md"

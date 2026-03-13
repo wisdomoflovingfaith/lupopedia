@@ -1,7 +1,7 @@
 # LUPOPEDIA HEADERS (replaces FLARE)
 ---
 lupopedia.headers:
-  lupopedia.version: "1.0"
+  lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   file_path_from_root: ".\docs\LUPOPEDIA_MASTER_DOCTRINE_OF_AI_CORRECTIONS_v1.0.md"
   file_hash: "6076096e0ea54af997d3820a8812ae94d076e932055b262dfe7a54b3c854849f"
@@ -32,7 +32,7 @@ lupopedia.footer:
 
 ---
 lupopedia.headers:
-  lupopedia.version: "1.0"
+  lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
   file_path_from_root: "docs\LUPOPEDIA_MASTER_DOCTRINE_OF_AI_CORRECTIONS_v1.0.md"

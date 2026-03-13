@@ -49,7 +49,7 @@ lupopedia.conditional:
       success_criteria: ["header applied correctly"]
 
 lupopedia.headers:
-  lupopedia.version: "1.0"
+  lupopedia.version: "4.0.73"
   lupopedia.schema: "task"
   file_path_from_root: "lupo-database/lupopedia/channels/lupo-channels/42/tasks/active/task-012-directory-migration.md"
   file_hash: "a6bcad76c9ff03cf29f15422a4f67cc2887f9f62ad9ad39374c682def7dedcb5"

@@ -47,7 +47,7 @@ lupopedia.conditional:
       success_criteria: ["header applied correctly"]
 
 lupopedia.headers:
-  lupopedia.version: "1.0"
+  lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   file_path_from_root: ".kiro/specs/version-4-0-44-initialization/requirements.md"
   file_hash: "e7c6c9ff942fcc9d3ab3942d491c28f40023a7c555230cb79e4f4f54c0786f1c"
@@ -87,7 +87,7 @@ lupopedia.close:
 
 ---
 lupopedia.headers:
-  lupopedia.version: "1.0"
+  lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
   file_path_from_root: ".kiro\specs\version-4-0-44-initialization\requirements.md"

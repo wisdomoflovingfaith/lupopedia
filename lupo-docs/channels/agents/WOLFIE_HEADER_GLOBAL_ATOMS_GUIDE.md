@@ -1,7 +1,7 @@
 # LUPOPEDIA HEADERS (replaces FLARE)
 ---
 lupopedia.headers:
-  lupopedia.version: "1.0"
+  lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   file_path_from_root: ".\docs\channels\agents\WOLFIE_HEADER_GLOBAL_ATOMS_GUIDE.md"
   file_hash: "20e3ece17c6bad48679194c838d731ae81b35bec229857468c4aff6c39aa94d3"
@@ -32,7 +32,7 @@ lupopedia.footer:
 
 ---
 lupopedia.headers:
-  lupopedia.version: "1.0"
+  lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
   file_path_from_root: "docs\channels\agents\WOLFIE_HEADER_GLOBAL_ATOMS_GUIDE.md"

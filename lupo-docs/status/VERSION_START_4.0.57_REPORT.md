@@ -2,7 +2,7 @@
 
 ---
 lupopedia.headers:
-  lupopedia.version: "1.0"
+  lupopedia.version: "4.0.73"
   file_path_from_root: "docs/status/VERSION_START_4.0.57_REPORT.md"
   last_modified_utc: "20260306"
   system_version: "4.0.57"

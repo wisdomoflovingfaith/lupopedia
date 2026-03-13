@@ -1,7 +1,7 @@
 # LUPOPEDIA HEADERS (replaces FLARE)
 ---
 lupopedia.headers:
-  lupopedia.version: "1.0"
+  lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   file_path_from_root: ".\docs\doctrine\HEADERS\FLIP_FOOTER_DOCTRINE_4_0_31.md"
   file_hash: "65c69b6d325d81b25f061a650bdce705d199f53621edd3b5a775bb711ae21846"
@@ -32,7 +32,7 @@ lupopedia.footer:
 
 ---
 lupopedia.headers:
-  lupopedia.version: "1.0"
+  lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
   file_path_from_root: "docs\doctrine\HEADERS\FLIP_FOOTER_DOCTRINE_4_0_31.md"

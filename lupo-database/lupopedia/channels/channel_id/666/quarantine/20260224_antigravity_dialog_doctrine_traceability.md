@@ -1,7 +1,7 @@
 # FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
 ---
 lupopedia.headers:
-  lupopedia.version: "1.0"
+  lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   file_path_from_root: ".\channels\666\quarantine\20260224_antigravity_dialog_doctrine_traceability.md"
   file_hash: "f5598380e9f915832b8f5bc002ea70e6c4f4a39412fc9e4377e1059568b9dcd8"
@@ -32,7 +32,7 @@ lupopedia.footer:
 
 ---
 lupopedia.headers:
-  lupopedia.version: "1.0"
+  lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
   file_path_from_root: "channels\666\quarantine\20260224_antigravity_dialog_doctrine_traceability.md"

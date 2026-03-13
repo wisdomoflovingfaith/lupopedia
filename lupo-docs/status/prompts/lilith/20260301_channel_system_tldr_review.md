@@ -1,7 +1,7 @@
 # LUPOPEDIA HEADERS (replaces FLARE) — see http://www.lupopedia.com/FLARE
 ---
 lupopedia.headers:
-  lupopedia.version: "1.0"
+  lupopedia.version: "4.0.73"
   lupopedia.schema: "review"
   file_path_from_root: "prompts/lilith/20260301_channel_system_tldr_review.md"
   system_version: "4.0.52"
@@ -39,7 +39,7 @@ lupopedia.footer:
 ---
 # FLARE Header
 lupopedia.headers:
-  lupopedia.version: "1.0"
+  lupopedia.version: "4.0.73"
   lupopedia.schema: "review"
   file_path_from_root: "prompts/lilith/20260301_channel_system_tldr_review.md"
   system_version: "4.0.52"
@@ -191,7 +191,7 @@ VALUES
 # LUPOPEDIA HEADERS (replaces FLARE) — see http://www.lupopedia.com/FLARE
 ---
 lupopedia.headers:
-  lupopedia.version: "1.0"
+  lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   file_path_from_root: "path/to/file.md"
   system_version: "4.0.52"

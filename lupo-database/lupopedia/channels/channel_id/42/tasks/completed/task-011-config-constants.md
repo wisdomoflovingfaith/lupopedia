@@ -49,7 +49,7 @@ lupopedia.conditional:
       success_criteria: ["header applied correctly"]
 
 lupopedia.headers:
-  lupopedia.version: "1.0"
+  lupopedia.version: "4.0.73"
   lupopedia.schema: "task"
   file_path_from_root: "lupo-database/lupopedia/channels/lupo-channels/42/tasks/active/task-011-config-constants.md"
   file_hash: "851bf19ec9d7af7e21a7486420a6036e97cef5a5e0da20a1563eb7599fa72ef4"

@@ -1,7 +1,7 @@
 # LUPOPEDIA HEADERS (replaces FLARE)
 ---
 lupopedia.headers:
-  lupopedia.version: "1.0"
+  lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   file_path_from_root: ".\docs\channels\schema\migrations\analysis\PHASE9_THEATRICAL_UI_EVENT_MAPPING_PLAN.md"
   file_hash: "56f7fe9bb06e5460cfce5e9b39d8389e0d20101c6f57de2465c855d75cfa62df"
@@ -32,7 +32,7 @@ lupopedia.footer:
 
 ---
 lupopedia.headers:
-  lupopedia.version: "1.0"
+  lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
   file_path_from_root: "docs\channels\schema\migrations\analysis\PHASE9_THEATRICAL_UI_EVENT_MAPPING_PLAN.md"

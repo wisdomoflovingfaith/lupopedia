@@ -1,18 +1,18 @@
 ---
 lupopedia.headers:
-  lupopedia.version: "1.0"
+  lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   file_path_from_root: "AGENTS.md"
   web_path: "http://www.lupopedia.com/AGENTS"
   last_modified_utc: "20260312"
-  system_version: "4.0.71"
+  system_version: "4.0.73"
   channel_id: 42
   actor_id: 1003
   delegation_chain: "cursor:root"
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Comprehensive guide for WARP and all IDE surfaces (faucets) working with Lupopedia"
-  traits: ["canonical", "comprehensive", "v4.0.71", "agents"]
+  traits: ["canonical", "comprehensive", "v4.0.73", "agents"]
   tags: ["agents", "warp", "documentation", "doctrine", "architecture"]
   agent_name_identity: "Windsurf IDE Agent"
   lupo_agent: "windsurf"
@@ -31,7 +31,7 @@ lupopedia.see:
     - ["AGENTS.md", "http://www.lupopedia.com/AGENTS"]
 
 lupopedia.footer:
-  version: "4.0.71"
+  version: "4.0.73"
   last_verified: "20260312"
   last_verified_by: "cursor"
   next_action:

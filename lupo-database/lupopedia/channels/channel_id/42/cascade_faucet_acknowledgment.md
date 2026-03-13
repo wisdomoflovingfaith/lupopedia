@@ -47,7 +47,7 @@ lupopedia.conditional:
       success_criteria: ["header applied correctly"]
 
 lupopedia.headers:
-  lupopedia.version: "1.0"
+  lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   file_path_from_root: "lupo-database\lupopedia\channels\lupo-channels\42\cascade_faucet_acknowledgment.md"
   file_hash: "2b65a41a2143b4349689049d5d2a8eb1a37a97a121eeae377745b1f132a4be7d"

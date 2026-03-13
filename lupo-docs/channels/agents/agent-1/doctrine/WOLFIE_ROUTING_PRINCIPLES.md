@@ -1,7 +1,7 @@
 # LUPOPEDIA HEADERS (replaces FLARE)
 ---
 lupopedia.headers:
-  lupopedia.version: "1.0"
+  lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   file_path_from_root: ".\docs\channels\agents\agent-1\doctrine\WOLFIE_ROUTING_PRINCIPLES.md"
   file_hash: "51f965cf92a5745d48a9f336ec978836d14acd2d6dde65fe31f4ab753832a6a8"
@@ -32,7 +32,7 @@ lupopedia.footer:
 
 ---
 lupopedia.headers:
-  lupopedia.version: "1.0"
+  lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
   file_path_from_root: "docs\channels\agents\agent-1\doctrine\WOLFIE_ROUTING_PRINCIPLES.md"

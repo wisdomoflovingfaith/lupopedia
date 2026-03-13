@@ -1,7 +1,7 @@
 # LUPOPEDIA HEADERS (replaces FLARE)
 ---
 lupopedia.headers:
-  lupopedia.version: "1.0"
+  lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   file_path_from_root: ".\docs\channels\architecture\CASE_STUDY_MULTI_IDE_CADUCEUS_HERMES.md"
   file_hash: "a7ecd20d5fd7bafe2c3b0544ae84f3435b5b35c6fa9bb6963119f832b0318c9c"
@@ -32,7 +32,7 @@ lupopedia.footer:
 
 ---
 lupopedia.headers:
-  lupopedia.version: "1.0"
+  lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
   file_path_from_root: "docs\channels\architecture\CASE_STUDY_MULTI_IDE_CADUCEUS_HERMES.md"

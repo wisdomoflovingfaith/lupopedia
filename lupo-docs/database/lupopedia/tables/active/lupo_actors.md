@@ -1,18 +1,28 @@
 ---
+lupopedia.init:
+  document_type: "table_documentation"
+  system_version: "4.0.73"
+
+lupopedia.metadata:
+  comment: "Snapshot of metadata for this file or entity at artifact creation."
+
 lupopedia.headers:
-  file_path_from_root: "docs/database/lupopedia/tables/lupo_actors.md"
-  system_version: "4.0.48"
+  lupopedia.version: "4.0.73"
+  lupopedia.schema: "database_table"
+  file_path_from_root: "lupo-docs/database/lupopedia/tables/active/lupo_actors.md"
+  system_version: "4.0.73"
+  namespace: "core"
   channel_id: 1
   actor_id: 1003
-  last_modified_utc: "20260227"
-  delegation_chain: "1001:10000"
+  last_modified_utc: "20260313"
   artifact_type: "table_documentation"
   purpose: "Complete documentation for lupo_actors table - unified actor identity and management system"
   mood_rgb: "4B0082"
   artifact_kind: "table"
-  traits: ["canonical", "core_system", "identity_management", "unified_model"]
+  traits: ["canonical", "core_system", "identity_management", "unified_model", "antigravity_rotation", "v4.0.73"]
   tags: ["database", "actors", "identity", "users", "agents", "unified"]
   lupo_agent: "antigravity"
+  table_primary_key: "actor_id"
   # Table-specific metadata from TOON
   lupo_actors.actor_id: "BIGINT primary key containing YYYYMMDDHHMMSS UTC timestamp"
   lupo_actors.actor_type: "VARCHAR(64) NOT NULL type of actor (system, human, agent, etc.)"
@@ -40,7 +50,6 @@ lupopedia.headers:
   lupo_actors.actor_root_path: "VARCHAR(512) filesystem path to actor directory"
   lupo_actors.who_json_sync_status: "VARCHAR(64) status of WHO.json synchronization"
   lupo_actors.last_sync_ymdhis: "BIGINT YYYYMMDDHHIISS of last filesystem sync"
-  table_primary_key: "actor_id"
   table_engine: "InnoDB"
   table_charset: "utf8mb4"
   table_collation: "utf8mb4_unicode_ci"
@@ -54,6 +63,8 @@ lupopedia.headers:
 # appropriate outbound_edges with weights, reasons, and discovery methods.
 
 lupopedia.edges:
+  comment: "Snapshot of files edited during 4.0.73 finalization and initialization thread by ANTIGRAVITY IDE Agent. Edges reflect discovered relationships between database tables and PHP/Python codebase entities. Values should be verified against live database schemas/queries for the most current semantic graph state."
+  meta: "Thread: Finalize 4.0.72 → Push to GitHub → Initialize 4.0.73 → Migrate Tasks → Validate Upgrade Path"
   outbound_edges:
     - { to: "lupo-database/lupopedia/toon/lupo_actors.toon.json", type: "schema_reference", weight: 1.0, reason: "TOON schema definition", db_source: "lupo_actors" }
     - { to: "actors/registry.json", type: "references", weight: 1.0, reason: "Actor registry and configuration", db_source: "lupo_actors" }
@@ -66,18 +77,15 @@ lupopedia.edges:
     - { to: "docs/database/lupopedia/tables/lupo_federation_nodes.md", type: "references", weight: 0.7, reason: "Federation node assignments", db_source: "lupo_actors" }
     - { to: "docs/database/lupopedia/tables/lupo_actor_history.md", type: "references", weight: 0.9, reason: "Actor achievement and legacy history", db_source: "lupo_actors" }
     - { to: "docs/database/lupopedia/tables/lupo_actor_events.md", type: "references", weight: 0.9, reason: "Actor behavioral stream", db_source: "lupo_actors" }
-  inbound_edges:
-    - { from: "actors/registry.json", type: "references", weight: 1.0, last_seen: "20260227" }
-    - { from: "docs/database/lupopedia/tables/lupo_contents.md", type: "references", weight: 0.9, last_seen: "20260227" }
-    - { from: "docs/database/lupopedia/tables/lupo_channels.md", type: "references", weight: 0.9, last_seen: "20260227" }
-    - { from: "docs/database/lupopedia/tables/lupo_dialog_messages.md", type: "references", weight: 0.8, last_seen: "20260227" }
-    - { from: "docs/database/lupopedia/tables/lupo_sessions.md", type: "references", weight: 0.8, last_seen: "20260227" }
-    - { from: "docs/database/lupopedia/tables/lupo_artifacts.md", type: "references", weight: 0.7, last_seen: "20260227" }
-    - { from: "docs/database/lupopedia/tables/lupo_departments.md", type: "references", weight: 0.7, last_seen: "20260227" }
-    - { from: "docs/database/lupopedia/tables/lupo_federation_nodes.md", type: "references", weight: 0.7, last_seen: "20260227" }
-  semantic_tags: ["identity_management", "unified_actor_model", "authentication", "authorization", "federation", "agents", "identity_capsules"]
-  version: "4.0.48"
-  last_verified: "20260227"
+
+lupopedia.engagement:
+  comment: "Snapshot of files edited during 4.0.73 finalization and initialization thread by ANTIGRAVITY IDE Agent. Engagement metrics track edit frequency and importance of each file in the version transition process."
+  meta: "Thread: Finalize 4.0.72 → Push to GitHub → Initialize 4.0.73 → Migrate Tasks → Validate Upgrade Path"
+  views: 0
+
+lupopedia.footer:
+  version: "4.0.73"
+  last_verified: "20260313"
   last_verified_by: "antigravity"
 ---
 

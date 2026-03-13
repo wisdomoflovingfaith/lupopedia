@@ -11,7 +11,7 @@
 
 ---
 lupopedia.headers:
-  lupopedia.version: "1.0"
+  lupopedia.version: "4.0.73"
   lupopedia.schema: "audit"
   file_path_from_root: "docs/status/WINDSURF_REVIEW_CURSOR_WEB_DOC_FIXES_4.0.57.md"
   last_modified_utc: "20260304"

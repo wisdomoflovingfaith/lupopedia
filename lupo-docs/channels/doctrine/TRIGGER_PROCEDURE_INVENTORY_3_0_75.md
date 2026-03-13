@@ -1,7 +1,7 @@
 # LUPOPEDIA HEADERS (replaces FLARE)
 ---
 lupopedia.headers:
-  lupopedia.version: "1.0"
+  lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   file_path_from_root: ".\docs\channels\doctrine\TRIGGER_PROCEDURE_INVENTORY_3_0_75.md"
   file_hash: "1f852fc6b1315e56f4f06e677ac3431f25d7ef20fe1cbc4e2498dd5f4a9b98d0"
@@ -32,7 +32,7 @@ lupopedia.footer:
 
 ---
 lupopedia.headers:
-  lupopedia.version: "1.0"
+  lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
   file_path_from_root: "docs\channels\doctrine\TRIGGER_PROCEDURE_INVENTORY_3_0_75.md"

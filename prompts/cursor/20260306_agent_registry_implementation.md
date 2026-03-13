@@ -1,7 +1,7 @@
 # FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP) — see http://www.lupopedia.com/directives/AGENT_REGISTRY_IMPLEMENTATION_4.0.57
 ---
 lupopedia.headers:
-  lupopedia.version: "1.0"
+  lupopedia.version: "4.0.73"
   lupopedia.schema: "directive"
   file_path_from_root: "prompts/cursor/20260306_agent_registry_implementation.md"
   web_path: "http://www.lupopedia.com/directives/AGENT_REGISTRY_IMPLEMENTATION_4.0.57"

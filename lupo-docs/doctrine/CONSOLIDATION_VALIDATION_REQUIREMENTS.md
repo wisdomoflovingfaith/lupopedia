@@ -1,7 +1,7 @@
 # LUPOPEDIA HEADERS (replaces FLARE)
 ---
 lupopedia.headers:
-  lupopedia.version: "1.0"
+  lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   file_path_from_root: ".\docs\doctrine\CONSOLIDATION_VALIDATION_REQUIREMENTS.md"
   file_hash: "a914576a0d0609bfe26b6ed8ee61939dc909c9d9aed302976f41b73a520d8afe"
@@ -32,7 +32,7 @@ lupopedia.footer:
 
 ---
 lupopedia.headers:
-  lupopedia.version: "1.0"
+  lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
   file_path_from_root: "docs\doctrine\CONSOLIDATION_VALIDATION_REQUIREMENTS.md"

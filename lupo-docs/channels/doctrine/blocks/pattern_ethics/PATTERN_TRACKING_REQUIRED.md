@@ -1,7 +1,7 @@
 # LUPOPEDIA HEADERS (replaces FLARE)
 ---
 lupopedia.headers:
-  lupopedia.version: "1.0"
+  lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   file_path_from_root: ".\docs\channels\doctrine\blocks\pattern_ethics\PATTERN_TRACKING_REQUIRED.md"
   file_hash: "b1441d214f060a17325dd0675dcf669ee5de8b5cca2dd3a535cd0a51f6505d64"
@@ -32,7 +32,7 @@ lupopedia.footer:
 
 ---
 lupopedia.headers:
-  lupopedia.version: "1.0"
+  lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
   file_path_from_root: "docs\channels\doctrine\blocks\pattern_ethics\PATTERN_TRACKING_REQUIRED.md"

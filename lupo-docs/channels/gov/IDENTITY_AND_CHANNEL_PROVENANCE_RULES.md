@@ -1,7 +1,7 @@
 # LUPOPEDIA HEADERS (replaces FLARE)
 ---
 lupopedia.headers:
-  lupopedia.version: "1.0"
+  lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   file_path_from_root: ".\docs\channels\gov\IDENTITY_AND_CHANNEL_PROVENANCE_RULES.md"
   file_hash: "3ce0c51a0fb0d1dd032e7573ab022adc584acda81904cc170372b9d26228d892"
@@ -32,7 +32,7 @@ lupopedia.footer:
 
 ---
 lupopedia.headers:
-  lupopedia.version: "1.0"
+  lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
   file_path_from_root: "docs\channels\gov\IDENTITY_AND_CHANNEL_PROVENANCE_RULES.md"

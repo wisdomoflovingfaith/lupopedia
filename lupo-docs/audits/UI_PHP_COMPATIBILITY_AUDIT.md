@@ -1,7 +1,7 @@
 # LUPOPEDIA HEADERS (replaces FLARE)
 ---
 lupopedia.headers:
-  lupopedia.version: "1.0"
+  lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   file_path_from_root: ".\docs\audits\UI_PHP_COMPATIBILITY_AUDIT.md"
   file_hash: "21c6162ab27d266fa52a697bf7afede8b1eab543d6e7a53ada6249bae09d4feb"
@@ -32,7 +32,7 @@ lupopedia.footer:
 
 ---
 lupopedia.headers:
-  lupopedia.version: "1.0"
+  lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
   file_path_from_root: "docs\audits\UI_PHP_COMPATIBILITY_AUDIT.md"

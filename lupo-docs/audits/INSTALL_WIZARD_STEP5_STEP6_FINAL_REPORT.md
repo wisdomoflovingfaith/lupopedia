@@ -1,7 +1,7 @@
 # LUPOPEDIA HEADERS (replaces FLARE)
 ---
 lupopedia.headers:
-  lupopedia.version: "1.0"
+  lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   file_path_from_root: ".\docs\audits\INSTALL_WIZARD_STEP5_STEP6_FINAL_REPORT.md"
   file_hash: "d85729ba7b4c9c6c701aba9199916fcdcc4bd84c7495f62b44d88c1b0f58c481"
@@ -32,7 +32,7 @@ lupopedia.footer:
 
 ---
 lupopedia.headers:
-  lupopedia.version: "1.0"
+  lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
   file_path_from_root: "docs\audits\INSTALL_WIZARD_STEP5_STEP6_FINAL_REPORT.md"

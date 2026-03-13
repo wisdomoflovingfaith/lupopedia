@@ -2,7 +2,7 @@
 
 ---
 lupopedia.headers:
-  lupopedia.version: "1.0"
+  lupopedia.version: "4.0.73"
   lupopedia.schema: "final_verification"
   file_path_from_root: "prompts/lilith/20260306_rehydrate_addendum_verification.md"
   web_path: "http://www.lupopedia.com/reviews/REHYDRATE_ADDENDUM_VERIFICATION"

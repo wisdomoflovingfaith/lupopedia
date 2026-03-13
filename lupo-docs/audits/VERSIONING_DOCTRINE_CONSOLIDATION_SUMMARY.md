@@ -1,7 +1,7 @@
 # LUPOPEDIA HEADERS (replaces FLARE)
 ---
 lupopedia.headers:
-  lupopedia.version: "1.0"
+  lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   file_path_from_root: ".\docs\audits\VERSIONING_DOCTRINE_CONSOLIDATION_SUMMARY.md"
   file_hash: "9f46115c76b715c118e20c1ffca19a4d6496d16448032cb2c164ea1255e3543f"
@@ -32,7 +32,7 @@ lupopedia.footer:
 
 ---
 lupopedia.headers:
-  lupopedia.version: "1.0"
+  lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
   file_path_from_root: "docs\audits\VERSIONING_DOCTRINE_CONSOLIDATION_SUMMARY.md"

@@ -1,7 +1,7 @@
 # LUPOPEDIA HEADERS (replaces FLARE)
 ---
 lupopedia.headers:
-  lupopedia.version: "1.0"
+  lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   file_path_from_root: ".\docs\audits\EXPERIMENTAL_AI_ARTIFACT_PURGE_SUMMARY.md"
   file_hash: "827fd8acf134e6fd96da2bb10b1d3f91ca148f19a825c466ee2751d3db278fb4"
@@ -32,7 +32,7 @@ lupopedia.footer:
 
 ---
 lupopedia.headers:
-  lupopedia.version: "1.0"
+  lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
   file_path_from_root: "docs\audits\EXPERIMENTAL_AI_ARTIFACT_PURGE_SUMMARY.md"

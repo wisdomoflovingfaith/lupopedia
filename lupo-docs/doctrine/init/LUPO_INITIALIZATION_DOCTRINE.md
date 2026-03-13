@@ -1,6 +1,6 @@
 ---
 lupopedia.headers:
-  lupopedia.version: "1.0"
+  lupopedia.version: "4.0.73"
   lupopedia.schema: "doctrine"
   file_path_from_root: "lupo-docs/doctrine/init/LUPO_INITIALIZATION_DOCTRINE.md"
   web_path: "http://www.lupopedia.com/doctrine/init/LUPO_INITIALIZATION_DOCTRINE"

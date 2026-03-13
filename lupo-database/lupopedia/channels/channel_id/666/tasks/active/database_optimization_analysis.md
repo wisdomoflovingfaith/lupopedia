@@ -4,7 +4,7 @@
 lupopedia.init:
   requirements:
     flare:
-      version: ">=4.0.55"
+      version: ">=4.0.73"
   execution_mode: "advisory"
   pre_actions:
     - type: dependency_check
@@ -47,12 +47,12 @@ lupopedia.conditional:
       success_criteria: ["header applied correctly"]
 
 lupopedia.headers:
-  lupopedia.version: "1.0"
+  lupopedia.version: "4.0.73"
   lupopedia.schema: "task"
   file_path_from_root: "lupo-database/lupopedia/channels/lupo-channels/666/tasks/active/database_optimization_analysis.md"
   file_hash: "ef3c0fa749bd67b39e0ad4a69038da83bad5dc0cf46fe1c1a209cbaf8d928dc3"
   last_updated_utc: "20260304"
-  system_version: "4.0.56"
+  system_version: "4.0.73"
   channel_id: 1
   actor_id: 1004
   delegation_chain: "1004:10000"
@@ -60,7 +60,7 @@ lupopedia.headers:
   artifact_kind: "documentation"
   purpose: "FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)"
   mood_rgb: "4169E1"
-  traits: ["flare", "indexed", "v4.0.56"]
+  traits: ["flare", "indexed", "v4.0.73"]
   tags: ["lupo-database", "lupopedia", "channels", "lupo-channels", "666", "tasks"]
   lupo_agent: "antigravity"
 
@@ -87,7 +87,7 @@ lupopedia.close:
 
 ---
 lupopedia.headers:
-  lupopedia.version: "1.0"
+  lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
   file_path_from_root: "channels\42\tasks\active\database_optimization_analysis.md"
@@ -95,7 +95,7 @@ lupopedia.headers:
   file_path_from_root: "channels\42\tasks\active\database_optimization_analysis.md"
   file_hash: "079783010057030743354d5f92beb97497c36bbaa0d27ac0d1899737991e5297"
   last_updated_utc: "20260228"
-  system_version: "4.0.50"
+  system_version: "4.0.73"
   channel_id: 1
   actor_id: 1002
   delegation_chain: null
@@ -103,12 +103,12 @@ lupopedia.headers:
   artifact_kind: "documentation"
   purpose: "Database Optimization Analysis & Recommendations"
   mood_rgb: "4169E1"
-  traits: ["flare", "indexed", "v4.0.50"]
+  traits: ["flare", "indexed", "v4.0.73"]
   tags: ["channels", "42", "tasks", "active", "database_optimization_analysismd"]
   lupo_agent: "windsurf"
 
   needs_review: ["delegation_chain"]
-  system_version: "4.0.50"
+  system_version: "4.0.73"
   last_updated_utc: "20260228"
 lupopedia.footer:
   last_verified: "20260228"

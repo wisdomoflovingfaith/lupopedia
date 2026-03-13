@@ -1,7 +1,7 @@
 # LUPOPEDIA HEADERS (replaces FLARE)
 ---
 lupopedia.headers:
-  lupopedia.version: "1.0"
+  lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   file_path_from_root: ".\docs\channels\ui-ux\WSSE_2D_EMOTIONAL_PROTOTYPE_SPEC.md"
   file_hash: "dcebe0fdb9e8519f2c046f377a5526929c22aa370d48305dcd2423d1c9cd2e0f"
@@ -32,7 +32,7 @@ lupopedia.footer:
 
 ---
 lupopedia.headers:
-  lupopedia.version: "1.0"
+  lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
   file_path_from_root: "docs\channels\ui-ux\WSSE_2D_EMOTIONAL_PROTOTYPE_SPEC.md"

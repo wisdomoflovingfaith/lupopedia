@@ -4,7 +4,7 @@ lupopedia.init:
   system_version: "4.0.71"
 
 lupopedia.headers:
-  lupopedia.version: "1.0"
+  lupopedia.version: "4.0.73"
   lupopedia.schema: "doctrine"
   file_path_from_root: "lupo-docs/doctrine/SESSION_MODEL.md"
   web_path: "http://www.lupopedia.com/doctrine/SESSION_MODEL"

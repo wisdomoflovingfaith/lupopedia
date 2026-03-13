@@ -1,7 +1,7 @@
 # LUPOPEDIA HEADERS (replaces FLARE)
 ---
 lupopedia.headers:
-  lupopedia.version: "1.0"
+  lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   file_path_from_root: ".\docs\channels\doctrine\CANONICAL_TIME_RULE_UPDATE_SUMMARY.md"
   file_hash: "f0ffbc28c12cba02ccd942b75b03da9c4b5078ee64facaf3094cef93f803f816"
@@ -32,7 +32,7 @@ lupopedia.footer:
 
 ---
 lupopedia.headers:
-  lupopedia.version: "1.0"
+  lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
   file_path_from_root: "docs\channels\doctrine\CANONICAL_TIME_RULE_UPDATE_SUMMARY.md"

@@ -1,7 +1,7 @@
 # LUPOPEDIA HEADERS (replaces FLARE)
 ---
 lupopedia.headers:
-  lupopedia.version: "1.0"
+  lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   file_path_from_root: ".\docs\database\lupopedia\tables\lupo_crafty_syntax_leave_message.md"
   file_hash: "edbb8c703c51c16c423626a6927bbc63b44b0fce8852afd0110c00d77adccde1"

@@ -2,7 +2,7 @@
 
 ---
 lupopedia.headers:
-  lupopedia.version: "1.0"
+  lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   file_path_from_root: "lupo-docs/status/ANTIGRAVITY_SEMANTIC_NAVBAR_REBUILD_4.0.71.md"
   last_modified_utc: "20260312"

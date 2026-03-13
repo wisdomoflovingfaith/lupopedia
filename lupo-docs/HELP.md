@@ -1,7 +1,7 @@
 # file: Lupopedia HELP HUB — session: L-LUPO-ANTIGRAVITY — delegation: antigravity:cursor:captain  — web_path: http://www.lupopedia.com/help
 ---
 lupopedia.headers:
-  lupopedia.version: "1.0"
+  lupopedia.version: "4.0.73"
   lupopedia.schema: "help"
   file_path_from_root: "docs/HELP.md"
   web_path: "http://www.lupopedia.com/help"

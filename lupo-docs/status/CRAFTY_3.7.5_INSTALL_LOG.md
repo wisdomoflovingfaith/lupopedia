@@ -1,6 +1,6 @@
 ---
 lupopedia.headers:
-  lupopedia.version: "1.0"
+  lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   file_path_from_root: "docs/status/CRAFTY_3.7.5_INSTALL_LOG.md"
   system_version: "4.0.56"

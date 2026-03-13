@@ -1,29 +1,40 @@
 ---
 lupopedia.headers:
-  lupopedia.version: "1.0"
+  lupopedia.version: "4.0.73"
   lupopedia.schema: "database_table"
   file_path_from_root: "lupo-docs/database/lupopedia/tables/active/lupo_sessions.md"
-  system_version: "4.0.71"
+  system_version: "4.0.73"
+  namespace: "session"
   channel_id: 1
-  actor_id: 102
-  last_modified_utc: "20260312"
+  actor_id: 1003
+  last_modified_utc: "20260313"
   artifact_type: "table_documentation"
   artifact_kind: "database_table"
   purpose: "DB-backed session authority (Model A). Web and API session storage; identity from lupo_sessions."
-  traits: ["canonical", "session", "auth", "cursor_domain", "v4.0.71"]
+  traits: ["canonical", "session", "auth", "antigravity_rotation", "v4.0.73"]
   tags: ["database", "sessions", "auth", "identity"]
-  lupo_agent: "cursor"
+  lupo_agent: "antigravity"
 
 lupopedia.edges:
+  comment: "Snapshot of files edited during 4.0.73 finalization and initialization thread by ANTIGRAVITY IDE Agent. Edges reflect discovered relationships between database tables and PHP/Python codebase entities. Values should be verified against live database schemas/queries for the most current semantic graph state."
+  meta: "Thread: Finalize 4.0.72 → Push to GitHub → Initialize 4.0.73 → Migrate Tasks → Validate Upgrade Path"
   outbound_edges:
     - { to: "lupo-docs/toons/lupo_sessions.toon.json", type: "schema_reference", weight: 1.0 }
     - { to: "lupo-docs/database/lupopedia/tables/active/lupo_actors.md", type: "references", weight: 0.9 }
     - { to: "lupo-docs/database/lupopedia/tables/active/lupo_session_events.md", type: "references", weight: 0.8 }
     - { to: "lupo-docs/database/lupopedia/tables/active/lupo_session_recovery.md", type: "references", weight: 0.7 }
+    - { to: "app/Auth/Session.php", type: "referenced_by", weight: 1.0 }
+    - { to: "lupo-includes/functions/session-compat-5.6.php", type: "referenced_by", weight: 0.9 }
+
+lupopedia.engagement:
+  comment: "Snapshot of files edited during 4.0.73 finalization and initialization thread by ANTIGRAVITY IDE Agent. Engagement metrics track edit frequency and importance of each file in the version transition process."
+  meta: "Thread: Finalize 4.0.72 → Push to GitHub → Initialize 4.0.73 → Migrate Tasks → Validate Upgrade Path"
+  views: 0
 
 lupopedia.footer:
-  last_verified: "20260312"
-  last_verified_by: "cursor"
+  version: "4.0.73"
+  last_verified: "20260313"
+  last_verified_by: "antigravity"
 ---
 # file: lupo_sessions (table) — web_path: http://www.lupopedia.com/database/lupopedia/tables/active/lupo_sessions
 

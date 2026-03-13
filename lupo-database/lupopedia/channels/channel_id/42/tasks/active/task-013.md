@@ -6,7 +6,7 @@
 lupopedia.init:
   requirements:
     flare:
-      version: ">=4.0.55"
+      version: ">=4.0.73"
   execution_mode: "advisory"
   pre_actions:
     - type: dependency_check
@@ -49,12 +49,12 @@ lupopedia.conditional:
       success_criteria: ["header applied correctly"]
 
 lupopedia.headers:
-  lupopedia.version: "1.0"
+  lupopedia.version: "4.0.73"
   lupopedia.schema: "task"
   file_path_from_root: "lupo-database/lupopedia/channels/lupo-channels/42/tasks/active/task-013.md"
   file_hash: "21521a7953205b81ee042d8895c6dc2b5a70bb03fb7c2edb40542564b5ce7404"
   last_updated_utc: "20260304"
-  system_version: "4.0.56"
+  system_version: "4.0.73"
   channel_id: 1
   actor_id: 1004
   delegation_chain: "1004:10000"
@@ -62,7 +62,7 @@ lupopedia.headers:
   artifact_kind: "documentation"
   purpose: "FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)"
   mood_rgb: "4169E1"
-  traits: ["flare", "indexed", "v4.0.56"]
+  traits: ["flare", "indexed", "v4.0.73"]
   tags: ["lupo-database", "lupopedia", "channels", "lupo-channels", "42", "tasks"]
   lupo_agent: "antigravity"
 
@@ -90,7 +90,7 @@ lupopedia.close:
 ---
 wolfie.headers: {
   file_path_from_root: "lupo-channels/42/tasks/active/task-013.md",
-  system_version: "4.0.55",
+  system_version: "4.0.73",
   channel_id: 42,
   actor_id: 1006,
   created_ymdhis: 20260302042700,

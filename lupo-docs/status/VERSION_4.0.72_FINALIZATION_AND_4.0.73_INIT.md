@@ -2,7 +2,7 @@
 
 ---
 lupopedia.headers:
-  lupopedia.version: "1.0"
+  lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   file_path_from_root: "lupo-docs/status/VERSION_4.0.72_FINALIZATION_AND_4.0.73_INIT.md"
   web_path: "http://www.lupopedia.com/lupo-docs/status/VERSION_4.0.72_FINALIZATION_AND_4.0.73_INIT"

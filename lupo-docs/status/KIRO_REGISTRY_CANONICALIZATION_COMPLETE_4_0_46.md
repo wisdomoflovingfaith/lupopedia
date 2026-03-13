@@ -1,7 +1,7 @@
 # LUPOPEDIA HEADERS (replaces FLARE)
 ---
 lupopedia.headers:
-  lupopedia.version: "1.0"
+  lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   file_path_from_root: ".\docs\status\KIRO_REGISTRY_CANONICALIZATION_COMPLETE_4_0_46.md"
   file_hash: "df6bad29eeefe545fc1c6393b60f91bab51f6df6ee27d9dbc09b6370eac14ac2"
@@ -32,7 +32,7 @@ lupopedia.footer:
 
 ---
 lupopedia.headers:
-  lupopedia.version: "1.0"
+  lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
   file_path_from_root: "docs\status\KIRO_REGISTRY_CANONICALIZATION_COMPLETE_4_0_46.md"

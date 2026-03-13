@@ -1,18 +1,20 @@
 ---
 lupopedia.headers:
-  file_path_from_root: "docs/database/lupopedia/tables/lupo_atoms.md"
-  system_version: "4.0.47"
+  lupopedia.version: "4.0.73"
+  lupopedia.schema: "database_table"
+  file_path_from_root: "lupo-docs/database/lupopedia/tables/active/lupo_atoms.md"
+  system_version: "4.0.73"
+  namespace: "core"
   channel_id: 1
-  actor_id: 1001
-  last_modified_utc: "20260227"
-  delegation_chain: "1001:10000"
+  actor_id: 1003
+  last_modified_utc: "20260313"
   artifact_type: "table_documentation"
   purpose: "Complete documentation for lupo_atoms table - system-wide atomic configuration and constants storage"
   mood_rgb: "4B0082"
   artifact_kind: "table"
-  traits: ["canonical", "core_system", "configuration", "constants", "atomic_values"]
+  traits: ["canonical", "core_system", "configuration", "constants", "atomic_values", "antigravity_rotation", "v4.0.73"]
   tags: ["database", "atoms", "configuration", "constants", "system_values", "global_settings"]
-  lupo_agent: "windsurf"
+  lupo_agent: "antigravity"
   # Table-specific metadata from TOON
   lupo_atoms.atom_id: "BIGINT primary key containing YYYYMMDDHHMMSS UTC timestamp"
   lupo_atoms.atom_name: "VARCHAR(255) NOT NULL unique atomic name/identifier"
@@ -37,23 +39,26 @@ lupopedia.headers:
 # appropriate outbound_edges with weights, reasons, and discovery methods.
 
 lupopedia.edges:
+  comment: "Snapshot of files edited during 4.0.73 finalization and initialization thread by ANTIGRAVITY IDE Agent. Edges reflect discovered relationships between database tables and PHP/Python codebase entities. Values should be verified against live database schemas/queries for the most current semantic graph state."
+  meta: "Thread: Finalize 4.0.72 → Push to GitHub → Initialize 4.0.73 → Migrate Tasks → Validate Upgrade Path"
   outbound_edges:
-- { to: "lupo-database/lupopedia/toon/lupo_atoms.toon.json", type: "schema_reference", weight: 1.0, reason: "TOON schema definition", db_source: "lupo_atoms" }
+    - { to: "lupo-database/lupopedia/toon/lupo_atoms.toon.json", type: "schema_reference", weight: 1.0, reason: "TOON schema definition", db_source: "lupo_atoms" }
     - { to: "config/global_atoms.yaml", type: "references", weight: 1.0, reason: "Global atoms configuration file", db_source: "lupo_atoms" }
     - { to: "docs/database/lupopedia/tables/lupo_contents.md", type: "references", weight: 0.8, reason: "Content atom mappings and references", db_source: "lupo_atoms" }
     - { to: "docs/database/lupopedia/tables/lupo_channels.md", type: "references", weight: 0.7, reason: "Channel configuration atoms", db_source: "lupo_atoms" }
     - { to: "docs/database/lupopedia/tables/lupo_actors.md", type: "references", weight: 0.7, reason: "Actor configuration atoms", db_source: "lupo_atoms" }
     - { to: "docs/FLARE_HEADERS_COMPLETE_REFERENCE.md", type: "references", weight: 0.9, reason: "FLARE protocol documentation", db_source: "lupo_atoms" }
     - { to: "scripts/flare_edge_suggester.py", type: "implements", weight: 1.0, reason: "Atom analysis and configuration automation", db_source: "lupo_atoms" }
-  inbound_edges:
-    - { from: "config/global_atoms.yaml", type: "references", weight: 1.0, last_seen: "20260227" }
-    - { from: "docs/database/lupopedia/tables/lupo_contents.md", type: "references", weight: 0.8, last_seen: "20260227" }
-    - { from: "docs/database/lupopedia/tables/lupo_channels.md", type: "references", weight: 0.7, last_seen: "20260227" }
-    - { from: "docs/database/lupopedia/tables/lupo_actors.md", type: "references", weight: 0.7, last_seen: "20260227" }
-  semantic_tags: ["atomic_configuration", "system_constants", "global_settings", "version_management", "authoritative_sources"]
-  version: "4.0.47"
-  last_verified: "20260227"
-  last_verified_by: "windsurf"
+
+lupopedia.engagement:
+  comment: "Snapshot of files edited during 4.0.73 finalization and initialization thread by ANTIGRAVITY IDE Agent. Engagement metrics track edit frequency and importance of each file in the version transition process."
+  meta: "Thread: Finalize 4.0.72 → Push to GitHub → Initialize 4.0.73 → Migrate Tasks → Validate Upgrade Path"
+  views: 0
+
+lupopedia.footer:
+  version: "4.0.73"
+  last_verified: "20260313"
+  last_verified_by: "antigravity"
 ---
 
 # ⚛️ Table: lupo_atoms

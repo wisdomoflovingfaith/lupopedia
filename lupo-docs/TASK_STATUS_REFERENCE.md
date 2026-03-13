@@ -1,16 +1,16 @@
 ---
 lupopedia.headers:
-  lupopedia.version: "1.0"
+  lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   file_path_from_root: "docs/TASK_STATUS_REFERENCE.md"
   web_path: "http://www.lupopedia.com/docs/TASK_STATUS_REFERENCE"
   last_modified_utc: "20260306"
-  system_version: "4.0.62"
+  system_version: "4.0.73"
   channel_id: 42
   artifact_type: "documentation"
   artifact_kind: "reference"
   purpose: "Task status system: statuses, locations, and how to list or query tasks"
-  traits: ["tasks", "status", "reference", "v4.0.62"]
+  traits: ["tasks", "status", "reference", "v4.0.73"]
   tags: ["tasks", "status", "pending", "active", "query"]
 ---
 

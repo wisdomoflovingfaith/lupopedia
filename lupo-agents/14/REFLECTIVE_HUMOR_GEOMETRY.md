@@ -1,7 +1,7 @@
 # FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
 ---
 lupopedia.headers:
-  lupopedia.version: "1.0"
+  lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   file_path_from_root: ".\lupo-agents\14\REFLECTIVE_HUMOR_GEOMETRY.md"
   file_hash: "c02f2f0347415a7121654db6a908d75fd2e4d02aceba71e022be334f47812047"
@@ -32,7 +32,7 @@ lupopedia.footer:
 
 ---
 lupopedia.headers:
-  lupopedia.version: "1.0"
+  lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
   file_path_from_root: "lupo-agents\14\REFLECTIVE_HUMOR_GEOMETRY.md"

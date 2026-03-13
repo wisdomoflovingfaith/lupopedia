@@ -2,7 +2,7 @@
 
 ---
 lupopedia.headers:
-  lupopedia.version: "1.0"
+  lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   file_path_from_root: "docs/status/ANTIGRAVITY_TASK_TAKEOVER_REPORT.md"
   last_updated_utc: "20260303"

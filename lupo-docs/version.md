@@ -1,22 +1,32 @@
 # file: Lupopedia Version History — session: L-LUPO-ANTIGRAVITY — delegation: antigravity:cursor:captain  — web_path: http://www.lupopedia.com/docs/version
 ---
 lupopedia.headers:
-  lupopedia.version: "1.0"
+  lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   file_path_from_root: "docs/version.md"
-  last_modified_utc: "20260308"
-  system_version: "4.0.68"
+  last_modified_utc: "20260312"
+  system_version: "4.0.73"
   purpose: "Version history and upgrade notes for Lupopedia"
-  traits: ["versioning", "v4.0.68", "multi-agent", "evolution"]
+  traits: ["versioning", "v4.0.73", "multi-agent", "evolution"]
   tags: ["version", "changelog", "upgrade"]
 ---
 
 # Lupopedia version history
 
-Current version: **4.0.68**  
-Date: 2026-03-09
+Current version: **4.0.73**  
+Date: 2026-03-12
 
-## Summary of changes (4.0.68)
+## Summary of changes (4.0.73)
+
+- **Consolidated Version Transition:** Successfully finalized version 4.0.72 and initialized 4.0.73. 
+- **Full Upgrade Path Validation:** Validated Crafty Syntax 3.7.5 to Lupopedia 4.0.73 upgrade path with 0 errors.
+- **Task Consolidation:** All pending and active tasks from previous versions (4.0.69-4.0.72) have been consolidated into the 4.0.73 cycle.
+- **Semantic Navbar Backend Rebuild:** Authority audit and implementation of semantic navigation backend (SQL, API, and core logic).
+
+## Summary of changes (4.0.72)
+
+- **Version bump:** Updated all canonical version markers and initialized the 4.0.73 initialization repo.
+- **Next Action Doctrine:** Implemented `next_action` in `lupopedia.footer` as a core requirement for all documentation files.
 
 - **Channels Web Interface Implementation:** Active development of the web interface for channels management. The relevant implementation is in the installed subdirectory and is accessed from `http://domainname.com/<lupopedia-sub-folder>/channels/`. This version cycle focuses on reviewing, completing, and hardening the channels web UI so it is fully operational and aligned with current doctrine/schema/runtime expectations.
 - **Development Phase:** Transitioned to development version 4.0.68 for ongoing channels web interface development.
@@ -50,6 +60,10 @@ Date: 2026-03-09
 
 ## Recent version history
 
+| **4.0.73** | 2026-03-12 | Version 4.0.73 initialization, task consolidation, and upgrade path validation. |
+| **4.0.72** | 2026-03-12 | Version bump and finalization. |
+| **4.0.71** | 2026-03-12 | Synthesized Documentation Framework, semantic navbar backend, Session Model A. |
+| **4.0.69** | 2026-03-11 | Actor orchestration, Traits, Authorization, Documentation coherence. |
 | **4.0.68** | 2026-03-09 | Channels web interface implementation - active development. |
 | **4.0.67** | 2026-03-08 | Install & upgrade validation cycle; Crafty 3.7.5 baseline verification. |
 | **4.0.66** | 2026-03-08 | Multi-agent evolution: LUPO, THEMIS, consensus loops, and schema enhancements. |

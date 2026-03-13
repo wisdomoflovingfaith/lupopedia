@@ -2,7 +2,7 @@
 
 ---
 lupopedia.headers:
-  lupopedia.version: "1.0"
+  lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   file_path_from_root: "docs/status/CHANNEL_42_LEAD_REVIEW_4_0_55.md"
   system_version: "4.0.55"

@@ -1,12 +1,12 @@
 # FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
 ---
 lupopedia.headers:
-  lupopedia.version: "1.0"
+  lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   file_path_from_root: ".\channels\0\tasks\active\registry_lock.md"
   file_hash: "c8bf87723cb288893f9f07ef175b8e16465bda09f359f190836c770e894e29b9"
   last_updated_utc: "20260228155738"
-  system_version: "4.0.51"
+  system_version: "4.0.73"
   channel_id: 1
   actor_id: 1002
   delegation_chain: "1002:10000"
@@ -14,7 +14,7 @@ lupopedia.headers:
   artifact_kind: "documentation"
   purpose: "Documentation file with LUPOPEDIA HEADERS applied"
   mood_rgb: "4169E1"
-  traits: ["flare", "indexed", "v4.0.51"]
+  traits: ["flare", "indexed", "v4.0.73"]
   tags: ["documentation", "flare_applied"]
   lupo_agent: "windsurf"
 
@@ -32,7 +32,7 @@ lupopedia.footer:
 
 ---
 lupopedia.headers:
-  lupopedia.version: "1.0"
+  lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
   file_path_from_root: "channels\0\tasks\active\registry_lock.md"
@@ -40,7 +40,7 @@ lupopedia.headers:
   file_path_from_root: "channels\0\tasks\active\registry_lock.md"
   file_hash: "f41226fe4f79f6a0bb03dc598331f53e20c1acc31ae54b60ab2b576d689e1d17"
   last_updated_utc: "20260228"
-  system_version: "4.0.50"
+  system_version: "4.0.73"
   channel_id: 1
   actor_id: 1002
   delegation_chain: null
@@ -48,12 +48,12 @@ lupopedia.headers:
   artifact_kind: "documentation"
   purpose: "Documentation for registry_lock.md"
   mood_rgb: "4169E1"
-  traits: ["flare", "indexed", "v4.0.50"]
+  traits: ["flare", "indexed", "v4.0.73"]
   tags: ["channels", "0", "tasks", "active", "registry_lockmd"]
   lupo_agent: "windsurf"
 
   needs_review: ["delegation_chain"]
-  system_version: "4.0.50"
+  system_version: "4.0.73"
   last_updated_utc: "20260228"
 lupopedia.footer:
   last_verified: "20260228"

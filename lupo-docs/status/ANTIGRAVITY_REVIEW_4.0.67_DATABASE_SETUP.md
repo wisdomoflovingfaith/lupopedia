@@ -1,7 +1,7 @@
 # file: Antigravity Review 4.0.67 Database Setup — session: L-LUPO-ANTIGRAVITY — delegation: antigravity:captain — web_path: http://www.lupopedia.com/docs/status/ANTIGRAVITY_REVIEW_4_0_67_DATABASE_SETUP.md
 ---
 lupopedia.headers:
-  lupopedia.version: "1.0"
+  lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   file_path_from_root: "docs/status/ANTIGRAVITY_REVIEW_4_0_67_DATABASE_SETUP.md"
   system_version: "4.0.67"

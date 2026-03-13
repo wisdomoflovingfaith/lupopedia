@@ -1,12 +1,12 @@
 # FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
 ---
 lupopedia.headers:
-  lupopedia.version: "1.0"
+  lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   file_path_from_root: ".\channels\0\tasks\active\db_reset_and_install.md"
   file_hash: "5dd0b56a449d240827394e0fbd2e99c595db592ef310ee10e966ff2ced93db11"
   last_updated_utc: "20260228155738"
-  system_version: "4.0.51"
+  system_version: "4.0.73"
   channel_id: 1
   actor_id: 1002
   delegation_chain: "1002:10000"
@@ -14,7 +14,7 @@ lupopedia.headers:
   artifact_kind: "documentation"
   purpose: "Documentation file with LUPOPEDIA HEADERS applied"
   mood_rgb: "4169E1"
-  traits: ["flare", "indexed", "v4.0.51"]
+  traits: ["flare", "indexed", "v4.0.73"]
   tags: ["documentation", "flare_applied"]
   lupo_agent: "windsurf"
 
@@ -32,7 +32,7 @@ lupopedia.footer:
 
 ---
 lupopedia.headers:
-  lupopedia.version: "1.0"
+  lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
   file_path_from_root: "channels\0\tasks\active\db_reset_and_install.md"
@@ -40,7 +40,7 @@ lupopedia.headers:
   file_path_from_root: "channels\0\tasks\active\db_reset_and_install.md"
   file_hash: "0a3c7d3090546f741245380b6ea57079076d73ca29cc88a0a2707c09262d32d2"
   last_updated_utc: "20260228"
-  system_version: "4.0.50"
+  system_version: "4.0.73"
   channel_id: 1
   actor_id: 1002
   delegation_chain: null
@@ -48,12 +48,12 @@ lupopedia.headers:
   artifact_kind: "documentation"
   purpose: "Documentation for db_reset_and_install.md"
   mood_rgb: "4169E1"
-  traits: ["flare", "indexed", "v4.0.50"]
+  traits: ["flare", "indexed", "v4.0.73"]
   tags: ["channels", "0", "tasks", "active", "db_reset_and_installmd"]
   lupo_agent: "windsurf"
 
   needs_review: ["delegation_chain"]
-  system_version: "4.0.50"
+  system_version: "4.0.73"
   last_updated_utc: "20260228"
 lupopedia.footer:
   last_verified: "20260228"

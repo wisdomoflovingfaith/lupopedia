@@ -1,4 +1,4 @@
-﻿---
+---
 lupopedia.headers:
   lupopedia.version: "4.0.69"
   lupopedia.schema: "documentation"

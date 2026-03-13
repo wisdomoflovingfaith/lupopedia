@@ -1,12 +1,12 @@
 # FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
 ---
 lupopedia.headers:
-  lupopedia.version: "1.0"
+  lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   file_path_from_root: ".\channels\0\tasks\active\20260226000000_task_0_10000_primary_install_upgrade_4_0_46.md"
   file_hash: "75a08594efc198a9ae397389ac3f6f702dbf69fb47714c9ec45e333b919102fb"
   last_updated_utc: "20260228155738"
-  system_version: "4.0.51"
+  system_version: "4.0.73"
   channel_id: 1
   actor_id: 1002
   delegation_chain: "1002:10000"
@@ -14,7 +14,7 @@ lupopedia.headers:
   artifact_kind: "documentation"
   purpose: "Documentation file with LUPOPEDIA HEADERS applied"
   mood_rgb: "4169E1"
-  traits: ["flare", "indexed", "v4.0.51"]
+  traits: ["flare", "indexed", "v4.0.73"]
   tags: ["documentation", "flare_applied"]
   lupo_agent: "windsurf"
 
@@ -32,7 +32,7 @@ lupopedia.footer:
 
 ---
 lupopedia.headers:
-  lupopedia.version: "1.0"
+  lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
   file_path_from_root: "channels\0\tasks\active\20260226000000_task_0_10000_primary_install_upgrade_4_0_46.md"
@@ -40,7 +40,7 @@ lupopedia.headers:
   file_path_from_root: "channels\0\tasks\active\20260226000000_task_0_10000_primary_install_upgrade_4_0_46.md"
   file_hash: "b1baf908ddb0fbbda9c4a6a6d8f1c303aa9b659d9914ab076ab08ac555308a64"
   last_updated_utc: "20260228"
-  system_version: "4.0.50"
+  system_version: "4.0.73"
   channel_id: 1
   actor_id: 1002
   delegation_chain: null
@@ -48,12 +48,12 @@ lupopedia.headers:
   artifact_kind: "documentation"
   purpose: "Documentation for 20260226000000_task_0_10000_primary_install_upgrade_4_0_46.md"
   mood_rgb: "4169E1"
-  traits: ["flare", "indexed", "v4.0.50"]
+  traits: ["flare", "indexed", "v4.0.73"]
   tags: ["channels", "0", "tasks", "active", "20260226000000_task_0_10000_primary_install_upgrade_4_0_46md"]
   lupo_agent: "windsurf"
 
   needs_review: ["delegation_chain"]
-  system_version: "4.0.50"
+  system_version: "4.0.73"
   last_updated_utc: "20260228"
 lupopedia.footer:
   last_verified: "20260228"
@@ -74,7 +74,7 @@ depends_on: []
 blocks: ["CH0-20260226-002", "CH0-20260226-003", "CH42-20260226-001", "CH42-20260226-002", "CH42-20260226-003", "CH42-20260226-004"]
 task_type: "database_operation"
 estimated_duration: "60 minutes"
-system_version: "4.0.46"
+system_version: "4.0.73"
 artifacts_touched: ["database/*", "install.php", "lupopedia-config.php"]
 notes: "CRITICAL: This task blocks all other 4.0.46 tasks. Must be completed first."
 ---

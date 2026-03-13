@@ -1,6 +1,6 @@
 ---
 lupopedia.headers:
-  lupopedia.version: "1.0"
+  lupopedia.version: "4.0.73"
   lupopedia.schema: "skill"
   file_path_from_root: "lupo-skills/lupopedia-headers/README.md"
   web_path: "http://www.lupopedia.com/skills/lupopedia-headers"
@@ -72,7 +72,7 @@ Knowledge of LUPOPEDIA header format, structure, and usage. This skill covers:
 ```markdown
 ---
 lupopedia.headers:
-  lupopedia.version: "1.0"
+  lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   file_path_from_root: "example.md"
   web_path: "http://www.lupopedia.com/example"

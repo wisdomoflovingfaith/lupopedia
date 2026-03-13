@@ -82,9 +82,51 @@ class FlareValidatorService
     }
 
     /**
-     * Validate edge relationships using database
-     * 
-     * @param array $edges FLARE edges data
+     * Normalize outbound_edges to a flat list. Accepts:
+     * - Flat: outbound_edges: [ { to, type, weight }, ... ]
+     * - Grouped: outbound_edges: { code: [ ... ], documentation: [ ... ] }
+     *
+     * @param array $outboundEdges Raw outbound_edges value (array or associative array of arrays)
+     * @return array Flat list of edge objects (each with to, type, weight, etc.)
+     */
+    protected function normalizeOutboundEdges($outboundEdges)
+    {
+        if (!is_array($outboundEdges)) {
+            return array();
+        }
+        $flat = array();
+        $isGrouped = false;
+        foreach (array_keys($outboundEdges) as $key) {
+            if (is_string($key) && $key !== '' && !is_numeric($key)) {
+                $isGrouped = true;
+                break;
+            }
+        }
+        if ($isGrouped) {
+            foreach ($outboundEdges as $groupList) {
+                if (is_array($groupList)) {
+                    foreach ($groupList as $edge) {
+                        if (is_array($edge) && (isset($edge['to']) || array_key_exists('to', $edge))) {
+                            $flat[] = $edge;
+                        }
+                    }
+                }
+            }
+        } else {
+            foreach ($outboundEdges as $edge) {
+                if (is_array($edge) && (isset($edge['to']) || array_key_exists('to', $edge))) {
+                    $flat[] = $edge;
+                }
+            }
+        }
+        return $flat;
+    }
+
+    /**
+     * Validate edge relationships using database.
+     * Accepts both flat outbound_edges and grouped outbound_edges (code, documentation, etc.).
+     *
+     * @param array $edges FLARE/lupopedia edges data (e.g. flare.edges or lupopedia.edges)
      * @return ValidationResult Validation results
      */
     public function validateRelationships($edges)
@@ -97,7 +139,11 @@ class FlareValidatorService
             return $result;
         }
 
-        foreach ($edges['outbound_edges'] as $edge) {
+        $flatEdges = $this->normalizeOutboundEdges($edges['outbound_edges']);
+
+        $validTypes = array('references', 'implements', 'schema_reference', 'supersedes', 'depends_on', 'example_of', 'related_to', 'precedes', 'succeeds', 'generates', 'updates', 'documents', 'related_table', 'api_reference');
+
+        foreach ($flatEdges as $edge) {
             $target = isset($edge['to']) ? $edge['to'] : null;
             $type = isset($edge['type']) ? $edge['type'] : null;
 
@@ -116,7 +162,8 @@ class FlareValidatorService
                 }
             } else {
                 // Assume it's a file path
-                if (!file_exists(LUPOPEDIA_PATH . $target)) {
+                $path = LUPOPEDIA_PATH . $target;
+                if (!file_exists($path)) {
                     // Check if it's in the database as a path
                     if (!$this->contentPathExists($target)) {
                         $result->warnings[] = array('message' => "Edge target file/path not found: $target");
@@ -134,8 +181,7 @@ class FlareValidatorService
                 }
             }
 
-            // Edge Type Validation (standardized types per FLARE Doctrine v4.1.0)
-            $validTypes = array('references', 'implements', 'schema_reference', 'supersedes', 'depends_on', 'example_of', 'related_to', 'precedes', 'succeeds', 'generates', 'updates');
+            // Edge Type Validation (includes grouped-edge types: documents, related_table, api_reference)
             if ($type && !in_array($type, $validTypes)) {
                 $result->warnings[] = array('message' => "Non-standard edge type: $type for target $target");
                 $result->suggestions[] = array('message' => "Use standardized edge types: " . implode(', ', $validTypes));

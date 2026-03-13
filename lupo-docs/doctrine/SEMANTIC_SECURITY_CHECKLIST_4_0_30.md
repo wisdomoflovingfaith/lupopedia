@@ -1,7 +1,7 @@
 # LUPOPEDIA HEADERS (replaces FLARE)
 ---
 lupopedia.headers:
-  lupopedia.version: "1.0"
+  lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   file_path_from_root: ".\docs\doctrine\SEMANTIC_SECURITY_CHECKLIST_4_0_30.md"
   file_hash: "254843958e9caef383312a7b4a51ceaf6f1cf67a6caeff45154e26d25b7f32df"
@@ -32,7 +32,7 @@ lupopedia.footer:
 
 ---
 lupopedia.headers:
-  lupopedia.version: "1.0"
+  lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
   file_path_from_root: "docs\doctrine\SEMANTIC_SECURITY_CHECKLIST_4_0_30.md"

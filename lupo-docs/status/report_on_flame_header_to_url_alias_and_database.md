@@ -47,7 +47,7 @@ lupopedia.conditional:
       success_criteria: ["header applied correctly"]
 
 lupopedia.headers:
-  lupopedia.version: "1.0"
+  lupopedia.version: "4.0.73"
   lupopedia.schema: "status"
   file_path_from_root: "lupo-docs/status/report_on_flame_header_to_url_alias_and_database.md"
   file_hash: "f48935a614e25d7a1c75c2888f62b42fffb951fb55abaf2419cd7d3db88d694f"

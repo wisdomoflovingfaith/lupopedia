@@ -1,7 +1,7 @@
 # LUPOPEDIA HEADERS (replaces FLARE)
 ---
 lupopedia.headers:
-  lupopedia.version: "1.0"
+  lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   file_path_from_root: ".\docs\audits\PHP_5_3_ARRAY_SYNTAX_SWEEP_REPORT.md"
   file_hash: "c836edbcd17196b8845f9d3343657a3f5a6a782b575bcb1389e1d784ac147372"
@@ -32,7 +32,7 @@ lupopedia.footer:
 
 ---
 lupopedia.headers:
-  lupopedia.version: "1.0"
+  lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
   file_path_from_root: "docs\audits\PHP_5_3_ARRAY_SYNTAX_SWEEP_REPORT.md"

@@ -2,7 +2,7 @@
 
 ---
 lupopedia.headers:
-  lupopedia.version: "1.0"
+  lupopedia.version: "4.0.73"
   lupopedia.schema: "status"
   file_path_from_root: "docs/status/CURSOR_CHANNEL_42_REHYDRATE_REPORT_4.0.57.md"
   last_modified_utc: "20260304"

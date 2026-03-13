@@ -4,7 +4,7 @@
 lupopedia.init:
   requirements:
     flare:
-      version: ">=4.0.55"
+      version: ">=4.0.73"
   execution_mode: "advisory"
   pre_actions:
     - type: dependency_check
@@ -47,12 +47,12 @@ lupopedia.conditional:
       success_criteria: ["header applied correctly"]
 
 lupopedia.headers:
-  lupopedia.version: "1.0"
+  lupopedia.version: "4.0.73"
   lupopedia.schema: "task"
   file_path_from_root: "lupo-database/lupopedia/channels/lupo-channels/66/tasks/active/actor_help_documentation_validation.md"
   file_hash: "43d1f47e3cb116e69de4dc5a0a821e482181618350427151a73e5a0f39ed4feb"
   last_updated_utc: "20260304"
-  system_version: "4.0.56"
+  system_version: "4.0.73"
   channel_id: 1
   actor_id: 1004
   delegation_chain: "1004:10000"
@@ -60,7 +60,7 @@ lupopedia.headers:
   artifact_kind: "documentation"
   purpose: "Documentation for actor_help_documentation_validation.md"
   mood_rgb: "4169E1"
-  traits: ["flare", "indexed", "v4.0.56"]
+  traits: ["flare", "indexed", "v4.0.73"]
   tags: ["lupo-database", "lupopedia", "channels", "lupo-channels", "66", "tasks"]
   lupo_agent: "antigravity"
 
@@ -85,7 +85,7 @@ lupopedia.close:
 lupopedia.headers:
   file_path_from_root: "channels/42/tasks/active/actor_help_documentation_validation.md"
   file_hash: "<?php echo hash_file('channels/42/tasks/active/actor_help_documentation_validation.md'); ?>"
-  system_version: "4.0.50"
+  system_version: "4.0.73"
   channel_id: 42
   actor_id: 10000
   last_modified_utc: "<?php echo gmdate('YmdHis'); ?>"
@@ -94,7 +94,7 @@ lupopedia.headers:
   purpose: "Validate all actor help documentation completeness across the repository"
   mood_rgb: "FF6B35"
   artifact_kind: "validation_task"
-  traits: ["critical", "documentation", "validation", "v4.0.50"]
+  traits: ["critical", "documentation", "validation", "v4.0.73"]
   tags: ["actor_help", "documentation", "validation", "completeness"]
   lupo_agent: "windsurf"
 
@@ -108,7 +108,7 @@ lupopedia.edges:
   semantic_tags: ["actor_help", "documentation", "validation", "completeness"]
 
   last_updated_utc: "<?php echo gmdate('YmdHis'); ?>"
-  system_version: "4.0.50"
+  system_version: "4.0.73"
 lupopedia.footer:
   last_verified_utc: "<?php echo gmdate('YmdHis'); ?>"
   last_verified_by: "windsurf"

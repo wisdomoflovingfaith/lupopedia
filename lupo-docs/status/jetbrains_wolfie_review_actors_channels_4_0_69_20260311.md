@@ -1,4 +1,4 @@
-Ôªø---
+---
 lupopedia.headers:
   lupopedia.version: "4.0.69"
   lupopedia.schema: "documentation"
@@ -14,13 +14,13 @@ lupopedia.headers:
   artifact_kind: "implementation_audit"
   purpose: "Review of actor/channel orchestration documentation against CHANGELOG 4.0.69 and install SQL + TOON schema, with implementation findings and improvements."
 ---
-# file: JetBrains Wolfie implementation review ‚Äî session: L-LUPO-ROOT-JETBRAINS ‚Äî delegation: wolfie:root (faucet: jetbrains)
+# file: JetBrains Wolfie implementation review ó session: L-LUPO-ROOT-JETBRAINS ó delegation: wolfie:root (faucet: jetbrains)
 
 # Review: Actors Orchestration + 4.0.69 Schema Alignment
 
 ## Findings (ordered by severity)
 
-### 1. High ‚Äî Primary key for `lupo_actors` is documented incorrectly
+### 1. High ó Primary key for `lupo_actors` is documented incorrectly
 
 - In `docs/status/HOW_ACTORS_ORCHESTRATE_ON_CHANNELS.md`, the actor section states primary key = `actor_id`.
 - The canonical schema (`install_new_lupopedia.sql` and TOON) defines primary key = `actor_name` and `actor_id` as unique secondary key.
@@ -35,7 +35,7 @@ Recommendation:
 - Update section 2 and summary table to state: `actor_name` is primary key, `actor_id` is unique secondary identifier.
 - Add one explicit note linking this to ACTOR PRIMARY KEY DOCTRINE in install SQL comments.
 
-### 2. Medium ‚Äî Changelog TOON count is stale
+### 2. Medium ó Changelog TOON count is stale
 
 - The JetBrains/Codex 4.0.69 changelog subsection records TOON count as 161.
 - Current repository TOON count is 164, and 4.0.69 entries also mention new TOON-backed tables.
@@ -49,7 +49,7 @@ Recommendation:
 - Amend changelog line to 164 (or phrase as "count at time of write" with date stamp).
 - Add an automated count step in release checklist: `Get-ChildItem lupo-database/lupopedia/toon -File | Measure-Object`.
 
-### 3. Medium ‚Äî Suspicious canonical sample row in `lupo_actors.toon`
+### 3. Medium ó Suspicious canonical sample row in `lupo_actors.toon`
 
 - TOON sample data row has `actor_name: ''` while also containing conflicting identity hints (`slug: cursor-ide`, `name: Windsurf IDE`, `actor_id: 2031`).
 - As TOONs are used as schema/documentation authority, this degrades trust in canonical examples and can mislead tooling/tests that inspect `data` samples.
@@ -73,7 +73,7 @@ Recommendation:
 
 ## Improvement plan (JetBrains/Wolfie)
 
-1. Correct the actor PK statement in `HOW_ACTORS_ORCHESTRATE_ON_CHANNELS.md` and add a brief ‚Äúactor_name primary, actor_id unique secondary‚Äù doctrine callout.
+1. Correct the actor PK statement in `HOW_ACTORS_ORCHESTRATE_ON_CHANNELS.md` and add a brief ìactor_name primary, actor_id unique secondaryî doctrine callout.
 2. Patch changelog TOON count drift and add a lightweight "schema snapshot" line with exact date + count.
 3. Regenerate TOON files from live DB and run a quick sanity check for canonical identity rows in `lupo_actors.toon`.
 4. Add a doc-schema consistency check script that validates key claims in architecture docs (PK name, mandatory columns) against TOON metadata before merge.

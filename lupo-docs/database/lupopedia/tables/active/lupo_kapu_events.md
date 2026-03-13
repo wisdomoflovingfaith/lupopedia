@@ -1,7 +1,7 @@
 # LUPOPEDIA HEADERS (replaces FLARE)
 ---
 lupopedia.headers:
-  lupopedia.version: "1.0"
+  lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   file_path_from_root: ".\docs\database\lupopedia\tables\lupo_kapu_events.md"
   file_hash: "af5fbbfcbfd7aa87d75b04111916cfe2e4b029bf40c3cf65616ca5b94138628f"

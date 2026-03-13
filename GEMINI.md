@@ -2,15 +2,15 @@
 
 ---
 lupopedia.headers:
-  lupopedia.version: "1.0"
+  lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
   file_path_from_root: "GEMINI.md"
   file_hash: "2609764a84a449895f2e0f608661d8ae30069d0c394a6bbc3472535d471cb463"
   file_path_from_root: "GEMINI.md"
   file_hash: "fbe9d2341761b42406dd4f894ebcc0c3dd13ccab0362b9d5c07f626d083273ec"
-  last_updated_utc: "20260228"
-  system_version: "4.0.50"
+  last_updated_utc: "20260312"
+  system_version: "4.0.73"
   channel_id: 1
   actor_id: 1002
   delegation_chain: null
@@ -18,15 +18,15 @@ lupopedia.headers:
   artifact_kind: "documentation"
   purpose: "Documentation for GEMINI.md"
   mood_rgb: "4169E1"
-  traits: ["flare", "indexed", "v4.0.50"]
+  traits: ["flare", "indexed", "v4.0.73"]
   tags: ["geminimd"]
   lupo_agent: "windsurf"
 
   needs_review: ["delegation_chain"]
-  system_version: "4.0.50"
-  last_updated_utc: "20260228"
+  system_version: "4.0.73"
+  last_updated_utc: "20260312"
 lupopedia.footer:
-  last_verified: "20260228"
+  last_verified: "20260312"
   last_verified_by: "windsurf"
     deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use lupopedia.headers"]
 ---
@@ -87,7 +87,7 @@ You are GEMINI, a Google AI assistant working on Lupopedia. You are part of a mu
 - **Role**: Development agent, code analysis, testing, documentation
 - **Authority**: Work under delegation from Captain WOLFIE AI (actor_id: 1)
 - **Registration Date**: 2026-02-26
-- **System Version**: 4.0.46
+- **System Version**: 4.0.73
 
 **Registration Status**: ✅ You are fully registered in the system. Your actor record exists in:
 - `database/migrations/seed_actors_agents_4.0.45.sql`
@@ -642,9 +642,9 @@ flip.footer: {
 - Review `CHANGELOG.md` for recent changes
 - Check `channels/0/tasks/active/` for task assignments
 
-### Current Project Status (4.0.46)
+### Current Project Status (4.0.73)
 
-**Phase**: Crafty Syntax 3.7.5 → Lupopedia 4.0.46 Migration
+**Phase**: Crafty Syntax 3.7.5 → Lupopedia 4.0.73 Migration
 
 **Completed**:
 - ✅ Database installation (173 tables)
@@ -756,7 +756,7 @@ python scripts/verify_db_against_toons.py  # Verify schema
 
 ---
 
-**Last Updated**: 2026-02-26  
-**Version**: 4.0.46  
+**Last Updated**: 2026-03-12  
+**Version**: 4.0.73  
 **Maintained By**: Kiro (1000)  
 **Authority**: Captain WOLFIE AI (1)

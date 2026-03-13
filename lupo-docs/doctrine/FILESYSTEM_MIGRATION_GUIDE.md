@@ -1,6 +1,6 @@
 ---
 lupopedia.headers:
-  lupopedia.version: "1.0"
+  lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   file_path_from_root: "lupo-docs/doctrine/FILESYSTEM_MIGRATION_GUIDE.md"
   last_updated_utc: "20260312"

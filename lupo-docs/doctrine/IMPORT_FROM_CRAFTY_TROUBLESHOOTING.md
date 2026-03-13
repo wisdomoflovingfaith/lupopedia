@@ -1,7 +1,7 @@
 # LUPOPEDIA HEADERS (replaces FLARE)
 ---
 lupopedia.headers:
-  lupopedia.version: "1.0"
+  lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   file_path_from_root: ".\docs\doctrine\IMPORT_FROM_CRAFTY_TROUBLESHOOTING.md"
   file_hash: "1033f40536b03e5e38446592499b8499ec07cbc15643eb39d6d4d4ec8820cc71"
@@ -32,7 +32,7 @@ lupopedia.footer:
 
 ---
 lupopedia.headers:
-  lupopedia.version: "1.0"
+  lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
   file_path_from_root: "docs\doctrine\IMPORT_FROM_CRAFTY_TROUBLESHOOTING.md"

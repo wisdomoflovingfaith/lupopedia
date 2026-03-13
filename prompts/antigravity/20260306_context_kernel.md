@@ -1,6 +1,6 @@
 ---
 lupopedia.headers:
-  lupopedia.version: "1.0"
+  lupopedia.version: "4.0.73"
   lupopedia.schema: "directive"
   file_path_from_root: "prompts/antigravity/20260306_context_kernel.md"
   web_path: "http://www.lupopedia.com/directives/CONTEXT_KERNEL"

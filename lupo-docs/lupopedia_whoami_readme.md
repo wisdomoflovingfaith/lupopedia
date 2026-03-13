@@ -1,7 +1,7 @@
 # file: Lupopedia Whoami — session: L-LUPO-ANTIGRAVITY — delegation: antigravity:cursor:captain  — web_path: http://www.lupopedia.com/docs/lupopedia_whoami_readme
 ---
 lupopedia.headers:
-  lupopedia.version: "1.0"
+  lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   file_path_from_root: "docs/lupopedia_whoami_readme.md"
   last_modified_utc: "20260306"

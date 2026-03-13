@@ -1,7 +1,7 @@
 # LUPOPEDIA HEADERS (replaces FLARE)
 ---
 lupopedia.headers:
-  lupopedia.version: "1.0"
+  lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   file_path_from_root: ".\docs\ACTOR_CHANNEL_ROLES_VS_CHANNEL_ROLES_ANALYSIS.md"
   file_hash: "90c184d9058a0032f21e84c456c9af99662273b239020c353be725dec6411f72"
@@ -32,7 +32,7 @@ lupopedia.footer:
 
 ---
 lupopedia.headers:
-  lupopedia.version: "1.0"
+  lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
   file_path_from_root: "docs\ACTOR_CHANNEL_ROLES_VS_CHANNEL_ROLES_ANALYSIS.md"

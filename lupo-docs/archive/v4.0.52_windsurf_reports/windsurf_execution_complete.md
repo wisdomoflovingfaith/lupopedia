@@ -47,7 +47,7 @@ lupopedia.conditional:
       success_criteria: ["header applied correctly"]
 
 lupopedia.headers:
-  lupopedia.version: "1.0"
+  lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   file_path_from_root: "lupo-docs\archive\v4.0.52_windsurf_reports\windsurf_execution_complete.md"
   file_hash: "184e04c84843ef48ce9b0af8a32c16a4cf5b377af3a248149dd323c23b036bdd"

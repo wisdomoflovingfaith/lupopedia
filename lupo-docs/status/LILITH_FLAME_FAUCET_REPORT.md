@@ -3,7 +3,7 @@
 ---
 # FLARE Header (aliases: Wolfie, FLIP) — see http://www.lupopedia.com/FLARE
 lupopedia.headers:
-  lupopedia.version: "1.0"
+  lupopedia.version: "4.0.73"
   lupopedia.schema: "report"
   file_path_from_root: "docs/status/LILITH_FLAME_FAUCET_REPORT.md"
   last_modified_utc: "20260303"

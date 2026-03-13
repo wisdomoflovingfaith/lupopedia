@@ -1,7 +1,7 @@
 # LUPOPEDIA HEADERS (replaces FLARE)
 ---
 lupopedia.headers:
-  lupopedia.version: "1.0"
+  lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   file_path_from_root: ".\docs\channels\developer\testing\import_trial_scorecard_livehelp.md"
   file_hash: "b586f89048e73fa0197f7b7526d553d686e312eb92c991eacb86745b30b3b901"
@@ -32,7 +32,7 @@ lupopedia.footer:
 
 ---
 lupopedia.headers:
-  lupopedia.version: "1.0"
+  lupopedia.version: "4.0.73"
   lupopedia.schema: "help"
   lupopedia.edges: []
   file_path_from_root: "docs\channels\developer\testing\import_trial_scorecard_livehelp.md"

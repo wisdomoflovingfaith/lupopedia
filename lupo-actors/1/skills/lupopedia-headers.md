@@ -1,6 +1,6 @@
 ---
 lupopedia.headers:
-  lupopedia.version: "1.0"
+  lupopedia.version: "4.0.73"
   lupopedia.schema: "actor-skill"
   file_path_from_root: "lupo-actors/1/skills/lupopedia-headers.md"
   web_path: "http://www.lupopedia.com/actors/1/skills/lupopedia-headers"

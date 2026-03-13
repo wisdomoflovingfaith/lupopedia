@@ -2,7 +2,7 @@
 
 ---
 lupopedia.headers:
-  lupopedia.version: "1.0"
+  lupopedia.version: "4.0.73"
   lupopedia.schema: "directive"
   file_path_from_root: "lupo-channels/42/directives/flare_routing_spec.md"
   system_version: "4.0.55"

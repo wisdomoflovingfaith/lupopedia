@@ -1,27 +1,37 @@
 ---
 lupopedia.headers:
-  lupopedia.version: "1.0"
+  lupopedia.version: "4.0.73"
   lupopedia.schema: "database_table"
   file_path_from_root: "lupo-docs/database/lupopedia/tables/active/lupo_auth_providers.md"
-  system_version: "4.0.70"
+  system_version: "4.0.73"
+  namespace: "auth"
   channel_id: 1
-  actor_id: 102
+  actor_id: 1003
   last_modified_utc: "20260312"
   artifact_type: "table_documentation"
   purpose: "OAuth/SSO provider configuration for authentication"
   mood_rgb: "4169E1"
-  traits: ["canonical", "auth", "cursor_domain", "v4.0.70"]
+  traits: ["canonical", "auth", "antigravity_rotation", "v4.0.73"]
   tags: ["database", "auth", "oauth", "providers"]
-  lupo_agent: "cursor"
+  lupo_agent: "antigravity"
 
 lupopedia.edges:
+  comment: "Snapshot of files edited during 4.0.73 finalization and initialization thread by ANTIGRAVITY IDE Agent. Edges reflect discovered relationships between database tables and PHP/Python codebase entities. Values should be verified against live database schemas/queries for the most current semantic graph state."
+  meta: "Thread: Finalize 4.0.72 → Push to GitHub → Initialize 4.0.73 → Migrate Tasks → Validate Upgrade Path"
   outbound_edges:
     - { to: "lupo-docs/toons/lupo_auth_providers.toon.json", type: "schema_reference", weight: 1.0 }
     - { to: "lupo-docs/database/lupopedia/tables/active/lupo_auth_users.md", type: "references", weight: 0.9 }
+    - { to: "lupo-includes/functions/auth-helpers.php", type: "referenced_by", weight: 0.8 }
+
+lupopedia.engagement:
+  comment: "Snapshot of files edited during 4.0.73 finalization and initialization thread by ANTIGRAVITY IDE Agent. Engagement metrics track edit frequency and importance of each file in the version transition process."
+  meta: "Thread: Finalize 4.0.72 → Push to GitHub → Initialize 4.0.73 → Migrate Tasks → Validate Upgrade Path"
+  views: 0
 
 lupopedia.footer:
+  version: "4.0.73"
   last_verified: "20260312"
-  last_verified_by: "cursor"
+  last_verified_by: "antigravity"
 ---
 
 # Table: lupo_auth_providers

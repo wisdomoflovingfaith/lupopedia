@@ -47,7 +47,7 @@ lupopedia.conditional:
       success_criteria: ["header applied correctly"]
 
 lupopedia.headers:
-  lupopedia.version: "1.0"
+  lupopedia.version: "4.0.73"
   lupopedia.schema: "status"
   file_path_from_root: "docs/status/DATABASE_PATH_NORMALIZATION_REPORT_CURSOR.md"
   file_hash: "34edaa7609a90d7fe2be33adc1beffcd1756add98055023b2b61561ec4a3d13c"

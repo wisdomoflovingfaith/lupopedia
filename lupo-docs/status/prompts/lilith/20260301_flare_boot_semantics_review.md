@@ -1,7 +1,7 @@
 ---
 # FLARE Header
 lupopedia.headers:
-  lupopedia.version: "1.0"
+  lupopedia.version: "4.0.73"
   lupopedia.schema: "review"
   file_path_from_root: "prompts/lilith/20260301_flare_boot_semantics_review.md"
   system_version: "4.0.53"

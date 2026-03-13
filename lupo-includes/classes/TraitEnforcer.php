@@ -1,11 +1,11 @@
 <?php
 /**
- * TraitEnforcer — check actor traits and action authorization (4.0.69).
+ * TraitEnforcer — check actor traits and action authorization (4.0.73).
  * PDO_DB only; PHP 5.3 compatible. No namespace.
  * Use LUPO_TABLE_PREFIX for all table names.
  *
  * @package Lupopedia
- * @version 4.0.69
+ * @version 4.0.73
  */
 
 if (!defined('LUPOPEDIA_CONFIG_LOADED')) {

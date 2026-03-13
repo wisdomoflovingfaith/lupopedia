@@ -1,6 +1,6 @@
 ---
 lupopedia.headers:
-  lupopedia.version: "1.0"
+  lupopedia.version: "4.0.73"
   lupopedia.schema: "directive"
   file_path_from_root: "prompts/windsurf/20260307_version_transition.md"
   web_path: "http://www.lupopedia.com/directives/VERSION_TRANSITION_4_0_63"

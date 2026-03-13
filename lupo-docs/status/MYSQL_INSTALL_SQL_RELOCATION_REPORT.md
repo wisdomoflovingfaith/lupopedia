@@ -2,7 +2,7 @@
 
 ---
 lupopedia.headers:
-  lupopedia.version: "1.0"
+  lupopedia.version: "4.0.73"
   file_path_from_root: "docs/status/MYSQL_INSTALL_SQL_RELOCATION_REPORT.md"
   system_version: "4.0.55"
   channel_id: 42

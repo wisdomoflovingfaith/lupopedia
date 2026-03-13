@@ -4,7 +4,7 @@
 lupopedia.init:
   requirements:
     flare:
-      version: ">=4.0.55"
+      version: ">=4.0.73"
   execution_mode: "advisory"
   pre_actions:
     - type: dependency_check
@@ -47,12 +47,12 @@ lupopedia.conditional:
       success_criteria: ["header applied correctly"]
 
 lupopedia.headers:
-  lupopedia.version: "1.0"
+  lupopedia.version: "4.0.73"
   lupopedia.schema: "task"
   file_path_from_root: "lupo-database/lupopedia/channels/lupo-channels/42/tasks/active/repository_cleanup_legacy_files_removal.md"
   file_hash: "86333982713023f0fdab6e6c901137d3b0f42aa76e97ba9ec95bc1d065e3fa84"
   last_updated_utc: "20260304"
-  system_version: "4.0.56"
+  system_version: "4.0.73"
   channel_id: 1
   actor_id: 1004
   delegation_chain: "1004:10000"
@@ -60,7 +60,7 @@ lupopedia.headers:
   artifact_kind: "documentation"
   purpose: "FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)"
   mood_rgb: "4169E1"
-  traits: ["flare", "indexed", "v4.0.56"]
+  traits: ["flare", "indexed", "v4.0.73"]
   tags: ["lupo-database", "lupopedia", "channels", "lupo-channels", "42", "tasks"]
   lupo_agent: "antigravity"
 
@@ -87,7 +87,7 @@ lupopedia.close:
 
 ---
 lupopedia.headers:
-  lupopedia.version: "1.0"
+  lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
   file_path_from_root: "channels\42\tasks\active\repository_cleanup_legacy_files_removal.md"
@@ -95,7 +95,7 @@ lupopedia.headers:
   file_path_from_root: "channels\42\tasks\active\repository_cleanup_legacy_files_removal.md"
   file_hash: "55e1356e27ff73b9d84e47400729c06b660070408f4218e7581c6abb5ee62b11"
   last_updated_utc: "20260228"
-  system_version: "4.0.50"
+  system_version: "4.0.73"
   channel_id: 1
   actor_id: 1002
   delegation_chain: null
@@ -103,12 +103,12 @@ lupopedia.headers:
   artifact_kind: "documentation"
   purpose: "🧹 Repository Cleanup - Legacy Files and Migration Removal"
   mood_rgb: "4169E1"
-  traits: ["flare", "indexed", "v4.0.50"]
+  traits: ["flare", "indexed", "v4.0.73"]
   tags: ["channels", "42", "tasks", "active", "repository_cleanup_legacy_files_removalmd"]
   lupo_agent: "windsurf"
 
   needs_review: ["delegation_chain"]
-  system_version: "4.0.50"
+  system_version: "4.0.73"
   last_updated_utc: "20260228"
 lupopedia.footer:
   last_verified: "20260228"

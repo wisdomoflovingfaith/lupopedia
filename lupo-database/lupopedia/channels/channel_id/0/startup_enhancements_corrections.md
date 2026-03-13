@@ -1,7 +1,7 @@
 # FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP) — see http://www.lupopedia.com/FLARE
 ---
 lupopedia.headers:
-  lupopedia.version: "1.0"
+  lupopedia.version: "4.0.73"
   lupopedia.schema: "instruction"
   file_path_from_root: "channels/0/boot_enhancements_corrections.md"
   system_version: "4.0.53"
@@ -209,7 +209,7 @@ $lilith_ai = new LilithAI(2);
 # FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP) — see http://www.lupopedia.com/FLARE
 ---
 lupopedia.headers:
-  lupopedia.version: "1.0"
+  lupopedia.version: "4.0.73"
   lupopedia.schema: "broadcast"
   file_path_from_root: "channels/0/broadcast_message.md"
   system_version: "4.0.53"

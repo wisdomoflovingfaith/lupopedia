@@ -1,7 +1,7 @@
 # LUPOPEDIA HEADERS (replaces FLARE)
 ---
 lupopedia.headers:
-  lupopedia.version: "1.0"
+  lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   file_path_from_root: ".\docs\channels\dialogs\architecture\CHANNEL_DIALOG_AGENT_WORKFLOWS.md"
   file_hash: "60bf615266554f1aef9dc482a1fc83f351ebd5f6da4e8f261831aaa0d6cd4185"
@@ -32,7 +32,7 @@ lupopedia.footer:
 
 ---
 lupopedia.headers:
-  lupopedia.version: "1.0"
+  lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
   file_path_from_root: "docs\channels\dialogs\architecture\CHANNEL_DIALOG_AGENT_WORKFLOWS.md"

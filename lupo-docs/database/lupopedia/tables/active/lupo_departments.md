@@ -1,17 +1,33 @@
 ---
 lupopedia.headers:
-  lupopedia.version: "1.0"
+  lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   file_path_from_root: "lupo-docs/database/lupopedia/tables/active/lupo_departments.md"
-  last_modified_utc: "20260312"
-  system_version: "4.0.69"
+  system_version: "4.0.73"
+  namespace: "org"
   channel_id: 1
-  actor_id: 103
-  delegation_chain: "103:10000"
+  actor_id: 1003
+  last_modified_utc: "20260313"
   artifact_type: "documentation"
   artifact_kind: "database_table"
   purpose: "JetBrains domain table documentation for lupo_departments"
-  lupo_agent: "jetbrains"
+  lupo_agent: "antigravity"
+
+lupopedia.edges:
+  comment: "Snapshot of files edited during 4.0.73 finalization and initialization thread by ANTIGRAVITY IDE Agent. Edges reflect discovered relationships between database tables and PHP/Python codebase entities. Values should be verified against live database schemas/queries for the most current semantic graph state."
+  meta: "Thread: Finalize 4.0.72 → Push to GitHub → Initialize 4.0.73 → Migrate Tasks → Validate Upgrade Path"
+  outbound_edges:
+    - { to: "lupo-database/lupopedia/toon/lupo_departments.toon.json", type: "schema_reference", weight: 1.0, reason: "TOON schema definition", db_source: "lupo_departments" }
+
+lupopedia.engagement:
+  comment: "Snapshot of files edited during 4.0.73 finalization and initialization thread by ANTIGRAVITY IDE Agent. Engagement metrics track edit frequency and importance of each file in the version transition process."
+  meta: "Thread: Finalize 4.0.72 → Push to GitHub → Initialize 4.0.73 → Migrate Tasks → Validate Upgrade Path"
+  views: 0
+
+lupopedia.footer:
+  version: "4.0.73"
+  last_verified: "20260313"
+  last_verified_by: "antigravity"
 ---
 
 # Table: lupo_departments

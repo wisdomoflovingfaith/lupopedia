@@ -1,7 +1,7 @@
 # LUPOPEDIA HEADERS (replaces FLARE)
 ---
 lupopedia.headers:
-  lupopedia.version: "1.0"
+  lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   file_path_from_root: ".\docs\channels\architecture\CANONICAL_ONTOLOGY_ARCHITECTURE_GOVERNANCE_v1_0.md"
   file_hash: "bd9a2f65389062c0f9495d7fb9cc4cd87170f349999bc35facbec7e7fec3d92c"
@@ -32,7 +32,7 @@ lupopedia.footer:
 
 ---
 lupopedia.headers:
-  lupopedia.version: "1.0"
+  lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
   file_path_from_root: "docs\channels\architecture\CANONICAL_ONTOLOGY_ARCHITECTURE_GOVERNANCE_v1_0.md"

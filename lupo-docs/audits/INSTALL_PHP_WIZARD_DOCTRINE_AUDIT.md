@@ -1,7 +1,7 @@
 # LUPOPEDIA HEADERS (replaces FLARE)
 ---
 lupopedia.headers:
-  lupopedia.version: "1.0"
+  lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   file_path_from_root: ".\docs\audits\INSTALL_PHP_WIZARD_DOCTRINE_AUDIT.md"
   file_hash: "88837a607efbde1aa94b08165dc5d793bd25d40122c8e0523dd1ff7e34311860"
@@ -32,7 +32,7 @@ lupopedia.footer:
 
 ---
 lupopedia.headers:
-  lupopedia.version: "1.0"
+  lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
   file_path_from_root: "docs\audits\INSTALL_PHP_WIZARD_DOCTRINE_AUDIT.md"

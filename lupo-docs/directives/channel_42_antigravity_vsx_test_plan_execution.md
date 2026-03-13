@@ -1,7 +1,7 @@
 # LUPOPEDIA HEADERS (replaces FLARE)
 ---
 lupopedia.headers:
-  lupopedia.version: "1.0"
+  lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   file_path_from_root: ".\docs\directives\channel_42_antigravity_vsx_test_plan_execution.md"
   file_hash: "cb6a00b28efa3175b22db55ceb4110346174c44e5f006d0e02d9fef29fb6bcc3"
@@ -32,7 +32,7 @@ lupopedia.footer:
 
 ---
 lupopedia.headers:
-  lupopedia.version: "1.0"
+  lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
   file_path_from_root: "docs\directives\channel_42_antigravity_vsx_test_plan_execution.md"

@@ -1,7 +1,7 @@
 # FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
 ---
 lupopedia.headers:
-  lupopedia.version: "1.0"
+  lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   file_path_from_root: ".\channels\42\broadcasts\20260225130012_10000_1000_42_announce_completion_of_lilith_semantic_header_footer_upgrades_for_v4_0_38.md"
   file_hash: "6b5c9463b48a673a81135dfa59d381fb608c116ef76723da851a888caa3c4be3"
@@ -32,7 +32,7 @@ lupopedia.footer:
 
 ---
 lupopedia.headers:
-  lupopedia.version: "1.0"
+  lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
   file_path_from_root: "channels\42\broadcasts\20260225130012_10000_1000_42_announce_completion_of_lilith_semantic_header_footer_upgrades_for_v4_0_38.md"

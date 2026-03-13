@@ -1,7 +1,7 @@
 # LUPOPEDIA HEADERS (replaces FLARE)
 ---
 lupopedia.headers:
-  lupopedia.version: "1.0"
+  lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   file_path_from_root: ".\docs\status\archive\legacy_versions\AGENT_PRESENCE_MAP_4_0_33.md"
   file_hash: "9b397e32325293e4c2abfc6a54d9062954ca3f3d015c108e1350f71686ce5e83"
@@ -32,7 +32,7 @@ lupopedia.footer:
 
 ---
 lupopedia.headers:
-  lupopedia.version: "1.0"
+  lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
   file_path_from_root: "docs\status\archive\legacy_versions\AGENT_PRESENCE_MAP_4_0_33.md"

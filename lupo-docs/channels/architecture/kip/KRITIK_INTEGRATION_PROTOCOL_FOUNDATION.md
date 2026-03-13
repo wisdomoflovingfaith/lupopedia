@@ -1,7 +1,7 @@
 # LUPOPEDIA HEADERS (replaces FLARE)
 ---
 lupopedia.headers:
-  lupopedia.version: "1.0"
+  lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   file_path_from_root: ".\docs\channels\architecture\kip\KRITIK_INTEGRATION_PROTOCOL_FOUNDATION.md"
   file_hash: "24ec340440a5150abd0b816b2f32f6a94659b4c455de6ef3c4b823f4fdf6dedd"
@@ -32,7 +32,7 @@ lupopedia.footer:
 
 ---
 lupopedia.headers:
-  lupopedia.version: "1.0"
+  lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
   file_path_from_root: "docs\channels\architecture\kip\KRITIK_INTEGRATION_PROTOCOL_FOUNDATION.md"

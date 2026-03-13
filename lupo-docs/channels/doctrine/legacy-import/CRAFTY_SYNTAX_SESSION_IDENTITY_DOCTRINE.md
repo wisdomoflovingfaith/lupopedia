@@ -1,7 +1,7 @@
 # LUPOPEDIA HEADERS (replaces FLARE)
 ---
 lupopedia.headers:
-  lupopedia.version: "1.0"
+  lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   file_path_from_root: ".\docs\channels\doctrine\legacy-import\CRAFTY_SYNTAX_SESSION_IDENTITY_DOCTRINE.md"
   file_hash: "538326fe78e132cdf5235b93e1e060cea0542dd7897f74f8822a497fa22f3dbe"
@@ -32,7 +32,7 @@ lupopedia.footer:
 
 ---
 lupopedia.headers:
-  lupopedia.version: "1.0"
+  lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
   file_path_from_root: "docs\channels\doctrine\legacy-import\CRAFTY_SYNTAX_SESSION_IDENTITY_DOCTRINE.md"

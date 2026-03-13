@@ -1,7 +1,7 @@
 ---
 # FLARE Header
 lupopedia.headers:
-  lupopedia.version: "1.0"
+  lupopedia.version: "4.0.73"
   lupopedia.schema: "status_report"
   file_path_from_root: "prompts/lilith/20260228_fileopt_anubis_consolidation_review.md"
   file_hash: "to_be_generated"

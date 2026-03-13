@@ -1,7 +1,7 @@
 # LUPOPEDIA HEADERS (replaces FLARE)
 ---
 lupopedia.headers:
-  lupopedia.version: "1.0"
+  lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   file_path_from_root: ".\docs\SESSIONS_VS_SESSIONS_INVESTIGATION.md"
   file_hash: "f48cf9fb317f5ecd3beaae93fb2206f7868ee9e70745f5b244c93330d55dd3a5"
@@ -32,7 +32,7 @@ lupopedia.footer:
 
 ---
 lupopedia.headers:
-  lupopedia.version: "1.0"
+  lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
   file_path_from_root: "docs\SESSIONS_VS_SESSIONS_INVESTIGATION.md"

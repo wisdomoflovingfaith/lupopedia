@@ -1,7 +1,7 @@
 # LUPOPEDIA HEADERS (replaces FLARE)
 ---
 lupopedia.headers:
-  lupopedia.version: "1.0"
+  lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   file_path_from_root: ".\docs\channels\42\broadcasts\20260223_v4_0_33_agent_roles_and_status.md"
   file_hash: "d1dc8353d81a22969f7970f6ab0b8c8da543004812de5d4c024f88ab96e7e828"
@@ -32,7 +32,7 @@ lupopedia.footer:
 
 ---
 lupopedia.headers:
-  lupopedia.version: "1.0"
+  lupopedia.version: "4.0.73"
   lupopedia.schema: "status"
   lupopedia.edges: []
   file_path_from_root: "docs\channels\42\broadcasts\20260223_v4_0_33_agent_roles_and_status.md"

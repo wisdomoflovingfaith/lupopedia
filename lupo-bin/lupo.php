@@ -54,7 +54,7 @@ try {
             $authService = isset($GLOBALS['lupo_auth_service']) ? $GLOBALS['lupo_auth_service'] : null;
             $kernel->bootstrap($db, $table_prefix, $state_file, ABSPATH, $authService);
             $ctx = $kernel->getContext();
-            $system_version = function_exists('get_lupo_version') ? get_lupo_version() : (defined('LUPOPEDIA_VERSION') ? LUPOPEDIA_VERSION : '4.0.72');
+            $system_version = function_exists('get_lupo_version') ? get_lupo_version() : (defined('LUPOPEDIA_VERSION') ? LUPOPEDIA_VERSION : '4.0.73');
             lupo_validate_flare_headers($ctx, $system_version);
             DialogHeaderValidator::validate($ctx);
             $verbose = isset($whoami_verbose) ? $whoami_verbose : false;
@@ -581,7 +581,7 @@ try {
             exit($return_var);
             break;
         case 'version':
-            $ver = function_exists('get_lupo_version') ? get_lupo_version() : '4.0.72';
+            $ver = function_exists('get_lupo_version') ? get_lupo_version() : '4.0.73';
             echo "Lupopedia version " . $ver . "\n";
             echo "Documentation: docs/version.md\n";
             break;

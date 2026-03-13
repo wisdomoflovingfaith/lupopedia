@@ -1,6 +1,6 @@
 ---
 lupopedia.headers:
-  lupopedia.version: "1.0"
+  lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   file_path_from_root: "lupo-database/lupopedia/channels/lupo-channels/42/threads/UPGRADE_TEST_CRAFTY_TO_4_0_56.md"
   system_version: "4.0.56"

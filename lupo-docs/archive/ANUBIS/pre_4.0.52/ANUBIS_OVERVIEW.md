@@ -1,7 +1,7 @@
 # LUPOPEDIA HEADERS (replaces FLARE)
 ---
 lupopedia.headers:
-  lupopedia.version: "1.0"
+  lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   file_path_from_root: ".\docs\doctrine\ANUBIS\ANUBIS_OVERVIEW.md"
   file_hash: "bc767b899c0b367d219ccad4ca25b222289b01a392aab460cf726496e9e8384a"
@@ -31,7 +31,7 @@ lupopedia.footer:
 # LUPOPEDIA HEADERS (replaces FLARE)
 ---
 lupopedia.headers:
-  lupopedia.version: "1.0"
+  lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   file_path_from_root: "docs/doctrine/ANUBIS/ANUBIS_OVERVIEW.md"
   file_hash: "c9495e781e291bbeeb69e8227fa21fcd17101f5324227f754ca6ed209f4de2db"

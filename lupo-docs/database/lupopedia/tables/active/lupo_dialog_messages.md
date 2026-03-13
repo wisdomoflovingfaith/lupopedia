@@ -1,84 +1,37 @@
-# LUPOPEDIA HEADERS (replaces FLARE)
 ---
 lupopedia.headers:
-  lupopedia.version: "1.0"
-  lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\database\lupopedia\tables\lupo_dialog_messages.md"
-  file_hash: "0a2708fdd0b550c16746c75ce0398d56ff32ac40ea9f130f11896ff826b57134"
-  last_updated_utc: "20260228155738"
-  system_version: "4.0.51"
+  lupopedia.version: "4.0.73"
+  lupopedia.schema: "database_table"
+  file_path_from_root: "lupo-docs/database/lupopedia/tables/active/lupo_dialog_messages.md"
+  system_version: "4.0.73"
+  namespace: "dialog"
   channel_id: 1
-  actor_id: 1002
-  delegation_chain: "1002:10000"
-  artifact_type: "documentation"
-  artifact_kind: "documentation"
-  purpose: "Documentation file with LUPOPEDIA HEADERS applied"
+  actor_id: 1003
+  last_modified_utc: "20260313"
+  artifact_type: "table_documentation"
+  purpose: "Complete documentation for lupo_dialog_messages table - dialog message storage and delivery system"
   mood_rgb: "4169E1"
-  traits: ["flare", "indexed", "v4.0.51"]
-  tags: ["documentation", "flare_applied"]
-  lupo_agent: "windsurf"
+  traits: ["canonical", "dialog", "communication", "antigravity_rotation", "v4.0.73"]
+  tags: ["database", "dialogs", "messages", "chat", "communication"]
+  lupo_agent: "antigravity"
 
 lupopedia.edges:
-  outbound_edges:
-    - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
-
-lupopedia.footer:
-  last_verified: "20260228155738"
-  last_verified_by: "windsurf"
----
-
-# LUPOPEDIA HEADERS (replaces FLARE)
----
-lupopedia.headers:
-  file_path_from_root: "docs/database/lupopedia/tables/lupo_dialog_messages.md"
-  system_version: "4.0.50"
-  channel_id: 1
-  actor_id: 1007
-  last_modified_utc: "20260227"
-  delegation_chain: "1007:10000"
-  artifact_type: "table_documentation"
-  purpose: "Dialog message storage and delivery"
-  dialog_message: "DBDOC batch 2: enriched documentation and optimization notes."
-  mood_rgb: "4B0082"
-  artifact_kind: "table"
-  traits: ["canonical", "database", "curated"]
-  tags: ["database", "table", "lupo_dialog_messages"]
-  lupo_agent: "codex-ide"
-  lupo_dialog_messages.dialog_message_id: "bigint NOT NULL"
-  lupo_dialog_messages.dialog_thread_id: "bigint NOT NULL"
-  lupo_dialog_messages.channel_id: "bigint NOT NULL"
-  lupo_dialog_messages.from_actor_id: "bigint NOT NULL"
-  lupo_dialog_messages.to_actor_id: "bigint"
-  lupo_dialog_messages.message_type: "varchar(50) NOT NULL DEFAULT 'text'"
-  lupo_dialog_messages.message_text: "text"
-  lupo_dialog_messages.metadata_json: "text"
-  lupo_dialog_messages.created_ymdhis: "bigint NOT NULL DEFAULT 0"
-  lupo_dialog_messages.updated_ymdhis: "bigint NOT NULL DEFAULT 0"
-  lupo_dialog_messages.is_deleted: "tinyint NOT NULL DEFAULT 0"
-  lupo_dialog_messages.deleted_ymdhis: "bigint DEFAULT 0"
-  table_primary_key: "dialog_message_id"
-  table_engine: "unknown"
-  table_charset: "unknown"
-  table_collation: "unknown"
-  table_indexes: ["idx_channel_id", "idx_dialog_thread_id", "idx_from_actor_id", "idx_to_actor_id", "idx_created_ymdhis"]
-  table_foreign_keys: []
-
-# FLARE Edge Automation Tip:
-# Use the FLARE Edge Suggester Tool to automatically discover and suggest edges:
-# python scripts/flare_edge_suggester.py --file <path> --include-db --format yaml
-
-  last_updated_utc: "20260228"
-lupopedia.footer:
+  comment: "Snapshot of files edited during 4.0.73 finalization and initialization thread by ANTIGRAVITY IDE Agent. Edges reflect discovered relationships between database tables and PHP/Python codebase entities. Values should be verified against live database schemas/queries for the most current semantic graph state."
+  meta: "Thread: Finalize 4.0.72 → Push to GitHub → Initialize 4.0.73 → Migrate Tasks → Validate Upgrade Path"
   outbound_edges:
     - { to: "lupo-database/lupopedia/toon/lupo_dialog_messages.toon.json", type: "schema_reference", weight: 1.0, reason: "TOON schema definition", db_source: "lupo_dialog_messages" }
-    - { to: "docs/database/lupopedia/tables/lupo_dialog_threads.md", type: "references", weight: 0.8, reason: "thread linkage" }
-    - { to: "docs/database/lupopedia/tables/lupo_channels.md", type: "references", weight: 0.7, reason: "channel context" }
-  inbound_edges: []
-  semantic_tags: ["database", "table", "dialog"]
-  version: "4.0.49"
-  last_verified: "20260227"
-  last_verified_by: "codex-ide"
+    - { to: "lupo-docs/database/lupopedia/tables/active/lupo_dialog_threads.md", type: "references", weight: 0.8, reason: "thread linkage" }
+    - { to: "lupo-docs/database/lupopedia/tables/active/lupo_channels.md", type: "references", weight: 0.7, reason: "channel context" }
+
+lupopedia.engagement:
+  comment: "Snapshot of files edited during 4.0.73 finalization and initialization thread by ANTIGRAVITY IDE Agent. Engagement metrics track edit frequency and importance of each file in the version transition process."
+  meta: "Thread: Finalize 4.0.72 → Push to GitHub → Initialize 4.0.73 → Migrate Tasks → Validate Upgrade Path"
+  views: 0
+
+lupopedia.footer:
+  version: "4.0.73"
+  last_verified: "20260313"
+  last_verified_by: "antigravity"
 ---
 
 # Table: lupo_dialog_messages

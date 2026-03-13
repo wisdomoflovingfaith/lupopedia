@@ -47,7 +47,7 @@ lupopedia.conditional:
       success_criteria: ["header applied correctly"]
 
 lupopedia.headers:
-  lupopedia.version: "1.0"
+  lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   file_path_from_root: "lupo-docs\status\ISSUES_LEDGER_PHASE4.md"
   file_hash: "fdc737e6127da42c76fe901540045242b6d5c1907cfeb994658b843d2751d59a"

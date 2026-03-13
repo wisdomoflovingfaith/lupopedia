@@ -1,7 +1,7 @@
 # LUPOPEDIA HEADERS (replaces FLARE)
 ---
 lupopedia.headers:
-  lupopedia.version: "1.0"
+  lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   file_path_from_root: ".\docs\status\archive\legacy_versions\kiro_system_alignment_report_4_0_33.md"
   file_hash: "2a6083734f6035e68d7e17eeb3f9d71f1b294f3a0112e0f4186a44e42384e476"
@@ -32,7 +32,7 @@ lupopedia.footer:
 
 ---
 lupopedia.headers:
-  lupopedia.version: "1.0"
+  lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
   file_path_from_root: "docs\status\archive\legacy_versions\kiro_system_alignment_report_4_0_33.md"

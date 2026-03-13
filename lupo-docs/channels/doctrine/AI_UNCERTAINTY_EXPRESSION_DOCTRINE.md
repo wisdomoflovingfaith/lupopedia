@@ -1,7 +1,7 @@
 # LUPOPEDIA HEADERS (replaces FLARE)
 ---
 lupopedia.headers:
-  lupopedia.version: "1.0"
+  lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   file_path_from_root: ".\docs\channels\doctrine\AI_UNCERTAINTY_EXPRESSION_DOCTRINE.md"
   file_hash: "3de2155b7f43344d7e0ae6f23db23c5d8cfff881c5c1a1640eab04c36ad5e15a"
@@ -32,7 +32,7 @@ lupopedia.footer:
 
 ---
 lupopedia.headers:
-  lupopedia.version: "1.0"
+  lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
   file_path_from_root: "docs\channels\doctrine\AI_UNCERTAINTY_EXPRESSION_DOCTRINE.md"

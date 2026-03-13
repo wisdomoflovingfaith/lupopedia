@@ -108,7 +108,7 @@ if (!defined('LUPOPEDIA_VERSION_NUM')) {
  * @var int
  */
 if (!defined('LUPOPEDIA_VERSION_DATE')) {
-    define('LUPOPEDIA_VERSION_DATE', 20260309060000);
+    define('LUPOPEDIA_VERSION_DATE', 20260313074500);
 }
 
 /**

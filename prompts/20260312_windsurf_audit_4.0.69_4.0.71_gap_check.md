@@ -4,7 +4,7 @@ lupopedia.init:
   system_version: "4.0.72"
 
 lupopedia.headers:
-  lupopedia.version: "1.0"
+  lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   file_path_from_root: "prompts/20260312_windsurf_audit_4.0.69_4.0.71_gap_check.md"
   web_path: "http://www.lupopedia.com/prompts/windsurf/audit_4.0.69_4.0.71_gap_check"

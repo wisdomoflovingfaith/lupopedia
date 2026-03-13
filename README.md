@@ -1,11 +1,32 @@
 ---
+lupopedia.init:
+  file_identity: "README.md"
+  artifact_type: "repository-core"
+  artifact_kind: "metadata-snapshot"
+  namespace: "lupopedia"
+  domain: "core"
+  system_version: "4.0.73"
+
+lupopedia.metadata:
+  comment: "Snapshot of metadata for this file or entity at artifact creation."
+  title:
+    - { schema_ref: "lupo_metadata", entity_type: "file", meta_type: "property", property_value: "Lupopedia README", channel_id: 42, class_name: "lupopedia_metadata", created_ymdhis: 20260313000000, updated_ymdhis: 20260313000000 }
+  description:
+    - { schema_ref: "lupo_metadata", entity_type: "file", meta_type: "property", property_value: "Primary project documentation and onboarding — Install & upgrade validation, channels/actors/agents, GitHub repository strategy.", channel_id: 42, class_name: "lupopedia_metadata", created_ymdhis: 20260313000000, updated_ymdhis: 20260313000000 }
+  keywords:
+    - { schema_ref: "lupo_metadata", entity_type: "file", meta_type: "property", property_value: "readme, getting_started, semantic_os, multi_agent, v4.0.73", channel_id: 42, class_name: "lupopedia_metadata", created_ymdhis: 20260313000000, updated_ymdhis: 20260313000000 }
+  author:
+    - { schema_ref: "lupo_metadata", entity_type: "file", meta_type: "property", property_value: "wolfie", channel_id: 42, class_name: "lupopedia_metadata", created_ymdhis: 20260313000000, updated_ymdhis: 20260313000000 }
+  orchestrator:
+    - { schema_ref: "lupo_metadata", entity_type: "file", meta_type: "property", property_value: "cursor", channel_id: 42, class_name: "lupopedia_metadata", created_ymdhis: 20260313000000, updated_ymdhis: 20260313000000 }
+
 lupopedia.headers:
-  lupopedia.version: "4.0.72"
+  lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   file_path_from_root: "README.md"
   web_path: "http://www.lupopedia.com/"
-  last_modified_utc: "20260312"
-  system_version: "4.0.72"
+  last_modified_utc: "20260313"
+  system_version: "4.0.73"
   channel_id: 42
   actor_id: 1
   actor_name: "wolfie"
@@ -15,8 +36,8 @@ lupopedia.headers:
   artifact_kind: "documentation"
   purpose: "Primary project documentation and onboarding — Install & upgrade validation, channels/actors/agents, GitHub repository strategy"
   mood_rgb: "4169E1"
-  traits: ["essential", "entrypoint", "onboarding", "v4.0.72"]
-  tags: ["readme", "getting_started", "semantic_os", "multi_agent"]
+  traits: ["essential", "entrypoint", "onboarding", "v4.0.73"]
+  tags: ["readme", "getting_started", "semantic_os", "multi_agent", "v4.0.73"]
 
 lupopedia.session:
   session_id: "L-LUPO-ROOT-CURSOR"
@@ -40,24 +61,26 @@ lupopedia.edges:
   semantic_tags: ["project_overview", "onboarding", "semantic_os", "multi_agent"]
 
 lupopedia.footer:
-  last_verified: "20260312"
+  version: "4.0.73"
+  last_verified: "20260313"
   last_verified_by: "wolfie"
+  orchestrator: "cursor"
   next_action:
     - "Point new contributors to Required Reading Before Using Lupopedia"
-    - "Keep Getting Started and install steps aligned with 4.0.72"
+    - "Keep Getting Started and install steps aligned with 4.0.73"
     - "Review actor/faucet links when doctrine paths change"
 ---
 # file: Lupopedia README — session: L-LUPO-ROOT-CURSOR — delegation: wolfie:root (faucet: cursor) — web_path: http://www.lupopedia.com/
 
-# 🐺 Lupopedia Semantic OS v4.0.72
+# 🐺 Lupopedia Semantic OS v4.0.73
 
-[![Version](https://img.shields.io/badge/version-4.0.72-blue.svg)](docs/version.md)
+[![Version](https://img.shields.io/badge/version-4.0.73-blue.svg)](docs/version.md)
 [![docs](https://img.shields.io/badge/docs-HELP.md-green)](docs/HELP.md)
 
 ---
 
-**Current Release: [v4.0.72](docs/version.md) — Version bump after 4.0.71 (Windsurf audit remediation, TOONs, API, session docs).**  
-This version focuses on implementing and hardening the web interface for channels management, accessible at `/channels/` with full doctrine compliance. Current table count is derived from TOON files — run `python scripts/generate_toon_files.py` and use the output count; do not hardcode in docs.
+**Current Release: [v4.0.73](docs/version.md) — Version hardened for shared hosting and edge schema grouping.**  
+This version focuses on finalizing **edge schema hardening** (support for grouped outbound edges), implementing the **one-time SQL runner** for shared-host compatibility, and performing a logic-driven reorganization of development tables into planning/active tiers.
 
 **Architecture (onboarding):** **Actors** are the orchestration identities of Lupopedia. They coordinate and govern work through **faucets**, **sessions**, **channels**, **rules**, and **traits**. **Faucets** are execution surfaces, not identities. IDE surfaces (Cursor, Antigravity, Kiro, Windsurf, Codex, JetBrains, Warp, etc.) are faucets. **Sessions** carry runtime context. See [Channels, actors, and agents](#channels-actors-and-agents-in-lupopedia) and [Actor–Faucet ontology](lupo-docs/doctrine/ActorFaucetOntology.md).
 
@@ -325,4 +348,4 @@ See [license.txt](license.txt) in the repository. Free to use, modify, and distr
 
 ---
 
-*🐺 Lupopedia 4.0.67 — Semantic OS on Crafty Syntax. Managed by humans and AI agents on Channel 42.*
+*🐺 Lupopedia 4.0.73 — Semantic OS on Crafty Syntax. Managed by humans and AI agents on Channel 42.*

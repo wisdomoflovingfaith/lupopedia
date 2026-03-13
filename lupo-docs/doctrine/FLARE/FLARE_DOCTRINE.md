@@ -1,7 +1,7 @@
 # file: Lupopedia FLARE Doctrine — session: L-LUPO-ANTIGRAVITY — delegation: antigravity:cursor:captain  — web_path: http://www.lupopedia.com/doctrine/FLARE/FLARE_DOCTRINE
 ---
 lupopedia.headers:
-  lupopedia.version: "1.0"
+  lupopedia.version: "4.0.73"
   lupopedia.schema: "doctrine"
   file_path_from_root: "lupo-docs/doctrine/FLARE/FLARE_DOCTRINE.md"
   web_path: "http://www.lupopedia.com/doctrine/FLARE/FLARE_DOCTRINE"

@@ -61,6 +61,7 @@ Then the YAML header blocks in **canonical order** (see [LUPOPEDIA_HEADERS_PLAN.
 - lupopedia.init
 - lupopedia.conditional
 - lupopedia.headers (required)
+- lupopedia.metadata (optional; snapshot of metadata rows for this artifact — see OPTIONAL_BLOCKS; not table schema)
 - lupopedia.session (optional; session context)
 - lupopedia.edges (optional)
 - lupopedia.engagement (optional; engagement metrics — see §2.2)
@@ -193,54 +194,81 @@ lupopedia.session:
     artifact was produced with verbose output enabled. In this case the
     session block documents the runtime state of the agent that produced
     the artifact at the time the file was written.
-#### 2.1.5 Edges and Engagement Snapshot Requirement
+#### 2.1.5 Edges and Engagement Snapshot Requirement (comment and meta)
 
-Blocks like **`lupopedia.edges`** and **`lupopedia.engagement`** MUST include a `comment` or `meta` property stating that they are only a **snapshot** of the values at artifact creation time, and that the database should be queried to get the latest values.
+Both **`lupopedia.edges`** and **`lupopedia.engagement`** MUST include a **`comment`** property stating that they are only a **snapshot** at artifact creation time (query the database for latest values). Both SHOULD include **`meta`** with a short thread/context description (e.g. version transition or workflow step). Use the same **`meta`** value in both blocks when present.
 
-**For lupopedia.edges:**
-```yaml
-lupopedia.edges:
-  comment: "Snapshot of outbound edges at artifact creation. Query database for latest edge relationships and weights."
-  outbound_edges: [...]
-```
+**For lupopedia.edges:** Use a single **`outbound_edges`** object. You may use either a **flat list** (legacy) or **grouped by category** (see §2.1.6).
 
 **For lupopedia.engagement:**
 ```yaml
 lupopedia.engagement:
-  comment: "Snapshot of engagement metrics at artifact creation. Query database for latest engagement data including views, likes, and shares."
-  meta: "Context: Thread execution, file editing session, or specific operation that generated this engagement snapshot"
+  comment: "Snapshot of files edited during 4.0.73 finalization and initialization thread by CURSOR IDE Agent. Engagement metrics track edit frequency and importance of each file in the version transition process."
+  meta: "Thread: Finalize 4.0.72 → Push to GitHub → Initialize 4.0.73 → Migrate Tasks → Validate Upgrade Path"
   views: 0
   like_count: 0
   share_count: 0
 ```
 
-**Alternative meta property usage:**
+#### 2.1.6 Grouped outbound_edges (code, documentation, schema, runtime)
+
+**`outbound_edges`** MAY be structured in **grouped form** so that edges are categorized (e.g. code vs documentation). This is deterministic, machine-parsable, and maps cleanly to the database: each group key becomes **`edge_category`** in `lupo_edges` when edges are imported.
+
+**Valid structure:** One **`outbound_edges`** object with **child keys** as category names; each value is a **list** of edge objects. YAML must not contain two separate `outbound_edges` keys at the same level.
+
+**Standard categories (recommended):**
+
+| Category | Use for |
+|----------|--------|
+| `code` | PHP, scripts, and other code files that reference the artifact (e.g. table docs → services, API, controllers). |
+| `documentation` | Markdown, doctrine, README, how-to guides, related table docs. |
+| `schema` | TOONs, install SQL, migration SQL (when added). |
+| `runtime` | Config, env, or runtime-related paths (when added). |
+
+**Grouped example:**
+
 ```yaml
 lupopedia.edges:
-  meta: "Thread: Finalize 4.0.72 → Push to GitHub → Initialize 4.0.73 → Migrate Tasks → Validate Upgrade Path"
-  outbound_edges: [...]
+  comment: "Snapshot of files related to lupo_collections at artifact creation. Separate runtime/code references from documentation references."
+  meta: "Table doc: lupo_collections"
+
+  outbound_edges:
+    code:
+      - { to: "lupo-database/lupopedia/content/lupo-app/Services/CollectionTabsService.php", type: "references", weight: 1.0 }
+      - { to: "api/list_user_collections.php", type: "references", weight: 0.95 }
+    documentation:
+      - { to: "README.md", type: "documents", weight: 0.7 }
+      - { to: "lupo-docs/doctrine/COLLECTIONS/COLLECTIONS_DOCTRINE.md", type: "documents", weight: 0.95 }
+      - { to: "lupo-docs/database/lupopedia/tables/active/lupo_collection_tabs.md", type: "related_table", weight: 0.95 }
+
+  semantic_tags: ["lupo_collections", "database_table", "php_references", "documentation_references", "collections"]
 ```
+
+**Edge object fields:** `to` (required), `type` (e.g. `references`, `documents`, `related_table`, `schema_reference`), `weight` (0.0–1.0). Optional: `reason`, `db_source` (for FLARE compatibility).
+
+**Backward compatibility:** A **flat** form remains valid: `outbound_edges: [ { to: "...", type: "...", weight: 0.9 }, ... ]` (a single list). Validators and import logic MUST accept both: if `outbound_edges` is an array with numeric keys, treat as flat; if it is an object with string keys (e.g. `code`, `documentation`), treat each key as the edge category and each value as the list of edges for that category. When exporting from the database, group by `lupo_edges.edge_category` to produce grouped YAML.
 
 ### 2.2 Engagement block (lupopedia.engagement)
 
-The **`lupopedia.engagement`** block (new in 4.0.73) tracks and calculates engagement metrics. Like `lupopedia.edges`, it is a snapshot of the database state.
+The **`lupopedia.engagement`** block (new in 4.0.73) tracks engagement metrics. Like **`lupopedia.edges`**, it is a snapshot and MUST have **`comment`** and SHOULD have **`meta`** (same convention as §2.1.5).
 
 | Field | Type | Purpose |
 |-------|------|---------|
+| `comment` | string (required) | Snapshot notice; describe which agent/thread produced it (e.g. "Snapshot of files edited during 4.0.73 finalization … by CURSOR IDE Agent"). |
+| `meta` | string (recommended) | Thread/context (e.g. "Thread: Finalize 4.0.72 → Push to GitHub → Initialize 4.0.73 → …"). Same style as `lupopedia.edges.meta`. |
 | `views` | integer | Total view count (calculated). |
-| `likes` | integer | Total like count. |
-| `shares` | integer | Total share count. |
-| `comment` | string | Mandatory snapshot notice. |
+| `like_count` | integer | Total like count. |
+| `share_count` | integer | Total share count. |
 
-**Example:**
+**Example (collection / recent-files style):**
 
 ```yaml
 lupopedia.engagement:
-  comment: "Snapshot of engagement metrics at artifact creation. Query database for latest engagement data including views, likes, and shares."
-  meta: "Context: Thread execution, file editing session, or specific operation that generated this engagement snapshot"
-  views: 124
-  like_count: 12
-  share_count: 3
+  comment: "Snapshot of files edited during 4.0.73 finalization and initialization thread by CURSOR IDE Agent. Engagement metrics track edit frequency and importance of each file in the version transition process."
+  meta: "Thread: Finalize 4.0.72 → Push to GitHub → Initialize 4.0.73 → Migrate Tasks → Validate Upgrade Path"
+  views: 0
+  like_count: 0
+  share_count: 0
 ```
 
 

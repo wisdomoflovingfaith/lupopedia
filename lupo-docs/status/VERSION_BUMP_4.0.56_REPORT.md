@@ -2,7 +2,7 @@
 
 ---
 lupopedia.headers:
-  lupopedia.version: "1.0"
+  lupopedia.version: "4.0.73"
   file_path_from_root: "docs/status/VERSION_BUMP_4.0.56_REPORT.md"
   system_version: "4.0.56"
   channel_id: 42

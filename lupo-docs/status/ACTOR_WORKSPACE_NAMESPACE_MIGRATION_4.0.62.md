@@ -1,7 +1,7 @@
 # FLARE Header
 ---
 lupopedia.headers:
-  lupopedia.version: "1.0"
+  lupopedia.version: "4.0.73"
   lupopedia.schema: "status_report"
   file_path_from_root: "docs/status/ACTOR_WORKSPACE_NAMESPACE_MIGRATION_4.0.62.md"
   system_version: "4.0.62"

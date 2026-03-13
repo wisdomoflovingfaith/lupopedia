@@ -2,7 +2,7 @@
 
 ---
 lupopedia.headers:
-  lupopedia.version: "1.0"
+  lupopedia.version: "4.0.73"
   file_path_from_root: "docs/status/FLAME_REFINEMENTS_FINAL_REPORT.md"
   last_modified_utc: "20260305"
   system_version: "4.0.56"

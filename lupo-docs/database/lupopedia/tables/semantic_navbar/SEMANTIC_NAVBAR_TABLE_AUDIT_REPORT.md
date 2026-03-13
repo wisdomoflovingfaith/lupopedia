@@ -4,7 +4,7 @@ lupopedia.init:
   system_version: "4.0.71"
 
 lupopedia.headers:
-  lupopedia.version: "1.0"
+  lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   file_path_from_root: "lupo-docs/database/lupopedia/tables/semantic_navbar/SEMANTIC_NAVBAR_TABLE_AUDIT_REPORT.md"
   web_path: "http://www.lupopedia.com/database/lupopedia/tables/semantic_navbar"

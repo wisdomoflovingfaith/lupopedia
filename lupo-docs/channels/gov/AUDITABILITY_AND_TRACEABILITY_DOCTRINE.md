@@ -1,7 +1,7 @@
 # LUPOPEDIA HEADERS (replaces FLARE)
 ---
 lupopedia.headers:
-  lupopedia.version: "1.0"
+  lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   file_path_from_root: ".\docs\channels\gov\AUDITABILITY_AND_TRACEABILITY_DOCTRINE.md"
   file_hash: "3fa7ce93725b45d947fcd7668c4e0b06ebc93cbab7b77384ab51d712f4a75ef3"
@@ -32,7 +32,7 @@ lupopedia.footer:
 
 ---
 lupopedia.headers:
-  lupopedia.version: "1.0"
+  lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
   file_path_from_root: "docs\channels\gov\AUDITABILITY_AND_TRACEABILITY_DOCTRINE.md"

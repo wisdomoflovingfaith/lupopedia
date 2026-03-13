@@ -1,7 +1,7 @@
 # LUPOPEDIA HEADERS (replaces FLARE)
 ---
 lupopedia.headers:
-  lupopedia.version: "1.0"
+  lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   file_path_from_root: ".\docs\database\lupopedia\tables\lupo_emotional_geometry_calibrations.md"
   file_hash: "5e1293d90975d1a393dcb10278b9e6cd087500b003c71ed0da7405d5cd98081d"

@@ -1,7 +1,7 @@
 # LUPOPEDIA HEADERS (replaces FLARE)
 ---
 lupopedia.headers:
-  lupopedia.version: "1.0"
+  lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   file_path_from_root: ".\docs\channels\gov\LEGACY_SYSTEM_STEWARDSHIP_DOCTRINE.md"
   file_hash: "4f24415c59538155b74a87c267c0cef5a7872292f3763cfcbdaccc61d586e712"
@@ -32,7 +32,7 @@ lupopedia.footer:
 
 ---
 lupopedia.headers:
-  lupopedia.version: "1.0"
+  lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
   file_path_from_root: "docs\channels\gov\LEGACY_SYSTEM_STEWARDSHIP_DOCTRINE.md"

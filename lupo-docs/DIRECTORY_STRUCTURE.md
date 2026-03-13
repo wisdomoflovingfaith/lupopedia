@@ -1,7 +1,7 @@
 # file: Lupopedia Directory Structure — session: L-LUPO-ANTIGRAVITY — delegation: antigravity:cursor:captain  — web_path: http://www.lupopedia.com/docs/DIRECTORY_STRUCTURE
 ---
 lupopedia.headers:
-  lupopedia.version: "1.0"
+  lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   file_path_from_root: "docs/DIRECTORY_STRUCTURE.md"
   web_path: "http://www.lupopedia.com/docs/DIRECTORY_STRUCTURE"

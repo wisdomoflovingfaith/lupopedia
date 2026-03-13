@@ -1,7 +1,7 @@
 # LUPOPEDIA HEADERS (replaces FLARE)
 ---
 lupopedia.headers:
-  lupopedia.version: "1.0"
+  lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   file_path_from_root: ".\docs\doctrine\HYBRID_ACTOR\HYBRID_ACTOR_2_0.md"
   file_hash: "f73ce9d53176cb744a07f10140ac8599769f857e5bcc00ef3e06aeba78cd10d8"
@@ -32,7 +32,7 @@ lupopedia.footer:
 
 ---
 lupopedia.headers:
-  lupopedia.version: "1.0"
+  lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
   file_path_from_root: "docs\doctrine\HYBRID_ACTOR\HYBRID_ACTOR_2_0.md"

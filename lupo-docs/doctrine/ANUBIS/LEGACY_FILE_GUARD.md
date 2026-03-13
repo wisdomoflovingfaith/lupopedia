@@ -47,7 +47,7 @@ lupopedia.conditional:
       success_criteria: ["header applied correctly"]
 
 lupopedia.headers:
-  lupopedia.version: "1.0"
+  lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   file_path_from_root: "lupo-docs\doctrine\ANUBIS\LEGACY_FILE_GUARD.md"
   file_hash: "5e339a3b0fbd49aa25152390ae667e7302fc6a589f7f031a819329dfcb1c4d52"

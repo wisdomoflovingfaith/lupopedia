@@ -43,14 +43,16 @@ lupopedia.session:
 - **LUPOPEDIA HEADERS** are the canonical metadata system name from **4.0.68** onward.
 - **Canonical block names from 4.0.69:** Use `lupopedia.*` in new or modified files. Legacy `flare.*` and `flame.*` remain valid; validators accept both.
 - Canonical blocks (preferred in YAML):
-  - `lupopedia.init` (legacy: lupopedia.init)
-  - `lupopedia.conditional` (legacy: lupopedia.conditional)
-  - `lupopedia.headers` (legacy: lupopedia.headers)
-  - `lupopedia.session` (session context: session_id, session_name, and other session-file fields; not in lupopedia.headers)
-  - `lupopedia.edges` (legacy: lupopedia.edges)
-  - `lupopedia.footer` (legacy: lupopedia.footer)
-  - `lupopedia.see` (legacy: lupopedia.see)
-  - `lupopedia.close` (legacy: lupopedia.close)
+  - `lupopedia.init`
+  - `lupopedia.conditional`
+  - `lupopedia.headers`
+  - `lupopedia.metadata` (optional; snapshot of metadata rows for this artifact — see OPTIONAL_BLOCKS; not table schema)
+  - `lupopedia.session`
+  - `lupopedia.edges`
+  - `lupopedia.engagement` (new in 4.0.73)
+  - `lupopedia.footer`
+  - `lupopedia.see`
+  - `lupopedia.close`
 
 ---
 
@@ -90,7 +92,7 @@ Children of the root represent blocks. Use canonical `lupopedia.*` or legacy `fl
 - `parent_metadata_id` = root `metadata_id`
 - `class_name` = `'lupopedia_block'`
 - `meta_type` = `'block'`
-- `property_key` = `'lupopedia.headers'` | `'lupopedia.session'` | `'lupopedia.edges'` | `'lupopedia.footer'` | `'lupopedia.init'` | `'lupopedia.see'` | `'lupopedia.close'` | `'lupopedia.conditional'` (or legacy flare.* / flame.*)
+- `property_key` = `'lupopedia.headers'` | `'lupopedia.session'` | `'lupopedia.edges'` | `'lupopedia.engagement'` | `'lupopedia.footer'` | `'lupopedia.init'` | `'lupopedia.see'` | `'lupopedia.close'` | `'lupopedia.conditional'`
 
 ### 3.3 Property rows
 
@@ -103,7 +105,7 @@ Under each block row, each field is a metadata row, e.g. under `lupopedia.header
 
 Edges, mappings, actions (e.g. under `lupopedia.edges`, `lupopedia.see`, `lupopedia.init`, `lupopedia.close`) are child rows with:
 
-- `class_name` = `'lupopedia_edge'` | `'lupopedia_mapping'` | `'lupopedia_action'` (etc.)
+- `class_name` = `'lupopedia_edge'` | `'lupopedia_mapping'` | `'lupopedia_action'` | `'lupopedia_engagement'`
 
 ---
 
@@ -111,14 +113,15 @@ Edges, mappings, actions (e.g. under `lupopedia.edges`, `lupopedia.see`, `lupope
 
 Validators and YAML exporters MUST emit blocks in this order when present. Use **lupopedia.*** names in new files (4.0.69+):
 
-1. `lupopedia.init` (legacy: lupopedia.init)
-2. `lupopedia.conditional` (legacy: lupopedia.conditional)
-3. `lupopedia.headers` (legacy: lupopedia.headers)
-4. `lupopedia.session` (session context: session_id, session_name, and other session-file fields)
-5. `lupopedia.edges` (legacy: lupopedia.edges)
-6. `lupopedia.footer` (legacy: lupopedia.footer)
-7. `lupopedia.see` (legacy: lupopedia.see)
-8. `lupopedia.close` (legacy: lupopedia.close)
+1. `lupopedia.init`
+2. `lupopedia.conditional`
+3. `lupopedia.headers`
+4. `lupopedia.session`
+5. `lupopedia.edges`
+6. `lupopedia.engagement`
+7. `lupopedia.footer`
+8. `lupopedia.see`
+9. `lupopedia.close`
 
 Optional blocks may be absent; if present, order is fixed. Validators accept both lupopedia.* and legacy flare.*/flame.*.
 

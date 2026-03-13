@@ -1,7 +1,7 @@
 # LUPOPEDIA HEADERS (replaces FLARE)
 ---
 lupopedia.headers:
-  lupopedia.version: "1.0"
+  lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   file_path_from_root: ".\docs\channels\doctrine\EMOTIONAL_GEOMETRY_THREE_AXIS_MODEL_2026.md"
   file_hash: "e6b8d9ecff6086c0f01dc019d352b3e48556ed6b9e32a08bcb06634378e0482d"
@@ -32,7 +32,7 @@ lupopedia.footer:
 
 ---
 lupopedia.headers:
-  lupopedia.version: "1.0"
+  lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
   file_path_from_root: "docs\channels\doctrine\EMOTIONAL_GEOMETRY_THREE_AXIS_MODEL_2026.md"

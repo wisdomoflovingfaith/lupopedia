@@ -1,6 +1,6 @@
 ---
 lupopedia.headers:
-  lupopedia.version: "1.0"
+  lupopedia.version: "4.0.73"
   lupopedia.schema: "signoff"
   file_path_from_root: "prompts/lilith/20260306_strategy_package_signoff.md"
   web_path: "http://www.lupopedia.com/signoff/VERSION_4.0.61_STRATEGY_FINAL"

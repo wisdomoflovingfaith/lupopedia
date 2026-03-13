@@ -47,7 +47,7 @@ lupopedia.conditional:
       success_criteria: ["header applied correctly"]
 
 lupopedia.headers:
-  lupopedia.version: "1.0"
+  lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   file_path_from_root: "docs\status\CONFIG_MIGRATION_LOG.md"
   file_hash: "5c566e172ef670085878a8be70633afba3f865b2fc60d4dcc8111c84072c3e46"

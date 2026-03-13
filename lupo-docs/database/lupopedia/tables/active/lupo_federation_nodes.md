@@ -1,27 +1,36 @@
 ---
 lupopedia.headers:
-  lupopedia.version: "1.0"
+  lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   file_path_from_root: "lupo-docs/database/lupopedia/tables/active/lupo_federation_nodes.md"
-  system_version: "4.0.70"
+  system_version: "4.0.73"
+  namespace: "federation"
   channel_id: 1
-  actor_id: 103
-  last_modified_utc: "20260312"
+  actor_id: 1003
+  last_modified_utc: "20260313"
   artifact_type: "table_documentation"
   purpose: "Federation node registry and metadata documentation"
   mood_rgb: "4169E1"
-  traits: ["canonical", "federation", "v4.0.70"]
+  traits: ["canonical", "federation", "antigravity_rotation", "v4.0.73"]
   tags: ["database", "federation", "nodes", "registry"]
   lupo_agent: "antigravity"
 
 lupopedia.edges:
+  comment: "Snapshot of files edited during 4.0.73 finalization and initialization thread by ANTIGRAVITY IDE Agent. Edges reflect discovered relationships between database tables and PHP/Python codebase entities. Values should be verified against live database schemas/queries for the most current semantic graph state."
+  meta: "Thread: Finalize 4.0.72 → Push to GitHub → Initialize 4.0.73 → Migrate Tasks → Validate Upgrade Path"
   outbound_edges:
-    - { to: "lupo-database/lupopedia/toon/lupo_federation_nodes.toon", type: "references", weight: 1.0 }
+    - { to: "lupo-database/lupopedia/toon/lupo_federation_nodes.toon.json", type: "schema_reference", weight: 1.0, reason: "TOON schema definition", db_source: "lupo_federation_nodes" }
     - { to: "lupo-docs/database/lupopedia/tables/active/lupo_channels.md", type: "references", weight: 0.8 }
     - { to: "lupo-docs/database/lupopedia/tables/active/lupo_actors.md", type: "references", weight: 0.8 }
 
+lupopedia.engagement:
+  comment: "Snapshot of files edited during 4.0.73 finalization and initialization thread by ANTIGRAVITY IDE Agent. Engagement metrics track edit frequency and importance of each file in the version transition process."
+  meta: "Thread: Finalize 4.0.72 → Push to GitHub → Initialize 4.0.73 → Migrate Tasks → Validate Upgrade Path"
+  views: 0
+
 lupopedia.footer:
-  last_verified: "20260312"
+  version: "4.0.73"
+  last_verified: "20260313"
   last_verified_by: "antigravity"
 ---
 

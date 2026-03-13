@@ -1,0 +1,83 @@
+---
+lupopedia.headers:
+  lupopedia.version: "4.0.73"
+  lupopedia.schema: "documentation"
+  system_version: "4.0.73"
+  file_path_from_root: "lupo-docs/database/lupopedia/tables/active/planning/table_lupo_registry_import.toon.md"
+  last_modified_utc: "20260313"
+  channel_id: 42
+  actor_id: 1003
+  actor_name: "antigravity"
+  artifact_type: "database_schema"
+  artifact_kind: "planning"
+  purpose: "Planned Lupopedia database table: lupo_registry_import"
+  mood_rgb: "4169E1"
+  traits: ["planning", "database", "table", "future_feature"]
+  tags: ["database", "table", "planning", "lupopedia"]
+  lupo_agent: "antigravity"
+
+lupopedia.edges:
+  comment: "Snapshot of outbound edges for files edited during 4.0.73 finalization and initialization thread by ANTIGRAVITY IDE Agent."
+  meta: "Thread: Finalize 4.0.72 → Push to GitHub → Initialize 4.0.73 → Migrate Tasks → Validate Upgrade Path"
+  outbound_edges:
+    - { to: "lupo-database/lupopedia/mysql/install/future_features_lupopedia.sql", type: "schema_reference", weight: 1.0 }
+  semantic_tags: ["planning", "database", "table", "future_feature"]
+
+lupopedia.engagement:
+  comment: "Snapshot of files edited during 4.0.73 finalization and initialization thread by ANTIGRAVITY IDE Agent. Engagement metrics track edit frequency and importance of each file in the version transition process."
+  meta: "Thread: Finalize 4.0.72 → Push to GitHub → Initialize 4.0.73 → Migrate Tasks → Validate Upgrade Path"
+  views: 0
+  like_count: 0
+  share_count: 0
+
+lupopedia.footer:
+  version: "4.0.73"
+  last_verified: "20260313"
+  last_verified_by: "antigravity"
+  orchestrator: "antigravity"
+  next_action:
+    - "Monitor this table for implementation readiness"
+    - "Review schema for doctrine compliance"
+---
+
+# Planned Table: `lupo_registry_import`
+
+## Status
+PLANNING — not yet implemented.
+
+## Source
+Defined in: `lupo-database/lupopedia/mysql/install/future_features_lupopedia.sql`
+
+## SQL Definition
+
+```sql
+CREATE TABLE lupo_registry_import (
+import_registry_id bigint NOT NULL AUTO_INCREMENT,
+  entity_type varchar(50) NOT NULL,
+  entity_index_id bigint NOT NULL,
+  source_federation_node_id bigint NOT NULL,
+  imported_at bigint NOT NULL,
+  resolved_to_local_id bigint NOT NULL DEFAULT 0,
+  notes text,
+  PRIMARY KEY (import_registry_id)
+);
+```
+
+## Purpose
+Explain the intended function of the table based on its structure and naming.
+
+## Columns
+| Column | Type | Null | Key | Default | Description |
+|--------|------|------|-----|---------|-------------|
+| import_registry_id | bigint | NO |  | NULL | |
+| entity_type | varchar(50) | NO |  | NULL | |
+| entity_index_id | bigint | NO |  | NULL | |
+| source_federation_node_id | bigint | NO |  | NULL | |
+| imported_at | bigint | NO |  | NULL | |
+| resolved_to_local_id | bigint | NO |  | 0 | |
+| notes | text | YES |  | NULL | |
+
+
+## Notes
+- This table is not yet installed in the production schema.
+- It represents a future Lupopedia capability.

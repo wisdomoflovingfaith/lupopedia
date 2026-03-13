@@ -47,7 +47,7 @@ lupopedia.conditional:
       success_criteria: ["header applied correctly"]
 
 lupopedia.headers:
-  lupopedia.version: "1.0"
+  lupopedia.version: "4.0.73"
   lupopedia.schema: "status"
   file_path_from_root: "docs/status/CURSOR_FLARE_APPLY_LINK_CHECK_4.0.57.md"
   file_hash: "3c94a1466003e1177be5dcbc951329ac04ae3a9ec1d10588ac63dbfd62c93de1"
