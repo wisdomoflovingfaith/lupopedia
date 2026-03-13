@@ -56,6 +56,61 @@ lupopedia.footer:
 
 - **Full Human Upgrade Test:** Comprehensive testing of Crafty Syntax 3.7.5 → Lupopedia 4.0.73 upgrade path. ✅ **Status: COMPLETED.** Validated database correctness, schema integrity, and migration scripts. Identified and resolved critical field mismatches in `seed_actors_agents_4.0.45.sql` (banned_actor_id missing) and `import_from_old_crafty_syntax.sql` (user_id vs actor_id). Total errors in final test run: 0. Task: `lupo-channels/42/tasks/4.0.73_priority_full_upgrade_test.md`.
 
+### ✅ Priority 1 — Traits/Authorization kernel completion
+
+**Status:** COMPLETED ✅  
+**Implementation:** Complete faucet traceability in Session::create() with source_faucet_slug and source_faucet_instance_id fields  
+**Date:** 2026-03-13  
+**Commit:** d1eab306
+
+### ✅ Priority 2 — Faucet traceability completion
+
+**Status:** COMPLETED ✅  
+**Implementation:** Dialog message creation already includes source_faucet_slug and source_faucet_instance_id fields. Session::create() properly populated with faucet traceability data.  
+**Date:** 2026-03-13  
+**Commit:** d1eab306
+
+---
+
+### ✅ Priority 3 — Seed completion
+
+**Status:** COMPLETED ✅  
+**Implementation:** Updated seed files to version 4.0.73 for kernel actor traits, edge types, and action authorization.  
+**Date:** 2026-03-13  
+**Commit:** 730157b0
+
+---
+
+### ✅ Priority 4 — Doctrine/documentation completion
+
+**Status:** COMPLETED ✅  
+**Implementation:** Updated doctrine docs to version 4.0.73 for Traits, Authorization, and Faucet Traceability.  
+**Date:** 2026-03-13  
+**Commit:** 77e3b35a
+
+---
+
+### ✅ Priority 5 — Medium-priority hardening
+
+**Status:** COMPLETED ✅  
+**Implementation:** Verified that semantic navbar API, SessionCustodian, and session cleanup routines are already implemented. No legacy $_SESSION['actor_id'] references found in active codebase.  
+**Date:** 2026-03-13  
+**Commit:** 77e3b35a
+
+---
+
+## 🎉 4.0.73 Implementation Summary
+
+**All Priority Tasks Completed:** ✅  
+- Priority 1: Traits/Authorization kernel completion  
+- Priority 2: Faucet traceability completion  
+- Priority 3: Seed completion  
+- Priority 4: Doctrine/documentation completion  
+- Priority 5: Medium-priority hardening  
+
+**Active Tasks Remaining:**  
+- Validate Version 4.0.66 Migration (Channel 42 consensus tasks)
+
 ### 🔄 Active Tasks
 
 - **Validate Version 4.0.66 Migration:** Verify that the lupo-channels structure meets the empathetic AI requirements. Ensure all channel components are properly integrated and functional. Review channel organization, task management, and interface compliance. Tasks: `consensus_1772988864.json`, `consensus_1772988922.json`, `consensus_1772988964.json`, `consensus_1772988989.json`, `consensus_1772989076.json`.
