@@ -8,7 +8,7 @@ lupopedia.headers:
   lupopedia.schema: "documentation"
   file_path_from_root: "CHANGELOG.md"
   system_version: "4.0.73"
-  last_modified_utc: "20260312"
+  last_modified_utc: "20260313"
   channel_id: 42
   actor_id: 1
   actor_name: "wolfie"
@@ -20,7 +20,7 @@ lupopedia.headers:
 lupopedia.footer:
   archive_note: "For historical changelog entries from 4.0.67 and earlier, see CHANGELOG_ARCHIVE.md"
   version: "4.0.73"
-  last_verified: "20260312"
+  last_verified: "20260313"
   last_verified_by: "wolfie"
   orchestrator: "cursor"
   next_action:
@@ -46,9 +46,9 @@ This document tracks version history, focusing on key changes, task migrations, 
 ### [4.0.72] — Version bump (2026-03-12)
 
 - **Version bump:** Updated LUPEDIA_VERSION, version.php, install.php, lupo.php, lupo-config atoms (global_atoms.yaml, GLOBAL_IMPORTANT_ATOMS.yaml), CHANGELOG.md, and README.md to 4.0.72. No schema or behavioral changes; release follows 4.0.71 push to GitHub.
-- **IDE agent required-reading prompt:** Added `prompts/20260312_ide_agent_4.0.72_required_reading.md`, a canonical ordered reading list (version context, core doctrine, changelog + pending tasks, channel 0/42 task indexes, schema/TOONs, audits, atoms, and rules) that every IDE agent must read before making changes in 4.0.72.
-- **lupopedia.footer — orchestrator required:** `orchestrator:` added as required metadata in `lupopedia.footer`. Doctrine updated in LUPOPEDIA_HEADERS_FORMAT.md (required fields: `orchestrator`, `last_verified_by`, `next_action`, plus version/last_verified). CHANGELOG and prompts/20260312_ide_agent_4.0.72_required_reading.md footers updated; lupo-tools flare_header_template.txt and flare_apply.py now include `orchestrator`; OPTIONAL_BLOCKS.md table updated.
-- **Windsurf audit prompt for gap check:** Added `prompts/20260312_windsurf_audit_4.0.69_4.0.71_gap_check.md`, instructing Windsurf to re-audit versions 4.0.69–4.0.71 (using CHANGELOG and Windsurf audit reports) and append any remaining gaps as tasks under the 4.0.72 “Still needing to be done” section.
+- **IDE agent required-reading prompt:** Added `prompts/20260313_ide_agent_4.0.72_required_reading.md`, a canonical ordered reading list (version context, core doctrine, changelog + pending tasks, channel 0/42 task indexes, schema/TOONs, audits, atoms, and rules) that every IDE agent must read before making changes in 4.0.72.
+- **lupopedia.footer — orchestrator required:** `orchestrator:` added as required metadata in `lupopedia.footer`. Doctrine updated in LUPOPEDIA_HEADERS_FORMAT.md (required fields: `orchestrator`, `last_verified_by`, `next_action`, plus version/last_verified). CHANGELOG and prompts/20260313_ide_agent_4.0.72_required_reading.md footers updated; lupo-tools flare_header_template.txt and flare_apply.py now include `orchestrator`; OPTIONAL_BLOCKS.md table updated.
+- **Windsurf audit prompt for gap check:** Added `prompts/20260313_windsurf_audit_4.0.69_4.0.71_gap_check.md`, instructing Windsurf to re-audit versions 4.0.69–4.0.71 (using CHANGELOG and Windsurf audit reports) and append any remaining gaps as tasks under the 4.0.72 “Still needing to be done” section.
 
 
 ### [4.0.71] — Lupopedia Synthesized Documentation Framework (2026-03-12)
@@ -60,7 +60,7 @@ This document tracks version history, focusing on key changes, task migrations, 
 - Reorganized database table documentation: 178 active tables documented in `active/`, 16 deprecated tables in `deprecated/`, and 63 legacy/migration files in `migrations/`.
 
 - Added canonical header enforcement to all new Markdown artifacts (synthesized.headers / LUPOPEDIA HEADERS).
-- Created database schema: `lupo_documentation_frameworks` in `future_features_lupopedia.sql` and one-time migration `20260312_documentation_frameworks_synthesized_framework.sql`.
+- Created database schema: `lupo_documentation_frameworks` in `future_features_lupopedia.sql` and one-time migration `20260313_documentation_frameworks_synthesized_framework.sql`.
 - Generated `scripts/query_edges.py` and `lupo-bin/query_edges.php` for live edge querying by namespace.
 - Developed `scripts/migrate_legacy_docs.py` for batch adding headers to legacy documentation (Phase 2).
 - Implemented `lupo-bin/antigravity_governance.php` for monitoring and rejecting non-compliant headers (Phase 4).
@@ -72,7 +72,7 @@ This document tracks version history, focusing on key changes, task migrations, 
 
 - **Audit Completion:** Performed authoritative audit of semantic navigation database requirements. Identified and corrected missing/incomplete table schemas for Edges, Contexts, Folders, Hashtags, and Q/A.
 - **Database Expansion:** Implemented missing mapping and summary tables: `lupo_paths_summary`, `lupo_reference_map`, `lupo_collection_links`, `lupo_collection_map`, `lupo_edge_types`, `lupo_edge_map`, `lupo_questions`, `lupo_answers`, and `lupo_question_map`.
-- **Authoritative Migration:** Created one-time migration `database/migrations/20260312_authoritative_semantic_navbar_rebuild.sql` and updated canonical `install_new_lupopedia.sql` with these tables.
+- **Authoritative Migration:** Created one-time migration `database/migrations/20260313_authoritative_semantic_navbar_rebuild.sql` and updated canonical `install_new_lupopedia.sql` with these tables.
 - **REST API Endpoints:** Developed unified semantic API controller `lupo-includes/modules/api/semantic-navbar-api.php` and updated `module-loader.php` to serve `/lupopedia/<type>/<slug>` JSON endpoints for edges, contexts, hashtags, folders, and qa.
 - **JS Generator:** Implemented PHP-to-JS generator `lupo-includes/modules/nav/semantic-navbar-js.php` (accessible via `/lupopedia/nav/semantic-navbar`) that renders a premium floating navbar with lazy-loading popovers and style injection for rich aesthetics.
 - **Status Report:** Detailed the rebuild process in [lupo-docs/status/ANTIGRAVITY_SEMANTIC_NAVBAR_REBUILD_4.0.71.md](lupo-docs/status/ANTIGRAVITY_SEMANTIC_NAVBAR_REBUILD_4.0.71.md).
@@ -87,7 +87,7 @@ This document tracks version history, focusing on key changes, task migrations, 
 
 - Implemented DB-backed session authority (Model A): browser stores only `session_id`; all protected data (actor_id, roles, CSRF, IP/UA hash, last activity) in `lupo_sessions`. Never use `$_SESSION['actor_id']`; resolve identity via `Session::loadById($db, session_id()); $session->actor_id`.
 - Removed signed session payloads and JWT for web sessions; DB is canonical source of truth. Session revocation is DB-driven (delete row); session rotation on login.
-- Updated installer SQL: replaced `lupo_sessions` with canonical Model A schema (session_id, actor_id, federation_node_id, ip_hash, ua_hash, csrf_token, last_activity_ymdhis, created_ymdhis, updated_ymdhis, name_key, is_named, metadata). One-time migration: `database/migrations/20260312_session_model_rewrite.sql` (drops legacy unified_sessions, sessions, session_data, lupo_sessions; creates new lupo_sessions).
+- Updated installer SQL: replaced `lupo_sessions` with canonical Model A schema (session_id, actor_id, federation_node_id, ip_hash, ua_hash, csrf_token, last_activity_ymdhis, created_ymdhis, updated_ymdhis, name_key, is_named, metadata). One-time migration: `database/migrations/20260313_session_model_rewrite.sql` (drops legacy unified_sessions, sessions, session_data, lupo_sessions; creates new lupo_sessions).
 - Refactored `App\Auth\Session`: `Session::loadById($db, $session_id)`, `Session::create($db, $actor_id)`, `$session->touch()`, `$session->destroy()`, `$session->rotate()`. CSRF token stored in DB; `lupo_get_csrf_token()` reads from Session.
 - Replaced all `$_SESSION['user_id']` / `$_SESSION['actor_id']` usage with `$lupo_session->getActorId()` or Session::loadById. Updated auth-controller, oauth-controller, header, main_layout, basic_layout, collections_dropdown, list_user_collections, security.php, admin_bootstrap.
 - New doctrine: `lupo-docs/doctrine/SESSION_MODEL.md`. Updated `lupo_sessions` table doc and SESSION_RECONCILIATION_DOCTRINE.
@@ -104,7 +104,7 @@ This document tracks version history, focusing on key changes, task migrations, 
 
 #### Pending tasks (moved from 4.0.70)
 
-- **One-time migrations on existing 4.0.x DBs** — Run `20260312_lilith_traits_authorization_faucet.sql` and `20260312_collections_tabs_navigation_4_0_69.sql` on databases installed before these changes; record in `lupo_schema_migrations`. Fresh installs get full schema from `install_new_lupopedia.sql` only.
+- **One-time migrations on existing 4.0.x DBs** — Run `20260313_lilith_traits_authorization_faucet.sql` and `20260313_collections_tabs_navigation_4_0_69.sql` on databases installed before these changes; record in `lupo_schema_migrations`. Fresh installs get full schema from `install_new_lupopedia.sql` only.
 - **Faucet traceability at runtime** — Ensure all message and session creation paths populate `source_faucet_slug` / `source_faucet_instance_id` and `faucet_slug` / `faucet_instance_id` from session/runtime where available.
 - **Collections UI** — Wire global nav and channel sidebar to `getCollectionsForNavMenu()` and `getCollectionsForChannel($channelId)`; implement tab activation and item rendering for artifact/content/url/path.
 - **SessionCustodian** — Optional: run `scripts/session_custodian.php` (and/or Antigravity governance) to audit/correct `lupo-database/sessions/*.md` (e.g. paired_actor_id drift).
@@ -145,7 +145,7 @@ This document tracks version history, focusing on key changes, task migrations, 
 
 - **Table audit:** Validated all DB tables required for the semantic floating navigation bar (previous pages, references, contexts, edges, hashtags, folders, Q/A, next pages). Existing tables: lupo_paths, lupo_edges, lupo_edge_type_definitions, lupo_collections, lupo_collection_tabs, lupo_collection_tab_map, lupo_collection_tab_paths, lupo_contents, lupo_truth_knowledge, lupo_truth_answers, lupo_visits.
 - **New tables:** Added lupo_references, lupo_reference_links, lupo_hashtags, lupo_hashtag_map, lupo_folders, lupo_folder_map to `lupo-database/lupopedia/mysql/install/install_new_lupopedia.sql` (no FKs; BIGINT timestamps only).
-- **One-time migration:** Created `database/migrations/20260312_semantic_navbar_backend_update.sql` to add the six tables on existing DBs; fresh installs get them from install SQL.
+- **One-time migration:** Created `database/migrations/20260313_semantic_navbar_backend_update.sql` to add the six tables on existing DBs; fresh installs get them from install SQL.
 - **Documentation:** Added `lupo-docs/database/lupopedia/tables/semantic_navbar/` with SEMANTIC_NAVBAR_TABLE_AUDIT_REPORT.md, SEMANTIC_NAVBAR_OVERVIEW.md, and per-table docs (lupo_references, lupo_reference_links, lupo_hashtags, lupo_hashtag_map, lupo_folders, lupo_folder_map). Created `lupo-docs/frontend/semantic_navbar.md` (API endpoints, SQL usage, data flow, icon→table mapping, external-site behavior, JS↔Lupopedia communication).
 
 #### Documentation and headers (4.0.71)
@@ -322,7 +322,7 @@ Key additions:
 #### Collections, Tabs, and Navigation
 
 - **Channel-scoped resource bundles:** Collections gain `channel_id`, `is_nav_menu`, `nav_icon`; tabs gain `actor_id` (replacing user_id), `visibility_rule`, `tab_type`. CollectionTabsService: `getCollectionsForNavMenu()`, `getCollectionsForChannel($channelId)`; tab map item_type: artifact, content, url, path.
-- **Migration:** `database/migrations/20260312_collections_tabs_navigation_4_0_69.sql`. Doctrine: COLLECTIONS_DOCTRINE.md; spec: WEB_NAVIGATION_ARCHITECTURE.md.
+- **Migration:** `database/migrations/20260313_collections_tabs_navigation_4_0_69.sql`. Doctrine: COLLECTIONS_DOCTRINE.md; spec: WEB_NAVIGATION_ARCHITECTURE.md.
 
 #### Status & Review Reports
 
@@ -473,7 +473,7 @@ Introduced rules engine, skills system, and path/visit analytics doctrine. Major
 
 lupopedia.footer:
   version: "4.0.73"
-  last_verified: "20260312"
+  last_verified: "20260313"
   archive_note: "For historical changelog entries from 4.0.67 and earlier, see CHANGELOG_ARCHIVE.md"
   next_action:
     - "Execute full upgrade testing from Crafty Syntax 3.7.5 to Lupopedia 4.0.73"
