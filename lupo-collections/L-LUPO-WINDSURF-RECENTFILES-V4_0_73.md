@@ -18,6 +18,8 @@ lupopedia.headers:
   tags: ["collection", "recent_files", "4.0.73", "windsurf", "thread_tracking"]
 
 lupopedia.edges:
+  comment: "Snapshot of outbound edges at artifact creation. Query database for latest edge relationships and weights."
+  meta: "Thread: Finalize 4.0.72 → Push to GitHub → Initialize 4.0.73 → Migrate Tasks → Validate Upgrade Path"
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
     - { to: "TODO.md", type: "references", weight: 1.0 }

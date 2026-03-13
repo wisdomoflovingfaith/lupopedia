@@ -58,14 +58,15 @@ The **first line** of the file MUST be:
 
 Then the YAML header blocks in **canonical order** (see [LUPOPEDIA_HEADERS_PLAN.md](./LUPOPEDIA_HEADERS_PLAN.md) §4). Use **lupopedia.*** block names in new or modified files (4.0.69+); validators accept legacy flare.*/flame.*:
 
-- lupopedia.init (optional; legacy: lupopedia.init)
-- lupopedia.conditional (optional; legacy: lupopedia.conditional)
+- lupopedia.init
+- lupopedia.conditional
 - lupopedia.headers (required)
-- lupopedia.session (optional; session context: session_id, session_name, and other session-file fields — see §2.1)
-- lupopedia.edges (optional; legacy: lupopedia.edges)
-- lupopedia.footer (optional but when present must include `next_action:`; legacy: lupopedia.footer)
-- lupopedia.see (optional; legacy: lupopedia.see)
-- lupopedia.close (optional; legacy: lupopedia.close)
+- lupopedia.session (optional; session context)
+- lupopedia.edges (optional)
+- lupopedia.engagement (optional; engagement metrics — see §2.2)
+- lupopedia.footer (optional)
+- lupopedia.see (optional)
+- lupopedia.close (optional)
 
 Then the closing delimiter:
 
@@ -192,7 +193,56 @@ lupopedia.session:
     artifact was produced with verbose output enabled. In this case the
     session block documents the runtime state of the agent that produced
     the artifact at the time the file was written.
+#### 2.1.5 Edges and Engagement Snapshot Requirement
+
+Blocks like **`lupopedia.edges`** and **`lupopedia.engagement`** MUST include a `comment` or `meta` property stating that they are only a **snapshot** of the values at artifact creation time, and that the database should be queried to get the latest values.
+
+**For lupopedia.edges:**
+```yaml
+lupopedia.edges:
+  comment: "Snapshot of outbound edges at artifact creation. Query database for latest edge relationships and weights."
+  outbound_edges: [...]
 ```
+
+**For lupopedia.engagement:**
+```yaml
+lupopedia.engagement:
+  comment: "Snapshot of engagement metrics at artifact creation. Query database for latest engagement data including views, likes, and shares."
+  meta: "Context: Thread execution, file editing session, or specific operation that generated this engagement snapshot"
+  views: 0
+  like_count: 0
+  share_count: 0
+```
+
+**Alternative meta property usage:**
+```yaml
+lupopedia.edges:
+  meta: "Thread: Finalize 4.0.72 → Push to GitHub → Initialize 4.0.73 → Migrate Tasks → Validate Upgrade Path"
+  outbound_edges: [...]
+```
+
+### 2.2 Engagement block (lupopedia.engagement)
+
+The **`lupopedia.engagement`** block (new in 4.0.73) tracks and calculates engagement metrics. Like `lupopedia.edges`, it is a snapshot of the database state.
+
+| Field | Type | Purpose |
+|-------|------|---------|
+| `views` | integer | Total view count (calculated). |
+| `likes` | integer | Total like count. |
+| `shares` | integer | Total share count. |
+| `comment` | string | Mandatory snapshot notice. |
+
+**Example:**
+
+```yaml
+lupopedia.engagement:
+  comment: "Snapshot of engagement metrics at artifact creation. Query database for latest engagement data including views, likes, and shares."
+  meta: "Context: Thread execution, file editing session, or specific operation that generated this engagement snapshot"
+  views: 124
+  like_count: 12
+  share_count: 3
+```
+
 
 ---
 
