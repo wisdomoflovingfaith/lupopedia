@@ -70,10 +70,9 @@ The following active or pending work is drawn from Channel 42 and Channel 0 task
 
 - **Run one-time migrations** on existing 4.0.x DBs: `20260312_lilith_traits_authorization_faucet.sql`, `20260312_collections_tabs_navigation_4_0_69.sql`; record in `lupo_schema_migrations`. Fresh installs get full schema from install only.
 - **Faucet traceability:** Populate `source_faucet_slug` / `source_faucet_instance_id` and `faucet_slug` / `faucet_instance_id` on message and session creation from session/runtime.
-- **Collections UI:** Wire global nav and channel sidebar to `getCollectionsForNavMenu()` and `getCollectionsForChannel($channelId)`; tab activation and item rendering for artifact/content/url/path.
-- **SessionCustodian:** Optional run of `scripts/session_custodian.php` to audit/correct `lupo-database/sessions/*.md`.
-- **Doc–schema consistency:** Run `scripts/check_doc_schema_consistency.py` periodically; consider CI or pre-commit.
-- **TOON regeneration:** After applying migrations to a live DB, run `python scripts/generate_toon_files.py`.
+- **Semantic navbar:** API response caching; client-side caching headers; query optimization
+- **Session model:** Session cleanup routine; session analytics.
+- **Documentation:** Finish legacy `$_SESSION['actor_id']` references in testing docs; add semantic navbar and session model usage examples.
 
 ### From pending-tasks fallback (Channel 42)
 
