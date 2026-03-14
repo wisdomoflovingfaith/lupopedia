@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\versions\4.0.45\CHANGELOG_DRAFT.md"
+  file_path_from_root: "lupo-docs\versions\4.0.45\CHANGELOG_DRAFT.md"
   file_hash: "0607212caed68a58e0346db9e87f476d9b873433f32b6e7c39be55331d77d467"
-  file_path_from_root: "docs\versions\4.0.45\CHANGELOG_DRAFT.md"
+  file_path_from_root: "lupo-docs\versions\4.0.45\CHANGELOG_DRAFT.md"
   file_hash: "afa9c8b3f4f267e10b061b523ebe628535adf6bfef8b887a2d6be91c239fb120"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -63,7 +63,7 @@ lupopedia.footer:
 
 ---
 wolfie.headers: {
-  file_path_from_root: "docs/versions/4.0.45/CHANGELOG_DRAFT.md",
+  file_path_from_root: "lupo-docs/versions/4.0.45/CHANGELOG_DRAFT.md",
   system_version: "4.0.45",
   channel_id: 1,
   actor_id: 1002,
@@ -76,7 +76,7 @@ wolfie.headers: {
 }
 flip.footer: {
   outbound_edges: [
-    { to: "docs/versions/4.0.44/", type: "supersedes", weight: 1.0 },
+    { to: "lupo-docs/versions/4.0.44/", type: "supersedes", weight: 1.0 },
     { to: "CHANGELOG.md", type: "references", weight: 0.8 }
   ],
   semantic_tags: ["changelog", "4_0_45", "draft", "development"]

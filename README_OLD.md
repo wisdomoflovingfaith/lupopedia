@@ -24,16 +24,16 @@ lupopedia.footer:
     - { to: "QUICKSTART.md", type: "references", weight: 1.0 }
     - { to: "HOW_TO_USE_LUPOPEDIA.md", type: "references", weight: 0.9 }
     - { to: "CHANGELOG.md", type: "references", weight: 0.8 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
-    - { to: "docs/README.md", type: "references", weight: 0.7 }
-    - { to: "tools/vsx-extension/", type: "references", weight: 0.8 }
-    - { to: "database/migrations/", type: "references", weight: 0.7 }
-    - { to: "legacy/craftysyntax/", type: "references", weight: 0.5 }
-    - { to: "docs/doctrine/FLARE/FLARE_DOCTRINE.md", type: "references", weight: 1.0 }
-    - { to: "docs/FLARE_HEADERS_QUICK_REFERENCE.md", type: "references", weight: 0.9 }
-    - { to: "docs/doctrine/database/README.md", type: "references", weight: 0.8 }
-    - { to: "docs/doctrine/migrations/MIGRATION_MAPPING_REFERENCE.md", type: "references", weight: 0.8 }
-    - { to: "docs/toons/", type: "references", weight: 0.7 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/README.md", type: "references", weight: 0.7 }
+    - { to: "lupo-tools/vsx-extension/", type: "references", weight: 0.8 }
+    - { to: "lupo-database/migrations/", type: "references", weight: 0.7 }
+    - { to: "lupo-legacy/craftysyntax/", type: "references", weight: 0.5 }
+    - { to: "lupo-docs/doctrine/FLARE/FLARE_DOCTRINE.md", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/FLARE_HEADERS_QUICK_REFERENCE.md", type: "references", weight: 0.9 }
+    - { to: "lupo-docs/doctrine/database/README.md", type: "references", weight: 0.8 }
+    - { to: "lupo-docs/doctrine/migrations/MIGRATION_MAPPING_REFERENCE.md", type: "references", weight: 0.8 }
+    - { to: "lupo-database/lupopedia/toon/", type: "references", weight: 0.7 }
     - { to: "config/global_atoms.yaml", type: "references", weight: 0.8 }
     - { to: "lupopedia-config.php", type: "references", weight: 0.7 }
     - { to: "index.php", type: "references", weight: 0.6 }
@@ -91,15 +91,15 @@ Lupopedia uses a **channels and threads** system for **dialogs, status reports, 
 
 **Critical Distinction:**
 - **Channels/Threads**: Live dialogs, status reports, analysis, and work-in-progress discussions
-- **docs/ Directory**: Finalized documentation AFTER decisions are made and systems are complete
+- **lupo-docs/ Directory**: Finalized documentation AFTER decisions are made and systems are complete
 
 **How It Works:**
-- **Channels** (`channels/{id}/`) represent different topics or teams (e.g., Channel 42 for development coordination)
-- **Threads** (`channels/{id}/threads/{thread_name}/`) contain focused discussions or task progress
+- **Channels** (`lupo-channels/{id}/`) represent different topics or teams (e.g., Channel 42 for development coordination)
+- **Threads** (`lupo-channels/{id}/threads/{thread_name}/`) contain focused discussions or task progress
 - **Messages** are timestamped markdown files with actor attribution and semantic metadata
 
 **Example Structure:**
-channels/42/threads/DEVELOPMENT_CYCLE_4_0_47/ 
+lupo-channels/42/threads/DEVELOPMENT_CYCLE_4_0_47/ 
 ├── 20260226042800_10000_1002_version_4_0_47_initialized.md 
 ├── 20260226044100_10000_1002_dialog_doctrine_table_renamed.md 
 ├── 20260226050900_10000_1002_livehelp_session_actor_mapping_analysis.md 
@@ -128,7 +128,7 @@ channels/42/threads/DEVELOPMENT_CYCLE_4_0_47/
 1. **Discuss in Channels**: Work through problems, analyze options, make decisions
 2. **Refine Through Dialog**: Use threaded conversations to evolve understanding
 3. **Finalize Decisions**: Reach consensus on architecture, naming, implementation
-4. **Write Documentation**: Create permanent docs/ files AFTER decisions are final
+4. **Write Documentation**: Create permanent lupo-docs/ files AFTER decisions are final
 
 **Example of This Process:**
 - **Dialog Phase**: We discussed `dialog_doctrine` vs `dialog_messages` in channels
@@ -463,7 +463,7 @@ Crafty Syntax was a **real-time help system**. Lupopedia is a **semantic layer**
 - Timestamp discipline  
 - No foreign keys, no triggers, no DB logic  
 - Global registry for actors, channels, collections  
-- **FLIP (File-Level Inference Protocol)** — Infer file identity, doctrine, meaning, and emotional state from its FLIP Header. Key docs: [FLIP_DOCTRINE.md](docs/doctrine/FLIP/FLIP_DOCTRINE.md), [FLIPPING_FILE_LEXA_LILITH.md](docs/doctrine/FLIP/FLIPPING_FILE_LEXA_LILITH.md).  
+- **FLIP (File-Level Inference Protocol)** — Infer file identity, doctrine, meaning, and emotional state from its FLIP Header. Key docs: [FLIP_DOCTRINE.md](lupo-docs/doctrine/FLIP/FLIP_DOCTRINE.md), [FLIPPING_FILE_LEXA_LILITH.md](lupo-docs/doctrine/FLIP/FLIPPING_FILE_LEXA_LILITH.md).  
 
 Crafty Syntax becomes the **heart**. Lupopedia becomes the **brain**.
 
@@ -570,7 +570,7 @@ Lupopedia is one product with **two primary interfaces**:
 #### Upgrade from Crafty Syntax 3.7.5
 - Load Crafty 3.7.5 baseline tables (34 `livehelp_*` tables)  
 - Run the installer upgrade workflow  
-- Validate migration using the mapping docs: `docs/doctrine/migrations/MIGRATION_MAPPING_REFERENCE.md`, `docs/doctrine/migrations/livehelp_*`  
+- Validate migration using the mapping docs: `lupo-docs/doctrine/migrations/MIGRATION_MAPPING_REFERENCE.md`, `lupo-docs/doctrine/migrations/livehelp_*`  
 
 ### ⚡ Quickstart (CLI)
 ```bash
@@ -591,10 +591,10 @@ php bin/lupo.php tasks
 
 ### 🔁 Upgrade Path: Crafty Syntax 3.7.5 → Lupopedia 4.0.48
 **Authoritative sources**  
-- **Schema source of truth:** `docs/toons/*.toon.json`  
-- **Install schema:** `database/migrations/install_new_lupopedia.sql`  
-- **Migration mapping:** `docs/doctrine/migrations/livehelp_*.md`  
-- **Legacy reference code:** `legacy/craftysyntax/` (read-only)  
+- **Schema source of truth:** `lupo-database/lupopedia/toon/*.toon.json`  
+- **Install schema:** `lupo-database/migrations/install_new_lupopedia.sql`  
+- **Migration mapping:** `lupo-docs/doctrine/migrations/livehelp_*.md`  
+- **Legacy reference code:** `lupo-legacy/craftysyntax/` (read-only)  
 
 **What must be preserved (Crafty parity)**  
 - Live chat workflows  
@@ -614,20 +614,20 @@ Other IDE agents / external agents exist, but must be registry-defined and doctr
 
 ### 📴 DB-Offline Mode (MD Fallback Governance)
 When the database is offline:  
-- Channels, tasks, and coordination persist as Markdown in `channels/*`  
-- Broadcasts live in `channels/{id}/broadcasts/`  
-- Actor-scoped workspaces live in `channels/{id}/actors/{actor_id}/`  
-- Tasks live in `channels/{id}/tasks/` with FLIP headers (prompt + status + dependencies)  
+- Channels, tasks, and coordination persist as Markdown in `lupo-channels/*`  
+- Broadcasts live in `lupo-channels/{id}/broadcasts/`  
+- Actor-scoped workspaces live in `lupo-channels/{id}/actors/{actor_id}/`  
+- Tasks live in `lupo-channels/{id}/tasks/` with FLIP headers (prompt + status + dependencies)  
 
 ### 🗺️ Repository Map
 - `install.php` — Install/upgrade wizard  
-- `database/migrations/` — schema + seeds  
-- `docs/doctrine/` — non-negotiable doctrine  
-- `docs/doctrine/migrations/` — Crafty → Lupopedia mapping  
-- `docs/toons/` — schema source of truth  
-- `channels/` — offline governance (broadcasts/tasks/actors/roles)  
-- `legacy/craftysyntax/` — read-only legacy behavior reference  
-- `tools/vsx-extension/` — VSX extension (optional)  
+- `lupo-database/migrations/` — schema + seeds  
+- `lupo-docs/doctrine/` — non-negotiable doctrine  
+- `lupo-docs/doctrine/migrations/` — Crafty → Lupopedia mapping  
+- `lupo-database/lupopedia/toon/` — schema source of truth  
+- `lupo-channels/` — offline governance (broadcasts/tasks/actors/roles)  
+- `lupo-legacy/craftysyntax/` — read-only legacy behavior reference  
+- `lupo-tools/vsx-extension/` — VSX extension (optional)  
 
 ### 📜 Non-Negotiable Doctrine (Read Before Contributing)
 #### Critical Constraints
@@ -643,7 +643,7 @@ When the database is offline:
 - **Integer types only:** `BIGINT`, `INT`, `SMALLINT`, `TINYINT` — no parenthesized display widths, no `UNSIGNED`, no `BOOLEAN`  
 - **Timestamp discipline:** All timestamps are `YYYYMMDDHHIISS` UTC integers, set via `gmdate('YmdHis')`  
 - **Special ID Pattern**: Some tables (e.g., `lupo_dialog_messages`) use timestamp-based primary keys instead of auto-increment. Insertion logic: get current UTC timestamp, compare with MAX(existing_id), use current if larger, otherwise use MAX+1  
-- **Schema authority:** TOON files in `docs/toons/` are canonical, never hand-edited  
+- **Schema authority:** TOON files in `lupo-database/lupopedia/toon/` are canonical, never hand-edited  
 
 #### Actor Identity Rules
 - **actor_id is canonical identity** — universal across all tables  
@@ -658,18 +658,18 @@ When the database is offline:
 - **Non-destructive operations** — preserve system soul and heritage  
 
 - Table count goal: under 200 (197 tables now out of 200 as of 2/17/2026; enforced by doctrine).  
-- **Python** = maintenance (`scripts/python/`, PyMySQL, explicit SQL).  
+- **Python** = maintenance (`lupo-scripts/python/`, PyMySQL, explicit SQL).  
 - **PHP** = runtime only (no schema changes). PHP must be compatible with **PHP 5.3 through 8.3+**. Do not use PHP 8-only features (named arguments, attributes, union types, match expressions). New code must use OOP (classes, methods).  
-- Uploads use SHA256 hash filenames under `uploads/{actors,agents,channels}/YYYY/MM/`.  
+- Uploads use SHA256 hash filenames under `lupo-uploads/{actors,agents,channels}/YYYY/MM/`.  
 - **LEXA** enforces doctrine and boundaries in the gateway.  
 
 Never introduce `user_id`. Never add foreign keys, triggers, or stored procedures. Never modify schema without a TOON source. Never let PHP perform migrations.  
 
 All contributors and AI agents must read and follow:  
-- 📘 [docs/doctrine/LUPOPEDIA_CANONICAL_DOCTRINE.md](docs/doctrine/LUPOPEDIA_CANONICAL_DOCTRINE.md)  
-- 📘 [docs/doctrine/FLIP/FLIP_DOCTRINE.md](docs/doctrine/FLIP/FLIP_DOCTRINE.md) — File-Level Inference Protocol: infer file identity, doctrine, and meaning from the FLIP Header only; no guessing.  
-- 📘 [docs/doctrine/FLIP/FLIPPING_FILE_LEXA_LILITH.md](docs/doctrine/FLIP/FLIPPING_FILE_LEXA_LILITH.md) — FLIP Headers + database (lupo_contents, lupo_edges, path → content → channel → actors); LEXA boundary keeper, LILITH heterodox reviewer.  
-- 📘 [docs/LUPOPEDIA_MASTER_DOCTRINE_OF_AI_CORRECTIONS_v1.0.md](docs/LUPOPEDIA_MASTER_DOCTRINE_OF_AI_CORRECTIONS_v1.0.md) — Common AI corrections: database (no FKs, no triggers, no display widths, no UNSIGNED), time (UTC YYYYMMDDHHIISS only), state (no deadlines), identity (BIGINT only), advertising/humor/psychological manipulation prohibitions, and filename rules.  
+- 📘 [lupo-docs/doctrine/LUPOPEDIA_CANONICAL_DOCTRINE.md](lupo-docs/doctrine/LUPOPEDIA_CANONICAL_DOCTRINE.md)  
+- 📘 [lupo-docs/doctrine/FLIP/FLIP_DOCTRINE.md](lupo-docs/doctrine/FLIP/FLIP_DOCTRINE.md) — File-Level Inference Protocol: infer file identity, doctrine, and meaning from the FLIP Header only; no guessing.  
+- 📘 [lupo-docs/doctrine/FLIP/FLIPPING_FILE_LEXA_LILITH.md](lupo-docs/doctrine/FLIP/FLIPPING_FILE_LEXA_LILITH.md) — FLIP Headers + database (lupo_contents, lupo_edges, path → content → channel → actors); LEXA boundary keeper, LILITH heterodox reviewer.  
+- 📘 [lupo-docs/LUPOPEDIA_MASTER_DOCTRINE_OF_AI_CORRECTIONS_v1.0.md](lupo-docs/LUPOPEDIA_MASTER_DOCTRINE_OF_AI_CORRECTIONS_v1.0.md) — Common AI corrections: database (no FKs, no triggers, no display widths, no UNSIGNED), time (UTC YYYYMMDDHHIISS only), state (no deadlines), identity (BIGINT only), advertising/humor/psychological manipulation prohibitions, and filename rules.  
 
 Any AI coding agent (JetBrains, Cursor, Claude, etc.) must be initialized with this doctrine before making changes to the codebase.
 
@@ -684,12 +684,12 @@ This is non-negotiable core doctrine. All AI tools must follow these rules.
 
 ### Database access & SQL compatibility
 - **All database access** must use the project’s **DatabaseFactory** and **PDO_DB** wrapper classes. No direct PDO, no `mysqli`, no raw `$pdo->query()` or `$pdo->exec()`. Use `DatabaseFactory::getConnection()` (or equivalent) to obtain the PDO_DB instance, then use its methods (`fetch`, `fetchAll`, `execute`, `insert`, `update`, `delete`) with prepared statements and bound parameters.  
-- **All SQL** (in PHP, in migration files, and in install/seed SQL) must be **compatible with MySQL, PostgreSQL, and MariaDB**. Use only standard SQL and constructs supported by all three. No vendor-specific functions, types, or syntax (e.g. no MySQL-only or Postgres-only features). This keeps the codebase portable and deployable across common hosting environments.  
+- **All SQL** (in PHP, in migration files, and in lupo-install/seed SQL) must be **compatible with MySQL, PostgreSQL, and MariaDB**. Use only standard SQL and constructs supported by all three. No vendor-specific functions, types, or syntax (e.g. no MySQL-only or Postgres-only features). This keeps the codebase portable and deployable across common hosting environments.  
 
-See [PDO_DB Database Access Doctrine](.cursor/rules/pdo-db-database-access-doctrine.mdc) and [LUPOPEDIA_DOCTRINE.md](docs/doctrine/LUPOPEDIA_DOCTRINE.md) for full rules.
+See [PDO_DB Database Access Doctrine](.cursor/rules/pdo-db-database-access-doctrine.mdc) and [LUPOPEDIA_DOCTRINE.md](lupo-docs/doctrine/LUPOPEDIA_DOCTRINE.md) for full rules.
 
 ### Database & Migration Doctrine
-Lupopedia uses TOON files in `/docs/toons/` as the **only source of truth** for database structure.  
+Lupopedia uses TOON files in `/lupo-database/lupopedia/toon/` as the **only source of truth** for database structure.  
 All schema changes must follow this process:  
 1. Update the TOON file for the table.  
 2. Update `install_new_lupopedia.sql` to match the TOON.  
@@ -702,7 +702,7 @@ All schema changes must follow this process:
 - use AUTO_INCREMENT for registry-backed tables  
 
 All schema changes must be explicit, doctrine-aligned, and fully reproducible.  
-See [docs/doctrine/MIGRATION_DOCTRINE.md](docs/doctrine/MIGRATION_DOCTRINE.md) for the full migration doctrine.
+See [lupo-docs/doctrine/MIGRATION_DOCTRINE.md](lupo-docs/doctrine/MIGRATION_DOCTRINE.md) for the full migration doctrine.
 
 ### ⏱️ CRITICAL TIMESTAMP DOCTRINE — MANDATORY FOR ALL AI AGENTS
 🚨 **ALL TIMESTAMPS MUST BE STORED AS INTEGERS IN `YYYYMMDDHHIISS` FORMAT (e.g. `20260214153045`). NO EXCEPTIONS.**  
@@ -717,7 +717,7 @@ Examples:
 ❌ WRONG: `$expires = $now + 86400;`  
 ❌ WRONG: `$timestamp = time();`  
 
-See [TIMESTAMP_DOCTRINE.md](docs/doctrine/TIMESTAMP_DOCTRINE.md) for complete canonical documentation.
+See [TIMESTAMP_DOCTRINE.md](lupo-docs/doctrine/TIMESTAMP_DOCTRINE.md) for complete canonical documentation.
 
 ### 📁 CRITICAL SUBDIRECTORY INSTALLATION DOCTRINE — MANDATORY
 🚨 **LUPOPEDIA IS ALWAYS INSTALLED IN A SUBDIRECTORY. NEVER ASSUME ROOT INSTALLATION.**  
@@ -730,7 +730,7 @@ Examples:
 ❌ `/login`  
 
 `LUPOPEDIA_PUBLIC_PATH` is automatically set to `'/' . basename(__DIR__)`, which evaluates to the folder name (e.g., `/lupopedia`). This ensures Lupopedia works in any subdirectory without code changes.  
-See [SUBDIRECTORY_INSTALLATION_DOCTRINE.md](docs/doctrine/SUBDIRECTORY_INSTALLATION_DOCTRINE.md) for complete details.
+See [SUBDIRECTORY_INSTALLATION_DOCTRINE.md](lupo-docs/doctrine/SUBDIRECTORY_INSTALLATION_DOCTRINE.md) for complete details.
 
 ### 🔒 SECURITY DOCTRINE — MANDATORY FOR ALL CONTRIBUTORS
 #### 8.1 PHP Compatibility Security
@@ -803,7 +803,7 @@ Lupopedia does not participate in advertising, SEO manipulation, marketing optim
 - data distortion for visibility  
 
 Lupopedia recommendations are based solely on **DATA and SYSTEM LOGIC — never money.** This rule is absolute. No exceptions. No negotiations.  
-🚨 **Trauma Boundary:** This prohibition also protects the system architect from PTSD-like responses to advertising manipulation. See [PTSD & Emotional Harm From Advertising Manipulation](docs/doctrine/PTSD_ADVERTISING_DOCTRINE.md) for complete context.
+🚨 **Trauma Boundary:** This prohibition also protects the system architect from PTSD-like responses to advertising manipulation. See [PTSD & Emotional Harm From Advertising Manipulation](lupo-docs/doctrine/PTSD_ADVERTISING_DOCTRINE.md) for complete context.
 
 ### What You Don't Build / What You Do Build
 **You don't build** every system, define tabs for users, or impose meaning.  
@@ -811,15 +811,15 @@ Lupopedia recommendations are based solely on **DATA and SYSTEM LOGIC — never 
 **You do build** the infrastructure (database, routing, modules), the tools (tab editor, content editor), and the doctrine (rules in text files).
 
 ### 🕰️ History
-See `docs/channels/appendix/HISTORY.md` for the complete historical narrative and evolution from WOLFIE to Lupopedia. See also the [Founder's Note](docs/channels/appendix/appendix/FOUNDERS_NOTE.md).
+See `lupo-docs/channels/appendix/HISTORY.md` for the complete historical narrative and evolution from WOLFIE to Lupopedia. See also the [Founder's Note](lupo-docs/channels/appendix/appendix/FOUNDERS_NOTE.md).
 
 ### Reference: Doctrine, Legacy Code, and Migrations
 When implementing or migrating features from Crafty Syntax, three areas are essential:  
-- **docs/doctrine/database/** — Per-table doctrine for Lupopedia tables that are migration targets or central to the upgrade path. Each file (e.g. `auth_users.md`, `actors.md`, `sessions.md`) describes the table’s purpose, how it is used, and how it was mapped from legacy Crafty tables. The [README in that folder](docs/doctrine/database/README.md) is the index and summarizes the 3-level permission model. Use these as the canonical guide for how Lupopedia tables work and how they map from Crafty.  
-- **legacy/craftysyntax/** — The original Crafty Syntax codebase, kept **read-only** and **reference-only**. It exists to show which features and behaviors must be reimplemented in Lupopedia. Do not modify files under `legacy/craftysyntax`; use them only to understand legacy behavior, then implement against Lupopedia tables and doctrine.  
-- **docs/doctrine/migrations/** — Legacy → Lupopedia mapping and migration notes. [MIGRATION_MAPPING_REFERENCE.md](docs/doctrine/migrations/MIGRATION_MAPPING_REFERENCE.md) is the concise index. Each migration file (e.g. `livehelp_users_migration.md`, `operator_to_roles_migration.md`) describes one or more legacy Crafty tables and their replacement in Lupopedia. Use these to know which old tables map to which new tables; do not infer from the live database.  
+- **lupo-docs/doctrine/database/** — Per-table doctrine for Lupopedia tables that are migration targets or central to the upgrade path. Each file (e.g. `auth_users.md`, `actors.md`, `sessions.md`) describes the table’s purpose, how it is used, and how it was mapped from legacy Crafty tables. The [README in that folder](lupo-docs/doctrine/database/README.md) is the index and summarizes the 3-level permission model. Use these as the canonical guide for how Lupopedia tables work and how they map from Crafty.  
+- **lupo-legacy/craftysyntax/** — The original Crafty Syntax codebase, kept **read-only** and **reference-only**. It exists to show which features and behaviors must be reimplemented in Lupopedia. Do not modify files under `lupo-legacy/craftysyntax`; use them only to understand legacy behavior, then implement against Lupopedia tables and doctrine.  
+- **lupo-docs/doctrine/migrations/** — Legacy → Lupopedia mapping and migration notes. [MIGRATION_MAPPING_REFERENCE.md](lupo-docs/doctrine/migrations/MIGRATION_MAPPING_REFERENCE.md) is the concise index. Each migration file (e.g. `livehelp_users_migration.md`, `operator_to_roles_migration.md`) describes one or more legacy Crafty tables and their replacement in Lupopedia. Use these to know which old tables map to which new tables; do not infer from the live database.  
 
-Schema source of truth for column names and types is **docs/toons/*.toon.json** (TOON files). The database/doctrine and migrations docs describe purpose and mapping; TOONs define the schema.
+Schema source of truth for column names and types is **lupo-database/lupopedia/toon/*.toon.json** (TOON files). The lupo-database/doctrine and migrations docs describe purpose and mapping; TOONs define the schema.
 
 ##### A. Lupopedia Extension Overview
 The Lupopedia Extension originated from the Antigravity IDE (actor 2035) as a VSX extension for semantic navigation and project management. It evolves into a **multi-IDE federation** — any IDE that implements the Antigravity Extension protocol becomes a `system_tool` actor in the unified actor system.  
@@ -931,12 +931,12 @@ Agents (including IDEs and external AIs) communicate via web-based APIs to feder
 - `auth_user_id` is only for human login.  
 - **No foreign keys, triggers, or stored procedures** (absolute prohibition).  
 - All timestamps use `YYYYMMDDHHIISS` in UTC.  
-- Schema changes must come from TOON files in `/docs/toons/`.  
+- Schema changes must come from TOON files in `/lupo-database/lupopedia/toon/`.  
 
 ### FLIPPING Headers (FLIP Protocol): Structure, Usage, and Offline Fallback
 #### What are FLIPPING Headers?
 **FLIP (File-Level Inference Protocol)** — also known as **FLIPPING**, **Wolfie**, **FLP**, **Superpositionally**, or **CROP Headers** — is the YAML frontmatter doctrine for all `.md` files in the Lupopedia repository.  
-Per [FLIP_DOCTRINE.md](docs/doctrine/FLIP/FLIP_DOCTRINE.md), agents (humans, IDEs, and external AIs) must **infer** the identity, doctrine, and state of a file **entirely from its header**. This "Zero Guessing" doctrine ensures that even during total web or database outages, the system remains auditable and coordinated.  
+Per [FLIP_DOCTRINE.md](lupo-docs/doctrine/FLIP/FLIP_DOCTRINE.md), agents (humans, IDEs, and external AIs) must **infer** the identity, doctrine, and state of a file **entirely from its header**. This "Zero Guessing" doctrine ensures that even during total web or database outages, the system remains auditable and coordinated.  
 
 #### Structure & The Actor Trinity
 A standard FLIP block exists between `---` delimiters at the top of a file.  
@@ -973,14 +973,14 @@ Lupopedia operates in two distinct modes regarding metadata:
 2. **Offline (Header-First Fallback):**  
    - When the `lupopedia.com` API or local database is unavailable, the **VSX Extension** and agents use headers as the **Sole Source of Truth**.  
    - **Minimum Headers**: Required for offline navigation (Path, Channel, Actor Trinity). Without these, a file is "invisible" to agent coordination logic.  
-   - **Simulated Threads**: Headers allow agents to reconstruct dialog history and action logs (e.g., `docs/channel42_log.json`) without a server.  
+   - **Simulated Threads**: Headers allow agents to reconstruct dialog history and action logs (e.g., `lupo-docs/channel42_log.json`) without a server.  
 
 #### VSX Extension Integration
 The **Antigravity VSX Extension** (Actor 2035) serves as the primary FLIP engine:  
 - **Auto-Injection**: Validates and injects missing headers (Path and Actor) on every save.  
-- **Hierarchical Navigation**: Renders the `docs/` tree based on channel and actor groupings.  
+- **Hierarchical Navigation**: Renders the `lupo-docs/` tree based on channel and actor groupings.  
 - **Inference UI**: Displays tooltips with Survivor Protocol status and Actor Trinity verification.  
-- **Doc Link**: See [FLIP_INTEGRATION_README.md](tools/vsx-extension/FLIP_INTEGRATION_README.md).  
+- **Doc Link**: See [FLIP_INTEGRATION_README.md](lupo-tools/vsx-extension/FLIP_INTEGRATION_README.md).  
 
 #### Best Practices for Agents
 - **Don't Guess**: If a header is missing, do not assume values from folder names. Inject the missing header or report a doctrine violation.  

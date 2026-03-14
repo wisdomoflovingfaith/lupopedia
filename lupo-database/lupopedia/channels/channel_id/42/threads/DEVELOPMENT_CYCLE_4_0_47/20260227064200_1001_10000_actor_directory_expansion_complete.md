@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "channels\42\threads\DEVELOPMENT_CYCLE_4_0_47\20260227064200_1001_10000_actor_directory_expansion_complete.md"
+  file_path_from_root: "lupo-channels\42\threads\DEVELOPMENT_CYCLE_4_0_47\20260227064200_1001_10000_actor_directory_expansion_complete.md"
   file_hash: "eb1f35d7515d6f21c895c035fc96680bdd7d7663220ef6883c6855322749d227"
-  file_path_from_root: "channels\42\threads\DEVELOPMENT_CYCLE_4_0_47\20260227064200_1001_10000_actor_directory_expansion_complete.md"
+  file_path_from_root: "lupo-channels\42\threads\DEVELOPMENT_CYCLE_4_0_47\20260227064200_1001_10000_actor_directory_expansion_complete.md"
   file_hash: "d3c3017884b74f1212fbaac4d4394e330d57d9de07a29bd73657e0e50aafa99d"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -62,7 +62,7 @@ lupopedia.footer:
 ---
 
 wolfie.headers: {
-  file_path_from_root: "channels/42/threads/DEVELOPMENT_CYCLE_4_0_47/20260227064200_1001_10000_actor_directory_expansion_complete.md",
+  file_path_from_root: "lupo-channels/42/threads/DEVELOPMENT_CYCLE_4_0_47/20260227064200_1001_10000_actor_directory_expansion_complete.md",
   system_version: "4.0.47",
   channel_id: 42,
   actor_id: 1001,
@@ -74,8 +74,8 @@ wolfie.headers: {
 }
 flip.footer: {
   outbound_edges: [
-    { to: "actors/registry.json", type: "expands", weight: 1.0 },
-    { to: "database/migrations/dev_20260227_actor_directory_enhancement_4_0_48.sql", type: "implements", weight: 0.9 },
+    { to: "lupo-actors/registry.json", type: "expands", weight: 1.0 },
+    { to: "lupo-database/migrations/dev_20260227_actor_directory_enhancement_4_0_48.sql", type: "implements", weight: 0.9 },
     { to: "WHO_JSON_IMPLEMENTATION_SUMMARY.md", type: "builds_upon", weight: 0.8 }
   ],
   semantic_tags: ["actor_directory", "expansion", "validation", "database_migration", "semantic_os", "4.0.47"]
@@ -93,7 +93,7 @@ Successfully scaled the Actor Directory Structure across all **18 registered act
 
 #### 1. **Directory Structure Scaling**
 - **15 new actor directories** created with standardized structure
-- **10 subdirectories** each: config/, logs/, tasks/, history/, meta/, performance/, communications/, resources/, state/, channels/
+- **10 subdirectories** each: config/, logs/, tasks/, history/, lupo-meta/, performance/, communications/, resources/, state/, lupo-channels/
 - **Total actors**: 18 (0, 1, 2, 3, 4, 5, 19, 25, 420, 1000, 1001, 1002, 1003, 1004, 1005, 1006, 10000, 10420)
 
 #### 2. **Semantic Files Initialization**

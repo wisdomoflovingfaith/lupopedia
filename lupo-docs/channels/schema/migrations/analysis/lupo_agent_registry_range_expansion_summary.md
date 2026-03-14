@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\channels\schema\migrations\analysis\lupo_agent_registry_range_expansion_summary.md"
+  file_path_from_root: "lupo-docs\channels\schema\migrations\analysis\lupo_agent_registry_range_expansion_summary.md"
   file_hash: "a31edd821c46fedc62e77654cbe6c54d3cd28f23771005c68b9783cbc0aa3c56"
-  file_path_from_root: "docs\channels\schema\migrations\analysis\lupo_agent_registry_range_expansion_summary.md"
+  file_path_from_root: "lupo-docs\channels\schema\migrations\analysis\lupo_agent_registry_range_expansion_summary.md"
   file_hash: "1df87616da2440dde11a9ecaaccb9733c3de696233f3c81927fcd39808425ce4"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -133,7 +133,7 @@ The collisions occurred because RESERVED_ rows from the old 0-99 era were never 
 | OBSERVER | 34 | 705 | Resolves collision with WOLFITH at slot 34 |
 
 ## SQL Migration File
-All updates are in: `database/migrations/lupo_agent_registry_range_expansion.sql`
+All updates are in: `lupo-database/migrations/lupo_agent_registry_range_expansion.sql`
 
 ## Next Steps
 1. Run the SQL migration

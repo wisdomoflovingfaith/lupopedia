@@ -106,7 +106,7 @@ Per MULTI_AGENT_DATABASE_DOCUMENTATION_PLAN.md, the following are **Core Governa
 
 ## 4. Tables in plan but not in TOONs (no doc created)
 
-Cursor did **not** create documentation for these because there is no TOON in `lupo-docs/toons/` and Cursor only documents tables supported by project files (TOONs + project MD).
+Cursor did **not** create documentation for these because there is no TOON in `lupo-database/lupopedia/toon/` and Cursor only documents tables supported by project files (TOONs + project MD).
 
 - **lupo_users** — Listed in Cursor’s plan as “User profiles”; no TOON found. May be deprecated or never created.
 - **lupo_user_profiles** — Same.

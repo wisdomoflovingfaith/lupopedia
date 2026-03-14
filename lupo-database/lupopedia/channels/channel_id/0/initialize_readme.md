@@ -22,14 +22,14 @@ lupopedia.headers:
 
 lupopedia.edges:
   outbound_edges:
-    - { to: "docs/toons/lupo_channel_boot_log.toon.json", type: "schema_reference", weight: 1.0 }
-    - { to: "docs/toons/lupo_channel_boot_detail.toon.json", type: "schema_reference", weight: 1.0 }
-    - { to: "docs/toons/lupo_channel_boot_lifecycle.toon.json", type: "schema_reference", weight: 1.0 }
-    - { to: "docs/toons/lupo_channel_boot_detail_lifecycle.toon.json", type: "schema_reference", weight: 1.0 }
-    - { to: "docs/toons/lupo_channels.toon.json", type: "schema_reference", weight: 0.9 }
-    - { to: "docs/toons/lupo_channel_state.toon.json", type: "schema_reference", weight: 0.9 }
-    - { to: "docs/FLARE_HEADERS_COMPLETE_REFERENCE.md", type: "references", weight: 0.9 }
-    - { to: "docs/doctrine/FLARE/FLARE_DOCTRINE.md", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/toons/lupo_channel_boot_log.toon.json", type: "schema_reference", weight: 1.0 }
+    - { to: "lupo-docs/toons/lupo_channel_boot_detail.toon.json", type: "schema_reference", weight: 1.0 }
+    - { to: "lupo-docs/toons/lupo_channel_boot_lifecycle.toon.json", type: "schema_reference", weight: 1.0 }
+    - { to: "lupo-docs/toons/lupo_channel_boot_detail_lifecycle.toon.json", type: "schema_reference", weight: 1.0 }
+    - { to: "lupo-docs/toons/lupo_channels.toon.json", type: "schema_reference", weight: 0.9 }
+    - { to: "lupo-docs/toons/lupo_channel_state.toon.json", type: "schema_reference", weight: 0.9 }
+    - { to: "lupo-docs/FLARE_HEADERS_COMPLETE_REFERENCE.md", type: "references", weight: 0.9 }
+    - { to: "lupo-docs/doctrine/FLARE/FLARE_DOCTRINE.md", type: "references", weight: 1.0 }
   semantic_tags: ["channel_startup", "lifecycle_tracking", "schema_documentation", "node_0"]
 
 lupopedia.footer:
@@ -150,8 +150,8 @@ All timestamps MUST be `BIGINT` in `YYYYMMDDHHIISS` UTC format.
 All links (`boot_id` → `boot_id`, `lifecycle_id` → `lifecycle_id`) are application-enforced. In accordance with Lupopedia doctrine, **no database foreign keys or triggers** are used.
 
 ## References
-- `docs/toons/lupo_channel_boot_log.toon.json`
-- `docs/toons/lupo_channel_boot_detail.toon.json`
-- `docs/toons/lupo_channel_boot_lifecycle.toon.json`
-- `docs/toons/lupo_channel_boot_detail_lifecycle.toon.json`
-- `docs/FLARE_HEADERS_COMPLETE_REFERENCE.md`
+- `lupo-docs/toons/lupo_channel_boot_log.toon.json`
+- `lupo-docs/toons/lupo_channel_boot_detail.toon.json`
+- `lupo-docs/toons/lupo_channel_boot_lifecycle.toon.json`
+- `lupo-docs/toons/lupo_channel_boot_detail_lifecycle.toon.json`
+- `lupo-docs/FLARE_HEADERS_COMPLETE_REFERENCE.md`

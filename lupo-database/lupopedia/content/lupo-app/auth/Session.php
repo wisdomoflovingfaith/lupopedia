@@ -152,8 +152,6 @@ class Session
             $csrf_token = substr($csrf_token, 0, 128);
         }
         $node_id = defined('LUPO_DEFAULT_NODE_ID') ? (int) LUPO_DEFAULT_NODE_ID : 1;
-        $source_faucet_slug = defined('LUPO_FAUCET_SLUG') ? LUPO_FAUCET_SLUG : null;
-        $source_faucet_instance_id = defined('LUPO_FAUCET_INSTANCE_ID') ? LUPO_FAUCET_INSTANCE_ID : null;
         $data = array(
             'session_id' => $session_id,
             'actor_id' => (int) $actor_id,
@@ -165,9 +163,7 @@ class Session
             'created_ymdhis' => $now,
             'updated_ymdhis' => $now,
             'name_key' => null,
-            'is_named' => 0,
-            'source_faucet_slug' => $source_faucet_slug,
-            'source_faucet_instance_id' => $source_faucet_instance_id
+            'is_named' => 0
         );
         try {
             $db->insert($table, $data);
@@ -178,7 +174,9 @@ class Session
             return null;
         }
         if (function_exists('session_status') && session_status() === PHP_SESSION_ACTIVE) {
+            session_write_close();
             session_id($session_id);
+            session_start();
         }
         $s = new self($db, null);
         $s->session_id = $session_id;

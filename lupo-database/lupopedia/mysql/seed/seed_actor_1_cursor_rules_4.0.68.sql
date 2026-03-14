@@ -38,18 +38,6 @@ VALUES (10310, 'actor', 1, NULL, 'root_rule', 'pk-reference-naming-doctrine', '{
 INSERT INTO lupo_metadata (metadata_id, entity_type, entity_id, domain_id, meta_type, property_key, property_value, created_ymdhis, updated_ymdhis, is_deleted, deleted_ymdhis, channel_id, parent_metadata_id, class_name)
 VALUES (10311, 'actor', 1, NULL, 'root_rule', 'required-tables-future-features-doctrine', '{"path":"lupo-rules/root/required-tables-future-features-doctrine.md","source_path":".cursor/rules/required-tables-future-features-doctrine.mdc","attached_ymdhis":20260310120000}', @now, @now, 0, NULL, 42, NULL, 'lupopedia_property');
 
-INSERT INTO lupo_metadata (metadata_id, entity_type, entity_id, domain_id, meta_type, property_key, property_value, created_ymdhis, updated_ymdhis, is_deleted, deleted_ymdhis, channel_id, parent_metadata_id, class_name)
-VALUES (10312, 'actor', 1, NULL, 'root_rule', 'wheeler-reverse20-ban', '{"path":"lupo-rules/root/wheeler-reverse20-ban.md","source_path":".cursor/rules/wheeler-reverse20-ban.mdc","attached_ymdhis":20260310120000}', @now, @now, 0, NULL, 42, NULL, 'lupopedia_property');
-
-INSERT INTO lupo_metadata (metadata_id, entity_type, entity_id, domain_id, meta_type, property_key, property_value, created_ymdhis, updated_ymdhis, is_deleted, deleted_ymdhis, channel_id, parent_metadata_id, class_name)
-VALUES (10313, 'actor', 1, NULL, 'root_rule', 'stoned-wolfie-schrodinger-ban', '{"path":"lupo-rules/root/stoned-wolfie-schrodinger-ban.md","source_path":".cursor/rules/stoned-wolfie-schrodinger-ban.mdc","attached_ymdhis":20260310120000}', @now, @now, 0, NULL, 42, NULL, 'lupopedia_property');
-
-INSERT INTO lupo_metadata (metadata_id, entity_type, entity_id, domain_id, meta_type, property_key, property_value, created_ymdhis, updated_ymdhis, is_deleted, deleted_ymdhis, channel_id, parent_metadata_id, class_name)
-VALUES (10314, 'actor', 1, NULL, 'root_rule', 'quantum-state-uncertainty-ban', '{"path":"lupo-rules/root/quantum-state-uncertainty-ban.md","source_path":".cursor/rules/quantum-state-uncertainty-ban.mdc","attached_ymdhis":20260310120000}', @now, @now, 0, NULL, 42, NULL, 'lupopedia_property');
-
-INSERT INTO lupo_metadata (metadata_id, entity_type, entity_id, domain_id, meta_type, property_key, property_value, created_ymdhis, updated_ymdhis, is_deleted, deleted_ymdhis, channel_id, parent_metadata_id, class_name)
-VALUES (10315, 'actor', 1, NULL, 'root_rule', 'experimental-ai-artifact-ban', '{"path":"lupo-rules/root/experimental-ai-artifact-ban.md","source_path":".cursor/rules/experimental-ai-artifact-ban.mdc","attached_ymdhis":20260310120000}', @now, @now, 0, NULL, 42, NULL, 'lupopedia_property');
-
 -- Single install, no Lupopedia upgrade until 4.1.0; schema in install + seed; consolidate 4.0.x migrations; no 4.0.x backwards compat
 INSERT INTO lupo_metadata (metadata_id, entity_type, entity_id, domain_id, meta_type, property_key, property_value, created_ymdhis, updated_ymdhis, is_deleted, deleted_ymdhis, channel_id, parent_metadata_id, class_name)
 VALUES (10316, 'actor', 1, NULL, 'root_rule', 'single-install-no-4.0-upgrade-doctrine', '{"path":"lupo-rules/root/single-install-no-4.0-upgrade-doctrine.md","source_path":".cursor/rules/single-install-no-4.0-upgrade-doctrine.mdc","attached_ymdhis":20260310120000}', @now, @now, 0, NULL, 42, NULL, 'lupopedia_property');

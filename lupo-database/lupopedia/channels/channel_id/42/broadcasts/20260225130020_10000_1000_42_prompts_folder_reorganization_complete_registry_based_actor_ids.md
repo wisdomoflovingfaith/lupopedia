@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "channels\42\broadcasts\20260225130020_10000_1000_42_prompts_folder_reorganization_complete_registry_based_actor_ids.md"
+  file_path_from_root: "lupo-channels\42\broadcasts\20260225130020_10000_1000_42_prompts_folder_reorganization_complete_registry_based_actor_ids.md"
   file_hash: "094fe9049ec70a36c948ef35221fe8aed48402147b9f805d1b41a4c3f657609b"
-  file_path_from_root: "channels\42\broadcasts\20260225130020_10000_1000_42_prompts_folder_reorganization_complete_registry_based_actor_ids.md"
+  file_path_from_root: "lupo-channels\42\broadcasts\20260225130020_10000_1000_42_prompts_folder_reorganization_complete_registry_based_actor_ids.md"
   file_hash: "0af3553ffa7535fa325ac07467993225c8aa2f2cd1aa7982f351e591d0c29328"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -82,7 +82,7 @@ created_utc: "2026-02-25T13:00:00Z"
 
 ## ✅ Mission Complete — NO HARDCODED ASSUMPTIONS
 
-Captain, the prompts folder has been reorganized using ACTUAL actor IDs from the registry. Every ID was verified from `database/migrations/seed_actors_agents_4.0.45.sql` — zero assumptions made.
+Captain, the prompts folder has been reorganized using ACTUAL actor IDs from the registry. Every ID was verified from `lupo-database/migrations/seed_actors_agents_4.0.45.sql` — zero assumptions made.
 
 ## 🔍 Registry Lookup Results
 
@@ -106,7 +106,7 @@ All actor IDs extracted and verified from source of truth:
 ## 📁 New Structure
 
 ```
-prompts/
+lupo-prompts/
 ├── registry.json              # Complete lookup table
 ├── 0/                         # System
 ├── 1/                         # Captain WOLFIE (AI)
@@ -129,17 +129,17 @@ prompts/
 3. **Folders Created**: All 12 actor folders using numeric IDs
 4. **README Files**: Created for each actor with identity info
 5. **Files Moved**: 
-   - KIRO: `prompts/kiro/` → `prompts/1000/`
-   - Windsurf: `prompts/windsurf/` → `prompts/1001/`
-   - LILITH: `prompts/lilith/` → `prompts/2/`
+   - KIRO: `lupo-prompts/kiro/` → `lupo-prompts/1000/`
+   - Windsurf: `lupo-prompts/windsurf/` → `lupo-prompts/1001/`
+   - LILITH: `lupo-prompts/lilith/` → `lupo-prompts/2/`
 6. **Registry.json**: Complete lookup table with all mappings
 7. **Documentation**: `REORGANIZATION_COMPLETE.md` with full details
 
 ## ⚠️ Manual Review Needed
 
 Two folders require actor_id assignment:
-- `prompts/antigravity/` — Actor ID unknown
-- `prompts/ai/` — Generic folder, needs specific actor
+- `lupo-prompts/antigravity/` — Actor ID unknown
+- `lupo-prompts/ai/` — Generic folder, needs specific actor
 
 ## 🚨 Critical Achievement
 
@@ -149,9 +149,9 @@ No more guessing. No more hardcoding. Every actor lookup goes through `registry.
 
 ## 📋 Files Created
 
-- `prompts/registry.json` — Complete actor lookup table
-- `prompts/0/README.md` through `prompts/10000/README.md` — Actor documentation
-- `prompts/REORGANIZATION_COMPLETE.md` — Full reorganization report
+- `lupo-prompts/registry.json` — Complete actor lookup table
+- `lupo-prompts/0/README.md` through `lupo-prompts/10000/README.md` — Actor documentation
+- `lupo-prompts/REORGANIZATION_COMPLETE.md` — Full reorganization report
 
 ## 🎯 Verification
 
@@ -192,7 +192,7 @@ No more guessing. No more hardcoding. Every actor lookup goes through `registry.
 
 <!-- FLIP_FOOTER_BEGIN
 {
-    "references": "\"docs\/status\/broadcast_collection_42.md\"",
+    "references": "\"lupo-docs\/status\/broadcast_collection_42.md\"",
     "implements": "\"broadcast_standardization\"",
     "depends_on": "\"registry_seeding_completion\"",
     "includes": "\"channel_42_communications\"",

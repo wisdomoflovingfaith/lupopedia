@@ -90,9 +90,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "channels\42\tasks\completed\ACTOR-CAPSULE-001.md"
+  file_path_from_root: "lupo-channels\42\tasks\completed\ACTOR-CAPSULE-001.md"
   file_hash: "135e289afac6ecfd3772f44c2220d6d210e8790c28c189ab45ffd50e9944180d"
-  file_path_from_root: "channels\42\tasks\completed\ACTOR-CAPSULE-001.md"
+  file_path_from_root: "lupo-channels\42\tasks\completed\ACTOR-CAPSULE-001.md"
   file_hash: "105c9c851131e43ef7b4ad4bca9175063ea7b6a7e5119a9eaa2c8fb60443655b"
   last_updated_utc: "20260228"
   system_version: "4.0.50"

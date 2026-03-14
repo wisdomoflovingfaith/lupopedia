@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -31,7 +31,7 @@ lupopedia.footer:
 # FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
 ---
 lupopedia.headers:
-  file_path_from_root: "channels/42/threads/DEVELOPMENT_CYCLE_4_0_49/20260227134000_1007_channels_admin_api_research.md"
+  file_path_from_root: "lupo-channels/42/threads/DEVELOPMENT_CYCLE_4_0_49/20260227134000_1007_channels_admin_api_research.md"
   file_hash: "0a96914b40ea22021f4447e0b354ff1f5aa55138441f4bc89b3d2cba4c83f557"
   system_version: "4.0.50"
   channel_id: 42
@@ -58,7 +58,7 @@ lupopedia.footer:
     - { to: "lupo-includes/modules/channels/channel-messages-api.php", type: "references", weight: 0.7, reason: "legacy channel messages endpoint" }
     - { to: "lupo-includes/modules/channels/operator-pending-visitors-api.php", type: "references", weight: 0.7, reason: "operator pending visitors endpoint" }
     - { to: "lupo-includes/modules/channels/operator-accept-visitor-api.php", type: "references", weight: 0.7, reason: "operator accept visitor endpoint" }
-    - { to: "channels/1/assets/js/channels_comm.js", type: "references", weight: 0.8, reason: "comm layer" }
+    - { to: "lupo-channels/1/assets/js/channels_comm.js", type: "references", weight: 0.8, reason: "comm layer" }
   semantic_tags: ["api", "research", "channel_42", "admin_interface"]
   last_verified: "20260227"
   last_verified_by: "codex-ide"
@@ -74,58 +74,58 @@ lupopedia.footer:
 
 ## Existing API Endpoints (Confirmed)
 Routing defined in `lupo-includes/modules/module-loader.php`:
-- `GET/POST api/channels/{id}/messages` -> `lupo-includes/modules/api/channels-api.php`
-- `GET api/channel/messages` -> `lupo-includes/modules/channels/channel-messages-api.php`
-- `POST api/channel/send` -> `lupo-includes/modules/channels/channel-send-api.php`
-- `GET/POST api/channel/typing` -> `lupo-includes/modules/channels/channel-typing-api.php`
-- `GET api/channel/check` -> `lupo-includes/modules/channels/channel-check-api.php`
-- `GET api/operator/pending-visitors` -> `lupo-includes/modules/channels/operator-pending-visitors-api.php`
-- `POST api/operator/accept-visitor` -> `lupo-includes/modules/channels/operator-accept-visitor-api.php`
+- `GET/POST lupo-api/channels/{id}/messages` -> `lupo-includes/modules/api/channels-api.php`
+- `GET lupo-api/channel/messages` -> `lupo-includes/modules/channels/channel-messages-api.php`
+- `POST lupo-api/channel/send` -> `lupo-includes/modules/channels/channel-send-api.php`
+- `GET/POST lupo-api/channel/typing` -> `lupo-includes/modules/channels/channel-typing-api.php`
+- `GET lupo-api/channel/check` -> `lupo-includes/modules/channels/channel-check-api.php`
+- `GET lupo-api/operator/pending-visitors` -> `lupo-includes/modules/channels/operator-pending-visitors-api.php`
+- `POST lupo-api/operator/accept-visitor` -> `lupo-includes/modules/channels/operator-accept-visitor-api.php`
 
 Other REST endpoints in the codebase (non-admin):
-- `api/registry/actors/lookup` and `api/registry/actors/register`
-- `api/semantic/*`
+- `lupo-api/registry/actors/lookup` and `lupo-api/registry/actors/register`
+- `lupo-api/semantic/*`
 
 ## Gaps for Channels Admin
-Admin pages in `channels/1/admin/` currently **read directly from DB**. There are no REST endpoints for:
+Admin pages in `lupo-channels/1/admin/` currently **read directly from DB**. There are no REST endpoints for:
 - Operators CRUD (`lupo_auth_users`)
 - Departments CRUD (`lupo_departments`)
 - Channel settings updates (`lupo_channels`)
 
 ## Recommendations: Best-Fit Endpoints
 ### 1) Chat Monitor (Use existing endpoints)
-- **GET** `api/channel/messages?channel_id={id}` (existing `channel-messages-api.php`)
-- **GET** `api/channel/check?channel_id={id}` (existing `channel-check-api.php`)
-- **POST** `api/channel/send` (existing `channel-send-api.php`)
-- **GET** `api/operator/pending-visitors` (existing)
-- **POST** `api/operator/accept-visitor` (existing)
+- **GET** `lupo-api/channel/messages?channel_id={id}` (existing `channel-messages-api.php`)
+- **GET** `lupo-api/channel/check?channel_id={id}` (existing `channel-check-api.php`)
+- **POST** `lupo-api/channel/send` (existing `channel-send-api.php`)
+- **GET** `lupo-api/operator/pending-visitors` (existing)
+- **POST** `lupo-api/operator/accept-visitor` (existing)
 
 ### 2) Operators (New admin endpoints required)
 Proposed REST endpoints:
-- **GET** `api/channels/admin/operators` -> list (filters: `is_active`, `limit`, `offset`)
-- **POST** `api/channels/admin/operators` -> create
-- **PUT** `api/channels/admin/operators/{auth_user_id}` -> update
-- **DELETE** `api/channels/admin/operators/{auth_user_id}` -> soft delete
+- **GET** `lupo-api/channels/admin/operators` -> list (filters: `is_active`, `limit`, `offset`)
+- **POST** `lupo-api/channels/admin/operators` -> create
+- **PUT** `lupo-api/channels/admin/operators/{auth_user_id}` -> update
+- **DELETE** `lupo-api/channels/admin/operators/{auth_user_id}` -> soft delete
 
 Suggested data source: `lupo_auth_users` (operator accounts). Keep DB logic minimal, use `is_deleted` and `is_active`.
 
 ### 3) Departments (New admin endpoints required)
 Proposed REST endpoints:
-- **GET** `api/channels/admin/departments`
-- **POST** `api/channels/admin/departments`
-- **PUT** `api/channels/admin/departments/{department_id}`
-- **DELETE** `api/channels/admin/departments/{department_id}`
+- **GET** `lupo-api/channels/admin/departments`
+- **POST** `lupo-api/channels/admin/departments`
+- **PUT** `lupo-api/channels/admin/departments/{department_id}`
+- **DELETE** `lupo-api/channels/admin/departments/{department_id}`
 
 Suggested data source: `lupo_departments` with soft-delete filters.
 
 ### 4) Settings (New admin endpoint required)
 Proposed REST endpoint:
-- **PUT** `api/channels/admin/settings/{channel_id}`
+- **PUT** `lupo-api/channels/admin/settings/{channel_id}`
 
 Suggested data source: `lupo_channels` fields that are safe to update (name, description, status_flag). Avoid changes that impact routing or schema.
 
 ## Security and Auth Notes
-- Reuse session validation from `channels/1/admin/admin_bootstrap.php`.
+- Reuse session validation from `lupo-channels/1/admin/admin_bootstrap.php`.
 - Require actor role in `lupo_actor_channels` or `isAdmin()` for all admin endpoints.
 - Enforce CSRF with `X-CSRF-Token` if wired from UI.
 
@@ -139,21 +139,21 @@ comm.fetchJson('operators', 'POST', payload, function(err, data) { ... });
 
 ## Proposed Endpoint Signatures (Draft)
 Operators:
-- GET `api/channels/admin/operators?limit=25&offset=0&is_active=1`
-- POST `api/channels/admin/operators` { username, display_name, email, password, is_active }
-- PUT `api/channels/admin/operators/{id}` { display_name, email, is_active }
-- DELETE `api/channels/admin/operators/{id}` { deleted_ymdhis }
+- GET `lupo-api/channels/admin/operators?limit=25&offset=0&is_active=1`
+- POST `lupo-api/channels/admin/operators` { username, display_name, email, password, is_active }
+- PUT `lupo-api/channels/admin/operators/{id}` { display_name, email, is_active }
+- DELETE `lupo-api/channels/admin/operators/{id}` { deleted_ymdhis }
 
 Departments:
-- GET `api/channels/admin/departments`
-- POST `api/channels/admin/departments` { name, email, show_dept }
-- PUT `api/channels/admin/departments/{id}` { name, email, show_dept }
-- DELETE `api/channels/admin/departments/{id}` { deleted_ymdhis }
+- GET `lupo-api/channels/admin/departments`
+- POST `lupo-api/channels/admin/departments` { name, email, show_dept }
+- PUT `lupo-api/channels/admin/departments/{id}` { name, email, show_dept }
+- DELETE `lupo-api/channels/admin/departments/{id}` { deleted_ymdhis }
 
 Settings:
-- PUT `api/channels/admin/settings/{channel_id}` { channel_name, description, status_flag }
+- PUT `lupo-api/channels/admin/settings/{channel_id}` { channel_name, description, status_flag }
 
 ## Next Steps
 1. Implement a small admin API module under `lupo-includes/modules/api/channels-admin-api.php` and route it from `module-loader.php`.
 2. Wire `channels_comm.js` to the new endpoints for real CRUD.
-3. Add API documentation file: `docs/api/channels_admin_endpoints.md`.
+3. Add API documentation file: `lupo-docs/api/channels_admin_endpoints.md`.

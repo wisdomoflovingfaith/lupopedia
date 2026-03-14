@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\channels\42\broadcasts\20260224_version_4_0_39_crafty_syntax_priority.md"
+  file_path_from_root: "lupo-docs\channels\42\broadcasts\20260224_version_4_0_39_crafty_syntax_priority.md"
   file_hash: "d585c33e6c1d87007e0380950e8575f6c56647b975f3f5684c23d1b874d35bc8"
-  file_path_from_root: "docs\channels\42\broadcasts\20260224_version_4_0_39_crafty_syntax_priority.md"
+  file_path_from_root: "lupo-docs\channels\42\broadcasts\20260224_version_4_0_39_crafty_syntax_priority.md"
   file_hash: "d471518109d4c3f6ac3a49b364ddcbd30169156efdbd8e7d7f6090e7677ee685"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -62,7 +62,7 @@ lupopedia.footer:
 
 ---
 wolfie.headers: {
-  file_path_from_root: "docs/channels/42/broadcasts/20260224_version_4_0_39_crafty_syntax_priority.md",
+  file_path_from_root: "lupo-docs/channels/42/broadcasts/20260224_version_4_0_39_crafty_syntax_priority.md",
   system_version: "4.0.39",
   channel_id: 42,
   mood_rgb: "FF6600",
@@ -90,21 +90,21 @@ wolfie.headers: {
 
 flip.footer: {
   inbound_edges: [
-    { from: "prompts/windsurf/20260224_version_4_0_39_crafty_syntax_priority.md", type: "implements", weight: 1.0, hashtag: "#directive" }
+    { from: "lupo-prompts/windsurf/20260224_version_4_0_39_crafty_syntax_priority.md", type: "implements", weight: 1.0, hashtag: "#directive" }
   ],
   outbound_edges: [
-    { to: "docs/versions/4.0.39/PRIORITY_FILES.md", type: "updates", weight: 1.0, hashtag: "#priority" },
-    { to: "docs/doctrine/ANUBIS_FALLBACK_DOCTRINE.md", type: "references", weight: 0.9, hashtag: "#doctrine" },
+    { to: "lupo-docs/versions/4.0.39/PRIORITY_FILES.md", type: "updates", weight: 1.0, hashtag: "#priority" },
+    { to: "lupo-docs/doctrine/ANUBIS_FALLBACK_DOCTRINE.md", type: "references", weight: 0.9, hashtag: "#doctrine" },
     { to: "lupo-includes/classes/AnubisHeaderFallback.php", type: "references", weight: 0.9, hashtag: "#implementation" },
     { to: "CHANGELOG.md", type: "will_update", weight: 0.8, hashtag: "#changelog" },
-    { to: "docs/status/kiro_header_completion_4_0_39.md", type: "coordinates", weight: 0.8, hashtag: "#coordination" },
-    { to: "docs/status/windsurf_v4_0_39_initialization.md", type: "builds_on", weight: 0.7, hashtag: "#foundation" },
-    { to: "legacy/craftysyntax/", type: "targets", weight: 1.0, hashtag: "#legacy" },
-    { to: "database/migrations/import_from_old_crafty_syntax.sql", type: "targets", weight: 1.0, hashtag: "#migration" }
+    { to: "lupo-docs/status/kiro_header_completion_4_0_39.md", type: "coordinates", weight: 0.8, hashtag: "#coordination" },
+    { to: "lupo-docs/status/windsurf_v4_0_39_initialization.md", type: "builds_on", weight: 0.7, hashtag: "#foundation" },
+    { to: "lupo-legacy/craftysyntax/", type: "targets", weight: 1.0, hashtag: "#legacy" },
+    { to: "lupo-database/migrations/import_from_old_crafty_syntax.sql", type: "targets", weight: 1.0, hashtag: "#migration" }
   ],
   referenced_by_actors: [10000, 1002, 1001, 1003, 2038],
   references: {
-    by_files: ["prompts/windsurf/20260224_version_4_0_39_crafty_syntax_priority.md"],
+    by_files: ["lupo-prompts/windsurf/20260224_version_4_0_39_crafty_syntax_priority.md"],
     by_actors: [10000, 1002, 1001, 1003, 2038]
   },
   semantic_tags: ["crafty_syntax_upgrade", "header_priority", "version_4_0_39", "upgrade_path", "agent_coordination"],
@@ -229,14 +229,14 @@ Lupopedia 4.0.x
 
 ### **✅ Target File Patterns**
 ```
-legacy/craftysyntax/*                    # Original Crafty Syntax files
-database/migrations/import_from_old_crafty_syntax.sql  # Migration logic
+lupo-legacy/craftysyntax/*                    # Original Crafty Syntax files
+lupo-database/migrations/import_from_old_crafty_syntax.sql  # Migration logic
 install.php                             # Installer
 lupo-includes/bootstrap.php             # Bootstrap
 lupo-includes/modules/crafty_syntax/*   # Crafty integration
-docs/*upgrade*                          # Upgrade documentation
-docs/*migration*                        # Migration documentation
-docs/*crafty*                           # Crafty-specific docs
+lupo-docs/*upgrade*                          # Upgrade documentation
+lupo-docs/*migration*                        # Migration documentation
+lupo-docs/*crafty*                           # Crafty-specific docs
 ```
 
 ### **✅ Search Strategy**

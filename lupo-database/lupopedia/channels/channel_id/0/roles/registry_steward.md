@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "channels\0\roles\registry_steward.md"
+  file_path_from_root: "lupo-channels\0\roles\registry_steward.md"
   file_hash: "4945e75d38678448bdcb709b8737246b111f0363f6150acb7083f40f265bb140"
-  file_path_from_root: "channels\0\roles\registry_steward.md"
+  file_path_from_root: "lupo-channels\0\roles\registry_steward.md"
   file_hash: "d63632e76e2e8a7885bfd30566edcd47d8f62094b1acbe07c46e6b82f4778f9f"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -146,8 +146,8 @@ Registry Stewards are responsible for managing the actor, channel, and agent reg
    - Recommend fixes
 
 4. **Documentation**
-   - Update `actors/registry.json`
-   - Update `channels/registry.json`
+   - Update `lupo-actors/registry.json`
+   - Update `lupo-channels/registry.json`
    - Maintain allocation log
    - Document policy changes
 
@@ -172,10 +172,10 @@ Registry Stewards report to System Administrators. Allocation conflicts must be 
 <!-- FLIP_FOOTER_BEGIN
 {
   "references": [
-    "actors/registry.json",
-    "channels/registry.json",
-    "database/migrations/seed_registry_comprehensive_4.0.45.sql",
-    "database/migrations/seed_registry_open_4.0.45.sql"
+    "lupo-actors/registry.json",
+    "lupo-channels/registry.json",
+    "lupo-database/migrations/seed_registry_comprehensive_4.0.45.sql",
+    "lupo-database/migrations/seed_registry_open_4.0.45.sql"
   ],
   "implements": "registry_authority_model",
   "depends_on": "registry_seeding",

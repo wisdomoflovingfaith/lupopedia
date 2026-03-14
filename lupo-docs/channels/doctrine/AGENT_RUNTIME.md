@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\channels\doctrine\AGENT_RUNTIME.md"
+  file_path_from_root: "lupo-docs\channels\doctrine\AGENT_RUNTIME.md"
   file_hash: "862d21efc8f641bbc6af8e604f3734efd96668789b1ffa43777ce9b8f7dd44b4"
-  file_path_from_root: "docs\channels\doctrine\AGENT_RUNTIME.md"
+  file_path_from_root: "lupo-docs\channels\doctrine\AGENT_RUNTIME.md"
   file_hash: "dc4a184a6fc7e3b174a3a434b6d50291adef6a7e097244b6b8b5966f7618fec4"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -725,7 +725,7 @@ When errors cannot be resolved automatically:
    - Validation: Task is within lane boundaries ✓
 
 2. CONTEXT ACQUISITION
-   - Read existing file: docs/example/EXAMPLE.md
+   - Read existing file: lupo-docs/example/EXAMPLE.md
    - Load WOLFIE header: version 3.0.13, last modified by CASCADE
    - Check dialog thread: uses changelog_dialog.md (no dedicated thread)
    - Understand file purpose: Example documentation
@@ -770,7 +770,7 @@ PATCH: Update Database Schema Documentation
 
 AGENT: KIRO (Documentation Lane)
 SCOPE: Single task - update schema documentation only
-FILES: docs/schema/DATABASE_SCHEMA.md
+FILES: lupo-docs/schema/DATABASE_SCHEMA.md
 
 EXECUTION:
 1. Read existing file and understand current state
@@ -788,7 +788,7 @@ RESULT: Single file updated, single task completed, full documentation
 ### 7.3 Correct Dialog Update
 ```
 BEFORE UPDATE:
-File: docs/example/EXAMPLE.md
+File: lupo-docs/example/EXAMPLE.md
 Header dialog block:
   dialog:
     speaker: CASCADE
@@ -805,7 +805,7 @@ Latest entry:
 **Message:** "Fixed legacy compatibility issues."
 
 AFTER UPDATE BY KIRO:
-File: docs/example/EXAMPLE.md
+File: lupo-docs/example/EXAMPLE.md
 Header dialog block:
   dialog:
     speaker: KIRO
@@ -890,7 +890,7 @@ file:
 
 ## 8. Cross-References
 
-- **[WOLFIE Header Doctrine](WOLFIE_HEADER_DOCTRINE.md)** (`docs/doctrine/WOLFIE_HEADER_DOCTRINE.md`) - MANDATORY rules for WOLFIE headers and metadata governance
+- **[WOLFIE Header Doctrine](WOLFIE_HEADER_DOCTRINE.md)** (`lupo-docs/doctrine/WOLFIE_HEADER_DOCTRINE.md`) - MANDATORY rules for WOLFIE headers and metadata governance
 - **[Dialog Doctrine](DIALOG_DOCTRINE.md)** - MANDATORY rules for dialog system architecture and thread management
 - **[Patch Discipline](PATCH_DISCIPLINE.md)** - Development workflow governance and single-task patch requirements
 - **[Directory Structure](DIRECTORY_STRUCTURE.md)** - File organization and structural requirements for agent operations

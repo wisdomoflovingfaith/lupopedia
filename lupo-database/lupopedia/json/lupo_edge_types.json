@@ -1,0 +1,35 @@
+{
+  "table_name": "lupo_edge_types",
+  "fields": [
+    "`edge_type_id` bigint NOT NULL auto_increment",
+    "`slug` varchar(64) NOT NULL",
+    "`label` varchar(128) NOT NULL",
+    "`description` text",
+    "`is_bidirectional` tinyint NOT NULL DEFAULT 0",
+    "`created_ymdhis` bigint NOT NULL DEFAULT 0",
+    "`updated_ymdhis` bigint NOT NULL DEFAULT 0",
+    "`is_deleted` tinyint NOT NULL DEFAULT 0"
+  ],
+  "data": [],
+  "indexes": [
+    {
+      "index_name": "lupo_edge_types_uniq_slug",
+      "columns": [
+        "slug"
+      ],
+      "is_unique": true,
+      "index_type": "BTREE"
+    }
+  ],
+  "primary_key": {
+    "column_name": "edge_type_id",
+    "expected_name": "edge_type_id",
+    "is_correct": true,
+    "needs_rename": false
+  },
+  "doctrine_metadata": {
+    "no_foreign_keys": true,
+    "no_triggers": true
+  },
+  "relationships": []
+}

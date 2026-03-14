@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\channels\doctrine\CURSOR_CASCADE_ROLE_SEPARATION_DOCTRINE.md"
+  file_path_from_root: "lupo-docs\channels\doctrine\CURSOR_CASCADE_ROLE_SEPARATION_DOCTRINE.md"
   file_hash: "150308de095e578e4155ddbc4382fcd69990b2090ff3d2bca591ffab8c2129e1"
-  file_path_from_root: "docs\channels\doctrine\CURSOR_CASCADE_ROLE_SEPARATION_DOCTRINE.md"
+  file_path_from_root: "lupo-docs\channels\doctrine\CURSOR_CASCADE_ROLE_SEPARATION_DOCTRINE.md"
   file_hash: "5e14a16b8842e63ead892f0978a993d2a170692b36b805d0c96e5fb6ee34c5cf"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -163,7 +163,7 @@ Cursor **MUST NOT** perform:
 1. **Legacy Code Edits**
    - âŒ Modifying legacy Crafty Syntax files
    - âŒ Rewriting legacy PHP code
-   - âŒ Touching `legacy/craftysyntax/` directory
+   - âŒ Touching `lupo-legacy/craftysyntax/` directory
    - âŒ Autonomous edits to pre-modernized code
 
 2. **Fragile Edits**
@@ -221,7 +221,7 @@ Cascade **MUST** perform:
 ### Cascade's Domain
 
 Cascade operates in:
-- âœ… Legacy Crafty Syntax code (`legacy/craftysyntax/`)
+- âœ… Legacy Crafty Syntax code (`lupo-legacy/craftysyntax/`)
 - âœ… Fragile or complex code
 - âœ… Pre-modernization refactors
 - âœ… Manual, step-by-step migrations
@@ -337,12 +337,12 @@ Cascade **MUST NOT** perform:
 **Cursor MUST:**
 - âœ… Wait for explicit instruction before touching any legacy file
 - âœ… Assume that Cascade will hand off files only when safe
-- âœ… Never autonomously modify `legacy/craftysyntax/` directory
+- âœ… Never autonomously modify `lupo-legacy/craftysyntax/` directory
 - âœ… Never perform predictive refactors on legacy code
 
 **Cursor MUST NOT:**
 - âŒ Touch legacy Crafty Syntax code without explicit handoff
-- âŒ Modify files in `legacy/craftysyntax/` autonomously
+- âŒ Modify files in `lupo-legacy/craftysyntax/` autonomously
 - âŒ Perform predictive updates on legacy code
 - âŒ Rewrite legacy PHP without explicit instruction
 
@@ -401,7 +401,7 @@ Cascade **MUST NOT** perform:
 
 **Phase 1 - Cascade (Manual):**
 ```
-1. Cascade manually edits `legacy/craftysyntax/chat.php`
+1. Cascade manually edits `lupo-legacy/craftysyntax/chat.php`
 2. Cascade fixes fragile logic step-by-step
 3. Cascade tests and validates changes
 4. Cascade stabilizes code structure
@@ -499,7 +499,7 @@ Cascade **MUST NOT** perform:
 ### Before Modifying Any File
 
 **Checklist:**
-1. âœ… Is this file in `legacy/craftysyntax/` directory?
+1. âœ… Is this file in `lupo-legacy/craftysyntax/` directory?
    - **If YES:** âŒ DO NOT MODIFY without explicit handoff instruction
    - **If NO:** âœ… Proceed if other rules allow
 
@@ -538,7 +538,7 @@ Cascade **MUST NOT** perform:
 ### Forbidden Autonomous Actions
 
 **Cursor must NOT autonomously:**
-- âŒ Modify files in `legacy/craftysyntax/`
+- âŒ Modify files in `lupo-legacy/craftysyntax/`
 - âŒ Rewrite legacy PHP code
 - âŒ Touch fragile or complex legacy logic
 - âŒ Perform predictive updates on legacy code
@@ -579,7 +579,7 @@ Cascade **MUST NOT** perform:
 ### Validation
 
 **To verify compliance:**
-1. Check if Cursor modified any files in `legacy/craftysyntax/` without explicit instruction
+1. Check if Cursor modified any files in `lupo-legacy/craftysyntax/` without explicit instruction
 2. Verify Cascade completed stabilization before handoff
 3. Confirm explicit communication occurred before Cursor touched legacy files
 4. Validate that domains are clearly separated

@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "channels\42\broadcasts\20260225130013_10000_1000_42_final_completion_broadcast_for_version_4_0_39_all_97_crafty_syntax_files_complete.md"
+  file_path_from_root: "lupo-channels\42\broadcasts\20260225130013_10000_1000_42_final_completion_broadcast_for_version_4_0_39_all_97_crafty_syntax_files_complete.md"
   file_hash: "e709fbe04de35d0b8a4c7ba633bdef3c73bcf1b89c0ab8afcfd206ee981fb4a8"
-  file_path_from_root: "channels\42\broadcasts\20260225130013_10000_1000_42_final_completion_broadcast_for_version_4_0_39_all_97_crafty_syntax_files_complete.md"
+  file_path_from_root: "lupo-channels\42\broadcasts\20260225130013_10000_1000_42_final_completion_broadcast_for_version_4_0_39_all_97_crafty_syntax_files_complete.md"
   file_hash: "63c7dd60645ea6388e993bd508f884381701fd36f8864b50db035378c8141d69"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -285,7 +285,7 @@ The entire Crafty Syntax 3.7.5 → Lupopedia 4.0.x upgrade path is now:
 **Documentation & Planning:** 9 files  
 **Code:** 1 file (AnubisHeaderFallback.php)  
 **Broadcasts:** 6 files  
-**Root Files:** 4 files (README.md, docs/README.md, CHANGELOG.md, handoff directive)  
+**Root Files:** 4 files (README.md, lupo-docs/README.md, CHANGELOG.md, handoff directive)  
 **Crafty Syntax Code Headers:** 69 files (15 P0 + 37 P1 + 17 P2)  
 **Livehelp Migration Doc Headers:** 28 files  
 **This Broadcast:** 1 file
@@ -331,7 +331,7 @@ The entire Crafty Syntax 3.7.5 → Lupopedia 4.0.x upgrade path is now:
 - Document results
 - Present to Captain for release approval
 
-**See:** `prompts/windsurf/20260224_begin_version_4_0_40.md`
+**See:** `lupo-prompts/windsurf/20260224_begin_version_4_0_40.md`
 
 ---
 
@@ -385,7 +385,7 @@ The entire Crafty Syntax 3.7.5 → Lupopedia 4.0.x upgrade path is now:
 
 <!-- FLIP_FOOTER_BEGIN
 {
-    "references": "\"docs\/status\/broadcast_collection_42.md\"",
+    "references": "\"lupo-docs\/status\/broadcast_collection_42.md\"",
     "implements": "\"broadcast_standardization\"",
     "depends_on": "\"registry_seeding_completion\"",
     "includes": "\"channel_42_communications\"",

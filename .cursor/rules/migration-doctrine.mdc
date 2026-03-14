@@ -23,7 +23,7 @@ ALL database structure changes MUST be done in TWO PLACES:
 
 ## Cursor MUST ALWAYS
 
-- Read schema from TOON files in `docs/toons/` (source of truth).
+- Read schema from TOON files in `lupo-database/lupopedia/toon/` (source of truth).
 - Update `install_new_lupopedia.sql` to match the TOONs when making a schema change.
 - Generate a migration SQL file to apply the same change to the live DB.
 

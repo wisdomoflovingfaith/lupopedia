@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\channels\doctrine\CONFIGURATION_DOCTRINE.md"
+  file_path_from_root: "lupo-docs\channels\doctrine\CONFIGURATION_DOCTRINE.md"
   file_hash: "345bc52ed407bdbe0c9cd2de43f8a4d6113c74155810d29f7802dbc3c83f4c6b"
-  file_path_from_root: "docs\channels\doctrine\CONFIGURATION_DOCTRINE.md"
+  file_path_from_root: "lupo-docs\channels\doctrine\CONFIGURATION_DOCTRINE.md"
   file_hash: "f5038fb74943f2ea21c36ce18e49963c05dc6253d9797ee947dbf14b6e739184"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -587,7 +587,7 @@ bootstrap.php                 â† Procedural (must stay procedural)
 lupopedia-loader.php          â† Procedural (must stay procedural)
   â”œâ”€â”€ functions-core.php      â† Procedural (may contain functions)
   â”œâ”€â”€ modules/module-loader.php â† Procedural (loads OOP modules)
-  â”œâ”€â”€ agents/agent-loader.php â† Procedural (loads OOP agent classes)
+  â”œâ”€â”€ lupo-agents/agent-loader.php â† Procedural (loads OOP agent classes)
   â””â”€â”€ ui/ui-loader.php        â† Procedural (loads OOP UI controllers)
 
 lupo-includes/

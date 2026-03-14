@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\doctrine\IDE_TASK_PRIORITY_DOCTRINE.md"
+  file_path_from_root: "lupo-docs\doctrine\IDE_TASK_PRIORITY_DOCTRINE.md"
   file_hash: "a6478daf3a758beb95e2ea174a657251388c27de231b3bae196f33c748f0619b"
-  file_path_from_root: "docs\doctrine\IDE_TASK_PRIORITY_DOCTRINE.md"
+  file_path_from_root: "lupo-docs\doctrine\IDE_TASK_PRIORITY_DOCTRINE.md"
   file_hash: "b72ea8ced707af26777f4af4d20f118be62424e60ec2091be76f122dfd4380bb"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -63,7 +63,7 @@ lupopedia.footer:
 
 ---
 wolfie.headers:
-  file_path_from_root: "docs/doctrine/IDE_TASK_PRIORITY_DOCTRINE.md"
+  file_path_from_root: "lupo-docs/doctrine/IDE_TASK_PRIORITY_DOCTRINE.md"
   system_version: "4.0.33"
   channel_id: 42
   mood_rgb: "FF8800"
@@ -76,7 +76,7 @@ wolfie.headers:
 flip.footer:
   referenced_by_files:
     - "CHANGELOG.md"
-    - "docs/AGENT_INVENTORY.md"
+    - "lupo-docs/AGENT_INVENTORY.md"
     - "IDE_AGENT_CONTRIBUTIONS_SUMMARY.md"
   referenced_by_channels:
     - 42

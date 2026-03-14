@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "channels\0\broadcasts\20260225120010_10000_1000_0_channel_scoped_actor_workspaces_now_mandatory.md"
+  file_path_from_root: "lupo-channels\0\broadcasts\20260225120010_10000_1000_0_channel_scoped_actor_workspaces_now_mandatory.md"
   file_hash: "55ac87ac6f61f2337bdf0f1fe25886b95843cf896c72a93da673acd12d4d12ec"
-  file_path_from_root: "channels\0\broadcasts\20260225120010_10000_1000_0_channel_scoped_actor_workspaces_now_mandatory.md"
+  file_path_from_root: "lupo-channels\0\broadcasts\20260225120010_10000_1000_0_channel_scoped_actor_workspaces_now_mandatory.md"
   file_hash: "2e45fd1dc7925cf770574f8eb4fd9d1bdc452cbfab00d270fc139be970d376eb"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -129,7 +129,7 @@ created_utc: "2026-02-25T12:00:00Z"
 
 <!-- FLIP_FOOTER_BEGIN
 {
-    "references": "\"docs\/status\/broadcast_collection_0.md\"",
+    "references": "\"lupo-docs\/status\/broadcast_collection_0.md\"",
     "implements": "\"broadcast_standardization\"",
     "depends_on": "\"registry_seeding_completion\"",
     "includes": "\"channel_0_communications\"",

@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,7 +35,7 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\channels\appendix\appendix\ABOUT_THE_CREATOR.md"
+  file_path_from_root: "lupo-docs\channels\appendix\appendix\ABOUT_THE_CREATOR.md"
   file_hash: "fbbeaeea047a9fb94825f8ba933fabdacf1a1a8ce2a9c9e6b5d3c8cd5253d3a6"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -57,7 +57,7 @@ lupopedia.footer:
 
 ---
 lupopedia.headers: {
-  file_path_from_root: "docs/channels/appendix/appendix/ABOUT_THE_CREATOR.md",
+  file_path_from_root: "lupo-docs/channels/appendix/appendix/ABOUT_THE_CREATOR.md",
   file_hash: "354978fcb5bf30b665d3124a287e29b48993fdcb487f80e8e6b9a04a2f7faf44"
   system_version: "4.0.50"
   channel_id: 42,
@@ -72,10 +72,10 @@ lupopedia.headers: {
   lupo_agent: "antigravity"
 }
 lupopedia.edges: {
-  file_path_from_root: "docs\channels\appendix\appendix\ABOUT_THE_CREATOR.md"
+  file_path_from_root: "lupo-docs\channels\appendix\appendix\ABOUT_THE_CREATOR.md"
   outbound_edges: [
-    { to: "docs/channels/appendix/appendix/FOUNDERS_NOTE.md", type: "references", weight: 1.0 },
-    { to: "docs/channels/appendix/appendix/WHO_IS_CAPTAIN_WOLFIE.md", type: "references", weight: 1.0 }
+    { to: "lupo-docs/channels/appendix/appendix/FOUNDERS_NOTE.md", type: "references", weight: 1.0 },
+    { to: "lupo-docs/channels/appendix/appendix/WHO_IS_CAPTAIN_WOLFIE.md", type: "references", weight: 1.0 }
   ],
   semantic_tags: ["founder_profile", "technical_lineage", "architect_background"]
 }

@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\versions\4.0.42\TODO.md"
+  file_path_from_root: "lupo-docs\versions\4.0.42\TODO.md"
   file_hash: "af1bdd43ca34b779398b1fe74c8f40074760cbabb167f6d5a96a350a73af2720"
-  file_path_from_root: "docs\versions\4.0.42\TODO.md"
+  file_path_from_root: "lupo-docs\versions\4.0.42\TODO.md"
   file_hash: "f5d703e5eb518a89c40b4a9c6d57b53cb44f47406c963d6e11bc14ea041e4926"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -82,7 +82,7 @@ lupopedia.footer:
   - ✅ `config/global_atoms.yaml` → GLOBAL_CURRENT_LUPOPEDIA_VERSION: "4.0.42"
   - ✅ `lupo-includes/version.php` → 4.0.42
   - ✅ `install.php` → 4.0.42
-- ✅ Development directory created: `docs/versions/4.0.42/`
+- ✅ Development directory created: `lupo-docs/versions/4.0.42/`
 - ✅ TODO.md created (this file)
 
 ---
@@ -112,13 +112,13 @@ lupopedia.footer:
 - ✅ Document current focus
 
 ### 2.5 Create Completion Report
-- ✅ `docs/status/kiro_version_4_0_42_initialization_complete_20260224.md`
+- ✅ `lupo-docs/status/kiro_version_4_0_42_initialization_complete_20260224.md`
 - ✅ Document all completed actions
 - ✅ Confirm system readiness
 
 ### 2.6 Thread Dialog System (Cursor Directive — Forwarded)
-- ✅ Created `docs/doctrine/THREAD_DIALOG_SYSTEM.md` — Protocol documentation
-- ✅ Created `channels/42/threads/ITS/` — Internal Thread Sync directory
+- ✅ Created `lupo-docs/doctrine/THREAD_DIALOG_SYSTEM.md` — Protocol documentation
+- ✅ Created `lupo-channels/42/threads/ITS/` — Internal Thread Sync directory
 - ✅ Created KIRO→Windsurf message in ITS thread
 - ✅ Updated CHANGELOG with all initialization work
 - ✅ Posted completion broadcast
@@ -142,8 +142,8 @@ lupopedia.footer:
 - ✅ Validate clean state (Captain confirmed)
 
 ### 3.3 Run Core Validation Scripts
-- ✅ `php scripts/verify_grounded_architecture.php` — Exit code: 0
-- ✅ `php scripts/verify_dialog_messages.php` — Exit code: 0
+- ✅ `php lupo-scripts/verify_grounded_architecture.php` — Exit code: 0
+- ✅ `php lupo-scripts/verify_dialog_messages.php` — Exit code: 0
 
 ---
 
@@ -185,8 +185,8 @@ lupopedia.footer:
 
 ### 5.1 Run Validation Scripts
 - ⏳ `validate_420.php`
-- ⏳ `scripts/verify_grounded_architecture.php`
-- ⏳ `scripts/verify_dialog_messages.php`
+- ⏳ `lupo-scripts/verify_grounded_architecture.php`
+- ⏳ `lupo-scripts/verify_dialog_messages.php`
 - ⏳ `test_dialog_migration.php`
 
 ### 5.2 Error Verification
@@ -256,10 +256,10 @@ lupopedia.footer:
 
 **Key Files:**
 - `install.php` — Main installer (version 4.0.42)
-- `database/migrations/old_crafty_syntax_3_7_5_start.sql` — Baseline
-- `database/migrations/import_from_old_crafty_syntax.sql` — Migration
-- `database/migrations/install_new_lupopedia.sql` — Schema
-- `database/migrations/seed_lupopedia.sql` — Seed data
+- `lupo-database/migrations/old_crafty_syntax_3_7_5_start.sql` — Baseline
+- `lupo-database/migrations/import_from_old_crafty_syntax.sql` — Migration
+- `lupo-database/migrations/install_new_lupopedia.sql` — Schema
+- `lupo-database/migrations/seed_lupopedia.sql` — Seed data
 
 **Expected Outcome:**
 Complete validation of Crafty Syntax 3.7.5 → Lupopedia 4.0.42 upgrade path with zero errors.

@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "channels\42\actors\1000\README.md"
+  file_path_from_root: "lupo-channels\42\actors\1000\README.md"
   file_hash: "042c92e1193e847c55b83c2d3851346cc93dc01b43030386b83dc5fdedd49630"
-  file_path_from_root: "channels\42\actors\1000\README.md"
+  file_path_from_root: "lupo-channels\42\actors\1000\README.md"
   file_hash: "74f88364f4d1ed5977a037f24f54d3edde0fb7b29d143f1373a9e35eb4cd7df8"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -85,7 +85,7 @@ This is the working directory for KIRO IDE on Channel 42.
 
 - Files here are TEMPORARY and MUTABLE
 - Do NOT store permanent artifacts here
-- Do NOT store doctrine here (use docs/doctrine/)
+- Do NOT store doctrine here (use lupo-docs/doctrine/)
 - Do NOT store system documentation here
 - Files may be cleaned up periodically
 

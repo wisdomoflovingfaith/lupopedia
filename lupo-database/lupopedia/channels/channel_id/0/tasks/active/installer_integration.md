@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "channels\0\tasks\active\installer_integration.md"
+  file_path_from_root: "lupo-channels\0\tasks\active\installer_integration.md"
   file_hash: "bd70a4c3c77211455473dba6d3f61ec122cbf788b9801743c2808236e51e05c4"
-  file_path_from_root: "channels\0\tasks\active\installer_integration.md"
+  file_path_from_root: "lupo-channels\0\tasks\active\installer_integration.md"
   file_hash: "84040f35d0f793b2be6127059918155a644ac1f18becb1c171dc9ac79c3c4fe3"
   last_updated_utc: "20260228"
   system_version: "4.0.73"
@@ -121,12 +121,12 @@ The installer is the primary entry point for new Lupopedia installations and Cra
    - Set proper permissions
 
 5. **Add broadcast import**
-   - Import existing broadcasts from `channels/*/broadcasts/`
+   - Import existing broadcasts from `lupo-channels/*/broadcasts/`
    - Validate metadata
    - Report any issues
 
 6. **Create post-install checklist**
-   - Document: `docs/installation/post_install_checklist.md`
+   - Document: `lupo-docs/installation/post_install_checklist.md`
    - List verification steps
    - Include troubleshooting guide
 
@@ -155,10 +155,10 @@ This task integrates all previous work into the installer. It's the final step b
 {
   "references": [
     "install.php",
-    "database/migrations/install_new_lupopedia.sql",
-    "database/migrations/seed_registry_comprehensive_4.0.45.sql",
-    "database/migrations/seed_registry_open_4.0.45.sql",
-    "database/migrations/seed_actors_agents_4.0.45.sql"
+    "lupo-database/migrations/install_new_lupopedia.sql",
+    "lupo-database/migrations/seed_registry_comprehensive_4.0.45.sql",
+    "lupo-database/migrations/seed_registry_open_4.0.45.sql",
+    "lupo-database/migrations/seed_actors_agents_4.0.45.sql"
   ],
   "implements": "installer_workspace_integration",
   "depends_on": [

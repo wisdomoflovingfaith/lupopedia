@@ -23,7 +23,7 @@ class ToonValidator
         $this->db = $db ? $db : (class_exists('DatabaseFactory') ? DatabaseFactory::getConnection() : null);
         $this->table_prefix = defined('LUPO_TABLE_PREFIX') ? LUPO_TABLE_PREFIX : 'lupo_';
         $base = defined('LUPOPEDIA_PATH') ? LUPOPEDIA_PATH : (defined('LUPOPEDIA_ABSPATH') ? LUPOPEDIA_ABSPATH : dirname(dirname(__DIR__)));
-        $this->toon_dir = $base . DIRECTORY_SEPARATOR . 'lupo-docs' . DIRECTORY_SEPARATOR . 'toons';
+        $this->toon_dir = $base . DIRECTORY_SEPARATOR . 'lupo-database' . DIRECTORY_SEPARATOR . 'lupopedia' . DIRECTORY_SEPARATOR . 'toon';
     }
 
     /**
@@ -71,7 +71,7 @@ class ToonValidator
     }
 
     /**
-     * Load TOON file for a table (.toon.json in lupo-docs/toons)
+     * Load TOON file for a table (.toon.json in lupo-database/lupopedia/toon)
      *
      * @param string $table
      * @return array|null decoded JSON or null

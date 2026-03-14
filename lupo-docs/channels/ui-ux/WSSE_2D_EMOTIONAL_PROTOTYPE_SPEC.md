@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\channels\ui-ux\WSSE_2D_EMOTIONAL_PROTOTYPE_SPEC.md"
+  file_path_from_root: "lupo-docs\channels\ui-ux\WSSE_2D_EMOTIONAL_PROTOTYPE_SPEC.md"
   file_hash: "56aa530331bc2fccb1971d2bc581befd8b8d622cd0947078771485ea9a7ab453"
-  file_path_from_root: "docs\channels\ui-ux\WSSE_2D_EMOTIONAL_PROTOTYPE_SPEC.md"
+  file_path_from_root: "lupo-docs\channels\ui-ux\WSSE_2D_EMOTIONAL_PROTOTYPE_SPEC.md"
   file_hash: "f16d7a80d2ff6dc43f969c1b7b355ae14ead4337dfa662b7141532447b5ee1d0"
   last_updated_utc: "20260228"
   system_version: "4.0.50"

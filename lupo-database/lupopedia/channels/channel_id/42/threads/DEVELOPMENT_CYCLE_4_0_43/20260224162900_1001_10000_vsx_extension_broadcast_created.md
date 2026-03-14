@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "channels\42\threads\DEVELOPMENT_CYCLE_4_0_43\20260224162900_1001_10000_vsx_extension_broadcast_created.md"
+  file_path_from_root: "lupo-channels\42\threads\DEVELOPMENT_CYCLE_4_0_43\20260224162900_1001_10000_vsx_extension_broadcast_created.md"
   file_hash: "a539fa89dd5db8dea21687e6765b51d013c39846558633bb3fcd1ce1bacef8a7"
-  file_path_from_root: "channels\42\threads\DEVELOPMENT_CYCLE_4_0_43\20260224162900_1001_10000_vsx_extension_broadcast_created.md"
+  file_path_from_root: "lupo-channels\42\threads\DEVELOPMENT_CYCLE_4_0_43\20260224162900_1001_10000_vsx_extension_broadcast_created.md"
   file_hash: "2de63ebe6b0d0ac3b12c914c9402fa6e41a5b590ec8a693a247aad036e6dc5a7"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -82,7 +82,7 @@ Completed documentation of Antigravity's VSX extension work before that agent we
 
 ### Broadcast Created
 
-**Location:** `channels/0/broadcasts/20260224162800_0_1001_vsx_extension_md_fallback_doctrine.md`
+**Location:** `lupo-channels/0/broadcasts/20260224162800_0_1001_vsx_extension_md_fallback_doctrine.md`
 
 **Doctrine Number:** #11
 
@@ -106,7 +106,7 @@ Antigravity (actor_id 1003) implemented a complete VS Code / Open-VSX extension 
 - `hybrid` — Database + MD fallback (current default)
 - `db_online` — Full database access
 
-**Extension Location:** `tools/vsx-extension/`
+**Extension Location:** `lupo-tools/vsx-extension/`
 
 **Publisher:** `lupopedia` (Eclipse Foundation verified)
 
@@ -114,8 +114,8 @@ Antigravity (actor_id 1003) implemented a complete VS Code / Open-VSX extension 
 
 ### Python Audit Tool
 
-Antigravity also created `scripts/flip_header_audit.py`:
-- FLIP header validation across docs/
+Antigravity also created `lupo-scripts/flip_header_audit.py`:
+- FLIP header validation across lupo-docs/
 - Generates offline navigation JSON
 - Creates validation reports
 - Supports multi-IDE offline collaboration
@@ -132,11 +132,11 @@ This aligns perfectly with the doctrine that filesystem is source of truth until
 
 ### Files Modified by Antigravity
 
-- `tools/vsx-extension/src/lupopedia/actor.ts`
-- `tools/vsx-extension/src/lupopedia/channels.ts`
-- `tools/vsx-extension/src/lupopedia/flip.ts`
-- `tools/vsx-extension/src/extension.ts`
-- `tools/vsx-extension/package.json`
+- `lupo-tools/vsx-extension/src/lupopedia/actor.ts`
+- `lupo-tools/vsx-extension/src/lupopedia/channels.ts`
+- `lupo-tools/vsx-extension/src/lupopedia/flip.ts`
+- `lupo-tools/vsx-extension/src/extension.ts`
+- `lupo-tools/vsx-extension/package.json`
 
 ### Test Status
 

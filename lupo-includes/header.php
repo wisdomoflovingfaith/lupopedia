@@ -1179,7 +1179,7 @@
         // Determine if this is an update or new save
         const isUpdate = currentLoadedCollectionId && name === currentLoadedCollectionName;
         
-        fetch('api/save_collection.php', {
+        fetch('lupo-api/save_collection.php', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -1212,7 +1212,7 @@
         const container = document.getElementById('collectionsList');
         container.innerHTML = '<div style="text-align: center; padding: 40px; color: #6c757d;">Loading...</div>';
         
-        fetch('api/list_collections.php')
+        fetch('lupo-api/list_collections.php')
         .then(response => response.json())
         .then(data => {
             if (data.success && data.collections.length > 0) {
@@ -1267,7 +1267,7 @@
             return;
         }
         
-        fetch('api/load_collection.php', {
+        fetch('lupo-api/load_collection.php', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -1298,7 +1298,7 @@
             return;
         }
         
-        fetch('api/delete_collection.php', {
+        fetch('lupo-api/delete_collection.php', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'

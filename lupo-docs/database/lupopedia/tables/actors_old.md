@@ -1,6 +1,6 @@
 ---
 lupopedia.headers:
-  file_path_from_root: "docs/database/lupopedia/tables/actors_old.md"
+  file_path_from_root: "lupo-docs/database/lupopedia/tables/actors_old.md"
   file_hash: "e0f955efce940e6db039228e1b039ca827362242cabc3b53fc472d8042dcd009"
   system_version: "4.0.50"
   channel_id: 0
@@ -12,9 +12,9 @@ lupopedia.headers:
   lupo_agent: "gemini-cli"
 
 lupopedia.edges:
-  file_path_from_root: "docs\database\lupopedia\tables\actors_old.md"
+  file_path_from_root: "lupo-docs\database\lupopedia\tables\actors_old.md"
   outbound_edges:
-- { to: "docs/database/lupopedia/tables/lupo_actors.md", type: "references", weight: 1.0, reason: "Canonical table documentation" }
+- { to: "lupo-docs/database/lupopedia/tables/lupo_actors.md", type: "references", weight: 1.0, reason: "Canonical table documentation" }
   semantic_tags: ["actors", "legacy", "doctrine"]
 
   delegation_chain: null

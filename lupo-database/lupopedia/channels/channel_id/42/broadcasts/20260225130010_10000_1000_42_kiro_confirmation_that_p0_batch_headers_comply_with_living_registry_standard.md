@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "channels\42\broadcasts\20260225130010_10000_1000_42_kiro_confirmation_that_p0_batch_headers_comply_with_living_registry_standard.md"
+  file_path_from_root: "lupo-channels\42\broadcasts\20260225130010_10000_1000_42_kiro_confirmation_that_p0_batch_headers_comply_with_living_registry_standard.md"
   file_hash: "5ef65fc27bbcdaa085ea32f8d51719685b1139da57d58cb6c74756571b1ced0e"
-  file_path_from_root: "channels\42\broadcasts\20260225130010_10000_1000_42_kiro_confirmation_that_p0_batch_headers_comply_with_living_registry_standard.md"
+  file_path_from_root: "lupo-channels\42\broadcasts\20260225130010_10000_1000_42_kiro_confirmation_that_p0_batch_headers_comply_with_living_registry_standard.md"
   file_hash: "0912a56e7b1f3e4a6c248e3c9fac7c404da212cc22154ff3285c1b0bb8627b64"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -189,9 +189,9 @@ All remaining P0 files will be generated with the same Living Registry standard:
 
 **Next Files:**
 3. `lupopedia-config.php` — Will include full Living Registry metadata
-4. `database/migrations/install_new_lupopedia.sql` — Will include full metadata
-5. `database/migrations/import_from_old_crafty_syntax.sql` — Will include full metadata
-6. `database/migrations/old_crafty_syntax_3_7_5_start.sql` — Will include full metadata
+4. `lupo-database/migrations/install_new_lupopedia.sql` — Will include full metadata
+5. `lupo-database/migrations/import_from_old_crafty_syntax.sql` — Will include full metadata
+6. `lupo-database/migrations/old_crafty_syntax_3_7_5_start.sql` — Will include full metadata
 7-15. All remaining P0 files — Will include full metadata
 
 **Commitment:** Every P0 file will have:
@@ -267,7 +267,7 @@ All remaining P0 files will be generated with the same Living Registry standard:
 
 <!-- FLIP_FOOTER_BEGIN
 {
-    "references": "\"docs\/status\/broadcast_collection_42.md\"",
+    "references": "\"lupo-docs\/status\/broadcast_collection_42.md\"",
     "implements": "\"broadcast_standardization\"",
     "depends_on": "\"registry_seeding_completion\"",
     "includes": "\"channel_42_communications\"",

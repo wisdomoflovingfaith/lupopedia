@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\channels\doctrine\VERSION_DOCTRINE.md"
+  file_path_from_root: "lupo-docs\channels\doctrine\VERSION_DOCTRINE.md"
   file_hash: "40309eecd7749b7a1957380c9c96d096aef24d6ab708a56224826166ce6cabbf"
-  file_path_from_root: "docs\channels\doctrine\VERSION_DOCTRINE.md"
+  file_path_from_root: "lupo-docs\channels\doctrine\VERSION_DOCTRINE.md"
   file_hash: "8f77886dee588e91ef0093720f8e672d60ec699324d2fae976244866e33d446e"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -425,7 +425,7 @@ grep -R "wolfie.headers.version: 3.0.3" .
 grep -R "wolfie.headers.version: 3.0.0" . --include="*.php"
 
 # Find documentation files from specific era
-grep -R "wolfie.headers.version: 3.0.1" docs/
+grep -R "wolfie.headers.version: 3.0.1" lupo-docs/
 ```
 
 ### Practical Use Cases
@@ -670,7 +670,7 @@ When bumping the ecosystem version, you **MUST** complete all steps in order. Mi
 - [ ] **DO NOT** perform global search-and-replace on version numbers
 
 #### Step 7: Validation
-- [ ] Run validation script: `php scripts/validate_version_consistency.php` (if exists)
+- [ ] Run validation script: `php lupo-scripts/validate_version_consistency.php` (if exists)
 - [ ] Verify `config/global_atoms.yaml` version matches `lupo-includes/version.php` constants
 - [ ] Verify CHANGELOG.md has entry for new version
 - [ ] Verify consolidated summary is updated
@@ -728,7 +728,7 @@ This script will:
 ## Related Documentation
 
 - `config/global_atoms.yaml` - Atom definitions
-- `docs/doctrine/WOLFIE_HEADER_DOCTRINE.md` - WOLFIE Header specification (canonical doctrine file)
+- `lupo-docs/doctrine/WOLFIE_HEADER_DOCTRINE.md` - WOLFIE Header specification (canonical doctrine file)
 - `CHANGELOG.md` - Version history
 - `wolfie_headers.yaml` - WOLFIE Header specification
 - `lupo-includes/functions/load_atoms.php` - Atom loader function (Phase 2)

@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\doctrine\FLIP\FLP_CHANNEL_0.md"
+  file_path_from_root: "lupo-docs\doctrine\FLIP\FLP_CHANNEL_0.md"
   file_hash: "f6c620dc4965488d532fc4d3aef8740b837b0b58435b8d71c4e46d3ecd715551"
-  file_path_from_root: "docs\doctrine\FLIP\FLP_CHANNEL_0.md"
+  file_path_from_root: "lupo-docs\doctrine\FLIP\FLP_CHANNEL_0.md"
   file_hash: "b29a426ffd5e1cc170e8ba5c68b0b55f4f9f8ac44c965545ab5e389856449a91"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -64,7 +64,7 @@ lupopedia.footer:
 ---
 # FLIP Header (alias: Wolfie Header, CROP Header, FLIPPING Header)
 wolfie.headers: explicit architecture with structured clarity for every file.
-file_path_from_root: docs/doctrine/FLIP/FLP_CHANNEL_0.md
+file_path_from_root: lupo-docs/doctrine/FLIP/FLP_CHANNEL_0.md
 file.last_modified_system_version: "4.0.16"
 file.last_modified_utc: "20260218000000"
 channel_id: 0
@@ -72,7 +72,7 @@ tags: ["channel", "kernel", "system", "flip"]
 mood_rgb: "FFFFFF"
 X-Lupo-Actor-ID: 2035
 X-Lupo-Actor-Identity: "Lupopedia Audit Tool (Auto-Fixed)"
-X-Lupo-File-Path: docs/doctrine/FLIP/FLP_CHANNEL_0.md
+X-Lupo-File-Path: lupo-docs/doctrine/FLIP/FLP_CHANNEL_0.md
 ---
 # FLP — Channel 0 (System Kernel)
 

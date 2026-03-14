@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\channels\appendix\appendix\COUNTING_IN_LIGHT.md"
+  file_path_from_root: "lupo-docs\channels\appendix\appendix\COUNTING_IN_LIGHT.md"
   file_hash: "a2dc961c72a37b4bd22bf46711ed281670cd18e77a2b0abbac53f5b47fd8ff7a"
-  file_path_from_root: "docs\channels\appendix\appendix\COUNTING_IN_LIGHT.md"
+  file_path_from_root: "lupo-docs\channels\appendix\appendix\COUNTING_IN_LIGHT.md"
   file_hash: "fe57add7647979b8c79e0b79c0260f58b2bef9308358d02060e7c766a29b0de9"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -316,8 +316,8 @@ The doctrine defines the axes and the abstract tensor structure. All conversion 
 
 ## **10. Related Documentation**
 
-- **Reflective Emotional Geometry Doctrine:** `docs/doctrine/REFLECTIVE_EMOTIONAL_GEOMETRY_DOCTRINE.md` - Mathematical foundation for emotional metadata system
-- **MOOD RGB Doctrine:** `docs/doctrine/MOOD_RGB_DOCTRINE.md` - Mood color usage across agents
+- **Reflective Emotional Geometry Doctrine:** `lupo-docs/doctrine/REFLECTIVE_EMOTIONAL_GEOMETRY_DOCTRINE.md` - Mathematical foundation for emotional metadata system
+- **MOOD RGB Doctrine:** `lupo-docs/doctrine/MOOD_RGB_DOCTRINE.md` - Mood color usage across agents
 - **DIALOG Agent Guide:** `lupo-agents/3/COUNTING_IN_LIGHT.md` - DIALOG-specific mood assignment guide
 
 ---

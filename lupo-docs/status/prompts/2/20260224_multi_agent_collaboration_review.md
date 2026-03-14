@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "prompts\2\20260224_multi_agent_collaboration_review.md"
+  file_path_from_root: "lupo-prompts\2\20260224_multi_agent_collaboration_review.md"
   file_hash: "12253973c3e111ebfe82d5b0961b54603345fcf550e21907d27c8a7b731aaccd"
-  file_path_from_root: "prompts\2\20260224_multi_agent_collaboration_review.md"
+  file_path_from_root: "lupo-prompts\2\20260224_multi_agent_collaboration_review.md"
   file_hash: "0e69198ead24b9203fdf0b32df1759f091b44cc9884692f73be66c8200f5b3d7"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -63,7 +63,7 @@ lupopedia.footer:
 
 ---
 wolfie.headers:
-  file_path_from_root: "prompts/lilith/20260224_multi_agent_collaboration_review.md"
+  file_path_from_root: "lupo-prompts/lilith/20260224_multi_agent_collaboration_review.md"
   system_version: "4.0.37"
   channel_id: 42
   mood_rgb: "FF00FF"
@@ -77,7 +77,7 @@ flip.footer:
   referenced_by_files:
     - "README.md"
     - "CHANGELOG.md"
-    - "docs/doctrine/HYBRID_ACTOR/HYBRID_ACTOR_2_0.md"
+    - "lupo-docs/doctrine/HYBRID_ACTOR/HYBRID_ACTOR_2_0.md"
   referenced_by_actors:
     - 2038  # LILITH
     - 1001  # KIRO
@@ -154,7 +154,7 @@ Every file modified by any agent includes the shared Thread ID and high-speed cr
 ```yaml
 ---
 wolfie.headers:
-  file_path_from_root: "tools/vsx-extension/src/extension.ts"
+  file_path_from_root: "lupo-tools/vsx-extension/src/extension.ts"
   system_version: "4.0.37"
   channel_id: 42
   mood_rgb: "4B0082"

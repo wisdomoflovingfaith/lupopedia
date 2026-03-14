@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\doctrine\FLIP\FLIPPING_FILE_LEXA_LILITH.md"
+  file_path_from_root: "lupo-docs\doctrine\FLIP\FLIPPING_FILE_LEXA_LILITH.md"
   file_hash: "4b9ff2066bfe37fae681c3cd48d9f03276ed3e4516f0b7cf51b0d4614576b248"
-  file_path_from_root: "docs\doctrine\FLIP\FLIPPING_FILE_LEXA_LILITH.md"
+  file_path_from_root: "lupo-docs\doctrine\FLIP\FLIPPING_FILE_LEXA_LILITH.md"
   file_hash: "cf953fb2e7e1f69c2890763fa443ff639289f60925a1d6ba74ad1c06402778ea"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -64,7 +64,7 @@ lupopedia.footer:
 ---
 # FLIP Header (alias: Wolfie Header, CROP Header, FLIPPING Header)
 wolfie.headers: explicit architecture with structured clarity for every file.
-file_path_from_root: docs/doctrine/FLIP/FLIPPING_FILE_LEXA_LILITH.md
+file_path_from_root: lupo-docs/doctrine/FLIP/FLIPPING_FILE_LEXA_LILITH.md
 file.last_modified_system_version: "4.0.16"
 file.last_modified_utc: "20260217230000"
 # channel_id unresolved — requires lupo_contents lookup by application.
@@ -75,7 +75,7 @@ dialog:
 X-Lupo-Channel: 42   # ANUBIS adoption channel (Auto-Fixed)
 X-Lupo-Actor-ID: 2035
 X-Lupo-Actor-Identity: "Lupopedia Audit Tool (Auto-Fixed)"
-X-Lupo-File-Path: docs/doctrine/FLIP/FLIPPING_FILE_LEXA_LILITH.md
+X-Lupo-File-Path: lupo-docs/doctrine/FLIP/FLIPPING_FILE_LEXA_LILITH.md
 ---
 # The FLIPPING File — FLP, FLIP Headers, and How Headers + Database Work (for LEXA and LILITH)
 
@@ -94,7 +94,7 @@ X-Lupo-File-Path: docs/doctrine/FLIP/FLIPPING_FILE_LEXA_LILITH.md
 - When a file is "flipped" to the system (e.g. handed to Cursor or any agent), the agent must **infer** everything about that file **only from its header** — no guessing, no hallucinating, no filling in from repo scan or external context.
 - The **header** is the boundary and truth source for that file. Identity, lineage, channel, version, emotional state, doctrine, placement, meaning — all inferred from the header when present. If a field is absent, the agent must **not** invent it. Omission is information.
 
-**Canonical FLIP doctrine:** `docs/doctrine/FLIP/FLIP_DOCTRINE.md`.
+**Canonical FLIP doctrine:** `lupo-docs/doctrine/FLIP/FLIP_DOCTRINE.md`.
 
 ---
 
@@ -107,17 +107,17 @@ These are **the same thing**. One canonical name: **FLIP Headers**. Aliases: Wol
   This line never changes. Agents must not alter, reword, shorten, or "improve" it.
 
 - **Doctrine-required fields for reconstruction and versioning:**
-  - `file_path_from_root` — Path from repo root (e.g. `docs/doctrine/FLIP/FLIP_DOCTRINE.md`).
+  - `file_path_from_root` — Path from repo root (e.g. `lupo-docs/doctrine/FLIP/FLIP_DOCTRINE.md`).
   - `file.last_modified_system_version` — System version when the file was last edited (e.g. `"4.0.16"`). Literal string, not an atom. Updated only when the file is modified.
   - `file.last_modified_utc` — UTC timestamp of last modification, 14-digit BIGINT format `YYYYMMDDHHIISS` (e.g. `"20260217000000"`).
   - `channel_id` — Optional; when resolvable from the database (e.g. via `lupo_edges`), can be included. Otherwise: comment `# channel_id unresolved — requires lupo_contents lookup by application.`
 
 - **Optional fields (FLP enrichment; not for core inference):**
   - `mood_rgb` — 6-character hex string (e.g. `FF0000`, `6464FF`) per FLP_EMOTIONAL_GEOMETRY.md. Emotional state; may appear in dialog block or header. For dialog messages, stored in `lupo_dialog_messages.mood_rgb`; for header-only use, may be included in stored metadata per app convention.
-  - `tags` — Array of strings (e.g. `["doctrine", "security"]`). Used for indexing, routing, or classification. When parsed by the loader, stored in `lupo_contents.tags` (JSON). Schema source of truth: `docs/toons/lupo_contents.toon.json`.
+  - `tags` — Array of strings (e.g. `["doctrine", "security"]`). Used for indexing, routing, or classification. When parsed by the loader, stored in `lupo_contents.tags` (JSON). Schema source of truth: `lupo-docs/toons/lupo_contents.toon.json`.
   - `atoms` — Key-value map for custom metadata (e.g. `GLOBAL_CURRENT_LUPOPEDIA_VERSION`). Resolved per atom specification. Storage per app convention; when the loader persists optional header metadata, it uses TOON-defined columns only (e.g. `tags` for tag arrays; see TOON).
 
-**Full header specification (structure, optional blocks, dialog, tags, atoms):** `docs/channels/agents/WOLFIE_HEADER_SPECIFICATION.md`. Optionals not for core inference; stored in `lupo_contents.tags` (JSON) or `lupo_contents.dialog_notes` (text) per TOON and app convention when parsed.
+**Full header specification (structure, optional blocks, dialog, tags, atoms):** `lupo-docs/channels/agents/WOLFIE_HEADER_SPECIFICATION.md`. Optionals not for core inference; stored in `lupo_contents.tags` (JSON) or `lupo_contents.dialog_notes` (text) per TOON and app convention when parsed.
 
 ---
 
@@ -137,11 +137,11 @@ These are **the same thing**. One canonical name: **FLIP Headers**. Aliases: Wol
 
 **Any agent** (kernel actors like LEXA/LILITH, external agents like Grok) can "flip" file headers — reconstruct or provide FLIP headers via inference or database resolution.
 
-- **Local agents (Cursor, Windsurf, etc.):** Use `tools/generate_flip_header.py` with `--path`, `--url`, or `--content-id`. Output: full FLIP Header block. Use `--web` for JSON output compatible with the web API.
-- **External agents (e.g. Grok browsing lupopedia.com):** Browse the web API endpoint, e.g. `GET {LUPOPEDIA_PUBLIC_PATH}/api/flip-header.php?path=docs/doctrine/FLIP/FLIP_DOCTRINE.md`. Returns JSON `{header: "...", resolved: true/false}` or raw YAML if `?format=yaml`. The header includes `channel_id` when resolvable from `lupo_edges`. Subdir-aware: use `LUPOPEDIA_PUBLIC_PATH` (e.g. `/lupopedia`) for installs in subdirectories.
+- **Local agents (Cursor, Windsurf, etc.):** Use `lupo-tools/generate_flip_header.py` with `--path`, `--url`, or `--content-id`. Output: full FLIP Header block. Use `--web` for JSON output compatible with the web API.
+- **External agents (e.g. Grok browsing lupopedia.com):** Browse the web API endpoint, e.g. `GET {LUPOPEDIA_PUBLIC_PATH}/api/flip-header.php?path=lupo-docs/doctrine/FLIP/FLIP_DOCTRINE.md`. Returns JSON `{header: "...", resolved: true/false}` or raw YAML if `?format=yaml`. The header includes `channel_id` when resolvable from `lupo_edges`. Subdir-aware: use `LUPOPEDIA_PUBLIC_PATH` (e.g. `/lupopedia`) for installs in subdirectories.
 - **Integration rule:** Agents infer **only** from the returned header. No guessing. The web API and generator both produce the same doctrine-required fields; external agents consume the YAML block and apply FLIP inference.
 
-**Example (Grok):** Browse `https://lupopedia.com/lupopedia/api/flip-header.php?path=docs/doctrine/FLIP/FLIPPING_FILE_LEXA_LILITH.md` → receive JSON with full header → infer file identity and lineage from header only.
+**Example (Grok):** Browse `https://lupopedia.com/lupopedia/api/flip-header.php?path=lupo-docs/doctrine/FLIP/FLIPPING_FILE_LEXA_LILITH.md` → receive JSON with full header → infer file identity and lineage from header only.
 
 ---
 
@@ -160,26 +160,26 @@ The table **`lupo_contents`** stores content (e.g. ingested docs, articles). To 
 - **No foreign keys, no triggers, no DB-side logic** for these columns. Application (or loader/generator) writes and reads them.
 - **channel_id** is **not** stored on `lupo_contents`. It is resolved by the application via **`lupo_edges`**: edge type `HAS_CONTENT`, `left_object_type = 'channel'`, `right_object_type = 'content'`, `right_object_id = content_id` → `left_object_id` is the channel_id.
 
-**Schema source of truth:** TOON files in `docs/toons/` (e.g. `lupo_contents.toon.json`). Install: `database/migrations/install_new_lupopedia.sql`. One-time migration for existing DBs: `database/migrations/20260217_add_missing_flip_fields.sql` (and earlier `20260217_add_flip_header_fields.sql` for `file_path_from_root` only).
+**Schema source of truth:** TOON files in `lupo-docs/toons/` (e.g. `lupo_contents.toon.json`). Install: `lupo-database/migrations/install_new_lupopedia.sql`. One-time migration for existing DBs: `lupo-database/migrations/20260217_add_missing_flip_fields.sql` (and earlier `20260217_add_flip_header_fields.sql` for `file_path_from_root` only).
 
 ---
 
-### 2.2 Loader: `scripts/import_os.py`
+### 2.2 Loader: `lupo-scripts/import_os.py`
 
-The loader **ingests** Markdown files under `docs/` into `lupo_contents`.
+The loader **ingests** Markdown files under `lupo-docs/` into `lupo_contents`.
 
 - **Recognizes** FLIP Headers (and Wolfie/CROP/FLIPPING as same block) by signature or presence of `file_path_from_root` in the YAML block.
 - **Reads** from the header when present: `file_path_from_root`, `file.last_modified_system_version`, `file.last_modified_utc`.
 - **Writes** those into `lupo_contents` as `file_path_from_root`, `file_last_modified_system_version`, `file_last_modified_utc`. If the header omits path, the loader computes path from repo root and validates it.
 - **Does not** infer or store `channel_id`; application resolves channel later via lupo_contents / lupo_edges lookup.
 - **Creates** an edge in `lupo_edges` (channel HAS_CONTENT content) for the imported content; that is how `channel_id` becomes resolvable for that content.
-- **Optional header fields:** When present, the loader may write tags to `lupo_contents.tags` (JSON) and dialog block to `lupo_contents.dialog_notes` (text), per TOON (`docs/toons/lupo_contents.toon.json`). No columns beyond those defined in the TOON.
+- **Optional header fields:** When present, the loader may write tags to `lupo_contents.tags` (JSON) and dialog block to `lupo_contents.dialog_notes` (text), per TOON (`lupo-docs/toons/lupo_contents.toon.json`). No columns beyond those defined in the TOON.
 
 So: **file on disk → header parsed → FLIP fields written to DB.** One direction. No schema or TOON changes from the loader.
 
 ---
 
-### 2.3 Generator: `tools/generate_flip_header.py`
+### 2.3 Generator: `lupo-tools/generate_flip_header.py`
 
 The generator **reconstructs** a full FLIP/Wolfie header **from** the database.
 
@@ -196,7 +196,7 @@ The generator **reconstructs** a full FLIP/Wolfie header **from** the database.
 
 So: **DB (path / URL / content_id) → query → full header.** Other direction from the loader. Enables "give me the header for this path/URL/content_id" without reading the file from disk.
 
-**Web API wrapper:** For external agents (e.g. Grok browsing lupopedia.com), the PHP endpoint `api/flip-header.php` wraps this logic: GET with `path`, `url`, or `content_id` returns JSON `{header: yaml_string, resolved: true/false}`. See `docs/api/FLIP_API.md`.
+**Web API wrapper:** For external agents (e.g. Grok browsing lupopedia.com), the PHP endpoint `lupo-api/flip-header.php` wraps this logic: GET with `path`, `url`, or `content_id` returns JSON `{header: yaml_string, resolved: true/false}`. See `lupo-docs/api/FLIP_API.md`.
 
 ---
 
@@ -213,11 +213,11 @@ Headers and database stay aligned when: (1) the loader runs on files that have F
 
 ## Part 2.5 — Database tables and navigation: from content to channel_id and dialog
 
-To get **all semantic information** for a file/content from the database — including **channel_id**, **channel details**, **dialog threads**, and **dialog messages** — use the tables and navigation below. Schema is from TOON files in `docs/toons/`; column names and types must match TOONs. Use **parameterized SQL only** (e.g. `:content_id`, `%s`); never concatenate values into SQL.
+To get **all semantic information** for a file/content from the database — including **channel_id**, **channel details**, **dialog threads**, and **dialog messages** — use the tables and navigation below. Schema is from TOON files in `lupo-docs/toons/`; column names and types must match TOONs. Use **parameterized SQL only** (e.g. `:content_id`, `%s`); never concatenate values into SQL.
 
 ### Tables relevant to FLP/FLIP and content semantics
 
-| Table | Role (TOON source: docs/toons/) |
+| Table | Role (TOON source: lupo-docs/toons/) |
 |-------|----------------------------------|
 | **lupo_contents** | Content row: FLIP columns (`file_path_from_root`, `file_last_modified_system_version`, `file_last_modified_utc`), `content_id`, `slug`, `title`, `body`, `content_url`, `custom_path`, `content_type`, **`dialog_notes`** (inline dialog/notes on this content), etc. |
 | **lupo_edges** | Links content to channel. Edge type `HAS_CONTENT`: `left_object_type='channel'`, `left_object_id` = channel_id, `right_object_type='content'`, `right_object_id` = content_id. Also has `channel_id`, `channel_key` on the edge. |
@@ -285,7 +285,7 @@ If you could not load the dialog thread or channel_id before, it is because: (a)
 
 ### Part 2.6 — Actors on a channel (LILITH-required)
 
-To list **actors on the channel** that a content belongs to, use **lupo_actor_channels** and **lupo_actors** (and optionally **lupo_actor_channel_roles** for role). Schema from TOONs: `docs/toons/lupo_actor_channels.toon.json`, `docs/toons/lupo_actors.toon.json`, `docs/toons/lupo_actor_channel_roles.toon.json`.
+To list **actors on the channel** that a content belongs to, use **lupo_actor_channels** and **lupo_actors** (and optionally **lupo_actor_channel_roles** for role). Schema from TOONs: `lupo-docs/toons/lupo_actor_channels.toon.json`, `lupo-docs/toons/lupo_actors.toon.json`, `lupo-docs/toons/lupo_actor_channel_roles.toon.json`.
 
 1. Resolve **content_id** from lupo_contents (by file_path_from_root, content_id, or URL).
 2. Resolve **channel_id** from lupo_edges (HAS_CONTENT, right_object_id = content_id) → left_object_id.
@@ -338,13 +338,13 @@ All relationships are application-resolved; no schema or triggers added for FLP.
 
 ### Part 2.9 — Sample reconstructed FLIP header for this file (LILITH-required)
 
-Output that **tools/generate_flip_header.py** (or equivalent) can produce for this file, given `file_path_from_root: docs/doctrine/FLIP/FLIPPING_FILE_LEXA_LILITH.md` and resolved channel_id (e.g. 0):
+Output that **lupo-tools/generate_flip_header.py** (or equivalent) can produce for this file, given `file_path_from_root: lupo-docs/doctrine/FLIP/FLIPPING_FILE_LEXA_LILITH.md` and resolved channel_id (e.g. 0):
 
 ```yaml
 ---
 # FLIP Header (alias: Wolfie Header, CROP Header, FLIPPING Header)
 wolfie.headers: explicit architecture with structured clarity for every file.
-file_path_from_root: docs/doctrine/FLIP/FLIPPING_FILE_LEXA_LILITH.md
+file_path_from_root: lupo-docs/doctrine/FLIP/FLIPPING_FILE_LEXA_LILITH.md
 file.last_modified_system_version: "4.0.16"
 file.last_modified_utc: "00000000000000"
 channel_id: 0
@@ -378,7 +378,7 @@ end
 
 Only the **sanitized** result (or None) may be stored in the DB as `file_path_from_root`. Never store unvalidated user or header input.
 
-**Implementation reference:** Path validation is implemented in `api/flip-header.php` (function `validate_path_from_root`) and in `scripts/import_os.py` (`validate_path_inside_root`, `validate_and_sanitize_path_from_root`). The web API must use the same logic for path params to prevent `..` escapes and root traversal.
+**Implementation reference:** Path validation is implemented in `lupo-api/flip-header.php` (function `validate_path_from_root`) and in `lupo-scripts/import_os.py` (`validate_path_inside_root`, `validate_and_sanitize_path_from_root`). The web API must use the same logic for path params to prevent `..` escapes and root traversal.
 
 ---
 
@@ -389,12 +389,12 @@ This section documents what is **seeded** in Lupopedia, the **only supported upg
 #### Upgrade path (doctrine)
 
 - **Only valid upgrade path:** **Crafty Syntax 3.7.5 → Lupopedia 4.0.x**. There is **no** Lupopedia → Lupopedia upgrade in the 4.0.x series.
-- **Install:** `database/migrations/install_new_lupopedia.sql` creates all required tables. **Seed:** `database/migrations/seed_lupopedia.sql` populates system channels, actors, kernel agents, modules, departments, and the **Lupopedia Development** channel (channel 42).
+- **Install:** `lupo-database/migrations/install_new_lupopedia.sql` creates all required tables. **Seed:** `lupo-database/migrations/seed_lupopedia.sql` populates system channels, actors, kernel agents, modules, departments, and the **Lupopedia Development** channel (channel 42).
 - **Importer:** `import_from_old_crafty_syntax.sql` (and wizard) migrate **from** an existing Crafty Syntax 3.7.5 database **into** a Lupopedia schema; seed runs after install to provide the Lupopedia-side bootstrap (channels, registry, actors, channel 42, dialog).
 
 #### Tables and columns involved in FLIP, FLP, and seeding
 
-All schema is from TOONs (`docs/toons/`) and install SQL. No inference from live DB.
+All schema is from TOONs (`lupo-docs/toons/`) and install SQL. No inference from live DB.
 
 | Table | Role | FLIP/FLP/Seed |
 |-------|------|----------------|
@@ -407,7 +407,7 @@ All schema is from TOONs (`docs/toons/`) and install SQL. No inference from live
 | **lupo_actor_channel_roles** | Role per actor per channel (e.g. admin) | **Seed:** actor_channel_role_id 2000–2024, channel_id 42, role_key='admin' for the same 25 agents. Used for channel admin rights. |
 | **lupo_dialog_threads** | Threads per channel | **Seed:** dialog_thread_id 1, channel_id 42, project_slug 'lupopedia', task_name 'Lupopedia Development seed', status 'Open'. |
 | **lupo_dialog_messages** | Messages in thread/channel | **Seed:** message_id 1–2 from actor 0 (system); 3–27 one per kernel agent; 28–31 FLIP/FLIPPING info and universal flipping API refs (28–29 FLIP path lookup; 30–31 web API). |
-| **lupo_dialog_channels** | Dialog metadata per channel (file_source, message_count) | **Seed:** channel_id 42, channel_name 'Lupopedia Development', file_source 'docs/doctrine/FLIP/FLIPPING_FILE_LEXA_LILITH.md', message_count 31. |
+| **lupo_dialog_channels** | Dialog metadata per channel (file_source, message_count) | **Seed:** channel_id 42, channel_name 'Lupopedia Development', file_source 'lupo-docs/doctrine/FLIP/FLIPPING_FILE_LEXA_LILITH.md', message_count 31. |
 
 Reserved ID doctrine applies: channels, actors, and registry-backed entities use **explicit IDs** in seed (no AUTO_INCREMENT for those tables in seed path). All timestamps in seed are BIGINT UTC YmdHis (`@now` in seed = 20260211000000 or as set at top of seed file).
 
@@ -420,16 +420,16 @@ Reserved ID doctrine applies: channels, actors, and registry-backed entities use
 - **lupo_actor_channel_roles:** 25 rows (actor_channel_role_id 2000–2024), each with `channel_id = 42`, `role_key = 'admin'`, so every AI agent with dialog on channel 42 has admin rights.
 - **lupo_dialog_threads:** One row `dialog_thread_id = 1`, `channel_id = 42`.
 - **lupo_dialog_messages:** 31 total: 1–2 from actor 0 (system); 3–27 one per kernel agent; 28–29 FLIP/FLIPPING info; 30–31 universal flipping API refs.
-- **lupo_dialog_channels:** One row `channel_id = 42`, `file_source = 'docs/doctrine/FLIP/FLIPPING_FILE_LEXA_LILITH.md'`, `message_count = 31`.
+- **lupo_dialog_channels:** One row `channel_id = 42`, `file_source = 'lupo-docs/doctrine/FLIP/FLIPPING_FILE_LEXA_LILITH.md'`, `message_count = 31`.
 
 Agent names for dialog messages and for application display come from **lupo_actors** seed (name column); the list of agents on channel 42 is defined by **lupo_actor_channels** seed for channel_id = 42, not guessed.
 
 #### FLIP/FLP work done so far (summary)
 
-- **FLIP doctrine and headers:** Canonical naming (FLIP Headers; aliases Wolfie, CROP, FLIPPING); inference from header only; doctrine in `docs/doctrine/FLIP/FLIP_DOCTRINE.md`.
+- **FLIP doctrine and headers:** Canonical naming (FLIP Headers; aliases Wolfie, CROP, FLIPPING); inference from header only; doctrine in `lupo-docs/doctrine/FLIP/FLIP_DOCTRINE.md`.
 - **DB columns for FLIP:** `lupo_contents.file_path_from_root`, `file_last_modified_system_version`, `file_last_modified_utc`; migrations `20260217_add_flip_header_fields.sql`, `20260217_add_missing_flip_fields.sql`.
-- **Loader:** `scripts/import_os.py` — reads FLIP header from Markdown under `docs/`, writes FLIP columns to lupo_contents; parameterized SQL; path validation (inside repo root, no `..`); creates HAS_CONTENT edge; does not infer channel_id.
-- **Generator:** `tools/generate_flip_header.py` — path/URL/content_id → query lupo_contents (and lupo_edges for channel_id) → output full FLIP header block.
+- **Loader:** `lupo-scripts/import_os.py` — reads FLIP header from Markdown under `lupo-docs/`, writes FLIP columns to lupo_contents; parameterized SQL; path validation (inside repo root, no `..`); creates HAS_CONTENT edge; does not infer channel_id.
+- **Generator:** `lupo-tools/generate_flip_header.py` — path/URL/content_id → query lupo_contents (and lupo_edges for channel_id) → output full FLIP header block.
 - **ContentChannelActorResolver:** `lupo-includes/classes/ContentChannelActorResolver.php` — given file path, resolves content_id → channel_id via lupo_edges → actors via lupo_actor_channels + lupo_actors (optional lupo_actor_channel_roles for role_key).
 - **FLP:** Governance layer (councils, reviewers, emotional geometry) using existing tables and soft references; no new schema.
 - **Seed:** Channel 42, kernel agents on 42, one dialog message per agent, admin role per agent on 42; idempotent inserts with explicit IDs and ON DUPLICATE KEY UPDATE where appropriate. FLIP content (content_id 2001, 2002) with file_path_from_root for FLIPPING_FILE_LEXA_LILITH.md and FLIP_DOCTRINE.md; lupo_edges HAS_CONTENT (edge_id 900001, 900002) linking channel 42 to those contents. Dialog messages 28–31 with FLIP/FLIPPING info and universal flipping API refs. lupo_dialog_channels.file_source = FLIPPING path. message_count = 31.
@@ -451,7 +451,7 @@ The **dialog** block in a FLIP Header is **optional** and **purely informational
   ```
 
 - **Overlap with lupo_contents.dialog_notes:** The application may choose to store the dialog block (or a serialized form of it) in `lupo_contents.dialog_notes` when ingesting content (e.g. via the loader). Parsing and storage are application-defined; no mandated format. If stored, use plain text or a safe serialization (e.g. YAML string, JSON); **no eval, exec, or shell** on dialog content. See Part 2.7 for dialog_notes purpose and parsing.
-- **Documentation:** Optional elements (including `dialog`) are documented in `docs/channels/agents/WOLFIE_HEADER_SPECIFICATION.md`. Per LILITH's recommendation: document the dialog block as optional and non-authoritative so agents do not treat it as inference input.
+- **Documentation:** Optional elements (including `dialog`) are documented in `lupo-docs/channels/agents/WOLFIE_HEADER_SPECIFICATION.md`. Per LILITH's recommendation: document the dialog block as optional and non-authoritative so agents do not treat it as inference input.
 
 ---
 
@@ -474,7 +474,7 @@ LEXA enforces doctrine and boundaries. For FLIP/FLP and headers + database, LEXA
 
 ### 3.3 Database and schema
 
-- **No schema inference from the live DB.** Schema comes from TOON files and install/migration SQL only.
+- **No schema inference from the live DB.** Schema comes from TOON files and lupo-install/migration SQL only.
 - **No triggers, no FKs, no stored procedures** for FLIP/FLP. All behavior in application code.
 - **Table prefix:** Use configured prefix (e.g. `LUPO_TABLE_PREFIX`); in migration files use placeholder `{prefix}` and replace before execution. In installer SQL use literal `lupo_`.
 
@@ -497,7 +497,7 @@ LILITH is an application-level agent (heterodox reviewer). In the FLP, heterodox
 
 - **FLIP vs FLP.** FLIP = file-level inference from headers. FLP = governance layer on top of Lupopedia (councils, reviewers, emotional aggregation). Confusion between the two is a structural flaw. Docs and code should use "FLIP" for the header protocol and "FLP" for the federated likeness protocol.
 - **Header naming.** Canonical: "FLIP Headers." Aliases: Wolfie, CROP, FLIPPING. Any doc or comment that treats "Wolfie Header" as the only name, or invents new names without tying them to FLIP, is drift.
-- **Single source of truth.** FLIP doctrine lives in `docs/doctrine/FLIP/`. Schema lives in TOONs and install/migration SQL. No duplicate or suffixed FLIP doctrine files; no schema inferred from live DB.
+- **Single source of truth.** FLIP doctrine lives in `lupo-docs/doctrine/FLIP/`. Schema lives in TOONs and lupo-install/migration SQL. No duplicate or suffixed FLIP doctrine files; no schema inferred from live DB.
 
 ### 4.2 Database and application boundary
 
@@ -529,7 +529,7 @@ LILITH is an application-level agent (heterodox reviewer). In the FLP, heterodox
 | **FLIP Headers** | Canonical name for the YAML block at top of file (aliases: Wolfie, CROP, FLIPPING). |
 | **FLP** | Federated Likeness Protocol: governance layer (councils, reviewers, emotional geometry) on top of Lupopedia; no new schema. |
 | **Upgrade path** | **Only:** Crafty Syntax 3.7.5 → Lupopedia 4.0.x. No Lupopedia→Lupopedia in 4.0.x. Install + seed + importer. |
-| **Seed file** | `database/migrations/seed_lupopedia.sql`. Seeds channels (0, 42), REGISTRY, actors, actor_channels, actor_channel_roles, dialog_threads, dialog_messages, dialog_channels; explicit IDs; idempotent where applicable. |
+| **Seed file** | `lupo-database/migrations/seed_lupopedia.sql`. Seeds channels (0, 42), REGISTRY, actors, actor_channels, actor_channel_roles, dialog_threads, dialog_messages, dialog_channels; explicit IDs; idempotent where applicable. |
 | **Channel 42** | Lupopedia Development. Seeded: lupo_channels, lupo_registry (entity_index 42), 25 kernel agents in lupo_actor_channels + lupo_actor_channel_roles (admin), including LEXA (actor_id 24). One dialog thread, 31 dialog messages (1–2 system, 3–27 kernel agents, 28–31 FLIP/API refs), lupo_dialog_channels (file_source FLIPPING path, message_count 31). FLIP content (lupo_contents 2001, 2002) with file_path_from_root; lupo_edges HAS_CONTENT to channel 42. Web API for universal flipping. |
 | **lupo_contents FLIP columns** | `file_path_from_root`, `file_last_modified_system_version`, `file_last_modified_utc`. Also: `dialog_notes` (text), `tags` (JSON) per TOON for optional header fields. |
 | **channel_id** | Not on lupo_contents. Resolved via **lupo_edges**: `left_object_id` WHERE right_object_type='content' AND right_object_id=content_id AND edge_type='HAS_CONTENT' AND is_deleted=0. |
@@ -538,10 +538,10 @@ LILITH is an application-level agent (heterodox reviewer). In the FLP, heterodox
 | **Dialog channel metadata** | **lupo_dialog_channels** WHERE channel_id = :channel_id (file_source, speaker, target, message_count, etc.). |
 | **Actors on channel** | **lupo_actor_channels** + **lupo_actors**; optional **lupo_actor_channel_roles** for role_key (e.g. admin). |
 | **Optional dialog block** | In FLIP Header: optional YAML `dialog:` (e.g. speaker, target, message). Purely informational; not for inference. May be stored in lupo_contents.dialog_notes per app convention; no eval on content. See Part 2.12. |
-| **Loader** | `scripts/import_os.py`: file → parse header → write FLIP fields to lupo_contents; parameterized SQL; path validation; optionally parses dialog block → dialog_notes. |
-| **Generator** | `tools/generate_flip_header.py`: path/URL/content_id → query DB → output full FLIP header; optionally includes dialog_notes if present. Use `--web` for JSON output. |
-| **mood_rgb / mood_RGB** | 6-character hex string (e.g. `6464FF`, `00FF00`) per FLP emotional geometry. See **docs/doctrine/FLIP/FLP_EMOTIONAL_GEOMETRY.md**. Dialog messages use `lupo_dialog_messages.mood_rgb`; optional header dialog may carry mood. |
-| **Universal Flipping** | Any agent can flip via `generate_flip_header.py` (local) or `GET /api/flip-header.php?path=...` (web). Example: `?path=docs/doctrine/FLIP/FLIP_DOCTRINE.md` returns JSON with full header. |
+| **Loader** | `lupo-scripts/import_os.py`: file → parse header → write FLIP fields to lupo_contents; parameterized SQL; path validation; optionally parses dialog block → dialog_notes. |
+| **Generator** | `lupo-tools/generate_flip_header.py`: path/URL/content_id → query DB → output full FLIP header; optionally includes dialog_notes if present. Use `--web` for JSON output. |
+| **mood_rgb / mood_RGB** | 6-character hex string (e.g. `6464FF`, `00FF00`) per FLP emotional geometry. See **lupo-docs/doctrine/FLIP/FLP_EMOTIONAL_GEOMETRY.md**. Dialog messages use `lupo_dialog_messages.mood_rgb`; optional header dialog may carry mood. |
+| **Universal Flipping** | Any agent can flip via `generate_flip_header.py` (local) or `GET /api/flip-header.php?path=...` (web). Example: `?path=lupo-docs/doctrine/FLIP/FLIP_DOCTRINE.md` returns JSON with full header. |
 | **Optional header fields** | `mood_rgb` (6-char hex), `tags` (array of strings), `atoms` (key-value map). FLP enrichment; not for core inference. Stored per TOON: e.g. tags in `lupo_contents.tags`, dialog in `dialog_notes`. See WOLFIE_HEADER_SPECIFICATION.md. |
 
 ---
@@ -556,12 +556,12 @@ LILITH is an application-level agent (heterodox reviewer). In the FLP, heterodox
 - **Example JSON response:**
   ```json
   {
-    "header": "---\n# FLIP Header ...\nfile_path_from_root: docs/doctrine/FLIP/FLIP_DOCTRINE.md\n...\n---",
+    "header": "---\n# FLIP Header ...\nfile_path_from_root: lupo-docs/doctrine/FLIP/FLIP_DOCTRINE.md\n...\n---",
     "resolved": true,
     "channel_id": 42
   }
   ```
-- **Example requests:** JSON: `GET /lupopedia/api/flip-header.php?path=docs/doctrine/FLIP/FLIP_DOCTRINE.md`; YAML: add `&format=yaml`.
+- **Example requests:** JSON: `GET /lupopedia/api/flip-header.php?path=lupo-docs/doctrine/FLIP/FLIP_DOCTRINE.md`; YAML: add `&format=yaml`.
 
 ### Part 6.2 — Security & Doctrine
 

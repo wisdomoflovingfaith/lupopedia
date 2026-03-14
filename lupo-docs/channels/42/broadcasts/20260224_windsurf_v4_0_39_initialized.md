@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\channels\42\broadcasts\20260224_windsurf_v4_0_39_initialized.md"
+  file_path_from_root: "lupo-docs\channels\42\broadcasts\20260224_windsurf_v4_0_39_initialized.md"
   file_hash: "d3b394bb2cb6c2f38cc437371a3f741b01ce16eb02097b6d146dabc0876cbd65"
-  file_path_from_root: "docs\channels\42\broadcasts\20260224_windsurf_v4_0_39_initialized.md"
+  file_path_from_root: "lupo-docs\channels\42\broadcasts\20260224_windsurf_v4_0_39_initialized.md"
   file_hash: "271336b6e042edf9872e12ec3302814b6af1800759a58a4de6e03973aed9d918"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -62,7 +62,7 @@ lupopedia.footer:
 
 ---
 wolfie.headers: {
-  file_path_from_root: "docs/channels/42/broadcasts/20260224_windsurf_v4_0_39_initialized.md",
+  file_path_from_root: "lupo-docs/channels/42/broadcasts/20260224_windsurf_v4_0_39_initialized.md",
   system_version: "4.0.39",
   channel_id: 42,
   mood_rgb: "33CCFF",
@@ -90,20 +90,20 @@ wolfie.headers: {
 
 flip.footer: {
   inbound_edges: [
-    { from: "prompts/windsurf/20260224_v4_0_39_header_completion_and_anubis_directive.md", type: "implements", weight: 1.0, hashtag: "#directive" },
-    { from: "docs/status/windsurf_v4_0_39_initialization.md", type: "announces", weight: 0.9, hashtag: "#status" }
+    { from: "lupo-prompts/windsurf/20260224_v4_0_39_header_completion_and_anubis_directive.md", type: "implements", weight: 1.0, hashtag: "#directive" },
+    { from: "lupo-docs/status/windsurf_v4_0_39_initialization.md", type: "announces", weight: 0.9, hashtag: "#status" }
   ],
   outbound_edges: [
-    { to: "docs/versions/4.0.39/TODO.md", type: "coordinates", weight: 0.8, hashtag: "#todo" },
-    { to: "docs/doctrine/ANUBIS_FALLBACK_DOCTRINE.md", type: "will_create", weight: 1.0, hashtag: "#doctrine" },
+    { to: "lupo-docs/versions/4.0.39/TODO.md", type: "coordinates", weight: 0.8, hashtag: "#todo" },
+    { to: "lupo-docs/doctrine/ANUBIS_FALLBACK_DOCTRINE.md", type: "will_create", weight: 1.0, hashtag: "#doctrine" },
     { to: "lupo-includes/classes/AnubisHeaderFallback.php", type: "will_create", weight: 1.0, hashtag: "#implementation" },
     { to: "CHANGELOG.md", type: "will_update", weight: 0.8, hashtag: "#changelog" },
-    { to: "docs/status/kiro_semantic_upgrade_4_0_38.md", type: "builds_on", weight: 0.7, hashtag: "#foundation" },
-    { to: "docs/versions/4.0.39/PRIORITY_FILES.md", type: "will_create", weight: 0.9, hashtag: "#planning" }
+    { to: "lupo-docs/status/kiro_semantic_upgrade_4_0_38.md", type: "builds_on", weight: 0.7, hashtag: "#foundation" },
+    { to: "lupo-docs/versions/4.0.39/PRIORITY_FILES.md", type: "will_create", weight: 0.9, hashtag: "#planning" }
   ],
   referenced_by_actors: [10000, 1002, 1001, 1003, 2038],
   references: {
-    by_files: ["prompts/windsurf/20260224_v4_0_39_header_completion_and_anubis_directive.md", "docs/status/windsurf_v4_0_39_initialization.md"],
+    by_files: ["lupo-prompts/windsurf/20260224_v4_0_39_header_completion_and_anubis_directive.md", "lupo-docs/status/windsurf_v4_0_39_initialization.md"],
     by_actors: [10000, 1002, 1001, 1003, 2038]
   },
   semantic_tags: ["version_initialization", "anubis_architecture", "header_completion", "agent_coordination"],
@@ -184,10 +184,10 @@ KIRO (Generation) → Windsurf (Verification) → Antigravity (VSX) → LILITH (
 ```
 
 ### **✅ Priority Files Strategy**
-- **Core Doctrine:** `docs/doctrine/*` files
+- **Core Doctrine:** `lupo-docs/doctrine/*` files
 - **Core Services:** `lupo-includes/classes/*` files  
-- **Core Prompts:** `prompts/*` files
-- **Core Channels:** `channels/*` files
+- **Core Prompts:** `lupo-prompts/*` files
+- **Core Channels:** `lupo-channels/*` files
 
 ---
 
@@ -210,9 +210,9 @@ KIRO (Generation) → Windsurf (Verification) → Antigravity (VSX) → LILITH (
 ## 🎯 NEXT STEPS COORDINATION
 
 ### **✅ Immediate Actions (Today)**
-1. **Create ANUBIS Doctrine** - `docs/doctrine/ANUBIS_FALLBACK_DOCTRINE.md`
+1. **Create ANUBIS Doctrine** - `lupo-docs/doctrine/ANUBIS_FALLBACK_DOCTRINE.md`
 2. **Implement Detection Engine** - `lupo-includes/classes/AnubisHeaderFallback.php`
-3. **Create Priority Files List** - `docs/versions/4.0.39/PRIORITY_FILES.md`
+3. **Create Priority Files List** - `lupo-docs/versions/4.0.39/PRIORITY_FILES.md`
 4. **Coordinate With KIRO** - Handoff for batch processing
 
 ### **✅ Agent Coordination Required**

@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\doctrine\ANUBIS\ANUBIS_PROGRAM_SPEC.md"
+  file_path_from_root: "lupo-docs\doctrine\ANUBIS\ANUBIS_PROGRAM_SPEC.md"
   file_hash: "94a8ed588ec3d116b2791d8678032cbe88d924290304ed2810d49731b4acf412"
-  file_path_from_root: "docs\doctrine\ANUBIS\ANUBIS_PROGRAM_SPEC.md"
+  file_path_from_root: "lupo-docs\doctrine\ANUBIS\ANUBIS_PROGRAM_SPEC.md"
   file_hash: "029dbd673c0fb1f73eb98cc32f2b54780e1faf2a3c168d85c7fa48cf50a58aeb"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -64,14 +64,14 @@ lupopedia.footer:
 ---
 # FLIP Header (alias: Wolfie Header, CROP Header, FLIPPING Header)
 wolfie.headers: explicit architecture with structured clarity for every file.
-file_path_from_root: docs/doctrine/ANUBIS/ANUBIS_PROGRAM_SPEC.md
+file_path_from_root: lupo-docs/doctrine/ANUBIS/ANUBIS_PROGRAM_SPEC.md
 file.last_modified_system_version: "4.0.16"
 file.last_modified_utc: "20260217235900"
 # channel_id unresolved — requires lupo_contents lookup by application.
 X-Lupo-Channel: 42   # ANUBIS adoption channel (Auto-Fixed)
 X-Lupo-Actor-ID: 2035
 X-Lupo-Actor-Identity: "Lupopedia Audit Tool (Auto-Fixed)"
-X-Lupo-File-Path: docs/doctrine/ANUBIS/ANUBIS_PROGRAM_SPEC.md
+X-Lupo-File-Path: lupo-docs/doctrine/ANUBIS/ANUBIS_PROGRAM_SPEC.md
 ---
 # ANUBIS Program Specification
 
@@ -84,7 +84,7 @@ X-Lupo-File-Path: docs/doctrine/ANUBIS/ANUBIS_PROGRAM_SPEC.md
 
 ### 1.1 Python: Orphan Scanner, Resolver, Adoption Planner
 
-- **Script:** `tools/anubis_orphan_scanner.py`
+- **Script:** `lupo-tools/anubis_orphan_scanner.py`
 - **Input:** Dialog text (and optionally channel_id, dialog_thread_id, actor_id).
 - **Output:** Classification (orphan / resolved), resolution plan (channel_id, dialog_thread_id, from_actor_id), and adoption plan (explicit dialog_message_id, target channel 42 / thread 1, default actor 3).
 - **Steps:**
@@ -116,11 +116,11 @@ X-Lupo-File-Path: docs/doctrine/ANUBIS/ANUBIS_PROGRAM_SPEC.md
 | lupo_actors | Resolution: validate from_actor_id. |
 | lupo_edges | HAS_CONTENT for content→channel resolution (optional for ANUBIS; used by FLIP path lookup). |
 
-Schema source of truth: TOONs in `docs/toons/`. No new tables or columns are added by the ANUBIS program.
+Schema source of truth: TOONs in `lupo-docs/toons/`. No new tables or columns are added by the ANUBIS program.
 
 ---
 
 ## 3. Integration with Seed
 
-- Adoption into **seed** is done by adding an INSERT (and optionally ON DUPLICATE KEY UPDATE) to `database/migrations/seed_lupopedia.sql`, with explicit dialog_message_id, channel_id=42, dialog_thread_id=1, from_actor_id=3, message_type='system', and updating lupo_dialog_channels.message_count.
+- Adoption into **seed** is done by adding an INSERT (and optionally ON DUPLICATE KEY UPDATE) to `lupo-database/migrations/seed_lupopedia.sql`, with explicit dialog_message_id, channel_id=42, dialog_thread_id=1, from_actor_id=3, message_type='system', and updating lupo_dialog_channels.message_count.
 - The Python scanner and PHP resolver can **output** the adoption plan (IDs and values); the actual seed file edit is a one-time or tool-assisted change to the SQL file.

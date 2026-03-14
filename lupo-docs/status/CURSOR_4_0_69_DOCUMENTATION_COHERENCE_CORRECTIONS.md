@@ -3,7 +3,7 @@ lupopedia.headers:
   lupopedia.version: "4.0.69"
   lupopedia.schema: "documentation"
   system_version: "4.0.69"
-  file_path_from_root: "docs/status/CURSOR_4_0_69_DOCUMENTATION_COHERENCE_CORRECTIONS.md"
+  file_path_from_root: "lupo-docs/status/CURSOR_4_0_69_DOCUMENTATION_COHERENCE_CORRECTIONS.md"
   web_path: "http://www.lupopedia.com/status/CURSOR_4_0_69_DOCUMENTATION_COHERENCE_CORRECTIONS"
   last_modified_utc: "20260312"
   channel_id: 42
@@ -41,9 +41,9 @@ lupopedia.footer:
 | **lupo-docs/doctrine/AUTHORIZATION_DOCTRINE.md** | Already coherent; no edits. |
 | **lupo-docs/doctrine/FAUCET_TRACEABILITY_DOCTRINE.md** | Already coherent; no edits. |
 | **lupo-docs/doctrine/FEDERATION_NODE_TYPES_DOCTRINE.md** | Already coherent; no edits. |
-| **docs/status/cursor_actors_channels_semantic_architecture_4.0.69.md** | Headers (actor_id 1, wolfie, faucet cursor, paired_actor_id 1000); A2A wording; actor_type ide_agent legacy note. |
-| **docs/status/brainstorm_on_actors_and_channels.md** | Canonical reminder: actors orchestrate, faucets execute; IDE surfaces are faucets. |
-| **docs/status/ORCHESTRATION_ACTORS_AND_SUPPORTING_ACTORS_REVIEW_4.0.69.md** | Already coherent; no edits. |
+| **lupo-docs/status/cursor_actors_channels_semantic_architecture_4.0.69.md** | Headers (actor_id 1, wolfie, faucet cursor, paired_actor_id 1000); A2A wording; actor_type ide_agent legacy note. |
+| **lupo-docs/status/brainstorm_on_actors_and_channels.md** | Canonical reminder: actors orchestrate, faucets execute; IDE surfaces are faucets. |
+| **lupo-docs/status/ORCHESTRATION_ACTORS_AND_SUPPORTING_ACTORS_REVIEW_4.0.69.md** | Already coherent; no edits. |
 
 ---
 
@@ -84,7 +84,7 @@ lupopedia.footer:
 6. **cursor_actors_channels_semantic_architecture_4.0.69.md**
    - Headers had actor_id 1003, actor_name "cursor", delegation "cursor:root", paired_actor_id 10000 — implying Cursor as actor.
    - "agent-to-agent" and "all agents on a channel" — changed to "actor-to-actor" and "actors."
-   - actor_type `ide_agent` was not marked as legacy/transitional (doctrine: IDE surfaces are faucets).
+   - actor_type `ide_agent` was not marked as lupo-legacy/transitional (doctrine: IDE surfaces are faucets).
 
 7. **brainstorm_on_actors_and_channels.md**
    - No inline reminder that in canonical doctrine, IDE surfaces are faucets and actors orchestrate.
@@ -139,7 +139,7 @@ lupopedia.footer:
 
 - **AGENTS.md** headers still use legacy `lupopedia.headers` and version 4.0.57; consider aligning to LUPOPEDIA HEADERS and 4.0.69 in a future pass (not done here to avoid scope creep).
 - **ORCHESTRATION_ACTORS_AND_SUPPORTING_ACTORS_REVIEW_4.0.69.md** could be referenced from README or Identity Layers as the place that distinguishes "orchestration" vs "supporting" actors; no wording change was required for coherence.
-- **Onboarding prompt** (`prompts/cursor/20260311_cursor_new_thread_onboarding_4.0.69.md`) was not in the review list; if it still says "Cursor agent" or "IDE agent" without "faucet," a later pass could tighten it to match this coherence.
+- **Onboarding prompt** (`lupo-prompts/cursor/20260311_cursor_new_thread_onboarding_4.0.69.md`) was not in the review list; if it still says "Cursor agent" or "IDE agent" without "faucet," a later pass could tighten it to match this coherence.
 
 ---
 

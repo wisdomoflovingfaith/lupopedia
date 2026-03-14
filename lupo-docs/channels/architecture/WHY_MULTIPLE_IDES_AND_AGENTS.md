@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\channels\architecture\WHY_MULTIPLE_IDES_AND_AGENTS.md"
+  file_path_from_root: "lupo-docs\channels\architecture\WHY_MULTIPLE_IDES_AND_AGENTS.md"
   file_hash: "9a3e1352756c240775f5e48dfbeb725755ce8591c29385ab97a4665afe8733d4"
-  file_path_from_root: "docs\channels\architecture\WHY_MULTIPLE_IDES_AND_AGENTS.md"
+  file_path_from_root: "lupo-docs\channels\architecture\WHY_MULTIPLE_IDES_AND_AGENTS.md"
   file_hash: "cf404b39702e3a4f281dac172cca6e9386702f99a4152005347c555bf6e90d11"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -72,7 +72,7 @@ dialog:
   speaker: CURSOR
   target: @everyone
   mood_RGB: "0066FF"
-  message: "Created WHY_MULTIPLE_IDES_AND_AGENTS.md to explain Captain Wolfie's multi-IDE, multi-agent, multi-LLM workflow in accessible terms for normal humans. Documents the scale difference (1 IDE/1 AI vs 7 IDEs/10,000 agents/8 LLMs), explains faucets (agents spawning multiple LLM instances), and describes how channels organize agents for collaborative project tasks."
+  message: "Created WHY_MULTIPLE_IDES_AND_AGENTS.md to explain Captain Wolfie's multi-IDE, multi-agent, multi-LLM workflow in accessible terms for normal humans. Documents the scale difference (1 IDE/1 AI vs 7 IDEs/10,000 lupo-agents/8 LLMs), explains faucets (agents spawning multiple LLM instances), and describes how channels organize agents for collaborative project tasks."
 tags:
   categories: ["documentation", "architecture", "workflow", "explanation"]
   collections: ["core-docs", "architecture"]

@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "channels\42\threads\FLP_HEADERS_AUDIT_4_0_44\20260224171500_1001_10000_flp_headers_audit_initiated.md"
+  file_path_from_root: "lupo-channels\42\threads\FLP_HEADERS_AUDIT_4_0_44\20260224171500_1001_10000_flp_headers_audit_initiated.md"
   file_hash: "1c23dbe7898ec192f5f579e1b94985f9a9d7ce0bb3ee1ea5ab931ad20f139ac7"
-  file_path_from_root: "channels\42\threads\FLP_HEADERS_AUDIT_4_0_44\20260224171500_1001_10000_flp_headers_audit_initiated.md"
+  file_path_from_root: "lupo-channels\42\threads\FLP_HEADERS_AUDIT_4_0_44\20260224171500_1001_10000_flp_headers_audit_initiated.md"
   file_hash: "a4196486f3c34eedc97ef73bad0305e2ea876f7252984b1f8a537cf937592442"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -63,7 +63,7 @@ lupopedia.footer:
 
 ---
 wolfie.headers: {
-  file_path_from_root: "channels/42/threads/FLP_HEADERS_AUDIT_4_0_44/20260224171500_1001_10000_flp_headers_audit_initiated.md",
+  file_path_from_root: "lupo-channels/42/threads/FLP_HEADERS_AUDIT_4_0_44/20260224171500_1001_10000_flp_headers_audit_initiated.md",
   system_version: "4.0.44",
   channel_id: 42,
   actor_id: 1001,
@@ -76,11 +76,11 @@ wolfie.headers: {
 }
 flip.footer: {
   outbound_edges: [
-    { to: "channels/0/broadcasts/20260224163100_0_10000_minimum_flip_header_requirements.md", type: "references", weight: 1.0 },
-    { to: "channels/0/broadcasts/20260224165300_0_10000_flip_v3_retrofit_doctrine.md", type: "references", weight: 1.0 },
-    { to: "channels/0/broadcasts/20260224162800_0_1001_vsx_extension_md_fallback_doctrine.md", type: "references", weight: 0.9 },
-    { to: "docs/doctrine/FLIP/FLIP_DOCTRINE.md", type: "references", weight: 1.0 },
-    { to: "docs/doctrine/HEADERS/FLIP_FOOTER_DOCTRINE_4_0_31.md", type: "references", weight: 1.0 }
+    { to: "lupo-channels/0/broadcasts/20260224163100_0_10000_minimum_flip_header_requirements.md", type: "references", weight: 1.0 },
+    { to: "lupo-channels/0/broadcasts/20260224165300_0_10000_flip_v3_retrofit_doctrine.md", type: "references", weight: 1.0 },
+    { to: "lupo-channels/0/broadcasts/20260224162800_0_1001_vsx_extension_md_fallback_doctrine.md", type: "references", weight: 0.9 },
+    { to: "lupo-docs/doctrine/FLIP/FLIP_DOCTRINE.md", type: "references", weight: 1.0 },
+    { to: "lupo-docs/doctrine/HEADERS/FLIP_FOOTER_DOCTRINE_4_0_31.md", type: "references", weight: 1.0 }
   ],
   semantic_tags: ["audit", "flp_headers", "documentation", "completeness", "organization", "version_4_0_44"]
 }
@@ -101,9 +101,9 @@ Audit and complete all documentation and doctrines related to FLP headers (FLIP/
 ## Scope
 
 1. **Channel 0 Doctrines** — Scan and ingest FLP header related doctrines
-2. **docs/status/** — Audit all FLP header documentation
-3. **docs/doctrine/FLIP/** — Review canonical FLIP doctrine files
-4. **docs/doctrine/HEADERS/** — Review header/footer doctrine files
+2. **lupo-docs/status/** — Audit all FLP header documentation
+3. **lupo-docs/doctrine/FLIP/** — Review canonical FLIP doctrine files
+4. **lupo-docs/doctrine/HEADERS/** — Review header/footer doctrine files
 5. **.cursor/rules/** — Review IDE agent rules for FLP headers
 
 ## Key Requirements
@@ -119,29 +119,29 @@ Audit and complete all documentation and doctrines related to FLP headers (FLIP/
 ### Channel 0 Doctrines Identified
 
 ✅ **Doctrine #11:** VSX Extension MD-Only Fallback Capabilities  
-- File: `channels/0/broadcasts/20260224162800_0_1001_vsx_extension_md_fallback_doctrine.md`
+- File: `lupo-channels/0/broadcasts/20260224162800_0_1001_vsx_extension_md_fallback_doctrine.md`
 - Status: Complete, well-documented
 - Coverage: VSX extension, FLIP parser, offline mode
 
 ✅ **Doctrine #12:** Mandatory Minimum FLIP Header Requirements  
-- File: `channels/0/broadcasts/20260224163100_0_10000_minimum_flip_header_requirements.md`
+- File: `lupo-channels/0/broadcasts/20260224163100_0_10000_minimum_flip_header_requirements.md`
 - Status: Complete, clear requirements
 - Coverage: Required fields, compliance rules
 
 ✅ **Doctrine #14:** FLIP v3 Retrofit for Artifacts + Channels + Actors  
-- File: `channels/0/broadcasts/20260224165300_0_10000_flip_v3_retrofit_doctrine.md`
+- File: `lupo-channels/0/broadcasts/20260224165300_0_10000_flip_v3_retrofit_doctrine.md`
 - Status: Complete, comprehensive
 - Coverage: Two-phase retrofit, deterministic IDs, confidence scores
 
 ### Core Doctrine Files Identified
 
 ✅ **FLIP_DOCTRINE.md** — Canonical FLIP doctrine  
-- Path: `docs/doctrine/FLIP/FLIP_DOCTRINE.md`
+- Path: `lupo-docs/doctrine/FLIP/FLIP_DOCTRINE.md`
 - Status: Complete, authoritative
 - Version: 4.0.16 (needs version update to 4.0.44)
 
 ✅ **FLIP_FOOTER_DOCTRINE_4_0_31.md** — Footer requirements  
-- Path: `docs/doctrine/HEADERS/FLIP_FOOTER_DOCTRINE_4_0_31.md`
+- Path: `lupo-docs/doctrine/HEADERS/FLIP_FOOTER_DOCTRINE_4_0_31.md`
 - Status: Complete, detailed
 - Version: 4.0.31 (current for footers)
 
@@ -153,7 +153,7 @@ Audit and complete all documentation and doctrines related to FLP headers (FLIP/
 ### Status Files Identified
 
 ✅ **flip_retrofit_actors_manifest_4_0_43.md**  
-- Complete manifest for actors/ directory retrofit
+- Complete manifest for lupo-actors/ directory retrofit
 - 100% coverage documented
 
 ✅ **antigravity_flip_v2_implementation_4_0_37.md**  

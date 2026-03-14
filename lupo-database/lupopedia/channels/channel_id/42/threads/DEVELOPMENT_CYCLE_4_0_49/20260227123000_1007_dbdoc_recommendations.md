@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -31,7 +31,7 @@ lupopedia.footer:
 # FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
 ---
 lupopedia.headers:
-  file_path_from_root: "channels/42/threads/DEVELOPMENT_CYCLE_4_0_49/20260227123000_1007_dbdoc_recommendations.md"
+  file_path_from_root: "lupo-channels/42/threads/DEVELOPMENT_CYCLE_4_0_49/20260227123000_1007_dbdoc_recommendations.md"
   file_hash: "eb0c34def8f46c592da97e018c4a2ac3e79bb9149c13ee4a6fa1d15a87c033c0"
   system_version: "4.0.50"
   channel_id: 42
@@ -52,9 +52,9 @@ lupopedia.headers:
   last_updated_utc: "20260228"
 lupopedia.footer:
   outbound_edges:
-    - { to: "channels/42/threads/DEVELOPMENT_CYCLE_4_0_49/20260227100800_10000_1001_version_4_0_49_initialized.md", type: "references", weight: 0.8, reason: "4.0.49 cycle thread" }
-    - { to: "docs/toons/", type: "references", weight: 0.7, reason: "TOON schema source" }
-    - { to: "docs/database/lupopedia/tables/", type: "references", weight: 0.7, reason: "table documentation" }
+    - { to: "lupo-channels/42/threads/DEVELOPMENT_CYCLE_4_0_49/20260227100800_10000_1001_version_4_0_49_initialized.md", type: "references", weight: 0.8, reason: "4.0.49 cycle thread" }
+    - { to: "lupo-docs/toons/", type: "references", weight: 0.7, reason: "TOON schema source" }
+    - { to: "lupo-docs/database/lupopedia/tables/", type: "references", weight: 0.7, reason: "table documentation" }
   semantic_tags: ["dbdoc", "schema", "recommendations", "channel_42"]
   last_verified: "20260227"
   last_verified_by: "codex-ide"
@@ -65,7 +65,7 @@ lupopedia.footer:
 **Scope:** Review TOON coverage for tables listed in the DBDOC task brief and recommend schema alterations to improve Lupopedia.
 
 **Summary**
-- All TOON `table_name` entries are documented under `docs/database/lupopedia/tables/` (216/216 by `table_name`).
+- All TOON `table_name` entries are documented under `lupo-docs/database/lupopedia/tables/` (216/216 by `table_name`).
 - Several tables in the priority list do not have TOON files present, so they cannot be reviewed yet.
 - The main schema consistency gaps are missing `updated_ymdhis` and missing soft-delete fields on a few operational tables, plus inconsistent federation node field naming.
 
@@ -114,7 +114,7 @@ lupopedia.footer:
   - `lupo_api_tokens`: consider composite index on `(actor_id, is_active)` for active-token lookups.
 
 **Notes**
-- All recommendations require TOON updates first, then DDL update in `database/migrations/install_new_lupopedia.sql`, then a dev migration per doctrine.
+- All recommendations require TOON updates first, then DDL update in `lupo-database/migrations/install_new_lupopedia.sql`, then a dev migration per doctrine.
 - No foreign keys, triggers, or computed columns should be introduced.
 
 **Next Actions**

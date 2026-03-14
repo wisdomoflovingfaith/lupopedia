@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\channels\gov\SAFETY_DOCTRINE.md"
+  file_path_from_root: "lupo-docs\channels\gov\SAFETY_DOCTRINE.md"
   file_hash: "37299ae6c5fcf927868e22708b789424e4664bfe8f8a833a74755a6052af512e"
-  file_path_from_root: "docs\channels\gov\SAFETY_DOCTRINE.md"
+  file_path_from_root: "lupo-docs\channels\gov\SAFETY_DOCTRINE.md"
   file_hash: "81213f693034dac56c3d723ebea04c956c6ea84877f3762be881d7d09b8e389e"
   last_updated_utc: "20260228"
   system_version: "4.0.50"

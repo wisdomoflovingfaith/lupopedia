@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "prompt"
-  file_path_from_root: "channels/0/ide_survival_prompt.md"
+  file_path_from_root: "lupo-channels/0/ide_survival_prompt.md"
   system_version: "4.0.52"
   last_modified_utc: "20260301"
   channel_id: 0
@@ -20,9 +20,9 @@ lupopedia.headers:
 
 lupopedia.edges:
   outbound_edges:
-    - { to: "docs/doctrine/FLARE/FLARE_DOCTRINE.md", type: "references", weight: 1.0 }
-    - { to: "channels/0/boot_readme.md", type: "references", weight: 0.9 }
-    - { to: "docs/toons/lupo_channel_logs.toon.json", type: "schema_reference", weight: 0.8 }
+    - { to: "lupo-docs/doctrine/FLARE/FLARE_DOCTRINE.md", type: "references", weight: 1.0 }
+    - { to: "lupo-channels/0/boot_readme.md", type: "references", weight: 0.9 }
+    - { to: "lupo-docs/toons/lupo_channel_logs.toon.json", type: "schema_reference", weight: 0.8 }
     - { to: "http://www.lupopedia.com/changelog", type: "update_target", weight: 1.0 }
   semantic_tags: ["ide_survival", "changelog_update"]
 
@@ -67,7 +67,7 @@ lupopedia.footer:
 - ✅ **Timestamp Compliance**: All operations using `gmdate('YmdHis')`
 
 **Documentation Suite**:
-- ✅ **Channel Boot README**: `channels/0/boot_readme.md` with TOON schema documentation
+- ✅ **Channel Boot README**: `lupo-channels/0/boot_readme.md` with TOON schema documentation
 - ✅ **Table Documentation**: Complete `lupo_channel_boot_lifecycle` documentation
 - ✅ **System Overview**: Comprehensive overview of all `lupo_channel_*` tables
 - ✅ **TL;DR Reference**: Quick reference guide for channel operations

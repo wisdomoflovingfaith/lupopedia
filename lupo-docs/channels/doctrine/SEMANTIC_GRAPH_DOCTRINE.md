@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\channels\doctrine\SEMANTIC_GRAPH_DOCTRINE.md"
+  file_path_from_root: "lupo-docs\channels\doctrine\SEMANTIC_GRAPH_DOCTRINE.md"
   file_hash: "1b9ab6eca9dff5e3f0de9bc702ae46faf221d16e9906a7ec7fe5abfafd9d6be0"
-  file_path_from_root: "docs\channels\doctrine\SEMANTIC_GRAPH_DOCTRINE.md"
+  file_path_from_root: "lupo-docs\channels\doctrine\SEMANTIC_GRAPH_DOCTRINE.md"
   file_hash: "03255d6eeaaa23b5c6dfeaa0fdb4571bdf2823158dd4e807e96313f7e71999fc"
   last_updated_utc: "20260228"
   system_version: "4.0.50"

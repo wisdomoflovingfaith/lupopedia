@@ -4,20 +4,8 @@
 -- See lupo-docs/versions/REQUIRED_TABLES_4.0.21.md (optional → future-features).
 
 -- =============================================================================
--- lupo_aliases (optional; moved 4.0.57)
+-- lupo_aliases — MOVED TO install_new_lupopedia.sql v4.0.74 (12-table expansion).
 -- =============================================================================
-CREATE TABLE lupo_aliases (
-  alias_id int NOT NULL,
-  slug varchar(255) NOT NULL,
-  alias varchar(255) NOT NULL,
-  alias_type varchar(50) DEFAULT 'semantic',
-  created_at bigint,
-  PRIMARY KEY (alias_id)
-);
-
-CREATE UNIQUE INDEX lupo_aliases_uniq_alias ON lupo_aliases (alias);
-CREATE INDEX lupo_aliases_idx_slug ON lupo_aliases (slug);
-
 
 -- =============================================================================
 -- lupo_tldnr (optional; moved 4.0.57)
@@ -279,54 +267,12 @@ CREATE INDEX lupo_entity_properties_idx_updated ON lupo_entity_properties (updat
 CREATE INDEX lupo_entity_properties_idx_is_deleted ON lupo_entity_properties (is_deleted);
 
 -- =============================================================================
--- lupo_federated_trust (moved from install_new_lupopedia.sql on 2026-03-09 by rule: not in minimal_tables and not used by PHP/PY)
+-- lupo_federated_trust — MOVED TO install_new_lupopedia.sql v4.0.74 (12-table expansion).
 -- =============================================================================
-CREATE TABLE lupo_federated_trust (
-    trust_id BIGINT NOT NULL,
-    source_node_id BIGINT NOT NULL,
-    target_node_id BIGINT NOT NULL,
-    trust_level FLOAT DEFAULT 0.5,
-    trust_type VARCHAR(50) NOT NULL,
-    capabilities JSON,
-    restrictions JSON,
-    last_verified_ymdhis BIGINT DEFAULT 0,
-    verification_method VARCHAR(100),
-    created_ymdhis BIGINT NOT NULL DEFAULT 0,
-    updated_ymdhis BIGINT,
-    is_deleted TINYINT NOT NULL DEFAULT 0,
-    deleted_ymdhis BIGINT
-);
-CREATE INDEX lupo_federated_trust_idx_trust_type ON lupo_federated_trust(trust_type);
-CREATE INDEX lupo_federated_trust_idx_last_verified ON lupo_federated_trust(last_verified_ymdhis);
-CREATE INDEX lupo_federated_trust_idx_is_deleted ON lupo_federated_trust(is_deleted);
 
 -- =============================================================================
--- lupo_federation_discovery (moved from install_new_lupopedia.sql on 2026-03-09 by rule: not in minimal_tables and not used by PHP/PY)
+-- lupo_federation_discovery — MOVED TO install_new_lupopedia.sql v4.0.74 (12-table expansion).
 -- =============================================================================
-CREATE TABLE lupo_federation_discovery (
-  federation_discovery_id bigint NOT NULL,
-  domain varchar(255) NOT NULL,
-  install_url varchar(500) DEFAULT NULL,
-  is_lupopedia tinyint NOT NULL DEFAULT '0',
-  last_seen_ymdhis bigint DEFAULT NULL,
-  first_seen_ymdhis bigint DEFAULT NULL,
-  hashtag_count bigint DEFAULT '0',
-  question_count bigint DEFAULT '0',
-  atom_count bigint DEFAULT '0',
-  context_count bigint DEFAULT '0',
-  collection_count bigint DEFAULT '0',
-  keywords varchar(500) DEFAULT NULL,
-  description text,
-  import_hashtags tinyint NOT NULL DEFAULT '0',
-  import_questions tinyint NOT NULL DEFAULT '0',
-  import_atoms tinyint NOT NULL DEFAULT '0',
-  import_contexts tinyint NOT NULL DEFAULT '0',
-  import_collections tinyint NOT NULL DEFAULT '0',
-  created_ymdhis bigint NOT NULL DEFAULT 0,
-  updated_ymdhis bigint NOT NULL,
-  PRIMARY KEY (federation_discovery_id)
-);
-
 
 -- =============================================================================
 -- lupo_gov_event_actor_edges (moved from install_new_lupopedia.sql on 2026-03-09 by rule: not in minimal_tables and not used by PHP/PY)
@@ -485,17 +431,8 @@ CREATE INDEX lupo_gov_valuations_idx_is_deleted ON lupo_gov_valuations (is_delet
 
 
 -- =============================================================================
--- lupo_hotfix_registry (moved from install_new_lupopedia.sql on 2026-03-09 by rule: not in minimal_tables and not used by PHP/PY)
+-- lupo_hotfix_registry — MOVED TO install_new_lupopedia.sql v4.0.74 (12-table expansion).
 -- =============================================================================
-CREATE TABLE lupo_hotfix_registry (
-  hotfix_id int NOT NULL,
-  hotfix_version varchar(20) NOT NULL,
-  applied_ymdhis bigint NOT NULL,
-  applied_by_actor_id int DEFAULT NULL,
-  description text,
-  metadata_json json DEFAULT NULL,
-  PRIMARY KEY (hotfix_id)
-);
 
 -- =============================================================================
 -- lupo_human_history_meta (moved from install_new_lupopedia.sql on 2026-03-09 by rule: not in minimal_tables and not used by PHP/PY)
@@ -570,25 +507,8 @@ CREATE TABLE lupo_kapu_restoration_paths (
 );
 
 -- =============================================================================
--- lupo_legacy_content_mapping (moved from install_new_lupopedia.sql on 2026-03-09 by rule: not in minimal_tables and not used by PHP/PY)
+-- lupo_legacy_content_mapping — MOVED TO install_new_lupopedia.sql v4.0.74 (12-table expansion).
 -- =============================================================================
-CREATE TABLE lupo_legacy_content_mapping (
-  mapping_id bigint NOT NULL,
-  legacy_url varchar(255) NOT NULL,
-  semantic_url varchar(255) NOT NULL,
-  content_type varchar(64) NOT NULL,
-  content_id bigint DEFAULT NULL,
-  created_ymdhis bigint NOT NULL DEFAULT 0,
-  updated_ymdhis bigint NOT NULL,
-  is_active tinyint NOT NULL DEFAULT '1',
-  PRIMARY KEY (mapping_id)
-);
-CREATE INDEX lupo_legacy_content_mapping_idx_semantic_url ON lupo_legacy_content_mapping (semantic_url);
-CREATE INDEX lupo_legacy_content_mapping_idx_content_type ON lupo_legacy_content_mapping (content_type);
-CREATE INDEX lupo_legacy_content_mapping_idx_content_id ON lupo_legacy_content_mapping (content_id);
-CREATE INDEX lupo_legacy_content_mapping_idx_is_active ON lupo_legacy_content_mapping (is_active);
-CREATE INDEX lupo_legacy_content_mapping_idx_created ON lupo_legacy_content_mapping (created_ymdhis);
-CREATE INDEX lupo_legacy_content_mapping_idx_created_ymdhis ON lupo_legacy_content_mapping (created_ymdhis, is_active);
 
 -- =============================================================================
 -- lupo_llm_performance (moved from install_new_lupopedia.sql on 2026-03-09 by rule: not in minimal_tables and not used by PHP/PY)
@@ -730,46 +650,12 @@ CREATE INDEX lupo_persona_profiles_idx_persona_name ON lupo_persona_profiles (pe
 CREATE INDEX lupo_persona_profiles_idx_is_active ON lupo_persona_profiles (is_active);
 
 -- =============================================================================
--- lupo_reference_cited_by (moved from install_new_lupopedia.sql on 2026-03-09 by rule: not in minimal_tables and not used by PHP/PY)
+-- lupo_reference_cited_by — MOVED TO install_new_lupopedia.sql v4.0.74 (12-table expansion).
 -- =============================================================================
-CREATE TABLE lupo_reference_cited_by (
-  reference_cited_by_id bigint NOT NULL,
-  reference_object_id bigint NOT NULL,
-  content_id bigint NOT NULL,
-  section_anchor_slug varchar(255) DEFAULT NULL,
-  section_order int NOT NULL DEFAULT '0',
-  reference_type varchar(50) NOT NULL,
-  raw_reference text,
-  meta_json json DEFAULT NULL,
-  is_deleted tinyint NOT NULL DEFAULT '0',
-  deleted_ymdhis bigint NOT NULL DEFAULT '0',
-  created_ymdhis bigint NOT NULL DEFAULT '0',
-  updated_ymdhis bigint NOT NULL DEFAULT '0',
-  PRIMARY KEY (reference_cited_by_id)
-);
-CREATE INDEX lupo_reference_cited_by_idx_content_id ON lupo_reference_cited_by (content_id);
-CREATE INDEX lupo_reference_cited_by_idx_section_anchor ON lupo_reference_cited_by (section_anchor_slug);
-CREATE INDEX lupo_reference_cited_by_idx_reference_type ON lupo_reference_cited_by (reference_type);
-CREATE INDEX lupo_reference_cited_by_idx_is_deleted ON lupo_reference_cited_by (is_deleted);
 
 -- =============================================================================
--- lupo_reference_objects (moved from install_new_lupopedia.sql on 2026-03-09 by rule: not in minimal_tables and not used by PHP/PY)
+-- lupo_reference_objects — MOVED TO install_new_lupopedia.sql v4.0.74 (12-table expansion).
 -- =============================================================================
-CREATE TABLE lupo_reference_objects (
-  reference_object_id bigint NOT NULL,
-  object_type varchar(50) NOT NULL,
-  object_slug varchar(255) NOT NULL,
-  object_label varchar(255) DEFAULT NULL,
-  meta_json json DEFAULT NULL,
-  is_deleted tinyint NOT NULL DEFAULT '0',
-  deleted_ymdhis bigint NOT NULL DEFAULT '0',
-  created_ymdhis bigint NOT NULL DEFAULT '0',
-  updated_ymdhis bigint NOT NULL DEFAULT '0',
-  PRIMARY KEY (reference_object_id)
-);
-CREATE INDEX lupo_reference_objects_idx_object_slug ON lupo_reference_objects (object_slug);
-CREATE INDEX lupo_reference_objects_idx_type_slug ON lupo_reference_objects (object_type, object_slug);
-CREATE INDEX lupo_reference_objects_idx_is_deleted ON lupo_reference_objects (is_deleted);
 
 -- =============================================================================
 -- lupo_registry_import (moved from install_new_lupopedia.sql on 2026-03-09 by rule: not in minimal_tables and not used by PHP/PY)
@@ -789,29 +675,8 @@ CREATE INDEX idx_import_source_node ON lupo_registry_import (source_federation_n
 CREATE INDEX idx_import_resolved_local_id ON lupo_registry_import (resolved_to_local_id);
 
 -- =============================================================================
--- lupo_search_index (moved from install_new_lupopedia.sql on 2026-03-09 by rule: not in minimal_tables and not used by PHP/PY)
+-- lupo_search_index — MOVED TO install_new_lupopedia.sql v4.0.74 (12-table expansion).
 -- =============================================================================
-CREATE TABLE lupo_search_index (
-  search_index_id bigint NOT NULL,
-  domain_id bigint NOT NULL,
-  entity_type varchar(50) NOT NULL,
-  entity_id bigint NOT NULL,
-  title_text text,
-  body_text text,
-  keywords_text text,
-  search_metadata text,
-  relevance_score float DEFAULT '1',
-  is_deleted tinyint NOT NULL DEFAULT '0',
-  deleted_ymdhis bigint DEFAULT NULL,
-  created_ymdhis bigint NOT NULL DEFAULT 0,
-  updated_ymdhis bigint NOT NULL,
-  PRIMARY KEY (search_index_id)
-);
-CREATE INDEX lupo_search_index_idx_domain_type ON lupo_search_index (domain_id, entity_type);
-CREATE INDEX lupo_search_index_idx_entity_reference ON lupo_search_index (entity_type, entity_id);
-CREATE INDEX lupo_search_index_idx_updated ON lupo_search_index (updated_ymdhis);
-CREATE INDEX lupo_search_index_idx_is_deleted ON lupo_search_index (is_deleted);
-CREATE INDEX lupo_search_index_idx_relevance ON lupo_search_index (relevance_score);
 
 -- =============================================================================
 -- lupo_session_recovery (moved from install_new_lupopedia.sql on 2026-03-09 by rule: not in minimal_tables and not used by PHP/PY)
@@ -873,33 +738,8 @@ CREATE INDEX lupo_task_dependencies_idx_dependency_type ON lupo_task_dependencie
 CREATE INDEX lupo_task_dependencies_idx_is_deleted ON lupo_task_dependencies (is_deleted);
 
 -- =============================================================================
--- lupo_unified_log (moved from install_new_lupopedia.sql on 2026-03-09 by rule: not in minimal_tables and not used by PHP/PY)
+-- lupo_unified_log — MOVED TO install_new_lupopedia.sql v4.0.74 (12-table expansion).
 -- =============================================================================
-CREATE TABLE lupo_unified_log (
-  log_id bigint NOT NULL AUTO_INCREMENT,
-  log_type enum('anubis_deletion','anubis_general','anubis_processing','audit','auth_audit','bans','channel_boot','event','interpretation','search_rebuild') NOT NULL,
-  log_level enum('debug','info','warning','error','critical') DEFAULT 'info',
-  log_message text NOT NULL,
-  log_context json,
-  actor_id int,
-  channel_id int,
-  session_id varchar(128),
-  ip_address varchar(45),
-  user_agent text,
-  created_ymdhis bigint NOT NULL,
-  PRIMARY KEY (log_id)
-);
-CREATE INDEX idx_actor_log ON lupo_unified_log (actor_id, log_type);
-CREATE INDEX idx_channel_log ON lupo_unified_log (channel_id, log_type);
-CREATE INDEX idx_log_type_created ON lupo_unified_log (log_type, created_ymdhis);
-CREATE INDEX idx_session_log ON lupo_unified_log (session_id, log_type);
-CREATE INDEX lupo_unified_log_idx_actor_id ON lupo_unified_log (actor_id);
-CREATE INDEX lupo_unified_log_idx_channel_id ON lupo_unified_log (channel_id);
-CREATE INDEX lupo_unified_log_idx_created_ymdhis ON lupo_unified_log (created_ymdhis);
-CREATE INDEX lupo_unified_log_idx_log_level ON lupo_unified_log (log_level);
-CREATE INDEX lupo_unified_log_idx_log_type ON lupo_unified_log (log_type);
-CREATE INDEX lupo_unified_log_idx_session_id ON lupo_unified_log (session_id);
-
 
 -- Additional moved index statements (2026-03-09 cleanup)
 CREATE INDEX lupo_gov_event_conflicts_idx_gov_event_id ON lupo_gov_event_conflicts (gov_event_id);
@@ -918,16 +758,14 @@ CREATE INDEX lupo_anubis_deletion_log_idx_table_record ON lupo_anubis_deletion_l
 CREATE INDEX lupo_channel_boot_log_idx_actor_session ON lupo_channel_boot_log (actor_id, session_id);
 CREATE INDEX lupo_comments_idx_domain_id ON lupo_comments (domain_id);
 CREATE INDEX lupo_document_embeddings_chunk_id ON lupo_document_embeddings (chunk_id);
-CREATE INDEX lupo_federated_trust_idx_source_target ON lupo_federated_trust(source_node_id, target_node_id);
-CREATE INDEX lupo_federation_discovery_idx_domain ON lupo_federation_discovery (domain);
+-- Indexes for moved tables now in install: lupo_federated_trust_idx_source_target, lupo_federation_discovery_idx_domain
 CREATE INDEX lupo_flare_headers_idx_channel_id ON lupo_flare_headers (channel_id);
 CREATE INDEX lupo_llm_performance_idx_actor_module ON lupo_llm_performance(actor_id, llm_module);
 CREATE INDEX lupo_mood_assignments_idx_assignment_target ON lupo_mood_assignments (table_name, row_id);
 CREATE INDEX lupo_mood_registry_idx_mood_type ON lupo_mood_registry (mood_type);
 CREATE INDEX lupo_persona_dialogue_patterns_idx_persona_id ON lupo_persona_dialogue_patterns (persona_id);
 CREATE INDEX lupo_persona_profiles_idx_persona_type ON lupo_persona_profiles (persona_type);
-CREATE INDEX lupo_reference_cited_by_idx_reference_object ON lupo_reference_cited_by (reference_object_id);
-CREATE INDEX lupo_reference_objects_idx_object_type ON lupo_reference_objects (object_type);
+-- Indexes for moved tables now in install: reference_cited_by/reference_objects
 CREATE INDEX lupo_session_recovery_idx_actor_id ON lupo_session_recovery(actor_id);
 CREATE INDEX lupo_task_assignments_idx_task_id ON lupo_task_assignments (task_id);
 CREATE INDEX lupo_task_dependencies_idx_task_id ON lupo_task_dependencies (task_id);
@@ -937,84 +775,18 @@ CREATE UNIQUE INDEX lupo_analytics_referers_periods_uq_referer_period ON lupo_an
 CREATE UNIQUE INDEX lupo_entity_properties_unique_entity_domain_property ON lupo_entity_properties (entity_type, entity_id, domain_id, property_key);
 CREATE UNIQUE INDEX lupo_gov_events_unique_canonical_path ON lupo_gov_events (canonical_path);
 CREATE UNIQUE INDEX lupo_interface_translations_unq_language_key ON lupo_interface_translations (language_code, translation_key);
-CREATE UNIQUE INDEX lupo_legacy_content_mapping_uk_legacy_url ON lupo_legacy_content_mapping (legacy_url);
+-- Indexes for moved tables now in install: lupo_legacy_content_mapping_uk_legacy_url, lupo_search_index_unique_entity
 CREATE UNIQUE INDEX lupo_modules_departments_uniq_mod_dept ON lupo_modules_departments (module_id, department_id);
 CREATE UNIQUE INDEX lupo_pack_role_registry_unique_agent_role ON lupo_pack_role_registry (agent_id);
-CREATE UNIQUE INDEX lupo_search_index_unique_entity ON lupo_search_index (domain_id, entity_type, entity_id);
 
 -- =============================================================================
--- lupo_documentation_frameworks (Synthesized Documentation Framework, 4.0.71)
--- COLLECTION: active, CHANNEL: ide, NAMESPACE: lupopedia.tables.documentation_frameworks.
--- Stores framework metadata; edges to agents/channels/collections via lupo_edges (application-level).
--- No FKs per doctrine. Run only if documentation framework feature is enabled.
+-- lupo_documentation_frameworks — MOVED TO install_new_lupopedia.sql v4.0.74 (12-table expansion).
 -- =============================================================================
-CREATE TABLE lupo_documentation_frameworks (
-  documentation_framework_id bigint NOT NULL,
-  framework_key varchar(64) NOT NULL,
-  framework_name varchar(255) NOT NULL,
-  class_type varchar(64) NOT NULL DEFAULT 'documentation',
-  namespace_key varchar(255) NOT NULL,
-  channel_id bigint NOT NULL DEFAULT 1,
-  collection_key varchar(64) NOT NULL DEFAULT 'active',
-  orchestrator_actor_id bigint DEFAULT NULL,
-  facet_slug varchar(64) DEFAULT NULL,
-  agent_key varchar(64) DEFAULT NULL,
-  role_key varchar(64) DEFAULT NULL,
-  task_scope varchar(255) DEFAULT NULL,
-  database_table varchar(255) DEFAULT NULL,
-  runtime_min_php varchar(20) DEFAULT '5.6',
-  created_ymdhis bigint NOT NULL DEFAULT 0,
-  updated_ymdhis bigint NOT NULL DEFAULT 0,
-  is_deleted tinyint NOT NULL DEFAULT 0,
-  deleted_ymdhis bigint DEFAULT NULL,
-  properties_json json DEFAULT NULL,
-  PRIMARY KEY (documentation_framework_id)
-);
-CREATE UNIQUE INDEX lupo_documentation_frameworks_uniq_key ON lupo_documentation_frameworks (framework_key);
-CREATE INDEX lupo_documentation_frameworks_idx_namespace ON lupo_documentation_frameworks (namespace_key);
-CREATE INDEX lupo_documentation_frameworks_idx_channel ON lupo_documentation_frameworks (channel_id);
-CREATE INDEX lupo_documentation_frameworks_idx_collection ON lupo_documentation_frameworks (collection_key);
-CREATE INDEX lupo_documentation_frameworks_idx_class ON lupo_documentation_frameworks (class_type);
-CREATE INDEX lupo_documentation_frameworks_idx_is_deleted ON lupo_documentation_frameworks (is_deleted);
-CREATE INDEX lupo_documentation_frameworks_idx_created ON lupo_documentation_frameworks (created_ymdhis);
-
-
 
 -- =============================================================================
--- lupo_anubis_operations (v4.0.74 unified ANUBIS log for mirrored, orphaned, revised, deleted)
+-- lupo_anubis_operations — MOVED TO install_new_lupopedia.sql v4.0.74 (12-table expansion).
 -- =============================================================================
-CREATE TABLE lupo_anubis_operations (
-  operation_id bigint NOT NULL AUTO_INCREMENT,
-  operation_type varchar(64) NOT NULL,
-  target_type varchar(64) NOT NULL,
-  target_id bigint NOT NULL,
-  channel_id bigint NOT NULL DEFAULT 42,
-  actor_id bigint NOT NULL,
-  faucet_id bigint DEFAULT NULL,
-  details_json text DEFAULT NULL,
-  created_ymdhis bigint NOT NULL,
-  PRIMARY KEY (operation_id)
-);
-CREATE INDEX lupo_anubis_operations_idx_target ON lupo_anubis_operations (target_type, target_id);
-CREATE INDEX lupo_anubis_operations_idx_type ON lupo_anubis_operations (operation_type);
-CREATE INDEX lupo_anubis_operations_idx_created ON lupo_anubis_operations (created_ymdhis);
-
 
 -- =============================================================================
--- lupo_system_health_snapshots (v4.0.74 unified table for system and temporal snapshots)
+-- lupo_system_health_snapshots — MOVED TO install_new_lupopedia.sql v4.0.74 (12-table expansion).
 -- =============================================================================
-CREATE TABLE lupo_system_health_snapshots (
-  snapshot_id bigint NOT NULL AUTO_INCREMENT,
-  snapshot_type varchar(64) NOT NULL,
-  actor_id bigint NOT NULL,
-  table_count bigint DEFAULT '0',
-  schema_hash varchar(255) DEFAULT NULL,
-  utc_anchor varchar(14) DEFAULT NULL,
-  metadata_json text DEFAULT NULL,
-  created_ymdhis bigint NOT NULL DEFAULT '0',
-  is_deleted tinyint NOT NULL DEFAULT '0',
-  deleted_ymdhis bigint DEFAULT NULL,
-  PRIMARY KEY (snapshot_id)
-);
-CREATE INDEX lupo_system_health_snapshots_idx_created ON lupo_system_health_snapshots (created_ymdhis);
-CREATE INDEX lupo_system_health_snapshots_idx_type ON lupo_system_health_snapshots (snapshot_type);

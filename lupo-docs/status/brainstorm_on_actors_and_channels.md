@@ -3,7 +3,7 @@ lupopedia.headers:
   lupopedia.version: "4.0.69"
   lupopedia.schema: "documentation"
   system_version: "4.0.69"
-  file_path_from_root: "docs/status/brainstorm_on_actors_and_channels.md"
+  file_path_from_root: "lupo-docs/status/brainstorm_on_actors_and_channels.md"
   last_modified_utc: "20260311"
   channel_id: 42
   actor_id: 109
@@ -11,7 +11,7 @@ lupopedia.headers:
   delegation_chain: "codex-ide:root"
   artifact_type: "brainstorm"
   artifact_kind: "architecture"
-  purpose: "Exploratory architecture reference; canonical definitions defer to docs/status/cursor_actors_channels_semantic_architecture_4.0.69.md."
+  purpose: "Exploratory architecture reference; canonical definitions defer to lupo-docs/status/cursor_actors_channels_semantic_architecture_4.0.69.md."
   tags: ["exploratory", "brainstorm", "defer_canonical"]
 lupopedia.footer:
   last_verified: "20260311"
@@ -21,7 +21,7 @@ lupopedia.footer:
 
 # Brainstorm: Actors, Channels, Semantic Edges, and Interfaces (v4.0.69)
 
-**Status: Exploratory.** This document is a brainstorm and expanded reference. **Canonical definitions** for actors, channels, session, traits, roles, federation, and edge vocabulary **defer to** **`docs/status/cursor_actors_channels_semantic_architecture_4.0.69.md`**. In canonical doctrine: **actors** orchestrate; **faucets** execute; **sessions** carry runtime context. IDE surfaces (Cursor, Antigravity, Kiro, Windsurf, etc.) are **faucets**, not actors. For identity (actor vs faucet), session reconciliation, federation scoping, and edge vocabulary, use that document and the linked doctrine files (e.g. ActorFaucetOntology, Identity Layers, Session Reconciliation, Federation Scoping, Edge Vocabulary).
+**Status: Exploratory.** This document is a brainstorm and expanded reference. **Canonical definitions** for actors, channels, session, traits, roles, federation, and edge vocabulary **defer to** **`lupo-docs/status/cursor_actors_channels_semantic_architecture_4.0.69.md`**. In canonical doctrine: **actors** orchestrate; **faucets** execute; **sessions** carry runtime context. IDE surfaces (Cursor, Antigravity, Kiro, Windsurf, etc.) are **faucets**, not actors. For identity (actor vs faucet), session reconciliation, federation scoping, and edge vocabulary, use that document and the linked doctrine files (e.g. ActorFaucetOntology, Identity Layers, Session Reconciliation, Federation Scoping, Edge Vocabulary).
 
 ---
 
@@ -163,7 +163,7 @@ The 34 `livehelp_*` tables remain as legacy source structures and compatibility/
 
 ### IDE faucet interface
 
-- **IDE agents are faucets, not actors.** Identity belongs to **actors** (e.g. Wolfie) who operate **through** those faucets (Cursor, Kiro, Antigravity). Faucets are tracked in `lupo_agent_faucets`; session and attribution use `actor_id` for the identity using the faucet. See **`docs/status/cursor_actors_channels_semantic_architecture_4.0.69.md`** and **`lupo-docs/doctrine/ActorFaucetOntology.md`** for canonical definitions.
+- **IDE agents are faucets, not actors.** Identity belongs to **actors** (e.g. Wolfie) who operate **through** those faucets (Cursor, Kiro, Antigravity). Faucets are tracked in `lupo_agent_faucets`; session and attribution use `actor_id` for the identity using the faucet. See **`lupo-docs/status/cursor_actors_channels_semantic_architecture_4.0.69.md`** and **`lupo-docs/doctrine/ActorFaucetOntology.md`** for canonical definitions.
 - Channels are the shared task + dialog + governance context for multi-agent work.
 
 ## 9. Session Governance
@@ -354,8 +354,8 @@ Source: `lupo-database/lupopedia/toon/` on 2026-03-11.
 
 1. Add generated relationship manifests from TOON `*_id` columns into `relationships` blocks where currently empty.
 2. Add a canonical semantic edge dictionary (`edge_type`, `relationship_type`, allowed object pairs).
-3. Add per-domain table indexes in docs/status for actor/channel/semantic/federation/governance slices.
-4. Validate all docs that still reference old `docs/database/...` paths against `lupo-docs/database/...` and current TOON locations.
+3. Add per-domain table indexes in lupo-docs/status for actor/channel/semantic/federation/governance slices.
+4. Validate all docs that still reference old `lupo-docs/database/...` paths against `lupo-docs/database/...` and current TOON locations.
 
 ---
 

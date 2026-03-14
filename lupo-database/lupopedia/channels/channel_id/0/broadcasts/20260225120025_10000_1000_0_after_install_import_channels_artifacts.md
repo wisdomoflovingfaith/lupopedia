@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "channels\0\broadcasts\20260225120025_10000_1000_0_after_install_import_channels_artifacts.md"
+  file_path_from_root: "lupo-channels\0\broadcasts\20260225120025_10000_1000_0_after_install_import_channels_artifacts.md"
   file_hash: "f7013debe275553997d8b6da6cb1c619e7d0aebdfa1ba51bccf9b5f79202d6a7"
-  file_path_from_root: "channels\0\broadcasts\20260225120025_10000_1000_0_after_install_import_channels_artifacts.md"
+  file_path_from_root: "lupo-channels\0\broadcasts\20260225120025_10000_1000_0_after_install_import_channels_artifacts.md"
   file_hash: "86b5209755f82d5e7ce710daa5d6c4a455f98cd9837cb329681a07d38ae9dd58"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -81,7 +81,7 @@ After install.php creates the DB, Lupopedia must import /channels and /artifacts
 
 <!-- FLIP_FOOTER_BEGIN
 {
-    "references": "\"docs\/status\/broadcast_collection_0.md\"",
+    "references": "\"lupo-docs\/status\/broadcast_collection_0.md\"",
     "implements": "\"broadcast_standardization\"",
     "depends_on": "\"registry_seeding_completion\"",
     "includes": "\"channel_0_communications\"",

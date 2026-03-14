@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "channels\0\broadcasts\20260225120020_10000_1000_0_database_schema_source_of_truth_doctrine.md"
+  file_path_from_root: "lupo-channels\0\broadcasts\20260225120020_10000_1000_0_database_schema_source_of_truth_doctrine.md"
   file_hash: "c6d70e40d98a0e6f57b1d81cd5a7b57a04cc3ab69f1f213f94f7787cfbfe7c5d"
-  file_path_from_root: "channels\0\broadcasts\20260225120020_10000_1000_0_database_schema_source_of_truth_doctrine.md"
+  file_path_from_root: "lupo-channels\0\broadcasts\20260225120020_10000_1000_0_database_schema_source_of_truth_doctrine.md"
   file_hash: "92965f6fad9ca9f31e4526a402b719808bc1491ade3f40e705152f03b53b1038"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -81,7 +81,7 @@ All database changes must be applied to install_new_lupopedia.sql, which serves 
 
 <!-- FLIP_FOOTER_BEGIN
 {
-    "references": "\"docs\/status\/broadcast_collection_0.md\"",
+    "references": "\"lupo-docs\/status\/broadcast_collection_0.md\"",
     "implements": "\"broadcast_standardization\"",
     "depends_on": "\"registry_seeding_completion\"",
     "includes": "\"channel_0_communications\"",

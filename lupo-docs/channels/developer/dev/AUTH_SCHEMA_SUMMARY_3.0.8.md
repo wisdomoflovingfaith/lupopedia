@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\channels\developer\dev\AUTH_SCHEMA_SUMMARY_3.0.8.md"
+  file_path_from_root: "lupo-docs\channels\developer\dev\AUTH_SCHEMA_SUMMARY_3.0.8.md"
   file_hash: "6eeabed5416702cff69d075575364c001db556c2dd863133fc3521722e463f4e"
-  file_path_from_root: "docs\channels\developer\dev\AUTH_SCHEMA_SUMMARY_3.0.8.md"
+  file_path_from_root: "lupo-docs\channels\developer\dev\AUTH_SCHEMA_SUMMARY_3.0.8.md"
   file_hash: "c77dfd7003c087a894137bcc53550451425333522d562a87bb1007bc776621f6"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -87,10 +87,10 @@ file:
 
 **Purpose:** This document provides a complete schema analysis of the existing authentication tables in Lupopedia, based on TOON file inspection. This summary is required before implementing the username/password login system in version 3.0.8.
 
-**Source:** TOON files in `database/toon_data/` (authoritative schema representation)
-- **IMPORTANT:** CSV files in `database/csv_data/` are NOT authoritative and may be outdated
+**Source:** TOON files in `lupo-database/toon_data/` (authoritative schema representation)
+- **IMPORTANT:** CSV files in `lupo-database/csv_data/` are NOT authoritative and may be outdated
 - **ONLY** TOON files are used as the source of truth for database schema
-- If schema changes are needed, migration SQL files will be provided in `database/migrations/`
+- If schema changes are needed, migration SQL files will be provided in `lupo-database/migrations/`
 
 **Status:** Ready for review before implementation
 

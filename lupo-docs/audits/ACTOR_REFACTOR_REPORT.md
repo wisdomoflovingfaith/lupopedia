@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\ACTOR_REFACTOR_REPORT.md"
+  file_path_from_root: "lupo-docs\ACTOR_REFACTOR_REPORT.md"
   file_hash: "14874fc0094d6cb9291c19c2d3f3144eb38d2de766816e70225d2ca2baaa5583"
-  file_path_from_root: "docs\ACTOR_REFACTOR_REPORT.md"
+  file_path_from_root: "lupo-docs\ACTOR_REFACTOR_REPORT.md"
   file_hash: "01f3641a147970e6335e54d6c80f887ff32ba2795e8e06fd17bc5108fefcb8f4"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -62,7 +62,7 @@ lupopedia.footer:
 
 # Actor Domain Refactor Report
 
-**Phase:** Actor domain only (per `docs/HELPER_TO_CLASS_MAPPING_ANALYSIS.md`).  
+**Phase:** Actor domain only (per `lupo-docs/HELPER_TO_CLASS_MAPPING_ANALYSIS.md`).  
 **Date:** 2026-02-10.
 
 ---

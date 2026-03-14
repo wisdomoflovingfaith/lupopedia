@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\REQUIRED_TABLES_4.0.6.md"
+  file_path_from_root: "lupo-docs\REQUIRED_TABLES_4.0.6.md"
   file_hash: "f6f319c7be39f92eb5f81f3a22fb5548571c18cba830e47dffeb252559de3f3d"
-  file_path_from_root: "docs\REQUIRED_TABLES_4.0.6.md"
+  file_path_from_root: "lupo-docs\REQUIRED_TABLES_4.0.6.md"
   file_hash: "b2ee2dcdab61c0f67faa82f25bc09e4c2b8e8079222eb6c0b27820d644113367"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -63,8 +63,8 @@ lupopedia.footer:
 # Required Tables for Lupopedia 4.0.6 (Patch-Only)
 
 **Version:** 4.0.6 (patch-only; no 4.1.x in this document)  
-**Canonical install:** `database/migrations/install_new_lupopedia.sql`  
-**Future-features definitions:** `database/migrations/future_features_lupopedia.sql`  
+**Canonical install:** `lupo-database/migrations/install_new_lupopedia.sql`  
+**Future-features definitions:** `lupo-database/migrations/future_features_lupopedia.sql`  
 **Upgrade path:** Crafty Syntax 3.7.5 → Lupopedia 4.0.x (ONLY supported path)
 
 ---
@@ -299,4 +299,4 @@ These tables are **not** created by `install_new_lupopedia.sql`. Their definitio
 
 ---
 
-*See also: `docs/audits/FUTURE_FEATURES_AND_REQUIRED_TABLES_ALIGNMENT_SUMMARY.md`.*
+*See also: `lupo-docs/audits/FUTURE_FEATURES_AND_REQUIRED_TABLES_ALIGNMENT_SUMMARY.md`.*

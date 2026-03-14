@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -31,7 +31,7 @@ lupopedia.footer:
 # FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
 ---
 lupopedia.headers:
-  file_path_from_root: "actors/1007/channels_admin_next_steps_report.md"
+  file_path_from_root: "lupo-actors/1007/channels_admin_next_steps_report.md"
   file_hash: "21290168a10271e05d928ea2e70ff08a94864ab3236c88f777d03c2a0591f763"
   system_version: "4.0.50"
   channel_id: 42
@@ -52,10 +52,10 @@ lupopedia.headers:
   last_updated_utc: "20260228"
 lupopedia.footer:
   outbound_edges:
-    - { to: "channels/1/index.php", type: "references", weight: 0.8, reason: "admin shell implementation" }
-    - { to: "channels/1/admin/", type: "references", weight: 0.7, reason: "admin page views" }
-    - { to: "channels/1/assets/", type: "references", weight: 0.7, reason: "admin assets" }
-    - { to: "docs/api/channels_admin_endpoints.md", type: "references", weight: 0.6, reason: "proposed API endpoints" }
+    - { to: "lupo-channels/1/index.php", type: "references", weight: 0.8, reason: "admin shell implementation" }
+    - { to: "lupo-channels/1/admin/", type: "references", weight: 0.7, reason: "admin page views" }
+    - { to: "lupo-channels/1/assets/", type: "references", weight: 0.7, reason: "admin assets" }
+    - { to: "lupo-docs/api/channels_admin_endpoints.md", type: "references", weight: 0.6, reason: "proposed API endpoints" }
   semantic_tags: ["channels", "admin", "next_steps"]
   last_verified: "20260227"
   last_verified_by: "codex-ide"
@@ -64,8 +64,8 @@ lupopedia.footer:
 # Channels Admin Modernization   Next Steps (Actor 1007)
 
 ## Current State
-- Modern admin shell and basic pages are in place under `channels/1/`.
-- Auth gating is handled via `channels/1/admin/admin_bootstrap.php`.
+- Modern admin shell and basic pages are in place under `lupo-channels/1/`.
+- Auth gating is handled via `lupo-channels/1/admin/admin_bootstrap.php`.
 - UI is styled and navigable, but CRUD is still read-only.
 
 ## Next Steps
@@ -75,7 +75,7 @@ lupopedia.footer:
    - Use session-based auth + actor channel role checks.
 
 2. **Wire JS to endpoints**
-   - Use `channels/1/assets/js/channels_comm.js` to call `/api/channels/admin/*` endpoints.
+   - Use `lupo-channels/1/assets/js/channels_comm.js` to call `/api/channels/admin/*` endpoints.
    - Add CSRF token plumbing from PHP pages into JS.
 
 3. **Enable CRUD flows**
@@ -92,9 +92,9 @@ lupopedia.footer:
    - Ensure admin-only actor checks in every endpoint.
 
 6. **Document endpoints**
-   - Finalize `docs/api/channels_admin_endpoints.md` with implemented routes.
+   - Finalize `lupo-docs/api/channels_admin_endpoints.md` with implemented routes.
 
 ## Optional Enhancements
-- Add live chat monitoring by wiring existing `api/channel/messages` and `api/channel/check` endpoints.
+- Add live chat monitoring by wiring existing `lupo-api/channel/messages` and `lupo-api/channel/check` endpoints.
 - Add keyset pagination for long lists.
 - Add summary widgets for high-level channel health.

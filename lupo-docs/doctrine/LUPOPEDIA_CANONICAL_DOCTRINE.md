@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\doctrine\LUPOPEDIA_CANONICAL_DOCTRINE.md"
+  file_path_from_root: "lupo-docs\doctrine\LUPOPEDIA_CANONICAL_DOCTRINE.md"
   file_hash: "ed26602d155fce4ac062ee3258b78ab1dbdd51275154ac060fe1d0470e3ada00"
-  file_path_from_root: "docs\doctrine\LUPOPEDIA_CANONICAL_DOCTRINE.md"
+  file_path_from_root: "lupo-docs\doctrine\LUPOPEDIA_CANONICAL_DOCTRINE.md"
   file_hash: "21bd2a6f2cf5df37d8f7d2613eeb0b76e58451d1e54dc24aa9187685e184af33"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -64,7 +64,7 @@ lupopedia.footer:
 ---
 # FLIP Header (alias: Wolfie Header, CROP Header, FLIPPING Header)
 wolfie.headers: explicit architecture with structured clarity for every file.
-file_path_from_root: docs/doctrine/LUPOPEDIA_CANONICAL_DOCTRINE.md
+file_path_from_root: lupo-docs/doctrine/LUPOPEDIA_CANONICAL_DOCTRINE.md
 file.last_modified_system_version: "4.0.16"
 file.last_modified_utc: "20260218000000"
 channel_id: 42   # ANUBIS adoption channel
@@ -74,12 +74,12 @@ atoms:
   recovery_event: true
 X-Lupo-Actor-ID: 2035
 X-Lupo-Actor-Identity: "Lupopedia Audit Tool (Auto-Fixed)"
-X-Lupo-File-Path: docs/doctrine/LUPOPEDIA_CANONICAL_DOCTRINE.md
+X-Lupo-File-Path: lupo-docs/doctrine/LUPOPEDIA_CANONICAL_DOCTRINE.md
 ---
 
 # 🟦 LUPOPEDIA CANONICAL DOCTRINE
 
-**File:** `docs/doctrine/LUPOPEDIA_CANONICAL_DOCTRINE.md`
+**File:** `lupo-docs/doctrine/LUPOPEDIA_CANONICAL_DOCTRINE.md`
 **Audience:** All AI agents, contributors, and system stewards
 **Status:** Canonical, non-optional, doctrine-level
 
@@ -192,7 +192,7 @@ Python is used for:
 - Use explicit SQL.
 - Use `YYYYMMDDHHIISS` UTC timestamps.
 - No foreign keys, triggers, or stored procedures.
-- Scripts live in: `scripts/python/`
+- Scripts live in: `lupo-scripts/python/`
 - Scripts must be idempotent and support `--dry-run` where possible.
 
 ### PHP = Runtime layer
@@ -221,7 +221,7 @@ PHP is used for:
 TOON files define the canonical schema.
 
 **Location:**
-`docs/toons/`
+`lupo-docs/toons/`
 
 ### IDE / AI agent responsibilities:
 1. Read TOON files.
@@ -442,7 +442,7 @@ Lupopedia is operated as a **multi-agent ecosystem**.
 - **No FK, no triggers, no stored procedures.**
 - **Table limit:** 199.
 - **Schema source:** `/docs/toons/`.
-- **Python = maintenance** (`scripts/python/`, PyMySQL, explicit SQL).
+- **Python = maintenance** (`lupo-scripts/python/`, PyMySQL, explicit SQL).
 - **PHP = runtime** (no schema changes).
 - **Uploads:** hash-based, date-based directories.
 - **Sessions:** anonymous → authenticated upgrade, keyed by `actor_id`.
@@ -465,9 +465,9 @@ IMPORTANT — Lupopedia uses an ACTOR MODEL:
 - All timestamps use YYYYMMDDHHIISS in UTC
 - Schema changes must come from TOON files in /docs/toons/
 - Table limit is 199
-- Python = maintenance (scripts/python/, PyMySQL, explicit SQL)
+- Python = maintenance (lupo-scripts/python/, PyMySQL, explicit SQL)
 - PHP = runtime only (no schema changes)
-- Uploads use SHA256 hash filenames under uploads/{actors,agents,channels,operators}/YYYY/MM/
+- Uploads use SHA256 hash filenames under lupo-uploads/{actors,agents,channels,operators}/YYYY/MM/
 - LEXA enforces doctrine and boundaries in the gateway
 
 Never introduce user_id.

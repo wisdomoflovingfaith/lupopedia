@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -32,7 +32,7 @@ lupopedia.footer:
 
 ---
 lupopedia.headers:
-  file_path_from_root: "docs/doctrine/VERSION_POLICY_DOCTRINE.md"
+  file_path_from_root: "lupo-docs/doctrine/VERSION_POLICY_DOCTRINE.md"
   file_hash: "dec956e3bc5a07c3caeda08ffc19f4e2f420be62ed639b396183221adedb12dc"
   system_version: "4.0.50"
   channel_id: 51
@@ -49,11 +49,11 @@ lupopedia.headers:
   lupo_agent: "codex-ide"
 
 lupopedia.edges:
-  file_path_from_root: "docs\doctrine\VERSION_POLICY_DOCTRINE.md"
+  file_path_from_root: "lupo-docs\doctrine\VERSION_POLICY_DOCTRINE.md"
   outbound_edges:
     - { to: "CHANGELOG.md", type: "governs", weight: 1.0, reason: "Version release policy" }
     - { to: "config/global_atoms.yaml", type: "references", weight: 0.9, reason: "Version configuration" }
-    - { to: "docs/doctrine/DEVELOPMENT_CYCLE_DOCTRINE.md", type: "supersedes", weight: 0.8, reason: "Development cycle governance" }
+    - { to: "lupo-docs/doctrine/DEVELOPMENT_CYCLE_DOCTRINE.md", type: "supersedes", weight: 0.8, reason: "Development cycle governance" }
     - { to: "README.md", type: "informs", weight: 0.7, reason: "Project documentation" }
   semantic_tags: ["version_policy", "release_management", "auto_installers", "blocking", "doctrine"]
 
@@ -249,9 +249,9 @@ This is a **CRITICAL BLOCKER** that supersedes all other development priorities 
 - **cPanel**: cpanel@cpanel.net (for marketplace inclusion)
 
 ### **Internal Contacts**
-- **Project Lead**: Via actors/1007/profile.md
-- **Development Team**: Via channels/42/ for technical discussions
-- **Documentation Team**: Via docs/ for policy updates
+- **Project Lead**: Via lupo-actors/1007/profile.md
+- **Development Team**: Via lupo-channels/42/ for technical discussions
+- **Documentation Team**: Via lupo-docs/ for policy updates
 
 ---
 

@@ -18,7 +18,7 @@ lupopedia.edges:
   outbound_edges:
     - { to: "lupo-docs/doctrine/FallbackDoctrine.md", type: "references", weight: 1.0 }
     - { to: "lupo-docs/doctrine/RULES_DOCTRINE.md", type: "references", weight: 0.9 }
-    - { to: "database/migrations/20260310_faucet_class.sql", type: "implements", weight: 0.8 }
+    - { to: "lupo-database/migrations/20260310_faucet_class.sql", type: "implements", weight: 0.8 }
     - { to: "lupo-database/lupopedia/mysql/install/install_new_lupopedia.sql", type: "implements", weight: 0.8 }
     - { to: "lupo-docs/doctrine/FAUCET_TRACEABILITY_DOCTRINE.md", type: "references", weight: 0.9 }
 lupopedia.footer:
@@ -92,7 +92,7 @@ Both are still **faucets**. Actors use them; they do not replace actors.
 
 ## Schema
 
-- **lupo_agent_faucets:** One row per faucet. `actor_id` = the actor this faucet serves (e.g. Wolfie). `faucet_class` = `'ide'` or `'llm'` (optional; NULL = legacy/unclassified). Columns such as `temperature`, `model_name`, `system_prompt`, `capabilities_json` are faucet-level configuration.
+- **lupo_agent_faucets:** One row per faucet. `actor_id` = the actor this faucet serves (e.g. Wolfie). `faucet_class` = `'ide'` or `'llm'` (optional; NULL = lupo-legacy/unclassified). Columns such as `temperature`, `model_name`, `system_prompt`, `capabilities_json` are faucet-level configuration.
 - **lupo_rules / lupo_rule_targets:** Attach rules to **actors** and **channels**, not to faucets. Fallback rule applies to actors; routing and failover are across faucets.
 
 See **FallbackDoctrine.md** for fallback invariants and that fallback routes between faucets, not actors.

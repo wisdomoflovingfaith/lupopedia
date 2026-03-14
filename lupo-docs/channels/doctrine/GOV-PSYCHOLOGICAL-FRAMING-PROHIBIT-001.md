@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\channels\doctrine\GOV-PSYCHOLOGICAL-FRAMING-PROHIBIT-001.md"
+  file_path_from_root: "lupo-docs\channels\doctrine\GOV-PSYCHOLOGICAL-FRAMING-PROHIBIT-001.md"
   file_hash: "e14e530cd9bd8bdf97ece44db61f81403cc1208dee7ed83c3f0692c1a83fd104"
-  file_path_from_root: "docs\channels\doctrine\GOV-PSYCHOLOGICAL-FRAMING-PROHIBIT-001.md"
+  file_path_from_root: "lupo-docs\channels\doctrine\GOV-PSYCHOLOGICAL-FRAMING-PROHIBIT-001.md"
   file_hash: "a97f41339dbfcd96be19d9bbf741d38996287dcbb6bb84655626ec146ec7224d"
   last_updated_utc: "20260228"
   system_version: "4.0.50"

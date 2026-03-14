@@ -50,8 +50,8 @@ if (!isset($actor_names)) {
     var channelId = <?= (int) $channel_id ?>;
     var afterYmdhis = <?= json_encode($initial_after_ymdhis) ?>;
     var streamEl = document.getElementById('channel-message-stream');
-    var messagesUrl = base + '/api/channel/messages';
-    var checkUrl = base + '/api/channel/check';
+    var messagesUrl = base + '/lupo-api/channel/messages';
+    var checkUrl = base + '/lupo-api/channel/check';
     var pollInterval = 2100;
     var pollCount = 0;
     var maxPollBeforeCheck = 15;

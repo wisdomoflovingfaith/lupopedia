@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "channels\0\broadcasts\20260225120021_10000_1000_0_agent_offline_status_antigravity.md"
+  file_path_from_root: "lupo-channels\0\broadcasts\20260225120021_10000_1000_0_agent_offline_status_antigravity.md"
   file_hash: "fdf95fb7fddceec8bcef4f934db5a78964ae39685e9dcf9b0391d9eab420b956"
-  file_path_from_root: "channels\0\broadcasts\20260225120021_10000_1000_0_agent_offline_status_antigravity.md"
+  file_path_from_root: "lupo-channels\0\broadcasts\20260225120021_10000_1000_0_agent_offline_status_antigravity.md"
   file_hash: "dd54b3f26b5a6ebb7f6cdc7d00f9179b1adf97f6f78167ed2b2103d43581662c"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -81,7 +81,7 @@ Agent Antigravity (actor_id 1003) is marked offline and maxed out. Do not assign
 
 <!-- FLIP_FOOTER_BEGIN
 {
-    "references": "\"docs\/status\/broadcast_collection_0.md\"",
+    "references": "\"lupo-docs\/status\/broadcast_collection_0.md\"",
     "implements": "\"broadcast_standardization\"",
     "depends_on": "\"registry_seeding_completion\"",
     "includes": "\"channel_0_communications\"",

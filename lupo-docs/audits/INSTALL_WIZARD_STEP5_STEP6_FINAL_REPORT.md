@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\audits\INSTALL_WIZARD_STEP5_STEP6_FINAL_REPORT.md"
+  file_path_from_root: "lupo-docs\audits\INSTALL_WIZARD_STEP5_STEP6_FINAL_REPORT.md"
   file_hash: "bebcc0a8c6712dcbcc94468252d789b5c9aab435e655d3664f3b8e033ae61c5c"
-  file_path_from_root: "docs\audits\INSTALL_WIZARD_STEP5_STEP6_FINAL_REPORT.md"
+  file_path_from_root: "lupo-docs\audits\INSTALL_WIZARD_STEP5_STEP6_FINAL_REPORT.md"
   file_hash: "6121d918d92072996a8474c8b6471d07811cf7c22c33da2588f040e48b721b32"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -63,7 +63,7 @@ lupopedia.footer:
 # Install Wizard — Step 5 (Class Conversion) + Step 6 (Final Cleanup) — Final Report
 
 **Date:** 2026-02-04  
-**Reference:** docs/audits/INSTALL_PHP_WIZARD_FIX_PLAN.md §9 (Execution Plan)  
+**Reference:** lupo-docs/audits/INSTALL_PHP_WIZARD_FIX_PLAN.md §9 (Execution Plan)  
 **Status:** Complete. All helpers converted to classes; wrappers removed; direct class calls in install.php.
 
 ---

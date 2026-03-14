@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -32,7 +32,7 @@ lupopedia.footer:
 
 ---
 lupopedia.headers:
-  file_path_from_root: "prompts/jetbrains/20260227_channels_modernization_implementation.md"
+  file_path_from_root: "lupo-prompts/jetbrains/20260227_channels_modernization_implementation.md"
   file_hash: "f5cf73cc53173d1d9bebe4f14d140d3b3678f462a8a7b757a54c9dbdfd1c7f89"
   system_version: "4.0.50"
   channel_id: 42
@@ -41,7 +41,7 @@ lupopedia.headers:
   delegation_chain: "1007:10000"
   artifact_type: "implementation_prompt"
   purpose: "JetBrains IDE task implementation for channels web admin interface modernization"
-  dialog_message: "JetBrains: Modernize the legacy Crafty Syntax channels/livehelp admin interface using modern iframe-based design, Tailwind CSS, and Lupopedia's channel system integration."
+  dialog_message: "JetBrains: Modernize the legacy Crafty Syntax lupo-channels/livehelp admin interface using modern iframe-based design, Tailwind CSS, and Lupopedia's channel system integration."
   mood_rgb: "4169E1"
   artifact_kind: "ui_modernization"
   traits: ["ui_modernization", "channels", "admin_interface", "iframe", "tailwind"]
@@ -49,11 +49,11 @@ lupopedia.headers:
   lupo_agent: "jetbrains"
 
 lupopedia.edges:
-  file_path_from_root: "prompts\jetbrains\20260227_channels_modernization_implementation.md"
+  file_path_from_root: "lupo-prompts\jetbrains\20260227_channels_modernization_implementation.md"
   outbound_edges:
-    - { to: "channels/42/tasks/active/channels_admin_interface_modernization.md", type: "implements", weight: 1.0, reason: "Task definition source" }
-    - { to: "channels/1/index.php", type: "creates", weight: 0.9, reason: "Main channel interface template" }
-    - { to: "channels/1/admin/", type: "creates", weight: 0.8, reason: "Admin interface components" }
+    - { to: "lupo-channels/42/tasks/active/channels_admin_interface_modernization.md", type: "implements", weight: 1.0, reason: "Task definition source" }
+    - { to: "lupo-channels/1/index.php", type: "creates", weight: 0.9, reason: "Main channel interface template" }
+    - { to: "lupo-channels/1/admin/", type: "creates", weight: 0.8, reason: "Admin interface components" }
     - { to: "lupo-includes/modules/channels/", type: "updates", weight: 0.8, reason: "Channel module updates" }
     - { to: "themes/", type: "updates", weight: 0.7, reason: "Theme integration" }
   semantic_tags: ["channels_modernization", "ui", "admin_interface", "jetbrains"]
@@ -78,7 +78,7 @@ lupopedia.footer:
 
 ## 🎯 **Mission Objective**
 
-Modernize the legacy Crafty Syntax channels/livehelp admin interface using modern iframe-based design, Tailwind CSS, and seamless integration with Lupopedia's channel system. Replace outdated `<frameset>` technology with responsive, semantic HTML5 structure while maintaining all existing functionality.
+Modernize the legacy Crafty Syntax lupo-channels/livehelp admin interface using modern iframe-based design, Tailwind CSS, and seamless integration with Lupopedia's channel system. Replace outdated `<frameset>` technology with responsive, semantic HTML5 structure while maintaining all existing functionality.
 
 ---
 
@@ -104,9 +104,9 @@ Modernize the legacy Crafty Syntax channels/livehelp admin interface using moder
 
 ### **New File Structure**
 ```
-channels/1/
+lupo-channels/1/
 ├── index.php                    # Main channel interface (modern template)
-├── admin/
+├── lupo-admin/
 │   ├── dashboard.php            # Admin dashboard
 │   ├── operators.php            # Operator management
 │   ├── departments.php          # Department management
@@ -119,14 +119,14 @@ channels/1/
 │   │   ├── channels-comm.js     # Modern communication (Fetch/WebSocket)
 │   │   ├── iframe-manager.js    # Cross-iframe communication
 │   │   └── admin-interface.js   # Admin interface logic
-│   └── images/                  # Channel interface assets
+│   └── lupo-images/                  # Channel interface assets
 ```
 
 ### **Integration Points**
 - **Global Header**: `LUPOPEDIA_PUBLIC_PATH . '/header'`
 - **Session Management**: `app/Auth/Session` class
 - **Database**: `lupo_sessions`, `lupo_actors`, `lupo_channels`
-- **API**: `channels/api/` endpoints for AJAX calls
+- **API**: `lupo-channels/api/` endpoints for AJAX calls
 
 ---
 
@@ -135,7 +135,7 @@ channels/1/
 ### **Phase 1: Foundation Setup (1.5 hours)**
 1. **Create Modern Template Structure**
    ```php
-   // channels/1/index.php - Main template
+   // lupo-channels/1/index.php - Main template
    <!DOCTYPE html>
    <html lang="en">
    <head>
@@ -157,7 +157,7 @@ channels/1/
                </div>
                <!-- Main Content -->
                <div class="lg:col-span-3">
-                   <iframe id="admin-content" src="admin/dashboard.php" 
+                   <iframe id="admin-content" src="lupo-admin/dashboard.php" 
                            class="w-full h-screen border-0 rounded-lg"></iframe>
                </div>
            </div>
@@ -181,24 +181,24 @@ channels/1/
    ```
 
 ### **Phase 2: Admin Interface Components (2 hours)**
-1. **Dashboard Interface** (`channels/1/admin/dashboard.php`)
+1. **Dashboard Interface** (`lupo-channels/1/admin/dashboard.php`)
    - Real-time statistics
    - Active chats overview
    - Operator status
    - System health indicators
 
-2. **Operator Management** (`channels/1/admin/operators.php`)
+2. **Operator Management** (`lupo-channels/1/admin/operators.php`)
    - Operator list with search/filter
    - Add/Edit/Delete operators
    - Department assignments
    - Status management (online/offline)
 
-3. **Department Management** (`channels/1/admin/departments.php`)
+3. **Department Management** (`lupo-channels/1/admin/departments.php`)
    - Department CRUD operations
    - Operator assignments
    - Department settings
 
-4. **Chat Monitor** (`channels/1/admin/chat_monitor.php`)
+4. **Chat Monitor** (`lupo-channels/1/admin/chat_monitor.php`)
    - Live chat monitoring
    - Chat history
    - Operator performance metrics
@@ -206,7 +206,7 @@ channels/1/
 ### **Phase 3: Modern Communication Layer (1.5 hours)**
 1. **Replace xmlhttp.js with Modern API**
    ```javascript
-   // channels/1/assets/js/channels-comm.js
+   // lupo-channels/1/assets/js/channels-comm.js
    class ChannelsCommunication {
        constructor() {
            this.baseUrl = '/channels/api/';
@@ -236,7 +236,7 @@ channels/1/
 
 2. **Iframe Communication Manager**
    ```javascript
-   // channels/1/assets/js/iframe-manager.js
+   // lupo-channels/1/assets/js/iframe-manager.js
    class IframeManager {
        constructor() {
            this.setupMessageListener();
@@ -259,7 +259,7 @@ channels/1/
 ### **Phase 4: API Endpoints (1 hour)**
 1. **Create REST API Controllers**
    ```php
-   // channels/api/operators.php
+   // lupo-channels/api/operators.php
    header('Content-Type: application/json');
    
    switch ($_SERVER['REQUEST_METHOD']) {

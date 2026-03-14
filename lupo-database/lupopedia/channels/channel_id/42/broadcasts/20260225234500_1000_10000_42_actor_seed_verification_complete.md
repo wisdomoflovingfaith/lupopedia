@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "channels\42\broadcasts\20260225234500_1000_10000_42_actor_seed_verification_complete.md"
+  file_path_from_root: "lupo-channels\42\broadcasts\20260225234500_1000_10000_42_actor_seed_verification_complete.md"
   file_hash: "d9116e041b8d8e13b1520573106e817d4a5b8f9398493ff19b39662801b0995d"
-  file_path_from_root: "channels\42\broadcasts\20260225234500_1000_10000_42_actor_seed_verification_complete.md"
+  file_path_from_root: "lupo-channels\42\broadcasts\20260225234500_1000_10000_42_actor_seed_verification_complete.md"
   file_hash: "2635ff3dfd93824def2d0c2ef01cb77c50385cb0847b6759e7e25113b91c8f3a"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -61,7 +61,7 @@ lupopedia.footer:
 ---
 
 ---
-file_path_from_root: "channels/42/broadcasts/20260225234500_1000_10000_42_actor_seed_verification_complete.md"
+file_path_from_root: "lupo-channels/42/broadcasts/20260225234500_1000_10000_42_actor_seed_verification_complete.md"
 system_version: "4.0.45"
 channel_id: 42
 from_actor_id: 1000
@@ -127,8 +127,8 @@ All required actors for Lupopedia 4.0.45 installation have been verified in data
 flip.footer: {
   outbound_edges: [
     { to: "ACTOR_SEED_VERIFICATION_COMPLETE_4.0.45.md", type: "full_documentation", weight: 1.0 },
-    { to: "database/migrations/seed_actors_agents_4.0.45.sql", type: "references", weight: 0.9 },
-    { to: "database/migrations/seed_anubis_vishwakarma_4.0.45.sql", type: "references", weight: 0.9 },
+    { to: "lupo-database/migrations/seed_actors_agents_4.0.45.sql", type: "references", weight: 0.9 },
+    { to: "lupo-database/migrations/seed_anubis_vishwakarma_4.0.45.sql", type: "references", weight: 0.9 },
     { to: "CHANGELOG.md", type: "updates", weight: 0.8 },
     { to: "HUMAN_TASKS_CAPTAIN_10000.md", type: "references", weight: 0.7 }
   ],

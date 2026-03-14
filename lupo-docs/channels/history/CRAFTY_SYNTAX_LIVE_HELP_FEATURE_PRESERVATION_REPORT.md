@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\channels\history\CRAFTY_SYNTAX_LIVE_HELP_FEATURE_PRESERVATION_REPORT.md"
+  file_path_from_root: "lupo-docs\channels\history\CRAFTY_SYNTAX_LIVE_HELP_FEATURE_PRESERVATION_REPORT.md"
   file_hash: "9bd6c42fa54fed3ae162647aa2574a9cc5873b2b43f8b771861a3add46b76c7a"
-  file_path_from_root: "docs\channels\history\CRAFTY_SYNTAX_LIVE_HELP_FEATURE_PRESERVATION_REPORT.md"
+  file_path_from_root: "lupo-docs\channels\history\CRAFTY_SYNTAX_LIVE_HELP_FEATURE_PRESERVATION_REPORT.md"
   file_hash: "5cce10439e4c1cee5e7cb30f9bc3c2cac6df697395980e96c85ed696f3927767"
   last_updated_utc: "20260228"
   system_version: "4.0.50"

@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\channels\doctrine\CANONICAL_TIME_RULE_UPDATE_SUMMARY.md"
+  file_path_from_root: "lupo-docs\channels\doctrine\CANONICAL_TIME_RULE_UPDATE_SUMMARY.md"
   file_hash: "e811634f0219e362cfcf42571c5244b9fca1f9f9a13623a46c831da6433bab50"
-  file_path_from_root: "docs\channels\doctrine\CANONICAL_TIME_RULE_UPDATE_SUMMARY.md"
+  file_path_from_root: "lupo-docs\channels\doctrine\CANONICAL_TIME_RULE_UPDATE_SUMMARY.md"
   file_hash: "ade2579d5bc834ca97a006ffb9de4e226d5fb155ecd98ba3eb48c55a27edfc9c"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -152,11 +152,11 @@ file:
 
 ## Files Modified
 
-1. ✅ `docs/doctrine/DIALOG_DOCTRINE.md`
+1. ✅ `lupo-docs/doctrine/DIALOG_DOCTRINE.md`
    - Added Section 4.4: Canonical Time Rule
    - Integrated with timestamp requirements section
 
-2. ✅ `docs/doctrine/TIMESTAMP_DOCTRINE.md`
+2. ✅ `lupo-docs/doctrine/TIMESTAMP_DOCTRINE.md`
    - Added Section 6: Canonical Time Rule for All Agents
    - Renumbered subsequent sections (6→7, 7→8, 8→9, 9→10)
 

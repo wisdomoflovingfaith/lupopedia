@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -32,7 +32,7 @@ lupopedia.footer:
 
 ---
 lupopedia.headers:
-  file_path_from_root: "prompts/jetbrains/20260227_repository_cleanup_implementation.md"
+  file_path_from_root: "lupo-prompts/jetbrains/20260227_repository_cleanup_implementation.md"
   file_hash: "525500e7dd41d9bd567cbb40559e34e80737cf042f8af64dc2d9cfa748406bb3"
   system_version: "4.0.50"
   channel_id: 42
@@ -49,10 +49,10 @@ lupopedia.headers:
   lupo_agent: "jetbrains"
 
 lupopedia.edges:
-  file_path_from_root: "prompts\jetbrains\20260227_repository_cleanup_implementation.md"
+  file_path_from_root: "lupo-prompts\jetbrains\20260227_repository_cleanup_implementation.md"
   outbound_edges:
-    - { to: "channels/42/tasks/active/repository_cleanup_legacy_files_removal.md", type: "implements", weight: 1.0, reason: "Task definition source" }
-    - { to: "database/migrations/", type: "cleans", weight: 0.8, reason: "Migration files cleanup" }
+    - { to: "lupo-channels/42/tasks/active/repository_cleanup_legacy_files_removal.md", type: "implements", weight: 1.0, reason: "Task definition source" }
+    - { to: "lupo-database/migrations/", type: "cleans", weight: 0.8, reason: "Migration files cleanup" }
     - { to: "audits/", type: "cleans", weight: 0.7, reason: "Audit files removal" }
     - { to: "progress_blog/", type: "cleans", weight: 0.6, reason: "Progress blog cleanup" }
     - { to: "dialogs/", type: "cleans", weight: 0.6, reason: "Dialog transcript removal" }
@@ -90,16 +90,16 @@ Execute comprehensive repository cleanup to remove irrelevant, outdated, and unn
 **Rationale**: Doctrine states no Lupopedia → Lupopedia upgrades until 4.1.0
 
 **Files to Remove**:
-- `database/migrations/2026_*.sql` (except Crafty import)
-- `database/migrations/dev_*.sql` (if obsolete)
+- `lupo-database/migrations/2026_*.sql` (except Crafty import)
+- `lupo-database/migrations/dev_*.sql` (if obsolete)
 - `migrations/*.sql` (duplicate migration directory)
 - `migrations/*.php` (PHP migration scripts)
 
 **Files to Keep** ✅:
-- `database/migrations/install_new_lupopedia.sql`
-- `database/migrations/seed_lupopedia.sql`
-- `database/migrations/import_from_old_crafty_syntax.sql`
-- `database/migrations/old_crafty_syntax_3_7_5_start.sql`
+- `lupo-database/migrations/install_new_lupopedia.sql`
+- `lupo-database/migrations/seed_lupopedia.sql`
+- `lupo-database/migrations/import_from_old_crafty_syntax.sql`
+- `lupo-database/migrations/old_crafty_syntax_3_7_5_start.sql`
 
 ### 2. 🧹 **Clean Status/Report Files**
 **Target**: Outdated status files, temporary reports, obsolete audit files
@@ -108,17 +108,17 @@ Execute comprehensive repository cleanup to remove irrelevant, outdated, and unn
 - `audits/*.md` (old audit reports > 6 months)
 - `progress_blog/*.md` (completed progress blogs)
 - `dialogs/*.md` (old dialog transcripts)
-- `docs/audit/*.md` (audit documentation)
-- `docs/archive/*.md` (archived docs)
+- `lupo-docs/audit/*.md` (audit documentation)
+- `lupo-docs/archive/*.md` (archived docs)
 
 ### 3. 🔧 **Remove Development Artifacts**
 **Target**: Old experimental files, abandoned prototypes, obsolete configs
 
 **Areas to Clean**:
-- `channels/42/threads/DEVELOPMENT_CYCLE_4_0_4[0-6]/` (old cycles)
+- `lupo-channels/42/threads/DEVELOPMENT_CYCLE_4_0_4[0-6]/` (old cycles)
 - `exports/*.csv` and `exports/*.json` (temporary exports)
-- Temporary scripts in `scripts/`
-- Obsolete tools in `tools/`
+- Temporary scripts in `lupo-scripts/`
+- Obsolete tools in `lupo-tools/`
 
 ---
 
@@ -126,11 +126,11 @@ Execute comprehensive repository cleanup to remove irrelevant, outdated, and unn
 
 ### ✅ **Essential Files (Protected)**
 - `README.md`, `CHANGELOG.md`, `CONTRIBUTING.md`
-- `docs/doctrine/`, `docs/api/`, `docs/database/`
+- `lupo-docs/doctrine/`, `lupo-docs/api/`, `lupo-docs/database/`
 - `config/global_atoms.yaml`, `lupo-includes/version.php`
 - `install.php`, `.lupo_actor`
-- `channels/42/threads/DEVELOPMENT_CYCLE_4_0_47/` and `DEVELOPMENT_CYCLE_4_0_48/`
-- `channels/42/tasks/active/`
+- `lupo-channels/42/threads/DEVELOPMENT_CYCLE_4_0_47/` and `DEVELOPMENT_CYCLE_4_0_48/`
+- `lupo-channels/42/tasks/active/`
 - All FLARE documentation files
 
 ---
@@ -154,7 +154,7 @@ Execute comprehensive repository cleanup to remove irrelevant, outdated, and unn
 ### **Phase 2: Migration File Cleanup (2 hours)**
 1. **List and Review Migration Files**
    ```bash
-   find database/migrations/ -name "*.sql" -type f | sort
+   find lupo-database/migrations/ -name "*.sql" -type f | sort
    find migrations/ -name "*.sql" -type f | sort
    ```
 
@@ -184,15 +184,15 @@ Execute comprehensive repository cleanup to remove irrelevant, outdated, and unn
 ### **Phase 4: Development Artifact Cleanup (2 hours)**
 1. **Clean Old Development Cycles**:
    ```bash
-   ls -la channels/42/threads/
+   ls -la lupo-channels/42/threads/
    ```
    - Keep only 4.0.47 and 4.0.48 cycles
    - Remove or archive older cycles
 
 2. **Remove Temporary Files**:
    - Clean `exports/` directory
-   - Remove temporary scripts in `scripts/`
-   - Clean obsolete tools in `tools/`
+   - Remove temporary scripts in `lupo-scripts/`
+   - Clean obsolete tools in `lupo-tools/`
 
 ### **Phase 5: Final Review (1 hour)**
 1. **Verify No Critical Files Removed**
@@ -215,7 +215,7 @@ Execute comprehensive repository cleanup to remove irrelevant, outdated, and unn
 - Use descriptive commit messages
 
 ### **VERIFICATION**:
-- Run `php scripts/run_tests.sh .` after cleanup
+- Run `php lupo-scripts/run_tests.sh .` after cleanup
 - Verify install.php still works
 - Check that CHANGELOG.md references are valid
 
@@ -239,8 +239,8 @@ Execute comprehensive repository cleanup to remove irrelevant, outdated, and unn
 ```bash
 # Example cleanup commands (use with caution)
 # Phase 1: Migration cleanup
-rm database/migrations/2026_lupopedia_to_lupopedia_v1.sql
-rm database/migrations/dev_experimental_feature.sql
+rm lupo-database/migrations/2026_lupopedia_to_lupopedia_v1.sql
+rm lupo-database/migrations/dev_experimental_feature.sql
 rm -rf migrations/
 
 # Phase 2: Status cleanup
@@ -249,7 +249,7 @@ rm -rf progress_blog/2025-*.md
 rm -rf dialogs/old_transcripts/
 
 # Phase 3: Development cleanup
-rm -rf channels/42/threads/DEVELOPMENT_CYCLE_4_0_45/
+rm -rf lupo-channels/42/threads/DEVELOPMENT_CYCLE_4_0_45/
 rm exports/temp_*.csv
 ```
 

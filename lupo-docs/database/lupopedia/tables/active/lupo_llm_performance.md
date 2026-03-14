@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\database\lupopedia\tables\lupo_llm_performance.md"
+  file_path_from_root: "lupo-docs\database\lupopedia\tables\lupo_llm_performance.md"
   file_hash: "bd59fa79902c0f27aee0e14a5807bda16b49f602e8c2a245d30239f717b52b8d"
-  file_path_from_root: "docs\database\lupopedia\tables\lupo_llm_performance.md"
+  file_path_from_root: "lupo-docs\database\lupopedia\tables\lupo_llm_performance.md"
   file_hash: "6bcb4fb5b8284ba9e14042877ec3372be38d43b61ddfc373142497d3a230dfd5"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -63,7 +63,7 @@ lupopedia.footer:
 
 ---
 wolfie.headers: {
-  file_path_from_root: "docs/database/lupopedia/tables/lupo_llm_performance.md",
+  file_path_from_root: "lupo-docs/database/lupopedia/tables/lupo_llm_performance.md",
   system_version: "4.0.48",
   channel_id: 1,
   actor_id: 1003,
@@ -80,8 +80,8 @@ wolfie.headers: {
 flip.footer: {
   outbound_edges: [
     { to: "lupo-database/lupopedia/toon/lupo_llm_performance.toon.json", type: "schema_reference", weight: 1.0 },
-    { to: "docs/database/lupopedia/tables/lupo_agents.md", type: "references", weight: 0.9 },
-    { to: "docs/database/lupopedia/tables/lupo_capability_usage.md", type: "references", weight: 0.8 }
+    { to: "lupo-docs/database/lupopedia/tables/lupo_agents.md", type: "references", weight: 0.9 },
+    { to: "lupo-docs/database/lupopedia/tables/lupo_capability_usage.md", type: "references", weight: 0.8 }
   ],
   semantic_tags: ["token_accounting", "model_efficiency", "provider_analysis"]
 }

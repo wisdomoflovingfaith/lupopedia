@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\help\LUPOPEDIA_HELP_INDEX.md"
+  file_path_from_root: "lupo-docs\help\LUPOPEDIA_HELP_INDEX.md"
   file_hash: "7a55469a1a347aca91bd9026d1658a9cfe8435b9ec92aa130f87a2ff0cc8ced7"
-  file_path_from_root: "docs\help\LUPOPEDIA_HELP_INDEX.md"
+  file_path_from_root: "lupo-docs\help\LUPOPEDIA_HELP_INDEX.md"
   file_hash: "dde4c70eaf7fb8d28cabc9357926427fdfbcf7be86d08330f4ff4eaf076fe776"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -108,7 +108,7 @@ Lupopedia is a semantic operating system built on top of Crafty Syntax Live Help
 - **GitHub OAuth:** Sign in with GitHub account
 
 ### OAuth Setup
-See: `docs/OAUTH_SETUP_GUIDE.md`
+See: `lupo-docs/OAUTH_SETUP_GUIDE.md`
 
 Configuration required in `lupopedia-config.php`:
 ```php
@@ -284,22 +284,22 @@ file.last_modified_utc: 20260223120000
 ### Testing
 ```bash
 # All tests
-sh scripts/run_tests.sh .
+sh lupo-scripts/run_tests.sh .
 
 # Unit tests only
-sh scripts/run_unit_tests.sh .
+sh lupo-scripts/run_unit_tests.sh .
 
 # Single test
-php tests/unit/admin_csrf.php
+php lupo-tests/unit/admin_csrf.php
 ```
 
 ### Schema Management
 ```bash
 # Generate TOON files from database
-python scripts/generate_toon_files.py
+python lupo-scripts/generate_toon_files.py
 
 # Validate schema
-python scripts/verify_db_against_toons.py
+python lupo-scripts/verify_db_against_toons.py
 
 # Bump version
 php bin/bump-version.php
@@ -395,17 +395,17 @@ VALUES ('Channel 42', 'Development channel', 20260223120000, 20260223120000);
 - `CONTRIBUTING.md` - Contribution guide
 
 ### OAuth Documentation
-- `docs/oauth_authentication.md` - Technical guide
-- `docs/OAUTH_SETUP_GUIDE.md` - Quick start
+- `lupo-docs/oauth_authentication.md` - Technical guide
+- `lupo-docs/OAUTH_SETUP_GUIDE.md` - Quick start
 - `config/oauth.example.php` - Configuration template
 
 ### Architecture Documentation
-- `docs/doctrine/` - Architecture rules
-- `docs/toons/` - Schema definitions
-- `docs/migrations/` - Migration guides
+- `lupo-docs/doctrine/` - Architecture rules
+- `lupo-docs/toons/` - Schema definitions
+- `lupo-docs/migrations/` - Migration guides
 
 ### API Documentation
-- `docs/api/` - API reference
+- `lupo-docs/api/` - API reference
 - `routes/` - Route definitions
 
 ---

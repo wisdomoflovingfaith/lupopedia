@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "tools\vsx-extension\README.md"
+  file_path_from_root: "lupo-tools\vsx-extension\README.md"
   file_hash: "db7ece8aa827be25f99651711c402f643bd59bae770ceda83ad1bf9925dfc268"
-  file_path_from_root: "tools\vsx-extension\README.md"
+  file_path_from_root: "lupo-tools\vsx-extension\README.md"
   file_hash: "5480c26da90948536f3dcced835cfeb16c283ecebb739b073e27083e6133fab1"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -122,11 +122,11 @@ If another IDE (e.g. Windsurf, KIRO, Warp) is running on the same codebase, each
 
 ## Installation
 
-See [docs/INSTALL.md](docs/INSTALL.md).
+See [lupo-docs/INSTALL.md](lupo-docs/INSTALL.md).
 
 ## Usage Guide
 
-See [docs/USAGE.md](docs/USAGE.md).
+See [lupo-docs/USAGE.md](lupo-docs/USAGE.md).
 
 ---
 
@@ -138,7 +138,7 @@ A FLIP header is a YAML front-matter block that anchors a file to the Lupopedia 
 ---
 # FLIP Header
 wolfie.headers: explicit architecture with structured clarity for every file.
-file_path_from_root: docs/example.md
+file_path_from_root: lupo-docs/example.md
 file.last_modified_system_version: "4.0.33"
 file.last_modified_utc: "20260223171000"
 channel_id: 42

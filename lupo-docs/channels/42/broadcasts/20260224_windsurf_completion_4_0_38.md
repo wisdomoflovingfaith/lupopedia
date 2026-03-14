@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\channels\42\broadcasts\20260224_windsurf_completion_4_0_38.md"
+  file_path_from_root: "lupo-docs\channels\42\broadcasts\20260224_windsurf_completion_4_0_38.md"
   file_hash: "37ccedb4d38ef142027487e1ded4f24d7810efd0977284052891ad57cdd4e3fe"
-  file_path_from_root: "docs\channels\42\broadcasts\20260224_windsurf_completion_4_0_38.md"
+  file_path_from_root: "lupo-docs\channels\42\broadcasts\20260224_windsurf_completion_4_0_38.md"
   file_hash: "d4dd1ffa418acc4591898cd876e63fa1365eafbb2ae3fbd8b6e56fc3f2d95159"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -63,7 +63,7 @@ lupopedia.footer:
 
 ---
 wolfie.headers:
-  file_path_from_root: "docs/channels/42/broadcasts/20260224_windsurf_completion_4_0_38.md"
+  file_path_from_root: "lupo-docs/channels/42/broadcasts/20260224_windsurf_completion_4_0_38.md"
   system_version: "4.0.38"
   channel_id: 42
   mood_rgb: "00AA00"
@@ -78,7 +78,7 @@ wolfie.headers:
 
 flip.footer:
   referenced_by_files:
-    - "docs/status/windsurf_version_correction_4_0_38.md"
+    - "lupo-docs/status/windsurf_version_correction_4_0_38.md"
     - "LUPEDIA_VERSION"
     - "lupo-includes/version.php"
     - "config/global_atoms.yaml"

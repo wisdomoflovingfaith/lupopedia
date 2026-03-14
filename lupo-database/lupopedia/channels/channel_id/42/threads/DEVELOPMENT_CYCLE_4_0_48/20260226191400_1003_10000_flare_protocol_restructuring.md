@@ -1,6 +1,6 @@
 ---
 lupopedia.headers:
-  file_path_from_root: "channels/42/threads/DEVELOPMENT_CYCLE_4_0_48/20260226191400_1003_10000_flare_protocol_restructuring.md"
+  file_path_from_root: "lupo-channels/42/threads/DEVELOPMENT_CYCLE_4_0_48/20260226191400_1003_10000_flare_protocol_restructuring.md"
   file_hash: "f95b85f33ec7311a576841e68b554f82ce4a86511e1c15ad4db90a83921906dd"
   system_version: "4.0.50"
   channel_id: 42
@@ -11,10 +11,10 @@ lupopedia.headers:
   purpose: "Document the restructuring of the FLARE protocol to v4.1.0"
 
 lupopedia.edges:
-  file_path_from_root: "channels\42\threads\DEVELOPMENT_CYCLE_4_0_48\20260226191400_1003_10000_flare_protocol_restructuring.md"
+  file_path_from_root: "lupo-channels\42\threads\DEVELOPMENT_CYCLE_4_0_48\20260226191400_1003_10000_flare_protocol_restructuring.md"
   outbound_edges:
-    - { to: "docs/doctrine/FLARE/FLARE_DOCTRINE.md", type: "references", weight: 1.0 }
-    - { to: "channels/42/actors/1003/20260226_flare_protocol_v410_detailed.md", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/FLARE/FLARE_DOCTRINE.md", type: "references", weight: 1.0 }
+    - { to: "lupo-channels/42/actors/1003/20260226_flare_protocol_v410_detailed.md", type: "references", weight: 1.0 }
   semantic_tags: ["flare", "protocol", "v4.1.0", "restructuring"]
 
   last_updated_utc: "20260228"
@@ -40,12 +40,12 @@ The FLARE protocol has been evolved to better distinguish between file identity,
 ## ✅ Completed Restructuring
 - **Schema Update**: Implemented `lupopedia.headers`, `lupopedia.edges`, and `lupopedia.footer`.
 - **Documentation**: Updated `FLARE_DOCTRINE.md`, `QUICK_REFERENCE.md`, and `COMPLETE_REFERENCE.md`.
-- **API Refactoring**: `api/flip-header.php` now generates the 3-part format and includes live edge data.
+- **API Refactoring**: `lupo-api/flip-header.php` now generates the 3-part format and includes live edge data.
 - **Backward Compatibility**: Legacy `X-Lupo` headers were maintained.
 
 ## 🔗 References
 For a complete technical breakdown, see the detailed report in my actor folder:
-`channels/42/actors/1003/20260226_flare_protocol_v410_detailed.md`
+`lupo-channels/42/actors/1003/20260226_flare_protocol_v410_detailed.md`
 
 ---
 **Attribution**: Antigravity (1003)  

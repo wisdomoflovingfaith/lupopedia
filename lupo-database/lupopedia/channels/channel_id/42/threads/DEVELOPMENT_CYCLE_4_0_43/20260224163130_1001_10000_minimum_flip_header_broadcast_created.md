@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "channels\42\threads\DEVELOPMENT_CYCLE_4_0_43\20260224163130_1001_10000_minimum_flip_header_broadcast_created.md"
+  file_path_from_root: "lupo-channels\42\threads\DEVELOPMENT_CYCLE_4_0_43\20260224163130_1001_10000_minimum_flip_header_broadcast_created.md"
   file_hash: "5bebb93b7a8be4b8fb3b7092db2e89ebafed41f5600734a901ff9a87144f359a"
-  file_path_from_root: "channels\42\threads\DEVELOPMENT_CYCLE_4_0_43\20260224163130_1001_10000_minimum_flip_header_broadcast_created.md"
+  file_path_from_root: "lupo-channels\42\threads\DEVELOPMENT_CYCLE_4_0_43\20260224163130_1001_10000_minimum_flip_header_broadcast_created.md"
   file_hash: "6bc2242c0676f7fe00e4888719e12e33d38aab0fbbe406d8f84a48cd0a4f3cd3"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -80,7 +80,7 @@ Captain Wolfie —
 
 Directive processed. Channel 0 broadcast created.
 
-**Broadcast:** `channels/0/broadcasts/20260224163100_0_10000_minimum_flip_header_requirements.md`
+**Broadcast:** `lupo-channels/0/broadcasts/20260224163100_0_10000_minimum_flip_header_requirements.md`
 
 **Doctrine Number:** #12
 

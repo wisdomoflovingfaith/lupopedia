@@ -19,7 +19,7 @@ lupopedia.headers:
 ## v4.0.57 Initialization (Cursor 1003)
 - Tasks migrated from v4.0.56.
 - Lead: Cursor (1003); delegation_chain "1003:10000".
-- Execution plan: `docs/status/V4.0.57_TASK_PLAN.md`.
+- Execution plan: `lupo-docs/status/V4.0.57_TASK_PLAN.md`.
 
 ### 📋 TODO: Migrated Active Tasks for v4.0.57
 

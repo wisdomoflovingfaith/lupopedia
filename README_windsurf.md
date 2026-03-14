@@ -15,7 +15,7 @@ lupopedia.metadata:
   title:
     - { schema_ref: "lupo_metadata", entity_type: "file", meta_type: "property", property_value: "Lupopedia README - Windsurf Research Edition", channel_id: 42, class_name: "lupo_metadata", created_ymdhis: 20260314150000, updated_ymdhis: 20260314150000 }
   description:
-    - { schema_ref: "lupo_metadata", entity_type: "file", meta_type: "property", property_value: "Primary project documentation and onboarding — Install & upgrade validation, channels/actors/agents, GitHub repository strategy. Corrected by Windsurf research with accurate architecture information.", channel_id: 42, class_name: "lupo_metadata", created_ymdhis: 20260314150000, updated_ymdhis: 20260314150000 }
+    - { schema_ref: "lupo_metadata", entity_type: "file", meta_type: "property", property_value: "Primary project documentation and onboarding — Install & upgrade validation, lupo-channels/actors/agents, GitHub repository strategy. Corrected by Windsurf research with accurate architecture information.", channel_id: 42, class_name: "lupo_metadata", created_ymdhis: 20260314150000, updated_ymdhis: 20260314150000 }
   keywords:
     - { schema_ref: "lupo_metadata", entity_type: "file", meta_type: "property", property_value: "readme, getting_started, semantic_os, multi_agent, v4.0.74, windsurf_research", channel_id: 42, class_name: "lupo_metadata", created_ymdhis: 20260314150000, updated_ymdhis: 20260314150000 }
   author:
@@ -56,11 +56,11 @@ lupopedia.session:
 lupopedia.edges:
   comment: "Snapshot of outbound edges for README at artifact creation."
   outbound_edges:
-    - { to: "docs/HELP.md", type: "references", weight: 1.0 }
-    - { to: "docs/CLI.md", type: "references", weight: 0.95 }
-    - { to: "docs/DOCTOR_HEALTH_CHECK.md", type: "references", weight: 0.9 }
-    - { to: "docs/doctrine/migrations/MIGRATION_MAPPING_REFERENCE.md", type: "references", weight: 0.85 }
-    - { to: "docs/doctrine/", type: "references", weight: 0.9 }
+    - { to: "lupo-docs/HELP.md", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/CLI.md", type: "references", weight: 0.95 }
+    - { to: "lupo-docs/DOCTOR_HEALTH_CHECK.md", type: "references", weight: 0.9 }
+    - { to: "lupo-docs/doctrine/migrations/MIGRATION_MAPPING_REFERENCE.md", type: "references", weight: 0.85 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 0.9 }
     - { to: "CONTRIBUTING.md", type: "references", weight: 0.85 }
     - { to: "report_windsurf.md", type: "researched_by", weight: 1.0 }
   semantic_tags: ["project_overview", "onboarding", "semantic_os", "multi_agent", "research_corrected"]
@@ -79,12 +79,12 @@ lupopedia.footer:
 
 # 🐺 Lupopedia Semantic OS v4.0.74
 
-[![Version](https://img.shields.io/badge/version-4.0.74-blue.svg)](docs/version.md)
-[![docs](https://img.shields.io/badge/docs-HELP.md-green)](docs/HELP.md)
+[![Version](https://img.shields.io/badge/version-4.0.74-blue.svg)](lupo-docs/version.md)
+[![docs](https://img.shields.io/badge/docs-HELP.md-green)](lupo-docs/HELP.md)
 
 ---
 
-**Current Release: [v4.0.74](docs/version.md) — Version hardened for shared hosting, edge schema grouping, and comments system.**  
+**Current Release: [v4.0.74](lupo-docs/version.md) — Version hardened for shared hosting, edge schema grouping, and comments system.**  
 This version focuses on finalizing **edge schema hardening** (support for grouped outbound edges), implementing **one-time SQL runner** for shared-host compatibility, and adding **comments system** with faucet traceability.
 
 **Architecture (onboarding):** **Actors** are the orchestration identities of Lupopedia. They coordinate and govern work through **faucets**, **sessions**, **channels**, **rules**, and **traits**. **Faucets** are execution surfaces, not identities. IDE surfaces (Cursor, Antigravity, Kiro, Windsurf, Codex, JetBrains, Warp, etc.) are faucets. **Sessions** carry runtime context. See [Channels, actors, and agents](#channels-actors-and-agents-in-lupopedia) and [Actor–Faucet ontology](lupo-docs/doctrine/ActorFaucetOntology.md).
@@ -147,7 +147,7 @@ php lupo-bin/lupo.php whoami
 php lupo-bin/lupo.php help
 ```
 
-[Full installation guide](#installation) | Complete documentation: [docs/HELP.md](docs/HELP.md)
+[Full installation guide](#installation) | Complete documentation: [lupo-docs/HELP.md](lupo-docs/HELP.md)
 
 ---
 
@@ -162,7 +162,7 @@ Lupopedia solves fragmented human–AI workflows with a **unified Semantic OS** 
 
 **Target audience:** Developers building agents, admins managing systems, contributors to open-source AI-collab tooling.
 
-[Core doctrine](docs/doctrine/) | [LUPOPEDIA HEADERS](lupo-docs/doctrine/LUPOPEDIA_HEADERS/README.md) | [Comments System](lupo-docs/database/lupopedia/tables/active/lupo_comments.md)
+[Core doctrine](lupo-docs/doctrine/) | [LUPOPEDIA HEADERS](lupo-docs/doctrine/LUPOPEDIA_HEADERS/README.md) | [Comments System](lupo-docs/database/lupopedia/tables/active/lupo_comments.md)
 
 ---
 
@@ -246,7 +246,7 @@ graph TD
   B -->|Resolves| D[Channels]
 ```
 
-**Channels and threads:** Governance and dialogs live under channel directories; see [docs/HELP.md](docs/HELP.md) and [TASK_STATUS_REFERENCE.md](docs/TASK_STATUS_REFERENCE.md).
+**Channels and threads:** Governance and dialogs live under channel directories; see [lupo-docs/HELP.md](lupo-docs/HELP.md) and [TASK_STATUS_REFERENCE.md](lupo-docs/TASK_STATUS_REFERENCE.md).
 
 ---
 
@@ -376,7 +376,7 @@ cd lupopedia
 
 1. Backup your existing Crafty setup and database.
 2. Load the Lupopedia schema and run the install wizard; the only supported upgrade path is **Crafty Syntax 3.7.5 → Lupopedia 4.0.x**.
-3. Follow the [migration mapping reference](docs/doctrine/migrations/MIGRATION_MAPPING_REFERENCE.md).
+3. Follow the [migration mapping reference](lupo-docs/doctrine/migrations/MIGRATION_MAPPING_REFERENCE.md).
 
 Troubleshoot with: `php lupo-bin/lupo.php doctor`
 
@@ -390,19 +390,19 @@ Troubleshoot with: `php lupo-bin/lupo.php doctor`
 |--------|-------------|
 | `whoami` | Show current identity (human, agent, session mode) |
 | `context` | Full execution context as JSON |
-| `doctor` | System health check ([reference](docs/DOCTOR_HEALTH_CHECK.md)) |
+| `doctor` | System health check ([reference](lupo-docs/DOCTOR_HEALTH_CHECK.md)) |
 | `doctor-context [--repair]` | Identity stack check; `--repair` syncs session.md to kernel |
 | `help` | Built-in help and topic help |
 
-[Full CLI reference](docs/CLI.md)
+[Full CLI reference](lupo-docs/CLI.md)
 
 ---
 
 ## Multi-Agent System
 
 - **Actor registry** — [lupo-database/lupopedia/actors/actor_id/registry.json](lupo-database/lupopedia/actors/actor_id/registry.json)
-- **DOCTOR actor (1009)** — System health and repair: [docs/DOCTOR_HEALTH_CHECK.md](docs/DOCTOR_HEALTH_CHECK.md)
-- **Channels and tasks** — [docs/HELP.md](docs/HELP.md#tasks), [docs/TASK_STATUS_REFERENCE.md](docs/TASK_STATUS_REFERENCE.md)
+- **DOCTOR actor (1009)** — System health and repair: [lupo-docs/DOCTOR_HEALTH_CHECK.md](lupo-docs/DOCTOR_HEALTH_CHECK.md)
+- **Channels and tasks** — [lupo-docs/HELP.md](lupo-docs/HELP.md#tasks), [lupo-docs/TASK_STATUS_REFERENCE.md](lupo-docs/TASK_STATUS_REFERENCE.md)
 
 **Multi-agent flow (simplified):**
 
@@ -419,19 +419,19 @@ graph LR
 ## Advanced Topics
 
 - [Federation and registry](lupo-docs/architecture/FEDERATION_AND_REGISTRY.md) — Multi-node and global ID space (when present)
-- [DOCTOR health check](docs/DOCTOR_HEALTH_CHECK.md) — System health and `doctor-context --repair`
-- [Context Kernel](docs/status/CHANNEL_42_CONTEXT_KERNEL_4.0.62.md) — Unified identity resolution
-- [TOONs](docs/TOON_REFERENCE.md) — Database structure representation: what TOONs are, where they live (`lupo-database/lupopedia/json/` and `lupo-database/lupopedia/toon/`), and how to generate them (`python scripts/generate_toon_files.py`).
-- [Doctrine](docs/doctrine/) — Database, FLARE, timestamps, migrations
+- [DOCTOR health check](lupo-docs/DOCTOR_HEALTH_CHECK.md) — System health and `doctor-context --repair`
+- [Context Kernel](lupo-docs/status/CHANNEL_42_CONTEXT_KERNEL_4.0.62.md) — Unified identity resolution
+- [TOONs](lupo-docs/TOON_REFERENCE.md) — Database structure representation: what TOONs are, where they live (`lupo-database/lupopedia/json/` and `lupo-database/lupopedia/toon/`), and how to generate them (`python lupo-scripts/generate_toon_files.py`).
+- [Doctrine](lupo-docs/doctrine/) — Database, FLARE, timestamps, migrations
 
 ---
 
 ## Documentation
 
-- [HELP.md](docs/HELP.md) — Documentation hub
-- [CLI.md](docs/CLI.md) — Command reference
-- [TOON_REFERENCE.md](docs/TOON_REFERENCE.md) — TOONs: database structure representation (locations: `lupo-database/lupopedia/json/`, `lupo-database/lupopedia/toon/`)
-- [version.md](docs/version.md) — Version history
+- [HELP.md](lupo-docs/HELP.md) — Documentation hub
+- [CLI.md](lupo-docs/CLI.md) — Command reference
+- [TOON_REFERENCE.md](lupo-docs/TOON_REFERENCE.md) — TOONs: database structure representation (locations: `lupo-database/lupopedia/json/`, `lupo-database/lupopedia/toon/`)
+- [version.md](lupo-docs/version.md) — Version history
 - [CHANGELOG.md](CHANGELOG.md) — Detailed change log
 
 **Paths by persona:**
@@ -439,7 +439,7 @@ graph LR
 - **New developers** — Getting Started, First Commands
 - **System administrators** — Installation, **Production Ready** | Context Kernel | DOCTOR System | Multi-Agent Federation | Web Authentication
 - **Agent developers** — Multi-Agent System, Actor Registry, DOCTOR
-- **Contributors** — [CONTRIBUTING.md](CONTRIBUTING.md), [docs/doctrine/](docs/doctrine/)
+- **Contributors** — [CONTRIBUTING.md](CONTRIBUTING.md), [lupo-docs/doctrine/](lupo-docs/doctrine/)
 
 ---
 

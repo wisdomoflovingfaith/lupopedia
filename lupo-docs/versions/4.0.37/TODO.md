@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\versions\4.0.37\TODO.md"
+  file_path_from_root: "lupo-docs\versions\4.0.37\TODO.md"
   file_hash: "00ccc5429d3621ce76f12338013dc9e91e59c4cbadccae51974792358685f33e"
-  file_path_from_root: "docs\versions\4.0.37\TODO.md"
+  file_path_from_root: "lupo-docs\versions\4.0.37\TODO.md"
   file_hash: "2439930b9f662ce293b49805bc4aff2457987ae1cca22027ea5eaa0824eba38b"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -63,7 +63,7 @@ lupopedia.footer:
 
 ---
 wolfie.headers:
-  file_path_from_root: "docs/versions/4.0.37/TODO.md"
+  file_path_from_root: "lupo-docs/versions/4.0.37/TODO.md"
   system_version: "4.0.37"
   channel_id: 42
   mood_rgb: "4B0082"
@@ -76,8 +76,8 @@ wolfie.headers:
 flip.footer:
   referenced_by_files:
     - "CHANGELOG.md"
-    - "docs/versions/4.0.37/ROADMAP.md"
-    - "prompts/antigravity/20260224_flip_v2_vsx_implementation.md"
+    - "lupo-docs/versions/4.0.37/ROADMAP.md"
+    - "lupo-prompts/antigravity/20260224_flip_v2_vsx_implementation.md"
   referenced_by_channels:
     - 42
   referenced_by_actors:

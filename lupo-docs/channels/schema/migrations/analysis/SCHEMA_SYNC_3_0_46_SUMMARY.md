@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\channels\schema\migrations\analysis\SCHEMA_SYNC_3_0_46_SUMMARY.md"
+  file_path_from_root: "lupo-docs\channels\schema\migrations\analysis\SCHEMA_SYNC_3_0_46_SUMMARY.md"
   file_hash: "0ca19c26878727268c95c8e2fcfaed4cc0412f9a2ff0b4137b2cd4b713cc78d5"
-  file_path_from_root: "docs\channels\schema\migrations\analysis\SCHEMA_SYNC_3_0_46_SUMMARY.md"
+  file_path_from_root: "lupo-docs\channels\schema\migrations\analysis\SCHEMA_SYNC_3_0_46_SUMMARY.md"
   file_hash: "bbd4c65964d434185a989ef0663154a3be390a5ffa1a05dde6a39e85a7108c4f"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -88,7 +88,7 @@ file:
 
 **Date:** 2026-01-16  
 **Version:** 3.0.46  
-**Migration File:** `database/migrations_legacy/schema_sync_3_0_46_missing_tables.sql`
+**Migration File:** `lupo-database/migrations_legacy/schema_sync_3_0_46_missing_tables.sql`
 
 ---
 
@@ -140,7 +140,7 @@ The following 8 tables are in the `lupopedia_orchestration` schema (separate fro
 
 ## Migration File Created
 
-**File:** `database/migrations_legacy/schema_sync_3_0_46_missing_tables.sql`
+**File:** `lupo-database/migrations_legacy/schema_sync_3_0_46_missing_tables.sql`
 
 ### Features
 - ✅ Doctrine Compliant (no foreign keys, triggers, or stored procedures)

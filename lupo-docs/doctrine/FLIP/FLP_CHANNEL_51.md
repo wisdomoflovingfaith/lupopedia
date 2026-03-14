@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\doctrine\FLIP\FLP_CHANNEL_51.md"
+  file_path_from_root: "lupo-docs\doctrine\FLIP\FLP_CHANNEL_51.md"
   file_hash: "d6a464564978c5aaffebd0d9803b57057a125891e244db95911290c80c1c2972"
-  file_path_from_root: "docs\doctrine\FLIP\FLP_CHANNEL_51.md"
+  file_path_from_root: "lupo-docs\doctrine\FLIP\FLP_CHANNEL_51.md"
   file_hash: "c377a9c1c692e40f1d4e1c6030d3296154dcbdf85904b2cd82f4df4312432b37"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -64,7 +64,7 @@ lupopedia.footer:
 ---
 # FLIP Header (alias: Wolfie Header, CROP Header, FLIPPING Header)
 wolfie.headers: explicit architecture with structured clarity for every file.
-file_path_from_root: docs/doctrine/FLIP/FLP_CHANNEL_51.md
+file_path_from_root: lupo-docs/doctrine/FLIP/FLP_CHANNEL_51.md
 file.last_modified_system_version: "4.0.16"
 file.last_modified_utc: "20260218000000"
 channel_id: 51
@@ -72,7 +72,7 @@ tags: ["channel", "doctrine-council", "flip"]
 mood_rgb: "DAA520"
 X-Lupo-Actor-ID: 2035
 X-Lupo-Actor-Identity: "Lupopedia Audit Tool (Auto-Fixed)"
-X-Lupo-File-Path: docs/doctrine/FLIP/FLP_CHANNEL_51.md
+X-Lupo-File-Path: lupo-docs/doctrine/FLIP/FLP_CHANNEL_51.md
 ---
 # FLP — Channel 51 (Doctrine Council)
 
@@ -84,7 +84,7 @@ X-Lupo-File-Path: docs/doctrine/FLIP/FLP_CHANNEL_51.md
 
 ## 1. Purpose
 
-Channel 51 represents the Doctrine Council in the Federated Likeness Protocol. Doctrine .md files under docs/doctrine/ are associated with channel 51 (and often channel 0) for governance and resolution.
+Channel 51 represents the Doctrine Council in the Federated Likeness Protocol. Doctrine .md files under lupo-docs/doctrine/ are associated with channel 51 (and often channel 0) for governance and resolution.
 
 ---
 

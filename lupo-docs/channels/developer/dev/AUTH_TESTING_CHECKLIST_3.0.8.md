@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\channels\developer\dev\AUTH_TESTING_CHECKLIST_3.0.8.md"
+  file_path_from_root: "lupo-docs\channels\developer\dev\AUTH_TESTING_CHECKLIST_3.0.8.md"
   file_hash: "c8fec57f81ee5fd337042812452cfd6d6bfe17013fa4b3318f5d1ce3954f4739"
-  file_path_from_root: "docs\channels\developer\dev\AUTH_TESTING_CHECKLIST_3.0.8.md"
+  file_path_from_root: "lupo-docs\channels\developer\dev\AUTH_TESTING_CHECKLIST_3.0.8.md"
   file_hash: "63c8cf1ed4725c514f6a5b5d74f25eb1e4a22846c2b397375f33b612488d7e10"
   last_updated_utc: "20260228"
   system_version: "4.0.50"

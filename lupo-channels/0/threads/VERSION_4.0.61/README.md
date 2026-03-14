@@ -85,10 +85,10 @@ See feature docs for class roles; implementation lives in repo:
 
 ## Related Documentation
 
-- [docs/HELP.md](../../../docs/HELP.md) — Main help hub
-- [docs/lupopedia_whoami_readme.md](../../../docs/lupopedia_whoami_readme.md) — Identity documentation
-- [docs/auth.md](../../../docs/auth.md) — Auth and actor context
-- [docs/version.md](../../../docs/version.md) — Version history
+- [lupo-docs/HELP.md](../../../docs/HELP.md) — Main help hub
+- [lupo-docs/lupopedia_whoami_readme.md](../../../docs/lupopedia_whoami_readme.md) — Identity documentation
+- [lupo-docs/auth.md](../../../docs/auth.md) — Auth and actor context
+- [lupo-docs/version.md](../../../docs/version.md) — Version history
 - [lupo-database/session.md](../../../lupo-database/session.md) — Session file
 
 ## Version Information
@@ -120,4 +120,4 @@ See feature docs for class roles; implementation lives in repo:
 ---
 
 **Last Updated:** 2026-03-06  
-**For more information:** See [docs/HELP.md](../../../docs/HELP.md)
+**For more information:** See [lupo-docs/HELP.md](../../../docs/HELP.md)

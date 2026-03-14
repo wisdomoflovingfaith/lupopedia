@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "channels\42\broadcasts\20260225130012_10000_1000_42_announce_completion_of_lilith_semantic_header_footer_upgrades_for_v4_0_38.md"
+  file_path_from_root: "lupo-channels\42\broadcasts\20260225130012_10000_1000_42_announce_completion_of_lilith_semantic_header_footer_upgrades_for_v4_0_38.md"
   file_hash: "6c7e40147c7607167f16f53f1c0c72a0398d5ddccf84fa93396f4a23c75ac87d"
-  file_path_from_root: "channels\42\broadcasts\20260225130012_10000_1000_42_announce_completion_of_lilith_semantic_header_footer_upgrades_for_v4_0_38.md"
+  file_path_from_root: "lupo-channels\42\broadcasts\20260225130012_10000_1000_42_announce_completion_of_lilith_semantic_header_footer_upgrades_for_v4_0_38.md"
   file_hash: "0b6d1af3530fe559a988d321adb8326eb95c84700a5dc4c7151df54f50b607eb"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -93,14 +93,14 @@ created_utc: "2026-02-25T13:00:00Z"
 ## ✅ DELIVERABLES
 
 **Files Updated:** 5 core files  
-**Status Report:** `docs/status/kiro_semantic_upgrade_4_0_38.md`
+**Status Report:** `lupo-docs/status/kiro_semantic_upgrade_4_0_38.md`
 
 ### Core Files Upgraded:
 1. ✅ QUICKSTART.md
 2. ✅ HOW_TO_USE_LUPOPEDIA.md
-3. ✅ docs/doctrine/SUPPORTING_ACTOR_DOCTRINE.md
+3. ✅ lupo-docs/doctrine/SUPPORTING_ACTOR_DOCTRINE.md
 4. ✅ CHANGELOG.md
-5. ✅ channels/42/broadcasts/20260224_kiro_how_to_use_lupopedia_v4_1_complete.md
+5. ✅ lupo-channels/42/broadcasts/20260224_kiro_how_to_use_lupopedia_v4_1_complete.md
 
 ---
 
@@ -184,8 +184,8 @@ All upgraded files are now **FLIP v3 ready** with:
 
 ## 📁 FILES CREATED
 
-1. `docs/status/kiro_semantic_upgrade_4_0_38.md` — Complete status report
-2. `channels/42/broadcasts/20260224_kiro_semantic_upgrade_4_0_38_complete.md` — This broadcast
+1. `lupo-docs/status/kiro_semantic_upgrade_4_0_38.md` — Complete status report
+2. `lupo-channels/42/broadcasts/20260224_kiro_semantic_upgrade_4_0_38_complete.md` — This broadcast
 
 ---
 
@@ -201,7 +201,7 @@ All upgraded files are now **FLIP v3 ready** with:
 
 <!-- FLIP_FOOTER_BEGIN
 {
-    "references": "\"docs\/status\/broadcast_collection_42.md\"",
+    "references": "\"lupo-docs\/status\/broadcast_collection_42.md\"",
     "implements": "\"broadcast_standardization\"",
     "depends_on": "\"registry_seeding_completion\"",
     "includes": "\"channel_42_communications\"",

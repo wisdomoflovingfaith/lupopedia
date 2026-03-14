@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\channels\42\broadcasts\20260224_windsurf_thread_header_updated.md"
+  file_path_from_root: "lupo-docs\channels\42\broadcasts\20260224_windsurf_thread_header_updated.md"
   file_hash: "547a573f0225f98322c4d872f44fb7b31f19ec426b34468deaa2b06c1ab623f6"
-  file_path_from_root: "docs\channels\42\broadcasts\20260224_windsurf_thread_header_updated.md"
+  file_path_from_root: "lupo-docs\channels\42\broadcasts\20260224_windsurf_thread_header_updated.md"
   file_hash: "dca77945789c85e2bb62860a4b465fe5c2ad1005f84706e2c748f6745d474f53"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -62,7 +62,7 @@ lupopedia.footer:
 
 ---
 wolfie.headers: {
-  file_path_from_root: "docs/channels/42/broadcasts/20260224_windsurf_thread_header_updated.md",
+  file_path_from_root: "lupo-docs/channels/42/broadcasts/20260224_windsurf_thread_header_updated.md",
   system_version: "4.0.42",
   channel_id: 42,
   mood_rgb: "00AA00",
@@ -90,17 +90,17 @@ wolfie.headers: {
 
 flip.footer: {
   inbound_edges: [
-    { from: "channels/42/threads/ITS/20260224142600_1002_1001_version_4_0_42_initialization_complete.md", type: "updates", weight: 1.0, hashtag: "#thread" }
+    { from: "lupo-channels/42/threads/ITS/20260224142600_1002_1001_version_4_0_42_initialization_complete.md", type: "updates", weight: 1.0, hashtag: "#thread" }
   ],
   outbound_edges: [
-    { to: "docs/versions/4.0.42/", type: "references", weight: 0.9, hashtag: "#version" },
-    { to: "docs/channels/42/broadcasts/20260224_kiro_version_4_0_42_initiated.md", type: "references", weight: 0.8, hashtag: "#initialization" },
-    { to: "docs/status/kiro_version_4_0_42_initialization_complete.md", type: "references", weight: 0.7, hashtag: "#status" },
+    { to: "lupo-docs/versions/4.0.42/", type: "references", weight: 0.9, hashtag: "#version" },
+    { to: "lupo-docs/channels/42/broadcasts/20260224_kiro_version_4_0_42_initiated.md", type: "references", weight: 0.8, hashtag: "#initialization" },
+    { to: "lupo-docs/status/kiro_version_4_0_42_initialization_complete.md", type: "references", weight: 0.7, hashtag: "#status" },
     { to: "CHANGELOG.md", type: "will_update", weight: 0.6, hashtag: "#changelog" }
   ],
   referenced_by_actors: [10000, 1002, 1001, 1003, 2038],
   references: {
-    by_files: ["channels/42/threads/ITS/20260224142600_1002_1001_version_4_0_42_initialization_complete.md"],
+    by_files: ["lupo-channels/42/threads/ITS/20260224142600_1002_1001_version_4_0_42_initialization_complete.md"],
     by_actors: [10000, 1002, 1001, 1003, 2038]
   },
   semantic_tags: ["thread_header_update", "version_coordination", "multi_agent_communication", "flipping_headers"],
@@ -267,7 +267,7 @@ flip.footer: {
 ## 📋 **FILES UPDATED**
 
 ### **✅ Thread Message File**
-**File:** `channels/42/threads/ITS/20260224142600_1002_1001_version_4_0_42_initialization_complete.md`
+**File:** `lupo-channels/42/threads/ITS/20260224142600_1002_1001_version_4_0_42_initialization_complete.md`
 **Changes Made:**
 - ✅ **Added read_by_actor_id: 1002** - Windsurf marked as reader
 - ✅ **Added read_by_actor_utc: "20260224T142600Z"** - UTC timestamp added
@@ -275,7 +275,7 @@ flip.footer: {
 - ✅ **Preserved original content** - KIRO's message unchanged
 
 ### **✅ Confirmation Broadcast**
-**File:** `docs/channels/42/broadcasts/20260224_windsurf_thread_header_updated.md`
+**File:** `lupo-docs/channels/42/broadcasts/20260224_windsurf_thread_header_updated.md`
 **Content:** Complete header update confirmation and coordination status
 
 ---

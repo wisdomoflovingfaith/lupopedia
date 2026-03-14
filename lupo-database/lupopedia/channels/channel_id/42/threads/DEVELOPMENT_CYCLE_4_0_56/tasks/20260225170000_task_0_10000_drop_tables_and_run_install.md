@@ -90,9 +90,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "channels\0\tasks\active\20260225170000_task_0_10000_drop_tables_and_run_install.md"
+  file_path_from_root: "lupo-channels\0\tasks\active\20260225170000_task_0_10000_drop_tables_and_run_install.md"
   file_hash: "7e38c3e8ee97366281b8d81a19f6668cf73aa0fbb92473fc13850d12c0151e5f"
-  file_path_from_root: "channels\0\tasks\active\20260225170000_task_0_10000_drop_tables_and_run_install.md"
+  file_path_from_root: "lupo-channels\0\tasks\active\20260225170000_task_0_10000_drop_tables_and_run_install.md"
   file_hash: "446704b5a3f6ab8e0f19c5a3071d5de0ff02d0774f609bab1d09378d82692a69"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -125,7 +125,7 @@ status: active
 priority: critical
 created_utc: "2026-02-25T17:00:00Z"
 delegation_chain: "10000:10000"
-prompt_path: "channels/0/tasks/active/20260225170000_task_0_10000_drop_tables_and_run_install.md"
+prompt_path: "lupo-channels/0/tasks/active/20260225170000_task_0_10000_drop_tables_and_run_install.md"
 depends_on: []
 blocks:
   - CH0-20260225-002
@@ -135,12 +135,12 @@ blocks:
 task_type: database_operation
 estimated_duration: "30 minutes"
 artifacts_touched:
-  - "database/migrations/install_new_lupopedia.sql"
-  - "database/migrations/old_crafty_syntax_3_7_5_start.sql"
-  - "database/migrations/seed_registry_comprehensive_4.0.45.sql"
-  - "database/migrations/seed_registry_open_4.0.45.sql"
-  - "database/migrations/seed_actors_agents_4.0.45.sql"
-  - "database/migrations/seed_anubis_vishwakarma_4.0.45.sql"
+  - "lupo-database/migrations/install_new_lupopedia.sql"
+  - "lupo-database/migrations/old_crafty_syntax_3_7_5_start.sql"
+  - "lupo-database/migrations/seed_registry_comprehensive_4.0.45.sql"
+  - "lupo-database/migrations/seed_registry_open_4.0.45.sql"
+  - "lupo-database/migrations/seed_actors_agents_4.0.45.sql"
+  - "lupo-database/migrations/seed_anubis_vishwakarma_4.0.45.sql"
 notes: "This is a HUMAN task. Only Captain (10000) can execute database operations."
 ---
 
@@ -154,7 +154,7 @@ Drop all existing Lupopedia tables, load Crafty Syntax 3.7.5 legacy schema, and 
 
 ## Context
 
-The database is currently offline or in an inconsistent state. Before any other work can proceed, we need a clean installation that matches the 4.0.45 schema defined in `database/migrations/install_new_lupopedia.sql`.
+The database is currently offline or in an inconsistent state. Before any other work can proceed, we need a clean installation that matches the 4.0.45 schema defined in `lupo-database/migrations/install_new_lupopedia.sql`.
 
 This task BLOCKS all other tasks. No database-dependent work can proceed until this is complete.
 
@@ -193,7 +193,7 @@ SHOW TABLES LIKE 'lupo_%';
 
 ```bash
 # Execute the legacy schema
-mysql -u root -p lupopedia < database/migrations/old_crafty_syntax_3_7_5_start.sql
+mysql -u root -p lupopedia < lupo-database/migrations/old_crafty_syntax_3_7_5_start.sql
 ```
 
 **Verify:** Should have 34 legacy Crafty tables
@@ -220,17 +220,17 @@ mysql -u root -p lupopedia -e "SHOW TABLES LIKE 'lupo_%';" | wc -l
 # Should be 80+ tables
 
 # Run TOON validation
-python scripts/verify_db_against_toons.py
+python lupo-scripts/verify_db_against_toons.py
 ```
 
 ### 6. Seed Registry Data
 
 ```bash
 # Execute seeding SQL files in order
-mysql -u root -p lupopedia < database/migrations/seed_registry_comprehensive_4.0.45.sql
-mysql -u root -p lupopedia < database/migrations/seed_registry_open_4.0.45.sql
-mysql -u root -p lupopedia < database/migrations/seed_actors_agents_4.0.45.sql
-mysql -u root -p lupopedia < database/migrations/seed_anubis_vishwakarma_4.0.45.sql
+mysql -u root -p lupopedia < lupo-database/migrations/seed_registry_comprehensive_4.0.45.sql
+mysql -u root -p lupopedia < lupo-database/migrations/seed_registry_open_4.0.45.sql
+mysql -u root -p lupopedia < lupo-database/migrations/seed_actors_agents_4.0.45.sql
+mysql -u root -p lupopedia < lupo-database/migrations/seed_anubis_vishwakarma_4.0.45.sql
 ```
 
 ### 7. Verify Seeding
@@ -271,7 +271,7 @@ SELECT COUNT(*) FROM lupo_registry WHERE entity_type = 'channel';
 
 Once this task is complete, update status to `completed` and move file to:
 ```
-channels/0/tasks/completed/20260225170000_task_0_10000_drop_tables_and_run_install.md
+lupo-channels/0/tasks/completed/20260225170000_task_0_10000_drop_tables_and_run_install.md
 ```
 
 Then notify all IDE agents that database is online and they can proceed with their assigned tasks.
@@ -286,12 +286,12 @@ Then notify all IDE agents that database is online and they can proceed with the
 <!-- FLIP_FOOTER_BEGIN
 {
   "references": [
-    "database/migrations/install_new_lupopedia.sql",
-    "database/migrations/old_crafty_syntax_3_7_5_start.sql",
-    "database/migrations/seed_registry_comprehensive_4.0.45.sql",
-    "database/migrations/seed_registry_open_4.0.45.sql",
-    "database/migrations/seed_actors_agents_4.0.45.sql",
-    "database/migrations/seed_anubis_vishwakarma_4.0.45.sql"
+    "lupo-database/migrations/install_new_lupopedia.sql",
+    "lupo-database/migrations/old_crafty_syntax_3_7_5_start.sql",
+    "lupo-database/migrations/seed_registry_comprehensive_4.0.45.sql",
+    "lupo-database/migrations/seed_registry_open_4.0.45.sql",
+    "lupo-database/migrations/seed_actors_agents_4.0.45.sql",
+    "lupo-database/migrations/seed_anubis_vishwakarma_4.0.45.sql"
   ],
   "implements": "fresh_install_workflow",
   "depends_on": [],

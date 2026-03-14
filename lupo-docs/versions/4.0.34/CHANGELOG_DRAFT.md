@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\versions\4.0.34\CHANGELOG_DRAFT.md"
+  file_path_from_root: "lupo-docs\versions\4.0.34\CHANGELOG_DRAFT.md"
   file_hash: "cd11ffc82aa5395601ca98621b20de613fce5f30d78c6e8058c6304f91bb3e07"
-  file_path_from_root: "docs\versions\4.0.34\CHANGELOG_DRAFT.md"
+  file_path_from_root: "lupo-docs\versions\4.0.34\CHANGELOG_DRAFT.md"
   file_hash: "40d729cb03e5664ef2b0e0d1451bcb0c0cde15975751d5a2d0731c5636d20e17"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -63,7 +63,7 @@ lupopedia.footer:
 
 ---
 wolfie.headers:
-  file_path_from_root: "docs/versions/4.0.34/CHANGELOG_DRAFT.md"
+  file_path_from_root: "lupo-docs/versions/4.0.34/CHANGELOG_DRAFT.md"
   system_version: "4.0.34"
   channel_id: 42
   mood_rgb: "8800FF"
@@ -76,8 +76,8 @@ wolfie.headers:
 flip.footer:
   referenced_by_files:
     - "CHANGELOG.md"
-    - "docs/versions/4.0.34/TODO.md"
-    - "docs/versions/4.0.34/ROADMAP.md"
+    - "lupo-docs/versions/4.0.34/TODO.md"
+    - "lupo-docs/versions/4.0.34/ROADMAP.md"
   referenced_by_channels:
     - 42
   referenced_by_actors:
@@ -114,10 +114,10 @@ flip.footer:
 - Created version directory structure
 
 **Files Created:**
-- `docs/versions/4.0.34/TODO.md`
-- `docs/versions/4.0.34/ROADMAP.md`
-- `docs/versions/4.0.34/CHANGELOG_DRAFT.md`
-- `channels/42/broadcasts/20260223_version_bump_4_0_34.md`
+- `lupo-docs/versions/4.0.34/TODO.md`
+- `lupo-docs/versions/4.0.34/ROADMAP.md`
+- `lupo-docs/versions/4.0.34/CHANGELOG_DRAFT.md`
+- `lupo-channels/42/broadcasts/20260223_version_bump_4_0_34.md`
 
 **Version Markers Updated:**
 - `config/global_atoms.yaml` - Version 4.0.34
@@ -167,8 +167,8 @@ flip.footer:
 
 ### Deliverables
 
-- ✅ Registry consolidation plan (`docs/status/registry_consolidation_plan_4_0_34.md`)
-- ✅ Migration script (`database/migrations/dev_20260223_registry_consolidation.sql`)
+- ✅ Registry consolidation plan (`lupo-docs/status/registry_consolidation_plan_4_0_34.md`)
+- ✅ Migration script (`lupo-database/migrations/dev_20260223_registry_consolidation.sql`)
 - ✅ ANUBIS orphan adoption rules (4 rules defined)
 - ✅ Cleanup plan (4 steps documented)
 - ✅ Rollback plan (3 triggers, 4-step procedure)
@@ -240,13 +240,13 @@ flip.footer:
 
 ## FILES CREATED (Total: 8)
 
-1. `docs/versions/4.0.34/TODO.md`
-2. `docs/versions/4.0.34/ROADMAP.md`
-3. `docs/versions/4.0.34/CHANGELOG_DRAFT.md`
-4. `channels/42/broadcasts/20260223_version_bump_4_0_34.md`
-5. `docs/status/registry_consolidation_plan_4_0_34.md`
-6. `database/migrations/dev_20260223_registry_consolidation.sql`
-7. `channels/42/broadcasts/20260223_registry_consolidation_complete.md`
+1. `lupo-docs/versions/4.0.34/TODO.md`
+2. `lupo-docs/versions/4.0.34/ROADMAP.md`
+3. `lupo-docs/versions/4.0.34/CHANGELOG_DRAFT.md`
+4. `lupo-channels/42/broadcasts/20260223_version_bump_4_0_34.md`
+5. `lupo-docs/status/registry_consolidation_plan_4_0_34.md`
+6. `lupo-database/migrations/dev_20260223_registry_consolidation.sql`
+7. `lupo-channels/42/broadcasts/20260223_registry_consolidation_complete.md`
 8. `REGISTRY_CONSOLIDATION_COMPLETE_4_0_34.md`
 
 ---
@@ -255,8 +255,8 @@ flip.footer:
 
 1. `config/global_atoms.yaml` - Version 4.0.34
 2. `CHANGELOG.md` - New 4.0.34 section + Phase 2 completion
-3. `docs/versions/4.0.34/TODO.md` - Phase 2 tasks marked complete
-4. `docs/versions/4.0.34/CHANGELOG_DRAFT.md` - Phase 2 status updated
+3. `lupo-docs/versions/4.0.34/TODO.md` - Phase 2 tasks marked complete
+4. `lupo-docs/versions/4.0.34/CHANGELOG_DRAFT.md` - Phase 2 status updated
 
 ---
 

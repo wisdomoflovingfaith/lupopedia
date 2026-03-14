@@ -20,11 +20,11 @@ lupopedia.headers:
 
 lupopedia.edges:
   outbound_edges:
-    - { to: "docs/FLARE_HEADERS_QUICK_REFERENCE.md", type: "references", weight: 1.0 }
-    - { to: "docs/FLARE_HEADERS_COMPLETE_REFERENCE.md", type: "references", weight: 1.0 }
-    - { to: "docs/api/FLARE_API.md", type: "references", weight: 0.9 }
-    - { to: "docs/doctrine/FLIP/FLIP_DOCTRINE.md", type: "supersedes", weight: 0.8 }
-    - { to: "actors/registry.json", type: "references", weight: 0.8 }
+    - { to: "lupo-docs/FLARE_HEADERS_QUICK_REFERENCE.md", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/FLARE_HEADERS_COMPLETE_REFERENCE.md", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/api/FLARE_API.md", type: "references", weight: 0.9 }
+    - { to: "lupo-docs/doctrine/FLIP/FLIP_DOCTRINE.md", type: "supersedes", weight: 0.8 }
+    - { to: "lupo-actors/registry.json", type: "references", weight: 0.8 }
 
 lupopedia.footer:
   last_verified: "20260306"
@@ -67,7 +67,7 @@ lupopedia.headers:
 - **delegation**: The delegation chain (e.g. `antigravity:cursor:captain`).
 - **web_path**: Canonical web URL (matching `lupopedia.headers.web_path`).
 
-**Note:** `<web_path>` is typically derived from `file_path_from_root` by: stripping a leading `docs/` (optional), removing the `.md` extension, and using a URL-friendly path (e.g. `docs/status/EXAMPLE_REPORT.md` → `status/EXAMPLE_REPORT`). See Section 21 for tooling behaviour.
+**Note:** `<web_path>` is typically derived from `file_path_from_root` by: stripping a leading `lupo-docs/` (optional), removing the `.md` extension, and using a URL-friendly path (e.g. `lupo-docs/status/EXAMPLE_REPORT.md` → `status/EXAMPLE_REPORT`). See Section 21 for tooling behaviour.
 
 **Reasoning:**
 - **Accessibility**: Direct links for external agents and researchers.
@@ -80,7 +80,7 @@ In addition to `file_path_from_root`, `lupopedia.headers` MAY include **web_path
 
 ```yaml
 lupopedia.headers:
-  file_path_from_root: "docs/status/EXAMPLE_REPORT.md"
+  file_path_from_root: "lupo-docs/status/EXAMPLE_REPORT.md"
   web_path: "http://www.lupopedia.com/status/EXAMPLE_REPORT"
   ...
 ```
@@ -102,11 +102,11 @@ To ensure predictable content resolution and synchronization across environments
 
 1.  **FILESYSTEM (`lupo-channels/`)**: Highest priority. If a file exists in the `lupo-channels` directory, its content and metadata are treated as the system source of truth, overwriting any values in the database.
 2.  **DATABASE**: Medium priority. If content is updated via the web interface or API, it is stored in the database. These values are overridden by filesystem changes if they exist, but are used if the filesystem is empty or out-of-sync.
-3.  **CSV/TOON FILES**: Lowest priority. These files (e.g., in `lupo-database/lupopedia/csv/` or `lupo-database/lupopedia/toon/`) act as **seed or export layers**, not authoritative runtime state. They are overwritten by the database once imported, and by the filesystem via `scripts/generate_toon_files.py`.
+3.  **CSV/TOON FILES**: Lowest priority. These files (e.g., in `lupo-database/lupopedia/csv/` or `lupo-database/lupopedia/toon/`) act as **seed or export layers**, not authoritative runtime state. They are overwritten by the database once imported, and by the filesystem via `lupo-scripts/generate_toon_files.py`.
 
 **Synchronization Protocol:**
 
-*   **DB → CSV/TOON**: The database state overwrites CSV and TOON files when running `scripts/generate_toon_files.py`.
+*   **DB → CSV/TOON**: The database state overwrites CSV and TOON files when running `lupo-scripts/generate_toon_files.py`.
 *   **FILESYSTEM → DB**: Files in `lupo-channels/` overwrite the database state when booting or explicitly running an import command.
 
 ## 14. Lifecycle Hooks (v4.0.56+)
@@ -207,7 +207,7 @@ When multiple files claim the same URL:
 
 When IDE agents create channel messages, artifacts, prompts, FLARE headers, tasks, or commits, the **actor_id MUST represent the currently logged-in user** of the IDE. This value must never be hardcoded in the extension or tooling.
 
-**Authoritative source:** Actor IDs (human and agents) are defined in the project’s **actor registry** (e.g. `lupo-database/lupopedia/actors/` or `actors/registry.json`). **Tooling MUST read the registry** for audit trails, delegation chains, and faucet ownership. This section gives examples only; do not rely on inline ID lists as canonical.
+**Authoritative source:** Actor IDs (human and agents) are defined in the project’s **actor registry** (e.g. `lupo-database/lupopedia/actors/` or `lupo-actors/registry.json`). **Tooling MUST read the registry** for audit trails, delegation chains, and faucet ownership. This section gives examples only; do not rely on inline ID lists as canonical.
 
 ### **Resolution Order**
 1. **Logged-in Lupopedia user session** — e.g. `.lupo_actor` in workspace root (actor_id, name).
@@ -319,7 +319,7 @@ lupopedia.headers:
 
 | federation_node_id | Base URL (example) | File path (example) |
 |--------------------|--------------------|----------------------|
-| 0 | `http://www.lupopedia.com` | `docs/status/REPORT.md` (repo root) |
+| 0 | `http://www.lupopedia.com` | `lupo-docs/status/REPORT.md` (repo root) |
 | 1 | From `lupo_federation_nodes.node_base_url` | `lupo-database/files/1/status/REPORT.md` (optional) |
 
 ### **Alignment with lupopedia.see**
@@ -347,7 +347,7 @@ Section 17’s `lupopedia.see` index may store per-node mappings when multiple n
 
 | federation_node_id | Base URL (example) | Mapping policy | Example |
 |--------------------|--------------------|----------------|---------|
-| **0** | `http://www.lupopedia.com` | **Complete** — every repo `.md` should have lupopedia.see for full web resolution | `docs/status/REPORT.md` → `lupopedia.see: mappings: [["docs/status/REPORT.md", "http://www.lupopedia.com/status/REPORT"]]` |
+| **0** | `http://www.lupopedia.com` | **Complete** — every repo `.md` should have lupopedia.see for full web resolution | `lupo-docs/status/REPORT.md` → `lupopedia.see: mappings: [["lupo-docs/status/REPORT.md", "http://www.lupopedia.com/status/REPORT"]]` |
 | **&gt; 0** | From `lupo_federation_nodes.node_base_url` | **Partial** — only key artifacts (doctrine, status, channel-critical) need lupopedia.see | Key docs only; other `.md` may omit lupopedia.see |
 
 ### **Tooling (future)**
@@ -372,7 +372,7 @@ The **agent identity registry** (`lupo-database/lupopedia/actors/actor_id/regist
 | `lupo-database/lupopedia/actors/actor_id/registry.json` | Master registry (all actors) |
 | `lupo-database/lupopedia/actors/actor_id/<id>/` | Per-actor directories (faucets, configs, logs) |
 
-Docs may refer to `actors/registry.json` when the database root is implied; resolve to the canonical path in tooling. See Section 18 for resolution order.
+Docs may refer to `lupo-actors/registry.json` when the database root is implied; resolve to the canonical path in tooling. See Section 18 for resolution order.
 
 
 ### 24.2 Optional agent_name_identity header field

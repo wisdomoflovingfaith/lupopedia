@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\ACTOR_CHANNEL_ROLES_VS_CHANNEL_ROLES_ANALYSIS.md"
+  file_path_from_root: "lupo-docs\ACTOR_CHANNEL_ROLES_VS_CHANNEL_ROLES_ANALYSIS.md"
   file_hash: "0da9c3f66fbcb7f1d445b48900e512bc123bdcd597313b6e597da7025589d247"
-  file_path_from_root: "docs\ACTOR_CHANNEL_ROLES_VS_CHANNEL_ROLES_ANALYSIS.md"
+  file_path_from_root: "lupo-docs\ACTOR_CHANNEL_ROLES_VS_CHANNEL_ROLES_ANALYSIS.md"
   file_hash: "fedf7de8853c9d0a91e2c69ce231ee6b08f131e59fe37d4b7b261a72f14795d8"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -104,17 +104,17 @@ They are **not** the same concept: different PK names, different role column (`r
 | lupo-includes/modules/crafty_syntax/choosedepartment.php | 37–39 | SELECT c.department_id FROM channel_roles r INNER JOIN channels c | Read | Active |
 | lupo-includes/modules/crafty_syntax/livehelp-js.php | 101–108 | SELECT 1 FROM channel_roles r … / FROM channel_roles WHERE is_deleted = 0 | Read | Active |
 | lupo-includes/modules/crafty_syntax/visitor-image.php | 96–103 | Same pattern (channel_roles for staffed departments) | Read | Active |
-| database/install/seed_admin_captain.sql | 137, 140, 147 | MAX(channel_role_id), DELETE FROM, INSERT INTO lupo_channel_roles | Read/Write | Active (seed) |
-| database/migrations/install_new_lupopedia.sql | 1345–1360 | CREATE TABLE lupo_channel_roles + indexes | Schema | Active |
-| database/migrations/dev_20260204_fix_schema_alignment.sql | 692–699 | ALTER TABLE lupo_channel_roles MODIFY COLUMN … | Migration | Active |
-| database/migrations/dev_20260204_fix_schema_alignment_summary.txt | 693–700 | Summary of lupo_channel_roles columns | Doc | Active |
+| lupo-database/install/seed_admin_captain.sql | 137, 140, 147 | MAX(channel_role_id), DELETE FROM, INSERT INTO lupo_channel_roles | Read/Write | Active (seed) |
+| lupo-database/migrations/install_new_lupopedia.sql | 1345–1360 | CREATE TABLE lupo_channel_roles + indexes | Schema | Active |
+| lupo-database/migrations/dev_20260204_fix_schema_alignment.sql | 692–699 | ALTER TABLE lupo_channel_roles MODIFY COLUMN … | Migration | Active |
+| lupo-database/migrations/dev_20260204_fix_schema_alignment_summary.txt | 693–700 | Summary of lupo_channel_roles columns | Doc | Active |
 | migrations/channel_roles_escalations_toon_alignment.sql | 4, 15–19 | CREATE TABLE IF NOT EXISTS lupo_channel_roles | Schema | Active |
-| docs/HELPER_TO_CLASS_MAPPING_ANALYSIS.md | 5, 18, 23 | Text: role model channel roles only (lupo_channel_roles) | Doc | Reference |
-| docs/AUTH_REFACTOR_REPORT.md | 12, 77 | Text: AuthRoleResolver uses lupo_channel_roles | Doc | Reference |
-| docs/doctrine/migrations/generated/README.md | 10 | Text: use lupo_channel_roles | Doc | Reference |
-| docs/doctrine/migrations/generated/drop_lupo_actor_roles.sql | 2 | Comment: only role table is lupo_channel_roles | Doc | Reference |
-| docs/channels/developer/dev/AUTH_*.md | various | Admin check from lupo_channel_roles | Doc | Reference |
-| docs/channels/doctrine/CHANNEL_GOVERNANCE_LOG_TABLES.md | 23 | Section ## lupo_channel_roles | Doc | Reference |
+| lupo-docs/HELPER_TO_CLASS_MAPPING_ANALYSIS.md | 5, 18, 23 | Text: role model channel roles only (lupo_channel_roles) | Doc | Reference |
+| lupo-docs/AUTH_REFACTOR_REPORT.md | 12, 77 | Text: AuthRoleResolver uses lupo_channel_roles | Doc | Reference |
+| lupo-docs/doctrine/migrations/generated/README.md | 10 | Text: use lupo_channel_roles | Doc | Reference |
+| lupo-docs/doctrine/migrations/generated/drop_lupo_actor_roles.sql | 2 | Comment: only role table is lupo_channel_roles | Doc | Reference |
+| lupo-docs/channels/developer/dev/AUTH_*.md | various | Admin check from lupo_channel_roles | Doc | Reference |
+| lupo-docs/channels/doctrine/CHANNEL_GOVERNANCE_LOG_TABLES.md | 23 | Section ## lupo_channel_roles | Doc | Reference |
 
 ### lupo_actor_channel_roles
 
@@ -123,14 +123,14 @@ They are **not** the same concept: different PK names, different role column (`r
 | app/Services/TriggerReplacements/EnforceProtocolCompletionService.php | 47–49 | `SELECT protocol_completion_status FROM lupo_actor_channel_roles WHERE actor_id, channel_id` (hardcoded table name) | Read | Active (protocol enforcement) |
 | lupo-includes/classes/AgentAwarenessLayer.php | 420 | `LEFT JOIN lupo_actor_channel_roles acr ON …` (hardcoded) | Read | Active (but see note below) |
 | lupo-includes/classes/AgentAwarenessLayer.php | 437–442 | `INSERT INTO lupo_actor_channel_roles (actor_id, channel_id, role, metadata_json, …)` — uses columns **role** and **metadata_json**; install schema has **role_key**, **awareness_snapshot_json** / **handshake_metadata_json** | Write | Likely broken / legacy (column mismatch) |
-| database/migrations/install_new_lupopedia.sql | 99–124 | CREATE TABLE lupo_actor_channel_roles + indexes | Schema | Active |
-| database/migrations/dev_20260204_fix_schema_alignment.sql | 27–41 | ALTER TABLE lupo_actor_channel_roles MODIFY … | Migration | Active |
-| database/migrations/dev_20260204_fix_schema_alignment_summary.txt | 28–42 | Summary of lupo_actor_channel_roles columns | Doc | Active |
+| lupo-database/migrations/install_new_lupopedia.sql | 99–124 | CREATE TABLE lupo_actor_channel_roles + indexes | Schema | Active |
+| lupo-database/migrations/dev_20260204_fix_schema_alignment.sql | 27–41 | ALTER TABLE lupo_actor_channel_roles MODIFY … | Migration | Active |
+| lupo-database/migrations/dev_20260204_fix_schema_alignment_summary.txt | 28–42 | Summary of lupo_actor_channel_roles columns | Doc | Active |
 | migrations/structural_alignment_mysql_migration.sql | 131 | ('lupo_actor_channel_roles', 1) | Migration list | Active |
-| docs/REQUIRED_TABLES_4.1.0.md | 74 | List entry lupo_actor_channel_roles | Doc | Reference |
-| docs/LIVEHELP_REMOVAL_REPORT.md | 20, 32 | Text: lupo_actor_channel_roles for role-based permissions | Doc | Reference |
-| docs/channels/… (multiple) | various | Doctrine, migrations 3.0.70–3.0.73, CHANNEL_JOIN_PROTOCOL, AGENT_AWARENESS_DOCTRINE, dialogs, changelog dialogs | Doc / dialog | Reference / design |
-| docs/toons/lupo_actor_channel_roles.toon.json | — | TOON file | Schema | Canonical |
+| lupo-docs/REQUIRED_TABLES_4.1.0.md | 74 | List entry lupo_actor_channel_roles | Doc | Reference |
+| lupo-docs/LIVEHELP_REMOVAL_REPORT.md | 20, 32 | Text: lupo_actor_channel_roles for role-based permissions | Doc | Reference |
+| lupo-docs/channels/… (multiple) | various | Doctrine, migrations 3.0.70–3.0.73, CHANNEL_JOIN_PROTOCOL, AGENT_AWARENESS_DOCTRINE, dialogs, changelog dialogs | Doc / dialog | Reference / design |
+| lupo-docs/toons/lupo_actor_channel_roles.toon.json | — | TOON file | Schema | Canonical |
 | DIRECTORY_TREE.md | 561–562, 1412, etc. | File listing | Doc | Reference |
 
 ---
@@ -167,7 +167,7 @@ They are **not** the same concept: different PK names, different role column (`r
 - **Do not drop lupo_channel_roles.** It is the only table used for auth, channel roles, and Crafty Syntax.
 - **Do not drop lupo_actor_channel_roles** without a decision on the protocol/awareness layer:
   - If **keeping** AAL/RSHAP/CJP: keep the table and fix **AgentAwarenessLayer** (INSERT columns to match schema: `role_key`, `awareness_snapshot_json` or similar; remove or map `role`/`metadata_json`). Optionally refactor EnforceProtocolCompletionService to use LUPO_TABLE_PREFIX and quoted identifier instead of hardcoded `lupo_actor_channel_roles`.
-  - If **retiring** protocol/awareness: migrate EnforceProtocolCompletionService and AgentAwarenessLayer off `lupo_actor_channel_roles`, then drop the table and remove it from install/migrations/docs/TOONs.
+  - If **retiring** protocol/awareness: migrate EnforceProtocolCompletionService and AgentAwarenessLayer off `lupo_actor_channel_roles`, then drop the table and remove it from lupo-install/migrations/docs/TOONs.
 
 **Safe to drop:** Neither table is “safe to drop” without the above migration:  
 - Dropping **lupo_channel_roles** would break auth and channels.  
@@ -183,13 +183,13 @@ If the decision is to **drop lupo_actor_channel_roles** and retire protocol/awar
 |------|--------|
 | app/Services/TriggerReplacements/EnforceProtocolCompletionService.php | Remove or rewrite protocol check (no longer read from lupo_actor_channel_roles). |
 | lupo-includes/classes/AgentAwarenessLayer.php | Remove or rewrite getChannelActors JOIN and storeAwarenessSnapshot INSERT (no longer use lupo_actor_channel_roles). |
-| database/migrations/install_new_lupopedia.sql | Remove CREATE TABLE lupo_actor_channel_roles and its indexes. |
-| database/migrations/dev_20260204_fix_schema_alignment.sql | Remove ALTER TABLE lupo_actor_channel_roles statements. |
-| database/migrations/dev_20260204_fix_schema_alignment_summary.txt | Remove lupo_actor_channel_roles lines. |
+| lupo-database/migrations/install_new_lupopedia.sql | Remove CREATE TABLE lupo_actor_channel_roles and its indexes. |
+| lupo-database/migrations/dev_20260204_fix_schema_alignment.sql | Remove ALTER TABLE lupo_actor_channel_roles statements. |
+| lupo-database/migrations/dev_20260204_fix_schema_alignment_summary.txt | Remove lupo_actor_channel_roles lines. |
 | migrations/structural_alignment_mysql_migration.sql | Remove reference to lupo_actor_channel_roles. |
-| docs/REQUIRED_TABLES_4.1.0.md | Remove lupo_actor_channel_roles from list. |
-| docs/LIVEHELP_REMOVAL_REPORT.md | Update text that mentions lupo_actor_channel_roles. |
-| docs/toons/lupo_actor_channel_roles.toon.json | Delete or archive (TOONs are generated; regenerate after schema change). |
-| All docs/channels/… and dialogs/… that reference lupo_actor_channel_roles | Update or remove references (doctrine, migrations, dialogs). |
+| lupo-docs/REQUIRED_TABLES_4.1.0.md | Remove lupo_actor_channel_roles from list. |
+| lupo-docs/LIVEHELP_REMOVAL_REPORT.md | Update text that mentions lupo_actor_channel_roles. |
+| lupo-docs/toons/lupo_actor_channel_roles.toon.json | Delete or archive (TOONs are generated; regenerate after schema change). |
+| All lupo-docs/channels/… and dialogs/… that reference lupo_actor_channel_roles | Update or remove references (doctrine, migrations, dialogs). |
 
 No cleanup is recommended for **lupo_channel_roles**; it is the single source of truth for channel roles in the application.

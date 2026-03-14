@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\channels\overview\WHAT_LUPOPEDIA_IS.md"
+  file_path_from_root: "lupo-docs\channels\overview\WHAT_LUPOPEDIA_IS.md"
   file_hash: "dab680d32038b3fbfcf941fcce0ed46d6f83348c9facae2a3d635a0879b7581c"
-  file_path_from_root: "docs\channels\overview\WHAT_LUPOPEDIA_IS.md"
+  file_path_from_root: "lupo-docs\channels\overview\WHAT_LUPOPEDIA_IS.md"
   file_hash: "66afa838de9b352808a982c4d9eda5044b88a2b00d52d7fa3f9e8d42b92ff2f5"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -357,6 +357,6 @@ You're not just sitting on a unique dataset. You're building the semantic OS tha
 *See also:*
 - [VISION.md](VISION.md) - Vision statement and definitions
 - [README.md](../README.md) - Main project documentation
-- [docs/core/WHY_LUPOPEDIA_NEEDS_CRAFTY_SYNTAX.md](../architecture/WHY_LUPOPEDIA_NEEDS_CRAFTY_SYNTAX.md) - Detailed explanation of the symbiotic relationship
-- [docs/core/WHY_THIS_DATASET_CANNOT_EXIST_TODAY.md](WHY_THIS_DATASET_CANNOT_EXIST_TODAY.md) - Why the 25-year dataset is unique
+- [lupo-docs/core/WHY_LUPOPEDIA_NEEDS_CRAFTY_SYNTAX.md](../architecture/WHY_LUPOPEDIA_NEEDS_CRAFTY_SYNTAX.md) - Detailed explanation of the symbiotic relationship
+- [lupo-docs/core/WHY_THIS_DATASET_CANNOT_EXIST_TODAY.md](WHY_THIS_DATASET_CANNOT_EXIST_TODAY.md) - Why the 25-year dataset is unique
 - [emotional.htm](../emotional.htm) - The Emotional Operating System (EOS) whitepaper

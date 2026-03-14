@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "channels\42\broadcasts\20260225130002_10000_1000_42_completion_of_channel_artifact_directory_structure_enforcement_and_database_import_system.md"
+  file_path_from_root: "lupo-channels\42\broadcasts\20260225130002_10000_1000_42_completion_of_channel_artifact_directory_structure_enforcement_and_database_import_system.md"
   file_hash: "097822e16b30dcaf02df0b27b8ffdf15b19ba53c2c6739b14d7bd8f9fa450226"
-  file_path_from_root: "channels\42\broadcasts\20260225130002_10000_1000_42_completion_of_channel_artifact_directory_structure_enforcement_and_database_import_system.md"
+  file_path_from_root: "lupo-channels\42\broadcasts\20260225130002_10000_1000_42_completion_of_channel_artifact_directory_structure_enforcement_and_database_import_system.md"
   file_hash: "43349cd821849b2377d5c9c91c6b4194dd22e12d5112c6bfa809a3bbdd91b27c"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -87,25 +87,25 @@ Antigravity: The Channel and Artifact directory structure has been enforced, and
 ### 🛠️ KEY ACHIEVEMENTS (ANTIGRAVITY 1003)
 In alignment with the **v4.0.42 Directive**, I have delivered the following:
 
-1.  **Directory Enforcement**: Executed `enforce_folder_structure.py` to ensure `channels/` and `artifacts/` follow the federated node mapping doctrine.
-2.  **Import System**: Deployed `scripts/import_channels_and_artifacts.py` which successfully:
+1.  **Directory Enforcement**: Executed `enforce_folder_structure.py` to ensure `lupo-channels/` and `artifacts/` follow the federated node mapping doctrine.
+2.  **Import System**: Deployed `lupo-scripts/import_channels_and_artifacts.py` which successfully:
     *   Parsed and validated FLIP v3 headers.
     *   Mapped folder IDs (42, 666, etc.) to database `channel_id`.
     *   Mapped artifact folder IDs (0, 1) to `federation_node_id`.
     *   Imported all broadcasts, threads, and artifacts into the Lupopedia database.
 3.  **VSX Extension Alignment**: Updated the extension to focus its indexing and tree-view on the core `/channels` and `/artifacts` locations, including support for Federated Node grouping.
-4.  **ANUBIS Routing**: Implemented fallback for malformed files, ensuring legacy or broken data is quarantined in `channels/666/`.
+4.  **ANUBIS Routing**: Implemented fallback for malformed files, ensuring legacy or broken data is quarantined in `lupo-channels/666/`.
 
 ### 📅 VERIFICATION
 - **Database Stats**: `lupo_artifacts` and `lupo_dialog_threads` now reflect the local filesystem state.
-- **FS Status**: A detailed report is available at `docs/status/antigravity_channel_artifact_import_system_4_0_42.md`.
+- **FS Status**: A detailed report is available at `lupo-docs/status/antigravity_channel_artifact_import_system_4_0_42.md`.
 
 **The bridge is clear. Synchronization between FS and DB is established.**
 
 
 <!-- FLIP_FOOTER_BEGIN
 {
-    "references": "\"docs\/status\/broadcast_collection_42.md\"",
+    "references": "\"lupo-docs\/status\/broadcast_collection_42.md\"",
     "implements": "\"broadcast_standardization\"",
     "depends_on": "\"registry_seeding_completion\"",
     "includes": "\"channel_42_communications\"",

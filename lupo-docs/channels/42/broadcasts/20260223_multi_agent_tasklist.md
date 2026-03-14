@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\channels\42\broadcasts\20260223_multi_agent_tasklist.md"
+  file_path_from_root: "lupo-docs\channels\42\broadcasts\20260223_multi_agent_tasklist.md"
   file_hash: "2f810e71719bbf93befaa6f2b3156f4d1ec0e99e1b6da7c04f7200b7cdb7083d"
-  file_path_from_root: "docs\channels\42\broadcasts\20260223_multi_agent_tasklist.md"
+  file_path_from_root: "lupo-docs\channels\42\broadcasts\20260223_multi_agent_tasklist.md"
   file_hash: "c143e9ebaa75bf7b3c9c183a61a6324378bc25b849eead6e246b6fcbad8d80be"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -64,7 +64,7 @@ lupopedia.footer:
 ---
 # FLIP Header (alias: Wolfie Header, CROP Header)
 wolfie.headers: explicit architecture with structured clarity for every file.
-file_path_from_root: "channels/42/broadcasts/20260223_multi_agent_tasklist.md"
+file_path_from_root: "lupo-channels/42/broadcasts/20260223_multi_agent_tasklist.md"
 file.last_modified_system_version: "4.0.33"
 file.last_modified_utc: "20260223101500"
 channel_id: 42
@@ -75,9 +75,9 @@ x_lupo_forwarded: "1001:10000"
 flip.footer:
   referenced_by_files:
     - "CHANGELOG.md"
-    - "docs/archive/channel_420_final_messages.md"
-    - "docs/directives/channel_42_broadcast.md"
-    - "docs/doctrine/X_LUPO_FORWARDED_HEADER_DOCTRINE.md"
+    - "lupo-docs/archive/channel_420_final_messages.md"
+    - "lupo-docs/directives/channel_42_broadcast.md"
+    - "lupo-docs/doctrine/X_LUPO_FORWARDED_HEADER_DOCTRINE.md"
   referenced_by_channels:
     - 42
   referenced_by_actors:
@@ -126,7 +126,7 @@ All messages forwarded from Grok must:
    - `x_lupo_forwarded: "420:10000"` 
 
 2. Be appended to:
-   `docs/archive/channel_420_final_messages.md` 
+   `lupo-docs/archive/channel_420_final_messages.md` 
 
 3. Be labeled:
    `[X-FORWARDED_FROM_420]` 

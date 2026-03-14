@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -32,7 +32,7 @@ lupopedia.footer:
 
 ---
 lupopedia.headers:
-  file_path_from_root: "channels/42/actors/2035/help.md"
+  file_path_from_root: "lupo-channels/42/actors/2035/help.md"
   file_hash: "e48e1ff5e17388753d11d9a7b8d1c6cf6e66637456e130a638c6ace1bf72a245"
   system_version: "4.0.50"
   channel_id: 42
@@ -49,12 +49,12 @@ lupopedia.headers:
   lupo_agent: "windsurf"
 
 lupopedia.edges:
-  file_path_from_root: "channels\42\actors\2035\help.md"
+  file_path_from_root: "lupo-channels\42\actors\2035\help.md"
   outbound_edges:
-    - { to: "channels/42/actors/2035/HELP.json", type: "references", weight: 1.0, reason: "JSON help data" }
-    - { to: "channels/42/actors/2035/history/list.csv", type: "references", weight: 0.9, reason: "Actor history" }
-    - { to: "channels/42/actors/2035/tasks/list.csv", type: "references", weight: 0.9, reason: "Actor tasks" }
-    - { to: "docs/doctrine/ANUBIS/ANUBIS_OVERVIEW.md", type: "references", weight: 1.0, reason: "ANUBIS doctrine" }
+    - { to: "lupo-channels/42/actors/2035/HELP.json", type: "references", weight: 1.0, reason: "JSON help data" }
+    - { to: "lupo-channels/42/actors/2035/history/list.csv", type: "references", weight: 0.9, reason: "Actor history" }
+    - { to: "lupo-channels/42/actors/2035/tasks/list.csv", type: "references", weight: 0.9, reason: "Actor tasks" }
+    - { to: "lupo-docs/doctrine/ANUBIS/ANUBIS_OVERVIEW.md", type: "references", weight: 1.0, reason: "ANUBIS doctrine" }
     - { to: "app/Services/AnubisUnknownRecipientService.php", type: "references", weight: 0.8, reason: "PHP implementation" }
     - { to: "lupo-includes/classes/AnubisHeaderFallback.php", type: "references", weight: 0.8, reason: "Header fallback system" }
   semantic_tags: ["anubis_help", "audit_tool_operations", "4.0.50"]
@@ -132,10 +132,10 @@ generate_audit_report(date_range)
 ```
 
 ### File Locations
-- **Workspace**: `channels/42/actors/2035/`
-- **History**: `channels/42/actors/2035/history/list.csv`
-- **Tasks**: `channels/42/actors/2035/tasks/list.csv`
-- **Help Data**: `channels/42/actors/2035/HELP.json`
+- **Workspace**: `lupo-channels/42/actors/2035/`
+- **History**: `lupo-channels/42/actors/2035/history/list.csv`
+- **Tasks**: `lupo-channels/42/actors/2035/tasks/list.csv`
+- **Help Data**: `lupo-channels/42/actors/2035/HELP.json`
 
 ## Integration Points
 
@@ -145,7 +145,7 @@ generate_audit_report(date_range)
 - **Operations**: SELECT queries for validation, INSERT operations for adoption, UPDATE for lineage fixes
 
 ### Doctrine Integration
-- **ANUBIS Doctrine**: Full compliance with `docs/doctrine/ANUBIS/ANUBIS_OVERVIEW.md`
+- **ANUBIS Doctrine**: Full compliance with `lupo-docs/doctrine/ANUBIS/ANUBIS_OVERVIEW.md`
 - **Schema Constraints**: Strict adherence to TOON-defined schema only
 - **Soft-Delete Rules**: Never hard deletes, always uses is_deleted flags
 - **Timestamp Format**: Consistent BIGINT UTC format (YYYYMMDDHHIISS)
@@ -211,8 +211,8 @@ generate_audit_report(date_range)
 
 ## Related Documentation
 
-- **ANUBIS Doctrine**: `docs/doctrine/ANUBIS/ANUBIS_OVERVIEW.md` - Complete ANUBIS subsystem documentation
-- **Implementation Guide**: `docs/doctrine/ANUBIS/ANUBIS_IMPLEMENTATION_SUMMARY.md` - Implementation details
+- **ANUBIS Doctrine**: `lupo-docs/doctrine/ANUBIS/ANUBIS_OVERVIEW.md` - Complete ANUBIS subsystem documentation
+- **Implementation Guide**: `lupo-docs/doctrine/ANUBIS/ANUBIS_IMPLEMENTATION_SUMMARY.md` - Implementation details
 - **PHP Services**: `app/Services/AnubisUnknownRecipientService.php` - Service layer implementation
 - **Header Fallback**: `lupo-includes/classes/AnubisHeaderFallback.php` - Header recovery system
 - **CLI Integration**: `bin/lupo.php.md` - Command-line interface reference

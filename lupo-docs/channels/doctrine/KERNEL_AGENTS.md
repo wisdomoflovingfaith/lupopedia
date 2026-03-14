@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\channels\doctrine\KERNEL_AGENTS.md"
+  file_path_from_root: "lupo-docs\channels\doctrine\KERNEL_AGENTS.md"
   file_hash: "ff37c553da38795450b2bd5eeaccb31b24f0246a6b40d0f9b0c6b418611c559d"
-  file_path_from_root: "docs\channels\doctrine\KERNEL_AGENTS.md"
+  file_path_from_root: "lupo-docs\channels\doctrine\KERNEL_AGENTS.md"
   file_hash: "ee09cf7e60f346a6f9148179d390da37c94b46c573a039e2f730bbc97d456941"
   last_updated_utc: "20260228"
   system_version: "4.0.50"

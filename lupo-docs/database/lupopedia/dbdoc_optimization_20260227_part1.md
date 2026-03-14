@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -31,7 +31,7 @@ lupopedia.footer:
 # LUPOPEDIA HEADERS (replaces FLARE)
 ---
 lupopedia.headers:
-  file_path_from_root: "docs/database/lupopedia/dbdoc_optimization_20260227_part1.md"
+  file_path_from_root: "lupo-docs/database/lupopedia/dbdoc_optimization_20260227_part1.md"
   file_hash: "a24596fcd55e07333ccf07661e1d3ba92893c1040a926dc73ce421661d1f84e1"
   system_version: "4.0.50"
   channel_id: 1
@@ -52,11 +52,11 @@ lupopedia.headers:
   last_updated_utc: "20260228"
 lupopedia.footer:
   outbound_edges:
-    - { to: "docs/database/lupopedia/tables/lupo_document_embeddings.md", type: "references", weight: 0.8, reason: "reviewed table" }
-    - { to: "docs/database/lupopedia/tables/lupo_collections.md", type: "references", weight: 0.8, reason: "reviewed table" }
-    - { to: "docs/database/lupopedia/tables/lupo_search_index.md", type: "references", weight: 0.8, reason: "reviewed table" }
-    - { to: "docs/database/lupopedia/tables/lupo_agents.md", type: "references", weight: 0.8, reason: "reviewed table" }
-    - { to: "docs/database/lupopedia/tables/lupo_agent_tool_calls.md", type: "references", weight: 0.8, reason: "reviewed table" }
+    - { to: "lupo-docs/database/lupopedia/tables/lupo_document_embeddings.md", type: "references", weight: 0.8, reason: "reviewed table" }
+    - { to: "lupo-docs/database/lupopedia/tables/lupo_collections.md", type: "references", weight: 0.8, reason: "reviewed table" }
+    - { to: "lupo-docs/database/lupopedia/tables/lupo_search_index.md", type: "references", weight: 0.8, reason: "reviewed table" }
+    - { to: "lupo-docs/database/lupopedia/tables/lupo_agents.md", type: "references", weight: 0.8, reason: "reviewed table" }
+    - { to: "lupo-docs/database/lupopedia/tables/lupo_agent_tool_calls.md", type: "references", weight: 0.8, reason: "reviewed table" }
   semantic_tags: ["dbdoc", "optimization", "batch1"]
   last_verified: "20260227"
   last_verified_by: "codex-ide"

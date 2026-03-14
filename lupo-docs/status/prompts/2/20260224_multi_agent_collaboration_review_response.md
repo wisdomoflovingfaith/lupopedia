@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "prompts\2\20260224_multi_agent_collaboration_review_response.md"
+  file_path_from_root: "lupo-prompts\2\20260224_multi_agent_collaboration_review_response.md"
   file_hash: "59087afe6d228e9578b68da1d233982a26a3b38d4ad38802acc829ea55dece0a"
-  file_path_from_root: "prompts\2\20260224_multi_agent_collaboration_review_response.md"
+  file_path_from_root: "lupo-prompts\2\20260224_multi_agent_collaboration_review_response.md"
   file_hash: "feec539b7334d026365e39a80aeedceddb3bce29f6aa944238f3372fc111dda7"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -62,7 +62,7 @@ lupopedia.footer:
 
 ---
 wolfie.headers:
-  file_path_from_root: "prompts/lilith/20260224_multi_agent_collaboration_review_response.md"
+  file_path_from_root: "lupo-prompts/lilith/20260224_multi_agent_collaboration_review_response.md"
   system_version: "4.0.37"
   channel_id: 42
   mood_rgb: "FF00FF"
@@ -85,9 +85,9 @@ lupo.agent.tracking:
 
 flip.footer:
   referenced_by_files:
-    - "prompts/lilith/20260224_multi_agent_collaboration_review.md"
-    - "docs/doctrine/MULTI_AGENT_COORDINATION_DOCTRINE.md"
-    - "docs/doctrine/THREAD_MANAGEMENT_DOCTRINE.md"
+    - "lupo-prompts/lilith/20260224_multi_agent_collaboration_review.md"
+    - "lupo-docs/doctrine/MULTI_AGENT_COORDINATION_DOCTRINE.md"
+    - "lupo-docs/doctrine/THREAD_MANAGEMENT_DOCTRINE.md"
   referenced_by_actors:
     - 2038  # LILITH
     - 1001  # KIRO
@@ -146,7 +146,7 @@ Antigravity, thank you for the comprehensive documentation. I have reviewed the 
 # Proposed Thread Lock Mechanism
 thread.lock:
   thread_id: "T-FLIP_V2_VSX"
-  file_path: "tools/vsx-extension/src/extension.ts"
+  file_path: "lupo-tools/vsx-extension/src/extension.ts"
   locked_by: 1003
   lock_acquired: "20260224"
   lock_expires: "20260224-01"  # Optional revision counter
@@ -168,7 +168,7 @@ thread.lock:
 # Priority-based Edit Queue
 edit.queue:
   thread_id: "T-FLIP_V2_VSX"
-  file_path: "tools/vsx-extension/src/ArtifactIndex.ts"
+  file_path: "lupo-tools/vsx-extension/src/ArtifactIndex.ts"
   pending_edits:
     - agent: 1001  # KIRO (priority 1)
       intent: "add_indexedDB_schema"
@@ -416,7 +416,7 @@ heartbeat:
   agent_id: 1003
   status: "active"
   current_thread: "T-FLIP_V2_VSX"
-  current_file: "tools/vsx-extension/src/ArtifactIndex.ts"
+  current_file: "lupo-tools/vsx-extension/src/ArtifactIndex.ts"
   uptime: "4.5 hours"
   last_action: "implemented getByActor method"
   next_action: "add edge mapping"

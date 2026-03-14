@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\specs\FLIP_DATABASE_MAPPING_LAYER_4.0.28.md"
+  file_path_from_root: "lupo-docs\specs\FLIP_DATABASE_MAPPING_LAYER_4.0.28.md"
   file_hash: "b500a85b379c670505a043ea9b7ee3480d57dbba15c4ffcee959c1cee67abf2f"
-  file_path_from_root: "docs\specs\FLIP_DATABASE_MAPPING_LAYER_4.0.28.md"
+  file_path_from_root: "lupo-docs\specs\FLIP_DATABASE_MAPPING_LAYER_4.0.28.md"
   file_hash: "fdf2752cf4fd3fc078487597afa8bb2a039ab8351c4f31f1f9853e3fcb51a86e"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -62,7 +62,7 @@ lupopedia.footer:
 
 ---
 # FLIP Header (alias: Wolfie Header, CROP Header, FLIPPING Header)
-X-Lupo-File-Path: docs/specs/FLIP_DATABASE_MAPPING_LAYER_4.0.28.md
+X-Lupo-File-Path: lupo-docs/specs/FLIP_DATABASE_MAPPING_LAYER_4.0.28.md
 X-Lupo-Version: "4.0.27"
 X-Lupo-UTC-Timestamp: "20260222194455"
 X-Lupo-Channel: 42   # ANUBIS adoption channel
@@ -111,7 +111,7 @@ The existing semantic FLIP headers remain the primary method for file attributio
 X-Lupo-Actor-ID: 2038
 X-Lupo-Channel-ID: 42
 X-Lupo-Thread-ID: 1001
-X-Lupo-File-Path: docs/specs/example.md
+X-Lupo-File-Path: lupo-docs/specs/example.md
 X-Lupo-File-Last-Modified-System-Version: 4.0.27
 X-Lupo-File-Last-Modified-UTC: 20260222120000
 ```
@@ -210,7 +210,7 @@ X-LUPO-actors.fake_column: value         ❌ Invalid column
 
 ## IMPLEMENTATION TASKS (Windsurf IDE - Actor 2040)
 
-### Task 1: Update FLIP Header Generator (`tools/vsx-extension/src/lupopedia/flip.ts`)
+### Task 1: Update FLIP Header Generator (`lupo-tools/vsx-extension/src/lupopedia/flip.ts`)
 
 **Current Interface** (excerpt):
 ```typescript
@@ -386,10 +386,10 @@ function generateInsertFromMapping(
 ### Task 5: Update Documentation
 
 **Files to Update**:
-1. `docs/specs/FLIP_HEADERS_VERBOSE_COMPLETE_4.0.27.md`
-2. `docs/specs/UNIVERSAL_WOLFIE_HEADER_SPECIFICATION.md`
-3. `docs/specs/COLLECTION_FLIP_HEADERS_USAGE.md`
-4. `docs/specs/FLIP_HEADER_SPECIFICATION_4.0.23.md`
+1. `lupo-docs/specs/FLIP_HEADERS_VERBOSE_COMPLETE_4.0.27.md`
+2. `lupo-docs/specs/UNIVERSAL_WOLFIE_HEADER_SPECIFICATION.md`
+3. `lupo-docs/specs/COLLECTION_FLIP_HEADERS_USAGE.md`
+4. `lupo-docs/specs/FLIP_HEADER_SPECIFICATION_4.0.23.md`
 
 **Add Section** (template):
 ```markdown

@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\channels\overview\thread-summary\thread_summary_dialog.md"
+  file_path_from_root: "lupo-docs\channels\overview\thread-summary\thread_summary_dialog.md"
   file_hash: "3183b272b234a94433c62d49efe41cd8b156d00f46ffcb3d7ef3b944a10f2dbc"
-  file_path_from_root: "docs\channels\overview\thread-summary\thread_summary_dialog.md"
+  file_path_from_root: "lupo-docs\channels\overview\thread-summary\thread_summary_dialog.md"
   file_hash: "3466ae8e87c78164cc882491ce07f9da8d86b671b83c0bcbe189719e09a312a8"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -135,8 +135,8 @@ file:
 ### Files Modified in Thread
 
 #### Enhanced Documentation
-- `docs/history/1996-2013/2002.md` - Comprehensive Crafty Syntax creation narrative
-- `docs/history/1996-2013/2013.md` - Enhanced hiatus transition and legacy context
+- `lupo-docs/history/1996-2013/2002.md` - Comprehensive Crafty Syntax creation narrative
+- `lupo-docs/history/1996-2013/2013.md` - Enhanced hiatus transition and legacy context
 
 #### Version Management
 - `config/global_atoms.yaml` - Version 3.0.64 updates and historical references
@@ -156,12 +156,12 @@ file:
 
 #### Navigation System
 - `livehelp-history.php` - Version 3.0.64 updates
-- `api/dialog/history-explorer.php` - Version 3.0.64 updates
+- `lupo-api/dialog/history-explorer.php` - Version 3.0.64 updates
 
 #### Migration Documentation
-- `docs/migrations/3.0.64.md` - New migration notes file
-- `docs/big-rock-2/BIG_ROCK_2_COMPLETION.md` - Version 3.0.64
-- `docs/big-rock-3/BIG_ROCK_3_COMPLETION.md` - Version 3.0.64
+- `lupo-docs/migrations/3.0.64.md` - New migration notes file
+- `lupo-docs/big-rock-2/BIG_ROCK_2_COMPLETION.md` - Version 3.0.64
+- `lupo-docs/big-rock-3/BIG_ROCK_3_COMPLETION.md` - Version 3.0.64
 
 #### Test Files
 - `lupo-tests/BigRock2MetadataTest.php` - Version 3.0.64

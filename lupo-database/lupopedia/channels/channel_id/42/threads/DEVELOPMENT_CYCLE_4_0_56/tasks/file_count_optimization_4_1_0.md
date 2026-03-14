@@ -143,17 +143,17 @@ lupopedia.close:
 ```
 - Backup files: *.bak, *.old, *_backup.*
 - Log files: *.log, logs/ (keep recent only)
-- Temporary files: temp/, tmp/, cache/
+- Temporary files: temp/, lupo-tmp/, lupo-cache/
 - Development artifacts: .DS_Store, Thumbs.db
 - Test outputs: test_results/, coverage/
 ```
 
 ### Medium-Impact Removals (Estimated: 1,500+ files)
 ```
-- Legacy migrations: database/migrations/old/
-- Duplicate docs: docs/archive/, docs/old/
-- Unused assets: images/unused/, old_themes/
-- Development tools: tools/dev/, scripts/dev/
+- Legacy migrations: lupo-database/migrations/old/
+- Duplicate docs: lupo-docs/archive/, lupo-docs/old/
+- Unused assets: lupo-images/unused/, old_themes/
+- Development tools: lupo-tools/dev/, lupo-scripts/dev/
 ```
 
 ### Low-Impact Optimizations (Estimated: 1,000+ files)

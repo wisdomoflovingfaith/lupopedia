@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: "docs/doctrine/FLARE/FLARE_APPLY.md"
+  file_path_from_root: "lupo-docs/doctrine/FLARE/FLARE_APPLY.md"
   web_path: "http://www.lupopedia.com/flare_apply"
   last_updated_utc: "20260304"
   system_version: "4.0.57"
@@ -17,8 +17,8 @@ lupopedia.headers:
 
 lupopedia.see:
   mappings:
-    - ["docs/doctrine/FLARE/FLARE_APPLY.md", "http://www.lupopedia.com/flare_apply"]
-    - ["docs/doctrine/FLARE/FLARE_APPLY.md", "https://www.lupopedia.com/flare_apply"]
+    - ["lupo-docs/doctrine/FLARE/FLARE_APPLY.md", "http://www.lupopedia.com/flare_apply"]
+    - ["lupo-docs/doctrine/FLARE/FLARE_APPLY.md", "https://www.lupopedia.com/flare_apply"]
 
 lupopedia.edges:
   outbound_edges:
@@ -57,7 +57,7 @@ python lupo-tools/flare_apply.py --refresh
 python lupo-tools/flare_apply.py --batch lupo-database/lupopedia/channels/lupo-channels/42/threads/DEVELOPMENT_CYCLE_4_0_57/tasks
 
 # Refresh headers in a batch directory
-python lupo-tools/flare_apply.py --refresh --batch docs/doctrine/FLARE
+python lupo-tools/flare_apply.py --refresh --batch lupo-docs/doctrine/FLARE
 ```
 
 ## Batch header regeneration
@@ -83,5 +83,5 @@ python lupo-tools/flare_apply.py --refresh --batch docs/doctrine/FLARE
 ## Related docs
 
 - **FLARE_DOCTRINE** — Core FLARE protocol: `lupo-docs/doctrine/FLARE/FLARE_DOCTRINE.md` (see http://www.lupopedia.com/doctrine/FLARE/FLARE_DOCTRINE).
-- **Federation refinement** — `docs/status/FLARE_FEDERATION_REFINEMENT_4.0.57.md`.
+- **Federation refinement** — `lupo-docs/status/FLARE_FEDERATION_REFINEMENT_4.0.57.md`.
 - **flare_validate.py** — Validates FLARE headers and federation URL uniqueness.

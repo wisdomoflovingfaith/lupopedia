@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\audits\INSTALL_PHP_WIZARD_DOCTRINE_AUDIT.md"
+  file_path_from_root: "lupo-docs\audits\INSTALL_PHP_WIZARD_DOCTRINE_AUDIT.md"
   file_hash: "b381a0f5be0f331cf6fc29ed38c5752991e7f0233fed93baa5a72da0d39c9b6c"
-  file_path_from_root: "docs\audits\INSTALL_PHP_WIZARD_DOCTRINE_AUDIT.md"
+  file_path_from_root: "lupo-docs\audits\INSTALL_PHP_WIZARD_DOCTRINE_AUDIT.md"
   file_hash: "6745a38ca16cc51cff323ec9a808bc7cb458eaaba79e3baee90c6e4bea82a183"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -280,7 +280,7 @@ No additional PHP 8.1-only violations identified; main risk is removal of 5.3-in
 | **install_new_lupopedia.sql** | OK | Referenced and run for new install and for upgrade (at credentials/bootstrap). |
 | **seed_lupopedia.sql** | OK | Run after install in both paths. |
 | **import_from_old_crafty_syntax.sql** | OK | Run only on upgrade, after normalize; importer SQL not modified by wizard. |
-| **drop_old_crafty_syntax_tables.sql** | OK | Exists in `database/migrations/`; run after import on upgrade. |
+| **drop_old_crafty_syntax_tables.sql** | OK | Exists in `lupo-database/migrations/`; run after import on upgrade. |
 | **Wizard assumes schema** | Verify | `create_reserved_system_channels` and `create_operator_channels` assume `lupo_channels`, `lupo_channel_roles`, `lupo_actors` (and columns) exist. These must exist in `install_new_lupopedia.sql` and seed where applicable. Recommendation: confirm install_new_lupopedia.sql defines these tables and columns. |
 | **One-time migrations** | N/A | Wizard does not run dev one-time migrations; only install, seed, import, drop. Compliant. |
 

@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,7 +35,7 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\database\lupopedia\tables\operator_to_roles_migration.md"
+  file_path_from_root: "lupo-docs\database\lupopedia\tables\operator_to_roles_migration.md"
   file_hash: "d463aa11db2900c368bf38ef82cf6b9e129ecf560159b98de13e766bafaa9dba"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -59,7 +59,7 @@ lupopedia.footer:
 # FLIP Header (alias: Wolfie Header, CROP Header, FLIPPING Header)
 lupopedia.headers: explicit architecture with structured clarity for every file.
   tags: ["legacy-reference"]
-file_path_from_root: docs/database/lupopedia/tables/operator_to_roles_migration.md
+file_path_from_root: lupo-docs/database/lupopedia/tables/operator_to_roles_migration.md
   file_hash: "fa13f3f2dbec7ee5ca804f364bdb6cf69430a37a78158995a6d232bdcbf00e72"
 file.last_modified_system_version: "4.0.16"
 file.last_modified_utc: "20260218000000"
@@ -70,7 +70,7 @@ atoms:
   recovery_event: true
 X-Lupo-Actor-ID: 2035
 X-Lupo-Actor-Identity: "Lupopedia Audit Tool (Auto-Fixed)"
-X-Lupo-File-Path: docs/doctrine/migrations/operator_to_roles_migration.md
+X-Lupo-File-Path: lupo-docs/doctrine/migrations/operator_to_roles_migration.md
 ---
 
 ## WARNING: Legacy Reference Only
@@ -122,13 +122,13 @@ Lupopedia originally had **lupo_operators** (and related operator_* tables) for 
 
 - **import_from_old_crafty_syntax.sql** does **not** insert into lupo_operators (table does not exist). It imports livehelp_users → lupo_auth_users and (operators only) → lupo_actors; livehelp_operator_departments → lupo_actor_departments.
 - **Install wizard** (install_wizard_classes.php): After import, **createOperatorChannels** creates a personal channel per imported Crafty operator and inserts **lupo_actor_channel_roles** with role_key = 'captain'. For each livehelp_users row with isadmin = 'Y', the wizard inserts **lupo_actor_channel_roles** (actor_id, channel_id=1, role_key='captain') so they have admin channel access.
-- **lupo_channel_roles** (role_type) still exists in schema; some code paths use **lupo_actor_channel_roles** (role_key) for permission checks. See docs/ACTOR_CHANNEL_ROLES_VS_CHANNEL_ROLES_ANALYSIS.md and database/migrations_legacy/migration_operator_to_actor_channel_roles.sql for existing-DB migration.
+- **lupo_channel_roles** (role_type) still exists in schema; some code paths use **lupo_actor_channel_roles** (role_key) for permission checks. See lupo-docs/ACTOR_CHANNEL_ROLES_VS_CHANNEL_ROLES_ANALYSIS.md and lupo-database/migrations_legacy/migration_operator_to_actor_channel_roles.sql for existing-DB migration.
 
 ---
 
 ## 4. References
 
-- **docs/audits/OPERATOR_TO_ROLE_BASED_SWEEP_REPORT.md** — What was changed when lupo_operators was removed.
-- **docs/doctrine/database/actor_channel_roles.md** — Use of lupo_actor_channel_roles and role keys.
-- **docs/doctrine/migrations/livehelp_users_migration.md** — livehelp_users → lupo_auth_users / lupo_actors; notes that operator permissions use the 3-level role system.
-- **database/migrations_legacy/migration_operator_to_actor_channel_roles.sql** — One-time migration from lupo_channel_roles to lupo_actor_channel_roles for existing installs (not run by wizard).
+- **lupo-docs/audits/OPERATOR_TO_ROLE_BASED_SWEEP_REPORT.md** — What was changed when lupo_operators was removed.
+- **lupo-docs/doctrine/database/actor_channel_roles.md** — Use of lupo_actor_channel_roles and role keys.
+- **lupo-docs/doctrine/migrations/livehelp_users_migration.md** — livehelp_users → lupo_auth_users / lupo_actors; notes that operator permissions use the 3-level role system.
+- **lupo-database/migrations_legacy/migration_operator_to_actor_channel_roles.sql** — One-time migration from lupo_channel_roles to lupo_actor_channel_roles for existing installs (not run by wizard).

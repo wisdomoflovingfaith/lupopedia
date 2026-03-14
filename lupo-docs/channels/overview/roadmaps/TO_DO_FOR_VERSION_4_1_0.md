@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\channels\overview\roadmaps\TO_DO_FOR_VERSION_4_1_0.md"
+  file_path_from_root: "lupo-docs\channels\overview\roadmaps\TO_DO_FOR_VERSION_4_1_0.md"
   file_hash: "8279a6ba22c18b97eded8aab6c330a4509e1d816269c64191a4b13419ae60d3c"
-  file_path_from_root: "docs\channels\overview\roadmaps\TO_DO_FOR_VERSION_4_1_0.md"
+  file_path_from_root: "lupo-docs\channels\overview\roadmaps\TO_DO_FOR_VERSION_4_1_0.md"
   file_hash: "3fb06bc0bc380a835c4e4eb394cbfb000ad8a1bfa9c50598b506053254d9c520"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -111,7 +111,7 @@ file:
   - [ ] Create `.gitignore` following FTP deployment compatibility rules
   - [ ] Migrate from FTP-based deployment to Git-based workflow
   - [ ] Update `VERSION_CONTROL_POLICY.md` to reflect Git integration
-  - [ ] Document Git workflow in `docs/doctrine/VERSION_DOCTRINE.md`
+  - [ ] Document Git workflow in `lupo-docs/doctrine/VERSION_DOCTRINE.md`
   - [ ] Update CHANGELOG.md to remove "NO `.git` FOLDERS" warning
 
 ### 3. JetBrains IDE Integration
@@ -120,14 +120,14 @@ file:
   - [ ] Create JetBrains-specific configuration files
   - [ ] Document JetBrains integration in workflow docs
   - [ ] Transfer version bump responsibilities from Cursor to JetBrains
-  - [ ] Update `docs/doctrine/VERSION_DOCTRINE.md` Section 7 (JetBrains + GitHub)
+  - [ ] Update `lupo-docs/doctrine/VERSION_DOCTRINE.md` Section 7 (JetBrains + GitHub)
   - [ ] Remove temporary Cursor-only version bump workaround
 
 ### 4. Table Prefixing Enhancement
 - [ ] **User-Selectable Table Prefixes** - New installs only
   - [ ] Update installation wizard to allow prefix selection
   - [ ] Store user-selected prefix in `lupopedia-config.php`
-  - [ ] Update `docs/doctrine/TABLE_PREFIXING_DOCTRINE.md` with 3.1.0+ behavior
+  - [ ] Update `lupo-docs/doctrine/TABLE_PREFIXING_DOCTRINE.md` with 3.1.0+ behavior
   - [ ] Ensure upgrades (3.7.5→3.0.x) still enforce `lupo_` prefix
   - [ ] Document prefix selection in installation documentation
   - [ ] Add validation for prefix format and conflicts
@@ -243,7 +243,7 @@ file:
 - [ ] Update `lupo-includes/version.php` - version constants
 - [ ] Update `CHANGELOG.md` - add 3.1.0 entry
 - [ ] Update all WOLFIE Headers - `file.last_modified_system_version: 3.1.0`
-- [ ] Create `docs/migrations/3.1.0.md` - migration notes
+- [ ] Create `lupo-docs/migrations/3.1.0.md` - migration notes
 - [ ] Update all documentation version references
 
 ### Release Preparation

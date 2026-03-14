@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "channels\42\actors\1003\20260224_flip_v2_vsx_implementation.md"
+  file_path_from_root: "lupo-channels\42\actors\1003\20260224_flip_v2_vsx_implementation.md"
   file_hash: "fecf3eb0c0aee16d07cfa6ff391c6441cc6cb7e2d02e5affb1439e5e6ba685c7"
-  file_path_from_root: "channels\42\actors\1003\20260224_flip_v2_vsx_implementation.md"
+  file_path_from_root: "lupo-channels\42\actors\1003\20260224_flip_v2_vsx_implementation.md"
   file_hash: "587e20950c5d08bf05b8e366f3e91fba2809e3f28017bba953b9d3fce4377c81"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -62,7 +62,7 @@ lupopedia.footer:
 
 ---
 wolfie.headers:
-  file_path_from_root: "prompts/antigravity/20260224_flip_v2_vsx_implementation.md"
+  file_path_from_root: "lupo-prompts/antigravity/20260224_flip_v2_vsx_implementation.md"
   system_version: "4.0.37"
   channel_id: 42
   mood_rgb: "4B0082"
@@ -85,17 +85,17 @@ lupo.agent.tracking:
 
 flip.footer:
   referenced_by_files:
-    - "docs/doctrine/FLIP_V2_DOCTRINE.md"
+    - "lupo-docs/doctrine/FLIP_V2_DOCTRINE.md"
     - "CHANGELOG.md"
-    - "docs/status/antigravity_flip_v2_implementation_4_0_37.md"
-    - "docs/toons/lupo_flip_artifacts.toon.json"
+    - "lupo-docs/status/antigravity_flip_v2_implementation_4_0_37.md"
+    - "lupo-docs/toons/lupo_flip_artifacts.toon.json"
   consumed_by_services:
     - "VSExtensionService"
     - "FLIPParserService"
     - "MetadataService"
   cited_by_docs:
-    - "docs/doctrine/FLIP/FLIP_DOCTRINE.md"
-    - "docs/doctrine/VSX_EXTENSION_DOCT_RINE.md"
+    - "lupo-docs/doctrine/FLIP/FLIP_DOCTRINE.md"
+    - "lupo-docs/doctrine/VSX_EXTENSION_DOCT_RINE.md"
   referenced_by_channels:
     - 42
   referenced_by_actors:
@@ -132,7 +132,7 @@ flip.footer:
 **UTC Date:** 20260224  
 **Version Target:** 4.0.37
 
-Antigravity, you are the **lead implementor** for the FLIP v2 VSX extension components. This directive details exactly what needs to be built in the `tools/vsx-extension/` directory.
+Antigravity, you are the **lead implementor** for the FLIP v2 VSX extension components. This directive details exactly what needs to be built in the `lupo-tools/vsx-extension/` directory.
 
 **Your scope:** VSX extension TypeScript/JavaScript code only.  
 **KIRO's scope:** Backend PHP (separate directive).  
@@ -157,7 +157,7 @@ Antigravity, you are the **lead implementor** for the FLIP v2 VSX extension comp
 
 ## 1. VSX EXTENSION ARCHITECTURE
 
-### Current Structure (`tools/vsx-extension/src/`)
+### Current Structure (`lupo-tools/vsx-extension/src/`)
 
 ```
 src/
@@ -770,7 +770,7 @@ Update `package.json`:
 
 ### Post-Implementation
 - [ ] Update CHANGELOG.md with VSX changes
-- [ ] Create status report at `docs/status/antigravity_flip_v2_implementation_4_0_37.md`
+- [ ] Create status report at `lupo-docs/status/antigravity_flip_v2_implementation_4_0_37.md`
 - [ ] Notify KIRO of any backend dependencies
 - [ ] Notify Windsurf of documentation updates needed
 - [ ] Post completion message to Channel 42

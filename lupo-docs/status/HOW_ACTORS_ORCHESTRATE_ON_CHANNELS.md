@@ -3,7 +3,7 @@ lupopedia.headers:
   lupopedia.version: "4.0.69"
   lupopedia.schema: "documentation"
   system_version: "4.0.69"
-  file_path_from_root: "docs/status/HOW_ACTORS_ORCHESTRATE_ON_CHANNELS.md"
+  file_path_from_root: "lupo-docs/status/HOW_ACTORS_ORCHESTRATE_ON_CHANNELS.md"
   web_path: "http://www.lupopedia.com/status/HOW_ACTORS_ORCHESTRATE_ON_CHANNELS"
   last_modified_utc: "20260312"
   channel_id: 42

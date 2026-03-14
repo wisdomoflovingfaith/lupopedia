@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\versions\4.0.42\CHANGELOG_DRAFT.md"
+  file_path_from_root: "lupo-docs\versions\4.0.42\CHANGELOG_DRAFT.md"
   file_hash: "ccf4f991da4bdac77d27f20c59ce3e5aff27b4f2218a88011305ac2ee80d2946"
-  file_path_from_root: "docs\versions\4.0.42\CHANGELOG_DRAFT.md"
+  file_path_from_root: "lupo-docs\versions\4.0.42\CHANGELOG_DRAFT.md"
   file_hash: "d8bccfe29507ea7d456d3d2289fb4e52cb796b9da18c3b4e8e287b1cd1b586a0"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -122,9 +122,9 @@ Version 4.0.42 represents a fresh start with a clean Crafty Syntax 3.7.5 baselin
 ### ✅ Development Structure Created
 
 **Files Created:**
-1. `docs/versions/4.0.42/` — Development directory
-2. `docs/versions/4.0.42/TODO.md` — Task tracking
-3. `docs/versions/4.0.42/CHANGELOG_DRAFT.md` — This file
+1. `lupo-docs/versions/4.0.42/` — Development directory
+2. `lupo-docs/versions/4.0.42/TODO.md` — Task tracking
+3. `lupo-docs/versions/4.0.42/CHANGELOG_DRAFT.md` — This file
 
 ---
 
@@ -134,7 +134,7 @@ Version 4.0.42 represents a fresh start with a clean Crafty Syntax 3.7.5 baselin
 - ✅ Created initialization broadcast
 - ✅ Documented baseline state
 - ✅ Confirmed system readiness
-- ✅ File: `channels/42/broadcasts/20260224_version_4_0_42_initialized.md`
+- ✅ File: `lupo-channels/42/broadcasts/20260224_version_4_0_42_initialized.md`
 
 ### ✅ CHANGELOG.md Update
 - ✅ Added 4.0.42 section (already existed, status: IN PROGRESS)
@@ -149,13 +149,13 @@ Version 4.0.42 represents a fresh start with a clean Crafty Syntax 3.7.5 baselin
 
 ### ✅ Completion Report
 - ✅ Created comprehensive initialization report
-- ✅ File: `docs/status/kiro_version_4_0_42_initialization_complete_20260224.md`
+- ✅ File: `lupo-docs/status/kiro_version_4_0_42_initialization_complete_20260224.md`
 - ✅ Documented all completed actions
 - ✅ Confirmed system readiness
 
 ### ✅ Channel 42 Reply
 - ✅ Posted reply to Captain Wolfie
-- ✅ File: `channels/42/broadcasts/20260224_kiro_initialization_complete_reply.md`
+- ✅ File: `lupo-channels/42/broadcasts/20260224_kiro_initialization_complete_reply.md`
 - ✅ Confirmed initialization complete
 - ✅ Ready for next directives
 
@@ -164,8 +164,8 @@ Version 4.0.42 represents a fresh start with a clean Crafty Syntax 3.7.5 baselin
 ## Phase 3: System Validation (2026-02-24)
 
 ### ✅ Core Validation Scripts
-- ✅ `php scripts/verify_grounded_architecture.php` — Exit code: 0
-- ✅ `php scripts/verify_dialog_messages.php` — Exit code: 0
+- ✅ `php lupo-scripts/verify_grounded_architecture.php` — Exit code: 0
+- ✅ `php lupo-scripts/verify_dialog_messages.php` — Exit code: 0
 - ✅ All validation checks passed
 
 ### ✅ Baseline Verification
@@ -218,8 +218,8 @@ Version 4.0.42 represents a fresh start with a clean Crafty Syntax 3.7.5 baselin
 
 ### Validation Scripts:
 - `validate_420.php`
-- `scripts/verify_grounded_architecture.php`
-- `scripts/verify_dialog_messages.php`
+- `lupo-scripts/verify_grounded_architecture.php`
+- `lupo-scripts/verify_dialog_messages.php`
 - `test_dialog_migration.php`
 
 ### Error Verification:
@@ -265,15 +265,15 @@ Version 4.0.42 represents a fresh start with a clean Crafty Syntax 3.7.5 baselin
   - install.php
   - README.md
   - CHANGELOG.md
-  - docs/versions/4.0.42/TODO.md
-  - docs/versions/4.0.42/CHANGELOG_DRAFT.md
-  - channels/42/broadcasts/20260224_version_4_0_42_initialized.md
-  - channels/42/broadcasts/20260224_kiro_initialization_complete_reply.md
+  - lupo-docs/versions/4.0.42/TODO.md
+  - lupo-docs/versions/4.0.42/CHANGELOG_DRAFT.md
+  - lupo-channels/42/broadcasts/20260224_version_4_0_42_initialized.md
+  - lupo-channels/42/broadcasts/20260224_kiro_initialization_complete_reply.md
 - Files Created: 4
-  - docs/versions/4.0.42/TODO.md
-  - docs/versions/4.0.42/CHANGELOG_DRAFT.md
-  - docs/status/kiro_version_4_0_42_initialization_complete_20260224.md
-  - channels/42/broadcasts/20260224_kiro_initialization_complete_reply.md
+  - lupo-docs/versions/4.0.42/TODO.md
+  - lupo-docs/versions/4.0.42/CHANGELOG_DRAFT.md
+  - lupo-docs/status/kiro_version_4_0_42_initialization_complete_20260224.md
+  - lupo-channels/42/broadcasts/20260224_kiro_initialization_complete_reply.md
 - Validation Scripts Passed: 2
 - SQL Errors: 0
 - PHP Errors: 0
@@ -289,14 +289,14 @@ Version 4.0.42 represents a fresh start with a clean Crafty Syntax 3.7.5 baselin
 
 **Installer:**
 - `install.php` (v4.0.42)
-- `install/wizard.php`
-- `install/config.php`
+- `lupo-install/wizard.php`
+- `lupo-install/config.php`
 
 **Migration:**
-- `database/migrations/old_crafty_syntax_3_7_5_start.sql` (baseline)
-- `database/migrations/import_from_old_crafty_syntax.sql` (migration)
-- `database/migrations/install_new_lupopedia.sql` (schema)
-- `database/migrations/seed_lupopedia.sql` (seed data)
+- `lupo-database/migrations/old_crafty_syntax_3_7_5_start.sql` (baseline)
+- `lupo-database/migrations/import_from_old_crafty_syntax.sql` (migration)
+- `lupo-database/migrations/install_new_lupopedia.sql` (schema)
+- `lupo-database/migrations/seed_lupopedia.sql` (seed data)
 
 **Bootstrap:**
 - `lupo-includes/bootstrap.php`
@@ -308,8 +308,8 @@ Version 4.0.42 represents a fresh start with a clean Crafty Syntax 3.7.5 baselin
 
 **Validation:**
 - `validate_420.php`
-- `scripts/verify_grounded_architecture.php`
-- `scripts/verify_dialog_messages.php`
+- `lupo-scripts/verify_grounded_architecture.php`
+- `lupo-scripts/verify_dialog_messages.php`
 - `test_dialog_migration.php`
 
 ---

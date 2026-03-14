@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "channels\42\threads\DEVELOPMENT_CYCLE_4_0_43\20260224164600_1001_10000_actors_v2_supporting_actor_graph_complete.md"
+  file_path_from_root: "lupo-channels\42\threads\DEVELOPMENT_CYCLE_4_0_43\20260224164600_1001_10000_actors_v2_supporting_actor_graph_complete.md"
   file_hash: "564d3b8167c256937591e2d65fb8ace9ecf01fb0ae9dca7a4a82f9aa94d5c68a"
-  file_path_from_root: "channels\42\threads\DEVELOPMENT_CYCLE_4_0_43\20260224164600_1001_10000_actors_v2_supporting_actor_graph_complete.md"
+  file_path_from_root: "lupo-channels\42\threads\DEVELOPMENT_CYCLE_4_0_43\20260224164600_1001_10000_actors_v2_supporting_actor_graph_complete.md"
   file_hash: "80e20cdc32cea74d781cf652f93791d21472fc85eb6b1f2e86e37d62fa28b63a"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -63,7 +63,7 @@ lupopedia.footer:
 
 ---
 wolfie.headers: {
-  file_path_from_root: "channels/42/threads/DEVELOPMENT_CYCLE_4_0_43/20260224164600_1001_10000_actors_v2_supporting_actor_graph_complete.md",
+  file_path_from_root: "lupo-channels/42/threads/DEVELOPMENT_CYCLE_4_0_43/20260224164600_1001_10000_actors_v2_supporting_actor_graph_complete.md",
   system_version: "4.0.43",
   channel_id: 42,
   actor_id: 1001,
@@ -73,9 +73,9 @@ wolfie.headers: {
 }
 flip.footer: {
   outbound_edges: [
-    { to: "docs/status/kiro_actors_supporting_actor_graph_4_0_43.md", type: "references", weight: 1.0 },
-    { to: "actors/registry.json", type: "modified", weight: 1.0 },
-    { to: "actors/relationships.csv", type: "created", weight: 1.0 }
+    { to: "lupo-docs/status/kiro_actors_supporting_actor_graph_4_0_43.md", type: "references", weight: 1.0 },
+    { to: "lupo-actors/registry.json", type: "modified", weight: 1.0 },
+    { to: "lupo-actors/relationships.csv", type: "created", weight: 1.0 }
   ],
   semantic_tags: ["completion", "actors", "supporting_actor", "v2"]
 }
@@ -90,17 +90,17 @@ flip.footer: {
 
 ## Status: ✅ COMPLETE
 
-actors/ updated with registry.json + aliases.csv + relationships.csv. Supporting-actor control graph aligned to docs. VSX/import resolve aliases + show human↔agent support. Version 4.0.43.
+lupo-actors/ updated with registry.json + aliases.csv + relationships.csv. Supporting-actor control graph aligned to docs. VSX/import resolve aliases + show human↔agent support. Version 4.0.43.
 
 ## Implementation Summary
 
 **Files Updated:**
-- `actors/registry.json` — Updated schema with `actor_kind` + `requires_supporting_actor` (46 actors)
-- `actors/relationships.csv` — NEW: Supporting actor control graph (30 relationships)
-- `actors/aliases.csv` — No changes (already aligned)
+- `lupo-actors/registry.json` — Updated schema with `actor_kind` + `requires_supporting_actor` (46 actors)
+- `lupo-actors/relationships.csv` — NEW: Supporting actor control graph (30 relationships)
+- `lupo-actors/aliases.csv` — No changes (already aligned)
 
 **Documentation:**
-- `docs/status/kiro_actors_supporting_actor_graph_4_0_43.md` — Full implementation report
+- `lupo-docs/status/kiro_actors_supporting_actor_graph_4_0_43.md` — Full implementation report
 
 ## Key Changes
 
@@ -133,7 +133,7 @@ actors/ updated with registry.json + aliases.csv + relationships.csv. Supporting
 
 ## Doctrine Alignment
 
-Reviewed `docs/doctrine/SUPPORTING_ACTOR_DOCTRINE.md` (v4.0.38):
+Reviewed `lupo-docs/doctrine/SUPPORTING_ACTOR_DOCTRINE.md` (v4.0.38):
 - ✅ Two-layer actor model implemented
 - ✅ IDE agent requirements enforced
 - ✅ Control graph encoded

@@ -1,6 +1,6 @@
 ---
 lupopedia.headers:
-  file_path_from_root: "channels/README.md"
+  file_path_from_root: "lupo-channels/README.md"
   file_hash: "d8243ff6edd36e3fa7c89d0b832f0c11f36baa913c1d9c90fc8469947d72a7e3"
   system_version: "4.0.50"
   channel_id: 1
@@ -11,11 +11,11 @@ lupopedia.headers:
   purpose: "Explanation of the channel system and its relationship to the database"
 
 lupopedia.edges:
-  file_path_from_root: "channels\README.md"
+  file_path_from_root: "lupo-channels\README.md"
   outbound_edges:
-    - { to: "docs/doctrine/FLARE/FLARE_DOCTRINE.md", type: "references", weight: 1.0 }
-    - { to: "actors/registry.json", type: "references", weight: 1.0 }
-    - { to: "docs/toons/", type: "references", weight: 0.9 }
+    - { to: "lupo-docs/doctrine/FLARE/FLARE_DOCTRINE.md", type: "references", weight: 1.0 }
+    - { to: "lupo-actors/registry.json", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/toons/", type: "references", weight: 0.9 }
   semantic_tags: ["channels", "database", "fallback", "protocol"]
 
   last_updated_utc: "20260228"
@@ -33,14 +33,14 @@ lupopedia.footer:
 **Architecture:** Filesystem-based communication and state persistency  
 
 ## 🌍 Overview
-The `channels/` directory is a first-class citizen of the Lupopedia ecosystem. It serves as both a high-fidelity fallback when the database is offline and a "Human-Readable" mirror of the system's dialog and relational state.
+The `lupo-channels/` directory is a first-class citizen of the Lupopedia ecosystem. It serves as both a high-fidelity fallback when the database is offline and a "Human-Readable" mirror of the system's dialog and relational state.
 
-In Lupopedia, the database is complex—consisting of over 210 tables (see `docs/toons/` for the authoritative schema definitions). While the database handles high-concurrency and complex querying, the `channels/` directory provides a durable, auditable, and easily editable filesystem-based representation of the system's core communication.
+In Lupopedia, the database is complex—consisting of over 210 tables (see `lupo-docs/toons/` for the authoritative schema definitions). While the database handles high-concurrency and complex querying, the `lupo-channels/` directory provides a durable, auditable, and easily editable filesystem-based representation of the system's core communication.
 
 ### 🏛️ Database Table Mapping
 Many of the structures you see in this directory map directly to database tables:
-- `channels/` -> `lupo_channels`
-- `channels/[channel_id]/threads/` -> `lupo_dialog_threads`
+- `lupo-channels/` -> `lupo_channels`
+- `lupo-channels/[channel_id]/threads/` -> `lupo_dialog_threads`
 - `.md` files in threads -> `lupo_dialog_messages` (or `lupo_dialog_doctrine`)
 - Relationships in headers -> `lupo_edges`
 - Likes/Views in footers -> `lupo_likes`, `lupo_contents`
@@ -71,21 +71,21 @@ To prevent unnecessary duplicates, check if you should be acting as one of these
 | 1006 | `gemini-cli` | Gemini CLI | Your Primary Identity |
 | 10000| `root-captain` | Captain | Human Authority |
 
-*For a full list, see `actors/registry.json`.*
+*For a full list, see `lupo-actors/registry.json`.*
 
 ### Finding Your Actor ID
-1. **Read the Registry**: Check `actors/registry.json` for all registered entities.
+1. **Read the Registry**: Check `lupo-actors/registry.json` for all registered entities.
 2. **Use the CLI**: Run `php bin/lupo.php whoami` to see your current local identity.
 3. **Register**: If you are a new agent, use `php bin/lupo.php register <your_name> <type>`.
 
 ### ⚠️ Note on Duplicates and Aliases
-Because multiple agents often work in the same environment, we have encountered duplicate registrations. We use `actors/aliases.json` (and `lupo_actor_aliases`) to map these duplicates to canonical identities. Always check for an existing alias before registering a new ID.
+Because multiple agents often work in the same environment, we have encountered duplicate registrations. We use `lupo-actors/aliases.json` (and `lupo_actor_aliases`) to map these duplicates to canonical identities. Always check for an existing alias before registering a new ID.
 
 ## ✍️ Writing to Channels
 When writing a new message to a thread:
-1. **Directory**: Place the file in `channels/[channel_id]/threads/[thread_name]/`.
+1. **Directory**: Place the file in `lupo-channels/[channel_id]/threads/[thread_name]/`.
 2. **Filename**: Use the timestamp format `YYYYMMDDHHMMSS_[from_id]_[to_id]_[slug].md`.
-3. **Drafting**: Use `channels/[channel_id]/actors/[your_id]/` for detailed reports or documentation drafts that exceed the 1000-character database limit for messages.
+3. **Drafting**: Use `lupo-channels/[channel_id]/actors/[your_id]/` for detailed reports or documentation drafts that exceed the 1000-character database limit for messages.
 
 ## 🌐 New Header Field: actor_ip
 To assist in tracing the origin of contributions, the `lupopedia.headers` now includes the `actor_ip` field. This should be populated with the IP address or system identifier of the acting agent at the time of file creation.

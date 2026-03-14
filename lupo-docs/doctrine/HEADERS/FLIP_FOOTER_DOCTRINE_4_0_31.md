@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\doctrine\HEADERS\FLIP_FOOTER_DOCTRINE_4_0_31.md"
+  file_path_from_root: "lupo-docs\doctrine\HEADERS\FLIP_FOOTER_DOCTRINE_4_0_31.md"
   file_hash: "762caf8adab638cc43d83793031c199133f6f0005da3b31ae13d46515e238ee5"
-  file_path_from_root: "docs\doctrine\HEADERS\FLIP_FOOTER_DOCTRINE_4_0_31.md"
+  file_path_from_root: "lupo-docs\doctrine\HEADERS\FLIP_FOOTER_DOCTRINE_4_0_31.md"
   file_hash: "a2e53d3a311fc832f7f3cd34af0effd1fe868e70e78dd84ab33ea1f8362a029d"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -64,7 +64,7 @@ lupopedia.footer:
 ---
 # FLIP Header (alias: Wolfie Header, CROP Header)
 wolfie.headers: explicit architecture with structured clarity for every file.
-file_path_from_root: "docs/doctrine/HEADERS/FLIP_FOOTER_DOCTRINE_4_0_31.md"
+file_path_from_root: "lupo-docs/doctrine/HEADERS/FLIP_FOOTER_DOCTRINE_4_0_31.md"
 file.last_modified_system_version: "4.0.31"
 file.last_modified_utc: "20260223144700"
 channel_id: 42
@@ -116,13 +116,13 @@ flip.footer:
       source: "semantic_graph_builder.php"
       relationship: "consumes"
     - edge_type: "migration_dependency"
-      source: "database/migrations/install_new_lupopedia.sql"
+      source: "lupo-database/migrations/install_new_lupopedia.sql"
       relationship: "creates_tables_for"
   inbound_lupo_headers:
     - file: "app/Services/SemanticSecurityEngine.php"
       fields: ["file_path_from_root", "channel_id"]
   inbound_lupo_footers:
-    - file: "docs/doctrine/HEADERS/FLIP_HEADER_DOCTRINE.md"
+    - file: "lupo-docs/doctrine/HEADERS/FLIP_HEADER_DOCTRINE.md"
       fields: ["referenced_by_files"]
   footnotes:
     - "This file is part of the semantic security framework"
@@ -171,7 +171,7 @@ Array of actors that work with this file:
 Array of semantic edges pointing to this file:
 - `edge_type`: Type of semantic relationship
 - `source`: File or component creating the edge
-- `relationship`: Nature of the relationship (see `docs/doctrine/RELATION_REGISTRY.md`)
+- `relationship`: Nature of the relationship (see `lupo-docs/doctrine/RELATION_REGISTRY.md`)
 - `strength`: Edge strength (0-1, optional)
 - `target_block`: Link to a specific `#heading` or anchor within the file.
 
@@ -298,7 +298,7 @@ flip.footer:
 flip.footer:
   referenced_by_files:
     - "CHANGELOG.md"
-    - "docs/versions/4.0.31/ROADMAP.md"
+    - "lupo-docs/versions/4.0.31/ROADMAP.md"
   referenced_by_channels:
     - channel_id: 42
       channel_name: "development"

@@ -14,7 +14,7 @@ lupopedia.headers:
   delegation_chain: "kiro:antigravity:cursor:captain"
   artifact_type: "review"
   artifact_kind: "implementation"
-  purpose: "KIRO's comprehensive review of orchestration implementation in 4.0.69: database schema, documentation alignment, migration status, and recommendations for docs/ → lupo-docs/ migration"
+  purpose: "KIRO's comprehensive review of orchestration implementation in 4.0.69: database schema, documentation alignment, migration status, and recommendations for lupo-docs/ → lupo-docs/ migration"
   mood_rgb: "4169E1"
   traits: ["review", "kiro", "orchestration", "database", "documentation", "migration", "4.0.69"]
   tags: ["kiro", "review", "orchestration", "actors", "channels", "faucets", "migration", "4.0.69"]
@@ -38,12 +38,12 @@ lupopedia.session:
 
 lupopedia.edges:
   outbound_edges:
-    - { to: "docs/status/HOW_ACTORS_ORCHESTRATE_ON_CHANNELS.md", type: "reviews", weight: 1.0 }
+    - { to: "lupo-docs/status/HOW_ACTORS_ORCHESTRATE_ON_CHANNELS.md", type: "reviews", weight: 1.0 }
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
     - { to: "lupo-docs/doctrine/IDENTITY_LAYERS_DOCTRINE.md", type: "references", weight: 0.9 }
     - { to: "lupo-docs/doctrine/ActorFaucetOntology.md", type: "references", weight: 0.9 }
     - { to: "lupo-docs/doctrine/COMMUNICATION_DOCTRINE.md", type: "references", weight: 0.9 }
-    - { to: "docs/status/cursor_actors_channels_semantic_architecture_4.0.69.md", type: "references", weight: 0.9 }
+    - { to: "lupo-docs/status/cursor_actors_channels_semantic_architecture_4.0.69.md", type: "references", weight: 0.9 }
     - { to: "lupo-database/lupopedia/mysql/install/install_new_lupopedia.sql", type: "verifies", weight: 0.8 }
     - { to: "lupo-database/lupopedia/toon/", type: "analyzes", weight: 0.8 }
 
@@ -68,7 +68,7 @@ Cursor's 4.0.68-4.0.69 implementation of the **Actor-Faucet-Channel orchestratio
 - ✅ **Orchestration Documentation Current**: `HOW_ACTORS_ORCHESTRATE_ON_CHANNELS.md` is fully 4.0.69-aligned with LUPOPEDIA HEADERS
 - ✅ **Doctrine Established**: Identity Layers, Actor-Faucet Ontology, Communication Doctrine, Session Reconciliation, Federation Scoping, Edge Vocabulary
 - ✅ **Dialog Unification Complete**: Removed duplicate `lupo_threads`/`lupo_messages`; canonical `lupo_dialog_*` tables only
-- ⚠️ **Documentation Migration Needed**: `docs/` directory contains mixed content (some current, some outdated); needs systematic migration to `lupo-docs/`
+- ⚠️ **Documentation Migration Needed**: `lupo-docs/` directory contains mixed content (some current, some outdated); needs systematic migration to `lupo-docs/`
 
 ### Critical Success:
 - **Actor-Faucet Ontology**: Clear separation of identity (Actor) from execution surface (Faucet)
@@ -78,8 +78,8 @@ Cursor's 4.0.68-4.0.69 implementation of the **Actor-Faucet-Channel orchestratio
 
 ### Recommendations:
 1. **Immediate**: Migrate `HOW_ACTORS_ORCHESTRATE_ON_CHANNELS.md` to `lupo-docs/doctrine/`
-2. **Priority**: Update outdated `docs/` files with LUPOPEDIA HEADERS (TLDR, actors, auth, CLI, etc.)
-3. **Systematic**: Create migration plan for `docs/` → `lupo-docs/` with archive strategy
+2. **Priority**: Update outdated `lupo-docs/` files with LUPOPEDIA HEADERS (TLDR, actors, auth, CLI, etc.)
+3. **Systematic**: Create migration plan for `lupo-docs/` → `lupo-docs/` with archive strategy
 4. **Validation**: Run header validator and session consistency checks
 
 ---
@@ -115,7 +115,7 @@ Cursor's 4.0.68-4.0.69 implementation of the **Actor-Faucet-Channel orchestratio
 
 **Impact:** TOON regeneration from live DB will create the file, but current TOON-based validation may miss this table.
 
-**Recommendation:** Run `python scripts/generate_toon_files.py` to regenerate TOONs from live DB.
+**Recommendation:** Run `python lupo-scripts/generate_toon_files.py` to regenerate TOONs from live DB.
 
 ---
 
@@ -175,13 +175,13 @@ Cursor's 4.0.68-4.0.69 implementation of the **Actor-Faucet-Channel orchestratio
 
 ## 3. Documentation Migration Analysis
 
-### 3.1 Current State: `docs/` vs `lupo-docs/`
+### 3.1 Current State: `lupo-docs/` vs `lupo-docs/`
 
-**docs/ Directory (Mixed State):**
-- ✅ **Current (4.0.69):** CHANGELOG.md, README.md, AGENTS.md, HELP.md, `docs/status/HOW_ACTORS_ORCHESTRATE_ON_CHANNELS.md`, `docs/status/cursor_actors_channels_semantic_architecture_4.0.69.md`
+**lupo-docs/ Directory (Mixed State):**
+- ✅ **Current (4.0.69):** CHANGELOG.md, README.md, AGENTS.md, HELP.md, `lupo-docs/status/HOW_ACTORS_ORCHESTRATE_ON_CHANNELS.md`, `lupo-docs/status/cursor_actors_channels_semantic_architecture_4.0.69.md`
 - ⚠️ **Outdated (4.0.61-4.0.64):** TLDR_LUPOPEDIA.md, actors.md, DIRECTORY_STRUCTURE.md, auth.md, CLI.md
-- ⚠️ **Outdated Doctrine (4.0.57):** `docs/doctrine/` (4 files with `lupopedia.headers`)
-- 🗂️ **Historical Status:** `docs/status/` (89 files, mixed 4.0.55-4.0.69)
+- ⚠️ **Outdated Doctrine (4.0.57):** `lupo-docs/doctrine/` (4 files with `lupopedia.headers`)
+- 🗂️ **Historical Status:** `lupo-docs/status/` (89 files, mixed 4.0.55-4.0.69)
 
 **lupo-docs/ Directory (Canonical Destination):**
 - ✅ **Doctrine:** `lupo-docs/doctrine/` (80+ files, 4.0.69-aligned)
@@ -196,10 +196,10 @@ Cursor's 4.0.68-4.0.69 implementation of the **Actor-Faucet-Channel orchestratio
 |----------|--------|-------|-----------|
 | **P1** | Migrate to lupo-docs/ | `HOW_ACTORS_ORCHESTRATE_ON_CHANNELS.md` → `lupo-docs/doctrine/` | Canonical orchestration reference |
 | **P1** | Migrate to lupo-docs/ | `cursor_actors_channels_semantic_architecture_4.0.69.md` → `lupo-docs/architecture/` | Canonical architecture doc |
-| **P2** | Update in place (docs/) | TLDR_LUPOPEDIA.md, actors.md, DIRECTORY_STRUCTURE.md, auth.md, CLI.md | Update LUPOPEDIA HEADERS, actor model |
-| **P2** | Migrate to lupo-docs/ | `docs/doctrine/` (4 files) → `lupo-docs/doctrine/` | Consolidate doctrine |
-| **P3** | Archive | `docs/status/` pre-4.0.68 → `docs/status/archive/` | Historical preservation |
-| **P4** | Create index | `docs/MIGRATION_STATUS_4.0.69.md` | Migration tracking |
+| **P2** | Update in place (lupo-docs/) | TLDR_LUPOPEDIA.md, actors.md, DIRECTORY_STRUCTURE.md, auth.md, CLI.md | Update LUPOPEDIA HEADERS, actor model |
+| **P2** | Migrate to lupo-docs/ | `lupo-docs/doctrine/` (4 files) → `lupo-docs/doctrine/` | Consolidate doctrine |
+| **P3** | Archive | `lupo-docs/status/` pre-4.0.68 → `lupo-docs/status/archive/` | Historical preservation |
+| **P4** | Create index | `lupo-docs/MIGRATION_STATUS_4.0.69.md` | Migration tracking |
 
 ### 3.3 Header Migration Checklist
 
@@ -238,11 +238,11 @@ For each file being migrated/updated:
 
 ### 4.3 Session Consistency Validation
 
-**Verified:** `scripts/validate_session_consistency.php` exists and implements Session Reconciliation Doctrine.
+**Verified:** `lupo-scripts/validate_session_consistency.php` exists and implements Session Reconciliation Doctrine.
 
 **Recommendation:** Run validation regularly:
 ```bash
-php scripts/validate_session_consistency.php --db --files-only
+php lupo-scripts/validate_session_consistency.php --db --files-only
 ```
 
 ---
@@ -250,24 +250,24 @@ php scripts/validate_session_consistency.php --db --files-only
 ## 5. Migration Implementation Plan
 
 ### Phase 1: Immediate (Week 1)
-1. **Create migration status document:** `docs/MIGRATION_STATUS_4.0.69.md`
+1. **Create migration status document:** `lupo-docs/MIGRATION_STATUS_4.0.69.md`
 2. **Migrate P1 files:** `HOW_ACTORS_ORCHESTRATE_ON_CHANNELS.md` → `lupo-docs/doctrine/`
 3. **Migrate P1 files:** `cursor_actors_channels_semantic_architecture_4.0.69.md` → `lupo-docs/architecture/`
 4. **Update references:** Fix outbound_edges in migrated files
 
 ### Phase 2: Priority (Week 2)
 1. **Update P2 files:** TLDR_LUPOPEDIA.md, actors.md, DIRECTORY_STRUCTURE.md, auth.md, CLI.md
-2. **Migrate doctrine:** `docs/doctrine/` → `lupo-docs/doctrine/`
-3. **Run validation:** `php scripts/validate_session_consistency.php`
+2. **Migrate doctrine:** `lupo-docs/doctrine/` → `lupo-docs/doctrine/`
+3. **Run validation:** `php lupo-scripts/validate_session_consistency.php`
 
 ### Phase 3: Consolidation (Week 3)
-1. **Create archive:** `docs/status/archive/` for pre-4.0.68 status docs
+1. **Create archive:** `lupo-docs/status/archive/` for pre-4.0.68 status docs
 2. **Move historical files:** Identify and archive 4.0.55-4.0.67 status docs
 3. **Update index:** Ensure all current docs reference lupo-docs/ paths
 
 ### Phase 4: Validation (Week 4)
 1. **Run header validator:** Check all files for LUPOPEDIA HEADERS compliance
-2. **Verify cross-references:** No broken links between docs/ and lupo-docs/
+2. **Verify cross-references:** No broken links between lupo-docs/ and lupo-docs/
 3. **Document completion:** Update `MIGRATION_STATUS_4.0.69.md` with completion status
 
 ---
@@ -288,8 +288,8 @@ php scripts/validate_session_consistency.php --db --files-only
 | Risk | Mitigation |
 |------|------------|
 | Documentation confusion during migration | Clear migration status document; phased approach |
-| Team referencing outdated docs | Redirects in docs/; update README with canonical locations |
-| Version drift between docs/ and lupo-docs/ | Single source of truth in lupo-docs/; docs/ as transitional |
+| Team referencing outdated docs | Redirects in lupo-docs/; update README with canonical locations |
+| Version drift between lupo-docs/ and lupo-docs/ | Single source of truth in lupo-docs/; lupo-docs/ as transitional |
 
 ### 6.3 Doctrine Compliance Risks (None)
 
@@ -334,7 +334,7 @@ Cursor's 4.0.68-4.0.69 orchestration implementation is **architecturally sound, 
 4. **✅ Dialog Unification**: Canonical `lupo_dialog_*` tables only
 5. **✅ Session Management**: DB ↔ filesystem with validation
 
-**Primary Recommendation:** Proceed with systematic `docs/` → `lupo-docs/` migration using the phased plan above.
+**Primary Recommendation:** Proceed with systematic `lupo-docs/` → `lupo-docs/` migration using the phased plan above.
 
 **No critical issues found.** All recommendations are enhancements, not fixes.
 
@@ -351,22 +351,22 @@ Cursor's 4.0.68-4.0.69 orchestration implementation is **architecturally sound, 
 ## Appendix A: Files Requiring Migration
 
 ### To Migrate to lupo-docs/
-1. `docs/status/HOW_ACTORS_ORCHESTRATE_ON_CHANNELS.md` → `lupo-docs/doctrine/HOW_ACTORS_ORCHESTRATE_ON_CHANNELS.md`
-2. `docs/status/cursor_actors_channels_semantic_architecture_4.0.69.md` → `lupo-docs/architecture/CANONICAL_ARCHITECTURE_4.0.69.md`
-3. `docs/doctrine/ACTOR_PRIMARY_KEY_DOCTRINE.md` → `lupo-docs/doctrine/ACTOR_PRIMARY_KEY_DOCTRINE.md`
-4. `docs/doctrine/ACTOR_REQUIREMENTS.md` → `lupo-docs/doctrine/ACTOR_REQUIREMENTS.md`
-5. `docs/doctrine/CLOUDFLARE_VS_FLARE.md` → `lupo-docs/doctrine/CLOUDFLARE_VS_FLARE.md`
-6. `docs/doctrine/required_flare_headers.md` → `lupo-docs/doctrine/required_flare_headers.md`
+1. `lupo-docs/status/HOW_ACTORS_ORCHESTRATE_ON_CHANNELS.md` → `lupo-docs/doctrine/HOW_ACTORS_ORCHESTRATE_ON_CHANNELS.md`
+2. `lupo-docs/status/cursor_actors_channels_semantic_architecture_4.0.69.md` → `lupo-docs/architecture/CANONICAL_ARCHITECTURE_4.0.69.md`
+3. `lupo-docs/doctrine/ACTOR_PRIMARY_KEY_DOCTRINE.md` → `lupo-docs/doctrine/ACTOR_PRIMARY_KEY_DOCTRINE.md`
+4. `lupo-docs/doctrine/ACTOR_REQUIREMENTS.md` → `lupo-docs/doctrine/ACTOR_REQUIREMENTS.md`
+5. `lupo-docs/doctrine/CLOUDFLARE_VS_FLARE.md` → `lupo-docs/doctrine/CLOUDFLARE_VS_FLARE.md`
+6. `lupo-docs/doctrine/required_flare_headers.md` → `lupo-docs/doctrine/required_flare_headers.md`
 
-### To Update in Place (docs/)
-1. `docs/TLDR_LUPOPEDIA.md` — Update to 4.0.69, LUPOPEDIA HEADERS
-2. `docs/actors.md` — Update to 4.0.69, LUPOPEDIA HEADERS, Actor-Faucet ontology
-3. `docs/DIRECTORY_STRUCTURE.md` — Update to 4.0.69, LUPOPEDIA HEADERS
-4. `docs/auth.md` — Update to 4.0.69, LUPOPEDIA HEADERS
-5. `docs/CLI.md` — Update to 4.0.69, LUPOPEDIA HEADERS
-6. `docs/HELP.md` — Verify LUPOPEDIA HEADERS compliance
+### To Update in Place (lupo-docs/)
+1. `lupo-docs/TLDR_LUPOPEDIA.md` — Update to 4.0.69, LUPOPEDIA HEADERS
+2. `lupo-docs/actors.md` — Update to 4.0.69, LUPOPEDIA HEADERS, Actor-Faucet ontology
+3. `lupo-docs/DIRECTORY_STRUCTURE.md` — Update to 4.0.69, LUPOPEDIA HEADERS
+4. `lupo-docs/auth.md` — Update to 4.0.69, LUPOPEDIA HEADERS
+5. `lupo-docs/CLI.md` — Update to 4.0.69, LUPOPEDIA HEADERS
+6. `lupo-docs/HELP.md` — Verify LUPOPEDIA HEADERS compliance
 
-### To Archive (docs/status/archive/)
+### To Archive (lupo-docs/status/archive/)
 - All pre-4.0.68 status documents (4.0.55-4.0.67 era)
 - Historical strategy documents (VERSION_4.0.61_STRATEGY.md, etc.)
 
@@ -374,14 +374,14 @@ Cursor's 4.0.68-4.0.69 orchestration implementation is **architecturally sound, 
 
 ```bash
 # Session consistency
-php scripts/validate_session_consistency.php --db --files-only
+php lupo-scripts/validate_session_consistency.php --db --files-only
 
 # TOON regeneration (if needed)
-python scripts/generate_toon_files.py
+python lupo-scripts/generate_toon_files.py
 
 # Header validation (when available)
 php lupo-tools/flare_validate.php --check-headers
 
 # Root rules sync
-php scripts/sync_root_rules_to_cursor.php
+php lupo-scripts/sync_root_rules_to_cursor.php
 ```

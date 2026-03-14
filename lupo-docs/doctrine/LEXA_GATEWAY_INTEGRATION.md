@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\doctrine\LEXA_GATEWAY_INTEGRATION.md"
+  file_path_from_root: "lupo-docs\doctrine\LEXA_GATEWAY_INTEGRATION.md"
   file_hash: "82056d4fca2a109639b8667c839232d4101ad4207c3eee814604887eaca931da"
-  file_path_from_root: "docs\doctrine\LEXA_GATEWAY_INTEGRATION.md"
+  file_path_from_root: "lupo-docs\doctrine\LEXA_GATEWAY_INTEGRATION.md"
   file_hash: "7134bd626c469f0442eed08c30c39e150ae4b14690418346c9f61d27f462ee58"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -64,7 +64,7 @@ lupopedia.footer:
 ---
 # FLIP Header (alias: Wolfie Header, CROP Header, FLIPPING Header)
 wolfie.headers: explicit architecture with structured clarity for every file.
-file_path_from_root: docs/doctrine/LEXA_GATEWAY_INTEGRATION.md
+file_path_from_root: lupo-docs/doctrine/LEXA_GATEWAY_INTEGRATION.md
 file.last_modified_system_version: "4.0.16"
 file.last_modified_utc: "20260218000000"
 channel_id: 42   # ANUBIS adoption channel
@@ -74,7 +74,7 @@ atoms:
   recovery_event: true
 X-Lupo-Actor-ID: 2035
 X-Lupo-Actor-Identity: "Lupopedia Audit Tool (Auto-Fixed)"
-X-Lupo-File-Path: docs/doctrine/LEXA_GATEWAY_INTEGRATION.md
+X-Lupo-File-Path: lupo-docs/doctrine/LEXA_GATEWAY_INTEGRATION.md
 ---
 
 # LEXA Gateway Integration
@@ -156,9 +156,9 @@ LLM_GATEWAY
 **Rule:** File operations must use allowed upload structure.
 **Allowed paths:**
 ```
-uploads/agents/YYYY/MM/<sha256>.<ext>
-uploads/channels/YYYY/MM/<sha256>.<ext>
-uploads/operators/YYYY/MM/<sha256>.<ext>
+lupo-uploads/agents/YYYY/MM/<sha256>.<ext>
+lupo-uploads/channels/YYYY/MM/<sha256>.<ext>
+lupo-uploads/operators/YYYY/MM/<sha256>.<ext>
 ```
 **Block if:** Path outside allowed structure.
 **Message:** `BOUNDARY VIOLATION: Invalid upload path.`
@@ -286,7 +286,7 @@ No new tables required.
 {
     "agent": "SYSTEM_ADMIN",
     "action": "migrate_directories",
-    "source": "agents/0001"
+    "source": "lupo-agents/0001"
 }
 ```
 
@@ -299,7 +299,7 @@ No new tables required.
     "rule_violated": "layer_boundaries",
     "context": {
         "requested_operation": "migrate_directories",
-        "correct_tool": "python scripts/migrate_filesystem_to_db.py"
+        "correct_tool": "python lupo-scripts/migrate_filesystem_to_db.py"
     }
 }
 ```

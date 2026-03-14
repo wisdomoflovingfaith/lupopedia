@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\versions\4.0.39\PRIORITY_FILES.md"
+  file_path_from_root: "lupo-docs\versions\4.0.39\PRIORITY_FILES.md"
   file_hash: "2619758c2464dda3b30f19d41b513db049a00756676444d5f1d858a6e8912c50"
-  file_path_from_root: "docs\versions\4.0.39\PRIORITY_FILES.md"
+  file_path_from_root: "lupo-docs\versions\4.0.39\PRIORITY_FILES.md"
   file_hash: "3a21d989cf96a6768e7138710ac22b4a59c671f309d8365a652d488515c8b8cd"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -62,7 +62,7 @@ lupopedia.footer:
 
 ---
 wolfie.headers: {
-  file_path_from_root: "docs/versions/4.0.39/PRIORITY_FILES.md",
+  file_path_from_root: "lupo-docs/versions/4.0.39/PRIORITY_FILES.md",
   system_version: "4.0.39",
   channel_id: 42,
   mood_rgb: "FFD700",
@@ -90,17 +90,17 @@ wolfie.headers: {
 
 flip.footer: {
   inbound_edges: [
-    { from: "docs/versions/4.0.39/TODO.md", type: "references", weight: 1.0, hashtag: "#roadmap" },
-    { from: "docs/doctrine/ANUBIS_FALLBACK_DOCTRINE.md", type: "implements", weight: 1.0, hashtag: "#doctrine" },
+    { from: "lupo-docs/versions/4.0.39/TODO.md", type: "references", weight: 1.0, hashtag: "#roadmap" },
+    { from: "lupo-docs/doctrine/ANUBIS_FALLBACK_DOCTRINE.md", type: "implements", weight: 1.0, hashtag: "#doctrine" },
     { from: "lupo-includes/classes/AnubisHeaderFallback.php", type: "processes", weight: 0.9, hashtag: "#automation" }
   ],
   outbound_edges: [
-    { to: "docs/status/kiro_header_completion_4_0_39.md", type: "reports_to", weight: 0.9, hashtag: "#status" },
+    { to: "lupo-docs/status/kiro_header_completion_4_0_39.md", type: "reports_to", weight: 0.9, hashtag: "#status" },
     { to: "CHANGELOG.md", type: "documented_in", weight: 0.8, hashtag: "#versions" }
   ],
   referenced_by_actors: [1001, 19, 10000],
   references: {
-    by_files: ["docs/versions/4.0.39/TODO.md", "docs/doctrine/ANUBIS_FALLBACK_DOCTRINE.md"],
+    by_files: ["lupo-docs/versions/4.0.39/TODO.md", "lupo-docs/doctrine/ANUBIS_FALLBACK_DOCTRINE.md"],
     by_actors: [1001, 19, 10000]
   },
   semantic_tags: ["priority_files", "header_migration", "anubis_targets", "batch_processing"],
@@ -149,16 +149,16 @@ Files are prioritized based on:
 | `app/Services/CraftyMigrationService.php` | ⚠️ Needs header | 0.88 | Core migration logic |
 | `app/Services/CraftyConfigTransformer.php` | ⚠️ Needs header | 0.82 | Config transformation |
 | `app/Services/CraftySyntax/LegacyTheatricalUIWrapper.php` | ⚠️ Needs header | 0.80 | UI compatibility |
-| `docs/channels/doctrine/legacy-import/CRAFTY_SYNTAX_UI_THEATRICAL_DOCTRINE.md` | ⚠️ Needs header | 0.85 | UI doctrine |
+| `lupo-docs/channels/doctrine/legacy-import/CRAFTY_SYNTAX_UI_THEATRICAL_DOCTRINE.md` | ⚠️ Needs header | 0.85 | UI doctrine |
 | `plan_for_crafty_syntax.md` | ⚠️ Needs header | 0.92 | Migration roadmap |
 | `install.php` | ⚠️ Needs header | 0.98 | Main installer |
 | `install_wizard_classes.php` | ⚠️ Needs header | 0.95 | Wizard logic |
 | `lupo-includes/bootstrap.php` | ⚠️ Needs header | 0.92 | System entry |
 | `lupo-includes/lupopedia-setup.php` | ⚠️ Needs header | 0.90 | Post-install setup |
-| `database/migrations/install_new_lupopedia.sql` | ⚠️ Needs header | 0.95 | Creation script |
-| `scripts/migrate_user_mappings.php` | ⚠️ Needs header | 0.85 | Data migration |
+| `lupo-database/migrations/install_new_lupopedia.sql` | ⚠️ Needs header | 0.95 | Creation script |
+| `lupo-scripts/migrate_user_mappings.php` | ⚠️ Needs header | 0.85 | Data migration |
 | `lupo-includes/modules/crafty_syntax/CRAFTY_SYNTAX_SQL_TOON_REPORT.md` | ⚠️ Needs header | 0.75 | Conversion data |
-| `scripts/generate_install_sql.py` | ⚠️ Needs header | 0.80 | Scripted migration |
+| `lupo-scripts/generate_install_sql.py` | ⚠️ Needs header | 0.80 | Scripted migration |
 
 ### BATCH 1: CORE DOCTRINE (10 files remaining)
 **Priority:** HIGHEST  
@@ -166,17 +166,17 @@ Files are prioritized based on:
 
 | File Path | Current Status | Centrality | Notes |
 |-----------|---------------|------------|-------|
-| `docs/doctrine/LUPOPEDIA_CANONICAL_DOCTRINE.md` | ⚠️ Needs update | 0.95 | Master doctrine |
-| `docs/doctrine/FLIP/FLIP_DOCTRINE.md` | ⚠️ Needs update | 0.92 | FLIP v3 spec |
-| `docs/doctrine/FLIP/FLIPPING_FILE_LEXA_LILITH.md` | ⚠️ Needs update | 0.88 | FLIP integration |
-| `docs/doctrine/TIMESTAMP_DOCTRINE.md` | ⚠️ Needs update | 0.85 | Time handling |
-| `docs/doctrine/MIGRATION_DOCTRINE.md` | ⚠️ Needs update | 0.82 | Schema changes |
-| `docs/doctrine/SUBDIRECTORY_INSTALLATION_DOCTRINE.md` | ⚠️ Needs update | 0.80 | Path handling |
-| `docs/doctrine/PTSD_ADVERTISING_DOCTRINE.md` | ⚠️ Needs update | 0.75 | Boundary protection |
-| `docs/doctrine/database/README.md` | ⚠️ Needs update | 0.78 | DB doctrine index |
-| `docs/doctrine/database/actors.md` | ⚠️ Needs update | 0.85 | Actor model |
-| `docs/doctrine/database/auth_users.md` | ⚠️ Needs update | 0.82 | Authentication |
-| `docs/registry/REGISTERED_IDS.md` | ✅ Complete | 0.95 | Master ID Registry |
+| `lupo-docs/doctrine/LUPOPEDIA_CANONICAL_DOCTRINE.md` | ⚠️ Needs update | 0.95 | Master doctrine |
+| `lupo-docs/doctrine/FLIP/FLIP_DOCTRINE.md` | ⚠️ Needs update | 0.92 | FLIP v3 spec |
+| `lupo-docs/doctrine/FLIP/FLIPPING_FILE_LEXA_LILITH.md` | ⚠️ Needs update | 0.88 | FLIP integration |
+| `lupo-docs/doctrine/TIMESTAMP_DOCTRINE.md` | ⚠️ Needs update | 0.85 | Time handling |
+| `lupo-docs/doctrine/MIGRATION_DOCTRINE.md` | ⚠️ Needs update | 0.82 | Schema changes |
+| `lupo-docs/doctrine/SUBDIRECTORY_INSTALLATION_DOCTRINE.md` | ⚠️ Needs update | 0.80 | Path handling |
+| `lupo-docs/doctrine/PTSD_ADVERTISING_DOCTRINE.md` | ⚠️ Needs update | 0.75 | Boundary protection |
+| `lupo-docs/doctrine/database/README.md` | ⚠️ Needs update | 0.78 | DB doctrine index |
+| `lupo-docs/doctrine/database/actors.md` | ⚠️ Needs update | 0.85 | Actor model |
+| `lupo-docs/doctrine/database/auth_users.md` | ⚠️ Needs update | 0.82 | Authentication |
+| `lupo-docs/registry/REGISTERED_IDS.md` | ✅ Complete | 0.95 | Master ID Registry |
 
 ### BATCH 2: CORE SERVICES (30 files) — HIGH
 **Priority:** HIGH  
@@ -223,10 +223,10 @@ Files are prioritized based on:
 
 | Directory | File Count | Status | Notes |
 |-----------|------------|--------|-------|
-| `prompts/kiro/` | ~15 | ⚠️ Needs headers | KIRO directives |
-| `prompts/antigravity/` | ~10 | ⚠️ Needs headers | Antigravity tasks |
-| `prompts/windsurf/` | ~8 | ⚠️ Needs headers | Windsurf tasks |
-| `prompts/captain/` | ~7 | ⚠️ Needs headers | Captain directives |
+| `lupo-prompts/kiro/` | ~15 | ⚠️ Needs headers | KIRO directives |
+| `lupo-prompts/antigravity/` | ~10 | ⚠️ Needs headers | Antigravity tasks |
+| `lupo-prompts/windsurf/` | ~8 | ⚠️ Needs headers | Windsurf tasks |
+| `lupo-prompts/captain/` | ~7 | ⚠️ Needs headers | Captain directives |
 
 ### BATCH 4: CHANNEL LOGS & BROADCASTS (50 files) — MEDIUM
 **Priority:** MEDIUM  
@@ -235,10 +235,10 @@ Files are prioritized based on:
 
 | Directory | File Count | Status | Notes |
 |-----------|------------|--------|-------|
-| `channels/42/broadcasts/` | ~30 | ⚠️ Mixed | Dev coordination |
-| `channels/42/threads/` | ~10 | ⚠️ Needs headers | Thread logs |
-| `channels/666/` | ~5 | ⚠️ Needs headers | Security channel |
-| `channels/420/` | ~5 | ⚠️ Needs headers | Legacy channel |
+| `lupo-channels/42/broadcasts/` | ~30 | ⚠️ Mixed | Dev coordination |
+| `lupo-channels/42/threads/` | ~10 | ⚠️ Needs headers | Thread logs |
+| `lupo-channels/666/` | ~5 | ⚠️ Needs headers | Security channel |
+| `lupo-channels/420/` | ~5 | ⚠️ Needs headers | Legacy channel |
 
 ### BATCH 5: STATUS REPORTS & VERSIONS (60 files) — LOW
 **Priority:** LOW  
@@ -247,8 +247,8 @@ Files are prioritized based on:
 
 | Directory | File Count | Status | Notes |
 |-----------|------------|--------|-------|
-| `docs/status/` | ~40 | ⚠️ Mixed | Agent activity |
-| `docs/versions/` | ~20 | ⚠️ Mixed | Version roadmaps |
+| `lupo-docs/status/` | ~40 | ⚠️ Mixed | Agent activity |
+| `lupo-docs/versions/` | ~20 | ⚠️ Mixed | Version roadmaps |
 
 ---
 

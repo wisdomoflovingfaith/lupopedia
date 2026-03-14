@@ -62,7 +62,7 @@ These 11 are the best near-term value with low architectural risk and minimal do
 | P2 | `lupo_federated_trust` | Extends federation model with trust/capability semantics. | Medium |
 | P2 | `lupo_federation_discovery` | Supports controlled federation discovery and node bookkeeping. | Medium |
 | P2 | `lupo_unified_log` | Consolidates logging patterns and limits future log-table sprawl. | Medium |
-| P2 | `lupo_system_health_snapshots` | Lightweight install/schema health snapshots for diagnostics. | Low |
+| P2 | `lupo_system_health_snapshots` | Lightweight lupo-install/schema health snapshots for diagnostics. | Low |
 | P2 | `lupo_hotfix_registry` | Small operational table with high maintenance value. | Low |
 
 ## Deferred (explicitly not in this batch)

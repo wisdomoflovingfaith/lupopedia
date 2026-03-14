@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\doctrine\VERSIONING_DOCTRINE.md"
+  file_path_from_root: "lupo-docs\doctrine\VERSIONING_DOCTRINE.md"
   file_hash: "b1b5630be7ec1cd11c6ffc3b5e238c6cf97096ead8857ecb6c46ffe1c53a152d"
-  file_path_from_root: "docs\doctrine\VERSIONING_DOCTRINE.md"
+  file_path_from_root: "lupo-docs\doctrine\VERSIONING_DOCTRINE.md"
   file_hash: "9e98cd45f4f7398213935db056594926abc79294d585543036cb5cafe6f7cb38"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -64,14 +64,14 @@ lupopedia.footer:
 ---
 # FLIP Header (alias: Wolfie Header, CROP Header, FLIPPING Header)
 wolfie.headers: explicit architecture with structured clarity for every file.
-file_path_from_root: docs/doctrine/VERSIONING_DOCTRINE.md
+file_path_from_root: lupo-docs/doctrine/VERSIONING_DOCTRINE.md
 file.last_modified_system_version: "4.0.21"
 file.last_modified_utc: "20260220000000"
 # channel_id unresolved — requires lupo_contents lookup by application.
 X-Lupo-Channel: 42   # ANUBIS adoption channel (Auto-Fixed)
 X-Lupo-Actor-ID: 2035
 X-Lupo-Actor-Identity: "Lupopedia Audit Tool (Auto-Fixed)"
-X-Lupo-File-Path: docs/doctrine/VERSIONING_DOCTRINE.md
+X-Lupo-File-Path: lupo-docs/doctrine/VERSIONING_DOCTRINE.md
 ---
 # Versioning Doctrine (Single Source of Truth)
 
@@ -84,7 +84,7 @@ X-Lupo-File-Path: docs/doctrine/VERSIONING_DOCTRINE.md
 ## 0. Single versioning doctrine file (mandatory)
 
 - The **only** valid versioning doctrine file in the repository is:
-  - **`docs/doctrine/VERSIONING_DOCTRINE.md`**
+  - **`lupo-docs/doctrine/VERSIONING_DOCTRINE.md`**
 - No other versioning doctrine file may exist. No suffixes (e.g. `_UPDATED`, `_FINALIZED`, `_REWRITE`, `_V2`) are allowed.
 - When the doctrine is updated:
   - **Replace** the content of this file; do **not** create a new file with a different name.
@@ -195,7 +195,7 @@ Every install is:
 
 ## 7. Migration doctrine
 
-Only these SQL files remain in the **canonical** migrations folder (`database/migrations/`):
+Only these SQL files remain in the **canonical** migrations folder (`lupo-database/migrations/`):
 
 - import_from_old_crafty_syntax.sql
 - install_new_lupopedia.sql
@@ -203,9 +203,9 @@ Only these SQL files remain in the **canonical** migrations folder (`database/mi
 - drop_old_crafty_syntax_tables.sql
 - future_features_lupopedia.sql
 
-One-time migration patches (migration_operator_to_actor_channel_roles.sql, migration_drop_lupo_channel_roles.sql, and other one-time or Lupopedia→Lupopedia migrations) live in **database/migrations_legacy/**; the wizard does not run them. New installs use install_new_lupopedia.sql only.
+One-time migration patches (migration_operator_to_actor_channel_roles.sql, migration_drop_lupo_channel_roles.sql, and other one-time or Lupopedia→Lupopedia migrations) live in **lupo-database/migrations_legacy/**; the wizard does not run them. New installs use install_new_lupopedia.sql only.
 
-All other migrations belong in **database/migrations_legacy/**.
+All other migrations belong in **lupo-database/migrations_legacy/**.
 
 Cursor must **not** move migration files again unless explicitly instructed.
 
@@ -238,7 +238,7 @@ The wizard reads the version from **version.php** (which uses atoms when config 
 
 | Rule | Statement |
 |------|-----------|
-| **Single file** | Only `docs/doctrine/VERSIONING_DOCTRINE.md` exists; no duplicates or suffixed copies. |
+| **Single file** | Only `lupo-docs/doctrine/VERSIONING_DOCTRINE.md` exists; no duplicates or suffixed copies. |
 | **Cleanup** | The one-time versioning cleanup is complete. |
 | **Canonical version** | The canonical current version is **4.0.21**. |
 | **4.1.0** | 4.1.0 is allowed **only** for future-release planning (required tables, roadmaps, hotfix registry, etc.); it must not be used as the current version. |

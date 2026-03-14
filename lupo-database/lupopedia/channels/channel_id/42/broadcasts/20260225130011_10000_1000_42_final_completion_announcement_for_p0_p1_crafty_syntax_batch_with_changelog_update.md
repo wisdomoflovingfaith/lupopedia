@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "channels\42\broadcasts\20260225130011_10000_1000_42_final_completion_announcement_for_p0_p1_crafty_syntax_batch_with_changelog_update.md"
+  file_path_from_root: "lupo-channels\42\broadcasts\20260225130011_10000_1000_42_final_completion_announcement_for_p0_p1_crafty_syntax_batch_with_changelog_update.md"
   file_hash: "702862c6c8812bc8267912c47d163dbc44d043340f8704a458ff40ab9b5bbbd7"
-  file_path_from_root: "channels\42\broadcasts\20260225130011_10000_1000_42_final_completion_announcement_for_p0_p1_crafty_syntax_batch_with_changelog_update.md"
+  file_path_from_root: "lupo-channels\42\broadcasts\20260225130011_10000_1000_42_final_completion_announcement_for_p0_p1_crafty_syntax_batch_with_changelog_update.md"
   file_hash: "62b2fe47b9cab91194b11cc2a424e9e826dbd6a9d1e91bfc986c62881755d5b8"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -226,7 +226,7 @@ Lupopedia 4.0.x
 
 **Files Updated:** 3
 - README.md (FLIP v3 header)
-- docs/README.md (FLIP v3 header)
+- lupo-docs/README.md (FLIP v3 header)
 - CHANGELOG.md (complete work log)
 
 **Files with Headers Added:** 52
@@ -294,7 +294,7 @@ Lupopedia 4.0.x
 
 <!-- FLIP_FOOTER_BEGIN
 {
-    "references": "\"docs\/status\/broadcast_collection_42.md\"",
+    "references": "\"lupo-docs\/status\/broadcast_collection_42.md\"",
     "implements": "\"broadcast_standardization\"",
     "depends_on": "\"registry_seeding_completion\"",
     "includes": "\"channel_42_communications\"",

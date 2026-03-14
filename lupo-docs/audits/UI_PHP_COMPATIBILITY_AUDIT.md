@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\audits\UI_PHP_COMPATIBILITY_AUDIT.md"
+  file_path_from_root: "lupo-docs\audits\UI_PHP_COMPATIBILITY_AUDIT.md"
   file_hash: "6a524f9068f8868c3291cccf4f59cf20f604b4c48f22f5f422c40b9e9352e7a5"
-  file_path_from_root: "docs\audits\UI_PHP_COMPATIBILITY_AUDIT.md"
+  file_path_from_root: "lupo-docs\audits\UI_PHP_COMPATIBILITY_AUDIT.md"
   file_hash: "f226cfdd5713499bf28087f23e3ff292f22572c7ca10bc24372a1537853a2b7f"
   last_updated_utc: "20260228"
   system_version: "4.0.50"

@@ -240,9 +240,9 @@ All 57 broadcast files in Channel 0 and Channel 42 are fully compliant with Lupo
 <!-- FLIP_FOOTER_BEGIN
 {
   "references": [
-    "channels/0/broadcasts/",
-    "channels/42/broadcasts/",
-    "scripts/validate_broadcasts_strict.ps1"
+    "lupo-channels/0/broadcasts/",
+    "lupo-channels/42/broadcasts/",
+    "lupo-scripts/validate_broadcasts_strict.ps1"
   ],
   "implements": "validation_gate_protocol",
   "depends_on": "windsurf_normalization_complete",

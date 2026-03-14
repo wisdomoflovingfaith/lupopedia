@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\channels\doctrine\AI_INTEGRATION_SAFETY_DOCTRINE.md"
+  file_path_from_root: "lupo-docs\channels\doctrine\AI_INTEGRATION_SAFETY_DOCTRINE.md"
   file_hash: "62c50e0eacbd1c1d6f8f27c6a46cc4fdc9b299c5f21e996db0a6c699fa9ba677"
-  file_path_from_root: "docs\channels\doctrine\AI_INTEGRATION_SAFETY_DOCTRINE.md"
+  file_path_from_root: "lupo-docs\channels\doctrine\AI_INTEGRATION_SAFETY_DOCTRINE.md"
   file_hash: "643f4a6c3a1684dc7b36d4162262c1d68d5571da1e5e84bafde464672ad8d0cf"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -258,7 +258,7 @@ No agent, no subsystem, and no automated process may activate AI features withou
 - **[System Agent Safety Doctrine](SYSTEM_AGENT_SAFETY_DOCTRINE.md)** — Kernel-level governance for Agent 0
 - **[Cursor Role Doctrine](CURSOR_ROLE_DOCTRINE.md)** — Cursor's role in maintaining implementation
 - **[Agent Prompt Doctrine](AGENT_PROMPT_DOCTRINE.md)** — Agent prompt structure and constraints
-- **[WOLFIE Header Doctrine](WOLFIE_HEADER_DOCTRINE.md)** (`docs/doctrine/WOLFIE_HEADER_DOCTRINE.md`) — Metadata format for all files
+- **[WOLFIE Header Doctrine](WOLFIE_HEADER_DOCTRINE.md)** (`lupo-docs/doctrine/WOLFIE_HEADER_DOCTRINE.md`) — Metadata format for all files
 
 ---
 

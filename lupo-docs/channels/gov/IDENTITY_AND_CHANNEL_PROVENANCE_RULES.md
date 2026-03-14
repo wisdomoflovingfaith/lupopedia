@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\channels\gov\IDENTITY_AND_CHANNEL_PROVENANCE_RULES.md"
+  file_path_from_root: "lupo-docs\channels\gov\IDENTITY_AND_CHANNEL_PROVENANCE_RULES.md"
   file_hash: "9564405e5267b15f0c35483a14dd97b19713fd03dc0ab63ea3369092c449f59b"
-  file_path_from_root: "docs\channels\gov\IDENTITY_AND_CHANNEL_PROVENANCE_RULES.md"
+  file_path_from_root: "lupo-docs\channels\gov\IDENTITY_AND_CHANNEL_PROVENANCE_RULES.md"
   file_hash: "e9ca70b41fffaad70a2c236ae29d83d3ecfcbb55e530f39b6a75dc0febf24f30"
   last_updated_utc: "20260228"
   system_version: "4.0.50"

@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\doctrine\IMPORT_FROM_CRAFTY_TROUBLESHOOTING.md"
+  file_path_from_root: "lupo-docs\doctrine\IMPORT_FROM_CRAFTY_TROUBLESHOOTING.md"
   file_hash: "c578e629a9ddff545d2a4eb204a0d6406e23191c940d42fc02e86144ef89e77e"
-  file_path_from_root: "docs\doctrine\IMPORT_FROM_CRAFTY_TROUBLESHOOTING.md"
+  file_path_from_root: "lupo-docs\doctrine\IMPORT_FROM_CRAFTY_TROUBLESHOOTING.md"
   file_hash: "56946b2ea2082ec573a6b4bc29c9cb4f960c8cd21639533a2a1b20ae73f7badb"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -64,7 +64,7 @@ lupopedia.footer:
 ---
 # FLIP Header (alias: Wolfie Header, CROP Header, FLIPPING Header)
 wolfie.headers: explicit architecture with structured clarity for every file.
-file_path_from_root: docs/doctrine/IMPORT_FROM_CRAFTY_TROUBLESHOOTING.md
+file_path_from_root: lupo-docs/doctrine/IMPORT_FROM_CRAFTY_TROUBLESHOOTING.md
 file.last_modified_system_version: "4.0.16"
 file.last_modified_utc: "20260218000000"
 channel_id: 42   # ANUBIS adoption channel
@@ -74,7 +74,7 @@ atoms:
   recovery_event: true
 X-Lupo-Actor-ID: 2035
 X-Lupo-Actor-Identity: "Lupopedia Audit Tool (Auto-Fixed)"
-X-Lupo-File-Path: docs/doctrine/IMPORT_FROM_CRAFTY_TROUBLESHOOTING.md
+X-Lupo-File-Path: lupo-docs/doctrine/IMPORT_FROM_CRAFTY_TROUBLESHOOTING.md
 ---
 
 # Import from Crafty Syntax — Troubleshooting
@@ -85,8 +85,8 @@ X-Lupo-File-Path: docs/doctrine/IMPORT_FROM_CRAFTY_TROUBLESHOOTING.md
 
 **Runner behaviour:** The wizard splits the import file into statements by semicolon (`;`), but **only when the semicolon is outside single-quoted strings**. So `COMMENT = '...;...'` and other string literals that contain semicolons do not break the split; each full statement is executed as one piece.
 
-**Canonical import file:** `database/migrations/import_from_old_crafty_syntax.sql`  
-**Canonical Crafty baseline:** `database/migrations/old_crafty_syntax_3_7_5_start.sql`
+**Canonical import file:** `lupo-database/migrations/import_from_old_crafty_syntax.sql`  
+**Canonical Crafty baseline:** `lupo-database/migrations/old_crafty_syntax_3_7_5_start.sql`
 
 ---
 

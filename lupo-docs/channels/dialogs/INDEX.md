@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\channels\dialogs\INDEX.md"
+  file_path_from_root: "lupo-docs\channels\dialogs\INDEX.md"
   file_hash: "89e3cac8d27cfbbe6f8ddda1de947e6ac334bf46636e196c6282d144f0d669d6"
-  file_path_from_root: "docs\channels\dialogs\INDEX.md"
+  file_path_from_root: "lupo-docs\channels\dialogs\INDEX.md"
   file_hash: "85120878ade1f003fc9c8fec542602d05ed99abb438abfe244387057f2e6d430"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -88,9 +88,9 @@ file:
 Purpose: DialogFS subsystem documentation and dialog workflows.
 
 Files:
-- [agents/DIALOG_HISTORY_SPEC.md](agents/DIALOG_HISTORY_SPEC.md)
-- [agents/INLINE_DIALOG_SPECIFICATION.md](agents/INLINE_DIALOG_SPECIFICATION.md)
-- [agents/THREAD_LEVEL_DIALOG_SPEC.md](agents/THREAD_LEVEL_DIALOG_SPEC.md)
+- [lupo-agents/DIALOG_HISTORY_SPEC.md](lupo-agents/DIALOG_HISTORY_SPEC.md)
+- [lupo-agents/INLINE_DIALOG_SPECIFICATION.md](lupo-agents/INLINE_DIALOG_SPECIFICATION.md)
+- [lupo-agents/THREAD_LEVEL_DIALOG_SPEC.md](lupo-agents/THREAD_LEVEL_DIALOG_SPEC.md)
 - [architecture/CHANNEL_DIALOG_AGENT_WORKFLOWS.md](architecture/CHANNEL_DIALOG_AGENT_WORKFLOWS.md)
 - [architecture/CHANNEL_DIALOG_SCHEMA_REVIEW.md](architecture/CHANNEL_DIALOG_SCHEMA_REVIEW.md)
 - [architecture/DIALOGS_AND_CHANNELS.md](architecture/DIALOGS_AND_CHANNELS.md)

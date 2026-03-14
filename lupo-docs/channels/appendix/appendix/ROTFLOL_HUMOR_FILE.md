@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\channels\appendix\appendix\ROTFLOL_HUMOR_FILE.md"
+  file_path_from_root: "lupo-docs\channels\appendix\appendix\ROTFLOL_HUMOR_FILE.md"
   file_hash: "def891765832e2fc6d3bfc758b04db3c6f00336e8ba27d8076b888128a09dd99"
-  file_path_from_root: "docs\channels\appendix\appendix\ROTFLOL_HUMOR_FILE.md"
+  file_path_from_root: "lupo-docs\channels\appendix\appendix\ROTFLOL_HUMOR_FILE.md"
   file_hash: "213e769a5dcba19b4ec71a2e76af065f34d84ca298576adca48cc99b49bbd660"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -456,12 +456,12 @@ ATTENTION: Context Update Applied
 
 I have just updated the system. Here is what changed:
 
-1. FILE: database/schema.sql
+1. FILE: lupo-database/schema.sql
    CHANGE: Renamed column `users.email` → `users.email_address`
    REASON: Consistency with other `_address` fields
    IMPACT: All queries using `users.email` will break
 
-2. FILE: api/auth.py  
+2. FILE: lupo-api/auth.py  
    CHANGE: Added new endpoint `/auth/v2/login`
    REASON: Security upgrade
    IMPACT: Old endpoint deprecated, will be removed June 1

@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "prompts\windsurf\20260227_git_push_4_0_48_changes.md"
+  file_path_from_root: "lupo-prompts\windsurf\20260227_git_push_4_0_48_changes.md"
   file_hash: "a13f5f5e61cc84872e54ec4519a7b01f334caf0fc9e060040628c16b70cc86a1"
-  file_path_from_root: "prompts\windsurf\20260227_git_push_4_0_48_changes.md"
+  file_path_from_root: "lupo-prompts\windsurf\20260227_git_push_4_0_48_changes.md"
   file_hash: "252434056cc9b0af9f5063a134fa73bd6c9aedacd963cd8aeb6175471d78aaac"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -63,7 +63,7 @@ lupopedia.footer:
 
 ---
 wolfie.headers: {
-  file_path_from_root: "prompts/windsurf/20260227_git_push_4_0_48_changes.md",
+  file_path_from_root: "lupo-prompts/windsurf/20260227_git_push_4_0_48_changes.md",
   system_version: "4.0.48",
   channel_id: 42,
   actor_id: 1001,
@@ -76,9 +76,9 @@ wolfie.headers: {
 flip.footer: {
   outbound_edges: [
     { to: "CHANGELOG.md", type: "commits", weight: 0.9 },
-    { to: "channels/42/tasks/completed/", type: "includes", weight: 0.8 },
-    { to: "database/migrations/", type: "includes", weight: 0.7 },
-    { to: "docs/database/lupopedia/tables/", type: "includes", weight: 0.6 }
+    { to: "lupo-channels/42/tasks/completed/", type: "includes", weight: 0.8 },
+    { to: "lupo-database/migrations/", type: "includes", weight: 0.7 },
+    { to: "lupo-docs/database/lupopedia/tables/", type: "includes", weight: 0.6 }
   ],
   semantic_tags: ["git_push", "v4.0.48", "deployment", "repository", "version_control"]
 }
@@ -153,31 +153,31 @@ git log -1 --oneline
 ## 📊 Expected File Categories
 
 ### 🗄️ Database Changes
-- `database/migrations/migration_4.0.48_actor_identity_capsule.sql`
-- `database/migrations/install_new_lupopedia.sql` (enhanced)
-- `docs/toons/*.toon.json` (regenerated)
+- `lupo-database/migrations/migration_4.0.48_actor_identity_capsule.sql`
+- `lupo-database/migrations/install_new_lupopedia.sql` (enhanced)
+- `lupo-docs/toons/*.toon.json` (regenerated)
 
 ### 📚 Documentation Updates
-- `docs/database/lupopedia/tables/lupo_actors.md` (enhanced)
-- `docs/database/lupopedia/tables/lupo_actor_*.md` (new tables)
-- `docs/database/lupopedia/tables/livehelp_*.md` (relocated)
+- `lupo-docs/database/lupopedia/tables/lupo_actors.md` (enhanced)
+- `lupo-docs/database/lupopedia/tables/lupo_actor_*.md` (new tables)
+- `lupo-docs/database/lupopedia/tables/livehelp_*.md` (relocated)
 - `CHANGELOG.md` (comprehensive v4.0.48 entry)
 
 ### 🎭 Actor System
-- `actors/*/` directory structure (scaled to 18 actors)
-- `scripts/sync_actors_to_db.php` (new sync service)
-- `scripts/export_actor.sh` (enhanced with checksums)
-- `scripts/import_actor.sh` (enhanced with validation)
+- `lupo-actors/*/` directory structure (scaled to 18 actors)
+- `lupo-scripts/sync_actors_to_db.php` (new sync service)
+- `lupo-scripts/export_actor.sh` (enhanced with checksums)
+- `lupo-scripts/import_actor.sh` (enhanced with validation)
 
 ### 🛡️ IDE Guidelines
-- `scripts/check_file_lock.sh` (new utility)
-- `scripts/release_file_lock.sh` (new utility)
+- `lupo-scripts/check_file_lock.sh` (new utility)
+- `lupo-scripts/release_file_lock.sh` (new utility)
 - `README.md` (multi-IDE protocols added)
 
 ### 📋 Task Management
-- `channels/42/tasks/completed/` (7 completed tasks)
-- `channels/42/tasks/active/` (5 tasks rolled over)
-- `channels/42/threads/DEVELOPMENT_CYCLE_4_0_48/` (development records)
+- `lupo-channels/42/tasks/completed/` (7 completed tasks)
+- `lupo-channels/42/tasks/active/` (5 tasks rolled over)
+- `lupo-channels/42/threads/DEVELOPMENT_CYCLE_4_0_48/` (development records)
 
 ---
 

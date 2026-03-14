@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\doctrine\ANUBIS_FALLBACK_DOCTRINE.md"
+  file_path_from_root: "lupo-docs\doctrine\ANUBIS_FALLBACK_DOCTRINE.md"
   file_hash: "6e6ec741b6f74e29abab600dc2b4260ed84f7e5c90c60f681d7d8ee9d19844cd"
-  file_path_from_root: "docs\doctrine\ANUBIS_FALLBACK_DOCTRINE.md"
+  file_path_from_root: "lupo-docs\doctrine\ANUBIS_FALLBACK_DOCTRINE.md"
   file_hash: "be658fbde38277a87f7b5e225551fbd34fa5a88b47900f42fa9a2ce00d31d525"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -62,7 +62,7 @@ lupopedia.footer:
 
 ---
 wolfie.headers: {
-  file_path_from_root: "docs/doctrine/ANUBIS_FALLBACK_DOCTRINE.md",
+  file_path_from_root: "lupo-docs/doctrine/ANUBIS_FALLBACK_DOCTRINE.md",
   system_version: "4.0.39",
   channel_id: 42,
   mood_rgb: "8B4513",
@@ -90,18 +90,18 @@ wolfie.headers: {
 
 flip.footer: {
   inbound_edges: [
-    { from: "docs/versions/4.0.39/TODO.md", type: "implements", weight: 1.0, hashtag: "#roadmap" },
+    { from: "lupo-docs/versions/4.0.39/TODO.md", type: "implements", weight: 1.0, hashtag: "#roadmap" },
     { from: "CHANGELOG.md", type: "documented_in", weight: 0.9, hashtag: "#versions" }
   ],
   outbound_edges: [
     { to: "lupo-includes/classes/AnubisHeaderFallback.php", type: "implements", weight: 1.0, hashtag: "#code" },
-    { to: "docs/versions/4.0.39/PRIORITY_FILES.md", type: "references", weight: 0.9, hashtag: "#priority" },
-    { to: "docs/doctrine/SUPPORTING_ACTOR_DOCTRINE.md", type: "extends", weight: 0.8, hashtag: "#actors" },
-    { to: "docs/doctrine/FLIP_V2_DOCTRINE.md", type: "extends", weight: 0.9, hashtag: "#flip" }
+    { to: "lupo-docs/versions/4.0.39/PRIORITY_FILES.md", type: "references", weight: 0.9, hashtag: "#priority" },
+    { to: "lupo-docs/doctrine/SUPPORTING_ACTOR_DOCTRINE.md", type: "extends", weight: 0.8, hashtag: "#actors" },
+    { to: "lupo-docs/doctrine/FLIP_V2_DOCTRINE.md", type: "extends", weight: 0.9, hashtag: "#flip" }
   ],
   referenced_by_actors: [1001, 19, 10000],
   references: {
-    by_files: ["docs/versions/4.0.39/TODO.md", "CHANGELOG.md"],
+    by_files: ["lupo-docs/versions/4.0.39/TODO.md", "CHANGELOG.md"],
     by_actors: [1001, 19, 10000]
   },
   semantic_tags: ["anubis_fallback", "header_automation", "file_classification", "quality_gate"],
@@ -213,14 +213,14 @@ The ANUBIS Fallback System is the automated safety net for the entire Lupopedia 
 
 | Path Pattern | artifact_type | artifact_kind |
 |--------------|---------------|---------------|
-| `docs/doctrine/*.md` | doctrine | [inferred from filename] |
-| `docs/status/*.md` | status | activity_report |
-| `channels/*/broadcasts/*.md` | broadcast | announcement |
-| `prompts/*/*.md` | prompt | task_directive |
+| `lupo-docs/doctrine/*.md` | doctrine | [inferred from filename] |
+| `lupo-docs/status/*.md` | status | activity_report |
+| `lupo-channels/*/broadcasts/*.md` | broadcast | announcement |
+| `lupo-prompts/*/*.md` | prompt | task_directive |
 | `app/Services/*.php` | service | business_logic |
 | `app/auth/*.php` | service | authentication |
-| `tests/*.php` | test | unit_test |
-| `database/migrations/*.sql` | migration | schema_change |
+| `lupo-tests/*.php` | test | unit_test |
+| `lupo-database/migrations/*.sql` | migration | schema_change |
 | `*.md` (root) | guide | documentation |
 
 ### 4.2 Trait Assignment
@@ -242,13 +242,13 @@ The ANUBIS Fallback System is the automated safety net for the entire Lupopedia 
 **Based on file path and content:**
 
 ```
-docs/doctrine/SECURITY_DOCTRINE.md
+lupo-docs/doctrine/SECURITY_DOCTRINE.md
 → #doctrine #security #mandatory
 
 app/Services/ActorService.php
 → #service #actors #core
 
-channels/42/broadcasts/20260224_*.md
+lupo-channels/42/broadcasts/20260224_*.md
 → #broadcast #channel42 #coordination
 ```
 
@@ -494,7 +494,7 @@ flip.footer: { ... }
 ```bash
 #!/bin/bash
 # Run ANUBIS validation before commit
-php scripts/anubis_validate.php --staged
+php lupo-scripts/anubis_validate.php --staged
 if [ $? -ne 0 ]; then
   echo "❌ ANUBIS validation failed. Fix headers before committing."
   exit 1

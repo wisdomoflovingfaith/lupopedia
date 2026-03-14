@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\channels\doctrine\LUPOPEDIA_REVERSE_SHAKA_TLDNR.md"
+  file_path_from_root: "lupo-docs\channels\doctrine\LUPOPEDIA_REVERSE_SHAKA_TLDNR.md"
   file_hash: "9928abdde9f788f0304493e7cab0ebd2ff859248e40ce10f534531cbc1395205"
-  file_path_from_root: "docs\channels\doctrine\LUPOPEDIA_REVERSE_SHAKA_TLDNR.md"
+  file_path_from_root: "lupo-docs\channels\doctrine\LUPOPEDIA_REVERSE_SHAKA_TLDNR.md"
   file_hash: "0f717d448cd2f406524a198db1df1dd5a2d002d5f4a6c93300913b778676cf55"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -375,21 +375,21 @@ file:
 ## 📚 Related Documentation
 
 **Core Architecture:**
-- `docs/core/ARCHITECTURE.md` — Technical architecture
-- `docs/core/ARCHITECTURE_SYNC.md` — Subsystem reference
-- `docs/core/DATABASE_PHILOSOPHY.md` — Database design principles
+- `lupo-docs/core/ARCHITECTURE.md` — Technical architecture
+- `lupo-docs/core/ARCHITECTURE_SYNC.md` — Subsystem reference
+- `lupo-docs/core/DATABASE_PHILOSOPHY.md` — Database design principles
 
 **Doctrine:**
-- `docs/doctrine/VERSION_DOCTRINE.md` — Versioning rules
-- `docs/doctrine/TOON_DOCTRINE.md` — TOON file doctrine
-- `docs/doctrine/REVERSE_SHAKA_PROTOCOL.md` — Phase A completion summary
+- `lupo-docs/doctrine/VERSION_DOCTRINE.md` — Versioning rules
+- `lupo-docs/doctrine/TOON_DOCTRINE.md` — TOON file doctrine
+- `lupo-docs/doctrine/REVERSE_SHAKA_PROTOCOL.md` — Phase A completion summary
 
 **Protocols:**
-- `docs/protocols/REVERSE_HANDSHAKE_SHAKA.md` — Alignment protocol
-- `docs/agents/WOLFIE_HEADER_SPECIFICATION.md` — File metadata format
+- `lupo-docs/protocols/REVERSE_HANDSHAKE_SHAKA.md` — Alignment protocol
+- `lupo-docs/agents/WOLFIE_HEADER_SPECIFICATION.md` — File metadata format
 
 **History:**
-- `docs/history/TIMELINE_2_0_19_TO_3_0_32.md` — Complete historical timeline
+- `lupo-docs/history/TIMELINE_2_0_19_TO_3_0_32.md` — Complete historical timeline
 - `CHANGELOG.md` — Version-by-version changes
 
 ---

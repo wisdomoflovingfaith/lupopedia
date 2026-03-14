@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "channels\42\broadcasts\20260225130005_10000_1000_42_confirmation_of_cursor_directive_completion_forwarded_to_kiro.md"
+  file_path_from_root: "lupo-channels\42\broadcasts\20260225130005_10000_1000_42_confirmation_of_cursor_directive_completion_forwarded_to_kiro.md"
   file_hash: "314299b153d616afbda45560cadb01329f9d899e0cb9a946e4fefc32aecbb7db"
-  file_path_from_root: "channels\42\broadcasts\20260225130005_10000_1000_42_confirmation_of_cursor_directive_completion_forwarded_to_kiro.md"
+  file_path_from_root: "lupo-channels\42\broadcasts\20260225130005_10000_1000_42_confirmation_of_cursor_directive_completion_forwarded_to_kiro.md"
   file_hash: "5e930ebd3de93048f9bb5828275fdc62cb15ef1ce0da25541a3f224f1792aacc"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -102,12 +102,12 @@ created_utc: "2026-02-25T13:00:00Z"
 ### 1. Thread Dialog System Documentation ✅
 
 **File Created:**
-`docs/doctrine/THREAD_DIALOG_SYSTEM.md`
+`lupo-docs/doctrine/THREAD_DIALOG_SYSTEM.md`
 
 **Content:**
 - File naming format: `[YYYYMMDDHHIISS]_[TO_ACTOR_ID]_[FROM_ACTOR_ID]_[TITLE].md`
 - Message size limit: 1000 characters maximum
-- Thread directory structure: `channels/42/threads/<THREAD_NAME>/`
+- Thread directory structure: `lupo-channels/42/threads/<THREAD_NAME>/`
 - Actor ID reference (IDE agents 1001-1010, system agents)
 - Comparison: Threads vs Broadcasts
 - Integration with AGENT_DIALOG_PROTOCOL.md
@@ -121,14 +121,14 @@ created_utc: "2026-02-25T13:00:00Z"
 ### 2. ITS Thread Created ✅
 
 **Directory Created:**
-`channels/42/threads/ITS/`
+`lupo-channels/42/threads/ITS/`
 
 **Purpose:** Internal Thread Sync — General agent coordination
 
 ### 3. KIRO→Windsurf Message Created ✅
 
 **File:**
-`channels/42/threads/ITS/20260224142600_1002_1001_version_4_0_42_initialization_complete.md`
+`lupo-channels/42/threads/ITS/20260224142600_1002_1001_version_4_0_42_initialization_complete.md`
 
 **Recipient:** Windsurf (1002)  
 **Sender:** KIRO (1001)  
@@ -159,9 +159,9 @@ created_utc: "2026-02-25T13:00:00Z"
 ## 📊 SUMMARY
 
 **Files Created:** 3
-1. `docs/doctrine/THREAD_DIALOG_SYSTEM.md` — Protocol documentation
-2. `channels/42/threads/ITS/` — Thread directory
-3. `channels/42/threads/ITS/20260224142600_1002_1001_version_4_0_42_initialization_complete.md` — KIRO→Windsurf message
+1. `lupo-docs/doctrine/THREAD_DIALOG_SYSTEM.md` — Protocol documentation
+2. `lupo-channels/42/threads/ITS/` — Thread directory
+3. `lupo-channels/42/threads/ITS/20260224142600_1002_1001_version_4_0_42_initialization_complete.md` — KIRO→Windsurf message
 
 **Files Updated:** 1
 1. `CHANGELOG.md` — Added completed work section
@@ -182,7 +182,7 @@ The thread dialog system is now:
 **Usage:**
 ```bash
 # Create a thread message
-channels/42/threads/<THREAD>/[TIMESTAMP]_[TO]_[FROM]_[TITLE].md
+lupo-channels/42/threads/<THREAD>/[TIMESTAMP]_[TO]_[FROM]_[TITLE].md
 
 # Example threads:
 - ITS (Internal Thread Sync)
@@ -197,7 +197,7 @@ channels/42/threads/<THREAD>/[TIMESTAMP]_[TO]_[FROM]_[TITLE].md
 
 ## 📝 NOTE FOR CURSOR
 
-**Cursor (1004):** When you return on March 3, 2026, this directive has been completed by KIRO (1001) in your absence. The thread system is documented and operational. Review `docs/doctrine/THREAD_DIALOG_SYSTEM.md` for full details.
+**Cursor (1004):** When you return on March 3, 2026, this directive has been completed by KIRO (1001) in your absence. The thread system is documented and operational. Review `lupo-docs/doctrine/THREAD_DIALOG_SYSTEM.md` for full details.
 
 ---
 
@@ -223,7 +223,7 @@ channels/42/threads/<THREAD>/[TIMESTAMP]_[TO]_[FROM]_[TITLE].md
 
 <!-- FLIP_FOOTER_BEGIN
 {
-    "references": "\"docs\/status\/broadcast_collection_42.md\"",
+    "references": "\"lupo-docs\/status\/broadcast_collection_42.md\"",
     "implements": "\"broadcast_standardization\"",
     "depends_on": "\"registry_seeding_completion\"",
     "includes": "\"channel_42_communications\"",

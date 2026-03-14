@@ -3,7 +3,7 @@ lupopedia.headers:
   lupopedia.version: "4.0.69"
   lupopedia.schema: "documentation"
   system_version: "4.0.69"
-  file_path_from_root: "docs/status/ORCHESTRATION_ACTORS_AND_SUPPORTING_ACTORS_REVIEW_4.0.69.md"
+  file_path_from_root: "lupo-docs/status/ORCHESTRATION_ACTORS_AND_SUPPORTING_ACTORS_REVIEW_4.0.69.md"
   web_path: "http://www.lupopedia.com/status/ORCHESTRATION_ACTORS_AND_SUPPORTING_ACTORS_REVIEW_4.0.69"
   last_modified_utc: "20260311"
   channel_id: 42
@@ -26,11 +26,11 @@ lupopedia.session:
   paired_actor_id: 1000
 lupopedia.edges:
   outbound_edges:
-    - { to: "docs/status/cursor_actors_channels_semantic_architecture_4.0.69.md", type: "reviews", weight: 1.0 }
+    - { to: "lupo-docs/status/cursor_actors_channels_semantic_architecture_4.0.69.md", type: "reviews", weight: 1.0 }
     - { to: "lupo-docs/doctrine/ActorFaucetOntology.md", type: "references", weight: 1.0 }
     - { to: "lupo-docs/doctrine/IDENTITY_LAYERS_DOCTRINE.md", type: "references", weight: 1.0 }
-    - { to: "docs/status/DESIGN_NOTE_LUPO_ACTOR_TRAITS_4.0.69.md", type: "references", weight: 0.9 }
-    - { to: "docs/status/kiro_review.md", type: "references", weight: 0.8 }
+    - { to: "lupo-docs/status/DESIGN_NOTE_LUPO_ACTOR_TRAITS_4.0.69.md", type: "references", weight: 0.9 }
+    - { to: "lupo-docs/status/kiro_review.md", type: "references", weight: 0.8 }
 lupopedia.footer:
   last_verified: "20260311"
   last_verified_by: "wolfie"
@@ -41,7 +41,7 @@ lupopedia.footer:
 
 This document is a **status/review/suggestions** artifact. It does not alter doctrine, schema, or install. It researches current documentation, identifies ambiguity in the use of "actor," and recommends terminology and documentation improvements. Target: clearer separation of orchestration actors, supporting actors, and faucets.
 
-**Sources reviewed:** `docs/status/cursor_actors_channels_semantic_architecture_4.0.69.md`, `docs/status/brainstorm_on_actors_and_channels.md`, `docs/status/DESIGN_NOTE_LUPO_ACTOR_TRAITS_4.0.69.md`, `README.md`, `AGENTS.md`, `CHANGELOG.md`, `docs/status/kiro_review.md`, `lupo-docs/doctrine/ActorFaucetOntology.md`, `lupo-docs/doctrine/IDENTITY_LAYERS_DOCTRINE.md`, `lupo-docs/doctrine/FEDERATION_SCOPING_DOCTRINE.md`, `docs/status/ideas_on_actor_rolls_on_channels.md`.
+**Sources reviewed:** `lupo-docs/status/cursor_actors_channels_semantic_architecture_4.0.69.md`, `lupo-docs/status/brainstorm_on_actors_and_channels.md`, `lupo-docs/status/DESIGN_NOTE_LUPO_ACTOR_TRAITS_4.0.69.md`, `README.md`, `AGENTS.md`, `CHANGELOG.md`, `lupo-docs/status/kiro_review.md`, `lupo-docs/doctrine/ActorFaucetOntology.md`, `lupo-docs/doctrine/IDENTITY_LAYERS_DOCTRINE.md`, `lupo-docs/doctrine/FEDERATION_SCOPING_DOCTRINE.md`, `lupo-docs/status/ideas_on_actor_rolls_on_channels.md`.
 
 ---
 
@@ -103,7 +103,7 @@ Recommendations are wording and documentation only; no schema or code changes in
 
 | Recommendation | Rationale |
 |----------------|-----------|
-| **Keep "actor" as the universal DB identity** | Schema and relationships are keyed by `actor_id`; changing the generic term would conflict with install/TOONs and code. |
+| **Keep "actor" as the universal DB identity** | Schema and relationships are keyed by `actor_id`; changing the generic term would conflict with lupo-install/TOONs and code. |
 | **Add documentation subcategories: orchestration actor and supporting actor** | Clarifies who has primary coordination authority vs who has constrained/specialized scope. Use in status docs, README, AGENTS, and onboarding as narrative labels, not new columns. |
 | **Prefer "faucet" over "IDE agent" or "agent" when meaning execution surface** | "IDE agents are faucets" is already doctrine; extend to prose: e.g. "Cursor is a faucet; Wolfie (actor) operates through it." Reserve "agent" for `lupo_agents` rows or when explicitly referring to behavior/runtime, and add a sentence that IDE agents are faucets, not agents in the identity sense. |
 | **State explicitly: "IDE faucets are not actors; they are execution surfaces used by orchestration actors or supporting actors."** | One canonical sentence in the architecture doc and, if updated, in AGENTS.md and onboarding. |
@@ -116,10 +116,10 @@ Recommendations are wording and documentation only; no schema or code changes in
 
 | Document | What should change | Why | Priority |
 |----------|--------------------|-----|----------|
-| **docs/status/cursor_actors_channels_semantic_architecture_4.0.69.md** | Add a short subsection under §3 (Actors) defining *orchestration actor* and *supporting actor* as documentation categories; add the sentence that IDE faucets are not actors but execution surfaces used by (orchestration or supporting) actors. | Canonical architecture is the single place many agents read; making the split explicit here prevents drift. | High |
+| **lupo-docs/status/cursor_actors_channels_semantic_architecture_4.0.69.md** | Add a short subsection under §3 (Actors) defining *orchestration actor* and *supporting actor* as documentation categories; add the sentence that IDE faucets are not actors but execution surfaces used by (orchestration or supporting) actors. | Canonical architecture is the single place many agents read; making the split explicit here prevents drift. | High |
 | **AGENTS.md** | In "Actor Model" and "Agent Identity Registry": (1) State that IDE agents (Cursor, Windsurf, etc.) are faucets, not actors; identity is the actor using the faucet. (2) Optionally add one line on orchestration vs supporting as documentation-only categories. (3) Where "agent" could mean identity, prefer "actor" or "actor via faucet X." | AGENTS is the main entrypoint for IDE agents; it still uses "agent" and "actor" in ways that can blur. | High |
 | **README.md** | In "Core Concepts" / "Actor model": Add one sentence that participants have `actor_id` and that IDEs (e.g. Cursor) are execution faucets, not actors. No need to define orchestration/supporting in README unless kept to one line. | README is the first doc many see; a single clear sentence reduces confusion. | Medium |
-| **prompts/cursor/20260311_cursor_new_thread_onboarding_4.0.69.md** | In the "Actor vs Faucet" or "Session" section: Include the sentence that IDE faucets are not actors and that the session identity is the actor (e.g. Wolfie), with faucet (e.g. Cursor) indicated separately. Optionally mention orchestration/supporting as doc categories. | Onboarding sets context for new Cursor threads; consistent identity/faucet language here helps. | Medium |
+| **lupo-prompts/cursor/20260311_cursor_new_thread_onboarding_4.0.69.md** | In the "Actor vs Faucet" or "Session" section: Include the sentence that IDE faucets are not actors and that the session identity is the actor (e.g. Wolfie), with faucet (e.g. Cursor) indicated separately. Optionally mention orchestration/supporting as doc categories. | Onboarding sets context for new Cursor threads; consistent identity/faucet language here helps. | Medium |
 | **lupo-docs/doctrine/IDENTITY_LAYERS_DOCTRINE.md** | Optionally add one sentence that actors can be described in documentation as *orchestration* (primary coordination authority) or *supporting* (specialized/constrained purpose); no schema implication. | Keeps identity layers as the single place for actor/faucet/session/trait/role/task and allows a minimal orchestration/supporting note. | Low |
 | **Actor registry docs / registry.json** | No structural change. If a future doc describes "who is orchestration vs supporting," it could reference registry IDs and traits; not required for this review. | Registry is authoritative for IDs; orchestration/supporting is a documentation label. | Low |
 | **Session docs (SESSION_RECONCILIATION_DOCTRINE, session files)** | No change required for orchestration/supporting. Session already carries `actor_id` (identity) and can carry `faucet_name`; that suffices. | Session is about runtime state; orchestration vs supporting is about semantic role in prose. | Low |

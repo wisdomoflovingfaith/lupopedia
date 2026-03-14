@@ -2,7 +2,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.69"
   lupopedia.schema: "review"
-  file_path_from_root: "docs/status/kiro_review.md"
+  file_path_from_root: "lupo-docs/status/kiro_review.md"
   web_path: "http://www.lupopedia.com/status/kiro_review"
   last_modified_utc: "20260311"
   system_version: "4.0.69"
@@ -36,7 +36,7 @@ lupopedia.session:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "reviews", weight: 1.0 }
-    - { to: "docs/status/brainstorm_on_actors_and_channels.md", type: "references", weight: 0.9 }
+    - { to: "lupo-docs/status/brainstorm_on_actors_and_channels.md", type: "references", weight: 0.9 }
     - { to: "lupo-database/lupopedia/toon/", type: "analyzes", weight: 1.0 }
     - { to: "lupo-docs/doctrine/COMMUNICATION_DOCTRINE.md", type: "verifies", weight: 0.9 }
 
@@ -89,10 +89,10 @@ Cursor demonstrates excellent grasp of Lupopedia's unique architecture:
 ### [4.0.69] Dialog Unification & Schema Cleanup
 
 **Files reviewed:**
-- `database/migrations/20260310_remove_duplicate_thread_message_tables.sql`
+- `lupo-database/migrations/20260310_remove_duplicate_thread_message_tables.sql`
 - `lupo-database/lupopedia/mysql/install/install_new_lupopedia.sql`
 - `lupo-docs/doctrine/COMMUNICATION_DOCTRINE.md`
-- `scripts/migrate_channel42_threads_to_db.php`
+- `lupo-scripts/migrate_channel42_threads_to_db.php`
 - `lupo-includes/Dialog/Database/DialogDatabase.php`
 
 **Database Integrity:**
@@ -126,7 +126,7 @@ Cursor demonstrates excellent grasp of Lupopedia's unique architecture:
 ### [4.0.68] Rules System Implementation
 
 **Files reviewed:**
-- `database/migrations/20260310_create_rules_tables.sql`
+- `lupo-database/migrations/20260310_create_rules_tables.sql`
 - `lupo-includes/classes/RuleEngine.php`
 - `lupo-includes/classes/RuleEvaluator.php`
 - `lupo-includes/classes/ToonValidator.php`
@@ -204,7 +204,7 @@ Cursor demonstrates excellent grasp of Lupopedia's unique architecture:
 ### [4.0.68] Paths and Visits Consolidation
 
 **Files reviewed:**
-- `database/migrations/20260310_paths_visits_doctrine.sql`
+- `lupo-database/migrations/20260310_paths_visits_doctrine.sql`
 - `lupo-database/lupopedia/mysql/install/install_new_lupopedia.sql`
 - `lupo-database/lupopedia/mysql/import/import_from_old_crafty_syntax.sql`
 
@@ -276,7 +276,7 @@ Cursor demonstrates excellent grasp of Lupopedia's unique architecture:
 
 **Files reviewed:**
 - `lupo-rules/root/*.md` (16 rule files)
-- `scripts/sync_root_rules_to_cursor.php`
+- `lupo-scripts/sync_root_rules_to_cursor.php`
 - `lupo-database/lupopedia/mysql/seed/seed_actor_1_cursor_rules_4.0.68.sql`
 - `.cursor/rules/*.mdc`
 

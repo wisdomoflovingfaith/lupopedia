@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: "docs/DIRECTORY_STRUCTURE.md"
+  file_path_from_root: "lupo-docs/DIRECTORY_STRUCTURE.md"
   web_path: "http://www.lupopedia.com/docs/DIRECTORY_STRUCTURE"
   last_modified_utc: "20260307"
   system_version: "4.0.64"
@@ -20,7 +20,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "lupopedia-config.php", type: "references", weight: 1.0 }
-    - { to: "docs/actors.md", type: "references", weight: 0.9 }
+    - { to: "lupo-docs/actors.md", type: "references", weight: 0.9 }
     - { to: "AGENTS.md", type: "references", weight: 0.8 }
 
 lupopedia.footer:
@@ -98,11 +98,11 @@ $asset_url = LUPOPEDIA_URL . LUPO_CONTENT_DIR . '/themes/default/css/style.css';
 Under **`lupo-actors/{actor_name}/`**, the structure is further subdivided into standard resource folders:
 
 *   **`apps/`**: Custom applications.
-*   **`tools/`**: Actor-specific scripts.
-*   **`docs/`**: Documentation.
+*   **`lupo-tools/`**: Actor-specific scripts.
+*   **`lupo-docs/`**: Documentation.
 *   **`db-changes/`**: Migrations.
-*   **`api/`**: API definitions.
-*   **`prompts/`**: Instructions for the agent.
+*   **`lupo-api/`**: API definitions.
+*   **`lupo-prompts/`**: Instructions for the agent.
 *   **`skills/`**: Reusable modular capabilities (v4.0.64+).
 *   **`www/`**: Web-accessible profile content (v4.0.64+).
 

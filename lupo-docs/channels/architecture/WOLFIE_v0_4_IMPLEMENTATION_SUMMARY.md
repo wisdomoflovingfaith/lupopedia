@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\channels\architecture\WOLFIE_v0_4_IMPLEMENTATION_SUMMARY.md"
+  file_path_from_root: "lupo-docs\channels\architecture\WOLFIE_v0_4_IMPLEMENTATION_SUMMARY.md"
   file_hash: "b687346409145be40f4585448e0663ce2bf970513b01714bda3b2c80efe07fe6"
-  file_path_from_root: "docs\channels\architecture\WOLFIE_v0_4_IMPLEMENTATION_SUMMARY.md"
+  file_path_from_root: "lupo-docs\channels\architecture\WOLFIE_v0_4_IMPLEMENTATION_SUMMARY.md"
   file_hash: "af4b70897bdae6f59c52e8446d540fa38b8e47d78c6a6fc5bbddf4635a6fbf83"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -125,7 +125,7 @@ The complete WOLFIE Router v0.4 system has been successfully implemented with fu
    - ✅ Temporal dissonance identification
    - ✅ Migration phase suitability analysis
 
-7. **Temporal Dashboard API** - `api/v1/temporal_dashboard.php`
+7. **Temporal Dashboard API** - `lupo-api/v1/temporal_dashboard.php`
    - ✅ Real-time temporal monitoring
    - ✅ RESTful API endpoints
    - ✅ Ritual execution interface

@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\channels\doctrine\TEMPORAL_TRUTH_MONITORING_GUIDE.md"
+  file_path_from_root: "lupo-docs\channels\doctrine\TEMPORAL_TRUTH_MONITORING_GUIDE.md"
   file_hash: "bf07639b864a4e2dceba013609befda85e761ebe0113fc51ef9e7b6926f2c80f"
-  file_path_from_root: "docs\channels\doctrine\TEMPORAL_TRUTH_MONITORING_GUIDE.md"
+  file_path_from_root: "lupo-docs\channels\doctrine\TEMPORAL_TRUTH_MONITORING_GUIDE.md"
   file_hash: "a3ff9eb91b9a00b76fe89f6145741468055067c23a5678a637e005134d5a08b3"
   last_updated_utc: "20260228"
   system_version: "4.0.50"

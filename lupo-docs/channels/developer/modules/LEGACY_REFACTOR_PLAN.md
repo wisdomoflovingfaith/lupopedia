@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\channels\developer\modules\LEGACY_REFACTOR_PLAN.md"
+  file_path_from_root: "lupo-docs\channels\developer\modules\LEGACY_REFACTOR_PLAN.md"
   file_hash: "733ae16a8ce0278752584515a9d8e51ed07d0fdfae3a07070978bf7e6483b257"
-  file_path_from_root: "docs\channels\developer\modules\LEGACY_REFACTOR_PLAN.md"
+  file_path_from_root: "lupo-docs\channels\developer\modules\LEGACY_REFACTOR_PLAN.md"
   file_hash: "593220554323fe31853cc3865edbdc74d325e70bc5b7cd6e1c56aaf83561f9b1"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -72,7 +72,7 @@ dialog:
   speaker: CURSOR
   target: @everyone
   mood_RGB: "0088FF"
-  message: Created LEGACY_REFACTOR_PLAN.md with comprehensive plan for refactoring legacy Crafty Syntax files from legacy/craftysyntax/ to lupopedia/. Includes file mapping, conversion rules, and step-by-step process.
+  message: Created LEGACY_REFACTOR_PLAN.md with comprehensive plan for refactoring legacy Crafty Syntax files from lupo-legacy/craftysyntax/ to lupopedia/. Includes file mapping, conversion rules, and step-by-step process.
 tags:
   categories: ["documentation", "refactoring", "planning"]
   collections: ["core-docs", "refactoring"]
@@ -90,14 +90,14 @@ in_this_file_we_have:
   - Testing and Validation
 file:
   title: "Legacy Crafty Syntax Refactoring Plan"
-  description: "Comprehensive plan for refactoring legacy Crafty Syntax files from legacy/craftysyntax/ to lupopedia/ following Lupopedia 3.0.0 doctrine"
+  description: "Comprehensive plan for refactoring legacy Crafty Syntax files from lupo-legacy/craftysyntax/ to lupopedia/ following Lupopedia 3.0.0 doctrine"
   version: GLOBAL_CURRENT_LUPOPEDIA_VERSION
   status: published
   author: "Captain Wolfie"
 ---
 
 # â­ **LEGACY CRAFTY SYNTAX REFACTORING PLAN**
-### **Converting Files from `legacy/craftysyntax/` to `lupopedia/`**
+### **Converting Files from `lupo-legacy/craftysyntax/` to `lupopedia/`**
 
 This document provides a comprehensive plan for refactoring legacy Crafty Syntax files into Lupopedia 3.0.0.
 
@@ -107,7 +107,7 @@ This document provides a comprehensive plan for refactoring legacy Crafty Syntax
 
 ### **1.1 Purpose**
 
-Refactor all PHP files from `legacy/craftysyntax/` into the Lupopedia 3.0.0 structure in `lupopedia/`, following all Lupopedia doctrines:
+Refactor all PHP files from `lupo-legacy/craftysyntax/` into the Lupopedia 3.0.0 structure in `lupopedia/`, following all Lupopedia doctrines:
 
 - [CURSOR_REFACTOR_DOCTRINE.md](CURSOR_REFACTOR_DOCTRINE.md)
 - [SQL_REWRITE_DOCTRINE.md](SQL_REWRITE_DOCTRINE.md)
@@ -116,7 +116,7 @@ Refactor all PHP files from `legacy/craftysyntax/` into the Lupopedia 3.0.0 stru
 
 ### **1.2 Scope**
 
-**Source:** `legacy/craftysyntax/` (237+ PHP files)  
+**Source:** `lupo-legacy/craftysyntax/` (237+ PHP files)  
 **Destination:** `lupopedia/` (organized by module/function)
 
 ### **1.3 Principles**
@@ -134,7 +134,7 @@ Refactor all PHP files from `legacy/craftysyntax/` into the Lupopedia 3.0.0 stru
 ### **2.1 Source Structure**
 
 ```
-legacy/craftysyntax/
+lupo-legacy/craftysyntax/
 â”œâ”€â”€ admin_*.php          (Admin interface files)
 â”œâ”€â”€ user_*.php           (User-facing files)
 â”œâ”€â”€ data_*.php           (Data management files)
@@ -142,7 +142,7 @@ legacy/craftysyntax/
 â”œâ”€â”€ functions/            (Function libraries)
 â”œâ”€â”€ lang/                (Language files)
 â”œâ”€â”€ themes/              (Theme files)
-â”œâ”€â”€ images/              (Image assets)
+â”œâ”€â”€ lupo-images/              (Image assets)
 â”œâ”€â”€ javascript/          (JavaScript files)
 â””â”€â”€ ...                  (Other files)
 ```
@@ -153,10 +153,10 @@ legacy/craftysyntax/
 lupopedia/
 â”œâ”€â”€ modules/
 â”‚   â””â”€â”€ craftysyntax/    (Crafty Syntax module files)
-â”‚       â”œâ”€â”€ admin/       (Admin interface)
+â”‚       â”œâ”€â”€ lupo-admin/       (Admin interface)
 â”‚       â”œâ”€â”€ user/        (User-facing)
-â”‚       â”œâ”€â”€ api/         (API endpoints)
-â”‚       â””â”€â”€ includes/    (Shared includes)
+â”‚       â”œâ”€â”€ lupo-api/         (API endpoints)
+â”‚       â””â”€â”€ lupo-includes/    (Shared includes)
 â”œâ”€â”€ lupo-includes/       (Shared classes and functions)
 â”œâ”€â”€ lupo-content/        (Content and assets)
 â””â”€â”€ ...                  (Other Lupopedia files)
@@ -183,7 +183,7 @@ Cursor must follow:
 - Legacy code from 25 years ago may have typos in column names (e.g., "visiblity" instead of "visibility")
 - These typos are preserved in the database schema
 - **Never "correct" typos** â€” use exact column names from toon files
-- The toon files in `database/toon_data/` contain the exact column names as they exist in the database
+- The toon files in `lupo-database/toon_data/` contain the exact column names as they exist in the database
 
 ---
 
@@ -191,7 +191,7 @@ Cursor must follow:
 
 ### **4.1 Admin Files**
 
-**Source:** `legacy/craftysyntax/admin_*.php`  
+**Source:** `lupo-legacy/craftysyntax/admin_*.php`  
 **Destination:** `lupopedia/modules/craftysyntax/admin/`
 
 **Examples:**
@@ -201,7 +201,7 @@ Cursor must follow:
 
 ### **4.2 User-Facing Files**
 
-**Source:** `legacy/craftysyntax/user_*.php` or public files  
+**Source:** `lupo-legacy/craftysyntax/user_*.php` or public files  
 **Destination:** `lupopedia/modules/craftysyntax/user/`
 
 **Examples:**
@@ -211,7 +211,7 @@ Cursor must follow:
 
 ### **4.3 API Files**
 
-**Source:** `legacy/craftysyntax/*_xmlhttp.php` or `*_refresh.php`  
+**Source:** `lupo-legacy/craftysyntax/*_xmlhttp.php` or `*_refresh.php`  
 **Destination:** `lupopedia/modules/craftysyntax/api/`
 
 **Examples:**
@@ -221,7 +221,7 @@ Cursor must follow:
 
 ### **4.4 Class Files**
 
-**Source:** `legacy/craftysyntax/class/*.php`  
+**Source:** `lupo-legacy/craftysyntax/class/*.php`  
 **Destination:** `lupopedia/lupo-includes/class-*.php`
 
 **Examples:**
@@ -230,7 +230,7 @@ Cursor must follow:
 
 ### **4.5 Function Libraries**
 
-**Source:** `legacy/craftysyntax/functions.php` or `data_*.php`  
+**Source:** `lupo-legacy/craftysyntax/functions.php` or `data_*.php`  
 **Destination:** `lupopedia/lupo-includes/` or `modules/craftysyntax/includes/`
 
 **Examples:**
@@ -239,7 +239,7 @@ Cursor must follow:
 
 ### **4.6 Configuration Files**
 
-**Source:** `legacy/craftysyntax/config.php`  
+**Source:** `lupo-legacy/craftysyntax/config.php`  
 **Destination:** `lupopedia/lupopedia-config.php` (merged into main config)
 
 ---
@@ -256,8 +256,8 @@ For each file, determine:
 ### **5.2 Step 2: Load Refactor TOON Files**
 
 For each table referenced:
-1. Load `database/refactors/{legacy_table}.json` (TOON format)
-2. Load `database/toon_data/{new_table_name}.json` (TOON format)
+1. Load `lupo-database/refactors/{legacy_table}.json` (TOON format)
+2. Load `lupo-database/toon_data/{new_table_name}.json` (TOON format)
 3. Verify all column names exist in toon files
 
 ### **5.3 Step 3: Convert SQL**
@@ -274,7 +274,7 @@ For each SQL query:
 For each PHP file:
 1. Preserve all logic exactly
 2. Convert mysqli to PDO_DB
-3. Update includes/paths
+3. Update lupo-includes/paths
 4. Preserve global variables
 5. Preserve session handling
 6. Modernize syntax only (not behavior)
@@ -294,7 +294,7 @@ For each PHP file:
 
 **Process:**
 1. Find legacy table name in SQL
-2. Load `database/refactors/{legacy_table}.toon` (TOON format with `.toon` extension, see [TOON_DOCTRINE.md](../../doctrine/TOON_DOCTRINE.md))
+2. Load `lupo-database/refactors/{legacy_table}.toon` (TOON format with `.toon` extension, see [TOON_DOCTRINE.md](../../doctrine/TOON_DOCTRINE.md))
 3. Use `new_table` from TOON file
 4. Apply prefix placeholder if specified
 
@@ -314,7 +314,7 @@ FROM {{prefix}}crafty_auto_invite
 **Process:**
 1. Find column name in SQL
 2. Check `column_map` in refactor TOON file
-3. Verify new column name exists in toon data file (`database/toon_data/{new_table_name}.toon`)
+3. Verify new column name exists in toon data file (`lupo-database/toon_data/{new_table_name}.toon`)
 4. Use exact column name (preserve typos like "visiblity")
 
 **See [SQL_REFACTOR_MAPPING_DOCTRINE.md](SQL_REFACTOR_MAPPING_DOCTRINE.md) for detailed mapping rules.**
@@ -417,7 +417,7 @@ $new_id = $db->lastInsertId();
 lupopedia/
 â”œâ”€â”€ modules/
 â”‚   â””â”€â”€ craftysyntax/
-â”‚       â”œâ”€â”€ admin/
+â”‚       â”œâ”€â”€ lupo-admin/
 â”‚       â”‚   â”œâ”€â”€ index.php
 â”‚       â”‚   â”œâ”€â”€ options.php
 â”‚       â”‚   â”œâ”€â”€ users.php
@@ -426,11 +426,11 @@ lupopedia/
 â”‚       â”‚   â”œâ”€â”€ livehelp.php
 â”‚       â”‚   â”œâ”€â”€ livehelp_js.php
 â”‚       â”‚   â””â”€â”€ ...
-â”‚       â”œâ”€â”€ api/
+â”‚       â”œâ”€â”€ lupo-api/
 â”‚       â”‚   â”œâ”€â”€ xmlhttp.php
 â”‚       â”‚   â”œâ”€â”€ admin_chat.php
 â”‚       â”‚   â””â”€â”€ ...
-â”‚       â””â”€â”€ includes/
+â”‚       â””â”€â”€ lupo-includes/
 â”‚           â”œâ”€â”€ data-functions.php
 â”‚           â””â”€â”€ ...
 â”œâ”€â”€ lupo-includes/
@@ -439,7 +439,7 @@ lupopedia/
 â”‚   â””â”€â”€ ...
 â””â”€â”€ lupo-content/
     â””â”€â”€ craftysyntax/
-        â”œâ”€â”€ images/
+        â”œâ”€â”€ lupo-images/
         â”œâ”€â”€ themes/
         â””â”€â”€ ...
 ```

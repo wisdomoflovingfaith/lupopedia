@@ -76,7 +76,7 @@ Each WHO.json includes:
 
 ### ✅ Antigravity Work Review
 Antigravity IDE (1003) was already properly integrated:
-- ✅ Registered in actors/registry.json
+- ✅ Registered in lupo-actors/registry.json
 - ✅ Added to 4.0.45 seeding SQL by Kiro
 - ✅ Has workspace directories
 - ✅ WHO.json created with token-constrained status

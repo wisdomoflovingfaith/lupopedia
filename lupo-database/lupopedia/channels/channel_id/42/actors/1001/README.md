@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -31,7 +31,7 @@ lupopedia.footer:
 # FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
 ---
 lupopedia.headers: 
-  file_path_from_root: "channels\42\actors\1001\README.md"
+  file_path_from_root: "lupo-channels\42\actors\1001\README.md"
   file_hash: "2adba7fd8cdc90bee811f9c556a4268306c8d61386fc9d8f9be9b1c371656ec8"
   system_version: "4.0.50"
   channel_id: 42
@@ -61,7 +61,7 @@ This is the working directory for Windsurf IDE on Channel 42.
 
 - Files here are TEMPORARY and MUTABLE
 - Do NOT store permanent artifacts here
-- Do NOT store doctrine here (use docs/doctrine/)
+- Do NOT store doctrine here (use lupo-docs/doctrine/)
 - Do NOT store system documentation here
 - Files may be cleaned up periodically
 

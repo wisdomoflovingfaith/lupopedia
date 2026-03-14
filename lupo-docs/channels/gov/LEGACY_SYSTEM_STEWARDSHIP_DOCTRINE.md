@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\channels\gov\LEGACY_SYSTEM_STEWARDSHIP_DOCTRINE.md"
+  file_path_from_root: "lupo-docs\channels\gov\LEGACY_SYSTEM_STEWARDSHIP_DOCTRINE.md"
   file_hash: "324aeb9d019a05f71dd498274e7572497b60142982acee855981e9f015486c08"
-  file_path_from_root: "docs\channels\gov\LEGACY_SYSTEM_STEWARDSHIP_DOCTRINE.md"
+  file_path_from_root: "lupo-docs\channels\gov\LEGACY_SYSTEM_STEWARDSHIP_DOCTRINE.md"
   file_hash: "876739bb1ea1437f909f13cff0d7605621302a93277e5bbcad3b4ed341bc7dad"
   last_updated_utc: "20260228"
   system_version: "4.0.50"

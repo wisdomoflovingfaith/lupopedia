@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\channels\42\broadcasts\20260224_channel_wide_version_4_0_38_active.md"
+  file_path_from_root: "lupo-docs\channels\42\broadcasts\20260224_channel_wide_version_4_0_38_active.md"
   file_hash: "2a88d1445306244055eb3754f7ba49a8792ff3533c71bc611dc77796c9ddcb42"
-  file_path_from_root: "docs\channels\42\broadcasts\20260224_channel_wide_version_4_0_38_active.md"
+  file_path_from_root: "lupo-docs\channels\42\broadcasts\20260224_channel_wide_version_4_0_38_active.md"
   file_hash: "c87fca91f84c2934ab3d8c6a78fa6daba031fcf6d91277154abcfd44c1c2e714"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -63,7 +63,7 @@ lupopedia.footer:
 
 ---
 wolfie.headers:
-  file_path_from_root: "docs/channels/42/broadcasts/20260224_channel_wide_version_4_0_38_active.md"
+  file_path_from_root: "lupo-docs/channels/42/broadcasts/20260224_channel_wide_version_4_0_38_active.md"
   system_version: "4.0.38"
   channel_id: 42
   mood_rgb: "00AA00"
@@ -82,9 +82,9 @@ flip.footer:
     - "lupo-includes/version.php"
     - "config/global_atoms.yaml"
     - "CHANGELOG.md"
-    - "docs/versions/"
-    - "prompts/"
-    - "docs/doctrine/"
+    - "lupo-docs/versions/"
+    - "lupo-prompts/"
+    - "lupo-docs/doctrine/"
   referenced_by_actors:
     - 10000 # Captain
     - 1001 # KIRO
@@ -246,7 +246,7 @@ All agents must update:
 
 ### **❌ Forbidden Actions**
 - **DO NOT** create any `4.1.0` references
-- **DO NOT** create `docs/versions/4.1.0/` folders
+- **DO NOT** create `lupo-docs/versions/4.1.0/` folders
 - **DO NOT** update any headers to `4.1.0`
 - **DO NOT** proceed with 4.1.0 development
 

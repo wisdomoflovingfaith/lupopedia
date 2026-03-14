@@ -124,7 +124,7 @@ This implementation plan breaks down the FLIP v2 feature into discrete coding ta
 ## Tasks
 
 - [ ] 1. Create database schema and migration script
-  - Create `database/migrations/upgrade_flip_v2.sql` with lupo_flip_artifacts table definition
+  - Create `lupo-database/migrations/upgrade_flip_v2.sql` with lupo_flip_artifacts table definition
   - Define all 19 columns (flip_artifact_id, file_path_from_root, artifact_kind, channel_id, actor_id, agent_slug, agent_type, system_version, last_modified_ymd, x_forward_from_actor_id, x_forward_to_actor_id, x_lupo_forwarded, header_json, footer_json, file_hash, created_ymdhis, updated_ymdhis, is_deleted, deleted_ymdhis)
   - Create 7 indexes for efficient querying (path, actor_date, channel_date, forward, kind_date, deleted, version)
   - Ensure MySQL 8.0+, MariaDB 10.5+, and PostgreSQL compatibility
@@ -251,7 +251,7 @@ This implementation plan breaks down the FLIP v2 feature into discrete coding ta
     - Implement backfillAll() method to scan all configured directories
     - Implement backfillDirectory() method to scan single directory recursively
     - Implement getProgress() method to return statistics
-    - Scan directories in order: channels/, docs/directives/, docs/status/, docs/brainstorm/, docs/doctrine/, docs/versions/
+    - Scan directories in order: lupo-channels/, lupo-docs/directives/, lupo-docs/status/, lupo-docs/brainstorm/, lupo-docs/doctrine/, lupo-docs/versions/
     - Track statistics: files_processed, artifacts_stored, edges_created, errors
     - Log all errors with file paths
     - Continue processing on individual file failures
@@ -270,7 +270,7 @@ This implementation plan breaks down the FLIP v2 feature into discrete coding ta
     - **Validates: Requirements 8.1-8.6, 9.1-9.7**
 
 - [ ] 8. Create backfill execution script
-  - Create `scripts/flip_v2_backfill.php` CLI script
+  - Create `lupo-scripts/flip_v2_backfill.php` CLI script
   - Instantiate FLIPBackfillService with all dependencies
   - Call backfillAll() and display progress
   - Output statistics: files processed, artifacts stored, edges created, errors
@@ -281,13 +281,13 @@ This implementation plan breaks down the FLIP v2 feature into discrete coding ta
   - Ensure all tests pass, ask the user if questions arise.
 
 - [ ] 10. Generate TOON file for schema documentation
-  - Run `python scripts/generate_toon_files.py` to generate `docs/toons/lupo_flip_artifacts.toon.json`
+  - Run `python lupo-scripts/generate_toon_files.py` to generate `lupo-docs/toons/lupo_flip_artifacts.toon.json`
   - Verify TOON file contains all column definitions with types
   - Verify TOON file contains all index definitions
   - _Requirements: 14.1-14.5_
 
 - [ ] 11. Create FLIP v2 doctrine document
-  - Create `docs/doctrine/FLIP_V2_DOCTRINE.md` with FLIP v2 header
+  - Create `lupo-docs/doctrine/FLIP_V2_DOCTRINE.md` with FLIP v2 header
   - Document purpose and scope of FLIP v2
   - Document complete database schema with column descriptions
   - Document all YAML header fields and their meanings
@@ -308,13 +308,13 @@ This implementation plan breaks down the FLIP v2 feature into discrete coding ta
   - Document FLIP v2 scanner implementation (FLIPScanner, FLIPArtifactRepository, FLIPEdgeMapper, FLIPBackfillService)
   - Document backfill process and script location
   - Document edge mapping integration with lupo_edges
-  - Document migration script location (database/migrations/upgrade_flip_v2.sql)
-  - Document doctrine document location (docs/doctrine/FLIP_V2_DOCTRINE.md)
+  - Document migration script location (lupo-database/migrations/upgrade_flip_v2.sql)
+  - Document doctrine document location (lupo-docs/doctrine/FLIP_V2_DOCTRINE.md)
   - Follow existing CHANGELOG format and style
   - _Requirements: 12.1-12.8_
 
 - [ ] 13. Create status report for FLIP v2 implementation
-  - Create `docs/status/kiro_flip_v2_implementation_4_0_37.md` with FLIP v2 header
+  - Create `lupo-docs/status/kiro_flip_v2_implementation_4_0_37.md` with FLIP v2 header
   - Document implementation objectives
   - Document completed tasks (schema, scanner, repository, edge mapper, backfill)
   - Document database schema details
@@ -325,10 +325,10 @@ This implementation plan breaks down the FLIP v2 feature into discrete coding ta
   - _Requirements: 13.1-13.9_
 
 - [ ] 14. Final checkpoint - Verify complete implementation
-  - Run all unit tests: `sh scripts/run_unit_tests.sh .`
+  - Run all unit tests: `sh lupo-scripts/run_unit_tests.sh .`
   - Run all property tests
   - Run integration tests
-  - Run backfill script on actual codebase: `php scripts/flip_v2_backfill.php`
+  - Run backfill script on actual codebase: `php lupo-scripts/flip_v2_backfill.php`
   - Verify artifact count matches expected file count
   - Verify edge relationships created correctly
   - Ensure all tests pass, ask the user if questions arise.

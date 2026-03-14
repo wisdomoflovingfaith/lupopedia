@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\audits\DEPARTMENTS_GROUPS_ROLES_DOCTRINE_UPDATE_SUMMARY.md"
+  file_path_from_root: "lupo-docs\audits\DEPARTMENTS_GROUPS_ROLES_DOCTRINE_UPDATE_SUMMARY.md"
   file_hash: "45ed5315a0df078e1e2dab86d9034e2657ab17b6bcd40677e26f0dd24919ca91"
-  file_path_from_root: "docs\audits\DEPARTMENTS_GROUPS_ROLES_DOCTRINE_UPDATE_SUMMARY.md"
+  file_path_from_root: "lupo-docs\audits\DEPARTMENTS_GROUPS_ROLES_DOCTRINE_UPDATE_SUMMARY.md"
   file_hash: "35ae130a8ead70beeb72e500f9c8d5be148d5bb865c1047495b3621478367d33"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -72,12 +72,12 @@ lupopedia.footer:
 
 | Document | Summary of changes |
 |----------|--------------------|
-| **docs/REQUIRED_TABLES_4.1.0.md** | Removed lupo_actor_group_membership and lupo_groups from required tables lists. Added "Organizational scope" paragraph: departments are the sole organizational unit; group tables are removed; lupo_permissions uses department_id; permission satisfied if user_id OR department_id (actor's departments) OR channel_roles. |
-| **docs/channels/schema/DATABASE_SCHEMA.md** | In Core Identity §1: replaced actor_group_membership with actor_departments; added note that group tables are removed. Replaced full actor_group_membership section with actor_departments (key fields, permission model). Removed groups and group_modules sections; updated departments section to state it is the sole organizational unit and that permissions/collections/contents/analytics use department_id. |
-| **docs/doctrine/DEVELOPMENT_WORKFLOW_DOCTRINE.md** | Added paragraph under §3: organizational scope is department only; lupo_groups and lupo_actor_group_membership are removed; use lupo_departments and lupo_actor_departments; schema alignment and TOON regeneration reflect department_id. |
-| **docs/doctrine/SCHEMA_AND_TOON_ALIGNMENT_CONTEXT.md** | Added bullet: unification migration (migration_unify_groups_into_departments.sql) added department_id, dropped group_id and group tables; schema and TOONs are department-only. In Takeaways: added point 2 (organizational scope department only, no group tables, department_id for permissions/scoping, regenerate TOONs after unification); renumbered points 3–6; added unification migration to Files reference table. |
-| **docs/channels/schema/migrations/analysis/SCHEMA_SYNC_3_0_46_SUMMARY.md** | Updated lupo_permissions description: purpose now states permission satisfied if user_id OR department_id OR channel_roles; fields use department_id (group_id removed); indexes use unique (target+department), index (department_id). |
-| **docs/channels/schema/migrations/3.0.46.md** | Updated Tables Added: actor_collections now "users, agents" (removed "groups"); lupo_permissions now documents department_id, OR-based permission model, and that group tables have been removed (department-only scope). |
+| **lupo-docs/REQUIRED_TABLES_4.1.0.md** | Removed lupo_actor_group_membership and lupo_groups from required tables lists. Added "Organizational scope" paragraph: departments are the sole organizational unit; group tables are removed; lupo_permissions uses department_id; permission satisfied if user_id OR department_id (actor's departments) OR channel_roles. |
+| **lupo-docs/channels/schema/DATABASE_SCHEMA.md** | In Core Identity §1: replaced actor_group_membership with actor_departments; added note that group tables are removed. Replaced full actor_group_membership section with actor_departments (key fields, permission model). Removed groups and group_modules sections; updated departments section to state it is the sole organizational unit and that permissions/collections/contents/analytics use department_id. |
+| **lupo-docs/doctrine/DEVELOPMENT_WORKFLOW_DOCTRINE.md** | Added paragraph under §3: organizational scope is department only; lupo_groups and lupo_actor_group_membership are removed; use lupo_departments and lupo_actor_departments; schema alignment and TOON regeneration reflect department_id. |
+| **lupo-docs/doctrine/SCHEMA_AND_TOON_ALIGNMENT_CONTEXT.md** | Added bullet: unification migration (migration_unify_groups_into_departments.sql) added department_id, dropped group_id and group tables; schema and TOONs are department-only. In Takeaways: added point 2 (organizational scope department only, no group tables, department_id for permissions/scoping, regenerate TOONs after unification); renumbered points 3–6; added unification migration to Files reference table. |
+| **lupo-docs/channels/schema/migrations/analysis/SCHEMA_SYNC_3_0_46_SUMMARY.md** | Updated lupo_permissions description: purpose now states permission satisfied if user_id OR department_id OR channel_roles; fields use department_id (group_id removed); indexes use unique (target+department), index (department_id). |
+| **lupo-docs/channels/schema/migrations/3.0.46.md** | Updated Tables Added: actor_collections now "users, agents" (removed "groups"); lupo_permissions now documents department_id, OR-based permission model, and that group tables have been removed (department-only scope). |
 
 ---
 

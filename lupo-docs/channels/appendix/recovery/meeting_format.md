@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\channels\appendix\recovery\meeting_format.md"
+  file_path_from_root: "lupo-docs\channels\appendix\recovery\meeting_format.md"
   file_hash: "d87fdea738f2dcdb3945a1df019cca912db5f72072d650d926a379e2b97af3fc"
-  file_path_from_root: "docs\channels\appendix\recovery\meeting_format.md"
+  file_path_from_root: "lupo-docs\channels\appendix\recovery\meeting_format.md"
   file_hash: "0a31757d68ffadfb1ef39f1ed9c20fdc2d126f5b23398f38bffd9bdbf22c8f11"
   last_updated_utc: "20260228"
   system_version: "4.0.50"

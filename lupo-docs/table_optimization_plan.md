@@ -33,7 +33,7 @@ lupopedia.conditional:
       artifact_type: "guide"
       objective: "Table Optimization Plan - v4.0.55"
     where:
-      repo_paths: ["docs\table_optimization_plan.md"]
+      repo_paths: ["lupo-docs\table_optimization_plan.md"]
       runtime_scope: "cli"
       channels:
         primary_channel_id: 1
@@ -49,7 +49,7 @@ lupopedia.conditional:
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: "docs\table_optimization_plan.md"
+  file_path_from_root: "lupo-docs\table_optimization_plan.md"
   file_hash: "e9f9c87afc319fe1af48116f965db4b3fcae72e03c0227077885792d56ae9ba6"
   last_updated_utc: "20260304"
   system_version: "4.0.56"
@@ -73,7 +73,7 @@ lupopedia.footer:
 
 lupopedia.see:
   mappings:
-    - ["docs\table_optimization_plan.md", "http://www.lupopedia.com/TABLE_OPTIMIZATION_PLAN"]
+    - ["lupo-docs\table_optimization_plan.md", "http://www.lupopedia.com/TABLE_OPTIMIZATION_PLAN"]
 
 lupopedia.close:
   post_actions:

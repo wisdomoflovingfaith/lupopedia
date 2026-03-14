@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "channels\42\broadcasts\20260225220000_1000_10000_42_changelog_updated_phase_6_complete.md"
+  file_path_from_root: "lupo-channels\42\broadcasts\20260225220000_1000_10000_42_changelog_updated_phase_6_complete.md"
   file_hash: "d148a0c6a103c9e781aed0434052c58d65dda8a369189660b01c646b120fe5ab"
-  file_path_from_root: "channels\42\broadcasts\20260225220000_1000_10000_42_changelog_updated_phase_6_complete.md"
+  file_path_from_root: "lupo-channels\42\broadcasts\20260225220000_1000_10000_42_changelog_updated_phase_6_complete.md"
   file_hash: "e7515f9eb7932d1c2198da0510baa93a3509f739b328abbb21788fa9ad91249c"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -155,7 +155,7 @@ Complete task list available at: `HUMAN_TASKS_CAPTAIN_10000.md`
   "references": [
     "CHANGELOG.md",
     "HUMAN_TASKS_CAPTAIN_10000.md",
-    "channels/0/tasks/active/20260225170000_task_0_10000_drop_tables_and_run_install.md"
+    "lupo-channels/0/tasks/active/20260225170000_task_0_10000_drop_tables_and_run_install.md"
   ],
   "implements": "changelog_update_completion",
   "depends_on": "final_verification_complete",

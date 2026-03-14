@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\channels\doctrine\WHS_LHP_INDEX.md"
+  file_path_from_root: "lupo-docs\channels\doctrine\WHS_LHP_INDEX.md"
   file_hash: "b3d12b1055a2f0430250115c997c0e1e20d095ff5c4af4ca444e44310fd1fdc4"
-  file_path_from_root: "docs\channels\doctrine\WHS_LHP_INDEX.md"
+  file_path_from_root: "lupo-docs\channels\doctrine\WHS_LHP_INDEX.md"
   file_hash: "8914491a9c6f726f4cce57e3d1dd9927f65dde8168636ce21e8f10a2727e69be"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -93,7 +93,7 @@ file:
 
 ### Universal Wolfie Header Specification (WHS)
 
-**File**: `docs/doctrine/UNIVERSAL_WOLFIE_HEADER_SPECIFICATION.md`  
+**File**: `lupo-docs/doctrine/UNIVERSAL_WOLFIE_HEADER_SPECIFICATION.md`  
 **Description**: Universal minimal core with 2 required fields  
 **Status**: Stable foundation for all header profiles  
 **Key Features**:
@@ -105,7 +105,7 @@ file:
 
 ### Lupopedia Header Profile (LHP)
 
-**File**: `docs/doctrine/LUPOPEDIA_HEADER_PROFILE.md`  
+**File**: `lupo-docs/doctrine/LUPOPEDIA_HEADER_PROFILE.md`  
 **Description**: Lupopedia's official extension of WHS with expressive metadata  
 **Status**: Required for all Lupopedia files  
 **Key Features**:
@@ -122,7 +122,7 @@ file:
 
 ### Mood System Doctrine
 
-**File**: `docs/doctrines/MOOD_SYSTEM_DOCTRINE.md`  
+**File**: `lupo-docs/doctrines/MOOD_SYSTEM_DOCTRINE.md`  
 **Description**: Vectorized, nested mood blocks with multi-axis emotional geometry  
 **Purpose**: Multi-dimensional emotional representation for complex agent interactions  
 **Key Features**:
@@ -134,7 +134,7 @@ file:
 
 ### Mood Axis Registry
 
-**File**: `docs/registries/MOOD_AXIS_REGISTRY.md`  
+**File**: `lupo-docs/registries/MOOD_AXIS_REGISTRY.md`  
 **Description**: Governed list of emotional axes preventing drift and synonyms  
 **Purpose**: Canonical definitions for all emotional dimensions  
 **Key Features**:
@@ -146,7 +146,7 @@ file:
 
 ### RGB Mapping Protocol (Color Doctrine)
 
-**File**: `docs/doctrines/COLOR_DOCTRINE.md`  
+**File**: `lupo-docs/doctrines/COLOR_DOCTRINE.md`  
 **Description**: Defines how emotional scores map to RGB colors  
 **Purpose**: Visual emotional communication and interface integration  
 **Key Features**:
@@ -158,7 +158,7 @@ file:
 
 ### Mood Calculation Protocol
 
-**File**: `docs/doctrines/MOOD_CALCULATION_PROTOCOL.md`  
+**File**: `lupo-docs/doctrines/MOOD_CALCULATION_PROTOCOL.md`  
 **Description**: Deterministic, governed mood computation from dialog text  
 **Purpose**: Consistent mood calculation across all agents  
 **Key Features**:
@@ -171,7 +171,7 @@ file:
 
 ### Thread Aggregation Protocol
 
-**File**: `docs/doctrines/THREAD_AGGREGATION_PROTOCOL.md`  
+**File**: `lupo-docs/doctrines/THREAD_AGGREGATION_PROTOCOL.md`  
 **Description**: Mood accumulation across dialogs with thread_summary blocks  
 **Purpose**: Thread-level emotional tracking and analysis  
 **Key Features**:
@@ -188,7 +188,7 @@ file:
 
 ### Dialog History File Specification
 
-**File**: `docs/agents/DIALOG_HISTORY_SPEC.md`  
+**File**: `lupo-docs/agents/DIALOG_HISTORY_SPEC.md`  
 **Description**: Standard for `<filename>_dialog.md` files in Lupopedia  
 **Purpose**: Per-file dialog history management  
 **Key Features**:
@@ -200,7 +200,7 @@ file:
 
 ### Thread-Level Dialog Specification
 
-**File**: `docs/agents/THREAD_LEVEL_DIALOG_SPEC.md`  
+**File**: `lupo-docs/agents/THREAD_LEVEL_DIALOG_SPEC.md`  
 **Description**: Standard for `/dialogs/<threadname>_dialog.md` files  
 **Purpose**: Thread-wide dialog management  
 **Key Features**:
@@ -216,7 +216,7 @@ file:
 
 ### Mood System Doctrine
 
-**File**: `docs/doctrines/MOOD_SYSTEM_DOCTRINE.md`  
+**File**: `lupo-docs/doctrines/MOOD_SYSTEM_DOCTRINE.md`  
 **Description**: Vectorized, nested mood blocks with multi-axis emotional geometry  
 **Purpose**: Multi-dimensional emotional representation for complex agent interactions  
 **Key Features**:
@@ -228,7 +228,7 @@ file:
 
 ### Mood Axis Registry
 
-**File**: `docs/registries/MOOD_AXIS_REGISTRY.md`  
+**File**: `lupo-docs/registries/MOOD_AXIS_REGISTRY.md`  
 **Description**: Governed list of emotional axes preventing drift and synonyms  
 **Purpose**: Canonical definitions for all emotional dimensions  
 **Key Features**:
@@ -240,7 +240,7 @@ file:
 
 ### RGB Mapping Protocol (Color Doctrine)
 
-**File**: `docs/doctrines/COLOR_DOCTRINE.md`  
+**File**: `lupo-docs/doctrines/COLOR_DOCTRINE.md`  
 **Description**: Defines how emotional scores map to RGB colors  
 **Purpose**: Visual emotional communication and interface integration  
 **Key Features**:
@@ -252,7 +252,7 @@ file:
 
 ### Mood Calculation Protocol
 
-**File**: `docs/doctrines/MOOD_CALCULATION_PROTOCOL.md`  
+**File**: `lupo-docs/doctrines/MOOD_CALCULATION_PROTOCOL.md`  
 **Description**: Deterministic, governed mood computation from dialog text  
 **Purpose**: Consistent mood calculation across all agents  
 **Key Features**:
@@ -265,7 +265,7 @@ file:
 
 ### Thread Aggregation Protocol
 
-**File**: `docs/doctrines/THREAD_AGGREGATION_PROTOCOL.md`  
+**File**: `lupo-docs/doctrines/THREAD_AGGREGATION_PROTOCOL.md`  
 **Description**: Mood accumulation across dialogs with thread_summary blocks  
 **Purpose**: Thread-level emotional tracking and analysis  
 **Key Features**:
@@ -278,7 +278,7 @@ file:
 
 ### Experience Ledger
 
-**File**: `docs/systems/EXPERIENCE_LEDGER.md`  
+**File**: `lupo-docs/systems/EXPERIENCE_LEDGER.md`  
 **Description**: Immutable event log for doctrinal mutations, consensus outcomes, and semantic drift observations  
 **Purpose**: Historical traceability for system evolution  
 **Key Features**:
@@ -290,7 +290,7 @@ file:
 
 ### Heterodox Engine
 
-**File**: `docs/systems/HETERODOX_ENGINE.md`  
+**File**: `lupo-docs/systems/HETERODOX_ENGINE.md`  
 **Description**: Controlled mechanisms for doctrinal evolution and meta-governance  
 **Purpose**: Formal process for doctrinal amendments  
 **Key Features**:
@@ -375,7 +375,7 @@ WHS (Universal Core)
 ### File Locations
 
 ```
-docs/
+lupo-docs/
 ├── doctrine/
 │   ├── UNIVERSAL_WOLFIE_HEADER_SPECIFICATION.md    # WHS
 │   ├── LUPOPEDIA_HEADER_PROFILE.md            # LHP
@@ -386,7 +386,7 @@ docs/
 │       └── THREAD_AGGREGATION_PROTOCOL.md      # Thread analysis
 ├── registries/
 │   └── MOOD_AXIS_REGISTRY.md               # Axis definitions
-└── agents/
+└── lupo-agents/
     ├── DIALOG_HISTORY_SPEC.md               # Per-file dialog
     └── THREAD_LEVEL_DIALOG_SPEC.md          # Thread dialog
 ```
@@ -417,7 +417,7 @@ Future updates will be reflected in individual component documents with version 
 
 ## 🔗 7. Implementation Resources
 
-- **Main Documentation Index**: `docs/README.md`
+- **Main Documentation Index**: `lupo-docs/README.md`
 - **Global Atoms**: `config/global_atoms.yaml`
 - **All component documents**: Referenced in sections above
 

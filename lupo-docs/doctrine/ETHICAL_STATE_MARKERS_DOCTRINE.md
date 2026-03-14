@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\doctrine\ETHICAL_STATE_MARKERS_DOCTRINE.md"
+  file_path_from_root: "lupo-docs\doctrine\ETHICAL_STATE_MARKERS_DOCTRINE.md"
   file_hash: "65333a6c2b9a2da755a54387beb9c4f7f04f4b7cac2227633e7f175120d08f6e"
-  file_path_from_root: "docs\doctrine\ETHICAL_STATE_MARKERS_DOCTRINE.md"
+  file_path_from_root: "lupo-docs\doctrine\ETHICAL_STATE_MARKERS_DOCTRINE.md"
   file_hash: "213ce38874c525b99b55686bad0a5995dea2f31706e69eb88fbfafcd03d69af7"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -62,7 +62,7 @@ lupopedia.footer:
 
 ---
 # FLIP Header (alias: Wolfie Header, CROP Header, FLIPPING Header)
-X-Lupo-File-Path: docs/doctrine/ETHICAL_STATE_MARKERS_DOCTRINE.md
+X-Lupo-File-Path: lupo-docs/doctrine/ETHICAL_STATE_MARKERS_DOCTRINE.md
 X-Lupo-Version: "4.0.27"
 X-Lupo-UTC-Timestamp: "20260222162242"
 X-Lupo-Channel: 42   # ANUBIS adoption channel

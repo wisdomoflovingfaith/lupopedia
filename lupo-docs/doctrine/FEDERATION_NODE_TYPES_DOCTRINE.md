@@ -10,7 +10,7 @@ lupopedia.headers:
   faucet_name: "cursor"
   artifact_type: "doctrine"
   artifact_kind: "federation"
-  purpose: "Federation node types and trait portability. Schema from install/TOON."
+  purpose: "Federation node types and trait portability. Schema from lupo-install/TOON."
 lupopedia.footer:
   last_verified: "20260312"
   last_verified_by: "wolfie"

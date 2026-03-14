@@ -70,5 +70,5 @@ paired_actor_id: 10000
 
 ## Documentation
 
-- [docs/lupopedia_whoami_readme.md](../../../../../../../docs/lupopedia_whoami_readme.md) — Resolution order and Section 8
+- [lupo-docs/lupopedia_whoami_readme.md](../../../../../../../docs/lupopedia_whoami_readme.md) — Resolution order and Section 8
 - [lupo-database/session.md](../../../../../../session.md) — Live session file

@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\channels\doctrine\KIP_DOCTRINE.md"
+  file_path_from_root: "lupo-docs\channels\doctrine\KIP_DOCTRINE.md"
   file_hash: "6bfb19ceb982471d852e8dccac5ca161efa19337c102a5588631ae52cf94b30b"
-  file_path_from_root: "docs\channels\doctrine\KIP_DOCTRINE.md"
+  file_path_from_root: "lupo-docs\channels\doctrine\KIP_DOCTRINE.md"
   file_hash: "b921164324465e6a0496e92252146dee7005482cbf6720e4388f62ed6a8adef9"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -151,7 +151,7 @@ KIP is designed to interoperate seamlessly with the existing Critique Integratio
 - Structured feedback loops complement CIP workflows
 - Faster doctrine refinement through KIP enhancements
 
-See `docs/kip/KIP_CIP_INTEROPERABILITY_GUIDELINES.md` for complete interoperability documentation.
+See `lupo-docs/kip/KIP_CIP_INTEROPERABILITY_GUIDELINES.md` for complete interoperability documentation.
 
 ---
 

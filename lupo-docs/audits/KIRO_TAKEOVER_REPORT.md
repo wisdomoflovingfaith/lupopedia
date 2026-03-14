@@ -132,7 +132,7 @@ SELECT * FROM lupo_channels WHERE channel_id = 42;
 - List Actors: `http://localhost/lupopedia/list/actors`
 
 ### Missing File
-- `docs/help/LUPOPEDIA_HELP_INDEX.md` - NOT FOUND
+- `lupo-docs/help/LUPOPEDIA_HELP_INDEX.md` - NOT FOUND
 - Should I generate this?
 
 ---

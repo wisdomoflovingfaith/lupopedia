@@ -5,7 +5,7 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "optimization_plan"
   lupopedia.edges: []
-  file_path_from_root: "docs/plans/file_opt_4.1.0.md"
+  file_path_from_root: "lupo-docs/plans/file_opt_4.1.0.md"
   file_hash: "248e95e34b28722fd7cd5e0e69d0f090ef4852240aa1a83e39c99649032c2d4f"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -40,16 +40,16 @@ lupopedia.footer:
 
 ## Current File Distribution
 
-- **docs\database\lupopedia\tables**: 258 files
-- **legacy\wordpress\wp-includes**: 249 files
+- **lupo-docs\database\lupopedia\tables**: 258 files
+- **lupo-legacy\wordpress\wp-includes**: 249 files
 - **images**: 245 files
-- **docs\toons**: 216 files
-- **database\csv_data**: 189 files
-- **docs\channels\doctrine**: 175 files
+- **lupo-docs\toons**: 216 files
+- **lupo-database\csv_data**: 189 files
+- **lupo-docs\channels\doctrine**: 175 files
 - **.**: 151 files
-- **legacy\craftysyntax\images**: 151 files
-- **legacy\craftysyntax**: 131 files
-- **uploads\channels\2026\01**: 129 files
+- **lupo-legacy\craftysyntax\images**: 151 files
+- **lupo-legacy\craftysyntax**: 131 files
+- **lupo-uploads\channels\2026\01**: 129 files
 
 
 ## Optimization Targets
@@ -61,7 +61,7 @@ lupopedia.footer:
 4. **Node Modules**: Exclude vendor dependencies from repository
 
 ### Specific Actions
-- Consolidate actor help files in channels/42/actors/
+- Consolidate actor help files in lupo-channels/42/actors/
 - Archive legacy documentation to archive/docs/
 - Compress or remove test output directories
 - Update .gitignore to exclude temporary files

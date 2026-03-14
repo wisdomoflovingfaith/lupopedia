@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\channels\doctrine\emotional-agent-range.md"
+  file_path_from_root: "lupo-docs\channels\doctrine\emotional-agent-range.md"
   file_hash: "5c86fd86c1813702034bfd101e737e3fcbd31779be3f4de89d69a591ff1e1d24"
-  file_path_from_root: "docs\channels\doctrine\emotional-agent-range.md"
+  file_path_from_root: "lupo-docs\channels\doctrine\emotional-agent-range.md"
   file_hash: "013b73d9fb19d3d01e1cbde44ca318b106bc62912d785035af3db08d6fd875b0"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -421,8 +421,8 @@ OUTPUT: {GEOMETRY_TYPE} vector and optional tonal metadata
 
 ## **Related Documentation**
 
-- **Reflective Emotional Geometry Doctrine:** `docs/doctrine/REFLECTIVE_EMOTIONAL_GEOMETRY_DOCTRINE.md` - Mathematical foundation for emotional metadata
-- **Counting-in-Light Doctrine:** `docs/appendix/COUNTING_IN_LIGHT.md` - Emotional coordinate system (R, G, B axes)
+- **Reflective Emotional Geometry Doctrine:** `lupo-docs/doctrine/REFLECTIVE_EMOTIONAL_GEOMETRY_DOCTRINE.md` - Mathematical foundation for emotional metadata
+- **Counting-in-Light Doctrine:** `lupo-docs/appendix/COUNTING_IN_LIGHT.md` - Emotional coordinate system (R, G, B axes)
 - **DIALOG Agent Guide:** `lupo-agents/3/COUNTING_IN_LIGHT.md` - DIALOG mood assignment guide
 - **HUMOR Agent Guide:** `lupo-agents/14/REFLECTIVE_HUMOR_GEOMETRY.md` - HUMOR humor vector assignment guide
 

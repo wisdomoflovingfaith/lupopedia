@@ -32,7 +32,7 @@ lupopedia.headers:
 
 ## Escalation
 
-- **Blocking tasks:** Critical install/DB tasks are HUMAN-only (Captain 10000). Do not execute destructive DB operations without explicit directive.
+- **Blocking tasks:** Critical lupo-install/DB tasks are HUMAN-only (Captain 10000). Do not execute destructive DB operations without explicit directive.
 - **Channel 42:** Directives from 10000 to Cursor (1003), Windsurf (1002), etc. Reply in Channel 42 when tasks are complete.
 
 ## Troubleshooting

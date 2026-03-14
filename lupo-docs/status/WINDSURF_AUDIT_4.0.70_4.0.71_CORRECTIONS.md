@@ -22,8 +22,8 @@ lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
     - { to: "lupo-docs/status/ANTIGRAVITY_SEMANTIC_NAVBAR_REBUILD_4.0.71.md", type: "references", weight: 0.9 }
-    - { to: "database/migrations/20260312_session_model_rewrite.sql", type: "references", weight: 0.8 }
-    - { to: "database/migrations/20260312_authoritative_semantic_navbar_rebuild.sql", type: "references", weight: 0.8 }
+    - { to: "lupo-database/migrations/20260312_session_model_rewrite.sql", type: "references", weight: 0.8 }
+    - { to: "lupo-database/migrations/20260312_authoritative_semantic_navbar_rebuild.sql", type: "references", weight: 0.8 }
   semantic_tags: ["audit", "validation", "cursor", "antigravity", "semantic_navbar", "session_model"]
 
 lupopedia.footer:
@@ -86,7 +86,7 @@ Windsurf (actor_id 1002) has completed a comprehensive audit of Cursor (actor_id
 
 ### 2.2 Migration Validation ✅
 
-**File:** `database/migrations/20260312_session_model_rewrite.sql`
+**File:** `lupo-database/migrations/20260312_session_model_rewrite.sql`
 - ✅ Correctly drops legacy tables: unified_sessions, sessions, session_data, lupo_sessions
 - ✅ Creates canonical Model A schema
 - ✅ No data migration attempted (correct behavior)
@@ -138,8 +138,8 @@ The following tables were added to installer SQL and migrations but **lack corre
 ### 3.2 Migration Files Validation ✅
 
 **Files Verified:**
-- `database/migrations/20260312_semantic_navbar_backend_update.sql` ✅
-- `database/migrations/20260312_authoritative_semantic_navbar_rebuild.sql` ✅
+- `lupo-database/migrations/20260312_semantic_navbar_backend_update.sql` ✅
+- `lupo-database/migrations/20260312_authoritative_semantic_navbar_rebuild.sql` ✅
 
 Both migrations correctly implement doctrine-aligned schemas with BIGINT timestamps and no foreign keys.
 
@@ -245,7 +245,7 @@ lupo_reference_map
 
 1. **Create Missing TOON Files** (Priority: CRITICAL)
    - Generate TOON files for 9 missing tables
-   - Run `python scripts/generate_toon_files.py` after schema updates
+   - Run `python lupo-scripts/generate_toon_files.py` after schema updates
    - Validate TOON-Schema consistency
 
 2. **Update Schema Registry** (Priority: HIGH)

@@ -30,7 +30,7 @@ lupopedia.footer:
 
 # Before You Read This File
 
-**`lupopedia.init`** and the initialization process are **not beginner topics**. To correctly understand and modify anything that uses `lupopedia.init`, you must first read and fully understand the following doctrine files in order.
+**`lupopedia.init`** is the LUPOPEDIA HEADERS block that lists **required reading** and **required context** for a file: what must be read or understood **before** reading that file. It is **not** for file metadata (artifact_type, file_identity, namespace, etc.); metadata belongs in `lupopedia.headers` or `lupopedia.metadata`. This document and the initialization doctrine below are **not beginner topics**. To correctly understand and modify anything that uses `lupopedia.init`, you must first read and fully understand the following doctrine files in order.
 
 ---
 
@@ -48,7 +48,7 @@ lupopedia.footer:
 4. **Agent & Faucet Doctrine** — [lupo-docs/doctrine/ActorFaucetOntology.md](doctrine/ActorFaucetOntology.md), [lupo-docs/doctrine/FAUCET_TRACEABILITY_DOCTRINE.md](doctrine/FAUCET_TRACEABILITY_DOCTRINE.md)  
    Actors orchestrate; faucets execute; sessions carry context. **Why:** Init/close blocks can reference actor_id and faucet; misunderstanding causes misattribution and broken delegation.
 
-5. **Semantic graph & collections** (recommended) — [lupo-docs/channels/doctrine/SEMANTIC_GRAPH_DOCTRINE.md](channels/doctrine/SEMANTIC_GRAPH_DOCTRINE.md), [lupo-docs/doctrine/COLLECTIONS_DOCTRINE.md](doctrine/COLLECTIONS_DOCTRINE.md)  
+5. **Semantic graph & collections** (recommended) — [lupo-docs/channels/doctrine/SEMANTIC_GRAPH_DOCTRINE.md](lupo-channels/doctrine/SEMANTIC_GRAPH_DOCTRINE.md), [lupo-docs/doctrine/COLLECTIONS_DOCTRINE.md](doctrine/COLLECTIONS_DOCTRINE.md)  
    How content participates in the semantic graph and collections. **Why:** When init applies to such content, scope and context resolution depend on these doctrines.
 
 ---

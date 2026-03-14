@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\doctrine\COMPATIBILITY_MATRIX.md"
+  file_path_from_root: "lupo-docs\doctrine\COMPATIBILITY_MATRIX.md"
   file_hash: "f8453c23f34d61ba4fc62fcd1c40581673fbac4849a541d5c9f202d1615e3a82"
-  file_path_from_root: "docs\doctrine\COMPATIBILITY_MATRIX.md"
+  file_path_from_root: "lupo-docs\doctrine\COMPATIBILITY_MATRIX.md"
   file_hash: "e6293937c282294fdf2f3292f990c726098ccdd7dff7f9d5e2097cf6f74ef529"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -64,7 +64,7 @@ lupopedia.footer:
 ---
 # FLIP Header (alias: Wolfie Header, CROP Header, FLIPPING Header)
 wolfie.headers: explicit architecture with structured clarity for every file.
-file_path_from_root: docs/doctrine/COMPATIBILITY_MATRIX.md
+file_path_from_root: lupo-docs/doctrine/COMPATIBILITY_MATRIX.md
 file.last_modified_system_version: "4.0.16"
 file.last_modified_utc: "20260218000000"
 channel_id: 42   # ANUBIS adoption channel
@@ -74,7 +74,7 @@ atoms:
   recovery_event: true
 X-Lupo-Actor-ID: 2035
 X-Lupo-Actor-Identity: "Lupopedia Audit Tool (Auto-Fixed)"
-X-Lupo-File-Path: docs/doctrine/COMPATIBILITY_MATRIX.md
+X-Lupo-File-Path: lupo-docs/doctrine/COMPATIBILITY_MATRIX.md
 ---
 
 # PHP Compatibility Matrix (5.3 → 8.1+)

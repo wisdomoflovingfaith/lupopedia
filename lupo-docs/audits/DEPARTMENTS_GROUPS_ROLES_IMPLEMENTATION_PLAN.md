@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\audits\DEPARTMENTS_GROUPS_ROLES_IMPLEMENTATION_PLAN.md"
+  file_path_from_root: "lupo-docs\audits\DEPARTMENTS_GROUPS_ROLES_IMPLEMENTATION_PLAN.md"
   file_hash: "7055ad5c2a44ec5e6e4087458a89d10ad40c0ada13bb1b085c80bbca262f06f5"
-  file_path_from_root: "docs\audits\DEPARTMENTS_GROUPS_ROLES_IMPLEMENTATION_PLAN.md"
+  file_path_from_root: "lupo-docs\audits\DEPARTMENTS_GROUPS_ROLES_IMPLEMENTATION_PLAN.md"
   file_hash: "576ea8b31e87ceb4835d58258db8f5d687793f921e34a24a5f9f95c6952d3581"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -63,7 +63,7 @@ lupopedia.footer:
 # Departments / Groups / Roles Unification — Implementation Planning Phase
 
 **Date:** 2026-02-12  
-**Prerequisite:** docs/audits/DEPARTMENTS_GROUPS_ROLES_STRUCTURAL_FEASIBILITY_REPORT.md  
+**Prerequisite:** lupo-docs/audits/DEPARTMENTS_GROUPS_ROLES_STRUCTURAL_FEASIBILITY_REPORT.md  
 **Constraint:** Planning only; no code or schema changes in this document.
 
 ---
@@ -118,7 +118,7 @@ lupopedia.footer:
 - **After unification:**  
   - **User-level:** Unchanged. lupo_permissions (target_type, target_id, user_id) → allow if current user’s auth_user_id (or actor→auth_user) matches.  
   - **Department-level (new):** Resolve actor → list of department_id via lupo_actor_departments. For each (target_type, target_id), allow if any lupo_permissions row exists with (target_type, target_id, department_id) and permission sufficient.  
-  - **Channel roles:** Unchanged. lupo_channel_roles (channel_id = 1 for “global”) for admin/operator.  
+  - **Channel roles:** Unchanged. lupo_channel_roles (channel_id = 1 for “global”) for lupo-admin/operator.  
   - **Combined:** Allow if user_id match OR any department_id match OR channel_roles grant.
 
 ### 2.2 Files to update for permission system
@@ -132,13 +132,13 @@ lupopedia.footer:
 
 ### 2.3 Doctrine documents to update (permission/groups)
 
-- **docs/REQUIRED_TABLES_4.1.0.md:** Remove lupo_actor_group_membership and lupo_groups from required tables; add note that permissions are user- and department-scoped only.
-- **docs/channels/schema/DATABASE_SCHEMA.md:** Rewrite or remove sections that describe actor_group_membership, groups, group_id, group_modules; replace with department-based permission and actor_departments.
+- **lupo-docs/REQUIRED_TABLES_4.1.0.md:** Remove lupo_actor_group_membership and lupo_groups from required tables; add note that permissions are user- and department-scoped only.
+- **lupo-docs/channels/schema/DATABASE_SCHEMA.md:** Rewrite or remove sections that describe actor_group_membership, groups, group_id, group_modules; replace with department-based permission and actor_departments.
 
 ### 2.4 TOONs or semantic OS components that reference groups
 
-- **TOONs:** Generated from live DB by scripts/generate_toon_files.py. After schema migration, regenerate TOONs so that lupo_groups and lupo_actor_group_membership no longer exist and affected tables show department_id instead of group_id. No manual TOON edits (Cursor must not create/edit TOONs).
-- **docs/channels/schema/DATABASE_SCHEMA.md:** Contains narrative references to groups, actor_group_membership, group_modules; must be updated to reflect departments-only ontology.
+- **TOONs:** Generated from live DB by lupo-scripts/generate_toon_files.py. After schema migration, regenerate TOONs so that lupo_groups and lupo_actor_group_membership no longer exist and affected tables show department_id instead of group_id. No manual TOON edits (Cursor must not create/edit TOONs).
+- **lupo-docs/channels/schema/DATABASE_SCHEMA.md:** Contains narrative references to groups, actor_group_membership, group_modules; must be updated to reflect departments-only ontology.
 
 ---
 
@@ -148,9 +148,9 @@ lupopedia.footer:
 
 | File | Change |
 |------|--------|
-| database/migrations/install_new_lupopedia.sql | See §1.4: remove group tables; add department_id and remove group_id from the seven tables. |
+| lupo-database/migrations/install_new_lupopedia.sql | See §1.4: remove group tables; add department_id and remove group_id from the seven tables. |
 | install.php | No group_id or group table creation; confirm it only invokes install_new_lupopedia.sql and seed; no change if so. |
-| database/migrations/seed_lupopedia.sql | Already uses department_id for channels/federation_nodes; no group_id. No change. |
+| lupo-database/migrations/seed_lupopedia.sql | Already uses department_id for lupo-channels/federation_nodes; no group_id. No change. |
 
 ### 3.2 Wizard steps affected
 
@@ -164,18 +164,18 @@ lupopedia.footer:
 
 | File | Change |
 |------|--------|
-| database/migrations/install_new_lupopedia.sql | Full schema edits per §1.1 and §1.4. |
-| database/migrations/dev_20260204_fix_schema_alignment.sql | Remove group table MODIFYs; replace group_id with department_id for the seven tables; adjust indexes. |
-| database/migrations/dev_20260206_reserved_word_column_renames.sql | Remove ALTER for lupo_actor_group_membership (table dropped). |
-| database/migrations/import_from_old_crafty_syntax.sql | lupo_collections INSERT: replace group_id with department_id (NULL or 1). lupo_collection_tabs INSERTs: same. No inserts into lupo_groups or lupo_actor_group_membership. |
-| database/install/generate_content_seed.php | Output department_id instead of group_id; use NULL or 1. |
-| database/install/generate_hierarchical_seed_3.0.12.php | Output department_id in INSERT columns; remove group_id. |
-| database/install/seed_collection_0_content.sql | Replace group_id column and values with department_id (NULL or 1). |
-| database/install/seed_collection_0_system_tabs.sql | Replace group_id with department_id. |
-| database/install/seed_collection_0_hierarchical_tabs_3.0.12.sql | Replace group_id with department_id. |
-| database/install/truth_test_data_captain_wolfie.sql | Replace group_id with department_id if present. |
-| database/install/lupopedia_seed_mysql.sql | Remove or rewrite INSERT into lupo_groups (current INSERT uses wrong columns: domain_id, group_name, created_at); if file is still used, remove lupo_groups insert entirely. |
-| database/migrations_legacy/* (reference only) | Do not run legacy migrations; document that group_id and group tables are retired so future readers don’t reintroduce them. |
+| lupo-database/migrations/install_new_lupopedia.sql | Full schema edits per §1.1 and §1.4. |
+| lupo-database/migrations/dev_20260204_fix_schema_alignment.sql | Remove group table MODIFYs; replace group_id with department_id for the seven tables; adjust indexes. |
+| lupo-database/migrations/dev_20260206_reserved_word_column_renames.sql | Remove ALTER for lupo_actor_group_membership (table dropped). |
+| lupo-database/migrations/import_from_old_crafty_syntax.sql | lupo_collections INSERT: replace group_id with department_id (NULL or 1). lupo_collection_tabs INSERTs: same. No inserts into lupo_groups or lupo_actor_group_membership. |
+| lupo-database/install/generate_content_seed.php | Output department_id instead of group_id; use NULL or 1. |
+| lupo-database/install/generate_hierarchical_seed_3.0.12.php | Output department_id in INSERT columns; remove group_id. |
+| lupo-database/install/seed_collection_0_content.sql | Replace group_id column and values with department_id (NULL or 1). |
+| lupo-database/install/seed_collection_0_system_tabs.sql | Replace group_id with department_id. |
+| lupo-database/install/seed_collection_0_hierarchical_tabs_3.0.12.sql | Replace group_id with department_id. |
+| lupo-database/install/truth_test_data_captain_wolfie.sql | Replace group_id with department_id if present. |
+| lupo-database/install/lupopedia_seed_mysql.sql | Remove or rewrite INSERT into lupo_groups (current INSERT uses wrong columns: domain_id, group_name, created_at); if file is still used, remove lupo_groups insert entirely. |
+| lupo-database/migrations_legacy/* (reference only) | Do not run legacy migrations; document that group_id and group tables are retired so future readers don’t reintroduce them. |
 
 ### 3.4 Crafty Syntax import and normalization
 
@@ -191,7 +191,7 @@ lupopedia.footer:
 
 | File | Update type | Notes |
 |------|-------------|--------|
-| app/auth/AuthRoleResolver.php | Permission resolution | Optionally add department-based path for admin/owner; keep channel_roles + user_id. |
+| app/auth/AuthRoleResolver.php | Permission resolution | Optionally add department-based path for lupo-admin/owner; keep channel_roles + user_id. |
 | app/auth/AuthManager.php | No group references | No change unless adding a permission API that exposes department-based checks. |
 | app/Services/SavedCollectionsService.php | Permission resolution | Optionally add department_id permission check for collections; today user_id only. |
 | lupo-includes/functions/auth-helpers.php | No group refs | No change. |
@@ -204,9 +204,9 @@ lupopedia.footer:
 | lupo-includes/header.php, footer.php | No group refs | No change. |
 | lupo-includes/module-loader.php | Department / channel_roles | Already uses channel roles and department_id where needed. No group_id. |
 | lupo-includes/models/GroundedAgentModel.php | Permission wording | If it references “permissions table” or “group”, update to department/permission model. |
-| api/list_user_collections.php | Permission | Uses SavedCollectionsService; if that gains department permission, behavior may extend automatically. |
-| database/install/generate_content_seed.php | Schema | Replace group_id with department_id in generated SQL. |
-| database/install/generate_hierarchical_seed_3.0.12.php | Schema | Replace group_id with department_id in generated SQL. |
+| lupo-api/list_user_collections.php | Permission | Uses SavedCollectionsService; if that gains department permission, behavior may extend automatically. |
+| lupo-database/install/generate_content_seed.php | Schema | Replace group_id with department_id in generated SQL. |
+| lupo-database/install/generate_hierarchical_seed_3.0.12.php | Schema | Replace group_id with department_id in generated SQL. |
 | app/Http/Controllers/CraftyImportController.php, app/Services/CraftyConfigTransformer.php | No group logic | Verify no group references; config/permissions wording only. |
 | ai-actors/index.php | Department | Already department_id. No change. |
 
@@ -220,21 +220,21 @@ No application code currently reads lupo_groups or lupo_actor_group_membership; 
 
 | Document | Sections / actions |
 |----------|---------------------|
-| docs/doctrine/DEVELOPMENT_WORKFLOW_DOCTRINE.md | If it mentions “groups” or “group tables”, replace with “departments” and “department-scoped permissions”. Grep found no matches; add a short note that the organizational unit is department only (no groups). |
-| docs/doctrine/CLASS_CONVERSION_DOCTRINE.md | No change; “group” there means “group related functions”, not lupo_groups. |
-| docs/doctrine/COMPATIBILITY_MATRIX.md | No group/permission content found. If a later version adds schema matrix, list department_id and omit group_id. |
-| docs/doctrine/MINIMAL_HOSTING_REQUIREMENTS.md | No change. |
-| docs/doctrine/PHP_COMPATIBILITY_AND_MINIMAL_HOSTING_DOCTRINE.md | No change. |
-| docs/REQUIRED_TABLES_4.1.0.md | Remove lupo_actor_group_membership and lupo_groups from required tables. Add note: “Organizational scope and permission-bearing entity is department only; group tables are removed.” |
-| docs/channels/schema/DATABASE_SCHEMA.md | Rewrite “actor_group_membership” and “groups” / “group_modules” sections to describe actor_departments and department-scoped permissions only. Remove or replace lines 204, 313–319, 593, 991–1016. |
-| docs/doctrine/SCHEMA_AND_TOON_ALIGNMENT_CONTEXT.md | No group/permission matches. If it lists tables, remove lupo_groups and lupo_actor_group_membership; note department_id on permissions/collections/contents/analytics. |
-| docs/doctrine/migrations/livehelp_operator_departments_migration.md, livehelp_departments_migration.md | Confirm they describe migration to lupo_departments and lupo_actor_departments only; no reference to groups. |
-| docs/audits/DEPARTMENTS_GROUPS_ROLES_STRUCTURAL_FEASIBILITY_REPORT.md | Keep as-is; it is the prerequisite. |
+| lupo-docs/doctrine/DEVELOPMENT_WORKFLOW_DOCTRINE.md | If it mentions “groups” or “group tables”, replace with “departments” and “department-scoped permissions”. Grep found no matches; add a short note that the organizational unit is department only (no groups). |
+| lupo-docs/doctrine/CLASS_CONVERSION_DOCTRINE.md | No change; “group” there means “group related functions”, not lupo_groups. |
+| lupo-docs/doctrine/COMPATIBILITY_MATRIX.md | No group/permission content found. If a later version adds schema matrix, list department_id and omit group_id. |
+| lupo-docs/doctrine/MINIMAL_HOSTING_REQUIREMENTS.md | No change. |
+| lupo-docs/doctrine/PHP_COMPATIBILITY_AND_MINIMAL_HOSTING_DOCTRINE.md | No change. |
+| lupo-docs/REQUIRED_TABLES_4.1.0.md | Remove lupo_actor_group_membership and lupo_groups from required tables. Add note: “Organizational scope and permission-bearing entity is department only; group tables are removed.” |
+| lupo-docs/channels/schema/DATABASE_SCHEMA.md | Rewrite “actor_group_membership” and “groups” / “group_modules” sections to describe actor_departments and department-scoped permissions only. Remove or replace lines 204, 313–319, 593, 991–1016. |
+| lupo-docs/doctrine/SCHEMA_AND_TOON_ALIGNMENT_CONTEXT.md | No group/permission matches. If it lists tables, remove lupo_groups and lupo_actor_group_membership; note department_id on permissions/collections/contents/analytics. |
+| lupo-docs/doctrine/migrations/livehelp_operator_departments_migration.md, livehelp_departments_migration.md | Confirm they describe migration to lupo_departments and lupo_actor_departments only; no reference to groups. |
+| lupo-docs/audits/DEPARTMENTS_GROUPS_ROLES_STRUCTURAL_FEASIBILITY_REPORT.md | Keep as-is; it is the prerequisite. |
 | .cursor/rules (TOON source of truth, PK naming, etc.) | No change; department_id already follows PK/reference naming. |
 
 ### 5.2 TOON doctrine
 
-- TOONs are generated by scripts/generate_toon_files.py from the live database. After schema migration, regenerate TOONs. Do not manually create or edit TOON files (per project rules).
+- TOONs are generated by lupo-scripts/generate_toon_files.py from the live database. After schema migration, regenerate TOONs. Do not manually create or edit TOON files (per project rules).
 
 ---
 

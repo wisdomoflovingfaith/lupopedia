@@ -5,15 +5,15 @@
     "`file_path` varchar(512) NOT NULL",
     "`file_hash` varchar(64)",
     "`file_content` longtext",
-    "`detected_utc` bigint NOT NULL COMMENT 'YYYYMMDDHHIISS'",
-    "`priority` tinyint DEFAULT 5 COMMENT '1-10, lower = higher priority'",
-    "`status` varchar(32) DEFAULT 'pending' COMMENT 'pending, processing, recovered, failed, quarantined'",
-    "`detection_method` varchar(64) COMMENT 'missing_header, malformed_header, invalid_actor, etc.'",
-    "`header_snapshot` text COMMENT 'Partial header if any'",
+    "`detected_utc` bigint NOT NULL",
+    "`priority` tinyint DEFAULT 5",
+    "`status` varchar(32) DEFAULT 'pending'",
+    "`detection_method` varchar(64)",
+    "`header_snapshot` text",
     "`error_message` text",
     "`attempts` tinyint DEFAULT 0",
     "`last_attempt_utc` bigint",
-    "`assigned_to_actor_id` bigint COMMENT 'ANUBIS instance processing this'",
+    "`assigned_to_actor_id` bigint",
     "`filesystem_copy_exists` tinyint DEFAULT 1",
     "`filesystem_backup_path` varchar(512)",
     "`created_utc` bigint NOT NULL",
@@ -23,7 +23,7 @@
   "data": [],
   "indexes": [
     {
-      "index_name": "idx_detected",
+      "index_name": "lupo_anubis_queue_idx_detected",
       "columns": [
         "detected_utc"
       ],
@@ -31,7 +31,7 @@
       "index_type": "BTREE"
     },
     {
-      "index_name": "idx_file_path",
+      "index_name": "lupo_anubis_queue_idx_file_path",
       "columns": [
         "file_path"
       ],
@@ -39,7 +39,7 @@
       "index_type": "BTREE"
     },
     {
-      "index_name": "idx_status_priority",
+      "index_name": "lupo_anubis_queue_idx_status_priority",
       "columns": [
         "status",
         "priority"
@@ -48,7 +48,7 @@
       "index_type": "BTREE"
     },
     {
-      "index_name": "uniq_file_hash",
+      "index_name": "lupo_anubis_queue_uniq_file_hash",
       "columns": [
         "file_hash"
       ],

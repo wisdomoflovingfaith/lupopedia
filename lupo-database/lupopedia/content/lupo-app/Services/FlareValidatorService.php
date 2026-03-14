@@ -204,7 +204,7 @@ class FlareValidatorService
         $startTime = microtime(true);
         $result = new ValidationResult();
 
-        $toonPath = LUPOPEDIA_PATH . "docs/toons/{$tableName}.toon.json";
+        $toonPath = LUPOPEDIA_PATH . "lupo-database/lupopedia/toon/{$tableName}.toon.json";
         if (!file_exists($toonPath)) {
             $result->warnings[] = array('message' => "TOON file not found for table: $tableName");
             $result->validationTime = microtime(true) - $startTime;

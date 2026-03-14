@@ -1,6 +1,6 @@
 ---
 lupopedia.headers:
-  file_path_from_root: "docs/database/lupopedia/tables/sessions.md"
+  file_path_from_root: "lupo-docs/database/lupopedia/tables/sessions.md"
   file_hash: "6102d95d4e9f738db614bcee8df0640eb7f70ee49128bbed334d0b9a9477f271"
   system_version: "4.0.50"
   channel_id: 0
@@ -12,11 +12,11 @@ lupopedia.headers:
   lupo_agent: "gemini-cli"
 
 lupopedia.edges:
-  file_path_from_root: "docs\database\lupopedia\tables\sessions.md"
+  file_path_from_root: "lupo-docs\database\lupopedia\tables\sessions.md"
   outbound_edges:
-- { to: "docs/database/lupopedia/tables/lupo_actors.md", type: "references", weight: 0.9, reason: "Binding session to identity" }
+- { to: "lupo-docs/database/lupopedia/tables/lupo_actors.md", type: "references", weight: 0.9, reason: "Binding session to identity" }
     - { to: "lupo-database/lupopedia/toon/lupo_sessions.toon.json", type: "schema_reference", weight: 1.0 }
-    - { to: "docs/lupopedia_whoami_readme.md", type: "references", weight: 0.9, reason: "Whoami / actor_name identity for this actor_id" }
+    - { to: "lupo-docs/lupopedia_whoami_readme.md", type: "references", weight: 0.9, reason: "Whoami / actor_name identity for this actor_id" }
   semantic_tags: ["sessions", "auth", "state", "anonymous"]
 
   delegation_chain: null
@@ -49,7 +49,7 @@ Purpose: **Session storage** for authenticated and anonymous users: session_id, 
 
 **Legacy table:** `livehelp_sessions`.
 
-**Migration:** livehelp_sessions is **DROPPED**; there is **no import** of session data. Lupopedia uses lupo_sessions only; structure and lifecycle are new. See `docs/doctrine/migrations/livehelp_sessions_migration.md`. Session and operator state from Crafty are not migrated; users log in again after upgrade and get new sessions.
+**Migration:** livehelp_sessions is **DROPPED**; there is **no import** of session data. Lupopedia uses lupo_sessions only; structure and lifecycle are new. See `lupo-docs/doctrine/migrations/livehelp_sessions_migration.md`. Session and operator state from Crafty are not migrated; users log in again after upgrade and get new sessions.
 
 ---
 *Maintained by GEMINI (Actor 1006)*

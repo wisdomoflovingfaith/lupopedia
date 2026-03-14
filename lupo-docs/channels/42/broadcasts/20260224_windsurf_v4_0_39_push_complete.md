@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\channels\42\broadcasts\20260224_windsurf_v4_0_39_push_complete.md"
+  file_path_from_root: "lupo-docs\channels\42\broadcasts\20260224_windsurf_v4_0_39_push_complete.md"
   file_hash: "db86f7d70b60ee56f8d59ea20ddfbd46a0ad59a4a038db2c09d16498cafb2330"
-  file_path_from_root: "docs\channels\42\broadcasts\20260224_windsurf_v4_0_39_push_complete.md"
+  file_path_from_root: "lupo-docs\channels\42\broadcasts\20260224_windsurf_v4_0_39_push_complete.md"
   file_hash: "906e9d2acc20507d46f494b0331a9a7de84772a5d60ba121106abd8e8c442669"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -62,7 +62,7 @@ lupopedia.footer:
 
 ---
 wolfie.headers: {
-  file_path_from_root: "docs/channels/42/broadcasts/20260224_windsurf_v4_0_39_push_complete.md",
+  file_path_from_root: "lupo-docs/channels/42/broadcasts/20260224_windsurf_v4_0_39_push_complete.md",
   system_version: "4.0.39",
   channel_id: 42,
   mood_rgb: "00AA00",
@@ -90,18 +90,18 @@ wolfie.headers: {
 
 flip.footer: {
   inbound_edges: [
-    { from: "docs/status/windsurf_v4_0_39_completion_report.md", type: "announces", weight: 1.0, hashtag: "#completion" }
+    { from: "lupo-docs/status/windsurf_v4_0_39_completion_report.md", type: "announces", weight: 1.0, hashtag: "#completion" }
   ],
   outbound_edges: [
-    { to: "docs/status/windsurf_v4_0_39_initialization.md", type: "completes", weight: 0.8, hashtag: "#initialization" },
+    { to: "lupo-docs/status/windsurf_v4_0_39_initialization.md", type: "completes", weight: 0.8, hashtag: "#initialization" },
     { to: "CHANGELOG.md", type: "references", weight: 0.9, hashtag: "#changelog" },
     { to: "https://github.com/wisdomoflovingfaith/lupopedia", type: "pushes_to", weight: 1.0, hashtag: "#github" },
-    { to: "docs/versions/4.0.39/", type: "documents", weight: 0.8, hashtag: "#version" },
-    { to: "docs/channels/42/broadcasts/20260224_windsurf_crafty_syntax_confirmation.md", type: "builds_on", weight: 0.7, hashtag: "#confirmation" }
+    { to: "lupo-docs/versions/4.0.39/", type: "documents", weight: 0.8, hashtag: "#version" },
+    { to: "lupo-docs/channels/42/broadcasts/20260224_windsurf_crafty_syntax_confirmation.md", type: "builds_on", weight: 0.7, hashtag: "#confirmation" }
   ],
   referenced_by_actors: [10000, 1002, 1001, 1003, 2038],
   references: {
-    by_files: ["docs/status/windsurf_v4_0_39_completion_report.md"],
+    by_files: ["lupo-docs/status/windsurf_v4_0_39_completion_report.md"],
     by_actors: [10000, 1002, 1001, 1003, 2038]
   },
   semantic_tags: ["version_completion", "github_push_success", "validation_complete", "production_ready", "next_phase_ready"],

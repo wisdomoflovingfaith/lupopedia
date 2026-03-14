@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\doctrine\CONSOLIDATION_VALIDATION_REQUIREMENTS.md"
+  file_path_from_root: "lupo-docs\doctrine\CONSOLIDATION_VALIDATION_REQUIREMENTS.md"
   file_hash: "9eb84b680242e7a398466c96cbde214e3ac448c8083f2bead72961b0a682400a"
-  file_path_from_root: "docs\doctrine\CONSOLIDATION_VALIDATION_REQUIREMENTS.md"
+  file_path_from_root: "lupo-docs\doctrine\CONSOLIDATION_VALIDATION_REQUIREMENTS.md"
   file_hash: "2b10afbd1fbbc4244a21898f13690389f1f1fd0a5af7f3bb059b9fceb5f9ef41"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -64,7 +64,7 @@ lupopedia.footer:
 ---
 # FLIP Header (alias: Wolfie Header, CROP Header, FLIPPING Header)
 wolfie.headers: explicit architecture with structured clarity for every file.
-file_path_from_root: docs/doctrine/CONSOLIDATION_VALIDATION_REQUIREMENTS.md
+file_path_from_root: lupo-docs/doctrine/CONSOLIDATION_VALIDATION_REQUIREMENTS.md
 file.last_modified_system_version: "4.0.16"
 file.last_modified_utc: "20260218000000"
 channel_id: 42   # ANUBIS adoption channel
@@ -74,7 +74,7 @@ atoms:
   recovery_event: true
 X-Lupo-Actor-ID: 2035
 X-Lupo-Actor-Identity: "Lupopedia Audit Tool (Auto-Fixed)"
-X-Lupo-File-Path: docs/doctrine/CONSOLIDATION_VALIDATION_REQUIREMENTS.md
+X-Lupo-File-Path: lupo-docs/doctrine/CONSOLIDATION_VALIDATION_REQUIREMENTS.md
 ---
 
 # 🚨 CONSOLIDATION VALIDATION REQUIREMENTS
@@ -368,7 +368,7 @@ SELECT SQL_NO_CACHE COUNT(*) FROM lupo_entity_properties WHERE entity_id = 1 AND
 - ✅ **ONLY** optimization mode activities
 
 ### ALERT THRESHOLDS
-- **Actual table count:** Run `python scripts/generate_toon_files.py` and count TOON files — do not hardcode.
+- **Actual table count:** Run `python lupo-scripts/generate_toon_files.py` and count TOON files — do not hardcode.
 - **WARNING:** 197 tables
 - **LOCKDOWN TRIGGER:** 198 tables
 - **EMERGENCY PROTOCOL:** 199 tables

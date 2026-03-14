@@ -86,7 +86,7 @@ lupopedia.close:
 # FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
 ---
 lupopedia.headers: 
-  file_path_from_root: "channels/42/tasks/active/database_documentation_remaining_tables.md"
+  file_path_from_root: "lupo-channels/42/tasks/active/database_documentation_remaining_tables.md"
   file_hash: "6003680b50d8128c10fbec96776b5ef7534a7671846ea82f79235864d913610c"
   system_version: "4.0.73"
   channel_id: 42
@@ -103,11 +103,11 @@ lupopedia.headers:
   lupo_agent: "jetbrains"
 
 lupopedia.edges:
-  file_path_from_root: "channels\42\tasks\active\database_documentation_remaining_tables.md"
+  file_path_from_root: "lupo-channels\42\tasks\active\database_documentation_remaining_tables.md"
   outbound_edges:
-    - { to: "docs/database/lupopedia/tables/", type: "documents", weight: 0.9, reason: "Table documentation source" }
-    - { to: "channels/42/tasks/active/database_optimization_analysis.md", type: "creates", weight: 0.8, reason: "Optimization analysis and recommendations" }
-    - { to: "database/migrations/", type: "enhances", weight: 0.7, reason: "Schema enhancement implementation" }
+    - { to: "lupo-docs/database/lupopedia/tables/", type: "documents", weight: 0.9, reason: "Table documentation source" }
+    - { to: "lupo-channels/42/tasks/active/database_optimization_analysis.md", type: "creates", weight: 0.8, reason: "Optimization analysis and recommendations" }
+    - { to: "lupo-database/migrations/", type: "enhances", weight: 0.7, reason: "Schema enhancement implementation" }
   semantic_tags: ["database_optimization", "performance", "enhancement", "federation"]
 
   last_updated_utc: "20260228"
@@ -347,13 +347,13 @@ Each table documentation must include:
 1. **Review Current Schema**
    ```bash
    # Analyze install_new_lupopedia.sql for table definitions
-   grep -A 20 "CREATE TABLE lupo_analytics_visits" database/migrations/install_new_lupopedia.sql
+   grep -A 20 "CREATE TABLE lupo_analytics_visits" lupo-database/migrations/install_new_lupopedia.sql
    ```
 
 2. **Check Existing Documentation**
    ```bash
    # Check if documentation already exists
-   ls docs/database/lupopedia/tables/lupo_analytics_visits.md
+   ls lupo-docs/database/lupopedia/tables/lupo_analytics_visits.md
    ```
 
 3. **Analyze Usage Patterns**
@@ -573,12 +573,12 @@ GROUP BY [grouping];
 ## 📝 **Documentation Requirements**
 
 1. **Update Table Documentation Files**
-   - Create/update `docs/database/lupopedia/tables/lupo_[table_name].md`
+   - Create/update `lupo-docs/database/lupopedia/tables/lupo_[table_name].md`
    - Follow standard template with all sections
    - Include performance optimization recommendations
 
 2. **Generate/Update TOON Files**
-   - Run `python scripts/generate_toon_files.py` 
+   - Run `python lupo-scripts/generate_toon_files.py` 
    - Verify TOON files match schema analysis
    - Update any discrepancies manually
 

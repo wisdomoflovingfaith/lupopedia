@@ -6,6 +6,7 @@
     "`name` varchar(100) NOT NULL",
     "`alias_name` varchar(100)",
     "`slug` varchar(100) NOT NULL",
+    "`faucet_class` varchar(32)",
     "`description` text",
     "`style_preset` varchar(100)",
     "`model_name` varchar(100)",
@@ -23,8 +24,7 @@
     "`domain_id` bigint NOT NULL DEFAULT 1",
     "`created_ymdhis` bigint NOT NULL DEFAULT 0",
     "`updated_ymdhis` bigint NOT NULL",
-    "`deleted_ymdhis` bigint",
-    "`faucet_class` varchar(32)"
+    "`deleted_ymdhis` bigint"
   ],
   "data": [],
   "indexes": [

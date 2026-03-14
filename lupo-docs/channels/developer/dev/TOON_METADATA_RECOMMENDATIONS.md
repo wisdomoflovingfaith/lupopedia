@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\channels\developer\dev\TOON_METADATA_RECOMMENDATIONS.md"
+  file_path_from_root: "lupo-docs\channels\developer\dev\TOON_METADATA_RECOMMENDATIONS.md"
   file_hash: "a9667200e28079d9ca5fccbc4b4aba0677cd71dda432179e4b1162af23ba270f"
-  file_path_from_root: "docs\channels\developer\dev\TOON_METADATA_RECOMMENDATIONS.md"
+  file_path_from_root: "lupo-docs\channels\developer\dev\TOON_METADATA_RECOMMENDATIONS.md"
   file_hash: "2997fc97309bd297acdfe43e87d2c9503873e4e35967761c26e0ebd9c82bce23"
   last_updated_utc: "20260228"
   system_version: "4.0.50"

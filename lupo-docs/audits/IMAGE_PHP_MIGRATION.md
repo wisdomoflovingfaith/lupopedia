@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\IMAGE_PHP_MIGRATION.md"
+  file_path_from_root: "lupo-docs\IMAGE_PHP_MIGRATION.md"
   file_hash: "e6b27beb69eb8ac3f244ec726b091906476e0feea35e8b1192769fd25c0a8d42"
-  file_path_from_root: "docs\IMAGE_PHP_MIGRATION.md"
+  file_path_from_root: "lupo-docs\IMAGE_PHP_MIGRATION.md"
   file_hash: "8777a40228616168ba1fff49b78471d79a4e75e390e0f805ef8411bfbd77203d"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -64,7 +64,7 @@ lupopedia.footer:
 
 ## Summary
 
-**File:** `image.php` in project root (no `/public` folder). Companion to `livehelp_js.php`. Replicates legacy `legacy/craftysyntax/image.php` behavior for the actions used by the generated JavaScript.
+**File:** `image.php` in project root (no `/public` folder). Companion to `livehelp_js.php`. Replicates legacy `lupo-legacy/craftysyntax/image.php` behavior for the actions used by the generated JavaScript.
 
 **Legacy behavior preserved:**
 
@@ -86,15 +86,15 @@ lupopedia.footer:
 
 All DB access uses PDO via `DatabaseFactory::getConnection()`, `$LUPO_TABLE_PREFIX`, and prepared statements. No references to `livehelp_*` or `lupo_operator_*` tables.
 
-## Table/column names vs docs/toons
+## Table/column names vs lupo-docs/toons
 
 - **lupo_sessions:** session_id, actor_id, session_data, is_active, is_expired, last_seen_ymdhis, updated_ymdhis, is_deleted.
 - **lupo_actor_channel_roles:** actor_id, channel_id, role_key, is_deleted.
 - **lupo_channels:** channel_id, department_id, is_deleted.
 - **lupo_departments:** department_id, settings_json, is_deleted.
 
-All match `docs/toons/*.toon.json`. No removed or deprecated tables used.
+All match `lupo-docs/toons/*.toon.json`. No removed or deprecated tables used.
 
 ## Paths
 
-- No `/public` folder. No absolute webroot paths. All image paths built from `LUPOPEDIA_PATH` (project root) and `images/` subfolder. `LUPOPEDIA_PUBLIC_PATH` is defined the same way as in livehelp_js.php for consistency; image.php does not output URLs, only serves files from disk under project root.
+- No `/public` folder. No absolute webroot paths. All image paths built from `LUPOPEDIA_PATH` (project root) and `lupo-images/` subfolder. `LUPOPEDIA_PUBLIC_PATH` is defined the same way as in livehelp_js.php for consistency; image.php does not output URLs, only serves files from disk under project root.

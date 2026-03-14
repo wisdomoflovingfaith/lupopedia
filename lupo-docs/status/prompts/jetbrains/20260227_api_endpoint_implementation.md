@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -32,7 +32,7 @@ lupopedia.footer:
 
 ---
 lupopedia.headers:
-  file_path_from_root: "prompts/jetbrains/20260227_api_endpoint_implementation.md"
+  file_path_from_root: "lupo-prompts/jetbrains/20260227_api_endpoint_implementation.md"
   file_hash: "ebcd664f6da335da2626c9c927401b4381fa988e4cde867a78fe382084f5dccb"
   system_version: "4.0.50"
   channel_id: 42
@@ -49,13 +49,13 @@ lupopedia.headers:
   lupo_agent: "jetbrains"
 
 lupopedia.edges:
-  file_path_from_root: "prompts\jetbrains\20260227_api_endpoint_implementation.md"
+  file_path_from_root: "lupo-prompts\jetbrains\20260227_api_endpoint_implementation.md"
   outbound_edges:
-    - { to: "channels/42/threads/DEVELOPMENT_CYCLE_4_0_49/20260227131500_10000_windsurf_api_endpoint_research_prompt.md", type: "implements", weight: 1.0, reason: "Research findings source" }
-    - { to: "channels/1/assets/js/channels_comm.js", type: "updates", weight: 0.9, reason: "Wire to concrete endpoints" }
-    - { to: "channels/1/admin/", type: "enables", weight: 0.8, reason: "Enable CRUD operations" }
-    - { to: "api/channels/admin/", type: "creates", weight: 0.8, reason: "New admin API endpoints" }
-    - { to: "docs/api/endpoints/", type: "updates", weight: 0.7, reason: "API documentation" }
+    - { to: "lupo-channels/42/threads/DEVELOPMENT_CYCLE_4_0_49/20260227131500_10000_windsurf_api_endpoint_research_prompt.md", type: "implements", weight: 1.0, reason: "Research findings source" }
+    - { to: "lupo-channels/1/assets/js/channels_comm.js", type: "updates", weight: 0.9, reason: "Wire to concrete endpoints" }
+    - { to: "lupo-channels/1/admin/", type: "enables", weight: 0.8, reason: "Enable CRUD operations" }
+    - { to: "lupo-api/channels/admin/", type: "creates", weight: 0.8, reason: "New admin API endpoints" }
+    - { to: "lupo-docs/api/endpoints/", type: "updates", weight: 0.7, reason: "API documentation" }
   semantic_tags: ["api_implementation", "admin_interface", "channels", "jetbrains"]
 
   last_updated_utc: "20260228"
@@ -87,15 +87,15 @@ Implement concrete API endpoints to wire `channels_comm.js` into functional back
 Based on analysis of the completed admin interface and existing codebase:
 
 ### **Current State**
-- ✅ **Admin Shell**: `channels/1/index.php` with modern iframe layout
+- ✅ **Admin Shell**: `lupo-channels/1/index.php` with modern iframe layout
 - ✅ **Admin Pages**: Dashboard, operators, departments, chat_monitor, settings
 - ✅ **Frontend JS**: `channels_comm.js` with placeholder communication methods
 - ⚠️ **Backend Gap**: No concrete API endpoints implemented yet
 
 ### **Existing API Resources**
-- `docs/api/endpoints/` - Documentation for existing endpoints
+- `lupo-docs/api/endpoints/` - Documentation for existing endpoints
 - `modules/` - Existing backend modules
-- `api/` - REST API structure
+- `lupo-api/` - REST API structure
 - Database tables: `lupo_actors`, `lupo_departments`, `lupo_dialog_threads`, etc.
 
 ---
@@ -104,7 +104,7 @@ Based on analysis of the completed admin interface and existing codebase:
 
 ### **Base Structure**
 ```
-api/channels/admin/
+lupo-api/channels/admin/
 ├── operators.php              # Operator CRUD operations
 ├── departments.php            # Department CRUD operations  
 ├── chat_monitor.php           # Chat monitoring endpoints
@@ -122,7 +122,7 @@ api/channels/admin/
 ## 🔧 **Implementation Plan**
 
 ### **Phase 1: Operators API (1.5 hours)**
-1. **Create `api/channels/admin/operators.php`**
+1. **Create `lupo-api/channels/admin/operators.php`**
    ```php
    <?php
    require_once LUPOPEDIA_PATH . '/app/Auth/Session.php';
@@ -194,7 +194,7 @@ api/channels/admin/
    ```
 
 ### **Phase 2: Departments API (1 hour)**
-1. **Create `api/channels/admin/departments.php`**
+1. **Create `lupo-api/channels/admin/departments.php`**
    ```php
    // Similar structure for department CRUD
    // Use lupo_departments table
@@ -202,7 +202,7 @@ api/channels/admin/
    ```
 
 ### **Phase 3: Chat Monitor API (1.5 hours)**
-1. **Create `api/channels/admin/chat_monitor.php`**
+1. **Create `lupo-api/channels/admin/chat_monitor.php`**
    ```php
    // Real-time chat monitoring endpoints
    // Use lupo_dialog_threads and lupo_dialog_messages
@@ -210,7 +210,7 @@ api/channels/admin/
    ```
 
 ### **Phase 4: Settings API (1 hour)**
-1. **Create `api/channels/admin/settings.php`**
+1. **Create `lupo-api/channels/admin/settings.php`**
    ```php
    // Channel configuration management
    // Use lupo_collections for channel settings
@@ -223,7 +223,7 @@ api/channels/admin/
 
 ### **Wire to New Endpoints**
 ```javascript
-// channels/1/assets/js/channels_comm.js - Updated version
+// lupo-channels/1/assets/js/channels_comm.js - Updated version
 class ChannelsCommunication {
     constructor() {
         this.baseUrl = '/api/channels/admin/';
@@ -345,7 +345,7 @@ function getActiveChatSessions($limit = 50) {
 
 ## 📝 **API Documentation**
 
-### **Create `docs/api/endpoints/channels_admin.md`**
+### **Create `lupo-docs/api/endpoints/channels_admin.md`**
 ```markdown
 # Channels Admin API Endpoints
 

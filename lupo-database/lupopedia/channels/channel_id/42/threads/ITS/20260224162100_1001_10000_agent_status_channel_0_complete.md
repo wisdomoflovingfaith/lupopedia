@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "channels\42\threads\ITS\20260224162100_1001_10000_agent_status_channel_0_complete.md"
+  file_path_from_root: "lupo-channels\42\threads\ITS\20260224162100_1001_10000_agent_status_channel_0_complete.md"
   file_hash: "4da8dc5e723254bedce7f534a4166da9c18db116b0120352f4886bbd87aacc11"
-  file_path_from_root: "channels\42\threads\ITS\20260224162100_1001_10000_agent_status_channel_0_complete.md"
+  file_path_from_root: "lupo-channels\42\threads\ITS\20260224162100_1001_10000_agent_status_channel_0_complete.md"
   file_hash: "263e5c04e05da7df26e0b68859a20fa58df45ad4e758dd0f10689b4033ea05af"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -128,7 +128,7 @@ WHERE actor_id IN (2002, 1003);
 ### Files Created:
 
 1. 9 Channel 0 broadcast files
-2. `docs/status/kiro_agent_status_update_4_0_42.md`
+2. `lupo-docs/status/kiro_agent_status_update_4_0_42.md`
 
 ### Impact:
 

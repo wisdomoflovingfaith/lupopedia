@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\channels\doctrine\EMOTIONAL_GEOMETRY_THREE_AXIS_MODEL_2026.md"
+  file_path_from_root: "lupo-docs\channels\doctrine\EMOTIONAL_GEOMETRY_THREE_AXIS_MODEL_2026.md"
   file_hash: "9a564a0a88949b713b9650b8cd5279356020f0da008523d912cec648f8c231b8"
-  file_path_from_root: "docs\channels\doctrine\EMOTIONAL_GEOMETRY_THREE_AXIS_MODEL_2026.md"
+  file_path_from_root: "lupo-docs\channels\doctrine\EMOTIONAL_GEOMETRY_THREE_AXIS_MODEL_2026.md"
   file_hash: "c06406f5d4d3142ff3b0b9c20c7e39b1554b97981bc7a4626033a8ac49554dc3"
   last_updated_utc: "20260228"
   system_version: "4.0.50"

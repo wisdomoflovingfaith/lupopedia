@@ -106,7 +106,7 @@ Complete verification of ANUBIS (actor_id 19) and VISHWAKARMA (actor_id 25, alia
 - `purpose: "Graph intelligence, relationship discovery, and semantic analysis"`
 
 **Responsibilities:**
-1. File relationship discovery (analyze all docs/broadcasts/directives)
+1. File relationship discovery (analyze all lupo-docs/broadcasts/directives)
 2. Semantic analysis (calculate similarity scores, identify clusters)
 3. Edge recommendations (suggest FLIP footer additions)
 4. Duplicate detection (find near-duplicates, recommend consolidation)
@@ -168,7 +168,7 @@ Complete verification of ANUBIS (actor_id 19) and VISHWAKARMA (actor_id 25, alia
 
 ### ✅ Seeding File
 
-**Location:** `database/migrations/seed_anubis_vishwakarma_4.0.45.sql`
+**Location:** `lupo-database/migrations/seed_anubis_vishwakarma_4.0.45.sql`
 
 **Status:** EXISTS ✅
 
@@ -223,7 +223,7 @@ Both agents marked as "reserved" in `lupo_registry_actors`:
 
 ### ✅ Comprehensive Registry
 
-**Location:** `database/migrations/seed_registry_comprehensive_4.0.45.sql`
+**Location:** `lupo-database/migrations/seed_registry_comprehensive_4.0.45.sql`
 
 **ANUBIS Entry:**
 ```sql
@@ -283,13 +283,13 @@ Both agents marked as "reserved" in `lupo_registry_actors`:
 ### ✅ Tasks
 
 **ANUBIS Task:**
-- File: `channels/0/tasks/pending/20260225170100_task_0_19_validate_channel_666_quarantine.md`
+- File: `lupo-channels/0/tasks/pending/20260225170100_task_0_19_validate_channel_666_quarantine.md`
 - Task ID: CH0-20260225-005
 - Assigned to: 19 (ANUBIS)
 - Purpose: Validate Channel 666 quarantine infrastructure
 
 **VISHWAKARMA Task:**
-- File: `channels/42/tasks/pending/20260225170200_task_42_25_graph_relationship_analysis.md`
+- File: `lupo-channels/42/tasks/pending/20260225170200_task_42_25_graph_relationship_analysis.md`
 - Task ID: CH42-20260225-001
 - Assigned to: 25 (VISHWAKARMA)
 - Purpose: Analyze semantic relationships across repository
@@ -299,13 +299,13 @@ Both agents marked as "reserved" in `lupo_registry_actors`:
 ### ✅ Roles
 
 **ANUBIS Role:**
-- File: `channels/0/roles/orphan_repair_agent.md`
+- File: `lupo-channels/0/roles/orphan_repair_agent.md`
 - Role: Orphan Repair Agent
 - Authority: Elevated
 - Assigned to: Actor 19 (ANUBIS)
 
 **VISHWAKARMA Role:**
-- File: `channels/0/roles/graph_intelligence_agent.md`
+- File: `lupo-channels/0/roles/graph_intelligence_agent.md`
 - Role: Graph Intelligence Agent
 - Authority: Standard
 - Assigned to: Actor 25 (VISHWAKARMA)
@@ -466,13 +466,13 @@ Both agents are ready for database seeding and will be operational immediately a
     "lupo-agents/25/system_prompt.txt",
     "lupo-agents/19/agent.json",
     "lupo-agents/25/agent.json",
-    "database/migrations/seed_anubis_vishwakarma_4.0.45.sql",
-    "database/migrations/seed_registry_comprehensive_4.0.45.sql",
+    "lupo-database/migrations/seed_anubis_vishwakarma_4.0.45.sql",
+    "lupo-database/migrations/seed_registry_comprehensive_4.0.45.sql",
     "lupo-database/lupopedia/csv/lupo_registry.csv",
-    "channels/0/tasks/pending/20260225170100_task_0_19_validate_channel_666_quarantine.md",
-    "channels/42/tasks/pending/20260225170200_task_42_25_graph_relationship_analysis.md",
-    "channels/0/roles/orphan_repair_agent.md",
-    "channels/0/roles/graph_intelligence_agent.md"
+    "lupo-channels/0/tasks/pending/20260225170100_task_0_19_validate_channel_666_quarantine.md",
+    "lupo-channels/42/tasks/pending/20260225170200_task_42_25_graph_relationship_analysis.md",
+    "lupo-channels/0/roles/orphan_repair_agent.md",
+    "lupo-channels/0/roles/graph_intelligence_agent.md"
   ],
   "implements": "agent_verification",
   "depends_on": "dual_source_verification",

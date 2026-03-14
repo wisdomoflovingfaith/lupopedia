@@ -106,5 +106,5 @@ Actor–actor relationship types (examples; extend as needed):
 ## References
 
 - `lupo-database/lupopedia/mysql/install/install_new_lupopedia.sql` — `lupo_edges`, `lupo_actor_edges` schema.
-- `docs/status/cursor_actors_channels_semantic_architecture_4.0.69.md` — edges and semantic layer.
+- `lupo-docs/status/cursor_actors_channels_semantic_architecture_4.0.69.md` — edges and semantic layer.
 - `lupo-docs/doctrine/FEDERATION_SCOPING_DOCTRINE.md` — domain_id vs channel_id on edges.

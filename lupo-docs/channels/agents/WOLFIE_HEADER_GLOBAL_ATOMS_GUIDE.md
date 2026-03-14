@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\channels\agents\WOLFIE_HEADER_GLOBAL_ATOMS_GUIDE.md"
+  file_path_from_root: "lupo-docs\channels\agents\WOLFIE_HEADER_GLOBAL_ATOMS_GUIDE.md"
   file_hash: "706a517a5f3798aa12a2502728fe2b71324c4bf211ad572033c289e01371e0f4"
-  file_path_from_root: "docs\channels\agents\WOLFIE_HEADER_GLOBAL_ATOMS_GUIDE.md"
+  file_path_from_root: "lupo-docs\channels\agents\WOLFIE_HEADER_GLOBAL_ATOMS_GUIDE.md"
   file_hash: "39b85b84b5ffc91e0687a1558c8c0286bd41dc45f209e57b11b35e9f6cf6101b"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -183,7 +183,7 @@ When resolving an atom, Cursor MUST check in this order:
 
 ### Directory Atoms
 **File:** `<dir>/_dir_atoms.yaml`  
-**Example:** `docs/agents/_dir_atoms.yaml`  
+**Example:** `lupo-docs/agents/_dir_atoms.yaml`  
 **Scope:** 
 - `DIR_*` atoms: Current directory only (non-recursive)
 - `DIRR_*` atoms: Current directory + all descendant directories (recursive)
@@ -215,7 +215,7 @@ file:
 
 ### In `_dir_atoms.yaml` (directory-scoped):
 ```yaml
-# Located at: docs/agents/_dir_atoms.yaml
+# Located at: lupo-docs/agents/_dir_atoms.yaml
 DIR_DOCS_AUTHOR: "Documentation Team"
 DIRR_DOCS_VERSION: "3.0.1"
 ```
@@ -434,24 +434,24 @@ Before committing a file with `header_atoms:`:
 ## Directory Scoping Examples
 
 ### DIR_* (Non-Recursive)
-**File:** `docs/agents/_dir_atoms.yaml`
+**File:** `lupo-docs/agents/_dir_atoms.yaml`
 ```yaml
 DIR_DOCS_AUTHOR: "Documentation Team"
 ```
-- Applies to: Files in `docs/agents/` only
-- Does NOT apply to: Files in `docs/agents/subdir/`
+- Applies to: Files in `lupo-docs/agents/` only
+- Does NOT apply to: Files in `lupo-docs/agents/subdir/`
 
 ### DIRR_* (Recursive)
-**File:** `docs/_dir_atoms.yaml`
+**File:** `lupo-docs/_dir_atoms.yaml`
 ```yaml
 DIRR_DOCS_VERSION: "3.0.1"
 ```
-- Applies to: Files in `docs/` AND all subdirectories
+- Applies to: Files in `lupo-docs/` AND all subdirectories
 - Resolution: Walk up from file's directory until `_dir_atoms.yaml` is found
-- Example: File at `docs/agents/examples/test.md` checks:
-  1. `docs/agents/examples/_dir_atoms.yaml` (not found)
-  2. `docs/agents/_dir_atoms.yaml` (not found)
-  3. `docs/_dir_atoms.yaml` (found `DIRR_DOCS_VERSION`)
+- Example: File at `lupo-docs/agents/examples/test.md` checks:
+  1. `lupo-docs/agents/examples/_dir_atoms.yaml` (not found)
+  2. `lupo-docs/agents/_dir_atoms.yaml` (not found)
+  3. `lupo-docs/_dir_atoms.yaml` (found `DIRR_DOCS_VERSION`)
 
 ## Related Documentation
 

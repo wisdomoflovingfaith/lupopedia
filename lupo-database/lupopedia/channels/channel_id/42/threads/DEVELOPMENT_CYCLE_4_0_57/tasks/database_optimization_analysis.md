@@ -125,7 +125,7 @@ lupopedia.footer:
 
 ## v4.0.57 Completion (Cursor 1003)
 
-- **Report:** `docs/status/DATABASE_OPTIMIZATION_ANALYSIS_4.0.57.md` — full analysis and recommendations (dependencies, issues, recommendations, validation).
+- **Report:** `lupo-docs/status/DATABASE_OPTIMIZATION_ANALYSIS_4.0.57.md` — full analysis and recommendations (dependencies, issues, recommendations, validation).
 - **Scope:** TOONs, install SQL, REQUIRED_TABLES; Channel 42 / faucets / actors / channels / contents / sessions / unified_log; doctrine-compliant (no FK, triggers, views).
 - **Status:** Analysis complete; recommendations R2 (sessions channel_id index), R3 (unified_log index dedup), R4 (is_deleted audit), R5 (optional tables) documented for follow-up.
 

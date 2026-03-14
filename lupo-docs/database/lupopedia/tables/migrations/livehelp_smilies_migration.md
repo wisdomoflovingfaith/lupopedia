@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,7 +35,7 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\database\lupopedia\tables\livehelp_smilies_migration.md"
+  file_path_from_root: "lupo-docs\database\lupopedia\tables\livehelp_smilies_migration.md"
   file_hash: "427f0037c25a2765441fa49b431973f6ea2e803ab067d3a04c1f6b75d31c8beb"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -57,7 +57,7 @@ lupopedia.footer:
 
 ---
 lupopedia.headers: {
-  file_path_from_root: "docs/database/lupopedia/tables/livehelp_smilies_migration.md",
+  file_path_from_root: "lupo-docs/database/lupopedia/tables/livehelp_smilies_migration.md",
   file_hash: "05dbd0b1fed4cd44b36f356568bbb4b37b1cca44e6db80dc4e470ca6a97b21bd"
   system_version: "4.0.50"
   channel_id: 42,
@@ -77,15 +77,15 @@ lupopedia.headers: {
 
 flip.footer: {
   inbound_edges: [
-    { from: "docs/doctrine/migrations/MIGRATION_MAPPING_REFERENCE.md", type: "references", weight: 0.9, hashtag: "#index" }
+    { from: "lupo-docs/doctrine/migrations/MIGRATION_MAPPING_REFERENCE.md", type: "references", weight: 0.9, hashtag: "#index" }
   ],
   outbound_edges: [
-    { to: "database/migrations/old_crafty_syntax_3_7_5_start.sql", type: "references", weight: 0.7, hashtag: "#source" },
+    { to: "lupo-database/migrations/old_crafty_syntax_3_7_5_start.sql", type: "references", weight: 0.7, hashtag: "#source" },
     { to: "app/Services/CraftySyntax/LegacyLive.php", type: "used_by", weight: 0.5, hashtag: "#compatibility" }
   ],
   referenced_by_actors: [1001, 10000],
   references: {
-    by_files: ["docs/doctrine/migrations/MIGRATION_MAPPING_REFERENCE.md"],
+    by_files: ["lupo-docs/doctrine/migrations/MIGRATION_MAPPING_REFERENCE.md"],
     by_actors: [1001, 10000]
   },
   semantic_tags: ["livehelp_smilies_mapping", "emoji_metadata", "chat_ui", "dropped_table"],

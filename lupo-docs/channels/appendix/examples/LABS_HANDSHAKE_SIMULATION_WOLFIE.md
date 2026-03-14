@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\channels\appendix\examples\LABS_HANDSHAKE_SIMULATION_WOLFIE.md"
+  file_path_from_root: "lupo-docs\channels\appendix\examples\LABS_HANDSHAKE_SIMULATION_WOLFIE.md"
   file_hash: "ae6ae181820981bd67f5e1da0753e114d950ef94f81c95edbe50b6dda6d1303c"
-  file_path_from_root: "docs\channels\appendix\examples\LABS_HANDSHAKE_SIMULATION_WOLFIE.md"
+  file_path_from_root: "lupo-docs\channels\appendix\examples\LABS_HANDSHAKE_SIMULATION_WOLFIE.md"
   file_hash: "9fc55f688e523e6b582079b8a1f9015953078d8a85fcf6717ef9b8e0f71e99aa"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -216,11 +216,11 @@ TruthState:
     - fact: "Lupopedia version is 3.1.1"
       source: "config/global_atoms.yaml"
     - fact: "LABS-001 is active and binding"
-      source: "docs/doctrine/LUPOPEDIA_ACTOR_BASELINE_STATE_DOCTRINE.md"
+      source: "lupo-docs/doctrine/LUPOPEDIA_ACTOR_BASELINE_STATE_DOCTRINE.md"
     - fact: "GOV-AD-PROHIBIT-001 is established"
-      source: "docs/doctrine/GOV_AD_PROHIBIT_001.md"
+      source: "lupo-docs/doctrine/GOV_AD_PROHIBIT_001.md"
     - fact: "lupo_labs_declarations table exists"
-      source: "database/toon_data/lupo_labs_declarations.toon"
+      source: "lupo-database/toon_data/lupo_labs_declarations.toon"
     - fact: "Actor @WOLFIE has actor_id = 2"
       source: "lupo_actors table"
   
@@ -405,11 +405,11 @@ The `declarations_json` field stores all 10 declarations as a structured JSON ob
       },
       {
         "fact": "LABS-001 is active and binding",
-        "source": "docs/doctrine/LUPOPEDIA_ACTOR_BASELINE_STATE_DOCTRINE.md"
+        "source": "lupo-docs/doctrine/LUPOPEDIA_ACTOR_BASELINE_STATE_DOCTRINE.md"
       },
       {
         "fact": "GOV-AD-PROHIBIT-001 is established",
-        "source": "docs/doctrine/GOV_AD_PROHIBIT_001.md"
+        "source": "lupo-docs/doctrine/GOV_AD_PROHIBIT_001.md"
       }
     ],
     "assumed": [
@@ -549,8 +549,8 @@ INSERT INTO `lupo_labs_declarations` (
       "declaration_8_truth_state": {
         "known": [
           {"fact": "Lupopedia version is 3.1.1", "source": "config/global_atoms.yaml"},
-          {"fact": "LABS-001 is active and binding", "source": "docs/doctrine/LUPOPEDIA_ACTOR_BASELINE_STATE_DOCTRINE.md"},
-          {"fact": "GOV-AD-PROHIBIT-001 is established", "source": "docs/doctrine/GOV_AD_PROHIBIT_001.md"}
+          {"fact": "LABS-001 is active and binding", "source": "lupo-docs/doctrine/LUPOPEDIA_ACTOR_BASELINE_STATE_DOCTRINE.md"},
+          {"fact": "GOV-AD-PROHIBIT-001 is established", "source": "lupo-docs/doctrine/GOV_AD_PROHIBIT_001.md"}
         ],
         "assumed": [
           {

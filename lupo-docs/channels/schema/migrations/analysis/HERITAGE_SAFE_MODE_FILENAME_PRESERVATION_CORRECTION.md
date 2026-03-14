@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\channels\schema\migrations\analysis\HERITAGE_SAFE_MODE_FILENAME_PRESERVATION_CORRECTION.md"
+  file_path_from_root: "lupo-docs\channels\schema\migrations\analysis\HERITAGE_SAFE_MODE_FILENAME_PRESERVATION_CORRECTION.md"
   file_hash: "806501ee3baeb5453a899c9d81d36aa84f5e2b4c3c93354c60fe54ad11b9e4ea"
-  file_path_from_root: "docs\channels\schema\migrations\analysis\HERITAGE_SAFE_MODE_FILENAME_PRESERVATION_CORRECTION.md"
+  file_path_from_root: "lupo-docs\channels\schema\migrations\analysis\HERITAGE_SAFE_MODE_FILENAME_PRESERVATION_CORRECTION.md"
   file_hash: "935766bc615f6de13da4891897da121c6c6c7e204fd89b385563c3bf94839546"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -102,7 +102,7 @@ lupopedia.footer:
 ### **✅ Phase 2 Migration Corrected**
 | File | Original Location | Corrected Location | Status |
 |------|------------------|-------------------|--------|
-| `livehelp_js.php` | `legacy/craftysyntax/livehelp_js.php` | `livehelp_js.php` | ✅ CORRECTED |
+| `livehelp_js.php` | `lupo-legacy/craftysyntax/livehelp_js.php` | `livehelp_js.php` | ✅ CORRECTED |
 
 ### **✅ Public API Surface Preserved**
 - **URL**: `/livehelp_js.php` - Accessible at original path

@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\channels\doctrine\INTEGRATION_TESTING_DOCTRINE_v3_0_71.md"
+  file_path_from_root: "lupo-docs\channels\doctrine\INTEGRATION_TESTING_DOCTRINE_v3_0_71.md"
   file_hash: "79e09bdcd3a80978d5d60082f74027c7118803b29716bd3eca79fe570164ce1a"
-  file_path_from_root: "docs\channels\doctrine\INTEGRATION_TESTING_DOCTRINE_v3_0_71.md"
+  file_path_from_root: "lupo-docs\channels\doctrine\INTEGRATION_TESTING_DOCTRINE_v3_0_71.md"
   file_hash: "a2da575ae0d763d5f03ea44ff9c5c16c8d33f5c1affde3dd825190c7a61e3fc2"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -217,9 +217,9 @@ CREATE DATABASE test_lupopedia_v3_0_71;
 USE test_lupopedia_v3_0_71;
 
 -- Load base schema
-SOURCE database/install/lupopedia_mysql.sql;
+SOURCE lupo-database/install/lupopedia_mysql.sql;
 -- Load v3.0.70 migration
-SOURCE database/migrations/agent_awareness_layer_3_0_70.sql;
+SOURCE lupo-database/migrations/agent_awareness_layer_3_0_70.sql;
 ```
 
 ### Test Data Generation

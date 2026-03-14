@@ -52,7 +52,7 @@ lupopedia.headers:
 
 # 💡 FLARE Edge Automation Tip:
 # Use the FLARE Edge Suggester Tool to automatically discover and suggest edges:
-# python scripts/flare_edge_suggester.py --file <path> --include-db --format yaml
+# python lupo-scripts/flare_edge_suggester.py --file <path> --include-db --format yaml
 # This will analyze content, TOON schemas, and database relationships to suggest
 # appropriate outbound_edges with weights, reasons, and discovery methods.
 
@@ -61,14 +61,14 @@ lupopedia.edges:
   meta: "Thread: Finalize 4.0.72 → Push to GitHub → Initialize 4.0.73 → Migrate Tasks → Validate Upgrade Path"
   outbound_edges:
     - { to: "lupo-database/lupopedia/toon/lupo_channels.toon.json", type: "schema_reference", weight: 1.0, reason: "TOON schema definition", db_source: "lupo_channels" }
-    - { to: "channels/registry.json", type: "references", weight: 1.0, reason: "Channel registry and configuration", db_source: "lupo_channels" }
-    - { to: "docs/database/lupopedia/tables/lupo_dialog_messages.md", type: "references", weight: 0.9, reason: "Dialog message routing and storage", db_source: "lupo_channels" }
-    - { to: "docs/database/lupopedia/tables/lupo_actors.md", type: "references", weight: 0.9, reason: "Channel ownership and participation", db_source: "lupo_channels" }
-    - { to: "docs/database/lupopedia/tables/lupo_departments.md", type: "references", weight: 0.8, reason: "Department channel assignments", db_source: "lupo_channels" }
-    - { to: "docs/database/lupopedia/tables/lupo_federation_nodes.md", type: "references", weight: 0.8, reason: "Federation node channel distribution", db_source: "lupo_channels" }
-    - { to: "docs/database/lupopedia/tables/lupo_contents.md", type: "references", weight: 0.7, reason: "Content channel relationships", db_source: "lupo_channels" }
-    - { to: "docs/FLARE_HEADERS_COMPLETE_REFERENCE.md", type: "references", weight: 0.9, reason: "FLARE protocol documentation", db_source: "lupo_channels" }
-    - { to: "scripts/flare_edge_suggester.py", type: "implements", weight: 1.0, reason: "Channel relationship discovery automation", db_source: "lupo_channels" }
+    - { to: "lupo-channels/registry.json", type: "references", weight: 1.0, reason: "Channel registry and configuration", db_source: "lupo_channels" }
+    - { to: "lupo-docs/database/lupopedia/tables/lupo_dialog_messages.md", type: "references", weight: 0.9, reason: "Dialog message routing and storage", db_source: "lupo_channels" }
+    - { to: "lupo-docs/database/lupopedia/tables/lupo_actors.md", type: "references", weight: 0.9, reason: "Channel ownership and participation", db_source: "lupo_channels" }
+    - { to: "lupo-docs/database/lupopedia/tables/lupo_departments.md", type: "references", weight: 0.8, reason: "Department channel assignments", db_source: "lupo_channels" }
+    - { to: "lupo-docs/database/lupopedia/tables/lupo_federation_nodes.md", type: "references", weight: 0.8, reason: "Federation node channel distribution", db_source: "lupo_channels" }
+    - { to: "lupo-docs/database/lupopedia/tables/lupo_contents.md", type: "references", weight: 0.7, reason: "Content channel relationships", db_source: "lupo_channels" }
+    - { to: "lupo-docs/FLARE_HEADERS_COMPLETE_REFERENCE.md", type: "references", weight: 0.9, reason: "FLARE protocol documentation", db_source: "lupo_channels" }
+    - { to: "lupo-scripts/flare_edge_suggester.py", type: "implements", weight: 1.0, reason: "Channel relationship discovery automation", db_source: "lupo_channels" }
 
 lupopedia.engagement:
   comment: "Snapshot of files edited during 4.0.73 finalization and initialization thread by ANTIGRAVITY IDE Agent. Engagement metrics track edit frequency and importance of each file in the version transition process."

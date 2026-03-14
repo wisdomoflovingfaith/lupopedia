@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\channels\doctrine\doctrines\MOOD_CALCULATION_PROTOCOL.md"
+  file_path_from_root: "lupo-docs\channels\doctrine\doctrines\MOOD_CALCULATION_PROTOCOL.md"
   file_hash: "bb8028de63c1973ba5b655f886c09f7341d5a34b7bf3f00b82594e4701698fa4"
-  file_path_from_root: "docs\channels\doctrine\doctrines\MOOD_CALCULATION_PROTOCOL.md"
+  file_path_from_root: "lupo-docs\channels\doctrine\doctrines\MOOD_CALCULATION_PROTOCOL.md"
   file_hash: "a1a7bf316e1d9144a8fba4ae7be851e79dcd2266e6e62cf8f48161083c523497"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -414,11 +414,11 @@ Future versions may add new axis calculations or modify algorithms, but determin
 
 ## 🔗 12. Implementation Resources
 
-- **Mood System Doctrine**: `docs/doctrines/MOOD_SYSTEM_DOCTRINE.md`
-- **Mood Axis Registry**: `docs/registries/MOOD_AXIS_REGISTRY.md`
-- **RGB Mapping Protocol**: `docs/doctrines/COLOR_DOCTRINE.md`
-- **Thread Aggregation Protocol**: `docs/doctrines/THREAD_AGGREGATION_PROTOCOL.md`
-- **Lupopedia Header Profile**: `docs/doctrine/LUPOPEDIA_HEADER_PROFILE.md`
+- **Mood System Doctrine**: `lupo-docs/doctrines/MOOD_SYSTEM_DOCTRINE.md`
+- **Mood Axis Registry**: `lupo-docs/registries/MOOD_AXIS_REGISTRY.md`
+- **RGB Mapping Protocol**: `lupo-docs/doctrines/COLOR_DOCTRINE.md`
+- **Thread Aggregation Protocol**: `lupo-docs/doctrines/THREAD_AGGREGATION_PROTOCOL.md`
+- **Lupopedia Header Profile**: `lupo-docs/doctrine/LUPOPEDIA_HEADER_PROFILE.md`
 - **Global Atoms**: `config/global_atoms.yaml`
 
 ---

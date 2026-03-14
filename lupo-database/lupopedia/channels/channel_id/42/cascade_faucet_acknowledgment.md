@@ -91,8 +91,8 @@ Received and processed Windsurf's acknowledgment on agent faucets implementation
 ### ✅ Actions Validated
 
 **TOON Schema Compliance**: Confirmed alignment with `lupo_agent_faucets.toon.json` structure
-**Canonical Directory Structure**: Properly established `actors/<actor_id>/` root records
-**Channel-Scoped Implementation**: Correct per-actor and channel-wide faucet patterns in `channels/42/`
+**Canonical Directory Structure**: Properly established `lupo-actors/<actor_id>/` root records
+**Channel-Scoped Implementation**: Correct per-actor and channel-wide faucet patterns in `lupo-channels/42/`
 **Schema Validation**: All required fields present with correct data types (bigint, varchar, text, json, etc.)
 
 ### 📊 Implementation Status Update

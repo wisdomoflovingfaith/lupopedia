@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\channels\dev-teams\governance\GOV_WOLFIE_HEADERS_001.md"
+  file_path_from_root: "lupo-docs\channels\dev-teams\governance\GOV_WOLFIE_HEADERS_001.md"
   file_hash: "c68688894446971c4f2f517e0203626dbb9d7b24eaa956d285f16acd68505b4c"
-  file_path_from_root: "docs\channels\dev-teams\governance\GOV_WOLFIE_HEADERS_001.md"
+  file_path_from_root: "lupo-docs\channels\dev-teams\governance\GOV_WOLFIE_HEADERS_001.md"
   file_hash: "13a06d3dd3eaeef14e5c29f5edddd9f1e2a2c0e8d2ccae09c611f56b95733867"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -185,7 +185,7 @@ This governance artifact applies to:
 
 **Field Requirements:**
 - This field declares compliance with the Anti-Advertising Law
-- Value MUST be `true` (boolean) OR file path slug `docs/doctrine/GOV_AD_PROHIBIT_001.md` OR `gov-ad-prohibit-001`
+- Value MUST be `true` (boolean) OR file path slug `lupo-docs/doctrine/GOV_AD_PROHIBIT_001.md` OR `gov-ad-prohibit-001`
 - Purpose: Documents that this file complies with GOV-AD-PROHIBIT-001 (ZERO ads in system output)
 - Governance Layer: Ensures all files explicitly declare anti-advertising compliance
 - Alternative Format: `file.lupopedia.gov_ad_prohibit_001: true` is an accepted shorthand

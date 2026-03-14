@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\specs\flip_headers\flip_headers_batch_1_of_4.md"
+  file_path_from_root: "lupo-docs\specs\flip_headers\flip_headers_batch_1_of_4.md"
   file_hash: "594ca6467f0a90fcb2222b1e85038dc34e20661885c16847ffe5002db7035c61"
-  file_path_from_root: "docs\specs\flip_headers\flip_headers_batch_1_of_4.md"
+  file_path_from_root: "lupo-docs\specs\flip_headers\flip_headers_batch_1_of_4.md"
   file_hash: "68f97bf51ec6257c9410d47217fc838dd3776d658a2c4d441c24a4de15a88baa"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -62,7 +62,7 @@ lupopedia.footer:
 
 ---
 # FLIP Header (alias: Wolfie Header, CROP Header, FLIPPING Header)
-X-Lupo-File-Path: docs/specs/flip_headers/flip_headers_batch_1_of_4.md
+X-Lupo-File-Path: lupo-docs/specs/flip_headers/flip_headers_batch_1_of_4.md
 X-Lupo-Version: "4.0.27"
 X-Lupo-UTC-Timestamp: "20260222162242"
 X-Lupo-Channel: 42   # ANUBIS adoption channel
@@ -101,7 +101,7 @@ Headers in this batch: 25
 | `X-Lupo-Actor-To` | Receiving actor ID | `2` | core_routing |
 | `X-Lupo-Registry-Mode` | ID allocation mode | `unregistry-first` | registry_doctrine |
 | `X-Lupo-Registry-Source` | Data source for registry | `csv` | registry_doctrine |
-| `X-Lupo-TOON-Path` | Path to TOON schema files | `docs/toons/` | registry_doctrine |
+| `X-Lupo-TOON-Path` | Path to TOON schema files | `lupo-docs/toons/` | registry_doctrine |
 | `X-Lupo-CSV-Path` | Path to CSV snapshots | `lupo-database/lupopedia/csv/` | registry_doctrine |
 | `X-Lupo-Doctrine` | Enforced rules | `no-id-guessing; no-max-plus-one; use-unregistry` | registry_doctrine |
 | `X-Lupo-Survivor-Protocol` | Survivor mode activation | `active` | survivor_protocol |

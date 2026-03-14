@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "actors\10000\README.md"
+  file_path_from_root: "lupo-actors\10000\README.md"
   file_hash: "8436cecaae9a7404e0c33103ed6c850499c578a8978881cece8d92b3f0834ac6"
-  file_path_from_root: "actors\10000\README.md"
+  file_path_from_root: "lupo-actors\10000\README.md"
   file_hash: "6fb2cf8a957d6bd18df9ed1b840422c4c0a616836001283a229755944e5990c1"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -65,7 +65,7 @@ flip_version: 3
 system_version: "4.0.43"
 artifact_id: "sha1:actors_10000_readme"
 federated_node_id: 10000
-artifact_path: "actors/10000/README.md"
+artifact_path: "lupo-actors/10000/README.md"
 artifact_filename: "README.md"
 artifact_type: "actor_metadata"
 artifact_kind: "actor_readme"
@@ -85,7 +85,7 @@ relations:
   - rel: "describes_actor"
     target_actor_id: 10000
   - rel: "part_of_actor_folder"
-    target: "actors/10000/"
+    target: "lupo-actors/10000/"
   - rel: "supports"
     target_actor_id: 1001
     note: "Supports KIRO IDE"
@@ -138,15 +138,15 @@ Captain Wolfie (10000) supports and owns the following IDE agents:
 - Theia IDE (1009)
 - CS Code (1010)
 
-See `actors/relationships.csv` for complete relationship graph.
+See `lupo-actors/relationships.csv` for complete relationship graph.
 
 ## Registry Entry
 
-See `actors/registry.json` for complete actor metadata.
+See `lupo-actors/registry.json` for complete actor metadata.
 
 ## Aliases
 
-See `actors/aliases.csv` for all actor aliases including:
+See `lupo-actors/aliases.csv` for all actor aliases including:
 - captain_wolfie (canonical)
 - wolfie_captain (handle)
 - eric (legacy_name)

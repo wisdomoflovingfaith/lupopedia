@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\channels\overview\ascent\02_DIALOG_MIGRATION.md"
+  file_path_from_root: "lupo-docs\channels\overview\ascent\02_DIALOG_MIGRATION.md"
   file_hash: "5e4ae41e4dd8ddc80c512050acdeeb62275e586735fc9ce31ce8968f31a15e17"
-  file_path_from_root: "docs\channels\overview\ascent\02_DIALOG_MIGRATION.md"
+  file_path_from_root: "lupo-docs\channels\overview\ascent\02_DIALOG_MIGRATION.md"
   file_hash: "3b7bc5be7fbaa6dd86cc4247d3a769d4e037dd858028d8ddaf7598799402a170"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -340,9 +340,9 @@ Dialog Migration is complete when:
 ## Related Documentation
 
 - **Dialog Files:** `dialogs/`
-- **Dialog System Docs:** `docs/DIALOG_SYSTEM_IMPLEMENTATION_COMPLETE.md`
-- **Database Schema:** `database/schema/`
-- **API Documentation:** `api/v1/dialog/`
+- **Dialog System Docs:** `lupo-docs/DIALOG_SYSTEM_IMPLEMENTATION_COMPLETE.md`
+- **Database Schema:** `lupo-database/schema/`
+- **API Documentation:** `lupo-api/v1/dialog/`
 
 ---
 

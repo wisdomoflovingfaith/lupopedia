@@ -129,7 +129,7 @@ This document specifies the requirements for the Lupopedia 4.0.44 development cy
 - **Doctrine**: A canonical system rule or constraint broadcast via Channel 0
 - **FLIP_Header**: YAML front-matter block containing file metadata (actor_id, channel_id, system_version, etc.)
 - **Thread**: A structured conversation or work item within a channel, stored as a directory with messages
-- **Status_Directory**: The docs/status/ directory containing historical status reports and audit files
+- **Status_Directory**: The lupo-docs/status/ directory containing historical status reports and audit files
 - **Broadcast**: A system-wide message posted to Channel 0, typically containing doctrines or directives
 - **Initialization_Workflow**: The complete sequence of tasks required to open a new development cycle
 - **Development_Cycle**: A version-specific period of development work (e.g., 4.0.44)
@@ -145,8 +145,8 @@ This document specifies the requirements for the Lupopedia 4.0.44 development cy
 
 #### Acceptance Criteria
 
-1. WHEN the initialization workflow starts, THE Doctrine_Ingester SHALL scan the channels/0/broadcasts/ directory recursively
-2. THE Doctrine_Ingester SHALL read all files with .md extension in channels/0/broadcasts/
+1. WHEN the initialization workflow starts, THE Doctrine_Ingester SHALL scan the lupo-channels/0/broadcasts/ directory recursively
+2. THE Doctrine_Ingester SHALL read all files with .md extension in lupo-channels/0/broadcasts/
 3. FOR EACH broadcast file, THE Doctrine_Ingester SHALL parse the FLIP_Header YAML block
 4. THE Doctrine_Ingester SHALL extract doctrine_number, title, system_version, enforcement_scope, and constraints from each broadcast
 5. IF a broadcast file lacks a valid FLIP_Header, THEN THE Doctrine_Ingester SHALL log a warning and continue processing
@@ -160,8 +160,8 @@ This document specifies the requirements for the Lupopedia 4.0.44 development cy
 
 #### Acceptance Criteria
 
-1. THE Thread_Creator SHALL create a new directory at channels/42/threads/DEVELOPMENT_CYCLE_4_0_44/
-2. THE Thread_Creator SHALL generate a thread metadata file at channels/42/threads/DEVELOPMENT_CYCLE_4_0_44/thread.json
+1. THE Thread_Creator SHALL create a new directory at lupo-channels/42/threads/DEVELOPMENT_CYCLE_4_0_44/
+2. THE Thread_Creator SHALL generate a thread metadata file at lupo-channels/42/threads/DEVELOPMENT_CYCLE_4_0_44/thread.json
 3. THE thread.json file SHALL contain thread_id, title, type, priority, visibility, created_ymdhis, created_by_actor_id, and channel_id fields
 4. THE Thread_Creator SHALL set title to "Crafty Syntax / Lupopedia Development — Version 4.0.44"
 5. THE Thread_Creator SHALL set type to "development"
@@ -174,11 +174,11 @@ This document specifies the requirements for the Lupopedia 4.0.44 development cy
 
 ### Requirement 3: Status Directory Audit
 
-**User Story:** As KIRO, I want to audit all files in docs/status/, so that I can identify which historical status files are still relevant for 4.0.44 development.
+**User Story:** As KIRO, I want to audit all files in lupo-docs/status/, so that I can identify which historical status files are still relevant for 4.0.44 development.
 
 #### Acceptance Criteria
 
-1. THE Status_Auditor SHALL scan the docs/status/ directory for all .md and .log files
+1. THE Status_Auditor SHALL scan the lupo-docs/status/ directory for all .md and .log files
 2. FOR EACH status file, THE Status_Auditor SHALL read the file content
 3. THE Status_Auditor SHALL parse FLIP_Header metadata if present
 4. THE Status_Auditor SHALL extract system_version, created_ymdhis, and last_modified_utc from each file
@@ -196,7 +196,7 @@ This document specifies the requirements for the Lupopedia 4.0.44 development cy
 
 #### Acceptance Criteria
 
-1. THE Report_Generator SHALL create a new file at docs/status/kiro_status_directory_audit_4_0_44.md
+1. THE Report_Generator SHALL create a new file at lupo-docs/status/kiro_status_directory_audit_4_0_44.md
 2. THE Report_Generator SHALL include a FLIP_Header with actor_id 1001, system_version 4.0.44, and current UTC timestamp
 3. THE Report_Generator SHALL include an executive summary section with total files scanned and disposition counts
 4. THE Report_Generator SHALL include a file disposition table with columns: filename, version, disposition, rationale
@@ -212,7 +212,7 @@ This document specifies the requirements for the Lupopedia 4.0.44 development cy
 
 #### Acceptance Criteria
 
-1. THE Summary_Poster SHALL create a new message file in channels/42/threads/DEVELOPMENT_CYCLE_4_0_44/
+1. THE Summary_Poster SHALL create a new message file in lupo-channels/42/threads/DEVELOPMENT_CYCLE_4_0_44/
 2. THE message filename SHALL follow the pattern YYYYMMDDHHMMSS_42_1001_initialization_summary.md
 3. THE Summary_Poster SHALL include a FLIP_Header with actor_id 1001, channel_id 42, and message_type post
 4. THE message content SHALL be 1000 characters or fewer
@@ -229,7 +229,7 @@ This document specifies the requirements for the Lupopedia 4.0.44 development cy
 
 #### Acceptance Criteria
 
-1. THE Log_Writer SHALL create a new file at docs/status/kiro_4_0_44_cycle_initialization_log.md
+1. THE Log_Writer SHALL create a new file at lupo-docs/status/kiro_4_0_44_cycle_initialization_log.md
 2. THE Log_Writer SHALL include a FLIP_Header with actor_id 1001, system_version 4.0.44, and artifact_kind log
 3. THE log SHALL include initialization_start_ymdhis and initialization_end_ymdhis timestamps
 4. THE log SHALL list all channels scanned with file counts
@@ -247,11 +247,11 @@ This document specifies the requirements for the Lupopedia 4.0.44 development cy
 #### Acceptance Criteria
 
 1. THE Validator SHALL verify that at least 20 Channel 0 broadcasts were successfully read
-2. THE Validator SHALL verify that the thread directory channels/42/threads/DEVELOPMENT_CYCLE_4_0_44/ exists
+2. THE Validator SHALL verify that the thread directory lupo-channels/42/threads/DEVELOPMENT_CYCLE_4_0_44/ exists
 3. THE Validator SHALL verify that thread.json contains all required fields
-4. THE Validator SHALL verify that the audit report file exists at docs/status/kiro_status_directory_audit_4_0_44.md
+4. THE Validator SHALL verify that the audit report file exists at lupo-docs/status/kiro_status_directory_audit_4_0_44.md
 5. THE Validator SHALL verify that the Channel 42 summary message is 1000 characters or fewer
-6. THE Validator SHALL verify that the system log file exists at docs/status/kiro_4_0_44_cycle_initialization_log.md
+6. THE Validator SHALL verify that the system log file exists at lupo-docs/status/kiro_4_0_44_cycle_initialization_log.md
 7. THE Validator SHALL verify that no files were automatically deleted during the audit process
 8. IF any validation check fails, THEN THE Validator SHALL log an error and report the failure
 9. THE Validator SHALL generate a validation summary with pass/fail status for each check

@@ -6,7 +6,7 @@
  * All URLs use LUPOPEDIA_PUBLIC_PATH (subfolder-install doctrine). No /public folder.
  *
  * @package Lupopedia
- * @see docs/toons/*.toon.json for canonical schema
+ * @see lupo-database/lupopedia/toon/*.toon.json for canonical schema
  */
 
 // Installation path: project root is document root for the app (subfolder-install doctrine)

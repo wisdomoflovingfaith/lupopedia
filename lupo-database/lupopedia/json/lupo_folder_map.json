@@ -1,0 +1,52 @@
+{
+  "table_name": "lupo_folder_map",
+  "fields": [
+    "`folder_map_id` bigint NOT NULL auto_increment",
+    "`folder_id` bigint NOT NULL",
+    "`object_type` varchar(64) NOT NULL",
+    "`object_id` bigint NOT NULL",
+    "`sort_order` int NOT NULL DEFAULT 0",
+    "`created_ymdhis` bigint NOT NULL DEFAULT 0",
+    "`is_deleted` tinyint NOT NULL DEFAULT 0",
+    "`deleted_ymdhis` bigint"
+  ],
+  "data": [],
+  "indexes": [
+    {
+      "index_name": "lupo_folder_map_idx_folder",
+      "columns": [
+        "folder_id"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_folder_map_idx_is_deleted",
+      "columns": [
+        "is_deleted"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_folder_map_idx_object",
+      "columns": [
+        "object_type",
+        "object_id"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    }
+  ],
+  "primary_key": {
+    "column_name": "folder_map_id",
+    "expected_name": "folder_map_id",
+    "is_correct": true,
+    "needs_rename": false
+  },
+  "doctrine_metadata": {
+    "no_foreign_keys": true,
+    "no_triggers": true
+  },
+  "relationships": []
+}

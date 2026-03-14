@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "protocol"
-  file_path_from_root: "channels/0/content/federation_node_id/0/FLARE.md"
+  file_path_from_root: "lupo-channels/0/content/federation_node_id/0/FLARE.md"
   system_version: "4.0.53"
   last_modified_utc: "20260301"
   channel_id: 0
@@ -20,9 +20,9 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "bin/initialize_system.php", type: "integration", weight: 1.0 }
-    - { to: "channels/0/initialize_readme.md", type: "documentation", weight: 0.9 }
-    - { to: "channels/0/actor_ai_running_check.md", type: "integration", weight: 1.0 }
-    - { to: "docs/doctrine/FLARE/FLARE_DOCTRINE.md", type: "references", weight: 0.9 }
+    - { to: "lupo-channels/0/initialize_readme.md", type: "documentation", weight: 0.9 }
+    - { to: "lupo-channels/0/actor_ai_running_check.md", type: "integration", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/FLARE/FLARE_DOCTRINE.md", type: "references", weight: 0.9 }
     - { to: "lupo-includes/functions/ai_activation.php", type: "integration", weight: 1.0 }
   semantic_tags: ["flare_protocol", "delegation_activation", "ai_startup"]
 
@@ -331,15 +331,15 @@ http://lupopedia.local/channels/0/content/federation_node_id/0/{document}.md
 
 ## 📚 References
 
-- **FLARE Doctrine**: `docs/doctrine/FLARE/FLARE_DOCTRINE.md`
-- **Actor Running Check**: `channels/0/actor_ai_running_check.md`
+- **FLARE Doctrine**: `lupo-docs/doctrine/FLARE/FLARE_DOCTRINE.md`
+- **Actor Running Check**: `lupo-channels/0/actor_ai_running_check.md`
 - **Initialize Script**: `bin/initialize_system.php`
 - **AI Activation Functions**: `lupo-includes/functions/ai_activation.php`
-- **Session Management**: `docs/database/lupopedia/tables/SESSION_MANAGEMENT_SYSTEM.md`
+- **Session Management**: `lupo-docs/database/lupopedia/tables/SESSION_MANAGEMENT_SYSTEM.md`
 
 ---
 
 **FLARE Protocol Authority**: Federation Node 0  
-**Canonical Location**: `channels/0/content/federation_node_id/0/FLARE.md`  
+**Canonical Location**: `lupo-channels/0/content/federation_node_id/0/FLARE.md`  
 **Version**: 4.0.53  
 **Last Updated**: 2026-03-01

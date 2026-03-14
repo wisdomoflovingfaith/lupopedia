@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -358,9 +358,9 @@ DIALOG does not calculate thread mood; it only assigns individual message moods 
 
 ## **12. Related Documentation**
 
-- **Counting-in-Light Doctrine:** `docs/appendix/COUNTING_IN_LIGHT.md`
-- **Reflective Emotional Geometry Doctrine:** `docs/doctrine/REFLECTIVE_EMOTIONAL_GEOMETRY_DOCTRINE.md`
-- **MOOD RGB Doctrine:** `docs/doctrine/MOOD_RGB_DOCTRINE.md`
+- **Counting-in-Light Doctrine:** `lupo-docs/appendix/COUNTING_IN_LIGHT.md`
+- **Reflective Emotional Geometry Doctrine:** `lupo-docs/doctrine/REFLECTIVE_EMOTIONAL_GEOMETRY_DOCTRINE.md`
+- **MOOD RGB Doctrine:** `lupo-docs/doctrine/MOOD_RGB_DOCTRINE.md`
 - **DIALOG Format Enforcement:** `lupo-agents/3/DIALOG_FORMAT_ENFORCEMENT.md`
 
 ---

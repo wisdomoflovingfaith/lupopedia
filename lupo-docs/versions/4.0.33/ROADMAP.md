@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\versions\4.0.33\ROADMAP.md"
+  file_path_from_root: "lupo-docs\versions\4.0.33\ROADMAP.md"
   file_hash: "f1b8cb13b4dc2f2e845a1f0f25b3434b8a875491db22313e9302b03c3dfbcc74"
-  file_path_from_root: "docs\versions\4.0.33\ROADMAP.md"
+  file_path_from_root: "lupo-docs\versions\4.0.33\ROADMAP.md"
   file_hash: "fc34f2d8f1c97cb4ed172618ffbd3a79891cff8fb400a5e2fa732b1c8a5c4a77"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -63,7 +63,7 @@ lupopedia.footer:
 
 ---
 wolfie.headers:
-  file_path_from_root: "docs/versions/4.0.33/ROADMAP.md"
+  file_path_from_root: "lupo-docs/versions/4.0.33/ROADMAP.md"
   system_version: "4.0.33"
   channel_id: 42
   mood_rgb: "00FFFF"
@@ -117,7 +117,7 @@ flip.footer:
 ### Phase 2: Systematic FLIP Footer Rollout (Weeks 1-2)
 - **Objective**: Ensure 100% compliance for FLIP footers across the codebase.
 - **Tasks**:
-  - Audit all files in `app/`, `lupo-includes/`, and `docs/` for footer compliance.
+  - Audit all files in `app/`, `lupo-includes/`, and `lupo-docs/` for footer compliance.
   - Add `flip.footer` blocks with proper metadata to all compliant files.
   - Update semantic relationships (edges) between files.
 

@@ -132,7 +132,7 @@ flip.footer:
   referenced_by_files:
     - ".kiro/specs/changelog-update-4-0-36/requirements.md"
     - "CHANGELOG.md"
-    - "channels/42/broadcasts/20260223_system_wide_version_alignment_4_0_36.md"
+    - "lupo-channels/42/broadcasts/20260223_system_wide_version_alignment_4_0_36.md"
   referenced_by_channels:
     - 42
   referenced_by_actors:
@@ -241,7 +241,7 @@ Output: Formatted markdown text
 - ✓ Broadcast target: All IDE agents (KIRO 1001, Windsurf 1002, Antigravity 1003)
 
 **Files Created by KIRO in 4.0.36 (Total: 1):**
-1. `channels/42/broadcasts/20260223_system_wide_version_alignment_4_0_36.md` - Version alignment broadcast
+1. `lupo-channels/42/broadcasts/20260223_system_wide_version_alignment_4_0_36.md` - Version alignment broadcast
 ```
 
 ### Component 3: Content Validator
@@ -308,7 +308,7 @@ entry:
     - type: files_created
       heading: "**Files Created by KIRO in 4.0.36 (Total: 1):**"
       items:
-        - "1. `channels/42/broadcasts/20260223_system_wide_version_alignment_4_0_36.md` - Version alignment broadcast"
+        - "1. `lupo-channels/42/broadcasts/20260223_system_wide_version_alignment_4_0_36.md` - Version alignment broadcast"
 ```
 
 ### Validation Result Model

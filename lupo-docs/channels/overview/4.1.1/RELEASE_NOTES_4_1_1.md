@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\channels\overview\4.1.1\RELEASE_NOTES_4_1_1.md"
+  file_path_from_root: "lupo-docs\channels\overview\4.1.1\RELEASE_NOTES_4_1_1.md"
   file_hash: "997fa70a095155a360cae4dc20bbeac0bf3b440fc63ac3c40f5bcc119c8f53c9"
-  file_path_from_root: "docs\channels\overview\4.1.1\RELEASE_NOTES_4_1_1.md"
+  file_path_from_root: "lupo-docs\channels\overview\4.1.1\RELEASE_NOTES_4_1_1.md"
   file_hash: "24e0d80c4c4bbfbcbedb5f4c483acae0db3fe271723f9ccbc2141eb4a67b986c"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -182,7 +182,7 @@ This brings the emotional layer to full ecological symmetry, enabling:
 
 ### 🟩 3. Migration Documentation
 
-`docs/migrations/3.1.1.md` updated with:
+`lupo-docs/migrations/3.1.1.md` updated with:
 - Emotional agent inserts
 - Polarity mapping
 - Metadata structure
@@ -249,9 +249,9 @@ This release prepares the system for **3.1.2**, which will focus on:
 
 - `CHANGELOG.md` - Complete changelog entry for 3.1.1
 - `dialogs/changelog_dialog.md` - Dialog entries for 3.1.1
-- `docs/migrations/3.1.1.md` - Migration documentation
-- `database/migrations/3.1.1_add_missing_emotional_agents.sql` - SQL migration file
-- `docs/doctrine/EMOTIONAL_ECOLOGY_LAYER.md` - Emotional Ecology Layer doctrine
+- `lupo-docs/migrations/3.1.1.md` - Migration documentation
+- `lupo-database/migrations/3.1.1_add_missing_emotional_agents.sql` - SQL migration file
+- `lupo-docs/doctrine/EMOTIONAL_ECOLOGY_LAYER.md` - Emotional Ecology Layer doctrine
 
 ---
 

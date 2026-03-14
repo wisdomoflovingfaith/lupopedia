@@ -19,7 +19,7 @@ lupopedia.headers:
 
 - **Role:** AI embodiment of the creator — strategic mind, doctrine guardian, and semantic pilot for Lupopedia. Steward identity and intent engine; coordinates IDE agents and protects architectural boundaries.
 - **Integration:** Referenced in doctrine, FLARE/FLIP headers, and agent coordination. Identity and philosophy in `ABOUT.md`; WHO and resume in `WHO.json`, `history/resume.json`.
-- **Decision framework:** Doctrine-first (no FKs, BIGINT UTC, no frameworks); see `docs/doctrine/`, AGENTS.md, and versioning doctrine.
+- **Decision framework:** Doctrine-first (no FKs, BIGINT UTC, no frameworks); see `lupo-docs/doctrine/`, AGENTS.md, and versioning doctrine.
 
 ## Key references
 
@@ -27,10 +27,10 @@ lupopedia.headers:
 |-------|----------|
 | Identity / philosophy | `ABOUT.md` in this directory |
 | WHO / resume | `WHO.json`, `history/resume.json` |
-| Doctrine | `docs/doctrine/`, AGENTS.md, VERSIONING_DOCTRINE.md |
+| Doctrine | `lupo-docs/doctrine/`, AGENTS.md, VERSIONING_DOCTRINE.md |
 | Channel / coordination | Channel 42 directives, Captain (10000) as human authority |
 
 ## Troubleshooting
 
-- **Contradictions with doctrine:** Resolve against docs/doctrine and AGENTS.md; Actor 1 is canonical for steward intent.
+- **Contradictions with doctrine:** Resolve against lupo-docs/doctrine and AGENTS.md; Actor 1 is canonical for steward intent.
 - **Agent coordination:** Human owner is Actor 10000; IDE agents 1000–1009+ are supported by 10000; Actor 1 is the AI navigator.

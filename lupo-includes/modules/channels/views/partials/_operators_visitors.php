@@ -14,8 +14,8 @@ $department_id = isset($department_id) ? (int) $department_id : 0;
      data-channel-id="<?= $channel_id ?>"
      data-department-id="<?= $department_id ?>"
      data-base="<?= htmlspecialchars($base) ?>"
-     data-pending-url="<?= htmlspecialchars($base . 'api/operator/pending-visitors') ?>"
-     data-accept-url="<?= htmlspecialchars($base . 'api/operator/accept-visitor') ?>"
+     data-pending-url="<?= htmlspecialchars($base . 'lupo-api/operator/pending-visitors') ?>"
+     data-accept-url="<?= htmlspecialchars($base . 'lupo-api/operator/accept-visitor') ?>"
      data-sound-url="<?= htmlspecialchars($base . 'legacy/craftysyntax/sounds/new_chats.wav') ?>">
     <!-- Pending visitors (unassigned; all staff in department see these) -->
     <section class="channel-people-section channel-pending-section" id="channel-pending-section" aria-label="New chat requests" style="<?= empty($pending_visitors) ? 'display:none;' : '' ?>">

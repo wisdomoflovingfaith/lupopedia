@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,7 +35,7 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\database\lupopedia\tables\livehelp_emails_migration.md"
+  file_path_from_root: "lupo-docs\database\lupopedia\tables\livehelp_emails_migration.md"
   file_hash: "2bae7274b994f8a4835dea7733faec29b09f5a3a974d1190ec28aafa9da8cbb0"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -57,7 +57,7 @@ lupopedia.footer:
 
 ---
 lupopedia.headers: {
-  file_path_from_root: "docs/database/lupopedia/tables/livehelp_emails_migration.md",
+  file_path_from_root: "lupo-docs/database/lupopedia/tables/livehelp_emails_migration.md",
   file_hash: "5cf1a9585af4035834c862e6df6a8822afae78cb62a1841d3b75a8dbff7f51e6"
   system_version: "4.0.50"
   channel_id: 42,
@@ -77,17 +77,17 @@ lupopedia.headers: {
 
 flip.footer: {
   inbound_edges: [
-    { from: "database/migrations/import_from_old_crafty_syntax.sql", type: "implements", weight: 0.9, hashtag: "#migration" },
-    { from: "docs/doctrine/migrations/MIGRATION_MAPPING_REFERENCE.md", type: "references", weight: 0.9, hashtag: "#index" }
+    { from: "lupo-database/migrations/import_from_old_crafty_syntax.sql", type: "implements", weight: 0.9, hashtag: "#migration" },
+    { from: "lupo-docs/doctrine/migrations/MIGRATION_MAPPING_REFERENCE.md", type: "references", weight: 0.9, hashtag: "#index" }
   ],
   outbound_edges: [
-    { to: "docs/doctrine/database/crm_lead_messages.md", type: "documents", weight: 1.0, hashtag: "#target_table" },
-    { to: "database/migrations/old_crafty_syntax_3_7_5_start.sql", type: "references", weight: 0.7, hashtag: "#source" },
-    { to: "docs/doctrine/migrations/livehelp_emailque_migration.md", type: "related_to", weight: 0.6, hashtag: "#email_system" }
+    { to: "lupo-docs/doctrine/database/crm_lead_messages.md", type: "documents", weight: 1.0, hashtag: "#target_table" },
+    { to: "lupo-database/migrations/old_crafty_syntax_3_7_5_start.sql", type: "references", weight: 0.7, hashtag: "#source" },
+    { to: "lupo-docs/doctrine/migrations/livehelp_emailque_migration.md", type: "related_to", weight: 0.6, hashtag: "#email_system" }
   ],
   referenced_by_actors: [1001, 10000],
   references: {
-    by_files: ["database/migrations/import_from_old_crafty_syntax.sql", "docs/doctrine/migrations/MIGRATION_MAPPING_REFERENCE.md"],
+    by_files: ["lupo-database/migrations/import_from_old_crafty_syntax.sql", "lupo-docs/doctrine/migrations/MIGRATION_MAPPING_REFERENCE.md"],
     by_actors: [1001, 10000]
   },
   semantic_tags: ["livehelp_emails_mapping", "outbound_email", "broadcast_messages", "imported"],

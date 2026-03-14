@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -31,7 +31,7 @@ lupopedia.footer:
 # LUPOPEDIA HEADERS (replaces FLARE)
 ---
 lupopedia.headers:
-  file_path_from_root: "docs/database/lupopedia/tables/lupo_document_embeddings.md"
+  file_path_from_root: "lupo-docs/database/lupopedia/tables/lupo_document_embeddings.md"
   file_hash: "0721e579a6e322f55616c23d32591356775f32c150b57e4122a77d197f1a532f"
   system_version: "4.0.50"
   channel_id: 1
@@ -64,16 +64,16 @@ lupopedia.headers:
 
 # FLARE Edge Automation Tip:
 # Use the FLARE Edge Suggester Tool to automatically discover and suggest edges:
-# python scripts/flare_edge_suggester.py --file <path> --include-db --format yaml
+# python lupo-scripts/flare_edge_suggester.py --file <path> --include-db --format yaml
 
   last_updated_utc: "20260228"
   system_version: "4.0.50"
 lupopedia.footer:
   outbound_edges:
     - { to: "lupo-database/lupopedia/toon/lupo_document_embeddings.toon.json", type: "schema_reference", weight: 1.0, reason: "TOON schema definition", db_source: "lupo_document_embeddings" }
-    - { to: "docs/database/lupopedia/tables/lupo_artifact_chunks.md", type: "references", weight: 0.8, reason: "chunk_id references artifact chunks" }
-    - { to: "docs/database/lupopedia/tables/lupo_contents.md", type: "references", weight: 0.7, reason: "embeddings derived from content" }
-    - { to: "docs/FLARE_HEADERS_COMPLETE_REFERENCE.md", type: "references", weight: 0.7, reason: "FLARE header reference" }
+    - { to: "lupo-docs/database/lupopedia/tables/lupo_artifact_chunks.md", type: "references", weight: 0.8, reason: "chunk_id references artifact chunks" }
+    - { to: "lupo-docs/database/lupopedia/tables/lupo_contents.md", type: "references", weight: 0.7, reason: "embeddings derived from content" }
+    - { to: "lupo-docs/FLARE_HEADERS_COMPLETE_REFERENCE.md", type: "references", weight: 0.7, reason: "FLARE header reference" }
   inbound_edges: []
   semantic_tags: ["database", "table", "embeddings", "vector"]
   version: "4.0.49"

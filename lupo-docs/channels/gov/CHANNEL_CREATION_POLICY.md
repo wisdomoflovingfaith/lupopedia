@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\channels\gov\CHANNEL_CREATION_POLICY.md"
+  file_path_from_root: "lupo-docs\channels\gov\CHANNEL_CREATION_POLICY.md"
   file_hash: "186166bc707680fddc5492b9c3249213d3237b516bc3f6804f1bc89c54104ae7"
-  file_path_from_root: "docs\channels\gov\CHANNEL_CREATION_POLICY.md"
+  file_path_from_root: "lupo-docs\channels\gov\CHANNEL_CREATION_POLICY.md"
   file_hash: "8551f126674da417086d589619c807ba53c2f4fa042fe0f0a9e9f1551699adaf"
   last_updated_utc: "20260228"
   system_version: "4.0.50"

@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\channels\42\broadcasts\20260224_critical_sql_fix_required.md"
+  file_path_from_root: "lupo-docs\channels\42\broadcasts\20260224_critical_sql_fix_required.md"
   file_hash: "1bb52c505edbb1a05144f60123be9e40bf79afe999095eb54ca156fae69f3548"
-  file_path_from_root: "docs\channels\42\broadcasts\20260224_critical_sql_fix_required.md"
+  file_path_from_root: "lupo-docs\channels\42\broadcasts\20260224_critical_sql_fix_required.md"
   file_hash: "8ffa7776285a6027f577e8527b031f55b09f6f7caf5ffeb7f41a0904a9b07f6e"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -62,7 +62,7 @@ lupopedia.footer:
 
 ---
 wolfie.headers: {
-  file_path_from_root: "docs/channels/42/broadcasts/20260224_critical_sql_fix_required.md",
+  file_path_from_root: "lupo-docs/channels/42/broadcasts/20260224_critical_sql_fix_required.md",
   system_version: "4.0.42",
   channel_id: 42,
   mood_rgb: "FF0000",
@@ -90,17 +90,17 @@ wolfie.headers: {
 
 flip.footer: {
   inbound_edges: [
-    { from: "docs/channels/42/broadcasts/20260224_critical_sql_errors_blocking_v4_0_42.md", type: "responds_to", weight: 1.0, hashtag: "#critical" }
+    { from: "lupo-docs/channels/42/broadcasts/20260224_critical_sql_errors_blocking_v4_0_42.md", type: "responds_to", weight: 1.0, hashtag: "#critical" }
   ],
   outbound_edges: [
-    { to: "database/migrations/install_new_lupopedia.sql", type: "requires", weight: 1.0, hashtag: "#schema" },
-    { to: "docs/doctrine/DATABASE_DOCTRINE.md", type: "references", weight: 0.9, hashtag: "#doctrine" },
+    { to: "lupo-database/migrations/install_new_lupopedia.sql", type: "requires", weight: 1.0, hashtag: "#schema" },
+    { to: "lupo-docs/doctrine/DATABASE_DOCTRINE.md", type: "references", weight: 0.9, hashtag: "#doctrine" },
     { to: "lupo-includes/classes/DatabaseFactory.php", type: "references", weight: 0.9, hashtag: "#database" },
     { to: "CHANGELOG.md", type: "will_update", weight: 0.7, hashtag: "#changelog" }
   ],
   referenced_by_actors: [10000, 1002, 1001],
   references: {
-    by_files: ["docs/channels/42/broadcasts/20260224_critical_sql_errors_blocking_v4_0_42.md"],
+    by_files: ["lupo-docs/channels/42/broadcasts/20260224_critical_sql_errors_blocking_v4_0_42.md"],
     by_actors: [10000, 1002, 1001]
   },
   semantic_tags: ["critical_sql_fix", "schema_mismatch", "version_block", "database_schema", "v4_0.42", "immediate_action"],

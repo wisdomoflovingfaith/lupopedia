@@ -23,7 +23,7 @@ lupopedia.footer:
 
 **Validator:** Cursor IDE (actor_id 102), acting as KIRO schema coordinator.  
 **Date:** 20260312  
-**Sources:** `lupo-docs/toons/` (221 TOONs), `lupo-docs/database/lupopedia/tables/` (flat, active/, deprecated/, migrations/), `lupo-docs/doctrine/migrations/`, MIGRATION_MAPPING_REFERENCE.
+**Sources:** `lupo-database/lupopedia/toon/` (221 TOONs), `lupo-docs/database/lupopedia/tables/` (flat, active/, deprecated/, migrations/), `lupo-docs/doctrine/migrations/`, MIGRATION_MAPPING_REFERENCE.
 
 ---
 
@@ -102,14 +102,14 @@ lupopedia.footer:
 ## 9. Header validation issues
 
 - **FLARE header:** Many docs have multiple FLARE blocks (legacy stacking). Single canonical block per file is preferred; not corrected to avoid churn.
-- **file_path_from_root:** Some point to old paths (e.g. docs/database/ vs lupo-docs/database/). Inconsistent; no bulk change.
+- **file_path_from_root:** Some point to old paths (e.g. lupo-docs/database/ vs lupo-docs/database/). Inconsistent; no bulk change.
 - **actor_id / lupo_agent:** Mixed (1002, 1003, 1007, 42, 103, 102). Cursor-authored docs use actor_id 102. No conflict.
 
 ---
 
 ## 10. Remaining unresolved discrepancies
 
-1. **TOON path:** Directive said `lupo-database/lupopedia/toon/`; actual is `lupo-docs/toons/`. Registry and validation use `lupo-docs/toons/`.
+1. **TOON path:** Directive said `lupo-database/lupopedia/toon/`; actual is `lupo-database/lupopedia/toon/`. Registry and validation use `lupo-database/lupopedia/toon/`.
 2. **lupo_actor_properties, lupo_file_index, lupo_headers:** No TOON; referenced in plan or mapping. Unresolved (Removed vs missing from TOON set).
 3. **lupo_modules_departments:** Doc in both tables/ and deprecated/. Unresolved which is current.
 4. **Canonical folder:** Many tables only in flat `tables/`; not all moved to `active/`. Decision: preserve flat docs; treat active/ as canonical when present; no mass move in this pass.

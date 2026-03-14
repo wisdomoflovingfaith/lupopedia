@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\channels\doctrine\JETBRAINS_CONFIGURATION_DOCTRINE.md"
+  file_path_from_root: "lupo-docs\channels\doctrine\JETBRAINS_CONFIGURATION_DOCTRINE.md"
   file_hash: "55f478e8ab1b351af8132249d7a8bd39ed825aff92b7b627fec7a83cf090923e"
-  file_path_from_root: "docs\channels\doctrine\JETBRAINS_CONFIGURATION_DOCTRINE.md"
+  file_path_from_root: "lupo-docs\channels\doctrine\JETBRAINS_CONFIGURATION_DOCTRINE.md"
   file_hash: "7299f22b7e26bfb1536c473c5a1f429dc81c5a3a25a2f4d4a235f6ae6425f6ba"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -267,7 +267,7 @@ This configuration file is binding for:
 ## Related Documentation
 
 - [ATOMIZATION_DOCTRINE.md](ATOMIZATION_DOCTRINE.md) - Atomization rules that JetBrains must not interfere with
-- [WOLFIE_HEADER_DOCTRINE.md](WOLFIE_HEADER_DOCTRINE.md) (`docs/doctrine/WOLFIE_HEADER_DOCTRINE.md`) - WOLFIE Header specification that JetBrains must not modify
+- [WOLFIE_HEADER_DOCTRINE.md](WOLFIE_HEADER_DOCTRINE.md) (`lupo-docs/doctrine/WOLFIE_HEADER_DOCTRINE.md`) - WOLFIE Header specification that JetBrains must not modify
 - [VERSIONING_DOCTRINE.md](../../doctrine/VERSIONING_DOCTRINE.md) - Version control rules that JetBrains must not override
 - [CURSOR_CASCADE_ROLE_SEPARATION_DOCTRINE.md](CURSOR_CASCADE_ROLE_SEPARATION_DOCTRINE.md) - Role separation between Cursor and Cascade
 - [DOCUMENTATION_DOCTRINE.md](DOCUMENTATION_DOCTRINE.md) - Documentation as software/data that JetBrains must not treat as code

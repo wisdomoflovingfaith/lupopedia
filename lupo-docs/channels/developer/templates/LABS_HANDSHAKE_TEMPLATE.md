@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\channels\developer\templates\LABS_HANDSHAKE_TEMPLATE.md"
+  file_path_from_root: "lupo-docs\channels\developer\templates\LABS_HANDSHAKE_TEMPLATE.md"
   file_hash: "3fa16d73c8ae026ad8270d3cc25a81e3fc6172e39651ce00e2b98fdd8e36e2a1"
-  file_path_from_root: "docs\channels\developer\templates\LABS_HANDSHAKE_TEMPLATE.md"
+  file_path_from_root: "lupo-docs\channels\developer\templates\LABS_HANDSHAKE_TEMPLATE.md"
   file_hash: "75be16aa38959a394c59d4f38141f24bf52c0087d0fa3e6c2e687520fa9fb5ba"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -328,7 +328,7 @@ TruthState:
     - fact: "Lupopedia version is 3.1.1"
       source: "config/global_atoms.yaml"
     - fact: "LABS-001 is active and binding"
-      source: "docs/doctrine/LUPOPEDIA_ACTOR_BASELINE_STATE_DOCTRINE.md"
+      source: "lupo-docs/doctrine/LUPOPEDIA_ACTOR_BASELINE_STATE_DOCTRINE.md"
   
   Assumed:
     - assumption: "Database connection is available"

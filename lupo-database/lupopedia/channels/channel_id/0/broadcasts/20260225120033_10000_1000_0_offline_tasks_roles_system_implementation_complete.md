@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "channels\0\broadcasts\20260225120033_10000_1000_0_offline_tasks_roles_system_implementation_complete.md"
+  file_path_from_root: "lupo-channels\0\broadcasts\20260225120033_10000_1000_0_offline_tasks_roles_system_implementation_complete.md"
   file_hash: "71616e48245ca354fae6b300b881d22f9076ec21921609ac3118dc83a7d8b946"
-  file_path_from_root: "channels\0\broadcasts\20260225120033_10000_1000_0_offline_tasks_roles_system_implementation_complete.md"
+  file_path_from_root: "lupo-channels\0\broadcasts\20260225120033_10000_1000_0_offline_tasks_roles_system_implementation_complete.md"
   file_hash: "045fff7f1d61dbbf615e10135bb21587ddc9cb88f37ffca2cefed8cc909566d4"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -270,9 +270,9 @@ The database installation is the critical path. Once complete, all other work ca
 ## 📚 REFERENCES
 
 - `OFFLINE_GOVERNANCE_MODEL_4.0.45.md` - Complete documentation
-- `channels/0/tasks/active/` - Active task definitions
-- `channels/0/roles/` - Role definitions
-- `channels/0/actors/*/tasks/assigned/` - Actor task views
+- `lupo-channels/0/tasks/active/` - Active task definitions
+- `lupo-channels/0/roles/` - Role definitions
+- `lupo-channels/0/actors/*/tasks/assigned/` - Actor task views
 
 ---
 
@@ -282,7 +282,7 @@ The database installation is the critical path. Once complete, all other work ca
 
 <!-- FLIP_FOOTER_BEGIN
 {
-    "references": "\"docs\/status\/broadcast_collection_0.md\"",
+    "references": "\"lupo-docs\/status\/broadcast_collection_0.md\"",
     "implements": "\"broadcast_standardization\"",
     "depends_on": "\"registry_seeding_completion\"",
     "includes": "\"channel_0_communications\"",

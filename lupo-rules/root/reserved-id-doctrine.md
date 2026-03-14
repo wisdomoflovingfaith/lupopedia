@@ -1,7 +1,7 @@
 ---
 lupopedia.init:
   orchestrator_actor: "any"
-  rule_set_version: "4.0.73+"
+  rule_set_version: "4.0.74+"
   applies_to: ["audit", "code-gen", "db-sync", "migration", "header-sync"]
   enforcement: strict
 
@@ -12,12 +12,12 @@ lupopedia.headers:
   actor_id: 1
   actor_name: "wolfie"
   delegation_chain: "wolfie:root"
-  lupopedia.version: "4.0.73"
+  lupopedia.version: "4.0.74"
   lupopedia.schema: "cursor_rule"
   file_path_from_root: "lupo-rules/root/reserved-id-doctrine.md"
   web_path: "http://www.lupopedia.com/rules/root/reserved-id-doctrine"
   last_modified_utc: "20260313"
-  system_version: "4.0.73"
+  system_version: "4.0.74"
   rule_name: "RESERVED ID DOCTRINE"
   rule_type: "constraint"
   artifact_type: "rule"
@@ -27,7 +27,7 @@ lupopedia.headers:
   source_path: ".cursor/rules/reserved-id-doctrine.mdc"
 
 lupopedia.footer:
-  version: "4.0.73"
+  version: "4.0.74"
   last_verified: "20260313"
   last_verified_by: "wolfie"
   orchestrator: "cursor"
@@ -84,7 +84,7 @@ if ($exists) {
 - **Actor creation logic** (lupo_actors)
 - **Channel creation logic** (lupo_channels)
 - **User / auth creation logic** (lupo_auth_users)
-- **Admin UI** that creates actors/channels/users
+- **Admin UI** that creates lupo-actors/channels/users
 - **API endpoints** that insert into these tables
 - **Seed logic** that inserts system rows
 - **Importer logic** that inserts Crafty Syntax rows (preserve original IDs)
@@ -99,7 +99,7 @@ Tables that use explicit non-auto IDs (e.g. `lupo_actor_properties`, `lupo_uploa
 ## Installer / importer / seed
 
 - The **importer** inserts Crafty Syntax users (and related rows) with their **original IDs**.
-- The **installer** inserts system actors/channels with **reserved IDs** from the registry.
+- The **installer** inserts system lupo-actors/channels with **reserved IDs** from the registry.
 - The **seed** file inserts system channels and entities with **reserved IDs**.
 - Do **NOT** "fix" or "normalize" these IDs; preserve them exactly.
 

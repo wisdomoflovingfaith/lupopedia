@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\channels\developer\testing\mapping_validation_scorecard.md"
+  file_path_from_root: "lupo-docs\channels\developer\testing\mapping_validation_scorecard.md"
   file_hash: "05b13129bd8818357fd4ca2bf5e1c5ea81895a946ef762a824afb896c5f0d25c"
-  file_path_from_root: "docs\channels\developer\testing\mapping_validation_scorecard.md"
+  file_path_from_root: "lupo-docs\channels\developer\testing\mapping_validation_scorecard.md"
   file_hash: "34370d0521b0f49a70b176b79c69612b859b52f302cfc7186b5f2ec09d3d6559"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -64,7 +64,7 @@ lupopedia.footer:
 
 ## Source
 Crafty Syntax 3.7.5 (livehelp_* tables)  
-**File:** `database/migrations/craftysyntax_to_lupopedia_mysql.sql`
+**File:** `lupo-database/migrations/craftysyntax_to_lupopedia_mysql.sql`
 
 ## Target
 Lupopedia schema (lupo_* tables)

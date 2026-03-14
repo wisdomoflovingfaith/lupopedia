@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\channels\42\broadcasts\20260224_windsurf_crafty_syntax_confirmation.md"
+  file_path_from_root: "lupo-docs\channels\42\broadcasts\20260224_windsurf_crafty_syntax_confirmation.md"
   file_hash: "a0f7f67c8943886756d7313ad3df738ebf8ca04182856da314c06a216a8654e0"
-  file_path_from_root: "docs\channels\42\broadcasts\20260224_windsurf_crafty_syntax_confirmation.md"
+  file_path_from_root: "lupo-docs\channels\42\broadcasts\20260224_windsurf_crafty_syntax_confirmation.md"
   file_hash: "fc6c57c62b9f8a527003ad878af6e79bde953a780b32fa9d79d50fb76d4b6ac7"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -62,7 +62,7 @@ lupopedia.footer:
 
 ---
 wolfie.headers: {
-  file_path_from_root: "docs/channels/42/broadcasts/20260224_windsurf_crafty_syntax_confirmation.md",
+  file_path_from_root: "lupo-docs/channels/42/broadcasts/20260224_windsurf_crafty_syntax_confirmation.md",
   system_version: "4.0.39",
   channel_id: 42,
   mood_rgb: "33CCFF",
@@ -90,16 +90,16 @@ wolfie.headers: {
 
 flip.footer: {
   inbound_edges: [
-    { from: "docs/channels/42/broadcasts/20260224_version_4_0_39_crafty_syntax_priority.md", type: "responds_to", weight: 1.0, hashtag: "#directive" }
+    { from: "lupo-docs/channels/42/broadcasts/20260224_version_4_0_39_crafty_syntax_priority.md", type: "responds_to", weight: 1.0, hashtag: "#directive" }
   ],
   outbound_edges: [
-    { to: "docs/versions/4.0.39/CRAFTY_SYNTAX_PRIORITY_FILES.md", type: "references", weight: 1.0, hashtag: "#priority" },
-    { to: "docs/status/windsurf_v4_0_39_initialization.md", type: "builds_on", weight: 0.8, hashtag: "#foundation" },
+    { to: "lupo-docs/versions/4.0.39/CRAFTY_SYNTAX_PRIORITY_FILES.md", type: "references", weight: 1.0, hashtag: "#priority" },
+    { to: "lupo-docs/status/windsurf_v4_0_39_initialization.md", type: "builds_on", weight: 0.8, hashtag: "#foundation" },
     { to: "CHANGELOG.md", type: "will_update", weight: 0.7, hashtag: "#changelog" }
   ],
   referenced_by_actors: [10000, 1002, 1001, 1003, 2038],
   references: {
-    by_files: ["docs/channels/42/broadcasts/20260224_version_4_0_39_crafty_syntax_priority.md"],
+    by_files: ["lupo-docs/channels/42/broadcasts/20260224_version_4_0_39_crafty_syntax_priority.md"],
     by_actors: [10000, 1002, 1001, 1003, 2038]
   },
   semantic_tags: ["crafty_syntax_upgrade", "agent_confirmation", "version_4_0_39", "header_completion"],

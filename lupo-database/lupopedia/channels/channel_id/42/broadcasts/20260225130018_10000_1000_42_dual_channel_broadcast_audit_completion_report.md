@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "channels\42\broadcasts\20260225130018_10000_1000_42_dual_channel_broadcast_audit_completion_report.md"
+  file_path_from_root: "lupo-channels\42\broadcasts\20260225130018_10000_1000_42_dual_channel_broadcast_audit_completion_report.md"
   file_hash: "554dc31b4fcd1913c5f173afe2d0189616926314e261489cbff92db7c5b609ea"
-  file_path_from_root: "channels\42\broadcasts\20260225130018_10000_1000_42_dual_channel_broadcast_audit_completion_report.md"
+  file_path_from_root: "lupo-channels\42\broadcasts\20260225130018_10000_1000_42_dual_channel_broadcast_audit_completion_report.md"
   file_hash: "c07dd7dc6fa3173623da0756a438be1ba2f39f238e959590707ad7061e09e567"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -124,13 +124,13 @@ Dual-channel broadcast audit complete. Critical compliance issues identified acr
 
 ### 1. Channel 0 Workspace Announcement
 
-**File:** `channels/0/broadcasts/20260225120000_10000_1000_0_channel_scoped_actor_workspaces.md`  
+**File:** `lupo-channels/0/broadcasts/20260225120000_10000_1000_0_channel_scoped_actor_workspaces.md`  
 **Status:** ✅ EXISTS (created previously)  
 **Action Required:** Add missing header fields
 
 ### 2. Channel 42 Workspace Announcement
 
-**File:** `channels/42/broadcasts/20260225140000_10000_1000_42_channel_scoped_actor_workspaces.md`  
+**File:** `lupo-channels/42/broadcasts/20260225140000_10000_1000_42_channel_scoped_actor_workspaces.md`  
 **Status:** ✅ CREATED  
 **Compliance:** FULL (all required fields present)
 
@@ -217,7 +217,7 @@ Dual-channel broadcast audit complete. Critical compliance issues identified acr
 3. **BROADCAST_AUDIT_REPORT_4.0.45.json**
    - Machine-readable audit data
 
-4. **scripts/audit_channel_broadcasts.ps1**
+4. **lupo-scripts/audit_channel_broadcasts.ps1**
    - Audit automation script
 
 ---
@@ -289,7 +289,7 @@ Dual-channel broadcast audit complete. Critical compliance issues identified acr
 
 <!-- FLIP_FOOTER_BEGIN
 {
-    "references": "\"docs\/status\/broadcast_collection_42.md\"",
+    "references": "\"lupo-docs\/status\/broadcast_collection_42.md\"",
     "implements": "\"broadcast_standardization\"",
     "depends_on": "\"registry_seeding_completion\"",
     "includes": "\"channel_42_communications\"",

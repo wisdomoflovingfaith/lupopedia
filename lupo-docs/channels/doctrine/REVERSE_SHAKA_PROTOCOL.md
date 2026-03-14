@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\channels\doctrine\REVERSE_SHAKA_PROTOCOL.md"
+  file_path_from_root: "lupo-docs\channels\doctrine\REVERSE_SHAKA_PROTOCOL.md"
   file_hash: "1e1993d8c41cbde9385b52ce92e5c68ea0a32627a037ed922534f0479a3f5db4"
-  file_path_from_root: "docs\channels\doctrine\REVERSE_SHAKA_PROTOCOL.md"
+  file_path_from_root: "lupo-docs\channels\doctrine\REVERSE_SHAKA_PROTOCOL.md"
   file_hash: "bba9fdb121eb74da61aa94141cfefabd7513a813162fe81dbcfb80778cdc5685"
   last_updated_utc: "20260228"
   system_version: "4.0.50"

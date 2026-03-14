@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\doctrine\MINIMAL_HOSTING_REQUIREMENTS.md"
+  file_path_from_root: "lupo-docs\doctrine\MINIMAL_HOSTING_REQUIREMENTS.md"
   file_hash: "7da5255a6b2e157f7dbb5c78eedf9f563e4849c82b1355761472209e16d6f699"
-  file_path_from_root: "docs\doctrine\MINIMAL_HOSTING_REQUIREMENTS.md"
+  file_path_from_root: "lupo-docs\doctrine\MINIMAL_HOSTING_REQUIREMENTS.md"
   file_hash: "27806ad91b52ef3b81eb1b32e61ed7cdc3e49496eb466ac8242e50416781b8d9"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -64,7 +64,7 @@ lupopedia.footer:
 ---
 # FLIP Header (alias: Wolfie Header, CROP Header, FLIPPING Header)
 wolfie.headers: explicit architecture with structured clarity for every file.
-file_path_from_root: docs/doctrine/MINIMAL_HOSTING_REQUIREMENTS.md
+file_path_from_root: lupo-docs/doctrine/MINIMAL_HOSTING_REQUIREMENTS.md
 file.last_modified_system_version: "4.0.16"
 file.last_modified_utc: "20260218000000"
 channel_id: 42   # ANUBIS adoption channel
@@ -74,7 +74,7 @@ atoms:
   recovery_event: true
 X-Lupo-Actor-ID: 2035
 X-Lupo-Actor-Identity: "Lupopedia Audit Tool (Auto-Fixed)"
-X-Lupo-File-Path: docs/doctrine/MINIMAL_HOSTING_REQUIREMENTS.md
+X-Lupo-File-Path: lupo-docs/doctrine/MINIMAL_HOSTING_REQUIREMENTS.md
 ---
 
 # Minimal Hosting Requirements

@@ -2,7 +2,7 @@
 /**
  * Admin diagnostics — local-only, dev-only JSON logging for admin flows.
  * 4.0.20: permission traces, CSRF traces, session introspection, admin action audit.
- * Logs: logs/admin/YYYY-MM-DD.jsonl; rotation at >1MB with flock. PHP 5.3+ compatible.
+ * Logs: lupo-logs/admin/YYYY-MM-DD.jsonl; rotation at >1MB with flock. PHP 5.3+ compatible.
  */
 
 /**
@@ -13,8 +13,8 @@
  */
 function lupo_diag_write($type, $data) {
     $dir = defined('LUPOPEDIA_PATH')
-        ? LUPOPEDIA_PATH . DIRECTORY_SEPARATOR . 'logs' . DIRECTORY_SEPARATOR . 'admin'
-        : dirname(dirname(__DIR__)) . DIRECTORY_SEPARATOR . 'logs' . DIRECTORY_SEPARATOR . 'admin';
+        ? LUPOPEDIA_PATH . DIRECTORY_SEPARATOR . 'lupo-logs' . DIRECTORY_SEPARATOR . 'admin'
+        : dirname(dirname(__DIR__)) . DIRECTORY_SEPARATOR . 'lupo-logs' . DIRECTORY_SEPARATOR . 'admin';
     if (!is_dir($dir)) {
         @mkdir($dir, 0777, true);
     }

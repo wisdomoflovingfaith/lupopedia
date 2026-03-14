@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "channels\0\roles\system_admin.md"
+  file_path_from_root: "lupo-channels\0\roles\system_admin.md"
   file_hash: "de2221b4c5367242b224b85ab18aa1963df5b743fe5cd77e4f23803ee4142c3a"
-  file_path_from_root: "channels\0\roles\system_admin.md"
+  file_path_from_root: "lupo-channels\0\roles\system_admin.md"
   file_hash: "0612c19ec1e07e8fc920060dad1af3129fa85825c35f3be2582190016659b648"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -171,7 +171,7 @@ System Administrators report to no one. They are the final authority. In case of
 <!-- FLIP_FOOTER_BEGIN
 {
   "references": [
-    "docs/doctrine/database/",
+    "lupo-docs/doctrine/database/",
     "AGENTS.md"
   ],
   "implements": "root_authority_model",

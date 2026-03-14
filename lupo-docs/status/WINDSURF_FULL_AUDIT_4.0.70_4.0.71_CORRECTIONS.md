@@ -23,8 +23,8 @@ lupopedia.edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
     - { to: "lupo-docs/status/WINDSURF_AUDIT_4.0.70_4.0.71_CORRECTIONS.md", type: "references", weight: 0.9 }
     - { to: "lupo-docs/status/ANTIGRAVITY_SEMANTIC_NAVBAR_REBUILD_4.0.71.md", type: "references", weight: 0.8 }
-    - { to: "database/migrations/20260312_session_model_rewrite.sql", type: "references", weight: 0.8 }
-    - { to: "database/migrations/20260312_authoritative_semantic_navbar_rebuild.sql", type: "references", weight: 0.8 }
+    - { to: "lupo-database/migrations/20260312_session_model_rewrite.sql", type: "references", weight: 0.8 }
+    - { to: "lupo-database/migrations/20260312_authoritative_semantic_navbar_rebuild.sql", type: "references", weight: 0.8 }
     - { to: "lupo-includes/modules/api/semantic-navbar-api.php", type: "references", weight: 0.7 }
     - { to: "lupo-includes/modules/nav/semantic-navbar-js.php", type: "references", weight: 0.7 }
   semantic_tags: ["audit", "validation", "cursor", "antigravity", "semantic_navbar", "session_model", "cross_agent"]
@@ -95,7 +95,7 @@ Windsurf (actor_id 1002) has completed a comprehensive cross-agent audit of Curs
 - ✅ No legacy session table references
 
 ### 2.2 Migration Validation
-**File:** `database/migrations/20260312_session_model_rewrite.sql`
+**File:** `lupo-database/migrations/20260312_session_model_rewrite.sql`
 - ✅ Correctly drops legacy tables (unified_sessions, sessions, session_data, lupo_sessions)
 - ✅ Creates canonical Model A schema
 - ✅ No data migration (correct per doctrine)
@@ -148,8 +148,8 @@ Windsurf (actor_id 1002) has completed a comprehensive cross-agent audit of Curs
 ### 3.2 Migration Files Validation ✅
 
 **Files Verified:**
-- `database/migrations/20260312_semantic_navbar_backend_update.sql` ✅
-- `database/migrations/20260312_authoritative_semantic_navbar_rebuild.sql` ✅
+- `lupo-database/migrations/20260312_semantic_navbar_backend_update.sql` ✅
+- `lupo-database/migrations/20260312_authoritative_semantic_navbar_rebuild.sql` ✅
 
 Both migrations correctly implement doctrine-aligned schemas.
 
@@ -361,7 +361,7 @@ lupo_reference_map
 ### 10.1 CRITICAL - Immediate Actions Required
 
 1. **Generate Missing TOON Files** (Priority: CRITICAL)
-   - Run `python scripts/generate_toon_files.py` immediately
+   - Run `python lupo-scripts/generate_toon_files.py` immediately
    - Create TOON files for 9 missing tables
    - Validate TOON-Schema consistency
    - Update schema registry

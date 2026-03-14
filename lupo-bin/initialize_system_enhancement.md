@@ -1,7 +1,7 @@
 # FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP) — see http://www.lupopedia.com/FLARE
 ---
 lupopedia.headers:
-  lupopedia.version: "4.0.73"
+  lupopedia.version: "4.0.74"
   lupopedia.schema: "instruction"
   file_path_from_root: "bin/boot_system_agent.php"
   system_version: "4.0.53"
@@ -19,11 +19,11 @@ lupopedia.headers:
 
 lupopedia.edges:
   outbound_edges:
-    - { to: "channels/0/finalize_4.0.52.md", type: "instruction_reference", weight: 1.0 }
-    - { to: "docs/doctrine/FLARE/FLARE_DOCTRINE.md", type: "references", weight: 0.8 }
-    - { to: "docs/toons/lupo_channel_boot_lifecycle.toon.json", type: "related_schema", weight: 0.9 }
-    - { to: "database/migrations/install_new_lupopedia.sql", type: "schema_reference", weight: 0.9 }
-    - { to: "docs/database/lupopedia/tables/SESSION_MANAGEMENT_SYSTEM.md", type: "integration_reference", weight: 0.8 }
+    - { to: "lupo-channels/0/finalize_4.0.52.md", type: "instruction_reference", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/FLARE/FLARE_DOCTRINE.md", type: "references", weight: 0.8 }
+    - { to: "lupo-docs/toons/lupo_channel_boot_lifecycle.toon.json", type: "related_schema", weight: 0.9 }
+    - { to: "lupo-database/migrations/install_new_lupopedia.sql", type: "schema_reference", weight: 0.9 }
+    - { to: "lupo-docs/database/lupopedia/tables/SESSION_MANAGEMENT_SYSTEM.md", type: "integration_reference", weight: 0.8 }
   semantic_tags: ["crafty_syntax_upgrade", "ai_boot", "system_enhancement"]
 
 lupopedia.footer:
@@ -114,7 +114,7 @@ class AnubisAI {
 
 **Integration Points**:
 - **Database**: Use `DatabaseFactory::getConnection()` for all operations
-- **TOON Schema**: Validate against `docs/toons/*.toon.json` files
+- **TOON Schema**: Validate against `lupo-docs/toons/*.toon.json` files
 - **Channel Logs**: Log all AI operations to `lupo_channel_logs`
 - **Escalations**: Route critical issues to `lupo_channel_escalations`
 

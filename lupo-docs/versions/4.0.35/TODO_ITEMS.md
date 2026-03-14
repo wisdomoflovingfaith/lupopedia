@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\versions\4.0.35\TODO_ITEMS.md"
+  file_path_from_root: "lupo-docs\versions\4.0.35\TODO_ITEMS.md"
   file_hash: "b64f570991f2fcc36e8871255029171e4250246d7d801a7321e4852ff3e70a87"
-  file_path_from_root: "docs\versions\4.0.35\TODO_ITEMS.md"
+  file_path_from_root: "lupo-docs\versions\4.0.35\TODO_ITEMS.md"
   file_hash: "593a249fb09f966bc352d92189a10ae308612dede77a16835357c5d781ee19de"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -77,8 +77,8 @@ wolfie.headers:
 flip.footer:
   referenced_by_files:
     - "CHANGELOG.md"
-    - "docs/versions/4.0.35/CHANGELOG_DRAFT.md"
-    - "docs/versions/4.0.35/ROADMAP.md"
+    - "lupo-docs/versions/4.0.35/CHANGELOG_DRAFT.md"
+    - "lupo-docs/versions/4.0.35/ROADMAP.md"
   referenced_by_channels:
     - 42
   referenced_by_actors:
@@ -110,7 +110,7 @@ flip.footer:
 ## 🎯 **HIGH PRIORITY TASKS**
 
 ### **Registry Consolidation (CRITICAL)**
-- [ ] Execute registry consolidation script (`database/migrations/dev_20260223_registry_consolidation.sql`)
+- [ ] Execute registry consolidation script (`lupo-database/migrations/dev_20260223_registry_consolidation.sql`)
 - [ ] ANUBIS orphan adoption and validation
 - [ ] Legacy registry cleanup (`lupo_unified_registry` removal)
 - [ ] Migration validation and rollback testing

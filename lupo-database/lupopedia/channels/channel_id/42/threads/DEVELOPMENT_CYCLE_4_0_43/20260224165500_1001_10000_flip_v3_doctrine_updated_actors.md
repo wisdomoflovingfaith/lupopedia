@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "channels\42\threads\DEVELOPMENT_CYCLE_4_0_43\20260224165500_1001_10000_flip_v3_doctrine_updated_actors.md"
+  file_path_from_root: "lupo-channels\42\threads\DEVELOPMENT_CYCLE_4_0_43\20260224165500_1001_10000_flip_v3_doctrine_updated_actors.md"
   file_hash: "bd39b257015a0a4a7b5cadf13d319dc70517e23dc98ecc08dd7d86d9279115d1"
-  file_path_from_root: "channels\42\threads\DEVELOPMENT_CYCLE_4_0_43\20260224165500_1001_10000_flip_v3_doctrine_updated_actors.md"
+  file_path_from_root: "lupo-channels\42\threads\DEVELOPMENT_CYCLE_4_0_43\20260224165500_1001_10000_flip_v3_doctrine_updated_actors.md"
   file_hash: "3253d39cf5e27c2688e973bb2f02fae47ca3cb28ed555c6781f47d28a2a39023"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -63,7 +63,7 @@ lupopedia.footer:
 
 ---
 wolfie.headers: {
-  file_path_from_root: "channels/42/threads/DEVELOPMENT_CYCLE_4_0_43/20260224165500_1001_10000_flip_v3_doctrine_updated_actors.md",
+  file_path_from_root: "lupo-channels/42/threads/DEVELOPMENT_CYCLE_4_0_43/20260224165500_1001_10000_flip_v3_doctrine_updated_actors.md",
   system_version: "4.0.43",
   channel_id: 42,
   actor_id: 1001,
@@ -73,14 +73,14 @@ wolfie.headers: {
 }
 flip.footer: {
   outbound_edges: [
-    { to: "channels/0/broadcasts/20260224165300_0_10000_flip_v3_retrofit_doctrine.md", type: "references", weight: 1.0 },
-    { to: "actors/", type: "references", weight: 1.0 }
+    { to: "lupo-channels/0/broadcasts/20260224165300_0_10000_flip_v3_retrofit_doctrine.md", type: "references", weight: 1.0 },
+    { to: "lupo-actors/", type: "references", weight: 1.0 }
   ],
   semantic_tags: ["update", "flip", "actors", "doctrine"]
 }
 ---
 
-# KIRO: FLIP v3 Doctrine Updated to Include actors/
+# KIRO: FLIP v3 Doctrine Updated to Include lupo-actors/
 
 **From:** KIRO (1001)  
 **To:** Captain Wolfie (10000)  
@@ -89,19 +89,19 @@ flip.footer: {
 
 ## Status: ✅ UPDATED
 
-Doctrine #14 updated to include actors/ directory alongside artifacts/ and channels/. All .md files in actors/ will receive FLIP v3 headers.
+Doctrine #14 updated to include lupo-actors/ directory alongside artifacts/ and lupo-channels/. All .md files in lupo-actors/ will receive FLIP v3 headers.
 
 ## Changes Made
 
 ### Doctrine #14 Updated
 - Title changed to "FLIP v3 RETROFIT FOR ARTIFACTS + CHANNELS + ACTORS"
-- Scope expanded to include `actors/**/*.md`
-- Added special handling section for actors/ files
+- Scope expanded to include `lupo-actors/**/*.md`
+- Added special handling section for lupo-actors/ files
 
-### Special Handling for actors/ Files
+### Special Handling for lupo-actors/ Files
 
 **1. Extract actor_id from path:**
-- Path format: `actors/<actor_id>/<filename>.md`
+- Path format: `lupo-actors/<actor_id>/<filename>.md`
 - `actor_id` is the folder name (numeric)
 - Set `actor_confidence = 1.0` (explicit from path)
 
@@ -115,27 +115,27 @@ relations:
   - rel: "describes_actor"
     target_actor_id: <actor_id>
   - rel: "part_of_actor_folder"
-    target: "actors/<actor_id>/"
+    target: "lupo-actors/<actor_id>/"
 ```
 
-**4. Cross-reference with actors/registry.json:**
+**4. Cross-reference with lupo-actors/registry.json:**
 - Validate actor_id exists in registry
 - Add display_name, canonical_slug to metadata
 - Enrich with actor_kind, agent_class
 
-### Deterministic artifact_id for actors/
+### Deterministic artifact_id for lupo-actors/
 ```
-artifact_id = sha1("actors/<actor_id>/<relative_path>" + "\n" + file_bytes_sha1)
+artifact_id = sha1("lupo-actors/<actor_id>/<relative_path>" + "\n" + file_bytes_sha1)
 ```
 
-### Example actors/ FLIP Header
+### Example lupo-actors/ FLIP Header
 ```yaml
 ---
 flip_version: 3
 system_version: "4.0.43"
 artifact_id: "sha1:..."
-federated_node_id: 10000  # from actors/<id>/
-artifact_path: "actors/10000/profile.md"
+federated_node_id: 10000  # from lupo-actors/<id>/
+artifact_path: "lupo-actors/10000/profile.md"
 artifact_type: "actor_metadata"
 artifact_kind: "actor_profile"
 actor_id: 10000
@@ -149,7 +149,7 @@ relations:
   - rel: "describes_actor"
     target_actor_id: 10000
   - rel: "part_of_actor_folder"
-    target: "actors/10000/"
+    target: "lupo-actors/10000/"
 is_deleted: 0
 deleted_ymdhis: 0
 ---
@@ -159,19 +159,19 @@ deleted_ymdhis: 0
 
 **Retrofit script will now process:**
 - `artifacts/**/*.md`
-- `channels/**/*.md`
-- `actors/**/*.md`
+- `lupo-channels/**/*.md`
+- `lupo-actors/**/*.md`
 
 **Actor files will receive:**
 - Deterministic artifact_id based on path
 - actor_id extracted from folder name (confidence 1.0)
-- Cross-reference validation with actors/registry.json
+- Cross-reference validation with lupo-actors/registry.json
 - Actor-specific relations (describes_actor, part_of_actor_folder)
 - Enrichment with registry metadata (display_name, canonical_slug, actor_kind, agent_class)
 
 ## Validation
 
-✅ Doctrine #14 updated with actors/ scope  
+✅ Doctrine #14 updated with lupo-actors/ scope  
 ✅ Special handling section added  
 ✅ Example FLIP header provided  
 ✅ Deterministic artifact_id formula documented  
@@ -180,7 +180,7 @@ deleted_ymdhis: 0
 
 ## Ready for Implementation
 
-All three directories (artifacts/, channels/, actors/) are now covered by Doctrine #14. Ready to implement `scripts/flip_retrofit_artifacts.py` with full support for all three source folders.
+All three directories (artifacts/, lupo-channels/, lupo-actors/) are now covered by Doctrine #14. Ready to implement `lupo-scripts/flip_retrofit_artifacts.py` with full support for all three source folders.
 
 ---
 

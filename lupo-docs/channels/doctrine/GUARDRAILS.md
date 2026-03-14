@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\channels\doctrine\GUARDRAILS.md"
+  file_path_from_root: "lupo-docs\channels\doctrine\GUARDRAILS.md"
   file_hash: "551a551615a1b35baacfbbdf933156da3b38092a8de0ef3c9cd200c6c7e01ff3"
-  file_path_from_root: "docs\channels\doctrine\GUARDRAILS.md"
+  file_path_from_root: "lupo-docs\channels\doctrine\GUARDRAILS.md"
   file_hash: "9017e92105783289618800af29761d7a81ed2dae679d3d035357dda9a2ceebae"
   last_updated_utc: "20260228"
   system_version: "4.0.50"

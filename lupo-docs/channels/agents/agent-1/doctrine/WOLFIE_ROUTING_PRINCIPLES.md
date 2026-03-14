@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\channels\agents\agent-1\doctrine\WOLFIE_ROUTING_PRINCIPLES.md"
+  file_path_from_root: "lupo-docs\channels\agents\agent-1\doctrine\WOLFIE_ROUTING_PRINCIPLES.md"
   file_hash: "4c0f21f08365fb85f9f0440aa4d9fc8f7fb143a9b15da620386189f13d33d4e8"
-  file_path_from_root: "docs\channels\agents\agent-1\doctrine\WOLFIE_ROUTING_PRINCIPLES.md"
+  file_path_from_root: "lupo-docs\channels\agents\agent-1\doctrine\WOLFIE_ROUTING_PRINCIPLES.md"
   file_hash: "dbcffce31d22396992e7caa4d1e69dc2c4ab7f20d29b987c920ed3152ac2c19d"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -490,7 +490,7 @@ The following validation rules are defined as **DRAFT**. They will be refined as
 
 - ✅ `channel_key` must exist in Channel Manifest
 - ✅ `channel_key` must be valid per Channel Identity Block doctrine
-- ✅ Manifest file must exist at `channels/<channel_key>/manifest.json`
+- ✅ Manifest file must exist at `lupo-channels/<channel_key>/manifest.json`
 - ❌ Invalid or missing `channel_key` causes routing failure
 
 ---

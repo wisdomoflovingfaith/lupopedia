@@ -12,7 +12,7 @@ Cursor MUST treat **install_new_lupopedia.sql** and **seed_lupopedia.sql** as th
 
 - **database/migrations/install_new_lupopedia.sql** — Full table definitions (CREATE TABLE).
 - **database/migrations/seed_lupopedia.sql** — Seeded tables and row structure.
-- **TOON files:** `docs/toons/` — Regenerated from install SQL via `scripts/generate_toon_from_sql.py`. One file per table: `<table_name>.toon.json`.
+- **TOON files:** `lupo-database/lupopedia/toon/` — Regenerated from install SQL via `scripts/generate_toon_from_sql.py`. One file per table: `<table_name>.toon.json`.
 - **Every** table name, column name, column type, index, and key MUST match the canonical schema. TOONs reflect the install SQL; they are not independently authoritative until regenerated.
 
 ## Rules

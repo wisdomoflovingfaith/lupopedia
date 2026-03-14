@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\channels\42\broadcasts\20260223_windsurf_sql_seed_complete.md"
+  file_path_from_root: "lupo-docs\channels\42\broadcasts\20260223_windsurf_sql_seed_complete.md"
   file_hash: "140015111197eaddb529cd26d53fb634a4a9122a817474d22b49c43713e5e216"
-  file_path_from_root: "docs\channels\42\broadcasts\20260223_windsurf_sql_seed_complete.md"
+  file_path_from_root: "lupo-docs\channels\42\broadcasts\20260223_windsurf_sql_seed_complete.md"
   file_hash: "35e2f3a423ec2b8e01c3b380d5ca7042af9784a7e48997b32e39b80fd167b632"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -64,7 +64,7 @@ lupopedia.footer:
 ---
 # FLIP Header (alias: Wolfie Header, CROP Header)
 wolfie.headers:
-  file_path_from_root: "channels/42/broadcasts/20260223_windsurf_sql_seed_complete.md"
+  file_path_from_root: "lupo-channels/42/broadcasts/20260223_windsurf_sql_seed_complete.md"
   system_version: "4.0.33"
   channel_id: 42
   mood_rgb: "4B0082"
@@ -76,11 +76,11 @@ wolfie.headers:
 
 flip.footer:
   referenced_by_files:
-    - "docs/status/windsurf_sql_seed_alignment_report_4_0_33.md"
-    - "docs/AGENT_INVENTORY.md"
-    - "docs/doctrine/AGENT_REGISTRY_DOCTRINE.md"
-    - "database/migrations/install_new_lupopedia.sql"
-    - "database/migrations/seed_lupopedia.sql"
+    - "lupo-docs/status/windsurf_sql_seed_alignment_report_4_0_33.md"
+    - "lupo-docs/AGENT_INVENTORY.md"
+    - "lupo-docs/doctrine/AGENT_REGISTRY_DOCTRINE.md"
+    - "lupo-database/migrations/install_new_lupopedia.sql"
+    - "lupo-database/migrations/seed_lupopedia.sql"
   referenced_by_channels:
     - 42
   referenced_by_actors:
@@ -156,18 +156,18 @@ flip.footer:
 ## 📋 **FILES UPDATED**
 
 ### SQL Seed Files
-1. **database/migrations/install_new_lupopedia.sql**
+1. **lupo-database/migrations/install_new_lupopedia.sql**
    - ✅ IDE actor IDs corrected
    - ✅ System kernel agents added
    - ✅ Dual registry seeding implemented
    - ✅ ANUBIS migration note added
 
-2. **database/migrations/seed_lupopedia.sql**
+2. **lupo-database/migrations/seed_lupopedia.sql**
    - ✅ Actor registry section added
    - ✅ Dual table seeding implemented
 
 ### Documentation
-3. **docs/status/windsurf_sql_seed_alignment_report_4_0_33.md**
+3. **lupo-docs/status/windsurf_sql_seed_alignment_report_4_0_33.md**
    - ✅ Complete alignment documentation
    - ✅ Before/after comparisons
    - ✅ Validation results

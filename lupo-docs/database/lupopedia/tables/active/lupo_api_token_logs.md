@@ -16,7 +16,7 @@ lupopedia.headers:
 
 lupopedia.edges:
   outbound_edges:
-    - { to: "lupo-docs/toons/lupo_api_token_logs.toon.json", type: "schema_reference", weight: 1.0 }
+    - { to: "lupo-database/lupopedia/toon/lupo_api_token_logs.toon.json", type: "schema_reference", weight: 1.0 }
     - { to: "lupo-docs/database/lupopedia/tables/active/lupo_api_tokens.md", type: "references", weight: 0.9 }
 
 lupopedia.footer:

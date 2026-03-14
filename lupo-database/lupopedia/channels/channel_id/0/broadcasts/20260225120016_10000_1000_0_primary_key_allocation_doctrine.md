@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "channels\0\broadcasts\20260225120016_10000_1000_0_primary_key_allocation_doctrine.md"
+  file_path_from_root: "lupo-channels\0\broadcasts\20260225120016_10000_1000_0_primary_key_allocation_doctrine.md"
   file_hash: "bece35da3a95a7cf1b3cdad44ca620909b79bd0bc99750b78258971d01541880"
-  file_path_from_root: "channels\0\broadcasts\20260225120016_10000_1000_0_primary_key_allocation_doctrine.md"
+  file_path_from_root: "lupo-channels\0\broadcasts\20260225120016_10000_1000_0_primary_key_allocation_doctrine.md"
   file_hash: "fb86ec6ef99b6d1d5be0bf1eb8a85995fff68bea72860e1c2b98b8af19088688"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -81,7 +81,7 @@ All PKs allocated from lupo_registry_open. Keys in lupo_registry cannot be reuse
 
 <!-- FLIP_FOOTER_BEGIN
 {
-    "references": "\"docs\/status\/broadcast_collection_0.md\"",
+    "references": "\"lupo-docs\/status\/broadcast_collection_0.md\"",
     "implements": "\"broadcast_standardization\"",
     "depends_on": "\"registry_seeding_completion\"",
     "includes": "\"channel_0_communications\"",

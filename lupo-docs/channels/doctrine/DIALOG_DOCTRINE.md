@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\channels\doctrine\DIALOG_DOCTRINE.md"
+  file_path_from_root: "lupo-docs\channels\doctrine\DIALOG_DOCTRINE.md"
   file_hash: "1c073245da623b5397ed72c7dbd25998aebc1a52b8ba008215f7d535c2126d9c"
-  file_path_from_root: "docs\channels\doctrine\DIALOG_DOCTRINE.md"
+  file_path_from_root: "lupo-docs\channels\doctrine\DIALOG_DOCTRINE.md"
   file_hash: "4ba3821b99d8e659f67f8b263cb6485970710112a795dc61adaf79f4c7eecaf6"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -450,7 +450,7 @@ Lupopedia uses a multi-IDE, multi-AI workflow where different tools and agents h
 
 ### 5.4 Terminal AI Identity Rule
 
-**MANDATORY: Terminal AI must identify itself in dialog entries as Terminal_AI_<agentNumber>, where <agentNumber> corresponds to its directory in agents/<number>/.**
+**MANDATORY: Terminal AI must identify itself in dialog entries as Terminal_AI_<agentNumber>, where <agentNumber> corresponds to its directory in lupo-agents/<number>/.**
 
 **Terminal AI Identification Format:**
 ```yaml
@@ -465,21 +465,21 @@ Lupopedia uses a multi-IDE, multi-AI workflow where different tools and agents h
 
 **Terminal AI Registry Mapping:**
 - Terminal AI agents are registered in the agent registry with specific slot numbers
-- Each Terminal AI instance has a directory: `agents/<number>/`
+- Each Terminal AI instance has a directory: `lupo-agents/<number>/`
 - The `<agentNumber>` in the Speaker name must match the directory number
 - This ensures clear identification of which Terminal AI instance performed the action
 
 **Example:**
 ```
-agents/
+lupo-agents/
 â”œâ”€â”€ 15/  # Terminal AI slot 15
 â”‚   â””â”€â”€ agent.json
 â”œâ”€â”€ 42/  # Terminal AI slot 42
 â”‚   â””â”€â”€ agent.json
 
 Dialog entries:
-**Speaker:** Terminal_AI_15  # Matches agents/15/
-**Speaker:** Terminal_AI_42  # Matches agents/42/
+**Speaker:** Terminal_AI_15  # Matches lupo-agents/15/
+**Speaker:** Terminal_AI_42  # Matches lupo-agents/42/
 ```
 
 ### 5.5 Speaker Consistency Requirements
@@ -1024,14 +1024,14 @@ Dialog system integration requires:
 
 - This rule remains in effect until version 4.2.0.
 
-**Cross-Reference:** `docs/doctrine/VERSION_GATED_BRANCH_FREEZE_PROTOCOL.md`; `dialogs/changelog_dialog.md` (Expansion/Compression/Wingle Branch Limit Rule entry).
+**Cross-Reference:** `lupo-docs/doctrine/VERSION_GATED_BRANCH_FREEZE_PROTOCOL.md`; `dialogs/changelog_dialog.md` (Expansion/Compression/Wingle Branch Limit Rule entry).
 
 ---
 
 ## 17. Related Documentation
 
 - **[Multi-IDE Workflow](../architecture/multi-ide-workflow.md)** - Complete multi-agent workflow documentation with speaker mapping and role definitions
-- **[WOLFIE Header Doctrine](WOLFIE_HEADER_DOCTRINE.md)** (`docs/doctrine/WOLFIE_HEADER_DOCTRINE.md`) - MANDATORY rules for WOLFIE headers and dialog integration
+- **[WOLFIE Header Doctrine](WOLFIE_HEADER_DOCTRINE.md)** (`lupo-docs/doctrine/WOLFIE_HEADER_DOCTRINE.md`) - MANDATORY rules for WOLFIE headers and dialog integration
 - **[Agent Runtime](AGENT_RUNTIME.md)** - How agents interact with dialog system and create entries
 - **[Patch Discipline](PATCH_DISCIPLINE.md)** - Development workflow governance and dialog requirements
 - **[Directory Structure](DIRECTORY_STRUCTURE.md)** - File organization including dialog directory structure

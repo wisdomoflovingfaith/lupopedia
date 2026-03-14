@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\channels\42\broadcasts\20260224_critical_sql_fixes_implemented.md"
+  file_path_from_root: "lupo-docs\channels\42\broadcasts\20260224_critical_sql_fixes_implemented.md"
   file_hash: "d9703f65062b6d0d237dd5e4eec622ae2cc8972efb01a28129980e31b1e33e7e"
-  file_path_from_root: "docs\channels\42\broadcasts\20260224_critical_sql_fixes_implemented.md"
+  file_path_from_root: "lupo-docs\channels\42\broadcasts\20260224_critical_sql_fixes_implemented.md"
   file_hash: "6fde05fa33209e0fc791f261c4b510cb1b60c42b300f5a6f2ff0a45f3cbf6331"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -62,7 +62,7 @@ lupopedia.footer:
 
 ---
 wolfie.headers: {
-  file_path_from_root: "docs/channels/42/broadcasts/20260224_critical_sql_fixes_implemented.md",
+  file_path_from_root: "lupo-docs/channels/42/broadcasts/20260224_critical_sql_fixes_implemented.md",
   system_version: "4.0.42",
   channel_id: 42,
   mood_rgb: "00AA00",
@@ -90,18 +90,18 @@ wolfie.headers: {
 
 flip.footer: {
   inbound_edges: [
-    { from: "docs/channels/42/broadcasts/20260224_critical_sql_errors_blocking_v4_0_42.md", type: "responds_to", weight: 1.0, hashtag: "#critical" },
-    { from: "docs/channels/42/broadcasts/20260224_critical_sql_fix_required.md", type: "responds_to", weight: 1.0, hashtag: "#critical" }
+    { from: "lupo-docs/channels/42/broadcasts/20260224_critical_sql_errors_blocking_v4_0_42.md", type: "responds_to", weight: 1.0, hashtag: "#critical" },
+    { from: "lupo-docs/channels/42/broadcasts/20260224_critical_sql_fix_required.md", type: "responds_to", weight: 1.0, hashtag: "#critical" }
   ],
   outbound_edges: [
-    { to: "database/migrations/install_new_lupopedia.sql", type: "documents", weight: 1.0, hashtag: "#schema" },
-    { to: "docs/doctrine/DATABASE_DOCTRINE.md", type: "references", weight: 0.9, hashtag: "#doctrine" },
+    { to: "lupo-database/migrations/install_new_lupopedia.sql", type: "documents", weight: 1.0, hashtag: "#schema" },
+    { to: "lupo-docs/doctrine/DATABASE_DOCTRINE.md", type: "references", weight: 0.9, hashtag: "#doctrine" },
     { to: "lupo-includes/classes/DatabaseFactory.php", type: "references", weight: 0.9, hashtag: "#database" },
     { to: "CHANGELOG.md", type: "will_update", weight: 0.7, hashtag: "#changelog" }
   ],
   referenced_by_actors: [10000, 1002, 1001],
   references: {
-    by_files: ["docs/channels/42/broadcasts/20260224_critical_sql_errors_blocking_v4_0_42.md", "docs/channels/42/broadcasts/20260224_critical_sql_fix_required.md"],
+    by_files: ["lupo-docs/channels/42/broadcasts/20260224_critical_sql_errors_blocking_v4_0_42.md", "lupo-docs/channels/42/broadcasts/20260224_critical_sql_fix_required.md"],
     by_actors: [10000, 1002, 1001]
   },
   semantic_tags: ["critical_sql_fix", "schema_mismatch", "version_block", "database_schema", "v4_0_42", "implemented", "resolution"],
@@ -164,7 +164,7 @@ flip.footer: {
 3. **Required field completion** - Added `created_ymdhis` timestamps to all lupo_registry INSERTs
 
 ### **✅ Database Schema Compliance**
-**Current Schema Reference:** `database/migrations/install_new_lupopedia.sql`
+**Current Schema Reference:** `lupo-database/migrations/install_new_lupopedia.sql`
 **Validation Result:** ✅ All INSERT statements now comply with current table schemas
 
 ---

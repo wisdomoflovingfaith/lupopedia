@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\doctrine\AI_AGENT_BOOT_NOTES.md"
+  file_path_from_root: "lupo-docs\doctrine\AI_AGENT_BOOT_NOTES.md"
   file_hash: "3d0284211dd4099ff7ba0e920b6b9c0e30d3264d797ab9b4c01b7561f918595e"
-  file_path_from_root: "docs\doctrine\AI_AGENT_BOOT_NOTES.md"
+  file_path_from_root: "lupo-docs\doctrine\AI_AGENT_BOOT_NOTES.md"
   file_hash: "3a1d396fee78c0af13a23ac6d8b1878f2d230007019c17f971a3b1a55bb61276"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -64,7 +64,7 @@ lupopedia.footer:
 ---
 # FLIP Header (alias: Wolfie Header, CROP Header, FLIPPING Header)
 wolfie.headers: explicit architecture with structured clarity for every file.
-file_path_from_root: docs/doctrine/AI_AGENT_BOOT_NOTES.md
+file_path_from_root: lupo-docs/doctrine/AI_AGENT_BOOT_NOTES.md
 file.last_modified_system_version: "4.0.16"
 file.last_modified_utc: "20260218000000"
 channel_id: 42   # ANUBIS adoption channel
@@ -74,12 +74,12 @@ atoms:
   recovery_event: true
 X-Lupo-Actor-ID: 2035
 X-Lupo-Actor-Identity: "Lupopedia Audit Tool (Auto-Fixed)"
-X-Lupo-File-Path: docs/doctrine/AI_AGENT_BOOT_NOTES.md
+X-Lupo-File-Path: lupo-docs/doctrine/AI_AGENT_BOOT_NOTES.md
 ---
 
 # AI Agent Boot Notes
 
-**File:** `docs/doctrine/AI_AGENT_BOOT_NOTES.md`
+**File:** `lupo-docs/doctrine/AI_AGENT_BOOT_NOTES.md`
 **Purpose:** Instructions for initializing AI coding agents with Lupopedia's canonical doctrine
 **Status:** Reference document for future agent boot system
 
@@ -100,7 +100,7 @@ All AI agents working on Lupopedia must be initialized with the canonical doctri
 
 Before any AI agent begins work, it must load and understand:
 
-📘 **[`docs/doctrine/LUPOPEDIA_CANONICAL_DOCTRINE.md`](LUPOPEDIA_CANONICAL_DOCTRINE.md)**
+📘 **[`lupo-docs/doctrine/LUPOPEDIA_CANONICAL_DOCTRINE.md`](LUPOPEDIA_CANONICAL_DOCTRINE.md)**
 
 ---
 
@@ -131,7 +131,7 @@ All AI agents must respect:
 ### 4. Language Boundaries
 - **Python = maintenance layer**
   - Migrations, cleanup, verification, hashing, indexing
-  - Scripts live in `scripts/python/`
+  - Scripts live in `lupo-scripts/python/`
   - Use PyMySQL (no ORM)
 - **PHP = runtime layer**
   - Website runtime, request handling, operator interface
@@ -139,7 +139,7 @@ All AI agents must respect:
 
 ### 5. Upload Structure
 - Hash-based filenames (SHA256)
-- Date-based directories: `uploads/{actors,agents,channels,operators}/YYYY/MM/`
+- Date-based directories: `lupo-uploads/{actors,agents,channels,operators}/YYYY/MM/`
 - No user-provided filenames as canonical identifiers
 
 ### 6. Session Model
@@ -175,9 +175,9 @@ IMPORTANT — Lupopedia uses an ACTOR MODEL:
 - All timestamps use YYYYMMDDHHIISS in UTC
 - Schema changes must come from TOON files in /docs/toons/
 - Table limit is 199
-- Python = maintenance (scripts/python/, PyMySQL, explicit SQL)
+- Python = maintenance (lupo-scripts/python/, PyMySQL, explicit SQL)
 - PHP = runtime only (no schema changes)
-- Uploads use SHA256 hash filenames under uploads/{actors,agents,channels,operators}/YYYY/MM/
+- Uploads use SHA256 hash filenames under lupo-uploads/{actors,agents,channels,operators}/YYYY/MM/
 - LEXA enforces doctrine and boundaries in the gateway
 
 Never introduce user_id.

@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\channels\doctrine\FEDERATION_OF_SOVEREIGN_PROTOCOLS.md"
+  file_path_from_root: "lupo-docs\channels\doctrine\FEDERATION_OF_SOVEREIGN_PROTOCOLS.md"
   file_hash: "1d8aee9f4ccf09808b4379cccb129010a2590bf8edbc4e2ceba6d8b4e40d1cbf"
-  file_path_from_root: "docs\channels\doctrine\FEDERATION_OF_SOVEREIGN_PROTOCOLS.md"
+  file_path_from_root: "lupo-docs\channels\doctrine\FEDERATION_OF_SOVEREIGN_PROTOCOLS.md"
   file_hash: "a3c265d7417079c05cee4f594995bfe52d1520dbc83a2e87224e546b506dfa8c"
   last_updated_utc: "20260228"
   system_version: "4.0.50"

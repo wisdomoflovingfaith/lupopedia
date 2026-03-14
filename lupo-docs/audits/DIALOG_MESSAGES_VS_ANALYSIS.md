@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\DIALOG_MESSAGES_VS_ANALYSIS.md"
+  file_path_from_root: "lupo-docs\DIALOG_MESSAGES_VS_ANALYSIS.md"
   file_hash: "cae58f16a03ddc4fcefa729f842ebac28f4e8f844059a8af89129abb2d1d9b26"
-  file_path_from_root: "docs\DIALOG_MESSAGES_VS_ANALYSIS.md"
+  file_path_from_root: "lupo-docs\DIALOG_MESSAGES_VS_ANALYSIS.md"
   file_hash: "8a0b2800e0542bc9c0d0faa18049c921145ac35abf64b3a7d59f61fdc2222732"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -94,31 +94,31 @@ lupopedia.footer:
 | lupo-includes/class-dialog-manager.php | 56, 84, 106 | Comment: Insert into dialog_messages; insertDialogMessage() docblock "lupo_dialog_messages". Actual insert uses `lupo_dialog_doctrine` (likely bug) | INSERT (intended: dialog_messages) | Active |
 | app/Services/TriggerReplacements/DialogMessagesInsertService.php | 6, 30, 51–52 | Comment/doc: "lupo_dialog_doctrine" (likely typo for dialog_messages); SELECT COUNT FROM lupo_dialog_doctrine | SELECT (wrong table name in code) | Active (logic targets messages) |
 | app/Services/TriggerReplacements/DialogMessagesDeleteService.php | 5 | Comment: Replaces tr_dialog_messages_delete | — | Active |
-| database/migrations/install_new_lupopedia.sql | 2135–2160 | CREATE TABLE lupo_dialog_messages + indexes | Schema | Active |
-| database/migrations/dev_20260204_fix_schema_alignment.sql | 1049–1062 | ALTER TABLE lupo_dialog_messages MODIFY ... | Migration | Active |
-| database/migrations/dev_20260204_fix_schema_alignment_summary.txt | 1049–1062 | Column summary for lupo_dialog_messages | Doc | Active |
-| database/migrations/import_from_old_crafty_syntax.sql | 1462–1496 | TRUNCATE lupo_dialog_messages; INSERT INTO lupo_dialog_messages (...) SELECT ... FROM livehelp_transcripts | TRUNCATE / INSERT | Active (import) |
-| docs/REQUIRED_TABLES_4.1.0.md | 59 | List entry | Doc | Reference |
-| docs/LIVEHELP_REMOVAL_REPORT.md | 14, 51, 74 | livehelp_messages → lupo_dialog_messages; LegacyAdminChatFlush uses lupo_dialog_messages | Doc | Reference |
-| docs/ACTOR_REFACTOR_REPORT.md | 64 | lupo_dialog_messages.from_actor_id in merge list | Doc | Reference |
-| docs/doctrine/migrations/MIGRATION_MAPPING_REFERENCE.md | 23, 27, 109 | livehelp_transcripts → lupo_dialog_threads, lupo_dialog_messages; Channel interface uses lupo_dialog_messages | Doc | Reference |
-| docs/notes_from_legacy_craftysyntax.md | 19–20, 51, 87, 153, 169, 232, 244, 253 | livehelp_messages → lupo_dialog_messages; mapping and ordering | Doc | Reference |
-| docs/doctrine/CRAFTY_SYNTAX_*.md, docs/channels/... (multiple) | various | Mapping, schema, implementation plans | Doc | Reference |
+| lupo-database/migrations/install_new_lupopedia.sql | 2135–2160 | CREATE TABLE lupo_dialog_messages + indexes | Schema | Active |
+| lupo-database/migrations/dev_20260204_fix_schema_alignment.sql | 1049–1062 | ALTER TABLE lupo_dialog_messages MODIFY ... | Migration | Active |
+| lupo-database/migrations/dev_20260204_fix_schema_alignment_summary.txt | 1049–1062 | Column summary for lupo_dialog_messages | Doc | Active |
+| lupo-database/migrations/import_from_old_crafty_syntax.sql | 1462–1496 | TRUNCATE lupo_dialog_messages; INSERT INTO lupo_dialog_messages (...) SELECT ... FROM livehelp_transcripts | TRUNCATE / INSERT | Active (import) |
+| lupo-docs/REQUIRED_TABLES_4.1.0.md | 59 | List entry | Doc | Reference |
+| lupo-docs/LIVEHELP_REMOVAL_REPORT.md | 14, 51, 74 | livehelp_messages → lupo_dialog_messages; LegacyAdminChatFlush uses lupo_dialog_messages | Doc | Reference |
+| lupo-docs/ACTOR_REFACTOR_REPORT.md | 64 | lupo_dialog_messages.from_actor_id in merge list | Doc | Reference |
+| lupo-docs/doctrine/migrations/MIGRATION_MAPPING_REFERENCE.md | 23, 27, 109 | livehelp_transcripts → lupo_dialog_threads, lupo_dialog_messages; Channel interface uses lupo_dialog_messages | Doc | Reference |
+| lupo-docs/notes_from_legacy_craftysyntax.md | 19–20, 51, 87, 153, 169, 232, 244, 253 | livehelp_messages → lupo_dialog_messages; mapping and ordering | Doc | Reference |
+| lupo-docs/doctrine/CRAFTY_SYNTAX_*.md, lupo-docs/channels/... (multiple) | various | Mapping, schema, implementation plans | Doc | Reference |
 | CHANGELOG.md, DIRECTORY_STRUCTURE_DOCTRINE.md, DIRECTORY_TREE.md, migrate_dialog_channels.php, lupo-agents/..., dialogs/... | various | Mentions or examples of lupo_dialog_messages | Doc / script | Reference |
 
 ### lupo_dialog_messages
 
 | File path | Line(s) | Snippet / usage | Operation | Active / legacy |
 |-----------|---------|------------------|-----------|------------------|
-| database/migrations/install_new_lupopedia.sql | 3902–3911 | CREATE TABLE lupo_dialog_messages (dialog_message_id, thread_id, actor_id, ...) | Schema | Definition only |
-| database/migrations/dev_20260204_fix_schema_alignment.sql | 1934–1939 | ALTER TABLE lupo_dialog_messages MODIFY ... | Migration | Schema only |
-| database/migrations/dev_20260204_fix_schema_alignment_summary.txt | 1934–1939 | Column summary | Doc | Reference |
-| docs/REQUIRED_TABLES_4.1.0.md | 227 | List entry | Doc | Reference |
-| database/migrations_legacy/*.sql | various | CREATE TABLE lupo_dialog_messages; INSERT in one legacy script | Schema / legacy INSERT | Legacy |
-| database/migrations/README.md | 79 | "dialog_messages -> lupo_dialog_messages_old" (rename example for deprecated tables) | Doc | Reference |
+| lupo-database/migrations/install_new_lupopedia.sql | 3902–3911 | CREATE TABLE lupo_dialog_messages (dialog_message_id, thread_id, actor_id, ...) | Schema | Definition only |
+| lupo-database/migrations/dev_20260204_fix_schema_alignment.sql | 1934–1939 | ALTER TABLE lupo_dialog_messages MODIFY ... | Migration | Schema only |
+| lupo-database/migrations/dev_20260204_fix_schema_alignment_summary.txt | 1934–1939 | Column summary | Doc | Reference |
+| lupo-docs/REQUIRED_TABLES_4.1.0.md | 227 | List entry | Doc | Reference |
+| lupo-database/migrations_legacy/*.sql | various | CREATE TABLE lupo_dialog_messages; INSERT in one legacy script | Schema / legacy INSERT | Legacy |
+| lupo-database/migrations/README.md | 79 | "dialog_messages -> lupo_dialog_messages_old" (rename example for deprecated tables) | Doc | Reference |
 | complete_schema.txt | 836 | TABLE: lupo_dialog_messages | Doc | Reference |
 | DIRECTORY_TREE.md | 893–894, 1610, 4080–4081 | TOON/file listing | Doc | Reference |
-| .output.txt, database/toon_output.txt | — | File/TOON processing output | Output | Reference |
+| .output.txt, lupo-database/toon_output.txt | — | File/TOON processing output | Output | Reference |
 
 **PHP runtime:** No PHP file references **lupo_dialog_messages** or **dialog_messages** (with or without prefix). Grep over `*.php` for `dialog` returns no matches.
 
@@ -167,14 +167,14 @@ Before dropping:
 
 | File | Change |
 |------|--------|
-| database/migrations/install_new_lupopedia.sql | Remove CREATE TABLE lupo_dialog_messages and its block (lines ~3902–3911). |
-| database/migrations/dev_20260204_fix_schema_alignment.sql | Remove ALTER TABLE lupo_dialog_messages statements (lines ~1934–1939). |
-| database/migrations/dev_20260204_fix_schema_alignment_summary.txt | Remove lupo_dialog_messages column lines. |
-| docs/REQUIRED_TABLES_4.1.0.md | Remove list entry for lupo_dialog_messages. |
-| database/migrations/README.md | Update or remove the "dialog_messages -> lupo_dialog_messages_old" example if it implies the table is still part of the active schema. |
-| database/migrations_legacy/*.sql | Optional: leave as historical record or add a comment that the table has been dropped from active schema. |
+| lupo-database/migrations/install_new_lupopedia.sql | Remove CREATE TABLE lupo_dialog_messages and its block (lines ~3902–3911). |
+| lupo-database/migrations/dev_20260204_fix_schema_alignment.sql | Remove ALTER TABLE lupo_dialog_messages statements (lines ~1934–1939). |
+| lupo-database/migrations/dev_20260204_fix_schema_alignment_summary.txt | Remove lupo_dialog_messages column lines. |
+| lupo-docs/REQUIRED_TABLES_4.1.0.md | Remove list entry for lupo_dialog_messages. |
+| lupo-database/migrations/README.md | Update or remove the "dialog_messages -> lupo_dialog_messages_old" example if it implies the table is still part of the active schema. |
+| lupo-database/migrations_legacy/*.sql | Optional: leave as historical record or add a comment that the table has been dropped from active schema. |
 | complete_schema.txt | Regenerate or edit to remove lupo_dialog_messages. |
-| docs/toons/ (if TOON exists) | Remove or regenerate lupo_dialog_messages.toon.json (and related) after schema change. |
+| lupo-docs/toons/ (if TOON exists) | Remove or regenerate lupo_dialog_messages.toon.json (and related) after schema change. |
 | DIRECTORY_TREE.md | Update if it lists TOONs/files for lupo_dialog_messages. |
 
 No PHP or channel/API code changes are required to drop **lupo_dialog_messages**; no application code references it.

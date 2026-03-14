@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\channels\dialogs\agents\THREAD_LEVEL_DIALOG_SPEC.md"
+  file_path_from_root: "lupo-docs\channels\dialogs\agents\THREAD_LEVEL_DIALOG_SPEC.md"
   file_hash: "219f686df0eec59082964c3b74be327144272bf84253fe18a5bb6c3aded6a6af"
-  file_path_from_root: "docs\channels\dialogs\agents\THREAD_LEVEL_DIALOG_SPEC.md"
+  file_path_from_root: "lupo-docs\channels\dialogs\agents\THREAD_LEVEL_DIALOG_SPEC.md"
   file_hash: "a0be90029c67e4fa7d738c8a1c963026b7de46796849963aa438331d27d76511"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -269,10 +269,10 @@ Future versions may add optional metadata, but the core format is immutable.
 
 ## 🔗 10. Implementation Resources
 
-- **Lupopedia Header Profile**: `docs/doctrine/LUPOPEDIA_HEADER_PROFILE.md`
-- **Dialog History File Specification**: `docs/agents/DIALOG_HISTORY_SPEC.md`
-- **Universal Wolfie Header Specification**: `docs/doctrine/UNIVERSAL_WOLFIE_HEADER_SPECIFICATION.md`
-- **WOLFIE Header Specification**: `docs/agents/WOLFIE_HEADER_SPECIFICATION.md`
+- **Lupopedia Header Profile**: `lupo-docs/doctrine/LUPOPEDIA_HEADER_PROFILE.md`
+- **Dialog History File Specification**: `lupo-docs/agents/DIALOG_HISTORY_SPEC.md`
+- **Universal Wolfie Header Specification**: `lupo-docs/doctrine/UNIVERSAL_WOLFIE_HEADER_SPECIFICATION.md`
+- **WOLFIE Header Specification**: `lupo-docs/agents/WOLFIE_HEADER_SPECIFICATION.md`
 - **Global Atoms**: `config/global_atoms.yaml`
 
 ---

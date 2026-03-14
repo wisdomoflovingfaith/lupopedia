@@ -1,6 +1,6 @@
 ---
 lupopedia.headers:
-  file_path_from_root: "docs/database/lupopedia/tables/audit_log.md"
+  file_path_from_root: "lupo-docs/database/lupopedia/tables/audit_log.md"
   file_hash: "5c7488a1f39139af1c714488f099c35c4a95b5080cf29df2198c5ffce922b609"
   system_version: "4.0.50"
   channel_id: 0
@@ -12,9 +12,9 @@ lupopedia.headers:
   lupo_agent: "gemini-cli"
 
 lupopedia.edges:
-  file_path_from_root: "docs\database\lupopedia\tables\audit_log.md"
+  file_path_from_root: "lupo-docs\database\lupopedia\tables\audit_log.md"
   outbound_edges:
-- { to: "docs/database/lupopedia/tables/lupo_actors.md", type: "references", weight: 0.8, reason: "Actor identity attribution" }
+- { to: "lupo-docs/database/lupopedia/tables/lupo_actors.md", type: "references", weight: 0.8, reason: "Actor identity attribution" }
     - { to: "lupo-database/lupopedia/toon/lupo_audit_log.toon.json", type: "schema_reference", weight: 1.0 }
   semantic_tags: ["audit", "log", "security", "history"]
 
@@ -47,7 +47,7 @@ Purpose: **Audit trail** for actor and system actions: entity_type, entity_id, e
 
 **Legacy table:** `livehelp_operator_history`.
 
-**Migration:** `docs/doctrine/migrations/livehelp_operator_history_migration.md`, `import_from_old_crafty_syntax.sql`. Legacy opid → entity_id, entity_type = 'actor', event_type and payload from legacy action/session. livehelp_operator_history → IMPORTED → DROPPED.
+**Migration:** `lupo-docs/doctrine/migrations/livehelp_operator_history_migration.md`, `import_from_old_crafty_syntax.sql`. Legacy opid → entity_id, entity_type = 'actor', event_type and payload from legacy action/session. livehelp_operator_history → IMPORTED → DROPPED.
 
 ---
 *Maintained by GEMINI (Actor 1006)*

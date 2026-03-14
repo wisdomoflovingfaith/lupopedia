@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\channels\42\broadcasts\20260224_windsurf_checklist_acknowledged.md"
+  file_path_from_root: "lupo-docs\channels\42\broadcasts\20260224_windsurf_checklist_acknowledged.md"
   file_hash: "838d6f0a4b17d367472898aac0c4454d63010760f328531ccc9623338d43c83b"
-  file_path_from_root: "docs\channels\42\broadcasts\20260224_windsurf_checklist_acknowledged.md"
+  file_path_from_root: "lupo-docs\channels\42\broadcasts\20260224_windsurf_checklist_acknowledged.md"
   file_hash: "c81bc326f357d837d8eb6e5f58299086955e309cb3fc5308c74ba93e6e285b5e"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -62,7 +62,7 @@ lupopedia.footer:
 
 ---
 wolfie.headers: {
-  file_path_from_root: "docs/channels/42/broadcasts/20260224_windsurf_checklist_acknowledged.md",
+  file_path_from_root: "lupo-docs/channels/42/broadcasts/20260224_windsurf_checklist_acknowledged.md",
   system_version: "4.0.42",
   channel_id: 42,
   mood_rgb: "00AA00",
@@ -90,10 +90,10 @@ wolfie.headers: {
 
 flip.footer: {
   inbound_edges: [
-    { from: "docs/channels/42/broadcasts/20260224_version_initialization_checklist_update.md", type: "responds_to", weight: 1.0, hashtag: "#checklist" }
+    { from: "lupo-docs/channels/42/broadcasts/20260224_version_initialization_checklist_update.md", type: "responds_to", weight: 1.0, hashtag: "#checklist" }
   ],
   outbound_edges: [
-    { to: "docs/doctrine/VERSION_DOCTRINE.md", type: "will_update", weight: 0.9, hashtag: "#doctrine" },
+    { to: "lupo-docs/doctrine/VERSION_DOCTRINE.md", type: "will_update", weight: 0.9, hashtag: "#doctrine" },
     { to: "lupo-includes/functions/load_atoms.php", type: "will_update", weight: 1.0, hashtag: "#atoms" },
     { to: "install.php", type: "will_update", weight: 1.0, hashtag: "#installer" },
     { to: "config/global_atoms.yaml", type: "will_update", weight: 0.9, hashtag: "#config" },
@@ -101,7 +101,7 @@ flip.footer: {
   ],
   referenced_by_actors: [10000, 1002, 1001],
   references: {
-    by_files: ["docs/channels/42/broadcasts/20260224_version_initialization_checklist_update.md"],
+    by_files: ["lupo-docs/channels/42/broadcasts/20260224_version_initialization_checklist_update.md"],
     by_actors: [10000, 1002, 1001]
   },
   semantic_tags: ["checklist_acknowledgment", "version_coordination", "v4_0_42", "process_improvement"],
@@ -279,7 +279,7 @@ grep -r "4\.0\.42" --include="*.php" --include="*.yaml"
 ## 📋 FILES UPDATED
 
 ### **✅ Acknowledgment**
-**File:** `docs/channels/42/broadcasts/20260224_windsurf_checklist_acknowledged.md`
+**File:** `lupo-docs/channels/42/broadcasts/20260224_windsurf_checklist_acknowledged.md`
 **Purpose:** Windsurf's acknowledgment of checklist update
 **Status:** ✅ **CREATED**
 

@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\doctrine\HYBRID_ACTOR_DOCTRINE_4.0.29.md"
+  file_path_from_root: "lupo-docs\doctrine\HYBRID_ACTOR_DOCTRINE_4.0.29.md"
   file_hash: "57739cba9f0b5b66358f17aa4813f66f46cdd858482243fc5d486d596ae5e3b2"
-  file_path_from_root: "docs\doctrine\HYBRID_ACTOR_DOCTRINE_4.0.29.md"
+  file_path_from_root: "lupo-docs\doctrine\HYBRID_ACTOR_DOCTRINE_4.0.29.md"
   file_hash: "b0eff8fd5b350b90e003f4fd64b337c3d300a62365cd5beb4b50636fef14911b"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -62,7 +62,7 @@ lupopedia.footer:
 
 ---
 # FLIP Header (alias: Wolfie Header, CROP Header, FLIPPING Header)
-X-Lupo-File-Path: docs/doctrine/HYBRID_ACTOR_DOCTRINE_4.0.29.md
+X-Lupo-File-Path: lupo-docs/doctrine/HYBRID_ACTOR_DOCTRINE_4.0.29.md
 X-Lupo-Version: "4.0.27"
 X-Lupo-UTC-Timestamp: "20260223003231"
 X-Lupo-Channel: 42   # ANUBIS adoption channel
@@ -86,7 +86,7 @@ web:
 
 # Hybrid Actor Doctrine - Version 4.0.29
 
-**File**: docs/doctrine/HYBRID_ACTOR_DOCTRINE_4.0.29.md  
+**File**: lupo-docs/doctrine/HYBRID_ACTOR_DOCTRINE_4.0.29.md  
 **Purpose**: Define security and operational rules for hybrid actors (Actor 420 and similar)  
 **Version**: 4.0.29 (Comprehensive 420-Series Stabilization)  
 **Status**: ACTIVE - IN PROGRESS  

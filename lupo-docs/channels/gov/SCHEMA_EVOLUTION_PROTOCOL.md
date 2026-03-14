@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\channels\gov\SCHEMA_EVOLUTION_PROTOCOL.md"
+  file_path_from_root: "lupo-docs\channels\gov\SCHEMA_EVOLUTION_PROTOCOL.md"
   file_hash: "8e5348d0ff66e3b73c007c7143010f8a3efe816e89e3f31f1233e421f1a3ab56"
-  file_path_from_root: "docs\channels\gov\SCHEMA_EVOLUTION_PROTOCOL.md"
+  file_path_from_root: "lupo-docs\channels\gov\SCHEMA_EVOLUTION_PROTOCOL.md"
   file_hash: "a800ffd7c2913bbccc2b4e57e28294eb5ebfa8c047568ada9a98724da8b175dd"
   last_updated_utc: "20260228"
   system_version: "4.0.50"

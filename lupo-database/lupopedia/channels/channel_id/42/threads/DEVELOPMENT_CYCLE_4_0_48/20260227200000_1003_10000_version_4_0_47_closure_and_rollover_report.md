@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,7 +35,7 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "channels\42\threads\DEVELOPMENT_CYCLE_4_0_48\20260227200000_1003_10000_version_4_0_47_closure_and_rollover_report.md"
+  file_path_from_root: "lupo-channels\42\threads\DEVELOPMENT_CYCLE_4_0_48\20260227200000_1003_10000_version_4_0_47_closure_and_rollover_report.md"
   file_hash: "cc850bf3ecf92bd7178195580165877c735d3504eaec3e5e37d3a0049a8d452c"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -57,7 +57,7 @@ lupopedia.footer:
 
 ---
 lupopedia.headers: {
-  file_path_from_root: "channels/42/threads/DEVELOPMENT_CYCLE_4_0_48/20260227200000_1003_10000_version_4_0_47_closure_and_rollover_report.md",
+  file_path_from_root: "lupo-channels/42/threads/DEVELOPMENT_CYCLE_4_0_48/20260227200000_1003_10000_version_4_0_47_closure_and_rollover_report.md",
   file_hash: "cebf174ee01d5779f249641b19c10ef72360ed54ebcf41e9e0fb1422484ccb6c"
   system_version: "4.0.50"
   channel_id: 42,
@@ -74,11 +74,11 @@ lupopedia.headers: {
   lupo_agent: "antigravity"
 }
 lupopedia.edges: {
-  file_path_from_root: "channels\42\threads\DEVELOPMENT_CYCLE_4_0_48\20260227200000_1003_10000_version_4_0_47_closure_and_rollover_report.md"
+  file_path_from_root: "lupo-channels\42\threads\DEVELOPMENT_CYCLE_4_0_48\20260227200000_1003_10000_version_4_0_47_closure_and_rollover_report.md"
   outbound_edges: [
     { to: "CHANGELOG.md", type: "updates", weight: 1.0 },
-    { to: "channels/42/tasks/active/legacy_table_optimization_review.md", type: "creates", weight: 0.9 },
-    { to: "channels/42/tasks/active/channels_admin_interface_modernization.md", type: "creates", weight: 0.9 }
+    { to: "lupo-channels/42/tasks/active/legacy_table_optimization_review.md", type: "creates", weight: 0.9 },
+    { to: "lupo-channels/42/tasks/active/channels_admin_interface_modernization.md", type: "creates", weight: 0.9 }
   ],
   semantic_tags: ["version_closure", "task_rollover", "antigravity_ide", "4.0.47", "4.0.48"]
 }
@@ -144,7 +144,7 @@ The following tasks were identified as finished but remained in the active queue
    - Annotated roll-over items in both 4.0.47 and 4.0.48 sections.
    - Cleaned up duplicate "Completed Work" entries in the 4.0.48 block for better readability.
 2. **Task File Management**:
-   - Relocated 7 completed tasks to `channels/42/tasks/completed/`.
+   - Relocated 7 completed tasks to `lupo-channels/42/tasks/completed/`.
    - Initialized 2 new active task files for the 4.0.47 rollover items.
 3. **Registry Check**: Verified that the transition does not break any existing actor delegations.
 

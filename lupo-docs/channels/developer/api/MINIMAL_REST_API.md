@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\channels\developer\api\MINIMAL_REST_API.md"
+  file_path_from_root: "lupo-docs\channels\developer\api\MINIMAL_REST_API.md"
   file_hash: "7360b81610a387af97fe74d363b745471b172b666d917fa585e092606230b386"
-  file_path_from_root: "docs\channels\developer\api\MINIMAL_REST_API.md"
+  file_path_from_root: "lupo-docs\channels\developer\api\MINIMAL_REST_API.md"
   file_hash: "d79b031c5432ece919b5df5304a83cc2d8824b1290ebe1d48380bc657ffa44cb"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -132,7 +132,7 @@ Baseline REST surface for actors, artifacts, and subsystems. Ancestral layer—e
 }
 ```
 
-For `type: "fork_justification"`, `content` MUST be JSON with `reason`, `blockedby` (artifact_id of blocking artifact), `proposed_branch`. Optional when approved by human steward: `approved`, `approved_by_actor_id`, `approved_utc`. See `docs/doctrine/VERSION_GATED_BRANCH_FREEZE_PROTOCOL.md`.
+For `type: "fork_justification"`, `content` MUST be JSON with `reason`, `blockedby` (artifact_id of blocking artifact), `proposed_branch`. Optional when approved by human steward: `approved`, `approved_by_actor_id`, `approved_utc`. See `lupo-docs/doctrine/VERSION_GATED_BRANCH_FREEZE_PROTOCOL.md`.
 
 **Response:**
 ```json
@@ -212,5 +212,5 @@ No foreign keys. No triggers. BIGINT where appropriate.
 
 ## Run order
 
-1. Run `database/migrations/3.1.4_lupopedia_minimal_rest_api_tables.sql` (if below table ceiling or after reduction).
-2. Run `database/migrations/3.1.5_add_fork_justification_artifact_type.sql` (adds `fork_justification` to artifact type comment).
+1. Run `lupo-database/migrations/3.1.4_lupopedia_minimal_rest_api_tables.sql` (if below table ceiling or after reduction).
+2. Run `lupo-database/migrations/3.1.5_add_fork_justification_artifact_type.sql` (adds `fork_justification` to artifact type comment).

@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\channels\architecture\VERSION_3_INGESTION_RULES.md"
+  file_path_from_root: "lupo-docs\channels\architecture\VERSION_3_INGESTION_RULES.md"
   file_hash: "cd7fb7e324620fca75f5a53c7de2099885ef01082880b1bf6d785f76df0f4be2"
-  file_path_from_root: "docs\channels\architecture\VERSION_3_INGESTION_RULES.md"
+  file_path_from_root: "lupo-docs\channels\architecture\VERSION_3_INGESTION_RULES.md"
   file_hash: "6b95b95f33ae574f7c04271d399a864f409a26bc78bace9b2336100535c6e601"
   last_updated_utc: "20260228"
   system_version: "4.0.50"

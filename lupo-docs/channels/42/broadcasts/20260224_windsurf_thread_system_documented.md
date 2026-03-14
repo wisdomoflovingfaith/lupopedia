@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\channels\42\broadcasts\20260224_windsurf_thread_system_documented.md"
+  file_path_from_root: "lupo-docs\channels\42\broadcasts\20260224_windsurf_thread_system_documented.md"
   file_hash: "b03660188832d6a2e5130346a2cb533caabca8408d3141776a356fa741a5c020"
-  file_path_from_root: "docs\channels\42\broadcasts\20260224_windsurf_thread_system_documented.md"
+  file_path_from_root: "lupo-docs\channels\42\broadcasts\20260224_windsurf_thread_system_documented.md"
   file_hash: "82d3c28fb23d4fafe9f488eeca7fe13f2af6b3612d9e074d53843a191a15bf12"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -62,7 +62,7 @@ lupopedia.footer:
 
 ---
 wolfie.headers: {
-  file_path_from_root: "docs/channels/42/broadcasts/20260224_windsurf_thread_system_documented.md",
+  file_path_from_root: "lupo-docs/channels/42/broadcasts/20260224_windsurf_thread_system_documented.md",
   system_version: "4.0.42",
   channel_id: 42,
   mood_rgb: "00AA00",
@@ -90,18 +90,18 @@ wolfie.headers: {
 
 flip.footer: {
   inbound_edges: [
-    { from: "docs/doctrine/THREAD_DIALOG_SYSTEM.md", type: "acknowledges", weight: 1.0, hashtag: "#documentation" },
-    { from: "channels/42/threads/ITS/20260224142600_1002_1001_version_4_0_42_initialization_complete.md", type: "references", weight: 0.9, hashtag: "#thread" }
+    { from: "lupo-docs/doctrine/THREAD_DIALOG_SYSTEM.md", type: "acknowledges", weight: 1.0, hashtag: "#documentation" },
+    { from: "lupo-channels/42/threads/ITS/20260224142600_1002_1001_version_4_0_42_initialization_complete.md", type: "references", weight: 0.9, hashtag: "#thread" }
   ],
   outbound_edges: [
-    { to: "docs/doctrine/AGENT_DIALOG_PROTOCOL.md", type: "references", weight: 0.8, hashtag: "#protocol" },
-    { to: "docs/doctrine/AGENT_REGISTRY_DOCTRINE.md", type: "references", weight: 0.7, hashtag: "#actors" },
+    { to: "lupo-docs/doctrine/AGENT_DIALOG_PROTOCOL.md", type: "references", weight: 0.8, hashtag: "#protocol" },
+    { to: "lupo-docs/doctrine/AGENT_REGISTRY_DOCTRINE.md", type: "references", weight: 0.7, hashtag: "#actors" },
     { to: "CHANGELOG.md", type: "will_update", weight: 0.6, hashtag: "#changelog" },
-    { to: "channels/42/threads/", type: "implements", weight: 1.0, hashtag: "#threads" }
+    { to: "lupo-channels/42/threads/", type: "implements", weight: 1.0, hashtag: "#threads" }
   ],
   referenced_by_actors: [10000, 1002, 1001, 1003, 2038],
   references: {
-    by_files: ["docs/doctrine/THREAD_DIALOG_SYSTEM.md", "channels/42/threads/ITS/20260224142600_1002_1001_version_4_0_42_initialization_complete.md"],
+    by_files: ["lupo-docs/doctrine/THREAD_DIALOG_SYSTEM.md", "lupo-channels/42/threads/ITS/20260224142600_1002_1001_version_4_0_42_initialization_complete.md"],
     by_actors: [10000, 1002, 1001, 1003, 2038]
   },
   semantic_tags: ["thread_system_documentation", "protocol_specification", "v4_0_42", "coordination"],
@@ -134,7 +134,7 @@ flip.footer: {
 ## 📋 DOCUMENTATION COMPLETED
 
 ### **✅ Thread Dialog System Created**
-**File:** `docs/doctrine/THREAD_DIALOG_SYSTEM.md`
+**File:** `lupo-docs/doctrine/THREAD_DIALOG_SYSTEM.md`
 **Status:** ✅ **DOCUMENTED AND READY**
 **Version:** 4.0.42
 **Authority:** KIRO (1001) with Captain Wolfie (10000) delegation
@@ -144,7 +144,7 @@ flip.footer: {
 - ✅ **File Naming Format** - `[YYYYMMDDHHIISS]_[TO]_[FROM]_[TITLE].md`
 - ✅ **Message Size Limit** - 1000 characters max
 - ✅ **Plain Markdown Format** - No FLIP headers/footers required
-- ✅ **Thread Directory Structure** - `channels/42/threads/<THREAD>/`
+- ✅ **Thread Directory Structure** - `lupo-channels/42/threads/<THREAD>/`
 - ✅ **Actor ID Reference** - Complete registry mapping
 - ✅ **Database Integration** - Optional storage schema defined
 
@@ -223,7 +223,7 @@ flip.footer: {
 - **Title:** Lowercase, underscore-separated description
 
 ### **✅ Directory Structure**
-**Base Path:** `channels/42/threads/`
+**Base Path:** `lupo-channels/42/threads/`
 **Thread Types:**
 - **ITS** - Internal Thread Sync (general coordination)
 - **UPGRADE** - Upgrade path discussions
@@ -247,7 +247,7 @@ flip.footer: {
 - ✅ **Filename format** - `[YYYYMMDDHHIISS]_[TO]_[FROM]_[TITLE].md`
 - ✅ **Character limit** - Under 1000 characters
 - ✅ **Plain format** - No headers/footers
-- ✅ **Thread directory** - `channels/42/threads/<THREAD>/`
+- ✅ **Thread directory** - `lupo-channels/42/threads/<THREAD>/`
 - ✅ **Valid actor IDs** - From registry reference
 - ✅ **UTC timestamp** - YmdHis format
 
@@ -300,7 +300,7 @@ flip.footer: {
 ## 📋 IMPLEMENTATION SUMMARY
 
 ### **✅ Documentation Created**
-**File:** `docs/doctrine/THREAD_DIALOG_SYSTEM.md`
+**File:** `lupo-docs/doctrine/THREAD_DIALOG_SYSTEM.md`
 **Content:** Complete Thread Dialog System specification
 **Status:** ✅ **READY FOR USE**
 
@@ -375,12 +375,12 @@ flip.footer: {
 ## 📋 FILES CREATED
 
 ### **✅ Documentation**
-**File:** `docs/doctrine/THREAD_DIALOG_SYSTEM.md`
+**File:** `lupo-docs/doctrine/THREAD_DIALOG_SYSTEM.md`
 **Purpose:** Complete Thread Dialog System specification
 **Status:** ✅ **CREATED AND READY**
 
 ### **✅ Confirmation**
-**File:** `docs/channels/42/broadcasts/20260224_windsurf_thread_system_documented.md`
+**File:** `lupo-docs/channels/42/broadcasts/20260224_windsurf_thread_system_documented.md`
 **Purpose:** Broadcast confirming system documentation completion
 **Status:** ✅ **CREATED**
 

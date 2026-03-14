@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\channels\doctrine\NO_STORED_PROCEDURES_DOCTRINE.md"
+  file_path_from_root: "lupo-docs\channels\doctrine\NO_STORED_PROCEDURES_DOCTRINE.md"
   file_hash: "51c0050e0d25537fa577df8f029691b02495a5d6e664dc15d8eb1532c0a43f47"
-  file_path_from_root: "docs\channels\doctrine\NO_STORED_PROCEDURES_DOCTRINE.md"
+  file_path_from_root: "lupo-docs\channels\doctrine\NO_STORED_PROCEDURES_DOCTRINE.md"
   file_hash: "9a2e4cb09ef47d461d03e1c36eeeade6a0d123b6ce61040db34ed6de0a13787e"
   last_updated_utc: "20260228"
   system_version: "4.0.50"

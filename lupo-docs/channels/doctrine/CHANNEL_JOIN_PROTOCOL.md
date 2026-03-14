@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\channels\doctrine\CHANNEL_JOIN_PROTOCOL.md"
+  file_path_from_root: "lupo-docs\channels\doctrine\CHANNEL_JOIN_PROTOCOL.md"
   file_hash: "355040f33691c86e4e45d86e942ea8fd08b5d8b6fda04063b72d6f4b3f2293cc"
-  file_path_from_root: "docs\channels\doctrine\CHANNEL_JOIN_PROTOCOL.md"
+  file_path_from_root: "lupo-docs\channels\doctrine\CHANNEL_JOIN_PROTOCOL.md"
   file_hash: "3727d3812f86e85971276095833ba2829551acd92a69266b7552e82e9ca30856"
   last_updated_utc: "20260228"
   system_version: "4.0.50"

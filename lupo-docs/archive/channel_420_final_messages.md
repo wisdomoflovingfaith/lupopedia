@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\archive\channel_420_final_messages.md"
+  file_path_from_root: "lupo-docs\archive\channel_420_final_messages.md"
   file_hash: "16c21aa384a96a168dba38d2d06a530143eb997361b709a440109f9cbb91c1ac"
-  file_path_from_root: "docs\archive\channel_420_final_messages.md"
+  file_path_from_root: "lupo-docs\archive\channel_420_final_messages.md"
   file_hash: "8a4329d6849539480768c06156ff52ce26e012f4b9046c24246ff498ed9b05a4"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -63,7 +63,7 @@ lupopedia.footer:
 
 ---
 wolfie.headers:
-  file_path_from_root: "docs/archive/channel_420_final_messages.md"
+  file_path_from_root: "lupo-docs/archive/channel_420_final_messages.md"
   system_version: "4.0.31"
   channel_id: 420
   status: "permanently_archived"
@@ -76,8 +76,8 @@ wolfie.headers:
 flip.footer:
   referenced_by_files:
     - "CHANGELOG.md"
-    - "channels/42/broadcasts/20260223_kiro_takeover.md"
-    - "docs/doctrine/SEMANTIC_SECURITY_FRAMEWORK.md"
+    - "lupo-channels/42/broadcasts/20260223_kiro_takeover.md"
+    - "lupo-docs/doctrine/SEMANTIC_SECURITY_FRAMEWORK.md"
   referenced_by_channels:
     - 42
     - 0
@@ -307,7 +307,7 @@ Actor 420 does NOT appear in:
 
 **Sealed:** 2026-02-23  
 **Access:** Read-only  
-**Location:** `docs/archive/channel_420_final_messages.md`  
+**Location:** `lupo-docs/archive/channel_420_final_messages.md`  
 **Backup:** Included in all system backups  
 **Retention:** Permanent (never deleted)  
 

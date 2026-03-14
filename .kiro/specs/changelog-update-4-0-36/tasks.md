@@ -124,7 +124,7 @@ This plan implements the changelog update to document the system-wide version al
 ## Tasks
 
 - [x] 1. Prepare changelog entry content
-  - Review the broadcast file at `channels/42/broadcasts/20260223_system_wide_version_alignment_4_0_36.md`
+  - Review the broadcast file at `lupo-channels/42/broadcasts/20260223_system_wide_version_alignment_4_0_36.md`
   - Extract key information: work completed, files created, broadcast details
   - Verify all metadata is doctrine-compliant (actor_id 1001, timestamp 20260223, no location fields)
   - _Requirements: 3.1, 3.2, 3.3, 3.4, 3.5, 4.1, 4.2, 4.3, 4.4, 5.1, 5.2, 5.3, 5.4, 5.5_

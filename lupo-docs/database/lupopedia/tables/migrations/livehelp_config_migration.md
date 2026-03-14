@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,7 +35,7 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\database\lupopedia\tables\livehelp_config_migration.md"
+  file_path_from_root: "lupo-docs\database\lupopedia\tables\livehelp_config_migration.md"
   file_hash: "56721f82d7f168c7caee0cbdfe4f61e360be23f666dacf705727aa5b45e672c7"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -57,7 +57,7 @@ lupopedia.footer:
 
 ---
 lupopedia.headers: {
-  file_path_from_root: "docs/database/lupopedia/tables/livehelp_config_migration.md",
+  file_path_from_root: "lupo-docs/database/lupopedia/tables/livehelp_config_migration.md",
   file_hash: "7fa19918e1e129e82c0cc60ea6cd87d1600088737b72c716bef818c69d5ca4e8"
   system_version: "4.0.50"
   channel_id: 42,
@@ -77,17 +77,17 @@ lupopedia.headers: {
 
 flip.footer: {
   inbound_edges: [
-    { from: "database/migrations/import_from_old_crafty_syntax.sql", type: "implements", weight: 0.9, hashtag: "#migration" },
-    { from: "docs/doctrine/migrations/MIGRATION_MAPPING_REFERENCE.md", type: "references", weight: 0.9, hashtag: "#index" }
+    { from: "lupo-database/migrations/import_from_old_crafty_syntax.sql", type: "implements", weight: 0.9, hashtag: "#migration" },
+    { from: "lupo-docs/doctrine/migrations/MIGRATION_MAPPING_REFERENCE.md", type: "references", weight: 0.9, hashtag: "#index" }
   ],
   outbound_edges: [
-    { to: "docs/doctrine/database/modules.md", type: "documents", weight: 1.0, hashtag: "#target_table" },
+    { to: "lupo-docs/doctrine/database/modules.md", type: "documents", weight: 1.0, hashtag: "#target_table" },
     { to: "app/Services/CraftyConfigTransformer.php", type: "used_by", weight: 0.9, hashtag: "#transformer" },
-    { to: "database/migrations/old_crafty_syntax_3_7_5_start.sql", type: "references", weight: 0.7, hashtag: "#source" }
+    { to: "lupo-database/migrations/old_crafty_syntax_3_7_5_start.sql", type: "references", weight: 0.7, hashtag: "#source" }
   ],
   referenced_by_actors: [1001, 10000],
   references: {
-    by_files: ["database/migrations/import_from_old_crafty_syntax.sql", "docs/doctrine/migrations/MIGRATION_MAPPING_REFERENCE.md"],
+    by_files: ["lupo-database/migrations/import_from_old_crafty_syntax.sql", "lupo-docs/doctrine/migrations/MIGRATION_MAPPING_REFERENCE.md"],
     by_actors: [1001, 10000]
   },
   semantic_tags: ["livehelp_config_mapping", "global_configuration", "module_config", "partially_imported"],

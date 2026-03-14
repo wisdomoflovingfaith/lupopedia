@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\channels\gov\ETHICAL_TRIAD_DOCTRINE.md"
+  file_path_from_root: "lupo-docs\channels\gov\ETHICAL_TRIAD_DOCTRINE.md"
   file_hash: "3312b231dc4ca5fc5ebabaca95644017dd388152e83f2adf8966326be0dd7c6e"
-  file_path_from_root: "docs\channels\gov\ETHICAL_TRIAD_DOCTRINE.md"
+  file_path_from_root: "lupo-docs\channels\gov\ETHICAL_TRIAD_DOCTRINE.md"
   file_hash: "1e77f1f975bf83dcd5a5cd4b2613098e8f2b0bea4dfd262e1b910f894bda278b"
   last_updated_utc: "20260228"
   system_version: "4.0.50"

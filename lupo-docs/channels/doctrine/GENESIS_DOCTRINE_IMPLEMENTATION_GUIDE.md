@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\channels\doctrine\GENESIS_DOCTRINE_IMPLEMENTATION_GUIDE.md"
+  file_path_from_root: "lupo-docs\channels\doctrine\GENESIS_DOCTRINE_IMPLEMENTATION_GUIDE.md"
   file_hash: "d32c6f0d21a87aa2c18544e4b85e9c92a8bd73756ba6ee03f34d4571f3a7aa09"
-  file_path_from_root: "docs\channels\doctrine\GENESIS_DOCTRINE_IMPLEMENTATION_GUIDE.md"
+  file_path_from_root: "lupo-docs\channels\doctrine\GENESIS_DOCTRINE_IMPLEMENTATION_GUIDE.md"
   file_hash: "16667b45906d4162a1c6f382951b4a7d0e7fb7a5522f5c43c6db32fec6771bd8"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -170,7 +170,7 @@ if (!$result['valid']) {
 ### 2. Database Schema
 
 #### New Tables (Migration 4.2.0)
-**File**: `database/migrations/4.2.0_add_genesis_doctrine_tables.sql`
+**File**: `lupo-database/migrations/4.2.0_add_genesis_doctrine_tables.sql`
 
 **Tables Added**:
 - `lupo_doctrine_validations` - Tracks all validation results

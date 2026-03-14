@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "channels\42\threads\DEVELOPMENT_CYCLE_4_0_47\20260227062000_1005_10000_who_json_implementation_with_database_analysis.md"
+  file_path_from_root: "lupo-channels\42\threads\DEVELOPMENT_CYCLE_4_0_47\20260227062000_1005_10000_who_json_implementation_with_database_analysis.md"
   file_hash: "7264537086d48ca28c7a93677b9cbdb789101e6c381d7645f0202f7d5e887422"
-  file_path_from_root: "channels\42\threads\DEVELOPMENT_CYCLE_4_0_47\20260227062000_1005_10000_who_json_implementation_with_database_analysis.md"
+  file_path_from_root: "lupo-channels\42\threads\DEVELOPMENT_CYCLE_4_0_47\20260227062000_1005_10000_who_json_implementation_with_database_analysis.md"
   file_hash: "8d168f6aff19f7cb04fcc93bb2a0780327b8be9a7418785145fae15d6e35da54"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -62,7 +62,7 @@ lupopedia.footer:
 ---
 
 wolfie.headers: {
-  file_path_from_root: "channels/42/threads/DEVELOPMENT_CYCLE_4_0_47/20260227062000_1005_10000_who_json_implementation_with_database_analysis.md",
+  file_path_from_root: "lupo-channels/42/threads/DEVELOPMENT_CYCLE_4_0_47/20260227062000_1005_10000_who_json_implementation_with_database_analysis.md",
   system_version: "4.0.47",
   channel_id: 42,
   actor_id: 1005,
@@ -74,11 +74,11 @@ wolfie.headers: {
 }
 flip.footer: {
   outbound_edges: [
-    { to: "actors/10000/WHO.json", type: "implements", weight: 1.0 },
-    { to: "actors/1000/WHO.json", type: "implements", weight: 1.0 },
-    { to: "docs/toons/lupo_actors.toon.json", type: "analyzes", weight: 0.9 },
-    { to: "docs/toons/lupo_agents.toon.json", type: "analyzes", weight: 0.9 },
-    { to: "docs/toons/lupo_actor_events.toon.json", type: "references", weight: 0.8 }
+    { to: "lupo-actors/10000/WHO.json", type: "implements", weight: 1.0 },
+    { to: "lupo-actors/1000/WHO.json", type: "implements", weight: 1.0 },
+    { to: "lupo-docs/toons/lupo_actors.toon.json", type: "analyzes", weight: 0.9 },
+    { to: "lupo-docs/toons/lupo_agents.toon.json", type: "analyzes", weight: 0.9 },
+    { to: "lupo-docs/toons/lupo_actor_events.toon.json", type: "references", weight: 0.8 }
   ],
   semantic_tags: ["who_json", "actor_identity", "database_optimization", "semantic_os", "toon_analysis", "schema_evolution"]
 }
@@ -116,7 +116,7 @@ Each WHO.json now includes:
 
 ## 💡 Database Enhancement Opportunities (TOON Analysis)
 
-After comprehensive review of `docs/toons/`, I've identified strategic optimizations to better support the WHO.json initiative and Semantic OS evolution.
+After comprehensive review of `lupo-docs/toons/`, I've identified strategic optimizations to better support the WHO.json initiative and Semantic OS evolution.
 
 ### 1. **Actor Identity Synchronization** 
 **Current State**: `lupo_actors` has both `metadata` (TEXT) and `metadata_json` (JSON) fields
@@ -125,7 +125,7 @@ After comprehensive review of `docs/toons/`, I've identified strategic optimizat
 > **🎯 Recommended Change**: 
 > ```sql
 > -- Migration for v4.0.48
-> ALTER TABLE lupo_actors ADD COLUMN filesystem_path VARCHAR(512) DEFAULT 'actors/{actor_id}';
+> ALTER TABLE lupo_actors ADD COLUMN filesystem_path VARCHAR(512) DEFAULT 'lupo-actors/{actor_id}';
 > ALTER TABLE lupo_actors ADD COLUMN who_json_sync_status VARCHAR(64) DEFAULT 'pending';
 > ALTER TABLE lupo_actors ADD COLUMN last_sync_ymdhis BIGINT DEFAULT 0;
 > -- Phase out metadata field in favor of metadata_json + WHO.json
@@ -172,7 +172,7 @@ After comprehensive review of `docs/toons/`, I've identified strategic optimizat
 Add real-time task visibility to actor directories:
 
 ```json
-// actors/<id>/tasks/current_focus.json
+// lupo-actors/<id>/tasks/current_focus.json
 {
   "schema_version": "4.0.47",
   "actor_id": "1005",
@@ -202,7 +202,7 @@ Add real-time task visibility to actor directories:
 Create structured achievement tracking:
 
 ```json
-// actors/<id>/history/resume.json
+// lupo-actors/<id>/history/resume.json
 {
   "schema_version": "4.0.47",
   "actor_id": "1005",

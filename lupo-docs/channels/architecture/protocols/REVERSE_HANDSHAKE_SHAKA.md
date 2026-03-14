@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\channels\architecture\protocols\REVERSE_HANDSHAKE_SHAKA.md"
+  file_path_from_root: "lupo-docs\channels\architecture\protocols\REVERSE_HANDSHAKE_SHAKA.md"
   file_hash: "5e415939a2178acb174e52e1906249498ff2c18a3d529c6536ab681385c2f327"
-  file_path_from_root: "docs\channels\architecture\protocols\REVERSE_HANDSHAKE_SHAKA.md"
+  file_path_from_root: "lupo-docs\channels\architecture\protocols\REVERSE_HANDSHAKE_SHAKA.md"
   file_hash: "e5aabc8ee8dfdfd236c70b5d3f0d9a6ef07e4fac959ec21c2b9ff784b3026b61"
   last_updated_utc: "20260228"
   system_version: "4.0.50"

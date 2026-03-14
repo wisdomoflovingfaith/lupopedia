@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\channels\doctrine\ERIC_WOLFIE_TLDNR_2026.md"
+  file_path_from_root: "lupo-docs\channels\doctrine\ERIC_WOLFIE_TLDNR_2026.md"
   file_hash: "1899c0fa9be0b1b7ae19976c31f852557f7329215ee26e94271e43c78724ccae"
-  file_path_from_root: "docs\channels\doctrine\ERIC_WOLFIE_TLDNR_2026.md"
+  file_path_from_root: "lupo-docs\channels\doctrine\ERIC_WOLFIE_TLDNR_2026.md"
   file_hash: "63e7960c96ee324447c894c5f58191b6ff1527f279498320d8678b1d61f3bd41"
   last_updated_utc: "20260228"
   system_version: "4.0.50"

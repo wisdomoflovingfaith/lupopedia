@@ -90,9 +90,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "channels\0\tasks\active\db_reset_and_install.md"
+  file_path_from_root: "lupo-channels\0\tasks\active\db_reset_and_install.md"
   file_hash: "a39c5cb37f5641ac53135c698a1d25d93b0234d4efc75ce1b08acc0ebe0a2463"
-  file_path_from_root: "channels\0\tasks\active\db_reset_and_install.md"
+  file_path_from_root: "lupo-channels\0\tasks\active\db_reset_and_install.md"
   file_hash: "0a3c7d3090546f741245380b6ea57079076d73ca29cc88a0a2707c09262d32d2"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -141,7 +141,7 @@ Drop all existing Lupopedia tables, load Crafty Syntax 3.7.5 legacy schema, and 
 
 ## Context
 
-The database is currently offline or in an inconsistent state. Before any other work can proceed, we need a clean installation that matches the 4.0.45 schema defined in `database/migrations/install_new_lupopedia.sql`.
+The database is currently offline or in an inconsistent state. Before any other work can proceed, we need a clean installation that matches the 4.0.45 schema defined in `lupo-database/migrations/install_new_lupopedia.sql`.
 
 ## Steps
 
@@ -150,7 +150,7 @@ The database is currently offline or in an inconsistent state. Before any other 
    - Verify clean slate
 
 2. **Load Crafty Syntax 3.7.5 legacy schema**
-   - Execute: `database/migrations/old_crafty_syntax_3_7_5_start.sql`
+   - Execute: `lupo-database/migrations/old_crafty_syntax_3_7_5_start.sql`
    - Verify 34 legacy tables created
 
 3. **Load legacy Crafty config** (if available)
@@ -165,12 +165,12 @@ The database is currently offline or in an inconsistent state. Before any other 
 5. **Verify installation**
    - Check table count (should be 80+ tables)
    - Verify schema matches `install_new_lupopedia.sql`
-   - Run: `python scripts/verify_db_against_toons.py`
+   - Run: `python lupo-scripts/verify_db_against_toons.py`
 
 6. **Seed registry data**
-   - Execute: `database/migrations/seed_registry_comprehensive_4.0.45.sql`
-   - Execute: `database/migrations/seed_registry_open_4.0.45.sql`
-   - Execute: `database/migrations/seed_actors_agents_4.0.45.sql`
+   - Execute: `lupo-database/migrations/seed_registry_comprehensive_4.0.45.sql`
+   - Execute: `lupo-database/migrations/seed_registry_open_4.0.45.sql`
+   - Execute: `lupo-database/migrations/seed_actors_agents_4.0.45.sql`
 
 7. **Verify seeding**
    - Check actor count (should have System, WOLFIE, LILITH, ROSE, ERIS, METIS, IDE agents, Captain)
@@ -199,11 +199,11 @@ This is a blocking task. No other database-dependent work can proceed until this
 <!-- FLIP_FOOTER_BEGIN
 {
   "references": [
-    "database/migrations/install_new_lupopedia.sql",
-    "database/migrations/old_crafty_syntax_3_7_5_start.sql",
-    "database/migrations/seed_registry_comprehensive_4.0.45.sql",
-    "database/migrations/seed_registry_open_4.0.45.sql",
-    "database/migrations/seed_actors_agents_4.0.45.sql"
+    "lupo-database/migrations/install_new_lupopedia.sql",
+    "lupo-database/migrations/old_crafty_syntax_3_7_5_start.sql",
+    "lupo-database/migrations/seed_registry_comprehensive_4.0.45.sql",
+    "lupo-database/migrations/seed_registry_open_4.0.45.sql",
+    "lupo-database/migrations/seed_actors_agents_4.0.45.sql"
   ],
   "implements": "fresh_install_workflow",
   "depends_on": [],

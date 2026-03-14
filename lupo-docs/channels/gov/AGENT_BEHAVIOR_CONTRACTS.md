@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\channels\gov\AGENT_BEHAVIOR_CONTRACTS.md"
+  file_path_from_root: "lupo-docs\channels\gov\AGENT_BEHAVIOR_CONTRACTS.md"
   file_hash: "646511885d8c20000ac4ce35f9c2684edf35b6a6630f758fc3bfb23cf88b9cdc"
-  file_path_from_root: "docs\channels\gov\AGENT_BEHAVIOR_CONTRACTS.md"
+  file_path_from_root: "lupo-docs\channels\gov\AGENT_BEHAVIOR_CONTRACTS.md"
   file_hash: "059cf220f120bbc0501712646948d71c2ba1161e3fd0914fdf9180ef8707f80a"
   last_updated_utc: "20260228"
   system_version: "4.0.50"

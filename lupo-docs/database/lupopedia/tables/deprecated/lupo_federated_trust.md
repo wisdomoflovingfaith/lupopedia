@@ -16,7 +16,7 @@ lupopedia.headers:
 
 lupopedia.edges:
   outbound_edges:
-    - { to: "lupo-docs/toons/lupo_federated_trust.toon.json", type: "references", weight: 1.0 }
+    - { to: "lupo-database/lupopedia/toon/lupo_federated_trust.toon.json", type: "references", weight: 1.0 }
     - { to: "lupo-docs/database/lupopedia/tables/active/lupo_federation_nodes.md", type: "references", weight: 0.9 }
 
 lupopedia.footer:
@@ -32,7 +32,7 @@ lupopedia.footer:
 - **Purpose**: Previously managed trust levels, permissions, and validation status between Lupopedia instances/nodes.
 - **Category**: Federation / Security
 - **Status**: Deprecated / Removed
-- **Removal Status**: Found in `lupo-docs/toons/` but missing from live DB schema as of version 4.0.70.
+- **Removal Status**: Found in `lupo-database/lupopedia/toon/` but missing from live DB schema as of version 4.0.70.
 
 ## Column Documentation (Last Known)
 

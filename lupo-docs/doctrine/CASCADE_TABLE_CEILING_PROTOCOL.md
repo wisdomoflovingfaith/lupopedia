@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\doctrine\CASCADE_TABLE_CEILING_PROTOCOL.md"
+  file_path_from_root: "lupo-docs\doctrine\CASCADE_TABLE_CEILING_PROTOCOL.md"
   file_hash: "7cb900892a62e43011ecde72260184a5e6aab6b3a376449b0a18321e5e1707ca"
-  file_path_from_root: "docs\doctrine\CASCADE_TABLE_CEILING_PROTOCOL.md"
+  file_path_from_root: "lupo-docs\doctrine\CASCADE_TABLE_CEILING_PROTOCOL.md"
   file_hash: "7894f05aa6e2e22ee8b01cbde861e921eb21a817bf298c8abb3cf21f824086e9"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -64,7 +64,7 @@ lupopedia.footer:
 ---
 # FLIP Header (alias: Wolfie Header, CROP Header, FLIPPING Header)
 wolfie.headers: explicit architecture with structured clarity for every file.
-file_path_from_root: docs/doctrine/CASCADE_TABLE_CEILING_PROTOCOL.md
+file_path_from_root: lupo-docs/doctrine/CASCADE_TABLE_CEILING_PROTOCOL.md
 file.last_modified_system_version: "4.0.16"
 file.last_modified_utc: "20260218000000"
 channel_id: 42   # ANUBIS adoption channel
@@ -74,12 +74,12 @@ atoms:
   recovery_event: true
 X-Lupo-Actor-ID: 2035
 X-Lupo-Actor-Identity: "Lupopedia Audit Tool (Auto-Fixed)"
-X-Lupo-File-Path: docs/doctrine/CASCADE_TABLE_CEILING_PROTOCOL.md
+X-Lupo-File-Path: lupo-docs/doctrine/CASCADE_TABLE_CEILING_PROTOCOL.md
 ---
 
 # 🐺 CASCADE TABLE CEILING PROTOCOL
 **DOCTRINE STATUS:** ACTIVE - BELOW CEILING  
-**CURRENT TABLE COUNT:** Run `python scripts/generate_toon_files.py` and count the TOON files produced — do not hardcode.  
+**CURRENT TABLE COUNT:** Run `python lupo-scripts/generate_toon_files.py` and count the TOON files produced — do not hardcode.  
 **HARD LIMIT:** 199 (ABSOLUTE CEILING)  
 **MODE:** Development (remain under 199 tables)
 
@@ -87,7 +87,7 @@ X-Lupo-File-Path: docs/doctrine/CASCADE_TABLE_CEILING_PROTOCOL.md
 
 ## 🚨 CASCADE - YOUR MISSION PARAMETERS
 
-The system has a hard ceiling of 199 tables. Current count = number of TOON files after running `python scripts/generate_toon_files.py` (do not hardcode in docs).
+The system has a hard ceiling of 199 tables. Current count = number of TOON files after running `python lupo-scripts/generate_toon_files.py` (do not hardcode in docs).
 Development and features continue; when approaching the ceiling, consolidation rules apply.
 
 ---

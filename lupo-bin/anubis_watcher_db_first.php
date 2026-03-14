@@ -20,7 +20,7 @@ $queue = new ANUBIS_QueueProcessor($db);
 $table_prefix = defined('LUPO_TABLE_PREFIX') ? LUPO_TABLE_PREFIX : 'lupo_';
 
 // Configuration
-$watched_dirs = array('docs/', 'lupo-channels/', 'prompts/');
+$watched_dirs = array('lupo-docs/', 'lupo-channels/', 'lupo-prompts/');
 $interval = 60; // seconds
 
 echo "🤖 ANUBIS File Watcher (Database Primary) started...\n";

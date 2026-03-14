@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\specs\AGENT_ROLES_4.0.24.md"
+  file_path_from_root: "lupo-docs\specs\AGENT_ROLES_4.0.24.md"
   file_hash: "3d08661cf375a076bc666f6e2c44617b86a187773f7460be8508c3f71cf62c8f"
-  file_path_from_root: "docs\specs\AGENT_ROLES_4.0.24.md"
+  file_path_from_root: "lupo-docs\specs\AGENT_ROLES_4.0.24.md"
   file_hash: "2a8494a19e903c843512c2556d4f157b1082556edf96031a64461e3f2f04ea73"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -62,7 +62,7 @@ lupopedia.footer:
 
 ---
 # FLIP Header (alias: Wolfie Header, CROP Header, FLIPPING Header)
-X-Lupo-File-Path: docs/specs/AGENT_ROLES_4.0.24.md
+X-Lupo-File-Path: lupo-docs/specs/AGENT_ROLES_4.0.24.md
 X-Lupo-Version: "4.0.27"
 X-Lupo-UTC-Timestamp: "20260222162242"
 X-Lupo-Channel: 42   # ANUBIS adoption channel

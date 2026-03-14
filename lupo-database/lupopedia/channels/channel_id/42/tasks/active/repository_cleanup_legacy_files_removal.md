@@ -90,9 +90,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "channels\42\tasks\active\repository_cleanup_legacy_files_removal.md"
+  file_path_from_root: "lupo-channels\42\tasks\active\repository_cleanup_legacy_files_removal.md"
   file_hash: "a51657c81750bd719566072bc3cf5e73e453695d05b755ce098832abed5d0442"
-  file_path_from_root: "channels\42\tasks\active\repository_cleanup_legacy_files_removal.md"
+  file_path_from_root: "lupo-channels\42\tasks\active\repository_cleanup_legacy_files_removal.md"
   file_hash: "55e1356e27ff73b9d84e47400729c06b660070408f4218e7581c6abb5ee62b11"
   last_updated_utc: "20260228"
   system_version: "4.0.73"
@@ -166,14 +166,14 @@ Perform comprehensive repository cleanup by removing irrelevant, outdated, and u
 ```
 lupopedia/
 ├── audits/                          # ⚠️ REVIEW - Old audit files
-├── database/migrations/             # ⚠️ REVIEW - Migration files
+├── lupo-database/migrations/             # ⚠️ REVIEW - Migration files
 │   ├── dev_*.sql                    # ⚠️ REVIEW - Dev migrations
 │   ├── 2026_*.sql                   # ⚠️ REVIEW - 2026 migrations
 │   └── *.sql                        # ⚠️ REVIEW - Other migrations
 ├── dialogs/                         # ⚠️ REVIEW - Old dialog files
 │   ├── *.md                         # ⚠️ REVIEW - Dialog transcripts
 │   └── */                           # ⚠️ REVIEW - Subdirectories
-├── docs/                            # ⚠️ REVIEW - Documentation
+├── lupo-docs/                            # ⚠️ REVIEW - Documentation
 │   ├── audit/                       # ⚠️ REVIEW - Audit docs
 │   ├── archive/                     # ⚠️ REVIEW - Archived docs
 │   └── */                           # ⚠️ REVIEW - Other doc dirs
@@ -181,18 +181,18 @@ lupopedia/
 │   ├── *.sql                        # ⚠️ REVIEW - Migration files
 │   └── *.php                        # ⚠️ REVIEW - Migration scripts
 ├── progress_blog/                   # ⚠️ REVIEW - Progress blogs
-├── channels/42/threads/            # ⚠️ REVIEW - Old threads
+├── lupo-channels/42/threads/            # ⚠️ REVIEW - Old threads
 │   ├── DEVELOPMENT_CYCLE_4_0_*      # ⚠️ REVIEW - Old dev cycles
 │   └── */                           # ⚠️ REVIEW - Other threads
-├── channels/42/tasks/               # ⚠️ REVIEW - Completed tasks
+├── lupo-channels/42/tasks/               # ⚠️ REVIEW - Completed tasks
 │   └── */                           # ⚠️ REVIEW - Task subdirs
 ├── exports/                         # ⚠️ REVIEW - Export files
 ├── lupo-tests/                      # ⚠️ REVIEW - Test files
-├── scripts/                         # ⚠️ REVIEW - Scripts
+├── lupo-scripts/                         # ⚠️ REVIEW - Scripts
 │   ├── *.py                         # ⚠️ REVIEW - Python scripts
 │   ├── *.sh                         # ⚠️ REVIEW - Shell scripts
 │   └── *.php                        # ⚠️ REVIEW - PHP scripts
-├── tools/                           # ⚠️ REVIEW - Tools
+├── lupo-tools/                           # ⚠️ REVIEW - Tools
 ├── *.md                             # ⚠️ REVIEW - Root markdown files
 └── *.txt                            # ⚠️ REVIEW - Root text files
 ```
@@ -204,8 +204,8 @@ lupopedia/
 ### 🚫 **Files to Remove (Candidates)**
 
 #### Migration Files (Lupopedia → Lupopedia)
-- `database/migrations/2026_*.sql` (except Crafty import)
-- `database/migrations/dev_*.sql` (if obsolete)
+- `lupo-database/migrations/2026_*.sql` (except Crafty import)
+- `lupo-database/migrations/dev_*.sql` (if obsolete)
 - `migrations/*.sql` (duplicate migration directory)
 - `migrations/*.php` (PHP migration scripts)
 
@@ -213,12 +213,12 @@ lupopedia/
 - `audits/*.md` (old audit reports)
 - `progress_blog/*.md` (old progress blogs)
 - `dialogs/*.md` (old dialog transcripts)
-- `docs/audit/*.md` (audit documentation)
-- `docs/archive/*.md` (archived docs)
+- `lupo-docs/audit/*.md` (audit documentation)
+- `lupo-docs/archive/*.md` (archived docs)
 
 #### Development Artifacts
-- `channels/42/threads/DEVELOPMENT_CYCLE_4_0_4[0-6]/` (old cycles)
-- `channels/42/tasks/completed/` (if exists)
+- `lupo-channels/42/threads/DEVELOPMENT_CYCLE_4_0_4[0-6]/` (old cycles)
+- `lupo-channels/42/tasks/completed/` (if exists)
 - `exports/*.csv` (temporary exports)
 - `exports/*.json` (temporary exports)
 
@@ -230,23 +230,23 @@ lupopedia/
 ### ✅ **Files to Keep (Do NOT Remove)**
 
 #### Critical Migration Files
-- `database/migrations/install_new_lupopedia.sql` ✅
-- `database/migrations/seed_lupopedia.sql` ✅
-- `database/migrations/import_from_old_crafty_syntax.sql` ✅
-- `database/migrations/old_crafty_syntax_3_7_5_start.sql` ✅
+- `lupo-database/migrations/install_new_lupopedia.sql` ✅
+- `lupo-database/migrations/seed_lupopedia.sql` ✅
+- `lupo-database/migrations/import_from_old_crafty_syntax.sql` ✅
+- `lupo-database/migrations/old_crafty_syntax_3_7_5_start.sql` ✅
 
 #### Core Documentation
 - `README.md` ✅
 - `CHANGELOG.md` ✅
 - `CONTRIBUTING.md` ✅
-- `docs/doctrine/` ✅
-- `docs/api/` ✅
-- `docs/database/` ✅
+- `lupo-docs/doctrine/` ✅
+- `lupo-docs/api/` ✅
+- `lupo-docs/database/` ✅
 
 #### Active Development
-- `channels/42/threads/DEVELOPMENT_CYCLE_4_0_47/` ✅
-- `channels/42/threads/DEVELOPMENT_CYCLE_4_0_48/` ✅
-- `channels/42/tasks/active/` ✅
+- `lupo-channels/42/threads/DEVELOPMENT_CYCLE_4_0_47/` ✅
+- `lupo-channels/42/threads/DEVELOPMENT_CYCLE_4_0_48/` ✅
+- `lupo-channels/42/tasks/active/` ✅
 
 #### Configuration
 - `config/` ✅
@@ -260,7 +260,7 @@ lupopedia/
 ### Phase 1: Migration File Cleanup (2 hours)
 1. **List all migration files**
    ```bash
-   find database/migrations/ -name "*.sql" -type f
+   find lupo-database/migrations/ -name "*.sql" -type f
    find migrations/ -name "*.sql" -type f
    ```
 
@@ -287,14 +287,14 @@ lupopedia/
 
 ### Phase 3: Development Artifact Cleanup (2 hours)
 1. **Clean old development cycles**
-   - Review `channels/42/threads/` for old cycles
+   - Review `lupo-channels/42/threads/` for old cycles
    - Keep only 4.0.47 and 4.0.48 cycles
    - Remove or archive older cycles
 
 2. **Remove temporary files**
    - Clean `exports/` directory
-   - Remove temporary scripts in `scripts/`
-   - Clean obsolete tools in `tools/`
+   - Remove temporary scripts in `lupo-scripts/`
+   - Clean obsolete tools in `lupo-tools/`
 
 ### Phase 4: Final Review (1-2 hours)
 1. **Verify no critical files were removed**
@@ -306,10 +306,10 @@ lupopedia/
 ## ⚠️ **Critical Warnings**
 
 ### **DO NOT REMOVE These Files:**
-- `database/migrations/install_new_lupopedia.sql`
-- `database/migrations/seed_lupopedia.sql`
-- `database/migrations/import_from_old_crafty_syntax.sql`
-- `database/migrations/old_crafty_syntax_3_7_5_start.sql`
+- `lupo-database/migrations/install_new_lupopedia.sql`
+- `lupo-database/migrations/seed_lupopedia.sql`
+- `lupo-database/migrations/import_from_old_crafty_syntax.sql`
+- `lupo-database/migrations/old_crafty_syntax_3_7_5_start.sql`
 - `config/global_atoms.yaml`
 - `lupo-includes/version.php`
 - `install.php`

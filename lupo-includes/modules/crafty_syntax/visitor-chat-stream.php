@@ -196,7 +196,7 @@ header('Content-Type: text/html; charset=utf-8');
 
     function primaryPoll() {
         if (channelId <= 0 || dialogThreadId <= 0) return;
-        var url = base + 'api/channel/messages';
+        var url = base + 'lupo-api/channel/messages';
         url = addParam(url, 'channel_id', channelId);
         url = addParam(url, 'after_ymdhis', afterYmdhis);
         url = addParam(url, 'dialog_thread_id', dialogThreadId);
@@ -260,7 +260,7 @@ header('Content-Type: text/html; charset=utf-8');
 
     function checkPoll() {
         if (channelId <= 0 || dialogThreadId <= 0) return;
-        var url = base + 'api/channel/check';
+        var url = base + 'lupo-api/channel/check';
         url = addParam(url, 'channel_id', channelId);
         url = addParam(url, 'after_ymdhis', afterYmdhis);
         url = addParam(url, 'dialog_thread_id', dialogThreadId);
@@ -282,7 +282,7 @@ header('Content-Type: text/html; charset=utf-8');
 
     function typingPoll() {
         if (channelId <= 0 || previewSetting >= 3) return;
-        var url = base + 'api/channel/typing';
+        var url = base + 'lupo-api/channel/typing';
         url = addParam(url, 'channel_id', channelId);
         url = addParam(url, 'cslhVISITOR', cslhVISITOR);
 
@@ -343,7 +343,7 @@ header('Content-Type: text/html; charset=utf-8');
     }
 
     function clearTypingOnSend() {
-        var url = base + 'api/channel/typing';
+        var url = base + 'lupo-api/channel/typing';
         var body = JSON.stringify({ channel_id: channelId, dialog_thread_id: dialogThreadId, actor_id: 0, preview_text: '' });
         var xhr = new XMLHttpRequest();
         xhr.open('POST', url);

@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\channels\CHANNEL_42_COORDINATION_PROTOCOL.md"
+  file_path_from_root: "lupo-docs\channels\CHANNEL_42_COORDINATION_PROTOCOL.md"
   file_hash: "31fb81e42da21c8e51702328c68123cf3659dffc969816beb2524001166ebc5f"
-  file_path_from_root: "docs\channels\CHANNEL_42_COORDINATION_PROTOCOL.md"
+  file_path_from_root: "lupo-docs\channels\CHANNEL_42_COORDINATION_PROTOCOL.md"
   file_hash: "94be72003988c27ef3b2485b97d130f55bf30b6935872de46f66b1c276a084ba"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -64,7 +64,7 @@ lupopedia.footer:
 ---
 # FLIP Header (alias: Wolfie Header, CROP Header)
 wolfie.headers: explicit architecture with structured clarity for every file.
-file_path_from_root: "docs/channels/CHANNEL_42_COORDINATION_PROTOCOL.md"
+file_path_from_root: "lupo-docs/channels/CHANNEL_42_COORDINATION_PROTOCOL.md"
 file.last_modified_system_version: "4.0.31"
 file.last_modified_utc: "20260223144700"
 channel_id: 42

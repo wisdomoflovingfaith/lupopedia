@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\audits\EXPERIMENTAL_AI_ARTIFACT_PURGE_SUMMARY.md"
+  file_path_from_root: "lupo-docs\audits\EXPERIMENTAL_AI_ARTIFACT_PURGE_SUMMARY.md"
   file_hash: "5e6696835416c41bd4168336dc534e56523e3508d103db3cbee799ef004cc8cb"
-  file_path_from_root: "docs\audits\EXPERIMENTAL_AI_ARTIFACT_PURGE_SUMMARY.md"
+  file_path_from_root: "lupo-docs\audits\EXPERIMENTAL_AI_ARTIFACT_PURGE_SUMMARY.md"
   file_hash: "c46ed7162d8bd530cf13d289fd22ab623fd1e8cc389ee102bbe52875b95182c6"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -72,9 +72,9 @@ lupopedia.footer:
 
 | File | Reason |
 |------|--------|
-| `dialogs/JOHNWHEEL_dialog.md` | Wheeler-derived persona (JOHNWHEEL); created during Wheeler ideation. Not part of canonical doctrine; banned by wheeler-reverse20-ban.mdc. |
+| `dialogs/JOHNWHEEL_dialog.md` | Wheeler-derived persona (JOHNWHEEL); created during Wheeler ideation. Not part of canonical doctrine; banned (rule file since removed). |
 
-**Note:** No other files were found that exist *solely* for experimental ideation. Files matching *_experiment, *_scratch, *_brainstorm, *_concept, *_idea, *_ai_generated were not present. Archived doctrine revisions (docs/archive/doctrine_revisions/), WSSE 2D prototype specs (docs/channels/ui-ux/), and *_final report names (e.g. PHASE5_FINAL_INTEGRATION_REPORT.md) were assessed: archive is retained for history; WSSE specs are legitimate feature prototypes; *_final in report titles denotes “final report of a phase,” not file variants. changelog_dialog_backup.md is a backup snapshot; canonical changelog dialogs are changelog_dialog_current.md and version-specific dialogs—no new _backup variants should be created.
+**Note:** No other files were found that exist *solely* for experimental ideation. Files matching *_experiment, *_scratch, *_brainstorm, *_concept, *_idea, *_ai_generated were not present. Archived doctrine revisions (lupo-docs/archive/doctrine_revisions/), WSSE 2D prototype specs (lupo-docs/channels/ui-ux/), and *_final report names (e.g. PHASE5_FINAL_INTEGRATION_REPORT.md) were assessed: archive is retained for history; WSSE specs are legitimate feature prototypes; *_final in report titles denotes “final report of a phase,” not file variants. changelog_dialog_backup.md is a backup snapshot; canonical changelog dialogs are changelog_dialog_current.md and version-specific dialogs—no new _backup variants should be created.
 
 ---
 
@@ -83,7 +83,7 @@ lupopedia.footer:
 | File | Change |
 |------|--------|
 | `dialogs/changelog_dialog_UTC_2026-01-20.md` | Replaced remaining “quantum versioning” joke (“The version exists in all possible states until we observe it”) with “version number drift” / “Multiple version claims until we align.” |
-| `.cursor/rules/experimental-ai-artifact-ban.mdc` | **NEW** — Permanent rule banning all experimental AI artifacts, canonical-file doctrine, and reference to purged systems (STONED WOLFIE, Wheeler, Reverse-20, quantum/uncertainty). |
+| `.cursor/rules/experimental-ai-artifact-ban.mdc` | Had been added (rule file since removed). It had banned experimental AI artifacts and purged systems. |
 
 ---
 
@@ -106,9 +106,9 @@ None in this purge. Doctrine rewrites were completed in the STONED WOLFIE, Wheel
 
 ## 5. Canonical-file doctrine enforced
 
-- **One canonical file per topic.** No variants such as *_updated, *_final, *_rewrite, *_copy, *_backup (as duplicate variants) are to be created. Versioned specs (e.g. v2.0) and docs/archive/ revisions are acceptable for versioning and history.
+- **One canonical file per topic.** No variants such as *_updated, *_final, *_rewrite, *_copy, *_backup (as duplicate variants) are to be created. Versioned specs (e.g. v2.0) and lupo-docs/archive/ revisions are acceptable for versioning and history.
 - **changelog_dialog_backup.md** — Retained as historical backup; canonical changelog dialogs are changelog_dialog_current.md and the version-specific dialogs (e.g. changelog_dialog_UTC_2026-01-20.md, changelog_dialog_MONDAY_WOLFIE.md). Do not create new _backup variants.
-- **docs/archive/doctrine_revisions/** — WOLFIE_HEADER_DOCTRINE v2.7–v3.3 retained as archive only. Canonical doctrine is docs/channels/doctrine/WOLFIE_HEADER_DOCTRINE.md.
+- **lupo-docs/archive/doctrine_revisions/** — WOLFIE_HEADER_DOCTRINE v2.7–v3.3 retained as archive only. Canonical doctrine is lupo-docs/channels/doctrine/WOLFIE_HEADER_DOCTRINE.md.
 - **WSSE_2D_PROTOTYPE.md / WSSE_2D_EMOTIONAL_PROTOTYPE_SPEC.md** — Retained as legitimate UI/UX feature prototype documentation; not experimental AI ideation artifacts.
 - **SQL_REWRITE_DOCTRINE.md** — Name refers to doctrine topic (rewriting SQL), not a file variant; retained.
 - **Scripts:** update_changelog_with_jetbrains_doctrine_v2.ps1 and .ps1 — Versioned script; no consolidation required for this purge.
@@ -126,13 +126,7 @@ None in this purge. Doctrine rewrites were completed in the STONED WOLFIE, Wheel
 
 ## 7. Confirmation: Cursor (and agents) treat experimental AI artifacts as permanently banned
 
-- **.cursor/rules/experimental-ai-artifact-ban.mdc** instructs Cursor to:
-  - Not reintroduce STONED WOLFIE, Schrödinger-state, quantum-state, uncertainty-metadata, John Wheeler, Reverse-20, or JOHNWHEEL.
-  - Not add experimental metaphors (observer loop, self-observing system, probabilistic metadata, quantum-inspired workflow, metaphysical workflow, AI-generated doctrine, experimental ontology, etc.) as doctrine or metadata.
-  - Enforce canonical-file doctrine: one canonical file per topic; no variant naming (_updated, _final, _rewrite, _copy, _backup as variants); consolidate duplicates.
-  - Treat experimental AI artifacts as invalid and non-existent; only canonical doctrine and workflows are allowed.
-
-- Existing ban rules remain in effect: **stoned-wolfie-schrodinger-ban.mdc**, **wheeler-reverse20-ban.mdc**, **quantum-state-uncertainty-ban.mdc**.
+- A Cursor rule (experimental-ai-artifact-ban) had been added (rule file since removed). It had instructed Cursor not to reintroduce STONED WOLFIE, Wheeler, Reverse-20, quantum/uncertainty, or experimental metaphors, and to enforce canonical-file doctrine. The concepts remain banned; the separate rule file has been removed from the repo.
 
 ---
 

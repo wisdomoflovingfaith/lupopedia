@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\doctrine\FLIP_V2_DOCTRINE.md"
+  file_path_from_root: "lupo-docs\doctrine\FLIP_V2_DOCTRINE.md"
   file_hash: "b3771727f1db19de2d34ef3d15e5ee82f2ff1ed0de37a85adf85e40cedf9235a"
-  file_path_from_root: "docs\doctrine\FLIP_V2_DOCTRINE.md"
+  file_path_from_root: "lupo-docs\doctrine\FLIP_V2_DOCTRINE.md"
   file_hash: "a5744e432ab87d23ee67c3bb950a66f8523f1002ebe903e54ccb6a907b411ca7"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -110,7 +110,7 @@ collections:
 ```yaml
 ---
 wolfie.headers:
-  file_path_from_root: "docs/directives/example.md"
+  file_path_from_root: "lupo-docs/directives/example.md"
   system_version: "4.0.37"
   artifact_type: "directive"
   artifact_id: "DIR-42-01"

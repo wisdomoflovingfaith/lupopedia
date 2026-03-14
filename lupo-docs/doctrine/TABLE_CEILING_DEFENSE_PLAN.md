@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\doctrine\TABLE_CEILING_DEFENSE_PLAN.md"
+  file_path_from_root: "lupo-docs\doctrine\TABLE_CEILING_DEFENSE_PLAN.md"
   file_hash: "d5c4608b350acfc7eea4dfcda6fbd042a887d074f4da414fb6c950f1e69a43b6"
-  file_path_from_root: "docs\doctrine\TABLE_CEILING_DEFENSE_PLAN.md"
+  file_path_from_root: "lupo-docs\doctrine\TABLE_CEILING_DEFENSE_PLAN.md"
   file_hash: "a9b3bc2db64e6e6b7f1ffec5faaa5a1c7dc74b118f00dc98fe89b4b68e20daaa"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -64,7 +64,7 @@ lupopedia.footer:
 ---
 # FLIP Header (alias: Wolfie Header, CROP Header, FLIPPING Header)
 wolfie.headers: explicit architecture with structured clarity for every file.
-file_path_from_root: docs/doctrine/TABLE_CEILING_DEFENSE_PLAN.md
+file_path_from_root: lupo-docs/doctrine/TABLE_CEILING_DEFENSE_PLAN.md
 file.last_modified_system_version: "4.0.16"
 file.last_modified_utc: "20260218000000"
 channel_id: 42   # ANUBIS adoption channel
@@ -74,7 +74,7 @@ atoms:
   recovery_event: true
 X-Lupo-Actor-ID: 2035
 X-Lupo-Actor-Identity: "Lupopedia Audit Tool (Auto-Fixed)"
-X-Lupo-File-Path: docs/doctrine/TABLE_CEILING_DEFENSE_PLAN.md
+X-Lupo-File-Path: lupo-docs/doctrine/TABLE_CEILING_DEFENSE_PLAN.md
 ---
 
 # 🐺 TABLE CONSOLIDATION REPORT — "THE 199 CEILING DEFENSE PLAN"
@@ -197,7 +197,7 @@ This document outlines the precise consolidation strategy to maintain full Craft
 - **unified analytics table** - Consolidated analytics
 - **referer analytics** - Traffic analysis
 - **campaign analytics** - Marketing tracking (optional)
-- **views/hits** - Page view tracking
+- **lupo-views/hits** - Page view tracking
 
 #### 7. System Infrastructure
 - **users** - User accounts
@@ -241,7 +241,7 @@ lupo_analytics_campaign_vars → merge into unified analytics
 ### 🟦 2. LiveHelp Backup Tables (34 tables)
 **Biggest win - immediate table recovery**
 
-Everything in `database/livehelp_backup/` is:
+Everything in `lupo-database/livehelp_backup/` is:
 - Legacy Crafty Syntax (pre-migration)
 - Not used by Lupopedia
 - Not doctrine-aligned

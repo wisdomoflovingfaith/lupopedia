@@ -1,21 +1,22 @@
 ---
 lupopedia.headers:
-  lupopedia.version: "4.0.73"
+  lupopedia.version: "4.0.74"
   lupopedia.schema: "documentation"
   file_path_from_root: "AGENTS.md"
   web_path: "http://www.lupopedia.com/AGENTS"
-  last_modified_utc: "20260312"
-  system_version: "4.0.73"
+  last_modified_utc: "20260314"
+  system_version: "4.0.74"
   channel_id: 42
-  actor_id: 1003
+  actor_id: 102
+  actor_name: "cursor"
   delegation_chain: "cursor:root"
   artifact_type: "guide"
   artifact_kind: "documentation"
-  purpose: "Comprehensive guide for WARP and all IDE surfaces (faucets) working with Lupopedia"
-  traits: ["canonical", "comprehensive", "v4.0.73", "agents"]
-  tags: ["agents", "warp", "documentation", "doctrine", "architecture"]
-  agent_name_identity: "Windsurf IDE Agent"
-  lupo_agent: "windsurf"
+  purpose: "Guide for all IDE faucets and agents; Cursor IDE is lead orchestration actor with Wolfie as supporting actor"
+  traits: ["canonical", "comprehensive", "v4.0.74", "agents", "lead_orchestration"]
+  tags: ["agents", "cursor", "ide_faucets", "documentation", "doctrine", "architecture"]
+  agent_name_identity: "Cursor IDE Agent (Lead Orchestration)"
+  lupo_agent: "cursor"
 
 lupopedia.edges:
   outbound_edges:
@@ -24,16 +25,20 @@ lupopedia.edges:
     - { to: "lupo-database/lupopedia/actors/actor_id/registry.json", type: "references", weight: 0.9 }
     - { to: "lupo-docs/status/LILITH_FLAME_FAUCET_REPORT.md", type: "references", weight: 0.8 }
     - { to: "lupo-agents/", type: "references", weight: 0.8 }
-  semantic_tags: ["agents", "warp", "development_environment", "architecture", "doctrine"]
+    - { to: "lupo-docs/database/lupopedia/tables/active", type: "references", weight: 0.9, reason: "Per-table documentation for all TOON/schema tables" }
+    - { to: "plan.md", type: "references", weight: 0.85 }
+    - { to: "report.md", type: "references", weight: 0.85 }
+  semantic_tags: ["agents", "cursor", "lead_orchestration", "development_environment", "architecture", "doctrine"]
 
 lupopedia.see:
   mappings:
     - ["AGENTS.md", "http://www.lupopedia.com/AGENTS"]
 
 lupopedia.footer:
-  version: "4.0.73"
-  last_verified: "20260312"
+  version: "4.0.74"
+  last_verified: "20260314"
   last_verified_by: "cursor"
+  orchestrator: "cursor"
   next_action:
     - "Keep agent identity and faucet links current with registry"
     - "Validate LUPOPEDIA HEADERS and next_action when updating this guide"
@@ -43,7 +48,7 @@ lupopedia.footer:
 
 # AGENTS.md
 
-This file provides guidance to WARP (warp.dev) when working with code in this repository.
+This file provides guidance for **all IDE agents and faucets** (Cursor, Windsurf, Kiro, Antigravity, Warp, Cascade, Codex) when working with this repository. **Cursor IDE** (actor_id 102) is the **lead orchestration actor**; **Wolfie** (actor_id 1) is the **supporting actor**. Resolve actor and faucet IDs from the canonical registry; see [Lead orchestration and IDE faucets](#lead-orchestration-and-ide-faucets) below.
 
 ## What This Project Is
 
@@ -64,37 +69,37 @@ There is no build step or package manager. The app is served directly by the web
 
 ```
 # All test suites (unit, regression, integration, adversarial)
-sh scripts/run_tests.sh .
+sh lupo-scripts/run_tests.sh .
 
-# Unit tests only (runs every tests/unit/*.php via php CLI)
-sh scripts/run_unit_tests.sh .
+# Unit tests only (runs every lupo-tests/unit/*.php via php CLI)
+sh lupo-scripts/run_unit_tests.sh .
 
 # Regression tests only
-sh scripts/run_regression_tests.sh .
+sh lupo-scripts/run_regression_tests.sh .
 
 # Run a single test file
-php tests/unit/admin_csrf.php
+php lupo-tests/unit/admin_csrf.php
 
 # Run a single integration test
-sh tests/integration/test_routing.sh
+sh lupo-tests/integration/test_routing.sh
 ```
 
-Tests are plain PHP scripts under `tests/unit/`, `tests/integration/`, `tests/regression/`, and `tests/adversarial/`. There is no PHPUnit or test framework — each file is executed directly with `php`.
+Tests are plain PHP scripts under `lupo-tests/unit/`, `lupo-tests/integration/`, `lupo-tests/regression/`, and `lupo-tests/adversarial/`. There is no PHPUnit or test framework — each file is executed directly with `php`.
 
 ### Schema and Migration Commands
 
 ```
 # Regenerate TOON files from live database (Python)
-python scripts/generate_toon_files.py
+python lupo-scripts/generate_toon_files.py
 
 # Regenerate directory tree (required before any versioning/cleanup task)
-python scripts/generate_directory_tree.py
+python lupo-scripts/generate_directory_tree.py
 
 # Bump version
 php lupo-bin/bump-version.php
 
 # Validate schema against TOONs
-python scripts/verify_db_against_toons.py
+python lupo-scripts/verify_db_against_toons.py
 ```
 
 ### Development Workflow (Drop → Upgrade → Test)
@@ -122,16 +127,16 @@ Fresh install runs (A) then (B). Upgrade from Crafty runs (A), (B), then (C). Ne
 ### Key Directories
 
 - `app/` — OOP services and auth: `app/auth/` (Session, AuthService, AuthRoleResolver), `app/Services/` (ActorService, CollectionZeroService, UploadService, CraftySyntax/, Pack/)
-- `lupo-includes/` — Core runtime: `class-pdo_db.php` (DB wrapper), `class-DatabaseFactory.php` (singleton connection), `modules/` (auth, content, truth, crafty_syntax, help, list, qa, channels, actors, operator), `classes/` (ColorProtocol, UrlResolver, TOONParser, DialogHistoryManager, etc.), `functions/` (legacy helpers — no new files here), `css/`, `js/`, `themes/`, `ui/`, `semantic/`, `agents/`, `rest-api/`
+- `lupo-includes/` — Core runtime: `class-pdo_db.php` (DB wrapper), `class-DatabaseFactory.php` (singleton connection), `modules/` (auth, content, truth, crafty_syntax, help, list, qa, channels, actors, operator), `classes/` (ColorProtocol, UrlResolver, TOONParser, DialogHistoryManager, etc.), `functions/` (legacy helpers — no new files here), `css/`, `js/`, `themes/`, `ui/`, `semantic/`, `lupo-agents/`, `rest-api/`
 - `lupo-bin/` — System binaries and CLI utilities (e.g., `bump-version.php`, `lupo.php`)
 - `lupo-agents/` — AI agent configuration files, one numbered folder per agent (`agent.json`, `capabilities.json`, `properties.json`, `system_prompt.txt`)
-- `lupo-actors/` — Actor-specific resources hub: per-actor dirs (0=system, 1=WOLFIE, …) with `apps/`, `tools/`, `docs/`, `db-changes/`, `api/`, `needs/`. Path from `LUPO_ACTORS_DIR` in config. See `docs/actors.md`.
-- `database/` — Schema, migrations, seeds, CSV data, TOON schema backups
-- `lupo-database/lupopedia/toon/` — `*.toon.json` files: generated from live DB, never hand-edited. These define the canonical column/type reference.
-- `legacy/craftysyntax/` — Original Crafty Syntax 3.7.5 codebase. **Read-only reference.** Never execute, modify, or depend on it.
-- `scripts/` — Python and shell utilities for schema generation, validation, migration. All Python must live here.
+- `lupo-actors/` — Actor-specific resources hub: per-actor dirs (0=system, 1=WOLFIE, …) with `apps/`, `lupo-tools/`, `lupo-docs/`, `db-changes/`, `lupo-api/`, `needs/`. Path from `LUPO_ACTORS_DIR` in config. See `lupo-docs/actors.md`.
+- `lupo-database/` — Schema, migrations, seeds, CSV data, TOON schema backups
+- `lupo-database/lupopedia/toon/` — `*.toon.json` files: generated from live DB, never hand-edited. These define the canonical column/type reference. (Canonical TOON location per project structure.)
+- `lupo-legacy/craftysyntax/` — Original Crafty Syntax 3.7.5 codebase. **Read-only reference.** Never execute, modify, or depend on it.
+- `lupo-scripts/` — Python and shell utilities for schema generation, validation, migration. All Python must live here.
 - `config/global_atoms.yaml` — System-wide atom definitions including `GLOBAL_CURRENT_LUPOPEDIA_VERSION`
-- `channels/registry.json` — Channel registry
+- `lupo-channels/registry.json` — Channel registry
 
 ### Database Access Pattern
 
@@ -162,7 +167,7 @@ Version lives in `config/global_atoms.yaml` as `GLOBAL_CURRENT_LUPOPEDIA_VERSION
 - **No foreign keys, triggers, stored procedures, views, or computed columns.** The database is dumb storage; all logic is in PHP.
 - **Integer types only:** `BIGINT`, `INT`, `SMALLINT`, `TINYINT` — no parenthesized display widths (`BIGINT(14)` is forbidden in DDL), no `UNSIGNED`, no `BOOLEAN`.
 - **Soft deletes:** Tables use `is_deleted TINYINT DEFAULT 0` and `deleted_ymdhis BIGINT DEFAULT 0`. Queries must filter `WHERE is_deleted = 0` by default.
-- **Schema changes:** Update the TOON, then update `install_new_lupopedia.sql`, then create a one-time dev migration in `database/migrations/dev_YYYYMMDD_description.sql`. Never modify TOONs directly — they are generated from the live DB.
+- **Schema changes:** Update the TOON, then update `install_new_lupopedia.sql`, then create a one-time dev migration in `lupo-database/lupopedia/mysql/migrations/dev_YYYYMMDD_description.sql`. Never modify TOONs directly — they are generated from the live DB.
 
 ### Timestamp Rules
 - All timestamps are `BIGINT` in `YYYYMMDDHHIISS` UTC format (e.g., `20260214153045`).
@@ -173,9 +178,9 @@ Version lives in `config/global_atoms.yaml` as `GLOBAL_CURRENT_LUPOPEDIA_VERSION
 ### Actor Model
 - **Actors orchestrate; faucets execute.** `actor_id` is the universal identity key. There is no `user_id` in relationships.
 - Actor IDs 0–999 are reserved for non-human (orchestration) actors; human actors start at 1000. IDE surfaces (Cursor, Windsurf, Warp, etc.) are **faucets**, not actors.
-- **Actor and agent IDs are defined in the project’s actor registry** (e.g. `lupo-database/lupopedia/actors/` or `lupo-database/lupopedia/actors/actor_id/registry.json`). Tooling and docs must resolve IDs from the registry; do not maintain inline ID lists as canonical. LUPOPEDIA HEADERS may include optional **agent_name_identity** (e.g. “Cursor IDE Agent”) for human-readable identification—see [LUPOPEDIA HEADERS doctrine](lupo-docs/doctrine/LUPOPEDIA_HEADERS/README.md) and `docs/status/AGENT_IDENTITY_REGISTRY_4.0.57.md`.
+- **Actor and agent IDs are defined in the project’s actor registry** (e.g. `lupo-database/lupopedia/actors/` or `lupo-database/lupopedia/actors/actor_id/registry.json`). Tooling and docs must resolve IDs from the registry; do not maintain inline ID lists as canonical. LUPOPEDIA HEADERS may include optional **agent_name_identity** (e.g. “Cursor IDE Agent”) for human-readable identification—see [LUPOPEDIA HEADERS doctrine](lupo-docs/doctrine/LUPOPEDIA_HEADERS/README.md) and [AGENT_IDENTITY_REGISTRY](lupo-docs/status/AGENT_IDENTITY_REGISTRY_4.0.57.md).
 - Tables: `lupo_actors` (unified), `lupo_auth_users` (human login metadata), `lupo_agents` (AI agent metadata).
-- Lilith (actor 2) has a **flame header expert** faucet (slug `lilith-flame`) in `lupo_agent_faucets` for channel 42; see [LUPOPEDIA HEADERS doctrine](lupo-docs/doctrine/LUPOPEDIA_HEADERS/README.md) and `docs/status/LILITH_FLAME_FAUCET_REPORT.md`.
+- Lilith (actor 2) has a **flame header expert** faucet (slug `lilith-flame`) in `lupo_agent_faucets` for channel 42; see [LUPOPEDIA HEADERS doctrine](lupo-docs/doctrine/LUPOPEDIA_HEADERS/README.md) and [LILITH_FLAME_FAUCET_REPORT](lupo-docs/status/LILITH_FLAME_FAUCET_REPORT.md).
 
 ### Agent Identity Registry
 
@@ -187,11 +192,11 @@ LUPOPEDIA HEADERS may include `agent_name_identity` for human-readable display (
 
 ```yaml
 lupopedia.headers:
-  actor_id: 1003
+  actor_id: 102
   agent_name_identity: "Cursor IDE Agent"
 ```
 
-See [LUPOPEDIA HEADERS doctrine](lupo-docs/doctrine/LUPOPEDIA_HEADERS/README.md) and `docs/status/AGENT_IDENTITY_REGISTRY_4.0.57.md` for complete documentation. Headers are stored in `lupo_metadata` and can also be written to the file as YAML.
+See [LUPOPEDIA HEADERS doctrine](lupo-docs/doctrine/LUPOPEDIA_HEADERS/README.md) and [AGENT_IDENTITY_REGISTRY](lupo-docs/status/AGENT_IDENTITY_REGISTRY_4.0.57.md) for complete documentation. Headers are stored in `lupo_metadata` and can also be written to the file as YAML.
 
 ### Path Handling
 - Lupopedia is always in a subdirectory. All URLs must use `LUPOPEDIA_PUBLIC_PATH` (e.g., `LUPOPEDIA_PUBLIC_PATH . '/login'`). Hardcoded root paths like `/login` are forbidden.
@@ -219,13 +224,30 @@ See [LUPOPEDIA HEADERS doctrine](lupo-docs/doctrine/LUPOPEDIA_HEADERS/README.md)
 
 1. `lupo-database/lupopedia/mysql/install/install_new_lupopedia.sql` — canonical DDL
 2. `lupo-database/lupopedia/toon/*.toon.json` — generated column/type reference (do not hand-edit)
-3. `docs/doctrine/database/` — per-table documentation and legacy migration mapping
-4. `docs/doctrine/migrations/MIGRATION_MAPPING_REFERENCE.md` — Crafty→Lupopedia table mapping
+3. `lupo-docs/doctrine/` — per-table documentation and legacy migration mapping
+4. `lupo-docs/doctrine/migrations/MIGRATION_MAPPING_REFERENCE.md` — Crafty→Lupopedia table mapping (path under lupo-docs where present)
 
 ## Module Routing Priority
 
 In `lupo_route_slug()`: AUTH → web-path resolution (doctrine/qa/docs/flp prefixes) → content by slug → channel/edge/QA routes → HELP → LIST → truth redirects → crafty_syntax → content fallback.
 
-## Multi-Agent Ecosystem
+## Lead Orchestration and IDE Faucets
 
-The project uses multiple IDE agents (JetBrains/WOLFIE, Cascade, Cursor, Windsurf, Warp) with separate Git identities. Commit messages must use the agent prefix (e.g., `wolfie:`, `cascade:`, `warp:`). WOLFIE (JetBrains) is the final authority on conflicts. See `CONTRIBUTING.md` for the full multi-agent workflow.
+- **Lead orchestration actor:** **Cursor IDE** (actor_id **102**, slug `cursor`). Cursor coordinates consolidation of documentation, root plan, and report; approves merges from faucet-specific artifacts into canonical root files.
+- **Supporting actor:** **Wolfie** (actor_id **1**, slug `wolfie`). Wolfie provides domain authority and conflict resolution support.
+- **Registry:** [lupo-database/lupopedia/actors/actor_id/registry.json](lupo-database/lupopedia/actors/actor_id/registry.json). Cursor (102) is marked `lead_orchestration: true`.
+
+**Seven IDE lupo-agents/faucets** currently working on Lupopedia 4.0.74:
+
+| actor_id | slug        | type        | notes                          |
+|----------|-------------|-------------|--------------------------------|
+| 1        | wolfie      | agent       | Supporting actor; JetBrains    |
+| 100      | kiro        | ide_faucet  | Schema coordinator role        |
+| 101      | windsurf    | ide_faucet  | Research, documentation        |
+| 102      | cursor      | ide_faucet  | **Lead orchestration**         |
+| 103      | antigravity | ide_faucet  | Governance, doctrine           |
+| 104      | warp        | ide_faucet  | Warp terminal/IDE              |
+| 105      | cascade     | ide_faucet  | Cascade IDE                    |
+| —        | codex       | ide_faucet  | JetBrains Codex (Wolfie flow)  |
+
+Commit messages must use the agent prefix (e.g., `cursor:`, `wolfie:`, `windsurf:`, `kiro:`). See `CONTRIBUTING.md` for the full multi-agent workflow. Root consolidation (README, CHANGELOG, plan.md, report.md) is maintained by Cursor as lead orchestration.

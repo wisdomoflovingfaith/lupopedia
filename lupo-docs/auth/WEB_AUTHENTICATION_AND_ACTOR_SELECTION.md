@@ -1,6 +1,6 @@
 ---
 lupopedia.headers:
-  file_path_from_root: "docs/auth/WEB_AUTHENTICATION_AND_ACTOR_SELECTION.md"
+  file_path_from_root: "lupo-docs/auth/WEB_AUTHENTICATION_AND_ACTOR_SELECTION.md"
   last_modified_utc: "20260307"
   system_version: "4.0.62"
   artifact_type: "documentation"

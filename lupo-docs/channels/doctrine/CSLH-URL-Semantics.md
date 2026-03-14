@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\channels\doctrine\CSLH-URL-Semantics.md"
+  file_path_from_root: "lupo-docs\channels\doctrine\CSLH-URL-Semantics.md"
   file_hash: "9b33540158bc15cb575c35e2a374ad54200312253a61c79afbe9dd735a9ce75c"
-  file_path_from_root: "docs\channels\doctrine\CSLH-URL-Semantics.md"
+  file_path_from_root: "lupo-docs\channels\doctrine\CSLH-URL-Semantics.md"
   file_hash: "23c4b33ec1920e8e999015bfee13d31eaea19babdb188b89857d58b5ed9619d6"
   last_updated_utc: "20260228"
   system_version: "4.0.50"

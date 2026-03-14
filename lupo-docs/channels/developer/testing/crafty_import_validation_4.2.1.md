@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\channels\developer\testing\crafty_import_validation_4.2.1.md"
+  file_path_from_root: "lupo-docs\channels\developer\testing\crafty_import_validation_4.2.1.md"
   file_hash: "80113b9655790ab3909fb06f32520181fdb5186ba153a67204514da6dd9c9edf"
-  file_path_from_root: "docs\channels\developer\testing\crafty_import_validation_4.2.1.md"
+  file_path_from_root: "lupo-docs\channels\developer\testing\crafty_import_validation_4.2.1.md"
   file_hash: "9aab1271bc0663f389a25f43328352dc5736fe69c8448433d7d71a1c641b50a4"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -94,7 +94,7 @@ Tests MUST pass on at least **two** real installations:
 
 1. **Source:** Crafty Syntax 3.7.5 database dump (all `livehelp_*` and related tables).
 2. **Target:** Empty or clean Lupopedia 4.2.0 schema (post-consolidation: 173 tables, ceiling 180).
-3. **Script:** `database/migrations/craftysyntax_to_lupopedia_mysql.sql` (with 3.1.14 doctrine corrections).
+3. **Script:** `lupo-database/migrations/craftysyntax_to_lupopedia_mysql.sql` (with 3.1.14 doctrine corrections).
 4. **Backup:** Full backup of target DB before import.
 
 ### 2.2 Execution
@@ -107,7 +107,7 @@ Tests MUST pass on at least **two** real installations:
 ### 2.3 Post-import
 
 1. Run validation queries (Schema, Data, Timestamps, TOON) — see §3.
-2. Regenerate TOON: `python database/generate_toon_files.py`.
+2. Regenerate TOON: `python lupo-database/generate_toon_files.py`.
 3. Log results to the registry — see §5.
 
 ---
@@ -136,9 +136,9 @@ Tests MUST pass on at least **two** real installations:
 
 ### 3.4 TOON
 
-- `database/generate_toon_files.py` runs without error.
+- `lupo-database/generate_toon_files.py` runs without error.
 - `.toon` (and `.txt`) count matches current table count (e.g. 173).
-- Spot-check: `lupo_actors`, `lupo_dialog_messages`, `dialog_messages` (or current unified tables) exist in `database/toon_data/`.
+- Spot-check: `lupo_actors`, `lupo_dialog_messages`, `dialog_messages` (or current unified tables) exist in `lupo-database/toon_data/`.
 
 ---
 
@@ -173,7 +173,7 @@ For each run, record:
 - **Overall (pass/fail):** boolean
 - **Tester / actor:** e.g. CURSOR, CAPTAIN_WOLFIE, system identifier
 
-Recommended: `database/hotfix_registry_4.2.1.json` or `docs/hotfixes/4.2.1/crafty_import_runs.json` with one object per run.
+Recommended: `lupo-database/hotfix_registry_4.2.1.json` or `lupo-docs/hotfixes/4.2.1/crafty_import_runs.json` with one object per run.
 
 ---
 
@@ -186,15 +186,15 @@ The 4.2.1 hotfix window remains **OPEN** until:
 **4.3.0 MUST NOT** be scheduled or executed until these tests pass.
 
 - Update `crafty_import_testing_status` to `"complete"` in `current_sync_state` (changelog_dialog-side.md) when both environments pass.
-- Update `database/hotfix_registry_4.2.1.json` entries to `"status": "pass"` for each environment.
+- Update `lupo-database/hotfix_registry_4.2.1.json` entries to `"status": "pass"` for each environment.
 - Only then may the version bump to 4.3.0 or hotfix-window closure be considered.
 
 ---
 
 ## 7. References
 
-- `database/migrations/craftysyntax_to_lupopedia_mysql.sql`
-- `docs/migrations/3.1.14.md` (doctrine corrections)
-- `docs/versioning/4.2.1_hotfix_window.md`
+- `lupo-database/migrations/craftysyntax_to_lupopedia_mysql.sql`
+- `lupo-docs/migrations/3.1.14.md` (doctrine corrections)
+- `lupo-docs/versioning/4.2.1_hotfix_window.md`
 - `CHANGELOG.md` § 4.2.1
-- `database/hotfix_registry_4.2.1.json`
+- `lupo-database/hotfix_registry_4.2.1.json`

@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\channels\appendix\recovery\12_steps.md"
+  file_path_from_root: "lupo-docs\channels\appendix\recovery\12_steps.md"
   file_hash: "de393e8de8ce80cb05fadc644a8b5714a5598fa1de4fe1fb3ef46db47759d280"
-  file_path_from_root: "docs\channels\appendix\recovery\12_steps.md"
+  file_path_from_root: "lupo-docs\channels\appendix\recovery\12_steps.md"
   file_hash: "43414f139aa7b15773e722e03956bf48c7b66de76b4eba0a4f30341a41eeafe0"
   last_updated_utc: "20260228"
   system_version: "4.0.50"

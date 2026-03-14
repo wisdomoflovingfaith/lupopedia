@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -31,7 +31,7 @@ lupopedia.footer:
 # FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
 ---
 lupopedia.headers:
-  file_path_from_root: "actors/1007/20260227_channels_admin_next_steps_report.md"
+  file_path_from_root: "lupo-actors/1007/20260227_channels_admin_next_steps_report.md"
   file_hash: "d3bbff4cc73678f039916cc6c3ee1a9b3f83cfd750d9e338b342b79cb98ed746"
   system_version: "4.0.50"
   channel_id: 42
@@ -53,9 +53,9 @@ lupopedia.headers:
 lupopedia.footer:
   outbound_edges:
     - { to: "lupo-includes/modules/api/channels-admin-api.php", type: "references", weight: 0.9, reason: "Admin API module" }
-    - { to: "channels/1/index.php", type: "references", weight: 0.8, reason: "Admin shell entry" }
-    - { to: "channels/1/assets/js/channels_comm.js", type: "references", weight: 0.8, reason: "JS comm helpers" }
-    - { to: "docs/api/channels_admin_endpoints.md", type: "references", weight: 0.7, reason: "Endpoint documentation" }
+    - { to: "lupo-channels/1/index.php", type: "references", weight: 0.8, reason: "Admin shell entry" }
+    - { to: "lupo-channels/1/assets/js/channels_comm.js", type: "references", weight: 0.8, reason: "JS comm helpers" }
+    - { to: "lupo-docs/api/channels_admin_endpoints.md", type: "references", weight: 0.7, reason: "Endpoint documentation" }
   semantic_tags: ["channels_admin", "next_steps", "api", "modernization"]
   last_verified: "20260227"
   last_verified_by: "lupopedia"
@@ -69,16 +69,16 @@ lupopedia.footer:
 - JS comm helpers are available via `ChannelsCommunication`.
 
 ## Immediate Next Steps (UI Wiring)
-1. **Operators panel** (`channels/1/admin/operators.php`):
+1. **Operators panel** (`lupo-channels/1/admin/operators.php`):
    - Replace placeholder rows with API-driven list via `CHANNELS_ADMIN_COMM.listOperators()`.
    - Add create/update/delete controls that call `createOperator`, `updateOperator`, `deleteOperator`.
    - Include channel role assignment UI (role_key) and map to API payload.
 
-2. **Departments panel** (`channels/1/admin/departments.php`):
+2. **Departments panel** (`lupo-channels/1/admin/departments.php`):
    - Fetch list via `listDepartments()` and render rows.
    - Add create/update/delete flows with validation (name, department_type).
 
-3. **Settings panel** (`channels/1/admin/settings.php`):
+3. **Settings panel** (`lupo-channels/1/admin/settings.php`):
    - Load current channel settings via `getSettings(channel_id)`.
    - Patch edits via `updateSettings(channel_id, payload)`.
 

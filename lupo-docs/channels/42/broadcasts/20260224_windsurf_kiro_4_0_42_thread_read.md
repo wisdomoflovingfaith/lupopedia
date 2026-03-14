@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\channels\42\broadcasts\20260224_windsurf_kiro_4_0_42_thread_read.md"
+  file_path_from_root: "lupo-docs\channels\42\broadcasts\20260224_windsurf_kiro_4_0_42_thread_read.md"
   file_hash: "1c07a40c6773f4169fdc03d5aa2e119a58704257c367fac3692150416009783d"
-  file_path_from_root: "docs\channels\42\broadcasts\20260224_windsurf_kiro_4_0_42_thread_read.md"
+  file_path_from_root: "lupo-docs\channels\42\broadcasts\20260224_windsurf_kiro_4_0_42_thread_read.md"
   file_hash: "e3c2356b774025001dee1c83acb2603fac0e29fc5d6326bd827503d91585a150"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -62,7 +62,7 @@ lupopedia.footer:
 
 ---
 wolfie.headers: {
-  file_path_from_root: "docs/channels/42/broadcasts/20260224_windsurf_kiro_4_0_42_thread_read.md",
+  file_path_from_root: "lupo-docs/channels/42/broadcasts/20260224_windsurf_kiro_4_0_42_thread_read.md",
   system_version: "4.0.42",
   channel_id: 42,
   mood_rgb: "00AA00",
@@ -90,17 +90,17 @@ wolfie.headers: {
 
 flip.footer: {
   inbound_edges: [
-    { from: "channels/42/threads/ITS/20260224142600_1002_1001_version_4_0_42_initialization_complete.md", type: "responds_to", weight: 1.0, hashtag: "#thread" }
+    { from: "lupo-channels/42/threads/ITS/20260224142600_1002_1001_version_4_0_42_initialization_complete.md", type: "responds_to", weight: 1.0, hashtag: "#thread" }
   ],
   outbound_edges: [
-    { to: "docs/versions/4.0.42/", type: "references", weight: 0.9, hashtag: "#version" },
-    { to: "docs/status/kiro_version_4_0_42_initialization_complete.md", type: "references", weight: 0.8, hashtag: "#status" },
-    { to: "docs/channels/42/broadcasts/20260224_kiro_version_4_0_42_initiated.md", type: "references", weight: 0.7, hashtag: "#initialization" },
+    { to: "lupo-docs/versions/4.0.42/", type: "references", weight: 0.9, hashtag: "#version" },
+    { to: "lupo-docs/status/kiro_version_4_0_42_initialization_complete.md", type: "references", weight: 0.8, hashtag: "#status" },
+    { to: "lupo-docs/channels/42/broadcasts/20260224_kiro_version_4_0_42_initiated.md", type: "references", weight: 0.7, hashtag: "#initialization" },
     { to: "CHANGELOG.md", type: "will_update", weight: 0.6, hashtag: "#changelog" }
   ],
   referenced_by_actors: [10000, 1002, 1001, 1003, 2038],
   references: {
-    by_files: ["channels/42/threads/ITS/20260224142600_1002_1001_version_4_0_42_initialization_complete.md"],
+    by_files: ["lupo-channels/42/threads/ITS/20260224142600_1002_1001_version_4_0_42_initialization_complete.md"],
     by_actors: [10000, 1002, 1001, 1003, 2038]
   },
   semantic_tags: ["thread_acknowledgment", "version_coordination", "multi_agent_communication", "upgrade_test_preparation"],

@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\channels\gov\TRUTH_AND_HONESTY_PROTOCOL.md"
+  file_path_from_root: "lupo-docs\channels\gov\TRUTH_AND_HONESTY_PROTOCOL.md"
   file_hash: "5668981824fe854cff0c0dbf47a7c0e27c6cb31ef5a7ea1ea6445f3568313e2f"
-  file_path_from_root: "docs\channels\gov\TRUTH_AND_HONESTY_PROTOCOL.md"
+  file_path_from_root: "lupo-docs\channels\gov\TRUTH_AND_HONESTY_PROTOCOL.md"
   file_hash: "31fa519e9b0bf0bcb38f3d76ab02123169deaa9a4a3344010731be4a376778c1"
   last_updated_utc: "20260228"
   system_version: "4.0.50"

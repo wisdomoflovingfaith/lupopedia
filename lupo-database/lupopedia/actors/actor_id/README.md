@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: "actors/README.md"
+  file_path_from_root: "lupo-actors/README.md"
   system_version: "4.0.52"
   last_updated_utc: "20260301151500"
   channel_id: 1
@@ -20,8 +20,8 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
-    - { to: "actors/registry.json", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-actors/registry.json", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   version: "4.0.52"
@@ -46,12 +46,12 @@ This directory contains the semantic OS actor profiles for Lupopedia. Each actor
   - `tasks/`: Active and completed tasks.
   - `state/`: Runtime state and cache.
   - `resources/`: Owned files and quotas.
-  - `meta/`: Semantic OS (FLARE/FLIP) metadata.
+  - `lupo-meta/`: Semantic OS (FLARE/FLIP) metadata.
 
 ## Syncing
 Actor data can be synchronized with the database using the provided scripts:
-- `scripts/export_actor.sh <actor_id>`: Export actor data from DB to filesystem.
-- `scripts/import_actor.sh <actor_id>`: Import actor data from filesystem to DB.
+- `lupo-scripts/export_actor.sh <actor_id>`: Export actor data from DB to filesystem.
+- `lupo-scripts/import_actor.sh <actor_id>`: Import actor data from filesystem to DB.
 
 ## Standards
 - JSON for configuration and identity.

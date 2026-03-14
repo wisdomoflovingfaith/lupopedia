@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\channels\42\broadcasts\20260223_windsurf_git_push_4_0_35_complete.md"
+  file_path_from_root: "lupo-docs\channels\42\broadcasts\20260223_windsurf_git_push_4_0_35_complete.md"
   file_hash: "a3a51ac3819f03429ac059356d008ad5cb0b143e4d4d1e94b9472a68e57d7965"
-  file_path_from_root: "docs\channels\42\broadcasts\20260223_windsurf_git_push_4_0_35_complete.md"
+  file_path_from_root: "lupo-docs\channels\42\broadcasts\20260223_windsurf_git_push_4_0_35_complete.md"
   file_hash: "fe3b37f72daac852f5795f87e947e13880f1c9b49463549f1fef86b41d86a736"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -63,7 +63,7 @@ lupopedia.footer:
 
 ---
 wolfie.headers:
-  file_path_from_root: "docs/channels/42/broadcasts/20260223_windsurf_git_push_4_0_35_complete.md"
+  file_path_from_root: "lupo-docs/channels/42/broadcasts/20260223_windsurf_git_push_4_0_35_complete.md"
   system_version: "4.0.36"
   channel_id: 42
   mood_rgb: "00FF00"
@@ -76,7 +76,7 @@ wolfie.headers:
 flip.footer:
   referenced_by_files:
     - "CHANGELOG.md"
-    - "docs/status/windsurf_v4_0_35_review_report.md"
+    - "lupo-docs/status/windsurf_v4_0_35_review_report.md"
   referenced_by_channels:
     - 42
   referenced_by_actors:
@@ -125,36 +125,36 @@ Version 4.0.35 has been successfully pushed to GitHub. All IDE agent contributio
 
 ### New Files (20)
 1. VERSION_4_0_35_KICKOFF_COMPLETE.md
-2. channels/42/broadcasts/20260223_kiro_vsx_status_query_complete.md
-3. channels/42/broadcasts/20260223_notify_antigravity_v4_0_35_review.md
-4. channels/42/broadcasts/20260223_v4_0_35_review_complete.md
-5. channels/42/broadcasts/20260223_version_bump_4_0_35.md
-6. channels/42/broadcasts/20260223_vsx_extension_md_fallback_directive.md
-7. channels/42/directives/20260223_kiro_to_windsurf_push_4_0_35_begin_4_0_36.md
-8. docs/channels/42/broadcasts/20260223_windsurf_git_push_4_0_34_complete.md
-9. docs/channels/42/broadcasts/20260223_windsurf_version_4_0_35_initialized.md
-10. docs/directives/channel_42_antigravity_vsx_extension_account_link.md
-11. docs/directives/channel_42_antigravity_vsx_extension_md_fallback.md
-12. docs/status/antigravity_vsx_extension_update_4_0_35.md
-13. docs/status/kiro_vsx_status_query_4_0_35.md
-14. docs/status/vsx_extension_status.md
-15. docs/status/windsurf_v4_0_35_review_report.md
-16. docs/versions/4.0.35/CHANGELOG_DRAFT.md
-17. docs/versions/4.0.35/DEVELOPMENT_ROADMAP.md
-18. docs/versions/4.0.35/ROADMAP.md
-19. docs/versions/4.0.35/TODO.md
-20. docs/versions/4.0.35/TODO_ITEMS.md
+2. lupo-channels/42/broadcasts/20260223_kiro_vsx_status_query_complete.md
+3. lupo-channels/42/broadcasts/20260223_notify_antigravity_v4_0_35_review.md
+4. lupo-channels/42/broadcasts/20260223_v4_0_35_review_complete.md
+5. lupo-channels/42/broadcasts/20260223_version_bump_4_0_35.md
+6. lupo-channels/42/broadcasts/20260223_vsx_extension_md_fallback_directive.md
+7. lupo-channels/42/directives/20260223_kiro_to_windsurf_push_4_0_35_begin_4_0_36.md
+8. lupo-docs/channels/42/broadcasts/20260223_windsurf_git_push_4_0_34_complete.md
+9. lupo-docs/channels/42/broadcasts/20260223_windsurf_version_4_0_35_initialized.md
+10. lupo-docs/directives/channel_42_antigravity_vsx_extension_account_link.md
+11. lupo-docs/directives/channel_42_antigravity_vsx_extension_md_fallback.md
+12. lupo-docs/status/antigravity_vsx_extension_update_4_0_35.md
+13. lupo-docs/status/kiro_vsx_status_query_4_0_35.md
+14. lupo-docs/status/vsx_extension_status.md
+15. lupo-docs/status/windsurf_v4_0_35_review_report.md
+16. lupo-docs/versions/4.0.35/CHANGELOG_DRAFT.md
+17. lupo-docs/versions/4.0.35/DEVELOPMENT_ROADMAP.md
+18. lupo-docs/versions/4.0.35/ROADMAP.md
+19. lupo-docs/versions/4.0.35/TODO.md
+20. lupo-docs/versions/4.0.35/TODO_ITEMS.md
 
 ### Modified Files (9)
 1. CHANGELOG.md
 2. LUPEDIA_VERSION
 3. config/global_atoms.yaml
-4. docs/status/AGENT_TASK_TRACKER.md
-5. tools/vsx-extension/package.json
-6. tools/vsx-extension/src/extension.ts
-7. tools/vsx-extension/src/lupopedia/actor.ts
-8. tools/vsx-extension/src/lupopedia/channels.ts
-9. tools/vsx-extension/src/lupopedia/flip.ts
+4. lupo-docs/status/AGENT_TASK_TRACKER.md
+5. lupo-tools/vsx-extension/package.json
+6. lupo-tools/vsx-extension/src/extension.ts
+7. lupo-tools/vsx-extension/src/lupopedia/actor.ts
+8. lupo-tools/vsx-extension/src/lupopedia/channels.ts
+9. lupo-tools/vsx-extension/src/lupopedia/flip.ts
 
 ---
 

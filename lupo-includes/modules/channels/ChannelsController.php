@@ -33,7 +33,7 @@ class ChannelsController
             $metrics[$channel['channel_id']] = $this->getChannelMetrics($channel['channel_id']);
         }
 
-        include __DIR__ . '/../../../views/admin/channels.php';
+        include __DIR__ . '/../../../lupo-views/admin/channels.php';
     }
 
     public function admin_view($channel_id)
@@ -53,7 +53,7 @@ class ChannelsController
         // Load last 10 messages
         $messages = $this->getRecentMessages($channel_id);
 
-        include __DIR__ . '/../../../views/admin/channel_view.php';
+        include __DIR__ . '/../../../lupo-views/admin/channel_view.php';
     }
 
     protected function getChannelMetrics($channel_id)

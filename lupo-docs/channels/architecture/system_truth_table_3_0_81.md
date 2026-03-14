@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\channels\architecture\system_truth_table_3_0_81.md"
+  file_path_from_root: "lupo-docs\channels\architecture\system_truth_table_3_0_81.md"
   file_hash: "8dd1c95701be5addd8a3696b293e0b2bc5d04396e98082975612a11513ba646b"
-  file_path_from_root: "docs\channels\architecture\system_truth_table_3_0_81.md"
+  file_path_from_root: "lupo-docs\channels\architecture\system_truth_table_3_0_81.md"
   file_hash: "168801b770bab67b15ff3d8dd17dc9d64958f0b81a3d6f4dbc2e43e5af0dd397"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -172,7 +172,7 @@ file:
 grep -r "3.0.76" lupo-includes/classes/CIP*.php
 
 # Check documentation version
-grep -r "3.0.81" docs/channels/doctrine/
+grep -r "3.0.81" lupo-docs/channels/doctrine/
 ```
 
 ### Schema Verification

@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\channels\doctrine\ARCHITECTURE_SYNC.md"
+  file_path_from_root: "lupo-docs\channels\doctrine\ARCHITECTURE_SYNC.md"
   file_hash: "9c3a03a5ead94f14f31bf31b55b565103e4a5a75c34750fc85437b2b594a760f"
-  file_path_from_root: "docs\channels\doctrine\ARCHITECTURE_SYNC.md"
+  file_path_from_root: "lupo-docs\channels\doctrine\ARCHITECTURE_SYNC.md"
   file_hash: "05115315151329c74f9694115066bb2011301e44efcedff968c4941fa5c16e20"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -869,7 +869,7 @@ RESULT: Complete version-metadata synchronization across system
 
 ## 8. Cross-References
 
-- **[WOLFIE Header Doctrine](WOLFIE_HEADER_DOCTRINE.md)** (`docs/doctrine/WOLFIE_HEADER_DOCTRINE.md`) - MANDATORY rules for WOLFIE headers and metadata synchronization
+- **[WOLFIE Header Doctrine](WOLFIE_HEADER_DOCTRINE.md)** (`lupo-docs/doctrine/WOLFIE_HEADER_DOCTRINE.md`) - MANDATORY rules for WOLFIE headers and metadata synchronization
 - **[Dialog Doctrine](DIALOG_DOCTRINE.md)** - MANDATORY rules for dialog system synchronization and consistency
 - **[Agent Runtime](AGENT_RUNTIME.md)** - Agent coordination and lane management during synchronization
 - **[Patch Discipline](PATCH_DISCIPLINE.md)** - Development workflow coordination and synchronization requirements

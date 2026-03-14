@@ -16,7 +16,7 @@ lupopedia.headers:
 
 lupopedia.edges:
   outbound_edges:
-    - { to: "lupo-docs/toons/lupo_flip_artifacts.toon.json", type: "references", weight: 1.0 }
+    - { to: "lupo-database/lupopedia/toon/lupo_flip_artifacts.toon.json", type: "references", weight: 1.0 }
     - { to: "lupo-docs/database/lupopedia/tables/active/lupo_artifacts.md", type: "references", weight: 0.9 }
 
 lupopedia.footer:

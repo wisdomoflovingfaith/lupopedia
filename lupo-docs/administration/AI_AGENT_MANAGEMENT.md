@@ -21,7 +21,7 @@ lupopedia.edges:
   outbound_edges:
     - { to: "QUICKSTART.md", type: "references", weight: 0.8 }
     - { to: "lupo-bin/boot_system_agent.php", type: "related_script", weight: 1.0 }
-    - { to: "api/v1/health.php", type: "monitoring_endpoint", weight: 1.0 }
+    - { to: "lupo-api/v1/health.php", type: "monitoring_endpoint", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260301"
@@ -100,7 +100,7 @@ If an agent shows as `offline` or `Failed to initialize` during boot:
 #### 2. Schema Mismatch
 If SYSTEM AI reports a schema mismatch:
 - Review the error logs in the boot lifecycle.
-- Verify against the latest TOON files in `lupo-docs/toons/`.
+- Verify against the latest TOON files in `lupo-database/lupopedia/toon/`.
 - Run schema verification scripts if available.
 
 ### Recovery Procedures

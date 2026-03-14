@@ -124,7 +124,7 @@ FLIP v2 (File-Level Inference Protocol version 2) extends the existing FLIP v1 s
 ## Glossary
 
 - **FLIP**: File-Level Inference Protocol - a YAML-based metadata system embedded in file headers/footers
-- **Artifact**: A file containing FLIP metadata (markdown files in channels/, docs/, etc.)
+- **Artifact**: A file containing FLIP metadata (markdown files in lupo-channels/, lupo-docs/, etc.)
 - **Scanner**: A PHP component that extracts FLIP metadata from files
 - **FLIP_Artifact_Table**: The `lupo_flip_artifacts` database table storing parsed metadata
 - **Header_JSON**: JSON-encoded FLIP header metadata extracted from YAML
@@ -187,7 +187,7 @@ FLIP v2 (File-Level Inference Protocol version 2) extends the existing FLIP v1 s
 
 #### Acceptance Criteria
 
-1. THE Migration_Script SHALL be located at `database/migrations/upgrade_flip_v2.sql`
+1. THE Migration_Script SHALL be located at `lupo-database/migrations/upgrade_flip_v2.sql`
 2. THE Migration_Script SHALL create the FLIP_Artifact_Table with all required columns
 3. THE Migration_Script SHALL create all required indexes
 4. THE Migration_Script SHALL use table prefix variable for multi-tenant support
@@ -260,7 +260,7 @@ FLIP v2 (File-Level Inference Protocol version 2) extends the existing FLIP v1 s
 
 #### Acceptance Criteria
 
-1. THE Backfill_Process SHALL scan all markdown files in the `channels/` directory recursively
+1. THE Backfill_Process SHALL scan all markdown files in the `lupo-channels/` directory recursively
 2. WHEN a markdown file contains FLIP metadata, THE Backfill_Process SHALL extract and store it
 3. THE Backfill_Process SHALL log the number of files processed
 4. THE Backfill_Process SHALL log the number of artifacts successfully stored
@@ -273,11 +273,11 @@ FLIP v2 (File-Level Inference Protocol version 2) extends the existing FLIP v1 s
 
 #### Acceptance Criteria
 
-1. THE Backfill_Process SHALL scan all markdown files in `docs/directives/` recursively
-2. THE Backfill_Process SHALL scan all markdown files in `docs/status/` recursively
-3. THE Backfill_Process SHALL scan all markdown files in `docs/brainstorm/` recursively
-4. THE Backfill_Process SHALL scan all markdown files in `docs/doctrine/` recursively
-5. THE Backfill_Process SHALL scan all markdown files in `docs/versions/` recursively
+1. THE Backfill_Process SHALL scan all markdown files in `lupo-docs/directives/` recursively
+2. THE Backfill_Process SHALL scan all markdown files in `lupo-docs/status/` recursively
+3. THE Backfill_Process SHALL scan all markdown files in `lupo-docs/brainstorm/` recursively
+4. THE Backfill_Process SHALL scan all markdown files in `lupo-docs/doctrine/` recursively
+5. THE Backfill_Process SHALL scan all markdown files in `lupo-docs/versions/` recursively
 6. THE Backfill_Process SHALL process directories in the order listed above
 7. THE Backfill_Process SHALL maintain a count of total artifacts processed across all directories
 
@@ -301,7 +301,7 @@ FLIP v2 (File-Level Inference Protocol version 2) extends the existing FLIP v1 s
 
 #### Acceptance Criteria
 
-1. THE Doctrine_Document SHALL be located at `docs/doctrine/FLIP_V2_DOCTRINE.md`
+1. THE Doctrine_Document SHALL be located at `lupo-docs/doctrine/FLIP_V2_DOCTRINE.md`
 2. THE Doctrine_Document SHALL define the purpose and scope of FLIP v2
 3. THE Doctrine_Document SHALL document the complete database schema with column descriptions
 4. THE Doctrine_Document SHALL document all YAML header fields and their meanings
@@ -336,7 +336,7 @@ FLIP v2 (File-Level Inference Protocol version 2) extends the existing FLIP v1 s
 
 #### Acceptance Criteria
 
-1. THE Status_Report SHALL be located at `docs/status/kiro_flip_v2_implementation_4_0_37.md`
+1. THE Status_Report SHALL be located at `lupo-docs/status/kiro_flip_v2_implementation_4_0_37.md`
 2. THE Status_Report SHALL contain a FLIP v2 header with appropriate metadata
 3. THE Status_Report SHALL document implementation objectives
 4. THE Status_Report SHALL document completed tasks
@@ -352,8 +352,8 @@ FLIP v2 (File-Level Inference Protocol version 2) extends the existing FLIP v1 s
 
 #### Acceptance Criteria
 
-1. WHEN the FLIP_Artifact_Table is created, THE System SHALL generate `docs/toons/lupo_flip_artifacts.toon.json`
-2. THE TOON file SHALL be generated using `python scripts/generate_toon_files.py`
+1. WHEN the FLIP_Artifact_Table is created, THE System SHALL generate `lupo-docs/toons/lupo_flip_artifacts.toon.json`
+2. THE TOON file SHALL be generated using `python lupo-scripts/generate_toon_files.py`
 3. THE TOON file SHALL contain all column definitions with types
 4. THE TOON file SHALL contain all index definitions
 5. THE TOON file SHALL NOT be hand-edited after generation

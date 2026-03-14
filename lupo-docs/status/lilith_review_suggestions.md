@@ -4,7 +4,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "review"
-  file_path_from_root: "docs/status/lilith_review_suggestions.md"
+  file_path_from_root: "lupo-docs/status/lilith_review_suggestions.md"
   web_path: "http://www.lupopedia.com/status/lilith_review_suggestions"
   last_modified_utc: "20260310"
   system_version: "4.0.68"
@@ -51,7 +51,7 @@ The v4.0.68 implementation by Cursor is a significant step forward in the Lupope
 **Files reviewed:**
 - `lupo-includes/classes/RuleEngine.php`
 - `lupo-includes/classes/RuleEvaluator.php`
-- `database/migrations/20260310_create_rules_tables.sql`
+- `lupo-database/migrations/20260310_create_rules_tables.sql`
 - `lupo-channels/42/content/federation_node_id/0/RULES.md`
 
 **What was done well:**
@@ -111,7 +111,7 @@ The v4.0.68 implementation by Cursor is a significant step forward in the Lupope
 - 🟠 HIGH: Several files still had `last_verified_by: "cursor"` in their footers.
 
 **Recommendations:**
-- **FIXED:** Antigravity has already executed the `scripts/fix_rule_headers.php` script to re-attribute these files to Actor 1 (WOLFIE) and set WOLFIE as the verifier.
+- **FIXED:** Antigravity has already executed the `lupo-scripts/fix_rule_headers.php` script to re-attribute these files to Actor 1 (WOLFIE) and set WOLFIE as the verifier.
 
 ---
 
@@ -120,7 +120,7 @@ The v4.0.68 implementation by Cursor is a significant step forward in the Lupope
 "Paths = aggregated navigation flows (low-volume); visits = raw per-event logs (high-volume, append-only)."
 
 **Files reviewed:**
-- `database/migrations/20260310_paths_visits_doctrine.sql`
+- `lupo-database/migrations/20260310_paths_visits_doctrine.sql`
 - `lupo-database/lupopedia/mysql/install/install_new_lupopedia.sql`
 
 **What was done well:**

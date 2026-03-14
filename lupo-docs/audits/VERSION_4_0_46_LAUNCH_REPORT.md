@@ -47,8 +47,8 @@ flip.footer: {
   outbound_edges: [
     { to: "VERSION_4_0_45_CLOSURE_REPORT.md", type: "transitions_from", weight: 1.0 },
     { to: "CHANGELOG.md", type: "updates", weight: 1.0 },
-    { to: "channels/42/broadcasts/20260226000000_10000_1000_42_version_4_0_46_upgrade_program.md", type: "references", weight: 0.9 },
-    { to: "docs/doctrine/migrations/MIGRATION_MAPPING_REFERENCE.md", type: "references", weight: 0.8 },
+    { to: "lupo-channels/42/broadcasts/20260226000000_10000_1000_42_version_4_0_46_upgrade_program.md", type: "references", weight: 0.9 },
+    { to: "lupo-docs/doctrine/migrations/MIGRATION_MAPPING_REFERENCE.md", type: "references", weight: 0.8 },
     { to: "HUMAN_TASKS_CAPTAIN_10000.md", type: "updates", weight: 0.7 }
   ],
   semantic_tags: ["version_launch", "upgrade_program", "crafty_migration", "4.0.46"]
@@ -97,7 +97,7 @@ Version 4.0.46 is officially launched as the Crafty Syntax 3.7.5 → Lupopedia m
 ### Critical Path (Human-Driven)
 
 **Task CH0-20260226-001: Primary Installation & Upgrade**
-- **File:** `channels/0/tasks/active/20260226000000_task_0_10000_primary_install_upgrade_4_0_46.md`
+- **File:** `lupo-channels/0/tasks/active/20260226000000_task_0_10000_primary_install_upgrade_4_0_46.md`
 - **Owner:** 10000 (Captain - HUMAN)
 - **Priority:** CRITICAL
 - **Status:** Active
@@ -106,7 +106,7 @@ Version 4.0.46 is officially launched as the Crafty Syntax 3.7.5 → Lupopedia m
 
 **Scope:**
 1. Drop all existing `lupo_*` tables
-2. Load Crafty Syntax 3.7.5 baseline (34 tables) from `database/migrations/old_crafty_syntax_3_7_5_start.sql`
+2. Load Crafty Syntax 3.7.5 baseline (34 tables) from `lupo-database/migrations/old_crafty_syntax_3_7_5_start.sql`
 3. Load old Crafty config file
 4. Run install.php through web interface
 5. Execute seeding SQL in order:
@@ -118,11 +118,11 @@ Version 4.0.46 is officially launched as the Crafty Syntax 3.7.5 → Lupopedia m
    - `seed_tasks_bootstrap_4.0.45.sql`
 6. Run upgrade wizard (Crafty → Lupopedia migration)
 7. Verify all 34 legacy tables migrated
-8. Verify all actors/agents present
+8. Verify all lupo-actors/agents present
 9. Run basic smoke tests
 
 **Task CH0-20260226-002: Post-Install Verification**
-- **File:** `channels/0/tasks/active/20260226000100_task_0_1000_post_install_verification_4_0_46.md`
+- **File:** `lupo-channels/0/tasks/active/20260226000100_task_0_1000_post_install_verification_4_0_46.md`
 - **Owner:** 1000 (Kiro IDE)
 - **Priority:** CRITICAL
 - **Status:** Pending
@@ -131,14 +131,14 @@ Version 4.0.46 is officially launched as the Crafty Syntax 3.7.5 → Lupopedia m
 
 **Scope:**
 1. Verify database schema (173 tables)
-2. Verify all actors/agents seeded
+2. Verify all lupo-actors/agents seeded
 3. Verify registry populated
 4. Verify channels created
 5. Run diagnostic queries
 6. Generate verification report
 
 **Task CH0-20260226-003: ANUBIS Quarantine Validation**
-- **File:** `channels/0/tasks/active/20260226000200_task_0_19_quarantine_validation_4_0_46.md`
+- **File:** `lupo-channels/0/tasks/active/20260226000200_task_0_19_quarantine_validation_4_0_46.md`
 - **Owner:** 19 (ANUBIS)
 - **Priority:** HIGH
 - **Status:** Pending
@@ -153,7 +153,7 @@ Version 4.0.46 is officially launched as the Crafty Syntax 3.7.5 → Lupopedia m
 5. Generate validation report
 
 **Task CH42-20260226-001: VISHWAKARMA Graph Analysis**
-- **File:** `channels/42/tasks/active/20260226000300_task_42_25_graph_analysis_4_0_46.md`
+- **File:** `lupo-channels/42/tasks/active/20260226000300_task_42_25_graph_analysis_4_0_46.md`
 - **Owner:** 25 (VISHWAKARMA)
 - **Priority:** NORMAL
 - **Status:** Pending
@@ -170,7 +170,7 @@ Version 4.0.46 is officially launched as the Crafty Syntax 3.7.5 → Lupopedia m
 ### Migration Validation Tasks
 
 **Task CH42-20260226-002: Legacy Table Migration Validation**
-- **File:** `channels/42/tasks/active/20260226000400_task_42_1001_legacy_migration_validation_4_0_46.md`
+- **File:** `lupo-channels/42/tasks/active/20260226000400_task_42_1001_legacy_migration_validation_4_0_46.md`
 - **Owner:** 1001 (Windsurf IDE)
 - **Priority:** HIGH
 - **Status:** Pending
@@ -185,7 +185,7 @@ Version 4.0.46 is officially launched as the Crafty Syntax 3.7.5 → Lupopedia m
 5. Document any migration issues
 
 **Task CH42-20260226-003: UI Feature Parity Validation**
-- **File:** `channels/42/tasks/active/20260226000500_task_42_1001_ui_feature_parity_4_0_46.md`
+- **File:** `lupo-channels/42/tasks/active/20260226000500_task_42_1001_ui_feature_parity_4_0_46.md`
 - **Owner:** 1001 (Windsurf IDE)
 - **Priority:** HIGH
 - **Status:** Pending
@@ -200,7 +200,7 @@ Version 4.0.46 is officially launched as the Crafty Syntax 3.7.5 → Lupopedia m
 5. Document UI differences
 
 **Task CH42-20260226-004: Regression Test Suite**
-- **File:** `channels/42/tasks/active/20260226000600_task_42_1002_regression_tests_4_0_46.md`
+- **File:** `lupo-channels/42/tasks/active/20260226000600_task_42_1002_regression_tests_4_0_46.md`
 - **Owner:** 1002 (Cursor IDE)
 - **Priority:** HIGH
 - **Status:** Pending
@@ -217,7 +217,7 @@ Version 4.0.46 is officially launched as the Crafty Syntax 3.7.5 → Lupopedia m
 ### Optional Post-Install Tasks
 
 **Task CH0-20260226-004: Create Missing Agent Directories**
-- **File:** `channels/0/tasks/pending/20260226000700_task_0_1000_create_missing_agent_dirs_4_0_46.md`
+- **File:** `lupo-channels/0/tasks/pending/20260226000700_task_0_1000_create_missing_agent_dirs_4_0_46.md`
 - **Owner:** 1000 (Kiro IDE)
 - **Priority:** LOW
 - **Status:** Pending
@@ -231,7 +231,7 @@ Version 4.0.46 is officially launched as the Crafty Syntax 3.7.5 → Lupopedia m
 4. Update registry.json alignment
 
 **Task CH0-20260226-005: Registry Lock**
-- **File:** `channels/0/tasks/pending/20260226000800_task_0_10000_registry_lock_4_0_46.md`
+- **File:** `lupo-channels/0/tasks/pending/20260226000800_task_0_10000_registry_lock_4_0_46.md`
 - **Owner:** 10000 (Captain - HUMAN)
 - **Priority:** LOW
 - **Status:** Pending
@@ -247,9 +247,9 @@ Version 4.0.46 is officially launched as the Crafty Syntax 3.7.5 → Lupopedia m
 
 ### Documentation Location
 
-**Primary Reference:** `docs/doctrine/migrations/MIGRATION_MAPPING_REFERENCE.md`
+**Primary Reference:** `lupo-docs/doctrine/migrations/MIGRATION_MAPPING_REFERENCE.md`
 
-**Individual Table Docs:** `docs/doctrine/migrations/livehelp_*_migration.md` (28 files)
+**Individual Table Docs:** `lupo-docs/doctrine/migrations/livehelp_*_migration.md` (28 files)
 
 **Legacy Code Reference:** `/legacy/craftysyntax/` (read-only, never executed)
 
@@ -365,7 +365,7 @@ Version 4.0.46 is officially launched as the Crafty Syntax 3.7.5 → Lupopedia m
 DROP TABLE IF EXISTS lupo_*;
 
 -- Load Crafty Syntax 3.7.5 baseline (34 tables)
-SOURCE database/migrations/old_crafty_syntax_3_7_5_start.sql;
+SOURCE lupo-database/migrations/old_crafty_syntax_3_7_5_start.sql;
 ```
 
 ### Step 2: Run Install Wizard
@@ -376,16 +376,16 @@ http://localhost/lupopedia/install.php
 ### Step 3: Execute Seeding SQL
 ```sql
 -- Registry seeding
-SOURCE database/migrations/seed_registry_comprehensive_4.0.45.sql;
-SOURCE database/migrations/seed_registry_open_4.0.45.sql;
+SOURCE lupo-database/migrations/seed_registry_comprehensive_4.0.45.sql;
+SOURCE lupo-database/migrations/seed_registry_open_4.0.45.sql;
 
 -- Actors and agents
-SOURCE database/migrations/seed_actors_agents_4.0.45.sql;
-SOURCE database/migrations/seed_anubis_vishwakarma_4.0.45.sql;
+SOURCE lupo-database/migrations/seed_actors_agents_4.0.45.sql;
+SOURCE lupo-database/migrations/seed_anubis_vishwakarma_4.0.45.sql;
 
 -- Tasks schema
-SOURCE database/migrations/add_tasks_schema_4.0.45.sql;
-SOURCE database/migrations/seed_tasks_bootstrap_4.0.45.sql;
+SOURCE lupo-database/migrations/add_tasks_schema_4.0.45.sql;
+SOURCE lupo-database/migrations/seed_tasks_bootstrap_4.0.45.sql;
 ```
 
 ### Step 4: Run Upgrade Wizard
@@ -395,7 +395,7 @@ http://localhost/lupopedia/install.php?step=upgrade
 
 ### Step 5: Verification
 - Check all 173 tables exist
-- Verify all actors/agents seeded
+- Verify all lupo-actors/agents seeded
 - Verify registry populated
 - Run smoke tests
 

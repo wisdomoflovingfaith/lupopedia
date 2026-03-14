@@ -1,0 +1,34 @@
+{
+  "table_name": "lupo_questions",
+  "fields": [
+    "`question_id` bigint NOT NULL auto_increment",
+    "`slug` varchar(128) NOT NULL",
+    "`question_text` text NOT NULL",
+    "`actor_id` bigint",
+    "`created_ymdhis` bigint NOT NULL DEFAULT 0",
+    "`updated_ymdhis` bigint NOT NULL DEFAULT 0",
+    "`is_deleted` tinyint NOT NULL DEFAULT 0"
+  ],
+  "data": [],
+  "indexes": [
+    {
+      "index_name": "lupo_questions_uniq_slug",
+      "columns": [
+        "slug"
+      ],
+      "is_unique": true,
+      "index_type": "BTREE"
+    }
+  ],
+  "primary_key": {
+    "column_name": "question_id",
+    "expected_name": "question_id",
+    "is_correct": true,
+    "needs_rename": false
+  },
+  "doctrine_metadata": {
+    "no_foreign_keys": true,
+    "no_triggers": true
+  },
+  "relationships": []
+}

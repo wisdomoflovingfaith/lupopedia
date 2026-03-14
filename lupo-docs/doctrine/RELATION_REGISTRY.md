@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\doctrine\RELATION_REGISTRY.md"
+  file_path_from_root: "lupo-docs\doctrine\RELATION_REGISTRY.md"
   file_hash: "6323a2c25d2b3f61cf9024f08df935e7d667b577148d0501cf20662c7c358a00"
-  file_path_from_root: "docs\doctrine\RELATION_REGISTRY.md"
+  file_path_from_root: "lupo-docs\doctrine\RELATION_REGISTRY.md"
   file_hash: "27642339a88d4a4add7fc9f5f657ab66d53d43e0a68c04bad8fde6192bcc99d2"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -63,7 +63,7 @@ lupopedia.footer:
 
 ---
 wolfie.headers: explicit architecture with structured clarity for every file.
-file_path_from_root: "docs/doctrine/RELATION_REGISTRY.md"
+file_path_from_root: "lupo-docs/doctrine/RELATION_REGISTRY.md"
 system_version: "4.0.40"
 channel_id: 42
 mood_rgb: "88FF00"

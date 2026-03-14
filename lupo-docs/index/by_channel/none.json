@@ -10272,7 +10272,7 @@
     "footer_present": false
   },
   {
-    "file_path_from_root": "docs/toons/lupo_actors.toon.json",
+    "file_path_from_root": "lupo-database/lupopedia/toon/lupo_actors.toon.json",
     "actor_id": null,
     "lupo_agent": null,
     "x_lupo_forwarded": null,
@@ -10284,7 +10284,7 @@
     "footer_present": false
   },
   {
-    "file_path_from_root": "docs/toons/lupo_actor_actions.toon.json",
+    "file_path_from_root": "lupo-database/lupopedia/toon/lupo_actor_actions.toon.json",
     "actor_id": null,
     "lupo_agent": null,
     "x_lupo_forwarded": null,
@@ -10296,7 +10296,7 @@
     "footer_present": false
   },
   {
-    "file_path_from_root": "docs/toons/lupo_actor_aliases.toon.json",
+    "file_path_from_root": "lupo-database/lupopedia/toon/lupo_actor_aliases.toon.json",
     "actor_id": null,
     "lupo_agent": null,
     "x_lupo_forwarded": null,
@@ -10308,7 +10308,7 @@
     "footer_present": false
   },
   {
-    "file_path_from_root": "docs/toons/lupo_actor_capabilities.toon.json",
+    "file_path_from_root": "lupo-database/lupopedia/toon/lupo_actor_capabilities.toon.json",
     "actor_id": null,
     "lupo_agent": null,
     "x_lupo_forwarded": null,
@@ -10320,7 +10320,7 @@
     "footer_present": false
   },
   {
-    "file_path_from_root": "docs/toons/lupo_actor_channels.toon.json",
+    "file_path_from_root": "lupo-database/lupopedia/toon/lupo_actor_channels.toon.json",
     "actor_id": null,
     "lupo_agent": null,
     "x_lupo_forwarded": null,
@@ -10332,7 +10332,7 @@
     "footer_present": false
   },
   {
-    "file_path_from_root": "docs/toons/lupo_actor_channel_roles.toon.json",
+    "file_path_from_root": "lupo-database/lupopedia/toon/lupo_actor_channel_roles.toon.json",
     "actor_id": null,
     "lupo_agent": null,
     "x_lupo_forwarded": null,
@@ -10344,7 +10344,7 @@
     "footer_present": false
   },
   {
-    "file_path_from_root": "docs/toons/lupo_actor_collections.toon.json",
+    "file_path_from_root": "lupo-database/lupopedia/toon/lupo_actor_collections.toon.json",
     "actor_id": null,
     "lupo_agent": null,
     "x_lupo_forwarded": null,
@@ -10356,7 +10356,7 @@
     "footer_present": false
   },
   {
-    "file_path_from_root": "docs/toons/lupo_actor_conflicts.toon.json",
+    "file_path_from_root": "lupo-database/lupopedia/toon/lupo_actor_conflicts.toon.json",
     "actor_id": null,
     "lupo_agent": null,
     "x_lupo_forwarded": null,
@@ -10368,7 +10368,7 @@
     "footer_present": false
   },
   {
-    "file_path_from_root": "docs/toons/lupo_actor_departments.toon.json",
+    "file_path_from_root": "lupo-database/lupopedia/toon/lupo_actor_departments.toon.json",
     "actor_id": null,
     "lupo_agent": null,
     "x_lupo_forwarded": null,
@@ -10380,7 +10380,7 @@
     "footer_present": false
   },
   {
-    "file_path_from_root": "docs/toons/lupo_actor_edges.toon.json",
+    "file_path_from_root": "lupo-database/lupopedia/toon/lupo_actor_edges.toon.json",
     "actor_id": null,
     "lupo_agent": null,
     "x_lupo_forwarded": null,
@@ -10392,7 +10392,7 @@
     "footer_present": false
   },
   {
-    "file_path_from_root": "docs/toons/lupo_actor_events.toon.json",
+    "file_path_from_root": "lupo-database/lupopedia/toon/lupo_actor_events.toon.json",
     "actor_id": null,
     "lupo_agent": null,
     "x_lupo_forwarded": null,
@@ -10404,7 +10404,7 @@
     "footer_present": false
   },
   {
-    "file_path_from_root": "docs/toons/lupo_actor_handshakes.toon.json",
+    "file_path_from_root": "lupo-database/lupopedia/toon/lupo_actor_handshakes.toon.json",
     "actor_id": null,
     "lupo_agent": null,
     "x_lupo_forwarded": null,
@@ -10416,7 +10416,7 @@
     "footer_present": false
   },
   {
-    "file_path_from_root": "docs/toons/lupo_actor_meta.toon.json",
+    "file_path_from_root": "lupo-database/lupopedia/toon/lupo_actor_meta.toon.json",
     "actor_id": null,
     "lupo_agent": null,
     "x_lupo_forwarded": null,
@@ -10428,7 +10428,7 @@
     "footer_present": false
   },
   {
-    "file_path_from_root": "docs/toons/lupo_actor_moods.toon.json",
+    "file_path_from_root": "lupo-database/lupopedia/toon/lupo_actor_moods.toon.json",
     "actor_id": null,
     "lupo_agent": null,
     "x_lupo_forwarded": null,
@@ -10440,7 +10440,7 @@
     "footer_present": false
   },
   {
-    "file_path_from_root": "docs/toons/lupo_actor_object_edges.toon.json",
+    "file_path_from_root": "lupo-database/lupopedia/toon/lupo_actor_object_edges.toon.json",
     "actor_id": null,
     "lupo_agent": null,
     "x_lupo_forwarded": null,
@@ -10452,7 +10452,7 @@
     "footer_present": false
   },
   {
-    "file_path_from_root": "docs/toons/lupo_actor_persona_relationships.toon.json",
+    "file_path_from_root": "lupo-database/lupopedia/toon/lupo_actor_persona_relationships.toon.json",
     "actor_id": null,
     "lupo_agent": null,
     "x_lupo_forwarded": null,
@@ -10464,7 +10464,7 @@
     "footer_present": false
   },
   {
-    "file_path_from_root": "docs/toons/lupo_actor_properties.toon.json",
+    "file_path_from_root": "lupo-database/lupopedia/toon/lupo_actor_properties.toon.json",
     "actor_id": null,
     "lupo_agent": null,
     "x_lupo_forwarded": null,
@@ -10476,7 +10476,7 @@
     "footer_present": false
   },
   {
-    "file_path_from_root": "docs/toons/lupo_actor_reply_templates.toon.json",
+    "file_path_from_root": "lupo-database/lupopedia/toon/lupo_actor_reply_templates.toon.json",
     "actor_id": null,
     "lupo_agent": null,
     "x_lupo_forwarded": null,
@@ -10488,7 +10488,7 @@
     "footer_present": false
   },
   {
-    "file_path_from_root": "docs/toons/lupo_actor_truth_edges.toon.json",
+    "file_path_from_root": "lupo-database/lupopedia/toon/lupo_actor_truth_edges.toon.json",
     "actor_id": null,
     "lupo_agent": null,
     "x_lupo_forwarded": null,
@@ -10500,7 +10500,7 @@
     "footer_present": false
   },
   {
-    "file_path_from_root": "docs/toons/lupo_agents.toon.json",
+    "file_path_from_root": "lupo-database/lupopedia/toon/lupo_agents.toon.json",
     "actor_id": null,
     "lupo_agent": null,
     "x_lupo_forwarded": null,
@@ -10512,7 +10512,7 @@
     "footer_present": false
   },
   {
-    "file_path_from_root": "docs/toons/lupo_agent_context_snapshots.toon.json",
+    "file_path_from_root": "lupo-database/lupopedia/toon/lupo_agent_context_snapshots.toon.json",
     "actor_id": null,
     "lupo_agent": null,
     "x_lupo_forwarded": null,
@@ -10524,7 +10524,7 @@
     "footer_present": false
   },
   {
-    "file_path_from_root": "docs/toons/lupo_agent_dependencies.toon.json",
+    "file_path_from_root": "lupo-database/lupopedia/toon/lupo_agent_dependencies.toon.json",
     "actor_id": null,
     "lupo_agent": null,
     "x_lupo_forwarded": null,
@@ -10536,7 +10536,7 @@
     "footer_present": false
   },
   {
-    "file_path_from_root": "docs/toons/lupo_agent_experiences.toon.json",
+    "file_path_from_root": "lupo-database/lupopedia/toon/lupo_agent_experiences.toon.json",
     "actor_id": null,
     "lupo_agent": null,
     "x_lupo_forwarded": null,
@@ -10548,7 +10548,7 @@
     "footer_present": false
   },
   {
-    "file_path_from_root": "docs/toons/lupo_agent_external_events.toon.json",
+    "file_path_from_root": "lupo-database/lupopedia/toon/lupo_agent_external_events.toon.json",
     "actor_id": null,
     "lupo_agent": null,
     "x_lupo_forwarded": null,
@@ -10560,7 +10560,7 @@
     "footer_present": false
   },
   {
-    "file_path_from_root": "docs/toons/lupo_agent_faucets.toon.json",
+    "file_path_from_root": "lupo-database/lupopedia/toon/lupo_agent_faucets.toon.json",
     "actor_id": null,
     "lupo_agent": null,
     "x_lupo_forwarded": null,
@@ -10572,7 +10572,7 @@
     "footer_present": false
   },
   {
-    "file_path_from_root": "docs/toons/lupo_agent_faucet_credentials.toon.json",
+    "file_path_from_root": "lupo-database/lupopedia/toon/lupo_agent_faucet_credentials.toon.json",
     "actor_id": null,
     "lupo_agent": null,
     "x_lupo_forwarded": null,
@@ -10584,7 +10584,7 @@
     "footer_present": false
   },
   {
-    "file_path_from_root": "docs/toons/lupo_agent_files.toon.json",
+    "file_path_from_root": "lupo-database/lupopedia/toon/lupo_agent_files.toon.json",
     "actor_id": null,
     "lupo_agent": null,
     "x_lupo_forwarded": null,
@@ -10596,7 +10596,7 @@
     "footer_present": false
   },
   {
-    "file_path_from_root": "docs/toons/lupo_agent_heartbeats.toon.json",
+    "file_path_from_root": "lupo-database/lupopedia/toon/lupo_agent_heartbeats.toon.json",
     "actor_id": null,
     "lupo_agent": null,
     "x_lupo_forwarded": null,
@@ -10608,7 +10608,7 @@
     "footer_present": false
   },
   {
-    "file_path_from_root": "docs/toons/lupo_agent_properties.toon.json",
+    "file_path_from_root": "lupo-database/lupopedia/toon/lupo_agent_properties.toon.json",
     "actor_id": null,
     "lupo_agent": null,
     "x_lupo_forwarded": null,
@@ -10620,7 +10620,7 @@
     "footer_present": false
   },
   {
-    "file_path_from_root": "docs/toons/lupo_agent_tool_calls.toon.json",
+    "file_path_from_root": "lupo-database/lupopedia/toon/lupo_agent_tool_calls.toon.json",
     "actor_id": null,
     "lupo_agent": null,
     "x_lupo_forwarded": null,
@@ -10632,7 +10632,7 @@
     "footer_present": false
   },
   {
-    "file_path_from_root": "docs/toons/lupo_agent_versions.toon.json",
+    "file_path_from_root": "lupo-database/lupopedia/toon/lupo_agent_versions.toon.json",
     "actor_id": null,
     "lupo_agent": null,
     "x_lupo_forwarded": null,
@@ -10644,7 +10644,7 @@
     "footer_present": false
   },
   {
-    "file_path_from_root": "docs/toons/lupo_aliases.toon.json",
+    "file_path_from_root": "lupo-database/lupopedia/toon/lupo_aliases.toon.json",
     "actor_id": null,
     "lupo_agent": null,
     "x_lupo_forwarded": null,
@@ -10656,7 +10656,7 @@
     "footer_present": false
   },
   {
-    "file_path_from_root": "docs/toons/lupo_analytics_campaign_vars.toon.json",
+    "file_path_from_root": "lupo-database/lupopedia/toon/lupo_analytics_campaign_vars.toon.json",
     "actor_id": null,
     "lupo_agent": null,
     "x_lupo_forwarded": null,
@@ -10668,7 +10668,7 @@
     "footer_present": false
   },
   {
-    "file_path_from_root": "docs/toons/lupo_analytics_paths.toon.json",
+    "file_path_from_root": "lupo-database/lupopedia/toon/lupo_analytics_paths.toon.json",
     "actor_id": null,
     "lupo_agent": null,
     "x_lupo_forwarded": null,
@@ -10680,7 +10680,7 @@
     "footer_present": false
   },
   {
-    "file_path_from_root": "docs/toons/lupo_analytics_referers_periods.toon.json",
+    "file_path_from_root": "lupo-database/lupopedia/toon/lupo_analytics_referers_periods.toon.json",
     "actor_id": null,
     "lupo_agent": null,
     "x_lupo_forwarded": null,
@@ -10692,7 +10692,7 @@
     "footer_present": false
   },
   {
-    "file_path_from_root": "docs/toons/lupo_analytics_visits.toon.json",
+    "file_path_from_root": "lupo-database/lupopedia/toon/lupo_analytics_visits.toon.json",
     "actor_id": null,
     "lupo_agent": null,
     "x_lupo_forwarded": null,
@@ -10704,7 +10704,7 @@
     "footer_present": false
   },
   {
-    "file_path_from_root": "docs/toons/lupo_analytics_visits_daily.toon.json",
+    "file_path_from_root": "lupo-database/lupopedia/toon/lupo_analytics_visits_daily.toon.json",
     "actor_id": null,
     "lupo_agent": null,
     "x_lupo_forwarded": null,
@@ -10716,7 +10716,7 @@
     "footer_present": false
   },
   {
-    "file_path_from_root": "docs/toons/lupo_analytics_visits_monthly.toon.json",
+    "file_path_from_root": "lupo-database/lupopedia/toon/lupo_analytics_visits_monthly.toon.json",
     "actor_id": null,
     "lupo_agent": null,
     "x_lupo_forwarded": null,
@@ -10728,7 +10728,7 @@
     "footer_present": false
   },
   {
-    "file_path_from_root": "docs/toons/lupo_analytics_visits_periods.toon.json",
+    "file_path_from_root": "lupo-database/lupopedia/toon/lupo_analytics_visits_periods.toon.json",
     "actor_id": null,
     "lupo_agent": null,
     "x_lupo_forwarded": null,
@@ -10740,7 +10740,7 @@
     "footer_present": false
   },
   {
-    "file_path_from_root": "docs/toons/lupo_anubis_deletion_log.toon.json",
+    "file_path_from_root": "lupo-database/lupopedia/toon/lupo_anubis_deletion_log.toon.json",
     "actor_id": null,
     "lupo_agent": null,
     "x_lupo_forwarded": null,
@@ -10752,7 +10752,7 @@
     "footer_present": false
   },
   {
-    "file_path_from_root": "docs/toons/lupo_anubis_events.toon.json",
+    "file_path_from_root": "lupo-database/lupopedia/toon/lupo_anubis_events.toon.json",
     "actor_id": null,
     "lupo_agent": null,
     "x_lupo_forwarded": null,
@@ -10764,7 +10764,7 @@
     "footer_present": false
   },
   {
-    "file_path_from_root": "docs/toons/lupo_anubis_mirrored.toon.json",
+    "file_path_from_root": "lupo-database/lupopedia/toon/lupo_anubis_mirrored.toon.json",
     "actor_id": null,
     "lupo_agent": null,
     "x_lupo_forwarded": null,
@@ -10776,7 +10776,7 @@
     "footer_present": false
   },
   {
-    "file_path_from_root": "docs/toons/lupo_anubis_orphaned.toon.json",
+    "file_path_from_root": "lupo-database/lupopedia/toon/lupo_anubis_orphaned.toon.json",
     "actor_id": null,
     "lupo_agent": null,
     "x_lupo_forwarded": null,
@@ -10788,7 +10788,7 @@
     "footer_present": false
   },
   {
-    "file_path_from_root": "docs/toons/lupo_anubis_redirects.toon.json",
+    "file_path_from_root": "lupo-database/lupopedia/toon/lupo_anubis_redirects.toon.json",
     "actor_id": null,
     "lupo_agent": null,
     "x_lupo_forwarded": null,
@@ -10800,7 +10800,7 @@
     "footer_present": false
   },
   {
-    "file_path_from_root": "docs/toons/lupo_anubis_revised.toon.json",
+    "file_path_from_root": "lupo-database/lupopedia/toon/lupo_anubis_revised.toon.json",
     "actor_id": null,
     "lupo_agent": null,
     "x_lupo_forwarded": null,
@@ -10812,7 +10812,7 @@
     "footer_present": false
   },
   {
-    "file_path_from_root": "docs/toons/lupo_api_clients.toon.json",
+    "file_path_from_root": "lupo-database/lupopedia/toon/lupo_api_clients.toon.json",
     "actor_id": null,
     "lupo_agent": null,
     "x_lupo_forwarded": null,
@@ -10824,7 +10824,7 @@
     "footer_present": false
   },
   {
-    "file_path_from_root": "docs/toons/lupo_api_rate_limits.toon.json",
+    "file_path_from_root": "lupo-database/lupopedia/toon/lupo_api_rate_limits.toon.json",
     "actor_id": null,
     "lupo_agent": null,
     "x_lupo_forwarded": null,
@@ -10836,7 +10836,7 @@
     "footer_present": false
   },
   {
-    "file_path_from_root": "docs/toons/lupo_api_tokens.toon.json",
+    "file_path_from_root": "lupo-database/lupopedia/toon/lupo_api_tokens.toon.json",
     "actor_id": null,
     "lupo_agent": null,
     "x_lupo_forwarded": null,
@@ -10848,7 +10848,7 @@
     "footer_present": false
   },
   {
-    "file_path_from_root": "docs/toons/lupo_api_token_logs.toon.json",
+    "file_path_from_root": "lupo-database/lupopedia/toon/lupo_api_token_logs.toon.json",
     "actor_id": null,
     "lupo_agent": null,
     "x_lupo_forwarded": null,
@@ -10860,7 +10860,7 @@
     "footer_present": false
   },
   {
-    "file_path_from_root": "docs/toons/lupo_api_webhooks.toon.json",
+    "file_path_from_root": "lupo-database/lupopedia/toon/lupo_api_webhooks.toon.json",
     "actor_id": null,
     "lupo_agent": null,
     "x_lupo_forwarded": null,
@@ -10872,7 +10872,7 @@
     "footer_present": false
   },
   {
-    "file_path_from_root": "docs/toons/lupo_artifacts.toon.json",
+    "file_path_from_root": "lupo-database/lupopedia/toon/lupo_artifacts.toon.json",
     "actor_id": null,
     "lupo_agent": null,
     "x_lupo_forwarded": null,
@@ -10884,7 +10884,7 @@
     "footer_present": false
   },
   {
-    "file_path_from_root": "docs/toons/lupo_atoms.toon.json",
+    "file_path_from_root": "lupo-database/lupopedia/toon/lupo_atoms.toon.json",
     "actor_id": null,
     "lupo_agent": null,
     "x_lupo_forwarded": null,
@@ -10896,7 +10896,7 @@
     "footer_present": false
   },
   {
-    "file_path_from_root": "docs/toons/lupo_audit_log.toon.json",
+    "file_path_from_root": "lupo-database/lupopedia/toon/lupo_audit_log.toon.json",
     "actor_id": null,
     "lupo_agent": null,
     "x_lupo_forwarded": null,
@@ -10908,7 +10908,7 @@
     "footer_present": false
   },
   {
-    "file_path_from_root": "docs/toons/lupo_auth_audit_log.toon.json",
+    "file_path_from_root": "lupo-database/lupopedia/toon/lupo_auth_audit_log.toon.json",
     "actor_id": null,
     "lupo_agent": null,
     "x_lupo_forwarded": null,
@@ -10920,7 +10920,7 @@
     "footer_present": false
   },
   {
-    "file_path_from_root": "docs/toons/lupo_auth_providers.toon.json",
+    "file_path_from_root": "lupo-database/lupopedia/toon/lupo_auth_providers.toon.json",
     "actor_id": null,
     "lupo_agent": null,
     "x_lupo_forwarded": null,
@@ -10932,7 +10932,7 @@
     "footer_present": false
   },
   {
-    "file_path_from_root": "docs/toons/lupo_auth_users.toon.json",
+    "file_path_from_root": "lupo-database/lupopedia/toon/lupo_auth_users.toon.json",
     "actor_id": null,
     "lupo_agent": null,
     "x_lupo_forwarded": null,
@@ -10944,7 +10944,7 @@
     "footer_present": false
   },
   {
-    "file_path_from_root": "docs/toons/lupo_banned_actors.toon.json",
+    "file_path_from_root": "lupo-database/lupopedia/toon/lupo_banned_actors.toon.json",
     "actor_id": null,
     "lupo_agent": null,
     "x_lupo_forwarded": null,
@@ -10956,7 +10956,7 @@
     "footer_present": false
   },
   {
-    "file_path_from_root": "docs/toons/lupo_bans_log.toon.json",
+    "file_path_from_root": "lupo-database/lupopedia/toon/lupo_bans_log.toon.json",
     "actor_id": null,
     "lupo_agent": null,
     "x_lupo_forwarded": null,
@@ -10968,7 +10968,7 @@
     "footer_present": false
   },
   {
-    "file_path_from_root": "docs/toons/lupo_calibration_impacts.toon.json",
+    "file_path_from_root": "lupo-database/lupopedia/toon/lupo_calibration_impacts.toon.json",
     "actor_id": null,
     "lupo_agent": null,
     "x_lupo_forwarded": null,
@@ -10980,7 +10980,7 @@
     "footer_present": false
   },
   {
-    "file_path_from_root": "docs/toons/lupo_channels.toon.json",
+    "file_path_from_root": "lupo-database/lupopedia/toon/lupo_channels.toon.json",
     "actor_id": null,
     "lupo_agent": null,
     "x_lupo_forwarded": null,
@@ -10992,7 +10992,7 @@
     "footer_present": false
   },
   {
-    "file_path_from_root": "docs/toons/lupo_channel_boot_detail.toon.json",
+    "file_path_from_root": "lupo-database/lupopedia/toon/lupo_channel_boot_detail.toon.json",
     "actor_id": null,
     "lupo_agent": null,
     "x_lupo_forwarded": null,
@@ -11004,7 +11004,7 @@
     "footer_present": false
   },
   {
-    "file_path_from_root": "docs/toons/lupo_channel_boot_log.toon.json",
+    "file_path_from_root": "lupo-database/lupopedia/toon/lupo_channel_boot_log.toon.json",
     "actor_id": null,
     "lupo_agent": null,
     "x_lupo_forwarded": null,
@@ -11016,7 +11016,7 @@
     "footer_present": false
   },
   {
-    "file_path_from_root": "docs/toons/lupo_channel_escalations.toon.json",
+    "file_path_from_root": "lupo-database/lupopedia/toon/lupo_channel_escalations.toon.json",
     "actor_id": null,
     "lupo_agent": null,
     "x_lupo_forwarded": null,
@@ -11028,7 +11028,7 @@
     "footer_present": false
   },
   {
-    "file_path_from_root": "docs/toons/lupo_channel_escalation_rules.toon.json",
+    "file_path_from_root": "lupo-database/lupopedia/toon/lupo_channel_escalation_rules.toon.json",
     "actor_id": null,
     "lupo_agent": null,
     "x_lupo_forwarded": null,
@@ -11040,7 +11040,7 @@
     "footer_present": false
   },
   {
-    "file_path_from_root": "docs/toons/lupo_channel_files.toon.json",
+    "file_path_from_root": "lupo-database/lupopedia/toon/lupo_channel_files.toon.json",
     "actor_id": null,
     "lupo_agent": null,
     "x_lupo_forwarded": null,
@@ -11052,7 +11052,7 @@
     "footer_present": false
   },
   {
-    "file_path_from_root": "docs/toons/lupo_channel_logs.toon.json",
+    "file_path_from_root": "lupo-database/lupopedia/toon/lupo_channel_logs.toon.json",
     "actor_id": null,
     "lupo_agent": null,
     "x_lupo_forwarded": null,
@@ -11064,7 +11064,7 @@
     "footer_present": false
   },
   {
-    "file_path_from_root": "docs/toons/lupo_channel_log_types.toon.json",
+    "file_path_from_root": "lupo-database/lupopedia/toon/lupo_channel_log_types.toon.json",
     "actor_id": null,
     "lupo_agent": null,
     "x_lupo_forwarded": null,
@@ -11076,7 +11076,7 @@
     "footer_present": false
   },
   {
-    "file_path_from_root": "docs/toons/lupo_channel_state.toon.json",
+    "file_path_from_root": "lupo-database/lupopedia/toon/lupo_channel_state.toon.json",
     "actor_id": null,
     "lupo_agent": null,
     "x_lupo_forwarded": null,
@@ -11088,7 +11088,7 @@
     "footer_present": false
   },
   {
-    "file_path_from_root": "docs/toons/lupo_cip_analytics.toon.json",
+    "file_path_from_root": "lupo-database/lupopedia/toon/lupo_cip_analytics.toon.json",
     "actor_id": null,
     "lupo_agent": null,
     "x_lupo_forwarded": null,
@@ -11100,7 +11100,7 @@
     "footer_present": false
   },
   {
-    "file_path_from_root": "docs/toons/lupo_cip_propagation_tracking.toon.json",
+    "file_path_from_root": "lupo-database/lupopedia/toon/lupo_cip_propagation_tracking.toon.json",
     "actor_id": null,
     "lupo_agent": null,
     "x_lupo_forwarded": null,
@@ -11112,7 +11112,7 @@
     "footer_present": false
   },
   {
-    "file_path_from_root": "docs/toons/lupo_cip_trends.toon.json",
+    "file_path_from_root": "lupo-database/lupopedia/toon/lupo_cip_trends.toon.json",
     "actor_id": null,
     "lupo_agent": null,
     "x_lupo_forwarded": null,
@@ -11124,7 +11124,7 @@
     "footer_present": false
   },
   {
-    "file_path_from_root": "docs/toons/lupo_collections.toon.json",
+    "file_path_from_root": "lupo-database/lupopedia/toon/lupo_collections.toon.json",
     "actor_id": null,
     "lupo_agent": null,
     "x_lupo_forwarded": null,
@@ -11136,7 +11136,7 @@
     "footer_present": false
   },
   {
-    "file_path_from_root": "docs/toons/lupo_collection_tabs.toon.json",
+    "file_path_from_root": "lupo-database/lupopedia/toon/lupo_collection_tabs.toon.json",
     "actor_id": null,
     "lupo_agent": null,
     "x_lupo_forwarded": null,
@@ -11148,7 +11148,7 @@
     "footer_present": false
   },
   {
-    "file_path_from_root": "docs/toons/lupo_collection_tab_map.toon.json",
+    "file_path_from_root": "lupo-database/lupopedia/toon/lupo_collection_tab_map.toon.json",
     "actor_id": null,
     "lupo_agent": null,
     "x_lupo_forwarded": null,
@@ -11160,7 +11160,7 @@
     "footer_present": false
   },
   {
-    "file_path_from_root": "docs/toons/lupo_collection_tab_paths.toon.json",
+    "file_path_from_root": "lupo-database/lupopedia/toon/lupo_collection_tab_paths.toon.json",
     "actor_id": null,
     "lupo_agent": null,
     "x_lupo_forwarded": null,
@@ -11172,7 +11172,7 @@
     "footer_present": false
   },
   {
-    "file_path_from_root": "docs/toons/lupo_contents.toon.json",
+    "file_path_from_root": "lupo-database/lupopedia/toon/lupo_contents.toon.json",
     "actor_id": null,
     "lupo_agent": null,
     "x_lupo_forwarded": null,
@@ -11184,7 +11184,7 @@
     "footer_present": false
   },
   {
-    "file_path_from_root": "docs/toons/lupo_contexts.toon.json",
+    "file_path_from_root": "lupo-database/lupopedia/toon/lupo_contexts.toon.json",
     "actor_id": null,
     "lupo_agent": null,
     "x_lupo_forwarded": null,
@@ -11196,7 +11196,7 @@
     "footer_present": false
   },
   {
-    "file_path_from_root": "docs/toons/lupo_contexts_map.toon.json",
+    "file_path_from_root": "lupo-database/lupopedia/toon/lupo_contexts_map.toon.json",
     "actor_id": null,
     "lupo_agent": null,
     "x_lupo_forwarded": null,
@@ -11208,7 +11208,7 @@
     "footer_present": false
   },
   {
-    "file_path_from_root": "docs/toons/lupo_crafty_syntax_auto_invite.toon.json",
+    "file_path_from_root": "lupo-database/lupopedia/toon/lupo_crafty_syntax_auto_invite.toon.json",
     "actor_id": null,
     "lupo_agent": null,
     "x_lupo_forwarded": null,
@@ -11220,7 +11220,7 @@
     "footer_present": false
   },
   {
-    "file_path_from_root": "docs/toons/lupo_crafty_syntax_chat_mod_departments.toon.json",
+    "file_path_from_root": "lupo-database/lupopedia/toon/lupo_crafty_syntax_chat_mod_departments.toon.json",
     "actor_id": null,
     "lupo_agent": null,
     "x_lupo_forwarded": null,
@@ -11232,7 +11232,7 @@
     "footer_present": false
   },
   {
-    "file_path_from_root": "docs/toons/lupo_crafty_syntax_chat_questions.toon.json",
+    "file_path_from_root": "lupo-database/lupopedia/toon/lupo_crafty_syntax_chat_questions.toon.json",
     "actor_id": null,
     "lupo_agent": null,
     "x_lupo_forwarded": null,
@@ -11244,7 +11244,7 @@
     "footer_present": false
   },
   {
-    "file_path_from_root": "docs/toons/lupo_crafty_syntax_layer_invites.toon.json",
+    "file_path_from_root": "lupo-database/lupopedia/toon/lupo_crafty_syntax_layer_invites.toon.json",
     "actor_id": null,
     "lupo_agent": null,
     "x_lupo_forwarded": null,
@@ -11256,7 +11256,7 @@
     "footer_present": false
   },
   {
-    "file_path_from_root": "docs/toons/lupo_crafty_syntax_leave_message.toon.json",
+    "file_path_from_root": "lupo-database/lupopedia/toon/lupo_crafty_syntax_leave_message.toon.json",
     "actor_id": null,
     "lupo_agent": null,
     "x_lupo_forwarded": null,
@@ -11268,7 +11268,7 @@
     "footer_present": false
   },
   {
-    "file_path_from_root": "docs/toons/lupo_crafty_user_mapping.toon.json",
+    "file_path_from_root": "lupo-database/lupopedia/toon/lupo_crafty_user_mapping.toon.json",
     "actor_id": null,
     "lupo_agent": null,
     "x_lupo_forwarded": null,
@@ -11280,7 +11280,7 @@
     "footer_present": false
   },
   {
-    "file_path_from_root": "docs/toons/lupo_crm_leads.toon.json",
+    "file_path_from_root": "lupo-database/lupopedia/toon/lupo_crm_leads.toon.json",
     "actor_id": null,
     "lupo_agent": null,
     "x_lupo_forwarded": null,
@@ -11292,7 +11292,7 @@
     "footer_present": false
   },
   {
-    "file_path_from_root": "docs/toons/lupo_crm_lead_messages.toon.json",
+    "file_path_from_root": "lupo-database/lupopedia/toon/lupo_crm_lead_messages.toon.json",
     "actor_id": null,
     "lupo_agent": null,
     "x_lupo_forwarded": null,
@@ -11304,7 +11304,7 @@
     "footer_present": false
   },
   {
-    "file_path_from_root": "docs/toons/lupo_departments.toon.json",
+    "file_path_from_root": "lupo-database/lupopedia/toon/lupo_departments.toon.json",
     "actor_id": null,
     "lupo_agent": null,
     "x_lupo_forwarded": null,
@@ -11316,7 +11316,7 @@
     "footer_present": false
   },
   {
-    "file_path_from_root": "docs/toons/lupo_department_metadata.toon.json",
+    "file_path_from_root": "lupo-database/lupopedia/toon/lupo_department_metadata.toon.json",
     "actor_id": null,
     "lupo_agent": null,
     "x_lupo_forwarded": null,
@@ -11328,7 +11328,7 @@
     "footer_present": false
   },
   {
-    "file_path_from_root": "docs/toons/lupo_department_roles.toon.json",
+    "file_path_from_root": "lupo-database/lupopedia/toon/lupo_department_roles.toon.json",
     "actor_id": null,
     "lupo_agent": null,
     "x_lupo_forwarded": null,
@@ -11340,7 +11340,7 @@
     "footer_present": false
   },
   {
-    "file_path_from_root": "docs/toons/lupo_dialog_channels.toon.json",
+    "file_path_from_root": "lupo-database/lupopedia/toon/lupo_dialog_channels.toon.json",
     "actor_id": null,
     "lupo_agent": null,
     "x_lupo_forwarded": null,
@@ -11352,7 +11352,7 @@
     "footer_present": false
   },
   {
-    "file_path_from_root": "docs/toons/lupo_dialog_messages.toon.json",
+    "file_path_from_root": "lupo-database/lupopedia/toon/lupo_dialog_messages.toon.json",
     "actor_id": null,
     "lupo_agent": null,
     "x_lupo_forwarded": null,
@@ -11364,7 +11364,7 @@
     "footer_present": false
   },
   {
-    "file_path_from_root": "docs/toons/lupo_dialog_threads.toon.json",
+    "file_path_from_root": "lupo-database/lupopedia/toon/lupo_dialog_threads.toon.json",
     "actor_id": null,
     "lupo_agent": null,
     "x_lupo_forwarded": null,
@@ -11376,7 +11376,7 @@
     "footer_present": false
   },
   {
-    "file_path_from_root": "docs/toons/lupo_doctrine_evolution_audit.toon.json",
+    "file_path_from_root": "lupo-database/lupopedia/toon/lupo_doctrine_evolution_audit.toon.json",
     "actor_id": null,
     "lupo_agent": null,
     "x_lupo_forwarded": null,
@@ -11388,7 +11388,7 @@
     "footer_present": false
   },
   {
-    "file_path_from_root": "docs/toons/lupo_doctrine_refinements.toon.json",
+    "file_path_from_root": "lupo-database/lupopedia/toon/lupo_doctrine_refinements.toon.json",
     "actor_id": null,
     "lupo_agent": null,
     "x_lupo_forwarded": null,
@@ -11400,7 +11400,7 @@
     "footer_present": false
   },
   {
-    "file_path_from_root": "docs/toons/lupo_documents.toon.json",
+    "file_path_from_root": "lupo-database/lupopedia/toon/lupo_documents.toon.json",
     "actor_id": null,
     "lupo_agent": null,
     "x_lupo_forwarded": null,
@@ -11412,7 +11412,7 @@
     "footer_present": false
   },
   {
-    "file_path_from_root": "docs/toons/lupo_document_chunks.toon.json",
+    "file_path_from_root": "lupo-database/lupopedia/toon/lupo_document_chunks.toon.json",
     "actor_id": null,
     "lupo_agent": null,
     "x_lupo_forwarded": null,
@@ -11424,7 +11424,7 @@
     "footer_present": false
   },
   {
-    "file_path_from_root": "docs/toons/lupo_document_embeddings.toon.json",
+    "file_path_from_root": "lupo-database/lupopedia/toon/lupo_document_embeddings.toon.json",
     "actor_id": null,
     "lupo_agent": null,
     "x_lupo_forwarded": null,
@@ -11436,7 +11436,7 @@
     "footer_present": false
   },
   {
-    "file_path_from_root": "docs/toons/lupo_edges.toon.json",
+    "file_path_from_root": "lupo-database/lupopedia/toon/lupo_edges.toon.json",
     "actor_id": null,
     "lupo_agent": null,
     "x_lupo_forwarded": null,
@@ -11448,7 +11448,7 @@
     "footer_present": false
   },
   {
-    "file_path_from_root": "docs/toons/lupo_edge_types.toon.json",
+    "file_path_from_root": "lupo-database/lupopedia/toon/lupo_edge_types.toon.json",
     "actor_id": null,
     "lupo_agent": null,
     "x_lupo_forwarded": null,
@@ -11460,7 +11460,7 @@
     "footer_present": false
   },
   {
-    "file_path_from_root": "docs/toons/lupo_emotional_constellations.toon.json",
+    "file_path_from_root": "lupo-database/lupopedia/toon/lupo_emotional_constellations.toon.json",
     "actor_id": null,
     "lupo_agent": null,
     "x_lupo_forwarded": null,
@@ -11472,7 +11472,7 @@
     "footer_present": false
   },
   {
-    "file_path_from_root": "docs/toons/lupo_emotional_frameworks.toon.json",
+    "file_path_from_root": "lupo-database/lupopedia/toon/lupo_emotional_frameworks.toon.json",
     "actor_id": null,
     "lupo_agent": null,
     "x_lupo_forwarded": null,
@@ -11484,7 +11484,7 @@
     "footer_present": false
   },
   {
-    "file_path_from_root": "docs/toons/lupo_emotional_geometry_calibrations.toon.json",
+    "file_path_from_root": "lupo-database/lupopedia/toon/lupo_emotional_geometry_calibrations.toon.json",
     "actor_id": null,
     "lupo_agent": null,
     "x_lupo_forwarded": null,
@@ -11496,7 +11496,7 @@
     "footer_present": false
   },
   {
-    "file_path_from_root": "docs/toons/lupo_emotional_stars.toon.json",
+    "file_path_from_root": "lupo-database/lupopedia/toon/lupo_emotional_stars.toon.json",
     "actor_id": null,
     "lupo_agent": null,
     "x_lupo_forwarded": null,
@@ -11508,7 +11508,7 @@
     "footer_present": false
   },
   {
-    "file_path_from_root": "docs/toons/lupo_emotional_translations.toon.json",
+    "file_path_from_root": "lupo-database/lupopedia/toon/lupo_emotional_translations.toon.json",
     "actor_id": null,
     "lupo_agent": null,
     "x_lupo_forwarded": null,
@@ -11520,7 +11520,7 @@
     "footer_present": false
   },
   {
-    "file_path_from_root": "docs/toons/lupo_entity_edges.toon.json",
+    "file_path_from_root": "lupo-database/lupopedia/toon/lupo_entity_edges.toon.json",
     "actor_id": null,
     "lupo_agent": null,
     "x_lupo_forwarded": null,
@@ -11532,7 +11532,7 @@
     "footer_present": false
   },
   {
-    "file_path_from_root": "docs/toons/lupo_entity_properties.toon.json",
+    "file_path_from_root": "lupo-database/lupopedia/toon/lupo_entity_properties.toon.json",
     "actor_id": null,
     "lupo_agent": null,
     "x_lupo_forwarded": null,
@@ -11544,7 +11544,7 @@
     "footer_present": false
   },
   {
-    "file_path_from_root": "docs/toons/lupo_event_log.toon.json",
+    "file_path_from_root": "lupo-database/lupopedia/toon/lupo_event_log.toon.json",
     "actor_id": null,
     "lupo_agent": null,
     "x_lupo_forwarded": null,
@@ -11556,7 +11556,7 @@
     "footer_present": false
   },
   {
-    "file_path_from_root": "docs/toons/lupo_event_metadata.toon.json",
+    "file_path_from_root": "lupo-database/lupopedia/toon/lupo_event_metadata.toon.json",
     "actor_id": null,
     "lupo_agent": null,
     "x_lupo_forwarded": null,
@@ -11568,7 +11568,7 @@
     "footer_present": false
   },
   {
-    "file_path_from_root": "docs/toons/lupo_federation_categories.toon.json",
+    "file_path_from_root": "lupo-database/lupopedia/toon/lupo_federation_categories.toon.json",
     "actor_id": null,
     "lupo_agent": null,
     "x_lupo_forwarded": null,
@@ -11580,7 +11580,7 @@
     "footer_present": false
   },
   {
-    "file_path_from_root": "docs/toons/lupo_federation_category_map.toon.json",
+    "file_path_from_root": "lupo-database/lupopedia/toon/lupo_federation_category_map.toon.json",
     "actor_id": null,
     "lupo_agent": null,
     "x_lupo_forwarded": null,
@@ -11592,7 +11592,7 @@
     "footer_present": false
   },
   {
-    "file_path_from_root": "docs/toons/lupo_federation_discovery.toon.json",
+    "file_path_from_root": "lupo-database/lupopedia/toon/lupo_federation_discovery.toon.json",
     "actor_id": null,
     "lupo_agent": null,
     "x_lupo_forwarded": null,
@@ -11604,7 +11604,7 @@
     "footer_present": false
   },
   {
-    "file_path_from_root": "docs/toons/lupo_federation_nodes.toon.json",
+    "file_path_from_root": "lupo-database/lupopedia/toon/lupo_federation_nodes.toon.json",
     "actor_id": null,
     "lupo_agent": null,
     "x_lupo_forwarded": null,
@@ -11616,7 +11616,7 @@
     "footer_present": false
   },
   {
-    "file_path_from_root": "docs/toons/lupo_governance_overrides.toon.json",
+    "file_path_from_root": "lupo-database/lupopedia/toon/lupo_governance_overrides.toon.json",
     "actor_id": null,
     "lupo_agent": null,
     "x_lupo_forwarded": null,
@@ -11628,7 +11628,7 @@
     "footer_present": false
   },
   {
-    "file_path_from_root": "docs/toons/lupo_gov_events.toon.json",
+    "file_path_from_root": "lupo-database/lupopedia/toon/lupo_gov_events.toon.json",
     "actor_id": null,
     "lupo_agent": null,
     "x_lupo_forwarded": null,
@@ -11640,7 +11640,7 @@
     "footer_present": false
   },
   {
-    "file_path_from_root": "docs/toons/lupo_gov_event_actor_edges.toon.json",
+    "file_path_from_root": "lupo-database/lupopedia/toon/lupo_gov_event_actor_edges.toon.json",
     "actor_id": null,
     "lupo_agent": null,
     "x_lupo_forwarded": null,
@@ -11652,7 +11652,7 @@
     "footer_present": false
   },
   {
-    "file_path_from_root": "docs/toons/lupo_gov_event_conflicts.toon.json",
+    "file_path_from_root": "lupo-database/lupopedia/toon/lupo_gov_event_conflicts.toon.json",
     "actor_id": null,
     "lupo_agent": null,
     "x_lupo_forwarded": null,
@@ -11664,7 +11664,7 @@
     "footer_present": false
   },
   {
-    "file_path_from_root": "docs/toons/lupo_gov_event_dependencies.toon.json",
+    "file_path_from_root": "lupo-database/lupopedia/toon/lupo_gov_event_dependencies.toon.json",
     "actor_id": null,
     "lupo_agent": null,
     "x_lupo_forwarded": null,
@@ -11676,7 +11676,7 @@
     "footer_present": false
   },
   {
-    "file_path_from_root": "docs/toons/lupo_gov_event_references.toon.json",
+    "file_path_from_root": "lupo-database/lupopedia/toon/lupo_gov_event_references.toon.json",
     "actor_id": null,
     "lupo_agent": null,
     "x_lupo_forwarded": null,
@@ -11688,7 +11688,7 @@
     "footer_present": false
   },
   {
-    "file_path_from_root": "docs/toons/lupo_gov_timeline_nodes.toon.json",
+    "file_path_from_root": "lupo-database/lupopedia/toon/lupo_gov_timeline_nodes.toon.json",
     "actor_id": null,
     "lupo_agent": null,
     "x_lupo_forwarded": null,
@@ -11700,7 +11700,7 @@
     "footer_present": false
   },
   {
-    "file_path_from_root": "docs/toons/lupo_gov_valuations.toon.json",
+    "file_path_from_root": "lupo-database/lupopedia/toon/lupo_gov_valuations.toon.json",
     "actor_id": null,
     "lupo_agent": null,
     "x_lupo_forwarded": null,
@@ -11712,7 +11712,7 @@
     "footer_present": false
   },
   {
-    "file_path_from_root": "docs/toons/lupo_hashtags.toon.json",
+    "file_path_from_root": "lupo-database/lupopedia/toon/lupo_hashtags.toon.json",
     "actor_id": null,
     "lupo_agent": null,
     "x_lupo_forwarded": null,
@@ -11724,7 +11724,7 @@
     "footer_present": false
   },
   {
-    "file_path_from_root": "docs/toons/lupo_help_topics.toon.json",
+    "file_path_from_root": "lupo-database/lupopedia/toon/lupo_help_topics.toon.json",
     "actor_id": null,
     "lupo_agent": null,
     "x_lupo_forwarded": null,
@@ -11736,7 +11736,7 @@
     "footer_present": false
   },
   {
-    "file_path_from_root": "docs/toons/lupo_help_tree.toon.json",
+    "file_path_from_root": "lupo-database/lupopedia/toon/lupo_help_tree.toon.json",
     "actor_id": null,
     "lupo_agent": null,
     "x_lupo_forwarded": null,
@@ -11748,7 +11748,7 @@
     "footer_present": false
   },
   {
-    "file_path_from_root": "docs/toons/lupo_hotfix_registry.toon.json",
+    "file_path_from_root": "lupo-database/lupopedia/toon/lupo_hotfix_registry.toon.json",
     "actor_id": null,
     "lupo_agent": null,
     "x_lupo_forwarded": null,
@@ -11760,7 +11760,7 @@
     "footer_present": false
   },
   {
-    "file_path_from_root": "docs/toons/lupo_human_history_meta.toon.json",
+    "file_path_from_root": "lupo-database/lupopedia/toon/lupo_human_history_meta.toon.json",
     "actor_id": null,
     "lupo_agent": null,
     "x_lupo_forwarded": null,
@@ -11772,7 +11772,7 @@
     "footer_present": false
   },
   {
-    "file_path_from_root": "docs/toons/lupo_interface_translations.toon.json",
+    "file_path_from_root": "lupo-database/lupopedia/toon/lupo_interface_translations.toon.json",
     "actor_id": null,
     "lupo_agent": null,
     "x_lupo_forwarded": null,
@@ -11784,7 +11784,7 @@
     "footer_present": false
   },
   {
-    "file_path_from_root": "docs/toons/lupo_interpretation_log.toon.json",
+    "file_path_from_root": "lupo-database/lupopedia/toon/lupo_interpretation_log.toon.json",
     "actor_id": null,
     "lupo_agent": null,
     "x_lupo_forwarded": null,
@@ -11796,7 +11796,7 @@
     "footer_present": false
   },
   {
-    "file_path_from_root": "docs/toons/lupo_kapu_events.toon.json",
+    "file_path_from_root": "lupo-database/lupopedia/toon/lupo_kapu_events.toon.json",
     "actor_id": null,
     "lupo_agent": null,
     "x_lupo_forwarded": null,
@@ -11808,7 +11808,7 @@
     "footer_present": false
   },
   {
-    "file_path_from_root": "docs/toons/lupo_kapu_restoration_paths.toon.json",
+    "file_path_from_root": "lupo-database/lupopedia/toon/lupo_kapu_restoration_paths.toon.json",
     "actor_id": null,
     "lupo_agent": null,
     "x_lupo_forwarded": null,
@@ -11820,7 +11820,7 @@
     "footer_present": false
   },
   {
-    "file_path_from_root": "docs/toons/lupo_labs_declarations.toon.json",
+    "file_path_from_root": "lupo-database/lupopedia/toon/lupo_labs_declarations.toon.json",
     "actor_id": null,
     "lupo_agent": null,
     "x_lupo_forwarded": null,
@@ -11832,7 +11832,7 @@
     "footer_present": false
   },
   {
-    "file_path_from_root": "docs/toons/lupo_labs_violations.toon.json",
+    "file_path_from_root": "lupo-database/lupopedia/toon/lupo_labs_violations.toon.json",
     "actor_id": null,
     "lupo_agent": null,
     "x_lupo_forwarded": null,
@@ -11844,7 +11844,7 @@
     "footer_present": false
   },
   {
-    "file_path_from_root": "docs/toons/lupo_legacy_content_mapping.toon.json",
+    "file_path_from_root": "lupo-database/lupopedia/toon/lupo_legacy_content_mapping.toon.json",
     "actor_id": null,
     "lupo_agent": null,
     "x_lupo_forwarded": null,
@@ -11856,7 +11856,7 @@
     "footer_present": false
   },
   {
-    "file_path_from_root": "docs/toons/lupo_memory_events.toon.json",
+    "file_path_from_root": "lupo-database/lupopedia/toon/lupo_memory_events.toon.json",
     "actor_id": null,
     "lupo_agent": null,
     "x_lupo_forwarded": null,
@@ -11868,7 +11868,7 @@
     "footer_present": false
   },
   {
-    "file_path_from_root": "docs/toons/lupo_memory_rollups.toon.json",
+    "file_path_from_root": "lupo-database/lupopedia/toon/lupo_memory_rollups.toon.json",
     "actor_id": null,
     "lupo_agent": null,
     "x_lupo_forwarded": null,
@@ -11880,7 +11880,7 @@
     "footer_present": false
   },
   {
-    "file_path_from_root": "docs/toons/lupo_meta_log_events.toon.json",
+    "file_path_from_root": "lupo-database/lupopedia/toon/lupo_meta_log_events.toon.json",
     "actor_id": null,
     "lupo_agent": null,
     "x_lupo_forwarded": null,
@@ -11892,7 +11892,7 @@
     "footer_present": false
   },
   {
-    "file_path_from_root": "docs/toons/lupo_metrics_archive_legacy.toon.json",
+    "file_path_from_root": "lupo-database/lupopedia/toon/lupo_metrics_archive_legacy.toon.json",
     "actor_id": null,
     "lupo_agent": null,
     "x_lupo_forwarded": null,
@@ -11904,7 +11904,7 @@
     "footer_present": false
   },
   {
-    "file_path_from_root": "docs/toons/lupo_modules.toon.json",
+    "file_path_from_root": "lupo-database/lupopedia/toon/lupo_modules.toon.json",
     "actor_id": null,
     "lupo_agent": null,
     "x_lupo_forwarded": null,
@@ -11916,7 +11916,7 @@
     "footer_present": false
   },
   {
-    "file_path_from_root": "docs/toons/lupo_modules_departments.toon.json",
+    "file_path_from_root": "lupo-database/lupopedia/toon/lupo_modules_departments.toon.json",
     "actor_id": null,
     "lupo_agent": null,
     "x_lupo_forwarded": null,
@@ -11928,7 +11928,7 @@
     "footer_present": false
   },
   {
-    "file_path_from_root": "docs/toons/lupo_mood_assignments.toon.json",
+    "file_path_from_root": "lupo-database/lupopedia/toon/lupo_mood_assignments.toon.json",
     "actor_id": null,
     "lupo_agent": null,
     "x_lupo_forwarded": null,
@@ -11940,7 +11940,7 @@
     "footer_present": false
   },
   {
-    "file_path_from_root": "docs/toons/lupo_mood_registry.toon.json",
+    "file_path_from_root": "lupo-database/lupopedia/toon/lupo_mood_registry.toon.json",
     "actor_id": null,
     "lupo_agent": null,
     "x_lupo_forwarded": null,
@@ -11952,7 +11952,7 @@
     "footer_present": false
   },
   {
-    "file_path_from_root": "docs/toons/lupo_multi_agent_critique_sync.toon.json",
+    "file_path_from_root": "lupo-database/lupopedia/toon/lupo_multi_agent_critique_sync.toon.json",
     "actor_id": null,
     "lupo_agent": null,
     "x_lupo_forwarded": null,
@@ -11964,7 +11964,7 @@
     "footer_present": false
   },
   {
-    "file_path_from_root": "docs/toons/lupo_notifications.toon.json",
+    "file_path_from_root": "lupo-database/lupopedia/toon/lupo_notifications.toon.json",
     "actor_id": null,
     "lupo_agent": null,
     "x_lupo_forwarded": null,
@@ -11976,7 +11976,7 @@
     "footer_present": false
   },
   {
-    "file_path_from_root": "docs/toons/lupo_pack_role_registry.toon.json",
+    "file_path_from_root": "lupo-database/lupopedia/toon/lupo_pack_role_registry.toon.json",
     "actor_id": null,
     "lupo_agent": null,
     "x_lupo_forwarded": null,
@@ -11988,7 +11988,7 @@
     "footer_present": false
   },
   {
-    "file_path_from_root": "docs/toons/lupo_permissions.toon.json",
+    "file_path_from_root": "lupo-database/lupopedia/toon/lupo_permissions.toon.json",
     "actor_id": null,
     "lupo_agent": null,
     "x_lupo_forwarded": null,
@@ -12000,7 +12000,7 @@
     "footer_present": false
   },
   {
-    "file_path_from_root": "docs/toons/lupo_persona_dialogue_patterns.toon.json",
+    "file_path_from_root": "lupo-database/lupopedia/toon/lupo_persona_dialogue_patterns.toon.json",
     "actor_id": null,
     "lupo_agent": null,
     "x_lupo_forwarded": null,
@@ -12012,7 +12012,7 @@
     "footer_present": false
   },
   {
-    "file_path_from_root": "docs/toons/lupo_persona_profiles.toon.json",
+    "file_path_from_root": "lupo-database/lupopedia/toon/lupo_persona_profiles.toon.json",
     "actor_id": null,
     "lupo_agent": null,
     "x_lupo_forwarded": null,
@@ -12024,7 +12024,7 @@
     "footer_present": false
   },
   {
-    "file_path_from_root": "docs/toons/lupo_reference_cited_by.toon.json",
+    "file_path_from_root": "lupo-database/lupopedia/toon/lupo_reference_cited_by.toon.json",
     "actor_id": null,
     "lupo_agent": null,
     "x_lupo_forwarded": null,
@@ -12036,7 +12036,7 @@
     "footer_present": false
   },
   {
-    "file_path_from_root": "docs/toons/lupo_reference_objects.toon.json",
+    "file_path_from_root": "lupo-database/lupopedia/toon/lupo_reference_objects.toon.json",
     "actor_id": null,
     "lupo_agent": null,
     "x_lupo_forwarded": null,
@@ -12048,7 +12048,7 @@
     "footer_present": false
   },
   {
-    "file_path_from_root": "docs/toons/lupo_referers.toon.json",
+    "file_path_from_root": "lupo-database/lupopedia/toon/lupo_referers.toon.json",
     "actor_id": null,
     "lupo_agent": null,
     "x_lupo_forwarded": null,
@@ -12060,7 +12060,7 @@
     "footer_present": false
   },
   {
-    "file_path_from_root": "docs/toons/lupo_registry.toon.json",
+    "file_path_from_root": "lupo-database/lupopedia/toon/lupo_registry.toon.json",
     "actor_id": null,
     "lupo_agent": null,
     "x_lupo_forwarded": null,
@@ -12072,7 +12072,7 @@
     "footer_present": false
   },
   {
-    "file_path_from_root": "docs/toons/lupo_registry_import.toon.json",
+    "file_path_from_root": "lupo-database/lupopedia/toon/lupo_registry_import.toon.json",
     "actor_id": null,
     "lupo_agent": null,
     "x_lupo_forwarded": null,
@@ -12084,7 +12084,7 @@
     "footer_present": false
   },
   {
-    "file_path_from_root": "docs/toons/lupo_relationships.toon.json",
+    "file_path_from_root": "lupo-database/lupopedia/toon/lupo_relationships.toon.json",
     "actor_id": null,
     "lupo_agent": null,
     "x_lupo_forwarded": null,
@@ -12096,7 +12096,7 @@
     "footer_present": false
   },
   {
-    "file_path_from_root": "docs/toons/lupo_search_index.toon.json",
+    "file_path_from_root": "lupo-database/lupopedia/toon/lupo_search_index.toon.json",
     "actor_id": null,
     "lupo_agent": null,
     "x_lupo_forwarded": null,
@@ -12108,7 +12108,7 @@
     "footer_present": false
   },
   {
-    "file_path_from_root": "docs/toons/lupo_search_rebuild_log.toon.json",
+    "file_path_from_root": "lupo-database/lupopedia/toon/lupo_search_rebuild_log.toon.json",
     "actor_id": null,
     "lupo_agent": null,
     "x_lupo_forwarded": null,
@@ -12120,7 +12120,7 @@
     "footer_present": false
   },
   {
-    "file_path_from_root": "docs/toons/lupo_semantic_categories.toon.json",
+    "file_path_from_root": "lupo-database/lupopedia/toon/lupo_semantic_categories.toon.json",
     "actor_id": null,
     "lupo_agent": null,
     "x_lupo_forwarded": null,
@@ -12132,7 +12132,7 @@
     "footer_present": false
   },
   {
-    "file_path_from_root": "docs/toons/lupo_semantic_content_views.toon.json",
+    "file_path_from_root": "lupo-database/lupopedia/toon/lupo_semantic_content_views.toon.json",
     "actor_id": null,
     "lupo_agent": null,
     "x_lupo_forwarded": null,
@@ -12144,7 +12144,7 @@
     "footer_present": false
   },
   {
-    "file_path_from_root": "docs/toons/lupo_semantic_navigation_overview.toon.json",
+    "file_path_from_root": "lupo-database/lupopedia/toon/lupo_semantic_navigation_overview.toon.json",
     "actor_id": null,
     "lupo_agent": null,
     "x_lupo_forwarded": null,
@@ -12156,7 +12156,7 @@
     "footer_present": false
   },
   {
-    "file_path_from_root": "docs/toons/lupo_semantic_overlays.toon.json",
+    "file_path_from_root": "lupo-database/lupopedia/toon/lupo_semantic_overlays.toon.json",
     "actor_id": null,
     "lupo_agent": null,
     "x_lupo_forwarded": null,
@@ -12168,7 +12168,7 @@
     "footer_present": false
   },
   {
-    "file_path_from_root": "docs/toons/lupo_semantic_paths.toon.json",
+    "file_path_from_root": "lupo-database/lupopedia/toon/lupo_semantic_paths.toon.json",
     "actor_id": null,
     "lupo_agent": null,
     "x_lupo_forwarded": null,
@@ -12180,7 +12180,7 @@
     "footer_present": false
   },
   {
-    "file_path_from_root": "docs/toons/lupo_semantic_relationships.toon.json",
+    "file_path_from_root": "lupo-database/lupopedia/toon/lupo_semantic_relationships.toon.json",
     "actor_id": null,
     "lupo_agent": null,
     "x_lupo_forwarded": null,
@@ -12192,7 +12192,7 @@
     "footer_present": false
   },
   {
-    "file_path_from_root": "docs/toons/lupo_semantic_search_index.toon.json",
+    "file_path_from_root": "lupo-database/lupopedia/toon/lupo_semantic_search_index.toon.json",
     "actor_id": null,
     "lupo_agent": null,
     "x_lupo_forwarded": null,
@@ -12204,7 +12204,7 @@
     "footer_present": false
   },
   {
-    "file_path_from_root": "docs/toons/lupo_semantic_tags.toon.json",
+    "file_path_from_root": "lupo-database/lupopedia/toon/lupo_semantic_tags.toon.json",
     "actor_id": null,
     "lupo_agent": null,
     "x_lupo_forwarded": null,
@@ -12216,7 +12216,7 @@
     "footer_present": false
   },
   {
-    "file_path_from_root": "docs/toons/lupo_semantic_translations.toon.json",
+    "file_path_from_root": "lupo-database/lupopedia/toon/lupo_semantic_translations.toon.json",
     "actor_id": null,
     "lupo_agent": null,
     "x_lupo_forwarded": null,
@@ -12228,7 +12228,7 @@
     "footer_present": false
   },
   {
-    "file_path_from_root": "docs/toons/lupo_sessions.toon.json",
+    "file_path_from_root": "lupo-database/lupopedia/toon/lupo_sessions.toon.json",
     "actor_id": null,
     "lupo_agent": null,
     "x_lupo_forwarded": null,
@@ -12240,7 +12240,7 @@
     "footer_present": false
   },
   {
-    "file_path_from_root": "docs/toons/lupo_session_events.toon.json",
+    "file_path_from_root": "lupo-database/lupopedia/toon/lupo_session_events.toon.json",
     "actor_id": null,
     "lupo_agent": null,
     "x_lupo_forwarded": null,
@@ -12252,7 +12252,7 @@
     "footer_present": false
   },
   {
-    "file_path_from_root": "docs/toons/lupo_system_config.toon.json",
+    "file_path_from_root": "lupo-database/lupopedia/toon/lupo_system_config.toon.json",
     "actor_id": null,
     "lupo_agent": null,
     "x_lupo_forwarded": null,
@@ -12264,7 +12264,7 @@
     "footer_present": false
   },
   {
-    "file_path_from_root": "docs/toons/lupo_system_events.toon.json",
+    "file_path_from_root": "lupo-database/lupopedia/toon/lupo_system_events.toon.json",
     "actor_id": null,
     "lupo_agent": null,
     "x_lupo_forwarded": null,
@@ -12276,7 +12276,7 @@
     "footer_present": false
   },
   {
-    "file_path_from_root": "docs/toons/lupo_system_health_snapshots.toon.json",
+    "file_path_from_root": "lupo-database/lupopedia/toon/lupo_system_health_snapshots.toon.json",
     "actor_id": null,
     "lupo_agent": null,
     "x_lupo_forwarded": null,
@@ -12288,7 +12288,7 @@
     "footer_present": false
   },
   {
-    "file_path_from_root": "docs/toons/lupo_system_logs.toon.json",
+    "file_path_from_root": "lupo-database/lupopedia/toon/lupo_system_logs.toon.json",
     "actor_id": null,
     "lupo_agent": null,
     "x_lupo_forwarded": null,
@@ -12300,7 +12300,7 @@
     "footer_present": false
   },
   {
-    "file_path_from_root": "docs/toons/lupo_tab_events.toon.json",
+    "file_path_from_root": "lupo-database/lupopedia/toon/lupo_tab_events.toon.json",
     "actor_id": null,
     "lupo_agent": null,
     "x_lupo_forwarded": null,
@@ -12312,7 +12312,7 @@
     "footer_present": false
   },
   {
-    "file_path_from_root": "docs/toons/lupo_temporal_coherence_snapshots.toon.json",
+    "file_path_from_root": "lupo-database/lupopedia/toon/lupo_temporal_coherence_snapshots.toon.json",
     "actor_id": null,
     "lupo_agent": null,
     "x_lupo_forwarded": null,
@@ -12324,7 +12324,7 @@
     "footer_present": false
   },
   {
-    "file_path_from_root": "docs/toons/lupo_tldnr.toon.json",
+    "file_path_from_root": "lupo-database/lupopedia/toon/lupo_tldnr.toon.json",
     "actor_id": null,
     "lupo_agent": null,
     "x_lupo_forwarded": null,
@@ -12336,7 +12336,7 @@
     "footer_present": false
   },
   {
-    "file_path_from_root": "docs/toons/lupo_truth_answers.toon.json",
+    "file_path_from_root": "lupo-database/lupopedia/toon/lupo_truth_answers.toon.json",
     "actor_id": null,
     "lupo_agent": null,
     "x_lupo_forwarded": null,
@@ -12348,7 +12348,7 @@
     "footer_present": false
   },
   {
-    "file_path_from_root": "docs/toons/lupo_truth_evidence.toon.json",
+    "file_path_from_root": "lupo-database/lupopedia/toon/lupo_truth_evidence.toon.json",
     "actor_id": null,
     "lupo_agent": null,
     "x_lupo_forwarded": null,
@@ -12360,7 +12360,7 @@
     "footer_present": false
   },
   {
-    "file_path_from_root": "docs/toons/lupo_truth_items.toon.json",
+    "file_path_from_root": "lupo-database/lupopedia/toon/lupo_truth_items.toon.json",
     "actor_id": null,
     "lupo_agent": null,
     "x_lupo_forwarded": null,
@@ -12372,7 +12372,7 @@
     "footer_present": false
   },
   {
-    "file_path_from_root": "docs/toons/lupo_truth_questions.toon.json",
+    "file_path_from_root": "lupo-database/lupopedia/toon/lupo_truth_questions.toon.json",
     "actor_id": null,
     "lupo_agent": null,
     "x_lupo_forwarded": null,
@@ -12384,7 +12384,7 @@
     "footer_present": false
   },
   {
-    "file_path_from_root": "docs/toons/lupo_truth_questions_map.toon.json",
+    "file_path_from_root": "lupo-database/lupopedia/toon/lupo_truth_questions_map.toon.json",
     "actor_id": null,
     "lupo_agent": null,
     "x_lupo_forwarded": null,
@@ -12396,7 +12396,7 @@
     "footer_present": false
   },
   {
-    "file_path_from_root": "docs/toons/lupo_truth_relations.toon.json",
+    "file_path_from_root": "lupo-database/lupopedia/toon/lupo_truth_relations.toon.json",
     "actor_id": null,
     "lupo_agent": null,
     "x_lupo_forwarded": null,
@@ -12408,7 +12408,7 @@
     "footer_present": false
   },
   {
-    "file_path_from_root": "docs/toons/lupo_truth_sources.toon.json",
+    "file_path_from_root": "lupo-database/lupopedia/toon/lupo_truth_sources.toon.json",
     "actor_id": null,
     "lupo_agent": null,
     "x_lupo_forwarded": null,
@@ -12420,7 +12420,7 @@
     "footer_present": false
   },
   {
-    "file_path_from_root": "docs/toons/lupo_truth_topics.toon.json",
+    "file_path_from_root": "lupo-database/lupopedia/toon/lupo_truth_topics.toon.json",
     "actor_id": null,
     "lupo_agent": null,
     "x_lupo_forwarded": null,
@@ -12432,7 +12432,7 @@
     "footer_present": false
   },
   {
-    "file_path_from_root": "docs/toons/lupo_unregistry.toon.json",
+    "file_path_from_root": "lupo-database/lupopedia/toon/lupo_unregistry.toon.json",
     "actor_id": null,
     "lupo_agent": null,
     "x_lupo_forwarded": null,
@@ -12444,7 +12444,7 @@
     "footer_present": false
   },
   {
-    "file_path_from_root": "docs/toons/lupo_uploads.toon.json",
+    "file_path_from_root": "lupo-database/lupopedia/toon/lupo_uploads.toon.json",
     "actor_id": null,
     "lupo_agent": null,
     "x_lupo_forwarded": null,
@@ -12456,7 +12456,7 @@
     "footer_present": false
   },
   {
-    "file_path_from_root": "docs/toons/lupo_user_comments.toon.json",
+    "file_path_from_root": "lupo-database/lupopedia/toon/lupo_user_comments.toon.json",
     "actor_id": null,
     "lupo_agent": null,
     "x_lupo_forwarded": null,
@@ -12468,7 +12468,7 @@
     "footer_present": false
   },
   {
-    "file_path_from_root": "docs/toons/lupo_visits.toon.json",
+    "file_path_from_root": "lupo-database/lupopedia/toon/lupo_visits.toon.json",
     "actor_id": null,
     "lupo_agent": null,
     "x_lupo_forwarded": null,
@@ -12480,7 +12480,7 @@
     "footer_present": false
   },
   {
-    "file_path_from_root": "docs/toons/lupo_world_events.toon.json",
+    "file_path_from_root": "lupo-database/lupopedia/toon/lupo_world_events.toon.json",
     "actor_id": null,
     "lupo_agent": null,
     "x_lupo_forwarded": null,
@@ -12492,7 +12492,7 @@
     "footer_present": false
   },
   {
-    "file_path_from_root": "docs/toons/lupo_world_registry.toon.json",
+    "file_path_from_root": "lupo-database/lupopedia/toon/lupo_world_registry.toon.json",
     "actor_id": null,
     "lupo_agent": null,
     "x_lupo_forwarded": null,

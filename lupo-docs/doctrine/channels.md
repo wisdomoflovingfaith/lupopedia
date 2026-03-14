@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\doctrine\channels.md"
+  file_path_from_root: "lupo-docs\doctrine\channels.md"
   file_hash: "6665e9e4b9052b1b4ba0d23ca66dbe050a0d93319fc1f7708fe64591df3cf040"
-  file_path_from_root: "docs\doctrine\channels.md"
+  file_path_from_root: "lupo-docs\doctrine\channels.md"
   file_hash: "3ad742903a0c628e9c025f2fcbda596a24e3770aed75879940614f758dd4d57b"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -64,7 +64,7 @@ lupopedia.footer:
 ---
 # FLIP Header (alias: Wolfie Header, CROP Header, FLIPPING Header)
 wolfie.headers: explicit architecture with structured clarity for every file.
-file_path_from_root: docs/doctrine/channels.md
+file_path_from_root: lupo-docs/doctrine/channels.md
 file.last_modified_system_version: "4.0.16"
 file.last_modified_utc: "20260218000000"
 channel_id: 42   # ANUBIS adoption channel
@@ -74,7 +74,7 @@ atoms:
   recovery_event: true
 X-Lupo-Actor-ID: 2035
 X-Lupo-Actor-Identity: "Lupopedia Audit Tool (Auto-Fixed)"
-X-Lupo-File-Path: docs/doctrine/channels.md
+X-Lupo-File-Path: lupo-docs/doctrine/channels.md
 ---
 
 # Lupopedia Channel System Doctrine

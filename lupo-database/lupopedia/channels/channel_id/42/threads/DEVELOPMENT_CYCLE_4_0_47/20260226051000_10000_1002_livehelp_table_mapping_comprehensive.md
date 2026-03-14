@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "channels\42\threads\DEVELOPMENT_CYCLE_4_0_47\20260226051000_10000_1002_livehelp_table_mapping_comprehensive.md"
+  file_path_from_root: "lupo-channels\42\threads\DEVELOPMENT_CYCLE_4_0_47\20260226051000_10000_1002_livehelp_table_mapping_comprehensive.md"
   file_hash: "9f47f3dd3e4d18f5223686e9daebb3ad18320702b5ba7275636175264f37e10d"
-  file_path_from_root: "channels\42\threads\DEVELOPMENT_CYCLE_4_0_47\20260226051000_10000_1002_livehelp_table_mapping_comprehensive.md"
+  file_path_from_root: "lupo-channels\42\threads\DEVELOPMENT_CYCLE_4_0_47\20260226051000_10000_1002_livehelp_table_mapping_comprehensive.md"
   file_hash: "724e9ed56715802af7f4082d6b0bbcefeada7db4ac3954a003d99910d06efa72"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -63,7 +63,7 @@ lupopedia.footer:
 
 ---
 wolfie.headers: {
-  file_path_from_root: "channels/42/threads/DEVELOPMENT_CYCLE_4_0_47/20260226051000_10000_1002_livehelp_table_mapping_comprehensive.md",
+  file_path_from_root: "lupo-channels/42/threads/DEVELOPMENT_CYCLE_4_0_47/20260226051000_10000_1002_livehelp_table_mapping_comprehensive.md",
   system_version: "4.0.47",
   channel_id: 42,
   mood_rgb: "8B4513",
@@ -82,19 +82,19 @@ wolfie.headers: {
 
 flip.footer: {
   inbound_edges: [
-    { from: "docs/doctrine/migrations/livehelp_sessions_migration.md", type: "references", weight: 1.0, hashtag: "#source" },
-    { from: "docs/doctrine/migrations/livehelp_users_migration.md", type: "references", weight: 1.0, hashtag: "#source" },
-    { from: "docs/doctrine/migrations/livehelp_departments_migration.md", type: "references", weight: 1.0, hashtag: "#source" },
-    { from: "docs/doctrine/migrations/livehelp_operator_departments_migration.md", type: "references", weight: 1.0, hashtag: "#source" },
-    { from: "database/migrations/import_from_old_crafty_syntax.sql", type: "references", weight: 0.9, hashtag: "#implementation" }
+    { from: "lupo-docs/doctrine/migrations/livehelp_sessions_migration.md", type: "references", weight: 1.0, hashtag: "#source" },
+    { from: "lupo-docs/doctrine/migrations/livehelp_users_migration.md", type: "references", weight: 1.0, hashtag: "#source" },
+    { from: "lupo-docs/doctrine/migrations/livehelp_departments_migration.md", type: "references", weight: 1.0, hashtag: "#source" },
+    { from: "lupo-docs/doctrine/migrations/livehelp_operator_departments_migration.md", type: "references", weight: 1.0, hashtag: "#source" },
+    { from: "lupo-database/migrations/import_from_old_crafty_syntax.sql", type: "references", weight: 0.9, hashtag: "#implementation" }
   ],
   outbound_edges: [
-    { to: "channels/42/threads/DEVELOPMENT_CYCLE_4_0_47/20260226050900_10000_1002_livehelp_session_actor_mapping_analysis.md", type: "complements", weight: 0.8, hashtag: "#related_analysis" },
+    { to: "lupo-channels/42/threads/DEVELOPMENT_CYCLE_4_0_47/20260226050900_10000_1002_livehelp_session_actor_mapping_analysis.md", type: "complements", weight: 0.8, hashtag: "#related_analysis" },
     { to: "livehelp.php", type: "informs", weight: 0.9, hashtag: "#implementation" }
   ],
   referenced_by_actors: [1002, 1003, 1005],
   references: {
-    by_files: ["docs/doctrine/migrations/livehelp_*.md", "database/migrations/import_from_old_crafty_syntax.sql"],
+    by_files: ["lupo-docs/doctrine/migrations/livehelp_*.md", "lupo-database/migrations/import_from_old_crafty_syntax.sql"],
     by_actors: [1002, 1003, 1005]
   },
   semantic_tags: ["livehelp_table_mapping", "crafty_syntax_migration", "lupopedia_architecture"],
@@ -121,7 +121,7 @@ This analysis comprehensively maps all 28 Crafty Syntax livehelp tables to their
 ### Category 1: Core Identity & Authentication (IMPORTED)
 
 #### livehelp_users → lupo_auth_users + lupo_actors
-**Reference**: `docs/doctrine/migrations/livehelp_users_migration.md`
+**Reference**: `lupo-docs/doctrine/migrations/livehelp_users_migration.md`
 
 **Legacy Structure**:
 - Mixed operators and visitors in single table
@@ -141,7 +141,7 @@ This analysis comprehensively maps all 28 Crafty Syntax livehelp tables to their
 - Session state separated from identity
 
 #### livehelp_departments → lupo_departments + lupo_department_metadata
-**Reference**: `docs/doctrine/migrations/livehelp_departments_migration.md`
+**Reference**: `lupo-docs/doctrine/migrations/livehelp_departments_migration.md`
 
 **Legacy Structure**:
 - Kitchen-sink table with routing, UI, branding, behavior settings
@@ -157,7 +157,7 @@ This analysis comprehensively maps all 28 Crafty Syntax livehelp tables to their
 - Theme and branding data accessible but separated
 
 #### livehelp_operator_departments → lupo_actor_departments
-**Reference**: `docs/doctrine/migrations/livehelp_operator_departments_migration.md`
+**Reference**: `lupo-docs/doctrine/migrations/livehelp_operator_departments_migration.md`
 
 **Legacy Structure**:
 - Clean mapping of operators to departments
@@ -176,7 +176,7 @@ This analysis comprehensively maps all 28 Crafty Syntax livehelp tables to their
 ### Category 2: Session & State Management (DROPPED/TRANSFORMED)
 
 #### livehelp_sessions → DROPPED
-**Reference**: `docs/doctrine/migrations/livehelp_sessions_migration.md`
+**Reference**: `lupo-docs/doctrine/migrations/livehelp_sessions_migration.md`
 
 **Legacy Structure**:
 - Ephemeral session state
@@ -193,7 +193,7 @@ This analysis comprehensively maps all 28 Crafty Syntax livehelp tables to their
 - Device fingerprinting support
 
 #### livehelp_channels → DROPPED
-**Reference**: `docs/doctrine/migrations/livehelp_channels_migration.md`
+**Reference**: `lupo-docs/doctrine/migrations/livehelp_channels_migration.md`
 
 **Legacy Structure**:
 - Chat channel management
@@ -210,7 +210,7 @@ This analysis comprehensively maps all 28 Crafty Syntax livehelp tables to their
 - Message persistence and search
 
 #### livehelp_operator_channels → DROPPED
-**Reference**: `docs/doctrine/migrations/livehelp_operator_channels_migration.md`
+**Reference**: `lupo-docs/doctrine/migrations/livehelp_operator_channels_migration.md`
 
 **Legacy Structure**:
 - Real-time operator channel assignments
@@ -229,7 +229,7 @@ This analysis comprehensively maps all 28 Crafty Syntax livehelp tables to their
 ### Category 3: Content & Communication (IMPORTED/TRANSFORMED)
 
 #### livehelp_messages → lupo_dialog_messages
-**Reference**: `docs/doctrine/migrations/livehelp_messages_migration.md`
+**Reference**: `lupo-docs/doctrine/migrations/livehelp_messages_migration.md`
 
 **Legacy Structure**:
 - Chat message storage
@@ -246,7 +246,7 @@ This analysis comprehensively maps all 28 Crafty Syntax livehelp tables to their
 - Modern message threading
 
 #### livehelp_transcripts → lupo_dialog_transcripts
-**Reference**: `docs/doctrine/migrations/livehelp_transcripts_migration.md`
+**Reference**: `lupo-docs/doctrine/migrations/livehelp_transcripts_migration.md`
 
 **Legacy Structure**:
 - Chat transcript storage
@@ -265,7 +265,7 @@ This analysis comprehensively maps all 28 Crafty Syntax livehelp tables to their
 ### Category 4: Configuration & Features (MIXED)
 
 #### livehelp_config → lupo_crafty_syntax_config
-**Reference**: `docs/doctrine/migrations/livehelp_config_migration.md`
+**Reference**: `lupo-docs/doctrine/migrations/livehelp_config_migration.md`
 
 **Legacy Structure**:
 - System configuration settings
@@ -281,7 +281,7 @@ This analysis comprehensively maps all 28 Crafty Syntax livehelp tables to their
 - Backward compatibility maintained
 
 #### livehelp_qa → lupo_crafty_syntax_qa
-**Reference**: `docs/doctrine/migrations/livehelp_qa_migration.md`
+**Reference**: `lupo-docs/doctrine/migrations/livehelp_qa_migration.md`
 
 **Legacy Structure**:
 - Q&A system for canned responses
@@ -296,7 +296,7 @@ This analysis comprehensively maps all 28 Crafty Syntax livehelp tables to their
 - Enhanced search and categorization
 
 #### livehelp_questions → lupo_crafty_syntax_questions
-**Reference**: `docs/doctrine/migrations/livehelp_questions_migration.md`
+**Reference**: `lupo-docs/doctrine/migrations/livehelp_questions_migration.md`
 
 **Legacy Structure**:
 - Pre-chat questions for visitors
@@ -313,7 +313,7 @@ This analysis comprehensively maps all 28 Crafty Syntax livehelp tables to their
 ### Category 5: Marketing & Automation (PRESERVED)
 
 #### livehelp_autoinvite → lupo_crafty_syntax_auto_invite
-**Reference**: `docs/doctrine/migrations/livehelp_autoinvite_migration.md`
+**Reference**: `lupo-docs/doctrine/migrations/livehelp_autoinvite_migration.md`
 
 **Legacy Structure**:
 - Automatic chat invitation rules
@@ -328,7 +328,7 @@ This analysis comprehensively maps all 28 Crafty Syntax livehelp tables to their
 - Enhanced targeting options
 
 #### livehelp_layerinvites → lupo_crafty_syntax_layer_invites
-**Reference**: `docs/doctrine/migrations/livehelp_layerinvites_migration.md`
+**Reference**: `lupo-docs/doctrine/migrations/livehelp_layerinvites_migration.md`
 
 **Legacy Structure**:
 - Layer-based invitation system
@@ -345,7 +345,7 @@ This analysis comprehensively maps all 28 Crafty Syntax livehelp tables to their
 ### Category 6: Lead Management (PRESERVED)
 
 #### livehelp_leads → lupo_crafty_syntax_leads
-**Reference**: `docs/doctrine/migrations/livehelp_leads_migration.md`
+**Reference**: `lupo-docs/doctrine/migrations/livehelp_leads_migration.md`
 
 **Legacy Structure**:
 - Lead capture and management
@@ -360,7 +360,7 @@ This analysis comprehensively maps all 28 Crafty Syntax livehelp tables to their
 - Enhanced lead tracking
 
 #### livehelp_leavemessage → lupo_crafty_syntax_leave_message
-**Reference**: `docs/doctrine/migrations/livehelp_leavemessage_migration.md`
+**Reference**: `lupo-docs/doctrine/migrations/livehelp_leavemessage_migration.md`
 
 **Legacy Structure**:
 - Offline message capture
@@ -377,7 +377,7 @@ This analysis comprehensively maps all 28 Crafty Syntax livehelp tables to their
 ### Category 7: Analytics & Tracking (PRESERVED)
 
 #### livehelp_visit_track → lupo_crafty_syntax_visit_track
-**Reference**: `docs/doctrine/migrations/livehelp_visit_track_migration.md`
+**Reference**: `lupo-docs/doctrine/migrations/livehelp_visit_track_migration.md`
 
 **Legacy Structure**:
 - Visitor tracking and analytics
@@ -392,7 +392,7 @@ This analysis comprehensively maps all 28 Crafty Syntax livehelp tables to their
 - Enhanced reporting
 
 #### livehelp_paths_firsts → lupo_crafty_syntax_paths_firsts
-**Reference**: `docs/doctrine/migrations/livehelp_paths_firsts_migration.md`
+**Reference**: `lupo-docs/doctrine/migrations/livehelp_paths_firsts_migration.md`
 
 **Legacy Structure**:
 - Path tracking analytics
@@ -407,7 +407,7 @@ This analysis comprehensively maps all 28 Crafty Syntax livehelp tables to their
 - Enhanced reporting
 
 #### livehelp_referers_daily → lupo_crafty_syntax_referers_daily
-**Reference**: `docs/doctrine/migrations/livehelp_referers_daily_migration.md`
+**Reference**: `lupo-docs/doctrine/migrations/livehelp_referers_daily_migration.md`
 
 **Legacy Structure**:
 - Referrer tracking
@@ -424,7 +424,7 @@ This analysis comprehensively maps all 28 Crafty Syntax livehelp tables to their
 ### Category 8: System & Infrastructure (DROPPED)
 
 #### livehelp_identity → DROPPED
-**Reference**: `docs/doctrine/migrations/livehelp_identity_migration.md`
+**Reference**: `lupo-docs/doctrine/migrations/livehelp_identity_migration.md`
 
 **Legacy Structure**:
 - Identity management (redundant with users)
@@ -437,7 +437,7 @@ This analysis comprehensively maps all 28 Crafty Syntax livehelp tables to their
 - Modern identity system superior
 
 #### livehelp_emailque → DROPPED
-**Reference**: `docs/doctrine/migrations/livehelp_emailque_migration.md`
+**Reference**: `lupo-docs/doctrine/migrations/livehelp_emailque_migration.md`
 
 **Legacy Structure**:
 - Email queue management
@@ -451,7 +451,7 @@ This analysis comprehensively maps all 28 Crafty Syntax livehelp tables to their
 - Enhanced queue management
 
 #### livehelp_smilies → DROPPED
-**Reference**: `docs/doctrine/migrations/livehelp_smilies_migration.md`
+**Reference**: `lupo-docs/doctrine/migrations/livehelp_smilies_migration.md`
 
 **Legacy Structure**:
 - Emoticon/smiley definitions
@@ -466,7 +466,7 @@ This analysis comprehensively maps all 28 Crafty Syntax livehelp tables to their
 - Enhanced visual experience
 
 #### livehelp_keywords → DROPPED
-**Reference**: `docs/doctrine/migrations/livehelp_keywords_migration.md`
+**Reference**: `lupo-docs/doctrine/migrations/livehelp_keywords_migration.md`
 
 **Legacy Structure**:
 - Keyword-based triggering
@@ -481,7 +481,7 @@ This analysis comprehensively maps all 28 Crafty Syntax livehelp tables to their
 - Enhanced triggering
 
 #### livehelp_modules → DROPPED
-**Reference**: `docs/doctrine/migrations/livehelp_modules_migration.md`
+**Reference**: `lupo-docs/doctrine/migrations/livehelp_modules_migration.md`
 
 **Legacy Structure**:
 - Module system for extensibility
@@ -496,7 +496,7 @@ This analysis comprehensively maps all 28 Crafty Syntax livehelp tables to their
 - Enhanced module system
 
 #### livehelp_modules_dep → DROPPED
-**Reference**: `docs/doctrine/migrations/livehelp_modules_dep_migration.md`
+**Reference**: `lupo-docs/doctrine/migrations/livehelp_modules_dep_migration.md`
 
 **Legacy Structure**:
 - Module dependencies
@@ -511,7 +511,7 @@ This analysis comprehensively maps all 28 Crafty Syntax livehelp tables to their
 - Enhanced dependency resolution
 
 #### livehelp_websites → DROPPED
-**Reference**: `docs/doctrine/migrations/livehelp_websites_migration.md`
+**Reference**: `lupo-docs/doctrine/migrations/livehelp_websites_migration.md`
 
 **Legacy Structure**:
 - Website management
@@ -526,7 +526,7 @@ This analysis comprehensively maps all 28 Crafty Syntax livehelp tables to their
 - Enhanced multi-site support
 
 #### livehelp_quick → DROPPED
-**Reference**: `docs/doctrine/migrations/livehelp_quick_migration.md`
+**Reference**: `lupo-docs/doctrine/migrations/livehelp_quick_migration.md`
 
 **Legacy Structure**:
 - Quick response system
@@ -541,7 +541,7 @@ This analysis comprehensively maps all 28 Crafty Syntax livehelp tables to their
 - Enhanced response management
 
 #### livehelp_emails → DROPPED
-**Reference**: `docs/doctrine/migrations/livehelp_emails_migration.md`
+**Reference**: `lupo-docs/doctrine/migrations/livehelp_emails_migration.md`
 
 **Legacy Structure**:
 - Email templates and management
@@ -609,9 +609,9 @@ This analysis comprehensively maps all 28 Crafty Syntax livehelp tables to their
 5. **Extensibility**: New features can be added easily
 
 ## Files Referenced
-- All 28 `docs/doctrine/migrations/livehelp_*.md` files
-- `database/migrations/import_from_old_crafty_syntax.sql`
-- `legacy/craftysyntax/livehelp.php`
+- All 28 `lupo-docs/doctrine/migrations/livehelp_*.md` files
+- `lupo-database/migrations/import_from_old_crafty_syntax.sql`
+- `lupo-legacy/craftysyntax/livehelp.php`
 - `livehelp.php`
 
 **Status**: Comprehensive mapping complete

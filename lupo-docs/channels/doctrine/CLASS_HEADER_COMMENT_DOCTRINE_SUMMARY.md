@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\channels\doctrine\CLASS_HEADER_COMMENT_DOCTRINE_SUMMARY.md"
+  file_path_from_root: "lupo-docs\channels\doctrine\CLASS_HEADER_COMMENT_DOCTRINE_SUMMARY.md"
   file_hash: "63b2798fc364adfd141da80df85c543c36a86ba33ad166c74e8cef5556180bec"
-  file_path_from_root: "docs\channels\doctrine\CLASS_HEADER_COMMENT_DOCTRINE_SUMMARY.md"
+  file_path_from_root: "lupo-docs\channels\doctrine\CLASS_HEADER_COMMENT_DOCTRINE_SUMMARY.md"
   file_hash: "82494ad89316d5cb12b97a0dd90ff00ab56bca4ee5f0d188640161ebc950ebce"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -93,7 +93,7 @@ file:
 
 ### 1. New Doctrine Document
 
-**File:** `docs/doctrine/CLASS_HEADER_COMMENT_DOCTRINE.md`
+**File:** `lupo-docs/doctrine/CLASS_HEADER_COMMENT_DOCTRINE.md`
 
 **Purpose:** Define mandatory comment block format for all AI-generated PHP classes, following Captain Wolfie's Crafty Syntax coding style from 2002-2014.
 
@@ -268,7 +268,7 @@ Before submitting a class file:
 
 ## Files Modified
 
-1. ✅ **Created:** `docs/doctrine/CLASS_HEADER_COMMENT_DOCTRINE.md`
+1. ✅ **Created:** `lupo-docs/doctrine/CLASS_HEADER_COMMENT_DOCTRINE.md`
    - Complete doctrine document
    - Mandatory rules for AI agents
    - Examples and validation checklist

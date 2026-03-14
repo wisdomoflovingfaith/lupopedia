@@ -3,7 +3,7 @@ lupopedia.headers:
   lupopedia.version: "4.0.69"
   lupopedia.schema: "documentation"
   system_version: "4.0.69"
-  file_path_from_root: "docs/status/CURSOR_IMPLEMENTATION_CORRECTIONS_FROM_JETBRAINS_AND_ANTIGRAVITY_4.0.69.md"
+  file_path_from_root: "lupo-docs/status/CURSOR_IMPLEMENTATION_CORRECTIONS_FROM_JETBRAINS_AND_ANTIGRAVITY_4.0.69.md"
   web_path: "http://www.lupopedia.com/status/CURSOR_IMPLEMENTATION_CORRECTIONS_FROM_JETBRAINS_AND_ANTIGRAVITY_4.0.69"
   last_modified_utc: "20260312"
   channel_id: 42
@@ -34,7 +34,7 @@ This report documents the implementation of agreed corrections identified by **J
 | JetBrains | `lupo-docs/status/jetbrains_wolfie_review_actors_channels_4_0_69_20260311.md` | HOW_ACTORS_ORCHESTRATE PK error, CHANGELOG TOON count drift, lupo_actors.toon sample row, doc–schema consistency |
 | Antigravity | `lupo-docs/status/ANTIGRAVITY_WOLFIE_IMPLEMENTATION_REVIEW_4_0_69.md` | assigned_to_actor_id vs owner_actor_id/acting_as_actor_id for lupo_tasks, seed ID alignment, faucet traceability population |
 
-Additional artifacts: `docs/status/HOW_ACTORS_ORCHESTRATE_ON_CHANNELS.md`, `CHANGELOG.md`, `lupo-database/lupopedia/toon/lupo_actors.toon`, `lupo-database/lupopedia/mysql/install/install_new_lupopedia.sql`, `lupo-bin/lupo.php`, `lupo-includes/modules/channels/channel-send-api.php`, `lupo-bin/session_manager.php`, seed files.
+Additional artifacts: `lupo-docs/status/HOW_ACTORS_ORCHESTRATE_ON_CHANNELS.md`, `CHANGELOG.md`, `lupo-database/lupopedia/toon/lupo_actors.toon`, `lupo-database/lupopedia/mysql/install/install_new_lupopedia.sql`, `lupo-bin/lupo.php`, `lupo-includes/modules/channels/channel-send-api.php`, `lupo-bin/session_manager.php`, seed files.
 
 ---
 
@@ -68,7 +68,7 @@ Additional artifacts: `docs/status/HOW_ACTORS_ORCHESTRATE_ON_CHANNELS.md`, `CHAN
 
 ### E. Doc–schema consistency checker
 
-- **scripts/check_doc_schema_consistency.py:** New script. Checks: (1) lupo_actors TOON primary_key = actor_name; (2) install SQL has PRIMARY KEY (actor_name) for lupo_actors; (3) lupo_actor_traits has actor_id, trait_key, federation_node_id in TOON and install; (4) lupo_action_authorization has action_key, required_trait_keys, required_role_keys; (5) lupo_dialog_messages has source_faucet_slug, source_faucet_instance_id; (6) lupo_sessions has faucet_slug, faucet_instance_id; (7) install does **not** create lupo_threads or lupo_messages. Run from project root: `python scripts/check_doc_schema_consistency.py`. Exit 0 = pass, 1 = fail.
+- **lupo-scripts/check_doc_schema_consistency.py:** New script. Checks: (1) lupo_actors TOON primary_key = actor_name; (2) install SQL has PRIMARY KEY (actor_name) for lupo_actors; (3) lupo_actor_traits has actor_id, trait_key, federation_node_id in TOON and install; (4) lupo_action_authorization has action_key, required_trait_keys, required_role_keys; (5) lupo_dialog_messages has source_faucet_slug, source_faucet_instance_id; (6) lupo_sessions has faucet_slug, faucet_instance_id; (7) install does **not** create lupo_threads or lupo_messages. Run from project root: `python lupo-scripts/check_doc_schema_consistency.py`. Exit 0 = pass, 1 = fail.
 
 ---
 
@@ -82,8 +82,8 @@ Additional artifacts: `docs/status/HOW_ACTORS_ORCHESTRATE_ON_CHANNELS.md`, `CHAN
 
 ## 5. Remaining follow-up items
 
-- **TOON regeneration:** JetBrains recommended regenerating TOONs from the live DB. The lupo_actors.toon sample was corrected manually; for full alignment, run `python scripts/generate_toon_files.py` after DB is in desired state and re-check sample data.
-- **Release checklist:** Add a step to run `python scripts/check_doc_schema_consistency.py` before release and to record TOON count (or "see script/output") instead of a fixed number in CHANGELOG.
+- **TOON regeneration:** JetBrains recommended regenerating TOONs from the live DB. The lupo_actors.toon sample was corrected manually; for full alignment, run `python lupo-scripts/generate_toon_files.py` after DB is in desired state and re-check sample data.
+- **Release checklist:** Add a step to run `python lupo-scripts/check_doc_schema_consistency.py` before release and to record TOON count (or "see script/output") instead of a fixed number in CHANGELOG.
 - **LUPO_FAUCET_SLUG:** Document or enforce in bootstrap/entry points (e.g. CLI, web) that when running as an IDE agent, `LUPO_FAUCET_SLUG` (and optionally `LUPO_FAUCET_INSTANCE_ID`) should be set so that message creation always has faucet traceability.
 
 ---

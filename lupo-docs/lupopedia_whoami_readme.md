@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: "docs/lupopedia_whoami_readme.md"
+  file_path_from_root: "lupo-docs/lupopedia_whoami_readme.md"
   last_modified_utc: "20260306"
   system_version: "4.0.61"
   channel_id: 42
@@ -20,8 +20,8 @@ lupopedia.headers:
 
 lupopedia.edges:
   outbound_edges:
-    - { to: "docs/doctrine/ACTOR_PRIMARY_KEY_DOCTRINE.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/required_flare_headers.md", type: "references", weight: 0.9 }
+    - { to: "lupo-docs/doctrine/ACTOR_PRIMARY_KEY_DOCTRINE.md", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/required_flare_headers.md", type: "references", weight: 0.9 }
     - { to: "lupo-database/lupopedia/actors/registry.json", type: "references", weight: 0.9 }
     - { to: "lupo-docs/database/lupopedia/tables/sessions.md", type: "references", weight: 0.9 }
     - { to: "lupo-database/session.md", type: "references", weight: 0.8 }
@@ -155,7 +155,7 @@ Workspace is always computed as `/lupo-actors/{actor_name}/` (or the project’s
 
 ### Required FLARE headers validation
 
-Before printing context, the CLI checks required headers (see **docs/doctrine/required_flare_headers.md**). If any required header is missing from the resolved context, it prints a non-fatal warning (e.g. `WARNING: Missing required FLARE header: actor_name`) and continues.
+Before printing context, the CLI checks required headers (see **lupo-docs/doctrine/required_flare_headers.md**). If any required header is missing from the resolved context, it prints a non-fatal warning (e.g. `WARNING: Missing required FLARE header: actor_name`) and continues.
 
 ### Required Dialog Headers
 

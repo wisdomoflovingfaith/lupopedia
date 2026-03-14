@@ -64,7 +64,7 @@ All 48 planned tables are defined in `future_features_lupopedia.sql`. None are c
 |-------|--------------|----------------|------------|
 | **lupo_tldnr** | “Too long; did not read” summaries per slug. | Topic/summary content; versioned. Fits content/semantic layer. | **Yes** — clear use for summaries and TL;DR. |
 | **lupo_document_embeddings** | Vector/embedding storage for chunks (e.g. semantic search). | `chunk_id`, `embedding_json`, `embedding_model`. Often used by external search/RAG. | **Yes** — if semantic search or RAG is in scope for 4.0.x. |
-| **lupo_documentation_frameworks** | Framework metadata for docs (namespace, channel, collection, orchestrator). | Synthesized docs; links to agents/channels/collections via app logic. | **Yes** — aligns with LUPOPEDIA HEADERS and doc framework. |
+| **lupo_documentation_frameworks** | Framework metadata for docs (namespace, channel, collection, orchestrator). | Synthesized docs; links to lupo-agents/channels/collections via app logic. | **Yes** — aligns with LUPOPEDIA HEADERS and doc framework. |
 | **lupo_legacy_content_mapping** | Legacy URL → semantic URL mapping (redirects, migration). | One row per legacy path; supports post-Crafty URL cleanup. | **Yes** — useful for upgrade and redirects. |
 | **lupo_reference_objects** | Canonical reference entities (citations, bibliography). | `object_type`, `object_slug`, `object_label`; referenced by content. | **Yes** — supports references and citations. |
 | **lupo_reference_cited_by** | Which content cites which reference (many-to-many). | Links `reference_object_id` to `content_id` + section. | **Yes** — pairs with `lupo_reference_objects`. |

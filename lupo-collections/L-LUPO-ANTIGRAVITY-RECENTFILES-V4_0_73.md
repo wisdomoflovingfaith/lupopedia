@@ -72,12 +72,12 @@ lupopedia.footer:
 | **lupo-docs/doctrine/LUPOPEDIA_HEADERS/OPTIONAL_BLOCKS.md** | Engagement block and footer metadata alignment | ✅ Updated |
 | **lupo-docs/doctrine/LUPOPEDIA_HEADERS/DEPRECATION_FLARE_FLIP_FLP.md** | Deprecation notices and mapping | ✅ Updated |
 | **CHANGELOG.md** | Version 4.0.73 entry for header expansion | ✅ Updated |
-| **scripts/generate_planning_toons.py** | Python script for automated TOON generation | ✅ Created |
+| **lupo-scripts/generate_planning_toons.py** | Python script for automated TOON generation | ✅ Created |
 | **lupo-docs/database/lupopedia/tables/active/planning/** | 55 generated planning TOON files | ✅ Created |
 | **lupo-docs/database/lupopedia/tables/active/development/** | 8 inactive tables moved to development status | ✅ Created |
 | **lupo-docs/prompts/20260313_create_planning_toon_files.md** | Implementation prompt/directive | ✅ Created |
-| **scripts/audit_and_move_dev_tables.py** | Python script for auditing table usage | ✅ Created |
-| **database/migrations/20260313_release_4073_hub_collection.sql** | SQL migration for the version hub collection | ✅ Created |
+| **lupo-scripts/audit_and_move_dev_tables.py** | Python script for auditing table usage | ✅ Created |
+| **lupo-database/migrations/20260313_release_4073_hub_collection.sql** | SQL migration for the version hub collection | ✅ Created |
 | **lupo-docs/database/lupopedia/tables/active/lupo_channels.md** | Core table documentation updated with PHP edges | ✅ Updated |
 | **lupo-docs/database/lupopedia/tables/active/lupo_auth_users.md** | Auth Namespace documentation update | ✅ Updated |
 | **lupo-docs/database/lupopedia/tables/active/lupo_auth_providers.md** | Auth Namespace documentation update | ✅ Updated |
@@ -100,8 +100,8 @@ lupopedia.footer:
 | **lupo-docs/database/lupopedia/tables/active/lupo_departments.md** | Org Namespace documentation update | ✅ Updated |
 | **lupo-docs/database/lupopedia/tables/active/lupo_dialog_messages.md** | Dialog Namespace documentation update | ✅ Updated |
 | **lupo-docs/database/lupopedia/tables/active/lupo_edges.md** | Core Namespace documentation update + Grouped Edge support | ✅ Updated |
-| **database/migrations/20260313_add_edge_category_to_lupo_edges.sql** | SQL migration for edge_category support | ✅ Created |
-| **scripts/run_one_time_sql.php** | Minimal SQL runner for shared hosts | ✅ Created |
+| **lupo-database/migrations/20260313_add_edge_category_to_lupo_edges.sql** | SQL migration for edge_category support | ✅ Created |
+| **lupo-scripts/run_one_time_sql.php** | Minimal SQL runner for shared hosts | ✅ Created |
 | **README.md** | Core project documentation update | ✅ Updated |
 | **CHANGELOG.md** | Detailed change log update | ✅ Updated |
 | **lupo-config/global_atoms.yaml** | Global version and date update | ✅ Updated |

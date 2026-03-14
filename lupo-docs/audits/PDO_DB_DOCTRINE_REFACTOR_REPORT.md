@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\PDO_DB_DOCTRINE_REFACTOR_REPORT.md"
+  file_path_from_root: "lupo-docs\PDO_DB_DOCTRINE_REFACTOR_REPORT.md"
   file_hash: "518833d920c32c6590c5ee2d3047159f5ed2f3db3e1b948f045fc57dd3a77b0b"
-  file_path_from_root: "docs\PDO_DB_DOCTRINE_REFACTOR_REPORT.md"
+  file_path_from_root: "lupo-docs\PDO_DB_DOCTRINE_REFACTOR_REPORT.md"
   file_hash: "f81a9d02b47aa740f4b05ebc76381b86264fc66b8a7f1bff5ce8147e03b8cd5f"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -64,8 +64,8 @@ lupopedia.footer:
 
 **Date:** 2026-02-10  
 **Rule:** `.cursor/rules/pdo-db-database-access-doctrine.mdc`  
-**Migration reference:** `docs/doctrine/migrations/`, `MIGRATION_MAPPING_REFERENCE.md`  
-**Schema source:** TOONs (docs/toons — empty); fallback: `database/migrations/install_new_lupopedia.sql`, migration docs.
+**Migration reference:** `lupo-docs/doctrine/migrations/`, `MIGRATION_MAPPING_REFERENCE.md`  
+**Schema source:** TOONs (lupo-docs/toons — empty); fallback: `lupo-database/migrations/install_new_lupopedia.sql`, migration docs.
 
 ---
 
@@ -83,7 +83,7 @@ lupopedia.footer:
 
 | File | Changes |
 |------|--------|
-| **docs/doctrine/migrations/generated/README.md** | Created; documents that one-time SQL migrations go here and are run manually. |
+| **lupo-docs/doctrine/migrations/generated/README.md** | Created; documents that one-time SQL migrations go here and are run manually. |
 | **app/Services/CraftySyntax/LegacyFunctions.php** | Added **crafty_get_session_people($session_id)** (PDO_DB, {prefix}sessions). Refactored **log_toon_event** to PDO_DB insert with prefix. **resolve_actor_from_lupo_user** and **get_current_actor_id** now use PDO_DB and lupo_sessions/lupo_actors (actor_source_type = 'lupo_auth_users'); no lupo_users. |
 | **app/Services/CraftySyntax/LegacyAdminOptions.php** | Replaced lupo_users query with **crafty_get_session_people()**. |
 | **app/Services/CraftySyntax/LegacyAdminChatBot.php** | Replaced lupo_users query with **crafty_get_session_people()**; use assoc keys. |
@@ -131,11 +131,11 @@ lupopedia.footer:
 
 ## 5. One-time SQL migration files generated
 
-- **None.** No new migration files were added under `docs/doctrine/migrations/generated/` in this refactor. The folder exists with a README; schema was taken from install_new_lupopedia.sql and migration docs. If you discover missing columns or tables at runtime, add a one-time SQL file there and run it manually.
+- **None.** No new migration files were added under `lupo-docs/doctrine/migrations/generated/` in this refactor. The folder exists with a README; schema was taken from install_new_lupopedia.sql and migration docs. If you discover missing columns or tables at runtime, add a one-time SQL file there and run it manually.
 
 ---
 
 ## 6. Remaining files (not refactored in this pass)
 
-- **Scripts and setup:** `scripts/migrate_user_mappings.php`, `scripts/validate_tab_mappings.php`, `scripts/setup_help_list_modules.php`, `scripts/verify_grounded_architecture.php`, `scripts/run_migration_4_1_6.php`, `scripts/cleanup_old_directories.php`, `lupo-includes/lupopedia-setup.php` (detect/drop livehelp_* for wizard), `deploy/apply_dialog_schema.php`, `app/Services/System/SystemHealthService.php`, `app/Services/System/LupopediaMigrationController.php`, `lupo-includes/Dialog/Database/DialogDatabase.php`, `lupo-includes/MigrationOrchestrator/`, `lupo-includes/modules/list/list-controller.php`, `lupo-includes/class-thoth*.php`, `lupo-includes/class-iris.php`, `lupo-includes/calss-thoth_topic.php`, `lupo-includes/class-wolfmind.php` — may still use **$db->query()** or **$pdo->query()**; can be migrated in a later pass.
+- **Scripts and setup:** `lupo-scripts/migrate_user_mappings.php`, `lupo-scripts/validate_tab_mappings.php`, `lupo-scripts/setup_help_list_modules.php`, `lupo-scripts/verify_grounded_architecture.php`, `lupo-scripts/run_migration_4_1_6.php`, `lupo-scripts/cleanup_old_directories.php`, `lupo-includes/lupopedia-setup.php` (detect/drop livehelp_* for wizard), `deploy/apply_dialog_schema.php`, `app/Services/System/SystemHealthService.php`, `app/Services/System/LupopediaMigrationController.php`, `lupo-includes/Dialog/Database/DialogDatabase.php`, `lupo-includes/MigrationOrchestrator/`, `lupo-includes/modules/list/list-controller.php`, `lupo-includes/class-thoth*.php`, `lupo-includes/class-iris.php`, `lupo-includes/calss-thoth_topic.php`, `lupo-includes/class-wolfmind.php` — may still use **$db->query()** or **$pdo->query()**; can be migrated in a later pass.
 - **References kept by design:** `lupopedia-setup.php` and migration wizard still mention **livehelp_*** for one-time detect/drop of legacy tables; URL/path names like **livehelp_js.php** and **livehelp-js.php** are file names, not table references.

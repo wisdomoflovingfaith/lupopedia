@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -31,7 +31,7 @@ lupopedia.footer:
 # LUPOPEDIA HEADERS (replaces FLARE)
 ---
 lupopedia.headers:
-  file_path_from_root: "docs/api/channels_admin_endpoints.md"
+  file_path_from_root: "lupo-docs/api/channels_admin_endpoints.md"
   file_hash: "22619a63a66ed3efe03a8eecb6c2511400896dc1c0cb99e2cdbfeeaecb09afa6"
   system_version: "4.0.50"
   channel_id: 1
@@ -53,7 +53,7 @@ lupopedia.headers:
 lupopedia.footer:
   outbound_edges:
     - { to: "lupo-includes/modules/module-loader.php", type: "references", weight: 0.8, reason: "API routing" }
-    - { to: "channels/1/assets/js/channels_comm.js", type: "references", weight: 0.7, reason: "JS comm layer" }
+    - { to: "lupo-channels/1/assets/js/channels_comm.js", type: "references", weight: 0.7, reason: "JS comm layer" }
   semantic_tags: ["api", "channels", "admin"]
   last_verified: "20260227"
   last_verified_by: "codex-ide"

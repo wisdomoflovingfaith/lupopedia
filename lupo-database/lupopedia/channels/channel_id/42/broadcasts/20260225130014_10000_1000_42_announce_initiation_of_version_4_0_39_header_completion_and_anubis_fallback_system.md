@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "channels\42\broadcasts\20260225130014_10000_1000_42_announce_initiation_of_version_4_0_39_header_completion_and_anubis_fallback_system.md"
+  file_path_from_root: "lupo-channels\42\broadcasts\20260225130014_10000_1000_42_announce_initiation_of_version_4_0_39_header_completion_and_anubis_fallback_system.md"
   file_hash: "814be00e821b8b5b58235a4428fc079bfd49d177a4bcbeff92cdfb32328ec01d"
-  file_path_from_root: "channels\42\broadcasts\20260225130014_10000_1000_42_announce_initiation_of_version_4_0_39_header_completion_and_anubis_fallback_system.md"
+  file_path_from_root: "lupo-channels\42\broadcasts\20260225130014_10000_1000_42_announce_initiation_of_version_4_0_39_header_completion_and_anubis_fallback_system.md"
   file_hash: "129221ccf0c5dc413eba2624d856cbef1665a9ccf06238b868e5d15f7b36f620"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -195,8 +195,8 @@ created_utc: "2026-02-25T13:00:00Z"
 
 ## 📁 FILES CREATED
 
-1. `docs/versions/4.0.39/TODO.md` — Complete task breakdown
-2. `channels/42/broadcasts/20260224_kiro_version_4_0_39_initiated.md` — This broadcast
+1. `lupo-docs/versions/4.0.39/TODO.md` — Complete task breakdown
+2. `lupo-channels/42/broadcasts/20260224_kiro_version_4_0_39_initiated.md` — This broadcast
 3. `CHANGELOG.md` — Updated with 4.0.39 section
 
 ---
@@ -271,7 +271,7 @@ created_utc: "2026-02-25T13:00:00Z"
 
 <!-- FLIP_FOOTER_BEGIN
 {
-    "references": "\"docs\/status\/broadcast_collection_42.md\"",
+    "references": "\"lupo-docs\/status\/broadcast_collection_42.md\"",
     "implements": "\"broadcast_standardization\"",
     "depends_on": "\"registry_seeding_completion\"",
     "includes": "\"channel_42_communications\"",

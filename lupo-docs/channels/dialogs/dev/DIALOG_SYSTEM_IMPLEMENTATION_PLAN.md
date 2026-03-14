@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\channels\dialogs\dev\DIALOG_SYSTEM_IMPLEMENTATION_PLAN.md"
+  file_path_from_root: "lupo-docs\channels\dialogs\dev\DIALOG_SYSTEM_IMPLEMENTATION_PLAN.md"
   file_hash: "84919799445affc57dd8cc66a138d0964faa523d3ed989f1fc6175d7705be481"
-  file_path_from_root: "docs\channels\dialogs\dev\DIALOG_SYSTEM_IMPLEMENTATION_PLAN.md"
+  file_path_from_root: "lupo-docs\channels\dialogs\dev\DIALOG_SYSTEM_IMPLEMENTATION_PLAN.md"
   file_hash: "c18b0e29506be3d6a0180cd6d48bef4bbf62473fcfcadc79a32d45cfdcdfd222"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -108,7 +108,7 @@ file:
    - `lupo_agent_properties` - Agent configuration
 
 3. **Documentation**
-   - Architecture documented in `docs/core/ARCHITECTURE_SYNC.md`
+   - Architecture documented in `lupo-docs/core/ARCHITECTURE_SYNC.md`
    - Dialog doctrine in various doctrine files
    - DIALOG agent (Agent 13, Slot 3) defined
 
@@ -120,7 +120,7 @@ file:
 
 2. **Entry Point / API**
    - No public-facing endpoint to send messages
-   - Need `api/dialog/send-message.php` or similar
+   - Need `lupo-api/dialog/send-message.php` or similar
 
 3. **Agent Configuration**
    - `agent_properties` table may be empty
@@ -169,7 +169,7 @@ file:
 **Goal:** Get a message from input to database
 
 **Tasks:**
-1. Create `api/dialog/send-message.php`
+1. Create `lupo-api/dialog/send-message.php`
    - Accept POST with: `actor_id`, `content`, `mood_rgb`, `to_actor`
    - Call `DialogManager->handleMessage()`
    - Return JSON response

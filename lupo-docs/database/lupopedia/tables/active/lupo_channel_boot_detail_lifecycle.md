@@ -13,7 +13,7 @@ lupopedia.headers:
 
 lupopedia.edges:
   outbound_edges:
-    - { to: "lupo-docs/toons/lupo_channel_boot_detail_lifecycle.toon.json", type: "schema_reference", weight: 1.0 }
+    - { to: "lupo-database/lupopedia/toon/lupo_channel_boot_detail_lifecycle.toon.json", type: "schema_reference", weight: 1.0 }
     - { to: "lupo-docs/database/lupopedia/tables/lupo_channel_boot_log.md", type: "references", weight: 0.9 }
     - { to: "lupo-docs/database/lupopedia/tables/lupo_channels.md", type: "references", weight: 0.8 }
   semantic_tags: ["channel", "boot", "lifecycle"]

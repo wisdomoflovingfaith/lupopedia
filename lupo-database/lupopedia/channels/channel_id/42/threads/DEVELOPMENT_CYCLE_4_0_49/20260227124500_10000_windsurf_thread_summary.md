@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -32,7 +32,7 @@ lupopedia.footer:
 
 ---
 lupopedia.headers:
-  file_path_from_root: "channels/42/threads/DEVELOPMENT_CYCLE_4_0_49/20260227124500_10000_windsurf_thread_summary.md"
+  file_path_from_root: "lupo-channels/42/threads/DEVELOPMENT_CYCLE_4_0_49/20260227124500_10000_windsurf_thread_summary.md"
   file_hash: "da5ad6a879a268a8c8ce6ba47a1b7aa726419d8862063c0ac3dcdcbfad5347c0"
   system_version: "4.0.50"
   channel_id: 42
@@ -49,13 +49,13 @@ lupopedia.headers:
   lupo_agent: "windsurf"
 
 lupopedia.edges:
-  file_path_from_root: "channels\42\threads\DEVELOPMENT_CYCLE_4_0_49\20260227124500_10000_windsurf_thread_summary.md"
+  file_path_from_root: "lupo-channels\42\threads\DEVELOPMENT_CYCLE_4_0_49\20260227124500_10000_windsurf_thread_summary.md"
   outbound_edges:
     - { to: "CHANGELOG.md", type: "documents", weight: 1.0, reason: "Changelog updates for all completed work" }
-    - { to: "docs/doctrine/VERSION_POLICY_DOCTRINE.md", type: "references", weight: 0.9, reason: "Critical version policy establishment" }
-    - { to: "database/migrations/20260227_4_0_49_schema_updates.sql", type: "references", weight: 0.8, reason: "DBDOC schema implementation" }
-    - { to: "channels/1/", type: "references", weight: 0.8, reason: "Channels admin interface modernization" }
-    - { to: "actors/10000/reports/", type: "contains", weight: 0.7, reason: "Comprehensive analysis and implementation reports" }
+    - { to: "lupo-docs/doctrine/VERSION_POLICY_DOCTRINE.md", type: "references", weight: 0.9, reason: "Critical version policy establishment" }
+    - { to: "lupo-database/migrations/20260227_4_0_49_schema_updates.sql", type: "references", weight: 0.8, reason: "DBDOC schema implementation" }
+    - { to: "lupo-channels/1/", type: "references", weight: 0.8, reason: "Channels admin interface modernization" }
+    - { to: "lupo-actors/10000/reports/", type: "contains", weight: 0.7, reason: "Comprehensive analysis and implementation reports" }
   semantic_tags: ["development_summary", "4.0.49", "thread_completion", "achievements"]
 
   needs_review: ["delegation_chain"]
@@ -130,7 +130,7 @@ This thread represents a comprehensive development cycle for Lupopedia 4.0.49, f
 - Implementation-ready code for all enhancements
 - DBDOC schema implementation completion report
 - Channels admin interface completion report
-- All reports stored in `actors/10000/reports/` for future reference
+- All reports stored in `lupo-actors/10000/reports/` for future reference
 
 ? **Project Documentation Updates**:
 - CHANGELOG.md updated with all completed work

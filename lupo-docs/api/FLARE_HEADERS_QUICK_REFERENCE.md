@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -31,7 +31,7 @@ lupopedia.footer:
 # LUPOPEDIA HEADERS (replaces FLARE) see http://www.lupopedia.com/lupopedia/content/FLARE and see http://www.lupopedia.com/lupopedia/qa/FLARE
 ---
 lupopedia.headers:
-  file_path_from_root: "docs/FLARE_HEADERS_QUICK_REFERENCE.md"
+  file_path_from_root: "lupo-docs/FLARE_HEADERS_QUICK_REFERENCE.md"
   system_version: "4.0.47"
   channel_id: 1
   actor_id: 1007
@@ -39,17 +39,17 @@ lupopedia.headers:
   delegation_chain: "1007:10000"
   artifact_type: "guide"
   purpose: "Fast reference for implementing FLARE headers in .md files"
-  dialog_message: "Recommended next step: create actors/1007 profile and align any remaining docs/examples to the required FLARE prologue format."
+  dialog_message: "Recommended next step: create lupo-actors/1007 profile and align any remaining lupo-docs/examples to the required FLARE prologue format."
   mood_rgb: "4B0082"
   traits: ["canonical", "comprehensive"]
   tags: ["flare_headers", "quick_reference", "implementation_guide"]
   lupo_agent: "codex-ide"
 lupopedia.edges:
   outbound_edges:
-    - { to: "docs/doctrine/FLARE/FLARE_DOCTRINE.md", type: "references", weight: 1.0 }
-    - { to: "docs/api/FLARE_API.md", type: "references", weight: 0.8 }
-    - { to: "docs/FLARE_HEADERS_COMPLETE_REFERENCE.md", type: "references", weight: 0.9 }
-    - { to: "channels/0/broadcasts/20260224163100_0_10000_minimum_flare_header_requirements.md", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/FLARE/FLARE_DOCTRINE.md", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/api/FLARE_API.md", type: "references", weight: 0.8 }
+    - { to: "lupo-docs/FLARE_HEADERS_COMPLETE_REFERENCE.md", type: "references", weight: 0.9 }
+    - { to: "lupo-channels/0/broadcasts/20260224163100_0_10000_minimum_flare_header_requirements.md", type: "references", weight: 1.0 }
   semantic_tags: ["flare_headers", "quick_reference", "implementation_guide", "4.0.47"]
 
 lupopedia.footer:
@@ -64,7 +64,7 @@ lupopedia.footer:
 - **file_path_from_root:** Exact path from project root
 - **system_version:** Current Lupopedia version (4.0.47)
 - **channel_id:** Channel number (0=doctrine, 1=main, 42=development)
-- **actor_id:** Author's actor ID (from actors/registry.json)
+- **actor_id:** Author's actor ID (from lupo-actors/registry.json)
 - **last_modified_utc:** Last update date (YYYYMMDD)
 - **delegation_chain:** Actor delegation chain (e.g., "1001:10000")
 - **artifact_type:** Type of artifact (doctrine|guide|directive|broadcast|status|profile)
@@ -82,18 +82,18 @@ lupopedia.footer:
 
 | Channel | Purpose | Example Use |
 |---------|---------|-------------|
-| 0 | System doctrines | channels/0/broadcasts/ |
-| 1 | Main documentation | README.md, docs/guides/ |
-| 42 | Development | channels/42/threads/ |
+| 0 | System doctrines | lupo-channels/0/broadcasts/ |
+| 1 | Main documentation | README.md, lupo-docs/guides/ |
+| 42 | Development | lupo-channels/42/threads/ |
 | 51 | Reserved | Future system use |
-| 666 | Quarantine | channels/666/quarantine/ |
+| 666 | Quarantine | lupo-channels/666/quarantine/ |
 | 1000+ | User channels | Custom user spaces |
 
 ## 🔍 **Looking Up Actor IDs**
 
 Always check the registry before using an actor ID:
-- `actors/registry.json` - Master mapping
-- `channels/*/actors/*/profile.md` - Actor profiles
+- `lupo-actors/registry.json` - Master mapping
+- `lupo-channels/*/actors/*/profile.md` - Actor profiles
 - Command: `Lupopedia: Resolve Alias`
 
 ## 👥 **Actor ID Quick Reference**
@@ -122,7 +122,7 @@ For a complete list of all actors, including:
 - Test agents (2000-2010)
 - System agents (0, 19, 25, etc.)
 
-See `actors/registry.json` - the master source of truth for all actor IDs.
+See `lupo-actors/registry.json` - the master source of truth for all actor IDs.
 
 ## ⚡ **Common Examples**
 
@@ -130,7 +130,7 @@ See `actors/registry.json` - the master source of truth for all actor IDs.
 ```yaml
 ---
 lupopedia.headers:
-  file_path_from_root: "docs/guide/example.md"
+  file_path_from_root: "lupo-docs/guide/example.md"
   system_version: "4.1.0"
   channel_id: 1
   actor_id: 1007
@@ -140,7 +140,7 @@ lupopedia.headers:
 
 lupopedia.edges:
   outbound_edges:
-    - { to: "docs/doctrine/FLARE/FLARE_DOCTRINE.md", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/FLARE/FLARE_DOCTRINE.md", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   view_count: 150
@@ -152,7 +152,7 @@ lupopedia.footer:
 ```yaml
 ---
 lupopedia.headers:
-  file_path_from_root: "channels/0/broadcasts/example_doctrine.md"
+  file_path_from_root: "lupo-channels/0/broadcasts/example_doctrine.md"
   system_version: "4.1.0"
   channel_id: 0
   actor_id: 1007
@@ -177,11 +177,11 @@ lupopedia.footer:
 ```yaml
 lupopedia.edges:
   outbound_edges:
-    - { to: "docs/related.md", type: "references", weight: 1.0, reason: "Primary reference" }
-    - { to: "docs/toons/lupo_table.toon.json", type: "schema_reference", weight: 1.0 }
+    - { to: "lupo-docs/related.md", type: "references", weight: 1.0, reason: "Primary reference" }
+    - { to: "lupo-docs/toons/lupo_table.toon.json", type: "schema_reference", weight: 1.0 }
   
   inbound_edges:
-    - { from: "docs/other.md", type: "references", weight: 0.8, last_seen: "20260227" }
+    - { from: "lupo-docs/other.md", type: "references", weight: 0.8, last_seen: "20260227" }
   
   semantic_tags: ["tag1", "tag2", "tag3"]
 ```
@@ -199,7 +199,7 @@ lupopedia.footer:
 
 ## 💡 FLARE Edge Automation Tip:
 # Use the FLARE Edge Suggester Tool to automatically discover and suggest edges:
-# python scripts/flare_edge_suggester.py --file <path> --include-db --format yaml
+# python lupo-scripts/flare_edge_suggester.py --file <path> --include-db --format yaml
 # This will analyze content, TOON schemas, and database relationships to suggest
 # appropriate outbound_edges with weights, reasons, and discovery methods.
 
@@ -216,7 +216,7 @@ $date = gmdate('Ymd'); // 20260226
 
 ## ⚠️ **Common Mistakes to Avoid**
 
-1. **Wrong Actor ID** - Always check actors/registry.json
+1. **Wrong Actor ID** - Always check lupo-actors/registry.json
 2. **Wrong Channel ID** - Match directory structure
 3. **Old System Version** - Use current version (4.0.47)
 4. **Missing Date** - Use YYYYMMDD UTC format
@@ -227,10 +227,10 @@ $date = gmdate('Ymd'); // 20260226
 
 ## 📚 **Reference Documents**
 
-- **Core Doctrine:** `docs/doctrine/FLARE/FLARE_DOCTRINE.md`
-- **Minimum Requirements:** `channels/0/broadcasts/20260224163100_0_10000_minimum_flare_header_requirements.md`
+- **Core Doctrine:** `lupo-docs/doctrine/FLARE/FLARE_DOCTRINE.md`
+- **Minimum Requirements:** `lupo-channels/0/broadcasts/20260224163100_0_10000_minimum_flare_header_requirements.md`
 - **Validator Service:** `app/Services/FlareValidatorService.php`
-- **Actor Registry:** `actors/registry.json`
+- **Actor Registry:** `lupo-actors/registry.json`
 
 ---
 

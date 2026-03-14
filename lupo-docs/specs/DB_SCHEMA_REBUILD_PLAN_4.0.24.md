@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\specs\DB_SCHEMA_REBUILD_PLAN_4.0.24.md"
+  file_path_from_root: "lupo-docs\specs\DB_SCHEMA_REBUILD_PLAN_4.0.24.md"
   file_hash: "95ed5d6273b7d03ce14c39f6b630babb70d9380d282c8341ea2371b469e7ad1e"
-  file_path_from_root: "docs\specs\DB_SCHEMA_REBUILD_PLAN_4.0.24.md"
+  file_path_from_root: "lupo-docs\specs\DB_SCHEMA_REBUILD_PLAN_4.0.24.md"
   file_hash: "9ab24288df677378a151f0a14f9f60789375437ab8326499d0b9fba8a709b2eb"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -62,7 +62,7 @@ lupopedia.footer:
 
 ---
 # FLIP Header (alias: Wolfie Header, CROP Header, FLIPPING Header)
-X-Lupo-File-Path: docs/specs/DB_SCHEMA_REBUILD_PLAN_4.0.24.md
+X-Lupo-File-Path: lupo-docs/specs/DB_SCHEMA_REBUILD_PLAN_4.0.24.md
 X-Lupo-Version: "4.0.27"
 X-Lupo-UTC-Timestamp: "20260222162242"
 X-Lupo-Channel: 42   # ANUBIS adoption channel
@@ -88,7 +88,7 @@ web:
 
 Generated: 2026-02-21T03:08:58.783486Z
 TOON Directory: lupo-database/lupopedia/toon
-Output Directory: docs/specs/sql
+Output Directory: lupo-docs/specs/sql
 
 ## Crisis Assessment
 

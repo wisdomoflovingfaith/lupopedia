@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\channels\dialogs\dev\DIALOG_SYSTEM_FULL_IMPLEMENTATION.md"
+  file_path_from_root: "lupo-docs\channels\dialogs\dev\DIALOG_SYSTEM_FULL_IMPLEMENTATION.md"
   file_hash: "d0ff8a1d942299887df640b6d65341d4295f7907384855b6a1fbd378f485eb4c"
-  file_path_from_root: "docs\channels\dialogs\dev\DIALOG_SYSTEM_FULL_IMPLEMENTATION.md"
+  file_path_from_root: "lupo-docs\channels\dialogs\dev\DIALOG_SYSTEM_FULL_IMPLEMENTATION.md"
   file_hash: "abba98a4586e40d9f6a80e8a3c3624dc6437c7dbf7cc17d521831173965c3f97"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -134,7 +134,7 @@ file:
 - [ ] Fix DialogManager field names (from_actor_id, to_actor_id, message_text, dialog_thread_id)
 
 ### Phase 2: Basic Message Flow
-- [ ] Create `api/dialog/send-message.php`
+- [ ] Create `lupo-api/dialog/send-message.php`
 - [ ] Fix DialogManager field mappings
 - [ ] Create test script `test-dialog-send.php`
 - [ ] Verify message insertion

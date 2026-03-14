@@ -20,7 +20,7 @@ lupopedia.edges:
   meta: "Thread: Finalize 4.0.72 → Push to GitHub → Initialize 4.0.73 → Migrate Tasks → Validate Upgrade Path"
   outbound_edges:
     - { to: "lupo-database/lupopedia/toon/lupo_aliases.toon.json", type: "schema_reference", weight: 1.0, reason: "TOON schema definition", db_source: "lupo_aliases" }
-    - { to: "docs/doctrine/database/README.md", type: "references", weight: 0.8, reason: "Database doctrine" }
+    - { to: "lupo-docs/doctrine/database/README.md", type: "references", weight: 0.8, reason: "Database doctrine" }
 
 lupopedia.engagement:
   comment: "Snapshot of files edited during 4.0.73 finalization and initialization thread by ANTIGRAVITY IDE Agent. Engagement metrics track edit frequency and importance of each file in the version transition process."

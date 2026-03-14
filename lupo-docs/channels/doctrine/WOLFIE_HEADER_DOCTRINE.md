@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\channels\doctrine\WOLFIE_HEADER_DOCTRINE.md"
+  file_path_from_root: "lupo-docs\channels\doctrine\WOLFIE_HEADER_DOCTRINE.md"
   file_hash: "630e737cb00882d9956d36bffb47086c7ffdb6c4851531322a8bcdf8eb091b93"
-  file_path_from_root: "docs\channels\doctrine\WOLFIE_HEADER_DOCTRINE.md"
+  file_path_from_root: "lupo-docs\channels\doctrine\WOLFIE_HEADER_DOCTRINE.md"
   file_hash: "126eb59c89901b63f046e82bf111737c769c1fcb8a8383cf62e391c34728b3a3"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -114,7 +114,7 @@ system_context:
 **Version:** GLOBAL_CURRENT_LUPOPEDIA_VERSION  
 **Status:** MANDATORY (NON-NEGOTIABLE)  
 **Effective Date:** 2026-01-14  
-**Canonical File:** `docs/doctrine/WOLFIE_HEADER_DOCTRINE.md`  
+**Canonical File:** `lupo-docs/doctrine/WOLFIE_HEADER_DOCTRINE.md`  
 **Note:** This is the canonical doctrine file. A copy exists in `dialogs/WOLFIE_HEADER_DOCTRINE.md` for dialog tracking purposes.
 
 ## Overview
@@ -250,7 +250,7 @@ file.lupopedia.UTC_TIMEKEEPER: UTC_TIMEKEEPER  # OR: file.lupopedia.5: 5
 GOV-AD-PROHIBIT-001: true  # OR: file.lupopedia.gov_ad_prohibit_001: true
 ```
 - **MANDATORY** - Must declare compliance with Anti-Advertising Law
-- **Value** - `true` (boolean) OR file path slug `docs/doctrine/GOV_AD_PROHIBIT_001.md` OR `gov-ad-prohibit-001`
+- **Value** - `true` (boolean) OR file path slug `lupo-docs/doctrine/GOV_AD_PROHIBIT_001.md` OR `gov-ad-prohibit-001`
 - **Purpose** - Documents that this file complies with GOV-AD-PROHIBIT-001 (no ads in system output)
 - **Governance Layer** - Ensures all files explicitly declare anti-advertising compliance
 - **Alternative Format** - `file.lupopedia.gov_ad_prohibit_001: true` is an accepted shorthand

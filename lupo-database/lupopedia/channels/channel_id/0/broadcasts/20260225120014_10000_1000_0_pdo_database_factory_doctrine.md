@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "channels\0\broadcasts\20260225120014_10000_1000_0_pdo_database_factory_doctrine.md"
+  file_path_from_root: "lupo-channels\0\broadcasts\20260225120014_10000_1000_0_pdo_database_factory_doctrine.md"
   file_hash: "922db2642c0c536feaea0e694a4f304085782929a90c6443bec1f1cf99170681"
-  file_path_from_root: "channels\0\broadcasts\20260225120014_10000_1000_0_pdo_database_factory_doctrine.md"
+  file_path_from_root: "lupo-channels\0\broadcasts\20260225120014_10000_1000_0_pdo_database_factory_doctrine.md"
   file_hash: "38a78a638888ac52ffc95b18d07735f0aeca06764ec6f4f999d5deb8dc450491"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -81,7 +81,7 @@ All DB access uses PDO wrapper + DatabaseFactory. No mysqli. No procedural helpe
 
 <!-- FLIP_FOOTER_BEGIN
 {
-    "references": "\"docs\/status\/broadcast_collection_0.md\"",
+    "references": "\"lupo-docs\/status\/broadcast_collection_0.md\"",
     "implements": "\"broadcast_standardization\"",
     "depends_on": "\"registry_seeding_completion\"",
     "includes": "\"channel_0_communications\"",

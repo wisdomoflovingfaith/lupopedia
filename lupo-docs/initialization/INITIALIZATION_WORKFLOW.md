@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\initialization\INITIALIZATION_WORKFLOW.md"
+  file_path_from_root: "lupo-docs\initialization\INITIALIZATION_WORKFLOW.md"
   file_hash: "e9df74ae1d45407214271944f1f607f61765c59cdb582f303840719d31cea68e"
-  file_path_from_root: "docs\initialization\INITIALIZATION_WORKFLOW.md"
+  file_path_from_root: "lupo-docs\initialization\INITIALIZATION_WORKFLOW.md"
   file_hash: "969882761910786efa1b8fe37dc11791ac93a2a7db8cb38ce9494e866ede1a9a"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -63,7 +63,7 @@ lupopedia.footer:
 
 ---
 wolfie.headers: {
-  file_path_from_root: "docs/initialization/INITIALIZATION_WORKFLOW.md",
+  file_path_from_root: "lupo-docs/initialization/INITIALIZATION_WORKFLOW.md",
   system_version: "4.0.44",
   actor_id: 1001,
   created_ymdhis: 20260224000000,
@@ -161,7 +161,7 @@ php bin/kiro_initialize_4_0_44.php
 - Lupopedia must be installed and configured
 - `lupopedia-config.php` must be accessible
 - PHP 5.3 or higher
-- Write permissions for `channels/`, `docs/status/` directories
+- Write permissions for `lupo-channels/`, `lupo-docs/status/` directories
 
 **Expected Output:**
 
@@ -195,20 +195,20 @@ php bin/kiro_initialize_4_0_44.php
 The workflow creates the following files:
 
 1. **Thread Directory and Metadata**
-   - `channels/42/threads/DEVELOPMENT_CYCLE_4_0_44/thread.json`
+   - `lupo-channels/42/threads/DEVELOPMENT_CYCLE_4_0_44/thread.json`
    - Thread metadata with title, type, priority, visibility, timestamps
 
 2. **Audit Report**
-   - `docs/status/kiro_status_directory_audit_4_0_44.md`
+   - `lupo-docs/status/kiro_status_directory_audit_4_0_44.md`
    - Comprehensive audit report with file dispositions and recommendations
 
 3. **System Log**
-   - `docs/status/kiro_4_0_44_cycle_initialization_log.md`
+   - `lupo-docs/status/kiro_4_0_44_cycle_initialization_log.md`
    - Detailed log with timestamps, activity listings, anomalies, checksums
 
 4. **Channel 42 Messages**
-   - `channels/42/threads/DEVELOPMENT_CYCLE_4_0_44/YYYYMMDDHHMMSS_42_1001_initialization_summary.md`
-   - `channels/42/threads/DEVELOPMENT_CYCLE_4_0_44/YYYYMMDDHHMMSS_42_1001_initialization_complete.md`
+   - `lupo-channels/42/threads/DEVELOPMENT_CYCLE_4_0_44/YYYYMMDDHHMMSS_42_1001_initialization_summary.md`
+   - `lupo-channels/42/threads/DEVELOPMENT_CYCLE_4_0_44/YYYYMMDDHHMMSS_42_1001_initialization_complete.md`
 
 ## Component Details
 
@@ -217,7 +217,7 @@ The workflow creates the following files:
 **Purpose:** Scans Channel 0 broadcasts and extracts doctrine metadata.
 
 **Process:**
-1. Recursively scans `channels/0/broadcasts/` for `.md` files
+1. Recursively scans `lupo-channels/0/broadcasts/` for `.md` files
 2. Reads each file and parses FLIP header
 3. Extracts doctrine metadata (number, title, version, scope, constraints)
 4. Handles missing headers by extracting metadata from content
@@ -237,7 +237,7 @@ The workflow creates the following files:
 **Example Usage:**
 ```php
 $ingester = new DoctrineIngester($flipParser, $logger);
-$ingester->scanBroadcastDirectory('channels/0/broadcasts');
+$ingester->scanBroadcastDirectory('lupo-channels/0/broadcasts');
 $doctrines = $ingester->getIngestedDoctrines();
 $count = $ingester->getDoctrineCount();
 ```
@@ -248,7 +248,7 @@ $count = $ingester->getDoctrineCount();
 
 **Process:**
 1. Checks if thread already exists
-2. Creates thread directory at `channels/42/threads/{thread_id}/`
+2. Creates thread directory at `lupo-channels/42/threads/{thread_id}/`
 3. Generates thread metadata with all required fields
 4. Writes `thread.json` file with pretty-printed JSON
 
@@ -287,7 +287,7 @@ $metadata = $creator->createThread(
 **Purpose:** Audits status directory files and classifies by version relevance.
 
 **Process:**
-1. Scans `docs/status/` for `.md` and `.log` files
+1. Scans `lupo-docs/status/` for `.md` and `.log` files
 2. Reads each file and parses FLIP header
 3. Extracts version metadata
 4. Classifies files using VersionClassifier
@@ -312,7 +312,7 @@ $metadata = $creator->createThread(
 **Example Usage:**
 ```php
 $auditor = new StatusAuditor($flipParser, $classifier, $logger);
-$auditor->scanStatusDirectory('docs/status');
+$auditor->scanStatusDirectory('lupo-docs/status');
 $results = $auditor->getAuditResults();
 $counts = $auditor->getDispositionCounts();
 ```
@@ -341,7 +341,7 @@ $generator = new ReportGenerator($timestampHelper, $logger);
 $reportPath = $generator->generateAuditReport(
     $auditResults,
     $dispositionCounts,
-    'docs/status/kiro_status_directory_audit_4_0_44.md'
+    'lupo-docs/status/kiro_status_directory_audit_4_0_44.md'
 );
 ```
 
@@ -370,7 +370,7 @@ $reportPath = $generator->generateAuditReport(
 ```php
 $poster = new SummaryPoster($timestampHelper, $logger);
 $messagePath = $poster->postSummary(
-    'channels/42/threads/DEVELOPMENT_CYCLE_4_0_44',
+    'lupo-channels/42/threads/DEVELOPMENT_CYCLE_4_0_44',
     25,
     array('retain' => 30, 'archive' => 10, 'deprecate' => 2),
     array('2 deprecated files identified'),
@@ -403,7 +403,7 @@ $messagePath = $poster->postSummary(
 ```php
 $writer = new LogWriter($timestampHelper, $logger);
 $logPath = $writer->writeLog(
-    'docs/status/kiro_4_0_44_cycle_initialization_log.md',
+    'lupo-docs/status/kiro_4_0_44_cycle_initialization_log.md',
     $startTime,
     $endTime,
     $channelsScanned,
@@ -449,9 +449,9 @@ $context = array(
     'doctrine_count' => 25,
     'thread_id' => 'DEVELOPMENT_CYCLE_4_0_44',
     'thread_metadata' => $metadata,
-    'audit_report_path' => 'docs/status/kiro_status_directory_audit_4_0_44.md',
-    'summary_path' => 'channels/42/threads/.../summary.md',
-    'log_path' => 'docs/status/kiro_4_0_44_cycle_initialization_log.md',
+    'audit_report_path' => 'lupo-docs/status/kiro_status_directory_audit_4_0_44.md',
+    'summary_path' => 'lupo-channels/42/threads/.../summary.md',
+    'log_path' => 'lupo-docs/status/kiro_4_0_44_cycle_initialization_log.md',
     'files_deleted' => array()
 );
 $summary = $validator->validateInitialization($context);
@@ -483,10 +483,10 @@ $summary = $validator->validateInitialization($context);
 ```php
 $notifier = new CompletionNotifier($timestampHelper, $logger);
 $messagePath = $notifier->postCompletion(
-    'channels/42/threads/DEVELOPMENT_CYCLE_4_0_44',
+    'lupo-channels/42/threads/DEVELOPMENT_CYCLE_4_0_44',
     true,
-    'docs/status/kiro_status_directory_audit_4_0_44.md',
-    'docs/status/kiro_4_0_44_cycle_initialization_log.md',
+    'lupo-docs/status/kiro_status_directory_audit_4_0_44.md',
+    'lupo-docs/status/kiro_4_0_44_cycle_initialization_log.md',
     array()
 );
 ```
@@ -541,13 +541,13 @@ The initialization workflow implements a resilient "continue on error" strategy:
 
 ### Common Issues
 
-#### Issue: "Directory not found: channels/0/broadcasts"
+#### Issue: "Directory not found: lupo-channels/0/broadcasts"
 
 **Cause:** Channel 0 broadcasts directory does not exist.
 
 **Solution:**
 1. Verify Lupopedia installation is complete
-2. Check that `channels/0/broadcasts/` directory exists
+2. Check that `lupo-channels/0/broadcasts/` directory exists
 3. Ensure path constants are correctly configured
 
 #### Issue: "Low doctrine count: only X doctrines loaded (expected at least 20)"
@@ -555,7 +555,7 @@ The initialization workflow implements a resilient "continue on error" strategy:
 **Cause:** Fewer than 20 doctrine broadcasts found in Channel 0.
 
 **Solution:**
-1. Check `channels/0/broadcasts/` for `.md` files
+1. Check `lupo-channels/0/broadcasts/` for `.md` files
 2. Verify broadcast files have valid FLIP headers
 3. Review system log for parse errors
 4. Check file permissions (files must be readable)
@@ -600,38 +600,38 @@ $logger->setLevel('DEBUG');
 **Check file permissions:**
 ```bash
 # Verify write permissions
-ls -la channels/42/threads/
-ls -la docs/status/
+ls -la lupo-channels/42/threads/
+ls -la lupo-docs/status/
 
 # Fix permissions if needed
-chmod 755 channels/42/threads/
-chmod 644 docs/status/*.md
+chmod 755 lupo-channels/42/threads/
+chmod 644 lupo-docs/status/*.md
 ```
 
 **Validate FLIP headers manually:**
 ```bash
 # Check for FLIP headers in broadcasts
-head -n 20 channels/0/broadcasts/cw_0001_*.md
+head -n 20 lupo-channels/0/broadcasts/cw_0001_*.md
 
 # Verify YAML syntax
-php -r "yaml_parse_file('channels/0/broadcasts/cw_0001_*.md');"
+php -r "yaml_parse_file('lupo-channels/0/broadcasts/cw_0001_*.md');"
 ```
 
 **Review system log:**
 ```bash
 # Check system log for detailed error messages
-cat docs/status/kiro_4_0_44_cycle_initialization_log.md
+cat lupo-docs/status/kiro_4_0_44_cycle_initialization_log.md
 
 # Search for anomalies
-grep -i "anomaly\|error\|warning" docs/status/kiro_4_0_44_cycle_initialization_log.md
+grep -i "anomaly\|error\|warning" lupo-docs/status/kiro_4_0_44_cycle_initialization_log.md
 ```
 
 **Verify checksums:**
 ```bash
 # Verify file integrity using checksums from system log
-sha256sum docs/status/kiro_status_directory_audit_4_0_44.md
-sha256sum docs/status/kiro_4_0_44_cycle_initialization_log.md
-sha256sum channels/42/threads/DEVELOPMENT_CYCLE_4_0_44/thread.json
+sha256sum lupo-docs/status/kiro_status_directory_audit_4_0_44.md
+sha256sum lupo-docs/status/kiro_4_0_44_cycle_initialization_log.md
+sha256sum lupo-channels/42/threads/DEVELOPMENT_CYCLE_4_0_44/thread.json
 ```
 
 ## PHP 5.3 Compatibility
@@ -662,12 +662,12 @@ Unit tests validate individual components in isolation:
 
 ```bash
 # Run all unit tests
-sh scripts/run_unit_tests.sh .
+sh lupo-scripts/run_unit_tests.sh .
 
 # Run specific test
-php tests/unit/flip_header_parser.php
-php tests/unit/timestamp_helper.php
-php tests/unit/doctrine_ingester.php
+php lupo-tests/unit/flip_header_parser.php
+php lupo-tests/unit/timestamp_helper.php
+php lupo-tests/unit/doctrine_ingester.php
 ```
 
 ### Integration Tests
@@ -676,7 +676,7 @@ Integration tests validate complete workflow:
 
 ```bash
 # Run integration tests
-sh tests/integration/test_initialization_workflow.sh
+sh lupo-tests/integration/test_initialization_workflow.sh
 ```
 
 ### Property-Based Tests
@@ -685,8 +685,8 @@ Property-based tests validate universal correctness properties:
 
 ```bash
 # Run property tests (requires fast-check or similar)
-php tests/property/test_timestamp_format.php
-php tests/property/test_doctrine_ingestion.php
+php lupo-tests/property/test_timestamp_format.php
+php lupo-tests/property/test_doctrine_ingestion.php
 ```
 
 ## Best Practices
@@ -701,12 +701,12 @@ Run initialization workflow:
 
 ### What to Review After Initialization
 
-1. **Audit Report** (`docs/status/kiro_status_directory_audit_4_0_44.md`)
+1. **Audit Report** (`lupo-docs/status/kiro_status_directory_audit_4_0_44.md`)
    - Review file dispositions
    - Identify deprecated files for cleanup
    - Verify classification accuracy
 
-2. **System Log** (`docs/status/kiro_4_0_44_cycle_initialization_log.md`)
+2. **System Log** (`lupo-docs/status/kiro_4_0_44_cycle_initialization_log.md`)
    - Check for anomalies or warnings
    - Verify all doctrines were loaded
    - Review checksums for file integrity
@@ -724,14 +724,14 @@ Run initialization workflow:
 - Files are relevant for current development cycle
 
 **Archive (4.0.35-4.0.41):**
-- Move to `docs/status/archive/` directory
+- Move to `lupo-docs/status/archive/` directory
 - Preserve for historical reference
 - Not needed for active development
 
 **Deprecate (≤4.0.34):**
 - Review before deletion
 - Verify no critical information
-- Move to `docs/status/deprecated/` or delete
+- Move to `lupo-docs/status/deprecated/` or delete
 - **Never delete automatically**
 
 ## Security Considerations
@@ -747,8 +747,8 @@ The initialization workflow guarantees:
 ### Permissions
 
 Required permissions:
-- Read: `channels/0/broadcasts/`, `docs/status/`
-- Write: `channels/42/threads/`, `docs/status/`
+- Read: `lupo-channels/0/broadcasts/`, `lupo-docs/status/`
+- Write: `lupo-channels/42/threads/`, `lupo-docs/status/`
 - Execute: PHP CLI
 
 ### Checksums
@@ -779,7 +779,7 @@ Potential improvements for future versions:
 - **Tasks:** `.kiro/specs/version-4-0-44-initialization/tasks.md`
 - **Source Code:** `app/Services/Initialization/`
 - **CLI Script:** `bin/kiro_initialize_4_0_44.php`
-- **Tests:** `tests/unit/`, `tests/integration/`, `tests/property/`
+- **Tests:** `lupo-tests/unit/`, `lupo-tests/integration/`, `lupo-tests/property/`
 
 ## Support
 

@@ -83,8 +83,8 @@ lupopedia.close:
 ---
 
 lupopedia.headers:
-  file_path_from_root: "channels/42/tasks/active/actor_help_documentation_validation_v2.md"
-  file_hash: "<?php echo hash_file('channels/42/tasks/active/actor_help_documentation_validation_v2.md'); ?>"
+  file_path_from_root: "lupo-channels/42/tasks/active/actor_help_documentation_validation_v2.md"
+  file_hash: "<?php echo hash_file('lupo-channels/42/tasks/active/actor_help_documentation_validation_v2.md'); ?>"
   system_version: "4.0.50"
   channel_id: 42
   actor_id: 1003
@@ -99,11 +99,11 @@ lupopedia.headers:
   lupo_agent: "cursor"
 
 lupopedia.edges:
-  file_path_from_root: "channels/42/tasks/active/actor_help_documentation_validation_v2.md"
+  file_path_from_root: "lupo-channels/42/tasks/active/actor_help_documentation_validation_v2.md"
   outbound_edges:
-    - { to: "docs/doctrine/ACTOR_HELP_DOCTRINE.md", type: "references", weight: 1.0 }
-    - { to: "actors/", type: "references", weight: 1.0 }
-    - { to: "channels/42/actors/", type: "references", weight: 0.9 }
+    - { to: "lupo-docs/doctrine/ACTOR_HELP_DOCTRINE.md", type: "references", weight: 1.0 }
+    - { to: "lupo-actors/", type: "references", weight: 1.0 }
+    - { to: "lupo-channels/42/actors/", type: "references", weight: 0.9 }
     - { to: "bin/validate_actor_help.php", type: "implements", weight: 0.9 }
     - { to: "bin/validate_actor_consistency.sh", type: "implements", weight: 0.8 }
     - { to: "CHANGELOG.md", type: "references", weight: 0.5 }
@@ -139,7 +139,7 @@ Validate and remediate actor help documentation across the repository against de
 - ✅ Established comprehensive priority hierarchy with proper actor type classification
 
 **Documentation Standard Established**:
-- ✅ Created `docs/doctrine/ACTOR_HELP_DOCTRINE.md` with detailed requirements
+- ✅ Created `lupo-docs/doctrine/ACTOR_HELP_DOCTRINE.md` with detailed requirements
 - ✅ Defined actor-type specific validation rules (Human, IDE, Core AI, System Agent)
 - ✅ Integrated YAML-based validation scoring system with clear thresholds
 
@@ -227,7 +227,7 @@ validation_rules:
 **Task v2**: ✅ Complete. Merged with actor_help_documentation_validation (v1). Cursor (1003) executed combined scope:
 - Priority actors (0, 1, 19, 1000, 10000) have README or ABOUT + identity/WHO.
 - **QUICK_REFERENCE.md** added for all five (usage, key references, troubleshooting) — satisfies v2 quickref.md (10%) and deeper usage/API docs.
-- Report: `docs/status/ACTOR_HELP_DOCUMENTATION_VALIDATION_REPORT.md` (v1+v2 combined).
+- Report: `lupo-docs/status/ACTOR_HELP_DOCUMENTATION_VALIDATION_REPORT.md` (v1+v2 combined).
 
 **Next Steps (optional):** Extend to secondary actors; use ACTOR_HELP_DOCTRINE.md and validation scripts for ongoing QA.
 

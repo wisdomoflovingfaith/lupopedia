@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "prompts\antigravity\20260224_vsx_semantic_headers_upgrade.md"
+  file_path_from_root: "lupo-prompts\antigravity\20260224_vsx_semantic_headers_upgrade.md"
   file_hash: "51dd7bbc813264dd41ef93b6ff05dbf7d2560d57aaace71237248f81d5924efd"
-  file_path_from_root: "prompts\antigravity\20260224_vsx_semantic_headers_upgrade.md"
+  file_path_from_root: "lupo-prompts\antigravity\20260224_vsx_semantic_headers_upgrade.md"
   file_hash: "e5b23c790c01b660181c9a4f2481cdad582f4251bf0f7a020f28139aded47a25"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -63,7 +63,7 @@ lupopedia.footer:
 
 ---
 wolfie.headers:
-  file_path_from_root: "prompts/antigravity/20260224_vsx_semantic_headers_upgrade.md"
+  file_path_from_root: "lupo-prompts/antigravity/20260224_vsx_semantic_headers_upgrade.md"
   system_version: "4.1.0"
   channel_id: 42
   mood_rgb: "00CCFF"
@@ -78,8 +78,8 @@ wolfie.headers:
 flip.footer:
   referenced_by_files:
     - "HOW_TO_USE_LUPOPEDIA.md"
-    - "docs/doctrine/FLIP_V2_DOCTRINE.md"
-    - "docs/doctrine/SUPPORTING_ACTOR_DOCTRINE.md"
+    - "lupo-docs/doctrine/FLIP_V2_DOCTRINE.md"
+    - "lupo-docs/doctrine/SUPPORTING_ACTOR_DOCTRINE.md"
   referenced_by_actors:
     - 1003 # Antigravity
     - 2038 # LILITH
@@ -89,8 +89,8 @@ flip.footer:
     - "semantic_flip_improvements"
     - "delegation_chain_migration"
   outbound_edges:
-    - "tools/vsx-extension/src/semantic"
-    - "tools/vsx-extension/src/headers"
+    - "lupo-tools/vsx-extension/src/semantic"
+    - "lupo-tools/vsx-extension/src/headers"
   semantic_tags:
     - "delegation_chain"
     - "json5_headers"
@@ -254,7 +254,7 @@ Create fixtures in `/tests/metadata/`:
 1. Updated VSX source
 2. Migration utility (`x_lupo_forwarded` → `delegation_chain`)
 3. Benchmark report
-4. Developer docs (`docs/dev/metadata_index.md`)
+4. Developer docs (`lupo-docs/dev/metadata_index.md`)
 
 ---
 

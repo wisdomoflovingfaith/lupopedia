@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\specs\FLIP_HEADERS_COMPLETE_4.0.24.md"
+  file_path_from_root: "lupo-docs\specs\FLIP_HEADERS_COMPLETE_4.0.24.md"
   file_hash: "0e9a18feb37303c68e7131b9e8be1b443afc713fd0c67fb957614a097c26eef4"
-  file_path_from_root: "docs\specs\FLIP_HEADERS_COMPLETE_4.0.24.md"
+  file_path_from_root: "lupo-docs\specs\FLIP_HEADERS_COMPLETE_4.0.24.md"
   file_hash: "d2a9f658a0ef53902490f3af44e7167c43826bb676ae75199b08cdcfb44936dd"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -62,7 +62,7 @@ lupopedia.footer:
 
 ---
 # FLIP Header (alias: Wolfie Header, CROP Header, FLIPPING Header)
-X-Lupo-File-Path: docs/specs/FLIP_HEADERS_COMPLETE_4.0.24.md
+X-Lupo-File-Path: lupo-docs/specs/FLIP_HEADERS_COMPLETE_4.0.24.md
 X-Lupo-Version: "4.0.27"
 X-Lupo-UTC-Timestamp: "20260222162242"
 X-Lupo-Channel: 42   # ANUBIS adoption channel
@@ -99,8 +99,8 @@ From FLIP_HEADER_SPECIFICATION_4.0.23.md + extensions (survivor protocol, forwar
 | `X-Lupo-Actor-To` | Receiving actor ID | `2` (Windsurf) |
 | `X-Lupo-Registry-Mode` | ID allocation mode | `unregistry-first` |
 | `X-Lupo-Registry-Source` | Data source for registry | `csv` |
-| `X-Lupo-TOON-Path` | Path to TOON schema files | `docs/toons/` |
-| `X-Lupo-CSV-Path` | Path to CSV snapshots | `database/csv_data/` |
+| `X-Lupo-TOON-Path` | Path to TOON schema files | `lupo-docs/toons/` |
+| `X-Lupo-CSV-Path` | Path to CSV snapshots | `lupo-database/csv_data/` |
 | `X-Lupo-Doctrine` | Enforced rules (comma-separated) | `no-id-guessing; no-max-plus-one; use-unregistry` |
 | `X-Lupo-Survivor-Protocol` | Survivor mode activation | `active` |
 | `X-Lupo-Forwarded-For` | Origin actor ID (preserved post-ban) | `420` |

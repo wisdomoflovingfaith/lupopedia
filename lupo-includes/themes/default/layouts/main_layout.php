@@ -898,7 +898,7 @@ function saveCollection() {
     
     const isUpdate = currentLoadedCollectionId && name === currentLoadedCollectionName;
     
-    fetch('<?= LUPOPEDIA_PUBLIC_PATH ?>/api/save_collection.php', {
+    fetch('<?= LUPOPEDIA_PUBLIC_PATH ?>/lupo-api/save_collection.php', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -931,7 +931,7 @@ function loadCollectionsList() {
     const container = document.getElementById('collectionsList');
     container.innerHTML = '<div style="text-align: center; padding: 40px; color: #6c757d;">Loading...</div>';
     
-    fetch('<?= LUPOPEDIA_PUBLIC_PATH ?>/api/list_collections.php')
+    fetch('<?= LUPOPEDIA_PUBLIC_PATH ?>/lupo-api/list_collections.php')
     .then(response => response.json())
     .then(data => {
         if (data.success && data.collections.length > 0) {
@@ -986,7 +986,7 @@ function loadCollectionById(collectionId, collectionName) {
         return;
     }
     
-    fetch('<?= LUPOPEDIA_PUBLIC_PATH ?>/api/load_collection.php', {
+    fetch('<?= LUPOPEDIA_PUBLIC_PATH ?>/lupo-api/load_collection.php', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -1017,7 +1017,7 @@ function deleteCollection(collectionId) {
         return;
     }
     
-    fetch('<?= LUPOPEDIA_PUBLIC_PATH ?>/api/delete_collection.php', {
+    fetch('<?= LUPOPEDIA_PUBLIC_PATH ?>/lupo-api/delete_collection.php', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -1063,7 +1063,7 @@ window.loadCollectionTabs = function(collectionId, collectionName) {
     currentLoadedCollectionName = collectionName;
     
     // Load tabs via AJAX
-    fetch('<?= LUPOPEDIA_PUBLIC_PATH ?>/api/load_collection_tabs.php?collection_id=' + collectionId)
+    fetch('<?= LUPOPEDIA_PUBLIC_PATH ?>/lupo-api/load_collection_tabs.php?collection_id=' + collectionId)
         .then(response => response.json())
         .then(data => {
             if (data.success && data.tabs_data && Object.keys(data.tabs_data).length > 0) {

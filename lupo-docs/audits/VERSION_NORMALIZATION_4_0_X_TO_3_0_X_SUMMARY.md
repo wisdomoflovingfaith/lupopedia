@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\audits\VERSION_NORMALIZATION_4_0_X_TO_3_0_X_SUMMARY.md"
+  file_path_from_root: "lupo-docs\audits\VERSION_NORMALIZATION_4_0_X_TO_3_0_X_SUMMARY.md"
   file_hash: "e5594ea6d6c7f987f1e2a7af0fd0faff035ad442e1c84760ca6930ef764a7313"
-  file_path_from_root: "docs\audits\VERSION_NORMALIZATION_4_0_X_TO_3_0_X_SUMMARY.md"
+  file_path_from_root: "lupo-docs\audits\VERSION_NORMALIZATION_4_0_X_TO_3_0_X_SUMMARY.md"
   file_hash: "4c6c53da7db7e2e50fba15afdb673c2d242ada79cc8112375d4b63ae430c5c82"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -74,7 +74,7 @@ lupopedia.footer:
 
 All filenames that contained the historical version pattern (dot or underscore form) were renamed to the 3.0.x / 3_0_x form. Below are the **current** (post-rename) paths only.
 
-### Schema migrations (docs/channels/schema/migrations/)
+### Schema migrations (lupo-docs/channels/schema/migrations/)
 - 3.0.0.md, 3.0.7.md, 3.0.13.md, 3.0.14.md, 3.0.15.md, 3.0.17.md, 3.0.18.md, 3.0.19.md, 3.0.26.md, 3.0.42.md, 3.0.50.md, 3.0.64.md, 3.0.65.md, 3.0.66.md, 3.0.70.md, 3.0.71.md, 3.0.72.md, 3.0.73.md, 3.0.75.md, 3.0.76.md, 3.0.77.md, 3.0.78.md, 3.0.81.md, 3.0.102.md, 3.0.104.md, 3.0.106.md, 3.0.112.md, 3.0.114.md, 3.0.115.md, 3.0.120.md (29 files).
 
 ### Doctrine, overview, developer, UI
@@ -99,12 +99,12 @@ All filenames that contained the historical version pattern (dot or underscore f
 
 ## 2. Content updates (pattern → 3.0.x)
 
-A one-time script was run: `scripts/normalize_version_4_0_x_to_3_0_x.py`. It replaced in text files (`.md`, `.php`, `.sql`, `.json`, `.txt`, `.yml`, `.yaml`, `.mdc`, `.ps1`, `.mdx`, `.ini`):
+A one-time script was run: `lupo-scripts/normalize_version_4_0_x_to_3_0_x.py`. It replaced in text files (`.md`, `.php`, `.sql`, `.json`, `.txt`, `.yml`, `.yaml`, `.mdc`, `.ps1`, `.mdx`, `.ini`):
 
 - Dot form: historical version pattern → 3.0.N for N ≠ 1.
 - Underscore form: 4_0_N → 3_0_N, v4_0_N → v3_0_N for N ≠ 1.
 
-**Exclusions:** 4.0.1, 4_0_1, v4_0_1, and 4.1.0 were not replaced. Date-like strings were not matched. Directories `backups/`, `.git/`, `vendor/`, `node_modules/` were skipped.
+**Exclusions:** 4.0.1, 4_0_1, v4_0_1, and 4.1.0 were not replaced. Date-like strings were not matched. Directories `lupo-backups/`, `.git/`, `vendor/`, `node_modules/` were skipped.
 
 **Files updated by content:** 224 files (dialogs, docs, database SQL, migrations, config, PHP, YAML, and legacy WordPress where the pattern appeared).
 
@@ -112,9 +112,9 @@ A one-time script was run: `scripts/normalize_version_4_0_x_to_3_0_x.py`. It rep
 
 ## 3. Cross-references and links
 
-- **DIRECTORY_TREE.md:** Regenerated after renames via `scripts/generate_directory_tree.py`.
+- **DIRECTORY_TREE.md:** Regenerated after renames via `lupo-scripts/generate_directory_tree.py`.
 - **Links and references:** In-repo references to the previous filenames were updated by the normalization script; links now point to the 3.0.x / 3_0_x names.
-- **Backups:** The `backups/` directory was excluded from content replacement; backup JSON may still contain historical version strings. These are archival only and do not affect the active codebase.
+- **Backups:** The `lupo-backups/` directory was excluded from content replacement; backup JSON may still contain historical version strings. These are archival only and do not affect the active codebase.
 
 ---
 
@@ -139,6 +139,6 @@ A one-time script was run: `scripts/normalize_version_4_0_x_to_3_0_x.py`. It rep
 
 ## 6. One-time script
 
-- **Path:** `scripts/normalize_version_4_0_x_to_3_0_x.py`
+- **Path:** `lupo-scripts/normalize_version_4_0_x_to_3_0_x.py`
 - **Purpose:** One-time replacement of historical version patterns with 3.0.N / 3_0_N / v3_0_N (N ≠ 1) in text files.
 - Can be removed or archived after verification if no longer needed.

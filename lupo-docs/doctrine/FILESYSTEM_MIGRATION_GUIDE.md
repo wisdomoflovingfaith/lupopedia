@@ -29,7 +29,7 @@ lupopedia.footer:
 ```yaml
 # FLIP Header (alias: Wolfie Header, CROP Header, FLIPPING Header)
 wolfie.headers: explicit architecture with structured clarity for every file.
-file_path_from_root: docs/doctrine/FILESYSTEM_MIGRATION_GUIDE.md
+file_path_from_root: lupo-docs/doctrine/FILESYSTEM_MIGRATION_GUIDE.md
 file.last_modified_system_version: "4.0.16"
 file.last_modified_utc: "20260218000000"
 channel_id: 42   # ANUBIS adoption channel
@@ -39,7 +39,7 @@ atoms:
   recovery_event: true
 X-Lupo-Actor-ID: 2035
 X-Lupo-Actor-Identity: "Lupopedia Audit Tool (Auto-Fixed)"
-X-Lupo-File-Path: docs/doctrine/FILESYSTEM_MIGRATION_GUIDE.md
+X-Lupo-File-Path: lupo-docs/doctrine/FILESYSTEM_MIGRATION_GUIDE.md
 ```
 
 # Filesystem to Database Migration Guide
@@ -103,7 +103,7 @@ Files: lupopedia/uploads/agents/2026/01/<hash>.json
 
 ```bash
 cd /path/to/lupopedia
-mysql -u root -p lupopedia < database/migrations/2026_01_31_migrate_filesystem_to_database.sql
+mysql -u root -p lupopedia < lupo-database/migrations/2026_01_31_migrate_filesystem_to_database.sql
 ```
 
 **Expected Output:**
@@ -122,7 +122,7 @@ SHOW TABLES LIKE 'lupo_filesystem_migration_log';
 ### Step 2: Test Migration (Dry Run)
 
 ```bash
-php scripts/migrate_filesystem_to_db.php --dry-run
+php lupo-scripts/migrate_filesystem_to_db.php --dry-run
 ```
 
 **Expected Output:**
@@ -154,7 +154,7 @@ Processing agent directory: 0002 ... [EXISTS: agent_id=2] ✓
 ### Step 3: Run Live Migration
 
 ```bash
-php scripts/migrate_filesystem_to_db.php
+php lupo-scripts/migrate_filesystem_to_db.php
 ```
 
 **Monitor Progress:**
@@ -248,7 +248,7 @@ $result = $handler->upload($_FILES['file'], 'agent', 1, 'metadata');
 
 ```bash
 # Dry run first (shows what would be removed)
-php scripts/cleanup_old_directories.php
+php lupo-scripts/cleanup_old_directories.php
 
 # Press Enter to continue
 # Press Ctrl+C to cancel
@@ -396,7 +396,7 @@ $files = $handler->getEntityFiles($agent_id, 'agent');
 
 foreach ($files as $file) {
     echo $file['file_name'] . " (" . $file['file_type'] . ")\n";
-    echo "  Path: uploads/" . $file['file_path'] . "\n";
+    echo "  Path: lupo-uploads/" . $file['file_path'] . "\n";
     echo "  Size: " . number_format($file['file_size']) . " bytes\n";
 }
 ```
@@ -430,8 +430,8 @@ $result = lupo_upload_file(
 ### Directory Organization
 
 ```
-uploads/
-├── agents/
+lupo-uploads/
+├── lupo-agents/
 │   ├── 2026/
 │   │   ├── 01/
 │   │   │   ├── <hash1>.json
@@ -441,7 +441,7 @@ uploads/
 │   │       └── ...
 │   └── 2027/
 │       └── ...
-├── channels/
+├── lupo-channels/
 │   └── 2026/01/...
 ├── operators/
 │   └── 2026/01/...
@@ -514,7 +514,7 @@ WHERE status = 'failed';
 2. Fix underlying issue
 3. Re-run migration for failed items:
    ```bash
-   php scripts/migrate_filesystem_to_db.php --type=agents
+   php lupo-scripts/migrate_filesystem_to_db.php --type=agents
    ```
 
 ### Duplicate Detection
@@ -577,8 +577,8 @@ If issues arise after migration, you can rollback:
 
 ```bash
 # Copy backed-up directories back
-cp -r backups/filesystem_migration_YYYYMMDD_HHMMSS/agents/* agents/
-cp -r backups/filesystem_migration_YYYYMMDD_HHMMSS/channels/* channels/
+cp -r lupo-backups/filesystem_migration_YYYYMMDD_HHMMSS/agents/* lupo-agents/
+cp -r lupo-backups/filesystem_migration_YYYYMMDD_HHMMSS/channels/* lupo-channels/
 ```
 
 ### Step 2: Clear Migration Tables
@@ -592,8 +592,8 @@ TRUNCATE TABLE lupo_filesystem_migration_log;
 ### Step 3: Remove Uploads
 
 ```bash
-rm -rf uploads/agents/
-rm -rf uploads/channels/
+rm -rf lupo-uploads/agents/
+rm -rf lupo-uploads/channels/
 ```
 
 ### Step 4: Test Application
@@ -638,7 +638,7 @@ mysqldump lupopedia lupo_agent_files lupo_channel_files > backup.sql
 
 **Weekly:** Backup uploads directory
 ```bash
-tar -czf uploads_backup_$(date +%Y%m%d).tar.gz uploads/
+tar -czf uploads_backup_$(date +%Y%m%d).tar.gz lupo-uploads/
 ```
 
 ---
@@ -663,7 +663,7 @@ Indexes are automatically created by migration SQL:
 <IfModule mod_rewrite.c>
     RewriteEngine On
     RewriteCond %{REQUEST_FILENAME} -f
-    RewriteRule ^uploads/ - [L]
+    RewriteRule ^lupo-uploads/ - [L]
 </IfModule>
 ```
 

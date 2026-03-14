@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\doctrine\CRAFTY_SYNTAX_INTEGRATION_PLAN.md"
+  file_path_from_root: "lupo-docs\doctrine\CRAFTY_SYNTAX_INTEGRATION_PLAN.md"
   file_hash: "f00026af0a215db3249c511bbbf3775d100849b1126b1de5d69b56004d4f9f54"
-  file_path_from_root: "docs\doctrine\CRAFTY_SYNTAX_INTEGRATION_PLAN.md"
+  file_path_from_root: "lupo-docs\doctrine\CRAFTY_SYNTAX_INTEGRATION_PLAN.md"
   file_hash: "2b9245ed38d1fdca88a6ba05e2db35a362228c644b321c43c2bc3107b0e424f2"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -64,7 +64,7 @@ lupopedia.footer:
 ---
 # FLIP Header (alias: Wolfie Header, CROP Header, FLIPPING Header)
 wolfie.headers: explicit architecture with structured clarity for every file.
-file_path_from_root: docs/doctrine/CRAFTY_SYNTAX_INTEGRATION_PLAN.md
+file_path_from_root: lupo-docs/doctrine/CRAFTY_SYNTAX_INTEGRATION_PLAN.md
 file.last_modified_system_version: "4.0.16"
 file.last_modified_utc: "20260218000000"
 channel_id: 42   # ANUBIS adoption channel
@@ -74,7 +74,7 @@ atoms:
   recovery_event: true
 X-Lupo-Actor-ID: 2035
 X-Lupo-Actor-Identity: "Lupopedia Audit Tool (Auto-Fixed)"
-X-Lupo-File-Path: docs/doctrine/CRAFTY_SYNTAX_INTEGRATION_PLAN.md
+X-Lupo-File-Path: lupo-docs/doctrine/CRAFTY_SYNTAX_INTEGRATION_PLAN.md
 ---
 
 # Crafty Syntax → Lupopedia Integration Plan

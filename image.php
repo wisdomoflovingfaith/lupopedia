@@ -5,7 +5,7 @@
  * Uses PDO, new schema (lupo_* from TOONs), LUPOPEDIA_PUBLIC_PATH. No /public folder.
  *
  * @package Lupopedia
- * @see docs/toons/*.toon.json
+ * @see lupo-database/lupopedia/toon/*.toon.json
  */
 
 if (!defined('LUPOPEDIA_PATH')) {

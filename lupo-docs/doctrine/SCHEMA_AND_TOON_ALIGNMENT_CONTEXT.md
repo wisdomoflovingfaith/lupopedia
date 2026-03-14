@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\doctrine\SCHEMA_AND_TOON_ALIGNMENT_CONTEXT.md"
+  file_path_from_root: "lupo-docs\doctrine\SCHEMA_AND_TOON_ALIGNMENT_CONTEXT.md"
   file_hash: "329848452d3f7ed8b38069c547bea0b07ce0d2c37c4e2dcb376eed98669bd518"
-  file_path_from_root: "docs\doctrine\SCHEMA_AND_TOON_ALIGNMENT_CONTEXT.md"
+  file_path_from_root: "lupo-docs\doctrine\SCHEMA_AND_TOON_ALIGNMENT_CONTEXT.md"
   file_hash: "cb52aa96da839048e8c13f8b6d051bb818602180b14dbc0824dac7d124141b44"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -64,7 +64,7 @@ lupopedia.footer:
 ---
 # FLIP Header (alias: Wolfie Header, CROP Header, FLIPPING Header)
 wolfie.headers: explicit architecture with structured clarity for every file.
-file_path_from_root: docs/doctrine/SCHEMA_AND_TOON_ALIGNMENT_CONTEXT.md
+file_path_from_root: lupo-docs/doctrine/SCHEMA_AND_TOON_ALIGNMENT_CONTEXT.md
 file.last_modified_system_version: "4.0.16"
 file.last_modified_utc: "20260218000000"
 channel_id: 42   # ANUBIS adoption channel
@@ -74,7 +74,7 @@ atoms:
   recovery_event: true
 X-Lupo-Actor-ID: 2035
 X-Lupo-Actor-Identity: "Lupopedia Audit Tool (Auto-Fixed)"
-X-Lupo-File-Path: docs/doctrine/SCHEMA_AND_TOON_ALIGNMENT_CONTEXT.md
+X-Lupo-File-Path: lupo-docs/doctrine/SCHEMA_AND_TOON_ALIGNMENT_CONTEXT.md
 ---
 
 # Schema and TOON Alignment — Context for AI Agents (Copilot, Cursor, etc.)
@@ -87,17 +87,17 @@ Use this as a prompt or reference when working on Lupopedia schema, migrations, 
 
 When working on Lupopedia schema, migrations, or TOONs, use this context:
 
-- **Canonical schema** is `database/migrations/install_new_lupopedia.sql` (not TOONs). TOONs are generated **from** the live database and must not be edited manually.
+- **Canonical schema** is `lupo-database/migrations/install_new_lupopedia.sql` (not TOONs). TOONs are generated **from** the live database and must not be edited manually.
 - **Two one-time migrations** were run to align the live DB with doctrine: (1) `dev_20260204_fix_schema_alignment.sql` — MODIFY COLUMN for all non-PK columns to match install, with backtick-quoted column names and `lupo_contents.body` as longtext to avoid truncation; (2) `dev_20260205_doctrine_alignment_phase2.sql` — drop UNSIGNED on PKs (keep AUTO_INCREMENT), fix tinyint(1)→tinyint, and timestamp→bigint in lupo_crafty_user_mapping.
 - **Unification (groups → departments):** `migration_unify_groups_into_departments.sql` added department_id to permissions, collections, collection_tabs, contents, and analytics tables; dropped group_id and removed lupo_groups and lupo_actor_group_membership. Schema and TOONs are department-only; no group tables exist.
-- **Doctrine:** no UNSIGNED, no display widths (e.g. no int(11), tinyint(1)), no timestamp/datetime (use BIGINT YYYYMMDDHHIISS), no FKs/triggers. Check TOONs with `python database/check_toon_doctrine_alignment.py`.
+- **Doctrine:** no UNSIGNED, no display widths (e.g. no int(11), tinyint(1)), no timestamp/datetime (use BIGINT YYYYMMDDHHIISS), no FKs/triggers. Check TOONs with `python lupo-database/check_toon_doctrine_alignment.py`.
 
 ---
 
 ## Canonical sources
 
-- **Canonical schema:** `database/migrations/install_new_lupopedia.sql` (not TOONs, not the live DB).
-- **TOONs:** Generated **from** the live database (e.g. `scripts/generate_toons.py`). They reflect current DB state; they are not edited manually.
+- **Canonical schema:** `lupo-database/migrations/install_new_lupopedia.sql` (not TOONs, not the live DB).
+- **TOONs:** Generated **from** the live database (e.g. `lupo-scripts/generate_toons.py`). They reflect current DB state; they are not edited manually.
 - **Doctrine:** LUPOPEDIA_DOCTRINE.md — SQL Doctrine (no UNSIGNED, no display widths, no FKs/triggers), Temporal Doctrine §5 (BIGINT YYYYMMDDHHIISS, no timestamp/datetime).
 
 ---
@@ -106,24 +106,24 @@ When working on Lupopedia schema, migrations, or TOONs, use this context:
 
 ### 1. First one-time migration: live DB → install schema
 
-- **File:** `database/migrations/dev_20260204_fix_schema_alignment.sql`
+- **File:** `lupo-database/migrations/dev_20260204_fix_schema_alignment.sql`
 - **Purpose:** Bring live database column definitions into alignment with `install_new_lupopedia.sql`.
 - **Contents:** ALTER TABLE … MODIFY COLUMN only (no CREATE/DROP table, no data migrations). All **non-PK** columns were modified to match install (type, NULL/NOT NULL, DEFAULT). **PK columns were skipped** to preserve AUTO_INCREMENT.
 - **Details:**
   - Column names in MODIFY COLUMN are **backtick-quoted** (e.g. `` `utc_timestamp` ``) to avoid MySQL reserved-word errors.
   - **lupo_contents.body** was set to **longtext** in this migration (not text) to avoid "Data too long for column" on existing rows; install keeps `text` for new installs.
-- **Generator script:** `database/generate_schema_alignment_migration.py` (reads install, emits MODIFY COLUMN for every non-PK column).
+- **Generator script:** `lupo-database/generate_schema_alignment_migration.py` (reads install, emits MODIFY COLUMN for every non-PK column).
 
 ### 2. TOON doctrine check
 
-- **Script:** `database/check_toon_doctrine_alignment.py`
-- **Purpose:** Scan all TOONs in `docs/toons/*.toon.json` for doctrine violations.
+- **Script:** `lupo-database/check_toon_doctrine_alignment.py`
+- **Purpose:** Scan all TOONs in `lupo-docs/toons/*.toon.json` for doctrine violations.
 - **Checks:** No UNSIGNED, no integer display widths (e.g. no tinyint(1), int(11)), no timestamp/datetime types, no CURRENT_TIMESTAMP / ON UPDATE CURRENT_TIMESTAMP; doctrine_metadata has no_foreign_keys and no_triggers.
 - **Result after first migration:** TOONs still had violations because the **live DB** still had UNSIGNED on PKs, tinyint(1) in some crafty tables, and timestamp in lupo_crafty_user_mapping — TOONs are generated from the DB, so they reflected that.
 
 ### 3. Second one-time migration: doctrine alignment (PKs + misc)
 
-- **File:** `database/migrations/dev_20260205_doctrine_alignment_phase2.sql`
+- **File:** `lupo-database/migrations/dev_20260205_doctrine_alignment_phase2.sql`
 - **Purpose:** Fix remaining doctrine violations in the live DB so that **regenerating TOONs** would produce doctrine-aligned TOONs.
 - **Contents:**
   - **PK columns:** MODIFY to drop UNSIGNED and keep AUTO_INCREMENT (e.g. `actor_meta_id` → bigint NOT NULL AUTO_INCREMENT) for 22 tables.
@@ -145,7 +145,7 @@ When working on Lupopedia schema, migrations, or TOONs, use this context:
 3. **One-time dev migrations** (doctrine §18.9) are for aligning existing DBs; they use only ALTER TABLE (MODIFY COLUMN, ADD/DROP INDEX). The unification migration added department_id and dropped group tables; it is run once on existing DBs. No CREATE/DROP TABLE in alignment migrations except as in that unification script.
 4. **Reserved words:** In migration SQL, quote column names with backticks (e.g. `` `utc_timestamp` ``) to avoid MySQL syntax errors.
 5. **Large text columns:** If changing to a smaller type would truncate data (e.g. body → text when rows exceed 64KB), use longtext in the migration and document why; install can stay as text for new installs.
-6. **Checking alignment:** Run `python database/check_toon_doctrine_alignment.py` after any schema or TOON changes to verify TOONs still match doctrine.
+6. **Checking alignment:** Run `python lupo-database/check_toon_doctrine_alignment.py` after any schema or TOON changes to verify TOONs still match doctrine.
 
 ---
 
@@ -153,11 +153,11 @@ When working on Lupopedia schema, migrations, or TOONs, use this context:
 
 | Item | Path |
 |------|------|
-| Canonical schema | `database/migrations/install_new_lupopedia.sql` |
-| First alignment migration | `database/migrations/dev_20260204_fix_schema_alignment.sql` |
-| Second (doctrine) migration | `database/migrations/dev_20260205_doctrine_alignment_phase2.sql` |
-| Unification (groups → departments) | `database/migrations/migration_unify_groups_into_departments.sql` |
-| Migration generator | `database/generate_schema_alignment_migration.py` |
-| TOON doctrine check | `database/check_toon_doctrine_alignment.py` |
-| TOONs | `docs/toons/*.toon.json` |
-| Doctrine | `docs/doctrine/LUPOPEDIA_DOCTRINE.md` |
+| Canonical schema | `lupo-database/migrations/install_new_lupopedia.sql` |
+| First alignment migration | `lupo-database/migrations/dev_20260204_fix_schema_alignment.sql` |
+| Second (doctrine) migration | `lupo-database/migrations/dev_20260205_doctrine_alignment_phase2.sql` |
+| Unification (groups → departments) | `lupo-database/migrations/migration_unify_groups_into_departments.sql` |
+| Migration generator | `lupo-database/generate_schema_alignment_migration.py` |
+| TOON doctrine check | `lupo-database/check_toon_doctrine_alignment.py` |
+| TOONs | `lupo-docs/toons/*.toon.json` |
+| Doctrine | `lupo-docs/doctrine/LUPOPEDIA_DOCTRINE.md` |

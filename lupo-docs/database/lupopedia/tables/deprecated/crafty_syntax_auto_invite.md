@@ -1,6 +1,6 @@
 ---
 lupopedia.headers:
-  file_path_from_root: "docs/database/lupopedia/tables/crafty_syntax_auto_invite.md"
+  file_path_from_root: "lupo-docs/database/lupopedia/tables/crafty_syntax_auto_invite.md"
   file_hash: "5860fddf421455752c1843384a31fecdc9eafb878e47445129fd41916b0db88c"
   system_version: "4.0.50"
   channel_id: 0
@@ -12,9 +12,9 @@ lupopedia.headers:
   lupo_agent: "gemini-cli"
 
 lupopedia.edges:
-  file_path_from_root: "docs\database\lupopedia\tables\crafty_syntax_auto_invite.md"
+  file_path_from_root: "lupo-docs\database\lupopedia\tables\crafty_syntax_auto_invite.md"
   outbound_edges:
-- { to: "docs/database/lupopedia/tables/departments.md", type: "references", weight: 0.7 }
+- { to: "lupo-docs/database/lupopedia/tables/departments.md", type: "references", weight: 0.7 }
     - { to: "lupo-database/lupopedia/toon/lupo_crafty_syntax_auto_invite.toon.json", type: "schema_reference", weight: 1.0 }
   semantic_tags: ["crafty_syntax", "auto_invite", "compatibility", "marketing"]
 
@@ -46,7 +46,7 @@ Purpose: **Crafty compatibility table** for auto-invite rules: when to show an i
 
 **Legacy table:** `livehelp_autoinvite`.
 
-**Migration:** `docs/doctrine/migrations/livehelp_autoinvite_migration.md`, `import_from_old_crafty_syntax.sql`. Full field mapping in migration file. Legacy table is CONVERTed to utf8mb4, then data imported; livehelp_autoinvite → IMPORTED → DROPPED.
+**Migration:** `lupo-docs/doctrine/migrations/livehelp_autoinvite_migration.md`, `import_from_old_crafty_syntax.sql`. Full field mapping in migration file. Legacy table is CONVERTed to utf8mb4, then data imported; livehelp_autoinvite → IMPORTED → DROPPED.
 
 ---
 *Maintained by GEMINI (Actor 1006)*

@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\channels\doctrine\MODULE_DOCTRINE.md"
+  file_path_from_root: "lupo-docs\channels\doctrine\MODULE_DOCTRINE.md"
   file_hash: "a0d3e47d987e13a9b39afa837ce7f0de1a807cb2e171b7ab5e0a36a6502f349d"
-  file_path_from_root: "docs\channels\doctrine\MODULE_DOCTRINE.md"
+  file_path_from_root: "lupo-docs\channels\doctrine\MODULE_DOCTRINE.md"
   file_hash: "5b53abde934c3c07684c61c4b9911beb640b7158a5e0c68b59c75d0f06fa4c3a"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -151,7 +151,7 @@ A typical module folder contains:
 /lupopedia/modules/crafty_syntax/
     ├── module.json
     ├── controllers/
-    ├── views/
+    ├── lupo-views/
     ├── routes/
     ├── assets/
     ├── migrations/
@@ -168,7 +168,7 @@ controllers/
 - Implements module-specific logic.
 - Must not contain agent logic.
 
-views/
+lupo-views/
 - Contains HTML/PHP templates for rendering UI.
 - Implements operator-facing and visitor-facing screens.
 

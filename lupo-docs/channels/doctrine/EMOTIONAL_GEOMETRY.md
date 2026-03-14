@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\channels\doctrine\EMOTIONAL_GEOMETRY.md"
+  file_path_from_root: "lupo-docs\channels\doctrine\EMOTIONAL_GEOMETRY.md"
   file_hash: "1be058469b2c18b4e264b0b0769e5ea8bec744d858176fc56b39b00ce057458f"
-  file_path_from_root: "docs\channels\doctrine\EMOTIONAL_GEOMETRY.md"
+  file_path_from_root: "lupo-docs\channels\doctrine\EMOTIONAL_GEOMETRY.md"
   file_hash: "623d6f22bf458c84100d9e0d2bb823c946cccba130d11748259ecddf3976f50b"
   last_updated_utc: "20260228"
   system_version: "4.0.50"

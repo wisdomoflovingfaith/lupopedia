@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\channels\schema\migrations\analysis\DIALOGUE_GRAPH_SCHEMA.md"
+  file_path_from_root: "lupo-docs\channels\schema\migrations\analysis\DIALOGUE_GRAPH_SCHEMA.md"
   file_hash: "d437904522f390adeb7ad19394407ec0b688edf9b5c3256c26b928bf1b975a99"
-  file_path_from_root: "docs\channels\schema\migrations\analysis\DIALOGUE_GRAPH_SCHEMA.md"
+  file_path_from_root: "lupo-docs\channels\schema\migrations\analysis\DIALOGUE_GRAPH_SCHEMA.md"
   file_hash: "ad8e6fb53d1e167e2d7ac712fb19b78df121649c919940944a02354f82f457e4"
   last_updated_utc: "20260228"
   system_version: "4.0.50"

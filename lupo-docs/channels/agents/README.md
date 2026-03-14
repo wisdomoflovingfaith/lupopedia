@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\channels\agents\README.md"
+  file_path_from_root: "lupo-docs\channels\agents\README.md"
   file_hash: "d6cb45d2700367fed3b336857cf08de7091ff2b4de26bb7093de2fcf4e2970ea"
-  file_path_from_root: "docs\channels\agents\README.md"
+  file_path_from_root: "lupo-docs\channels\agents\README.md"
   file_hash: "d3a02c1041b43e5dd6dfa4be2d09c11be041aaa9cb03a56dbe711f0912ea591b"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -138,7 +138,7 @@ Support agents for specific tasks:
 ### Agent Specifications (`/docs/agents/`)
 
 ```
-agents/
+lupo-agents/
 â”œâ”€â”€ README.md                    # This file - agent system overview
 â”œâ”€â”€ AGENT_GUIDELINES.md         # Agent behavior and implementation requirements
 â”œâ”€â”€ DIALOG_HISTORY_SPEC.md       # Per-file dialog history management

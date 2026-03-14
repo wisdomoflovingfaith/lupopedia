@@ -4,7 +4,7 @@ lupopedia.init:
   system_version: "4.0.71"
 
 lupopedia.headers:
-  lupopedia.version: "4.0.73"
+  lupopedia.version: "4.0.74"
   lupopedia.schema: "doctrine"
   file_path_from_root: "lupo-docs/doctrine/LUPOPEDIA_HEADERS/DEPRECATION_FLARE_FLIP_FLP.md"
   web_path: "http://www.lupopedia.com/doctrine/LUPOPEDIA_HEADERS/DEPRECATION"
@@ -35,7 +35,7 @@ lupopedia.footer:
 ## What to use now
 
 - **Canonical system name:** **LUPOPEDIA HEADERS**
-- **Canonical block names:** `lupopedia.init`, `lupopedia.headers`, `lupopedia.session`, `lupopedia.edges`, `lupopedia.engagement`, `lupopedia.footer`, `lupopedia.see`, `lupopedia.close`, `lupopedia.conditional`
+- **Canonical block names:** `lupopedia.init`, `lupopedia.headers`, `lupopedia.session`, `lupopedia.edges`, `lupopedia.engagement`, `lupopedia.footer`, `lupopedia.see`, **`lupopedia.next_actions`** (legacy: `lupopedia.close`), `lupopedia.conditional`
 - **Storage:** `lupo_metadata` table; format and block order in [LUPOPEDIA_HEADERS_FORMAT.md](./LUPOPEDIA_HEADERS_FORMAT.md) and [LUPOPEDIA_HEADERS_PLAN.md](./LUPOPEDIA_HEADERS_PLAN.md)
 - **Validators:** Accept legacy `flare.*` and `flame.*` block names for backward compatibility, but **new and modified files must use `lupopedia.*`**
 
@@ -52,7 +52,7 @@ lupopedia.footer:
 | `flare.footer` | `lupopedia.footer` |
 | `flame.init` | `lupopedia.init` |
 | `flame.see` | `lupopedia.see` |
-| `flame.close` | `lupopedia.close` |
+| `flame.close` | `lupopedia.close` (legacy) → prefer **`lupopedia.next_actions`** |
 
 ## Legacy documentation
 
@@ -67,9 +67,9 @@ All behavior that existed in FLARE/FLIP/FLP is supported under LUPOPEDIA HEADERS
 - **Session context:** `lupopedia.session`
 - **Outbound/inbound edges, semantic tags:** `lupopedia.edges` (stored in `lupo_edges` and metadata)
 - **Verification:** `lupopedia.footer`
-- **Engagement (metrics, views):** `lupopedia.engagement` (new in 4.0.73; carries legacy engagement fields)
+- **Engagement (metrics, views):** `lupopedia.engagement` (new in 4.0.74; carries legacy engagement fields)
 - **Optional routing (to, from, delegation_chain, channel_id, thread_id):** `lupopedia.routing` (see OPTIONAL_BLOCKS.md)
 - **Optional lists (file.dialog, file.history, file.actors):** `lupopedia.lists` (see OPTIONAL_BLOCKS.md)
-- **See/close blocks:** `lupopedia.see`, `lupopedia.close`
+- **See/next_actions blocks:** `lupopedia.see`, **`lupopedia.next_actions`** (suggested next actions; legacy name: `lupopedia.close`)
 
 See [README.md](./README.md) and [LUPOPEDIA_HEADERS_FORMAT.md](./LUPOPEDIA_HEADERS_FORMAT.md) for the full current specification.

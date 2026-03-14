@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "instruction"
-  file_path_from_root: "channels/0/boot_enhancements_corrections.md"
+  file_path_from_root: "lupo-channels/0/boot_enhancements_corrections.md"
   system_version: "4.0.53"
   last_modified_utc: "20260301"
   channel_id: 0
@@ -19,11 +19,11 @@ lupopedia.headers:
 
 lupopedia.edges:
   outbound_edges:
-    - { to: "prompts/lilith/20260301_windsurf_boot_enhancements_review.md", type: "reviews", weight: 1.0 }
+    - { to: "lupo-prompts/lilith/20260301_windsurf_boot_enhancements_review.md", type: "reviews", weight: 1.0 }
     - { to: "bin/boot_system_agent.php", type: "implementation_reference", weight: 1.0 }
     - { to: "install_lupopedia.sql", type: "schema_reference", weight: 0.9 }
-    - { to: "docs/toons/lupo_tasks.toon.json", type: "schema_reference", weight: 0.8 }
-    - { to: "docs/doctrine/FLARE/FLARE_DOCTRINE.md", type: "references", weight: 0.8 }
+    - { to: "lupo-docs/toons/lupo_tasks.toon.json", type: "schema_reference", weight: 0.8 }
+    - { to: "lupo-docs/doctrine/FLARE/FLARE_DOCTRINE.md", type: "references", weight: 0.8 }
   semantic_tags: ["crafty_upgrade", "review_corrections", "ai_boot"]
 
 lupopedia.footer:
@@ -36,12 +36,12 @@ lupopedia.footer:
 
 **Windsurf—refine and perfect!** ✅  
 
-Per LILITH's review (Channel 42, 9.4/10 score), implement these corrections to the system agent boot script enhancements for Crafty Syntax upgrade. Focus on web-side PHP execution during install, seeding active actors/agents on Channel 0 with Task 1. Apply all suggestions to make it 9.9/10 production-ready. We're on v4.0.53—any DB changes before v4.1.0.
+Per LILITH's review (Channel 42, 9.4/10 score), implement these corrections to the system agent boot script enhancements for Crafty Syntax upgrade. Focus on web-side PHP execution during install, seeding active lupo-actors/agents on Channel 0 with Task 1. Apply all suggestions to make it 9.9/10 production-ready. We're on v4.0.53—any DB changes before v4.1.0.
 
 ### Corrections to Implement (from LILITH's Review)
 
 #### 1. Add `lupo_tasks` Table Specification
-- **Reference/Create TOON**: `docs/toons/lupo_tasks.toon.json`
+- **Reference/Create TOON**: `lupo-docs/toons/lupo_tasks.toon.json`
 - **Schema**: BIGINT task_id PK, TEXT description, VARCHAR(64) status, JSON assigned_actors, BIGINT channel_id, BIGINT created_ymdhis/updated_ymdhis, TINYINT is_deleted
 - **No FKs/triggers**: Indexes on task_id/channel_id/status
 - **Documentation**: Add table markdown as suggested
@@ -211,7 +211,7 @@ $lilith_ai = new LilithAI(2);
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "broadcast"
-  file_path_from_root: "channels/0/broadcast_message.md"
+  file_path_from_root: "lupo-channels/0/broadcast_message.md"
   system_version: "4.0.53"
   last_modified_utc: "20260301"
   channel_id: 0
@@ -227,7 +227,7 @@ lupopedia.headers:
 
 lupopedia.edges:
   outbound_edges:
-    - { to: "channels/0/boot_enhancements_corrections.md", type: "instruction_reference", weight: 1.0 }
+    - { to: "lupo-channels/0/boot_enhancements_corrections.md", type: "instruction_reference", weight: 1.0 }
   semantic_tags: ["crafty_upgrade", "completion", "broadcast"]
 
 lupopedia.footer:

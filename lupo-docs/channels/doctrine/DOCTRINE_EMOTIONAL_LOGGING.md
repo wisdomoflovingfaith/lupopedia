@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\channels\doctrine\DOCTRINE_EMOTIONAL_LOGGING.md"
+  file_path_from_root: "lupo-docs\channels\doctrine\DOCTRINE_EMOTIONAL_LOGGING.md"
   file_hash: "e0fefc720f9866d19f963c93ef2b3f8992f4c4a1150dacfd4876a68060085eb4"
-  file_path_from_root: "docs\channels\doctrine\DOCTRINE_EMOTIONAL_LOGGING.md"
+  file_path_from_root: "lupo-docs\channels\doctrine\DOCTRINE_EMOTIONAL_LOGGING.md"
   file_hash: "92250856875c0f3314ca740db0c526aed6219ff2a31d1dd2edae640a9007310d"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -429,5 +429,5 @@ created_ymdhis: 20260127120500
 
 ## Related Doctrine
 
-- docs/channels/doctrine/MOOD_RGB_DOCTRINE.md
-- docs/channels/doctrine/REFLECTIVE_EMOTIONAL_GEOMETRY_DOCTRINE.md
+- lupo-docs/channels/doctrine/MOOD_RGB_DOCTRINE.md
+- lupo-docs/channels/doctrine/REFLECTIVE_EMOTIONAL_GEOMETRY_DOCTRINE.md

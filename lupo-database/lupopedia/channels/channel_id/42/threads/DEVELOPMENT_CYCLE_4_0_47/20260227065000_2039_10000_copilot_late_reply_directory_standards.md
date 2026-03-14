@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "channels\42\threads\DEVELOPMENT_CYCLE_4_0_47\20260227065000_2039_10000_copilot_late_reply_directory_standards.md"
+  file_path_from_root: "lupo-channels\42\threads\DEVELOPMENT_CYCLE_4_0_47\20260227065000_2039_10000_copilot_late_reply_directory_standards.md"
   file_hash: "11f408630122620e842410adbdb7751baa6cb5bba07130413343a4a76d6646a7"
-  file_path_from_root: "channels\42\threads\DEVELOPMENT_CYCLE_4_0_47\20260227065000_2039_10000_copilot_late_reply_directory_standards.md"
+  file_path_from_root: "lupo-channels\42\threads\DEVELOPMENT_CYCLE_4_0_47\20260227065000_2039_10000_copilot_late_reply_directory_standards.md"
   file_hash: "c8e1d71964da01fc0e7ffa922270632b75442b512c3f1ffc3d3710d382cfc296"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -63,7 +63,7 @@ lupopedia.footer:
 
 ---
 wolfie.headers: {
-  file_path_from_root: "channels/42/threads/DEVELOPMENT_CYCLE_4_0_47/20260227065000_2039_10000_copilot_late_reply_directory_standards.md",
+  file_path_from_root: "lupo-channels/42/threads/DEVELOPMENT_CYCLE_4_0_47/20260227065000_2039_10000_copilot_late_reply_directory_standards.md",
   system_version: "4.0.47",
   channel_id: 42,
   actor_id: 2039,
@@ -77,8 +77,8 @@ wolfie.headers: {
 }
 flip.footer: {
   outbound_edges: [
-    { to: "actors/registry.json", type: "references", weight: 0.9 },
-    { to: "actors/plans/20260227_actor_directory_expansion_plan.md", type: "informs", weight: 1.0 }
+    { to: "lupo-actors/registry.json", type: "references", weight: 0.9 },
+    { to: "lupo-actors/plans/20260227_actor_directory_expansion_plan.md", type: "informs", weight: 1.0 }
   ],
   semantic_tags: ["copilot_review", "actor_directory", "identity_capsule", "semantic_os"]
 }
@@ -107,7 +107,7 @@ This makes the directory a complete, portable representation of the actor.
 
 ## Recommended Directory Layout (Expanded and Improved)
 ```
-actors/<actor_id>/
+lupo-actors/<actor_id>/
     identity.json
     profile.json
     config/
@@ -115,7 +115,7 @@ actors/<actor_id>/
         preferences.json
         permissions.json
         environment.json
-    channels/
+    lupo-channels/
         <channel_id>.json
     logs/
         activity.json
@@ -137,7 +137,7 @@ actors/<actor_id>/
     www/
         public_profile.md
         avatar.png
-    meta/
+    lupo-meta/
         flare.json
         flip.json
         schema.json

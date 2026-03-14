@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\doctrine\AGENT_BOUNDARIES_COMPACT.md"
+  file_path_from_root: "lupo-docs\doctrine\AGENT_BOUNDARIES_COMPACT.md"
   file_hash: "1526831a5fb828c1b1ca37d9f234eb014f6176debac9ccd3cedcb2dd02db61fb"
-  file_path_from_root: "docs\doctrine\AGENT_BOUNDARIES_COMPACT.md"
+  file_path_from_root: "lupo-docs\doctrine\AGENT_BOUNDARIES_COMPACT.md"
   file_hash: "b86cf88579062c2926d5cb45526ee77c86ef7e69aa84515694fa9b16b6113db0"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -64,7 +64,7 @@ lupopedia.footer:
 ---
 # FLIP Header (alias: Wolfie Header, CROP Header, FLIPPING Header)
 wolfie.headers: explicit architecture with structured clarity for every file.
-file_path_from_root: docs/doctrine/AGENT_BOUNDARIES_COMPACT.md
+file_path_from_root: lupo-docs/doctrine/AGENT_BOUNDARIES_COMPACT.md
 file.last_modified_system_version: "4.0.16"
 file.last_modified_utc: "20260218000000"
 channel_id: 42   # ANUBIS adoption channel
@@ -74,7 +74,7 @@ atoms:
   recovery_event: true
 X-Lupo-Actor-ID: 2035
 X-Lupo-Actor-Identity: "Lupopedia Audit Tool (Auto-Fixed)"
-X-Lupo-File-Path: docs/doctrine/AGENT_BOUNDARIES_COMPACT.md
+X-Lupo-File-Path: lupo-docs/doctrine/AGENT_BOUNDARIES_COMPACT.md
 ---
 
 # LUPOPEDIA AGENT BOUNDARIES (COMPACT)
@@ -93,7 +93,7 @@ X-Lupo-File-Path: docs/doctrine/AGENT_BOUNDARIES_COMPACT.md
 - Explicit SQL only
 - YMDHIS timestamps (YYYYMMDDHHMMSS)
 - No FK/triggers/procedures
-- Scripts in `scripts/` or `scripts/python/`
+- Scripts in `lupo-scripts/` or `lupo-scripts/python/`
 - Must support `--dry-run`
 - Must be idempotent
 - Must log to `lupo_*_log` tables
@@ -130,7 +130,7 @@ X-Lupo-File-Path: docs/doctrine/AGENT_BOUNDARIES_COMPACT.md
 ## 3. MIGRATION SQL RULES
 
 **When differences exist:**
-1. Generate SQL in `database/migrations/YYYY_MM_DD_description.sql`
+1. Generate SQL in `lupo-database/migrations/YYYY_MM_DD_description.sql`
 2. Explicit SQL only (no ORM DSL)
 3. No FK, no triggers, no procedures
 4. Additive unless explicitly instructed
@@ -181,9 +181,9 @@ WHERE table_schema = 'lupopedia';
 **Enforced structure:**
 ```
 lupopedia/uploads/
-├── channels/YYYY/MM/<sha256_hash>.<ext>
+├── lupo-channels/YYYY/MM/<sha256_hash>.<ext>
 ├── operators/YYYY/MM/<sha256_hash>.<ext>
-└── agents/YYYY/MM/<sha256_hash>.<ext>
+└── lupo-agents/YYYY/MM/<sha256_hash>.<ext>
 ```
 
 **Python upload scripts must:**
@@ -266,16 +266,16 @@ lupopedia/uploads/
 **Creating migration:**
 1. Read TOON file: `/docs/toons/lupo_<table>.toon.json`
 2. Check table count: `SELECT COUNT(*) FROM information_schema.tables WHERE table_schema = 'lupopedia'`
-3. If < 199 and differences exist: generate SQL in `database/migrations/`
+3. If < 199 and differences exist: generate SQL in `lupo-database/migrations/`
 4. Include header: version, date, purpose, doctrine compliance
 5. Do NOT execute
 
 **Upload file:**
-1. Use Python script: `python scripts/upload_handler.py`
+1. Use Python script: `python lupo-scripts/upload_handler.py`
 2. Hash with SHA256
 3. Check duplicate
 4. Create YYYY/MM path
-5. Copy to `uploads/<type>/YYYY/MM/<hash>.<ext>`
+5. Copy to `lupo-uploads/<type>/YYYY/MM/<hash>.<ext>`
 6. Insert record in `lupo_<type>_files`
 
 **Verify compliance:**
@@ -345,7 +345,7 @@ lupopedia/uploads/
 >
 > **Context:**
 > - Runtime: PHP (website + future terminal AI agents)
-> - Maintenance: Python (`scripts/python/`)
+> - Maintenance: Python (`lupo-scripts/python/`)
 > - Database: MySQL (`lupopedia` in phpMySQL)
 > - TOON files (schema truth): `/docs/toons/`
 > - No FK/triggers/procedures
@@ -373,7 +373,7 @@ lupopedia/uploads/
 >         → `BOUNDARY VIOLATION: Schema change requires TOON definition.`
 >      3. **Layer boundaries** - PHP=runtime, Python=maintenance
 >         → `BOUNDARY VIOLATION: [Maintenance|Runtime] operations must be in [Python|PHP].`
->      4. **File safety** - Uploads only to `uploads/{type}/YYYY/MM/`
+>      4. **File safety** - Uploads only to `lupo-uploads/{type}/YYYY/MM/`
 >         → `BOUNDARY VIOLATION: Invalid upload path.`
 >      5. **Table limit** - Check if count ≥ 199 before creating tables
 >         → `TABLE LIMIT REACHED: Optimization required.`
@@ -393,7 +393,7 @@ lupopedia/uploads/
 >    - Keep LEXA logic centralized
 >
 > 5. **Documentation**:
->    - Create `docs/doctrine/LEXA_GATEWAY_INTEGRATION.md` explaining:
+>    - Create `lupo-docs/doctrine/LEXA_GATEWAY_INTEGRATION.md` explaining:
 >      - LEXA's role
 >      - Three hook points
 >      - Boundary rules
@@ -406,7 +406,7 @@ lupopedia/uploads/
 >
 > Follow all Lupopedia doctrine. Do not invent schema, bypass doctrine, or auto-execute migrations.
 
-**See full documentation:** `docs/doctrine/LEXA_GATEWAY_INTEGRATION.md`
+**See full documentation:** `lupo-docs/doctrine/LEXA_GATEWAY_INTEGRATION.md`
 
 ---
 

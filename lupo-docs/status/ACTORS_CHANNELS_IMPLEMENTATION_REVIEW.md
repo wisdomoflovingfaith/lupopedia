@@ -44,10 +44,10 @@
 
 ## 3. Documentation Structure Issues
 
-### ⚠️ **Critical: docs/ Folder Without Prefix**
+### ⚠️ **Critical: lupo-docs/ Folder Without Prefix**
 
 **Problem:** Mixed documentation structure violates prefix doctrine
-- **Current State:** Both `docs/` and `lupo-docs/` folders exist
+- **Current State:** Both `lupo-docs/` and `lupo-docs/` folders exist
 - **Doctrine Violation:** Should use `lupo-docs/` prefix consistently
 - **Impact:** Confusion about canonical documentation location
 
@@ -55,20 +55,20 @@
 
 #### **High Priority (Core Doctrine)**
 ```
-docs/ACTOR_IDENTITIES.md → lupo-docs/actor/identities.md
-docs/actors.md → lupo-docs/actor/registry.md
-docs/auth/ → lupo-docs/auth/
-docs/doctrine/ → lupo-docs/doctrine/
-docs/status/ → lupo-docs/status/
+lupo-docs/ACTOR_IDENTITIES.md → lupo-docs/actor/identities.md
+lupo-docs/actors.md → lupo-docs/actor/registry.md
+lupo-docs/auth/ → lupo-docs/auth/
+lupo-docs/doctrine/ → lupo-docs/doctrine/
+lupo-docs/status/ → lupo-docs/status/
 ```
 
 #### **Medium Priority (Reference)**
 ```
-docs/CLI.md → lupo-docs/cli/
-docs/HELP.md → lupo-docs/help/
-docs/TLDR_LUPOPEDIA.md → lupo-docs/tldr/
-docs/TOON_REFERENCE.md → lupo-docs/database/toon_reference.md
-docs/VERSION_*.md → lupo-docs/version/
+lupo-docs/CLI.md → lupo-docs/cli/
+lupo-docs/HELP.md → lupo-docs/help/
+lupo-docs/TLDR_LUPOPEDIA.md → lupo-docs/tldr/
+lupo-docs/TOON_REFERENCE.md → lupo-docs/database/toon_reference.md
+lupo-docs/VERSION_*.md → lupo-docs/version/
 ```
 
 ---
@@ -83,11 +83,11 @@ docs/VERSION_*.md → lupo-docs/version/
 mkdir -p lupo-docs/{actor,auth,doctrine,status,cli,help,database,version}
 
 # Migrate core files
-mv docs/ACTOR_IDENTITIES.md lupo-docs/actor/identities.md
-mv docs/actors.md lupo-docs/actor/registry.md
-mv docs/auth/* lupo-docs/auth/
-mv docs/doctrine/* lupo-docs/doctrine/
-mv docs/status/* lupo-docs/status/
+mv lupo-docs/ACTOR_IDENTITIES.md lupo-docs/actor/identities.md
+mv lupo-docs/actors.md lupo-docs/actor/registry.md
+mv lupo-docs/auth/* lupo-docs/auth/
+mv lupo-docs/doctrine/* lupo-docs/doctrine/
+mv lupo-docs/status/* lupo-docs/status/
 ```
 
 #### **2. Update All References**
@@ -95,10 +95,10 @@ mv docs/status/* lupo-docs/status/
 - Update FLARE edges to reference new `lupo-docs/` locations
 - Update CHANGELOG.md documentation references
 
-#### **3. Remove Redundant docs/ Folder**
+#### **3. Remove Redundant lupo-docs/ Folder**
 ```bash
 # After migration and verification
-rm -rf docs/
+rm -rf lupo-docs/
 ```
 
 ### 🔧 **Technical Improvements**

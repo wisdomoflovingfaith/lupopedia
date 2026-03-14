@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "channels\42\broadcasts\20260225210000_1000_10000_42_final_pre_install_verification_complete.md"
+  file_path_from_root: "lupo-channels\42\broadcasts\20260225210000_1000_10000_42_final_pre_install_verification_complete.md"
   file_hash: "5d748f200ab01b8ca60f36e055550fbee7ac34643b922cf5cbfaa8adcda5a306"
-  file_path_from_root: "channels\42\broadcasts\20260225210000_1000_10000_42_final_pre_install_verification_complete.md"
+  file_path_from_root: "lupo-channels\42\broadcasts\20260225210000_1000_10000_42_final_pre_install_verification_complete.md"
   file_hash: "06f4e54c0c385990f781492e9cddb42ae2ec16950cabc51650d2abd28d732a7b"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -109,7 +109,7 @@ Final pre-install verification complete for 4.0.45.
 
 ### Root Cause
 
-Discrepancy between `actors/registry.json` (ERIS=10) and seed SQL (ERIS=4, METIS=5). Database will seed correctly; agent directories are for prompts/config only and can be created post-install.
+Discrepancy between `lupo-actors/registry.json` (ERIS=10) and seed SQL (ERIS=4, METIS=5). Database will seed correctly; agent directories are for lupo-prompts/config only and can be created post-install.
 
 ## Phase Results
 
@@ -147,14 +147,14 @@ Human Captain (10000) is AUTHORIZED to execute:
 
 After successful installation:
 1. Create missing agent directories for ERIS (4) and METIS (5)
-2. Update `actors/registry.json` to match seed SQL IDs
+2. Update `lupo-actors/registry.json` to match seed SQL IDs
 3. Verify all seeded entities in database
 4. Run full test suite
 
 ## Detailed Report
 
 Complete verification report available at:
-`docs/status/kiro_dual_source_verification_4_0_45.md`
+`lupo-docs/status/kiro_dual_source_verification_4_0_45.md`
 
 ---
 
@@ -163,9 +163,9 @@ Complete verification report available at:
 <!-- FLIP_FOOTER_BEGIN
 {
   "references": [
-    "docs/status/kiro_dual_source_verification_4_0_45.md",
-    "channels/0/tasks/active/20260225170000_task_0_10000_drop_tables_and_run_install.md",
-    "scripts/verify_dual_source_completeness.ps1"
+    "lupo-docs/status/kiro_dual_source_verification_4_0_45.md",
+    "lupo-channels/0/tasks/active/20260225170000_task_0_10000_drop_tables_and_run_install.md",
+    "lupo-scripts/verify_dual_source_completeness.ps1"
   ],
   "implements": "final_pre_install_verification",
   "depends_on": "all_phases_complete",

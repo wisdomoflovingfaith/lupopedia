@@ -66,7 +66,7 @@ This document explicitly separates the identity and context layers used across L
 
 - **Purpose:** Mark what an actor *is* or *is allowed* at the identity level (e.g. `EMOTIONAL_DIALOG_AUTHORIZED`, `SCHEMA_ARCHITECT`). Enforced via rules that reference traits.
 - **Not:** Channel permissions (those are **roles**), and not skills (those are documented capabilities attached via metadata/skills docs).
-- **Reference:** `docs/status/DESIGN_NOTE_LUPO_ACTOR_TRAITS_4.0.69.md`.
+- **Reference:** `lupo-docs/status/DESIGN_NOTE_LUPO_ACTOR_TRAITS_4.0.69.md`.
 
 ---
 
@@ -92,7 +92,7 @@ This document explicitly separates the identity and context layers used across L
 
 | Layer   | Meaning                    | Primary storage / location              |
 |--------|----------------------------|-----------------------------------------|
-| Actor  | Identity, rules, skills    | `lupo_actors` + rules/skills/traits     |
+| Actor  | Identity, rules, skills    | `lupo_actors` + lupo-rules/skills/traits     |
 | Faucet | Execution surface, LLM    | `lupo_agent_faucets`                    |
 | Session| Runtime state              | `lupo_sessions`, `lupo-database/sessions/*.md` |
 | Trait  | Intrinsic actor constraint | `lupo_actor_traits`                     |

@@ -2,7 +2,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: "docs/VERSION_4.0.61_STRATEGY.md"
+  file_path_from_root: "lupo-docs/VERSION_4.0.61_STRATEGY.md"
   web_path: "http://www.lupopedia.com/docs/VERSION_4.0.61_STRATEGY"
   last_modified_utc: "20260306"
   system_version: "4.0.61"
@@ -20,7 +20,7 @@ lupopedia.headers:
 
 # Version 4.0.61 — Strategic Assessment & v4.0.62 Roadmap
 
-Strategic review by LILITH (actor_id 2). Source: [prompts/lilith/20260306_version_4.0.61_strategy.md](../prompts/lilith/20260306_version_4.0.61_strategy.md).
+Strategic review by LILITH (actor_id 2). Source: [lupo-prompts/lilith/20260306_version_4.0.61_strategy.md](../prompts/lilith/20260306_version_4.0.61_strategy.md).
 
 ---
 
@@ -55,7 +55,7 @@ Strategic review by LILITH (actor_id 2). Source: [prompts/lilith/20260306_versio
 - **Command:** `lupo doctor-context`
 - **Purpose:** Validate entire identity stack (session file, DB session, registry, paired_actor_id, dual-identity derivation).
 - **Output:** Human-readable health check; report mismatches (e.g. session file vs DB).
-- **Directive:** [prompts/cursor/20260306_context_doctor.md](../prompts/cursor/20260306_context_doctor.md)
+- **Directive:** [lupo-prompts/cursor/20260306_context_doctor.md](../prompts/cursor/20260306_context_doctor.md)
 
 ### Priority 2: Session/DB Conflict Warning (Cursor)
 
@@ -65,7 +65,7 @@ Strategic review by LILITH (actor_id 2). Source: [prompts/lilith/20260306_versio
 
 - **Purpose:** Single runtime context object (ContextKernel) that holds one resolved context; exposes getContext(), getEffectiveActor(), getHumanIdentity(), getActiveAgent(), getAuthUser(), validate().
 - **Rule:** All agents use ContextKernel; no per-agent identity recomputation.
-- **Directive:** [prompts/antigravity/20260306_context_kernel.md](../prompts/antigravity/20260306_context_kernel.md)
+- **Directive:** [lupo-prompts/antigravity/20260306_context_kernel.md](../prompts/antigravity/20260306_context_kernel.md)
 
 ### Priority 4: Documentation (Windsurf)
 
@@ -89,8 +89,8 @@ Strategic review by LILITH (actor_id 2). Source: [prompts/lilith/20260306_versio
 
 ## Sign-off
 
-- **Package complete:** [prompts/lilith/20260306_strategy_package_signoff.md](../prompts/lilith/20260306_strategy_package_signoff.md) — v4.0.62 ready for implementation.
-- **Package sealed (ultimate):** [prompts/lilith/20260306_strategic_package_sealed.md](../prompts/lilith/20260306_strategic_package_sealed.md) — v4.0.61 complete and sealed; v4.0.62 era commenced.
+- **Package complete:** [lupo-prompts/lilith/20260306_strategy_package_signoff.md](../prompts/lilith/20260306_strategy_package_signoff.md) — v4.0.62 ready for implementation.
+- **Package sealed (ultimate):** [lupo-prompts/lilith/20260306_strategic_package_sealed.md](../prompts/lilith/20260306_strategic_package_sealed.md) — v4.0.61 complete and sealed; v4.0.62 era commenced.
 
 ## Related
 

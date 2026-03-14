@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\channels\architecture\WOLFIE_COGNITIVE_ARCHITECTURE.md"
+  file_path_from_root: "lupo-docs\channels\architecture\WOLFIE_COGNITIVE_ARCHITECTURE.md"
   file_hash: "335e8e5d8fc8d8d532ad9e3421b78228f0e730d24d53c6a038d9d5bb1d73a60c"
-  file_path_from_root: "docs\channels\architecture\WOLFIE_COGNITIVE_ARCHITECTURE.md"
+  file_path_from_root: "lupo-docs\channels\architecture\WOLFIE_COGNITIVE_ARCHITECTURE.md"
   file_hash: "23fa973fd85ec50ce32b120ba4ab49f9e0b54a52f00a5678fb8980be5be83aa2"
   last_updated_utc: "20260228"
   system_version: "4.0.50"

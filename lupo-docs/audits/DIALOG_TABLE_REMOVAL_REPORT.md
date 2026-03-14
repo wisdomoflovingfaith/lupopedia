@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\DIALOG_TABLE_REMOVAL_REPORT.md"
+  file_path_from_root: "lupo-docs\DIALOG_TABLE_REMOVAL_REPORT.md"
   file_hash: "cd47f671f30b7d66c41e74a1a88093e1adaf57da0069b2256829c28d7ecdcc9e"
-  file_path_from_root: "docs\DIALOG_TABLE_REMOVAL_REPORT.md"
+  file_path_from_root: "lupo-docs\DIALOG_TABLE_REMOVAL_REPORT.md"
   file_hash: "877b6a0eb875f69c0788351acf9292334124bdbfa2e11c507ab728eac700de0a"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -71,10 +71,10 @@ lupopedia.footer:
 
 | File | Change |
 |------|--------|
-| database/migrations/install_new_lupopedia.sql | Removed entire CREATE TABLE lupo_dialog_messages block. |
-| database/migrations/dev_20260204_fix_schema_alignment.sql | Removed all 6 ALTER TABLE lupo_dialog_messages statements. |
-| database/migrations/dev_20260204_fix_schema_alignment_summary.txt | Removed all 6 lupo_dialog_messages column summary lines. |
-| docs/REQUIRED_TABLES_4.1.0.md | Removed list entry `- lupo_dialog_messages`. |
+| lupo-database/migrations/install_new_lupopedia.sql | Removed entire CREATE TABLE lupo_dialog_messages block. |
+| lupo-database/migrations/dev_20260204_fix_schema_alignment.sql | Removed all 6 ALTER TABLE lupo_dialog_messages statements. |
+| lupo-database/migrations/dev_20260204_fix_schema_alignment_summary.txt | Removed all 6 lupo_dialog_messages column summary lines. |
+| lupo-docs/REQUIRED_TABLES_4.1.0.md | Removed list entry `- lupo_dialog_messages`. |
 
 ---
 
@@ -82,10 +82,10 @@ lupopedia.footer:
 
 | File | Lines removed | Description |
 |------|----------------|-------------|
-| database/migrations/install_new_lupopedia.sql | 11 | CREATE TABLE lupo_dialog_messages ( … ) plus blank line before next CREATE. |
-| database/migrations/dev_20260204_fix_schema_alignment.sql | 6 | ALTER TABLE lupo_dialog_messages MODIFY COLUMN (thread_id, actor_id, created_ymdhis, updated_ymdhis, metadata_json, body_text). |
-| database/migrations/dev_20260204_fix_schema_alignment_summary.txt | 6 | Matching summary lines for the 6 columns. |
-| docs/REQUIRED_TABLES_4.1.0.md | 1 | Single list item `- lupo_dialog_messages`. |
+| lupo-database/migrations/install_new_lupopedia.sql | 11 | CREATE TABLE lupo_dialog_messages ( … ) plus blank line before next CREATE. |
+| lupo-database/migrations/dev_20260204_fix_schema_alignment.sql | 6 | ALTER TABLE lupo_dialog_messages MODIFY COLUMN (thread_id, actor_id, created_ymdhis, updated_ymdhis, metadata_json, body_text). |
+| lupo-database/migrations/dev_20260204_fix_schema_alignment_summary.txt | 6 | Matching summary lines for the 6 columns. |
+| lupo-docs/REQUIRED_TABLES_4.1.0.md | 1 | Single list item `- lupo_dialog_messages`. |
 | **Total** | **24** | |
 
 ---
@@ -95,7 +95,7 @@ lupopedia.footer:
 - **Only steps 1–3 were performed:**
   - **Step 1:** lupo_dialog_messages removed from install SQL (CREATE TABLE block deleted).
   - **Step 2:** Removed from dev alignment migrations (dev_20260204_fix_schema_alignment.sql and dev_20260204_fix_schema_alignment_summary.txt). No other dev alignment files contained this table.
-  - **Step 3:** Removed from REQUIRED_TABLES (docs/REQUIRED_TABLES_4.1.0.md). No installer scripts or other schema docs that enumerate required tables were found to list this table; only REQUIRED_TABLES_4.1.0.md was updated.
+  - **Step 3:** Removed from REQUIRED_TABLES (lupo-docs/REQUIRED_TABLES_4.1.0.md). No installer scripts or other schema docs that enumerate required tables were found to list this table; only REQUIRED_TABLES_4.1.0.md was updated.
 
 - **No PHP or runtime code was touched:** No `.php` files were modified. No dialog-related services, APIs, or lupo_dialog_messages references were changed.
 

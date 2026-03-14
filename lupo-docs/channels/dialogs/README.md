@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\channels\dialogs\README.md"
+  file_path_from_root: "lupo-docs\channels\dialogs\README.md"
   file_hash: "6fe7fa6e045e6e0023ef2a8482842754fd91db4e41ad0b06721c7f536ef41e05"
-  file_path_from_root: "docs\channels\dialogs\README.md"
+  file_path_from_root: "lupo-docs\channels\dialogs\README.md"
   file_hash: "ee4a8b1989fcf2466a2d7485f645038c13e9d6aaeea4700bd32f503faff208c1"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -88,7 +88,7 @@ file:
 Purpose: DialogFS subsystem documentation and dialog workflows.
 
 Top-Level Contents:
-- agents/
+- lupo-agents/
 - architecture/
 - dev/
 - DIALOG_SYSTEM_IMPLEMENTATION_COMPLETE.md

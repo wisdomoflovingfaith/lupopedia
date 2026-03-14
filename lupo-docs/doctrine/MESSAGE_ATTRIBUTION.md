@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\doctrine\MESSAGE_ATTRIBUTION.md"
+  file_path_from_root: "lupo-docs\doctrine\MESSAGE_ATTRIBUTION.md"
   file_hash: "22b4d8e4dceb2e8707a108331842222b0e9cade978e4c25aa4fa0ade1332efff"
-  file_path_from_root: "docs\doctrine\MESSAGE_ATTRIBUTION.md"
+  file_path_from_root: "lupo-docs\doctrine\MESSAGE_ATTRIBUTION.md"
   file_hash: "706767d94f4ebf0e7be64b53912913ef8a55e2aa31a5fb2939d1f3e855ea0cf5"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -62,7 +62,7 @@ lupopedia.footer:
 
 ---
 # FLIP Header (alias: Wolfie Header, CROP Header, FLIPPING Header)
-X-Lupo-File-Path: docs/doctrine/MESSAGE_ATTRIBUTION.md
+X-Lupo-File-Path: lupo-docs/doctrine/MESSAGE_ATTRIBUTION.md
 X-Lupo-Version: "4.0.27"
 X-Lupo-UTC-Timestamp: "20260222162242"
 X-Lupo-Channel: 42   # ANUBIS adoption channel

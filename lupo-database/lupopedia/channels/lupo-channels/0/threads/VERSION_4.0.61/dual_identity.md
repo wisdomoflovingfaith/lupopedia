@@ -59,7 +59,7 @@ php lupo-bin/lupo.php context
 - `lupo-includes/classes/ContextResolver.php`
 - `lupo-bin/lupo.php` (whoami/context output)
 
-**Main documentation:** [docs/lupopedia_whoami_readme.md](../../../../../../../docs/lupopedia_whoami_readme.md)
+**Main documentation:** [lupo-docs/lupopedia_whoami_readme.md](../../../../../../../docs/lupopedia_whoami_readme.md)
 
 ## Verification
 

@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\doctrine\SECURITY\SEMANTIC_SECURITY_4_0_30.md"
+  file_path_from_root: "lupo-docs\doctrine\SECURITY\SEMANTIC_SECURITY_4_0_30.md"
   file_hash: "f3fd9d2146985a941ca889e1366217db9e2e3830c18189ca3aa6fb539e6d72bc"
-  file_path_from_root: "docs\doctrine\SECURITY\SEMANTIC_SECURITY_4_0_30.md"
+  file_path_from_root: "lupo-docs\doctrine\SECURITY\SEMANTIC_SECURITY_4_0_30.md"
   file_hash: "cba3bd49f60d29777eb6b20f3085fb593e10e825e1f005ba2bb0d89bd81d292c"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -64,7 +64,7 @@ lupopedia.footer:
 ---
 # FLIP Header (alias: Wolfie Header, CROP Header)
 wolfie.headers: explicit architecture with structured clarity for every file.
-file_path_from_root: docs/doctrine/SECURITY/SEMANTIC_SECURITY_4_0_30.md
+file_path_from_root: lupo-docs/doctrine/SECURITY/SEMANTIC_SECURITY_4_0_30.md
 file.last_modified_system_version: "4.0.31"
 file.last_modified_utc: "20260222215200"
 actor_420_status: "banned_mythological"

@@ -45,7 +45,7 @@ flip.footer:
   referenced_by_files:
     - "CHANGELOG.md"
     - "reports/dialog_inventory_4_0_32.md"
-    - "channels/42/broadcasts/20260223_4_0_32_semantic_cleanup.md"
+    - "lupo-channels/42/broadcasts/20260223_4_0_32_semantic_cleanup.md"
   referenced_by_channels:
     - 42
   referenced_by_actors:
@@ -83,9 +83,9 @@ Version 4.0.32 semantic cleanup phase is complete. All assigned tasks have been 
 **Objective:** Identify MD files containing dialog-like content
 
 **Files Scanned:**
-1. `docs/archive/channel_420_final_messages.md`
-2. `docs/directives/channel_42_broadcast.md`
-3. `channels/42/broadcasts/20260223_kiro_takeover.md`
+1. `lupo-docs/archive/channel_420_final_messages.md`
+2. `lupo-docs/directives/channel_42_broadcast.md`
+3. `lupo-channels/42/broadcasts/20260223_kiro_takeover.md`
 
 **Result:** No actual dialog data found
 
@@ -105,7 +105,7 @@ Version 4.0.32 semantic cleanup phase is complete. All assigned tasks have been 
 
 **Verification Results:**
 
-**docs/archive/channel_420_final_messages.md:**
+**lupo-docs/archive/channel_420_final_messages.md:**
 - ✅ wolfie.headers present and correct
 - ✅ flip.footer present and correct
 - ✅ x_lupo_forwarded: "1001:10000"
@@ -113,7 +113,7 @@ Version 4.0.32 semantic cleanup phase is complete. All assigned tasks have been 
 - ✅ file_path_from_root correct
 - ✅ channel_id: 420 (correct for archive)
 
-**docs/directives/channel_42_broadcast.md:**
+**lupo-docs/directives/channel_42_broadcast.md:**
 - ✅ wolfie.headers present and correct
 - ✅ flip.footer present and correct
 - ✅ x_lupo_forwarded: "1001:10000"
@@ -121,7 +121,7 @@ Version 4.0.32 semantic cleanup phase is complete. All assigned tasks have been 
 - ✅ file_path_from_root correct
 - ✅ channel_id: 42 (correct)
 
-**channels/42/broadcasts/20260223_kiro_takeover.md:**
+**lupo-channels/42/broadcasts/20260223_kiro_takeover.md:**
 - ✅ wolfie.headers present and correct
 - ✅ flip.footer present and correct
 - ✅ x_lupo_forwarded: "1001:10000"
@@ -177,7 +177,7 @@ Version 4.0.32 semantic cleanup phase is complete. All assigned tasks have been 
 
 **Objective:** Post completion message to Channel 42
 
-**Broadcast Created:** `channels/42/broadcasts/20260223_4_0_32_semantic_cleanup.md`
+**Broadcast Created:** `lupo-channels/42/broadcasts/20260223_4_0_32_semantic_cleanup.md`
 
 **Message:**
 > KIRO: Version 4.0.32 semantic cleanup complete.  
@@ -198,7 +198,7 @@ Version 4.0.32 semantic cleanup phase is complete. All assigned tasks have been 
    - Analysis of 3 priority files
    - Recommendations for 4.0.33
 
-2. **channels/42/broadcasts/20260223_4_0_32_semantic_cleanup.md**
+2. **lupo-channels/42/broadcasts/20260223_4_0_32_semantic_cleanup.md**
    - Channel 42 status broadcast
    - Completion announcement
    - Key findings summary
@@ -331,7 +331,7 @@ Version 4.0.32 — Semantic cleanup complete
 
 Files created:
 - reports/dialog_inventory_4_0_32.md
-- channels/42/broadcasts/20260223_4_0_32_semantic_cleanup.md
+- lupo-channels/42/broadcasts/20260223_4_0_32_semantic_cleanup.md
 - VERSION_4_0_32_COMPLETION_REPORT.md
 
 Files updated:

@@ -16,7 +16,7 @@ lupopedia.headers:
 
 lupopedia.edges:
   outbound_edges:
-    - { to: "lupo-docs/toons/lupo_banned_actors.toon.json", type: "schema_reference", weight: 1.0 }
+    - { to: "lupo-database/lupopedia/toon/lupo_banned_actors.toon.json", type: "schema_reference", weight: 1.0 }
     - { to: "lupo-docs/database/lupopedia/tables/active/lupo_actors.md", type: "references", weight: 0.9 }
     - { to: "lupo-docs/database/lupopedia/tables/active/lupo_bans_log.md", type: "references", weight: 0.7 }
 

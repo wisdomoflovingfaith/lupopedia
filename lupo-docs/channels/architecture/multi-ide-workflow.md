@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\channels\architecture\multi-ide-workflow.md"
+  file_path_from_root: "lupo-docs\channels\architecture\multi-ide-workflow.md"
   file_hash: "be9d834d92b58a2a98d72987c1bd3f64ad06740d9e4fc2642638f0a74c55f98d"
-  file_path_from_root: "docs\channels\architecture\multi-ide-workflow.md"
+  file_path_from_root: "lupo-docs\channels\architecture\multi-ide-workflow.md"
   file_hash: "532d3451b37268aa93cb1f9bd0cf5dfd04fa82db21f03a63480281bb8a747fd0"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -124,7 +124,7 @@ Lupopedia is developed using a **multi-IDE, multi-AI workflow** designed for spe
 When an IDE or AI agent makes a change, the dialog entry must list that agent's Speaker name from the canonical mapping table. When the human author writes a dialog entry manually, the Speaker must be Captain_wolfife.
 
 **Terminal AI Identity Rule:**
-Terminal AI must identify itself in dialog entries as Terminal_AI_<agentNumber>, where <agentNumber> corresponds to its directory in agents/<number>/.
+Terminal AI must identify itself in dialog entries as Terminal_AI_<agentNumber>, where <agentNumber> corresponds to its directory in lupo-agents/<number>/.
 
 ---
 
@@ -276,7 +276,7 @@ This is where your decades of raw engineering experience shine.
 
 **Terminal AI Identity:**
 - Each Terminal AI instance has a registry slot number
-- Directory structure: `agents/<number>/`
+- Directory structure: `lupo-agents/<number>/`
 - Dialog entries use format: `Terminal_AI_<agentNumber>`
 - Example: Terminal AI in slot 15 uses "Terminal_AI_15"
 
@@ -382,11 +382,11 @@ This is why your system feels like a team of AI engineers working together.
 
 ### Example 2: Legacy Code Migration
 
-1. **Cascade** (active tab: `legacy/craftysyntax/chat.php`):
+1. **Cascade** (active tab: `lupo-legacy/craftysyntax/chat.php`):
    - Deep refactor of legacy PHP
    - Converting mysqli to PDO_DB
 
-2. **Cursor** (active tab: `docs/doctrine/PDO_CONVERSION_DOCTRINE.md`):
+2. **Cursor** (active tab: `lupo-docs/doctrine/PDO_CONVERSION_DOCTRINE.md`):
    - Following doctrine rules
    - Updating migration documentation
 

@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\channels\doctrine\GLOBAL_ATOMS_DOCTRINE.md"
+  file_path_from_root: "lupo-docs\channels\doctrine\GLOBAL_ATOMS_DOCTRINE.md"
   file_hash: "88c0ef531d11a7c3f0d01417f102f845124bbbf76af5890a23d7ebe8e86d477a"
-  file_path_from_root: "docs\channels\doctrine\GLOBAL_ATOMS_DOCTRINE.md"
+  file_path_from_root: "lupo-docs\channels\doctrine\GLOBAL_ATOMS_DOCTRINE.md"
   file_hash: "44306a366fdea2a1a91dc589a75045858d6f83709e6899696fdefdaa4a032757"
   last_updated_utc: "20260228"
   system_version: "4.0.50"

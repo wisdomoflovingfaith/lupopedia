@@ -47,7 +47,7 @@ flip.footer: {
   outbound_edges: [
     { to: "CHANGELOG.md", type: "updates", weight: 1.0 },
     { to: "VERSION_4_0_46_LAUNCH_REPORT.md", type: "transitions_to", weight: 1.0 },
-    { to: "channels/42/broadcasts/20260226000000_10000_1000_42_version_4_0_46_upgrade_program.md", type: "references", weight: 0.9 }
+    { to: "lupo-channels/42/broadcasts/20260226000000_10000_1000_42_version_4_0_46_upgrade_program.md", type: "references", weight: 0.9 }
   ],
   semantic_tags: ["version_closure", "stabilization_complete", "transition", "4.0.45"]
 }
@@ -68,7 +68,7 @@ Version 4.0.45 has successfully completed all stabilization objectives. The syst
 
 ### Phase 1: Infrastructure Preparation ✅
 - Registry seeding with reserved IDs (comprehensive + open gaps)
-- MD file standardization (channels/**/*.md only)
+- MD file standardization (lupo-channels/**/*.md only)
 - Actors and agents implementation (13 actors, 11 agents)
 - Channels, departments, roles seeding
 
@@ -108,7 +108,7 @@ Version 4.0.45 has successfully completed all stabilization objectives. The syst
 ### Human-Driven Installation Tasks
 
 **1. Primary Install Task (CH0-20260226-001)**
-- **Original:** `channels/0/tasks/active/20260225170000_task_0_10000_drop_tables_and_run_install.md`
+- **Original:** `lupo-channels/0/tasks/active/20260225170000_task_0_10000_drop_tables_and_run_install.md`
 - **New Version:** 4.0.46
 - **Owner:** 10000 (Captain - HUMAN)
 - **Priority:** CRITICAL
@@ -132,14 +132,14 @@ Version 4.0.45 has successfully completed all stabilization objectives. The syst
 ### Agent-Driven Post-Install Tasks
 
 **5. ANUBIS Quarantine Validation (CH0-20260226-002)**
-- **Original:** `channels/0/tasks/pending/20260225170100_task_0_19_validate_channel_666_quarantine.md`
+- **Original:** `lupo-channels/0/tasks/pending/20260225170100_task_0_19_validate_channel_666_quarantine.md`
 - **New Version:** 4.0.46
 - **Owner:** 19 (ANUBIS)
 - **Priority:** HIGH
 - **Depends:** CH0-20260226-001 (install complete)
 
 **6. VISHWAKARMA Graph Analysis (CH42-20260226-001)**
-- **Original:** `channels/42/tasks/pending/20260225170200_task_42_25_graph_relationship_analysis.md`
+- **Original:** `lupo-channels/42/tasks/pending/20260225170200_task_42_25_graph_relationship_analysis.md`
 - **New Version:** 4.0.46
 - **Owner:** 25 (VISHWAKARMA)
 - **Priority:** NORMAL
@@ -153,7 +153,7 @@ Version 4.0.45 has successfully completed all stabilization objectives. The syst
 
 ### Migration Documentation (28 files) ✅
 
-**Location:** `docs/doctrine/migrations/livehelp_*_migration.md`
+**Location:** `lupo-docs/doctrine/migrations/livehelp_*_migration.md`
 
 **Critical Identity & Authentication (4 files):**
 - ✅ livehelp_users_migration.md → lupo_auth_users + lupo_actors
@@ -350,7 +350,7 @@ Version 4.0.45 has successfully completed all stabilization objectives. The syst
 
 1. `VERSION_4_0_45_CLOSURE_REPORT.md` (this file)
 2. `VERSION_4_0_46_LAUNCH_REPORT.md` (next)
-3. `channels/42/broadcasts/20260226000000_10000_1000_42_version_4_0_46_upgrade_program.md` (next)
+3. `lupo-channels/42/broadcasts/20260226000000_10000_1000_42_version_4_0_46_upgrade_program.md` (next)
 4. Updated CHANGELOG.md with closure and launch sections
 
 ## Conclusion

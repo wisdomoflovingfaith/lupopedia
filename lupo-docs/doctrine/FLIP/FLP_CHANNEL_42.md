@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\doctrine\FLIP\FLP_CHANNEL_42.md"
+  file_path_from_root: "lupo-docs\doctrine\FLIP\FLP_CHANNEL_42.md"
   file_hash: "2399cf4b131d9c14234909e9682c62693c3ff985c9a251b857d1b6b904dea60d"
-  file_path_from_root: "docs\doctrine\FLIP\FLP_CHANNEL_42.md"
+  file_path_from_root: "lupo-docs\doctrine\FLIP\FLP_CHANNEL_42.md"
   file_hash: "54dcff3b994e85cc3d48336fe165b057eea69c533dd9559ed88ea48db3591e37"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -64,7 +64,7 @@ lupopedia.footer:
 ---
 # FLIP Header (alias: Wolfie Header, CROP Header, FLIPPING Header)
 wolfie.headers: explicit architecture with structured clarity for every file.
-file_path_from_root: docs/doctrine/FLIP/FLP_CHANNEL_42.md
+file_path_from_root: lupo-docs/doctrine/FLIP/FLP_CHANNEL_42.md
 file.last_modified_system_version: "4.0.16"
 file.last_modified_utc: "20260218000000"
 channel_id: 42
@@ -72,7 +72,7 @@ tags: ["channel", "lupopedia-development", "anubis", "flip"]
 mood_rgb: "A0D6B4"
 X-Lupo-Actor-ID: 2035
 X-Lupo-Actor-Identity: "Lupopedia Audit Tool (Auto-Fixed)"
-X-Lupo-File-Path: docs/doctrine/FLIP/FLP_CHANNEL_42.md
+X-Lupo-File-Path: lupo-docs/doctrine/FLIP/FLP_CHANNEL_42.md
 ---
 # FLP — Channel 42 (Lupopedia Development / ANUBIS)
 
@@ -90,11 +90,11 @@ Channel 42 (`lupopedia-development`) hosts Crafty Syntax and Lupopedia developme
 
 ## 2. ANUBIS
 
-ANUBIS resolves orphaned dialog messages and adopts them into channel 42 when appropriate. Banned actors (e.g. actor 999) are excluded. Doctrine: docs/doctrine/ANUBIS/ANUBIS_OVERVIEW.md, ANUBIS_ORPHAN_RULES.md, ANUBIS_PROGRAM_SPEC.md.
+ANUBIS resolves orphaned dialog messages and adopts them into channel 42 when appropriate. Banned actors (e.g. actor 999) are excluded. Doctrine: lupo-docs/doctrine/ANUBIS/ANUBIS_OVERVIEW.md, ANUBIS_ORPHAN_RULES.md, ANUBIS_PROGRAM_SPEC.md.
 
 ---
 
 ## 3. lupo_contents and lupo_edges
 
-- **lupo_dialog_channels.file_source:** `docs/doctrine/FLIP/FLIPPING_FILE_LEXA_LILITH.md`
+- **lupo_dialog_channels.file_source:** `lupo-docs/doctrine/FLIP/FLIPPING_FILE_LEXA_LILITH.md`
 - **lupo_edges:** HAS_CONTENT edges link channel 42 to FLIP content (e.g. content_id 2001, 2002, 5030, 5033).

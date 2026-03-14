@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "channels\42\broadcasts\20260225130009_10000_1000_42_kiro_reply_to_captain_wolfie_confirming_version_4_0_42_initialization_complete.md"
+  file_path_from_root: "lupo-channels\42\broadcasts\20260225130009_10000_1000_42_kiro_reply_to_captain_wolfie_confirming_version_4_0_42_initialization_complete.md"
   file_hash: "d242cf8dd17dc44434d194e353deb319310462ef0af5343299d0ecf6eeca887f"
-  file_path_from_root: "channels\42\broadcasts\20260225130009_10000_1000_42_kiro_reply_to_captain_wolfie_confirming_version_4_0_42_initialization_complete.md"
+  file_path_from_root: "lupo-channels\42\broadcasts\20260225130009_10000_1000_42_kiro_reply_to_captain_wolfie_confirming_version_4_0_42_initialization_complete.md"
   file_hash: "88aeeb66dd9fb786cf1b730db262b376ce907f42e854b49a6a06f1b4cffd57cf"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -108,14 +108,14 @@ created_utc: "2026-02-25T13:00:00Z"
 - ✅ `CHANGELOG.md` → Header updated, 4.0.40 marked as SKIPPED
 
 ### Phase 3: Documentation Created ✅
-- ✅ `docs/versions/4.0.42/TODO.md` — Task tracking
-- ✅ `docs/versions/4.0.42/CHANGELOG_DRAFT.md` — Development log
-- ✅ `channels/42/broadcasts/20260224_version_4_0_42_initialized.md` — Initialization broadcast
-- ✅ `docs/status/kiro_version_4_0_42_initialization_complete_20260224.md` — Completion report
+- ✅ `lupo-docs/versions/4.0.42/TODO.md` — Task tracking
+- ✅ `lupo-docs/versions/4.0.42/CHANGELOG_DRAFT.md` — Development log
+- ✅ `lupo-channels/42/broadcasts/20260224_version_4_0_42_initialized.md` — Initialization broadcast
+- ✅ `lupo-docs/status/kiro_version_4_0_42_initialization_complete_20260224.md` — Completion report
 
 ### Phase 4: System Validation ✅
-- ✅ `php scripts/verify_grounded_architecture.php` — Exit code: 0
-- ✅ `php scripts/verify_dialog_messages.php` — Exit code: 0
+- ✅ `php lupo-scripts/verify_grounded_architecture.php` — Exit code: 0
+- ✅ `php lupo-scripts/verify_dialog_messages.php` — Exit code: 0
 - ✅ All validation checks passed
 
 ---
@@ -168,13 +168,13 @@ The system is now ready for Phase 4: Upgrade Test Execution
 ## 📄 REPORTS AVAILABLE
 
 **Completion Report:**
-`docs/status/kiro_version_4_0_42_initialization_complete_20260224.md`
+`lupo-docs/status/kiro_version_4_0_42_initialization_complete_20260224.md`
 
 **Task Tracking:**
-`docs/versions/4.0.42/TODO.md`
+`lupo-docs/versions/4.0.42/TODO.md`
 
 **Development Log:**
-`docs/versions/4.0.42/CHANGELOG_DRAFT.md`
+`lupo-docs/versions/4.0.42/CHANGELOG_DRAFT.md`
 
 ---
 
@@ -203,7 +203,7 @@ The system is now ready for Phase 4: Upgrade Test Execution
 
 <!-- FLIP_FOOTER_BEGIN
 {
-    "references": "\"docs\/status\/broadcast_collection_42.md\"",
+    "references": "\"lupo-docs\/status\/broadcast_collection_42.md\"",
     "implements": "\"broadcast_standardization\"",
     "depends_on": "\"registry_seeding_completion\"",
     "includes": "\"channel_42_communications\"",

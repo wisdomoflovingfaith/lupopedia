@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\channels\doctrine\SQL_REFACTOR_MAPPING_DOCTRINE.md"
+  file_path_from_root: "lupo-docs\channels\doctrine\SQL_REFACTOR_MAPPING_DOCTRINE.md"
   file_hash: "f4dde63292e8723d307d075868b52fae186c9d0e92058845d3ec9a2e060092af"
-  file_path_from_root: "docs\channels\doctrine\SQL_REFACTOR_MAPPING_DOCTRINE.md"
+  file_path_from_root: "lupo-docs\channels\doctrine\SQL_REFACTOR_MAPPING_DOCTRINE.md"
   file_hash: "5254b82ec7cfd64ae351f34ab7f9b5c65d208ad0cfdf8059c1a7c8812aa627ef"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -111,7 +111,7 @@ This doctrine is **mandatory**. Cursor must follow it for every SQL query refact
 **For every SQL query, Cursor must load the matching refactor file from:**
 
 ```
-database/refactors/{legacy_table}.toon
+lupo-database/refactors/{legacy_table}.toon
 ```
 
 **(Note: Files are TOON format with `.toon` extension. Older files may have `.json` extension but are still TOON format. See [TOON_DOCTRINE.md](TOON_DOCTRINE.md))**
@@ -152,7 +152,7 @@ SELECT * FROM {{prefix}}crafty_auto_invite WHERE id = 1
 - Find each legacy column name in the SQL query
 - Look up the column in `column_map` in the refactor TOON file
 - Replace with the mapped column name
-- Verify the new column name exists in the toon data file (`database/toon_data/{new_table_name}.json`)
+- Verify the new column name exists in the toon data file (`lupo-database/toon_data/{new_table_name}.json`)
 
 **Example:**
 ```sql
@@ -364,7 +364,7 @@ SELECT * FROM {{prefix}}crafty_auto_invite
 
 **For every SQL query:**
 
-1. **Load refactor TOON file** — `database/refactors/{legacy_table}.toon`
+1. **Load refactor TOON file** — `lupo-database/refactors/{legacy_table}.toon`
 2. **Replace table name** — Use `new_table` from TOON file
 3. **Replace column names** — Use `column_map` from TOON file
 4. **Apply transforms** — Exactly as defined in TOON file

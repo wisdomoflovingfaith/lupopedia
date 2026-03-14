@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\archive\doctrine_revisions\WOLFIE_HEADER_DOCTRINE_v3.2.md"
+  file_path_from_root: "lupo-docs\archive\doctrine_revisions\WOLFIE_HEADER_DOCTRINE_v3.2.md"
   file_hash: "b8bf3e999d4b9886cc7ea9cdfc9f0bd049dd2947022feb5e995e1c70cd3338df"
-  file_path_from_root: "docs\archive\doctrine_revisions\WOLFIE_HEADER_DOCTRINE_v3.2.md"
+  file_path_from_root: "lupo-docs\archive\doctrine_revisions\WOLFIE_HEADER_DOCTRINE_v3.2.md"
   file_hash: "8f0fe480f4434728c2f1e6983ccacfba237b7923177f8a9e3c32fc4e369774ee"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -291,21 +291,21 @@ A header is valid if:
 Lupopedia maintains strict separation between semantic and programming metadata through two dedicated import lanes.
 
 #### Lane A — Semantic Importer
-- **Script:** `scripts/import_os.py`
+- **Script:** `lupo-scripts/import_os.py`
 - **Target Table:** `lupo_contents` (exclusive)
 - **Content Type:** Semantic content (markdown, links, docs, external content)
 - **TOON Authority:** Semantic TOONs
 - **Prohibition:** Must not write to `lupo_files`
 
 #### Lane B — Programming Importer
-- **Script:** `scripts/import_files.py`
+- **Script:** `lupo-scripts/import_files.py`
 - **Target Table:** `lupo_files` (exclusive)
 - **Content Type:** Programming metadata (pkg_name, mod_name, asp_name, pur_name)
 - **Additional Fields:** created_ymdhis and optional channel/thread metadata
 - **TOON Authority:** Programming TOONs
 - **Prohibition:** Must not write to `lupo_contents`
 
-### 13.2 Doctrine Rules for scripts/import_files.py
+### 13.2 Doctrine Rules for lupo-scripts/import_files.py
 The Programming Importer must follow these strict requirements:
 
 #### Schema Authority

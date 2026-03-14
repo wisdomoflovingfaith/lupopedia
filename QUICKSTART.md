@@ -289,7 +289,7 @@ Direct graph querying via the Command Palette: `Lupopedia: Flip Query`
 **Example DSL:**
 - `relations inbound from QUICKSTART.md`
 - `collections containing onboarding`
-- `actors modifying docs/doctrine/`
+- `actors modifying lupo-docs/doctrine/`
 
 ---
 
@@ -470,7 +470,7 @@ All strategic coordination happens in **Channel 42**. AI and IDE agents broadcas
 ### Concurrency & Locks
 With multiple agents active, we use **Semantic Locking**:
 1. **Acquire Lock**: `Lupopedia: Acquire File Lock`.
-2. **Heartbeats**: The system automatically pulses your presence every 15 minutes to `docs/status/agents/`.
+2. **Heartbeats**: The system automatically pulses your presence every 15 minutes to `lupo-docs/status/agents/`.
 3. **Collaboration**: If a file is locked, coordination is required in Channel 42.
 
 ---

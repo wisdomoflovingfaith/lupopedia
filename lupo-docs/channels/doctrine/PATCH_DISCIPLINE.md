@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\channels\doctrine\PATCH_DISCIPLINE.md"
+  file_path_from_root: "lupo-docs\channels\doctrine\PATCH_DISCIPLINE.md"
   file_hash: "961cd79f6c1ad96745d44702390497348fdf2d4248a2cae78d979a53c94d0b6e"
-  file_path_from_root: "docs\channels\doctrine\PATCH_DISCIPLINE.md"
+  file_path_from_root: "lupo-docs\channels\doctrine\PATCH_DISCIPLINE.md"
   file_hash: "b400532baaad8260bf18b0ed77df6c59c06a2767bfa62240db93e72a67c19556"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -632,7 +632,7 @@ PATCH: Update Database Schema Documentation
 AGENT: KIRO (Documentation Lane)
 TASK: Add documentation for new lupo_user_preferences table
 SCOPE: Single task - document new table only
-FILES: docs/schema/DATABASE_SCHEMA.md
+FILES: lupo-docs/schema/DATABASE_SCHEMA.md
 
 WORKFLOW:
 1. Task Acquisition: Clear task to document new table
@@ -661,7 +661,7 @@ PATCH: Update Authentication System (INCORRECT)
 AGENT: KIRO (Documentation Lane)
 TASK: Update authentication documentation
 SCOPE: Multiple unrelated tasks (VIOLATION)
-FILES: docs/auth/AUTH_SPEC.md, lupo-includes/auth/auth.php, database/auth_tables.sql
+FILES: lupo-docs/auth/AUTH_SPEC.md, lupo-includes/auth/auth.php, lupo-database/auth_tables.sql
 
 VIOLATIONS:
 1. Multi-task scope: Documentation + Implementation + Database
@@ -670,9 +670,9 @@ VIOLATIONS:
 4. Mixed responsibilities: Documentation agent doing implementation work
 
 CORRECT APPROACH:
-- KIRO: Update documentation only (docs/auth/AUTH_SPEC.md)
+- KIRO: Update documentation only (lupo-docs/auth/AUTH_SPEC.md)
 - Hand off to CURSOR: Implementation changes (lupo-includes/auth/auth.php)
-- Hand off to CURSOR: Database changes (database/auth_tables.sql)
+- Hand off to CURSOR: Database changes (lupo-database/auth_tables.sql)
 - Coordinate through dialog system with clear requirements
 ```
 
@@ -683,7 +683,7 @@ PATCH: Update Cross-Reference Links Between Doctrine Files
 AGENT: KIRO (Documentation Lane)
 TASK: Fix broken cross-references between WOLFIE_HEADER_DOCTRINE.md and DIALOG_DOCTRINE.md
 SCOPE: Single task - fix cross-reference consistency
-FILES: docs/doctrine/WOLFIE_HEADER_DOCTRINE.md, docs/doctrine/DIALOG_DOCTRINE.md
+FILES: lupo-docs/doctrine/WOLFIE_HEADER_DOCTRINE.md, lupo-docs/doctrine/DIALOG_DOCTRINE.md
 
 JUSTIFICATION: Cross-reference fixes require atomic updates to both files to maintain link integrity
 
@@ -724,7 +724,7 @@ Latest Entry:
 **Mood:** FF6600
 **Message:** "Fixed legacy compatibility in authentication module."
 
-File Header: docs/example/EXAMPLE.md
+File Header: lupo-docs/example/EXAMPLE.md
 dialog:
   speaker: CASCADE
   target: @dev
@@ -746,7 +746,7 @@ Latest Entry:
 **Mood:** FF6600
 **Message:** "Fixed legacy compatibility in authentication module."
 
-File Header: docs/example/EXAMPLE.md
+File Header: lupo-docs/example/EXAMPLE.md
 dialog:
   speaker: KIRO
   target: @everyone
@@ -829,7 +829,7 @@ VALIDATION: All changes consistent and properly formatted ✓
 
 ## 8. Cross-References
 
-- **[WOLFIE Header Doctrine](WOLFIE_HEADER_DOCTRINE.md)** (`docs/doctrine/WOLFIE_HEADER_DOCTRINE.md`) - MANDATORY rules for WOLFIE headers and metadata governance
+- **[WOLFIE Header Doctrine](WOLFIE_HEADER_DOCTRINE.md)** (`lupo-docs/doctrine/WOLFIE_HEADER_DOCTRINE.md`) - MANDATORY rules for WOLFIE headers and metadata governance
 - **[Dialog Doctrine](DIALOG_DOCTRINE.md)** - MANDATORY rules for dialog system architecture and thread management
 - **[Agent Runtime](AGENT_RUNTIME.md)** - Agent lifecycle, lane separation, and runtime behavior requirements
 - **[Directory Structure](DIRECTORY_STRUCTURE.md)** - File organization and structural requirements for patch operations

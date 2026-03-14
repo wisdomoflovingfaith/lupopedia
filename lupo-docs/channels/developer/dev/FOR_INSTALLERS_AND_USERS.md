@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\channels\developer\dev\FOR_INSTALLERS_AND_USERS.md"
+  file_path_from_root: "lupo-docs\channels\developer\dev\FOR_INSTALLERS_AND_USERS.md"
   file_hash: "2b5b59ce25441464df89c29467f5b324bc87f40d38eab9841785b3296c2370d7"
-  file_path_from_root: "docs\channels\developer\dev\FOR_INSTALLERS_AND_USERS.md"
+  file_path_from_root: "lupo-docs\channels\developer\dev\FOR_INSTALLERS_AND_USERS.md"
   file_hash: "e4dba6404e95bb8d4bc017ed1e97a2296ae1f3d379198e51ad884c0c52abf2f0"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -171,7 +171,7 @@ If your hosting supports PHP and MySQL, it works.
 1. Upload Lupopedia 3.0.3 files to existing Crafty Syntax directory
 2. Setup wizard automatically detects `config.php` (only exists in Crafty Syntax 3.7.5)
 3. Setup enters upgrade mode and runs migration automatically
-4. Migration SQL (`database/migrations/craftysyntax_to_lupopedia_mysql.sql`) executes
+4. Migration SQL (`lupo-database/migrations/craftysyntax_to_lupopedia_mysql.sql`) executes
 5. All 34 legacy tables are migrated to Lupopedia 3.0.3 schema
 6. Legacy tables are dropped after successful migration
 7. Upgrade complete - system is now Lupopedia 3.0.3

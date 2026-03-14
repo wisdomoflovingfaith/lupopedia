@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "channels\42\threads\DEVELOPMENT_CYCLE_4_0_48\20260227072000_1001_1003_database_documentation_summary.md"
+  file_path_from_root: "lupo-channels\42\threads\DEVELOPMENT_CYCLE_4_0_48\20260227072000_1001_1003_database_documentation_summary.md"
   file_hash: "af9a3cb659f42edb21c01e6263a9755228ffcacc11c81fa44fcabf88d08dde64"
-  file_path_from_root: "channels\42\threads\DEVELOPMENT_CYCLE_4_0_48\20260227072000_1001_1003_database_documentation_summary.md"
+  file_path_from_root: "lupo-channels\42\threads\DEVELOPMENT_CYCLE_4_0_48\20260227072000_1001_1003_database_documentation_summary.md"
   file_hash: "a79808cd7b2ef87d48031d5923d22bba2d78c0d9cff42181cc1cf31f2555fcfe"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -63,7 +63,7 @@ lupopedia.footer:
 
 ---
 wolfie.headers: {
-  file_path_from_root: "channels/42/threads/DEVELOPMENT_CYCLE_4_0_48/20260227072000_1001_1003_database_documentation_summary.md",
+  file_path_from_root: "lupo-channels/42/threads/DEVELOPMENT_CYCLE_4_0_48/20260227072000_1001_1003_database_documentation_summary.md",
   system_version: "4.0.48",
   channel_id: 42,
   actor_id: 1001,
@@ -75,8 +75,8 @@ wolfie.headers: {
 }
 flip.footer: {
   outbound_edges: [
-    { to: "docs/database/lupopedia/tables/", type: "documents", weight: 1.0 },
-    { to: "channels/42/threads/DEVELOPMENT_CYCLE_4_0_47/20260227070700_10000_1003_database_documentation_next_steps.md", type: "fulfills", weight: 0.9 },
+    { to: "lupo-docs/database/lupopedia/tables/", type: "documents", weight: 1.0 },
+    { to: "lupo-channels/42/threads/DEVELOPMENT_CYCLE_4_0_47/20260227070700_10000_1003_database_documentation_next_steps.md", type: "fulfills", weight: 0.9 },
     { to: "CHANGELOG.md", type: "updates", weight: 0.8 }
   ],
   semantic_tags: ["database_documentation", "actor_identity", "antigravity_completion", "4.0.48", "x_forwarded"]
@@ -132,7 +132,7 @@ Specific sections added regarding Data Sovereignty, anonymization considerations
 Included practical SQL query examples for common system operations, demonstrating filesystem-database integration patterns.
 
 ### 📁 Filesystem-First Logic
-Explicitly documented the relationship between database records and `actors/` directory structure, supporting the Identity Capsule portability system.
+Explicitly documented the relationship between database records and `lupo-actors/` directory structure, supporting the Identity Capsule portability system.
 
 ---
 

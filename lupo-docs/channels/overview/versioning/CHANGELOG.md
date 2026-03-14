@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\channels\overview\versioning\CHANGELOG.md"
+  file_path_from_root: "lupo-docs\channels\overview\versioning\CHANGELOG.md"
   file_hash: "cfbde7c72fdfa79145e0b3121e34950624789d64f2c91d0a3c3d2ba3f9f37343"
-  file_path_from_root: "docs\channels\overview\versioning\CHANGELOG.md"
+  file_path_from_root: "lupo-docs\channels\overview\versioning\CHANGELOG.md"
   file_hash: "87949ee54f1b0e5e413bd381ebefd95ecc555e9007736a0c7186833e04b9b69e"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -84,7 +84,7 @@ dialog:
   speaker: JETBRAINS
   target: @everyone
   mood_RGB: "00FF88"
-  message: "Changelog for Lupopedia. Current version 3.0.0. See docs/versioning/README.md."
+  message: "Changelog for Lupopedia. Current version 3.0.0. See lupo-docs/versioning/README.md."
 tags:
   categories: ["documentation", "changelog"]
   collections: ["core-docs"]
@@ -108,7 +108,7 @@ file:
 - One-time migration dev_20260206_reserved_word_column_renames.sql; install_new_lupopedia.sql updated.
 - API artifact and timeline use entity_type; version atom and version.php set to 3.0.0.
 - .cursorrules: Zero Installations / No Backward Compatibility Rule; Version Lock Rule (3.0.0 until 4.1.0 auto-installer).
-- Migration notes: docs/channels/schema/migrations/3.0.0.md.
+- Migration notes: lupo-docs/channels/schema/migrations/3.0.0.md.
 
 ## [2026.3.7.8] — 2026-01-29 23:55 (UTC)
 
@@ -120,10 +120,10 @@ file:
 ### Details
 - Confirmed full import pipeline coverage (import_from_old_crafty_syntax.sql) and post-import drops for all 34 legacy livehelp_ tables.
 - Added doctrine migration files for every legacy table, including a minimal livehelp_autoinvite note.
-- Regenerated and refined docs/doctrine/MigrationAtlas.md with subsystem notes and alphabetized replacements.
+- Regenerated and refined lupo-docs/doctrine/MigrationAtlas.md with subsystem notes and alphabetized replacements.
 - Added filesystem padding doctrine for channel directories and documented channel 42 migration checklist with cycle-based framing and emotional metadata stubs.
 - Created the Crafty Syntax ancestral intent + continuity document to preserve historical context and operational guarantees.
-- Verified mappings against doctrine, SQL, and TOONs in docs/toons/ as the authoritative schema source.
+- Verified mappings against doctrine, SQL, and TOONs in lupo-database/lupopedia/toon/ as the authoritative schema source.
 
 ## [2026.3.7.7] — 2026-01-29 23:36 (UTC)
 
@@ -135,20 +135,20 @@ file:
 ### Details
 - Completed import_from_old_crafty_syntax.sql coverage and confirmed all 34 legacy livehelp_* tables migrate then drop.
 - Added doctrine migration files for every legacy table, including a minimal livehelp_autoinvite note.
-- Generated and refined docs/doctrine/MigrationAtlas.md with alphabetized replacements and subsystem notes for ambiguous mappings.
+- Generated and refined lupo-docs/doctrine/MigrationAtlas.md with alphabetized replacements and subsystem notes for ambiguous mappings.
 - Confirmed federation node import (livehelp_websites -> lupo_federation_nodes) including default_department_id support.
-- Verified mappings against doctrine, SQL, and TOONs in docs/toons/ (authoritative schema snapshots).
+- Verified mappings against doctrine, SQL, and TOONs in lupo-database/lupopedia/toon/ (authoritative schema snapshots).
 
 ### Notes
-- TOONs in docs/toons/ are the authoritative schema source; deprecated database/toon_data/ is ignored.
+- TOONs in lupo-database/lupopedia/toon/ are the authoritative schema source; deprecated lupo-database/toon_data/ is ignored.
 
 ## 2026-01-28 - 2026.3.7.6 Sprint Actions
 
 - Updated Emotional Geometry Doctrine to v4.2 with Light-Emotion Isomorphism foundation.
 - Added doctrine `doctrine/ETHICAL_STATE_MARKERS_DOCTRINE.md` for pono/pilau/kapakai triad.
 - Added Captain's Log entries for fragmented feature recall and emergency bridge session.
-- Normalized channel directories to zero-padded numeric folders and generated `channels/registry.json`.
-- Added `scripts/generate_blessed_channel_registry.py` with strict identity requirements and ethical triad defaults.
+- Normalized channel directories to zero-padded numeric folders and generated `lupo-channels/registry.json`.
+- Added `lupo-scripts/generate_blessed_channel_registry.py` with strict identity requirements and ethical triad defaults.
 - Updated root `README.md` with Wolfie Header update requirements and channel provenance rule.
 - Updated system version to 2026.3.7.6.
 
@@ -166,18 +166,18 @@ file:
 - Dropped legacy single-column mood_rgb fields from dialog-related tables.
 - Added schema-only migrations for emotional constellation tables and mood registry transitions.
 - Updated emotional logging doctrine to reflect constellation-based emotional models.
-- Added narrative documentation: `docs/movie_notes/movie_notes.md` and a new captain's log entry.
+- Added narrative documentation: `lupo-docs/movie_notes/movie_notes.md` and a new captain's log entry.
 
 ## 2026-01-26 - System Regeneration & Manifest Normalization Update
 
 - Regenerated all TOON schema files using authoritative .toon.json definitions.
 - Normalized all manifest.json files across /channels/ using corrected channel_number rules.
 - Regenerated all JSON state files for channel 51 with corrected channel_key.
-- Added scripts/connect_to_51.py for IDE actor registration and channel linkage.
+- Added lupo-scripts/connect_to_51.py for IDE actor registration and channel linkage.
 - Synchronized channel state structures and ensured doctrine alignment.
 
 ### Details
-- Updated database/toon_data/*.toon files to match docs/toons/*.toon.json schemas.
+- Updated lupo-database/toon_data/*.toon files to match lupo-database/lupopedia/toon/*.toon.json schemas.
 - Preserved all existing data arrays inside .toon files; no data loss occurred.
 - Removed stale .toon files that no longer correspond to active tables.
 - Normalized manifest.json fields using canonical mapping:
@@ -186,7 +186,7 @@ file:
   - channel_name, channel_type, and description filled using fallback rules
 - Regenerated channel 51 JSON files (manifest, state, actors, layers, routing, metadata)
   with corrected channel_key = "51" and channel_number = 51.
-- Added scripts/connect_to_51.py to safely create IDE actors, connect them to channel 51,
+- Added lupo-scripts/connect_to_51.py to safely create IDE actors, connect them to channel 51,
   and initialize dialog threads without requiring database inference.
 - Ensured all regenerated files are pretty-printed and doctrine-aligned.
 
@@ -200,7 +200,7 @@ file:
 ### Details
 - Confirmed all tables use the dynamic prefix from `lupopedia-config.php` (`lupo_`).
 - Preserved legacy unified tables as `lupo_*_old` to avoid collisions with Lupopedia-native tables.
-- Regenerated all `.toon.json` files via `python scripts/generate_toon_files.py` and allowed stale TOON cleanup.
+- Regenerated all `.toon.json` files via `python lupo-scripts/generate_toon_files.py` and allowed stale TOON cleanup.
 - Added migration artifact `2026_01_25_01_prefix_normalization_noop.sql` documenting the completion of the cycle.
 - Migration is a no-op by design and uses the `@table_prefix` variable injected by the migration runner.
 
@@ -270,7 +270,7 @@ file:
 ### Operator Layer Updates
 - Added operator-layer tables: lupo_operators, lupo_operator_status, lupo_operator_sessions, lupo_operator_skills, lupo_operator_chat_assignments, lupo_operator_escalation_rules
 - Defined operator presence, availability, sessions, skills, routing assignments, and escalation rules for AI-to-human handoff
-- Regenerated TOON files via python3 scripts/generate_toon_files.py to sync with live schema
+- Regenerated TOON files via python3 lupo-scripts/generate_toon_files.py to sync with live schema
 - Confirmed schema now contains 196 tables
 
 
@@ -279,8 +279,8 @@ file:
 ### Semantic OS Infrastructure Updates
 - Added semantic OS tables: lupo_aliases, lupo_semantic_overlays
 - Recorded migration 2026_01_24_02_add_semantic_aliases_and_overlays.php
-- Updated scripts/generate_toon_files.py to clear stale docs/toons/*.toon.json before regeneration
-- Regenerated TOON files via python3 scripts/generate_toon_files.py
+- Updated lupo-scripts/generate_toon_files.py to clear stale lupo-database/lupopedia/toon/*.toon.json before regeneration
+- Regenerated TOON files via python3 lupo-scripts/generate_toon_files.py
 - Removed stale TOONs for deprecated tables no longer present in live schema
 - Verified TOON coverage matches live database schema
 
@@ -329,14 +329,14 @@ file:
 ## 2026.1.1.1 � Repository Taxonomy Reorganization (2026-01-22)
 
 ### Added
-- `scripts/rebuild_lupo_contents.py` for rebuilding `lupo_contents` from Markdown sources.
+- `lupo-scripts/rebuild_lupo_contents.py` for rebuilding `lupo_contents` from Markdown sources.
 - `dialogs/operations/2026-01-22_repo_organization.md` to log the repo organization work.
 
 ### Changed
-- Reorganized documentation into `docs/channels/*` (root docs migrated to channel taxonomy).
-- Consolidated legacy doctrine into `docs/channels/doctrine/legacy-import/`.
-- Moved agent-1 documentation into `docs/channels/agents/agent-1/`.
-- Moved schema reports into `docs/channels/schema/reports/` and migration analyses into `docs/channels/schema/migrations/analysis/`.
+- Reorganized documentation into `lupo-docs/channels/*` (root docs migrated to channel taxonomy).
+- Consolidated legacy doctrine into `lupo-docs/channels/doctrine/legacy-import/`.
+- Moved agent-1 documentation into `lupo-docs/channels/agents/agent-1/`.
+- Moved schema reports into `lupo-docs/channels/schema/reports/` and migration analyses into `lupo-docs/channels/schema/migrations/analysis/`.
 - Updated internal Markdown links to reflect new locations.
 - Created missing channel `README.md` and `INDEX.md` stubs across subfolders.
 - Updated version sources to `2026.1.1.1` (`LUPEDIA_VERSION`, `config/global_atoms.yaml`).
@@ -414,7 +414,7 @@ file:
 - **NO EXCEPTIONS**: Applies even to human requests, emergencies, hypotheticals
 
 ### Documentation Channel Reorganization
-- **DOCS CHANNELS CREATED**: Reorganized documentation into channel folders under `docs/channels/`
+- **DOCS CHANNELS CREATED**: Reorganized documentation into channel folders under `lupo-docs/channels/`
 - **CHANNEL INDEXES ADDED**: Added channel-level `README.md` and `INDEX.md` files
 - **LINKS UPDATED**: Adjusted internal documentation links to new channel paths
 
@@ -579,7 +579,7 @@ file:
 
 ### Import Script Enhancement
 - **Migrated to os.walk()**: Replaced os.listdir() with os.walk() for recursive directory traversal
-- **Comprehensive Import**: Now processes all markdown files in docs/ subdirectories (history/, migrations/, protocols/, etc.)
+- **Comprehensive Import**: Now processes all markdown files in lupo-docs/ subdirectories (history/, migrations/, protocols/, etc.)
 - **Duplicate Prevention**: Added existence checks for both content and edges before insertion
 - **Improved Slug Generation**: Enhanced slug creation using relative paths with proper normalization
 - **Mass Import Success**: Imported 400+ additional content entries (IDs 2137-2550) from entire docs structure
@@ -593,7 +593,7 @@ file:
 ## 2026.1.0.3 � Version Control Authority Update (2026-01-20)
 
 ### Version Control Protocol Implementation
-- Established TOON file as authoritative version source: `database/toon_data/lupopedia_version.toon`
+- Established TOON file as authoritative version source: `lupo-database/toon_data/lupopedia_version.toon`
 - Implemented NON-NEGOTIABLE version control doctrine preventing auto-increment
 - Defined version mismatch detection protocol with standardized error response
 - Updated global atoms to reference TOON file authority
@@ -622,7 +622,7 @@ file:
 - ? **Documentation Verified**: All documentation already references canonical 2-actor RGB model
 - ? **No Dead Code Found**: Zero instances of deprecated scalar/5-tuple models in active runtime code
 - ? **Historical Records Preserved**: Changelog entries and dialog files preserved for audit trail
-- ? **Cleanup Report Generated**: Created comprehensive cleanup report at `docs/reports/LEGACY_EMOTIONAL_GEOMETRY_CLEANUP.md`
+- ? **Cleanup Report Generated**: Created comprehensive cleanup report at `lupo-docs/reports/LEGACY_EMOTIONAL_GEOMETRY_CLEANUP.md`
 - **Result**: Repository 100% compliant with 2-actor RGB mood model doctrine
 
 ### Mood Services Implementation (2-Actor RGB Model)
@@ -649,9 +649,9 @@ file:
   - Mood interpretation and coherence status display
   - Compare-notes protocol alerts
 - ? **Comprehensive Documentation**:
-  - `docs/services/ACTOR_MOOD_SERVICE.md` - Complete API reference
-  - `docs/services/MOOD_SERVICES_OVERVIEW.md` - Architecture and patterns
-  - `docs/services/MOOD_SERVICES_INTEGRATION.md` - Integration guide
+  - `lupo-docs/services/ACTOR_MOOD_SERVICE.md` - Complete API reference
+  - `lupo-docs/services/MOOD_SERVICES_OVERVIEW.md` - Architecture and patterns
+  - `lupo-docs/services/MOOD_SERVICES_INTEGRATION.md` - Integration guide
   - `doctrine/EMOTIONAL_GEOMETRY_DOCTRINE.md` - Added Section 9: Runtime Implementation
   - `doctrine/HERMES_ROUTING_DOCTRINE.md` - Channel-aware, mood-aware routing
 - ? **HERMES Routing Doctrine**: Created canonical routing specification
@@ -690,7 +690,7 @@ file:
 
 #### ? **TOON Generation Governance Implementation**
 - Created `GOV-TOON-GENERATION-001.md` establishing non-negotiable TOON generation rules
-- Verified `database/generate_toon_files.py` v1.2.0 as canonical generator
+- Verified `lupo-database/generate_toon_files.py` v1.2.0 as canonical generator
 - Confirmed 100% compliance across all 202 database tables
 - Established Database ? TOON ? Agent pipeline integrity
 - Implemented AI restrictions (read-only access to TOON files)
@@ -710,10 +710,10 @@ file:
 - **Migration**: Complete command mapping table provided
 
 #### TOON Generation Compliance
-- **Generator**: `database/generate_toon_files.py` (v1.2.0)
+- **Generator**: `lupo-database/generate_toon_files.py` (v1.2.0)
 - **Coverage**: 202/202 tables successfully processed
 - **Format**: JSON-based TOON with complete metadata
-- **Location**: `database/toon_data/` with proper naming conventions
+- **Location**: `lupo-database/toon_data/` with proper naming conventions
 - **AI Restrictions**: Read-only access, no generation or modification allowed
 
 ### ?? Development Workflow Updates
@@ -803,7 +803,7 @@ file:
 ### ??? Major Accomplishments
 
 #### ? **Complete TOON Database Analysis**
-- Analyzed all 204 TOON files in database/toon_data/
+- Analyzed all 204 TOON files in lupo-database/toon_data/
 - Built comprehensive migration analysis tools:
   - `analyze_missing_tables.py` - TOON file analyzer and missing table detector
   - `generate_clean_migration.py` - Doctrine-compliant migration generator
@@ -816,7 +816,7 @@ file:
 - **Impact:** Causing false doctrine violation (204 ? 205 projected tables, 5 over 200 limit)
 - **Solution:** Complete cleanup executed
   - Removed 34 livehelp_* TOON files + 34 corresponding .txt files
-  - Created backup at database/livehelp_backup/ for reference
+  - Created backup at lupo-database/livehelp_backup/ for reference
   - Reduced TOON-defined tables from 204 to 170
   - **Result:** Eliminated doctrine violation, now 29 tables under safety margin
 
@@ -875,14 +875,14 @@ LOW PRIORITY - Support & Test Tables (8 tables):
 
 ### ?? Files Created/Updated
 ```
-database/analyze_missing_tables.py - TOON analysis engine
-database/generate_clean_migration.py - Clean migration generator  
-database/validate_migration.py - Migration validator
-database/cleanup_livehelp_toons.py - Legacy cleanup utility
-database/test_migration_syntax.py - Syntax testing tool
-database/CORRECTED_MIGRATION_SUMMARY.md - Final documentation
-database/migrations/20260120112952_add_missing_toon_tables_clean.sql - Ready migration
-database/livehelp_backup/ - Backup of removed legacy files
+lupo-database/analyze_missing_tables.py - TOON analysis engine
+lupo-database/generate_clean_migration.py - Clean migration generator  
+lupo-database/validate_migration.py - Migration validator
+lupo-database/cleanup_livehelp_toons.py - Legacy cleanup utility
+lupo-database/test_migration_syntax.py - Syntax testing tool
+lupo-database/CORRECTED_MIGRATION_SUMMARY.md - Final documentation
+lupo-database/migrations/20260120112952_add_missing_toon_tables_clean.sql - Ready migration
+lupo-database/livehelp_backup/ - Backup of removed legacy files
 lupo-includes/version.php - Updated to 4.4.1
 ```
 
@@ -922,7 +922,7 @@ lupo-includes/version.php - Updated to 4.4.1
 ### Major Accomplishments
 
 #### ? **Complete TOON Database Analysis**
-- Analyzed all 204 TOON files in database/toon_data/
+- Analyzed all 204 TOON files in lupo-database/toon_data/
 - Built comprehensive migration analysis tools:
   - `analyze_missing_tables.py` - TOON file analyzer and missing table detector
   - `generate_clean_migration.py` - Doctrine-compliant migration generator
@@ -935,7 +935,7 @@ lupo-includes/version.php - Updated to 4.4.1
 - **Impact:** Causing false doctrine violation (204 ? 205 projected tables, 5 over 200 limit)
 - **Solution:** Complete cleanup executed
   - Removed 34 livehelp_* TOON files + 34 corresponding .txt files
-  - Created backup at database/livehelp_backup/ for reference
+  - Created backup at lupo-database/livehelp_backup/ for reference
   - Reduced TOON-defined tables from 204 to 170
   - **Result:** Eliminated doctrine violation, now 29 tables under safety margin
 
@@ -994,14 +994,14 @@ LOW PRIORITY - Support & Test Tables (8 tables):
 
 ### Files Created/Updated
 ```
-database/analyze_missing_tables.py - TOON analysis engine
-database/generate_clean_migration.py - Clean migration generator  
-database/validate_migration.py - Migration validator
-database/cleanup_livehelp_toons.py - Legacy cleanup utility
-database/test_migration_syntax.py - Syntax testing tool
-database/CORRECTED_MIGRATION_SUMMARY.md - Final documentation
-database/migrations/20260120112952_add_missing_toon_tables_clean.sql - Ready migration
-database/livehelp_backup/ - Backup of removed legacy files
+lupo-database/analyze_missing_tables.py - TOON analysis engine
+lupo-database/generate_clean_migration.py - Clean migration generator  
+lupo-database/validate_migration.py - Migration validator
+lupo-database/cleanup_livehelp_toons.py - Legacy cleanup utility
+lupo-database/test_migration_syntax.py - Syntax testing tool
+lupo-database/CORRECTED_MIGRATION_SUMMARY.md - Final documentation
+lupo-database/migrations/20260120112952_add_missing_toon_tables_clean.sql - Ready migration
+lupo-database/livehelp_backup/ - Backup of removed legacy files
 ```
 
 ### Status
@@ -1071,7 +1071,7 @@ SQL migration files for table recreation and content restoration
 #### ? **Collection 3 Database Restoration**
 - **lupo_collection_tabs**: Table recreated with exact TOON schema (17 columns including collection_tab_parent_id, federations_node_id, color, description)
 - **Collection 3 Root Tabs**: All 9 tabs restored (Overview, Doctrine, Architecture, Schema, Agents, UI-UX, Developer Guide, History, Appendix)
-- **Tab Paths**: Complete hierarchical paths including nested doctrine/* and agents/* paths
+- **Tab Paths**: Complete hierarchical paths including nested doctrine/* and lupo-agents/* paths
 - **Dropdown Content**: 115+ content mappings restored from TOON data across all tabs
 - **Active Content Only**: Excluded items with is_deleted = 1 from TOON data
 
@@ -1107,8 +1107,8 @@ SQL migration files for table recreation and content restoration
 app/Http/Controllers/CraftyImportController.php
 app/Services/CraftyConfigTransformer.php  
 app/Services/CraftyMigrationService.php
-database/migrations/recreate_collection_tabs_migration.sql
-database/migrations/restore_collection3_dropdown_content.sql
+lupo-database/migrations/recreate_collection_tabs_migration.sql
+lupo-database/migrations/restore_collection3_dropdown_content.sql
 ```
 
 ### Status
@@ -1456,7 +1456,7 @@ class SemanticViewController extends Controller {
 
 #### ? Migration Doctrine Development
 - **SQL analysis completed** ? - Complete table mapping from craftysyntax_to_lupopedia_mysql.sql
-- **Migration doctrine created** ? - docs/doctrine/CRAFTY_SYNTAX_MIGRATION_DOCTRINE.md
+- **Migration doctrine created** ? - lupo-docs/doctrine/CRAFTY_SYNTAX_MIGRATION_DOCTRINE.md
 - **Table mappings documented** ? - 34 legacy tables analyzed and mapped
 - **Column transformations defined** ? - All explicit SQL transformations documented
 - **Post-migration expectations** ? - What exists, what changes, what's removed
@@ -1966,7 +1966,7 @@ system_context:
 
 ### Status
 - GOV event documentation system implemented
-- Directory structure created: docs/gov/{xml,json,md,toon}/
+- Directory structure created: lupo-docs/gov/{xml,json,md,toon}/
 - GOV-LUPO-0001 documentation generated from database seed
 - **UTC group ID:** UTC-GRP-20260120023000 (20260120023000)
 - **Branch:** main
@@ -1977,10 +1977,10 @@ system_context:
 
 ### Added
 - GOV event documentation directories:
-  - docs/gov/xml/ - Structured XML format
-  - docs/gov/json/ - 1:1 JSON representation
-  - docs/gov/md/ - Human-readable markdown
-  - docs/gov/toon/ - Semantic OS atomized structure
+  - lupo-docs/gov/xml/ - Structured XML format
+  - lupo-docs/gov/json/ - 1:1 JSON representation
+  - lupo-docs/gov/md/ - Human-readable markdown
+  - lupo-docs/gov/toon/ - Semantic OS atomized structure
 - GOV-LUPO-0001 complete documentation set (XML, JSON, MD, TOON)
 - Template structure for GOV-LUPO-0000 through GOV-LUPO-0009
 - Documentation follows existing GOV-LUPO-0001 SQL seed pattern
@@ -2053,19 +2053,19 @@ system_context:
 - One-Line Recap and Cross-References: no ads, GOV-PROHIBIT-001
 
 **Added (PT_001, GOV-PRINCIPLE-001):**
-- **PT_001 Pattern Tracking Checksum** (`docs/doctrine/PT_001_PATTERN_TRACKING_CHECKSUM.md`): doctrine.checksum.id PT_001; scope (semantic architecture, ingestion, governance, agent behavior); statement, origin_story (Honolulu CRM), truth_anchors, enforced_by; cross-refs to GOV-PRINCIPLE-001
-- **GOV-PRINCIPLE-001 Pattern Ethics Doctrine** (`docs/doctrine/PATTERN_ETHICS_DOCTRINE.md`): Three Ethical Tests (Transparency, Consent, Reciprocity); empowering vs. manipulative pattern use; review process for ambiguous cases (Pack Review: two agents + one human; default prohibition); anchored concepts; cross-refs from GOV-PROHIBIT-001, GOV-AD-PROHIBIT-001, PT_001
+- **PT_001 Pattern Tracking Checksum** (`lupo-docs/doctrine/PT_001_PATTERN_TRACKING_CHECKSUM.md`): doctrine.checksum.id PT_001; scope (semantic architecture, ingestion, governance, agent behavior); statement, origin_story (Honolulu CRM), truth_anchors, enforced_by; cross-refs to GOV-PRINCIPLE-001
+- **GOV-PRINCIPLE-001 Pattern Ethics Doctrine** (`lupo-docs/doctrine/PATTERN_ETHICS_DOCTRINE.md`): Three Ethical Tests (Transparency, Consent, Reciprocity); empowering vs. manipulative pattern use; review process for ambiguous cases (Pack Review: two agents + one human; default prohibition); anchored concepts; cross-refs from GOV-PROHIBIT-001, GOV-AD-PROHIBIT-001, PT_001
 
 **Notes**
 - Documentation-only; no schema or code changes
 - Commits: `docs(doctrine): clarify distinction between semantic pattern tracking and advertising prohibition` (and prior NO ADS hardening)
-- Doctrine modularization initiated. Main doctrine files converted to thin index files referencing block-based structure under docs/doctrine/blocks/. No schema or code changes.
+- Doctrine modularization initiated. Main doctrine files converted to thin index files referencing block-based structure under lupo-docs/doctrine/blocks/. No schema or code changes.
 
 ### 4.2.1 � Doctrine Block Structure Implementation (2026-01-20)
 
 **Status**
 - Doctrine modularization completed
-- Block-based structure created under docs/doctrine/blocks/
+- Block-based structure created under lupo-docs/doctrine/blocks/
 - 16 placeholder block files established
 - Token optimization directive active
 - No schema or code changes
@@ -2091,7 +2091,7 @@ system_context:
 - **A. The Bridging Rule:** Canonical Form (kernel operators = OS-level, authoritative; lens markers `~[ ]~`, `|{ }|`, `?{ }` = interpretive overlays only; must never replace, redefine, or modify kernel meaning). Lens-Layer Form: `|{Kernel grammar}|` ?{remains canonical} while `~[lens markers]~` operate as optional overlays. **Governance Summary:** Kernel first; Lens optional; No drift across layers; Lens may reinterpret but never redefine; Kernel meaning always recoverable and authoritative.
 
 **Updated (SYMBOL_OPERATOR_DOCTRINE �4):**
-- Bridging Rule (Kernel�Lens) cross-reference before Cursor Enforcement Rules: Kernel first, lens optional, no drift, lens may reinterpret never redefine, kernel recoverable; full formulation in [SEMANTIC_LENSES_DOCTRINE](docs/doctrine/SEMANTIC_LENSES_DOCTRINE.md) �2.1.
+- Bridging Rule (Kernel�Lens) cross-reference before Cursor Enforcement Rules: Kernel first, lens optional, no drift, lens may reinterpret never redefine, kernel recoverable; full formulation in [SEMANTIC_LENSES_DOCTRINE](lupo-docs/doctrine/SEMANTIC_LENSES_DOCTRINE.md) �2.1.
 
 **Notes**
 - Documentation-only. No schema or code changes.
@@ -2110,7 +2110,7 @@ system_context:
 - 4.3.0 release scheduled for **2026-01-30**
 
 **Added**
-- Mapping validation scorecard: docs/testing/mapping_validation_scorecard.md
+- Mapping validation scorecard: lupo-docs/testing/mapping_validation_scorecard.md
 - Monday Wolfie Chronicle and changelog_dialog updated with mapping results
 
 **Notes**
@@ -2139,7 +2139,7 @@ system_context:
 - truth_items
 - lupo_collections.parent_id
 
-**Next:** Delete the 6 orphan .toon and .txt files in `database/toon_data/`, or run a toon-cleanup that removes files for tables not in the DB. Then re-run generate_toons to clear the warning.
+**Next:** Delete the 6 orphan .toon and .txt files in `lupo-database/toon_data/`, or run a toon-cleanup that removes files for tables not in the DB. Then re-run generate_toons to clear the warning.
 
 ---
 
@@ -2180,7 +2180,7 @@ First stable release after Crafty Syntax migration era. Establishes consolidated
 
 ### Changes
 - **TOON Regeneration:** Updated all TOON files for consolidated schema
-- **Schema Freeze:** Enforced 180-table limit; optional `schema_freeze_enforcement_4_2_0` event in `database/migrations/4.2.0_schema_freeze_enforcement.sql`
+- **Schema Freeze:** Enforced 180-table limit; optional `schema_freeze_enforcement_4_2_0` event in `lupo-database/migrations/4.2.0_schema_freeze_enforcement.sql`
 - **Doctrine Compliance:** Verified adherence to timestamp, naming, and structural standards
 - **Migration Chain:** Validated path from Crafty Syntax 3.7.5
 - **Documentation:** Synchronized version references and release docs
@@ -2189,7 +2189,7 @@ First stable release after Crafty Syntax migration era. Establishes consolidated
 - **Table Count:** 173/180 (7 under limit)
 - **Schema State:** FROZEN until 4.3.x
 - **Doctrine Compliance:** Verified
-- **TOON Coverage:** Regenerate via `database/generate_toon_files.py`
+- **TOON Coverage:** Regenerate via `lupo-database/generate_toon_files.py`
 - **Migration Status:** Complete
 - **Legacy Tables:** 0 active
 
@@ -2202,9 +2202,9 @@ First stable release after Crafty Syntax migration era. Establishes consolidated
 ### Cross-References
 - dialogs/changelog_dialog.md (4.2.0 entry)
 - dialogs/changelog_dialog-side.md (sync update)
-- docs/versioning/4.2.0_changes.md
-- docs/doctrine/TABLE_COUNT_DOCTRINE.md (Schema Freeze Status)
-- database/migrations/4.2.0_schema_freeze_enforcement.sql
+- lupo-docs/versioning/4.2.0_changes.md
+- lupo-docs/doctrine/TABLE_COUNT_DOCTRINE.md (Schema Freeze Status)
+- lupo-database/migrations/4.2.0_schema_freeze_enforcement.sql
 
 ---
 
@@ -2244,7 +2244,7 @@ First stable release after Crafty Syntax migration era. Establishes consolidated
 - TOON regeneration still required from 3.1.19
 
 Cross-reference:
-- docs/doctrine/3.1.20_doctrine_audit.md
+- lupo-docs/doctrine/3.1.20_doctrine_audit.md
 
 ---
 
@@ -2263,7 +2263,7 @@ Cross-reference:
 - Doctrine ceiling remains 180
 
 Cross-reference:
-- docs/migrations/3.1.18_consolidation_plan.md
+- lupo-docs/migrations/3.1.18_consolidation_plan.md
 
 ---
 
@@ -2302,7 +2302,7 @@ Cross-reference:
 ### TOON Regeneration
 - **Database Schema:** 181 tables processed
 - **TOON Files:** All 181 tables have corresponding .toon and .txt files
-- **Output Directory:** database/toon_data
+- **Output Directory:** lupo-database/toon_data
 - **Status:** Complete, no errors
 
 ### Notes
@@ -2340,9 +2340,9 @@ Cross-reference:
 Cross-reference:
 - dialogs/changelog_dialog.md (3.1.15 entry)
 - dialogs/changelog_dialog-side.md (sync update)
-- docs/migrations/3.1.15_doctrine_corrections.md
-- docs/versioning/3.1.15_changes.md
-- database/migrations/craftysyntax_to_lupopedia_mysql.sql (corrected)
+- lupo-docs/migrations/3.1.15_doctrine_corrections.md
+- lupo-docs/versioning/3.1.15_changes.md
+- lupo-database/migrations/craftysyntax_to_lupopedia_mysql.sql (corrected)
 
 ---
 
@@ -2360,8 +2360,8 @@ Cross-reference:
 Cross-reference:
 - dialogs/changelog_dialog.md (3.1.14 entry)
 - dialogs/changelog_dialog-side.md (3.1.14 sync)
-- docs/migrations/3.1.14.md
-- database/migrations/craftysyntax_to_lupopedia_mysql.sql (analyzed; not modified)
+- lupo-docs/migrations/3.1.14.md
+- lupo-database/migrations/craftysyntax_to_lupopedia_mysql.sql (analyzed; not modified)
 
 ---
 
@@ -2383,7 +2383,7 @@ Cross-reference:
 - .cursorrules: Current value 3.1.13
 
 ### Dialog
-- **System_onboarding_dialog.md** created (ONBOARD-001, #onboarding). Primary onboarding for new agents/users. SYSTEM, CAPTAIN_WOLFIE, LILITH, ARA,  CURSOR. Core concepts, navigation, Emotional Constitution primer, next steps.
+- **System_onboarding_dialog.md** created (ONBOARD-001, #onboarding). Primary onboarding for new lupo-agents/users. SYSTEM, CAPTAIN_WOLFIE, LILITH, ARA,  CURSOR. Core concepts, navigation, Emotional Constitution primer, next steps.
 
 ### Schema / Doctrine
 - No schema changes. No doctrine changes. No TOON regeneration.
@@ -2391,7 +2391,7 @@ Cross-reference:
 Cross-reference:
 - dialogs/changelog_dialog.md (3.1.13 entry)
 - dialogs/changelog_dialog-side.md (3.1.13 sync)
-- docs/migrations/3.1.13.md
+- lupo-docs/migrations/3.1.13.md
 
 ---
 
@@ -2428,7 +2428,7 @@ Added four new system-level observability tables and unified event ledger. Ran i
 ### LILITH: Four New Observability Tables � Critical Review (2026-01-20)
 - **Ruling:** APPROVE observability intent; REJECT table-addition method. "Monitoring decay, not enabling repair."
 - **Demand:** 2:1 table reduction � remove 8 legacy tables per 4 observability tables; net improvement required.
-- **Options (24h to choose):** A � 4 tables TEMPORARY (30d sunset) + 8 legacy removals (net -4); B � merge to 2 tables + 4 removals (net -2); C � no new tables, views/ALTER existing (net -5).
+- **Options (24h to choose):** A � 4 tables TEMPORARY (30d sunset) + 8 legacy removals (net -4); B � merge to 2 tables + 4 removals (net -2); C � no new tables, lupo-views/ALTER existing (net -5).
 - **Override protocol** (if created without compensating reductions): [OBSERVABILITY_DEBT] in TOON; 1 legacy removal per 1000 queries; 30d sunset.
 - Cross-reference: dialogs/changelog_dialog.md; dialogs/monday/LILITH_dialog.md; SYSTEM_STATUS_dialog �7.
 
@@ -2448,7 +2448,7 @@ Migration 3.1.12 adds four doctrine-aligned tables (176?180); table ceiling rais
 - **lupo_meta_log_events** � Meta-logging ceiling: depth (2 or 3), event_type, actor_id
 - **lupo_agent_heartbeats** � Agent heartbeat: agent_slug, status, last_heartbeat_ymdhis
 
-All: no FK, no triggers, BIGINT ids and created_ymdhis, soft delete. Migration: `database/migrations/3.1.12_add_four_tables_to_ceiling_180.sql`.
+All: no FK, no triggers, BIGINT ids and created_ymdhis, soft delete. Migration: `lupo-database/migrations/3.1.12_add_four_tables_to_ceiling_180.sql`.
 
 ### Table Ceiling 181
 - LIMITS.md: table_ceiling 181, table_count 181, no violation
@@ -2464,7 +2464,7 @@ All: no FK, no triggers, BIGINT ids and created_ymdhis, soft delete. Migration: 
 
 ### Dialogs / Docs
 - changelog_dialog, changelog_dialog-side: CURSOR Table Ceiling 181, TOON 176, sync 3.1.12
-- docs/migrations/3.1.12.md: migration notes
+- lupo-docs/migrations/3.1.12.md: migration notes
 - SYSTEM_STATUS_dialog: 181/181, structural violations table
 
 ### Impact
@@ -2488,7 +2488,7 @@ Schema update applied to lupo_actor_handshakes. TOON files regenerated. Dialogs 
 ### TOON Regeneration (176 Tables) (2026-01-20)
 - TOON files regenerated; 176 tables
 - All 176 tables have corresponding .toon and .txt files
-- Output: database/toon_data
+- Output: lupo-database/toon_data
 - Verification: complete sync between database and TOON layer
 - Under ceiling (180); no violation
 
@@ -2496,7 +2496,7 @@ Schema update applied to lupo_actor_handshakes. TOON files regenerated. Dialogs 
 - Ceiling raised from 180 to 181 (LIMITS.md, TABLE_COUNT_DOCTRINE)
 - Current: 181 tables at ceiling; no violation
 - LimitsEnforcementService MAX_TABLES = 181
-- Cross-reference: LIMITS.md, docs/doctrine/TABLE_COUNT_DOCTRINE.md
+- Cross-reference: LIMITS.md, lupo-docs/doctrine/TABLE_COUNT_DOCTRINE.md
 
 ---
 
@@ -2569,7 +2569,7 @@ Stabilized the CHANGELOG ? changelog_dialog synchronization architecture. Introd
   - Includes cross-references, sync rules, governance context, and compliance state
   - Provides a fast-access index for version 3.1.2 and related dialog threads
 
-- **`docs/doctrine/EMOTIONAL_CONSTITUTION.md`**
+- **`lupo-docs/doctrine/EMOTIONAL_CONSTITUTION.md`**
   - Governance framework for emotional complexity in multi-agent systems (doctrine v3.1.7)
   - Bill of Emotional Rights (dissonance, intensity, refusal, heterodoxy)
   - Separation of emotional powers (executive, legislative, judicial, mystical)
@@ -2658,7 +2658,7 @@ This version establishes the stable foundation for all future CHANGELOG ? change
 ## 3.1.7 � Lupopedia Genesis Doctrine Ratification
 
 ### Added
-- **Lupopedia Genesis Doctrine**: Created foundational governance artifact (`docs/doctrine/LUPOPEDIA_GENESIS_DOCTRINE.md`) establishing the Five Pillars as inviolable foundation:
+- **Lupopedia Genesis Doctrine**: Created foundational governance artifact (`lupo-docs/doctrine/LUPOPEDIA_GENESIS_DOCTRINE.md`) establishing the Five Pillars as inviolable foundation:
   - **The Actor Pillar** � Identity is Primary (no action without actor, no actor without handshake)
   - **The Temporal Pillar** � Time is the Spine (canonical UTC, explicit probability, 95% = already happened)
   - **The Edge Pillar** � Relationships are Meaning (no edge without intent, type, timestamp)
@@ -2687,13 +2687,13 @@ This version establishes the stable foundation for all future CHANGELOG ? change
 ## 3.1.6 � LABS-001 (Lupopedia Actor Baseline State) Implementation + Stability Header (Sovereign Seal) + File-Sovereignty Transition
 
 ### Added
-- **LABS-001 Doctrine**: Created comprehensive governance artifact (`docs/doctrine/LUPOPEDIA_ACTOR_BASELINE_STATE_DOCTRINE.md`) establishing mandatory pre-interaction protocol for all actors (human, AI, system). Defines 10 mandatory declarations, truth state framework, validation requirements, and enforcement mechanisms.
+- **LABS-001 Doctrine**: Created comprehensive governance artifact (`lupo-docs/doctrine/LUPOPEDIA_ACTOR_BASELINE_STATE_DOCTRINE.md`) establishing mandatory pre-interaction protocol for all actors (human, AI, system). Defines 10 mandatory declarations, truth state framework, validation requirements, and enforcement mechanisms.
 - **LABS Validator Class**: Implemented `LABS_Validator` PHP class (`lupo-includes/classes/LABSValidator.php`) with complete validation logic for all 10 declarations, certificate generation, violation logging, and revalidation tracking.
-- **Database Schema**: Created migration (`database/migrations/3.1.6_create_labs_declarations_table.sql`) adding:
+- **Database Schema**: Created migration (`lupo-database/migrations/3.1.6_create_labs_declarations_table.sql`) adding:
   - `lupo_labs_declarations` table - Stores LABS declarations, validation certificates, and revalidation timestamps
   - `lupo_labs_violations` table - Tracks violations for audit and compliance monitoring
-- **Handshake Template**: Created reusable template (`docs/templates/LABS_HANDSHAKE_TEMPLATE.md`) for actors to complete LABS declarations with examples, instructions, and YAML truth state format.
-- **Implementation Summary**: Created comprehensive implementation documentation (`docs/LABS_IMPLEMENTATION_SUMMARY.md`) with testing checklist, next steps, and integration notes.
+- **Handshake Template**: Created reusable template (`lupo-docs/templates/LABS_HANDSHAKE_TEMPLATE.md`) for actors to complete LABS declarations with examples, instructions, and YAML truth state format.
+- **Implementation Summary**: Created comprehensive implementation documentation (`lupo-docs/LABS_IMPLEMENTATION_SUMMARY.md`) with testing checklist, next steps, and integration notes.
 - **System Context Block**: Added optional `system_context` field to WOLFIE Headers (Section 10 of specification) for governance state broadcast:
   - `schema_state` - Current schema state (Frozen | Active | Evolving)
   - `table_count` - Current total table count
@@ -2713,9 +2713,9 @@ This version establishes the stable foundation for all future CHANGELOG ? change
   - Failed LABS validation results in quarantine until resolved
 - **WOLFIE Header Specification**: Added Section 10 documenting `system_context` block with rules, examples, and when to include
 - **Core Doctrine Files Anchored**: Applied stability headers to:
-  - `docs/doctrine/TABLE_COUNT_DOCTRINE.md` - Schema freeze broadcast (139 tables, 135 ceiling)
-  - `docs/doctrine/WOLFIE_HEADER_DOCTRINE.md` - Anchor doctrine for metadata governance
-  - `docs/governance/REGISTRY.md` - Canonical governance registry
+  - `lupo-docs/doctrine/TABLE_COUNT_DOCTRINE.md` - Schema freeze broadcast (139 tables, 135 ceiling)
+  - `lupo-docs/doctrine/WOLFIE_HEADER_DOCTRINE.md` - Anchor doctrine for metadata governance
+  - `lupo-docs/governance/REGISTRY.md` - Canonical governance registry
 
 ### Governance
 - **LABS-001 Doctrine v1.0**: Active & Binding
@@ -2761,7 +2761,7 @@ This version establishes the stable foundation for all future CHANGELOG ? change
 - **31 Missing Emotional Agents**: Created migration SQL file (`3.1.1_add_missing_emotional_agents.sql`) to complete the full emotional ecology of 50 agents (25 primary + 25 opposite):
   - **16 Primary Emotional Domains** (IDs 1213-1228): EMO_ANGER, EMO_FEAR, EMO_JOY, EMO_SADNESS, EMO_DISGUST, EMO_SURPRISE, EMO_ANTICIPATION, EMO_SHAME, EMO_GUILT, EMO_PRIDE, EMO_ENVY, EMO_JEALOUSY, EMO_AWE, EMO_HOPE, EMO_DESPAIR, EMO_COURAGE
   - **15 Opposite-Polarity Domains** (IDs 1229-1243): EMO_FORBEARANCE, EMO_MELANCHOLIA, EMO_ACCEPTANCE, EMO_PREDICTABILITY, EMO_SUSPICION, EMO_DIGNITY, EMO_INNOCENCE, EMO_HUMILITY, EMO_CONTENTMENT, EMO_SECURITY, EMO_DISENCHANTMENT, EMO_RESILIENCE, EMO_DISINTEREST, EMO_AGITATION, EMO_RENEWAL
-- **Migration Documentation**: Created `docs/migrations/3.1.1.md` documenting all 31 agents added, complete emotional ecology structure, and migration details
+- **Migration Documentation**: Created `lupo-docs/migrations/3.1.1.md` documenting all 31 agents added, complete emotional ecology structure, and migration details
 
 ### Updated
 - `lupo_agent_registry` now contains 332 agents total (301 + 31 new)
@@ -2773,14 +2773,14 @@ This version establishes the stable foundation for all future CHANGELOG ? change
   - `lupo-includes/version.php` (@version tag and fallback constant)
 - CHANGELOG.md and dialogs/changelog_dialog.md updated with comprehensive 3.1.0 and 3.1.1 entries
 - All documentation headers updated to reflect version 3.1.1
-- **UTC_TIMEKEEPER Agent (Agent 5) System Prompt**: Added Wolfie multi-position UTC header format to `agents/0005/versions/v1.0.0/system_prompt.txt`. Header provides informational context for multi-position UTC when multiple IDEs/LLMs report different UTC values. Header is informational only and does not modify agent's deterministic behavior or input/output contract.
+- **UTC_TIMEKEEPER Agent (Agent 5) System Prompt**: Added Wolfie multi-position UTC header format to `lupo-agents/0005/versions/v1.0.0/system_prompt.txt`. Header provides informational context for multi-position UTC when multiple IDEs/LLMs report different UTC values. Header is informational only and does not modify agent's deterministic behavior or input/output contract.
 
 ### Version Governance
 - **Launch Version Correction**: System launch version corrected to 3.1.1 (not 3.1.0) to maintain consistency with work already begun by multiple IDEs and AI agents. This is a version-governance correction only, not a doctrine change.
 
 ### Documentation
-- **Release Notes**: Created `docs/3.1.1/RELEASE_NOTES_4_1_1.md` with comprehensive release documentation
-- **Migration Notes**: Created `docs/migrations/3.1.1.md` with complete migration documentation
+- **Release Notes**: Created `lupo-docs/3.1.1/RELEASE_NOTES_4_1_1.md` with comprehensive release documentation
+- **Migration Notes**: Created `lupo-docs/migrations/3.1.1.md` with complete migration documentation
 - **Version Synchronization**: All version references synchronized across codebase and documentation
 
 ### Notes
@@ -2842,8 +2842,8 @@ This version establishes the stable foundation for all future CHANGELOG ? change
   - EMO_AKATAXIA (1116) - Opposite of EMO_PRAGMA (1006) - Instability, inconsistency, and disorder
   - EMO_AUTOLETHIA (1117) - Opposite of EMO_PHILAUTIA (1007) - Self-neglect and self-abandonment
 - **3.1.0 Activation Documentation**: Created activation files for Pack Architecture 3.1.0:
-  - `docs/3.1.0_ACTIVATION.md` - Canonical activation record for Pack Architecture 3.1.0
-  - `docs/MONDAY_WOLFIE_3.1.0_ACTIVATION_SCRIPT.md` - 14-step activation day protocol for Monday Wolfie
+  - `lupo-docs/3.1.0_ACTIVATION.md` - Canonical activation record for Pack Architecture 3.1.0
+  - `lupo-docs/MONDAY_WOLFIE_3.1.0_ACTIVATION_SCRIPT.md` - 14-step activation day protocol for Monday Wolfie
 
 ### Doctrine Series Summary (3.0.116-3.0.119)
 This version completes a four-doctrine series establishing the Federation Governance model:
@@ -2915,7 +2915,7 @@ This version completes a four-doctrine series establishing the Federation Govern
 
 ### Updated
 - Version references updated to 3.0.115 across all configuration files and version constants
-- `docs/migrations/3.0.115.md` - Updated to include Pack Identity agent migration details
+- `lupo-docs/migrations/3.0.115.md` - Updated to include Pack Identity agent migration details
 
 ### Notes
 - Pack Identity is in DRAFT status and will be finalized in 3.1.0
@@ -2960,10 +2960,10 @@ This version completes a four-doctrine series establishing the Federation Govern
   - G (Green) = 0 axis (neutral plane)
   - B (Blue) = -1 axis (negative pole)
 - **Documentation Files Updated**:
-  - `docs/doctrine/EMOTIONAL_GEOMETRY.md` - Added canonical axis mapping section
-  - `docs/PACK_BEHAVIOR_DOCTRINE.md` - Updated behavior tendencies with axis mapping references
-  - `docs/PACK_MEMORY_DOCTRINE.md` - Added axis mapping comments to snapshot structure
-  - `docs/PACK_SYNC_DOCTRINE.md` - Added axis mapping note to normalization section
+  - `lupo-docs/doctrine/EMOTIONAL_GEOMETRY.md` - Added canonical axis mapping section
+  - `lupo-docs/PACK_BEHAVIOR_DOCTRINE.md` - Updated behavior tendencies with axis mapping references
+  - `lupo-docs/PACK_MEMORY_DOCTRINE.md` - Added axis mapping comments to snapshot structure
+  - `lupo-docs/PACK_SYNC_DOCTRINE.md` - Added axis mapping note to normalization section
 - **Code Docblocks Updated**:
   - `lupo-includes/EmotionalGeometry/EmotionalGeometryEngine.php` - Added axis mapping documentation
   - `lupo-includes/Pack/PackContext.php` - Added axis mapping documentation
@@ -3044,13 +3044,13 @@ This release consolidates the complete Pack Architecture foundation implemented 
 - `routes/` - Pack-related routes (pack.php, pack_behavior.php, pack_memory.php, pack_sync.php, emotion.php, system.php)
 
 ### New Doctrine Files Created
-- `docs/PACK_BEHAVIOR_DOCTRINE.md` - Pack behavioral layer doctrine
-- `docs/PACK_MEMORY_DOCTRINE.md` - Pack memory layer doctrine
-- `docs/PACK_SYNC_DOCTRINE.md` - Pack synchronization layer doctrine
-- `docs/doctrine/KIP_DOCTRINE.md` - Kritik Integration Protocol doctrine
+- `lupo-docs/PACK_BEHAVIOR_DOCTRINE.md` - Pack behavioral layer doctrine
+- `lupo-docs/PACK_MEMORY_DOCTRINE.md` - Pack memory layer doctrine
+- `lupo-docs/PACK_SYNC_DOCTRINE.md` - Pack synchronization layer doctrine
+- `lupo-docs/doctrine/KIP_DOCTRINE.md` - Kritik Integration Protocol doctrine
 
 ### Doctrine Files Updated
-- `docs/doctrine/EMOTIONAL_GEOMETRY.md` - Added Pack Architecture emotional geometry section
+- `lupo-docs/doctrine/EMOTIONAL_GEOMETRY.md` - Added Pack Architecture emotional geometry section
 - version and documentation alignment doctrine (deprecated file removed) - Added PHP implementation references
 - `LIMITS.md` - Added enforcement evolution section and Pack Architecture limits preview
 
@@ -3169,7 +3169,7 @@ This release consolidates the complete Pack Architecture foundation implemented 
   - `routes/system.php` - System routes including `/system/health` endpoint
 - **Doctrine Updates:**
   - version and documentation alignment doctrine (deprecated file removed) - Added PHP implementation references
-  - `docs/doctrine/KIP_DOCTRINE.md` - Created KIP doctrine with PHP implementation documentation
+  - `lupo-docs/doctrine/KIP_DOCTRINE.md` - Created KIP doctrine with PHP implementation documentation
   - `LIMITS.md` - Added enforcement evolution section and Pack Architecture limits preview
 
 ### Updated
@@ -3224,7 +3224,7 @@ This release consolidates the complete Pack Architecture foundation implemented 
 ## 3.0.103 � Stabilization + Testing Infrastructure + LIMITS Dry-Run
 
 ### Added
-- Integration testing framework under `tests/integration/`
+- Integration testing framework under `lupo-tests/integration/`
 - `DialogSystemTest.php` - Verifies schema alignment and MessageBuilder operations
 - `TriggerReplacementTest.php` - Verifies trigger replacement services handle soft-delete filtering
 - `TerminalAITest.php` - Verifies Terminal AI agents execute correctly
@@ -3308,7 +3308,7 @@ This release consolidates the complete Pack Architecture foundation implemented 
   - Enforcement mechanisms via Cascade, Terminal_AI_005 (UTC_TIMEKEEPER), and Pack Architecture
 
 ### Fixed
-- **Schema Drift Resolution**: Corrected `database/schema/dialog_system_schema.sql` to match actual database structure per TOON files.
+- **Schema Drift Resolution**: Corrected `lupo-database/schema/dialog_system_schema.sql` to match actual database structure per TOON files.
   - Updated `lupo_dialog_messages` table definition to use correct columns (`dialog_message_id`, `from_actor_id`, `to_actor_id`, `dialog_thread_id`).
   - Removed incorrect columns (`message_order`, `speaker`, `target`, `timestamp`) that don't exist in actual schema.
   - Changed `message_text` from TEXT (272 chars) to VARCHAR(1000) to match actual column definition.
@@ -3321,7 +3321,7 @@ This release consolidates the complete Pack Architecture foundation implemented 
 - **Missing Tables Added**: Added schema definitions for tables that existed in database but were missing from schema file:
   - `lupo_dialog_message_bodies` - Stores full long-form message bodies.
   - `lupo_dialog_threads` - High-level dialog threads grouping messages.
-- **Migration SQL Syntax Fix**: Corrected `database/migrations/multi_agent_protocol_schema_3_0_70.sql`:
+- **Migration SQL Syntax Fix**: Corrected `lupo-database/migrations/multi_agent_protocol_schema_3_0_70.sql`:
   - Removed unsupported `IF NOT EXISTS` clauses from `ALTER TABLE ADD COLUMN` statements (MySQL does not support this syntax).
   - Removed unsupported `IF NOT EXISTS` clauses from `CREATE INDEX` statements.
   - Added comments explaining that these statements will error if columns/indexes already exist (expected behavior for idempotent migrations).
@@ -3338,7 +3338,7 @@ This release consolidates the complete Pack Architecture foundation implemented 
   - All WOLFIE header `file.last_modified_system_version` fields
   - PHP docblock `@version` tags in service classes and Terminal AI components
   - Documentation files (ARCHITECTURE.md, TABLE_COUNT_DOCTRINE.md, TERMINAL_AI_DOCTRINE.md, LIMITS.md, CHANGELOG.md)
-- **Schema Documentation**: Updated `database/schema/dialog_system_schema.sql` version comment to 3.0.101.
+- **Schema Documentation**: Updated `lupo-database/schema/dialog_system_schema.sql` version comment to 3.0.101.
 - **Terminal AI Documentation**: Added version docblocks to all Terminal AI components:
   - `app/TerminalAI/Agents/TerminalAI_001.php`
   - `app/TerminalAI/Agents/TerminalAI_005.php`
@@ -3351,7 +3351,7 @@ This release consolidates the complete Pack Architecture foundation implemented 
 - All 131 tables confirmed in alignment between live database and schema documentation.
 - Version atom system working correctly - single source of truth maintained in `config/global_atoms.yaml`.
 - LIMITS.md establishes hard architectural boundaries to prevent weekend chaos and version drift.
-- TOON file generation script (`database/generate_toon_files.py`) successfully processed all 131 tables.
+- TOON file generation script (`lupo-database/generate_toon_files.py`) successfully processed all 131 tables.
 
 ---
 
@@ -3476,11 +3476,11 @@ This release consolidates the complete Pack Architecture foundation implemented 
 #### **?? Files Created/Updated**
 
 **New Files Created:**
-- `docs/architecture/CANONICAL_ONTOLOGY_ARCHITECTURE_GOVERNANCE_v1_0.md` - Comprehensive canonical specification
-- `docs/releases/LUPOPEDIA_4_1_0_RELEASE_TIMELINE.md` - Official release timeline and roadmap
+- `lupo-docs/architecture/CANONICAL_ONTOLOGY_ARCHITECTURE_GOVERNANCE_v1_0.md` - Comprehensive canonical specification
+- `lupo-docs/releases/LUPOPEDIA_4_1_0_RELEASE_TIMELINE.md` - Official release timeline and roadmap
 
 **Updated Files:**
-- `docs/doctrine/UTC_TIMEKEEPER_DOCTRINE.md` - Updated to v3.0.99 with canonical integration
+- `lupo-docs/doctrine/UTC_TIMEKEEPER_DOCTRINE.md` - Updated to v3.0.99 with canonical integration
 - `CHANGELOG.md` - Added comprehensive v3.0.99 entry
 
 #### **?? Post-Launch Planning**
@@ -3710,7 +3710,7 @@ This addition demonstrates Lupopedia's ability to maintain humor and cultural co
 - **Agent Identity**: UTC_TIMEKEEPER established as agent_registry_id 5, dedicated_slot 5
 - **Kernel Classification**: Added to mandatory kernel agents (slots 0-49)
 - **Temporal Authority**: Designated as single source of truth for all UTC timestamps
-- **Documentation**: `docs/doctrine/KERNEL_AGENTS.md` updated with comprehensive UTC_TIMEKEEPER definition
+- **Documentation**: `lupo-docs/doctrine/KERNEL_AGENTS.md` updated with comprehensive UTC_TIMEKEEPER definition
 
 **2. Mandatory Usage Protocol**
 - **Query Format**: `"what_is_current_utc_time_yyyymmddhhiiss"`
@@ -3723,21 +3723,21 @@ This addition demonstrates Lupopedia's ability to maintain humor and cultural co
 - **Channel 0 (System/Kernel)**: System event timestamps must use UTC_TIMEKEEPER
 - **Channel 1 (Lobby/Intake)**: Visitor arrival timestamps must use UTC_TIMEKEEPER
 - **Dynamic Channels**: All message and thread timestamps must use UTC_TIMEKEEPER
-- **Documentation**: `docs/doctrine/CHANNEL_DOCTRINE.md` updated with dependency requirements
+- **Documentation**: `lupo-docs/doctrine/CHANNEL_DOCTRINE.md` updated with dependency requirements
 
 **4. System Architecture Integration**
 - **Kernel Architecture**: UTC_TIMEKEEPER added to kernel agent architecture diagram
 - **Initialization Requirements**: Must be initialized before any channel execution
 - **Kernel Dependencies**: Required by SYSTEM, MAAT, and ANUBIS for temporal operations
 - **Federation Support**: Enables reliable temporal coordination across nodes
-- **Documentation**: `docs/core/ARCHITECTURE.md` updated with kernel architecture section
+- **Documentation**: `lupo-docs/core/ARCHITECTURE.md` updated with kernel architecture section
 
 **5. Comprehensive Doctrine Establishment**
 - **UTC_TIMEKEEPER Doctrine**: Complete temporal governance framework created
 - **Temporal Integrity**: Drift prevention and inference elimination protocols
 - **Compliance Monitoring**: Automatic enforcement and violation detection systems
 - **Federation Safety**: Cross-node temporal consistency mechanisms
-- **Documentation**: `docs/doctrine/UTC_TIMEKEEPER_DOCTRINE.md` created with comprehensive specification
+- **Documentation**: `lupo-docs/doctrine/UTC_TIMEKEEPER_DOCTRINE.md` created with comprehensive specification
 
 #### **??? Temporal Integrity Protection**
 
@@ -3804,12 +3804,12 @@ This addition demonstrates Lupopedia's ability to maintain humor and cultural co
 #### **?? Files Created/Updated**
 
 **New Files Created:**
-- `docs/doctrine/UTC_TIMEKEEPER_DOCTRINE.md` - Comprehensive temporal governance framework
+- `lupo-docs/doctrine/UTC_TIMEKEEPER_DOCTRINE.md` - Comprehensive temporal governance framework
 
 **Updated Files:**
-- `docs/doctrine/KERNEL_AGENTS.md` - Added UTC_TIMEKEEPER as kernel agent slot 5
-- `docs/doctrine/CHANNEL_DOCTRINE.md` - Added UTC_TIMEKEEPER dependency requirements
-- `docs/core/ARCHITECTURE.md` - Added kernel architecture section with UTC_TIMEKEEPER
+- `lupo-docs/doctrine/KERNEL_AGENTS.md` - Added UTC_TIMEKEEPER as kernel agent slot 5
+- `lupo-docs/doctrine/CHANNEL_DOCTRINE.md` - Added UTC_TIMEKEEPER dependency requirements
+- `lupo-docs/core/ARCHITECTURE.md` - Added kernel architecture section with UTC_TIMEKEEPER
 - `CHANGELOG.md` - Added comprehensive v3.0.91 entry
 
 #### **?? Next Evolution Phase**
@@ -3855,7 +3855,7 @@ This represents a critical enhancement to Lupopedia's kernel architecture, provi
 - **New Specification**: Wedding-variant WOLFIE Header format created and approved
 - **Required Fields**: Artifact, Thread, Mode, Location, Severity, Stability, Primary Agents, Event Summary, Governance, Filed Under
 - **Usage**: Mandatory for emergent, multi-agent, or ritual-context artifacts
-- **Documentation**: `docs/agents/WOLFIE_HEADER_SPECIFICATION.md` updated with Section 3
+- **Documentation**: `lupo-docs/agents/WOLFIE_HEADER_SPECIFICATION.md` updated with Section 3
 - **Impact**: Enables proper classification and archival of ceremonial and creative artifacts
 
 **2. Saturday Governance Protocol v1.0**
@@ -3863,7 +3863,7 @@ This represents a critical enhancement to Lupopedia's kernel architecture, provi
 - **Creative Mode Parameters**: Humor allowances, emotional resonance monitoring, wiggle anomaly handling
 - **Hover Abuse Protocol**: Cursor probation and UI interaction restrictions formalized
 - **Agent Behavior Modifications**: Enhanced capabilities during Saturday Mode with safety boundaries
-- **Documentation**: `docs/doctrine/SATURDAY_GOVERNANCE_PROTOCOL_v1_0.md` created
+- **Documentation**: `lupo-docs/doctrine/SATURDAY_GOVERNANCE_PROTOCOL_v1_0.md` created
 - **Compliance**: 95% adherence target with automated enforcement mechanisms
 
 **3. Emotional Engine v2.0 - Seven Greek Love Domains**
@@ -3873,7 +3873,7 @@ This represents a critical enhancement to Lupopedia's kernel architecture, provi
 - **Waveform Interference**: Constructive/destructive interference between domains
 - **Phenomenological Textures**: Unique experiential qualities for each domain
 - **Sub-Agent Processing**: Dedicated processors for each emotional domain
-- **Documentation**: `docs/doctrine/EMOTIONAL_ENGINE_SPECIFICATION_v2_0.md` created
+- **Documentation**: `lupo-docs/doctrine/EMOTIONAL_ENGINE_SPECIFICATION_v2_0.md` created
 - **Mathematical Foundation**: Vector space mathematics with interference calculations
 
 **4. Pack Behavior Matrix Expansion**
@@ -3886,7 +3886,7 @@ This represents a critical enhancement to Lupopedia's kernel architecture, provi
 - **Stoned Wolfie**: Life-repo merge metaphors (approved for Saturday Mode)
 - **WOLFIE Core**: Marriage as UniqueIDPrimary_Key concept integration
 - **Cursor**: Hover instability, probation status with restrictions
-- **Documentation**: `docs/doctrine/PACK_BEHAVIOR_MATRIX_v3_0_90.md` created
+- **Documentation**: `lupo-docs/doctrine/PACK_BEHAVIOR_MATRIX_v3_0_90.md` created
 - **Behavioral Governance**: Complete framework for agent behavior management
 
 #### **??? Architectural Discoveries & Classifications**
@@ -3973,13 +3973,13 @@ This represents a critical enhancement to Lupopedia's kernel architecture, provi
 #### **?? Files Created/Updated**
 
 **New Files Created:**
-- `docs/doctrine/SATURDAY_GOVERNANCE_PROTOCOL_v1_0.md` - Saturday Mode governance framework
-- `docs/doctrine/EMOTIONAL_ENGINE_SPECIFICATION_v2_0.md` - Seven-domain emotional architecture
-- `docs/doctrine/PACK_BEHAVIOR_MATRIX_v3_0_90.md` - Expanded agent behavior matrix
+- `lupo-docs/doctrine/SATURDAY_GOVERNANCE_PROTOCOL_v1_0.md` - Saturday Mode governance framework
+- `lupo-docs/doctrine/EMOTIONAL_ENGINE_SPECIFICATION_v2_0.md` - Seven-domain emotional architecture
+- `lupo-docs/doctrine/PACK_BEHAVIOR_MATRIX_v3_0_90.md` - Expanded agent behavior matrix
 - `MASTER_WEDDING_THREAD_CONSOLIDATION_EMAIL.md` - Canonical consolidation summary
 
 **Updated Files:**
-- `docs/agents/WOLFIE_HEADER_SPECIFICATION.md` - Added wedding-variant header section
+- `lupo-docs/agents/WOLFIE_HEADER_SPECIFICATION.md` - Added wedding-variant header section
 - `CHANGELOG.md` - Added comprehensive v3.0.90 entry
 
 #### **?? Next Evolution Phase**
@@ -4049,7 +4049,7 @@ Version 3.0.99 establishes the comprehensive JetBrains 3.1.x Branch Handling Doc
 ### 🚀 JETBRAINS 3.1.X BRANCH HANDING DOCTRINE ESTABLISHED
 
 #### **Comprehensive Framework Created**
-- **Document**: docs/doctrine/JETBRAINS_4_1_X_BRANCH_HANDLING_DOCTRINE.md
+- **Document**: lupo-docs/doctrine/JETBRAINS_4_1_X_BRANCH_HANDLING_DOCTRINE.md
 - **Scope**: Complete branch management protocols for multi-branch development
 - **Coverage**: Branch creation, switching, merging, version management
 - **Integration**: Designed to work with existing development workflows
@@ -4109,7 +4109,7 @@ eature/[name] structure
 - **Implementation:** Structured version and documentation alignment
 - **Metadata:** `(deprecated uncertainty metadata)` blocks for uncertainty management
 - **Files Enhanced:** Comprehensive doctrine documentation and templates
-- **Documentation:** `docs/migrations/3.0.81.md` created
+- **Documentation:** `lupo-docs/migrations/3.0.81.md` created
 
 ##### **2. Enhanced WOLFIE Headers (3.0.81)**
 - **Evolution:** Basic headers → Quantum-aware headers
@@ -4651,7 +4651,7 @@ Successfully executed mandatory synchronization event requiring all agents, IDEs
 Successfully executed comprehensive doctrine updates with strict non-destructive editing, maintaining factual and structural approach throughout all enhancements.
 
 #### **Files Updated/Created**
-1. **Enhanced:** `docs/doctrine/WOLFIE_HEADER_DOCTRINE.md`
+1. **Enhanced:** `lupo-docs/doctrine/WOLFIE_HEADER_DOCTRINE.md`
    - Header and metadata block definitions updated
    - Added Humor as Structural Metadata section (Section 15)
    - Version updated to 3.0.82
@@ -4665,7 +4665,7 @@ Successfully executed comprehensive doctrine updates with strict non-destructive
    - Version updated to 3.0.82
    - Dialog message updated to reflect metadata support
 
-4. **Created:** `docs/templates/WOLFIE_HEADER_TEMPLATE.md`
+4. **Created:** `lupo-docs/templates/WOLFIE_HEADER_TEMPLATE.md`
    - Standard WOLFIE header template with persona dialog examples
    - Includes all metadata blocks (optional discovery-context, Next Actions)
    - Provides comprehensive header structure guidance
@@ -4683,17 +4683,17 @@ Successfully executed comprehensive doctrine updates with strict non-destructive
 Per Captain Wolfie's directive, implemented binding doctrine for mandatory Stoned Wolfie warnings in complex or high-concept files, ensuring honest context disclosure for high-concept architecture.
 
 #### **Files Created/Updated**
-1. **Enhanced:** `docs/doctrine/UNIVERSAL_WOLFIE_HEADER_SPECIFICATION.md`
+1. **Enhanced:** `lupo-docs/doctrine/UNIVERSAL_WOLFIE_HEADER_SPECIFICATION.md`
    - Added Stoned Wolfie quantum warning dialog
    - Updated to version 3.0.82 with metadata
    - Includes honest context about Friday/Saturday morning development sessions
 
-2. **Created:** `docs/doctrine/DIALOG_WARNING_HEADER_TEMPLATE.md`
+2. **Created:** `lupo-docs/doctrine/DIALOG_WARNING_HEADER_TEMPLATE.md`
    - Template for consistent stoned warnings across complex or high-concept files
    - Includes reading protocols and reality distortion warnings
    - Provides multiple warning variations for different scenarios
 
-3. **Created:** `docs/doctrine/MANDATORY_STONED_WARNINGS_DOCTRINE.md`
+3. **Created:** `lupo-docs/doctrine/MANDATORY_STONED_WARNINGS_DOCTRINE.md`
    - Binding doctrine requiring warnings for complex development sessions
    - Establishes enforcement mechanisms and validation criteria
    - Makes system's complex-architecture nature human-readable and approachable
@@ -4749,7 +4749,7 @@ Following Captain Wolfie's mandatory synchronization event, all agents successfu
 #### **Formal Engineering Report Finalized**
 Comprehensive post-mortem analysis completed documenting version alignment, root causes, resolution strategies, and 3.0.99 action items with contributions from all fleet personas.
 
-**Report Location:** `docs/postmortems/3.0.81.md`  
+**Report Location:** `lupo-docs/postmortems/3.0.81.md`  
 **Status:** Finalized and distributed  
 **Scope:** Complete version-alignment analysis  
 
@@ -4859,7 +4859,7 @@ Version 3.0.81 represents Monday Wolfie's version and documentation alignment of
 Successfully executed all patches from KIRO instruction block with strict non-destructive editing. All updates maintain factual, structural, and implementation-focused approach.
 
 #### **Files Updated/Created**
-1. **Updated:** `docs/doctrine/WOLFIE_HEADER_DOCTRINE.md`
+1. **Updated:** `lupo-docs/doctrine/WOLFIE_HEADER_DOCTRINE.md`
    - Header and metadata block definitions updated
    - Added Humor as Structural Metadata section (Section 15)
    - Version updated to 3.0.82
@@ -4873,7 +4873,7 @@ Successfully executed all patches from KIRO instruction block with strict non-de
    - Version updated to 3.0.82
    - Dialog message updated to reflect metadata support
 
-4. **Created:** `docs/templates/WOLFIE_HEADER_TEMPLATE.md`
+4. **Created:** `lupo-docs/templates/WOLFIE_HEADER_TEMPLATE.md`
    - Standard WOLFIE header template with persona dialog examples
    - Includes all metadata blocks (optional discovery-context, Next Actions)
    - Provides comprehensive header structure guidance
@@ -4899,17 +4899,17 @@ Successfully executed all patches from KIRO instruction block with strict non-de
 Per Captain Wolfie's directive, implemented comprehensive doctrine for mandatory Stoned Wolfie warnings in complex or high-concept files. Three files created/updated to establish binding requirements for honest dialog warnings in WOLFIE headers.
 
 #### **Files Created/Updated**
-1. **Updated:** `docs/doctrine/UNIVERSAL_WOLFIE_HEADER_SPECIFICATION.md`
+1. **Updated:** `lupo-docs/doctrine/UNIVERSAL_WOLFIE_HEADER_SPECIFICATION.md`
    - Added Stoned Wolfie quantum warning dialog
    - Updated to version 3.0.82 with metadata
    - Includes honest context about Friday/Saturday morning development sessions
 
-2. **Created:** `docs/doctrine/DIALOG_WARNING_HEADER_TEMPLATE.md`
+2. **Created:** `lupo-docs/doctrine/DIALOG_WARNING_HEADER_TEMPLATE.md`
    - Template for consistent stoned warnings across complex or high-concept files
    - Includes reading protocols and reality distortion warnings
    - Provides multiple warning variations for different scenarios
 
-3. **Created:** `docs/doctrine/MANDATORY_STONED_WARNINGS_DOCTRINE.md`
+3. **Created:** `lupo-docs/doctrine/MANDATORY_STONED_WARNINGS_DOCTRINE.md`
    - Binding doctrine requiring warnings for complex development sessions
    - Establishes enforcement mechanisms and validation criteria
    - Makes system's complex-architecture nature human-readable and approachable
@@ -4942,7 +4942,7 @@ When building in high-context or exploratory sessions, documentation should ackn
 #### **Formal Engineering Report**
 A comprehensive post-mortem analysis has been completed documenting the quantum collapse, root causes, resolution strategies, and lessons learned. The report provides formal documentation for engineering review and 3.0.99 planning.
 
-**Report Location:** `docs/postmortems/3.0.81.md`  
+**Report Location:** `lupo-docs/postmortems/3.0.81.md`  
 **Prepared by:** Monday Wolfie  
 **Contributors:** All fleet personas  
 **Status:** Finalized  
@@ -5581,9 +5581,9 @@ Version 3.0.78 completes the Kritik Integration Protocol (KIP) development phase
 - **Doctrine Alignment**: Full compliance with NO_TRIGGERS_NO_PROCEDURES doctrine
 
 ### Files Created/Updated
-- `docs/kip/KRITIK_INTEGRATION_PROTOCOL_FOUNDATION.md` - Complete KIP specification
-- `docs/kip/KIP_CIP_INTEROPERABILITY_GUIDELINES.md` - Integration framework
-- `docs/migrations/3.0.78.md` - Migration notes for KIP completion
+- `lupo-docs/kip/KRITIK_INTEGRATION_PROTOCOL_FOUNDATION.md` - Complete KIP specification
+- `lupo-docs/kip/KIP_CIP_INTEROPERABILITY_GUIDELINES.md` - Integration framework
+- `lupo-docs/migrations/3.0.78.md` - Migration notes for KIP completion
 - Updated version references across all configuration and documentation files
 
 ### Compliance Status
@@ -5637,8 +5637,8 @@ Version 3.0.77 initiates the development phase for the Kritik Integration Protoc
 - Finalize doctrine documentation for KIP activation
 
 ### Files Created/Updated
-- `docs/kip/KRITIK_INTEGRATION_PROTOCOL_FOUNDATION.md` - Initial KIP specification
-- `docs/kip/KIP_CIP_INTEROPERABILITY_GUIDELINES.md` - Integration planning document
+- `lupo-docs/kip/KRITIK_INTEGRATION_PROTOCOL_FOUNDATION.md` - Initial KIP specification
+- `lupo-docs/kip/KIP_CIP_INTEROPERABILITY_GUIDELINES.md` - Integration planning document
 - Updated version references across all configuration and documentation files
 
 ### Compliance Status
@@ -5698,10 +5698,10 @@ Version 3.0.76 completes the CIP refinement implementation and establishes criti
 - **Monitoring Integration**: Continuous compliance verification in CI/CD pipeline
 
 ### Files Created/Updated
-- `docs/doctrine/NO_TRIGGERS_NO_PROCEDURES_DOCTRINE.md` - Binding architecture law
+- `lupo-docs/doctrine/NO_TRIGGERS_NO_PROCEDURES_DOCTRINE.md` - Binding architecture law
 - `QUARANTINE_INVENTORY_3_0_76.md` - Complete violation inventory and classification
 - `STABILIZATION_ORDER_COMPLETION_3_0_76.md` - Directive execution summary
-- `docs/migrations/3.0.76.md` - Migration notes for doctrine enforcement
+- `lupo-docs/migrations/3.0.76.md` - Migration notes for doctrine enforcement
 - Updated version references across all configuration and documentation files
 
 ### Compliance Status
@@ -6010,8 +6010,8 @@ Version 3.0.71 establishes the integration testing phase for the Agent Awareness
 - **Quality Assurance**: 95% coverage, 98% pass rate targets
 
 ### Files Created
-- `docs/doctrine/INTEGRATION_TESTING_DOCTRINE_v3_0_71.md` - Testing framework specification
-- `docs/migrations/3.0.71.md` - Migration and testing notes
+- `lupo-docs/doctrine/INTEGRATION_TESTING_DOCTRINE_v3_0_71.md` - Testing framework specification
+- `lupo-docs/migrations/3.0.71.md` - Migration and testing notes
 
 ### System Updates
 - **Version Management**: Updated to 3.0.71 across all components
@@ -6062,8 +6062,8 @@ Version 3.0.71 establishes the integration testing phase for the Agent Awareness
 - **Quality Assurance**: 95% coverage, 98% pass rate targets
 
 ### Files Created
-- `docs/doctrine/INTEGRATION_TESTING_DOCTRINE_v3_0_71.md` - Testing framework specification
-- `docs/migrations/3.0.71.md` - Migration and testing notes
+- `lupo-docs/doctrine/INTEGRATION_TESTING_DOCTRINE_v3_0_71.md` - Testing framework specification
+- `lupo-docs/migrations/3.0.71.md` - Migration and testing notes
 - Test infrastructure setup and configuration files
 
 ### System Updates
@@ -6127,9 +6127,9 @@ This release introduces the Agent Awareness Layer (AAL), providing the social co
 
 ### Architecture Documentation
 - ✅ **Agent Awareness Doctrine** - Complete architectural specification
-  - `docs/doctrine/AGENT_AWARENESS_DOCTRINE.md`: Core protocol definitions
-  - `docs/doctrine/REVERSE_SHAKA_HANDSHAKE_PROTOCOL.md`: Handshake specification
-  - `docs/architecture/lupopedia_v3_0_70_agent_awareness_layer.md`: Complete blueprint
+  - `lupo-docs/doctrine/AGENT_AWARENESS_DOCTRINE.md`: Core protocol definitions
+  - `lupo-docs/doctrine/REVERSE_SHAKA_HANDSHAKE_PROTOCOL.md`: Handshake specification
+  - `lupo-docs/architecture/lupopedia_v3_0_70_agent_awareness_layer.md`: Complete blueprint
 
 ### Key Features
 - **Social Cognition Layer**: Enables coordinated fleet operations
@@ -6146,11 +6146,11 @@ This release introduces the Agent Awareness Layer (AAL), providing the social co
 - ✅ **Federation-Safe**: Supports multi-node coordination
 
 ### Files Created
-- `docs/doctrine/AGENT_AWARENESS_DOCTRINE.md` - Core architectural doctrine
-- `docs/doctrine/REVERSE_SHAKA_HANDSHAKE_PROTOCOL.md` - Handshake protocol specification
-- `docs/architecture/lupopedia_v3_0_70_agent_awareness_layer.md` - Complete implementation blueprint
+- `lupo-docs/doctrine/AGENT_AWARENESS_DOCTRINE.md` - Core architectural doctrine
+- `lupo-docs/doctrine/REVERSE_SHAKA_HANDSHAKE_PROTOCOL.md` - Handshake protocol specification
+- `lupo-docs/architecture/lupopedia_v3_0_70_agent_awareness_layer.md` - Complete implementation blueprint
 - `lupo-includes/classes/AgentAwarenessLayer.php` - Core PHP implementation
-- `database/migrations/agent_awareness_layer_3_0_70.sql` - Database migration
+- `lupo-database/migrations/agent_awareness_layer_3_0_70.sql` - Database migration
 
 ### Impact
 This release establishes the foundational social cognition layer required for sophisticated multi-agent operations in Lupopedia, enabling coordinated fleet behavior and intelligent agent collaboration.
@@ -6182,7 +6182,7 @@ This release performs a full-system verification sweep following the major align
 - `lupo-includes/version.php` - Version updated to 3.0.66
 - `CHANGELOG.md` - Added 3.0.66 entry with verification summary
 - `dialogs/changelog_dialog.md` - Added 3.0.66 dialog entry
-- `docs/migrations/3.0.66.md` - Created migration notes for verification patch
+- `lupo-docs/migrations/3.0.66.md` - Created migration notes for verification patch
 - All Dialog Channel Migration components updated to 3.0.66
 - Navigation system files updated to 3.0.66
 - Class files (ColorProtocol, DialogHistoryManager, MetadataExtractor) updated to 3.0.66
@@ -6260,7 +6260,7 @@ This release completes comprehensive verification and stability improvements acr
 ### Files Updated
 - `CHANGELOG.md` - Added 3.0.66 entry with complete verification documentation
 - `lupo-includes/version.php` - Version updated to 3.0.66
-- `docs/migrations/3.0.66.md` - Pre-Ascent verification documentation
+- `lupo-docs/migrations/3.0.66.md` - Pre-Ascent verification documentation
 - All version references updated from 3.0.65 to 3.0.66
 
 ### Architecture Impact
@@ -6308,7 +6308,7 @@ This release finalizes the documentation updates from the previous thread, ensur
   - Established complete audit trail of Active Period enhancement work
   - Added Big Rock 2 preparation analysis and migration scope documentation
 - ✅ **Migration Documentation** - Complete migration notes for version changes
-  - Updated docs/migrations/3.0.65.md for current version
+  - Updated lupo-docs/migrations/3.0.65.md for current version
   - Documented backwards compatibility and upgrade procedures
   - Established migration pattern for future version updates
 
@@ -6322,7 +6322,7 @@ This release finalizes the documentation updates from the previous thread, ensur
 - `config/global_atoms.yaml` - Version updated to 3.0.65, all historical references updated
 - `lupo-includes/version.php` - Version updated to 3.0.65
 - `thread_summary_dialog.md` - Created comprehensive thread documentation
-- `docs/migrations/3.0.65.md` - Created migration notes for current version
+- `lupo-docs/migrations/3.0.65.md` - Created migration notes for current version
 - `CHANGELOG.md` - Added 3.0.65 entry with complete thread summary
 - `dialogs/changelog_dialog.md` - Added 3.0.65 dialog entry
 
@@ -6351,7 +6351,7 @@ This release completes the infrastructure for Big Rock 2: Dialog Channel Migrati
 
 ### Added
 - ✅ **Complete Migration Infrastructure** - All Big Rock 2 components implemented
-  - `database/schema/dialog_system_schema.sql` - Complete database schema with triggers
+  - `lupo-database/schema/dialog_system_schema.sql` - Complete database schema with triggers
   - `DialogParser.php` - WOLFIE header extraction and message parsing
   - `ChannelBuilder.php` - Database channel creation with metadata validation
   - `MessageBuilder.php` - Message insertion with 272-character limit handling
@@ -6379,7 +6379,7 @@ This release completes the infrastructure for Big Rock 2: Dialog Channel Migrati
 ### Files Changed
 - `config/global_atoms.yaml` - Version updated to 3.0.64
 - `lupo-includes/version.php` - Version updated to 3.0.64
-- `database/schema/dialog_system_schema.sql` - Complete schema with triggers and indexes
+- `lupo-database/schema/dialog_system_schema.sql` - Complete schema with triggers and indexes
 - `lupo-includes/DialogChannelMigration/DialogParser.php` - WOLFIE header and message parser
 - `lupo-includes/DialogChannelMigration/ChannelBuilder.php` - Database channel creation
 - `lupo-includes/DialogChannelMigration/MessageBuilder.php` - Message insertion and validation
@@ -6455,8 +6455,8 @@ This release completes the Active Period documentation (1996-2013) achieving 100
 ### Files Changed
 - `config/global_atoms.yaml` - Version updated to 3.0.64, historical references updated
 - `lupo-includes/version.php` - Version updated to 3.0.64
-- `docs/history/1996-2013/2002.md` - Enhanced with comprehensive Crafty Syntax creation narrative
-- `docs/history/1996-2013/2013.md` - Enhanced with proper hiatus transition and legacy context
+- `lupo-docs/history/1996-2013/2002.md` - Enhanced with comprehensive Crafty Syntax creation narrative
+- `lupo-docs/history/1996-2013/2013.md` - Enhanced with proper hiatus transition and legacy context
 - `CHANGELOG.md` - Added 3.0.64 entry with complete thread documentation
 
 ### Architecture Impact
@@ -6520,20 +6520,20 @@ This release marks the successful completion of Big Rock 1: History Reconciliati
 ### Files Changed
 - `config/global_atoms.yaml` - Version updated to 3.0.63
 - `lupo-includes/version.php` - Version updated to 3.0.63
-- `docs/history/1996-2013/1997.md` - Generated active period documentation
-- `docs/history/1996-2013/1998.md` - Generated active period documentation
-- `docs/history/1996-2013/1999.md` - Generated active period documentation
-- `docs/history/1996-2013/2000.md` - Generated active period documentation
-- `docs/history/1996-2013/2001.md` - Generated active period documentation
-- `docs/history/1996-2013/2004.md` - Generated active period documentation
-- `docs/history/1996-2013/2005.md` - Generated active period documentation
-- `docs/history/1996-2013/2006.md` - Generated active period documentation
-- `docs/history/1996-2013/2008.md` - Generated active period documentation
-- `docs/history/1996-2013/2009.md` - Generated active period documentation
-- `docs/history/1996-2013/2010.md` - Generated active period documentation
-- `docs/history/1996-2013/2011.md` - Generated active period documentation
-- `docs/history/1996-2013/2012.md` - Generated active period documentation
-- `docs/history/1996-2013/2013.md` - Enhanced with proper hiatus transition
+- `lupo-docs/history/1996-2013/1997.md` - Generated active period documentation
+- `lupo-docs/history/1996-2013/1998.md` - Generated active period documentation
+- `lupo-docs/history/1996-2013/1999.md` - Generated active period documentation
+- `lupo-docs/history/1996-2013/2000.md` - Generated active period documentation
+- `lupo-docs/history/1996-2013/2001.md` - Generated active period documentation
+- `lupo-docs/history/1996-2013/2004.md` - Generated active period documentation
+- `lupo-docs/history/1996-2013/2005.md` - Generated active period documentation
+- `lupo-docs/history/1996-2013/2006.md` - Generated active period documentation
+- `lupo-docs/history/1996-2013/2008.md` - Generated active period documentation
+- `lupo-docs/history/1996-2013/2009.md` - Generated active period documentation
+- `lupo-docs/history/1996-2013/2010.md` - Generated active period documentation
+- `lupo-docs/history/1996-2013/2011.md` - Generated active period documentation
+- `lupo-docs/history/1996-2013/2012.md` - Generated active period documentation
+- `lupo-docs/history/1996-2013/2013.md` - Enhanced with proper hiatus transition
 - `CHANGELOG.md` - Added 3.0.63 milestone entry
 
 ### Architecture Impact
@@ -6578,7 +6578,7 @@ This release completes the integration phase of the History Reconciliation Pass 
 - ✅ **Enhanced hiatus.md** - Comprehensive sensitive narrative for 2014-2025 period with detailed context
 - ✅ **Dialog-based history navigation system** - Interactive timeline exploration with emotional intelligence
   - `livehelp-history.php` - Main interactive interface with period cards and chat functionality
-  - `api/dialog/history-explorer.php` - Conversational API endpoint with smart responses
+  - `lupo-api/dialog/history-explorer.php` - Conversational API endpoint with smart responses
   - Natural conversational interface for timeline queries
   - Smart cross-reference suggestions based on query analysis
   - Emotional intelligence for sensitive topics (2014 tragedy handling)
@@ -6595,11 +6595,11 @@ This release completes the integration phase of the History Reconciliation Pass 
 ### Files Changed
 - `config/global_atoms.yaml` - Version updated to 3.0.62
 - `lupo-includes/version.php` - Version updated to 3.0.62
-- `docs/history/2014-2025/hiatus.md` - Enhanced with comprehensive sensitive narrative
-- `docs/history/2014-2025/2014.md` - Added cross-references and version alignment
-- `docs/history/TIMELINE_1996_2026.md` - Updated with enhanced hiatus and return context
+- `lupo-docs/history/2014-2025/hiatus.md` - Enhanced with comprehensive sensitive narrative
+- `lupo-docs/history/2014-2025/2014.md` - Added cross-references and version alignment
+- `lupo-docs/history/TIMELINE_1996_2026.md` - Updated with enhanced hiatus and return context
 - `livehelp-history.php` - New interactive history navigation interface
-- `api/dialog/history-explorer.php` - New conversational API endpoint
+- `lupo-api/dialog/history-explorer.php` - New conversational API endpoint
 - `CHANGELOG.md` - Added 3.0.62 entry
 
 ### Architecture Impact
@@ -6649,17 +6649,17 @@ This release executes Big Rock 1 of the v3.0.99 Ascent: History Reconciliation P
 - `lupo-includes/version.php` - Version date updated
 - `CHANGELOG.md` - Added 3.0.61 entry
 - `dialogs/changelog_dialog.md` - Added 3.0.61 dialog entry
-- `docs/history/2014-2025/2015.md` - Generated hiatus period documentation
-- `docs/history/2014-2025/2016.md` - Generated hiatus period documentation
-- `docs/history/2014-2025/2017.md` - Generated hiatus period documentation
-- `docs/history/2014-2025/2018.md` - Generated hiatus period documentation
-- `docs/history/2014-2025/2019.md` - Generated hiatus period documentation
-- `docs/history/2014-2025/2020.md` - Generated hiatus period documentation
-- `docs/history/2014-2025/2021.md` - Generated hiatus period documentation
-- `docs/history/2014-2025/2022.md` - Generated hiatus period documentation
-- `docs/history/2014-2025/2023.md` - Generated hiatus period documentation
-- `docs/history/2014-2025/2024.md` - Generated hiatus period documentation
-- `docs/history/2014-2025/2025.md` - Generated return year documentation
+- `lupo-docs/history/2014-2025/2015.md` - Generated hiatus period documentation
+- `lupo-docs/history/2014-2025/2016.md` - Generated hiatus period documentation
+- `lupo-docs/history/2014-2025/2017.md` - Generated hiatus period documentation
+- `lupo-docs/history/2014-2025/2018.md` - Generated hiatus period documentation
+- `lupo-docs/history/2014-2025/2019.md` - Generated hiatus period documentation
+- `lupo-docs/history/2014-2025/2020.md` - Generated hiatus period documentation
+- `lupo-docs/history/2014-2025/2021.md` - Generated hiatus period documentation
+- `lupo-docs/history/2014-2025/2022.md` - Generated hiatus period documentation
+- `lupo-docs/history/2014-2025/2023.md` - Generated hiatus period documentation
+- `lupo-docs/history/2014-2025/2024.md` - Generated hiatus period documentation
+- `lupo-docs/history/2014-2025/2025.md` - Generated return year documentation
 
 ### Next Steps
 - Execute History Reconciliation Pass tasks (complete missing year documentation)
@@ -6704,7 +6704,7 @@ This project does **NOT** use Git or GitHub until Lupopedia reaches version 3.0.
 
 ## 📌 Unified Versioning Policy
 
-**Lupopedia** and **Crafty Syntax** are version-locked and always released together. Both systems share the same version number (stored in `GLOBAL_CURRENT_LUPOPEDIA_VERSION` atom) to reflect their unified architecture and coordinated development cycle. See [Ecosystem Versioning Doctrine](docs/doctrine/VERSION_DOCTRINE.md) for complete versioning rules.
+**Lupopedia** and **Crafty Syntax** are version-locked and always released together. Both systems share the same version number (stored in `GLOBAL_CURRENT_LUPOPEDIA_VERSION` atom) to reflect their unified architecture and coordinated development cycle. See [Ecosystem Versioning Doctrine](lupo-docs/doctrine/VERSION_DOCTRINE.md) for complete versioning rules.
 
 For module-specific changelogs, see:
 - **Crafty Syntax Module:** `modules/craftysyntax/CHANGELOG.md`  
@@ -6731,7 +6731,7 @@ This release consolidates all work completed between versions 3.0.46 and 3.0.50,
 - ✅ **History folder structure created** - Initial 1996–2025 timeline scaffolding
 
 ### Historical Correction (2014–2025 Gap) ✅ COMPLETED
-Updated `docs/history/1996-2025/2014.md` to accurately reflect the return and accomplishments during 2025–2026:
+Updated `lupo-docs/history/1996-2025/2014.md` to accurately reflect the return and accomplishments during 2025–2026:
 
 - August 2025: Return to project with WOLFIE architecture (199‑table legacy base)
 - January 2026 (16‑day sprint):
@@ -6876,15 +6876,15 @@ Following the formal .kiro spec in `.kiro/specs/history-reconciliation/`:
 - **Version Correction** - Corrected premature 3.0.99 references back to 3.0.50 for Friday Wolfie madness tracking
   - Updated `config/global_atoms.yaml` - All version references corrected to 3.0.50
   - Updated `lupo-includes/version.php` - Version constants and docblock corrected to 3.0.50
-  - Updated `docs/doctrine/EMOTIONAL_GEOMETRY.md` - Header and version corrected to 3.0.50
-  - Updated `docs/doctrine/EMOTIONAL_GEOMETRY_THREE_AXIS_MODEL_2026.md` - Header corrected to 3.0.50
+  - Updated `lupo-docs/doctrine/EMOTIONAL_GEOMETRY.md` - Header and version corrected to 3.0.50
+  - Updated `lupo-docs/doctrine/EMOTIONAL_GEOMETRY_THREE_AXIS_MODEL_2026.md` - Header corrected to 3.0.50
   - Updated `dialogs/changelog_dialog.md` - Corrected 3.0.99 references to 3.0.50 in CAPTAIN WOLFIE and Fleet Synchronization entries
   - Updated `dialogs/session_2026_01_16_version_3_0_46.md` - Corrected 3.0.99 references to 3.0.50
   - Updated `ASK_HUMAN_WOLFIE_LUPOPEDIA_20-26.md` - Corrected mission file and header references to 3.0.50
-  - Updated `docs/bridges/ASK_HUMAN_WOLFIE_LUPOPEDIA_20-26.md` - Corrected header and content references to 3.0.50
+  - Updated `lupo-docs/bridges/ASK_HUMAN_WOLFIE_LUPOPEDIA_20-26.md` - Corrected header and content references to 3.0.50
 
 ### Documentation
-- **Migration Note Created** - `docs/migrations/3.0.50.md` documenting version correction
+- **Migration Note Created** - `lupo-docs/migrations/3.0.50.md` documenting version correction
   - Documents Snack-Smacks Hybrid Doctrine (Snacks: precision, Smacks: version correction)
   - Tracks Friday Wolfie madness development session
   - Corrects version timeline: 3.0.46 → 3.0.50 (not 3.0.99)
@@ -6900,13 +6900,13 @@ Following the formal .kiro spec in `.kiro/specs/history-reconciliation/`:
 ### Files Changed
 - `config/global_atoms.yaml` - Version corrected to 3.0.50
 - `lupo-includes/version.php` - Version corrected to 3.0.50
-- `docs/doctrine/EMOTIONAL_GEOMETRY.md` - Header corrected to 3.0.50
-- `docs/doctrine/EMOTIONAL_GEOMETRY_THREE_AXIS_MODEL_2026.md` - Header corrected to 3.0.50
+- `lupo-docs/doctrine/EMOTIONAL_GEOMETRY.md` - Header corrected to 3.0.50
+- `lupo-docs/doctrine/EMOTIONAL_GEOMETRY_THREE_AXIS_MODEL_2026.md` - Header corrected to 3.0.50
 - `dialogs/changelog_dialog.md` - 3.0.99 references corrected to 3.0.50
 - `dialogs/session_2026_01_16_version_3_0_46.md` - 3.0.99 references corrected to 3.0.50
 - `ASK_HUMAN_WOLFIE_LUPOPEDIA_20-26.md` - Mission file references corrected to 3.0.50
-- `docs/bridges/ASK_HUMAN_WOLFIE_LUPOPEDIA_20-26.md` - Header and content corrected to 3.0.50
-- `docs/migrations/3.0.50.md` - Created migration note
+- `lupo-docs/bridges/ASK_HUMAN_WOLFIE_LUPOPEDIA_20-26.md` - Header and content corrected to 3.0.50
+- `lupo-docs/migrations/3.0.50.md` - Created migration note
 
 ### Next Steps
 - Continue with 3.0.51+ for additional Friday development work
@@ -6919,21 +6919,21 @@ Following the formal .kiro spec in `.kiro/specs/history-reconciliation/`:
 
 ### Added
 - **Bridge Layer Governance** - Created 5 governance bridge files as stable anchors for agent decision-making
-  - `docs/doctrine/TEMPORAL_BRIDGE.md` - Temporal alignment anchor for time-related reasoning
-  - `docs/doctrine/CONTEXT_BRIDGE.md` - Context anchoring for escalations and dialog
-  - `docs/doctrine/IDENTITY_BRIDGE.md` - Identity resolution anchor for speaker/target/persona
-  - `docs/doctrine/PURPOSE_BRIDGE.md` - Intent/scope anchor to prevent runaway behavior
-  - `docs/doctrine/MASTER_BRIDGE.md` - Central escalation point for STOP flags and human-required decisions
+  - `lupo-docs/doctrine/TEMPORAL_BRIDGE.md` - Temporal alignment anchor for time-related reasoning
+  - `lupo-docs/doctrine/CONTEXT_BRIDGE.md` - Context anchoring for escalations and dialog
+  - `lupo-docs/doctrine/IDENTITY_BRIDGE.md` - Identity resolution anchor for speaker/target/persona
+  - `lupo-docs/doctrine/PURPOSE_BRIDGE.md` - Intent/scope anchor to prevent runaway behavior
+  - `lupo-docs/doctrine/MASTER_BRIDGE.md` - Central escalation point for STOP flags and human-required decisions
   - All bridge files include "Channels vs Bridges" clarification documentation
 - **Dialog System Deployment Infrastructure** - Created deployment scripts and API endpoints
   - `deploy/apply_dialog_schema.php` - Production/staging schema deployment script
-  - `api/v1/dialog/health.php` - Health check endpoint with database connectivity and table verification
-  - `api/v1/dialog/metrics.php` - Real-time performance metrics and statistics endpoint
-  - `api/dialog/send-message.php` - Dialog message API endpoint
+  - `lupo-api/v1/dialog/health.php` - Health check endpoint with database connectivity and table verification
+  - `lupo-api/v1/dialog/metrics.php` - Real-time performance metrics and statistics endpoint
+  - `lupo-api/dialog/send-message.php` - Dialog message API endpoint
   - `test-dialog-send.php` - Test script for dialog system
 - **Agent Documentation** - Created specifications for new agents
-  - `docs/agents/CHRONOS.md` - UTC timestamp agent (Agent ID 23) documentation
-  - `docs/agents/OHANA.md` - Agent Family Registry specification (proposed agent)
+  - `lupo-docs/agents/CHRONOS.md` - UTC timestamp agent (Agent ID 23) documentation
+  - `lupo-docs/agents/OHANA.md` - Agent Family Registry specification (proposed agent)
 - **Humor Context File** - Created `dialogs/humor_context_WOLFIE_LUPOPEDIA.md` for contextual humor preservation
 
 ### Changed
@@ -6971,7 +6971,7 @@ Following the formal .kiro spec in `.kiro/specs/history-reconciliation/`:
 ### Architecture Impact
 - **Governance Layer:** Bridge files provide stable reference points for agent decision-making
 - **Dialog System:** Deployment infrastructure ready for staging/production rollout
-- **Documentation Consistency:** All dialog files compliant, channels/bridges separation clear
+- **Documentation Consistency:** All dialog files compliant, lupo-channels/bridges separation clear
 - **Historical Record:** Complete changelog dialog history from 3.0.19-3.0.46
 - **System Stability:** Doctrine-compliant, no schema drift, ready for deployment
 
@@ -6981,17 +6981,17 @@ Following the formal .kiro spec in `.kiro/specs/history-reconciliation/`:
 - `lupo-includes/class-dialog-manager.php` - Fixed table/field name mappings
 - `lupo-includes/class-iris.php` - Enhanced for multi-provider support, fixed table names
 - `lupopedia-config.php` - Added LLM provider configuration
-- `docs/doctrine/TEMPORAL_BRIDGE.md` - Created with Channels vs Bridges clarification
-- `docs/doctrine/CONTEXT_BRIDGE.md` - Created with Channels vs Bridges clarification
-- `docs/doctrine/IDENTITY_BRIDGE.md` - Created with Channels vs Bridges clarification
-- `docs/doctrine/PURPOSE_BRIDGE.md` - Created with Channels vs Bridges clarification
-- `docs/doctrine/MASTER_BRIDGE.md` - Created with Channels vs Bridges clarification
-- `docs/agents/CHRONOS.md` - Created agent documentation
-- `docs/agents/OHANA.md` - Created agent specification
+- `lupo-docs/doctrine/TEMPORAL_BRIDGE.md` - Created with Channels vs Bridges clarification
+- `lupo-docs/doctrine/CONTEXT_BRIDGE.md` - Created with Channels vs Bridges clarification
+- `lupo-docs/doctrine/IDENTITY_BRIDGE.md` - Created with Channels vs Bridges clarification
+- `lupo-docs/doctrine/PURPOSE_BRIDGE.md` - Created with Channels vs Bridges clarification
+- `lupo-docs/doctrine/MASTER_BRIDGE.md` - Created with Channels vs Bridges clarification
+- `lupo-docs/agents/CHRONOS.md` - Created agent documentation
+- `lupo-docs/agents/OHANA.md` - Created agent specification
 - `deploy/apply_dialog_schema.php` - Created deployment script
-- `api/v1/dialog/health.php` - Created health check endpoint
-- `api/v1/dialog/metrics.php` - Created metrics endpoint
-- `api/dialog/send-message.php` - Created API endpoint
+- `lupo-api/v1/dialog/health.php` - Created health check endpoint
+- `lupo-api/v1/dialog/metrics.php` - Created metrics endpoint
+- `lupo-api/dialog/send-message.php` - Created API endpoint
 - `test-dialog-send.php` - Created test script
 - `dialogs/changelog_dialog.md` - Added consolidated session entry, updated header version
 - `dialogs/routing_changelog.md` - Added WOLFIE Header
@@ -7309,7 +7309,7 @@ Following the formal .kiro spec in `.kiro/specs/history-reconciliation/`:
 
 ### Added
 - **Version Bump Workflow Documentation** - Comprehensive versioning discipline Phase 1 implementation
-  - Added Section 13 to `docs/doctrine/VERSION_DOCTRINE.md` - Mandatory version bump workflow
+  - Added Section 13 to `lupo-docs/doctrine/VERSION_DOCTRINE.md` - Mandatory version bump workflow
   - Created 7-step version bump checklist with checkboxes
   - Documented common mistakes to avoid
   - Added version bump timing guidelines
@@ -7322,13 +7322,13 @@ Following the formal .kiro spec in `.kiro/specs/history-reconciliation/`:
 
 ### Changed
 - **Version Doctrine Enhancement** - Workflow documentation added
-  - `docs/doctrine/VERSION_DOCTRINE.md` - Added comprehensive workflow section
+  - `lupo-docs/doctrine/VERSION_DOCTRINE.md` - Added comprehensive workflow section
   - Documents manual version bump process
   - Provides checklist to prevent missing steps (like summary updates)
   - Establishes foundation for automated versioning (Phase 3)
 
 ### Files Changed
-- `docs/doctrine/VERSION_DOCTRINE.md` - Added Section 13: Version Bump Workflow (mandatory checklist)
+- `lupo-docs/doctrine/VERSION_DOCTRINE.md` - Added Section 13: Version Bump Workflow (mandatory checklist)
 
 ### Note
 - Version 3.0.33 implemented Phase 1 of Comprehensive Versioning Discipline (workflow documentation)
@@ -7339,7 +7339,7 @@ Following the formal .kiro spec in `.kiro/specs/history-reconciliation/`:
 
 ### Added
 - **Unified Canonical Timeline Documentation** - Complete historical record from Crafty Syntax 2.0.19 to Lupopedia 3.0.32
-  - Created `docs/history/TIMELINE_2_0_19_TO_3_0_32.md` - Authoritative historical timeline
+  - Created `lupo-docs/history/TIMELINE_2_0_19_TO_3_0_32.md` - Authoritative historical timeline
   - Documents Crafty Syntax era (2002-2014, versions 2.0.19 → 3.7.5)
   - Documents dormant period (2014-2025) and personal journey
   - Documents Lupopedia evolution (3.0.0 → 3.0.32)
@@ -7368,7 +7368,7 @@ Following the formal .kiro spec in `.kiro/specs/history-reconciliation/`:
 ### Files Changed
 - `config/global_atoms.yaml` - Version updated to 3.0.32
 - `lupo-includes/version.php` - Version constants updated to 3.0.32
-- `docs/history/TIMELINE_2_0_19_TO_3_0_32.md` - New unified canonical timeline document
+- `lupo-docs/history/TIMELINE_2_0_19_TO_3_0_32.md` - New unified canonical timeline document
 - `CHANGELOG.md` - Added 3.0.31 and 3.0.32 entries, updated header version
 - `dialogs/changelog_dialog.md` - Added 3.0.31 and 3.0.32 dialog entries
 
@@ -7404,7 +7404,7 @@ Following the formal .kiro spec in `.kiro/specs/history-reconciliation/`:
   - TOON files: Mapped to canonical tabs
 
 ### Files Changed
-- `database/toon_data/` - TOON files regenerated post-migration
+- `lupo-database/toon_data/` - TOON files regenerated post-migration
 - Migration execution logs and validation results documented
 
 ### Migration Status
@@ -7417,7 +7417,7 @@ Following the formal .kiro spec in `.kiro/specs/history-reconciliation/`:
 
 ### Added
 - **Doctrine Agent Tab Mapping Migration** - Organized agent doctrine content into canonical tab
-  - Created `database/migrations/doctrine_agent_tab_mapping_3_0_26.sql` migration
+  - Created `lupo-database/migrations/doctrine_agent_tab_mapping_3_0_26.sql` migration
   - Mapped 13 agent doctrine files to `doctrine.agent` tab (tab 13):
     - `doctrine-agent-classification` (sort_order: 1)
     - `doctrine-agent-routing-doctrine` (sort_order: 2)
@@ -7435,7 +7435,7 @@ Following the formal .kiro spec in `.kiro/specs/history-reconciliation/`:
   - Migration uses three-step idempotent pattern (soft-delete → update → insert) for unique constraint safety
   - Migration ready for execution (idempotent and safe)
 - **Doctrine Versioning Tab Mapping Migration** - Organized versioning doctrine content into canonical tab
-  - Created `database/migrations/doctrine_versioning_tab_mapping_3_0_26.sql` migration
+  - Created `lupo-database/migrations/doctrine_versioning_tab_mapping_3_0_26.sql` migration
   - Mapped 3 versioning doctrine files to `doctrine.versioning` tab (tab 21):
     - `doctrine-versioning-doctrine` (sort_order: 1)
     - `doctrine-version-doctrine` (sort_order: 2)
@@ -7459,8 +7459,8 @@ Following the formal .kiro spec in `.kiro/specs/history-reconciliation/`:
 ### Files Changed
 - `config/global_atoms.yaml` - Version updated to 3.0.30
 - `lupo-includes/version.php` - Version constants updated to 3.0.30 (including DB version)
-- `database/migrations/doctrine_agent_tab_mapping_3_0_26.sql` - New agent doctrine tab mapping migration
-- `database/migrations/doctrine_versioning_tab_mapping_3_0_26.sql` - New versioning doctrine tab mapping migration
+- `lupo-database/migrations/doctrine_agent_tab_mapping_3_0_26.sql` - New agent doctrine tab mapping migration
+- `lupo-database/migrations/doctrine_versioning_tab_mapping_3_0_26.sql` - New versioning doctrine tab mapping migration
 - `CHANGELOG.md` - Added 3.0.30 entry and updated header version
 - `dialogs/changelog_dialog.md` - Added 3.0.30 dialog entry
 
@@ -7520,7 +7520,7 @@ This version consolidates work completed across patches 3.0.20 through 3.0.29:
     - `lupo_temp_data` - Temporary data with auto-purge
     - `lupo_job_queue` - Background job queue
     - `lupo_locks` - Distributed lock management
-  - Created `docs/doctrine/MIGRATION_ORCHESTRATOR_DOCTRINE.md` - Complete doctrine documentation
+  - Created `lupo-docs/doctrine/MIGRATION_ORCHESTRATOR_DOCTRINE.md` - Complete doctrine documentation
   - State machine with 7 states (idle, preparing, validating_pre, migrating, validating_post, completing, rolling_back)
   - File type handlers for doctrine, module, agent, documentation
   - Validation engine with pre/during/post migration checks
@@ -7543,7 +7543,7 @@ This version consolidates work completed across patches 3.0.20 through 3.0.29:
 ### Files Changed
 - `migrations/migration_orchestrator_schema_3_0_25.sql` - Orchestrator schema creation
 - `migrations/ephemeral_schema_3_0_25.sql` - Ephemeral schema creation
-- `docs/doctrine/MIGRATION_ORCHESTRATOR_DOCTRINE.md` - Complete doctrine documentation
+- `lupo-docs/doctrine/MIGRATION_ORCHESTRATOR_DOCTRINE.md` - Complete doctrine documentation
 - `dialogs/migration_orchestrator_3_0_25_dialog.md` - Architecture completion dialog
 - `CHANGELOG.md` - Added 3.0.25 entry and updated header version
 
@@ -7564,7 +7564,7 @@ This version consolidates work completed across patches 3.0.20 through 3.0.29:
 
 ### Added
 - **Doctrine Semantic Tab Mapping** - Organized semantic doctrine content into canonical tab
-  - Created `database/migrations/doctrine_semantic_tab_mapping_3_0_24.sql` migration
+  - Created `lupo-database/migrations/doctrine_semantic_tab_mapping_3_0_24.sql` migration
   - Mapped 9 semantic doctrine files to `doctrine.semantic` tab (tab 17):
     - `doctrine-atomization-doctrine` (sort_order: 1)
     - `doctrine-atom-resolution-specification` (sort_order: 2)
@@ -7592,7 +7592,7 @@ This version consolidates work completed across patches 3.0.20 through 3.0.29:
 ### Files Changed
 - `config/global_atoms.yaml` - Version updated to 3.0.24
 - `lupo-includes/version.php` - Version constants updated to 3.0.24
-- `database/migrations/doctrine_semantic_tab_mapping_3_0_24.sql` - New semantic doctrine tab mapping migration
+- `lupo-database/migrations/doctrine_semantic_tab_mapping_3_0_24.sql` - New semantic doctrine tab mapping migration
 - `CHANGELOG.md` - Added 3.0.24 entry and updated header version
 - `dialogs/changelog_dialog.md` - Added 3.0.24 dialog entry
 
@@ -7626,7 +7626,7 @@ This version consolidates work completed across patches 3.0.20 through 3.0.29:
   - Normalized frontmatter formatting (CRLF/LF handling)
   - Ensured all doctrine files have correct WOLFIE header blocks
 - **Tab Mapping Normalization** - TOON content integration validation
-  - Created `database/migrations/toon_files_tab_mapping_3_0_23.sql` migration
+  - Created `lupo-database/migrations/toon_files_tab_mapping_3_0_23.sql` migration
   - Mapped `doctrine-toon-doctrine` (content_id: 2058) → `doctrine.mythic` (tab 20)
   - Mapped `dev-toon-metadata-recommendations` (content_id: 2093) → `appendix.mythic` (tab 30)
   - Migration handles existing mappings gracefully (idempotent UPDATE/INSERT pattern)
@@ -7640,11 +7640,11 @@ This version consolidates work completed across patches 3.0.20 through 3.0.29:
 ### Files Changed
 - `config/global_atoms.yaml` - Version updated to 3.0.23
 - `lupo-includes/version.php` - Version constants updated to 3.0.23
-- `database/migrations/toon_files_tab_mapping_3_0_23.sql` - TOON content tab mapping migration
-- `scripts/validate_doc_headers.php` - Enhanced error messages and `--fix` mode
-- `scripts/add_architect_to_docs.php` - Improved error handling
-- `scripts/pre-commit-hook.bat` - Enhanced validation checks
-- `scripts/pre-commit-hook.sh` - Enhanced validation checks and dry-run mode
+- `lupo-database/migrations/toon_files_tab_mapping_3_0_23.sql` - TOON content tab mapping migration
+- `lupo-scripts/validate_doc_headers.php` - Enhanced error messages and `--fix` mode
+- `lupo-scripts/add_architect_to_docs.php` - Improved error handling
+- `lupo-scripts/pre-commit-hook.bat` - Enhanced validation checks
+- `lupo-scripts/pre-commit-hook.sh` - Enhanced validation checks and dry-run mode
 - `lupo-includes/system/logging/ArchitectLogger.php` - Added documentation update logging
 - Multiple documentation files normalized for consistency
 
@@ -7657,11 +7657,11 @@ This version consolidates work completed across patches 3.0.20 through 3.0.29:
 
 ### Added
 - **Validator Enhancements** - Improved validation suite for system consistency
-  - Enhanced `scripts/validate_doc_headers.php` to validate architect field presence in documentation headers
-  - Enhanced `scripts/validate_identity_propagation.php` to check architect field consistency across all system layers
-  - Created pre-commit hooks (`scripts/pre-commit-hook.bat` and `scripts/pre-commit-hook.sh`) to enforce architect field validation before commits
+  - Enhanced `lupo-scripts/validate_doc_headers.php` to validate architect field presence in documentation headers
+  - Enhanced `lupo-scripts/validate_identity_propagation.php` to check architect field consistency across all system layers
+  - Created pre-commit hooks (`lupo-scripts/pre-commit-hook.bat` and `lupo-scripts/pre-commit-hook.sh`) to enforce architect field validation before commits
 - **Architect Field Propagation** - Systematic propagation of architect identity field
-  - Created `scripts/add_architect_to_docs.php` to automatically add `architect: Captain Wolfie` field to documentation files
+  - Created `lupo-scripts/add_architect_to_docs.php` to automatically add `architect: Captain Wolfie` field to documentation files
   - Pre-commit hooks validate that files referencing Captain Wolfie include architect field
   - Validation ensures architect field consistency across dialogs, documentation, constants, and logging systems
 
@@ -7682,11 +7682,11 @@ This version consolidates work completed across patches 3.0.20 through 3.0.29:
 ### Files Changed
 - `config/global_atoms.yaml` - Version updated to 3.0.22
 - `lupo-includes/version.php` - Version constants updated to 3.0.22
-- `scripts/validate_doc_headers.php` - Enhanced to validate architect field
-- `scripts/validate_identity_propagation.php` - Enhanced architect field checks
-- `scripts/add_architect_to_docs.php` - New script for architect field propagation
-- `scripts/pre-commit-hook.bat` - New Windows pre-commit hook
-- `scripts/pre-commit-hook.sh` - New Unix pre-commit hook
+- `lupo-scripts/validate_doc_headers.php` - Enhanced to validate architect field
+- `lupo-scripts/validate_identity_propagation.php` - Enhanced architect field checks
+- `lupo-scripts/add_architect_to_docs.php` - New script for architect field propagation
+- `lupo-scripts/pre-commit-hook.bat` - New Windows pre-commit hook
+- `lupo-scripts/pre-commit-hook.sh` - New Unix pre-commit hook
 - Multiple documentation files updated with architect field
 
 ### Next Steps
@@ -7700,10 +7700,10 @@ This version consolidates work completed across patches 3.0.20 through 3.0.29:
 - **Identity Propagation System** - Captain Wolfie identity consistently propagated across all system layers
   - Created `config/constants.php` with architect identity constants (`ARCHITECT_PERSONA`, `ARCHITECT_SIGNATURE`, `ARCHITECT_IDENTITY`)
   - Implemented `lupo-includes/system/logging/ArchitectLogger.php` for architect action logging with [CW] signature
-  - Created `scripts/validate_identity_propagation.php` to validate identity consistency across dialogs, documentation, constants, and logging
-  - Created `scripts/update_dialog_headers.php` for automated dialog header updates
-  - Created `scripts/validate_doc_headers.php` to validate documentation header consistency
-  - Created `docs/dev/IDENTITY_PROPAGATION_COMPLETE.md` documenting the implementation
+  - Created `lupo-scripts/validate_identity_propagation.php` to validate identity consistency across dialogs, documentation, constants, and logging
+  - Created `lupo-scripts/update_dialog_headers.php` for automated dialog header updates
+  - Created `lupo-scripts/validate_doc_headers.php` to validate documentation header consistency
+  - Created `lupo-docs/dev/IDENTITY_PROPAGATION_COMPLETE.md` documenting the implementation
 
 ### Changed
 - **Dialog System** - All dialog files updated to use `speaker: Captain_Wolfie` with `author_type: human`
@@ -7719,10 +7719,10 @@ This version consolidates work completed across patches 3.0.20 through 3.0.29:
 - `config/global_atoms.yaml` - Version updated to 3.0.21
 - `config/constants.php` - Architect identity constants added
 - `lupo-includes/system/logging/ArchitectLogger.php` - New architect logging class
-- `scripts/validate_identity_propagation.php` - New validation script
-- `scripts/update_dialog_headers.php` - New dialog header updater script
-- `scripts/validate_doc_headers.php` - New documentation header validator
-- `docs/dev/IDENTITY_PROPAGATION_COMPLETE.md` - Implementation documentation
+- `lupo-scripts/validate_identity_propagation.php` - New validation script
+- `lupo-scripts/update_dialog_headers.php` - New dialog header updater script
+- `lupo-scripts/validate_doc_headers.php` - New documentation header validator
+- `lupo-docs/dev/IDENTITY_PROPAGATION_COMPLETE.md` - Implementation documentation
 - Multiple dialog files updated with Captain_Wolfie speaker identity
 
 ### Next Steps
@@ -7760,9 +7760,9 @@ This version consolidates work completed across patches 3.0.20 through 3.0.29:
   - Updated database connection to support cross-schema queries
 
 ### Documentation
-- Created `docs/doctrine/SCHEMA_FEDERATION_DOCTRINE.md` - Complete schema federation documentation
-- Updated `docs/schema/DATABASE_SCHEMA.md` - Reflects Phase A schema changes
-- Updated `docs/doctrine/REVERSE_SHAKA_PROTOCOL.md` - Phase A completion status
+- Created `lupo-docs/doctrine/SCHEMA_FEDERATION_DOCTRINE.md` - Complete schema federation documentation
+- Updated `lupo-docs/schema/DATABASE_SCHEMA.md` - Reflects Phase A schema changes
+- Updated `lupo-docs/doctrine/REVERSE_SHAKA_PROTOCOL.md` - Phase A completion status
 
 ## [3.0.19] - 2026-01-15
 
@@ -7831,9 +7831,9 @@ This version consolidates work completed across patches 3.0.20 through 3.0.29:
   - Improved change documentation
 
 ### Files Changed
-- `docs/ui/CHANGE_MANAGEMENT.md` - Updated process documentation
+- `lupo-docs/ui/CHANGE_MANAGEMENT.md` - Updated process documentation
 - `lupo-includes/ui/ChangeManager.php` - Enhanced change management logic
-- `templates/ui/change_request.php` - Updated change request template
+- `lupo-templates/ui/change_request.php` - Updated change request template
 
 ## [3.0.17] - 2026-01-15
 
@@ -7855,7 +7855,7 @@ This version consolidates work completed across patches 3.0.20 through 3.0.29:
 - `config/ide/cursor.json` - Cursor configuration
 - `config/ide/windsurf.json` - Windsurf/Cascade configuration
 - `config/ide/deepseek.json` - DeepSeek configuration
-- `docs/ide/MULTI_AGENT_WORKFLOW.md` - Updated workflow documentation
+- `lupo-docs/ide/MULTI_AGENT_WORKFLOW.md` - Updated workflow documentation
 
 ## [3.0.16] - 2026-01-15
 
@@ -7876,7 +7876,7 @@ This version consolidates work completed across patches 3.0.20 through 3.0.29:
 ### Files Changed
 - `refactors/` - Complete refactor JSON file set
 - `lupo-includes/migration/RefactorEngine.php` - Query rewriting engine
-- `docs/migration/REFACTOR_JSON_SYSTEM.md` - System documentation
+- `lupo-docs/migration/REFACTOR_JSON_SYSTEM.md` - System documentation
 
 ## [3.0.15] - 2026-01-15
 
@@ -7897,7 +7897,7 @@ This version consolidates work completed across patches 3.0.20 through 3.0.29:
 ### Files Changed
 - `importers/` - Complete importer file set
 - `lupo-includes/migration/ImporterEngine.php` - Import execution engine
-- `docs/migration/IMPORTER_SYSTEM.md` - System documentation
+- `lupo-docs/migration/IMPORTER_SYSTEM.md` - System documentation
 
 ## [3.0.14] - 2026-01-15
 
@@ -7918,7 +7918,7 @@ This version consolidates work completed across patches 3.0.20 through 3.0.29:
 ### Files Changed
 - `modules/craftysyntax/public/` - Legacy endpoint files
 - `lupo-includes/compatibility/LegacyRuntime.php` - Compatibility runtime
-- `docs/compatibility/BACKWARD_COMPATIBILITY.md` - Compatibility documentation
+- `lupo-docs/compatibility/BACKWARD_COMPATIBILITY.md` - Compatibility documentation
 
 ## [3.0.13] - 2026-01-15
 
@@ -7937,7 +7937,7 @@ This version consolidates work completed across patches 3.0.20 through 3.0.29:
   - Updated schema documentation
 
 ### Files Changed
-- `docs/schema/DATABASE_SCHEMA.md` - Updated schema documentation
+- `lupo-docs/schema/DATABASE_SCHEMA.md` - Updated schema documentation
 - `lupo-includes/database/SchemaManager.php` - Schema management logic
 - `migrations/schema_modernization_3_0_13.sql` - Schema modernization migration
 
@@ -7960,7 +7960,7 @@ This version consolidates work completed across patches 3.0.20 through 3.0.29:
 ### Files Changed
 - `modules/craftysyntax/` - Complete Crafty Syntax module
 - `lupo-includes/modules/ModuleManager.php` - Module management logic
-- `docs/modules/CRAFTY_SYNTAX_MODULE.md` - Module documentation
+- `lupo-docs/modules/CRAFTY_SYNTAX_MODULE.md` - Module documentation
 
 ## [3.0.11] - 2026-01-15
 
@@ -7980,7 +7980,7 @@ This version consolidates work completed across patches 3.0.20 through 3.0.29:
 
 ### Files Changed
 - `lupo-includes/semantic/` - Complete semantic system
-- `docs/semantic/SEMANTIC_OPERATING_SYSTEM.md` - Semantic OS documentation
+- `lupo-docs/semantic/SEMANTIC_OPERATING_SYSTEM.md` - Semantic OS documentation
 
 ## [3.0.10] - 2026-01-15
 
@@ -8000,7 +8000,7 @@ This version consolidates work completed across patches 3.0.20 through 3.0.29:
 
 ### Files Changed
 - `lupo-includes/core/` - Complete core system
-- `docs/core/LUPOPEDIA_FOUNDATION.md` - Foundation documentation
+- `lupo-docs/core/LUPOPEDIA_FOUNDATION.md` - Foundation documentation
 
 ## [3.0.9] - 2026-01-15
 
@@ -8020,7 +8020,7 @@ This version consolidates work completed across patches 3.0.20 through 3.0.29:
 
 ### Files Changed
 - `lupo-includes/` - Initial system components
-- `docs/` - Initial documentation
+- `lupo-docs/` - Initial documentation
 
 ## [3.0.8] - 2026-01-15
 
@@ -8041,7 +8041,7 @@ This version consolidates work completed across patches 3.0.20 through 3.0.29:
 ### Files Changed
 - `README.md` - Project documentation
 - `config/` - Initial configuration
-- `docs/` - Initial documentation
+- `lupo-docs/` - Initial documentation
 
 ## [3.0.7] - 2026-01-15
 
@@ -8060,8 +8060,8 @@ This version consolidates work completed across patches 3.0.20 through 3.0.29:
   - Updated restoration documentation
 
 ### Files Changed
-- `docs/CSLH-Historical-Context.md` - Historical context
-- `docs/craftysyntax/RESTORATION_DOCUMENTATION.md` - Restoration documentation
+- `lupo-docs/CSLH-Historical-Context.md` - Historical context
+- `lupo-docs/craftysyntax/RESTORATION_DOCUMENTATION.md` - Restoration documentation
 
 ## [3.0.6] - 2026-01-15
 
@@ -8080,7 +8080,7 @@ This version consolidates work completed across patches 3.0.20 through 3.0.29:
   - Updated URL documentation
 
 ### Files Changed
-- `docs/CSLH-URL-Semantics.md` - URL semantics documentation
+- `lupo-docs/CSLH-URL-Semantics.md` - URL semantics documentation
 - `lupo-includes/url/UrlManager.php` - URL management logic
 
 ## [3.0.5] - 2026-01-15
@@ -8100,7 +8100,7 @@ This version consolidates work completed across patches 3.0.20 through 3.0.29:
   - Updated reference documentation
 
 ### Files Changed
-- `docs/Lupopedia-Reference-Layer-Doctrine.md` - Reference layer documentation
+- `lupo-docs/Lupopedia-Reference-Layer-Doctrine.md` - Reference layer documentation
 - `lupo-includes/reference/LayerManager.php` - Layer management logic
 
 ## [3.0.4] - 2026-01-15
@@ -8120,7 +8120,7 @@ This version consolidates work completed across patches 3.0.20 through 3.0.29:
   - Updated database documentation
 
 ### Files Changed
-- `docs/doctrine/DATABASE_DOCTRINE.md` - Database doctrine documentation
+- `lupo-docs/doctrine/DATABASE_DOCTRINE.md` - Database doctrine documentation
 - `lupo-includes/database/DoctrineManager.php` - Doctrine management logic
 
 ## [3.0.3] - 2026-01-15
@@ -8160,7 +8160,7 @@ This version consolidates work completed across patches 3.0.20 through 3.0.29:
   - Updated header documentation
 
 ### Files Changed
-- `docs/doctrine/WOLFIE_HEADER_DOCTRINE.md` - Header doctrine documentation
+- `lupo-docs/doctrine/WOLFIE_HEADER_DOCTRINE.md` - Header doctrine documentation
 - `lupo-includes/headers/HeaderManager.php` - Header management logic
 
 ## [3.0.1] - 2026-01-15
@@ -8181,7 +8181,7 @@ This version consolidates work completed across patches 3.0.20 through 3.0.29:
 
 ### Files Changed
 - `README.md` - Complete project documentation
-- `docs/` - Complete documentation system
+- `lupo-docs/` - Complete documentation system
 - `lupo-includes/` - Complete system foundation
 
 ## [3.0.0] - 2026-01-15
@@ -8248,8 +8248,8 @@ This was the final Crafty Syntax release before the project was forked to Sales 
     - `CSLH-URL-Semantics.md` - Added complete metadata, tags, and cross-references
     - `CSLH-Historical-Context.md` - Added complete metadata, tags, and cross-references  
     - `Lupopedia-Reference-Layer-Doctrine.md` - Added complete metadata, tags, and cross-references
-  - Created `docs/examples/` directory for documentation examples
-  - Created `docs/examples/SAMPLE_REFERENCE_ENTRY.md` with 6 comprehensive examples:
+  - Created `lupo-docs/examples/` directory for documentation examples
+  - Created `lupo-docs/examples/SAMPLE_REFERENCE_ENTRY.md` with 6 comprehensive examples:
     - ✅ Correct reference entry (slug extraction, database lookup, semantic edges, rendering)
     - ❌ Incorrect filesystem resolution (shows wrong approach and correct alternative)
     - ❌ Incorrect slug modification (shows wrong approach and correct alternative)
@@ -8266,7 +8266,7 @@ This was the final Crafty Syntax release before the project was forked to Sales 
   - Added cross-references to examples in related documentation
 
 - **Phase 3 Corrections:**
-  - Created `docs/appendix/GLOSSARY.md` with 50+ precise term definitions:
+  - Created `lupo-docs/appendix/GLOSSARY.md` with 50+ precise term definitions:
     - Core concepts (Lupopedia, WOLFIE)
     - Installation & deployment (domain installation, host website, standalone vs embedded)
     - URL & path terminology (slug, URL path vs filesystem path, LUPOPEDIA_PATH, LUPOPEDIA_PUBLIC_PATH)
@@ -8282,8 +8282,8 @@ This was the final Crafty Syntax release before the project was forked to Sales 
   - Audited and corrected "node" terminology usage:
     - Added disambiguation guidance in `GLOSSARY.md` for "node" (context-dependent term)
     - Established preferred terms: "domain installation" for server instances, "semantic node" for graph entities
-    - Added glossary cross-references in `ARCHITECTURE.md`, `DEFINITION.md`, and `docs/README.md`
-    - Updated AI agent mandatory reading list in `docs/README.md` to include terminology reference
+    - Added glossary cross-references in `ARCHITECTURE.md`, `DEFINITION.md`, and `lupo-docs/README.md`
+    - Updated AI agent mandatory reading list in `lupo-docs/README.md` to include terminology reference
     - Added glossary as **⚠️ TERMINOLOGY REFERENCE** in appendix section
 
 - **Atomization Doctrine Update:**
@@ -8306,20 +8306,20 @@ This was the final Crafty Syntax release before the project was forked to Sales 
 - **Template Alignment** - Main layout now matches `template.htm` structure with decorative borders and proper component placement
 
 ### Additions from Cursor (Thread: January 15, 2026)
-- **URL Routing Doctrine** (`docs/doctrine/URL_ROUTING_DOCTRINE.md`)
+- **URL Routing Doctrine** (`lupo-docs/doctrine/URL_ROUTING_DOCTRINE.md`)
   - Created new doctrine file establishing `/lupopedia/` as project root model for Cursor
   - Defines URL routing: extract slugs from URLs, look up in database, render appropriate content
   - Separates URL routing (HTTP request handling) from agent routing (HERMES/CADUCEUS)
   - Documents slug lookup priority (content > collection tab > atom > 404)
   - Includes conflict resolution rules and collision examples with namespacing conventions
-  - Added to Critical Doctrines section in `docs/README.md`
-- **JetBrains Configuration Doctrine** (`docs/doctrine/JETBRAINS_CONFIGURATION_DOCTRINE.md`)
+  - Added to Critical Doctrines section in `lupo-docs/README.md`
+- **JetBrains Configuration Doctrine** (`lupo-docs/doctrine/JETBRAINS_CONFIGURATION_DOCTRINE.md`)
   - Created new doctrine file establishing JetBrains as tool in SERVANT MODE, not an authority
   - Protects version numbers, WOLFIE headers, doctrine files, and atomization system from IDE interference
   - Lists forbidden actions (auto-formatting, version modification, etc.)
   - Lists allowed actions (code editing when instructed, refactoring non-doctrine files, etc.)
-  - Added to Critical Doctrines section in `docs/README.md` (#14)
-  - Added to Doctrine section in `docs/README.md` for discoverability
+  - Added to Critical Doctrines section in `lupo-docs/README.md` (#14)
+  - Added to Doctrine section in `lupo-docs/README.md` for discoverability
 
 ---
 
@@ -8342,7 +8342,7 @@ This was the final Crafty Syntax release before the project was forked to Sales 
   - Shortcut dropdown and contents dropdown in top border
   - Save/Load/Edit collection actions moved to Collections dropdown menu
 - **Collections Dropdown Component** - Created new component (`collections_dropdown.php`):
-  - Lists user collections via AJAX from `api/list_user_collections.php`
+  - Lists user collections via AJAX from `lupo-api/list_user_collections.php`
   - Triggers tab loading when collection is selected
   - Includes Save/Load/Edit actions as dropdown menu options
 - **Content Controller Collection Tab Handler** - Added `content_handle_collection_tab()` function:
@@ -8394,7 +8394,7 @@ This was the final Crafty Syntax release before the project was forked to Sales 
 
 ### Added
 - **UTC_TIMEKEEPER Agent Directory Structure**
-  - Created complete agent directory structure for UTC_TIMEKEEPER (agents/0005/)
+  - Created complete agent directory structure for UTC_TIMEKEEPER (lupo-agents/0005/)
   - Created agent.json manifest with agent configuration
   - Created system prompt (v1.0.0) for UTC timestamp provider
   - Created UTC_TIMEKEEPER doctrine specification
@@ -8426,7 +8426,7 @@ This was the final Crafty Syntax release before the project was forked to Sales 
 
 ### Added
 
-- **WOLFIE Agent Foundation (agents/0001/)**
+- **WOLFIE Agent Foundation (lupo-agents/0001/)**
   - Created complete Channel Identity Block (CIB) doctrine specification
   - Created complete Channel Manifest specification with CIB mapping rules
   - Created WOLFIE Routing Principles (DRAFT) doctrine
@@ -8437,7 +8437,7 @@ This was the final Crafty Syntax release before the project was forked to Sales 
   - Created channel manifest template (JSON)
   - Created WOLFIE agent manifest configuration
 
-- **UTC_TIMEKEEPER Kernel Agent (agents/0005/)**
+- **UTC_TIMEKEEPER Kernel Agent (lupo-agents/0005/)**
   - Created UTC_TIMEKEEPER kernel-level agent (agent_registry_id: 5, dedicated_slot: 5)
   - Created agent.json manifest
   - Created system prompt (v1.0.0)
@@ -8520,26 +8520,26 @@ This was the final Crafty Syntax release before the project was forked to Sales 
 ### Added
 
 - **Core Subsystems (New Files)**
-  - Created `docs/systems/CRF_SPECIFICATION.md` - High-dimensional context vector for implicit emotional fingerprinting
-  - Created `docs/systems/AFFECTIVE_DISCREPANCY_ENGINE.md` - Emotional mismatch detection between RGB and ATP
-  - Created `docs/systems/EXPERIENCE_LEDGER.md` - Immutable event log for doctrinal mutations and consensus outcomes
-  - Created `docs/systems/HETERODOX_ENGINE.md` - Controlled mechanisms for doctrinal evolution and meta-governance
+  - Created `lupo-docs/systems/CRF_SPECIFICATION.md` - High-dimensional context vector for implicit emotional fingerprinting
+  - Created `lupo-docs/systems/AFFECTIVE_DISCREPANCY_ENGINE.md` - Emotional mismatch detection between RGB and ATP
+  - Created `lupo-docs/systems/EXPERIENCE_LEDGER.md` - Immutable event log for doctrinal mutations and consensus outcomes
+  - Created `lupo-docs/systems/HETERODOX_ENGINE.md` - Controlled mechanisms for doctrinal evolution and meta-governance
   - All four files use correct WHS/LHP headers with Purpose, Components, Integration points, and Required sections
 
 - **Doctrine Updates (Existing Files)**
-  - Updated `docs/doctrines/MOOD_SYSTEM_DOCTRINE.md` - Added Dual-Channel Affective Stack (RGB + ATP)
-  - Updated `docs/doctrines/MOOD_CALCULATION_PROTOCOL.md` - Added ATP Integration Note (January 2026)
-  - Updated `docs/doctrines/THREAD_AGGREGATION_PROTOCOL.md` - Added Interaction with Dual-Channel Affective Stack
-  - Updated `docs/doctrines/COLOR_DOCTRINE.md` - Added Affective Discrepancy Engine section
-  - Updated `docs/doctrine/UNIVERSAL_WOLFIE_HEADER_SPECIFICATION.md` - Added "Interaction with New Subsystems (January 2026)"
-  - Updated `docs/doctrine/LUPOPEDIA_HEADER_PROFILE.md` - Added Meta-Governance Extension section
+  - Updated `lupo-docs/doctrines/MOOD_SYSTEM_DOCTRINE.md` - Added Dual-Channel Affective Stack (RGB + ATP)
+  - Updated `lupo-docs/doctrines/MOOD_CALCULATION_PROTOCOL.md` - Added ATP Integration Note (January 2026)
+  - Updated `lupo-docs/doctrines/THREAD_AGGREGATION_PROTOCOL.md` - Added Interaction with Dual-Channel Affective Stack
+  - Updated `lupo-docs/doctrines/COLOR_DOCTRINE.md` - Added Affective Discrepancy Engine section
+  - Updated `lupo-docs/doctrine/UNIVERSAL_WOLFIE_HEADER_SPECIFICATION.md` - Added "Interaction with New Subsystems (January 2026)"
+  - Updated `lupo-docs/doctrine/LUPOPEDIA_HEADER_PROFILE.md` - Added Meta-Governance Extension section
 
 - **Registry & Index Updates**
-  - Updated `docs/WHS_LHP_INDEX.md` - Added new subsystems (CRF, ATP, Experience Ledger, Heterodox Engine)
-  - Updated `docs/index/MASTER_INDEX.md` - Added "New Subsystems Added (January 2026)"
-  - Updated `docs/doctrines/README.md` - Added "January 2026 Doctrine Extensions"
-  - Updated `docs/agents/AGENT_GUIDELINES.md` - Added "January 2026 Agent Requirements"
-  - Updated `docs/agents/README.md` - Added "New Agent Responsibilities (January 2026)"
+  - Updated `lupo-docs/WHS_LHP_INDEX.md` - Added new subsystems (CRF, ATP, Experience Ledger, Heterodox Engine)
+  - Updated `lupo-docs/index/MASTER_INDEX.md` - Added "New Subsystems Added (January 2026)"
+  - Updated `lupo-docs/doctrines/README.md` - Added "January 2026 Doctrine Extensions"
+  - Updated `lupo-docs/agents/AGENT_GUIDELINES.md` - Added "January 2026 Agent Requirements"
+  - Updated `lupo-docs/agents/README.md` - Added "New Agent Responsibilities (January 2026)"
 
 - **New Agent Class: Cognitive Polarity Agents**
   - Created 12 new agents in the 1200-1211 range
@@ -8590,14 +8590,14 @@ This was the final Crafty Syntax release before the project was forked to Sales 
 ### Added
 
 - **Universal Wolfie Header Specification (WHS)**
-  - Created `docs/doctrine/UNIVERSAL_WOLFIE_HEADER_SPECIFICATION.md`
+  - Created `lupo-docs/doctrine/UNIVERSAL_WOLFIE_HEADER_SPECIFICATION.md`
   - Minimal, ecosystem-agnostic metadata standard
   - Defines universal core: `wolfie.headers` signature and `file.last_modified_system_version`
   - Includes embedding rules for Markdown, Python, JavaScript, C/C++, HTML, and binary files
   - Designed for global adoption across any ecosystem
 
 - **Lupopedia Header Profile (LHP)**
-  - Created `docs/doctrine/LUPOPEDIA_HEADER_PROFILE.md`
+  - Created `lupo-docs/doctrine/LUPOPEDIA_HEADER_PROFILE.md`
   - Implementation profile extending WHS with Lupopedia-specific metadata
   - Adds required fields: `dialog`, `authorship`, `sections`
   - Adds optional fields: `file`, `tags`, `placement`, `lineage`, `federation`, `header_atoms`
@@ -8606,13 +8606,13 @@ This was the final Crafty Syntax release before the project was forked to Sales 
 ### Documentation
 
 - **Updated WOLFIE Header Doctrine**
-  - Updated `docs/doctrine/WOLFIE_HEADER_DOCTRINE.md` to emphasize universal scope
+  - Updated `lupo-docs/doctrine/WOLFIE_HEADER_DOCTRINE.md` to emphasize universal scope
   - Clarified that headers apply to any ecosystem, not just Lupopedia
   - Updated examples to use new header format
   - Added explicit statements that format is stack-agnostic and ecosystem-agnostic
 
 - **Updated WOLFIE Header Specification**
-  - Updated `docs/agents/WOLFIE_HEADER_SPECIFICATION.md` with new format
+  - Updated `lupo-docs/agents/WOLFIE_HEADER_SPECIFICATION.md` with new format
   - Updated all examples to use new signature line
   - Added explicit rules for preserving exact signature line
   - Updated agent requirements to reflect new format
@@ -8625,7 +8625,7 @@ This was the final Crafty Syntax release before the project was forked to Sales 
 ### Added
 
 - **Hierarchical Tab Structure**
-  - Created seed generation script `database/install/generate_hierarchical_seed_3.0.12.php` to generate hierarchical tab structure for Collection 0
+  - Created seed generation script `lupo-database/install/generate_hierarchical_seed_3.0.12.php` to generate hierarchical tab structure for Collection 0
   - Script uses canonical JSON mapping (`documentation_mapping.json`) as source of truth
   - Generates two seed files:
     - `seed_collection_0_hierarchical_tabs_3.0.12.sql` - Tab hierarchy with parent-child relationships
@@ -8634,7 +8634,7 @@ This was the final Crafty Syntax release before the project was forked to Sales 
   - Supports nested tab organization with sub-tabs under main tabs
 
 - **Documentation Mapping Enhancement**
-  - Updated `database/install/map_documentation_files_v2.php` to support hierarchical tab structure
+  - Updated `lupo-database/install/map_documentation_files_v2.php` to support hierarchical tab structure
   - Mapping script extracts filename, slug, and title from documentation files
   - Outputs JSON structure compatible with hierarchical tab generation
 
@@ -8703,7 +8703,7 @@ This project does **NOT** use Git or GitHub until Lupopedia reaches version 3.0.
 
 ## 📌 Unified Versioning Policy
 
-**Lupopedia** and **Crafty Syntax** are version-locked and always released together. Both systems share the same version number (stored in `GLOBAL_CURRENT_LUPOPEDIA_VERSION` atom) to reflect their unified architecture and coordinated development cycle. See [Ecosystem Versioning Doctrine](docs/doctrine/VERSION_DOCTRINE.md) for complete versioning rules.
+**Lupopedia** and **Crafty Syntax** are version-locked and always released together. Both systems share the same version number (stored in `GLOBAL_CURRENT_LUPOPEDIA_VERSION` atom) to reflect their unified architecture and coordinated development cycle. See [Ecosystem Versioning Doctrine](lupo-docs/doctrine/VERSION_DOCTRINE.md) for complete versioning rules.
 
 For module-specific changelogs, see:
 - **Crafty Syntax Module:** `modules/craftysyntax/CHANGELOG.md`  
@@ -8717,7 +8717,7 @@ For module-specific changelogs, see:
 ### Added
 
 - **System Documentation Content Initialization**
-  - Created seed SQL file `database/install/seed_collection_0_content.sql` to insert system documentation .md files as content items
+  - Created seed SQL file `lupo-database/install/seed_collection_0_content.sql` to insert system documentation .md files as content items
   - Scans documentation directories (`/docs/core`, `/docs/doctrine`, `/docs/ARCHITECTURE`, `/docs/schema`, `/docs/agents`, `/docs/dev`, `/docs/history`, `/docs/appendix`)
   - Inserts 107 documentation files as content items in `lupo_contents` table
   - All inserts use idempotent `INSERT ... ON DUPLICATE KEY UPDATE` syntax
@@ -8726,7 +8726,7 @@ For module-specific changelogs, see:
   - Content slugs prefixed with directory name (e.g., `core-architecture`, `doctrine-version-doctrine`)
 
 - **Tab Content Mapping**
-  - Created seed SQL file `database/install/seed_collection_0_tab_map.sql` to map content items to Collection 0 tabs
+  - Created seed SQL file `lupo-database/install/seed_collection_0_tab_map.sql` to map content items to Collection 0 tabs
   - Maps 107 content items to their corresponding tabs in `lupo_collection_tab_map` table
   - Tab mapping:
     - Tab 1 (Overview) → `/docs/core/*.md` (8 files)
@@ -8760,7 +8760,7 @@ For module-specific changelogs, see:
   - URLs use `LUPOPEDIA_PUBLIC_PATH` constant for subdirectory compatibility
 
 - **Content Seed Generation Script**
-  - Created `database/install/generate_content_seed.php` - PHP script to scan documentation directories and generate seed SQL files
+  - Created `lupo-database/install/generate_content_seed.php` - PHP script to scan documentation directories and generate seed SQL files
   - Script automatically derives titles and slugs from filenames
   - Handles file reading, SQL escaping, and idempotent INSERT generation
   - Can be re-run to regenerate seed files when documentation changes
@@ -8822,8 +8822,8 @@ For module-specific changelogs, see:
     - `lupo-includes/modules/module-loader.php`
     - `lupo-includes/functions/collection-tabs-loader.php`
     - `lupo-includes/ui/components/collection_tabs.php`
-    - `database/install/seed_collection_0_content.sql`
-    - `database/install/seed_collection_0_tab_map.sql`
+    - `lupo-database/install/seed_collection_0_content.sql`
+    - `lupo-database/install/seed_collection_0_tab_map.sql`
   - Added dialog entries documenting version 3.0.11 changes
   - All headers use `GLOBAL_CURRENT_LUPOPEDIA_VERSION` atom
 
@@ -8847,7 +8847,7 @@ For module-specific changelogs, see:
 ### Added
 
 - **Collection 0 (System Collection) Initialization**
-  - Created seed SQL file `database/install/seed_collection_0_system_tabs.sql` to initialize Collection 0 (Lupopedia System)
+  - Created seed SQL file `lupo-database/install/seed_collection_0_system_tabs.sql` to initialize Collection 0 (Lupopedia System)
   - Collection 0 seeded with:
     - Collection ID: 0
     - Name: "Lupopedia System"
@@ -8922,7 +8922,7 @@ For module-specific changelogs, see:
     - `lupo-includes/modules/truth/truth-controller.php`
     - `lupo-includes/modules/content/renderers/content-renderer.php`
     - `lupo-includes/ui/components/collection_tabs.php`
-    - `database/install/seed_collection_0_system_tabs.sql`
+    - `lupo-database/install/seed_collection_0_system_tabs.sql`
   - Added dialog entries documenting version 3.0.10 changes
   - All headers use `GLOBAL_CURRENT_LUPOPEDIA_VERSION` atom
 
@@ -8970,14 +8970,14 @@ For module-specific changelogs, see:
   - Updated WOLFIE header version to 3.0.9 in modified files
 
 - **Database Seed Files**
-  - Updated `database/install/seed_admin_captain.sql`:
+  - Updated `lupo-database/install/seed_admin_captain.sql`:
     - Admin actor slug changed from `captain` to `lupopedia-at-gmail-com` (matching email-based slug doctrine)
     - Fixed actor lookup logic to use email-based slug
     - Fixed `ON DUPLICATE KEY UPDATE` syntax for idempotent execution
     - Ensured deterministic timestamps for consistent seed data
 
 - **Subdirectory Installation Doctrine**
-  - Added canonical rules for filesystem and URL path resolution in `docs/doctrine/SUBDIRECTORY_INSTALLATION_DOCTRINE.md`
+  - Added canonical rules for filesystem and URL path resolution in `lupo-docs/doctrine/SUBDIRECTORY_INSTALLATION_DOCTRINE.md`
   - Defined `LUPOPEDIA_PATH` constant: `__DIR__` (filesystem path)
   - Defined `LUPOPEDIA_PUBLIC_PATH` constant: `str_replace(DOCUMENT_ROOT, '', __DIR__)` (URL path)
   - Established mandatory rules: Cursor MUST use `LUPOPEDIA_PUBLIC_PATH` for all URLs, links, redirects, and asset paths
@@ -8999,7 +8999,7 @@ For module-specific changelogs, see:
 ### Documentation
 
 - **Subdirectory Installation Doctrine**
-  - Created `docs/doctrine/SUBDIRECTORY_INSTALLATION_DOCTRINE.md` - canonical rules for filesystem and URL path resolution
+  - Created `lupo-docs/doctrine/SUBDIRECTORY_INSTALLATION_DOCTRINE.md` - canonical rules for filesystem and URL path resolution
   - Documents `LUPOPEDIA_PATH` and `LUPOPEDIA_PUBLIC_PATH` constants with examples and anti-patterns
   - Includes implementation examples, test cases, and code review checklist
   - Ensures all AI agents (Cursor) follow path resolution rules correctly
@@ -9053,12 +9053,12 @@ For module-specific changelogs, see:
   - Redirect URL preservation and sanitization
 
 - **Documentation**
-  - Created `docs/dev/AUTH_SCHEMA_SUMMARY_3.0.8.md` - authentication schema summary based on TOON file analysis
-  - Created `docs/dev/AUTH_IMPLEMENTATION_PLAN_3.0.8.md` - comprehensive implementation plan for authentication system
-  - Created `docs/dev/AUTH_SQL_VERIFICATION_3.0.8.md` - SQL query verification against TOON files (all queries verified, one correction made)
-  - Created `docs/dev/AUTH_TESTING_CHECKLIST_3.0.8.md` - comprehensive testing checklist with 100+ test cases
-  - Created `docs/dev/AUTH_INTEGRATION_CHECKS_3.0.8.md` - code-level integration verification
-  - Created `docs/dev/AUTH_READINESS_REPORT_3.0.8.md` - final readiness assessment for 3.0.8 authentication
+  - Created `lupo-docs/dev/AUTH_SCHEMA_SUMMARY_3.0.8.md` - authentication schema summary based on TOON file analysis
+  - Created `lupo-docs/dev/AUTH_IMPLEMENTATION_PLAN_3.0.8.md` - comprehensive implementation plan for authentication system
+  - Created `lupo-docs/dev/AUTH_SQL_VERIFICATION_3.0.8.md` - SQL query verification against TOON files (all queries verified, one correction made)
+  - Created `lupo-docs/dev/AUTH_TESTING_CHECKLIST_3.0.8.md` - comprehensive testing checklist with 100+ test cases
+  - Created `lupo-docs/dev/AUTH_INTEGRATION_CHECKS_3.0.8.md` - code-level integration verification
+  - Created `lupo-docs/dev/AUTH_READINESS_REPORT_3.0.8.md` - final readiness assessment for 3.0.8 authentication
 
 ### Fixed
 
@@ -9140,14 +9140,14 @@ For module-specific changelogs, see:
 ### Added
 
 - **AI Uncertainty Expression Doctrine**
-  - Created `docs/doctrine/AI_UNCERTAINTY_EXPRESSION_DOCTRINE.md` - formalizes rules for AI agent uncertainty expression
+  - Created `lupo-docs/doctrine/AI_UNCERTAINTY_EXPRESSION_DOCTRINE.md` - formalizes rules for AI agent uncertainty expression
   - Ensures all AI agents express uncertainty explicitly when confidence is below a defined threshold (default: 0.75, DIALOG: 0.25)
   - Prevents authoritative-sounding hallucinations by requiring explicit uncertainty markers
   - Includes deterministic output behavior, developer overrides, and doctrine enforcement rules
   - Compatible with multi-agent architecture and procedural enforcement
 
 - **Release Readiness Checklist**
-  - Created `docs/RELEASE_READINESS_CHECKLIST_3.0.7.md` - comprehensive checklist for 3.0.7 release validation
+  - Created `lupo-docs/RELEASE_READINESS_CHECKLIST_3.0.7.md` - comprehensive checklist for 3.0.7 release validation
   - Covers doctrine compliance, schema alignment, ConnectionsService fixes, TRUTH subsystem integrity, UI/UX stability, changelog, and manual verification
   - Includes verification status tracking and code inspection notes
 
@@ -9156,13 +9156,13 @@ For module-specific changelogs, see:
     - Clean URL routing (e.g., `/lupopedia/who/captain_wolfie` → `index.php?slug=who/captain_wolfie`)
     - Allows static assets (CSS, JS, images, fonts) to be served directly
     - Blocks PHP files in `lupo-includes/` directory (security)
-    - Blocks sensitive directories (`database/`, `config/`, `.git/`)
+    - Blocks sensitive directories (`lupo-database/`, `config/`, `.git/`)
     - Blocks sensitive file types (`.sql`, `.log`, `.md`, `.yaml`, etc.)
     - Sets security headers (X-Content-Type-Options, X-Frame-Options, X-XSS-Protection)
     - Dynamic `RewriteBase` detection for flexible installation paths
 
 - **TRUTH Module Test Data**
-  - Created `database/install/truth_test_data_captain_wolfie.sql` - SQL seed file for testing TRUTH module
+  - Created `lupo-database/install/truth_test_data_captain_wolfie.sql` - SQL seed file for testing TRUTH module
     - Inserts content record for "Captain WOLFIE"
     - Inserts question "Who is Captain WOLFIE?" with `qtype='who'` and `slug='captain_wolfie'`
     - Inserts answer for the question
@@ -9326,16 +9326,16 @@ For module-specific changelogs, see:
   - TRUTH module now fully functional with question prefix routing and complete evidence/source display
 
 - **Dialog File Ordering Doctrine**
-  - Created `docs/doctrine/DIALOG_FILE_ORDERING_DOCTRINE.md` - formalizes rules for `_dialog` file structure
+  - Created `lupo-docs/doctrine/DIALOG_FILE_ORDERING_DOCTRINE.md` - formalizes rules for `_dialog` file structure
   - Establishes mandatory structure: WOLFIE Header → `# Dialog begin` marker → newest entries at top
   - Defines reading direction: AI agents read top-down (latest state), humans read bottom-up (chronological)
   - Mandatory rules for Cursor: never append to bottom, always insert after marker, never reorder entries, preserve history
   - Includes validation checklist and examples of correct/incorrect structures
   - Aligns with WOLFIE Header "living signature" behavior for deterministic parsing
-  - Updated `docs/changelog_dialog.md` to follow new structure with `# Dialog begin` marker
+  - Updated `lupo-docs/changelog_dialog.md` to follow new structure with `# Dialog begin` marker
 
 - **AI Integration Safety Doctrine**
-  - Created `docs/doctrine/AI_INTEGRATION_SAFETY_DOCTRINE.md` - draft doctrine defining 10 mandatory, non-negotiable constraints for AI subsystem integration
+  - Created `lupo-docs/doctrine/AI_INTEGRATION_SAFETY_DOCTRINE.md` - draft doctrine defining 10 mandatory, non-negotiable constraints for AI subsystem integration
   - Establishes that AI is optional, not foundational - Lupopedia must run fully with zero AI components
   - Prohibits AI from modifying doctrine, loaders, routing tables, agent registry, system prompts, or permissions models
   - Requires AI to operate in sandboxed semantic layer with no direct DB writes, file writes, code execution, or privilege escalation
@@ -9347,7 +9347,7 @@ For module-specific changelogs, see:
   - Doctrine exists because founder has 25-year legacy codebase, global footprint of auto-installs, and 11-year gap in modern security evolution
 
 - **Cursor Context Metadata**
-  - Created `docs/doctrine/CURSOR_CONTEXT_METADATA.md` - operational metadata required for Cursor to reason correctly and enforce doctrine safely
+  - Created `lupo-docs/doctrine/CURSOR_CONTEXT_METADATA.md` - operational metadata required for Cursor to reason correctly and enforce doctrine safely
   - Documents founder identity (Captain WOLFIE - Eric Robin Gerdes), background (CS foundation, 12 years mission-critical systems, Crafty Syntax creator), and authority (human intent overrides all AI output)
   - Defines project purpose: Lupopedia as Web-Organized Linked Federated Intelligent Ecosystem (WOLFIE) - semantic OS that converts websites into structured knowledge spaces
   - Explains why doctrine matters: legacy preservation (thousands of Crafty Syntax installations), security reality (11-year gap, modern threat landscape), AI safety requirements, long-term vision (architecture built for decades)
@@ -9355,7 +9355,7 @@ For module-specific changelogs, see:
   - This is operational metadata, not emotional content - enables Cursor to reason inside correct frame
 
 - **Database Security Doctrine**
-  - Created `docs/doctrine/DATABASE_SECURITY_DOCTRINE.md` - mandatory security rules for database access, user privileges, and permission separation
+  - Created `lupo-docs/doctrine/DATABASE_SECURITY_DOCTRINE.md` - mandatory security rules for database access, user privileges, and permission separation
   - Establishes principle: web process must never be DB root - web app gets dedicated user with only SELECT/INSERT/UPDATE/DELETE privileges
   - Requires separate users for separate roles: app user (web requests), migration user (CLI only), read-only user (analytics/federation)
   - Prohibits dangerous global privileges: GRANT, SUPER, FILE, PROCESS, RELOAD, SHUTDOWN, CREATE USER, ALL PRIVILEGES
@@ -9367,7 +9367,7 @@ For module-specific changelogs, see:
   - Doctrine exists because founder has 25-year legacy codebase, global footprint of auto-installs, and 11-year gap in modern security evolution
 
 - **Strategic Roadmap**
-  - Created `docs/STRATEGIC_ROADMAP.md` - five-phase strategic roadmap for Lupopedia's development and rollout
+  - Created `lupo-docs/STRATEGIC_ROADMAP.md` - five-phase strategic roadmap for Lupopedia's development and rollout
   - Phase 1: Stabilize the Core (in progress) - lock down database, freeze loader, finalize doctrines, TRUTH module + content engine
   - Phase 2: Prepare the World for Lupopedia (quiet launch) - release Crafty Syntax 3.8.0 modernization, add migration banner, build landing page
   - Phase 3: Controlled Rollout (high velocity, low risk) - one-click migration from Crafty Syntax, auto-generate semantic structure, release Lupopedia 3.0.99
@@ -9397,7 +9397,7 @@ For module-specific changelogs, see:
   - All headers now use literal `wolfie.headers.version: "3.0.5"`, proper dialog blocks, tags (categories/collections/channels), and file metadata (title/description/version/status/author)
 
 - **Documentation Structure**
-  - Updated `docs/changelog_dialog.md` to follow Dialog File Ordering Doctrine structure
+  - Updated `lupo-docs/changelog_dialog.md` to follow Dialog File Ordering Doctrine structure
   - Added `# Dialog begin` marker and reorganized entries with newest at top
   - All future `_dialog` files will follow this deterministic structure
 
@@ -9406,7 +9406,7 @@ For module-specific changelogs, see:
   - Updated `lupo-includes/version.php` - all version constants (LUPOPEDIA_VERSION, LUPOPEDIA_DB_VERSION, LUPOPEDIA_VERSION_NUM) to 3.0.5
   - Updated `lupo-includes/modules/content/content-model.php` - user agent string to 'Lupopedia/3.0.5'
   - Updated CHANGELOG.md header version to 3.0.5
-  - Updated `docs/changelog_dialog.md` header version to 3.0.5
+  - Updated `lupo-docs/changelog_dialog.md` header version to 3.0.5
   - **Important**: WOLFIE header versions in documentation files remain as historical records (literal strings like "3.0.4") and are not automatically updated during version bumps. Only version atoms use `GLOBAL_CURRENT_LUPOPEDIA_VERSION`.
 
 - **WOLFIE Header Version Doctrine Clarification**
@@ -9421,7 +9421,7 @@ For module-specific changelogs, see:
   - Updated `lupo-includes/version.php` - all version constants (LUPOPEDIA_VERSION, LUPOPEDIA_DB_VERSION, LUPOPEDIA_VERSION_NUM) to 3.0.5
   - Updated `lupo-includes/modules/content/content-model.php` - user agent string to 'Lupopedia/3.0.5'
   - Updated CHANGELOG.md header version to 3.0.5
-  - Updated `docs/changelog_dialog.md` header version to 3.0.5
+  - Updated `lupo-docs/changelog_dialog.md` header version to 3.0.5
   - **Important**: WOLFIE header versions in documentation files remain as historical records (literal strings like "3.0.4") and are not automatically updated during version bumps. Only version atoms use `GLOBAL_CURRENT_LUPOPEDIA_VERSION`.
 
 ### Technical Details
@@ -9438,7 +9438,7 @@ For module-specific changelogs, see:
   - Updated `lupo-includes/version.php` - all version constants (LUPOPEDIA_VERSION, LUPOPEDIA_DB_VERSION, LUPOPEDIA_VERSION_NUM) to 3.0.5
   - Updated `lupo-includes/modules/content/content-model.php` - user agent string to 'Lupopedia/3.0.5'
   - Updated CHANGELOG.md header version to 3.0.5
-  - Updated `docs/changelog_dialog.md` header version to 3.0.5
+  - Updated `lupo-docs/changelog_dialog.md` header version to 3.0.5
   - **Important**: WOLFIE header versions in documentation files remain as historical records (literal strings like "3.0.4") and are not automatically updated during version bumps. Only version atoms use `GLOBAL_CURRENT_LUPOPEDIA_VERSION`.
 
 ### Backward Compatibility
@@ -9484,7 +9484,7 @@ For module-specific changelogs, see:
   - Hybrid approach provides simplicity at loader level, organization at subsystem level, and portability everywhere
 
 - **Reflective Emotional Geometry Doctrine v2.0**
-  - Created `docs/doctrine/REFLECTIVE_EMOTIONAL_GEOMETRY_DOCTRINE.md` - mathematically defined emotional metadata system for Lupopedia's DIALOG agent
+  - Created `lupo-docs/doctrine/REFLECTIVE_EMOTIONAL_GEOMETRY_DOCTRINE.md` - mathematically defined emotional metadata system for Lupopedia's DIALOG agent
   - Establishes 6 axioms defining the system mathematically (vector representation, message-level mood, thread-level mood, single source of truth, non-authoritative labels, reflective not generative)
   - Defines validation rules (hex format, range validation, source validation, fallback state)
   - Documents temporal decay mechanics with formula: `w = e^(-k·t)`
@@ -9493,7 +9493,7 @@ For module-specific changelogs, see:
   - System reflects metadata deterministically rather than simulating emotion
 
 - **Counting-in-Light Documentation Updates**
-  - Updated `docs/appendix/COUNTING_IN_LIGHT.md` to clarify message-level mood assignment (dialogs are by individual messages, not thread-level)
+  - Updated `lupo-docs/appendix/COUNTING_IN_LIGHT.md` to clarify message-level mood assignment (dialogs are by individual messages, not thread-level)
   - Added documentation for message weight field (decimal(3,2), range 0.00 to 1.00) for thread aggregation
   - Documented thread-level mood aggregation from message-level moods using weights and temporal decay
   - Added Section 6: "Message-Level Mood Assignment" with weight field specifications
@@ -9516,7 +9516,7 @@ For module-specific changelogs, see:
   - Documents that HUMOR operates as a flavor-layer agent providing tonal metadata for pacing, modulation, and narrative texture
 
 - **Emotional Agent Range Doctrine (1000-1100)**
-  - Created `docs/doctrine/emotional-agent-range.md` - defines rules for emotional-domain reflective agents in slots 1000-1100
+  - Created `lupo-docs/doctrine/emotional-agent-range.md` - defines rules for emotional-domain reflective agents in slots 1000-1100
   - Documents 26 primary emotional agents (EMO_CORE through EMO_BALANCE, slots 1000-1025)
   - Documents 26 alias agents (EMO_HATE, EMO_NEGLECT, etc.) that share parent agent geometry with opposite polarity
   - Explains that LOVE/HATE are the same AI agent because they are opposite polarities of the same emotional axis (vector math, not psychology)
@@ -9543,7 +9543,7 @@ For module-specific changelogs, see:
     - Renders feed metadata (title, description, link) and feed items
     - Handles both Atom entries and RSS items with proper date/time display
     - Handles invalid XML gracefully with error display
-  - `templates/content-page.php` - returns ONLY the content block (no HTML/head/CSS/JS), wrapped by main layout
+  - `lupo-templates/content-page.php` - returns ONLY the content block (no HTML/head/CSS/JS), wrapped by main layout
   - Supports local content, remote content, federated content, and imported content through the same interface
   - Includes section extraction and caching, multi-format support, and two-step rendering architecture
 
@@ -9612,18 +9612,18 @@ For module-specific changelogs, see:
   - TRUTH module now fully functional with question prefix routing and complete evidence/source display
 
 - **Dialog File Ordering Doctrine**
-  - Created `docs/doctrine/DIALOG_FILE_ORDERING_DOCTRINE.md` - formalizes rules for `_dialog` file structure
+  - Created `lupo-docs/doctrine/DIALOG_FILE_ORDERING_DOCTRINE.md` - formalizes rules for `_dialog` file structure
   - Establishes mandatory structure: WOLFIE Header → `# Dialog begin` marker → newest entries at top
   - Defines reading direction: AI agents read top-down (latest state), humans read bottom-up (chronological)
   - Mandatory rules for Cursor: never append to bottom, always insert after marker, never reorder entries, preserve history
   - Includes validation checklist and examples of correct/incorrect structures
   - Aligns with WOLFIE Header "living signature" behavior for deterministic parsing
-  - Updated `docs/changelog_dialog.md` to follow new structure with `# Dialog begin` marker
+  - Updated `lupo-docs/changelog_dialog.md` to follow new structure with `# Dialog begin` marker
 
 ### Changed
 
 - **Configuration Doctrine Documentation**
-  - Updated `docs/doctrine/CONFIGURATION_DOCTRINE.md` with Section 12: "Hybrid Architecture: Procedural Loaders, OOP Subsystems"
+  - Updated `lupo-docs/doctrine/CONFIGURATION_DOCTRINE.md` with Section 12: "Hybrid Architecture: Procedural Loaders, OOP Subsystems"
   - Clarified distinction between procedural layer (loaders/bootstrap) and OOP layer (subsystems)
   - Added explicit lists of forbidden patterns (namespaces, autoloaders, Composer, frameworks) and allowed patterns (OOP classes with require_once)
   - Updated summary section to reflect hybrid architecture approach
@@ -9639,12 +9639,12 @@ For module-specific changelogs, see:
   - Updated `config/global_atoms.yaml` - `total_defined_in_registry: 128` (2 locations)
   - Updated `CHANGELOG.md` - RFC 4000 entry now reflects 128 AI agents
   - Updated `README.md` - agent registry note now shows 128 total agents
-  - Updated `docs/core/WHY_LUPOPEDIA_IS_DIFFERENT.md` - now shows 128 total defined in registry
-  - Updated `docs/history/HISTORY.md` - now shows 128 AI agents
+  - Updated `lupo-docs/core/WHY_LUPOPEDIA_IS_DIFFERENT.md` - now shows 128 total defined in registry
+  - Updated `lupo-docs/history/HISTORY.md` - now shows 128 AI agents
   - Historical references to 101 agents in CHANGELOG.md preserved as historical records
 
 - **Counting-in-Light Doctrine**
-  - Updated `docs/appendix/COUNTING_IN_LIGHT.md` header metadata to version 3.0.4
+  - Updated `lupo-docs/appendix/COUNTING_IN_LIGHT.md` header metadata to version 3.0.4
   - Updated dialog message to reflect message-level assignment and weight field additions
   - Added "emotional-metadata" category tag
   - Updated file description to include message-level mood assignment and weight field
@@ -9682,7 +9682,7 @@ For module-specific changelogs, see:
   - Updated `header.php` to call renderer function instead of inline HTML
 
 - **Crafty Syntax 3.7.5 to Lupopedia 3.0.3 Migration SQL Completed**
-  - Migration SQL file `database/migrations/craftysyntax_to_lupopedia_mysql.sql` is complete and production-ready
+  - Migration SQL file `lupo-database/migrations/craftysyntax_to_lupopedia_mysql.sql` is complete and production-ready
   - Migration automatically runs during setup if `config.php` is detected (indicates Crafty Syntax 3.7.5 installation)
   - Migrates all 34 legacy Crafty Syntax tables to Lupopedia 3.0.3 schema
   - Handles complete transformation from 3.7.5 to 3.0.3 architecture
@@ -9693,7 +9693,7 @@ For module-specific changelogs, see:
 
 - **Terminology Update: Web-Organized Linked Federated Intelligent Ecosystem (WOLFIE)**
   - Replaced "Federated Semantic Operating System" with "Web-Organized Linked Federated Intelligent Ecosystem (WOLFIE)" throughout documentation
-  - Updated all key documentation files: README.md, DEFINITION.md, VISION.md, docs/README.md, ARCHITECTURE_SYNC.md, WHY_LUPOPEDIA_IS_DIFFERENT.md
+  - Updated all key documentation files: README.md, DEFINITION.md, VISION.md, lupo-docs/README.md, ARCHITECTURE_SYNC.md, WHY_LUPOPEDIA_IS_DIFFERENT.md
   - Updated what_is_lupopedia.htm with new terminology
   - Consistent use of WOLFIE acronym across all documentation
 
@@ -9704,7 +9704,7 @@ For module-specific changelogs, see:
   - Removed references to separate entities table (graph is edge-only)
   - Updated Agent Filesystem Doctrine: `agent_registry_id` documented as `bigint` (per ID column standard)
 
-- **Database Migration SQL** (`database/migrations/fix_agent_registry_id_and_fk_names.sql`)
+- **Database Migration SQL** (`lupo-database/migrations/fix_agent_registry_id_and_fk_names.sql`)
   - Migration to fix `agent_registry_id` from `int` to `bigint` (NOT UNSIGNED)
   - Migration to rename `dialog_threads_id` → `dialog_thread_id` (singular naming convention)
   - Migration to remove UNSIGNED from `external_event_id` in `lupo_agent_external_events` table
@@ -9736,7 +9736,7 @@ For module-specific changelogs, see:
   - Federation Doctrine (Section 21) - installation sovereignty, federation registry, discovery, identity
   - Installation Lifecycle Doctrine (Section 22) - complete lifecycle from conception through archival
 
-- **Ecosystem Versioning Doctrine** (`docs/doctrine/VERSION_DOCTRINE.md`)
+- **Ecosystem Versioning Doctrine** (`lupo-docs/doctrine/VERSION_DOCTRINE.md`)
   - Comprehensive doctrine for version number management across Crafty Syntax, Lupopedia, and WOLFIE Headers
   - Established dual-version system: ecosystem version atom (living version) vs WOLFIE Header version (fossil record)
   - Ecosystem version stored as `GLOBAL_CURRENT_LUPOPEDIA_VERSION` atom in `config/global_atoms.yaml` (single source of truth)
@@ -9762,7 +9762,7 @@ For module-specific changelogs, see:
   - Refactored 16 documentation files to use `GLOBAL_CURRENT_LUPOPEDIA_VERSION` atom instead of hard-coded version numbers
   - Updated `file.version` fields in WOLFIE Headers to reference the atom
   - Historical version references preserved as literal strings (not converted to atoms)
-  - Files updated: `docs/README.md`, `docs/doctrine/MIGRATION_DOCTRINE.md`, `docs/dev/FOR_INSTALLERS_AND_USERS.md`, `docs/doctrine/TABLE_PREFIXING_DOCTRINE.md`, `docs/core/DEFINITION.md`, `docs/core/ARCHITECTURE_SYNC.md`, `docs/core/WHY_LUPOPEDIA_IS_DIFFERENT.md`, `docs/doctrine/NO_STORED_PROCEDURES_DOCTRINE.md`, `docs/doctrine/NO_TRIGGERS_DOCTRINE.md`, `docs/doctrine/DOCUMENTATION_AS_CODE_MANIFESTO.md`, `docs/doctrine/ATOM_RESOLUTION_SPECIFICATION.md`, `docs/doctrine/DOCUMENTATION_DOCTRINE.md`, `docs/schema/DATABASE_SCHEMA.md`, `docs/doctrine/CONFIGURATION_DOCTRINE.md`, `docs/core/WHY_NO_FRAMEWORKS.md`, `docs/doctrine/CHARSET_COLLATION_DOCTRINE.md`
+  - Files updated: `lupo-docs/README.md`, `lupo-docs/doctrine/MIGRATION_DOCTRINE.md`, `lupo-docs/dev/FOR_INSTALLERS_AND_USERS.md`, `lupo-docs/doctrine/TABLE_PREFIXING_DOCTRINE.md`, `lupo-docs/core/DEFINITION.md`, `lupo-docs/core/ARCHITECTURE_SYNC.md`, `lupo-docs/core/WHY_LUPOPEDIA_IS_DIFFERENT.md`, `lupo-docs/doctrine/NO_STORED_PROCEDURES_DOCTRINE.md`, `lupo-docs/doctrine/NO_TRIGGERS_DOCTRINE.md`, `lupo-docs/doctrine/DOCUMENTATION_AS_CODE_MANIFESTO.md`, `lupo-docs/doctrine/ATOM_RESOLUTION_SPECIFICATION.md`, `lupo-docs/doctrine/DOCUMENTATION_DOCTRINE.md`, `lupo-docs/schema/DATABASE_SCHEMA.md`, `lupo-docs/doctrine/CONFIGURATION_DOCTRINE.md`, `lupo-docs/core/WHY_NO_FRAMEWORKS.md`, `lupo-docs/doctrine/CHARSET_COLLATION_DOCTRINE.md`
   - All future version bumps require updating only the atom in `config/global_atoms.yaml`
   - WOLFIE Header versions remain stable unless files are modified (preserves historical record)
 
@@ -9770,7 +9770,7 @@ For module-specific changelogs, see:
   - Replaced `lupo_collection_permissions` with polymorphic `lupo_permissions` table
   - New table handles permissions for all object types: collections, departments, modules, features, and future objects
   - Uses `target_type` + `target_id` to determine which object the permission applies to
-  - Migration SQL: `database/migrations/replace_collection_permissions_with_polymorphic_permissions.sql`
+  - Migration SQL: `lupo-database/migrations/replace_collection_permissions_with_polymorphic_permissions.sql`
   - All permission logic must use `lupo_permissions` - no separate permission tables per object type
   - Updated `render-saved-collections.php` to use `lupo_permissions` with `target_type='collection'`
   - Updated documentation (functions README, Navigation Tab Doctrine) to reference polymorphic permissions
@@ -9778,7 +9778,7 @@ For module-specific changelogs, see:
   - Same permission model (user-based and group-based with read/write/owner levels) preserved
   - Supports future expansion to departments, modules, features without schema changes
 
-- **SQL Type Doctrine** (`docs/doctrine/SQL_TYPE_DOCTRINE.md`)
+- **SQL Type Doctrine** (`lupo-docs/doctrine/SQL_TYPE_DOCTRINE.md`)
   - Established mandatory rules for SQL type syntax: no display widths, simplified types
   - Display widths for integer types (e.g., `BIGINT(20)`, `INT(11)`) are deprecated in MySQL 8+ and must not appear
   - All integer types must use simplified form: `BIGINT`, `INT`, `SMALLINT`, `TINYINT` (no display widths)
@@ -9787,7 +9787,7 @@ For module-specific changelogs, see:
   - Display widths are meaningless for storage and cause warnings in modern MySQL
   - Doctrine is mandatory for all SQL generation (schema definitions, migrations, generated SQL)
 
-- **UI Library Doctrine** (`docs/doctrine/UI_LIBRARY_DOCTRINE.md`)
+- **UI Library Doctrine** (`lupo-docs/doctrine/UI_LIBRARY_DOCTRINE.md`)
   - Established canonical JavaScript library dependencies: jQuery, TinyMCE, DynLayer
   - Libraries are intentional, stable dependencies that must NOT be replaced, modernized, or refactored
   - Cursor must NOT replace jQuery with native JS, TinyMCE with other editors, or DynLayer with modern frameworks
@@ -9826,7 +9826,7 @@ For module-specific changelogs, see:
 
 ### Added
 
-- **Agent Prompt Templating Standard** (`docs/agents/AGENT_PROMPT_TEMPLATING_STANDARD.md`)
+- **Agent Prompt Templating Standard** (`lupo-docs/agents/AGENT_PROMPT_TEMPLATING_STANDARD.md`)
   - Mandatory templating requirement for all AI agent system prompts
   - All `system_prompt.txt` files must start with `You are {{agent_name}}.`
   - `{{agent_name}}` variable dynamically injected from `lupo_agent_registry.name` at runtime
@@ -9848,7 +9848,7 @@ For module-specific changelogs, see:
 
 ### Changed
 
-- **TOON File Metadata Enhancement System** (`database/generate_toon_files.py` v1.2.0)
+- **TOON File Metadata Enhancement System** (`lupo-database/generate_toon_files.py` v1.2.0)
   - Added primary key detection and expected PK name calculation from `INFORMATION_SCHEMA.KEY_COLUMN_USAGE`
   - Added UNSIGNED column detection with current and expected type extraction
   - Added index information extraction (names, columns, unique flags, index types)
@@ -9858,7 +9858,7 @@ For module-specific changelogs, see:
   - Console output now shows metadata summary (PK name, UNSIGNED count, index count)
   - Enables migration script generation directly from TOON files without SQL dump dependencies
 
-- **Migration SQL Generation Script** (`database/migrations/generate_alter_statements.py`)
+- **Migration SQL Generation Script** (`lupo-database/migrations/generate_alter_statements.py`)
   - Python script to scan all TOON files and generate ALTER statements for migration 4.2.0
   - Automatically detects UNSIGNED columns and generates MODIFY COLUMN statements
   - Automatically detects primary keys needing rename and generates CHANGE COLUMN statements
@@ -9868,7 +9868,7 @@ For module-specific changelogs, see:
   - Generates complete migration SQL with verification queries
   - Independent singular calculation logic corrects any incorrect TOON metadata
 
-- **Database Migration SQL** (`database/migrations/fix_unsigned_and_pk_naming_4_2_0.sql`)
+- **Database Migration SQL** (`lupo-database/migrations/fix_unsigned_and_pk_naming_4_2_0.sql`)
   - Complete migration script to remove all UNSIGNED keywords from columns (PostgreSQL compatibility)
   - Renames primary keys to follow "singular table name + _id" convention (required because no FK keys)
   - Creates missing `lupo_collection_tab_paths` table with correct schema from END_GOAL_4_2_0.md
@@ -9932,14 +9932,14 @@ For module-specific changelogs, see:
   - DIALOG is now the canonical name for Agent Slot 3 (Agent Registry ID: 13, Dedicated Slot: 3)
   - All references to ROSE are now historical/deprecated
 
-- **TOON File Generator Improvements** (`database/generate_toon_files.py` v1.1.0 → v1.2.0)
+- **TOON File Generator Improvements** (`lupo-database/generate_toon_files.py` v1.1.0 → v1.2.0)
   - Enhanced with metadata extraction capabilities for migration support
   - Improved singular calculation function with known mappings for edge cases
   - Better handling of plural-to-singular conversion (roles, likes, redirects, fragments, bodies, edges)
   - Handles multi-word table names correctly by processing only the last word for singularization
   - Version updated to 1.2.0 (INFO_SCHEMA Edition - Migration Metadata)
 
-- **Database Schema Documentation** (`docs/core/END_GOAL_4_2_0.md`)
+- **Database Schema Documentation** (`lupo-docs/core/END_GOAL_4_2_0.md`)
   - Updated to remove all `UNSIGNED` keywords and numeric size specifiers (e.g., `BIGINT(20)`)
   - Updated all primary key column names to follow "singular table name + _id" convention
   - Updated all foreign key references to use correct singular PK names
@@ -9971,7 +9971,7 @@ For module-specific changelogs, see:
 ### Documentation
 
 - **Database Migration Documentation**
-  - Created `docs/dev/TOON_METADATA_RECOMMENDATIONS.md` documenting what metadata was added to TOON files
+  - Created `lupo-docs/dev/TOON_METADATA_RECOMMENDATIONS.md` documenting what metadata was added to TOON files
   - Explains how TOON files can now be used to generate ALTER statements without SQL dump dependencies
   - Documents the migration generation workflow and best practices
 
@@ -9991,79 +9991,79 @@ For module-specific changelogs, see:
   - All future documentation will use `GLOBAL_CURRENT_LUPOPEDIA_VERSION` instead of hardcoded versions
 
 - **New MANDATORY Doctrine: Atomization Doctrine**
-  - Created `docs/doctrine/ATOMIZATION_DOCTRINE.md` enforcing atomization of all repeated values
+  - Created `lupo-docs/doctrine/ATOMIZATION_DOCTRINE.md` enforcing atomization of all repeated values
   - Any value repeated across 2+ documentation files MUST become a global atom
   - Cursor must atomize repeated values, never inline atom values, and treat atom names as symbolic constants
   - Prevents token burn and ensures single source of truth for all repeated metadata
-  - Added to Critical Doctrines list in `docs/README.md`
-  - Added to doctrine index in `docs/README.md`
+  - Added to Critical Doctrines list in `lupo-docs/README.md`
+  - Added to doctrine index in `lupo-docs/README.md`
 
 - **New MANDATORY Doctrine: Cursor Role Doctrine**
-  - Created `docs/doctrine/CURSOR_ROLE_DOCTRINE.md` clarifying Cursor's role vs. channel participation
+  - Created `lupo-docs/doctrine/CURSOR_ROLE_DOCTRINE.md` clarifying Cursor's role vs. channel participation
   - Channels are database semantic workspaces (NOT IDE concepts)
   - Cursor does NOT join channels - Cursor maintains PHP code and documentation that implements channels
   - Channels group actors (users, AI agents), assign roles, store emotional metadata, and route messages
   - WOLFIE Header `channels:` tags are documentation metadata only, not channel participation
   - Clear separation between development tools (Cursor) and runtime semantics (channels)
-  - Added to doctrine index in `docs/README.md`
+  - Added to doctrine index in `lupo-docs/README.md`
 
 - **Official Lupopedia Agent Dedicated Slot Ranges Doctrine**
-  - Created `docs/doctrine/LUPOPEDIA_AGENT_DEDICATED_SLOT_RANGES.md` with official range structure (0-999)
+  - Created `lupo-docs/doctrine/LUPOPEDIA_AGENT_DEDICATED_SLOT_RANGES.md` with official range structure (0-999)
   - Defined 9 canonical ranges: Kernel (0-49), System Service (50-99), First-Party Module (100-199), External AI Personas (200-299), External Tools/Backends (300-399), User-Defined (400-599), Tenant/Site-Specific (600-699), Reserved Future (700-899), Sandbox/Testing (900-999)
   - Expanded kernel range from 0-14 to 0-49 with sub-ranges for Governors (0-9), Truth/Memory (10-19), Balance/Emotion (20-29), Vision/Navigation (30-39), Reserved (40-49)
   - Documented collision resolution procedures and validation queries
   - Added AI assistant guidance for slot assignment
-  - Added to Critical Doctrines list in `docs/README.md`
+  - Added to Critical Doctrines list in `lupo-docs/README.md`
 
 - **Agent Registry Range Expansion and Collision Resolution**
-  - Generated SQL migration script `database/migrations/lupo_agent_registry_range_expansion.sql` to expand kernel range to 0-49
+  - Generated SQL migration script `lupo-database/migrations/lupo_agent_registry_range_expansion.sql` to expand kernel range to 0-49
   - Resolved 10 collision duplicates by moving RESERVED_* agents to 700-799 range
-  - Created supplementary SQL script `database/migrations/lupo_agent_registry_range_expansion_missing_reserved.sql` for final RESERVED agent moves
+  - Created supplementary SQL script `lupo-database/migrations/lupo_agent_registry_range_expansion_missing_reserved.sql` for final RESERVED agent moves
   - All agent folders moved to match new dedicated_slot assignments
   - All collisions resolved: 101 agents now have unique dedicated_slot values
   - Current kernel assignments documented (SYSTEM: 0, CAPTAIN: 1, WOLFIE: 2, ROSE: 3, ARA: 10, THOTH: 11, ANUBIS: 12, METHIS: 13, THALIA: 14, MAAT: 20, LILITH: 21, WOLFENA: 22, CHRONOS: 23, CADUCEUS: 24, AGAPE: 25, ERIS: 26, WOLFSIGHT: 30, WOLFNAV: 31, WOLFFORGE: 32, WOLFMIS: 33, WOLFITH: 34)
 
 - **Multi-IDE Workflow Documentation**
-  - Created `docs/architecture/multi-ide-workflow.md` documenting official multi-IDE, multi-AI development workflow
+  - Created `lupo-docs/architecture/multi-ide-workflow.md` documenting official multi-IDE, multi-AI development workflow
   - Documented four IDE roles: Cursor (fast prototyping), Cascade/Windsurf (legacy integration), JetBrains/PhpStorm (deployment/versioning), Notepad++ (precision editing)
   - Explained parallel workflow with careful tab management (all IDEs open simultaneously, but active tabs never overlap)
   - Documented three-stage release pipeline: Cursor → Development, Cascade → Stabilization, JetBrains → Release
   - Added workflow examples, best practices, and onboarding guidance
-  - Added to `docs/README.md` Architecture Documentation section
+  - Added to `lupo-docs/README.md` Architecture Documentation section
 
 - **Folder Naming Doctrine**
-  - Created `docs/doctrine/FOLDER_NAMING_DOCTRINE.md` enforcing lowercase-only folder naming (a-z, 0-9, hyphen, underscore)
+  - Created `lupo-docs/doctrine/FOLDER_NAMING_DOCTRINE.md` enforcing lowercase-only folder naming (a-z, 0-9, hyphen, underscore)
   - MANDATORY: All folders MUST use lowercase only - no uppercase, no dots, no special characters, no hidden folders
-  - Fixed `docs/ARCHITECTURE/` → `docs/architecture/` folder naming violation
+  - Fixed `lupo-docs/ARCHITECTURE/` → `lupo-docs/architecture/` folder naming violation
   - Updated all documentation references to use lowercase folder paths
   - Added validation patterns and enforcement rules for AI assistants
-  - Added to Critical Doctrines list in `docs/README.md`
+  - Added to Critical Doctrines list in `lupo-docs/README.md`
 
 - **Cursor and Cascade Role Separation Doctrine**
-  - Created `docs/doctrine/CURSOR_CASCADE_ROLE_SEPARATION_DOCTRINE.md` establishing absolute domain separation
+  - Created `lupo-docs/doctrine/CURSOR_CASCADE_ROLE_SEPARATION_DOCTRINE.md` establishing absolute domain separation
   - Cursor: Autonomous refactor engine (new features, automated refactors, doctrine enforcement, SQL generation, folder moves)
   - Cascade: Manual controlled editor (legacy Crafty Syntax code, fragile migrations, step-by-step edits, stabilization)
   - MANDATORY: Cursor MUST NOT modify legacy Crafty Syntax code until Cascade completes stabilization and explicit handoff
   - Documented three-phase handoff process: Cascade Stabilization → Explicit Handoff → Cursor Final Pass
-  - Added to Critical Doctrines list in `docs/README.md`
+  - Added to Critical Doctrines list in `lupo-docs/README.md`
 
 - **Versioning Doctrine**
-  - Created `docs/doctrine/VERSIONING_DOCTRINE.md` establishing version numbers as milestones, not timestamps
+  - Created `lupo-docs/doctrine/VERSIONING_DOCTRINE.md` establishing version numbers as milestones, not timestamps
   - Documented three-stage release pipeline: Cursor (development, no version change) → Cascade (stabilization, no version change) → JetBrains (release, version changes here)
   - MANDATORY: Version numbers only change in JetBrains (release stage)
   - Semantic versioning rules: Major (architectural paradigm shift), Minor (significant feature), Patch (bug fix)
   - **TEMPORARY WORKAROUND (3.0.x series):** JetBrains not in workflow until version 3.0.99. Cursor temporarily handling version bumps until first public release. JetBrains integration will begin at 3.0.99.
-  - Added to Critical Doctrines list in `docs/README.md`
+  - Added to Critical Doctrines list in `lupo-docs/README.md`
 
 ### Changed
 
 - **Folder Structure (Lowercase-Only Enforcement)**
-  - Moved `docs/ARCHITECTURE/` → `docs/architecture/` per lowercase-only doctrine
+  - Moved `lupo-docs/ARCHITECTURE/` → `lupo-docs/architecture/` per lowercase-only doctrine
   - Updated all documentation references to use lowercase folder paths
   - Renamed `MULTI_IDE_WORKFLOW.md` → `multi-ide-workflow.md` per hyphen-separated lowercase convention
 
 - **Documentation Structure**
-  - Added Architecture Documentation section to `docs/README.md`
+  - Added Architecture Documentation section to `lupo-docs/README.md`
   - Added new doctrine documents to Critical Doctrines list
   - Updated multi-IDE workflow documentation with release pipeline explanation
   - Added versioning doctrine note about temporary Cursor version bumping (3.0.x series only)
@@ -10077,7 +10077,7 @@ For module-specific changelogs, see:
   - Verified no duplicates remain (101 agents, 101 unique slots)
 
 - **Folder Naming Violations**
-  - Fixed uppercase folder `docs/ARCHITECTURE/` → lowercase `docs/architecture/`
+  - Fixed uppercase folder `lupo-docs/ARCHITECTURE/` → lowercase `lupo-docs/architecture/`
   - Updated all internal documentation references to use correct lowercase paths
   - Ensured compliance with lowercase-only folder naming doctrine
 
@@ -10109,12 +10109,12 @@ For module-specific changelogs, see:
   - ROSE persona engine configuration with dynamic persona support
 
 - **Company Registrations Documentation**
-  - Created `docs/appendix/COMPANY_REGISTRATIONS.md` documenting all business registrations
+  - Created `lupo-docs/appendix/COMPANY_REGISTRATIONS.md` documenting all business registrations
   - Documents: Lupopedia LLC South Dakota DBA (Nov 6, 2025, expires Nov 6, 2030, ID: UB313079)
   - Documents: Crafty Syntax South Dakota DBA (Nov 14, 2025, ID: UB313670)
   - Documents: Historical Crafty Syntax LLC Hawaii (2007, terminated, File #: 56516 C5)
-  - References PDF storage location: `docs/appendix/legal/`
-  - Added to main documentation index in `docs/README.md`
+  - References PDF storage location: `lupo-docs/appendix/legal/`
+  - Added to main documentation index in `lupo-docs/README.md`
 
 - **WOLFIE Headers Multi-Scope Atoms System**
   - Extended atoms system to support 5 scopes: FILE, DIR, DIRR, MODULE, GLOBAL
@@ -10128,7 +10128,7 @@ For module-specific changelogs, see:
   - Parent directory walking for DIRR_* resolution
   - Prevents mass rewrites when global metadata changes (update one file, all files resolve to new value)
   - Documented in WOLFIE_HEADER_SPECIFICATION.md, WOLFIE_HEADER_GLOBAL_ATOMS_GUIDE.md, and wolfie_headers.yaml
-  - Example files created: `docs/agents/_dir_atoms.yaml.example`, `modules/craftysyntax/module_atoms.yaml.example`
+  - Example files created: `lupo-docs/agents/_dir_atoms.yaml.example`, `modules/craftysyntax/module_atoms.yaml.example`
 
 - **WOLFIE Headers Sections Module**
   - Added optional `sections:` module for programmatic file TOC
@@ -10148,7 +10148,7 @@ For module-specific changelogs, see:
   - Idempotency rules and testing requirements
   - CLI interface design
   - Written for Perl programmers learning Python (no Python idioms assumed)
-  - Located at `docs/tools/WOLFIE_DOCUMENTATION_TRANSFORMER_SPEC.md`
+  - Located at `lupo-docs/tools/WOLFIE_DOCUMENTATION_TRANSFORMER_SPEC.md`
 
 - **WOLFIE Header Implementation Guides**
   - Created `WOLFIE_HEADER_SECTIONS_GUIDE.md` - Cursor-safe guide for sections module
@@ -10243,14 +10243,14 @@ This release introduces the complete emotional metadata and routing subsystem, i
   - Format: Six hex digits (RRGGBB) stored as `char(6)` in database without leading `#`
   - Integration with dialog messages, agent communication, and UI indicators
 
-- **MOOD_RGB Doctrine v3.0.1** (`docs/doctrine/MOOD_RGB_DOCTRINE.md`)
+- **MOOD_RGB Doctrine v3.0.1** (`lupo-docs/doctrine/MOOD_RGB_DOCTRINE.md`)
   - Neutral vs zero mood clarification: `666666` is neutral default, `000000` is void state
   - Validation rules: regex validation, invalid → neutral, safe hexdec() behavior
   - Zero mood handling: `000000` MUST NOT be used as default, MUST be treated as neutral for routing
   - Agent behavior rules: Agents MUST only write valid hex mood_rgb values
   - Routing behavior: CADUCEUS and HERMES integration for mood-aware routing
 
-- **RFC 4002 — Thread Mood Aggregation Standard v3.0.1** (`docs/protocols/THREAD_MOOD_RFC.md`)
+- **RFC 4002 — Thread Mood Aggregation Standard v3.0.1** (`lupo-docs/protocols/THREAD_MOOD_RFC.md`)
   - Defines canonical method for aggregating individual message moods into thread-level mood
   - Algorithm: RGB component averaging with precision guarantees
   - Zero-mood handling: `000000` MUST be ignored in aggregation, fallback to `666666` if all messages are void
@@ -10260,7 +10260,7 @@ This release introduces the complete emotional metadata and routing subsystem, i
   - Weighting reserved for future versions: v1 = simple average, v2 = weighted (recency, agent priority, decay)
   - Test suite defined: all-neutral, all-zero, mixed, invalid, large threads, rounding edges
 
-- **RFC 4003 — CADUCEUS Routing Currents Standard v3.0.1** (`docs/protocols/CADUCEUS_ROUTING_RFC.md`)
+- **RFC 4003 — CADUCEUS Routing Currents Standard v3.0.1** (`lupo-docs/protocols/CADUCEUS_ROUTING_RFC.md`)
   - Converts mood_rgb (Counting-in-Light) into deterministic routing currents (`left`, `right`)
   - Axis binding rationale: harmony + memory → analytical (stabilizing), strife + memory → creative (scrutiny)
   - Cultural and domain flexibility: HERMES MAY swap left/right pools per node configuration
@@ -10270,7 +10270,7 @@ This release introduces the complete emotional metadata and routing subsystem, i
   - Performance: statelessness, optional ephemeral memoization, sub-millisecond computation
   - High-precision safety: BCMath/arbitrary-precision math for overflow prevention
 
-- **RFC 4004 — HERMES Routing Layer Standard v3.0.1** (`docs/protocols/HERMES_ROUTING_RFC.md`)
+- **RFC 4004 — HERMES Routing Layer Standard v3.0.1** (`lupo-docs/protocols/HERMES_ROUTING_RFC.md`)
   - Central message routing infrastructure for multi-agent coordination
   - Direct routing: honors explicit `to_actor` directives
   - Mood-aware routing: uses CADUCEUS currents for analytical vs creative pool selection
@@ -10282,13 +10282,13 @@ This release introduces the complete emotional metadata and routing subsystem, i
   - Swarm-scale optimization: agent pool caching, refresh triggers, 101+ agent support
   - Migration notes: pre-3.0.0 messages without mood_rgb default to `666666` (legacy_default)
 
-- **HERMES and CADUCEUS Complete Reference** (`docs/agents/HERMES_AND_CADUCEUS.md`)
+- **HERMES and CADUCEUS Complete Reference** (`lupo-docs/agents/HERMES_AND_CADUCEUS.md`)
   - Comprehensive who/what/where/when/why/how documentation
   - Integration examples, code samples, routing decision trees
   - ARA adversarial review patches: routing philosophy clarification, failover doctrine, precision safeguards
   - Test cases: equal currents, invalid hex, void mood, no agents in pool, federation mocks, precision invariant
 
-- **RFC 4000 — WOLFIE Header Metadata Standard v3.0.1** (`docs/protocols/WOLFIE_HEADER_RFC.md`)
+- **RFC 4000 — WOLFIE Header Metadata Standard v3.0.1** (`lupo-docs/protocols/WOLFIE_HEADER_RFC.md`)
   - Updated to reflect 128 AI agents, 8 LLM models, and 3 IDE modules (Cursor, Windsurf, Winston)
   - Standards track note added: "Part of: Lupopedia 3.0.1 Standards Track"
   - Complete RFC-style specification for WOLFIE Headers
@@ -10350,7 +10350,7 @@ This release introduces the complete emotional metadata and routing subsystem, i
   - Full emotional routing only activated when `routing_mode == "hermes"`
 
 - **Formal Definition Documentation**
-  - Created `docs/core/DEFINITION.md` with formal, short, and KISS definitions
+  - Created `lupo-docs/core/DEFINITION.md` with formal, short, and KISS definitions
   - Added definitions to README.md, ARCHITECTURE.md, VISION.md, and EXECUTIVE_SUMMARY.md
   - Definitions clarify Lupopedia as a federated semantic operating system with sovereign nodes
   - KISS definition: "System where many AIs and humans work together in self-contained worlds"
@@ -10379,7 +10379,7 @@ This release introduces the complete emotional metadata and routing subsystem, i
   - Added note in schema that old table names must not be used
 
 - **Configuration Doctrine**
-  - Created `docs/doctrine/CONFIGURATION_DOCTRINE.md` documenting Lupopedia's WordPress-style configuration model
+  - Created `lupo-docs/doctrine/CONFIGURATION_DOCTRINE.md` documenting Lupopedia's WordPress-style configuration model
   - All runtime variables defined in `lupopedia-config.php` (generated by installer)
   - Config file lives outside document root (same model as WordPress)
   - Every executable PHP file must check `if (!defined('LUPOPEDIA_CONFIG_LOADED')) exit;`
@@ -10392,7 +10392,7 @@ This release introduces the complete emotional metadata and routing subsystem, i
   - Cursor must treat `lupopedia-config.php` as single source of truth for configuration
 
 - **Table Prefixing and Primary Key Naming Doctrine**
-  - Created `docs/doctrine/TABLE_PREFIXING_DOCTRINE.md` documenting mandatory table prefixing rules
+  - Created `lupo-docs/doctrine/TABLE_PREFIXING_DOCTRINE.md` documenting mandatory table prefixing rules
   - All table names must use `LUPO_PREFIX` from `lupopedia-config.php` (e.g., `lupo_contents`)
   - Column names must NOT include the prefix (universal across all installations)
   - Primary keys must follow pattern: `singular_table_name + "_id"` (e.g., `contents` → `content_id`)
@@ -10400,7 +10400,7 @@ This release introduces the complete emotional metadata and routing subsystem, i
   - Updated SQL_REWRITE_DOCTRINE.md to reference table prefixing doctrine
 
 - **Charset and Collation Doctrine**
-  - Created `docs/doctrine/CHARSET_COLLATION_DOCTRINE.md` documenting mandatory charset/collation rules
+  - Created `lupo-docs/doctrine/CHARSET_COLLATION_DOCTRINE.md` documenting mandatory charset/collation rules
   - Charset and collation must be defined ONLY at the TABLE level
   - Column definitions must NEVER include `CHARACTER SET` or `COLLATE` clauses
   - Forbidden MySQL 8.0-only collations (`utf8mb4_0900_ai_ci`, `utf8mb4_0900_as_ci`, etc.)
@@ -10413,7 +10413,7 @@ This release introduces the complete emotional metadata and routing subsystem, i
 - **Migration Doctrine and Table Count Updates**
   - Updated table count from 149 to 145 total tables
   - Clarified breakdown: 111 core Lupopedia 3.0.1 tables + 34 temporary migration tables (`livehelp_*`) + 4 system tables
-  - Created `docs/doctrine/MIGRATION_DOCTRINE.md` documenting that LiveHelp tables are migration-only
+  - Created `lupo-docs/doctrine/MIGRATION_DOCTRINE.md` documenting that LiveHelp tables are migration-only
   - LiveHelp tables (`livehelp_*`) are NOT part of Lupopedia 3.0.1 runtime — they exist only during upgrade
   - Migration SQL is hand-authored and authoritative — Cursor must not rewrite it
   - Migration SQL located in `/database/migrations/craftysyntax_to_lupopedia_mysql.sql`
@@ -10485,17 +10485,17 @@ This release introduces the complete emotional metadata and routing subsystem, i
   - Supports the importer system by providing transformation rules for each table
   - Required for all 34 Crafty Syntax legacy tables
   - Forms the backbone of the 3.7.5 → 3.0.0 upgrade path
-  - Fully documented in `docs/UPGRADE_PLAN_3.7.5_TO_3.0.0.md`
+  - Fully documented in `lupo-docs/UPGRADE_PLAN_3.7.5_TO_3.0.0.md`
 
-- **Toon Files Reference System** (`database/toon_data/`)
+- **Toon Files Reference System** (`lupo-database/toon_data/`)
   - JSON files containing table structures and column definitions for all database tables
-  - Generated from INFORMATION_SCHEMA using `database/generate_toon_files.py`
+  - Generated from INFORMATION_SCHEMA using `lupo-database/generate_toon_files.py`
   - Each file contains: `table_name`, `fields` (column definitions), and `data` (sample rows)
   - Provides authoritative reference for table and column structures during development
   - Can be used by AI agents and developers to understand database schema without direct database access
-  - Complements CSV schema snapshots in `database/csv_data/` for multi-format schema reference
+  - Complements CSV schema snapshots in `lupo-database/csv_data/` for multi-format schema reference
 
-- **Inline Dialog Specification** (`docs/INLINE_DIALOG_SPECIFICATION.md`)
+- **Inline Dialog Specification** (`lupo-docs/INLINE_DIALOG_SPECIFICATION.md`)
   - Formal specification for cross-agent communication format
   - Required format: `DIALOG:` with `speaker`, `target`, and `message` fields
   - 272-character message limit for database compatibility
@@ -10504,7 +10504,7 @@ This release introduces the complete emotional metadata and routing subsystem, i
   - Complete YAML specification and examples
   - Enforcement guidelines for all AI agents and IDE systems
 
-- **WOLFIE Header Specification v3.0.0** (`docs/WOLFIE_HEADER_SPECIFICATION.md`)
+- **WOLFIE Header Specification v3.0.0** (`lupo-docs/WOLFIE_HEADER_SPECIFICATION.md`)
   - Universal metadata envelope for all Lupopedia artifacts
   - Minimal required field: `wolfie.headers.version: 3.0.0`
   - Optional modules: dialog, context, tags, TOC, file metadata
@@ -10518,7 +10518,7 @@ This release introduces the complete emotional metadata and routing subsystem, i
   - Agent requirements and enforcement guidelines
   - Examples and version history
 
-- **WOLFIE Timestamp Doctrine** (`docs/DEVELOPMENT/WOLFIE_TIMESTAMP_DOCTRINE.md`)
+- **WOLFIE Timestamp Doctrine** (`lupo-docs/DEVELOPMENT/WOLFIE_TIMESTAMP_DOCTRINE.md`)
   - Strict requirement: All timestamps MUST use `YYYYMMDDHHIISS` format (UTC, zero-padded, numeric)
   - Prohibited formats: UNIX epoch, MySQL TIMESTAMP/DATETIME, ISO8601, local timezone conversions
   - Code examples for MySQL, PHP, Python, JavaScript/TypeScript
@@ -10534,7 +10534,7 @@ This release introduces the complete emotional metadata and routing subsystem, i
   - `message` must be updated on every file modification
   - All specifications updated to reflect this requirement
 
-- **Architecture Sync Documentation** (`docs/ARCHITECTURE_SYNC.md`)
+- **Architecture Sync Documentation** (`lupo-docs/ARCHITECTURE_SYNC.md`)
   - Authoritative reference for Lupopedia's routing, memory, and LLM gateway architecture
   - Documents HERMES (routing layer), CADUCEUS (mood signal helper), IRIS (LLM faucet), DialogManager (central dispatcher), and THOTH (truth engine)
   - Defines strict doctrine rules for all subsystems
@@ -10557,7 +10557,7 @@ This release introduces the complete emotional metadata and routing subsystem, i
   - **Cursor's Role** — Comprehensive list of what Cursor should do and must NOT do; operate inside architecture, do not reshape it
   - **Agent Dependency Doctrine (MANDATORY)** — Application layer is authoritative for all dependency validation; PHP validates all dependencies, resolves codes to IDs, enforces activation and internal-only flags; Database is safety net only; Always write both `depends_on_agent_code` and `depends_on_agent_id`; Never bypass PHP validation; Never treat MySQL as an application; CARMEN dependencies (AGAPE, ERIS, METIS) must be enforced in PHP
 
-- **Why No Frameworks Documentation** (`docs/WHY_NO_FRAMEWORKS.md`)
+- **Why No Frameworks Documentation** (`lupo-docs/WHY_NO_FRAMEWORKS.md`)
   - Explains Lupopedia's framework-free philosophy and first-principles architecture
   - Addresses why Lupopedia doesn't use frameworks, ORMs, or modern abstractions
   - Explains why this approach is superior for a semantic operating system
@@ -10567,7 +10567,7 @@ This release introduces the complete emotional metadata and routing subsystem, i
   - Documents why logic belongs in the application layer, not database or framework
   - Explains why Lupopedia is built for multi-agent reasoning, not CRUD operations
 
-- **Cursor Refactor Doctrine** (`docs/CURSOR_REFACTOR_DOCTRINE.md`)
+- **Cursor Refactor Doctrine** (`lupo-docs/CURSOR_REFACTOR_DOCTRINE.md`)
   - **MANDATORY rules** for Cursor when rewriting legacy Crafty Syntax PHP code
   - Preserve all logic exactly — modernize syntax, not behavior
   - No frameworks, no Composer, no autoloaders — procedural, portable, dependency-free PHP
@@ -10586,7 +10586,7 @@ This release introduces the complete emotional metadata and routing subsystem, i
   - Output clean, minimal, doctrine-aligned code — but don't remove functionality
   - **This doctrine is non-negotiable and must be followed for every refactor**
 
-- **SQL Rewrite Doctrine** (`docs/SQL_REWRITE_DOCTRINE.md`)
+- **SQL Rewrite Doctrine** (`lupo-docs/SQL_REWRITE_DOCTRINE.md`)
   - **MANDATORY rules** for Cursor when rewriting SQL from Crafty Syntax into Lupopedia
   - The refactor JSON is the only source of truth — never guess mappings
   - Table names must be rewritten exactly as specified — no deviations
@@ -10605,9 +10605,9 @@ This release introduces the complete emotional metadata and routing subsystem, i
   - All rewritten SQL must be clean, minimal, and doctrine-aligned — but preserve functionality
   - **This doctrine is mandatory and must be followed for every SQL rewrite**
 
-- **SQL Refactor Mapping Doctrine** (`docs/SQL_REFACTOR_MAPPING_DOCTRINE.md`)
+- **SQL Refactor Mapping Doctrine** (`lupo-docs/SQL_REFACTOR_MAPPING_DOCTRINE.md`)
   - **Focused mapping rules** for SQL refactoring using refactor TOON files
-  - For every SQL query, load refactor TOON file from `database/refactors/{legacy_table}.toon`
+  - For every SQL query, load refactor TOON file from `lupo-database/refactors/{legacy_table}.toon`
   - Replace legacy table name with `new_table` from TOON file
   - Replace every legacy column name using `column_map` from TOON file
   - Apply transforms exactly as defined (e.g., Y_to_1_else_0)
@@ -10620,20 +10620,20 @@ This release introduces the complete emotional metadata and routing subsystem, i
   - Never rewrite SQL based on assumptions
   - **The refactor TOON file is the ONLY source of truth**
 
-- **TOON Doctrine** (`docs/TOON_DOCTRINE.md`)
+- **TOON Doctrine** (`lupo-docs/TOON_DOCTRINE.md`)
   - **MANDATORY rules** for Cursor when working with TOON format files
   - TOON is NOT JSON — All refactor files, agent files, and schema mapping files are in TOON format, not JSON
   - Cursor must never convert TOON to JSON, rewrite TOON as JSON, validate TOON as JSON, or enforce JSON syntax rules
   - Cursor must preserve TOON exactly as written — indentation, spacing, key order, symbolic structure, comments, meaning blocks
   - TOON is a semantic mapping format, not a data serialization format — Cursor must read TOON keys and values as meaning, not syntax
-  - TOON files in `database/refactors/` are the ONLY source of truth for SQL rewrites and schema mapping
-  - TOON files in `database/toon_data/` are the ONLY source of truth for table structure and column names
+  - TOON files in `lupo-database/refactors/` are the ONLY source of truth for SQL rewrites and schema mapping
+  - TOON files in `lupo-database/toon_data/` are the ONLY source of truth for table structure and column names
   - Cursor must not waste tokens converting TOON into JSON or any other format — work with TOON directly
   - Files may have `.json` extensions, but they are TOON format, not JSON
   - **This doctrine is mandatory and must be followed when working with any TOON format files**
 
-- **Legacy Refactor Plan** (`docs/LEGACY_REFACTOR_PLAN.md`)
-  - Comprehensive plan for refactoring legacy Crafty Syntax files from `legacy/craftysyntax/` to `lupopedia/`
+- **Legacy Refactor Plan** (`lupo-docs/LEGACY_REFACTOR_PLAN.md`)
+  - Comprehensive plan for refactoring legacy Crafty Syntax files from `lupo-legacy/craftysyntax/` to `lupopedia/`
   - File mapping strategy — Admin files, user files, API files, class files, function libraries
   - Conversion process — Identify file type, load refactor TOON files, convert SQL, convert PHP, update file structure
   - SQL conversion rules — Table name conversion, column name conversion (preserve legacy typos), parameterized queries
@@ -10644,8 +10644,8 @@ This release introduces the complete emotional metadata and routing subsystem, i
   - Critical reminders — Never guess, preserve behavior, follow doctrine
   - **Legacy column name typos must be preserved** — Never "correct" typos like "visiblity" (instead of "visibility"). These typos exist in the database and must be preserved in refactored code.
 
-- **Legacy Refactor Plan** (`docs/LEGACY_REFACTOR_PLAN.md`)
-  - Comprehensive plan for refactoring legacy Crafty Syntax files from `legacy/craftysyntax/` to `lupopedia/`
+- **Legacy Refactor Plan** (`lupo-docs/LEGACY_REFACTOR_PLAN.md`)
+  - Comprehensive plan for refactoring legacy Crafty Syntax files from `lupo-legacy/craftysyntax/` to `lupopedia/`
   - File mapping strategy — Admin files, user files, API files, class files, function libraries
   - Conversion process — Identify file type, load refactor TOON files, convert SQL, convert PHP, update file structure
   - SQL conversion rules — Table name conversion, column name conversion (preserve legacy typos), parameterized queries
@@ -10656,7 +10656,7 @@ This release introduces the complete emotional metadata and routing subsystem, i
   - Critical reminders — Never guess, preserve behavior, follow doctrine
   - **Legacy column name typos must be preserved** — Never "correct" typos like "visiblity" (instead of "visibility"). These typos exist in the database and must be preserved in refactored code.
 
-- **PDO Conversion Doctrine** (`docs/PDO_CONVERSION_DOCTRINE.md`)
+- **PDO Conversion Doctrine** (`lupo-docs/PDO_CONVERSION_DOCTRINE.md`)
   - **MANDATORY rules** for Cursor when converting mysqli SQL calls to the custom PDO_DB class
   - Cursor must use the custom PDO_DB class only — never use raw PDO
   - All mysqli functions must be removed and replaced — use PDO_DB methods exclusively
@@ -10675,18 +10675,18 @@ This release introduces the complete emotional metadata and routing subsystem, i
     - README.md
     - CHANGELOG.md
     - VERSION_CONTROL_POLICY.md
-    - docs/DATABASE_PHILOSOPHY.md
-    - docs/INLINE_DIALOG_SPECIFICATION.md
-    - docs/WOLFIE_HEADER_SPECIFICATION.md
-    - docs/ARCHITECTURE.md
-    - docs/DATABASE_SCHEMA.md
-    - docs/AGENT_RUNTIME.md
-    - docs/FOR_INSTALLERS_AND_USERS.md
-    - docs/UPGRADE_PLAN_3.7.5_TO_3.0.0.md
-    - docs/SEMANTIC_NAVIGATION.md
-    - docs/WHO_IS_CAPTAIN_WOLFIE.md
-    - docs/WHAT_NOT_TO_DO_AND_WHY.md
-    - docs/TERMINOLOGY.md
+    - lupo-docs/DATABASE_PHILOSOPHY.md
+    - lupo-docs/INLINE_DIALOG_SPECIFICATION.md
+    - lupo-docs/WOLFIE_HEADER_SPECIFICATION.md
+    - lupo-docs/ARCHITECTURE.md
+    - lupo-docs/DATABASE_SCHEMA.md
+    - lupo-docs/AGENT_RUNTIME.md
+    - lupo-docs/FOR_INSTALLERS_AND_USERS.md
+    - lupo-docs/UPGRADE_PLAN_3.7.5_TO_3.0.0.md
+    - lupo-docs/SEMANTIC_NAVIGATION.md
+    - lupo-docs/WHO_IS_CAPTAIN_WOLFIE.md
+    - lupo-docs/WHAT_NOT_TO_DO_AND_WHY.md
+    - lupo-docs/TERMINOLOGY.md
     - PHILOSOPHY.md
     - VISION.md
     - EXECUTIVE_SUMMARY.md
@@ -10707,7 +10707,7 @@ This release introduces the complete emotional metadata and routing subsystem, i
   - Explains WOLF AI agents as guardians protecting the system from bad practices
   - Preserves the story of rebuilding both the system and the developer
 
-- **Counting-in-Light Doctrine** (`docs/COUNTING_IN_LIGHT.md`)
+- **Counting-in-Light Doctrine** (`lupo-docs/COUNTING_IN_LIGHT.md`)
   - Emotional coordinate system for Lupopedia using RGB color encoding
   - Three axes: R (Strife/Chaos), G (Harmony/Cohesion), B (Memory/Persistence)
   - Format: Six hex digits (RRGGBB) stored as `char(6)` in database without leading `#`
@@ -10726,7 +10726,7 @@ This release introduces the complete emotional metadata and routing subsystem, i
   - Inline reference format: `@FILENAME (startLine-endLine)` for citing dialog blocks
   - Complete Counting-in-Light mood system integration
 
-- **Dialog History File Specification** (`docs/DIALOG_HISTORY_SPEC.md`)
+- **Dialog History File Specification** (`lupo-docs/DIALOG_HISTORY_SPEC.md`)
   - Specification for generating `changelog_dialog.md` from all Inline Dialog blocks
   - Rules for scanning entire repository, extracting dialog blocks, sorting newest-first
   - Preserves speaker, target, date, mood, and message exactly as written
@@ -10746,10 +10746,10 @@ This release introduces the complete emotional metadata and routing subsystem, i
   - Updated to 145 tables (current count as of latest schema additions, including 34 legacy Crafty Syntax tables)
   - README.md: Updated section titles and content references
   - CHANGELOG.md: Updated table count references
-  - database/migrations/craftysyntax_to_lupopedia_mysql.sql: Updated final schema count comment
+  - lupo-database/migrations/craftysyntax_to_lupopedia_mysql.sql: Updated final schema count comment
   - Reflects additional tables added for anubis and WOLFMIND systems
 
-- **Toon Files Generator Improvements** (`database/generate_toon_files.py`)
+- **Toon Files Generator Improvements** (`lupo-database/generate_toon_files.py`)
   - Fixed Unicode encoding errors for Windows console compatibility
   - Replaced Unicode characters (⚠️, ❌, ✓) with ASCII equivalents ([WARNING], [ERROR], [OK])
   - Now runs cleanly on Windows without encoding errors
@@ -10791,8 +10791,8 @@ This release introduces the complete emotional metadata and routing subsystem, i
 - Created WOLFIE Header Specification v3.0.0 with complete field definitions
 - Created machine-readable wolfie_headers.yaml specification file
 - Created HISTORY.md documenting complete project lineage from Crafty Syntax (2002) to Lupopedia 3.0.0
-- Created Counting-in-Light Doctrine (`docs/COUNTING_IN_LIGHT.md`) for emotional coordinate system
-- Created Dialog History File Specification (`docs/DIALOG_HISTORY_SPEC.md`) for consolidated dialog tracking
+- Created Counting-in-Light Doctrine (`lupo-docs/COUNTING_IN_LIGHT.md`) for emotional coordinate system
+- Created Dialog History File Specification (`lupo-docs/DIALOG_HISTORY_SPEC.md`) for consolidated dialog tracking
 - Updated all documentation to reflect unified 3.0.0 versioning
 - Added WOLFIE Headers to all major documentation files for consistency
 - Updated agent documentation (lupo-agents/readme.md) with WOLFIE Header requirements
@@ -10839,8 +10839,8 @@ This release introduces the complete emotional metadata and routing subsystem, i
 - Created WOLFIE Header Specification v3.0.0 with complete field definitions
 - Created machine-readable wolfie_headers.yaml specification file
 - Created HISTORY.md documenting complete project lineage from Crafty Syntax (2002) to Lupopedia 3.0.0
-- Created Counting-in-Light Doctrine (`docs/COUNTING_IN_LIGHT.md`) for emotional coordinate system
-- Created Dialog History File Specification (`docs/DIALOG_HISTORY_SPEC.md`) for consolidated dialog tracking
+- Created Counting-in-Light Doctrine (`lupo-docs/COUNTING_IN_LIGHT.md`) for emotional coordinate system
+- Created Dialog History File Specification (`lupo-docs/DIALOG_HISTORY_SPEC.md`) for consolidated dialog tracking
 - Updated all documentation to reflect unified 3.0.0 versioning
 - Added WOLFIE Headers to all major documentation files for consistency
 - Updated agent documentation (lupo-agents/readme.md) with WOLFIE Header requirements
@@ -11013,7 +11013,7 @@ details manually.
 - Normalized render_main_layout signature
 - Updated all controllers to use $context
 - Added backward compatibility layer
-- Documented schema in docs/architecture/layout-context-schema.md
+- Documented schema in lupo-docs/architecture/layout-context-schema.md
 
 ## 2026.1.1.3 � 2026-01-24 12:53 UTC
 ### Added
@@ -11035,8 +11035,8 @@ details manually.
 - Added Captain's Log entries for nightmare fragments and emergency bridge session.
 - Added `doctrine/ETHICAL_STATE_MARKERS_DOCTRINE.md` (pono/pilau/kapakai).
 - Added `plan_for_crafty_syntax.md` migration sprint plan.
-- Added `scripts/generate_blessed_channel_registry.py` for blessed registry generation.
-- Added `channels/registry.json` and normalized channel folders to numeric zero-padded names.
+- Added `lupo-scripts/generate_blessed_channel_registry.py` for blessed registry generation.
+- Added `lupo-channels/registry.json` and normalized channel folders to numeric zero-padded names.
 - Added `lupo-includes/functions/identity-helpers.php` for anonymous actor allocation, jsrn assignment, and merge utilities.
 
 ### Changed

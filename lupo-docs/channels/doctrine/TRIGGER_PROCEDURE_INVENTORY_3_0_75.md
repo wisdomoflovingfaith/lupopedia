@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\channels\doctrine\TRIGGER_PROCEDURE_INVENTORY_3_0_75.md"
+  file_path_from_root: "lupo-docs\channels\doctrine\TRIGGER_PROCEDURE_INVENTORY_3_0_75.md"
   file_hash: "22d1825974db39442192b593f3e7bd45cba19ab439d1ef23d5c36ab67497be0d"
-  file_path_from_root: "docs\channels\doctrine\TRIGGER_PROCEDURE_INVENTORY_3_0_75.md"
+  file_path_from_root: "lupo-docs\channels\doctrine\TRIGGER_PROCEDURE_INVENTORY_3_0_75.md"
   file_hash: "f5fa6bf52730c2590212377802b6b11d2726540f58779e9815251655c922b6d0"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -99,7 +99,7 @@ file:
 ### 🚨 CRITICAL TRIGGERS (Must be extracted to code immediately)
 
 #### 1. Dialog Message Count Triggers
-**File**: `database/schema/dialog_system_schema.sql`  
+**File**: `lupo-database/schema/dialog_system_schema.sql`  
 **Triggers**: 
 - `tr_dialog_messages_insert` (AFTER INSERT)
 - `tr_dialog_messages_delete` (AFTER DELETE)
@@ -131,7 +131,7 @@ WHERE channel_id = OLD.channel_id;
 - Add message count caching for performance
 
 #### 2. Protocol Enforcement Trigger
-**File**: `database/migrations/multi_agent_protocol_schema_3_0_70.sql`  
+**File**: `lupo-database/migrations/multi_agent_protocol_schema_3_0_70.sql`  
 **Trigger**: `tr_enforce_protocol_completion` (BEFORE INSERT)
 
 **Classification**: 🚨 CRITICAL  

@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\versions\4.0.36\CHANGELOG_DRAFT.md"
+  file_path_from_root: "lupo-docs\versions\4.0.36\CHANGELOG_DRAFT.md"
   file_hash: "3aede217e5e51e7df46355132d51e0164cfa51e591eaab62114359637bd49d62"
-  file_path_from_root: "docs\versions\4.0.36\CHANGELOG_DRAFT.md"
+  file_path_from_root: "lupo-docs\versions\4.0.36\CHANGELOG_DRAFT.md"
   file_hash: "b57aa7bf379d1e248646b93d432b4905b0c02be78a2640c042c4b1218b2204f6"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -63,7 +63,7 @@ lupopedia.footer:
 
 ---
 wolfie.headers:
-  file_path_from_root: "docs/versions/4.0.36/CHANGELOG_DRAFT.md"
+  file_path_from_root: "lupo-docs/versions/4.0.36/CHANGELOG_DRAFT.md"
   system_version: "4.0.36"
   channel_id: 42
   mood_rgb: "8800FF"
@@ -76,8 +76,8 @@ wolfie.headers:
 flip.footer:
   referenced_by_files:
     - "CHANGELOG.md"
-    - "docs/versions/4.0.36/TODO.md"
-    - "docs/versions/4.0.36/ROADMAP.md"
+    - "lupo-docs/versions/4.0.36/TODO.md"
+    - "lupo-docs/versions/4.0.36/ROADMAP.md"
   referenced_by_channels:
     - 42
   referenced_by_actors:
@@ -115,9 +115,9 @@ flip.footer:
 - Created version directory structure
 
 **Files Created:**
-- `docs/versions/4.0.36/TODO.md`
-- `docs/versions/4.0.36/ROADMAP.md`
-- `docs/versions/4.0.36/CHANGELOG_DRAFT.md`
+- `lupo-docs/versions/4.0.36/TODO.md`
+- `lupo-docs/versions/4.0.36/ROADMAP.md`
+- `lupo-docs/versions/4.0.36/CHANGELOG_DRAFT.md`
 
 **Version Markers Updated:**
 - `config/global_atoms.yaml` - Version 4.0.36
@@ -292,9 +292,9 @@ flip.footer:
 
 ## FILES CREATED (Total: 3)
 
-1. `docs/versions/4.0.36/TODO.md`
-2. `docs/versions/4.0.36/ROADMAP.md`
-3. `docs/versions/4.0.36/CHANGELOG_DRAFT.md`
+1. `lupo-docs/versions/4.0.36/TODO.md`
+2. `lupo-docs/versions/4.0.36/ROADMAP.md`
+3. `lupo-docs/versions/4.0.36/CHANGELOG_DRAFT.md`
 
 ---
 

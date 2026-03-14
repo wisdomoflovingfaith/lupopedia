@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "review"
-  file_path_from_root: "prompts/lilith/20260301_flare_boot_semantics_review.md"
+  file_path_from_root: "lupo-prompts/lilith/20260301_flare_boot_semantics_review.md"
   system_version: "4.0.53"
   channel_id: 42
   actor_id: 2038
@@ -18,10 +18,10 @@ lupopedia.headers:
 
 lupopedia.edges:
   outbound_edges:
-    - { to: "channels/0/content/federation_node_id/0/FLARE.md", type: "verifies", weight: 1.0 }
-    - { to: "docs/doctrine/FLARE/FLARE_DOCTRINE.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/DELEGATION_DOCTRINE.md", type: "references", weight: 0.9 }
-    - { to: "channels/0/actor_ai_running_check.md", type: "related", weight: 0.9 }
+    - { to: "lupo-channels/0/content/federation_node_id/0/FLARE.md", type: "verifies", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/FLARE/FLARE_DOCTRINE.md", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/DELEGATION_DOCTRINE.md", type: "references", weight: 0.9 }
+    - { to: "lupo-channels/0/actor_ai_running_check.md", type: "related", weight: 0.9 }
   semantic_tags: ["flare", "boot", "delegation", "ai_startup", "review"]
 
 lupopedia.footer:
@@ -53,7 +53,7 @@ lupopedia.footer:
 
 ---
 
-## 📄 REQUIRED FILE: `channels/0/content/federation_node_id/0/FLARE.md`
+## 📄 REQUIRED FILE: `lupo-channels/0/content/federation_node_id/0/FLARE.md`
 
 ### File Status Check
 

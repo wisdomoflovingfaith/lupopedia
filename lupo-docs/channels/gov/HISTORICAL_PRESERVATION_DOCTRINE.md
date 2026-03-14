@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\channels\gov\HISTORICAL_PRESERVATION_DOCTRINE.md"
+  file_path_from_root: "lupo-docs\channels\gov\HISTORICAL_PRESERVATION_DOCTRINE.md"
   file_hash: "f02d21bd6aa0e3e57f2e83bb3cfcad40d7bf800fb0c14c1d2c8d56e734859e10"
-  file_path_from_root: "docs\channels\gov\HISTORICAL_PRESERVATION_DOCTRINE.md"
+  file_path_from_root: "lupo-docs\channels\gov\HISTORICAL_PRESERVATION_DOCTRINE.md"
   file_hash: "35969cbcaa9dd9ac561490c4bde580dec2f8dc2e3ec311a44404ad9f2955b817"
   last_updated_utc: "20260228"
   system_version: "4.0.50"

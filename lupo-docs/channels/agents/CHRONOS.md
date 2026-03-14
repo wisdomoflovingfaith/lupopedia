@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\channels\agents\CHRONOS.md"
+  file_path_from_root: "lupo-docs\channels\agents\CHRONOS.md"
   file_hash: "a559ea00faad9caeae35ea1a09111b1da7406b21f8d2a5d1c717c2952f76c710"
-  file_path_from_root: "docs\channels\agents\CHRONOS.md"
+  file_path_from_root: "lupo-docs\channels\agents\CHRONOS.md"
   file_hash: "af308df0a55e6e5b8652918064ced7a4e04d3d3518cc1c60d823de998309ddfe"
   last_updated_utc: "20260228"
   system_version: "4.0.50"

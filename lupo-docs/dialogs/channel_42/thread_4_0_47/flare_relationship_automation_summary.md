@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\dialogs\channel_42\thread_4_0_47\flare_relationship_automation_summary.md"
+  file_path_from_root: "lupo-docs\dialogs\channel_42\thread_4_0_47\flare_relationship_automation_summary.md"
   file_hash: "6f4296b2e95519977452058cedc7207a04dca5fdc0989fdb145723c872bfae48"
-  file_path_from_root: "docs\dialogs\channel_42\thread_4_0_47\flare_relationship_automation_summary.md"
+  file_path_from_root: "lupo-docs\dialogs\channel_42\thread_4_0_47\flare_relationship_automation_summary.md"
   file_hash: "286122458951a8d9f376a9bc52f20eceb2c66a43a2a37c57187f6119043f77ea"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -75,7 +75,7 @@ lupopedia.footer:
 ### **🚀 Major Achievements**
 
 #### **1. Complete FLARE Edge Automation Suite**
-- ✅ **FLARE Edge Suggester Tool** (`scripts/flare_edge_suggester.py`)
+- ✅ **FLARE Edge Suggester Tool** (`lupo-scripts/flare_edge_suggester.py`)
   - Markdown link analysis with context-aware weighting
   - TOON schema foreign key discovery
   - Database integration for actor/content relationships
@@ -93,7 +93,7 @@ lupopedia.footer:
   - Discovery methods: db_scan, content_analysis, toon_schema, semantic_search
   - Metadata tracking: last_seen, discovered_via fields
 
-- ✅ **Batch Update CLI Tool** (`tools/update_flare_edges.py`)
+- ✅ **Batch Update CLI Tool** (`lupo-tools/update_flare_edges.py`)
   - Directory scanning and validation
   - Batch edge insertion with authorization
   - Dry-run mode for safe preview
@@ -115,7 +115,7 @@ lupopedia.footer:
 
 - ✅ **Table Ceiling Compliance**
   - Current: 155/199 tables (44 under ceiling)
-  - Dynamic counting based on TOON files in `docs/toons/`
+  - Dynamic counting based on TOON files in `lupo-docs/toons/`
   - Extended existing table instead of creating new one
 
 #### **3. Enhanced FLARE Protocol**
@@ -214,7 +214,7 @@ Based on our analysis, the remaining work focuses on creating comprehensive docu
 
 For each important table, we should create:
 
-1. **Table Overview Document** (`docs/database/tables/{table_name}.md`)
+1. **Table Overview Document** (`lupo-docs/database/tables/{table_name}.md`)
    - Purpose and role in system
    - Key relationships and dependencies
    - Usage patterns and best practices
@@ -255,11 +255,11 @@ For each important table, we should create:
 
 1. **Create Database Documentation Structure**
    ```
-   docs/database/
+   lupo-docs/database/
    ├── tables/
    │   ├── core/
    │   ├── content/
-   │   ├── agents/
+   │   ├── lupo-agents/
    │   └── integration/
    └── README.md
    ```

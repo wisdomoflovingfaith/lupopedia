@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\channels\gov\HERITAGE_SAFE_MIGRATION_RULES.md"
+  file_path_from_root: "lupo-docs\channels\gov\HERITAGE_SAFE_MIGRATION_RULES.md"
   file_hash: "e71d65b86595c05bf23b31d2fa5f112d314e83aabae0a0340877388bd5b79885"
-  file_path_from_root: "docs\channels\gov\HERITAGE_SAFE_MIGRATION_RULES.md"
+  file_path_from_root: "lupo-docs\channels\gov\HERITAGE_SAFE_MIGRATION_RULES.md"
   file_hash: "247e54ad8d697cd88198b5d64b1bda6a0e2f9ccba906abb6e1fb92863ff2c629"
   last_updated_utc: "20260228"
   system_version: "4.0.50"

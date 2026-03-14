@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\channels\doctrine\CURSOR_ROLE_DOCTRINE.md"
+  file_path_from_root: "lupo-docs\channels\doctrine\CURSOR_ROLE_DOCTRINE.md"
   file_hash: "4491b5474fa04c92bdc809f0a9a2ab80e2df0433f6dc1c927f05224840aad6c9"
-  file_path_from_root: "docs\channels\doctrine\CURSOR_ROLE_DOCTRINE.md"
+  file_path_from_root: "lupo-docs\channels\doctrine\CURSOR_ROLE_DOCTRINE.md"
   file_hash: "084a9e21ceaa7659be7e5165c76cc2662bde026656d1191824a5e7724ca275a5"
   last_updated_utc: "20260228"
   system_version: "4.0.50"

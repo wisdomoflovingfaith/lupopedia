@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -215,7 +215,7 @@ Each agent folder contains an `agent.json` file with the agent's code:
 
 The authoritative mapping is in:
 ```
-database/toon_data/lupo_agent_registry.toon
+lupo-database/toon_data/lupo_agent_registry.toon
 ```
 
 This file contains all root agents with their `code` and `dedicated_slot` mappings:
@@ -229,7 +229,7 @@ This file contains all root agents with their `code` and `dedicated_slot` mappin
 ```
 
 **To find an agent by code:**
-1. Open `database/toon_data/lupo_agent_registry.toon`
+1. Open `lupo-database/toon_data/lupo_agent_registry.toon`
 2. Search for the agent `code`
 3. Check that `agent_registry_parent_id` is `null` (root agent only)
 4. The `dedicated_slot` value is the folder number (permanent identity)
@@ -254,7 +254,7 @@ ORDER BY dedicated_slot;
 
 ### **Single Source of Truth:**
 
-The `database/toon_data/lupo_agent_registry.toon` file is the **authoritative source** for:
+The `lupo-database/toon_data/lupo_agent_registry.toon` file is the **authoritative source** for:
 - Agent codes
 - Slot assignments
 - Agent metadata
@@ -499,7 +499,7 @@ To find which slot contains which agent:
 
 2. **Search TOON file:**
    ```bash
-   grep -A 5 '"code": "THOTH"' database/toon_data/lupo_agent_registry.toon
+   grep -A 5 '"code": "THOTH"' lupo-database/toon_data/lupo_agent_registry.toon
    # Find dedicated_slot: 4
    ```
 
@@ -521,7 +521,7 @@ To find which agent is in a slot:
 
 2. **Check TOON file:**
    ```bash
-   grep -B 5 -A 2 '"dedicated_slot": 4' database/toon_data/lupo_agent_registry.toon
+   grep -B 5 -A 2 '"dedicated_slot": 4' lupo-database/toon_data/lupo_agent_registry.toon
    # Find matching code
    ```
 
@@ -559,7 +559,7 @@ rename_agent_folders.ps1
 ```
 
 **Migration Process:**
-1. Read `database/toon_data/lupo_agent_registry.toon`
+1. Read `lupo-database/toon_data/lupo_agent_registry.toon`
 2. Extract root agents (agent_registry_parent_id IS NULL)
 3. Filter for agents with valid dedicated_slot (not null)
 4. Rename folders: `lupo-agents/{code}/` → `lupo-agents/{dedicated_slot}/`
@@ -799,7 +799,7 @@ foreach ($agents as $agent) {
 1. **Agent folders are numbered** using the `dedicated_slot` value (permanent identity) from the TOON file
 2. **`dedicated_slot` is the permanent identity** — must ALWAYS match `agent_id` in `lupo_agents` table
 3. **`dedicated_slot` NEVER changes** after installation — names, keys, and aliases may change; identity does not
-4. **TOON file is authoritative** — `database/toon_data/lupo_agent_registry.toon` defines all mappings
+4. **TOON file is authoritative** — `lupo-database/toon_data/lupo_agent_registry.toon` defines all mappings
 5. **Slot-based structure is intentional** — provides stability, portability, and consistency
 6. **Agent code is in `agent.json`** — each folder's `agent.json` file contains the agent's code (may change)
 7. **Slots enable natural ordering** — kernel agents (0-22) before cognitive agents (34+)
@@ -820,7 +820,7 @@ The slot-based structure ensures that:
 ---
 
 **For the complete agent registry and slot mappings, see:**
-- **TOON File:** `database/toon_data/lupo_agent_registry.toon`
+- **TOON File:** `lupo-database/toon_data/lupo_agent_registry.toon`
 - **Database Table:** `lupo_agent_registry`
 - **Global Atoms:** `config/global_atoms.yaml` → `GLOBAL_LUPOPEDIA_V3_0_2_CORE_AGENTS`
 

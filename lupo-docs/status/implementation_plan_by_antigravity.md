@@ -121,4 +121,4 @@ Currently, there are tracking tables for point-in-time schema validation:
 1. Initiate \install_new_lupopedia.sql\ refactor to include \lupo_comments\, \lupo_hashtags\, and \lupo_orchestrator_rules\.
 2. Delete \lupo_flare_headers\ DDL.
 3. Consolidate the 4 ANUBIS tables into a singular log definition. 
-4. After updating the DDL, run \python scripts/generate_toon_files.py\ to bring the YAML schemas natively into the \lupo-database/lupopedia/toon\ folder.
+4. After updating the DDL, run \python lupo-scripts/generate_toon_files.py\ to bring the YAML schemas natively into the \lupo-database/lupopedia/toon\ folder.

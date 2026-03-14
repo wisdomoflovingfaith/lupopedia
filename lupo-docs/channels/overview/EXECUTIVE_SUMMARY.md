@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\channels\overview\EXECUTIVE_SUMMARY.md"
+  file_path_from_root: "lupo-docs\channels\overview\EXECUTIVE_SUMMARY.md"
   file_hash: "a33acd48d73263595283bf5b288cd5ab08b5067622f5bf8c7882c60ea40b3bb9"
-  file_path_from_root: "docs\channels\overview\EXECUTIVE_SUMMARY.md"
+  file_path_from_root: "lupo-docs\channels\overview\EXECUTIVE_SUMMARY.md"
   file_hash: "81bc56de316e60d19f72443711a31981126b1a4e07aa70eada6861209615fc19"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -277,6 +277,6 @@ Unlike traditional CMS platforms that force rigid structures or cloud services t
 
 ---
 
-*For technical details, see [Technical Architecture](docs/ARCHITECTURE.md)*  
-*For database structure, see [Database Schema Reference](docs/DATABASE_SCHEMA.md)*  
+*For technical details, see [Technical Architecture](lupo-docs/ARCHITECTURE.md)*  
+*For database structure, see [Database Schema Reference](lupo-docs/DATABASE_SCHEMA.md)*  
 *For vision and philosophy, see [Vision Statement](VISION.md)*

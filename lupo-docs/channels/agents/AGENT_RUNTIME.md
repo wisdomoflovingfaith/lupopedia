@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\channels\agents\AGENT_RUNTIME.md"
+  file_path_from_root: "lupo-docs\channels\agents\AGENT_RUNTIME.md"
   file_hash: "afdf448dddab45e51a275410deaf69859ba177615c770417bf658d295f101b5c"
-  file_path_from_root: "docs\channels\agents\AGENT_RUNTIME.md"
+  file_path_from_root: "lupo-docs\channels\agents\AGENT_RUNTIME.md"
   file_hash: "9f2bfd5ea995336689720a4d722ab4d843df229456fbb838730f77c14aba1372"
   last_updated_utc: "20260228"
   system_version: "4.0.50"

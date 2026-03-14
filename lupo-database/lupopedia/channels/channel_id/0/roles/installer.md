@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "channels\0\roles\installer.md"
+  file_path_from_root: "lupo-channels\0\roles\installer.md"
   file_hash: "498fb52a1b491681c9d48cbc2da4751e93cb74b210a0460c1764f9e91fd76be5"
-  file_path_from_root: "channels\0\roles\installer.md"
+  file_path_from_root: "lupo-channels\0\roles\installer.md"
   file_hash: "c57052f6d328c525fa06fa073a3755bf8ed6c69882446bcbc9f4f413dfab6cb7"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -172,8 +172,8 @@ Installers report to System Administrators. Any installation failures must be es
 {
   "references": [
     "install.php",
-    "database/migrations/install_new_lupopedia.sql",
-    "database/migrations/old_crafty_syntax_3_7_5_start.sql"
+    "lupo-database/migrations/install_new_lupopedia.sql",
+    "lupo-database/migrations/old_crafty_syntax_3_7_5_start.sql"
   ],
   "implements": "installation_authority_model",
   "depends_on": "system_admin",

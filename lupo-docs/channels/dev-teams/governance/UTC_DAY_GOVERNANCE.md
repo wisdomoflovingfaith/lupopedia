@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\channels\dev-teams\governance\UTC_DAY_GOVERNANCE.md"
+  file_path_from_root: "lupo-docs\channels\dev-teams\governance\UTC_DAY_GOVERNANCE.md"
   file_hash: "d1ab0537be614f459e6d0281a3e4af8dc9eb03a4cde9346a2486733422f1e3f9"
-  file_path_from_root: "docs\channels\dev-teams\governance\UTC_DAY_GOVERNANCE.md"
+  file_path_from_root: "lupo-docs\channels\dev-teams\governance\UTC_DAY_GOVERNANCE.md"
   file_hash: "bde584312021ccee10d7db1590d9213cfdcb451d825e47de4cf82f019ceee145"
   last_updated_utc: "20260228"
   system_version: "4.0.50"

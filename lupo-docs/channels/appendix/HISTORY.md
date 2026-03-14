@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,7 +35,7 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\channels\appendix\HISTORY.md"
+  file_path_from_root: "lupo-docs\channels\appendix\HISTORY.md"
   file_hash: "5af4aa2611caf11b0372d01505afdcc9ac2e27221073fca4f00489d3a9ab00ce"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -57,7 +57,7 @@ lupopedia.footer:
 
 ---
 lupopedia.headers: {
-  file_path_from_root: "docs/channels/appendix/HISTORY.md",
+  file_path_from_root: "lupo-docs/channels/appendix/HISTORY.md",
   file_hash: "5981c13f9cbe887d514913de258ad4251a87beaa2f925b470108c267c2be4032"
   system_version: "4.0.50"
   channel_id: 42,
@@ -72,10 +72,10 @@ lupopedia.headers: {
   lupo_agent: "antigravity"
 }
 lupopedia.edges: {
-  file_path_from_root: "docs\channels\appendix\HISTORY.md"
+  file_path_from_root: "lupo-docs\channels\appendix\HISTORY.md"
   outbound_edges: [
     { to: "README.md", type: "references", weight: 1.0 },
-    { to: "docs/channels/appendix/appendix/FOUNDERS_NOTE.md", type: "references", weight: 1.0 },
+    { to: "lupo-docs/channels/appendix/appendix/FOUNDERS_NOTE.md", type: "references", weight: 1.0 },
     { to: "CHANGELOG.md", type: "references", weight: 0.9 }
   ],
   semantic_tags: ["project_history", "lineage", "crafty_syntax_origins", "rebranded_history"]

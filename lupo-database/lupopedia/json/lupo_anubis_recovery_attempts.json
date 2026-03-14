@@ -5,16 +5,16 @@
     "`queue_id` bigint NOT NULL",
     "`attempt_number` tinyint NOT NULL",
     "`attempt_utc` bigint NOT NULL",
-    "`strategy` varchar(64) COMMENT 'template_generation, actor_inference, channel_guess'",
+    "`strategy` varchar(64)",
     "`success` tinyint DEFAULT 0",
     "`generated_header` text",
-    "`error_details` text COMMENT 'JSON content'",
+    "`error_details` text",
     "`recovered_file_path` varchar(512)"
   ],
   "data": [],
   "indexes": [
     {
-      "index_name": "idx_queue_attempt",
+      "index_name": "lupo_anubis_recovery_attempts_idx_queue_attempt",
       "columns": [
         "queue_id",
         "attempt_number"

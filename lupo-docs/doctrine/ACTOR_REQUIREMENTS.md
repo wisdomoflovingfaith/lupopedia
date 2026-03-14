@@ -64,8 +64,8 @@ The **canonical** schema audit tool checks **TOON files** in `lupo-database/lupo
 
 Checks: doctrine_metadata (no_foreign_keys, no_triggers), DATETIME/TIMESTAMP columns, BIGINT time-like columns, soft-delete (is_deleted).
 
-- **PHP (canonical):** `php scripts/audit_schema_doctrine.php` — reads TOONs from `lupo-database/lupopedia/toon/` (fallback: `json/`), writes `artifacts/reports/schema_doctrine_audit.json`. Use this as the source of truth.
-- **Python (optional):** `python scripts/audit_schema_doctrine.py` — same TOON-based checks and report path; supplemental (e.g. CI without PHP).
+- **PHP (canonical):** `php lupo-scripts/audit_schema_doctrine.php` — reads TOONs from `lupo-database/lupopedia/toon/` (fallback: `json/`), writes `artifacts/reports/schema_doctrine_audit.json`. Use this as the source of truth.
+- **Python (optional):** `python lupo-scripts/audit_schema_doctrine.py` — same TOON-based checks and report path; supplemental (e.g. CI without PHP).
 
 ## Related
 

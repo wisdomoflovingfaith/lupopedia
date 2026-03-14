@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\doctrine\BAN_REASONS.md"
+  file_path_from_root: "lupo-docs\doctrine\BAN_REASONS.md"
   file_hash: "d40be25e16c0be4c2af94f1e38a6d4e369cae2308bdb66657d2f6b4470644ca0"
-  file_path_from_root: "docs\doctrine\BAN_REASONS.md"
+  file_path_from_root: "lupo-docs\doctrine\BAN_REASONS.md"
   file_hash: "54b05177218086f5acd63130b45281ab4e6ecfe5ebe243c5f8fd0276e7b7b162"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -62,7 +62,7 @@ lupopedia.footer:
 
 ---
 # FLIP Header (alias: Wolfie Header, CROP Header, FLIPPING Header)
-X-Lupo-File-Path: docs/doctrine/BAN_REASONS.md
+X-Lupo-File-Path: lupo-docs/doctrine/BAN_REASONS.md
 X-Lupo-Version: "4.0.27"
 X-Lupo-UTC-Timestamp: "20260222162242"
 X-Lupo-Channel: 42   # ANUBIS adoption channel

@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\AGENT_INVENTORY.md"
+  file_path_from_root: "lupo-docs\AGENT_INVENTORY.md"
   file_hash: "9161cb6242e3242f6bed64ba9707c44cd86255ca2b9d658ed4ede87ad0d43a64"
-  file_path_from_root: "docs\AGENT_INVENTORY.md"
+  file_path_from_root: "lupo-docs\AGENT_INVENTORY.md"
   file_hash: "e6e8d94e168385fba298c520ccf6f3fca7b01e4b946097da2f036ef7a35af57c"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -63,7 +63,7 @@ lupopedia.footer:
 
 ---
 wolfie.headers:
-  file_path_from_root: "docs/AGENT_INVENTORY.md"
+  file_path_from_root: "lupo-docs/AGENT_INVENTORY.md"
   system_version: "4.0.33"
   channel_id: 42
   mood_rgb: "44AAFF"
@@ -76,9 +76,9 @@ wolfie.headers:
 flip.footer:
   referenced_by_files:
     - "CHANGELOG.md"
-    - "docs/doctrine/LUPOPEDIA_CANONICAL_DOCTRINE.md"
-    - "docs/doctrine/AGENT_REGISTRY_DOCTRINE.md"
-    - "docs/status/AGENT_TASK_TRACKER.md"
+    - "lupo-docs/doctrine/LUPOPEDIA_CANONICAL_DOCTRINE.md"
+    - "lupo-docs/doctrine/AGENT_REGISTRY_DOCTRINE.md"
+    - "lupo-docs/status/AGENT_TASK_TRACKER.md"
   referenced_by_channels:
     - 42
   referenced_by_actors:
@@ -181,14 +181,14 @@ These are core identities defined in the unified registry and seeded in the data
 
 ## 5. SYSTEM DOCTRINE (WOLFIE RULES)
 
-*Source: docs/doctrine/LUPOPEDIA_CANONICAL_DOCTRINE.md*
+*Source: lupo-docs/doctrine/LUPOPEDIA_CANONICAL_DOCTRINE.md*
 
 1.  **Actor Model**: Everything is an `actor_id`. Never use `user_id`. `auth_user_id` is for human credentials only.
 2.  **No Foreign Keys**: Relationships are maintained through logic and `lupo_edges`. No DB-level FKs, triggers, or procedures.
 3.  **Timestamp Doctrine**: Always use `YYYYMMDDHHIISS` UTC integers. No `DATETIME` or `CURRENT_TIMESTAMP`.
 4.  **Table Ceiling**: Stick to the 199 table limit. Optimization required beyond this.
 5.  **Role Boundaries**: Python = Maintenance (migrations, cleanup). PHP = Runtime (UI, live requests).
-6.  **Source of Truth**: TOON files in `docs/toons/` define the schema. No schema guessing.
+6.  **Source of Truth**: TOON files in `lupo-database/lupopedia/toon/` define the schema. No schema guessing.
 
 ---
 
@@ -197,7 +197,7 @@ These are core identities defined in the unified registry and seeded in the data
 *   **Primary Identity**: `singular_table_name_id` (e.g., `actor_id`, `channel_id`).
 *   **Table Names**: Always prefixed with `LUPO_TABLE_PREFIX` (handled by `ActorService` and `ActorHelper`).
 *   **Disabled Access**: Direct "Scoop" MySQL access is disabled for IDE agents to prevent unsafe schema changes.
-*   **Migration Process**: All schema changes must be delivered as `.sql` files in `database/migrations/` derived from TOONs.
+*   **Migration Process**: All schema changes must be delivered as `.sql` files in `lupo-database/migrations/` derived from TOONs.
 
 ---
 
@@ -216,7 +216,7 @@ Task status is managed in specialized status documents referenced in the footer:
 *   ✅ **FLIP Footer Rollout**: Systematic application across all system files.
 *   ✅ **Semantic Scan**: Completed for 4.0.32.
 
-See [docs/status/AGENT_TASK_TRACKER.md](docs/status/AGENT_TASK_TRACKER.md) for full details.
+See [lupo-docs/status/AGENT_TASK_TRACKER.md](lupo-docs/status/AGENT_TASK_TRACKER.md) for full details.
 
 ---
 

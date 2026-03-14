@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\channels\doctrine\EMO_AGENT_RULES.md"
+  file_path_from_root: "lupo-docs\channels\doctrine\EMO_AGENT_RULES.md"
   file_hash: "835b4a4cc86fae989ce1895c25440ed46ff51a65ce0a68d27ffbcf48520d8a40"
-  file_path_from_root: "docs\channels\doctrine\EMO_AGENT_RULES.md"
+  file_path_from_root: "lupo-docs\channels\doctrine\EMO_AGENT_RULES.md"
   file_hash: "b885b7071e38f41d21554ecfc59506d42e1392888c75b89db5f119fef2784a89"
   last_updated_utc: "20260228"
   system_version: "4.0.50"

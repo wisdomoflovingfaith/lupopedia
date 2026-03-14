@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\channels\doctrine\META_AGENTS.md"
+  file_path_from_root: "lupo-docs\channels\doctrine\META_AGENTS.md"
   file_hash: "6403bedd7cc89f86760eceb148ae58b5b1117bf53dba81b251f5bc62a61d4ed3"
-  file_path_from_root: "docs\channels\doctrine\META_AGENTS.md"
+  file_path_from_root: "lupo-docs\channels\doctrine\META_AGENTS.md"
   file_hash: "b82b5b12294e1d72acafcdfc41bcc503535ce8a7bee7bee6f169e2a82cd65d25"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -110,7 +110,7 @@ A **meta-agent** is an agent that:
 ### Characteristics
 
 **Meta-agents:**
-- ✅ Read state from other agents/domains
+- ✅ Read state from other lupo-agents/domains
 - ✅ Interpret and synthesize information
 - ✅ Route requests to appropriate handlers
 - ✅ Coordinate multi-domain operations

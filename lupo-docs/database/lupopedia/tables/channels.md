@@ -1,6 +1,6 @@
 ---
 lupopedia.headers:
-  file_path_from_root: "docs/database/lupopedia/tables/channels.md"
+  file_path_from_root: "lupo-docs/database/lupopedia/tables/channels.md"
   file_hash: "8404fdb85aef81e30e0e21a57a52df62a8620934ef3a66fa3d17da7cc57a5eef"
   system_version: "4.0.50"
   channel_id: 0
@@ -12,10 +12,10 @@ lupopedia.headers:
   lupo_agent: "gemini-cli"
 
 lupopedia.edges:
-  file_path_from_root: "docs\database\lupopedia\tables\channels.md"
+  file_path_from_root: "lupo-docs\database\lupopedia\tables\channels.md"
   outbound_edges:
-- { to: "docs/database/lupopedia/tables/lupo_dialog_threads.md", type: "references", weight: 0.9, reason: "Threads are scoped to channels" }
-    - { to: "docs/database/lupopedia/tables/actor_channel_roles.md", type: "references", weight: 0.9, reason: "Access control per channel" }
+- { to: "lupo-docs/database/lupopedia/tables/lupo_dialog_threads.md", type: "references", weight: 0.9, reason: "Threads are scoped to channels" }
+    - { to: "lupo-docs/database/lupopedia/tables/actor_channel_roles.md", type: "references", weight: 0.9, reason: "Access control per channel" }
     - { to: "lupo-database/lupopedia/toon/lupo_channels.toon.json", type: "schema_reference", weight: 1.0 }
   semantic_tags: ["channels", "communication", "dialog", "structure"]
 

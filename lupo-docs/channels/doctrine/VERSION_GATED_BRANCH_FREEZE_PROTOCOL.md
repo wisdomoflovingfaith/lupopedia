@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\channels\doctrine\VERSION_GATED_BRANCH_FREEZE_PROTOCOL.md"
+  file_path_from_root: "lupo-docs\channels\doctrine\VERSION_GATED_BRANCH_FREEZE_PROTOCOL.md"
   file_hash: "031e67952850b07d4d52c3c91616b5412786256771e7fb6ce8b5c1a3471d3ebf"
-  file_path_from_root: "docs\channels\doctrine\VERSION_GATED_BRANCH_FREEZE_PROTOCOL.md"
+  file_path_from_root: "lupo-docs\channels\doctrine\VERSION_GATED_BRANCH_FREEZE_PROTOCOL.md"
   file_hash: "79dd315b0fdbda3f88a8f445c7f3c539db418e695122b2aad9db4874fd72fe6e"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -185,7 +185,7 @@ This stops runaway self-expansion.
 - **Atoms:** `config/global_atoms.yaml` — `GLOBAL_BRANCH_BUDGET`, `GLOBAL_BRANCH_THAW_VERSION`
 - **API:** `GET /api/v1/governance/branch-budget` — machine-readable branch budget and thaw version
 - **Artifact type:** `fork_justification` in `lupo_artifacts` (column `entity_type`, 3.0.0); `POST /api/v1/artifact` with `type: "fork_justification"` and `content` as JSON per Rule 2 (stored in entity_type)
-- **Docs:** `docs/api/MINIMAL_REST_API.md` — fork_justification content schema
+- **Docs:** `lupo-docs/api/MINIMAL_REST_API.md` — fork_justification content schema
 
 ---
 

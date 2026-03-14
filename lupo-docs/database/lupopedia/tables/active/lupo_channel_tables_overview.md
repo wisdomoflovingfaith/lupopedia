@@ -295,13 +295,13 @@ lupo_channels (channel_id)
 - **Integration Examples**: PHP code examples and usage patterns
 
 ### Database Documentation
-- **Table Documentation**: `docs/database/lupopedia/tables/` directory
-- **Migration Reference**: `docs/database/lupopedia/tables/MIGRATION_MAPPING_REFERENCE.md`
-- **Installation Guide**: `database/migrations/install_lupopedia.sql`
+- **Table Documentation**: `lupo-docs/database/lupopedia/tables/` directory
+- **Migration Reference**: `lupo-docs/database/lupopedia/tables/MIGRATION_MAPPING_REFERENCE.md`
+- **Installation Guide**: `lupo-database/migrations/install_lupopedia.sql`
 - **Upgrade Procedures**: Database upgrade and migration scripts
 
 ### Related Systems
-- **Actor Registry**: `actors/registry.json` and related tables
+- **Actor Registry**: `lupo-actors/registry.json` and related tables
 - **Federation System**: `lupo_channel_content` and federation node management
 - **Content Management**: `lupo_contents` and content federation
 - **Audit System**: `lupo_audit_log` and system event tracking

@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\channels\doctrine\AGENT_LIFECYCLE_DOCTRINE.md"
+  file_path_from_root: "lupo-docs\channels\doctrine\AGENT_LIFECYCLE_DOCTRINE.md"
   file_hash: "8c25476d9d015cb7eeaf7a034a551d3a4e12bce2f4d5af75f02add99fab21574"
-  file_path_from_root: "docs\channels\doctrine\AGENT_LIFECYCLE_DOCTRINE.md"
+  file_path_from_root: "lupo-docs\channels\doctrine\AGENT_LIFECYCLE_DOCTRINE.md"
   file_hash: "629fd6db7a0cd4f8c9726594e34669c08b16403a8f3ad7568a0a49e43f1408c8"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -156,7 +156,7 @@ Required files:
 - capabilities.json  
 - faucet_rules.json  
 - memory_profile.json (optional)  
-- tests/ (optional)  
+- lupo-tests/ (optional)  
 
 Scaffolding rules:
 - No creative naming  

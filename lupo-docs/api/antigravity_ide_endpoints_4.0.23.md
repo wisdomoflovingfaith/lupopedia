@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\api\antigravity_ide_endpoints_4.0.23.md"
+  file_path_from_root: "lupo-docs\api\antigravity_ide_endpoints_4.0.23.md"
   file_hash: "3122851ec458fa3ab5ce2d0c0385db41bcf81e52e583c2beab57b0526b08725b"
-  file_path_from_root: "docs\api\antigravity_ide_endpoints_4.0.23.md"
+  file_path_from_root: "lupo-docs\api\antigravity_ide_endpoints_4.0.23.md"
   file_hash: "725a379c58d2466b9ce00684d70b4d8e04340119bb56352d01ec9df22f1408ad"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -62,7 +62,7 @@ lupopedia.footer:
 
 ---
 # FLIP Header (alias: Wolfie Header, CROP Header, FLIPPING Header)
-X-Lupo-File-Path: docs/api/antigravity_ide_endpoints_4.0.23.md
+X-Lupo-File-Path: lupo-docs/api/antigravity_ide_endpoints_4.0.23.md
 X-Lupo-Version: "4.0.27"
 X-Lupo-UTC-Timestamp: "20260222162242"
 X-Lupo-Channel: 42   # ANUBIS adoption channel

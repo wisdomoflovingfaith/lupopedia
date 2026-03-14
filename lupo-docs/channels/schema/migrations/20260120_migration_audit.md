@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\channels\schema\migrations\20260120_migration_audit.md"
+  file_path_from_root: "lupo-docs\channels\schema\migrations\20260120_migration_audit.md"
   file_hash: "98d64b0fa35c65db2ef632ace16d578603667e96e30ab684c077a970d5714190"
-  file_path_from_root: "docs\channels\schema\migrations\20260120_migration_audit.md"
+  file_path_from_root: "lupo-docs\channels\schema\migrations\20260120_migration_audit.md"
   file_hash: "a74b4fa15762c78fddc26e256ac4a3d35c1c071fe6e1ea7b0f51e80d6ea4143c"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -63,7 +63,7 @@ lupopedia.footer:
 
 ---
 wolfie.headers: explicit architecture with structured clarity for every file.
-file.name: "docs/migrations/20260120_migration_audit.md"
+file.name: "lupo-docs/migrations/20260120_migration_audit.md"
 file.last_modified_system_version: 3.1.14
 file.last_modified_utc: 20260120070000
 file.utc_day: 20260120
@@ -102,7 +102,7 @@ system_context:
 # Migration Audit Report - 2026-01-20
 
 ## Audit Scope
-**File:** `database/migrations/craftysyntax_to_lupopedia_mysql.sql` 
+**File:** `lupo-database/migrations/craftysyntax_to_lupopedia_mysql.sql` 
 **Script Version:** Crafty Syntax 3.6.1–3.7.5 → Lupopedia 3.0.3
 **Tables:** 34 legacy `livehelp_*` tables, 111 core Lupopedia tables, 8 new Crafty module tables
 **Total During Migration:** 145 tables

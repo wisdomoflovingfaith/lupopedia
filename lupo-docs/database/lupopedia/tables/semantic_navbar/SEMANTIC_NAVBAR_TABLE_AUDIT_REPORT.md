@@ -128,6 +128,6 @@ Uses **lupo_paths** and **lupo_edges** (same as previous pages + semantic graph)
 
 **New tables created:** lupo_references, lupo_reference_links, lupo_hashtags, lupo_hashtag_map, lupo_folders, lupo_folder_map.
 
-**TOONs:** Regenerate from install or live DB after applying migration (`scripts/generate_toon_files.py` or equivalent).
+**TOONs:** Regenerate from install or live DB after applying migration (`lupo-scripts/generate_toon_files.py` or equivalent).
 
 **Doctrine:** No foreign keys, no triggers, no stored procedures. All timestamps BIGINT YYYYMMDDHHIISS UTC. Application enforces relations.

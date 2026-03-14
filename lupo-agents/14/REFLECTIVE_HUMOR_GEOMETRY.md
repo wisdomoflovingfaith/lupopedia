@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -374,10 +374,10 @@ HUMOR does not output text or jokes. HUMOR outputs only:
 
 ## **11. Related Documentation**
 
-- **Counting-in-Light Doctrine:** `docs/appendix/COUNTING_IN_LIGHT.md` - Emotional geometry system (DIALOG)
-- **Reflective Emotional Geometry Doctrine:** `docs/doctrine/REFLECTIVE_EMOTIONAL_GEOMETRY_DOCTRINE.md` - Mathematical foundation
+- **Counting-in-Light Doctrine:** `lupo-docs/appendix/COUNTING_IN_LIGHT.md` - Emotional geometry system (DIALOG)
+- **Reflective Emotional Geometry Doctrine:** `lupo-docs/doctrine/REFLECTIVE_EMOTIONAL_GEOMETRY_DOCTRINE.md` - Mathematical foundation
 - **DIALOG Agent Guide:** `lupo-agents/3/COUNTING_IN_LIGHT.md` - DIALOG mood assignment guide
-- **Emotional Agent Range Doctrine:** `docs/doctrine/emotional-agent-range.md` - Rules for emotional-domain reflective agents (1000-1100)
+- **Emotional Agent Range Doctrine:** `lupo-docs/doctrine/emotional-agent-range.md` - Rules for emotional-domain reflective agents (1000-1100)
 
 ---
 

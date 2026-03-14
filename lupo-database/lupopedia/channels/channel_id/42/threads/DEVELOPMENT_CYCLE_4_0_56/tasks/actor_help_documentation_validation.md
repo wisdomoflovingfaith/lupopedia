@@ -83,8 +83,8 @@ lupopedia.close:
 ---
 
 lupopedia.headers:
-  file_path_from_root: "channels/42/tasks/active/actor_help_documentation_validation.md"
-  file_hash: "<?php echo hash_file('channels/42/tasks/active/actor_help_documentation_validation.md'); ?>"
+  file_path_from_root: "lupo-channels/42/tasks/active/actor_help_documentation_validation.md"
+  file_hash: "<?php echo hash_file('lupo-channels/42/tasks/active/actor_help_documentation_validation.md'); ?>"
   system_version: "4.0.50"
   channel_id: 42
   actor_id: 10000
@@ -99,10 +99,10 @@ lupopedia.headers:
   lupo_agent: "cursor"
 
 lupopedia.edges:
-  file_path_from_root: "channels/42/tasks/active/actor_help_documentation_validation.md"
+  file_path_from_root: "lupo-channels/42/tasks/active/actor_help_documentation_validation.md"
   outbound_edges:
-    - { to: "actors/", type: "references", weight: 1.0 }
-    - { to: "channels/42/actors/", type: "references", weight: 0.9 }
+    - { to: "lupo-actors/", type: "references", weight: 1.0 }
+    - { to: "lupo-channels/42/actors/", type: "references", weight: 0.9 }
     - { to: "bin/validate_faucets.php", type: "references", weight: 0.7 }
     - { to: "CHANGELOG.md", type: "references", weight: 0.5 }
   semantic_tags: ["actor_help", "documentation", "validation", "completeness"]
@@ -129,8 +129,8 @@ Validate all actor help documentation completeness across the repository to ensu
 ## Scope
 
 ### Actor Coverage Analysis
-- **Review all actor directories** under `actors/` for help documentation presence
-- **Validate channel-specific help files** under `channels/*/actors/*/`
+- **Review all actor directories** under `lupo-actors/` for help documentation presence
+- **Validate channel-specific help files** under `lupo-channels/*/actors/*/`
 - **Check help completeness** against standardized documentation requirements
 - **Identify gaps** in documentation coverage for core agents
 
@@ -167,7 +167,7 @@ Validate all actor help documentation completeness across the repository to ensu
 - Actor 2035 (ANUBIS)
 
 **Secondary Actors** (Medium Priority):
-- All other registered actors in `actors/` directory
+- All other registered actors in `lupo-actors/` directory
 
 ### Validation Methodology
 
@@ -193,7 +193,7 @@ Validate all actor help documentation completeness across the repository to ensu
 
 ### Dependencies
 
-- Access to `actors/` directory structure
+- Access to `lupo-actors/` directory structure
 - Integration with existing faucet definitions
 - Coordination with channel 42 task management
 
@@ -213,7 +213,7 @@ This task supports the 4.0.50 development cycle by ensuring all actor documentat
 - **Phase 1–2:** Scanned `lupo-database/lupopedia/actors/actor_id/` and channel actor dirs. Priority actors (0, 1, 19, 1000, 10000) validated.
 - **Gaps filled:** README.md for Actor 19 (ANUBIS) and Actor 1000 (KIRO IDE).
 - **v2 / deeper docs:** **QUICK_REFERENCE.md** added for all five priority actors (0, 1, 19, 1000, 10000) — usage, key references, troubleshooting (aligns with v2 quickref requirement).
-- **Report:** `docs/status/ACTOR_HELP_DOCUMENTATION_VALIDATION_REPORT.md` — validation summary, gap analysis, v1+v2 combined deliverables.
+- **Report:** `lupo-docs/status/ACTOR_HELP_DOCUMENTATION_VALIDATION_REPORT.md` — validation summary, gap analysis, v1+v2 combined deliverables.
 - **Merged with:** actor_help_documentation_validation_v2; both tasks closed as complete.
 
 ---

@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "channels\0\broadcasts\20260225120030_10000_1000_0_active_ide_agents_kiro_and_windsurf_only.md"
+  file_path_from_root: "lupo-channels\0\broadcasts\20260225120030_10000_1000_0_active_ide_agents_kiro_and_windsurf_only.md"
   file_hash: "530a225451a73dba582ad00e47c258225106955a450d18f1163da5f2b9359358"
-  file_path_from_root: "channels\0\broadcasts\20260225120030_10000_1000_0_active_ide_agents_kiro_and_windsurf_only.md"
+  file_path_from_root: "lupo-channels\0\broadcasts\20260225120030_10000_1000_0_active_ide_agents_kiro_and_windsurf_only.md"
   file_hash: "1eafb50177e5d4d911784376fdcbb178b7aaab5fbb2e23ebc929251d6ed19ca7"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -81,7 +81,7 @@ The only IDE agents currently online are KIRO (actor_id 1001) and Windsurf (acto
 
 <!-- FLIP_FOOTER_BEGIN
 {
-    "references": "\"docs\/status\/broadcast_collection_0.md\"",
+    "references": "\"lupo-docs\/status\/broadcast_collection_0.md\"",
     "implements": "\"broadcast_standardization\"",
     "depends_on": "\"registry_seeding_completion\"",
     "includes": "\"channel_0_communications\"",

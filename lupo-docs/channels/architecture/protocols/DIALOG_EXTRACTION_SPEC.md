@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\channels\architecture\protocols\DIALOG_EXTRACTION_SPEC.md"
+  file_path_from_root: "lupo-docs\channels\architecture\protocols\DIALOG_EXTRACTION_SPEC.md"
   file_hash: "659a78b095bc12fee89310b0a081b749fd79e19bf5c975c0991b0c1c9c472c6e"
-  file_path_from_root: "docs\channels\architecture\protocols\DIALOG_EXTRACTION_SPEC.md"
+  file_path_from_root: "lupo-docs\channels\architecture\protocols\DIALOG_EXTRACTION_SPEC.md"
   file_hash: "7c1f12c10db6eaa125b58667908549558bb192ff8487f8a24c1bac234b7e09f5"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -305,7 +305,7 @@ Cursor must:
 
 Cursor must generate:
 
-`docs/cli/dialog_extract_help.md`
+`lupo-docs/cli/dialog_extract_help.md`
 
 Containing:
 - full flag list

@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\channels\doctrine\PACK_BEHAVIOR_DOCTRINE.md"
+  file_path_from_root: "lupo-docs\channels\doctrine\PACK_BEHAVIOR_DOCTRINE.md"
   file_hash: "6ee4f679339fb29221af4b09267620cc3b70121da09f580f3fcfacc479942354"
-  file_path_from_root: "docs\channels\doctrine\PACK_BEHAVIOR_DOCTRINE.md"
+  file_path_from_root: "lupo-docs\channels\doctrine\PACK_BEHAVIOR_DOCTRINE.md"
   file_hash: "9053aafb9fb333903c34d7e39dcce6882225904e047a34825fe476ae97f43b1e"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -361,8 +361,8 @@ $profile = $service->getProfile('TerminalAI_001');
 
 ## Related Documentation
 
-- **[EMOTIONAL_GEOMETRY.md](docs/doctrine/EMOTIONAL_GEOMETRY.md)** - Emotional geometry doctrine (3.0.108)
-- **[PACK_BEHAVIOR_MATRIX_v3_0_90.md](docs/doctrine/PACK_BEHAVIOR_MATRIX_v3_0_90.md)** - Pack behavior matrix (historical)
+- **[EMOTIONAL_GEOMETRY.md](lupo-docs/doctrine/EMOTIONAL_GEOMETRY.md)** - Emotional geometry doctrine (3.0.108)
+- **[PACK_BEHAVIOR_MATRIX_v3_0_90.md](lupo-docs/doctrine/PACK_BEHAVIOR_MATRIX_v3_0_90.md)** - Pack behavior matrix (historical)
 
 ---
 

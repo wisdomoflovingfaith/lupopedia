@@ -17,9 +17,9 @@ lupopedia.headers:
 
 | Command | Description |
 |---------|-------------|
-| `version` | Show Lupopedia version and path to docs/version.md |
+| `version` | Show Lupopedia version and path to lupo-docs/version.md |
 | `doctor` | Health check: DB, registry file, session file |
-| `docs` [topic] | Print path to docs/HELP.md or docs/<topic>.md |
+| `docs` [topic] | Print path to lupo-docs/HELP.md or lupo-docs/<topic>.md |
 | `auth` / `who` | Show current authenticated user (or "Not authenticated") |
 | `actor-context` | Show actor name, id, type, paired, and auth status |
 
@@ -42,5 +42,5 @@ whoami, context, help, docs, version, doctor, auth, who, actor-context (session.
 
 ## Reference
 
-- [docs/CLI.md](../../../../../../../docs/CLI.md) — Full CLI reference
-- [docs/HELP.md](../../../../../../../docs/HELP.md) — Help hub
+- [lupo-docs/CLI.md](../../../../../../../docs/CLI.md) — Full CLI reference
+- [lupo-docs/HELP.md](../../../../../../../docs/HELP.md) — Help hub

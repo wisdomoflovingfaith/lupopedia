@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\NO_LARAVEL_NO_MIDDLEWARE_REPORT.md"
+  file_path_from_root: "lupo-docs\NO_LARAVEL_NO_MIDDLEWARE_REPORT.md"
   file_hash: "dc270a44fd242c0fced71dec5fe0d5fdc33a53358323128434bd3c2dd8cc9fdb"
-  file_path_from_root: "docs\NO_LARAVEL_NO_MIDDLEWARE_REPORT.md"
+  file_path_from_root: "lupo-docs\NO_LARAVEL_NO_MIDDLEWARE_REPORT.md"
   file_hash: "8af78f9aac227e5bf5675e63c67b79e48627158781b8b25e48ff2cf5f9a1fa93"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -72,7 +72,7 @@ lupopedia.footer:
 - **Laravel and framework middleware are not used.** All request handling is plain PHP with arrays for input, PDO for DB, SessionHandler, and explicit BIGINT UTC YmdHis timestamps.
 - **Middleware system removed.** The class formerly named `AuthMiddleware` is now **AuthGuard** (`App\Auth\AuthGuard`); it is a plain PHP helper, not framework middleware.
 - **Kernel and Laravel routes replaced.** Kernel is a stub; routes are plain PHP arrays in `auth_routes.php` and `terminal_routes.php` for use with your own router.
-- **Laravel migrations deprecated.** Equivalent SQL lives in `database/migrations/*.sql`; run with PDO.
+- **Laravel migrations deprecated.** Equivalent SQL lives in `lupo-database/migrations/*.sql`; run with PDO.
 
 ---
 
@@ -83,7 +83,7 @@ lupopedia.footer:
 | File | Change |
 |------|--------|
 | `.cursor/rules/no-laravel-no-middleware.mdc` | **Added.** Permanent rule: no Laravel, no middleware; plain PHP, PDO, SessionHandler, AuthGuard, timestamp doctrine. |
-| `docs/NO_LARAVEL_NO_MIDDLEWARE_REPORT.md` | **Added.** This report. |
+| `lupo-docs/NO_LARAVEL_NO_MIDDLEWARE_REPORT.md` | **Added.** This report. |
 
 ### Kernel and auth “middleware”
 
@@ -112,12 +112,12 @@ lupopedia.footer:
 
 | File | Change |
 |------|--------|
-| `migrations/README.md` | **Added.** States project does not use Laravel migrations; use `database/migrations/*.sql` and PDO. |
-| `migrations/2026_01_22_001_auth_tables.php` | **Replaced.** Deprecation stub; points to `database/migrations/` SQL. No Illuminate. |
+| `migrations/README.md` | **Added.** States project does not use Laravel migrations; use `lupo-database/migrations/*.sql` and PDO. |
+| `migrations/2026_01_22_001_auth_tables.php` | **Replaced.** Deprecation stub; points to `lupo-database/migrations/` SQL. No Illuminate. |
 | `migrations/2026_01_24_01_add_custom_path_to_lupo_contents.php` | **Replaced.** Deprecation stub; points to SQL file. |
 | `migrations/2026_01_24_02_add_semantic_aliases_and_overlays.php` | **Replaced.** Deprecation stub; points to SQL file. |
-| `database/migrations/add_custom_path_to_lupo_contents.sql` | **Added.** SQL equivalent of 2026_01_24_01 (run via PDO). |
-| `database/migrations/add_semantic_aliases_and_overlays.sql` | **Added.** SQL equivalent of 2026_01_24_02 (run via PDO). |
+| `lupo-database/migrations/add_custom_path_to_lupo_contents.sql` | **Added.** SQL equivalent of 2026_01_24_01 (run via PDO). |
+| `lupo-database/migrations/add_semantic_aliases_and_overlays.sql` | **Added.** SQL equivalent of 2026_01_24_02 (run via PDO). |
 
 ---
 
@@ -133,4 +133,4 @@ lupopedia.footer:
 
 1. **Auth checks:** Instantiate `new \App\Auth\AuthGuard($db)` and call `isAllowed()`, `getUnifiedUser()`, `updateUserActivity()` from your front controller.
 2. **Routing:** Load `$routes = require 'routes/auth_routes.php'` (and optionally `terminal_routes.php`) and dispatch by method + path to the mapped controller/method; pass input as array; send JSON or redirect from your bootstrap.
-3. **Migrations:** Run SQL from `database/migrations/*.sql` with your PDO connection; do not run Laravel migration runner or Illuminate migration classes.
+3. **Migrations:** Run SQL from `lupo-database/migrations/*.sql` with your PDO connection; do not run Laravel migration runner or Illuminate migration classes.

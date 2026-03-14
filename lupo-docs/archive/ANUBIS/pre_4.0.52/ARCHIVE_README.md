@@ -97,12 +97,12 @@ The following 6 ANUBIS-related files were archived during the 4.0.52 consolidati
 
 | File | Size | Original Location | Archive Location |
 |------|------|------------------|------------------|
-| ANUBIS_IMPLEMENTATION_SUMMARY.md | 7,607 bytes | docs/doctrine/ANUBIS/ | docs/archive/ANUBIS/pre_4.0.52/ |
-| ANUBIS_ORPHAN_RULES.md | 7,625 bytes | docs/doctrine/ANUBIS/ | docs/archive/ANUBIS/pre_4.0.52/ |
-| ANUBIS_OVERVIEW.md | 6,730 bytes | docs/doctrine/ANUBIS/ | docs/archive/ANUBIS/pre_4.0.52/ |
-| ANUBIS_PROGRAM_SPEC.md | 6,147 bytes | docs/doctrine/ANUBIS/ | docs/archive/ANUBIS/pre_4.0.52/ |
-| LILITH_ANUBIS_GUIDANCE.md | 7,441 bytes | docs/doctrine/ANUBIS/ | docs/archive/ANUBIS/pre_4.0.52/ |
-| LILITH_ANUBIS_GUIDANCE_FLIP.md | 2,844 bytes | docs/doctrine/ANUBIS/ | docs/archive/ANUBIS/pre_4.0.52/ |
+| ANUBIS_IMPLEMENTATION_SUMMARY.md | 7,607 bytes | lupo-docs/doctrine/ANUBIS/ | lupo-docs/archive/ANUBIS/pre_4.0.52/ |
+| ANUBIS_ORPHAN_RULES.md | 7,625 bytes | lupo-docs/doctrine/ANUBIS/ | lupo-docs/archive/ANUBIS/pre_4.0.52/ |
+| ANUBIS_OVERVIEW.md | 6,730 bytes | lupo-docs/doctrine/ANUBIS/ | lupo-docs/archive/ANUBIS/pre_4.0.52/ |
+| ANUBIS_PROGRAM_SPEC.md | 6,147 bytes | lupo-docs/doctrine/ANUBIS/ | lupo-docs/archive/ANUBIS/pre_4.0.52/ |
+| LILITH_ANUBIS_GUIDANCE.md | 7,441 bytes | lupo-docs/doctrine/ANUBIS/ | lupo-docs/archive/ANUBIS/pre_4.0.52/ |
+| LILITH_ANUBIS_GUIDANCE_FLIP.md | 2,844 bytes | lupo-docs/doctrine/ANUBIS/ | lupo-docs/archive/ANUBIS/pre_4.0.52/ |
 
 **Total Archived Files**: 6  
 **Total Size**: 38,394 bytes
@@ -111,16 +111,16 @@ The following 6 ANUBIS-related files were archived during the 4.0.52 consolidati
 
 All ANUBIS documentation is now consolidated in:
 
-**Canonical File**: `docs/doctrine/ANUBIS/ANUBIS_CANONICAL.md`
+**Canonical File**: `lupo-docs/doctrine/ANUBIS/ANUBIS_CANONICAL.md`
 
 ## Access Instructions
 
 ### For Historical Reference
-- Access archived files in: `docs/archive/ANUBIS/pre_4.0.52/`
+- Access archived files in: `lupo-docs/archive/ANUBIS/pre_4.0.52/`
 - These files are preserved for historical purposes only
 
 ### For Current Documentation
-- Use the canonical file: `docs/doctrine/ANUBIS/ANUBIS_CANONICAL.md`
+- Use the canonical file: `lupo-docs/doctrine/ANUBIS/ANUBIS_CANONICAL.md`
 - This is the single source of truth for ANUBIS documentation
 
 ## Consolidation Benefits

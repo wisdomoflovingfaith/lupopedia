@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\versions\4.0.39\TODO.md"
+  file_path_from_root: "lupo-docs\versions\4.0.39\TODO.md"
   file_hash: "6d5e27cec906f5480e8d2358c61e8444953d3a551b62289fde1f2803d8214baf"
-  file_path_from_root: "docs\versions\4.0.39\TODO.md"
+  file_path_from_root: "lupo-docs\versions\4.0.39\TODO.md"
   file_hash: "5ec5cb5c0e58ca90206953267cb7a88c7e288607705db92bb617b63df40d35a5"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -63,7 +63,7 @@ lupopedia.footer:
 
 ---
 wolfie.headers: {
-  file_path_from_root: "docs/versions/4.0.39/TODO.md",
+  file_path_from_root: "lupo-docs/versions/4.0.39/TODO.md",
   system_version: "4.0.39",
   purpose: "Task breakdown and progress tracking for version 4.0.39",
   last_modified_utc: "20260224",
@@ -80,7 +80,7 @@ wolfie.headers: {
 
 flip.footer: {
   inbound_edges: [
-    { from: "channels/42/broadcasts/20260224_kiro_version_4_0_39_COMPLETE.md", type: "references", weight: 1.0, hashtag: "#completion" }
+    { from: "lupo-channels/42/broadcasts/20260224_kiro_version_4_0_39_COMPLETE.md", type: "references", weight: 1.0, hashtag: "#completion" }
   ],
   outbound_edges: [
     { to: "CHANGELOG.md", type: "documented_in", weight: 1.0, hashtag: "#changelog" }
@@ -115,14 +115,14 @@ flip.footer: {
 ## 📄 PHASE 2: PRIORITY HEADER GENERATION (Lead: KIRO)
 
 - ✅ **Identification**
-  - ✅ Finalize `docs/versions/4.0.39/PRIORITY_FILES.md`
+  - ✅ Finalize `lupo-docs/versions/4.0.39/PRIORITY_FILES.md`
   - ✅ Map internal dependencies to prioritize central nodes
 - ✅ **Implementation**
   - ✅ **REDO: Batch Alpha (Crafty Syntax)**: All 97 files re-aligned with Living Registry semantic standards.
-  - ✅ Process Batch: Core Doctrine (docs/doctrine/*)
+  - ✅ Process Batch: Core Doctrine (lupo-docs/doctrine/*)
   - ✅ Process Batch: Core Services (lupo-includes/classes/*)
-  - ✅ Process Batch: Prompts (prompts/*)
-  - ✅ Process Batch: Channel Logs (channels/*)
+  - ✅ Process Batch: Prompts (lupo-prompts/*)
+  - ✅ Process Batch: Channel Logs (lupo-channels/*)
 
 ## 🔄 PHASE 3: BATCH MIGRATION WORKFLOW (Coordinated)
 
@@ -136,8 +136,8 @@ flip.footer: {
 
 ## 📑 PHASE 4: REPORTING & DOCUMENTATION (Lead: KIRO)
 
-- ✅ Create ANUBIS System Doctrine (`docs/doctrine/ANUBIS_FALLBACK_DOCTRINE.md`)
-- ✅ Establish Master ID Registry (`docs/registry/REGISTERED_IDS.md`)
+- ✅ Create ANUBIS System Doctrine (`lupo-docs/doctrine/ANUBIS_FALLBACK_DOCTRINE.md`)
+- ✅ Establish Master ID Registry (`lupo-docs/registry/REGISTERED_IDS.md`)
 - ✅ Weekly progress report in Channel 42
 - ✅ Final 4.0.39 Verification Summary
 

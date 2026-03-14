@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "doctrine"
-  file_path_from_root: "channels/0/content/federation_node_id/0/FLARE.md"
+  file_path_from_root: "lupo-channels/0/content/federation_node_id/0/FLARE.md"
   system_version: "4.0.53"
   last_modified_utc: "20260301"
   channel_id: 0
@@ -21,12 +21,12 @@ lupopedia.headers:
 
 lupopedia.edges:
   outbound_edges:
-    - { to: "docs/doctrine/FLARE/FLARE_DOCTRINE.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/DELEGATION_DOCTRINE.md", type: "references", weight: 1.0 }
-    - { to: "channels/0/actor_ai_running_check.md", type: "implementation", weight: 1.0 }
-    - { to: "channels/0/boot_enhancements_crafty_upgrade.md", type: "related", weight: 0.9 }
-    - { to: "docs/toons/lupo_sessions.toon.json", type: "schema_reference", weight: 0.9 }
-    - { to: "docs/toons/lupo_actors.toon.json", type: "schema_reference", weight: 0.9 }
+    - { to: "lupo-docs/doctrine/FLARE/FLARE_DOCTRINE.md", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/DELEGATION_DOCTRINE.md", type: "references", weight: 1.0 }
+    - { to: "lupo-channels/0/actor_ai_running_check.md", type: "implementation", weight: 1.0 }
+    - { to: "lupo-channels/0/boot_enhancements_crafty_upgrade.md", type: "related", weight: 0.9 }
+    - { to: "lupo-docs/toons/lupo_sessions.toon.json", type: "schema_reference", weight: 0.9 }
+    - { to: "lupo-docs/toons/lupo_actors.toon.json", type: "schema_reference", weight: 0.9 }
   semantic_tags: ["flare", "delegation", "ai_activation", "system_startup", "canonical"]
 
 lupopedia.footer:
@@ -49,7 +49,7 @@ The FLARE (File-Level Attribute and Relationship Exchange) protocol defines how 
 
 ### 2.1 The Rule
 
-> Any actor referenced in a `delegation_chain` that is not currently **active** (as defined in `channels/0/actor_ai_running_check.md`) MUST be automatically **activated** by the system.
+> Any actor referenced in a `delegation_chain` that is not currently **active** (as defined in `lupo-channels/0/actor_ai_running_check.md`) MUST be automatically **activated** by the system.
 
 ### 2.2 Activation Triggers
 
@@ -230,7 +230,7 @@ function processFlareFile($file_path, $db) {
 
 ### 6.1 Running Check Integration
 
-The activation logic integrates directly with the running check defined in `channels/0/actor_ai_running_check.md`:
+The activation logic integrates directly with the running check defined in `lupo-channels/0/actor_ai_running_check.md`:
 
 ```php
 function isActorAIRunning($actor_id, $db) {
@@ -274,7 +274,7 @@ If an actor in delegation chain doesn't exist:
 
 ## 8. Federation Node 0 Content
 
-This file (`channels/0/content/federation_node_id/0/FLARE.md`) serves as the canonical reference for FLARE protocol on Federation Node 0 (lupopedia.com).
+This file (`lupo-channels/0/content/federation_node_id/0/FLARE.md`) serves as the canonical reference for FLARE protocol on Federation Node 0 (lupopedia.com).
 
 **Related Federation Content:**
 - FLARE Definition: `http://www.lupopedia.com/FLARE`

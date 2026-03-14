@@ -28,7 +28,7 @@ lupopedia.headers:
 | Identity / purpose | `README.md` in this directory |
 | Registry | `lupo-database/lupopedia/actors/actor_id/registry.json` |
 | Boot / lifecycle | CHANGELOG (v4.0.53–4.0.54), system agent boot script |
-| Health / monitoring | `api/v1/health.php`, SystemHealthService |
+| Health / monitoring | `lupo-api/v1/health.php`, SystemHealthService |
 
 ## Troubleshooting
 

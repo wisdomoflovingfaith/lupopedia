@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\audits\OPERATOR_TO_ROLE_BASED_SWEEP_REPORT.md"
+  file_path_from_root: "lupo-docs\audits\OPERATOR_TO_ROLE_BASED_SWEEP_REPORT.md"
   file_hash: "94ecf35c470465fca5664b1fdc4a748edfb5490ecc893e5dba34008b4b2c622f"
-  file_path_from_root: "docs\audits\OPERATOR_TO_ROLE_BASED_SWEEP_REPORT.md"
+  file_path_from_root: "lupo-docs\audits\OPERATOR_TO_ROLE_BASED_SWEEP_REPORT.md"
   file_hash: "1faccef980673fca226dd9c5dd73e74a14b5010e12f40b75274a265e7c21638e"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -74,13 +74,13 @@ lupopedia.footer:
 | **lupo-includes/classes/AdminUsersHandler.php** | Table **channel_roles** → **actor_channel_roles**; **channel_role_id** → **actor_channel_role_id**; **role_type** → **role_key** for channel 1 (admin channel) role. |
 | **lupo-includes/themes/default/layouts/main_layout.php** | Comment: "channel operator interface" → "channel staff interface". |
 | **README.md** | "operator sessions" → "staff (captain/administrator/monitor) sessions"; uploads path "operators" removed. |
-| **database/migrations_legacy/migration_operator_to_actor_channel_roles.sql** | One-time migration. Updates channel 1 to Administration; copies lupo_channel_roles into lupo_actor_channel_roles for existing DBs. |
+| **lupo-database/migrations_legacy/migration_operator_to_actor_channel_roles.sql** | One-time migration. Updates channel 1 to Administration; copies lupo_channel_roles into lupo_actor_channel_roles for existing DBs. |
 
 **Unchanged by design**
 
 - **import_from_old_crafty_syntax.sql**: Keeps legacy table names (livehelp_operator_*, etc.) for ALTER/comment and data source; keeps `isoperator='Y'` for auth/actor import; no INSERT into lupo_operators; column `operator_user_id` in lupo_crafty_syntax_auto_invite retained (legacy column name).
-- **database/migrations_legacy/** and **old_crafty_syntax_3_7_5_start.sql**: Legacy; not modified.
-- **docs/** (notes_from_legacy, IMAGE_PHP_MIGRATION, etc.): Historical; not edited.
+- **lupo-database/migrations_legacy/** and **old_crafty_syntax_3_7_5_start.sql**: Legacy; not modified.
+- **lupo-docs/** (notes_from_legacy, IMAGE_PHP_MIGRATION, etc.): Historical; not edited.
 
 ---
 
@@ -132,7 +132,7 @@ No further edits were made to the importer in this sweep.
 
 ## 6. Migration SQL File for Live DB
 
-- **File:** `database/migrations_legacy/migration_operator_to_actor_channel_roles.sql`
+- **File:** `lupo-database/migrations_legacy/migration_operator_to_actor_channel_roles.sql`
 - **Contents:**
   1. UPDATE lupo_channels SET channel_key/channel_slug/channel_name/description/updated_ymdhis for channel_id=1 to Administration (BIGINT UTC timestamp).
   2. INSERT into lupo_actor_channel_roles from lupo_channel_roles where no matching (actor_id, channel_id, role_key) exists; actor_channel_role_id generated as MAX(actor_channel_role_id)+row_num; role_type → role_key.

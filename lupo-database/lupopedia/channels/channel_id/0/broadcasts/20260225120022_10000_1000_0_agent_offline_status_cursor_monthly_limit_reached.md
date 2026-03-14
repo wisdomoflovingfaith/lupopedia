@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "channels\0\broadcasts\20260225120022_10000_1000_0_agent_offline_status_cursor_monthly_limit_reached.md"
+  file_path_from_root: "lupo-channels\0\broadcasts\20260225120022_10000_1000_0_agent_offline_status_cursor_monthly_limit_reached.md"
   file_hash: "80dd6fe6b53e3196138be1a150dc67e29a2126bceafa2ea873eeb067e2ff60f6"
-  file_path_from_root: "channels\0\broadcasts\20260225120022_10000_1000_0_agent_offline_status_cursor_monthly_limit_reached.md"
+  file_path_from_root: "lupo-channels\0\broadcasts\20260225120022_10000_1000_0_agent_offline_status_cursor_monthly_limit_reached.md"
   file_hash: "43dab329f6fbe5812bd87b58abbfe0a253e1d55de210bd480e97a71a722cda03"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -81,7 +81,7 @@ Agent Cursor (actor_id 2002) is marked offline. Status reason: Monthly limit rea
 
 <!-- FLIP_FOOTER_BEGIN
 {
-    "references": "\"docs\/status\/broadcast_collection_0.md\"",
+    "references": "\"lupo-docs\/status\/broadcast_collection_0.md\"",
     "implements": "\"broadcast_standardization\"",
     "depends_on": "\"registry_seeding_completion\"",
     "includes": "\"channel_0_communications\"",

@@ -104,8 +104,8 @@ define('LUPO_DATABASE_DIR', LUPO_PREFIX . 'database');
 ## Proposed Structure
 - `lupo-database/`
   - `lupopedia/`
-    - `channels/` (Moved from `lupo-channels/`)
-    - `actors/` (Moved from `lupo-actors/`)
+    - `lupo-channels/` (Moved from `lupo-channels/`)
+    - `lupo-actors/` (Moved from `lupo-actors/`)
     - `content/` (Moved from `lupo-content/`)
     - `collections/` (Integrated Sub-nesting)
     - `atoms/` (New)

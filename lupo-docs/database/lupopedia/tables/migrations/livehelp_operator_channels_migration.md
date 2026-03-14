@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,7 +35,7 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\database\lupopedia\tables\livehelp_operator_channels_migration.md"
+  file_path_from_root: "lupo-docs\database\lupopedia\tables\livehelp_operator_channels_migration.md"
   file_hash: "15c18d64f037f881ca3dae7de40a41a2daaf76b121003ed79d260445c906fb39"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -57,7 +57,7 @@ lupopedia.footer:
 
 ---
 lupopedia.headers: {
-  file_path_from_root: "docs/database/lupopedia/tables/livehelp_operator_channels_migration.md",
+  file_path_from_root: "lupo-docs/database/lupopedia/tables/livehelp_operator_channels_migration.md",
   file_hash: "cccc8d6058e9ccbee1ba1c24906e83a549183d542e62dfb7b71d8619bd924489"
   system_version: "4.0.50"
   channel_id: 42,
@@ -77,17 +77,17 @@ lupopedia.headers: {
 
 flip.footer: {
   inbound_edges: [
-    { from: "docs/doctrine/migrations/MIGRATION_MAPPING_REFERENCE.md", type: "references", weight: 0.9, hashtag: "#index" },
-    { from: "database/migrations/import_from_old_crafty_syntax.sql", type: "documents", weight: 0.7, hashtag: "#migration" }
+    { from: "lupo-docs/doctrine/migrations/MIGRATION_MAPPING_REFERENCE.md", type: "references", weight: 0.9, hashtag: "#index" },
+    { from: "lupo-database/migrations/import_from_old_crafty_syntax.sql", type: "documents", weight: 0.7, hashtag: "#migration" }
   ],
   outbound_edges: [
-    { to: "docs/doctrine/database/channels.md", type: "documents", weight: 0.9, hashtag: "#target_system" },
-    { to: "docs/doctrine/database/actor_channel_roles.md", type: "documents", weight: 0.8, hashtag: "#permissions" },
-    { to: "database/migrations/old_crafty_syntax_3_7_5_start.sql", type: "references", weight: 0.7, hashtag: "#source" }
+    { to: "lupo-docs/doctrine/database/channels.md", type: "documents", weight: 0.9, hashtag: "#target_system" },
+    { to: "lupo-docs/doctrine/database/actor_channel_roles.md", type: "documents", weight: 0.8, hashtag: "#permissions" },
+    { to: "lupo-database/migrations/old_crafty_syntax_3_7_5_start.sql", type: "references", weight: 0.7, hashtag: "#source" }
   ],
   referenced_by_actors: [1001, 10000],
   references: {
-    by_files: ["docs/doctrine/migrations/MIGRATION_MAPPING_REFERENCE.md"],
+    by_files: ["lupo-docs/doctrine/migrations/MIGRATION_MAPPING_REFERENCE.md"],
     by_actors: [1001, 10000]
   },
   semantic_tags: ["livehelp_operator_channels_mapping", "dropped_table", "presence_system", "confusing_legacy"],

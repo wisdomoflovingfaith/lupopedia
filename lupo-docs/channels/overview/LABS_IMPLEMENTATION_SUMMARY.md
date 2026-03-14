@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\channels\overview\LABS_IMPLEMENTATION_SUMMARY.md"
+  file_path_from_root: "lupo-docs\channels\overview\LABS_IMPLEMENTATION_SUMMARY.md"
   file_hash: "0d8838ee023224a84cb88d272438150955ee5df8b808c8082cccbc098ec7bf58"
-  file_path_from_root: "docs\channels\overview\LABS_IMPLEMENTATION_SUMMARY.md"
+  file_path_from_root: "lupo-docs\channels\overview\LABS_IMPLEMENTATION_SUMMARY.md"
   file_hash: "9e235d95fd8c466ced172ac8a9b732ef95b54cd512ba132c5a58d4c6d26b2c9e"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -102,7 +102,7 @@ All components of LABS-001 (Lupopedia Actor Baseline State) have been implemente
 ## FILES CREATED
 
 ### 1. Doctrine Document
-**Path**: `docs/doctrine/LUPOPEDIA_ACTOR_BASELINE_STATE_DOCTRINE.md`
+**Path**: `lupo-docs/doctrine/LUPOPEDIA_ACTOR_BASELINE_STATE_DOCTRINE.md`
 
 Complete governance artifact defining:
 - 10 mandatory declarations
@@ -122,14 +122,14 @@ PHP class implementing:
 - Revalidation tracking
 
 ### 3. Database Migration
-**Path**: `database/migrations/3.1.6_create_labs_declarations_table.sql`
+**Path**: `lupo-database/migrations/3.1.6_create_labs_declarations_table.sql`
 
 Creates two tables:
 - `lupo_labs_declarations` - Stores LABS declarations and certificates
 - `lupo_labs_violations` - Tracks violations for audit
 
 ### 4. Handshake Template
-**Path**: `docs/templates/LABS_HANDSHAKE_TEMPLATE.md`
+**Path**: `lupo-docs/templates/LABS_HANDSHAKE_TEMPLATE.md`
 
 Reusable template for actors to complete LABS declarations with:
 - All 10 declaration fields
@@ -208,7 +208,7 @@ Reusable template for actors to complete LABS declarations with:
 
 1. **Run Database Migration**
    ```sql
-   -- Execute: database/migrations/3.1.6_create_labs_declarations_table.sql
+   -- Execute: lupo-database/migrations/3.1.6_create_labs_declarations_table.sql
    ```
 
 2. **Test LABS Validation**

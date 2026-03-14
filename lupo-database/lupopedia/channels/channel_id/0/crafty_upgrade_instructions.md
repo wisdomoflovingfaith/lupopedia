@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "instruction"
-  file_path_from_root: "channels/0/boot_enhancements_crafty_upgrade.md"
+  file_path_from_root: "lupo-channels/0/boot_enhancements_crafty_upgrade.md"
   system_version: "4.0.53"
   last_modified_utc: "20260301"
   channel_id: 0
@@ -11,7 +11,7 @@ lupopedia.headers:
   delegation_chain: "0:10000"
   artifact_type: "update"
   artifact_kind: "agent_instruction"
-  purpose: "Instruct Windsurf to implement system agent boot script enhancements for Crafty Syntax upgrade, run via web-side PHP during install, seed active actors/agents on Channel 0 with Task 1"
+  purpose: "Instruct Windsurf to implement system agent boot script enhancements for Crafty Syntax upgrade, run via web-side PHP during install, seed active lupo-actors/agents on Channel 0 with Task 1"
   mood_rgb: "32CD32"  # LimeGreen for implementation go-ahead
   traits: ["boot_enhancements", "crafty_upgrade", "install_task", "v4.0.53"]
   tags: ["windsurf", "boot_script", "crafty_syntax", "ai_agents", "database_seed"]
@@ -22,8 +22,8 @@ lupopedia.edges:
     - { to: "bin/boot_system_agent.php", type: "implementation_reference", weight: 1.0 }
     - { to: "install_new_lupopedia.sql", type: "schema_reference", weight: 1.0 }
     - { to: "http://www.lupopedia.com/changelog", type: "update_target", weight: 0.9 }
-    - { to: "docs/doctrine/FLARE/FLARE_DOCTRINE.md", type: "references", weight: 0.8 }
-    - { to: "docs/toons/lupo_channel_boot_lifecycle.toon.json", type: "related_schema", weight: 0.8 }
+    - { to: "lupo-docs/doctrine/FLARE/FLARE_DOCTRINE.md", type: "references", weight: 0.8 }
+    - { to: "lupo-docs/toons/lupo_channel_boot_lifecycle.toon.json", type: "related_schema", weight: 0.8 }
   semantic_tags: ["crafty_upgrade", "install_process", "ai_boot"]
 
 lupopedia.footer:
@@ -55,7 +55,7 @@ Per Wolfie's directive (@lupopedia), implement enhancements to the system agent 
   - **DB Changes**: If needed (e.g., new fields/indexes), apply now (before 4.1.0). Propose in changelog if major.
 - **Integration with Boot**:
   - Enhance `bin/boot_system_agent.php`: Call web-side logic if install mode (e.g., --install flag).
-  - But primary: Web PHP script drives install/upgrade.
+  - But primary: Web PHP script drives lupo-install/upgrade.
 - **Error Handling**: Log to `lupo_channel_logs` (channel_id=0); escalate fails to `lupo_channel_escalations`.
 - **Backward Compat**: Handle existing installs (skip seed if data exists).
 

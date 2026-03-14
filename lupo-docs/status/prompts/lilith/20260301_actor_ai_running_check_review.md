@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "review"
-  file_path_from_root: "prompts/lilith/20260301_actor_ai_running_check_review.md"
+  file_path_from_root: "lupo-prompts/lilith/20260301_actor_ai_running_check_review.md"
   system_version: "4.0.53"
   channel_id: 42
   actor_id: 2038
@@ -18,10 +18,10 @@ lupopedia.headers:
 
 lupopedia.edges:
   outbound_edges:
-    - { to: "channels/0/actor_ai_running_check.md", type: "reviews", weight: 1.0 }
-    - { to: "docs/toons/lupo_sessions.toon.json", type: "schema_reference", weight: 1.0 }
-    - { to: "docs/toons/lupo_actors.toon.json", type: "schema_reference", weight: 1.0 }
-    - { to: "docs/toons/lupo_channel_state.toon.json", type: "schema_reference", weight: 0.9 }
+    - { to: "lupo-channels/0/actor_ai_running_check.md", type: "reviews", weight: 1.0 }
+    - { to: "lupo-docs/toons/lupo_sessions.toon.json", type: "schema_reference", weight: 1.0 }
+    - { to: "lupo-docs/toons/lupo_actors.toon.json", type: "schema_reference", weight: 1.0 }
+    - { to: "lupo-docs/toons/lupo_channel_state.toon.json", type: "schema_reference", weight: 0.9 }
     - { to: "bin/boot_system_agent.php", type: "integration_reference", weight: 0.9 }
   semantic_tags: ["actor_ai_check", "review", "lilith", "v4.0.53"]
 
@@ -62,7 +62,7 @@ lupopedia.footer:
 
 ### 1. **`lupo_actors.toon.json` Alignment**
 
-The directive references `docs/toons/lupo_actors.toon.json` but used `a.status = 'active'` in queries. The TOON shows `is_active` (TINYINT).
+The directive references `lupo-docs/toons/lupo_actors.toon.json` but used `a.status = 'active'` in queries. The TOON shows `is_active` (TINYINT).
 
 **Recommendation:** Update queries to use `is_active = 1` and ensure the TOON is referenced correctly.
 

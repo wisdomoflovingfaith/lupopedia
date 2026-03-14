@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\oauth_authentication.md"
+  file_path_from_root: "lupo-docs\oauth_authentication.md"
   file_hash: "cfefa69ff2401cf2feab44089dcec98b5865093b867ac916cd1582c31f88102b"
-  file_path_from_root: "docs\oauth_authentication.md"
+  file_path_from_root: "lupo-docs\oauth_authentication.md"
   file_hash: "9221ddd49ec39e5a4d13c4e63535855537b29bbc338ebeaa5103d39dd6d373b8"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -413,6 +413,6 @@ CREATE TABLE lupo_sessions (
 **Last Updated:** 2026-02-23  
 **Maintained By:** Lupopedia Development Team  
 **Related Documentation:** 
-- `docs/authentication.md`
-- `docs/actor_model.md`
-- `docs/session_management.md`
+- `lupo-docs/authentication.md`
+- `lupo-docs/actor_model.md`
+- `lupo-docs/session_management.md`

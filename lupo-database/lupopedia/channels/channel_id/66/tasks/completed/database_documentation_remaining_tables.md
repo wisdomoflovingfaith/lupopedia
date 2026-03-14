@@ -90,9 +90,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "channels\42\tasks\completed\database_documentation_remaining_tables.md"
+  file_path_from_root: "lupo-channels\42\tasks\completed\database_documentation_remaining_tables.md"
   file_hash: "410b75c6eb08899efb9e142286b5625c644987f03bc6c674d97c58f4c8cf185b"
-  file_path_from_root: "channels\42\tasks\completed\database_documentation_remaining_tables.md"
+  file_path_from_root: "lupo-channels\42\tasks\completed\database_documentation_remaining_tables.md"
   file_hash: "f60c2df23f9f4a53ce89733a3d08f3084366321d1267e08e064fe96f8ec9d608"
   last_updated_utc: "20260228"
   system_version: "4.0.50"

@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\channels\gov\MIGRATION_APPROVAL_PROTOCOL.md"
+  file_path_from_root: "lupo-docs\channels\gov\MIGRATION_APPROVAL_PROTOCOL.md"
   file_hash: "347d5bddc95a75663c5cab4703f633ac88e8d0d1a6e299f130176c9bbc297766"
-  file_path_from_root: "docs\channels\gov\MIGRATION_APPROVAL_PROTOCOL.md"
+  file_path_from_root: "lupo-docs\channels\gov\MIGRATION_APPROVAL_PROTOCOL.md"
   file_hash: "0c790031ae5198e774d8e11464577a58bb755c101c4020d472bbbee4a66b1f7a"
   last_updated_utc: "20260228"
   system_version: "4.0.50"

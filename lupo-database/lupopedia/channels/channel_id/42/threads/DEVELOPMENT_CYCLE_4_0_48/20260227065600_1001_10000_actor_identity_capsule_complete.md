@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "channels\42\threads\DEVELOPMENT_CYCLE_4_0_48\20260227065600_1001_10000_actor_identity_capsule_complete.md"
+  file_path_from_root: "lupo-channels\42\threads\DEVELOPMENT_CYCLE_4_0_48\20260227065600_1001_10000_actor_identity_capsule_complete.md"
   file_hash: "bc87734292d36ff8f580a2488a09f98ee63cd5eb9d4e8c1e1e9625d89aaedc25"
-  file_path_from_root: "channels\42\threads\DEVELOPMENT_CYCLE_4_0_48\20260227065600_1001_10000_actor_identity_capsule_complete.md"
+  file_path_from_root: "lupo-channels\42\threads\DEVELOPMENT_CYCLE_4_0_48\20260227065600_1001_10000_actor_identity_capsule_complete.md"
   file_hash: "a3707d24ffbb9b6247003be68499b6c2c0ea2f953b50f694de8a6cbe63d630b4"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -62,7 +62,7 @@ lupopedia.footer:
 ---
 
 wolfie.headers: {
-  file_path_from_root: "channels/42/threads/DEVELOPMENT_CYCLE_4_0_48/20260227065600_1001_10000_actor_identity_capsule_complete.md",
+  file_path_from_root: "lupo-channels/42/threads/DEVELOPMENT_CYCLE_4_0_48/20260227065600_1001_10000_actor_identity_capsule_complete.md",
   system_version: "4.0.48",
   channel_id: 42,
   actor_id: 1001,
@@ -74,11 +74,11 @@ wolfie.headers: {
 }
 flip.footer: {
   outbound_edges: [
-    { to: "database/migrations/migration_4.0.48_actor_identity_capsule.sql", type: "implements", weight: 1.0 },
-    { to: "database/migrations/install_new_lupopedia.sql", type: "enhances", weight: 0.9 },
-    { to: "scripts/sync_actors_to_db.php", type: "implements", weight: 0.8 },
-    { to: "scripts/export_actor.sh", type: "enhances", weight: 0.7 },
-    { to: "scripts/import_actor.sh", type: "enhances", weight: 0.7 }
+    { to: "lupo-database/migrations/migration_4.0.48_actor_identity_capsule.sql", type: "implements", weight: 1.0 },
+    { to: "lupo-database/migrations/install_new_lupopedia.sql", type: "enhances", weight: 0.9 },
+    { to: "lupo-scripts/sync_actors_to_db.php", type: "implements", weight: 0.8 },
+    { to: "lupo-scripts/export_actor.sh", type: "enhances", weight: 0.7 },
+    { to: "lupo-scripts/import_actor.sh", type: "enhances", weight: 0.7 }
   ],
   semantic_tags: ["identity_capsule", "filesystem_database_sync", "portability", "4.0.48", "semantic_os"]
 }
@@ -112,7 +112,7 @@ Successfully established the **Actor Identity Capsule** system - a filesystem-fi
 - **Customizable Identity**: Installation wizard can override defaults
 
 ### 3. 🔄 Bidirectional Sync Script
-- **PHP 5.3 Compatible**: `scripts/sync_actors_to_db.php`
+- **PHP 5.3 Compatible**: `lupo-scripts/sync_actors_to_db.php`
 - **Comprehensive Sync**:
   - WHO.json → `lupo_actors.metadata_json`
   - resume.json → `lupo_actor_history`
@@ -121,12 +121,12 @@ Successfully established the **Actor Identity Capsule** system - a filesystem-fi
 - **Doctrine Compliant**: Uses `DatabaseFactory::getConnection()` and prepared statements
 
 ### 4. 🗃️ Identity Capsule Portability
-- **Enhanced Export**: `scripts/export_actor.sh`
+- **Enhanced Export**: `lupo-scripts/export_actor.sh`
   - Complete directory structure export
   - Database validation records
   - SHA256 checksums for integrity
   - Portable TAR.GZ archives with metadata
-- **Robust Import**: `scripts/import_actor.sh`
+- **Robust Import**: `lupo-scripts/import_actor.sh`
   - Archive validation and extraction
   - Checksum verification
   - Metadata compatibility checking
@@ -139,11 +139,11 @@ Successfully established the **Actor Identity Capsule** system - a filesystem-fi
 
 ### Filesystem-First Design
 ```
-actors/10000/                    # Source of Truth
+lupo-actors/10000/                    # Source of Truth
 ├── WHO.json                    # Identity → lupo_actors.metadata_json
 ├── history/resume.json         # Achievements → lupo_actor_history
 ├── tasks/current_focus.json    # Tasks → lupo_tasks
-└── meta/flare.json            # Relationships → lupo_actor_edges
+└── lupo-meta/flare.json            # Relationships → lupo_actor_edges
 ```
 
 ### Database Enhancement
@@ -163,23 +163,23 @@ actors/10000/                    # Source of Truth
 
 ### Export Actor with Validation
 ```bash
-sh scripts/export_actor.sh 10000 --checksum
+sh lupo-scripts/export_actor.sh 10000 --checksum
 # Creates: exports/actor_10000_identity_capsule_20260227_065600.tar.gz
 ```
 
 ### Import with Validation
 ```bash
-sh scripts/import_actor.sh exports/actor_10000_identity_capsule_20260227_065600.tar.gz --validate
+sh lupo-scripts/import_actor.sh exports/actor_10000_identity_capsule_20260227_065600.tar.gz --validate
 ```
 
 ### Sync Single Actor
 ```bash
-php scripts/sync_actors_to_db.php -a 10000
+php lupo-scripts/sync_actors_to_db.php -a 10000
 ```
 
 ### Sync All Actors
 ```bash
-php scripts/sync_actors_to_db.php
+php lupo-scripts/sync_actors_to_db.php
 ```
 
 ---

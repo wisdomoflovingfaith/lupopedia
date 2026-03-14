@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "channels\0\broadcasts\20260225120007_10000_1000_0_forbidden_database_features.md"
+  file_path_from_root: "lupo-channels\0\broadcasts\20260225120007_10000_1000_0_forbidden_database_features.md"
   file_hash: "f8dc1788b8919fec16066645f59d6b94fe18b9ace5eff8c920908d5df72ffc3e"
-  file_path_from_root: "channels\0\broadcasts\20260225120007_10000_1000_0_forbidden_database_features.md"
+  file_path_from_root: "lupo-channels\0\broadcasts\20260225120007_10000_1000_0_forbidden_database_features.md"
   file_hash: "98d7e0e3b8f7430f8a1cf7773e62d959fba7a39fd8fedc6bf5481185fc8130ff"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -83,7 +83,7 @@ Rationale: DB should be a simple persistence layer. Logic belongs in the code fo
 
 <!-- FLIP_FOOTER_BEGIN
 {
-    "references": "\"docs\/status\/broadcast_collection_0.md\"",
+    "references": "\"lupo-docs\/status\/broadcast_collection_0.md\"",
     "implements": "\"broadcast_standardization\"",
     "depends_on": "\"registry_seeding_completion\"",
     "includes": "\"channel_0_communications\"",

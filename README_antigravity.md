@@ -12,7 +12,7 @@ lupopedia.metadata:
   title:
     - { schema_ref: "lupo_metadata", entity_type: "file", meta_type: "property", property_value: "Lupopedia README", channel_id: 42, class_name: "lupopedia_metadata", created_ymdhis: 20260313000000, updated_ymdhis: 20260313000000 }
   description:
-    - { schema_ref: "lupo_metadata", entity_type: "file", meta_type: "property", property_value: "Primary project documentation and onboarding — Install & upgrade validation, channels/actors/agents, GitHub repository strategy.", channel_id: 42, class_name: "lupopedia_metadata", created_ymdhis: 20260313000000, updated_ymdhis: 20260313000000 }
+    - { schema_ref: "lupo_metadata", entity_type: "file", meta_type: "property", property_value: "Primary project documentation and onboarding — Install & upgrade validation, lupo-channels/actors/agents, GitHub repository strategy.", channel_id: 42, class_name: "lupopedia_metadata", created_ymdhis: 20260313000000, updated_ymdhis: 20260313000000 }
   keywords:
     - { schema_ref: "lupo_metadata", entity_type: "file", meta_type: "property", property_value: "readme, getting_started, semantic_os, multi_agent, v4.0.74", channel_id: 42, class_name: "lupopedia_metadata", created_ymdhis: 20260313000000, updated_ymdhis: 20260313000000 }
   author:
@@ -34,7 +34,7 @@ lupopedia.headers:
   delegation_chain: "wolfie:root"
   artifact_type: "guide"
   artifact_kind: "documentation"
-  purpose: "Primary project documentation and onboarding — Install & upgrade validation, channels/actors/agents, GitHub repository strategy"
+  purpose: "Primary project documentation and onboarding — Install & upgrade validation, lupo-channels/actors/agents, GitHub repository strategy"
   mood_rgb: "4169E1"
   traits: ["essential", "entrypoint", "onboarding", "v4.0.74"]
   tags: ["readme", "getting_started", "semantic_os", "multi_agent", "v4.0.74"]
@@ -52,11 +52,11 @@ lupopedia.session:
 
 lupopedia.edges:
   outbound_edges:
-    - { to: "docs/HELP.md", type: "references", weight: 1.0 }
-    - { to: "docs/CLI.md", type: "references", weight: 0.95 }
-    - { to: "docs/DOCTOR_HEALTH_CHECK.md", type: "references", weight: 0.9 }
-    - { to: "docs/doctrine/migrations/MIGRATION_MAPPING_REFERENCE.md", type: "references", weight: 0.85 }
-    - { to: "docs/doctrine/", type: "references", weight: 0.9 }
+    - { to: "lupo-docs/HELP.md", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/CLI.md", type: "references", weight: 0.95 }
+    - { to: "lupo-docs/DOCTOR_HEALTH_CHECK.md", type: "references", weight: 0.9 }
+    - { to: "lupo-docs/doctrine/migrations/MIGRATION_MAPPING_REFERENCE.md", type: "references", weight: 0.85 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 0.9 }
     - { to: "CONTRIBUTING.md", type: "references", weight: 0.85 }
   semantic_tags: ["project_overview", "onboarding", "semantic_os", "multi_agent"]
 
@@ -74,12 +74,12 @@ lupopedia.footer:
 
 # 🐺 Lupopedia Semantic OS v4.0.74
 
-[![Version](https://img.shields.io/badge/version-4.0.74-blue.svg)](docs/version.md)
-[![docs](https://img.shields.io/badge/docs-HELP.md-green)](docs/HELP.md)
+[![Version](https://img.shields.io/badge/version-4.0.74-blue.svg)](lupo-docs/version.md)
+[![docs](https://img.shields.io/badge/docs-HELP.md-green)](lupo-docs/HELP.md)
 
 ---
 
-**Current Release: [v4.0.74](docs/version.md) — Version hardened for shared hosting, edge schema grouping, and comments system.**  
+**Current Release: [v4.0.74](lupo-docs/version.md) — Version hardened for shared hosting, edge schema grouping, and comments system.**  
 This version focuses on finalizing **edge schema hardening** (support for grouped outbound edges), implementing the **one-time SQL runner** for shared-host compatibility, and adding the **comments system** with faucet traceability.
 
 **Architecture (onboarding):** **Actors** are the orchestration identities of Lupopedia. They coordinate and govern work through **faucets**, **sessions**, **channels**, **rules**, and **traits**. **Faucets** are execution surfaces, not identities. IDE surfaces (Cursor, Antigravity, Kiro, Windsurf, etc.) are faucets. **Sessions** carry runtime context. See [Channels, actors, and agents](#channels-actors-and-agents-in-lupopedia) and [Actor–Faucet ontology](lupo-docs/doctrine/ActorFaucetOntology.md).
@@ -125,7 +125,7 @@ Lupopedia solves fragmented human–AI workflows with a **unified Semantic OS** 
 
 **Target audience:** Developers building agents, admins managing systems, contributors to open-source AI-collab tooling.
 
-[Core doctrine](docs/doctrine/) | [LUPOPEDIA HEADERS](lupo-docs/doctrine/LUPOPEDIA_HEADERS/README.md) | [Comments System](lupo-docs/database/lupopedia/tables/active/lupo_comments.md)
+[Core doctrine](lupo-docs/doctrine/) | [LUPOPEDIA HEADERS](lupo-docs/doctrine/LUPOPEDIA_HEADERS/README.md) | [Comments System](lupo-docs/database/lupopedia/tables/active/lupo_comments.md)
 
 ---
 
@@ -252,11 +252,11 @@ Architectural rule: all real logic should live in `core`, with other repos servi
 ## Documentation
 
 Primary references:
-- `docs/HELP.md`
-- `docs/CLI.md`
-- `docs/DOCTOR_HEALTH_CHECK.md`
-- `docs/TOON_REFERENCE.md`
-- `docs/version.md`
+- `lupo-docs/HELP.md`
+- `lupo-docs/CLI.md`
+- `lupo-docs/DOCTOR_HEALTH_CHECK.md`
+- `lupo-docs/TOON_REFERENCE.md`
+- `lupo-docs/version.md`
 - `CHANGELOG.md`
 - `lupo-docs/doctrine/`
 

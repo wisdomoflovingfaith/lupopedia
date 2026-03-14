@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "help"
   lupopedia.edges: []
-  file_path_from_root: "docs\channels\architecture\protocols\dialog_extract_help.md"
+  file_path_from_root: "lupo-docs\channels\architecture\protocols\dialog_extract_help.md"
   file_hash: "698f95565d9ac31f65ff3dc38060ca279309eb10654658aa7c9e09791259609f"
-  file_path_from_root: "docs\channels\architecture\protocols\dialog_extract_help.md"
+  file_path_from_root: "lupo-docs\channels\architecture\protocols\dialog_extract_help.md"
   file_hash: "8efdd44dab4304efd34ba65292965c4fe451b93abc17e8958d3ade09bfb8b4ce"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -160,7 +160,7 @@ php agent dialog:extract -f HISTORY.md -o dialog_history.md
 
 ### Extract from Directory
 ```bash
-php agent dialog:extract -d docs/ -o changelog_dialog.md
+php agent dialog:extract -d lupo-docs/ -o changelog_dialog.md
 ```
 
 ### Extract Recursively
@@ -170,7 +170,7 @@ php agent dialog:extract -d . -r -o changelog_dialog.md
 
 ### Store to Database (New Thread)
 ```bash
-php agent dialog:extract -d docs/ --to-db --new-thread "Documentation Updates"
+php agent dialog:extract -d lupo-docs/ --to-db --new-thread "Documentation Updates"
 ```
 
 ### Store to Database (Existing Thread)
@@ -205,12 +205,12 @@ php agent dialog:extract -d . -r --limit 10 -o latest_10_dialogs.md
 
 ### Output as JSON
 ```bash
-php agent dialog:extract -d docs/ --json -o dialogs.json
+php agent dialog:extract -d lupo-docs/ --json -o dialogs.json
 ```
 
 ### Output as YAML
 ```bash
-php agent dialog:extract -d docs/ --yaml -o dialogs.yaml
+php agent dialog:extract -d lupo-docs/ --yaml -o dialogs.yaml
 ```
 
 ### Sort Oldest First

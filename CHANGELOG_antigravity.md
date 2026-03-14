@@ -99,19 +99,19 @@ This document tracks version history, focusing on key changes, task migrations, 
 - **Engagement Block:** Introduced `lupopedia.engagement` block (canonical order after `lupopedia.edges`) for tracking engagement metrics. Migration of `view_count`, `like_count`, and `share_count` from `lupopedia.footer` to `lupopedia.engagement` for better separation of metadata (headers) and engagement (metrics).
 - **Snapshot Requirement:** Mandatory `comment` or `meta` property requirement added for `lupopedia.edges` and `lupopedia.engagement` blocks. This ensures clarity that these blocks represent a point-in-time snapshot of the database state at artifact creation; the database remains the authority for latest values.
 - **Views Calculation:** Defined `views: x` as a calculated property within `lupopedia.engagement`, derived from site visit analytics.
-- **Planning Database Documentation:** Generated 55 TOON documentation files in `lupo-docs/database/lupopedia/tables/active/planning/` representing planned tables from `future_features_lupopedia.sql`. This provides a documentation layer for database evolution and agent reasoning. Script: `scripts/generate_planning_toons.py`.
+- **Planning Database Documentation:** Generated 55 TOON documentation files in `lupo-docs/database/lupopedia/tables/active/planning/` representing planned tables from `future_features_lupopedia.sql`. This provides a documentation layer for database evolution and agent reasoning. Script: `lupo-scripts/generate_planning_toons.py`.
 - **Antigravity Implementation Prompt:** Created `lupo-docs/prompts/20260313_create_planning_toon_files.md`, a reusable directive for regenerating planning schema documentation.
-- **Development Table Reorganization:** Audited active tables against codebase references using `scripts/audit_and_move_dev_tables.py`; relocated 8 unreferenced TOON and documentation files to `lupo-docs/database/lupopedia/tables/active/development/` to clarify implementation status.
-- **Release 4.0.73 Hub Collection:** Created a one-time migration (`database/migrations/20260313_release_4073_hub_collection.sql`) to establish a central "Release 4.0.73 Hub" collection with tabs for Core files, Headers Doctrine, and Agent Activity, based on common edit patterns across IDE agents.
+- **Development Table Reorganization:** Audited active tables against codebase references using `lupo-scripts/audit_and_move_dev_tables.py`; relocated 8 unreferenced TOON and documentation files to `lupo-docs/database/lupopedia/tables/active/development/` to clarify implementation status.
+- **Release 4.0.73 Hub Collection:** Created a one-time migration (`lupo-database/migrations/20260313_release_4073_hub_collection.sql`) to establish a central "Release 4.0.73 Hub" collection with tabs for Core files, Headers Doctrine, and Agent Activity, based on common edit patterns across IDE agents.
 - **Table Documentation Updates:** Updated `lupo-docs/database/lupopedia/tables/active/lupo_channels.md` and `lupo_edges.md` to version 4.0.73 standards, including automated discovery and population of PHP codebase references in `lupopedia.edges`.
-- **Grouped Edge Schema Support:** Verified that `lupo_edges` in the install SQL correctly supports the `edge_category` column and index for grouped outbound edges (doctrine: group key maps to `edge_category`). Created a one-time safe migration (`database/migrations/20260313_add_edge_category_to_lupo_edges.sql`) using simple ALTER statements (avoiding `INFORMATION_SCHEMA` for shared host compatibility).
-- **One-Time SQL Runner:** Created `scripts/run_one_time_sql.php`, a minimal, doctrine-aligned PHP script for running migrations on shared hosts. It handles idempotency by catching and skipping "Duplicate column/index" errors (soft-error strategy), allowing safe reruns without complex SQL logic.
+- **Grouped Edge Schema Support:** Verified that `lupo_edges` in the install SQL correctly supports the `edge_category` column and index for grouped outbound edges (doctrine: group key maps to `edge_category`). Created a one-time safe migration (`lupo-database/migrations/20260313_add_edge_category_to_lupo_edges.sql`) using simple ALTER statements (avoiding `INFORMATION_SCHEMA` for shared host compatibility).
+- **One-Time SQL Runner:** Created `lupo-scripts/run_one_time_sql.php`, a minimal, doctrine-aligned PHP script for running migrations on shared hosts. It handles idempotency by catching and skipping "Duplicate column/index" errors (soft-error strategy), allowing safe reruns without complex SQL logic.
 - **Namespace Documentation Expansion:** Expanded Namespace Documentation to include `core`, `collection`, `content`, `session`, `agent`, `federation`, `org`, and `dialog` namespaces. Updated `lupopedia.headers` for 18 additional database table documentation files (including `lupo_actors`, `lupo_channels`, `lupo_metadata`, `lupo_registry`, `lupo_atoms`, `lupo_aliases`, `lupo_collections`, `lupo_contents`, `lupo_sessions`, `lupo_agents`, etc.) to version 4.0.73 with consistent `lupopedia.edges` and `lupopedia.engagement` snapshot blocks.
 - **Auth Namespace Documentation:** Researched and implemented the "auth" namespace for database table documentation. Updated `lupo-docs/database/lupopedia/tables/active/lupo_auth_users.md`, `lupo_auth_providers.md`, and `active/development/lupo_auth_audit_log.md` with version 4.0.73 headers, `namespace: "auth"`, and mandatory `lupopedia.edges`/`lupopedia.engagement` snapshot metadata as per Antigravity governance standards.
 - **README & Root Hardening:** Updated `README.md` to version 4.0.73; refined focus description to reflect edge schema hardening and shared-host SQL compatibility work.
 - **DDL Doctrine Hardening:** Audited and corrected `lupo-database/lupopedia/mysql/install/install_new_lupopedia.sql` to enforce database doctrine (removed forbidden `tinyint(1)` display widths in `lupo_edges` and verified schema consistency).
 - **Database & Orchestrator Rules Audit:** Conducted a full audit of table documentation, TOON transferability, and orchestrator rule integration. Identified critical primary key documentation drift in `lupo_actors.md` and proposed the `lupo_orchestrator_rules` table for DB-canonical rule storage. Report: `lupo-docs/status/report_on_database_tables_antigravity.md`.
-- **Orchestrator rules + lupopedia.metadata headers (Cursor):** All 17 files in `lupo-rules/root/` received **lupopedia.init** and **lupopedia.metadata** blocks. README.md, CHANGELOG.md, and new root TODO.md received **lupopedia.metadata** blocks. **lupo_orchestrator_rules** table added to future_features and one-time migration `database/migrations/20260313_lupo_orchestrator_rules.sql`; sync script `scripts/sync_orchestrator_rules_to_db.php` reads `lupo-rules/root/*.md` and upserts into the table. `lupo_actors.md` given **lupopedia.init** and **lupopedia.metadata** (PK remains actor_id per doctrine). Report: `lupo-docs/status/implementation_cursor_audit_fixes.md`.
+- **Orchestrator rules + lupopedia.metadata headers (Cursor):** All 17 files in `lupo-rules/root/` received **lupopedia.init** and **lupopedia.metadata** blocks. README.md, CHANGELOG.md, and new root TODO.md received **lupopedia.metadata** blocks. **lupo_orchestrator_rules** table added to future_features and one-time migration `lupo-database/migrations/20260313_lupo_orchestrator_rules.sql`; sync script `lupo-scripts/sync_orchestrator_rules_to_db.php` reads `lupo-rules/root/*.md` and upserts into the table. `lupo_actors.md` given **lupopedia.init** and **lupopedia.metadata** (PK remains actor_id per doctrine). Report: `lupo-docs/status/implementation_cursor_audit_fixes.md`.
 - **lupopedia.metadata semantic correction (Cursor):** **lupopedia.metadata** was incorrectly implemented as a table-schema block (listing column names and SQL types). Corrected so that **lupopedia.metadata** represents a **snapshot of metadata rows/values** for the current file or entity, **grouped by property_key**, not the schema of `lupo_metadata`. Doctrine updated in `lupo-docs/doctrine/LUPOPEDIA_HEADERS/OPTIONAL_BLOCKS.md` (new section) and `LUPOPEDIA_HEADERS_FORMAT.md` (block list). All 18 affected files (lupo-rules/root/*.md, README.md, CHANGELOG.md, TODO.md, lupo_actors.md) now use the minimal valid form: `comment: "Snapshot of metadata for this file or entity at artifact creation."` when no metadata rows exist; when rows exist, structure is property_key → array of row-like objects (domain_id, schema_ref, entity_type, entity_id, meta_type, property_value, channel_id, etc.). Transferability: export from `lupo_metadata` into header; re-import from header into `lupo_metadata`. Do not list column datatypes in lupopedia.metadata.
 - **Comments System (4.0.73):** Implemented `lupo_comments` table for commenting on artifacts, documents, and content with faucet traceability. Added `lupopedia.comments` header block to LUPOPEDIA HEADERS format, formatted like `lupopedia.metadata` with records pulled from the `lupo_comments` table. Table includes `comment_id`, `target_type`, `target_id`, `channel_id`, `actor_id`, `faucet_id`, `comment_text`, `comment_type`, `parent_comment_id` for threading, and standard timestamp/deletion fields. Created comprehensive documentation in `lupo-docs/database/lupopedia/tables/active/lupo_comments.md` and seed data in `seed_comments_4.0.73.sql`. Example comment from Wolfie orchestrator with Windsurf faucet added to CHANGELOG.md header.
 
@@ -119,9 +119,9 @@ This document tracks version history, focusing on key changes, task migrations, 
 
 
 - **Version bump:** Updated LUPEDIA_VERSION, version.php, install.php, lupo.php, lupo-config atoms (global_atoms.yaml, GLOBAL_IMPORTANT_ATOMS.yaml), CHANGELOG.md, and README.md to 4.0.72. No schema or behavioral changes; release follows 4.0.71 push to GitHub.
-- **IDE agent required-reading prompt:** Added `prompts/20260313_ide_agent_4.0.72_required_reading.md`, a canonical ordered reading list (version context, core doctrine, changelog + pending tasks, channel 0/42 task indexes, schema/TOONs, audits, atoms, and rules) that every IDE agent must read before making changes in 4.0.72.
-- **lupopedia.footer — orchestrator required:** `orchestrator:` added as required metadata in `lupopedia.footer`. Doctrine updated in LUPOPEDIA_HEADERS_FORMAT.md (required fields: `orchestrator`, `last_verified_by`, `next_action`, plus version/last_verified). CHANGELOG and prompts/20260313_ide_agent_4.0.72_required_reading.md footers updated; lupo-tools flare_header_template.txt and flare_apply.py now include `orchestrator`; OPTIONAL_BLOCKS.md table updated.
-- **Windsurf audit prompt for gap check:** Added `prompts/20260313_windsurf_audit_4.0.69_4.0.71_gap_check.md`, instructing Windsurf to re-audit versions 4.0.69–4.0.71 (using CHANGELOG and Windsurf audit reports) and append any remaining gaps as tasks under the 4.0.72 “Still needing to be done” section.
+- **IDE agent required-reading prompt:** Added `lupo-prompts/20260313_ide_agent_4.0.72_required_reading.md`, a canonical ordered reading list (version context, core doctrine, changelog + pending tasks, channel 0/42 task indexes, schema/TOONs, audits, atoms, and rules) that every IDE agent must read before making changes in 4.0.72.
+- **lupopedia.footer — orchestrator required:** `orchestrator:` added as required metadata in `lupopedia.footer`. Doctrine updated in LUPOPEDIA_HEADERS_FORMAT.md (required fields: `orchestrator`, `last_verified_by`, `next_action`, plus version/last_verified). CHANGELOG and lupo-prompts/20260313_ide_agent_4.0.72_required_reading.md footers updated; lupo-tools flare_header_template.txt and flare_apply.py now include `orchestrator`; OPTIONAL_BLOCKS.md table updated.
+- **Windsurf audit prompt for gap check:** Added `lupo-prompts/20260313_windsurf_audit_4.0.69_4.0.71_gap_check.md`, instructing Windsurf to re-audit versions 4.0.69–4.0.71 (using CHANGELOG and Windsurf audit reports) and append any remaining gaps as tasks under the 4.0.72 “Still needing to be done” section.
 
 
 ### [4.0.71] — Lupopedia Synthesized Documentation Framework (2026-03-12)
@@ -130,12 +130,12 @@ This document tracks version history, focusing on key changes, task migrations, 
 
 - Implemented Lupopedia Synthesized Documentation Framework based on [lupo-docs/synthesized-framework.md](lupo-docs/synthesized-framework.md).
 - Published Antigravity Database Documentation Discrepancy Report: [DATABASE_DOCUMENTATION_DISCREPANCY_REPORT_ANTIGRAVITY.md](lupo-docs/status/DATABASE_DOCUMENTATION_DISCREPANCY_REPORT_ANTIGRAVITY.md).
-- Reorganized database table documentation: 178 active tables documented in `active/`, 16 deprecated tables in `deprecated/`, and 63 legacy/migration files in `migrations/`.
+- Reorganized database table documentation: 178 active tables documented in `active/`, 16 deprecated tables in `deprecated/`, and 63 lupo-legacy/migration files in `migrations/`.
 
 - Added canonical header enforcement to all new Markdown artifacts (synthesized.headers / LUPOPEDIA HEADERS).
 - Created database schema: `lupo_documentation_frameworks` in `future_features_lupopedia.sql` and one-time migration `20260313_documentation_frameworks_synthesized_framework.sql`.
-- Generated `scripts/query_edges.py` and `lupo-bin/query_edges.php` for live edge querying by namespace.
-- Developed `scripts/migrate_legacy_docs.py` for batch adding headers to legacy documentation (Phase 2).
+- Generated `lupo-scripts/query_edges.py` and `lupo-bin/query_edges.php` for live edge querying by namespace.
+- Developed `lupo-scripts/migrate_legacy_docs.py` for batch adding headers to legacy documentation (Phase 2).
 - Implemented `lupo-bin/antigravity_governance.php` for monitoring and rejecting non-compliant headers (Phase 4).
 - Added `.cursor/rules/synthesized-documentation-header.mdc` for IDE validation on file creation (Phase 5).
 - Registered example agents (Antigravity, Cursor, Windsurf, Kiro, JetBrains, Trae) with quadrant-based Markdown in `lupo-docs/synthesized/agent_registrations/`.
@@ -145,7 +145,7 @@ This document tracks version history, focusing on key changes, task migrations, 
 
 - **Audit Completion:** Performed authoritative audit of semantic navigation database requirements. Identified and corrected missing/incomplete table schemas for Edges, Contexts, Folders, Hashtags, and Q/A.
 - **Database Expansion:** Implemented missing mapping and summary tables: `lupo_paths_summary`, `lupo_reference_map`, `lupo_collection_links`, `lupo_collection_map`, `lupo_edge_types`, `lupo_edge_map`, `lupo_questions`, `lupo_answers`, and `lupo_question_map`.
-- **Authoritative Migration:** Created one-time migration `database/migrations/20260313_authoritative_semantic_navbar_rebuild.sql` and updated canonical `install_new_lupopedia.sql` with these tables.
+- **Authoritative Migration:** Created one-time migration `lupo-database/migrations/20260313_authoritative_semantic_navbar_rebuild.sql` and updated canonical `install_new_lupopedia.sql` with these tables.
 - **REST API Endpoints:** Developed unified semantic API controller `lupo-includes/modules/api/semantic-navbar-api.php` and updated `module-loader.php` to serve `/lupopedia/<type>/<slug>` JSON endpoints for edges, contexts, hashtags, folders, and qa.
 - **JS Generator:** Implemented PHP-to-JS generator `lupo-includes/modules/nav/semantic-navbar-js.php` (accessible via `/lupopedia/nav/semantic-navbar`) that renders a premium floating navbar with lazy-loading popovers and style injection for rich aesthetics.
 - **Status Report:** Detailed the rebuild process in [lupo-docs/status/ANTIGRAVITY_SEMANTIC_NAVBAR_REBUILD_4.0.71.md](lupo-docs/status/ANTIGRAVITY_SEMANTIC_NAVBAR_REBUILD_4.0.71.md).
@@ -160,7 +160,7 @@ This document tracks version history, focusing on key changes, task migrations, 
 
 - Implemented DB-backed session authority (Model A): browser stores only `session_id`; all protected data (actor_id, roles, CSRF, IP/UA hash, last activity) in `lupo_sessions`. Never use `$_SESSION['actor_id']`; resolve identity via `Session::loadById($db, session_id()); $session->actor_id`.
 - Removed signed session payloads and JWT for web sessions; DB is canonical source of truth. Session revocation is DB-driven (delete row); session rotation on login.
-- Updated installer SQL: replaced `lupo_sessions` with canonical Model A schema (session_id, actor_id, federation_node_id, ip_hash, ua_hash, csrf_token, last_activity_ymdhis, created_ymdhis, updated_ymdhis, name_key, is_named, metadata). One-time migration: `database/migrations/20260313_session_model_rewrite.sql` (drops legacy unified_sessions, sessions, session_data, lupo_sessions; creates new lupo_sessions).
+- Updated installer SQL: replaced `lupo_sessions` with canonical Model A schema (session_id, actor_id, federation_node_id, ip_hash, ua_hash, csrf_token, last_activity_ymdhis, created_ymdhis, updated_ymdhis, name_key, is_named, metadata). One-time migration: `lupo-database/migrations/20260313_session_model_rewrite.sql` (drops legacy unified_sessions, sessions, session_data, lupo_sessions; creates new lupo_sessions).
 - Refactored `App\Auth\Session`: `Session::loadById($db, $session_id)`, `Session::create($db, $actor_id)`, `$session->touch()`, `$session->destroy()`, `$session->rotate()`. CSRF token stored in DB; `lupo_get_csrf_token()` reads from Session.
 - Replaced all `$_SESSION['user_id']` / `$_SESSION['actor_id']` usage with `$lupo_session->getActorId()` or Session::loadById. Updated auth-controller, oauth-controller, header, main_layout, basic_layout, collections_dropdown, list_user_collections, security.php, admin_bootstrap.
 - New doctrine: `lupo-docs/doctrine/SESSION_MODEL.md`. Updated `lupo_sessions` table doc and SESSION_RECONCILIATION_DOCTRINE.
@@ -180,9 +180,9 @@ This document tracks version history, focusing on key changes, task migrations, 
 - **One-time migrations on existing 4.0.x DBs** — Run `20260313_lilith_traits_authorization_faucet.sql` and `20260313_collections_tabs_navigation_4_0_69.sql` on databases installed before these changes; record in `lupo_schema_migrations`. Fresh installs get full schema from `install_new_lupopedia.sql` only.
 - **Faucet traceability at runtime** — Ensure all message and session creation paths populate `source_faucet_slug` / `source_faucet_instance_id` and `faucet_slug` / `faucet_instance_id` from session/runtime where available.
 - **Collections UI** — Wire global nav and channel sidebar to `getCollectionsForNavMenu()` and `getCollectionsForChannel($channelId)`; implement tab activation and item rendering for artifact/content/url/path.
-- **SessionCustodian** — Optional: run `scripts/session_custodian.php` (and/or Antigravity governance) to audit/correct `lupo-database/sessions/*.md` (e.g. paired_actor_id drift).
-- **Doc–schema consistency** — Run `scripts/check_doc_schema_consistency.py` periodically; consider integrating in CI or pre-commit.
-- **TOON regeneration** — After applying migrations to a live DB, run `python scripts/generate_toon_files.py` so TOONs match current schema.
+- **SessionCustodian** — Optional: run `lupo-scripts/session_custodian.php` (and/or Antigravity governance) to audit/correct `lupo-database/sessions/*.md` (e.g. paired_actor_id drift).
+- **Doc–schema consistency** — Run `lupo-scripts/check_doc_schema_consistency.py` periodically; consider integrating in CI or pre-commit.
+- **TOON regeneration** — After applying migrations to a live DB, run `python lupo-scripts/generate_toon_files.py` so TOONs match current schema.
 - **Database Documentation Program** — 5 IDE agents completed comprehensive database documentation program covering active TOON tables; Antigravity enforced anti-chaos structure. Windsurf audit remediation (4.0.71) added 9 semantic navbar TOONs; total TOON count 230 in registry.
 - **Schema registry updated** — `lupo-docs/database/lupopedia/SCHEMA_REGISTRY.md` updated to v4.0.71 with accurate documentation paths and domain ownership.
 - **Documentation structure** — Finalized organization into `active/`, `deprecated/`, and `migrations/` directories with standardized LUPOPEDIA HEADERS and 100% active table coverage.
@@ -218,7 +218,7 @@ This document tracks version history, focusing on key changes, task migrations, 
 
 - **Table audit:** Validated all DB tables required for the semantic floating navigation bar (previous pages, references, contexts, edges, hashtags, folders, Q/A, next pages). Existing tables: lupo_paths, lupo_edges, lupo_edge_type_definitions, lupo_collections, lupo_collection_tabs, lupo_collection_tab_map, lupo_collection_tab_paths, lupo_contents, lupo_truth_knowledge, lupo_truth_answers, lupo_visits.
 - **New tables:** Added lupo_references, lupo_reference_links, lupo_hashtags, lupo_hashtag_map, lupo_folders, lupo_folder_map to `lupo-database/lupopedia/mysql/install/install_new_lupopedia.sql` (no FKs; BIGINT timestamps only).
-- **One-time migration:** Created `database/migrations/20260313_semantic_navbar_backend_update.sql` to add the six tables on existing DBs; fresh installs get them from install SQL.
+- **One-time migration:** Created `lupo-database/migrations/20260313_semantic_navbar_backend_update.sql` to add the six tables on existing DBs; fresh installs get them from install SQL.
 - **Documentation:** Added `lupo-docs/database/lupopedia/tables/semantic_navbar/` with SEMANTIC_NAVBAR_TABLE_AUDIT_REPORT.md, SEMANTIC_NAVBAR_OVERVIEW.md, and per-table docs (lupo_references, lupo_reference_links, lupo_hashtags, lupo_hashtag_map, lupo_folders, lupo_folder_map). Created `lupo-docs/frontend/semantic_navbar.md` (API endpoints, SQL usage, data flow, icon→table mapping, external-site behavior, JS↔Lupopedia communication).
 
 #### Documentation and headers (4.0.71)
@@ -259,7 +259,7 @@ This document tracks version history, focusing on key changes, task migrations, 
 - **Key files updated:** Doctrine (format, optional blocks, API reference), CHANGELOG (including both header and end-of-file footer blocks), README, lupo-docs/README, INIT_README, LUPO_INITIALIZATION_DOCTRINE, required_flare_headers, SESSION_MODEL, DEPRECATION_FLARE_FLIP_FLP, AGENTS.md, and other files with `lupopedia.footer` updated to include contextual `next_action` lists. Remaining files with `lupopedia.footer` should be updated incrementally to add `next_action` per doctrine.
 
 #### Windsurf audit remediation — TOON compliance, API completion, integration (4.0.71)
-- **TOON coverage:** Created 9 missing TOON files in `lupo-docs/toons/` for semantic navbar tables: `lupo_paths_summary`, `lupo_reference_map`, `lupo_collection_links`, `lupo_collection_map`, `lupo_edge_types`, `lupo_edge_map`, `lupo_questions`, `lupo_answers`, `lupo_question_map`. Schema matches install/migration; doctrine-aligned (no FKs, no triggers).
+- **TOON coverage:** Created 9 missing TOON files in `lupo-docs/toons/` for semantic navbar tables: `lupo_paths_summary`, `lupo_reference_map`, `lupo_collection_links`, `lupo_collection_map`, `lupo_edge_types`, `lupo_edge_map`, `lupo_questions`, `lupo_answers`, `lupo_question_map`. Schema matches lupo-install/migration; doctrine-aligned (no FKs, no triggers).
 - **Schema registry:** `lupo-docs/database/lupopedia/SCHEMA_REGISTRY.md` updated with the 9 tables and TOON count (230).
 - **Semantic navbar API:** Completed missing endpoints in `lupo-includes/modules/api/semantic-navbar-api.php`: `references` (lupo_reference_links + lupo_references), `namespaces` (channel_id + collections), `next` / `previous` (deterministic content_id ordering within channel). Route in `module-loader.php` extended to `references|namespaces|next|previous` in addition to edges, contexts, hashtags, folders, qa.
 - **Integration file:** Added `lupo-includes/modules/nav/semantic_navbar.php` as canonical PHP integration entry (delegates to semantic-navbar-js.php). Route `nav/semantic_navbar` added so references to semantic_navbar.php resolve.
@@ -366,7 +366,7 @@ Key additions:
 
 - **Removed:** `lupo_threads`, `lupo_messages`.
 - **Canonical tables:** `lupo_dialog_channels`, `lupo_dialog_threads`, `lupo_dialog_messages`.
-- **Migration:** `database/migrations/20260310_remove_duplicate_thread_message_tables.sql`.
+- **Migration:** `lupo-database/migrations/20260310_remove_duplicate_thread_message_tables.sql`.
 
 #### Actor ID Rebase
 
@@ -379,7 +379,7 @@ Key additions:
 #### Session Infrastructure
 
 - **Session files:** `lupo-database/sessions/{session_id}.md` (e.g. `L-LUPO-ROOT-CURSOR.md`). Session block: `lupopedia.session` with runtime context for IDE faucets.
-- **Utilities:** `scripts/validate_session_consistency.php`, `scripts/session_custodian.php`.
+- **Utilities:** `lupo-scripts/validate_session_consistency.php`, `lupo-scripts/session_custodian.php`.
 
 #### Doctrine Additions
 
@@ -390,12 +390,12 @@ Key additions:
 #### Documentation Coherence
 
 - All docs state clearly: **Actors orchestrate. Faucets execute.** Updated: README.md, AGENTS.md, IDENTITY_LAYERS_DOCTRINE.md, ActorFaucetOntology.md, COMMUNICATION_DOCTRINE.md, cursor_actors_channels_semantic_architecture_4.0.69.md, brainstorm_on_actors_and_channels.md.
-- **Canonical architecture:** `lupo-docs/architecture/` — HOW_ACTORS_ORCHESTRATE_ON_CHANNELS.md, cursor_actors_channels_semantic_architecture_4.0.69.md; docs/status has redirect/canonical notes.
+- **Canonical architecture:** `lupo-docs/architecture/` — HOW_ACTORS_ORCHESTRATE_ON_CHANNELS.md, cursor_actors_channels_semantic_architecture_4.0.69.md; lupo-docs/status has redirect/canonical notes.
 
 #### Collections, Tabs, and Navigation
 
 - **Channel-scoped resource bundles:** Collections gain `channel_id`, `is_nav_menu`, `nav_icon`; tabs gain `actor_id` (replacing user_id), `visibility_rule`, `tab_type`. CollectionTabsService: `getCollectionsForNavMenu()`, `getCollectionsForChannel($channelId)`; tab map item_type: artifact, content, url, path.
-- **Migration:** `database/migrations/20260313_collections_tabs_navigation_4_0_69.sql`. Doctrine: COLLECTIONS_DOCTRINE.md; spec: WEB_NAVIGATION_ARCHITECTURE.md.
+- **Migration:** `lupo-database/migrations/20260313_collections_tabs_navigation_4_0_69.sql`. Doctrine: COLLECTIONS_DOCTRINE.md; spec: WEB_NAVIGATION_ARCHITECTURE.md.
 
 #### Status & Review Reports
 
@@ -413,10 +413,10 @@ These confirm doctrine alignment and schema correctness.
 
 #### Tooling
 
-- `scripts/check_doc_schema_consistency.py` — Documentation ↔ schema verification.
-- `scripts/validate_session_consistency.php` — Session drift detection.
-- `scripts/session_custodian.php` — Optional session file audit/correct.
-- `scripts/sync_root_rules_to_cursor.php` — IDE rule synchronization.
+- `lupo-scripts/check_doc_schema_consistency.py` — Documentation ↔ schema verification.
+- `lupo-scripts/validate_session_consistency.php` — Session drift detection.
+- `lupo-scripts/session_custodian.php` — Optional session file audit/correct.
+- `lupo-scripts/sync_root_rules_to_cursor.php` — IDE rule synchronization.
 
 #### Repository Strategy
 
@@ -433,12 +433,12 @@ Introduced rules engine, skills system, and path/visit analytics doctrine. Major
 
 #### Rules system (4.0.68)
 
-- **Database:** `lupo_rules`, `lupo_rule_targets`, `lupo_rule_logs` (migration `database/migrations/20260310_create_rules_tables.sql`; install in `lupo-database/lupopedia/mysql/install/install_new_lupopedia.sql`). Rule IDs explicit; targets/logs use AUTO_INCREMENT for their PKs.
+- **Database:** `lupo_rules`, `lupo_rule_targets`, `lupo_rule_logs` (migration `lupo-database/migrations/20260310_create_rules_tables.sql`; install in `lupo-database/lupopedia/mysql/install/install_new_lupopedia.sql`). Rule IDs explicit; targets/logs use AUTO_INCREMENT for their PKs.
 - **Seed:** `lupo-database/lupopedia/mysql/seed/seed_rules_doctrine_4.0.68.sql` — five core database rules and attachments to Channel 42; **explicit `rule_target_id`** (1–5) in INSERTs to satisfy schema (no default value).
 - **Channel 42:** `lupo-channels/42/content/federation_node_id/0/RULES.md` — database rules doctrine for Channel 42.
 - **Engine:** `lupo-includes/classes/RuleEngine.php`, `lupo-includes/classes/RuleEvaluator.php`.
 - **CLI:** `php lupo-bin/lupo.php rules --check [target_table] [target_id]`, `rules --evaluate [target_table] [target_id] [context_json]`.
-- **Docs:** `lupo-docs/doctrine/RULES_DOCTRINE.md`; `docs/HELP.md` (rules commands and Rules system section).
+- **Docs:** `lupo-docs/doctrine/RULES_DOCTRINE.md`; `lupo-docs/HELP.md` (rules commands and Rules system section).
 
 #### Rule files (4.0.68)
 
@@ -452,7 +452,7 @@ Introduced rules engine, skills system, and path/visit analytics doctrine. Major
 - **SkillService:** `lupo-includes/classes/SkillService.php` — getActorDir (id/slug), getActorSkills, hasSkill (min proficiency), getSkillDetails; parse `lupopedia.skills` from profile and `skills/*.md`.
 - **Seed:** `lupo-database/lupopedia/mysql/seed/seed_skills_4.0.68.sql` — skill metadata and actor–skill attachment in `lupo_metadata` (metadata_id 10201–10205).
 - **CLI:** `php lupo-bin/lupo.php skills --actor [actor_id]`, `skills --check [actor_id] <skill_name> [min_proficiency]`; skills command does not require DB.
-- **Docs:** `docs/HELP.md` (skills commands and Skills system subsection).
+- **Docs:** `lupo-docs/HELP.md` (skills commands and Skills system subsection).
 
 #### Skill files (4.0.68)
 
@@ -482,7 +482,7 @@ Introduced rules engine, skills system, and path/visit analytics doctrine. Major
 - **Removed tables:** lupo_analytics_visits, lupo_analytics_visits_daily, lupo_analytics_visits_monthly, lupo_analytics_paths; previous lupo_visits (content_id/page_url/date_ymd style) replaced.
 - **lupo_paths:** path_id, entercontentid, exitcontentid, enter_table, exit_table, year_num, month_num, day_num, count_num, transition_type, transition_metadata, created_ymdhis, updated_ymdhis, is_deleted, deleted_ymdhis.
 - **lupo_visits:** visit_id, session_id, actor_id, instance_id, path_url, entercontentid, exitcontentid, enter_table, exit_table, transition_type, transition_metadata, created_ymdhis, is_processed, is_deleted, deleted_ymdhis.
-- **Install:** install_new_lupopedia.sql updated. **Migration:** database/migrations/20260310_paths_visits_doctrine.sql (one-time). **Crafty import:** import_from_old_crafty_syntax.sql updated for new lupo_visits/lupo_paths schema.
+- **Install:** install_new_lupopedia.sql updated. **Migration:** lupo-database/migrations/20260310_paths_visits_doctrine.sql (one-time). **Crafty import:** import_from_old_crafty_syntax.sql updated for new lupo_visits/lupo_paths schema.
 
 #### v4.0.68 review fixes (TOON-based validation, no information_schema)
 
@@ -510,7 +510,7 @@ Introduced rules engine, skills system, and path/visit analytics doctrine. Major
 #### LUPOPEDIA HEADERS documentation updates (4.0.68)
 
 - **AGENTS.md:** Updated from FLARE/FLIP to LUPOPEDIA HEADERS; outbound_edges to LUPOPEDIA_HEADERS/README.md; "FLIP Headers" section renamed to "LUPOPEDIA HEADERS".
-- **docs/HELP.md:** "FLARE protocol" section renamed to "LUPOPEDIA HEADERS protocol"; table links to LUPOPEDIA_HEADERS/README.md, LUPOPEDIA_HEADERS_FORMAT.md, VALIDATORS_AND_TOOLING.md.
+- **lupo-docs/HELP.md:** "FLARE protocol" section renamed to "LUPOPEDIA HEADERS protocol"; table links to LUPOPEDIA_HEADERS/README.md, LUPOPEDIA_HEADERS_FORMAT.md, VALIDATORS_AND_TOOLING.md.
 - **CHANGELOG.md:** purpose and outbound_edges updated to LUPOPEDIA HEADERS doctrine.
 
 #### Project root atom (4.0.68)
@@ -530,7 +530,7 @@ Introduced rules engine, skills system, and path/visit analytics doctrine. Major
 
 #### Files created or modified in 4.0.68 (summary)
 
-**Migrations / install / seeds:** `database/migrations/20260310_create_rules_tables.sql`, `database/migrations/20260310_paths_visits_doctrine.sql`, `lupo-database/lupopedia/mysql/install/install_new_lupopedia.sql`, `lupo-database/lupopedia/mysql/import/import_from_old_crafty_syntax.sql`, `seed_rules_doctrine_4.0.68.sql`, `seed_skills_4.0.68.sql`, `seed_lupo_metadata_changelog_headers_4.0.68.sql`, `seed_actor_1_cursor_rules_4.0.68.sql`.
+**Migrations / install / seeds:** `lupo-database/migrations/20260310_create_rules_tables.sql`, `lupo-database/migrations/20260310_paths_visits_doctrine.sql`, `lupo-database/lupopedia/mysql/install/install_new_lupopedia.sql`, `lupo-database/lupopedia/mysql/import/import_from_old_crafty_syntax.sql`, `seed_rules_doctrine_4.0.68.sql`, `seed_skills_4.0.68.sql`, `seed_lupo_metadata_changelog_headers_4.0.68.sql`, `seed_actor_1_cursor_rules_4.0.68.sql`.
 
 **Rule files:** `lupo-rules/skills/lupopedia-headers.md`, `lupo-channels/42/content/federation_node_id/0/NO_INFORMATION_SCHEMA_RULE.md`, `lupo-rules/root/*.md` (16 rules), `lupo-rules/root/README.md`.
 
@@ -540,7 +540,7 @@ Introduced rules engine, skills system, and path/visit analytics doctrine. Major
 
 **PHP:** `install.php`, `lupo-includes/classes/RuleEngine.php`, `lupo-includes/classes/RuleEvaluator.php`, `lupo-includes/classes/ToonValidator.php`, `lupo-includes/classes/SkillService.php`, `lupo-bin/lupo.php`.
 
-**Doctrine / docs:** `lupo-docs/doctrine/RULES_DOCTRINE.md`, `lupo-docs/doctrine/SKILLS_DOCTRINE.md`, `docs/HELP.md`, `AGENTS.md`, `lupo-config/global_atoms.yaml`, `.cursor/rules/flip-doctrine.mdc`, `.cursor/rules/single-install-no-4.0-upgrade-doctrine.mdc`, `docs/status/cursor_4_0_68_reconciliation_report.md`.
+**Doctrine / docs:** `lupo-docs/doctrine/RULES_DOCTRINE.md`, `lupo-docs/doctrine/SKILLS_DOCTRINE.md`, `lupo-docs/HELP.md`, `AGENTS.md`, `lupo-config/global_atoms.yaml`, `.cursor/rules/flip-doctrine.mdc`, `.cursor/rules/single-install-no-4.0-upgrade-doctrine.mdc`, `lupo-docs/status/cursor_4_0_68_reconciliation_report.md`.
 
 # LUPOPEDIA FOOTER STARTS HERE
 

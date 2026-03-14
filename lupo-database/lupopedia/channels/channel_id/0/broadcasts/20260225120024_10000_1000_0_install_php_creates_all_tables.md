@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "channels\0\broadcasts\20260225120024_10000_1000_0_install_php_creates_all_tables.md"
+  file_path_from_root: "lupo-channels\0\broadcasts\20260225120024_10000_1000_0_install_php_creates_all_tables.md"
   file_hash: "db6a21cb0fe0b8674f3abcd84260b770a463f98ffbc4faa5520079c5a44de68a"
-  file_path_from_root: "channels\0\broadcasts\20260225120024_10000_1000_0_install_php_creates_all_tables.md"
+  file_path_from_root: "lupo-channels\0\broadcasts\20260225120024_10000_1000_0_install_php_creates_all_tables.md"
   file_hash: "92fafcb037de263627a5fc09903af94ce181b05cb66ffa2230d19c83a0d67b14"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -81,7 +81,7 @@ install.php loads install_new_lupopedia.sql. install_new_lupopedia.sql is the ca
 
 <!-- FLIP_FOOTER_BEGIN
 {
-    "references": "\"docs\/status\/broadcast_collection_0.md\"",
+    "references": "\"lupo-docs\/status\/broadcast_collection_0.md\"",
     "implements": "\"broadcast_standardization\"",
     "depends_on": "\"registry_seeding_completion\"",
     "includes": "\"channel_0_communications\"",

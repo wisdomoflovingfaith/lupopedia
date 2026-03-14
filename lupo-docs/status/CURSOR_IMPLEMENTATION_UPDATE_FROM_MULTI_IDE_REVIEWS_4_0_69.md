@@ -31,12 +31,12 @@ This report summarizes the implementation of corrections and updates identified 
 
 - **Install SQL:** `lupo-database/lupopedia/mysql/install/install_new_lupopedia.sql` — canonical schema for 4.0.69.
 - **TOONs:** `lupo-database/lupopedia/toon/*.toon` (and `lupo-docs/toons/*.toon.json` where present).
-- **Orchestration docs:** `docs/status/HOW_ACTORS_ORCHESTRATE_ON_CHANNELS.md`, `docs/status/cursor_actors_channels_semantic_architecture_4.0.69.md`.
+- **Orchestration docs:** `lupo-docs/status/HOW_ACTORS_ORCHESTRATE_ON_CHANNELS.md`, `lupo-docs/status/cursor_actors_channels_semantic_architecture_4.0.69.md`.
 - **Doctrine:** `lupo-docs/doctrine/IDENTITY_LAYERS_DOCTRINE.md`, `ActorFaucetOntology.md`, `COMMUNICATION_DOCTRINE.md`, and related.
 - **Review docs:** `lupo-docs/status/ACTORS_CHANNELS_IMPLEMENTATION_REVIEW.md`, `lupo-docs/status/KIRO_ORCHESTRATION_IMPLEMENTATION_REVIEW_4_0_69.md`, `lupo-docs/status/jetbrains_wolfie_review_actors_channels_4_0_69_20260311.md`, `lupo-docs/status/ANTIGRAVITY_WOLFIE_IMPLEMENTATION_REVIEW_4_0_69.md`.
 - **Runtime:** `lupo-includes/modules/channels/channel-send-api.php`, `lupo-bin/session_manager.php`, `lupo-bin/lupo.php`.
 - **Seeds:** `lupo-database/lupopedia/mysql/seed/*.sql` (no inline actor/faucet INSERTs in install; seeds in separate files).
-- **Consistency script:** `scripts/check_doc_schema_consistency.py`.
+- **Consistency script:** `lupo-scripts/check_doc_schema_consistency.py`.
 
 ---
 
@@ -74,7 +74,7 @@ This report summarizes the implementation of corrections and updates identified 
 ## 5. TOON consistency and doc–schema check
 
 - **TOON drift:** No TOON regeneration was run in this task; install SQL was unchanged. Previous correction (lupo_actors.toon sample row, doctrine note) remains.
-- **Doc–schema consistency:** `scripts/check_doc_schema_consistency.py` was run and **PASSED** (lupo_actors PK, required columns, no deprecated tables in install).
+- **Doc–schema consistency:** `lupo-scripts/check_doc_schema_consistency.py` was run and **PASSED** (lupo_actors PK, required columns, no deprecated tables in install).
 
 ---
 
@@ -83,7 +83,7 @@ This report summarizes the implementation of corrections and updates identified 
 ### 6.1 lupo_actors PK documentation
 
 - **lupo-docs/architecture/HOW_ACTORS_ORCHESTRATE_ON_CHANNELS.md** and **lupo-docs/architecture/cursor_actors_channels_semantic_architecture_4.0.69.md** both state: **Primary key = actor_name**; **actor_id = unique secondary identifier**. Doctrine callout present in HOW_ACTORS.
-- **docs/status/cursor_actors_channels_semantic_architecture_4.0.69.md** was updated to the same PK wording and a canonical-location note.
+- **lupo-docs/status/cursor_actors_channels_semantic_architecture_4.0.69.md** was updated to the same PK wording and a canonical-location note.
 
 ### 6.2 Migration of canonical orchestration docs to lupo-docs/architecture
 
@@ -91,14 +91,14 @@ This report summarizes the implementation of corrections and updates identified 
 - **Canonical copies added:**
   - **lupo-docs/architecture/HOW_ACTORS_ORCHESTRATE_ON_CHANNELS.md** — full content; headers point to canonical path; references cursor_actors in same directory.
   - **lupo-docs/architecture/cursor_actors_channels_semantic_architecture_4.0.69.md** — full content; PK fix; §9 Traits updated to reference lupo_actor_traits table; §7 lupo_tasks explicitly states owner_actor_id/acting_as_actor_id only, no assigned_to_actor_id; references HOW_ACTORS in same directory.
-- **docs/status/HOW_ACTORS_ORCHESTRATE_ON_CHANNELS.md** — replaced with a **redirect stub** to `lupo-docs/architecture/HOW_ACTORS_ORCHESTRATE_ON_CHANNELS.md`.
-- **docs/status/cursor_actors_channels_semantic_architecture_4.0.69.md** — retained with **canonical location** note at top pointing to `lupo-docs/architecture/cursor_actors_channels_semantic_architecture_4.0.69.md`.
+- **lupo-docs/status/HOW_ACTORS_ORCHESTRATE_ON_CHANNELS.md** — replaced with a **redirect stub** to `lupo-docs/architecture/HOW_ACTORS_ORCHESTRATE_ON_CHANNELS.md`.
+- **lupo-docs/status/cursor_actors_channels_semantic_architecture_4.0.69.md** — retained with **canonical location** note at top pointing to `lupo-docs/architecture/cursor_actors_channels_semantic_architecture_4.0.69.md`.
 
 ### 6.3 Reference updates
 
 - **README.md:** Canonical architecture link now points to `lupo-docs/architecture/cursor_actors_channels_semantic_architecture_4.0.69.md`; added link to HOW_ACTORS_ORCHESTRATE_ON_CHANNELS in lupo-docs/architecture.
 - **lupo-docs/doctrine/IDENTITY_LAYERS_DOCTRINE.md:** Canonical architecture reference updated to `lupo-docs/architecture/cursor_actors_channels_semantic_architecture_4.0.69.md`.
-- **prompts/cursor/20260311_cursor_new_thread_onboarding_4.0.69.md:** Must-read table and “When in doubt” line updated to use `lupo-docs/architecture/cursor_actors_channels_semantic_architecture_4.0.69.md`.
+- **lupo-prompts/cursor/20260311_cursor_new_thread_onboarding_4.0.69.md:** Must-read table and “When in doubt” line updated to use `lupo-docs/architecture/cursor_actors_channels_semantic_architecture_4.0.69.md`.
 
 ### 6.4 Changelog and wording
 
@@ -109,7 +109,7 @@ This report summarizes the implementation of corrections and updates identified 
 
 ## 7. Validations run
 
-- `python scripts/check_doc_schema_consistency.py` — **PASSED.**
+- `python lupo-scripts/check_doc_schema_consistency.py` — **PASSED.**
 
 ---
 
@@ -123,7 +123,7 @@ This report summarizes the implementation of corrections and updates identified 
 | TOONs | No regeneration (install unchanged). |
 | Doc–schema script | Already present; run and passed. |
 | lupo_actors PK in docs | Confirmed in both canonical architecture docs. |
-| Canonical orchestration location | Created lupo-docs/architecture/; added HOW_ACTORS and cursor_actors canonical copies; redirect stub in docs/status for HOW_ACTORS; canonical note in docs/status cursor_actors. |
+| Canonical orchestration location | Created lupo-docs/architecture/; added HOW_ACTORS and cursor_actors canonical copies; redirect stub in lupo-docs/status for HOW_ACTORS; canonical note in lupo-docs/status cursor_actors. |
 | References | README, IDENTITY_LAYERS_DOCTRINE, onboarding prompt updated to lupo-docs/architecture paths. |
 | CHANGELOG | New subsection added for this multi-IDE implementation update. |
 
@@ -131,9 +131,9 @@ This report summarizes the implementation of corrections and updates identified 
 
 ## 9. Remaining follow-up (optional)
 
-- **Other references:** Several other docs (e.g. brainstorm, ORCHESTRATION_ACTORS, lilith_suggestions, DESIGN_NOTE, EDGE_VOCABULARY, SESSION_RECONCILIATION, FEDERATION_SCOPING, prompts/antigravity) still reference `docs/status/cursor_actors_channels_semantic_architecture_4.0.69.md`. They can be updated incrementally to `lupo-docs/architecture/` when those files are next edited.
+- **Other references:** Several other docs (e.g. brainstorm, ORCHESTRATION_ACTORS, lilith_suggestions, DESIGN_NOTE, EDGE_VOCABULARY, SESSION_RECONCILIATION, FEDERATION_SCOPING, lupo-prompts/antigravity) still reference `lupo-docs/status/cursor_actors_channels_semantic_architecture_4.0.69.md`. They can be updated incrementally to `lupo-docs/architecture/` when those files are next edited.
 - **TOON count in CHANGELOG:** Already phrased to avoid a single hardcoded number; no change.
-- **Full TOON regeneration:** Run `python scripts/generate_toon_files.py` after any future schema change to keep TOONs in sync with install.
+- **Full TOON regeneration:** Run `python lupo-scripts/generate_toon_files.py` after any future schema change to keep TOONs in sync with install.
 
 ---
 

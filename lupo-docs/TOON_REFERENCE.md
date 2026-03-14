@@ -16,22 +16,36 @@ TOONs are **canonical representations of the Lupopedia database structure**. The
 
 ## Where TOONs live
 
-| Location | Extension | Format | Description |
-|----------|-----------|--------|-------------|
-| **`lupo-database/lupopedia/json/`** | `.json` | **JSON** | One file per table: `<table_name>.json`. Standard JSON; same logical content as the TOON file. |
-| **`lupo-database/lupopedia/toon/`** | `.toon` | **TOON (YAML)** | One file per table: `<table_name>.toon`. TOON format is YAML; human-readable, same logical content as the JSON file. |
+Two workflows exist; both are valid. The **in-repo committed set** used for documentation and validation is **`lupo-database/lupopedia/toon/*.toon.json`**.
 
-Both directories are under the project root. Example:
+| Location | Extension | Format | Source | Description |
+|----------|-----------|--------|--------|-------------|
+| **`lupo-database/lupopedia/toon/`** | `.toon.json` | **JSON** | `generate_toon_from_sql.py` (from install SQL) | In-repo TOON set; no live DB required. Canonical for docs and schema-from-install. |
+| **`lupo-database/lupopedia/json/`** | `.json` | **JSON** | `generate_toon_files.py` (from live DB) | One file per table; same logical content as .toon. |
+| **`lupo-database/lupopedia/toon/`** | `.toon` | **TOON (YAML)** | `generate_toon_files.py` (from live DB) | One file per table; YAML format. |
 
-- `lupo-database/lupopedia/json/lupo_actors.json` — JSON format
-- `lupo-database/lupopedia/toon/lupo_actors.toon` — TOON (YAML) format
+Examples:
+
+- `lupo-database/lupopedia/toon/lupo_actors.toon.json` — from install SQL (no DB); used in repo for schema reference.
+- `lupo-database/lupopedia/json/lupo_actors.json` — from live DB when script is run.
+- `lupo-database/lupopedia/toon/lupo_actors.toon` — from live DB when script is run (YAML).
 
 ## Generating TOONs
 
-TOONs (and the matching JSON files) are generated from the **live database** by:
+**Option A — From install SQL (no live DB):** Refreshes the in-repo TOON set in `lupo-database/lupopedia/toon/`.
 
 ```bash
-python scripts/generate_toon_files.py
+python lupo-scripts/generate_toon_from_sql.py
+```
+
+- Reads: `lupo-database/lupopedia/mysql/install/install_new_lupopedia.sql`
+- Writes: `lupo-database/lupopedia/toon/<table_name>.toon.json` for each table in the install file.
+- Use this to align TOONs with schema after editing install SQL (e.g. after adding `lupo_projects`).
+
+**Option B — From live database:** Writes to `lupo-database/lupopedia/` (json + toon).
+
+```bash
+python lupo-scripts/generate_toon_files.py
 ```
 
 Requirements:
@@ -49,7 +63,7 @@ The script:
 To skip canonical data (e.g. when DB is unavailable for data fetch but schema is available elsewhere):
 
 ```bash
-SKIP_DB=1 python scripts/generate_toon_files.py
+SKIP_DB=1 python lupo-scripts/generate_toon_files.py
 ```
 
 (Note: the script still requires a DB connection for schema introspection unless modified.)
@@ -59,25 +73,29 @@ SKIP_DB=1 python scripts/generate_toon_files.py
 If you have JSON-format files in `lupo-database/lupopedia/json/` (`.json`, `.toon.json`, or `.toon`), you can convert them into TOON (YAML) format in the toon directory:
 
 ```bash
-python scripts/convert_json_to_toon.py
+python lupo-scripts/convert_json_to_toon.py
 ```
 
 This reads each file as JSON and writes `lupo-database/lupopedia/toon/<table_name>.toon` in YAML (TOON format). Requires `pyyaml`.
 
 ## DDL-sensitive workflow (4.0.67)
 
-Before making **count-sensitive assertions** in docs or code (e.g. table ceiling, “current table count”), regenerate authoritative TOONs and use the generated count:
+Before making **count-sensitive assertions** in docs or code (e.g. table ceiling, “current table count”), regenerate TOONs and use the generated count, or derive from install SQL. (Table ceiling is advisory only per Captain directive 4.0.74.)
 
 ```bash
-sh scripts/validate_schema_toons.sh
+sh lupo-scripts/validate_schema_toons.sh
 ```
 
-This runs `python scripts/generate_toon_files.py` and prints the **canonical table count** (number of `.toon` files). Use that count in documentation; do not hardcode. Invoke this after schema changes or when validating install/upgrade.
+This runs `python lupo-scripts/generate_toon_files.py` and prints the **canonical table count** (number of `.toon` files). Use that count in documentation; do not hardcode. Invoke this after schema changes or when validating lupo-install/upgrade.
+
+## Relation to table documentation
+
+Per-table documentation (purpose, columns, usage) lives in **`lupo-docs/database/lupopedia/tables/active/`** (and `tables/deprecated/` for deprecated tables). Each table doc references its TOON file in `lupo-database/lupopedia/toon/` via a schema_reference edge. See AGENTS.md and the table docs for the full edge graph.
 
 ## Relation to doctrine and schema
 
-- **Install SQL:** The canonical DDL is in `lupo-database/lupopedia/mysql/install/install_new_lupopedia.sql` (or project-equivalent). TOONs are generated from the live DB and reflect the current structure.
-- **Doctrine:** TOONs do not replace doctrine (e.g. no foreign keys, no triggers, BIGINT timestamps). They document the current schema; doctrine documents the rules. See [docs/doctrine/](doctrine/) and the migration doctrine.
+- **Install SQL is the canonical schema authority.** The canonical DDL is in `lupo-database/lupopedia/mysql/install/install_new_lupopedia.sql` (or project-equivalent). TOON artifacts are **derived representations** and must defer to install SQL when discrepancies exist. TOONs may be generated from the live DB (generate_toon_files.py) or from install SQL (e.g. generate_toon_from_sql.py) and reflect structure at generation time.
+- **Doctrine:** TOONs do not replace doctrine (e.g. no foreign keys, no triggers, BIGINT timestamps). They document the current schema; doctrine documents the rules. See [lupo-docs/doctrine/](doctrine/) and the migration doctrine.
 - **Validation:** Scripts such as `verify_db_against_toons.py` can compare the live database to TOONs to detect drift.
 
 ## Summary
@@ -87,7 +105,7 @@ This runs `python scripts/generate_toon_files.py` and prints the **canonical tab
 | What are TOONs? | Representations of the database structure (tables, columns, indexes, optional canonical data). |
 | Where are they? | `lupo-database/lupopedia/json/*.json` and `lupo-database/lupopedia/toon/*.toon`. |
 | What are they for? | Documenting and validating database structure; tooling and migrations. |
-| How are they created? | `python scripts/generate_toon_files.py` from the live database. |
+| How are they created? | `python lupo-scripts/generate_toon_files.py` from the live database. |
 | JSON vs TOON format? | `json/*.json` = JSON; `toon/*.toon` = TOON format (YAML). Same logical content. |
 
-**Note:** Some legacy documentation or scripts may still reference `docs/toons/` or the `.toon.json` extension. The canonical output of `generate_toon_files.py` is `lupo-database/lupopedia/json/*.json` (JSON) and `lupo-database/lupopedia/toon/*.toon` (YAML).
+**Note:** The in-repo committed TOON set is **`lupo-database/lupopedia/toon/*.toon.json`**, produced by `generate_toon_from_sql.py` from install SQL. The script `generate_toon_from_sql.py` was aligned in 4.0.74 to read from `lupo-database/lupopedia/mysql/install/install_new_lupopedia.sql` and write to `lupo-database/lupopedia/toon/`. Legacy references to `lupo-docs/toons/` are path drift.

@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "channels\42\threads\DEVELOPMENT_CYCLE_4_0_43\20260224163300_1001_10000_import_verification_complete.md"
+  file_path_from_root: "lupo-channels\42\threads\DEVELOPMENT_CYCLE_4_0_43\20260224163300_1001_10000_import_verification_complete.md"
   file_hash: "e5e199b2074f6dde9368a96876fe059e91907ca5a938a9c7601b8c663957c3e3"
-  file_path_from_root: "channels\42\threads\DEVELOPMENT_CYCLE_4_0_43\20260224163300_1001_10000_import_verification_complete.md"
+  file_path_from_root: "lupo-channels\42\threads\DEVELOPMENT_CYCLE_4_0_43\20260224163300_1001_10000_import_verification_complete.md"
   file_hash: "fea77fb433e0a9e3a23f82f695e7039d3e2304e0527e27a1c2ec0d6995bb0aa2"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -216,7 +216,7 @@ The importer requires **ZERO CHANGES** for 4.0.43:
 
 ### Documentation Created
 
-**Report:** `docs/status/kiro_import_table_verification_4_0_43.md`
+**Report:** `lupo-docs/status/kiro_import_table_verification_4_0_43.md`
 
 **Contents:**
 - Complete table inventory (28 tables)

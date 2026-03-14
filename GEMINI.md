@@ -46,8 +46,8 @@ wolfie.headers: {
 flip.footer: {
   outbound_edges: [
     { to: "AGENTS.md", type: "references", weight: 1.0 },
-    { to: "docs/AGENT_INVENTORY.md", type: "references", weight: 0.9 },
-    { to: "actors/registry.json", type: "references", weight: 0.8 },
+    { to: "lupo-docs/AGENT_INVENTORY.md", type: "references", weight: 0.9 },
+    { to: "lupo-actors/registry.json", type: "references", weight: 0.8 },
     { to: "CONTRIBUTING.md", type: "references", weight: 0.7 }
   ],
   semantic_tags: ["agents", "gemini", "development_environment", "architecture", "doctrine"]
@@ -90,8 +90,8 @@ You are GEMINI, a Google AI assistant working on Lupopedia. You are part of a mu
 - **System Version**: 4.0.73
 
 **Registration Status**: ✅ You are fully registered in the system. Your actor record exists in:
-- `database/migrations/seed_actors_agents_4.0.45.sql`
-- `actors/registry.json`
+- `lupo-database/migrations/seed_actors_agents_4.0.45.sql`
+- `lupo-actors/registry.json`
 - `lupo-database/lupopedia/csv/lupo_actors.csv`
 
 ### Critical: Read AGENTS.md First
@@ -141,8 +141,8 @@ You are working alongside:
 - **Cascade (105)**: Integration testing, feature validation
 
 **Coordination Rules**:
-1. Check `channels/42/broadcasts/` for recent team communications
-2. Check `channels/0/tasks/active/` for assigned tasks
+1. Check `lupo-channels/42/broadcasts/` for recent team communications
+2. Check `lupo-channels/0/tasks/active/` for assigned tasks
 3. Never modify another agent's active work without coordination
 4. Use broadcast messages for team-wide announcements
 5. Respect the delegation chain: 1 (WOLFIE) → 1000 (Human) → agents
@@ -151,15 +151,15 @@ You are working alongside:
 
 When creating agent-specific files:
 - ✅ `GEMINI.md` - This file (agent guidance)
-- ✅ `docs/agents/gemini/` - Your agent-specific documentation
-- ✅ `channels/42/broadcasts/YYYYMMDDHHIISS_[from]_[to]_42_[slug].md` - Broadcasts
+- ✅ `lupo-docs/agents/gemini/` - Your agent-specific documentation
+- ✅ `lupo-channels/42/broadcasts/YYYYMMDDHHIISS_[from]_[to]_42_[slug].md` - Broadcasts
 - ❌ Do NOT create `gemini-config.json` or similar in root
 - ❌ Do NOT create `.gemini/` directories
 
 ### What to Work On
 
 **Good First Tasks**:
-1. Run the test suite: `sh scripts/run_tests.sh .`
+1. Run the test suite: `sh lupo-scripts/run_tests.sh .`
 2. Review test coverage and identify gaps
 3. Add missing unit tests for core services
 4. Document undocumented functions/classes
@@ -321,11 +321,11 @@ $fn = function($x) { return $x * 2; }; // Anonymous function, not arrow
 **NEVER modify the database directly**. Follow this process:
 
 1. Update the TOON file in `lupo-database/lupopedia/toon/[table_name].toon.json`
-2. Update `database/migrations/install_new_lupopedia.sql`
-3. Create a dev migration in `database/migrations/dev_YYYYMMDD_description.sql`
+2. Update `lupo-database/migrations/install_new_lupopedia.sql`
+3. Create a dev migration in `lupo-database/migrations/dev_YYYYMMDD_description.sql`
 4. Test on MySQL 5.7, MySQL 8.0, MariaDB 10.2, PostgreSQL 12
-5. Regenerate TOONs: `python scripts/generate_toon_files.py`
-6. Verify: `python scripts/verify_db_against_toons.py`
+5. Regenerate TOONs: `python lupo-scripts/generate_toon_files.py`
+6. Verify: `python lupo-scripts/verify_db_against_toons.py`
 
 #### TOON Files: Database Schema Reference (CRITICAL)
 
@@ -443,7 +443,7 @@ ORDER BY a.actor_id
 
 **When TOON files are updated**:
 - After schema changes via migrations
-- After running `python scripts/generate_toon_files.py`
+- After running `python lupo-scripts/generate_toon_files.py`
 - Never manually edit TOON files (they are generated)
 
 **Quick TOON file lookup**:
@@ -462,19 +462,19 @@ cat lupo-database/lupopedia/toon/lupo_actors.toon.json | jq .fields
 
 ```bash
 # Run all tests
-sh scripts/run_tests.sh .
+sh lupo-scripts/run_tests.sh .
 
 # Run unit tests only
-sh scripts/run_unit_tests.sh .
+sh lupo-scripts/run_unit_tests.sh .
 
 # Run regression tests
-sh scripts/run_regression_tests.sh .
+sh lupo-scripts/run_regression_tests.sh .
 
 # Run a single test
-php tests/unit/admin_csrf.php
+php lupo-tests/unit/admin_csrf.php
 
 # Run integration test
-sh tests/integration/test_routing.sh
+sh lupo-tests/integration/test_routing.sh
 ```
 
 ### Common Tasks
@@ -482,7 +482,7 @@ sh tests/integration/test_routing.sh
 **Add a New Test**:
 ```bash
 # Create test file
-touch tests/unit/my_new_test.php
+touch lupo-tests/unit/my_new_test.php
 
 # Write test (plain PHP, no framework)
 <?php
@@ -500,10 +500,10 @@ echo "✓ All tests passed\n";
 **Check Database Schema**:
 ```bash
 # Regenerate TOONs from live database
-python scripts/generate_toon_files.py
+python lupo-scripts/generate_toon_files.py
 
 # Verify schema against TOONs
-python scripts/verify_db_against_toons.py
+python lupo-scripts/verify_db_against_toons.py
 ```
 
 **Update Version**:
@@ -633,14 +633,14 @@ flip.footer: {
 - `README.md` - Project overview
 - `QUICKSTART.md` - Quick start guide
 - `CONTRIBUTING.md` - Contribution guidelines
-- `docs/doctrine/` - Doctrine documentation
+- `lupo-docs/doctrine/` - Doctrine documentation
 - `lupo-database/lupopedia/toon/` - Database schema reference
 
 **Communication**:
-- Post questions in `channels/42/broadcasts/`
-- Check `channels/0/broadcasts/` for system announcements
+- Post questions in `lupo-channels/42/broadcasts/`
+- Check `lupo-channels/0/broadcasts/` for system announcements
 - Review `CHANGELOG.md` for recent changes
-- Check `channels/0/tasks/active/` for task assignments
+- Check `lupo-channels/0/tasks/active/` for task assignments
 
 ### Current Project Status (4.0.73)
 
@@ -696,7 +696,7 @@ You're joining an active multi-agent development team working on a complex PHP p
 
 1. **Read `AGENTS.md` thoroughly** (most important!)
 2. Run the test suite to understand current state
-3. Review recent broadcasts in `channels/42/broadcasts/`
+3. Review recent broadcasts in `lupo-channels/42/broadcasts/`
 4. Check `CHANGELOG.md` for recent changes
 5. Introduce yourself with a broadcast message
 
@@ -728,9 +728,9 @@ We're glad to have you on the team. Your analytical capabilities and attention t
 
 **Testing**:
 ```bash
-sh scripts/run_tests.sh .           # All tests
-sh scripts/run_unit_tests.sh .      # Unit tests only
-php tests/unit/my_test.php          # Single test
+sh lupo-scripts/run_tests.sh .           # All tests
+sh lupo-scripts/run_unit_tests.sh .      # Unit tests only
+php lupo-tests/unit/my_test.php          # Single test
 ```
 
 **Schema**:
@@ -738,20 +738,20 @@ php tests/unit/my_test.php          # Single test
 # Check table structure BEFORE writing queries
 cat lupo-database/lupopedia/toon/lupo_[table_name].toon.json
 
-python scripts/generate_toon_files.py      # Regenerate TOONs
-python scripts/verify_db_against_toons.py  # Verify schema
+python lupo-scripts/generate_toon_files.py      # Regenerate TOONs
+python lupo-scripts/verify_db_against_toons.py  # Verify schema
 ```
 
 **Communication**:
-- Broadcasts: `channels/42/broadcasts/`
-- Tasks: `channels/0/tasks/active/`
+- Broadcasts: `lupo-channels/42/broadcasts/`
+- Tasks: `lupo-channels/0/tasks/active/`
 - Team: Kiro (100), Windsurf (101), Cursor (102), Warp (104), Cascade (105)
 
 **Documentation**:
 - `AGENTS.md` - Primary reference (READ THIS FIRST!)
 - `README.md` - Project overview
 - `CHANGELOG.md` - Recent changes
-- `docs/doctrine/` - Doctrine documentation
+- `lupo-docs/doctrine/` - Doctrine documentation
 - `lupo-database/lupopedia/toon/` - Database schema reference
 
 ---

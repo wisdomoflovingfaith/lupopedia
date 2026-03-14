@@ -16,7 +16,7 @@ lupopedia.headers:
 
 lupopedia.edges:
   outbound_edges:
-    - { to: "lupo-docs/toons/lupo_federation_discovery.toon.json", type: "references", weight: 1.0 }
+    - { to: "lupo-database/lupopedia/toon/lupo_federation_discovery.toon.json", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260312"
@@ -26,7 +26,7 @@ lupopedia.footer:
 # Table Overview: lupo_federation_discovery (DEPRECATED)
 
 > [!WARNING]
-> This table is **DEPRECATED** and was not found in the current live TOON definitions. It exists in `lupo-docs/toons/` but is absent from `lupo-database/lupopedia/toon/`.
+> This table is **DEPRECATED** and was not found in the current live TOON definitions. It exists in `lupo-database/lupopedia/toon/` but is absent from `lupo-database/lupopedia/toon/`.
 
 - **Purpose**: Previously used for automated discovery and categorization of remote Lupopedia nodes and domains.
 - **Category**: Federation / Network

@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\versions\4.0.37\CHANGELOG_DRAFT.md"
+  file_path_from_root: "lupo-docs\versions\4.0.37\CHANGELOG_DRAFT.md"
   file_hash: "e98242a2e0d456ca5a7ec294e43ed8ac9addead8026a759d5daadba7c9d3d33e"
-  file_path_from_root: "docs\versions\4.0.37\CHANGELOG_DRAFT.md"
+  file_path_from_root: "lupo-docs\versions\4.0.37\CHANGELOG_DRAFT.md"
   file_hash: "55c795d83c9b3718e9c6c39d51852ffb4bbb5b3f4c2333c0fdb761324d9de09d"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -63,7 +63,7 @@ lupopedia.footer:
 
 ---
 wolfie.headers:
-  file_path_from_root: "docs/versions/4.0.37/CHANGELOG_DRAFT.md"
+  file_path_from_root: "lupo-docs/versions/4.0.37/CHANGELOG_DRAFT.md"
   system_version: "4.0.37"
   channel_id: 42
   mood_rgb: "00AAFF"
@@ -76,8 +76,8 @@ wolfie.headers:
 flip.footer:
   referenced_by_files:
     - "CHANGELOG.md"
-    - "docs/channels/42/broadcasts/20260223_windsurf_prepare_installer_for_4_0_37.md"
-    - "database/install_new_lupopedia.sql"
+    - "lupo-docs/channels/42/broadcasts/20260223_windsurf_prepare_installer_for_4_0_37.md"
+    - "lupo-database/install_new_lupopedia.sql"
   referenced_by_channels:
     - 42
   referenced_by_actors:

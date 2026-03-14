@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\channels\kernel\services\ACTOR_MOOD_SERVICE.md"
+  file_path_from_root: "lupo-docs\channels\kernel\services\ACTOR_MOOD_SERVICE.md"
   file_hash: "34097692cb33d256c75012f59844f949823fda036db4fe66c6a8acd86345c38e"
-  file_path_from_root: "docs\channels\kernel\services\ACTOR_MOOD_SERVICE.md"
+  file_path_from_root: "lupo-docs\channels\kernel\services\ACTOR_MOOD_SERVICE.md"
   file_hash: "ecbbafaf27659b3e0d53f973c2c16d466fe3a35d673c2993495c84f6a4a79632"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -110,7 +110,7 @@ The **ActorMoodService** provides a service layer for logging and retrieving act
 
 ### Table: `actor_moods`
 
-**Location**: `database/toon_data/actor_moods.toon`
+**Location**: `lupo-database/toon_data/actor_moods.toon`
 
 ```sql
 CREATE TABLE actor_moods (
@@ -511,7 +511,7 @@ if ($mood === null) {
 - **Purpose**: Demonstrates all service methods with examples
 
 ### Database Schema
-- **Path**: `database/toon_data/actor_moods.toon`
+- **Path**: `lupo-database/toon_data/actor_moods.toon`
 - **Format**: TOON (Table Object Notation)
 
 ---

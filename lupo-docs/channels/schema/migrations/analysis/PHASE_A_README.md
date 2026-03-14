@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\channels\schema\migrations\analysis\PHASE_A_README.md"
+  file_path_from_root: "lupo-docs\channels\schema\migrations\analysis\PHASE_A_README.md"
   file_hash: "ef9f8fe268ec2dff4763909426b987133ae32bc29f0044966b9d1626ade17e7c"
-  file_path_from_root: "docs\channels\schema\migrations\analysis\PHASE_A_README.md"
+  file_path_from_root: "lupo-docs\channels\schema\migrations\analysis\PHASE_A_README.md"
   file_hash: "17da0f9504a425afa79f51bda476d383feafc6ef6b10b3af931dc5ebdec0722e"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -77,7 +77,7 @@ Creates the two federated schemas:
 
 **Execution**:
 ```sql
-SOURCE database/migrations/phase_a_orchestration_schema.sql;
+SOURCE lupo-database/migrations/phase_a_orchestration_schema.sql;
 ```
 
 ### 2. Move Orchestration Tables
@@ -94,7 +94,7 @@ Moves 22 orchestration tables from core schema to `lupopedia_orchestration`:
 
 **Execution**:
 ```sql
-SOURCE database/migrations/phase_a_move_orchestration_tables.sql;
+SOURCE lupo-database/migrations/phase_a_move_orchestration_tables.sql;
 ```
 
 ### 3. Move Ephemeral Tables
@@ -109,7 +109,7 @@ Moves 12 ephemeral tables from core schema to `lupopedia_ephemeral`:
 
 **Execution**:
 ```sql
-SOURCE database/migrations/phase_a_move_ephemeral_tables.sql;
+SOURCE lupo-database/migrations/phase_a_move_ephemeral_tables.sql;
 ```
 
 ### 4. Rollback Migration
@@ -122,7 +122,7 @@ Complete rollback that:
 
 **Execution** (if rollback needed):
 ```sql
-SOURCE database/migrations/phase_a_rollback.sql;
+SOURCE lupo-database/migrations/phase_a_rollback.sql;
 ```
 
 ## Execution Order

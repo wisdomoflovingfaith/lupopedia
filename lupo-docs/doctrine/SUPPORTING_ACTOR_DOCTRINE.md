@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\doctrine\SUPPORTING_ACTOR_DOCTRINE.md"
+  file_path_from_root: "lupo-docs\doctrine\SUPPORTING_ACTOR_DOCTRINE.md"
   file_hash: "2feda6562cee1a281e2e331ac5d6f1ca188e391ba43bb9451ff46bd97291ef74"
-  file_path_from_root: "docs\doctrine\SUPPORTING_ACTOR_DOCTRINE.md"
+  file_path_from_root: "lupo-docs\doctrine\SUPPORTING_ACTOR_DOCTRINE.md"
   file_hash: "9ef21877b08bd0b26a0c6d795eb54550743d1ef59ed73e5ca11d38581dc7919e"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -62,7 +62,7 @@ lupopedia.footer:
 
 ---
 wolfie.headers: {
-  file_path_from_root: "docs/doctrine/SUPPORTING_ACTOR_DOCTRINE.md",
+  file_path_from_root: "lupo-docs/doctrine/SUPPORTING_ACTOR_DOCTRINE.md",
   system_version: "4.0.38",
   channel_id: 42,
   mood_rgb: "4B0082",
@@ -91,7 +91,7 @@ wolfie.headers: {
 flip.footer: {
   inbound_edges: [
     { from: "QUICKSTART.md", type: "implements", weight: 1.0, hashtag: "#actors" },
-    { from: "docs/doctrine/X_LUPO_FORWARDED_HEADER_DOCTRINE.md", type: "references", weight: 0.9, hashtag: "#headers" }
+    { from: "lupo-docs/doctrine/X_LUPO_FORWARDED_HEADER_DOCTRINE.md", type: "references", weight: 0.9, hashtag: "#headers" }
   ],
   outbound_edges: [
     { to: "CHANGELOG.md", type: "documented_in", weight: 0.7, hashtag: "#versions" },
@@ -100,7 +100,7 @@ flip.footer: {
   ],
   referenced_by_actors: [1001, 1003, 10000],
   references: {
-    by_files: ["QUICKSTART.md", "docs/doctrine/X_LUPO_FORWARDED_HEADER_DOCTRINE.md", "CHANGELOG.md"],
+    by_files: ["QUICKSTART.md", "lupo-docs/doctrine/X_LUPO_FORWARDED_HEADER_DOCTRINE.md", "CHANGELOG.md"],
     by_actors: [1001, 1003, 10000]
   },
   semantic_tags: ["actor_accountability", "database_schema", "validation_rules", "two_layer_model"],

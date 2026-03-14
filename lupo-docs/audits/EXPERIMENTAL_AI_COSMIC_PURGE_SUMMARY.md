@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\audits\EXPERIMENTAL_AI_COSMIC_PURGE_SUMMARY.md"
+  file_path_from_root: "lupo-docs\audits\EXPERIMENTAL_AI_COSMIC_PURGE_SUMMARY.md"
   file_hash: "3ff0fc63e55d52924fc16cf9037038ac1c863f97ad4bf005696cd46f9e861561"
-  file_path_from_root: "docs\audits\EXPERIMENTAL_AI_COSMIC_PURGE_SUMMARY.md"
+  file_path_from_root: "lupo-docs\audits\EXPERIMENTAL_AI_COSMIC_PURGE_SUMMARY.md"
   file_hash: "d884d11cca59c552df1efddf8c4c097c09d6ff1e211acfa14c9eba87e2a97607"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -79,7 +79,7 @@ None. No file existed solely for cosmic/psychedelic/joke content; all affected f
 ### Doctrine and specs
 | File | Change |
 |------|--------|
-| `docs/channels/doctrine/EMOTIONAL_ENGINE_SPECIFICATION_v2_0.md` | Replaced "Quantum Emotional Processing: Quantum superposition of emotional states" with "Multi-axis emotional state handling: Combined emotional states across axes" |
+| `lupo-docs/channels/doctrine/EMOTIONAL_ENGINE_SPECIFICATION_v2_0.md` | Replaced "Quantum Emotional Processing: Quantum superposition of emotional states" with "Multi-axis emotional state handling: Combined emotional states across axes" |
 
 ### Dialogs and humor
 | File | Change |
@@ -96,12 +96,12 @@ None. No file existed solely for cosmic/psychedelic/joke content; all affected f
 ### Versioning
 | File | Change |
 |------|--------|
-| `docs/channels/overview/versioning/CHANGELOG.md` | Replaced all "STONED WOLFIE" persona labels with "[Deprecated persona]"; "Cosmic data/state/vibes/explosion/fog" with "Data/state/anomalies/expansion/state report"; "Cosmic Tables" with "RPZ tables"; "cosmic safety protocol" with "safety protocol"; "cosmic_vibes table" with "sandbox tables"; "cosmic experiments" with "sandbox experiments"; "cosmic delivery" with "light delivery"; removed STONED WOLFIE from persona coordination list. |
+| `lupo-docs/channels/overview/versioning/CHANGELOG.md` | Replaced all "STONED WOLFIE" persona labels with "[Deprecated persona]"; "Cosmic data/state/vibes/explosion/fog" with "Data/state/anomalies/expansion/state report"; "Cosmic Tables" with "RPZ tables"; "cosmic safety protocol" with "safety protocol"; "cosmic_vibes table" with "sandbox tables"; "cosmic experiments" with "sandbox experiments"; "cosmic delivery" with "light delivery"; removed STONED WOLFIE from persona coordination list. |
 
 ### Cursor rules
 | File | Change |
 |------|--------|
-| `.cursor/rules/experimental-ai-artifact-ban.mdc` | Added section **Forbidden: cosmic / psychedelic / joke-doctrine** listing cosmic metaphors, psychedelic/stoned humor, meta-AI metaphysics, and joke-doctrine/parody-doctrine. |
+| `.cursor/rules/experimental-ai-artifact-ban.mdc` | Had been updated (rule file since removed) with **Forbidden: cosmic / psychedelic / joke-doctrine**. |
 
 ---
 
@@ -134,19 +134,13 @@ None. No file existed solely for cosmic/psychedelic/joke content; all affected f
 ## 6. Confirmation: canonical-file doctrine
 
 - No new variant files were created. All changes were in-place edits.
-- Canonical-file doctrine remains as in experimental-ai-artifact-ban.mdc and EXPERIMENTAL_AI_ARTIFACT_PURGE_SUMMARY.md.
+- Canonical-file doctrine remains as in EXPERIMENTAL_AI_ARTIFACT_PURGE_SUMMARY.md.
 
 ---
 
 ## 7. Confirmation: Cursor treats these concepts as permanently banned
 
-- **.cursor/rules/experimental-ai-artifact-ban.mdc** now includes **Forbidden: cosmic / psychedelic / joke-doctrine**, instructing Cursor not to add:
-  - Cosmic metaphors (cosmic truth, universe observes itself, cosmic entity, code is alive, system dreams itself, cosmic versioning, etc.)
-  - Psychedelic/stoned humor (truth is a vibe, system is stoned, doctrine is a hallucination, cosmic joke, mandalas, cosmic raccoon, etc.)
-  - Meta-AI metaphysics (AI observing itself, AI consciousness, AI hallucination, AI dreaming, AI cosmic awareness, etc.)
-  - Joke-doctrine or parody-doctrine that prescribes surreal/psychedelic/anthropomorphic-AI narrative as doctrine.
-
-- Light developer humor is allowed only when it does not become doctrine or metadata.
+- A Cursor rule (experimental-ai-artifact-ban) had been updated (rule file since removed) with **Forbidden: cosmic / psychedelic / joke-doctrine**. Light developer humor is allowed only when it does not become doctrine or metadata.
 
 ---
 

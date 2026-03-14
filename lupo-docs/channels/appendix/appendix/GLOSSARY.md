@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\channels\appendix\appendix\GLOSSARY.md"
+  file_path_from_root: "lupo-docs\channels\appendix\appendix\GLOSSARY.md"
   file_hash: "ea5836df001b14a5eb9d2be4f02b945b8fba1e6dcb0eae025a85f3592ebdce61"
-  file_path_from_root: "docs\channels\appendix\appendix\GLOSSARY.md"
+  file_path_from_root: "lupo-docs\channels\appendix\appendix\GLOSSARY.md"
   file_hash: "9ee6510608b5d60c4a3aa9abb12486fb4f7576da2e76e6c94e460b60531e3221"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -590,14 +590,14 @@ A symbolic variable used in documentation instead of hardcoded values. Atoms are
 
 A mandatory, non-negotiable rule or principle that governs Lupopedia architecture, development, or operations.
 
-**Location:** `docs/doctrine/` directory
+**Location:** `lupo-docs/doctrine/` directory
 
 **Examples:**
 - NO_FOREIGN_KEYS_DOCTRINE.md
 - TIMESTAMP_DOCTRINE.md
 - URL_ROUTING_DOCTRINE.md
 
-**See:** [docs/doctrine/](../doctrine/)
+**See:** [lupo-docs/doctrine/](../doctrine/)
 
 ---
 
@@ -607,7 +607,7 @@ A mandatory, non-negotiable rule or principle that governs Lupopedia architectur
 
 A structured data format used for database schema documentation and data exchange. TOON files are read-only and auto-generated.
 
-**Location:** `database/toon_data/` directory
+**Location:** `lupo-database/toon_data/` directory
 
 **See:** [TOON_DOCTRINE.md](../../doctrine/TOON_DOCTRINE.md)
 

@@ -29,7 +29,7 @@ Implementation of the collections/tabs/navigation expansion recommended by Antig
 
 ## 3. Migration
 
-- **Created:** `database/migrations/20260312_collections_tabs_navigation_4_0_69.sql`
+- **Created:** `lupo-database/migrations/20260312_collections_tabs_navigation_4_0_69.sql`
   - ALTER lupo_collections: ADD channel_id, is_nav_menu, nav_icon; CREATE INDEX for channel_id and is_nav_menu.
   - ALTER lupo_collection_tabs: CHANGE user_id → actor_id; ADD visibility_rule, tab_type; CREATE INDEX actor_id.
   - INSERT into lupo_schema_migrations (schema_migration_id 20260312002, version 20260312, name 20260312_collections_tabs_navigation_4_0_69).

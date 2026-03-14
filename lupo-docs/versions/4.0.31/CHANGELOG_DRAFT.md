@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\versions\4.0.31\CHANGELOG_DRAFT.md"
+  file_path_from_root: "lupo-docs\versions\4.0.31\CHANGELOG_DRAFT.md"
   file_hash: "9fe94866f1ed8654b3aae03f30ab7f9c8000e4f148916ef2324ab67f24c90197"
-  file_path_from_root: "docs\versions\4.0.31\CHANGELOG_DRAFT.md"
+  file_path_from_root: "lupo-docs\versions\4.0.31\CHANGELOG_DRAFT.md"
   file_hash: "a73653ec28e75a0af87fba88acb04b94cd68cba3e051dad70b7a7da3a8aac15b"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -64,7 +64,7 @@ lupopedia.footer:
 ---
 # FLIP Header (alias: Wolfie Header, CROP Header)
 wolfie.headers: explicit architecture with structured clarity for every file.
-file_path_from_root: docs/versions/4.0.31/CHANGELOG_DRAFT.md
+file_path_from_root: lupo-docs/versions/4.0.31/CHANGELOG_DRAFT.md
 file.last_modified_system_version: "4.0.31"
 file.last_modified_utc: "20260222215100"
 channel_id: 42
@@ -94,8 +94,8 @@ actor_420_status: "banned_mythological"
 - **Phase 4**: Distribution Preparation (Weeks 7-8)
 
 ### 📁 FILE CREATION TRACKING
-- **docs/versions/4.0.31/ROADMAP.md** - Comprehensive 8-week development roadmap with FLIP headers
-- **docs/versions/4.0.31/CHANGELOG_DRAFT.md** - Initial changelog draft with progress tracking and FLIP headers
+- **lupo-docs/versions/4.0.31/ROADMAP.md** - Comprehensive 8-week development roadmap with FLIP headers
+- **lupo-docs/versions/4.0.31/CHANGELOG_DRAFT.md** - Initial changelog draft with progress tracking and FLIP headers
 
 ### 📋 4.0.31 WORK IN PROGRESS
 - **Version Initialization**: Complete 4.0.31 development structure established

@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\doctrine\FLIP\FLP_EMOTIONAL_AGGREGATION.md"
+  file_path_from_root: "lupo-docs\doctrine\FLIP\FLP_EMOTIONAL_AGGREGATION.md"
   file_hash: "0f1f28fe81e04b17bf06776731ce368bc3f8343d750dcec267636dc9563b0ec6"
-  file_path_from_root: "docs\doctrine\FLIP\FLP_EMOTIONAL_AGGREGATION.md"
+  file_path_from_root: "lupo-docs\doctrine\FLIP\FLP_EMOTIONAL_AGGREGATION.md"
   file_hash: "28f8e45391cefaaf27988f3be92beb1e0f3e132fbe111583376ecb94249fd98d"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -64,14 +64,14 @@ lupopedia.footer:
 ---
 # FLIP Header (alias: Wolfie Header, CROP Header, FLIPPING Header)
 wolfie.headers: explicit architecture with structured clarity for every file.
-file_path_from_root: docs/doctrine/FLIP/FLP_EMOTIONAL_AGGREGATION.md
+file_path_from_root: lupo-docs/doctrine/FLIP/FLP_EMOTIONAL_AGGREGATION.md
 file.last_modified_system_version: "4.0.16"
 file.last_modified_utc: "00000000000000"
 # channel_id unresolved — requires lupo_contents lookup by application.
 X-Lupo-Channel: 42   # ANUBIS adoption channel (Auto-Fixed)
 X-Lupo-Actor-ID: 2035
 X-Lupo-Actor-Identity: "Lupopedia Audit Tool (Auto-Fixed)"
-X-Lupo-File-Path: docs/doctrine/FLIP/FLP_EMOTIONAL_AGGREGATION.md
+X-Lupo-File-Path: lupo-docs/doctrine/FLIP/FLP_EMOTIONAL_AGGREGATION.md
 ---
 # FLP — Emotional Aggregation
 

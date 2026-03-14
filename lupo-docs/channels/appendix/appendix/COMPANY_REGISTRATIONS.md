@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\channels\appendix\appendix\COMPANY_REGISTRATIONS.md"
+  file_path_from_root: "lupo-docs\channels\appendix\appendix\COMPANY_REGISTRATIONS.md"
   file_hash: "79abbcfa7202c7aa474de281d5c2746659506d56a8e3819f0a0a9f45a6159100"
-  file_path_from_root: "docs\channels\appendix\appendix\COMPANY_REGISTRATIONS.md"
+  file_path_from_root: "lupo-docs\channels\appendix\appendix\COMPANY_REGISTRATIONS.md"
   file_hash: "4b6b82d3c28b20e2eabeded0c7021677a91388b814893c5b8151ab3c4b241420"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -209,11 +209,11 @@ For current operational structure, team information, and company policies, see t
 ## Document Storage
 
 The original PDF registration documents should be stored in the project repository at:
-- `docs/appendix/legal/RegistrationAcknowledge.pdf` - South Dakota DBA for "LUPOPEDIA" (Nov 6, 2025)
-- `docs/appendix/legal/DBA_craftysyntax.pdf` - South Dakota DBA receipt for "CRAFTY SYNTAX" (Nov 14, 2025)
-- `docs/appendix/legal/LLC_crafty_syntax.pdf` - Hawaii LLC registration for "CRAFTY SYNTAX LLC" (2007, terminated)
+- `lupo-docs/appendix/legal/RegistrationAcknowledge.pdf` - South Dakota DBA for "LUPOPEDIA" (Nov 6, 2025)
+- `lupo-docs/appendix/legal/DBA_craftysyntax.pdf` - South Dakota DBA receipt for "CRAFTY SYNTAX" (Nov 14, 2025)
+- `lupo-docs/appendix/legal/LLC_crafty_syntax.pdf` - Hawaii LLC registration for "CRAFTY SYNTAX LLC" (2007, terminated)
 
-**Note:** The `docs/appendix/legal/` directory should be created and these PDF files should be placed there for permanent archival and easy reference.
+**Note:** The `lupo-docs/appendix/legal/` directory should be created and these PDF files should be placed there for permanent archival and easy reference.
 
 These documents serve as legal proof of business registration and should be preserved for record-keeping and compliance purposes.
 
@@ -238,6 +238,6 @@ These documents serve as legal proof of business registration and should be pres
 
 **Legal Reference (LOW Priority):**
 - **Global Atoms:** `config/global_atoms.yaml` - `@GLOBAL.LUPOPEDIA_COMPANY_STRUCTURE` for current operational details
-- **Document Storage:** `docs/appendix/legal/` - Physical registration documents (PDFs)
+- **Document Storage:** `lupo-docs/appendix/legal/` - Physical registration documents (PDFs)
 
 ---

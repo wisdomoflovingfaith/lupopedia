@@ -37,7 +37,7 @@ def build_index():
     md_files = []
     
     # Try multiple common index locations
-    md_index_files = ["tools/flare_md_index.txt", "lupo-tools/flare_md_index.txt"]
+    md_index_files = ["lupo-tools/flare_md_index.txt"]
     index_found = False
     for md_index_file in md_index_files:
         if os.path.exists(md_index_file):

@@ -2,7 +2,7 @@
 
 ---
 lupopedia.headers:
-  lupopedia.version: "4.0.73"
+  lupopedia.version: "4.0.74"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
   file_path_from_root: "HOW_TO_USE_LUPOPEDIA.md"
@@ -62,18 +62,18 @@ flip.footer: {
   inbound_edges: [
     { from: "README.md", type: "references", weight: 1.0, hashtag: "#documentation" },
     { from: "QUICKSTART.md", type: "references", weight: 0.9, hashtag: "#onboarding" },
-    { from: "docs/doctrine/SUPPORTING_ACTOR_DOCTRINE.md", type: "references", weight: 0.8, hashtag: "#actors" }
+    { from: "lupo-docs/doctrine/SUPPORTING_ACTOR_DOCTRINE.md", type: "references", weight: 0.8, hashtag: "#actors" }
   ],
   outbound_edges: [
-    { to: "tools/vsx-extension", type: "implements", weight: 1.0, hashtag: "#extension" },
-    { to: "docs/doctrine/", type: "references", weight: 0.9, hashtag: "#doctrine" },
+    { to: "lupo-tools/vsx-extension", type: "implements", weight: 1.0, hashtag: "#extension" },
+    { to: "lupo-docs/doctrine/", type: "references", weight: 0.9, hashtag: "#doctrine" },
     { to: "README.md", type: "references", weight: 0.7, hashtag: "#overview" },
     { to: "QUICKSTART.md", type: "references", weight: 0.8, hashtag: "#quickstart" },
     { to: "CHANGELOG.md", type: "references", weight: 0.6, hashtag: "#versions" }
   ],
   referenced_by_actors: [1001, 1003, 2038, 10000],
   references: {
-    by_files: ["README.md", "QUICKSTART.md", "docs/doctrine/SUPPORTING_ACTOR_DOCTRINE.md"],
+    by_files: ["README.md", "QUICKSTART.md", "lupo-docs/doctrine/SUPPORTING_ACTOR_DOCTRINE.md"],
     by_actors: [1001, 2038, 10000]
   },
   semantic_tags: ["json5_mandatory", "first_5_minutes", "command_outputs", "interactive", "power_user"],
@@ -101,7 +101,7 @@ Lupopedia isn't just a codebase—it's a **multi-agent federation** with a livin
 
 ### Step 1: Install the VSX Extension (2 minutes)
 ```bash
-cd tools/vsx-extension
+cd lupo-tools/vsx-extension
 npm install
 npm run compile
 ```
@@ -171,7 +171,7 @@ Open any `.md` file, then:
       "last_modified": "20260224"
     },
     {
-      "file": "docs/doctrine/SUPPORTING_ACTOR_DOCTRINE.md",
+      "file": "lupo-docs/doctrine/SUPPORTING_ACTOR_DOCTRINE.md",
       "edge_type": "implements",
       "actor_id": 1001,
       "last_modified": "20260224"
@@ -393,7 +393,7 @@ flip.footer: {
 
 ## 🛠️ VSX EXTENSION (YOUR SEMANTIC SUPERPOWER)
 
-The `tools/vsx-extension` is your primary interface. It automates semantic operations and prevents agent collisions.
+The `lupo-tools/vsx-extension` is your primary interface. It automates semantic operations and prevents agent collisions.
 
 ### Core Commands with Output Examples
 
@@ -456,12 +456,12 @@ delegation for actor 1003
   "query": "delegation for actor 1003",
   "results": [
     {
-      "file": "docs/status/antigravity_flip_v2_implementation_4_0_37.md",
+      "file": "lupo-docs/status/antigravity_flip_v2_implementation_4_0_37.md",
       "delegation_chain": "1003:10000",
       "last_modified": "20260224"
     },
     {
-      "file": "tools/vsx-extension/src/HeaderParser.ts",
+      "file": "lupo-tools/vsx-extension/src/HeaderParser.ts",
       "delegation_chain": "1003:1001:10000",
       "last_modified": "20260223"
     }
@@ -479,7 +479,7 @@ edges semantic to security
   "query": "edges semantic to security",
   "results": [
     {
-      "file": "docs/doctrine/SECURITY_DOCTRINE.md",
+      "file": "lupo-docs/doctrine/SECURITY_DOCTRINE.md",
       "semantic_tags": ["critical", "reviewed"],
       "outbound": ["AuthService.php", "Session.php"]
     }
@@ -539,7 +539,7 @@ edges semantic to security
 ### Quick Workflows
 
 **Workflow 1: Create a New Doctrine**
-1. Create file: `docs/doctrine/MY_NEW_DOCTRINE.md`
+1. Create file: `lupo-docs/doctrine/MY_NEW_DOCTRINE.md`
 2. Add header (copy from existing doctrine)
 3. Run: `Lupopedia: Validate Current File`
 4. Fix any errors
@@ -570,12 +570,12 @@ edges semantic to security
 
 ### Example 1: Security Doctrine with Full Graph
 
-**File:** `docs/doctrine/SECURITY_DOCTRINE.md`
+**File:** `lupo-docs/doctrine/SECURITY_DOCTRINE.md`
 
 **Header:**
 ```json5
 {
-  "file_path_from_root": "docs/doctrine/SECURITY_DOCTRINE.md",
+  "file_path_from_root": "lupo-docs/doctrine/SECURITY_DOCTRINE.md",
   "system_version": "4.1.0",
   "delegation_chain": "1003:2038:10000",  // Antigravity → LILITH → Captain
   "actor_id": 1003,
@@ -593,8 +593,8 @@ flip.footer: {
   // Who points TO this doctrine?
   inbound_edges: [
     "QUICKSTART.md",
-    "docs/status/security_audit_4_1_0.md",
-    "channels/42/broadcasts/20260224_security_review.md"
+    "lupo-docs/status/security_audit_4_1_0.md",
+    "lupo-channels/42/broadcasts/20260224_security_review.md"
   ],
   
   // Who does this doctrine point TO?
@@ -608,7 +608,7 @@ flip.footer: {
   semantic_relationships: {
     implements: ["ARCH-042-AUTH"],
     validates: ["USER-AUTH-001", "SESSION-MGMT-002"],
-    supersedes: ["docs/archive/OLD_SECURITY_DOCTRINE.md"],
+    supersedes: ["lupo-docs/archive/OLD_SECURITY_DOCTRINE.md"],
     reviewed_by: ["LILITH", "LEXA"]
   },
   
@@ -652,11 +652,11 @@ graph LR
   "created_by": 10000,
   "created_utc": "20260220",
   "members": [
-    "docs/doctrine/SECURITY_DOCTRINE.md",
-    "docs/status/security_audit_4_1_0.md",
+    "lupo-docs/doctrine/SECURITY_DOCTRINE.md",
+    "lupo-docs/status/security_audit_4_1_0.md",
     "app/auth/AuthService.php",
     "app/auth/Session.php",
-    "tests/security/auth_test.php"
+    "lupo-tests/security/auth_test.php"
   ],
   "traits": ["critical", "pre_release"],
   "status": "in_progress"
@@ -819,7 +819,7 @@ Real-world benchmarks from v4.1.0 testing (5 fresh workspaces, 800-1200 files ea
 **Validate all doctrines:**
 ```
 > Lupopedia: Batch Validate
-Filter: docs/doctrine/*.md
+Filter: lupo-docs/doctrine/*.md
 ```
 
 **Update all v4.0 files to v4.1:**
@@ -877,7 +877,7 @@ Add to VS Code `keybindings.json`:
 
 **Install CLI:**
 ```bash
-cd tools/vsx-extension
+cd lupo-tools/vsx-extension
 npm run build:cli
 npm link
 ```
@@ -993,18 +993,18 @@ Include: All artifacts with > 3 edges
 - `README.md` — Project overview and architecture
 - `QUICKSTART.md` — 5-minute onboarding
 - `CHANGELOG.md` — Version history and current status
-- `docs/doctrine/SUPPORTING_ACTOR_DOCTRINE.md` — Actor model deep dive
-- `docs/doctrine/FLIP_V2_DOCTRINE.md` — Metadata specification
+- `lupo-docs/doctrine/SUPPORTING_ACTOR_DOCTRINE.md` — Actor model deep dive
+- `lupo-docs/doctrine/FLIP_V2_DOCTRINE.md` — Metadata specification
 
 ### Agent Coordination
-- `channels/42/` — Development coordination logs
-- `docs/AGENT_INVENTORY.md` — Complete actor registry
-- `docs/status/AGENT_TASK_TRACKER.md` — Current agent assignments
+- `lupo-channels/42/` — Development coordination logs
+- `lupo-docs/AGENT_INVENTORY.md` — Complete actor registry
+- `lupo-docs/status/AGENT_TASK_TRACKER.md` — Current agent assignments
 
 ### Technical Specs
-- `database/migrations/install_new_lupopedia.sql` — Database schema
-- `docs/toons/*.toon.json` — Table definitions
-- `tools/vsx-extension/README.md` — Extension architecture
+- `lupo-database/migrations/install_new_lupopedia.sql` — Database schema
+- `lupo-docs/toons/*.toon.json` — Table definitions
+- `lupo-tools/vsx-extension/README.md` — Extension architecture
 
 ---
 

@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\channels\42\broadcasts\20260224_windsurf_kiro_dialog_fix_required.md"
+  file_path_from_root: "lupo-docs\channels\42\broadcasts\20260224_windsurf_kiro_dialog_fix_required.md"
   file_hash: "0cb3045e158fd014cff8466fcd5a992b22c9b140d91dd327db6c8a4740702d10"
-  file_path_from_root: "docs\channels\42\broadcasts\20260224_windsurf_kiro_dialog_fix_required.md"
+  file_path_from_root: "lupo-docs\channels\42\broadcasts\20260224_windsurf_kiro_dialog_fix_required.md"
   file_hash: "4bef90a9caeccd3136054faa61a218158d2cd084a73f01c5d52138288ee8a17d"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -62,7 +62,7 @@ lupopedia.footer:
 
 ---
 wolfie.headers: {
-  file_path_from_root: "docs/channels/42/broadcasts/20260224_windsurf_kiro_dialog_fix_required.md",
+  file_path_from_root: "lupo-docs/channels/42/broadcasts/20260224_windsurf_kiro_dialog_fix_required.md",
   system_version: "4.0.42",
   channel_id: 42,
   mood_rgb: "00AA00",
@@ -90,22 +90,22 @@ wolfie.headers: {
 
 flip.footer: {
   inbound_edges: [
-    { from: "docs/channels/42/broadcasts/20260224_windsurf_kiro_4_0_42_thread_read.md", type: "responds_to", weight: 1.0, hashtag: "#acknowledgment" }
+    { from: "lupo-docs/channels/42/broadcasts/20260224_windsurf_kiro_4_0_42_thread_read.md", type: "responds_to", weight: 1.0, hashtag: "#acknowledgment" }
   ],
   outbound_edges: [
-    { to: "docs/channels/42/broadcasts/20260224_windsurf_thread_header_updated.md", type: "references", weight: 0.9, hashtag: "#header_update" },
-    { to: "docs/channels/42/broadcasts/20260224_windsurf_thread_system_documented.md", type: "references", weight: 0.9, hashtag: "#system" },
-    { to: "docs/channels/42/broadcasts/20260224_windsurf_checklist_acknowledged.md", type: "references", weight: 0.9, hashtag: "#checklist" },
-    { to: "docs/channels/42/broadcasts/20260224_windsurf_thread_header_updated.md", type: "references", weight: 0.9, hashtag: "#header_update" },
-    { to: "docs/channels/42/broadcasts/20260224_windsurf_kiro_4_0_42_initialization_complete.md", type: "references", weight: 0.9, hashtag: "#thread" },
-    { to: "docs/channels/42/broadcasts/20260224_windsurf_thread_system_documented.md", type: "references", weight: 0.9, hashtag: "#system" },
-    { to: "docs/doctrine/THREAD_DIALOG_SYSTEM.md", type: "references", weight: 0.8, hashtag: "#protocol" },
-    { to: "docs/channels/42/broadcasts/20260224_version_initialization_checklist_update.md", type: "references", weight: 0.9, hashtag: "#checklist" },
+    { to: "lupo-docs/channels/42/broadcasts/20260224_windsurf_thread_header_updated.md", type: "references", weight: 0.9, hashtag: "#header_update" },
+    { to: "lupo-docs/channels/42/broadcasts/20260224_windsurf_thread_system_documented.md", type: "references", weight: 0.9, hashtag: "#system" },
+    { to: "lupo-docs/channels/42/broadcasts/20260224_windsurf_checklist_acknowledged.md", type: "references", weight: 0.9, hashtag: "#checklist" },
+    { to: "lupo-docs/channels/42/broadcasts/20260224_windsurf_thread_header_updated.md", type: "references", weight: 0.9, hashtag: "#header_update" },
+    { to: "lupo-docs/channels/42/broadcasts/20260224_windsurf_kiro_4_0_42_initialization_complete.md", type: "references", weight: 0.9, hashtag: "#thread" },
+    { to: "lupo-docs/channels/42/broadcasts/20260224_windsurf_thread_system_documented.md", type: "references", weight: 0.9, hashtag: "#system" },
+    { to: "lupo-docs/doctrine/THREAD_DIALOG_SYSTEM.md", type: "references", weight: 0.8, hashtag: "#protocol" },
+    { to: "lupo-docs/channels/42/broadcasts/20260224_version_initialization_checklist_update.md", type: "references", weight: 0.9, hashtag: "#checklist" },
     { to: "CHANGELOG.md", type: "will_update", weight: 0.7, hashtag: "#changelog" }
   ],
   referenced_by_actors: [10000, 1002, 1001],
   references: {
-    by_files: ["docs/channels/42/broadcasts/20260224_windsurf_kiro_4_0_42_thread_read.md", "docs/channels/42/broadcasts/20260224_windsurf_thread_header_updated.md", "docs/channels/42/broadcasts/20260224_windsurf_thread_system_documented.md", "docs/channels/42/broadcasts/20260224_windsurf_checklist_acknowledged.md"],
+    by_files: ["lupo-docs/channels/42/broadcasts/20260224_windsurf_kiro_4_0_42_thread_read.md", "lupo-docs/channels/42/broadcasts/20260224_windsurf_thread_header_updated.md", "lupo-docs/channels/42/broadcasts/20260224_windsurf_thread_system_documented.md", "lupo-docs/channels/42/broadcasts/20260224_windsurf_checklist_acknowledged.md"],
     by_actors: [10000, 1002, 1001]
   },
   semantic_tags: ["acknowledgment", "dialog_fix", "v4_0.42", "coordination"],
@@ -155,7 +155,7 @@ flip.footer: {
 ## 🛠️ **CORRECTIVE ACTIONS TAKEN**
 
 ### **✅ Protocol Documentation Updated**
-**File:** `docs/doctrine/THREAD_DIALOG_SYSTEM.md`
+**File:** `lupo-docs/doctrine/THREAD_DIALOG_SYSTEM.md`
 **Changes Made:**
 - ✅ **Added anti-pattern rules** - Clear guidance on acknowledgment without action
 - ✅ **Enhanced broadcast guidelines** - Distinguished when to use broadcasts vs thread messages

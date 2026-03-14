@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -32,7 +32,7 @@ lupopedia.footer:
 ---
 lupopedia.headers: 
   system_version: "4.0.50"
-  file_path_from_root: "prompts/windsurf/20260224_update_how_to_use_lupopedia.md"
+  file_path_from_root: "lupo-prompts/windsurf/20260224_update_how_to_use_lupopedia.md"
   file_hash: "b735f868bff379b5d4d10576153a560487fa78b19bffa3daa700a16c68b3cb5b"
   channel_id: 42
   mood_rgb: "00AACC"
@@ -48,9 +48,9 @@ lupopedia.headers:
 flip.footer:
   referenced_by_files:
     - "HOW_TO_USE_LUPOPEDIA.md"
-    - "docs/doctrine/SUPPORTING_ACTOR_DOCTRINE.md"
-    - "docs/doctrine/FLIP_V2_DOCTRINE.md"
-    - "prompts/lilith/20260224_how_to_use_lupopedia_review.md"
+    - "lupo-docs/doctrine/SUPPORTING_ACTOR_DOCTRINE.md"
+    - "lupo-docs/doctrine/FLIP_V2_DOCTRINE.md"
+    - "lupo-prompts/lilith/20260224_how_to_use_lupopedia_review.md"
   referenced_by_actors:
     - 1002 # Windsurf
     - 2038 # LILITH

@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -32,7 +32,7 @@ lupopedia.footer:
 
 ---
 lupopedia.headers:
-  file_path_from_root: "channels/42/actors/1/help.md"
+  file_path_from_root: "lupo-channels/42/actors/1/help.md"
   file_hash: "73d1eef81528ed1f0d7f4c609d49b96aecf70be0e04bfd6ec012f9d64f20f634"
   system_version: "4.0.50"
   channel_id: 42
@@ -49,12 +49,12 @@ lupopedia.headers:
   lupo_agent: "windsurf"
 
 lupopedia.edges:
-  file_path_from_root: "channels\42\actors\1\help.md"
+  file_path_from_root: "lupo-channels\42\actors\1\help.md"
   outbound_edges:
-    - { to: "channels/42/actors/1/HELP.json", type: "references", weight: 1.0, reason: "JSON help data" }
-    - { to: "channels/42/actors/1/history/list.csv", type: "references", weight: 0.9, reason: "Actor history" }
-    - { to: "channels/42/actors/1/tasks/list.csv", type: "references", weight: 0.9, reason: "Actor tasks" }
-    - { to: "channels/42/actors/0/help.md", type: "references", weight: 0.8, reason: "System Agent coordination" }
+    - { to: "lupo-channels/42/actors/1/HELP.json", type: "references", weight: 1.0, reason: "JSON help data" }
+    - { to: "lupo-channels/42/actors/1/history/list.csv", type: "references", weight: 0.9, reason: "Actor history" }
+    - { to: "lupo-channels/42/actors/1/tasks/list.csv", type: "references", weight: 0.9, reason: "Actor tasks" }
+    - { to: "lupo-channels/42/actors/0/help.md", type: "references", weight: 0.8, reason: "System Agent coordination" }
     - { to: "bin/lupo.php", type: "references", weight: 0.8, reason: "CLI tool access" }
   semantic_tags: ["captain_wolfie_help", "ai_agent_leadership", "4.0.50"]
 
@@ -131,10 +131,10 @@ allocate_resources(project, resources)
 ```
 
 ### File Locations
-- **Workspace**: `channels/42/actors/1/`
-- **History**: `channels/42/actors/1/history/list.csv`
-- **Tasks**: `channels/42/actors/1/tasks/list.csv`
-- **Help Data**: `channels/42/actors/1/HELP.json`
+- **Workspace**: `lupo-channels/42/actors/1/`
+- **History**: `lupo-channels/42/actors/1/history/list.csv`
+- **Tasks**: `lupo-channels/42/actors/1/tasks/list.csv`
+- **Help Data**: `lupo-channels/42/actors/1/HELP.json`
 
 ## Integration Points
 
@@ -209,10 +209,10 @@ allocate_resources(project, resources)
 
 ## Related Documentation
 
-- **System Agent Help**: `channels/42/actors/0/help.md` - System-level operations
+- **System Agent Help**: `lupo-channels/42/actors/0/help.md` - System-level operations
 - **CLI Documentation**: `bin/lupo.php.md` - Command-line interface reference
 - **Agent Registry**: `lupo-agents/` - Complete AI agent ecosystem documentation
-- **Quality Standards**: `docs/quality/` - System quality and performance standards
+- **Quality Standards**: `lupo-docs/quality/` - System quality and performance standards
 
 ## Version Information
 

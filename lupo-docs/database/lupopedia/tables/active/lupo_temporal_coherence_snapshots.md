@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -31,7 +31,7 @@ lupopedia.footer:
 # LUPOPEDIA HEADERS (replaces FLARE)
 ---
 lupopedia.headers:
-  file_path_from_root: "docs/database/lupopedia/tables/lupo_temporal_coherence_snapshots.md"
+  file_path_from_root: "lupo-docs/database/lupopedia/tables/lupo_temporal_coherence_snapshots.md"
   file_hash: "4f83f966ff628fb6005c71a2805db6dd1924f890511f82e2f17e8b4dfd6dc0ba"
   system_version: "4.0.50"
   channel_id: 1
@@ -64,16 +64,16 @@ lupopedia.headers:
 
 # FLARE Edge Automation Tip:
 # Use the FLARE Edge Suggester Tool to automatically discover and suggest edges:
-# python scripts/flare_edge_suggester.py --file <path> --include-db --format yaml
+# python lupo-scripts/flare_edge_suggester.py --file <path> --include-db --format yaml
 
   last_updated_utc: "20260228"
 lupopedia.footer:
   outbound_edges:
     - { to: "lupo-database/lupopedia/toon/lupo_temporal_coherence_snapshots.toon.json", type: "schema_reference", weight: 1.0, reason: "TOON schema definition", db_source: "lupo_temporal_coherence_snapshots" }
-    - { to: "docs/FLARE_HEADERS_COMPLETE_REFERENCE.md", type: "references", weight: 0.9, reason: "FLARE header reference" }
-    - { to: "docs/doctrine/FLARE/FLARE_DOCTRINE.md", type: "references", weight: 0.9, reason: "FLARE doctrine" }
-    - { to: "docs/doctrine/database/README.md", type: "references", weight: 0.8, reason: "Database doctrine" }
-    - { to: "docs/database/lupopedia/README.md", type: "references", weight: 0.8, reason: "Database documentation index" }
+    - { to: "lupo-docs/FLARE_HEADERS_COMPLETE_REFERENCE.md", type: "references", weight: 0.9, reason: "FLARE header reference" }
+    - { to: "lupo-docs/doctrine/FLARE/FLARE_DOCTRINE.md", type: "references", weight: 0.9, reason: "FLARE doctrine" }
+    - { to: "lupo-docs/doctrine/database/README.md", type: "references", weight: 0.8, reason: "Database doctrine" }
+    - { to: "lupo-docs/database/lupopedia/README.md", type: "references", weight: 0.8, reason: "Database documentation index" }
   inbound_edges: []
   semantic_tags: ["database", "table", "lupo_temporal_coherence_snapshots"]
   version: "4.0.48"

@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\channels\agents\agent-1\doctrine\CHANNEL_IDENTITY_BLOCK.md"
+  file_path_from_root: "lupo-docs\channels\agents\agent-1\doctrine\CHANNEL_IDENTITY_BLOCK.md"
   file_hash: "0bb4f22de68f83278fcd76663497fd842e5579f82f0bb1bd8f545b53c95ae5b4"
-  file_path_from_root: "docs\channels\agents\agent-1\doctrine\CHANNEL_IDENTITY_BLOCK.md"
+  file_path_from_root: "lupo-docs\channels\agents\agent-1\doctrine\CHANNEL_IDENTITY_BLOCK.md"
   file_hash: "f87997bac43f1674644675a65f419d1a05456a569864f9c0a9f76b292083c0a6"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -542,7 +542,7 @@ When an agent cannot respond or routing fails:
 The Channel Identity Block maps to the Channel Manifest stored at:
 
 ```
-channels/<channel_key>/manifest.json
+lupo-channels/<channel_key>/manifest.json
 ```
 
 ### 7.1. Required Manifest Fields
@@ -578,7 +578,7 @@ WOLFIE generates the manifest during channel initialization:
 2. Enrich with actor assignments (`lupo_actor_channels`)
 3. Enrich with role assignments (`lupo_actor_channel_roles`)
 4. Generate JSON manifest file
-5. Write to `channels/<channel_key>/manifest.json`
+5. Write to `lupo-channels/<channel_key>/manifest.json`
 
 ---
 

@@ -53,9 +53,9 @@ This document provides a complete testing guide for the minimal seed data implem
 
 ## Files Created
 
-- `database/migrations/seed_minimal_4.0.26.sql` - Minimal seed data (229 lines)
-- `database/migrations/CRITICAL_SCHEMA_FIX_4.0.26.sql` - Schema issue documentation (102 lines)
-- `database/migrations/verify_active_agents_4.0.26.sql` - Verification queries (121 lines)
+- `lupo-database/migrations/seed_minimal_4.0.26.sql` - Minimal seed data (229 lines)
+- `lupo-database/migrations/CRITICAL_SCHEMA_FIX_4.0.26.sql` - Schema issue documentation (102 lines)
+- `lupo-database/migrations/verify_active_agents_4.0.26.sql` - Verification queries (121 lines)
 
 ## Seed Data Contents
 
@@ -109,7 +109,7 @@ USE lupopedia;
 ### Step 2: Load Crafty Syntax 3.7.5
 
 ```bash
-mysql -u root -p lupopedia < database/migrations/old_crafty_syntax_3_7_5_start.sql
+mysql -u root -p lupopedia < lupo-database/migrations/old_crafty_syntax_3_7_5_start.sql
 ```
 
 ### Step 3: Run Install Wizard
@@ -122,7 +122,7 @@ Select: Upgrade from Crafty Syntax 3.7.5
 ### Step 4: Verify Installation
 
 ```bash
-mysql -u root -p lupopedia < database/migrations/verify_active_agents_4.0.26.sql
+mysql -u root -p lupopedia < lupo-database/migrations/verify_active_agents_4.0.26.sql
 ```
 
 ## Expected Results
@@ -235,9 +235,9 @@ SELECT COUNT(*) FROM lupo_registry;
 
 ## Documentation References
 
-- [FLIP Doctrine](docs/doctrine/FLIP/FLIP_DOCTRINE.md)
-- [Schema Fixes](database/migrations/CRITICAL_SCHEMA_FIX_4.0.26.sql)
-- [Verification Script](database/migrations/verify_active_agents_4.0.26.sql)
+- [FLIP Doctrine](lupo-docs/doctrine/FLIP/FLIP_DOCTRINE.md)
+- [Schema Fixes](lupo-database/migrations/CRITICAL_SCHEMA_FIX_4.0.26.sql)
+- [Verification Script](lupo-database/migrations/verify_active_agents_4.0.26.sql)
 - [Global Agent Sync](messages/GLOBAL_AGENT_SYNC_4.0.27.md)
 
 ---

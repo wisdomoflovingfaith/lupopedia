@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\channels\architecture\CANONICAL_ONTOLOGY_ARCHITECTURE_GOVERNANCE_v1_0.md"
+  file_path_from_root: "lupo-docs\channels\architecture\CANONICAL_ONTOLOGY_ARCHITECTURE_GOVERNANCE_v1_0.md"
   file_hash: "c2827f41df5bb4ba79bdcc113d52841ea6d2547180cad1cd5080d3dfdf95971c"
-  file_path_from_root: "docs\channels\architecture\CANONICAL_ONTOLOGY_ARCHITECTURE_GOVERNANCE_v1_0.md"
+  file_path_from_root: "lupo-docs\channels\architecture\CANONICAL_ONTOLOGY_ARCHITECTURE_GOVERNANCE_v1_0.md"
   file_hash: "17a3a847cf414839e552219812733705e98bc17add9d28bda2aa6175290aaadb"
   last_updated_utc: "20260228"
   system_version: "4.0.50"

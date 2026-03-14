@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\channels\42\broadcasts\20260223_kiro_stoned_wolfie_metadata_update.md"
+  file_path_from_root: "lupo-docs\channels\42\broadcasts\20260223_kiro_stoned_wolfie_metadata_update.md"
   file_hash: "72ac46df73a02a38208775ad207f02653d55277e83572c2a86f31fe21afae2cb"
-  file_path_from_root: "docs\channels\42\broadcasts\20260223_kiro_stoned_wolfie_metadata_update.md"
+  file_path_from_root: "lupo-docs\channels\42\broadcasts\20260223_kiro_stoned_wolfie_metadata_update.md"
   file_hash: "62318f3a5501d84320875426e3394a8893466d589b803118f04f07af788a3b12"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -64,7 +64,7 @@ lupopedia.footer:
 ---
 # FLIP Header (alias: Wolfie Header, CROP Header)
 wolfie.headers: explicit architecture with structured clarity for every file.
-file_path_from_root: "channels/42/broadcasts/20260223_kiro_stoned_wolfie_metadata_update.md"
+file_path_from_root: "lupo-channels/42/broadcasts/20260223_kiro_stoned_wolfie_metadata_update.md"
 file.last_modified_system_version: "4.0.33"
 file.last_modified_utc: "20260223110700"
 channel_id: 42
@@ -76,7 +76,7 @@ flip.footer:
   referenced_by_files:
     - "dialogs/changelog_dialog_UTC_2026-01-20.md"
     - "reports/stoned_wolfie_referenced_files_4_0_33.txt"
-    - "docs/AGENT_INVENTORY.md"
+    - "lupo-docs/AGENT_INVENTORY.md"
   referenced_by_channels:
     - 42
   referenced_by_actors:
@@ -124,7 +124,7 @@ flip.footer:
 - **1 template** for canonical structure
 - **1 configuration file** for global atoms
 
-**Agent Inventory Updated**: `docs/AGENT_INVENTORY.md`
+**Agent Inventory Updated**: `lupo-docs/AGENT_INVENTORY.md`
 - **Complete roster**: 3 IDE + 11 External + 1 Human = 15 Total
 - **Actor 420**: Permanently banned (archive only)
 - **Status**: All agent identifiers verified and current

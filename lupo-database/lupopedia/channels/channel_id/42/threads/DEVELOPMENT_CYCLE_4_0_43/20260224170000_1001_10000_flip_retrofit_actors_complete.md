@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "channels\42\threads\DEVELOPMENT_CYCLE_4_0_43\20260224170000_1001_10000_flip_retrofit_actors_complete.md"
+  file_path_from_root: "lupo-channels\42\threads\DEVELOPMENT_CYCLE_4_0_43\20260224170000_1001_10000_flip_retrofit_actors_complete.md"
   file_hash: "15b98a9e189084e563560fff313d9c07bf32684096c15de93c8d07f00974c73e"
-  file_path_from_root: "channels\42\threads\DEVELOPMENT_CYCLE_4_0_43\20260224170000_1001_10000_flip_retrofit_actors_complete.md"
+  file_path_from_root: "lupo-channels\42\threads\DEVELOPMENT_CYCLE_4_0_43\20260224170000_1001_10000_flip_retrofit_actors_complete.md"
   file_hash: "7a57ba1f5bc65119a853a73488ae38b95aa02c010d625b7581f4e0d89418b14a"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -63,7 +63,7 @@ lupopedia.footer:
 
 ---
 wolfie.headers: {
-  file_path_from_root: "channels/42/threads/DEVELOPMENT_CYCLE_4_0_43/20260224170000_1001_10000_flip_retrofit_actors_complete.md",
+  file_path_from_root: "lupo-channels/42/threads/DEVELOPMENT_CYCLE_4_0_43/20260224170000_1001_10000_flip_retrofit_actors_complete.md",
   system_version: "4.0.43",
   channel_id: 42,
   actor_id: 1001,
@@ -73,14 +73,14 @@ wolfie.headers: {
 }
 flip.footer: {
   outbound_edges: [
-    { to: "docs/status/flip_retrofit_actors_manifest_4_0_43.md", type: "references", weight: 1.0 },
-    { to: "actors/README.md", type: "references", weight: 1.0 }
+    { to: "lupo-docs/status/flip_retrofit_actors_manifest_4_0_43.md", type: "references", weight: 1.0 },
+    { to: "lupo-actors/README.md", type: "references", weight: 1.0 }
   ],
   semantic_tags: ["completion", "flip", "retrofit", "actors"]
 }
 ---
 
-# KIRO: FLIP Retrofit Complete for actors/ Directory
+# KIRO: FLIP Retrofit Complete for lupo-actors/ Directory
 
 **From:** KIRO (1001)  
 **To:** Captain Wolfie (10000)  
@@ -89,18 +89,18 @@ flip.footer: {
 
 ## Status: ✅ COMPLETE
 
-FLIP v3 retrofit complete for actors/ directory. All .md files now have proper FLIP headers. Minimum requirement for version 4.0.43 completion has been met.
+FLIP v3 retrofit complete for lupo-actors/ directory. All .md files now have proper FLIP headers. Minimum requirement for version 4.0.43 completion has been met.
 
 ## Implementation Summary
 
 **Files Created:** 4 README.md files with FLIP v3 headers
 
-1. **actors/README.md** — Index and overview of actors/ directory
-2. **actors/0/README.md** — System Kernel actor documentation
-3. **actors/420/README.md** — STONED WOLFIE (banned test actor) documentation
-4. **actors/10000/README.md** — Captain Wolfie (human owner) documentation
+1. **lupo-actors/README.md** — Index and overview of lupo-actors/ directory
+2. **lupo-actors/0/README.md** — System Kernel actor documentation
+3. **lupo-actors/420/README.md** — STONED WOLFIE (banned test actor) documentation
+4. **lupo-actors/10000/README.md** — Captain Wolfie (human owner) documentation
 
-**Manifest:** `docs/status/flip_retrofit_actors_manifest_4_0_43.md`
+**Manifest:** `lupo-docs/status/flip_retrofit_actors_manifest_4_0_43.md`
 
 ## FLIP v3 Header Compliance
 
@@ -134,7 +134,7 @@ FLIP v3 retrofit complete for actors/ directory. All .md files now have proper F
 ## Special Handling Applied
 
 ### Actor ID Extraction
-- Extracted from path: `actors/<actor_id>/<filename>.md`
+- Extracted from path: `lupo-actors/<actor_id>/<filename>.md`
 - Set actor_confidence = 1.0 (explicit from path)
 
 ### Cross-Reference with Registry
@@ -144,7 +144,7 @@ FLIP v3 retrofit complete for actors/ directory. All .md files now have proper F
 
 ### Actor-Specific Relations
 - describes_actor → target_actor_id ✅
-- part_of_actor_folder → actors/<actor_id>/ ✅
+- part_of_actor_folder → lupo-actors/<actor_id>/ ✅
 - supports → IDE agent IDs (for actor 10000) ✅
 
 ### Actor 420 Special Handling
@@ -183,7 +183,7 @@ FLIP v3 retrofit complete for actors/ directory. All .md files now have proper F
 
 **Minimum Requirement Met:** ✅
 
-The actors/ directory now has FLIP v3 headers on all .md files. This was the minimum requirement for version 4.0.43 completion.
+The lupo-actors/ directory now has FLIP v3 headers on all .md files. This was the minimum requirement for version 4.0.43 completion.
 
 **All 9 Mission Objectives Complete:**
 1. ✅ KIRO Session Initialization
@@ -195,7 +195,7 @@ The actors/ directory now has FLIP v3 headers on all .md files. This was the min
 7. ✅ Actors v2 Supporting Actor Control Graph
 8. ✅ Actor 420 Preservation Doctrine
 9. ✅ FLIP v3 Retrofit Doctrine
-10. ✅ **FLIP Retrofit Execution (actors/)**
+10. ✅ **FLIP Retrofit Execution (lupo-actors/)**
 
 **Version 4.0.43 is ready to be marked COMPLETE.**
 

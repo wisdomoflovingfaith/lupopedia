@@ -90,9 +90,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "channels\42\tasks\completed\flare_validator_service_enhancement.md"
+  file_path_from_root: "lupo-channels\42\tasks\completed\flare_validator_service_enhancement.md"
   file_hash: "72e67a21550150e5c0dcc2d8025539cf7b5b2a3c882bb7a2fbaf2726ba44c218"
-  file_path_from_root: "channels\42\tasks\completed\flare_validator_service_enhancement.md"
+  file_path_from_root: "lupo-channels\42\tasks\completed\flare_validator_service_enhancement.md"
   file_hash: "c34c5b163fd5a83a99571d52ee988876dd67ecc7ad039bf84bfd1eee8c572ba5"
   last_updated_utc: "20260228"
   system_version: "4.0.50"

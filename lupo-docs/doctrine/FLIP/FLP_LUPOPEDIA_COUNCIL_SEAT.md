@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\doctrine\FLIP\FLP_LUPOPEDIA_COUNCIL_SEAT.md"
+  file_path_from_root: "lupo-docs\doctrine\FLIP\FLP_LUPOPEDIA_COUNCIL_SEAT.md"
   file_hash: "c473cbffbcf323c4eaf876063e57cc183f2088915f0ce7a67dc286f4d75a1c9b"
-  file_path_from_root: "docs\doctrine\FLIP\FLP_LUPOPEDIA_COUNCIL_SEAT.md"
+  file_path_from_root: "lupo-docs\doctrine\FLIP\FLP_LUPOPEDIA_COUNCIL_SEAT.md"
   file_hash: "9dc462bb23e43e58825ff8b275a1b532a0f84de1b1bb40acc378d7a348118563"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -64,14 +64,14 @@ lupopedia.footer:
 ---
 # FLIP Header (alias: Wolfie Header, CROP Header, FLIPPING Header)
 wolfie.headers: explicit architecture with structured clarity for every file.
-file_path_from_root: docs/doctrine/FLIP/FLP_LUPOPEDIA_COUNCIL_SEAT.md
+file_path_from_root: lupo-docs/doctrine/FLIP/FLP_LUPOPEDIA_COUNCIL_SEAT.md
 file.last_modified_system_version: "4.0.16"
 file.last_modified_utc: "00000000000000"
 # channel_id unresolved — requires lupo_contents lookup by application.
 X-Lupo-Channel: 42   # ANUBIS adoption channel (Auto-Fixed)
 X-Lupo-Actor-ID: 2035
 X-Lupo-Actor-Identity: "Lupopedia Audit Tool (Auto-Fixed)"
-X-Lupo-File-Path: docs/doctrine/FLIP/FLP_LUPOPEDIA_COUNCIL_SEAT.md
+X-Lupo-File-Path: lupo-docs/doctrine/FLIP/FLP_LUPOPEDIA_COUNCIL_SEAT.md
 ---
 # FLP — Lupopedia's Own Council Seat
 

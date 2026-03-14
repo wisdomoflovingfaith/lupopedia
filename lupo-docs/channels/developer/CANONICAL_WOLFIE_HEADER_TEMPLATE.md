@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\channels\developer\CANONICAL_WOLFIE_HEADER_TEMPLATE.md"
+  file_path_from_root: "lupo-docs\channels\developer\CANONICAL_WOLFIE_HEADER_TEMPLATE.md"
   file_hash: "30d2957dcc4bd8734c7c8813282b95d9bd8182d98fffa9f3d8c5c60860f65a93"
-  file_path_from_root: "docs\channels\developer\CANONICAL_WOLFIE_HEADER_TEMPLATE.md"
+  file_path_from_root: "lupo-docs\channels\developer\CANONICAL_WOLFIE_HEADER_TEMPLATE.md"
   file_hash: "774288ed7ae205a5b87832e7577c1cbd956bd5fbec79d7740c51fdba6bfa4de5"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -186,7 +186,7 @@ Use the PHP generator script:
 
 ```php
 <?php
-require_once 'scripts/generate_canonical_header.php';
+require_once 'lupo-scripts/generate_canonical_header.php';
 
 // Full canonical header with optional components
 $params = [
@@ -229,7 +229,7 @@ This generates only the mandatory core fields:
 ### 3. Command Line Usage
 
 ```bash
-php scripts/generate_canonical_header.php
+php lupo-scripts/generate_canonical_header.php
 ```
 
 ## Validation Rules

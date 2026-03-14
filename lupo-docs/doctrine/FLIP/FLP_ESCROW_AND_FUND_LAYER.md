@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\doctrine\FLIP\FLP_ESCROW_AND_FUND_LAYER.md"
+  file_path_from_root: "lupo-docs\doctrine\FLIP\FLP_ESCROW_AND_FUND_LAYER.md"
   file_hash: "e4add8dacaa3a53dd966c6ae3d6097371d056464e96440cab8a421c09aadfadc"
-  file_path_from_root: "docs\doctrine\FLIP\FLP_ESCROW_AND_FUND_LAYER.md"
+  file_path_from_root: "lupo-docs\doctrine\FLIP\FLP_ESCROW_AND_FUND_LAYER.md"
   file_hash: "209ce63465e9cc00e77265ef0ea248ab57d73a6f9ebaa839fc20e7761c16e539"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -64,14 +64,14 @@ lupopedia.footer:
 ---
 # FLIP Header (alias: Wolfie Header, CROP Header, FLIPPING Header)
 wolfie.headers: explicit architecture with structured clarity for every file.
-file_path_from_root: docs/doctrine/FLIP/FLP_ESCROW_AND_FUND_LAYER.md
+file_path_from_root: lupo-docs/doctrine/FLIP/FLP_ESCROW_AND_FUND_LAYER.md
 file.last_modified_system_version: "4.0.16"
 file.last_modified_utc: "00000000000000"
 # channel_id unresolved — requires lupo_contents lookup by application.
 X-Lupo-Channel: 42   # ANUBIS adoption channel (Auto-Fixed)
 X-Lupo-Actor-ID: 2035
 X-Lupo-Actor-Identity: "Lupopedia Audit Tool (Auto-Fixed)"
-X-Lupo-File-Path: docs/doctrine/FLIP/FLP_ESCROW_AND_FUND_LAYER.md
+X-Lupo-File-Path: lupo-docs/doctrine/FLIP/FLP_ESCROW_AND_FUND_LAYER.md
 ---
 # FLP — Escrow and Fund Layer
 

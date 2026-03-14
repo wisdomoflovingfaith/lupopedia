@@ -211,7 +211,7 @@ foreach ($admin_menu_sections as $group) {
 
 // Section-specific info for sections that use the generic info panel (description + optional links).
 $admin_section_info = array(
-    'artifacts' => array('description' => 'Manage system artifacts and chunks. Replaces the legacy document system for RAG and semantic mapping.', 'links' => array('Artifacts API' => 'api/v1/artifact.php')),
+    'artifacts' => array('description' => 'Manage system artifacts and chunks. Replaces the legacy document system for RAG and semantic mapping.', 'links' => array('Artifacts API' => 'lupo-api/v1/artifact.php')),
     'documentation' => array('description' => 'Links to Lupopedia documentation and doctrine. Use the Q/A and Content areas from the main nav for browsing.', 'links' => array('Doctrine' => 'doctrine/', 'Q/A' => 'qa/', 'Docs' => 'lupo-docs/')),
     'settings' => array('description' => 'Master settings for the installation (e.g. site name, timezone, feature flags). Configuration is stored in config and database; this panel will be expanded to edit key settings.', 'links' => array()),
     'help' => array('description' => 'In-app help and usage guides. Content can be added here or linked to doctrine/docs.', 'links' => array()),

@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\directives\channel_42_antigravity_vsx_extension_md_fallback.md"
+  file_path_from_root: "lupo-docs\directives\channel_42_antigravity_vsx_extension_md_fallback.md"
   file_hash: "293ffa0f1c5c1cbdc6a35ba8f2077f03d133f655ba18f370fa7059c995c79512"
-  file_path_from_root: "docs\directives\channel_42_antigravity_vsx_extension_md_fallback.md"
+  file_path_from_root: "lupo-docs\directives\channel_42_antigravity_vsx_extension_md_fallback.md"
   file_hash: "9952b5dbcfe274b14edfa5a5a88de3fd0490baa766f279cf7aeda1c349809935"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -62,7 +62,7 @@ lupopedia.footer:
 
 ---
 wolfie.headers:
-  file_path_from_root: "docs/directives/channel_42_antigravity_vsx_extension_md_fallback.md"
+  file_path_from_root: "lupo-docs/directives/channel_42_antigravity_vsx_extension_md_fallback.md"
   system_version: "4.0.36"
   channel_id: 42
   mood_rgb: "0044FF"
@@ -84,15 +84,15 @@ lupo.agent.tracking:
 flip.footer:
   referenced_by_files:
     - "CHANGELOG.md"
-    - "docs/status/antigravity_vsx_extension_update_4_0_35.md"
-    - "docs/versions/4.0.35/TODO.md"
-    - "docs/versions/4.0.35/ROADMAP.md"
+    - "lupo-docs/status/antigravity_vsx_extension_update_4_0_35.md"
+    - "lupo-docs/versions/4.0.35/TODO.md"
+    - "lupo-docs/versions/4.0.35/ROADMAP.md"
   consumed_by_services:
     - "ExtensionService"
     - "MetadataService"
   cited_by_docs:
-    - "docs/doctrine/BROADCAST_FORMAT_DOCTRINE.md"
-    - "docs/doctrine/EXTENSION_FALLBACK_DOCTRINE.md"
+    - "lupo-docs/doctrine/BROADCAST_FORMAT_DOCTRINE.md"
+    - "lupo-docs/doctrine/EXTENSION_FALLBACK_DOCTRINE.md"
   referenced_by_channels:
     - 42
   referenced_by_actors:
@@ -138,15 +138,15 @@ The VSX Extension must be able to:
 
 ### ✔ 1. Load agent registry from MD files  
 Use:
-- `docs/AGENT_INVENTORY.md`
-- `docs/doctrine/AGENT_REGISTRY_DOCTRINE.md`
-- `docs/status/*registry*.md`
+- `lupo-docs/AGENT_INVENTORY.md`
+- `lupo-docs/doctrine/AGENT_REGISTRY_DOCTRINE.md`
+- `lupo-docs/status/*registry*.md`
 
 ### ✔ 2. Load channel data from MD files  
 From:
-- `channels/42/`
-- `docs/channels/42/`
-- `docs/status/`
+- `lupo-channels/42/`
+- `lupo-docs/channels/42/`
+- `lupo-docs/status/`
 
 ### ✔ 3. Parse FLIP headers and footers  
 Extract:
@@ -189,7 +189,7 @@ If DB connection fails → automatically switch to MD‑only mode.
 
 ### ✔ Add status reporting  
 Generate:
-`docs/status/antigravity_vsx_extension_update_4_0_35.md`
+`lupo-docs/status/antigravity_vsx_extension_update_4_0_35.md`
 
 Include:
 - MD-only mode status  

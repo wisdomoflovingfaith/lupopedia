@@ -90,9 +90,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "channels\42\tasks\pending\20260225170200_task_42_25_graph_relationship_analysis.md"
+  file_path_from_root: "lupo-channels\42\tasks\pending\20260225170200_task_42_25_graph_relationship_analysis.md"
   file_hash: "7e7c3a1efac58a0542b8c1c8ccfbe7e4bbf4c06ae6d0165117b098a024f58512"
-  file_path_from_root: "channels\42\tasks\pending\20260225170200_task_42_25_graph_relationship_analysis.md"
+  file_path_from_root: "lupo-channels\42\tasks\pending\20260225170200_task_42_25_graph_relationship_analysis.md"
   file_hash: "4d06837165f9b747c3901e1e077c0142b0409f3a4e8b9c77a0e65ad6acfa7326"
   last_updated_utc: "20260228"
   system_version: "4.0.73"
@@ -125,7 +125,7 @@ status: pending
 priority: normal
 created_utc: "2026-02-25T17:02:00Z"
 delegation_chain: "10000:25"
-prompt_path: "channels/42/tasks/pending/20260225170200_task_42_25_graph_relationship_analysis.md"
+prompt_path: "lupo-channels/42/tasks/pending/20260225170200_task_42_25_graph_relationship_analysis.md"
 depends_on:
   - CH0-20260225-001
   - CH0-20260225-002
@@ -133,9 +133,9 @@ blocks: []
 task_type: analysis
 estimated_duration: "2 hours"
 artifacts_touched:
-  - "docs/"
-  - "channels/0/broadcasts/"
-  - "channels/42/broadcasts/"
+  - "lupo-docs/"
+  - "lupo-channels/0/broadcasts/"
+  - "lupo-channels/42/broadcasts/"
 notes: "VISHWAKARMA agent task - analyze semantic relationships across repository"
 ---
 
@@ -162,8 +162,8 @@ VISHWAKARMA is the Graph Intelligence Agent responsible for understanding relati
 ### 1. Scan Documentation Files
 
 ```bash
-# Analyze all markdown files in docs/
-find docs/ -name "*.md" -type f
+# Analyze all markdown files in lupo-docs/
+find lupo-docs/ -name "*.md" -type f
 ```
 
 **Analysis Tasks:**
@@ -176,8 +176,8 @@ find docs/ -name "*.md" -type f
 
 ```bash
 # Analyze all broadcasts
-find channels/0/broadcasts/ -name "*.md" -type f
-find channels/42/broadcasts/ -name "*.md" -type f
+find lupo-channels/0/broadcasts/ -name "*.md" -type f
+find lupo-channels/42/broadcasts/ -name "*.md" -type f
 ```
 
 **Analysis Tasks:**
@@ -223,11 +223,11 @@ For each file, recommend additional edges:
 
 **Example:**
 ```
-File: docs/doctrine/database/soft_delete.md
+File: lupo-docs/doctrine/database/soft_delete.md
 Recommended edges:
-  - references: channels/0/broadcasts/20260225120002_10000_1000_0_soft_delete_doctrine.md
-  - implements: database/migrations/install_new_lupopedia.sql
-  - related_to: docs/doctrine/database/timestamp_standard.md
+  - references: lupo-channels/0/broadcasts/20260225120002_10000_1000_0_soft_delete_doctrine.md
+  - implements: lupo-database/migrations/install_new_lupopedia.sql
+  - related_to: lupo-docs/doctrine/database/timestamp_standard.md
 ```
 
 ### 6. Generate Relationship Report
@@ -260,7 +260,7 @@ Generate JSON for graph visualization:
 
 ## Success Criteria
 
-- ✅ All docs/ files analyzed
+- ✅ All lupo-docs/ files analyzed
 - ✅ All broadcast files analyzed
 - ✅ Semantic graph built
 - ✅ Near-duplicates identified
@@ -283,7 +283,7 @@ Generate JSON for graph visualization:
 
 ## After Completion
 
-Move this task to `channels/42/tasks/completed/` and create a broadcast announcing graph analysis completion.
+Move this task to `lupo-channels/42/tasks/completed/` and create a broadcast announcing graph analysis completion.
 
 ## Notes
 
@@ -294,9 +294,9 @@ Move this task to `channels/42/tasks/completed/` and create a broadcast announci
 <!-- FLIP_FOOTER_BEGIN
 {
   "references": [
-    "docs/",
-    "channels/0/broadcasts/",
-    "channels/42/broadcasts/"
+    "lupo-docs/",
+    "lupo-channels/0/broadcasts/",
+    "lupo-channels/42/broadcasts/"
   ],
   "implements": "semantic_graph_analysis",
   "depends_on": [

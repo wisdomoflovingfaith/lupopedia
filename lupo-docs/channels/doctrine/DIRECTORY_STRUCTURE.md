@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\channels\doctrine\DIRECTORY_STRUCTURE.md"
+  file_path_from_root: "lupo-docs\channels\doctrine\DIRECTORY_STRUCTURE.md"
   file_hash: "e5b04bb9213f79261838a46c23cffdeb46fa78f9735634940a16e37683726b53"
-  file_path_from_root: "docs\channels\doctrine\DIRECTORY_STRUCTURE.md"
+  file_path_from_root: "lupo-docs\channels\doctrine\DIRECTORY_STRUCTURE.md"
   file_hash: "b19956337a37890640513f4a1aaf1c33365927b687ff1f7f8fc93c64b0a79970"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -115,18 +115,18 @@ This document defines the canonical directory structure for Lupopedia Web-Organi
 ```
 [web-root]/                     # Public web directory (public/, servbay/, htdocs/, etc.)
 ├── lupopedia/                  # Main application directory
-│   ├── api/                    # API endpoints and external interfaces
+│   ├── lupo-api/                    # API endpoints and external interfaces
 │   ├── lupo-admin/             # Administrative interface
 │   ├── lupo-content/           # User uploads and media (writable)
 │   ├── lupo-includes/          # Core classes, functions, and includes
 │   ├── lupo-agents/            # AI agent configuration and files
-│   ├── database/               # Database schemas, migrations, and data
-│   ├── docs/                   # Documentation system
+│   ├── lupo-database/               # Database schemas, migrations, and data
+│   ├── lupo-docs/                   # Documentation system
 │   ├── modules/                # Modular components and extensions
-│   ├── legacy/                 # Legacy code reference (development only)
+│   ├── lupo-legacy/                 # Legacy code reference (development only)
 │   ├── dialogs/                # Dialog files (MANDATORY location)
 │   ├── config/                 # Configuration files and atoms
-│   ├── images/                 # Static images and assets
+│   ├── lupo-images/                 # Static images and assets
 │   ├── index.php               # Front controller
 │   └── lupopedia-load.php      # Bootstrap loader
 ├── remote-index.php            # Portable entry point (optional)
@@ -200,18 +200,18 @@ See legacy-core/DIRECTORY_STRUCTURE.md for full agent directory layout.
 
 ## 5. Documentation Organization
 
-**docs/doctrine/** - MANDATORY architectural rules  
-**docs/core/** - Fundamental system documentation  
-**docs/agents/** - Agent system specifications  
-**docs/schema/** - Database documentation
+**lupo-docs/doctrine/** - MANDATORY architectural rules  
+**lupo-docs/core/** - Fundamental system documentation  
+**lupo-docs/agents/** - Agent system specifications  
+**lupo-docs/schema/** - Database documentation
 
 ---
 
 ## 6. Database Organization
 
-**database/install/** - Installation SQL files  
-**database/migrations/** - Version-specific migrations  
-**database/migrations/legacy/** - Legacy migration scripts  
+**lupo-database/install/** - Installation SQL files  
+**lupo-database/migrations/** - Version-specific migrations  
+**lupo-database/migrations/legacy/** - Legacy migration scripts  
 
 **Rules:**
 - All SQL files use Lupopedia doctrine (no foreign keys, triggers, etc.)
@@ -228,7 +228,7 @@ Each module is self-contained with standard directory structure and module-speci
 
 ## 8. Legacy Code Organization
 
-**legacy/** - Development reference only; not included in production.
+**lupo-legacy/** - Development reference only; not included in production.
 
 ---
 

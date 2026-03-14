@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\channels\doctrine\WEB_ROUTING_DOCTRINE_4_0_18.md"
+  file_path_from_root: "lupo-docs\channels\doctrine\WEB_ROUTING_DOCTRINE_4_0_18.md"
   file_hash: "b8410769a316d7307788f61c8292058982ecc1e408f089780cc114969813e84e"
-  file_path_from_root: "docs\channels\doctrine\WEB_ROUTING_DOCTRINE_4_0_18.md"
+  file_path_from_root: "lupo-docs\channels\doctrine\WEB_ROUTING_DOCTRINE_4_0_18.md"
   file_hash: "629480bf11fe9881a99cbbce1b11663a89eefcf09a46d8fd0a864fef86c9a0bd"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -64,7 +64,7 @@ lupopedia.footer:
 ---
 # FLIP Header
 wolfie.headers: explicit architecture with structured clarity for every file.
-file_path_from_root: docs/channels/doctrine/WEB_ROUTING_DOCTRINE_4_0_18.md
+file_path_from_root: lupo-docs/channels/doctrine/WEB_ROUTING_DOCTRINE_4_0_18.md
 file.last_modified_system_version: "4.0.17"
 file.last_modified_utc: "20260218000000"
 # channel_id: 51 (Doctrine Council)
@@ -79,7 +79,7 @@ file.last_modified_utc: "20260218000000"
 
 ## 1. Context
 
-4.0.17 added the **Web Path Header Extension**: optional `web` block in FLIP headers (canonical, aliases, slug, slug_encoding, base_path, url_pattern). Metadata is exported in `exports/flip_headers.csv` and defined in `docs/channels/doctrine/UNIVERSAL_WOLFIE_HEADER_SPECIFICATION.md` §6.1. No runtime routing was implemented in 4.0.17.
+4.0.17 added the **Web Path Header Extension**: optional `web` block in FLIP headers (canonical, aliases, slug, slug_encoding, base_path, url_pattern). Metadata is exported in `exports/flip_headers.csv` and defined in `lupo-docs/channels/doctrine/UNIVERSAL_WOLFIE_HEADER_SPECIFICATION.md` §6.1. No runtime routing was implemented in 4.0.17.
 
 4.0.18 will implement **runtime routing** and **web path resolution** based on this metadata.
 
@@ -134,7 +134,7 @@ The following are canonical for 4.0.18 implementation. Read this section before 
 
 ### 4.1 Version bump (T1)
 
-Update **all** locations per `docs/doctrine/VERSIONING_DOCTRINE.md`. After bump, add a **4.0.18 (in progress)** section to CHANGELOG.md and move the current "Planned" content from the 4.0.17 entry into that section.
+Update **all** locations per `lupo-docs/doctrine/VERSIONING_DOCTRINE.md`. After bump, add a **4.0.18 (in progress)** section to CHANGELOG.md and move the current "Planned" content from the 4.0.17 entry into that section.
 
 ### 4.2 UrlResolver (T2)
 
@@ -153,7 +153,7 @@ Update **all** locations per `docs/doctrine/VERSIONING_DOCTRINE.md`. After bump,
 Implement **only when explicitly requested**.
 
 - Check against `lupo_banned_actors` (or a cached list) in the router.
-- Return **403** with a reference to `docs/doctrine/SESSION_DOCTRINE.md`.
+- Return **403** with a reference to `lupo-docs/doctrine/SESSION_DOCTRINE.md`.
 - Log the event to **lupo_ban_log** as previously specified (see SESSION_DOCTRINE and schema).
 
 ### 4.5 Caching (T6)

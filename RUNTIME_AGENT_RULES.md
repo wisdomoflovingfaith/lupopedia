@@ -70,9 +70,9 @@ It does **not** apply to:
 
 Runtime agents may **read** from:
 
-- Doctrine files under `docs/channels/doctrine/`
-- Schema doctrine under `docs/channels/schema/`
-- TOON files under `docs/toons/*.toon.json`
+- Doctrine files under `lupo-docs/channels/doctrine/`
+- Schema doctrine under `lupo-docs/channels/schema/`
+- TOON files under `lupo-database/lupopedia/toon/*.toon.json`
 - Channel manifests and identity blocks
 - Atoms and semantic-layer definitions
 - Live MySQL tables that are explicitly marked as runtime-readable
@@ -124,7 +124,7 @@ If doctrine and database state conflict, runtime agents must:
 
 Runtime agents may:
 
-- Read `docs/toons/*.toon.json` to understand table structure and semantic meaning.
+- Read `lupo-database/lupopedia/toon/*.toon.json` to understand table structure and semantic meaning.
 
 They must not:
 

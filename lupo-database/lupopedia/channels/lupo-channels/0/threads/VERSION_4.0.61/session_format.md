@@ -19,7 +19,7 @@ lupopedia.headers:
 
 Version 4.0.61 treats the session file as a first-class context source. When it exists and contains usable keys, ContextResolver uses it first, then enriches from DB and registry.
 
-**Config:** `LUPO_DATABASE_DIR` in lupopedia-config.php points to database/lupopedia root; session file is typically at project root under `lupo-database/session.md` or equivalent.
+**Config:** `LUPO_DATABASE_DIR` in lupopedia-config.php points to lupo-database/lupopedia root; session file is typically at project root under `lupo-database/session.md` or equivalent.
 
 ## File Location
 
@@ -66,5 +66,5 @@ paired_actor_id: 10000
 
 ## Documentation
 
-- [docs/lupopedia_whoami_readme.md](../../../../../../../docs/lupopedia_whoami_readme.md) — Resolution order and Section 8
+- [lupo-docs/lupopedia_whoami_readme.md](../../../../../../../docs/lupopedia_whoami_readme.md) — Resolution order and Section 8
 - Session file: [lupo-database/session.md](../../../../../../session.md)

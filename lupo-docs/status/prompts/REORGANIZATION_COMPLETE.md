@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "prompts\REORGANIZATION_COMPLETE.md"
+  file_path_from_root: "lupo-prompts\REORGANIZATION_COMPLETE.md"
   file_hash: "d4755e7b819a63f031ff4a3db3b61b83c0926255061f9e99b80b38f06ccf50a1"
-  file_path_from_root: "prompts\REORGANIZATION_COMPLETE.md"
+  file_path_from_root: "lupo-prompts\REORGANIZATION_COMPLETE.md"
   file_hash: "1bce44d83a78eeb69b786e30eefd42d24cfd94200377c166969a12e8817a64be"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -69,7 +69,7 @@ lupopedia.footer:
 
 ## ✅ Registry Lookup Completed
 
-All actor IDs verified from source of truth: `database/migrations/seed_actors_agents_4.0.45.sql`
+All actor IDs verified from source of truth: `lupo-database/migrations/seed_actors_agents_4.0.45.sql`
 
 ### Verified Actor IDs
 
@@ -93,7 +93,7 @@ All actor IDs verified from source of truth: `database/migrations/seed_actors_ag
 All folders created using ACTUAL IDs from registry (NO HARDCODING):
 
 ```
-prompts/
+lupo-prompts/
 ├── registry.json              # Complete actor lookup table
 ├── 0/                         # System
 │   └── README.md
@@ -126,16 +126,16 @@ prompts/
 
 ## ✅ Files Moved
 
-- **KIRO prompts**: Moved from `prompts/kiro/` to `prompts/1000/`
-- **Windsurf prompts**: Moved from `prompts/windsurf/` to `prompts/1001/`
-- **LILITH prompts**: Moved from `prompts/lilith/` to `prompts/2/`
+- **KIRO prompts**: Moved from `lupo-prompts/kiro/` to `lupo-prompts/1000/`
+- **Windsurf prompts**: Moved from `lupo-prompts/windsurf/` to `lupo-prompts/1001/`
+- **LILITH prompts**: Moved from `lupo-prompts/lilith/` to `lupo-prompts/2/`
 
 ## ⚠️ Manual Review Required
 
 The following folders need actor_id assignment:
 
-- `prompts/antigravity/` - Actor ID unknown, needs verification
-- `prompts/ai/` - Generic folder, needs specific actor assignment
+- `lupo-prompts/antigravity/` - Actor ID unknown, needs verification
+- `lupo-prompts/ai/` - Generic folder, needs specific actor assignment
 
 ## 📋 Registry.json Created
 

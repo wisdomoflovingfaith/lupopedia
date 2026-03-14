@@ -58,7 +58,8 @@ The **first line** of the file MUST be:
 
 Then the YAML header blocks in **canonical order** (see [LUPOPEDIA_HEADERS_PLAN.md](./LUPOPEDIA_HEADERS_PLAN.md) §4). Use **lupopedia.*** block names in new or modified files (4.0.69+); validators accept legacy flare.*/flame.*:
 
-- lupopedia.init
+- **lupopedia.init** — Optional. Lists **required reading** and **required context** that must be read or understood **before** reading this file (e.g. `required_reading:`, `required_context:`). It is **not** for file metadata; use `lupopedia.headers` or `lupopedia.metadata` for artifact_type, file_identity, namespace, domain, system_version. See [LUPO_INITIALIZATION_DOCTRINE.md](../init/LUPO_INITIALIZATION_DOCTRINE.md). Supported forms: simple list of paths, or list of `path`/`reason` objects.
+- **lupopedia.actor_references** — Optional. Actor IDs from canonical registry (plan/report files). See [OPTIONAL_BLOCKS.md](./OPTIONAL_BLOCKS.md).
 - lupopedia.conditional
 - lupopedia.headers (required)
 - lupopedia.metadata (optional; snapshot of metadata rows for this artifact — see OPTIONAL_BLOCKS; not table schema)
@@ -67,7 +68,7 @@ Then the YAML header blocks in **canonical order** (see [LUPOPEDIA_HEADERS_PLAN.
 - lupopedia.engagement (optional; engagement metrics — see §2.2)
 - lupopedia.footer (optional)
 - lupopedia.see (optional)
-- lupopedia.close (optional)
+- **lupopedia.next_actions** (optional) — Suggested next actions after reading or using this file (like **lupopedia.init** but for follow-ups). Use **lupopedia.next_actions** in new files; **lupopedia.close** is the legacy name (validators accept both). See [OPTIONAL_BLOCKS.md](./OPTIONAL_BLOCKS.md) § lupopedia.next_actions.
 
 Then the closing delimiter:
 
@@ -203,8 +204,8 @@ Both **`lupopedia.edges`** and **`lupopedia.engagement`** MUST include a **`comm
 **For lupopedia.engagement:**
 ```yaml
 lupopedia.engagement:
-  comment: "Snapshot of files edited during 4.0.73 finalization and initialization thread by CURSOR IDE Agent. Engagement metrics track edit frequency and importance of each file in the version transition process."
-  meta: "Thread: Finalize 4.0.72 → Push to GitHub → Initialize 4.0.73 → Migrate Tasks → Validate Upgrade Path"
+  comment: "Snapshot of files edited during 4.0.74 finalization and initialization thread by CURSOR IDE Agent. Engagement metrics track edit frequency and importance of each file in the version transition process."
+  meta: "Thread: Finalize 4.0.72 → Push to GitHub → Initialize 4.0.74 → Migrate Tasks → Validate Upgrade Path"
   views: 0
   like_count: 0
   share_count: 0
@@ -235,7 +236,7 @@ lupopedia.edges:
   outbound_edges:
     code:
       - { to: "lupo-database/lupopedia/content/lupo-app/Services/CollectionTabsService.php", type: "references", weight: 1.0 }
-      - { to: "api/list_user_collections.php", type: "references", weight: 0.95 }
+      - { to: "lupo-api/list_user_collections.php", type: "references", weight: 0.95 }
     documentation:
       - { to: "README.md", type: "documents", weight: 0.7 }
       - { to: "lupo-docs/doctrine/COLLECTIONS/COLLECTIONS_DOCTRINE.md", type: "documents", weight: 0.95 }
@@ -250,12 +251,12 @@ lupopedia.edges:
 
 ### 2.2 Engagement block (lupopedia.engagement)
 
-The **`lupopedia.engagement`** block (new in 4.0.73) tracks engagement metrics. Like **`lupopedia.edges`**, it is a snapshot and MUST have **`comment`** and SHOULD have **`meta`** (same convention as §2.1.5).
+The **`lupopedia.engagement`** block (new in 4.0.74) tracks engagement metrics. Like **`lupopedia.edges`**, it is a snapshot and MUST have **`comment`** and SHOULD have **`meta`** (same convention as §2.1.5).
 
 | Field | Type | Purpose |
 |-------|------|---------|
-| `comment` | string (required) | Snapshot notice; describe which agent/thread produced it (e.g. "Snapshot of files edited during 4.0.73 finalization … by CURSOR IDE Agent"). |
-| `meta` | string (recommended) | Thread/context (e.g. "Thread: Finalize 4.0.72 → Push to GitHub → Initialize 4.0.73 → …"). Same style as `lupopedia.edges.meta`. |
+| `comment` | string (required) | Snapshot notice; describe which agent/thread produced it (e.g. "Snapshot of files edited during 4.0.74 finalization … by CURSOR IDE Agent"). |
+| `meta` | string (recommended) | Thread/context (e.g. "Thread: Finalize 4.0.72 → Push to GitHub → Initialize 4.0.74 → …"). Same style as `lupopedia.edges.meta`. |
 | `views` | integer | Total view count (calculated). |
 | `like_count` | integer | Total like count. |
 | `share_count` | integer | Total share count. |
@@ -264,8 +265,8 @@ The **`lupopedia.engagement`** block (new in 4.0.73) tracks engagement metrics. 
 
 ```yaml
 lupopedia.engagement:
-  comment: "Snapshot of files edited during 4.0.73 finalization and initialization thread by CURSOR IDE Agent. Engagement metrics track edit frequency and importance of each file in the version transition process."
-  meta: "Thread: Finalize 4.0.72 → Push to GitHub → Initialize 4.0.73 → Migrate Tasks → Validate Upgrade Path"
+  comment: "Snapshot of files edited during 4.0.74 finalization and initialization thread by CURSOR IDE Agent. Engagement metrics track edit frequency and importance of each file in the version transition process."
+  meta: "Thread: Finalize 4.0.72 → Push to GitHub → Initialize 4.0.74 → Migrate Tasks → Validate Upgrade Path"
   views: 0
   like_count: 0
   share_count: 0

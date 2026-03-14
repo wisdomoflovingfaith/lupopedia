@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\doctrine\FLIP\FLIPQL_SPECIFICATION.md"
+  file_path_from_root: "lupo-docs\doctrine\FLIP\FLIPQL_SPECIFICATION.md"
   file_hash: "e357c0470a23e8bcd81560b3e59f401abc583a0d92768c64dd32b57c61a1b688"
-  file_path_from_root: "docs\doctrine\FLIP\FLIPQL_SPECIFICATION.md"
+  file_path_from_root: "lupo-docs\doctrine\FLIP\FLIPQL_SPECIFICATION.md"
   file_hash: "5c7b572b8dd54493fafd5c4dcb49b470477e8b21fb3690620f8f29dba1168b52"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -63,7 +63,7 @@ lupopedia.footer:
 
 ---
 wolfie.headers: explicit architecture with structured clarity for every file.
-file_path_from_root: "docs/doctrine/FLIP/FLIPQL_SPECIFICATION.md"
+file_path_from_root: "lupo-docs/doctrine/FLIP/FLIPQL_SPECIFICATION.md"
 system_version: "4.0.35"
 channel_id: 42
 mood_rgb: "00FFFF"

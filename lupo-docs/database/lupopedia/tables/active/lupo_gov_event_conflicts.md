@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -31,7 +31,7 @@ lupopedia.footer:
 # LUPOPEDIA HEADERS (replaces FLARE)
 ---
 lupopedia.headers:
-  file_path_from_root: "docs/database/lupopedia/tables/lupo_gov_event_conflicts.md"
+  file_path_from_root: "lupo-docs/database/lupopedia/tables/lupo_gov_event_conflicts.md"
   file_hash: "4496397840552c9c75a98fab9335afcc9f4d653c72eac72053e40c439e7f99fd"
   system_version: "4.0.50"
   channel_id: 1
@@ -64,16 +64,16 @@ lupopedia.headers:
 
 # FLARE Edge Automation Tip:
 # Use the FLARE Edge Suggester Tool to automatically discover and suggest edges:
-# python scripts/flare_edge_suggester.py --file <path> --include-db --format yaml
+# python lupo-scripts/flare_edge_suggester.py --file <path> --include-db --format yaml
 
   last_updated_utc: "20260228"
 lupopedia.footer:
   outbound_edges:
     - { to: "lupo-database/lupopedia/toon/lupo_gov_event_conflicts.toon.json", type: "schema_reference", weight: 1.0, reason: "TOON schema definition", db_source: "lupo_gov_event_conflicts" }
-    - { to: "docs/FLARE_HEADERS_COMPLETE_REFERENCE.md", type: "references", weight: 0.9, reason: "FLARE header reference" }
-    - { to: "docs/doctrine/FLARE/FLARE_DOCTRINE.md", type: "references", weight: 0.9, reason: "FLARE doctrine" }
-    - { to: "docs/doctrine/database/README.md", type: "references", weight: 0.8, reason: "Database doctrine" }
-    - { to: "docs/database/lupopedia/README.md", type: "references", weight: 0.8, reason: "Database documentation index" }
+    - { to: "lupo-docs/FLARE_HEADERS_COMPLETE_REFERENCE.md", type: "references", weight: 0.9, reason: "FLARE header reference" }
+    - { to: "lupo-docs/doctrine/FLARE/FLARE_DOCTRINE.md", type: "references", weight: 0.9, reason: "FLARE doctrine" }
+    - { to: "lupo-docs/doctrine/database/README.md", type: "references", weight: 0.8, reason: "Database doctrine" }
+    - { to: "lupo-docs/database/lupopedia/README.md", type: "references", weight: 0.8, reason: "Database documentation index" }
   inbound_edges: []
   semantic_tags: ["database", "table", "lupo_gov_event_conflicts"]
   version: "4.0.48"

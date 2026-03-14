@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\specs\flip_headers\flip_headers_batch_2_of_4.md"
+  file_path_from_root: "lupo-docs\specs\flip_headers\flip_headers_batch_2_of_4.md"
   file_hash: "df7a66f79227e583c9c26a454e08b9277a9cd1b988f5150186a883c371a7d406"
-  file_path_from_root: "docs\specs\flip_headers\flip_headers_batch_2_of_4.md"
+  file_path_from_root: "lupo-docs\specs\flip_headers\flip_headers_batch_2_of_4.md"
   file_hash: "b88356fc2594a014ab13839aaebb3320bfb864f29be160547e6fb40bb0d2d0b3"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -62,7 +62,7 @@ lupopedia.footer:
 
 ---
 # FLIP Header (alias: Wolfie Header, CROP Header, FLIPPING Header)
-X-Lupo-File-Path: docs/specs/flip_headers/flip_headers_batch_2_of_4.md
+X-Lupo-File-Path: lupo-docs/specs/flip_headers/flip_headers_batch_2_of_4.md
 X-Lupo-Version: "4.0.27"
 X-Lupo-UTC-Timestamp: "20260222162242"
 X-Lupo-Channel: 42   # ANUBIS adoption channel

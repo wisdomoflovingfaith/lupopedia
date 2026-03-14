@@ -33,12 +33,12 @@ lupopedia.rule:
 lupopedia.edges:
   outbound_edges:
     - { to: "lupo-docs/doctrine/DATABASE_DOCTRINE.md", type: "references", weight: 1.0 }
-    - { to: "scripts/generate_toon_files.py", type: "references", weight: 1.0 }
+    - { to: "lupo-scripts/generate_toon_files.py", type: "references", weight: 1.0 }
     - { to: "lupo-includes/classes/ToonValidator.php", type: "references", weight: 0.9 }
   # See Also paths are from project root; resolve with LUPOPEDIA_PROJECT_ROOT (lupo-config/global_atoms.yaml)
   see_also_from_root:
     - "lupo-docs/doctrine/DATABASE_DOCTRINE.md"
-    - "scripts/generate_toon_files.py"
+    - "lupo-scripts/generate_toon_files.py"
     - "lupo-includes/classes/ToonValidator.php"
 
 lupopedia.footer:
@@ -66,14 +66,14 @@ SHOW CREATE TABLE lupo_actors;
 ```
 
 ### 3. TOON Files
-Generated schema definitions from `scripts/generate_toon_files.py`:
+Generated schema definitions from `lupo-scripts/generate_toon_files.py`:
 
 ```bash
 # Generate TOON files from live database
-python scripts/generate_toon_files.py
+python lupo-scripts/generate_toon_files.py
 
 # Use TOON files for validation
-cat lupo-docs/toons/lupo_actors.toon.json
+cat lupo-database/lupopedia/toon/lupo_actors.toon.json
 ```
 
 ## Enforcement
@@ -89,5 +89,5 @@ This rule is enforced by:
 Paths below are from **project root**. Resolve with `LUPOPEDIA_PROJECT_ROOT` in `lupo-config/global_atoms.yaml` (e.g. `C:/ServBay/www/servbay/lupopedia`), or use the links (relative from this file).
 
 - [lupo-docs/doctrine/DATABASE_DOCTRINE.md](../../../../lupo-docs/doctrine/DATABASE_DOCTRINE.md)
-- [scripts/generate_toon_files.py](../../../../scripts/generate_toon_files.py)
+- [lupo-scripts/generate_toon_files.py](../../../../scripts/generate_toon_files.py)
 - [lupo-includes/classes/ToonValidator.php](../../../../lupo-includes/classes/ToonValidator.php)

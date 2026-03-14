@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\channels\doctrine\VS_CODE_GUARDRAIL.md"
+  file_path_from_root: "lupo-docs\channels\doctrine\VS_CODE_GUARDRAIL.md"
   file_hash: "83b21d5f16cc2b1277dcf1ac614d1745eeb1eac5f95ec91b072229070b0d5260"
-  file_path_from_root: "docs\channels\doctrine\VS_CODE_GUARDRAIL.md"
+  file_path_from_root: "lupo-docs\channels\doctrine\VS_CODE_GUARDRAIL.md"
   file_hash: "def42b8851ae96be45db5558b55f2f11537427fb7ae37a19548e6be742cf5020"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -286,7 +286,7 @@ Do NOT "fix" timestamp formatting.
 
 #### **8. DOCTRINE FILE EDITING — RESTRICTED**
 
-Do NOT edit any file in `docs/doctrine/` without explicit instruction.
+Do NOT edit any file in `lupo-docs/doctrine/` without explicit instruction.
 
 **Why:**
 - Doctrine files are system law

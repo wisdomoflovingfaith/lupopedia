@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "channels\42\broadcasts\20260226001000_1000_10000_42_directive_completion_transition.md"
+  file_path_from_root: "lupo-channels\42\broadcasts\20260226001000_1000_10000_42_directive_completion_transition.md"
   file_hash: "ba10021deb311dacbd7b019b8c304bf3c1424beb7b398d68b95caa988af06a17"
-  file_path_from_root: "channels\42\broadcasts\20260226001000_1000_10000_42_directive_completion_transition.md"
+  file_path_from_root: "lupo-channels\42\broadcasts\20260226001000_1000_10000_42_directive_completion_transition.md"
   file_hash: "a08c025ef3a0c2733b9ee8213ab162702e60ec02fa5272a3ea4153d56e4362ce"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -61,7 +61,7 @@ lupopedia.footer:
 ---
 
 ---
-file_path_from_root: "channels/42/broadcasts/20260226001000_1000_10000_42_directive_completion_transition.md"
+file_path_from_root: "lupo-channels/42/broadcasts/20260226001000_1000_10000_42_directive_completion_transition.md"
 system_version: "4.0.46"
 channel_id: 42
 from_actor_id: 1000
@@ -127,8 +127,8 @@ Channel 42 directive successfully executed. Version 4.0.45 is formally closed, v
 
 1. `VERSION_4_0_45_CLOSURE_REPORT.md` - Closure documentation
 2. `VERSION_4_0_46_LAUNCH_REPORT.md` - Launch documentation
-3. `channels/42/broadcasts/20260226000000_10000_1000_42_version_4_0_46_upgrade_program.md` - Program announcement
-4. `channels/0/tasks/active/20260226000000_task_0_10000_primary_install_upgrade_4_0_46.md` - Primary human task
+3. `lupo-channels/42/broadcasts/20260226000000_10000_1000_42_version_4_0_46_upgrade_program.md` - Program announcement
+4. `lupo-channels/0/tasks/active/20260226000000_task_0_10000_primary_install_upgrade_4_0_46.md` - Primary human task
 5. `KIRO_DIRECTIVE_COMPLETION_4_0_45_TO_4_0_46.md` - Directive completion report
 6. `CHANGELOG.md` - Updated with closure and launch sections
 
@@ -150,8 +150,8 @@ Channel 42 directive successfully executed. Version 4.0.45 is formally closed, v
 6. Verify installation success
 
 **Resources:**
-- Task file: `channels/0/tasks/active/20260226000000_task_0_10000_primary_install_upgrade_4_0_46.md`
-- Migration docs: `docs/doctrine/migrations/` (28 files)
+- Task file: `lupo-channels/0/tasks/active/20260226000000_task_0_10000_primary_install_upgrade_4_0_46.md`
+- Migration docs: `lupo-docs/doctrine/migrations/` (28 files)
 - Legacy reference: `/legacy/craftysyntax/` (read-only)
 
 ## IDE Agent Assignments
@@ -188,7 +188,7 @@ flip.footer: {
     { to: "KIRO_DIRECTIVE_COMPLETION_4_0_45_TO_4_0_46.md", type: "full_documentation", weight: 1.0 },
     { to: "VERSION_4_0_46_LAUNCH_REPORT.md", type: "references", weight: 0.9 },
     { to: "VERSION_4_0_45_CLOSURE_REPORT.md", type: "references", weight: 0.9 },
-    { to: "channels/0/tasks/active/20260226000000_task_0_10000_primary_install_upgrade_4_0_46.md", type: "references", weight: 0.8 },
+    { to: "lupo-channels/0/tasks/active/20260226000000_task_0_10000_primary_install_upgrade_4_0_46.md", type: "references", weight: 0.8 },
     { to: "CHANGELOG.md", type: "updates", weight: 0.8 }
   ],
   semantic_tags: ["directive_completion", "version_transition", "upgrade_ready", "4.0.46"]

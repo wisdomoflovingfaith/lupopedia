@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\doctrine\CRAFTY_SYNTAX_STATE_BASED_IMPLEMENTATION_PLAN.md"
+  file_path_from_root: "lupo-docs\doctrine\CRAFTY_SYNTAX_STATE_BASED_IMPLEMENTATION_PLAN.md"
   file_hash: "c4bac0d9daa89b37ac36dbd739a79fc56e3244041a0794400a208a3cfcc312bb"
-  file_path_from_root: "docs\doctrine\CRAFTY_SYNTAX_STATE_BASED_IMPLEMENTATION_PLAN.md"
+  file_path_from_root: "lupo-docs\doctrine\CRAFTY_SYNTAX_STATE_BASED_IMPLEMENTATION_PLAN.md"
   file_hash: "2801d75349b70eae767f8ec90fe38c7c619fd07387a1db6bf12897439f28f746"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -64,7 +64,7 @@ lupopedia.footer:
 ---
 # FLIP Header (alias: Wolfie Header, CROP Header, FLIPPING Header)
 wolfie.headers: explicit architecture with structured clarity for every file.
-file_path_from_root: docs/doctrine/CRAFTY_SYNTAX_STATE_BASED_IMPLEMENTATION_PLAN.md
+file_path_from_root: lupo-docs/doctrine/CRAFTY_SYNTAX_STATE_BASED_IMPLEMENTATION_PLAN.md
 file.last_modified_system_version: "4.0.16"
 file.last_modified_utc: "20260218000000"
 channel_id: 42   # ANUBIS adoption channel
@@ -74,7 +74,7 @@ atoms:
   recovery_event: true
 X-Lupo-Actor-ID: 2035
 X-Lupo-Actor-Identity: "Lupopedia Audit Tool (Auto-Fixed)"
-X-Lupo-File-Path: docs/doctrine/CRAFTY_SYNTAX_STATE_BASED_IMPLEMENTATION_PLAN.md
+X-Lupo-File-Path: lupo-docs/doctrine/CRAFTY_SYNTAX_STATE_BASED_IMPLEMENTATION_PLAN.md
 ---
 
 # Crafty Syntax → Lupopedia: State-Based Implementation Plan
@@ -83,9 +83,9 @@ X-Lupo-File-Path: docs/doctrine/CRAFTY_SYNTAX_STATE_BASED_IMPLEMENTATION_PLAN.md
 **Date:** 2026-02-04  
 **Status:** Initial analysis complete  
 
-**Canonical project brief (rules, objectives, workflow):** `docs/doctrine/CRAFTY_SYNTAX_MIGRATION_PROJECT_BRIEF.md`
+**Canonical project brief (rules, objectives, workflow):** `lupo-docs/doctrine/CRAFTY_SYNTAX_MIGRATION_PROJECT_BRIEF.md`
 
-**Authority:** TOON files in `docs/toons/` are the schema source of truth. No inference from MySQL or phpMyAdmin. Schema changes only via migration files; TOON files are not edited directly (regenerated after migrations).
+**Authority:** TOON files in `lupo-docs/toons/` are the schema source of truth. No inference from MySQL or phpMyAdmin. Schema changes only via migration files; TOON files are not edited directly (regenerated after migrations).
 
 **Upgrade wizard:** The upgrade wizard (which runs the full Crafty Syntax 3.7.5 → Lupopedia import) will be implemented **LAST**, after all Crafty Syntax features are rebuilt and validated. Do not start the wizard work until the final phase.
 
@@ -108,11 +108,11 @@ This plan implements **all** legacy Crafty Syntax 3.7.5 features inside Lupopedi
 
 | Source | Purpose |
 |--------|---------|
-| `docs/toons/*.toon.json` | **Only** schema definition. All column names, types, indexes. |
-| `database/migrations/import_from_old_crafty_syntax.sql` | **Actual** legacy → lupo mapping (INSERT/SELECT). |
-| `docs/channels/doctrine/CRAFTY_SYNTAX_MIGRATION_DOCTRINE.md` | Doctrine and column-level mapping (cross-check with SQL). |
-| `docs/doctrine/CRAFTY_SYNTAX_INTEGRATION_PLAN.md` | Feature checklist (operator panel, livehelp_js, multi-channel, API). |
-| `legacy/craftysyntax/` | **Read-only** Crafty Syntax 3.7.5 reference (PHP, JS, flows). |
+| `lupo-docs/toons/*.toon.json` | **Only** schema definition. All column names, types, indexes. |
+| `lupo-database/migrations/import_from_old_crafty_syntax.sql` | **Actual** legacy → lupo mapping (INSERT/SELECT). |
+| `lupo-docs/channels/doctrine/CRAFTY_SYNTAX_MIGRATION_DOCTRINE.md` | Doctrine and column-level mapping (cross-check with SQL). |
+| `lupo-docs/doctrine/CRAFTY_SYNTAX_INTEGRATION_PLAN.md` | Feature checklist (operator panel, livehelp_js, multi-channel, API). |
+| `lupo-legacy/craftysyntax/` | **Read-only** Crafty Syntax 3.7.5 reference (PHP, JS, flows). |
 
 **Not** used for schema: live MySQL introspection, phpMyAdmin, or inferred relationships.
 
@@ -191,7 +191,7 @@ Extracted from `import_from_old_crafty_syntax.sql`. **34 legacy tables**:
 | **lupo_collections INSERT uses user_id** | import SQL | **Fixed:** Column and VALUES now use `actor_id` to match TOON. |
 | **lupo_dialog_messages: weight** | import SQL | **Fixed:** `weight` removed from INSERT; TOON has no weight column. |
 | **lupo_crafty_syntax_leave_message** | import SQL | **Fixed:** SELECT alias is `id AS crafty_syntax_leave_message_id`. |
-| **auto_increment in TOON** | e.g. lupo_actors, lupo_collections | Doctrine says no reliance on auto_increment for identity; channels use explicit ID ranges. For actors/collections, either document exception or plan explicit ID assignment (migration + scripts). |
+| **auto_increment in TOON** | e.g. lupo_actors, lupo_collections | Doctrine says no reliance on auto_increment for identity; channels use explicit ID ranges. For lupo-actors/collections, either document exception or plan explicit ID assignment (migration + scripts). |
 
 ### 6.2 Post-Migration Data Gaps
 
@@ -225,13 +225,13 @@ No new FKs, triggers, or stored procedures.
 
 ## 8. Required Python Scripts (Data)
 
-Consistent with existing workflow (e.g. `scripts/`):
+Consistent with existing workflow (e.g. `lupo-scripts/`):
 
 | Script | Purpose |
 |--------|---------|
 | **Post-import operator/actor sync** | After `import_from_old_crafty_syntax.sql`: create lupo_actors for each lupo_auth_users that should be an operator; create lupo_operators rows (auth_user_id, actor_id, department_id) from livehelp_operator_departments or equivalent; optionally backfill lupo_actor_departments.actor_id to new actor_id. |
 | **lupo_crafty_user_mapping backfill** (optional) | Map legacy user_id → auth_user_id and actor_id for debugging/support. |
-| **Validation** | Compare row counts legacy vs lupo (per table); optionally checksum critical columns. Reuse or extend `scripts/validate_livehelp_import.py`. |
+| **Validation** | Compare row counts legacy vs lupo (per table); optionally checksum critical columns. Reuse or extend `lupo-scripts/validate_livehelp_import.py`. |
 
 All inserts/updates via scripts; no manual SQL for routine data.
 

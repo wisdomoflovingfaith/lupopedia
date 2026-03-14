@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\channels\architecture\protocols\CADUCEUS_ROUTING_RFC.md"
+  file_path_from_root: "lupo-docs\channels\architecture\protocols\CADUCEUS_ROUTING_RFC.md"
   file_hash: "8fa70c663c8e0cd711f280b7842c018467aafd246dc154099d0db540ad4d784a"
-  file_path_from_root: "docs\channels\architecture\protocols\CADUCEUS_ROUTING_RFC.md"
+  file_path_from_root: "lupo-docs\channels\architecture\protocols\CADUCEUS_ROUTING_RFC.md"
   file_hash: "d9aae414e8f1a122f4aa6eabc0f75f870c1301dc57114d187aa6ea089f70827c"
   last_updated_utc: "20260228"
   system_version: "4.0.50"

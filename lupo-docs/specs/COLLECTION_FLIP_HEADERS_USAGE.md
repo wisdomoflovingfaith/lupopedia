@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\specs\COLLECTION_FLIP_HEADERS_USAGE.md"
+  file_path_from_root: "lupo-docs\specs\COLLECTION_FLIP_HEADERS_USAGE.md"
   file_hash: "55d472669060e9fb081dc9f9b155266ccc9e3351dcc6bdb00001745ad84e4732"
-  file_path_from_root: "docs\specs\COLLECTION_FLIP_HEADERS_USAGE.md"
+  file_path_from_root: "lupo-docs\specs\COLLECTION_FLIP_HEADERS_USAGE.md"
   file_hash: "0d202d177d0f25b3bb3fc9abe4edc8c497a12ce489b91f3e69cb10d28684d1e4"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -62,7 +62,7 @@ lupopedia.footer:
 
 ---
 # FLIP Header (alias: Wolfie Header, CROP Header, FLIPPING Header)
-X-Lupo-File-Path: docs/specs/COLLECTION_FLIP_HEADERS_USAGE.md
+X-Lupo-File-Path: lupo-docs/specs/COLLECTION_FLIP_HEADERS_USAGE.md
 X-Lupo-Version: "4.0.27"
 X-Lupo-UTC-Timestamp: "20260222162242"
 X-Lupo-Channel: 42   # ANUBIS adoption channel
@@ -228,7 +228,7 @@ X-LUPO-channels.channel_id: 42
 For existing files without collection headers:
 
 1. Identify collection membership via `lupo_collection_tab_map` table
-2. Batch-update FLIP headers using `scripts/update_collection_headers.py` (to be created)
+2. Batch-update FLIP headers using `lupo-scripts/update_collection_headers.py` (to be created)
 3. Validate all collection headers match database state
 
 ## Related Documentation

@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\LUPOPEDIA_MASTER_DOCTRINE_OF_AI_CORRECTIONS_v1.0.md"
+  file_path_from_root: "lupo-docs\LUPOPEDIA_MASTER_DOCTRINE_OF_AI_CORRECTIONS_v1.0.md"
   file_hash: "94be4932ec3825409246a120e52f5754b19de253f32b68c3c775353ff56aea96"
-  file_path_from_root: "docs\LUPOPEDIA_MASTER_DOCTRINE_OF_AI_CORRECTIONS_v1.0.md"
+  file_path_from_root: "lupo-docs\LUPOPEDIA_MASTER_DOCTRINE_OF_AI_CORRECTIONS_v1.0.md"
   file_hash: "4391843a8ce81218b4bbc7903c191302aa5258f12bd54266f8ba18a4d7c61979"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -688,7 +688,7 @@ Every Wolfie Header must include:
 - Only finalized revisions overwrite `wolfie_header_doctrine.md`.
 - All superseded revisions must be archived under:
   
-      docs/archive/doctrine_revisions/
+      lupo-docs/archive/doctrine_revisions/
 
 ### 12.6 Enforcement
 Castcade, TOON validators, import scripts, and all agents must enforce:

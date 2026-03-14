@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\channels\kernel\systems\HETERODOX_ENGINE.md"
+  file_path_from_root: "lupo-docs\channels\kernel\systems\HETERODOX_ENGINE.md"
   file_hash: "c3e6885273d14cb0e5e4a800a7ed0911de9b656c1e5e6e1eb56a2ebf566253e2"
-  file_path_from_root: "docs\channels\kernel\systems\HETERODOX_ENGINE.md"
+  file_path_from_root: "lupo-docs\channels\kernel\systems\HETERODOX_ENGINE.md"
   file_hash: "a50f7b1ddf606a376de31a3a8f7b99e0334da800a71776e407e674289b1f472f"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -394,13 +394,13 @@ Future versions may add new proposal types, evaluation criteria, or governance m
 
 ## 🔗 8. Implementation Resources
 
-- **Mood System Doctrine**: `docs/doctrines/MOOD_SYSTEM_DOCTRINE.md`
-- **Mood Axis Registry**: `docs/registries/MOOD_AXIS_REGISTRY.md`
-- **RGB Mapping Protocol**: `docs/doctrines/COLOR_DOCTRINE.md`
-- **Mood Calculation Protocol**: `docs/doctrines/MOOD_CALCULATION_PROTOCOL.md`
-- **Thread Aggregation Protocol**: `docs/doctrines/THREAD_AGGREGATION_PROTOCOL.md`
-- **Experience Ledger**: `docs/systems/EXPERIENCE_LEDGER.md`
-- **Meta-Governance Extensions**: `docs/doctrine/LUPOPEDIA_HEADER_PROFILE.md`
+- **Mood System Doctrine**: `lupo-docs/doctrines/MOOD_SYSTEM_DOCTRINE.md`
+- **Mood Axis Registry**: `lupo-docs/registries/MOOD_AXIS_REGISTRY.md`
+- **RGB Mapping Protocol**: `lupo-docs/doctrines/COLOR_DOCTRINE.md`
+- **Mood Calculation Protocol**: `lupo-docs/doctrines/MOOD_CALCULATION_PROTOCOL.md`
+- **Thread Aggregation Protocol**: `lupo-docs/doctrines/THREAD_AGGREGATION_PROTOCOL.md`
+- **Experience Ledger**: `lupo-docs/systems/EXPERIENCE_LEDGER.md`
+- **Meta-Governance Extensions**: `lupo-docs/doctrine/LUPOPEDIA_HEADER_PROFILE.md`
 - **Global Atoms**: `config/global_atoms.yaml`
 
 ---

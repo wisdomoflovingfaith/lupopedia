@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\doctrine\BAN_ENFORCEMENT_4_0_30.md"
+  file_path_from_root: "lupo-docs\doctrine\BAN_ENFORCEMENT_4_0_30.md"
   file_hash: "033a027ea4c2bfe5daefa76bfb3518456bf7277ddaec46ec8b5237d2febe14d3"
-  file_path_from_root: "docs\doctrine\BAN_ENFORCEMENT_4_0_30.md"
+  file_path_from_root: "lupo-docs\doctrine\BAN_ENFORCEMENT_4_0_30.md"
   file_hash: "41c347f35b973078806f6e520822abb1079cf51fac948a94bfee7cea8a6dbe8d"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -64,7 +64,7 @@ lupopedia.footer:
 ---
 # FLIP Header (alias: Wolfie Header, CROP Header)
 wolfie.headers: explicit architecture with structured clarity for every file.
-file_path_from_root: docs/doctrine/BAN_ENFORCEMENT_4_0_30.md
+file_path_from_root: lupo-docs/doctrine/BAN_ENFORCEMENT_4_0_30.md
 file.last_modified_system_version: "4.0.31"
 file.last_modified_utc: "20260222215200"
 channel_id: 42
@@ -125,7 +125,7 @@ This doctrine establishes the permanent ban enforcement framework for Actor 420 
 - **Channel ID**: 420
 - **Status**: `archived`
 - **Final Message**: Message 67 (canonical conclusion)
-- **Archive File**: `docs/archive/channel_420_final_messages.md`
+- **Archive File**: `lupo-docs/archive/channel_420_final_messages.md`
 - **Immutable**: Yes - no modifications allowed
 
 ### **Message Reconstruction**

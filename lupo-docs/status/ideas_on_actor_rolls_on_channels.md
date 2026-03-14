@@ -3,7 +3,7 @@ lupopedia.headers:
   lupopedia.version: "4.0.69"
   lupopedia.schema: "documentation"
   system_version: "4.0.69"
-  file_path_from_root: "docs/status/ideas_on_actor_rolls_on_channels.md"
+  file_path_from_root: "lupo-docs/status/ideas_on_actor_rolls_on_channels.md"
   last_modified_utc: "20260311"
   channel_id: 42
   actor_id: 103
@@ -47,7 +47,7 @@ To support the "faucet system," agents need their capabilities defined in their 
 lupo-actors/
   [actor_id]/
     capabilities.json   # Defines traits and limits (e.g. "emotional_dialog": true)
-    tools/              # Faucet-specific tools the agent can use
+    lupo-tools/              # Faucet-specific tools the agent can use
     manifest.json       # Metadata and paired_actor_id link
 ```
 

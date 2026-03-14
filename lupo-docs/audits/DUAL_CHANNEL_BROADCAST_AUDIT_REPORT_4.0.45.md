@@ -219,7 +219,7 @@ YYYYMMDDHHMMSS_FROM_TO_CHANNEL_TITLE.md
 ```yaml
 ---
 wolfie.headers:
-  file_path_from_root: "channels/{channel}/broadcasts/{filename}"
+  file_path_from_root: "lupo-channels/{channel}/broadcasts/{filename}"
   system_version: "4.0.45"
   channel_id: {channel_id}
   from_actor_id: {from_actor_id}
@@ -258,13 +258,13 @@ FLIP_FOOTER_END -->
 ### Required: Channel 0 Workspace Announcement
 
 **Status:** ✅ ALREADY EXISTS
-- File: `channels/0/broadcasts/20260225120000_10000_1000_0_channel_scoped_actor_workspaces.md`
+- File: `lupo-channels/0/broadcasts/20260225120000_10000_1000_0_channel_scoped_actor_workspaces.md`
 - Needs: Header completion (add missing fields)
 
 ### Required: Channel 42 Workspace Announcement
 
 **Status:** ❌ NEEDS CREATION
-- File: `channels/42/broadcasts/20260225120000_10000_1000_42_channel_scoped_actor_workspaces.md`
+- File: `lupo-channels/42/broadcasts/20260225120000_10000_1000_42_channel_scoped_actor_workspaces.md`
 - Content: Development-focused workspace migration announcement
 
 ---

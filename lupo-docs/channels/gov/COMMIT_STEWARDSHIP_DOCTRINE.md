@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\channels\gov\COMMIT_STEWARDSHIP_DOCTRINE.md"
+  file_path_from_root: "lupo-docs\channels\gov\COMMIT_STEWARDSHIP_DOCTRINE.md"
   file_hash: "f8ad429744ccf7a95e8aa724ddf842260a37d7c248fdbb74af61cdfbe332b59c"
-  file_path_from_root: "docs\channels\gov\COMMIT_STEWARDSHIP_DOCTRINE.md"
+  file_path_from_root: "lupo-docs\channels\gov\COMMIT_STEWARDSHIP_DOCTRINE.md"
   file_hash: "124dd31d3ad64dbe8aec924666682e926b630f09fb9a40aa322ca74f6387ff83"
   last_updated_utc: "20260228"
   system_version: "4.0.50"

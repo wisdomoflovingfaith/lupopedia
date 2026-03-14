@@ -88,6 +88,6 @@ Validators and reconciliation tools should treat both as required (or recommende
 
 ## References
 
-- `docs/status/cursor_actors_channels_semantic_architecture_4.0.69.md` — canonical architecture, channels, edges.
+- `lupo-docs/status/cursor_actors_channels_semantic_architecture_4.0.69.md` — canonical architecture, channels, edges.
 - `lupo-docs/doctrine/SESSION_RECONCILIATION_DOCTRINE.md` — session required fields.
 - `lupo-docs/doctrine/EDGE_VOCABULARY_DOCTRINE.md` — edge types and object pairs.

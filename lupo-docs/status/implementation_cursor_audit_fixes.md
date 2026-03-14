@@ -25,8 +25,8 @@ lupopedia.edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
     - { to: "TODO.md", type: "references", weight: 1.0 }
     - { to: "lupo-docs/database/lupopedia/tables/active/lupo_actors.md", type: "references", weight: 0.9 }
-    - { to: "database/migrations/20260313_lupo_orchestrator_rules.sql", type: "references", weight: 0.95 }
-    - { to: "scripts/sync_orchestrator_rules_to_db.php", type: "references", weight: 0.95 }
+    - { to: "lupo-database/migrations/20260313_lupo_orchestrator_rules.sql", type: "references", weight: 0.95 }
+    - { to: "lupo-scripts/sync_orchestrator_rules_to_db.php", type: "references", weight: 0.95 }
     - { to: "lupo-docs/doctrine/LUPOPEDIA_HEADERS/OPTIONAL_BLOCKS.md", type: "references", weight: 0.95 }
 
 lupopedia.engagement:
@@ -81,11 +81,11 @@ All 17 rule files in `lupo-rules/root/` were read and treated as absolute doctri
 
 - **Schema (doctrine-compliant):** No `TINYINT(1)` (used `TINYINT`); no `DATETIME` (used `BIGINT` for `updated_ymdhis`); `applies_to_json` as `TEXT` for portability (JSON stored as string).
 - **Install:** Table and indexes added to `lupo-database/lupopedia/mysql/install/future_features_lupopedia.sql`.
-- **Migration:** `database/migrations/20260313_lupo_orchestrator_rules.sql` created (one-time; run via `php scripts/run_one_time_sql.php database/migrations/20260313_lupo_orchestrator_rules.sql` or manually).
+- **Migration:** `lupo-database/migrations/20260313_lupo_orchestrator_rules.sql` created (one-time; run via `php lupo-scripts/run_one_time_sql.php lupo-database/migrations/20260313_lupo_orchestrator_rules.sql` or manually).
 
 ### 4. Sync script
 
-- **scripts/sync_orchestrator_rules_to_db.php** reads every `.md` file in `lupo-rules/root/`, computes MD5 checksum, and inserts or updates rows in `lupo_orchestrator_rules` (rule_slug, rule_content, checksum, etc.). Run after the migration.
+- **lupo-scripts/sync_orchestrator_rules_to_db.php** reads every `.md` file in `lupo-rules/root/`, computes MD5 checksum, and inserts or updates rows in `lupo_orchestrator_rules` (rule_slug, rule_content, checksum, etc.). Run after the migration.
 
 ### 5. Core files: README.md, CHANGELOG.md, TODO.md
 

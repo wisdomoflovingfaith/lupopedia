@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\PATHS_FIRSTS_VS_ANALYTICS_PATHS_ANALYSIS.md"
+  file_path_from_root: "lupo-docs\PATHS_FIRSTS_VS_ANALYTICS_PATHS_ANALYSIS.md"
   file_hash: "e47e2e04c4f3bc1722cc225b4fda3d214dbe0d0a76ab667b8c84aae171f84af0"
-  file_path_from_root: "docs\PATHS_FIRSTS_VS_ANALYTICS_PATHS_ANALYSIS.md"
+  file_path_from_root: "lupo-docs\PATHS_FIRSTS_VS_ANALYTICS_PATHS_ANALYSIS.md"
   file_hash: "9c8319e3114478da5713b33359c784e1ccbc931a91bdf817a6ac72a678d78f00"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -84,20 +84,20 @@ Documentation and import scripts state that **livehelp_paths_firsts** and **live
 
 | File path | Line(s) | Snippet / usage | Operation | Active / legacy |
 |-----------|---------|------------------|-----------|------------------|
-| database/migrations/install_new_lupopedia.sql | 3886–3900 | CREATE TABLE lupo_analytics_paths ( … ); ALTER … AUTO_INCREMENT | Schema | Active |
-| database/migrations/dev_20260204_fix_schema_alignment.sql | 1924–1933 | ALTER TABLE lupo_analytics_paths MODIFY COLUMN (from_page_id, to_page_id, year_month, …) | Migration | Active |
-| database/migrations/dev_20260204_fix_schema_alignment_summary.txt | 1924–1933 | Column summary for lupo_analytics_paths | Doc | Active |
-| database/migrations/import_from_old_crafty_syntax.sql | 1362, 1377–1402, 1404+ | Comment: livehelp_paths_firsts → lupo_analytics_paths. TRUNCATE lupo_analytics_paths; INSERT … FROM livehelp_paths_firsts; INSERT … FROM livehelp_paths_monthly | TRUNCATE / INSERT | Active (import) |
-| database/migrations/craftysyntax_to_lupopedia_mysql.sql | 1310, 1325–1352 | Same: TRUNCATE + INSERT into lupo_analytics_paths from livehelp_paths_firsts and livehelp_paths_monthly | TRUNCATE / INSERT | Active (import) |
-| database/migrations/dev_20260206_reserved_word_column_renames.sql | — | Does not rename year_month (year_month is not a reserved word; column remains year_month) | Migration | Active |
-| docs/REQUIRED_TABLES_4.1.0.md | 64 | List entry | Doc | Active |
-| docs/doctrine/migrations/MIGRATION_MAPPING_REFERENCE.md | 89 | livehelp_paths_firsts, livehelp_paths_monthly → lupo_analytics_paths | Doc | Reference |
-| docs/doctrine/migrations/livehelp_paths_firsts_migration.md | 3, 32, 86, 127, 130, 145, 230 | Replacement: lupo_analytics_paths; TRUNCATE/INSERT examples | Doc | Reference |
-| docs/doctrine/CRAFTY_SYNTAX_*.md, docs/channels/…/CRAFTY_SYNTAX_*.md | various | livehelp_paths_firsts/monthly → lupo_analytics_paths | Doc | Reference |
-| docs/doctrine/MigrationAtlas.md | 24–25 | livehelp_paths_firsts/monthly → lupo_analytics_paths | Doc | Reference |
-| CHANGELOG.md, docs/channels/schema/migrations/3.0.0.md, dialogs/… | various | year_month remains year_month (not a reserved word) | Doc | Reference |
-| database/migrations_legacy/*.sql | various | CREATE TABLE lupo_analytics_paths; INSERT | Legacy schema | Legacy |
-| complete_schema.txt, DIRECTORY_TREE.md, .output.txt, database/toon_output.txt | — | Table/list references | Doc / output | Reference |
+| lupo-database/migrations/install_new_lupopedia.sql | 3886–3900 | CREATE TABLE lupo_analytics_paths ( … ); ALTER … AUTO_INCREMENT | Schema | Active |
+| lupo-database/migrations/dev_20260204_fix_schema_alignment.sql | 1924–1933 | ALTER TABLE lupo_analytics_paths MODIFY COLUMN (from_page_id, to_page_id, year_month, …) | Migration | Active |
+| lupo-database/migrations/dev_20260204_fix_schema_alignment_summary.txt | 1924–1933 | Column summary for lupo_analytics_paths | Doc | Active |
+| lupo-database/migrations/import_from_old_crafty_syntax.sql | 1362, 1377–1402, 1404+ | Comment: livehelp_paths_firsts → lupo_analytics_paths. TRUNCATE lupo_analytics_paths; INSERT … FROM livehelp_paths_firsts; INSERT … FROM livehelp_paths_monthly | TRUNCATE / INSERT | Active (import) |
+| lupo-database/migrations/craftysyntax_to_lupopedia_mysql.sql | 1310, 1325–1352 | Same: TRUNCATE + INSERT into lupo_analytics_paths from livehelp_paths_firsts and livehelp_paths_monthly | TRUNCATE / INSERT | Active (import) |
+| lupo-database/migrations/dev_20260206_reserved_word_column_renames.sql | — | Does not rename year_month (year_month is not a reserved word; column remains year_month) | Migration | Active |
+| lupo-docs/REQUIRED_TABLES_4.1.0.md | 64 | List entry | Doc | Active |
+| lupo-docs/doctrine/migrations/MIGRATION_MAPPING_REFERENCE.md | 89 | livehelp_paths_firsts, livehelp_paths_monthly → lupo_analytics_paths | Doc | Reference |
+| lupo-docs/doctrine/migrations/livehelp_paths_firsts_migration.md | 3, 32, 86, 127, 130, 145, 230 | Replacement: lupo_analytics_paths; TRUNCATE/INSERT examples | Doc | Reference |
+| lupo-docs/doctrine/CRAFTY_SYNTAX_*.md, lupo-docs/channels/…/CRAFTY_SYNTAX_*.md | various | livehelp_paths_firsts/monthly → lupo_analytics_paths | Doc | Reference |
+| lupo-docs/doctrine/MigrationAtlas.md | 24–25 | livehelp_paths_firsts/monthly → lupo_analytics_paths | Doc | Reference |
+| CHANGELOG.md, lupo-docs/channels/schema/migrations/3.0.0.md, dialogs/… | various | year_month remains year_month (not a reserved word) | Doc | Reference |
+| lupo-database/migrations_legacy/*.sql | various | CREATE TABLE lupo_analytics_paths; INSERT | Legacy schema | Legacy |
+| complete_schema.txt, DIRECTORY_TREE.md, .output.txt, lupo-database/toon_output.txt | — | Table/list references | Doc / output | Reference |
 
 **PHP runtime:** No PHP file references `lupo_analytics_paths` or `analytics_paths` (grep `*.php`: no matches). All usage is in SQL migrations, import scripts, and docs.
 
@@ -105,11 +105,11 @@ Documentation and import scripts state that **livehelp_paths_firsts** and **live
 
 | File path | Line(s) | Snippet / usage | Operation | Active / legacy |
 |-----------|---------|------------------|-----------|------------------|
-| database/migrations/install_new_lupopedia.sql | 3902–3916 | CREATE TABLE lupo_paths_firsts ( … ); CREATE INDEX … | Schema | Definition only |
-| database/migrations/dev_20260204_fix_schema_alignment.sql | 1934–1940 | ALTER TABLE lupo_paths_firsts MODIFY COLUMN (from_visit_id, to_visit_id, date_ymd, visits, metadata_json, created_at, updated_at) | Migration | Schema only |
-| database/migrations/dev_20260204_fix_schema_alignment_summary.txt | 1934–1940 | Column summary | Doc | Reference |
-| database/migrations/dev_20260205_doctrine_alignment_phase2.sql | 32 | ALTER TABLE lupo_paths_firsts MODIFY COLUMN `id` bigint NOT NULL AUTO_INCREMENT | Migration | Schema only (note: install uses paths_first_id as PK; may be legacy variant) |
-| docs/REQUIRED_TABLES_4.1.0.md | 227 | List entry | Doc | Reference |
+| lupo-database/migrations/install_new_lupopedia.sql | 3902–3916 | CREATE TABLE lupo_paths_firsts ( … ); CREATE INDEX … | Schema | Definition only |
+| lupo-database/migrations/dev_20260204_fix_schema_alignment.sql | 1934–1940 | ALTER TABLE lupo_paths_firsts MODIFY COLUMN (from_visit_id, to_visit_id, date_ymd, visits, metadata_json, created_at, updated_at) | Migration | Schema only |
+| lupo-database/migrations/dev_20260204_fix_schema_alignment_summary.txt | 1934–1940 | Column summary | Doc | Reference |
+| lupo-database/migrations/dev_20260205_doctrine_alignment_phase2.sql | 32 | ALTER TABLE lupo_paths_firsts MODIFY COLUMN `id` bigint NOT NULL AUTO_INCREMENT | Migration | Schema only (note: install uses paths_first_id as PK; may be legacy variant) |
+| lupo-docs/REQUIRED_TABLES_4.1.0.md | 227 | List entry | Doc | Reference |
 | .output.txt | 333 | lupo_paths_firsts.too (file listing) | Output | Reference |
 
 **PHP runtime:** No PHP file references `lupo_paths_firsts` or `paths_firsts` (grep `*.php`: no matches).
@@ -157,13 +157,13 @@ Before dropping:
 
 | File | Change |
 |------|--------|
-| database/migrations/install_new_lupopedia.sql | Remove CREATE TABLE lupo_paths_firsts and its three CREATE INDEX statements. |
-| database/migrations/dev_20260204_fix_schema_alignment.sql | Remove all 7 ALTER TABLE lupo_paths_firsts statements. |
-| database/migrations/dev_20260204_fix_schema_alignment_summary.txt | Remove the 7 lupo_paths_firsts column summary lines. |
-| database/migrations/dev_20260205_doctrine_alignment_phase2.sql | Remove the 1 ALTER TABLE lupo_paths_firsts statement (MODIFY COLUMN `id`). |
-| docs/REQUIRED_TABLES_4.1.0.md | Remove the list entry for lupo_paths_firsts. |
+| lupo-database/migrations/install_new_lupopedia.sql | Remove CREATE TABLE lupo_paths_firsts and its three CREATE INDEX statements. |
+| lupo-database/migrations/dev_20260204_fix_schema_alignment.sql | Remove all 7 ALTER TABLE lupo_paths_firsts statements. |
+| lupo-database/migrations/dev_20260204_fix_schema_alignment_summary.txt | Remove the 7 lupo_paths_firsts column summary lines. |
+| lupo-database/migrations/dev_20260205_doctrine_alignment_phase2.sql | Remove the 1 ALTER TABLE lupo_paths_firsts statement (MODIFY COLUMN `id`). |
+| lupo-docs/REQUIRED_TABLES_4.1.0.md | Remove the list entry for lupo_paths_firsts. |
 | complete_schema.txt | Regenerate or edit to remove lupo_paths_firsts. |
-| docs/toons/ (if present) | Remove or regenerate lupo_paths_firsts TOON after schema change. |
+| lupo-docs/toons/ (if present) | Remove or regenerate lupo_paths_firsts TOON after schema change. |
 | .output.txt / DIRECTORY_TREE.md | Update if they list this table or its TOON. |
 
 No PHP or import/migration logic changes are required to drop **lupo_paths_firsts**; no application or import code references it.

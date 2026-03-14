@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\channels\agents\WOLFIE_HEADER_SPECIFICATION.md"
+  file_path_from_root: "lupo-docs\channels\agents\WOLFIE_HEADER_SPECIFICATION.md"
   file_hash: "831a9eeb254fdf5c9574a1c6c7887edcdc49491758c145f2cd6fe5f34d5045c1"
-  file_path_from_root: "docs\channels\agents\WOLFIE_HEADER_SPECIFICATION.md"
+  file_path_from_root: "lupo-docs\channels\agents\WOLFIE_HEADER_SPECIFICATION.md"
   file_hash: "64f56a9688b4222b025d1c27fa9c91494387f6e1534c6db8379f14dd3fc4ae71"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -152,7 +152,7 @@ This works **without Git, without diffs, without IDE history, and without scanni
 
 The header block at the top of every file is canonically named **FLIP Headers** (alias: Wolfie Headers, CROP Headers, FLIPPING Headers). They are the same system.
 
-When a file is "flipped" to Lupopedia or to an AI agent (e.g. Cursor), the agent must **infer** everything it needs to know about that file — identity, lineage, channel, version, emotional state, doctrine, placement, semantic meaning — **entirely from the FLIP Header**, without guessing or hallucinating. This is the **File-Level Inference Protocol (FLIP)**. The FLIP Header is the boundary and truth source for that file. See **docs/doctrine/FLIP/FLIP_DOCTRINE.md** for the canonical FLIP doctrine and agent compliance checklist.
+When a file is "flipped" to Lupopedia or to an AI agent (e.g. Cursor), the agent must **infer** everything it needs to know about that file — identity, lineage, channel, version, emotional state, doctrine, placement, semantic meaning — **entirely from the FLIP Header**, without guessing or hallucinating. This is the **File-Level Inference Protocol (FLIP)**. The FLIP Header is the boundary and truth source for that file. See **lupo-docs/doctrine/FLIP/FLIP_DOCTRINE.md** for the canonical FLIP doctrine and agent compliance checklist.
 
 Only **two fields are mandatory**.
 
@@ -228,7 +228,7 @@ Reference to the canonical UTC time service used for temporal integrity.
 Governance compliance marker for the Anti-Advertising Law. **ZERO TOLERANCE POLICY.**  
 - **MANDATORY** â€” Must be included in all WOLFIE Headers
 - **ZERO TOLERANCE**: NO ADS in Lupopedia system output (non-negotiable)
-- Value: `true` (boolean) OR file path slug `docs/doctrine/GOV_AD_PROHIBIT_001.md` OR `gov-ad-prohibit-001`
+- Value: `true` (boolean) OR file path slug `lupo-docs/doctrine/GOV_AD_PROHIBIT_001.md` OR `gov-ad-prohibit-001`
 - Purpose: Documents that this file complies with GOV-AD-PROHIBIT-001 (ZERO ads in system output)
 - Governance Layer: Ensures all files explicitly declare anti-advertising compliance
 - Alternative Format: `file.lupopedia.gov_ad_prohibit_001: true` is an accepted shorthand
@@ -340,7 +340,7 @@ Classification category for archival and retrieval
 
 The `dialog:` block in the WOLFIE Header represents the **latest edit** to the file.
 
-**FLIP (File-Level Inference Protocol):** From a FLIP perspective, the dialog block is **optional** and **non-authoritative**. Agents must **not** infer identity, channel, version, or doctrine from the dialog block; only the doctrine-required header fields (e.g. `file_path_from_root`, `file.last_modified_system_version`, `file.last_modified_utc`) are used for inference. The dialog block is for human and agent readability, change notes, and conversational lineage only. See **docs/doctrine/FLIP/FLIPPING_FILE_LEXA_LILITH.md** Part 2.12.
+**FLIP (File-Level Inference Protocol):** From a FLIP perspective, the dialog block is **optional** and **non-authoritative**. Agents must **not** infer identity, channel, version, or doctrine from the dialog block; only the doctrine-required header fields (e.g. `file_path_from_root`, `file.last_modified_system_version`, `file.last_modified_utc`) are used for inference. The dialog block is for human and agent readability, change notes, and conversational lineage only. See **lupo-docs/doctrine/FLIP/FLIPPING_FILE_LEXA_LILITH.md** Part 2.12.
 
 **Important:** This is distinct from **inline dialogs**, which can appear anywhere in the file as margin notes. The header dialog is updated ONLY when the file itself is modified, and represents what changed in that modification.
 
@@ -444,7 +444,7 @@ context:
 
 # ðŸ·ï¸ **5. Tags (Optional, Databaseâ€‘Aligned)**
 
-Tags correspond directly to the schema and allow semantic classification. **Optional FLP enrichment:** `mood_rgb` (hex format, e.g. `6464FF`, per **docs/doctrine/FLIP/FLP_EMOTIONAL_GEOMETRY.md**), `tags` (array of strings), `atoms` (key-value map). Not for core FLIP inference. See **docs/doctrine/FLIP/FLIPPING_FILE_LEXA_LILITH.md** Part 1.2.
+Tags correspond directly to the schema and allow semantic classification. **Optional FLP enrichment:** `mood_rgb` (hex format, e.g. `6464FF`, per **lupo-docs/doctrine/FLIP/FLP_EMOTIONAL_GEOMETRY.md**), `tags` (array of strings), `atoms` (key-value map). Not for core FLIP inference. See **lupo-docs/doctrine/FLIP/FLIPPING_FILE_LEXA_LILITH.md** Part 1.2.
 
 ```yaml
 tags:
@@ -572,7 +572,7 @@ file:
 
 #### In `_dir_atoms.yaml` (directory-scoped):
 ```yaml
-# Located at: docs/agents/_dir_atoms.yaml
+# Located at: lupo-docs/agents/_dir_atoms.yaml
 DIR_DOCS_AUTHOR: "Documentation Team"
 DIRR_DOCS_VERSION: "3.0.1"
 ```
@@ -614,7 +614,7 @@ Use literal atom names (not resolver syntax):
 ### Directory Atom Files
 
 **File Name:** `_dir_atoms.yaml`  
-**Location:** Any directory (e.g., `docs/agents/_dir_atoms.yaml`)
+**Location:** Any directory (e.g., `lupo-docs/agents/_dir_atoms.yaml`)
 
 **Format:**
 ```yaml
@@ -673,13 +673,13 @@ file_atoms:
 
 ### Example Resolution
 
-**File:** `docs/agents/example.md`
+**File:** `lupo-docs/agents/example.md`
 
 **Resolution Process:**
 1. Check `file_atoms:` in `example.md` header â†’ Not found
-2. Check `docs/agents/_dir_atoms.yaml` for `DIR_*` â†’ Found `DIR_DOCS_AUTHOR`
-3. Check `docs/agents/_dir_atoms.yaml` for `DIRR_*` â†’ Found `DIRR_DOCS_VERSION`
-4. Check parent directories for `DIRR_*` â†’ Check `docs/_dir_atoms.yaml` (if exists)
+2. Check `lupo-docs/agents/_dir_atoms.yaml` for `DIR_*` â†’ Found `DIR_DOCS_AUTHOR`
+3. Check `lupo-docs/agents/_dir_atoms.yaml` for `DIRR_*` â†’ Found `DIRR_DOCS_VERSION`
+4. Check parent directories for `DIRR_*` â†’ Check `lupo-docs/_dir_atoms.yaml` (if exists)
 5. Check module atoms â†’ Determine module from path, check `module_atoms.yaml`
 6. Check `/config/global_atoms.yaml` for `GLOBAL_*` â†’ Found `GLOBAL_CURRENT_AUTHORS`
 

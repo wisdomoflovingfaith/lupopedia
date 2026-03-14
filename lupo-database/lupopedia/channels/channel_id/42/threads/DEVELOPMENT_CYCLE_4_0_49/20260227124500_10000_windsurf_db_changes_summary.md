@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -32,7 +32,7 @@ lupopedia.footer:
 
 ---
 lupopedia.headers:
-  file_path_from_root: "channels/42/threads/DEVELOPMENT_CYCLE_4_0_49/20260227124500_10000_windsurf_db_changes_summary.md"
+  file_path_from_root: "lupo-channels/42/threads/DEVELOPMENT_CYCLE_4_0_49/20260227124500_10000_windsurf_db_changes_summary.md"
   file_hash: "888107a088db01122666b35e4cf3fe5ee643334a44002cb57e0c32fc55440a8e"
   system_version: "4.0.50"
   channel_id: 42
@@ -49,12 +49,12 @@ lupopedia.headers:
   lupo_agent: "windsurf"
 
 lupopedia.edges:
-  file_path_from_root: "channels\42\threads\DEVELOPMENT_CYCLE_4_0_49\20260227124500_10000_windsurf_db_changes_summary.md"
+  file_path_from_root: "lupo-channels\42\threads\DEVELOPMENT_CYCLE_4_0_49\20260227124500_10000_windsurf_db_changes_summary.md"
   outbound_edges:
-    - { to: "channels/42/threads/DEVELOPMENT_CYCLE_4_0_49/20260227123000_1007_dbdoc_recommendations.md", type: "implements", weight: 1.0, reason: "DBDOC recommendations source" }
-    - { to: "docs/toons/", type: "updated", weight: 0.9, reason: "TOON schema updates" }
-    - { to: "database/migrations/install_new_lupopedia.sql", type: "updated", weight: 0.9, reason: "Install schema file" }
-    - { to: "database/migrations/20260227_4_0_49_schema_updates.sql", type: "creates", weight: 0.8, reason: "One-time migration file" }
+    - { to: "lupo-channels/42/threads/DEVELOPMENT_CYCLE_4_0_49/20260227123000_1007_dbdoc_recommendations.md", type: "implements", weight: 1.0, reason: "DBDOC recommendations source" }
+    - { to: "lupo-docs/toons/", type: "updated", weight: 0.9, reason: "TOON schema updates" }
+    - { to: "lupo-database/migrations/install_new_lupopedia.sql", type: "updated", weight: 0.9, reason: "Install schema file" }
+    - { to: "lupo-database/migrations/20260227_4_0_49_schema_updates.sql", type: "creates", weight: 0.8, reason: "One-time migration file" }
   semantic_tags: ["schema", "migration", "dbdoc", "channel_42", "completed"]
 
   last_updated_utc: "20260228"
@@ -110,19 +110,19 @@ Based on the DBDOC review recommendations, all schema alterations have been succ
 ## 📁 Artifacts Created/Updated
 
 ### Updated TOON Files
-1. `docs/toons/lupo_document_embeddings.toon.json`
-2. `docs/toons/lupo_collections.toon.json`
-3. `docs/toons/lupo_agents.toon.json`
-4. `docs/toons/lupo_agent_heartbeats.toon.json`
-5. `docs/toons/lupo_agent_tool_calls.toon.json`
-6. `docs/toons/lupo_api_tokens.toon.json`
-7. `docs/toons/lupo_analytics_visits.toon.json`
+1. `lupo-docs/toons/lupo_document_embeddings.toon.json`
+2. `lupo-docs/toons/lupo_collections.toon.json`
+3. `lupo-docs/toons/lupo_agents.toon.json`
+4. `lupo-docs/toons/lupo_agent_heartbeats.toon.json`
+5. `lupo-docs/toons/lupo_agent_tool_calls.toon.json`
+6. `lupo-docs/toons/lupo_api_tokens.toon.json`
+7. `lupo-docs/toons/lupo_analytics_visits.toon.json`
 
 ### Updated Install Schema
-- `database/migrations/install_new_lupopedia.sql` - All changes incorporated for fresh installations
+- `lupo-database/migrations/install_new_lupopedia.sql` - All changes incorporated for fresh installations
 
 ### Created Migration File
-- `database/migrations/20260227_4_0_49_schema_updates.sql` - One-time migration for existing databases
+- `lupo-database/migrations/20260227_4_0_49_schema_updates.sql` - One-time migration for existing databases
 
 ## 🔧 Technical Implementation Details
 
@@ -146,7 +146,7 @@ Based on the DBDOC review recommendations, all schema alterations have been succ
 - No additional steps required
 
 ### For Existing Databases
-- Run migration: `database/migrations/20260227_4_0_49_schema_updates.sql`
+- Run migration: `lupo-database/migrations/20260227_4_0_49_schema_updates.sql`
 - Migration includes safety checks and validation queries
 - Estimated runtime: < 2 minutes for typical database sizes
 

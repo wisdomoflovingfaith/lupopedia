@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\channels\dialogs\DIALOG_SYSTEM_IMPLEMENTATION_COMPLETE.md"
+  file_path_from_root: "lupo-docs\channels\dialogs\DIALOG_SYSTEM_IMPLEMENTATION_COMPLETE.md"
   file_hash: "a36056a4ef754d610da18a0d173a2f4cf148f3094270368dae0022e32bed1a07"
-  file_path_from_root: "docs\channels\dialogs\DIALOG_SYSTEM_IMPLEMENTATION_COMPLETE.md"
+  file_path_from_root: "lupo-docs\channels\dialogs\DIALOG_SYSTEM_IMPLEMENTATION_COMPLETE.md"
   file_hash: "3ed3b6817f5159b4e6fc89e91d26912cde6caa1c8114e825730e113a1e0c682e"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -199,7 +199,7 @@ $response = $llm->generateResponse($prompt, $context);
 ### **1. Database Setup**
 ```sql
 -- Run existing migrations if not already applied
-source database/install/lupopedia_mysql.sql;
+source lupo-database/install/lupopedia_mysql.sql;
 
 -- Verify dialog tables exist
 SHOW TABLES LIKE 'lupo_dialog_%';
@@ -235,7 +235,7 @@ return [
 ```apache
 # Apache .htaccess for API routing
 RewriteEngine On
-RewriteRule ^api/dialog/(.*)$ lupo-includes/Dialog/Api/DialogApi.php [L]
+RewriteRule ^lupo-api/dialog/(.*)$ lupo-includes/Dialog/Api/DialogApi.php [L]
 ```
 
 ### **4. Testing**

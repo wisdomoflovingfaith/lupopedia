@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\directives\channel_42_broadcast.md"
+  file_path_from_root: "lupo-docs\directives\channel_42_broadcast.md"
   file_hash: "0b3a955ee9d957c78ac7ac2943ea07f0eb27bf96f066fc910179c60566bbc3ba"
-  file_path_from_root: "docs\directives\channel_42_broadcast.md"
+  file_path_from_root: "lupo-docs\directives\channel_42_broadcast.md"
   file_hash: "2ce01b23ca0272ac65adbeb8937e2b69e51e365781f2bac0944e13bf557a67f9"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -63,7 +63,7 @@ lupopedia.footer:
 
 ---
 wolfie.headers:
-  file_path_from_root: "docs/directives/channel_42_broadcast.md"
+  file_path_from_root: "lupo-docs/directives/channel_42_broadcast.md"
   system_version: "4.0.31"
   channel_id: 42
   actor_id: 1000
@@ -76,7 +76,7 @@ wolfie.headers:
 flip.footer:
   referenced_by_files:
     - "CHANGELOG.md"
-    - "docs/archive/channel_420_final_messages.md"
+    - "lupo-docs/archive/channel_420_final_messages.md"
     - "KIRO_TAKEOVER_REPORT.md"
   referenced_by_channels:
     - 42
@@ -91,7 +91,7 @@ flip.footer:
     - "Broadcast generated during IDE agent handoff (Warp → Kiro)."
     - "Cursor IDE offline due to token limit."
     - "Channel 42 inherits all development functions from archived Channel 420."
-    - "Posted to docs/directives per Captain Wolfie directive."
+    - "Posted to lupo-docs/directives per Captain Wolfie directive."
 ---
 
 # CHANNEL 42 BROADCAST — IDE AGENT STATUS & VERSION ALIGNMENT
@@ -110,4 +110,4 @@ All tasks complete. OAuth authentication operational, FLIP footers implemented, 
 
 ---
 
-For complete broadcast details, see: `channels/42/broadcasts/20260223_kiro_takeover.md`
+For complete broadcast details, see: `lupo-channels/42/broadcasts/20260223_kiro_takeover.md`

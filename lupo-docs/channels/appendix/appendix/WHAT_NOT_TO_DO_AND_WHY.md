@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\channels\appendix\appendix\WHAT_NOT_TO_DO_AND_WHY.md"
+  file_path_from_root: "lupo-docs\channels\appendix\appendix\WHAT_NOT_TO_DO_AND_WHY.md"
   file_hash: "45fe9840ad9608d75443f2c1afd159ecd9b4e35e09961cd2a73bffcdbf1d3139"
-  file_path_from_root: "docs\channels\appendix\appendix\WHAT_NOT_TO_DO_AND_WHY.md"
+  file_path_from_root: "lupo-docs\channels\appendix\appendix\WHAT_NOT_TO_DO_AND_WHY.md"
   file_hash: "7bd96f72c49e7d7249081d7d550800380297e3daf79843bff5f3733e49e0875a"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -170,10 +170,10 @@ This file exists so futureâ€‘me (and future agents) never repeat past chaos
 ---
 
 ## 2026â€‘01 â€” Modifying Legacy Code Reference
-**Mistake:** Accidentally edited files in `legacy/craftysyntax/` during development.  
+**Mistake:** Accidentally edited files in `lupo-legacy/craftysyntax/` during development.  
 **Result:** Lost reference to original auto-installer codebase.  
 **Why Not To Do It:** Legacy code must remain untouched as exact reference baseline.  
-**Lesson:** *Legacy code is read-only. Build new code in `modules/`. Never modify `legacy/`.*
+**Lesson:** *Legacy code is read-only. Build new code in `modules/`. Never modify `lupo-legacy/`.*
 
 ---
 

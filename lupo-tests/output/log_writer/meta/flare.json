@@ -1,0 +1,34 @@
+{
+  "files": [
+    {
+      "file": "tests\\output\\log_writer\\checksum_test.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "tests\\output\\log_writer\\complete_log.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "tests\\output\\log_writer\\empty_arrays.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "tests\\output\\log_writer\\flip_header_test.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "tests\\output\\log_writer\\markdown_test.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "tests\\output\\log_writer\\minimal_log.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    }
+  ]
+}

@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "channels\0\roles\graph_intelligence_agent.md"
+  file_path_from_root: "lupo-channels\0\roles\graph_intelligence_agent.md"
   file_hash: "d9a48ba9db5777a85c088b58356f902e96558ac54c6eeca3fed36b150c316a4a"
-  file_path_from_root: "channels\0\roles\graph_intelligence_agent.md"
+  file_path_from_root: "lupo-channels\0\roles\graph_intelligence_agent.md"
   file_hash: "aa29991a2c1804680cbdc4ee64092ede3540398812dafe3f8122d6aa2b6d6daa"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -183,10 +183,10 @@ Graph Intelligence Agents report to System Administrators. All recommendations r
 <!-- FLIP_FOOTER_BEGIN
 {
   "references": [
-    "docs/",
-    "channels/0/broadcasts/",
-    "channels/42/broadcasts/",
-    "database/migrations/seed_anubis_vishwakarma_4.0.45.sql"
+    "lupo-docs/",
+    "lupo-channels/0/broadcasts/",
+    "lupo-channels/42/broadcasts/",
+    "lupo-database/migrations/seed_anubis_vishwakarma_4.0.45.sql"
   ],
   "implements": "graph_intelligence_authority_model",
   "depends_on": "vishwakarma_agent_seeding",

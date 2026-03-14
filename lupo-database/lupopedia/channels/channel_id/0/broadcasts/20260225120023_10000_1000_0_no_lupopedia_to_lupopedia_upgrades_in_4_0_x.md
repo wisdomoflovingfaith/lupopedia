@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "channels\0\broadcasts\20260225120023_10000_1000_0_no_lupopedia_to_lupopedia_upgrades_in_4_0_x.md"
+  file_path_from_root: "lupo-channels\0\broadcasts\20260225120023_10000_1000_0_no_lupopedia_to_lupopedia_upgrades_in_4_0_x.md"
   file_hash: "bfbdc65636e6fa99f9e3fd957a510b4c87e1a8e1a635958a846471f9163c5376"
-  file_path_from_root: "channels\0\broadcasts\20260225120023_10000_1000_0_no_lupopedia_to_lupopedia_upgrades_in_4_0_x.md"
+  file_path_from_root: "lupo-channels\0\broadcasts\20260225120023_10000_1000_0_no_lupopedia_to_lupopedia_upgrades_in_4_0_x.md"
   file_hash: "7f7843fa88e7d950ad974c39513db6c1a9f594316f6ed118b62ab83f71bbe6cb"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -81,7 +81,7 @@ There is never a Lupopedia→Lupopedia upgrade path in 4.0.x. All installs alway
 
 <!-- FLIP_FOOTER_BEGIN
 {
-    "references": "\"docs\/status\/broadcast_collection_0.md\"",
+    "references": "\"lupo-docs\/status\/broadcast_collection_0.md\"",
     "implements": "\"broadcast_standardization\"",
     "depends_on": "\"registry_seeding_completion\"",
     "includes": "\"channel_0_communications\"",

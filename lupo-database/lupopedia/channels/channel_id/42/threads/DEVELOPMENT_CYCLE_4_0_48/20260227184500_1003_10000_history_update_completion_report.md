@@ -1,6 +1,6 @@
 ---
 lupopedia.headers:
-  file_path_from_root: "channels/42/threads/DEVELOPMENT_CYCLE_4_0_48/20260227184500_1003_10000_history_update_completion_report.md"
+  file_path_from_root: "lupo-channels/42/threads/DEVELOPMENT_CYCLE_4_0_48/20260227184500_1003_10000_history_update_completion_report.md"
   file_hash: "20b06b4f1a6c417ac4d87ab227204ddbe0888534d0be2d6f484a39a6d3f66f42"
   system_version: "4.0.50"
   channel_id: 42
@@ -14,11 +14,11 @@ lupopedia.headers:
   lupo_agent: "antigravity"
 
 lupopedia.edges:
-  file_path_from_root: "channels\42\threads\DEVELOPMENT_CYCLE_4_0_48\20260227184500_1003_10000_history_update_completion_report.md"
+  file_path_from_root: "lupo-channels\42\threads\DEVELOPMENT_CYCLE_4_0_48\20260227184500_1003_10000_history_update_completion_report.md"
   outbound_edges:
-    - { to: "docs/channels/appendix/HISTORY.md", type: "references", weight: 1.0 }
-    - { to: "docs/channels/appendix/appendix/FOUNDERS_NOTE.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/INDEX.md", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/channels/appendix/HISTORY.md", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/channels/appendix/appendix/FOUNDERS_NOTE.md", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/INDEX.md", type: "references", weight: 1.0 }
   semantic_tags: ["history", "documentation", "mission-complete", "v4.0.48"]
 
   last_updated_utc: "20260228"

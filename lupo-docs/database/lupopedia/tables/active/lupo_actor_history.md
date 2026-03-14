@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\database\lupopedia\tables\lupo_actor_history.md"
+  file_path_from_root: "lupo-docs\database\lupopedia\tables\lupo_actor_history.md"
   file_hash: "f40fd0d0ff8461ccf55df2717ee184bf5c5c71ee6ea570828c1e0244d88503af"
-  file_path_from_root: "docs\database\lupopedia\tables\lupo_actor_history.md"
+  file_path_from_root: "lupo-docs\database\lupopedia\tables\lupo_actor_history.md"
   file_hash: "d383d14fd6c8654ce0b29514025b186a925528984d69cbf4d63aa53a1eddedf3"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -63,7 +63,7 @@ lupopedia.footer:
 
 ---
 wolfie.headers: {
-  file_path_from_root: "docs/database/lupopedia/tables/lupo_actor_history.md",
+  file_path_from_root: "lupo-docs/database/lupopedia/tables/lupo_actor_history.md",
   system_version: "4.0.48",
   channel_id: 1,
   actor_id: 1003,
@@ -80,8 +80,8 @@ wolfie.headers: {
 flip.footer: {
   outbound_edges: [
     { to: "lupo-database/lupopedia/toon/lupo_actor_history.toon.json", type: "schema_reference", weight: 1.0 },
-    { to: "docs/database/lupopedia/tables/lupo_actors.md", type: "references", weight: 0.9 },
-    { to: "actors/10000/history/resume.json", type: "sync_source", weight: 1.0 }
+    { to: "lupo-docs/database/lupopedia/tables/lupo_actors.md", type: "references", weight: 0.9 },
+    { to: "lupo-actors/10000/history/resume.json", type: "sync_source", weight: 1.0 }
   ],
   semantic_tags: ["contribution_log", "milestone_tracking", "verified_achievements"]
 }
@@ -139,7 +139,7 @@ The `lupo_actor_history` table stores the structured accomplishments of actors. 
 - **Channel:** `channel_id` → `lupo_channels.channel_id`
 
 ### **Filesystem Sync**
-- Data is synchronized bibirectionally with `actors/<id>/history/resume.json`.
+- Data is synchronized bibirectionally with `lupo-actors/<id>/history/resume.json`.
 - **Identity Capsule Integrity**: In an import/export scenario, this table verifies the pedigree of the actor.
 
 ---

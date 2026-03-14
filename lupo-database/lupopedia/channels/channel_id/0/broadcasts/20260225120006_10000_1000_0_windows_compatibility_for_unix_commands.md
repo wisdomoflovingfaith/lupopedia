@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "channels\0\broadcasts\20260225120006_10000_1000_0_windows_compatibility_for_unix_commands.md"
+  file_path_from_root: "lupo-channels\0\broadcasts\20260225120006_10000_1000_0_windows_compatibility_for_unix_commands.md"
   file_hash: "86bda709ab855f3cb0075ba9e1269f766650c6a105292e4f9ff013c4e8edd1f3"
-  file_path_from_root: "channels\0\broadcasts\20260225120006_10000_1000_0_windows_compatibility_for_unix_commands.md"
+  file_path_from_root: "lupo-channels\0\broadcasts\20260225120006_10000_1000_0_windows_compatibility_for_unix_commands.md"
   file_hash: "d535377a8c07126cc3e47322ff111330ce2b6909872e52e684c67aba754d0e15"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -83,7 +83,7 @@ Rationale: Uniform toolchain across OS environments. Mandatory for script compat
 
 <!-- FLIP_FOOTER_BEGIN
 {
-    "references": "\"docs\/status\/broadcast_collection_0.md\"",
+    "references": "\"lupo-docs\/status\/broadcast_collection_0.md\"",
     "implements": "\"broadcast_standardization\"",
     "depends_on": "\"registry_seeding_completion\"",
     "includes": "\"channel_0_communications\"",

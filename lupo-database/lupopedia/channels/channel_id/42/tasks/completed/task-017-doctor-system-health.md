@@ -27,7 +27,7 @@ Develop a comprehensive system health and diagnostic layer to identify environme
 - **Actor Audit:** Implementation of `checkActors()` for workspace/namespace verification.
 - **CLI Command:** New `php lupo-bin/lupo.php doctor` command and `--check-actors` flag.
 - **Auto-Repair:** Capability to sync `session.md` via `doctor-context --repair`.
-- **Reference Docs:** Full specification in `docs/DOCTOR_HEALTH_CHECK.md`.
+- **Reference Docs:** Full specification in `lupo-docs/DOCTOR_HEALTH_CHECK.md`.
 
 ## Verification
 - Run `php lupo-bin/lupo.php doctor` for baseline health.

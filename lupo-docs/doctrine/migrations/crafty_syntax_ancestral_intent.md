@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\doctrine\migrations\crafty_syntax_ancestral_intent.md"
+  file_path_from_root: "lupo-docs\doctrine\migrations\crafty_syntax_ancestral_intent.md"
   file_hash: "93e3122e266cf1f4f0b2c55206b3a5547b0e73d871fd90d88cfd64aaeef3754d"
-  file_path_from_root: "docs\doctrine\migrations\crafty_syntax_ancestral_intent.md"
+  file_path_from_root: "lupo-docs\doctrine\migrations\crafty_syntax_ancestral_intent.md"
   file_hash: "7b45a710804ac64d6b2628614264c6c185ca0148f0b31447ae04ac474bc6e891"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -64,7 +64,7 @@ lupopedia.footer:
 ---
 # FLIP Header (alias: Wolfie Header, CROP Header, FLIPPING Header)
 wolfie.headers: explicit architecture with structured clarity for every file.
-file_path_from_root: docs/doctrine/migrations/crafty_syntax_ancestral_intent.md
+file_path_from_root: lupo-docs/doctrine/migrations/crafty_syntax_ancestral_intent.md
 file.last_modified_system_version: "4.0.16"
 file.last_modified_utc: "20260218000000"
 channel_id: 42   # ANUBIS adoption channel
@@ -74,7 +74,7 @@ atoms:
   recovery_event: true
 X-Lupo-Actor-ID: 2035
 X-Lupo-Actor-Identity: "Lupopedia Audit Tool (Auto-Fixed)"
-X-Lupo-File-Path: docs/doctrine/migrations/crafty_syntax_ancestral_intent.md
+X-Lupo-File-Path: lupo-docs/doctrine/migrations/crafty_syntax_ancestral_intent.md
 ---
 
 **Crafty Syntax → Lupopedia

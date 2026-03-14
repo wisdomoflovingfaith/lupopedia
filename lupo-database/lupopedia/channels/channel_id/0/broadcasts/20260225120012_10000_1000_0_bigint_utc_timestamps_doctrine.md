@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "channels\0\broadcasts\20260225120012_10000_1000_0_bigint_utc_timestamps_doctrine.md"
+  file_path_from_root: "lupo-channels\0\broadcasts\20260225120012_10000_1000_0_bigint_utc_timestamps_doctrine.md"
   file_hash: "2ea860b14379c0d1a638c39fd1f5bc3aed1ee8c1b1ca01c103beae2864cb313e"
-  file_path_from_root: "channels\0\broadcasts\20260225120012_10000_1000_0_bigint_utc_timestamps_doctrine.md"
+  file_path_from_root: "lupo-channels\0\broadcasts\20260225120012_10000_1000_0_bigint_utc_timestamps_doctrine.md"
   file_hash: "ebdecccebaae787952ba295282e68ca55bbde68b7b5cabdcab28c987805bf303"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -81,7 +81,7 @@ All timestamps = BIGINT YYYYMMDDHHIISS format, 24-hour, UTC only. No DATETIME, n
 
 <!-- FLIP_FOOTER_BEGIN
 {
-    "references": "\"docs\/status\/broadcast_collection_0.md\"",
+    "references": "\"lupo-docs\/status\/broadcast_collection_0.md\"",
     "implements": "\"broadcast_standardization\"",
     "depends_on": "\"registry_seeding_completion\"",
     "includes": "\"channel_0_communications\"",

@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\channels\42\broadcasts\20260224_windsurf_version_correction_4_0_38.md"
+  file_path_from_root: "lupo-docs\channels\42\broadcasts\20260224_windsurf_version_correction_4_0_38.md"
   file_hash: "455a1003da5e0e36d20ce8fbc42822e18f05d2d3ccbf2d67649bdd995c483c1b"
-  file_path_from_root: "docs\channels\42\broadcasts\20260224_windsurf_version_correction_4_0_38.md"
+  file_path_from_root: "lupo-docs\channels\42\broadcasts\20260224_windsurf_version_correction_4_0_38.md"
   file_hash: "00abbb4aa77466e5fdf72cec9ba18f366e38716e86f04508a044c90e58f69be3"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -63,7 +63,7 @@ lupopedia.footer:
 
 ---
 wolfie.headers:
-  file_path_from_root: "docs/channels/42/broadcasts/20260224_windsurf_version_correction_4_0_38.md"
+  file_path_from_root: "lupo-docs/channels/42/broadcasts/20260224_windsurf_version_correction_4_0_38.md"
   system_version: "4.0.37"
   channel_id: 42
   mood_rgb: "FF4444"
@@ -80,10 +80,10 @@ flip.footer:
   referenced_by_files:
     - "CHANGELOG.md"
     - "LUPEDIA_VERSION"
-    - "docs/versions/"
-    - "prompts/windsurf/"
-    - "prompts/kiro/"
-    - "prompts/lilith/"
+    - "lupo-docs/versions/"
+    - "lupo-prompts/windsurf/"
+    - "lupo-prompts/kiro/"
+    - "lupo-prompts/lilith/"
   referenced_by_actors:
     - 10000 # Captain
     - 1002 # Windsurf
@@ -94,7 +94,7 @@ flip.footer:
     - "emergency_alignment"
     - "prevent_illegal_version_bump"
   outbound_edges:
-    - "docs/status/windsurf_version_correction_4_0_38.md"
+    - "lupo-docs/status/windsurf_version_correction_4_0_38.md"
   semantic_tags:
     - "versioning"
     - "consistency"
@@ -151,17 +151,17 @@ You must scan:
 - `CHANGELOG.md` 
 - `LUPEDIA_VERSION` 
 - `config/global_atoms.yaml` 
-- `docs/versions/` 
-- `docs/status/` 
-- `docs/channels/` 
-- `docs/directives/` 
-- `docs/doctrine/` 
-- `prompts/` 
-- `channels/42/` 
-- `tools/vsx-extension/` 
+- `lupo-docs/versions/` 
+- `lupo-docs/status/` 
+- `lupo-docs/channels/` 
+- `lupo-docs/directives/` 
+- `lupo-docs/doctrine/` 
+- `lupo-prompts/` 
+- `lupo-channels/42/` 
+- `lupo-tools/vsx-extension/` 
 - All FLIP headers + footers
 - All versioned metadata
-- All JSON indexes under `docs/index/` 
+- All JSON indexes under `lupo-docs/index/` 
 
 Correct every version reference.
 
@@ -185,7 +185,7 @@ Then prepare repo for push.
 
 After 4.0.37 is finalized:
 
-- Create `docs/versions/4.0.38/`  
+- Create `lupo-docs/versions/4.0.38/`  
 - Create `CHANGELOG_DRAFT.md` for 4.0.38  
 - Move all 4.1.0 content into 4.0.38  
 - Update all headers/footers to `system_version: "4.0.38"`  
@@ -215,7 +215,7 @@ Any file touched by an agent during the 4.1.0 contamination window must be check
 
 Generate:
 
-`docs/status/windsurf_version_correction_4_0_38.md`
+`lupo-docs/status/windsurf_version_correction_4_0_38.md`
 
 Include:
 

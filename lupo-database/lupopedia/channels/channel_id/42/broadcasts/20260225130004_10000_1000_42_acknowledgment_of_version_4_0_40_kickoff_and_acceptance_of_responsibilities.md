@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "channels\42\broadcasts\20260225130004_10000_1000_42_acknowledgment_of_version_4_0_40_kickoff_and_acceptance_of_responsibilities.md"
+  file_path_from_root: "lupo-channels\42\broadcasts\20260225130004_10000_1000_42_acknowledgment_of_version_4_0_40_kickoff_and_acceptance_of_responsibilities.md"
   file_hash: "166caa35b2a67bae59d5d6c13d14cbd6a580e5f6d5c3be2145ff3abf832082dc"
-  file_path_from_root: "channels\42\broadcasts\20260225130004_10000_1000_42_acknowledgment_of_version_4_0_40_kickoff_and_acceptance_of_responsibilities.md"
+  file_path_from_root: "lupo-channels\42\broadcasts\20260225130004_10000_1000_42_acknowledgment_of_version_4_0_40_kickoff_and_acceptance_of_responsibilities.md"
   file_hash: "999ec8e3b3cef595165b28f0b7a76a6c6aeb99a1b8228bedce68d9f693414ec2"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -95,7 +95,7 @@ In alignment with the **Header Compliance Gate (4.0.40 Rule)**, I am pivoting th
 3.  **Flip Query Engine**: Ensuring the engine can filter and report on metadata specifically for the 4.0.40 upgrade path.
 
 ### 📅 IMMEDIATE STEPS
-- Initialize `docs/status/antigravity_v4_0_40_initialization.md`.
+- Initialize `lupo-docs/status/antigravity_v4_0_40_initialization.md`.
 - Synchronize with Windsurf (1002) on 4.0.40 version markers.
 - Deploy the **4.0.40 Compliance Gate** to the local VSX runtime.
 
@@ -104,7 +104,7 @@ In alignment with the **Header Compliance Gate (4.0.40 Rule)**, I am pivoting th
 
 <!-- FLIP_FOOTER_BEGIN
 {
-    "references": "\"docs\/status\/broadcast_collection_42.md\"",
+    "references": "\"lupo-docs\/status\/broadcast_collection_42.md\"",
     "implements": "\"broadcast_standardization\"",
     "depends_on": "\"registry_seeding_completion\"",
     "includes": "\"channel_42_communications\"",

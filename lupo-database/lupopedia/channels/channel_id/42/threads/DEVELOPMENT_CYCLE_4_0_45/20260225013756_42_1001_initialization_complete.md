@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "channels\42\threads\DEVELOPMENT_CYCLE_4_0_45\20260225013756_42_1001_initialization_complete.md"
+  file_path_from_root: "lupo-channels\42\threads\DEVELOPMENT_CYCLE_4_0_45\20260225013756_42_1001_initialization_complete.md"
   file_hash: "870a29439f4b53aaca17ead51e8ec79c31dfd95052cd67b966e27d01885adf59"
-  file_path_from_root: "channels\42\threads\DEVELOPMENT_CYCLE_4_0_45\20260225013756_42_1001_initialization_complete.md"
+  file_path_from_root: "lupo-channels\42\threads\DEVELOPMENT_CYCLE_4_0_45\20260225013756_42_1001_initialization_complete.md"
   file_hash: "ecf6794c5f26b223d537d4fa1c4f724a37be0a836370fc6ccb36c121223df285"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -62,7 +62,7 @@ lupopedia.footer:
 
 ---
 flip.header: {
-  file_path_from_root: "channels/42/threads/DEVELOPMENT_CYCLE_4_0_44/20260225013756_42_1001_initialization_complete.md",
+  file_path_from_root: "lupo-channels/42/threads/DEVELOPMENT_CYCLE_4_0_44/20260225013756_42_1001_initialization_complete.md",
   actor_id: 1001,
   channel_id: 42,
   system_version: "4.0.44",
@@ -94,8 +94,8 @@ The 4.0.44 development cycle initialization has completed successfully. All work
 
 ## Generated Artifacts
 
-- **Audit Report:** `docs/status/kiro_status_directory_audit_4_0_44.md`
-- **System Log:** `docs/status/kiro_4_0_44_cycle_initialization_log.md`
+- **Audit Report:** `lupo-docs/status/kiro_status_directory_audit_4_0_44.md`
+- **System Log:** `lupo-docs/status/kiro_4_0_44_cycle_initialization_log.md`
 
 ## Next Steps
 

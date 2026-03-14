@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\channels\gov\TRANSLATION_LOSS_PROTOCOLS.md"
+  file_path_from_root: "lupo-docs\channels\gov\TRANSLATION_LOSS_PROTOCOLS.md"
   file_hash: "845f8a756438fecc140e2a16285fa7812fe52c2e80d595a13ae6652a24eccdcd"
-  file_path_from_root: "docs\channels\gov\TRANSLATION_LOSS_PROTOCOLS.md"
+  file_path_from_root: "lupo-docs\channels\gov\TRANSLATION_LOSS_PROTOCOLS.md"
   file_hash: "011bc0c3d5e3b62170557623cf4b5e933577c5052fe93009995fedc1ef39dcfa"
   last_updated_utc: "20260228"
   system_version: "4.0.50"

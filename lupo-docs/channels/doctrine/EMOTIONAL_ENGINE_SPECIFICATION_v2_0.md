@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\channels\doctrine\EMOTIONAL_ENGINE_SPECIFICATION_v2_0.md"
+  file_path_from_root: "lupo-docs\channels\doctrine\EMOTIONAL_ENGINE_SPECIFICATION_v2_0.md"
   file_hash: "80babd3d21324c5d41f05b7e1b422f2d787aa2739bbd11044fb2a57cb71ed2c3"
-  file_path_from_root: "docs\channels\doctrine\EMOTIONAL_ENGINE_SPECIFICATION_v2_0.md"
+  file_path_from_root: "lupo-docs\channels\doctrine\EMOTIONAL_ENGINE_SPECIFICATION_v2_0.md"
   file_hash: "349e534223d8a1963b95064d8c01d2f298369c2473fe9fe3bc50db6681e89190"
   last_updated_utc: "20260228"
   system_version: "4.0.50"

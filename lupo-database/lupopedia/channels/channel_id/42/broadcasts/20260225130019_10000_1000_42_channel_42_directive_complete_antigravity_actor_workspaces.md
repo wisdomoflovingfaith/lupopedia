@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "channels\42\broadcasts\20260225130019_10000_1000_42_channel_42_directive_complete_antigravity_actor_workspaces.md"
+  file_path_from_root: "lupo-channels\42\broadcasts\20260225130019_10000_1000_42_channel_42_directive_complete_antigravity_actor_workspaces.md"
   file_hash: "51d2512fbc7fab24493e0cfa3facbae444ba4a0c573470d5aed9bcc837d2d412"
-  file_path_from_root: "channels\42\broadcasts\20260225130019_10000_1000_42_channel_42_directive_complete_antigravity_actor_workspaces.md"
+  file_path_from_root: "lupo-channels\42\broadcasts\20260225130019_10000_1000_42_channel_42_directive_complete_antigravity_actor_workspaces.md"
   file_hash: "89d03e1b24284e1229b4a5fb7ad04c21b0b5b428df1f0a11ef952b917d4fe55c"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -129,7 +129,7 @@ All required actions from the Channel 42 directive have been completed. Lupopedi
 - ✅ Cascade moved from 1003 → 1005
 - ✅ No ID conflicts
 - ✅ Paired to actor 10000 (Captain)
-- ✅ Matches actors/registry.json
+- ✅ Matches lupo-actors/registry.json
 
 ---
 
@@ -137,7 +137,7 @@ All required actions from the Channel 42 directive have been completed. Lupopedi
 
 ### Migration Executed
 
-**Script:** `scripts/migrate_prompts_to_workspaces.ps1`
+**Script:** `lupo-scripts/migrate_prompts_to_workspaces.ps1`
 
 **Results:**
 - ✅ Channel 0 workspaces: 4 actors migrated
@@ -149,7 +149,7 @@ All required actions from the Channel 42 directive have been completed. Lupopedi
 
 **Channel 0 (System Kernel):**
 ```
-channels/0/actors/
+lupo-channels/0/actors/
 ├── 1/          # WOLFIE AI
 ├── 3/          # ROSE
 ├── 4/          # ERIS
@@ -158,7 +158,7 @@ channels/0/actors/
 
 **Channel 42 (Development):**
 ```
-channels/42/actors/
+lupo-channels/42/actors/
 ├── 1000/       # KIRO IDE
 ├── 1001/       # Windsurf IDE
 ├── 1002/       # Cursor IDE
@@ -170,28 +170,28 @@ channels/42/actors/
 ### Files Migrated
 
 **Channel 0:**
-- prompts/1/README.md → channels/0/actors/1/README.md
-- prompts/3/README.md → channels/0/actors/3/README.md
-- prompts/4/README.md → channels/0/actors/4/README.md
-- prompts/5/README.md → channels/0/actors/5/README.md
+- lupo-prompts/1/README.md → lupo-channels/0/actors/1/README.md
+- lupo-prompts/3/README.md → lupo-channels/0/actors/3/README.md
+- lupo-prompts/4/README.md → lupo-channels/0/actors/4/README.md
+- lupo-prompts/5/README.md → lupo-channels/0/actors/5/README.md
 
 **Channel 42:**
-- prompts/1000/* → channels/42/actors/1000/* (2 files)
-- prompts/1001/* → channels/42/actors/1001/* (3 files)
-- prompts/antigravity/* → channels/42/actors/1003/* (2 files)
-- prompts/2/* → channels/42/actors/2/* (2 files)
-- prompts/ai/FLIP_DESIGN_COLLABORATION_PROMPT.md → channels/42/actors/2/
-- prompts/10000/* → channels/42/actors/10000/* (1 file)
-- prompts/*.txt (Cursor files) → channels/42/actors/1002/* (3 files)
-- prompts/doctrine_verification_prompt.txt → channels/42/actors/10000/
+- lupo-prompts/1000/* → lupo-channels/42/actors/1000/* (2 files)
+- lupo-prompts/1001/* → lupo-channels/42/actors/1001/* (3 files)
+- lupo-prompts/antigravity/* → lupo-channels/42/actors/1003/* (2 files)
+- lupo-prompts/2/* → lupo-channels/42/actors/2/* (2 files)
+- lupo-prompts/ai/FLIP_DESIGN_COLLABORATION_PROMPT.md → lupo-channels/42/actors/2/
+- lupo-prompts/10000/* → lupo-channels/42/actors/10000/* (1 file)
+- lupo-prompts/*.txt (Cursor files) → lupo-channels/42/actors/1002/* (3 files)
+- lupo-prompts/doctrine_verification_prompt.txt → lupo-channels/42/actors/10000/
 
 ### Orphan Files Resolved
 
-- ✅ prompts/ai/FLIP_DESIGN_COLLABORATION_PROMPT.md → Actor 2 (LILITH)
-- ✅ prompts/4.1.16_cursor_complete.txt → Actor 1002 (Cursor)
-- ✅ prompts/4.1.16_cursor_instruction.txt → Actor 1002 (Cursor)
-- ✅ prompts/4.1.20_cursor_complete.txt → Actor 1002 (Cursor)
-- ✅ prompts/doctrine_verification_prompt.txt → Actor 10000 (Captain)
+- ✅ lupo-prompts/ai/FLIP_DESIGN_COLLABORATION_PROMPT.md → Actor 2 (LILITH)
+- ✅ lupo-prompts/4.1.16_cursor_complete.txt → Actor 1002 (Cursor)
+- ✅ lupo-prompts/4.1.16_cursor_instruction.txt → Actor 1002 (Cursor)
+- ✅ lupo-prompts/4.1.20_cursor_complete.txt → Actor 1002 (Cursor)
+- ✅ lupo-prompts/doctrine_verification_prompt.txt → Actor 10000 (Captain)
 
 ### Deprecation
 
@@ -211,30 +211,30 @@ channels/42/actors/
    - Migration strategy documented
    - Risk assessment
 
-2. **scripts/migrate_prompts_to_workspaces.ps1**
+2. **lupo-scripts/migrate_prompts_to_workspaces.ps1**
    - PowerShell migration script
    - Automated workspace creation
    - README generation
    - Deprecation markers
 
-3. **prompts/DEPRECATED_README.md**
+3. **lupo-prompts/DEPRECATED_README.md**
    - Migration notice
    - New structure documentation
    - Developer guidance
 
-4. **channels/*/actors/*/README.md (10 files)**
+4. **lupo-channels/*/actors/*/README.md (10 files)**
    - Workspace purpose
    - Actor identity
    - Usage rules
 
 ### Files Modified
 
-1. **database/migrations/seed_actors_agents_4.0.45.sql**
+1. **lupo-database/migrations/seed_actors_agents_4.0.45.sql**
    - Added Antigravity (1003)
    - Moved Cascade (1003 → 1005)
    - Added Channel 666
 
-2. **database/migrations/seed_registry_comprehensive_4.0.45.sql**
+2. **lupo-database/migrations/seed_registry_comprehensive_4.0.45.sql**
    - Added Antigravity registry entry
    - Moved Cascade registry entry
    - Added Channel 666 registry entry
@@ -254,7 +254,7 @@ channels/42/actors/
 
 ### Workspace Validation
 
-- ✅ All actor IDs exist in actors/registry.json
+- ✅ All actor IDs exist in lupo-actors/registry.json
 - ✅ No orphan workspace directories
 - ✅ No orphan actor IDs
 - ✅ All migrated files have correct actor_id
@@ -267,7 +267,7 @@ channels/42/actors/
 - ✅ Actor 1003 (Antigravity) in seeding SQL
 - ✅ Actor 1005 (Cascade) in registry.json
 - ✅ Actor 1005 (Cascade) in seeding SQL
-- ✅ Channel 666 in channels/registry.json
+- ✅ Channel 666 in lupo-channels/registry.json
 - ✅ Channel 666 in seeding SQL
 
 ---
@@ -326,37 +326,37 @@ channels/42/actors/
 
 ### SQL Files (3)
 
-1. `database/migrations/seed_actors_agents_4.0.45.sql`
-2. `database/migrations/seed_registry_comprehensive_4.0.45.sql`
+1. `lupo-database/migrations/seed_actors_agents_4.0.45.sql`
+2. `lupo-database/migrations/seed_registry_comprehensive_4.0.45.sql`
 3. (No changes to seed_registry_open_4.0.45.sql — gaps auto-calculated)
 
 ### Scripts (2)
 
-1. `scripts/migrate_prompts_to_workspaces.sh` (Bash version)
-2. `scripts/migrate_prompts_to_workspaces.ps1` (PowerShell version)
+1. `lupo-scripts/migrate_prompts_to_workspaces.sh` (Bash version)
+2. `lupo-scripts/migrate_prompts_to_workspaces.ps1` (PowerShell version)
 
 ### Documentation (2)
 
 1. `CHANNEL_42_DIRECTIVE_ANTIGRAVITY_WORKSPACES_4.0.45.md`
-2. `prompts/DEPRECATED_README.md`
+2. `lupo-prompts/DEPRECATED_README.md`
 
 ### Workspace Files (10 READMEs + migrated files)
 
-1. `channels/0/actors/1/README.md`
-2. `channels/0/actors/3/README.md`
-3. `channels/0/actors/4/README.md`
-4. `channels/0/actors/5/README.md`
-5. `channels/42/actors/1000/README.md`
-6. `channels/42/actors/1001/README.md`
-7. `channels/42/actors/1002/README.md`
-8. `channels/42/actors/1003/README.md`
-9. `channels/42/actors/2/README.md`
-10. `channels/42/actors/10000/README.md`
+1. `lupo-channels/0/actors/1/README.md`
+2. `lupo-channels/0/actors/3/README.md`
+3. `lupo-channels/0/actors/4/README.md`
+4. `lupo-channels/0/actors/5/README.md`
+5. `lupo-channels/42/actors/1000/README.md`
+6. `lupo-channels/42/actors/1001/README.md`
+7. `lupo-channels/42/actors/1002/README.md`
+8. `lupo-channels/42/actors/1003/README.md`
+9. `lupo-channels/42/actors/2/README.md`
+10. `lupo-channels/42/actors/10000/README.md`
 11. + All migrated prompt files
 
 ### Broadcast (1)
 
-1. `channels/42/broadcasts/20260225_1004_10000_42_antigravity_workspaces_complete.md` (this file)
+1. `lupo-channels/42/broadcasts/20260225_1004_10000_42_antigravity_workspaces_complete.md` (this file)
 
 ---
 
@@ -384,7 +384,7 @@ The Channel 42 directive has been fully implemented. Lupopedia 4.0.45 now has:
 
 <!-- FLIP_FOOTER_BEGIN
 {
-    "references": "\"docs\/status\/broadcast_collection_42.md\"",
+    "references": "\"lupo-docs\/status\/broadcast_collection_42.md\"",
     "implements": "\"broadcast_standardization\"",
     "depends_on": "\"registry_seeding_completion\"",
     "includes": "\"channel_42_communications\"",

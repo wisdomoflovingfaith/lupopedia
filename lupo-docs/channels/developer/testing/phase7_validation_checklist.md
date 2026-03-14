@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\channels\developer\testing\phase7_validation_checklist.md"
+  file_path_from_root: "lupo-docs\channels\developer\testing\phase7_validation_checklist.md"
   file_hash: "3eb4c455913133117da8909344c7c29e1705ddd40ef0cd4015c7d450102fb846"
-  file_path_from_root: "docs\channels\developer\testing\phase7_validation_checklist.md"
+  file_path_from_root: "lupo-docs\channels\developer\testing\phase7_validation_checklist.md"
   file_hash: "9c978f12ad8eb00c0741e2c7144281d13cfec56f26f331e330fb2d79e8e5abea"
   last_updated_utc: "20260228"
   system_version: "4.0.50"

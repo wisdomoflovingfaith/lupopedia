@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "channels\666\quarantine\20260224_antigravity_dialog_doctrine_traceability.md"
+  file_path_from_root: "lupo-channels\666\quarantine\20260224_antigravity_dialog_doctrine_traceability.md"
   file_hash: "10d291dae34c114101395b0271bebff5c285b82121883082f99fb4bfae454abb"
-  file_path_from_root: "channels\666\quarantine\20260224_antigravity_dialog_doctrine_traceability.md"
+  file_path_from_root: "lupo-channels\666\quarantine\20260224_antigravity_dialog_doctrine_traceability.md"
   file_hash: "72d0a355a2ca93c931410c0aa7e3b13950717e4a8349f989eb059f8cf1a100c6"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -78,7 +78,7 @@ During the current Version 4.0.42 Upgrade Simulation, we have identified and res
 The table previously known as `lupo_dialog_messages` has been officially renamed to `lupo_dialog_doctrine` across the entire codebase and installation infrastructure. This aligns the database schema with the semantic doctrine used by the `DialogManager` and `DialogDatabase` classes.
 
 **Affected Artifacts:**
-- `database/migrations/install_new_lupopedia.sql` (Updated fresh install definition)
+- `lupo-database/migrations/install_new_lupopedia.sql` (Updated fresh install definition)
 - `lupo-includes/modules/channels/ChannelsController.php` (Updated admin view queries)
 - `complete_schema.txt` (Updated canonical schema documentation)
 
@@ -90,7 +90,7 @@ Two new mandatory fields have been added to the dialog doctrine to track message
 - `read_by_actor_utc` (bigint): The UTC timestamp (YYYYMMDDHHIISS) when the message was read.
 
 ### 3. Install-Phase Fallback (Markdown)
-For missions where the database is unavailable (e.g., during `install.php` bootstrap), thread messages in `channels/42/threads/` must include these fields in their YAML/JSON headers.
+For missions where the database is unavailable (e.g., during `install.php` bootstrap), thread messages in `lupo-channels/42/threads/` must include these fields in their YAML/JSON headers.
 
 ---
 

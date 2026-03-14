@@ -34,7 +34,7 @@ lupopedia.headers:
 
 # 💡 FLARE Edge Automation Tip:
 # Use the FLARE Edge Suggester Tool to automatically discover and suggest edges:
-# python scripts/flare_edge_suggester.py --file <path> --include-db --format yaml
+# python lupo-scripts/flare_edge_suggester.py --file <path> --include-db --format yaml
 # This will analyze content, TOON schemas, and database relationships to suggest
 # appropriate outbound_edges with weights, reasons, and discovery methods.
 
@@ -44,11 +44,11 @@ lupopedia.edges:
   outbound_edges:
     - { to: "lupo-database/lupopedia/toon/lupo_atoms.toon.json", type: "schema_reference", weight: 1.0, reason: "TOON schema definition", db_source: "lupo_atoms" }
     - { to: "config/global_atoms.yaml", type: "references", weight: 1.0, reason: "Global atoms configuration file", db_source: "lupo_atoms" }
-    - { to: "docs/database/lupopedia/tables/lupo_contents.md", type: "references", weight: 0.8, reason: "Content atom mappings and references", db_source: "lupo_atoms" }
-    - { to: "docs/database/lupopedia/tables/lupo_channels.md", type: "references", weight: 0.7, reason: "Channel configuration atoms", db_source: "lupo_atoms" }
-    - { to: "docs/database/lupopedia/tables/lupo_actors.md", type: "references", weight: 0.7, reason: "Actor configuration atoms", db_source: "lupo_atoms" }
-    - { to: "docs/FLARE_HEADERS_COMPLETE_REFERENCE.md", type: "references", weight: 0.9, reason: "FLARE protocol documentation", db_source: "lupo_atoms" }
-    - { to: "scripts/flare_edge_suggester.py", type: "implements", weight: 1.0, reason: "Atom analysis and configuration automation", db_source: "lupo_atoms" }
+    - { to: "lupo-docs/database/lupopedia/tables/lupo_contents.md", type: "references", weight: 0.8, reason: "Content atom mappings and references", db_source: "lupo_atoms" }
+    - { to: "lupo-docs/database/lupopedia/tables/lupo_channels.md", type: "references", weight: 0.7, reason: "Channel configuration atoms", db_source: "lupo_atoms" }
+    - { to: "lupo-docs/database/lupopedia/tables/lupo_actors.md", type: "references", weight: 0.7, reason: "Actor configuration atoms", db_source: "lupo_atoms" }
+    - { to: "lupo-docs/FLARE_HEADERS_COMPLETE_REFERENCE.md", type: "references", weight: 0.9, reason: "FLARE protocol documentation", db_source: "lupo_atoms" }
+    - { to: "lupo-scripts/flare_edge_suggester.py", type: "implements", weight: 1.0, reason: "Atom analysis and configuration automation", db_source: "lupo_atoms" }
 
 lupopedia.engagement:
   comment: "Snapshot of files edited during 4.0.73 finalization and initialization thread by ANTIGRAVITY IDE Agent. Engagement metrics track edit frequency and importance of each file in the version transition process."

@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\channels\developer\dev\DOCUMENTATION_STYLE_GUIDE.md"
+  file_path_from_root: "lupo-docs\channels\developer\dev\DOCUMENTATION_STYLE_GUIDE.md"
   file_hash: "f82c3a203a3cda282e2c0b4b3a07001352bc8b55202d6c31fc5734d06389c67e"
-  file_path_from_root: "docs\channels\developer\dev\DOCUMENTATION_STYLE_GUIDE.md"
+  file_path_from_root: "lupo-docs\channels\developer\dev\DOCUMENTATION_STYLE_GUIDE.md"
   file_hash: "70882b4d07b60e8a96c6d648e0355febe11af99dddb4b65fc93cdd5ba259dada"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -110,7 +110,7 @@ Each document should include:
 - Use terms consistently as defined in [TERMINOLOGY.md](../TERMINOLOGY.md)
 - **Bold** key terms on first use
 - Use `code font` for:
-  - File paths: `docs/ARCHITECTURE.md`
+  - File paths: `lupo-docs/ARCHITECTURE.md`
   - Commands: `npm install`
   - Code references: `class Database`
   - UI elements: Click **Save**

@@ -14,7 +14,8 @@
     "`deleted_ymdhis` bigint",
     "`channel_id` bigint",
     "`parent_metadata_id` bigint",
-    "`class_name` varchar(128)"
+    "`class_name` varchar(128)",
+    "`schema_ref` varchar(64)"
   ],
   "data": [],
   "indexes": [

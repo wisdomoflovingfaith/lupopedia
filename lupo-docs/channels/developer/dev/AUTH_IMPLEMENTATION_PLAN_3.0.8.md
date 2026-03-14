@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\channels\developer\dev\AUTH_IMPLEMENTATION_PLAN_3.0.8.md"
+  file_path_from_root: "lupo-docs\channels\developer\dev\AUTH_IMPLEMENTATION_PLAN_3.0.8.md"
   file_hash: "2ec9bd0ff7158d3acd8148ea9cf79fdd05209c004bb8483ec838edf8327f2435"
-  file_path_from_root: "docs\channels\developer\dev\AUTH_IMPLEMENTATION_PLAN_3.0.8.md"
+  file_path_from_root: "lupo-docs\channels\developer\dev\AUTH_IMPLEMENTATION_PLAN_3.0.8.md"
   file_hash: "23768ac6be362c45674aeeb52c18ad8c7571f13fa53087e674cb55477370f6bd"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -88,7 +88,7 @@ file:
 
 **Status:** Ready for review before implementation
 
-**Based On:** Schema analysis from `docs/dev/AUTH_SCHEMA_SUMMARY_3.0.8.md`
+**Based On:** Schema analysis from `lupo-docs/dev/AUTH_SCHEMA_SUMMARY_3.0.8.md`
 
 ---
 
@@ -139,7 +139,7 @@ lupo-includes/
 - Store bcrypt hashes in `password_hash` column
 
 **Phase 2: Migration SQL (Optional)**
-- Create migration SQL file: `database/migrations/1033_upgrade_password_hashes.sql`
+- Create migration SQL file: `lupo-database/migrations/1033_upgrade_password_hashes.sql`
 - This migration will:
   - Add a `password_hash_version` column to track hash algorithm (if needed)
   - Or rely on hash format detection (bcrypt starts with `$2y$`)
@@ -714,7 +714,7 @@ define('LUPO_BCRYPT_COST', 10);
 
 ### 14.1 Password Hash Upgrade Migration
 
-**File:** `database/migrations/1033_upgrade_password_hashes.sql`
+**File:** `lupo-database/migrations/1033_upgrade_password_hashes.sql`
 
 **Purpose:** Optional migration to upgrade existing MD5 passwords to bcrypt
 

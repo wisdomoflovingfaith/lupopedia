@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\channels\developer\modules\UPGRADE_PLAN_3.7.5_TO_3.0.0.md"
+  file_path_from_root: "lupo-docs\channels\developer\modules\UPGRADE_PLAN_3.7.5_TO_3.0.0.md"
   file_hash: "8cd9edc101338fcf6f64a9026ca09615ab204018d0442c01f1d7ba942771ddaa"
-  file_path_from_root: "docs\channels\developer\modules\UPGRADE_PLAN_3.7.5_TO_3.0.0.md"
+  file_path_from_root: "lupo-docs\channels\developer\modules\UPGRADE_PLAN_3.7.5_TO_3.0.0.md"
   file_hash: "ddfe91e3bcc1361d5131459bd9528a282527fc5726c81b064a6fca7203622084"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -78,7 +78,7 @@ This is the document you will ship with 3.0.0.
 ---
 
 # ✅ **UPGRADE_PLAN_3.7.5_TO_3.0.0.md**  
-*(Complete, polished, Lupopedia‑accurate, ready for docs/)*
+*(Complete, polished, Lupopedia‑accurate, ready for lupo-docs/)*
 
 ```markdown
 ---

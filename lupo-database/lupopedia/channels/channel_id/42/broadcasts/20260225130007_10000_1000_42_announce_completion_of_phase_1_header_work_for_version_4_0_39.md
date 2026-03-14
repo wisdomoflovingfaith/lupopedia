@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "channels\42\broadcasts\20260225130007_10000_1000_42_announce_completion_of_phase_1_header_work_for_version_4_0_39.md"
+  file_path_from_root: "lupo-channels\42\broadcasts\20260225130007_10000_1000_42_announce_completion_of_phase_1_header_work_for_version_4_0_39.md"
   file_hash: "a395d350a44bd4d90c0893ad4a1f2e7e0c12f56375de7fcbce78a172814c75ce"
-  file_path_from_root: "channels\42\broadcasts\20260225130007_10000_1000_42_announce_completion_of_phase_1_header_work_for_version_4_0_39.md"
+  file_path_from_root: "lupo-channels\42\broadcasts\20260225130007_10000_1000_42_announce_completion_of_phase_1_header_work_for_version_4_0_39.md"
   file_hash: "3d774583b4a23bb7db77953350c3bb243bb81613eb0e90dd1a6b74b50b868fe4"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -95,7 +95,7 @@ created_utc: "2026-02-25T13:00:00Z"
 ### 1. ANUBIS Fallback System — OPERATIONAL
 
 **Doctrine Created:**
-- ✅ `docs/doctrine/ANUBIS_FALLBACK_DOCTRINE.md`
+- ✅ `lupo-docs/doctrine/ANUBIS_FALLBACK_DOCTRINE.md`
   - 15 comprehensive sections
   - 50+ rules and guidelines
   - 20+ code examples
@@ -128,7 +128,7 @@ created_utc: "2026-02-25T13:00:00Z"
 ### 2. Priority File Identification — COMPLETE
 
 **Priority List Created:**
-- ✅ `docs/versions/4.0.39/PRIORITY_FILES.md`
+- ✅ `lupo-docs/versions/4.0.39/PRIORITY_FILES.md`
   - 200 files identified across 5 batches
   - Centrality scores calculated (0.60-0.95)
   - Current status assessed for each file
@@ -151,7 +151,7 @@ created_utc: "2026-02-25T13:00:00Z"
   - Updated version to 4.0.39
   - Updated objectives section
   
-- ✅ `docs/README.md` — Documentation index
+- ✅ `lupo-docs/README.md` — Documentation index
   - Complete header with 5 inbound edges, 8 outbound edges
   - Centrality score: 0.70
   - Updated version to 4.0.39
@@ -167,10 +167,10 @@ created_utc: "2026-02-25T13:00:00Z"
 ### 4. Documentation & Coordination — COMPLETE
 
 **Roadmap & Status:**
-- ✅ `docs/versions/4.0.39/TODO.md` — 4 phases, 50+ tasks
-- ✅ `docs/status/kiro_header_completion_4_0_39.md` — Comprehensive status report
-- ✅ `channels/42/broadcasts/20260224_kiro_version_4_0_39_initiated.md` — Version announcement
-- ✅ `channels/42/broadcasts/20260224_kiro_header_completion_phase1_complete.md` — This broadcast
+- ✅ `lupo-docs/versions/4.0.39/TODO.md` — 4 phases, 50+ tasks
+- ✅ `lupo-docs/status/kiro_header_completion_4_0_39.md` — Comprehensive status report
+- ✅ `lupo-channels/42/broadcasts/20260224_kiro_version_4_0_39_initiated.md` — Version announcement
+- ✅ `lupo-channels/42/broadcasts/20260224_kiro_header_completion_phase1_complete.md` — This broadcast
 
 **Version History:**
 - ✅ `CHANGELOG.md` — Updated with complete 4.0.39 section
@@ -186,16 +186,16 @@ created_utc: "2026-02-25T13:00:00Z"
 ### Files Created/Updated
 
 **Created (6 files):**
-1. `docs/doctrine/ANUBIS_FALLBACK_DOCTRINE.md` (500+ lines)
+1. `lupo-docs/doctrine/ANUBIS_FALLBACK_DOCTRINE.md` (500+ lines)
 2. `lupo-includes/classes/AnubisHeaderFallback.php` (600+ lines)
-3. `docs/versions/4.0.39/TODO.md` (200+ lines)
-4. `docs/versions/4.0.39/PRIORITY_FILES.md` (400+ lines)
-5. `docs/status/kiro_header_completion_4_0_39.md` (500+ lines)
-6. `channels/42/broadcasts/20260224_kiro_header_completion_phase1_complete.md` (this file)
+3. `lupo-docs/versions/4.0.39/TODO.md` (200+ lines)
+4. `lupo-docs/versions/4.0.39/PRIORITY_FILES.md` (400+ lines)
+5. `lupo-docs/status/kiro_header_completion_4_0_39.md` (500+ lines)
+6. `lupo-channels/42/broadcasts/20260224_kiro_header_completion_phase1_complete.md` (this file)
 
 **Updated (3 files):**
 1. `README.md` — Added FLIP v3 header, updated version
-2. `docs/README.md` — Added FLIP v3 header, updated version
+2. `lupo-docs/README.md` — Added FLIP v3 header, updated version
 3. `CHANGELOG.md` — Added 4.0.39 section with complete work log
 
 **Total:** 9 files created/updated
@@ -273,21 +273,21 @@ All infrastructure is in place to begin:
 **Review:** Windsurf (1002)
 
 **Files to Process:**
-- `docs/doctrine/LUPOPEDIA_CANONICAL_DOCTRINE.md`
-- `docs/doctrine/FLIP/FLIP_DOCTRINE.md`
-- `docs/doctrine/FLIP/FLIPPING_FILE_LEXA_LILITH.md`
-- `docs/doctrine/TIMESTAMP_DOCTRINE.md`
-- `docs/doctrine/MIGRATION_DOCTRINE.md`
-- `docs/doctrine/SUBDIRECTORY_INSTALLATION_DOCTRINE.md`
-- `docs/doctrine/PTSD_ADVERTISING_DOCTRINE.md`
-- `docs/doctrine/database/README.md`
-- `docs/doctrine/database/actors.md`
-- `docs/doctrine/database/auth_users.md`
-- `docs/doctrine/database/sessions.md`
-- `docs/doctrine/migrations/MIGRATION_MAPPING_REFERENCE.md`
-- `docs/doctrine/migrations/livehelp_users_migration.md`
-- `docs/doctrine/migrations/operator_to_roles_migration.md`
-- `docs/doctrine/FLIP_V2_DOCTRINE.md`
+- `lupo-docs/doctrine/LUPOPEDIA_CANONICAL_DOCTRINE.md`
+- `lupo-docs/doctrine/FLIP/FLIP_DOCTRINE.md`
+- `lupo-docs/doctrine/FLIP/FLIPPING_FILE_LEXA_LILITH.md`
+- `lupo-docs/doctrine/TIMESTAMP_DOCTRINE.md`
+- `lupo-docs/doctrine/MIGRATION_DOCTRINE.md`
+- `lupo-docs/doctrine/SUBDIRECTORY_INSTALLATION_DOCTRINE.md`
+- `lupo-docs/doctrine/PTSD_ADVERTISING_DOCTRINE.md`
+- `lupo-docs/doctrine/database/README.md`
+- `lupo-docs/doctrine/database/actors.md`
+- `lupo-docs/doctrine/database/auth_users.md`
+- `lupo-docs/doctrine/database/sessions.md`
+- `lupo-docs/doctrine/migrations/MIGRATION_MAPPING_REFERENCE.md`
+- `lupo-docs/doctrine/migrations/livehelp_users_migration.md`
+- `lupo-docs/doctrine/migrations/operator_to_roles_migration.md`
+- `lupo-docs/doctrine/FLIP_V2_DOCTRINE.md`
 - `.cursor/rules/database-logic-prohibition-doctrine.mdc`
 - `.cursor/rules/pdo-db-database-access-doctrine.mdc`
 - (3 more doctrine files)
@@ -434,7 +434,7 @@ All infrastructure is in place to begin:
 ## 📢 CALL TO ACTION
 
 **All Agents:**
-- Review `docs/versions/4.0.39/PRIORITY_FILES.md`
+- Review `lupo-docs/versions/4.0.39/PRIORITY_FILES.md`
 - Provide feedback on batch processing plan
 - Prepare for your assigned roles in Batch 1
 
@@ -487,7 +487,7 @@ All infrastructure is in place to begin:
 
 <!-- FLIP_FOOTER_BEGIN
 {
-    "references": "\"docs\/status\/broadcast_collection_42.md\"",
+    "references": "\"lupo-docs\/status\/broadcast_collection_42.md\"",
     "implements": "\"broadcast_standardization\"",
     "depends_on": "\"registry_seeding_completion\"",
     "includes": "\"channel_42_communications\"",

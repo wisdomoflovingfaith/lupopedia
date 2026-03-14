@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\api\FLIP_API.md"
+  file_path_from_root: "lupo-docs\api\FLIP_API.md"
   file_hash: "413875c301578262000b7e782627ce91ca0bc165eb783cd9b9f24eb1c6a7d9ad"
-  file_path_from_root: "docs\api\FLIP_API.md"
+  file_path_from_root: "lupo-docs\api\FLIP_API.md"
   file_hash: "5ea711d12f338904243d4d6ec0eb16ea832033b9dad59cf5465a1efff41b8626"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -64,7 +64,7 @@ lupopedia.footer:
 ---
 # FLIP Header (alias: Wolfie Header, CROP Header, FLIPPING Header)
 wolfie.headers: explicit architecture with structured clarity for every file.
-file_path_from_root: docs/api/FLIP_API.md
+file_path_from_root: lupo-docs/api/FLIP_API.md
 file.last_modified_system_version: "4.0.16"
 file.last_modified_utc: "20260218000000"
 channel_id: 42   # ANUBIS adoption channel
@@ -74,7 +74,7 @@ atoms:
   recovery_event: true
 X-Lupo-Actor-ID: 2035
 X-Lupo-Actor-Identity: "Lupopedia Audit Tool (Auto-Fixed)"
-X-Lupo-File-Path: docs/api/FLIP_API.md
+X-Lupo-File-Path: lupo-docs/api/FLIP_API.md
 ---
 
 # FLIP Header Web API
@@ -95,7 +95,7 @@ Subdir-aware: for installs under a subdir (e.g. `/lupopedia`), use the full path
 
 | Parameter     | Type   | Description                                  |
 |---------------|--------|----------------------------------------------|
-| `path`        | string | `file_path_from_root` (e.g. `docs/doctrine/FLIP/FLIP_DOCTRINE.md`) |
+| `path`        | string | `file_path_from_root` (e.g. `lupo-docs/doctrine/FLIP/FLIP_DOCTRINE.md`) |
 | `url`         | string | `content_url` or `custom_path`               |
 | `content_id`  | int    | `content_id` from `lupo_contents`            |
 
@@ -107,15 +107,15 @@ Subdir-aware: for installs under a subdir (e.g. `/lupopedia`), use the full path
 
 ### Example URLs
 
-- `https://lupopedia.com/lupopedia/api/flip-header.php?path=docs/doctrine/FLIP/FLIP_DOCTRINE.md`
-- `https://lupopedia.com/lupopedia/api/flip-header.php?path=docs/doctrine/FLIP/FLIP_DOCTRINE.md&format=yaml`
+- `https://lupopedia.com/lupopedia/api/flip-header.php?path=lupo-docs/doctrine/FLIP/FLIP_DOCTRINE.md`
+- `https://lupopedia.com/lupopedia/api/flip-header.php?path=lupo-docs/doctrine/FLIP/FLIP_DOCTRINE.md&format=yaml`
 - `https://lupopedia.com/lupopedia/api/flip-header.php?content_id=2001`
 
 ### curl examples
 
 ```bash
-curl "https://lupopedia.com/lupopedia/api/flip-header.php?path=docs/doctrine/FLIP/FLIP_DOCTRINE.md"
-curl "https://lupopedia.com/lupopedia/api/flip-header.php?path=docs/doctrine/FLIP/FLIP_DOCTRINE.md&format=yaml"
+curl "https://lupopedia.com/lupopedia/api/flip-header.php?path=lupo-docs/doctrine/FLIP/FLIP_DOCTRINE.md"
+curl "https://lupopedia.com/lupopedia/api/flip-header.php?path=lupo-docs/doctrine/FLIP/FLIP_DOCTRINE.md&format=yaml"
 ```
 
 ---
@@ -179,7 +179,7 @@ Raw YAML FLIP Header block (no JSON wrapper).
 ## Integration
 
 - **External agents (e.g. Grok):** Browse the URL, parse the JSON `header` field or raw YAML, infer file identity and lineage from the YAML only (FLIP inference).
-- **Local agents:** Prefer `tools/generate_flip_header.py` for CLI; use this API when web access is required.
+- **Local agents:** Prefer `lupo-tools/generate_flip_header.py` for CLI; use this API when web access is required.
 
 ---
 
@@ -191,7 +191,7 @@ The FLIP header system supports an optional database mapping layer using the `X-
 ---
 # FLIP Header (alias: Wolfie Header, CROP Header)
 wolfie.headers: explicit architecture with structured clarity for every file.
-file_path_from_root: docs/example.md
+file_path_from_root: lupo-docs/example.md
 file.last_modified_system_version: "4.0.28"
 file.last_modified_utc: "20260222140000"
 channel_id: 42
@@ -230,9 +230,9 @@ X-LUPO-actorid: 2038
 X-FLIP-actors.actor_id: 2038
 
 # Overrides semantic field - not allowed
-X-LUPO-file_path: docs/example.md
+X-LUPO-file_path: lupo-docs/example.md
 ```
 
 The mapping layer is preserved in the `database_mappings` field of the parsed header and is included when formatting headers back to YAML.
 
-See **docs/doctrine/FLIP/FLIPPING_FILE_LEXA_LILITH.md** Part 1.4 (Universal Agent Flipping), Parts 6.1–6.3 (API spec, security, future auth).
+See **lupo-docs/doctrine/FLIP/FLIPPING_FILE_LEXA_LILITH.md** Part 1.4 (Universal Agent Flipping), Parts 6.1–6.3 (API spec, security, future auth).

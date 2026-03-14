@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: "docs/auth.md"
+  file_path_from_root: "lupo-docs/auth.md"
   last_modified_utc: "20260306"
   system_version: "4.0.61"
   purpose: "Authentication and actor context for Antigravity and conflict resolution"

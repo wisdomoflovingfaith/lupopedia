@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\archive\CHANNEL_420_TOMBSTONE.md"
+  file_path_from_root: "lupo-docs\archive\CHANNEL_420_TOMBSTONE.md"
   file_hash: "3da40f86e808e554bccbaa7a99835c5e6fcafed8e4721fd3ec0da03e3eb1a82b"
-  file_path_from_root: "docs\archive\CHANNEL_420_TOMBSTONE.md"
+  file_path_from_root: "lupo-docs\archive\CHANNEL_420_TOMBSTONE.md"
   file_hash: "a6b3c901331fbc9c67a3e5f0b404e97b75b62be3ee9b21eaddd5c547ff9dac40"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -63,7 +63,7 @@ lupopedia.footer:
 
 ---
 wolfie.headers:
-  file_path_from_root: "docs/archive/CHANNEL_420_TOMBSTONE.md"
+  file_path_from_root: "lupo-docs/archive/CHANNEL_420_TOMBSTONE.md"
   system_version: "4.0.29"
   channel_id: 420
   mood_rgb: "000000"
@@ -75,8 +75,8 @@ wolfie.headers:
 
 flip.footer:
   referenced_by_files:
-    - "docs/archive/channel_420_honest_post_migration.md"
-    - "docs/archive/channel_420_final_messages.md"
+    - "lupo-docs/archive/channel_420_honest_post_migration.md"
+    - "lupo-docs/archive/channel_420_final_messages.md"
     - "CHANGELOG.md"
   referenced_by_channels:
     - 420
@@ -111,7 +111,7 @@ Channel 420 served as the primary experimental harness for the 4.0.x series, fac
 - **Total Messages**: [Historical Record Preserved]
 - **Primary Actor**: Agent 420 (Stoned Wolfie AI)
 - **Security Designation**: RESTRICTED
-- **Legacy Path**: docs/archive/420_SERIES_HISTORY.md
+- **Legacy Path**: lupo-docs/archive/420_SERIES_HISTORY.md
 
 ---
 **Canonical Conclusion**: The 420-series is stabilized. The ascent to 4.1.0 begins.

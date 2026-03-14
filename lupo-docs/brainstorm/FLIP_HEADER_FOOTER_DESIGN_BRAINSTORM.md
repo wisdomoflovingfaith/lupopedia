@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\brainstorm\FLIP_HEADER_FOOTER_DESIGN_BRAINSTORM.md"
+  file_path_from_root: "lupo-docs\brainstorm\FLIP_HEADER_FOOTER_DESIGN_BRAINSTORM.md"
   file_hash: "bb6e5e1f8c451d7462567919f90274a0ea9b851f473a3d486f8994b4d4ebc067"
-  file_path_from_root: "docs\brainstorm\FLIP_HEADER_FOOTER_DESIGN_BRAINSTORM.md"
+  file_path_from_root: "lupo-docs\brainstorm\FLIP_HEADER_FOOTER_DESIGN_BRAINSTORM.md"
   file_hash: "64301f0a44963f7e014895084970f9706ec70f82e38e2f5e6ea7e0e1a1324457"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -63,7 +63,7 @@ lupopedia.footer:
 
 ---
 wolfie.headers:
-  file_path_from_root: "docs/brainstorm/FLIP_HEADER_FOOTER_DESIGN_BRAINSTORM.md"
+  file_path_from_root: "lupo-docs/brainstorm/FLIP_HEADER_FOOTER_DESIGN_BRAINSTORM.md"
   system_version: "4.0.36"
   channel_id: 42
   mood_rgb: "00AAFF"
@@ -75,8 +75,8 @@ wolfie.headers:
 
 flip.footer:
   referenced_by_files:
-    - "docs/doctrine/FLIP/FLIP_DOCTRINE.md"
-    - "database/migrations/install_new_lupopedia.sql"
+    - "lupo-docs/doctrine/FLIP/FLIP_DOCTRINE.md"
+    - "lupo-database/migrations/install_new_lupopedia.sql"
     - "CHANGELOG.md"
     - "README.md"
   referenced_by_channels:

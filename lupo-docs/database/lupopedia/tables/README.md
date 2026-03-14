@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: "docs/database/lupopedia/tables/README.md"
+  file_path_from_root: "lupo-docs/database/lupopedia/tables/README.md"
   system_version: "4.0.52"
   last_modified_utc: "20260301120000"
   delegation_chain: "1002:10000"
@@ -19,10 +19,10 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "lupo-database/lupopedia/toon/", type: "references", weight: 1.0 }
-    - { to: "docs/database/lupopedia/tables/", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/DATABASE_DOCTRINE.md", type: "references", weight: 0.9 }
-    - { to: "docs/channels/appendix/HISTORY.md", type: "references", weight: 0.8 }
-    - { to: "docs/database/lupopedia/tables/MIGRATION_MAPPING_REFERENCE.md", type: "references", weight: 0.8 }
+    - { to: "lupo-docs/database/lupopedia/tables/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/DATABASE_DOCTRINE.md", type: "references", weight: 0.9 }
+    - { to: "lupo-docs/channels/appendix/HISTORY.md", type: "references", weight: 0.8 }
+    - { to: "lupo-docs/database/lupopedia/tables/MIGRATION_MAPPING_REFERENCE.md", type: "references", weight: 0.8 }
   semantic_tags: ["database_index", "schema_documentation", "toon_mapping"]
 
 lupopedia.footer:

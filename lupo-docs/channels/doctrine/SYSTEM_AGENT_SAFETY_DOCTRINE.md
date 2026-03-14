@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\channels\doctrine\SYSTEM_AGENT_SAFETY_DOCTRINE.md"
+  file_path_from_root: "lupo-docs\channels\doctrine\SYSTEM_AGENT_SAFETY_DOCTRINE.md"
   file_hash: "02cd8067486bb617884c40d7e4fd0c93f337a89fb9da147bb902dc9e8fda8f60"
-  file_path_from_root: "docs\channels\doctrine\SYSTEM_AGENT_SAFETY_DOCTRINE.md"
+  file_path_from_root: "lupo-docs\channels\doctrine\SYSTEM_AGENT_SAFETY_DOCTRINE.md"
   file_hash: "073002e59cb8f1f758f2c6f7d551307199be440302eea5f0e85cac75360082eb"
   last_updated_utc: "20260228"
   system_version: "4.0.50"

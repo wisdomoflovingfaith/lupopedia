@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\channels\overview\HE_HOLY_CRAP_REALIZATION.md"
+  file_path_from_root: "lupo-docs\channels\overview\HE_HOLY_CRAP_REALIZATION.md"
   file_hash: "75023fd12b28e357bac735c8f3244a62829ea71f761a75ea2fbeb568aac988e4"
-  file_path_from_root: "docs\channels\overview\HE_HOLY_CRAP_REALIZATION.md"
+  file_path_from_root: "lupo-docs\channels\overview\HE_HOLY_CRAP_REALIZATION.md"
   file_hash: "e14dfed1b5f36853483910740fd551915abf693dc6af39ca497d6d286e094c47"
   last_updated_utc: "20260228"
   system_version: "4.0.50"

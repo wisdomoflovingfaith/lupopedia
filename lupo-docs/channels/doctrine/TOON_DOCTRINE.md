@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\channels\doctrine\TOON_DOCTRINE.md"
+  file_path_from_root: "lupo-docs\channels\doctrine\TOON_DOCTRINE.md"
   file_hash: "fe900e12b7b5fd311cc1b7564d1e826a02cdf7a2d5e6e07f3aa33cef2b4c14c1"
-  file_path_from_root: "docs\channels\doctrine\TOON_DOCTRINE.md"
+  file_path_from_root: "lupo-docs\channels\doctrine\TOON_DOCTRINE.md"
   file_hash: "4975b792895c181d72eae34118711fd1fe2f4684bac26c9b845692216e7ee079"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -264,13 +264,13 @@ During this phase, agents must:
 
 **TOON files are located in:**
 - `lupo-database/lupopedia/toon/` â€” Table structure definitions (READ-ONLY, generated from database)
-- `database/refactors/` â€” Table and column mapping files (EDITABLE - migration mappings)
+- `lupo-database/refactors/` â€” Table and column mapping files (EDITABLE - migration mappings)
 - `lupo-agents/` â€” Agent configuration files (READ-ONLY unless explicitly instructed)
 - Other schema mapping locations
 
 **Critical Rule:**
 - TOON files in `lupo-database/lupopedia/toon/` are READ-ONLY (generated from database)
-- Files in `database/refactors/` (whether `.toon` or `.json`) are EDITABLE (migration mappings)
+- Files in `lupo-database/refactors/` (whether `.toon` or `.json`) are EDITABLE (migration mappings)
 - TOON is a semantic format, not a data serialization format
 - TOON preserves meaning, not just syntax
 - TOON is designed for mapping and configuration
@@ -356,13 +356,13 @@ During this phase, agents must:
 
 ---
 
-## **ðŸŸ¢ 7A. `database/refactors/` Files Are EDITABLE (Exception)**
+## **ðŸŸ¢ 7A. `lupo-database/refactors/` Files Are EDITABLE (Exception)**
 
-**âš ï¸ EXCEPTION: Files in `database/refactors/` are EDITABLE by Cursor and IDEs.**
+**âš ï¸ EXCEPTION: Files in `lupo-database/refactors/` are EDITABLE by Cursor and IDEs.**
 
 **This is the ONLY directory where Cursor may modify structured data files.**
 
-**Files in `database/refactors/` (whether `.toon` or `.json`) are intentionally designed to be updated, expanded, corrected, and refined by Cursor or any IDE as migration work progresses.**
+**Files in `lupo-database/refactors/` (whether `.toon` or `.json`) are intentionally designed to be updated, expanded, corrected, and refined by Cursor or any IDE as migration work progresses.**
 
 **These files are the "living documentation" of the migration and represent:**
 - Legacy â†’ new table mappings
@@ -373,7 +373,7 @@ During this phase, agents must:
 - Migration notes
 - Crafty Syntax 3.7.5 â†’ Lupopedia 3.0.0 upgrade logic
 
-**Purpose of `database/refactors/` Files:**
+**Purpose of `lupo-database/refactors/` Files:**
 These files are the "living documentation" and "migration brain" that track:
 - Every legacy table â†’ new Lupopedia table mapping
 - Every legacy column â†’ new column mapping
@@ -383,7 +383,7 @@ These files are the "living documentation" and "migration brain" that track:
 - Migration notes and edge cases
 - Crafty Syntax 3.7.5 â†’ Lupopedia 3.0.0 upgrade logic
 
-**Critical Rules for `database/refactors/` files:**
+**Critical Rules for `lupo-database/refactors/` files:**
 - âœ… **EDITABLE** â€” Cursor may modify files in this directory (`.toon` or `.json`)
 - âœ… **UPDATE** â€” As we discover new legacy columns, missing mappings, edge cases
 - âœ… **EXPAND** â€” Add new mappings and transforms as migration progresses
@@ -395,7 +395,7 @@ These files are the "living documentation" and "migration brain" that track:
 - âŒ **DO NOT** modify files in `lupo-database/lupopedia/toon/` â€” those are read-only
 - âŒ **DO NOT** modify other JSON/TOON files outside this directory
 
-**When rewriting legacy code, Cursor must use `database/refactors/` files as the source of truth for:**
+**When rewriting legacy code, Cursor must use `lupo-database/refactors/` files as the source of truth for:**
 - Old table names â†’ new table names
 - Old column names â†’ new column names
 - Transforms (e.g., `Y_to_1_else_0`, date format conversions)
@@ -424,8 +424,8 @@ These files are the "living documentation" and "migration brain" that track:
 ## **ðŸ”µ 9. Examples of TOON Usage**
 
 **TOON files are used for:**
-- Table name mappings (`database/refactors/{legacy_table}.json`)
-- Column name mappings (`database/refactors/{legacy_table}.json`)
+- Table name mappings (`lupo-database/refactors/{legacy_table}.json`)
+- Column name mappings (`lupo-database/refactors/{legacy_table}.json`)
 - Table structure definitions (`lupo-database/lupopedia/toon/{table_name}.json`)
 - Agent configurations (`lupo-agents/{agent_name}/`)
 - Schema mappings and transforms
@@ -453,7 +453,7 @@ These files are the "living documentation" and "migration brain" that track:
 - Never convert TOON to anything else
 - Never modify TOON files â€” they are regenerated automatically
 
-**When Cursor encounters a file in `database/refactors/` (`.toon` or `.json`):**
+**When Cursor encounters a file in `lupo-database/refactors/` (`.toon` or `.json`):**
 
 1. **Recognize it as editable migration mapping** â€” Legacy â†’ new table/column mappings
 2. **Read it for migration rules** â€” Extract table mappings, column mappings, transforms
@@ -462,7 +462,7 @@ These files are the "living documentation" and "migration brain" that track:
 5. **Treat it as "living documentation"** â€” Evolves as migration progresses
 6. **Add notes** â€” Document edge cases, Crafty Syntax quirks, migration discoveries
 
-**Critical Rules for `database/refactors/` files:**
+**Critical Rules for `lupo-database/refactors/` files:**
 - âœ… **EDITABLE** â€” These are the only structured files Cursor may modify
 - âœ… **UPDATE** â€” As we discover new legacy structures, missing mappings, edge cases
 - âœ… **EXPAND** â€” Add new mappings, transforms, merge rules
@@ -487,7 +487,7 @@ These files are the "living documentation" and "migration brain" that track:
 3. **All other JSON/TOON files** â€” Read-only unless explicitly instructed
 
 ### **EDITABLE Files (May Modify):**
-4. **JSON files in `database/refactors/`** â€” EDITABLE migration mapping files
+4. **JSON files in `lupo-database/refactors/`** â€” EDITABLE migration mapping files
    - Legacy â†’ new table mappings
    - Column mappings
    - Transforms and merge rules

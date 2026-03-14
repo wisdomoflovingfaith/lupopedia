@@ -90,9 +90,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "channels\42\tasks\completed\DB-MIGRATION-001.md"
+  file_path_from_root: "lupo-channels\42\tasks\completed\DB-MIGRATION-001.md"
   file_hash: "e6b8867b7a743ba2c30087d986d9e302f9e9791d74a13b397a717deabae85cfc"
-  file_path_from_root: "channels\42\tasks\completed\DB-MIGRATION-001.md"
+  file_path_from_root: "lupo-channels\42\tasks\completed\DB-MIGRATION-001.md"
   file_hash: "515898483e7dc6d7c2fdcbbe132acaaa497a355e7acca8ee55cd1a379a355466"
   last_updated_utc: "20260228"
   system_version: "4.0.50"

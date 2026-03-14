@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\channels\doctrine\PTSD_ADVERTISING_HARM_BOUNDARY.md"
+  file_path_from_root: "lupo-docs\channels\doctrine\PTSD_ADVERTISING_HARM_BOUNDARY.md"
   file_hash: "ec59e5533c31e017735af4db65a2db8f452e0fe18ead76540ad7e477d868f77c"
-  file_path_from_root: "docs\channels\doctrine\PTSD_ADVERTISING_HARM_BOUNDARY.md"
+  file_path_from_root: "lupo-docs\channels\doctrine\PTSD_ADVERTISING_HARM_BOUNDARY.md"
   file_hash: "8ad707ebc43622464d923c4e43de8d1f43bb370517eaec0f4abed26ef01e1722"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -214,7 +214,7 @@ function handleAdvertisingRequest($request) {
 #### **Cross-Reference Requirements**
 This boundary must be referenced in:
 - ✅ `README.md` - Main project documentation
-- ✅ `docs/doctrine/GOV-PROHIBIT-ADS-001.md` - Governance prohibition
+- ✅ `lupo-docs/doctrine/GOV-PROHIBIT-ADS-001.md` - Governance prohibition
 - ✅ `doctrine/WOLFIE_HEADER_SPEC.md` - Header specification
 - ✅ `doctrine/EMOTIONAL_GEOMETRY_DOCTRINE.md` - Emotional system
 - ✅ `doctrine/HERMES_ROUTING_DOCTRINE.md` - Routing system

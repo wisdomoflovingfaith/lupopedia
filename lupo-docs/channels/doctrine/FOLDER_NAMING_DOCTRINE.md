@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\channels\doctrine\FOLDER_NAMING_DOCTRINE.md"
+  file_path_from_root: "lupo-docs\channels\doctrine\FOLDER_NAMING_DOCTRINE.md"
   file_hash: "94c91adfedb99414dd25d1657b2af702649f7cfa6a870dd7153ee0c84bba5cb3"
-  file_path_from_root: "docs\channels\doctrine\FOLDER_NAMING_DOCTRINE.md"
+  file_path_from_root: "lupo-docs\channels\doctrine\FOLDER_NAMING_DOCTRINE.md"
   file_hash: "e188c0490b3e769e67d0fc48aa3698d39451d14af728b14107666ac33b763701"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -101,7 +101,7 @@ All folder names in Lupopedia MUST follow strict naming rules to ensure cross-pl
 
 **ALL folder names MUST be lowercase.**
 
-- ✅ **Allowed:** `docs/`, `core/`, `doctrine/`, `lupo-agents/`, `database/`
+- ✅ **Allowed:** `lupo-docs/`, `core/`, `doctrine/`, `lupo-agents/`, `lupo-database/`
 - ❌ **FORBIDDEN:** `ARCHITECTURE/`, `Core/`, `Doctrine/`, `Lupo-Agents/`, `DataBase/`
 
 **Rationale:** Case-sensitivity differences between operating systems (Windows is case-insensitive, Linux/Mac are case-sensitive) cause collisions and portability issues. Lowercase ensures consistency everywhere.
@@ -118,8 +118,8 @@ All folder names in Lupopedia MUST follow strict naming rules to ensure cross-pl
 
 **Examples:**
 - ✅ `lupo-agents/`
-- ✅ `database/`
-- ✅ `docs/doctrine/`
+- ✅ `lupo-database/`
+- ✅ `lupo-docs/doctrine/`
 - ✅ `agent_registry/`
 - ✅ `lupo-123/`
 
@@ -140,8 +140,8 @@ All folder names in Lupopedia MUST follow strict naming rules to ensure cross-pl
 - ❌ `.git/` (leading dot - hidden folder)
 - ❌ `.env/` (leading dot - hidden folder)
 - ❌ `Lupo-Agents/` (uppercase)
-- ❌ `lupo agents/` (space)
-- ❌ `lupo&agents/` (ampersand)
+- ❌ `lupo lupo-agents/` (space)
+- ❌ `lupo&lupo-agents/` (ampersand)
 - ❌ `lupo.agents/` (dot)
 - ❌ `lupo_agents/` (acceptable, but prefer hyphen)
 - ❌ `-lupo-agents/` (leading hyphen)
@@ -198,7 +198,7 @@ All folder names in Lupopedia MUST follow strict naming rules to ensure cross-pl
 
 **Spaces in folder names are ABSOLUTELY FORBIDDEN.**
 
-- ❌ `lupo agents/` (FORBIDDEN)
+- ❌ `lupo lupo-agents/` (FORBIDDEN)
 - ❌ `database migrations/` (FORBIDDEN)
 - ❌ `my folder/` (FORBIDDEN)
 
@@ -214,30 +214,30 @@ All folder names in Lupopedia MUST follow strict naming rules to ensure cross-pl
 ## Current Folder Structure (Corrected)
 
 ### Root Directories
-- ✅ `docs/` (lowercase)
+- ✅ `lupo-docs/` (lowercase)
 - ✅ `core/` (if it exists at root, should be lowercase)
-- ✅ `database/` (lowercase)
+- ✅ `lupo-database/` (lowercase)
 - ✅ `lupo-agents/` (lowercase with hyphen)
 - ✅ `lupo-includes/` (lowercase with hyphen)
 - ✅ `lupo-content/` (lowercase with hyphen)
-- ✅ `legacy/` (lowercase)
+- ✅ `lupo-legacy/` (lowercase)
 - ✅ `modules/` (lowercase)
-- ✅ `api/` (lowercase)
+- ✅ `lupo-api/` (lowercase)
 - ✅ `config/` (lowercase)
 - ✅ `dialog/` (lowercase)
 
 ### Documentation Directories
-- ✅ `docs/agents/` (lowercase)
-- ✅ `docs/core/` (lowercase)
-- ✅ `docs/doctrine/` (lowercase)
-- ✅ `docs/schema/` (lowercase)
-- ✅ `docs/dev/` (lowercase)
-- ✅ `docs/modules/` (lowercase)
-- ✅ `docs/protocols/` (lowercase)
-- ✅ `docs/history/` (lowercase)
-- ✅ `docs/appendix/` (lowercase)
-- ✅ `docs/tools/` (lowercase)
-- ❌ `docs/ARCHITECTURE/` (MUST BE MOVED TO `docs/architecture/`)
+- ✅ `lupo-docs/agents/` (lowercase)
+- ✅ `lupo-docs/core/` (lowercase)
+- ✅ `lupo-docs/doctrine/` (lowercase)
+- ✅ `lupo-docs/schema/` (lowercase)
+- ✅ `lupo-docs/dev/` (lowercase)
+- ✅ `lupo-docs/modules/` (lowercase)
+- ✅ `lupo-docs/protocols/` (lowercase)
+- ✅ `lupo-docs/history/` (lowercase)
+- ✅ `lupo-docs/appendix/` (lowercase)
+- ✅ `lupo-docs/tools/` (lowercase)
+- ❌ `lupo-docs/ARCHITECTURE/` (MUST BE MOVED TO `lupo-docs/architecture/`)
 
 ---
 
@@ -297,7 +297,7 @@ All folder names in Lupopedia MUST follow strict naming rules to ensure cross-pl
 ### Folders That Must Be Moved (Uppercase → Lowercase)
 
 **Current uppercase folders:**
-1. `docs/ARCHITECTURE/` → `docs/architecture/`
+1. `lupo-docs/ARCHITECTURE/` → `lupo-docs/architecture/`
 
 **Action Required:**
 - Move the folder physically
@@ -309,7 +309,7 @@ All folder names in Lupopedia MUST follow strict naming rules to ensure cross-pl
 
 **Check for uppercase folders:**
 ```powershell
-# Check for uppercase folders in docs/
+# Check for uppercase folders in lupo-docs/
 Get-ChildItem -Path "docs" -Directory | Where-Object { $_.Name -cmatch '[A-Z]' }
 ```
 
@@ -328,18 +328,18 @@ Get-ChildItem -Path "." -Directory -Recurse | Where-Object {
 ### ✅ Good Folder Names
 
 ```
-docs/
-docs/core/
-docs/doctrine/
-docs/agents/
-docs/schema/
+lupo-docs/
+lupo-docs/core/
+lupo-docs/doctrine/
+lupo-docs/agents/
+lupo-docs/schema/
 lupo-agents/
-database/
-database/migrations/
-database/toon-data/
+lupo-database/
+lupo-database/migrations/
+lupo-database/toon-data/
 lupo-includes/
 modules/
-api/
+lupo-api/
 config/
 ```
 
@@ -352,8 +352,8 @@ Core/                  ❌ Uppercase
 Doctrine/              ❌ Uppercase
 Lupo-Agents/           ❌ Uppercase
 lupo.agents/           ❌ Dot in name
-lupo agents/           ❌ Space in name
-lupo&agents/           ❌ Ampersand
+lupo lupo-agents/           ❌ Space in name
+lupo&lupo-agents/           ❌ Ampersand
 .git/                  ❌ Hidden folder (leading dot)
 .env/                  ❌ Hidden folder (leading dot)
 -lupo-agents/          ❌ Leading hyphen
@@ -406,7 +406,7 @@ lupo-agents-/          ❌ Trailing hyphen
 ### Why No Spaces?
 
 1. **Shell Quoting Required**
-   - Spaces require quotes: `cd "lupo agents/"` vs `cd lupo-agents/`
+   - Spaces require quotes: `cd "lupo lupo-agents/"` vs `cd lupo-agents/`
    - Easy to forget quotes, causing errors
    - Breaks many scripts and tools
 
@@ -444,12 +444,12 @@ lupo-agents-/          ❌ Trailing hyphen
 ### Immediate Actions Required
 
 1. **Move uppercase folders:**
-   - `docs/ARCHITECTURE/` → `docs/architecture/`
+   - `lupo-docs/ARCHITECTURE/` → `lupo-docs/architecture/`
 
 2. **Update documentation references:**
    - Search all `.md` files for uppercase folder references
    - Replace with lowercase equivalents
-   - Update `docs/README.md` with corrected paths
+   - Update `lupo-docs/README.md` with corrected paths
 
 3. **Update code references:**
    - Search all PHP files for uppercase folder references

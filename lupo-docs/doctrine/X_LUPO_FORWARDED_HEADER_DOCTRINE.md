@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\doctrine\X_LUPO_FORWARDED_HEADER_DOCTRINE.md"
+  file_path_from_root: "lupo-docs\doctrine\X_LUPO_FORWARDED_HEADER_DOCTRINE.md"
   file_hash: "d90555d30284d38c39e7118cdd21fe8af7e38cb5ba1d65df202c44c5094d1603"
-  file_path_from_root: "docs\doctrine\X_LUPO_FORWARDED_HEADER_DOCTRINE.md"
+  file_path_from_root: "lupo-docs\doctrine\X_LUPO_FORWARDED_HEADER_DOCTRINE.md"
   file_hash: "3df634e2547080e7edd2c442af4009f65e96648596674af2db41bbcecf6ab58a"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -63,7 +63,7 @@ lupopedia.footer:
 
 ---
 wolfie.headers:
-  file_path_from_root: "docs/doctrine/X_LUPO_FORWARDED_HEADER_DOCTRINE.md"
+  file_path_from_root: "lupo-docs/doctrine/X_LUPO_FORWARDED_HEADER_DOCTRINE.md"
   system_version: "4.0.31"
   channel_id: 42
   mood_rgb: "0066FF"
@@ -74,8 +74,8 @@ wolfie.headers:
 flip.footer:
   referenced_by_files:
     - "CHANGELOG.md"
-    - "docs/doctrine/WOLFIE_HEADER_DOCTRINE.md"
-    - "docs/doctrine/FLIP_FOOTER_DOCTRINE.md"
+    - "lupo-docs/doctrine/WOLFIE_HEADER_DOCTRINE.md"
+    - "lupo-docs/doctrine/FLIP_FOOTER_DOCTRINE.md"
   referenced_by_channels:
     - 42
   referenced_by_actors:
@@ -265,7 +265,7 @@ wolfie.headers:
 ```yaml
 ---
 wolfie.headers:
-  file_path_from_root: "docs/example.md"
+  file_path_from_root: "lupo-docs/example.md"
   system_version: "4.0.32"
   x_lupo_forwarded: "1001:10000"
 ---
@@ -323,7 +323,7 @@ function example() {
 
 ### Pre-Commit Checks
 
-**Script:** `scripts/validate_headers.py`
+**Script:** `lupo-scripts/validate_headers.py`
 
 ```python
 def validate_x_lupo_forwarded(file_path):
@@ -462,9 +462,9 @@ def validate_all_files():
 
 ## Related Documentation
 
-- `docs/doctrine/WOLFIE_HEADER_DOCTRINE.md` - Complete header specification
-- `docs/doctrine/FLIP_FOOTER_DOCTRINE.md` - Footer requirements
-- `docs/actor_model.md` - Actor system documentation
+- `lupo-docs/doctrine/WOLFIE_HEADER_DOCTRINE.md` - Complete header specification
+- `lupo-docs/doctrine/FLIP_FOOTER_DOCTRINE.md` - Footer requirements
+- `lupo-docs/actor_model.md` - Actor system documentation
 - `CHANGELOG.md` - Version history
 
 ---

@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\movie_notes\movie_notes.md"
+  file_path_from_root: "lupo-docs\movie_notes\movie_notes.md"
   file_hash: "55e2bd8c905a47e7289dbd963ad7950b3cbf0ca5a95019926db08b189c9f55c2"
-  file_path_from_root: "docs\movie_notes\movie_notes.md"
+  file_path_from_root: "lupo-docs\movie_notes\movie_notes.md"
   file_hash: "ad3b60a451788ccd9c0410b40254c62ce7360231a6761d3b0051ebe6215ae9e8"
   last_updated_utc: "20260228"
   system_version: "4.0.50"

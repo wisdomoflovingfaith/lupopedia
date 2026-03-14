@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\channels\doctrine\CARMEN_DOCTRINE.md"
+  file_path_from_root: "lupo-docs\channels\doctrine\CARMEN_DOCTRINE.md"
   file_hash: "5b73ada25024a4a5e8e2dd73fc913d3f1a5149de6bda3621329257da305bc797"
-  file_path_from_root: "docs\channels\doctrine\CARMEN_DOCTRINE.md"
+  file_path_from_root: "lupo-docs\channels\doctrine\CARMEN_DOCTRINE.md"
   file_hash: "6012e6866ebc0c5f3720f84c145a2f3eaf032d917723e58487d3b9367e81e472"
   last_updated_utc: "20260228"
   system_version: "4.0.50"

@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\doctrine\MigrationAtlas.md"
+  file_path_from_root: "lupo-docs\doctrine\MigrationAtlas.md"
   file_hash: "e2b6c78930ea93aa5b91a405ee76e74eb130511d9c24b3a894ce6dc2cf388675"
-  file_path_from_root: "docs\doctrine\MigrationAtlas.md"
+  file_path_from_root: "lupo-docs\doctrine\MigrationAtlas.md"
   file_hash: "97f4adfd6298af2ebde0cdcd6fea8d1ea5904bb13e98b74f18c8466c26a50700"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -64,7 +64,7 @@ lupopedia.footer:
 ---
 # FLIP Header (alias: Wolfie Header, CROP Header, FLIPPING Header)
 wolfie.headers: explicit architecture with structured clarity for every file.
-file_path_from_root: docs/doctrine/MigrationAtlas.md
+file_path_from_root: lupo-docs/doctrine/MigrationAtlas.md
 file.last_modified_system_version: "4.0.16"
 file.last_modified_utc: "20260218000000"
 channel_id: 42   # ANUBIS adoption channel
@@ -74,7 +74,7 @@ atoms:
   recovery_event: true
 X-Lupo-Actor-ID: 2035
 X-Lupo-Actor-Identity: "Lupopedia Audit Tool (Auto-Fixed)"
-X-Lupo-File-Path: docs/doctrine/MigrationAtlas.md
+X-Lupo-File-Path: lupo-docs/doctrine/MigrationAtlas.md
 ---
 
 # Migration Atlas

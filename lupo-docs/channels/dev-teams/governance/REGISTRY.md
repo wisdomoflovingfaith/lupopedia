@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\channels\dev-teams\governance\REGISTRY.md"
+  file_path_from_root: "lupo-docs\channels\dev-teams\governance\REGISTRY.md"
   file_hash: "607581cf9d0e482a05353a68730a12dc67722692a7846c26ecfaba3399628ee3"
-  file_path_from_root: "docs\channels\dev-teams\governance\REGISTRY.md"
+  file_path_from_root: "lupo-docs\channels\dev-teams\governance\REGISTRY.md"
   file_hash: "9a599eec7c49c0bc81b5d74ef4ab70a522eef3ffa0881aa4ce75c00076b8b8a9"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -149,7 +149,7 @@ This registry serves as the **canonical source** for all governance artifacts wi
 - **Established**: 2026-01-18
 - **Priority**: Critical
 - **Stability**: Stable
-- **Location**: `docs/doctrine/GOV_AD_PROHIBIT_001.md`
+- **Location**: `lupo-docs/doctrine/GOV_AD_PROHIBIT_001.md`
 
 #### Purpose
 Prevent any actor, agent, or subsystem from injecting commercial, promotional, or manipulative advertising into the Lupopedia ecosystem.
@@ -199,8 +199,8 @@ Prevent any actor, agent, or subsystem from injecting commercial, promotional, o
 - **Established**: 2026-01-19
 - **Priority**: Critical
 - **Stability**: Stable
-- **Location**: `docs/doctrine/LUPOPEDIA_ACTOR_BASELINE_STATE_DOCTRINE.md`
-- **Template**: `docs/templates/LABS_HANDSHAKE_TEMPLATE.md` (v1.1.0 GOV-AD-SYNC)
+- **Location**: `lupo-docs/doctrine/LUPOPEDIA_ACTOR_BASELINE_STATE_DOCTRINE.md`
+- **Template**: `lupo-docs/templates/LABS_HANDSHAKE_TEMPLATE.md` (v1.1.0 GOV-AD-SYNC)
 
 #### Purpose
 Establish mandatory knowledge and declarations required of every actor (human, AI, or system) before participation in Lupopedia.
@@ -267,7 +267,7 @@ Establish mandatory knowledge and declarations required of every actor (human, A
 - **Last Updated**: 2026-01-19
 - **Priority**: Critical
 - **Stability**: Stable
-- **Location**: `docs/governance/GOV_WOLFIE_HEADERS_001.md`
+- **Location**: `lupo-docs/governance/GOV_WOLFIE_HEADERS_001.md`
 
 #### Purpose
 Establish WOLFIE Headers as mandatory metadata envelopes for all files in the Lupopedia ecosystem. Ensures consistent metadata governance, version tracking, and multi-agent coordination.

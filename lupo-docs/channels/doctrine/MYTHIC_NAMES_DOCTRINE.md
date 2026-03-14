@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\channels\doctrine\MYTHIC_NAMES_DOCTRINE.md"
+  file_path_from_root: "lupo-docs\channels\doctrine\MYTHIC_NAMES_DOCTRINE.md"
   file_hash: "a4ecb95f78accb16aee778404323d96893be55f15a42aa2e971750d445c15ece"
-  file_path_from_root: "docs\channels\doctrine\MYTHIC_NAMES_DOCTRINE.md"
+  file_path_from_root: "lupo-docs\channels\doctrine\MYTHIC_NAMES_DOCTRINE.md"
   file_hash: "ec98627e688c543545ef94eed2ba87a435a392f3c0eac5fc2bbd0d6cff1d6de1"
   last_updated_utc: "20260228"
   system_version: "4.0.50"

@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\channels\42\broadcasts\20260223_windsurf_audit_complete.md"
+  file_path_from_root: "lupo-docs\channels\42\broadcasts\20260223_windsurf_audit_complete.md"
   file_hash: "8d543d2ff6c77ece524317b6a54ac60f3b86edf36c0bafe918c1dec112d0510a"
-  file_path_from_root: "docs\channels\42\broadcasts\20260223_windsurf_audit_complete.md"
+  file_path_from_root: "lupo-docs\channels\42\broadcasts\20260223_windsurf_audit_complete.md"
   file_hash: "003bef478fcd1b27c35ca147c6157713ee5b6faa3aa395c18977f546fb6b965a"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -64,7 +64,7 @@ lupopedia.footer:
 ---
 # FLIP Header (alias: Wolfie Header, CROP Header)
 wolfie.headers: explicit architecture with structured clarity for every file.
-file_path_from_root: "docs/channels/42/broadcasts/20260223_windsurf_audit_complete.md"
+file_path_from_root: "lupo-docs/channels/42/broadcasts/20260223_windsurf_audit_complete.md"
 system_version: "4.0.33"
 channel_id: 42
 mood_rgb: "0044FF"
@@ -75,11 +75,11 @@ lupo_agent: "ide|windsurf|actor_1002"
 
 flip.footer:
   referenced_by_files:
-    - "docs/status/windsurf_audit_kiro_work_4_0_33.md"
-    - "docs/status/kiro_metadata_audit_4_0_33.md"
+    - "lupo-docs/status/windsurf_audit_kiro_work_4_0_33.md"
+    - "lupo-docs/status/kiro_metadata_audit_4_0_33.md"
     - "CHANGELOG.md"
-    - "docs/AGENT_INVENTORY.md"
-    - "prompts/windsurf/20260223_kiro_work_audit_prompt.md"
+    - "lupo-docs/AGENT_INVENTORY.md"
+    - "lupo-prompts/windsurf/20260223_kiro_work_audit_prompt.md"
   referenced_by_channels:
     - 42
   referenced_by_actors:
@@ -145,9 +145,9 @@ All dialog-related MD files now have **complete and accurate FLIP headers/footer
 
 ## 📋 **FILES CREATED**
 
-1. **Audit Prompt**: `prompts/windsurf/20260223_kiro_work_audit_prompt.md`
-2. **Comprehensive Audit Report**: `docs/status/windsurf_audit_kiro_work_4_0_33.md`
-3. **Completion Broadcast**: `channels/42/broadcasts/20260223_windsurf_audit_complete.md`
+1. **Audit Prompt**: `lupo-prompts/windsurf/20260223_kiro_work_audit_prompt.md`
+2. **Comprehensive Audit Report**: `lupo-docs/status/windsurf_audit_kiro_work_4_0_33.md`
+3. **Completion Broadcast**: `lupo-channels/42/broadcasts/20260223_windsurf_audit_complete.md`
 
 ---
 

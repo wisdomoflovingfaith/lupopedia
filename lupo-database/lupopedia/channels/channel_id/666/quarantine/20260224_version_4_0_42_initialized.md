@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "channels\666\quarantine\20260224_version_4_0_42_initialized.md"
+  file_path_from_root: "lupo-channels\666\quarantine\20260224_version_4_0_42_initialized.md"
   file_hash: "ecdf2cd0d18b9a3841fe3fd8c1e000bc6fc2f1346bc79be194660c4ea4f785fc"
-  file_path_from_root: "channels\666\quarantine\20260224_version_4_0_42_initialized.md"
+  file_path_from_root: "lupo-channels\666\quarantine\20260224_version_4_0_42_initialized.md"
   file_hash: "bc0ccdb1479fd3a4103d77feb6d3530a9853016c0ff031aad93ea5e10b4d3338"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -126,9 +126,9 @@ Version 4.0.42 development has officially started with a fresh Crafty Syntax 3.7
 
 **Files Created (3 files):**
 
-1. `docs/versions/4.0.42/` — Development directory
-2. `docs/versions/4.0.42/TODO.md` — Task tracking (6 phases)
-3. `docs/versions/4.0.42/CHANGELOG_DRAFT.md` — Development log
+1. `lupo-docs/versions/4.0.42/` — Development directory
+2. `lupo-docs/versions/4.0.42/TODO.md` — Task tracking (6 phases)
+3. `lupo-docs/versions/4.0.42/CHANGELOG_DRAFT.md` — Development log
 
 ---
 

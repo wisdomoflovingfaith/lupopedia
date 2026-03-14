@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\directives\channel_42_antigravity_vsx_extension_account_link.md"
+  file_path_from_root: "lupo-docs\directives\channel_42_antigravity_vsx_extension_account_link.md"
   file_hash: "96efe51331318599a947aa3ad8c448bd3d7c9c6d6bea74b336089e1231074f61"
-  file_path_from_root: "docs\directives\channel_42_antigravity_vsx_extension_account_link.md"
+  file_path_from_root: "lupo-docs\directives\channel_42_antigravity_vsx_extension_account_link.md"
   file_hash: "ebb53f692fe43723abf267f72f071af4b96c9647e55846e6fb129456c30248f5"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -62,7 +62,7 @@ lupopedia.footer:
 
 ---
 wolfie.headers:
-  file_path_from_root: "docs/directives/channel_42_antigravity_vsx_extension_account_link.md"
+  file_path_from_root: "lupo-docs/directives/channel_42_antigravity_vsx_extension_account_link.md"
   system_version: "4.0.36"
   channel_id: 42
   mood_rgb: "0044FF"
@@ -84,13 +84,13 @@ lupo.agent.tracking:
 flip.footer:
   referenced_by_files:
     - "CHANGELOG.md"
-    - "docs/status/antigravity_vsx_extension_update_4_0_35.md"
-    - "docs/versions/4.0.35/TODO.md"
+    - "lupo-docs/status/antigravity_vsx_extension_update_4_0_35.md"
+    - "lupo-docs/versions/4.0.35/TODO.md"
   consumed_by_services:
     - "ExtensionService"
     - "MetadataService"
   cited_by_docs:
-    - "docs/doctrine/EXTENSION_FALLBACK_DOCTRINE.md"
+    - "lupo-docs/doctrine/EXTENSION_FALLBACK_DOCTRINE.md"
   referenced_by_channels:
     - 42
   referenced_by_actors:
@@ -166,7 +166,7 @@ Integrate this publisher identity into the MD‑only fallback work:
 - Status reporting for KIRO  
 
 This must be included in:
-`docs/status/antigravity_vsx_extension_update_4_0_35.md`
+`lupo-docs/status/antigravity_vsx_extension_update_4_0_35.md`
 
 ---
 

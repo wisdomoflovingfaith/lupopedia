@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\channels\doctrine\PACK_ROLE_REGISTRY.md"
+  file_path_from_root: "lupo-docs\channels\doctrine\PACK_ROLE_REGISTRY.md"
   file_hash: "eeb23970aca0c64168d4ab3d344f9574af5a1ee7a1b9e0888747b670cf6b6ab7"
-  file_path_from_root: "docs\channels\doctrine\PACK_ROLE_REGISTRY.md"
+  file_path_from_root: "lupo-docs\channels\doctrine\PACK_ROLE_REGISTRY.md"
   file_hash: "594ab157010a0ddf9bf945a4163d411d419756ab04c871d81ca6fd0cfdef7944"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -177,7 +177,7 @@ DeepSeek is valuable for reasoning, not timekeeping.
 - **[CORE_PHILOSOPHY.md](../overview/CORE_PHILOSOPHY.md)** - Why agents are discovered, not assigned
 - **[FOUNDERS_NOTE.md](../overview/FOUNDERS_NOTE.md)** - Lore entries documenting role discoveries
 - **[UTC_TIMEKEEPER Doctrine](UTC_TIMEKEEPER_DOCTRINE.md)** - UTC_TIMEKEEPER agent specification
-- **[agents/0005/utc_mirror_capability_matrix.md](../../agents/0005/utc_mirror_capability_matrix.md)** - UTC mirror capability matrix
+- **[lupo-agents/0005/utc_mirror_capability_matrix.md](../../agents/0005/utc_mirror_capability_matrix.md)** - UTC mirror capability matrix
 
 ---
 

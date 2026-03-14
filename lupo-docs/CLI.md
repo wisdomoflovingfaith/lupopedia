@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: "docs/CLI.md"
+  file_path_from_root: "lupo-docs/CLI.md"
   last_modified_utc: "20260306"
   system_version: "4.0.62"
   purpose: "CLI reference for Lupopedia lupo commands"
@@ -84,8 +84,8 @@ Show the help system.
 
 Show path to documentation hub or a specific topic.
 
-- `php lupo-bin/lupo.php docs` — Path to docs/HELP.md
-- `php lupo-bin/lupo.php docs <topic>` — Path to docs/<topic>.md if it exists
+- `php lupo-bin/lupo.php docs` — Path to lupo-docs/HELP.md
+- `php lupo-bin/lupo.php docs <topic>` — Path to lupo-docs/<topic>.md if it exists
 
 ### version
 
@@ -96,7 +96,7 @@ Show version information and link to version history.
 ```text
 $ php lupo-bin/lupo.php version
 Lupopedia version 4.0.61
-Documentation: docs/version.md
+Documentation: lupo-docs/version.md
 ```
 
 ### doctor
@@ -117,7 +117,7 @@ Run system health checks. When `lupo-agents/1009/doctor.php` exists, the DOCTOR 
 
 **Output:** `[OK]`, `[WARN]`, `[FAIL]`, or `[SKIP]` per check; summary line at end. If context kernel reports issues, suggests running `doctor-context [--repair]`.
 
-**Full reference:** [docs/DOCTOR_HEALTH_CHECK.md](DOCTOR_HEALTH_CHECK.md)
+**Full reference:** [lupo-docs/DOCTOR_HEALTH_CHECK.md](DOCTOR_HEALTH_CHECK.md)
 
 ### doctor-context
 
@@ -125,7 +125,7 @@ Validate session and identity state using the ContextKernel. Surfacing identity 
 
 **Options:**
 
-- `--repair` — Synchronize `session.md` metadata with the canonical database/kernel identity if a conflict or drift is detected. A backup is created automatically as `session.md.bak.YmdHis` (e.g. `session.md.bak.20260307143045`) before overwriting.
+- `--repair` — Synchronize `session.md` metadata with the canonical lupo-database/kernel identity if a conflict or drift is detected. A backup is created automatically as `session.md.bak.YmdHis` (e.g. `session.md.bak.20260307143045`) before overwriting.
 
 ### auth / who
 
@@ -133,7 +133,7 @@ Show current authenticated user (from session when in web context; CLI often sho
 
 ### actor-context
 
-Show full actor context with auth status (actor name, id, type, paired_actor_id, auth status). For Antigravity and tooling. See docs/auth.md.
+Show full actor context with auth status (actor name, id, type, paired_actor_id, auth status). For Antigravity and tooling. See lupo-docs/auth.md.
 
 ### actors
 
@@ -217,6 +217,6 @@ Exit codes are advisory; not all code paths set a non-zero exit code.
 
 ## More help
 
-- Full help hub: [docs/HELP.md](HELP.md)
+- Full help hub: [lupo-docs/HELP.md](HELP.md)
 - Whoami and context: [lupopedia_whoami_readme.md](lupopedia_whoami_readme.md)
 - Version history: [version.md](version.md)

@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\channels\doctrine\EMOTIONAL_CONSTITUTION.md"
+  file_path_from_root: "lupo-docs\channels\doctrine\EMOTIONAL_CONSTITUTION.md"
   file_hash: "7e6db26cbff90b2e12c00f1a8281bde5348a6a595c1c0c1a77c697540916ca22"
-  file_path_from_root: "docs\channels\doctrine\EMOTIONAL_CONSTITUTION.md"
+  file_path_from_root: "lupo-docs\channels\doctrine\EMOTIONAL_CONSTITUTION.md"
   file_hash: "7ce563a197fa4ba8b25f7c33d2f058e2818352ba96b92e506226e65d14c5d1f1"
   last_updated_utc: "20260228"
   system_version: "4.0.50"

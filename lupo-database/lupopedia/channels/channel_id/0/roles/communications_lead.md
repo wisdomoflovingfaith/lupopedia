@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "channels\0\roles\communications_lead.md"
+  file_path_from_root: "lupo-channels\0\roles\communications_lead.md"
   file_hash: "825c8fa27586560ec75df4ee14e249520a12aeddb0cd0017d7897f3cdb796ea4"
-  file_path_from_root: "channels\0\roles\communications_lead.md"
+  file_path_from_root: "lupo-channels\0\roles\communications_lead.md"
   file_hash: "f175642d8e28aa6094e11ee300caa2f4289b6be97351ebf1b7ba4f9c103c13ed"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -167,8 +167,8 @@ Communications Leads report to System Administrators. Coordination failures must
 <!-- FLIP_FOOTER_BEGIN
 {
   "references": [
-    "channels/0/broadcasts/",
-    "channels/42/broadcasts/"
+    "lupo-channels/0/broadcasts/",
+    "lupo-channels/42/broadcasts/"
   ],
   "implements": "communications_authority_model",
   "depends_on": "broadcast_standards",

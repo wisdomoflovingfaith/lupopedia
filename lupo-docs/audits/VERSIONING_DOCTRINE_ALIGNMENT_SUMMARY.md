@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\audits\VERSIONING_DOCTRINE_ALIGNMENT_SUMMARY.md"
+  file_path_from_root: "lupo-docs\audits\VERSIONING_DOCTRINE_ALIGNMENT_SUMMARY.md"
   file_hash: "e3a5421e38a4fa4bec50f099164016167aa018da86edfad13429812fe3e256e6"
-  file_path_from_root: "docs\audits\VERSIONING_DOCTRINE_ALIGNMENT_SUMMARY.md"
+  file_path_from_root: "lupo-docs\audits\VERSIONING_DOCTRINE_ALIGNMENT_SUMMARY.md"
   file_hash: "a6666d8f87bf22e399fcb37c71219363dde826dec7032c42cd91e62fd8a13a50"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -82,15 +82,15 @@ lupopedia.footer:
 
 | Old path | New path |
 |----------|----------|
-| docs/REQUIRED_TABLES_4.2.1.md | docs/REQUIRED_TABLES_4.1.0.md |
-| docs/channels/schema/migrations/analysis/SCHEMA_SYNC_3_0_46_SUMMARY.md | docs/channels/schema/migrations/analysis/SCHEMA_SYNC_3_0_46_SUMMARY.md |
-| docs/channels/schema/migrations/3.0.46.md | docs/channels/schema/migrations/3.0.46.md |
-| database/migrations_legacy/schema_sync_3_0_46_missing_tables.sql | database/migrations_legacy/schema_sync_3_0_46_missing_tables.sql |
-| database/hotfix_registry_4.2.1.json | database/hotfix_registry_4.1.0.json |
+| lupo-docs/REQUIRED_TABLES_4.2.1.md | lupo-docs/REQUIRED_TABLES_4.1.0.md |
+| lupo-docs/channels/schema/migrations/analysis/SCHEMA_SYNC_3_0_46_SUMMARY.md | lupo-docs/channels/schema/migrations/analysis/SCHEMA_SYNC_3_0_46_SUMMARY.md |
+| lupo-docs/channels/schema/migrations/3.0.46.md | lupo-docs/channels/schema/migrations/3.0.46.md |
+| lupo-database/migrations_legacy/schema_sync_3_0_46_missing_tables.sql | lupo-database/migrations_legacy/schema_sync_3_0_46_missing_tables.sql |
+| lupo-database/hotfix_registry_4.2.1.json | lupo-database/hotfix_registry_4.1.0.json |
 | dialogs/session_2026_01_16_version_3_0_46.md | dialogs/session_2026_01_16_version_3_0_46.md |
 | dialogs/changelog_dialog_schema_sync_3_0_46.md | dialogs/changelog_dialog_schema_sync_3_0_46.md |
 
-**Note:** Files such as docs/channels/overview/versioning/4.2.1_hotfix_window.md, docs/channels/developer/testing/crafty_import_validation_4.2.1.md, 4.2.1_hotfix_window.sh, and database/migrations_legacy/4.2.1_add_reverse_shaka_sync_table.sql were not renamed in this pass; they may be renamed to 4.1.0 or left as historical artifacts per project policy.
+**Note:** Files such as lupo-docs/channels/overview/versioning/4.2.1_hotfix_window.md, lupo-docs/channels/developer/testing/crafty_import_validation_4.2.1.md, 4.2.1_hotfix_window.sh, and lupo-database/migrations_legacy/4.2.1_add_reverse_shaka_sync_table.sql were not renamed in this pass; they may be renamed to 4.1.0 or left as historical artifacts per project policy.
 
 ---
 
@@ -98,28 +98,28 @@ lupopedia.footer:
 
 | File | Changes |
 |------|---------|
-| docs/REQUIRED_TABLES_4.1.0.md | Version 3.0.0 → 4.1.0 in heading and metadata; purpose “4.1.0 release”. |
-| docs/audits/DEPARTMENTS_GROUPS_ROLES_DOCTRINE_UPDATE_SUMMARY.md | REQUIRED_TABLES_4.2.1 → 4.1.0; SCHEMA_SYNC_3_0_46 → SCHEMA_SYNC_3_0_46; 3.0.46.md → 3.0.46.md. |
-| docs/audits/DEPARTMENTS_GROUPS_ROLES_PHP_IMPLEMENTATION_PLAN.md | REQUIRED_TABLES_4.1.0; SCHEMA_SYNC_3_0_46; 3.0.46.md. |
-| docs/PATHS_FIRSTS_VS_ANALYTICS_PATHS_ANALYSIS.md | REQUIRED_TABLES_4.1.0. |
+| lupo-docs/REQUIRED_TABLES_4.1.0.md | Version 3.0.0 → 4.1.0 in heading and metadata; purpose “4.1.0 release”. |
+| lupo-docs/audits/DEPARTMENTS_GROUPS_ROLES_DOCTRINE_UPDATE_SUMMARY.md | REQUIRED_TABLES_4.2.1 → 4.1.0; SCHEMA_SYNC_3_0_46 → SCHEMA_SYNC_3_0_46; 3.0.46.md → 3.0.46.md. |
+| lupo-docs/audits/DEPARTMENTS_GROUPS_ROLES_PHP_IMPLEMENTATION_PLAN.md | REQUIRED_TABLES_4.1.0; SCHEMA_SYNC_3_0_46; 3.0.46.md. |
+| lupo-docs/PATHS_FIRSTS_VS_ANALYTICS_PATHS_ANALYSIS.md | REQUIRED_TABLES_4.1.0. |
 | CHANGELOG.md | REQUIRED_TABLES_4.1.0. |
-| docs/audits/DEPARTMENTS_GROUPS_ROLES_EXECUTION_SUMMARY.md | REQUIRED_TABLES_4.1.0. |
-| docs/audits/DEPARTMENTS_GROUPS_ROLES_PRE_EXECUTION_CHECKLIST.md | REQUIRED_TABLES_4.1.0. |
-| docs/audits/DEPARTMENTS_GROUPS_ROLES_IMPLEMENTATION_PLAN.md | REQUIRED_TABLES_4.1.0. |
-| docs/OPERATOR_TABLES_REMOVAL_AND_ROLE_VERIFICATION_REPORT.md | REQUIRED_TABLES_4.1.0. |
-| docs/PATHS_FIRSTS_REMOVAL_REPORT.md | REQUIRED_TABLES_4.1.0. |
-| docs/DIALOG_TABLE_REMOVAL_REPORT.md | REQUIRED_TABLES_4.1.0. |
-| docs/DIALOG_MESSAGES_VS_ANALYSIS.md | REQUIRED_TABLES_4.1.0. |
-| docs/ACTOR_CHANNEL_ROLES_VS_CHANNEL_ROLES_ANALYSIS.md | REQUIRED_TABLES_4.1.0. |
-| docs/VERSION_DOCTRINE_APPLICATION_REPORT.md | REQUIRED_TABLES_4.1.0; 4.2.1 → 4.1.0. |
-| docs/SESSIONS_VS_sessions_INVESTIGATION.md | REQUIRED_TABLES_4.1.0. |
-| docs/channels/schema/migrations/analysis/SCHEMA_SYNC_3_0_46_SUMMARY.md | Migration path: database/migrations_legacy/schema_sync_3_0_46_missing_tables.sql. |
-| docs/channels/schema/migrations/3.0.46.md | Migration path 3_0_46; type “Internal development snapshot (schema-sync)”. |
-| docs/channels/overview/MONDAY_START_OF_DAY.md | schema_sync_3_0_46_missing_tables.sql; database/migrations_legacy. |
-| docs/channels/overview/VERSION_3_0_60_PLAN.md | session_2026_01_16_version_3_0_46.md. |
-| docs/channels/overview/MONDAY_RESUME_CONTEXT.md | session_2026_01_16_version_3_0_46.md. |
-| docs/channels/overview/ascent/02_DIALOG_MIGRATION.md | session_2026_01_16_version_3_0_46.md. |
-| database/hotfix_registry_4.1.0.json | version and lupopedia_version set to 4.1.0. |
+| lupo-docs/audits/DEPARTMENTS_GROUPS_ROLES_EXECUTION_SUMMARY.md | REQUIRED_TABLES_4.1.0. |
+| lupo-docs/audits/DEPARTMENTS_GROUPS_ROLES_PRE_EXECUTION_CHECKLIST.md | REQUIRED_TABLES_4.1.0. |
+| lupo-docs/audits/DEPARTMENTS_GROUPS_ROLES_IMPLEMENTATION_PLAN.md | REQUIRED_TABLES_4.1.0. |
+| lupo-docs/OPERATOR_TABLES_REMOVAL_AND_ROLE_VERIFICATION_REPORT.md | REQUIRED_TABLES_4.1.0. |
+| lupo-docs/PATHS_FIRSTS_REMOVAL_REPORT.md | REQUIRED_TABLES_4.1.0. |
+| lupo-docs/DIALOG_TABLE_REMOVAL_REPORT.md | REQUIRED_TABLES_4.1.0. |
+| lupo-docs/DIALOG_MESSAGES_VS_ANALYSIS.md | REQUIRED_TABLES_4.1.0. |
+| lupo-docs/ACTOR_CHANNEL_ROLES_VS_CHANNEL_ROLES_ANALYSIS.md | REQUIRED_TABLES_4.1.0. |
+| lupo-docs/VERSION_DOCTRINE_APPLICATION_REPORT.md | REQUIRED_TABLES_4.1.0; 4.2.1 → 4.1.0. |
+| lupo-docs/SESSIONS_VS_sessions_INVESTIGATION.md | REQUIRED_TABLES_4.1.0. |
+| lupo-docs/channels/schema/migrations/analysis/SCHEMA_SYNC_3_0_46_SUMMARY.md | Migration path: lupo-database/migrations_legacy/schema_sync_3_0_46_missing_tables.sql. |
+| lupo-docs/channels/schema/migrations/3.0.46.md | Migration path 3_0_46; type “Internal development snapshot (schema-sync)”. |
+| lupo-docs/channels/overview/MONDAY_START_OF_DAY.md | schema_sync_3_0_46_missing_tables.sql; lupo-database/migrations_legacy. |
+| lupo-docs/channels/overview/VERSION_3_0_60_PLAN.md | session_2026_01_16_version_3_0_46.md. |
+| lupo-docs/channels/overview/MONDAY_RESUME_CONTEXT.md | session_2026_01_16_version_3_0_46.md. |
+| lupo-docs/channels/overview/ascent/02_DIALOG_MIGRATION.md | session_2026_01_16_version_3_0_46.md. |
+| lupo-database/hotfix_registry_4.1.0.json | version and lupopedia_version set to 4.1.0. |
 
 ---
 
@@ -127,10 +127,10 @@ lupopedia.footer:
 
 | Action | Detail |
 |--------|--------|
-| **Created** | database/migrations/future_features_lupopedia.sql (placeholder for future tables). |
-| **Created** | database/migrations/legacy/ directory. |
-| **Moved to database/migrations/legacy/** | All .sql in database/migrations/ except: import_from_old_crafty_syntax.sql, install_new_lupopedia.sql, seed_lupopedia.sql, drop_old_crafty_syntax_tables.sql, future_features_lupopedia.sql. |
-| **Remaining in database/migrations/** | import_from_old_crafty_syntax.sql, install_new_lupopedia.sql, seed_lupopedia.sql, drop_old_crafty_syntax_tables.sql, future_features_lupopedia.sql, old_crafty_syntax_3_7_5_start.sql, README.md. One-time migrations and audit reports are in database/migrations_legacy/. |
+| **Created** | lupo-database/migrations/future_features_lupopedia.sql (placeholder for future tables). |
+| **Created** | lupo-database/migrations/legacy/ directory. |
+| **Moved to lupo-database/migrations/legacy/** | All .sql in lupo-database/migrations/ except: import_from_old_crafty_syntax.sql, install_new_lupopedia.sql, seed_lupopedia.sql, drop_old_crafty_syntax_tables.sql, future_features_lupopedia.sql. |
+| **Remaining in lupo-database/migrations/** | import_from_old_crafty_syntax.sql, install_new_lupopedia.sql, seed_lupopedia.sql, drop_old_crafty_syntax_tables.sql, future_features_lupopedia.sql, old_crafty_syntax_3_7_5_start.sql, README.md. One-time migrations and audit reports are in lupo-database/migrations_legacy/. |
 
 ---
 
@@ -168,8 +168,8 @@ lupopedia.footer:
 ### 6.3 Cursor workflow understanding
 
 - **Step 1 — Increment patch:** 3.0.0 → 4.0.1 → 3.0.2, etc.; never 3.0.0 → 4.1.0 for patch.
-- **Step 2 — Required tables audit:** Compare required tables vs TOONs; move future tables to database/migrations/future_features_lupopedia.sql (or database/future_features_lupopedia.sql per project).
-- **Step 3 — Migration cleanup:** Only import_from_old_crafty_syntax.sql, install_new_lupopedia.sql, seed_lupopedia.sql, drop_old_crafty_syntax_tables.sql, future_features_lupopedia.sql remain in database/migrations/; all other migrations in database/migrations/legacy/.
+- **Step 2 — Required tables audit:** Compare required tables vs TOONs; move future tables to lupo-database/migrations/future_features_lupopedia.sql (or lupo-database/future_features_lupopedia.sql per project).
+- **Step 3 — Migration cleanup:** Only import_from_old_crafty_syntax.sql, install_new_lupopedia.sql, seed_lupopedia.sql, drop_old_crafty_syntax_tables.sql, future_features_lupopedia.sql remain in lupo-database/migrations/; all other migrations in lupo-database/migrations/legacy/.
 - **Step 4 — Manual test cycle:** Backup DB, drop tables, load Crafty 3.7.5, run wizard, test Lupopedia 4.0.x; no other upgrade path.
 - **Step 5 — Patch development:** Cursor may write migrations, update SQL/PHP/docs/TOONs; when enough changes accumulate, return to Step 1.
 
@@ -178,7 +178,7 @@ lupopedia.footer:
 ## 7. Optional Follow-ups
 
 - **Rename remaining 4.2.1-named files** (e.g. 4.2.1_hotfix_window.md, crafty_import_validation_4.2.1.md, 4.2.1_hotfix_window.sh) to 4.1.0 if they are part of the active release surface.
-- **Large CHANGELOG/dialogs:** docs/channels/overview/versioning/CHANGELOG.md and some dialogs still contain historical section headers (4.2.1, 4.3.x). Optionally replace “current system version” and “next release” mentions with 4.1.0; leave historical section titles as-is if they are record-only.
+- **Large CHANGELOG/dialogs:** lupo-docs/channels/overview/versioning/CHANGELOG.md and some dialogs still contain historical section headers (4.2.1, 4.3.x). Optionally replace “current system version” and “next release” mentions with 4.1.0; leave historical section titles as-is if they are record-only.
 - **References to session_2026_01_16_version_3_0_46 / changelog_dialog_schema_sync_3_0_46** in other dialogs (e.g. changelog_dialog_UTC_2026-01-20.md, changelog_dialog_MONDAY_WOLFIE.md) can be updated to 3_0_46 for consistency.
 
 ---

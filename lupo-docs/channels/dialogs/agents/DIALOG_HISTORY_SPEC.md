@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\channels\dialogs\agents\DIALOG_HISTORY_SPEC.md"
+  file_path_from_root: "lupo-docs\channels\dialogs\agents\DIALOG_HISTORY_SPEC.md"
   file_hash: "8df1f1e85f6fd54377f94091b12ec4117434a4e9bb97d37d9bbfbc214af5876e"
-  file_path_from_root: "docs\channels\dialogs\agents\DIALOG_HISTORY_SPEC.md"
+  file_path_from_root: "lupo-docs\channels\dialogs\agents\DIALOG_HISTORY_SPEC.md"
   file_hash: "c06c50c089dd69bf1a860f354f9e2347e6879eb997a055b6e05099b6f5b9bea5"
   last_updated_utc: "20260228"
   system_version: "4.0.50"

@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\doctrine\HEADERS\LUPO_HEADER_EXPANSION_4_0_30.md"
+  file_path_from_root: "lupo-docs\doctrine\HEADERS\LUPO_HEADER_EXPANSION_4_0_30.md"
   file_hash: "a5f365d258a571ee576eac70898461949abaf70c8362c9dc61d69e44867cdbae"
-  file_path_from_root: "docs\doctrine\HEADERS\LUPO_HEADER_EXPANSION_4_0_30.md"
+  file_path_from_root: "lupo-docs\doctrine\HEADERS\LUPO_HEADER_EXPANSION_4_0_30.md"
   file_hash: "4b37e7b7436f35fa235a5611783c8e9ca75e07c3666dc596f5d8f257c82dfc42"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -64,7 +64,7 @@ lupopedia.footer:
 ---
 # FLIP Header (alias: Wolfie Header, CROP Header)
 wolfie.headers: explicit architecture with structured clarity for every file.
-file_path_from_root: docs/doctrine/HEADERS/LUPO_HEADER_EXPANSION_4_0_30.md
+file_path_from_root: lupo-docs/doctrine/HEADERS/LUPO_HEADER_EXPANSION_4_0_30.md
 file.last_modified_system_version: "4.0.31"
 file.last_modified_utc: "20260222215200"
 actor_420_status: "banned_mythological"

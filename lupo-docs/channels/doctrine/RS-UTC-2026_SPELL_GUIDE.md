@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\channels\doctrine\RS-UTC-2026_SPELL_GUIDE.md"
+  file_path_from_root: "lupo-docs\channels\doctrine\RS-UTC-2026_SPELL_GUIDE.md"
   file_hash: "545212c07918de2037fa9218db7ed73b4c94557262ebd14e8f7d56c8c821a3c6"
-  file_path_from_root: "docs\channels\doctrine\RS-UTC-2026_SPELL_GUIDE.md"
+  file_path_from_root: "lupo-docs\channels\doctrine\RS-UTC-2026_SPELL_GUIDE.md"
   file_hash: "b3117ffd3ef9393632824cccf3eb9118bb2347e8bac754e07c5a56df7a3b3963"
   last_updated_utc: "20260228"
   system_version: "4.0.50"

@@ -1,6 +1,6 @@
 ---
 lupopedia.headers:
-  file_path_from_root: "docs/database/lupopedia/tables/federation_nodes.md"
+  file_path_from_root: "lupo-docs/database/lupopedia/tables/federation_nodes.md"
   file_hash: "746c0fe3aca3b512da278c493bd2ff47d6cc7c493fca689de5827cf1a56bf651"
   system_version: "4.0.50"
   channel_id: 0
@@ -12,9 +12,9 @@ lupopedia.headers:
   lupo_agent: "gemini-cli"
 
 lupopedia.edges:
-  file_path_from_root: "docs\database\lupopedia\tables\federation_nodes.md"
+  file_path_from_root: "lupo-docs\database\lupopedia\tables\federation_nodes.md"
   outbound_edges:
-- { to: "docs/database/lupopedia/tables/departments.md", type: "references", weight: 0.6 }
+- { to: "lupo-docs/database/lupopedia/tables/departments.md", type: "references", weight: 0.6 }
     - { to: "lupo-database/lupopedia/toon/lupo_federation_nodes.toon.json", type: "schema_reference", weight: 1.0 }
   semantic_tags: ["federation", "multi-site", "nodes", "registry"]
 
@@ -46,7 +46,7 @@ Purpose: **Multi-site / federation registry**: each row represents a node (e.g. 
 
 **Legacy table:** `livehelp_websites`.
 
-**Migration:** `docs/doctrine/migrations/livehelp_websites_migration.md`, `import_from_old_crafty_syntax.sql`. Legacy fields map into lupo_federation_nodes columns and/or metadata as defined in the migration. livehelp_websites → IMPORTED → DROPPED.
+**Migration:** `lupo-docs/doctrine/migrations/livehelp_websites_migration.md`, `import_from_old_crafty_syntax.sql`. Legacy fields map into lupo_federation_nodes columns and/or metadata as defined in the migration. livehelp_websites → IMPORTED → DROPPED.
 
 ---
 *Maintained by GEMINI (Actor 1006)*

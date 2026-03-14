@@ -296,7 +296,7 @@ class AnubisHeaderFallback
             $classification['artifact_type'] = 'broadcast';
             $classification['artifact_kind'] = 'announcement';
             $classification['hashtags'][] = '#broadcast';
-        } elseif (strpos($file_path, 'prompts/') !== false) {
+        } elseif (strpos($file_path, 'lupo-prompts/') !== false || strpos($file_path, 'prompts/') !== false) {
             $classification['artifact_type'] = 'prompt';
             $classification['artifact_kind'] = 'task_directive';
             $classification['hashtags'][] = '#prompt';
@@ -310,7 +310,7 @@ class AnubisHeaderFallback
             $classification['artifact_kind'] = 'authentication';
             $classification['traits'][] = 'critical';
             $classification['hashtags'][] = '#auth';
-        } elseif (strpos($file_path, 'tests/') !== false) {
+        } elseif (strpos($file_path, 'lupo-tests/') !== false || strpos($file_path, 'tests/') !== false) {
             $classification['artifact_type'] = 'test';
             $classification['artifact_kind'] = 'unit_test';
             $classification['traits'][] = 'test';

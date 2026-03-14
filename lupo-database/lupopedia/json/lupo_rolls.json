@@ -1,0 +1,44 @@
+{
+  "table_name": "lupo_rolls",
+  "fields": [
+    "`roll_id` bigint NOT NULL",
+    "`channel_id` bigint NOT NULL",
+    "`actor_id` bigint NOT NULL",
+    "`role_slug` varchar(100) NOT NULL",
+    "`permission_scope_json` json",
+    "`is_active` tinyint NOT NULL DEFAULT 1",
+    "`created_ymdhis` bigint NOT NULL DEFAULT 0",
+    "`updated_ymdhis` bigint NOT NULL"
+  ],
+  "data": [],
+  "indexes": [
+    {
+      "index_name": "lupo_rolls_idx_channel_actor",
+      "columns": [
+        "channel_id",
+        "actor_id"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_rolls_idx_role",
+      "columns": [
+        "role_slug"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    }
+  ],
+  "primary_key": {
+    "column_name": "roll_id",
+    "expected_name": "roll_id",
+    "is_correct": true,
+    "needs_rename": false
+  },
+  "doctrine_metadata": {
+    "no_foreign_keys": true,
+    "no_triggers": true
+  },
+  "relationships": []
+}

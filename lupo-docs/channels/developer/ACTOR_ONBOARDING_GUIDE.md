@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\channels\developer\ACTOR_ONBOARDING_GUIDE.md"
+  file_path_from_root: "lupo-docs\channels\developer\ACTOR_ONBOARDING_GUIDE.md"
   file_hash: "93e5b2ad1b0e78198bf198abb65ab24fbb85dfcbfbd245e8e4b0ae84c37b8f28"
-  file_path_from_root: "docs\channels\developer\ACTOR_ONBOARDING_GUIDE.md"
+  file_path_from_root: "lupo-docs\channels\developer\ACTOR_ONBOARDING_GUIDE.md"
   file_hash: "bdbea6051171576d4d8fdbd586c000fb77daf05e5b41698cabe1061c4db883fe"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -117,7 +117,7 @@ LABS-001 (Lupopedia Actor Baseline State) is the mandatory pre-interaction proto
    - Format: `YYYYMMDDHHIISS` (e.g., `20260119143000`)
 
 2. **Complete LABS Declaration**
-   - Use template: `docs/templates/LABS_HANDSHAKE_TEMPLATE.md`
+   - Use template: `lupo-docs/templates/LABS_HANDSHAKE_TEMPLATE.md`
    - Complete all 10 mandatory declarations
    - Submit to `LABS_Validator` class
 
@@ -253,12 +253,12 @@ if ($result['success']) {
 
 ## RESOURCES
 
-- **LABS-001 Doctrine**: `docs/doctrine/LUPOPEDIA_ACTOR_BASELINE_STATE_DOCTRINE.md`
-- **LABS Handshake Template**: `docs/templates/LABS_HANDSHAKE_TEMPLATE.md`
+- **LABS-001 Doctrine**: `lupo-docs/doctrine/LUPOPEDIA_ACTOR_BASELINE_STATE_DOCTRINE.md`
+- **LABS Handshake Template**: `lupo-docs/templates/LABS_HANDSHAKE_TEMPLATE.md`
 - **LABS Validator Class**: `lupo-includes/classes/LABSValidator.php`
-- **Agent Awareness Doctrine**: `docs/doctrine/AGENT_AWARENESS_DOCTRINE.md`
-- **UTC_TIMEKEEPER Doctrine**: `docs/doctrine/UTC_TIMEKEEPER_DOCTRINE.md`
-- **Genesis Doctrine**: `docs/core/LUPOPEDIA_GENESIS_DOCTRINE.md`
+- **Agent Awareness Doctrine**: `lupo-docs/doctrine/AGENT_AWARENESS_DOCTRINE.md`
+- **UTC_TIMEKEEPER Doctrine**: `lupo-docs/doctrine/UTC_TIMEKEEPER_DOCTRINE.md`
+- **Genesis Doctrine**: `lupo-docs/core/LUPOPEDIA_GENESIS_DOCTRINE.md`
 
 ---
 
@@ -267,7 +267,7 @@ if ($result['success']) {
 Run the LABS validation test suite:
 
 ```bash
-php scripts/test_labs_validation.php
+php lupo-scripts/test_labs_validation.php
 ```
 
 This tests:

@@ -49,9 +49,9 @@ if (!isset($currentUserId)) {
 if (!isset($userAvatar)) {
     if ($isUserLoggedIn && $currentUserId > 0) {
         // Use auth_user_id for avatar filename (same as lupo_render_login_status)
-        $avatar_path = LUPOPEDIA_PATH . '/uploads/avatars/' . $currentUserId . '_avatar.jpg';
+        $avatar_path = LUPOPEDIA_PATH . '/lupo-uploads/avatars/' . $currentUserId . '_avatar.jpg';
         if (file_exists($avatar_path)) {
-            $userAvatar = LUPOPEDIA_PUBLIC_PATH . '/uploads/avatars/' . $currentUserId . '_avatar.jpg?t=' . time();
+            $userAvatar = LUPOPEDIA_PUBLIC_PATH . '/lupo-uploads/avatars/' . $currentUserId . '_avatar.jpg?t=' . time();
         } else {
             $userAvatar = LUPOPEDIA_PUBLIC_PATH . '/images/logoface.png';
         }

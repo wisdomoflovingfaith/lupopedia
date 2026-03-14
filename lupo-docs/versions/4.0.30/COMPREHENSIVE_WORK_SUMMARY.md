@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\versions\4.0.30\COMPREHENSIVE_WORK_SUMMARY.md"
+  file_path_from_root: "lupo-docs\versions\4.0.30\COMPREHENSIVE_WORK_SUMMARY.md"
   file_hash: "2a2a5d30bcb21903c569e170c1936b9010fd2707080383990feba2f3b2551ed9"
-  file_path_from_root: "docs\versions\4.0.30\COMPREHENSIVE_WORK_SUMMARY.md"
+  file_path_from_root: "lupo-docs\versions\4.0.30\COMPREHENSIVE_WORK_SUMMARY.md"
   file_hash: "2e6b0b5de8f2ef54d5dbab2fb5e6f1866f0f53babd790d8c0bed0280e24cdb92"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -64,7 +64,7 @@ lupopedia.footer:
 ---
 # FLIP Header (alias: Wolfie Header, CROP Header)
 wolfie.headers: explicit architecture with structured clarity for every file.
-file_path_from_root: docs/versions/4.0.30/COMPREHENSIVE_WORK_SUMMARY.md
+file_path_from_root: lupo-docs/versions/4.0.30/COMPREHENSIVE_WORK_SUMMARY.md
 file.last_modified_system_version: "4.0.31"
 file.last_modified_utc: "20260222215200"
 channel_id: 42
@@ -125,7 +125,7 @@ actor_id: 10000
 - **Monitoring and Compliance**: Continuous monitoring and compliance validation with automated reporting
 
 ### 📁 DEVELOPMENT INFRASTRUCTURE ESTABLISHED
-- **Version Directory Structure**: docs/versions/4.0.30/ with complete development organization and governance
+- **Version Directory Structure**: lupo-docs/versions/4.0.30/ with complete development organization and governance
 - **8-Week Development Roadmap**: Comprehensive development plan with 4 distinct phases and milestones
 - **Documentation Framework**: Complete documentation with FLIP headers, progress tracking, and validation
 - **Progress Tracking System**: Comprehensive progress tracking with validation and reporting mechanisms
@@ -143,14 +143,14 @@ actor_id: 10000
 ## Files Created and Their Purpose
 
 ### 📁 Version Files
-- **docs/versions/4.0.30/ROADMAP.md** - Comprehensive 8-week development roadmap with FLIP headers
-- **docs/versions/4.0.30/CHANGELOG_DRAFT.md** - Initial changelog draft with progress tracking and FLIP headers
-- **docs/versions/4.0.30/COMPREHENSIVE_WORK_SUMMARY.md** - Complete work summary with all achievements
+- **lupo-docs/versions/4.0.30/ROADMAP.md** - Comprehensive 8-week development roadmap with FLIP headers
+- **lupo-docs/versions/4.0.30/CHANGELOG_DRAFT.md** - Initial changelog draft with progress tracking and FLIP headers
+- **lupo-docs/versions/4.0.30/COMPREHENSIVE_WORK_SUMMARY.md** - Complete work summary with all achievements
 
 ### 📁 Doctrine Files
-- **docs/doctrine/SECURITY/SEMANTIC_SECURITY_4_0_30.md** - Semantic security framework doctrine with FLIP headers
-- **docs/doctrine/HEADERS/LUPO_HEADER_EXPANSION_4_0_30.md** - LUPO header expansion specifications with FLIP headers
-- **docs/doctrine/HYBRID_ACTOR/HYBRID_ACTOR_2_0.md** - Security-first hybrid actor doctrine with FLIP headers
+- **lupo-docs/doctrine/SECURITY/SEMANTIC_SECURITY_4_0_30.md** - Semantic security framework doctrine with FLIP headers
+- **lupo-docs/doctrine/HEADERS/LUPO_HEADER_EXPANSION_4_0_30.md** - LUPO header expansion specifications with FLIP headers
+- **lupo-docs/doctrine/HYBRID_ACTOR/HYBRID_ACTOR_2_0.md** - Security-first hybrid actor doctrine with FLIP headers
 
 ## Technical Achievements
 

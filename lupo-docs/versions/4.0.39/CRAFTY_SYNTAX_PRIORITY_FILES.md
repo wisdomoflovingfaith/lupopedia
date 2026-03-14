@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\versions\4.0.39\CRAFTY_SYNTAX_PRIORITY_FILES.md"
+  file_path_from_root: "lupo-docs\versions\4.0.39\CRAFTY_SYNTAX_PRIORITY_FILES.md"
   file_hash: "515c70e449989e611ad00381246126d8017ef25aeee5fe79569f7f747e65153c"
-  file_path_from_root: "docs\versions\4.0.39\CRAFTY_SYNTAX_PRIORITY_FILES.md"
+  file_path_from_root: "lupo-docs\versions\4.0.39\CRAFTY_SYNTAX_PRIORITY_FILES.md"
   file_hash: "3694ff41fa779232247c8a40963bc374fae967ad6e50623112f6e6227a92a9b5"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -62,7 +62,7 @@ lupopedia.footer:
 
 ---
 wolfie.headers: {
-  file_path_from_root: "docs/versions/4.0.39/CRAFTY_SYNTAX_PRIORITY_FILES.md",
+  file_path_from_root: "lupo-docs/versions/4.0.39/CRAFTY_SYNTAX_PRIORITY_FILES.md",
   system_version: "4.0.39",
   channel_id: 42,
   mood_rgb: "FF6600",
@@ -90,29 +90,29 @@ wolfie.headers: {
 
 flip.footer: {
   inbound_edges: [
-    { from: "docs/channels/42/broadcasts/20260224_version_4_0_39_crafty_syntax_priority.md", type: "implements", weight: 1.0, hashtag: "#directive" },
-    { from: "docs/versions/4.0.39/PRIORITY_FILES.md", type: "supersedes", weight: 0.8, hashtag: "#priority" }
+    { from: "lupo-docs/channels/42/broadcasts/20260224_version_4_0_39_crafty_syntax_priority.md", type: "implements", weight: 1.0, hashtag: "#directive" },
+    { from: "lupo-docs/versions/4.0.39/PRIORITY_FILES.md", type: "supersedes", weight: 0.8, hashtag: "#priority" }
   ],
   outbound_edges: [
-    { to: "legacy/craftysyntax/", type: "targets", weight: 1.0, hashtag: "#legacy" },
-    { to: "database/migrations/import_from_old_crafty_syntax.sql", type: "targets", weight: 1.0, hashtag: "#migration" },
+    { to: "lupo-legacy/craftysyntax/", type: "targets", weight: 1.0, hashtag: "#legacy" },
+    { to: "lupo-database/migrations/import_from_old_crafty_syntax.sql", type: "targets", weight: 1.0, hashtag: "#migration" },
     { to: "install.php", type: "targets", weight: 1.0, hashtag: "#installer" },
     { to: "lupo-includes/bootstrap.php", type: "targets", weight: 1.0, hashtag: "#bootstrap" },
     { to: "lupo-includes/modules/crafty_syntax/", type: "targets", weight: 1.0, hashtag: "#integration" },
-    { to: "docs/notes_from_legacy_craftysyntax.md", type: "targets", weight: 0.9, hashtag: "#documentation" },
+    { to: "lupo-docs/notes_from_legacy_craftysyntax.md", type: "targets", weight: 0.9, hashtag: "#documentation" },
     { to: "plan_for_crafty_syntax.md", type: "targets", weight: 0.9, hashtag: "#planning" },
-    { to: "database/migrations_legacy/", type: "targets", weight: 0.8, hashtag: "#legacy" },
-    { to: "database/install/", type: "targets", weight: 0.8, hashtag: "#installation" },
-    { to: "docs/channels/developer/modules/UPGRADE_PLAN_3.7.5_TO_3.0.0.md", type: "targets", weight: 0.9, hashtag: "#upgrade" },
-    { to: "docs/channels/architecture/WHY_LUPOPEDIA_NEEDS_CRAFTY_SYNTAX.md", type: "targets", weight: 0.9, hashtag: "#architecture" },
-    { to: "docs/channels/history/CRAFTY_SYNTAX_IMPORT_WIZARD_DESIGN.md", type: "targets", weight: 0.9, hashtag: "#history" },
-    { to: "docs/doctrine/migrations/crafty_syntax_ancestral_intent.md", type: "targets", weight: 0.9, hashtag: "#doctrine" },
-    { to: "docs/doctrine/CRAFTY_SYNTAX_IMPORT_IMPLEMENTATION_CHECKLIST.md", type: "targets", weight: 0.9, hashtag: "#implementation" },
+    { to: "lupo-database/migrations_legacy/", type: "targets", weight: 0.8, hashtag: "#legacy" },
+    { to: "lupo-database/install/", type: "targets", weight: 0.8, hashtag: "#installation" },
+    { to: "lupo-docs/channels/developer/modules/UPGRADE_PLAN_3.7.5_TO_3.0.0.md", type: "targets", weight: 0.9, hashtag: "#upgrade" },
+    { to: "lupo-docs/channels/architecture/WHY_LUPOPEDIA_NEEDS_CRAFTY_SYNTAX.md", type: "targets", weight: 0.9, hashtag: "#architecture" },
+    { to: "lupo-docs/channels/history/CRAFTY_SYNTAX_IMPORT_WIZARD_DESIGN.md", type: "targets", weight: 0.9, hashtag: "#history" },
+    { to: "lupo-docs/doctrine/migrations/crafty_syntax_ancestral_intent.md", type: "targets", weight: 0.9, hashtag: "#doctrine" },
+    { to: "lupo-docs/doctrine/CRAFTY_SYNTAX_IMPORT_IMPLEMENTATION_CHECKLIST.md", type: "targets", weight: 0.9, hashtag: "#implementation" },
     { to: "CHANGELOG.md", type: "will_update", weight: 0.7, hashtag: "#changelog" }
   ],
   referenced_by_actors: [10000, 1002, 1001, 1003, 2038],
   references: {
-    by_files: ["docs/channels/42/broadcasts/20260224_version_4_0_39_crafty_syntax_priority.md", "docs/versions/4.0.39/PRIORITY_FILES.md"],
+    by_files: ["lupo-docs/channels/42/broadcasts/20260224_version_4_0_39_crafty_syntax_priority.md", "lupo-docs/versions/4.0.39/PRIORITY_FILES.md"],
     by_actors: [10000, 1002, 1001, 1003, 2038]
   },
   semantic_tags: ["crafty_syntax_upgrade", "header_priority", "version_4_0_39", "upgrade_path", "file_discovery"],
@@ -161,9 +161,9 @@ This is non-negotiable. These files are the heart of the 4.0.x series and must b
 | File Path | Status | Priority | Notes |
 |-----------|--------|----------|-------|
 | `install.php` | ⚠️ NEEDS HEADER | P0 | Main installer entry point |
-| `install/index.php` | ⚠️ NEEDS HEADER | P0 | Installer UI |
-| `install/wizard.php` | ⚠️ NEEDS HEADER | P0 | Upgrade wizard |
-| `install/config.php` | ⚠️ NEEDS HEADER | P0 | Installation config |
+| `lupo-install/index.php` | ⚠️ NEEDS HEADER | P0 | Installer UI |
+| `lupo-install/wizard.php` | ⚠️ NEEDS HEADER | P0 | Upgrade wizard |
+| `lupo-install/config.php` | ⚠️ NEEDS HEADER | P0 | Installation config |
 | `lupopedia-config.php` | ⚠️ NEEDS HEADER | P0 | System configuration |
 | `index.php` | ⚠️ NEEDS HEADER | P0 | Front controller |
 
@@ -179,14 +179,14 @@ This is non-negotiable. These files are the heart of the 4.0.x series and must b
 
 | File Path | Status | Priority | Notes |
 |-----------|--------|----------|-------|
-| `database/migrations/import_from_old_crafty_syntax.sql` | ⚠️ NEEDS HEADER | P0 | PRIMARY MIGRATION FILE |
-| `database/migrations/old_crafty_syntax_3_7_5_start.sql` | ⚠️ NEEDS HEADER | P0 | Legacy 34 tables |
-| `database/migrations/install_new_lupopedia.sql` | ⚠️ NEEDS HEADER | P0 | Fresh install schema |
-| `database/migrations/seed_lupopedia.sql` | ⚠️ NEEDS HEADER | P0 | Seed data |
+| `lupo-database/migrations/import_from_old_crafty_syntax.sql` | ⚠️ NEEDS HEADER | P0 | PRIMARY MIGRATION FILE |
+| `lupo-database/migrations/old_crafty_syntax_3_7_5_start.sql` | ⚠️ NEEDS HEADER | P0 | Legacy 34 tables |
+| `lupo-database/migrations/install_new_lupopedia.sql` | ⚠️ NEEDS HEADER | P0 | Fresh install schema |
+| `lupo-database/migrations/seed_lupopedia.sql` | ⚠️ NEEDS HEADER | P0 | Seed data |
 | `app/Services/CraftyMigrationService.php` | ⚠️ NEEDS HEADER | P0 | Migration service |
 | `app/Services/CraftyConfigTransformer.php` | ⚠️ NEEDS HEADER | P0 | Config transformation |
-| `scripts/migrate_user_mappings.php` | ⚠️ NEEDS HEADER | P1 | User migration |
-| `scripts/migrate_wolfie_headers_to_db.php` | ⚠️ NEEDS HEADER | P1 | Header migration |
+| `lupo-scripts/migrate_user_mappings.php` | ⚠️ NEEDS HEADER | P1 | User migration |
+| `lupo-scripts/migrate_wolfie_headers_to_db.php` | ⚠️ NEEDS HEADER | P1 | Header migration |
 | `test_dialog_migration.php` | ⚠️ NEEDS HEADER | P1 | Dialog migration test |
 
 **Total:** 9 files
@@ -261,13 +261,13 @@ This is non-negotiable. These files are the heart of the 4.0.x series and must b
 
 | File Path | Status | Priority | Notes |
 |-----------|--------|----------|-------|
-| `docs/doctrine/migrations/MIGRATION_MAPPING_REFERENCE.md` | ⚠️ NEEDS HEADER | P1 | Migration index |
-| `docs/doctrine/migrations/livehelp_users_migration.md` | ⚠️ NEEDS HEADER | P1 | User migration |
-| `docs/doctrine/migrations/operator_to_roles_migration.md` | ⚠️ NEEDS HEADER | P1 | Role migration |
-| `docs/doctrine/database/README.md` | ⚠️ NEEDS HEADER | P1 | DB doctrine index |
-| `docs/channels/appendix/HISTORY.md` | ⚠️ NEEDS HEADER | P2 | Crafty history |
-| `docs/channels/appendix/FOUNDERS_NOTE.md` | ⚠️ NEEDS HEADER | P2 | Founder's note |
-| `legacy/craftysyntax/README.md` | ⚠️ NEEDS HEADER | P2 | Legacy reference |
+| `lupo-docs/doctrine/migrations/MIGRATION_MAPPING_REFERENCE.md` | ⚠️ NEEDS HEADER | P1 | Migration index |
+| `lupo-docs/doctrine/migrations/livehelp_users_migration.md` | ⚠️ NEEDS HEADER | P1 | User migration |
+| `lupo-docs/doctrine/migrations/operator_to_roles_migration.md` | ⚠️ NEEDS HEADER | P1 | Role migration |
+| `lupo-docs/doctrine/database/README.md` | ⚠️ NEEDS HEADER | P1 | DB doctrine index |
+| `lupo-docs/channels/appendix/HISTORY.md` | ⚠️ NEEDS HEADER | P2 | Crafty history |
+| `lupo-docs/channels/appendix/FOUNDERS_NOTE.md` | ⚠️ NEEDS HEADER | P2 | Founder's note |
+| `lupo-legacy/craftysyntax/README.md` | ⚠️ NEEDS HEADER | P2 | Legacy reference |
 
 **Total:** 7 files
 
@@ -282,8 +282,8 @@ This is non-negotiable. These files are the heart of the 4.0.x series and must b
 | File Path | Status | Priority | Notes |
 |-----------|--------|----------|-------|
 | `admin.php` | ⚠️ NEEDS HEADER | P2 | Admin entry point |
-| `admin_sections/channel_view.php` | ⚠️ NEEDS HEADER | P2 | Channel view |
-| `admin_sections/channel_view_new.php` | ⚠️ NEEDS HEADER | P2 | New channel view |
+| `lupo-admin_sections/channel_view.php` | ⚠️ NEEDS HEADER | P2 | Channel view |
+| `lupo-admin_sections/channel_view_new.php` | ⚠️ NEEDS HEADER | P2 | New channel view |
 | `app/Http/Controllers/Admin/AuthenticationController.php` | ⚠️ NEEDS HEADER | P2 | Admin auth |
 | `app/Http/Controllers/CraftyImportController.php` | ⚠️ NEEDS HEADER | P2 | Import controller |
 
@@ -300,13 +300,13 @@ This is non-negotiable. These files are the heart of the 4.0.x series and must b
 | File Path | Status | Priority | Notes |
 |-----------|--------|----------|-------|
 | `validate_420.php` | ⚠️ NEEDS HEADER | P2 | Validation script |
-| `scripts/verify_grounded_architecture.php` | ⚠️ NEEDS HEADER | P2 | Architecture verify |
-| `scripts/verify_dialog_messages.php` | ⚠️ NEEDS HEADER | P2 | Dialog verify |
-| `scripts/update_help_topics.php` | ⚠️ NEEDS HEADER | P2 | Help topics |
-| `scripts/test_labs_validation.php` | ⚠️ NEEDS HEADER | P2 | LABS validation |
-| `scripts/setup_help_list_modules.php` | ⚠️ NEEDS HEADER | P2 | Module setup |
-| `scripts/run_labs_handshake.php` | ⚠️ NEEDS HEADER | P2 | LABS handshake |
-| `scripts/run_migration_4_1_6.php` | ⚠️ NEEDS HEADER | P2 | Migration runner |
+| `lupo-scripts/verify_grounded_architecture.php` | ⚠️ NEEDS HEADER | P2 | Architecture verify |
+| `lupo-scripts/verify_dialog_messages.php` | ⚠️ NEEDS HEADER | P2 | Dialog verify |
+| `lupo-scripts/update_help_topics.php` | ⚠️ NEEDS HEADER | P2 | Help topics |
+| `lupo-scripts/test_labs_validation.php` | ⚠️ NEEDS HEADER | P2 | LABS validation |
+| `lupo-scripts/setup_help_list_modules.php` | ⚠️ NEEDS HEADER | P2 | Module setup |
+| `lupo-scripts/run_labs_handshake.php` | ⚠️ NEEDS HEADER | P2 | LABS handshake |
+| `lupo-scripts/run_migration_4_1_6.php` | ⚠️ NEEDS HEADER | P2 | Migration runner |
 
 **Total:** 8 files
 
@@ -318,7 +318,7 @@ This is non-negotiable. These files are the heart of the 4.0.x series and must b
 
 | Priority | Count | Description | Target |
 |----------|-------|-------------|--------|
-| **P0** | 15 | ABSOLUTE CRITICAL — Cannot install/upgrade without | Day 1 |
+| **P0** | 15 | ABSOLUTE CRITICAL — Cannot lupo-install/upgrade without | Day 1 |
 | **P1** | 37 | CRITICAL — Core upgrade path functionality | Day 1-2 |
 | **P2** | 17 | HIGH — Important for complete experience | Day 2-4 |
 
@@ -348,20 +348,20 @@ This is non-negotiable. These files are the heart of the 4.0.x series and must b
 1. `install.php`
 2. `index.php`
 3. `lupopedia-config.php`
-4. `database/migrations/install_new_lupopedia.sql`
-5. `database/migrations/import_from_old_crafty_syntax.sql`
-6. `database/migrations/old_crafty_syntax_3_7_5_start.sql`
+4. `lupo-database/migrations/install_new_lupopedia.sql`
+5. `lupo-database/migrations/import_from_old_crafty_syntax.sql`
+6. `lupo-database/migrations/old_crafty_syntax_3_7_5_start.sql`
 
 **Afternoon Session (9 files):**
-7. `database/migrations/seed_lupopedia.sql`
+7. `lupo-database/migrations/seed_lupopedia.sql`
 8. `lupo-includes/bootstrap.php`
 9. `lupo-includes/lupopedia-loader.php`
 10. `lupo-includes/modules/module-loader.php`
 11. `lupo-includes/version.php`
 12. `app/Services/CraftyMigrationService.php`
 13. `app/Services/CraftyConfigTransformer.php`
-14. `install/index.php`
-15. `install/wizard.php`
+14. `lupo-install/index.php`
+15. `lupo-install/wizard.php`
 
 ### Day 2: CRITICAL (P1 — 37 files)
 

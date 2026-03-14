@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\channels\developer\modules\HELP_LIST_MODULES_COMPLETE.md"
+  file_path_from_root: "lupo-docs\channels\developer\modules\HELP_LIST_MODULES_COMPLETE.md"
   file_hash: "d0bf9cd3c53c11a57eb3690ae673be879b07276d4140f6cfe01dce079b0ec3ed"
-  file_path_from_root: "docs\channels\developer\modules\HELP_LIST_MODULES_COMPLETE.md"
+  file_path_from_root: "lupo-docs\channels\developer\modules\HELP_LIST_MODULES_COMPLETE.md"
   file_hash: "f75075d088cd5378267b2a1a565af5a89d89d5b2a771a23932b70a442679ca7a"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -90,16 +90,16 @@ Both modules are **fully implemented** and ready for use.
 ## Module 1: HELP Module
 
 ### Database Schema
-- **Migration:** `database/migrations/4_1_1_create_help_topics.sql`
-- **TOON File:** `database/toon_data/lupo_help_topics.toon`
-- **Seed Data:** `database/migrations/4_1_1_seed_help_topics.sql`
+- **Migration:** `lupo-database/migrations/4_1_1_create_help_topics.sql`
+- **TOON File:** `lupo-database/toon_data/lupo_help_topics.toon`
+- **Seed Data:** `lupo-database/migrations/4_1_1_seed_help_topics.sql`
 
 ### Files Created
 ```
 lupo-includes/modules/help/
 ├── help-model.php          # Database access functions
 ├── help-controller.php     # Route handlers
-└── views/
+└── lupo-views/
     ├── index.php          # Help topic list
     ├── topic.php          # Single topic view
     ├── search.php         # Search results
@@ -123,7 +123,7 @@ lupo-includes/modules/help/
 ```
 lupo-includes/modules/list/
 ├── list-controller.php     # Entity introspection
-└── views/
+└── lupo-views/
     ├── index.php          # Entity selector
     ├── entity.php         # Entity table viewer
     └── 404.php            # 404 error page
@@ -153,7 +153,7 @@ lupo-includes/modules/list/
 
 Run the migration SQL:
 ```sql
-source database/migrations/4_1_1_create_help_topics.sql
+source lupo-database/migrations/4_1_1_create_help_topics.sql
 ```
 
 Or manually run:
@@ -180,12 +180,12 @@ CREATE TABLE IF NOT EXISTS `lupo_help_topics` (
 
 Run the seed SQL:
 ```sql
-source database/migrations/4_1_1_seed_help_topics.sql
+source lupo-database/migrations/4_1_1_seed_help_topics.sql
 ```
 
 Or use the setup script:
 ```bash
-php scripts/setup_help_list_modules.php
+php lupo-scripts/setup_help_list_modules.php
 ```
 
 ### Step 3: Test the Modules
@@ -241,8 +241,8 @@ Both modules follow the existing Lupopedia module pattern:
 All files are in standard Lupopedia locations:
 - Modules: `lupo-includes/modules/{module}/`
 - Views: `lupo-includes/modules/{module}/views/`
-- Migrations: `database/migrations/`
-- TOON files: `database/toon_data/`
+- Migrations: `lupo-database/migrations/`
+- TOON files: `lupo-database/toon_data/`
 
 ---
 

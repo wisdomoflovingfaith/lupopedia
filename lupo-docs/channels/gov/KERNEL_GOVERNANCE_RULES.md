@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\channels\gov\KERNEL_GOVERNANCE_RULES.md"
+  file_path_from_root: "lupo-docs\channels\gov\KERNEL_GOVERNANCE_RULES.md"
   file_hash: "a1bb3a546f17c41a63253214d49dde7ab0ea3519d70007e467fed23293e85f35"
-  file_path_from_root: "docs\channels\gov\KERNEL_GOVERNANCE_RULES.md"
+  file_path_from_root: "lupo-docs\channels\gov\KERNEL_GOVERNANCE_RULES.md"
   file_hash: "0fc6c9bf14df30a833d7e84ff83a5f15f2d28b603bc6ddc355043c1fa9b56335"
   last_updated_utc: "20260228"
   system_version: "4.0.50"

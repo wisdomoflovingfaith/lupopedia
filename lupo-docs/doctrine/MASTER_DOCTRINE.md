@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\doctrine\MASTER_DOCTRINE.md"
+  file_path_from_root: "lupo-docs\doctrine\MASTER_DOCTRINE.md"
   file_hash: "1c9e476d3d93707497e5da34d9cb67ff7fc2e87224a8e4a965ef815e2c8f77df"
-  file_path_from_root: "docs\doctrine\MASTER_DOCTRINE.md"
+  file_path_from_root: "lupo-docs\doctrine\MASTER_DOCTRINE.md"
   file_hash: "dce34d237d29d9ffa6660b2edbec578e71a6dad34d2c6f326733a13519cd3e8f"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -64,7 +64,7 @@ lupopedia.footer:
 ---
 # FLIP Header (alias: Wolfie Header, CROP Header, FLIPPING Header)
 wolfie.headers: explicit architecture with structured clarity for every file.
-file_path_from_root: docs/doctrine/MASTER_DOCTRINE.md
+file_path_from_root: lupo-docs/doctrine/MASTER_DOCTRINE.md
 file.last_modified_system_version: "4.0.16"
 file.last_modified_utc: "20260218000000"
 channel_id: 42   # ANUBIS adoption channel
@@ -74,7 +74,7 @@ atoms:
   recovery_event: true
 X-Lupo-Actor-ID: 2035
 X-Lupo-Actor-Identity: "Lupopedia Audit Tool (Auto-Fixed)"
-X-Lupo-File-Path: docs/doctrine/MASTER_DOCTRINE.md
+X-Lupo-File-Path: lupo-docs/doctrine/MASTER_DOCTRINE.md
 ---
 
 # WOLFIE HEADER DOCTRINE v4.1
@@ -286,14 +286,14 @@ A header is valid if:
 ### 11.1 Minimal Header
 ```
 /* wolfie_header v4.1
-   file_path_from_root: docs/lupopedia/core/identity/semantic_os.md
+   file_path_from_root: lupo-docs/lupopedia/core/identity/semantic_os.md
 */
 ```
 
 ### 11.2 Header with Optional Fields
 ```
 /* wolfie_header v4.1
-   file_path_from_root: docs/lupopedia/core/identity/semantic_os.md
+   file_path_from_root: lupo-docs/lupopedia/core/identity/semantic_os.md
    content_sections: [introduction, purpose, invariants]
    version_number: 12
    dialog_notes: updated section anchors and normalized spacing
@@ -305,7 +305,7 @@ A header is valid if:
 ### 11.3 Code File Header
 ```
 /* wolfie_header v4.1
-   file_path_from_root: api/controllers/user_auth.py
+   file_path_from_root: lupo-api/controllers/user_auth.py
    content_sections: [imports, class, methods, tests]
    version_number: 8
    dialog_notes: refactored authentication logic
@@ -317,7 +317,7 @@ A header is valid if:
 ### 11.4 Database Migration Header
 ```
 /* wolfie_header v4.1
-   file_path_from_root: database/migrations/001_create_users.sql
+   file_path_from_root: lupo-database/migrations/001_create_users.sql
    content_sections: [up, down]
    version_number: 1
    dialog_notes: initial user table

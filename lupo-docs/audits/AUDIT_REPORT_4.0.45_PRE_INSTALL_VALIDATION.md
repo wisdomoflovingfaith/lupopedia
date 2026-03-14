@@ -43,7 +43,7 @@ lupopedia.footer:
 
 ## EXECUTIVE SUMMARY
 
-🟡 **MINOR GAPS DETECTED** — Seeding is mostly complete but has discrepancies with snapshot data. The 4.0.45 seeding SQL represents a CLEAN SLATE doctrine-compliant implementation, while snapshots contain legacy/experimental IDs that are intentionally excluded.
+🟡 **MINOR GAPS DETECTED** — Seeding is mostly complete but has discrepancies with snapshot data. The 4.0.45 seeding SQL represents a CLEAN SLATE doctrine-compliant implementation, while snapshots contain lupo-legacy/experimental IDs that are intentionally excluded.
 
 **Key Finding:** The 4.0.45 seeding is AUTHORITATIVE and represents the correct minimal system state. Snapshot discrepancies are primarily legacy IDs that should NOT be seeded.
 
@@ -161,7 +161,7 @@ lupopedia.footer:
 ### 2.3 Channel Discrepancies
 
 **Missing from 4.0.45 Seeding:**
-- Channel 666 (ANUBIS Quarantine) — referenced in channels/registry.json
+- Channel 666 (ANUBIS Quarantine) — referenced in lupo-channels/registry.json
 - Channels 1001-1090 (50+ system channels)
 - Channel 5101 (Kernel Bootstrap)
 - Channels 2001-2009 (Test channels)
@@ -176,7 +176,7 @@ lupopedia.footer:
 🟡 **MINOR GAPS** — The 4.0.45 seeding provides MINIMAL required channels. Snapshot channels 1001-1090 are operational/diagnostic channels that can be created dynamically. However:
 
 **MISSING CRITICAL CHANNEL:**
-- Channel 666 (ANUBIS Quarantine) is referenced in channels/registry.json and MD filenames but NOT seeded in 4.0.45
+- Channel 666 (ANUBIS Quarantine) is referenced in lupo-channels/registry.json and MD filenames but NOT seeded in 4.0.45
 
 **RECOMMENDATION:** Add channel 666 to seed_actors_agents_4.0.45.sql
 
@@ -321,7 +321,7 @@ From `lupo_channels.csv` department_id references:
 
 ## 7. MD FILE REFERENCES AUDIT
 
-### 7.1 MD Files in channels/0/broadcasts
+### 7.1 MD Files in lupo-channels/0/broadcasts
 
 **Sample filenames:**
 - `20260224153000_10000_1000_0_php_compatibility_doctrine.md`
@@ -390,7 +390,7 @@ From `lupo_channels.csv` department_id references:
    VALUES (9100666, 'channel', 666, 666, 1, @now, 'anubis-quarantine', 'ANUBIS Quarantine', 'lupo_channels', @now, @now, 0, 1, 0, '{"channel_type":"quarantine","purpose":"banned_messages"}');
    ```
 
-3. **Update channels/registry.json to match 4.0.45:**
+3. **Update lupo-channels/registry.json to match 4.0.45:**
    - Add channel 1 (Administration)
    - Update channel 51 description to "Reserved Channel"
 

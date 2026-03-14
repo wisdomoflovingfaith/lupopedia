@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\audits\AUTH_COMPATIBILITY_AUDIT.md"
+  file_path_from_root: "lupo-docs\audits\AUTH_COMPATIBILITY_AUDIT.md"
   file_hash: "1602de453ae9cea9166f7ce4c8fe228c8dbda5375edcedc957badc6cf47db691"
-  file_path_from_root: "docs\audits\AUTH_COMPATIBILITY_AUDIT.md"
+  file_path_from_root: "lupo-docs\audits\AUTH_COMPATIBILITY_AUDIT.md"
   file_hash: "b98303c61fbb4069a3b1692a550f82732f410c7732829c5cbdcaed888853281c"
   last_updated_utc: "20260228"
   system_version: "4.0.50"

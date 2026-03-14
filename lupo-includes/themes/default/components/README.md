@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -96,7 +96,7 @@ This directory contains reusable UI component templates for Lupopedia.
 
 - `components/` - Individual UI component templates
 - `layouts/` - Page layout templates
-- `templates/` - Template files for various UI elements
+- `lupo-templates/` - Template files for various UI elements
 
 ## Component Templates
 
@@ -350,7 +350,7 @@ include LUPO_UI_PATH . '/components/collections_dropdown.php';
 - `$isUserLoggedIn` - Boolean indicating if user is logged in (optional, defaults to session check)
 
 **Features:**
-- Lists user collections via AJAX from `api/list_user_collections.php`
+- Lists user collections via AJAX from `lupo-api/list_user_collections.php`
 - Highlights currently selected collection
 - Includes Save/Load/Edit actions as dropdown menu options
 - Triggers tab loading when collection is selected via `loadCollectionTabs()`

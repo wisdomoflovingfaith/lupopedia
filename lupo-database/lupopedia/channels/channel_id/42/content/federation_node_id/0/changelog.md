@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: "channels/42/content/federation_node_id/0/changelog.md"
+  file_path_from_root: "lupo-channels/42/content/federation_node_id/0/changelog.md"
   file_hash: "to_be_generated"
   federation_node_id: 0
   web_path: "http://www.lupopedia.com/changelog"
@@ -20,12 +20,12 @@ lupopedia.headers:
 
 lupopedia.edges:
   outbound_edges:
-    - { to: "docs/doctrine/FLARE/FLARE_DOCTRINE.md", type: "references", weight: 1.0 }
-    - { to: "docs/FLARE_HEADERS_COMPLETE_REFERENCE.md", type: "references", weight: 1.0 }
-    - { to: "docs/api/FLARE_API.md", type: "references", weight: 0.9 }
-    - { to: "actors/registry.json", type: "references", weight: 0.8 }
-    - { to: "database/migrations/install_lupopedia.sql", type: "references", weight: 0.7 }
-    - { to: "docs/database/lupopedia/tables/lupo_channel_content.md", type: "references", weight: 0.7 }
+    - { to: "lupo-docs/doctrine/FLARE/FLARE_DOCTRINE.md", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/FLARE_HEADERS_COMPLETE_REFERENCE.md", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/api/FLARE_API.md", type: "references", weight: 0.9 }
+    - { to: "lupo-actors/registry.json", type: "references", weight: 0.8 }
+    - { to: "lupo-database/migrations/install_lupopedia.sql", type: "references", weight: 0.7 }
+    - { to: "lupo-docs/database/lupopedia/tables/lupo_channel_content.md", type: "references", weight: 0.7 }
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
   semantic_tags: ["flare", "federation", "changelog", "canonical", "protocol"]
 
@@ -51,7 +51,7 @@ This document serves as the changelog for federation node 0, tracking all FLARE-
 ### Federation Infrastructure Establishment
 
 #### Core Components
-- ✅ **Canonical FLARE Definition**: Created `channels/42/content/federation_node_id/0/FLARE.md` as root FLARE definition
+- ✅ **Canonical FLARE Definition**: Created `lupo-channels/42/content/federation_node_id/0/FLARE.md` as root FLARE definition
 - ✅ **Database Table**: Added `lupo_channel_content` table for federation node management
 - ✅ **Web Path Mapping**: Established `http://www.lupopedia.com/FLARE` as canonical URL
 - ✅ **Template System**: Updated FLARE header template with canonical URL support
@@ -79,7 +79,7 @@ VALUES
 (
   42,
   0,
-  'channels/42/content/federation_node_id/0/changelog.md',
+  'lupo-channels/42/content/federation_node_id/0/changelog.md',
   'http://www.lupopedia.com/changelog',
   JSON_OBJECT('description', 'FLARE changelog for federation node 0'),
   20260301120000,
@@ -90,11 +90,11 @@ VALUES
 
 ### References
 
-- **FLARE Doctrine**: `docs/doctrine/FLARE/FLARE_DOCTRINE.md`
-- **Complete Reference**: `docs/FLARE_HEADERS_COMPLETE_REFERENCE.md`
-- **API Documentation**: `docs/api/FLARE_API.md`
-- **Table Documentation**: `docs/database/lupopedia/tables/lupo_channel_content.md`
-- **Template System**: `tools/flare_header_template.txt`
+- **FLARE Doctrine**: `lupo-docs/doctrine/FLARE/FLARE_DOCTRINE.md`
+- **Complete Reference**: `lupo-docs/FLARE_HEADERS_COMPLETE_REFERENCE.md`
+- **API Documentation**: `lupo-docs/api/FLARE_API.md`
+- **Table Documentation**: `lupo-docs/database/lupopedia/tables/lupo_channel_content.md`
+- **Template System**: `lupo-tools/flare_header_template.txt`
 - **Main CHANGELOG**: `CHANGELOG.md`
 
 ---

@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\channels\schema\migrations\analysis\PHASE9_THEATRICAL_UI_EVENT_MAPPING_REPORT.md"
+  file_path_from_root: "lupo-docs\channels\schema\migrations\analysis\PHASE9_THEATRICAL_UI_EVENT_MAPPING_REPORT.md"
   file_hash: "7df6ad2e55bfd7ccdbd30626aaae0fcea00edae1330a32909103e229907f9cc4"
-  file_path_from_root: "docs\channels\schema\migrations\analysis\PHASE9_THEATRICAL_UI_EVENT_MAPPING_REPORT.md"
+  file_path_from_root: "lupo-docs\channels\schema\migrations\analysis\PHASE9_THEATRICAL_UI_EVENT_MAPPING_REPORT.md"
   file_hash: "13513e67c3aa98436e5149b3b35722f5ae251c7d6ccba1926f314d7b5a045128"
   last_updated_utc: "20260228"
   system_version: "4.0.50"

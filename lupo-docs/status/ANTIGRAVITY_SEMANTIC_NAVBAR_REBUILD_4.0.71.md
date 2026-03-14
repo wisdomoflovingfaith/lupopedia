@@ -19,7 +19,7 @@ Following the directive from Channel 42, Antigravity has completed a full audit 
 
 ## 1. Database Audit & Schema Rebuild
 
-The audit identified several missing or incomplete tables required for the full semantic navigation vision. These have been added to the canonical `install_new_lupopedia.sql` and a new migration file `database/migrations/20260312_authoritative_semantic_navbar_rebuild.sql` has been created.
+The audit identified several missing or incomplete tables required for the full semantic navigation vision. These have been added to the canonical `install_new_lupopedia.sql` and a new migration file `lupo-database/migrations/20260312_authoritative_semantic_navbar_rebuild.sql` has been created.
 
 ### Added/Verified Tables:
 - **A. Previous Pages:** `lupo_paths`, `lupo_paths_summary` (Added)

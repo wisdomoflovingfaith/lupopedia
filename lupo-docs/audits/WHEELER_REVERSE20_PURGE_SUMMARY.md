@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\audits\WHEELER_REVERSE20_PURGE_SUMMARY.md"
+  file_path_from_root: "lupo-docs\audits\WHEELER_REVERSE20_PURGE_SUMMARY.md"
   file_hash: "846094d706b9cc7176c869c34420e668c1d03296510884ea839f9cadc73f9ebe"
-  file_path_from_root: "docs\audits\WHEELER_REVERSE20_PURGE_SUMMARY.md"
+  file_path_from_root: "lupo-docs\audits\WHEELER_REVERSE20_PURGE_SUMMARY.md"
   file_hash: "84beca7952b42c1f0d6845639568f7224528dc4acd902f688ca20b597bbfbf23"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -72,28 +72,28 @@ lupopedia.footer:
 
 | File | Reason |
 |------|--------|
-| `docs/channels/doctrine/WHEELER_MODE_DOCTRINE.md` | Entire file described "John Wheeler Reverse-20 Workflow"; not part of canonical Lupopedia doctrine |
+| `lupo-docs/channels/doctrine/WHEELER_MODE_DOCTRINE.md` | Entire file described "John Wheeler Reverse-20 Workflow"; not part of canonical Lupopedia doctrine |
 
 ---
 
 ## 2. Files modified
 
 ### Doctrine and templates
-- **docs/channels/doctrine/INDEX.md** — Removed link to WHEELER_MODE_DOCTRINE.md
-- **docs/channels/doctrine/README.md** — Removed WHEELER_MODE_DOCTRINE.md from file list
-- **docs/channels/doctrine/WOLFIE_HEADER_DOCTRINE.md** — Removed WHEELER_MODE atom; removed all Wheeler Mode sections (3.10, 12, 13); removed wheeler_mode block and reverse-20/reverse-20 workflow references; renumbered Humor section to 12
+- **lupo-docs/channels/doctrine/INDEX.md** — Removed link to WHEELER_MODE_DOCTRINE.md
+- **lupo-docs/channels/doctrine/README.md** — Removed WHEELER_MODE_DOCTRINE.md from file list
+- **lupo-docs/channels/doctrine/WOLFIE_HEADER_DOCTRINE.md** — Removed WHEELER_MODE atom; removed all Wheeler Mode sections (3.10, 12, 13); removed wheeler_mode block and reverse-20/reverse-20 workflow references; renumbered Humor section to 12
 - **dialogs/WOLFIE_HEADER_DOCTRINE.md** — Removed WHEELER_MODE atom; removed Wheeler Mode sections 12 and 13; renumbered 14 to 12; updated message
-- **docs/channels/developer/templates/WOLFIE_HEADER_TEMPLATE.md** — Removed WHEELER_MODE atom and Wheeler Mode Block; removed Quantum State Block (schrodinger); updated message and atom reference; renamed "quantum" category to "metadata"
+- **lupo-docs/channels/developer/templates/WOLFIE_HEADER_TEMPLATE.md** — Removed WHEELER_MODE atom and Wheeler Mode Block; removed Quantum State Block (schrodinger); updated message and atom reference; renamed "quantum" category to "metadata"
 - **DIRECTORY_TREE.md** — Removed WHEELER_MODE_DOCTRINE.md entry
 
 ### Migrations and postmortems
-- **docs/channels/schema/migrations/3.0.81.md** — Replaced Wheeler Mode references with "optional discovery-context metadata"; removed reference to WHEELER_MODE_DOCTRINE.md
-- **docs/channels/overview/postmortems/3.0.81.md** — Replaced "Wheeler Mode and uncertainty metadata" with "Optional discovery-context metadata"
+- **lupo-docs/channels/schema/migrations/3.0.81.md** — Replaced Wheeler Mode references with "optional discovery-context metadata"; removed reference to WHEELER_MODE_DOCTRINE.md
+- **lupo-docs/channels/overview/postmortems/3.0.81.md** — Replaced "Wheeler Mode and uncertainty metadata" with "Optional discovery-context metadata"
 
 ### Scripts and versioning
-- **scripts/bulk_update_headers_4_1_6.md** — Replaced "Wheeler Mode" with "optional metadata"
-- **docs/channels/overview/versioning/changelog_update_4.1.14.md** — Removed wheeler_mode frontmatter block
-- **docs/channels/overview/versioning/CHANGELOG.md** — Removed or rephrased all "Wheeler Mode Integration," "John Wheeler," "Reverse-20 workflow," "wheeler_mode," and WHEELER_MODE_DOCTRINE references; replaced remaining "Wheeler Mode" in metadata blocks list and "Wheeler Mode Metadata Block" with "optional discovery-context" / "Optional discovery-context metadata"
+- **lupo-scripts/bulk_update_headers_4_1_6.md** — Replaced "Wheeler Mode" with "optional metadata"
+- **lupo-docs/channels/overview/versioning/changelog_update_4.1.14.md** — Removed wheeler_mode frontmatter block
+- **lupo-docs/channels/overview/versioning/CHANGELOG.md** — Removed or rephrased all "Wheeler Mode Integration," "John Wheeler," "Reverse-20 workflow," "wheeler_mode," and WHEELER_MODE_DOCTRINE references; replaced remaining "Wheeler Mode" in metadata blocks list and "Wheeler Mode Metadata Block" with "optional discovery-context" / "Optional discovery-context metadata"
 
 ### Dialogs and humor
 - **dialogs/humor/WOLFIE_OUT_OF_CONTEXT_APPENDIX.md** — Removed "who is john wheeler" from quote; removed "Wheeler Mode Confusion" subsection (John Wheeler / participatory universe / Reverse-20); rephrased "Quantum Humor: Wheeler observation" to "Version Humor"
@@ -103,8 +103,8 @@ lupopedia.footer:
 - **dialogs/changelog_dialog_backup.md** — Removed "JOHN WHEELER REVERSE-20 WORKFLOW EXPLANATION" section; renamed "REVERSE HANDSHAKE / REVERSE-20 WORKFLOW DETAILS" to "REVERSE HANDSHAKE PROTOCOL (RSHAP)"; removed Reverse-20 Workflow line; replaced Wheeler Mode / wheeler_mode / Wheeler Mode discovery in WOLFIE HEADERS, NEW WARNINGS, and SUMMARY with optional discovery-context wording; fixed malformed heading
 
 ### Other
-- **.cursor/rules/stoned-wolfie-schrodinger-ban.mdc** — Replaced "Wheeler Mode and emergent-architecture uncertainty remain valid" with "Optional discovery-context or emergent-architecture metadata is allowed"; added prohibition on "Wheeler" and "Reverse-20" and reference to wheeler-reverse20-ban.mdc
-- **docs/audits/STONED_WOLFIE_PURGE_SUMMARY.md** — Updated to state WHEELER_MODE_DOCTRINE was deleted in Wheeler/Reverse-20 purge and to reference this summary
+- **.cursor/rules/stoned-wolfie-schrodinger-ban.mdc** — Had been updated to add prohibition on "Wheeler" and "Reverse-20" (rule file since removed).
+- **lupo-docs/audits/STONED_WOLFIE_PURGE_SUMMARY.md** — Updated to state WHEELER_MODE_DOCTRINE was deleted in Wheeler/Reverse-20 purge and to reference this summary
 
 ---
 
@@ -152,11 +152,7 @@ lupopedia.footer:
 
 ## 7. Confirmation: Cursor (and agents) treat concepts as permanently banned
 
-- **.cursor/rules/wheeler-reverse20-ban.mdc** has been added. It instructs Cursor to:
-  - Treat John Wheeler references as banned; do not add them to doctrine, metadata, or documentation.
-  - Treat Reverse-20 workflow (and variants) as banned; do not add workflow names or metadata using these concepts.
-  - Not create or restore WHEELER_MODE_DOCTRINE, wheeler_mode blocks, or WHEELER_MODE atom.
-  - Not introduce "participatory universe," "it from bit," "self-excited circuit," "observer-created reality," "Wheeler loop," or derivative metaphors as Lupopedia doctrine or metadata.
+- A Cursor rule (wheeler-reverse20-ban) had been added (rule file since removed). It had instructed Cursor to treat John Wheeler and Reverse-20 as banned and not to add WHEELER_MODE or related metaphors. The concepts remain banned; the separate rule file has been removed from the repo.
 
 ---
 

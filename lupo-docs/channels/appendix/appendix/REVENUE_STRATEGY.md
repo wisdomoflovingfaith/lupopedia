@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\channels\appendix\appendix\REVENUE_STRATEGY.md"
+  file_path_from_root: "lupo-docs\channels\appendix\appendix\REVENUE_STRATEGY.md"
   file_hash: "12a07b506323568652e016ff6c0bd09f48fc13269c18dbce53894b35aef2d978"
-  file_path_from_root: "docs\channels\appendix\appendix\REVENUE_STRATEGY.md"
+  file_path_from_root: "lupo-docs\channels\appendix\appendix\REVENUE_STRATEGY.md"
   file_hash: "9ee2554b76ddc0178335546d16e8025752a0dbaf7775cb02169ad094b47cf7f3"
   last_updated_utc: "20260228"
   system_version: "4.0.50"

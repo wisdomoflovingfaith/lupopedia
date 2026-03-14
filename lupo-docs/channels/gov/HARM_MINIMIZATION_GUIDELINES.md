@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\channels\gov\HARM_MINIMIZATION_GUIDELINES.md"
+  file_path_from_root: "lupo-docs\channels\gov\HARM_MINIMIZATION_GUIDELINES.md"
   file_hash: "d3bf8f548780a6f9ea472ebc8955d6d671b59c3f36c36391891a4d2cd6ece356"
-  file_path_from_root: "docs\channels\gov\HARM_MINIMIZATION_GUIDELINES.md"
+  file_path_from_root: "lupo-docs\channels\gov\HARM_MINIMIZATION_GUIDELINES.md"
   file_hash: "4ab9b9b35b6eadffd1d1c780082473b3de719cf6a0e35cbdc58b9d90bb26153a"
   last_updated_utc: "20260228"
   system_version: "4.0.50"

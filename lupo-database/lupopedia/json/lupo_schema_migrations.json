@@ -6,14 +6,7 @@
     "`name` varchar(255) NOT NULL",
     "`applied_ymdhis` bigint NOT NULL DEFAULT 0"
   ],
-  "data": [
-    {
-      "schema_migration_id": 0,
-      "version": "20260311",
-      "name": "lupo_actor_traits_4.0.69",
-      "applied_ymdhis": 20260311120000
-    }
-  ],
+  "data": [],
   "indexes": [
     {
       "index_name": "lupo_schema_migrations_idx_applied",

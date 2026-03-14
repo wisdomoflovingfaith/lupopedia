@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\doctrine\FLIP\headers\FLIP_HEADER_TO_TOON_MAP.md"
+  file_path_from_root: "lupo-docs\doctrine\FLIP\headers\FLIP_HEADER_TO_TOON_MAP.md"
   file_hash: "7f41bca0d6ce08e4500a5d976cffb913d82966003040fc709d0682a7d68a9278"
-  file_path_from_root: "docs\doctrine\FLIP\headers\FLIP_HEADER_TO_TOON_MAP.md"
+  file_path_from_root: "lupo-docs\doctrine\FLIP\headers\FLIP_HEADER_TO_TOON_MAP.md"
   file_hash: "134aa60a216d507785621ea2c3487af1830308c62f4632bef56fe26069a6c763"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -63,7 +63,7 @@ lupopedia.footer:
 
 ---
 wolfie.headers: explicit architecture with structured clarity for every file.
-file_path_from_root: "docs/doctrine/FLIP/headers/FLIP_HEADER_TO_TOON_MAP.md"
+file_path_from_root: "lupo-docs/doctrine/FLIP/headers/FLIP_HEADER_TO_TOON_MAP.md"
 system_version: "4.0.35"
 channel_id: 42
 mood_rgb: "00FFFF"

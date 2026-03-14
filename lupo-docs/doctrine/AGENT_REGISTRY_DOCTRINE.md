@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\doctrine\AGENT_REGISTRY_DOCTRINE.md"
+  file_path_from_root: "lupo-docs\doctrine\AGENT_REGISTRY_DOCTRINE.md"
   file_hash: "b229f9b21d4c90faf053a370e40a16eb1c928837c3396588e345c57b3e39b141"
-  file_path_from_root: "docs\doctrine\AGENT_REGISTRY_DOCTRINE.md"
+  file_path_from_root: "lupo-docs\doctrine\AGENT_REGISTRY_DOCTRINE.md"
   file_hash: "d22205e8b7cafbca17c65196c3b78cd5082675c7d4d0911e8460dac4fe89c7c7"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -63,7 +63,7 @@ lupopedia.footer:
 
 ---
 wolfie.headers:
-  file_path_from_root: "docs/doctrine/AGENT_REGISTRY_DOCTRINE.md"
+  file_path_from_root: "lupo-docs/doctrine/AGENT_REGISTRY_DOCTRINE.md"
   system_version: "4.0.33"
   channel_id: 42
   mood_rgb: "0044FF"
@@ -76,9 +76,9 @@ wolfie.headers:
 flip.footer:
   referenced_by_files:
     - "CHANGELOG.md"
-    - "docs/AGENT_INVENTORY.md"
-    - "docs/doctrine/X_LUPO_FORWARDED_HEADER_DOCTRINE.md"
-    - "docs/doctrine/IDE_TASK_PRIORITY_DOCTRINE.md"
+    - "lupo-docs/AGENT_INVENTORY.md"
+    - "lupo-docs/doctrine/X_LUPO_FORWARDED_HEADER_DOCTRINE.md"
+    - "lupo-docs/doctrine/IDE_TASK_PRIORITY_DOCTRINE.md"
   referenced_by_channels:
     - 42
   referenced_by_actors:
@@ -317,13 +317,13 @@ Agent is permanently restricted from operations.
 1. Assign next available actor_id in appropriate range
 2. Define canonical_name, slug, type, status
 3. Update this registry document
-4. Update docs/AGENT_INVENTORY.md
+4. Update lupo-docs/AGENT_INVENTORY.md
 5. Post announcement to Channel 42
 
 ### Updating Agent Status
 
 1. Update status field in registry
-2. Update docs/AGENT_INVENTORY.md
+2. Update lupo-docs/AGENT_INVENTORY.md
 3. Post status change to Channel 42
 
 ### Removing Agents

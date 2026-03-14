@@ -21,7 +21,7 @@ lupopedia.headers:
 # Lupopedia TL;DR — HELP • FLAME • WOLFIE • Routing • Core Architecture (v4.0.61)
 
 **Thread location:** `{LUPO_CHANNELS_DIR}/0/threads/VERSION_4.0.61/tldr.md`  
-**Canonical original:** [docs/TLDR_LUPOPEDIA.md](../../../docs/TLDR_LUPOPEDIA.md)
+**Canonical original:** [lupo-docs/TLDR_LUPOPEDIA.md](../../../docs/TLDR_LUPOPEDIA.md)
 
 ---
 
@@ -31,7 +31,7 @@ lupopedia.headers:
 - **Top-level commands:** `whoami`, `context`, `help`, `doctor`, `version`, `auth`, `actor-context`, `switch`
 - **Sub‑topic help:** `lupo help whoami`, `help context`, `help doctor`
 - **HelpRenderer class:** `lupo-includes/classes/HelpRenderer.php`
-- **Source of truth:** `docs/HELP.md`
+- **Source of truth:** `lupo-docs/HELP.md`
 
 ---
 
@@ -80,7 +80,7 @@ lupopedia.headers:
 - **Dual-identity:** three layers + session modes (`human_direct`, `hybrid`, `autonomous_agent`, `system`)
 - **Channels & Threads:** `{LUPO_CHANNELS_DIR}/{node_id}/{channel_id}/threads/`
 - **Session-first:** `lupo-database/session.md` read before database
-- **Version tracking:** `version.php` + `docs/version.md` + `$lupo_config['version']`
+- **Version tracking:** `version.php` + `lupo-docs/version.md` + `$lupo_config['version']`
 
 ---
 

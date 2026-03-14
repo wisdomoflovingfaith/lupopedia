@@ -6,6 +6,8 @@
     "`dialog_thread_id` bigint",
     "`channel_id` bigint",
     "`from_actor_id` bigint",
+    "`source_faucet_slug` varchar(100)",
+    "`source_faucet_instance_id` varchar(100)",
     "`to_actor_id` bigint",
     "`read_by_actor_id` bigint NOT NULL DEFAULT 0",
     "`read_by_actor_utc` bigint NOT NULL DEFAULT 0",
@@ -50,6 +52,15 @@
       "index_name": "lupo_dialog_messages_idx_dialog_thread_id",
       "columns": [
         "dialog_thread_id"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_dialog_messages_idx_faucet",
+      "columns": [
+        "source_faucet_slug",
+        "source_faucet_instance_id"
       ],
       "is_unique": false,
       "index_type": "BTREE"

@@ -99,6 +99,6 @@ between `lupo_sessions` and the session MD files. It **reports** drift and missi
 
 ## References
 
-- `docs/status/cursor_actors_channels_semantic_architecture_4.0.69.md` — fallback (MD/CSV when DB unavailable).
+- `lupo-docs/status/cursor_actors_channels_semantic_architecture_4.0.69.md` — fallback (MD/CSV when DB unavailable).
 - `lupo-docs/doctrine/LUPOPEDIA_HEADERS/LUPOPEDIA_HEADERS_FORMAT.md` — session block format.
 - `lupo-database/sessions/README.md` — session file layout and naming.

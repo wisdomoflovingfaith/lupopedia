@@ -90,9 +90,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "channels\42\tasks\completed\TOON-GENERATION-001.md"
+  file_path_from_root: "lupo-channels\42\tasks\completed\TOON-GENERATION-001.md"
   file_hash: "b401bebc8a5e2e272658a61c1bb7cd7729deb341bf7f4a6156c1608ca5b25f0d"
-  file_path_from_root: "channels\42\tasks\completed\TOON-GENERATION-001.md"
+  file_path_from_root: "lupo-channels\42\tasks\completed\TOON-GENERATION-001.md"
   file_hash: "467408a3c9add5b9847f1eb7b3ba1fdeb244372f6439221950eff9d1943c4165"
   last_updated_utc: "20260228"
   system_version: "4.0.50"

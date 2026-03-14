@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\registry\REGISTERED_IDS.md"
+  file_path_from_root: "lupo-docs\registry\REGISTERED_IDS.md"
   file_hash: "efdccda4287fe451eca6ef1b772432cbb9be7bb55540759c827bed2f9a8d87eb"
-  file_path_from_root: "docs\registry\REGISTERED_IDS.md"
+  file_path_from_root: "lupo-docs\registry\REGISTERED_IDS.md"
   file_hash: "f28184f1c0bc0df6d64e9c36eb9678c9cfd77a59d729d7361f6d9f30e390521a"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -63,7 +63,7 @@ lupopedia.footer:
 
 ---
 wolfie.headers: {
-  file_path_from_root: "docs/registry/REGISTERED_IDS.md",
+  file_path_from_root: "lupo-docs/registry/REGISTERED_IDS.md",
   system_version: "4.0.39",
   channel_id: 0,
   mood_rgb: "AAAAAA",
@@ -85,8 +85,8 @@ flip.footer: {
     { from: "QUICKSTART.md", type: "implements", weight: 0.9 }
   ],
   outbound_edges: [
-    { to: "docs/doctrine/SUPPORTING_ACTOR_DOCTRINE.md", type: "references", weight: 0.8 },
-    { to: "docs/doctrine/ANUBIS_FALLBACK_DOCTRINE.md", type: "references", weight: 0.8 }
+    { to: "lupo-docs/doctrine/SUPPORTING_ACTOR_DOCTRINE.md", type: "references", weight: 0.8 },
+    { to: "lupo-docs/doctrine/ANUBIS_FALLBACK_DOCTRINE.md", type: "references", weight: 0.8 }
   ],
   semantic_relationships: { "defines": ["actors", "channels", "departments"] },
   enrichment: { "llm_inferred_edges": ["related_to:actor_model"] },

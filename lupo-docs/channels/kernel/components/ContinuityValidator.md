@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\channels\kernel\components\ContinuityValidator.md"
+  file_path_from_root: "lupo-docs\channels\kernel\components\ContinuityValidator.md"
   file_hash: "d4709cc035d48506a166fed1586416200a78bfcee420dbb28ef59f9db6a61a30"
-  file_path_from_root: "docs\channels\kernel\components\ContinuityValidator.md"
+  file_path_from_root: "lupo-docs\channels\kernel\components\ContinuityValidator.md"
   file_hash: "e5b6b9f3389a138267074ecafae9bf73971bd7f65746760a2e85da6b57f942d2"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -191,7 +191,7 @@ foreach ($summary['recommendations'] as $rec) {
 ### Cross-Reference Validation
 
 #### Reference Types
-- **Internal**: `docs/history/period/file.md`
+- **Internal**: `lupo-docs/history/period/file.md`
 - **Cross-era**: References between different time periods
 - **Bidirectional**: Mutual references between related documents
 
@@ -341,7 +341,7 @@ $validator->onProgress(function($progress) {
 #### Missing History Directory
 ```
 Error: History directory not found
-Solution: Ensure docs/history/ exists with proper structure
+Solution: Ensure lupo-docs/history/ exists with proper structure
 ```
 
 #### Version Mismatches

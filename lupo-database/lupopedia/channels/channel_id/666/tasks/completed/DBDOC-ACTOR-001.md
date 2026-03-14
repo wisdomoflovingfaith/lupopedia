@@ -90,9 +90,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "channels\42\tasks\completed\DBDOC-ACTOR-001.md"
+  file_path_from_root: "lupo-channels\42\tasks\completed\DBDOC-ACTOR-001.md"
   file_hash: "281e4b425a786f6cdcf4808d34c84c9ff52b686d188008ce35ab3fdfc830f7ad"
-  file_path_from_root: "channels\42\tasks\completed\DBDOC-ACTOR-001.md"
+  file_path_from_root: "lupo-channels\42\tasks\completed\DBDOC-ACTOR-001.md"
   file_hash: "6c49d29836feb33605e9dce3262bb65f4c71ad74271a86726cb48eb99f216e59"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -130,4 +130,4 @@ task_type: "documentation"
 
 **Status:** COMPLETE
 
-Documented 13 actor tables in docs/database/lupopedia/tables/.
+Documented 13 actor tables in lupo-docs/database/lupopedia/tables/.

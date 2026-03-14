@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\doctrine\DOCTRINE_TABLES_TRANSITION_NOTE.md"
+  file_path_from_root: "lupo-docs\doctrine\DOCTRINE_TABLES_TRANSITION_NOTE.md"
   file_hash: "adb86eb31b2f9f607368e1c870c60897f56a8c8b67440b9cd22d1fe76932da39"
-  file_path_from_root: "docs\doctrine\DOCTRINE_TABLES_TRANSITION_NOTE.md"
+  file_path_from_root: "lupo-docs\doctrine\DOCTRINE_TABLES_TRANSITION_NOTE.md"
   file_hash: "86a77f03b2809e3b948cb0bf945ecdb18f90c89e40eef501f98b4a7fde421e3e"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -64,7 +64,7 @@ lupopedia.footer:
 ---
 # FLIP Header (alias: Wolfie Header, CROP Header, FLIPPING Header)
 wolfie.headers: explicit architecture with structured clarity for every file.
-file_path_from_root: docs/doctrine/DOCTRINE_TABLES_TRANSITION_NOTE.md
+file_path_from_root: lupo-docs/doctrine/DOCTRINE_TABLES_TRANSITION_NOTE.md
 file.last_modified_system_version: "4.0.16"
 file.last_modified_utc: "20260218000000"
 channel_id: 42   # ANUBIS adoption channel
@@ -74,7 +74,7 @@ atoms:
   recovery_event: true
 X-Lupo-Actor-ID: 2035
 X-Lupo-Actor-Identity: "Lupopedia Audit Tool (Auto-Fixed)"
-X-Lupo-File-Path: docs/doctrine/DOCTRINE_TABLES_TRANSITION_NOTE.md
+X-Lupo-File-Path: lupo-docs/doctrine/DOCTRINE_TABLES_TRANSITION_NOTE.md
 ---
 
 # Doctrine Tables — Transition to {prefix}contents (Channel 42)

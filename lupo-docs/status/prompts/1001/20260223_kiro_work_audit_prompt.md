@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "prompts\1001\20260223_kiro_work_audit_prompt.md"
+  file_path_from_root: "lupo-prompts\1001\20260223_kiro_work_audit_prompt.md"
   file_hash: "986a00bc540d2b1c035464fb23b99d68b6507637a25a64442faf4d66f48782a3"
-  file_path_from_root: "prompts\1001\20260223_kiro_work_audit_prompt.md"
+  file_path_from_root: "lupo-prompts\1001\20260223_kiro_work_audit_prompt.md"
   file_hash: "5d43056588f05a3454c5677a3d4e64d2663d904d9bc4c4dbcb189b465b3b48cf"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -63,7 +63,7 @@ lupopedia.footer:
 
 ---
 wolfie.headers:
-  file_path_from_root: "prompts/windsurf/20260223_kiro_work_audit_prompt.md"
+  file_path_from_root: "lupo-prompts/windsurf/20260223_kiro_work_audit_prompt.md"
   system_version: "4.0.33"
   channel_id: 42
   mood_rgb: "0044FF"
@@ -74,11 +74,11 @@ wolfie.headers:
 
 flip.footer:
   referenced_by_files:
-    - "docs/audits/prompt_message_audit_20260223.md"
+    - "lupo-docs/audits/prompt_message_audit_20260223.md"
     - "CHANGELOG.md"
-    - "docs/doctrine/FLIP_FOOTER_DOCTRINE.md"
-    - "docs/doctrine/X_LUPO_FORWARDED_HEADER_DOCTRINE.md"
-    - "docs/AGENT_INVENTORY.md"
+    - "lupo-docs/doctrine/FLIP_FOOTER_DOCTRINE.md"
+    - "lupo-docs/doctrine/X_LUPO_FORWARDED_HEADER_DOCTRINE.md"
+    - "lupo-docs/AGENT_INVENTORY.md"
   referenced_by_channels:
     - 42
   referenced_by_actors:
@@ -151,10 +151,10 @@ Check for:
 
 ### ✔ C. PROMPTS + DIRECTIVES
 Scan:
-- prompts/  
-- docs/directives/  
-- docs/archive/  
-- channels/42/broadcasts/  
+- lupo-prompts/  
+- lupo-docs/directives/  
+- lupo-docs/archive/  
+- lupo-channels/42/broadcasts/  
 
 Look for:
 - Missing headers  
@@ -231,7 +231,7 @@ Ensure:
 
 Create:
 
-`docs/status/windsurf_audit_kiro_work_4_0_33.md` 
+`lupo-docs/status/windsurf_audit_kiro_work_4_0_33.md` 
 
 Include:
 - Files KIRO modified  

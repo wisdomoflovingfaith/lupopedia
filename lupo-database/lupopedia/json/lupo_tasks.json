@@ -20,7 +20,11 @@
     "`metadata_json` text",
     "`task_type` varchar(64)",
     "`task_status` varchar(64)",
-    "`task_priority` varchar(64)"
+    "`task_priority` varchar(64)",
+    "`parent_agent_id` bigint",
+    "`consensus_hash` varchar(255)",
+    "`approval_chain_json` json",
+    "`task_embeddings` text"
   ],
   "data": [],
   "indexes": [
@@ -60,6 +64,14 @@
       "index_name": "lupo_tasks_idx_owner_actor_id",
       "columns": [
         "owner_actor_id"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_tasks_idx_parent_agent_id",
+      "columns": [
+        "parent_agent_id"
       ],
       "is_unique": false,
       "index_type": "BTREE"

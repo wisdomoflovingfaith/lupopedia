@@ -44,7 +44,7 @@ lupopedia.footer:
   orchestrator: "cursor"
   next_action:
     - "v4.0.74: Test fresh install and Crafty 3.7.5 upgrade paths (see By version below)"
-    - "If using orchestrator rules: run future_features_lupopedia.sql for lupo_orchestrator_rules, then php scripts/sync_orchestrator_rules_to_db.php"
+    - "If using orchestrator rules: run future_features_lupopedia.sql for lupo_orchestrator_rules, then php lupo-scripts/sync_orchestrator_rules_to_db.php"
 ---
 # file: TODO (root) — session: L-LUPO-ROOT-CURSOR — delegation: cursor:root — web_path: http://www.lupopedia.com/TODO
 
@@ -56,7 +56,7 @@ Pending tasks and next actions for Lupopedia. v4.0.73 is the consolidation relea
 
 - [ ] **v4.0.74:** Test **upgrade from original Crafty Syntax 3.7.5** (import path) end-to-end.
 - [ ] **v4.0.74:** Test **brand-new Lupopedia install** (install SQL + seed) end-to-end.
-- [ ] If using orchestrator rules table: run `lupo-database/lupopedia/mysql/install/future_features_lupopedia.sql` (includes `lupo_orchestrator_rules`), then `php scripts/sync_orchestrator_rules_to_db.php`.
+- [ ] If using orchestrator rules table: run `lupo-database/lupopedia/mysql/install/future_features_lupopedia.sql` (includes `lupo_orchestrator_rules`), then `php lupo-scripts/sync_orchestrator_rules_to_db.php`.
 
 ## By version
 

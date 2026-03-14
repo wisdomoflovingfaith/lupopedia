@@ -95,7 +95,7 @@ lupopedia.close:
 The **only authoritative ANUBIS doctrine file** is:
 
 ```
-docs/doctrine/ANUBIS/ANUBIS_CANONICAL.md
+lupo-docs/doctrine/ANUBIS/ANUBIS_CANONICAL.md
 ```
 
 ## Legacy File Restrictions
@@ -120,8 +120,8 @@ The following file patterns are **PROHIBITED** from creation:
 
 ### Automated Guards
 - **CI Validation**: `bin/guard_anubis_structure.php` will fail builds on violations
-- **Reference Audit**: `tools/anubis_reference_audit.txt` tracks legacy references
-- **Hash Verification**: `docs/doctrine/ANUBIS/ANUBIS_CANONICAL.lock` prevents unauthorized changes
+- **Reference Audit**: `lupo-tools/anubis_reference_audit.txt` tracks legacy references
+- **Hash Verification**: `lupo-docs/doctrine/ANUBIS/ANUBIS_CANONICAL.lock` prevents unauthorized changes
 
 ### Manual Review Process
 1. **Proposal**: Submit change proposal to Channel 42
@@ -145,8 +145,8 @@ The following file patterns are **PROHIBITED** from creation:
 
 ### Previous Consolidation
 - **Date**: 2026-02-28
-- **Files Archived**: 6 original files moved to `docs/archive/ANUBIS/pre_4.0.52/`
-- **Canonical Created**: `docs/doctrine/ANUBIS/ANUBIS_CANONICAL.md`
+- **Files Archived**: 6 original files moved to `lupo-docs/archive/ANUBIS/pre_4.0.52/`
+- **Canonical Created**: `lupo-docs/doctrine/ANUBIS/ANUBIS_CANONICAL.md`
 - **Lead Agent**: Windsurf (1002)
 
 ### Archive Access
@@ -163,8 +163,8 @@ The following file patterns are **PROHIBITED** from creation:
 
 ### Technical Issues
 - **Guard Failures**: Check `bin/guard_anubis_structure.php` output
-- **Reference Problems**: Review `tools/anubis_reference_audit.txt`
-- **Hash Mismatches**: Verify against `docs/doctrine/ANUBIS/ANUBIS_CANONICAL.lock`
+- **Reference Problems**: Review `lupo-tools/anubis_reference_audit.txt`
+- **Hash Mismatches**: Verify against `lupo-docs/doctrine/ANUBIS/ANUBIS_CANONICAL.lock`
 
 ---
 

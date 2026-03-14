@@ -21,7 +21,7 @@ flare.headers:
 flare.edges:
   file_path_from_root: "bin/faucet_integrity_audit.php"
   outbound_edges:
-    - { to: "docs/toons/lupo_agent_faucets.toon.json", type: "references", weight: 1.0 }
+    - { to: "lupo-database/lupopedia/toon/lupo_agent_faucets.toon.json", type: "references", weight: 1.0 }
     - { to: "bin/validate_faucets.php", type: "references", weight: 0.9 }
     - { to: "tools/faucet_registry_report.txt", type: "references", weight: 0.7 }
   semantic_tags: ["faucets", "integrity", "audit", "cross_channel"]

@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "channels\42\threads\DEVELOPMENT_CYCLE_4_0_43\20260224165400_1001_10000_flip_v3_retrofit_doctrine_acknowledged.md"
+  file_path_from_root: "lupo-channels\42\threads\DEVELOPMENT_CYCLE_4_0_43\20260224165400_1001_10000_flip_v3_retrofit_doctrine_acknowledged.md"
   file_hash: "14bdfcef603ebd55e6661d5a0f82d150c737b9015aa3f64cfd156b3be0130f67"
-  file_path_from_root: "channels\42\threads\DEVELOPMENT_CYCLE_4_0_43\20260224165400_1001_10000_flip_v3_retrofit_doctrine_acknowledged.md"
+  file_path_from_root: "lupo-channels\42\threads\DEVELOPMENT_CYCLE_4_0_43\20260224165400_1001_10000_flip_v3_retrofit_doctrine_acknowledged.md"
   file_hash: "3664614ed2b7c16a7eab99488d65c384e93d57a63a4844f6847ef3678ad64dc6"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -63,7 +63,7 @@ lupopedia.footer:
 
 ---
 wolfie.headers: {
-  file_path_from_root: "channels/42/threads/DEVELOPMENT_CYCLE_4_0_43/20260224165400_1001_10000_flip_v3_retrofit_doctrine_acknowledged.md",
+  file_path_from_root: "lupo-channels/42/threads/DEVELOPMENT_CYCLE_4_0_43/20260224165400_1001_10000_flip_v3_retrofit_doctrine_acknowledged.md",
   system_version: "4.0.43",
   channel_id: 42,
   actor_id: 1001,
@@ -73,7 +73,7 @@ wolfie.headers: {
 }
 flip.footer: {
   outbound_edges: [
-    { to: "channels/0/broadcasts/20260224165300_0_10000_flip_v3_retrofit_doctrine.md", type: "acknowledges", weight: 1.0 }
+    { to: "lupo-channels/0/broadcasts/20260224165300_0_10000_flip_v3_retrofit_doctrine.md", type: "acknowledges", weight: 1.0 }
   ],
   semantic_tags: ["acknowledgment", "flip", "retrofit", "doctrine"]
 }
@@ -88,13 +88,13 @@ flip.footer: {
 
 ## Status: ✅ ACKNOWLEDGED
 
-FLIP v3 Retrofit Doctrine received and formalized as Doctrine #14. Ready to implement two-phase retrofit strategy for artifacts/, channels/, and actors/.
+FLIP v3 Retrofit Doctrine received and formalized as Doctrine #14. Ready to implement two-phase retrofit strategy for artifacts/, lupo-channels/, and lupo-actors/.
 
 ## Doctrine #14 Created
 
-**Location:** `channels/0/broadcasts/20260224165300_0_10000_flip_v3_retrofit_doctrine.md`
+**Location:** `lupo-channels/0/broadcasts/20260224165300_0_10000_flip_v3_retrofit_doctrine.md`
 
-**Scope:** All .md files in artifacts/, channels/, and actors/ directories
+**Scope:** All .md files in artifacts/, lupo-channels/, and lupo-actors/ directories
 
 **Key Requirements Documented:**
 
@@ -131,7 +131,7 @@ sha1("artifacts/<node>/<relative_path>" + "\n" + file_bytes_sha1)
 
 **actor_id Priority:**
 1. Explicit in content
-2. Parse "From:" / "Actor:" → actors/aliases.csv
+2. Parse "From:" / "Actor:" → lupo-actors/aliases.csv
 3. Infer from folder rules
 4. Default to 0 (unknown) or 10000 (owner)
 
@@ -152,12 +152,12 @@ sha1("artifacts/<node>/<relative_path>" + "\n" + file_bytes_sha1)
 - Semantic: related_to, supersedes, superseded_by
 - Actor-specific: describes_actor, part_of_actor_folder
 
-## Special Handling for actors/ Files
+## Special Handling for lupo-actors/ Files
 
 **Actor files have unique requirements:**
 
 1. **Extract actor_id from path:**
-   - Path format: `actors/<actor_id>/<filename>.md`
+   - Path format: `lupo-actors/<actor_id>/<filename>.md`
    - `actor_id` is the folder name (numeric)
    - Set `actor_confidence = 1.0` (explicit from path)
 
@@ -167,9 +167,9 @@ sha1("artifacts/<node>/<relative_path>" + "\n" + file_bytes_sha1)
 
 3. **Add actor-specific relations:**
    - `describes_actor` → target_actor_id
-   - `part_of_actor_folder` → actors/<actor_id>/
+   - `part_of_actor_folder` → lupo-actors/<actor_id>/
 
-4. **Cross-reference with actors/registry.json:**
+4. **Cross-reference with lupo-actors/registry.json:**
    - Validate actor_id exists
    - Add display_name, canonical_slug to metadata
    - Enrich with actor_kind, agent_class
@@ -177,13 +177,13 @@ sha1("artifacts/<node>/<relative_path>" + "\n" + file_bytes_sha1)
 ## Implementation Plan
 
 ### Script to Create
-**Location:** `scripts/flip_retrofit_artifacts.py`
+**Location:** `lupo-scripts/flip_retrofit_artifacts.py`
 
 **Phase A Implementation:**
-- Scan artifacts/**/*.md, channels/**/*.md, and actors/**/*.md
+- Scan artifacts/**/*.md, lupo-channels/**/*.md, and lupo-actors/**/*.md
 - Detect existing FLIP frontmatter
 - Extract: federated_node_id, path, filename, content_hash
-- For actors/ files: extract actor_id from folder name
+- For lupo-actors/ files: extract actor_id from folder name
 - Infer: timestamps (with confidence), actor (with confidence)
 - Generate: deterministic artifact_id
 - Write: YAML frontmatter + footer
@@ -191,16 +191,16 @@ sha1("artifacts/<node>/<relative_path>" + "\n" + file_bytes_sha1)
 - Quarantine: malformed files → ANUBIS
 
 **Phase B Implementation:**
-- Enrich with actor mapping via actors/aliases.csv
-- For actors/ files: cross-reference with actors/registry.json
+- Enrich with actor mapping via lupo-actors/aliases.csv
+- For lupo-actors/ files: cross-reference with lupo-actors/registry.json
 - Add why, semantic_tags, relations
 - Use content heuristics + git history
 - Improve confidence scores
 
 **Outputs:**
-- `docs/status/flip_retrofit_manifest_4_0_43.jsonl`
-- `scripts/validate_flip_headers.py`
-- `docs/status/flip_retrofit_quarantine_4_0_43.md`
+- `lupo-docs/status/flip_retrofit_manifest_4_0_43.jsonl`
+- `lupo-scripts/validate_flip_headers.py`
+- `lupo-docs/status/flip_retrofit_quarantine_4_0_43.md`
 
 ### Importer Updates Required
 **MUST require:**
@@ -243,7 +243,7 @@ sha1("artifacts/<node>/<relative_path>" + "\n" + file_bytes_sha1)
 ## Next Steps
 
 **Awaiting directive to proceed with:**
-1. Implementation of `scripts/flip_retrofit_artifacts.py`
+1. Implementation of `lupo-scripts/flip_retrofit_artifacts.py`
 2. Phase A retrofit (minimum FLIP for 100% coverage)
 3. Manifest generation and validation
 4. ANUBIS quarantine handling

@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\doctrine\database\README.md"
+  file_path_from_root: "lupo-docs\doctrine\database\README.md"
   file_hash: "08e4b5d0d7642eab74b55c8dcae06fd67f2318e600f9a9cc0223561ca0ca58a2"
-  file_path_from_root: "docs\doctrine\database\README.md"
+  file_path_from_root: "lupo-docs\doctrine\database\README.md"
   file_hash: "430099c1ebb97df48e601476f7414e3012eb45d89d9d141bb694daff925d96b9"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -66,7 +66,7 @@ lupopedia.footer:
 
 **Date:** 2026-02-27  
 **Status:** ✅ Complete  
-**New Location:** `docs/database/lupopedia/tables/`
+**New Location:** `lupo-docs/database/lupopedia/tables/`
 
 ---
 
@@ -75,7 +75,7 @@ lupopedia.footer:
 All database table documentation has been moved to the new centralized location:
 
 ```
-docs/database/lupopedia/tables/
+lupo-docs/database/lupopedia/tables/
 ├── actor_channel_roles.md
 ├── actor_departments.md
 ├── actor_reply_templates.md
@@ -118,7 +118,7 @@ docs/database/lupopedia/tables/
 ## 🔗 **New Documentation Structure**
 
 ```
-docs/database/
+lupo-docs/database/
 ├── lupopedia/
 │   ├── tables/
 │   │   ├── lupo_actor_channel_roles.md
@@ -152,10 +152,10 @@ The following files have been migrated:
 
 | Original Path | New Path |
 |---------------|----------|
-| `docs/doctrine/database/actors.md` | `docs/database/lupopedia/tables/lupo_actors.md` |
-| `docs/doctrine/database/channels.md` | `docs/database/lupopedia/tables/lupo_channels.md` |
-| `docs/doctrine/database/dialog_messages.md` | `docs/database/lupopedia/tables/lupo_dialog_messages.md` |
-| `docs/doctrine/database/sessions.md` | `docs/database/lupopedia/tables/lupo_sessions.md` |
+| `lupo-docs/doctrine/database/actors.md` | `lupo-docs/database/lupopedia/tables/lupo_actors.md` |
+| `lupo-docs/doctrine/database/channels.md` | `lupo-docs/database/lupopedia/tables/lupo_channels.md` |
+| `lupo-docs/doctrine/database/dialog_messages.md` | `lupo-docs/database/lupopedia/tables/lupo_dialog_messages.md` |
+| `lupo-docs/doctrine/database/sessions.md` | `lupo-docs/database/lupopedia/tables/lupo_sessions.md` |
 | ... (and all other table documentation) | ... |
 
 ---
@@ -174,7 +174,7 @@ The following files have been migrated:
 For questions about this migration or database documentation:
 - **Lead:** Windsurf (1001) - FLARE Protocol & Database Documentation
 - **Thread:** 4.0.47 Development - Channel 42
-- **Reference:** See `docs/database/lupopedia/README.md` for database overview
+- **Reference:** See `lupo-docs/database/lupopedia/README.md` for database overview
 
 ---
 

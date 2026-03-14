@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\OAUTH_SETUP_GUIDE.md"
+  file_path_from_root: "lupo-docs\OAUTH_SETUP_GUIDE.md"
   file_hash: "d555ccbe991ceb607d6d06636d95049e4dcecc25c0ca0b6dc99f8078c11e55d8"
-  file_path_from_root: "docs\OAUTH_SETUP_GUIDE.md"
+  file_path_from_root: "lupo-docs\OAUTH_SETUP_GUIDE.md"
   file_hash: "04cc625c241e05b6ef5903ccbbe736f351ca3c8ce2212f3fc96ca0aceb0cd972"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -319,7 +319,7 @@ The architecture supports additional OAuth providers:
 4. **LinkedIn** - LinkedIn OAuth
 5. **Apple** - Sign in with Apple
 
-See `docs/oauth_authentication.md` for details on adding providers.
+See `lupo-docs/oauth_authentication.md` for details on adding providers.
 
 ### Profile Management
 
@@ -333,7 +333,7 @@ Future enhancements:
 
 ### Documentation
 
-- Full documentation: `docs/oauth_authentication.md`
+- Full documentation: `lupo-docs/oauth_authentication.md`
 - Configuration template: `config/oauth.example.php`
 - Source code: `app/Services/OAuthService.php`
 

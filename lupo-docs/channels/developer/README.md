@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\channels\developer\README.md"
+  file_path_from_root: "lupo-docs\channels\developer\README.md"
   file_hash: "16d85c4aef3f634c67c81b57094e8c6edaa44092c9f3e238f299f9a3795e3999"
-  file_path_from_root: "docs\channels\developer\README.md"
+  file_path_from_root: "lupo-docs\channels\developer\README.md"
   file_hash: "dc20212f8beae0227ffd7004b59d3c3a2673eb580f4353cfbcb962ffc55dfacb"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -89,7 +89,7 @@ Purpose: Developer guides, implementation notes, and templates.
 
 Top-Level Contents:
 - ACTOR_ONBOARDING_GUIDE.md
-- api/
+- lupo-api/
 - CANONICAL_WOLFIE_HEADER_TEMPLATE.md
 - dev/
 - DEVELOPER_GUIDELINES.md
@@ -97,10 +97,10 @@ Top-Level Contents:
 - modules/
 - RELEASE_READINESS_CHECKLIST_3.0.7.md
 - specifications/
-- templates/
+- lupo-templates/
 - testing/
 - TLDR_HELP_MIGRATION_2026.md
-- tools/
+- lupo-tools/
 
 Full file list: [INDEX.md](INDEX.md)
 

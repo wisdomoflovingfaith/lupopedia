@@ -105,10 +105,10 @@ function actors_handle_my_profile()
     $avatar_public_path = '';
     $avatar_storage = isset($actor_properties['avatar_storage_path']) ? $actor_properties['avatar_storage_path'] : '';
     if ($avatar_storage !== '') {
-        $avatar_public_path = $base . '/uploads/' . ltrim($avatar_storage, '/');
+        $avatar_public_path = $base . '/lupo-uploads/' . ltrim($avatar_storage, '/');
     } elseif (!empty($actor['avatar_hash'])) {
         $ym = gmdate('Y/m');
-        $avatar_public_path = $base . '/uploads/actors/' . $ym . '/' . $actor['avatar_hash'];
+        $avatar_public_path = $base . '/lupo-uploads/actors/' . $ym . '/' . $actor['avatar_hash'];
     }
 
     $view_path = $app_root . '/lupo-includes/modules/actors/views/my-profile.php';

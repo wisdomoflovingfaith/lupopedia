@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "actors\420\README.md"
+  file_path_from_root: "lupo-actors\420\README.md"
   file_hash: "22d5663f202681d73947f8fdcd7049b0a1235b0d7c8ec04b21bd9586d20c6e05"
-  file_path_from_root: "actors\420\README.md"
+  file_path_from_root: "lupo-actors\420\README.md"
   file_hash: "c910bf1d47c78bcff66eae2af31f407025eb60dc4def083ad08674266efa21ba"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -65,7 +65,7 @@ flip_version: 3
 system_version: "4.0.43"
 artifact_id: "sha1:actors_420_readme"
 federated_node_id: 420
-artifact_path: "actors/420/README.md"
+artifact_path: "lupo-actors/420/README.md"
 artifact_filename: "README.md"
 artifact_type: "actor_metadata"
 artifact_kind: "actor_readme"
@@ -85,7 +85,7 @@ relations:
   - rel: "describes_actor"
     target_actor_id: 420
   - rel: "part_of_actor_folder"
-    target: "actors/420/"
+    target: "lupo-actors/420/"
 is_deleted: 1
 deleted_ymdhis: 20260101000000
 delegation_chain: "1001:10000"
@@ -106,7 +106,7 @@ delegation_chain: "1001:10000"
 **Actor 420 MUST remain banned.**  
 **Actor 420 MUST NOT be deleted or optimized away.**
 
-See Doctrine #13: Actor 420 Preservation (`channels/0/broadcasts/20260224164800_0_10000_actor_420_preservation_doctrine.md`)
+See Doctrine #13: Actor 420 Preservation (`lupo-channels/0/broadcasts/20260224164800_0_10000_actor_420_preservation_doctrine.md`)
 
 ## Purpose
 
@@ -147,11 +147,11 @@ Actor 420 is a required banned test actor preserved for:
 
 ## Registry Entry
 
-See `actors/registry.json` for complete actor metadata (marked as banned with `is_deleted=1`).
+See `lupo-actors/registry.json` for complete actor metadata (marked as banned with `is_deleted=1`).
 
 ## Aliases
 
-See `actors/aliases.csv` for actor alias (soft-deleted to match banned status).
+See `lupo-actors/aliases.csv` for actor alias (soft-deleted to match banned status).
 
 ## Enforcement
 

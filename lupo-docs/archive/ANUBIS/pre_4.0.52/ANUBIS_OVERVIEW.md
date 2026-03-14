@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -33,7 +33,7 @@ lupopedia.footer:
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: "docs/doctrine/ANUBIS/ANUBIS_OVERVIEW.md"
+  file_path_from_root: "lupo-docs/doctrine/ANUBIS/ANUBIS_OVERVIEW.md"
   file_hash: "c9495e781e291bbeeb69e8227fa21fcd17101f5324227f754ca6ed209f4de2db"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -50,12 +50,12 @@ lupopedia.headers:
 
 lupopedia.edges:
   outbound_edges:
-    - { to: "docs/doctrine/ANUBIS/ANUBIS_ORPHAN_RULES.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/ANUBIS/ANUBIS_PROGRAM_SPEC.md", type: "references", weight: 1.0 }
-    - { to: "docs/toons/lupo_dialog_messages.toon.json", type: "schema_reference", weight: 0.9 }
-    - { to: "docs/toons/lupo_dialog_threads.toon.json", type: "schema_reference", weight: 0.9 }
-    - { to: "docs/toons/lupo_actors.toon.json", type: "schema_reference", weight: 0.9 }
-    - { to: "database/migrations/seed_lupopedia.sql", type: "references", weight: 0.8 }
+    - { to: "lupo-docs/doctrine/ANUBIS/ANUBIS_ORPHAN_RULES.md", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/ANUBIS/ANUBIS_PROGRAM_SPEC.md", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/toons/lupo_dialog_messages.toon.json", type: "schema_reference", weight: 0.9 }
+    - { to: "lupo-docs/toons/lupo_dialog_threads.toon.json", type: "schema_reference", weight: 0.9 }
+    - { to: "lupo-docs/toons/lupo_actors.toon.json", type: "schema_reference", weight: 0.9 }
+    - { to: "lupo-database/migrations/seed_lupopedia.sql", type: "references", weight: 0.8 }
   semantic_tags: ["anubis", "orphans", "adoption", "redirects", "doctrine"]
 
   last_updated_utc: "20260228"
@@ -122,7 +122,7 @@ lupopedia.footer:
 
 ## 5. Canonical References
 
-- **Orphan and adoption rules:** `docs/doctrine/ANUBIS/ANUBIS_ORPHAN_RULES.md`
-- **Program spec (Python + PHP):** `docs/doctrine/ANUBIS/ANUBIS_PROGRAM_SPEC.md`
-- **Schema source of truth:** TOONs in `docs/toons/` (lupo_dialog_messages, lupo_dialog_threads, lupo_dialog_channels, lupo_actors, lupo_actor_channels, lupo_edges).
-- **Seed:** `database/migrations/seed_lupopedia.sql` — adoption inserts must follow reserved ID and idempotency doctrine.
+- **Orphan and adoption rules:** `lupo-docs/doctrine/ANUBIS/ANUBIS_ORPHAN_RULES.md`
+- **Program spec (Python + PHP):** `lupo-docs/doctrine/ANUBIS/ANUBIS_PROGRAM_SPEC.md`
+- **Schema source of truth:** TOONs in `lupo-docs/toons/` (lupo_dialog_messages, lupo_dialog_threads, lupo_dialog_channels, lupo_actors, lupo_actor_channels, lupo_edges).
+- **Seed:** `lupo-database/migrations/seed_lupopedia.sql` — adoption inserts must follow reserved ID and idempotency doctrine.

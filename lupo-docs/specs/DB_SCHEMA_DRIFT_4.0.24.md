@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\specs\DB_SCHEMA_DRIFT_4.0.24.md"
+  file_path_from_root: "lupo-docs\specs\DB_SCHEMA_DRIFT_4.0.24.md"
   file_hash: "cd29ae4f03ecaaf9ffc88ea42921fb891da7beeed44056087b23e9374e195fd0"
-  file_path_from_root: "docs\specs\DB_SCHEMA_DRIFT_4.0.24.md"
+  file_path_from_root: "lupo-docs\specs\DB_SCHEMA_DRIFT_4.0.24.md"
   file_hash: "882426d35b9a7454a369eb5bf0573a7e4fbe9c65900341d99959e9fd87375605"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -62,7 +62,7 @@ lupopedia.footer:
 
 ---
 # FLIP Header (alias: Wolfie Header, CROP Header, FLIPPING Header)
-X-Lupo-File-Path: docs/specs/DB_SCHEMA_DRIFT_4.0.24.md
+X-Lupo-File-Path: lupo-docs/specs/DB_SCHEMA_DRIFT_4.0.24.md
 X-Lupo-Version: "4.0.27"
 X-Lupo-UTC-Timestamp: "20260222162242"
 X-Lupo-Channel: 42   # ANUBIS adoption channel
@@ -88,7 +88,7 @@ web:
 
 Generated: 2026-02-21T03:04:41.908869Z
 Database: lupopedia
-TOON Directory: docs/toons
+TOON Directory: lupo-database/lupopedia/toon
 
 ## Missing Tables (DB vs TOONs)
 

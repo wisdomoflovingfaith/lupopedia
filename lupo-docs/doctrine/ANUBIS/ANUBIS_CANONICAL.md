@@ -5,7 +5,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "doctrine"
-  file_path_from_root: "docs/doctrine/ANUBIS/ANUBIS_CANONICAL.md"
+  file_path_from_root: "lupo-docs/doctrine/ANUBIS/ANUBIS_CANONICAL.md"
   file_hash: "to_be_generated"
   last_modified_utc: "20260228"
   system_version: "4.0.52"
@@ -21,10 +21,10 @@ lupopedia.headers:
 
 lupopedia.edges:
   outbound_edges:
-    - { to: "docs/toons/lupo_dialog_messages.toon.json", type: "schema_reference", weight: 1.0 }
-    - { to: "database/migrations/seed_lupopedia.sql", type: "references", weight: 0.9 }
-    - { to: "docs/doctrine/FLARE/FLARE_DOCTRINE.md", type: "references", weight: 0.8 }
-    - { to: "actors/19/WHO.json", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/toons/lupo_dialog_messages.toon.json", type: "schema_reference", weight: 1.0 }
+    - { to: "lupo-database/migrations/seed_lupopedia.sql", type: "references", weight: 0.9 }
+    - { to: "lupo-docs/doctrine/FLARE/FLARE_DOCTRINE.md", type: "references", weight: 0.8 }
+    - { to: "lupo-actors/19/WHO.json", type: "references", weight: 1.0 }
   semantic_tags: ["anubis", "doctrine", "canonical", "custodial_intelligence"]
 
 lupopedia.footer:
@@ -41,7 +41,7 @@ ANUBIS is the custodial intelligence system responsible for managing dialogs, li
 ## Canonical Actor Identity
 
 **ANUBIS actor_id: 19**
-- **Source of truth**: `actors/19/WHO.json` and `docs/meta/REGISTERED_IDS.md`
+- **Source of truth**: `lupo-actors/19/WHO.json` and `lupo-docs/meta/REGISTERED_IDS.md`
 - **Governance rule**: All references to ANUBIS must use actor_id 19
 - **No ID changes permitted**: Without registry update
 
@@ -70,9 +70,9 @@ ANUBIS is the custodial intelligence system responsible for managing dialogs, li
 ## Implementation Details
 
 ### Schema References
-- **Primary TOON**: `docs/toons/lupo_dialog_messages.toon.json`
-- **Database**: `database/migrations/seed_lupopedia.sql`
-- **Actor Registry**: `actors/19/WHO.json`
+- **Primary TOON**: `lupo-docs/toons/lupo_dialog_messages.toon.json`
+- **Database**: `lupo-database/migrations/seed_lupopedia.sql`
+- **Actor Registry**: `lupo-actors/19/WHO.json`
 
 ### Integration Points
 - **FLARE Protocol**: Semantic enrichment integration
@@ -85,7 +85,7 @@ ANUBIS is the custodial intelligence system responsible for managing dialogs, li
 All ANUBIS-related content has been preserved through consolidation:
 - **Original files**: 6 documents archived
 - **Total size**: 38,394 bytes preserved
-- **Archive location**: `docs/archive/ANUBIS/pre_4.0.52/`
+- **Archive location**: `lupo-docs/archive/ANUBIS/pre_4.0.52/`
 
 ### Governance Compliance
 - **Actor ID**: Anchored to canonical ID 19
@@ -104,7 +104,7 @@ All ANUBIS-related content has been preserved through consolidation:
 ### Migration Path
 Future ANUBIS enhancements must:
 1. Update this canonical document
-2. Archive previous version to `docs/archive/ANUBIS/`
+2. Archive previous version to `lupo-docs/archive/ANUBIS/`
 3. Update actor registry if ID changes required
 4. Maintain backward compatibility
 

@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\audits\PHP_5_3_ARRAY_SYNTAX_SWEEP_REPORT.md"
+  file_path_from_root: "lupo-docs\audits\PHP_5_3_ARRAY_SYNTAX_SWEEP_REPORT.md"
   file_hash: "4771a732221c7bcc1c1adcf542560853e77ad4cc53dd9a450f3cb8c04528bbff"
-  file_path_from_root: "docs\audits\PHP_5_3_ARRAY_SYNTAX_SWEEP_REPORT.md"
+  file_path_from_root: "lupo-docs\audits\PHP_5_3_ARRAY_SYNTAX_SWEEP_REPORT.md"
   file_hash: "989162eb9d6ba0e4aee789beed93685dc0a960cbbd38a7b85d1c05edf6971ebb"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -71,7 +71,7 @@ The following files were updated in this sweep to use `array()` instead of short
 | **lupo-includes/themes/default/layouts/main_layout.php** | `$collectionsData = []` → `array()`, `$tabs_data = []` → `array()`, ternary `: []` → `: array()`. |
 | **lupo-includes/modules/channels/channels-controller.php** | All empty-array assignments (`$threads = []`, `$messages = []`, `$operators = []`, etc.) → `array()`. All `execute([...])`, `render_main_layout([...])`, `extract([...])` → `execute(array(...))`, `render_main_layout(array(...))`, `extract(array(...))` with correct closing `));`. Inline arrays in `$pending_visitors[] = [...]` and `$visitors[] = [...]` and `$my_channels[] = [...]` → `array(...)`. Ternary `: []` → `: array()`. |
 | **debug_collection_zero.php** | `$errors = []` → `array()`, default parameter `array $params = []` → `array $params = array()`. |
-| **api/load_collection_tabs.php** | `$tabs_data = []` → `array()`. |
+| **lupo-api/load_collection_tabs.php** | `$tabs_data = []` → `array()`. |
 | **app/Services/CraftySyntax/LegacyFunctions.php** | `$session_data = []` → `array()`, ternary `) : []` → `) : array()`. |
 | **app/Services/ActorService.php** | `return array()` (was `return []`), `$ids = []` → `array()`, `$tempMeta` / `$realMeta` and ternary `? $decoded : []` → `array()`. |
 

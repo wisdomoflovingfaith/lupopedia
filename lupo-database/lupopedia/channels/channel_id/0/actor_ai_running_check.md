@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "instruction"
-  file_path_from_root: "channels/0/actor_ai_running_check.md"
+  file_path_from_root: "lupo-channels/0/actor_ai_running_check.md"
   system_version: "4.0.53"
   last_modified_utc: "20260301"
   channel_id: 0
@@ -19,11 +19,11 @@ lupopedia.headers:
 
 lupopedia.edges:
   outbound_edges:
-    - { to: "docs/toons/lupo_sessions.toon.json", type: "schema_reference", weight: 1.0 }
-    - { to: "docs/toons/lupo_actors.toon.json", type: "schema_reference", weight: 1.0 }  # Assuming lupo_actors for registry
-    - { to: "docs/toons/lupo_channel_state.toon.json", type: "related_schema", weight: 0.9 }
+    - { to: "lupo-database/lupopedia/toon/lupo_sessions.toon.json", type: "schema_reference", weight: 1.0 }
+    - { to: "lupo-database/lupopedia/toon/lupo_actors.toon.json", type: "schema_reference", weight: 1.0 }  # Assuming lupo_actors for registry
+    - { to: "lupo-database/lupopedia/toon/lupo_channel_state.toon.json", type: "related_schema", weight: 0.9 }
     - { to: "bin/boot_system_agent.php", type: "integration_reference", weight: 0.9 }
-    - { to: "docs/doctrine/FLARE/FLARE_DOCTRINE.md", type: "references", weight: 0.8 }
+    - { to: "lupo-docs/doctrine/FLARE/FLARE_DOCTRINE.md", type: "references", weight: 0.8 }
   semantic_tags: ["actor_ai_check", "session_active", "registry_existence"]
 
 lupopedia.footer:

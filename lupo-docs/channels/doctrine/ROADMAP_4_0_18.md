@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\channels\doctrine\ROADMAP_4_0_18.md"
+  file_path_from_root: "lupo-docs\channels\doctrine\ROADMAP_4_0_18.md"
   file_hash: "f58f28c342bcaafb6d25d79300cf30610bb596e6db3620a7067dc0065c7e54af"
-  file_path_from_root: "docs\channels\doctrine\ROADMAP_4_0_18.md"
+  file_path_from_root: "lupo-docs\channels\doctrine\ROADMAP_4_0_18.md"
   file_hash: "912c1de918dc02df2c5ccb986393caffb12b15f7fbd9dc6ee91998d43b8a3b06"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -64,7 +64,7 @@ lupopedia.footer:
 ---
 # FLIP Header
 wolfie.headers: explicit architecture with structured clarity for every file.
-file_path_from_root: docs/channels/doctrine/ROADMAP_4_0_18.md
+file_path_from_root: lupo-docs/channels/doctrine/ROADMAP_4_0_18.md
 file.last_modified_system_version: "4.0.17"
 file.last_modified_utc: "20260218000000"
 # channel_id: 51 (Doctrine Council)
@@ -84,7 +84,7 @@ file.last_modified_utc: "20260218000000"
 
 ## 4.0.18 scope (planned)
 
-See **docs/channels/doctrine/WEB_ROUTING_DOCTRINE_4_0_18.md** for full planning. Summary: runtime web path resolution, UrlResolver, PHP router integration, server rewrites, caching, and Ban at Gate (router enforcement of persona bans).
+See **lupo-docs/channels/doctrine/WEB_ROUTING_DOCTRINE_4_0_18.md** for full planning. Summary: runtime web path resolution, UrlResolver, PHP router integration, server rewrites, caching, and Ban at Gate (router enforcement of persona bans).
 
 ---
 

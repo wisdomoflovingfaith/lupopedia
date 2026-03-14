@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: "docs/actors.md"
+  file_path_from_root: "lupo-docs/actors.md"
   web_path: "http://www.lupopedia.com/docs/actors"
   last_modified_utc: "20260305"
   system_version: "4.0.61"
@@ -22,8 +22,8 @@ lupopedia.edges:
     - { to: "AGENTS.md", type: "references", weight: 0.9 }
     - { to: "lupopedia-config.php", type: "references", weight: 0.8 }
     - { to: "lupo-database/lupopedia/actors/actor_id/registry.json", type: "references", weight: 0.8 }
-    - { to: "docs/doctrine/ACTOR_PRIMARY_KEY_DOCTRINE.md", type: "references", weight: 0.9 }
-    - { to: "docs/lupopedia_whoami_readme.md", type: "references", weight: 0.9 }
+    - { to: "lupo-docs/doctrine/ACTOR_PRIMARY_KEY_DOCTRINE.md", type: "references", weight: 0.9 }
+    - { to: "lupo-docs/lupopedia_whoami_readme.md", type: "references", weight: 0.9 }
     - { to: "lupo-database/lupopedia/actors/registry.json", type: "references", weight: 0.8 }
 
 lupopedia.footer:
@@ -63,12 +63,12 @@ Each installed actor has a **name-based** subdirectory under `lupo-actors/` (e.g
 | Subdirectory   | Purpose |
 |----------------|--------|
 | **apps/**      | Custom applications or scripts tailored to the actor's functionality. |
-| **tools/**     | Utility tools, scripts, or binaries required by the actor. |
-| **docs/**      | Documentation specific to the actor: usage guides, API references, setup instructions. |
+| **lupo-tools/**     | Utility tools, scripts, or binaries required by the actor. |
+| **lupo-docs/**      | Documentation specific to the actor: usage guides, API references, setup instructions. |
 | **db-changes/**| Database migration scripts, schema changes, or data seeding files related to the actor. |
-| **api/**       | API definitions, endpoints, or integration code for the actor's external interfaces. |
+| **lupo-api/**       | API definitions, endpoints, or integration code for the actor's external interfaces. |
 | **needs/**     | Additional dependencies, requirements, or configuration (e.g. env vars, YAML configs) needed for the actor to operate. |
-| **prompts/**   | Prompt files (e.g. `.md` or `.txt`) that define behavioral instructions or tasks for the actor. |
+| **lupo-prompts/**   | Prompt files (e.g. `.md` or `.txt`) that define behavioral instructions or tasks for the actor. |
 | **skills/**    | Agent skills: reusable modular capabilities, specialized knowledge, or tool definitions (e.g. `lupo-actors/wolfie/skills/web_search`). |
 | **www/**       | Web-accessible content rendered at `/agent/<actor_name>/`. Priority: `readme.md` > `index.htm` > `index.php`. |
 | **logs/**      | Actor-specific logs (optional, e.g. `lupo-actors/system/logs/`). |
@@ -83,39 +83,39 @@ Canonical dirs are name-based; numeric dirs may be symlinks (e.g. `0/` → `syst
 lupo-actors/
 ├── system/                 # System actor (0/ may symlink here)
 │   ├── apps/
-│   ├── tools/
-│   ├── docs/
+│   ├── lupo-tools/
+│   ├── lupo-docs/
 │   ├── db-changes/
-│   ├── api/
+│   ├── lupo-api/
 │   ├── needs/
-│   ├── prompts/
+│   ├── lupo-prompts/
 │   │   └── flare-header-scan.md
 │   └── logs/
 ├── wolfie/                 # WOLFIE (1/ may symlink here)
 │   ├── apps/
-│   ├── tools/
-│   ├── docs/
+│   ├── lupo-tools/
+│   ├── lupo-docs/
 │   ├── db-changes/
-│   ├── api/
+│   ├── lupo-api/
 │   ├── needs/
-│   └── prompts/
+│   └── lupo-prompts/
 ├── anubis/                 # Anubis (19/ may symlink here)
 │   ├── apps/
-│   ├── tools/
-│   ├── docs/
+│   ├── lupo-tools/
+│   ├── lupo-docs/
 │   ├── db-changes/
-│   ├── api/
+│   ├── lupo-api/
 │   ├── needs/
-│   └── prompts/
+│   └── lupo-prompts/
 ├── antigravity/            # Antigravity (42/ may symlink here; IDE extensions, VSX)
 │   ├── apps/
-│   ├── tools/
-│   ├── docs/
+│   ├── lupo-tools/
+│   ├── lupo-docs/
 │   │   └── example.md      # Sample FLARE with hooks
 │   ├── db-changes/
-│   ├── api/
+│   ├── lupo-api/
 │   ├── needs/
-│   ├── prompts/
+│   ├── lupo-prompts/
 │   └── logs/
 └── ...
 
@@ -156,18 +156,18 @@ To add a new actor and give it a resource directory under `lupo-actors`:
 3. **Create the standard subdirectories**  
    Inside the new actor directory, create:
    - `apps/`
-   - `tools/`
-   - `docs/`
+   - `lupo-tools/`
+   - `lupo-docs/`
    - `db-changes/`
-   - `api/`
+   - `lupo-api/`
    - `needs/`
-   - `prompts/`
+   - `lupo-prompts/`
    - `skills/`
    - `www/`
    - `logs/` (optional)
 
 4. **Add content as needed**  
-   Place actor-specific applications in `apps/`, scripts/binaries in `tools/`, documentation in `docs/`, migration or seed files in `db-changes/`, API definitions in `api/`, dependency/config files in `needs/`, prompt files in `prompts/`, and modular capabilities in `skills/`.
+   Place actor-specific applications in `apps/`, lupo-scripts/binaries in `lupo-tools/`, documentation in `lupo-docs/`, migration or seed files in `db-changes/`, API definitions in `lupo-api/`, dependency/config files in `needs/`, prompt files in `lupo-prompts/`, and modular capabilities in `skills/`.
 
 5. **Optional: ensure directory exists at runtime**  
    If your code assumes the directory exists, ensure your setup or config loader creates `lupo-actors/{name}/` and the standard subdirs. Use `ActorService::getActorDir($actor_name)` to resolve the correct path.
@@ -217,7 +217,7 @@ Flow: **Detect drift (compare UTC/hashes) → If conflict, flag in queue/log →
 ## Hook contract (flare.hooks.init / flare.hooks.close)
 
 - **Syntax:** In FLARE headers, `flare.hooks.init` or `flare.hooks.close` as array of actions. Each action: `{ type: "script|api|log", target: "path or URL", params: {...} }`.
-- **Allowed actions:** Run PHP scripts from actor's `tools/`, call internal APIs, log messages. No external writes without auth.
+- **Allowed actions:** Run PHP scripts from actor's `lupo-tools/`, call internal APIs, log messages. No external writes without auth.
 - **Side-effects:** Read-only by default; writes allowed only if `lupopedia.conditional.guards_allow` permits.
 - **Security:** Scripts only under actor workspace; recursion limit (e.g. 3). Failure: log and continue; do not halt request. Track executed hooks in session to avoid loops.
 - **Timing:** init before content render, close after.

@@ -26,7 +26,7 @@ class LupoUploadHandler
 
     public function __construct()
     {
-        $this->uploadsRoot = LUPOPEDIA_PATH . '/uploads';
+        $this->uploadsRoot = LUPOPEDIA_PATH . '/lupo-uploads';
         $this->ensureUploadDirectories();
         $this->connectDatabase();
     }

@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\channels\kernel\services\MOOD_SERVICES_OVERVIEW.md"
+  file_path_from_root: "lupo-docs\channels\kernel\services\MOOD_SERVICES_OVERVIEW.md"
   file_hash: "e5e744c967ac7eb0cd327300141e83a78d95cc903100d8517d3bfa472190b6ff"
-  file_path_from_root: "docs\channels\kernel\services\MOOD_SERVICES_OVERVIEW.md"
+  file_path_from_root: "lupo-docs\channels\kernel\services\MOOD_SERVICES_OVERVIEW.md"
   file_hash: "9e68d6132a0efb8c611d2182802cf8e8f51eedbd9694e0715dee133729892db8"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -264,7 +264,7 @@ public function getMoodHistory(int $actorId, int $limit = 50): array
 ### Database Schema
 
 **Table**: `actor_moods`  
-**Location**: `database/toon_data/actor_moods.toon`
+**Location**: `lupo-database/toon_data/actor_moods.toon`
 
 ```sql
 CREATE TABLE actor_moods (
@@ -793,14 +793,14 @@ function validateAndLogMood(int $actorId, int $r, int $g, int $b): bool
 
 | File | Purpose |
 |------|---------|
-| `docs/services/ACTOR_MOOD_SERVICE.md` | Detailed ActorMoodService documentation |
-| `docs/services/MOOD_SERVICES_OVERVIEW.md` | This file (overview) |
+| `lupo-docs/services/ACTOR_MOOD_SERVICE.md` | Detailed ActorMoodService documentation |
+| `lupo-docs/services/MOOD_SERVICES_OVERVIEW.md` | This file (overview) |
 
 ### Database Schema
 
 | File | Purpose |
 |------|---------|
-| `database/toon_data/actor_moods.toon` | Table definition in TOON format |
+| `lupo-database/toon_data/actor_moods.toon` | Table definition in TOON format |
 
 ---
 

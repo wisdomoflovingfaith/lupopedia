@@ -25,4 +25,4 @@ Only ANUBIS (19) and System Administrators (10000, 1) have access to this channe
 
 - `broadcasts/` — quarantine broadcasts
 - `quarantine/` — quarantined artifacts
-- `actors/19/` — ANUBIS workspace (tasks/assigned, watching, completed)
+- `lupo-actors/19/` — ANUBIS workspace (tasks/assigned, watching, completed)

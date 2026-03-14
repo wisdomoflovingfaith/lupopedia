@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\doctrine\FLIP\FLIP_SYSTEM_REVIEW_AND_ROADMAP_4_0_35.md"
+  file_path_from_root: "lupo-docs\doctrine\FLIP\FLIP_SYSTEM_REVIEW_AND_ROADMAP_4_0_35.md"
   file_hash: "bb03b1652a5ccfffdd41b45a327469461b93f4b6f6d6d0c77132b2121c101a24"
-  file_path_from_root: "docs\doctrine\FLIP\FLIP_SYSTEM_REVIEW_AND_ROADMAP_4_0_35.md"
+  file_path_from_root: "lupo-docs\doctrine\FLIP\FLIP_SYSTEM_REVIEW_AND_ROADMAP_4_0_35.md"
   file_hash: "c53e08ebfbc625fdf717471dca0a29334754c4608c664852dc0549ceba7143d2"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -63,7 +63,7 @@ lupopedia.footer:
 
 ---
 wolfie.headers: explicit architecture with structured clarity for every file.
-file_path_from_root: "docs/doctrine/FLIP/FLIP_SYSTEM_REVIEW_AND_ROADMAP_4_0_35.md"
+file_path_from_root: "lupo-docs/doctrine/FLIP/FLIP_SYSTEM_REVIEW_AND_ROADMAP_4_0_35.md"
 system_version: "4.0.35"
 channel_id: 42
 mood_rgb: "00FF88"
@@ -95,7 +95,7 @@ The current FLIP architecture is confirmed as robust based on the following pill
 
 ### 3.2. Tooling & Automation
 - **FlipSync Daemon**: Background service monitoring Git events to auto-propagate footer updates.
-- **FLIPQL**: A query language for metadata. See `docs/doctrine/FLIP/FLIPQL_SPECIFICATION.md`.
+- **FLIPQL**: A query language for metadata. See `lupo-docs/doctrine/FLIP/FLIPQL_SPECIFICATION.md`.
 - **Batch Resync**: CLI tools for repository-wide graph validation.
 
 ### 3.3. IDE Integration

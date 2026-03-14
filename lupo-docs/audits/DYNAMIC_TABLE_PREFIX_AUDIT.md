@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\audits\DYNAMIC_TABLE_PREFIX_AUDIT.md"
+  file_path_from_root: "lupo-docs\audits\DYNAMIC_TABLE_PREFIX_AUDIT.md"
   file_hash: "8b366160becf9bdf00547824e18684dd206eadbf7247ad474a5c42a7ccd483fe"
-  file_path_from_root: "docs\audits\DYNAMIC_TABLE_PREFIX_AUDIT.md"
+  file_path_from_root: "lupo-docs\audits\DYNAMIC_TABLE_PREFIX_AUDIT.md"
   file_hash: "6de5b12790cd2f38ff8e4c42a641cf6f4d9fe5f8e21487eb658b7cd071b80bb3"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -67,12 +67,12 @@ lupopedia.footer:
 
 ## Allowed (DO NOT MODIFY)
 
-- `database/migrations/install_new_lupopedia.sql`
-- `database/migrations/seed_lupopedia.sql`
-- `database/migrations/import_from_old_crafty_syntax.sql`
-- `database/migrations/drop_old_crafty_syntax_tables.sql`
-- `database/migrations_legacy/migration_REGISTRY_agents_columns_and_insert.sql`
-- `docs/toons/*.toon.json` (all TOON files)
+- `lupo-database/migrations/install_new_lupopedia.sql`
+- `lupo-database/migrations/seed_lupopedia.sql`
+- `lupo-database/migrations/import_from_old_crafty_syntax.sql`
+- `lupo-database/migrations/drop_old_crafty_syntax_tables.sql`
+- `lupo-database/migrations_legacy/migration_REGISTRY_agents_columns_and_insert.sql`
+- `lupo-docs/toons/*.toon.json` (all TOON files)
 
 ## Fixed in This Pass
 
@@ -85,14 +85,14 @@ lupopedia.footer:
 | `lupo-includes/models/GroundedAgentModel.php` | lupo_agents, lupo_agent_owners, lupo_actors, lupo_actor_actions → prefix. |
 | `lupo-includes/theme/theme-loader.php` | lupo_federation_nodes → prefix. |
 | `app/Services/System/LupopediaMigrationController.php` | lupo_migration_log → prefix. |
-| `scripts/run_labs_handshake.php` | lupo_actors → prefix + $actors_t. |
-| `scripts/migrate_user_mappings.php` | lupo_auth_users, lupo_crafty_user_mapping → prefix in each method. |
+| `lupo-scripts/run_labs_handshake.php` | lupo_actors → prefix + $actors_t. |
+| `lupo-scripts/migrate_user_mappings.php` | lupo_auth_users, lupo_crafty_user_mapping → prefix in each method. |
 
 ## Remaining PHP Files with Literal `lupo_` (Follow-up)
 
 These files still contain literal `lupo_` table names or references (in SQL or comments). They should be updated in a follow-up pass to use dynamic prefix where they build runtime SQL:
 
-- `api/v1/*.php` (timeline, artifact, dialog, actor)
+- `lupo-api/v1/*.php` (timeline, artifact, dialog, actor)
 - `app/Services/TriggerReplacements/*.php`
 - `app/Services/EdgeService.php`
 - `lupo-includes/classes/AgentAwarenessLayer.php`
@@ -101,7 +101,7 @@ These files still contain literal `lupo_` table names or references (in SQL or c
 - `lupo-includes/DialogChannelMigration/*.php`
 - `lupo-includes/modules/content/lookup-helpers.php`, `content-controller.php`, `edge-controller.php`
 - `lupo-includes/modules/truth/truth-controller.php`
-- `scripts/migrate_filesystem_to_db.php`, `migrate_wolfie_headers_to_db.php`, `validate_tab_mappings.php`, `cleanup_old_directories.php`
+- `lupo-scripts/migrate_filesystem_to_db.php`, `migrate_wolfie_headers_to_db.php`, `validate_tab_mappings.php`, `cleanup_old_directories.php`
 - `test_cip_analytics.php`
 - Other modules and helpers (see grep for full list)
 
@@ -109,6 +109,6 @@ Session keys and global names (e.g. `$_SESSION['lupo_install_type']`, `$GLOBALS[
 
 ## Validation
 
-- No schema files were modified (install/seed/import/migration/TOONs untouched).
+- No schema files were modified (lupo-install/seed/import/migration/TOONs untouched).
 - No references to `lupo_agent_registry` were introduced.
 - PHP 5.3: `array()` used in new code; short array `[]` left as-is where already present in existing code.

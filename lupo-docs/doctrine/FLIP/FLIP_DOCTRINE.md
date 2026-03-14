@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -37,9 +37,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\doctrine\FLIP\FLIP_DOCTRINE.md"
+  file_path_from_root: "lupo-docs\doctrine\FLIP\FLIP_DOCTRINE.md"
   file_hash: "0ccda140fbae74764bbe586c4a3eddfb6b2e1414888568830e73226084e05d3b"
-  file_path_from_root: "docs\doctrine\FLIP\FLIP_DOCTRINE.md"
+  file_path_from_root: "lupo-docs\doctrine\FLIP\FLIP_DOCTRINE.md"
   file_hash: "e8f4d48628e4e4a1098929426fed1a5db1c590208da63b637b9e614ae7712983"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -66,14 +66,14 @@ lupopedia.footer:
 ---
 # FLIP Header (alias: Wolfie Header, CROP Header, FLIPPING Header)
 wolfie.headers: explicit architecture with structured clarity for every file.
-file_path_from_root: docs/doctrine/FLIP/FLIP_DOCTRINE.md
+file_path_from_root: lupo-docs/doctrine/FLIP/FLIP_DOCTRINE.md
 file.last_modified_system_version: "4.0.44"
 file.last_modified_utc: "00000000000000"
 # channel_id unresolved — requires lupo_contents lookup by application.
 X-Lupo-Channel: 42   # ANUBIS adoption channel (Auto-Fixed)
 X-Lupo-Actor-ID: 2035
 X-Lupo-Actor-Identity: "Lupopedia Audit Tool (Auto-Fixed)"
-X-Lupo-File-Path: docs/doctrine/FLIP/FLIP_DOCTRINE.md
+X-Lupo-File-Path: lupo-docs/doctrine/FLIP/FLIP_DOCTRINE.md
 ---
 # FLIP — File-Level Inference Protocol
 
@@ -135,7 +135,7 @@ FLIP is what makes FLIP Headers **operational** instead of just descriptive. The
 
 ## 6. Relationship to other doctrine
 
-- **FLIP Header specification** — Defines the structure and fields of the header (also known as Wolfie Header specification). FLIP defines **how** agents must use that structure (infer from it; do not guess). See `docs/channels/agents/WOLFIE_HEADER_SPECIFICATION.md` and `docs/channels/doctrine/WOLFIE_HEADER_DOCTRINE.md`.
+- **FLIP Header specification** — Defines the structure and fields of the header (also known as Wolfie Header specification). FLIP defines **how** agents must use that structure (infer from it; do not guess). See `lupo-docs/channels/agents/WOLFIE_HEADER_SPECIFICATION.md` and `lupo-docs/channels/doctrine/WOLFIE_HEADER_DOCTRINE.md`.
 - **MOOD_RGB / emotional geometry** — Emotional state in the header (e.g. mood_RGB) is inferred and interpreted per MOOD_RGB doctrine. FLIP does not redefine emotional axes.
 - **TOON / schema** — FLIP governs **file** interpretation. Schema and table definitions still come from TOON files only. FLIP does not replace schema doctrine.
 
@@ -163,8 +163,8 @@ When handling any Lupopedia file that has a FLIP Header, the agent MUST:
 | **Inference = from header only** | Identity, lineage, channel, version, emotional state, doctrine, placement, meaning — all inferred from the header. No guessing. |
 | **Protocol** | FLIP is the formal rule set for how Lupopedia and AI agents interpret files. |
 
-- **FLIP System Review & Roadmap (4.0.35)** — Outlines the evolution of FLIP for multi-agent IDE collaboration, including conflict resolution and high-precision temporal tracking. See `docs/doctrine/FLIP/FLIP_SYSTEM_REVIEW_AND_ROADMAP_4_0_35.md`.
-- **FLIPQL Specification** — Defines the File-Level Inference Protocol Query Language for repo-wide metadata discovery. See `docs/doctrine/FLIP/FLIPQL_SPECIFICATION.md`.
+- **FLIP System Review & Roadmap (4.0.35)** — Outlines the evolution of FLIP for multi-agent IDE collaboration, including conflict resolution and high-precision temporal tracking. See `lupo-docs/doctrine/FLIP/FLIP_SYSTEM_REVIEW_AND_ROADMAP_4_0_35.md`.
+- **FLIPQL Specification** — Defines the File-Level Inference Protocol Query Language for repo-wide metadata discovery. See `lupo-docs/doctrine/FLIP/FLIPQL_SPECIFICATION.md`.
 
 ---
 

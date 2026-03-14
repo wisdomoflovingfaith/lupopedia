@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\channels\doctrine\UTC_CODING_CYCLE_DOCTRINE.md"
+  file_path_from_root: "lupo-docs\channels\doctrine\UTC_CODING_CYCLE_DOCTRINE.md"
   file_hash: "5263a2c9ca18d3e68a837ba7fb3506e30fb318a883918fad9a12a27b3c8e1c48"
-  file_path_from_root: "docs\channels\doctrine\UTC_CODING_CYCLE_DOCTRINE.md"
+  file_path_from_root: "lupo-docs\channels\doctrine\UTC_CODING_CYCLE_DOCTRINE.md"
   file_hash: "8ee5467c0d139d6b7ef01c904c66e869f4f4861042f354a8a8d6b8603b3effe9"
   last_updated_utc: "20260228"
   system_version: "4.0.50"

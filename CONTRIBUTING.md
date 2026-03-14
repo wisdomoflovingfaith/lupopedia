@@ -2,7 +2,7 @@
 
 ---
 lupopedia.headers:
-  lupopedia.version: "4.0.73"
+  lupopedia.version: "4.0.74"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
   file_path_from_root: "CONTRIBUTING.md"
@@ -47,8 +47,8 @@ wolfie.headers: {
 flip.footer: {
   outbound_edges: [
     { to: "AGENTS.md", type: "references", weight: 1.0 },
-    { to: "docs/AGENT_INVENTORY.md", type: "references", weight: 0.9 },
-    { to: "docs/doctrine/VERSION_POLICY_DOCTRINE.md", type: "references", weight: 1.0, reason: "Critical version policy compliance requirements" }
+    { to: "lupo-docs/AGENT_INVENTORY.md", type: "references", weight: 0.9 },
+    { to: "lupo-docs/doctrine/VERSION_POLICY_DOCTRINE.md", type: "references", weight: 1.0, reason: "Critical version policy compliance requirements" }
   ],
   semantic_tags: ["contributing", "multi_agent", "development_workflow", "git_workflow", "version_policy"]
 }
@@ -182,7 +182,7 @@ remove access
 
 🚨 9. Critical Version Policy Compliance
 
-**MANDATORY**: All contributors must comply with the [Version Policy Doctrine](docs/doctrine/VERSION_POLICY_DOCTRINE.md).
+**MANDATORY**: All contributors must comply with the [Version Policy Doctrine](lupo-docs/doctrine/VERSION_POLICY_DOCTRINE.md).
 
 **CRITICAL BLOCKER**: Lupopedia 4.0.x CANNOT advance to 4.1.0 until auto-installers accept 4.0.x as a Crafty Syntax 3.7.5 replacement.
 

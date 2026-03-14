@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\channels\history\2014-2025\hiatus.md"
+  file_path_from_root: "lupo-docs\channels\history\2014-2025\hiatus.md"
   file_hash: "e3d0ffddaac23b7a18f8554dc6b849a703d6e026c47ee7640e27aba4e626aef4"
-  file_path_from_root: "docs\channels\history\2014-2025\hiatus.md"
+  file_path_from_root: "lupo-docs\channels\history\2014-2025\hiatus.md"
   file_hash: "99230eaa014d63046d90b635df240beded8932ba0b2266d9aedff78f9b730208"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -135,15 +135,15 @@ This era represents a deliberate pause in Lupopedia development due to profound 
 ## Cross-Reference Documentation
 
 ### Primary Source
-- **Detailed Documentation:** `docs/history/2014-2025/2014.md`
+- **Detailed Documentation:** `lupo-docs/history/2014-2025/2014.md`
 - **Comprehensive Coverage:** Full timeline of events and impact
 - **Personal Context:** Detailed explanation of circumstances
 - **System Impact:** Effects on all projects and future development
 
 ### Related Documentation
-- **Pre-Hiatus Work:** `docs/history/1996-2013/` (18 years of active development)
-- **Post-Hiatus Return:** `docs/history/2025-2026/` (Resurgence and Ascent)
-- **Complete Timeline:** `docs/history/TIMELINE_1996_2026.md`
+- **Pre-Hiatus Work:** `lupo-docs/history/1996-2013/` (18 years of active development)
+- **Post-Hiatus Return:** `lupo-docs/history/2025-2026/` (Resurgence and Ascent)
+- **Complete Timeline:** `lupo-docs/history/TIMELINE_1996_2026.md`
 - **System Summary:** `config/global_atoms.yaml` (GLOBAL_ERIC_WOLFIE_TLDNR_2026)
 
 ---

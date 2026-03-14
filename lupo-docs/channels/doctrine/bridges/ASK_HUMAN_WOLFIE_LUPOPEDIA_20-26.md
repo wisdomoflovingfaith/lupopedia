@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\channels\doctrine\bridges\ASK_HUMAN_WOLFIE_LUPOPEDIA_20-26.md"
+  file_path_from_root: "lupo-docs\channels\doctrine\bridges\ASK_HUMAN_WOLFIE_LUPOPEDIA_20-26.md"
   file_hash: "65f7c1600f6ea8537c375c81b7ac8c527aed889ca1e09178ef0f94580f939382"
-  file_path_from_root: "docs\channels\doctrine\bridges\ASK_HUMAN_WOLFIE_LUPOPEDIA_20-26.md"
+  file_path_from_root: "lupo-docs\channels\doctrine\bridges\ASK_HUMAN_WOLFIE_LUPOPEDIA_20-26.md"
   file_hash: "e31ba57e4c6bed832a2606ddc080780706fd22b2a945a2e0fa5def8664a509a9"
   last_updated_utc: "20260228"
   system_version: "4.0.50"

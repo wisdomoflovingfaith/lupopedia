@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: "channels/42/content/federation_node_id/0/craftysyntax.md"
+  file_path_from_root: "lupo-channels/42/content/federation_node_id/0/craftysyntax.md"
   file_hash: "to_be_generated"
   federation_node_id: 0
   web_path: "http://www.lupopedia.com/craftysyntax"
@@ -21,17 +21,17 @@ lupopedia.headers:
 
 lupopedia.edges:
   outbound_edges:
-    - { to: "legacy/craftysyntax/", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/FLARE/FLARE_DOCTRINE.md", type: "references", weight: 1.0 }
-    - { to: "docs/FLARE_HEADERS_COMPLETE_REFERENCE.md", type: "references", weight: 0.9 }
-    - { to: "docs/api/FLARE_API.md", type: "references", weight: 0.8 }
-    - { to: "actors/registry.json", type: "references", weight: 0.8 }
-    - { to: "database/migrations/install_lupopedia.sql", type: "references", weight: 0.7 }
-    - { to: "docs/database/lupopedia/tables/MIGRATION_MAPPING_REFERENCE.md", type: "references", weight: 0.9 }
-    - { to: "channels/42/content/federation_node_id/0/FLARE.md", type: "references", weight: 1.0 }
-    - { to: "channels/42/content/federation_node_id/0/readme.md", type: "references", weight: 0.9 }
-    - { to: "channels/42/content/federation_node_id/0/changelog.md", type: "references", weight: 0.8 }
-    - { to: "channels/42/content/federation_node_id/0/flare/readme.md", type: "references", weight: 0.8 }
+    - { to: "lupo-legacy/craftysyntax/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/FLARE/FLARE_DOCTRINE.md", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/FLARE_HEADERS_COMPLETE_REFERENCE.md", type: "references", weight: 0.9 }
+    - { to: "lupo-docs/api/FLARE_API.md", type: "references", weight: 0.8 }
+    - { to: "lupo-actors/registry.json", type: "references", weight: 0.8 }
+    - { to: "lupo-database/migrations/install_lupopedia.sql", type: "references", weight: 0.7 }
+    - { to: "lupo-docs/database/lupopedia/tables/MIGRATION_MAPPING_REFERENCE.md", type: "references", weight: 0.9 }
+    - { to: "lupo-channels/42/content/federation_node_id/0/FLARE.md", type: "references", weight: 1.0 }
+    - { to: "lupo-channels/42/content/federation_node_id/0/readme.md", type: "references", weight: 0.9 }
+    - { to: "lupo-channels/42/content/federation_node_id/0/changelog.md", type: "references", weight: 0.8 }
+    - { to: "lupo-channels/42/content/federation_node_id/0/flare/readme.md", type: "references", weight: 0.8 }
   semantic_tags: ["craftysyntax", "legacy", "federation", "canonical", "protocol", "upgrade"]
 
 lupopedia.footer:
@@ -49,7 +49,7 @@ Crafty Syntax 3.7.5 is the preserved foundation of Lupopedia. This documentation
 
 **Status**: ✅ PRESERVED (Read-Only Reference)  
 **Version**: 3.7.5 (Final Release)  
-**Location**: `legacy/craftysyntax/`  
+**Location**: `lupo-legacy/craftysyntax/`  
 **Purpose**: Foundation layer for Lupopedia Semantic OS
 
 ## Core Features Preserved
@@ -108,13 +108,13 @@ Crafty Syntax 3.7.5 is the preserved foundation of Lupopedia. This documentation
 
 ### Reference Location
 ```
-legacy/craftysyntax/
-├── admin/           # Administrative interface
+lupo-legacy/craftysyntax/
+├── lupo-admin/           # Administrative interface
 ├── chat/            # Live chat functionality
-├── includes/        # Core libraries and functions
-├── install/         # Original installation scripts
+├── lupo-includes/        # Core libraries and functions
+├── lupo-install/         # Original installation scripts
 ├── languages/       # Internationalization files
-├── templates/       # UI templates and themes
+├── lupo-templates/       # UI templates and themes
 └── upgrade/         # Version upgrade scripts
 ```
 
@@ -184,12 +184,12 @@ This Crafty Syntax documentation is part of federation node 0, providing:
 
 ## References
 
-- **Legacy Code**: `legacy/craftysyntax/` (read-only reference)
-- **Migration Mapping**: `docs/database/lupopedia/tables/MIGRATION_MAPPING_REFERENCE.md`
-- **FLARE Doctrine**: `docs/doctrine/FLARE/FLARE_DOCTRINE.md`
-- **Federation Documentation**: `docs/architecture/FEDERATION_AND_REGISTRY.md`
+- **Legacy Code**: `lupo-legacy/craftysyntax/` (read-only reference)
+- **Migration Mapping**: `lupo-docs/database/lupopedia/tables/MIGRATION_MAPPING_REFERENCE.md`
+- **FLARE Doctrine**: `lupo-docs/doctrine/FLARE/FLARE_DOCTRINE.md`
+- **Federation Documentation**: `lupo-docs/architecture/FEDERATION_AND_REGISTRY.md`
 - **Installation Guide**: `install.php` (Lupopedia installer)
-- **Database Migrations**: `database/migrations/install_lupopedia.sql`
+- **Database Migrations**: `lupo-database/migrations/install_lupopedia.sql`
 
 ---
 

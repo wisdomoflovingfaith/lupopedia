@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\channels\doctrine\TABLE_COUNT_DOCTRINE.md"
+  file_path_from_root: "lupo-docs\channels\doctrine\TABLE_COUNT_DOCTRINE.md"
   file_hash: "d1f86093a5ce0e805bb83cba544d58b9c4ee95b0c0948f76713492af6eaffac5"
-  file_path_from_root: "docs\channels\doctrine\TABLE_COUNT_DOCTRINE.md"
+  file_path_from_root: "lupo-docs\channels\doctrine\TABLE_COUNT_DOCTRINE.md"
   file_hash: "82d1575b9b907b2e230962ae004db2c0efe4a65588383bb722a933684e9bcde8"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -84,7 +84,7 @@ dialog:
   speaker: CURSOR
   target: @everyone @CAPTAIN_WOLFIE @Monday_Wolfie
   mood_RGB: "00FF00"
-  message: "TABLE_COUNT_DOCTRINE: current count = TOON file count after python scripts/generate_toon_files.py; do not hardcode. Ceiling 199."
+  message: "TABLE_COUNT_DOCTRINE: current count = TOON file count after python lupo-scripts/generate_toon_files.py; do not hardcode. Ceiling 199."
 tags:
   categories: ["documentation", "doctrine", "database", "architecture"]
   collections: ["core-docs", "doctrine"]
@@ -116,7 +116,7 @@ Status: ACTIVE ARCHITECTURE LAW
 
 **The current number of tables is determined by counting the TOON files produced after running the TOON generator.** Do not write or maintain a fixed table count in documentation.
 
-1. Run: `python scripts/generate_toon_files.py` (from the project root).
+1. Run: `python lupo-scripts/generate_toon_files.py` (from the project root).
 2. The script writes one TOON per table; the number of TOON files written (or the count printed by the script) is the **current table count**.
 3. Use that count when updating this doctrine or any doc that states "current table count". Do not guess or hardcode the value.
 
@@ -135,7 +135,7 @@ TARGET_TABLE_COUNT: 199
 TABLE_OPTIMIZATION_TRIGGER: 200
 TABLE_OPTIMIZATION_REQUIRED: true
 
-- Current count: **see above** — run `python scripts/generate_toon_files.py` and use the TOON file count (do not hardcode).
+- Current count: **see above** — run `python lupo-scripts/generate_toon_files.py` and use the TOON file count (do not hardcode).
 - Maximum allowed: **199 tables**
 - Target operational count: **199 tables**
 - Tables under limit: **199 − (TOON count from script)**
@@ -156,7 +156,7 @@ All logic must reside in PHP service classes, doctrine files, or
 application-level orchestration. The database remains a pure data store.
 
 ## Rationale
-1. System truth alignment — 199 tables is the ceiling; current schema count = TOON file count from `python scripts/generate_toon_files.py` (do not hardcode).
+1. System truth alignment — 199 tables is the ceiling; current schema count = TOON file count from `python lupo-scripts/generate_toon_files.py` (do not hardcode).
 2. Pack Architecture requirements — multi-agent coordination and emotional
    geometry require structural space.
 3. Historical doctrine preservation — the 111-table rule remains part of
@@ -171,7 +171,7 @@ application-level orchestration. The database remains a pure data store.
 - Legacy livehelp_ tables removed in version 3.1.17 (8 tables dropped)
 - Table ceiling set to 199 to support system stability
 - Target operational count: 199 tables
-- Current schema count: run `python scripts/generate_toon_files.py` and use TOON file count (do not hardcode)
+- Current schema count: run `python lupo-scripts/generate_toon_files.py` and use TOON file count (do not hardcode)
 - TOON-defined system: same as table count from script
 - **NO VIOLATION**: Current total must remain &lt; 199
 - Required action: Monitor table growth and prepare optimization at 200+
@@ -202,7 +202,7 @@ application-level orchestration. The database remains a pure data store.
 
 ### Enforcement
 - Application-level: migrations and LILITH oversight; veto authority
-- Optional: `schema_freeze_enforcement_4_2_0` MySQL EVENT (see `database/migrations/4.2.0_schema_freeze_enforcement.sql`); deploy only if CAPTAIN_WOLFIE + LILITH approve
+- Optional: `schema_freeze_enforcement_4_2_0` MySQL EVENT (see `lupo-database/migrations/4.2.0_schema_freeze_enforcement.sql`); deploy only if CAPTAIN_WOLFIE + LILITH approve
 - Weekly compliance audits
 
 ### Exceptions

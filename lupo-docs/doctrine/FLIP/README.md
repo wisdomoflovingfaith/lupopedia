@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -37,9 +37,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\doctrine\FLIP\README.md"
+  file_path_from_root: "lupo-docs\doctrine\FLIP\README.md"
   file_hash: "3e95fcac4ff8aa2d7ededc12d215ad85cf3c9e3e4f936520a071e6de21dc613b"
-  file_path_from_root: "docs\doctrine\FLIP\README.md"
+  file_path_from_root: "lupo-docs\doctrine\FLIP\README.md"
   file_hash: "5a5217428cda2c433b032a4dd774dcb66c041054da874ad2fe99da678f6953b2"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -66,16 +66,16 @@ lupopedia.footer:
 ---
 # FLIP Header (alias: Wolfie Header, CROP Header, FLIPPING Header)
 wolfie.headers: explicit architecture with structured clarity for every file.
-file_path_from_root: docs/doctrine/FLIP/README.md
+file_path_from_root: lupo-docs/doctrine/FLIP/README.md
 file.last_modified_system_version: "4.0.16"
 file.last_modified_utc: "00000000000000"
 # channel_id unresolved — requires lupo_contents lookup by application.
 X-Lupo-Channel: 42   # ANUBIS adoption channel (Auto-Fixed)
 X-Lupo-Actor-ID: 2035
 X-Lupo-Actor-Identity: "Lupopedia Audit Tool (Auto-Fixed)"
-X-Lupo-File-Path: docs/doctrine/FLIP/README.md
+X-Lupo-File-Path: lupo-docs/doctrine/FLIP/README.md
 ---
-# docs/doctrine/FLIP/
+# lupo-docs/doctrine/FLIP/
 
 **Status:** Permanent. Documentation only. No schema, no SQL, no implementation unless explicitly instructed.
 
@@ -112,5 +112,5 @@ The FLP sits entirely on top of existing Lupopedia architecture (channels, actor
 
 ## Cross-references
 
-- **MOOD_RGB:** [docs/channels/doctrine/MOOD_RGB_DOCTRINE.md](../../channels/doctrine/MOOD_RGB_DOCTRINE.md)
-- **Channels (DB):** [docs/doctrine/database/channels.md](../database/channels.md)
+- **MOOD_RGB:** [lupo-docs/channels/doctrine/MOOD_RGB_DOCTRINE.md](../../channels/doctrine/MOOD_RGB_DOCTRINE.md)
+- **Channels (DB):** [lupo-docs/doctrine/database/channels.md](../database/channels.md)

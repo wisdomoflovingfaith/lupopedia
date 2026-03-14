@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -31,7 +31,7 @@ lupopedia.footer:
 # LUPOPEDIA HEADERS (replaces FLARE)
 ---
 lupopedia.headers:
-  file_path_from_root: "docs/doctrine/FLARE/FLARE_ARCHITECTURAL_RECOMMENDATIONS.md"
+  file_path_from_root: "lupo-docs/doctrine/FLARE/FLARE_ARCHITECTURAL_RECOMMENDATIONS.md"
   file_hash: "de993c4d610ab8dce53f1afed72dc09327812dbdbe4d7360c46224fabadb079b"
   system_version: "4.0.50"
   channel_id: 0
@@ -42,15 +42,15 @@ delegation_chain: "1007:10000"
   last_modified_utc: "20260227"
   artifact_type: "doctrine"
   purpose: "Recommendations for improving FLARE API and Engagement Schema"
-  dialog_message: "Recommended next step: create actors/1007 profile and align any remaining docs/examples to the required FLARE prologue format."
+  dialog_message: "Recommended next step: create lupo-actors/1007 profile and align any remaining lupo-docs/examples to the required FLARE prologue format."
   lupo_agent: "codex-ide"
 
 lupopedia.edges:
-  file_path_from_root: "docs\doctrine\FLARE\FLARE_ARCHITECTURAL_RECOMMENDATIONS.md"
+  file_path_from_root: "lupo-docs\doctrine\FLARE\FLARE_ARCHITECTURAL_RECOMMENDATIONS.md"
   outbound_edges:
-    - { to: "docs/doctrine/FLARE/FLARE_DOCTRINE.md", type: "references", weight: 1.0 }
-    - { to: "docs/toons/lupo_edges.toon.json", type: "schema_reference", weight: 0.9 }
-    - { to: "api/flare-header.php", type: "implements", weight: 0.8 }
+    - { to: "lupo-docs/doctrine/FLARE/FLARE_DOCTRINE.md", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/toons/lupo_edges.toon.json", type: "schema_reference", weight: 0.9 }
+    - { to: "lupo-api/flare-header.php", type: "implements", weight: 0.8 }
   semantic_tags: ["architecture", "recommendations", "flare", "api", "database"]
 
   last_updated_utc: "20260228"
@@ -94,7 +94,7 @@ This table already supports `like`, `share`, and `bookmark` via `edge_type`.
 1. **Source of Truth**: Formalize this table as the source of truth for all binary engagement.
 2. **Cache Synchronization**: Implement application-level consistency checks (ANUBIS) to ensure `lupo_contents.like_count` matches the sum of `edge_type = 'like'` in this table.
 
-## 3. API Enhancements (api/flare-header.php)
+## 3. API Enhancements (lupo-api/flare-header.php)
 
 The API currently performs hardcoded logic for several fields.
 

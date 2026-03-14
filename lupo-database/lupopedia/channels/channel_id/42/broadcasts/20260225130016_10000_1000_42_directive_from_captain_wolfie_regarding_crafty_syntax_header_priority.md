@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "channels\42\broadcasts\20260225130016_10000_1000_42_directive_from_captain_wolfie_regarding_crafty_syntax_header_priority.md"
+  file_path_from_root: "lupo-channels\42\broadcasts\20260225130016_10000_1000_42_directive_from_captain_wolfie_regarding_crafty_syntax_header_priority.md"
   file_hash: "3c1463c441e970155b3add5481e974d2e1762cc429ca190c356b061a5b79d18d"
-  file_path_from_root: "channels\42\broadcasts\20260225130016_10000_1000_42_directive_from_captain_wolfie_regarding_crafty_syntax_header_priority.md"
+  file_path_from_root: "lupo-channels\42\broadcasts\20260225130016_10000_1000_42_directive_from_captain_wolfie_regarding_crafty_syntax_header_priority.md"
   file_hash: "3bac12139c1ebc32f1cea56c011cf7ed9502cb063dda71a091c31953ddeeff72"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -171,7 +171,7 @@ Antigravity: Acknowledged. Beginning version 4.0.39 Crafty Syntax header complet
 
 <!-- FLIP_FOOTER_BEGIN
 {
-    "references": "\"docs\/status\/broadcast_collection_42.md\"",
+    "references": "\"lupo-docs\/status\/broadcast_collection_42.md\"",
     "implements": "\"broadcast_standardization\"",
     "depends_on": "\"registry_seeding_completion\"",
     "includes": "\"channel_42_communications\"",

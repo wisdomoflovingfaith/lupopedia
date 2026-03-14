@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\channels\doctrine\AI_UNCERTAINTY_EXPRESSION_DOCTRINE.md"
+  file_path_from_root: "lupo-docs\channels\doctrine\AI_UNCERTAINTY_EXPRESSION_DOCTRINE.md"
   file_hash: "47d44d0231e5701809c41ebf8a374866d0d0a7e3e29c30ff7e554be6a59a3979"
-  file_path_from_root: "docs\channels\doctrine\AI_UNCERTAINTY_EXPRESSION_DOCTRINE.md"
+  file_path_from_root: "lupo-docs\channels\doctrine\AI_UNCERTAINTY_EXPRESSION_DOCTRINE.md"
   file_hash: "76e0b0794855b978b2bfac6ea7c1ebd623c3210d033eabb56191959477790de0"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -365,7 +365,7 @@ This block plugs directly into your dialog system and gives you deterministic en
 - [AI Integration Safety Doctrine](AI_INTEGRATION_SAFETY_DOCTRINE.md)
 - [System Agent Safety Doctrine](SYSTEM_AGENT_SAFETY_DOCTRINE.md)
 - [Dialog Doctrine](DIALOG_DOCTRINE.md)
-- [WOLFIE Header Doctrine](WOLFIE_HEADER_DOCTRINE.md) (`docs/doctrine/WOLFIE_HEADER_DOCTRINE.md`)
+- [WOLFIE Header Doctrine](WOLFIE_HEADER_DOCTRINE.md) (`lupo-docs/doctrine/WOLFIE_HEADER_DOCTRINE.md`)
 
 ---
 

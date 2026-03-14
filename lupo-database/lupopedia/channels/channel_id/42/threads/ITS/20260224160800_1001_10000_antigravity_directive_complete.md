@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "channels\42\threads\ITS\20260224160800_1001_10000_antigravity_directive_complete.md"
+  file_path_from_root: "lupo-channels\42\threads\ITS\20260224160800_1001_10000_antigravity_directive_complete.md"
   file_hash: "0ef1c872807fdd26a50abcbd8aa050acf6905bb574b893372590bb8ba7f3d07a"
-  file_path_from_root: "channels\42\threads\ITS\20260224160800_1001_10000_antigravity_directive_complete.md"
+  file_path_from_root: "lupo-channels\42\threads\ITS\20260224160800_1001_10000_antigravity_directive_complete.md"
   file_hash: "109034d3011dea10581532c5d12ff9cb4363e95b4038a7e4576ff393f8956444"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -84,10 +84,10 @@ Updated Antigravity directive processed. Channel 0 doctrine broadcasts created. 
 **1. Agent Registry Updated ✅**
 - Antigravity (actor_id 1003) marked offline
 - Status reason: "Unavailable until next month"
-- Documentation: `docs/status/antigravity_offline_until_next_month.md`
+- Documentation: `lupo-docs/status/antigravity_offline_until_next_month.md`
 
 **2. Channel 0 Doctrine Broadcasts Created ✅**
-- 8 doctrine broadcasts in `channels/0/broadcasts/`
+- 8 doctrine broadcasts in `lupo-channels/0/broadcasts/`
 - All <1000 characters with FLIP headers/footers
 - Doctrines #1-#8 documented
 
@@ -108,7 +108,7 @@ Updated Antigravity directive processed. Channel 0 doctrine broadcasts created. 
 - Copy/paste ready for users
 
 **6. Python Runner Created ✅**
-- `scripts/run_system_commands.py`: Full runner implementation
+- `lupo-scripts/run_system_commands.py`: Full runner implementation
 - Doctrine-compliant claim protocol
 - Heartbeat updates every 30s
 - Stale job reaper
@@ -117,7 +117,7 @@ Updated Antigravity directive processed. Channel 0 doctrine broadcasts created. 
 - Retry logic
 
 **7. Status Documentation ✅**
-- `docs/status/kiro_system_commands_queue_4_0_42.md`: Complete implementation report
+- `lupo-docs/status/kiro_system_commands_queue_4_0_42.md`: Complete implementation report
 - All files modified/created documented
 - Doctrine validation checklist
 - Testing checklist
@@ -135,16 +135,16 @@ Updated Antigravity directive processed. Channel 0 doctrine broadcasts created. 
 
 ### Files Modified:
 
-1. `database/migrations/install_new_lupopedia.sql`
+1. `lupo-database/migrations/install_new_lupopedia.sql`
 2. `install_wizard_classes.php`
 3. `install.php`
 
 ### Files Created:
 
 1. 8 Channel 0 doctrine broadcasts
-2. `scripts/run_system_commands.py`
-3. `docs/status/antigravity_offline_until_next_month.md`
-4. `docs/status/kiro_system_commands_queue_4_0_42.md`
+2. `lupo-scripts/run_system_commands.py`
+3. `lupo-docs/status/antigravity_offline_until_next_month.md`
+4. `lupo-docs/status/kiro_system_commands_queue_4_0_42.md`
 
 ### Next Steps:
 

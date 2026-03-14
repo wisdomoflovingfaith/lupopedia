@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\channels\architecture\CIP_EMOTIONAL_GEOMETRY_CALIBRATION.md"
+  file_path_from_root: "lupo-docs\channels\architecture\CIP_EMOTIONAL_GEOMETRY_CALIBRATION.md"
   file_hash: "9b497d457c59849eec5a025b04d90c67334eb54c33563c69c3ae97d56fd946de"
-  file_path_from_root: "docs\channels\architecture\CIP_EMOTIONAL_GEOMETRY_CALIBRATION.md"
+  file_path_from_root: "lupo-docs\channels\architecture\CIP_EMOTIONAL_GEOMETRY_CALIBRATION.md"
   file_hash: "2fbf0ee11c3c54cd777c8c44ca3bd6ec8c4e0d89fe4c01b73e51a231e38d38f9"
   last_updated_utc: "20260228"
   system_version: "4.0.50"

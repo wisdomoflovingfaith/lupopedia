@@ -2,7 +2,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "tldr"
-  file_path_from_root: "docs/TLDR_LUPOPEDIA.md"
+  file_path_from_root: "lupo-docs/TLDR_LUPOPEDIA.md"
   web_path: "http://www.lupopedia.com/tldr"
   last_modified_utc: "20260306"
   system_version: "4.0.62"
@@ -29,7 +29,7 @@ lupopedia.headers:
 - **DOCTOR actor (1009):** Health and context validation; `doctor` and `doctor-context` route through `lupo-agents/doctor/` when present.
 - **Sub‑topic help:** `lupo help whoami`, `help context`, `help doctor`, etc.
 - **HelpRenderer class:** `lupo-includes/classes/HelpRenderer.php` — help output, contextual tips, exit codes
-- **Source of truth:** `docs/HELP.md` — single documentation hub
+- **Source of truth:** `lupo-docs/HELP.md` — single documentation hub
 
 ---
 
@@ -78,7 +78,7 @@ lupopedia.headers:
 - **Dual-identity:** Effective actor / human identity / active agent + session modes (`human_direct`, `hybrid`, `autonomous_agent`, `system`)
 - **Channels & Threads:** `{LUPO_CHANNELS_DIR}/{node_id}/{channel_id}/threads/`
 - **Session-first:** `lupo-database/session.md` read before database — offline CLI
-- **Version tracking:** `version.php` + `docs/version.md` + `$lupo_config['version']`
+- **Version tracking:** `version.php` + `lupo-docs/version.md` + `$lupo_config['version']`
 
 ---
 

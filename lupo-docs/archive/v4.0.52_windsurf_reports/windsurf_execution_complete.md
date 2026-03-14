@@ -113,7 +113,7 @@ Windsurf,
 - ✅ Override hierarchy enforced correctly
 
 **Phase 4 - Registry Report**:
-- ✅ `tools/faucet_registry_report.txt` created with complete observability
+- ✅ `lupo-tools/faucet_registry_report.txt` created with complete observability
 - ✅ 6 faucet files validated, 0 errors
 - ✅ All actor root directories present
 

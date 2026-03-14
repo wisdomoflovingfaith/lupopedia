@@ -2,7 +2,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: "docs/CHANNEL_0_ACTOR_0_TASKS.md"
+  file_path_from_root: "lupo-docs/CHANNEL_0_ACTOR_0_TASKS.md"
   web_path: "http://www.lupopedia.com/docs/CHANNEL_0_ACTOR_0_TASKS"
   last_modified_utc: "20260306"
   system_version: "4.0.62"
@@ -38,7 +38,7 @@ Actor_id 0 (system) does not have per-channel task assignments in the current la
 | Task file | Description (from path/name) |
 |-----------|------------------------------|
 | `tasks/active/20260225170000_task_0_10000_drop_tables_and_run_install.md` | Drop tables and run install (actor 10000) |
-| `tasks/active/20260226000000_task_0_10000_primary_install_upgrade_4_0_46.md` | Primary install/upgrade 4.0.46 (actor 10000) |
+| `tasks/active/20260226000000_task_0_10000_primary_install_upgrade_4_0_46.md` | Primary lupo-install/upgrade 4.0.46 (actor 10000) |
 | `tasks/active/broadcast_normalization.md` | Broadcast normalization |
 | `tasks/active/db_reset_and_install.md` | DB reset and install |
 | `tasks/active/installer_integration.md` | Installer integration |
@@ -74,7 +74,7 @@ Actor_id 0 (system) does not have per-channel task assignments in the current la
 |-------|--------|----------|
 | **Channel 0 — active** | 6 | `channel_id/0/tasks/active/*.md` |
 | **Channel 0 — pending** | 0 | `channel_id/0/tasks/pending/*.md` |
-| **Actor 0 — current_focus** | 0 (empty) | `actors/actor_id/0/tasks/current_focus.json` |
+| **Actor 0 — current_focus** | 0 (empty) | `lupo-actors/actor_id/0/tasks/current_focus.json` |
 
 **Total tasks on channel_id 0:** 6 (6 active + 1 completed; 0 pending).  
 **Tasks explicitly for actor_id 0:** Defined by channel 0 context and system role; assignees in the task filenames are 10000 (captain) and 19 (ANUBIS).
@@ -85,4 +85,4 @@ Actor_id 0 (system) does not have per-channel task assignments in the current la
 
 - [HELP.md](HELP.md) — Doc hub
 - [VERSION_4.0.61_STRATEGY.md](VERSION_4.0.61_STRATEGY.md) — Context Doctor, Context Kernel
-- [prompts/lilith/20260306_agent_task_execution.md](../prompts/lilith/20260306_agent_task_execution.md) — Agent task execution across channels (discovery, execution, reporting)
+- [lupo-prompts/lilith/20260306_agent_task_execution.md](../prompts/lilith/20260306_agent_task_execution.md) — Agent task execution across channels (discovery, execution, reporting)

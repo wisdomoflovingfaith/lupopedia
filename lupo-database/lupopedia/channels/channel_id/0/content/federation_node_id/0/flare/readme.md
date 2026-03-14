@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: "channels/42/content/federation_node_id/0/flare/readme.md"
+  file_path_from_root: "lupo-channels/42/content/federation_node_id/0/flare/readme.md"
   file_hash: "to_be_generated"
   federation_node_id: 0
   web_path: "http://www.lupopedia.com/flare/readme"
@@ -20,15 +20,15 @@ lupopedia.headers:
 
 lupopedia.edges:
   outbound_edges:
-    - { to: "docs/doctrine/FLARE/FLARE_DOCTRINE.md", type: "references", weight: 1.0 }
-    - { to: "docs/FLARE_HEADERS_COMPLETE_REFERENCE.md", type: "references", weight: 1.0 }
-    - { to: "docs/api/FLARE_API.md", type: "references", weight: 0.9 }
-    - { to: "actors/registry.json", type: "references", weight: 0.8 }
-    - { to: "database/migrations/install_lupopedia.sql", type: "references", weight: 0.7 }
-    - { to: "docs/database/lupopedia/tables/lupo_channel_content.md", type: "references", weight: 0.7 }
+    - { to: "lupo-docs/doctrine/FLARE/FLARE_DOCTRINE.md", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/FLARE_HEADERS_COMPLETE_REFERENCE.md", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/api/FLARE_API.md", type: "references", weight: 0.9 }
+    - { to: "lupo-actors/registry.json", type: "references", weight: 0.8 }
+    - { to: "lupo-database/migrations/install_lupopedia.sql", type: "references", weight: 0.7 }
+    - { to: "lupo-docs/database/lupopedia/tables/lupo_channel_content.md", type: "references", weight: 0.7 }
     - { to: "README.md", type: "references", weight: 1.0 }
-    - { to: "channels/42/content/federation_node_id/0/FLARE.md", type: "references", weight: 1.0 }
-    - { to: "channels/42/content/federation_node_id/0/changelog.md", type: "references", weight: 0.9 }
+    - { to: "lupo-channels/42/content/federation_node_id/0/FLARE.md", type: "references", weight: 1.0 }
+    - { to: "lupo-channels/42/content/federation_node_id/0/changelog.md", type: "references", weight: 0.9 }
   semantic_tags: ["flare", "federation", "readme", "canonical", "protocol"]
 
 lupopedia.footer:
@@ -58,9 +58,9 @@ Federation node 0 serves as the canonical root for the FLARE federation system:
 ## Key Components
 
 ### Core Files
-- **FLARE Definition**: `channels/42/content/federation_node_id/0/FLARE.md`
-- **Changelog**: `channels/42/content/federation_node_id/0/changelog.md`
-- **FLARE README**: `channels/42/content/federation_node_id/0/flare/readme.md` (this file)
+- **FLARE Definition**: `lupo-channels/42/content/federation_node_id/0/FLARE.md`
+- **Changelog**: `lupo-channels/42/content/federation_node_id/0/changelog.md`
+- **FLARE README**: `lupo-channels/42/content/federation_node_id/0/flare/readme.md` (this file)
 
 ### Database Integration
 - **Table**: `lupo_channel_content`
@@ -80,7 +80,7 @@ Federation node 0 serves as the canonical root for the FLARE federation system:
 - Proper FLARE header compliance
 
 ### Installation
-1. Run the migration: `database/migrations/20260301_add_lupo_channel_content.sql`
+1. Run the migration: `lupo-database/migrations/20260301_add_lupo_channel_content.sql`
 2. Verify federation node 0 entries in `lupo_channel_content`
 3. Test web path resolution
 
@@ -93,7 +93,7 @@ Federation node 0 serves as the canonical root for the FLARE federation system:
 
 ### Node Structure
 ```
-channels/42/content/federation_node_id/0/
+lupo-channels/42/content/federation_node_id/0/
 ├── FLARE.md      # Canonical FLARE definition
 ├── changelog.md  # Federation node changelog
 └── flare/
@@ -103,9 +103,9 @@ channels/42/content/federation_node_id/0/
 ### Web Path Mapping
 | Repository Path | Web URL | Purpose |
 |-----------------|---------|---------|
-| `channels/42/content/federation_node_id/0/FLARE.md` | `http://www.lupopedia.com/FLARE` | FLARE documentation |
-| `channels/42/content/federation_node_id/0/changelog.md` | `http://www.lupopedia.com/changelog` | Changelog |
-| `channels/42/content/federation_node_id/0/flare/readme.md` | `http://www.lupopedia.com/flare/readme` | FLARE README |
+| `lupo-channels/42/content/federation_node_id/0/FLARE.md` | `http://www.lupopedia.com/FLARE` | FLARE documentation |
+| `lupo-channels/42/content/federation_node_id/0/changelog.md` | `http://www.lupopedia.com/changelog` | Changelog |
+| `lupo-channels/42/content/federation_node_id/0/flare/readme.md` | `http://www.lupopedia.com/flare/readme` | FLARE README |
 
 ## Technical Specifications
 
@@ -134,11 +134,11 @@ CREATE TABLE lupo_channel_content (
 
 ## References
 
-- **FLARE Doctrine**: `docs/doctrine/FLARE/FLARE_DOCTRINE.md`
-- **Complete Reference**: `docs/FLARE_HEADERS_COMPLETE_REFERENCE.md`
-- **API Documentation**: `docs/api/FLARE_API.md`
-- **Table Documentation**: `docs/database/lupopedia/tables/lupo_channel_content.md`
-- **Template System**: `tools/flare_header_template.txt`
+- **FLARE Doctrine**: `lupo-docs/doctrine/FLARE/FLARE_DOCTRINE.md`
+- **Complete Reference**: `lupo-docs/FLARE_HEADERS_COMPLETE_REFERENCE.md`
+- **API Documentation**: `lupo-docs/api/FLARE_API.md`
+- **Table Documentation**: `lupo-docs/database/lupopedia/tables/lupo_channel_content.md`
+- **Template System**: `lupo-tools/flare_header_template.txt`
 - **Main README**: `README.md`
 
 ## Support

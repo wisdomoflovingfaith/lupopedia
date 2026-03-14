@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\channels\dev-teams\governance\GOV-TOON-GENERATION-001.md"
+  file_path_from_root: "lupo-docs\channels\dev-teams\governance\GOV-TOON-GENERATION-001.md"
   file_hash: "9fc5db1561abadacc16350cb669e148de7cbc1deac07c590f0fcc5f7d7a53730"
-  file_path_from_root: "docs\channels\dev-teams\governance\GOV-TOON-GENERATION-001.md"
+  file_path_from_root: "lupo-docs\channels\dev-teams\governance\GOV-TOON-GENERATION-001.md"
   file_hash: "70188d242b0efdf0712f9fb76d9d1cf870e59080e229b11f9d1b8d565d92fff7"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -71,8 +71,8 @@ Canonical Schema Source (4.0.16+)
 The single source of truth for schema is install_new_lupopedia.sql and seed_lupopedia.sql. TOON files are derived from this canonical schema.
 
 Canonical Generators
-1. scripts/generate_toon_from_sql.py — Parses install_new_lupopedia.sql; no live DB required.
-2. scripts/generate_toon_files.py — Extracts from live database; use when schema has been applied.
+1. lupo-scripts/generate_toon_from_sql.py — Parses install_new_lupopedia.sql; no live DB required.
+2. lupo-scripts/generate_toon_files.py — Extracts from live database; use when schema has been applied.
 
 Non‑Negotiable Rules
 1. AI Systems Must Never Generate TOON Files
@@ -109,7 +109,7 @@ No other process is permitted to create or regenerate TOON files.
 Each table in the database must have exactly one corresponding TOON file located in:
 
 Code
-docs/toons/
+lupo-docs/toons/
 File naming convention:
 
 Code
@@ -188,7 +188,7 @@ Their generation must remain stable, predictable, and fully automated.
 Enforcement
 Any agent or process attempting to generate or rewrite TOON files outside the approved script must be blocked immediately with:
 
-"Operation blocked by governance. TOON generation is restricted to scripts/generate_toon_files.py."
+"Operation blocked by governance. TOON generation is restricted to lupo-scripts/generate_toon_files.py."
 
 Status
 ACTIVE — NON‑NEGOTIABLE  

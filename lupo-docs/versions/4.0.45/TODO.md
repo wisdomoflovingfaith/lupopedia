@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\versions\4.0.45\TODO.md"
+  file_path_from_root: "lupo-docs\versions\4.0.45\TODO.md"
   file_hash: "56826513c7884458528df8665a47e4b7833428999c1dc35e630ef5b8fb94720c"
-  file_path_from_root: "docs\versions\4.0.45\TODO.md"
+  file_path_from_root: "lupo-docs\versions\4.0.45\TODO.md"
   file_hash: "271c550144cabccca7523102c392940d70024022fe896c2cdbfab912524da0fa"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -63,7 +63,7 @@ lupopedia.footer:
 
 ---
 wolfie.headers: {
-  file_path_from_root: "docs/versions/4.0.45/TODO.md",
+  file_path_from_root: "lupo-docs/versions/4.0.45/TODO.md",
   system_version: "4.0.45",
   channel_id: 1,
   actor_id: 1002,
@@ -76,8 +76,8 @@ wolfie.headers: {
 }
 flip.footer: {
   outbound_edges: [
-    { to: "docs/versions/4.0.45/CHANGELOG_DRAFT.md", type: "tracks", weight: 1.0 },
-    { to: "docs/versions/4.0.44/", type: "builds_on", weight: 0.8 }
+    { to: "lupo-docs/versions/4.0.45/CHANGELOG_DRAFT.md", type: "tracks", weight: 1.0 },
+    { to: "lupo-docs/versions/4.0.44/", type: "builds_on", weight: 0.8 }
   ],
   semantic_tags: ["todo", "4_0_45", "development", "tasks"]
 }
@@ -156,7 +156,7 @@ flip.footer: {
 ### Maintenance
 - [ ] **Archive Old Status Files**
   - Move completed 4.0.44 status files to archive
-  - Clean up docs/status/ directory
+  - Clean up lupo-docs/status/ directory
   - Maintain archive organization
 
 - [ ] **Update Quick References**

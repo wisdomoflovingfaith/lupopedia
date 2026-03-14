@@ -10,7 +10,7 @@ lupopedia.headers:
   faucet_name: "windsurf"
   artifact_type: "doctrine"
   artifact_kind: "faucet_traceability"
-  purpose: "Faucet tracking in messages and sessions: column names from install/TOON."
+  purpose: "Faucet tracking in messages and sessions: column names from lupo-install/TOON."
 lupopedia.footer:
   last_verified: "20260313"
   last_verified_by: "windsurf"
@@ -30,11 +30,11 @@ Record **which faucet** (execution surface) was used for a session or message. E
 
 ## 2. Sessions (`lupo_sessions`)
 
-Columns (from install/TOON): `faucet_slug`, `faucet_instance_id` (after `actor_id`). Populate on session create from runtime (e.g. IDE session file `faucet_name`, or constant `LUPO_FAUCET_SLUG`). Instance ID can be a unique run identifier.
+Columns (from lupo-install/TOON): `faucet_slug`, `faucet_instance_id` (after `actor_id`). Populate on session create from runtime (e.g. IDE session file `faucet_name`, or constant `LUPO_FAUCET_SLUG`). Instance ID can be a unique run identifier.
 
 ## 3. Messages (`lupo_dialog_messages`)
 
-Columns (from install/TOON): `source_faucet_slug`, `source_faucet_instance_id` (after `from_actor_id`). Populate when creating a message from current session/faucet context (e.g. from `LUPO_FAUCET_SLUG` / `LUPO_FAUCET_INSTANCE_ID` or session).
+Columns (from lupo-install/TOON): `source_faucet_slug`, `source_faucet_instance_id` (after `from_actor_id`). Populate when creating a message from current session/faucet context (e.g. from `LUPO_FAUCET_SLUG` / `LUPO_FAUCET_INSTANCE_ID` or session).
 
 ## 4. References
 

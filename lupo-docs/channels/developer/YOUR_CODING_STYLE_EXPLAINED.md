@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\channels\developer\YOUR_CODING_STYLE_EXPLAINED.md"
+  file_path_from_root: "lupo-docs\channels\developer\YOUR_CODING_STYLE_EXPLAINED.md"
   file_hash: "01d840c4208ec0e2b44c4e5f8d8ebc56d6dc0ee7af67b0d3d2d1234232eba71b"
-  file_path_from_root: "docs\channels\developer\YOUR_CODING_STYLE_EXPLAINED.md"
+  file_path_from_root: "lupo-docs\channels\developer\YOUR_CODING_STYLE_EXPLAINED.md"
   file_hash: "2c6498c7ef5e3ada52c735bf2ace5e29d04e6328d48965301bd9942c7d2daad8"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -225,7 +225,7 @@ When creating PHP classes, AI agents must:
 4. ✅ Use visual separators (asterisks, equals signs)
 5. ✅ Match your Crafty Syntax style exactly
 
-**See:** `docs/doctrine/CLASS_HEADER_COMMENT_DOCTRINE.md`
+**See:** `lupo-docs/doctrine/CLASS_HEADER_COMMENT_DOCTRINE.md`
 
 ---
 

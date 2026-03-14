@@ -2,7 +2,7 @@
 /**
  * @wolfie.headers {
  *   file_path_from_root: "install.php",
- *   system_version: "4.0.73",
+ *   system_version: "4.0.74",
  *   channel_id: 42,
  *   mood_rgb: "FF6347",
  *   purpose: "Main installer and upgrade wizard for Lupopedia - handles fresh install and Crafty Syntax 3.7.5 upgrade",
@@ -26,8 +26,8 @@
  *     { from: "lupo-database/lupopedia/mysql/seed/", type: "executes", weight: 1.0, hashtag: "#seed" },
  *     { from: "lupo-database/lupopedia/mysql/import/import_from_old_crafty_syntax.sql", type: "executes", weight: 1.0, hashtag: "#import" },
  *     { from: "lupo-database/lupopedia/mysql/import/old_crafty_syntax_3_7_5_start.sql", type: "detects", weight: 0.9, hashtag: "#legacy" },
- *     { from: "install/index.php", type: "includes", weight: 0.9, hashtag: "#ui" },
- *     { from: "install/wizard.php", type: "includes", weight: 0.9, hashtag: "#wizard" }
+ *     { from: "lupo-install/index.php", type: "includes", weight: 0.9, hashtag: "#ui" },
+ *     { from: "lupo-install/wizard.php", type: "includes", weight: 0.9, hashtag: "#wizard" }
  *   ],
  *   outbound_edges: [
  *     { to: "lupopedia-config.php", type: "generates", weight: 1.0, hashtag: "#config" },
@@ -38,8 +38,8 @@
  *     { to: "lupo-database/lupopedia/mysql/import/old_crafty_syntax_3_7_5_start.sql", type: "detects", weight: 0.9, hashtag: "#legacy" },
  *     { to: "app/Services/CraftyMigrationService.php", type: "uses", weight: 0.8, hashtag: "#migration" },
  *     { to: "app/Services/CraftyConfigTransformer.php", type: "uses", weight: 0.8, hashtag: "#config" },
- *     { to: "install/index.php", type: "includes", weight: 0.9, hashtag: "#ui" },
- *     { to: "install/wizard.php", type: "includes", weight: 0.9, hashtag: "#wizard" },
+ *     { to: "lupo-install/index.php", type: "includes", weight: 0.9, hashtag: "#ui" },
+ *     { to: "lupo-install/wizard.php", type: "includes", weight: 0.9, hashtag: "#wizard" },
  *     { to: "index.php", type: "redirects_to", weight: 0.7, hashtag: "#completion" },
  *     { to: "admin.php", type: "redirects_to", weight: 0.6, hashtag: "#admin" }
  *   ],
@@ -50,7 +50,7 @@
  *   },
  *   semantic_tags: ["installer", "upgrade_wizard", "crafty_syntax_3_7_5", "identity_normalization", "reserved_channels"],
  *   enrichment: { llm_inferred_edges: [], federated_metrics: {} },
- *   version: "4.0.73",
+ *   version: "4.0.74",
  *   last_verified_utc: "20260308",
  *   last_verified_by: "kiro"
  * }
@@ -108,7 +108,7 @@ if (!is_dir(LUPO_MYSQL_DIR)) {
 }
 
 // Version for wizard UI - Direct parse from global_atoms.yaml (install.php runs standalone, no bootstrap)
-$lupo_wizard_version = '4.0.73'; // Fallback when no atoms file found
+$lupo_wizard_version = '4.0.74'; // Fallback when no atoms file found
 $atoms_candidates = array(
     LUPOPEDIA_PATH . DIRECTORY_SEPARATOR . 'lupo-config' . DIRECTORY_SEPARATOR . 'global_atoms.yaml',
     LUPOPEDIA_PATH . DIRECTORY_SEPARATOR . 'lupo-config' . DIRECTORY_SEPARATOR . 'config' . DIRECTORY_SEPARATOR . 'global_atoms.yaml',
@@ -191,7 +191,7 @@ function lupo_hash_equals($a, $b)
 }
 
 require_once LUPOPEDIA_PATH . DIRECTORY_SEPARATOR . 'install_wizard_classes.php';
-require_once LUPOPEDIA_PATH . DIRECTORY_SEPARATOR . 'install' . DIRECTORY_SEPARATOR . 'InstallWizardMdImporter.php';
+require_once LUPOPEDIA_PATH . DIRECTORY_SEPARATOR . 'lupo-install' . DIRECTORY_SEPARATOR . 'InstallWizardMdImporter.php';
 require_once LUPOPEDIA_PATH . DIRECTORY_SEPARATOR . 'lupo-includes' . DIRECTORY_SEPARATOR . 'class-pdo_db.php';
 
 // ----- Pre-flight checks (PHP 5.3+ compatible; minimal and fallback-friendly)
@@ -387,6 +387,14 @@ if ($step === 'credentials') {
                             InstallWizardSqlRunner::runSqlFile($pdo, $path, $bootstrapLog, $table_prefix);
                         }
                     }
+                    // 4.0.74 seeds: lupo_projects registry (idempotent)
+                    $seed_4_0_74 = array('seed_projects.sql');
+                    foreach ($seed_4_0_74 as $seedFile) {
+                        $path = $mysqlDir . DIRECTORY_SEPARATOR . 'seed' . DIRECTORY_SEPARATOR . $seedFile;
+                        if (is_file($path)) {
+                            InstallWizardSqlRunner::runSqlFile($pdo, $path, $bootstrapLog, $table_prefix);
+                        }
+                    }
                     InstallWizardChannels::createReservedSystemChannels($pdo, $bootstrapLog);
                     $_SESSION['lupo_bootstrap_log'] = $bootstrapLog;
                     header('Location: ' . $base . '/install.php?step=bootstrap');
@@ -572,8 +580,47 @@ if ($step === 'run') {
         // New install: run install → seed → reserved channels → config.
 
         try {
-            if ($install_type === 'upgrade' && !empty($_SESSION['lupo_bootstrap_log'])) {
-                $log = array_merge($log, $_SESSION['lupo_bootstrap_log']);
+            if ($install_type === 'upgrade') {
+                $dept_table = $table_prefix . 'departments';
+                $schema_ok = false;
+                try {
+                    $st = $pdo->query("SHOW TABLES LIKE " . $pdo->quote($dept_table));
+                    $schema_ok = $st && $st->fetch() !== false;
+                } catch (PDOException $e) {
+                    $schema_ok = false;
+                }
+                if (!$schema_ok) {
+                    $log[] = InstallWizardLogger::logEntry('ok', 'Schema missing (e.g. tables dropped); running install and bootstrap seeds first.');
+                    InstallWizardSqlRunner::runSqlFile($pdo, $mysqlDir . DIRECTORY_SEPARATOR . 'install' . DIRECTORY_SEPARATOR . 'install_new_lupopedia.sql', $log, $table_prefix);
+                    InstallWizardSqlRunner::runSqlFile($pdo, $mysqlDir . DIRECTORY_SEPARATOR . 'seed' . DIRECTORY_SEPARATOR . 'seed_registry_comprehensive_4.0.45.sql', $log, $table_prefix);
+                    InstallWizardSqlRunner::runSqlFile($pdo, $mysqlDir . DIRECTORY_SEPARATOR . 'seed' . DIRECTORY_SEPARATOR . 'seed_registry_additional_csv_entities_4.0.45.sql', $log, $table_prefix);
+                    InstallWizardSqlRunner::runSqlFile($pdo, $mysqlDir . DIRECTORY_SEPARATOR . 'seed' . DIRECTORY_SEPARATOR . 'seed_registry_open_4.0.45.sql', $log, $table_prefix);
+                    InstallWizardSqlRunner::runSqlFile($pdo, $mysqlDir . DIRECTORY_SEPARATOR . 'seed' . DIRECTORY_SEPARATOR . 'seed_actors_agents_4.0.45.sql', $log, $table_prefix);
+                    $seed_4_0_68 = array('seed_rules_doctrine_4.0.68.sql', 'seed_skills_4.0.68.sql', 'seed_lupo_metadata_changelog_headers_4.0.68.sql', 'seed_actor_1_cursor_rules_4.0.68.sql');
+                    foreach ($seed_4_0_68 as $seedFile) {
+                        $path = $mysqlDir . DIRECTORY_SEPARATOR . 'seed' . DIRECTORY_SEPARATOR . $seedFile;
+                        if (is_file($path)) {
+                            InstallWizardSqlRunner::runSqlFile($pdo, $path, $log, $table_prefix);
+                        }
+                    }
+                    $seed_4_0_69 = array('seed_fallback_rule_4.0.69.sql', 'seed_traits_edge_types_action_auth_4.0.69.sql');
+                    foreach ($seed_4_0_69 as $seedFile) {
+                        $path = $mysqlDir . DIRECTORY_SEPARATOR . 'seed' . DIRECTORY_SEPARATOR . $seedFile;
+                        if (is_file($path)) {
+                            InstallWizardSqlRunner::runSqlFile($pdo, $path, $log, $table_prefix);
+                        }
+                    }
+                    $seed_4_0_74 = array('seed_projects.sql');
+                    foreach ($seed_4_0_74 as $seedFile) {
+                        $path = $mysqlDir . DIRECTORY_SEPARATOR . 'seed' . DIRECTORY_SEPARATOR . $seedFile;
+                        if (is_file($path)) {
+                            InstallWizardSqlRunner::runSqlFile($pdo, $path, $log, $table_prefix);
+                        }
+                    }
+                    InstallWizardChannels::createReservedSystemChannels($pdo, $log);
+                } elseif (!empty($_SESSION['lupo_bootstrap_log'])) {
+                    $log = array_merge($log, $_SESSION['lupo_bootstrap_log']);
+                }
                 $log[] = InstallWizardLogger::logEntry('ok', '--- Run step: import → personal channels and captain roles → drop ---');
                 InstallWizardDepartments::ensureSystemDepartment($pdo, $log);
                 InstallWizardChannels::ensureReservedChannels($pdo, $log);
@@ -598,6 +645,14 @@ if ($step === 'run') {
                 // 4.0.69 seeds (new install): fallback rule, traits / edge types / action authorization (idempotent)
                 $seed_4_0_69 = array('seed_fallback_rule_4.0.69.sql', 'seed_traits_edge_types_action_auth_4.0.69.sql');
                 foreach ($seed_4_0_69 as $seedFile) {
+                    $path = $mysqlDir . DIRECTORY_SEPARATOR . 'seed' . DIRECTORY_SEPARATOR . $seedFile;
+                    if (is_file($path)) {
+                        InstallWizardSqlRunner::runSqlFile($pdo, $path, $log, $table_prefix);
+                    }
+                }
+                // 4.0.74 seeds (new install): lupo_projects registry (idempotent)
+                $seed_4_0_74 = array('seed_projects.sql');
+                foreach ($seed_4_0_74 as $seedFile) {
                     $path = $mysqlDir . DIRECTORY_SEPARATOR . 'seed' . DIRECTORY_SEPARATOR . $seedFile;
                     if (is_file($path)) {
                         InstallWizardSqlRunner::runSqlFile($pdo, $path, $log, $table_prefix);
@@ -674,10 +729,14 @@ if ($step === 'run') {
             InstallWizardUnregistry::seedUnregistryFromGaps($pdo, $log, InstallWizardUnregistry::DEFAULT_MAX_CAP);
             // 4.0.20: Ensure Stoned Wolfie (AI + human) banned test identities exist after import/seed.
             InstallWizardBannedIdentities::ensureStonedWolfieBannedIdentities($pdo, $log, $table_prefix);
-            // Run ANUBIS Queue Tables migration (v4.0.53)
-            InstallWizardSqlRunner::runSqlFile($pdo, $mysqlDir . DIRECTORY_SEPARATOR . 'migrations' . DIRECTORY_SEPARATOR . 'anubis_queue_tables_4.0.53.sql', $log, $table_prefix);
-            // Run ANUBIS Database Primacy Updates (v4.0.53)
-            InstallWizardSqlRunner::runSqlFile($pdo, $mysqlDir . DIRECTORY_SEPARATOR . 'migrations' . DIRECTORY_SEPARATOR . '20260301_anubis_database_primacy_updates.sql', $log, $table_prefix);
+            // ANUBIS queue tables and primacy updates (seeds; kept in seed/ so they are not removed).
+            $anubis_seeds = array('anubis_queue_tables_4.0.53.sql', '20260301_anubis_database_primacy_updates.sql');
+            foreach ($anubis_seeds as $seedFile) {
+                $path = $mysqlDir . DIRECTORY_SEPARATOR . 'seed' . DIRECTORY_SEPARATOR . $seedFile;
+                if (is_file($path)) {
+                    InstallWizardSqlRunner::runSqlFile($pdo, $path, $log, $table_prefix);
+                }
+            }
             // Run Default Sessions Seed (v4.0.53)
             InstallWizardSqlRunner::runSqlFile($pdo, $mysqlDir . DIRECTORY_SEPARATOR . 'seed' . DIRECTORY_SEPARATOR . 'seed_default_sessions.sql', $log, $table_prefix);
             // Run FLARE content seed (v4.0.57) — /FLARE → slug 'flare' → lupo_contents row
@@ -697,6 +756,14 @@ if ($step === 'run') {
             // 4.0.69 seeds: fallback rule, traits / edge types / action authorization (idempotent; run after 4.0.68)
             $seed_4_0_69 = array('seed_fallback_rule_4.0.69.sql', 'seed_traits_edge_types_action_auth_4.0.69.sql');
             foreach ($seed_4_0_69 as $seedFile) {
+                $path = $mysqlDir . DIRECTORY_SEPARATOR . 'seed' . DIRECTORY_SEPARATOR . $seedFile;
+                if (is_file($path)) {
+                    InstallWizardSqlRunner::runSqlFile($pdo, $path, $log, $table_prefix);
+                }
+            }
+            // 4.0.74 seeds: lupo_projects registry (idempotent; run after 4.0.69)
+            $seed_4_0_74 = array('seed_projects.sql');
+            foreach ($seed_4_0_74 as $seedFile) {
                 $path = $mysqlDir . DIRECTORY_SEPARATOR . 'seed' . DIRECTORY_SEPARATOR . $seedFile;
                 if (is_file($path)) {
                     InstallWizardSqlRunner::runSqlFile($pdo, $path, $log, $table_prefix);
@@ -1780,10 +1847,10 @@ if ($baseUrl === '') {
                     process them:</p>
                 <p><strong>Linux/macOS:</strong></p>
                 <pre
-                    style="background:#f5f5f5; padding:0.5rem; border-radius:4px; font-family:monospace; font-size:0.85rem;">python3 scripts/run_system_commands.py</pre>
+                    style="background:#f5f5f5; padding:0.5rem; border-radius:4px; font-family:monospace; font-size:0.85rem;">python3 lupo-scripts/run_system_commands.py</pre>
                 <p><strong>Windows (WSL):</strong></p>
                 <pre
-                    style="background:#f5f5f5; padding:0.5rem; border-radius:4px; font-family:monospace; font-size:0.85rem;">wsl python3 /mnt/c/ServBay/www/servbay/lupopedia/scripts/run_system_commands.py</pre>
+                    style="background:#f5f5f5; padding:0.5rem; border-radius:4px; font-family:monospace; font-size:0.85rem;">wsl python3 /mnt/c/ServBay/www/servbay/lupopedia/lupo-scripts/run_system_commands.py</pre>
                 <p style="font-size:0.85rem; color:#666;">The runner will import channels and artifacts. You can run it now
                     or later.</p>
             </div>

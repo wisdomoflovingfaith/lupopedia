@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\specs\FLIP_HEADERS_VERBOSE_COMPLETE_4.0.27.md"
+  file_path_from_root: "lupo-docs\specs\FLIP_HEADERS_VERBOSE_COMPLETE_4.0.27.md"
   file_hash: "057882431841eaf92a7ce4093ecb4110181d4f49fc4be94bf0645b6ab1d2cf15"
-  file_path_from_root: "docs\specs\FLIP_HEADERS_VERBOSE_COMPLETE_4.0.27.md"
+  file_path_from_root: "lupo-docs\specs\FLIP_HEADERS_VERBOSE_COMPLETE_4.0.27.md"
   file_hash: "2e138e3c4dbcb217ade12f67bb1cb89c3730c254f82503f83fb36f4c736bd15f"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -62,7 +62,7 @@ lupopedia.footer:
 
 ---
 # FLIP Header (alias: Wolfie Header, CROP Header, FLIPPING Header)
-X-Lupo-File-Path: docs/specs/FLIP_HEADERS_VERBOSE_COMPLETE_4.0.27.md
+X-Lupo-File-Path: lupo-docs/specs/FLIP_HEADERS_VERBOSE_COMPLETE_4.0.27.md
 X-Lupo-Version: "4.0.27"
 X-Lupo-UTC-Timestamp: "20260222162242"
 X-Lupo-Channel: 42   # ANUBIS adoption channel
@@ -98,7 +98,7 @@ When the database is unreachable, verbose FLIP headers provide all semantic meta
 | `X-Lupo-Content-ID` | `lupo_contents.content_id` | BIGINT | `42001` |
 | `X-Lupo-Title` | `lupo_contents.title` | VARCHAR(255) | `FLIP Documentation Complete` |
 | `X-Lupo-Slug` | `lupo_contents.slug` | VARCHAR(255) | `flip-documentation-complete` |
-| `X-Lupo-File-Path` | `lupo_contents.file_path_from_root` | VARCHAR(500) | `docs/specs/FLIP_HEADERS_COMPLETE_4.0.24.md` |
+| `X-Lupo-File-Path` | `lupo_contents.file_path_from_root` | VARCHAR(500) | `lupo-docs/specs/FLIP_HEADERS_COMPLETE_4.0.24.md` |
 | `X-Lupo-Custom-Path` | `lupo_contents.custom_path` | VARCHAR(255) | `/doctrine/FLIP` |
 
 ### Actor & Authorization Headers

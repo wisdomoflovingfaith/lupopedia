@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\channels\doctrine\GOV-PROHIBIT-ADS-001.md"
+  file_path_from_root: "lupo-docs\channels\doctrine\GOV-PROHIBIT-ADS-001.md"
   file_hash: "6d8dbeb2b9b42baa93ab718116ac6ef749e40278c1bbb2c3135630a3bbef4d1e"
-  file_path_from_root: "docs\channels\doctrine\GOV-PROHIBIT-ADS-001.md"
+  file_path_from_root: "lupo-docs\channels\doctrine\GOV-PROHIBIT-ADS-001.md"
   file_hash: "d8775dbbbe401e43ec5af96750c3ff5854f560e4a97da9e5bd61dba93047c2bd"
   last_updated_utc: "20260228"
   system_version: "4.0.50"

@@ -1,7 +1,7 @@
 # LUPOPEDIA HEADERS (replaces FLARE)
 ---
 lupopedia.headers:
-  lupopedia.version: "4.0.73"
+  lupopedia.version: "4.0.74"
   lupopedia.schema: "documentation"
   file_path_from_root: ".\docs\doctrine\MIGRATION_DOCTRINE.md"
   file_hash: "3a6bbca54d675764892b2512e67721b51d4180f17f4240b9a583c6643bb4274b"
@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -32,12 +32,12 @@ lupopedia.footer:
 
 ---
 lupopedia.headers:
-  lupopedia.version: "4.0.73"
+  lupopedia.version: "4.0.74"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\doctrine\MIGRATION_DOCTRINE.md"
+  file_path_from_root: "lupo-docs\doctrine\MIGRATION_DOCTRINE.md"
   file_hash: "4c9f1af3214e822004131a676085e1af8f05429f8fd44f2f664d5c42674114dc"
-  file_path_from_root: "docs\doctrine\MIGRATION_DOCTRINE.md"
+  file_path_from_root: "lupo-docs\doctrine\MIGRATION_DOCTRINE.md"
   file_hash: "c478d1817c6109331a5b87639ba0cf15be72c7dd3ce2042ee01320c02ebe1d53"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -64,20 +64,20 @@ lupopedia.footer:
 ---
 # FLIP Header (alias: Wolfie Header, CROP Header, FLIPPING Header)
 wolfie.headers: explicit architecture with structured clarity for every file.
-file_path_from_root: docs/doctrine/MIGRATION_DOCTRINE.md
+file_path_from_root: lupo-docs/doctrine/MIGRATION_DOCTRINE.md
 file.last_modified_system_version: "4.0.16"
 file.last_modified_utc: "20260217235900"
 # channel_id unresolved — requires lupo_contents lookup by application.
 X-Lupo-Channel: 42   # ANUBIS adoption channel (Auto-Fixed)
 X-Lupo-Actor-ID: 2035
 X-Lupo-Actor-Identity: "Lupopedia Audit Tool (Auto-Fixed)"
-X-Lupo-File-Path: docs/doctrine/MIGRATION_DOCTRINE.md
+X-Lupo-File-Path: lupo-docs/doctrine/MIGRATION_DOCTRINE.md
 ---
 # Migration Doctrine (MANDATORY)
 
 **Status:** Permanent. Applies to all code, all SQL, all installer logic, and all future development.  
 **Audience:** All AI agents (including Cursor), contributors, and system stewards.  
-**Single source of truth for schema:** TOON files in `docs/toons/`.
+**Single source of truth for schema:** TOON files in `lupo-docs/toons/`.
 
 ---
 
@@ -88,7 +88,7 @@ ALL database structure changes MUST be done in TWO PLACES:
 1. **install_new_lupopedia.sql** — The canonical full schema. Every table and column that is required for a fresh install must be defined here. When schema changes, this file is updated to match the TOONs so that future installs get the new structure. Optional/future-features tables go in **future_features_lupopedia.sql**.
 2. **A new migration SQL file** — (From 4.1.0 onward.) A one-time patch for development, stored in `lupo-database/lupopedia/mysql/migrations/`. Used to apply the same change to an existing (live) database. **Before 4.1.0:** the migrations directory is not used (see `lupo-database/lupopedia/mysql/migrations/README.md`).
 
-**Pre-4.1.0 (v4.0.73 consolidation):** There is no Lupopedia → Lupopedia upgrade path. Migration replay is not used. All schema for a fresh 4.0.x install is in install_new_lupopedia.sql and future_features_lupopedia.sql only. Do not add new migration files for 4.0.x; update the canonical install (or future_features) SQL only. See `lupo-database/lupopedia/mysql/migrations/README.md`.
+**Pre-4.1.0 (v4.0.74 consolidation):** There is no Lupopedia → Lupopedia upgrade path. Migration replay is not used. All schema for a fresh 4.0.x install is in install_new_lupopedia.sql and future_features_lupopedia.sql only. Do not add new migration files for 4.0.x; update the canonical install (or future_features) SQL only. See `lupo-database/lupopedia/mysql/migrations/README.md`.
 
 ---
 
@@ -140,6 +140,6 @@ The wizard MUST NOT:
 | No CLI SQL | No scoop mysql or command-line SQL tools. |
 | No live inference | Never infer schema from the live database. |
 | Migration format | Idempotent, explicit ALTER, explicit IDs, timestamp doctrine. |
-| Wizard | No migration SQL; no Lupopedia→Lupopedia upgrade; schema only via install/seed. |
+| Wizard | No migration SQL; no Lupopedia→Lupopedia upgrade; schema only via lupo-install/seed. |
 
 This doctrine is permanent and applies to all future development.

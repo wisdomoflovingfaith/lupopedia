@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\channels\doctrine\SQL_REWRITE_DOCTRINE.md"
+  file_path_from_root: "lupo-docs\channels\doctrine\SQL_REWRITE_DOCTRINE.md"
   file_hash: "442768d4501d705b34072020291bab6e685a4a7fa3cc94b84948c45a457e4197"
-  file_path_from_root: "docs\channels\doctrine\SQL_REWRITE_DOCTRINE.md"
+  file_path_from_root: "lupo-docs\channels\doctrine\SQL_REWRITE_DOCTRINE.md"
   file_hash: "975f29962c1af1b0d967ec102ea812acb23be83ffa2156e9490c473599e8e9d7"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -121,7 +121,7 @@ This doctrine is **mandatory**. Cursor must follow it for every SQL rewrite.
 **Cursor must load the matching TOON file from:**
 
 ```
-database/refactors/{legacy_table}.json
+lupo-database/refactors/{legacy_table}.json
 ```
 
 **(Note: These files are TOON format, not JSON, despite the `.json` extension. See [TOON_DOCTRINE.md](TOON_DOCTRINE.md))**
@@ -131,14 +131,14 @@ database/refactors/{legacy_table}.json
 **Cursor must also load the toon file from:**
 
 ```
-database/toon_data/{new_table_name}.toon
+lupo-database/toon_data/{new_table_name}.toon
 ```
 
 **(Note: Files are TOON format with `.toon` extension. Older files may have `.json` extension but are still TOON format. See [TOON_DOCTRINE.md](TOON_DOCTRINE.md))**
 
 **to verify exact column names, types, and structure.**
 
-**All 145 tables have toon files in `database/toon_data/`.**
+**All 145 tables have toon files in `lupo-database/toon_data/`.**
 
 **Cursor must use these files to:**
 
@@ -211,7 +211,7 @@ FROM {{prefix}}crafty_auto_invite
 **Cursor must:**
 
 - rename every column according to `column_map` in the refactor TOON file (see [TOON_DOCTRINE.md](TOON_DOCTRINE.md))
-- **verify the new column name exists in the toon file** (`database/toon_data/{new_table_name}.toon` - TOON format)
+- **verify the new column name exists in the toon file** (`lupo-database/toon_data/{new_table_name}.toon` - TOON format)
 - apply transforms when specified
 - drop columns listed in `dropped_columns`
 - add columns listed in `added_columns` only when inserting
@@ -451,7 +451,7 @@ FROM {{prefix}}crafty_auto_invite
 - the column mapping in refactor JSON
 - the transform in refactor JSON
 - the new table name
-- **the toon file for the new table** (`database/toon_data/{new_table_name}.json`)
+- **the toon file for the new table** (`lupo-database/toon_data/{new_table_name}.json`)
 - **the column name in the toon file**
 
 **…it must ask for clarification instead of guessing.**
@@ -477,7 +477,7 @@ FROM {{prefix}}crafty_auto_invite
 
 **Cursor must ask:**
 
-> "This column name doesn't exist in the toon file `database/toon_data/{table_name}.json`. Should I use a different column name, or is this column missing from the toon file?"
+> "This column name doesn't exist in the toon file `lupo-database/toon_data/{table_name}.json`. Should I use a different column name, or is this column missing from the toon file?"
 
 **Cursor must not guess.**
 
@@ -518,7 +518,7 @@ FROM {{prefix}}crafty_auto_invite
 **Key Principles:**
 1. **Refactor TOON files and toon data files are the only sources of truth** — Never guess mappings or column names (see [TOON_DOCTRINE.md](TOON_DOCTRINE.md))
 2. **Table names must match TOON file exactly** — No deviations
-3. **Column names must follow column_map AND match toon files** — All 145 tables have toon files in `database/toon_data/` (TOON format)
+3. **Column names must follow column_map AND match toon files** — All 145 tables have toon files in `lupo-database/toon_data/` (TOON format)
 4. **Never guess column names** — Always check the toon file for exact column names
 5. **Never convert TOON to JSON** — Work with TOON directly as TOON format
 6. **No optimizations** — Preserve legacy behavior exactly

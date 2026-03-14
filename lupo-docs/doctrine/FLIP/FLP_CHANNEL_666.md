@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\doctrine\FLIP\FLP_CHANNEL_666.md"
+  file_path_from_root: "lupo-docs\doctrine\FLIP\FLP_CHANNEL_666.md"
   file_hash: "a95fae02b03b51f3b9eb5509d264215d7fef4d9e365644879d9b77f927a9e608"
-  file_path_from_root: "docs\doctrine\FLIP\FLP_CHANNEL_666.md"
+  file_path_from_root: "lupo-docs\doctrine\FLIP\FLP_CHANNEL_666.md"
   file_hash: "0a377d4f9b8553dd14f07a3320f4412459796a1fcfd08305c4036fd6a50b8636"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -64,7 +64,7 @@ lupopedia.footer:
 ---
 # FLIP Header (alias: Wolfie Header, CROP Header, FLIPPING Header)
 wolfie.headers: explicit architecture with structured clarity for every file.
-file_path_from_root: docs/doctrine/FLIP/FLP_CHANNEL_666.md
+file_path_from_root: lupo-docs/doctrine/FLIP/FLP_CHANNEL_666.md
 file.last_modified_system_version: "4.0.16"
 file.last_modified_utc: "20260218000000"
 channel_id: 666
@@ -72,7 +72,7 @@ tags: ["channel", "quarantine", "forbidden", "anubis"]
 mood_rgb: "000000"
 X-Lupo-Actor-ID: 2035
 X-Lupo-Actor-Identity: "Lupopedia Audit Tool (Auto-Fixed)"
-X-Lupo-File-Path: docs/doctrine/FLIP/FLP_CHANNEL_666.md
+X-Lupo-File-Path: lupo-docs/doctrine/FLIP/FLP_CHANNEL_666.md
 ---
 # FLP — Channel 666 (ANUBIS Quarantine)
 

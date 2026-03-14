@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\channels\doctrine\DOCTRINE_IDE_ACCESS.md"
+  file_path_from_root: "lupo-docs\channels\doctrine\DOCTRINE_IDE_ACCESS.md"
   file_hash: "1eb46f044c684175873316e958b7073011c1b58db44ae2eaad214ff9bb5abc05"
-  file_path_from_root: "docs\channels\doctrine\DOCTRINE_IDE_ACCESS.md"
+  file_path_from_root: "lupo-docs\channels\doctrine\DOCTRINE_IDE_ACCESS.md"
   file_hash: "1d71c83fff17c766f40843cb6cde36ee0ca4e86369ff5a42637b4bfd66129182"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -104,7 +104,7 @@ The `/dialogs/` directory acts as a virtual database for:
 ## 🔄 ALTERNATIVE WORKFLOW
 
 When you need to make database changes:
-1. **Create migration SQL files in `database/migrations/`**
+1. **Create migration SQL files in `lupo-database/migrations/`**
 2. **Use DialogFS for development and testing**
 3. **Submit migrations for human operator review and execution**
 4. **Never directly access MySQL**

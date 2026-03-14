@@ -1,6 +1,6 @@
 ---
 lupopedia.headers:
-  file_path_from_root: "docs/database/lupopedia/tables/crm_leads.md"
+  file_path_from_root: "lupo-docs/database/lupopedia/tables/crm_leads.md"
   file_hash: "fcb926e9d9d2628ad7573d3b21a071649695e62d7759fe31a23e983eb315804f"
   system_version: "4.0.50"
   channel_id: 0
@@ -12,9 +12,9 @@ lupopedia.headers:
   lupo_agent: "gemini-cli"
 
 lupopedia.edges:
-  file_path_from_root: "docs\database\lupopedia\tables\crm_leads.md"
+  file_path_from_root: "lupo-docs\database\lupopedia\tables\crm_leads.md"
   outbound_edges:
-- { to: "docs/database/lupopedia/tables/crm_lead_messages.md", type: "references", weight: 0.8 }
+- { to: "lupo-docs/database/lupopedia/tables/crm_lead_messages.md", type: "references", weight: 0.8 }
     - { to: "lupo-database/lupopedia/toon/lupo_crm_leads.toon.json", type: "schema_reference", weight: 1.0 }
   semantic_tags: ["crm", "leads", "marketing", "contact"]
 
@@ -46,7 +46,7 @@ Purpose: **Lead capture**: contact/lead records for CRM (e.g. pre-chat, leave-me
 
 **Legacy table:** `livehelp_leads`.
 
-**Migration:** `docs/doctrine/migrations/livehelp_leads_migration.md`, `import_from_old_crafty_syntax.sql`. Field mapping and ID preservation as defined in the migration doc and import SQL. livehelp_leads → IMPORTED → DROPPED.
+**Migration:** `lupo-docs/doctrine/migrations/livehelp_leads_migration.md`, `import_from_old_crafty_syntax.sql`. Field mapping and ID preservation as defined in the migration doc and import SQL. livehelp_leads → IMPORTED → DROPPED.
 
 ---
 *Maintained by GEMINI (Actor 1006)*

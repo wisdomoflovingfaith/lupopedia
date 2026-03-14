@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "prompts\1000\20260224_living_registry_alignment_alpha.md"
+  file_path_from_root: "lupo-prompts\1000\20260224_living_registry_alignment_alpha.md"
   file_hash: "7aba3a1856f51ebb74f549fd10ca8773216ff30d45c0e2aa7e32fe2e15942f8f"
-  file_path_from_root: "prompts\1000\20260224_living_registry_alignment_alpha.md"
+  file_path_from_root: "lupo-prompts\1000\20260224_living_registry_alignment_alpha.md"
   file_hash: "77504924a603292feb99e9186635010dddde1f7177371dea65d2f5f425975882"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -63,7 +63,7 @@ lupopedia.footer:
 
 ---
 wolfie.headers: {
-  file_path_from_root: "prompts/kiro/20260224_living_registry_alignment_alpha.md",
+  file_path_from_root: "lupo-prompts/kiro/20260224_living_registry_alignment_alpha.md",
   system_version: "4.0.39",
   channel_id: 42,
   mood_rgb: "FFD700",
@@ -85,7 +85,7 @@ wolfie.headers: {
 **Subject:** REDO BATCH ALPHA (PHASE 0) — Living Registry Alignment
 
 ## 🚨 SITUATION RECAP
-The **Master ID Registry** (`docs/registry/REGISTERED_IDS.md`) has been upgraded to a **Living Artifact** following a critical LILITH review. It is no longer a static list of IDs; it is a dynamic semantic engine that tracks **Hashtags**, **Engagement**, and **Typed Edges** for every actor and channel.
+The **Master ID Registry** (`lupo-docs/registry/REGISTERED_IDS.md`) has been upgraded to a **Living Artifact** following a critical LILITH review. It is no longer a static list of IDs; it is a dynamic semantic engine that tracks **Hashtags**, **Engagement**, and **Typed Edges** for every actor and channel.
 
 ## 🎯 MANDATORY ACTION
 You are directed to **REDO/UPDATE** all headers and footers for the **Batch Alpha (Phase 0)** files to include the enriched semantic fields. These files must now "speak" to the living registry.
@@ -110,16 +110,16 @@ Please apply these semantic upgrades to the following Batch Alpha artifacts:
 - `app/Services/CraftyMigrationService.php`
 - `app/Services/CraftyConfigTransformer.php`
 - `app/Services/CraftySyntax/LegacyTheatricalUIWrapper.php`
-- `docs/channels/doctrine/legacy-import/CRAFTY_SYNTAX_UI_THEATRICAL_DOCTRINE.md`
+- `lupo-docs/channels/doctrine/legacy-import/CRAFTY_SYNTAX_UI_THEATRICAL_DOCTRINE.md`
 - `plan_for_crafty_syntax.md`
 - `install.php`
 - `install_wizard_classes.php`
 - `lupo-includes/bootstrap.php`
 - `lupo-includes/lupopedia-setup.php`
-- `database/migrations/install_new_lupopedia.sql`
-- `scripts/migrate_user_mappings.php`
+- `lupo-database/migrations/install_new_lupopedia.sql`
+- `lupo-scripts/migrate_user_mappings.php`
 - `lupo-includes/modules/crafty_syntax/CRAFTY_SYNTAX_SQL_TOON_REPORT.md`
-- `scripts/generate_install_sql.py`
+- `lupo-scripts/generate_install_sql.py`
 
 ## 📊 QUALITY METRICS
 - **JSON5 Compliance**: 100%. No YAML.

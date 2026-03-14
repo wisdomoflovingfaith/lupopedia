@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\channels\overview\versioning\changelog_update_4.1.14.md"
+  file_path_from_root: "lupo-docs\channels\overview\versioning\changelog_update_4.1.14.md"
   file_hash: "30a5f171500abc361c686e6aa153f3011f68d8963845e12da869ceac5764d987"
-  file_path_from_root: "docs\channels\overview\versioning\changelog_update_4.1.14.md"
+  file_path_from_root: "lupo-docs\channels\overview\versioning\changelog_update_4.1.14.md"
   file_hash: "9f5c1e348064658d2eb7916500268b1cdb2a6c67e81d2c67098817a590fd8c9b"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -114,8 +114,8 @@ system_context:
 ## 3.1.14 — Migration Audit + Onboarding Enhancement (2026-01-20)
 
 ### Added
-- **System Onboarding Dialog:** `dialogs/System_onboarding_dialog.md` - Primary onboarding conversation for new agents/users
-- **Migration TL;DR:** `docs/TLDR_HELP_MIGRATION_2026.md` - Summary of Crafty Syntax → Lupopedia HELP migration
+- **System Onboarding Dialog:** `dialogs/System_onboarding_dialog.md` - Primary onboarding conversation for new lupo-agents/users
+- **Migration TL;DR:** `lupo-docs/TLDR_HELP_MIGRATION_2026.md` - Summary of Crafty Syntax → Lupopedia HELP migration
 - **Entities Dialog:** `dialogs/TLDR_entities_dialog.md` - Multi-agent conversation defining core entities
 
 ### Updated
@@ -145,7 +145,7 @@ system_context:
 ### Cross-References
 - See: `dialogs/changelog_dialog.md` (3.1.14 entry)
 - See: `dialogs/changelog_dialog-side.md` (sync state update)
-- See: `docs/migrations/20260120_migration_audit.md` (detailed findings)
+- See: `lupo-docs/migrations/20260120_migration_audit.md` (detailed findings)
 ```
 
 ### **dialogs/changelog_dialog.md** (New entry added at top):
@@ -188,17 +188,17 @@ recent_updates:
 ### **File Header Updates:**
 Updated `file.last_modified_system_version` to "3.1.14" in:
 1. `dialogs/System_onboarding_dialog.md` (from 3.1.2 → 3.1.14)
-2. `docs/TLDR_HELP_MIGRATION_2026.md` (from 3.1.2 → 3.1.14)
+2. `lupo-docs/TLDR_HELP_MIGRATION_2026.md` (from 3.1.2 → 3.1.14)
 3. `dialogs/TLDR_entities_dialog.md` (from 3.1.2 → 3.1.14)
 
 ### **New Documentation Files Created:**
 
-#### **`docs/migrations/20260120_migration_audit.md`:**
+#### **`lupo-docs/migrations/20260120_migration_audit.md`:**
 ```markdown
 # Migration Audit Report - 2026-01-20
 
 ## Audit Scope
-**File:** `database/migrations/craftysyntax_to_lupopedia_mysql.sql` 
+**File:** `lupo-database/migrations/craftysyntax_to_lupopedia_mysql.sql` 
 **Script Version:** Crafty Syntax 3.6.1–3.7.5 → Lupopedia 3.0.3
 **Tables:** 34 legacy `livehelp_*` tables, 111 core Lupopedia tables, 8 new Crafty module tables
 **Total During Migration:** 145 tables
@@ -243,7 +243,7 @@ Updated `file.last_modified_system_version` to "3.1.14" in:
 - **Risk Level:** MEDIUM (data integrity concerns)
 ```
 
-#### **`docs/versioning/3.1.14_changes.md`:**
+#### **`lupo-docs/versioning/3.1.14_changes.md`:**
 ```markdown
 # Version 3.1.14 Changes
 
@@ -281,7 +281,7 @@ Patch release focusing on migration audit documentation and onboarding enhanceme
 - `system_context.current_version`: "3.1.14"
 
 ### **Version constants updated in:**
-- `includes/version.php` (if exists, simulated update)
+- `lupo-includes/version.php` (if exists, simulated update)
 - All agent header atoms referencing version
 - Module manifests with version dependencies
 

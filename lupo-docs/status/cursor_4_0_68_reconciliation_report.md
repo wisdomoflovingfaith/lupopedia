@@ -2,7 +2,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.69"
   lupopedia.schema: "status"
-  file_path_from_root: "docs/status/cursor_4_0_68_reconciliation_report.md"
+  file_path_from_root: "lupo-docs/status/cursor_4_0_68_reconciliation_report.md"
   last_modified_utc: "20260310"
   system_version: "4.0.69"
   channel_id: 42
@@ -28,7 +28,7 @@ Reconciled findings from KIRO and LILITH reviews. Implemented installer seed ali
 | Area | File | Change |
 |------|------|--------|
 | Installer | `install.php` | Run 4.0.68 seeds (rules, skills, changelog metadata, actor 1 cursor rules) in bootstrap, new-install, and post–content-seed; idempotent `is_file` check |
-| Rules CLI | `lupo-bin/lupo.php` | Use `RuleEvaluator` instead of `RuleEngine`; for `rules --evaluate` print schema and information_schema when target is database/0 |
+| Rules CLI | `lupo-bin/lupo.php` | Use `RuleEvaluator` instead of `RuleEngine`; for `rules --evaluate` print schema and information_schema when target is lupo-database/0 |
 | Rule engine | `lupo-includes/classes/RuleEngine.php` | Exclude RuleEngine/RuleEvaluator/ToonValidator from information_schema scan; strip `//` and `/* */` before scanning; on invalid rule_script return error with rule name and json_last_error_msg |
 | Rule evaluator | `lupo-includes/classes/RuleEvaluator.php` | checkDatabaseSchema: use _triggers_global only; no per-table trigger/auto_increment aggregation |
 | Validator | `lupo-includes/classes/ToonValidator.php` | stripSqlComments(); validateDatabase() no longer returns per-table triggers or auto_increment; returns _triggers_global; checkForeignKeys/checkTimestampColumns use comment-stripped DDL |
@@ -64,7 +64,7 @@ Reconciled findings from KIRO and LILITH reviews. Implemented installer seed ali
 ## Acceptance
 
 - install.php executes 4.0.68 seeds when files exist.
-- rules --evaluate uses RuleEvaluator and prints schema + information_schema for database/0.
+- rules --evaluate uses RuleEvaluator and prints schema + information_schema for lupo-database/0.
 - information_schema scanner no longer flags validator/rule files or comment text.
 - ToonValidator reports triggers globally; does not flag AUTO_INCREMENT as violation.
 - CHANGELOG metadata seed matches current CHANGELOG.

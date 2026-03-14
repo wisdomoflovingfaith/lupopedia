@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "channels\42\threads\DEVELOPMENT_CYCLE_4_0_43\20260224163700_1001_10000_actor_registry_alias_map_complete.md"
+  file_path_from_root: "lupo-channels\42\threads\DEVELOPMENT_CYCLE_4_0_43\20260224163700_1001_10000_actor_registry_alias_map_complete.md"
   file_hash: "27349b0688178e3fc1cf96ef5974af8fabf0718834a01976fe2547e6a4ab2095"
-  file_path_from_root: "channels\42\threads\DEVELOPMENT_CYCLE_4_0_43\20260224163700_1001_10000_actor_registry_alias_map_complete.md"
+  file_path_from_root: "lupo-channels\42\threads\DEVELOPMENT_CYCLE_4_0_43\20260224163700_1001_10000_actor_registry_alias_map_complete.md"
   file_hash: "1299b998c0be8a558550ed728913c38322b6e17071f35f68569373acf0eaaa17"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -68,7 +68,7 @@ to_actor_id: 10000
 to_actor_name: "Captain Wolfie"
 channel_id: 42
 thread_type: "DEVELOPMENT_CYCLE"
-subject: "actors/ Updated with registry.json + aliases.csv"
+subject: "lupo-actors/ Updated with registry.json + aliases.csv"
 created_utc: "20260224163700"
 read_by_actor_id: null
 read_by_actor_utc: null
@@ -76,23 +76,23 @@ read_by_actor_utc: null
 
 Captain Wolfie —
 
-## ✅ KIRO: actors/ updated with registry.json + aliases.csv. VSX/import now resolve slug aliases to canonical actor_id without guessing. Version 4.0.43.
+## ✅ KIRO: lupo-actors/ updated with registry.json + aliases.csv. VSX/import now resolve slug aliases to canonical actor_id without guessing. Version 4.0.43.
 
-Directive processed. The actors/ folder is now a first-class canonical source.
+Directive processed. The lupo-actors/ folder is now a first-class canonical source.
 
 ### Files Created
 
-**1. actors/registry.json**
+**1. lupo-actors/registry.json**
 - 46 actor entries with canonical metadata
 - Schema: canonical_slug, display_name, actor_type, timestamps, soft delete
 - Actor types: system_kernel, ide_agent, external_ai, human_owner, banned
 
-**2. actors/aliases.csv**
+**2. lupo-actors/aliases.csv**
 - 66 total aliases (65 active, 1 deleted)
 - Schema: alias_slug, actor_id, alias_type, notes, timestamps, soft delete
 - Alias types: canonical, handle, legacy_name, email_slug
 
-**3. scripts/validate_actor_registry.py**
+**3. lupo-scripts/validate_actor_registry.py**
 - CI-ready validation script
 - 7 validation checks
 - Exit code 0 = pass, 1 = fail
@@ -192,7 +192,7 @@ All aliases map to valid actor_ids in registry.json.
 
 ### Validation Results
 
-**Script:** `scripts/validate_actor_registry.py`
+**Script:** `lupo-scripts/validate_actor_registry.py`
 
 **Checks:**
 1. ✅ No duplicate active aliases
@@ -261,7 +261,7 @@ Deleted aliases: 1
 
 ### Documentation
 
-**Report:** `docs/status/kiro_actor_registry_alias_map_4_0_43.md`
+**Report:** `lupo-docs/status/kiro_actor_registry_alias_map_4_0_43.md`
 
 **Contents:**
 - Complete registry summary
@@ -276,7 +276,7 @@ Deleted aliases: 1
 ### Folder Structure
 
 ```
-actors/
+lupo-actors/
 ├── registry.json          # 46 actors
 ├── aliases.csv            # 66 aliases
 ├── 0/                     # System kernel
@@ -286,7 +286,7 @@ actors/
 
 ### Conclusion
 
-The actors/ folder is now a first-class canonical source alongside channels/ and artifacts/. VSX extension and import tooling can resolve any alias to canonical actor_id without guessing.
+The lupo-actors/ folder is now a first-class canonical source alongside lupo-channels/ and artifacts/. VSX extension and import tooling can resolve any alias to canonical actor_id without guessing.
 
 **Key Achievements:**
 - 46 actors registered

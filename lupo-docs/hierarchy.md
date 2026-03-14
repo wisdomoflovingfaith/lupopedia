@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: "docs/hierarchy.md"
+  file_path_from_root: "lupo-docs/hierarchy.md"
   system_version: "4.0.53"
   last_modified_utc: "20260301"
   channel_id: 42
@@ -19,7 +19,7 @@ lupopedia.headers:
 
 lupopedia.edges:
   outbound_edges:
-    - { to: "docs/doctrine/FLARE/FLARE_DOCTRINE.md", type: "implements", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/FLARE/FLARE_DOCTRINE.md", type: "implements", weight: 1.0 }
     - { to: "lupopedia-config.php", type: "defines_constant", weight: 0.9 }
 ---
 
@@ -33,7 +33,7 @@ To ensure predictable content resolution and synchronization across environments
 | :--- | :--- | :--- |
 | **P0 (Highest)** | **FILESYSTEM** | Files in `lupo-channels/`. Treats the IDE as the primary source of truth. |
 | **P1** | **DATABASE** | Live state in SQL tables. Overridden by Filesystem if a file exists. |
-| **P2 (Lowest)** | **SEED / TOONS** | Files in `database/csv_data/` or `docs/toons/`. Used for initial setup. |
+| **P2 (Lowest)** | **SEED / TOONS** | Files in `lupo-database/csv_data/` or `lupo-docs/toons/`. Used for initial setup. |
 
 ## 2. Load Order Logic
 
@@ -47,12 +47,12 @@ When a system component (e.g., `lupo-channels` controller or `MdImporter`) resol
 ## 3. Synchronization Protocols
 
 ### DB → CSV/TOON (Export)
-The database state is exported to CSV and TOON files when running `scripts/generate_toon_files.py`. This ensures that the documentation and seed files reflect the current live state.
+The database state is exported to CSV and TOON files when running `lupo-scripts/generate_toon_files.py`. This ensures that the documentation and seed files reflect the current live state.
 
 ### FILESYSTEM → DB (Import)
 Standalone files in `lupo-channels/` are imported into the database:
 - **On Boot**: Core systems (like ANUBIS or the Installer) scan for new files.
-- **On Demand**: Running `scripts/import_channels_and_artifacts.py` forces a sync from filesystem to DB.
+- **On Demand**: Running `lupo-scripts/import_channels_and_artifacts.py` forces a sync from filesystem to DB.
 
 ## 4. Configuration
 

@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\channels\doctrine\REFLECTIVE_EMOTIONAL_GEOMETRY_DOCTRINE.md"
+  file_path_from_root: "lupo-docs\channels\doctrine\REFLECTIVE_EMOTIONAL_GEOMETRY_DOCTRINE.md"
   file_hash: "546269970fbe405f277b042ce3fe8cf26770a9f4dffc0ca8151072cf7e6c212f"
-  file_path_from_root: "docs\channels\doctrine\REFLECTIVE_EMOTIONAL_GEOMETRY_DOCTRINE.md"
+  file_path_from_root: "lupo-docs\channels\doctrine\REFLECTIVE_EMOTIONAL_GEOMETRY_DOCTRINE.md"
   file_hash: "a912cf68ecae77ea1fc59eefec96f31ad1c1fa6af5373a79841b139e79ebf46d"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -354,8 +354,8 @@ Reflective Emotional Geometry v2.0 is:
 
 ## **Related Documentation**
 
-- **Counting-in-Light Doctrine:** `docs/appendix/COUNTING_IN_LIGHT.md` - Counting-in-Light emotional coordinate system (R, G, B axes, mood color format, weight field)
-- **MOOD RGB Doctrine:** `docs/doctrine/MOOD_RGB_DOCTRINE.md` - Mood color usage across agents and routing
+- **Counting-in-Light Doctrine:** `lupo-docs/appendix/COUNTING_IN_LIGHT.md` - Counting-in-Light emotional coordinate system (R, G, B axes, mood color format, weight field)
+- **MOOD RGB Doctrine:** `lupo-docs/doctrine/MOOD_RGB_DOCTRINE.md` - Mood color usage across agents and routing
 - **DIALOG Agent Counting-in-Light Guide:** `lupo-agents/3/COUNTING_IN_LIGHT.md` - DIALOG-specific mood assignment guide
 
 ---

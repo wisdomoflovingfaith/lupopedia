@@ -1,0 +1,62 @@
+{
+  "table_name": "lupo_orchestrator_rules",
+  "fields": [
+    "`rule_id` bigint NOT NULL auto_increment",
+    "`rule_slug` varchar(128) NOT NULL",
+    "`orchestrator_actor` varchar(64) NOT NULL",
+    "`rule_set_version` varchar(32) NOT NULL",
+    "`applies_to_json` text NOT NULL",
+    "`enforcement_level` varchar(32) NOT NULL DEFAULT 'strict'",
+    "`rule_content` text NOT NULL",
+    "`checksum` varchar(64) NOT NULL",
+    "`is_active` tinyint NOT NULL DEFAULT 1",
+    "`updated_ymdhis` bigint NOT NULL"
+  ],
+  "data": [],
+  "indexes": [
+    {
+      "index_name": "lupo_orchestrator_rules_idx_active",
+      "columns": [
+        "is_active"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_orchestrator_rules_idx_actor_version",
+      "columns": [
+        "orchestrator_actor",
+        "rule_set_version"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_orchestrator_rules_idx_updated",
+      "columns": [
+        "updated_ymdhis"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_orchestrator_rules_uniq_slug",
+      "columns": [
+        "rule_slug"
+      ],
+      "is_unique": true,
+      "index_type": "BTREE"
+    }
+  ],
+  "primary_key": {
+    "column_name": "rule_id",
+    "expected_name": "rule_id",
+    "is_correct": true,
+    "needs_rename": false
+  },
+  "doctrine_metadata": {
+    "no_foreign_keys": true,
+    "no_triggers": true
+  },
+  "relationships": []
+}

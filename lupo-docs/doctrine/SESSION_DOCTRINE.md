@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: "docs/doctrine/SESSION_DOCTRINE.md"
+  file_path_from_root: "lupo-docs/doctrine/SESSION_DOCTRINE.md"
   web_path: "http://www.lupopedia.com/docs/doctrine/SESSION_DOCTRINE"
   last_updated_utc: "20260307"
   system_version: "4.0.64"
@@ -22,8 +22,8 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/lupopedia_whoami_readme.md", type: "references", weight: 0.9 }
-    - { to: "docs/doctrine/", type: "references", weight: 0.8 }
+    - { to: "lupo-docs/lupopedia_whoami_readme.md", type: "references", weight: 0.9 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 0.8 }
 
 lupopedia.footer:
   version: "4.0.64"

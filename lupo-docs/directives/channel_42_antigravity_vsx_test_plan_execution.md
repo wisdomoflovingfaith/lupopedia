@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\directives\channel_42_antigravity_vsx_test_plan_execution.md"
+  file_path_from_root: "lupo-docs\directives\channel_42_antigravity_vsx_test_plan_execution.md"
   file_hash: "a043e288386c2c0063c6ddce9e8495a6762b38094353915f0b54a0166087bc94"
-  file_path_from_root: "docs\directives\channel_42_antigravity_vsx_test_plan_execution.md"
+  file_path_from_root: "lupo-docs\directives\channel_42_antigravity_vsx_test_plan_execution.md"
   file_hash: "fffb6eae39f8eb79b9e2ece31ede00b26d2bd8d036548b6b12111e8fc91e9b3b"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -63,7 +63,7 @@ lupopedia.footer:
 
 ---
 wolfie.headers:
-  file_path_from_root: "docs/directives/channel_42_antigravity_vsx_test_plan_execution.md"
+  file_path_from_root: "lupo-docs/directives/channel_42_antigravity_vsx_test_plan_execution.md"
   system_version: "4.0.36"
   channel_id: 42
   mood_rgb: "0044FF"
@@ -75,8 +75,8 @@ wolfie.headers:
 
 flip.footer:
   referenced_by_files:
-    - "docs/status/vsx_extension_test_report_4_0_36.md"
-    - "docs/versions/4.0.36/TODO.md"
+    - "lupo-docs/status/vsx_extension_test_report_4_0_36.md"
+    - "lupo-docs/versions/4.0.36/TODO.md"
   referenced_by_channels:
     - 42
   referenced_by_actors:
@@ -120,7 +120,7 @@ This includes:
 
 ## REQUIRED OUTPUT
 
-Generate: `docs/status/vsx_extension_test_report_4_0_36.md`
+Generate: `lupo-docs/status/vsx_extension_test_report_4_0_36.md`
 
 Include:
 - All test results  

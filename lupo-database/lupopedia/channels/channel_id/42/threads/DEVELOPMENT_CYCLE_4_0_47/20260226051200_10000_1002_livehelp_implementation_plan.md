@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "channels\42\threads\DEVELOPMENT_CYCLE_4_0_47\20260226051200_10000_1002_livehelp_implementation_plan.md"
+  file_path_from_root: "lupo-channels\42\threads\DEVELOPMENT_CYCLE_4_0_47\20260226051200_10000_1002_livehelp_implementation_plan.md"
   file_hash: "8f7b79c1ea7a8ffc487c1694f834cc60a90c056bb0f8441bc1ff5257561062ed"
-  file_path_from_root: "channels\42\threads\DEVELOPMENT_CYCLE_4_0_47\20260226051200_10000_1002_livehelp_implementation_plan.md"
+  file_path_from_root: "lupo-channels\42\threads\DEVELOPMENT_CYCLE_4_0_47\20260226051200_10000_1002_livehelp_implementation_plan.md"
   file_hash: "24ee80c3036e9da28722f46c1998ad249bbbe95fa8f07dc8ec38ffaab39a9781"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -62,7 +62,7 @@ lupopedia.footer:
 
 ---
 wolfie.headers: {
-  file_path_from_root: "channels/42/threads/DEVELOPMENT_CYCLE_4_0_47/20260226051200_10000_1002_livehelp_implementation_plan.md",
+  file_path_from_root: "lupo-channels/42/threads/DEVELOPMENT_CYCLE_4_0_47/20260226051200_10000_1002_livehelp_implementation_plan.md",
   system_version: "4.0.47",
   channel_id: 42,
   mood_rgb: "32CD32",
@@ -89,16 +89,16 @@ wolfie.headers: {
 }
 flip.footer: {
   inbound_edges: [
-    { from: "channels/42/threads/DEVELOPMENT_CYCLE_4_0_47/20260226051100_10000_1002_livehelp_frame_analysis.md", type: "implements", weight: 1.0, hashtag: "#implementation" }
+    { from: "lupo-channels/42/threads/DEVELOPMENT_CYCLE_4_0_47/20260226051100_10000_1002_livehelp_frame_analysis.md", type: "implements", weight: 1.0, hashtag: "#implementation" }
   ],
   outbound_edges: [
-    { to: "channels/1/", type: "creates", weight: 0.9, hashtag: "#channels" },
-    { to: "channels/1/admin_chat_xmlhttp.php", type: "modernizes", weight: 0.8, hashtag: "#legacy" }
+    { to: "lupo-channels/1/", type: "creates", weight: 0.9, hashtag: "#channels" },
+    { to: "lupo-channels/1/admin_chat_xmlhttp.php", type: "modernizes", weight: 0.8, hashtag: "#legacy" }
   ],
   referenced_by_actors: [1002],
   references: {
     by_files: [
-      "channels/42/threads/DEVELOPMENT_CYCLE_4_0_47/20260226051100_10000_1002_livehelp_frame_analysis.md"
+      "lupo-channels/42/threads/DEVELOPMENT_CYCLE_4_0_47/20260226051100_10000_1002_livehelp_frame_analysis.md"
     ],
     by_actors: [1002]
   },
@@ -127,7 +127,7 @@ Based on the comprehensive frame analysis, this implementation plan outlines the
 ## Phase 1: Structural Foundation
 
 ### 1.1 Create Modern Channel Interface Template
-**File**: `channels/1/index.php`
+**File**: `lupo-channels/1/index.php`
 
 **Requirements:**
 - Replace `<frameset>` with responsive CSS Grid layout
@@ -294,7 +294,7 @@ class IframeManager {
 ## Phase 3: Backend Integration
 
 ### 3.1 Update admin_chat_xmlhttp.php
-**File**: `channels/1/admin_chat_xmlhttp.php`
+**File**: `lupo-channels/1/admin_chat_xmlhttp.php`
 
 **Modernizations:**
 - Add JSON response format alongside XML

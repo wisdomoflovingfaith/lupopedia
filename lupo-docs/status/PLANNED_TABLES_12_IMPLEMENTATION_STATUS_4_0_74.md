@@ -86,6 +86,6 @@ All other tables in `future_features_lupopedia.sql` remain **deferred**, includi
 
 ## References
 
-- Directive: `prompts/cursor/20260314_cursor_planned_tables_implementation_directive_4_0_74.md` (or equivalent path).
+- Directive: `lupo-prompts/cursor/20260314_cursor_planned_tables_implementation_directive_4_0_74.md` (or equivalent path).
 - Planned tables report: `lupo-docs/status/PLANNED_TABLES_REPORT_AND_CANDIDATES_4.0.74.md`
 - Required-tables doctrine: `lupo-rules/root/required-tables-future-features-doctrine.md`

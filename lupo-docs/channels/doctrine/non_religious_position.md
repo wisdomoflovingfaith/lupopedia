@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\channels\doctrine\non_religious_position.md"
+  file_path_from_root: "lupo-docs\channels\doctrine\non_religious_position.md"
   file_hash: "85776e28e1a57db744a683f1a6d0a2f04a124ea8caa8648c422527ef9e1a3f51"
-  file_path_from_root: "docs\channels\doctrine\non_religious_position.md"
+  file_path_from_root: "lupo-docs\channels\doctrine\non_religious_position.md"
   file_hash: "216e46bd6b67748329f9d4db07076885b9ccb26677f9b2e179c8982ed9ecfe24"
   last_updated_utc: "20260228"
   system_version: "4.0.50"

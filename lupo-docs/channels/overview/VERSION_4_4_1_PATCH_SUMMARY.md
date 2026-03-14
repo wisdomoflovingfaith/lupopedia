@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\channels\overview\VERSION_4_4_1_PATCH_SUMMARY.md"
+  file_path_from_root: "lupo-docs\channels\overview\VERSION_4_4_1_PATCH_SUMMARY.md"
   file_hash: "0a09cb49750b66bfba7ac1ac819498cc8cf0efc903c103ced7483a0270c121b4"
-  file_path_from_root: "docs\channels\overview\VERSION_4_4_1_PATCH_SUMMARY.md"
+  file_path_from_root: "lupo-docs\channels\overview\VERSION_4_4_1_PATCH_SUMMARY.md"
   file_hash: "8a2fb80194fd2567320c681380d157941087ed9c90ced987cfd101ec4a01eba4"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -86,9 +86,9 @@ Version 4.4.1 completes the TOON migration analysis and schema optimization work
 - ✅ `dialogs/changelog_dialog_current.md` - Updated version and dialog message
 
 ### **Documentation Files**
-- ✅ `docs/migrations/4.3.1.md` - Created comprehensive migration documentation
-- ✅ `docs/ARCHITECTURE/ARCHITECTURE_MAP_v3_0_70.md` - Updated version and date
-- ✅ `docs/doctrine/TABLE_COUNT_DOCTRINE.md` - Updated table count and system context
+- ✅ `lupo-docs/migrations/4.3.1.md` - Created comprehensive migration documentation
+- ✅ `lupo-docs/ARCHITECTURE/ARCHITECTURE_MAP_v3_0_70.md` - Updated version and date
+- ✅ `lupo-docs/doctrine/TABLE_COUNT_DOCTRINE.md` - Updated table count and system context
 - ✅ `.cursorrules` - Updated version reference in cursor rules
 
 ### **Code Files**

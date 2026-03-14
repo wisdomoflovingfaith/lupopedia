@@ -121,7 +121,7 @@ lupopedia.footer:
 ### Edge Schema Hardening
 
 - **Grouped Edges:** Verified `lupo_edges` supports `edge_category` for grouped outbound edges
-- **One-Time SQL Runner:** Created `scripts/run_one_time_sql.php` for shared-host compatibility
+- **One-Time SQL Runner:** Created `lupo-scripts/run_one_time_sql.php` for shared-host compatibility
 - **DDL Doctrine:** Audited and corrected `install_new_lupopedia.sql` to enforce database doctrine
 
 ### Namespace Documentation
@@ -137,7 +137,7 @@ lupopedia.footer:
 ### Version Bump and IDE Agent Requirements
 
 - **Version Update:** Updated all version references to 4.0.72
-- **Required Reading:** Added `prompts/20260313_ide_agent_4.0.72_required_reading.md`
+- **Required Reading:** Added `lupo-prompts/20260313_ide_agent_4.0.72_required_reading.md`
 - **Footer Standards:** Added `orchestrator` as required metadata in `lupopedia.footer`
 
 ---

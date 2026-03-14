@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\doctrine\SEMANTIC_SECURITY_CHECKLIST_4_0_30.md"
+  file_path_from_root: "lupo-docs\doctrine\SEMANTIC_SECURITY_CHECKLIST_4_0_30.md"
   file_hash: "adc63878ac6e64e907e1b56c5de65ef4965933cca6793263588cf4392b75a9ac"
-  file_path_from_root: "docs\doctrine\SEMANTIC_SECURITY_CHECKLIST_4_0_30.md"
+  file_path_from_root: "lupo-docs\doctrine\SEMANTIC_SECURITY_CHECKLIST_4_0_30.md"
   file_hash: "e283b4ec52d3425e0ea615c9b624afa5d02918dc02ecd488b930979e7bb4f880"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -64,7 +64,7 @@ lupopedia.footer:
 ---
 # FLIP Header (alias: Wolfie Header, CROP Header)
 wolfie.headers: explicit architecture with structured clarity for every file.
-file_path_from_root: docs/doctrine/SEMANTIC_SECURITY_CHECKLIST_4_0_30.md
+file_path_from_root: lupo-docs/doctrine/SEMANTIC_SECURITY_CHECKLIST_4_0_30.md
 file.last_modified_system_version: "4.0.31"
 file.last_modified_utc: "20260222215200"
 channel_id: 42

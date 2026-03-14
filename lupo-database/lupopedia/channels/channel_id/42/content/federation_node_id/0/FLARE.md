@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: "channels/42/content/federation_node_id/0/FLARE.md"
+  file_path_from_root: "lupo-channels/42/content/federation_node_id/0/FLARE.md"
   file_hash: "to_be_generated"
   federation_node_id: 0
   web_path: "http://www.lupopedia.com/FLARE"
@@ -20,11 +20,11 @@ lupopedia.headers:
 
 lupopedia.edges:
   outbound_edges:
-    - { to: "docs/doctrine/FLARE/FLARE_DOCTRINE.md", type: "references", weight: 1.0 }
-    - { to: "docs/FLARE_HEADERS_COMPLETE_REFERENCE.md", type: "references", weight: 1.0 }
-    - { to: "docs/api/FLARE_API.md", type: "references", weight: 0.9 }
-    - { to: "actors/registry.json", type: "references", weight: 0.8 }
-    - { to: "database/migrations/install_lupopedia.sql", type: "references", weight: 0.7 }
+    - { to: "lupo-docs/doctrine/FLARE/FLARE_DOCTRINE.md", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/FLARE_HEADERS_COMPLETE_REFERENCE.md", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/api/FLARE_API.md", type: "references", weight: 0.9 }
+    - { to: "lupo-actors/registry.json", type: "references", weight: 0.8 }
+    - { to: "lupo-database/migrations/install_lupopedia.sql", type: "references", weight: 0.7 }
   semantic_tags: ["flare", "federation", "canonical", "protocol"]
 
 lupopedia.footer:
@@ -95,7 +95,7 @@ This node serves as the root FLARE definition for the entire federation system:
 ### Web Path Mapping
 
 FLARE files map to web paths using the following pattern:
-- Repository path: `channels/42/content/federation_node_id/{node_id}/FLARE.md`
+- Repository path: `lupo-channels/42/content/federation_node_id/{node_id}/FLARE.md`
 - Web path: `http://www.lupopedia.com/FLARE`
 
 ### Semantic OS Integration
@@ -103,7 +103,7 @@ FLARE files map to web paths using the following pattern:
 FLARE integrates with the Semantic OS through:
 
 - **Database Storage**: Content and relationships stored in `lupo_contents` and `lupo_edges` tables
-- **Actor Registry**: Actor IDs and metadata managed in `actors/registry.json`
+- **Actor Registry**: Actor IDs and metadata managed in `lupo-actors/registry.json`
 - **Channel System**: Federation nodes organized by channel structure
 - **Web Resolution**: Canonical URLs provide persistent access to FLARE definitions
 

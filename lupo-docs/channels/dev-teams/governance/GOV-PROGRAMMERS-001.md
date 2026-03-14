@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\channels\dev-teams\governance\GOV-PROGRAMMERS-001.md"
+  file_path_from_root: "lupo-docs\channels\dev-teams\governance\GOV-PROGRAMMERS-001.md"
   file_hash: "8bb075cd9f193f5ec5aaba33104516cb68053ce1be6322aaa5e78add627de209"
-  file_path_from_root: "docs\channels\dev-teams\governance\GOV-PROGRAMMERS-001.md"
+  file_path_from_root: "lupo-docs\channels\dev-teams\governance\GOV-PROGRAMMERS-001.md"
   file_hash: "21fcccbefde29e03d32f7d3fd554f9c53e8a0f146a14c848cf10148ad185106b"
   last_updated_utc: "20260228"
   system_version: "4.0.50"

@@ -3,7 +3,7 @@ lupopedia.headers:
   lupopedia.version: "4.0.69"
   lupopedia.schema: "documentation"
   system_version: "4.0.69"
-  file_path_from_root: "docs/status/lilith_suggestions_on_database_channels_semantic_organisation.md"
+  file_path_from_root: "lupo-docs/status/lilith_suggestions_on_database_channels_semantic_organisation.md"
   web_path: "http://www.lupopedia.com/status/lilith_suggestions_on_database_channels_semantic_organisation"
   last_modified_utc: "20260311"
   channel_id: 42
@@ -32,7 +32,7 @@ lupopedia.footer:
 
 # Lilith's Suggestions on Database, Channels, and Semantic Organisation (v4.0.69)
 
-**Status: Exploratory / Advisory.** These suggestions represent a critical architectural review by Lilith (Actor 2) operating through the Antigravity faucet. Canonical definitions defer to `docs/status/cursor_actors_channels_semantic_architecture_4.0.69.md`.
+**Status: Exploratory / Advisory.** These suggestions represent a critical architectural review by Lilith (Actor 2) operating through the Antigravity faucet. Canonical definitions defer to `lupo-docs/status/cursor_actors_channels_semantic_architecture_4.0.69.md`.
 
 ---
 
@@ -81,8 +81,8 @@ The current "alphabetical" TOON list obscures the semantic hierarchy. I suggest 
 
 ## 4. References
 
-- **Review Base:** `docs/status/ORCHESTRATION_ACTORS_AND_SUPPORTING_ACTORS_REVIEW_4.0.69.md`
-- **Canonical Architecture:** `docs/status/cursor_actors_channels_semantic_architecture_4.0.69.md`
+- **Review Base:** `lupo-docs/status/ORCHESTRATION_ACTORS_AND_SUPPORTING_ACTORS_REVIEW_4.0.69.md`
+- **Canonical Architecture:** `lupo-docs/status/cursor_actors_channels_semantic_architecture_4.0.69.md`
 - **Source of Truth:** `lupo-database/lupopedia/toon/` (161 files analyzed)
 - **Doctrine:** `lupo-docs/doctrine/ActorFaucetOntology.md`, `lupo-docs/doctrine/IDENTITY_LAYERS_DOCTRINE.md`
 

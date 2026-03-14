@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\channels\kernel\services\MOOD_SERVICES_INTEGRATION.md"
+  file_path_from_root: "lupo-docs\channels\kernel\services\MOOD_SERVICES_INTEGRATION.md"
   file_hash: "56a108b4c90266b5e3b200678a816064cf8287e46a68f03676f0e485020f3e8a"
-  file_path_from_root: "docs\channels\kernel\services\MOOD_SERVICES_INTEGRATION.md"
+  file_path_from_root: "lupo-docs\channels\kernel\services\MOOD_SERVICES_INTEGRATION.md"
   file_hash: "b60afb194768f5895d8ebd277f254a6fd5f131c07c6e2d8994df33dc7f2cb691"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -108,7 +108,7 @@ This guide documents the complete integration of the **2-actor RGB mood services
 
 ### 1.1 Table Creation
 
-**Migration**: `database/migrations/4.4.1_create_actor_moods_table.sql`
+**Migration**: `lupo-database/migrations/4.4.1_create_actor_moods_table.sql`
 
 ```sql
 CREATE TABLE IF NOT EXISTS actor_moods (
@@ -126,7 +126,7 @@ COMMENT='Actor mood logging table for 2-actor RGB mood model';
 
 ```bash
 # From Lupopedia root directory
-mysql -u your_user -p lupopedia < database/migrations/4.4.1_create_actor_moods_table.sql
+mysql -u your_user -p lupopedia < lupo-database/migrations/4.4.1_create_actor_moods_table.sql
 ```
 
 ### 1.3 Verify Table
@@ -520,7 +520,7 @@ php bin/cli/debug-actor-mood.php show-coherence 1 2
 **Solution**:
 ```bash
 # Run migration
-mysql -u your_user -p lupopedia < database/migrations/4.4.1_create_actor_moods_table.sql
+mysql -u your_user -p lupopedia < lupo-database/migrations/4.4.1_create_actor_moods_table.sql
 
 # Verify
 mysql -u your_user -p lupopedia -e "SHOW TABLES LIKE 'actor_moods';"
@@ -640,18 +640,18 @@ try {
 ## 9. Documentation Reference
 
 ### 9.1 Service Documentation
-- `docs/services/ACTOR_MOOD_SERVICE.md` - Detailed ActorMoodService docs
-- `docs/services/MOOD_SERVICES_OVERVIEW.md` - Architecture overview
-- `docs/services/PackMoodCoherenceService.example.php` - Usage examples
+- `lupo-docs/services/ACTOR_MOOD_SERVICE.md` - Detailed ActorMoodService docs
+- `lupo-docs/services/MOOD_SERVICES_OVERVIEW.md` - Architecture overview
+- `lupo-docs/services/PackMoodCoherenceService.example.php` - Usage examples
 
 ### 9.2 Doctrine Documentation
 - `doctrine/EMOTIONAL_GEOMETRY_DOCTRINE.md` - Canonical 2-actor RGB model
-- `docs/appendix/COUNTING_IN_LIGHT.md` - RGB axis semantics
+- `lupo-docs/appendix/COUNTING_IN_LIGHT.md` - RGB axis semantics
 - `doctrine/deprecated/DEPRECATED_EMOTIONAL_GEOMETRY.md` - Legacy models
 
 ### 9.3 Database Schema
 - `lupo-database/lupopedia/toon/actor_moods.toon` - TOON definition
-- `database/migrations/4.4.1_create_actor_moods_table.sql` - Migration script
+- `lupo-database/migrations/4.4.1_create_actor_moods_table.sql` - Migration script
 
 ---
 
@@ -719,14 +719,14 @@ Use this checklist to verify integration:
 
 ### Questions or Issues?
 
-1. **Check Documentation**: Review service docs in `docs/services/`
+1. **Check Documentation**: Review service docs in `lupo-docs/services/`
 2. **Run CLI Tool**: Test with `debug-actor-mood.php help`
 3. **Check Logs**: Review error logs for detailed error messages
 4. **Verify Schema**: Ensure database table matches migration
 
 ### Common Integration Patterns
 
-See `docs/services/MOOD_SERVICES_OVERVIEW.md` for:
+See `lupo-docs/services/MOOD_SERVICES_OVERVIEW.md` for:
 - DIALOG integration patterns
 - HERMES routing integration
 - Compare-notes protocol implementation

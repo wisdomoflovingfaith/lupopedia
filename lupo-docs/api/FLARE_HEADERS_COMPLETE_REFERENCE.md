@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -34,7 +34,7 @@ lupopedia.footer:
 
 ---
 lupopedia.headers:
-  file_path_from_root: "docs/FLARE_HEADERS_COMPLETE_REFERENCE.md"
+  file_path_from_root: "lupo-docs/FLARE_HEADERS_COMPLETE_REFERENCE.md"
   system_version: "4.0.47"
   channel_id: 1
   actor_id: 1007
@@ -42,7 +42,7 @@ lupopedia.headers:
   delegation_chain: "1007:10000"
   artifact_type: "guide"
   purpose: "Complete reference guide for all FLARE header and footer fields including table-specific attributes"
-  dialog_message: "Recommended next step: create actors/1007 profile and align any remaining docs/examples to the required FLARE prologue format."
+  dialog_message: "Recommended next step: create lupo-actors/1007 profile and align any remaining lupo-docs/examples to the required FLARE prologue format."
   mood_rgb: "4B0082"
   traits: ["canonical", "comprehensive", "reference"]
   tags: ["flare", "headers", "footers", "complete_reference", "table_attributes", "api"]
@@ -57,11 +57,11 @@ lupopedia.footer:
 
 lupopedia.edges:
   outbound_edges:
-    - { to: "docs/FLARE_HEADERS_QUICK_REFERENCE.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/FLARE/FLARE_DOCTRINE.md", type: "references", weight: 1.0 }
-    - { to: "docs/api/FLARE_API.md", type: "references", weight: 0.8 }
-    - { to: "docs/toons", type: "schema_reference", weight: 1.0 }
-    - { to: "actors/registry.json", type: "references", weight: 0.8 }
+    - { to: "lupo-docs/FLARE_HEADERS_QUICK_REFERENCE.md", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/FLARE/FLARE_DOCTRINE.md", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/api/FLARE_API.md", type: "references", weight: 0.8 }
+    - { to: "lupo-docs/toons", type: "schema_reference", weight: 1.0 }
+    - { to: "lupo-actors/registry.json", type: "references", weight: 0.8 }
   semantic_tags: ["flare", "headers", "footers", "reference", "documentation", "tables", "api"]
 ---
 lupopedia.headers:
@@ -149,18 +149,18 @@ The `flare.lists` object links to external CSV-based history and discussion reco
 ```yaml
 # 💡 LUPOPEDIA HEADERS edge automation (legacy: FLARE Edge Suggester):
 # Use the edge suggester tool to automatically discover and suggest edges:
-# python scripts/flare_edge_suggester.py --file <path> --include-db --format yaml
+# python lupo-scripts/flare_edge_suggester.py --file <path> --include-db --format yaml
 # This will analyze content, TOON schemas, and database relationships to suggest
 # appropriate outbound_edges with weights, reasons, and discovery methods.
 
 lupopedia.edges:
   outbound_edges:
     - { to: "path/to/file.md", type: "references", weight: 1.0, reason: "Primary reference", db_source: "lupo_contents" }
-    - { to: "docs/toons/lupo_table.toon.json", type: "schema_reference", weight: 1.0 }
+    - { to: "lupo-docs/toons/lupo_table.toon.json", type: "schema_reference", weight: 1.0 }
 
   inbound_edges:
-    - { from: "docs/other.md", type: "references", weight: 0.8, last_seen: "20260227" }
-    - { from: "docs/related.md", type: "related_to", weight: 0.7, last_seen: "20260227" }
+    - { from: "lupo-docs/other.md", type: "references", weight: 0.8, last_seen: "20260227" }
+    - { from: "lupo-docs/related.md", type: "related_to", weight: 0.7, last_seen: "20260227" }
 
   semantic_tags: ["tag1", "tag2", "tag3"]
 
@@ -203,14 +203,14 @@ lupopedia.footer:
 **Inbound Edge Object Format:**
 ```yaml
 inbound_edges:
-  - { from: "docs/other.md", type: "references", weight: 0.8, last_seen: "20260227", discovered_via: "db_scan" }
-  - { from: "docs/related.md", type: "related_to", weight: 0.7, last_seen: "20260227", discovered_via: "content_analysis" }
+  - { from: "lupo-docs/other.md", type: "references", weight: 0.8, last_seen: "20260227", discovered_via: "db_scan" }
+  - { from: "lupo-docs/related.md", type: "related_to", weight: 0.7, last_seen: "20260227", discovered_via: "content_analysis" }
 ```
 
 **Inbound Edge Fields:**
 | Field | Type | Description | Example |
 |-------|------|-------------|---------|
-| `from` | string | Source file path | `"docs/other.md"` |
+| `from` | string | Source file path | `"lupo-docs/other.md"` |
 | `type` | string | Relationship type | `"references"` |
 | `weight` | number | Relationship strength | `0.8` |
 | `last_seen` | string | Last verification date | `"20260227"` |
@@ -237,7 +237,7 @@ inbound_edges:
 ```yaml
 outbound_edges:
   - { 
-      to: "docs/reference.md", 
+      to: "lupo-docs/reference.md", 
       type: "references", 
       weight: 1.0, 
       reason: "Primary reference for implementation",
@@ -292,13 +292,13 @@ When documenting database tables, always reference the corresponding TOON file:
 ```yaml
 lupopedia.edges:
   outbound_edges:
-    - { to: "docs/toons/lupo_<table_name>.toon.json", type: "schema_reference", weight: 1.0 }
+    - { to: "lupo-docs/toons/lupo_<table_name>.toon.json", type: "schema_reference", weight: 1.0 }
     # ... other edges
 ```
 
 ### **Available TOON Files**
 
-Check `docs/toons/` directory for available table schemas:
+Check `lupo-docs/toons/` directory for available table schemas:
 - `lupo_dialog_messages.toon.json`
 - `lupo_dialog_threads.toon.json`
 - `lupo_actors.toon.json`
@@ -340,10 +340,10 @@ Check `docs/toons/` directory for available table schemas:
 
 ## 📚 **Related Documentation**
 
-- **Quick Reference:** `docs/FLIP_HEADERS_QUICK_REFERENCE.md`
-- **Core Doctrine:** `docs/doctrine/FLARE/FLARE_DOCTRINE.md`
-- **TOON Files:** `docs/toons/` (all table schemas)
-- **Actor Registry:** `actors/registry.json`
+- **Quick Reference:** `lupo-docs/FLIP_HEADERS_QUICK_REFERENCE.md`
+- **Core Doctrine:** `lupo-docs/doctrine/FLARE/FLARE_DOCTRINE.md`
+- **TOON Files:** `lupo-docs/toons/` (all table schemas)
+- **Actor Registry:** `lupo-actors/registry.json`
 - **Validator Service:** `app/Services/FlareValidatorService.php`
 
 ---

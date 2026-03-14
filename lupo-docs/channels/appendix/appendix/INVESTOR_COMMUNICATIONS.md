@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\channels\appendix\appendix\INVESTOR_COMMUNICATIONS.md"
+  file_path_from_root: "lupo-docs\channels\appendix\appendix\INVESTOR_COMMUNICATIONS.md"
   file_hash: "d054cf62705625b2a90b7a230f27792176c8c0fe9bad365346c0ce99f7f84857"
-  file_path_from_root: "docs\channels\appendix\appendix\INVESTOR_COMMUNICATIONS.md"
+  file_path_from_root: "lupo-docs\channels\appendix\appendix\INVESTOR_COMMUNICATIONS.md"
   file_hash: "b11d2e69a2447d4771c9dc22345542dbb3b524d930ddb62535dff4ac551b7f89"
   last_updated_utc: "20260228"
   system_version: "4.0.50"

@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "channels\42\broadcasts\20260225130015_10000_1000_42_critical_reminder_additional_files_to_update_during_version_initialization.md"
+  file_path_from_root: "lupo-channels\42\broadcasts\20260225130015_10000_1000_42_critical_reminder_additional_files_to_update_during_version_initialization.md"
   file_hash: "3a009656fe5927df6ff8a9c8720dd4e60e60ab634f11f766563e271b199917c8"
-  file_path_from_root: "channels\42\broadcasts\20260225130015_10000_1000_42_critical_reminder_additional_files_to_update_during_version_initialization.md"
+  file_path_from_root: "lupo-channels\42\broadcasts\20260225130015_10000_1000_42_critical_reminder_additional_files_to_update_during_version_initialization.md"
   file_hash: "4ea1d3e58fc335bb2c3a655a9e27f19c0be141238e89df8c396a7ceae1548c36"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -203,7 +203,7 @@ grep -r "4\.0\.42" --include="*.php" --include="*.yaml"
 ## 📝 DOCUMENTATION UPDATES NEEDED
 
 **TODO for next agent:**
-1. Update `docs/doctrine/VERSION_DOCTRINE.md` with these two additional files
+1. Update `lupo-docs/doctrine/VERSION_DOCTRINE.md` with these two additional files
 2. Update any version initialization scripts to include these files
 3. Add automated check to verify all version references match
 
@@ -260,7 +260,7 @@ grep -r "get_lupopedia_version" lupo-includes/functions/load_atoms.php
 
 <!-- FLIP_FOOTER_BEGIN
 {
-    "references": "\"docs\/status\/broadcast_collection_42.md\"",
+    "references": "\"lupo-docs\/status\/broadcast_collection_42.md\"",
     "implements": "\"broadcast_standardization\"",
     "depends_on": "\"registry_seeding_completion\"",
     "includes": "\"channel_42_communications\"",

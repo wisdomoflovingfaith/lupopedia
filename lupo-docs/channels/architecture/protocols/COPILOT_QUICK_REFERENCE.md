@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\channels\architecture\protocols\COPILOT_QUICK_REFERENCE.md"
+  file_path_from_root: "lupo-docs\channels\architecture\protocols\COPILOT_QUICK_REFERENCE.md"
   file_hash: "f118ad9d9a68bccbd127f0647b11634ec135bc20601729e9026e486946718249"
-  file_path_from_root: "docs\channels\architecture\protocols\COPILOT_QUICK_REFERENCE.md"
+  file_path_from_root: "lupo-docs\channels\architecture\protocols\COPILOT_QUICK_REFERENCE.md"
   file_hash: "6e9cbacae1b67a7ad9f0e533111ad8b4a325ce60268eb46810d3340f38939b61"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -229,7 +229,7 @@ file:
 ## 🗄️ TOON Files - Schema Reference
 
 ### What They Are
-Read-only `.toon` files in `database/toon_data/` containing exact table structures.
+Read-only `.toon` files in `lupo-database/toon_data/` containing exact table structures.
 
 ### Purpose
 - Schema reference for AI agents
@@ -310,17 +310,17 @@ Read-only `.toon` files in `database/toon_data/` containing exact table structur
 ## 📚 Key Documentation Files
 
 ### Must Read
-- `docs/README.md` - Documentation index
-- `docs/core/ARCHITECTURE_SYNC.md` - Authoritative subsystem reference
-- `docs/agents/WOLFIE_HEADER_SPECIFICATION.md` - Header format
-- `docs/doctrine/ATOM_RESOLUTION_SPECIFICATION.md` - Atom system
-- `docs/appendix/GLOSSARY.md` - Terminology reference
+- `lupo-docs/README.md` - Documentation index
+- `lupo-docs/core/ARCHITECTURE_SYNC.md` - Authoritative subsystem reference
+- `lupo-docs/agents/WOLFIE_HEADER_SPECIFICATION.md` - Header format
+- `lupo-docs/doctrine/ATOM_RESOLUTION_SPECIFICATION.md` - Atom system
+- `lupo-docs/appendix/GLOSSARY.md` - Terminology reference
 
 ### For AI Agents
-- `docs/doctrine/TOON_DOCTRINE.md` - TOON file rules
-- `docs/doctrine/NO_FOREIGN_KEYS_DOCTRINE.md` - Database doctrine
-- `docs/doctrine/TIMESTAMP_DOCTRINE.md` - Timestamp format
-- `docs/agents/INLINE_DIALOG_SPECIFICATION.md` - Dialog format
+- `lupo-docs/doctrine/TOON_DOCTRINE.md` - TOON file rules
+- `lupo-docs/doctrine/NO_FOREIGN_KEYS_DOCTRINE.md` - Database doctrine
+- `lupo-docs/doctrine/TIMESTAMP_DOCTRINE.md` - Timestamp format
+- `lupo-docs/agents/INLINE_DIALOG_SPECIFICATION.md` - Dialog format
 
 ---
 
@@ -382,9 +382,9 @@ Emotional coordinate system using RGB hex values (RRGGBB).
 
 If you encounter concepts not covered here:
 
-1. Check `docs/README.md` for documentation index
-2. Check `docs/appendix/GLOSSARY.md` for terminology
-3. Check `docs/core/ARCHITECTURE_SYNC.md` for subsystems
+1. Check `lupo-docs/README.md` for documentation index
+2. Check `lupo-docs/appendix/GLOSSARY.md` for terminology
+3. Check `lupo-docs/core/ARCHITECTURE_SYNC.md` for subsystems
 4. Ask human for clarification (don't guess)
 
 ---

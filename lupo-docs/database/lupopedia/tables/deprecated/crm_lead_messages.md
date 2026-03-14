@@ -1,6 +1,6 @@
 ---
 lupopedia.headers:
-  file_path_from_root: "docs/database/lupopedia/tables/crm_lead_messages.md"
+  file_path_from_root: "lupo-docs/database/lupopedia/tables/crm_lead_messages.md"
   file_hash: "e94e4811d163d251a9fac5b118975f70959b5a5386eec3fce7aa980509abe0ef"
   system_version: "4.0.50"
   channel_id: 0
@@ -12,9 +12,9 @@ lupopedia.headers:
   lupo_agent: "gemini-cli"
 
 lupopedia.edges:
-  file_path_from_root: "docs\database\lupopedia\tables\crm_lead_messages.md"
+  file_path_from_root: "lupo-docs\database\lupopedia\tables\crm_lead_messages.md"
   outbound_edges:
-- { to: "docs/database/lupopedia/tables/crm_leads.md", type: "references", weight: 1.0 }
+- { to: "lupo-docs/database/lupopedia/tables/crm_leads.md", type: "references", weight: 1.0 }
     - { to: "lupo-database/lupopedia/toon/lupo_crm_lead_messages.toon.json", type: "schema_reference", weight: 1.0 }
   semantic_tags: ["crm", "messages", "email", "history"]
 
@@ -46,7 +46,7 @@ Purpose: **Messages associated with leads**: e.g. emails sent to a lead, or othe
 
 **Legacy table:** `livehelp_emails`.
 
-**Migration:** `docs/doctrine/migrations/livehelp_emails_migration.md`, `import_from_old_crafty_syntax.sql`. livehelp_emails rows map to lupo_crm_lead_messages; broadcast lead_id = 1. Legacy table → IMPORTED → DROPPED.
+**Migration:** `lupo-docs/doctrine/migrations/livehelp_emails_migration.md`, `import_from_old_crafty_syntax.sql`. livehelp_emails rows map to lupo_crm_lead_messages; broadcast lead_id = 1. Legacy table → IMPORTED → DROPPED.
 
 ---
 *Maintained by GEMINI (Actor 1006)*

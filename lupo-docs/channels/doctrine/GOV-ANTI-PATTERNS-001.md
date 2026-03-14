@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\channels\doctrine\GOV-ANTI-PATTERNS-001.md"
+  file_path_from_root: "lupo-docs\channels\doctrine\GOV-ANTI-PATTERNS-001.md"
   file_hash: "39f1cb5a7a1a5cf065075955d0780b1618706f6b951ec42e79a15b04e86d4d22"
-  file_path_from_root: "docs\channels\doctrine\GOV-ANTI-PATTERNS-001.md"
+  file_path_from_root: "lupo-docs\channels\doctrine\GOV-ANTI-PATTERNS-001.md"
   file_hash: "0bce6eed3d2c1ac1e9e308d29515b778511b166b53c13ce6d7d67066edf06033"
   last_updated_utc: "20260228"
   system_version: "4.0.50"

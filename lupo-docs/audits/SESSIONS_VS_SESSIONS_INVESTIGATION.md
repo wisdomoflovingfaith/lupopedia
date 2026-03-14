@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\SESSIONS_VS_SESSIONS_INVESTIGATION.md"
+  file_path_from_root: "lupo-docs\SESSIONS_VS_SESSIONS_INVESTIGATION.md"
   file_hash: "cf0b3ad5e6c78e98b32d9300477fe7578707536527cfe3072837c0f732d32049"
-  file_path_from_root: "docs\SESSIONS_VS_SESSIONS_INVESTIGATION.md"
+  file_path_from_root: "lupo-docs\SESSIONS_VS_SESSIONS_INVESTIGATION.md"
   file_hash: "0698416df5d92e40b5554790271d7d995f04f5fd4044423e9da2410b565db66f"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -65,7 +65,7 @@ lupopedia.footer:
 **Date:** 2026-02-10  
 **Scope:** Full codebase + schema. No database or schema changes; analysis only.
 
-**Final status (post-cleanup):** The table `{prefix}sessions` is **obsolete and removed**. It has been dropped from `database/migrations/install_new_lupopedia.sql`. The single session table is `{prefix}sessions`; all unified-session logic lives in the Session class and `{prefix}sessions`. The one-time migration `one_time_sessions_to_sessions.sql` has been run; no runtime code references the sessions table.
+**Final status (post-cleanup):** The table `{prefix}sessions` is **obsolete and removed**. It has been dropped from `lupo-database/migrations/install_new_lupopedia.sql`. The single session table is `{prefix}sessions`; all unified-session logic lives in the Session class and `{prefix}sessions`. The one-time migration `one_time_sessions_to_sessions.sql` has been run; no runtime code references the sessions table.
 
 ---
 
@@ -107,11 +107,11 @@ lupopedia.footer:
   - **Cookie name** → `LUPO_TABLE_PREFIX . 'session'` (singular) — a cookie label, not a table.
   - **AuthManager** → return array key `'source' => 'session'` (label only).
 - The **table** `lupo_sessions` is **removed from install**. It appears only in:
-  - `database/migrations/one_time_sessions_to_sessions.sql` (one-time: migrate into lupo_sessions, then DROP)
-  - `database/migrations/dev_20260204_fix_schema_alignment.sql` (ALTER)
-  - `database/migrations/2026_01_26_schema_from_toon.sql`
-  - `database/install/lupopedia_mysql.sql`
-  - `docs/REQUIRED_TABLES_4.1.0.md` (listed)
+  - `lupo-database/migrations/one_time_sessions_to_sessions.sql` (one-time: migrate into lupo_sessions, then DROP)
+  - `lupo-database/migrations/dev_20260204_fix_schema_alignment.sql` (ALTER)
+  - `lupo-database/migrations/2026_01_26_schema_from_toon.sql`
+  - `lupo-database/install/lupopedia_mysql.sql`
+  - `lupo-docs/REQUIRED_TABLES_4.1.0.md` (listed)
   - `DIRECTORY_TREE.md` (mentions toon)
 
 ### 1.2 Helpers / classes that touch session tables
@@ -167,7 +167,7 @@ None of these use the **sessions** table in code.
 
 ## 3. TOON files
 
-- **docs/toons:** empty.  
+- **lupo-docs/toons:** empty.  
 - **schema/:** only `lupo_actors.toon`, `lupo_agents.toon`, `lupo_labs_*.toon`.  
 - **No TOONs found for `lupo_sessions` or `lupo_sessions`.**  
 - The only session-related TOON found is in legacy backup (old backup TOON, not lupo_*).
@@ -227,7 +227,7 @@ None of these use the **sessions** table in code.
 - **A. Fix prefix usage** — **DONE.** In the six Legacy files under `app/Services/CraftySyntax/`, every literal `lupo_sessions` in SQL has been replaced with a table name built as `(defined('LUPO_TABLE_PREFIX') ? LUPO_TABLE_PREFIX : 'lupo_') . 'sessions'`. No hardcoded `lupo_` for the session table remains in application code.
 - **B. Remove all references to livehelp_*** — **DONE.** Application code and comments no longer reference livehelp_* tables. Remaining mentions are: (1) one-time migration SQL files that literally DROP or read from those table names for migration; (2) LIVEHELP_REMOVAL_REPORT.md, which documents what was removed. No code path assumes livehelp_* tables exist.
 - **C. Document SessionHandler** — **To document.** Either: (1) **Delegate:** SessionHandler delegates all DB work to the Session class (Session does create/read/update/destroy; handler only manages cookie name, system_context, and calls Session). Or (2) **Thin wrapper (current):** SessionHandler remains a thin wrapper that already uses the same table as Session (`{prefix}sessions`) via `table()`; it performs its own INSERT/SELECT/UPDATE/DELETE on that table. Both are acceptable; the decision (delegate vs thin wrapper) must be written in code comments or in this doc. Recommendation: document that it is currently a thin wrapper using `{prefix}sessions`; optional future refactor is to delegate to Session for a single code path.
-- **D. Deprecate {prefix}sessions** — **Plan (no DB change yet):** (1) Run the existing one-time migration `one_time_sessions_to_sessions.sql` in every environment if not already run. (2) Drop `{prefix}sessions` (e.g. `DROP TABLE IF EXISTS` with configured prefix). (3) Update REQUIRED_TABLES and any install/schema docs to mark sessions as removed; new installs need not create it (or document “create only for historical migration; then run one_time migration and drop”).
+- **D. Deprecate {prefix}sessions** — **Plan (no DB change yet):** (1) Run the existing one-time migration `one_time_sessions_to_sessions.sql` in every environment if not already run. (2) Drop `{prefix}sessions` (e.g. `DROP TABLE IF EXISTS` with configured prefix). (3) Update REQUIRED_TABLES and any lupo-install/schema docs to mark sessions as removed; new installs need not create it (or document “create only for historical migration; then run one_time migration and drop”).
 - **E. Confirm Session class is the single source of truth** — **Confirmed.** All session creation, updates, naming (name_key, is_named), expiration, and metadata for the main app flow go through `App\Auth\Session` or through code that writes to `{prefix}sessions` (visitor-image, livehelp, Legacy* now with prefix). SessionHandler writes to the same table. Session class is the canonical API for bootstrap and auth; direct INSERT/UPDATE in Legacy* and visitor scripts use the same table and columns. Unification is: one table ({prefix}sessions), one logical source of truth (Session class for app; Legacy* and visitor scripts as legacy paths that also use the same table with prefix).
 
 ### 5.2 Files to update

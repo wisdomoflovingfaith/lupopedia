@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\channels\doctrine\ACTOR_AGENT_DOCTRINE.md"
+  file_path_from_root: "lupo-docs\channels\doctrine\ACTOR_AGENT_DOCTRINE.md"
   file_hash: "1b6984c6a33a5ac1e9a0438b3f7457a875f546590f2e9d23e15b8b2768f3c97b"
-  file_path_from_root: "docs\channels\doctrine\ACTOR_AGENT_DOCTRINE.md"
+  file_path_from_root: "lupo-docs\channels\doctrine\ACTOR_AGENT_DOCTRINE.md"
   file_hash: "b9c4986ee49a8daca572cfd4f0c402167cf3a35cbc1db81000f469d54853b275"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -147,4 +147,4 @@ The seed file **must** include, in order:
 ## Enforcement
 
 - All Python scripts in **`/scripts/`** that touch unified registry, seed, or TOON data **must** implement this doctrine.
-- Shared constants and row-building logic live in **`scripts/actor_agent_doctrine.py`**; generators **must** use that module for consistency.
+- Shared constants and row-building logic live in **`lupo-scripts/actor_agent_doctrine.py`**; generators **must** use that module for consistency.

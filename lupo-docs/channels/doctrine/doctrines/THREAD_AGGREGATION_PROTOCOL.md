@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\channels\doctrine\doctrines\THREAD_AGGREGATION_PROTOCOL.md"
+  file_path_from_root: "lupo-docs\channels\doctrine\doctrines\THREAD_AGGREGATION_PROTOCOL.md"
   file_hash: "3a5393e9a1f810ab227f8aacb5f9ff8f552ebc57168483a2fc889b3961fa7236"
-  file_path_from_root: "docs\channels\doctrine\doctrines\THREAD_AGGREGATION_PROTOCOL.md"
+  file_path_from_root: "lupo-docs\channels\doctrine\doctrines\THREAD_AGGREGATION_PROTOCOL.md"
   file_hash: "c9e085eb2f14dd2925cd911c993dd54bfca9dadf9c53935df8dd575f12c4fa61"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -418,13 +418,13 @@ Future versions may add new aggregation methods or modify weighting algorithms, 
 
 ## 🔗 12. Implementation Resources
 
-- **Mood System Doctrine**: `docs/doctrines/MOOD_SYSTEM_DOCTRINE.md`
-- **Mood Axis Registry**: `docs/registries/MOOD_AXIS_REGISTRY.md`
-- **RGB Mapping Protocol**: `docs/doctrines/COLOR_DOCTRINE.md`
-- **Mood Calculation Protocol**: `docs/doctrines/MOOD_CALCULATION_PROTOCOL.md`
-- **Lupopedia Header Profile**: `docs/doctrine/LUPOPEDIA_HEADER_PROFILE.md`
-- **Dialog History Specification**: `docs/agents/DIALOG_HISTORY_SPEC.md`
-- **Thread-Level Dialog Specification**: `docs/agents/THREAD_LEVEL_DIALOG_SPEC.md`
+- **Mood System Doctrine**: `lupo-docs/doctrines/MOOD_SYSTEM_DOCTRINE.md`
+- **Mood Axis Registry**: `lupo-docs/registries/MOOD_AXIS_REGISTRY.md`
+- **RGB Mapping Protocol**: `lupo-docs/doctrines/COLOR_DOCTRINE.md`
+- **Mood Calculation Protocol**: `lupo-docs/doctrines/MOOD_CALCULATION_PROTOCOL.md`
+- **Lupopedia Header Profile**: `lupo-docs/doctrine/LUPOPEDIA_HEADER_PROFILE.md`
+- **Dialog History Specification**: `lupo-docs/agents/DIALOG_HISTORY_SPEC.md`
+- **Thread-Level Dialog Specification**: `lupo-docs/agents/THREAD_LEVEL_DIALOG_SPEC.md`
 - **Global Atoms**: `config/global_atoms.yaml`
 
 ---

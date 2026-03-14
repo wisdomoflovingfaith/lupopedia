@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\channels\agents\HERMES_AND_CADUCEUS.md"
+  file_path_from_root: "lupo-docs\channels\agents\HERMES_AND_CADUCEUS.md"
   file_hash: "cdb114a161aa0f7f609b0415538bf7b2ece8f849fdc069292b8d002d3b0c271a"
-  file_path_from_root: "docs\channels\agents\HERMES_AND_CADUCEUS.md"
+  file_path_from_root: "lupo-docs\channels\agents\HERMES_AND_CADUCEUS.md"
   file_hash: "5ef6d15eacac4c59739672317211ea096cc29f2fb275a22faad7d07f966699ad"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -304,8 +304,8 @@ However, these bindings are **NOT universal**. Nodes **MAY** rebind left/right p
 
 **Files:**
 - **Implementation:** `lupo-includes/class-hermes.php`
-- **RFC Specification:** `docs/protocols/HERMES_ROUTING_RFC.md`
-- **Architecture Documentation:** `docs/core/ARCHITECTURE_SYNC.md` (Section 1.1)
+- **RFC Specification:** `lupo-docs/protocols/HERMES_ROUTING_RFC.md`
+- **Architecture Documentation:** `lupo-docs/core/ARCHITECTURE_SYNC.md` (Section 1.1)
 
 **Integration Points:**
 
@@ -323,9 +323,9 @@ However, these bindings are **NOT universal**. Nodes **MAY** rebind left/right p
 
 **Files:**
 - **Implementation:** `lupo-includes/class-caduceus.php`
-- **RFC Specification:** `docs/protocols/CADUCEUS_ROUTING_RFC.md` (v3.0.1)
-- **Architecture Documentation:** `docs/core/ARCHITECTURE_SYNC.md` (Section 1.2)
-- **Doctrine:** `docs/appendix/COUNTING_IN_LIGHT.md`
+- **RFC Specification:** `lupo-docs/protocols/CADUCEUS_ROUTING_RFC.md` (v3.0.1)
+- **Architecture Documentation:** `lupo-docs/core/ARCHITECTURE_SYNC.md` (Section 1.2)
+- **Doctrine:** `lupo-docs/appendix/COUNTING_IN_LIGHT.md`
 
 **Integration Points:**
 

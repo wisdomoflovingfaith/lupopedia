@@ -20,7 +20,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "lupo-docs/doctrine/RULES_DOCTRINE.md", type: "references", weight: 1.0 }
-    - { to: "database/migrations/20260310_create_rules_tables.sql", type: "implements", weight: 1.0 }
+    - { to: "lupo-database/migrations/20260310_create_rules_tables.sql", type: "implements", weight: 1.0 }
 
 lupopedia.footer:
   version: "4.0.68"
@@ -45,7 +45,7 @@ lupopedia.footer:
 
 These rules are attached to **Channel 42** via the `lupo_rules` system and are enforced by:
 
-- Schema validators (e.g. `scripts/verify_db_against_toons.py`)
+- Schema validators (e.g. `lupo-scripts/verify_db_against_toons.py`)
 - Code reviewers
 - CI pipeline checks
 
@@ -56,4 +56,4 @@ Rules are attached to Channel 42 in `lupo_rule_targets` (target_table = 'channel
 ## See Also
 
 - [lupo-docs/doctrine/RULES_DOCTRINE.md](../../../../lupo-docs/doctrine/RULES_DOCTRINE.md)
-- [database/migrations/20260310_create_rules_tables.sql](../../../../database/migrations/20260310_create_rules_tables.sql)
+- [lupo-database/migrations/20260310_create_rules_tables.sql](../../../../database/migrations/20260310_create_rules_tables.sql)

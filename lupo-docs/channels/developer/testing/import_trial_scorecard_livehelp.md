@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "help"
   lupopedia.edges: []
-  file_path_from_root: "docs\channels\developer\testing\import_trial_scorecard_livehelp.md"
+  file_path_from_root: "lupo-docs\channels\developer\testing\import_trial_scorecard_livehelp.md"
   file_hash: "96fc207790cdf239433c180c8f5e65dd2b923a91fd51acbff6fea04f9291272b"
-  file_path_from_root: "docs\channels\developer\testing\import_trial_scorecard_livehelp.md"
+  file_path_from_root: "lupo-docs\channels\developer\testing\import_trial_scorecard_livehelp.md"
   file_hash: "8ffe330f946273c9d51943a7ad896061ea99f6cb30af61951a84a0ff82c8763a"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -180,4 +180,4 @@ All tables beginning with `livehelp_` including but not limited to:
 
 **Required Actions:** (1) livehelp_users: optional NULLs (verification_token_expires, password_reset_expires, login_token_expires, last_login_at) and zeros (showedup, chataction, lastcalled)—evaluate nullable/zero allowance or doctrine carve-out. (2) Proceed to shared hosting import after fix or acceptance.
 
-*(Row Count source: N/A—lupopedia.com/lh export not provided. Schema drift: none. Doctrine: 6/8/14-digit carve-out for dateof (identity_daily, identity_monthly). Validator: scripts/validate_livehelp_import.py.)*
+*(Row Count source: N/A—lupopedia.com/lh export not provided. Schema drift: none. Doctrine: 6/8/14-digit carve-out for dateof (identity_daily, identity_monthly). Validator: lupo-scripts/validate_livehelp_import.py.)*

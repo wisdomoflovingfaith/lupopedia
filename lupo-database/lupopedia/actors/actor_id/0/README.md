@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "actors\0\README.md"
+  file_path_from_root: "lupo-actors\0\README.md"
   file_hash: "a0cdf8af340378ad92bcb2ee389549809a64bc88eab3c09bfee1e267915e82ea"
-  file_path_from_root: "actors\0\README.md"
+  file_path_from_root: "lupo-actors\0\README.md"
   file_hash: "ee82a16b37b54a876c92f3fd387822deafeed364d481a1f116f32941088e105f"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -65,7 +65,7 @@ flip_version: 3
 system_version: "4.0.43"
 artifact_id: "sha1:actors_0_readme"
 federated_node_id: 0
-artifact_path: "actors/0/README.md"
+artifact_path: "lupo-actors/0/README.md"
 artifact_filename: "README.md"
 artifact_type: "actor_metadata"
 artifact_kind: "actor_readme"
@@ -85,7 +85,7 @@ relations:
   - rel: "describes_actor"
     target_actor_id: 0
   - rel: "part_of_actor_folder"
-    target: "actors/0/"
+    target: "lupo-actors/0/"
 is_deleted: 0
 deleted_ymdhis: 0
 delegation_chain: "1001:10000"
@@ -111,11 +111,11 @@ Actor 0 represents the system kernel for core Lupopedia operations. This is a re
 
 ## Registry Entry
 
-See `actors/registry.json` for complete actor metadata.
+See `lupo-actors/registry.json` for complete actor metadata.
 
 ## Aliases
 
-See `actors/aliases.csv` for all actor aliases.
+See `lupo-actors/aliases.csv` for all actor aliases.
 
 ---
 

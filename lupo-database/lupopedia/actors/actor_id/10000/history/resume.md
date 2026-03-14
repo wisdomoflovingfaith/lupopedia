@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "actors\10000\history\resume.md"
+  file_path_from_root: "lupo-actors\10000\history\resume.md"
   file_hash: "92b3af14119cd91fdde54ef8bda8915d53eef240c5c6616b826d81280a2f35f9"
-  file_path_from_root: "actors\10000\history\resume.md"
+  file_path_from_root: "lupo-actors\10000\history\resume.md"
   file_hash: "d985810712a4370effbf270ad507fb4b99d2a2ec011023f4c255ce1f1244ca77"
   last_updated_utc: "20260228"
   system_version: "4.0.50"

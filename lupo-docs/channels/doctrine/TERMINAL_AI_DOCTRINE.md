@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\channels\doctrine\TERMINAL_AI_DOCTRINE.md"
+  file_path_from_root: "lupo-docs\channels\doctrine\TERMINAL_AI_DOCTRINE.md"
   file_hash: "1fba0c225b4d806a6495745933b3d112ac95527ef54a24c25d86022c2858ce43"
-  file_path_from_root: "docs\channels\doctrine\TERMINAL_AI_DOCTRINE.md"
+  file_path_from_root: "lupo-docs\channels\doctrine\TERMINAL_AI_DOCTRINE.md"
   file_hash: "c2acfbacc5836d63e09a75fffc9c01484ef77c81467ba5e59938087d62dbc3a0"
   last_updated_utc: "20260228"
   system_version: "4.0.50"

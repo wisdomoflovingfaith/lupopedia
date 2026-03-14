@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\channels\developer\dev\AUTH_READINESS_REPORT_3.0.8.md"
+  file_path_from_root: "lupo-docs\channels\developer\dev\AUTH_READINESS_REPORT_3.0.8.md"
   file_hash: "658c2a69710d0755cc9672c84809089cb573d45e21e826d0ef92fedbe46c6172"
-  file_path_from_root: "docs\channels\developer\dev\AUTH_READINESS_REPORT_3.0.8.md"
+  file_path_from_root: "lupo-docs\channels\developer\dev\AUTH_READINESS_REPORT_3.0.8.md"
   file_hash: "e6a2316c05d8ad8eba933b9c96cd817430e20d3a71799b42256ffa231d878688"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -154,12 +154,12 @@ The authentication system for Lupopedia version 3.0.8 has been successfully impl
 - `lupo-includes/functions/auth-ui-helpers.php`
 - `lupo-includes/modules/auth/auth-controller.php`
 - `lupo-includes/modules/auth/auth-renderer.php`
-- `docs/dev/AUTH_SCHEMA_SUMMARY_3.0.8.md`
-- `docs/dev/AUTH_IMPLEMENTATION_PLAN_3.0.8.md`
-- `docs/dev/AUTH_SQL_VERIFICATION_3.0.8.md`
-- `docs/dev/AUTH_TESTING_CHECKLIST_3.0.8.md`
-- `docs/dev/AUTH_INTEGRATION_CHECKS_3.0.8.md`
-- `docs/dev/AUTH_READINESS_REPORT_3.0.8.md`
+- `lupo-docs/dev/AUTH_SCHEMA_SUMMARY_3.0.8.md`
+- `lupo-docs/dev/AUTH_IMPLEMENTATION_PLAN_3.0.8.md`
+- `lupo-docs/dev/AUTH_SQL_VERIFICATION_3.0.8.md`
+- `lupo-docs/dev/AUTH_TESTING_CHECKLIST_3.0.8.md`
+- `lupo-docs/dev/AUTH_INTEGRATION_CHECKS_3.0.8.md`
+- `lupo-docs/dev/AUTH_READINESS_REPORT_3.0.8.md`
 
 **Modified Files:**
 - `lupo-includes/bootstrap.php` - Session/auth helpers loading

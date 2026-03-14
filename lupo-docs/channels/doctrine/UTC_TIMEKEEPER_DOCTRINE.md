@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\channels\doctrine\UTC_TIMEKEEPER_DOCTRINE.md"
+  file_path_from_root: "lupo-docs\channels\doctrine\UTC_TIMEKEEPER_DOCTRINE.md"
   file_hash: "9a84a170f2005da07277505ce7ec13c6ad588ab109cf3025a069704cb6579af2"
-  file_path_from_root: "docs\channels\doctrine\UTC_TIMEKEEPER_DOCTRINE.md"
+  file_path_from_root: "lupo-docs\channels\doctrine\UTC_TIMEKEEPER_DOCTRINE.md"
   file_hash: "14fa4c178227c1e5735924214522b579acfa7f231ce2717b198e8c4fb9748f31"
   last_updated_utc: "20260228"
   system_version: "4.0.50"

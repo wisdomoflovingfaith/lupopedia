@@ -46,7 +46,7 @@ lupopedia.footer:
   orchestrator: "cursor"
   next_action:
     - "Run generate_toon_files.py when DB available to produce lupo_projects.toon"
-    - "Phase folder renames (admin/, api/, etc.) after dependency audit"
+    - "Phase folder renames (lupo-admin/, lupo-api/, etc.) after dependency audit"
 ---
 # file: CURSOR_IMPLEMENTATION_REPORT_4_0_74 — session: L-LUPO-ROOT-CURSOR — delegation: cursor:root
 
@@ -65,9 +65,9 @@ This report documents research (Parts 1–2), implementation (Parts 4–7), and 
 
 ### 1. Documentation root
 
-- **`docs/`** at project root: **Does not exist.** No top-level `docs/` directory.
+- **`lupo-docs/`** at project root: **Does not exist.** No top-level `lupo-docs/` directory.
 - **`lupo-docs/`**: **Exists** and is the canonical documentation root (hundreds of files under lupo-docs/).
-- **Conclusion:** **lupo-docs/** is the canonical documentation root. Any references to `docs/` in links or paths should point to `lupo-docs/` or be updated per plan P0.5.
+- **Conclusion:** **lupo-docs/** is the canonical documentation root. Any references to `lupo-docs/` in links or paths should point to `lupo-docs/` or be updated per plan P0.5.
 
 ### 2. TOON locations
 
@@ -86,8 +86,8 @@ This report documents research (Parts 1–2), implementation (Parts 4–7), and 
 
 ### 4. TOON regeneration
 
-- **scripts/generate_toon_files.py** exists; requires PyMySQL and DB credentials from lupopedia-config.php; writes to lupo-database/lupopedia/json/ and toon/. **Not run** in this session (no DB connection). After adding lupo_projects to install and applying to DB, running this script will produce lupo_projects.toon and lupo_projects.json.
-- **scripts/generate_toon_from_sql.py** exists; parses install_new_lupopedia.sql and can output TOON JSON; output path in script is lupo-database/lupopedia/toon/ (should be lupo-database/lupopedia/toon/ for consistency). Running it after adding lupo_projects would create lupo_projects.toon.json in that output dir.
+- **lupo-scripts/generate_toon_files.py** exists; requires PyMySQL and DB credentials from lupopedia-config.php; writes to lupo-database/lupopedia/json/ and toon/. **Not run** in this session (no DB connection). After adding lupo_projects to install and applying to DB, running this script will produce lupo_projects.toon and lupo_projects.json.
+- **lupo-scripts/generate_toon_from_sql.py** exists; parses install_new_lupopedia.sql and can output TOON JSON; output path in script is lupo-database/lupopedia/toon/ (should be lupo-database/lupopedia/toon/ for consistency). Running it after adding lupo_projects would create lupo_projects.toon.json in that output dir.
 
 ---
 
@@ -132,7 +132,7 @@ This report documents research (Parts 1–2), implementation (Parts 4–7), and 
 
 ## Part 7 — Folder naming audit
 
-- **Directories listed in directive:** admin/, admin_sections/, api/, backups/, cache/, images/, install/, legacy/, meta/, prompts/, scripts/, templates/, tests/, tmp/, tools/, uploads/, views/.
+- **Directories listed in directive:** lupo-admin/, lupo-admin_sections/, lupo-api/, lupo-backups/, lupo-cache/, lupo-images/, lupo-install/, lupo-legacy/, lupo-meta/, lupo-prompts/, lupo-scripts/, lupo-templates/, lupo-tests/, lupo-tmp/, lupo-tools/, lupo-uploads/, lupo-views/.
 - **Action:** Verification and rename must be **phased**; code and config references must be researched before renaming. This report records the directive; **no renames performed** in this session. Recommend a dedicated P1 task: (1) verify each directory exists, (2) grep for references, (3) plan renames (e.g. lupo-admin/, lupo-api/) and apply in a follow-up change.
 
 ---
@@ -171,16 +171,16 @@ Files actually modified or created in the 4.0.74 implementation (verified):
 
 ## Pass 2 — Cursor execution directive (2026-03-14)
 
-Per [prompts/cursor/20260314_cursor_execute_plan_4_0_74.md](../../prompts/cursor/20260314_cursor_execute_plan_4_0_74.md), Cursor executed P0 and direct P1 items.
+Per [lupo-prompts/cursor/20260314_cursor_execute_plan_4_0_74.md](../../prompts/cursor/20260314_cursor_execute_plan_4_0_74.md), Cursor executed P0 and direct P1 items.
 
 **Files changed this pass:**
 
 | File | Change |
 |------|--------|
 | CHANGELOG.md | lupopedia.init → required_reading/required_context only; comment actor_id 1003→102; new subsection "Cursor execution pass — P0/P1 repo alignment" |
-| README.md | lupopedia.init → required_reading/required_context only; docs/→lupo-docs/ (edges, badges, Primary references, Core doctrine link); added lupopedia.next_actions |
-| AGENTS.md | docs/actors.md → lupo-docs/actors.md |
-| prompts/cursor/20260314_cursor_execute_plan_4_0_74.md | Created (directive artifact) |
+| README.md | lupopedia.init → required_reading/required_context only; lupo-docs/→lupo-docs/ (edges, badges, Primary references, Core doctrine link); added lupopedia.next_actions |
+| AGENTS.md | lupo-docs/actors.md → lupo-docs/actors.md |
+| lupo-prompts/cursor/20260314_cursor_execute_plan_4_0_74.md | Created (directive artifact) |
 | plan.md | Edge to directive file (implements) |
 | lupo-docs/status/CURSOR_IMPLEMENTATION_REPORT_4_0_74.md | This section and file list |
 
@@ -190,21 +190,21 @@ Per [prompts/cursor/20260314_cursor_execute_plan_4_0_74.md](../../prompts/cursor
 
 ## Pass 3 — TOON alignment, seed integration, schema inventory (2026-03-14)
 
-Per [prompts/cursor/20260314_cursor_pass3_toon_seed_cleanup_4_0_74.md](../../prompts/cursor/20260314_cursor_pass3_toon_seed_cleanup_4_0_74.md), Cursor executed TOON path alignment, seed wiring, schema inventory, and merge-process documentation.
+Per [lupo-prompts/cursor/20260314_cursor_pass3_toon_seed_cleanup_4_0_74.md](../../prompts/cursor/20260314_cursor_pass3_toon_seed_cleanup_4_0_74.md), Cursor executed TOON path alignment, seed wiring, schema inventory, and merge-process documentation.
 
 **Files changed this pass:**
 
 | File | Change |
 |------|--------|
-| scripts/generate_toon_from_sql.py | Install path: database/migrations/ → lupo-database/lupopedia/mysql/install/install_new_lupopedia.sql; output: lupo-database/lupopedia/toon/ → lupo-database/lupopedia/toon/ |
+| lupo-scripts/generate_toon_from_sql.py | Install path: lupo-database/migrations/ → lupo-database/lupopedia/mysql/install/install_new_lupopedia.sql; output: lupo-database/lupopedia/toon/ → lupo-database/lupopedia/toon/ |
 | install.php | seed_projects.sql wired into installer: added seed_4_0_74 in bootstrap, new-install run, and main run (after 4.0.69) |
 | lupo-docs/TOON_REFERENCE.md | Documented two workflows (from-SQL → lupo-docs/toons; from-DB → lupo-database/...); in-repo set = lupo-database/lupopedia/toon/*.toon.json |
 | plan.md | Merge process rule (faucet files authoritative for domain; root maintained by Cursor; merge with attribution); edge to Pass 3 directive |
-| prompts/cursor/20260314_cursor_pass3_toon_seed_cleanup_4_0_74.md | Created (directive artifact) |
+| lupo-prompts/cursor/20260314_cursor_pass3_toon_seed_cleanup_4_0_74.md | Created (directive artifact) |
 | lupo-database/lupopedia/toon/lupo_projects.toon.json | Created by running generate_toon_from_sql.py (Pass 3) |
 | lupo-docs/status/CURSOR_IMPLEMENTATION_REPORT_4_0_74.md | This section, Schema inventory, updated Unresolved |
 
-**Validation (this pass):** Script paths verified by reading generate_toon_from_sql.py and generate_toon_files.py. install.php seed lists read; seed_projects.sql was not in any list; wiring added in three places with is_file() check. TOON_REFERENCE and script docstrings aligned. **Script run:** `python scripts/generate_toon_from_sql.py` was executed; it reported "Generated 142 TOONs" and wrote to lupo-database/lupopedia/toon/; lupo_projects.toon.json was created.
+**Validation (this pass):** Script paths verified by reading generate_toon_from_sql.py and generate_toon_files.py. install.php seed lists read; seed_projects.sql was not in any list; wiring added in three places with is_file() check. TOON_REFERENCE and script docstrings aligned. **Script run:** `python lupo-scripts/generate_toon_from_sql.py` was executed; it reported "Generated 142 TOONs" and wrote to lupo-database/lupopedia/toon/; lupo_projects.toon.json was created.
 
 ### Schema inventory (verified 2026-03-14)
 
@@ -231,13 +231,13 @@ Per [prompts/cursor/20260314_cursor_pass3_toon_seed_cleanup_4_0_74.md](../../pro
 
 ## Pass 4 — P1 execution start (2026-03-15)
 
-Per [prompts/cursor/20260315_cursor_p1_execution_4_0_74.md](../../prompts/cursor/20260315_cursor_p1_execution_4_0_74.md), Cursor began P1 execution: folder rename audit and table count doctrine.
+Per [lupo-prompts/cursor/20260315_cursor_p1_execution_4_0_74.md](../../prompts/cursor/20260315_cursor_p1_execution_4_0_74.md), Cursor began P1 execution: folder rename audit and table count doctrine.
 
 **Files changed this pass:**
 
 | File | Change |
 |------|--------|
-| prompts/cursor/20260315_cursor_p1_execution_4_0_74.md | Created (P1 directive) |
+| lupo-prompts/cursor/20260315_cursor_p1_execution_4_0_74.md | Created (P1 directive) |
 | lupo-docs/status/FOLDER_RENAME_AUDIT_4_0_74.md | Created (audit table; no renames) |
 | lupo-docs/doctrine/TABLE_COUNT_DOCTRINE.md | Created (canonical count 100, install authority, TOON derived, advisory ceiling) |
 | README.md | Database paragraph → TABLE_COUNT_DOCTRINE + count 100 |
@@ -246,7 +246,7 @@ Per [prompts/cursor/20260315_cursor_p1_execution_4_0_74.md](../../prompts/cursor
 
 **Validation:** All 17 target folders verified at root. Grep used for PHP, .htaccess, Markdown, config, scripts. Install SQL CREATE TABLE count verified (100). No scripts run against live DB.
 
-**Blockers:** Live DB TOON generation (P1 Task 2) — **blocked until DB available.** When a database exists with updated schema, run `python scripts/generate_toon_files.py` and document results here.
+**Blockers:** Live DB TOON generation (P1 Task 2) — **blocked until DB available.** When a database exists with updated schema, run `python lupo-scripts/generate_toon_files.py` and document results here.
 
 **Next actions:** Use FOLDER_RENAME_AUDIT_4_0_74.md to plan phased renames in a later P1/P2 pass; run generate_toon_files.py when DB is available.
 

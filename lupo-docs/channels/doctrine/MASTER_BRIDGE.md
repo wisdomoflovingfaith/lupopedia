@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\channels\doctrine\MASTER_BRIDGE.md"
+  file_path_from_root: "lupo-docs\channels\doctrine\MASTER_BRIDGE.md"
   file_hash: "07b6bed223c3f2f1cb3a4f259bcac2b368a28a06fd5d2ce380d80abb0e7d15e7"
-  file_path_from_root: "docs\channels\doctrine\MASTER_BRIDGE.md"
+  file_path_from_root: "lupo-docs\channels\doctrine\MASTER_BRIDGE.md"
   file_hash: "c2f60ca6154a50a074cc740e2dd71dd5844b43e35f7f4527f23bd819042770ae"
   last_updated_utc: "20260228"
   system_version: "4.0.50"

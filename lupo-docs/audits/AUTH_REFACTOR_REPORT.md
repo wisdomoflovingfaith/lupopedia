@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\AUTH_REFACTOR_REPORT.md"
+  file_path_from_root: "lupo-docs\AUTH_REFACTOR_REPORT.md"
   file_hash: "ba1279bc15a2da67281cc81b404e45a79a071f8d43081bd273bca83e92d512ea"
-  file_path_from_root: "docs\AUTH_REFACTOR_REPORT.md"
+  file_path_from_root: "lupo-docs\AUTH_REFACTOR_REPORT.md"
   file_hash: "72f82a9cc5a08c0a34107cd5a0177b3c3ab8cd027acf0bdb855a47ce7851b336"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -62,7 +62,7 @@ lupopedia.footer:
 
 # Auth Domain Refactor Report
 
-**Phase:** Auth domain only (per `docs/HELPER_TO_CLASS_MAPPING_ANALYSIS.md`).  
+**Phase:** Auth domain only (per `lupo-docs/HELPER_TO_CLASS_MAPPING_ANALYSIS.md`).  
 **Date:** 2026-02-10.
 
 ---

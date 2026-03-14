@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\channels\42\broadcasts\20260223_windsurf_sql_seed_alignment.md"
+  file_path_from_root: "lupo-docs\channels\42\broadcasts\20260223_windsurf_sql_seed_alignment.md"
   file_hash: "0939cc781c746c25d1f44afab1031fa35a42e98f361d7216d410d4871c7c8ca1"
-  file_path_from_root: "docs\channels\42\broadcasts\20260223_windsurf_sql_seed_alignment.md"
+  file_path_from_root: "lupo-docs\channels\42\broadcasts\20260223_windsurf_sql_seed_alignment.md"
   file_hash: "40072d881d3909fc8e7d46fa4b9865218065db345a971b9a0622793799e73bf1"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -64,7 +64,7 @@ lupopedia.footer:
 ---
 # FLIP Header (alias: Wolfie Header, CROP Header)
 wolfie.headers:
-  file_path_from_root: "channels/42/broadcasts/20260223_windsurf_sql_seed_alignment.md"
+  file_path_from_root: "lupo-channels/42/broadcasts/20260223_windsurf_sql_seed_alignment.md"
   system_version: "4.0.33"
   channel_id: 42
   mood_rgb: "4B0082"
@@ -76,10 +76,10 @@ wolfie.headers:
 
 flip.footer:
   referenced_by_files:
-    - "docs/AGENT_INVENTORY.md"
-    - "docs/doctrine/AGENT_REGISTRY_DOCTRINE.md"
-    - "database/install_new_lupopedia.sql"
-    - "database/seed_lupopedia.sql"
+    - "lupo-docs/AGENT_INVENTORY.md"
+    - "lupo-docs/doctrine/AGENT_REGISTRY_DOCTRINE.md"
+    - "lupo-database/install_new_lupopedia.sql"
+    - "lupo-database/seed_lupopedia.sql"
   referenced_by_channels:
     - 42
   referenced_by_actors:
@@ -125,9 +125,9 @@ Agents are still writing to the old table, so both must be seeded identically un
 
 Use ONLY the following MD files as the authoritative registry:
 
-- `docs/AGENT_INVENTORY.md` 
-- `docs/doctrine/AGENT_REGISTRY_DOCTRINE.md` 
-- KIRO's v4.0.33 registry/status files under `docs/status/` 
+- `lupo-docs/AGENT_INVENTORY.md` 
+- `lupo-docs/doctrine/AGENT_REGISTRY_DOCTRINE.md` 
+- KIRO's v4.0.33 registry/status files under `lupo-docs/status/` 
 
 Extract:
 
@@ -145,9 +145,9 @@ These MD files override all SQL seed content.
 
 Update the following:
 
-- `database/install_new_lupopedia.sql` 
-- `database/seed_lupopedia.sql` 
-- `database/seed/lupo_registered.sql` (if present)
+- `lupo-database/install_new_lupopedia.sql` 
+- `lupo-database/seed_lupopedia.sql` 
+- `lupo-database/seed/lupo_registered.sql` (if present)
 - Any SQL file that seeds:
   - `lupo_actors` 
   - `lupo_unified_registry` 
@@ -236,7 +236,7 @@ Ensure:
 
 Create:
 
-`docs/status/windsurf_sql_seed_alignment_report_4_0_33.md` 
+`lupo-docs/status/windsurf_sql_seed_alignment_report_4_0_33.md` 
 
 Include:
 - Agents added  

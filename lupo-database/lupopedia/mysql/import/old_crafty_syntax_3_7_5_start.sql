@@ -2,10 +2,10 @@
 -- version 5.2.2
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost:3306
--- Generation Time: Feb 12, 2026 at 01:16 PM
--- Server version: 10.6.25-MariaDB-log
--- PHP Version: 8.3.26
+-- Host: localhost
+-- Generation Time: Mar 14, 2026 at 02:35 PM
+-- Server version: 8.4.7
+-- PHP Version: 8.4.14
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `collab52_salessyntax`
+-- Database: `lupopedia`
 --
 
 -- --------------------------------------------------------
@@ -28,22 +28,22 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `livehelp_autoinvite` (
-  `idnum` int(10) NOT NULL,
-  `livehelp_id` bigint(20) UNSIGNED NOT NULL DEFAULT 1,
-  `offline` int(1) NOT NULL DEFAULT 0,
-  `isactive` char(1) NOT NULL DEFAULT '',
-  `department` int(10) NOT NULL DEFAULT 0,
-  `message` text DEFAULT NULL,
-  `page` varchar(255) NOT NULL DEFAULT '',
-  `visits` int(8) NOT NULL DEFAULT 0,
-  `referer` varchar(255) NOT NULL DEFAULT '',
-  `typeof` varchar(255) NOT NULL DEFAULT '',
-  `seconds` int(11) UNSIGNED NOT NULL DEFAULT 0,
-  `user_id` int(10) NOT NULL DEFAULT 0,
-  `socialpane` char(1) NOT NULL DEFAULT 'N',
-  `excludemobile` char(1) NOT NULL DEFAULT 'N',
-  `onlymobile` char(1) NOT NULL DEFAULT 'N'
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+  `idnum` int NOT NULL,
+  `livehelp_id` bigint UNSIGNED NOT NULL DEFAULT '1',
+  `offline` int NOT NULL DEFAULT '0',
+  `isactive` char(1) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `department` int NOT NULL DEFAULT '0',
+  `message` mediumtext COLLATE utf8mb4_unicode_ci,
+  `page` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `visits` int NOT NULL DEFAULT '0',
+  `referer` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `typeof` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `seconds` int UNSIGNED NOT NULL DEFAULT '0',
+  `user_id` int NOT NULL DEFAULT '0',
+  `socialpane` char(1) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'N',
+  `excludemobile` char(1) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'N',
+  `onlymobile` char(1) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'N'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='DEPRECATED: Only retained for migration. If something fails and you need to re-run the conversion, this table may be referenced. This table is NOT part of Lupopedia/Crafty Syntax as of version 3.0.0 and should be deleted after successful migration.';
 
 --
 -- Dumping data for table `livehelp_autoinvite`
@@ -59,14 +59,14 @@ INSERT INTO `livehelp_autoinvite` (`idnum`, `livehelp_id`, `offline`, `isactive`
 --
 
 CREATE TABLE `livehelp_channels` (
-  `id` int(10) NOT NULL,
-  `livehelp_id` bigint(20) UNSIGNED NOT NULL DEFAULT 1,
-  `user_id` int(10) NOT NULL DEFAULT 0,
-  `statusof` char(1) NOT NULL DEFAULT '',
-  `startdate` bigint(8) NOT NULL DEFAULT 0,
-  `sessionid` varchar(40) NOT NULL DEFAULT '',
-  `website` int(8) NOT NULL DEFAULT 0
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+  `id` int NOT NULL,
+  `livehelp_id` bigint UNSIGNED NOT NULL DEFAULT '1',
+  `user_id` int NOT NULL DEFAULT '0',
+  `statusof` char(1) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `startdate` bigint NOT NULL DEFAULT '0',
+  `sessionid` varchar(40) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `website` int NOT NULL DEFAULT '0'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='DEPRECATED: Only retained for migration. If something fails and you need to re-run the conversion, this table may be referenced. This table is NOT part of Lupopedia/Crafty Syntax as of version 3.0.0 and should be deleted after successful migration.';
 
 -- --------------------------------------------------------
 
@@ -75,60 +75,60 @@ CREATE TABLE `livehelp_channels` (
 --
 
 CREATE TABLE `livehelp_config` (
-  `version` varchar(25) NOT NULL DEFAULT '3.7.3',
-  `livehelp_id` bigint(20) UNSIGNED NOT NULL DEFAULT 1,
-  `site_title` varchar(100) NOT NULL DEFAULT '',
-  `use_flush` varchar(10) NOT NULL DEFAULT 'YES',
-  `membernum` int(8) NOT NULL DEFAULT 0,
-  `show_typing` char(1) NOT NULL DEFAULT '',
-  `webpath` varchar(255) NOT NULL DEFAULT '',
-  `s_webpath` varchar(255) NOT NULL DEFAULT '',
-  `speaklanguage` varchar(60) NOT NULL DEFAULT 'English',
-  `scratch_space` text DEFAULT NULL,
-  `admin_refresh` varchar(30) NOT NULL DEFAULT 'auto',
-  `maxexe` int(5) DEFAULT 180,
-  `refreshrate` int(5) NOT NULL DEFAULT 1,
-  `chatmode` varchar(60) NOT NULL DEFAULT 'xmlhttp-flush-refresh',
-  `adminsession` char(1) NOT NULL DEFAULT 'Y',
-  `ignoreips` text DEFAULT NULL,
-  `directoryid` varchar(32) NOT NULL DEFAULT '',
-  `tracking` char(1) NOT NULL DEFAULT 'N',
-  `colorscheme` varchar(30) NOT NULL DEFAULT 'white',
-  `matchip` char(1) NOT NULL DEFAULT 'N',
-  `gethostnames` char(1) NOT NULL DEFAULT 'N',
-  `maxrecords` int(10) NOT NULL DEFAULT 75000,
-  `maxreferers` int(10) NOT NULL DEFAULT 50,
-  `maxvisits` int(10) NOT NULL DEFAULT 75,
-  `maxmonths` int(10) NOT NULL DEFAULT 12,
-  `maxoldhits` int(10) NOT NULL DEFAULT 1,
-  `showgames` char(1) NOT NULL DEFAULT 'Y',
-  `showsearch` char(1) NOT NULL DEFAULT 'Y',
-  `showdirectory` char(1) NOT NULL DEFAULT 'Y',
-  `usertracking` char(1) NOT NULL DEFAULT 'N',
-  `resetbutton` char(1) NOT NULL DEFAULT 'N',
-  `keywordtrack` char(1) NOT NULL DEFAULT 'N',
-  `reftracking` char(1) NOT NULL DEFAULT 'N',
-  `topkeywords` int(10) NOT NULL DEFAULT 50,
-  `everythingelse` text DEFAULT NULL,
-  `rememberusers` char(1) NOT NULL DEFAULT 'Y',
-  `smtp_host` varchar(255) NOT NULL DEFAULT '',
-  `smtp_username` varchar(60) NOT NULL DEFAULT '',
-  `smtp_password` varchar(60) NOT NULL DEFAULT '',
-  `owner_email` varchar(255) NOT NULL DEFAULT '',
-  `topframeheight` int(8) NOT NULL DEFAULT 85,
-  `topbackground` varchar(156) NOT NULL DEFAULT 'header_images/customersupports.png',
-  `usecookies` char(1) NOT NULL DEFAULT 'Y',
-  `smtp_portnum` int(10) NOT NULL DEFAULT 25,
-  `showoperator` char(1) NOT NULL DEFAULT 'Y',
-  `chatcolors` text DEFAULT NULL,
-  `floatxy` varchar(42) NOT NULL DEFAULT '200|160',
-  `sessiontimeout` int(8) NOT NULL DEFAULT 60,
-  `theme` varchar(42) NOT NULL DEFAULT 'vanilla',
-  `operatorstimeout` int(4) NOT NULL DEFAULT 4,
-  `operatorssessionout` int(8) NOT NULL DEFAULT 45,
-  `maxrequests` int(8) NOT NULL DEFAULT 99999,
-  `ignoreagent` text DEFAULT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+  `version` varchar(25) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '3.7.3',
+  `livehelp_id` bigint UNSIGNED NOT NULL DEFAULT '1',
+  `site_title` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `use_flush` varchar(10) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'YES',
+  `membernum` int NOT NULL DEFAULT '0',
+  `show_typing` char(1) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `webpath` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `s_webpath` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `speaklanguage` varchar(60) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'English',
+  `scratch_space` mediumtext COLLATE utf8mb4_unicode_ci,
+  `admin_refresh` varchar(30) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'auto',
+  `maxexe` int DEFAULT '180',
+  `refreshrate` int NOT NULL DEFAULT '1',
+  `chatmode` varchar(60) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'xmlhttp-flush-refresh',
+  `adminsession` char(1) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'Y',
+  `ignoreips` mediumtext COLLATE utf8mb4_unicode_ci,
+  `directoryid` varchar(32) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `tracking` char(1) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'N',
+  `colorscheme` varchar(30) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'white',
+  `matchip` char(1) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'N',
+  `gethostnames` char(1) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'N',
+  `maxrecords` int NOT NULL DEFAULT '75000',
+  `maxreferers` int NOT NULL DEFAULT '50',
+  `maxvisits` int NOT NULL DEFAULT '75',
+  `maxmonths` int NOT NULL DEFAULT '12',
+  `maxoldhits` int NOT NULL DEFAULT '1',
+  `showgames` char(1) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'Y',
+  `showsearch` char(1) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'Y',
+  `showdirectory` char(1) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'Y',
+  `usertracking` char(1) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'N',
+  `resetbutton` char(1) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'N',
+  `keywordtrack` char(1) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'N',
+  `reftracking` char(1) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'N',
+  `topkeywords` int NOT NULL DEFAULT '50',
+  `everythingelse` mediumtext COLLATE utf8mb4_unicode_ci,
+  `rememberusers` char(1) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'Y',
+  `smtp_host` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `smtp_username` varchar(60) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `smtp_password` varchar(60) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `owner_email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `topframeheight` int NOT NULL DEFAULT '85',
+  `topbackground` varchar(156) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'header_images/customersupports.png',
+  `usecookies` char(1) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'Y',
+  `smtp_portnum` int NOT NULL DEFAULT '25',
+  `showoperator` char(1) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'Y',
+  `chatcolors` mediumtext COLLATE utf8mb4_unicode_ci,
+  `floatxy` varchar(42) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '200|160',
+  `sessiontimeout` int NOT NULL DEFAULT '60',
+  `theme` varchar(42) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'vanilla',
+  `operatorstimeout` int NOT NULL DEFAULT '4',
+  `operatorssessionout` int NOT NULL DEFAULT '45',
+  `maxrequests` int NOT NULL DEFAULT '99999',
+  `ignoreagent` mediumtext COLLATE utf8mb4_unicode_ci
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='DEPRECATED: Only retained for migration. If something fails and you need to re-run the conversion. This table is NOT part of Lupopedia/Crafty Syntax as of version 3.0.0 and should be deleted after successful migration.';
 
 --
 -- Dumping data for table `livehelp_config`
@@ -144,42 +144,42 @@ INSERT INTO `livehelp_config` (`version`, `livehelp_id`, `site_title`, `use_flus
 --
 
 CREATE TABLE `livehelp_departments` (
-  `recno` int(5) NOT NULL,
-  `livehelp_id` bigint(20) UNSIGNED NOT NULL DEFAULT 1,
-  `nameof` varchar(30) NOT NULL DEFAULT '',
-  `onlineimage` varchar(255) NOT NULL DEFAULT '',
-  `offlineimage` varchar(255) NOT NULL DEFAULT '',
-  `layerinvite` varchar(255) NOT NULL DEFAULT '',
-  `requirename` char(1) NOT NULL DEFAULT '',
-  `messageemail` varchar(60) NOT NULL DEFAULT '',
-  `leaveamessage` varchar(10) NOT NULL DEFAULT '',
-  `opening` text DEFAULT NULL,
-  `offline` text DEFAULT NULL,
-  `creditline` char(1) NOT NULL DEFAULT 'L',
-  `imagemap` text DEFAULT NULL,
-  `whilewait` text DEFAULT NULL,
-  `timeout` int(5) NOT NULL DEFAULT 150,
-  `leavetxt` text DEFAULT NULL,
-  `topframeheight` int(10) NOT NULL DEFAULT 85,
-  `topbackground` varchar(255) NOT NULL DEFAULT '',
-  `botbackground` varchar(255) NOT NULL DEFAULT '',
-  `midbackground` varchar(255) NOT NULL DEFAULT '',
-  `topbackcolor` varchar(255) NOT NULL DEFAULT '',
-  `midbackcolor` varchar(255) NOT NULL DEFAULT '',
-  `botbackcolor` varchar(255) NOT NULL DEFAULT '',
-  `colorscheme` varchar(255) NOT NULL DEFAULT '',
-  `speaklanguage` varchar(60) NOT NULL DEFAULT '',
-  `busymess` text DEFAULT NULL,
-  `emailfun` char(1) NOT NULL DEFAULT 'Y',
-  `dbfun` char(1) NOT NULL DEFAULT 'Y',
-  `everythingelse` text DEFAULT NULL,
-  `ordering` int(8) NOT NULL DEFAULT 0,
-  `smiles` char(1) NOT NULL DEFAULT 'Y',
-  `visible` int(1) NOT NULL DEFAULT 1,
-  `theme` varchar(45) NOT NULL DEFAULT 'vanilla',
-  `showtimestamp` char(1) NOT NULL DEFAULT 'N',
-  `website` int(8) NOT NULL DEFAULT 1
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+  `recno` int NOT NULL,
+  `livehelp_id` bigint UNSIGNED NOT NULL DEFAULT '1',
+  `nameof` varchar(30) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `onlineimage` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `offlineimage` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `layerinvite` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `requirename` char(1) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `messageemail` varchar(60) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `leaveamessage` varchar(10) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `opening` mediumtext COLLATE utf8mb4_unicode_ci,
+  `offline` mediumtext COLLATE utf8mb4_unicode_ci,
+  `creditline` char(1) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'L',
+  `imagemap` mediumtext COLLATE utf8mb4_unicode_ci,
+  `whilewait` mediumtext COLLATE utf8mb4_unicode_ci,
+  `timeout` int NOT NULL DEFAULT '150',
+  `leavetxt` mediumtext COLLATE utf8mb4_unicode_ci,
+  `topframeheight` int NOT NULL DEFAULT '85',
+  `topbackground` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `botbackground` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `midbackground` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `topbackcolor` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `midbackcolor` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `botbackcolor` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `colorscheme` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `speaklanguage` varchar(60) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `busymess` mediumtext COLLATE utf8mb4_unicode_ci,
+  `emailfun` char(1) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'Y',
+  `dbfun` char(1) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'Y',
+  `everythingelse` mediumtext COLLATE utf8mb4_unicode_ci,
+  `ordering` int NOT NULL DEFAULT '0',
+  `smiles` char(1) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'Y',
+  `visible` int NOT NULL DEFAULT '1',
+  `theme` varchar(45) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'vanilla',
+  `showtimestamp` char(1) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'N',
+  `website` int NOT NULL DEFAULT '1'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='DEPRECATED: Only retained for migration. If something fails and you need to re-run the conversion, this table may be referenced. This table is NOT part of Lupopedia/Crafty Syntax as of version 3.0.0 and should be deleted after successful migration.';
 
 --
 -- Dumping data for table `livehelp_departments`
@@ -195,12 +195,12 @@ INSERT INTO `livehelp_departments` (`recno`, `livehelp_id`, `nameof`, `onlineima
 --
 
 CREATE TABLE `livehelp_emailque` (
-  `id` int(8) NOT NULL,
-  `livehelp_id` bigint(20) UNSIGNED NOT NULL DEFAULT 1,
-  `messageid` int(8) NOT NULL,
-  `towho` varchar(60) NOT NULL,
-  `dateof` int(8) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+  `id` int NOT NULL,
+  `livehelp_id` bigint UNSIGNED NOT NULL DEFAULT '1',
+  `messageid` int NOT NULL,
+  `towho` varchar(60) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `dateof` int NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='DEPRECATED: Only retained for migration. If something fails and you need to re-run the conversion, this table may be referenced. This table is NOT part of Lupopedia/Crafty Syntax as of version 3.0.0 and should be deleted after successful migration.';
 
 --
 -- Dumping data for table `livehelp_emailque`
@@ -219,13 +219,13 @@ INSERT INTO `livehelp_emailque` (`id`, `livehelp_id`, `messageid`, `towho`, `dat
 --
 
 CREATE TABLE `livehelp_emails` (
-  `id` int(8) NOT NULL,
-  `livehelp_id` bigint(20) UNSIGNED NOT NULL DEFAULT 1,
-  `fromemail` varchar(60) NOT NULL,
-  `subject` varchar(60) NOT NULL,
-  `bodyof` text NOT NULL,
-  `notes` varchar(255) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+  `id` int NOT NULL,
+  `livehelp_id` bigint UNSIGNED NOT NULL DEFAULT '1',
+  `fromemail` varchar(60) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `subject` varchar(60) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `bodyof` mediumtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `notes` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='DEPRECATED: Only retained for migration. If something fails and you need to re-run the conversion, this table may be referenced. This table is NOT part of Lupopedia/Crafty Syntax as of version 3.0.0 and should be deleted after successful migration.';
 
 --
 -- Dumping data for table `livehelp_emails`
@@ -241,20 +241,20 @@ INSERT INTO `livehelp_emails` (`id`, `livehelp_id`, `fromemail`, `subject`, `bod
 --
 
 CREATE TABLE `livehelp_identity_daily` (
-  `id` int(11) UNSIGNED NOT NULL,
-  `livehelp_id` bigint(20) UNSIGNED NOT NULL DEFAULT 1,
-  `isnamed` char(1) NOT NULL DEFAULT 'N',
-  `groupidentity` int(11) NOT NULL DEFAULT 0,
-  `groupusername` int(11) NOT NULL DEFAULT 0,
-  `identity` varchar(100) NOT NULL DEFAULT '',
-  `cookieid` varchar(40) NOT NULL DEFAULT '',
-  `ipaddress` varchar(30) NOT NULL DEFAULT '',
-  `username` varchar(100) NOT NULL DEFAULT '',
-  `dateof` bigint(14) NOT NULL DEFAULT 0,
-  `uservisits` int(10) NOT NULL DEFAULT 0,
-  `seconds` int(10) NOT NULL DEFAULT 0,
-  `useragent` varchar(255) NOT NULL DEFAULT ''
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+  `id` int UNSIGNED NOT NULL,
+  `livehelp_id` bigint UNSIGNED NOT NULL DEFAULT '1',
+  `isnamed` char(1) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'N',
+  `groupidentity` int NOT NULL DEFAULT '0',
+  `groupusername` int NOT NULL DEFAULT '0',
+  `identity` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `cookieid` varchar(40) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `ipaddress` varchar(30) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `username` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `dateof` bigint NOT NULL DEFAULT '0',
+  `uservisits` int NOT NULL DEFAULT '0',
+  `seconds` int NOT NULL DEFAULT '0',
+  `useragent` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT ''
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='DEPRECATED: Only retained for migration. If something fails and you need to re-run the conversion, this table may be referenced. This table is NOT part of Lupopedia/Crafty Syntax as of version 3.0.0 and should be deleted after successful migration.';
 
 --
 -- Dumping data for table `livehelp_identity_daily`
@@ -353,20 +353,20 @@ INSERT INTO `livehelp_identity_daily` (`id`, `livehelp_id`, `isnamed`, `groupide
 --
 
 CREATE TABLE `livehelp_identity_monthly` (
-  `id` int(11) UNSIGNED NOT NULL,
-  `livehelp_id` bigint(20) UNSIGNED NOT NULL DEFAULT 1,
-  `isnamed` char(1) NOT NULL DEFAULT 'N',
-  `groupidentity` int(11) NOT NULL DEFAULT 0,
-  `groupusername` int(11) NOT NULL DEFAULT 0,
-  `identity` varchar(100) NOT NULL DEFAULT '',
-  `cookieid` varchar(40) NOT NULL DEFAULT '',
-  `ipaddress` varchar(30) NOT NULL DEFAULT '',
-  `username` varchar(100) NOT NULL DEFAULT '',
-  `dateof` bigint(14) NOT NULL DEFAULT 0,
-  `uservisits` int(10) NOT NULL DEFAULT 0,
-  `seconds` int(10) NOT NULL DEFAULT 0,
-  `useragent` varchar(255) NOT NULL DEFAULT ''
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+  `id` int UNSIGNED NOT NULL,
+  `livehelp_id` bigint UNSIGNED NOT NULL DEFAULT '1',
+  `isnamed` char(1) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'N',
+  `groupidentity` int NOT NULL DEFAULT '0',
+  `groupusername` int NOT NULL DEFAULT '0',
+  `identity` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `cookieid` varchar(40) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `ipaddress` varchar(30) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `username` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `dateof` bigint NOT NULL DEFAULT '0',
+  `uservisits` int NOT NULL DEFAULT '0',
+  `seconds` int NOT NULL DEFAULT '0',
+  `useragent` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT ''
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='DEPRECATED: Only retained for migration. If something fails and you need to re-run the conversion, this table may be referenced. This table is NOT part of Lupopedia/Crafty Syntax as of version 3.0.0 and should be deleted after successful migration.';
 
 --
 -- Dumping data for table `livehelp_identity_monthly`
@@ -387,17 +387,17 @@ INSERT INTO `livehelp_identity_monthly` (`id`, `livehelp_id`, `isnamed`, `groupi
 --
 
 CREATE TABLE `livehelp_keywords_daily` (
-  `recno` int(11) NOT NULL,
-  `livehelp_id` bigint(20) UNSIGNED NOT NULL DEFAULT 1,
-  `parentrec` int(11) UNSIGNED NOT NULL DEFAULT 0,
-  `referer` varchar(255) NOT NULL DEFAULT '',
-  `pageurl` varchar(255) NOT NULL DEFAULT '',
-  `keywords` varchar(255) NOT NULL DEFAULT '',
-  `dateof` int(8) NOT NULL DEFAULT 0,
-  `levelvisits` int(11) UNSIGNED NOT NULL DEFAULT 0,
-  `directvisits` int(11) UNSIGNED NOT NULL DEFAULT 0,
-  `department` int(11) NOT NULL DEFAULT 0
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+  `recno` int NOT NULL,
+  `livehelp_id` bigint UNSIGNED NOT NULL DEFAULT '1',
+  `parentrec` int UNSIGNED NOT NULL DEFAULT '0',
+  `referer` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `pageurl` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `keywords` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `dateof` int NOT NULL DEFAULT '0',
+  `levelvisits` int UNSIGNED NOT NULL DEFAULT '0',
+  `directvisits` int UNSIGNED NOT NULL DEFAULT '0',
+  `department` int NOT NULL DEFAULT '0'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='DEPRECATED: Only retained for migration. If something fails and you need to re-run the conversion, this table may be referenced. This table is NOT part of Lupopedia/Crafty Syntax as of version 3.0.0 and should be deleted after successful migration.';
 
 -- --------------------------------------------------------
 
@@ -406,17 +406,17 @@ CREATE TABLE `livehelp_keywords_daily` (
 --
 
 CREATE TABLE `livehelp_keywords_monthly` (
-  `recno` int(11) NOT NULL,
-  `livehelp_id` bigint(20) UNSIGNED NOT NULL DEFAULT 1,
-  `parentrec` int(11) UNSIGNED NOT NULL DEFAULT 0,
-  `referer` varchar(255) NOT NULL DEFAULT '',
-  `pageurl` varchar(255) NOT NULL DEFAULT '',
-  `keywords` varchar(255) NOT NULL DEFAULT '',
-  `dateof` int(8) NOT NULL DEFAULT 0,
-  `levelvisits` int(11) UNSIGNED NOT NULL DEFAULT 0,
-  `directvisits` int(11) UNSIGNED NOT NULL DEFAULT 0,
-  `department` int(11) NOT NULL DEFAULT 0
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+  `recno` int NOT NULL,
+  `livehelp_id` bigint UNSIGNED NOT NULL DEFAULT '1',
+  `parentrec` int UNSIGNED NOT NULL DEFAULT '0',
+  `referer` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `pageurl` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `keywords` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `dateof` int NOT NULL DEFAULT '0',
+  `levelvisits` int UNSIGNED NOT NULL DEFAULT '0',
+  `directvisits` int UNSIGNED NOT NULL DEFAULT '0',
+  `department` int NOT NULL DEFAULT '0'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='DEPRECATED: Only retained for migration. If something fails and you need to re-run the conversion, this table may be referenced. This table is NOT part of Lupopedia/Crafty Syntax as of version 3.0.0 and should be deleted after successful migration.';
 
 -- --------------------------------------------------------
 
@@ -425,14 +425,14 @@ CREATE TABLE `livehelp_keywords_monthly` (
 --
 
 CREATE TABLE `livehelp_layerinvites` (
-  `layerid` int(10) NOT NULL DEFAULT 0,
-  `livehelp_id` bigint(20) UNSIGNED NOT NULL DEFAULT 1,
-  `name` varchar(60) NOT NULL DEFAULT '',
-  `imagename` varchar(60) NOT NULL DEFAULT '',
-  `imagemap` text DEFAULT NULL,
-  `department` varchar(60) NOT NULL DEFAULT '',
-  `user` int(10) NOT NULL DEFAULT 0
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+  `layerid` int NOT NULL DEFAULT '0',
+  `livehelp_id` bigint UNSIGNED NOT NULL DEFAULT '1',
+  `name` varchar(60) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `imagename` varchar(60) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `imagemap` mediumtext COLLATE utf8mb4_unicode_ci,
+  `department` varchar(60) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `user` int NOT NULL DEFAULT '0'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='DEPRECATED: Only retained for migration. If something fails and you need to re-run the conversion, this table may be referenced. This table is NOT part of Lupopedia/Crafty Syntax as of version 3.0.0 and should be deleted after successful migration.';
 
 --
 -- Dumping data for table `livehelp_layerinvites`
@@ -453,17 +453,17 @@ INSERT INTO `livehelp_layerinvites` (`layerid`, `livehelp_id`, `name`, `imagenam
 --
 
 CREATE TABLE `livehelp_leads` (
-  `id` int(8) NOT NULL,
-  `livehelp_id` bigint(20) UNSIGNED NOT NULL DEFAULT 1,
-  `email` varchar(90) NOT NULL,
-  `phone` varchar(90) NOT NULL,
-  `source` varchar(45) NOT NULL,
-  `status` varchar(10) NOT NULL,
-  `data` text NOT NULL,
-  `firstname` varchar(40) NOT NULL,
-  `lastname` varchar(40) NOT NULL,
-  `date_entered` int(8) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+  `id` int NOT NULL,
+  `livehelp_id` bigint UNSIGNED NOT NULL DEFAULT '1',
+  `email` varchar(90) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `phone` varchar(90) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `source` varchar(45) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `status` varchar(10) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `data` mediumtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `firstname` varchar(40) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `lastname` varchar(40) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `date_entered` int NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='DEPRECATED: Only retained for migration. If something fails and you need to re-run the conversion, this table may be referenced. This table is NOT part of Lupopedia/Crafty Syntax as of version 3.0.0 and should be deleted after successful migration.';
 
 --
 -- Dumping data for table `livehelp_leads`
@@ -482,15 +482,15 @@ INSERT INTO `livehelp_leads` (`id`, `livehelp_id`, `email`, `phone`, `source`, `
 --
 
 CREATE TABLE `livehelp_leavemessage` (
-  `id` int(11) UNSIGNED NOT NULL,
-  `livehelp_id` bigint(20) UNSIGNED NOT NULL DEFAULT 1,
-  `email` varchar(255) NOT NULL DEFAULT '',
-  `subject` varchar(200) NOT NULL DEFAULT '',
-  `department` int(11) UNSIGNED NOT NULL DEFAULT 0,
-  `dateof` bigint(14) NOT NULL DEFAULT 0,
-  `sessiondata` text DEFAULT NULL,
-  `deliminated` text DEFAULT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+  `id` int UNSIGNED NOT NULL,
+  `livehelp_id` bigint UNSIGNED NOT NULL DEFAULT '1',
+  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `subject` varchar(200) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `department` int UNSIGNED NOT NULL DEFAULT '0',
+  `dateof` bigint NOT NULL DEFAULT '0',
+  `sessiondata` mediumtext COLLATE utf8mb4_unicode_ci,
+  `deliminated` mediumtext COLLATE utf8mb4_unicode_ci
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='DEPRECATED: Only retained for migration. If something fails and you need to re-run the conversion, this table may be referenced. This table is NOT part of Lupopedia/Crafty Syntax as of version 3.0.0 and should be deleted after successful migration.';
 
 --
 -- Dumping data for table `livehelp_leavemessage`
@@ -536,15 +536,15 @@ INSERT INTO `livehelp_leavemessage` (`id`, `livehelp_id`, `email`, `subject`, `d
 --
 
 CREATE TABLE `livehelp_messages` (
-  `id_num` int(10) NOT NULL,
-  `livehelp_id` bigint(20) UNSIGNED NOT NULL DEFAULT 1,
-  `message` text DEFAULT NULL,
-  `channel` int(10) NOT NULL DEFAULT 0,
-  `timeof` bigint(14) NOT NULL DEFAULT 0,
-  `saidfrom` int(10) NOT NULL DEFAULT 0,
-  `saidto` int(10) NOT NULL DEFAULT 0,
-  `typeof` varchar(30) NOT NULL DEFAULT ''
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+  `id_num` int NOT NULL,
+  `livehelp_id` bigint UNSIGNED NOT NULL DEFAULT '1',
+  `message` mediumtext COLLATE utf8mb4_unicode_ci,
+  `channel` int NOT NULL DEFAULT '0',
+  `timeof` bigint NOT NULL DEFAULT '0',
+  `saidfrom` int NOT NULL DEFAULT '0',
+  `saidto` int NOT NULL DEFAULT '0',
+  `typeof` varchar(30) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT ''
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='DEPRECATED: Only retained for migration. If something fails and you need to re-run the conversion, this table may be referenced. This table is NOT part of Lupopedia/Crafty Syntax as of version 3.0.0 and should be deleted after successful migration.';
 
 -- --------------------------------------------------------
 
@@ -553,13 +553,13 @@ CREATE TABLE `livehelp_messages` (
 --
 
 CREATE TABLE `livehelp_modules` (
-  `id` int(10) NOT NULL,
-  `livehelp_id` bigint(20) UNSIGNED NOT NULL DEFAULT 1,
-  `name` varchar(30) NOT NULL DEFAULT '',
-  `path` varchar(255) NOT NULL DEFAULT '',
-  `adminpath` varchar(255) NOT NULL DEFAULT '',
-  `query_string` varchar(255) NOT NULL DEFAULT ''
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+  `id` int NOT NULL,
+  `livehelp_id` bigint UNSIGNED NOT NULL DEFAULT '1',
+  `name` varchar(30) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `path` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `adminpath` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `query_string` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT ''
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='DEPRECATED: Only retained for migration. If something fails and you need to re-run the conversion, this table may be referenced. This table is NOT part of Lupopedia/Crafty Syntax as of version 3.0.0 and should be deleted after successful migration.';
 
 --
 -- Dumping data for table `livehelp_modules`
@@ -577,23 +577,23 @@ INSERT INTO `livehelp_modules` (`id`, `livehelp_id`, `name`, `path`, `adminpath`
 --
 
 CREATE TABLE `livehelp_modules_dep` (
-  `rec` int(10) NOT NULL,
-  `livehelp_id` bigint(20) UNSIGNED NOT NULL DEFAULT 1,
-  `departmentid` int(10) NOT NULL DEFAULT 0,
-  `modid` int(10) NOT NULL DEFAULT 0,
-  `ordernum` int(8) NOT NULL DEFAULT 0,
-  `isactive` char(1) NOT NULL DEFAULT 'N',
-  `defaultset` char(1) NOT NULL DEFAULT ''
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+  `rec` int NOT NULL,
+  `livehelp_id` bigint UNSIGNED NOT NULL DEFAULT '1',
+  `departmentid` int NOT NULL DEFAULT '0',
+  `modid` int NOT NULL DEFAULT '0',
+  `ordernum` int NOT NULL DEFAULT '0',
+  `isactive` char(1) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'N',
+  `defaultset` char(1) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT ''
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='DEPRECATED: Only retained for migration. If something fails and you need to re-run the conversion, this table may be referenced. This table is NOT part of Lupopedia/Crafty Syntax as of version 3.0.0 and should be deleted after successful migration.';
 
 --
 -- Dumping data for table `livehelp_modules_dep`
 --
 
 INSERT INTO `livehelp_modules_dep` (`rec`, `livehelp_id`, `departmentid`, `modid`, `ordernum`, `isactive`, `defaultset`) VALUES
-(26, 1, 1, 3, 3, 'N', ''),
+(24, 1, 1, 1, 1, 'N', ''),
 (25, 1, 1, 2, 2, 'N', 'Y'),
-(24, 1, 1, 1, 1, 'N', '');
+(26, 1, 1, 3, 3, 'N', '');
 
 -- --------------------------------------------------------
 
@@ -602,18 +602,18 @@ INSERT INTO `livehelp_modules_dep` (`rec`, `livehelp_id`, `departmentid`, `modid
 --
 
 CREATE TABLE `livehelp_operator_channels` (
-  `id` int(10) NOT NULL,
-  `livehelp_id` bigint(20) UNSIGNED NOT NULL DEFAULT 1,
-  `user_id` int(10) NOT NULL DEFAULT 0,
-  `channel` int(10) NOT NULL DEFAULT 0,
-  `userid` int(10) NOT NULL DEFAULT 0,
-  `statusof` char(1) NOT NULL DEFAULT '',
-  `startdate` bigint(8) NOT NULL DEFAULT 0,
-  `bgcolor` varchar(10) NOT NULL DEFAULT '000000',
-  `txtcolor` varchar(10) NOT NULL DEFAULT '000000',
-  `channelcolor` varchar(10) NOT NULL DEFAULT 'F7FAFF',
-  `txtcolor_alt` varchar(10) NOT NULL DEFAULT '000000'
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+  `id` int NOT NULL,
+  `livehelp_id` bigint UNSIGNED NOT NULL DEFAULT '1',
+  `user_id` int NOT NULL DEFAULT '0',
+  `channel` int NOT NULL DEFAULT '0',
+  `userid` int NOT NULL DEFAULT '0',
+  `statusof` char(1) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `startdate` bigint NOT NULL DEFAULT '0',
+  `bgcolor` varchar(10) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '000000',
+  `txtcolor` varchar(10) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '000000',
+  `channelcolor` varchar(10) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'F7FAFF',
+  `txtcolor_alt` varchar(10) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '000000'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='DEPRECATED: Only retained for migration. If something fails and you need to re-run the conversion, this table may be referenced. This table is NOT part of Lupopedia/Crafty Syntax as of version 3.0.0 and should be deleted after successful migration.';
 
 -- --------------------------------------------------------
 
@@ -622,12 +622,12 @@ CREATE TABLE `livehelp_operator_channels` (
 --
 
 CREATE TABLE `livehelp_operator_departments` (
-  `recno` int(10) NOT NULL,
-  `livehelp_id` bigint(20) UNSIGNED NOT NULL DEFAULT 1,
-  `user_id` int(10) NOT NULL DEFAULT 0,
-  `department` int(10) NOT NULL DEFAULT 0,
-  `extra` varchar(100) NOT NULL DEFAULT ''
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+  `recno` int NOT NULL,
+  `livehelp_id` bigint UNSIGNED NOT NULL DEFAULT '1',
+  `user_id` int NOT NULL DEFAULT '0',
+  `department` int NOT NULL DEFAULT '0',
+  `extra` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT ''
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='DEPRECATED: Only retained for migration. If something fails and you need to re-run the conversion, this table may be referenced. This table is NOT part of Lupopedia/Crafty Syntax as of version 3.0.0 and should be deleted after successful migration.';
 
 --
 -- Dumping data for table `livehelp_operator_departments`
@@ -644,16 +644,16 @@ INSERT INTO `livehelp_operator_departments` (`recno`, `livehelp_id`, `user_id`, 
 --
 
 CREATE TABLE `livehelp_operator_history` (
-  `id` int(11) UNSIGNED NOT NULL,
-  `livehelp_id` bigint(20) UNSIGNED NOT NULL DEFAULT 1,
-  `opid` int(11) UNSIGNED NOT NULL DEFAULT 0,
-  `action` varchar(60) NOT NULL DEFAULT '',
-  `dateof` bigint(14) NOT NULL DEFAULT 0,
-  `sessionid` varchar(40) NOT NULL DEFAULT '',
-  `transcriptid` int(10) NOT NULL DEFAULT 0,
-  `totaltime` int(10) NOT NULL DEFAULT 0,
-  `channel` int(10) NOT NULL DEFAULT 0
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+  `id` int UNSIGNED NOT NULL,
+  `livehelp_id` bigint UNSIGNED NOT NULL DEFAULT '1',
+  `opid` int UNSIGNED NOT NULL DEFAULT '0',
+  `action` varchar(60) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `dateof` bigint NOT NULL DEFAULT '0',
+  `sessionid` varchar(40) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `transcriptid` int NOT NULL DEFAULT '0',
+  `totaltime` int NOT NULL DEFAULT '0',
+  `channel` int NOT NULL DEFAULT '0'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='DEPRECATED: Only retained for migration. If something fails and you need to re-run the conversion, this table may be referenced. This table is NOT part of Lupopedia/Crafty Syntax as of version 3.0.0 and should be deleted after successful migration.';
 
 --
 -- Dumping data for table `livehelp_operator_history`
@@ -1015,13 +1015,13 @@ INSERT INTO `livehelp_operator_history` (`id`, `livehelp_id`, `opid`, `action`, 
 --
 
 CREATE TABLE `livehelp_paths_firsts` (
-  `id` int(11) UNSIGNED NOT NULL,
-  `livehelp_id` bigint(20) UNSIGNED NOT NULL DEFAULT 1,
-  `visit_recno` int(11) UNSIGNED NOT NULL DEFAULT 0,
-  `exit_recno` int(11) UNSIGNED NOT NULL DEFAULT 0,
-  `dateof` int(8) NOT NULL DEFAULT 0,
-  `visits` int(11) UNSIGNED NOT NULL DEFAULT 0
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+  `id` int UNSIGNED NOT NULL,
+  `livehelp_id` bigint UNSIGNED NOT NULL DEFAULT '1',
+  `visit_recno` int UNSIGNED NOT NULL DEFAULT '0',
+  `exit_recno` int UNSIGNED NOT NULL DEFAULT '0',
+  `dateof` int NOT NULL DEFAULT '0',
+  `visits` int UNSIGNED NOT NULL DEFAULT '0'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='DEPRECATED: Imported into lupo_paths. Safe to delete after migration.';
 
 --
 -- Dumping data for table `livehelp_paths_firsts`
@@ -2046,12 +2046,12 @@ INSERT INTO `livehelp_paths_firsts` (`id`, `livehelp_id`, `visit_recno`, `exit_r
 --
 
 CREATE TABLE `livehelp_paths_monthly` (
-  `id` int(11) UNSIGNED NOT NULL,
-  `visit_recno` int(11) UNSIGNED NOT NULL DEFAULT 0,
-  `exit_recno` int(11) UNSIGNED NOT NULL DEFAULT 0,
-  `dateof` int(8) NOT NULL DEFAULT 0,
-  `visits` int(11) UNSIGNED NOT NULL DEFAULT 0
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+  `id` int UNSIGNED NOT NULL,
+  `visit_recno` int UNSIGNED NOT NULL DEFAULT '0',
+  `exit_recno` int UNSIGNED NOT NULL DEFAULT '0',
+  `dateof` int NOT NULL DEFAULT '0',
+  `visits` int UNSIGNED NOT NULL DEFAULT '0'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='DEPRECATED: Imported into lupo_paths. Safe to delete after migration.';
 
 --
 -- Dumping data for table `livehelp_paths_monthly`
@@ -3377,15 +3377,15 @@ INSERT INTO `livehelp_paths_monthly` (`id`, `visit_recno`, `exit_recno`, `dateof
 --
 
 CREATE TABLE `livehelp_qa` (
-  `recno` int(10) NOT NULL,
-  `livehelp_id` bigint(20) UNSIGNED NOT NULL DEFAULT 1,
-  `parent` int(10) NOT NULL DEFAULT 0,
-  `question` text DEFAULT NULL,
-  `typeof` varchar(10) NOT NULL DEFAULT '',
-  `status` varchar(20) NOT NULL DEFAULT '',
-  `username` varchar(60) NOT NULL DEFAULT '',
-  `ordernum` int(10) NOT NULL DEFAULT 0
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+  `recno` int NOT NULL,
+  `livehelp_id` bigint UNSIGNED NOT NULL DEFAULT '1',
+  `parent` int NOT NULL DEFAULT '0',
+  `question` mediumtext COLLATE utf8mb4_unicode_ci,
+  `typeof` varchar(10) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `status` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `username` varchar(60) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `ordernum` int NOT NULL DEFAULT '0'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='DEPRECATED: Only retained for migration. If something fails and you need to re-run the conversion, this table may be referenced. This table is NOT part of Lupopedia/Crafty Syntax as of version 3.0.0 and should be deleted after successful migration.';
 
 --
 -- Dumping data for table `livehelp_qa`
@@ -3409,17 +3409,17 @@ INSERT INTO `livehelp_qa` (`recno`, `livehelp_id`, `parent`, `question`, `typeof
 --
 
 CREATE TABLE `livehelp_questions` (
-  `id` int(10) NOT NULL,
-  `livehelp_id` bigint(20) UNSIGNED NOT NULL DEFAULT 1,
-  `department` int(10) NOT NULL DEFAULT 0,
-  `ordering` int(8) NOT NULL DEFAULT 0,
-  `headertext` text DEFAULT NULL,
-  `fieldtype` varchar(30) NOT NULL DEFAULT '',
-  `options` text DEFAULT NULL,
-  `flags` varchar(60) NOT NULL DEFAULT '',
-  `module` varchar(60) NOT NULL DEFAULT '',
-  `required` char(1) NOT NULL DEFAULT 'N'
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+  `id` int NOT NULL,
+  `livehelp_id` bigint UNSIGNED NOT NULL DEFAULT '1',
+  `department` int NOT NULL DEFAULT '0',
+  `ordering` int NOT NULL DEFAULT '0',
+  `headertext` mediumtext COLLATE utf8mb4_unicode_ci,
+  `fieldtype` varchar(30) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `options` mediumtext COLLATE utf8mb4_unicode_ci,
+  `flags` varchar(60) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `module` varchar(60) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `required` char(1) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'N'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='DEPRECATED: Only retained for migration. If something fails and you need to re-run the conversion, this table may be referenced. This table is NOT part of Lupopedia/Crafty Syntax as of version 3.0.0 and should be deleted after successful migration.';
 
 --
 -- Dumping data for table `livehelp_questions`
@@ -3441,16 +3441,16 @@ INSERT INTO `livehelp_questions` (`id`, `livehelp_id`, `department`, `ordering`,
 --
 
 CREATE TABLE `livehelp_quick` (
-  `id` int(10) NOT NULL,
-  `livehelp_id` bigint(20) UNSIGNED NOT NULL DEFAULT 1,
-  `name` varchar(50) NOT NULL DEFAULT '',
-  `typeof` varchar(30) NOT NULL DEFAULT '',
-  `message` text DEFAULT NULL,
-  `visiblity` varchar(20) NOT NULL DEFAULT '',
-  `department` varchar(60) NOT NULL DEFAULT '0',
-  `user` int(10) NOT NULL DEFAULT 0,
-  `ishtml` varchar(3) NOT NULL DEFAULT ''
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+  `id` int NOT NULL,
+  `livehelp_id` bigint UNSIGNED NOT NULL DEFAULT '1',
+  `name` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `typeof` varchar(30) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `message` mediumtext COLLATE utf8mb4_unicode_ci,
+  `visiblity` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `department` varchar(60) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '0',
+  `user` int NOT NULL DEFAULT '0',
+  `ishtml` varchar(3) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT ''
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='DEPRECATED: Only retained for migration. If something fails and you need to re-run the conversion, this table may be referenced. This table is NOT part of Lupopedia/Crafty Syntax as of version 3.0.0 and should be deleted after successful migration.';
 
 --
 -- Dumping data for table `livehelp_quick`
@@ -3466,16 +3466,16 @@ INSERT INTO `livehelp_quick` (`id`, `livehelp_id`, `name`, `typeof`, `message`, 
 --
 
 CREATE TABLE `livehelp_referers_daily` (
-  `recno` int(11) NOT NULL,
-  `livehelp_id` bigint(20) UNSIGNED NOT NULL DEFAULT 1,
-  `pageurl` varchar(255) NOT NULL DEFAULT '0',
-  `dateof` int(8) NOT NULL DEFAULT 0,
-  `levelvisits` int(11) UNSIGNED NOT NULL DEFAULT 0,
-  `directvisits` int(11) UNSIGNED NOT NULL DEFAULT 0,
-  `parentrec` int(11) UNSIGNED NOT NULL DEFAULT 0,
-  `level` int(10) NOT NULL DEFAULT 0,
-  `department` int(11) NOT NULL DEFAULT 0
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+  `recno` int NOT NULL,
+  `livehelp_id` bigint UNSIGNED NOT NULL DEFAULT '1',
+  `pageurl` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '0',
+  `dateof` int NOT NULL DEFAULT '0',
+  `levelvisits` int UNSIGNED NOT NULL DEFAULT '0',
+  `directvisits` int UNSIGNED NOT NULL DEFAULT '0',
+  `parentrec` int UNSIGNED NOT NULL DEFAULT '0',
+  `level` int NOT NULL DEFAULT '0',
+  `department` int NOT NULL DEFAULT '0'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='DEPRECATED: Only retained for migration. If something fails and you need to re-run the conversion, this table may be referenced. This table is NOT part of Lupopedia/Crafty Syntax as of version 3.0.0 and should be deleted after successful migration.';
 
 --
 -- Dumping data for table `livehelp_referers_daily`
@@ -3567,16 +3567,16 @@ INSERT INTO `livehelp_referers_daily` (`recno`, `livehelp_id`, `pageurl`, `dateo
 --
 
 CREATE TABLE `livehelp_referers_monthly` (
-  `recno` int(11) NOT NULL,
-  `livehelp_id` bigint(20) UNSIGNED NOT NULL DEFAULT 1,
-  `pageurl` varchar(255) NOT NULL DEFAULT '0',
-  `dateof` int(8) NOT NULL DEFAULT 0,
-  `levelvisits` int(11) UNSIGNED NOT NULL DEFAULT 0,
-  `directvisits` int(11) UNSIGNED NOT NULL DEFAULT 0,
-  `parentrec` int(11) UNSIGNED NOT NULL DEFAULT 0,
-  `level` int(10) NOT NULL DEFAULT 0,
-  `department` int(11) NOT NULL DEFAULT 0
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+  `recno` int NOT NULL,
+  `livehelp_id` bigint UNSIGNED NOT NULL DEFAULT '1',
+  `pageurl` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '0',
+  `dateof` int NOT NULL DEFAULT '0',
+  `levelvisits` int UNSIGNED NOT NULL DEFAULT '0',
+  `directvisits` int UNSIGNED NOT NULL DEFAULT '0',
+  `parentrec` int UNSIGNED NOT NULL DEFAULT '0',
+  `level` int NOT NULL DEFAULT '0',
+  `department` int NOT NULL DEFAULT '0'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='DEPRECATED: Only retained for migration. If something fails and you need to re-run the conversion, this table may be referenced. This table is NOT part of Lupopedia/Crafty Syntax as of version 3.0.0 and should be deleted after successful migration.';
 
 --
 -- Dumping data for table `livehelp_referers_monthly`
@@ -3742,11 +3742,11 @@ INSERT INTO `livehelp_referers_monthly` (`recno`, `livehelp_id`, `pageurl`, `dat
 --
 
 CREATE TABLE `livehelp_sessions` (
-  `session_id` varchar(100) NOT NULL DEFAULT '',
-  `livehelp_id` bigint(20) UNSIGNED NOT NULL DEFAULT 1,
-  `session_data` text NOT NULL,
-  `expires` int(11) NOT NULL DEFAULT 0
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+  `session_id` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `livehelp_id` bigint UNSIGNED NOT NULL DEFAULT '1',
+  `session_data` mediumtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `expires` int NOT NULL DEFAULT '0'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='DEPRECATED: Only retained for migration. If something fails and you need to re-run the conversion, this table may be referenced. This table is NOT part of Lupopedia/Crafty Syntax as of version 3.0.0 and should be deleted after successful migration.';
 
 -- --------------------------------------------------------
 
@@ -3755,12 +3755,12 @@ CREATE TABLE `livehelp_sessions` (
 --
 
 CREATE TABLE `livehelp_smilies` (
-  `smilies_id` smallint(5) UNSIGNED NOT NULL,
-  `livehelp_id` bigint(20) UNSIGNED NOT NULL DEFAULT 1,
-  `code` varchar(50) DEFAULT NULL,
-  `smile_url` varchar(100) DEFAULT NULL,
-  `emoticon` varchar(75) DEFAULT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+  `smilies_id` smallint UNSIGNED NOT NULL,
+  `livehelp_id` bigint UNSIGNED NOT NULL DEFAULT '1',
+  `code` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `smile_url` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `emoticon` varchar(75) COLLATE utf8mb4_unicode_ci DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='LEGACY ARCHIVE TABLE — no longer used. Crafty Syntax originally stored emoji metadata here, but Lupopedia replaces this system entirely. Emoji and inline images are now inserted directly into dialog text using the token format :|:name|folder|filename:|:. The renderer reads icons from the chat_smilies/ directory (and its subfolders) and replaces the token with the corresponding image at display time. This table is preserved only for historical reference; no data is imported and no new rows will be created.';
 
 --
 -- Dumping data for table `livehelp_smilies`
@@ -3817,19 +3817,19 @@ INSERT INTO `livehelp_smilies` (`smilies_id`, `livehelp_id`, `code`, `smile_url`
 --
 
 CREATE TABLE `livehelp_transcripts` (
-  `recno` int(10) NOT NULL,
-  `livehelp_id` bigint(20) UNSIGNED NOT NULL DEFAULT 1,
-  `who` varchar(100) NOT NULL DEFAULT '',
-  `endtime` bigint(14) DEFAULT NULL,
-  `transcript` text DEFAULT NULL,
-  `sessionid` varchar(40) NOT NULL DEFAULT '',
-  `sessiondata` text DEFAULT NULL,
-  `department` int(10) NOT NULL DEFAULT 0,
-  `email` varchar(100) NOT NULL DEFAULT '',
-  `starttime` bigint(14) NOT NULL DEFAULT 0,
-  `duration` int(11) UNSIGNED NOT NULL DEFAULT 0,
-  `operators` varchar(255) NOT NULL DEFAULT ''
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+  `recno` int NOT NULL,
+  `livehelp_id` bigint UNSIGNED NOT NULL DEFAULT '1',
+  `who` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `endtime` bigint DEFAULT NULL,
+  `transcript` mediumtext COLLATE utf8mb4_unicode_ci,
+  `sessionid` varchar(40) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `sessiondata` mediumtext COLLATE utf8mb4_unicode_ci,
+  `department` int NOT NULL DEFAULT '0',
+  `email` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `starttime` bigint NOT NULL DEFAULT '0',
+  `duration` int UNSIGNED NOT NULL DEFAULT '0',
+  `operators` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT ''
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='DEPRECATED: Only retained for migration. If something fails and you need to re-run the conversion, this table may be referenced. This table is NOT part of Lupopedia/Crafty Syntax as of version 3.0.0 and should be deleted after successful migration.';
 
 --
 -- Dumping data for table `livehelp_transcripts`
@@ -3851,72 +3851,72 @@ INSERT INTO `livehelp_transcripts` (`recno`, `livehelp_id`, `who`, `endtime`, `t
 --
 
 CREATE TABLE `livehelp_users` (
-  `user_id` int(10) NOT NULL,
-  `livehelp_id` bigint(20) UNSIGNED NOT NULL DEFAULT 1,
-  `lastaction` bigint(14) DEFAULT 0,
-  `username` varchar(30) NOT NULL DEFAULT '',
-  `displayname` varchar(42) NOT NULL DEFAULT '',
-  `password` varchar(255) DEFAULT NULL COMMENT 'Password hash (nullable for OAuth users)',
-  `timezone_offset` decimal(4,2) NOT NULL DEFAULT 0.00 COMMENT 'Offset in hours from UTC (can be decimal, e.g., 5.75 for NPT, -3.5 for NST)',
-  `auth_provider` varchar(20) DEFAULT NULL COMMENT 'OAuth provider name if using OAuth',
-  `provider_id` varchar(255) DEFAULT NULL COMMENT 'OAuth provider user ID',
-  `isonline` char(1) NOT NULL DEFAULT '',
-  `isoperator` char(1) NOT NULL DEFAULT 'N',
-  `onchannel` int(10) NOT NULL DEFAULT 0,
-  `isadmin` char(1) NOT NULL DEFAULT 'N',
-  `department` int(5) NOT NULL DEFAULT 0,
-  `identity` varchar(255) NOT NULL DEFAULT '',
-  `status` varchar(30) NOT NULL DEFAULT '',
-  `isnamed` char(1) NOT NULL DEFAULT 'N',
-  `showedup` bigint(14) DEFAULT NULL,
-  `email` varchar(60) NOT NULL DEFAULT '',
-  `email_verified` tinyint(1) NOT NULL DEFAULT 0 COMMENT 'Whether email is verified',
-  `verification_token` varchar(64) DEFAULT NULL COMMENT 'For email verification',
-  `verification_token_expires` bigint(20) DEFAULT NULL COMMENT 'Expiration timestamp for verification token',
-  `password_reset_token` varchar(64) DEFAULT NULL COMMENT 'For password reset',
-  `password_reset_expires` bigint(20) DEFAULT NULL COMMENT 'Expiration timestamp for password reset',
-  `login_token` varchar(64) DEFAULT NULL COMMENT 'For passwordless login',
-  `login_token_expires` bigint(20) DEFAULT NULL COMMENT 'Expiration timestamp for login token',
-  `last_login_at` bigint(20) DEFAULT NULL COMMENT 'Last login timestamp',
-  `last_login_ip` varchar(45) DEFAULT NULL COMMENT 'IP address of last login',
-  `login_count` int(11) NOT NULL DEFAULT 0 COMMENT 'Total number of logins',
-  `camefrom` varchar(255) NOT NULL DEFAULT '',
-  `show_arrival` char(1) NOT NULL DEFAULT 'N',
-  `user_alert` char(1) NOT NULL DEFAULT 'A',
-  `auto_invite` char(1) NOT NULL DEFAULT 'N',
-  `istyping` char(1) NOT NULL DEFAULT '3',
-  `visits` int(8) NOT NULL DEFAULT 0,
-  `jsrn` int(5) NOT NULL DEFAULT 0,
-  `hostname` varchar(255) NOT NULL DEFAULT '',
-  `useragent` varchar(255) NOT NULL DEFAULT '',
-  `ipaddress` varchar(255) NOT NULL DEFAULT '',
-  `sessionid` varchar(40) NOT NULL DEFAULT '',
-  `typing_alert` char(1) NOT NULL DEFAULT 'N',
-  `authenticated` char(1) NOT NULL DEFAULT '',
-  `cookied` char(1) NOT NULL DEFAULT 'N',
-  `sessiondata` text DEFAULT NULL,
-  `expires` bigint(14) NOT NULL DEFAULT 0,
-  `greeting` text DEFAULT NULL,
-  `photo` varchar(255) NOT NULL DEFAULT '',
-  `chataction` bigint(14) DEFAULT 0,
-  `new_session` char(1) NOT NULL DEFAULT 'Y',
-  `showtype` int(10) NOT NULL DEFAULT 1,
-  `chattype` char(1) NOT NULL DEFAULT 'Y',
-  `externalchats` varchar(255) NOT NULL DEFAULT '',
-  `layerinvite` int(10) NOT NULL DEFAULT 0,
-  `askquestions` char(1) NOT NULL DEFAULT 'Y',
-  `showvisitors` char(1) NOT NULL DEFAULT 'N',
-  `cookieid` varchar(40) NOT NULL DEFAULT '',
-  `cellphone` varchar(255) NOT NULL DEFAULT '',
-  `lastcalled` bigint(14) NOT NULL DEFAULT 0,
-  `ismobile` char(1) DEFAULT 'N',
-  `cell_invite` char(1) DEFAULT 'N',
-  `useimage` char(1) NOT NULL DEFAULT 'N',
-  `firstdepartment` int(11) NOT NULL DEFAULT 0,
-  `alertchat` varchar(45) NOT NULL DEFAULT '',
-  `alerttyping` varchar(45) NOT NULL DEFAULT '',
-  `alertinsite` varchar(45) NOT NULL DEFAULT ''
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+  `user_id` int NOT NULL,
+  `livehelp_id` bigint UNSIGNED NOT NULL DEFAULT '1',
+  `lastaction` bigint DEFAULT '0',
+  `username` varchar(30) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `displayname` varchar(42) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `password` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT 'Password hash (nullable for OAuth users)',
+  `timezone_offset` decimal(4,2) NOT NULL DEFAULT '0.00' COMMENT 'Offset in hours from UTC (can be decimal, e.g., 5.75 for NPT, -3.5 for NST)',
+  `auth_provider` varchar(20) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT 'OAuth provider name if using OAuth',
+  `provider_id` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT 'OAuth provider user ID',
+  `isonline` char(1) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `isoperator` char(1) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'N',
+  `onchannel` int NOT NULL DEFAULT '0',
+  `isadmin` char(1) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'N',
+  `department` int NOT NULL DEFAULT '0',
+  `identity` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `status` varchar(30) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `isnamed` char(1) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'N',
+  `showedup` bigint DEFAULT NULL,
+  `email` varchar(60) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `email_verified` tinyint(1) NOT NULL DEFAULT '0' COMMENT 'Whether email is verified',
+  `verification_token` varchar(64) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT 'For email verification',
+  `verification_token_expires` bigint DEFAULT NULL COMMENT 'Expiration timestamp for verification token',
+  `password_reset_token` varchar(64) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT 'For password reset',
+  `password_reset_expires` bigint DEFAULT NULL COMMENT 'Expiration timestamp for password reset',
+  `login_token` varchar(64) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT 'For passwordless login',
+  `login_token_expires` bigint DEFAULT NULL COMMENT 'Expiration timestamp for login token',
+  `last_login_at` bigint DEFAULT NULL COMMENT 'Last login timestamp',
+  `last_login_ip` varchar(45) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT 'IP address of last login',
+  `login_count` int NOT NULL DEFAULT '0' COMMENT 'Total number of logins',
+  `camefrom` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `show_arrival` char(1) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'N',
+  `user_alert` char(1) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'A',
+  `auto_invite` char(1) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'N',
+  `istyping` char(1) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '3',
+  `visits` int NOT NULL DEFAULT '0',
+  `jsrn` int NOT NULL DEFAULT '0',
+  `hostname` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `useragent` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `ipaddress` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `sessionid` varchar(40) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `typing_alert` char(1) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'N',
+  `authenticated` char(1) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `cookied` char(1) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'N',
+  `sessiondata` mediumtext COLLATE utf8mb4_unicode_ci,
+  `expires` bigint NOT NULL DEFAULT '0',
+  `greeting` mediumtext COLLATE utf8mb4_unicode_ci,
+  `photo` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `chataction` bigint DEFAULT '0',
+  `new_session` char(1) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'Y',
+  `showtype` int NOT NULL DEFAULT '1',
+  `chattype` char(1) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'Y',
+  `externalchats` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `layerinvite` int NOT NULL DEFAULT '0',
+  `askquestions` char(1) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'Y',
+  `showvisitors` char(1) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'N',
+  `cookieid` varchar(40) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `cellphone` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `lastcalled` bigint NOT NULL DEFAULT '0',
+  `ismobile` char(1) COLLATE utf8mb4_unicode_ci DEFAULT 'N',
+  `cell_invite` char(1) COLLATE utf8mb4_unicode_ci DEFAULT 'N',
+  `useimage` char(1) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'N',
+  `firstdepartment` int NOT NULL DEFAULT '0',
+  `alertchat` varchar(45) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `alerttyping` varchar(45) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `alertinsite` varchar(45) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT ''
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='DEPRECATED: Only retained for migration. If something fails and you need to re-run the conversion, this table may be referenced. This table is NOT part of Lupopedia/Crafty Syntax as of version 3.0.0 and should be deleted after successful migration.';
 
 --
 -- Dumping data for table `livehelp_users`
@@ -3925,10 +3925,10 @@ CREATE TABLE `livehelp_users` (
 INSERT INTO `livehelp_users` (`user_id`, `livehelp_id`, `lastaction`, `username`, `displayname`, `password`, `timezone_offset`, `auth_provider`, `provider_id`, `isonline`, `isoperator`, `onchannel`, `isadmin`, `department`, `identity`, `status`, `isnamed`, `showedup`, `email`, `email_verified`, `verification_token`, `verification_token_expires`, `password_reset_token`, `password_reset_expires`, `login_token`, `login_token_expires`, `last_login_at`, `last_login_ip`, `login_count`, `camefrom`, `show_arrival`, `user_alert`, `auto_invite`, `istyping`, `visits`, `jsrn`, `hostname`, `useragent`, `ipaddress`, `sessionid`, `typing_alert`, `authenticated`, `cookied`, `sessiondata`, `expires`, `greeting`, `photo`, `chataction`, `new_session`, `showtype`, `chattype`, `externalchats`, `layerinvite`, `askquestions`, `showvisitors`, `cookieid`, `cellphone`, `lastcalled`, `ismobile`, `cell_invite`, `useimage`, `firstdepartment`, `alertchat`, `alerttyping`, `alertinsite`) VALUES
 (1, 1, 20260208132948, 'captain', 'captain', '1e9e9f6fef3369cdc763284d80ae5feb', 0.00, NULL, NULL, 'N', 'Y', 1, 'Y', 0, '95.173.221-cslhOPERATOR', 'offline', 'Y', 0, 'lupopedia@gmail.com', 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, '', 'N', 'A', 'Y', '3', 145, 1, 'host_lookup_not_enabled', '', '95.173.221.140', '5f2905e29f9a1d7e1a9ff7b43558720d', 'N', 'N', 'Y', NULL, 20260208134948, 'How may I help You?', '', 0, 'N', 1, '', '', 0, 'Y', 'N', '61eecabd0945c0e9aaa1fab291e8b5a7', '', 0, 'N', 'N', 'N', 0, 'new_chats.wav', 'click_x.wav', 'youve_got_visitors.wav'),
 (2150, 1, 0, 'helen', 'helen', '76d045cc0cdde8dbc1794b967dd5bdaa', 0.00, NULL, NULL, 'N', 'Y', 2150, 'Y', 0, '560c64eb01f92bd967485639d242c144', '', 'Y', NULL, 'helen@lupopedia.com', 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, '', 'N', 'A', 'N', '3', 0, 0, '', '', '', '', 'N', '', 'N', NULL, 0, 'How May I help You?', '', 0, 'Y', 1, 'Y', '', 0, 'Y', 'N', '', '', 0, 'N', 'N', 'N', 0, 'someone_wants_to_chat.mp3', 'typing.wav', 'LC2_New_Visitors.wav'),
-(2228, 1, 20260212154045, '16.147.224.188', '', NULL, 0.00, NULL, NULL, '', 'N', -1, 'N', 1, '16.147.224-cslhVISITOR', 'Visiting', 'N', 20260212154045, '', 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 'http://', 'N', '0', 'N', '3', 0, 0, 'host_lookup_not_enabled', 'Mozilla/5.0 (iPhone; CPU iPhone OS 14_6 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.0.3 Mobile/15E148 Safari/604.1', '16.147.224.188', '3eb0d066e4a52c45add6643245841a63', 'N', '', 'N', NULL, 20260212160045, NULL, '', 0, 'N', 1, 'Y', '', 0, 'Y', 'N', 'a6536ec5f7c454a8846503f1e274d95e', '', 0, 'N', 'N', 'N', 1, '', '', ''),
-(2227, 1, 20260212143712, '66.220.149.27', '', NULL, 0.00, NULL, NULL, '', 'N', -1, 'N', 1, '173.252.79-cslhVISITOR', 'Visiting', 'N', 20260212143629, '', 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 'http://www.facebook.com/', 'N', '0', 'N', '3', 7, 0, 'host_lookup_not_enabled', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/144.0.0.0 Safari/537.36 Edg/144.0.0.0', '173.252.79.5', '9814d9bc3980e71bfd7056a62c70b69d', 'N', '', 'N', NULL, 20260212145712, NULL, '', 0, 'N', 1, 'Y', '', 0, 'Y', 'N', '21737d516011a742237fec0c6661c5c6', '', 0, 'N', 'N', 'N', 1, '', '', ''),
+(2225, 1, 20260212121342, '173.252.87.57', '', NULL, 0.00, NULL, NULL, '', 'N', -1, 'N', 1, '69.63.189-cslhVISITOR', 'Visiting', 'N', 20260212121256, '', 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 'http://www.facebook.com/', 'N', '0', 'N', '3', 7, 0, 'host_lookup_not_enabled', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', '69.63.189.16', '62a44f10cca498e4aee90917c6886559', 'N', '', 'N', NULL, 20260212123342, NULL, '', 0, 'N', 1, 'Y', '', 0, 'Y', 'N', '61f6fd3f80270d68f021880ed5e5c971', '', 0, 'N', 'N', 'N', 1, '', '', ''),
 (2226, 1, 20260212133058, '173.252.70.17', '', NULL, 0.00, NULL, NULL, '', 'N', -1, 'N', 1, '173.252.83-cslhVISITOR', 'Visiting', 'N', 20260212133016, '', 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 'http://www.facebook.com/', 'N', '0', 'N', '3', 7, 0, 'host_lookup_not_enabled', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36', '173.252.83.3', '8a8366ab7acae5b78fef93cd5e27c0ab', 'N', '', 'N', NULL, 20260212135058, NULL, '', 0, 'N', 1, 'Y', '', 0, 'Y', 'N', '089ea1b2ef72a1a838b0852024e18f48', '', 0, 'N', 'N', 'N', 1, '', '', ''),
-(2225, 1, 20260212121342, '173.252.87.57', '', NULL, 0.00, NULL, NULL, '', 'N', -1, 'N', 1, '69.63.189-cslhVISITOR', 'Visiting', 'N', 20260212121256, '', 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 'http://www.facebook.com/', 'N', '0', 'N', '3', 7, 0, 'host_lookup_not_enabled', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', '69.63.189.16', '62a44f10cca498e4aee90917c6886559', 'N', '', 'N', NULL, 20260212123342, NULL, '', 0, 'N', 1, 'Y', '', 0, 'Y', 'N', '61f6fd3f80270d68f021880ed5e5c971', '', 0, 'N', 'N', 'N', 1, '', '', '');
+(2227, 1, 20260212143712, '66.220.149.27', '', NULL, 0.00, NULL, NULL, '', 'N', -1, 'N', 1, '173.252.79-cslhVISITOR', 'Visiting', 'N', 20260212143629, '', 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 'http://www.facebook.com/', 'N', '0', 'N', '3', 7, 0, 'host_lookup_not_enabled', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/144.0.0.0 Safari/537.36 Edg/144.0.0.0', '173.252.79.5', '9814d9bc3980e71bfd7056a62c70b69d', 'N', '', 'N', NULL, 20260212145712, NULL, '', 0, 'N', 1, 'Y', '', 0, 'Y', 'N', '21737d516011a742237fec0c6661c5c6', '', 0, 'N', 'N', 'N', 1, '', '', ''),
+(2228, 1, 20260212154045, '16.147.224.188', '', NULL, 0.00, NULL, NULL, '', 'N', -1, 'N', 1, '16.147.224-cslhVISITOR', 'Visiting', 'N', 20260212154045, '', 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 'http://', 'N', '0', 'N', '3', 0, 0, 'host_lookup_not_enabled', 'Mozilla/5.0 (iPhone; CPU iPhone OS 14_6 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.0.3 Mobile/15E148 Safari/604.1', '16.147.224.188', '3eb0d066e4a52c45add6643245841a63', 'N', '', 'N', NULL, 20260212160045, NULL, '', 0, 'N', 1, 'Y', '', 0, 'Y', 'N', 'a6536ec5f7c454a8846503f1e274d95e', '', 0, 'N', 'N', 'N', 1, '', '', '');
 
 -- --------------------------------------------------------
 
@@ -3937,16 +3937,16 @@ INSERT INTO `livehelp_users` (`user_id`, `livehelp_id`, `lastaction`, `username`
 --
 
 CREATE TABLE `livehelp_visits_daily` (
-  `recno` int(11) NOT NULL,
-  `livehelp_id` bigint(20) UNSIGNED NOT NULL DEFAULT 1,
-  `pageurl` varchar(255) NOT NULL DEFAULT '0',
-  `dateof` int(8) NOT NULL DEFAULT 0,
-  `levelvisits` int(11) UNSIGNED NOT NULL DEFAULT 0,
-  `directvisits` int(11) UNSIGNED NOT NULL DEFAULT 0,
-  `parentrec` int(11) UNSIGNED NOT NULL DEFAULT 0,
-  `level` int(10) NOT NULL DEFAULT 0,
-  `department` int(11) NOT NULL DEFAULT 0
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+  `recno` int NOT NULL,
+  `livehelp_id` bigint UNSIGNED NOT NULL DEFAULT '1',
+  `pageurl` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '0',
+  `dateof` int NOT NULL DEFAULT '0',
+  `levelvisits` int UNSIGNED NOT NULL DEFAULT '0',
+  `directvisits` int UNSIGNED NOT NULL DEFAULT '0',
+  `parentrec` int UNSIGNED NOT NULL DEFAULT '0',
+  `level` int NOT NULL DEFAULT '0',
+  `department` int NOT NULL DEFAULT '0'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='DEPRECATED: Imported into lupo_visits (synthetic rows). Safe to delete after migration.';
 
 --
 -- Dumping data for table `livehelp_visits_daily`
@@ -4329,15 +4329,15 @@ INSERT INTO `livehelp_visits_daily` (`recno`, `livehelp_id`, `pageurl`, `dateof`
 --
 
 CREATE TABLE `livehelp_visits_monthly` (
-  `recno` int(11) NOT NULL,
-  `pageurl` varchar(255) NOT NULL DEFAULT '0',
-  `dateof` int(8) NOT NULL DEFAULT 0,
-  `levelvisits` int(11) UNSIGNED NOT NULL DEFAULT 0,
-  `directvisits` int(11) UNSIGNED NOT NULL DEFAULT 0,
-  `parentrec` int(11) UNSIGNED NOT NULL DEFAULT 0,
-  `level` int(10) NOT NULL DEFAULT 0,
-  `department` int(11) NOT NULL DEFAULT 0
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+  `recno` int NOT NULL,
+  `pageurl` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '0',
+  `dateof` int NOT NULL DEFAULT '0',
+  `levelvisits` int UNSIGNED NOT NULL DEFAULT '0',
+  `directvisits` int UNSIGNED NOT NULL DEFAULT '0',
+  `parentrec` int UNSIGNED NOT NULL DEFAULT '0',
+  `level` int NOT NULL DEFAULT '0',
+  `department` int NOT NULL DEFAULT '0'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='DEPRECATED: Imported into lupo_visits (synthetic rows). Safe to delete after migration.';
 
 --
 -- Dumping data for table `livehelp_visits_monthly`
@@ -4369,7 +4369,6 @@ INSERT INTO `livehelp_visits_monthly` (`recno`, `pageurl`, `dateof`, `levelvisit
 (33, 'http://lupopedia.com/users.php', 202511, 8, 8, 1, 2, 1),
 (34, 'http://lupopedia.com/browse_collections.php', 202511, 7, 7, 1, 2, 1),
 (36, 'http://lupopedia.com/chat.php', 202511, 2, 2, 1, 2, 1),
-(65, 'http://lupopedia.com/special.php', 202511, 3, 3, 1, 2, 1),
 (41, 'http://lupopedia.com/changelog.php', 202511, 5, 5, 1, 2, 1),
 (42, 'http://lupopedia.com/what_was_crafty_syntax.php#download', 202511, 10, 10, 1, 2, 1),
 (43, 'http://lupopedia.com/executive_summary.php', 202511, 3, 3, 1, 2, 1),
@@ -4379,6 +4378,7 @@ INSERT INTO `livehelp_visits_monthly` (`recno`, `pageurl`, `dateof`, `levelvisit
 (62, 'http://lupopedia.com/planfor_next_version_salessyntax.php', 202511, 7, 7, 1, 2, 1),
 (63, 'http://lupopedia.com/what_was_crafty_syntax.php#future-roadmap', 202511, 5, 5, 1, 2, 1),
 (64, 'http://lupopedia.com/what_was_crafty_syntax.php#timeline', 202511, 9, 9, 1, 2, 1),
+(65, 'http://lupopedia.com/special.php', 202511, 3, 3, 1, 2, 1),
 (68, 'http://lupopedia.com/what_was_crafty_syntax.php#whycraftysyntax', 202511, 7, 7, 1, 2, 1),
 (69, 'http://lupopedia.com/craftysyntax_changelog.php', 202511, 22, 22, 1, 2, 1),
 (70, 'http://lupopedia.com/what_was_crafty_syntax.php#video-demo', 202511, 2, 2, 1, 2, 1),
@@ -4409,7 +4409,6 @@ INSERT INTO `livehelp_visits_monthly` (`recno`, `pageurl`, `dateof`, `levelvisit
 (148, 'http://wisdomoflovingfaith.com/agent_profile.php', 202511, 8, 8, 108, 2, 1),
 (168, 'http://lupopedia.com/wolfie_ladder/index.php', 202511, 2, 2, 105, 3, 1),
 (171, 'http://lupopedia.com', 202512, 1658, 335, 0, 1, 1),
-(286, 'http://lupopedia.com/members.php', 202512, 3, 3, 171, 2, 1),
 (174, 'http://lupopedia.com/what_is_wolfie_headers.php', 202512, 15, 15, 171, 2, 1),
 (179, 'http://lupopedia.com/index.php', 202512, 101, 101, 171, 2, 1),
 (183, 'http://lupopedia.com/craftysyntax', 202512, 470, 224, 171, 2, 1),
@@ -4424,8 +4423,6 @@ INSERT INTO `livehelp_visits_monthly` (`recno`, `pageurl`, `dateof`, `levelvisit
 (213, 'http://lupopedia.com/craftysyntax/crafty_syntax_evolved.php', 202512, 5, 5, 183, 3, 1),
 (225, 'http://lupopedia.com/admin.php', 202512, 4, 4, 171, 2, 1),
 (232, 'http://lupopedia.com/craftysyntax/lupopedia.php', 202512, 151, 151, 183, 3, 1),
-(290, 'http://wisdomoflovingfaith.com', 202512, 20, 17, 0, 1, 1),
-(291, 'http://wisdomoflovingfaith.com/agent_profile.php', 202512, 2, 2, 290, 2, 1),
 (247, 'http://lupopedia.com/users.php', 202512, 8, 8, 171, 2, 1),
 (248, 'http://lupopedia.com/channels.php', 202512, 12, 12, 171, 2, 1),
 (249, 'http://lupopedia.com/events.php', 202512, 7, 7, 171, 2, 1),
@@ -4433,14 +4430,17 @@ INSERT INTO `livehelp_visits_monthly` (`recno`, `pageurl`, `dateof`, `levelvisit
 (253, 'http://lupopedia.com/questions.php', 202512, 26, 26, 171, 2, 1),
 (258, 'http://lupopedia.com/register.php', 202512, 2, 2, 171, 2, 1),
 (265, 'http://lupopedia.com/support.php', 202512, 55, 55, 171, 2, 1),
-(269, 'http://lupopedia.com/craftysyntax/lupopedia2.php', 202512, 2, 2, 183, 3, 1),
 (266, 'http://lupopedia.com/wolfie_ladder/wolfith.php', 202512, 7, 7, 199, 3, 1),
 (267, 'http://lupopedia.com/wolfie_ladder/index.php', 202512, 10, 10, 199, 3, 1),
+(269, 'http://lupopedia.com/craftysyntax/lupopedia2.php', 202512, 2, 2, 183, 3, 1),
 (271, 'http://lupopedia.com/craftysyntax/lupopedia3.php', 202512, 2, 2, 183, 3, 1),
 (278, 'http://lupopedia.com/craftysyntax/lupopedia4.php', 202512, 3, 3, 183, 3, 1),
+(286, 'http://lupopedia.com/members.php', 202512, 3, 3, 171, 2, 1),
 (287, 'http://lupopedia.com/what_are_wolfie_headers.php', 202512, 14, 14, 171, 2, 1),
 (288, 'http://lupopedia.com/support2.php', 202512, 5, 5, 171, 2, 1),
 (289, 'http://lupopedia.com/what_is_lupopedia.php', 202512, 8, 8, 171, 2, 1),
+(290, 'http://wisdomoflovingfaith.com', 202512, 20, 17, 0, 1, 1),
+(291, 'http://wisdomoflovingfaith.com/agent_profile.php', 202512, 2, 2, 290, 2, 1),
 (297, 'http://lupopedia.com/craftysyntax/#download', 202512, 8, 8, 183, 3, 1),
 (298, 'http://lupopedia.com/account.php', 202512, 4, 4, 171, 2, 1),
 (300, 'http://lupopedia.com/craftysyntax_changelog.php', 202512, 11, 11, 171, 2, 1),
@@ -4465,60 +4465,60 @@ INSERT INTO `livehelp_visits_monthly` (`recno`, `pageurl`, `dateof`, `levelvisit
 (367, 'http://lupopedia.com/funding_options.php', 202512, 5, 5, 171, 2, 1),
 (368, 'http://lupopedia.com/what_is_mood_color.php', 202512, 13, 13, 171, 2, 1),
 (373, 'http://lupopedia.com/messages.php', 202512, 5, 5, 171, 2, 1),
-(470, 'http://lupopedia.com/craftysyntax/#innovations', 202601, 1, 1, 413, 3, 1),
-(469, 'http://lupopedia.com?utm_source=poweredby&utm_campaign=poweredby', 202601, 0, 0, 409, 2, 1),
-(468, 'http://lupopedia.com/account.php?v=3.7.5&d=&h=cripto2029.com', 202601, 0, 0, 467, 3, 1),
-(467, 'http://lupopedia.com/account.php', 202601, 2, 2, 409, 2, 1),
-(465, 'http://lupopedia.com/questions.php?tab=what&search=mobile', 202601, 0, 0, 419, 3, 1),
-(466, 'http://collaborativepages.com/who_is_wolfie.php', 202601, 1, 1, 422, 2, 1),
-(463, 'http://collaborativepages.com/what_are_wolfie_headers.php', 202601, 2, 2, 422, 2, 1),
-(464, 'http://lupopedia.com/members.php', 202601, 1, 1, 409, 2, 1),
-(460, 'http://lupopedia.com/agent_profile.php?id=69', 202601, 0, 0, 411, 3, 1),
-(461, 'http://lupopedia.com/agent_profile.php?id=10', 202601, 0, 0, 411, 3, 1),
-(462, 'http://lupopedia.com/craftysyntax/#challenge', 202601, 2, 2, 413, 3, 1),
-(458, 'http://lupopedia.com/agent_profile.php?id=10', 202601, 0, 0, 411, 3, 1),
-(459, 'http://lupopedia.com/craftysyntax/lupopedia.php', 202601, 1, 1, 413, 3, 1),
-(456, 'http://lupopedia.com/index.php', 202601, 5, 5, 409, 2, 1),
-(457, 'http://lupopedia.com/craftysyntax/#news', 202601, 3, 3, 413, 3, 1),
-(454, 'http://lupopedia.com/craftysyntax/#howto', 202601, 1, 1, 413, 3, 1),
-(455, 'http://lupopedia.com/craftysyntax/#download', 202601, 1, 1, 413, 3, 1),
-(452, 'http://lupopedia.com/agent_profile.php?id=10', 202601, 0, 0, 411, 3, 1),
-(453, 'http://lupopedia.com/agent_profile.php?id=9', 202601, 0, 0, 411, 3, 1),
-(451, 'http://lupopedia.com?utm_source=poweredby&utm_campaign=poweredby', 202601, 0, 0, 409, 2, 1),
-(450, 'http://lupopedia.com/wolfie_ladder?fbclid=IwZXh0bgNhZW0CMTEAc3J0YwZhcHBfaWQMMzUwNjg1NTMxNzI4AAEedih1BFGtRGYOTcsnKIj1idTucYEl_XhfUhT0jEgwbngbl3Wkz57sl1T0SUs_aem_0gN-07gAOLh9Qz-qOQSWKQ', 202601, 0, 0, 447, 3, 1),
-(449, 'http://lupopedia.com?utm_source=poweredby&utm_campaign=poweredby', 202601, 0, 0, 409, 2, 1),
 (399, 'http://lupopedia.com/craftysyntax/new_index.htm', 202512, 2, 2, 183, 3, 1),
 (401, 'http://lupopedia.com/craftysyntax/#news', 202512, 7, 7, 183, 3, 1),
-(448, 'http://lupopedia.com/wolfie_ladder?fbclid=IwZXh0bgNhZW0CMTEAc3J0YwZhcHBfaWQMMzUwNjg1NTMxNzI4AAEedih1BFGtRGYOTcsnKIj1idTucYEl_XhfUhT0jEgwbngbl3Wkz57sl1T0SUs_aem_0gN-07gAOLh9Qz-qOQSWKQ', 202601, 0, 0, 447, 3, 1),
 (403, 'http://lupopedia.com/craftysyntax/#future-roadmap', 202512, 2, 2, 183, 3, 1),
-(445, 'http://lupopedia.com/users.php', 202601, 2, 2, 409, 2, 1),
-(446, 'http://lupopedia.com/login.php', 202601, 2, 2, 409, 2, 1),
-(447, 'http://lupopedia.com/wolfie_ladder', 202601, 2, 2, 409, 2, 1),
-(444, 'http://lupopedia.com/browse_collections.php', 202601, 2, 2, 409, 2, 1),
-(443, 'http://lupopedia.com/events.php', 202601, 2, 2, 409, 2, 1),
-(442, 'http://lupopedia.com/channels.php', 202601, 2, 2, 409, 2, 1),
 (408, 'http://mail.lupopedia.com', 202512, 5, 5, 0, 1, 1),
 (409, 'http://lupopedia.com', 202601, 436, 154, 0, 1, 1),
 (410, 'http://lupopedia.com/agents.php', 202601, 32, 32, 409, 2, 1),
 (411, 'http://lupopedia.com/agent_profile.php', 202601, 39, 39, 409, 2, 1),
-(441, 'http://lupopedia.com/directory.php', 202601, 1, 1, 409, 2, 1),
 (413, 'http://lupopedia.com/craftysyntax', 202601, 122, 101, 409, 2, 1),
 (414, 'http://lupopedia.com/craftysyntax/craftysyntax_changelog.php', 202601, 5, 5, 413, 3, 1),
 (415, 'http://lupopedia.com/craftysyntax/planfor_next_version_craftysyntax.php', 202601, 4, 4, 413, 3, 1),
 (416, 'http://mail.lupopedia.com', 202601, 6, 6, 0, 1, 1),
-(440, 'http://lupopedia.com/support.php', 202601, 12, 12, 409, 2, 1),
-(439, 'http://lupopedia.com/privacy.php', 202601, 1, 1, 409, 2, 1),
 (419, 'http://lupopedia.com/questions.php', 202601, 10, 10, 409, 2, 1),
 (421, 'http://mail.collaborativepages.com', 202601, 3, 3, 0, 1, 1),
 (422, 'http://collaborativepages.com', 202601, 32, 23, 0, 1, 1),
-(438, 'http://lupopedia.com/topics.php', 202601, 1, 1, 409, 2, 1),
 (424, 'http://lupopedia.com/craftysyntax_changelog.php', 202601, 5, 5, 409, 2, 1),
-(437, 'http://lupopedia.com/executive_summary.php', 202601, 1, 1, 409, 2, 1),
 (426, 'http://lupopedia.com/search.php', 202601, 6, 6, 409, 2, 1),
-(436, 'http://lupopedia.com/what_is_wolfie_headers.php', 202601, 1, 1, 409, 2, 1),
-(435, 'http://lupopedia.com/system_features.php', 202601, 1, 1, 409, 2, 1),
-(434, 'http://lupopedia.com/craftysyntax/#distribution', 202601, 1, 1, 413, 3, 1),
 (433, 'http://lupopedia.com/changelog.php', 202601, 3, 3, 409, 2, 1),
+(434, 'http://lupopedia.com/craftysyntax/#distribution', 202601, 1, 1, 413, 3, 1),
+(435, 'http://lupopedia.com/system_features.php', 202601, 1, 1, 409, 2, 1),
+(436, 'http://lupopedia.com/what_is_wolfie_headers.php', 202601, 1, 1, 409, 2, 1),
+(437, 'http://lupopedia.com/executive_summary.php', 202601, 1, 1, 409, 2, 1),
+(438, 'http://lupopedia.com/topics.php', 202601, 1, 1, 409, 2, 1),
+(439, 'http://lupopedia.com/privacy.php', 202601, 1, 1, 409, 2, 1),
+(440, 'http://lupopedia.com/support.php', 202601, 12, 12, 409, 2, 1),
+(441, 'http://lupopedia.com/directory.php', 202601, 1, 1, 409, 2, 1),
+(442, 'http://lupopedia.com/channels.php', 202601, 2, 2, 409, 2, 1),
+(443, 'http://lupopedia.com/events.php', 202601, 2, 2, 409, 2, 1),
+(444, 'http://lupopedia.com/browse_collections.php', 202601, 2, 2, 409, 2, 1),
+(445, 'http://lupopedia.com/users.php', 202601, 2, 2, 409, 2, 1),
+(446, 'http://lupopedia.com/login.php', 202601, 2, 2, 409, 2, 1),
+(447, 'http://lupopedia.com/wolfie_ladder', 202601, 2, 2, 409, 2, 1),
+(448, 'http://lupopedia.com/wolfie_ladder?fbclid=IwZXh0bgNhZW0CMTEAc3J0YwZhcHBfaWQMMzUwNjg1NTMxNzI4AAEedih1BFGtRGYOTcsnKIj1idTucYEl_XhfUhT0jEgwbngbl3Wkz57sl1T0SUs_aem_0gN-07gAOLh9Qz-qOQSWKQ', 202601, 0, 0, 447, 3, 1),
+(449, 'http://lupopedia.com?utm_source=poweredby&utm_campaign=poweredby', 202601, 0, 0, 409, 2, 1),
+(450, 'http://lupopedia.com/wolfie_ladder?fbclid=IwZXh0bgNhZW0CMTEAc3J0YwZhcHBfaWQMMzUwNjg1NTMxNzI4AAEedih1BFGtRGYOTcsnKIj1idTucYEl_XhfUhT0jEgwbngbl3Wkz57sl1T0SUs_aem_0gN-07gAOLh9Qz-qOQSWKQ', 202601, 0, 0, 447, 3, 1),
+(451, 'http://lupopedia.com?utm_source=poweredby&utm_campaign=poweredby', 202601, 0, 0, 409, 2, 1),
+(452, 'http://lupopedia.com/agent_profile.php?id=10', 202601, 0, 0, 411, 3, 1),
+(453, 'http://lupopedia.com/agent_profile.php?id=9', 202601, 0, 0, 411, 3, 1),
+(454, 'http://lupopedia.com/craftysyntax/#howto', 202601, 1, 1, 413, 3, 1),
+(455, 'http://lupopedia.com/craftysyntax/#download', 202601, 1, 1, 413, 3, 1),
+(456, 'http://lupopedia.com/index.php', 202601, 5, 5, 409, 2, 1),
+(457, 'http://lupopedia.com/craftysyntax/#news', 202601, 3, 3, 413, 3, 1),
+(458, 'http://lupopedia.com/agent_profile.php?id=10', 202601, 0, 0, 411, 3, 1),
+(459, 'http://lupopedia.com/craftysyntax/lupopedia.php', 202601, 1, 1, 413, 3, 1),
+(460, 'http://lupopedia.com/agent_profile.php?id=69', 202601, 0, 0, 411, 3, 1),
+(461, 'http://lupopedia.com/agent_profile.php?id=10', 202601, 0, 0, 411, 3, 1),
+(462, 'http://lupopedia.com/craftysyntax/#challenge', 202601, 2, 2, 413, 3, 1),
+(463, 'http://collaborativepages.com/what_are_wolfie_headers.php', 202601, 2, 2, 422, 2, 1),
+(464, 'http://lupopedia.com/members.php', 202601, 1, 1, 409, 2, 1),
+(465, 'http://lupopedia.com/questions.php?tab=what&search=mobile', 202601, 0, 0, 419, 3, 1),
+(466, 'http://collaborativepages.com/who_is_wolfie.php', 202601, 1, 1, 422, 2, 1),
+(467, 'http://lupopedia.com/account.php', 202601, 2, 2, 409, 2, 1),
+(468, 'http://lupopedia.com/account.php?v=3.7.5&d=&h=cripto2029.com', 202601, 0, 0, 467, 3, 1),
+(469, 'http://lupopedia.com?utm_source=poweredby&utm_campaign=poweredby', 202601, 0, 0, 409, 2, 1),
+(470, 'http://lupopedia.com/craftysyntax/#innovations', 202601, 1, 1, 413, 3, 1),
 (471, 'http://lupopedia.com/support.php?v=3.7.5&d=&h=www.abol.us', 202601, 0, 0, 440, 3, 1),
 (472, 'http://lupopedia.com/craftysyntax/#legacy', 202601, 1, 1, 413, 3, 1),
 (473, 'http://lupopedia.com/goopers', 202601, 1, 1, 409, 2, 1),
@@ -4558,7 +4558,6 @@ INSERT INTO `livehelp_visits_monthly` (`recno`, `pageurl`, `dateof`, `levelvisit
 (507, 'http://lupopedia.com/agent_profile.php?id=3', 202602, 0, 0, 498, 3, 1),
 (508, 'http://lupopedia.com/craftysyntax_changelog.php', 202602, 1, 1, 494, 2, 1),
 (509, 'http://lupopedia.com/agent_profile.php?id=16', 202602, 0, 0, 498, 3, 1),
-(517, 'http://collaborativepages.com/agent_profile.php', 202602, 4, 4, 503, 2, 1),
 (510, 'http://lupopedia.com/what_is_wolfie_headers.php', 202602, 2, 2, 494, 2, 1),
 (511, 'http://lupopedia.com/content.php', 202602, 11, 11, 494, 2, 1),
 (512, 'http://lupopedia.com/content.php?id=1', 202602, 0, 0, 511, 3, 1),
@@ -4566,10 +4565,10 @@ INSERT INTO `livehelp_visits_monthly` (`recno`, `pageurl`, `dateof`, `levelvisit
 (514, 'http://lupopedia.com/who_is_eric.php', 202602, 1, 1, 494, 2, 1),
 (515, 'http://lupopedia.com/content.php?id=7', 202602, 0, 0, 511, 3, 1),
 (516, 'http://lupopedia.com/content.php?id=4&referingtable=sot_how&refering_id=4', 202602, 0, 0, 511, 3, 1),
+(517, 'http://collaborativepages.com/agent_profile.php', 202602, 4, 4, 503, 2, 1),
 (518, 'http://collaborativepages.com/agent_profile.php?id=75', 202602, 0, 0, 517, 3, 1),
 (519, 'http://lupopedia.com/what_is_the_lupopedia_dialog_system.php', 202602, 1, 1, 494, 2, 1),
 (520, 'http://lupopedia.com/content.php?id=2', 202602, 0, 0, 511, 3, 1),
-(530, 'http://lupopedia.com/craftysyntax/lupopedia.php', 202602, 4, 4, 529, 3, 1),
 (521, 'http://lupopedia.com/what_is_lupopedia.php', 202602, 1, 1, 494, 2, 1),
 (522, 'http://lupopedia.com/wolfie_ladder', 202602, 2, 2, 494, 2, 1),
 (523, 'http://lupopedia.com/index.php', 202602, 8, 8, 494, 2, 1),
@@ -4579,9 +4578,9 @@ INSERT INTO `livehelp_visits_monthly` (`recno`, `pageurl`, `dateof`, `levelvisit
 (527, 'http://lupopedia.com/craftysyntax/#news', 202602, 1, 1, 495, 3, 1),
 (528, 'http://lupopedia.com/messages.php', 202602, 2, 2, 494, 2, 1),
 (529, 'http://lupopedia.com/craftysyntax', 202602, 18, 14, 494, 2, 1),
+(530, 'http://lupopedia.com/craftysyntax/lupopedia.php', 202602, 4, 4, 529, 3, 1),
 (531, 'http://collaborativepages.com/agent_profile.php?id=8', 202602, 0, 0, 517, 3, 1),
 (532, 'http://collaborativepages.com/index.php?desktop=1', 202602, 0, 0, 525, 3, 1),
-(541, 'http://lupopedia.com/goopers', 202602, 1, 1, 494, 2, 1),
 (533, 'http://collaborativepages.com/agent_profile.php?id=75', 202602, 0, 0, 517, 3, 1),
 (534, 'http://collaborativepages.com/crafty_syntax_evolved.php', 202602, 1, 1, 503, 2, 1),
 (535, 'http://lupopedia.com/channels.php', 202602, 1, 1, 494, 2, 1),
@@ -4590,6 +4589,7 @@ INSERT INTO `livehelp_visits_monthly` (`recno`, `pageurl`, `dateof`, `levelvisit
 (538, 'http://lupopedia.com/index.php?desktop=1', 202602, 0, 0, 523, 3, 1),
 (539, 'http://lupopedia.com/index.php?desktop=1', 202602, 0, 0, 523, 3, 1),
 (540, 'http://lupopedia.com/search.php', 202602, 1, 1, 494, 2, 1),
+(541, 'http://lupopedia.com/goopers', 202602, 1, 1, 494, 2, 1),
 (542, 'http://lupopedia.com/wolfie_ladder?fbclid=IwZXh0bgNhZW0CMTEAc3J0YwZhcHBfaWQKNjYyODU2ODM3OQABHrrjWiqkfZhk8neZUtJr9_4sPheyi-ntEKJZm3CAYn_yTEelGJ2gdXDIZmkN_aem_lPffrVtDcK4crkD08FHS6g', 202602, 0, 0, 522, 3, 1),
 (543, 'http://collaborativepages.com/agent_profile.php?id=75', 202602, 0, 0, 517, 3, 1),
 (544, 'http://lupopedia.com/planfor_next_version_craftysyntax.php', 202602, 1, 1, 494, 2, 1);
@@ -4601,24 +4601,24 @@ INSERT INTO `livehelp_visits_monthly` (`recno`, `pageurl`, `dateof`, `levelvisit
 --
 
 CREATE TABLE `livehelp_visit_track` (
-  `recno` int(10) NOT NULL,
-  `livehelp_id` bigint(20) UNSIGNED NOT NULL DEFAULT 1,
-  `sessionid` varchar(40) NOT NULL DEFAULT '0',
-  `location` varchar(255) NOT NULL DEFAULT '',
-  `page` bigint(14) NOT NULL DEFAULT 0,
-  `title` varchar(100) NOT NULL DEFAULT '',
-  `whendone` bigint(14) NOT NULL DEFAULT 0,
-  `referrer` varchar(255) NOT NULL DEFAULT ''
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+  `recno` int NOT NULL,
+  `livehelp_id` bigint UNSIGNED NOT NULL DEFAULT '1',
+  `sessionid` varchar(40) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '0',
+  `location` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `page` bigint NOT NULL DEFAULT '0',
+  `title` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `whendone` bigint NOT NULL DEFAULT '0',
+  `referrer` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT ''
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='DEPRECATED: Ephemeral session tracking. Not imported into lupo_visits. Safe to delete after migration.';
 
 --
 -- Dumping data for table `livehelp_visit_track`
 --
 
 INSERT INTO `livehelp_visit_track` (`recno`, `livehelp_id`, `sessionid`, `location`, `page`, `title`, `whendone`, `referrer`) VALUES
-(5441, 1, '9814d9bc3980e71bfd7056a62c70b69d', 'http://lupopedia.com/?fbclid=IwZXh0bgNhZW0CMTEAc3J0YwZhcHBfaWQMMjU2MjgxMDQwNTU4AAEeUybZ3PP7HCqGNcvmXQ4mAdInEOga51Fk_ePYAjATD-Bgwhc7cETplA_7nS0_aem_GB6t-AcCkLKaZUZmfo0gWQ', 1, 'Lupopedia  Human-Powered Knowledge   Empathetic AI', 20260212143629, 'http://www.facebook.com/'),
-(5440, 1, '8a8366ab7acae5b78fef93cd5e27c0ab', 'http://lupopedia.com/?fbclid=IwZXh0bgNhZW0CMTEAc3J0YwZhcHBfaWQMMjU2MjgxMDQwNTU4AAEerpL3gGVdL2L-x32cw4M0h46Pasbr6AeNBTzctMu-5ZKRtHiWQPqodwutm5c_aem_osrcKoexYe_Gns9DQjv2rA', 1, 'Lupopedia  Human-Powered Knowledge   Empathetic AI', 20260212133016, 'http://www.facebook.com/'),
 (5439, 1, '62a44f10cca498e4aee90917c6886559', 'http://lupopedia.com/?fbclid=IwZXh0bgNhZW0CMTEAc3J0YwZhcHBfaWQMMjU2MjgxMDQwNTU4AAEe-rZXIc29-gkdgGbXmB8PdVVJrpUox_7N0cAgFATDiy1WXCu2I2cqfwobhU8_aem_Dg2k-gs5Jha5XIoYv5gf9Q', 1, 'Lupopedia  Human-Powered Knowledge   Empathetic AI', 20260212121256, 'http://www.facebook.com/'),
+(5440, 1, '8a8366ab7acae5b78fef93cd5e27c0ab', 'http://lupopedia.com/?fbclid=IwZXh0bgNhZW0CMTEAc3J0YwZhcHBfaWQMMjU2MjgxMDQwNTU4AAEerpL3gGVdL2L-x32cw4M0h46Pasbr6AeNBTzctMu-5ZKRtHiWQPqodwutm5c_aem_osrcKoexYe_Gns9DQjv2rA', 1, 'Lupopedia  Human-Powered Knowledge   Empathetic AI', 20260212133016, 'http://www.facebook.com/'),
+(5441, 1, '9814d9bc3980e71bfd7056a62c70b69d', 'http://lupopedia.com/?fbclid=IwZXh0bgNhZW0CMTEAc3J0YwZhcHBfaWQMMjU2MjgxMDQwNTU4AAEeUybZ3PP7HCqGNcvmXQ4mAdInEOga51Fk_ePYAjATD-Bgwhc7cETplA_7nS0_aem_GB6t-AcCkLKaZUZmfo0gWQ', 1, 'Lupopedia  Human-Powered Knowledge   Empathetic AI', 20260212143629, 'http://www.facebook.com/'),
 (5442, 1, '3eb0d066e4a52c45add6643245841a63', 'http://www.collaborativepages.com/', 1, 'Lupopedia  Human-Powered Knowledge   Empathetic AI', 20260212154045, 'http://');
 
 -- --------------------------------------------------------
@@ -4628,12 +4628,12 @@ INSERT INTO `livehelp_visit_track` (`recno`, `livehelp_id`, `sessionid`, `locati
 --
 
 CREATE TABLE `livehelp_websites` (
-  `id` int(11) NOT NULL,
-  `livehelp_id` bigint(20) UNSIGNED NOT NULL DEFAULT 1,
-  `site_name` varchar(45) NOT NULL,
-  `site_url` varchar(255) NOT NULL,
-  `defaultdepartment` int(8) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+  `id` int NOT NULL,
+  `livehelp_id` bigint UNSIGNED NOT NULL DEFAULT '1',
+  `site_name` varchar(45) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `site_url` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `defaultdepartment` int NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='DEPRECATED: Only retained for migration. If something fails and you need to re-run the conversion, this table may be referenced. This table is NOT part of Lupopedia/Crafty Syntax as of version 3.0.0 and should be deleted after successful migration.';
 
 --
 -- Dumping data for table `livehelp_websites`
@@ -4964,187 +4964,187 @@ ALTER TABLE `livehelp_websites`
 -- AUTO_INCREMENT for table `livehelp_autoinvite`
 --
 ALTER TABLE `livehelp_autoinvite`
-  MODIFY `idnum` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `idnum` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `livehelp_channels`
 --
 ALTER TABLE `livehelp_channels`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
 
 --
 -- AUTO_INCREMENT for table `livehelp_departments`
 --
 ALTER TABLE `livehelp_departments`
-  MODIFY `recno` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `recno` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `livehelp_emailque`
 --
 ALTER TABLE `livehelp_emailque`
-  MODIFY `id` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `livehelp_emails`
 --
 ALTER TABLE `livehelp_emails`
-  MODIFY `id` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `livehelp_identity_daily`
 --
 ALTER TABLE `livehelp_identity_daily`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=85;
+  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=85;
 
 --
 -- AUTO_INCREMENT for table `livehelp_identity_monthly`
 --
 ALTER TABLE `livehelp_identity_monthly`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `livehelp_keywords_daily`
 --
 ALTER TABLE `livehelp_keywords_daily`
-  MODIFY `recno` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `recno` int NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `livehelp_keywords_monthly`
 --
 ALTER TABLE `livehelp_keywords_monthly`
-  MODIFY `recno` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `recno` int NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `livehelp_leads`
 --
 ALTER TABLE `livehelp_leads`
-  MODIFY `id` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `livehelp_leavemessage`
 --
 ALTER TABLE `livehelp_leavemessage`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
 
 --
 -- AUTO_INCREMENT for table `livehelp_messages`
 --
 ALTER TABLE `livehelp_messages`
-  MODIFY `id_num` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
+  MODIFY `id_num` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
 
 --
 -- AUTO_INCREMENT for table `livehelp_modules`
 --
 ALTER TABLE `livehelp_modules`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `livehelp_modules_dep`
 --
 ALTER TABLE `livehelp_modules_dep`
-  MODIFY `rec` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+  MODIFY `rec` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- AUTO_INCREMENT for table `livehelp_operator_channels`
 --
 ALTER TABLE `livehelp_operator_channels`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `livehelp_operator_departments`
 --
 ALTER TABLE `livehelp_operator_departments`
-  MODIFY `recno` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `recno` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `livehelp_operator_history`
 --
 ALTER TABLE `livehelp_operator_history`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=348;
+  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=348;
 
 --
 -- AUTO_INCREMENT for table `livehelp_paths_firsts`
 --
 ALTER TABLE `livehelp_paths_firsts`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1011;
+  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1011;
 
 --
 -- AUTO_INCREMENT for table `livehelp_paths_monthly`
 --
 ALTER TABLE `livehelp_paths_monthly`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1312;
+  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1312;
 
 --
 -- AUTO_INCREMENT for table `livehelp_qa`
 --
 ALTER TABLE `livehelp_qa`
-  MODIFY `recno` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `recno` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `livehelp_questions`
 --
 ALTER TABLE `livehelp_questions`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `livehelp_quick`
 --
 ALTER TABLE `livehelp_quick`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `livehelp_referers_daily`
 --
 ALTER TABLE `livehelp_referers_daily`
-  MODIFY `recno` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=497;
+  MODIFY `recno` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=497;
 
 --
 -- AUTO_INCREMENT for table `livehelp_referers_monthly`
 --
 ALTER TABLE `livehelp_referers_monthly`
-  MODIFY `recno` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=152;
+  MODIFY `recno` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=152;
 
 --
 -- AUTO_INCREMENT for table `livehelp_smilies`
 --
 ALTER TABLE `livehelp_smilies`
-  MODIFY `smilies_id` smallint(5) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
+  MODIFY `smilies_id` smallint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
 
 --
 -- AUTO_INCREMENT for table `livehelp_transcripts`
 --
 ALTER TABLE `livehelp_transcripts`
-  MODIFY `recno` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `recno` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `livehelp_users`
 --
 ALTER TABLE `livehelp_users`
-  MODIFY `user_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2229;
+  MODIFY `user_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2229;
 
 --
 -- AUTO_INCREMENT for table `livehelp_visits_daily`
 --
 ALTER TABLE `livehelp_visits_daily`
-  MODIFY `recno` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1876;
+  MODIFY `recno` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1876;
 
 --
 -- AUTO_INCREMENT for table `livehelp_visits_monthly`
 --
 ALTER TABLE `livehelp_visits_monthly`
-  MODIFY `recno` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=545;
+  MODIFY `recno` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=545;
 
 --
 -- AUTO_INCREMENT for table `livehelp_visit_track`
 --
 ALTER TABLE `livehelp_visit_track`
-  MODIFY `recno` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5443;
+  MODIFY `recno` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5443;
 
 --
 -- AUTO_INCREMENT for table `livehelp_websites`
 --
 ALTER TABLE `livehelp_websites`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

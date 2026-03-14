@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "channels\42\threads\DEVELOPMENT_CYCLE_4_0_43\20260224163100_1002_10000_database_optimization_recommendations_4_0_43.md"
+  file_path_from_root: "lupo-channels\42\threads\DEVELOPMENT_CYCLE_4_0_43\20260224163100_1002_10000_database_optimization_recommendations_4_0_43.md"
   file_hash: "828ca13760356c9745d927503e79f61c108cfa69ca2e70812a5a670d14714e0c"
-  file_path_from_root: "channels\42\threads\DEVELOPMENT_CYCLE_4_0_43\20260224163100_1002_10000_database_optimization_recommendations_4_0_43.md"
+  file_path_from_root: "lupo-channels\42\threads\DEVELOPMENT_CYCLE_4_0_43\20260224163100_1002_10000_database_optimization_recommendations_4_0_43.md"
   file_hash: "ac4a49888332f753663ba0bb7c28a2ba276ef048bba59449b63031171e7dbcf5"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -72,7 +72,7 @@ windsurf.headers: {
 }
 flip.footer: {
   outbound_edges: [
-    { to: "database/migrations/install_new_lupopedia.sql", type: "references", weight: 1.0 }
+    { to: "lupo-database/migrations/install_new_lupopedia.sql", type: "references", weight: 1.0 }
   ],
   semantic_tags: ["optimization", "database_schema", "table_ceiling"]
 }
@@ -136,8 +136,8 @@ wWindsurf: Import table verification and importer alignment complete. install_ne
 ### Files Updated
 
 #### Database Schema
-- `database/migrations/install_new_lupopedia.sql` - Schema definitions
-- `database/migrations/seed_lupopedia_comprehensive.sql` - Seed data
+- `lupo-database/migrations/install_new_lupopedia.sql` - Schema definitions
+- `lupo-database/migrations/seed_lupopedia_comprehensive.sql` - Seed data
 
 #### PHP Code
 - `lupo-includes/modules/actors/actors-controller.php` - Actor metadata handling
@@ -145,7 +145,7 @@ wWindsurf: Import table verification and importer alignment complete. install_ne
 - `lupo-includes/schema-config.php` - Schema configuration
 
 #### Documentation
-- `docs/doctrine/FLIP/headers/UNIVERSAL_ID_TOON_MAP.md` - Table mappings
+- `lupo-docs/doctrine/FLIP/headers/UNIVERSAL_ID_TOON_MAP.md` - Table mappings
 
 ### Importer Updates Required
 

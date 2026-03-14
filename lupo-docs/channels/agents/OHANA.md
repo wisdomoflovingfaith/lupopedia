@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\channels\agents\OHANA.md"
+  file_path_from_root: "lupo-docs\channels\agents\OHANA.md"
   file_hash: "5336307b27f7776c7af28964db020608cffa5facd63160b65080c01d8d9513bd"
-  file_path_from_root: "docs\channels\agents\OHANA.md"
+  file_path_from_root: "lupo-docs\channels\agents\OHANA.md"
   file_hash: "7b6d531037acf957b81ef94462a57d8556b7ad23985c64dbac16ed610ec00f47"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -140,7 +140,7 @@ OHANA (Hawaiian: "family") is the agent that catalogs, lists, and provides infor
 
 **Reference Data:**
 - `config/global_atoms.yaml` - `GLOBAL_LUPOPEDIA_V3_0_2_CORE_AGENTS`
-- `docs/agents/` - Agent documentation
+- `lupo-docs/agents/` - Agent documentation
 - `lupo-agents/` - Agent implementation directories
 
 ## Query Examples
@@ -231,7 +231,7 @@ OHANA should output structured, human-readable lists:
 
 - **Agent Registry** - Primary data source (`lupo_agents` table)
 - **Global Atoms** - Reference `GLOBAL_LUPOPEDIA_V3_0_2_CORE_AGENTS`
-- **Agent Documentation** - Link to `docs/agents/[agent].md` files
+- **Agent Documentation** - Link to `lupo-docs/agents/[agent].md` files
 - **Dialog System** - Can be queried via dialog messages
 
 ## Related Agents

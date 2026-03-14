@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\channels\doctrine\GOV-LILITH-0001_dreaming_overlay.md"
+  file_path_from_root: "lupo-docs\channels\doctrine\GOV-LILITH-0001_dreaming_overlay.md"
   file_hash: "8df3fce95426a4608b1492575e057323252e967f2a071ae431fa32c5da513c1a"
-  file_path_from_root: "docs\channels\doctrine\GOV-LILITH-0001_dreaming_overlay.md"
+  file_path_from_root: "lupo-docs\channels\doctrine\GOV-LILITH-0001_dreaming_overlay.md"
   file_hash: "0b1d8cf9d401aa967b98def116db314837911b0bc36eee822dc11fde9af9163d"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -157,6 +157,6 @@ Narrative reinterpretation is allowed **without** modifying historical GOV rows:
 
 ## 6. Relation to Other Doctrine
 
-- **It from GOV** (`docs/governance/it_from_gov.md`): block model; Dreaming Overlay is an optional layer on top.
-- **GOV-FOUNDATIONS** (`docs/doctrine/GOV-FOUNDATIONS.md`): Block model = structural; Dreaming = interpretive.
+- **It from GOV** (`lupo-docs/governance/it_from_gov.md`): block model; Dreaming Overlay is an optional layer on top.
+- **GOV-FOUNDATIONS** (`lupo-docs/doctrine/GOV-FOUNDATIONS.md`): Block model = structural; Dreaming = interpretive.
 - **NO_FOREIGN_KEYS_DOCTRINE, NO_TRIGGERS_DOCTRINE, etc.:** Unchanged. This doctrine does not introduce schema, FKs, or triggers.

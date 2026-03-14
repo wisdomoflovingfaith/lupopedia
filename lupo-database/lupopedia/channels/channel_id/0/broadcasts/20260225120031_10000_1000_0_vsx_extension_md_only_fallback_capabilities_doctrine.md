@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "channels\0\broadcasts\20260225120031_10000_1000_0_vsx_extension_md_only_fallback_capabilities_doctrine.md"
+  file_path_from_root: "lupo-channels\0\broadcasts\20260225120031_10000_1000_0_vsx_extension_md_only_fallback_capabilities_doctrine.md"
   file_hash: "49173353cfa4fd7073631f9a894e1b122f8433088b33bb572948faad6db96f76"
-  file_path_from_root: "channels\0\broadcasts\20260225120031_10000_1000_0_vsx_extension_md_only_fallback_capabilities_doctrine.md"
+  file_path_from_root: "lupo-channels\0\broadcasts\20260225120031_10000_1000_0_vsx_extension_md_only_fallback_capabilities_doctrine.md"
   file_hash: "cf97984b4aea8e760555968e10aa0ea16aad8245f612ce34068ef8aea159214b"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -80,7 +80,7 @@ The Lupopedia VSX Extension (VS Code / Open-VSX) provides full offline operation
 
 ## Extension Location
 
-**Path:** `tools/vsx-extension/`
+**Path:** `lupo-tools/vsx-extension/`
 
 **Publisher:** `lupopedia` (Eclipse Foundation verified)
 
@@ -91,12 +91,12 @@ The Lupopedia VSX Extension (VS Code / Open-VSX) provides full offline operation
 ## Core Capabilities
 
 ### 1. MD-Only Registry Loader
-- Scans `docs/AGENT_INVENTORY.md` for actor_id and lupo_agent mappings
+- Scans `lupo-docs/AGENT_INVENTORY.md` for actor_id and lupo_agent mappings
 - Merges with legacy `lupo_agents.toon.json` to build internal actor cache
 - Enables actor identification without database connection
 
 ### 2. MD-Only Channel Discovery
-- Recursively scans `messages/`, `docs/channels/`, and `channels/` directories
+- Recursively scans `messages/`, `lupo-docs/channels/`, and `lupo-channels/` directories
 - Identifies active channel threads from filesystem
 - Supports offline channel navigation
 
@@ -104,7 +104,7 @@ The Lupopedia VSX Extension (VS Code / Open-VSX) provides full offline operation
 - Extracts both FLIP header and footer YAML blocks
 - Parses `referenced_by_files`, `inbound_edges`, `referenced_by_actors`
 - Supports graph-critical metadata extraction
-- File: `tools/vsx-extension/src/lupopedia/flip.ts`
+- File: `lupo-tools/vsx-extension/src/lupopedia/flip.ts`
 
 ### 4. DB-Offline Fallback Detection
 - Automatic mode switching: `online` → `hybrid` → `offline`
@@ -145,7 +145,7 @@ The Lupopedia VSX Extension (VS Code / Open-VSX) provides full offline operation
 ### md_only
 - Database offline
 - Extension runs entirely from MD files
-- Registry loaded from `docs/AGENT_INVENTORY.md`
+- Registry loaded from `lupo-docs/AGENT_INVENTORY.md`
 - Channel discovery via filesystem scan
 - No database writes
 
@@ -180,20 +180,20 @@ Settings available in VS Code:
 
 ## Files Modified by Antigravity
 
-- `tools/vsx-extension/src/lupopedia/actor.ts` — Registry fallback
-- `tools/vsx-extension/src/lupopedia/channels.ts` — Channel discovery
-- `tools/vsx-extension/src/lupopedia/flip.ts` — Unified metadata parser
-- `tools/vsx-extension/src/extension.ts` — Status API & mode toggling
-- `tools/vsx-extension/package.json` — Publisher verification & commands
+- `lupo-tools/vsx-extension/src/lupopedia/actor.ts` — Registry fallback
+- `lupo-tools/vsx-extension/src/lupopedia/channels.ts` — Channel discovery
+- `lupo-tools/vsx-extension/src/lupopedia/flip.ts` — Unified metadata parser
+- `lupo-tools/vsx-extension/src/extension.ts` — Status API & mode toggling
+- `lupo-tools/vsx-extension/package.json` — Publisher verification & commands
 
 ## Python Audit Tool
 
-**Path:** `scripts/flip_header_audit.py`
+**Path:** `lupo-scripts/flip_header_audit.py`
 
 **Purpose:** FLIP header validation and offline navigation generation
 
 **Features:**
-- Scans `docs/doctrine/`, `docs/api/`, `docs/specs/`
+- Scans `lupo-docs/doctrine/`, `lupo-docs/api/`, `lupo-docs/specs/`
 - Validates required FLIP header fields
 - Generates `exports/flip_navigation.json` for offline mode
 - Creates validation reports in `exports/flip_validation_report.md`
@@ -219,7 +219,7 @@ During 4.0.43 development cycle:
 
 Current status queryable via:
 ```bash
-cat docs/status/vsx_extension_status.md
+cat lupo-docs/status/vsx_extension_status.md
 ```
 
 Or via VS Code command:
@@ -236,8 +236,8 @@ Lupopedia: Show Status
 ## Testing
 
 Test reports available:
-- `docs/status/vsx_extension_test_report_4_0_36.md` — All tests passed
-- `docs/status/vsx_extension_test_plan_4_0_36.md` — Test plan
+- `lupo-docs/status/vsx_extension_test_report_4_0_36.md` — All tests passed
+- `lupo-docs/status/vsx_extension_test_plan_4_0_36.md` — Test plan
 
 ## Credits
 
@@ -256,7 +256,7 @@ Test reports available:
 
 <!-- FLIP_FOOTER_BEGIN
 {
-    "references": "\"docs\/status\/broadcast_collection_0.md\"",
+    "references": "\"lupo-docs\/status\/broadcast_collection_0.md\"",
     "implements": "\"broadcast_standardization\"",
     "depends_on": "\"registry_seeding_completion\"",
     "includes": "\"channel_0_communications\"",

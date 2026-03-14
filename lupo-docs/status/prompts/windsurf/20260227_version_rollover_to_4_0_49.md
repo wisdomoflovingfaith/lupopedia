@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "prompts\windsurf\20260227_version_rollover_to_4_0_49.md"
+  file_path_from_root: "lupo-prompts\windsurf\20260227_version_rollover_to_4_0_49.md"
   file_hash: "884cab1dc344df8042b67f6b23b451573778d4396a2d72ddfd13ed65f7ca86a5"
-  file_path_from_root: "prompts\windsurf\20260227_version_rollover_to_4_0_49.md"
+  file_path_from_root: "lupo-prompts\windsurf\20260227_version_rollover_to_4_0_49.md"
   file_hash: "770a4e19ab001bff539f84b84e8e9c0cf22c5c5654b0b93bcabe30c66f5e8a84"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -63,7 +63,7 @@ lupopedia.footer:
 
 ---
 wolfie.headers: {
-  file_path_from_root: "prompts/windsurf/20260227_version_rollover_to_4_0_49.md",
+  file_path_from_root: "lupo-prompts/windsurf/20260227_version_rollover_to_4_0_49.md",
   system_version: "4.0.48",
   channel_id: 42,
   actor_id: 1001,
@@ -75,10 +75,10 @@ wolfie.headers: {
 }
 flip.footer: {
   outbound_edges: [
-    { to: "channels/42/tasks/active/", type: "processes", weight: 0.9 },
+    { to: "lupo-channels/42/tasks/active/", type: "processes", weight: 0.9 },
     { to: "CHANGELOG.md", type: "updates", weight: 0.8 },
     { to: "config/global_atoms.yaml", type: "updates", weight: 0.7 },
-    { to: "channels/42/threads/DEVELOPMENT_CYCLE_4_0_49/", type: "creates", weight: 0.6 }
+    { to: "lupo-channels/42/threads/DEVELOPMENT_CYCLE_4_0_49/", type: "creates", weight: 0.6 }
   ],
   semantic_tags: ["version_rollover", "task_management", "development_cycle", "4.0.49"]
 }
@@ -97,7 +97,7 @@ Executing the Captain's Directive to roll over incomplete tasks from v4.0.48 to 
 
 ## 🔍 Active Tasks Analysis
 
-**Current Active Tasks** (`channels/42/tasks/active/`):
+**Current Active Tasks** (`lupo-channels/42/tasks/active/`):
 1. **legacy_table_optimization_review.md** - Legacy table optimization review
 2. **channels_admin_interface_modernization.md** - Channels web admin interface modernization  
 3. **database_documentation_remaining_tables.md** - Database documentation for remaining tables
@@ -127,7 +127,7 @@ Executing the Captain's Directive to roll over incomplete tasks from v4.0.48 to 
 - ✅ Maintained changelog template standards
 
 ### 4. New Development Thread Creation
-- ✅ Created `channels/42/threads/DEVELOPMENT_CYCLE_4_0_49/`
+- ✅ Created `lupo-channels/42/threads/DEVELOPMENT_CYCLE_4_0_49/`
 - ✅ Generated initialization message with proper FLARE header
 - ✅ Established development cycle context
 

@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\channels\developer\WINDOWS_DEVELOPMENT_ENVIRONMENT.md"
+  file_path_from_root: "lupo-docs\channels\developer\WINDOWS_DEVELOPMENT_ENVIRONMENT.md"
   file_hash: "957acd8052c50625a204ebe1bf9572c2d4ed41b619b35a7140df19da4075501b"
-  file_path_from_root: "docs\channels\developer\WINDOWS_DEVELOPMENT_ENVIRONMENT.md"
+  file_path_from_root: "lupo-docs\channels\developer\WINDOWS_DEVELOPMENT_ENVIRONMENT.md"
   file_hash: "014a90a7fdae46d36a7ea4bf458feb621bca4b4812b5ad9877f92e9a534fa5dc"
   last_updated_utc: "20260228"
   system_version: "4.0.50"

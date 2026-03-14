@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\channels\gov\CHANNEL_DEPRECATION_POLICY.md"
+  file_path_from_root: "lupo-docs\channels\gov\CHANNEL_DEPRECATION_POLICY.md"
   file_hash: "54887bc4799be88f69199d5d673b9b9dc76e43df7fa410d6771edd02b82d9b51"
-  file_path_from_root: "docs\channels\gov\CHANNEL_DEPRECATION_POLICY.md"
+  file_path_from_root: "lupo-docs\channels\gov\CHANNEL_DEPRECATION_POLICY.md"
   file_hash: "7351b84c207fe614ad4ae1aa01bfa999607a32dd133a8f88814fde261364f40c"
   last_updated_utc: "20260228"
   system_version: "4.0.50"

@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\doctrine\DEVELOPMENT_WORKFLOW_DOCTRINE.md"
+  file_path_from_root: "lupo-docs\doctrine\DEVELOPMENT_WORKFLOW_DOCTRINE.md"
   file_hash: "16197bb2afea0a76e288ed7da21d680bef303851fbbfda398c5c93d3b62e06f9"
-  file_path_from_root: "docs\doctrine\DEVELOPMENT_WORKFLOW_DOCTRINE.md"
+  file_path_from_root: "lupo-docs\doctrine\DEVELOPMENT_WORKFLOW_DOCTRINE.md"
   file_hash: "97befbe0eb5bf3c6779a46e593156ac64ac092aacd5ce21e56d5b2889ff7e7ad"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -64,7 +64,7 @@ lupopedia.footer:
 ---
 # FLIP Header (alias: Wolfie Header, CROP Header, FLIPPING Header)
 wolfie.headers: explicit architecture with structured clarity for every file.
-file_path_from_root: docs/doctrine/DEVELOPMENT_WORKFLOW_DOCTRINE.md
+file_path_from_root: lupo-docs/doctrine/DEVELOPMENT_WORKFLOW_DOCTRINE.md
 file.last_modified_system_version: "4.0.16"
 file.last_modified_utc: "20260218000000"
 channel_id: 42   # ANUBIS adoption channel
@@ -74,7 +74,7 @@ atoms:
   recovery_event: true
 X-Lupo-Actor-ID: 2035
 X-Lupo-Actor-Identity: "Lupopedia Audit Tool (Auto-Fixed)"
-X-Lupo-File-Path: docs/doctrine/DEVELOPMENT_WORKFLOW_DOCTRINE.md
+X-Lupo-File-Path: lupo-docs/doctrine/DEVELOPMENT_WORKFLOW_DOCTRINE.md
 ---
 
 # Development Workflow Doctrine
@@ -92,7 +92,7 @@ During development and testing, the workflow is routinely:
 1. **Drop** all tables in the database  
 2. **Load** the 34 legacy Crafty Syntax 3.7.5 tables (from `old_crafty_syntax_3_7_5.sql`)  
 3. **Load** the old Crafty Syntax `config.php` (so the wizard can detect upgrade)  
-4. **Run** the Lupopedia install/upgrade wizard  
+4. **Run** the Lupopedia lupo-install/upgrade wizard  
 5. **Verify** the full upgrade path  
 6. **Test** Lupopedia  
 7. **Make changes**  
@@ -104,7 +104,7 @@ Assume this workflow is used constantly during development. The wizard and all t
 
 ## 2. Canonical Starting Point: `old_crafty_syntax_3_7_5.sql`
 
-The file **`old_crafty_syntax_3_7_5.sql`** (in `database/migrations/` or as specified in project layout) contains the exact **34 legacy Crafty Syntax tables**.
+The file **`old_crafty_syntax_3_7_5.sql`** (in `lupo-database/migrations/` or as specified in project layout) contains the exact **34 legacy Crafty Syntax tables**.
 
 Treat this file as:
 
@@ -134,7 +134,7 @@ Whenever a schema change is made, apply **all** of the following that apply:
 
 Add the change to a one-time development migration, e.g.:
 
-- `database/migrations/dev_YYYYMMDD_description.sql`  
+- `lupo-database/migrations/dev_YYYYMMDD_description.sql`  
 
 Use for: ALTER TABLE, ADD/DROP INDEX, new columns on existing tables. Run once by the developer during the cycle.
 
@@ -142,7 +142,7 @@ Use for: ALTER TABLE, ADD/DROP INDEX, new columns on existing tables. Run once b
 
 Add the **same** change to:
 
-- `database/migrations/install_new_lupopedia.sql`  
+- `lupo-database/migrations/install_new_lupopedia.sql`  
 
 So that fresh installs and every future "drop → load Crafty → run wizard" cycle see the new schema after install.
 
@@ -150,11 +150,11 @@ So that fresh installs and every future "drop → load Crafty → run wizard" cy
 
 Update:
 
-- `database/migrations/seed_lupopedia.sql`  
+- `lupo-database/migrations/seed_lupopedia.sql`  
 
 When the change affects: required seed rows, registry, default channels, actor/agent seed data, or any required post-schema rows.
 
-### D. Wizard (if the change affects install/upgrade flow)
+### D. Wizard (if the change affects lupo-install/upgrade flow)
 
 Update **install.php** (or wizard logic) when the change affects:
 
@@ -167,7 +167,7 @@ Update **install.php** (or wizard logic) when the change affects:
 
 ### Importer SQL
 
-**Never modify** `database/migrations/import_from_old_crafty_syntax.sql` unless **explicitly instructed**. The importer expects the legacy schema exactly as in `old_crafty_syntax_3_7_5_start.sql`.
+**Never modify** `lupo-database/migrations/import_from_old_crafty_syntax.sql` unless **explicitly instructed**. The importer expects the legacy schema exactly as in `old_crafty_syntax_3_7_5_start.sql`.
 
 ---
 
@@ -217,9 +217,9 @@ See **PHP_COMPATIBILITY_AND_MINIMAL_HOSTING_DOCTRINE.md**.
 
 The following documents must explicitly include: **no frameworks, no middleware, no Composer, no DB logic**, **PHP 5.3 → 8.1+ compatibility**, **fallback requirements**, **dual-path schema rules**, and **wizard repeatability**:
 
-- **docs/doctrine/COMPATIBILITY_MATRIX.md**
-- **docs/doctrine/MINIMAL_HOSTING_REQUIREMENTS.md**
-- **docs/doctrine/DEVELOPMENT_WORKFLOW_DOCTRINE.md**
+- **lupo-docs/doctrine/COMPATIBILITY_MATRIX.md**
+- **lupo-docs/doctrine/MINIMAL_HOSTING_REQUIREMENTS.md**
+- **lupo-docs/doctrine/DEVELOPMENT_WORKFLOW_DOCTRINE.md**
 - **.cursorrules**
 
 See COMPATIBILITY_MATRIX §6, MINIMAL_HOSTING_REQUIREMENTS §4, and .cursorrules "ABSOLUTE PROHIBITION" section for the full prohibition lists.

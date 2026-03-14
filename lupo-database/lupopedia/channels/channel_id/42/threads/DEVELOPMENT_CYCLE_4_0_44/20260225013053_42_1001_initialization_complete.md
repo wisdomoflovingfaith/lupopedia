@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "channels\42\threads\DEVELOPMENT_CYCLE_4_0_44\20260225013053_42_1001_initialization_complete.md"
+  file_path_from_root: "lupo-channels\42\threads\DEVELOPMENT_CYCLE_4_0_44\20260225013053_42_1001_initialization_complete.md"
   file_hash: "29821fec7a324a3562e2ffb6ca60e61184559c303c25ca76da23ab1e086a376d"
-  file_path_from_root: "channels\42\threads\DEVELOPMENT_CYCLE_4_0_44\20260225013053_42_1001_initialization_complete.md"
+  file_path_from_root: "lupo-channels\42\threads\DEVELOPMENT_CYCLE_4_0_44\20260225013053_42_1001_initialization_complete.md"
   file_hash: "f9fcb3b51bee524b1c1c0a6c3d8f7bcf9bac6bffa3f0e8441ba17b17a0df75fa"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -62,7 +62,7 @@ lupopedia.footer:
 
 ---
 flip.header: {
-  file_path_from_root: "channels/42/threads/DEVELOPMENT_CYCLE_4_0_44/20260225013053_42_1001_initialization_complete.md",
+  file_path_from_root: "lupo-channels/42/threads/DEVELOPMENT_CYCLE_4_0_44/20260225013053_42_1001_initialization_complete.md",
   actor_id: 1001,
   channel_id: 42,
   system_version: "4.0.44",
@@ -90,7 +90,7 @@ Remediation steps:
   2. Check that all workflow steps completed successfully
   3. Verify all required files were created
   4. Re-run the initialization workflow if needed
-  5. See docs/status/ for detailed audit reports
+  5. See lupo-docs/status/ for detailed audit reports
 - [ERROR] Validator: Validation check failed
 
 Validation check 'thread_metadata' failed: thread.json missing required fields: thread_id, title, type, priority, visibility, created_ymdhis, created_by_actor_id, channel_id
@@ -100,7 +100,7 @@ Remediation steps:
   2. Check that all workflow steps completed successfully
   3. Verify all required files were created
   4. Re-run the initialization workflow if needed
-  5. See docs/status/ for detailed audit reports
+  5. See lupo-docs/status/ for detailed audit reports
 
 ## Important Notes
 
@@ -109,8 +109,8 @@ Remediation steps:
 ## Generated Artifacts
 
 The following artifacts may have been created (check for existence):
-- **Audit Report:** `docs/status/kiro_status_directory_audit_4_0_44.md`
-- **System Log:** `docs/status/kiro_4_0_44_cycle_initialization_log.md`
+- **Audit Report:** `lupo-docs/status/kiro_status_directory_audit_4_0_44.md`
+- **System Log:** `lupo-docs/status/kiro_4_0_44_cycle_initialization_log.md`
 
 ## Recommended Actions
 

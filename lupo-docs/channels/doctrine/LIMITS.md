@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\channels\doctrine\LIMITS.md"
+  file_path_from_root: "lupo-docs\channels\doctrine\LIMITS.md"
   file_hash: "225b4f4772270fb8aeeb56ed5364f51597e9558de377ffbc5d1175a93224f063"
-  file_path_from_root: "docs\channels\doctrine\LIMITS.md"
+  file_path_from_root: "lupo-docs\channels\doctrine\LIMITS.md"
   file_hash: "6c4651d6ace4cd81e13ed1afbbd4c3fe9554dc2daace86a3e115ebcfe5b3ea82"
   last_updated_utc: "20260228"
   system_version: "4.0.50"

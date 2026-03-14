@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\channels\doctrine\EMOTIONAL_DOMAINS_SEVEN_LOVES.md"
+  file_path_from_root: "lupo-docs\channels\doctrine\EMOTIONAL_DOMAINS_SEVEN_LOVES.md"
   file_hash: "8da96b57257987ac15df32c7541d9ee41fce5de1c6f58bc3e6d6ca41a9ad2ba8"
-  file_path_from_root: "docs\channels\doctrine\EMOTIONAL_DOMAINS_SEVEN_LOVES.md"
+  file_path_from_root: "lupo-docs\channels\doctrine\EMOTIONAL_DOMAINS_SEVEN_LOVES.md"
   file_hash: "411b21f167bf09612679f997bfe54d7b31f09d911350c90e6e27f68fb1611a26"
   last_updated_utc: "20260228"
   system_version: "4.0.50"

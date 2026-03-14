@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\channels\overview\VERSION_3_0_60_PLAN.md"
+  file_path_from_root: "lupo-docs\channels\overview\VERSION_3_0_60_PLAN.md"
   file_hash: "cef32b123dbaea7516e789b61101aae1e30c5be1851317ac8a2529d8e8907af1"
-  file_path_from_root: "docs\channels\overview\VERSION_3_0_60_PLAN.md"
+  file_path_from_root: "lupo-docs\channels\overview\VERSION_3_0_60_PLAN.md"
   file_hash: "2d053680b66b13caba0c52ef033d7be56b1e5e006eb9ac57f3e1c97eca9c8ba7"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -146,11 +146,11 @@ Version 3.0.60 is a **stability release** that consolidates all work from 3.0.46
 - [ ] Check for orphaned bridge references
 
 **Bridge Files to Verify:**
-- `docs/doctrine/TEMPORAL_BRIDGE.md`
-- `docs/doctrine/CONTEXT_BRIDGE.md`
-- `docs/doctrine/IDENTITY_BRIDGE.md`
-- `docs/doctrine/PURPOSE_BRIDGE.md`
-- `docs/doctrine/MASTER_BRIDGE.md`
+- `lupo-docs/doctrine/TEMPORAL_BRIDGE.md`
+- `lupo-docs/doctrine/CONTEXT_BRIDGE.md`
+- `lupo-docs/doctrine/IDENTITY_BRIDGE.md`
+- `lupo-docs/doctrine/PURPOSE_BRIDGE.md`
+- `lupo-docs/doctrine/MASTER_BRIDGE.md`
 
 **Database Verification:**
 - Check `lupo_edges` table for bridge relationships
@@ -209,10 +209,10 @@ Version 3.0.60 is a **stability release** that consolidates all work from 3.0.46
 - [ ] Verify all WOLFIE Headers are complete
 
 **Documentation Areas:**
-- `docs/doctrine/` - All doctrine files
-- `docs/bridges/` - All bridge files
-- `docs/agents/` - All agent documentation
-- `docs/migrations/` - All migration notes
+- `lupo-docs/doctrine/` - All doctrine files
+- `lupo-docs/bridges/` - All bridge files
+- `lupo-docs/agents/` - All agent documentation
+- `lupo-docs/migrations/` - All migration notes
 - `dialogs/` - All dialog files
 - Root documentation files
 
@@ -236,7 +236,7 @@ Version 3.0.60 is a **stability release** that consolidates all work from 3.0.46
 **Objective:** Prepare folder structure for 3.1.0 Ascent Manifest execution.
 
 **Tasks:**
-- [ ] Create dedicated folder for Ascent Manifest: `docs/ascent/`
+- [ ] Create dedicated folder for Ascent Manifest: `lupo-docs/ascent/`
 - [ ] Add stub file for each of the four Big Rocks
 - [ ] Add README explaining 3.1.0 goals
 - [ ] Prepare structure for Monday execution
@@ -245,7 +245,7 @@ Version 3.0.60 is a **stability release** that consolidates all work from 3.0.46
 
 **Folder Structure:**
 ```
-docs/ascent/
+lupo-docs/ascent/
 ├── README.md (3.1.0 overview)
 ├── 01_HISTORY_RECONCILIATION.md (stub)
 ├── 02_DIALOG_MIGRATION.md (stub)
@@ -287,7 +287,7 @@ docs/ascent/
 
 **Folder Structure:**
 ```
-docs/history/
+lupo-docs/history/
 ├── HISTORY_INDEX.md
 ├── 1996-2014/
 │   ├── README.md (Active Period overview)

@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\channels\architecture\kip\KIP_CIP_INTEROPERABILITY_GUIDELINES.md"
+  file_path_from_root: "lupo-docs\channels\architecture\kip\KIP_CIP_INTEROPERABILITY_GUIDELINES.md"
   file_hash: "8f02ee9a78cb122e577a5515b3eee698a0405783aa1d6bbefd3de66781b90d44"
-  file_path_from_root: "docs\channels\architecture\kip\KIP_CIP_INTEROPERABILITY_GUIDELINES.md"
+  file_path_from_root: "lupo-docs\channels\architecture\kip\KIP_CIP_INTEROPERABILITY_GUIDELINES.md"
   file_hash: "dea956072fd4c301d29d4c8b5660ae5d4a6529f9e086b612b0a15a2476d6e961"
   last_updated_utc: "20260228"
   system_version: "4.0.50"

@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "prompts\DEPRECATED_README.md"
+  file_path_from_root: "lupo-prompts\DEPRECATED_README.md"
   file_hash: "bb41597cf8621d26aac7b86e44d63aafbf6f9eccc9225c93567e9434dc2d205c"
-  file_path_from_root: "prompts\DEPRECATED_README.md"
+  file_path_from_root: "lupo-prompts\DEPRECATED_README.md"
   file_hash: "182b5f8cf0a9588a963e9a77bffb06d75ce5be80a4ad4af7ea3e0e81cdefb74b"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -71,7 +71,7 @@ lupopedia.footer:
 The `/prompts/` root directory has been deprecated in favor of per-channel actor workspaces. All agent working files have been migrated to:
 
 ```
-channels/{channel_id}/actors/{actor_id}/
+lupo-channels/{channel_id}/actors/{actor_id}/
 ```
 
 ## Why?
@@ -85,18 +85,18 @@ The old `/prompts/` structure caused:
 ## New Structure
 
 **Channel 0 (System Kernel):**
-- `channels/0/actors/1/` - WOLFIE AI
-- `channels/0/actors/3/` - ROSE
-- `channels/0/actors/4/` - ERIS
-- `channels/0/actors/5/` - METIS
+- `lupo-channels/0/actors/1/` - WOLFIE AI
+- `lupo-channels/0/actors/3/` - ROSE
+- `lupo-channels/0/actors/4/` - ERIS
+- `lupo-channels/0/actors/5/` - METIS
 
 **Channel 42 (Development):**
-- `channels/42/actors/1000/` - KIRO IDE
-- `channels/42/actors/1001/` - Windsurf IDE
-- `channels/42/actors/1002/` - Cursor IDE
-- `channels/42/actors/1003/` - Antigravity IDE
-- `channels/42/actors/2/` - LILITH
-- `channels/42/actors/10000/` - Captain
+- `lupo-channels/42/actors/1000/` - KIRO IDE
+- `lupo-channels/42/actors/1001/` - Windsurf IDE
+- `lupo-channels/42/actors/1002/` - Cursor IDE
+- `lupo-channels/42/actors/1003/` - Antigravity IDE
+- `lupo-channels/42/actors/2/` - LILITH
+- `lupo-channels/42/actors/10000/` - Captain
 
 ## Historical Files
 
@@ -115,7 +115,7 @@ All files have been COPIED (not moved) to preserve history. Original files remai
 
 Use the per-channel actor workspace structure:
 ```bash
-channels/{channel_id}/actors/{actor_id}/your_file.md
+lupo-channels/{channel_id}/actors/{actor_id}/your_file.md
 ```
 
 ---

@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "channels\0\tasks\active\20260226000000_task_0_10000_primary_install_upgrade_4_0_46.md"
+  file_path_from_root: "lupo-channels\0\tasks\active\20260226000000_task_0_10000_primary_install_upgrade_4_0_46.md"
   file_hash: "2248a9e303263defc841143a7560f7bf6d6a42eb31c8c6567c878424a2a39524"
-  file_path_from_root: "channels\0\tasks\active\20260226000000_task_0_10000_primary_install_upgrade_4_0_46.md"
+  file_path_from_root: "lupo-channels\0\tasks\active\20260226000000_task_0_10000_primary_install_upgrade_4_0_46.md"
   file_hash: "b1baf908ddb0fbbda9c4a6a6d8f1c303aa9b659d9914ab076ab08ac555308a64"
   last_updated_utc: "20260228"
   system_version: "4.0.73"
@@ -69,13 +69,13 @@ status: "active"
 priority: "critical"
 created_utc: "20260226000000"
 delegation_chain: "10000"
-prompt_path: "channels/0/tasks/active/20260226000000_task_0_10000_primary_install_upgrade_4_0_46.md"
+prompt_path: "lupo-channels/0/tasks/active/20260226000000_task_0_10000_primary_install_upgrade_4_0_46.md"
 depends_on: []
 blocks: ["CH0-20260226-002", "CH0-20260226-003", "CH42-20260226-001", "CH42-20260226-002", "CH42-20260226-003", "CH42-20260226-004"]
 task_type: "database_operation"
 estimated_duration: "60 minutes"
 system_version: "4.0.73"
-artifacts_touched: ["database/*", "install.php", "lupopedia-config.php"]
+artifacts_touched: ["lupo-database/*", "install.php", "lupopedia-config.php"]
 notes: "CRITICAL: This task blocks all other 4.0.46 tasks. Must be completed first."
 ---
 
@@ -147,7 +147,7 @@ Execute the complete Crafty Syntax 3.7.5 → Lupopedia 4.0.46 installation and u
 3. ✅ Ran install.php with fixed schema
 4. ✅ Database created successfully
 5. ✅ All 173 tables created without SQL errors
-6. ✅ Generated 210 TOON files via `python scripts/generate_toon_files.py`
+6. ✅ Generated 210 TOON files via `python lupo-scripts/generate_toon_files.py`
 7. ✅ CSV export completed successfully
 
 **Installation Results:**
@@ -216,8 +216,8 @@ Execute the complete Crafty Syntax 3.7.5 → Lupopedia 4.0.46 installation and u
 
 **2.4 Generate TOON Files** ✅ COMPLETE
 ```bash
-python scripts/generate_toon_files.py
-# Output: Wrote 210 TOONs to docs/toons
+python lupo-scripts/generate_toon_files.py
+# Output: Wrote 210 TOONs to lupo-docs/toons
 # CSV export completed successfully
 ```
 
@@ -231,28 +231,28 @@ python scripts/generate_toon_files.py
 mysql -u root -p lupopedia
 
 -- Seed registry (reserved IDs)
-SOURCE database/migrations/seed_registry_comprehensive_4.0.45.sql;
+SOURCE lupo-database/migrations/seed_registry_comprehensive_4.0.45.sql;
 
 -- Seed registry (open gaps)
-SOURCE database/migrations/seed_registry_open_4.0.45.sql;
+SOURCE lupo-database/migrations/seed_registry_open_4.0.45.sql;
 ```
 
 **3.2 Actors and Agents Seeding**
 ```sql
 -- Seed main actors and agents
-SOURCE database/migrations/seed_actors_agents_4.0.45.sql;
+SOURCE lupo-database/migrations/seed_actors_agents_4.0.45.sql;
 
 -- Seed ANUBIS and VISHWAKARMA
-SOURCE database/migrations/seed_anubis_vishwakarma_4.0.45.sql;
+SOURCE lupo-database/migrations/seed_anubis_vishwakarma_4.0.45.sql;
 ```
 
 **3.3 Tasks Schema Seeding**
 ```sql
 -- Add tasks tables
-SOURCE database/migrations/add_tasks_schema_4.0.45.sql;
+SOURCE lupo-database/migrations/add_tasks_schema_4.0.45.sql;
 
 -- Seed task bootstrap data
-SOURCE database/migrations/seed_tasks_bootstrap_4.0.45.sql;
+SOURCE lupo-database/migrations/seed_tasks_bootstrap_4.0.45.sql;
 ```
 
 **3.4 Verify Seeding Success**
@@ -365,7 +365,7 @@ SELECT COUNT(*) FROM lupo_actors WHERE actor_id NOT IN (SELECT actor_id FROM lup
 If upgrade fails completely:
 ```sql
 -- Drop all lupo_* tables
-php scripts/drop_all_lupo_tables.php
+php lupo-scripts/drop_all_lupo_tables.php
 
 -- Restore Crafty Syntax 3.7.5 backup
 mysql -u root -p lupopedia < crafty_backup.sql
@@ -403,16 +403,16 @@ After successful completion:
 ## Resources
 
 **Migration Documentation:**
-- `docs/doctrine/migrations/MIGRATION_MAPPING_REFERENCE.md`
-- `docs/doctrine/migrations/livehelp_*_migration.md` (28 files)
+- `lupo-docs/doctrine/migrations/MIGRATION_MAPPING_REFERENCE.md`
+- `lupo-docs/doctrine/migrations/livehelp_*_migration.md` (28 files)
 
 **Legacy Reference:**
 - `/legacy/craftysyntax/` (read-only)
 
 **SQL Files:**
-- `database/migrations/old_crafty_syntax_3_7_5_start.sql`
-- `database/migrations/install_new_lupopedia.sql`
-- `database/migrations/seed_*.sql` (6 files)
+- `lupo-database/migrations/old_crafty_syntax_3_7_5_start.sql`
+- `lupo-database/migrations/install_new_lupopedia.sql`
+- `lupo-database/migrations/seed_*.sql` (6 files)
 
 ---
 
@@ -425,9 +425,9 @@ After successful completion:
 flip.footer: {
   outbound_edges: [
     { to: "VERSION_4_0_46_LAUNCH_REPORT.md", type: "references", weight: 1.0 },
-    { to: "channels/42/broadcasts/20260226000000_10000_1000_42_version_4_0_46_upgrade_program.md", type: "references", weight: 0.9 },
-    { to: "docs/doctrine/migrations/MIGRATION_MAPPING_REFERENCE.md", type: "references", weight: 0.8 },
-    { to: "database/migrations/old_crafty_syntax_3_7_5_start.sql", type: "executes", weight: 0.9 },
+    { to: "lupo-channels/42/broadcasts/20260226000000_10000_1000_42_version_4_0_46_upgrade_program.md", type: "references", weight: 0.9 },
+    { to: "lupo-docs/doctrine/migrations/MIGRATION_MAPPING_REFERENCE.md", type: "references", weight: 0.8 },
+    { to: "lupo-database/migrations/old_crafty_syntax_3_7_5_start.sql", type: "executes", weight: 0.9 },
     { to: "install.php", type: "executes", weight: 0.9 }
   ],
   semantic_tags: ["task", "human_driven", "installation", "upgrade", "critical_path", "4.0.46"]

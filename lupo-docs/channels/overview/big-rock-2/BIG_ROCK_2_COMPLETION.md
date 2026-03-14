@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\channels\overview\big-rock-2\BIG_ROCK_2_COMPLETION.md"
+  file_path_from_root: "lupo-docs\channels\overview\big-rock-2\BIG_ROCK_2_COMPLETION.md"
   file_hash: "5817b5384d08ee06af109cf1a120ec08e41ae922460452af56abc49db45030cc"
-  file_path_from_root: "docs\channels\overview\big-rock-2\BIG_ROCK_2_COMPLETION.md"
+  file_path_from_root: "lupo-docs\channels\overview\big-rock-2\BIG_ROCK_2_COMPLETION.md"
   file_hash: "5a0895dd9e716d1f77cfb4f7f8d37c344e96df2d0c47abbad2f3b9e3e05429cc"
   last_updated_utc: "20260228"
   system_version: "4.0.50"

@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\channels\overview\PHILOSOPHY.md"
+  file_path_from_root: "lupo-docs\channels\overview\PHILOSOPHY.md"
   file_hash: "0a51f41334a860d5022b384c0e10f274819479b1017a7df7b73a9046f5623142"
-  file_path_from_root: "docs\channels\overview\PHILOSOPHY.md"
+  file_path_from_root: "lupo-docs\channels\overview\PHILOSOPHY.md"
   file_hash: "a873eba6854c486d740147f33331c6f771b498ab14af44f191c1f9d831dd15d9"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -182,7 +182,7 @@ This document explains the reasoning behind our architectural choices and the ph
 
 **This dual lineage explains the doctrine.**
 
-> **Database Philosophy Note:** For detailed database design principles, especially regarding polymorphic relationships and application-managed integrity, see [DATABASE_PHILOSOPHY.md](docs/DATABASE_PHILOSOPHY.md).
+> **Database Philosophy Note:** For detailed database design principles, especially regarding polymorphic relationships and application-managed integrity, see [DATABASE_PHILOSOPHY.md](lupo-docs/DATABASE_PHILOSOPHY.md).
 
 ---
 
@@ -209,9 +209,9 @@ Because:
 
 > **If it isn't portable, visible, and explicit — it doesn't belong in the database.**
 
-> **⚠️ TRIGGERS ARE FORBIDDEN (MANDATORY):** Triggers must never be created, suggested, or added. All timestamps must be set explicitly in INSERT/UPDATE statements in YMDHIS UTC format. See [NO_TRIGGERS_DOCTRINE.md](docs/doctrine/NO_TRIGGERS_DOCTRINE.md) for complete requirements.
+> **⚠️ TRIGGERS ARE FORBIDDEN (MANDATORY):** Triggers must never be created, suggested, or added. All timestamps must be set explicitly in INSERT/UPDATE statements in YMDHIS UTC format. See [NO_TRIGGERS_DOCTRINE.md](lupo-docs/doctrine/NO_TRIGGERS_DOCTRINE.md) for complete requirements.
 
-> **⚠️ STORED PROCEDURES/FUNCTIONS ARE FORBIDDEN (MANDATORY):** Stored procedures and functions must never be created, suggested, or added. The database is for storage, not computation. All logic must be in application code. See [NO_STORED_PROCEDURES_DOCTRINE.md](docs/doctrine/NO_STORED_PROCEDURES_DOCTRINE.md) for complete requirements.
+> **⚠️ STORED PROCEDURES/FUNCTIONS ARE FORBIDDEN (MANDATORY):** Stored procedures and functions must never be created, suggested, or added. The database is for storage, not computation. All logic must be in application code. See [NO_STORED_PROCEDURES_DOCTRINE.md](lupo-docs/doctrine/NO_STORED_PROCEDURES_DOCTRINE.md) for complete requirements.
 
 ---
 
@@ -268,9 +268,9 @@ And most importantly:
 
 This ensures consistency across all engines and environments.
 
-> **⚠️ MANDATORY TIMESTAMP CONTROL:** All timestamps must be set explicitly in INSERT/UPDATE statements in YMDHIS UTC format. The database must NEVER mutate timestamps automatically (no triggers, no auto-update, no database-level timestamp automation). This is required for data merging, historical accuracy, anubis repair operations, and federation sync. See [NO_TRIGGERS_DOCTRINE.md](docs/doctrine/NO_TRIGGERS_DOCTRINE.md) for complete requirements.
+> **⚠️ MANDATORY TIMESTAMP CONTROL:** All timestamps must be set explicitly in INSERT/UPDATE statements in YMDHIS UTC format. The database must NEVER mutate timestamps automatically (no triggers, no auto-update, no database-level timestamp automation). This is required for data merging, historical accuracy, anubis repair operations, and federation sync. See [NO_TRIGGERS_DOCTRINE.md](lupo-docs/doctrine/NO_TRIGGERS_DOCTRINE.md) for complete requirements.
 
-> **📘 WOLFIE Timestamp Doctrine:** For complete requirements, code examples, and enforcement rules, see [WOLFIE_TIMESTAMP_DOCTRINE.md](docs/DEVELOPMENT/WOLFIE_TIMESTAMP_DOCTRINE.md). This doctrine is **non-negotiable** and applies to all code, migrations, and data models.
+> **📘 WOLFIE Timestamp Doctrine:** For complete requirements, code examples, and enforcement rules, see [WOLFIE_TIMESTAMP_DOCTRINE.md](lupo-docs/DEVELOPMENT/WOLFIE_TIMESTAMP_DOCTRINE.md). This doctrine is **non-negotiable** and applies to all code, migrations, and data models.
 
 ---
 

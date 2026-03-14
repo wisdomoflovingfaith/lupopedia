@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\audits\DEPARTMENTS_GROUPS_ROLES_STRUCTURAL_FEASIBILITY_REPORT.md"
+  file_path_from_root: "lupo-docs\audits\DEPARTMENTS_GROUPS_ROLES_STRUCTURAL_FEASIBILITY_REPORT.md"
   file_hash: "7516e6bf033196063354c161e1f42e4d99759661684bfcbe5dc70a99e0e03372"
-  file_path_from_root: "docs\audits\DEPARTMENTS_GROUPS_ROLES_STRUCTURAL_FEASIBILITY_REPORT.md"
+  file_path_from_root: "lupo-docs\audits\DEPARTMENTS_GROUPS_ROLES_STRUCTURAL_FEASIBILITY_REPORT.md"
   file_hash: "89b19c9885099e51e66547947c00cce21e2610ba1ff29ee7af270d9c29ecad37"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -121,19 +121,19 @@ These already use departments; no structural change for “collapse groups into 
 |-------|------|
 | **lupo_permissions** | Grants permission on (target_type, target_id) to either user_id or group_id. Unique on (target_type, target_id, user_id) and (target_type, target_id, group_id). |
 | **lupo_channel_roles** | Channel-scoped roles: actor_id, channel_id, role_type (e.g. captain, administrator, editor, monitor, operator, support). Used for auth. |
-| **lupo_actor_channel_roles** | Separate channel-role table (role_key, protocol, etc.); used in channels/awareness. |
+| **lupo_actor_channel_roles** | Separate channel-role table (role_key, protocol, etc.); used in lupo-channels/awareness. |
 | **lupo_actor_roles** | Exists in dev alignment (actor_id, context_id, department_id, role_key). Not referenced by AuthRoleResolver or auth code. |
 
 ### 2.2 How permissions are currently resolved
 
-- **Auth (admin/operator):** `App\Auth\AuthRoleResolver` uses **lupo_channel_roles** only (channel_id = 1 for “global” admin; role_type IN ('captain', 'administrator')). Fallback: **lupo_permissions** with target_type = 'module', target_id = admin module_id, **user_id** and permission = 'owner'. **No group_id is used in auth resolution.**
+- **Auth (lupo-admin/operator):** `App\Auth\AuthRoleResolver` uses **lupo_channel_roles** only (channel_id = 1 for “global” admin; role_type IN ('captain', 'administrator')). Fallback: **lupo_permissions** with target_type = 'module', target_id = admin module_id, **user_id** and permission = 'owner'. **No group_id is used in auth resolution.**
 - **Collections:** `App\Services\SavedCollectionsService` uses **lupo_permissions** with target_type = 'collection', **user_id** only (no group_id in the query).
 - **No application code** was found that joins lupo_permissions to lupo_actor_group_membership or resolves permissions via group_id.
 
 ### 2.3 How groups are used in permission resolution
 
 - **Schema:** lupo_permissions has group_id and unique index (target_type, target_id, group_id).
-- **Code:** No PHP code reads or writes permission by group_id. Permission resolution is user_id-based (and channel_roles for admin/operator).
+- **Code:** No PHP code reads or writes permission by group_id. Permission resolution is user_id-based (and channel_roles for lupo-admin/operator).
 
 ### 2.4 What would need to change to make departments permission-bearing
 
@@ -216,7 +216,7 @@ Unifying on departments is feasible and aligns with the codebase and doctrine. N
 
 - **Permission resolution:** Add a path that resolves actor→department_id(s) via lupo_actor_departments and checks lupo_permissions by (target_type, target_id, department_id). Keep existing user_id and channel_roles logic.
 - **SavedCollectionsService** (and any other permission checks): If “department-based” access is desired for collections, extend to consider department_id in lupo_permissions; otherwise leave as user_id-only until product requires it.
-- **Seed/install scripts:** database/install/generate_content_seed.php and generate_hierarchical_seed_3.0.12.php reference group_id; switch to department_id and use NULL or default department 1.
+- **Seed/install scripts:** lupo-database/install/generate_content_seed.php and generate_hierarchical_seed_3.0.12.php reference group_id; switch to department_id and use NULL or default department 1.
 
 #### 5.A.4 Permission logic to rewrite
 
@@ -227,7 +227,7 @@ Unifying on departments is feasible and aligns with the codebase and doctrine. N
 
 - **install_new_lupopedia.sql:** Remove CREATE TABLE lupo_groups and lupo_actor_group_membership; remove group_id from lupo_permissions, lupo_collections, lupo_collection_tabs, lupo_contents, lupo_analytics_*; add department_id where needed.
 - **install_wizard_classes.php:** No change if it already uses only department_id (it does).
-- **Other install/seed files:** Use department_id only; remove group_id from INSERTs.
+- **Other lupo-install/seed files:** Use department_id only; remove group_id from INSERTs.
 
 #### 5.A.6 Migration logic for Crafty Syntax imports
 
@@ -255,24 +255,24 @@ Unifying on departments is feasible and aligns with the codebase and doctrine. N
 |------|--------|------------|
 | Breaking permission checks | Low | No code uses group_id today; adding department_id is additive. |
 | Breaking Crafty import | Low | Import already uses departments; no group population. |
-| Breaking install/wizard | Low | Wizard uses department_id only; install SQL must be updated to match. |
+| Breaking lupo-install/wizard | Low | Wizard uses department_id only; install SQL must be updated to match. |
 | Seed scripts | Low | Update generate_content_seed and generate_hierarchical_seed to use department_id. |
 | Third-party or undocumented use of group_id | Low | Grep found no PHP references; document removal in release notes. |
 
 ### 6.4 Recommended plan
 
-- **Proceed** with collapsing groups into departments: add department_id where only group_id exists, implement department-based permission resolution, migrate/backfill data, remove group_id and drop lupo_groups and lupo_actor_group_membership, update install/seed/migration and TOONs.
+- **Proceed** with collapsing groups into departments: add department_id where only group_id exists, implement department-based permission resolution, migrate/backfill data, remove group_id and drop lupo_groups and lupo_actor_group_membership, update lupo-install/seed/migration and TOONs.
 
 ### 6.5 Affected files (candidate list)
 
-- database/migrations/install_new_lupopedia.sql
-- database/migrations/dev_20260204_fix_schema_alignment.sql (and any other migrations touching group_id or group tables)
-- database/migrations/import_from_old_crafty_syntax.sql (if any group references)
-- database/install/generate_content_seed.php
-- database/install/generate_hierarchical_seed_3.0.12.php
+- lupo-database/migrations/install_new_lupopedia.sql
+- lupo-database/migrations/dev_20260204_fix_schema_alignment.sql (and any other migrations touching group_id or group tables)
+- lupo-database/migrations/import_from_old_crafty_syntax.sql (if any group references)
+- lupo-database/install/generate_content_seed.php
+- lupo-database/install/generate_hierarchical_seed_3.0.12.php
 - app/auth/AuthRoleResolver.php (if adding department-based permission check)
 - app/Services/SavedCollectionsService.php (if adding department-based collection permission)
-- docs/toons (regenerate after schema changes per project rules)
+- lupo-docs/toons (regenerate after schema changes per project rules)
 - Any new migration file for add department_id / drop group_id / drop lupo_groups / lupo_actor_group_membership
 
 ### 6.6 Affected tables

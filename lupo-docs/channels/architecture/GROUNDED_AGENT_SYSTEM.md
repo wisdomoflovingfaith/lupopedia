@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\channels\architecture\GROUNDED_AGENT_SYSTEM.md"
+  file_path_from_root: "lupo-docs\channels\architecture\GROUNDED_AGENT_SYSTEM.md"
   file_hash: "eba0d5adf66f5a64f274bb2757ada52ec5e42e3caf9bb5602b03725b62e08a02"
-  file_path_from_root: "docs\channels\architecture\GROUNDED_AGENT_SYSTEM.md"
+  file_path_from_root: "lupo-docs\channels\architecture\GROUNDED_AGENT_SYSTEM.md"
   file_hash: "c537fdfd0ed81a31ce1ef00f8c550b669e785bbd2ca9771936312bb69023fb1f"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -404,7 +404,7 @@ class AgentModel {
 │   ├── TemporalHelper.php      # Timestamp utilities
 │   ├── DoctrineValidator.php    # Rule enforcement
 │   └── TOONParser.php         # Schema parsing
-└── agents/
+└── lupo-agents/
     ├── SYSTEM/                 # Core system agent
     ├── CAPTAIN/               # Captain Wolfie agent
     ├── WOLFIE/               # Doctrine enforcement agent

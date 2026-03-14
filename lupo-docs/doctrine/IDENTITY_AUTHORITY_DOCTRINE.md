@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\doctrine\IDENTITY_AUTHORITY_DOCTRINE.md"
+  file_path_from_root: "lupo-docs\doctrine\IDENTITY_AUTHORITY_DOCTRINE.md"
   file_hash: "15c1411e62b614511b36d92e3b44272f7e669661695b21ec30f62190ce423b0a"
-  file_path_from_root: "docs\doctrine\IDENTITY_AUTHORITY_DOCTRINE.md"
+  file_path_from_root: "lupo-docs\doctrine\IDENTITY_AUTHORITY_DOCTRINE.md"
   file_hash: "e22aeb746afce5830adc67746543e10376b14512c0097202dc431287d2b0f28d"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -61,7 +61,7 @@ lupopedia.footer:
 ---
 
 ---
-file_path_from_root: "docs/doctrine/IDENTITY_AUTHORITY_DOCTRINE.md"
+file_path_from_root: "lupo-docs/doctrine/IDENTITY_AUTHORITY_DOCTRINE.md"
 system_version: "4.0.46"
 channel_id: 0
 actor_id: 1000
@@ -84,19 +84,19 @@ This doctrine establishes the canonical source of truth for actor identity mappi
 When conflicts arise between different registry representations, the following hierarchy MUST be followed:
 
 ### 1. Primary Authority: Seed SQL Files
-- **Location**: `database/migrations/seed_actors_agents_*.sql`
+- **Location**: `lupo-database/migrations/seed_actors_agents_*.sql`
 - **Status**: CANONICAL SOURCE OF TRUTH
 - **Reason**: These files define the actual database state and are executed during installation
 - **Current Canonical**: `seed_actors_agents_4.0.45.sql`
 
 ### 2. Secondary Authority: CSV Data Files
-- **Location**: `database/csv_data/lupo_actors.csv`
+- **Location**: `lupo-database/csv_data/lupo_actors.csv`
 - **Status**: AUTHORITATIVE (when aligned with seed SQL)
 - **Reason**: Used for bulk imports and data validation
 - **Requirement**: MUST align with seed SQL; conflicts resolved in favor of seed SQL
 
 ### 3. Non-Authoritative: Registry JSON
-- **Location**: `actors/registry.json`
+- **Location**: `lupo-actors/registry.json`
 - **Status**: REFERENCE ONLY (synchronized from seed SQL)
 - **Reason**: Convenience file for quick lookups; not used during installation
 - **Requirement**: MUST be regenerated from seed SQL when conflicts detected
@@ -116,7 +116,7 @@ The following actor IDs are PERMANENTLY LOCKED and MUST NEVER be remapped:
 
 **Permanent Assignment**: Captain WOLFIE AI is the ONLY valid identity for actor_id 1.
 
-**Historical Context**: Prior to v4.0.45, `actors/registry.json` incorrectly mapped actor_id 1 to "AUTHENTICATOR" and actor_id 3 to "WOLFIE". This was a legacy artifact from pre-4.0.45 development and has been corrected.
+**Historical Context**: Prior to v4.0.45, `lupo-actors/registry.json` incorrectly mapped actor_id 1 to "AUTHENTICATOR" and actor_id 3 to "WOLFIE". This was a legacy artifact from pre-4.0.45 development and has been corrected.
 
 **Enforcement**: Any file, configuration, or code that references actor_id 1 MUST treat it as Captain WOLFIE AI. References to "AUTHENTICATOR" at actor_id 1 are invalid and must be corrected.
 
@@ -137,18 +137,18 @@ When registry conflicts are detected:
 
 1. **Identify Conflict**: Compare seed SQL, CSV, and JSON representations
 2. **Establish Authority**: Seed SQL is always correct
-3. **Archive Legacy**: Move conflicting files to `docs/status/deprecated/`
+3. **Archive Legacy**: Move conflicting files to `lupo-docs/status/deprecated/`
 4. **Regenerate**: Create new registry.json from seed SQL
 5. **Document**: Record changes in CHANGELOG.md and create audit report
 6. **Verify**: Confirm all representations now align
 
 ## Conflict Resolution Example (4.0.46)
 
-**Conflict Detected**: `actors/registry.json` (v4.0.43) mapped actor_id 1 to "AUTHENTICATOR"
+**Conflict Detected**: `lupo-actors/registry.json` (v4.0.43) mapped actor_id 1 to "AUTHENTICATOR"
 
 **Resolution Applied**:
-1. Archived legacy registry to `docs/status/deprecated/registry_legacy_pre_4_0_45.json`
-2. Regenerated `actors/registry.json` from `seed_actors_agents_4.0.45.sql`
+1. Archived legacy registry to `lupo-docs/status/deprecated/registry_legacy_pre_4_0_45.json`
+2. Regenerated `lupo-actors/registry.json` from `seed_actors_agents_4.0.45.sql`
 3. Added actor_id 1 entry to `lupo_actors.csv`
 4. Updated CHANGELOG.md with canonicalization record
 5. Created this doctrine file
@@ -167,10 +167,10 @@ Violations of this doctrine constitute a system integrity failure and must be co
 
 ## References
 
-- `database/migrations/seed_actors_agents_4.0.45.sql` - Canonical actor definitions
-- `database/csv_data/lupo_actors.csv` - CSV representation
-- `actors/registry.json` - JSON reference (synchronized)
-- `docs/status/REGISTRY_IDENTITY_CANONICALIZATION_4_0_46.md` - Canonicalization report
+- `lupo-database/migrations/seed_actors_agents_4.0.45.sql` - Canonical actor definitions
+- `lupo-database/csv_data/lupo_actors.csv` - CSV representation
+- `lupo-actors/registry.json` - JSON reference (synchronized)
+- `lupo-docs/status/REGISTRY_IDENTITY_CANONICALIZATION_4_0_46.md` - Canonicalization report
 
 ## Version History
 
@@ -186,12 +186,12 @@ Violations of this doctrine constitute a system integrity failure and must be co
 {
   "inbound_edges": [
     { "from": "CHANGELOG.md", "type": "references", "weight": 0.9 },
-    { "from": "docs/status/REGISTRY_IDENTITY_CANONICALIZATION_4_0_46.md", "type": "implements", "weight": 1.0 }
+    { "from": "lupo-docs/status/REGISTRY_IDENTITY_CANONICALIZATION_4_0_46.md", "type": "implements", "weight": 1.0 }
   ],
   "outbound_edges": [
-    { "to": "database/migrations/seed_actors_agents_4.0.45.sql", "type": "references", "weight": 1.0 },
-    { "to": "actors/registry.json", "type": "governs", "weight": 1.0 },
-    { "to": "database/csv_data/lupo_actors.csv", "type": "governs", "weight": 0.9 }
+    { "to": "lupo-database/migrations/seed_actors_agents_4.0.45.sql", "type": "references", "weight": 1.0 },
+    { "to": "lupo-actors/registry.json", "type": "governs", "weight": 1.0 },
+    { "to": "lupo-database/csv_data/lupo_actors.csv", "type": "governs", "weight": 0.9 }
   ],
   "semantic_tags": ["identity", "authority", "governance", "registry", "doctrine"],
   "version": "4.0.46",

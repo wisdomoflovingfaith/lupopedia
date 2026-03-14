@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\channels\kernel\systems\CRF_SPECIFICATION.md"
+  file_path_from_root: "lupo-docs\channels\kernel\systems\CRF_SPECIFICATION.md"
   file_hash: "c2bbadd15595d8d948b37497cda905ec892c5aa226272450ce83322116bf24d9"
-  file_path_from_root: "docs\channels\kernel\systems\CRF_SPECIFICATION.md"
+  file_path_from_root: "lupo-docs\channels\kernel\systems\CRF_SPECIFICATION.md"
   file_hash: "8d43a4a2ca550746446a9dda452bc0f4644e8bd8295139557a8527a5805b47bb"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -350,11 +350,11 @@ Future versions may adjust vector dimensions or generation algorithms, but core 
 
 ## 🔗 9. Implementation Resources
 
-- **Mood System Doctrine**: `docs/doctrines/MOOD_SYSTEM_DOCTRINE.md`
-- **Mood Axis Registry**: `docs/registries/MOOD_AXIS_REGISTRY.md`
-- **RGB Mapping Protocol**: `docs/doctrines/COLOR_DOCTRINE.md`
-- **Lupopedia Header Profile**: `docs/doctrine/LUPOPEDIA_HEADER_PROFILE.md`
-- **Affective Discrepancy Engine**: `docs/systems/AFFECTIVE_DISCREPANCY_ENGINE.md`
+- **Mood System Doctrine**: `lupo-docs/doctrines/MOOD_SYSTEM_DOCTRINE.md`
+- **Mood Axis Registry**: `lupo-docs/registries/MOOD_AXIS_REGISTRY.md`
+- **RGB Mapping Protocol**: `lupo-docs/doctrines/COLOR_DOCTRINE.md`
+- **Lupopedia Header Profile**: `lupo-docs/doctrine/LUPOPEDIA_HEADER_PROFILE.md`
+- **Affective Discrepancy Engine**: `lupo-docs/systems/AFFECTIVE_DISCREPANCY_ENGINE.md`
 - **Global Atoms**: `config/global_atoms.yaml`
 
 ---

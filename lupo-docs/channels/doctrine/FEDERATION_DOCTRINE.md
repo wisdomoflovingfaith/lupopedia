@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\channels\doctrine\FEDERATION_DOCTRINE.md"
+  file_path_from_root: "lupo-docs\channels\doctrine\FEDERATION_DOCTRINE.md"
   file_hash: "94e60e5ea5f0c69a64bb67bb52e6bbbdd696b666443c1cd4348ece3add420f33"
-  file_path_from_root: "docs\channels\doctrine\FEDERATION_DOCTRINE.md"
+  file_path_from_root: "lupo-docs\channels\doctrine\FEDERATION_DOCTRINE.md"
   file_hash: "ce2eaf47c5ced81c56d0bc91849b6c24ea5d5ecf85d3a52a844923e9a75d25d8"
   last_updated_utc: "20260228"
   system_version: "4.0.50"

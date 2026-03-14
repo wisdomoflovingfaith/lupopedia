@@ -1,7 +1,7 @@
 ---
 lupopedia.init:
   orchestrator_actor: "any"
-  rule_set_version: "4.0.73+"
+  rule_set_version: "4.0.74+"
   applies_to: ["audit", "code-gen", "db-sync", "migration", "header-sync"]
   enforcement: strict
 
@@ -12,12 +12,12 @@ lupopedia.headers:
   actor_id: 1
   actor_name: "wolfie"
   delegation_chain: "wolfie:root"
-  lupopedia.version: "4.0.73"
+  lupopedia.version: "4.0.74"
   lupopedia.schema: "cursor_rule"
   file_path_from_root: "lupo-rules/root/toon-source-of-truth.md"
   web_path: "http://www.lupopedia.com/rules/root/toon-source-of-truth"
   last_modified_utc: "20260313"
-  system_version: "4.0.73"
+  system_version: "4.0.74"
   rule_name: "TOON Files and Canonical Schema"
   rule_type: "constraint"
   artifact_type: "rule"
@@ -27,7 +27,7 @@ lupopedia.headers:
   source_path: ".cursor/rules/toon-source-of-truth.mdc"
 
 lupopedia.footer:
-  version: "4.0.73"
+  version: "4.0.74"
   last_verified: "20260313"
   last_verified_by: "wolfie"
   orchestrator: "cursor"
@@ -42,9 +42,9 @@ Cursor MUST treat **install_new_lupopedia.sql** and **seed_lupopedia.sql** as th
 
 ## Canonical schema source (4.0.15+)
 
-- **database/migrations/install_new_lupopedia.sql** — Full table definitions (CREATE TABLE).
-- **database/migrations/seed_lupopedia.sql** — Seeded tables and row structure.
-- **TOON files:** `docs/toons/` — Regenerated from install SQL via `scripts/generate_toon_from_sql.py`. One file per table: `<table_name>.toon.json`.
+- **lupo-database/migrations/install_new_lupopedia.sql** — Full table definitions (CREATE TABLE).
+- **lupo-database/migrations/seed_lupopedia.sql** — Seeded tables and row structure.
+- **TOON files:** `lupo-docs/toons/` — Regenerated from install SQL via `lupo-scripts/generate_toon_from_sql.py`. One file per table: `<table_name>.toon.json`.
 - **Every** table name, column name, column type, index, and key MUST match the canonical schema. TOONs reflect the install SQL; they are not independently authoritative until regenerated.
 
 ## Rules
@@ -75,13 +75,13 @@ Cursor MUST treat **install_new_lupopedia.sql** and **seed_lupopedia.sql** as th
 - Confirm **all** schema usage in code matches TOON definitions exactly.
 - Report all **mismatches** between:
   - TOON schema
-  - install SQL (e.g. `database/migrations/install_new_lupopedia.sql`)
+  - install SQL (e.g. `lupo-database/migrations/install_new_lupopedia.sql`)
   - actual code usage
 
 ## TOON generation (4.0.15+)
 
-- **Canonical:** TOONs are regenerated from `install_new_lupopedia.sql` via `scripts/generate_toon_from_sql.py`. No live database required.
-- **Alternative:** `scripts/generate_toon_files.py` generates from live DB (requires DB connection); use when schema has been applied.
+- **Canonical:** TOONs are regenerated from `install_new_lupopedia.sql` via `lupo-scripts/generate_toon_from_sql.py`. No live database required.
+- **Alternative:** `lupo-scripts/generate_toon_files.py` generates from live DB (requires DB connection); use when schema has been applied.
 - Cursor may read TOON files as the schema oracle; they must match the install SQL.
 
 This rule is permanent and applies to all future refactors.

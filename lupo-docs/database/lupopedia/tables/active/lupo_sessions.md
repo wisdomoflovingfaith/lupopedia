@@ -19,7 +19,7 @@ lupopedia.edges:
   comment: "Snapshot of files edited during 4.0.73 finalization and initialization thread by ANTIGRAVITY IDE Agent. Edges reflect discovered relationships between database tables and PHP/Python codebase entities. Values should be verified against live database schemas/queries for the most current semantic graph state."
   meta: "Thread: Finalize 4.0.72 → Push to GitHub → Initialize 4.0.73 → Migrate Tasks → Validate Upgrade Path"
   outbound_edges:
-    - { to: "lupo-docs/toons/lupo_sessions.toon.json", type: "schema_reference", weight: 1.0 }
+    - { to: "lupo-database/lupopedia/toon/lupo_sessions.toon.json", type: "schema_reference", weight: 1.0 }
     - { to: "lupo-docs/database/lupopedia/tables/active/lupo_actors.md", type: "references", weight: 0.9 }
     - { to: "lupo-docs/database/lupopedia/tables/active/lupo_session_events.md", type: "references", weight: 0.8 }
     - { to: "lupo-docs/database/lupopedia/tables/active/lupo_session_recovery.md", type: "references", weight: 0.7 }

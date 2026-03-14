@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\channels\gov\FLEET_COMPOSITION_RULES.md"
+  file_path_from_root: "lupo-docs\channels\gov\FLEET_COMPOSITION_RULES.md"
   file_hash: "5ab5b90b0d8d1baa19341ccca8473fcb9373761df841d86cbde491407c5e1500"
-  file_path_from_root: "docs\channels\gov\FLEET_COMPOSITION_RULES.md"
+  file_path_from_root: "lupo-docs\channels\gov\FLEET_COMPOSITION_RULES.md"
   file_hash: "712f7c8f7259f7ca49dcf922183fb78e3d39f19ed02eb98afee4da3fe9645952"
   last_updated_utc: "20260228"
   system_version: "4.0.50"

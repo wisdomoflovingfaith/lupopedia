@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\channels\doctrine\AGENT_CLASSIFICATION.md"
+  file_path_from_root: "lupo-docs\channels\doctrine\AGENT_CLASSIFICATION.md"
   file_hash: "5969d38ef7b974d9a298b97df020c65f964ab5a1b1154eed3d0b7ee49508dfc3"
-  file_path_from_root: "docs\channels\doctrine\AGENT_CLASSIFICATION.md"
+  file_path_from_root: "lupo-docs\channels\doctrine\AGENT_CLASSIFICATION.md"
   file_hash: "8fe75f87640e16d2b288dddc3dd49233a13357dc7ee1144b043e582d4d5328b3"
   last_updated_utc: "20260228"
   system_version: "4.0.50"

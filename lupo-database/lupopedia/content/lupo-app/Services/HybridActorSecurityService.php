@@ -162,7 +162,7 @@ class HybridActorSecurityService
         $logEntry = "[$timestamp] [$level] [$context] HybridActorSecurity: $message\n";
         
         // Log to file
-        $logFile = LUPOPEDIA_PATH . '/logs/hybrid_actor_security.log';
+        $logFile = LUPOPEDIA_PATH . '/lupo-logs/hybrid_actor_security.log';
         file_put_contents($logFile, $logEntry, FILE_APPEND | LOCK_EX);
         
         // Also log to system log if available

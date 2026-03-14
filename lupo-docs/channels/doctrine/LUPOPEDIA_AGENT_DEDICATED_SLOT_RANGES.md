@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\channels\doctrine\LUPOPEDIA_AGENT_DEDICATED_SLOT_RANGES.md"
+  file_path_from_root: "lupo-docs\channels\doctrine\LUPOPEDIA_AGENT_DEDICATED_SLOT_RANGES.md"
   file_hash: "fabd53e41337576a5b4acb53864980e1ed631ebe9df17020b11d324021b42bba"
-  file_path_from_root: "docs\channels\doctrine\LUPOPEDIA_AGENT_DEDICATED_SLOT_RANGES.md"
+  file_path_from_root: "lupo-docs\channels\doctrine\LUPOPEDIA_AGENT_DEDICATED_SLOT_RANGES.md"
   file_hash: "36b7b7308fd42b091aa8ad457e4d7ead095dc58ed3f907a7e35627fd21481587"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -108,7 +108,7 @@ This document defines the canonical range structure for `dedicated_slot` assignm
 | **50–99** | **System service agents** | Routing, migration, indexing, security, internal services |
 | **100–199** | **First-party module agents** | Optional but shipped with Lupopedia (official modules, internal subsystems) |
 | **200–299** | **External AI personas** | IDE AIs and LLM faucets (Claude, Junie, Cascade, Gemini, DeepSeek, etc.) |
-| **300–399** | **External tools/backends** | Non-personified APIs, infrastructure connectors, external services |
+| **300–399** | **External lupo-tools/backends** | Non-personified APIs, infrastructure connectors, external services |
 | **400–599** | **User-defined agents** | Custom agents created by admins or developers |
 | **600–699** | **Tenant/site-specific agents** | Per-installation special agents or overrides |
 | **700–899** | **Reserved for future system** | RESERVED_* agents, staging, future subsystems |

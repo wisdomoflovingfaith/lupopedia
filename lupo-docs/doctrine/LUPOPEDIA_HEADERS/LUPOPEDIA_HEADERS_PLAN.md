@@ -49,10 +49,10 @@ lupopedia.session:
   - `lupopedia.metadata` (optional; snapshot of metadata rows for this artifact — see OPTIONAL_BLOCKS; not table schema)
   - `lupopedia.session`
   - `lupopedia.edges`
-  - `lupopedia.engagement` (new in 4.0.73)
+  - `lupopedia.engagement` (new in 4.0.74)
   - `lupopedia.footer`
   - `lupopedia.see`
-  - `lupopedia.close`
+  - `lupopedia.next_actions` (legacy: `lupopedia.close`)
 
 ---
 
@@ -92,7 +92,7 @@ Children of the root represent blocks. Use canonical `lupopedia.*` or legacy `fl
 - `parent_metadata_id` = root `metadata_id`
 - `class_name` = `'lupopedia_block'`
 - `meta_type` = `'block'`
-- `property_key` = `'lupopedia.headers'` | `'lupopedia.session'` | `'lupopedia.edges'` | `'lupopedia.engagement'` | `'lupopedia.footer'` | `'lupopedia.init'` | `'lupopedia.see'` | `'lupopedia.close'` | `'lupopedia.conditional'`
+- `property_key` = `'lupopedia.headers'` | `'lupopedia.session'` | `'lupopedia.edges'` | `'lupopedia.engagement'` | `'lupopedia.footer'` | `'lupopedia.init'` | `'lupopedia.see'` | `'lupopedia.next_actions'` (or legacy `'lupopedia.close'`) | `'lupopedia.conditional'`
 
 ### 3.3 Property rows
 
@@ -103,7 +103,7 @@ Under each block row, each field is a metadata row, e.g. under `lupopedia.header
 
 ### 3.4 Repeating structures
 
-Edges, mappings, actions (e.g. under `lupopedia.edges`, `lupopedia.see`, `lupopedia.init`, `lupopedia.close`) are child rows with:
+Edges, mappings, actions (e.g. under `lupopedia.edges`, `lupopedia.see`, `lupopedia.init`, `lupopedia.next_actions` / `lupopedia.close`) are child rows with:
 
 - `class_name` = `'lupopedia_edge'` | `'lupopedia_mapping'` | `'lupopedia_action'` | `'lupopedia_engagement'`
 
@@ -121,7 +121,7 @@ Validators and YAML exporters MUST emit blocks in this order when present. Use *
 6. `lupopedia.engagement`
 7. `lupopedia.footer`
 8. `lupopedia.see`
-9. `lupopedia.close`
+9. `lupopedia.next_actions` (legacy: `lupopedia.close`)
 
 Optional blocks may be absent; if present, order is fixed. Validators accept both lupopedia.* and legacy flare.*/flame.*.
 

@@ -90,9 +90,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "channels\42\tasks\completed\legacy_table_optimization_review.md"
+  file_path_from_root: "lupo-channels\42\tasks\completed\legacy_table_optimization_review.md"
   file_hash: "38c8292d99a420bfc877726eea7a05b0adfde1968f8c1861ea8790146149c7cd"
-  file_path_from_root: "channels\42\tasks\completed\legacy_table_optimization_review.md"
+  file_path_from_root: "lupo-channels\42\tasks\completed\legacy_table_optimization_review.md"
   file_hash: "ea1725eb1eea5b6c784d41d31380ebf28f229ee583ebf88afc8295fc7c35227b"
   last_updated_utc: "20260228"
   system_version: "4.0.50"

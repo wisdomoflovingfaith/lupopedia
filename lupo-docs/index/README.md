@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\index\README.md"
+  file_path_from_root: "lupo-docs\index\README.md"
   file_hash: "baeffa11b28fa25f2bf39f4ec5130d05e315b3f8b7937454039b64a67364333a"
-  file_path_from_root: "docs\index\README.md"
+  file_path_from_root: "lupo-docs\index\README.md"
   file_hash: "8b67b9fc9ec1f89cb7573802ef9d4e960b69a1446cd27e30fc4a4e5c648e8639"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -63,7 +63,7 @@ lupopedia.footer:
 
 ---
 wolfie.headers:
-  file_path_from_root: "docs/index/README.md"
+  file_path_from_root: "lupo-docs/index/README.md"
   system_version: "4.0.34"
   channel_id: 42
   mood_rgb: "0088FF"
@@ -75,7 +75,7 @@ wolfie.headers:
 
 flip.footer:
   referenced_by_files:
-    - "docs/status/header_lookup_build_report_20260223.md"
+    - "lupo-docs/status/header_lookup_build_report_20260223.md"
     - "HEADER_LOOKUP_INDEX_COMPLETE_4_0_34.md"
   referenced_by_channels:
     - 42
@@ -142,50 +142,50 @@ This directory contains queryable JSON indices of all FLIP headers and footers a
 
 ```bash
 # View all files by actor 1001
-cat docs/index/by_actor/1001.json | jq '.entries[] | .file_path_from_root'
+cat lupo-docs/index/by_actor/1001.json | jq '.entries[] | .file_path_from_root'
 
 # Count files per actor
-cat docs/index/flip_index.json | jq '.entries | group_by(.actor_id) | map({actor_id: .[0].actor_id, count: length})'
+cat lupo-docs/index/flip_index.json | jq '.entries | group_by(.actor_id) | map({actor_id: .[0].actor_id, count: length})'
 ```
 
 ### Query by Channel
 
 ```bash
 # View all files in channel 42
-cat docs/index/by_channel/42.json | jq '.entries[] | .file_path_from_root'
+cat lupo-docs/index/by_channel/42.json | jq '.entries[] | .file_path_from_root'
 
 # List all channels
-cat docs/index/flip_index.json | jq '[.entries[].channel_id] | unique'
+cat lupo-docs/index/flip_index.json | jq '[.entries[].channel_id] | unique'
 ```
 
 ### Query by X_LUPO_FORWARDED
 
 ```bash
 # View all files with x_lupo_forwarded = "1001:10000"
-cat docs/index/by_forward/1001_10000.json | jq '.entries[] | .file_path_from_root'
+cat lupo-docs/index/by_forward/1001_10000.json | jq '.entries[] | .file_path_from_root'
 
 # List all forwarding pairs
-ls docs/index/by_forward/ | sed 's/_/:/' | sed 's/.json//'
+ls lupo-docs/index/by_forward/ | sed 's/_/:/' | sed 's/.json//'
 ```
 
 ### Find Orphans
 
 ```bash
 # View all files missing footers
-cat docs/index/orphans.json | jq '.orphans[] | select(.issue == "missing_footer") | .file_path'
+cat lupo-docs/index/orphans.json | jq '.orphans[] | select(.issue == "missing_footer") | .file_path'
 
 # View all files missing headers
-cat docs/index/orphans.json | jq '.orphans[] | select(.issue == "missing_header") | .file_path'
+cat lupo-docs/index/orphans.json | jq '.orphans[] | select(.issue == "missing_header") | .file_path'
 ```
 
 ### Latest Activity
 
 ```bash
 # Find latest activity for each actor
-cat docs/index/flip_index.json | jq '.entries | group_by(.actor_id) | map({actor_id: .[0].actor_id, latest: (map(.last_modified) | max)})'
+cat lupo-docs/index/flip_index.json | jq '.entries | group_by(.actor_id) | map({actor_id: .[0].actor_id, latest: (map(.last_modified) | max)})'
 
 # Find most active actor
-cat docs/index/flip_index.json | jq '.entries | group_by(.actor_id) | map({actor_id: .[0].actor_id, count: length}) | sort_by(.count) | reverse | .[0]'
+cat lupo-docs/index/flip_index.json | jq '.entries | group_by(.actor_id) | map({actor_id: .[0].actor_id, count: length}) | sort_by(.count) | reverse | .[0]'
 ```
 
 ---
@@ -195,7 +195,7 @@ cat docs/index/flip_index.json | jq '.entries | group_by(.actor_id) | map({actor
 To regenerate the index:
 
 ```bash
-python scripts/generate_flip_index.py
+python lupo-scripts/generate_flip_index.py
 ```
 
 **Time:** ~5 seconds for 2,245 files  
@@ -254,10 +254,10 @@ Each entry contains:
 
 ## Documentation
 
-- **Build Report:** `docs/status/header_lookup_build_report_20260223.md`
+- **Build Report:** `lupo-docs/status/header_lookup_build_report_20260223.md`
 - **Summary:** `HEADER_LOOKUP_INDEX_COMPLETE_4_0_34.md`
-- **Broadcast:** `channels/42/broadcasts/20260223_header_lookup_index_complete.md`
-- **Script:** `scripts/generate_flip_index.py`
+- **Broadcast:** `lupo-channels/42/broadcasts/20260223_header_lookup_index_complete.md`
+- **Script:** `lupo-scripts/generate_flip_index.py`
 
 ---
 
@@ -289,9 +289,9 @@ Each entry contains:
 - Does not affect index integrity
 
 **Affected Files:**
-- docs/channels/doctrine/EMOTIONAL_GEOMETRY_THREE_AXIS_MODEL_2026.md
-- docs/channels/agents/agent-1/README.md
-- docs/channels/agents/agent-1/workflows/channel_initialization.workflow.md
+- lupo-docs/channels/doctrine/EMOTIONAL_GEOMETRY_THREE_AXIS_MODEL_2026.md
+- lupo-docs/channels/agents/agent-1/README.md
+- lupo-docs/channels/agents/agent-1/workflows/channel_initialization.workflow.md
 - dialogs/monday_wolfie_changelog.md
 - dialogs/session_2026_01_16_version_3_0_46.md
 

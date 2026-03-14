@@ -114,7 +114,7 @@ CREATE TABLE lupo_channel_content (
 | `channel_content_id` | bigint | Primary key, auto-increment identifier | 12345 |
 | `channel_id` | int | Channel identifier (42 for development) | 42 |
 | `federation_node_id` | int | Federation node identifier | 0 |
-| `file_path` | varchar(500) | Repository file path | `channels/42/content/federation_node_id/0/FLARE.md` |
+| `file_path` | varchar(500) | Repository file path | `lupo-channels/42/content/federation_node_id/0/FLARE.md` |
 | `web_path` | varchar(500) | Canonical web URL | `http://www.lupopedia.com/FLARE` |
 | `metadata_json` | json | Flexible metadata storage | `{"description": "Root FLARE definition"}` |
 | `created_ymdhis` | bigint | Creation timestamp (YYYYMMDDHHIISS) | 20260301120000 |
@@ -179,7 +179,7 @@ WHERE web_path = 'http://www.lupopedia.com/FLARE' AND is_deleted = 0;
 #### Semantic OS
 - **Content Management**: Integrates with lupo_contents for unified content handling
 - **Channel Organization**: Aligns with channel-based content organization
-- **Actor Registry**: Links to actors/registry.json for actor validation
+- **Actor Registry**: Links to lupo-actors/registry.json for actor validation
 
 ## Data Relationships
 
@@ -213,10 +213,10 @@ WHERE web_path = 'http://www.lupopedia.com/FLARE' AND is_deleted = 0;
 
 ### Related Documentation
 
-- **FLARE Doctrine**: `docs/doctrine/FLARE/FLARE_DOCTRINE.md`
-- **FLARE API**: `docs/api/FLARE_API.md`
-- **Installation**: `database/migrations/install_lupopedia.sql`
-- **Federation Guide**: `channels/42/content/federation_node_id/0/FLARE.md`
+- **FLARE Doctrine**: `lupo-docs/doctrine/FLARE/FLARE_DOCTRINE.md`
+- **FLARE API**: `lupo-docs/api/FLARE_API.md`
+- **Installation**: `lupo-database/migrations/install_lupopedia.sql`
+- **Federation Guide**: `lupo-channels/42/content/federation_node_id/0/FLARE.md`
 
 ---
 

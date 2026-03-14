@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\channels\overview\MONDAY_START_OF_DAY.md"
+  file_path_from_root: "lupo-docs\channels\overview\MONDAY_START_OF_DAY.md"
   file_hash: "3fcab9e9d9e626300c88d776fd2f0c6dc7b4fbb134c150d421bf214b84f8052a"
-  file_path_from_root: "docs\channels\overview\MONDAY_START_OF_DAY.md"
+  file_path_from_root: "lupo-docs\channels\overview\MONDAY_START_OF_DAY.md"
   file_hash: "5de1e8032fa831450f7e3c7c84e50e7fb29cf5c270e64fbf91e2786f1b9aab88"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -129,14 +129,14 @@ WHERE table_schema = 'lupopedia';
 
 ### Step 3: Execute Pending Migrations
 **Run any pending migration files:**
-- [ ] Check `database/migrations/` for unexecuted files
+- [ ] Check `lupo-database/migrations/` for unexecuted files
 - [ ] Execute `schema_sync_3_0_46_missing_tables.sql` if not run
 - [ ] Verify migration completion
 - [ ] Update migration log
 
 **Migration File:**
 ```
-database/migrations_legacy/schema_sync_3_0_46_missing_tables.sql
+lupo-database/migrations_legacy/schema_sync_3_0_46_missing_tables.sql
 ```
 
 **Tables Added:**
@@ -147,7 +147,7 @@ database/migrations_legacy/schema_sync_3_0_46_missing_tables.sql
 
 ### Step 4: Review 3.0.114 → 3.1.0 Transition Briefing
 **Load and review Monday Wolfie Briefing:**
-- [ ] Read `docs/MONDAY_WOLFIE_BRIEFING_3.0.114_TO_3.1.0.md`
+- [ ] Read `lupo-docs/MONDAY_WOLFIE_BRIEFING_3.0.114_TO_3.1.0.md`
 - [ ] Review Pack Architecture activation requirements
 - [ ] Review version control governance requirements
 - [ ] Review dual-system governance requirements

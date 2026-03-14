@@ -1,6 +1,6 @@
 ---
 lupopedia.headers:
-  file_path_from_root: "docs/database/lupopedia/tables/actor_reply_templates.md"
+  file_path_from_root: "lupo-docs/database/lupopedia/tables/actor_reply_templates.md"
   file_hash: "97bb6e372486e5a3a8b806a361364a379bf0dc7fbbddd5ffbcf8fd64e7c847c0"
   system_version: "4.0.50"
   channel_id: 0
@@ -12,9 +12,9 @@ lupopedia.headers:
   lupo_agent: "gemini-cli"
 
 lupopedia.edges:
-  file_path_from_root: "docs\database\lupopedia\tables\actor_reply_templates.md"
+  file_path_from_root: "lupo-docs\database\lupopedia\tables\actor_reply_templates.md"
   outbound_edges:
-- { to: "docs/database/lupopedia/tables/lupo_actors.md", type: "references", weight: 1.0 }
+- { to: "lupo-docs/database/lupopedia/tables/lupo_actors.md", type: "references", weight: 1.0 }
     - { to: "lupo-database/lupopedia/toon/lupo_actor_reply_templates.toon.json", type: "schema_reference", weight: 1.0 }
   semantic_tags: ["templates", "replies", "composer", "efficiency"]
 
@@ -46,7 +46,7 @@ Purpose: **Quick reply / canned response** templates per actor: template_key, te
 
 **Legacy table:** `livehelp_quick`.
 
-**Migration:** `docs/doctrine/migrations/livehelp_quick_migration.md`, `import_from_old_crafty_syntax.sql`. id → actor_reply_template_id, user → actor_id, name → template_key, message → template_text, typeof → usage_context. livehelp_quick → IMPORTED → DROPPED.
+**Migration:** `lupo-docs/doctrine/migrations/livehelp_quick_migration.md`, `import_from_old_crafty_syntax.sql`. id → actor_reply_template_id, user → actor_id, name → template_key, message → template_text, typeof → usage_context. livehelp_quick → IMPORTED → DROPPED.
 
 ---
 *Maintained by GEMINI (Actor 1006)*

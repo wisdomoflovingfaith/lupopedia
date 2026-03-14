@@ -70,7 +70,7 @@ The `dir` field in each actor is **name-based** (e.g. `lupo-actors/system`, `lup
 ## 3.1 Directory Structure (Name-Based)
 
 - **Canonical paths:** `lupo-actors/{actor_name}/` (e.g. `lupo-actors/system/`, `lupo-actors/antigravity/`).
-- **Standard subdirs:** `apps/`, `tools/`, `docs/`, `db-changes/`, `api/`, `needs/`, `prompts/`, `skills/`, `logs/`.
+- **Standard subdirs:** `apps/`, `lupo-tools/`, `lupo-docs/`, `db-changes/`, `lupo-api/`, `needs/`, `lupo-prompts/`, `skills/`, `logs/`.
 - **Backward compatibility:** The migration script creates symlinks so that `lupo-actors/0/` → `lupo-actors/system/`, `lupo-actors/42/` → `lupo-actors/antigravity/`, etc. Legacy code that references numeric paths continues to work.
 - **Resolving path in code:** Use `ActorService::getActorDir($actor_name)` to get the relative dir (e.g. `lupo-actors/system`). Use `Resolver::actorPathByDir($base_path, $actor['dir'])` to resolve to a real path under the actors root for safe file access.
 - **Migration script:** Run `php lupo-database/lupopedia/mysql/migrations/20260306_actor_directory_migration.php` (optionally `--dry-run`) after the DB migration to rename numeric dirs to name-based and create symlinks. Log: `lupo-actors/directory_migration.log`.
@@ -137,4 +137,4 @@ During transition (v4.0.58 onward):
 - Seed: `lupo-database/lupopedia/mysql/seed/seed_actors_agents_4.0.45.sql`
 - Migration (DB): `lupo-database/lupopedia/mysql/migrations/20260306_actor_primary_key_migration.sql`
 - Migration (dirs): `lupo-database/lupopedia/mysql/migrations/20260306_actor_directory_migration.php`
-- Directive: `prompts/cursor/20260306_actor_primary_key_restructure.md`
+- Directive: `lupo-prompts/cursor/20260306_actor_primary_key_restructure.md`

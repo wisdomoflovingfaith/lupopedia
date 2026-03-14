@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\archive\channel_420_honest_post_migration.md"
+  file_path_from_root: "lupo-docs\archive\channel_420_honest_post_migration.md"
   file_hash: "51454dbbfb3ecda91526dea193318f5fa22c8d143f1ecd4dc561e09da0851129"
-  file_path_from_root: "docs\archive\channel_420_honest_post_migration.md"
+  file_path_from_root: "lupo-docs\archive\channel_420_honest_post_migration.md"
   file_hash: "9718fdf3fdda6e5b6a2730ece72ff9b658858602fb6a1c5d3748a5b5295c5128"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -63,7 +63,7 @@ lupopedia.footer:
 
 ---
 wolfie.headers:
-  file_path_from_root: "docs/archive/channel_420_honest_post_migration.md"
+  file_path_from_root: "lupo-docs/archive/channel_420_honest_post_migration.md"
   system_version: "4.0.29"
   channel_id: 420
   mood_rgb: "808080"
@@ -75,8 +75,8 @@ wolfie.headers:
 
 flip.footer:
   referenced_by_files:
-    - "docs/archive/CHANNEL_420_TOMBSTONE.md"
-    - "docs/archive/channel_420_final_messages.md"
+    - "lupo-docs/archive/CHANNEL_420_TOMBSTONE.md"
+    - "lupo-docs/archive/channel_420_final_messages.md"
     - "CHANGELOG.md"
   referenced_by_channels:
     - 420
@@ -101,7 +101,7 @@ flip.footer:
 **Purpose**: Actual database state after closure migration execution  
 **Status**: Archived - 2026-02-22  
 **Archive Type**: Post-migration verification  
-**Reference**: See `docs/archive/CHANNEL_420_TOMBSTONE.md` for summary
+**Reference**: See `lupo-docs/archive/CHANNEL_420_TOMBSTONE.md` for summary
 
 > ## 🏗️ HONEST POST-MIGRATION NOTE
 > 
@@ -154,7 +154,7 @@ CAPTAIN STONED LUPOPEDIA WOLFIE — FINAL DECLARATION BEFORE CHANNEL 420 ARCHIVE
 
 ## Migration Execution Verification
 
-**Migration File**: `database/migrations/20260222_420_final_closure.sql`
+**Migration File**: `lupo-database/migrations/20260222_420_final_closure.sql`
 
 **Execution Result**: ✅ SUCCESS
 

@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "channels\42\threads\DEVELOPMENT_CYCLE_4_0_47\20260226044100_10000_1002_dialog_doctrine_table_renamed.md"
+  file_path_from_root: "lupo-channels\42\threads\DEVELOPMENT_CYCLE_4_0_47\20260226044100_10000_1002_dialog_doctrine_table_renamed.md"
   file_hash: "1153ad3a9ae1781dc672c2a9ceab8340badf6d13068b6a3a157259df0f316996"
-  file_path_from_root: "channels\42\threads\DEVELOPMENT_CYCLE_4_0_47\20260226044100_10000_1002_dialog_doctrine_table_renamed.md"
+  file_path_from_root: "lupo-channels\42\threads\DEVELOPMENT_CYCLE_4_0_47\20260226044100_10000_1002_dialog_doctrine_table_renamed.md"
   file_hash: "2225bf070d5603dc2b2913c5022522309d53913f5d13645e2f8a1fe0df3f068a"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -63,7 +63,7 @@ lupopedia.footer:
 
 ---
 wolfie.headers: {
-  file_path_from_root: "channels/42/threads/DEVELOPMENT_CYCLE_4_0_47/20260226044100_10000_1002_dialog_doctrine_table_renamed.md",
+  file_path_from_root: "lupo-channels/42/threads/DEVELOPMENT_CYCLE_4_0_47/20260226044100_10000_1002_dialog_doctrine_table_renamed.md",
   system_version: "4.0.47",
   channel_id: 42,
   mood_rgb: "FF6347",
@@ -82,18 +82,18 @@ wolfie.headers: {
 
 @flip.footer {
   inbound_edges: [
-    { from: "channels/42/threads/DEVELOPMENT_CYCLE_4_0_47/20260226042800_10000_1002_version_4_0_47_initialized.md", type: "precedes", weight: 1.0, hashtag: "#development" },
-    { from: "database/migrations/install_new_lupopedia.sql", type: "references", weight: 1.0, hashtag: "#schema" },
-    { from: "database/migrations/import_from_old_crafty_syntax.sql", type: "references", weight: 1.0, hashtag: "#migration" }
+    { from: "lupo-channels/42/threads/DEVELOPMENT_CYCLE_4_0_47/20260226042800_10000_1002_version_4_0_47_initialized.md", type: "precedes", weight: 1.0, hashtag: "#development" },
+    { from: "lupo-database/migrations/install_new_lupopedia.sql", type: "references", weight: 1.0, hashtag: "#schema" },
+    { from: "lupo-database/migrations/import_from_old_crafty_syntax.sql", type: "references", weight: 1.0, hashtag: "#migration" }
   ],
   outbound_edges: [
-    { to: "docs/toons/lupo_dialog_messages.toon.json", type: "references", weight: 1.0, hashtag: "#schema" },
-    { to: "scripts/import_channels_and_artifacts.py", type: "references", weight: 0.9, hashtag: "#import" },
+    { to: "lupo-docs/toons/lupo_dialog_messages.toon.json", type: "references", weight: 1.0, hashtag: "#schema" },
+    { to: "lupo-scripts/import_channels_and_artifacts.py", type: "references", weight: 0.9, hashtag: "#import" },
     { to: "lupo-includes/modules/channels/channels-controller.php", type: "references", weight: 0.8, hashtag: "#controller" }
   ],
   referenced_by_actors: [10000, 1002],
   references: {
-    by_files: ["database/migrations/install_new_lupopedia.sql", "database/migrations/import_from_old_crafty_syntax.sql", "scripts/import_channels_and_artifacts.py"],
+    by_files: ["lupo-database/migrations/install_new_lupopedia.sql", "lupo-database/migrations/import_from_old_crafty_syntax.sql", "lupo-scripts/import_channels_and_artifacts.py"],
     by_actors: [10000, 1002]
   },
   semantic_tags: ["table_rename", "schema_change", "dialog_doctrine_to_dialog_messages", "database_migration"],
@@ -119,11 +119,11 @@ The database table `lupo_dialog_doctrine` has been manually renamed to `lupo_dia
 ## ✅ Completed Updates
 
 ### 1. SQL Install Scripts ✅
-- **`database/migrations/install_new_lupopedia.sql`**
+- **`lupo-database/migrations/install_new_lupopedia.sql`**
   - Table definition: `CREATE TABLE lupo_dialog_doctrine` → `CREATE TABLE lupo_dialog_messages`
   - All index references updated: `lupo_dialog_doctrine_idx_*` → `lupo_dialog_messages_idx_*`
 
-- **`database/migrations/import_from_old_crafty_syntax.sql`**
+- **`lupo-database/migrations/import_from_old_crafty_syntax.sql`**
   - Comment updated: `→ lupo_dialog_threads & lupo_dialog_doctrine` → `→ lupo_dialog_threads & lupo_dialog_messages`
   - TRUNCATE statement: `TRUNCATE lupo_dialog_doctrine` → `TRUNCATE lupo_dialog_messages`
   - INSERT statement: `INSERT INTO lupo_dialog_doctrine` → `INSERT INTO lupo_dialog_messages`
@@ -141,14 +141,14 @@ The database table `lupo_dialog_doctrine` has been manually renamed to `lupo_dia
   - Broadcast query: `FROM {$prefix}dialog_doctrine` → `FROM {$prefix}dialog_messages`
 
 ### 3. Python Scripts ✅
-- **`scripts/import_channels_and_artifacts.py`**
+- **`lupo-scripts/import_channels_and_artifacts.py`**
   - Import comment: `-> lupo_dialog_doctrine` → `-> lupo_dialog_messages`
   - ID check query: `FROM {table_prefix}dialog_doctrine` → `FROM {table_prefix}dialog_messages`
   - Hash check query: `FROM {table_prefix}dialog_doctrine` → `FROM {table_prefix}dialog_messages`
   - INSERT statement: `INSERT INTO {table_prefix}dialog_doctrine` → `INSERT INTO {table_prefix}dialog_messages`
 
 ### 4. Documentation & TOON Files ✅
-- **`docs/toons/lupo_dialog_messages.toon.json`** - Already correctly references `lupo_dialog_messages`
+- **`lupo-docs/toons/lupo_dialog_messages.toon.json`** - Already correctly references `lupo_dialog_messages`
 - Various documentation files reference the table but TOON files are auto-generated from live database schema
 
 ## 📊 Impact Summary
@@ -161,7 +161,7 @@ The database table `lupo_dialog_doctrine` has been manually renamed to `lupo_dia
 
 ## 🔍 Verification Notes
 
-The TOON file (`docs/toons/lupo_dialog_messages.toon.json`) was already correctly named, indicating the database schema was properly synchronized during the recent TOON generation.
+The TOON file (`lupo-docs/toons/lupo_dialog_messages.toon.json`) was already correctly named, indicating the database schema was properly synchronized during the recent TOON generation.
 
 ## 🎯 System Status
 

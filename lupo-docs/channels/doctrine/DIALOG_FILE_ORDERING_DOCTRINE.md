@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\channels\doctrine\DIALOG_FILE_ORDERING_DOCTRINE.md"
+  file_path_from_root: "lupo-docs\channels\doctrine\DIALOG_FILE_ORDERING_DOCTRINE.md"
   file_hash: "783e3273555e6d77f7c984bb29a51b7588ca7216204d15819b1783f040f48a1c"
-  file_path_from_root: "docs\channels\doctrine\DIALOG_FILE_ORDERING_DOCTRINE.md"
+  file_path_from_root: "lupo-docs\channels\doctrine\DIALOG_FILE_ORDERING_DOCTRINE.md"
   file_hash: "12cde1d95fa7bde38d9f9b5e43d05a9905110afd4d7bca471ee86ab2021b28bc"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -301,8 +301,8 @@ Both systems use the same "newest at top" principle for deterministic parsing.
 
 ## Related Documentation
 
-- `docs/doctrine/WOLFIE_HEADER_DOCTRINE.md` - WOLFIE Header specification (canonical doctrine file)
-- `docs/DIALOG_HISTORY_SPEC.md` - Dialog history file specification
+- `lupo-docs/doctrine/WOLFIE_HEADER_DOCTRINE.md` - WOLFIE Header specification (canonical doctrine file)
+- `lupo-docs/DIALOG_HISTORY_SPEC.md` - Dialog history file specification
 - `dialog.yaml` - Inline dialog format specification
 
 ## Summary

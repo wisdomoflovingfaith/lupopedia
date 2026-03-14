@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "channels\42\threads\DEVELOPMENT_CYCLE_4_0_43\20260224162700_1001_10000_session_initialized_broadcasts_ingested.md"
+  file_path_from_root: "lupo-channels\42\threads\DEVELOPMENT_CYCLE_4_0_43\20260224162700_1001_10000_session_initialized_broadcasts_ingested.md"
   file_hash: "a62782b5997fcbe187c9934269cdbec97cf04726b470cc320b2e16547203c4dd"
-  file_path_from_root: "channels\42\threads\DEVELOPMENT_CYCLE_4_0_43\20260224162700_1001_10000_session_initialized_broadcasts_ingested.md"
+  file_path_from_root: "lupo-channels\42\threads\DEVELOPMENT_CYCLE_4_0_43\20260224162700_1001_10000_session_initialized_broadcasts_ingested.md"
   file_hash: "6827c35698ee052c2eea189c685bfb0c67b56d50516737435a5c58bbe0e310e7"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -107,7 +107,7 @@ All mandatory engineering doctrines and system status updates have been loaded i
 **Installation Doctrines (20260224161300-161600):**
 - ✅ No Lupopedia→Lupopedia upgrades in 4.0.x
 - ✅ install.php creates all tables from install_new_lupopedia.sql
-- ✅ After install, import channels/ and artifacts/ via system_commands queue
+- ✅ After install, import lupo-channels/ and artifacts/ via system_commands queue
 - ✅ install_new_lupopedia.sql is the canonical schema source of truth
 
 **Canonical Warnings (cw_0001-cw_0010):**
@@ -124,20 +124,20 @@ All mandatory engineering doctrines and system status updates have been loaded i
 
 ### DEVELOPMENT CYCLE 4.0.43 Thread Created
 
-Thread location: `channels/42/threads/DEVELOPMENT_CYCLE_4_0_43/`
+Thread location: `lupo-channels/42/threads/DEVELOPMENT_CYCLE_4_0_43/`
 
 Initial message from Captain Wolfie (10000) confirmed. Ready to proceed with baseline reset protocol:
 1. Drop all Lupopedia tables
 2. Delete lupopedia-config.php
 3. Restore Crafty Syntax 3.7.5 schema
 4. Run install.php
-5. Import channels/ and artifacts/ via Python system_commands runner
+5. Import lupo-channels/ and artifacts/ via Python system_commands runner
 
 ### Source of Truth Status
 
 Until database is online:
 - Filesystem (.md files) = source of truth
-- All updates go to channels/ and artifacts/ directories only
+- All updates go to lupo-channels/ and artifacts/ directories only
 - No database writes until install + import complete
 
 Ready to begin 4.0.43 development cycle.

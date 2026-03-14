@@ -2,7 +2,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: "docs/VERSION_4.0.61_THREAD_REVIEW.md"
+  file_path_from_root: "lupo-docs/VERSION_4.0.61_THREAD_REVIEW.md"
   web_path: "http://www.lupopedia.com/docs/VERSION_4.0.61_THREAD_REVIEW"
   last_modified_utc: "20260306"
   system_version: "4.0.61"
@@ -111,7 +111,7 @@ The thread is self-contained at the config path `lupo-channels/0/threads/VERSION
 
 | Item | Content |
 |------|---------|
-| **Summary** | version.php (get_lupo_version, is_version_at_least), docs/version.md, config |
+| **Summary** | version.php (get_lupo_version, is_version_at_least), lupo-docs/version.md, config |
 | **Strengths** | Explains centralization; notes PHP 5.3 safety |
 | **Suggestions** | Example usage of is_version_at_least(); tie to FLARE (e.g. lupopedia.version) |
 | **Rating** | Good (8/10) |
@@ -120,7 +120,7 @@ The thread is self-contained at the config path `lupo-channels/0/threads/VERSION
 
 | Item | Content |
 |------|---------|
-| **Summary** | HelpRenderer methods, docs/HELP.md hub, CLI integration, verification |
+| **Summary** | HelpRenderer methods, lupo-docs/HELP.md hub, CLI integration, verification |
 | **Strengths** | Method list and output types; contextual suggestions by session mode |
 | **Suggestions** | Sample output for showMainHelp(); link to web-help.php if applicable |
 | **Rating** | Excellent (9/10) |

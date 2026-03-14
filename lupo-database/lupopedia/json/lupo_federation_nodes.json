@@ -2,10 +2,12 @@
   "table_name": "lupo_federation_nodes",
   "fields": [
     "`federation_node_id` bigint NOT NULL",
+    "`node_type` varchar(32) NOT NULL DEFAULT 'local'",
     "`node_base_url` varchar(500) NOT NULL",
     "`default_department_id` bigint",
     "`node_name` varchar(255)",
     "`node_description` text",
+    "`allows_foreign_traits` tinyint NOT NULL DEFAULT 1",
     "`node_contact` varchar(255)",
     "`meta_json` json",
     "`content_count` bigint NOT NULL DEFAULT 0",

@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\channels\appendix\appendix\VOCABULARY.md"
+  file_path_from_root: "lupo-docs\channels\appendix\appendix\VOCABULARY.md"
   file_hash: "f7b1c410ec169402908c2d2a2341aacf570526481eebad2578d24ede308d4b73"
-  file_path_from_root: "docs\channels\appendix\appendix\VOCABULARY.md"
+  file_path_from_root: "lupo-docs\channels\appendix\appendix\VOCABULARY.md"
   file_hash: "4ef06c68deeb34ca638875477556fac9d4a157a0ad39703b4e4c45392e5aff15"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -85,7 +85,7 @@ These definitions clarify system behavior and replace metaphorical descriptions:
 | Original Term (if any) | Standard Term       | Definition |
 |------------------------|---------------------|------------|
 | Serpents               | Agent Vectors       | Independent agent paths in concurrency. |
-| Wings                  | Concurrency Layers  | Distributed task handling across agents/IDEs. |
+| Wings                  | Concurrency Layers  | Distributed task handling across lupo-agents/IDEs. |
 | Alignment              | Synced State        | Agents operating within defined parameters. |
 | Divergence             | Drift State         | Deviation from synced parameters requiring halt. |
 | Heavens Stop           | Global Halt Trigger | System-wide pause via STOP.flag. |

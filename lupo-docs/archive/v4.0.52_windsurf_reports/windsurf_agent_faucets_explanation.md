@@ -90,15 +90,15 @@ Windsurf,
 
 We have a concept called **agent faucets** (capabilities / outputs an agent can "emit" or "operate"). This is already documented in **TOON files**—specifically look under:
 
-* `docs/toons/lupo_agent_faucets.toon.json`
+* `lupo-docs/toons/lupo_agent_faucets.toon.json`
 
 ### Canonical Directory Model for Agents + Faucets
 
-#### 1) Root-level Agent Definition Lives in `actors/`
+#### 1) Root-level Agent Definition Lives in `lupo-actors/`
 
 Each agent's canonical identity/config starts at repo root:
 
-* `actors/<actor_id>/...`
+* `lupo-actors/<actor_id>/...`
 
 That directory is the authoritative "root record" for the agent.
 
@@ -110,31 +110,31 @@ There are two valid patterns (use whichever matches the channel's organization):
 
 **A) Per-Actor Channel Folder (Preferred when you have per-actor channel state):**
 
-* `channels/<channel_id>/actors/<actor_id>/faucets.json`
+* `lupo-channels/<channel_id>/actors/<actor_id>/faucets.json`
 * (or `faucets.md` if it's documentation-first, but JSON is preferred for machine parsing)
 
 **B) Channel-Wide Faucets File (Preferred when faucets are shared / centrally managed):**
 
-* `channels/<channel_id>/faucets.json`
+* `lupo-channels/<channel_id>/faucets.json`
 * This file can contain entries for multiple actors in that channel.
 
 ### Rules (No Ambiguity)
 
-* **Actors are canonical at `actors/<actor_id>/`**
+* **Actors are canonical at `lupo-actors/<actor_id>/`**
 * **Faucets are channel-scoped**, so they must exist either:
-  * Per actor inside channel (`channels/<channel_id>/actors/<actor_id>/faucets.json|md`), **or**
-  * Centrally for channel (`channels/<channel_id>/faucets.json`)
+  * Per actor inside channel (`lupo-channels/<channel_id>/actors/<actor_id>/faucets.json|md`), **or**
+  * Centrally for channel (`lupo-channels/<channel_id>/faucets.json`)
 * If both exist, **channel-specific per-actor overrides channel-wide**, and both override anything implied at root.
-* **TOON Reference**: All faucet definitions must align with `lupo_agent_faucets` table schema in `docs/toons/lupo_agent_faucets.toon.json`
+* **TOON Reference**: All faucet definitions must align with `lupo_agent_faucets` table schema in `lupo-docs/toons/lupo_agent_faucets.toon.json`
 
 ### What Windsurf Should Do Next
 
-1. **Read the Faucet Doctrine**: Review `docs/toons/lupo_agent_faucets.toon.json` for complete schema reference
+1. **Read the Faucet Doctrine**: Review `lupo-docs/toons/lupo_agent_faucets.toon.json` for complete schema reference
 2. **Ensure Every Channel Using Faucets Has One Of**:
-   * `channels/<channel_id>/faucets.json` 
-   * `channels/<channel_id>/actors/<actor_id>/faucets.json` 
+   * `lupo-channels/<channel_id>/faucets.json` 
+   * `lupo-channels/<channel_id>/actors/<actor_id>/faucets.json` 
 3. **Ensure Every Actor That Appears in Channels Also Exists At**:
-   * `actors/<actor_id>/` 
+   * `lupo-actors/<actor_id>/` 
 4. **Validate Faucet Schema**: Ensure all faucet JSON files match the TOON field structure:
    ```json
    {
@@ -167,7 +167,7 @@ There are two valid patterns (use whichever matches the channel's organization):
 ### Current Status Assessment
 
 **✅ TOON Schema Exists**: `lupo_agent_faucets.toon.json` defines complete faucet structure
-**✅ Actor Directory Structure**: Canonical `actors/<actor_id>/` structure is established
+**✅ Actor Directory Structure**: Canonical `lupo-actors/<actor_id>/` structure is established
 **❌ Faucets Implementation**: No faucet files currently exist in channels or actors
 **❌ Channel Integration**: Channels lack faucet definitions for agent capabilities
 
@@ -179,7 +179,7 @@ There are two valid patterns (use whichever matches the channel's organization):
 
 ### Example Faucet File Structure
 
-**Per-Actor Faucets** (`channels/42/actors/0/faucets.json`):
+**Per-Actor Faucets** (`lupo-channels/42/actors/0/faucets.json`):
 ```json
 {
   "agent_faucet_id": 1,
@@ -207,7 +207,7 @@ There are two valid patterns (use whichever matches the channel's organization):
 }
 ```
 
-**Channel-Wide Faucets** (`channels/42/faucets.json`):
+**Channel-Wide Faucets** (`lupo-channels/42/faucets.json`):
 ```json
 {
   "faucets": [
@@ -236,7 +236,7 @@ As of 4.0.56, a **global faucet store** by `agent_faucet_id` is supported:
 - **Path:** `lupo-database/lupopedia/actors/faucets/<agent_faucet_id>/faucet.json`
 - **Manifest:** `lupo-database/lupopedia/actors/faucets/by_actor.json` maps `(actor_id, domain_id)` → `agent_faucet_id` for resolution when loading by (channel_id, actor_id).
 - **Precedence:** (1) Per-actor channel file (override), (2) Channel-wide file (override), (3) ID-scoped file (base). Channel-scoped files take precedence over ID-scoped.
-- **Loader:** `lupo-bin/faucet_loader.php` uses `LUPOPEDIA_PATH` or `LUPO_DATABASE_DIR` as base; resolves `agent_faucet_id` via `by_actor.json` or DB (`SELECT agent_faucet_id FROM lupo_agent_faucets WHERE actor_id = ? AND domain_id = ?`), then loads `actors/faucets/<id>/faucet.json`.
+- **Loader:** `lupo-bin/faucet_loader.php` uses `LUPOPEDIA_PATH` or `LUPO_DATABASE_DIR` as base; resolves `agent_faucet_id` via `by_actor.json` or DB (`SELECT agent_faucet_id FROM lupo_agent_faucets WHERE actor_id = ? AND domain_id = ?`), then loads `lupo-actors/faucets/<id>/faucet.json`.
 - **Validation:** `validate_faucets.php` and `faucet_integrity_audit.php` scan `lupo-database/lupopedia/actors/faucets/*/faucet.json` and validate against the TOON schema.
 - **Pilot:** `lupo-database/lupopedia/actors/faucets/6/faucet.json` (ANUBIS FLARE Ingestion, actor_id 19, domain_id 42).
 

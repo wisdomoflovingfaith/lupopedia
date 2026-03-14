@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,7 +35,7 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\channels\appendix\appendix\FOUNDERS_NOTE.md"
+  file_path_from_root: "lupo-docs\channels\appendix\appendix\FOUNDERS_NOTE.md"
   file_hash: "8759fc176422f742bedf6a41b97421e0daceab991dc36707132234f40f95e026"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -57,7 +57,7 @@ lupopedia.footer:
 
 ---
 lupopedia.headers: {
-  file_path_from_root: "docs/channels/appendix/appendix/FOUNDERS_NOTE.md",
+  file_path_from_root: "lupo-docs/channels/appendix/appendix/FOUNDERS_NOTE.md",
   file_hash: "016ae261b24fe5b713e3be3c5785dc18a1e2dba18a94b76ac58e6b16e77ecf00"
   system_version: "4.0.50"
   channel_id: 42,
@@ -72,10 +72,10 @@ lupopedia.headers: {
   lupo_agent: "antigravity"
 }
 lupopedia.edges: {
-  file_path_from_root: "docs\channels\appendix\appendix\FOUNDERS_NOTE.md"
+  file_path_from_root: "lupo-docs\channels\appendix\appendix\FOUNDERS_NOTE.md"
   outbound_edges: [
-    { to: "docs/channels/appendix/HISTORY.md", type: "references", weight: 1.0 },
-    { to: "docs/channels/appendix/appendix/WHO_IS_CAPTAIN_WOLFIE.md", type: "references", weight: 0.9 }
+    { to: "lupo-docs/channels/appendix/HISTORY.md", type: "references", weight: 1.0 },
+    { to: "lupo-docs/channels/appendix/appendix/WHO_IS_CAPTAIN_WOLFIE.md", type: "references", weight: 0.9 }
   ],
   semantic_tags: ["personal_journey", "survival_architecture", "semantic_os_philosophy"]
 }

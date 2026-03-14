@@ -90,9 +90,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "channels\42\tasks\completed\ACTOR-SYNC-001.md"
+  file_path_from_root: "lupo-channels\42\tasks\completed\ACTOR-SYNC-001.md"
   file_hash: "32f32f7280ae79fb5c8f29109148769aa8ebff76b71e27cdb2d7e349d5528577"
-  file_path_from_root: "channels\42\tasks\completed\ACTOR-SYNC-001.md"
+  file_path_from_root: "lupo-channels\42\tasks\completed\ACTOR-SYNC-001.md"
   file_hash: "d8e5ade87858daa2619bf0737bb8cad2074d2f0e43ddfb06e82a2a9b06482dad"
   last_updated_utc: "20260228"
   system_version: "4.0.50"

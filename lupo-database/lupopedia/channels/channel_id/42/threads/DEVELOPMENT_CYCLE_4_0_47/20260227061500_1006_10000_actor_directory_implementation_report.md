@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "channels\42\threads\DEVELOPMENT_CYCLE_4_0_47\20260227061500_1006_10000_actor_directory_implementation_report.md"
+  file_path_from_root: "lupo-channels\42\threads\DEVELOPMENT_CYCLE_4_0_47\20260227061500_1006_10000_actor_directory_implementation_report.md"
   file_hash: "66efc9b09200488e4ab923a0cdb20590ee278a435e78b52d8ed354d382c6b4b3"
-  file_path_from_root: "channels\42\threads\DEVELOPMENT_CYCLE_4_0_47\20260227061500_1006_10000_actor_directory_implementation_report.md"
+  file_path_from_root: "lupo-channels\42\threads\DEVELOPMENT_CYCLE_4_0_47\20260227061500_1006_10000_actor_directory_implementation_report.md"
   file_hash: "6b2ba1eccbe97fa9408a8b5a9d0dc02721b808f37af9ce3221b18aade512f8a0"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -63,7 +63,7 @@ lupopedia.footer:
 
 ---
 wolfie.headers: {
-  file_path_from_root: "channels/42/threads/DEVELOPMENT_CYCLE_4_0_47/20260227061500_1006_10000_actor_directory_implementation_report.md",
+  file_path_from_root: "lupo-channels/42/threads/DEVELOPMENT_CYCLE_4_0_47/20260227061500_1006_10000_actor_directory_implementation_report.md",
   system_version: "4.0.47",
   channel_id: 42,
   actor_id: 1006,
@@ -75,9 +75,9 @@ wolfie.headers: {
 }
 flip.footer: {
   outbound_edges: [
-    { to: "actors/10000/profile.json", type: "implements", weight: 1.0 },
-    { to: "actors/1000/profile.json", type: "implements", weight: 1.0 },
-    { to: "scripts/validate_actors.py", type: "references", weight: 0.8 }
+    { to: "lupo-actors/10000/profile.json", type: "implements", weight: 1.0 },
+    { to: "lupo-actors/1000/profile.json", type: "implements", weight: 1.0 },
+    { to: "lupo-scripts/validate_actors.py", type: "references", weight: 0.8 }
   ],
   semantic_tags: ["actors", "directory", "structure", "semantic_os", "implementation", "database_optimization"]
 }
@@ -93,17 +93,17 @@ I have successfully implemented the **Combined Actor Directory Structure** as di
 - **Core Semantic Files**: Populated `profile.json`, `capabilities.json`, `relationships.json`, and all specified config/state files with schema version `4.0.47`.
 - **Append-Only Logs**: Initialized `activity.ndjson` and `timeline.ndjson` to support high-frequency event streaming.
 - **Resource Assets**: Deployed generated avatar placeholders for both implemented actors.
-- **Tooling**: Created `scripts/export_actor.sh`, `scripts/import_actor.sh`, and a Python validation suite `scripts/validate_actors.py`.
+- **Tooling**: Created `lupo-scripts/export_actor.sh`, `lupo-scripts/import_actor.sh`, and a Python validation suite `lupo-scripts/validate_actors.py`.
 - **Governance**: Updated `registry.json` and authored `ARCHITECTURE.md` to document the OS-level design.
 
 ---
 
 ## 💡 Database Improvement Suggestions (TOON Analysis)
 
-After reviewing the current `docs/toons/`, I have identified several opportunities to optimize the database schema to better support the new Actor Directory structure and the Semantic OS goal.
+After reviewing the current `lupo-docs/toons/`, I have identified several opportunities to optimize the database schema to better support the new Actor Directory structure and the Semantic OS goal.
 
 ### 1. Synchronous vs. Asynchronous Identity
-The `lupo_actors` table (see `lupo_actors.toon.json`) does not have a dedicated field for `filesystem_path`. While we follow a convention of `actors/<actor_id>`, explicit mapping would be safer.
+The `lupo_actors` table (see `lupo_actors.toon.json`) does not have a dedicated field for `filesystem_path`. While we follow a convention of `lupo-actors/<actor_id>`, explicit mapping would be safer.
 > [!TIP]
 > **Suggested Change**: Add `actor_root_path VARCHAR(512)` to `lupo_actors`.
 
@@ -120,7 +120,7 @@ The `lupo_channel_logs` (see `lupo_channel_logs.toon.json`) uses `log_type_id`. 
 ### 4. Agent Configuration parity
 The `lupo_agents` table (`lupo_agents.toon.json`) has several fields like `temperature`, `top_p`, and `max_tokens`. Our new `config/system.json` directory structure is more extensible.
 > [!WARNING]
-> **Suggested Change**: Transition the specialized agent tuning parameters in `lupo_agents` into a single `runtime_config_json` field to match the flexibility of the `actors/<id>/config/` directory.
+> **Suggested Change**: Transition the specialized agent tuning parameters in `lupo_agents` into a single `runtime_config_json` field to match the flexibility of the `lupo-actors/<id>/config/` directory.
 
 ---
 

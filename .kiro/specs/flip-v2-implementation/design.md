@@ -507,7 +507,7 @@ FLIP headers are YAML blocks at the start of markdown files:
 ```yaml
 ---
 wolfie.headers: explicit architecture with structured clarity for every file.
-file_path_from_root: "docs/doctrine/FLIP_V2_DOCTRINE.md"
+file_path_from_root: "lupo-docs/doctrine/FLIP_V2_DOCTRINE.md"
 artifact_kind: "doctrine"
 channel_id: 42
 actor_id: 10001
@@ -527,10 +527,10 @@ FLIP footers are YAML blocks at the end of markdown files:
 ```yaml
 ---
 inbound_edges:
-  - source: "docs/doctrine/DATABASE_DOCTRINE.md"
+  - source: "lupo-docs/doctrine/DATABASE_DOCTRINE.md"
     relationship: "references"
     weight: 1.0
-  - source: "docs/doctrine/TIMESTAMP_DOCTRINE.md"
+  - source: "lupo-docs/doctrine/TIMESTAMP_DOCTRINE.md"
     relationship: "depends_on"
     weight: 0.8
 ---
@@ -816,11 +816,11 @@ public function backfillAll()
 {
     $directories = array(
         'channels',
-        'docs/directives',
-        'docs/status',
-        'docs/brainstorm',
-        'docs/doctrine',
-        'docs/versions'
+        'lupo-docs/directives',
+        'lupo-docs/status',
+        'lupo-docs/brainstorm',
+        'lupo-docs/doctrine',
+        'lupo-docs/versions'
     );
     
     $totalStats = array(
@@ -1068,14 +1068,14 @@ Tag format: `Feature: flip-v2-implementation, Property {number}: {property_text}
 
 ### Unit Test Coverage
 
-**FLIPScanner Tests** (`tests/unit/flip_scanner.php`):
+**FLIPScanner Tests** (`lupo-tests/unit/flip_scanner.php`):
 - Test YAML header extraction with various formats
 - Test YAML footer extraction
 - Test hash computation consistency
 - Test path normalization edge cases
 - Test error handling for malformed YAML
 
-**FLIPArtifactRepository Tests** (`tests/unit/flip_artifact_repository.php`):
+**FLIPArtifactRepository Tests** (`lupo-tests/unit/flip_artifact_repository.php`):
 - Test insert new artifact
 - Test update existing artifact (upsert)
 - Test find by path
@@ -1083,13 +1083,13 @@ Tag format: `Feature: flip-v2-implementation, Property {number}: {property_text}
 - Test find by channel
 - Test soft delete
 
-**FLIPEdgeMapper Tests** (`tests/unit/flip_edge_mapper.php`):
+**FLIPEdgeMapper Tests** (`lupo-tests/unit/flip_edge_mapper.php`):
 - Test edge creation from footer
 - Test edge upsert behavior
 - Test source path resolution
 - Test invalid source handling
 
-**FLIPBackfillService Tests** (`tests/unit/flip_backfill_service.php`):
+**FLIPBackfillService Tests** (`lupo-tests/unit/flip_backfill_service.php`):
 - Test directory scanning
 - Test file filtering by extension
 - Test statistics collection
@@ -1097,41 +1097,41 @@ Tag format: `Feature: flip-v2-implementation, Property {number}: {property_text}
 
 ### Property Test Coverage
 
-**Property 1-2: YAML Parsing** (`tests/property/flip_yaml_parsing.php`):
+**Property 1-2: YAML Parsing** (`lupo-tests/property/flip_yaml_parsing.php`):
 - Generate random valid YAML headers
 - Generate random valid YAML footers
 - Verify extraction and JSON conversion
 
-**Property 6-7: Hash Operations** (`tests/property/flip_hash_operations.php`):
+**Property 6-7: Hash Operations** (`lupo-tests/property/flip_hash_operations.php`):
 - Generate random file content
 - Verify hash consistency
 - Verify hash-based update detection
 
-**Property 13: Timestamp Format** (`tests/property/flip_timestamp_format.php`):
+**Property 13: Timestamp Format** (`lupo-tests/property/flip_timestamp_format.php`):
 - Generate random timestamps
 - Verify YMDHIS format validity
 - Verify timestamp comparison operations
 
-**Property 15: Path Normalization** (`tests/property/flip_path_normalization.php`):
+**Property 15: Path Normalization** (`lupo-tests/property/flip_path_normalization.php`):
 - Generate random absolute paths
 - Generate paths with mixed separators
 - Verify normalization consistency
 
-**Property 18: Non-Destructive Scanning** (`tests/property/flip_non_destructive.php`):
+**Property 18: Non-Destructive Scanning** (`lupo-tests/property/flip_non_destructive.php`):
 - Generate random file content
 - Scan files
 - Verify content unchanged
 
 ### Integration Tests
 
-**End-to-End Backfill** (`tests/integration/flip_backfill_integration.php`):
+**End-to-End Backfill** (`lupo-tests/integration/flip_backfill_integration.php`):
 - Create test directory structure
 - Create test markdown files with FLIP metadata
 - Run backfill process
 - Verify database records
 - Verify edge relationships
 
-**Database Compatibility** (`tests/integration/flip_database_compatibility.php`):
+**Database Compatibility** (`lupo-tests/integration/flip_database_compatibility.php`):
 - Run migration on MySQL
 - Run migration on PostgreSQL
 - Verify schema compatibility
@@ -1142,35 +1142,35 @@ Tag format: `Feature: flip-v2-implementation, Property {number}: {property_text}
 
 ```bash
 # Run all FLIP v2 unit tests
-php tests/unit/flip_scanner.php
-php tests/unit/flip_artifact_repository.php
-php tests/unit/flip_edge_mapper.php
-php tests/unit/flip_backfill_service.php
+php lupo-tests/unit/flip_scanner.php
+php lupo-tests/unit/flip_artifact_repository.php
+php lupo-tests/unit/flip_edge_mapper.php
+php lupo-tests/unit/flip_backfill_service.php
 
 # Run all FLIP v2 property tests (100+ iterations each)
-php tests/property/flip_yaml_parsing.php
-php tests/property/flip_hash_operations.php
-php tests/property/flip_timestamp_format.php
-php tests/property/flip_path_normalization.php
-php tests/property/flip_non_destructive.php
+php lupo-tests/property/flip_yaml_parsing.php
+php lupo-tests/property/flip_hash_operations.php
+php lupo-tests/property/flip_timestamp_format.php
+php lupo-tests/property/flip_path_normalization.php
+php lupo-tests/property/flip_non_destructive.php
 
 # Run integration tests
-php tests/integration/flip_backfill_integration.php
-php tests/integration/flip_database_compatibility.php
+php lupo-tests/integration/flip_backfill_integration.php
+php lupo-tests/integration/flip_database_compatibility.php
 
 # Run complete test suite
-sh scripts/run_tests.sh .
+sh lupo-scripts/run_tests.sh .
 ```
 
 ## Implementation Phases
 
 ### Phase 1: Database Schema (Version 4.0.37)
 
-1. Create migration script `database/migrations/upgrade_flip_v2.sql`
+1. Create migration script `lupo-database/migrations/upgrade_flip_v2.sql`
 2. Define lupo_flip_artifacts table with all columns
 3. Create all required indexes
 4. Test migration on MySQL, MariaDB, PostgreSQL
-5. Generate TOON file `docs/toons/lupo_flip_artifacts.toon.json`
+5. Generate TOON file `lupo-docs/toons/lupo_flip_artifacts.toon.json`
 
 **Deliverables**:
 - Migration SQL file
@@ -1239,18 +1239,18 @@ sh scripts/run_tests.sh .
 5. Verify all artifacts stored correctly
 
 **Deliverables**:
-- docs/doctrine/FLIP_V2_DOCTRINE.md
+- lupo-docs/doctrine/FLIP_V2_DOCTRINE.md
 - CHANGELOG.md update
-- docs/status/kiro_flip_v2_implementation_4_0_37.md
+- lupo-docs/status/kiro_flip_v2_implementation_4_0_37.md
 - Backfill results report
 
 ## Migration Path
 
 ### For New Installations
 
-1. Run `database/migrations/upgrade_flip_v2.sql`
-2. Run backfill: `php scripts/flip_v2_backfill.php`
-3. Verify: `php scripts/flip_v2_verify.php`
+1. Run `lupo-database/migrations/upgrade_flip_v2.sql`
+2. Run backfill: `php lupo-scripts/flip_v2_backfill.php`
+3. Verify: `php lupo-scripts/flip_v2_verify.php`
 
 ### For Existing Installations
 

@@ -109,7 +109,7 @@ Implement specialized ANUBIS FLARE ingestion faucet for Actor 19 on channel 42 t
 - ✅ Added missing core actors to priority list
 
 **Documentation Standard Established**:
-- ✅ Created comprehensive `docs/doctrine/ACTOR_HELP_DOCTRINE.md` with ANUBIS-specific requirements
+- ✅ Created comprehensive `lupo-docs/doctrine/ACTOR_HELP_DOCTRINE.md` with ANUBIS-specific requirements
 
 **Validation Framework Enhanced**:
 - ✅ Integrated ANUBIS validation rules into existing framework
@@ -119,7 +119,7 @@ Implement specialized ANUBIS FLARE ingestion faucet for Actor 19 on channel 42 t
 
 ### ANUBIS FLARE Ingestion Faucet
 
-**File Created**: `channels/42/actors/19/faucets.json`
+**File Created**: `lupo-channels/42/actors/19/faucets.json`
 
 **Faucet Configuration**:
 ```json

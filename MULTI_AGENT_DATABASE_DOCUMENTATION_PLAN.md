@@ -40,7 +40,7 @@ The workflow will follow **four phases**:
 KIRO must read every TOON definition from:
 
 ```
-lupo-docs/toons/
+lupo-database/lupopedia/toon/
 ```
 
 **Current TOON Inventory:** 222 files found
@@ -265,7 +265,7 @@ lupo_anubis_revised
 ### Channel Filesystem
 
 ```
-channels/*
+lupo-channels/*
 artifacts/*
 ```
 
@@ -599,7 +599,7 @@ Every table in Lupopedia, including from existing migrations and docs, will have
 # CURRENT SYSTEM STATUS
 
 **Version:** 4.0.69 (from global_atoms.yaml)
-**TOON Files:** 222 total (found in lupo-docs/toons/)
+**TOON Files:** 222 total (found in lupo-database/lupopedia/toon/)
 **Existing Documentation:** 268 files (found in lupo-docs/database/lupopedia/tables/)
 **Table Ceiling:** 222 tables maximum (per doctrine)
 

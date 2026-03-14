@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\examples\FLIP_DESIGN_COLLABORATION_EXAMPLE.md"
+  file_path_from_root: "lupo-docs\examples\FLIP_DESIGN_COLLABORATION_EXAMPLE.md"
   file_hash: "d406ebfa616778d2e4be60a4e9cf165ae20967356e050237b8e13b815a0b857d"
-  file_path_from_root: "docs\examples\FLIP_DESIGN_COLLABORATION_EXAMPLE.md"
+  file_path_from_root: "lupo-docs\examples\FLIP_DESIGN_COLLABORATION_EXAMPLE.md"
   file_hash: "84f7eadd2145d7609c321fb15a7e2d611f1058eb749fe23a0ebd452e9395774d"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -63,7 +63,7 @@ lupopedia.footer:
 
 ---
 wolfie.headers:
-  file_path_from_root: "docs/examples/FLIP_DESIGN_COLLABORATION_EXAMPLE.md"
+  file_path_from_root: "lupo-docs/examples/FLIP_DESIGN_COLLABORATION_EXAMPLE.md"
   system_version: "4.0.36"
   channel_id: 42
   mood_rgb: "00AAFF"
@@ -75,8 +75,8 @@ wolfie.headers:
 
 flip.footer:
   referenced_by_files:
-    - "prompts/ai/FLIP_DESIGN_COLLABORATION_PROMPT.md"
-    - "docs/brainstorm/FLIP_HEADER_FOOTER_DESIGN_BRAINSTORM.md"
+    - "lupo-prompts/ai/FLIP_DESIGN_COLLABORATION_PROMPT.md"
+    - "lupo-docs/brainstorm/FLIP_HEADER_FOOTER_DESIGN_BRAINSTORM.md"
   referenced_by_channels:
     - 42
   referenced_by_actors:

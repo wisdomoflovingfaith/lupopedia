@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\dev\metadata_index.md"
+  file_path_from_root: "lupo-docs\dev\metadata_index.md"
   file_hash: "9c75b783a8802bae193806def48a07194c6a37eff91decccc104e47bc9c7c8e5"
-  file_path_from_root: "docs\dev\metadata_index.md"
+  file_path_from_root: "lupo-docs\dev\metadata_index.md"
   file_hash: "2cb5b94f9cb12dca7d798cafc64f719596c88f6c946cc9e8a51525e8c1d17844"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -63,7 +63,7 @@ lupopedia.footer:
 
 ---
 wolfie.headers:
-  file_path_from_root: "docs/dev/metadata_index.md"
+  file_path_from_root: "lupo-docs/dev/metadata_index.md"
   system_version: "4.1.0"
   purpose: "Developer documentation for the Metadata Indexing and Delegation Chain system"
   delegation_chain: "1003:10000"

@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\channels\overview\index\MASTER_INDEX.md"
+  file_path_from_root: "lupo-docs\channels\overview\index\MASTER_INDEX.md"
   file_hash: "ec89b5a7a9b3de38d62a684f90ecd46811bf33ab7fed28035589541618abd7ef"
-  file_path_from_root: "docs\channels\overview\index\MASTER_INDEX.md"
+  file_path_from_root: "lupo-docs\channels\overview\index\MASTER_INDEX.md"
   file_hash: "9b8357c4799180dcbb1d3b03e511da1b1ee37313f9faf5666c3817be30f83ff1"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -100,12 +100,12 @@ This master index provides **complete navigation** to all Lupopedia documentatio
 ### Core Documentation (`/docs/`)
 
 ```
-docs/
+lupo-docs/
 â”œâ”€â”€ README.md                    # Main documentation index
 â”œâ”€â”€ core/                       # Core architecture and design
 â”œâ”€â”€ modules/                    # First-party modules and integrations
 â”œâ”€â”€ doctrine/                   # Mandatory rules and principles
-â”œâ”€â”€ agents/                     # AI agent system and communication
+â”œâ”€â”€ lupo-agents/                     # AI agent system and communication
 â”œâ”€â”€ schema/                     # Database schema and reference
 â”œâ”€â”€ dev/                        # Installation and development guides
 â”œâ”€â”€ protocols/                  # Communication and synchronization

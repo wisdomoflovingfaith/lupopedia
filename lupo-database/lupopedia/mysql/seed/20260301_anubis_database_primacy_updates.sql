@@ -1,0 +1,4 @@
+-- ANUBIS database primacy updates (2026-03-01). Schema consolidated into install_new_lupopedia.sql.
+-- This seed file is reserved for optional ALTERs or future primacy-related changes.
+-- Run idempotently; no-op if full install has already been applied.
+-- Columns such as filesystem_copy_exists are defined in install_new_lupopedia.sql and anubis_queue_tables_4.0.53.sql.

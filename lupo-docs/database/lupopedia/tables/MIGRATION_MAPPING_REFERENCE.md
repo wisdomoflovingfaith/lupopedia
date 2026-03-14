@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,7 +35,7 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\database\lupopedia\tables\MIGRATION_MAPPING_REFERENCE.md"
+  file_path_from_root: "lupo-docs\database\lupopedia\tables\MIGRATION_MAPPING_REFERENCE.md"
   file_hash: "9122bacd95ac2e33f4c69fc874747f9cbb6db8ee8889eab1cf4b03a543facdd5"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -57,7 +57,7 @@ lupopedia.footer:
 
 ---
 lupopedia.headers: {
-  file_path_from_root: "docs/database/lupopedia/tables/MIGRATION_MAPPING_REFERENCE.md",
+  file_path_from_root: "lupo-docs/database/lupopedia/tables/MIGRATION_MAPPING_REFERENCE.md",
   file_hash: "bc00b6ff7b11c7f786f66b448fb7ba36b714cf925bf0cf338f286284ca641ac3"
   system_version: "4.0.50"
   channel_id: 42,
@@ -72,9 +72,9 @@ lupopedia.headers: {
   lupo_agent: "antigravity"
 }
 lupopedia.edges: {
-  file_path_from_root: "docs\database\lupopedia\tables\MIGRATION_MAPPING_REFERENCE.md"
+  file_path_from_root: "lupo-docs\database\lupopedia\tables\MIGRATION_MAPPING_REFERENCE.md"
   outbound_edges: [
-    { to: "docs/channels/appendix/HISTORY.md", type: "references", weight: 1.0 }
+    { to: "lupo-docs/channels/appendix/HISTORY.md", type: "references", weight: 1.0 }
   ],
   semantic_tags: ["migration_index", "legacy_mapping"]
 }
@@ -94,8 +94,8 @@ These database tables should never be used in the new Lupopedia system. They exi
 
 # Migration Mapping Reference
 
-**Source of truth:** Every file in `docs/database/lupopedia/tables/`.  
-This document is a concise index of legacy → Lupopedia table/behavior mappings. Use it together with `docs/notes_from_legacy_craftysyntax.md` (behavior) and the individual migration `.md` files (authoritative).
+**Source of truth:** Every file in `lupo-docs/database/lupopedia/tables/`.  
+This document is a concise index of legacy → Lupopedia table/behavior mappings. Use it together with `lupo-docs/notes_from_legacy_craftysyntax.md` (behavior) and the individual migration `.md` files (authoritative).
 
 > [!NOTE]
 > For historical context on the evolution from Crafty Syntax to Lupopedia and the rationale behind legacy deprecation, see the [Full Project History](file:///c:/ServBay/www/servbay/lupopedia/docs/channels/appendix/HISTORY.md).
@@ -107,7 +107,7 @@ This document is a concise index of legacy → Lupopedia table/behavior mappings
 | Legacy | New | Notes |
 |--------|-----|--------|
 | livehelp_users | lupo_auth_users | Identity/credentials (username, display_name, email, password_hash, auth_provider, provider_id, last_login_ymdhis). Operators imported first, then visitors. |
-| livehelp_users | lupo_actors, lupo_actor_properties | Related: presence, device, behavioral metadata in actor_properties. **Operator permissions** are not a table; they use the **3-level role system**: channel roles (lupo_actor_channel_roles: captain, administrator, monitor), department roles (lupo_department_roles), system (department_id = 0). See docs/doctrine/database/actor_channel_roles.md and OPERATOR_TO_ROLE_BASED_SWEEP_REPORT. |
+| livehelp_users | lupo_actors, lupo_actor_properties | Related: presence, device, behavioral metadata in actor_properties. **Operator permissions** are not a table; they use the **3-level role system**: channel roles (lupo_actor_channel_roles: captain, administrator, monitor), department roles (lupo_department_roles), system (department_id = 0). See lupo-docs/doctrine/database/actor_channel_roles.md and OPERATOR_TO_ROLE_BASED_SWEEP_REPORT. |
 | livehelp_operator_departments | lupo_actor_departments | recno→actor_department_id, user_id→actor_id, department→department_id, extra→title. |
 
 ---
@@ -157,7 +157,7 @@ This document is a concise index of legacy → Lupopedia table/behavior mappings
 |--------|-----|--------|
 | livehelp_sessions | **DROPPED** | Replaced by lupo_sessions (deterministic, actor-aware). No import. |
 | **{prefix}sessions** | **MERGED & DROPPED** | Logic merged into {prefix}sessions; table removed from install. Single session table is {prefix}sessions. See one_time_sessions_to_sessions.sql. |
-| **{prefix}actor_roles** | **DROPPED** | Replaced by **3-level role system**: (1) **lupo_actor_channel_roles** (channel-scoped: captain, administrator, monitor); (2) **lupo_department_roles** (department-scoped); (3) system (department_id = 0 = global admin). Resolution: channel → department → system. See drop_lupo_actor_roles.sql and docs/audits/OPERATOR_TO_ROLE_BASED_SWEEP_REPORT.md. |
+| **{prefix}actor_roles** | **DROPPED** | Replaced by **3-level role system**: (1) **lupo_actor_channel_roles** (channel-scoped: captain, administrator, monitor); (2) **lupo_department_roles** (department-scoped); (3) system (department_id = 0 = global admin). Resolution: channel → department → system. See drop_lupo_actor_roles.sql and lupo-docs/audits/OPERATOR_TO_ROLE_BASED_SWEEP_REPORT.md. |
 | livehelp_identity_daily | **DROPPED** | No import. |
 | livehelp_identity_monthly | **DROPPED** (no import) | Anonymous users are not in lupo_actors; they exist in lupo_sessions only. No anonymous actor rows or range. |
 | livehelp_operator_channels (presence/colors) | lupo_actor_presence, metadata_json | Operator presence and UI colors; see livehelp_operator_channels_migration.md. |
@@ -219,7 +219,7 @@ This document is a concise index of legacy → Lupopedia table/behavior mappings
 
 ## Operator-to-roles (no lupo_operators)
 
-**lupo_operators** and **lupo_operators_*** tables were removed. Permissions use the **3-level role system** (lupo_actor_channel_roles, lupo_department_roles, system department_id=0). See **operator_to_roles_migration.md** in this folder and **docs/doctrine/database/README.md** for the table index.
+**lupo_operators** and **lupo_operators_*** tables were removed. Permissions use the **3-level role system** (lupo_actor_channel_roles, lupo_department_roles, system department_id=0). See **operator_to_roles_migration.md** in this folder and **lupo-docs/doctrine/database/README.md** for the table index.
 
 ---
 

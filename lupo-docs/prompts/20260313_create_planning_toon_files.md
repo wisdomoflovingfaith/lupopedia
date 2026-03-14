@@ -38,7 +38,7 @@ lupopedia.footer:
   orchestrator: "antigravity"
   next_action:
     - "Use this prompt to regenerate planning docs if the source SQL changes"
-    - "Use scripts/generate_planning_toons.py for automated generation"
+    - "Use lupo-scripts/generate_planning_toons.py for automated generation"
     - "Expand the script to include relationship detection"
 ---
 
@@ -52,7 +52,7 @@ Antigravity, we need to convert the future Lupopedia database tables defined in:
 
 into TOON documentation files and place them inside a new planning directory.
 
-These represent planned database tables that are not yet implemented but must be documented in Lupopedia’s canonical schema documentation system. The canonical generation script is located at `scripts/generate_planning_toons.py`.
+These represent planned database tables that are not yet implemented but must be documented in Lupopedia’s canonical schema documentation system. The canonical generation script is located at `lupo-scripts/generate_planning_toons.py`.
 
 ## 1️⃣ Create the Planning Directory
 
@@ -66,7 +66,7 @@ Directory structure must become:
 
 ```
 lupo-docs/
-  database/
+  lupo-database/
     lupopedia/
       tables/
         active/

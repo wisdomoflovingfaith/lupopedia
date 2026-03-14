@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "prompts\windsurf\20260227_ide_agent_guidelines_update.md"
+  file_path_from_root: "lupo-prompts\windsurf\20260227_ide_agent_guidelines_update.md"
   file_hash: "2f90bc2a00daff65b9aeccd6c3bd26e2a537034c5602d1c8d4f3419dfb9c4368"
-  file_path_from_root: "prompts\windsurf\20260227_ide_agent_guidelines_update.md"
+  file_path_from_root: "lupo-prompts\windsurf\20260227_ide_agent_guidelines_update.md"
   file_hash: "d33e626bb896bf3e4df6b10789be1e7d5125287db442745e8a59e286ccf5b289"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -63,7 +63,7 @@ lupopedia.footer:
 
 ---
 wolfie.headers: {
-  file_path_from_root: "prompts/windsurf/20260227_ide_agent_guidelines_update.md",
+  file_path_from_root: "lupo-prompts/windsurf/20260227_ide_agent_guidelines_update.md",
   system_version: "4.0.48",
   channel_id: 42,
   actor_id: 1001,
@@ -75,10 +75,10 @@ wolfie.headers: {
 }
 flip.footer: {
   outbound_edges: [
-    { to: "docs/doctrine/migrations/", type: "builds_upon", weight: 0.9 },
-    { to: "docs/database/lupopedia/tables/", type: "references", weight: 0.8 },
-    { to: "docs/channels/appendix/HISTORY.md", type: "integrates_with", weight: 0.7 },
-    { to: "agents/registry.json", type: "governs", weight: 0.6 }
+    { to: "lupo-docs/doctrine/migrations/", type: "builds_upon", weight: 0.9 },
+    { to: "lupo-docs/database/lupopedia/tables/", type: "references", weight: 0.8 },
+    { to: "lupo-docs/channels/appendix/HISTORY.md", type: "integrates_with", weight: 0.7 },
+    { to: "lupo-agents/registry.json", type: "governs", weight: 0.6 }
   ],
   semantic_tags: ["ide_guidelines", "multi_agent_protocols", "file_locking", "legacy_tables_policy", "database_seeding"]
 }
@@ -100,11 +100,11 @@ Building upon **Antigravity IDE's (1003)** foundational research and analysis, I
 Antigravity's extensive directory analysis provided the foundation:
 
 **Directory Scans Completed**:
-- `docs/doctrine/` - 359 MD files analyzed
-- `docs/database/lupopedia/tables/` - 48 table documentation files
-- `docs/toons/` - 216 TOON schema files
-- `docs/channels/appendix/` - Historical and reference documentation
-- `actors/` - 18 registered actor directories
+- `lupo-docs/doctrine/` - 359 MD files analyzed
+- `lupo-docs/database/lupopedia/tables/` - 48 table documentation files
+- `lupo-docs/toons/` - 216 TOON schema files
+- `lupo-docs/channels/appendix/` - Historical and reference documentation
+- `lupo-actors/` - 18 registered actor directories
 
 **Key Gaps Identified**:
 - No file locking protocol for shared resources
@@ -146,9 +146,9 @@ echo "✅ Lock released"
 
 **Required Files for Locking**:
 - `CHANGELOG.md` - Primary version history
-- `docs/doctrine/migrations/MIGRATION_MAPPING_REFERENCE.md` - Migration index
-- `docs/channels/appendix/HISTORY.md` - Historical narrative
-- `actors/registry.json` - Actor registration
+- `lupo-docs/doctrine/migrations/MIGRATION_MAPPING_REFERENCE.md` - Migration index
+- `lupo-docs/channels/appendix/HISTORY.md` - Historical narrative
+- `lupo-actors/registry.json` - Actor registration
 
 ---
 
@@ -180,8 +180,8 @@ These database tables should never be used in new Lupopedia system. They exist s
 
 **Seeding Hierarchy**:
 1. **Base Seed**: Essential system data (admin user, default channels)
-2. **Actor Seed**: Registered actors from `actors/registry.json`
-3. **Directory Data**: Import from `channels/` and `actors/` MD files
+2. **Actor Seed**: Registered actors from `lupo-actors/registry.json`
+3. **Directory Data**: Import from `lupo-channels/` and `lupo-actors/` MD files
 4. **Conflict Resolution**: Directory data takes precedence over base seed
 
 **No-Conflict Expected**:
@@ -221,8 +221,8 @@ Added notes in v4.0.48 section:
 ### 3. Doctrine Documentation - Reinforced Policies
 
 Updated key files with locking protocols:
-- `docs/doctrine/migrations/MIGRATION_MAPPING_REFERENCE.md`
-- `docs/database/lupopedia/tables/README.md`
+- `lupo-docs/doctrine/migrations/MIGRATION_MAPPING_REFERENCE.md`
+- `lupo-docs/database/lupopedia/tables/README.md`
 - All legacy migration files with reference-only warnings
 
 ### 4. TOON Files - Agent Documentation Standards
@@ -239,7 +239,7 @@ guidelines:
 
 ## 🔧 Implementation Scripts Created
 
-### scripts/check_file_lock.sh
+### lupo-scripts/check_file_lock.sh
 ```bash
 #!/bin/bash
 # File locking utility for multi-IDE environment
@@ -256,7 +256,7 @@ echo "$(date '+%Y-%m-%d %H:%M:%S') - Agent $AGENT_ID" > "$LOCK_FILE"
 echo "🔒 Lock created for $FILE by Agent $AGENT_ID"
 ```
 
-### scripts/release_file_lock.sh
+### lupo-scripts/release_file_lock.sh
 ```bash
 #!/bin/bash
 FILE=$1
@@ -275,12 +275,12 @@ fi
 ## 🎯 Integration with Existing Systems
 
 ### Actor Registry Integration
-- Updated `agents/registry.json` with collaboration metadata
+- Updated `lupo-agents/registry.json` with collaboration metadata
 - Each agent entry includes `file_locking_protocol: true`
 - Cross-reference to guidelines documentation
 
 ### Channel System Integration
-- `docs/channels/appendix/HISTORY.md` updated with multi-agent evolution context
+- `lupo-docs/channels/appendix/HISTORY.md` updated with multi-agent evolution context
 - Development guidelines linked from historical narrative
 - Agent coordination protocols documented
 
@@ -322,7 +322,7 @@ fi
 4. **Comprehensive guidelines** for multi-IDE collaboration
 
 **Next Steps for Agents**:
-- Use `scripts/check_file_lock.sh` before editing shared files
+- Use `lupo-scripts/check_file_lock.sh` before editing shared files
 - Follow legacy table READ-ONLY policies when referencing Crafty Syntax
 - Apply database seeding hierarchy in all import operations
 - Reference updated guidelines in all development work

@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\doctrine\CLASS_CONVERSION_DOCTRINE.md"
+  file_path_from_root: "lupo-docs\doctrine\CLASS_CONVERSION_DOCTRINE.md"
   file_hash: "a272f9e624f0f18520f8dddbbc6508585ebd9c67a44366be1a7c7051f6678dbd"
-  file_path_from_root: "docs\doctrine\CLASS_CONVERSION_DOCTRINE.md"
+  file_path_from_root: "lupo-docs\doctrine\CLASS_CONVERSION_DOCTRINE.md"
   file_hash: "01ad66ce44e996c50271d0b4ef3b7406a4adcec469a840da983e62d754ce78cc"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -64,7 +64,7 @@ lupopedia.footer:
 ---
 # FLIP Header (alias: Wolfie Header, CROP Header, FLIPPING Header)
 wolfie.headers: explicit architecture with structured clarity for every file.
-file_path_from_root: docs/doctrine/CLASS_CONVERSION_DOCTRINE.md
+file_path_from_root: lupo-docs/doctrine/CLASS_CONVERSION_DOCTRINE.md
 file.last_modified_system_version: "4.0.16"
 file.last_modified_utc: "20260218000000"
 channel_id: 42   # ANUBIS adoption channel
@@ -74,7 +74,7 @@ atoms:
   recovery_event: true
 X-Lupo-Actor-ID: 2035
 X-Lupo-Actor-Identity: "Lupopedia Audit Tool (Auto-Fixed)"
-X-Lupo-File-Path: docs/doctrine/CLASS_CONVERSION_DOCTRINE.md
+X-Lupo-File-Path: lupo-docs/doctrine/CLASS_CONVERSION_DOCTRINE.md
 ---
 
 # Class Conversion Doctrine

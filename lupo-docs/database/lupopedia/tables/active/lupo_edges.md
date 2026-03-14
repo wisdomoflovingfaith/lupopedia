@@ -19,15 +19,15 @@ lupopedia.edges:
   outbound_edges:
     schema:
       - { to: "lupo-database/lupopedia/toon/lupo_edges.toon", type: "schema_reference", weight: 1.0, reason: "TOON schema definition", db_source: "lupo_edges" }
-      - { to: "database/migrations/20260313_add_edge_category_to_lupo_edges.sql", type: "schema_reference", weight: 1.0, reason: "One-time migration for edge_category (uses scripts/run_one_time_sql.php soft-error idempotency)", db_source: "lupo_edges" }
-      - { to: "scripts/run_one_time_sql.php", type: "tools", weight: 0.9, reason: "Minimal SQL runner for shared hosts" }
+      - { to: "lupo-database/migrations/20260313_add_edge_category_to_lupo_edges.sql", type: "schema_reference", weight: 1.0, reason: "One-time migration for edge_category (uses lupo-scripts/run_one_time_sql.php soft-error idempotency)", db_source: "lupo_edges" }
+      - { to: "lupo-scripts/run_one_time_sql.php", type: "tools", weight: 0.9, reason: "Minimal SQL runner for shared hosts" }
     documentation:
       - { to: "lupo-docs/status/EDGE_STRUCTURE_AUDIT_GROUPED_OUTBOUND_EDGES.md", type: "documents", weight: 1.0, reason: "Audit report for grouped edges" }
-      - { to: "docs/FLARE_HEADERS_COMPLETE_REFERENCE.md", type: "references", weight: 1.0, reason: "FLARE protocol core documentation" }
-      - { to: "docs/api/FLARE_API.md", type: "api_reference", weight: 1.0, reason: "FLARE API endpoints for edge management" }
+      - { to: "lupo-docs/FLARE_HEADERS_COMPLETE_REFERENCE.md", type: "references", weight: 1.0, reason: "FLARE protocol core documentation" }
+      - { to: "lupo-docs/api/FLARE_API.md", type: "api_reference", weight: 1.0, reason: "FLARE API endpoints for edge management" }
     code:
-      - { to: "scripts/flare_edge_suggester.py", type: "implements", weight: 1.0, reason: "Edge discovery and automation" }
-      - { to: "tools/update_flare_edges.py", type: "implements", weight: 1.0, reason: "Batch edge update and validation" }
+      - { to: "lupo-scripts/flare_edge_suggester.py", type: "implements", weight: 1.0, reason: "Edge discovery and automation" }
+      - { to: "lupo-tools/update_flare_edges.py", type: "implements", weight: 1.0, reason: "Batch edge update and validation" }
       - { to: "lupo-includes/modules/content/edge-controller.php", type: "references", weight: 0.9, reason: "Central edge management controller" }
       - { to: "lupo-includes/modules/content/content-controller.php", type: "references", weight: 0.8, reason: "Content relationship resolution" }
       - { to: "lupo-includes/modules/truth/truth-controller.php", type: "references", weight: 0.8, reason: "Semantic truth edge mapping" }
@@ -83,7 +83,7 @@ lupopedia.footer:
 
 # 💡 FLARE Edge Automation Tip:
 # Use the FLARE Edge Suggester Tool to automatically discover and suggest edges:
-# python scripts/flare_edge_suggester.py --file <path> --include-db --format yaml
+# python lupo-scripts/flare_edge_suggester.py --file <path> --include-db --format yaml
 # This will analyze content, TOON schemas, and database relationships to suggest
 # appropriate outbound_edges with weights, reasons, and discovery methods.
 

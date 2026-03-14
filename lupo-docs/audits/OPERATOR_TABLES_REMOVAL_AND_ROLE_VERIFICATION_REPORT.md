@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\OPERATOR_TABLES_REMOVAL_AND_ROLE_VERIFICATION_REPORT.md"
+  file_path_from_root: "lupo-docs\OPERATOR_TABLES_REMOVAL_AND_ROLE_VERIFICATION_REPORT.md"
   file_hash: "8646172c3604dd6e4bdcb883a979323dc900226a52d9b48016f9e90aa4575c95"
-  file_path_from_root: "docs\OPERATOR_TABLES_REMOVAL_AND_ROLE_VERIFICATION_REPORT.md"
+  file_path_from_root: "lupo-docs\OPERATOR_TABLES_REMOVAL_AND_ROLE_VERIFICATION_REPORT.md"
   file_hash: "df256ad81f9d548636688c00802051a021d50015e2433d468f8a29745c33b691"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -84,9 +84,9 @@ lupopedia.footer:
 
 | File | Change |
 |------|--------|
-| docs/REQUIRED_TABLES_4.1.0.md | Removed the 8 list entries for the deprecated operator tables above. |
+| lupo-docs/REQUIRED_TABLES_4.1.0.md | Removed the 8 list entries for the deprecated operator tables above. |
 
-**Install SQL:** `database/migrations/install_new_lupopedia.sql` was searched for these table names. **No CREATE TABLE blocks** for any of the eight tables exist there (only unrelated column names such as `crafty_operator_id`, `anubis_operator` appear). **No changes made.**
+**Install SQL:** `lupo-database/migrations/install_new_lupopedia.sql` was searched for these table names. **No CREATE TABLE blocks** for any of the eight tables exist there (only unrelated column names such as `crafty_operator_id`, `anubis_operator` appear). **No changes made.**
 
 **Dev alignment migrations:** `dev_20260204_fix_schema_alignment.sql`, `dev_20260204_fix_schema_alignment_summary.txt`, and `dev_20260205_doctrine_alignment_phase2.sql` were searched for `lupo_operator*`. **No ALTER TABLE or other references** to these eight tables exist. **No changes made.**
 
@@ -96,14 +96,14 @@ lupopedia.footer:
 
 | File | Lines removed |
 |------|----------------|
-| docs/REQUIRED_TABLES_4.1.0.md | 8 (one list entry per deprecated table) |
+| lupo-docs/REQUIRED_TABLES_4.1.0.md | 8 (one list entry per deprecated table) |
 | **Total** | **8** |
 
 ---
 
 ## Confirmations
 
-- **Deprecated operator tables removed from REQUIRED_TABLES:** All eight entries were removed from `docs/REQUIRED_TABLES_4.1.0.md`. They were not present in install SQL or dev alignment migrations, so nothing was removed there.
+- **Deprecated operator tables removed from REQUIRED_TABLES:** All eight entries were removed from `lupo-docs/REQUIRED_TABLES_4.1.0.md`. They were not present in install SQL or dev alignment migrations, so nothing was removed there.
 - **No PHP or runtime code touched:** No `.php` files were modified. No services, helpers, or modules were changed.
 
 ---
@@ -114,9 +114,9 @@ These references were **not** changed per your constraints (cleanup limited to i
 
 | File | Line(s) | Reference |
 |------|---------|-----------|
-| database/migrations/import_from_old_crafty_syntax.sql | 1113 | Comment: "Then lupo_operators, then fix lupo_actor_departments.actor_id" |
-| database/migrations/2026_01_30_kapu_protocol.sql | 7–9, 22–24 | CREATE TABLE IF NOT EXISTS lupo_operator_kapu_log; CREATE TABLE IF NOT EXISTS lupo_operator_escalations |
-| database/migrations/2026_01_30_demo_operators.sql | 24–25, 31, 37–40 | INSERT INTO lupo_operators; INSERT INTO lupo_operator_status; SELECT FROM lupo_operators |
+| lupo-database/migrations/import_from_old_crafty_syntax.sql | 1113 | Comment: "Then lupo_operators, then fix lupo_actor_departments.actor_id" |
+| lupo-database/migrations/2026_01_30_kapu_protocol.sql | 7–9, 22–24 | CREATE TABLE IF NOT EXISTS lupo_operator_kapu_log; CREATE TABLE IF NOT EXISTS lupo_operator_escalations |
+| lupo-database/migrations/2026_01_30_demo_operators.sql | 24–25, 31, 37–40 | INSERT INTO lupo_operators; INSERT INTO lupo_operator_status; SELECT FROM lupo_operators |
 
 If you later want these migration/demo scripts updated or removed, that can be done in a separate change.
 

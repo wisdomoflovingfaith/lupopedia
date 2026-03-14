@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\doctrine\HYBRID_ACTOR\HYBRID_ACTOR_2_0.md"
+  file_path_from_root: "lupo-docs\doctrine\HYBRID_ACTOR\HYBRID_ACTOR_2_0.md"
   file_hash: "44de90d8289038ab4ecaed5e95bee07052d053c5fdc71ffa5e1924716fa946dd"
-  file_path_from_root: "docs\doctrine\HYBRID_ACTOR\HYBRID_ACTOR_2_0.md"
+  file_path_from_root: "lupo-docs\doctrine\HYBRID_ACTOR\HYBRID_ACTOR_2_0.md"
   file_hash: "8c756fde303845ac1f7f364355b290c78fe623651ad8c82661cfa27b80b45300"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -64,7 +64,7 @@ lupopedia.footer:
 ---
 # FLIP Header (alias: Wolfie Header, CROP Header)
 wolfie.headers: explicit architecture with structured clarity for every file.
-file_path_from_root: docs/doctrine/HYBRID_ACTOR/HYBRID_ACTOR_2_0.md
+file_path_from_root: lupo-docs/doctrine/HYBRID_ACTOR/HYBRID_ACTOR_2_0.md
 file.last_modified_system_version: "4.0.31"
 file.last_modified_utc: "20260222215200"
 actor_420_status: "banned_mythological"

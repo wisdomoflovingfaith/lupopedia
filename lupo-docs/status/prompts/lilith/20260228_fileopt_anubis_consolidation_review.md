@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "status_report"
-  file_path_from_root: "prompts/lilith/20260228_fileopt_anubis_consolidation_review.md"
+  file_path_from_root: "lupo-prompts/lilith/20260228_fileopt_anubis_consolidation_review.md"
   file_hash: "to_be_generated"
   last_modified_utc: "20260228"
   system_version: "4.0.52"
@@ -20,14 +20,14 @@ lupopedia.headers:
 
 lupopedia.edges:
   outbound_edges:
-    - { to: "docs/status/FILEOPT_v4.0.52_FINAL_REPORT.md", type: "reviews", weight: 1.0 }
-    - { to: "docs/doctrine/ANUBIS/ANUBIS_DOCUMENTATION_CONSOLIDATED.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/ANUBIS/ANUBIS_OVERVIEW.md", type: "references", weight: 0.9 }
-    - { to: "docs/doctrine/ANUBIS/ANUBIS_IMPLEMENTATION_SUMMARY.md", type: "references", weight: 0.9 }
-    - { to: "docs/doctrine/ANUBIS/ANUBIS_ORPHAN_RULES.md", type: "references", weight: 0.9 }
-    - { to: "docs/doctrine/ANUBIS/ANUBIS_PROGRAM_SPEC.md", type: "references", weight: 0.9 }
-    - { to: "docs/doctrine/ANUBIS/LILITH_ANUBIS_GUIDANCE.md", type: "references", weight: 0.8 }
-    - { to: "docs/doctrine/ANUBIS/LILITH_ANUBIS_GUIDANCE_FLIP.md", type: "references", weight: 0.8 }
+    - { to: "lupo-docs/status/FILEOPT_v4.0.52_FINAL_REPORT.md", type: "reviews", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/ANUBIS/ANUBIS_DOCUMENTATION_CONSOLIDATED.md", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/ANUBIS/ANUBIS_OVERVIEW.md", type: "references", weight: 0.9 }
+    - { to: "lupo-docs/doctrine/ANUBIS/ANUBIS_IMPLEMENTATION_SUMMARY.md", type: "references", weight: 0.9 }
+    - { to: "lupo-docs/doctrine/ANUBIS/ANUBIS_ORPHAN_RULES.md", type: "references", weight: 0.9 }
+    - { to: "lupo-docs/doctrine/ANUBIS/ANUBIS_PROGRAM_SPEC.md", type: "references", weight: 0.9 }
+    - { to: "lupo-docs/doctrine/ANUBIS/LILITH_ANUBIS_GUIDANCE.md", type: "references", weight: 0.8 }
+    - { to: "lupo-docs/doctrine/ANUBIS/LILITH_ANUBIS_GUIDANCE_FLIP.md", type: "references", weight: 0.8 }
   semantic_tags: ["anubis", "consolidation", "review", "complete", "phase6", "fileopt", "verification"]
 
 lupopedia.footer:
@@ -101,12 +101,12 @@ lupopedia.footer:
 After consolidation, original 5 files should be moved to an archive directory:
 
 ```bash
-mkdir -p docs/archive/ANUBIS/pre_4.0.52/
-mv docs/doctrine/ANUBIS/ANUBIS_IMPLEMENTATION_SUMMARY.md docs/archive/ANUBIS/pre_4.0.52/
-mv docs/doctrine/ANUBIS/ANUBIS_ORPHAN_RULES.md docs/archive/ANUBIS/pre_4.0.52/
-mv docs/doctrine/ANUBIS/ANUBIS_PROGRAM_SPEC.md docs/archive/ANUBIS/pre_4.0.52/
-mv docs/doctrine/ANUBIS/LILITH_ANUBIS_GUIDANCE.md docs/archive/ANUBIS/pre_4.0.52/
-mv docs/doctrine/ANUBIS/LILITH_ANUBIS_GUIDANCE_FLIP.md docs/archive/ANUBIS/pre_4.0.52/
+mkdir -p lupo-docs/archive/ANUBIS/pre_4.0.52/
+mv lupo-docs/doctrine/ANUBIS/ANUBIS_IMPLEMENTATION_SUMMARY.md lupo-docs/archive/ANUBIS/pre_4.0.52/
+mv lupo-docs/doctrine/ANUBIS/ANUBIS_ORPHAN_RULES.md lupo-docs/archive/ANUBIS/pre_4.0.52/
+mv lupo-docs/doctrine/ANUBIS/ANUBIS_PROGRAM_SPEC.md lupo-docs/archive/ANUBIS/pre_4.0.52/
+mv lupo-docs/doctrine/ANUBIS/LILITH_ANUBIS_GUIDANCE.md lupo-docs/archive/ANUBIS/pre_4.0.52/
+mv lupo-docs/doctrine/ANUBIS/LILITH_ANUBIS_GUIDANCE_FLIP.md lupo-docs/archive/ANUBIS/pre_4.0.52/
 ```
 
 Add an `ARCHIVE_README.md` explaining:
@@ -131,7 +131,7 @@ Add entry for 4.0.52:
 ### Documentation Improvements
 - ✅ Consolidated 6 ANUBIS-related documents into single master file
 - ✅ Preserved all content while reducing file count by 83%
-- ✅ Archived original files to `docs/archive/ANUBIS/pre_4.0.52/`
+- ✅ Archived original files to `lupo-docs/archive/ANUBIS/pre_4.0.52/`
 - ✅ Updated all cross-references to point to consolidated document
 ```
 
@@ -143,13 +143,13 @@ Any files that referenced individual ANUBIS docs should be updated to point to c
 
 ```bash
 # Find files referencing old ANUBIS docs
-grep -r "ANUBIS_IMPLEMENTATION_SUMMARY.md" docs/
-grep -r "ANUBIS_ORPHAN_RULES.md" docs/
-grep -r "ANUBIS_PROGRAM_SPEC.md" docs/
-grep -r "LILITH_ANUBIS_GUIDANCE.md" docs/
+grep -r "ANUBIS_IMPLEMENTATION_SUMMARY.md" lupo-docs/
+grep -r "ANUBIS_ORPHAN_RULES.md" lupo-docs/
+grep -r "ANUBIS_PROGRAM_SPEC.md" lupo-docs/
+grep -r "LILITH_ANUBIS_GUIDANCE.md" lupo-docs/
 
 # Update each to point to consolidated file
-sed -i 's/ANUBIS_IMPLEMENTATION_SUMMARY.md/ANUBIS_MASTER.md/g' docs/path/to/file.md
+sed -i 's/ANUBIS_IMPLEMENTATION_SUMMARY.md/ANUBIS_MASTER.md/g' lupo-docs/path/to/file.md
 ```
 
 ---

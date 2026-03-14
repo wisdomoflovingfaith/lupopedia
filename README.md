@@ -1,18 +1,22 @@
 ---
 lupopedia.init:
-  file_identity: "README.md"
-  artifact_type: "repository-core"
-  artifact_kind: "metadata-snapshot"
-  namespace: "lupopedia"
-  domain: "core"
-  system_version: "4.0.74"
+  required_reading:
+    - path: "lupo-docs/INIT_README.md"
+      reason: "Prerequisites and 'Before You Read This File'"
+    - path: "lupo-docs/doctrine/LUPOPEDIA_HEADERS/README.md"
+      reason: "Header format and block order"
+    - path: "AGENTS.md"
+      reason: "Agent/faucet distinction and lead orchestration"
+  required_context:
+    - "lupo-docs/ is the canonical documentation root; lupo-docs/ does not exist at project root."
+    - "Cursor (actor_id 102) is lead orchestration; install SQL is schema authority."
 
 lupopedia.metadata:
   comment: "Snapshot of metadata for this file or entity at artifact creation."
   title:
     - { schema_ref: "lupo_metadata", entity_type: "file", meta_type: "property", property_value: "Lupopedia README", channel_id: 42, class_name: "lupopedia_metadata", created_ymdhis: 20260313000000, updated_ymdhis: 20260313000000 }
   description:
-    - { schema_ref: "lupo_metadata", entity_type: "file", meta_type: "property", property_value: "Primary project documentation and onboarding — Install & upgrade validation, channels/actors/agents, GitHub repository strategy.", channel_id: 42, class_name: "lupopedia_metadata", created_ymdhis: 20260313000000, updated_ymdhis: 20260313000000 }
+    - { schema_ref: "lupo_metadata", entity_type: "file", meta_type: "property", property_value: "Primary project documentation and onboarding — Install & upgrade validation, lupo-channels/actors/agents, GitHub repository strategy.", channel_id: 42, class_name: "lupopedia_metadata", created_ymdhis: 20260313000000, updated_ymdhis: 20260313000000 }
   keywords:
     - { schema_ref: "lupo_metadata", entity_type: "file", meta_type: "property", property_value: "readme, getting_started, semantic_os, multi_agent, v4.0.74", channel_id: 42, class_name: "lupopedia_metadata", created_ymdhis: 20260313000000, updated_ymdhis: 20260313000000 }
   author:
@@ -25,64 +29,71 @@ lupopedia.headers:
   lupopedia.schema: "documentation"
   file_path_from_root: "README.md"
   web_path: "http://www.lupopedia.com/"
-  last_modified_utc: "20260314"
+  last_modified_utc: "20260315"
   system_version: "4.0.74"
   channel_id: 42
-  actor_id: 1
-  actor_name: "wolfie"
-  faucet_name: "antigravity"
-  delegation_chain: "wolfie:root"
+  actor_id: 102
+  actor_name: "cursor"
+  faucet_name: "cursor"
+  delegation_chain: "cursor:root"
   artifact_type: "guide"
   artifact_kind: "documentation"
-  purpose: "Primary project documentation and onboarding — Install & upgrade validation, channels/actors/agents, GitHub repository strategy"
+  purpose: "Primary project documentation and onboarding — Install & upgrade validation, lupo-channels/actors/agents, GitHub repository strategy"
   mood_rgb: "4169E1"
   traits: ["essential", "entrypoint", "onboarding", "v4.0.74"]
   tags: ["readme", "getting_started", "semantic_os", "multi_agent", "v4.0.74"]
 
 lupopedia.session:
-  session_id: "L-LUPO-ROOT-ANTIGRAVITY"
-  session_name: "L-LUPO-ROOT-ANTIGRAVITY"
-  actor_id: 1
-  actor_name: "wolfie"
-  faucet_name: "antigravity"
+  session_id: "L-LUPO-ROOT-CURSOR"
+  session_name: "L-LUPO-ROOT-CURSOR"
+  actor_id: 102
+  actor_name: "cursor"
+  faucet_name: "cursor"
   channel_id: 42
   channel_name: "Lupopedia Development (general)"
   federation_node_id: 1
-  paired_actor_id: 1000
+  paired_actor_id: 1
 
 lupopedia.edges:
   outbound_edges:
-    - { to: "docs/HELP.md", type: "references", weight: 1.0 }
-    - { to: "docs/CLI.md", type: "references", weight: 0.95 }
-    - { to: "docs/DOCTOR_HEALTH_CHECK.md", type: "references", weight: 0.9 }
-    - { to: "docs/doctrine/migrations/MIGRATION_MAPPING_REFERENCE.md", type: "references", weight: 0.85 }
-    - { to: "docs/doctrine/", type: "references", weight: 0.9 }
+    - { to: "AGENTS.md", type: "references", weight: 1.0 }
+    - { to: "plan.md", type: "references", weight: 0.95 }
+    - { to: "report.md", type: "references", weight: 0.95 }
+    - { to: "lupo-docs/HELP.md", type: "references", weight: 0.9 }
+    - { to: "lupo-docs/CLI.md", type: "references", weight: 0.9 }
+    - { to: "lupo-docs/DOCTOR_HEALTH_CHECK.md", type: "references", weight: 0.85 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 0.9 }
     - { to: "CONTRIBUTING.md", type: "references", weight: 0.85 }
   semantic_tags: ["project_overview", "onboarding", "semantic_os", "multi_agent"]
 
 lupopedia.footer:
   version: "4.0.74"
   last_verified: "20260314"
-  last_verified_by: "antigravity"
-  orchestrator: "wolfie"
+  last_verified_by: "cursor"
+  orchestrator: "cursor"
   next_action:
     - "Point new contributors to Required Reading Before Using Lupopedia"
     - "Keep Getting Started and install steps aligned with 4.0.74"
     - "Review actor/faucet links when doctrine paths change"
+
+lupopedia.next_actions:
+  next_actions:
+    - "Point new contributors to Required Reading Before Using Lupopedia"
+    - "Keep Getting Started and install steps aligned with 4.0.74"
+    - "Review actor/faucet links when doctrine paths change"
 ---
-# file: Lupopedia README — session: L-LUPO-ROOT-ANTIGRAVITY — delegation: wolfie:root (faucet: antigravity) — web_path: http://www.lupopedia.com/
+# file: Lupopedia README — session: L-LUPO-ROOT-CURSOR — delegation: cursor:root — web_path: http://www.lupopedia.com/
 
 # 🐺 Lupopedia Semantic OS v4.0.74
 
-[![Version](https://img.shields.io/badge/version-4.0.74-blue.svg)](docs/version.md)
-[![docs](https://img.shields.io/badge/docs-HELP.md-green)](docs/HELP.md)
+[![Version](https://img.shields.io/badge/version-4.0.74-blue.svg)](lupo-docs/version.md)
+[![docs](https://img.shields.io/badge/docs-HELP.md-green)](lupo-docs/HELP.md)
 
 ---
 
-**Current Release: [v4.0.74](docs/version.md) — Version hardened for shared hosting, edge schema grouping, and comments system.**  
-This version focuses on finalizing **edge schema hardening** (support for grouped outbound edges), implementing the **one-time SQL runner** for shared-host compatibility, and adding the **comments system** with faucet traceability.
+**Current Release: [v4.0.74](lupo-docs/version.md)** — Documentation consolidation, TOON/seed alignment, table count doctrine, and installer readiness for the **Crafty Syntax 3.7.5 → Lupopedia 4.0.74** upgrade path. This version includes schema (e.g. `lupo_projects`), seed wiring (`seed_projects.sql` in installer), path and header discipline (`lupo-docs/` canonical, `lupopedia.init` / `lupopedia.next_actions`), and P1 audit/doctrine (folder rename audit, [TABLE_COUNT_DOCTRINE](lupo-docs/doctrine/TABLE_COUNT_DOCTRINE.md)). **Next:** Upgrade-path test (drop all DB tables → load Crafty 3.7.5 → run installer to 4.0.74). See [plan.md](plan.md) and [report.md](report.md).
 
-**Architecture (onboarding):** **Actors** are the orchestration identities of Lupopedia. They coordinate and govern work through **faucets**, **sessions**, **channels**, **rules**, and **traits**. **Faucets** are execution surfaces, not identities. IDE surfaces (Cursor, Antigravity, Kiro, Windsurf, etc.) are faucets. **Sessions** carry runtime context. See [Channels, actors, and agents](#channels-actors-and-agents-in-lupopedia) and [Actor–Faucet ontology](lupo-docs/doctrine/ActorFaucetOntology.md).
+**Architecture (onboarding):** **Actors** are the orchestration identities of Lupopedia. They coordinate and govern work through **faucets**, **sessions**, **channels**, **rules**, and **traits**. **Faucets** are execution surfaces, not identities. **Cursor IDE** (actor_id 102) is the **lead orchestration actor**, with **Wolfie** (actor_id 1) as supporting actor; seven IDE faucets (Kiro, Windsurf, Cursor, Antigravity, Warp, Cascade, Codex) work on this repo. See [AGENTS.md](AGENTS.md) and [Channels, actors, and agents](#channels-actors-and-agents-in-lupopedia), [Actor–Faucet ontology](lupo-docs/doctrine/ActorFaucetOntology.md).
 
 ## Table of Contents
 
@@ -96,6 +107,7 @@ This version focuses on finalizing **edge schema hardening** (support for groupe
 - [Usage](#usage)
 - [GitHub Repository Strategy](#github-repository-strategy)
 - [Documentation](#documentation)
+- [Plan and Report](#plan-and-report)
 - [Research Priorities for IDE Agents](#research-priorities-for-ide-agents)
 - [Contributing](#contributing)
 - [License](#license)
@@ -125,7 +137,7 @@ Lupopedia solves fragmented human–AI workflows with a **unified Semantic OS** 
 
 **Target audience:** Developers building agents, admins managing systems, contributors to open-source AI-collab tooling.
 
-[Core doctrine](docs/doctrine/) | [LUPOPEDIA HEADERS](lupo-docs/doctrine/LUPOPEDIA_HEADERS/README.md) | [Comments System](lupo-docs/database/lupopedia/tables/active/lupo_comments.md)
+[Core doctrine](lupo-docs/doctrine/) | [LUPOPEDIA HEADERS](lupo-docs/doctrine/LUPOPEDIA_HEADERS/README.md) | [Comments System](lupo-docs/database/lupopedia/tables/active/lupo_comments.md)
 
 ---
 
@@ -204,10 +216,10 @@ This is one of the most important parts of Lupopedia. **LUPOPEDIA HEADERS** are 
 ## Architecture Overview
 
 **Filesystem layout:**
-Lupopedia organizes itself via directories such as `/core`, `/api`, `/uploads`, `/channels`, `/agents`, `/actors`, `/federation`. These directories hold artifacts representing documentation, channel content, agent/session data, uploaded objects, semantic references, and registry material.
+Lupopedia organizes itself via directories with the `lupo-` prefix: `/lupo-api`, `/lupo-uploads`, `/lupo-channels`, `/lupo-agents`, `/lupo-actors`, `/lupo-docs`, `/lupo-prompts`, and related `lupo-*` folders. These hold artifacts for documentation, channel content, agent/session data, uploaded objects, semantic references, and registry material.
 
 **Database domains:**
-The database includes 200+ tables across domains such as identity (`lupo_actors`, `lupo_auth_users`), orchestration (`lupo_agents`, `lupo_agent_faucets`), collaboration (`lupo_channels`, `lupo_dialog_messages`), semantics (`lupo_metadata`, `lupo_edges`, `lupo_collections`), telemetry (`lupo_sessions`), federation, and legacy migration. 
+The database schema is defined in `lupo-database/lupopedia/mysql/install/install_new_lupopedia.sql` (canonical table count: 100 as of 4.0.74; see [TABLE_COUNT_DOCTRINE](lupo-docs/doctrine/TABLE_COUNT_DOCTRINE.md)). Domains include identity (`lupo_actors`, `lupo_auth_users`), orchestration (`lupo_agents`, `lupo_agent_faucets`), collaboration (`lupo_channels`, `lupo_dialog_messages`), semantics (`lupo_metadata`, `lupo_edges`, `lupo_collections`), telemetry (`lupo_sessions`), federation, and legacy migration. 
 
 **Filesystem/database relationship:**
 The database is the live relational layer. The filesystem is the artifact memory layer. Headers are the synchronization and portability layer between them.
@@ -252,13 +264,17 @@ Architectural rule: all real logic should live in `core`, with other repos servi
 ## Documentation
 
 Primary references:
-- `docs/HELP.md`
-- `docs/CLI.md`
-- `docs/DOCTOR_HEALTH_CHECK.md`
-- `docs/TOON_REFERENCE.md`
-- `docs/version.md`
+- `lupo-docs/HELP.md`
+- `lupo-docs/CLI.md`
+- `lupo-docs/DOCTOR_HEALTH_CHECK.md`
+- `lupo-docs/TOON_REFERENCE.md`
+- `lupo-docs/version.md`
 - `CHANGELOG.md`
 - `lupo-docs/doctrine/`
+
+## Plan and Report
+
+Root consolidated [plan.md](plan.md) and [report.md](report.md) are maintained by **Cursor IDE** (lead orchestration). They synthesize inputs from Kiro, Windsurf, Codex, and Antigravity faucet-specific plans and reports. See [AGENTS.md](AGENTS.md) for the seven IDE agents and lead/supporting actor roles.
 
 ## Research Priorities for IDE Agents
 

@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\channels\developer\TLDR_HELP_MIGRATION_2026.md"
+  file_path_from_root: "lupo-docs\channels\developer\TLDR_HELP_MIGRATION_2026.md"
   file_hash: "7282954c7a19e64bda7c4eefe7a24c435b96fd40520ea4d2c8410d7b5d6ec8ac"
-  file_path_from_root: "docs\channels\developer\TLDR_HELP_MIGRATION_2026.md"
+  file_path_from_root: "lupo-docs\channels\developer\TLDR_HELP_MIGRATION_2026.md"
   file_hash: "616395f2ff9a61d290a743c71439a0948c515974e67fe800e1e4bf4743d8b520"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -63,7 +63,7 @@ lupopedia.footer:
 
 ---
 wolfie.headers: explicit architecture with structured clarity for every file.
-file.name: "docs/TLDR_HELP_MIGRATION_2026.md"
+file.name: "lupo-docs/TLDR_HELP_MIGRATION_2026.md"
 file.last_modified_system_version: 3.1.14
 file.last_modified_utc: 20260120070000
 file.utc_day: 20260120
@@ -129,7 +129,7 @@ Migration from Crafty Syntax help system to Lupopedia HELP subsystem.
 
 ---
 
-**For detailed findings:** See `docs/migrations/20260120_migration_audit.md`
+**For detailed findings:** See `lupo-docs/migrations/20260120_migration_audit.md`
 
 **Documented by:** CASCADE  
 **Date:** 2026-01-20  

@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\doctrine\ANUBIS_ORPHAN_RULES.md"
+  file_path_from_root: "lupo-docs\doctrine\ANUBIS_ORPHAN_RULES.md"
   file_hash: "6924f78768af7396ec04a95fd1de235ec0a4b55d8cd1b088c009ed4fd102b6c1"
-  file_path_from_root: "docs\doctrine\ANUBIS_ORPHAN_RULES.md"
+  file_path_from_root: "lupo-docs\doctrine\ANUBIS_ORPHAN_RULES.md"
   file_hash: "154daecd219b2fcd30e375fab0d877c9a27470ae8318391ebab5e49f91ed045e"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -62,7 +62,7 @@ lupopedia.footer:
 
 ---
 # FLIP Header (alias: Wolfie Header, CROP Header, FLIPPING Header)
-X-Lupo-File-Path: docs/doctrine/ANUBIS_ORPHAN_RULES.md
+X-Lupo-File-Path: lupo-docs/doctrine/ANUBIS_ORPHAN_RULES.md
 X-Lupo-Version: "4.0.27"
 X-Lupo-UTC-Timestamp: "20260223004108"
 X-Lupo-Channel: 42   # ANUBIS adoption channel
@@ -86,7 +86,7 @@ web:
 
 # ANUBIS Orphan Rules - Unknown Recipient Protocol
 
-**File**: docs/doctrine/ANUBIS_ORPHAN_RULES.md  
+**File**: lupo-docs/doctrine/ANUBIS_ORPHAN_RULES.md  
 **Purpose**: Define adoption and processing rules for unknown-recipient files  
 **Version**: 4.0.29  
 **Status**: ACTIVE  

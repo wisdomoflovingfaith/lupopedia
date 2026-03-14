@@ -3,7 +3,7 @@ lupopedia.headers:
   lupopedia.version: "4.0.69"
   lupopedia.schema: "documentation"
   system_version: "4.0.69"
-  file_path_from_root: "docs/status/cursor_actors_channels_semantic_architecture_4.0.69.md"
+  file_path_from_root: "lupo-docs/status/cursor_actors_channels_semantic_architecture_4.0.69.md"
   web_path: "http://www.lupopedia.com/status/cursor_actors_channels_semantic_architecture_4.0.69"
   last_modified_utc: "20260311"
   channel_id: 42
@@ -45,7 +45,7 @@ lupopedia.footer:
 
 **Canonical location:** `lupo-docs/architecture/cursor_actors_channels_semantic_architecture_4.0.69.md` — prefer that file for edits and references.
 
-This document is the **canonical status** for how Lupopedia models actors, channels, edges, semantic information, and deployment. It is based on the **actual database schema** in `lupo-database/lupopedia/mysql/install/install_new_lupopedia.sql`, the **TOON** files in `lupo-database/lupopedia/toon/` and `lupo-database/lupopedia/toon/`, and the doctrine in `lupo-docs/doctrine/`. It corrects and extends the earlier brainstorm (`docs/status/brainstorm_on_actors_and_channels.md`) by aligning with all tables, edges, and documented semantics.
+This document is the **canonical status** for how Lupopedia models actors, channels, edges, semantic information, and deployment. It is based on the **actual database schema** in `lupo-database/lupopedia/mysql/install/install_new_lupopedia.sql`, the **TOON** files in `lupo-database/lupopedia/toon/` and `lupo-database/lupopedia/toon/`, and the doctrine in `lupo-docs/doctrine/`. It corrects and extends the earlier brainstorm (`lupo-docs/status/brainstorm_on_actors_and_channels.md`) by aligning with all tables, edges, and documented semantics.
 
 ---
 
@@ -242,7 +242,7 @@ Tables are defined in **`lupo-database/lupopedia/mysql/install/install_new_lupop
 
 - **Traits:** Intrinsic “who” of an actor. Not a separate table today; can be represented in `lupo_metadata` (entity_type=actor) or in actor directory docs. A dedicated `lupo_actor_traits` would require a schema change and doctrine update.
 - **Skills:** Documented in `lupo-skills/` and actor `skills/*.md`; attached via `lupopedia.skills` header and `lupo_metadata` (seed: `seed_skills_4.0.68.sql`). Skill resolution: `SkillService.php`.
-- **Rules:** Stored in `lupo_rules`; attached to channels/actors via `lupo_rule_targets`. Evaluated by `RuleEngine.php` / `RuleEvaluator.php`. Root rules in `lupo-rules/root/*.md`; synced to `.cursor/rules/*.mdc`.
+- **Rules:** Stored in `lupo_rules`; attached to lupo-channels/actors via `lupo_rule_targets`. Evaluated by `RuleEngine.php` / `RuleEvaluator.php`. Root rules in `lupo-rules/root/*.md`; synced to `.cursor/rules/*.mdc`.
 
 ---
 
@@ -258,7 +258,7 @@ Tables are defined in **`lupo-database/lupopedia/mysql/install/install_new_lupop
 | Resource | Purpose |
 |----------|--------|
 | **lupo-database/lupopedia/mysql/install/install_new_lupopedia.sql** | Canonical DDL for all tables. |
-| **lupo-database/lupopedia/toon/*.toon.json**, **lupo-database/lupopedia/toon/*.toon** | Column/type reference (TOONs); table count from TOONs after `python scripts/generate_toon_files.py`. |
+| **lupo-database/lupopedia/toon/*.toon.json**, **lupo-database/lupopedia/toon/*.toon** | Column/type reference (TOONs); table count from TOONs after `python lupo-scripts/generate_toon_files.py`. |
 | **lupo-docs/doctrine/ActorFaucetOntology.md** | Actor vs Faucet; IDE agents as faucets. |
 | **lupo-docs/doctrine/COMMUNICATION_DOCTRINE.md** | Dialog tables only; no lupo_threads/lupo_messages. |
 | **lupo-docs/doctrine/HumanActorIdDoctrine.md** | Human actor_id >= 1000. |
@@ -268,7 +268,7 @@ Tables are defined in **`lupo-database/lupopedia/mysql/install/install_new_lupop
 | **lupo-docs/doctrine/EDGE_VOCABULARY_DOCTRINE.md** | Canonical edge_type, relationship_type, and object type pairs. |
 | **lupo-docs/doctrine/LUPOPEDIA_HEADERS/** | Header format, session block, channel_name, thread_name. |
 | **lupo-docs/doctrine/CRAFTY_SYNTAX_MIGRATION_PROJECT_BRIEF.md** | Subdirectory install, LUPOPEDIA_PUBLIC_PATH, config above web root. |
-| **docs/status/DESIGN_NOTE_LUPO_ACTOR_TRAITS_4.0.69.md** | Decision: lupo_actor_traits table; actor-scoped traits only. |
+| **lupo-docs/status/DESIGN_NOTE_LUPO_ACTOR_TRAITS_4.0.69.md** | Decision: lupo_actor_traits table; actor-scoped traits only. |
 | **AGENTS.md**, **README.md** | Paths, doctrines, architecture overview. |
 
 ---

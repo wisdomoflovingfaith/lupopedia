@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,7 +35,7 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\database\lupopedia\tables\livehelp_emailque_migration.md"
+  file_path_from_root: "lupo-docs\database\lupopedia\tables\livehelp_emailque_migration.md"
   file_hash: "7bef802cd4f92cf315aff41780dc12cdf06a65b3ef4374eb4a80529d5ef568d1"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -57,7 +57,7 @@ lupopedia.footer:
 
 ---
 lupopedia.headers: {
-  file_path_from_root: "docs/database/lupopedia/tables/livehelp_emailque_migration.md",
+  file_path_from_root: "lupo-docs/database/lupopedia/tables/livehelp_emailque_migration.md",
   file_hash: "20310be56efccf019f306610d07cc43f154a13409d48cc12ef342135d6749f7d"
   system_version: "4.0.50"
   channel_id: 42,
@@ -77,15 +77,15 @@ lupopedia.headers: {
 
 flip.footer: {
   inbound_edges: [
-    { from: "docs/doctrine/migrations/MIGRATION_MAPPING_REFERENCE.md", type: "references", weight: 0.9, hashtag: "#index" }
+    { from: "lupo-docs/doctrine/migrations/MIGRATION_MAPPING_REFERENCE.md", type: "references", weight: 0.9, hashtag: "#index" }
   ],
   outbound_edges: [
-    { to: "database/migrations/old_crafty_syntax_3_7_5_start.sql", type: "references", weight: 0.7, hashtag: "#source" },
-    { to: "docs/doctrine/migrations/livehelp_emails_migration.md", type: "related_to", weight: 0.6, hashtag: "#email_system" }
+    { to: "lupo-database/migrations/old_crafty_syntax_3_7_5_start.sql", type: "references", weight: 0.7, hashtag: "#source" },
+    { to: "lupo-docs/doctrine/migrations/livehelp_emails_migration.md", type: "related_to", weight: 0.6, hashtag: "#email_system" }
   ],
   referenced_by_actors: [1001, 10000],
   references: {
-    by_files: ["docs/doctrine/migrations/MIGRATION_MAPPING_REFERENCE.md"],
+    by_files: ["lupo-docs/doctrine/migrations/MIGRATION_MAPPING_REFERENCE.md"],
     by_actors: [1001, 10000]
   },
   semantic_tags: ["livehelp_emailque_mapping", "email_queue", "dropped_table", "delivery_logging"],

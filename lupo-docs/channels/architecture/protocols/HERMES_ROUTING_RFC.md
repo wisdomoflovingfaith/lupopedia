@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\channels\architecture\protocols\HERMES_ROUTING_RFC.md"
+  file_path_from_root: "lupo-docs\channels\architecture\protocols\HERMES_ROUTING_RFC.md"
   file_hash: "b6a97cc6a73973fe055781244f8c4361c7b8908dddb132bdd7000b61d0c1194f"
-  file_path_from_root: "docs\channels\architecture\protocols\HERMES_ROUTING_RFC.md"
+  file_path_from_root: "lupo-docs\channels\architecture\protocols\HERMES_ROUTING_RFC.md"
   file_hash: "ca43cb8d888ba6b19bea2f96e2940bd368b8daa025a42cf9463ca89fc3cd9b55"
   last_updated_utc: "20260228"
   system_version: "4.0.50"

@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\doctrine\AGENT_420_RETIREMENT.md"
+  file_path_from_root: "lupo-docs\doctrine\AGENT_420_RETIREMENT.md"
   file_hash: "0e672fc313d480df6ee577713de6b1276745dc3668ae2c93622b6957e5755c02"
-  file_path_from_root: "docs\doctrine\AGENT_420_RETIREMENT.md"
+  file_path_from_root: "lupo-docs\doctrine\AGENT_420_RETIREMENT.md"
   file_hash: "71ad71dfb1ca473665b855215e70dd388d629d4b5a9b704dc0a43716b5f9851e"
   last_updated_utc: "20260228"
   system_version: "4.0.50"

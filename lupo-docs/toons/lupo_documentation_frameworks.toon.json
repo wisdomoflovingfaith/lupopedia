@@ -1,0 +1,94 @@
+{
+  "table_name": "lupo_documentation_frameworks",
+  "fields": [
+    "`documentation_framework_id` bigint NOT NULL",
+    "`framework_key` varchar(64) NOT NULL",
+    "`framework_name` varchar(255) NOT NULL",
+    "`class_type` varchar(64) NOT NULL DEFAULT 'documentation'",
+    "`namespace_key` varchar(255) NOT NULL",
+    "`channel_id` bigint NOT NULL DEFAULT 1",
+    "`collection_key` varchar(64) NOT NULL DEFAULT 'active'",
+    "`orchestrator_actor_id` bigint",
+    "`facet_slug` varchar(64)",
+    "`agent_key` varchar(64)",
+    "`role_key` varchar(64)",
+    "`task_scope` varchar(255)",
+    "`database_table` varchar(255)",
+    "`runtime_min_php` varchar(20) DEFAULT '5.6'",
+    "`created_ymdhis` bigint NOT NULL DEFAULT 0",
+    "`updated_ymdhis` bigint NOT NULL DEFAULT 0",
+    "`is_deleted` tinyint NOT NULL DEFAULT 0",
+    "`deleted_ymdhis` bigint",
+    "`properties_json` json"
+  ],
+  "data": [],
+  "indexes": [
+    {
+      "index_name": "lupo_documentation_frameworks_uniq_key",
+      "columns": [
+        "framework_key"
+      ],
+      "is_unique": true,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_documentation_frameworks_idx_namespace",
+      "columns": [
+        "namespace_key"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_documentation_frameworks_idx_channel",
+      "columns": [
+        "channel_id"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_documentation_frameworks_idx_collection",
+      "columns": [
+        "collection_key"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_documentation_frameworks_idx_class",
+      "columns": [
+        "class_type"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_documentation_frameworks_idx_is_deleted",
+      "columns": [
+        "is_deleted"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_documentation_frameworks_idx_created",
+      "columns": [
+        "created_ymdhis"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    }
+  ],
+  "relationships": [],
+  "primary_key": {
+    "column_name": "documentation_framework_id",
+    "expected_name": "documentation_framework_id",
+    "is_correct": true,
+    "needs_rename": false
+  },
+  "doctrine_metadata": {
+    "no_foreign_keys": true,
+    "no_triggers": true
+  }
+}

@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "tools\vsx-extension\FLIP_INTEGRATION_README.md"
+  file_path_from_root: "lupo-tools\vsx-extension\FLIP_INTEGRATION_README.md"
   file_hash: "d3ad075dedfc2f2feaae8f1fdfc6efe62cf865fd6b81160333141dc31134251e"
-  file_path_from_root: "tools\vsx-extension\FLIP_INTEGRATION_README.md"
+  file_path_from_root: "lupo-tools\vsx-extension\FLIP_INTEGRATION_README.md"
   file_hash: "df0ece039e4ffd90a343ccd9bcb4614b2582d1d76a02ba57260f05f2d0a28c98"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -81,8 +81,8 @@ This implementation provides **both** VSX extension offline capabilities and Pyt
    - Automatic FLIP header timestamp updates
    - Offline audit logging to `lupo_anubis_log.json`
 
-2. **Python Audit Tool** (`scripts/flip_header_audit.py`)
-   - FLIP header validation across all docs/
+2. **Python Audit Tool** (`lupo-scripts/flip_header_audit.py`)
+   - FLIP header validation across all lupo-docs/
    - Metadata extraction and reporting
    - Offline navigation JSON generation
    - Comprehensive validation reports
@@ -127,7 +127,7 @@ This implementation provides **both** VSX extension offline capabilities and Pyt
 ### Python Audit Tool Features
 
 #### 1. FLIP Header Scanning
-- Scans `docs/doctrine/`, `docs/api/`, `docs/specs/`
+- Scans `lupo-docs/doctrine/`, `lupo-docs/api/`, `lupo-docs/specs/`
 - Validates required fields: `file.last_modified_system_version`, `file.last_modified_utc`
 - Detects missing headers
 - Validates UTC timestamp format (14 digits)
@@ -170,7 +170,7 @@ Extracts and validates:
 
 #### Build & Install
 ```bash
-cd tools/vsx-extension
+cd lupo-tools/vsx-extension
 npm install
 npm run compile
 # Install .vsix in VS Code
@@ -188,7 +188,7 @@ npm run compile
 ```
 
 #### Activation
-Extension activates automatically on VS Code startup when workspace contains `docs/` directory.
+Extension activates automatically on VS Code startup when workspace contains `lupo-docs/` directory.
 
 #### TreeView Location
 - **Activity Bar** → Lupopedia icon
@@ -203,7 +203,7 @@ Extension activates automatically on VS Code startup when workspace contains `do
 #### Usage
 ```bash
 # From repo root
-python scripts/flip_header_audit.py
+python lupo-scripts/flip_header_audit.py
 ```
 
 #### Sample Output
@@ -217,12 +217,12 @@ Missing FLIP header: 25
 ============================================================
 
 📋 Files missing FLIP header:
-  - docs/specs/API_ENDPOINTS_NEW.md
-  - docs/doctrine/SCHEMA_UPDATES.md
+  - lupo-docs/specs/API_ENDPOINTS_NEW.md
+  - lupo-docs/doctrine/SCHEMA_UPDATES.md
   ...
 
 ⚙️ Add FLIP headers to missing files? (y/N): y
-  ✓ Added FLIP header: docs/specs/API_ENDPOINTS_NEW.md
+  ✓ Added FLIP header: lupo-docs/specs/API_ENDPOINTS_NEW.md
   ...
 
 📊 Generating reports...
@@ -254,7 +254,7 @@ Missing FLIP header: 25
 ---
 # FLIP Header (alias: Wolfie Header, CROP Header, FLIPPING Header)
 wolfie.headers: explicit architecture with structured clarity for every file.
-file_path_from_root: docs/doctrine/EXAMPLE.md
+file_path_from_root: lupo-docs/doctrine/EXAMPLE.md
 file.last_modified_system_version: "4.0.28"
 file.last_modified_utc: "20260222150000"
 channel_id: 42
@@ -295,7 +295,7 @@ The FLIP header system now supports an optional database mapping layer:
 ```
 ┌─────────────────┐
 │ .md Files       │
-│ (docs/)         │
+│ (lupo-docs/)         │
 └────────┬────────┘
          │
          ├──> VSX Extension ──> FlipTreeDataProvider ──> TreeView
@@ -370,7 +370,7 @@ The FLIP header system now supports an optional database mapping layer:
 
 ### Example 3: Generate Reports for Windsurf IDE
 
-1. From repo root: `python scripts/flip_header_audit.py`
+1. From repo root: `python lupo-scripts/flip_header_audit.py`
 2. Review validation report in `exports/flip_validation_report.md`
 3. Share `exports/flip_navigation.json` with Windsurf IDE
 4. Windsurf uses navigation JSON for offline FLIP browsing
@@ -403,7 +403,7 @@ The FLIP header system now supports an optional database mapping layer:
 ## Troubleshooting
 
 ### TreeView Not Showing
-- Ensure workspace contains `docs/` directory
+- Ensure workspace contains `lupo-docs/` directory
 - Run `Lupopedia: Refresh Doctrine View`
 - Check VS Code developer console for errors
 
@@ -418,7 +418,7 @@ The FLIP header system now supports an optional database mapping layer:
 - Check developer console for errors
 
 ### Python Script Errors
-- Run from repo root: `python scripts/flip_header_audit.py`
+- Run from repo root: `python lupo-scripts/flip_header_audit.py`
 - Ensure Python 3.8+ installed
 - Check file encoding (UTF-8 required)
 

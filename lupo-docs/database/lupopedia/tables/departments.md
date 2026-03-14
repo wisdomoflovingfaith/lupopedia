@@ -1,6 +1,6 @@
 ---
 lupopedia.headers:
-  file_path_from_root: "docs/database/lupopedia/tables/departments.md"
+  file_path_from_root: "lupo-docs/database/lupopedia/tables/departments.md"
   file_hash: "fd8699a89b465a2522e53a5075d1d72f90429389d5d49acf399e4ab88d1e3ef2"
   system_version: "4.0.50"
   channel_id: 0
@@ -12,10 +12,10 @@ lupopedia.headers:
   lupo_agent: "gemini-cli"
 
 lupopedia.edges:
-  file_path_from_root: "docs\database\lupopedia\tables\departments.md"
+  file_path_from_root: "lupo-docs\database\lupopedia\tables\departments.md"
   outbound_edges:
-- { to: "docs/database/lupopedia/tables/actor_departments.md", type: "references", weight: 0.9 }
-    - { to: "docs/database/lupopedia/tables/federation_nodes.md", type: "references", weight: 0.7 }
+- { to: "lupo-docs/database/lupopedia/tables/actor_departments.md", type: "references", weight: 0.9 }
+    - { to: "lupo-docs/database/lupopedia/tables/federation_nodes.md", type: "references", weight: 0.7 }
     - { to: "lupo-database/lupopedia/toon/lupo_departments.toon.json", type: "schema_reference", weight: 1.0 }
   semantic_tags: ["departments", "organization", "structure", "routing"]
 
@@ -49,7 +49,7 @@ Purpose: **Department identity**: core fields for each department (id, name, des
 
 **Legacy table:** `livehelp_departments` (one table held both identity and many UI/behavior fields).
 
-**Migration:** `docs/doctrine/migrations/livehelp_departments_migration.md`, `import_from_old_crafty_syntax.sql`.
+**Migration:** `lupo-docs/doctrine/migrations/livehelp_departments_migration.md`, `import_from_old_crafty_syntax.sql`.
 
 - **Split:** Core identity → **lupo_departments** (department_id, name, description, department_type, default_actor_id, federation_node_id, lifecycle). UI/behavior/branding → **lupo_department_metadata** (JSON).
 - **Reserved rows:** Install/seed ensure department_id 0 (System) and 1 (default) exist; import may overwrite or skip depending on legacy recno.

@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "channels\0\broadcasts\20260225120032_10000_1000_0_mandatory_minimum_flip_header_requirements.md"
+  file_path_from_root: "lupo-channels\0\broadcasts\20260225120032_10000_1000_0_mandatory_minimum_flip_header_requirements.md"
   file_hash: "f02c2b0446e7e0cfb35a491a2aa7718974c6289f8a1da16fb04dfd911583038f"
-  file_path_from_root: "channels\0\broadcasts\20260225120032_10000_1000_0_mandatory_minimum_flip_header_requirements.md"
+  file_path_from_root: "lupo-channels\0\broadcasts\20260225120032_10000_1000_0_mandatory_minimum_flip_header_requirements.md"
   file_hash: "79707ba57f602d6debe3c0afeaa7e667cf8f59a22ecb4159535ac1bf305f1f17"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -108,7 +108,7 @@ wolfie.headers: {
 
 <!-- FLIP_FOOTER_BEGIN
 {
-    "references": "\"docs\/status\/broadcast_collection_0.md\"",
+    "references": "\"lupo-docs\/status\/broadcast_collection_0.md\"",
     "implements": "\"broadcast_standardization\"",
     "depends_on": "\"registry_seeding_completion\"",
     "includes": "\"channel_0_communications\"",

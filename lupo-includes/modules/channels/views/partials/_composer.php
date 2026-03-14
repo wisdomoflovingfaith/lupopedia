@@ -16,7 +16,7 @@ if ($selected_thread_id <= 0) {
 $current_actor_id = isset($current_actor_id) ? (int) $current_actor_id : 0;
 $actor_name = isset($current_actor_name) ? $current_actor_name : (isset($actor_names[$current_actor_id]) ? $actor_names[$current_actor_id] : 'Operator');
 ?>
-<form class="channel-composer-form" id="channel-composer-form" action="<?= $base ?>/api/channel/send" method="post"
+<form class="channel-composer-form" id="channel-composer-form" action="<?= $base ?>/lupo-api/channel/send" method="post"
       data-channel-id="<?= $channel_id ?>"
       data-typing-url="<?= htmlspecialchars($base . '/api/channel/typing') ?>"
       data-send-url="<?= htmlspecialchars($base . '/api/channel/send') ?>"
@@ -45,8 +45,8 @@ $actor_name = isset($current_actor_name) ? $current_actor_name : (isset($actor_n
     var threadSelect = document.getElementById('channel-composer-thread');
     if (!form || !input) return;
     var typingUrl = form.getAttribute('data-typing-url') || '';
-    var base = form.getAttribute('data-send-url') ? form.getAttribute('data-send-url').replace(/\/api\/channel\/send$/, '') : '';
-    if (!typingUrl) typingUrl = base + '/api/channel/typing';
+    var base = form.getAttribute('data-send-url') ? form.getAttribute('data-send-url').replace(/\/lupo-api\/channel\/send$/, '') : '';
+    if (!typingUrl) typingUrl = base + '/lupo-api/channel/typing';
     var channelId = form.getAttribute('data-channel-id') || '';
     var actorId = form.getAttribute('data-actor-id') || '';
     var actorName = form.getAttribute('data-actor-name') || 'Operator';
@@ -88,7 +88,7 @@ $actor_name = isset($current_actor_name) ? $current_actor_name : (isset($actor_n
         var msg = (input.value || '').trim();
         if (!threadId || msg === '') return;
         clearTyping();
-        var sendUrl = (form.getAttribute('data-send-url') || base + '/api/channel/send');
+        var sendUrl = (form.getAttribute('data-send-url') || base + '/lupo-api/channel/send');
         var body = 'channel_id=' + encodeURIComponent(channelId) + '&dialog_thread_id=' + encodeURIComponent(threadId) + '&message_text=' + encodeURIComponent(msg);
         var xhr = new XMLHttpRequest();
         xhr.open('POST', sendUrl, true);

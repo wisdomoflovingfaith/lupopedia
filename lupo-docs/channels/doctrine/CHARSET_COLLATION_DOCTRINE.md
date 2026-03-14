@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\channels\doctrine\CHARSET_COLLATION_DOCTRINE.md"
+  file_path_from_root: "lupo-docs\channels\doctrine\CHARSET_COLLATION_DOCTRINE.md"
   file_hash: "7fcc365c859f06fda6e2d2bc502a1b73c7e8288ac6814aa8e2130e4764d63747"
-  file_path_from_root: "docs\channels\doctrine\CHARSET_COLLATION_DOCTRINE.md"
+  file_path_from_root: "lupo-docs\channels\doctrine\CHARSET_COLLATION_DOCTRINE.md"
   file_hash: "3f1e89ae8fd0fc2de362962032b97172eeee5532ac3dad72da2025ba3b9e6fb5"
   last_updated_utc: "20260228"
   system_version: "4.0.50"

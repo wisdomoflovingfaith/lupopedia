@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\channels\gov\AUDITABILITY_AND_TRACEABILITY_DOCTRINE.md"
+  file_path_from_root: "lupo-docs\channels\gov\AUDITABILITY_AND_TRACEABILITY_DOCTRINE.md"
   file_hash: "53bb381bc04d15a4611fba8c4b01b89b2fe8737f5bc2441b28500611e113bc67"
-  file_path_from_root: "docs\channels\gov\AUDITABILITY_AND_TRACEABILITY_DOCTRINE.md"
+  file_path_from_root: "lupo-docs\channels\gov\AUDITABILITY_AND_TRACEABILITY_DOCTRINE.md"
   file_hash: "51cf1a7cc8d2684ded08a2072ee06d6c7282d42641b3256670124db05951cd7c"
   last_updated_utc: "20260228"
   system_version: "4.0.50"

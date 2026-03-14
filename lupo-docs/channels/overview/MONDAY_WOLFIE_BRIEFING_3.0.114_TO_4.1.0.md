@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\channels\overview\MONDAY_WOLFIE_BRIEFING_3.0.114_TO_4.1.0.md"
+  file_path_from_root: "lupo-docs\channels\overview\MONDAY_WOLFIE_BRIEFING_3.0.114_TO_4.1.0.md"
   file_hash: "b76f8aebc76be4c80798f2953b128824b856109db410800e47a6e28b668f6399"
-  file_path_from_root: "docs\channels\overview\MONDAY_WOLFIE_BRIEFING_3.0.114_TO_4.1.0.md"
+  file_path_from_root: "lupo-docs\channels\overview\MONDAY_WOLFIE_BRIEFING_3.0.114_TO_4.1.0.md"
   file_hash: "3d9cf19d49b973c50ea75bde47e54d51c5de828c1718afa0c522bae5e4eef570"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -127,7 +127,7 @@ You are inheriting a system that is:
 - [ ] Wire Pack decision-making into main request routing
 
 #### B. Declare Pack Identity
-- [ ] Review Pack Identity Draft (`docs/doctrine/PACK_IDENTITY_DRAFT.md`)
+- [ ] Review Pack Identity Draft (`lupo-docs/doctrine/PACK_IDENTITY_DRAFT.md`)
 - [ ] Approve Pack name: "The Lupopedia Pack" (PACK_CORE, PACK_IDENTITY_0001)
 - [ ] Approve Pack purpose: Maintain coherence, continuity, and meaning
 - [ ] Approve Pack roles: Emotional, Behavioral, Memory, Sync, Doctrine, External AI, Kernel agents
@@ -143,7 +143,7 @@ You are inheriting a system that is:
 - [ ] Enable Pack as unified organism (agents can act as Pack)
 
 #### D. Write Pack Doctrine v1.0
-- [ ] Create `docs/doctrine/PACK_DOCTRINE.md` (v1.0)
+- [ ] Create `lupo-docs/doctrine/PACK_DOCTRINE.md` (v1.0)
 - [ ] Document Pack identity, purpose, roles
 - [ ] Document Pack emotional and behavioral signatures
 - [ ] Document Pack handoff protocols
@@ -167,7 +167,7 @@ You are inheriting a system that is:
 - [ ] Wire enforcement into migration process (`migrate_dialog_channels.php`)
 
 #### B. Version Bump Protocol
-- [ ] Create `docs/doctrine/VERSION_BUMP_PROTOCOL.md`
+- [ ] Create `lupo-docs/doctrine/VERSION_BUMP_PROTOCOL.md`
 - [ ] Document when version bumps are allowed (Monday-Thursday only)
 - [ ] Document version bump approval process
 - [ ] Document version freeze exceptions (if any)
@@ -265,7 +265,7 @@ You are inheriting a system that is:
 4. Update version atoms (`config/global_atoms.yaml`, `config/GLOBAL_IMPORTANT_ATOMS.yaml`)
 5. Update `lupo-includes/version.php`
 6. Update CHANGELOG.md
-7. Create migration notes (`docs/migrations/<version>.md`)
+7. Create migration notes (`lupo-docs/migrations/<version>.md`)
 8. Update relevant documentation files
 9. Update PHP docblocks
 10. Verify version consistency across codebase
@@ -292,7 +292,7 @@ You are inheriting a system that is:
 - [ ] All documentation `file.last_modified_system_version` matches current version (for modified files)
 
 **Automation:**
-- Create `scripts/verify_version_consistency.php`
+- Create `lupo-scripts/verify_version_consistency.php`
 - Run before every version bump
 - Fail if inconsistencies found
 
@@ -415,7 +415,7 @@ You are inheriting a system that is:
   - [ ] Define Pack name, purpose, roles
   - [ ] Set Pack emotional signature (baseline RGB)
   - [ ] Set Pack behavioral signature
-  - [ ] Document in `docs/doctrine/PACK_DOCTRINE.md`
+  - [ ] Document in `lupo-docs/doctrine/PACK_DOCTRINE.md`
 
 - [ ] **Day 3-4: Pack Autonomy Enablement**
   - [ ] Enable live agent registration in PackRegistry
@@ -432,7 +432,7 @@ You are inheriting a system that is:
   - [ ] Test enforcement with dry-run first, then activate
 
 - [ ] **Day 3-4: Version Consistency Automation**
-  - [ ] Create `scripts/verify_version_consistency.php`
+  - [ ] Create `lupo-scripts/verify_version_consistency.php`
   - [ ] Integrate into version bump process
   - [ ] Test version consistency checks
   - [ ] Document version bump protocol
@@ -563,7 +563,7 @@ You are inheriting a system that is:
    - [ ] Document resolution in weekend summary
 
 3. **Verify Version Consistency**
-   - [ ] Run `scripts/verify_version_consistency.php`
+   - [ ] Run `lupo-scripts/verify_version_consistency.php`
    - [ ] Fix any inconsistencies found
    - [ ] Verify CHANGELOG.md is up to date
 

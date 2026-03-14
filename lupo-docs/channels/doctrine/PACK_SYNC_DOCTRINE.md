@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\channels\doctrine\PACK_SYNC_DOCTRINE.md"
+  file_path_from_root: "lupo-docs\channels\doctrine\PACK_SYNC_DOCTRINE.md"
   file_hash: "c86addc94c2d91ce51b58d1355403c16bd57f4307de268591e1ce54163e614b0"
-  file_path_from_root: "docs\channels\doctrine\PACK_SYNC_DOCTRINE.md"
+  file_path_from_root: "lupo-docs\channels\doctrine\PACK_SYNC_DOCTRINE.md"
   file_hash: "692f4238d05caeaffca912079c7f763c79bd7ab1b415c209807f23162c835ca5"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -431,9 +431,9 @@ $lastTimestamp = $context->getLastSyncTimestamp();
 
 ## Related Documentation
 
-- **[PACK_MEMORY_DOCTRINE.md](docs/PACK_MEMORY_DOCTRINE.md)** - Pack memory layer (3.0.110)
-- **[PACK_BEHAVIOR_DOCTRINE.md](docs/PACK_BEHAVIOR_DOCTRINE.md)** - Pack behavioral layer (3.0.109)
-- **[EMOTIONAL_GEOMETRY.md](docs/doctrine/EMOTIONAL_GEOMETRY.md)** - Emotional geometry doctrine (3.0.108)
+- **[PACK_MEMORY_DOCTRINE.md](lupo-docs/PACK_MEMORY_DOCTRINE.md)** - Pack memory layer (3.0.110)
+- **[PACK_BEHAVIOR_DOCTRINE.md](lupo-docs/PACK_BEHAVIOR_DOCTRINE.md)** - Pack behavioral layer (3.0.109)
+- **[EMOTIONAL_GEOMETRY.md](lupo-docs/doctrine/EMOTIONAL_GEOMETRY.md)** - Emotional geometry doctrine (3.0.108)
 
 ---
 

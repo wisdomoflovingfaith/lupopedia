@@ -90,9 +90,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "channels\42\tasks\completed\channels_admin_interface_modernization.md"
+  file_path_from_root: "lupo-channels\42\tasks\completed\channels_admin_interface_modernization.md"
   file_hash: "16b3638d2c15dd79c5599276954d62b186e8448bd7f55a07ca428d380abb85e1"
-  file_path_from_root: "channels\42\tasks\completed\channels_admin_interface_modernization.md"
+  file_path_from_root: "lupo-channels\42\tasks\completed\channels_admin_interface_modernization.md"
   file_hash: "846c5da8a62b7abd6ebc5db7a74893eb91e7650158aafbff330444bc91c6b3e0"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -135,7 +135,7 @@ task_type: "ui_modernization"
 **Status:** ? Completed
 
 ## Objective
-Modernization of the legacy Crafty Syntax channels/livehelp admin interface using modern iframe-based design and Tailwind CSS within Lupopedia's channel system.
+Modernization of the legacy Crafty Syntax lupo-channels/livehelp admin interface using modern iframe-based design and Tailwind CSS within Lupopedia's channel system.
 
 ## Scope
 1. Replace legacy `<frameset>` with responsive CSS Grid/iframes.
@@ -144,12 +144,12 @@ Modernization of the legacy Crafty Syntax channels/livehelp admin interface usin
 4. Modernize `xmlhttp.js` to use Fetch API/WebSockets.
 
 ## Next Steps
-- Implement `channels/1/index.php` template.
+- Implement `lupo-channels/1/index.php` template.
 - Develop PHP-based secure iframe wrapper.
 - Integrate with `lupo_sessions` for actor-based auth.
 
 
 ## Completion
-- Implemented modern channels admin shell in channels/1/index.php.
-- Added admin pages in channels/1/admin/ with authenticated views.
-- Added custom styling and JS in channels/1/assets/ for navigation + layout.
+- Implemented modern channels admin shell in lupo-channels/1/index.php.
+- Added admin pages in lupo-channels/1/admin/ with authenticated views.
+- Added custom styling and JS in lupo-channels/1/assets/ for navigation + layout.

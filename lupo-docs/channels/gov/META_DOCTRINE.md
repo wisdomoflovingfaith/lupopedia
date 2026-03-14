@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\channels\gov\META_DOCTRINE.md"
+  file_path_from_root: "lupo-docs\channels\gov\META_DOCTRINE.md"
   file_hash: "a070ae276ee7f7677b76a29a4015955a72c7c680196195acfe786a2c19a4c576"
-  file_path_from_root: "docs\channels\gov\META_DOCTRINE.md"
+  file_path_from_root: "lupo-docs\channels\gov\META_DOCTRINE.md"
   file_hash: "8440e00f2b5d6e473de1f99aaad7dbdc262ae5e79f0706d945a617cf2a411a3c"
   last_updated_utc: "20260228"
   system_version: "4.0.50"

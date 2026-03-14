@@ -1,0 +1,42 @@
+{
+  "table_name": "lupo_reference_map",
+  "fields": [
+    "`reference_map_id` bigint NOT NULL auto_increment",
+    "`reference_id` bigint NOT NULL",
+    "`target_type` varchar(64) NOT NULL",
+    "`target_id` bigint NOT NULL",
+    "`created_ymdhis` bigint NOT NULL DEFAULT 0",
+    "`is_deleted` tinyint NOT NULL DEFAULT 0"
+  ],
+  "data": [],
+  "indexes": [
+    {
+      "index_name": "lupo_reference_map_idx_reference",
+      "columns": [
+        "reference_id"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_reference_map_idx_target",
+      "columns": [
+        "target_type",
+        "target_id"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    }
+  ],
+  "primary_key": {
+    "column_name": "reference_map_id",
+    "expected_name": "reference_map_id",
+    "is_correct": true,
+    "needs_rename": false
+  },
+  "doctrine_metadata": {
+    "no_foreign_keys": true,
+    "no_triggers": true
+  },
+  "relationships": []
+}

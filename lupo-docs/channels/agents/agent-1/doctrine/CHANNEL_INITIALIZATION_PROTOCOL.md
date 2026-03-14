@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\channels\agents\agent-1\doctrine\CHANNEL_INITIALIZATION_PROTOCOL.md"
+  file_path_from_root: "lupo-docs\channels\agents\agent-1\doctrine\CHANNEL_INITIALIZATION_PROTOCOL.md"
   file_hash: "20bfdd3c54094c1e1c99cf6fe892ef126fab682762e1339fa6eded584634b57e"
-  file_path_from_root: "docs\channels\agents\agent-1\doctrine\CHANNEL_INITIALIZATION_PROTOCOL.md"
+  file_path_from_root: "lupo-docs\channels\agents\agent-1\doctrine\CHANNEL_INITIALIZATION_PROTOCOL.md"
   file_hash: "21996fa3ce066fa345e5ef8d784a002059eee0f9a4b2046aaf14f9c3943e5eb8"
   last_updated_utc: "20260228"
   system_version: "4.0.50"

@@ -2,40 +2,68 @@
   "table_name": "lupo_visits",
   "fields": [
     "`visit_id` bigint NOT NULL auto_increment",
-    "`content_id` bigint NOT NULL DEFAULT 0",
-    "`actor_id` bigint NOT NULL DEFAULT 0",
-    "`page_url` varchar(500) NOT NULL",
-    "`page_domain` varchar(255) NOT NULL",
-    "`page_path` varchar(500) NOT NULL",
-    "`date_ymd` int NOT NULL",
-    "`visits` int NOT NULL DEFAULT 0",
-    "`depth` int NOT NULL DEFAULT 0",
-    "`metadata_json` json",
+    "`session_id` bigint",
+    "`actor_id` bigint",
+    "`instance_id` bigint",
+    "`path_url` text",
+    "`entercontentid` bigint",
+    "`exitcontentid` bigint",
+    "`enter_table` varchar(255)",
+    "`exit_table` varchar(255)",
+    "`transition_type` varchar(64)",
+    "`transition_metadata` text",
     "`created_ymdhis` bigint NOT NULL DEFAULT 0",
-    "`updated_ymdhis` bigint NOT NULL DEFAULT 0"
+    "`is_processed` tinyint NOT NULL DEFAULT 0",
+    "`is_deleted` tinyint NOT NULL DEFAULT 0",
+    "`deleted_ymdhis` bigint"
   ],
   "data": [],
   "indexes": [
     {
-      "index_name": "lupo_visits_content_id",
+      "index_name": "lupo_visits_idx_actor",
       "columns": [
-        "content_id"
+        "actor_id"
       ],
       "is_unique": false,
       "index_type": "BTREE"
     },
     {
-      "index_name": "lupo_visits_date_ymd",
+      "index_name": "lupo_visits_idx_created",
       "columns": [
-        "date_ymd"
+        "created_ymdhis"
       ],
       "is_unique": false,
       "index_type": "BTREE"
     },
     {
-      "index_name": "lupo_visits_page_domain",
+      "index_name": "lupo_visits_idx_enter_exit",
       "columns": [
-        "page_domain"
+        "entercontentid",
+        "exitcontentid"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_visits_idx_is_deleted",
+      "columns": [
+        "is_deleted"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_visits_idx_is_processed",
+      "columns": [
+        "is_processed"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_visits_idx_session",
+      "columns": [
+        "session_id"
       ],
       "is_unique": false,
       "index_type": "BTREE"

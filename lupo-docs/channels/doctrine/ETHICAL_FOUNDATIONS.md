@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\channels\doctrine\ETHICAL_FOUNDATIONS.md"
+  file_path_from_root: "lupo-docs\channels\doctrine\ETHICAL_FOUNDATIONS.md"
   file_hash: "64dcd0d1dac6d190e994fa68557e52e7c70055d23beb6458b8c846ab0ffa6266"
-  file_path_from_root: "docs\channels\doctrine\ETHICAL_FOUNDATIONS.md"
+  file_path_from_root: "lupo-docs\channels\doctrine\ETHICAL_FOUNDATIONS.md"
   file_hash: "2b4d1cc12e62dd1a286bf526673ca804ea92dc55453ffd182bb21d34a4296755"
   last_updated_utc: "20260228"
   system_version: "4.0.50"

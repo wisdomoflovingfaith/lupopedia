@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -31,7 +31,7 @@ lupopedia.footer:
 # LUPOPEDIA HEADERS (replaces FLARE) see http://www.lupopedia.com/lupopedia/content/FLARE and see http://www.lupopedia.com/lupopedia/qa/FLARE
 ---
 lupopedia.headers:
-  file_path_from_root: "docs/api/FLARE_API.md"
+  file_path_from_root: "lupo-docs/api/FLARE_API.md"
   system_version: "4.0.47"
   channel_id: 1
   actor_id: 1007
@@ -39,7 +39,7 @@ lupopedia.headers:
   delegation_chain: "1007:10000"
   artifact_type: "api"
   purpose: "Web API specification for FLARE header retrieval and processing"
-  dialog_message: "Recommended next step: create actors/1007 profile and align any remaining docs/examples to the required FLARE prologue format."
+  dialog_message: "Recommended next step: create lupo-actors/1007 profile and align any remaining lupo-docs/examples to the required FLARE prologue format."
   mood_rgb: "4B0082"
   traits: ["canonical", "api", "external_interface"]
   tags: ["flare", "api", "web", "headers", "external_agents"]
@@ -47,10 +47,10 @@ lupopedia.headers:
 
 lupopedia.footer:
   outbound_edges:
-    - { to: "docs/doctrine/FLARE/FLARE_DOCTRINE.md", type: "references", weight: 1.0 }
-    - { to: "docs/FLARE_HEADERS_QUICK_REFERENCE.md", type: "references", weight: 0.9 }
-    - { to: "docs/FLARE_HEADERS_COMPLETE_REFERENCE.md", type: "references", weight: 0.9 }
-    - { to: "docs/api/FLIP_API.md", type: "supersedes", weight: 0.8 }
+    - { to: "lupo-docs/doctrine/FLARE/FLARE_DOCTRINE.md", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/FLARE_HEADERS_QUICK_REFERENCE.md", type: "references", weight: 0.9 }
+    - { to: "lupo-docs/FLARE_HEADERS_COMPLETE_REFERENCE.md", type: "references", weight: 0.9 }
+    - { to: "lupo-docs/api/FLIP_API.md", type: "supersedes", weight: 0.8 }
     - { to: "app/Services/FlareValidatorService.php", type: "implements", weight: 0.8 }
   semantic_tags: ["flare", "api", "web", "headers", "external_interface", "canonical"]
 ---
@@ -77,7 +77,7 @@ Common validation errors and their fixes:
 | Error | Fix |
 |-------|-----|
 | "Missing required field: delegation_chain" | Add `delegation_chain: "1007:10000"` |
-| "Invalid actor_id: 1007" | Use valid actor ID from `actors/registry.json` |
+| "Invalid actor_id: 1007" | Use valid actor ID from `lupo-actors/registry.json` |
 | "Invalid artifact_type: invalid" | Use one of: doctrine, guide, directive, broadcast, status, profile |
 | "Edge weight out of range: 1.5" | Use weight between 0.5 and 1.0 |
 

@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\channels\overview\MONDAY_RESUME_CONTEXT.md"
+  file_path_from_root: "lupo-docs\channels\overview\MONDAY_RESUME_CONTEXT.md"
   file_hash: "b714430b2fc0d638af77591a697abef1c69fe8917b68859b1932c135492e9402"
-  file_path_from_root: "docs\channels\overview\MONDAY_RESUME_CONTEXT.md"
+  file_path_from_root: "lupo-docs\channels\overview\MONDAY_RESUME_CONTEXT.md"
   file_hash: "909cca1a637dd232ca3f9f97a4ea92d979f4f8f1c9745a9d74ade7e054a5ad84"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -199,7 +199,7 @@ file:
 1. `TO_DO_FOR_VERSION_4_1_0.md` - Ascent Manifest
 2. `dialogs/session_2026_01_16_version_3_0_46.md` - Friday session log
 3. `CHANGELOG.md` - Version 3.0.50 entry
-4. `docs/MONDAY_START_OF_DAY.md` - 8-step checklist
+4. `lupo-docs/MONDAY_START_OF_DAY.md` - 8-step checklist
 
 ---
 

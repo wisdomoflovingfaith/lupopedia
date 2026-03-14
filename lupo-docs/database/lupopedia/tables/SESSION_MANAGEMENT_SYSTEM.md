@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: "docs/database/lupopedia/tables/SESSION_MANAGEMENT_SYSTEM.md"
+  file_path_from_root: "lupo-docs/database/lupopedia/tables/SESSION_MANAGEMENT_SYSTEM.md"
   system_version: "4.0.53"
   last_modified_utc: "20260301134200"
   channel_id: 0
@@ -21,7 +21,7 @@ lupopedia.edges:
   outbound_edges:
     - { to: "lupo-database/lupopedia/toon/lupo_sessions.toon.json", type: "schema_reference", weight: 1.0 }
     - { to: "bin/session_manager.php", type: "implementation_reference", weight: 0.9 }
-    - { to: "docs/doctrine/FLARE/FLARE_DOCTRINE.md", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/FLARE/FLARE_DOCTRINE.md", type: "references", weight: 1.0 }
     - { to: "lupo-database/lupopedia/toon/lupo_channel_logs.toon.json", type: "related_schema", weight: 0.8 }
     - { to: "lupo-database/lupopedia/toon/lupo_channel_boot_lifecycle.toon.json", type: "integration_reference", weight: 0.8 }
   semantic_tags: ["session_management", "agent_isolation", "database_sync"]
@@ -199,7 +199,7 @@ For actor 1002 (Cursor, IDE):
 Use `loadDefaultSessionIfMissing()` from `lupo-includes/functions/session_helpers.php` to automatically load and sync defaults during boot/install.
 
 ### SQL Seed
-Default sessions can be seeded via `database/migrations/seed_default_sessions.sql` during installation.
+Default sessions can be seeded via `lupo-database/migrations/seed_default_sessions.sql` during installation.
 
 ## Session Validation System
 Multi-layered checks:
@@ -220,7 +220,7 @@ Results: JSON-like output with reason codes; logged for audit.
 ## References
 - `lupo-database/lupopedia/toon/lupo_sessions.toon.json`
 - `bin/session_manager.php`
-- `docs/doctrine/FLARE/FLARE_DOCTRINE.md`
+- `lupo-docs/doctrine/FLARE/FLARE_DOCTRINE.md`
 - `lupo-database/lupopedia/toon/lupo_channel_logs.toon.json`
 
 ---

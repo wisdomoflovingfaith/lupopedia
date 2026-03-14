@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\channels\gov\MOOD_FRAMEWORK_GOVERNANCE.md"
+  file_path_from_root: "lupo-docs\channels\gov\MOOD_FRAMEWORK_GOVERNANCE.md"
   file_hash: "1375a490f6bbf9e1e4827c526e375c32ae62d01fd4c009c877802e3b3cca3dbc"
-  file_path_from_root: "docs\channels\gov\MOOD_FRAMEWORK_GOVERNANCE.md"
+  file_path_from_root: "lupo-docs\channels\gov\MOOD_FRAMEWORK_GOVERNANCE.md"
   file_hash: "7fcb67a62cf13a27cc7cad648734e6c480aada088f06d09bde552041ef6e60d5"
   last_updated_utc: "20260228"
   system_version: "4.0.50"

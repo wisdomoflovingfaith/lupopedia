@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -63,7 +63,7 @@ lupopedia.footer:
 # Crafty Syntax: SQL Column References vs TOON Schema
 
 **Scope:** All PHP files under `lupo-includes/modules/crafty_syntax/`  
-**TOON source:** `docs/toons/*.toon.json`  
+**TOON source:** `lupo-docs/toons/*.toon.json`  
 **Date:** 2025-02-04
 
 ---

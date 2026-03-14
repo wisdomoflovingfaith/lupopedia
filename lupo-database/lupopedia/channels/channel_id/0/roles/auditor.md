@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "channels\0\roles\auditor.md"
+  file_path_from_root: "lupo-channels\0\roles\auditor.md"
   file_hash: "e68520287b65fbf7e0824db2c318f7690f1a35b1dddf4cbc6e95e4b51baddb93"
-  file_path_from_root: "channels\0\roles\auditor.md"
+  file_path_from_root: "lupo-channels\0\roles\auditor.md"
   file_hash: "b69e88bd31a085c9637bfd9bf1499b241435b36b4d1b9c11b934c2b8b4ec57b1"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -171,7 +171,7 @@ Auditors report to System Administrators. Critical violations must be escalated 
 <!-- FLIP_FOOTER_BEGIN
 {
   "references": [
-    "scripts/audit_channel_broadcasts.ps1",
+    "lupo-scripts/audit_channel_broadcasts.ps1",
     "BROADCAST_AUDIT_REPORT_4.0.45.json"
   ],
   "implements": "content_audit_authority_model",

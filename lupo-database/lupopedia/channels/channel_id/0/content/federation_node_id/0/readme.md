@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: "channels/42/content/federation_node_id/0/readme.md"
+  file_path_from_root: "lupo-channels/42/content/federation_node_id/0/readme.md"
   file_hash: "to_be_generated"
   federation_node_id: 0
   web_path: "http://www.lupopedia.com/readme"
@@ -25,24 +25,24 @@ lupopedia.edges:
     - { to: "QUICKSTART.md", type: "references", weight: 1.0 }
     - { to: "HOW_TO_USE_LUPOPEDIA.md", type: "references", weight: 0.9 }
     - { to: "CHANGELOG.md", type: "references", weight: 0.8 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/FLARE/FLARE_DOCTRINE.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/VERSION_POLICY_DOCTRINE.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/database/README.md", type: "references", weight: 0.9 }
-    - { to: "docs/database/lupopedia/tables/MIGRATION_MAPPING_REFERENCE.md", type: "references", weight: 0.8 }
-    - { to: "docs/architecture/FEDERATION_AND_REGISTRY.md", type: "references", weight: 0.9 }
-    - { to: "docs/architecture/ANUBIS_ADOPTION_PIPELINE.md", type: "references", weight: 0.9 }
-    - { to: "docs/toons/", type: "references", weight: 0.8 }
-    - { to: "tools/vsx-extension/", type: "references", weight: 0.8 }
-    - { to: "database/migrations/", type: "references", weight: 0.8 }
-    - { to: "legacy/craftysyntax/", type: "references", weight: 0.5 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/FLARE/FLARE_DOCTRINE.md", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/VERSION_POLICY_DOCTRINE.md", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/database/README.md", type: "references", weight: 0.9 }
+    - { to: "lupo-docs/database/lupopedia/tables/MIGRATION_MAPPING_REFERENCE.md", type: "references", weight: 0.8 }
+    - { to: "lupo-docs/architecture/FEDERATION_AND_REGISTRY.md", type: "references", weight: 0.9 }
+    - { to: "lupo-docs/architecture/ANUBIS_ADOPTION_PIPELINE.md", type: "references", weight: 0.9 }
+    - { to: "lupo-docs/toons/", type: "references", weight: 0.8 }
+    - { to: "lupo-tools/vsx-extension/", type: "references", weight: 0.8 }
+    - { to: "lupo-database/migrations/", type: "references", weight: 0.8 }
+    - { to: "lupo-legacy/craftysyntax/", type: "references", weight: 0.5 }
     - { to: "config/global_atoms.yaml", type: "references", weight: 0.7 }
     - { to: "lupopedia-config.php", type: "references", weight: 0.6 }
     - { to: "index.php", type: "references", weight: 0.6 }
-    - { to: "channels/42/content/federation_node_id/0/FLARE.md", type: "references", weight: 1.0 }
-    - { to: "channels/42/content/federation_node_id/0/changelog.md", type: "references", weight: 0.9 }
-    - { to: "channels/42/content/federation_node_id/0/flare/readme.md", type: "references", weight: 0.8 }
-    - { to: "docs/database/lupopedia/tables/lupo_channel_content.md", type: "references", weight: 0.7 }
+    - { to: "lupo-channels/42/content/federation_node_id/0/FLARE.md", type: "references", weight: 1.0 }
+    - { to: "lupo-channels/42/content/federation_node_id/0/changelog.md", type: "references", weight: 0.9 }
+    - { to: "lupo-channels/42/content/federation_node_id/0/flare/readme.md", type: "references", weight: 0.8 }
+    - { to: "lupo-docs/database/lupopedia/tables/lupo_channel_content.md", type: "references", weight: 0.7 }
   semantic_tags: ["project_overview", "architecture", "multi_agent_ecosystem", "semantic_os", "crafty_syntax_upgrade", "flare_protocol", "federation", "canonical"]
 
 lupopedia.footer:
@@ -95,7 +95,7 @@ Subdirectory installation required
 UTC integer timestamps (YYYYMMDDHHIISS)
 
 Doctrine enforcement:
-docs/doctrine/
+lupo-docs/doctrine/
 
 3️⃣ Installation & Setup
 Web Install / Upgrade
@@ -117,7 +117,7 @@ Run installer
 Validate using migration mapping reference
 
 Reference:
-docs/database/lupopedia/tables/MIGRATION_MAPPING_REFERENCE.md
+lupo-docs/database/lupopedia/tables/MIGRATION_MAPPING_REFERENCE.md
 
 CLI Usage
 cd /path/to/lupopedia
@@ -139,13 +139,13 @@ Humans, IDE agents, AI assistants unified
 Requires proper database seeding before access
 
 Reference:
-docs/AGENT_INVENTORY.md
+lupo-docs/AGENT_INVENTORY.md
 
 Channels & Threads
 
 Offline governance system stored in:
 
-channels/{id}/threads/
+lupo-channels/{id}/threads/
 
 Enables:
 
@@ -167,10 +167,10 @@ Footer → verification
 
 Legacy aliases: Wolfie / FLIP / FLP / CROP
 Canonical doctrine:
-docs/doctrine/FLARE/FLARE_DOCTRINE.md
+lupo-docs/doctrine/FLARE/FLARE_DOCTRINE.md
 
 TOON Schema Authority
-docs/toons/*.toon.json
+lupo-docs/toons/*.toon.json
 
 These files are the only source of truth for schema structure.
 
@@ -189,7 +189,7 @@ Semantic graph inspection
 Hybrid / Offline / DB-Online modes
 
 Location:
-tools/vsx-extension/
+lupo-tools/vsx-extension/
 
 6️⃣ Federation & Global Registry
 
@@ -209,20 +209,20 @@ ANUBIS adoption pipeline
 
 References:
 
-docs/architecture/FEDERATION_AND_REGISTRY.md
+lupo-docs/architecture/FEDERATION_AND_REGISTRY.md
 
-docs/architecture/ANUBIS_ADOPTION_PIPELINE.md
+lupo-docs/architecture/ANUBIS_ADOPTION_PIPELINE.md
 
 7️⃣ Repository Map
 Path	Purpose
 install.php	Install / upgrade wizard
-database/migrations/	Schema + seeds + Crafty import
-docs/doctrine/	Development doctrine
-docs/toons/	Schema source of truth
-docs/database/lupopedia/tables/	Table documentation
-channels/	Governance + coordination
-legacy/craftysyntax/	Read-only legacy reference
-tools/vsx-extension/	VS Code extension
+lupo-database/migrations/	Schema + seeds + Crafty import
+lupo-docs/doctrine/	Development doctrine
+lupo-docs/toons/	Schema source of truth
+lupo-docs/database/lupopedia/tables/	Table documentation
+lupo-channels/	Governance + coordination
+lupo-legacy/craftysyntax/	Read-only legacy reference
+lupo-tools/vsx-extension/	VS Code extension
 bin/lupo.php	CLI interface
 8️⃣ FILEOPT Progress
 
@@ -258,7 +258,7 @@ CODE_OF_CONDUCT.md
 
 CONTRIBUTING.md
 
-docs/doctrine/VERSION_POLICY_DOCTRINE.md
+lupo-docs/doctrine/VERSION_POLICY_DOCTRINE.md
 
 🔟 Canonical Status
 

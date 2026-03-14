@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "actors\plans\20260227_actor_directory_expansion_plan.md"
+  file_path_from_root: "lupo-actors\plans\20260227_actor_directory_expansion_plan.md"
   file_hash: "899da99727edb6b483b10436aebbe8830597e41d2a815e3db297479723bb5838"
-  file_path_from_root: "actors\plans\20260227_actor_directory_expansion_plan.md"
+  file_path_from_root: "lupo-actors\plans\20260227_actor_directory_expansion_plan.md"
   file_hash: "af6aa460c0dcd0cad76bc563eb0685f8ed66ee0d0b72a836ad3263c016281f18"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -85,7 +85,7 @@ Structured achievement logging to replace/supplement the human-readable `resume.
 
 ### 1.4 Performance Analysis (`performance/llm_stats.json`)
 Capturing Lilith's requested LLM performance metrics.
-- **Folder**: `actors/<id>/performance/`
+- **Folder**: `lupo-actors/<id>/performance/`
 - **Contents**: Task success rates, token usage per model, duration averages.
 
 ## 🗄️ Phase 2: Database Evolution (TOON Sync)
@@ -109,8 +109,8 @@ Integration of the 6 proposed tables and column enhancements to bridge the files
 ## 🛠️ Phase 3: Tooling & Automation
 
 ### 3.1 Script Upgrades
-- **`scripts/validate_actors.py`**: Updated to check for `WHO.json`, `current_focus.json`, and `llm_stats.json`.
-- **`scripts/sync_who_json.php`**: A new PHP script to perform the 1:1 mapping between `WHO.json` files and the database `metadata_json` column.
+- **`lupo-scripts/validate_actors.py`**: Updated to check for `WHO.json`, `current_focus.json`, and `llm_stats.json`.
+- **`lupo-scripts/sync_who_json.php`**: A new PHP script to perform the 1:1 mapping between `WHO.json` files and the database `metadata_json` column.
 
 ## 📅 Timeline
 - **Today (4.0.47)**: Folder structure and file implementations (`WHO.json`, `current_focus.json`).

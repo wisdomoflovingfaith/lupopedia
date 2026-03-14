@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\doctrine\FLIP\FLP_OVERVIEW.md"
+  file_path_from_root: "lupo-docs\doctrine\FLIP\FLP_OVERVIEW.md"
   file_hash: "5472e1a35beee12be7e893c616e3a8024099b11d67121b19a1adf8f2f28595e4"
-  file_path_from_root: "docs\doctrine\FLIP\FLP_OVERVIEW.md"
+  file_path_from_root: "lupo-docs\doctrine\FLIP\FLP_OVERVIEW.md"
   file_hash: "667c68dfec6fd1837d883c3b26246bf564b3bea1f6b259b9e6420fc54455e985"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -64,14 +64,14 @@ lupopedia.footer:
 ---
 # FLIP Header (alias: Wolfie Header, CROP Header, FLIPPING Header)
 wolfie.headers: explicit architecture with structured clarity for every file.
-file_path_from_root: docs/doctrine/FLIP/FLP_OVERVIEW.md
+file_path_from_root: lupo-docs/doctrine/FLIP/FLP_OVERVIEW.md
 file.last_modified_system_version: "4.0.16"
 file.last_modified_utc: "00000000000000"
 # channel_id unresolved — requires lupo_contents lookup by application.
 X-Lupo-Channel: 42   # ANUBIS adoption channel (Auto-Fixed)
 X-Lupo-Actor-ID: 2035
 X-Lupo-Actor-Identity: "Lupopedia Audit Tool (Auto-Fixed)"
-X-Lupo-File-Path: docs/doctrine/FLIP/FLP_OVERVIEW.md
+X-Lupo-File-Path: lupo-docs/doctrine/FLIP/FLP_OVERVIEW.md
 ---
 # Federated Likeness Protocol (FLP) — Overview
 
@@ -122,7 +122,7 @@ All relationships between councils, and between councils and other entities, are
 
 ## 4. Documentation set
 
-The FLP is documented in this folder (`docs/doctrine/FLIP/`) as follows:
+The FLP is documented in this folder (`lupo-docs/doctrine/FLIP/`) as follows:
 
 - **FLP_OVERVIEW.md** (this file) — High-level description and mapping onto Lupopedia.
 - **FLP_EMOTIONAL_GEOMETRY.md** — RGB axes, blue as memory depth, Kapakai, application-level aggregation.

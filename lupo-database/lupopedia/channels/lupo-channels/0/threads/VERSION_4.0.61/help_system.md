@@ -17,7 +17,7 @@ lupopedia.headers:
 
 ## Overview
 
-Version 4.0.61 adds a structured help system: **HelpRenderer** class, **docs/HELP.md** hub, topic-specific help, and context-aware suggestions.
+Version 4.0.61 adds a structured help system: **HelpRenderer** class, **lupo-docs/HELP.md** hub, topic-specific help, and context-aware suggestions.
 
 ## Components
 
@@ -30,10 +30,10 @@ Version 4.0.61 adds a structured help system: **HelpRenderer** class, **docs/HEL
 - `openWebHelp()` — Open browser to web help URL
 - `formatTopicHelp($title, $content)` — Version banner for topics
 
-### Documentation Hub (docs/HELP.md)
+### Documentation Hub (lupo-docs/HELP.md)
 
 - Getting started, Identity and actors, CLI commands, Workspace, Database, FLARE, Reports
-- Links to docs/version.md, lupopedia_whoami_readme.md, auth.md, CLI.md
+- Links to lupo-docs/version.md, lupopedia_whoami_readme.md, auth.md, CLI.md
 
 ### CLI Integration
 
@@ -45,8 +45,8 @@ Version 4.0.61 adds a structured help system: **HelpRenderer** class, **docs/HEL
 ## Files
 
 - `lupo-includes/classes/HelpRenderer.php`
-- `docs/HELP.md`
-- `docs/CLI.md`
+- `lupo-docs/HELP.md`
+- `lupo-docs/CLI.md`
 - `lupo-bin/lupo.php` (help case)
 - `web-help.php` (optional)
 

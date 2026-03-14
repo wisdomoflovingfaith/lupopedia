@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "channels\42\broadcasts\20260225233000_1000_10000_42_install_sql_tasks_integration_complete.md"
+  file_path_from_root: "lupo-channels\42\broadcasts\20260225233000_1000_10000_42_install_sql_tasks_integration_complete.md"
   file_hash: "b00088e3cdb2630bc5dd7adf9a8d86772930502255f7b575bab75c37e0b2ba25"
-  file_path_from_root: "channels\42\broadcasts\20260225233000_1000_10000_42_install_sql_tasks_integration_complete.md"
+  file_path_from_root: "lupo-channels\42\broadcasts\20260225233000_1000_10000_42_install_sql_tasks_integration_complete.md"
   file_hash: "b5268b76a3721d4e8a446dd1960f99023642b1e0eae8b58e4c8d247ddbff2ac4"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -143,7 +143,7 @@ Channel 42 directive to fix install_new_lupopedia.sql has been completed success
 
 ## Files Modified
 
-1. `database/migrations/install_new_lupopedia.sql` - Added 7 task tables (~170 lines)
+1. `lupo-database/migrations/install_new_lupopedia.sql` - Added 7 task tables (~170 lines)
 2. `CHANGELOG.md` - Documented schema completion
 
 ## Installation Impact
@@ -184,11 +184,11 @@ All prerequisites met. All tables present. All conventions maintained.
 <!-- FLIP_FOOTER_BEGIN
 {
   "references": [
-    "database/migrations/install_new_lupopedia.sql",
+    "lupo-database/migrations/install_new_lupopedia.sql",
     "INSTALL_SQL_AUDIT_TASKS_THREADS_4.0.45.md",
     "INSTALL_SQL_TASKS_INTEGRATION_COMPLETE_4.0.45.md",
     "CHANGELOG.md",
-    "channels/0/tasks/active/20260225170000_task_0_10000_drop_tables_and_run_install.md"
+    "lupo-channels/0/tasks/active/20260225170000_task_0_10000_drop_tables_and_run_install.md"
   ],
   "implements": "install_sql_completion",
   "depends_on": "schema_audit",

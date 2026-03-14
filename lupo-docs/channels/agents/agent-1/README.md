@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\channels\agents\agent-1\README.md"
+  file_path_from_root: "lupo-docs\channels\agents\agent-1\README.md"
   file_hash: "c0df3f3ea122928859c388b4b002112e513a2fcc95a040ff4f87d8310c532cb2"
-  file_path_from_root: "docs\channels\agents\agent-1\README.md"
+  file_path_from_root: "lupo-docs\channels\agents\agent-1\README.md"
   file_hash: "66af19d9cf27bf06e024d00cfc2ea9e6df458d6ab886389413ea8b6369efcc5b"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -71,7 +71,7 @@ dialog:
   speaker: CURSOR
   target: @captain-wolfie
   mood_RGB: "00FF00"
-  message: "Created initial WOLFIE agent directory structure (agents/0001/) with README, doctrine, templates, workflows, and config directories. This marks the beginning of WOLFIE's construction as the system identity agent."
+  message: "Created initial WOLFIE agent directory structure (lupo-agents/0001/) with README, doctrine, templates, workflows, and config directories. This marks the beginning of WOLFIE's construction as the system identity agent."
 tags:
   categories: ["documentation", "agents", "wolfie"]
   collections: ["core-docs"]
@@ -105,11 +105,11 @@ WOLFIE serves as:
 ## Directory Structure
 
 ```
-agents/0001/
+lupo-agents/0001/
 +-- README.md                          # This file
 +-- doctrine/                          # WOLFIE doctrine files
 �   +-- CHANNEL_INITIALIZATION_PROTOCOL.md
-+-- templates/                         # WOLFIE templates
++-- lupo-templates/                         # WOLFIE templates
 �   +-- channel_identity_block.template.md
 +-- workflows/                         # WOLFIE workflows
 �   +-- channel_initialization.workflow.md

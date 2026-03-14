@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\doctrine\DOCTRINE_FILE_STRUCTURE.md"
+  file_path_from_root: "lupo-docs\doctrine\DOCTRINE_FILE_STRUCTURE.md"
   file_hash: "6ab181b553d1c9ccfd95fcb987ee109a2020eb0e0e8172fb9d9abe49c2802a28"
-  file_path_from_root: "docs\doctrine\DOCTRINE_FILE_STRUCTURE.md"
+  file_path_from_root: "lupo-docs\doctrine\DOCTRINE_FILE_STRUCTURE.md"
   file_hash: "511affbd6a7c163fcf94a17afbb907e6a392c5a1d978590c37980b8d88d9591f"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -64,7 +64,7 @@ lupopedia.footer:
 ---
 # FLIP Header (alias: Wolfie Header, CROP Header, FLIPPING Header)
 wolfie.headers: explicit architecture with structured clarity for every file.
-file_path_from_root: docs/doctrine/DOCTRINE_FILE_STRUCTURE.md
+file_path_from_root: lupo-docs/doctrine/DOCTRINE_FILE_STRUCTURE.md
 file.last_modified_system_version: "4.0.16"
 file.last_modified_utc: "20260218000000"
 channel_id: 42   # ANUBIS adoption channel
@@ -74,10 +74,10 @@ atoms:
   recovery_event: true
 X-Lupo-Actor-ID: 2035
 X-Lupo-Actor-Identity: "Lupopedia Audit Tool (Auto-Fixed)"
-X-Lupo-File-Path: docs/doctrine/DOCTRINE_FILE_STRUCTURE.md
+X-Lupo-File-Path: lupo-docs/doctrine/DOCTRINE_FILE_STRUCTURE.md
 ---
 
-FILE: docs/doctrine/DOCTRINE_FILE_STRUCTURE.md
+FILE: lupo-docs/doctrine/DOCTRINE_FILE_STRUCTURE.md
 TYPE: md
 
 # Doctrine File Structure (MANDATORY)
@@ -89,7 +89,7 @@ Lupopedia uses a **canonical doctrine file** plus optional **versioned** and **t
 ## Canonical Doctrine File (always present)
 
 ```
-docs/doctrine/LUPOPEDIA_DOCTRINE.md
+lupo-docs/doctrine/LUPOPEDIA_DOCTRINE.md
 ```
 
 This file is the **single source of truth** for all architectural rules. IDE AI tools must always read this file first for active doctrine.
@@ -99,9 +99,9 @@ This file is the **single source of truth** for all architectural rules. IDE AI 
 ## Versioned Doctrine Files (optional, historical)
 
 ```
-docs/doctrine/LUPOPEDIA_DOCTRINE_v1.1.md
-docs/doctrine/LUPOPEDIA_DOCTRINE_v1.2.md
-docs/doctrine/LUPOPEDIA_DOCTRINE_v1.3.md
+lupo-docs/doctrine/LUPOPEDIA_DOCTRINE_v1.1.md
+lupo-docs/doctrine/LUPOPEDIA_DOCTRINE_v1.2.md
+lupo-docs/doctrine/LUPOPEDIA_DOCTRINE_v1.3.md
 ...
 ```
 
@@ -112,8 +112,8 @@ These represent **frozen snapshots** of doctrine at specific versions. They are 
 ## Updated / Revised Doctrine Files (optional, transitional)
 
 ```
-docs/doctrine/LUPOPEDIA_DOCTRINE_UPDATED_v1.1.md
-docs/doctrine/LUPOPEDIA_DOCTRINE_REVISED_v1.1.md
+lupo-docs/doctrine/LUPOPEDIA_DOCTRINE_UPDATED_v1.1.md
+lupo-docs/doctrine/LUPOPEDIA_DOCTRINE_REVISED_v1.1.md
 ```
 
 These represent **in-progress updates** before being merged into the canonical file.

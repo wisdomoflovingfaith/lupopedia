@@ -696,7 +696,7 @@ require_once ABSPATH . LUPO_INCLUDES_DIR . \'/bootstrap.php\';
 
             // Prepare command args
             $command_args = array(
-                'script' => 'scripts/import_channels_and_artifacts.py',
+                'script' => 'lupo-scripts/import_channels_and_artifacts.py',
                 'root' => LUPOPEDIA_PATH,
                 'mode' => 'initial_import',
                 'paths' => array('lupo-channels', 'artifacts'),
@@ -839,7 +839,7 @@ class InstallWizardMainAdmin
             $checkAuth->execute(array($auth_id));
             $authExists = $checkAuth->fetchColumn();
             if ($authExists) {
-                $up = $pdo->prepare('UPDATE `' . str_replace('`', '``', $auth_t) . '` SET username = ?, display_name = ?, email = ?, password_hash = ?, updated_ymdhis = ? WHERE auth_user_id = ?');
+                $up = $pdo->prepare('UPDATE `' . str_replace('`', '``', $auth_t) . '` SET username = ?, display_name = ?, email = ?, password_hash = ?, updated_ymdhis = ?, is_active = 1 WHERE auth_user_id = ?');
                 $up->execute(array($username, $display_name, $email, $hash, $now, $auth_id));
                 $log[] = InstallWizardLogger::logEntry('ok', 'Updated main admin user (auth_user_id ' . $auth_id . ').');
             } else {
@@ -853,13 +853,14 @@ class InstallWizardMainAdmin
             $actorExists = $checkActor->fetchColumn();
             $slug = 'user-' . $auth_id;
             $name = $display_name;
+            $actor_name = 'captain';
             if ($actorExists) {
-                $upA = $pdo->prepare('UPDATE `' . str_replace('`', '``', $actors_t) . '` SET slug = ?, name = ?, actor_source_id = ?, actor_source_type = ?, updated_ymdhis = ? WHERE actor_id = ?');
-                $upA->execute(array($slug, $name, $auth_id, 'user', $now, $actor_id));
+                $upA = $pdo->prepare('UPDATE `' . str_replace('`', '``', $actors_t) . '` SET actor_name = ?, slug = ?, name = ?, actor_source_id = ?, actor_source_type = ?, updated_ymdhis = ? WHERE actor_id = ?');
+                $upA->execute(array($actor_name, $slug, $name, $auth_id, 'user', $now, $actor_id));
                 $log[] = InstallWizardLogger::logEntry('ok', 'Updated main admin actor (actor_id ' . $actor_id . ').');
             } else {
-                $insA = $pdo->prepare('INSERT INTO `' . str_replace('`', '``', $actors_t) . '` (actor_id, actor_type, slug, name, created_ymdhis, updated_ymdhis, is_active, is_deleted, deleted_ymdhis, actor_source_id, actor_source_type) VALUES (?, ?, ?, ?, ?, ?, 1, 0, NULL, ?, ?)');
-                $insA->execute(array($actor_id, 'user', $slug, $name, $now, $now, $auth_id, 'user'));
+                $insA = $pdo->prepare('INSERT INTO `' . str_replace('`', '``', $actors_t) . '` (actor_name, actor_id, actor_type, slug, name, created_ymdhis, updated_ymdhis, is_active, is_deleted, deleted_ymdhis, actor_source_id, actor_source_type) VALUES (?, ?, ?, ?, ?, ?, ?, 1, 0, NULL, ?, ?)');
+                $insA->execute(array($actor_name, $actor_id, 'user', $slug, $name, $now, $now, $auth_id, 'user'));
                 $log[] = InstallWizardLogger::logEntry('ok', 'Created main admin actor (actor_id ' . $actor_id . ').');
             }
 

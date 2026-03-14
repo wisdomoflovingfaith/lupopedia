@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "channels\42\actors\1003\README.md"
+  file_path_from_root: "lupo-channels\42\actors\1003\README.md"
   file_hash: "f89ea8ec0c05d442f5f11daf2a27749d02e14d092163a1028fb519e7985af360"
-  file_path_from_root: "channels\42\actors\1003\README.md"
+  file_path_from_root: "lupo-channels\42\actors\1003\README.md"
   file_hash: "a5bbb2459cc8aed3cc16653e62bd9761e52f7878d7b6df610ae4033c6be005e1"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -85,7 +85,7 @@ This is the working directory for Antigravity IDE on Channel 42.
 
 - Files here are TEMPORARY and MUTABLE
 - Do NOT store permanent artifacts here
-- Do NOT store doctrine here (use docs/doctrine/)
+- Do NOT store doctrine here (use lupo-docs/doctrine/)
 - Do NOT store system documentation here
 - Files may be cleaned up periodically
 

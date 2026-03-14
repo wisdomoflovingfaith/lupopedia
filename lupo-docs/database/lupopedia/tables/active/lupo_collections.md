@@ -23,8 +23,8 @@ lupopedia.edges:
       - { to: "lupo-database/lupopedia/content/lupo-app/Services/CollectionZeroService.php", type: "references", weight: 1.0 }
       - { to: "lupo-database/lupopedia/content/lupo-app/Services/SavedCollectionsService.php", type: "references", weight: 1.0 }
       - { to: "lupo-includes/functions/collection-tabs-loader.php", type: "references", weight: 0.95 }
-      - { to: "api/list_user_collections.php", type: "references", weight: 0.95 }
-      - { to: "api/load_collection_tabs.php", type: "references", weight: 0.95 }
+      - { to: "lupo-api/list_user_collections.php", type: "references", weight: 0.95 }
+      - { to: "lupo-api/load_collection_tabs.php", type: "references", weight: 0.95 }
       - { to: "lupo-includes/modules/truth/truth-controller.php", type: "references", weight: 0.9 }
       - { to: "lupo-includes/modules/api/semantic-navbar-api.php", type: "references", weight: 0.9 }
       - { to: "lupo-includes/class-SearchIndexer.php", type: "references", weight: 0.85 }

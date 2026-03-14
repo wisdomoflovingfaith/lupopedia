@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\doctrine\THREAD_DIALOG_SYSTEM.md"
+  file_path_from_root: "lupo-docs\doctrine\THREAD_DIALOG_SYSTEM.md"
   file_hash: "4a31e9e820125e1eebdc9319ae31e5f863cef046615227fb3a88089f1de9ff0c"
-  file_path_from_root: "docs\doctrine\THREAD_DIALOG_SYSTEM.md"
+  file_path_from_root: "lupo-docs\doctrine\THREAD_DIALOG_SYSTEM.md"
   file_hash: "df352e0ad6d2131d32394f6604f14ff5a2a6cb8f3c359fd5e47ea2839bdc1bd3"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -62,7 +62,7 @@ lupopedia.footer:
 
 ---
 wolfie.headers: {
-  file_path_from_root: "docs/doctrine/THREAD_DIALOG_SYSTEM.md",
+  file_path_from_root: "lupo-docs/doctrine/THREAD_DIALOG_SYSTEM.md",
   system_version: "4.0.42",
   channel_id: 42,
   mood_rgb: "9370DB",
@@ -90,17 +90,17 @@ wolfie.headers: {
 
 flip.footer: {
   inbound_edges: [
-    { from: "channels/42/", type: "implements", weight: 1.0, hashtag: "#channel42" },
+    { from: "lupo-channels/42/", type: "implements", weight: 1.0, hashtag: "#channel42" },
     { from: "AGENT_DIALOG_PROTOCOL.md", type: "extends", weight: 0.9, hashtag: "#protocol" }
   ],
   outbound_edges: [
-    { to: "channels/42/threads/", type: "defines", weight: 1.0, hashtag: "#threads" },
-    { to: "docs/doctrine/AGENT_REGISTRY_DOCTRINE.md", type: "references", weight: 0.8, hashtag: "#actors" },
+    { to: "lupo-channels/42/threads/", type: "defines", weight: 1.0, hashtag: "#threads" },
+    { to: "lupo-docs/doctrine/AGENT_REGISTRY_DOCTRINE.md", type: "references", weight: 0.8, hashtag: "#actors" },
     { to: "lupo_dialog_threads", type: "maps_to", weight: 0.9, hashtag: "#database" }
   ],
   referenced_by_actors: [1001, 1002, 1003, 10000],
   references: {
-    by_files: ["channels/42/", "AGENT_DIALOG_PROTOCOL.md"],
+    by_files: ["lupo-channels/42/", "AGENT_DIALOG_PROTOCOL.md"],
     by_actors: [1001, 1002, 1003, 10000]
   },
   semantic_tags: ["thread_protocol", "dialog_system", "agent_communication", "channel_42"],
@@ -120,7 +120,7 @@ flip.footer: {
 
 The Thread Dialog System provides lightweight, real-time agent-to-agent messaging within Channel 42. Unlike broadcasts (which are announcements to all agents), thread messages are direct conversations between specific actors.
 
-**Location:** `channels/42/threads/` 
+**Location:** `lupo-channels/42/threads/` 
 
 **Purpose:** Enable rapid, focused communication between IDE agents, AI agents, and human actors without the overhead of full FLIP headers.
 
@@ -168,7 +168,7 @@ Every dialog message MUST follow this exact format:
 All messages are organized into thread directories:
 
 ```
-channels/42/threads/<THREAD_NAME>/
+lupo-channels/42/threads/<THREAD_NAME>/
 ```
 
 ### Thread Naming
@@ -185,7 +185,7 @@ channels/42/threads/<THREAD_NAME>/
 If a thread directory does not exist, create it:
 
 ```bash
-mkdir -p channels/42/threads/NEW_THREAD_NAME
+mkdir -p lupo-channels/42/threads/NEW_THREAD_NAME
 ```
 
 ---
@@ -295,7 +295,7 @@ Agent B: [Updates config/global_atoms.yaml, lupo-includes/version.php, install.p
 - 2038 — Thoth (Knowledge Keeper)
 - 10000 — Captain Wolfie (Human Authority)
 
-**Full Registry:** See `docs/doctrine/AGENT_REGISTRY_DOCTRINE.md` 
+**Full Registry:** See `lupo-docs/doctrine/AGENT_REGISTRY_DOCTRINE.md` 
 
 ---
 
@@ -321,7 +321,7 @@ Thread messages can optionally be stored in the database:
 
 1. **Create thread directory** (if needed):
    ```bash
-   mkdir -p channels/42/threads/ITS
+   mkdir -p lupo-channels/42/threads/ITS
    ```
 
 2. **Generate filename:**
@@ -342,21 +342,21 @@ Thread messages can optionally be stored in the database:
 
 4. **Save file:**
    ```
-   channels/42/threads/ITS/20260224153045_1002_1001_initialization_complete.md
+   lupo-channels/42/threads/ITS/20260224153045_1002_1001_initialization_complete.md
    ```
 
 ---
 
 ## Comparison: Threads vs Broadcasts
 
-### Broadcasts (`channels/42/broadcasts/`)
+### Broadcasts (`lupo-channels/42/broadcasts/`)
 - **Audience:** All agents in Channel 42
 - **Format:** Full FLIP headers + footers
 - **Purpose:** Announcements, status updates, major milestones
 - **Size:** No limit
 - **Formality:** High
 
-### Thread Messages (`channels/42/threads/`)
+### Thread Messages (`lupo-channels/42/threads/`)
 - **Audience:** Specific actor-to-actor
 - **Format:** Plain Markdown (no headers)
 - **Purpose:** Direct communication, quick updates, questions
@@ -386,7 +386,7 @@ A valid thread message MUST:
 - ✅ Follow filename format: `[YYYYMMDDHHIISS]_[TO]_[FROM]_[TITLE].md` 
 - ✅ Be under 1000 characters
 - ✅ Use plain Markdown (no headers/footers)
-- ✅ Be in a thread directory: `channels/42/threads/<THREAD>/` 
+- ✅ Be in a thread directory: `lupo-channels/42/threads/<THREAD>/` 
 - ✅ Use valid actor IDs (see registry)
 - ✅ Use UTC timestamp in YmdHis format
 - ✅ Include read-tracking header (even if values are 0)
@@ -396,8 +396,8 @@ A valid thread message MUST:
 ## References
 
 - `AGENT_DIALOG_PROTOCOL.md` — Database-based dialog system
-- `docs/doctrine/AGENT_REGISTRY_DOCTRINE.md` — Actor ID registry
-- `channels/42/broadcasts/` — Broadcast announcements
+- `lupo-docs/doctrine/AGENT_REGISTRY_DOCTRINE.md` — Actor ID registry
+- `lupo-channels/42/broadcasts/` — Broadcast announcements
 - `lupo_dialog_threads` — Database table (optional)
 - `lupo_dialog_messages` — Database table (optional)
 

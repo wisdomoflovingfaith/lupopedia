@@ -16,7 +16,7 @@ lupopedia.headers:
 
 lupopedia.edges:
   outbound_edges:
-    - { to: "lupo-docs/toons/lupo_agent_heartbeats.toon.json", type: "schema_reference", weight: 1.0 }
+    - { to: "lupo-database/lupopedia/toon/lupo_agent_heartbeats.toon.json", type: "schema_reference", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260312"

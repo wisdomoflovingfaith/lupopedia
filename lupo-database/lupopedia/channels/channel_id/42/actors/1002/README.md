@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -59,7 +59,7 @@ This is the working directory for Cursor IDE on Channel 42.
 
 - Files here are TEMPORARY and MUTABLE
 - Do NOT store permanent artifacts here
-- Do NOT store doctrine here (use docs/doctrine/)
+- Do NOT store doctrine here (use lupo-docs/doctrine/)
 - Do NOT store system documentation here
 - Files may be cleaned up periodically
 

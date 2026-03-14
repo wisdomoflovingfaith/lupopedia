@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "status"
   lupopedia.edges: []
-  file_path_from_root: "docs\channels\42\broadcasts\20260223_v4_0_33_agent_roles_and_status.md"
+  file_path_from_root: "lupo-docs\channels\42\broadcasts\20260223_v4_0_33_agent_roles_and_status.md"
   file_hash: "274e82ccc832e1e77960fbb6d2bbd70b6d3f80be34bd024897fa931356bfaf7f"
-  file_path_from_root: "docs\channels\42\broadcasts\20260223_v4_0_33_agent_roles_and_status.md"
+  file_path_from_root: "lupo-docs\channels\42\broadcasts\20260223_v4_0_33_agent_roles_and_status.md"
   file_hash: "08ec8335fb2d3da3a3fbbbc0756e82d0764f4bb6a7f001b81aeae3cf6b8bb387"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -64,7 +64,7 @@ lupopedia.footer:
 ---
 # FLIP Header (alias: Wolfie Header, CROP Header)
 wolfie.headers: explicit architecture with structured clarity for every file.
-file_path_from_root: "channels/42/broadcasts/20260223_v4_0_33_agent_roles_and_status.md"
+file_path_from_root: "lupo-channels/42/broadcasts/20260223_v4_0_33_agent_roles_and_status.md"
 file.last_modified_system_version: "4.0.33"
 file.last_modified_utc: "20260223104000"
 channel_id: 42
@@ -75,8 +75,8 @@ x_lupo_forwarded: "2002:10000"
 flip.footer:
   referenced_by_files:
     - "CHANGELOG.md"
-    - "docs/status/system_online_20260223.md"
-    - "docs/status/windsurf_audit_4_0_32.md"
+    - "lupo-docs/status/system_online_20260223.md"
+    - "lupo-docs/status/windsurf_audit_4_0_32.md"
   referenced_by_channels:
     - 42
   referenced_by_actors:

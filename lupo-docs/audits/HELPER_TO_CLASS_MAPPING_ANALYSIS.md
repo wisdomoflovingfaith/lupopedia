@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\HELPER_TO_CLASS_MAPPING_ANALYSIS.md"
+  file_path_from_root: "lupo-docs\HELPER_TO_CLASS_MAPPING_ANALYSIS.md"
   file_hash: "0213b4e9aa281a5cd7b27b445eb7803629d5dfdad8fe62df8a94d101f54ddfae"
-  file_path_from_root: "docs\HELPER_TO_CLASS_MAPPING_ANALYSIS.md"
+  file_path_from_root: "lupo-docs\HELPER_TO_CLASS_MAPPING_ANALYSIS.md"
   file_hash: "6ab670175d5e9ad97a1e96db668417b72fb4977d3c672ad2e6463bc05401d08d"
   last_updated_utc: "20260228"
   system_version: "4.0.50"

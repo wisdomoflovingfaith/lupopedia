@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\doctrine\VERSION_DOCTRINE.md"
+  file_path_from_root: "lupo-docs\doctrine\VERSION_DOCTRINE.md"
   file_hash: "f53ceb4e3c93527d4ff11e4686756c12a5b0475b97a320d04c1b3ee8802951da"
-  file_path_from_root: "docs\doctrine\VERSION_DOCTRINE.md"
+  file_path_from_root: "lupo-docs\doctrine\VERSION_DOCTRINE.md"
   file_hash: "f17f54922bf008d228b5d81c3e47f7a3d6c7256441e716156560479701b10d66"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -64,7 +64,7 @@ lupopedia.footer:
 ---
 # FLIP Header (alias: Wolfie Header, CROP Header, FLIPPING Header)
 wolfie.headers: explicit architecture with structured clarity for every file.
-file_path_from_root: docs/doctrine/VERSION_DOCTRINE.md
+file_path_from_root: lupo-docs/doctrine/VERSION_DOCTRINE.md
 file.last_modified_system_version: "4.0.16"
 file.last_modified_utc: "20260218000000"
 channel_id: 42   # ANUBIS adoption channel
@@ -74,7 +74,7 @@ atoms:
   recovery_event: true
 X-Lupo-Actor-ID: 2035
 X-Lupo-Actor-Identity: "Lupopedia Audit Tool (Auto-Fixed)"
-X-Lupo-File-Path: docs/doctrine/VERSION_DOCTRINE.md
+X-Lupo-File-Path: lupo-docs/doctrine/VERSION_DOCTRINE.md
 ---
 
 # Version Doctrine for Lupopedia (Authoritative)

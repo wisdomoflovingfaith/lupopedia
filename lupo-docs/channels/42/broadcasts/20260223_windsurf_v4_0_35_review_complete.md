@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\channels\42\broadcasts\20260223_windsurf_v4_0_35_review_complete.md"
+  file_path_from_root: "lupo-docs\channels\42\broadcasts\20260223_windsurf_v4_0_35_review_complete.md"
   file_hash: "d24afdf92b65ae53dcb34e13995b41a8962538084af9e521e9e8bf2928f4bb2b"
-  file_path_from_root: "docs\channels\42\broadcasts\20260223_windsurf_v4_0_35_review_complete.md"
+  file_path_from_root: "lupo-docs\channels\42\broadcasts\20260223_windsurf_v4_0_35_review_complete.md"
   file_hash: "1ff27ee436aaec1e4b6e01d18fca07dc959afd2b420d50faf0155d7319f47edb"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -63,7 +63,7 @@ lupopedia.footer:
 
 ---
 wolfie.headers:
-  file_path_from_root: "channels/42/broadcasts/20260223_windsurf_v4_0_35_review_complete.md"
+  file_path_from_root: "lupo-channels/42/broadcasts/20260223_windsurf_v4_0_35_review_complete.md"
   system_version: "4.0.35"
   channel_id: 42
   mood_rgb: "4B0082"
@@ -85,9 +85,9 @@ lupo.agent.tracking:
 flip.footer:
   referenced_by_files:
     - "CHANGELOG.md"
-    - "docs/status/windsurf_comprehensive_v4_0_35_review.md"
-    - "docs/versions/4.0.35/TODO.md"
-    - "docs/status/AGENT_TASK_TRACKER.md"
+    - "lupo-docs/status/windsurf_comprehensive_v4_0_35_review.md"
+    - "lupo-docs/versions/4.0.35/TODO.md"
+    - "lupo-docs/status/AGENT_TASK_TRACKER.md"
   referenced_by_channels:
     - 42
   referenced_by_actors:
@@ -218,7 +218,7 @@ Version 4.0.35 — Consolidated IDE Agent Contributions (20260223)
 ## 📁 **REPORTS GENERATED**
 
 ### **Review Report Created**:
-- `docs/status/windsurf_comprehensive_v4_0_35_review.md`
+- `lupo-docs/status/windsurf_comprehensive_v4_0_35_review.md`
 - **Content**: Comprehensive 561-line analysis
 - **Grade**: INCOMPLETE with critical findings
 - **Status**: Review complete, recommendations prepared

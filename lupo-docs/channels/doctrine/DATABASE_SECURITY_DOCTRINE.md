@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\channels\doctrine\DATABASE_SECURITY_DOCTRINE.md"
+  file_path_from_root: "lupo-docs\channels\doctrine\DATABASE_SECURITY_DOCTRINE.md"
   file_hash: "773b7a30fe6eaac5d8bc14c9ad005571190b1e36670423b71a99c75f4880c726"
-  file_path_from_root: "docs\channels\doctrine\DATABASE_SECURITY_DOCTRINE.md"
+  file_path_from_root: "lupo-docs\channels\doctrine\DATABASE_SECURITY_DOCTRINE.md"
   file_hash: "b2844e87901167d53298bb79b9afb64895606b281188b644b06a055b97dff79f"
   last_updated_utc: "20260228"
   system_version: "4.0.50"

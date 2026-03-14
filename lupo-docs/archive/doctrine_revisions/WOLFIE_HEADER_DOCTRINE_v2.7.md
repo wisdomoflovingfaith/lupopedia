@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\archive\doctrine_revisions\WOLFIE_HEADER_DOCTRINE_v2.7.md"
+  file_path_from_root: "lupo-docs\archive\doctrine_revisions\WOLFIE_HEADER_DOCTRINE_v2.7.md"
   file_hash: "d076865f068b516a158442805d46c410b0117c5290ce1f3d5ac61f592f0602da"
-  file_path_from_root: "docs\archive\doctrine_revisions\WOLFIE_HEADER_DOCTRINE_v2.7.md"
+  file_path_from_root: "lupo-docs\archive\doctrine_revisions\WOLFIE_HEADER_DOCTRINE_v2.7.md"
   file_hash: "eb622b99586631bfc6a5b8eb6fce93d5a3e15f5e2994dddff6da8d32c2cd0fea"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -361,7 +361,7 @@ Use v2.3 taxonomy with pattern matching:
   "directory_patterns": {
     "app/": {"package": "lupopedia", "subpackage": "app"},
     "kernel/": {"package": "lupopedia", "subpackage": "kernel"},
-    "api/": {"package": "lupopedia", "subpackage": "kernel", "module": "routing"}
+    "lupo-api/": {"package": "lupopedia", "subpackage": "kernel", "module": "routing"}
   },
   "file_patterns": {
     "*.controller.php": {"aspect": "controller"},

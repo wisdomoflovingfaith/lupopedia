@@ -55,33 +55,33 @@ This project assumes we are starting from **one of two entry points**:
 The **SQL files we are concerned with updating** are those that define or alter the database for these two paths:
 
 - **New install:**  
-  - `database/migrations/install_new_lupopedia.sql` — canonical schema (CREATE TABLE, etc.).  
-  - `database/migrations/seed_lupopedia.sql` — canonical seed data (unified registry, PK=0 rows, active agents as actors, TOON-defined rows, `ALTER TABLE lupo_actors AUTO_INCREMENT = 10000`). Run after `install_new_lupopedia.sql`.
+  - `lupo-database/migrations/install_new_lupopedia.sql` — canonical schema (CREATE TABLE, etc.).  
+  - `lupo-database/migrations/seed_lupopedia.sql` — canonical seed data (unified registry, PK=0 rows, active agents as actors, TOON-defined rows, `ALTER TABLE lupo_actors AUTO_INCREMENT = 10000`). Run after `install_new_lupopedia.sql`.
 - **Upgrade from 3.7.5:**  
-  - Migration(s) that import or transform legacy Crafty Syntax data into Lupopedia tables (e.g. `craftysyntax_to_lupopedia_mysql.sql` or equivalent in `database/migrations/` or `database/migrations_legacy/`). These are **one-time migrations** that change the database; the **install SQL** (`install_new_lupopedia.sql`) is also updated as we make schema changes so that future new installs get the same structure.
+  - Migration(s) that import or transform legacy Crafty Syntax data into Lupopedia tables (e.g. `craftysyntax_to_lupopedia_mysql.sql` or equivalent in `lupo-database/migrations/` or `lupo-database/migrations_legacy/`). These are **one-time migrations** that change the database; the **install SQL** (`install_new_lupopedia.sql`) is also updated as we make schema changes so that future new installs get the same structure.
 
-**TOON files** (`docs/toons/*.toon.json`):
+**TOON files** (`lupo-docs/toons/*.toon.json`):
 
 - Are **generated from the resulting database** (after install or after migrations), not written by hand.
-- Are produced by the canonical script: `python scripts/generate_toon_files.py` (see `docs/channels/dev-teams/governance/GOV-TOON-GENERATION-001.md`).
+- Are produced by the canonical script: `python lupo-scripts/generate_toon_files.py` (see `lupo-docs/channels/dev-teams/governance/GOV-TOON-GENERATION-001.md`).
 - Serve as the **reference for column names and tables** for all application code, migrations, and seed generation. Code and SQL must align with TOON; TOON is the schema oracle.
 
 **Migrations and install SQL:**
 
 - **One-time migrations** are used to change the database (new columns, new tables, data transforms). After running a migration, the live database is updated; then TOONs are regenerated from that database.
-- **Install SQL** (`install_new_lupopedia.sql`) is updated to reflect the same schema so that a brand‑new install produces the same structure. Seed data is regenerated via `python scripts/generate_seed_from_toons.py` and written to `database/migrations/seed_lupopedia.sql`.
+- **Install SQL** (`install_new_lupopedia.sql`) is updated to reflect the same schema so that a brand‑new install produces the same structure. Seed data is regenerated via `python lupo-scripts/generate_seed_from_toons.py` and written to `lupo-database/migrations/seed_lupopedia.sql`.
 
 **Themes and design:**
 
 - **Theme support:** `lupo_federation_nodes` includes `active_theme_slug` (e.g. `default`) so each federation node can have a presentation theme. Added via one-time migration `dev_20260204_theme_support.sql` and then folded into the canonical install schema.
-- **UI theatrical doctrine:** Crafty Syntax / Lupopedia UI is treated as **theater** (sets, props, layers, scenes) rather than generic layout. See `docs/channels/doctrine/legacy-import/CRAFTY_SYNTAX_UI_THEATRICAL_DOCTRINE.md` for the design philosophy (book UI, scroll templates, emotional UX, human-centered design). Module and operator settings (e.g. theme, colors) can live in metadata (e.g. `lupo_modules.config_json`) rather than fixed columns.
+- **UI theatrical doctrine:** Crafty Syntax / Lupopedia UI is treated as **theater** (sets, props, layers, scenes) rather than generic layout. See `lupo-docs/channels/doctrine/legacy-import/CRAFTY_SYNTAX_UI_THEATRICAL_DOCTRINE.md` for the design philosophy (book UI, scroll templates, emotional UX, human-centered design). Module and operator settings (e.g. theme, colors) can live in metadata (e.g. `lupo_modules.config_json`) rather than fixed columns.
 
 **Other relevant points:**
 
 - **Subdirectory-only installation:** Lupopedia is always installed in a subdirectory (e.g. `/lupopedia/`). Paths and URLs use `LUPOPEDIA_PUBLIC_PATH` from `lupopedia-config.php`; never hardcode `/lupopedia/` or the folder name.
 - **No foreign keys, no triggers:** Schema remains soft-reference and doctrine-aligned.
 - **Timestamps:** BIGINT in `YYYYMMDDHHIISS` format.
-- **Canonical project brief:** `docs/doctrine/CRAFTY_SYNTAX_MIGRATION_PROJECT_BRIEF.md`.
+- **Canonical project brief:** `lupo-docs/doctrine/CRAFTY_SYNTAX_MIGRATION_PROJECT_BRIEF.md`.
 
 ---
 
@@ -147,8 +147,8 @@ The **SQL files we are concerned with updating** are those that define or alter 
   - title flashing
   - Accept button → POST accept-visitor → redirect to thread
 - APIs implemented:
-  - `GET api/operator/pending-visitors`
-  - `POST api/operator/accept-visitor`
+  - `GET lupo-api/operator/pending-visitors`
+  - `POST lupo-api/operator/accept-visitor`
 
 ### 7. SQL/TOON Audit
 - Full scan of all Crafty Syntax module SQL references.
@@ -272,7 +272,7 @@ The **SQL files we are concerned with updating** are those that define or alter 
 ## Phase 8 — Cleanup & Doctrine Consolidation
 
 ### A. Legacy Artifact Removal
-- **Decommission**: Remove `legacy/craftysyntax/` reference files (once fully reimplemented).
+- **Decommission**: Remove `lupo-legacy/craftysyntax/` reference files (once fully reimplemented).
 - **Route Cleanup**: Remove any temporary bridges or scaffolding.
 - **Code Audit**: Verify no raw SQL remains (all via standard models/agents).
 

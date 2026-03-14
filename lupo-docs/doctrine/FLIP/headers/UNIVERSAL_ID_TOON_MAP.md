@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\doctrine\FLIP\headers\UNIVERSAL_ID_TOON_MAP.md"
+  file_path_from_root: "lupo-docs\doctrine\FLIP\headers\UNIVERSAL_ID_TOON_MAP.md"
   file_hash: "ffbbab59a8c868405c80f04b13d341b6cf52572c8cb857c15eff72fb708e6cc5"
-  file_path_from_root: "docs\doctrine\FLIP\headers\UNIVERSAL_ID_TOON_MAP.md"
+  file_path_from_root: "lupo-docs\doctrine\FLIP\headers\UNIVERSAL_ID_TOON_MAP.md"
   file_hash: "0a5d5680ee70b936bae609f1bc17a05f453eadf75093dfb3bb36c106729e2900"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -63,7 +63,7 @@ lupopedia.footer:
 
 ---
 wolfie.headers: explicit architecture with structured clarity for every file.
-file_path_from_root: "docs/doctrine/FLIP/headers/UNIVERSAL_ID_TOON_MAP.md"
+file_path_from_root: "lupo-docs/doctrine/FLIP/headers/UNIVERSAL_ID_TOON_MAP.md"
 system_version: "4.0.35"
 purpose: "Universal mapping of all TOON ID columns for FLIP inference"
 actor_id: 1003

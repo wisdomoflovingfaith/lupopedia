@@ -16,7 +16,7 @@ lupopedia.headers:
 
 lupopedia.edges:
   outbound_edges:
-    - { to: "database/migrations/20260310_create_rules_tables.sql", type: "implements", weight: 1.0 }
+    - { to: "lupo-database/migrations/20260310_create_rules_tables.sql", type: "implements", weight: 1.0 }
     - { to: "lupo-channels/42/content/federation_node_id/0/RULES.md", type: "references", weight: 0.9 }
 
 lupopedia.footer:
@@ -118,4 +118,4 @@ Audit trail of rule evaluation.
 ## See also
 
 - [lupo-channels/42/content/federation_node_id/0/RULES.md](../../lupo-channels/42/content/federation_node_id/0/RULES.md) — Channel 42 rules with LUPOPEDIA header
-- [database/migrations/20260310_create_rules_tables.sql](../../database/migrations/20260310_create_rules_tables.sql)
+- [lupo-database/migrations/20260310_create_rules_tables.sql](../../database/migrations/20260310_create_rules_tables.sql)

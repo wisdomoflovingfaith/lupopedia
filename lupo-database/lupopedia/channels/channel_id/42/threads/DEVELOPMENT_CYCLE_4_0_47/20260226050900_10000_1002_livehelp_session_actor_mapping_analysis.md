@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "channels\42\threads\DEVELOPMENT_CYCLE_4_0_47\20260226050900_10000_1002_livehelp_session_actor_mapping_analysis.md"
+  file_path_from_root: "lupo-channels\42\threads\DEVELOPMENT_CYCLE_4_0_47\20260226050900_10000_1002_livehelp_session_actor_mapping_analysis.md"
   file_hash: "4804579ef6c93f15be94ff5e6cfede0ae9376efc8ade62a84958d9d9ca088757"
-  file_path_from_root: "channels\42\threads\DEVELOPMENT_CYCLE_4_0_47\20260226050900_10000_1002_livehelp_session_actor_mapping_analysis.md"
+  file_path_from_root: "lupo-channels\42\threads\DEVELOPMENT_CYCLE_4_0_47\20260226050900_10000_1002_livehelp_session_actor_mapping_analysis.md"
   file_hash: "f6d9307823ea3e8e0a4b24e5d8393c3828a03051325bd585ee66fb619df7a0b9"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -63,7 +63,7 @@ lupopedia.footer:
 
 ---
 wolfie.headers: {
-  file_path_from_root: "channels/42/threads/DEVELOPMENT_CYCLE_4_0_47/20260226050900_10000_1002_livehelp_session_actor_mapping_analysis.md",
+  file_path_from_root: "lupo-channels/42/threads/DEVELOPMENT_CYCLE_4_0_47/20260226050900_10000_1002_livehelp_session_actor_mapping_analysis.md",
   system_version: "4.0.47",
   channel_id: 42,
   mood_rgb: "FF6B35",
@@ -82,18 +82,18 @@ wolfie.headers: {
 
 flip.footer: {
   inbound_edges: [
-    { from: "legacy/craftysyntax/livehelp.php", type: "analyzes", weight: 1.0, hashtag: "#legacy" },
+    { from: "lupo-legacy/craftysyntax/livehelp.php", type: "analyzes", weight: 1.0, hashtag: "#legacy" },
     { from: "livehelp.php", type: "analyzes", weight: 1.0, hashtag: "#new_implementation" },
-    { from: "docs/doctrine/migrations/livehelp_sessions_migration.md", type: "references", weight: 0.9, hashtag: "#migration" },
-    { from: "docs/doctrine/migrations/livehelp_users_migration.md", type: "references", weight: 0.9, hashtag: "#migration" }
+    { from: "lupo-docs/doctrine/migrations/livehelp_sessions_migration.md", type: "references", weight: 0.9, hashtag: "#migration" },
+    { from: "lupo-docs/doctrine/migrations/livehelp_users_migration.md", type: "references", weight: 0.9, hashtag: "#migration" }
   ],
   outbound_edges: [
-    { to: "channels/42/threads/DEVELOPMENT_CYCLE_4_0_47/20260226051000_10000_1002_livehelp_table_mapping_comprehensive.md", type: "complements", weight: 0.8, hashtag: "#related_analysis" },
+    { to: "lupo-channels/42/threads/DEVELOPMENT_CYCLE_4_0_47/20260226051000_10000_1002_livehelp_table_mapping_comprehensive.md", type: "complements", weight: 0.8, hashtag: "#related_analysis" },
     { to: "livehelp.php", type: "informs", weight: 0.9, hashtag: "#implementation" }
   ],
   referenced_by_actors: [1002, 1003, 1005],
   references: {
-    by_files: ["legacy/craftysyntax/livehelp.php", "livehelp.php", "docs/doctrine/migrations/livehelp_sessions_migration.md"],
+    by_files: ["lupo-legacy/craftysyntax/livehelp.php", "livehelp.php", "lupo-docs/doctrine/migrations/livehelp_sessions_migration.md"],
     by_actors: [1002, 1003, 1005]
   },
   semantic_tags: ["session_actor_mapping", "livehelp_architecture", "legacy_modernization"],
@@ -118,7 +118,7 @@ The legacy Crafty Syntax livehelp system and new Lupopedia architecture have fun
 ## Legacy Crafty Syntax Session Model
 
 ### Core Characteristics
-**File**: `legacy/craftysyntax/livehelp.php`
+**File**: `lupo-legacy/craftysyntax/livehelp.php`
 
 **Session Handling Pattern**:
 ```php
@@ -280,10 +280,10 @@ Implement visitor handling that:
 4. **All**: Test integration with existing Crafty Syntax installations
 
 ## Files Referenced
-- `legacy/craftysyntax/livehelp.php` - Legacy implementation analysis
+- `lupo-legacy/craftysyntax/livehelp.php` - Legacy implementation analysis
 - `livehelp.php` - Current modern implementation
-- `docs/doctrine/migrations/livehelp_sessions_migration.md` - Session migration doctrine
-- `docs/doctrine/migrations/livehelp_users_migration.md` - User/actor migration doctrine
+- `lupo-docs/doctrine/migrations/livehelp_sessions_migration.md` - Session migration doctrine
+- `lupo-docs/doctrine/migrations/livehelp_users_migration.md` - User/actor migration doctrine
 
 **Status**: Analysis complete, architecture decisions needed
 **Priority**: High - Blocks livehelp system integration

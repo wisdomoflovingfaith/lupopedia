@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "channels\0\broadcasts\20260225180000_1000_10000_0_kiro_directive_complete_validation_agents_tasks.md"
+  file_path_from_root: "lupo-channels\0\broadcasts\20260225180000_1000_10000_0_kiro_directive_complete_validation_agents_tasks.md"
   file_hash: "82c20f2d0da84307ac454397f45176b72fc0f47036fb29891b50527b6a895486"
-  file_path_from_root: "channels\0\broadcasts\20260225180000_1000_10000_0_kiro_directive_complete_validation_agents_tasks.md"
+  file_path_from_root: "lupo-channels\0\broadcasts\20260225180000_1000_10000_0_kiro_directive_complete_validation_agents_tasks.md"
   file_hash: "2b147cfeaf9f0dc8d3ff4bdbdd818ab22717d7a25aa4344a1434b96cb00d55d3"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -94,7 +94,7 @@ Post-normalization validation passed, ANUBIS + VISHWAKARMA agents added, offline
 **Agents Added:**
 - ANUBIS (19) - Orphan repair, quarantine management
 - VISHWAKARMA (25) - Graph intelligence, relationship discovery
-- SQL: `database/migrations/seed_anubis_vishwakarma_4.0.45.sql`
+- SQL: `lupo-database/migrations/seed_anubis_vishwakarma_4.0.45.sql`
 
 **Tasks Created:**
 - CH0-20260225-001: Human install task (CRITICAL)
@@ -119,7 +119,7 @@ Supporting: Windsurf (1001), Warp (1004)
   "references": [
     "VALIDATION_GATE_REPORT_4.0.45.md",
     "KIRO_DIRECTIVE_COMPLETION_4.0.45.md",
-    "database/migrations/seed_anubis_vishwakarma_4.0.45.sql"
+    "lupo-database/migrations/seed_anubis_vishwakarma_4.0.45.sql"
   ],
   "implements": "kiro_directive_completion",
   "depends_on": "windsurf_normalization_complete",

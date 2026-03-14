@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\versions\4.0.44\CHANGELOG_DRAFT.md"
+  file_path_from_root: "lupo-docs\versions\4.0.44\CHANGELOG_DRAFT.md"
   file_hash: "198c397de1e2636688134353a223c6bd3f41387cb3dbe65da6338d8e192c79b3"
-  file_path_from_root: "docs\versions\4.0.44\CHANGELOG_DRAFT.md"
+  file_path_from_root: "lupo-docs\versions\4.0.44\CHANGELOG_DRAFT.md"
   file_hash: "54f1ddc4bfe19983950008c078394d7ab4d46f5f8faa94508cad64fd24c67d70"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -74,7 +74,7 @@ lupopedia.footer:
 **1. Version Bump Completion:**
 - ✅ **Version atom updated**: GLOBAL_CURRENT_LUPOPEDIA_VERSION set to "4.0.44"
 - ✅ **Version.php updated**: All fallback versions updated to "4.0.44"
-- ✅ **Directory structure created**: docs/versions/4.0.44/ established
+- ✅ **Directory structure created**: lupo-docs/versions/4.0.44/ established
 
 **2. Development Cycle Setup:**
 - ⏳ **CHANGELOG_DRAFT.md**: Created (this file)

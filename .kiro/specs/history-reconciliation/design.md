@@ -121,7 +121,7 @@ lupopedia.footer:
 
 The History Reconciliation Pass is a documentation-focused feature that addresses the 11-year gap (2014-2025) in Lupopedia's historical records. This system will create comprehensive documentation files, update timeline indexes, and establish narrative continuity between the Crafty Syntax era (2002-2013), the absence period (2014-2025), and the Lupopedia resurgence (2025-2026).
 
-The design follows Lupopedia's established documentation patterns using WOLFIE headers, atom-based versioning, and consistent metadata structures. All generated documentation will integrate seamlessly with the existing `docs/history/` structure and maintain cross-reference integrity.
+The design follows Lupopedia's established documentation patterns using WOLFIE headers, atom-based versioning, and consistent metadata structures. All generated documentation will integrate seamlessly with the existing `lupo-docs/history/` structure and maintain cross-reference integrity.
 
 ## Architecture
 
@@ -138,7 +138,7 @@ The History Reconciliation system consists of four main components:
 
 The system integrates with existing Lupopedia infrastructure:
 
-- **File System**: Uses established `docs/history/` directory structure
+- **File System**: Uses established `lupo-docs/history/` directory structure
 - **Atom System**: References `GLOBAL_CURRENT_LUPOPEDIA_VERSION` and other atoms
 - **WOLFIE Headers**: Follows established metadata patterns
 - **Cross-References**: Maintains links to existing documentation
@@ -316,7 +316,7 @@ WolfieHeader:
 ### File System Errors
 
 **Missing Directory Structure**
-- **Detection**: Check for existence of `docs/history/` and subdirectories
+- **Detection**: Check for existence of `lupo-docs/history/` and subdirectories
 - **Recovery**: Create missing directories with proper permissions
 - **Logging**: Log directory creation events for audit trail
 

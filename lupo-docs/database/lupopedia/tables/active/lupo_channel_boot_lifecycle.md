@@ -395,9 +395,9 @@ foreach ($activeLifecycles as $lifecycle) {
 
 ### Integration Documentation
 - **PHP Helpers**: `bin/channel_boot_lifecycle.php`
-- **Channel Boot README**: `channels/0/boot_readme.md`
-- **FLARE Doctrine**: `docs/doctrine/FLARE/FLARE_DOCTRINE.md`
-- **Database Migrations**: `database/migrations/install_lupopedia.sql`
+- **Channel Boot README**: `lupo-channels/0/boot_readme.md`
+- **FLARE Doctrine**: `lupo-docs/doctrine/FLARE/FLARE_DOCTRINE.md`
+- **Database Migrations**: `lupo-database/migrations/install_lupopedia.sql`
 
 ### Related Tables
 - **lupo_channels**: Channel metadata and configuration

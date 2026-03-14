@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\channels\developer\DEVELOPER_GUIDELINES.md"
+  file_path_from_root: "lupo-docs\channels\developer\DEVELOPER_GUIDELINES.md"
   file_hash: "932ec81f7d62d96e689a122c185546deeef8f4117445d58df752fc14f8015936"
-  file_path_from_root: "docs\channels\developer\DEVELOPER_GUIDELINES.md"
+  file_path_from_root: "lupo-docs\channels\developer\DEVELOPER_GUIDELINES.md"
   file_hash: "1ee38394efcfda1eb94e36788447fb336c2e0240bdd53d46673e93a83a9924de"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -211,7 +211,7 @@ If not, it cannot be governed — and what cannot be governed cannot be allowed.
 - **WOLFIE Headers** mandatory for all files
 - **Use atoms** for version references (`GLOBAL_CURRENT_LUPOPEDIA_VERSION`)
 - **Dialog block** required when agents create/modify files
-- **Follow** `docs/templates/WOLFIE_HEADER_TEMPLATE.md`
+- **Follow** `lupo-docs/templates/WOLFIE_HEADER_TEMPLATE.md`
 
 ---
 
@@ -256,7 +256,7 @@ if ($result['success']) {
 
 ### LABS Validation Tests
 
-Run: `php scripts/test_labs_validation.php`
+Run: `php lupo-scripts/test_labs_validation.php`
 
 Tests:
 - Valid declaration → Certificate generation
@@ -267,7 +267,7 @@ Tests:
 
 ### Migration Tests
 
-Run: `php scripts/run_migration_4_1_6.php`
+Run: `php lupo-scripts/run_migration_4_1_6.php`
 
 Verifies:
 - Tables created successfully
@@ -376,13 +376,13 @@ if ($certificate['next_revalidation_ymdhis'] < $current_time) {
 
 ## RESOURCES
 
-- **LABS-001 Doctrine**: `docs/doctrine/LUPOPEDIA_ACTOR_BASELINE_STATE_DOCTRINE.md`
-- **Genesis Doctrine**: `docs/core/LUPOPEDIA_GENESIS_DOCTRINE.md`
-- **Actor Onboarding Guide**: `docs/core/ACTOR_ONBOARDING_GUIDE.md`
-- **Agent Guidelines**: `docs/agents/AGENT_GUIDELINES.md`
-- **Agent Runtime**: `docs/agents/AGENT_RUNTIME.md`
-- **UTC_TIMEKEEPER Doctrine**: `docs/doctrine/UTC_TIMEKEEPER_DOCTRINE.md`
-- **WOLFIE Header Template**: `docs/templates/WOLFIE_HEADER_TEMPLATE.md`
+- **LABS-001 Doctrine**: `lupo-docs/doctrine/LUPOPEDIA_ACTOR_BASELINE_STATE_DOCTRINE.md`
+- **Genesis Doctrine**: `lupo-docs/core/LUPOPEDIA_GENESIS_DOCTRINE.md`
+- **Actor Onboarding Guide**: `lupo-docs/core/ACTOR_ONBOARDING_GUIDE.md`
+- **Agent Guidelines**: `lupo-docs/agents/AGENT_GUIDELINES.md`
+- **Agent Runtime**: `lupo-docs/agents/AGENT_RUNTIME.md`
+- **UTC_TIMEKEEPER Doctrine**: `lupo-docs/doctrine/UTC_TIMEKEEPER_DOCTRINE.md`
+- **WOLFIE Header Template**: `lupo-docs/templates/WOLFIE_HEADER_TEMPLATE.md`
 
 ---
 

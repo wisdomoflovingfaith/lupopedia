@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\doctrine\PHP_COMPATIBILITY_AND_MINIMAL_HOSTING_DOCTRINE.md"
+  file_path_from_root: "lupo-docs\doctrine\PHP_COMPATIBILITY_AND_MINIMAL_HOSTING_DOCTRINE.md"
   file_hash: "40b521145183ba6d6a814ce3730a739651293414f0be6b711d8eb5b6e278803c"
-  file_path_from_root: "docs\doctrine\PHP_COMPATIBILITY_AND_MINIMAL_HOSTING_DOCTRINE.md"
+  file_path_from_root: "lupo-docs\doctrine\PHP_COMPATIBILITY_AND_MINIMAL_HOSTING_DOCTRINE.md"
   file_hash: "17de19fc3279409c2ef8c285db6d7277387d1d3a9b20bfe97387ada6e513d36a"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -64,7 +64,7 @@ lupopedia.footer:
 ---
 # FLIP Header (alias: Wolfie Header, CROP Header, FLIPPING Header)
 wolfie.headers: explicit architecture with structured clarity for every file.
-file_path_from_root: docs/doctrine/PHP_COMPATIBILITY_AND_MINIMAL_HOSTING_DOCTRINE.md
+file_path_from_root: lupo-docs/doctrine/PHP_COMPATIBILITY_AND_MINIMAL_HOSTING_DOCTRINE.md
 file.last_modified_system_version: "4.0.16"
 file.last_modified_utc: "20260218000000"
 channel_id: 42   # ANUBIS adoption channel
@@ -74,7 +74,7 @@ atoms:
   recovery_event: true
 X-Lupo-Actor-ID: 2035
 X-Lupo-Actor-Identity: "Lupopedia Audit Tool (Auto-Fixed)"
-X-Lupo-File-Path: docs/doctrine/PHP_COMPATIBILITY_AND_MINIMAL_HOSTING_DOCTRINE.md
+X-Lupo-File-Path: lupo-docs/doctrine/PHP_COMPATIBILITY_AND_MINIMAL_HOSTING_DOCTRINE.md
 ---
 
 # PHP Compatibility and Minimal Hosting Doctrine
@@ -246,5 +246,5 @@ These rules are **permanent** and override all previous assumptions about PHP ve
 - Pre-flight checks: `install.php` (top-of-file block before `session_start()`)
 - Diagnostics: Welcome step in `install.php`; `/system/health` environment block in `SystemHealthController`
 - Slug logic: `username_to_slug()` and related helpers in `install.php` and identity normalization paths
-- Installation path: `docs/doctrine/INSTALLATION_PATH_DOCTRINE.md`
-- Version: `docs/doctrine/VERSION_DOCTRINE.md`
+- Installation path: `lupo-docs/doctrine/INSTALLATION_PATH_DOCTRINE.md`
+- Version: `lupo-docs/doctrine/VERSION_DOCTRINE.md`

@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,7 +35,7 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\database\lupopedia\tables\livehelp_users_migration.md"
+  file_path_from_root: "lupo-docs\database\lupopedia\tables\livehelp_users_migration.md"
   file_hash: "28939cd502d23724707af42e244a73406e3a9813bab63b10ea2d76d3bad2aba9"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -57,7 +57,7 @@ lupopedia.footer:
 
 ---
 lupopedia.headers: {
-  file_path_from_root: "docs/database/lupopedia/tables/livehelp_users_migration.md",
+  file_path_from_root: "lupo-docs/database/lupopedia/tables/livehelp_users_migration.md",
   file_hash: "d14d98a8fd8139edeb51b828a7574678ec30ed574fee482697d3c776443c1a0f"
   system_version: "4.0.50"
   channel_id: 42,
@@ -77,20 +77,20 @@ lupopedia.headers: {
 
 flip.footer: {
   inbound_edges: [
-    { from: "database/migrations/import_from_old_crafty_syntax.sql", type: "implements", weight: 1.0, hashtag: "#migration" },
-    { from: "docs/doctrine/migrations/MIGRATION_MAPPING_REFERENCE.md", type: "references", weight: 0.9, hashtag: "#index" },
+    { from: "lupo-database/migrations/import_from_old_crafty_syntax.sql", type: "implements", weight: 1.0, hashtag: "#migration" },
+    { from: "lupo-docs/doctrine/migrations/MIGRATION_MAPPING_REFERENCE.md", type: "references", weight: 0.9, hashtag: "#index" },
     { from: "install.php", type: "uses", weight: 0.8, hashtag: "#installer" }
   ],
   outbound_edges: [
-    { to: "docs/doctrine/database/auth_users.md", type: "documents", weight: 1.0, hashtag: "#target_table" },
-    { to: "docs/doctrine/database/actors.md", type: "documents", weight: 1.0, hashtag: "#target_table" },
-    { to: "docs/doctrine/migrations/operator_to_roles_migration.md", type: "references", weight: 0.9, hashtag: "#permissions" },
-    { to: "database/migrations/old_crafty_syntax_3_7_5_start.sql", type: "references", weight: 0.8, hashtag: "#source" },
-    { to: "docs/audits/OPERATOR_TO_ROLE_BASED_SWEEP_REPORT.md", type: "references", weight: 0.7, hashtag: "#audit" }
+    { to: "lupo-docs/doctrine/database/auth_users.md", type: "documents", weight: 1.0, hashtag: "#target_table" },
+    { to: "lupo-docs/doctrine/database/actors.md", type: "documents", weight: 1.0, hashtag: "#target_table" },
+    { to: "lupo-docs/doctrine/migrations/operator_to_roles_migration.md", type: "references", weight: 0.9, hashtag: "#permissions" },
+    { to: "lupo-database/migrations/old_crafty_syntax_3_7_5_start.sql", type: "references", weight: 0.8, hashtag: "#source" },
+    { to: "lupo-docs/audits/OPERATOR_TO_ROLE_BASED_SWEEP_REPORT.md", type: "references", weight: 0.7, hashtag: "#audit" }
   ],
   referenced_by_actors: [1001, 1002, 10000],
   references: {
-    by_files: ["database/migrations/import_from_old_crafty_syntax.sql", "docs/doctrine/migrations/MIGRATION_MAPPING_REFERENCE.md"],
+    by_files: ["lupo-database/migrations/import_from_old_crafty_syntax.sql", "lupo-docs/doctrine/migrations/MIGRATION_MAPPING_REFERENCE.md"],
     by_actors: [1001, 1002, 10000]
   },
   semantic_tags: ["livehelp_users_mapping", "auth_identity", "actor_model", "operator_import", "visitor_import"],
@@ -134,10 +134,10 @@ session state
 
 Lupopedia replaces this with a real identity system:
 
-- **lupo_auth_users** — authentication and credentials (username, display_name, email, password_hash, auth_provider, provider_id, last_login_ymdhis). On import, **auth_user_id = 10000 + livehelp_users.user_id** so that human IDs stay in the reserved range (actor_id 0–9999 = agents/system only; humans ≥ 10000).
+- **lupo_auth_users** — authentication and credentials (username, display_name, email, password_hash, auth_provider, provider_id, last_login_ymdhis). On import, **auth_user_id = 10000 + livehelp_users.user_id** so that human IDs stay in the reserved range (actor_id 0–9999 = lupo-agents/system only; humans ≥ 10000).
 - **lupo_actors** — unified identity layer (one row per human/agent/service; actor_id = auth_user_id for imported users, so imported human actor_id ≥ 10000).
 - **lupo_actor_properties** — presence, device, and behavioral metadata.
-- **Permissions** — there is no lupo_operators table. Operator/staff permissions use the **3-level role system**: (1) **lupo_actor_channel_roles** (channel-scoped: captain, administrator, monitor); (2) **lupo_department_roles** (department-scoped); (3) system (department_id = 0 = global admin). Resolution order: channel → department → system. The install wizard assigns captain on personal channels and on channel_id = 1 (Administration) for Crafty admins (livehelp_users.isadmin = 'Y'). See docs/audits/OPERATOR_TO_ROLE_BASED_SWEEP_REPORT.md and docs/doctrine/database/actor_channel_roles.md.
+- **Permissions** — there is no lupo_operators table. Operator/staff permissions use the **3-level role system**: (1) **lupo_actor_channel_roles** (channel-scoped: captain, administrator, monitor); (2) **lupo_department_roles** (department-scoped); (3) system (department_id = 0 = global admin). Resolution order: channel → department → system. The install wizard assigns captain on personal channels and on channel_id = 1 (Administration) for Crafty admins (livehelp_users.isadmin = 'Y'). See lupo-docs/audits/OPERATOR_TO_ROLE_BASED_SWEEP_REPORT.md and lupo-docs/doctrine/database/actor_channel_roles.md.
 
 Only meaningful identity data is imported. The legacy table is dropped after migration.
 

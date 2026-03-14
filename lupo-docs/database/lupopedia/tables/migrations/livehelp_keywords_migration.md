@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,7 +35,7 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\database\lupopedia\tables\livehelp_keywords_migration.md"
+  file_path_from_root: "lupo-docs\database\lupopedia\tables\livehelp_keywords_migration.md"
   file_hash: "90e17dddcb8730e620c3eaf9756c0c556d69011faf044bcb00a72b6a73b23c50"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -57,7 +57,7 @@ lupopedia.footer:
 
 ---
 lupopedia.headers: {
-  file_path_from_root: "docs/database/lupopedia/tables/livehelp_keywords_migration.md",
+  file_path_from_root: "lupo-docs/database/lupopedia/tables/livehelp_keywords_migration.md",
   file_hash: "09da1af724bf7d4ab5f8e5a05e196fb90d5cad20298e3147096d2ff82e582d33"
   system_version: "4.0.50"
   channel_id: 42,
@@ -77,15 +77,15 @@ lupopedia.headers: {
 
 flip.footer: {
   inbound_edges: [
-    { from: "docs/doctrine/migrations/MIGRATION_MAPPING_REFERENCE.md", type: "references", weight: 0.9, hashtag: "#index" }
+    { from: "lupo-docs/doctrine/migrations/MIGRATION_MAPPING_REFERENCE.md", type: "references", weight: 0.9, hashtag: "#index" }
   ],
   outbound_edges: [
-    { to: "database/migrations/old_crafty_syntax_3_7_5_start.sql", type: "references", weight: 0.7, hashtag: "#source" },
-    { to: "docs/doctrine/migrations/livehelp_questions_migration.md", type: "related_to", weight: 0.6, hashtag: "#qa_system" }
+    { to: "lupo-database/migrations/old_crafty_syntax_3_7_5_start.sql", type: "references", weight: 0.7, hashtag: "#source" },
+    { to: "lupo-docs/doctrine/migrations/livehelp_questions_migration.md", type: "related_to", weight: 0.6, hashtag: "#qa_system" }
   ],
   referenced_by_actors: [1001, 10000],
   references: {
-    by_files: ["docs/doctrine/migrations/MIGRATION_MAPPING_REFERENCE.md"],
+    by_files: ["lupo-docs/doctrine/migrations/MIGRATION_MAPPING_REFERENCE.md"],
     by_actors: [1001, 10000]
   },
   semantic_tags: ["livehelp_keywords_mapping", "keyword_system", "deprecated_table"],

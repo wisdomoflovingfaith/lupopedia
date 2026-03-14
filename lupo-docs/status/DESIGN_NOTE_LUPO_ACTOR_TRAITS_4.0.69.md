@@ -3,7 +3,7 @@ lupopedia.headers:
   lupopedia.version: "4.0.69"
   lupopedia.schema: "documentation"
   system_version: "4.0.69"
-  file_path_from_root: "docs/status/DESIGN_NOTE_LUPO_ACTOR_TRAITS_4.0.69.md"
+  file_path_from_root: "lupo-docs/status/DESIGN_NOTE_LUPO_ACTOR_TRAITS_4.0.69.md"
   web_path: "http://www.lupopedia.com/status/DESIGN_NOTE_LUPO_ACTOR_TRAITS_4.0.69"
   last_modified_utc: "20260311"
   channel_id: 42
@@ -65,6 +65,6 @@ After this table exists, rule checks (e.g. via `RuleEvaluator` / `lupo_rules`) c
 
 ## References
 
-- `docs/status/cursor_actors_channels_semantic_architecture_4.0.69.md` — canonical architecture.
+- `lupo-docs/status/cursor_actors_channels_semantic_architecture_4.0.69.md` — canonical architecture.
 - `lupo-docs/doctrine/ActorFaucetOntology.md` — actor vs faucet.
 - Antigravity / Codex proposals on actor roles and traits (exploratory; this design note is the approved baseline).

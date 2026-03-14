@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\channels\doctrine\WOLFIE_RESURRECTION_DOCTRINE.md"
+  file_path_from_root: "lupo-docs\channels\doctrine\WOLFIE_RESURRECTION_DOCTRINE.md"
   file_hash: "e709b9e2c8d9b39a62ea32674ee5a9ceb6dd5ea7808e24dd457be0ad840fb7cd"
-  file_path_from_root: "docs\channels\doctrine\WOLFIE_RESURRECTION_DOCTRINE.md"
+  file_path_from_root: "lupo-docs\channels\doctrine\WOLFIE_RESURRECTION_DOCTRINE.md"
   file_hash: "4d3d62b2d3a8a30e352510be3f6adda518d97d0bd227ebaf2b1d969688addb7d"
   last_updated_utc: "20260228"
   system_version: "4.0.50"

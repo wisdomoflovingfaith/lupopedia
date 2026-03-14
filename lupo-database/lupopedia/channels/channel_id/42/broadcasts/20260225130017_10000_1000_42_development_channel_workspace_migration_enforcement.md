@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "channels\42\broadcasts\20260225130017_10000_1000_42_development_channel_workspace_migration_enforcement.md"
+  file_path_from_root: "lupo-channels\42\broadcasts\20260225130017_10000_1000_42_development_channel_workspace_migration_enforcement.md"
   file_hash: "024907fdc4396aa11946bb10857f8400899531e85662aad545e803585baf2477"
-  file_path_from_root: "channels\42\broadcasts\20260225130017_10000_1000_42_development_channel_workspace_migration_enforcement.md"
+  file_path_from_root: "lupo-channels\42\broadcasts\20260225130017_10000_1000_42_development_channel_workspace_migration_enforcement.md"
   file_hash: "d59e0a167d0aa8638fd7394b3006d22fa45fe63410c3e38495939c93e564e515"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -99,7 +99,7 @@ created_utc: "2026-02-25T13:00:00Z"
 ### Workspace Structure
 
 ```
-channels/42/actors/
+lupo-channels/42/actors/
 ├── 1000/       # KIRO IDE workspace
 ├── 1001/       # Windsurf IDE workspace
 ├── 1002/       # Cursor IDE workspace
@@ -123,9 +123,9 @@ Each actor workspace contains:
 
 ### What Does NOT Belong in Workspaces
 
-- **Permanent artifacts** → Use `docs/`, `database/`, `config/`
-- **Doctrine files** → Use `docs/doctrine/`
-- **System documentation** → Use `docs/`
+- **Permanent artifacts** → Use `lupo-docs/`, `lupo-database/`, `config/`
+- **Doctrine files** → Use `lupo-docs/doctrine/`
+- **System documentation** → Use `lupo-docs/`
 - **Shared resources** → Use appropriate project directories
 
 ---
@@ -143,7 +143,7 @@ Each actor workspace contains:
 **After (REQUIRED):**
 ```bash
 # Scripts read from channel-scoped workspaces
-./scripts/build.sh --workspace channels/42/actors/1000/
+./scripts/build.sh --workspace lupo-channels/42/actors/1000/
 ```
 
 ### IDE Extension Configuration
@@ -158,7 +158,7 @@ Each actor workspace contains:
 **After (REQUIRED):**
 ```json
 {
-  "lupopedia.workspaceRoot": "channels/42/actors/1000",
+  "lupopedia.workspaceRoot": "lupo-channels/42/actors/1000",
   "lupopedia.channelId": 42,
   "lupopedia.actorId": 1000
 }
@@ -173,9 +173,9 @@ Each actor workspace contains:
 - Actor-specific history
 
 **Cross-Agent Communication:**
-- Use broadcasts (`channels/42/broadcasts/`)
-- Use threads (`channels/42/threads/`)
-- Use directives (`channels/42/directives/`)
+- Use broadcasts (`lupo-channels/42/broadcasts/`)
+- Use threads (`lupo-channels/42/threads/`)
+- Use directives (`lupo-channels/42/directives/`)
 - Never write to another agent's workspace
 
 ---
@@ -241,21 +241,21 @@ Each actor workspace contains:
 
 Update your IDE extension settings to use the new workspace path:
 ```
-channels/42/actors/{your_actor_id}/
+lupo-channels/42/actors/{your_actor_id}/
 ```
 
 ### 2. Verify Workspace Access
 
 Check that your workspace directory exists and is writable:
 ```bash
-ls -la channels/42/actors/{your_actor_id}/
+ls -la lupo-channels/42/actors/{your_actor_id}/
 ```
 
 ### 3. Migrate Active Work
 
 Move any active work from `/prompts/` to your workspace:
 ```bash
-cp /prompts/{old_location}/* channels/42/actors/{your_actor_id}/
+cp /prompts/{old_location}/* lupo-channels/42/actors/{your_actor_id}/
 ```
 
 ### 4. Update Build Scripts
@@ -274,14 +274,14 @@ Run a test build to verify workspace integration:
 ## 📚 DOCUMENTATION
 
 **Full Documentation:**
-- Architecture: `docs/architecture/channel_scoped_actor_workspaces.md`
+- Architecture: `lupo-docs/architecture/channel_scoped_actor_workspaces.md`
 - Migration Guide: `IMPLEMENTATION_SUMMARY_4.0.45_ANTIGRAVITY_WORKSPACES.md`
-- Workspace Doctrine: `docs/doctrine/workspace_isolation.md`
-- API Reference: `docs/api/workspace_api.md`
+- Workspace Doctrine: `lupo-docs/doctrine/workspace_isolation.md`
+- API Reference: `lupo-docs/api/workspace_api.md`
 
 **Related Broadcasts:**
-- System-wide announcement: `channels/0/broadcasts/20260225120000_10000_1000_0_channel_scoped_actor_workspaces.md`
-- Antigravity integration: `channels/42/broadcasts/20260225_1004_10000_42_antigravity_workspaces_complete.md`
+- System-wide announcement: `lupo-channels/0/broadcasts/20260225120000_10000_1000_0_channel_scoped_actor_workspaces.md`
+- Antigravity integration: `lupo-channels/42/broadcasts/20260225_1004_10000_42_antigravity_workspaces_complete.md`
 
 ---
 
@@ -310,7 +310,7 @@ Run a test build to verify workspace integration:
 
 <!-- FLIP_FOOTER_BEGIN
 {
-    "references": "\"docs\/status\/broadcast_collection_42.md\"",
+    "references": "\"lupo-docs\/status\/broadcast_collection_42.md\"",
     "implements": "\"broadcast_standardization\"",
     "depends_on": "\"registry_seeding_completion\"",
     "includes": "\"channel_42_communications\"",

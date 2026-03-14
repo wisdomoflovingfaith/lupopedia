@@ -31,7 +31,7 @@ The transition from a "Agent-as-Actor" model to the **Actor-Faucet Ontology** is
 ## 2. Forensic Verification of Implementation
 
 ### 2.1 Documentation Coherence
-The document `docs/status/HOW_ACTORS_ORCHESTRATE_ON_CHANNELS.md` is **canonical** and successfully synthesizes the high-level architecture with the actual database schema (TOONs).
+The document `lupo-docs/status/HOW_ACTORS_ORCHESTRATE_ON_CHANNELS.md` is **canonical** and successfully synthesizes the high-level architecture with the actual database schema (TOONs).
 - **Finding:** Every table mentioned (Actors, Faucets, Sessions, Channels, Membership, Roles, Traits, Auth, Dialog, Tasks) matches the TOON definitions and the `install_new_lupopedia.sql` schema.
 - **Verdict:** PASSED.
 

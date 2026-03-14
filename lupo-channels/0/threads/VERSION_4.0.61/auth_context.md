@@ -71,4 +71,4 @@ php lupo-bin/lupo.php actor-context
 - `lupo-includes/classes/AntigravityContext.php`
 - `lupo-agents/antigravity/context.php`
 - `lupo-bin/lupo.php` (auth, actor-context)
-- [docs/auth.md](../../../docs/auth.md)
+- [lupo-docs/auth.md](../../../docs/auth.md)

@@ -179,10 +179,10 @@ The legacy channel system was removed entirely.
 
 Directories such as:
 
-- channels/system/
-- channels/dev-main-thread/
-- channels/test_awareness_channel/
-- channels/GOV-PROGRAMMERS-001/
+- lupo-channels/system/
+- lupo-channels/dev-main-thread/
+- lupo-channels/test_awareness_channel/
+- lupo-channels/GOV-PROGRAMMERS-001/
 
 ...were deprecated and removed.
 

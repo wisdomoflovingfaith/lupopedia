@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\notes_from_legacy_craftysyntax.md"
+  file_path_from_root: "lupo-docs\notes_from_legacy_craftysyntax.md"
   file_hash: "1459f5b40dc9f61d10d1d95f0a9b3b8e4e38ab58384f7b32e06e51f8f8153ce7"
-  file_path_from_root: "docs\notes_from_legacy_craftysyntax.md"
+  file_path_from_root: "lupo-docs\notes_from_legacy_craftysyntax.md"
   file_hash: "416b470a988b84d032628929e628d7ac9815c771031100abf71322182f10cbb5"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -62,7 +62,7 @@ lupopedia.footer:
 
 # Notes from Legacy Crafty Syntax Codebase
 
-**Source:** `legacy/craftysyntax/`  
+**Source:** `lupo-legacy/craftysyntax/`  
 **Purpose:** Authoritative reference for rebuilding the operator interface in Lupopedia. Extract only—no modernization or rewriting. Document legacy logic exactly as it worked.
 
 ---
@@ -317,4 +317,4 @@ Legacy uses a **chatmode** config (`CSLH_Config['chatmode']`, default `"flush-xm
 
 ---
 
-*End of notes. This document is the combined source of truth: legacy behavior (extracted from the codebase) and new schema mapping (from docs/doctrine/migrations/*). Use both when rebuilding the Lupopedia operator interface and any feature that originated in Crafty Syntax.*
+*End of notes. This document is the combined source of truth: legacy behavior (extracted from the codebase) and new schema mapping (from lupo-docs/doctrine/migrations/*). Use both when rebuilding the Lupopedia operator interface and any feature that originated in Crafty Syntax.*

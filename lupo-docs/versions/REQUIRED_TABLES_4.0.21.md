@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\REQUIRED_TABLES_4.0.21.md"
+  file_path_from_root: "lupo-docs\REQUIRED_TABLES_4.0.21.md"
   file_hash: "09e2835bf4abdcee96c21bab632c11a85b30ff9cc2809bddde5742075c5f8685"
-  file_path_from_root: "docs\REQUIRED_TABLES_4.0.21.md"
+  file_path_from_root: "lupo-docs\REQUIRED_TABLES_4.0.21.md"
   file_hash: "14f533c725cd043831aa8cc9f45a86cf7bef81c70dcdad1a3c3fef105d252db5"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -63,10 +63,10 @@ lupopedia.footer:
 # Required Tables for Lupopedia 4.0.21 (Patch-Only)
 
 **Version:** 4.0.21 (patch-only; no 4.1.x in this document)  
-**Canonical install:** `database/migrations/install_new_lupopedia.sql`  
-**Future-features definitions:** `database/migrations/future_features_lupopedia.sql`  
-**TOON source:** `docs/toons/*.toon.json` (schema oracle; generated from install)  
-**Audit authority:** docs/audits/4.0.21_SCHEMA_VALIDATION_PHASE1_AUDIT.md, docs/audits/4.0.21_SCHEMA_VALIDATION_PHASE2_AUDIT.md  
+**Canonical install:** `lupo-database/migrations/install_new_lupopedia.sql`  
+**Future-features definitions:** `lupo-database/migrations/future_features_lupopedia.sql`  
+**TOON source:** `lupo-docs/toons/*.toon.json` (schema oracle; generated from install)  
+**Audit authority:** lupo-docs/audits/4.0.21_SCHEMA_VALIDATION_PHASE1_AUDIT.md, lupo-docs/audits/4.0.21_SCHEMA_VALIDATION_PHASE2_AUDIT.md  
 **Upgrade path:** Crafty Syntax 3.7.5 → Lupopedia 4.0.x (ONLY supported path)
 
 ---
@@ -124,20 +124,20 @@ These tables are targets of `import_from_old_crafty_syntax.sql`. They **must** r
 
 ## Required Lupopedia Core Tables (in install_new_lupopedia.sql)
 
-All tables in this section are in `install_new_lupopedia.sql` and have TOON files in `docs/toons/`. Schema is defined by TOONs (generated from install). Count: 198 tables in install (Phase 1 + Phase 2); four tables are in future_features only.
+All tables in this section are in `install_new_lupopedia.sql` and have TOON files in `lupo-docs/toons/`. Schema is defined by TOONs (generated from install). Count: 198 tables in install (Phase 1 + Phase 2); four tables are in future_features only.
 
 **Required** = importer targets (above) plus tables used by seed, wizard, or active PHP/runtime. The following list is the full set of tables that have TOONs and are in the install file; classification (required vs optional) is per Phase 1/Phase 2 audits.
 
-- All Phase 1 tables (81): session, actor/auth/agent, content — see docs/audits/4.0.21_SCHEMA_VALIDATION_PHASE1_AUDIT.md.
-- All Phase 2 tables (117): analytics, api, anubis, atoms, audit_log, bans_log, calibration, cip, contexts, crafty_syntax, crm, department_metadata, departments, doctrine_*, emotional_*, entity_properties, event_*, federation_*, gov_*, governance_overrides, help_*, hotfix_registry, human_history_meta, interface_translations, interpretation_log, kapu_*, labs_*, legacy_content_mapping, memory_*, meta_log_events, metrics_archive_legacy, modules, modules_departments, mood_*, multi_agent_critique_sync, notifications, pack_role_registry, persona_*, reference_*, relationships, search_*, semantic_*, system_*, tab_events, temporal_coherence_snapshots, tldnr, truth_*, *, user_comments, world_* — see docs/audits/4.0.21_SCHEMA_VALIDATION_PHASE2_AUDIT.md.
+- All Phase 1 tables (81): session, actor/auth/agent, content — see lupo-docs/audits/4.0.21_SCHEMA_VALIDATION_PHASE1_AUDIT.md.
+- All Phase 2 tables (117): analytics, api, anubis, atoms, audit_log, bans_log, calibration, cip, contexts, crafty_syntax, crm, department_metadata, departments, doctrine_*, emotional_*, entity_properties, event_*, federation_*, gov_*, governance_overrides, help_*, hotfix_registry, human_history_meta, interface_translations, interpretation_log, kapu_*, labs_*, legacy_content_mapping, memory_*, meta_log_events, metrics_archive_legacy, modules, modules_departments, mood_*, multi_agent_critique_sync, notifications, pack_role_registry, persona_*, reference_*, relationships, search_*, semantic_*, system_*, tab_events, temporal_coherence_snapshots, tldnr, truth_*, *, user_comments, world_* — see lupo-docs/audits/4.0.21_SCHEMA_VALIDATION_PHASE2_AUDIT.md.
 
-*(Explicit enumeration matches the TOON filenames in docs/toons/; no table that is only in future_features_lupopedia.sql is listed here.)*
+*(Explicit enumeration matches the TOON filenames in lupo-docs/toons/; no table that is only in future_features_lupopedia.sql is listed here.)*
 
 ---
 
 ## Future Features Tables (in future_features_lupopedia.sql only)
 
-These tables are **not** created by `install_new_lupopedia.sql`. Their definitions live in `database/migrations/future_features_lupopedia.sql` and/or `lupo-database/lupopedia/mysql/install/future_features_lupopedia.sql` (v4.0.57+).
+These tables are **not** created by `install_new_lupopedia.sql`. Their definitions live in `lupo-database/migrations/future_features_lupopedia.sql` and/or `lupo-database/lupopedia/mysql/install/future_features_lupopedia.sql` (v4.0.57+).
 
 | Table | Classification |
 |-------|----------------|
@@ -189,4 +189,4 @@ These tables remain in `install_new_lupopedia.sql` but are optional (not require
 
 ---
 
-*See also: `docs/audits/4.0.21_SCHEMA_VALIDATION_PHASE1_AUDIT.md`, `docs/audits/4.0.21_SCHEMA_VALIDATION_PHASE2_AUDIT.md`, `docs/audits/FUTURE_FEATURES_AND_REQUIRED_TABLES_ALIGNMENT_SUMMARY.md`.*
+*See also: `lupo-docs/audits/4.0.21_SCHEMA_VALIDATION_PHASE1_AUDIT.md`, `lupo-docs/audits/4.0.21_SCHEMA_VALIDATION_PHASE2_AUDIT.md`, `lupo-docs/audits/FUTURE_FEATURES_AND_REQUIRED_TABLES_ALIGNMENT_SUMMARY.md`.*

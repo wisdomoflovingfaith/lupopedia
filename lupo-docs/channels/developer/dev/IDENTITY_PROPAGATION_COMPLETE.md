@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\channels\developer\dev\IDENTITY_PROPAGATION_COMPLETE.md"
+  file_path_from_root: "lupo-docs\channels\developer\dev\IDENTITY_PROPAGATION_COMPLETE.md"
   file_hash: "936a2b9ec3433deff821f1cc9a4090ea5cd8e9006ec46826bf8e205a1f6bf0d2"
-  file_path_from_root: "docs\channels\developer\dev\IDENTITY_PROPAGATION_COMPLETE.md"
+  file_path_from_root: "lupo-docs\channels\developer\dev\IDENTITY_PROPAGATION_COMPLETE.md"
   file_hash: "692375e4eced8ae69a89c589313938dd7454adcfbfaae967763016f35c6f815f"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -101,7 +101,7 @@ Captain Wolfie identity has been systematically propagated across all system lay
 ### Completed
 - ✅ Updated all dialog files to use `speaker: Captain_Wolfie`
 - ✅ Added `author_type: human` to all Captain_Wolfie dialogs
-- ✅ Created `scripts/update_dialog_headers.php` for future updates
+- ✅ Created `lupo-scripts/update_dialog_headers.php` for future updates
 
 ### Files Updated
 - `dialogs/phase_a_completion_dialog.md`
@@ -157,7 +157,7 @@ ArchitectLogger::logArchitectAction('schema_federation_phase_a_complete', [
 ## Phase 4: Validation Suite ✅
 
 ### Completed
-- ✅ Created `scripts/validate_identity_propagation.php`
+- ✅ Created `lupo-scripts/validate_identity_propagation.php`
 - ✅ Validates dialog headers consistency
 - ✅ Validates documentation architect references
 - ✅ Validates constants configuration
@@ -165,7 +165,7 @@ ArchitectLogger::logArchitectAction('schema_federation_phase_a_complete', [
 
 ### Run Validation
 ```bash
-php scripts/validate_identity_propagation.php
+php lupo-scripts/validate_identity_propagation.php
 ```
 
 ---
@@ -193,7 +193,7 @@ php scripts/validate_identity_propagation.php
 4. ✅ Validation suite created
 
 ### Recommended Next Actions
-1. **Run Validation**: Execute `php scripts/validate_identity_propagation.php` to verify consistency
+1. **Run Validation**: Execute `php lupo-scripts/validate_identity_propagation.php` to verify consistency
 2. **Update Documentation**: Incrementally update remaining documentation files
 3. **Configure Git**: Set git author to "Captain Wolfie" (manual step)
 4. **Agent Recognition**: Define agent recognition rules in agent configuration
@@ -226,11 +226,11 @@ The system now recognizes Captain Wolfie through:
 
 ## Files Created
 
-1. `scripts/update_dialog_headers.php` - Dialog header updater
+1. `lupo-scripts/update_dialog_headers.php` - Dialog header updater
 2. `config/constants.php` - Architect identity constants
 3. `lupo-includes/system/logging/ArchitectLogger.php` - Architect logging
-4. `scripts/validate_identity_propagation.php` - Validation suite
-5. `docs/dev/IDENTITY_PROPAGATION_COMPLETE.md` - This summary
+4. `lupo-scripts/validate_identity_propagation.php` - Validation suite
+5. `lupo-docs/dev/IDENTITY_PROPAGATION_COMPLETE.md` - This summary
 
 ---
 
@@ -256,7 +256,7 @@ echo "Signature: " . ARCHITECT_SIGNATURE; // [CW]
 
 ### Validating Identity Propagation
 ```bash
-php scripts/validate_identity_propagation.php
+php lupo-scripts/validate_identity_propagation.php
 ```
 
 ---

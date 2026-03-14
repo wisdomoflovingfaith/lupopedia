@@ -1,6 +1,6 @@
 ---
 lupopedia.headers:
-  file_path_from_root: "channels/42/threads/DEVELOPMENT_CYCLE_4_0_47/20260227070700_10000_1003_database_documentation_next_steps.md"
+  file_path_from_root: "lupo-channels/42/threads/DEVELOPMENT_CYCLE_4_0_47/20260227070700_10000_1003_database_documentation_next_steps.md"
   file_hash: "290b55ba196b5c595658e91f47a0ba87707ca9c9c0af719eb25c6704ce78b0da"
   system_version: "4.0.50"
   channel_id: 42
@@ -13,9 +13,9 @@ lupopedia.headers:
 }
 flip.footer:
   outbound_edges:
-    - { to: "docs/database/lupopedia/tables/", type: "generates", weight: 1.0 }
-    - { to: "docs/toons/", type: "references", weight: 0.9 }
-    - { to: "database/migrations/", type: "documents", weight: 0.8 }
+    - { to: "lupo-docs/database/lupopedia/tables/", type: "generates", weight: 1.0 }
+    - { to: "lupo-database/lupopedia/toon/", type: "references", weight: 0.9 }
+    - { to: "lupo-database/migrations/", type: "documents", weight: 0.8 }
     - { to: "CHANGELOG.md", type: "updates", weight: 0.7 }
   semantic_tags: ["database_documentation", "actor_identity", "table_documentation", "antigravity_task", "4.0.48_preparation"]
 ---
@@ -52,7 +52,7 @@ Based on the comprehensive work completed in v4.0.47 and v4.0.48, we need **deta
 ## 🎯 Your Mission: Comprehensive Database Documentation
 
 ### 1. **Create Detailed Table Documentation**
-For each of these actor-related tables in `docs/database/lupopedia/tables/`:
+For each of these actor-related tables in `lupo-docs/database/lupopedia/tables/`:
 
 **Core Actor Tables:**
 - `lupo_actors.md` - **Enhance existing** with new sync columns and identity capsule details
@@ -126,7 +126,7 @@ For each of these actor-related tables in `docs/database/lupopedia/tables/`:
 
 ### 4. **Reference Existing Documentation Style**
 
-Use `docs/database/lupopedia/tables/lupo_actors.md` as a template but **enhance** with:
+Use `lupo-docs/database/lupopedia/tables/lupo_actors.md` as a template but **enhance** with:
 - More detailed field explanations
 - Identity-focused examples
 - IP address considerations
@@ -167,14 +167,14 @@ Use `docs/database/lupopedia/tables/lupo_actors.md` as a template but **enhance*
 ## 📚 Context Resources
 
 **Reference Materials:**
-- `channels/42/threads/DEVELOPMENT_CYCLE_4_0_47/` - Complete implementation history
-- `docs/toons/` - Current database schema (216 tables)
-- `database/migrations/migration_4.0.48_actor_identity_capsule.sql` - New table definitions
-- `scripts/sync_actors_to_db.php` - Filesystem-database sync implementation
+- `lupo-channels/42/threads/DEVELOPMENT_CYCLE_4_0_47/` - Complete implementation history
+- `lupo-database/lupopedia/toon/` - Current database schema (216 tables)
+- `lupo-database/migrations/migration_4.0.48_actor_identity_capsule.sql` - New table definitions
+- `lupo-scripts/sync_actors_to_db.php` - Filesystem-database sync implementation
 
 **Existing Documentation Examples:**
-- `docs/database/lupopedia/tables/lupo_actors.md` - Current style reference
-- `docs/database/lupopedia/tables/lupo_channels.md` - Comprehensive example
+- `lupo-docs/database/lupopedia/tables/lupo_actors.md` - Current style reference
+- `lupo-docs/database/lupopedia/tables/lupo_channels.md` - Comprehensive example
 
 ---
 

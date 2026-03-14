@@ -43,11 +43,11 @@ All of the following must be true after a fresh install and seed. The validation
 
 | # | Deliverable | Verification |
 |---|-------------|--------------|
-| D1 | **Wizard runs from Crafty Syntax 3.7.5 baseline** | DROP tables; restore `database/migrations/old_crafty_syntax_3_7_5_start.sql`; run install.php; wizard completes successfully. |
+| D1 | **Wizard runs from Crafty Syntax 3.7.5 baseline** | DROP tables; restore `lupo-database/migrations/old_crafty_syntax_3_7_5_start.sql`; run install.php; wizard completes successfully. |
 | D2 | **All seed data is loaded into the database** | Actors (lupo_actors), dialogs (lupo_dialog_messages), content (lupo_contents), edges (lupo_edges), registry (lupo_registry), channels, threads, banned actors (lupo_banned_actors). |
 | D3 | **Orphaned message from banned agent exists and is quarantined** | Message 36 (from actor_id 999, DEPRECATED_BANNED) exists in DB with `channel_id = 666`; it does **not** appear in channel 42. |
 | D4 | **Messages from Captain Wolfie (actor_id 1000) exist** | Messages 33–35 and others (e.g. message 38) have `from_actor_id = 1000`. |
-| D5 | **Login user (actor_id 1000) is set during install/upgrade** | Captain (actor_id 1000) is the human operator; auth and session allow login via captain@lupopedia.com or wisdomoflovingfaith@gmail.com. |
+| D5 | **Login user (actor_id 1000) is set during lupo-install/upgrade** | Captain (actor_id 1000) is the human operator; auth and session allow login via captain@lupopedia.com or wisdomoflovingfaith@gmail.com. |
 | D6 | **User can log in and navigate to channel 0 and 42** | After login, UI allows navigation to channel 0 (system/kernel) and channel 42 (lupopedia-development). |
 | D7 | **All dialog messages visible on channel 42** | 60 messages on channel 42, thread 1 (1–35, 37–61; message 36 is quarantined to channel 666). Message count = 60 for channel 42; 1 for channel 666. |
 | D8 | **ANUBIS and LILITH behave correctly** | ANUBIS rejects actor 999; LILITH doctrine loads; orphan classification and adoption logic work. |
@@ -66,21 +66,21 @@ All of the following must be true after a fresh install and seed. The validation
 
 - Run the wizard installer using install_new_lupopedia.sql (after restoring Crafty 3.7.5 baseline).
 - Load the full seed using seed_lupopedia.sql — all actors, dialogs, content, edges, registry.
-- Log in as the Captain user (actor_id = 1000; captain@lupopedia.com or wisdomoflovingfaith@gmail.com) — the user set during install/upgrade.
+- Log in as the Captain user (actor_id = 1000; captain@lupopedia.com or wisdomoflovingfaith@gmail.com) — the user set during lupo-install/upgrade.
 - Navigate through the web UI to channel 0 (system/kernel) and channel 42 (lupopedia-development).
 - Confirm that all dialog messages from all AI agents appear correctly (60 messages on channel 42; message 36 quarantined to channel 666).
 - Confirm that there is an orphaned/quarantined message from the banned agent (actor_id 999, DEPRECATED_BANNED) and that it does **not** appear in channel 42.
 - Confirm that Captain (actor_id 1000) has visible messages (e.g. 33–35, 38).
 - Confirm that all FLIP metadata is visible and correct (file_path_from_root, file_last_modified_system_version, channel associations).
 - Confirm that all edges resolve correctly (lupo_edges HAS_CONTENT: content → channel).
-- Confirm that doctrine files load correctly (docs/doctrine/, docs/api/).
+- Confirm that doctrine files load correctly (lupo-docs/doctrine/, lupo-docs/api/).
 - Confirm that ANUBIS and LILITH behave correctly on a fresh install (orphan classification, banned actor rejection).
 
 ---
 
 ### 3. VERSIONING (4.0.16 → 4.0.17)
 
-When instructed to bump the version to 4.0.17, you MUST update the version string in **all** of these locations (see `docs/doctrine/VERSIONING_DOCTRINE.md` §8):
+When instructed to bump the version to 4.0.17, you MUST update the version string in **all** of these locations (see `lupo-docs/doctrine/VERSIONING_DOCTRINE.md` §8):
 
 | Location | What to update |
 |----------|----------------|
@@ -89,7 +89,7 @@ When instructed to bump the version to 4.0.17, you MUST update the version strin
 | **install.php** | Fallback when `LUPOPEDIA_VERSION` is not defined: change `'4.0.16'` to `'4.0.17'`. |
 | **lupo-includes/functions/load_atoms.php** | Fallback in `get_lupopedia_version()`: change `'4.0.16'` to `'4.0.17'`. |
 | **install_wizard_classes.php** | Docblock version reference: update to **4.0.17**. |
-| **database/migrations/seed_lupopedia.sql** | `@lupo_version` to `'4.0.17'`, `@lupo_version_code` to 40017. |
+| **lupo-database/migrations/seed_lupopedia.sql** | `@lupo_version` to `'4.0.17'`, `@lupo_version_code` to 40017. |
 
 Patch-only bumps. No major/minor until auto-installer release cycle.
 
@@ -100,7 +100,7 @@ Patch-only bumps. No major/minor until auto-installer release cycle.
 The new thread must treat every development cycle as a **clean, empty, fresh start**:
 
 - **DROP ALL TABLES** in the database.
-- **RELOAD** the Crafty Syntax 3.7.5 schema using `database/migrations/old_crafty_syntax_3_7_5_start.sql` (or equivalent baseline). This is the **required baseline** for wizard testing.
+- **RELOAD** the Crafty Syntax 3.7.5 schema using `lupo-database/migrations/old_crafty_syntax_3_7_5_start.sql` (or equivalent baseline). This is the **required baseline** for wizard testing.
 - **Restore** the original Crafty `config.php` (no lupopedia-config.php).
 - **Run the Lupopedia installer** from scratch (install.php) so that the only path exercised is **Crafty Syntax 3.7.5 → Lupopedia 4.0.x**.
 - **Run the seed** (seed_lupopedia.sql) after install — this loads all actors, dialogs, content, edges, registry, and banned actors.
@@ -112,24 +112,24 @@ The new thread must treat every development cycle as a **clean, empty, fresh sta
 
 Before taking any action, load and apply **ALL** of the following doctrine from the repository:
 
-- **Installer doctrine** — Only valid path: Crafty Syntax 3.7.5 → Lupopedia 4.0.x. No Lupopedia→Lupopedia upgrade in 4.0.x. See docs/doctrine/INSTALLATION_PATH_DOCTRINE.md.
-- **Unified Registry doctrine** — Reserved IDs; no AUTO_INCREMENT for registry-backed tables. See docs/doctrine/REGISTRY_DOCTRINE.md.
+- **Installer doctrine** — Only valid path: Crafty Syntax 3.7.5 → Lupopedia 4.0.x. No Lupopedia→Lupopedia upgrade in 4.0.x. See lupo-docs/doctrine/INSTALLATION_PATH_DOCTRINE.md.
+- **Unified Registry doctrine** — Reserved IDs; no AUTO_INCREMENT for registry-backed tables. See lupo-docs/doctrine/REGISTRY_DOCTRINE.md.
 - **Identity doctrine** — Actors, auth_users, actor_source_type; roles via 3-level model.
 - **Permission doctrine** — 3-layer model: channel roles, department roles, system.
 - **Department doctrine** — department_id = 0 is system (reserved); department_id = 1 is general.
 - **PHP 5.3 doctrine** — Use `array()` only; no short array `[]`; no null coalescing `??`; no typed properties/return types in core paths. See .cursor/rules/php-5-6-compatibility.mdc.
-- **Schema doctrine (TOONs)** — TOONs in `docs/toons/` are the **only** source of truth. Never guess or invent schema. See .cursor/rules/toon-source-of-truth.mdc.
+- **Schema doctrine (TOONs)** — TOONs in `lupo-docs/toons/` are the **only** source of truth. Never guess or invent schema. See .cursor/rules/toon-source-of-truth.mdc.
 - **Prefix doctrine** — Use `LUPO_TABLE_PREFIX`; never hardcode `lupo_`.
-- **Versioning doctrine** — Patch-only bumps (4.0.16 → 4.0.17); single canonical file `docs/doctrine/VERSIONING_DOCTRINE.md`.
+- **Versioning doctrine** — Patch-only bumps (4.0.16 → 4.0.17); single canonical file `lupo-docs/doctrine/VERSIONING_DOCTRINE.md`.
 - **Reserved ID doctrine** — Registry-backed tables: explicit IDs; if row exists → UPDATE, else INSERT. See .cursor/rules/reserved-id-doctrine.mdc.
 - **Database logic prohibition** — No FOREIGN KEYs, triggers, stored procedures, DEFAULT CURRENT_TIMESTAMP. All logic in application code. See .cursor/rules/database-logic-prohibition-doctrine.mdc.
 - **PDO_DB only** — All database access via the project's PDO_DB wrapper. See .cursor/rules/pdo-db-database-access-doctrine.mdc.
 - **Migration doctrine** — Schema changes require BOTH a migration file AND an update to install_new_lupopedia.sql. See .cursor/rules/migration-doctrine.mdc.
-- **FLIP doctrine** — File-Level Inference Protocol. FLIP Headers at top of files; infer only from header; no guessing. See docs/doctrine/FLIP/FLIP_DOCTRINE.md and .cursor/rules/flip-doctrine.mdc.
-- **FLP doctrine** — Federated Likeness Protocol; governance layer, councils as channels, emotional geometry. See docs/doctrine/FLIP/FLP_OVERVIEW.md.
-- **LILITH heterodox review doctrine** — See docs/doctrine/FLIP/FLIPPING_FILE_LEXA_LILITH.md.
-- **ANUBIS doctrine** — Custodial intelligence for dialogs, lineage, orphans, redirects, banned actors. See docs/doctrine/ANUBIS/ANUBIS_OVERVIEW.md, ANUBIS_ORPHAN_RULES.md, ANUBIS_PROGRAM_SPEC.md.
-- **FLP_CHANNEL_* doctrine** — Channel-specific FLIP files for channels 0, 42, 51, 666. See docs/doctrine/FLIP/FLP_CHANNEL_0.md, FLP_CHANNEL_42.md, FLP_CHANNEL_51.md, FLP_CHANNEL_666.md.
+- **FLIP doctrine** — File-Level Inference Protocol. FLIP Headers at top of files; infer only from header; no guessing. See lupo-docs/doctrine/FLIP/FLIP_DOCTRINE.md and .cursor/rules/flip-doctrine.mdc.
+- **FLP doctrine** — Federated Likeness Protocol; governance layer, councils as channels, emotional geometry. See lupo-docs/doctrine/FLIP/FLP_OVERVIEW.md.
+- **LILITH heterodox review doctrine** — See lupo-docs/doctrine/FLIP/FLIPPING_FILE_LEXA_LILITH.md.
+- **ANUBIS doctrine** — Custodial intelligence for dialogs, lineage, orphans, redirects, banned actors. See lupo-docs/doctrine/ANUBIS/ANUBIS_OVERVIEW.md, ANUBIS_ORPHAN_RULES.md, ANUBIS_PROGRAM_SPEC.md.
+- **FLP_CHANNEL_* doctrine** — Channel-specific FLIP files for channels 0, 42, 51, 666. See lupo-docs/doctrine/FLIP/FLP_CHANNEL_0.md, FLP_CHANNEL_42.md, FLP_CHANNEL_51.md, FLP_CHANNEL_666.md.
 
 ---
 
@@ -139,7 +139,7 @@ The repository state is **canonical** for the following. The new thread must tre
 
 **4.0.16 FLIP / Channel / ANUBIS synchronization:**
 
-- **FLIP headers** — 106+ doctrine .md files with valid FLIP headers (file.last_modified_system_version 4.0.16). scripts/flip_header_audit.py for validation.
+- **FLIP headers** — 106+ doctrine .md files with valid FLIP headers (file.last_modified_system_version 4.0.16). lupo-scripts/flip_header_audit.py for validation.
 - **lupo_contents** — Content 5000–5037: doctrine .md files, FLIP_API.md (5033), FLP_CHANNEL_0/42/51/666 (5034–5037).
 - **lupo_edges** — HAS_CONTENT edges linking content to channels 0, 51, 42 (ANUBIS-related), 666 (quarantine). Path lookup: file_path_from_root → lupo_contents → lupo_edges HAS_CONTENT → channel_id.
 - **lupo_registry** — Entity keys including channel:0:flip, channel:42:flip, channel:51:flip, channel:666:flip.
@@ -147,8 +147,8 @@ The repository state is **canonical** for the following. The new thread must tre
 - **Channel 666 (ANUBIS Quarantine)** — Seeded. lupo_anubis_redirects: old_id 66 → new_id 666. Message 36 (actor 999) quarantined to channel 666.
 - **Channel 42 dialog** — 61 messages total: 1–2 system; 3–27 kernel agents; 28–31 FLIP/API refs; 32–35 ANUBIS adoption; 36 quarantined to 666; 37–61 LILITH migration thread (25-agent closeout). lupo_dialog_channels.message_count = 61.
 - **25 kernel agents** on channel 42: actor_ids 1–20, 22–24, 209, 1212.
-- **Universal flipping API** — api/flip-header.php (path, url, content_id). CORS enabled.
-- **ANUBIS programs** — tools/anubis_orphan_scanner.py; lupo-includes/classes/ANUBIS_Resolver.php (classifyOrphan, resolveParent, adoptIntoSeed).
+- **Universal flipping API** — lupo-api/flip-header.php (path, url, content_id). CORS enabled.
+- **ANUBIS programs** — lupo-tools/anubis_orphan_scanner.py; lupo-includes/classes/ANUBIS_Resolver.php (classifyOrphan, resolveParent, adoptIntoSeed).
 
 ---
 
@@ -156,17 +156,17 @@ The repository state is **canonical** for the following. The new thread must tre
 
 Perform the following validation in order:
 
-1. **Fresh install** — DROP tables; restore `database/migrations/old_crafty_syntax_3_7_5_start.sql`; run install_new_lupopedia.sql (via wizard); run seed_lupopedia.sql.
+1. **Fresh install** — DROP tables; restore `lupo-database/migrations/old_crafty_syntax_3_7_5_start.sql`; run install_new_lupopedia.sql (via wizard); run seed_lupopedia.sql.
 2. **Wizard completion** — Ensure wizard completes without error. Version shown: 4.0.16 (or 4.0.17 after bump).
-3. **Captain login** — Log in as actor_id 1000 (captain@lupopedia.com or wisdomoflovingfaith@gmail.com). Verify session and redirect. This user is set during install/upgrade.
+3. **Captain login** — Log in as actor_id 1000 (captain@lupopedia.com or wisdomoflovingfaith@gmail.com). Verify session and redirect. This user is set during lupo-install/upgrade.
 4. **Channel 0 (system/kernel)** — Navigate to channel 0. Verify content associations. Verify FLIP metadata for kernel content.
 5. **Channel 42 (lupopedia-development)** — Navigate to channel 42. Verify 60 dialog messages display (1–35, 37–61). Verify thread 1. Verify kernel agent names and message order. Verify at least one message from actor_id 1000 (Captain), e.g. messages 33–35 or 38.
 5a. **Banned orphan visibility** — Confirm that message 36 (from banned actor_id 999) does **not** appear in channel 42's thread 1. Verify in the database that message 36 exists with `channel_id = 666` (quarantine).
-6. **FLIP metadata** — For sample paths (e.g. docs/doctrine/FLIP/FLP_OVERVIEW.md, docs/doctrine/FLIP/FLP_CHANNEL_42.md), verify lupo_contents row exists, file_path_from_root matches. Before version bump: `file_last_modified_system_version = 4.0.16`. After bump: `4.0.17`.
+6. **FLIP metadata** — For sample paths (e.g. lupo-docs/doctrine/FLIP/FLP_OVERVIEW.md, lupo-docs/doctrine/FLIP/FLP_CHANNEL_42.md), verify lupo_contents row exists, file_path_from_root matches. Before version bump: `file_last_modified_system_version = 4.0.16`. After bump: `4.0.17`.
 7. **Edge resolution** — For content_id 5034–5037, verify lupo_edges HAS_CONTENT to channels 0, 51; 5035 to 42; 5037 to 666.
 8. **Registry** — Verify lupo_registry entries for channel:0:flip, channel:42:flip, channel:51:flip, channel:666:flip.
 9. **Doctrine loading** — Load a sample doctrine file via web or path lookup. Verify no 404 or missing-content errors.
-10. **ANUBIS** — Run tools/anubis_orphan_scanner.py in no-DB mode or with test DB. Verify classifyOrphan rejects actor_id 999. Verify getBannedActorIds returns (999) or table-derived list. **Fallback test:** Temporarily drop lupo_banned_actors (or simulate absence); verify getBannedActorIds() still returns fallback list including 999.
+10. **ANUBIS** — Run lupo-tools/anubis_orphan_scanner.py in no-DB mode or with test DB. Verify classifyOrphan rejects actor_id 999. Verify getBannedActorIds returns (999) or table-derived list. **Fallback test:** Temporarily drop lupo_banned_actors (or simulate absence); verify getBannedActorIds() still returns fallback list including 999.
 11. **ANUBIS adoption verification (active behavior)** — Identify a seeded orphan message that is not from a banned actor. Confirm: classifyOrphan() returns adoptable; resolveParent() assigns channel 42 and thread 1; adoptIntoSeed() persists correct channel_id + thread_id; message is visible in channel 42 UI; adoption logic did not bypass resolver.
 12. **Quarantine + redirect verification** — Confirm lupo_anubis_redirects contains old_id = 66 → new_id = 666. Attempt to resolve channel 66 via application routing; verify redirect lands at 666. Confirm message 36 (actor_id 999) is only visible under channel 666. Confirm ANUBIS classification explicitly returns is_rejected => true, rejected_reason => 'banned_actor'.
 
@@ -197,11 +197,11 @@ Perform the following validation in order:
 
 ### 11. REQUIRED UI CHECKS
 
-- **Login** — Captain (actor_id 1000), the user set during install/upgrade, can log in. Session persists. Redirect after login works.
+- **Login** — Captain (actor_id 1000), the user set during lupo-install/upgrade, can log in. Session persists. Redirect after login works.
 - **Channel 0** — UI allows navigation to channel 0 (system/kernel). Content list or summary displays. No blank page or 500 error.
 - **Channel 42** — UI allows navigation to channel 42 (lupopedia-development). Dialog thread 1 displays. All 60 messages visible (1–35, 37–61; message 36 is quarantined to channel 666). Agent names resolve (actor_id → name from lupo_actors). At least one Captain message (actor_id 1000) visible.
 - **Channel 666** — If UI exposes quarantine channel, verify message 36 (from actor_id 999) displays with quarantined text. Otherwise, verify backend resolves channel 666 for redirect 66→666. Message 36 must **not** appear in channel 42.
-- **FLIP API** — GET /api/flip-header.php?path=docs/doctrine/FLIP/FLP_CHANNEL_42.md returns JSON with header, resolved channel_id. No 404.
+- **FLIP API** — GET /api/flip-header.php?path=lupo-docs/doctrine/FLIP/FLP_CHANNEL_42.md returns JSON with header, resolved channel_id. No 404.
 
 ---
 

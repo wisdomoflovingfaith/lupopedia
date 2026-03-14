@@ -1,6 +1,6 @@
 ---
 lupopedia.headers:
-  file_path_from_root: "docs/database/lupopedia/tables/actors.md"
+  file_path_from_root: "lupo-docs/database/lupopedia/tables/actors.md"
   file_hash: "56a265debd3e1f61bbbdc0f0940c7c48cb3ee230d1b4bd124f2d57d21c9848a4"
   system_version: "4.0.50"
   channel_id: 0
@@ -12,9 +12,9 @@ lupopedia.headers:
   lupo_agent: "gemini-cli"
 
 lupopedia.edges:
-  file_path_from_root: "docs\database\lupopedia\tables\actors.md"
+  file_path_from_root: "lupo-docs\database\lupopedia\tables\actors.md"
   outbound_edges:
-- { to: "docs/database/lupopedia/tables/lupo_actors.md", type: "references", weight: 1.0, reason: "Canonical table documentation" }
+- { to: "lupo-docs/database/lupopedia/tables/lupo_actors.md", type: "references", weight: 1.0, reason: "Canonical table documentation" }
     - { to: "lupo-database/lupopedia/toon/lupo_actors.toon.json", type: "schema_reference", weight: 1.0 }
   semantic_tags: ["actors", "identity", "doctrine", "unified"]
 

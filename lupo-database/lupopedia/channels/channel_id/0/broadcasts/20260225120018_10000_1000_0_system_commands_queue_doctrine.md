@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "channels\0\broadcasts\20260225120018_10000_1000_0_system_commands_queue_doctrine.md"
+  file_path_from_root: "lupo-channels\0\broadcasts\20260225120018_10000_1000_0_system_commands_queue_doctrine.md"
   file_hash: "005ccc9faabfe8a18550e0760791c5cd714445049dc17fcf40a5d3faacfb4be2"
-  file_path_from_root: "channels\0\broadcasts\20260225120018_10000_1000_0_system_commands_queue_doctrine.md"
+  file_path_from_root: "lupo-channels\0\broadcasts\20260225120018_10000_1000_0_system_commands_queue_doctrine.md"
   file_hash: "e9f1108a3df6025496a1559cfd0cf4dbbb198882d8e23414defbb8aca6e78b80"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -81,7 +81,7 @@ All post-install/background tasks enqueued in system_commands. NO exec() from PH
 
 <!-- FLIP_FOOTER_BEGIN
 {
-    "references": "\"docs\/status\/broadcast_collection_0.md\"",
+    "references": "\"lupo-docs\/status\/broadcast_collection_0.md\"",
     "implements": "\"broadcast_standardization\"",
     "depends_on": "\"registry_seeding_completion\"",
     "includes": "\"channel_0_communications\"",

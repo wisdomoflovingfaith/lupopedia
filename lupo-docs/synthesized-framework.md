@@ -34,7 +34,7 @@ php query_edges.php lupopedia.tables.documentation_frameworks
 
 RUNTIME.MIN_PHP: 5.6
 RUNTIME.SYNTAX: PHP 5.3 compatible
-RUNTIME.INCLUDES_PATH: <prefix>includes/
+RUNTIME.INCLUDES_PATH: <prefix>lupo-includes/
 ---
 
 # Lupopedia AI Agent Documentation Framework: Synthesized Strategy

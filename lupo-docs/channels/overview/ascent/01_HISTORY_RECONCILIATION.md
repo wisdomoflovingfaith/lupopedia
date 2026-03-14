@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\channels\overview\ascent\01_HISTORY_RECONCILIATION.md"
+  file_path_from_root: "lupo-docs\channels\overview\ascent\01_HISTORY_RECONCILIATION.md"
   file_hash: "220f31fe81b80e907ffc12eaa7731ba7a67830047bd2a25ff8446afdf5253b2d"
-  file_path_from_root: "docs\channels\overview\ascent\01_HISTORY_RECONCILIATION.md"
+  file_path_from_root: "lupo-docs\channels\overview\ascent\01_HISTORY_RECONCILIATION.md"
   file_hash: "47eeaa42dd4fade02f62ea6bd8ed2fd1b5c0d1122aebf28741ca6caf28002d68"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -135,27 +135,27 @@ Document the complete history of Eric's creative work and system development fro
 ### Required Files
 
 **History Index:**
-- `docs/history/HISTORY_INDEX.md` ✅ (to be created)
+- `lupo-docs/history/HISTORY_INDEX.md` ✅ (to be created)
 
 **Timeline:**
-- `docs/history/TIMELINE_1996_2026.md` ✅ (to be created)
+- `lupo-docs/history/TIMELINE_1996_2026.md` ✅ (to be created)
 
 **Active Period (1996-2013):**
-- `docs/history/1996-2013/README.md` ✅ (created)
-- `docs/history/1996-2013/1996.md` ✅ (created)
-- `docs/history/1996-2013/1997-2001.md` ✅ (created)
-- `docs/history/1996-2013/2002.md` ✅ (created)
-- `docs/history/1996-2013/2003-2013.md` ✅ (created)
+- `lupo-docs/history/1996-2013/README.md` ✅ (created)
+- `lupo-docs/history/1996-2013/1996.md` ✅ (created)
+- `lupo-docs/history/1996-2013/1997-2001.md` ✅ (created)
+- `lupo-docs/history/1996-2013/2002.md` ✅ (created)
+- `lupo-docs/history/1996-2013/2003-2013.md` ✅ (created)
 
 **Absence Period (2014-2025):**
-- `docs/history/2014-2025/README.md` (to be created)
-- `docs/history/2014-2025/2014.md` ✅ (created)
-- `docs/history/2014-2025/2015-2025.md` (to be created)
+- `lupo-docs/history/2014-2025/README.md` (to be created)
+- `lupo-docs/history/2014-2025/2014.md` ✅ (created)
+- `lupo-docs/history/2014-2025/2015-2025.md` (to be created)
 
 **Resurgence (2025-2026):**
-- `docs/history/2025-2026/README.md` (to be created)
-- `docs/history/2025-2026/2025.md` (to be created)
-- `docs/history/2025-2026/2026.md` (to be created)
+- `lupo-docs/history/2025-2026/README.md` (to be created)
+- `lupo-docs/history/2025-2026/2025.md` (to be created)
+- `lupo-docs/history/2025-2026/2026.md` (to be created)
 
 ---
 
@@ -220,10 +220,10 @@ History Reconciliation is complete when:
 
 ## Related Documentation
 
-- **History Files:** `docs/history/`
+- **History Files:** `lupo-docs/history/`
 - **CHANGELOG.md:** System version history
 - **Global Atoms:** `config/global_atoms.yaml` (GLOBAL_ERIC_WOLFIE_TLDNR_2026)
-- **Version 3.0.60 Plan:** `docs/VERSION_3_0_60_PLAN.md`
+- **Version 3.0.60 Plan:** `lupo-docs/VERSION_3_0_60_PLAN.md`
 
 ---
 

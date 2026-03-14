@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\channels\agents\agent-1\workflows\channel_initialization.workflow.md"
+  file_path_from_root: "lupo-docs\channels\agents\agent-1\workflows\channel_initialization.workflow.md"
   file_hash: "f7de96e883d00b0dff7feba66ce0f596ead50cdd9678ac9f3f0ea4127989848a"
-  file_path_from_root: "docs\channels\agents\agent-1\workflows\channel_initialization.workflow.md"
+  file_path_from_root: "lupo-docs\channels\agents\agent-1\workflows\channel_initialization.workflow.md"
   file_hash: "dcfcc8723313a61950fa36fe74f8838f24b31bb5b12949ced1ccb76d09a31a9c"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -383,11 +383,11 @@ WHERE channel_id = :channel_id AND is_deleted = 0;
   - `dialogs/<channel_name>_dialog.md`
   
 - **Templates:**
-  - `agents/0001/templates/channel_identity_block.template.md`
+  - `lupo-agents/0001/templates/channel_identity_block.template.md`
   
 - **Doctrine:**
-  - `agents/0001/doctrine/CHANNEL_INITIALIZATION_PROTOCOL.md`
-  - `agents/0001/doctrine/WOLFIE_UTC_AUTHORITY.md`
+  - `lupo-agents/0001/doctrine/CHANNEL_INITIALIZATION_PROTOCOL.md`
+  - `lupo-agents/0001/doctrine/WOLFIE_UTC_AUTHORITY.md`
   
 - **Agents:**
   - UTC_TIMEKEEPER (agent_registry_id: 5) � Real UTC timestamp provider

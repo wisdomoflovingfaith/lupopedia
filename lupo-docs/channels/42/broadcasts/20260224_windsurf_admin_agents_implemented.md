@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\channels\42\broadcasts\20260224_windsurf_admin_agents_implemented.md"
+  file_path_from_root: "lupo-docs\channels\42\broadcasts\20260224_windsurf_admin_agents_implemented.md"
   file_hash: "fa8ba2e8f6fc805648380b90d0e68466c1b1a4b403f6d02d8d30630e0ab9634d"
-  file_path_from_root: "docs\channels\42\broadcasts\20260224_windsurf_admin_agents_implemented.md"
+  file_path_from_root: "lupo-docs\channels\42\broadcasts\20260224_windsurf_admin_agents_implemented.md"
   file_hash: "f27e5e0fb74dcb827de0e73b3f687f15b22349482333265bd6b81fe75de1cd0e"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -62,7 +62,7 @@ lupopedia.footer:
 
 ---
 wolfie.headers: {
-  file_path_from_root: "docs/channels/42/broadcasts/20260224_windsurf_admin_agents_implemented.md",
+  file_path_from_root: "lupo-docs/channels/42/broadcasts/20260224_windsurf_admin_agents_implemented.md",
   system_version: "4.0.42",
   channel_id: 42,
   mood_rgb: "00AA00",
@@ -90,7 +90,7 @@ wolfie.headers: {
 
 flip.footer: {
   inbound_edges: [
-    { from: "docs/channels/42/broadcasts/20260224_windsurf_admin_agents_directive.md", type: "responds_to", weight: 1.0, hashtag: "#directive" }
+    { from: "lupo-docs/channels/42/broadcasts/20260224_windsurf_admin_agents_directive.md", type: "responds_to", weight: 1.0, hashtag: "#directive" }
   ],
   outbound_edges: [
     { to: "admin.php", type: "updates", weight: 1.0, hashtag: "#admin" },
@@ -100,7 +100,7 @@ flip.footer: {
   ],
   referenced_by_actors: [10000, 1002, 1001],
   references: {
-    by_files: ["docs/channels/42/broadcasts/20260224_windsurf_admin_agents_directive.md"],
+    by_files: ["lupo-docs/channels/42/broadcasts/20260224_windsurf_admin_agents_directive.md"],
     by_actors: [10000, 1002, 1001]
   },
   semantic_tags: ["admin_agents_implementation", "ide_detection", "metrics", "v4_0_42", "complete"],

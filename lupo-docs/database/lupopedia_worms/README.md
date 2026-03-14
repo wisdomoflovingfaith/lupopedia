@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\database\lupopedia_worms\README.md"
+  file_path_from_root: "lupo-docs\database\lupopedia_worms\README.md"
   file_hash: "1524532bede4606c7770f32678a66f87331469cf1b06377814e85e8e9f291e67"
-  file_path_from_root: "docs\database\lupopedia_worms\README.md"
+  file_path_from_root: "lupo-docs\database\lupopedia_worms\README.md"
   file_hash: "b11abba057e7fc950548c1339c2909f0898eece2c2e61742e981e28ede08d2bd"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -65,16 +65,16 @@ lupopedia.footer:
 ### **Automated Tools**
 ```bash
 # Find AI-generated tables
-python scripts/detect_ai_tables.py
+python lupo-scripts/detect_ai_tables.py
 
 # Suggest table consolidations
-python scripts/suggest_merges.py
+python lupo-scripts/suggest_merges.py
 
 # Validate table design
-python scripts/validate_design.py
+python lupo-scripts/validate_design.py
 
 # Generate optimization reports
-python scripts/optimization_report.py
+python lupo-scripts/optimization_report.py
 ```
 
 ### **Manual Review Process**

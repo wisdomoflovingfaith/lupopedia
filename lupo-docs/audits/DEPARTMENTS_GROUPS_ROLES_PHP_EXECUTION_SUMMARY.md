@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\audits\DEPARTMENTS_GROUPS_ROLES_PHP_EXECUTION_SUMMARY.md"
+  file_path_from_root: "lupo-docs\audits\DEPARTMENTS_GROUPS_ROLES_PHP_EXECUTION_SUMMARY.md"
   file_hash: "a1078f728118003902e6c71da565cd1cea370f58a0981e02b7898d8d11640d8f"
-  file_path_from_root: "docs\audits\DEPARTMENTS_GROUPS_ROLES_PHP_EXECUTION_SUMMARY.md"
+  file_path_from_root: "lupo-docs\audits\DEPARTMENTS_GROUPS_ROLES_PHP_EXECUTION_SUMMARY.md"
   file_hash: "dacac8d3e431e38bb4ea08886171aa1abce6c0592a6d0a869f5d9f8859219d6c"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -63,7 +63,7 @@ lupopedia.footer:
 # Departments / Groups / Roles Unification — PHP Execution Summary
 
 **Date:** 2026-02-12  
-**Authority:** docs/audits/DEPARTMENTS_GROUPS_ROLES_PHP_IMPLEMENTATION_PLAN.md  
+**Authority:** lupo-docs/audits/DEPARTMENTS_GROUPS_ROLES_PHP_IMPLEMENTATION_PLAN.md  
 **Prerequisite:** Schema applied (migration_unify_groups_into_departments.sql); TOONs regenerated; SQL phase complete.
 
 ---
@@ -75,7 +75,7 @@ lupopedia.footer:
 | **app/auth/AuthRoleResolver.php** | Updated class docblock to state permission model (user_id OR department_id OR channel roles; no group tables). Added private getDepartmentIdsForActor($actorId). In isAdmin(), added step (3): after user_id fallback, resolve actor → department_ids and allow if lupo_permissions has owner on admin module for any department_id in that list. |
 | **app/Services/SavedCollectionsService.php** | Updated class docblock to state permissions via user_id OR department_id (no group tables). Replaced inline collection query for logged-in users with getCollectionsForUser(). Added private getCollectionsForUser($userId, $collT, $permT) which resolves userId → actor_id, gets department_ids for actor, and returns collections where lupo_permissions has user_id = userId OR department_id IN (actor's departments). Added getActorIdFromAuthUserId($userId) and getDepartmentIdsForActor($actorId). |
 | **routes/auth_routes.php** | Added comment for '/auth/permissions': "when implemented: return permissions combining user_id, department_id, and channel_roles (no group tables)". |
-| **install_wizard_classes.php** | Added docblock above class InstallWizardChannels: "Channel creation for install/upgrade. Uses department_id only. Group tables (lupo_groups, lupo_actor_group_membership) are removed; organizational scope is department only." |
+| **install_wizard_classes.php** | Added docblock above class InstallWizardChannels: "Channel creation for lupo-install/upgrade. Uses department_id only. Group tables (lupo_groups, lupo_actor_group_membership) are removed; organizational scope is department only." |
 
 ---
 
@@ -109,7 +109,7 @@ lupopedia.footer:
 ### 3.2 Permission system supports user_id OR department_id OR channel roles
 
 - **AuthRoleResolver::isAdmin():** Uses (1) lupo_channel_roles, (2) lupo_permissions by user_id, (3) lupo_permissions by department_id (actor's departments). Combined with OR semantics.
-- **SavedCollectionsService::renderSavedCollections():** For userId > 0, collections are those with lupo_permissions (target_type='collection') where user_id = userId OR department_id IN (actor's departments). Channel roles are not used for collection list (unchanged); admin/operator checks remain in AuthRoleResolver.
+- **SavedCollectionsService::renderSavedCollections():** For userId > 0, collections are those with lupo_permissions (target_type='collection') where user_id = userId OR department_id IN (actor's departments). Channel roles are not used for collection list (unchanged); lupo-admin/operator checks remain in AuthRoleResolver.
 
 ### 3.3 Installer/wizard PHP aligned
 
@@ -146,7 +146,7 @@ Per the plan, the following were verified only; no changes were required:
 - lupo-includes/bootstrap.php  
 - lupo-includes/functions/auth-helpers.php  
 - lupo-includes/functions/render-saved-collections.php  
-- api/list_user_collections.php  
+- lupo-api/list_user_collections.php  
 - app/Http/Controllers/CraftyImportController.php (and Crafty PHP)  
 - app/Services/CraftyConfigTransformer.php  
 - app/Services/CraftySyntax/*  
@@ -154,7 +154,7 @@ Per the plan, the following were verified only; no changes were required:
 - lupo-includes/modules/channels/*  
 - lupo-includes/modules/module-loader.php  
 - lupo-includes/models/GroundedAgentModel.php  
-- database/install/generate_content_seed.php, generate_hierarchical_seed_3.0.12.php  
+- lupo-database/install/generate_content_seed.php, generate_hierarchical_seed_3.0.12.php  
 
 ---
 

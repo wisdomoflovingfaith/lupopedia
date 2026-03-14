@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "actors\ARCHITECTURE.md"
+  file_path_from_root: "lupo-actors\ARCHITECTURE.md"
   file_hash: "66cf769ef2e703c6c3ddbb905e01f929db24dc3b88930d410eedf741703bfc6e"
-  file_path_from_root: "actors\ARCHITECTURE.md"
+  file_path_from_root: "lupo-actors\ARCHITECTURE.md"
   file_hash: "6c1e87761be916fb4e56668a2d68bb5ec35cc8efc252a21d3e9c7c260ae05c2e"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -64,7 +64,7 @@ lupopedia.footer:
 
 This directory implements the actor-centric foundation for the Lupopedia Semantic OS. It is designed to be:
 1. **Portable**: All data is stored in human-readable and machine-parseable formats (JSON, NDJSON, MD).
-2. **Transferable**: Mapping layers (in `meta/schema.json`) allow for easy sync with relational database tables.
+2. **Transferable**: Mapping layers (in `lupo-meta/schema.json`) allow for easy sync with relational database tables.
 3. **Scalable**: Append-only logs (NDJSON) handle high-volume activity data without rewriting large files.
 4. **Secure**: Sensitive data in `credentials.json` is encrypted at rest.
 5. **Semantic**: Full integration with FLARE graph edges and FLIP headers for cross-actor relationship tracking.

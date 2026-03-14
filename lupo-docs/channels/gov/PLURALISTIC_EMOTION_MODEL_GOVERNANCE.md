@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\channels\gov\PLURALISTIC_EMOTION_MODEL_GOVERNANCE.md"
+  file_path_from_root: "lupo-docs\channels\gov\PLURALISTIC_EMOTION_MODEL_GOVERNANCE.md"
   file_hash: "e3ace8e512c3352b1a125cd1765dad9f490d832504800f4e7ff4201338426f70"
-  file_path_from_root: "docs\channels\gov\PLURALISTIC_EMOTION_MODEL_GOVERNANCE.md"
+  file_path_from_root: "lupo-docs\channels\gov\PLURALISTIC_EMOTION_MODEL_GOVERNANCE.md"
   file_hash: "d83259f994e175f876af919d5c5b4f3f0efc6ae475baa92194ec3bf45c0efa96"
   last_updated_utc: "20260228"
   system_version: "4.0.50"

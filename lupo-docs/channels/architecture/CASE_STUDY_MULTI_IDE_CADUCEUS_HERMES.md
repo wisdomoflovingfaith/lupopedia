@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\channels\architecture\CASE_STUDY_MULTI_IDE_CADUCEUS_HERMES.md"
+  file_path_from_root: "lupo-docs\channels\architecture\CASE_STUDY_MULTI_IDE_CADUCEUS_HERMES.md"
   file_hash: "bc953c55ab49d0b9aea483b1f40f6ccb627aa36adfae0750d05636f284c66760"
-  file_path_from_root: "docs\channels\architecture\CASE_STUDY_MULTI_IDE_CADUCEUS_HERMES.md"
+  file_path_from_root: "lupo-docs\channels\architecture\CASE_STUDY_MULTI_IDE_CADUCEUS_HERMES.md"
   file_hash: "a76fabfb2a628043477ee67d76f932de371c2a69e704b073ca1020e3559bfb24"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -110,12 +110,12 @@ The correct architecture is:
 - âœ… HERMES routes messages and may optionally use CADUCEUS emotional current as context
 
 This drift appeared in:
-- `docs/protocols/CADUCEUS_ROUTING_RFC.md`
-- `docs/agents/HERMES_AND_CADUCEUS.md`
-- `docs/core/ARCHITECTURE_SYNC.md`
-- `docs/core/ARCHITECTURE.md`
-- `docs/core/DEFINITION.md`
-- `docs/doctrine/AGENT_ROUTING_DOCTRINE.md`
+- `lupo-docs/protocols/CADUCEUS_ROUTING_RFC.md`
+- `lupo-docs/agents/HERMES_AND_CADUCEUS.md`
+- `lupo-docs/core/ARCHITECTURE_SYNC.md`
+- `lupo-docs/core/ARCHITECTURE.md`
+- `lupo-docs/core/DEFINITION.md`
+- `lupo-docs/doctrine/AGENT_ROUTING_DOCTRINE.md`
 - `VISION.md`
 - `README.md`
 - `EXECUTIVE_SUMMARY.md`
@@ -309,15 +309,15 @@ Kiro also validated that the THREAD_MOOD_RFC and the agent documentation were co
 
 However, Kiro identified three files with minor inconsistencies:
 
-1. **docs/WHAT_LUPOPEDIA_IS.md**
+1. **lupo-docs/WHAT_LUPOPEDIA_IS.md**
    - Outdated phrase: "CADUCEUS coordination"
    - Corrected to: "CADUCEUS emotional balancing"
 
-2. **docs/core/ARCHITECTURE_SYNC.md**
+2. **lupo-docs/core/ARCHITECTURE_SYNC.md**
    - Incorrect wording: "computes routing signals via CADUCEUS"
    - Corrected to: "may optionally use the CADUCEUS emotional current as context"
 
-3. **docs/README.md**
+3. **lupo-docs/README.md**
    - Needed clarification that CADUCEUS is an emotional balancer
    - Updated to: "HERMES (routing), CADUCEUS (emotional balancing), IRIS, DialogManager, and THOTH"
 

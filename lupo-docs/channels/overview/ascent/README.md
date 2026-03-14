@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\channels\overview\ascent\README.md"
+  file_path_from_root: "lupo-docs\channels\overview\ascent\README.md"
   file_hash: "d79fb0c32ff7334677100bb8b3498e06cd7ad046ae229cddf8fdcd0878b5d7fb"
-  file_path_from_root: "docs\channels\overview\ascent\README.md"
+  file_path_from_root: "lupo-docs\channels\overview\ascent\README.md"
   file_hash: "a72b059f90db683875605efb1e139a1fd85e6e37cf09e7a9c1e6d46c258f74c6"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -147,10 +147,10 @@ Version 3.1.0 is ready when:
 
 ## Related Documentation
 
-- **Version 3.0.60 Plan:** `docs/VERSION_3_0_60_PLAN.md`
-- **Ascent Manifest:** `docs/V4_1_0_ASCENT_MANIFEST_CLEAN.md`
-- **Monday Start:** `docs/MONDAY_START_OF_DAY.md`
-- **History Documentation:** `docs/history/`
+- **Version 3.0.60 Plan:** `lupo-docs/VERSION_3_0_60_PLAN.md`
+- **Ascent Manifest:** `lupo-docs/V4_1_0_ASCENT_MANIFEST_CLEAN.md`
+- **Monday Start:** `lupo-docs/MONDAY_START_OF_DAY.md`
+- **History Documentation:** `lupo-docs/history/`
 
 ---
 

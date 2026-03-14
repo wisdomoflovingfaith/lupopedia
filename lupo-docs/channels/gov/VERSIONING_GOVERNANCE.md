@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\channels\gov\VERSIONING_GOVERNANCE.md"
+  file_path_from_root: "lupo-docs\channels\gov\VERSIONING_GOVERNANCE.md"
   file_hash: "552e0e21ee3b98bf5fb00c3e32b957b48305e365ecfbb60b3ff32d05a5aae239"
-  file_path_from_root: "docs\channels\gov\VERSIONING_GOVERNANCE.md"
+  file_path_from_root: "lupo-docs\channels\gov\VERSIONING_GOVERNANCE.md"
   file_hash: "0f6cd4d174563d031b61e7d513fb80125a233cbd866427544eebc48afbf04884"
   last_updated_utc: "20260228"
   system_version: "4.0.50"

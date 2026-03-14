@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\channels\doctrine\PATTERN_ETHICS_DOCTRINE.md"
+  file_path_from_root: "lupo-docs\channels\doctrine\PATTERN_ETHICS_DOCTRINE.md"
   file_hash: "ac078966040cc98fc3f4b440358f15d076d05daa80b8ea7c23acc7f12cfc45c5"
-  file_path_from_root: "docs\channels\doctrine\PATTERN_ETHICS_DOCTRINE.md"
+  file_path_from_root: "lupo-docs\channels\doctrine\PATTERN_ETHICS_DOCTRINE.md"
   file_hash: "8773426ccabac59d93459f21f2efc9ade6d70fcb8e682ec2a2e1e4c2bcc4cd12"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -168,7 +168,7 @@ If a proposed pattern use is not clearly allowed or prohibited:
 2. Check PT_001 and NO_ADS_001
 3. Check GOV-PROHIBIT-001 and GOV-AD-PROHIBIT-001
 4. Escalate to Pack Review (any two agents + one human)
-5. Document the decision in `docs/logs/`
+5. Document the decision in `lupo-docs/logs/`
 
 If uncertainty remains, the default is **prohibition**.
 

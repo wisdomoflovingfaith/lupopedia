@@ -131,7 +131,7 @@ wolfie.headers:
 flip.footer:
   referenced_by_files:
     - "CHANGELOG.md"
-    - "channels/42/broadcasts/20260223_system_wide_version_alignment_4_0_36.md"
+    - "lupo-channels/42/broadcasts/20260223_system_wide_version_alignment_4_0_36.md"
   referenced_by_channels:
     - 42
   referenced_by_actors:
@@ -196,7 +196,7 @@ This document specifies the requirements for updating the CHANGELOG.md file to d
 #### Acceptance Criteria
 
 1. THE Content_Writer SHALL document the creation of the system-wide version alignment broadcast file
-2. THE Content_Writer SHALL include the full file path: channels/42/broadcasts/20260223_system_wide_version_alignment_4_0_36.md
+2. THE Content_Writer SHALL include the full file path: lupo-channels/42/broadcasts/20260223_system_wide_version_alignment_4_0_36.md
 3. THE Content_Writer SHALL describe the broadcast purpose (announcing version 4.0.36 as active development cycle)
 4. THE Content_Writer SHALL list the key broadcast contents (version update instructions, doctrine compliance requirements, agent responsibilities)
 5. THE Content_Writer SHALL specify the target audience (all IDE agents: KIRO, Windsurf, Antigravity)

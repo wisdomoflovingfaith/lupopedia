@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\channels\appendix\appendix\MYSQL_TO_POSTGRES_MEMORY.md"
+  file_path_from_root: "lupo-docs\channels\appendix\appendix\MYSQL_TO_POSTGRES_MEMORY.md"
   file_hash: "bae2172437e75d8878ab333fefe6a5b9dac1ea262f57ddc4e7bc17a375cc0eb1"
-  file_path_from_root: "docs\channels\appendix\appendix\MYSQL_TO_POSTGRES_MEMORY.md"
+  file_path_from_root: "lupo-docs\channels\appendix\appendix\MYSQL_TO_POSTGRES_MEMORY.md"
   file_hash: "48a872a92e219b8b26122a67325414ba2668d47acb5100d9201c71bb30ab4d15"
   last_updated_utc: "20260228"
   system_version: "4.0.50"

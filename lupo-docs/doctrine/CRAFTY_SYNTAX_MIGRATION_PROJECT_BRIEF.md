@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\doctrine\CRAFTY_SYNTAX_MIGRATION_PROJECT_BRIEF.md"
+  file_path_from_root: "lupo-docs\doctrine\CRAFTY_SYNTAX_MIGRATION_PROJECT_BRIEF.md"
   file_hash: "dd7d68427c5ad1166b78fee3ac31d3abe0f11a61ec16338db307456a06e3bacf"
-  file_path_from_root: "docs\doctrine\CRAFTY_SYNTAX_MIGRATION_PROJECT_BRIEF.md"
+  file_path_from_root: "lupo-docs\doctrine\CRAFTY_SYNTAX_MIGRATION_PROJECT_BRIEF.md"
   file_hash: "8b3db09820bef02ab94f2ecc3aaad89933b7601e12997d3fed939a256611ba7b"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -64,7 +64,7 @@ lupopedia.footer:
 ---
 # FLIP Header (alias: Wolfie Header, CROP Header, FLIPPING Header)
 wolfie.headers: explicit architecture with structured clarity for every file.
-file_path_from_root: docs/doctrine/CRAFTY_SYNTAX_MIGRATION_PROJECT_BRIEF.md
+file_path_from_root: lupo-docs/doctrine/CRAFTY_SYNTAX_MIGRATION_PROJECT_BRIEF.md
 file.last_modified_system_version: "4.0.16"
 file.last_modified_utc: "20260218000000"
 channel_id: 42   # ANUBIS adoption channel
@@ -74,7 +74,7 @@ atoms:
   recovery_event: true
 X-Lupo-Actor-ID: 2035
 X-Lupo-Actor-Identity: "Lupopedia Audit Tool (Auto-Fixed)"
-X-Lupo-File-Path: docs/doctrine/CRAFTY_SYNTAX_MIGRATION_PROJECT_BRIEF.md
+X-Lupo-File-Path: lupo-docs/doctrine/CRAFTY_SYNTAX_MIGRATION_PROJECT_BRIEF.md
 ---
 
 # Crafty Syntax → Lupopedia: Project Brief (Authoritative)
@@ -92,7 +92,7 @@ We are implementing **ALL** legacy Crafty Syntax 3.7.5 features into the new Lup
 ## CRITICAL RULES ABOUT THE DATABASE
 
 1. **The authoritative schema is defined ONLY in the TOON files** located in:
-   - `docs/toons/`
+   - `lupo-docs/toons/`
    You must read and interpret the schema from these TOON files. If you are unsure about a column, enum, or table definition, you must check the TOON file. Assume you may be wrong unless the TOON confirms it.
 
 2. **You must NOT infer schema** from MySQL introspection or phpMyAdmin. The live database may lag behind or contain legacy artifacts.
@@ -232,4 +232,4 @@ By the end of this thread, we should have:
 
 ---
 
-**Reference:** Implementation plan and phase status → `docs/doctrine/CRAFTY_SYNTAX_STATE_BASED_IMPLEMENTATION_PLAN.md`
+**Reference:** Implementation plan and phase status → `lupo-docs/doctrine/CRAFTY_SYNTAX_STATE_BASED_IMPLEMENTATION_PLAN.md`

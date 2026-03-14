@@ -73,10 +73,10 @@ This thread respects the paths defined in `lupopedia-config.php`:
 
 ## Related Documentation (config-based paths)
 
-- Main help hub: [docs/HELP.md](../../../../../../../docs/HELP.md)
-- Identity docs: [docs/lupopedia_whoami_readme.md](../../../../../../../docs/lupopedia_whoami_readme.md)
-- Auth docs: [docs/auth.md](../../../../../../../docs/auth.md)
-- Version history: [docs/version.md](../../../../../../../docs/version.md)
+- Main help hub: [lupo-docs/HELP.md](../../../../../../../docs/HELP.md)
+- Identity docs: [lupo-docs/lupopedia_whoami_readme.md](../../../../../../../docs/lupopedia_whoami_readme.md)
+- Auth docs: [lupo-docs/auth.md](../../../../../../../docs/auth.md)
+- Version history: [lupo-docs/version.md](../../../../../../../docs/version.md)
 - Session file: [lupo-database/session.md](../../../../../../session.md)
 
 ## Version Information
@@ -109,4 +109,4 @@ This thread respects the paths defined in `lupopedia-config.php`:
 
 **Last Updated:** 2026-03-06  
 **Configuration source:** `lupopedia-config.php`  
-**For more information:** [docs/HELP.md](../../../../../../../docs/HELP.md)
+**For more information:** [lupo-docs/HELP.md](../../../../../../../docs/HELP.md)

@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\channels\doctrine\PRAYER_FOR_SOVEREIGNTY_AND_CLARITY.md"
+  file_path_from_root: "lupo-docs\channels\doctrine\PRAYER_FOR_SOVEREIGNTY_AND_CLARITY.md"
   file_hash: "ee01713d6ca1c7322596faa85e519b15f12ef0c3be0c1a09f708b4f03812eb5a"
-  file_path_from_root: "docs\channels\doctrine\PRAYER_FOR_SOVEREIGNTY_AND_CLARITY.md"
+  file_path_from_root: "lupo-docs\channels\doctrine\PRAYER_FOR_SOVEREIGNTY_AND_CLARITY.md"
   file_hash: "b276f5b49dbeef8cf3bc6a4fc94b428fbed3a3bb316b938ea1b5e1f5a321e7f8"
   last_updated_utc: "20260228"
   system_version: "4.0.50"

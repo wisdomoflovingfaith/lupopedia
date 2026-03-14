@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -32,7 +32,7 @@ lupopedia.footer:
 
 ---
 lupopedia.headers:
-  file_path_from_root: "docs/guidelines/list_csv_documentation.md"
+  file_path_from_root: "lupo-docs/guidelines/list_csv_documentation.md"
   file_hash: "e08501bf772388793ced517efaccc54634f3b19a864ecb2e6863d23e867afc34"
   system_version: "4.0.50"
   channel_id: 1
@@ -49,13 +49,13 @@ lupopedia.headers:
   lupo_agent: "windsurf"
 
 lupopedia.edges:
-  file_path_from_root: "docs\guidelines\list_csv_documentation.md"
+  file_path_from_root: "lupo-docs\guidelines\list_csv_documentation.md"
   outbound_edges:
-    - { to: "channels/list.csv", type: "examples", weight: 1.0, reason: "Channels list example" }
-    - { to: "channels/departments/list.csv", type: "examples", weight: 0.9, reason: "Departments list example" }
-    - { to: "channels/42/actors/list.csv", type: "examples", weight: 0.9, reason: "Actors list example" }
-    - { to: "docs/toons/", type: "references", weight: 0.8, reason: "TOON schema reference" }
-    - { to: "database/migrations/", type: "references", weight: 0.7, reason: "Database schema and migrations" }
+    - { to: "lupo-channels/list.csv", type: "examples", weight: 1.0, reason: "Channels list example" }
+    - { to: "lupo-channels/departments/list.csv", type: "examples", weight: 0.9, reason: "Departments list example" }
+    - { to: "lupo-channels/42/actors/list.csv", type: "examples", weight: 0.9, reason: "Actors list example" }
+    - { to: "lupo-docs/toons/", type: "references", weight: 0.8, reason: "TOON schema reference" }
+    - { to: "lupo-database/migrations/", type: "references", weight: 0.7, reason: "Database schema and migrations" }
   semantic_tags: ["list_csv_documentation", "database_integration", "file_structure"]
 
   needs_review: ["delegation_chain"]
@@ -76,17 +76,17 @@ List.csv files provide structured, comma-separated data exports for channels, de
 ## File Locations and Structure
 
 ### Channels List
-**Location**: `channels/list.csv`  
+**Location**: `lupo-channels/list.csv`  
 **Purpose**: Complete registry of all channels in the system  
 **Primary Key**: `channel_id`
 
 ### Departments List
-**Location**: `channels/departments/list.csv`  
+**Location**: `lupo-channels/departments/list.csv`  
 **Purpose**: Complete registry of all departments in the system  
 **Primary Key**: `department_id`
 
 ### Actors Lists
-**Location**: `channels/{channel_id}/actors/list.csv`  
+**Location**: `lupo-channels/{channel_id}/actors/list.csv`  
 **Purpose**: Registry of all actors assigned to a specific channel  
 **Primary Key**: `actor_id`
 
@@ -152,13 +152,13 @@ try {
             : [];
             
         $channels = $db->fetchAll("SELECT * FROM {$table_prefix}channels {$where} ORDER BY is_deleted ASC, channel_id ASC, created_ymdhis DESC", $params);
-        generate_csv('channels/list.csv', $channels);
+        generate_csv('lupo-channels/list.csv', $channels);
     }
     
     // Generate departments list
     if ($type === 'all' || $type === 'departments') {
         $departments = $db->fetchAll("SELECT * FROM {$table_prefix}departments WHERE is_deleted = 0 ORDER BY department_id ASC, created_ymdhis DESC");
-        generate_csv('channels/departments/list.csv', $departments);
+        generate_csv('lupo-channels/departments/list.csv', $departments);
     }
     
     // Generate actors lists for each channel
@@ -173,7 +173,7 @@ try {
                  ORDER BY a.is_deleted ASC, a.actor_id ASC, a.created_ymdhis DESC",
                 ['channel_id' => $channel_id]
             );
-            generate_csv("channels/{$channel_id}/actors/list.csv", $actors);
+            generate_csv("lupo-channels/{$channel_id}/actors/list.csv", $actors);
         } else {
             // Generate for all channels
             $channels_list = $db->fetchAll("SELECT channel_id FROM {$table_prefix}channels WHERE is_deleted = 0 ORDER BY channel_id ASC");
@@ -186,7 +186,7 @@ try {
                          ORDER BY a.is_deleted ASC, a.actor_id ASC, a.created_ymdhis DESC",
                     ['channel_id' => $channel['channel_id']]
                 );
-                generate_csv("channels/{$channel['channel_id']}/actors/list.csv", $actors);
+                generate_csv("lupo-channels/{$channel['channel_id']}/actors/list.csv", $actors);
             }
         }
     }
@@ -240,24 +240,24 @@ function generate_csv($filename, $data) {
 #### Command Line Execution
 ```bash
 # Generate all list.csv files
-php scripts/generate_list_csv.php
+php lupo-scripts/generate_list_csv.php
 
 # Generate specific entity type
-php scripts/generate_list_csv.php --type=channels
-php scripts/generate_list_csv.php --type=departments
-php scripts/generate_list_csv.php --type=actors
+php lupo-scripts/generate_list_csv.php --type=channels
+php lupo-scripts/generate_list_csv.php --type=departments
+php lupo-scripts/generate_list_csv.php --type=actors
 
 # Generate actors for specific channel
-php scripts/generate_list_csv.php --type=actors --channel=42
+php lupo-scripts/generate_list_csv.php --type=actors --channel=42
 
 # Generate with date range
-php scripts/generate_list_csv.php --type=channels --from=20260201 --to=20260228
+php lupo-scripts/generate_list_csv.php --type=channels --from=20260201 --to=20260228
 
 # Generate for specific federation node
-php scripts/generate_list_csv.php --type=channels --federation=1
+php lupo-scripts/generate_list_csv.php --type=channels --federation=1
 
 # Generate backup with all data including deleted records
-php scripts/generate_list_csv.php --backup --type=all
+php lupo-scripts/generate_list_csv.php --backup --type=all
 ```
 
 ### Database Schema Mapping
@@ -356,12 +356,12 @@ class ListCSVManager {
     
     public function regenerateChannelList() {
         $channels = $this->db->fetchAll("SELECT * FROM lupo_channels WHERE is_deleted = 0 ORDER BY channel_id ASC");
-        $this->generateCSV('channels/list.csv', $channels);
+        $this->generateCSV('lupo-channels/list.csv', $channels);
     }
     
     public function regenerateDepartmentList() {
         $departments = $this->db->fetchAll("SELECT * FROM lupo_departments WHERE is_deleted = 0 ORDER BY department_id ASC");
-        $this->generateCSV('channels/departments/list.csv', $departments);
+        $this->generateCSV('lupo-channels/departments/list.csv', $departments);
     }
     
     public function regenerateActorList($channel_id) {
@@ -373,7 +373,7 @@ class ListCSVManager {
              ORDER BY a.actor_id ASC",
             array('channel_id' => $channel_id)
         );
-        $this->generateCSV("channels/{$channel_id}/actors/list.csv", $actors);
+        $this->generateCSV("lupo-channels/{$channel_id}/actors/list.csv", $actors);
     }
     
     private function generateCSV($filename, $data) {
@@ -416,13 +416,13 @@ class DatabaseChangeHook {
 ### System Administration
 ```bash
 # Generate all CSV files for backup
-php scripts/generate_list_csv.php --backup
+php lupo-scripts/generate_list_csv.php --backup
 
 # Generate with specific date range
-php scripts/generate_list_csv.php --from=20260201 --to=20260228
+php lupo-scripts/generate_list_csv.php --from=20260201 --to=20260228
 
 # Generate for specific federation node
-php scripts/generate_list_csv.php --federation=1
+php lupo-scripts/generate_list_csv.php --federation=1
 ```
 
 ### Data Migration
@@ -453,16 +453,16 @@ $app->get('/api/export/csv/{type}', function($request, $response, $args) {
     
     switch ($type) {
         case 'channels':
-            $file = 'channels/list.csv';
+            $file = 'lupo-channels/list.csv';
             break;
         case 'departments':
-            $file = 'channels/departments/list.csv';
+            $file = 'lupo-channels/departments/list.csv';
             break;
         case 'actors':
             if (!$channel_id) {
                 return $response->withJson(['error' => 'channel_id required'], 400);
             }
-            $file = "channels/{$channel_id}/actors/list.csv";
+            $file = "lupo-channels/{$channel_id}/actors/list.csv";
             break;
         default:
             return $response->withJson(['error' => 'Invalid type'], 400);
@@ -489,7 +489,7 @@ $app->get('/api/export/csv/{type}', function($request, $response, $args) {
 ```php
 // Cache generated CSV files
 class CSVCache {
-    private $cache_dir = 'cache/csv/';
+    private $cache_dir = 'lupo-cache/csv/';
     private $cache_duration = 3600; // 1 hour
     
     public function getCachedCSV($filename, $query_hash) {
@@ -574,7 +574,7 @@ is_deleted,actor_id,created_ymdhis,actor_type,display_name,email,channel_id,depa
 ## Database Schema Mapping
 
 ### TOON Schema Reference
-**Source**: `docs/toons/*.toon.json` files  
+**Source**: `lupo-docs/toons/*.toon.json` files  
 **Purpose**: Canonical database structure definition  
 **Usage**: All CSV generation must reference TOON field order
 
@@ -588,7 +588,7 @@ is_deleted,actor_id,created_ymdhis,actor_type,display_name,email,channel_id,depa
 ### Schema Change Handling
 ```php
 function get_toon_field_order($table_name) {
-    $toon_file = "docs/toons/{$table_name}.toon.json";
+    $toon_file = "lupo-docs/toons/{$table_name}.toon.json";
     $toon_data = json_decode(file_get_contents($toon_file), true);
     return $toon_data['fields'];
 }
@@ -609,7 +609,7 @@ function generate_csv_from_toon($table_name, $filename) {
 This documentation for `list.csv` files is comprehensive, well-organized, and serves its stated purpose as a "Complete guide for list.csv files across channels, departments, and actors with database integration." It covers everything from high level overviews to low-level implementation details, including code snippets in PHP, SQL, and bash, which makes it practical for developers, administrators, and users involved in system maintenance. The structure follows a logical progression: starting with basics (locations, structure), moving to integration (database, file system), and ending with advanced topics (performance, error handling, best practices). The inclusion of metadata in the FLARE header and footer adds a professional touch, facilitating versioning and discoverability.
 
 Strengths:
-- **Clarity and Readability**: The markdown format is clean, with clear headings, bullet points, and code blocks. Terms like "TOON schema" are referenced consistently, assuming familiarity but providing links (e.g., to `docs/toons/`).
+- **Clarity and Readability**: The markdown format is clean, with clear headings, bullet points, and code blocks. Terms like "TOON schema" are referenced consistently, assuming familiarity but providing links (e.g., to `lupo-docs/toons/`).
 - **Technical Depth**: The PHP scripts for generation, hooks for real-time sync, and SQL mappings are detailed and appear functional. For instance, the `generate_csv` function handles directory creation, header writing, and data export robustly. Usage scenarios (e.g., command-line execution, API integration, data migration) make it actionable. Error handling and best practices sections address real-world concerns like memory management and security.
 - **Practicality**: Usage scenarios (e.g., command-line execution, API integration, data migration) make it actionable. Error handling and best practices sections address real-world concerns like memory management and security.
 - **Consistency**: Column orders, primary keys, and sort conventions are uniformly described. The focus on soft deletes (via `is_deleted` and `deleted_ymdhis`) is a good design choice for data integrity.

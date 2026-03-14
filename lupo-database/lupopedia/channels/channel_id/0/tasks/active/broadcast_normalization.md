@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "channels\0\tasks\active\broadcast_normalization.md"
+  file_path_from_root: "lupo-channels\0\tasks\active\broadcast_normalization.md"
   file_hash: "d295ef1ecc1905d8b141967edd9abb7bdaa4f6d28c6ed2d00e746b871746175b"
-  file_path_from_root: "channels\0\tasks\active\broadcast_normalization.md"
+  file_path_from_root: "lupo-channels\0\tasks\active\broadcast_normalization.md"
   file_hash: "2e88aa239490c7d8217e3905eef443aa87ca0253b3e01dd6ee8abd7ae54ed34e"
   last_updated_utc: "20260228"
   system_version: "4.0.73"
@@ -141,11 +141,11 @@ FLIP_FOOTER_END -->
    - Validate actor IDs against registry
 
 4. **Archive duplicates** (if any)
-   - Move to `channels/{id}/broadcasts/archive/`
+   - Move to `lupo-channels/{id}/broadcasts/archive/`
    - Document in archive log
 
 5. **Verify normalization**
-   - Re-run: `scripts/audit_channel_broadcasts.ps1`
+   - Re-run: `lupo-scripts/audit_channel_broadcasts.ps1`
    - Target: 0 violations
 
 ## Success Criteria
@@ -172,7 +172,7 @@ This task is blocked by database installation (need to verify actor IDs against 
   "references": [
     "BROADCAST_AUDIT_REPORT_4.0.45.json",
     "DUAL_CHANNEL_BROADCAST_AUDIT_REPORT_4.0.45.md",
-    "scripts/audit_channel_broadcasts.ps1"
+    "lupo-scripts/audit_channel_broadcasts.ps1"
   ],
   "implements": "broadcast_normalization_standard",
   "depends_on": "CH0-20260225-001",

@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\channels\schema\migrations\analysis\IDENTITY_OVERRIDE_IMPLEMENTATION_PLAN.md"
+  file_path_from_root: "lupo-docs\channels\schema\migrations\analysis\IDENTITY_OVERRIDE_IMPLEMENTATION_PLAN.md"
   file_hash: "102d29e2f2ea75f820115ac54eac2c91721a74a5f42ed4604d0c8c70311d81e8"
-  file_path_from_root: "docs\channels\schema\migrations\analysis\IDENTITY_OVERRIDE_IMPLEMENTATION_PLAN.md"
+  file_path_from_root: "lupo-docs\channels\schema\migrations\analysis\IDENTITY_OVERRIDE_IMPLEMENTATION_PLAN.md"
   file_hash: "fc39863074d0dcedc2028d979acf9b5015b4bb75ffe26bcf9a89352464db3480"
   last_updated_utc: "20260228"
   system_version: "4.0.50"

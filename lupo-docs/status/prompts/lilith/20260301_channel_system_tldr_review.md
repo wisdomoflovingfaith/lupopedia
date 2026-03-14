@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "review"
-  file_path_from_root: "prompts/lilith/20260301_channel_system_tldr_review.md"
+  file_path_from_root: "lupo-prompts/lilith/20260301_channel_system_tldr_review.md"
   system_version: "4.0.52"
   channel_id: 42
   actor_id: 2038
@@ -19,12 +19,12 @@ lupopedia.headers:
 
 lupopedia.edges:
   outbound_edges:
-    - { to: "docs/database/lupopedia/tables/CHANNEL_SYSTEM_TLDR.md", type: "reviews", weight: 1.0 }
-    - { to: "docs/toons/lupo_channels.toon.json", type: "schema_reference", weight: 1.0 }
-    - { to: "docs/toons/lupo_channel_content.toon.json", type: "schema_reference", weight: 0.9 }
-    - { to: "docs/toons/lupo_channel_state.toon.json", type: "schema_reference", weight: 0.9 }
-    - { to: "docs/toons/lupo_channel_boot_lifecycle.toon.json", type: "schema_reference", weight: 0.9 }
-    - { to: "docs/doctrine/FLARE/FLARE_DOCTRINE.md", type: "references", weight: 0.8 }
+    - { to: "lupo-docs/database/lupopedia/tables/CHANNEL_SYSTEM_TLDR.md", type: "reviews", weight: 1.0 }
+    - { to: "lupo-docs/toons/lupo_channels.toon.json", type: "schema_reference", weight: 1.0 }
+    - { to: "lupo-docs/toons/lupo_channel_content.toon.json", type: "schema_reference", weight: 0.9 }
+    - { to: "lupo-docs/toons/lupo_channel_state.toon.json", type: "schema_reference", weight: 0.9 }
+    - { to: "lupo-docs/toons/lupo_channel_boot_lifecycle.toon.json", type: "schema_reference", weight: 0.9 }
+    - { to: "lupo-docs/doctrine/FLARE/FLARE_DOCTRINE.md", type: "references", weight: 0.8 }
   semantic_tags: ["channels", "tldr", "review", "system_channel_0", "lilith"]
 
 lupopedia.footer:
@@ -41,7 +41,7 @@ lupopedia.footer:
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "review"
-  file_path_from_root: "prompts/lilith/20260301_channel_system_tldr_review.md"
+  file_path_from_root: "lupo-prompts/lilith/20260301_channel_system_tldr_review.md"
   system_version: "4.0.52"
   channel_id: 42
   actor_id: 2038
@@ -57,12 +57,12 @@ lupopedia.headers:
 
 lupopedia.edges:
   outbound_edges:
-    - { to: "docs/database/lupopedia/tables/CHANNEL_SYSTEM_TLDR.md", type: "reviews", weight: 1.0 }
-    - { to: "docs/toons/lupo_channels.toon.json", type: "schema_reference", weight: 1.0 }
-    - { to: "docs/toons/lupo_channel_content.toon.json", type: "schema_reference", weight: 0.9 }
-    - { to: "docs/toons/lupo_channel_state.toon.json", type: "schema_reference", weight: 0.9 }
-    - { to: "docs/toons/lupo_channel_boot_lifecycle.toon.json", type: "schema_reference", weight: 0.9 }
-    - { to: "docs/doctrine/FLARE/FLARE_DOCTRINE.md", type: "references", weight: 0.8 }
+    - { to: "lupo-docs/database/lupopedia/tables/CHANNEL_SYSTEM_TLDR.md", type: "reviews", weight: 1.0 }
+    - { to: "lupo-docs/toons/lupo_channels.toon.json", type: "schema_reference", weight: 1.0 }
+    - { to: "lupo-docs/toons/lupo_channel_content.toon.json", type: "schema_reference", weight: 0.9 }
+    - { to: "lupo-docs/toons/lupo_channel_state.toon.json", type: "schema_reference", weight: 0.9 }
+    - { to: "lupo-docs/toons/lupo_channel_boot_lifecycle.toon.json", type: "schema_reference", weight: 0.9 }
+    - { to: "lupo-docs/doctrine/FLARE/FLARE_DOCTRINE.md", type: "references", weight: 0.8 }
   semantic_tags: ["channels", "tldr", "review", "system_channel_0", "lilith"]
 
 lupopedia.footer:
@@ -178,7 +178,7 @@ The FLARE header example includes `federation_node_id: 0`, but the content table
 INSERT INTO lupo_channel_content
 (channel_id, federation_node_id, file_path, web_path, metadata_json, created_ymdhis)
 VALUES
-(0, 0, 'channels/0/content/federation_node_id/0/FLARE.md', 
+(0, 0, 'lupo-channels/0/content/federation_node_id/0/FLARE.md', 
 'http://www.lupopedia.com/FLARE',
 '{"description": "Canonical FLARE definition"}', 20260301120000);
 ```
@@ -211,14 +211,14 @@ lupopedia.headers:
 
 lupopedia.edges:
   outbound_edges:
-    - { to: "docs/toons/lupo_channels.toon.json", type: "schema_reference", weight: 1.0 }
-    - { to: "docs/toons/lupo_channel_content.toon.json", type: "schema_reference", weight: 1.0 }
-    - { to: "docs/toons/lupo_channel_state.toon.json", type: "schema_reference", weight: 1.0 }
-    - { to: "docs/toons/lupo_channel_logs.toon.json", type: "schema_reference", weight: 1.0 }
-    - { to: "docs/toons/lupo_channel_files.toon.json", type: "schema_reference", weight: 1.0 }
-    - { to: "docs/toons/lupo_channel_escalations.toon.json", type: "schema_reference", weight: 1.0 }
-    - { to: "docs/toons/lupo_channel_boot_lifecycle.toon.json", type: "schema_reference", weight: 1.0 }
-    - { to: "docs/doctrine/FLARE/FLARE_DOCTRINE.md", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/toons/lupo_channels.toon.json", type: "schema_reference", weight: 1.0 }
+    - { to: "lupo-docs/toons/lupo_channel_content.toon.json", type: "schema_reference", weight: 1.0 }
+    - { to: "lupo-docs/toons/lupo_channel_state.toon.json", type: "schema_reference", weight: 1.0 }
+    - { to: "lupo-docs/toons/lupo_channel_logs.toon.json", type: "schema_reference", weight: 1.0 }
+    - { to: "lupo-docs/toons/lupo_channel_files.toon.json", type: "schema_reference", weight: 1.0 }
+    - { to: "lupo-docs/toons/lupo_channel_escalations.toon.json", type: "schema_reference", weight: 1.0 }
+    - { to: "lupo-docs/toons/lupo_channel_boot_lifecycle.toon.json", type: "schema_reference", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/FLARE/FLARE_DOCTRINE.md", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   version: "4.0.52"

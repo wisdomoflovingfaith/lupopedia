@@ -25,7 +25,7 @@ Integrate `workspace_path` and `php_namespace` as persistent columns in the `lup
 ## Accomplishments
 - **Database Schema:** Added `workspace_path` and `php_namespace` columns to `lupo_actors`.
 - **Migration:** Created `20260306_add_actor_workspace_namespace.sql` with backfill logic.
-- **Registry Sync:** Created `scripts/registry_sync.php` to synchronize DB metadata back to `registry.json` for offline fallback.
+- **Registry Sync:** Created `lupo-scripts/registry_sync.php` to synchronize DB metadata back to `registry.json` for offline fallback.
 - **Context Integration:** Updated `ContextResolver` to fetch and utilize persistent workspace paths.
 
 ## Verification

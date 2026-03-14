@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "channels\0\broadcasts\20260225200000_1000_10000_0_thread_identity_db_schema_complete.md"
+  file_path_from_root: "lupo-channels\0\broadcasts\20260225200000_1000_10000_0_thread_identity_db_schema_complete.md"
   file_hash: "81e9cb6b27e0d09fb3085aa422fbd804156bb7a73cf64f4ace9efa3210d10d68"
-  file_path_from_root: "channels\0\broadcasts\20260225200000_1000_10000_0_thread_identity_db_schema_complete.md"
+  file_path_from_root: "lupo-channels\0\broadcasts\20260225200000_1000_10000_0_thread_identity_db_schema_complete.md"
   file_hash: "e8bd000ecce034e76ea3968673f02f66b41ae4dd954f9f2a1179828680989d79"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -119,8 +119,8 @@ Lead: Kiro (1000)
 {
   "references": [
     "KIRO_THREAD_IDENTITY_AUDIT_4.0.45.md",
-    "database/migrations/add_tasks_schema_4.0.45.sql",
-    "database/migrations/seed_tasks_bootstrap_4.0.45.sql",
+    "lupo-database/migrations/add_tasks_schema_4.0.45.sql",
+    "lupo-database/migrations/seed_tasks_bootstrap_4.0.45.sql",
     "lupo-agents/19/",
     "lupo-agents/25/"
   ],

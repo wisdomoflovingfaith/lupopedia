@@ -18,7 +18,7 @@ lupopedia.headers:
 Version 4.0.61 centralizes version display and checks:
 
 - **lupo-includes/version.php** — Defines LUPOPEDIA_VERSION; adds `get_lupo_version()` and `is_version_at_least($min_version)`.
-- **docs/version.md** — Version history, summary for 4.0.61, table 4.0.57–4.0.61, upgrade notes.
+- **lupo-docs/version.md** — Version history, summary for 4.0.61, table 4.0.57–4.0.61, upgrade notes.
 - **lupopedia-config.php** — `$lupo_config['version'] = '4.0.61'` (when $lupo_config exists or is initialized).
 
 ## get_lupo_version()
@@ -29,7 +29,7 @@ Returns current version (from atom/constant or fallback 4.0.61). Used by CLI hel
 
 Uses `version_compare()` for minimum-version checks. PHP 5.3 safe.
 
-## docs/version.md
+## lupo-docs/version.md
 
 - Current version and date
 - Summary of 4.0.61 changes
@@ -39,6 +39,6 @@ Uses `version_compare()` for minimum-version checks. PHP 5.3 safe.
 ## Files
 
 - `lupo-includes/version.php`
-- `docs/version.md`
+- `lupo-docs/version.md`
 - `lupopedia-config.php`
 - CLI/HelpRenderer use `get_lupo_version()` for output

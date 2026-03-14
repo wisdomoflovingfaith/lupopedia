@@ -92,11 +92,13 @@ if (!headers_sent()) {
     }
 
     // Set secure session cookie parameters only before session is started (PHP 5.3: 5-arg form; no samesite)
+    // Use LUPOPEDIA_PUBLIC_PATH when defined so cookie is sent for subdirectory installs (e.g. /lupopedia/)
     $session_not_started = function_exists('session_status') ? (session_status() === PHP_SESSION_NONE) : (session_id() === '');
     if ($session_not_started) {
         $secure = isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on';
         $domain = isset($_SERVER['HTTP_HOST']) ? $_SERVER['HTTP_HOST'] : '';
-        session_set_cookie_params(0, '/', $domain, $secure, true);
+        $cookie_path = (defined('LUPOPEDIA_PUBLIC_PATH') && LUPOPEDIA_PUBLIC_PATH !== '') ? rtrim(LUPOPEDIA_PUBLIC_PATH, '/') . '/' : '/';
+        session_set_cookie_params(0, $cookie_path, $domain, $secure, true);
     }
 }
 

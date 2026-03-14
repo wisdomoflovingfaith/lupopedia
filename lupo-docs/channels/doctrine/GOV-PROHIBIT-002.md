@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\channels\doctrine\GOV-PROHIBIT-002.md"
+  file_path_from_root: "lupo-docs\channels\doctrine\GOV-PROHIBIT-002.md"
   file_hash: "992cfc40fbc7f2a10ee71a9870cd30fc9073ce49f5403897a6dcd4d868b29ff1"
-  file_path_from_root: "docs\channels\doctrine\GOV-PROHIBIT-002.md"
+  file_path_from_root: "lupo-docs\channels\doctrine\GOV-PROHIBIT-002.md"
   file_hash: "a706bab547f9c1f78d7c1910fd1bd5c3b628c3ed31b9bb74293f340c618745b4"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -162,7 +162,7 @@ No schema snitches."
 ## **Affirmation**
 One day at a time. One doctrine at a time. No triggers. No chaos. No schema snitches.
 
-*Migration: `database/migrations/4.2.4_drop_table_ceiling_enforcement_event.sql` â€” drops EVENT `schema_freeze_enforcement_4_2_0` (the 4.2.0 table-ceiling enforcer).*
+*Migration: `lupo-database/migrations/4.2.4_drop_table_ceiling_enforcement_event.sql` â€” drops EVENT `schema_freeze_enforcement_4_2_0` (the 4.2.0 table-ceiling enforcer).*
 
 ---
 

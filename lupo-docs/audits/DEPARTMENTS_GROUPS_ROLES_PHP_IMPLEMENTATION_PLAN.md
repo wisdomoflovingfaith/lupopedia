@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\audits\DEPARTMENTS_GROUPS_ROLES_PHP_IMPLEMENTATION_PLAN.md"
+  file_path_from_root: "lupo-docs\audits\DEPARTMENTS_GROUPS_ROLES_PHP_IMPLEMENTATION_PLAN.md"
   file_hash: "db293cf3d694a9b823d9e6fd1749cb2540d27dbe1bd9bca1250323eb63f00e46"
-  file_path_from_root: "docs\audits\DEPARTMENTS_GROUPS_ROLES_PHP_IMPLEMENTATION_PLAN.md"
+  file_path_from_root: "lupo-docs\audits\DEPARTMENTS_GROUPS_ROLES_PHP_IMPLEMENTATION_PLAN.md"
   file_hash: "b41eaa3ec1302a353e9c271cf45751b7b2d35348a41b6a5555c33658e82db80b"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -83,7 +83,7 @@ lupopedia.footer:
 |-----------|----------------|-------------------|
 | **app/auth/AuthRoleResolver.php** | Logic rewrite (optional) | Add department-based permission path: resolve actor → departments via lupo_actor_departments; allow if lupo_permissions has (target_type, target_id, department_id) for any of actor’s departments. Current: channel_roles + lupo_permissions by user_id only. |
 | **app/Services/SavedCollectionsService.php** | Logic rewrite (optional) | Extend collection permission check to include lupo_permissions by (target_type='collection', target_id, department_id) for current actor’s departments. Today: JOIN on user_id only. |
-| **api/list_user_collections.php** | Verify only | Uses actor_collections (actor_id), not lupo_permissions. If SavedCollectionsService gains department permission, consider aligning this endpoint to same model (user_id OR department_id) for consistency; else verify only. |
+| **lupo-api/list_user_collections.php** | Verify only | Uses actor_collections (actor_id), not lupo_permissions. If SavedCollectionsService gains department permission, consider aligning this endpoint to same model (user_id OR department_id) for consistency; else verify only. |
 | **routes/auth_routes.php** | Documentation | `/auth/permissions` is null (no handler). When a handler is added, document that permissions are user_id OR department_id OR channel_roles. No code change until handler exists. |
 | **install.php** | Verify only | Confirms it only invokes install_new_lupopedia.sql and seed; no group table creation. No change expected. |
 | **install_wizard_classes.php** | Verify only | Already uses department_id for channels. Confirm no INSERT/SELECT references group_id or lupo_groups. Add short comment that group tables are removed. |
@@ -98,15 +98,15 @@ lupopedia.footer:
 | **lupo-includes/models/GroundedAgentModel.php** | Verify only | If "permissions table" or "group" appears in comments, update to department/permission model. |
 | **app/Services/CraftySyntax/* (WorldGraphHelper, LegacyUserChatRefresh, LegacyIsFlushDetection, LegacyChooseDepartment, LegacyDepartments, etc.)** | Verify only | Use departments only; no group logic. Verify no stray "group" references. |
 | **app/Http/Controllers/CraftyImportController.php, app/Services/CraftyConfigTransformer.php** | Verify only | No group references in config/import logic. |
-| **database/install/generate_content_seed.php** | No change | Already updated in SQL phase: department_id in column list and values. |
-| **database/install/generate_hierarchical_seed_3.0.12.php** | No change | Already updated in SQL phase: department_id in generated INSERTs. |
+| **lupo-database/install/generate_content_seed.php** | No change | Already updated in SQL phase: department_id in column list and values. |
+| **lupo-database/install/generate_hierarchical_seed_3.0.12.php** | No change | Already updated in SQL phase: department_id in generated INSERTs. |
 | **install_wizard_classes.php (findDuplicateEmailGroups)** | No change | "Duplicate email groups" = groups of duplicate emails, not lupo_groups. |
 
 ### 1.3 Files Not Previously Listed (added)
 
 | File | Type | Reason |
 |------|------|--------|
-| **api/list_user_collections.php** | Verify / optional align | Uses actor_collections; if permission model becomes user OR department, consider including collections where user has access via department_id in lupo_permissions. |
+| **lupo-api/list_user_collections.php** | Verify / optional align | Uses actor_collections; if permission model becomes user OR department, consider including collections where user has access via department_id in lupo_permissions. |
 | **lupo-includes/bootstrap.php** | Verify | Ensure AuthRoleResolver and SavedCollectionsService are still correct after any optional permission changes. |
 
 ### 1.4 Runtime Logic That Implicitly Assumed Groups
@@ -240,7 +240,7 @@ Permission check (target_type, target_id, actor_id):
 |----------|---------|------|
 | Admin check | AuthRoleResolver::isAdmin, auth-helpers | Optional: add department-based admin fallback. |
 | Collection list for nav | SavedCollectionsService::renderSavedCollections | Optional: include collections allowed by department_id. |
-| Collection list API | api/list_user_collections.php | Verify; optionally align with SavedCollectionsService permission model once extended. |
+| Collection list API | lupo-api/list_user_collections.php | Verify; optionally align with SavedCollectionsService permission model once extended. |
 | Channel/operator context | operator-pending-visitors-api, channels-controller, module-loader | No change; already department-based. |
 
 ### 4.3 Plan for Updating Each Behavior
@@ -257,12 +257,12 @@ Permission check (target_type, target_id, actor_id):
 
 | Document | Sections to rewrite / add / remove |
 |----------|-----------------------------------|
-| **docs/REQUIRED_TABLES_4.1.0.md** | Remove lupo_actor_group_membership and lupo_groups from required tables. Add note: "Organizational scope and permission-bearing entity is department only; group tables are removed." |
-| **docs/channels/schema/DATABASE_SCHEMA.md** | Rewrite or remove: actor_group_membership (§313–319), groups / group_modules (§991–1016). Replace with actor_departments and department-scoped permissions. Update any lupo_permissions description from group_id to department_id. |
-| **docs/doctrine/DEVELOPMENT_WORKFLOW_DOCTRINE.md** | Add short note: "Organizational unit for permissions and scope is department only (lupo_departments, lupo_actor_departments). Group tables (lupo_groups, lupo_actor_group_membership) are removed." |
-| **docs/doctrine/SCHEMA_AND_TOON_ALIGNMENT_CONTEXT.md** | If it enumerates tables, remove lupo_groups and lupo_actor_group_membership. Note department_id on lupo_permissions, lupo_collections, lupo_collection_tabs, lupo_contents, lupo_analytics_*. |
-| **docs/channels/schema/migrations/analysis/SCHEMA_SYNC_3_0_46_SUMMARY.md** | Update lupo_permissions description: group_id → department_id. |
-| **docs/channels/schema/migrations/3.0.46.md** | Update narrative: permissions are user- and department-scoped; no groups. |
+| **lupo-docs/REQUIRED_TABLES_4.1.0.md** | Remove lupo_actor_group_membership and lupo_groups from required tables. Add note: "Organizational scope and permission-bearing entity is department only; group tables are removed." |
+| **lupo-docs/channels/schema/DATABASE_SCHEMA.md** | Rewrite or remove: actor_group_membership (§313–319), groups / group_modules (§991–1016). Replace with actor_departments and department-scoped permissions. Update any lupo_permissions description from group_id to department_id. |
+| **lupo-docs/doctrine/DEVELOPMENT_WORKFLOW_DOCTRINE.md** | Add short note: "Organizational unit for permissions and scope is department only (lupo_departments, lupo_actor_departments). Group tables (lupo_groups, lupo_actor_group_membership) are removed." |
+| **lupo-docs/doctrine/SCHEMA_AND_TOON_ALIGNMENT_CONTEXT.md** | If it enumerates tables, remove lupo_groups and lupo_actor_group_membership. Note department_id on lupo_permissions, lupo_collections, lupo_collection_tabs, lupo_contents, lupo_analytics_*. |
+| **lupo-docs/channels/schema/migrations/analysis/SCHEMA_SYNC_3_0_46_SUMMARY.md** | Update lupo_permissions description: group_id → department_id. |
+| **lupo-docs/channels/schema/migrations/3.0.46.md** | Update narrative: permissions are user- and department-scoped; no groups. |
 
 ### 5.2 New Doctrine Rules to Add
 

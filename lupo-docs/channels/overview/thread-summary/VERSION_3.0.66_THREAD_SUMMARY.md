@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\channels\overview\thread-summary\VERSION_3.0.66_THREAD_SUMMARY.md"
+  file_path_from_root: "lupo-docs\channels\overview\thread-summary\VERSION_3.0.66_THREAD_SUMMARY.md"
   file_hash: "ce2afdb8fd2e4ca9670c452493d3688f4a9f616714dd6cffe52a56a3e46758ff"
-  file_path_from_root: "docs\channels\overview\thread-summary\VERSION_3.0.66_THREAD_SUMMARY.md"
+  file_path_from_root: "lupo-docs\channels\overview\thread-summary\VERSION_3.0.66_THREAD_SUMMARY.md"
   file_hash: "4fb750fb44f53d383ac3b7d2d09c33b7c6dc8ac979ae72cfff30e4e8d8ee1221"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -110,7 +110,7 @@ This thread completed the version bump from 3.0.65 to 3.0.66, documenting all ch
 
 ### **Documentation Updates**
 - **CHANGELOG.md:** Complete 3.0.66 entry with all achievements
-- **Migration Notes:** docs/migrations/3.0.66.md with verification details
+- **Migration Notes:** lupo-docs/migrations/3.0.66.md with verification details
 - **Version References:** All files updated from 3.0.65 to 3.0.66
 
 ---
@@ -120,7 +120,7 @@ This thread completed the version bump from 3.0.65 to 3.0.66, documenting all ch
 ### **Core Version Files**
 - ✅ `CHANGELOG.md` - Added comprehensive 3.0.66 entry
 - ✅ `lupo-includes/version.php` - Updated to 3.0.66
-- ✅ `docs/migrations/3.0.66.md` - Complete migration documentation
+- ✅ `lupo-docs/migrations/3.0.66.md` - Complete migration documentation
 
 ### **Class Files**
 - ✅ `lupo-includes/classes/ColorProtocol.php` - Version updated to 3.0.66
@@ -132,10 +132,10 @@ This thread completed the version bump from 3.0.65 to 3.0.66, documenting all ch
 - ✅ `lupo-tests/BigRock2MetadataTest.php` - Version updated to 3.0.66
 
 ### **Documentation Files**
-- ✅ `docs/big-rock-2/BIG_ROCK_2_COMPLETION.md` - Version updated to 3.0.66
-- ✅ `docs/big-rock-3/BIG_ROCK_3_COMPLETION.md` - Version updated to 3.0.66
-- ✅ `docs/history/1996-2013/2002.md` - Version updated to 3.0.66
-- ✅ `docs/thread-summary/VERSION_3.0.66_THREAD_SUMMARY.md` - This summary file
+- ✅ `lupo-docs/big-rock-2/BIG_ROCK_2_COMPLETION.md` - Version updated to 3.0.66
+- ✅ `lupo-docs/big-rock-3/BIG_ROCK_3_COMPLETION.md` - Version updated to 3.0.66
+- ✅ `lupo-docs/history/1996-2013/2002.md` - Version updated to 3.0.66
+- ✅ `lupo-docs/thread-summary/VERSION_3.0.66_THREAD_SUMMARY.md` - This summary file
 
 ---
 
@@ -244,8 +244,8 @@ This thread completed the version bump from 3.0.65 to 3.0.66, documenting all ch
 ## 📚 Documentation Created
 
 ### **New Documentation Files**
-- `docs/migrations/3.0.66.md` - Pre-Ascent verification documentation
-- `docs/thread-summary/VERSION_3.0.66_THREAD_SUMMARY.md` - This summary file
+- `lupo-docs/migrations/3.0.66.md` - Pre-Ascent verification documentation
+- `lupo-docs/thread-summary/VERSION_3.0.66_THREAD_SUMMARY.md` - This summary file
 
 ### **Updated Documentation**
 - All Big Rock completion documents updated to 3.0.66

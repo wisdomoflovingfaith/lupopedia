@@ -54,7 +54,7 @@ lupopedia.edges:
     - { to: "lupo-database/lupopedia/toon/lupo_channel_files.toon.json", type: "schema_reference", weight: 1.0 }
     - { to: "lupo-database/lupopedia/toon/lupo_channel_escalations.toon.json", type: "schema_reference", weight: 1.0 }
     - { to: "lupo-database/lupopedia/toon/lupo_channel_boot_lifecycle.toon.json", type: "schema_reference", weight: 1.0 }
-    - { to: "docs/doctrine/FLARE/FLARE_DOCTRINE.md", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/FLARE/FLARE_DOCTRINE.md", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260301"
@@ -108,7 +108,7 @@ VALUES
 INSERT INTO lupo_channel_content
 (channel_id, federation_node_id, file_path, web_path, metadata_json, created_ymdhis)
 VALUES
-(0, 0, 'channels/0/content/federation_node_id/0/FLARE.md', 
+(0, 0, 'lupo-channels/0/content/federation_node_id/0/FLARE.md', 
 'http://www.lupopedia.com/FLARE',
 '{"description": "Canonical FLARE definition"}', 20260301120000);
 ```

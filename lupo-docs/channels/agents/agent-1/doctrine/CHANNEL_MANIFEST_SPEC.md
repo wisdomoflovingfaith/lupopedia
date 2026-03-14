@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\channels\agents\agent-1\doctrine\CHANNEL_MANIFEST_SPEC.md"
+  file_path_from_root: "lupo-docs\channels\agents\agent-1\doctrine\CHANNEL_MANIFEST_SPEC.md"
   file_hash: "7a7ea8f2022e94b8f3799ca0630c030bd76ae925c657edc76ca8b47c5fd34b2d"
-  file_path_from_root: "docs\channels\agents\agent-1\doctrine\CHANNEL_MANIFEST_SPEC.md"
+  file_path_from_root: "lupo-docs\channels\agents\agent-1\doctrine\CHANNEL_MANIFEST_SPEC.md"
   file_hash: "b839ef80e40e8287ecf2c69e78e39392cb1b64bb26a4f8f59b6f3ec23a8251bb"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -116,15 +116,15 @@ The Channel Manifest serves as:
 Channel Manifests are stored at:
 
 ```
-channels/<channel_key>/manifest.json
+lupo-channels/<channel_key>/manifest.json
 ```
 
 ### 2.1. Directory Structure
 
-The `channels/` directory follows this structure:
+The `lupo-channels/` directory follows this structure:
 
 ```
-channels/
+lupo-channels/
 ├── <channel_key_1>/
 │   └── manifest.json
 ├── <channel_key_2>/
@@ -136,13 +136,13 @@ channels/
 
 - **Directory name:** Must match `channel_key` exactly
 - **File name:** Always `manifest.json` (lowercase, no variation)
-- **Path format:** `channels/<channel_key>/manifest.json`
+- **Path format:** `lupo-channels/<channel_key>/manifest.json`
 
 ### 2.3. Examples
 
-- `channels/dev_documentation/manifest.json`
-- `channels/routing_development/manifest.json`
-- `channels/lupopedia_3_0_16_channels_documentation_database_refinement/manifest.json`
+- `lupo-channels/dev_documentation/manifest.json`
+- `lupo-channels/routing_development/manifest.json`
+- `lupo-channels/lupopedia_3_0_16_channels_documentation_database_refinement/manifest.json`
 
 ---
 
@@ -647,7 +647,7 @@ The Channel Manifest integrates with HERMES (the routing subsystem) through seve
 **HERMES uses `channel_key` for routing context:**
 
 1. Message arrives with `channel_key` identifier
-2. HERMES loads manifest from `channels/<channel_key>/manifest.json`
+2. HERMES loads manifest from `lupo-channels/<channel_key>/manifest.json`
 3. HERMES uses manifest fields for routing decisions
 
 **Manifest Field:** `channel_key`
@@ -704,7 +704,7 @@ The Channel Manifest defines fallback behavior for different agent types when no
 
 ### 8.1. IDE Agent Fallback
 
-**Primary:** Read manifest from `channels/<channel_key>/manifest.json`  
+**Primary:** Read manifest from `lupo-channels/<channel_key>/manifest.json`  
 **Fallback:** Read from toon files (database schema references)  
 **Required:** Write to `dialog_output_file` (filesystem)
 

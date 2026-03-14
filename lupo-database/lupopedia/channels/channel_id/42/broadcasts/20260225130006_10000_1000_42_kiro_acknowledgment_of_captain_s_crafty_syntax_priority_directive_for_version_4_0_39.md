@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "channels\42\broadcasts\20260225130006_10000_1000_42_kiro_acknowledgment_of_captain_s_crafty_syntax_priority_directive_for_version_4_0_39.md"
+  file_path_from_root: "lupo-channels\42\broadcasts\20260225130006_10000_1000_42_kiro_acknowledgment_of_captain_s_crafty_syntax_priority_directive_for_version_4_0_39.md"
   file_hash: "ec571b7cd46f5a0a2ecda33936d4e569ca83d68310cf9fd8bb5f396870a486b7"
-  file_path_from_root: "channels\42\broadcasts\20260225130006_10000_1000_42_kiro_acknowledgment_of_captain_s_crafty_syntax_priority_directive_for_version_4_0_39.md"
+  file_path_from_root: "lupo-channels\42\broadcasts\20260225130006_10000_1000_42_kiro_acknowledgment_of_captain_s_crafty_syntax_priority_directive_for_version_4_0_39.md"
   file_hash: "d406a49e394693dcfb5572a941e026d6f1e31c8258e3da6cf6dfe1502c8a2c79"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -113,7 +113,7 @@ created_utc: "2026-02-25T13:00:00Z"
 
 ## 📋 CRAFTY SYNTAX PRIORITY FILE LIST CREATED
 
-**File:** `docs/versions/4.0.39/CRAFTY_SYNTAX_PRIORITY_FILES.md`
+**File:** `lupo-docs/versions/4.0.39/CRAFTY_SYNTAX_PRIORITY_FILES.md`
 
 **Contents:**
 - ✅ 69 critical Crafty Syntax upgrade path files identified
@@ -127,13 +127,13 @@ created_utc: "2026-02-25T13:00:00Z"
 
 1. **Installer & Wizard (6 files)** — P0 — Day 1
    - `install.php`, `index.php`, `lupopedia-config.php`
-   - `install/index.php`, `install/wizard.php`, `install/config.php`
+   - `lupo-install/index.php`, `lupo-install/wizard.php`, `lupo-install/config.php`
 
 2. **Migration & Import (9 files)** — P0 — Day 1
-   - `database/migrations/import_from_old_crafty_syntax.sql` (PRIMARY)
-   - `database/migrations/old_crafty_syntax_3_7_5_start.sql` (34 legacy tables)
-   - `database/migrations/install_new_lupopedia.sql`
-   - `database/migrations/seed_lupopedia.sql`
+   - `lupo-database/migrations/import_from_old_crafty_syntax.sql` (PRIMARY)
+   - `lupo-database/migrations/old_crafty_syntax_3_7_5_start.sql` (34 legacy tables)
+   - `lupo-database/migrations/install_new_lupopedia.sql`
+   - `lupo-database/migrations/seed_lupopedia.sql`
    - Migration services and scripts
 
 3. **Bootstrap & Loader (6 files)** — P0/P1 — Day 1-2
@@ -171,20 +171,20 @@ created_utc: "2026-02-25T13:00:00Z"
 1. ✅ `install.php` — Main installer entry point
 2. ✅ `index.php` — Front controller
 3. ✅ `lupopedia-config.php` — System configuration
-4. ✅ `database/migrations/install_new_lupopedia.sql` — Fresh install schema
-5. ✅ `database/migrations/import_from_old_crafty_syntax.sql` — PRIMARY MIGRATION
-6. ✅ `database/migrations/old_crafty_syntax_3_7_5_start.sql` — Legacy 34 tables
+4. ✅ `lupo-database/migrations/install_new_lupopedia.sql` — Fresh install schema
+5. ✅ `lupo-database/migrations/import_from_old_crafty_syntax.sql` — PRIMARY MIGRATION
+6. ✅ `lupo-database/migrations/old_crafty_syntax_3_7_5_start.sql` — Legacy 34 tables
 
 **Afternoon Session (9 files):**
-7. ✅ `database/migrations/seed_lupopedia.sql` — Seed data
+7. ✅ `lupo-database/migrations/seed_lupopedia.sql` — Seed data
 8. ✅ `lupo-includes/bootstrap.php` — System bootstrap
 9. ✅ `lupo-includes/lupopedia-loader.php` — Module orchestrator
 10. ✅ `lupo-includes/modules/module-loader.php` — Module system
 11. ✅ `lupo-includes/version.php` — Version management
 12. ✅ `app/Services/CraftyMigrationService.php` — Migration service
 13. ✅ `app/Services/CraftyConfigTransformer.php` — Config transformation
-14. ✅ `install/index.php` — Installer UI
-15. ✅ `install/wizard.php` — Upgrade wizard
+14. ✅ `lupo-install/index.php` — Installer UI
+15. ✅ `lupo-install/wizard.php` — Upgrade wizard
 
 **Target:** All 15 P0 files complete by end of day
 
@@ -358,7 +358,7 @@ Crafty Syntax 3.7.5 → Lupopedia 4.0.x
 
 <!-- FLIP_FOOTER_BEGIN
 {
-    "references": "\"docs\/status\/broadcast_collection_42.md\"",
+    "references": "\"lupo-docs\/status\/broadcast_collection_42.md\"",
     "implements": "\"broadcast_standardization\"",
     "depends_on": "\"registry_seeding_completion\"",
     "includes": "\"channel_42_communications\"",

@@ -54,7 +54,7 @@ File-based threads under `lupo-channels/42/threads/` MAY be migrated to `lupo_di
 - Each message in the JSON becomes a `lupo_dialog_message` linked to that thread
 - Original JSON files may be archived to `lupo-channels/42/threads/archive/`
 
-Use `scripts/migrate_channel42_threads_to_db.php` for migration.
+Use `lupo-scripts/migrate_channel42_threads_to_db.php` for migration.
 
 ### 4.2 For Version Thread Tables
 
@@ -83,6 +83,6 @@ SELECT COUNT(*) FROM lupo_dialog_threads WHERE channel_id = 42 AND is_deleted = 
 
 ## 7. See Also
 
-- Migration script: `database/migrations/20260310_remove_duplicate_thread_message_tables.sql`
-- Channel 42 thread migration: `scripts/migrate_channel42_threads_to_db.php`
-- Audit: `docs/status/DIALOG_VS_MESSAGES_TABLES_AUDIT.md`
+- Migration script: `lupo-database/migrations/20260310_remove_duplicate_thread_message_tables.sql`
+- Channel 42 thread migration: `lupo-scripts/migrate_channel42_threads_to_db.php`
+- Audit: `lupo-docs/status/DIALOG_VS_MESSAGES_TABLES_AUDIT.md`

@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\channels\overview\4.1.0\LAUNCH_SEQUENCE_T0_4_1_0.md"
+  file_path_from_root: "lupo-docs\channels\overview\4.1.0\LAUNCH_SEQUENCE_T0_4_1_0.md"
   file_hash: "b6e3afb2ec7ba4c68fc6b77135c3497879f346e183d3f2becf754a2b7121548e"
-  file_path_from_root: "docs\channels\overview\4.1.0\LAUNCH_SEQUENCE_T0_4_1_0.md"
+  file_path_from_root: "lupo-docs\channels\overview\4.1.0\LAUNCH_SEQUENCE_T0_4_1_0.md"
   file_hash: "c544f69500145b21e4af8953ebffecac5fca0215e36bdc5ec8b73ab44c146614"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -232,7 +232,7 @@ file:
 - **Concurrent Users:** 2,847 (growing rapidly)
 - **Registration Rate:** 47 new users/minute
 - **Active Sessions:** 1,923 (high engagement)
-- **Page Views:** 8,456 views/minute
+- **Page Views:** 8,456 lupo-views/minute
 - **Feature Adoption:** 78% (excellent uptake)
 - **User Satisfaction:** 96% positive feedback
 

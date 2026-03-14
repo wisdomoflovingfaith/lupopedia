@@ -58,7 +58,7 @@ lupopedia.headers:
 
 # 💡 FLARE Edge Automation Tip:
 # Use the FLARE Edge Suggester Tool to automatically discover and suggest edges:
-# python scripts/flare_edge_suggester.py --file <path> --include-db --format yaml
+# python lupo-scripts/flare_edge_suggester.py --file <path> --include-db --format yaml
 # This will analyze content, TOON schemas, and database relationships to suggest
 # appropriate outbound_edges with weights, reasons, and discovery methods.
 
@@ -67,16 +67,16 @@ lupopedia.edges:
   meta: "Thread: Finalize 4.0.72 → Push to GitHub → Initialize 4.0.73 → Migrate Tasks → Validate Upgrade Path"
   outbound_edges:
     - { to: "lupo-database/lupopedia/toon/lupo_actors.toon.json", type: "schema_reference", weight: 1.0, reason: "TOON schema definition", db_source: "lupo_actors" }
-    - { to: "actors/registry.json", type: "references", weight: 1.0, reason: "Actor registry and configuration", db_source: "lupo_actors" }
-    - { to: "docs/database/lupopedia/tables/lupo_contents.md", type: "references", weight: 0.9, reason: "Content author relationships", db_source: "lupo_actors" }
-    - { to: "docs/database/lupopedia/tables/lupo_channels.md", type: "references", weight: 0.9, reason: "Channel ownership and participation", db_source: "lupo_actors" }
-    - { to: "docs/database/lupopedia/tables/lupo_dialog_messages.md", type: "references", weight: 0.8, reason: "Dialog message authorship", db_source: "lupo_actors" }
-    - { to: "docs/database/lupopedia/tables/lupo_sessions.md", type: "references", weight: 0.8, reason: "User session management", db_source: "lupo_actors" }
-    - { to: "docs/database/lupopedia/tables/lupo_artifacts.md", type: "references", weight: 0.7, reason: "Artifact ownership", db_source: "lupo_actors" }
-    - { to: "docs/database/lupopedia/tables/lupo_departments.md", type: "references", weight: 0.7, reason: "Department assignments", db_source: "lupo_actors" }
-    - { to: "docs/database/lupopedia/tables/lupo_federation_nodes.md", type: "references", weight: 0.7, reason: "Federation node assignments", db_source: "lupo_actors" }
-    - { to: "docs/database/lupopedia/tables/lupo_actor_history.md", type: "references", weight: 0.9, reason: "Actor achievement and legacy history", db_source: "lupo_actors" }
-    - { to: "docs/database/lupopedia/tables/lupo_actor_events.md", type: "references", weight: 0.9, reason: "Actor behavioral stream", db_source: "lupo_actors" }
+    - { to: "lupo-actors/registry.json", type: "references", weight: 1.0, reason: "Actor registry and configuration", db_source: "lupo_actors" }
+    - { to: "lupo-docs/database/lupopedia/tables/lupo_contents.md", type: "references", weight: 0.9, reason: "Content author relationships", db_source: "lupo_actors" }
+    - { to: "lupo-docs/database/lupopedia/tables/lupo_channels.md", type: "references", weight: 0.9, reason: "Channel ownership and participation", db_source: "lupo_actors" }
+    - { to: "lupo-docs/database/lupopedia/tables/lupo_dialog_messages.md", type: "references", weight: 0.8, reason: "Dialog message authorship", db_source: "lupo_actors" }
+    - { to: "lupo-docs/database/lupopedia/tables/lupo_sessions.md", type: "references", weight: 0.8, reason: "User session management", db_source: "lupo_actors" }
+    - { to: "lupo-docs/database/lupopedia/tables/lupo_artifacts.md", type: "references", weight: 0.7, reason: "Artifact ownership", db_source: "lupo_actors" }
+    - { to: "lupo-docs/database/lupopedia/tables/lupo_departments.md", type: "references", weight: 0.7, reason: "Department assignments", db_source: "lupo_actors" }
+    - { to: "lupo-docs/database/lupopedia/tables/lupo_federation_nodes.md", type: "references", weight: 0.7, reason: "Federation node assignments", db_source: "lupo_actors" }
+    - { to: "lupo-docs/database/lupopedia/tables/lupo_actor_history.md", type: "references", weight: 0.9, reason: "Actor achievement and legacy history", db_source: "lupo_actors" }
+    - { to: "lupo-docs/database/lupopedia/tables/lupo_actor_events.md", type: "references", weight: 0.9, reason: "Actor behavioral stream", db_source: "lupo_actors" }
 
 lupopedia.engagement:
   comment: "Snapshot of files edited during 4.0.73 finalization and initialization thread by ANTIGRAVITY IDE Agent. Engagement metrics track edit frequency and importance of each file in the version transition process."
@@ -107,7 +107,7 @@ The `lupo_actors` table implements a unified actor model that serves as the sing
 - **Actor Types:** Support for humans, AI agents, system processes, external entities.
 - **Federation Support:** Multi-node actor management.
 - **Authentication:** Login capabilities and identity provider integration.
-- **Identity Portability:** Tracks synchronization with the `actors/` directory structure.
+- **Identity Portability:** Tracks synchronization with the `lupo-actors/` directory structure.
 - **Adversarial Management:** Oversight and control of adversarial actors.
 - **Metadata Storage:** Flexible JSON metadata for actor properties.
 
@@ -137,7 +137,7 @@ The `lupo_actors` table implements a unified actor model that serves as the sing
 ### **Identity Capsule & Sync Fields (v4.0.48)**
 | Field | Type | Default | Description |
 |-------|------|---------|-------------|
-| `actor_root_path` | VARCHAR(512) | 'actors/{id}' | Root directory for the actor capsule |
+| `actor_root_path` | VARCHAR(512) | 'lupo-actors/{id}' | Root directory for the actor capsule |
 | `who_json_sync_status` | VARCHAR(64) | 'pending' | Sync status with WHO.json |
 | `last_sync_ymdhis` | BIGINT | 0 | Timestamp of last filesystem sync |
 

@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\database\lupopedia\tables\lupo_actor_events.md"
+  file_path_from_root: "lupo-docs\database\lupopedia\tables\lupo_actor_events.md"
   file_hash: "661b1ce3464a0f73a8ff0458317b749f1f4732677e950e392dbe33d81ee79976"
-  file_path_from_root: "docs\database\lupopedia\tables\lupo_actor_events.md"
+  file_path_from_root: "lupo-docs\database\lupopedia\tables\lupo_actor_events.md"
   file_hash: "c5da4e27c1a6c953c52a06cb17914944edcf9b7c171f2da7118c574ba3bc21c5"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -63,7 +63,7 @@ lupopedia.footer:
 
 ---
 wolfie.headers: {
-  file_path_from_root: "docs/database/lupopedia/tables/lupo_actor_events.md",
+  file_path_from_root: "lupo-docs/database/lupopedia/tables/lupo_actor_events.md",
   system_version: "4.0.48",
   channel_id: 1,
   actor_id: 1003,
@@ -80,8 +80,8 @@ wolfie.headers: {
 flip.footer: {
   outbound_edges: [
     { to: "lupo-database/lupopedia/toon/lupo_actor_events.toon.json", type: "schema_reference", weight: 1.0 },
-    { to: "docs/database/lupopedia/tables/lupo_actors.md", type: "references", weight: 0.9 },
-    { to: "docs/database/lupopedia/tables/lupo_sessions.md", type: "references", weight: 0.8 }
+    { to: "lupo-docs/database/lupopedia/tables/lupo_actors.md", type: "references", weight: 0.9 },
+    { to: "lupo-docs/database/lupopedia/tables/lupo_sessions.md", type: "references", weight: 0.8 }
   ],
   semantic_tags: ["behavioral_logging", "interaction_history", "security_events"]
 }

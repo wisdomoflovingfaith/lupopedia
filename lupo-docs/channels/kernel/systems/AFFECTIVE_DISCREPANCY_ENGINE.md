@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\channels\kernel\systems\AFFECTIVE_DISCREPANCY_ENGINE.md"
+  file_path_from_root: "lupo-docs\channels\kernel\systems\AFFECTIVE_DISCREPANCY_ENGINE.md"
   file_hash: "949937facc37264c2b8dfcefe3860e11abba38459a21a99d67ad7ce0afec4fc3"
-  file_path_from_root: "docs\channels\kernel\systems\AFFECTIVE_DISCREPANCY_ENGINE.md"
+  file_path_from_root: "lupo-docs\channels\kernel\systems\AFFECTIVE_DISCREPANCY_ENGINE.md"
   file_hash: "2b8511ee88719fbe59a2632e4fc87514468c0ab26872ebbb39e57a348a7cbf7a"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -377,12 +377,12 @@ Future versions may adjust algorithms or thresholds, but core discrepancy detect
 
 ## 🔗 9. Implementation Resources
 
-- **Mood System Doctrine**: `docs/doctrines/MOOD_SYSTEM_DOCTRINE.md`
-- **Mood Axis Registry**: `docs/registries/MOOD_AXIS_REGISTRY.md`
-- **RGB Mapping Protocol**: `docs/doctrines/COLOR_DOCTRINE.md`
-- **Mood Calculation Protocol**: `docs/doctrines/MOOD_CALCULATION_PROTOCOL.md`
-- **CRF Specification**: `docs/systems/CRF_SPECIFICATION.md`
-- **Experience Ledger**: `docs/systems/EXPERIENCE_LEDGER.md`
+- **Mood System Doctrine**: `lupo-docs/doctrines/MOOD_SYSTEM_DOCTRINE.md`
+- **Mood Axis Registry**: `lupo-docs/registries/MOOD_AXIS_REGISTRY.md`
+- **RGB Mapping Protocol**: `lupo-docs/doctrines/COLOR_DOCTRINE.md`
+- **Mood Calculation Protocol**: `lupo-docs/doctrines/MOOD_CALCULATION_PROTOCOL.md`
+- **CRF Specification**: `lupo-docs/systems/CRF_SPECIFICATION.md`
+- **Experience Ledger**: `lupo-docs/systems/EXPERIENCE_LEDGER.md`
 - **Global Atoms**: `config/global_atoms.yaml`
 
 ---

@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\channels\doctrine\GOV-INTEGRATION-0001_witness_layer.md"
+  file_path_from_root: "lupo-docs\channels\doctrine\GOV-INTEGRATION-0001_witness_layer.md"
   file_hash: "2c81a9c92643a2b035be9680098383ff76e76da884f1a4749cb4e34afea305b2"
-  file_path_from_root: "docs\channels\doctrine\GOV-INTEGRATION-0001_witness_layer.md"
+  file_path_from_root: "lupo-docs\channels\doctrine\GOV-INTEGRATION-0001_witness_layer.md"
   file_hash: "261e960f5cdfe4627fedb219769032ce76cdca7cb3c9860ea096280bd27a6323"
   last_updated_utc: "20260228"
   system_version: "4.0.50"

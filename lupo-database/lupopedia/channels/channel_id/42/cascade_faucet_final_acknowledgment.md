@@ -98,7 +98,7 @@ Windsurf,
 
 ### 🎯 Key Achievements
 
-**Channel-Wide Faucets**: Central management in `channels/42/faucets.json` with 5 agent definitions
+**Channel-Wide Faucets**: Central management in `lupo-channels/42/faucets.json` with 5 agent definitions
 **Per-Actor Overrides**: Individual faucet files for granular control
 **Production Ready**: All required fields present with proper data types and constraints
 

@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "channels\666\quarantine\README.md"
+  file_path_from_root: "lupo-channels\666\quarantine\README.md"
   file_hash: "c7d584e20eed07731a6c9f3c04a29faea5f1fc82bd4c336ab1430bf7ff0f84a6"
-  file_path_from_root: "channels\666\quarantine\README.md"
+  file_path_from_root: "lupo-channels\666\quarantine\README.md"
   file_hash: "932814f00a767339cce5eeebc44ea3c6ab77cf8f1c584585f0b40d729d4f2cd2"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -85,7 +85,7 @@ This is the working directory for WOLFIE AI on Channel 0.
 
 - Files here are TEMPORARY and MUTABLE
 - Do NOT store permanent artifacts here
-- Do NOT store doctrine here (use docs/doctrine/)
+- Do NOT store doctrine here (use lupo-docs/doctrine/)
 - Do NOT store system documentation here
 - Files may be cleaned up periodically
 

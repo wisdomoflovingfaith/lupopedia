@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\channels\developer\README_MIGRATION.md"
+  file_path_from_root: "lupo-docs\channels\developer\README_MIGRATION.md"
   file_hash: "97931b7063636fb87e0a2a8bc1833a8f265585e217b0a0ac51fa4dcb8562dd69"
-  file_path_from_root: "docs\channels\developer\README_MIGRATION.md"
+  file_path_from_root: "lupo-docs\channels\developer\README_MIGRATION.md"
   file_hash: "b8d2683bd6e80b73e804828beaaf66be89d461b41f7eca79599f3e8289ade662"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -63,7 +63,7 @@ lupopedia.footer:
 # LupoPedia Database Migration Guide
 
 ## Overview
-This migration package creates all 183 tables defined in the TOON schema files in `database/toon_data/`. The migration is **HERITAGE-SAFE** - additive only, non-destructive.
+This migration package creates all 183 tables defined in the TOON schema files in `lupo-database/toon_data/`. The migration is **HERITAGE-SAFE** - additive only, non-destructive.
 
 ## Migration Files
 

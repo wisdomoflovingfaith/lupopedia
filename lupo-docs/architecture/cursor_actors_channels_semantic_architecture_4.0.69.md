@@ -45,7 +45,7 @@ lupopedia.footer:
 
 **Canonical location:** `lupo-docs/architecture/cursor_actors_channels_semantic_architecture_4.0.69.md`
 
-This document is the **canonical architecture** for how Lupopedia models actors, channels, edges, semantic information, and deployment. It is based on the **actual database schema** in `lupo-database/lupopedia/mysql/install/install_new_lupopedia.sql`, the **TOON** files in `lupo-docs/toons/` and `lupo-database/lupopedia/toon/`, and the doctrine in `lupo-docs/doctrine/`. It corrects and extends the earlier brainstorm (`docs/status/brainstorm_on_actors_and_channels.md`) by aligning with all tables, edges, and documented semantics.
+This document is the **canonical architecture** for how Lupopedia models actors, channels, edges, semantic information, and deployment. It is based on the **actual database schema** in `lupo-database/lupopedia/mysql/install/install_new_lupopedia.sql`, the **TOON** files in `lupo-database/lupopedia/toon/` and `lupo-database/lupopedia/toon/`, and the doctrine in `lupo-docs/doctrine/`. It corrects and extends the earlier brainstorm (`lupo-docs/status/brainstorm_on_actors_and_channels.md`) by aligning with all tables, edges, and documented semantics.
 
 ---
 
@@ -94,7 +94,7 @@ Lupopedia is a **Semantic OS** built on Crafty Syntax Live Help 3.7.5. It:
 | **Pairing** | `paired_actor_id` — e.g. IDE faucet session paired to human (10000 = root) |
 | **Extended state** | `metadata_json` — opaque blob for runtime/config |
 | **Capabilities** | `lupo_actor_capabilities` — capability keys per actor |
-| **Traits (intrinsic)** | `lupo_actor_traits` — actor-scoped trait_key/trait_value; intrinsic constraints only (see docs/status/DESIGN_NOTE_LUPO_ACTOR_TRAITS_4.0.69.md) |
+| **Traits (intrinsic)** | `lupo_actor_traits` — actor-scoped trait_key/trait_value; intrinsic constraints only (see lupo-docs/status/DESIGN_NOTE_LUPO_ACTOR_TRAITS_4.0.69.md) |
 | **Actor–actor graph** | `lupo_actor_edges` — source_actor_id, target_actor_id, edge_type, domain_id, weight, properties |
 | **Metadata (headers, skills, rules)** | `lupo_metadata` — entity_type=`actor`, entity_id=actor_id; channel-scoped when channel_id set |
 
@@ -202,7 +202,7 @@ Channel 42 discussions and version threads all use these tables with `channel_id
 
 ## 8. Full table list (install schema)
 
-Tables are defined in **`lupo-database/lupopedia/mysql/install/install_new_lupopedia.sql`**. TOONs (column/type reference) live in **`lupo-docs/toons/*.toon.json`** and **`lupo-database/lupopedia/toon/*.toon`**. Count and list below are for orientation; always confirm against the install SQL and TOONs.
+Tables are defined in **`lupo-database/lupopedia/mysql/install/install_new_lupopedia.sql`**. TOONs (column/type reference) live in **`lupo-database/lupopedia/toon/*.toon.json`** and **`lupo-database/lupopedia/toon/*.toon`**. Count and list below are for orientation; always confirm against the install SQL and TOONs.
 
 ### Actors and agents
 
@@ -240,9 +240,9 @@ Tables are defined in **`lupo-database/lupopedia/mysql/install/install_new_lupop
 
 ## 9. Traits, skills, and rules (conceptual)
 
-- **Traits:** Intrinsic "who" of an actor. Stored in **`lupo_actor_traits`** (actor_id, trait_key, trait_value, federation_node_id). See `lupo-docs/doctrine/TRAITS_DOCTRINE.md` and docs/status/DESIGN_NOTE_LUPO_ACTOR_TRAITS_4.0.69.md.
+- **Traits:** Intrinsic "who" of an actor. Stored in **`lupo_actor_traits`** (actor_id, trait_key, trait_value, federation_node_id). See `lupo-docs/doctrine/TRAITS_DOCTRINE.md` and lupo-docs/status/DESIGN_NOTE_LUPO_ACTOR_TRAITS_4.0.69.md.
 - **Skills:** Documented in `lupo-skills/` and actor `skills/*.md`; attached via `lupopedia.skills` header and `lupo_metadata` (seed: `seed_skills_4.0.68.sql`). Skill resolution: `SkillService.php`.
-- **Rules:** Stored in `lupo_rules`; attached to channels/actors via `lupo_rule_targets`. Evaluated by `RuleEngine.php` / `RuleEvaluator.php`. Root rules in `lupo-rules/root/*.md`; synced to `.cursor/rules/*.mdc`.
+- **Rules:** Stored in `lupo_rules`; attached to lupo-channels/actors via `lupo_rule_targets`. Evaluated by `RuleEngine.php` / `RuleEvaluator.php`. Root rules in `lupo-rules/root/*.md`; synced to `.cursor/rules/*.mdc`.
 
 ---
 
@@ -258,7 +258,7 @@ Tables are defined in **`lupo-database/lupopedia/mysql/install/install_new_lupop
 | Resource | Purpose |
 |----------|--------|
 | **lupo-database/lupopedia/mysql/install/install_new_lupopedia.sql** | Canonical DDL for all tables. |
-| **lupo-docs/toons/*.toon.json**, **lupo-database/lupopedia/toon/*.toon** | Column/type reference (TOONs); table count from TOONs after `python scripts/generate_toon_files.py`. |
+| **lupo-database/lupopedia/toon/*.toon.json**, **lupo-database/lupopedia/toon/*.toon** | Column/type reference (TOONs); table count from TOONs after `python lupo-scripts/generate_toon_files.py`. |
 | **lupo-docs/architecture/HOW_ACTORS_ORCHESTRATE_ON_CHANNELS.md** | In-depth orchestration: actors, faucets, sessions, traits, roles, dialog, tasks. |
 | **lupo-docs/doctrine/ActorFaucetOntology.md** | Actor vs Faucet; IDE agents as faucets. |
 | **lupo-docs/doctrine/COMMUNICATION_DOCTRINE.md** | Dialog tables only; no lupo_threads/lupo_messages. |
@@ -269,7 +269,7 @@ Tables are defined in **`lupo-database/lupopedia/mysql/install/install_new_lupop
 | **lupo-docs/doctrine/EDGE_VOCABULARY_DOCTRINE.md** | Canonical edge_type, relationship_type, and object type pairs. |
 | **lupo-docs/doctrine/LUPOPEDIA_HEADERS/** | Header format, session block, channel_name, thread_name. |
 | **lupo-docs/doctrine/CRAFTY_SYNTAX_MIGRATION_PROJECT_BRIEF.md** | Subdirectory install, LUPOPEDIA_PUBLIC_PATH, config above web root. |
-| **docs/status/DESIGN_NOTE_LUPO_ACTOR_TRAITS_4.0.69.md** | Decision: lupo_actor_traits table; actor-scoped traits only. |
+| **lupo-docs/status/DESIGN_NOTE_LUPO_ACTOR_TRAITS_4.0.69.md** | Decision: lupo_actor_traits table; actor-scoped traits only. |
 | **AGENTS.md**, **README.md** | Paths, doctrines, architecture overview. |
 
 ---

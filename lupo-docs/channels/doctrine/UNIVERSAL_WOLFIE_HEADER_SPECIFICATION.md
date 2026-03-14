@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\channels\doctrine\UNIVERSAL_WOLFIE_HEADER_SPECIFICATION.md"
+  file_path_from_root: "lupo-docs\channels\doctrine\UNIVERSAL_WOLFIE_HEADER_SPECIFICATION.md"
   file_hash: "8ef5cf15b341c1f9ab0a424e6bce82b33060fc30d73b4a38346ed1e6c4848e22"
-  file_path_from_root: "docs\channels\doctrine\UNIVERSAL_WOLFIE_HEADER_SPECIFICATION.md"
+  file_path_from_root: "lupo-docs\channels\doctrine\UNIVERSAL_WOLFIE_HEADER_SPECIFICATION.md"
   file_hash: "a1b9e93a1fb3bafbae6d48df119bf95ddf944b8afa354f60a5035031cd6fafea"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -261,7 +261,7 @@ web:
 | **base_path** | string | Directory segment of canonical path (e.g. `/doctrine/FLP`). |
 | **url_pattern** | string | Pattern for building URL, e.g. `"/{base}/{slug}"`. |
 
-Inference: agents and tools may derive `canonical` from `file_path_from_root` (strip `docs/` prefix and `.md` suffix; leading slash). Export: FLIP CSV and seed metadata may include the `web` block for routing and resolution.
+Inference: agents and tools may derive `canonical` from `file_path_from_root` (strip `lupo-docs/` prefix and `.md` suffix; leading slash). Export: FLIP CSV and seed metadata may include the `web` block for routing and resolution.
 
 ---
 
@@ -561,14 +561,14 @@ Required fields are immutable.
 ## 13. Implementation Resources
 
 - **Canonical Reference**: https://lupopedia.com/what/WHS
-- **Mood System Doctrine**: `docs/doctrines/MOOD_SYSTEM_DOCTRINE.md`
-- **Mood Axis Registry**: `docs/registries/MOOD_AXIS_REGISTRY.md`
-- **RGB Mapping Protocol**: `docs/doctrines/COLOR_DOCTRINE.md`
-- **Mood Calculation Protocol**: `docs/doctrines/MOOD_CALCULATION_PROTOCOL.md`
-- **Thread Aggregation Protocol**: `docs/doctrines/THREAD_AGGREGATION_PROTOCOL.md`
-- **Lupopedia Header Profile**: `docs/doctrine/LUPOPEDIA_HEADER_PROFILE.md`
-- **Dialog History Specification**: `docs/agents/DIALOG_HISTORY_SPEC.md`
-- **Thread-Level Dialog Specification**: `docs/agents/THREAD_LEVEL_DIALOG_SPEC.md`
+- **Mood System Doctrine**: `lupo-docs/doctrines/MOOD_SYSTEM_DOCTRINE.md`
+- **Mood Axis Registry**: `lupo-docs/registries/MOOD_AXIS_REGISTRY.md`
+- **RGB Mapping Protocol**: `lupo-docs/doctrines/COLOR_DOCTRINE.md`
+- **Mood Calculation Protocol**: `lupo-docs/doctrines/MOOD_CALCULATION_PROTOCOL.md`
+- **Thread Aggregation Protocol**: `lupo-docs/doctrines/THREAD_AGGREGATION_PROTOCOL.md`
+- **Lupopedia Header Profile**: `lupo-docs/doctrine/LUPOPEDIA_HEADER_PROFILE.md`
+- **Dialog History Specification**: `lupo-docs/agents/DIALOG_HISTORY_SPEC.md`
+- **Thread-Level Dialog Specification**: `lupo-docs/agents/THREAD_LEVEL_DIALOG_SPEC.md`
 - **Global Atoms**: `config/global_atoms.yaml`
 
 ---

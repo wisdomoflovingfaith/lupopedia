@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -70,7 +70,7 @@ The initialization workflow performs comprehensive setup for a new development c
 
 1. **Doctrine Ingestion** - Scans and parses all Channel 0 broadcast doctrines
 2. **Thread Creation** - Creates development coordination thread in Channel 42
-3. **Status Audit** - Audits docs/status/ directory and classifies files by version relevance
+3. **Status Audit** - Audits lupo-docs/status/ directory and classifies files by version relevance
 4. **Report Generation** - Creates comprehensive audit reports
 5. **Summary Posting** - Posts concise summaries to Channel 42
 6. **System Logging** - Maintains detailed audit trail of all activities

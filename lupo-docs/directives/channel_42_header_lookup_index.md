@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\directives\channel_42_header_lookup_index.md"
+  file_path_from_root: "lupo-docs\directives\channel_42_header_lookup_index.md"
   file_hash: "d4a715e837bbdaf83b185fce2ece70ce5ce0ee248d6b3a2926e31a8182dc5017"
-  file_path_from_root: "docs\directives\channel_42_header_lookup_index.md"
+  file_path_from_root: "lupo-docs\directives\channel_42_header_lookup_index.md"
   file_hash: "782ef9dccc5b98e6e86ca10d9fd7f6251b6b4713d45b0090e6a7ddbb933f9a4c"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -63,7 +63,7 @@ lupopedia.footer:
 
 ---
 wolfie.headers:
-  file_path_from_root: "docs/directives/channel_42_header_lookup_index.md"
+  file_path_from_root: "lupo-docs/directives/channel_42_header_lookup_index.md"
   system_version: "4.0.34"
   channel_id: 42
   mood_rgb: "2244FF"
@@ -75,9 +75,9 @@ wolfie.headers:
 
 flip.footer:
   referenced_by_files:
-    - "docs/doctrine/FLIP_FOOTER_DOCTRINE.md"
-    - "docs/doctrine/X_LUPO_FORWARDED_HEADER_DOCTRINE.md"
-    - "docs/AGENT_INVENTORY.md"
+    - "lupo-docs/doctrine/FLIP_FOOTER_DOCTRINE.md"
+    - "lupo-docs/doctrine/X_LUPO_FORWARDED_HEADER_DOCTRINE.md"
+    - "lupo-docs/AGENT_INVENTORY.md"
     - "CHANGELOG.md"
   referenced_by_channels:
     - 42
@@ -109,7 +109,7 @@ flip.footer:
 You are to collaboratively design and implement a **file-based header lookup system** for Lupopedia.
 
 This is the answer to:  
-“Do we have a lookup on headers like docs/x_lupo_forwarded?”
+“Do we have a lookup on headers like lupo-docs/x_lupo_forwarded?”
 
 We want a deterministic, scan-generated index that supports queries like:
 - Find all files with `x_lupo_forwarded == 1003:10000`
@@ -143,15 +143,15 @@ We want a deterministic, scan-generated index that supports queries like:
 Generate at least one of the following (you choose the best approach):
 
 ### Option A (Simple): Single Index File
-- `docs/index/flip_index.json`
+- `lupo-docs/index/flip_index.json`
 or
-- `docs/index/flip_index.yaml`
+- `lupo-docs/index/flip_index.yaml`
 
 ### Option B (Queryable): Split Indices
-- `docs/index/by_actor/1001.json`
-- `docs/index/by_forward/1003_10000.json`
-- `docs/index/by_channel/42.json`
-- `docs/index/orphans.json`
+- `lupo-docs/index/by_actor/1001.json`
+- `lupo-docs/index/by_forward/1003_10000.json`
+- `lupo-docs/index/by_channel/42.json`
+- `lupo-docs/index/orphans.json`
 
 ---
 
@@ -177,17 +177,17 @@ Each index entry must include:
 Implement a tool/script (language of your choice) that:
 
 1. Recursively scans:
-   - docs/
-   - prompts/
-   - channels/
+   - lupo-docs/
+   - lupo-prompts/
+   - lupo-channels/
 2. Extracts YAML blocks:
    - wolfie.headers
    - flip.footer
 3. Validates minimal schema
 4. Writes the index files under:
-   - `docs/index/`
+   - `lupo-docs/index/`
 5. Produces a report:
-   - `docs/status/header_lookup_build_report_20260223.md`
+   - `lupo-docs/status/header_lookup_build_report_20260223.md`
 
 ---
 

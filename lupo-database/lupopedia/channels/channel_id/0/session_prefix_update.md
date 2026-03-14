@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "instruction"
-  file_path_from_root: "channels/0/session_prefix_update.md"
+  file_path_from_root: "lupo-channels/0/session_prefix_update.md"
   system_version: "4.0.52"
   last_modified_utc: "20260301152952"
   channel_id: 0
@@ -19,10 +19,10 @@ lupopedia.headers:
 
 lupopedia.edges:
   outbound_edges:
-    - { to: "docs/database/lupopedia/tables/SESSION_MANAGEMENT_SYSTEM.md", type: "references", weight: 1.0 }
-    - { to: "docs/toons/lupo_sessions.toon.json", type: "schema_reference", weight: 1.0 }
+    - { to: "lupo-docs/database/lupopedia/tables/SESSION_MANAGEMENT_SYSTEM.md", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/toons/lupo_sessions.toon.json", type: "schema_reference", weight: 1.0 }
     - { to: "bin/session_manager.php", type: "implementation_reference", weight: 0.9 }
-    - { to: "docs/doctrine/FLARE/FLARE_DOCTRINE.md", type: "references", weight: 0.8 }
+    - { to: "lupo-docs/doctrine/FLARE/FLARE_DOCTRINE.md", type: "references", weight: 0.8 }
   semantic_tags: ["session_prefix", "agent_update", "isolation"]
 
 lupopedia.footer:

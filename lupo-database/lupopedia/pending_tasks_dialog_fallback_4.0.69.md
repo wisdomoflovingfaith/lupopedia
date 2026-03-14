@@ -58,12 +58,12 @@ lupopedia.footer:
 6. **Seed data** — Seed kernel actor traits into `lupo_actor_traits` (explicit actor_trait_id); seed core edge types into `lupo_edge_type_definitions`; seed core actions into `lupo_action_authorization`. Use allocator or registry for IDs; timestamps set in PHP.
 7. **One-time migration** — If applying to an existing DB that was installed before these columns/tables: run a single migration that ALTERs and CREATEs as in install; then record in `lupo_schema_migrations`. New installs get everything from install SQL only.
 8. **Documentation** — TRAITS_DOCTRINE, EDGE_TYPE_SEMANTICS_DOCTRINE, AUTHORIZATION_DOCTRINE, FAUCET_TRACEABILITY_DOCTRINE, FEDERATION_NODE_TYPES_DOCTRINE; update IDENTITY_LAYERS_DOCTRINE, ActorFaucetOntology, COMMUNICATION_DOCTRINE as in LILITH prompt.
-9. **TOONs** — TOON files updated from install: `lupo_actor_traits.toon`, `lupo_dialog_messages.toon`, `lupo_sessions.toon`, `lupo_federation_nodes.toon`; new `lupo_edge_type_definitions.toon`, `lupo_action_authorization.toon`. After applying migration to a live DB, run `python scripts/generate_toon_files.py` so TOONs match live schema if the script reads from DB.
+9. **TOONs** — TOON files updated from install: `lupo_actor_traits.toon`, `lupo_dialog_messages.toon`, `lupo_sessions.toon`, `lupo_federation_nodes.toon`; new `lupo_edge_type_definitions.toon`, `lupo_action_authorization.toon`. After applying migration to a live DB, run `python lupo-scripts/generate_toon_files.py` so TOONs match live schema if the script reads from DB.
 
 ---
 
 ## Reference
 
-- Implementation directive: `prompts/cursor/20260312_lilith_implementation_prompt_traits_authorization.md`
+- Implementation directive: `lupo-prompts/cursor/20260312_lilith_implementation_prompt_traits_authorization.md`
 - Install schema: `lupo-database/lupopedia/mysql/install/install_new_lupopedia.sql`
 - Single-install doctrine: no Lupopedia→Lupopedia upgrade until 4.1.0.

@@ -1,29 +1,29 @@
 ---
 lupopedia.headers:
-  lupopedia.version: "4.0.73"
+  lupopedia.version: "4.0.74"
   lupopedia.schema: "database_table"
   file_path_from_root: "lupo-docs/database/lupopedia/SCHEMA_REGISTRY.md"
-  system_version: "4.0.71"
-  channel_id: 1
+  system_version: "4.0.74"
+  channel_id: 42
   actor_id: 102
-  last_modified_utc: "20260312"
+  last_modified_utc: "20260314"
   artifact_type: "schema_registry"
-  purpose: "Master schema inventory: TOONs, docs, migration refs, domain assignment (Cursor acting KIRO)"
+  purpose: "Master schema inventory: install SQL, TOONs, table docs, migration refs, domain assignment"
   mood_rgb: "4169E1"
-  traits: ["canonical", "schema_registry", "cursor_kiro_takeover", "v4.0.71"]
+  traits: ["canonical", "schema_registry", "v4.0.74"]
   tags: ["database", "schema", "registry", "coordination"]
   lupo_agent: "cursor"
 
 lupopedia.footer:
-  last_verified: "20260312"
+  version: "4.0.74"
+  last_verified: "20260314"
   last_verified_by: "cursor"
+  orchestrator: "cursor"
 ---
 
 # Schema Registry
 
-**Source:** TOONs in `lupo-docs/toons/` (221 files). Cross-checked with `lupo-docs/database/lupopedia/tables/` (flat, active/, deprecated/, migrations/) and `lupo-docs/doctrine/migrations/` (livehelp_migrations_readme, MIGRATION_MAPPING_REFERENCE in tables/).
-
-**Note:** Directive referenced `lupo-database/lupopedia/toon/`; actual TOON location in this project is **`lupo-docs/toons/`**.
+**Source and authority:** This registry is cross-checked against **install SQL** ([lupo-database/lupopedia/mysql/install/install_new_lupopedia.sql](lupo-database/lupopedia/mysql/install/install_new_lupopedia.sql)), **TOON artifacts** (e.g. in `lupo-docs/toons/`), and table docs under `lupo-docs/database/lupopedia/tables/` (flat, active/, deprecated/, migrations/). **Install SQL is authoritative** where disagreements exist. TOON files are derived representations. The repo supports more than one TOON-related path; `lupo-docs/toons/` is the current in-repo TOON set.
 
 **Agent assignment** (from MULTI_AGENT_DATABASE_DOCUMENTATION_PLAN.md; Cursor has taken over KIRO responsibilities):
 
@@ -159,6 +159,7 @@ lupopedia.footer:
 | lupo_pack_role_registry | Roles | Pack role registry | JetBrains | Active | tables/lupo_pack_role_registry.md | — | |
 | lupo_paths_summary | Semantic navbar | Path summary metrics | Cursor | Active | TOON only | 20260312_authoritative_semantic_navbar_rebuild | 4.0.71 |
 | lupo_permissions | Governance | Permissions | Cursor (KIRO) | Active | tables/lupo_permissions.md | — | |
+| lupo_projects | Core/registry | Projects (channel, orchestrator, node) | Cursor | Active | active/lupo_projects.md | — | 4.0.74; KIRO proposal, Captain directive |
 | lupo_persona_* | Persona | Profiles, dialogue patterns | JetBrains | Active | tables/lupo_persona_*.md | — | |
 | lupo_reference_* | References | Objects, cited_by | JetBrains | Active | tables/lupo_reference_*.md | deprecated/lupo_reference_cited_by.md | |
 | lupo_reference_map | Semantic navbar | Reference–target map | Cursor | Active | TOON only | 20260312_authoritative_semantic_navbar_rebuild | 4.0.71 |
@@ -187,11 +188,10 @@ lupopedia.footer:
 
 ## Summary counts
 
-- **TOON tables:** 230 (includes 9 semantic navbar tables added 4.0.71)
-- **livehelp_* (Migration):** 34
-- **lupo_* (Active):** 187
-- **Deprecated (in deprecated/ or DROPPED in mapping):** See MIGRATION_MAPPING_REFERENCE; livehelp_* are Migration status, not Deprecated in TOON (they exist in TOON for reference).
-- **Doc locations:** Many tables have docs in flat `tables/`; a subset have canonical docs in `active/`. Migration docs in `tables/*_migration.md` and `migrations/` (e.g. livehelp_autoinvite in migrations/).
+- **Current in-repo TOON count (observed):** 230+ .toon.json files in `lupo-docs/toons/` (count may change after schema changes or TOON regeneration).
+- **Install-backed active tables:** Defined by install_new_lupopedia.sql; table count is not fixed—schema expansion is permitted when justified (table ceiling is advisory only, 4.0.74).
+- **livehelp_* (Migration):** 34 legacy; see MIGRATION_MAPPING_REFERENCE.
+- **Doc locations:** Many tables have docs in flat `tables/` or `active/`. Migration docs in `tables/*_migration.md` and `migrations/`.
 
 ---
 

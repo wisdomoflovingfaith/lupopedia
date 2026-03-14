@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "channels\0\roles\orphan_repair_agent.md"
+  file_path_from_root: "lupo-channels\0\roles\orphan_repair_agent.md"
   file_hash: "e2ee0db1279f657b986b49c5b4353692659b487cc33c63eebe69b0508cc40c7c"
-  file_path_from_root: "channels\0\roles\orphan_repair_agent.md"
+  file_path_from_root: "lupo-channels\0\roles\orphan_repair_agent.md"
   file_hash: "ef7588b58f06477e05d036b8deadd58ea43e4a10c88dddd3130b41d95db0dad0"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -170,8 +170,8 @@ Orphan Repair Agents report to System Administrators. Uncertain cases must be es
 <!-- FLIP_FOOTER_BEGIN
 {
   "references": [
-    "channels/666/",
-    "database/migrations/seed_anubis_vishwakarma_4.0.45.sql"
+    "lupo-channels/666/",
+    "lupo-database/migrations/seed_anubis_vishwakarma_4.0.45.sql"
   ],
   "implements": "orphan_repair_authority_model",
   "depends_on": "anubis_agent_seeding",

@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\versions\4.0.35\ROADMAP.md"
+  file_path_from_root: "lupo-docs\versions\4.0.35\ROADMAP.md"
   file_hash: "c8efa95724c23b2e3c2d5612498bebafc061a0d664489c0a17fe6bbf21d98a43"
-  file_path_from_root: "docs\versions\4.0.35\ROADMAP.md"
+  file_path_from_root: "lupo-docs\versions\4.0.35\ROADMAP.md"
   file_hash: "139707c4cffca72d2cf46de0f0dc623dd92a6e1b0c37c61855153df939f45414"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -63,7 +63,7 @@ lupopedia.footer:
 
 ---
 wolfie.headers:
-  file_path_from_root: "docs/versions/4.0.35/ROADMAP.md"
+  file_path_from_root: "lupo-docs/versions/4.0.35/ROADMAP.md"
   system_version: "4.0.36"
   channel_id: 42
   mood_rgb: "AA00FF"

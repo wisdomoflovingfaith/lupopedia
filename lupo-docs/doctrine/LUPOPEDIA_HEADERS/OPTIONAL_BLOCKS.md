@@ -1,6 +1,6 @@
 ---
 lupopedia.headers:
-  lupopedia.version: "4.0.73"
+  lupopedia.version: "4.0.74"
   lupopedia.schema: "doctrine"
   file_path_from_root: "lupo-docs/doctrine/LUPOPEDIA_HEADERS/OPTIONAL_BLOCKS.md"
   web_path: "http://www.lupopedia.com/doctrine/LUPOPEDIA_HEADERS/OPTIONAL_BLOCKS"
@@ -119,12 +119,67 @@ lupopedia.metadata:
   description:
     - { schema_ref: "lupo_metadata", entity_type: "file", meta_type: "property", property_value: "Primary project documentation and onboarding.", channel_id: 42, class_name: "lupopedia_metadata", created_ymdhis: 20260313000000, updated_ymdhis: 20260313000000 }
   keywords:
-    - { schema_ref: "lupo_metadata", entity_type: "file", meta_type: "property", property_value: "readme, getting_started, semantic_os, multi_agent, v4.0.73", channel_id: 42, class_name: "lupopedia_metadata", created_ymdhis: 20260313000000, updated_ymdhis: 20260313000000 }
+    - { schema_ref: "lupo_metadata", entity_type: "file", meta_type: "property", property_value: "readme, getting_started, semantic_os, multi_agent, v4.0.74", channel_id: 42, class_name: "lupopedia_metadata", created_ymdhis: 20260313000000, updated_ymdhis: 20260313000000 }
   author:
     - { schema_ref: "lupo_metadata", entity_type: "file", meta_type: "property", property_value: "wolfie", channel_id: 42, class_name: "lupopedia_metadata", created_ymdhis: 20260313000000, updated_ymdhis: 20260313000000 }
   orchestrator:
     - { schema_ref: "lupo_metadata", entity_type: "file", meta_type: "property", property_value: "cursor", channel_id: 42, class_name: "lupopedia_metadata", created_ymdhis: 20260313000000, updated_ymdhis: 20260313000000 }
 ```
+
+---
+
+## lupopedia.next_actions — Suggested next actions (optional)
+
+**Canonical name:** **`lupopedia.next_actions`**  
+**Legacy name:** `lupopedia.close` (validators accept both; see backward compatibility below)
+
+**Purpose:** Like **lupopedia.init** (which lists what to read or understand **before** this file), **lupopedia.next_actions** lists **what should be done next** — suggested follow-up actions after reading or using this file. It is the "after" counterpart to init's "before".
+
+**Recommended structure:**
+
+- **next_actions:** YAML list of suggested next steps (actionable strings). Order when it matters (e.g. "Do A first, then B").
+
+Example:
+
+```yaml
+lupopedia.next_actions:
+  next_actions:
+    - "Execute P0 items in plan.md; align TOON location and path references"
+    - "Coordinate with Kiro, Windsurf, Codex on domain ownership"
+    - "Merge approved faucet-plan items into root plan as phases complete"
+```
+
+**Relationship to lupopedia.footer:** When **lupopedia.footer** is present, it MUST include **next_action:** (a short list of 1–3 items). The optional **lupopedia.next_actions** block can hold a fuller or more structured set of follow-ups. When both exist, footer.next_action may summarize or repeat the same list; **lupopedia.next_actions** is the dedicated block for "what to do next" when you want it explicit and easy to find.
+
+**Canonical order:** If present, place **lupopedia.next_actions** after **lupopedia.see** and before the closing `---` (same position as legacy **lupopedia.close**).
+
+**Backward compatibility and deprecation:** Validators MUST accept both **lupopedia.next_actions** and **lupopedia.close**. When both block names are present in tooling or docs, prefer **lupopedia.next_actions**. **Deprecation timeline:** **lupopedia.close** is deprecated as of 4.0.74; removal or hard error for **lupopedia.close** is planned for **4.1.0** (when Lupopedia→Lupopedia upgrade and auto-installers are introduced). Until then, writers should use **lupopedia.next_actions** in new or updated files; readers and validators should accept **lupopedia.close** for backward compatibility.
+
+---
+
+## lupopedia.actor_references — Actor ID reference (optional)
+
+**Purpose:** Optional block for plan/report (or other coordination) files to list **actor IDs** resolved from the canonical registry, so readers and tooling do not guess. The single source of truth remains [lupo-database/lupopedia/actors/actor_id/registry.json](lupo-database/lupopedia/actors/actor_id/registry.json).
+
+**Recommended structure:**
+
+- **comment:** Required; e.g. "Actor IDs per lupo-database/lupopedia/actors/actor_id/registry.json".
+- **&lt;actor_slug&gt;:** Integer (actor_id) or string (e.g. "TBD — see plan_foo.md" when not in registry).
+
+Example:
+
+```yaml
+lupopedia.actor_references:
+  comment: "Actor IDs per lupo-database/lupopedia/actors/actor_id/registry.json"
+  cursor: 102
+  wolfie: 1
+  kiro: 100
+  windsurf: 101
+  antigravity: 103
+  codex: "TBD — JetBrains/Codex not in registry; see plan_codex.md"
+```
+
+**Canonical order:** If present, place after **lupopedia.init** and before **lupopedia.metadata** (or per LUPOPEDIA_HEADERS_PLAN block order).
 
 ---
 
@@ -145,12 +200,12 @@ In addition, footer MUST include orchestrator and verification metadata. Engagem
 
 ## lupopedia.engagement — Snapshot and metrics (optional)
 
-New block (4.0.73) for tracking artifact engagement. Like **`lupopedia.edges`**, it MUST include **`comment`** and SHOULD include **`meta`** (same convention as edges: comment = snapshot notice, meta = thread/context string).
+New block (4.0.74) for tracking artifact engagement. Like **`lupopedia.edges`**, it MUST include **`comment`** and SHOULD include **`meta`** (same convention as edges: comment = snapshot notice, meta = thread/context string).
 
 | Field | Type | Description |
 |-------|------|-------------|
-| comment | string (required) | Snapshot notice; describe which agent/thread produced the snapshot (e.g. "Snapshot of files edited during 4.0.73 finalization … by CURSOR IDE Agent"). |
-| meta | string (recommended) | Thread or context (e.g. "Thread: Finalize 4.0.72 → Push to GitHub → Initialize 4.0.73 → Migrate Tasks → Validate Upgrade Path"). Same style as `lupopedia.edges.meta`. |
+| comment | string (required) | Snapshot notice; describe which agent/thread produced the snapshot (e.g. "Snapshot of files edited during 4.0.74 finalization … by CURSOR IDE Agent"). |
+| meta | string (recommended) | Thread or context (e.g. "Thread: Finalize 4.0.72 → Push to GitHub → Initialize 4.0.74 → Migrate Tasks → Validate Upgrade Path"). Same style as `lupopedia.edges.meta`. |
 | views | integer | Total view count (calculated from visits). |
 | like_count | integer | Total like count. |
 | share_count | integer | Total share count. |
@@ -163,6 +218,8 @@ Outbound/inbound edges and semantic_tags are defined in [LUPOPEDIA_HEADERS_FORMA
 
 **Snapshot requirement:** **`lupopedia.edges`** MUST include **`comment`** (snapshot notice) and SHOULD include **`meta`** (thread/context string), in the same way as **`lupopedia.engagement`**.
 
-**Grouped outbound_edges (4.0.73+):** **`outbound_edges`** MAY be a single object with **category keys** (e.g. `code`, `documentation`, `schema`, `runtime`), each holding a list of edge objects. This is the preferred form for table docs and collections so that code references are separate from documentation references. When edges are imported into the database, the category key is stored in **`lupo_edges.edge_category`**; export groups by `edge_category` to rehydrate grouped YAML. Flat form **`outbound_edges: [ { to, type, weight }, ... ]`** remains valid for backward compatibility.
+**When to update edges:** The block is a **snapshot at artifact creation**. When the file's semantic relationships change significantly (e.g. major file moves, new references, removed links), **regenerate or manually update** **lupopedia.edges** so the snapshot stays accurate. Doctrine: *"Update lupopedia.edges when the file's semantic relationships change significantly."* Consider tooling (e.g. `lupo-bin/update-edges.php`) to refresh edges from a manifest or scan; see plan.md P1.6.
+
+**Grouped outbound_edges (4.0.74+):** **`outbound_edges`** MAY be a single object with **category keys** (e.g. `code`, `documentation`, `schema`, `runtime`), each holding a list of edge objects. This is the preferred form for table docs and collections so that code references are separate from documentation references. When edges are imported into the database, the category key is stored in **`lupo_edges.edge_category`**; export groups by `edge_category` to rehydrate grouped YAML. Flat form **`outbound_edges: [ { to, type, weight }, ... ]`** remains valid for backward compatibility.
 
 See also [lupo-docs/api/FLARE_HEADERS_COMPLETE_REFERENCE.md](../../api/FLARE_HEADERS_COMPLETE_REFERENCE.md) and [lupo-docs/status/EDGE_STRUCTURE_AUDIT_GROUPED_OUTBOUND_EDGES.md](../../status/EDGE_STRUCTURE_AUDIT_GROUPED_OUTBOUND_EDGES.md) for the full field reference and audit.

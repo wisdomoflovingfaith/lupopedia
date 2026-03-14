@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\channels\doctrine\INGESTION_DOCTRINE.md"
+  file_path_from_root: "lupo-docs\channels\doctrine\INGESTION_DOCTRINE.md"
   file_hash: "e210e9a508d1fc0c901e48bbd25a2b893f8269a5ec4be59f4c757080cf397d5d"
-  file_path_from_root: "docs\channels\doctrine\INGESTION_DOCTRINE.md"
+  file_path_from_root: "lupo-docs\channels\doctrine\INGESTION_DOCTRINE.md"
   file_hash: "2eaef6d9fe92e7e72d6d12228cfa93fca856f24f8dac236036e098015e75ba06"
   last_updated_utc: "20260228"
   system_version: "4.0.50"

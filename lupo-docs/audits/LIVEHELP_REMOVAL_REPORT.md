@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\LIVEHELP_REMOVAL_REPORT.md"
+  file_path_from_root: "lupo-docs\LIVEHELP_REMOVAL_REPORT.md"
   file_hash: "0b54827b50a7e3d7010139b72a66c8636eac541f533fc126f9fa229a1c9a4d80"
-  file_path_from_root: "docs\LIVEHELP_REMOVAL_REPORT.md"
+  file_path_from_root: "lupo-docs\LIVEHELP_REMOVAL_REPORT.md"
   file_hash: "ccee024238e69574efe63c2ad1121282af10ae50af3a5e13ab2b09acfdcbd794"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -119,14 +119,14 @@ All authentication and authorization now use:
 
 | File | Changes |
 |------|--------|
-| `scripts/migrate_user_mappings.php` | Header updated: operator-based migration deprecated. `getLupopediaUsers()` from `lupo_auth_users`. `getCraftyOperators()` returns `[]`. Inserts use YmdHis for created_at/updated_at. `updateUsersTable()` is a no-op (no crafty_operator_id on users). |
+| `lupo-scripts/migrate_user_mappings.php` | Header updated: operator-based migration deprecated. `getLupopediaUsers()` from `lupo_auth_users`. `getCraftyOperators()` returns `[]`. Inserts use YmdHis for created_at/updated_at. `updateUsersTable()` is a no-op (no crafty_operator_id on users). |
 
 ---
 
 ## Remaining References (comments / docs only)
 
 - **Comments** in several Legacy* files and in `live.php`, `livehelp_js.php` that mention “livehelp_users → lupo_users” or similar: kept as historical notes; no runtime use of livehelp_*.
-- **Docs / SQL / backups:** `docs/`, `database/install/`, `database/migrations/`, `migrations/`, `complete_schema.txt`, `backups/` may still mention `livehelp_*` in comments or schema docs; no application code paths use those tables.
+- **Docs / SQL / backups:** `lupo-docs/`, `lupo-database/install/`, `lupo-database/migrations/`, `migrations/`, `complete_schema.txt`, `lupo-backups/` may still mention `livehelp_*` in comments or schema docs; no application code paths use those tables.
 
 ---
 

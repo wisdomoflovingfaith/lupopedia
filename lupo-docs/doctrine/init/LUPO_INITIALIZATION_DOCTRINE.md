@@ -52,13 +52,59 @@ Before reading or modifying any file that uses `lupopedia.init`, or before chang
 
 ## What is lupopedia.init?
 
-**`lupopedia.init`** is an optional YAML block in the LUPOPEDIA HEADERS front matter. It appears in **canonical block order** before `lupopedia.headers` (see [LUPOPEDIA_HEADERS_FORMAT.md](../LUPOPEDIA_HEADERS/LUPOPEDIA_HEADERS_FORMAT.md) §1). It is used to:
+**`lupopedia.init`** is an optional YAML block in the LUPOPEDIA HEADERS front matter. It appears in **canonical block order** before `lupopedia.headers` (see [LUPOPEDIA_HEADERS_FORMAT.md](../LUPOPEDIA_HEADERS/LUPOPEDIA_HEADERS_FORMAT.md) §1).
 
-- Declare **document type** or **initialization context** (e.g. `document_type: "doctrine"`, `system_version: "4.0.71"`).
-- Carry **pre-actions** or **execution mode** (e.g. advisory vs required) for lifecycle hooks, when tooling supports them.
-- Provide **runtime or bootstrap hints** for agents and validators.
+**Purpose:** `lupopedia.init` lists **required reading** and **required context** that a reader must have before reading **this file**. It is **not** for file metadata (artifact_type, file_identity, namespace, etc.); those belong in `lupopedia.headers` or `lupopedia.metadata`.
+
+### Recommended structure
+
+- **required_reading:** List of paths (or objects with **path** and **reason**) that must be read first. Order matters when dependencies are sequential. Simple form: `- "path/to/doc.md"`. Extended form: `- path: "path/to/doc.md"` and `reason: "Why this is required"`.
+- **required_context:** Short list of concepts or statements that must be understood before reading this file (e.g. "LUPOPEDIA HEADERS are the bridge between files and database", "Actor/faucet distinction", "Cursor is lead orchestrator").
+
+Example (simple list):
+
+```yaml
+lupopedia.init:
+  required_reading:
+    - "lupo-docs/doctrine/LUPOPEDIA_HEADERS/README.md"
+    - "lupo-docs/doctrine/init/LUPO_INITIALIZATION_DOCTRINE.md"
+  required_context:
+    - "LUPOPEDIA HEADERS format and file order"
+    - "Actor/faucet distinction"
+```
+
+Example (path + reason, recommended for plan/report files):
+
+```yaml
+lupopedia.init:
+  required_reading:
+    - path: "lupo-docs/INIT_README.md"
+      reason: "Prerequisites and 'Before You Read This File'"
+    - path: "lupo-docs/doctrine/LUPOPEDIA_HEADERS/README.md"
+      reason: "Header format and block order"
+  required_context:
+    - "LUPOPEDIA HEADERS are the bridge between files and database"
+    - "Cursor (actor_id 102) is lead orchestrator; faucet-specific plans remain authoritative for their domains"
+```
+
+Tooling and agents should interpret `lupopedia.init` as: "Read and understand these before reading the rest of this file." Do not use `lupopedia.init` for document type, namespace, domain, or system_version; use `lupopedia.headers` for those.
+
+### Circular dependency: required reading for lupopedia.init itself
+
+Files that **define** or **document** `lupopedia.init` (e.g. this doctrine file, INIT_README.md, LUPOPEDIA_HEADERS_FORMAT.md) assume the reader already has minimal context: either **INIT_README.md** or **LUPOPEDIA HEADERS README** is the usual first entry point. There is no strict circular dependency: a reader can start with INIT_README or the HEADERS README, then read this doctrine. Do not list "this file" in its own `lupopedia.init`; list the prerequisites that lead **to** understanding this file (e.g. HEADERS README, versioning doctrine).
 
 All files that use LUPOPEDIA HEADERS must have valid LUPOPEDIA HEADERS (first line `---`, single front matter block, identity line after closing `---`). Invalid or duplicate headers will break validators and doctrine lineage.
+
+---
+
+## Pair: lupopedia.init and lupopedia.next_actions
+
+| Block | Purpose |
+|-------|---------|
+| **lupopedia.init** | **Before:** Required reading and required context that must be read or understood **before** reading this file (`required_reading:`, `required_context:`). |
+| **lupopedia.next_actions** | **After:** Suggested next actions to take **after** reading or using this file (`next_actions:` list). Legacy name: **lupopedia.close** (validators accept both). |
+
+See [OPTIONAL_BLOCKS.md](../LUPOPEDIA_HEADERS/OPTIONAL_BLOCKS.md) for **lupopedia.next_actions** structure and examples.
 
 ---
 

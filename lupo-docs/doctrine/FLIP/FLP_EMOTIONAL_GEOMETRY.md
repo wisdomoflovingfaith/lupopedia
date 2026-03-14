@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\doctrine\FLIP\FLP_EMOTIONAL_GEOMETRY.md"
+  file_path_from_root: "lupo-docs\doctrine\FLIP\FLP_EMOTIONAL_GEOMETRY.md"
   file_hash: "80a148a53651f640ea5fa56b1722fc9ab2e51c8b7707060668533953b36a1f5e"
-  file_path_from_root: "docs\doctrine\FLIP\FLP_EMOTIONAL_GEOMETRY.md"
+  file_path_from_root: "lupo-docs\doctrine\FLIP\FLP_EMOTIONAL_GEOMETRY.md"
   file_hash: "6e0c479cec17e425d6752d57bba9069bdcec8d8d1a0e2542de0391f6a3ca5118"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -64,14 +64,14 @@ lupopedia.footer:
 ---
 # FLIP Header (alias: Wolfie Header, CROP Header, FLIPPING Header)
 wolfie.headers: explicit architecture with structured clarity for every file.
-file_path_from_root: docs/doctrine/FLIP/FLP_EMOTIONAL_GEOMETRY.md
+file_path_from_root: lupo-docs/doctrine/FLIP/FLP_EMOTIONAL_GEOMETRY.md
 file.last_modified_system_version: "4.0.16"
 file.last_modified_utc: "00000000000000"
 # channel_id unresolved — requires lupo_contents lookup by application.
 X-Lupo-Channel: 42   # ANUBIS adoption channel (Auto-Fixed)
 X-Lupo-Actor-ID: 2035
 X-Lupo-Actor-Identity: "Lupopedia Audit Tool (Auto-Fixed)"
-X-Lupo-File-Path: docs/doctrine/FLIP/FLP_EMOTIONAL_GEOMETRY.md
+X-Lupo-File-Path: lupo-docs/doctrine/FLIP/FLP_EMOTIONAL_GEOMETRY.md
 ---
 # FLP — Emotional Geometry
 

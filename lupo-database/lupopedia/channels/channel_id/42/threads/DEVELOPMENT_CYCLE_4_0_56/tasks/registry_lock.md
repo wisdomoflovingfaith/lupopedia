@@ -90,9 +90,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "channels\0\tasks\active\registry_lock.md"
+  file_path_from_root: "lupo-channels\0\tasks\active\registry_lock.md"
   file_hash: "52554dc83cc4c1b92c3145304bd827cb76b32082cdd3572e1477ab1b0e0bd590"
-  file_path_from_root: "channels\0\tasks\active\registry_lock.md"
+  file_path_from_root: "lupo-channels\0\tasks\active\registry_lock.md"
   file_hash: "f41226fe4f79f6a0bb03dc598331f53e20c1acc31ae54b60ab2b576d689e1d17"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -167,12 +167,12 @@ All other IDs are marked as "open" in the registry tables. We need to ensure no 
    - Verify all IDs exist in registry
 
 4. **Create registry validation script**
-   - Script: `scripts/validate_registry_references.php`
+   - Script: `lupo-scripts/validate_registry_references.php`
    - Check all content files
    - Report invalid references
 
 5. **Document registry policy**
-   - Create: `docs/doctrine/registry_allocation_policy.md`
+   - Create: `lupo-docs/doctrine/registry_allocation_policy.md`
    - Define ID ranges
    - Define allocation process
    - Define validation requirements
@@ -198,10 +198,10 @@ This task ensures referential integrity across the entire system. Critical for m
 <!-- FLIP_FOOTER_BEGIN
 {
   "references": [
-    "database/migrations/seed_registry_comprehensive_4.0.45.sql",
-    "database/migrations/seed_registry_open_4.0.45.sql",
-    "actors/registry.json",
-    "channels/registry.json"
+    "lupo-database/migrations/seed_registry_comprehensive_4.0.45.sql",
+    "lupo-database/migrations/seed_registry_open_4.0.45.sql",
+    "lupo-actors/registry.json",
+    "lupo-channels/registry.json"
   ],
   "implements": "registry_integrity_enforcement",
   "depends_on": "CH0-20260225-001",

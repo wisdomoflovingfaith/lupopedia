@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\channels\doctrine\LUPOPEDIA_HEADER_PROFILE.md"
+  file_path_from_root: "lupo-docs\channels\doctrine\LUPOPEDIA_HEADER_PROFILE.md"
   file_hash: "45d075bb4852cccc10b7914af492162dc29381a1c2d57809e2880e5a4eaf68dd"
-  file_path_from_root: "docs\channels\doctrine\LUPOPEDIA_HEADER_PROFILE.md"
+  file_path_from_root: "lupo-docs\channels\doctrine\LUPOPEDIA_HEADER_PROFILE.md"
   file_hash: "3a24952fbc593ab31c76d55fcb4a3b174a8a4259cf544fa6d9fde85e459d1c39"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -649,14 +649,14 @@ All future profiles must respect WHS core immutability.
 ## 🔗 11. Implementation Resources
 
 - **Canonical Reference**: https://lupopedia.com/what/LHP
-- **Universal Wolfie Header Specification**: `docs/doctrine/UNIVERSAL_WOLFIE_HEADER_SPECIFICATION.md`
-- **Mood System Doctrine**: `docs/doctrines/MOOD_SYSTEM_DOCTRINE.md`
-- **Mood Axis Registry**: `docs/registries/MOOD_AXIS_REGISTRY.md`
-- **RGB Mapping Protocol**: `docs/doctrines/COLOR_DOCTRINE.md`
-- **Mood Calculation Protocol**: `docs/doctrines/MOOD_CALCULATION_PROTOCOL.md`
-- **Thread Aggregation Protocol**: `docs/doctrines/THREAD_AGGREGATION_PROTOCOL.md`
-- **Dialog History Specification**: `docs/agents/DIALOG_HISTORY_SPEC.md`
-- **Thread-Level Dialog Specification**: `docs/agents/THREAD_LEVEL_DIALOG_SPEC.md`
+- **Universal Wolfie Header Specification**: `lupo-docs/doctrine/UNIVERSAL_WOLFIE_HEADER_SPECIFICATION.md`
+- **Mood System Doctrine**: `lupo-docs/doctrines/MOOD_SYSTEM_DOCTRINE.md`
+- **Mood Axis Registry**: `lupo-docs/registries/MOOD_AXIS_REGISTRY.md`
+- **RGB Mapping Protocol**: `lupo-docs/doctrines/COLOR_DOCTRINE.md`
+- **Mood Calculation Protocol**: `lupo-docs/doctrines/MOOD_CALCULATION_PROTOCOL.md`
+- **Thread Aggregation Protocol**: `lupo-docs/doctrines/THREAD_AGGREGATION_PROTOCOL.md`
+- **Dialog History Specification**: `lupo-docs/agents/DIALOG_HISTORY_SPEC.md`
+- **Thread-Level Dialog Specification**: `lupo-docs/agents/THREAD_LEVEL_DIALOG_SPEC.md`
 - **Global Atoms**: `config/global_atoms.yaml`
 
 ---

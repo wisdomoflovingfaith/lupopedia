@@ -1,7 +1,7 @@
 # FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
 ---
 lupopedia.headers:
-  lupopedia.version: "4.0.73"
+  lupopedia.version: "4.0.74"
   lupopedia.schema: "documentation"
   file_path_from_root: ".\bin\lupo.php.md"
   file_hash: "89395e72dcdb7303fdcc16dc134b93d26289360dddc13f9aabbb580810d8e8f1"
@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -52,8 +52,8 @@ lupopedia.edges:
   file_path_from_root: "bin\lupo.php.md"
   outbound_edges:
     - { to: "bin/lupo.php", type: "documents", weight: 1.0, reason: "CLI tool implementation" }
-    - { to: "channels/42/actors/0/help.md", type: "references", weight: 0.9, reason: "System agent help" }
-    - { to: "docs/guidelines/list_csv_documentation.md", type: "references", weight: 0.8, reason: "Related documentation" }
+    - { to: "lupo-channels/42/actors/0/help.md", type: "references", weight: 0.9, reason: "System agent help" }
+    - { to: "lupo-docs/guidelines/list_csv_documentation.md", type: "references", weight: 0.8, reason: "Related documentation" }
   semantic_tags: ["cli_documentation", "system_operations", "4.0.50"]
 
   system_version: "4.0.50"
@@ -636,10 +636,10 @@ php bin/lupo.php actors system_tool  # Filter by type
 ### Unit Testing
 ```bash
 # Run CLI tests (recommended)
-phpunit tests/bin/LupoCliTest.php
+phpunit lupo-tests/bin/LupoCliTest.php
 
 # Test specific command
-phpunit tests/bin/LupoCliTest.php --filter testSystemStatus
+phpunit lupo-tests/bin/LupoCliTest.php --filter testSystemStatus
 ```
 
 ### Integration Testing
@@ -803,10 +803,10 @@ Error: Invalid input. Usage: send <channel_id> <msg> [thread_id]
 
 ## Related Documentation
 
-- **System Agent Help**: `channels/42/actors/0/help.md`
-- **CSV Documentation**: `docs/guidelines/list_csv_documentation.md`
-- **Database Schema**: `docs/database/lupopedia/tables/`
-- **FLARE Protocol**: `docs/doctrine/FLARE/FLARE_DOCTRINE.md`
+- **System Agent Help**: `lupo-channels/42/actors/0/help.md`
+- **CSV Documentation**: `lupo-docs/guidelines/list_csv_documentation.md`
+- **Database Schema**: `lupo-docs/database/lupopedia/tables/`
+- **FLARE Protocol**: `lupo-docs/doctrine/FLARE/FLARE_DOCTRINE.md`
 
 ---
 

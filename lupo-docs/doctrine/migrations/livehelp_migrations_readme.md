@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,7 +35,7 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\doctrine\migrations\livehelp_migrations_readme.md"
+  file_path_from_root: "lupo-docs\doctrine\migrations\livehelp_migrations_readme.md"
   file_hash: "92ada42309de4bc4dcff87ec5ce801f88694dd3b73800ccdd94a499ea41f336a"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -57,7 +57,7 @@ lupopedia.footer:
 
 ---
 lupopedia.headers: {
-  file_path_from_root: "docs/doctrine/migrations/livehelp_migrations_readme.md",
+  file_path_from_root: "lupo-docs/doctrine/migrations/livehelp_migrations_readme.md",
   file_hash: "467afcaa1e21e7aa1f2d3bcb90b5724c035eba7d2f8b40c74797f2fec7623d9c"
   system_version: "4.0.50"
   channel_id: 42,
@@ -73,7 +73,7 @@ lupopedia.headers: {
 }
 flip.footer: {
   outbound_edges: [
-    { to: "docs/database/lupopedia/tables/", type: "references", weight: 1.0 }
+    { to: "lupo-docs/database/lupopedia/tables/", type: "references", weight: 1.0 }
   ],
   semantic_tags: ["migration_relocation", "legacy_cleanup", "v4.1.1_deprecation"]
 }
@@ -81,7 +81,7 @@ flip.footer: {
 
 # Legacy Migration Documentation Relocation
 
-All legacy Crafty Syntax migration files have been relocated to **docs/database/lupopedia/tables/** for reference purposes. 
+All legacy Crafty Syntax migration files have been relocated to **lupo-docs/database/lupopedia/tables/** for reference purposes. 
 
 This move emphasizes that these tables are deprecated and should not be used in the new Lupopedia system. They serve only to document mappings to new `lupo_` tables. Legacy tables will be removed in v4.1.1+. For details, refer to the files in the new location.
 

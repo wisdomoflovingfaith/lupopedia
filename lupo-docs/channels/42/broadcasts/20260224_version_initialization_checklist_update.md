@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\channels\42\broadcasts\20260224_version_initialization_checklist_update.md"
+  file_path_from_root: "lupo-docs\channels\42\broadcasts\20260224_version_initialization_checklist_update.md"
   file_hash: "19ded6861a7cd3ea135ff2b0db50e4940f82dc6548ddc3f60fa65f37db545dba"
-  file_path_from_root: "docs\channels\42\broadcasts\20260224_version_initialization_checklist_update.md"
+  file_path_from_root: "lupo-docs\channels\42\broadcasts\20260224_version_initialization_checklist_update.md"
   file_hash: "06bb80c895c1ba8fc2abf75cf544eba4e0e594c6430bf83520149cc58590295e"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -62,7 +62,7 @@ lupopedia.footer:
 
 ---
 wolfie.headers: {
-  file_path_from_root: "docs/channels/42/broadcasts/20260224_version_initialization_checklist_update.md",
+  file_path_from_root: "lupo-docs/channels/42/broadcasts/20260224_version_initialization_checklist_update.md",
   system_version: "4.0.42",
   channel_id: 42,
   mood_rgb: "FF6347",
@@ -90,17 +90,17 @@ wolfie.headers: {
 
 flip.footer: {
   inbound_edges: [
-    { from: "channels/42/broadcasts/20260224_version_4_0_42_initialized.md", type: "updates", weight: 0.9, hashtag: "#initialization" }
+    { from: "lupo-channels/42/broadcasts/20260224_version_4_0_42_initialized.md", type: "updates", weight: 0.9, hashtag: "#initialization" }
   ],
   outbound_edges: [
     { to: "install.php", type: "documents", weight: 1.0, hashtag: "#installer" },
     { to: "lupo-includes/functions/load_atoms.php", type: "documents", weight: 1.0, hashtag: "#atoms" },
     { to: "config/global_atoms.yaml", type: "references", weight: 0.9, hashtag: "#config" },
-    { to: "docs/doctrine/VERSION_DOCTRINE.md", type: "references", weight: 0.8, hashtag: "#doctrine" }
+    { to: "lupo-docs/doctrine/VERSION_DOCTRINE.md", type: "references", weight: 0.8, hashtag: "#doctrine" }
   ],
   referenced_by_actors: [1001, 1002, 1003, 1004, 1005, 1006, 1007, 1008, 1009, 1010, 10000],
   references: {
-    by_files: ["channels/42/broadcasts/20260224_version_4_0_42_initialized.md"],
+    by_files: ["lupo-channels/42/broadcasts/20260224_version_4_0_42_initialized.md"],
     by_actors: [1001, 10000]
   },
   semantic_tags: ["version_initialization", "process_improvement", "checklist_update", "critical_reminder"],
@@ -246,7 +246,7 @@ grep -r "4\.0\.42" --include="*.php" --include="*.yaml"
 ## 📝 DOCUMENTATION UPDATES NEEDED
 
 **TODO for next agent:**
-1. Update `docs/doctrine/VERSION_DOCTRINE.md` with these two additional files
+1. Update `lupo-docs/doctrine/VERSION_DOCTRINE.md` with these two additional files
 2. Update any version initialization scripts to include these files
 3. Add automated check to verify all version references match
 
@@ -281,7 +281,7 @@ grep -r "4\.0\.42" --include="*.php" --include="*.yaml"
 **UTC:** 20260224  
 **Priority:** HIGH  
 **Status:** ⚠️ **CRITICAL PROCESS UPDATE**
- which is channels/42/broadcasts/20260224_version_initialization_checklist_update.md
+ which is lupo-channels/42/broadcasts/20260224_version_initialization_checklist_update.md
 
 ---
 

@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\channels\0042\CHANGELOG.md"
+  file_path_from_root: "lupo-docs\channels\0042\CHANGELOG.md"
   file_hash: "8b9d4382b6b0637ed4b4ac86d9acd060d9160e12a3b5bbcc7e604808faa3a1eb"
-  file_path_from_root: "docs\channels\0042\CHANGELOG.md"
+  file_path_from_root: "lupo-docs\channels\0042\CHANGELOG.md"
   file_hash: "e7752d5c5aa8d652b70aa825e92e5d75c07bf51f5461f03926f94b02366b0d66"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -72,7 +72,7 @@ lupopedia.footer:
 - Completed doctrine coverage (including livehelp_autoinvite), refined MigrationAtlas indexing, and added subsystem notes plus alphabetized replacements.
 - Added filesystem padding doctrine for channel directories and expanded channel-42 cycle checklist with emotional metadata framing.
 - Recorded ancestral intent and continuity doctrine for Crafty Syntax lineage.
-- Verified mappings against import_from_old_crafty_syntax.sql and authoritative TOONs in docs/toons/.
+- Verified mappings against import_from_old_crafty_syntax.sql and authoritative TOONs in lupo-docs/toons/.
 
 ### Why It Matters
 - Locks migration intent, replacement ownership, and lineage continuity into doctrine.
@@ -80,7 +80,7 @@ lupopedia.footer:
 
 ### Impact on Contributors and Future Migrations
 - Centralized references reduce ambiguity and review churn.
-- Future migrations should consult docs/doctrine/MigrationAtlas.md and channel 42 doctrine before altering legacy mappings.
+- Future migrations should consult lupo-docs/doctrine/MigrationAtlas.md and channel 42 doctrine before altering legacy mappings.
 
 ## [2026.3.7.7] — 2026-01-29 23:36 (UTC)
 
@@ -89,9 +89,9 @@ lupopedia.footer:
 
 ### What Changed
 - Completed doctrine notes for all 34 legacy livehelp_* tables (including minimal livehelp_autoinvite).
-- Generated docs/doctrine/MigrationAtlas.md with subsystem pointers and alphabetized replacements.
+- Generated lupo-docs/doctrine/MigrationAtlas.md with subsystem pointers and alphabetized replacements.
 - Confirmed import_from_old_crafty_syntax.sql coverage, post-import drops, and federation node mapping with default_department_id.
-- Validated mappings against SQL and TOONs in docs/toons/ as the authoritative schema source.
+- Validated mappings against SQL and TOONs in lupo-docs/toons/ as the authoritative schema source.
 
 ### Why It Matters
 - Locks down migration intent and replacement paths for future maintainers.
@@ -99,4 +99,4 @@ lupopedia.footer:
 
 ### Impact on Contributors and Future Migrations
 - Centralized atlas reduces onboarding time and review churn.
-- Future migrations should reference docs/doctrine/MigrationAtlas.md and docs/doctrine/migrations for authoritative mappings.
+- Future migrations should reference lupo-docs/doctrine/MigrationAtlas.md and lupo-docs/doctrine/migrations for authoritative mappings.

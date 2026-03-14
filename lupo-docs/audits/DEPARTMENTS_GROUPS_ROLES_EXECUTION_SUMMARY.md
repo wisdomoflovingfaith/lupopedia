@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\audits\DEPARTMENTS_GROUPS_ROLES_EXECUTION_SUMMARY.md"
+  file_path_from_root: "lupo-docs\audits\DEPARTMENTS_GROUPS_ROLES_EXECUTION_SUMMARY.md"
   file_hash: "4ff9dd363f3050996877fd30364c54502060cf0837be51c2cf58ce8653842a57"
-  file_path_from_root: "docs\audits\DEPARTMENTS_GROUPS_ROLES_EXECUTION_SUMMARY.md"
+  file_path_from_root: "lupo-docs\audits\DEPARTMENTS_GROUPS_ROLES_EXECUTION_SUMMARY.md"
   file_hash: "3ff6e62e4238dffa833a610baa8d254e55954cac5d0093e173a5f278f6de92d6"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -63,7 +63,7 @@ lupopedia.footer:
 # Departments / Groups / Roles Unification — Execution Summary (SQL Phase)
 
 **Date:** 2026-02-12  
-**Authority:** docs/audits/DEPARTMENTS_GROUPS_ROLES_PRE_EXECUTION_CHECKLIST.md, DEPARTMENTS_GROUPS_ROLES_IMPLEMENTATION_PLAN.md  
+**Authority:** lupo-docs/audits/DEPARTMENTS_GROUPS_ROLES_PRE_EXECUTION_CHECKLIST.md, DEPARTMENTS_GROUPS_ROLES_IMPLEMENTATION_PLAN.md  
 **Scope:** Schema migrations, installer SQL, seed SQL, Crafty import SQL, and SQL generators only. No PHP application code or doctrine document updates in this phase.
 
 ---
@@ -72,7 +72,7 @@ lupopedia.footer:
 
 | File | Purpose |
 |------|----------|
-| **database/migrations/migration_unify_groups_into_departments.sql** | One-time migration for existing DBs: add department_id to seven tables, add indexes, optional backfill, drop group_id and group-related indexes, drop lupo_actor_group_membership and lupo_groups. |
+| **lupo-database/migrations/migration_unify_groups_into_departments.sql** | One-time migration for existing DBs: add department_id to seven tables, add indexes, optional backfill, drop group_id and group-related indexes, drop lupo_actor_group_membership and lupo_groups. |
 
 ---
 
@@ -82,34 +82,34 @@ lupopedia.footer:
 
 | File | Changes |
 |------|---------|
-| **database/migrations/install_new_lupopedia.sql** | Removed CREATE TABLE lupo_groups and lupo_actor_group_membership (and their indexes). In lupo_permissions, lupo_collections, lupo_collection_tabs, lupo_contents, lupo_analytics_referers_periods, lupo_analytics_visits_daily, lupo_analytics_visits_monthly, lupo_analytics_visits_periods: replaced column group_id with department_id (same nullability/defaults). Replaced index names: uniq_target_group → uniq_target_department, idx_group → idx_department; added lupo_collection_tabs_idx_department. |
-| **database/migrations/dev_20260204_fix_schema_alignment.sql** | Removed all MODIFY/ALTER for lupo_actor_group_membership and lupo_groups. For the seven tables: MODIFY group_id → MODIFY department_id (types unchanged). |
-| **database/migrations/dev_20260204_fix_schema_alignment_summary.txt** | Removed lines for lupo_actor_group_membership and lupo_groups; for the seven tables replaced "group_id -> …" with "department_id -> …". |
-| **database/migrations/dev_20260206_reserved_word_column_renames.sql** | Removed block "lupo_actor_group_membership: role -> role_key" (table dropped). Renumbered remaining comments. |
+| **lupo-database/migrations/install_new_lupopedia.sql** | Removed CREATE TABLE lupo_groups and lupo_actor_group_membership (and their indexes). In lupo_permissions, lupo_collections, lupo_collection_tabs, lupo_contents, lupo_analytics_referers_periods, lupo_analytics_visits_daily, lupo_analytics_visits_monthly, lupo_analytics_visits_periods: replaced column group_id with department_id (same nullability/defaults). Replaced index names: uniq_target_group → uniq_target_department, idx_group → idx_department; added lupo_collection_tabs_idx_department. |
+| **lupo-database/migrations/dev_20260204_fix_schema_alignment.sql** | Removed all MODIFY/ALTER for lupo_actor_group_membership and lupo_groups. For the seven tables: MODIFY group_id → MODIFY department_id (types unchanged). |
+| **lupo-database/migrations/dev_20260204_fix_schema_alignment_summary.txt** | Removed lines for lupo_actor_group_membership and lupo_groups; for the seven tables replaced "group_id -> …" with "department_id -> …". |
+| **lupo-database/migrations/dev_20260206_reserved_word_column_renames.sql** | Removed block "lupo_actor_group_membership: role -> role_key" (table dropped). Renumbered remaining comments. |
 
 ### 2.2 Seed SQL
 
 | File | Changes |
 |------|---------|
-| **database/install/seed_collection_0_content.sql** | Replaced all group_id column names and values with department_id. |
-| **database/install/seed_collection_0_system_tabs.sql** | Replaced all group_id with department_id. |
-| **database/install/seed_collection_0_hierarchical_tabs_3.0.12.sql** | Replaced all group_id with department_id. |
-| **database/install/truth_test_data_captain_wolfie.sql** | Replaced group_id with department_id. |
-| **database/install/lupopedia_seed_mysql.sql** | Removed INSERT into lupo_groups (GROUPS section). Renumbered following section (3. ACTORS → 2. ACTORS). |
+| **lupo-database/install/seed_collection_0_content.sql** | Replaced all group_id column names and values with department_id. |
+| **lupo-database/install/seed_collection_0_system_tabs.sql** | Replaced all group_id with department_id. |
+| **lupo-database/install/seed_collection_0_hierarchical_tabs_3.0.12.sql** | Replaced all group_id with department_id. |
+| **lupo-database/install/truth_test_data_captain_wolfie.sql** | Replaced group_id with department_id. |
+| **lupo-database/install/lupopedia_seed_mysql.sql** | Removed INSERT into lupo_groups (GROUPS section). Renumbered following section (3. ACTORS → 2. ACTORS). |
 
 ### 2.3 Crafty Syntax import SQL
 
 | File | Changes |
 |------|---------|
-| **database/migrations/import_from_old_crafty_syntax.sql** | lupo_collections INSERT: group_id → department_id in column list and VALUES. lupo_collection_tabs INSERTs (root and child): group_id → department_id in column lists and SELECT expressions. |
-| **database/migrations/craftysyntax_to_lupopedia_mysql.sql** | lupo_collections INSERT: group_id → department_id. lupo_collection_tabs INSERTs (folders and children): group_id → department_id in column lists and SELECT. |
+| **lupo-database/migrations/import_from_old_crafty_syntax.sql** | lupo_collections INSERT: group_id → department_id in column list and VALUES. lupo_collection_tabs INSERTs (root and child): group_id → department_id in column lists and SELECT expressions. |
+| **lupo-database/migrations/craftysyntax_to_lupopedia_mysql.sql** | lupo_collections INSERT: group_id → department_id. lupo_collection_tabs INSERTs (folders and children): group_id → department_id in column lists and SELECT. |
 
 ### 2.4 SQL generators (PHP)
 
 | File | Changes |
 |------|---------|
-| **database/install/generate_content_seed.php** | Column list and insert array key: group_id → department_id; comment "group_id = NULL" → "department_id = NULL". |
-| **database/install/generate_hierarchical_seed_3.0.12.php** | Generated INSERT column list: group_id → department_id (main tabs and sub-tabs). |
+| **lupo-database/install/generate_content_seed.php** | Column list and insert array key: group_id → department_id; comment "group_id = NULL" → "department_id = NULL". |
+| **lupo-database/install/generate_hierarchical_seed_3.0.12.php** | Generated INSERT column list: group_id → department_id (main tabs and sub-tabs). |
 
 ---
 
@@ -178,7 +178,7 @@ lupopedia.footer:
 
 1. **Application code:** Update PHP to use department_id (and lupo_actor_departments) instead of group_id/lupo_groups per implementation plan §2–4.
 2. **Documentation:** Update REQUIRED_TABLES_4.1.0.md, DATABASE_SCHEMA.md, and doctrine docs per checklist step 8.
-3. **TOON regeneration:** After applying schema (migration or fresh install), run `scripts/generate_toon_files.py` and commit TOONs per GOV-TOON-GENERATION-001.
+3. **TOON regeneration:** After applying schema (migration or fresh install), run `lupo-scripts/generate_toon_files.py` and commit TOONs per GOV-TOON-GENERATION-001.
 4. **Smoke test:** New install (install_new_lupopedia + seed); run migration on a copy of an old DB; run Crafty import path; verify no runtime references to lupo_groups or group_id.
 
 ---

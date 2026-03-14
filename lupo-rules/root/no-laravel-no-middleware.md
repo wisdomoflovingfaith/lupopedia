@@ -1,7 +1,7 @@
 ---
 lupopedia.init:
   orchestrator_actor: "any"
-  rule_set_version: "4.0.73+"
+  rule_set_version: "4.0.74+"
   applies_to: ["audit", "code-gen", "db-sync", "migration", "header-sync"]
   enforcement: strict
 
@@ -12,12 +12,12 @@ lupopedia.headers:
   actor_id: 1
   actor_name: "wolfie"
   delegation_chain: "wolfie:root"
-  lupopedia.version: "4.0.73"
+  lupopedia.version: "4.0.74"
   lupopedia.schema: "cursor_rule"
   file_path_from_root: "lupo-rules/root/no-laravel-no-middleware.md"
   web_path: "http://www.lupopedia.com/rules/root/no-laravel-no-middleware"
   last_modified_utc: "20260313"
-  system_version: "4.0.73"
+  system_version: "4.0.74"
   rule_name: "No Laravel, No Middleware"
   rule_type: "constraint"
   artifact_type: "rule"
@@ -27,7 +27,7 @@ lupopedia.headers:
   source_path: ".cursor/rules/no-laravel-no-middleware.mdc"
 
 lupopedia.footer:
-  version: "4.0.73"
+  version: "4.0.74"
   last_verified: "20260313"
   last_verified_by: "wolfie"
   orchestrator: "cursor"

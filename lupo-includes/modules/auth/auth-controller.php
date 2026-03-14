@@ -386,6 +386,10 @@ function login_handle_post() {
             $redirect = $qa_landing;
         }
 
+        // Ensure session is written and cookie sent before redirect (fixes login loop when cookie path/scope was wrong)
+        if (function_exists('session_write_close')) {
+            session_write_close();
+        }
         lupo_safe_redirect($redirect, 2, 'Login successful! Redirecting...');
         
     } catch (Exception $e) {

@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\channels\42\broadcasts\20260223_system_wide_version_alignment_4_0_36.md"
+  file_path_from_root: "lupo-docs\channels\42\broadcasts\20260223_system_wide_version_alignment_4_0_36.md"
   file_hash: "790b16c59d8c6f800021b2d7698f444335dd3307ad43bc9f2bc475373c15b89a"
-  file_path_from_root: "docs\channels\42\broadcasts\20260223_system_wide_version_alignment_4_0_36.md"
+  file_path_from_root: "lupo-docs\channels\42\broadcasts\20260223_system_wide_version_alignment_4_0_36.md"
   file_hash: "9cb7011ed63afc940abbbf2fad74d0873b9cdcdc542bae91df8b0d1b50ec3696"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -63,7 +63,7 @@ lupopedia.footer:
 
 ---
 wolfie.headers:
-  file_path_from_root: "channels/42/broadcasts/20260223_system_wide_version_alignment_4_0_36.md"
+  file_path_from_root: "lupo-channels/42/broadcasts/20260223_system_wide_version_alignment_4_0_36.md"
   system_version: "4.0.36"
   channel_id: 42
   mood_rgb: "4B0082"
@@ -79,7 +79,7 @@ flip.footer:
     - "LUPEDIA_VERSION"
     - "config/global_atoms.yaml"
     - "CHANGELOG.md"
-    - "docs/versions/4.0.36/CHANGELOG_DRAFT.md"
+    - "lupo-docs/versions/4.0.36/CHANGELOG_DRAFT.md"
   referenced_by_channels:
     - 42
   referenced_by_actors:
@@ -187,7 +187,7 @@ All agents must ensure:
 - Sweep all system_version fields  
 - Generate:
 ```
-docs/status/kiro_version_marker_update_4_0_36.md
+lupo-docs/status/kiro_version_marker_update_4_0_36.md
 ```
 
 ### ✔ Windsurf (1002)

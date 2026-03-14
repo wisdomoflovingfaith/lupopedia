@@ -1,6 +1,6 @@
 ---
 lupopedia.headers:
-  file_path_from_root: "channels/42/threads/DEVELOPMENT_CYCLE_4_0_47/20260227091200_10000_1001_flare_relationship_automation_summary.md"
+  file_path_from_root: "lupo-channels/42/threads/DEVELOPMENT_CYCLE_4_0_47/20260227091200_10000_1001_flare_relationship_automation_summary.md"
   file_hash: "bf0ec849ebc5dd5b20c0d4bffe9379056d63df37b8b992204748c6e7f715403a"
   system_version: "4.0.50"
   channel_id: 42
@@ -17,7 +17,7 @@ lupopedia.headers:
 
 # 💡 FLARE Edge Automation Tip:
 # Use the FLARE Edge Suggester Tool to automatically discover and suggest edges:
-# python scripts/flare_edge_suggester.py --file <path> --include-db --format yaml
+# python lupo-scripts/flare_edge_suggester.py --file <path> --include-db --format yaml
 # This will analyze content, TOON schemas, and database relationships to suggest
 # appropriate outbound_edges with weights, reasons, and discovery methods.
 
@@ -26,17 +26,17 @@ lupopedia.headers:
   last_updated_utc: "20260228"
 lupopedia.footer:
   outbound_edges:
-    - { to: "channels/42/threads/DEVELOPMENT_CYCLE_4_0_48/", type: "precedes", weight: 0.9, reason: "Next development cycle" }
-    - { to: "docs/database/", type: "generates", weight: 0.8, reason: "Database documentation generation" }
+    - { to: "lupo-channels/42/threads/DEVELOPMENT_CYCLE_4_0_48/", type: "precedes", weight: 0.9, reason: "Next development cycle" }
+    - { to: "lupo-docs/database/", type: "generates", weight: 0.8, reason: "Database documentation generation" }
     - { to: "CHANGELOG.md", type: "updates", weight: 0.8, reason: "Changelog updates" }
-    - { to: "database/migrations/", type: "extends", weight: 0.7, reason: "Schema extensions" }
-    - { to: "scripts/flare_edge_suggester.py", type: "implements", weight: 1.0, reason: "Edge discovery automation" }
-    - { to: "tools/update_flare_edges.py", type: "implements", weight: 1.0, reason: "Batch update automation" }
+    - { to: "lupo-database/migrations/", type: "extends", weight: 0.7, reason: "Schema extensions" }
+    - { to: "lupo-scripts/flare_edge_suggester.py", type: "implements", weight: 1.0, reason: "Edge discovery automation" }
+    - { to: "lupo-tools/update_flare_edges.py", type: "implements", weight: 1.0, reason: "Batch update automation" }
   inbound_edges:
-    - { from: "channels/42/threads/DEVELOPMENT_CYCLE_4_0_46/", type: "precedes", weight: 1.0, last_seen: "20260227" }
-    - { from: "database/migrations/dev_20260227_flare_relationships_extension.sql", type: "implements", weight: 1.0, last_seen: "20260227" }
-    - { from: "docs/FLARE_HEADERS_COMPLETE_REFERENCE.md", type: "references", weight: 0.9, last_seen: "20260227" }
-    - { from: "docs/api/FLARE_API.md", type: "references", weight: 0.9, last_seen: "20260227" }
+    - { from: "lupo-channels/42/threads/DEVELOPMENT_CYCLE_4_0_46/", type: "precedes", weight: 1.0, last_seen: "20260227" }
+    - { from: "lupo-database/migrations/dev_20260227_flare_relationships_extension.sql", type: "implements", weight: 1.0, last_seen: "20260227" }
+    - { from: "lupo-docs/FLARE_HEADERS_COMPLETE_REFERENCE.md", type: "references", weight: 0.9, last_seen: "20260227" }
+    - { from: "lupo-docs/api/FLARE_API.md", type: "references", weight: 0.9, last_seen: "20260227" }
   semantic_tags: ["flare_protocol", "relationship_automation", "database_optimization", "edge_discovery", "batch_operations", "api_enhancement"]
   version: "4.0.47"
   last_verified: "20260227"
@@ -58,7 +58,7 @@ lupopedia.footer:
 ### **🚀 Major Achievements**
 
 #### **1. Complete FLARE Edge Automation Suite**
-- ✅ **FLARE Edge Suggester Tool** (`scripts/flare_edge_suggester.py`)
+- ✅ **FLARE Edge Suggester Tool** (`lupo-scripts/flare_edge_suggester.py`)
   - Markdown link analysis with context-aware weighting
   - TOON schema foreign key discovery
   - Database integration for actor/content relationships
@@ -76,7 +76,7 @@ lupopedia.footer:
   - Discovery methods: db_scan, content_analysis, toon_schema, semantic_search
   - Metadata tracking: last_seen, discovered_via fields
 
-- ✅ **Batch Update CLI Tool** (`tools/update_flare_edges.py`)
+- ✅ **Batch Update CLI Tool** (`lupo-tools/update_flare_edges.py`)
   - Directory scanning and validation
   - Batch edge insertion with authorization
   - Dry-run mode for safe preview
@@ -98,7 +98,7 @@ lupopedia.footer:
 
 - ✅ **Table Ceiling Compliance**
   - Current: 155/199 tables (44 under ceiling)
-  - Dynamic counting based on TOON files in `docs/toons/`
+  - Dynamic counting based on TOON files in `lupo-docs/toons/`
   - Extended existing table instead of creating new one
 
 #### **3. Enhanced FLARE Protocol**
@@ -197,7 +197,7 @@ Based on our analysis, the remaining work focuses on creating comprehensive docu
 
 For each important table, we should create:
 
-1. **Table Overview Document** (`docs/database/tables/{table_name}.md`)
+1. **Table Overview Document** (`lupo-docs/database/tables/{table_name}.md`)
    - Purpose and role in system
    - Key relationships and dependencies
    - Usage patterns and best practices
@@ -238,7 +238,7 @@ For each important table, we should create:
 
 1. **Create Database Documentation Structure**
    ```
-   docs/database/
+   lupo-docs/database/
    ├── lupopedia/
    │   ├── tables/
    │   │   ├── lupo_contents.md

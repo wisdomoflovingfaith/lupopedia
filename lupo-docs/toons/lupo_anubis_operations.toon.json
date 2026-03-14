@@ -1,0 +1,53 @@
+{
+  "table_name": "lupo_anubis_operations",
+  "fields": [
+    "`operation_id` bigint NOT NULL",
+    "`operation_type` varchar(64) NOT NULL",
+    "`target_type` varchar(64) NOT NULL",
+    "`target_id` bigint NOT NULL",
+    "`channel_id` bigint NOT NULL DEFAULT 42",
+    "`actor_id` bigint NOT NULL",
+    "`faucet_id` bigint",
+    "`details_json` text",
+    "`created_ymdhis` bigint NOT NULL"
+  ],
+  "data": [],
+  "indexes": [
+    {
+      "index_name": "lupo_anubis_operations_idx_target",
+      "columns": [
+        "target_type",
+        "target_id"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_anubis_operations_idx_type",
+      "columns": [
+        "operation_type"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_anubis_operations_idx_created",
+      "columns": [
+        "created_ymdhis"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    }
+  ],
+  "relationships": [],
+  "primary_key": {
+    "column_name": "operation_id",
+    "expected_name": "operation_id",
+    "is_correct": true,
+    "needs_rename": false
+  },
+  "doctrine_metadata": {
+    "no_foreign_keys": true,
+    "no_triggers": true
+  }
+}

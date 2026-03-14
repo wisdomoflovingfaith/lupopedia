@@ -64,7 +64,7 @@ Each channel is a self-contained coordination environment with:
 ```
 /channels/{channel_id}/
 ├── broadcasts/          → Announcements and system messages
-├── actors/              → Actor workspaces
+├── lupo-actors/              → Actor workspaces
 ├── directives/          → Authority and policy documents
 ├── tasks/               → Coordination layer (NEW)
 └── roles/               → Role-based access control (NEW)
@@ -381,9 +381,9 @@ cd /channels/0/actors/1004/tasks/assigned/
 
 ## 📚 REFERENCES
 
-- `channels/0/tasks/` - Central task storage
-- `channels/0/roles/` - Role definitions
-- `channels/0/actors/*/tasks/` - Actor task views
+- `lupo-channels/0/tasks/` - Central task storage
+- `lupo-channels/0/roles/` - Role definitions
+- `lupo-channels/0/actors/*/tasks/` - Actor task views
 - `AGENTS.md` - Agent coordination rules
 - `CONTRIBUTING.md` - Multi-agent workflow
 
@@ -401,8 +401,8 @@ cd /channels/0/actors/1004/tasks/assigned/
 <!-- FLIP_FOOTER_BEGIN
 {
   "references": [
-    "channels/0/tasks/",
-    "channels/0/roles/",
+    "lupo-channels/0/tasks/",
+    "lupo-channels/0/roles/",
     "AGENTS.md"
   ],
   "implements": "offline_governance_model",

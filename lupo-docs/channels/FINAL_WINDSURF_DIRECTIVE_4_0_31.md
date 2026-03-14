@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\channels\FINAL_WINDSURF_DIRECTIVE_4_0_31.md"
+  file_path_from_root: "lupo-docs\channels\FINAL_WINDSURF_DIRECTIVE_4_0_31.md"
   file_hash: "c4b9f3ba2c8322436115fcdae27d554bd4d65367eba8e474cec6abb7352725ac"
-  file_path_from_root: "docs\channels\FINAL_WINDSURF_DIRECTIVE_4_0_31.md"
+  file_path_from_root: "lupo-docs\channels\FINAL_WINDSURF_DIRECTIVE_4_0_31.md"
   file_hash: "883b492ed73782898592edb3a6d18915ac7e7627d6273577c6fca4a8ea1484d8"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -64,7 +64,7 @@ lupopedia.footer:
 ---
 # FLIP Header (alias: Wolfie Header, CROP Header)
 wolfie.headers: explicit architecture with structured clarity for every file.
-file_path_from_root: "docs/channels/FINAL_WINDSURF_DIRECTIVE_4_0_31.md"
+file_path_from_root: "lupo-docs/channels/FINAL_WINDSURF_DIRECTIVE_4_0_31.md"
 file.last_modified_system_version: "4.0.31"
 file.last_modified_utc: "20260223151200"
 channel_id: 42
@@ -94,8 +94,8 @@ All work MUST be finalized as **version 4.0.31**. No "4.0.83" references allowed
 - app/views/auth/login.php
 - app/Services/OAuthService.php
 - config/oauth.example.php
-- docs/OAUTH_SETUP_GUIDE.md
-- docs/oauth_authentication.md
+- lupo-docs/OAUTH_SETUP_GUIDE.md
+- lupo-docs/oauth_authentication.md
 - lupo-includes/modules/auth/oauth-controller.php
 - lupo-includes/modules/module-loader.php
 
@@ -108,7 +108,7 @@ All work MUST be finalized as **version 4.0.31**. No "4.0.83" references allowed
 - Complete oauth-controller.php routes
 - Complete login.php UI (Google + GitHub buttons)
 - Complete config/oauth.example.php
-- Complete docs/OAUTH_SETUP_GUIDE.md
+- Complete lupo-docs/OAUTH_SETUP_GUIDE.md
 - Add FLIP HEADERS + FLIP FOOTERS to all OAuth files
 
 ---

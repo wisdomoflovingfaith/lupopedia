@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "help"
-  file_path_from_root: "docs/HELP.md"
+  file_path_from_root: "lupo-docs/HELP.md"
   web_path: "http://www.lupopedia.com/help"
   last_modified_utc: "20260306"
   system_version: "4.0.63"
@@ -78,7 +78,7 @@ SELECT UTC_TIMESTAMP();
 php -r "echo gmdate('Y-m-d H:i:s') . \" UTC\n\";"
 ```
 
-All timestamps in Lupopedia are UTC in `YmdHis` format (e.g. `20260307143045`). See [prompts/lilith/20260306_doctor_sql_queries.md](../prompts/lilith/20260306_doctor_sql_queries.md) for timestamp convention in health queries.
+All timestamps in Lupopedia are UTC in `YmdHis` format (e.g. `20260307143045`). See [lupo-prompts/lilith/20260306_doctor_sql_queries.md](../prompts/lilith/20260306_doctor_sql_queries.md) for timestamp convention in health queries.
 
 ### CLI commands
 
@@ -121,7 +121,7 @@ All communication in Lupopedia — live chat, channel discussions, version threa
 - **`lupo_dialog_threads`** — Conversation threads
 - **`lupo_dialog_messages`** — Individual messages
 
-**Channel 42 discussions** are stored in these tables with `channel_id=42`. File-based threads under `lupo-channels/42/threads/` can be migrated to the database via `scripts/migrate_channel42_threads_to_db.php`.
+**Channel 42 discussions** are stored in these tables with `channel_id=42`. File-based threads under `lupo-channels/42/threads/` can be migrated to the database via `lupo-scripts/migrate_channel42_threads_to_db.php`.
 
 - **Documentation:** [lupo-docs/doctrine/COMMUNICATION_DOCTRINE.md](../lupo-docs/doctrine/COMMUNICATION_DOCTRINE.md)
 
@@ -156,11 +156,11 @@ php lupo-bin/lupo.php send 42 "Hello world"
 
 | Resource | Description | Link |
 |----------|-------------|------|
-| Doctrine | DB rules | [docs/doctrine/](doctrine/) |
+| Doctrine | DB rules | [lupo-docs/doctrine/](doctrine/) |
 | **TOONs** | Database structure representation (tables, columns, indexes); where they are and how they are generated | [TOON_REFERENCE.md](TOON_REFERENCE.md) |
 | TOON files (JSON) | One JSON per table | [lupo-database/lupopedia/json/](../lupo-database/lupopedia/json/) (`.json`) |
 | TOON files (TOON) | Same content, TOON format | [lupo-database/lupopedia/toon/](../lupo-database/lupopedia/toon/) (`.toon`) |
-| Migrations | Schema changes | database/migrations/ |
+| Migrations | Schema changes | lupo-database/migrations/ |
 
 ### Web Interface
 
@@ -185,9 +185,9 @@ php lupo-bin/lupo.php send 42 "Hello world"
 | v4.0.61 thread review | Assessment and file-specific review of the version thread | [VERSION_4.0.61_THREAD_REVIEW.md](VERSION_4.0.61_THREAD_REVIEW.md) |
 | v4.0.61 strategy & v4.0.62 roadmap | Strategic assessment, risks, and next steps (Context Doctor, Context Kernel) | [VERSION_4.0.61_STRATEGY.md](VERSION_4.0.61_STRATEGY.md) |
 | Task status reference | Statuses (pending, active, completed, etc.), paths, and how to list/query tasks | [TASK_STATUS_REFERENCE.md](TASK_STATUS_REFERENCE.md) |
-| Task docs verification (LILITH) | Final verification of task documentation system (v4.0.62) | [prompts/lilith/20260306_task_docs_verification.md](../prompts/lilith/20260306_task_docs_verification.md) |
-| DOCTOR SQL queries (LILITH) | SQL to query session/actor health (same data DOCTOR uses) | [prompts/lilith/20260306_doctor_sql_queries.md](../prompts/lilith/20260306_doctor_sql_queries.md) |
-| DOCTOR SQL final verification (LILITH) | Final verification of DOCTOR SQL queries doc (10/10 canonical) | [prompts/lilith/20260306_doctor_sql_final.md](../prompts/lilith/20260306_doctor_sql_final.md) |
+| Task docs verification (LILITH) | Final verification of task documentation system (v4.0.62) | [lupo-prompts/lilith/20260306_task_docs_verification.md](../prompts/lilith/20260306_task_docs_verification.md) |
+| DOCTOR SQL queries (LILITH) | SQL to query session/actor health (same data DOCTOR uses) | [lupo-prompts/lilith/20260306_doctor_sql_queries.md](../prompts/lilith/20260306_doctor_sql_queries.md) |
+| DOCTOR SQL final verification (LILITH) | Final verification of DOCTOR SQL queries doc (10/10 canonical) | [lupo-prompts/lilith/20260306_doctor_sql_final.md](../prompts/lilith/20260306_doctor_sql_final.md) |
 | **DOCTOR health check (full reference)** | lupo_doctor_health_check: checks, options (--check-actors), paths, troubleshooting | [DOCTOR_HEALTH_CHECK.md](DOCTOR_HEALTH_CHECK.md) |
 
 ## Quick tips
@@ -203,7 +203,7 @@ php lupo-bin/lupo.php send 42 "Hello world"
 
 - Core code: `lupo-includes/`
 - Services: `app/Services/` (or project equivalent)
-- Tests: `tests/`
+- Tests: `lupo-tests/`
 
 ### Agents
 
@@ -215,7 +215,7 @@ php lupo-bin/lupo.php send 42 "Hello world"
 
 - **CLI:** `php lupo-bin/lupo.php help` or `php lupo-bin/lupo.php help --web`
 - **Web:** http://www.lupopedia.com/help
-- **Version:** [docs/version.md](version.md)
+- **Version:** [lupo-docs/version.md](version.md)
 
 ---
 

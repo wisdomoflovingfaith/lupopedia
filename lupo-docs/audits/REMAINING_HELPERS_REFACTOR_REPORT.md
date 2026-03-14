@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\REMAINING_HELPERS_REFACTOR_REPORT.md"
+  file_path_from_root: "lupo-docs\REMAINING_HELPERS_REFACTOR_REPORT.md"
   file_hash: "6ed5d887bcb908df893135b6a4d1df71a8ea0fc771c0f2895f015f30c400a215"
-  file_path_from_root: "docs\REMAINING_HELPERS_REFACTOR_REPORT.md"
+  file_path_from_root: "lupo-docs\REMAINING_HELPERS_REFACTOR_REPORT.md"
   file_hash: "8c567ce09895e9e598894838d0bb7867fdab1dffda85bbfd376bdc8134371275"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -62,7 +62,7 @@ lupopedia.footer:
 
 # Remaining Helpers Refactor Report
 
-**Scope:** Collection Zero, Collection Tabs, Saved Collections, Redirect, Limits, Atoms/Version, Upload (per `docs/HELPER_TO_CLASS_MAPPING_ANALYSIS.md`).  
+**Scope:** Collection Zero, Collection Tabs, Saved Collections, Redirect, Limits, Atoms/Version, Upload (per `lupo-docs/HELPER_TO_CLASS_MAPPING_ANALYSIS.md`).  
 **Date:** 2026-02-10.
 
 Auth and Actor domains were **not** modified.

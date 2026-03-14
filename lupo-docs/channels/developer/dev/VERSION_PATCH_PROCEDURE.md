@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\channels\developer\dev\VERSION_PATCH_PROCEDURE.md"
+  file_path_from_root: "lupo-docs\channels\developer\dev\VERSION_PATCH_PROCEDURE.md"
   file_hash: "b23181563f850373824ead7ab28d6280f53e0bf1efc91856980e261b965264f2"
-  file_path_from_root: "docs\channels\developer\dev\VERSION_PATCH_PROCEDURE.md"
+  file_path_from_root: "lupo-docs\channels\developer\dev\VERSION_PATCH_PROCEDURE.md"
   file_hash: "d979557fc45090561c113e2c82757dae66e3355cd5c32751ecc8d78c40fb8e20"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -217,7 +217,7 @@ Create or update migration documentation:
 - Backward compatibility notes
 - Rollback procedures (if applicable)
 
-**Template:** Follow the format of existing migration documents (e.g., `docs/migrations/3.0.7.md`)
+**Template:** Follow the format of existing migration documents (e.g., `lupo-docs/migrations/3.0.7.md`)
 
 ---
 
@@ -346,7 +346,7 @@ Verify:
 
 To execute this procedure, reference this document:
 
-> "Do the version patch procedure as described in `docs/dev/VERSION_PATCH_PROCEDURE.md`"
+> "Do the version patch procedure as described in `lupo-docs/dev/VERSION_PATCH_PROCEDURE.md`"
 
 The procedure will:
 1. Read the current version from `config/global_atoms.yaml`
@@ -373,10 +373,10 @@ This procedure increments the **PATCH** level only.
 
 ## Related Documentation
 
-- [Ecosystem Versioning Doctrine](docs/doctrine/VERSION_DOCTRINE.md)
-- [WOLFIE Header Doctrine](docs/doctrine/WOLFIE_HEADER_DOCTRINE.md)
-- [Universal Wolfie Header Specification](docs/doctrine/UNIVERSAL_WOLFIE_HEADER_SPECIFICATION.md)
-- [Lupopedia Header Profile](docs/doctrine/LUPOPEDIA_HEADER_PROFILE.md)
+- [Ecosystem Versioning Doctrine](lupo-docs/doctrine/VERSION_DOCTRINE.md)
+- [WOLFIE Header Doctrine](lupo-docs/doctrine/WOLFIE_HEADER_DOCTRINE.md)
+- [Universal Wolfie Header Specification](lupo-docs/doctrine/UNIVERSAL_WOLFIE_HEADER_SPECIFICATION.md)
+- [Lupopedia Header Profile](lupo-docs/doctrine/LUPOPEDIA_HEADER_PROFILE.md)
 
 ---
 

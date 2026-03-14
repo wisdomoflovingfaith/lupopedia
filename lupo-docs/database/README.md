@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\database\README.md"
+  file_path_from_root: "lupo-docs\database\README.md"
   file_hash: "0233f7aff0b4acef9c0c00037ded1a41d38ee5ce94bdc8293bfd215bef25aa3a"
-  file_path_from_root: "docs\database\README.md"
+  file_path_from_root: "lupo-docs\database\README.md"
   file_hash: "88dd20b3599a011bcade17a34b0aa1217c433e6cb431f6aa433df161bff6d4bb"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -73,7 +73,7 @@ lupopedia.footer:
 This directory contains comprehensive documentation for all Lupopedia database tables, organized by database name.
 
 ```
-docs/database/
+lupo-docs/database/
 ├── lupopedia/
 │   ├── tables/
 │   │   ├── lupo_actors.md
@@ -95,7 +95,7 @@ docs/database/
 ## 🎯 **Database Overview**
 
 ### **Lupopedia Database**
-- **Table Count:** Run `python scripts/generate_toon_files.py` and use the TOON file count — do not hardcode (see TABLE_COUNT_DOCTRINE).
+- **Table Count:** Run `python lupo-scripts/generate_toon_files.py` and use the TOON file count — do not hardcode (see TABLE_COUNT_DOCTRINE).
 - **Purpose:** Main application database
 - **Status:** Production-ready
 - **Documentation:** Complete coverage planned
@@ -131,7 +131,7 @@ docs/database/
 ## 🔗 **FLARE Integration**
 
 ### **Relationship Discovery**
-- **Tool:** `scripts/flare_edge_suggester.py`
+- **Tool:** `lupo-scripts/flare_edge_suggester.py`
 - **Purpose:** Automatic table relationship discovery
 - **Output:** FLARE edges with weights and metadata
 
@@ -145,7 +145,7 @@ docs/database/
 ## 🚀 **Development Guidelines**
 
 ### **Adding New Table Documentation**
-1. Create file: `docs/database/{database}/tables/lupo_{table_name}.md`
+1. Create file: `lupo-docs/database/{database}/tables/lupo_{table_name}.md`
 2. Add FLARE headers with proper metadata
 3. Document schema, relationships, and usage patterns
 4. Include FLARE footer with outbound edges
@@ -180,9 +180,9 @@ docs/database/
 ## 🔍 **Discovery Tools**
 
 ### **Automated Tools**
-- **TOON Generator:** `scripts/generate_toon_files.py`
-- **Edge Suggester:** `scripts/flare_edge_suggester.py`
-- **Batch Updater:** `tools/update_flare_edges.py`
+- **TOON Generator:** `lupo-scripts/generate_toon_files.py`
+- **Edge Suggester:** `lupo-scripts/flare_edge_suggester.py`
+- **Batch Updater:** `lupo-tools/update_flare_edges.py`
 
 ### **Validation Tools**
 - **Schema Validator:** Validates TOON consistency

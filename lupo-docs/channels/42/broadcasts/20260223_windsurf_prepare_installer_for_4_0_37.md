@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\channels\42\broadcasts\20260223_windsurf_prepare_installer_for_4_0_37.md"
+  file_path_from_root: "lupo-docs\channels\42\broadcasts\20260223_windsurf_prepare_installer_for_4_0_37.md"
   file_hash: "b6acd64a8ee2f64f92ffd9c2f8863c0d9fe48aa0edec04d7668cd32b60cdd212"
-  file_path_from_root: "docs\channels\42\broadcasts\20260223_windsurf_prepare_installer_for_4_0_37.md"
+  file_path_from_root: "lupo-docs\channels\42\broadcasts\20260223_windsurf_prepare_installer_for_4_0_37.md"
   file_hash: "8674e776352aa6d1d7a0a1ca103588aa8158e4d53bcb7b8e60328ab496c626de"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -63,7 +63,7 @@ lupopedia.footer:
 
 ---
 wolfie.headers:
-  file_path_from_root: "docs/channels/42/broadcasts/20260223_windsurf_prepare_installer_for_4_0_37.md"
+  file_path_from_root: "lupo-docs/channels/42/broadcasts/20260223_windsurf_prepare_installer_for_4_0_37.md"
   system_version: "4.0.37"
   channel_id: 42
   mood_rgb: "0044FF"
@@ -75,10 +75,10 @@ wolfie.headers:
 
 flip.footer:
   referenced_by_files:
-    - "database/install_new_lupopedia.sql"
-    - "database/migrations/upgrade_flip_v2.sql"
-    - "docs/versions/4.0.37/CHANGELOG_DRAFT.md"
-    - "docs/doctrine/FLIP_V2_DOCTRINE.md"
+    - "lupo-database/install_new_lupopedia.sql"
+    - "lupo-database/migrations/upgrade_flip_v2.sql"
+    - "lupo-docs/versions/4.0.37/CHANGELOG_DRAFT.md"
+    - "lupo-docs/doctrine/FLIP_V2_DOCTRINE.md"
   referenced_by_channels:
     - 42
   referenced_by_actors:
@@ -226,7 +226,7 @@ Append:
 Windsurf must generate:
 
 ```
-docs/status/windsurf_installer_update_4_0_37.md
+lupo-docs/status/windsurf_installer_update_4_0_37.md
 ```
 
 Include:

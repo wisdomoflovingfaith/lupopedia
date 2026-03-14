@@ -21,7 +21,7 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
   last_verified: "20260228155738"
@@ -35,9 +35,9 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "docs\database\lupopedia\tables\lupo_actor_channel_roles.md"
+  file_path_from_root: "lupo-docs\database\lupopedia\tables\lupo_actor_channel_roles.md"
   file_hash: "3d6f4b65628211fdc024cf88ccf387a08c4ba50c124dd74750d9c455660ef795"
-  file_path_from_root: "docs\database\lupopedia\tables\lupo_actor_channel_roles.md"
+  file_path_from_root: "lupo-docs\database\lupopedia\tables\lupo_actor_channel_roles.md"
   file_hash: "f93afe6d0c7e0bb5205d3cd3b3800f2aea31ea7a93da3ec71a046959c178ff0f"
   last_updated_utc: "20260228"
   system_version: "4.0.50"
@@ -63,7 +63,7 @@ lupopedia.footer:
 
 ---
 wolfie.headers: {
-  file_path_from_root: "docs/database/lupopedia/tables/lupo_actor_channel_roles.md",
+  file_path_from_root: "lupo-docs/database/lupopedia/tables/lupo_actor_channel_roles.md",
   system_version: "4.0.48",
   channel_id: 1,
   actor_id: 1003,
@@ -80,8 +80,8 @@ wolfie.headers: {
 flip.footer: {
   outbound_edges: [
     { to: "lupo-database/lupopedia/toon/lupo_actor_channel_roles.toon.json", type: "schema_reference", weight: 1.0 },
-    { to: "docs/database/lupopedia/tables/lupo_actors.md", type: "references", weight: 0.9 },
-    { to: "docs/database/lupopedia/tables/lupo_channels.md", type: "references", weight: 0.9 }
+    { to: "lupo-docs/database/lupopedia/tables/lupo_actors.md", type: "references", weight: 0.9 },
+    { to: "lupo-docs/database/lupopedia/tables/lupo_channels.md", type: "references", weight: 0.9 }
   ],
   semantic_tags: ["channel_authorization", "role_hierarchy", "access_control"]
 }
