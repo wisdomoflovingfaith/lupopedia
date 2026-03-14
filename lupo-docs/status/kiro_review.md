@@ -37,7 +37,7 @@ lupopedia.edges:
   outbound_edges:
     - { to: "CHANGELOG.md", type: "reviews", weight: 1.0 }
     - { to: "docs/status/brainstorm_on_actors_and_channels.md", type: "references", weight: 0.9 }
-    - { to: "lupo-docs/toons/", type: "analyzes", weight: 1.0 }
+    - { to: "lupo-database/lupopedia/toon/", type: "analyzes", weight: 1.0 }
     - { to: "lupo-docs/doctrine/COMMUNICATION_DOCTRINE.md", type: "verifies", weight: 0.9 }
 
 lupopedia.footer:

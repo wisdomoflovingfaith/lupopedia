@@ -33,7 +33,7 @@ lupopedia.edges:
     - { to: "lupo-docs/doctrine/ActorFaucetOntology.md", type: "references", weight: 1.0 }
     - { to: "lupo-docs/doctrine/COMMUNICATION_DOCTRINE.md", type: "references", weight: 1.0 }
     - { to: "lupo-database/lupopedia/mysql/install/install_new_lupopedia.sql", type: "implements", weight: 1.0 }
-    - { to: "lupo-docs/toons/", type: "references", weight: 0.9 }
+    - { to: "lupo-database/lupopedia/toon/", type: "references", weight: 0.9 }
     - { to: "lupo-database/lupopedia/toon/", type: "references", weight: 0.9 }
 lupopedia.footer:
   last_verified: "20260311"
@@ -45,7 +45,7 @@ lupopedia.footer:
 
 **Canonical location:** `lupo-docs/architecture/cursor_actors_channels_semantic_architecture_4.0.69.md` — prefer that file for edits and references.
 
-This document is the **canonical status** for how Lupopedia models actors, channels, edges, semantic information, and deployment. It is based on the **actual database schema** in `lupo-database/lupopedia/mysql/install/install_new_lupopedia.sql`, the **TOON** files in `lupo-docs/toons/` and `lupo-database/lupopedia/toon/`, and the doctrine in `lupo-docs/doctrine/`. It corrects and extends the earlier brainstorm (`docs/status/brainstorm_on_actors_and_channels.md`) by aligning with all tables, edges, and documented semantics.
+This document is the **canonical status** for how Lupopedia models actors, channels, edges, semantic information, and deployment. It is based on the **actual database schema** in `lupo-database/lupopedia/mysql/install/install_new_lupopedia.sql`, the **TOON** files in `lupo-database/lupopedia/toon/` and `lupo-database/lupopedia/toon/`, and the doctrine in `lupo-docs/doctrine/`. It corrects and extends the earlier brainstorm (`docs/status/brainstorm_on_actors_and_channels.md`) by aligning with all tables, edges, and documented semantics.
 
 ---
 
@@ -202,7 +202,7 @@ Channel 42 discussions and version threads all use these tables with `channel_id
 
 ## 8. Full table list (install schema)
 
-Tables are defined in **`lupo-database/lupopedia/mysql/install/install_new_lupopedia.sql`**. TOONs (column/type reference) live in **`lupo-docs/toons/*.toon.json`** and **`lupo-database/lupopedia/toon/*.toon`**. Count and list below are for orientation; always confirm against the install SQL and TOONs.
+Tables are defined in **`lupo-database/lupopedia/mysql/install/install_new_lupopedia.sql`**. TOONs (column/type reference) live in **`lupo-database/lupopedia/toon/*.toon.json`** and **`lupo-database/lupopedia/toon/*.toon`**. Count and list below are for orientation; always confirm against the install SQL and TOONs.
 
 ### Actors and agents
 
@@ -258,7 +258,7 @@ Tables are defined in **`lupo-database/lupopedia/mysql/install/install_new_lupop
 | Resource | Purpose |
 |----------|--------|
 | **lupo-database/lupopedia/mysql/install/install_new_lupopedia.sql** | Canonical DDL for all tables. |
-| **lupo-docs/toons/*.toon.json**, **lupo-database/lupopedia/toon/*.toon** | Column/type reference (TOONs); table count from TOONs after `python scripts/generate_toon_files.py`. |
+| **lupo-database/lupopedia/toon/*.toon.json**, **lupo-database/lupopedia/toon/*.toon** | Column/type reference (TOONs); table count from TOONs after `python scripts/generate_toon_files.py`. |
 | **lupo-docs/doctrine/ActorFaucetOntology.md** | Actor vs Faucet; IDE agents as faucets. |
 | **lupo-docs/doctrine/COMMUNICATION_DOCTRINE.md** | Dialog tables only; no lupo_threads/lupo_messages. |
 | **lupo-docs/doctrine/HumanActorIdDoctrine.md** | Human actor_id >= 1000. |

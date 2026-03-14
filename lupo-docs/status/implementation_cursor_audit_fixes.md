@@ -70,7 +70,7 @@ All 17 rule files in `lupo-rules/root/` were read and treated as absolute doctri
   - `enforcement: strict`
 - **lupopedia.metadata** block added to every rule file. Correct meaning: snapshot of metadata **rows/values** for this file or entity (grouped by `property_key`), not table schema. Where no metadata rows exist yet, the block contains only `comment: "Snapshot of metadata for this file or entity at artifact creation."` (see OPTIONAL_BLOCKS.md).
 - **lupopedia.footer** updated to `version: "4.0.73"`, `last_verified: "20260313"`, `orchestrator: "cursor"`, and `next_action` where applicable.
-- **Files updated:** README.md, pk-reference-naming-doctrine.md, database-logic-prohibition-doctrine.md, migration-doctrine.md, php-5-6-compatibility.md, required-tables-future-features-doctrine.md, single-install-no-4.0-upgrade-doctrine.md, versioning-doctrine-single-source.md, no-laravel-no-middleware.md, toon-source-of-truth.md, wheeler-reverse20-ban.md, stoned-wolfie-schrodinger-ban.md, quantum-state-uncertainty-ban.md, reserved-id-doctrine.md, flip-doctrine.md, experimental-ai-artifact-ban.md, pdo-db-database-access-doctrine.md.
+- **Files updated:** README.md, pk-reference-naming-doctrine.md, database-logic-prohibition-doctrine.md, migration-doctrine.md, php-5-6-compatibility.md, required-tables-future-features-doctrine.md, single-install-no-4.0-upgrade-doctrine.md, versioning-doctrine-single-source.md, no-laravel-no-middleware.md, toon-source-of-truth.md, reserved-id-doctrine.md, flip-doctrine.md, pdo-db-database-access-doctrine.md.
 
 ### 2. lupo_actors.md
 

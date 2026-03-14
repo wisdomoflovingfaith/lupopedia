@@ -77,7 +77,7 @@ Before taking any action, load and apply **ALL** of the following doctrine from 
 - **Permission doctrine** — 3-layer model: channel roles, department roles, system.
 - **Department doctrine** — department_id = 0 is system (reserved); department_id = 1 is general.
 - **PHP 5.3 doctrine** — Use `array()` only; no short array `[]`; no null coalescing `??`; no typed properties/return types in core paths. See .cursor/rules/php-5-6-compatibility.mdc.
-- **Schema doctrine (TOONs)** — TOONs in `docs/toons/` are the **only** source of truth. Never guess or invent schema. See .cursor/rules/toon-source-of-truth.mdc.
+- **Schema doctrine (TOONs)** — TOONs in `lupo-database/lupopedia/toon/` are the **only** source of truth. Never guess or invent schema. See .cursor/rules/toon-source-of-truth.mdc.
 - **Prefix doctrine** — Use `LUPO_TABLE_PREFIX`; never hardcode `lupo_`.
 - **Versioning doctrine** — Patch-only bumps (4.0.14 → 4.0.15); single canonical file `docs/doctrine/VERSIONING_DOCTRINE.md`.
 - **Reserved ID doctrine** — Registry-backed tables: explicit IDs; if row exists → UPDATE, else INSERT. See .cursor/rules/reserved-id-doctrine.mdc.

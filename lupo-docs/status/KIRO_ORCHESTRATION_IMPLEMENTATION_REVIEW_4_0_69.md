@@ -45,7 +45,7 @@ lupopedia.edges:
     - { to: "lupo-docs/doctrine/COMMUNICATION_DOCTRINE.md", type: "references", weight: 0.9 }
     - { to: "docs/status/cursor_actors_channels_semantic_architecture_4.0.69.md", type: "references", weight: 0.9 }
     - { to: "lupo-database/lupopedia/mysql/install/install_new_lupopedia.sql", type: "verifies", weight: 0.8 }
-    - { to: "lupo-docs/toons/", type: "analyzes", weight: 0.8 }
+    - { to: "lupo-database/lupopedia/toon/", type: "analyzes", weight: 0.8 }
 
 lupopedia.footer:
   last_verified: "20260312"
@@ -111,7 +111,7 @@ Cursor's 4.0.68-4.0.69 implementation of the **Actor-Faucet-Channel orchestratio
 
 ### 1.3 Missing TOON Files (Observation)
 
-**Found:** `lupo_actor_traits` table exists in install SQL but **no corresponding TOON file** in `lupo-docs/toons/`.
+**Found:** `lupo_actor_traits` table exists in install SQL but **no corresponding TOON file** in `lupo-database/lupopedia/toon/`.
 
 **Impact:** TOON regeneration from live DB will create the file, but current TOON-based validation may miss this table.
 
