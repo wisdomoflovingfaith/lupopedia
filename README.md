@@ -216,10 +216,10 @@ This is one of the most important parts of Lupopedia. **LUPOPEDIA HEADERS** are 
 ## Architecture Overview
 
 **Filesystem layout:**
-Lupopedia organizes itself via directories with the `lupo-` prefix: `/lupo-api`, `/lupo-uploads`, `/lupo-channels`, `/lupo-agents`, `/lupo-actors`, `/lupo-docs`, `/lupo-prompts`, and related `lupo-*` folders. These hold artifacts for documentation, channel content, agent/session data, uploaded objects, semantic references, and registry material.
+Lupopedia organizes itself via directories with the `lupo-` prefix: `/lupo-api`, `/lupo-uploads`, `/lupo-channels`, `/lupo-agents`, `/lupo-actors`, `/lupo-docs`, `/lupo-prompts`, and related `lupo-*` folders. These hold artifacts for documentation, channel content, agent/session data, uploaded objects, semantic references, and registry material. The **`legacy/`** folder is the intentional exception: it holds legacy read-only code (e.g. Crafty Syntax reference) and is not renamed to `lupo-legacy`.
 
 **Database domains:**
-The database schema is defined in `lupo-database/lupopedia/mysql/install/install_new_lupopedia.sql` (canonical table count: 100 as of 4.0.74; see [TABLE_COUNT_DOCTRINE](lupo-docs/doctrine/TABLE_COUNT_DOCTRINE.md)). Domains include identity (`lupo_actors`, `lupo_auth_users`), orchestration (`lupo_agents`, `lupo_agent_faucets`), collaboration (`lupo_channels`, `lupo_dialog_messages`), semantics (`lupo_metadata`, `lupo_edges`, `lupo_collections`), telemetry (`lupo_sessions`), federation, and legacy migration. 
+The database schema is defined in `lupo-database/lupopedia/mysql/install/install_new_lupopedia.sql` (canonical table count: 159 as of 4.0.74; see [TABLE_COUNT_DOCTRINE](lupo-docs/doctrine/TABLE_COUNT_DOCTRINE.md)). Domains include identity (`lupo_actors`, `lupo_auth_users`), orchestration (`lupo_agents`, `lupo_agent_faucets`), collaboration (`lupo_channels`, `lupo_dialog_messages`), semantics (`lupo_metadata`, `lupo_edges`, `lupo_collections`), telemetry (`lupo_sessions`), federation, and legacy migration. 
 
 **Filesystem/database relationship:**
 The database is the live relational layer. The filesystem is the artifact memory layer. Headers are the synchronization and portability layer between them.

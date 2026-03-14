@@ -188,7 +188,8 @@ lupopedia.footer:
 
 ## Summary counts
 
-- **Current in-repo TOON count (observed):** 230+ .toon.json files in `lupo-docs/toons/` (count may change after schema changes or TOON regeneration).
+- **Canonical TOON/table count (4.0.74):** Derived from **install SQL** only. Count of `CREATE TABLE` in `install_new_lupopedia.sql` = **159** (verified 2026-03-14; see [TABLE_COUNT_DOCTRINE.md](../../doctrine/TABLE_COUNT_DOCTRINE.md)). Script `lupo-scripts/generate_toon_from_sql.py` produces one TOON per table; output may be written to `lupo-database/lupopedia/toon/` or `lupo-docs/toons/` depending on script config—**install SQL is authoritative**, not the TOON file count.
+- **Other TOON counts (e.g. 230+):** A higher count in `lupo-docs/toons/` or elsewhere may include planning/deprecated/legacy .toon.json files or a different output path. For "how many tables does the install create," use the install-SQL-derived count (159). Do not treat 230 as the canonical install count.
 - **Install-backed active tables:** Defined by install_new_lupopedia.sql; table count is not fixed—schema expansion is permitted when justified (table ceiling is advisory only, 4.0.74).
 - **livehelp_* (Migration):** 34 legacy; see MIGRATION_MAPPING_REFERENCE.
 - **Doc locations:** Many tables have docs in flat `tables/` or `active/`. Migration docs in `tables/*_migration.md` and `migrations/`.
