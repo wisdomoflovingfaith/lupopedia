@@ -5,7 +5,7 @@ lupopedia.init:
   artifact_kind: "metadata-snapshot"
   namespace: "lupopedia"
   domain: "core"
-  system_version: "4.0.73"
+  system_version: "4.0.74"
 
 lupopedia.metadata:
   comment: "Snapshot of metadata for this file or entity at artifact creation."
@@ -14,37 +14,37 @@ lupopedia.metadata:
   description:
     - { schema_ref: "lupo_metadata", entity_type: "file", meta_type: "property", property_value: "Primary project documentation and onboarding — Install & upgrade validation, channels/actors/agents, GitHub repository strategy.", channel_id: 42, class_name: "lupopedia_metadata", created_ymdhis: 20260313000000, updated_ymdhis: 20260313000000 }
   keywords:
-    - { schema_ref: "lupo_metadata", entity_type: "file", meta_type: "property", property_value: "readme, getting_started, semantic_os, multi_agent, v4.0.73", channel_id: 42, class_name: "lupopedia_metadata", created_ymdhis: 20260313000000, updated_ymdhis: 20260313000000 }
+    - { schema_ref: "lupo_metadata", entity_type: "file", meta_type: "property", property_value: "readme, getting_started, semantic_os, multi_agent, v4.0.74", channel_id: 42, class_name: "lupopedia_metadata", created_ymdhis: 20260313000000, updated_ymdhis: 20260313000000 }
   author:
     - { schema_ref: "lupo_metadata", entity_type: "file", meta_type: "property", property_value: "wolfie", channel_id: 42, class_name: "lupopedia_metadata", created_ymdhis: 20260313000000, updated_ymdhis: 20260313000000 }
   orchestrator:
     - { schema_ref: "lupo_metadata", entity_type: "file", meta_type: "property", property_value: "cursor", channel_id: 42, class_name: "lupopedia_metadata", created_ymdhis: 20260313000000, updated_ymdhis: 20260313000000 }
 
 lupopedia.headers:
-  lupopedia.version: "4.0.73"
+  lupopedia.version: "4.0.74"
   lupopedia.schema: "documentation"
   file_path_from_root: "README.md"
   web_path: "http://www.lupopedia.com/"
-  last_modified_utc: "20260313"
-  system_version: "4.0.73"
+  last_modified_utc: "20260314"
+  system_version: "4.0.74"
   channel_id: 42
   actor_id: 1
   actor_name: "wolfie"
-  faucet_name: "cursor"
+  faucet_name: "antigravity"
   delegation_chain: "wolfie:root"
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Primary project documentation and onboarding — Install & upgrade validation, channels/actors/agents, GitHub repository strategy"
   mood_rgb: "4169E1"
-  traits: ["essential", "entrypoint", "onboarding", "v4.0.73"]
-  tags: ["readme", "getting_started", "semantic_os", "multi_agent", "v4.0.73"]
+  traits: ["essential", "entrypoint", "onboarding", "v4.0.74"]
+  tags: ["readme", "getting_started", "semantic_os", "multi_agent", "v4.0.74"]
 
 lupopedia.session:
-  session_id: "L-LUPO-ROOT-CURSOR"
-  session_name: "L-LUPO-ROOT-CURSOR"
+  session_id: "L-LUPO-ROOT-ANTIGRAVITY"
+  session_name: "L-LUPO-ROOT-ANTIGRAVITY"
   actor_id: 1
   actor_name: "wolfie"
-  faucet_name: "cursor"
+  faucet_name: "antigravity"
   channel_id: 42
   channel_name: "Lupopedia Development (general)"
   federation_node_id: 1
@@ -61,28 +61,46 @@ lupopedia.edges:
   semantic_tags: ["project_overview", "onboarding", "semantic_os", "multi_agent"]
 
 lupopedia.footer:
-  version: "4.0.73"
-  last_verified: "20260313"
-  last_verified_by: "wolfie"
-  orchestrator: "cursor"
+  version: "4.0.74"
+  last_verified: "20260314"
+  last_verified_by: "antigravity"
+  orchestrator: "wolfie"
   next_action:
     - "Point new contributors to Required Reading Before Using Lupopedia"
-    - "Keep Getting Started and install steps aligned with 4.0.73"
+    - "Keep Getting Started and install steps aligned with 4.0.74"
     - "Review actor/faucet links when doctrine paths change"
 ---
-# file: Lupopedia README — session: L-LUPO-ROOT-CURSOR — delegation: wolfie:root (faucet: cursor) — web_path: http://www.lupopedia.com/
+# file: Lupopedia README — session: L-LUPO-ROOT-ANTIGRAVITY — delegation: wolfie:root (faucet: antigravity) — web_path: http://www.lupopedia.com/
 
-# 🐺 Lupopedia Semantic OS v4.0.73
+# 🐺 Lupopedia Semantic OS v4.0.74
 
-[![Version](https://img.shields.io/badge/version-4.0.73-blue.svg)](docs/version.md)
+[![Version](https://img.shields.io/badge/version-4.0.74-blue.svg)](docs/version.md)
 [![docs](https://img.shields.io/badge/docs-HELP.md-green)](docs/HELP.md)
 
 ---
 
-**Current Release: [v4.0.73](docs/version.md) — Version hardened for shared hosting and edge schema grouping.**  
-This version focuses on finalizing **edge schema hardening** (support for grouped outbound edges), implementing the **one-time SQL runner** for shared-host compatibility, and performing a logic-driven reorganization of development tables into planning/active tiers.
+**Current Release: [v4.0.74](docs/version.md) — Version hardened for shared hosting, edge schema grouping, and comments system.**  
+This version focuses on finalizing **edge schema hardening** (support for grouped outbound edges), implementing the **one-time SQL runner** for shared-host compatibility, and adding the **comments system** with faucet traceability.
 
-**Architecture (onboarding):** **Actors** are the orchestration identities of Lupopedia. They coordinate and govern work through **faucets**, **sessions**, **channels**, **rules**, and **traits**. **Faucets** are execution surfaces, not identities. IDE surfaces (Cursor, Antigravity, Kiro, Windsurf, Codex, JetBrains, Warp, etc.) are faucets. **Sessions** carry runtime context. See [Channels, actors, and agents](#channels-actors-and-agents-in-lupopedia) and [Actor–Faucet ontology](lupo-docs/doctrine/ActorFaucetOntology.md).
+**Architecture (onboarding):** **Actors** are the orchestration identities of Lupopedia. They coordinate and govern work through **faucets**, **sessions**, **channels**, **rules**, and **traits**. **Faucets** are execution surfaces, not identities. IDE surfaces (Cursor, Antigravity, Kiro, Windsurf, etc.) are faucets. **Sessions** carry runtime context. See [Channels, actors, and agents](#channels-actors-and-agents-in-lupopedia) and [Actor–Faucet ontology](lupo-docs/doctrine/ActorFaucetOntology.md).
+
+## Table of Contents
+
+- [Required Reading Before Using Lupopedia](#required-reading-before-using-lupopedia)
+- [What Lupopedia Is](#what-lupopedia-is)
+- [Core Identity Model](#core-identity-model)
+- [Core Concepts](#core-concepts)
+- [LUPOPEDIA HEADERS — The File/Database Bridge](#lupopedia-headers--the-filedatabase-bridge)
+- [Architecture Overview](#architecture-overview)
+- [Installation](#installation)
+- [Usage](#usage)
+- [GitHub Repository Strategy](#github-repository-strategy)
+- [Documentation](#documentation)
+- [Research Priorities for IDE Agents](#research-priorities-for-ide-agents)
+- [Contributing](#contributing)
+- [License](#license)
+
+---
 
 ## Required Reading Before Using Lupopedia
 
@@ -94,258 +112,172 @@ Lupopedia is **doctrine-driven** and **header-driven**. To avoid invalid initial
 
 **`lupopedia.init` is not the first file to read.** Understanding LUPOPEDIA HEADERS and versioning first ensures correct initialization and validation.
 
-## Getting Started (5 minutes)
-
-Lupopedia is a **Semantic OS** built on Crafty Syntax Live Help. **Actors** (orchestration identities) coordinate work through **faucets** (execution surfaces), **sessions** (runtime context), and **channels**; communication uses LUPOPEDIA HEADERS and `lupo_dialog_*` tables.
-
-**Prerequisites:**
-
-- **PHP 5.3+** (8+ recommended) with extensions: `pdo_mysql`, `json`, `session`
-- **MySQL 8.0+** or **MariaDB 10.5+**
-- **Git** for cloning
-- **Web server** (Apache or Nginx) with mod_rewrite; install in a **subdirectory** (e.g. `/lupopedia/`), never at web root
-
-**Quick install:**
-
-1. Clone: `git clone https://github.com/lupopedia/lupopedia.git && cd lupopedia`
-2. Point your web server at the project root (e.g. `https://localhost/lupopedia/`)
-3. Run the installer: visit **`https://your-host/lupopedia/install.php`** in a browser (or run `php install.php` from the project root if your setup supports it)
-
-**First commands after installation:**
-
-```bash
-# Check system health
-php lupo-bin/lupo.php doctor
-
-# See who you are (identity + context)
-php lupo-bin/lupo.php whoami
-
-# Get help
-php lupo-bin/lupo.php help
-```
-
-[Full installation guide](#installation) | Complete documentation: [docs/HELP.md](docs/HELP.md)
-
 ---
 
-## Why Lupopedia?
+## What Lupopedia Is
 
 Lupopedia solves fragmented human–AI workflows with a **unified Semantic OS** on top of Crafty Syntax live chat:
 
-- **Actors orchestrate** — Actors are the orchestration identities in `lupo_actors`; they coordinate and govern through faucets, sessions, channels, rules, and traits. **Faucets execute** — IDE surfaces (Cursor, Antigravity, Kiro, Windsurf, etc.) are faucets, not actors; the actor operates *through* the faucet.
-- **Channel-based communication** — Threads, tasks, and rich metadata for coordination on **channels** (e.g. Channel 42 for development).
-- **LUPOPEDIA HEADERS** — Self-describing artifacts (YAML headers) for file identity, doctrine, and routing; see [lupo-docs/doctrine/LUPOPEDIA_HEADERS/](lupo-docs/doctrine/LUPOPEDIA_HEADERS/README.md).
+- **Actors orchestrate** — Actors are the orchestration identities in `lupo_actors` (actor_name is PRIMARY KEY); they coordinate and govern through faucets, sessions, channels, rules, and traits. **Faucets execute** — IDE surfaces (Cursor, Antigravity, Kiro, Windsurf, etc.) are faucets, not actors; the actor operates *through* the faucet.
+- **Channel-based communication** — Threads, tasks, and rich metadata for coordination on **channels** (Channel 42 is the canonical development channel).
+- **LUPOPEDIA HEADERS** — Self-describing artifacts (YAML headers) for file identity, doctrine, and routing; stored in `lupo_metadata` and optionally written to the file.
+- **Comments system** — New in 4.0.73: threaded comments on artifacts with full faucet traceability via `lupo_comments` table and `lupopedia.comments` header block.
 
 **Target audience:** Developers building agents, admins managing systems, contributors to open-source AI-collab tooling.
 
-[Core doctrine](docs/doctrine/) | [LUPOPEDIA HEADERS](lupo-docs/doctrine/LUPOPEDIA_HEADERS/README.md)
+[Core doctrine](docs/doctrine/) | [LUPOPEDIA HEADERS](lupo-docs/doctrine/LUPOPEDIA_HEADERS/README.md) | [Comments System](lupo-docs/database/lupopedia/tables/active/lupo_comments.md)
 
 ---
+
+## Core Identity Model
+
+One thing that must be understood clearly is that Lupopedia separates human account identity from operational orchestration identity.
+
+### Auth Users
+Humans live in the `lupo_auth_users` tables.  
+These are the real authenticated people in the system. They have login credentials and account-level identity. Auth users represent:
+- real human users
+- authentication and login
+- account ownership
+- permissions at the account level
+
+### Actors
+Actors live in `lupo_actors` and are the operational identity layer used inside the semantic system. Actors are what channels, tasks, artifacts, headers, sessions, and orchestration use. Every participant in Lupopedia is represented operationally by an actor, including:
+- AI-led participants
+- human-led participants
+- hybrid human+AI working identities
+
+### Agents
+Agents live in `lupo_agents` and are AI/runtime metadata, not the identity itself. They define model/provider/prompt/runtime characteristics for AI behavior.
+
+### Faucets
+Faucets live in `lupo_agent_faucets` and are the execution surfaces through which actors operate. Examples include Cursor, Windsurf, Antigravity, Kiro, Warp, JetBrains, Codex.  
+A faucet is not the actor. It is the surface/environment the actor uses. **Actors orchestrate, faucets execute.**
+
+**Why this distinction matters:** A human may exist as an auth user, but collaboration in channels and artifacts happens through an actor. This separation enables AI-led workflows, human-led workflows, paired workflows, multi-agent orchestration, and channel-based role scoping. 
+
+*Actor ID rules:*
+- `actor_id < 1000` → system or AI-oriented identity
+- `actor_id >= 1000` → primarily human-oriented identity
 
 ## Core Concepts
 
-- **Actors** — Orchestration identities in `lupo_actors`. They coordinate and govern; every participant (human or AI) is represented by an actor. No `user_id` in relationships; `actor_id` is the single identity layer. **Faucets** (Cursor, Antigravity, Kiro, Windsurf, etc.) are execution surfaces, not identities.
-- **Channels** — Hubs for threads, tasks, and coordination (e.g. Channel 42 for development). See [Channels, actors, and agents](#channels-actors-and-agents-in-lupopedia) below.
-- **LUPOPEDIA HEADERS** — YAML headers on files for identity, doctrine, and routing; stored in `lupo_metadata` and optionally written to the file.
+### Channels
+Channels are collaboration contexts where work happens. They contain dialog, tasks, participants, uploads, artifacts, context, and semantic history. Key tables include `lupo_channels`, `lupo_actor_channels`, `lupo_actor_channel_roles`, `lupo_dialog_threads`, `lupo_dialog_messages`. Channel 42 is the canonical Lupopedia development channel.
 
-**Orchestration (simplified):**
+### Sessions
+Sessions carry runtime context. A session identifies who is acting, through what faucet, in which channel, with which paired context. Session state may exist in `lupo_sessions` (DB) and `lupo-database/sessions/*.md` (IDE session files).
 
-```mermaid
-graph TD
-  A[Human] -->|Paired to| B[Actor Registry]
-  C[Actor via faucet] -->|Uses| B
-  B -->|Resolves| D[Channels]
-```
+### Traits & Roles
+- **Traits** are intrinsic properties or constraints on actors. They are actor-scoped and not channel-local.
+- **Roles** are channel-local permissions assigned per actor per channel.
 
-**Channels and threads:** Governance and dialogs live under channel directories; see [docs/HELP.md](docs/HELP.md) and [TASK_STATUS_REFERENCE.md](docs/TASK_STATUS_REFERENCE.md).
+### Tasks
+Tasks are transient work items that live within the orchestration system.
 
----
+### Collections
+Collections are semantic groupings, not folders. They can group files, pages, artifacts, channels, objects, and external resources. A collection organizes meaning, not storage location.
 
-## Channels, actors, and agents in Lupopedia
+### Federation Nodes
+Every Lupopedia installation is a federation node (`Node 1` is usually the current installed domain). Federation allows cross-domain semantic linkage while keeping each node autonomous.
 
-**Actors orchestrate. Faucets execute. Sessions carry runtime context.** Traits constrain actors; roles scope permissions to channels; tasks are transient work items.
+### Monitoring Widgets
+Because Lupopedia runs in a subfolder, it cannot automatically see all root-domain activity. To bridge that gap, it uses monitoring widgets such as JS snippets generated by endpoints like `livehelp_js.php`. These widgets can report current page, referrer, click events, and navigation source, and open live chat.
 
-| Concept | What it is | Where it lives |
-|--------|------------|----------------|
-| **Actor** | **Orchestration identity** — who coordinates and governs; holds rules, skills, persona, and doctrine. Every participant (human or AI) is an actor. | `lupo_actors`; registry in `lupo-database/lupopedia/actors/actor_id/registry.json`. |
-| **Agent** | **AI/runtime metadata** — configuration for an AI actor (model, provider). The actor is the identity; `lupo_agents` is metadata. | `lupo_agents`. |
-| **Faucet** | **Execution surface** — the environment through which an actor acts. Cursor, Antigravity, Kiro, Windsurf, Codex, JetBrains, Warp are **faucets**, not actors. | `lupo_agent_faucets` (`faucet_class`: `ide` or `llm`). |
-| **Channel** | **Collaboration context** — where threads, tasks, and dialog happen. Channels have members (actors), roles (per actor per channel), and content. | `lupo_channels`, `lupo_actor_channels`, `lupo_actor_channel_roles`; Channel 42 = Lupopedia Development (general). |
-| **Session** | **Runtime context** — who is doing what, where (actor, channel, paired human). | `lupo_sessions` (DB); `lupo-database/sessions/*.md` (IDE session files). |
-| **Trait** | **Intrinsic constraint** on an actor (capability marker). Actor-scoped only. | `lupo_actor_traits`. |
-| **Role** | **Channel-local permission** (e.g. admin, member). Per (actor, channel). | `lupo_actor_channel_roles`. |
-| **Task** | **Transient work item**. | `lupo_tasks`; channel task structure. |
+## LUPOPEDIA HEADERS — The File/Database Bridge
 
-**Important:** IDE surfaces (Cursor, Antigravity, Windsurf, etc.) are **faucets**, not actors. When you use Cursor to work on Lupopedia, the **actor** is typically Wolfie (actor_id 1) or another identity; **Cursor** is the faucet. Session files and headers use `actor_id` + `faucet_name` to make this clear.
+This is one of the most important parts of Lupopedia. **LUPOPEDIA HEADERS** are structured YAML blocks at the top of `.md` files and other artifact-like objects. They are the bridge between database state and filesystem artifacts.
 
-**References:** [Actor–Faucet ontology](lupo-docs/doctrine/ActorFaucetOntology.md), [Identity layers](lupo-docs/doctrine/IDENTITY_LAYERS_DOCTRINE.md), [Canonical architecture (4.0.69)](lupo-docs/architecture/cursor_actors_channels_semantic_architecture_4.0.69.md), [How actors orchestrate on channels](lupo-docs/architecture/HOW_ACTORS_ORCHESTRATE_ON_CHANNELS.md).
+**Why headers exist:** The database holds live relational state. The filesystem holds persistent artifacts. Neither alone is enough. The database can be unavailable. A file can be moved, copied, federated, or read offline. Headers solve this by embedding structured snapshots of semantic context (identity, routing, authorship, session context, semantic relationships) directly into the artifact.
 
----
+**Important principle:** Headers are not merely decorative frontmatter; they are part of the semantic operating system.
 
-## GitHub Repository Strategy
+### Main header sections
+- `lupopedia.init` — Initialization identity and artifact classification (e.g. file identity, artifact type).
+- `lupopedia.metadata` — Snapshot of metadata rows derived from `lupo_metadata`.
+- `lupopedia.headers` — Core operational tracking fields (version, schema, file path, actor id, channel id).
+- `lupopedia.session` — Runtime context snapshot (actor, faucet, paired actor).
+- `lupopedia.edges` — Snapshot of `lupo_edges` outbound semantic relationships (groups links to other docs, code, schema). 
+- `lupopedia.engagement` — Snapshot of engagement metrics derived from analytics.
+- `lupopedia.footer` — Verification and next-action context.
 
-Lupopedia is currently developed in a temporary repository while architecture and documentation stabilize.
+## Architecture Overview
 
-**Current development repository**
+**Filesystem layout:**
+Lupopedia organizes itself via directories such as `/core`, `/api`, `/uploads`, `/channels`, `/agents`, `/actors`, `/federation`. These directories hold artifacts representing documentation, channel content, agent/session data, uploaded objects, semantic references, and registry material.
 
-Through version 4.1.0, the active repository is:
+**Database domains:**
+The database includes 200+ tables across domains such as identity (`lupo_actors`, `lupo_auth_users`), orchestration (`lupo_agents`, `lupo_agent_faucets`), collaboration (`lupo_channels`, `lupo_dialog_messages`), semantics (`lupo_metadata`, `lupo_edges`, `lupo_collections`), telemetry (`lupo_sessions`), federation, and legacy migration. 
 
-- **https://github.com/wisdomoflovingfaith/lupopedia**
-
-This repo is used for rapid iteration while system architecture, doctrine, and documentation are finalized.
-
-**Future canonical organization**
-
-Once version 4.1.0 is complete and the project structure is stabilized, Lupopedia will move to the official organization:
-
-- **https://github.com/lupopedia**
-
-The project will then be reorganized into multiple repositories reflecting the system architecture.
-
-**Planned repository structure**
-
-The official `github.com/lupopedia` organization will contain:
-
-| Repository | Purpose |
-|------------|---------|
-| **core** | Canonical Lupopedia engine: semantic logic, allocators, doctrine, database adapters |
-| **web** | Web deployment package for shared hosting (Apache, Nginx, cPanel, etc.) |
-| **cli** | Command-line interface for local use and automation |
-| **vercel** | Vercel-optimized deployment environment |
-| **docs** | Public documentation, governance, doctrine, and architecture |
-| **ops** (optional) | CI/CD pipelines, migrations, infrastructure scripts, deployment automation |
-
-**Upstream: Crafty Syntax**
-
-The original Crafty Syntax Live Help 3.7.5 code that Lupopedia is built from is maintained in the organization as:
-
-- **https://github.com/lupopedia/CRAFTY_SYNTAX**
-
-That repository holds the GPL release and legacy documentation; the only supported upgrade path to Lupopedia is **Crafty Syntax 3.7.5 → Lupopedia 4.0.x**.
-
-**Architectural principle**
-
-All Lupopedia functionality lives in the **core** repository. Other repositories act only as adapters or deployment surfaces.
-
-Dependency graph:
-
-- `web` → core  
-- `cli` → core  
-- `vercel` → core  
-
-This design ensures: no duplicated logic, deterministic architecture, clear system lineage, stable versioning, and clean governance boundaries. The core repository will be versioned independently; surfaces will depend on released versions.
-
-**Migration plan**
-
-When version 4.1.0 is reached:
-
-- The current repository will be reorganized.
-- Core engine code will move into **lupopedia/core**.
-- Surface-specific code will move into their respective repositories.
-- Documentation will move into **lupopedia/docs**.
-- The current repository will either become an archive or redirect.
-
-**Why this temporary structure exists**
-
-The current single-repository layout allows rapid development, doctrine stabilization, architectural experimentation, and documentation consolidation before splitting the project into multiple repositories.
-
----
+**Filesystem/database relationship:**
+The database is the live relational layer. The filesystem is the artifact memory layer. Headers are the synchronization and portability layer between them.
 
 ## Installation
 
 ### New installation
-
-1. Clone the repository and place it in a web-accessible subdirectory.
-2. Configure your web server to point at the project root (e.g. `/lupopedia/`).
-3. Run the installer: open **`https://your-host/lupopedia/install.php`** in a browser and follow the wizard (database setup, config, seed).
+1. Clone the repository into a web-accessible subdirectory.
+2. Point your web server to the project root.
+3. Run the installer through the browser.
 
 ```bash
 git clone https://github.com/lupopedia/lupopedia.git
 cd lupopedia
-# Then visit install.php via browser
 ```
 
+Then visit: `https://your-host/lupopedia/install.php`
+
 ### Upgrade from Crafty Syntax 3.7.5
-
-1. Backup your existing Crafty setup and database.
-2. Load the Lupopedia schema and run the install wizard; the only supported upgrade path is **Crafty Syntax 3.7.5 → Lupopedia 4.0.x**.
-3. Follow the [migration mapping reference](docs/doctrine/migrations/MIGRATION_MAPPING_REFERENCE.md).
-
-Troubleshoot with: `php lupo-bin/lupo.php doctor`
-
----
+The supported upgrade path is: **Crafty Syntax 3.7.5 → Lupopedia 4.0.x**
+1. Back up the old database and files.
+2. Load/install Lupopedia schema + data seeds.
+3. Follow the migration mapping documentation. 
+4. Validate the upgrade output carefully.
 
 ## Usage
 
-### CLI commands
+**CLI commands:**
+- `whoami` — show current identity and context
+- `context` — show full execution context
+- `doctor` — run system health checks (`lupo-bin/lupo.php doctor`)
+- `doctor-context --repair` — repair/sync context state
+- `help` — show CLI help
 
-| Command | Description |
-|--------|-------------|
-| `whoami` | Show current identity (human, agent, session mode) |
-| `context` | Full execution context as JSON |
-| `doctor` | System health check ([reference](docs/DOCTOR_HEALTH_CHECK.md)) |
-| `doctor-context [--repair]` | Identity stack check; `--repair` syncs session.md to kernel |
-| `help` | Built-in help and topic help |
+## GitHub Repository Strategy
 
-[Full CLI reference](docs/CLI.md)
+Current active development through version 4.1.0 is in: `https://github.com/wisdomoflovingfaith/lupopedia`
+Planned future canonical organization: `https://github.com/lupopedia`
 
----
-
-## Multi-Agent System
-
-- **Actor registry** — [lupo-database/lupopedia/actors/actor_id/registry.json](lupo-database/lupopedia/actors/actor_id/registry.json)
-- **DOCTOR actor (1009)** — System health and repair: [docs/DOCTOR_HEALTH_CHECK.md](docs/DOCTOR_HEALTH_CHECK.md)
-- **Channels and tasks** — [docs/HELP.md](docs/HELP.md#tasks), [docs/TASK_STATUS_REFERENCE.md](docs/TASK_STATUS_REFERENCE.md)
-
-**Multi-agent flow (simplified):**
-
-```mermaid
-graph LR
-  A[Human] --> B[Channel 42]
-  C[AI Agent] --> B
-  B --> D[FLARE Artifact]
-  D --> E[Task Processing]
-```
-
----
-
-## Advanced Topics
-
-- [Federation and registry](lupo-docs/architecture/FEDERATION_AND_REGISTRY.md) — Multi-node and global ID space (when present)
-- [DOCTOR health check](docs/DOCTOR_HEALTH_CHECK.md) — System health and `doctor-context --repair`
-- [Context Kernel](docs/status/CHANNEL_42_CONTEXT_KERNEL_4.0.62.md) — Unified identity resolution
-- [TOONs](docs/TOON_REFERENCE.md) — Database structure representation: what TOONs are, where they live (`lupo-database/lupopedia/json/` and `lupo-database/lupopedia/toon/`), and how to generate them (`python scripts/generate_toon_files.py`).
-- [Doctrine](docs/doctrine/) — Database, FLARE, timestamps, migrations
-
----
+Architectural rule: all real logic should live in `core`, with other repos serving as surfaces/adapters (`web`, `cli`, `docs`, `vercel`). 
 
 ## Documentation
 
-- [HELP.md](docs/HELP.md) — Documentation hub
-- [CLI.md](docs/CLI.md) — Command reference
-- [TOON_REFERENCE.md](docs/TOON_REFERENCE.md) — TOONs: database structure representation (locations: `lupo-database/lupopedia/json/`, `lupo-database/lupopedia/toon/`)
-- [version.md](docs/version.md) — Version history
-- [CHANGELOG.md](CHANGELOG.md) — Detailed change log
+Primary references:
+- `docs/HELP.md`
+- `docs/CLI.md`
+- `docs/DOCTOR_HEALTH_CHECK.md`
+- `docs/TOON_REFERENCE.md`
+- `docs/version.md`
+- `CHANGELOG.md`
+- `lupo-docs/doctrine/`
 
-**Paths by persona:**
+## Research Priorities for IDE Agents
 
-- **New developers** — Getting Started, First Commands
-- **System administrators** — Installation, **Production Ready** | Context Kernel | DOCTOR System | Multi-Agent Federation | Web Authentication
-- **Agent developers** — Multi-Agent System, Actor Registry, DOCTOR
-- **Contributors** — [CONTRIBUTING.md](CONTRIBUTING.md), [docs/doctrine/](docs/doctrine/)
+IDE agents are actively researching and documenting these critical areas to fully align the system:
 
----
+1. **Header–Database Bridge**: Explicitly defined in `lupo-docs/doctrine/LUPOPEDIA_HEADERS_AND_METADATA_BRIDGE.md`.
+2. **Auth User ↔ Actor Relationship**: Defined in `lupo-docs/doctrine/AUTH_USERS_ACTORS_AGENTS_FAUCETS_DOCTRINE.md`.
+3. **Actor / Agent / Faucet Ontology**: Defined canonically in Identity Layers Doctrine.
+4. **Channel and Dialog System**: Managing `lupo_dialog_messages` vs threads vs filesystem tasks.
+5. **Collections and Edge Semantics**: Graph semantic relationships and tab collections.
+6. **Filesystem Object Doctrine**: Defined in `lupo-docs/doctrine/FILESYSTEM_OBJECTS_AND_DATABASE_SNAPSHOTS.md`.
 
 ## Contributing
 
-See [CONTRIBUTING.md](CONTRIBUTING.md) for development workflow, code style, and pull request guidelines. All contributions must follow [core doctrine](docs/doctrine/) (no foreign keys, UTC YmdHis timestamps, FLARE headers, actor model).
-
----
+See `CONTRIBUTING.md`. All contributions should follow doctrine: UTC YmdHis timestamps, actor-centered orchestration, header-driven artifacts, deterministic IDs, and NO FOREIGN KEYS where forbidden by doctrine.
 
 ## License
 
-See [license.txt](license.txt) in the repository. Free to use, modify, and distribute under the terms specified there.
+See `license.txt` in the repository. Free to use, modify, and distribute under the terms specified there.
 
 ---
-
-*🐺 Lupopedia 4.0.73 — Semantic OS on Crafty Syntax. Managed by humans and AI agents on Channel 42.*
+*🐺 Lupopedia 4.0.74 — a semantic operating system orchestrated by humans and AI agents across channels, artifacts, and federation nodes.*

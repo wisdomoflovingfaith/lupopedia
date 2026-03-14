@@ -6,7 +6,7 @@ lupopedia.init:
   artifact_kind: "metadata-snapshot"
   namespace: "lupopedia"
   domain: "core"
-  system_version: "4.0.73"
+  system_version: "4.0.74"
 
 lupopedia.metadata:
   comment: "Snapshot of metadata for this file or entity at artifact creation."
@@ -26,15 +26,15 @@ lupopedia.comments:
   - { comment_id: 2, channel_id: 42, actor_id: 1003, actor_name: "cursor", faucet_id: 102, faucet_name: "cursor", comment_text: "Second example comment for 4.0.73 to demonstrate multiple comment records in the lupopedia.comments block.", comment_type: "comment", created_ymdhis: 20260313151500, updated_ymdhis: 20260313151500 }
 
 lupopedia.headers:
-  lupopedia.version: "4.0.73"
+  lupopedia.version: "4.0.74"
   lupopedia.schema: "documentation"
   file_path_from_root: "CHANGELOG.md"
-  system_version: "4.0.73"
-  last_modified_utc: "20260313"
+  system_version: "4.0.74"
+  last_modified_utc: "20260314"
   channel_id: 42
   actor_id: 1
   actor_name: "wolfie"
-  faucet_name: "cursor"
+  faucet_name: "jetbrains_codex"
   artifact_type: "changelog"
   artifact_kind: "history"
   purpose: "Canonical version history for Lupopedia; reverse chronological order."
@@ -52,12 +52,12 @@ lupopedia.edges:
  
 lupopedia.footer:
   archive_note: "For historical changelog entries from 4.0.67 and earlier, see CHANGELOG_ARCHIVE.md"
-  version: "4.0.73"
-  last_verified: "20260313"
-  last_verified_by: "wolfie"
-  orchestrator: "cursor"
+  version: "4.0.74"
+  last_verified: "20260314"
+  last_verified_by: "codex"
+  orchestrator: "wolfie"
   next_action:
-    - "Add next_action to any new 4.0.73 subsection entries"
+    - "Add next_action to any new 4.0.74 subsection entries"
     - "Verify version and last_verified align with release"
     - "Keep required reading and doctrine links current"
 ---
@@ -75,6 +75,19 @@ This document tracks version history, focusing on key changes, task migrations, 
 
 **Doctrine transition (Channel 42):**
 - **Doctrine tables → contents:** Target moving doctrine blocks, refinement tracking, and evolution audit to `{prefix}contents` on channel 42 instead of dedicated doctrine tables. See `lupo-docs/doctrine/DOCTRINE_TABLES_TRANSITION_NOTE.md`.
+
+### [4.0.74] — Version bump (2026-03-13)
+
+- **Version bump:** Updated LUPEDIA_VERSION, version.php, install.php, lupo.php, lupo-config atoms (global_atoms.yaml, GLOBAL_IMPORTANT_ATOMS.yaml), CHANGELOG.md, README.md, TODO.md, and documentation headers to 4.0.74. No schema or behavioral changes; release follows v4.0.73 push to GitHub. v4.0.74 focus: test fresh install and Crafty Syntax 3.7.5 upgrade paths.
+- **README & Core Doctrine Clarification (Antigravity):** Rewrote `README.md` to properly separate Auth Users (humans) from Actors (identities), Agents (AI config), and Faucets (execution surfaces). Expanded explanation of LUPOPEDIA HEADERS as the explicitly portable file/database bridge capable of offline and federated synchronization. 
+- **New Doctrine Files (Antigravity):** Created three pivotal doctrine documents to answer long-standing IDE agent questions: `lupo-docs/doctrine/AUTH_USERS_ACTORS_AGENTS_FAUCETS_DOCTRINE.md`, `lupo-docs/doctrine/LUPOPEDIA_HEADERS_AND_METADATA_BRIDGE.md`, and `lupo-docs/doctrine/FILESYSTEM_OBJECTS_AND_DATABASE_SNAPSHOTS.md`.
+
+### [4.0.74] - Documentation audit and corrections (2026-03-14)
+
+- **README correction pass (Codex via JetBrains faucet under Wolfie orchestration):** Rewrote root README.md to match actual repository paths (lupo-docs/*), current runtime lifecycle files (index.php, bootstrap.php, lupopedia-loader.php, module-loader.php), and doctrine terminology for actor/agent/faucet separation.
+- **Header-bridge clarification:** Expanded README explanation of the lupopedia.* header bridge with explicit lupo_metadata row-snapshot behavior and snapshot semantics for lupopedia.metadata, lupopedia.edges, and lupopedia.engagement.
+- **Audit deliverables added:** Added report_codex.md (findings and contradictions) and replaced plan.md with a concrete implementation backlog for unresolved architecture/documentation drift.
+- **Evidence-based counts and caveats:** Captured repository reality checks used in the audit (filesystem count and install SQL table count) to avoid unverified narrative claims.
 
 ### [4.0.73] — LUPOPEDIA HEADERS expansion (2026-03-13)
 
@@ -484,9 +497,9 @@ Introduced rules engine, skills system, and path/visit analytics doctrine. Major
 
 #### Root rules for actor 1 (lupo-rules/root) (4.0.68)
 
-- **lupo-rules/root/:** Rule .md files with LUPOPEDIA headers — php-5-6-compatibility, no-laravel-no-middleware, pdo-db-database-access-doctrine, migration-doctrine, database-logic-prohibition-doctrine, flip-doctrine (redirects to LUPOPEDIA HEADERS), toon-source-of-truth, reserved-id-doctrine, versioning-doctrine-single-source, pk-reference-naming-doctrine, required-tables-future-features-doctrine, wheeler-reverse20-ban, stoned-wolfie-schrodinger-ban, quantum-state-uncertainty-ban, experimental-ai-artifact-ban, single-install-no-4.0-upgrade-doctrine.
+- **lupo-rules/root/:** Rule .md files with LUPOPEDIA headers — php-5-6-compatibility, no-laravel-no-middleware, pdo-db-database-access-doctrine, migration-doctrine, database-logic-prohibition-doctrine, flip-doctrine (redirects to LUPOPEDIA HEADERS), toon-source-of-truth, reserved-id-doctrine, versioning-doctrine-single-source, pk-reference-naming-doctrine, required-tables-future-features-doctrine, single-install-no-4.0-upgrade-doctrine.
 - **flip-doctrine:** Content replaced with redirect to LUPOPEDIA HEADERS doctrine (README, FORMAT, PLAN, VALIDATORS_AND_TOOLING); describes storage in `lupo_metadata` and writing headers to the file.
-- **Seed:** `seed_actor_1_cursor_rules_4.0.68.sql` — inserts into `lupo_metadata` for entity_type='actor', entity_id=1, meta_type='root_rule', property_key=slug (16 rules), metadata_id 10301–10316.
+- **Seed:** `seed_actor_1_cursor_rules_4.0.68.sql` — inserts into `lupo_metadata` for entity_type='actor', entity_id=1, meta_type='root_rule', property_key=slug (12 rules), metadata_id 10301–10311, 10316.
 - **README:** `lupo-rules/root/README.md` — index of all root rules and seed reference.
 
 #### Single-install no 4.0 upgrade doctrine (4.0.68)
@@ -532,8 +545,8 @@ Introduced rules engine, skills system, and path/visit analytics doctrine. Major
 # LUPOPEDIA FOOTER STARTS HERE
 
 lupopedia.footer:
-  version: "4.0.73"
-  last_verified: "20260313"
+  version: "4.0.74"
+  last_verified: "20260314"
   archive_note: "For historical changelog entries from 4.0.67 and earlier, see CHANGELOG_ARCHIVE.md"
   next_action:
     - "Execute full upgrade testing from Crafty Syntax 3.7.5 to Lupopedia 4.0.73"
@@ -541,3 +554,5 @@ lupopedia.footer:
     - "Address any schema or performance issues discovered during testing"
     - "Document all findings and prepare for production deployment"
     - "Keep required reading and doctrine links current with 4.0.73"
+
+
