@@ -1,0 +1,124 @@
+{
+    "rules": [
+        {
+            "id": "CTX001",
+            "text": "All systemic operations and tracking operate through specific Channels and Federation Nodes. Offline interactions or non-database IDE contexts must fallback to embedding session metadata securely within L-LUPO-* file headers.",
+            "enforcement": "error",
+            "scope": [
+                "all_agents"
+            ]
+        },
+        {
+            "id": "DB001",
+            "text": "Mandatory prohibition of database-side logic; all logic in application code",
+            "enforcement": "error",
+            "scope": [
+                "all_agents"
+            ]
+        },
+        {
+            "id": "DB008",
+            "text": "When the database is impenetrable, offline, or strictly isolated from an IDE Agent's execution scope, operations must fallback to structured filesystem artifacts (e.g., CSVs, Markdown, TOON json). The artifact must be strictly formatted to allow native bi-directional importing into the database upon restoration.",
+            "enforcement": "error",
+            "scope": [
+                "all_agents"
+            ]
+        },
+        {
+            "id": "ARC001",
+            "text": "FLIP/FLARE have been replaced by LUPOPEDIA HEADERS formatting",
+            "enforcement": "error",
+            "scope": [
+                "all_agents"
+            ]
+        },
+        {
+            "id": "ACT001",
+            "text": "IDE Agents must explicitly know their systemic identity (actor_id), their paired human orchestrator (auth_user_id), and operate as discrete actors. In IDE environments, the logged-in user account maps directly to an auth_user which dictates the orchestration actor pairing.",
+            "enforcement": "error",
+            "scope": [
+                "all_agents"
+            ]
+        },
+        {
+            "id": "DB002",
+            "text": "Two-place schema changes, no direct DB, no scoop mysql, TOON source of truth",
+            "enforcement": "error",
+            "scope": [
+                "all_agents"
+            ]
+        },
+        {
+            "id": "ARC002",
+            "text": "This project does NOT use Laravel or any framework middleware. Plain PHP only",
+            "enforcement": "error",
+            "scope": [
+                "all_agents"
+            ]
+        },
+        {
+            "id": "DB003",
+            "text": "All database access must use PDO_DB; prepared statements only; no raw SQL or legacy patterns",
+            "enforcement": "error",
+            "scope": [
+                "all_agents"
+            ]
+        },
+        {
+            "id": "ARC003",
+            "text": "All Lupopedia core code must run on PHP 5.6 minimum through 8.x; no deprecated PHP 8+ syntax",
+            "enforcement": "error",
+            "scope": [
+                "all_agents"
+            ]
+        },
+        {
+            "id": "DB004",
+            "text": "Mandatory primary key and reference key naming doctrine for Lupopedia schema",
+            "enforcement": "error",
+            "scope": [
+                "all_agents"
+            ]
+        },
+        {
+            "id": "DB005",
+            "text": "Required-tables split, future_features_lupopedia.sql is canonical for non-required tables",
+            "enforcement": "error",
+            "scope": [
+                "all_agents"
+            ]
+        },
+        {
+            "id": "DB006",
+            "text": "Tables with reserved IDs must not use AUTO_INCREMENT; code must supply explicit IDs",
+            "enforcement": "error",
+            "scope": [
+                "all_agents"
+            ]
+        },
+        {
+            "id": "ARC004",
+            "text": "No Lupopedia to Lupopedia upgrade until 4.1.0; all schema in install plus seed",
+            "enforcement": "error",
+            "scope": [
+                "all_agents"
+            ]
+        },
+        {
+            "id": "DB007",
+            "text": "TOON files are derived from canonical schema; canonical schema comes from install SQL",
+            "enforcement": "error",
+            "scope": [
+                "all_agents"
+            ]
+        },
+        {
+            "id": "ARC005",
+            "text": "Only one versioning doctrine file exists. Always overwrite it; never create duplicates",
+            "enforcement": "error",
+            "scope": [
+                "all_agents"
+            ]
+        }
+    ]
+}
