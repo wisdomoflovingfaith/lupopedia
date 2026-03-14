@@ -10,7 +10,7 @@
     "`source_id` bigint",
     "`topic_id` bigint",
     "`relation_id` bigint",
-    "`actor_id` bigint NOT NULL DEFAULT 0",
+    "`actor_id` bigint NOT NULL DEFAULT '0'",
     "`object_type` varchar(50)",
     "`object_id` bigint",
     "`left_object_type` varchar(50)",
@@ -32,83 +32,42 @@
     "`relation_type` varchar(50) DEFAULT ''",
     "`format` varchar(64) DEFAULT 'text'",
     "`format_override` varchar(50)",
-    "`confidence_score` decimal(5,2) DEFAULT 0.00",
-    "`evidence_score` decimal(5,2) DEFAULT 0.00",
-    "`weight_score` decimal(5,2) DEFAULT 0.00",
-    "`reliability_score` decimal(5,2) DEFAULT 0.00",
-    "`importance_score` decimal(5,2) DEFAULT 0.00",
-    "`sort_num` int DEFAULT 0",
-    "`view_count` bigint DEFAULT 0",
-    "`likes_count` bigint DEFAULT 0",
-    "`shares_count` bigint DEFAULT 0",
-    "`answer_count` bigint DEFAULT 0",
-    "`contradiction_flag` tinyint DEFAULT 0",
-    "`is_featured` tinyint DEFAULT 0",
-    "`is_verified` tinyint DEFAULT 0",
+    "`confidence_score` decimal(5,2) DEFAULT '0.00'",
+    "`evidence_score` decimal(5,2) DEFAULT '0.00'",
+    "`weight_score` decimal(5,2) DEFAULT '0.00'",
+    "`reliability_score` decimal(5,2) DEFAULT '0.00'",
+    "`importance_score` decimal(5,2) DEFAULT '0.00'",
+    "`sort_num` int DEFAULT '0'",
+    "`view_count` bigint DEFAULT '0'",
+    "`likes_count` bigint DEFAULT '0'",
+    "`shares_count` bigint DEFAULT '0'",
+    "`answer_count` bigint DEFAULT '0'",
+    "`contradiction_flag` tinyint DEFAULT '0'",
+    "`is_featured` tinyint DEFAULT '0'",
+    "`is_verified` tinyint DEFAULT '0'",
     "`last_activity_ymdhis` bigint",
-    "`default_collection_id` bigint DEFAULT 0",
+    "`default_collection_id` bigint DEFAULT '0'",
     "`created_ymdhis` bigint NOT NULL DEFAULT 0",
     "`updated_ymdhis` bigint NOT NULL",
-    "`is_deleted` tinyint NOT NULL DEFAULT 0",
-    "`deleted_ymdhis` bigint"
+    "`is_deleted` tinyint NOT NULL DEFAULT '0'",
+    "`deleted_ymdhis` bigint",
+    "`truth_question_parent_id` bigint"
   ],
   "data": [],
   "indexes": [
     {
-      "index_name": "lupo_truth_knowledge_idx_actor",
+      "index_name": "lupo_truth_knowledge_uk_type_slug",
       "columns": [
-        "actor_id"
+        "truth_type",
+        "slug"
       ],
-      "is_unique": false,
+      "is_unique": true,
       "index_type": "BTREE"
     },
     {
-      "index_name": "lupo_truth_knowledge_idx_answer",
+      "index_name": "lupo_truth_knowledge_idx_type",
       "columns": [
-        "answer_id"
-      ],
-      "is_unique": false,
-      "index_type": "BTREE"
-    },
-    {
-      "index_name": "lupo_truth_knowledge_idx_created_ymdhis",
-      "columns": [
-        "created_ymdhis",
-        "is_deleted"
-      ],
-      "is_unique": false,
-      "index_type": "BTREE"
-    },
-    {
-      "index_name": "lupo_truth_knowledge_idx_evidence",
-      "columns": [
-        "evidence_id"
-      ],
-      "is_unique": false,
-      "index_type": "BTREE"
-    },
-    {
-      "index_name": "lupo_truth_knowledge_idx_is_deleted",
-      "columns": [
-        "is_deleted"
-      ],
-      "is_unique": false,
-      "index_type": "BTREE"
-    },
-    {
-      "index_name": "lupo_truth_knowledge_idx_left_object",
-      "columns": [
-        "left_object_type",
-        "left_object_id"
-      ],
-      "is_unique": false,
-      "index_type": "BTREE"
-    },
-    {
-      "index_name": "lupo_truth_knowledge_idx_object",
-      "columns": [
-        "object_type",
-        "object_id"
+        "truth_type"
       ],
       "is_unique": false,
       "index_type": "BTREE"
@@ -130,10 +89,17 @@
       "index_type": "BTREE"
     },
     {
-      "index_name": "lupo_truth_knowledge_idx_right_object",
+      "index_name": "lupo_truth_knowledge_idx_answer",
       "columns": [
-        "right_object_type",
-        "right_object_id"
+        "answer_id"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_truth_knowledge_idx_evidence",
+      "columns": [
+        "evidence_id"
       ],
       "is_unique": false,
       "index_type": "BTREE"
@@ -147,14 +113,6 @@
       "index_type": "BTREE"
     },
     {
-      "index_name": "lupo_truth_knowledge_idx_status",
-      "columns": [
-        "status"
-      ],
-      "is_unique": false,
-      "index_type": "BTREE"
-    },
-    {
       "index_name": "lupo_truth_knowledge_idx_topic",
       "columns": [
         "topic_id"
@@ -163,9 +121,53 @@
       "index_type": "BTREE"
     },
     {
-      "index_name": "lupo_truth_knowledge_idx_type",
+      "index_name": "lupo_truth_knowledge_idx_actor",
       "columns": [
-        "truth_type"
+        "actor_id"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_truth_knowledge_idx_object",
+      "columns": [
+        "object_type",
+        "object_id"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_truth_knowledge_idx_left_object",
+      "columns": [
+        "left_object_type",
+        "left_object_id"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_truth_knowledge_idx_right_object",
+      "columns": [
+        "right_object_type",
+        "right_object_id"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_truth_knowledge_idx_status",
+      "columns": [
+        "status"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_truth_knowledge_idx_created_ymdhis",
+      "columns": [
+        "created_ymdhis",
+        "is_deleted"
       ],
       "is_unique": false,
       "index_type": "BTREE"
@@ -179,15 +181,15 @@
       "index_type": "BTREE"
     },
     {
-      "index_name": "lupo_truth_knowledge_uk_type_slug",
+      "index_name": "lupo_truth_knowledge_idx_is_deleted",
       "columns": [
-        "truth_type",
-        "slug"
+        "is_deleted"
       ],
-      "is_unique": true,
+      "is_unique": false,
       "index_type": "BTREE"
     }
   ],
+  "relationships": [],
   "primary_key": {
     "column_name": "truth_id",
     "expected_name": "truth_id",
@@ -197,6 +199,5 @@
   "doctrine_metadata": {
     "no_foreign_keys": true,
     "no_triggers": true
-  },
-  "relationships": []
+  }
 }

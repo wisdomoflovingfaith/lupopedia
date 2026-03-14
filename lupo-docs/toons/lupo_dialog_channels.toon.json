@@ -17,7 +17,7 @@
     "`author` varchar(100)",
     "`created_ymdhis` bigint NOT NULL DEFAULT 0",
     "`updated_ymdhis` bigint NOT NULL",
-    "`message_count` int DEFAULT 0",
+    "`message_count` int DEFAULT '0'",
     "`metadata_json` json"
   ],
   "data": [],
@@ -28,23 +28,6 @@
         "channel_name"
       ],
       "is_unique": true,
-      "index_type": "BTREE"
-    },
-    {
-      "index_name": "lupo_dialog_channels_idx_created_ymdhis",
-      "columns": [
-        "created_ymdhis"
-      ],
-      "is_unique": false,
-      "index_type": "BTREE"
-    },
-    {
-      "index_name": "lupo_dialog_channels_idx_dialog_channels_composite",
-      "columns": [
-        "status",
-        "created_ymdhis"
-      ],
-      "is_unique": false,
       "index_type": "BTREE"
     },
     {
@@ -64,6 +47,14 @@
       "index_type": "BTREE"
     },
     {
+      "index_name": "lupo_dialog_channels_idx_target",
+      "columns": [
+        "target"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
       "index_name": "lupo_dialog_channels_idx_status",
       "columns": [
         "status"
@@ -72,9 +63,9 @@
       "index_type": "BTREE"
     },
     {
-      "index_name": "lupo_dialog_channels_idx_target",
+      "index_name": "lupo_dialog_channels_idx_created_ymdhis",
       "columns": [
-        "target"
+        "created_ymdhis"
       ],
       "is_unique": false,
       "index_type": "BTREE"
@@ -86,8 +77,18 @@
       ],
       "is_unique": false,
       "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_dialog_channels_idx_dialog_channels_composite",
+      "columns": [
+        "status",
+        "created_ymdhis"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
     }
   ],
+  "relationships": [],
   "primary_key": {
     "column_name": "channel_id",
     "expected_name": "channel_id",
@@ -97,6 +98,5 @@
   "doctrine_metadata": {
     "no_foreign_keys": true,
     "no_triggers": true
-  },
-  "relationships": []
+  }
 }

@@ -4,7 +4,7 @@
     "`dialog_thread_id` bigint NOT NULL",
     "`title` varchar(255) NOT NULL",
     "`last_message_ymdhis` bigint",
-    "`federation_node_id` bigint NOT NULL DEFAULT 1",
+    "`federation_node_id` bigint NOT NULL DEFAULT '1'",
     "`channel_id` bigint",
     "`project_slug` varchar(100)",
     "`task_name` varchar(255)",
@@ -18,7 +18,7 @@
     "`metadata_json` json",
     "`created_ymdhis` bigint NOT NULL DEFAULT 0",
     "`updated_ymdhis` bigint NOT NULL",
-    "`is_deleted` tinyint NOT NULL DEFAULT 0",
+    "`is_deleted` tinyint NOT NULL DEFAULT '0'",
     "`deleted_ymdhis` bigint",
     "`escalated_to_operator_id` bigint",
     "`escalation_reason` varchar(255)",
@@ -27,49 +27,17 @@
   "data": [],
   "indexes": [
     {
-      "index_name": "lupo_dialog_threads_idx_channel",
-      "columns": [
-        "channel_id"
-      ],
-      "is_unique": false,
-      "index_type": "BTREE"
-    },
-    {
-      "index_name": "lupo_dialog_threads_idx_created",
-      "columns": [
-        "created_ymdhis"
-      ],
-      "is_unique": false,
-      "index_type": "BTREE"
-    },
-    {
-      "index_name": "lupo_dialog_threads_idx_created_by_actor",
-      "columns": [
-        "created_by_actor_id"
-      ],
-      "is_unique": false,
-      "index_type": "BTREE"
-    },
-    {
-      "index_name": "lupo_dialog_threads_idx_deleted",
-      "columns": [
-        "is_deleted"
-      ],
-      "is_unique": false,
-      "index_type": "BTREE"
-    },
-    {
-      "index_name": "lupo_dialog_threads_idx_last_message",
-      "columns": [
-        "last_message_ymdhis"
-      ],
-      "is_unique": false,
-      "index_type": "BTREE"
-    },
-    {
       "index_name": "lupo_dialog_threads_idx_node",
       "columns": [
         "federation_node_id"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_dialog_threads_idx_channel",
+      "columns": [
+        "channel_id"
       ],
       "is_unique": false,
       "index_type": "BTREE"
@@ -83,6 +51,14 @@
       "index_type": "BTREE"
     },
     {
+      "index_name": "lupo_dialog_threads_idx_task",
+      "columns": [
+        "task_name"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
       "index_name": "lupo_dialog_threads_idx_status",
       "columns": [
         "status"
@@ -91,9 +67,9 @@
       "index_type": "BTREE"
     },
     {
-      "index_name": "lupo_dialog_threads_idx_task",
+      "index_name": "lupo_dialog_threads_idx_created",
       "columns": [
-        "task_name"
+        "created_ymdhis"
       ],
       "is_unique": false,
       "index_type": "BTREE"
@@ -105,8 +81,33 @@
       ],
       "is_unique": false,
       "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_dialog_threads_idx_deleted",
+      "columns": [
+        "is_deleted"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_dialog_threads_idx_created_by_actor",
+      "columns": [
+        "created_by_actor_id"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_dialog_threads_idx_last_message",
+      "columns": [
+        "last_message_ymdhis"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
     }
   ],
+  "relationships": [],
   "primary_key": {
     "column_name": "dialog_thread_id",
     "expected_name": "dialog_thread_id",
@@ -116,6 +117,5 @@
   "doctrine_metadata": {
     "no_foreign_keys": true,
     "no_triggers": true
-  },
-  "relationships": []
+  }
 }

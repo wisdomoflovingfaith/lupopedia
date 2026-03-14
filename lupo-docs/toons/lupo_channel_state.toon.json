@@ -11,15 +11,15 @@
     "`emotional_state_json` json",
     "`mood_framework` varchar(32) NOT NULL DEFAULT 'western_analytical'",
     "`recent_topics_json` json",
-    "`semantic_weight` float DEFAULT 0",
-    "`trend_score` float DEFAULT 0",
+    "`semantic_weight` float DEFAULT '0'",
+    "`trend_score` float DEFAULT '0'",
     "`last_activity_ymdhis` bigint",
     "`context_vector` blob",
     "`routing_rules` varchar(32)",
     "`edge_visibility` varchar(32)",
     "`retention_policy` varchar(32)",
     "`decay_policy` varchar(32)",
-    "`archive_flag` tinyint DEFAULT 0",
+    "`archive_flag` tinyint DEFAULT '0'",
     "`metadata_json` json",
     "`created_ymdhis` bigint NOT NULL DEFAULT 0",
     "`updated_ymdhis` bigint NOT NULL"
@@ -35,6 +35,7 @@
       "index_type": "BTREE"
     }
   ],
+  "relationships": [],
   "primary_key": {
     "column_name": "channel_state_id",
     "expected_name": "channel_state_id",
@@ -44,6 +45,5 @@
   "doctrine_metadata": {
     "no_foreign_keys": true,
     "no_triggers": true
-  },
-  "relationships": []
+  }
 }

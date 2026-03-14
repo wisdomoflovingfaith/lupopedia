@@ -3,12 +3,13 @@
   "fields": [
     "`framework_name` varchar(32) NOT NULL",
     "`description` text",
-    "`is_default` tinyint NOT NULL DEFAULT 0",
+    "`is_default` tinyint NOT NULL DEFAULT '0'",
     "`created_ymdhis` bigint NOT NULL DEFAULT 0",
     "`updated_ymdhis` bigint NOT NULL"
   ],
   "data": [],
   "indexes": [],
+  "relationships": [],
   "primary_key": {
     "column_name": "framework_name",
     "expected_name": "framework_name",
@@ -18,6 +19,5 @@
   "doctrine_metadata": {
     "no_foreign_keys": true,
     "no_triggers": true
-  },
-  "relationships": []
+  }
 }

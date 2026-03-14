@@ -8,89 +8,50 @@
     "`description` text",
     "`version` varchar(50) DEFAULT '1.0'",
     "`model_name` varchar(100)",
-    "`is_global_authority` tinyint NOT NULL DEFAULT 0",
-    "`is_internal_only` tinyint NOT NULL DEFAULT 0",
+    "`is_global_authority` tinyint NOT NULL DEFAULT '0'",
+    "`is_internal_only` tinyint NOT NULL DEFAULT '0'",
     "`created_ymdhis` bigint NOT NULL DEFAULT 0",
     "`updated_ymdhis` bigint",
-    "`is_deleted` tinyint NOT NULL DEFAULT 0",
+    "`is_deleted` tinyint NOT NULL DEFAULT '0'",
     "`deleted_ymdhis` bigint",
-    "`avg_response_time_ms` int DEFAULT 0",
-    "`total_tokens_processed` bigint DEFAULT 0",
-    "`success_rate` float DEFAULT 1",
-    "`cost_per_1k_tokens` decimal(10,4) DEFAULT 0.0000",
-    "`temperature` float DEFAULT 0.7",
-    "`top_p` float DEFAULT 1",
-    "`max_tokens` int DEFAULT 2048",
-    "`presence_penalty` float DEFAULT 0",
-    "`frequency_penalty` float DEFAULT 0",
+    "`avg_response_time_ms` int DEFAULT '0'",
+    "`total_tokens_processed` bigint DEFAULT '0'",
+    "`success_rate` float DEFAULT '1'",
+    "`cost_per_1k_tokens` decimal(10,4) DEFAULT '0.0000'",
+    "`temperature` float DEFAULT '0.7'",
+    "`top_p` float DEFAULT '1'",
+    "`max_tokens` int DEFAULT '2048'",
+    "`presence_penalty` float DEFAULT '0'",
+    "`frequency_penalty` float DEFAULT '0'",
     "`system_prompt` text",
     "`provider` varchar(50) DEFAULT 'openai'",
     "`api_key_id` bigint",
-    "`timeout_ms` int DEFAULT 20000",
+    "`timeout_ms` int DEFAULT '20000'",
     "`safety_json` json",
     "`response_format` varchar(50)",
-    "`pono_score` decimal(3,2) DEFAULT 1.00",
-    "`pilau_score` decimal(3,2) DEFAULT 0.00",
-    "`kapakai_score` decimal(3,2) DEFAULT 0.50",
-    "`kapu_active` tinyint DEFAULT 0",
+    "`pono_score` decimal(3,2) DEFAULT '1.00'",
+    "`pilau_score` decimal(3,2) DEFAULT '0.00'",
+    "`kapakai_score` decimal(3,2) DEFAULT '0.50'",
+    "`kapu_active` tinyint DEFAULT '0'",
     "`kapu_until` bigint",
     "`kapu_reason` varchar(500)",
-    "`kapu_consent_given` tinyint DEFAULT 0",
-    "`kapu_appeal_pending` tinyint DEFAULT 0"
+    "`kapu_consent_given` tinyint DEFAULT '0'",
+    "`kapu_appeal_pending` tinyint DEFAULT '0'"
   ],
-  "data": [
-    {
-      "agent_id": 0,
-      "agent_key": "system",
-      "agent_name": "System Agent",
-      "archetype": "System",
-      "description": "Core system agent for kernel operations",
-      "version": "1.0",
-      "model_name": null,
-      "is_global_authority": 1,
-      "is_internal_only": 1,
-      "created_ymdhis": 20260225000000,
-      "updated_ymdhis": 20260225000000,
-      "is_deleted": 0,
-      "deleted_ymdhis": null,
-      "avg_response_time_ms": 0,
-      "total_tokens_processed": 0,
-      "success_rate": 1.0,
-      "cost_per_1k_tokens": 0,
-      "temperature": 0.0,
-      "top_p": 1.0,
-      "max_tokens": 2048,
-      "presence_penalty": 0.0,
-      "frequency_penalty": 0.0,
-      "system_prompt": "You are the system agent. Handle kernel-level operations.",
-      "provider": "internal",
-      "api_key_id": null,
-      "timeout_ms": 20000,
-      "safety_json": null,
-      "response_format": null,
-      "pono_score": 1,
-      "pilau_score": 0,
-      "kapakai_score": 0.5,
-      "kapu_active": 0,
-      "kapu_until": null,
-      "kapu_reason": null,
-      "kapu_consent_given": 0,
-      "kapu_appeal_pending": 0
-    }
-  ],
+  "data": [],
   "indexes": [
     {
-      "index_name": "lupo_agents_idx_created_ymdhis",
+      "index_name": "lupo_agents_unique_agent_key",
       "columns": [
-        "created_ymdhis"
+        "agent_key"
       ],
-      "is_unique": false,
+      "is_unique": true,
       "index_type": "BTREE"
     },
     {
-      "index_name": "lupo_agents_idx_is_deleted",
+      "index_name": "lupo_agents_idx_api_key_id",
       "columns": [
-        "is_deleted"
+        "api_key_id"
       ],
       "is_unique": false,
       "index_type": "BTREE"
@@ -104,6 +65,14 @@
       "index_type": "BTREE"
     },
     {
+      "index_name": "lupo_agents_idx_created_ymdhis",
+      "columns": [
+        "created_ymdhis"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
       "index_name": "lupo_agents_idx_updated_ymdhis",
       "columns": [
         "updated_ymdhis"
@@ -112,14 +81,15 @@
       "index_type": "BTREE"
     },
     {
-      "index_name": "lupo_agents_unique_agent_key",
+      "index_name": "lupo_agents_idx_is_deleted",
       "columns": [
-        "agent_key"
+        "is_deleted"
       ],
-      "is_unique": true,
+      "is_unique": false,
       "index_type": "BTREE"
     }
   ],
+  "relationships": [],
   "primary_key": {
     "column_name": "agent_id",
     "expected_name": "agent_id",
@@ -129,6 +99,5 @@
   "doctrine_metadata": {
     "no_foreign_keys": true,
     "no_triggers": true
-  },
-  "relationships": []
+  }
 }

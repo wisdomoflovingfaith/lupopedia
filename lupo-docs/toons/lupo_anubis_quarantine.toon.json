@@ -1,7 +1,7 @@
 {
   "table_name": "lupo_anubis_quarantine",
   "fields": [
-    "`quarantine_id` bigint NOT NULL auto_increment",
+    "`quarantine_id` bigint NOT NULL",
     "`queue_id` bigint NOT NULL",
     "`file_path` varchar(512) NOT NULL",
     "`file_hash` varchar(64)",
@@ -9,7 +9,7 @@
     "`quarantine_path` varchar(512) NOT NULL",
     "`reason` varchar(255) NOT NULL",
     "`quarantined_utc` bigint NOT NULL",
-    "`expires_utc` bigint COMMENT 'When to auto-delete'",
+    "`expires_utc` bigint",
     "`reviewed_by_actor_id` bigint",
     "`reviewed_utc` bigint",
     "`resolution` varchar(64)",
@@ -18,7 +18,7 @@
   "data": [],
   "indexes": [
     {
-      "index_name": "idx_expires",
+      "index_name": "lupo_anubis_quarantine_idx_expires",
       "columns": [
         "expires_utc"
       ],
@@ -26,7 +26,7 @@
       "index_type": "BTREE"
     },
     {
-      "index_name": "idx_queue",
+      "index_name": "lupo_anubis_quarantine_idx_queue",
       "columns": [
         "queue_id"
       ],
@@ -34,6 +34,7 @@
       "index_type": "BTREE"
     }
   ],
+  "relationships": [],
   "primary_key": {
     "column_name": "quarantine_id",
     "expected_name": "quarantine_id",
@@ -43,6 +44,5 @@
   "doctrine_metadata": {
     "no_foreign_keys": true,
     "no_triggers": true
-  },
-  "relationships": []
+  }
 }

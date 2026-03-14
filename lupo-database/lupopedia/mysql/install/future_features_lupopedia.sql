@@ -18,20 +18,6 @@ CREATE TABLE lupo_aliases (
 CREATE UNIQUE INDEX lupo_aliases_uniq_alias ON lupo_aliases (alias);
 CREATE INDEX lupo_aliases_idx_slug ON lupo_aliases (slug);
 
--- =============================================================================
--- lupo_anubis_orphaned (optional; moved 4.0.57)
--- =============================================================================
-CREATE TABLE lupo_anubis_orphaned (
-  anubis_orphaned_id bigint NOT NULL,
-  table_name varchar(255) NOT NULL,
-  orphan_id bigint NOT NULL,
-  created_ymdhis bigint NOT NULL,
-  updated_ymdhis bigint NOT NULL,
-  reason varchar(255) NOT NULL,
-  is_deleted tinyint NOT NULL DEFAULT 0,
-  deleted_ymdhis bigint DEFAULT NULL,
-  PRIMARY KEY (anubis_orphaned_id)
-);
 
 -- =============================================================================
 -- lupo_tldnr (optional; moved 4.0.57)
@@ -60,44 +46,11 @@ CREATE INDEX lupo_tldnr_idx_system_version ON lupo_tldnr (system_version);
 CREATE INDEX lupo_tldnr_idx_is_deleted ON lupo_tldnr (is_deleted);
 CREATE INDEX lupo_tldnr_idx_created ON lupo_tldnr (created_ymdhis);
 
--- =============================================================================
--- lupo_temporal_coherence_snapshots (optional; unused at runtime; moved from install)
--- =============================================================================
-CREATE TABLE lupo_temporal_coherence_snapshots (
-  snapshot_id bigint NOT NULL,
-  utc_anchor bigint NOT NULL,
-  observation_latency_ms int NOT NULL DEFAULT 0,
-  recursion_depth tinyint NOT NULL DEFAULT 0,
-  self_awareness_score decimal(3,2) DEFAULT NULL,
-  timestamp_integrity varchar(32) NOT NULL DEFAULT 'unknown',
-  created_ymdhis bigint NOT NULL DEFAULT 0,
-  is_deleted tinyint NOT NULL DEFAULT 0,
-  deleted_ymdhis bigint DEFAULT NULL,
-  PRIMARY KEY (snapshot_id)
-);
 
 CREATE INDEX lupo_temporal_coherence_snapshots_idx_created_ymdhis ON lupo_temporal_coherence_snapshots (created_ymdhis);
 CREATE INDEX lupo_temporal_coherence_snapshots_idx_utc_anchor ON lupo_temporal_coherence_snapshots (utc_anchor);
 CREATE INDEX lupo_temporal_coherence_snapshots_idx_is_deleted ON lupo_temporal_coherence_snapshots (is_deleted);
 
--- =============================================================================
--- lupo_system_health_snapshots (removed from install; not used; no temporal snapshots)
--- =============================================================================
-CREATE TABLE lupo_system_health_snapshots (
-  health_id bigint NOT NULL,
-  table_count int NOT NULL,
-  table_ceiling int NOT NULL,
-  schema_state varchar(64) NOT NULL DEFAULT 'unknown',
-  sync_integrity varchar(32) NOT NULL DEFAULT 'unknown',
-  emotional_r decimal(3,2) DEFAULT NULL,
-  emotional_g decimal(3,2) DEFAULT NULL,
-  emotional_b decimal(3,2) DEFAULT NULL,
-  emotional_t decimal(3,2) DEFAULT NULL,
-  created_ymdhis bigint NOT NULL DEFAULT 0,
-  is_deleted tinyint NOT NULL DEFAULT 0,
-  deleted_ymdhis bigint DEFAULT NULL,
-  PRIMARY KEY (health_id)
-);
 
 CREATE INDEX lupo_system_health_snapshots_idx_created_ymdhis ON lupo_system_health_snapshots (created_ymdhis);
 CREATE INDEX lupo_system_health_snapshots_idx_table_count ON lupo_system_health_snapshots (table_count);
@@ -215,56 +168,8 @@ CREATE INDEX lupo_analytics_referers_periods_idx_referer ON lupo_analytics_refer
 CREATE INDEX lupo_analytics_referers_periods_idx_department ON lupo_analytics_referers_periods (department_id, period_date);
 CREATE INDEX lupo_analytics_referers_periods_idx_level ON lupo_analytics_referers_periods (level, period_date);
 
--- =============================================================================
--- lupo_anubis_deletion_log (moved from install_new_lupopedia.sql on 2026-03-09 by rule: not in minimal_tables and not used by PHP/PY)
--- =============================================================================
-CREATE TABLE lupo_anubis_deletion_log (
-  anubis_deletion_id bigint NOT NULL,
-  table_name varchar(255) NOT NULL,
-  record_id bigint NOT NULL,
-  deleted_ymdhis bigint NOT NULL,
-  deletion_type varchar(64) NOT NULL,
-  replacement_table varchar(255) DEFAULT NULL,
-  replacement_id bigint DEFAULT NULL,
-  anubis_operator varchar(255) NOT NULL,
-  context_json json DEFAULT NULL,
-  notes text,
-  created_ymdhis bigint NOT NULL DEFAULT 0,
-  updated_ymdhis bigint NOT NULL DEFAULT 0,
-  is_deleted tinyint NOT NULL DEFAULT 0,
-  PRIMARY KEY (anubis_deletion_id)
-);
-CREATE INDEX lupo_anubis_deletion_log_idx_deleted_time ON lupo_anubis_deletion_log (deleted_ymdhis);
 
--- =============================================================================
--- lupo_anubis_mirrored (moved from install_new_lupopedia.sql on 2026-03-09 by rule: not in minimal_tables and not used by PHP/PY)
--- =============================================================================
-CREATE TABLE lupo_anubis_mirrored (
-  anubis_mirrored_id bigint NOT NULL,
-  table_name varchar(255) NOT NULL,
-  original_id bigint NOT NULL,
-  mirrored_json text NOT NULL,
-  created_ymdhis bigint NOT NULL,
-  updated_ymdhis bigint NOT NULL,
-  agent varchar(255) NOT NULL,
-  reason varchar(255) NOT NULL,
-  lineage_chain varchar(255) DEFAULT NULL,
-  PRIMARY KEY (anubis_mirrored_id)
-);
 
--- =============================================================================
--- lupo_anubis_revised (moved from install_new_lupopedia.sql on 2026-03-09 by rule: not in minimal_tables and not used by PHP/PY)
--- =============================================================================
-CREATE TABLE lupo_anubis_revised (
-  anubis_revised_id bigint NOT NULL,
-  table_name varchar(255) NOT NULL,
-  row_id bigint NOT NULL,
-  created_ymdhis bigint NOT NULL,
-  updated_ymdhis bigint NOT NULL,
-  agent varchar(255) NOT NULL,
-  revision_json text NOT NULL,
-  PRIMARY KEY (anubis_revised_id)
-);
 
 -- =============================================================================
 -- lupo_channel_boot_log (moved from install_new_lupopedia.sql on 2026-03-09 by rule: not in minimal_tables and not used by PHP/PY)
@@ -285,34 +190,6 @@ CREATE TABLE lupo_channel_boot_log (
 );
 CREATE INDEX lupo_channel_boot_log_idx_boot_status_time ON lupo_channel_boot_log (boot_status, boot_start_time);
 
--- =============================================================================
--- lupo_comments (moved from install_new_lupopedia.sql on 2026-03-09 by rule: not in minimal_tables and not used by PHP/PY)
--- =============================================================================
-CREATE TABLE lupo_comments (
-  comment_id bigint NOT NULL,
-  domain_id bigint NOT NULL,
-  actor_id bigint NOT NULL,
-  target_table varchar(100) NOT NULL DEFAULT 'lupo_contents',
-  target_id bigint NOT NULL,
-  parent_comment_id bigint DEFAULT NULL,
-  comment_text text NOT NULL,
-  status varchar(64) NOT NULL DEFAULT 'approved',
-  user_agent varchar(255) DEFAULT NULL,
-  ip_hash char(64) DEFAULT NULL,
-  is_deleted tinyint NOT NULL DEFAULT '0',
-  deleted_ymdhis bigint DEFAULT NULL,
-  created_ymdhis bigint NOT NULL DEFAULT 0,
-  updated_ymdhis bigint DEFAULT NULL,
-  PRIMARY KEY (comment_id)
-);
-CREATE INDEX lupo_comments_idx_actor_id ON lupo_comments (actor_id);
-CREATE INDEX lupo_comments_idx_target ON lupo_comments (target_table, target_id);
-CREATE INDEX lupo_comments_idx_parent ON lupo_comments (parent_comment_id);
-CREATE INDEX lupo_comments_idx_status ON lupo_comments (status);
-CREATE INDEX lupo_comments_idx_is_deleted ON lupo_comments (is_deleted);
-CREATE INDEX lupo_comments_idx_ip_hash ON lupo_comments (ip_hash);
-CREATE INDEX lupo_comments_idx_created_ymdhis ON lupo_comments (created_ymdhis);
-CREATE INDEX lupo_comments_idx_updated_ymdhis ON lupo_comments (updated_ymdhis);
 
 -- =============================================================================
 -- lupo_document_embeddings (moved from install_new_lupopedia.sql on 2026-03-09 by rule: not in minimal_tables and not used by PHP/PY)
@@ -450,31 +327,6 @@ CREATE TABLE lupo_federation_discovery (
   PRIMARY KEY (federation_discovery_id)
 );
 
--- =============================================================================
--- lupo_flare_headers (moved from install_new_lupopedia.sql on 2026-03-09 by rule: not in minimal_tables and not used by PHP/PY)
--- =============================================================================
-CREATE TABLE lupo_flare_headers (
-  content_id bigint NOT NULL,
-  flare_version varchar(20) DEFAULT NULL,
-  flare_schema varchar(50) DEFAULT NULL,
-  file_path_from_root text,
-  web_path text,
-  last_modified_utc varchar(14) DEFAULT NULL,
-  system_version varchar(20) DEFAULT NULL,
-  channel_id bigint DEFAULT NULL,
-  actor_id bigint DEFAULT NULL,
-  delegation_chain varchar(255) DEFAULT NULL,
-  artifact_type varchar(50) DEFAULT NULL,
-  artifact_kind varchar(50) DEFAULT NULL,
-  purpose text,
-  mood_rgb varchar(6) DEFAULT NULL,
-  traits json DEFAULT NULL,
-  tags json DEFAULT NULL,
-  lupo_agent varchar(50) DEFAULT NULL,
-  agent_name_identity varchar(255) DEFAULT NULL,
-  PRIMARY KEY (content_id)
-);
-CREATE INDEX lupo_flare_headers_idx_actor_id ON lupo_flare_headers (actor_id);
 
 -- =============================================================================
 -- lupo_gov_event_actor_edges (moved from install_new_lupopedia.sql on 2026-03-09 by rule: not in minimal_tables and not used by PHP/PY)
@@ -631,21 +483,6 @@ CREATE INDEX lupo_gov_valuations_idx_valuation_metric ON lupo_gov_valuations (va
 CREATE INDEX lupo_gov_valuations_idx_created_ymdhis ON lupo_gov_valuations (created_ymdhis);
 CREATE INDEX lupo_gov_valuations_idx_is_deleted ON lupo_gov_valuations (is_deleted);
 
--- =============================================================================
--- lupo_hashtags (moved from install_new_lupopedia.sql on 2026-03-09 by rule: not in minimal_tables and not used by PHP/PY)
--- =============================================================================
-CREATE TABLE lupo_hashtags (
-  hashtag_id bigint NOT NULL,
-  hashtag_slug varchar(255) NOT NULL,
-  description text,
-  meta_json json DEFAULT NULL,
-  is_deleted tinyint NOT NULL DEFAULT '0',
-  deleted_ymdhis bigint NOT NULL DEFAULT '0',
-  created_ymdhis bigint NOT NULL DEFAULT '0',
-  updated_ymdhis bigint NOT NULL DEFAULT '0',
-  PRIMARY KEY (hashtag_id)
-);
-CREATE INDEX lupo_hashtags_idx_is_deleted ON lupo_hashtags (is_deleted);
 
 -- =============================================================================
 -- lupo_hotfix_registry (moved from install_new_lupopedia.sql on 2026-03-09 by rule: not in minimal_tables and not used by PHP/PY)
@@ -1141,23 +978,43 @@ CREATE INDEX lupo_documentation_frameworks_idx_class ON lupo_documentation_frame
 CREATE INDEX lupo_documentation_frameworks_idx_is_deleted ON lupo_documentation_frameworks (is_deleted);
 CREATE INDEX lupo_documentation_frameworks_idx_created ON lupo_documentation_frameworks (created_ymdhis);
 
+
+
 -- =============================================================================
--- lupo_orchestrator_rules (optional; v4.0.73 — orchestrator rule storage)
+-- lupo_anubis_operations (v4.0.74 unified ANUBIS log for mirrored, orphaned, revised, deleted)
 -- =============================================================================
-CREATE TABLE lupo_orchestrator_rules (
-  rule_id bigint NOT NULL AUTO_INCREMENT,
-  rule_slug varchar(128) NOT NULL,
-  orchestrator_actor varchar(64) NOT NULL,
-  rule_set_version varchar(32) NOT NULL,
-  applies_to_json text NOT NULL,
-  enforcement_level varchar(32) NOT NULL DEFAULT 'strict',
-  rule_content text NOT NULL,
-  checksum varchar(64) NOT NULL,
-  is_active tinyint NOT NULL DEFAULT 1,
-  updated_ymdhis bigint NOT NULL,
-  PRIMARY KEY (rule_id)
+CREATE TABLE lupo_anubis_operations (
+  operation_id bigint NOT NULL AUTO_INCREMENT,
+  operation_type varchar(64) NOT NULL,
+  target_type varchar(64) NOT NULL,
+  target_id bigint NOT NULL,
+  channel_id bigint NOT NULL DEFAULT 42,
+  actor_id bigint NOT NULL,
+  faucet_id bigint DEFAULT NULL,
+  details_json text DEFAULT NULL,
+  created_ymdhis bigint NOT NULL,
+  PRIMARY KEY (operation_id)
 );
-CREATE UNIQUE INDEX lupo_orchestrator_rules_uniq_slug ON lupo_orchestrator_rules (rule_slug);
-CREATE INDEX lupo_orchestrator_rules_idx_actor_version ON lupo_orchestrator_rules (orchestrator_actor, rule_set_version);
-CREATE INDEX lupo_orchestrator_rules_idx_active ON lupo_orchestrator_rules (is_active);
-CREATE INDEX lupo_orchestrator_rules_idx_updated ON lupo_orchestrator_rules (updated_ymdhis);
+CREATE INDEX lupo_anubis_operations_idx_target ON lupo_anubis_operations (target_type, target_id);
+CREATE INDEX lupo_anubis_operations_idx_type ON lupo_anubis_operations (operation_type);
+CREATE INDEX lupo_anubis_operations_idx_created ON lupo_anubis_operations (created_ymdhis);
+
+
+-- =============================================================================
+-- lupo_system_health_snapshots (v4.0.74 unified table for system and temporal snapshots)
+-- =============================================================================
+CREATE TABLE lupo_system_health_snapshots (
+  snapshot_id bigint NOT NULL AUTO_INCREMENT,
+  snapshot_type varchar(64) NOT NULL,
+  actor_id bigint NOT NULL,
+  table_count bigint DEFAULT '0',
+  schema_hash varchar(255) DEFAULT NULL,
+  utc_anchor varchar(14) DEFAULT NULL,
+  metadata_json text DEFAULT NULL,
+  created_ymdhis bigint NOT NULL DEFAULT '0',
+  is_deleted tinyint NOT NULL DEFAULT '0',
+  deleted_ymdhis bigint DEFAULT NULL,
+  PRIMARY KEY (snapshot_id)
+);
+CREATE INDEX lupo_system_health_snapshots_idx_created ON lupo_system_health_snapshots (created_ymdhis);
+CREATE INDEX lupo_system_health_snapshots_idx_type ON lupo_system_health_snapshots (snapshot_type);

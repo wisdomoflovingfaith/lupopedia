@@ -1,7 +1,7 @@
 {
   "table_name": "lupo_crafty_syntax_leave_message",
   "fields": [
-    "`crafty_syntax_leave_message_id` bigint NOT NULL auto_increment",
+    "`crafty_syntax_leave_message_id` bigint NOT NULL",
     "`department_id` bigint NOT NULL DEFAULT 0",
     "`email` varchar(255) NOT NULL DEFAULT ''",
     "`phone` varchar(45)",
@@ -55,17 +55,6 @@
       "index_type": "BTREE"
     },
     {
-      "index_name": "lupo_crafty_syntax_leave_message_idx_message_search",
-      "columns": [
-        "email",
-        "name",
-        "subject",
-        "message"
-      ],
-      "is_unique": false,
-      "index_type": "FULLTEXT"
-    },
-    {
       "index_name": "lupo_crafty_syntax_leave_message_idx_priority",
       "columns": [
         "priority"
@@ -82,6 +71,7 @@
       "index_type": "BTREE"
     }
   ],
+  "relationships": [],
   "primary_key": {
     "column_name": "crafty_syntax_leave_message_id",
     "expected_name": "crafty_syntax_leave_message_id",
@@ -91,6 +81,5 @@
   "doctrine_metadata": {
     "no_foreign_keys": true,
     "no_triggers": true
-  },
-  "relationships": []
+  }
 }

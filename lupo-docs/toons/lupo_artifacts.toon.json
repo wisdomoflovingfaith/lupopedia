@@ -8,13 +8,41 @@
     "`entity_type` varchar(64) NOT NULL",
     "`content` text NOT NULL",
     "`metadata` json",
+    "`channel_id` bigint",
+    "`artifact_kind` varchar(50)",
+    "`file_path_from_root` varchar(500)",
     "`created_ymdhis` bigint NOT NULL DEFAULT 0",
     "`updated_ymdhis` bigint NOT NULL DEFAULT 0",
-    "`is_deleted` tinyint NOT NULL DEFAULT 0",
+    "`is_deleted` tinyint NOT NULL DEFAULT '0'",
     "`deleted_ymdhis` bigint"
   ],
   "data": [],
   "indexes": [
+    {
+      "index_name": "lupo_artifacts_idx_entity_channel",
+      "columns": [
+        "entity_type",
+        "channel_id"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_artifacts_idx_file_path",
+      "columns": [
+        "file_path_from_root"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_artifacts_idx_utc_timestamp",
+      "columns": [
+        "utc_timestamp"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
     {
       "index_name": "lupo_artifacts_idx_actor_id",
       "columns": [
@@ -38,16 +66,9 @@
       ],
       "is_unique": false,
       "index_type": "BTREE"
-    },
-    {
-      "index_name": "lupo_artifacts_idx_utc_timestamp",
-      "columns": [
-        "utc_timestamp"
-      ],
-      "is_unique": false,
-      "index_type": "BTREE"
     }
   ],
+  "relationships": [],
   "primary_key": {
     "column_name": "artifact_id",
     "expected_name": "artifact_id",
@@ -57,6 +78,5 @@
   "doctrine_metadata": {
     "no_foreign_keys": true,
     "no_triggers": true
-  },
-  "relationships": []
+  }
 }

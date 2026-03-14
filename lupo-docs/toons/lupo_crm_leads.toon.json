@@ -8,16 +8,17 @@
     "`last_name` varchar(100)",
     "`source` varchar(100)",
     "`status` varchar(50) NOT NULL DEFAULT 'new'",
-    "`lead_score` int NOT NULL DEFAULT 0",
+    "`lead_score` int NOT NULL DEFAULT '0'",
     "`assigned_to` bigint",
     "`lead_data` text",
     "`created_ymdhis` bigint NOT NULL DEFAULT 0",
     "`updated_ymdhis` bigint NOT NULL",
-    "`is_deleted` tinyint NOT NULL DEFAULT 0",
+    "`is_deleted` tinyint NOT NULL DEFAULT '0'",
     "`deleted_ymdhis` bigint"
   ],
   "data": [],
   "indexes": [],
+  "relationships": [],
   "primary_key": {
     "column_name": "crm_lead_id",
     "expected_name": "crm_lead_id",
@@ -27,6 +28,5 @@
   "doctrine_metadata": {
     "no_foreign_keys": true,
     "no_triggers": true
-  },
-  "relationships": []
+  }
 }

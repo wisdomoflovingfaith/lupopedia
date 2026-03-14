@@ -9,7 +9,7 @@
     "`violation_metadata` json",
     "`created_ymdhis` bigint NOT NULL DEFAULT 0",
     "`updated_ymdhis` bigint NOT NULL",
-    "`is_deleted` tinyint NOT NULL DEFAULT 0"
+    "`is_deleted` tinyint NOT NULL DEFAULT '0'"
   ],
   "data": [],
   "indexes": [
@@ -30,6 +30,14 @@
       "index_type": "BTREE"
     },
     {
+      "index_name": "lupo_labs_violations_idx_violation_code",
+      "columns": [
+        "violation_code"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
       "index_name": "lupo_labs_violations_idx_created",
       "columns": [
         "created_ymdhis"
@@ -44,16 +52,9 @@
       ],
       "is_unique": false,
       "index_type": "BTREE"
-    },
-    {
-      "index_name": "lupo_labs_violations_idx_violation_code",
-      "columns": [
-        "violation_code"
-      ],
-      "is_unique": false,
-      "index_type": "BTREE"
     }
   ],
+  "relationships": [],
   "primary_key": {
     "column_name": "labs_violation_id",
     "expected_name": "labs_violation_id",
@@ -63,6 +64,5 @@
   "doctrine_metadata": {
     "no_foreign_keys": true,
     "no_triggers": true
-  },
-  "relationships": []
+  }
 }

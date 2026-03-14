@@ -1,7 +1,7 @@
 {
   "table_name": "lupo_edge_map",
   "fields": [
-    "`edge_map_id` bigint NOT NULL AUTO_INCREMENT",
+    "`edge_map_id` bigint NOT NULL",
     "`edge_id` bigint NOT NULL",
     "`edge_type_id` bigint NOT NULL",
     "`source_type` varchar(64) NOT NULL",
@@ -15,29 +15,40 @@
   "indexes": [
     {
       "index_name": "lupo_edge_map_idx_edge",
-      "columns": ["edge_id"],
+      "columns": [
+        "edge_id"
+      ],
       "is_unique": false,
       "index_type": "BTREE"
     },
     {
       "index_name": "lupo_edge_map_idx_type",
-      "columns": ["edge_type_id"],
+      "columns": [
+        "edge_type_id"
+      ],
       "is_unique": false,
       "index_type": "BTREE"
     },
     {
       "index_name": "lupo_edge_map_idx_source",
-      "columns": ["source_type", "source_id"],
+      "columns": [
+        "source_type",
+        "source_id"
+      ],
       "is_unique": false,
       "index_type": "BTREE"
     },
     {
       "index_name": "lupo_edge_map_idx_target",
-      "columns": ["target_type", "target_id"],
+      "columns": [
+        "target_type",
+        "target_id"
+      ],
       "is_unique": false,
       "index_type": "BTREE"
     }
   ],
+  "relationships": [],
   "primary_key": {
     "column_name": "edge_map_id",
     "expected_name": "edge_map_id",
@@ -47,6 +58,5 @@
   "doctrine_metadata": {
     "no_foreign_keys": true,
     "no_triggers": true
-  },
-  "relationships": []
+  }
 }

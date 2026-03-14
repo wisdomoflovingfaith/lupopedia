@@ -3,11 +3,11 @@
   "fields": [
     "`cip_analytics_id` bigint NOT NULL",
     "`event_id` bigint NOT NULL",
-    "`defensiveness_index` decimal(5,4) NOT NULL DEFAULT 0.0000",
-    "`integration_velocity` decimal(5,4) NOT NULL DEFAULT 0.0000",
-    "`architectural_impact_score` decimal(5,4) NOT NULL DEFAULT 0.0000",
-    "`doctrine_propagation_depth` tinyint NOT NULL DEFAULT 0",
-    "`critique_source_weight` decimal(5,4) NOT NULL DEFAULT 0.5000",
+    "`defensiveness_index` decimal(5,4) NOT NULL DEFAULT '0.0000'",
+    "`integration_velocity` decimal(5,4) NOT NULL DEFAULT '0.0000'",
+    "`architectural_impact_score` decimal(5,4) NOT NULL DEFAULT '0.0000'",
+    "`doctrine_propagation_depth` tinyint NOT NULL DEFAULT '0'",
+    "`critique_source_weight` decimal(5,4) NOT NULL DEFAULT '0.5000'",
     "`subsystem_impact_json` json",
     "`trend_analysis_json` json",
     "`calculated_ymdhis` bigint NOT NULL",
@@ -17,19 +17,11 @@
   "data": [],
   "indexes": [
     {
-      "index_name": "lupo_cip_analytics_idx_architectural_impact",
+      "index_name": "lupo_cip_analytics_uk_event_analytics",
       "columns": [
-        "architectural_impact_score"
+        "event_id"
       ],
-      "is_unique": false,
-      "index_type": "BTREE"
-    },
-    {
-      "index_name": "lupo_cip_analytics_idx_calculated_time",
-      "columns": [
-        "calculated_ymdhis"
-      ],
-      "is_unique": false,
+      "is_unique": true,
       "index_type": "BTREE"
     },
     {
@@ -49,14 +41,23 @@
       "index_type": "BTREE"
     },
     {
-      "index_name": "lupo_cip_analytics_uk_event_analytics",
+      "index_name": "lupo_cip_analytics_idx_architectural_impact",
       "columns": [
-        "event_id"
+        "architectural_impact_score"
       ],
-      "is_unique": true,
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_cip_analytics_idx_calculated_time",
+      "columns": [
+        "calculated_ymdhis"
+      ],
+      "is_unique": false,
       "index_type": "BTREE"
     }
   ],
+  "relationships": [],
   "primary_key": {
     "column_name": "cip_analytics_id",
     "expected_name": "cip_analytics_id",
@@ -66,6 +67,5 @@
   "doctrine_metadata": {
     "no_foreign_keys": true,
     "no_triggers": true
-  },
-  "relationships": []
+  }
 }

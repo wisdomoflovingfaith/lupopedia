@@ -11,6 +11,7 @@
   ],
   "data": [],
   "indexes": [],
+  "relationships": [],
   "primary_key": {
     "column_name": "anubis_event_id",
     "expected_name": "anubis_event_id",
@@ -20,6 +21,5 @@
   "doctrine_metadata": {
     "no_foreign_keys": true,
     "no_triggers": true
-  },
-  "relationships": []
+  }
 }

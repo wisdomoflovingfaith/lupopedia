@@ -6,15 +6,67 @@
     "`source_actor_id` bigint NOT NULL",
     "`target_actor_id` bigint NOT NULL",
     "`edge_type` varchar(100) NOT NULL",
-    "`weight` float DEFAULT 1",
+    "`weight` float DEFAULT '1'",
     "`properties` text",
     "`created_ymdhis` bigint NOT NULL DEFAULT 0",
     "`updated_ymdhis` bigint",
-    "`is_deleted` tinyint NOT NULL DEFAULT 0",
+    "`is_deleted` tinyint NOT NULL DEFAULT '0'",
     "`deleted_ymdhis` bigint"
   ],
   "data": [],
   "indexes": [
+    {
+      "index_name": "lupo_actor_edges_unique_agent_edge",
+      "columns": [
+        "domain_id",
+        "source_actor_id",
+        "target_actor_id",
+        "edge_type"
+      ],
+      "is_unique": true,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_actor_edges_idx_domain_id",
+      "columns": [
+        "domain_id"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_actor_edges_idx_source_agent",
+      "columns": [
+        "source_actor_id"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_actor_edges_idx_target_agent",
+      "columns": [
+        "target_actor_id"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_actor_edges_idx_edge_type",
+      "columns": [
+        "edge_type"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_actor_edges_idx_source_target",
+      "columns": [
+        "source_actor_id",
+        "target_actor_id"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
     {
       "index_name": "lupo_actor_edges_idx_created_ymdhis",
       "columns": [
@@ -24,9 +76,17 @@
       "index_type": "BTREE"
     },
     {
-      "index_name": "lupo_actor_edges_idx_domain_id",
+      "index_name": "lupo_actor_edges_idx_updated_ymdhis",
       "columns": [
-        "domain_id"
+        "updated_ymdhis"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_actor_edges_idx_is_deleted",
+      "columns": [
+        "is_deleted"
       ],
       "is_unique": false,
       "index_type": "BTREE"
@@ -48,68 +108,9 @@
       ],
       "is_unique": false,
       "index_type": "BTREE"
-    },
-    {
-      "index_name": "lupo_actor_edges_idx_edge_type",
-      "columns": [
-        "edge_type"
-      ],
-      "is_unique": false,
-      "index_type": "BTREE"
-    },
-    {
-      "index_name": "lupo_actor_edges_idx_is_deleted",
-      "columns": [
-        "is_deleted"
-      ],
-      "is_unique": false,
-      "index_type": "BTREE"
-    },
-    {
-      "index_name": "lupo_actor_edges_idx_source_agent",
-      "columns": [
-        "source_actor_id"
-      ],
-      "is_unique": false,
-      "index_type": "BTREE"
-    },
-    {
-      "index_name": "lupo_actor_edges_idx_source_target",
-      "columns": [
-        "source_actor_id",
-        "target_actor_id"
-      ],
-      "is_unique": false,
-      "index_type": "BTREE"
-    },
-    {
-      "index_name": "lupo_actor_edges_idx_target_agent",
-      "columns": [
-        "target_actor_id"
-      ],
-      "is_unique": false,
-      "index_type": "BTREE"
-    },
-    {
-      "index_name": "lupo_actor_edges_idx_updated_ymdhis",
-      "columns": [
-        "updated_ymdhis"
-      ],
-      "is_unique": false,
-      "index_type": "BTREE"
-    },
-    {
-      "index_name": "lupo_actor_edges_unique_agent_edge",
-      "columns": [
-        "domain_id",
-        "source_actor_id",
-        "target_actor_id",
-        "edge_type"
-      ],
-      "is_unique": true,
-      "index_type": "BTREE"
     }
   ],
+  "relationships": [],
   "primary_key": {
     "column_name": "actor_edge_id",
     "expected_name": "actor_edge_id",
@@ -119,6 +120,5 @@
   "doctrine_metadata": {
     "no_foreign_keys": true,
     "no_triggers": true
-  },
-  "relationships": []
+  }
 }

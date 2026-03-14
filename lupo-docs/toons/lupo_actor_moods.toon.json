@@ -10,9 +10,9 @@
   ],
   "data": [],
   "indexes": [],
+  "relationships": [],
   "doctrine_metadata": {
     "no_foreign_keys": true,
     "no_triggers": true
-  },
-  "relationships": []
+  }
 }

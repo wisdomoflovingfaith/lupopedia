@@ -19,24 +19,24 @@
     "`dependencies` text",
     "`conflicts` text",
     "`config_json` text NOT NULL",
-    "`is_system` tinyint NOT NULL DEFAULT 0",
-    "`is_active` tinyint NOT NULL DEFAULT 0",
-    "`federation_node_id` bigint NOT NULL DEFAULT 1",
+    "`is_system` tinyint NOT NULL DEFAULT '0'",
+    "`is_active` tinyint NOT NULL DEFAULT '0'",
+    "`federation_node_id` bigint NOT NULL DEFAULT '1'",
     "`settings` text",
     "`installed_ymdhis` bigint",
     "`created_ymdhis` bigint NOT NULL DEFAULT 0",
     "`updated_ymdhis` bigint",
-    "`is_deleted` tinyint NOT NULL DEFAULT 0",
+    "`is_deleted` tinyint NOT NULL DEFAULT '0'",
     "`deleted_ymdhis` bigint"
   ],
   "data": [],
   "indexes": [
     {
-      "index_name": "lupo_modules_idx_installed",
+      "index_name": "lupo_modules_uq_module_key",
       "columns": [
-        "installed_ymdhis"
+        "module_key"
       ],
-      "is_unique": false,
+      "is_unique": true,
       "index_type": "BTREE"
     },
     {
@@ -65,14 +65,15 @@
       "index_type": "BTREE"
     },
     {
-      "index_name": "lupo_modules_uq_module_key",
+      "index_name": "lupo_modules_idx_installed",
       "columns": [
-        "module_key"
+        "installed_ymdhis"
       ],
-      "is_unique": true,
+      "is_unique": false,
       "index_type": "BTREE"
     }
   ],
+  "relationships": [],
   "primary_key": {
     "column_name": "module_id",
     "expected_name": "module_id",
@@ -82,6 +83,5 @@
   "doctrine_metadata": {
     "no_foreign_keys": true,
     "no_triggers": true
-  },
-  "relationships": []
+  }
 }

@@ -2,9 +2,9 @@
   "table_name": "lupo_api_token_logs",
   "fields": [
     "`api_token_log_id` bigint NOT NULL",
-    "`domain_id` bigint NOT NULL DEFAULT 1",
+    "`domain_id` bigint NOT NULL DEFAULT '1'",
     "`api_token_id` bigint NOT NULL",
-    "`actor_id` bigint NOT NULL DEFAULT 0",
+    "`actor_id` bigint NOT NULL DEFAULT '0'",
     "`endpoint` varchar(255) NOT NULL",
     "`http_method` varchar(10) NOT NULL",
     "`ip_address` varchar(45)",
@@ -15,6 +15,14 @@
   ],
   "data": [],
   "indexes": [
+    {
+      "index_name": "lupo_api_token_logs_idx_token",
+      "columns": [
+        "api_token_id"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
     {
       "index_name": "lupo_api_token_logs_idx_actor",
       "columns": [
@@ -47,16 +55,9 @@
       ],
       "is_unique": false,
       "index_type": "BTREE"
-    },
-    {
-      "index_name": "lupo_api_token_logs_idx_token",
-      "columns": [
-        "api_token_id"
-      ],
-      "is_unique": false,
-      "index_type": "BTREE"
     }
   ],
+  "relationships": [],
   "primary_key": {
     "column_name": "api_token_log_id",
     "expected_name": "api_token_log_id",
@@ -66,6 +67,5 @@
   "doctrine_metadata": {
     "no_foreign_keys": true,
     "no_triggers": true
-  },
-  "relationships": []
+  }
 }

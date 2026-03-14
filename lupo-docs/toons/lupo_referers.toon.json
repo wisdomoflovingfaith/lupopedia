@@ -1,7 +1,7 @@
 {
   "table_name": "lupo_referers",
   "fields": [
-    "`referer_id` bigint NOT NULL auto_increment",
+    "`referer_id` bigint NOT NULL",
     "`content_id` bigint NOT NULL",
     "`actor_id` bigint NOT NULL",
     "`referer_url` varchar(2000)",
@@ -9,20 +9,12 @@
     "`referer_path` varchar(2000)",
     "`referer_content_id` bigint",
     "`date_ymd` int NOT NULL",
-    "`visits` int NOT NULL DEFAULT 1",
-    "`depth` int NOT NULL DEFAULT 0",
+    "`visits` int NOT NULL DEFAULT '1'",
+    "`depth` int NOT NULL DEFAULT '0'",
     "`metadata_json` json"
   ],
   "data": [],
   "indexes": [
-    {
-      "index_name": "lupo_referers_idx_actor_id",
-      "columns": [
-        "actor_id"
-      ],
-      "is_unique": false,
-      "index_type": "BTREE"
-    },
     {
       "index_name": "lupo_referers_idx_content_id",
       "columns": [
@@ -32,9 +24,17 @@
       "index_type": "BTREE"
     },
     {
-      "index_name": "lupo_referers_idx_date",
+      "index_name": "lupo_referers_idx_actor_id",
       "columns": [
-        "date_ymd"
+        "actor_id"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_referers_idx_referer_domain",
+      "columns": [
+        "referer_domain"
       ],
       "is_unique": false,
       "index_type": "BTREE"
@@ -48,14 +48,15 @@
       "index_type": "BTREE"
     },
     {
-      "index_name": "lupo_referers_idx_referer_domain",
+      "index_name": "lupo_referers_idx_date",
       "columns": [
-        "referer_domain"
+        "date_ymd"
       ],
       "is_unique": false,
       "index_type": "BTREE"
     }
   ],
+  "relationships": [],
   "primary_key": {
     "column_name": "referer_id",
     "expected_name": "referer_id",
@@ -65,6 +66,5 @@
   "doctrine_metadata": {
     "no_foreign_keys": true,
     "no_triggers": true
-  },
-  "relationships": []
+  }
 }

@@ -13,17 +13,17 @@
   "data": [],
   "indexes": [
     {
-      "index_name": "lupo_actor_actions_idx_action_type",
+      "index_name": "lupo_actor_actions_idx_actor",
       "columns": [
-        "action_type"
+        "actor_id"
       ],
       "is_unique": false,
       "index_type": "BTREE"
     },
     {
-      "index_name": "lupo_actor_actions_idx_actor",
+      "index_name": "lupo_actor_actions_idx_action_type",
       "columns": [
-        "actor_id"
+        "action_type"
       ],
       "is_unique": false,
       "index_type": "BTREE"
@@ -38,6 +38,7 @@
       "index_type": "BTREE"
     }
   ],
+  "relationships": [],
   "primary_key": {
     "column_name": "actor_action_id",
     "expected_name": "actor_action_id",
@@ -47,6 +48,5 @@
   "doctrine_metadata": {
     "no_foreign_keys": true,
     "no_triggers": true
-  },
-  "relationships": []
+  }
 }

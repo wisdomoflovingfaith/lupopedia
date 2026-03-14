@@ -5,23 +5,24 @@
     "`trend_period` varchar(64) NOT NULL",
     "`period_start_ymdhis` bigint NOT NULL",
     "`period_end_ymdhis` bigint NOT NULL",
-    "`avg_defensiveness_index` decimal(5,4) NOT NULL DEFAULT 0.0000",
-    "`avg_integration_velocity` decimal(5,4) NOT NULL DEFAULT 0.0000",
-    "`avg_architectural_impact` decimal(5,4) NOT NULL DEFAULT 0.0000",
-    "`total_events` int NOT NULL DEFAULT 0",
-    "`high_impact_events` int NOT NULL DEFAULT 0",
-    "`doctrine_updates_triggered` int NOT NULL DEFAULT 0",
+    "`avg_defensiveness_index` decimal(5,4) NOT NULL DEFAULT '0.0000'",
+    "`avg_integration_velocity` decimal(5,4) NOT NULL DEFAULT '0.0000'",
+    "`avg_architectural_impact` decimal(5,4) NOT NULL DEFAULT '0.0000'",
+    "`total_events` int NOT NULL DEFAULT '0'",
+    "`high_impact_events` int NOT NULL DEFAULT '0'",
+    "`doctrine_updates_triggered` int NOT NULL DEFAULT '0'",
     "`trend_metadata_json` json",
     "`calculated_ymdhis` bigint NOT NULL"
   ],
   "data": [],
   "indexes": [
     {
-      "index_name": "lupo_cip_trends_idx_high_impact",
+      "index_name": "lupo_cip_trends_uk_period_trend",
       "columns": [
-        "high_impact_events"
+        "trend_period",
+        "period_start_ymdhis"
       ],
-      "is_unique": false,
+      "is_unique": true,
       "index_type": "BTREE"
     },
     {
@@ -34,15 +35,15 @@
       "index_type": "BTREE"
     },
     {
-      "index_name": "lupo_cip_trends_uk_period_trend",
+      "index_name": "lupo_cip_trends_idx_high_impact",
       "columns": [
-        "trend_period",
-        "period_start_ymdhis"
+        "high_impact_events"
       ],
-      "is_unique": true,
+      "is_unique": false,
       "index_type": "BTREE"
     }
   ],
+  "relationships": [],
   "primary_key": {
     "column_name": "cip_trend_id",
     "expected_name": "cip_trend_id",
@@ -52,6 +53,5 @@
   "doctrine_metadata": {
     "no_foreign_keys": true,
     "no_triggers": true
-  },
-  "relationships": []
+  }
 }

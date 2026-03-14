@@ -1,9 +1,9 @@
 {
   "table_name": "lupo_channel_content",
   "fields": [
-    "`channel_content_id` bigint NOT NULL auto_increment",
-    "`channel_id` int NOT NULL",
-    "`federation_node_id` int NOT NULL",
+    "`channel_content_id` bigint NOT NULL",
+    "`channel_id` bigint NOT NULL",
+    "`federation_node_id` bigint NOT NULL",
     "`file_path` varchar(500) NOT NULL",
     "`web_path` varchar(500) NOT NULL",
     "`metadata_json` json",
@@ -17,14 +17,6 @@
       "index_name": "lupo_channel_content_idx_channel",
       "columns": [
         "channel_id"
-      ],
-      "is_unique": false,
-      "index_type": "BTREE"
-    },
-    {
-      "index_name": "lupo_channel_content_idx_created",
-      "columns": [
-        "created_ymdhis"
       ],
       "is_unique": false,
       "index_type": "BTREE"
@@ -46,9 +38,17 @@
       "index_type": "BTREE"
     },
     {
-      "index_name": "lupo_channel_content_idx_is_deleted",
+      "index_name": "lupo_channel_content_idx_web_path",
       "columns": [
-        "is_deleted"
+        "web_path"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_channel_content_idx_created",
+      "columns": [
+        "created_ymdhis"
       ],
       "is_unique": false,
       "index_type": "BTREE"
@@ -62,14 +62,15 @@
       "index_type": "BTREE"
     },
     {
-      "index_name": "lupo_channel_content_idx_web_path",
+      "index_name": "lupo_channel_content_idx_is_deleted",
       "columns": [
-        "web_path"
+        "is_deleted"
       ],
       "is_unique": false,
       "index_type": "BTREE"
     }
   ],
+  "relationships": [],
   "primary_key": {
     "column_name": "channel_content_id",
     "expected_name": "channel_content_id",
@@ -79,6 +80,5 @@
   "doctrine_metadata": {
     "no_foreign_keys": true,
     "no_triggers": true
-  },
-  "relationships": []
+  }
 }

@@ -12,18 +12,27 @@
     "`last_login_ymdhis` bigint",
     "`created_ymdhis` bigint NOT NULL DEFAULT 0",
     "`updated_ymdhis` bigint NOT NULL",
-    "`is_active` tinyint NOT NULL DEFAULT 1",
-    "`is_deleted` tinyint NOT NULL DEFAULT 0",
+    "`is_active` tinyint NOT NULL DEFAULT '1'",
+    "`is_deleted` tinyint NOT NULL DEFAULT '0'",
     "`deleted_ymdhis` bigint"
   ],
   "data": [],
   "indexes": [
     {
-      "index_name": "lupo_auth_users_idx_created_ymdhis",
+      "index_name": "lupo_auth_users_unique_username",
       "columns": [
-        "created_ymdhis"
+        "username"
       ],
-      "is_unique": false,
+      "is_unique": true,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_auth_users_unique_provider_user",
+      "columns": [
+        "auth_provider",
+        "provider_id"
+      ],
+      "is_unique": true,
       "index_type": "BTREE"
     },
     {
@@ -51,31 +60,23 @@
       "index_type": "BTREE"
     },
     {
+      "index_name": "lupo_auth_users_idx_created_ymdhis",
+      "columns": [
+        "created_ymdhis"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
       "index_name": "lupo_auth_users_idx_updated_ymdhis",
       "columns": [
         "updated_ymdhis"
       ],
       "is_unique": false,
       "index_type": "BTREE"
-    },
-    {
-      "index_name": "lupo_auth_users_unique_provider_user",
-      "columns": [
-        "auth_provider",
-        "provider_id"
-      ],
-      "is_unique": true,
-      "index_type": "BTREE"
-    },
-    {
-      "index_name": "lupo_auth_users_unique_username",
-      "columns": [
-        "username"
-      ],
-      "is_unique": true,
-      "index_type": "BTREE"
     }
   ],
+  "relationships": [],
   "primary_key": {
     "column_name": "auth_user_id",
     "expected_name": "auth_user_id",
@@ -85,6 +86,5 @@
   "doctrine_metadata": {
     "no_foreign_keys": true,
     "no_triggers": true
-  },
-  "relationships": []
+  }
 }

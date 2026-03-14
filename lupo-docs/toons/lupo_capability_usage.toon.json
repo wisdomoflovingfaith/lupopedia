@@ -1,18 +1,18 @@
 {
   "table_name": "lupo_capability_usage",
   "fields": [
-    "`usage_id` bigint NOT NULL",
-    "`actor_id` bigint NOT NULL",
-    "`capability` varchar(100) NOT NULL",
-    "`usage_count` bigint DEFAULT 0",
-    "`success_rate` float DEFAULT 1",
-    "`avg_response_time_ms` int DEFAULT 0",
-    "`last_used_ymdhis` bigint DEFAULT 0",
-    "`performance_metrics` json",
-    "`created_ymdhis` bigint NOT NULL DEFAULT 0",
-    "`updated_ymdhis` bigint",
-    "`is_deleted` tinyint NOT NULL DEFAULT 0",
-    "`deleted_ymdhis` bigint"
+    "`usage_id` BIGINT NOT NULL",
+    "`actor_id` BIGINT NOT NULL",
+    "`capability` VARCHAR(100) NOT NULL",
+    "`usage_count` BIGINT DEFAULT 0",
+    "`success_rate` FLOAT DEFAULT 1",
+    "`avg_response_time_ms` INT DEFAULT 0",
+    "`last_used_ymdhis` BIGINT DEFAULT 0",
+    "`performance_metrics` JSON",
+    "`created_ymdhis` BIGINT NOT NULL DEFAULT 0",
+    "`updated_ymdhis` BIGINT",
+    "`is_deleted` TINYINT NOT NULL DEFAULT 0",
+    "`deleted_ymdhis` BIGINT"
   ],
   "data": [],
   "indexes": [
@@ -34,25 +34,25 @@
       "index_type": "BTREE"
     },
     {
-      "index_name": "lupo_capability_usage_idx_is_deleted",
-      "columns": [
-        "is_deleted"
-      ],
-      "is_unique": false,
-      "index_type": "BTREE"
-    },
-    {
       "index_name": "lupo_capability_usage_idx_last_used",
       "columns": [
         "last_used_ymdhis"
       ],
       "is_unique": false,
       "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_capability_usage_idx_is_deleted",
+      "columns": [
+        "is_deleted"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
     }
   ],
+  "relationships": [],
   "doctrine_metadata": {
     "no_foreign_keys": true,
     "no_triggers": true
-  },
-  "relationships": []
+  }
 }

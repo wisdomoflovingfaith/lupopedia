@@ -13,6 +13,7 @@
   ],
   "data": [],
   "indexes": [],
+  "relationships": [],
   "primary_key": {
     "column_name": "campaign_var_id",
     "expected_name": "campaign_var_id",
@@ -22,6 +23,5 @@
   "doctrine_metadata": {
     "no_foreign_keys": true,
     "no_triggers": true
-  },
-  "relationships": []
+  }
 }

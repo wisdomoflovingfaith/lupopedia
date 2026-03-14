@@ -11,7 +11,7 @@
     "`context` text",
     "`expires_utc` bigint",
     "`created_ymdhis` bigint NOT NULL DEFAULT 0",
-    "`is_deleted` tinyint NOT NULL DEFAULT 0",
+    "`is_deleted` tinyint NOT NULL DEFAULT '0'",
     "`deleted_ymdhis` bigint"
   ],
   "data": [],
@@ -41,6 +41,7 @@
       "index_type": "BTREE"
     }
   ],
+  "relationships": [],
   "primary_key": {
     "column_name": "actor_handshake_id",
     "expected_name": "actor_handshake_id",
@@ -50,6 +51,5 @@
   "doctrine_metadata": {
     "no_foreign_keys": true,
     "no_triggers": true
-  },
-  "relationships": []
+  }
 }

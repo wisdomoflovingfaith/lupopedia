@@ -11,7 +11,7 @@
     "`tension_vectors_detected` json",
     "`calibration_reason` text NOT NULL",
     "`calibration_algorithm` varchar(100) DEFAULT 'cip_pattern_analysis'",
-    "`confidence_score` decimal(5,4) NOT NULL DEFAULT 0.5000",
+    "`confidence_score` decimal(5,4) NOT NULL DEFAULT '0.5000'",
     "`validation_status` varchar(64) DEFAULT 'pending'",
     "`applied_ymdhis` bigint",
     "`created_ymdhis` bigint NOT NULL DEFAULT 0",
@@ -28,18 +28,10 @@
       "index_type": "BTREE"
     },
     {
-      "index_name": "lupo_emotional_geometry_calibrations_idx_confidence",
-      "columns": [
-        "confidence_score"
-      ],
-      "is_unique": false,
-      "index_type": "BTREE"
-    },
-    {
       "index_name": "lupo_emotional_geometry_calibrations_idx_target",
       "columns": [
         "calibration_target",
-        "target_identifier"
+        "target_identifier(100"
       ],
       "is_unique": false,
       "index_type": "BTREE"
@@ -51,8 +43,17 @@
       ],
       "is_unique": false,
       "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_emotional_geometry_calibrations_idx_confidence",
+      "columns": [
+        "confidence_score"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
     }
   ],
+  "relationships": [],
   "primary_key": {
     "column_name": "emotional_geometry_calibration_id",
     "expected_name": "emotional_geometry_calibration_id",
@@ -62,6 +63,5 @@
   "doctrine_metadata": {
     "no_foreign_keys": true,
     "no_triggers": true
-  },
-  "relationships": []
+  }
 }

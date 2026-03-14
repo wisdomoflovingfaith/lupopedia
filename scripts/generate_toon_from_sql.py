@@ -2,9 +2,9 @@
 """
 Generate TOON files from canonical schema (install_new_lupopedia.sql).
 
-Canonical schema source: database/migrations/install_new_lupopedia.sql
+Canonical schema source: lupo-database/lupopedia/mysql/install/install_new_lupopedia.sql
 TOON files are derived from this file; no live DB required.
-Output: docs/toons/<table_name>.toon.json
+Output: lupo-database/lupopedia/toon/<table_name>.toon.json
 """
 
 import json
@@ -123,8 +123,9 @@ def build_toon(table_name: str, meta: Dict[str, Any]) -> Dict[str, Any]:
 
 def main() -> int:
     base = Path(__file__).resolve().parent
-    install_sql = base.parent / "database" / "migrations" / "install_new_lupopedia.sql"
-    output_dir = base.parent / "docs" / "toons"
+    project_root = base.parent
+    install_sql = project_root / "lupo-database" / "lupopedia" / "mysql" / "install" / "install_new_lupopedia.sql"
+    output_dir = project_root / "lupo-docs" / "toons"
 
     if not install_sql.exists():
         print("install_new_lupopedia.sql not found:", install_sql, file=sys.stderr)

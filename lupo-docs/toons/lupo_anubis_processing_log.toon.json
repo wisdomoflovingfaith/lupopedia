@@ -1,18 +1,18 @@
 {
   "table_name": "lupo_anubis_processing_log",
   "fields": [
-    "`log_id` bigint NOT NULL auto_increment",
+    "`log_id` bigint NOT NULL",
     "`queue_id` bigint NOT NULL",
     "`file_path` varchar(512) NOT NULL",
-    "`action` varchar(64) NOT NULL COMMENT 'recovered, failed, quarantined, retry'",
-    "`details` text COMMENT 'JSON content'",
-    "`actor_id` bigint COMMENT 'ANUBIS instance'",
+    "`action` varchar(64) NOT NULL",
+    "`details` text",
+    "`actor_id` bigint",
     "`created_utc` bigint NOT NULL"
   ],
   "data": [],
   "indexes": [
     {
-      "index_name": "idx_created",
+      "index_name": "lupo_anubis_processing_log_idx_created",
       "columns": [
         "created_utc"
       ],
@@ -20,7 +20,7 @@
       "index_type": "BTREE"
     },
     {
-      "index_name": "idx_queue",
+      "index_name": "lupo_anubis_processing_log_idx_queue",
       "columns": [
         "queue_id"
       ],
@@ -28,6 +28,7 @@
       "index_type": "BTREE"
     }
   ],
+  "relationships": [],
   "primary_key": {
     "column_name": "log_id",
     "expected_name": "log_id",
@@ -37,6 +38,5 @@
   "doctrine_metadata": {
     "no_foreign_keys": true,
     "no_triggers": true
-  },
-  "relationships": []
+  }
 }

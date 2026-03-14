@@ -1,54 +1,25 @@
 {
   "table_name": "lupo_truth_answers",
   "fields": [
-    "`truth_answer_id` bigint NOT NULL auto_increment",
+    "`truth_answer_id` bigint NOT NULL",
     "`truth_question_id` bigint NOT NULL",
     "`actor_id` bigint NOT NULL",
     "`answer_text` text",
-    "`confidence` decimal(5,2) DEFAULT 0.00",
-    "`evidence_count` int DEFAULT 0",
-    "`source_count` int DEFAULT 0",
+    "`confidence` decimal(5,2) DEFAULT '0.00'",
+    "`evidence_count` int DEFAULT '0'",
+    "`source_count` int DEFAULT '0'",
     "`status` varchar(64) DEFAULT 'active'",
     "`created_ymdhis` bigint NOT NULL DEFAULT 0",
     "`updated_ymdhis` bigint NOT NULL",
-    "`is_deleted` tinyint NOT NULL DEFAULT 0",
-    "`deleted_ymdhis` bigint"
+    "`is_deleted` tinyint NOT NULL DEFAULT '0'",
+    "`deleted_ymdhis` bigint",
+    "`evidence_score` decimal(5,2) DEFAULT '0.00'",
+    "`contradiction_flag` tinyint DEFAULT '0'",
+    "`likes_count` bigint DEFAULT '0'"
   ],
   "data": [],
-  "indexes": [
-    {
-      "index_name": "lupo_truth_answers_idx_actor",
-      "columns": [
-        "actor_id"
-      ],
-      "is_unique": false,
-      "index_type": "BTREE"
-    },
-    {
-      "index_name": "lupo_truth_answers_idx_created",
-      "columns": [
-        "created_ymdhis"
-      ],
-      "is_unique": false,
-      "index_type": "BTREE"
-    },
-    {
-      "index_name": "lupo_truth_answers_idx_question",
-      "columns": [
-        "truth_question_id"
-      ],
-      "is_unique": false,
-      "index_type": "BTREE"
-    },
-    {
-      "index_name": "lupo_truth_answers_idx_status",
-      "columns": [
-        "status"
-      ],
-      "is_unique": false,
-      "index_type": "BTREE"
-    }
-  ],
+  "indexes": [],
+  "relationships": [],
   "primary_key": {
     "column_name": "truth_answer_id",
     "expected_name": "truth_answer_id",
@@ -58,6 +29,5 @@
   "doctrine_metadata": {
     "no_foreign_keys": true,
     "no_triggers": true
-  },
-  "relationships": []
+  }
 }

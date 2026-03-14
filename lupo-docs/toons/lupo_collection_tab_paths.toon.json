@@ -8,11 +8,21 @@
     "`depth` int NOT NULL",
     "`created_ymdhis` bigint NOT NULL DEFAULT 0",
     "`updated_ymdhis` bigint",
-    "`is_deleted` tinyint NOT NULL DEFAULT 0",
+    "`is_deleted` tinyint NOT NULL DEFAULT '0'",
     "`deleted_ymdhis` bigint"
   ],
   "data": [],
   "indexes": [
+    {
+      "index_name": "lupo_collection_tab_paths_unique_tab_path",
+      "columns": [
+        "collection_id",
+        "collection_tab_id",
+        "path"
+      ],
+      "is_unique": true,
+      "index_type": "BTREE"
+    },
     {
       "index_name": "lupo_collection_tab_paths_idx_collection",
       "columns": [
@@ -36,18 +46,9 @@
       ],
       "is_unique": false,
       "index_type": "BTREE"
-    },
-    {
-      "index_name": "lupo_collection_tab_paths_unique_tab_path",
-      "columns": [
-        "collection_id",
-        "collection_tab_id",
-        "path"
-      ],
-      "is_unique": true,
-      "index_type": "BTREE"
     }
   ],
+  "relationships": [],
   "primary_key": {
     "column_name": "collection_tab_path_id",
     "expected_name": "collection_tab_path_id",
@@ -57,6 +58,5 @@
   "doctrine_metadata": {
     "no_foreign_keys": true,
     "no_triggers": true
-  },
-  "relationships": []
+  }
 }

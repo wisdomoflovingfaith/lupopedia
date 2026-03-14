@@ -357,6 +357,7 @@ CREATE TABLE lupo_metadata (
   channel_id bigint DEFAULT NULL,
   parent_metadata_id bigint DEFAULT NULL,
   class_name varchar(128) DEFAULT NULL,
+  schema_ref varchar(64) DEFAULT NULL,
   PRIMARY KEY (metadata_id)
 );
 
@@ -777,6 +778,78 @@ CREATE TABLE lupo_anubis_redirects (
   PRIMARY KEY (anubis_redirect_id)
 );
 
+-- ANUBIS queue tables (required by install Activations Block for actor_id 19; previously in migrations/anubis_queue_tables_4.0.53.sql).
+CREATE TABLE lupo_anubis_queue (
+  queue_id bigint NOT NULL AUTO_INCREMENT,
+  file_path varchar(512) NOT NULL,
+  file_hash varchar(64) DEFAULT NULL,
+  file_content longtext,
+  detected_utc bigint NOT NULL,
+  priority tinyint DEFAULT 5,
+  status varchar(32) DEFAULT 'pending',
+  detection_method varchar(64) DEFAULT NULL,
+  header_snapshot text,
+  error_message text,
+  attempts tinyint DEFAULT 0,
+  last_attempt_utc bigint DEFAULT NULL,
+  assigned_to_actor_id bigint DEFAULT NULL,
+  filesystem_copy_exists tinyint DEFAULT 1,
+  filesystem_backup_path varchar(512) DEFAULT NULL,
+  created_utc bigint NOT NULL,
+  updated_utc bigint NOT NULL,
+  is_deleted tinyint DEFAULT 0,
+  PRIMARY KEY (queue_id)
+);
+CREATE INDEX lupo_anubis_queue_idx_detected ON lupo_anubis_queue (detected_utc);
+CREATE INDEX lupo_anubis_queue_idx_file_path ON lupo_anubis_queue (file_path);
+CREATE INDEX lupo_anubis_queue_idx_status_priority ON lupo_anubis_queue (status, priority);
+CREATE UNIQUE INDEX lupo_anubis_queue_uniq_file_hash ON lupo_anubis_queue (file_hash);
+
+CREATE TABLE lupo_anubis_processing_log (
+  log_id bigint NOT NULL AUTO_INCREMENT,
+  queue_id bigint NOT NULL,
+  file_path varchar(512) NOT NULL,
+  action varchar(64) NOT NULL,
+  details text,
+  actor_id bigint DEFAULT NULL,
+  created_utc bigint NOT NULL,
+  PRIMARY KEY (log_id)
+);
+CREATE INDEX lupo_anubis_processing_log_idx_created ON lupo_anubis_processing_log (created_utc);
+CREATE INDEX lupo_anubis_processing_log_idx_queue ON lupo_anubis_processing_log (queue_id);
+
+CREATE TABLE lupo_anubis_recovery_attempts (
+  attempt_id bigint NOT NULL AUTO_INCREMENT,
+  queue_id bigint NOT NULL,
+  attempt_number tinyint NOT NULL,
+  attempt_utc bigint NOT NULL,
+  strategy varchar(64) DEFAULT NULL,
+  success tinyint DEFAULT 0,
+  generated_header text,
+  error_details text,
+  recovered_file_path varchar(512) DEFAULT NULL,
+  PRIMARY KEY (attempt_id)
+);
+CREATE INDEX lupo_anubis_recovery_attempts_idx_queue_attempt ON lupo_anubis_recovery_attempts (queue_id, attempt_number);
+
+CREATE TABLE lupo_anubis_quarantine (
+  quarantine_id bigint NOT NULL AUTO_INCREMENT,
+  queue_id bigint NOT NULL,
+  file_path varchar(512) NOT NULL,
+  file_hash varchar(64) DEFAULT NULL,
+  file_content longtext,
+  quarantine_path varchar(512) NOT NULL,
+  reason varchar(255) NOT NULL,
+  quarantined_utc bigint NOT NULL,
+  expires_utc bigint DEFAULT NULL,
+  reviewed_by_actor_id bigint DEFAULT NULL,
+  reviewed_utc bigint DEFAULT NULL,
+  resolution varchar(64) DEFAULT NULL,
+  is_deleted tinyint DEFAULT 0,
+  PRIMARY KEY (quarantine_id)
+);
+CREATE INDEX lupo_anubis_quarantine_idx_expires ON lupo_anubis_quarantine (expires_utc);
+CREATE INDEX lupo_anubis_quarantine_idx_queue ON lupo_anubis_quarantine (queue_id);
 
 CREATE TABLE lupo_api_clients (
   api_client_id bigint NOT NULL,
@@ -2491,6 +2564,7 @@ CREATE INDEX lupo_semantic_index_idx_is_deleted ON lupo_semantic_index (is_delet
 
 
 -- Model A: DB-backed session authority. Browser stores only session_id; identity from DB. No session payload, no JWT.
+-- Columns is_active, is_expired, is_revoked, is_deleted, last_seen_ymdhis, expires_ymdhis, security_level, system_context, status required by ai_activation, session_helpers, livehelp_js, image.php.
 CREATE TABLE lupo_sessions (
   session_id varchar(128) NOT NULL,
   actor_id bigint NOT NULL,
@@ -2505,12 +2579,23 @@ CREATE TABLE lupo_sessions (
   name_key varchar(100) DEFAULT NULL,
   is_named tinyint NOT NULL DEFAULT 0,
   metadata json DEFAULT NULL,
+  is_active tinyint NOT NULL DEFAULT 1,
+  is_expired tinyint NOT NULL DEFAULT 0,
+  is_revoked tinyint NOT NULL DEFAULT 0,
+  is_deleted tinyint NOT NULL DEFAULT 0,
+  last_seen_ymdhis bigint DEFAULT NULL,
+  expires_ymdhis bigint DEFAULT NULL,
+  security_level varchar(64) DEFAULT NULL,
+  system_context varchar(64) DEFAULT NULL,
+  status varchar(32) DEFAULT NULL,
   PRIMARY KEY (session_id)
 );
 CREATE INDEX lupo_sessions_idx_actor ON lupo_sessions (actor_id);
 CREATE INDEX lupo_sessions_idx_actor_name ON lupo_sessions (actor_name);
 CREATE INDEX lupo_sessions_idx_last_activity ON lupo_sessions (last_activity_ymdhis);
 CREATE INDEX lupo_sessions_idx_federation ON lupo_sessions (federation_node_id);
+CREATE INDEX lupo_sessions_idx_is_active ON lupo_sessions (is_active);
+CREATE INDEX lupo_sessions_idx_last_seen ON lupo_sessions (last_seen_ymdhis);
 
 -- Old session events table removed in v4.0.55 - consolidated into lupo_unified_log
 
@@ -2978,6 +3063,33 @@ CREATE TABLE lupo_registry_open (
 CREATE UNIQUE INDEX idx_registry_open_unique ON lupo_registry_open (entity_type, entity_index_id);
 CREATE INDEX idx_registry_open_entity_type ON lupo_registry_open (entity_type);
 -- Unified unregistry for tracking unused/reserved IDs.
+
+-- lupo_projects: core registry table for projects (KIRO proposal; Captain directive 4.0.74).
+CREATE TABLE lupo_projects (
+  project_id bigint NOT NULL,
+  project_key varchar(64) NOT NULL,
+  project_name varchar(255) NOT NULL,
+  project_slug varchar(255) NOT NULL,
+  description text,
+  channel_id bigint NOT NULL,
+  orchestrator_id bigint NOT NULL,
+  federation_node_id bigint NOT NULL,
+  status varchar(32) NOT NULL DEFAULT 'active',
+  project_type varchar(64) NOT NULL DEFAULT 'general',
+  metadata_json json DEFAULT NULL,
+  created_ymdhis bigint NOT NULL DEFAULT 0,
+  updated_ymdhis bigint NOT NULL DEFAULT 0,
+  is_deleted tinyint NOT NULL DEFAULT 0,
+  deleted_ymdhis bigint NOT NULL DEFAULT 0,
+  PRIMARY KEY (project_id),
+  UNIQUE KEY lupo_projects_unq_key_per_node (project_key, federation_node_id)
+);
+
+CREATE INDEX lupo_projects_idx_channel ON lupo_projects(channel_id);
+CREATE INDEX lupo_projects_idx_orchestrator ON lupo_projects(orchestrator_id);
+CREATE INDEX lupo_projects_idx_node ON lupo_projects(federation_node_id);
+CREATE INDEX lupo_projects_idx_status ON lupo_projects(status);
+CREATE INDEX lupo_projects_idx_is_deleted ON lupo_projects(is_deleted);
 
 -- Unified import registry for collision resolution during federation imports.
 
@@ -3495,3 +3607,24 @@ CREATE INDEX lupo_comments_idx_is_deleted ON lupo_comments (is_deleted);
 -- ============================================================
 -- END OF ACTOR IDENTITY CAPSULE SYSTEM
 -- ============================================================
+
+-- =============================================================================
+-- lupo_orchestrator_rules (optional; v4.0.73 — orchestrator rule storage)
+-- =============================================================================
+CREATE TABLE lupo_orchestrator_rules (
+  rule_id bigint NOT NULL AUTO_INCREMENT,
+  rule_slug varchar(128) NOT NULL,
+  orchestrator_actor varchar(64) NOT NULL,
+  rule_set_version varchar(32) NOT NULL,
+  applies_to_json text NOT NULL,
+  enforcement_level varchar(32) NOT NULL DEFAULT 'strict',
+  rule_content text NOT NULL,
+  checksum varchar(64) NOT NULL,
+  is_active tinyint NOT NULL DEFAULT 1,
+  updated_ymdhis bigint NOT NULL,
+  PRIMARY KEY (rule_id)
+);
+CREATE UNIQUE INDEX lupo_orchestrator_rules_uniq_slug ON lupo_orchestrator_rules (rule_slug);
+CREATE INDEX lupo_orchestrator_rules_idx_actor_version ON lupo_orchestrator_rules (orchestrator_actor, rule_set_version);
+CREATE INDEX lupo_orchestrator_rules_idx_active ON lupo_orchestrator_rules (is_active);
+CREATE INDEX lupo_orchestrator_rules_idx_updated ON lupo_orchestrator_rules (updated_ymdhis);

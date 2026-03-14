@@ -12,7 +12,7 @@
     "`upload_ymdhis` bigint NOT NULL",
     "`created_ymdhis` bigint NOT NULL DEFAULT 0",
     "`updated_ymdhis` bigint NOT NULL",
-    "`is_deleted` tinyint NOT NULL DEFAULT 0",
+    "`is_deleted` tinyint NOT NULL DEFAULT '0'",
     "`deleted_ymdhis` bigint",
     "`migrated_from_directory` varchar(255)"
   ],
@@ -35,14 +35,6 @@
       "index_type": "BTREE"
     },
     {
-      "index_name": "lupo_channel_files_idx_file_type",
-      "columns": [
-        "file_type"
-      ],
-      "is_unique": false,
-      "index_type": "BTREE"
-    },
-    {
       "index_name": "lupo_channel_files_idx_is_deleted",
       "columns": [
         "is_deleted"
@@ -59,6 +51,7 @@
       "index_type": "BTREE"
     }
   ],
+  "relationships": [],
   "primary_key": {
     "column_name": "file_id",
     "expected_name": "file_id",
@@ -68,6 +61,5 @@
   "doctrine_metadata": {
     "no_foreign_keys": true,
     "no_triggers": true
-  },
-  "relationships": []
+  }
 }

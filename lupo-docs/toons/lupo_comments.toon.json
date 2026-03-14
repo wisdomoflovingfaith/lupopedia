@@ -2,26 +2,59 @@
   "table_name": "lupo_comments",
   "fields": [
     "`comment_id` bigint NOT NULL",
-    "`domain_id` bigint NOT NULL",
-    "`actor_id` bigint NOT NULL",
-    "`target_table` varchar(100) NOT NULL DEFAULT 'lupo_contents'",
+    "`target_type` varchar(64) NOT NULL",
     "`target_id` bigint NOT NULL",
-    "`parent_comment_id` bigint",
+    "`channel_id` bigint NOT NULL DEFAULT 42",
+    "`actor_id` bigint NOT NULL",
+    "`faucet_id` bigint",
     "`comment_text` text NOT NULL",
-    "`status` varchar(64) NOT NULL DEFAULT 'approved'",
-    "`user_agent` varchar(255)",
-    "`ip_hash` char(64)",
+    "`comment_type` varchar(64) NOT NULL DEFAULT 'comment'",
+    "`parent_comment_id` bigint",
+    "`created_ymdhis` bigint NOT NULL",
+    "`updated_ymdhis` bigint NOT NULL",
     "`is_deleted` tinyint NOT NULL DEFAULT 0",
     "`deleted_ymdhis` bigint",
-    "`created_ymdhis` bigint NOT NULL DEFAULT 0",
-    "`updated_ymdhis` bigint"
+    "`metadata_json` json"
   ],
   "data": [],
   "indexes": [
     {
+      "index_name": "lupo_comments_idx_target",
+      "columns": [
+        "target_type",
+        "target_id"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_comments_idx_channel_id",
+      "columns": [
+        "channel_id"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
       "index_name": "lupo_comments_idx_actor_id",
       "columns": [
         "actor_id"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_comments_idx_faucet_id",
+      "columns": [
+        "faucet_id"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_comments_idx_parent_comment_id",
+      "columns": [
+        "parent_comment_id"
       ],
       "is_unique": false,
       "index_type": "BTREE"
@@ -35,63 +68,15 @@
       "index_type": "BTREE"
     },
     {
-      "index_name": "lupo_comments_idx_domain_id",
-      "columns": [
-        "domain_id"
-      ],
-      "is_unique": false,
-      "index_type": "BTREE"
-    },
-    {
-      "index_name": "lupo_comments_idx_ip_hash",
-      "columns": [
-        "ip_hash"
-      ],
-      "is_unique": false,
-      "index_type": "BTREE"
-    },
-    {
       "index_name": "lupo_comments_idx_is_deleted",
       "columns": [
         "is_deleted"
       ],
       "is_unique": false,
       "index_type": "BTREE"
-    },
-    {
-      "index_name": "lupo_comments_idx_parent",
-      "columns": [
-        "parent_comment_id"
-      ],
-      "is_unique": false,
-      "index_type": "BTREE"
-    },
-    {
-      "index_name": "lupo_comments_idx_status",
-      "columns": [
-        "status"
-      ],
-      "is_unique": false,
-      "index_type": "BTREE"
-    },
-    {
-      "index_name": "lupo_comments_idx_target",
-      "columns": [
-        "target_table",
-        "target_id"
-      ],
-      "is_unique": false,
-      "index_type": "BTREE"
-    },
-    {
-      "index_name": "lupo_comments_idx_updated_ymdhis",
-      "columns": [
-        "updated_ymdhis"
-      ],
-      "is_unique": false,
-      "index_type": "BTREE"
     }
   ],
+  "relationships": [],
   "primary_key": {
     "column_name": "comment_id",
     "expected_name": "comment_id",
@@ -101,6 +86,5 @@
   "doctrine_metadata": {
     "no_foreign_keys": true,
     "no_triggers": true
-  },
-  "relationships": []
+  }
 }

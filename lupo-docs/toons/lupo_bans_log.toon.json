@@ -1,7 +1,7 @@
 {
   "table_name": "lupo_bans_log",
   "fields": [
-    "`bans_log_id` bigint NOT NULL auto_increment",
+    "`bans_log_id` bigint NOT NULL",
     "`actor_id` bigint NOT NULL",
     "`uri` varchar(1024) NOT NULL DEFAULT ''",
     "`resolved_uri` varchar(1024) NOT NULL DEFAULT ''",
@@ -21,22 +21,23 @@
       "index_type": "BTREE"
     },
     {
-      "index_name": "lupo_bans_log_idx_ban_scope",
-      "columns": [
-        "ban_scope"
-      ],
-      "is_unique": false,
-      "index_type": "BTREE"
-    },
-    {
       "index_name": "lupo_bans_log_idx_banned_ymdhis",
       "columns": [
         "banned_ymdhis"
       ],
       "is_unique": false,
       "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_bans_log_idx_ban_scope",
+      "columns": [
+        "ban_scope"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
     }
   ],
+  "relationships": [],
   "primary_key": {
     "column_name": "bans_log_id",
     "expected_name": "bans_log_id",
@@ -46,6 +47,5 @@
   "doctrine_metadata": {
     "no_foreign_keys": true,
     "no_triggers": true
-  },
-  "relationships": []
+  }
 }
