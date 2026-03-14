@@ -120,14 +120,10 @@ lupopedia.footer:
 ### 2. Code Implementation Review
 
 #### ✅ **Directory Structure**
-- **FINDING:** All directories use `lupo-` prefix consistently
-- **VERIFICATION:** File system audit confirms proper naming:
-  ```
-  lupo-docs/     ✅
-  lupo-bin/        ✅
-  lupo-database/    ✅
-  lupo-scripts/     ✅
-  ```
+- **FINDING:** All directories correctly use `lupo-` prefix
+- **VERIFICATION:** File system audit confirms proper naming
+- **EXCEPTION HANDLED:** `legacy/` directory correctly documented as intentional exception
+- **EVIDENCE:** CHANGELOG.md states: "legacy/ is intentional exception to lupo- prefix rule: it holds legacy read-only code (e.g. Crafty Syntax) and is not renamed to lupo-legacy."
 
 #### ✅ **Binary Implementation**
 - **lupo.php:** Main CLI interface with proper actor resolution
@@ -146,6 +142,18 @@ lupopedia.footer:
 - **LUPOPEDIA HEADERS:** Proper block structure and naming
 - **Metadata Storage:** Correct use of `lupo_metadata` table
 - **Version Consistency:** All files at v4.0.74
+
+### 4. TOON and Schema Documentation
+
+#### ✅ **TOON Count Clarification**
+- **FINDING:** Multiple TOON paths properly documented
+- **ASSESSMENT:** Correctly explains different generation methods
+- **CANONICAL COUNT:** Install SQL authority confirmed (159 tables)
+- **PLANNING FILES:** Properly identified as non-canonical when exceeding install scope
+
+#### ✅ **Schema Registry**
+- **lupo_projects Table:** Added to SCHEMA_REGISTRY.md
+- **Documentation:** Table count updated to match install SQL authority
 
 ## Specific Implementation Changes Reviewed
 
