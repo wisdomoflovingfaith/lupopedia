@@ -78,11 +78,12 @@ Older entries (≤4.0.67) are archived in [CHANGELOG_ARCHIVE.md](CHANGELOG_ARCHI
 
 **Release Date:** 2026-03-14
 
-This version focuses on **documentation consolidation, architecture clarification, and repository alignment** following the 4.0.73 release. No runtime behavior changes were introduced.
+This version focuses on **documentation consolidation, architecture clarification, repository alignment, and schema/install readiness** following the 4.0.73 release. It includes schema and seed changes (lupo_projects, 12-table expansion) and path normalization; the primary goal is installation testing and upgrade validation from Crafty Syntax 3.7.5.
 
----
-
-This release focuses on documentation consolidation, architecture clarification, and repository alignment following the GitHub release of v4.0.73. The primary goal of this version is to prepare the system for installation testing and upgrade validation from Crafty Syntax 3.7.5.
+#### lupo_projects and seed wiring (4.0.74)
+- **lupo_projects** table is in install SQL (`lupo-database/lupopedia/mysql/install/install_new_lupopedia.sql`): core registry for projects scoped by channel, orchestrator, and federation node (KIRO proposal; Captain directive).
+- **seed_projects.sql** was created in `lupo-database/lupopedia/mysql/seed/` and is **wired into the installer** in four places: bootstrap run, upgrade run (after detect), new-install run, and main seed loop. The installer runs it as part of the 4.0.74 seed set.
+- Table documentation: `lupo-docs/database/lupopedia/tables/active/lupo_projects.md`. SCHEMA_REGISTRY includes lupo_projects.
 
 #### 12-table install expansion (2026-03-14)
 Per directive 20260314 (Cursor planned-tables implementation), the following **12 tables** were moved from `future_features_lupopedia.sql` into `install_new_lupopedia.sql` and are now created on every fresh install:
@@ -94,7 +95,8 @@ DDL was normalized to doctrine (no FKs/triggers, BIGINT UTC timestamps, PK namin
 
 #### Install SQL and Crafty Syntax upgrade (2026-03-14)
 - **Install SQL:** `lupo-database/lupopedia/mysql/install/install_new_lupopedia.sql` is the canonical schema and includes all 12 tables above (159 tables total). It is ready for **fresh install** and **Crafty Syntax 3.7.5 → Lupopedia** upgrade testing. The wizard runs this file from `LUPO_MYSQL_DIR` (lupo-database/lupopedia/mysql); seed files run from the same base path.
-- **Installer script path:** Post–lupo-prefix directory rename, the background command enqueued by the install wizard was updated to use `lupo-scripts/import_channels_and_artifacts.py` (was `lupo-scripts/...`) so the post-install system-commands runner finds the script correctly.
+- **Installer script path:** Post–lupo-prefix directory rename, the background command enqueued by the install wizard was updated to use `lupo-scripts/import_channels_and_artifacts.py` (was `scripts/...`) so the post-install system-commands runner finds the script correctly.
+- **Prefix/path and TOON corrections (directive 20260314):** `legacy/` documented as the intentional exception to the lupo- prefix rule (read-only legacy code; not renamed). Empty root `scripts/` directory removed. SCHEMA_REGISTRY and README updated: canonical table count = 159 (install-SQL-derived); TOON count discrepancy (230 vs 159) resolved in docs. See [CURSOR_4_0_74_PREFIX_PATH_AND_TOON_CORRECTIONS.md](lupo-docs/status/CURSOR_4_0_74_PREFIX_PATH_AND_TOON_CORRECTIONS.md).
 
 #### Core Version Updates
 - **Version bump:** Updated LUPEDIA_VERSION, version.php, install.php, lupo.php, configuration atoms (global_atoms.yaml, GLOBAL_IMPORTANT_ATOMS.yaml), documentation headers, and project documentation to 4.0.74.

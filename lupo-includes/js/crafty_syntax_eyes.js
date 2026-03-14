@@ -17,7 +17,7 @@ function init() {
     eyes_color = "blue";
   
    lidsblock = new Image;
-   lidsblock.src = 'images/lids3.png';
+   lidsblock.src = 'lupo-images/lids3.png';
 
    blueeye = new Image;
    lblueeye = new Image;
@@ -26,12 +26,12 @@ function init() {
    redeye = new Image;
    blank = new Image;
    // Preload all sprite assets so the animation stays seamless
-   blank.src = 'images/blank.gif';
-   lblueeye.src = 'images/blueeye2.gif';   
-   blueeye.src = 'images/blueeye.gif';
-   browneye.src = 'images/browneye.gif';
-   greeneye.src = 'images/greeneye.gif';
-   redeye.src = 'images/redeye.gif';
+   blank.src = 'lupo-images/blank.gif';
+   lblueeye.src = 'lupo-images/blueeye2.gif';   
+   blueeye.src = 'lupo-images/blueeye.gif';
+   browneye.src = 'lupo-images/browneye.gif';
+   greeneye.src = 'lupo-images/greeneye.gif';
+   redeye.src = 'lupo-images/redeye.gif';
    
    document.tempeyes.src=blank.src;
     //-----------------------------------------------------------

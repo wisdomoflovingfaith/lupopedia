@@ -171,7 +171,7 @@ $base = defined('LUPOPEDIA_PUBLIC_PATH') ? rtrim(LUPOPEDIA_PUBLIC_PATH, '/') : '
 <body class="admin-wrap">
     <header class="basic-header-graphic" role="banner">
         <a href="<?= LUPOPEDIA_PUBLIC_PATH ?>/index.php" title="Lupopedia Home">
-            <img src="<?= LUPOPEDIA_PUBLIC_PATH ?>/images/logoface.png" alt="" width="64" height="64">
+            <img src="<?= LUPOPEDIA_PUBLIC_PATH ?>/lupo-images/logoface.png" alt="" width="64" height="64">
             <span class="site-name">LUPOPEDIA</span>
         </a>
     </header>

@@ -90,7 +90,7 @@ $hasNext = !empty($nextContent) && (isset($nextContent['slug']) || isset($nextCo
                 aria-label="Navigate to previous page"
                 <?= $hasPrev ? '' : 'disabled' ?>
                 onclick="<?= $hasPrev ? 'window.location.href=\'/' . htmlspecialchars($prevContent['slug'] ?? 'content.php?id=' . ($prevContent['content_id'] ?? $prevContent['id'] ?? '')) . '\'' : '' ?>">
-                <img src="<?= LUPOPEDIA_PUBLIC_PATH ?>/images/prevpage.png" width="32" height="32" alt="Previous Page">
+                <img src="<?= LUPOPEDIA_PUBLIC_PATH ?>/lupo-images/prevpage.png" width="32" height="32" alt="Previous Page">
             </button>
             
             <!-- References -->
@@ -100,7 +100,7 @@ $hasNext = !empty($nextContent) && (isset($nextContent['slug']) || isset($nextCo
                 title="View References"
                 aria-label="Show content references"
                 onclick="toggleSemanticPanel('references')">
-                <img src="<?= LUPOPEDIA_PUBLIC_PATH ?>/images/references.png" width="32" height="32" alt="References">
+                <img src="<?= LUPOPEDIA_PUBLIC_PATH ?>/lupo-images/references.png" width="32" height="32" alt="References">
                 <?php if (count($contentReferences) > 0): ?>
                     <span class="semantic-nav-badge"><?= count($contentReferences) ?></span>
                 <?php endif; ?>
@@ -113,7 +113,7 @@ $hasNext = !empty($nextContent) && (isset($nextContent['slug']) || isset($nextCo
                 title="View Context"
                 aria-label="Show semantic context"
                 onclick="toggleSemanticPanel('context')">
-                <img src="<?= LUPOPEDIA_PUBLIC_PATH ?>/images/context.png" width="32" height="32" alt="Context">
+                <img src="<?= LUPOPEDIA_PUBLIC_PATH ?>/lupo-images/context.png" width="32" height="32" alt="Context">
             </button>
             
             <!-- Hashtags/Tags -->
@@ -123,7 +123,7 @@ $hasNext = !empty($nextContent) && (isset($nextContent['slug']) || isset($nextCo
                 title="View Tags"
                 aria-label="Show content tags"
                 onclick="toggleSemanticPanel('tags')">
-                <img src="<?= LUPOPEDIA_PUBLIC_PATH ?>/images/hashtag.png" width="32" height="32" alt="Tags">
+                <img src="<?= LUPOPEDIA_PUBLIC_PATH ?>/lupo-images/hashtag.png" width="32" height="32" alt="Tags">
                 <?php if (count($contentTags) > 0): ?>
                     <span class="semantic-nav-badge"><?= count($contentTags) ?></span>
                 <?php endif; ?>
@@ -136,7 +136,7 @@ $hasNext = !empty($nextContent) && (isset($nextContent['slug']) || isset($nextCo
                 title="Share Content"
                 aria-label="Share this content"
                 onclick="shareContent(<?= $contentId ?>)">
-                <img src="<?= LUPOPEDIA_PUBLIC_PATH ?>/images/share.png" width="32" height="32" alt="Share">
+                <img src="<?= LUPOPEDIA_PUBLIC_PATH ?>/lupo-images/share.png" width="32" height="32" alt="Share">
             </button>
             
             <!-- Like -->
@@ -147,7 +147,7 @@ $hasNext = !empty($nextContent) && (isset($nextContent['slug']) || isset($nextCo
                 title="Like Content"
                 aria-label="Like this content"
                 onclick="likeContent(<?= $contentId ?>)">
-                <img src="<?= LUPOPEDIA_PUBLIC_PATH ?>/images/like.png" width="32" height="32" alt="Like">
+                <img src="<?= LUPOPEDIA_PUBLIC_PATH ?>/lupo-images/like.png" width="32" height="32" alt="Like">
             </button>
             <?php endif; ?>
             
@@ -158,7 +158,7 @@ $hasNext = !empty($nextContent) && (isset($nextContent['slug']) || isset($nextCo
                 title="View Links"
                 aria-label="Show linked content"
                 onclick="toggleSemanticPanel('links')">
-                <img src="<?= LUPOPEDIA_PUBLIC_PATH ?>/images/links.png" width="32" height="32" alt="Links">
+                <img src="<?= LUPOPEDIA_PUBLIC_PATH ?>/lupo-images/links.png" width="32" height="32" alt="Links">
                 <?php if (count($contentLinks) > 0): ?>
                     <span class="semantic-nav-badge"><?= count($contentLinks) ?></span>
                 <?php endif; ?>
@@ -171,7 +171,7 @@ $hasNext = !empty($nextContent) && (isset($nextContent['slug']) || isset($nextCo
                 title="View Collection"
                 aria-label="Show content collection"
                 onclick="toggleSemanticPanel('collection')">
-                <img src="<?= LUPOPEDIA_PUBLIC_PATH ?>/images/folder.png" width="32" height="32" alt="Collection">
+                <img src="<?= LUPOPEDIA_PUBLIC_PATH ?>/lupo-images/folder.png" width="32" height="32" alt="Collection">
             </button>
             
             <!-- Next Page -->
@@ -182,7 +182,7 @@ $hasNext = !empty($nextContent) && (isset($nextContent['slug']) || isset($nextCo
                 aria-label="Navigate to next page"
                 <?= $hasNext ? '' : 'disabled' ?>
                 onclick="<?= $hasNext ? 'window.location.href=\'/' . htmlspecialchars($nextContent['slug'] ?? 'content.php?id=' . ($nextContent['content_id'] ?? $nextContent['id'] ?? '')) . '\'' : '' ?>">
-                <img src="<?= LUPOPEDIA_PUBLIC_PATH ?>/images/nextpage.png" width="32" height="32" alt="Next Page">
+                <img src="<?= LUPOPEDIA_PUBLIC_PATH ?>/lupo-images/nextpage.png" width="32" height="32" alt="Next Page">
             </button>
             
             <!-- TRUTH -->
@@ -192,7 +192,7 @@ $hasNext = !empty($nextContent) && (isset($nextContent['slug']) || isset($nextCo
                 title="TRUTH"
                 aria-label="Show TRUTH information"
                 onclick="toggleSemanticPanel('truth')">
-                <img src="<?= LUPOPEDIA_PUBLIC_PATH ?>/images/truth.png" width="32" height="32" alt="TRUTH" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline';">
+                <img src="<?= LUPOPEDIA_PUBLIC_PATH ?>/lupo-images/truth.png" width="32" height="32" alt="TRUTH" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline';">
                 <span style="display:none; font-size:20px; color:#9370DB;">✓</span>
             </button>
             
@@ -203,7 +203,7 @@ $hasNext = !empty($nextContent) && (isset($nextContent['slug']) || isset($nextCo
                 title="Help"
                 aria-label="Show help information"
                 onclick="showHelp()">
-                <img src="<?= LUPOPEDIA_PUBLIC_PATH ?>/images/help.png" width="32" height="32" alt="Help">
+                <img src="<?= LUPOPEDIA_PUBLIC_PATH ?>/lupo-images/help.png" width="32" height="32" alt="Help">
             </button>
         </div>
     </div>

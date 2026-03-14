@@ -364,7 +364,7 @@ function wherecslhisdue_<?php echo $department; ?>(){
 
 if (ismac > -1) {
 	randu=Math.round(Math.random()*9999);
-    maccrap = '<div id=imagesfordumbmac_<?php echo $department; ?> style=display:none><img id="imageformac_<?php echo $department; ?>" name="imageformac_<?php echo $department; ?>" src="' + WEBPATH + 'images/blank.gif" border="0"><img id="imageformac_<?php echo $department; ?>_one" name="imageformac_<?php echo $department; ?>_one" src="' + WEBPATH + 'images/blank.gif" border="0"><img id="imageformac_<?php echo $department; ?>_ten" name="imageformac_<?php echo $department; ?>_ten" src="' + WEBPATH + 'images/blank.gif" border="0"><img id="imageformac_<?php echo $department; ?>_hun" name="imageformac_<?php echo $department; ?>_hun" src="' + WEBPATH + 'images/blank.gif" border="0"></div>';
+    maccrap = '<div id=imagesfordumbmac_<?php echo $department; ?> style=display:none><img id="imageformac_<?php echo $department; ?>" name="imageformac_<?php echo $department; ?>" src="' + WEBPATH + 'lupo-images/blank.gif" border="0"><img id="imageformac_<?php echo $department; ?>_one" name="imageformac_<?php echo $department; ?>_one" src="' + WEBPATH + 'lupo-images/blank.gif" border="0"><img id="imageformac_<?php echo $department; ?>_ten" name="imageformac_<?php echo $department; ?>_ten" src="' + WEBPATH + 'lupo-images/blank.gif" border="0"><img id="imageformac_<?php echo $department; ?>_hun" name="imageformac_<?php echo $department; ?>_hun" src="' + WEBPATH + 'lupo-images/blank.gif" border="0"></div>';
 }
 
 <?php if (empty($UNTRUSTED['dynamic'])) { ?> if (y_<?php echo $department; ?>.indexOf(looking)!=-1) { } else { <?php } ?>
@@ -606,7 +606,7 @@ if (empty($UNTRUSTED['dynamic'])) {
 if (ismac > -1) {
 	randu=Math.round(Math.random()*9999);
   document.write('<div id="imagesfordumbmac_<?php echo $department; ?>" style="position:absolute; display:none; visibility:hidden;">');
-  document.write('<img id="imageformac_<?php echo $department; ?>" name="imageformac_<?php echo $department; ?>" src="' + WEBPATH + 'images/blank.gif" border="0"><img id="imageformac_<?php echo $department; ?>_one" name="imageformac_<?php echo $department; ?>_one" src="' + WEBPATH + 'images/blank.gif" border="0"><img id="imageformac_<?php echo $department; ?>_ten" name="imageformac_<?php echo $department; ?>_ten" src="' + WEBPATH + 'images/blank.gif" border="0"><img id="imageformac_<?php echo $department; ?>_hun" name="imageformac_<?php echo $department; ?>_hun" src="' + WEBPATH + 'images/blank.gif" border="0">');
+  document.write('<img id="imageformac_<?php echo $department; ?>" name="imageformac_<?php echo $department; ?>" src="' + WEBPATH + 'lupo-images/blank.gif" border="0"><img id="imageformac_<?php echo $department; ?>_one" name="imageformac_<?php echo $department; ?>_one" src="' + WEBPATH + 'lupo-images/blank.gif" border="0"><img id="imageformac_<?php echo $department; ?>_ten" name="imageformac_<?php echo $department; ?>_ten" src="' + WEBPATH + 'lupo-images/blank.gif" border="0"><img id="imageformac_<?php echo $department; ?>_hun" name="imageformac_<?php echo $department; ?>_hun" src="' + WEBPATH + 'lupo-images/blank.gif" border="0">');
   document.write('</div>');
 }
   randu=Math.round(Math.random()*777);

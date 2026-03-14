@@ -24,7 +24,7 @@ require_once("config_cslh.php");
 // this should be obsolete we are up to php 8+ now: 
 //require_once("file_get_contents.php");
 require_once("class/operator.php");
-$colorfile = "images".C_DIR. $CSLH_Config['colorscheme'] .C_DIR."color.php";
+$colorfile = "lupo-images".C_DIR. $CSLH_Config['colorscheme'] .C_DIR."color.php";
 if(file_exists($colorfile)){
   require_once($colorfile);
 } else {

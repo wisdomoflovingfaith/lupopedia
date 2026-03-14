@@ -8,7 +8,7 @@ Doctrine rules checked:
 - No timestamp/datetime types; temporal = BIGINT YYYYMMDDHHIISS (Temporal Doctrine §5)
 - doctrine_metadata: no_foreign_keys, no_triggers (Database Logic §7)
 
-TOONs are generated from the live DB (scripts/generate_toon_files.py); this script only reports.
+TOONs are generated from the live DB (lupo-scripts/generate_toon_files.py); this script only reports.
 
 Run from project root: python scripts/check_toon_doctrine_alignment.py
 """

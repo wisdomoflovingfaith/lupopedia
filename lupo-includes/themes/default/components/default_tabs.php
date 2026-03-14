@@ -47,7 +47,7 @@ $has_sections = !empty($content_sections);
 
 ?>
 <div class="dropdown">
-    <img src="<?= LUPOPEDIA_PUBLIC_PATH ?>/images/contents.png" 
+    <img src="<?= LUPOPEDIA_PUBLIC_PATH ?>/lupo-images/contents.png" 
          width="42" 
          height="42" 
          onclick="toggleMenu('contentsDropdown')" 

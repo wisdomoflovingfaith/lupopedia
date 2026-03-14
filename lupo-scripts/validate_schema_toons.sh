@@ -9,7 +9,7 @@ REPO_ROOT="${1:-.}"
 cd "$REPO_ROOT" || exit 1
 
 echo "=== Regenerating TOON files (canonical schema representation) ==="
-if ! python scripts/generate_toon_files.py; then
+if ! python lupo-scripts/generate_toon_files.py; then
     echo "TOON generation failed. Fix errors and re-run." 1>&2
     exit 1
 fi

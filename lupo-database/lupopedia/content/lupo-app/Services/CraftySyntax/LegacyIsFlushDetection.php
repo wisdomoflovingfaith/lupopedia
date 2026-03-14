@@ -105,7 +105,7 @@ function flushdoesnotwork(){
    window.location.replace("<?php print $fail . "?" . $querystring; ?>");
 }
 </SCRIPT>
-<body background=images/<?php echo $colorscheme; ?>/mid_bk.gif>
+<body background=lupo-images/<?php echo $colorscheme; ?>/mid_bk.gif>
 <?php echo $lang['txt92']; ?>     
 
 <?php

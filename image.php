@@ -129,9 +129,9 @@ function send_image($filepath, $mime = 'image/gif') {
     if ($safe === '' || strpos($safe, '..') !== false) {
         $safe = 'blank.gif';
     }
-    $full = $base . DIRECTORY_SEPARATOR . 'images' . DIRECTORY_SEPARATOR . $safe;
+    $full = $base . DIRECTORY_SEPARATOR . 'lupo-images' . DIRECTORY_SEPARATOR . $safe;
     if (!is_file($full) || !is_readable($full)) {
-        $full = $base . DIRECTORY_SEPARATOR . 'images' . DIRECTORY_SEPARATOR . 'blank.gif';
+        $full = $base . DIRECTORY_SEPARATOR . 'lupo-images' . DIRECTORY_SEPARATOR . 'blank.gif';
     }
     header('Content-Type: ' . $mime);
     header('Cache-Control: no-store, no-cache, must-revalidate');
@@ -168,7 +168,7 @@ function is_anyone_online($db, $prefix, $department_id) {
 
 // ----- getlayerinvite: digit image for ones/tens/hundreds from session invite id
 if ($UNTRUSTED['what'] === 'getlayerinvite') {
-    $filepath = 'images/requestDHTML.gif';
+    $filepath = 'lupo-images/requestDHTML.gif';
     $visitorRow = $mydatabase->fetchRow(
         "SELECT session_data FROM {$prefix}sessions WHERE session_id = :sid AND is_deleted = 0 LIMIT 1",
         array('sid' => $identity['SESSIONID'])
@@ -186,7 +186,7 @@ if ($UNTRUSTED['what'] === 'getlayerinvite') {
                 if ($UNTRUSTED['whatplace'] === 'ones') $digit = $ones;
                 if ($UNTRUSTED['whatplace'] === 'tens') $digit = $tens;
                 if ($UNTRUSTED['whatplace'] === 'hundreds') $digit = $hundreds;
-                $filepath = 'images/digit' . (int) $digit . '.gif';
+                $filepath = 'lupo-images/digit' . (int) $digit . '.gif';
                 break;
             }
         }
@@ -218,13 +218,13 @@ if ($UNTRUSTED['what'] === 'changestat') {
             array('data' => implode('&', $newData), 'now' => gmdate('YmdHis'), 'sid' => $identity['SESSIONID'])
         );
     }
-    send_image('images/browse.gif');
+    send_image('lupo-images/browse.gif');
     exit;
 }
 
 // ----- browse: static browse image
 if ($UNTRUSTED['what'] === 'browse') {
-    send_image('images/browse.gif');
+    send_image('lupo-images/browse.gif');
     exit;
 }
 
@@ -252,14 +252,14 @@ if ($UNTRUSTED['what'] === 'userstat') {
         }
     }
     if ($status === 'request') {
-        send_image('images/requestchat.gif');
+        send_image('lupo-images/requestchat.gif');
         exit;
     }
     if ($status === 'DHTML' || $status === 'invited') {
-        send_image('images/requestDHTML.gif');
+        send_image('lupo-images/requestDHTML.gif');
         exit;
     }
-    send_image('images/browse.gif');
+    send_image('lupo-images/browse.gif');
     exit;
 }
 
@@ -282,56 +282,56 @@ if ($UNTRUSTED['what'] === 'getcredit') {
 
     if (!$noonehome) {
         if (($xyz === 'N') || $hide) {
-            send_image('images/blank.gif');
+            send_image('lupo-images/blank.gif');
             exit;
         }
-        if (($xyz === 'L') || $xyz === '') { send_image('images/livehelp.gif'); exit; }
-        if ($xyz === 'W') { send_image('images/livehelp2.gif'); exit; }
-        if ($xyz === 'Y') { send_image('images/livehelp4.gif'); exit; }
-        if ($xyz === 'Z') { send_image('images/livehelp5.gif'); exit; }
-        send_image('images/livehelp.gif');
+        if (($xyz === 'L') || $xyz === '') { send_image('lupo-images/livehelp.gif'); exit; }
+        if ($xyz === 'W') { send_image('lupo-images/livehelp2.gif'); exit; }
+        if ($xyz === 'Y') { send_image('lupo-images/livehelp4.gif'); exit; }
+        if ($xyz === 'Z') { send_image('lupo-images/livehelp5.gif'); exit; }
+        send_image('lupo-images/livehelp.gif');
         exit;
     }
 
     if ($leaveamessage === 'YES') {
         if (($xyz === 'N') || $hide) {
-            send_image('images/blank.gif');
+            send_image('lupo-images/blank.gif');
             exit;
         }
-        if (($xyz === 'L') || $xyz === '') { send_image('images/livehelp.gif'); exit; }
-        if ($xyz === 'W') { send_image('images/livehelp2.gif'); exit; }
-        if ($xyz === 'Y') { send_image('images/livehelp4.gif'); exit; }
-        if ($xyz === 'Z') { send_image('images/livehelp5.gif'); exit; }
-        send_image('images/livehelp.gif');
+        if (($xyz === 'L') || $xyz === '') { send_image('lupo-images/livehelp.gif'); exit; }
+        if ($xyz === 'W') { send_image('lupo-images/livehelp2.gif'); exit; }
+        if ($xyz === 'Y') { send_image('lupo-images/livehelp4.gif'); exit; }
+        if ($xyz === 'Z') { send_image('lupo-images/livehelp5.gif'); exit; }
+        send_image('lupo-images/livehelp.gif');
         exit;
     }
 
     if (($xyz === 'N') || $hide) {
-        send_image('images/blank.gif');
+        send_image('lupo-images/blank.gif');
         exit;
     }
-    send_image('images/livehelp3.gif');
+    send_image('lupo-images/livehelp3.gif');
     exit;
 }
 
 // ----- getstate: online/offline icon for main live help button
 if ($UNTRUSTED['what'] === 'getstate') {
     if ($UNTRUSTED['hide'] === 'Y') {
-        send_image('images/livehelp3.gif');
+        send_image('lupo-images/livehelp3.gif');
         exit;
     }
     $noonehome = !is_anyone_online($mydatabase, $prefix, $department);
     if (!$noonehome) {
-        send_image('images/livehelp.gif');
+        send_image('lupo-images/livehelp.gif');
         exit;
     }
     if ($leaveamessage === 'YES') {
-        send_image('images/livehelp3.gif');
+        send_image('lupo-images/livehelp3.gif');
         exit;
     }
-    send_image('images/livehelp3.gif');
+    send_image('lupo-images/livehelp3.gif');
     exit;
 }
 
 // Default: offline icon
-send_image('images/livehelp3.gif');
+send_image('lupo-images/livehelp3.gif');

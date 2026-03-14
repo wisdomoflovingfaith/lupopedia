@@ -64,7 +64,7 @@ if (defined('LUPOPEDIA_DEBUG') && LUPOPEDIA_DEBUG && empty($tabs_data)) {
 
 <!-- Original Dropdown Component (kept for backward compatibility) -->
 <div class="dropdown">
-    <img src="<?= LUPOPEDIA_PUBLIC_PATH ?>/images/addshortcut.png" 
+    <img src="<?= LUPOPEDIA_PUBLIC_PATH ?>/lupo-images/addshortcut.png" 
          width="42" 
          height="42" 
          onclick="toggleMenu('shortcutDropdown')" 

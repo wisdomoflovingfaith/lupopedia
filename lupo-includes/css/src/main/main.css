@@ -120,7 +120,7 @@ a:hover {
 .main-content {
     min-height: calc(100vh - 80px);
     margin-top: 60px;
-    background-image: url('../images/background.png');
+    background-image: url('../../../../lupo-images/background.png');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;

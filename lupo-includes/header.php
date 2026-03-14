@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="<?php echo LUPOPEDIA_PUBLIC_PATH; ?>/css/components.css">
  
     <!-- Favicon -->
-    <link rel="icon" type="image/png" href="<?php echo LUPOPEDIA_PUBLIC_PATH; ?>/images/logoface.png">
+    <link rel="icon" type="image/png" href="<?php echo LUPOPEDIA_PUBLIC_PATH; ?>/lupo-images/logoface.png">
     
     <!-- Meta collections -->
     <meta name="description" content="Browse Q/A content from source of truth database">
@@ -24,7 +24,7 @@
     <meta property="og:description" content="Browse Q/A content from source of truth database">
     <meta property="og:type" content="website">
     <meta property="og:url" content="http://lupopedia.com/questions.php">
-    <meta property="og:image" content="/images/s1.png">
+    <meta property="og:image" content="<?php echo htmlspecialchars((defined('LUPOPEDIA_PUBLIC_PATH') ? LUPOPEDIA_PUBLIC_PATH : '') . '/lupo-images/s1.png'); ?>">
     
         
         
@@ -576,7 +576,7 @@
     <div class="nav-logo-container" style="position: absolute; top: 20px; left: 0; z-index: 2000;">
  
 <a href="/index.php" class="nav-logo" onclick="scrollToTop()" title="WOLFIE - Home">
-     <img src="images/logoface.png?1766754946" alt="WOLFIE" width="50" height="50" border="0" style="border-radius: 50%;" />
+     <img src="lupo-images/logoface.png?1766754946" alt="WOLFIE" width="50" height="50" border="0" style="border-radius: 50%;" />
  </a>
  </div>
         <nav class="main-nav">
@@ -1397,13 +1397,13 @@
 .resources-top-left {
     width: 54px;
     height: 42px;
-    background: url('images/s1b.png');
+    background: url('lupo-images/s1b.png');
 }
 
 .resources-top-center {
     width: calc(100vw - 118px);
     height: 42px;
-    background: url('images/s2b.png');
+    background: url('lupo-images/s2b.png');
     background-repeat: repeat;
     display: flex; 
     align-items: flex-start; /* Aligns everything to the TOP */
@@ -1412,21 +1412,21 @@
 .resources-top-right {
     width: 54px;
     height: 42px;
-    background: url('images/s3b.png');
+    background: url('lupo-images/s3b.png');
 }
 
 /* Row 2: Middle Border and Content */
 .resources-middle-left {
     width: 54px;
     height: calc(100vh - 107px - 78px);
-    background: url('images/s4b.png');
+    background: url('lupo-images/s4b.png');
     background-repeat: repeat-y;
 }
 
 .resources-middle-center {
     width: calc(100vw - 118px);
     height: calc(100vh - 107px - 78px);
-    background: url('images/s5.png');
+    background: url('lupo-images/s5.png');
     background-repeat: repeat;
     overflow-y: auto;
     padding: 20px;
@@ -1435,7 +1435,7 @@
 .resources-middle-right {
     width: 54px;
     height: calc(100vh - 107px - 78px);
-    background: url('images/s6b.png');
+    background: url('lupo-images/s6b.png');
     background-repeat: repeat-y;
 }
 
@@ -1443,20 +1443,20 @@
 .resources-bottom-left {
     width: 54px;
     height: 42px;
-    background: url('images/s7b.png');
+    background: url('lupo-images/s7b.png');
 }
 
 .resources-bottom-center {
     width: calc(100vw - 118px);
     height: 42px;
-    background: url('images/s8b.png');
+    background: url('lupo-images/s8b.png');
     background-repeat: repeat;
 }
 
 .resources-bottom-right {
     width: 54px;
     height: 42px;
-    background: url('images/s9b.png');
+    background: url('lupo-images/s9b.png');
 }
 
 .resources-filters {
@@ -1691,7 +1691,7 @@ function addNewItem(type, parentName = '') {
    <div class="resources-top-center">
     
    <div class="dropdown">
-    <img src="images/addshortcut.png" width="42" height="42" onclick="toggleMenu('shortcutDropdown')" style="cursor:pointer;"> 
+    <img src="lupo-images/addshortcut.png" width="42" height="42" onclick="toggleMenu('shortcutDropdown')" style="cursor:pointer;"> 
     <div id="shortcutDropdown" class="dropdown-content">
      <div style="padding: 10px; border-bottom: 1px solid #ddd; background: #f9f9f9;">
         <b>Current Collection:</b> DESKTOP<br>
@@ -1711,7 +1711,7 @@ function addNewItem(type, parentName = '') {
  
  
   <div class="dropdown">
-    <img src="images/contents.png" width="42" height="42" onclick="toggleMenu('contentsDropdown')" style="cursor:pointer;">
+    <img src="lupo-images/contents.png" width="42" height="42" onclick="toggleMenu('contentsDropdown')" style="cursor:pointer;">
  
      
     <div id="contentsDropdown" class="dropdown-content">
@@ -1750,7 +1750,7 @@ function addNewItem(type, parentName = '') {
     <span class="mw-page-title-main">Crafty Syntax Live Help</span>
   </h1>
  &nbsp;
-  <img src="images/edges.png" width="77" height="42"   style="cursor:pointer; ">
+  <img src="lupo-images/edges.png" width="77" height="42"   style="cursor:pointer; ">
 
  
 

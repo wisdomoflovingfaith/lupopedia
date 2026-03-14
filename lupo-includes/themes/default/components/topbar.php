@@ -53,10 +53,10 @@ if (!isset($userAvatar)) {
         if (file_exists($avatar_path)) {
             $userAvatar = LUPOPEDIA_PUBLIC_PATH . '/lupo-uploads/avatars/' . $currentUserId . '_avatar.jpg?t=' . time();
         } else {
-            $userAvatar = LUPOPEDIA_PUBLIC_PATH . '/images/logoface.png';
+            $userAvatar = LUPOPEDIA_PUBLIC_PATH . '/lupo-images/logoface.png';
         }
     } else {
-        $userAvatar = LUPOPEDIA_PUBLIC_PATH . '/images/logoface.png';
+        $userAvatar = LUPOPEDIA_PUBLIC_PATH . '/lupo-images/logoface.png';
     }
 }
 if (!isset($userName)) {
@@ -91,7 +91,7 @@ $avatarTimestamp = file_exists(str_replace(LUPOPEDIA_PUBLIC_PATH, LUPOPEDIA_PATH
 <header class="main-header">
     <div class="nav-logo-container" style="position: absolute; top: 20px; left: 0; z-index: 2000;">
         <a href="<?= LUPOPEDIA_PUBLIC_PATH ?>/index.php" class="nav-logo" onclick="scrollToTop()" title="WOLFIE - Home">
-            <img src="<?= LUPOPEDIA_PUBLIC_PATH ?>/images/logoface.png" alt="WOLFIE" width="50" height="50" border="0" style="border-radius: 50%;" />
+            <img src="<?= LUPOPEDIA_PUBLIC_PATH ?>/lupo-images/logoface.png" alt="WOLFIE" width="50" height="50" border="0" style="border-radius: 50%;" />
         </a>
     </div>
     <nav class="main-nav">

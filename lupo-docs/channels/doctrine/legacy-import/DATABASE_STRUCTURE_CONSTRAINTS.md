@@ -75,7 +75,7 @@ file.channel: doctrine
 **Version:** 1.0  
 **Channel:** 0 (System/Kernel) - Mandatory Boot Content
 
-**Current table count:** Do not hardcode. Run `python scripts/generate_toon_files.py` and count the TOON files produced; use that number when referencing "current" count in any doc.
+**Current table count:** Do not hardcode. Run `python lupo-scripts/generate_toon_files.py` and count the TOON files produced; use that number when referencing "current" count in any doc.
 
 ## 1. TABLE LIMIT ENFORCEMENT
 

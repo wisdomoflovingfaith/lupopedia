@@ -50,7 +50,7 @@ function lupo_render_login_status() {
         // Build avatar URL (use auth_user_id for avatar filename)
         $avatar_path = defined('LUPOPEDIA_PUBLIC_PATH') ? LUPOPEDIA_PUBLIC_PATH : '';
         $avatar_url = $avatar_path . '/lupo-uploads/avatars/' . $auth_user_id . '_avatar.jpg';
-        $avatar_fallback = $avatar_path . '/images/logoface.png';
+        $avatar_fallback = $avatar_path . '/lupo-images/logoface.png';
 
         // Check if avatar file exists (for cache busting and fallback)
         $avatar_file_path = '';

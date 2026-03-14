@@ -119,7 +119,7 @@ $GLOBALS['lupo_channel_config'] = array(
 $GLOBALS['lupo_actor_config'] = array(
     'human_id_start' => 10000,
     'system_id_end' => 9999,
-    'default_avatar' => 'images/default-avatar.png',
+    'default_avatar' => 'lupo-images/default-avatar.png',
     'guest_name_prefix' => 'Visitor_',
     'session_timeout' => 1800 // 30 minutes
 );

@@ -74,7 +74,7 @@ file.channel: doctrine
 **Authority:** High (below Ethical Foundations, above AAL)  
 **Version:** 1.0
 
-**Current table count:** Do not hardcode. Run `python scripts/generate_toon_files.py` and count the TOON files produced; use that number when referencing "current" count in any doc.
+**Current table count:** Do not hardcode. Run `python lupo-scripts/generate_toon_files.py` and count the TOON files produced; use that number when referencing "current" count in any doc.
 
 ## 1. HARD LIMIT: 199 TABLES PER DATABASE
 

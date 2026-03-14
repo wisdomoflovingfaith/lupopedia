@@ -329,13 +329,13 @@ if (!isset($contentSections)) {
     .resources-top-left {
         width: 54px;
         height: 42px;
-        background: url('<?= LUPOPEDIA_PUBLIC_PATH ?>/images/s1b.png');
+        background: url('<?= LUPOPEDIA_PUBLIC_PATH ?>/lupo-images/s1b.png');
     }
 
     .resources-top-center {
         width: calc(100vw - 118px);
         height: 42px;
-        background: url('<?= LUPOPEDIA_PUBLIC_PATH ?>/images/s2b.png');
+        background: url('<?= LUPOPEDIA_PUBLIC_PATH ?>/lupo-images/s2b.png');
         background-repeat: repeat;
         display: flex;
         align-items: flex-start;
@@ -344,21 +344,21 @@ if (!isset($contentSections)) {
     .resources-top-right {
         width: 54px;
         height: 42px;
-        background: url('<?= LUPOPEDIA_PUBLIC_PATH ?>/images/s3b.png');
+        background: url('<?= LUPOPEDIA_PUBLIC_PATH ?>/lupo-images/s3b.png');
     }
 
     /* Row 2: Middle Border and Content */
     .resources-middle-left {
         width: 54px;
         height: calc(100vh - 107px - 78px);
-        background: url('<?= LUPOPEDIA_PUBLIC_PATH ?>/images/s4b.png');
+        background: url('<?= LUPOPEDIA_PUBLIC_PATH ?>/lupo-images/s4b.png');
         background-repeat: repeat-y;
     }
 
     .resources-middle-center {
         width: calc(100vw - 118px);
         height: calc(100vh - 107px - 78px);
-        background: url('<?= LUPOPEDIA_PUBLIC_PATH ?>/images/s5.png');
+        background: url('<?= LUPOPEDIA_PUBLIC_PATH ?>/lupo-images/s5.png');
         background-repeat: repeat;
         overflow-y: auto;
         padding: 20px;
@@ -367,7 +367,7 @@ if (!isset($contentSections)) {
     .resources-middle-right {
         width: 54px;
         height: calc(100vh - 107px - 78px);
-        background: url('<?= LUPOPEDIA_PUBLIC_PATH ?>/images/s6b.png');
+        background: url('<?= LUPOPEDIA_PUBLIC_PATH ?>/lupo-images/s6b.png');
         background-repeat: repeat-y;
     }
 
@@ -375,20 +375,20 @@ if (!isset($contentSections)) {
     .resources-bottom-left {
         width: 54px;
         height: 42px;
-        background: url('<?= LUPOPEDIA_PUBLIC_PATH ?>/images/s7b.png');
+        background: url('<?= LUPOPEDIA_PUBLIC_PATH ?>/lupo-images/s7b.png');
     }
 
     .resources-bottom-center {
         width: calc(100vw - 118px);
         height: 42px;
-        background: url('<?= LUPOPEDIA_PUBLIC_PATH ?>/images/s8b.png');
+        background: url('<?= LUPOPEDIA_PUBLIC_PATH ?>/lupo-images/s8b.png');
         background-repeat: repeat;
     }
 
     .resources-bottom-right {
         width: 54px;
         height: 42px;
-        background: url('<?= LUPOPEDIA_PUBLIC_PATH ?>/images/s9b.png');
+        background: url('<?= LUPOPEDIA_PUBLIC_PATH ?>/lupo-images/s9b.png');
     }
 
     /* Dropdown Styles */
@@ -1137,7 +1137,7 @@ document.addEventListener('keydown', function(e) {
     <div class="resources-top-center">
         <!-- Shortcut Dropdown -->
         <div class="dropdown">
-            <img src="<?= LUPOPEDIA_PUBLIC_PATH ?>/images/addshortcut.png" width="42" height="42" onclick="toggleMenu('shortcutDropdown')" style="cursor:pointer;"> 
+            <img src="<?= LUPOPEDIA_PUBLIC_PATH ?>/lupo-images/addshortcut.png" width="42" height="42" onclick="toggleMenu('shortcutDropdown')" style="cursor:pointer;"> 
             <div id="shortcutDropdown" class="dropdown-content">
                 <div style="padding: 10px; border-bottom: 1px solid #ddd; background: #f9f9f9;">
                     <b>Current Collection:</b> <span id="current-collection-display"><?= htmlspecialchars($current_collection) ?></span><br>
@@ -1178,7 +1178,7 @@ document.addEventListener('keydown', function(e) {
 
         <!-- Contents Dropdown -->
         <div class="dropdown">
-            <img src="<?= LUPOPEDIA_PUBLIC_PATH ?>/images/contents.png" width="42" height="42" onclick="toggleMenu('contentsDropdown')" style="cursor:pointer;">
+            <img src="<?= LUPOPEDIA_PUBLIC_PATH ?>/lupo-images/contents.png" width="42" height="42" onclick="toggleMenu('contentsDropdown')" style="cursor:pointer;">
             <div id="contentsDropdown" class="dropdown-content">
                 <?php if (!empty($contentSections) && is_array($contentSections)): ?>
                     <?php foreach ($contentSections as $section): ?>
@@ -1202,8 +1202,8 @@ document.addEventListener('keydown', function(e) {
         </h1>
         &nbsp;
         <div style="display: flex; align-items: right; margin-left: auto;">
-            <img src="<?= LUPOPEDIA_PUBLIC_PATH ?>/images/edges.png" width="194" height="42" style="cursor:pointer; margin-left: auto;">
-            <img src="<?= LUPOPEDIA_PUBLIC_PATH ?>/images/help.png" width="44" height="42">
+            <img src="<?= LUPOPEDIA_PUBLIC_PATH ?>/lupo-images/edges.png" width="194" height="42" style="cursor:pointer; margin-left: auto;">
+            <img src="<?= LUPOPEDIA_PUBLIC_PATH ?>/lupo-images/help.png" width="44" height="42">
         </div>
     </div>
     <div class="resources-top-right"></div>
@@ -1219,17 +1219,17 @@ document.addEventListener('keydown', function(e) {
     <!-- Row 3: Bottom Border -->
     <div class="resources-bottom-left"></div>
     <div class="resources-bottom-center">
-        <img src="<?= LUPOPEDIA_PUBLIC_PATH ?>/images/prevpage.png" width="32" height="32" <?php if ($prevContent): ?>onclick="window.location.href='<?= htmlspecialchars($prevContent['url'] ?? '#') ?>'" style="cursor:pointer;"<?php endif; ?>>
-        <img src="<?= LUPOPEDIA_PUBLIC_PATH ?>/images/references.png" width="32" height="32" style="cursor:pointer;" title="References">
-        <img src="<?= LUPOPEDIA_PUBLIC_PATH ?>/images/context.png" width="32" height="32" style="cursor:pointer;" title="Context">
-        <img src="<?= LUPOPEDIA_PUBLIC_PATH ?>/images/hashtag.png" width="32" height="32" style="cursor:pointer;" title="Tags">
-        <img src="<?= LUPOPEDIA_PUBLIC_PATH ?>/images/share.png" width="32" height="32" style="cursor:pointer;" title="Share">
-        <img src="<?= LUPOPEDIA_PUBLIC_PATH ?>/images/like.png" width="32" height="32" style="cursor:pointer;" title="Like">
-        <img src="<?= LUPOPEDIA_PUBLIC_PATH ?>/images/comment.png" width="32" height="32" style="cursor:pointer;" title="Comment">
-        <img src="<?= LUPOPEDIA_PUBLIC_PATH ?>/images/links.png" width="32" height="32" style="cursor:pointer;" title="Links">
-        <img src="<?= LUPOPEDIA_PUBLIC_PATH ?>/images/folder.png" width="32" height="32" style="cursor:pointer;" title="Folder">
-        <img src="<?= LUPOPEDIA_PUBLIC_PATH ?>/images/atoms.png" width="32" height="32" style="cursor:pointer;" title="Atoms">
-        <img src="<?= LUPOPEDIA_PUBLIC_PATH ?>/images/nextpage.png" width="32" height="32" <?php if ($nextContent): ?>onclick="window.location.href='<?= htmlspecialchars($nextContent['url'] ?? '#') ?>'" style="cursor:pointer;"<?php endif; ?>>
+        <img src="<?= LUPOPEDIA_PUBLIC_PATH ?>/lupo-images/prevpage.png" width="32" height="32" <?php if ($prevContent): ?>onclick="window.location.href='<?= htmlspecialchars($prevContent['url'] ?? '#') ?>'" style="cursor:pointer;"<?php endif; ?>>
+        <img src="<?= LUPOPEDIA_PUBLIC_PATH ?>/lupo-images/references.png" width="32" height="32" style="cursor:pointer;" title="References">
+        <img src="<?= LUPOPEDIA_PUBLIC_PATH ?>/lupo-images/context.png" width="32" height="32" style="cursor:pointer;" title="Context">
+        <img src="<?= LUPOPEDIA_PUBLIC_PATH ?>/lupo-images/hashtag.png" width="32" height="32" style="cursor:pointer;" title="Tags">
+        <img src="<?= LUPOPEDIA_PUBLIC_PATH ?>/lupo-images/share.png" width="32" height="32" style="cursor:pointer;" title="Share">
+        <img src="<?= LUPOPEDIA_PUBLIC_PATH ?>/lupo-images/like.png" width="32" height="32" style="cursor:pointer;" title="Like">
+        <img src="<?= LUPOPEDIA_PUBLIC_PATH ?>/lupo-images/comment.png" width="32" height="32" style="cursor:pointer;" title="Comment">
+        <img src="<?= LUPOPEDIA_PUBLIC_PATH ?>/lupo-images/links.png" width="32" height="32" style="cursor:pointer;" title="Links">
+        <img src="<?= LUPOPEDIA_PUBLIC_PATH ?>/lupo-images/folder.png" width="32" height="32" style="cursor:pointer;" title="Folder">
+        <img src="<?= LUPOPEDIA_PUBLIC_PATH ?>/lupo-images/atoms.png" width="32" height="32" style="cursor:pointer;" title="Atoms">
+        <img src="<?= LUPOPEDIA_PUBLIC_PATH ?>/lupo-images/nextpage.png" width="32" height="32" <?php if ($nextContent): ?>onclick="window.location.href='<?= htmlspecialchars($nextContent['url'] ?? '#') ?>'" style="cursor:pointer;"<?php endif; ?>>
     </div>
     <div class="resources-bottom-right"></div>
 </div>

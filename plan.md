@@ -67,6 +67,7 @@ lupopedia.edges:
     - { to: "lupo-prompts/cursor/20260315_cursor_p1_execution_4_0_74.md", type: "implements", weight: 0.9 }
     - { to: "lupo-docs/status/FOLDER_RENAME_AUDIT_4_0_74.md", type: "references", weight: 0.85 }
     - { to: "lupo-docs/doctrine/TABLE_COUNT_DOCTRINE.md", type: "references", weight: 0.85 }
+    - { to: "lupo-docs/status/CURSOR_ROOT_DOCS_RECONCILIATION_4_0_74.md", type: "references", weight: 0.85 }
   semantic_tags: ["plan", "implementation", "consolidated", "cursor_lead"]
 
 lupopedia.footer:
@@ -78,7 +79,7 @@ lupopedia.footer:
     - "Captain/Wolfie: run upgrade path test (drop all tables → load Crafty 3.7.5 → upgrade to 4.0.74)"
     - "Coordinate with Kiro, Windsurf, Codex, Antigravity on domain ownership"
     - "Merge approved faucet-plan items into this plan as phases complete"
-    - "Reconcile TOON output path if needed: Antigravity set generate_toon_from_sql.py to lupo-docs/toons (147 TOONs); Cursor Pass 3 had set lupo-database/lupopedia/toon/"
+    - "Reconcile TOON output path if needed (install SQL remains authoritative; TOONs are derived)"
 
 lupopedia.next_actions:
   next_actions:
@@ -98,6 +99,16 @@ lupopedia.next_actions:
 **Source:** Consolidated from `plan_kiro.md`, `plan_windsurf.md`, `plan_codex.md`
 
 This is the **root** implementation plan. Faucet-specific plans remain in `plan_kiro.md`, `plan_windsurf.md`, `plan_codex.md` (and `plan_antigravity.md` if present). Cursor as lead orchestration maintains this file and merges approved items from faucet plans.
+
+---
+
+## 4.0.74 implemented (verified)
+
+- **lupo_projects:** In install SQL; `seed_projects.sql` created and wired into installer (bootstrap, upgrade run, new-install run, main seed loop). Table doc and SCHEMA_REGISTRY updated.
+- **12-table install expansion:** All 12 approved tables (aliases, legacy_content_mapping, reference_objects, reference_cited_by, search_index, documentation_frameworks, federated_trust, federation_discovery, unified_log, anubis_operations, system_health_snapshots, hotfix_registry) in install SQL; one-time migration for existing installs; future_features cleaned/annotated. Canonical install table count: **159** (see TABLE_COUNT_DOCTRINE).
+- **Path/prefix normalization:** Root directories use `lupo-*` prefix; **`legacy/` is the intentional exception** (legacy read-only code; not renamed). Empty root `scripts/` removed. Script and doc references use `lupo-scripts/`, `lupo-docs/`, `lupo-database/`.
+- **Advisory table-count doctrine:** TABLE_COUNT_DOCTRINE and SCHEMA_REGISTRY state install SQL is authoritative; table ceiling is advisory only. TOON count = install-SQL-derived (159); other TOON file counts may include planning/deprecated paths.
+- **Installer:** Post-install background command uses `lupo-scripts/import_channels_and_artifacts.py`. Install SQL and seeds run from `LUPO_MYSQL_DIR` (lupo-database/lupopedia/mysql).
 
 ---
 
