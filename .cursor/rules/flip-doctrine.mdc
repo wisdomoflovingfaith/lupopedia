@@ -1,12 +1,12 @@
 ---
-description: FLIP/FLARE have been replaced by LUPOPEDIA HEADERS. Read the LUPOPEDIA HEADERS doctrine for format, database storage (lupo_metadata), and writing headers to files.
+description: FLIP/FLARE have been replaced by LUPOPEDIA HEADERS formatting
 alwaysApply: true
 ---
 
 
 # LUPOPEDIA HEADERS (replaces FLIP / FLARE)
 
-**FLIP**, **FLARE**, and **FLP** are **deprecated** and **replaced** by **LUPOPEDIA HEADERS** (4.0.68+; deprecation reaffirmed 4.0.71). Use LUPOPEDIA HEADERS and `lupopedia.*` block names only; see deprecation notice in lupo-docs/doctrine/LUPOPEDIA_HEADERS/DEPRECATION_FLARE_FLIP_FLP.md.
+**FLIP** and **FLARE** have been replaced by **LUPOPEDIA HEADERS** as the canonical metadata system name from 4.0.68 onward.
 
 ## What to read
 
@@ -24,6 +24,6 @@ alwaysApply: true
 
 - Infer file identity, doctrine, and meaning from the header only; do not guess or hallucinate.
 - Treat absence of a field as absence. Respect header_atoms and resolve from project atom source.
-- When adding or editing a header, follow LUPOPEDIA HEADERS format and version rules (see LUPOPEDIA_HEADERS_FORMAT.md). **File order:** Line 1 must be `---` only; the identity line `# file: ...` must come **after** the closing `---`, never before it. See .cursor/rules/lupopedia-headers-file-order.mdc.
+- When adding or editing a header, follow LUPOPEDIA HEADERS format and version rules (see LUPOPEDIA_HEADERS_FORMAT.md).
 
 This rule is permanent. Use **LUPOPEDIA HEADERS** and the docs above; do not reference FLIP or FLARE as the current system name.

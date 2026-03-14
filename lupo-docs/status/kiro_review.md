@@ -276,7 +276,7 @@ Cursor demonstrates excellent grasp of Lupopedia's unique architecture:
 
 **Files reviewed:**
 - `lupo-rules/root/*.md` (16 rule files)
-- `lupo-scripts/sync_root_rules_to_cursor.php`
+- `lupo-scripts/propagate_agent_rules.php`
 - `lupo-database/lupopedia/mysql/seed/seed_actor_1_cursor_rules_4.0.68.sql`
 - `.cursor/rules/*.mdc`
 
@@ -454,7 +454,7 @@ Analyzed 200+ tables from TOON files. All tables follow Lupopedia doctrine.
 |---------|----------|--------|----------------|
 | Migration rollback | All migrations | Medium | Add rollback SQL in comments for manual recovery |
 | Partial failure | Channel 42 migration | Low | Add transaction-like semantics or state tracking |
-| Root rules sync | `sync_root_rules_to_cursor.php` | Medium | Add pre-commit hook for automatic sync |
+| Root rules sync | `propagate_agent_rules.php` | Medium | Add pre-commit hook for automatic sync |
 | Header validation | LUPOPEDIA HEADERS | Low | Create validator script for format compliance |
 | Skill enforcement | SkillService | Low | Consider runtime enforcement (currently advisory) |
 
@@ -526,7 +526,7 @@ No high-priority issues found. System is stable and performant.
 
 | Priority | Issue | Location | Suggested Action |
 |----------|-------|----------|------------------|
-| 🟡 MEDIUM | Manual root rules sync | `sync_root_rules_to_cursor.php` | Add pre-commit hook for automatic sync |
+| 🟡 MEDIUM | Manual root rules sync | `propagate_agent_rules.php` | Add pre-commit hook for automatic sync |
 | 🟡 MEDIUM | No sync validation | `.cursor/rules/` vs `lupo-rules/root/` | Create validation script to check sync status |
 | 🟡 MEDIUM | Migration rollback | All migration files | Add rollback SQL in comments for manual recovery |
 | 🟡 MEDIUM | Visit table growth | `lupo_visits` | Implement gc.php aggregation script |

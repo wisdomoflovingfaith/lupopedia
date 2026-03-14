@@ -1,5 +1,5 @@
 ---
-description: TOON files are derived from canonical schema; schema comes from install SQL.
+description: TOON files are derived from canonical schema; canonical schema comes from install SQL
 alwaysApply: true
 ---
 
@@ -10,9 +10,9 @@ Cursor MUST treat **install_new_lupopedia.sql** and **seed_lupopedia.sql** as th
 
 ## Canonical schema source (4.0.15+)
 
-- **database/migrations/install_new_lupopedia.sql** — Full table definitions (CREATE TABLE).
-- **database/migrations/seed_lupopedia.sql** — Seeded tables and row structure.
-- **TOON files:** `lupo-database/lupopedia/toon/` — Regenerated from install SQL via `scripts/generate_toon_from_sql.py`. One file per table: `<table_name>.toon.json`.
+- **lupo-database/migrations/install_new_lupopedia.sql** — Full table definitions (CREATE TABLE).
+- **lupo-database/migrations/seed_lupopedia.sql** — Seeded tables and row structure.
+- **TOON files:** `lupo-docs/toons/` — Regenerated from install SQL via `lupo-scripts/generate_toon_from_sql.py`. One file per table: `<table_name>.toon.json`.
 - **Every** table name, column name, column type, index, and key MUST match the canonical schema. TOONs reflect the install SQL; they are not independently authoritative until regenerated.
 
 ## Rules
@@ -43,13 +43,13 @@ Cursor MUST treat **install_new_lupopedia.sql** and **seed_lupopedia.sql** as th
 - Confirm **all** schema usage in code matches TOON definitions exactly.
 - Report all **mismatches** between:
   - TOON schema
-  - install SQL (e.g. `database/migrations/install_new_lupopedia.sql`)
+  - install SQL (e.g. `lupo-database/migrations/install_new_lupopedia.sql`)
   - actual code usage
 
 ## TOON generation (4.0.15+)
 
-- **Canonical:** TOONs are regenerated from `install_new_lupopedia.sql` via `scripts/generate_toon_from_sql.py`. No live database required.
-- **Alternative:** `scripts/generate_toon_files.py` generates from live DB (requires DB connection); use when schema has been applied.
+- **Canonical:** TOONs are regenerated from `install_new_lupopedia.sql` via `lupo-scripts/generate_toon_from_sql.py`. No live database required.
+- **Alternative:** `lupo-scripts/generate_toon_files.py` generates from live DB (requires DB connection); use when schema has been applied.
 - Cursor may read TOON files as the schema oracle; they must match the install SQL.
 
 This rule is permanent and applies to all future refactors.

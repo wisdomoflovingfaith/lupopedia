@@ -137,7 +137,9 @@ function write_cursor_outputs($cursorDir, $cursorRulesDir, $rules)
             'id' => $rule['id'],
             'text' => $rule['text'],
             'enforcement' => $rule['enforcement'],
-            'scope' => $rule['scope']
+            'scope' => $rule['scope'],
+            'source_path' => $rule['source_path'],
+            'slug' => $rule['slug']
         );
 
         $body = str_replace('../../../', '../../', $rule['body']);
@@ -169,19 +171,85 @@ function write_cursor_outputs($cursorDir, $cursorRulesDir, $rules)
 function write_kiro_outputs($kiroDir, $rules)
 {
     ensure_dir($kiroDir);
+    $kiroRulesDir = $kiroDir . DIRECTORY_SEPARATOR . 'rules';
+    ensure_dir($kiroRulesDir);
+
     $kiroJson = array('rules' => array());
     foreach ($rules as $rule) {
         $kiroJson['rules'][] = array(
             'id' => $rule['id'],
             'text' => $rule['text'],
             'enforcement' => $rule['enforcement'],
-            'scope' => $rule['scope']
+            'scope' => $rule['scope'],
+            'source_path' => $rule['source_path'],
+            'slug' => $rule['slug'],
+            'category' => $rule['category'],
+            'status' => $rule['status']
         );
+        
+        $body = str_replace('../../../', '../../', $rule['body']);
+        $lines = explode("\n", trim($body));
+        $filtered = array();
+        $skipIdentity = true;
+        foreach ($lines as $line) {
+            if ($skipIdentity && preg_match('/^#\s*file:\s*/', $line)) {
+                $skipIdentity = false;
+                continue;
+            }
+            $filtered[] = $line;
+        }
+        $finalBody = implode("\n", $filtered);
+
+        $mdc = "---\n";
+        $mdc .= "lupopedia.headers:\n";
+        $mdc .= "  actor_id: 100\n";
+        $mdc .= "  actor_name: \"kiro\"\n";
+        $mdc .= "  delegation_chain: \"kiro:root\"\n";
+        $mdc .= "  lupopedia.version: \"4.0.75\"\n";
+        $mdc .= "  lupopedia.schema: \"kiro_rule\"\n";
+        $mdc .= "  file_path_from_root: \".kiro/rules/" . $rule['slug'] . ".md\"\n";
+        $mdc .= "  last_modified_utc: \"" . date('Ymd') . "\"\n";
+        $mdc .= "  system_version: \"4.0.75\"\n";
+        $mdc .= "  source_path: \"lupo-rules/root/" . $rule['slug'] . ".md\"\n";
+        $mdc .= "  artifact_type: \"rule\"\n";
+        $mdc .= "  artifact_kind: \"kiro_doctrine\"\n";
+        $mdc .= "---\n\n";
+        $mdc .= $finalBody . "\n";
+        
+        file_put_contents($kiroRulesDir . DIRECTORY_SEPARATOR . $rule['slug'] . '.md', $mdc);
     }
     file_put_contents(
         $kiroDir . DIRECTORY_SEPARATOR . 'lupopedia_rules.json',
         json_encode($kiroJson, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES)
     );
+
+    // Write .kiro/README.md
+    $readme = "---\n";
+    $readme .= "lupopedia.headers:\n";
+    $readme .= "  actor_id: 100\n";
+    $readme .= "  actor_name: \"kiro\"\n";
+    $readme .= "  delegation_chain: \"kiro:root\"\n";
+    $readme .= "  lupopedia.version: \"4.0.75\"\n";
+    $readme .= "  lupopedia.schema: \"kiro_guide\"\n";
+    $readme .= "  file_path_from_root: \".kiro/README.md\"\n";
+    $readme .= "  last_modified_utc: \"" . date('Ymd') . "\"\n";
+    $readme .= "  system_version: \"4.0.75\"\n";
+    $readme .= "  artifact_type: \"guide\"\n";
+    $readme .= "  artifact_kind: \"documentation\"\n";
+    $readme .= "  purpose: \"Guide for Kiro rule system and propagation\"\n";
+    $readme .= "---\n\n";
+    $readme .= "# Kiro Rules Guide\n\n";
+    $readme .= "This directory contains Kiro-specific rule artifacts derived from canonical root rules.\n\n";
+    $readme .= "## Files\n\n";
+    $readme .= "- **lupopedia_rules.json** - Machine-readable rule index\n";
+    $readme .= "- **rules/** - Individual rule files with LUPOPEDIA HEADERS\n\n";
+    $readme .= "## Propagation\n\n";
+    $readme .= "Run: `php lupo-scripts/propagate_agent_rules.php --target=kiro`\n\n";
+    $readme .= "## Source\n\n";
+    $readme .= "All rules are derived from canonical root rules in `lupo-rules/root/`.\n";
+    $readme .= "See [lupo-rules/root/README.md](../lupo-rules/root/README.md) for canonical rule documentation.\n";
+    
+    file_put_contents($kiroDir . DIRECTORY_SEPARATOR . 'README.md', $readme);
 }
 
 function write_windsurf_outputs($windsurfDir, $rules)
@@ -199,7 +267,11 @@ function write_windsurf_outputs($windsurfDir, $rules)
             'id' => $rule['id'],
             'text' => $rule['text'],
             'enforcement' => $rule['enforcement'],
-            'scope' => $rule['scope']
+            'scope' => $rule['scope'],
+            'source_path' => $rule['source_path'],
+            'slug' => $rule['slug'],
+            'category' => $rule['category'],
+            'status' => $rule['status']
         );
     }
     file_put_contents(

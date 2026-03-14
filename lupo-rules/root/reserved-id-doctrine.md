@@ -26,6 +26,22 @@ lupopedia.headers:
   tags: ["cursor", "database", "reserved_id", "doctrine"]
   source_path: ".cursor/rules/reserved-id-doctrine.mdc"
 
+lupopedia.rules:
+  comment: "Rule declaration and provenance block"
+  declares:
+    - rule_id: "DB006"
+      rule_text: "Tables with reserved IDs must not use AUTO_INCREMENT; code must supply explicit IDs"
+      scope: "all_agents"
+      category: "schema"
+  imports: []
+  overrides: []
+  provenance:
+    authored_by: "wolfie"
+    authored_date: "20260314"
+    last_reviewed_by: "antigravity"
+    last_reviewed_date: "20260314"
+    version: "1.0"
+    status: "active"
 lupopedia.footer:
   version: "4.0.74"
   last_verified: "20260313"

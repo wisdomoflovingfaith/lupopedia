@@ -62,12 +62,12 @@ Run after lupo-install/other seeds as needed:
 
 Each row inserts into `lupo_metadata` with `entity_type='actor'`, `entity_id=1`, `meta_type='root_rule'`, `property_key=<slug>`, `property_value` JSON with `path` (lupo-rules/root/*.md) and `source_path` (.cursor/rules/*.mdc). metadata_id 10301–10311, 10316.
 
-## Syncing to Cursor IDE
+## Syncing to IDE Agents
 
-The same rules are applied in Cursor via `.cursor/rules/*.mdc`. To write all `lupo-rules/root/*.md` content into `.cursor/rules/*.mdc` (Cursor frontmatter + rule body), run from repo root:
+The canonical rules must be propagated to the IDE agent environments (.cursor, .idea, .kiro) via the rule transformer.
 
 ```bash
-php lupo-scripts/sync_root_rules_to_cursor.php
+php lupo-scripts/propagate_agent_rules.php
 ```
 
-Run this after editing any rule in `lupo-rules/root/` so Cursor uses the updated text.
+Run this after editing any rule in `lupo-rules/root/` so that agents correctly generate their `.json`/`.xml`/`.mdc` environments.

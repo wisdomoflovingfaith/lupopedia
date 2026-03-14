@@ -26,6 +26,22 @@ lupopedia.headers:
   tags: ["cursor", "php", "compatibility", "doctrine"]
   source_path: ".cursor/rules/php-5-6-compatibility.mdc"
 
+lupopedia.rules:
+  comment: "Rule declaration and provenance block"
+  declares:
+    - rule_id: "ARC003"
+      rule_text: "All Lupopedia core code must run on PHP 5.6 minimum through 8.x; no deprecated PHP 8+ syntax"
+      scope: "all_agents"
+      category: "compatibility"
+  imports: []
+  overrides: []
+  provenance:
+    authored_by: "wolfie"
+    authored_date: "20260314"
+    last_reviewed_by: "antigravity"
+    last_reviewed_date: "20260314"
+    version: "1.0"
+    status: "active"
 lupopedia.footer:
   version: "4.0.74"
   last_verified: "20260313"

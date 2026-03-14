@@ -1,20 +1,28 @@
 # file: Lupopedia Version History — session: L-LUPO-ANTIGRAVITY — delegation: antigravity:cursor:captain  — web_path: http://www.lupopedia.com/docs/version
 ---
 lupopedia.headers:
-  lupopedia.version: "4.0.73"
+  lupopedia.version: "4.0.75"
   lupopedia.schema: "documentation"
   file_path_from_root: "lupo-docs/version.md"
-  last_modified_utc: "20260312"
-  system_version: "4.0.73"
+  last_modified_utc: "20260314"
+  system_version: "4.0.75"
   purpose: "Version history and upgrade notes for Lupopedia"
-  traits: ["versioning", "v4.0.73", "multi-agent", "evolution"]
+  traits: ["versioning", "v4.0.75", "multi-agent", "evolution"]
   tags: ["version", "changelog", "upgrade"]
 ---
 
 # Lupopedia version history
 
-Current version: **4.0.73**  
-Date: 2026-03-12
+Current version: **4.0.75**  
+Date: 2026-03-14
+
+## Summary of changes (4.0.75)
+
+- **Version bump:** Post–4.0.74 push to GitHub. All canonical version markers (LUPEDIA_VERSION, version.php, atoms, install wizard fallback, CHANGELOG, README, TODO, plan, AGENTS.md) updated to 4.0.75. No schema or behavioral changes.
+
+## Summary of changes (4.0.74)
+
+- **Documentation consolidation & architecture clarification:** 12-table install expansion, lupo_projects + seed_projects.sql wired, path normalization (lupo-* prefix; legacy/ exception), image paths (lupo-images/), table count 159, TOON/docs reconciliation. Pushed to GitHub as 4.0.74.
 
 ## Summary of changes (4.0.73)
 
@@ -60,6 +68,8 @@ Date: 2026-03-12
 
 ## Recent version history
 
+| **4.0.75** | 2026-03-14 | Version bump post–4.0.74 push; no schema changes. |
+| **4.0.74** | 2026-03-14 | 12-table expansion, lupo_projects, path/image normalization, docs reconciliation; pushed to GitHub. |
 | **4.0.73** | 2026-03-12 | Version 4.0.73 initialization, task consolidation, and upgrade path validation. |
 | **4.0.72** | 2026-03-12 | Version bump and finalization. |
 | **4.0.71** | 2026-03-12 | Synthesized Documentation Framework, semantic navbar backend, Session Model A. |

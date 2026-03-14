@@ -26,6 +26,22 @@ lupopedia.headers:
   tags: ["cursor", "migration", "schema", "doctrine"]
   source_path: ".cursor/rules/migration-doctrine.mdc"
 
+lupopedia.rules:
+  comment: "Rule declaration and provenance block"
+  declares:
+    - rule_id: "DB002"
+      rule_text: "Two-place schema changes, no direct DB, no scoop mysql, TOON source of truth"
+      scope: "all_agents"
+      category: "database"
+  imports: []
+  overrides: []
+  provenance:
+    authored_by: "wolfie"
+    authored_date: "20260314"
+    last_reviewed_by: "antigravity"
+    last_reviewed_date: "20260314"
+    version: "1.0"
+    status: "active"
 lupopedia.footer:
   version: "4.0.74"
   last_verified: "20260313"

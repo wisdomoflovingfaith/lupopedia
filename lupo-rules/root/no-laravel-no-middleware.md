@@ -26,6 +26,22 @@ lupopedia.headers:
   tags: ["cursor", "laravel", "middleware", "doctrine"]
   source_path: ".cursor/rules/no-laravel-no-middleware.mdc"
 
+lupopedia.rules:
+  comment: "Rule declaration and provenance block"
+  declares:
+    - rule_id: "ARC002"
+      rule_text: "This project does NOT use Laravel or any framework middleware. Plain PHP only"
+      scope: "all_agents"
+      category: "architecture"
+  imports: []
+  overrides: []
+  provenance:
+    authored_by: "wolfie"
+    authored_date: "20260314"
+    last_reviewed_by: "antigravity"
+    last_reviewed_date: "20260314"
+    version: "1.0"
+    status: "active"
 lupopedia.footer:
   version: "4.0.74"
   last_verified: "20260313"

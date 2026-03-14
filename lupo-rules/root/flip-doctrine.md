@@ -26,6 +26,22 @@ lupopedia.headers:
   tags: ["cursor", "headers", "doctrine", "lupopedia-headers"]
   source_path: ".cursor/rules/flip-doctrine.mdc"
 
+lupopedia.rules:
+  comment: "Rule declaration and provenance block"
+  declares:
+    - rule_id: "ARC001"
+      rule_text: "FLIP/FLARE have been replaced by LUPOPEDIA HEADERS formatting"
+      scope: "all_agents"
+      category: "headers"
+  imports: []
+  overrides: []
+  provenance:
+    authored_by: "wolfie"
+    authored_date: "20260314"
+    last_reviewed_by: "antigravity"
+    last_reviewed_date: "20260314"
+    version: "1.0"
+    status: "active"
 lupopedia.footer:
   version: "4.0.74"
   last_verified: "20260313"

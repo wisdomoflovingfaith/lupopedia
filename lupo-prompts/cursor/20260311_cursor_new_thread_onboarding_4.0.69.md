@@ -62,7 +62,7 @@ lupopedia.footer:
 |----------|------|--------|
 | 1 | **AGENTS.md** | Critical doctrines, database rules, timestamp rules, architecture, three SQL entrypoints, key directories, PDO_DB usage. |
 | 2 | **CHANGELOG.md** | Full 4.0.69 summary: dialog unification, LUPOPEDIA HEADERS, root rules, fallback, traits, identity/session/federation/edge doctrine, session validator, onboarding. |
-| 3 | **.cursor/rules/** | Root rules applied in Cursor (synced from `lupo-rules/root/*.md`). Run `php lupo-scripts/sync_root_rules_to_cursor.php` after editing root rules. |
+| 3 | **.cursor/rules/** | Root rules applied in Cursor (synced from `lupo-rules/root/*.md`). Run `php lupo-scripts/propagate_agent_rules.php` after editing root rules. |
 | 4 | **lupo-docs/architecture/cursor_actors_channels_semantic_architecture_4.0.69.md** | **Canonical architecture:** actors, channels, edges, semantic layer, installation path, fallback (MD/CSV when DB down), traits table, full table list. Supersedes brainstorm. |
 | 5 | **lupo-docs/doctrine/LUPOPEDIA_HEADERS/README.md** | Header format: `---` first, YAML blocks (`lupopedia.*`), then `---`, then identity line `# file: ...`, then body. Session in `lupopedia.session`; session files at `lupo-database/sessions/{session_id}.md`. |
 | 6 | **lupo-docs/doctrine/COMMUNICATION_DOCTRINE.md** | All communication uses **lupo_dialog_*** only. No `lupo_threads` or `lupo_messages`. |
@@ -107,7 +107,7 @@ lupopedia.footer:
 ## 6. Root rules and Cursor rules
 
 - **Root rules:** `lupo-rules/root/*.md`. Attached to actor_id 1; meta_type `root_rule`.
-- **Sync to Cursor:** After editing any file in `lupo-rules/root/`, run `php lupo-scripts/sync_root_rules_to_cursor.php` so `.cursor/rules/*.mdc` stay in sync.
+- **Sync to Cursor:** After editing any file in `lupo-rules/root/`, run `php lupo-scripts/propagate_agent_rules.php` so `.cursor/rules/*.mdc` stay in sync.
 
 ---
 
@@ -175,7 +175,7 @@ No Lupopedia→Lupopedia upgrade until 4.1.0.
 | **Channel 42** | Lupopedia Development (general) |
 | **Channel 42 thread** | `lupo-channels/42/threads/4.0.x/evolution_4_0_69.json` |
 | **Root rules** | `lupo-rules/root/README.md` |
-| **Sync root → Cursor** | `php lupo-scripts/sync_root_rules_to_cursor.php` |
+| **Sync root → Cursor** | `php lupo-scripts/propagate_agent_rules.php` |
 | **CLI** | `php lupo-bin/lupo.php` (whoami, doctor, help, rules, skills, messages, send) |
 | **Table count** | From TOON files after `python lupo-scripts/generate_toon_files.py`; ceiling 199, trigger 200+ |
 

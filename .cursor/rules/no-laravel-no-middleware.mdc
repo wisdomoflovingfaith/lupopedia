@@ -1,5 +1,5 @@
 ---
-description: This project does NOT use Laravel or any framework middleware. Plain PHP only.
+description: This project does NOT use Laravel or any framework middleware. Plain PHP only
 alwaysApply: true
 ---
 

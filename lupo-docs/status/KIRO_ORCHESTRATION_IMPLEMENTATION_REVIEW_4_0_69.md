@@ -383,5 +383,5 @@ python lupo-scripts/generate_toon_files.py
 php lupo-tools/flare_validate.php --check-headers
 
 # Root rules sync
-php lupo-scripts/sync_root_rules_to_cursor.php
+php lupo-scripts/propagate_agent_rules.php
 ```

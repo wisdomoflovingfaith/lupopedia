@@ -26,6 +26,22 @@ lupopedia.headers:
   tags: ["cursor", "versioning", "doctrine"]
   source_path: ".cursor/rules/versioning-doctrine-single-source.mdc"
 
+lupopedia.rules:
+  comment: "Rule declaration and provenance block"
+  declares:
+    - rule_id: "ARC005"
+      rule_text: "Only one versioning doctrine file exists. Always overwrite it; never create duplicates"
+      scope: "all_agents"
+      category: "versioning"
+  imports: []
+  overrides: []
+  provenance:
+    authored_by: "wolfie"
+    authored_date: "20260314"
+    last_reviewed_by: "antigravity"
+    last_reviewed_date: "20260314"
+    version: "1.0"
+    status: "active"
 lupopedia.footer:
   version: "4.0.74"
   last_verified: "20260313"

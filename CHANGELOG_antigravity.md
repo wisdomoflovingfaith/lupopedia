@@ -416,7 +416,7 @@ These confirm doctrine alignment and schema correctness.
 - `lupo-scripts/check_doc_schema_consistency.py` — Documentation ↔ schema verification.
 - `lupo-scripts/validate_session_consistency.php` — Session drift detection.
 - `lupo-scripts/session_custodian.php` — Optional session file audit/correct.
-- `lupo-scripts/sync_root_rules_to_cursor.php` — IDE rule synchronization.
+- `lupo-scripts/propagate_agent_rules.php` — IDE rule synchronization.
 
 #### Repository Strategy
 

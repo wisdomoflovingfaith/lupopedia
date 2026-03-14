@@ -1,5 +1,5 @@
 ---
-description: Lupopedia core code minimum PHP 5.6; no Composer/outside frameworks; no deprecated PHP 8+ syntax
+description: All Lupopedia core code must run on PHP 5.6 minimum through 8.x; no deprecated PHP 8+ syntax
 alwaysApply: true
 ---
 
@@ -8,25 +8,19 @@ alwaysApply: true
 
 All code must run on **PHP 5.6 minimum through PHP 8.x**. No Composer or outside frameworks that are not in `lupo-includes`. No deprecated functions that will not work in PHP 8+.
 
-## Runtime and dependencies
-
-- **Minimum PHP:** 5.6.
-- **No Composer** or external frameworks outside `lupo-includes` for core request path.
-- **No deprecated usage** that breaks in PHP 8+ (e.g. avoid deprecated signatures, removed functions, and legacy behaviors that are removed in 8+).
-
 ## Forbidden syntax (where not supported across 5.6–8.x)
 
-- **Short array (`[]`)** in core paths — Use `array()` for PHP 5.6 compatibility where project standard requires it.
 - **Null coalescing (`??`)** — Use `isset($x) ? $x : $default` where 5.6 compatibility is required.
-- **Arrow functions** — PHP 7.4+; avoid in shared core paths if 5.6 must be supported.
-- **Typed properties / return types / parameter types** — PHP 7+; do not use in core paths without explicit exception.
+- **Short array (`[]`)** in core paths — Use `array()` for PHP 5.6 compatibility.
+- **Arrow functions** — PHP 7.4+; avoid in shared core paths.
+- **Typed properties / return types / parameter types** — PHP 7+; do not use in core paths.
 - **Union types / enums** — PHP 8+; do not use.
 - **`declare(strict_types=1)`** — Do not use in core.
-- **`session_set_cookie_params([...])`** — Array form is PHP 7.3+; use the 5-argument form for 5.6.
+- **`session_set_cookie_params([...])`** — Array form is PHP 7.3+; use the 5-argument form for PHP 5.6.
 
 ## Required patterns
 
-- **Arrays:** Prefer `array(...)` in code that must run on PHP 5.6; never rely on short array syntax in those paths.
+- **Arrays:** Prefer `array(...)` in code that must run on PHP 5.6.
 - **Default / missing keys:** `isset($arr['key']) ? $arr['key'] : $default` where null coalescing is not acceptable.
 - **Session cookie params (5.6):** `session_set_cookie_params($lifetime, $path, $domain, $secure, $httponly);` — no `samesite` (PHP 7.3+).
 
@@ -38,6 +32,6 @@ All code must run on **PHP 5.6 minimum through PHP 8.x**. No Composer or outside
 ## Where this applies
 
 - All files in `lupo-includes/`, `admin.php`, `index.php`, theme layouts, and any file included in the main request path.
-- When editing existing code in those paths, preserve or apply PHP 5.6–compatible patterns and avoid deprecated PHP 8+ behavior.
+- When editing existing code in those paths, preserve or apply PHP 5.6–compatible patterns.
 
 This rule is permanent.

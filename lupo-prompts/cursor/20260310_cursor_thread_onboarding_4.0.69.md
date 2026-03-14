@@ -40,7 +40,7 @@ lupopedia.footer:
 |----------|------|--------|
 | 1 | **AGENTS.md** | Critical doctrines, database rules, timestamp rules, architecture, three SQL entrypoints, key directories, PDO_DB usage. |
 | 2 | **CHANGELOG.md** | Full 4.0.69 summary: dialog unification, LUPOPEDIA HEADERS, root rules, sync script, README/GitHub, Fallback & Actor–Faucet ontology, Human Actor ID. |
-| 3 | **.cursor/rules/** | Root rules applied in Cursor (synced from `lupo-rules/root/*.md`). All 16 .mdc files; run `php lupo-scripts/sync_root_rules_to_cursor.php` after editing root rules. |
+| 3 | **.cursor/rules/** | Root rules applied in Cursor (synced from `lupo-rules/root/*.md`). All 16 .mdc files; run `php lupo-scripts/propagate_agent_rules.php` after editing root rules. |
 | 4 | **lupo-docs/doctrine/LUPOPEDIA_HEADERS/README.md** | Header format: `---` first, YAML blocks (`lupopedia.*`), then `---`, then identity line `# file: ...`, then body. Session block in `lupopedia.session`; session files at `lupo-database/sessions/{session_id}.md`. |
 | 5 | **lupo-docs/doctrine/COMMUNICATION_DOCTRINE.md** | All communication uses **lupo_dialog_*** only (`lupo_dialog_channels`, `lupo_dialog_threads`, `lupo_dialog_messages`). No `lupo_threads` or `lupo_messages`. |
 | 6 | **lupo-docs/doctrine/ActorFaucetOntology.md** | Actor = identity, rules, skills (e.g. Wolfie). Faucet = execution surface (Cursor, Kiro, OpenAI API). **IDE agents are faucets, not actors.** Fallback routes between faucets. `lupo_agent_faucets.faucet_class` = `ide` or `llm`. |
@@ -80,7 +80,7 @@ lupopedia.footer:
 
 - **Root rules** (all IDE/code-writing agents): `lupo-rules/root/*.md` (17 files including README). Attached to actor_id 1 via `seed_actor_1_cursor_rules_4.0.68.sql` (meta_type `root_rule`, paths `lupo-rules/root/*.md`).
 - **Cursor IDE rules:** `.cursor/rules/*.mdc` are synced **from** `lupo-rules/root/*.md`. After editing any file in `lupo-rules/root/`, run:  
-  `php lupo-scripts/sync_root_rules_to_cursor.php`  
+  `php lupo-scripts/propagate_agent_rules.php`  
   so Cursor applies the updated text.
 
 ---
@@ -146,7 +146,7 @@ Fresh install: install SQL then seeds. Upgrade from Crafty: install SQL, seeds, 
 - **Session identity:** L-LUPO-ROOT-CURSOR (example)
 - **Channel 42 thread:** `lupo-channels/42/threads/4.0.x/evolution_4_0_69.json`
 - **Root rules index:** `lupo-rules/root/README.md`
-- **Sync root → Cursor:** `php lupo-scripts/sync_root_rules_to_cursor.php`
+- **Sync root → Cursor:** `php lupo-scripts/propagate_agent_rules.php`
 - **CLI:** `php lupo-bin/lupo.php` (whoami, doctor, help, rules, skills, messages, send)
 - **Table count:** From TOON files after `python lupo-scripts/generate_toon_files.py`; doc ceiling 199 tables, optimization trigger 200+.
 

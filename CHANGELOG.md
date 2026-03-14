@@ -26,10 +26,10 @@ lupopedia.comments:
   - { comment_id: 2, channel_id: 42, actor_id: 102, actor_name: "cursor", faucet_id: 102, faucet_name: "cursor", comment_text: "Second example comment for 4.0.73 to demonstrate multiple comment records in the lupopedia.comments block.", comment_type: "comment", created_ymdhis: 20260313151500, updated_ymdhis: 20260313151500 }
 
 lupopedia.headers:
-  lupopedia.version: "4.0.74"
+  lupopedia.version: "4.0.75"
   lupopedia.schema: "documentation"
   file_path_from_root: "CHANGELOG.md"
-  system_version: "4.0.74"
+  system_version: "4.0.75"
   last_modified_utc: "20260314"
   channel_id: 42
   actor_id: 1
@@ -52,12 +52,12 @@ lupopedia.edges:
  
 lupopedia.footer:
   archive_note: "For historical changelog entries from 4.0.67 and earlier, see CHANGELOG_ARCHIVE.md"
-  version: "4.0.74"
+  version: "4.0.75"
   last_verified: "20260314"
   last_verified_by: "codex"
   orchestrator: "wolfie"
   next_action:
-    - "Add next_action to any new 4.0.74 subsection entries"
+    - "Add next_action to any new 4.0.75 subsection entries"
     - "Verify version and last_verified align with release"
     - "Keep required reading and doctrine links current"
 ---
@@ -73,6 +73,58 @@ Older entries (≤4.0.67) are archived in [CHANGELOG_ARCHIVE.md](CHANGELOG_ARCHI
 ## Version History
 
 ---
+
+## 4.0.75 — rules and updates to governance
+
+**Release Date:** 2026-03-14
+
+Version bump following 4.0.74 push to GitHub. All canonical version markers, atoms (`GLOBAL_CURRENT_LUPOPEDIA_VERSION`), `LUPEDIA_VERSION`, `version.php`, install wizard fallback, CHANGELOG, README, TODO, plan, and `lupo-docs/version.md` updated to 4.0.75. No schema or behavioral changes.
+
+#### Canonical Lupopedia Rules System & IDE Rule Propagation
+- **Root Rules Hardened**: Rewrote all 12 root rules in `lupo-rules/root/*.md` to use the new `lupopedia.rules` block. Each rule is explicitly tracked with a unique ID (e.g., `DB001`, `ARC002`), clear constraints, categories, and full provenance tracking.
+- **Rule Propagation Pipeline**: Converted propagation logic to support `.cursor/`, `.kiro/`, and `.idea/` workflows. Created `lupo-scripts/propagate_agent_rules.php` generating IDE-specific XML/JSON/MDC outputs, ensuring all IDE agents strictly follow canonical Lupopedia root rules.
+- **Doctrine Consolidation**: Replaced mentions of the outdated `sync_root_rules_to_cursor.php` script with the IDE-agent agnostic `propagate_agent_rules.php` across Markdown documents. Fixed assumptions that Cursor acts as the sole target for rules.
+- **Contextual Operations Architecture**: Authored and propagated three new rules targeting multi-agent context:
+  - `ACT001`: IDE Agent Identity, Auth Users, and Actor Pairing
+  - `CTX001`: Context Boundaries (Channels, Federation & L-LUPO Offline Sessions)
+  - `DB008`: Database Offline Fallback and Filesystem Sync
+
+#### JetBrains (Codex) Rules Import Hardening (4.0.75)
+- **Canonical Research Completed:** Reviewed `lupo-rules/root/` (15 rule files), `.kiro/specs/kiro-rules-import/*`, existing `.kiro/lupopedia_rules.json`, existing `.idea/lupopedia_rules.xml`, AGENTS.md, and root/docs references before implementation.
+- **Propagation Parser Hardened:** Refactored `lupo-scripts/propagate_agent_rules.php` to parse `lupopedia.rules` from frontmatter deterministically (without relying on `lupopedia.footer` markers), with warning-based handling for malformed or missing rule fields.
+- **JetBrains Target Isolation Added:** Added explicit target dispatch with `--target=idea` and `--target=jetbrains` (alias), while preserving `all`, `cursor`, and `kiro` behavior. JetBrains target writes only `.idea` artifacts.
+- **JetBrains XML Output Expanded:** `.idea/lupopedia_rules.xml` now includes rule provenance and metadata fields (`source_path`, `category`, `status`) in addition to `id`, `text`, `enforcement`, and `scope`, with XML-escaped deterministic output.
+- **Coverage Fix Validated:** JetBrains propagation now emits all 15 canonical rules (including `ACT001`, `CTX001`, and `DB008`) with command output: `Processed 15 root files; parsed 15 rules; warnings: 0; target: idea`.
+- **Kiro Compatibility Alignment:** Shared root parsing and common rule struct fields remain aligned with Kiro (`id`, `text`, `enforcement`, `scope`); target-specific output format differences are preserved (`.kiro/*.json` vs `.idea/*.xml`).
+
+#### Cursor Rules Import and Propagation (4.0.75)
+- **Canonical Research Completed:** Reviewed all 15 root rules in `lupo-rules/root/`, `.kiro/specs/kiro-rules-import/design.md` and `requirements.md`, existing `.cursor/` and `.kiro/` artifacts, CHANGELOG.md (Antigravity/Kiro/JetBrains/Windsurf work), and `lupo-scripts/propagate_agent_rules.php` before implementation. Confirmed root rules as single source of truth; Cursor artifacts are derived outputs only.
+- **Propagation Pipeline Hardened for Cursor:** Extended `write_cursor_outputs()` so `.cursor/lupopedia_rules.json` includes `source_path` and `slug` for each rule (provenance and enforcement test). `--target=cursor` already existed; Cursor target writes only to `.cursor/` and does not modify `.kiro/`, `.idea/`, or `.windsurf/`.
+- **Cursor Artifacts Regenerated:** Propagation run emits all 15 canonical rules (including ACT001, CTX001, DB008) to `.cursor/lupopedia_rules.json` and `.cursor/rules/<slug>.mdc`. Output is deterministic and fully regenerated on each run.
+- **Cursor Documentation:** Added `.cursor/README.md` with LUPOPEDIA HEADERS documenting canonical source (`lupo-rules/root/`), propagation command (`php lupo-scripts/propagate_agent_rules.php --target=cursor`), relationship to Kiro/Windsurf/JetBrains, and validation command.
+
+#### Root README update for 4.0.75 (cross-agent review)
+- **Cross-Agent Review:** Cursor reviewed CHANGELOG 4.0.75, Antigravity TOON path and .htaccess report, Kiro rules-import specs, and current agent propagation state before editing README.
+- **README.md:** Updated root README to version 4.0.75; added **Canonical root rules** section (`lupo-rules/root/` as source of truth, all agents must follow, derived outputs only); added **New agent / web terminal agent onboarding** (must create and register actor, adopt root rules, no anonymous participation); added **Doctrine reminder** under Architecture (install SQL authoritative, TOON at `lupo-database/lupopedia/toon/`, no FKs/procedures, BIGINT UTC, etc.); aligned TOON path and `lupo-database/` security with Antigravity report. See [CURSOR_README_CROSS_AGENT_UPDATE_4_0_75.md](lupo-docs/status/CURSOR_README_CROSS_AGENT_UPDATE_4_0_75.md).
+
+#### Actor registration checklist (4.0.75)
+- **Canonical checklist added:** Cursor created [lupo-docs/ACTOR_REGISTRATION_CHECKLIST.md](lupo-docs/ACTOR_REGISTRATION_CHECKLIST.md) derived from TOON files (`lupo_actors.toon.json`), install SQL, seed files (`seed_actors_agents_4.0.45.sql`), and the actor registry (`lupo-database/lupopedia/actors/actor_id/registry.json`). The checklist defines who must register (new IDE agent, new web terminal agent), prerequisites (root rules, ACT001, reserved-id doctrine), identity fields, Step 1 (registry update, required), Step 2 (DB persistence when available), Step 3 (lupo-database fallback when DB unavailable, including optional CSV rehydration), and Step 4 (validation) with an activation boundary.
+- **Fallback documented:** Checklist explicitly documents that when the live database is unavailable, registration is recorded in the registry file and optionally in `lupo-database/lupopedia/csv/lupo_actors.csv` in TOON-aligned structure for later rehydration; install SQL remains authoritative.
+- **Root docs updated:** README.md “New agent onboarding” now points to the checklist; footer/next_actions consolidated and reference the checklist. AGENTS.md given a prominent link to the checklist and an outbound edge; existing Antigravity/Kiro/Windsurf/JetBrains entries unchanged.
+
+#### Documentation hardening — Actor Registration Checklist (Lilith review integration, 4.0.75)
+- **Canonical Actor Registration Checklist finalized:** Integrated Lilith review improvements (rated 9/10 completeness) into [lupo-docs/ACTOR_REGISTRATION_CHECKLIST.md](lupo-docs/ACTOR_REGISTRATION_CHECKLIST.md). Checklist verified against install SQL (`lupo_actors`: actor_name PRIMARY KEY, actor_id UNIQUE), TOON (`lupo_actors.toon.json`), and actor registry format (`registry.json`).
+- **Improvements integrated:** (1) **actor_name generation guidance** — naming conventions table (IDE Agent `{slug}-ide`, System Tool `tool-{slug}`, Web Terminal `terminal-{slug}`, Human `user-{id}`) and rules (lowercase, hyphens, no spaces, no special characters). (2) **Troubleshooting section** — table for duplicate actor_id/actor_name, registry-not-committed, DB offline, paired_actor_id failures. (3) **Automation note** after Step 2 — run `php lupo-scripts/propagate_agent_rules.php --target=<your-agent>` to generate IDE rule files. (4) **actor_id vs actor_name clarification** — PRIMARY KEY (semantic identifier) vs UNIQUE actor_id (numeric identifier); 1:1 mapping. (5) **Rule ID quick reference** — ACT001, DB001, DB002, DB006, DB008 with document names and one-line summaries.
+- **Checklist structure:** Restructured to final section order: Who must register → Prerequisites → Identity fields → Generating actor_name → Step 1 Registry → Step 2 DB (+ automation note) → Step 3 Fallback → Step 4 Validation → Troubleshooting → Activation boundary → Summary → References → Rule ID quick reference.
+- **README.md:** next_action list consolidated (removed duplicate bullets); continues to point to Required Reading, lupo-rules/root/, and ACTOR_REGISTRATION_CHECKLIST.md. README and AGENTS.md reference the checklist for agent onboarding.
+
+#### Antigravity / Google Rules Propagation Hardening (4.0.75)
+- **Canonical Research Completed:** Researched `lupo-rules/root/` (15 total rules including new Contextual rules) and compared `.kiro`, `.cursor`, and `.windsurf` outputs. Confirmed no isolated `.google` or `.antigravity` target is justified by repository evidence, pivoting to shared pipeline hardening and documentation alignment.
+- **Shared Propagation Hardened:** Extended `lupo-scripts/propagate_agent_rules.php` to include `source_path`, `slug`, `category`, and `status` in the generated `.kiro/lupopedia_rules.json` and `.windsurf/lupopedia_rules.json` to ensure full structural parity with Cursor outputs.
+- **Kiro Implementation Gap Closed:** Implemented the `.kiro/rules/*.md` generation and `.kiro/README.md` fallback index mapping explicitly requested within Kiro's design document but previously unimplemented in the codebase.
+- **Validation Pipeline Built:** Created `lupo-tests/unit/kiro_rules_enforcement.php` matching the structural integrity tests of `cursor_rules_enforcement.php` strictly enforcing the presence of corresponding rules and slugs in Kiro config. Validated PASS status for both environments.
+- **TOON Source Path Unified:** Resolved `lupo-docs/toons/` drift by strictly mapping `lupo-scripts/generate_toon_from_sql.py` directly back to the canonical `lupo-database/lupopedia/toon/` output directory. Documented explicit intent inside updated `lupo-rules/root/toon-source-of-truth.md` (re-propagated globally). Removed dead `lupo-docs/toons` output footprint.
+- **lupo-database HTACCESS Hardened:** Instantiated strict `.htaccess` Apache protections utilizing 2.2 (`Deny from all`) and 2.4 (`Require all denied`) syntax preventing local schema JSON, SQL, and generation internals from downloading via naked HTTP requests. Tested PHP core functionality to ensure `fopen/include` abilities natively remain functional.
 
 ## 4.0.74 — Documentation Consolidation & Architecture Clarification
 
@@ -573,7 +625,7 @@ These confirm doctrine alignment and schema correctness.
 - `lupo-scripts/check_doc_schema_consistency.py` — Documentation ↔ schema verification.
 - `lupo-scripts/validate_session_consistency.php` — Session drift detection.
 - `lupo-scripts/session_custodian.php` — Optional session file audit/correct.
-- `lupo-scripts/sync_root_rules_to_cursor.php` — IDE rule synchronization.
+- `lupo-scripts/propagate_agent_rules.php` — IDE rule synchronization.
 
 #### Repository Strategy
 

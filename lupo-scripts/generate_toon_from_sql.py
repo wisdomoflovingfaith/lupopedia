@@ -125,7 +125,7 @@ def main() -> int:
     base = Path(__file__).resolve().parent
     project_root = base.parent
     install_sql = project_root / "lupo-database" / "lupopedia" / "mysql" / "install" / "install_new_lupopedia.sql"
-    output_dir = project_root / "lupo-docs" / "toons"
+    output_dir = project_root / "lupo-database" / "lupopedia" / "toon"
 
     if not install_sql.exists():
         print("install_new_lupopedia.sql not found:", install_sql, file=sys.stderr)

@@ -26,6 +26,22 @@ lupopedia.headers:
   tags: ["cursor", "install", "4.0.x", "doctrine", "migration"]
   source_path: ".cursor/rules/single-install-no-4.0-upgrade-doctrine.mdc"
 
+lupopedia.rules:
+  comment: "Rule declaration and provenance block"
+  declares:
+    - rule_id: "ARC004"
+      rule_text: "No Lupopedia to Lupopedia upgrade until 4.1.0; all schema in install plus seed"
+      scope: "all_agents"
+      category: "installation"
+  imports: []
+  overrides: []
+  provenance:
+    authored_by: "wolfie"
+    authored_date: "20260314"
+    last_reviewed_by: "antigravity"
+    last_reviewed_date: "20260314"
+    version: "1.0"
+    status: "active"
 lupopedia.footer:
   version: "4.0.74"
   last_verified: "20260313"

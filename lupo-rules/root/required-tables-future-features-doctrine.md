@@ -26,6 +26,22 @@ lupopedia.headers:
   tags: ["cursor", "tables", "migrations", "doctrine"]
   source_path: ".cursor/rules/required-tables-future-features-doctrine.mdc"
 
+lupopedia.rules:
+  comment: "Rule declaration and provenance block"
+  declares:
+    - rule_id: "DB005"
+      rule_text: "Required-tables split, future_features_lupopedia.sql is canonical for non-required tables"
+      scope: "all_agents"
+      category: "schema"
+  imports: []
+  overrides: []
+  provenance:
+    authored_by: "wolfie"
+    authored_date: "20260314"
+    last_reviewed_by: "antigravity"
+    last_reviewed_date: "20260314"
+    version: "1.0"
+    status: "active"
 lupopedia.footer:
   version: "4.0.74"
   last_verified: "20260313"

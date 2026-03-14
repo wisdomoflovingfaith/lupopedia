@@ -1,5 +1,5 @@
 ---
-description: Tables with reserved IDs must not use AUTO_INCREMENT; code must supply explicit IDs and never use lastInsertId() for these tables
+description: Tables with reserved IDs must not use AUTO_INCREMENT; code must supply explicit IDs
 alwaysApply: true
 ---
 
@@ -52,7 +52,7 @@ if ($exists) {
 - **Actor creation logic** (lupo_actors)
 - **Channel creation logic** (lupo_channels)
 - **User / auth creation logic** (lupo_auth_users)
-- **Admin UI** that creates actors/channels/users
+- **Admin UI** that creates lupo-actors/channels/users
 - **API endpoints** that insert into these tables
 - **Seed logic** that inserts system rows
 - **Importer logic** that inserts Crafty Syntax rows (preserve original IDs)
@@ -67,7 +67,7 @@ Tables that use explicit non-auto IDs (e.g. `lupo_actor_properties`, `lupo_uploa
 ## Installer / importer / seed
 
 - The **importer** inserts Crafty Syntax users (and related rows) with their **original IDs**.
-- The **installer** inserts system actors/channels with **reserved IDs** from the registry.
+- The **installer** inserts system lupo-actors/channels with **reserved IDs** from the registry.
 - The **seed** file inserts system channels and entities with **reserved IDs**.
 - Do **NOT** "fix" or "normalize" these IDs; preserve them exactly.
 

@@ -1,5 +1,5 @@
 ---
-description: No Lupopedia→Lupopedia upgrade until 4.1.0. All 4.0.x from Crafty 3.7.5 only; all schema in install + seed; consolidate 4.0.x migrations into install; no backwards compatibility between 4.0.x.
+description: No Lupopedia to Lupopedia upgrade until 4.1.0; all schema in install plus seed
 alwaysApply: true
 ---
 
@@ -23,7 +23,7 @@ Cursor MUST follow this doctrine for all 4.0.x development. There is exactly one
 
 ## Consolidate 4.0.x migrations into install
 
-- **Migrations that were written for 4.0.x** (e.g. in `database/migrations/` or `lupo-database/.../migrations/`) MUST be **consolidated into the install SQL**.
+- **Migrations that were written for 4.0.x** (e.g. in `lupo-database/migrations/` or `lupo-database/.../migrations/`) MUST be **consolidated into the install SQL**.
 - The install SQL must contain the **entire current schema** so that a fresh install (Crafty 3.7.5 → run install → run seed) produces the same schema as the current code expects.
 - One-time migration files created during 4.0.x development are historical; their **content** (tables, columns, indexes) belongs in the install SQL. Do not require users or the wizard to run those migration files for a valid 4.0.x install.
 

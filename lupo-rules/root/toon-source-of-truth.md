@@ -26,6 +26,22 @@ lupopedia.headers:
   tags: ["cursor", "toon", "schema", "doctrine"]
   source_path: ".cursor/rules/toon-source-of-truth.mdc"
 
+lupopedia.rules:
+  comment: "Rule declaration and provenance block"
+  declares:
+    - rule_id: "DB007"
+      rule_text: "TOON files are derived from canonical schema; canonical schema comes from install SQL"
+      scope: "all_agents"
+      category: "schema"
+  imports: []
+  overrides: []
+  provenance:
+    authored_by: "wolfie"
+    authored_date: "20260314"
+    last_reviewed_by: "antigravity"
+    last_reviewed_date: "20260314"
+    version: "1.0"
+    status: "active"
 lupopedia.footer:
   version: "4.0.74"
   last_verified: "20260313"

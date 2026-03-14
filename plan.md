@@ -35,12 +35,12 @@ lupopedia.metadata:
     - { schema_ref: "lupo_metadata", entity_type: "file", meta_type: "property", property_value: "cursor", channel_id: 42, class_name: "lupopedia_metadata", created_ymdhis: 20260314000000, updated_ymdhis: 20260314000000 }
 
 lupopedia.headers:
-  lupopedia.version: "4.0.74"
+  lupopedia.version: "4.0.75"
   lupopedia.schema: "plan"
   file_path_from_root: "plan.md"
   web_path: "http://www.lupopedia.com/plan"
   last_modified_utc: "20260314"
-  system_version: "4.0.74"
+  system_version: "4.0.75"
   channel_id: 42
   actor_id: 102
   actor_name: "cursor"
@@ -71,19 +71,19 @@ lupopedia.edges:
   semantic_tags: ["plan", "implementation", "consolidated", "cursor_lead"]
 
 lupopedia.footer:
-  version: "4.0.74"
+  version: "4.0.75"
   last_verified: "20260314"
   last_verified_by: "cursor"
   orchestrator: "cursor"
   next_action:
-    - "Captain/Wolfie: run upgrade path test (drop all tables → load Crafty 3.7.5 → upgrade to 4.0.74)"
+    - "Captain/Wolfie: run upgrade path test (drop all tables → load Crafty 3.7.5 → upgrade to 4.0.75)"
     - "Coordinate with Kiro, Windsurf, Codex, Antigravity on domain ownership"
     - "Merge approved faucet-plan items into this plan as phases complete"
     - "Reconcile TOON output path if needed (install SQL remains authoritative; TOONs are derived)"
 
 lupopedia.next_actions:
   next_actions:
-    - "Captain/Wolfie: test upgrade path — drop all DB tables, load Crafty Syntax 3.7.5 install, run Lupopedia installer to upgrade to 4.0.74; record results in plan.md and report.md"
+    - "Captain/Wolfie: test upgrade path — drop all DB tables, load Crafty Syntax 3.7.5 install, run Lupopedia installer to upgrade to 4.0.75; record results in plan.md and report.md"
     - "Coordinate with Kiro, Windsurf, Codex, Antigravity on domain ownership"
     - "Merge approved faucet-plan items into this plan as phases complete"
     - "Align lupopedia.init and lupopedia.next_actions usage across repo (P1)"
@@ -95,12 +95,25 @@ lupopedia.next_actions:
 
 **Lead orchestration:** Cursor IDE (actor_id 102)  
 **Supporting actor:** Wolfie (actor_id 1)  
-**Version:** 4.0.74  
+**Version:** 4.0.75  
 **Source:** Consolidated from `plan_kiro.md`, `plan_windsurf.md`, `plan_codex.md`
 
 This is the **root** implementation plan. Faucet-specific plans remain in `plan_kiro.md`, `plan_windsurf.md`, `plan_codex.md` (and `plan_antigravity.md` if present). Cursor as lead orchestration maintains this file and merges approved items from faucet plans.
 
 ---
+
+## 4.0.75 Cursor rules propagation (verified)
+
+- **Cursor rule propagation:** `lupo-scripts/propagate_agent_rules.php --target=cursor` writes `.cursor/lupopedia_rules.json` (with `source_path`, `slug` per rule) and `.cursor/rules/<slug>.mdc`. All 15 canonical root rules propagated. `.cursor/README.md` documents source, command, and validation. Enforcement test: `php lupo-tests/unit/cursor_rules_enforcement.php`.
+
+## 4.0.75 Antigravity rules propagation hardening (verified)
+
+- **Root rule review:** Verified 15 canonical rules inside `lupo-rules/root/`. No `.google` target directory justified natively within the repository; validated existing `.kiro`, `.cursor`, and `.windsurf` scopes.
+- **Shared Propagation Hardening:** Standardized `source_path`, `slug`, `category`, and `status` variables securely into `.kiro/lupopedia_rules.json` and `.windsurf/lupopedia_rules.json`.
+- **Kiro Gap Fixed:** Successfully established unimplemented `.kiro/rules/*.md` LUPOPEDIA HEADERS writing behavior requested in Kiro's design instructions via `write_kiro_outputs()` in `lupo-scripts/propagate_agent_rules.php`.
+- **Validation Execution:** Instituted strict structural validation using `php lupo-tests/unit/kiro_rules_enforcement.php`. All agents generated deterministic files properly matching target contexts.
+- **TOON Output Consolidated:** Re-wired `.lupo-scripts/generate_toon_from_sql.py` away from the drifting `lupo-docs/toons/` to universally point straight to the operational documentation directory natively at `lupo-database/lupopedia/toon`. Removed `lupo-docs/toons/` logic completely. 
+- **Database .htaccess Protections:** Generated robust shared-host appropriate blocking rules wrapped in standard Apache 2.2/2.4 context blocking all naked HTTP requests to internal SQL, JSON, and structure components within `lupo-database/` implicitly protecting children generated targets natively.
 
 ## 4.0.74 implemented (verified)
 

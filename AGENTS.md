@@ -1,11 +1,11 @@
 ---
 lupopedia.headers:
-  lupopedia.version: "4.0.74"
+  lupopedia.version: "4.0.75"
   lupopedia.schema: "documentation"
   file_path_from_root: "AGENTS.md"
   web_path: "http://www.lupopedia.com/AGENTS"
   last_modified_utc: "20260314"
-  system_version: "4.0.74"
+  system_version: "4.0.75"
   channel_id: 42
   actor_id: 102
   actor_name: "cursor"
@@ -13,14 +13,15 @@ lupopedia.headers:
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Guide for all IDE faucets and agents; Cursor IDE is lead orchestration actor with Wolfie as supporting actor"
-  traits: ["canonical", "comprehensive", "v4.0.74", "agents", "lead_orchestration"]
+  traits: ["canonical", "comprehensive", "v4.0.75", "agents", "lead_orchestration"]
   tags: ["agents", "cursor", "ide_faucets", "documentation", "doctrine", "architecture"]
   agent_name_identity: "Cursor IDE Agent (Lead Orchestration)"
   lupo_agent: "cursor"
 
 lupopedia.edges:
   outbound_edges:
-    - { to: "lupo-docs/status/AGENT_IDENTITY_REGISTRY_4.0.57.md", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/ACTOR_REGISTRATION_CHECKLIST.md", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/status/AGENT_IDENTITY_REGISTRY_4.0.57.md", type: "references", weight: 0.95 }
     - { to: "lupo-docs/doctrine/LUPOPEDIA_HEADERS/README.md", type: "references", weight: 1.0 }
     - { to: "lupo-database/lupopedia/actors/actor_id/registry.json", type: "references", weight: 0.9 }
     - { to: "lupo-docs/status/LILITH_FLAME_FAUCET_REPORT.md", type: "references", weight: 0.8 }
@@ -35,7 +36,7 @@ lupopedia.see:
     - ["AGENTS.md", "http://www.lupopedia.com/AGENTS"]
 
 lupopedia.footer:
-  version: "4.0.74"
+  version: "4.0.75"
   last_verified: "20260314"
   last_verified_by: "cursor"
   orchestrator: "cursor"
@@ -49,6 +50,8 @@ lupopedia.footer:
 # AGENTS.md
 
 This file provides guidance for **all IDE agents and faucets** (Cursor, Windsurf, Kiro, Antigravity, Warp, Cascade, Codex) when working with this repository. **Cursor IDE** (actor_id 102) is the **lead orchestration actor**; **Wolfie** (actor_id 1) is the **supporting actor**. Resolve actor and faucet IDs from the canonical registry; see [Lead orchestration and IDE faucets](#lead-orchestration-and-ide-faucets) below.
+
+**New IDE or web terminal agent?** You must register as an actor before participating. Follow the step-by-step **[Actor Registration Checklist](lupo-docs/ACTOR_REGISTRATION_CHECKLIST.md)** (derived from TOON/database and `lupo-database` fallback). The checklist covers registry update, database or fallback persistence, and validation. Do not contribute as an anonymous or unregistered agent.
 
 ## What This Project Is
 
