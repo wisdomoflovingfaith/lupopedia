@@ -25,12 +25,12 @@ lupopedia.metadata:
     - { schema_ref: "lupo_metadata", entity_type: "file", meta_type: "property", property_value: "cursor", channel_id: 42, class_name: "lupopedia_metadata", created_ymdhis: 20260313000000, updated_ymdhis: 20260313000000 }
 
 lupopedia.headers:
-  lupopedia.version: "4.0.75"
+  lupopedia.version: "4.0.76"
   lupopedia.schema: "documentation"
   file_path_from_root: "README.md"
   web_path: "http://www.lupopedia.com/"
-  last_modified_utc: "20260314"
-  system_version: "4.0.75"
+  last_modified_utc: "20260315"
+  system_version: "4.0.76"
   channel_id: 42
   actor_id: 102
   actor_name: "cursor"
@@ -40,8 +40,8 @@ lupopedia.headers:
   artifact_kind: "documentation"
   purpose: "Primary project documentation and onboarding — Install & upgrade validation, canonical root rules, actor registration, lupo-channels/actors/agents"
   mood_rgb: "4169E1"
-  traits: ["essential", "entrypoint", "onboarding", "v4.0.75"]
-  tags: ["readme", "getting_started", "semantic_os", "multi_agent", "root_rules", "v4.0.75"]
+  traits: ["essential", "entrypoint", "onboarding", "v4.0.76"]
+  tags: ["readme", "getting_started", "semantic_os", "multi_agent", "root_rules", "v4.0.76"]
 
 lupopedia.session:
   session_id: "L-LUPO-ROOT-CURSOR"
@@ -68,25 +68,25 @@ lupopedia.edges:
   semantic_tags: ["project_overview", "onboarding", "semantic_os", "multi_agent", "root_rules"]
 
 lupopedia.footer:
-  version: "4.0.75"
-  last_verified: "20260314"
+  version: "4.0.76"
+  last_verified: "20260315"
   last_verified_by: "cursor"
   orchestrator: "cursor"
   next_action:
     - "Point new contributors to Required Reading (INIT_README, LUPOPEDIA_HEADERS), lupo-rules/root/, and actor registration checklist (lupo-docs/ACTOR_REGISTRATION_CHECKLIST.md)"
-    - "Keep Getting Started and install steps aligned with 4.0.75"
+    - "Keep Getting Started and install steps aligned with 4.0.76"
     - "Review actor/faucet and registration guidance when doctrine paths change"
 ---
 # file: Lupopedia README — session: L-LUPO-ROOT-CURSOR — delegation: cursor:root — web_path: http://www.lupopedia.com/
 
-# Lupopedia Semantic OS v4.0.75
+# Lupopedia Semantic OS v4.0.76
 
-[![Version](https://img.shields.io/badge/version-4.0.75-blue.svg)](lupo-docs/version.md)
+[![Version](https://img.shields.io/badge/version-4.0.76-blue.svg)](lupo-docs/version.md)
 [![docs](https://img.shields.io/badge/docs-HELP.md-green)](lupo-docs/HELP.md)
 
 ---
 
-**Current Release: [v4.0.75](lupo-docs/version.md)** — Rules and governance updates: **canonical root rules** in `lupo-rules/root/`, IDE rule propagation (Cursor, Kiro, Windsurf, JetBrains), TOON path unified to `lupo-database/lupopedia/toon/`, `lupo-database/` security hardening, and **Antigravity VSX Extension** integration (including full LUPOPEDIA HEADERS terminology adoption and feature UI scaffolding). The only supported upgrade path is **Crafty Syntax 3.7.5 → Lupopedia 4.0.x**. See [plan.md](plan.md) and [report.md](report.md).
+**Current version: [v4.0.76](lupo-docs/version.md)** (active development). **Released: [v4.0.75](lupo-docs/version.md).** Rules and governance updates: **canonical root rules** in `lupo-rules/root/`, IDE rule propagation (Cursor, Kiro, Windsurf, JetBrains), TOON path unified to `lupo-database/lupopedia/toon/`, `lupo-database/` security hardening, and **Antigravity VSX Extension** integration (including full LUPOPEDIA HEADERS terminology adoption and feature UI scaffolding). The only supported upgrade path is **Crafty Syntax 3.7.5 → Lupopedia 4.0.x**. See [plan.md](plan.md) and [report.md](report.md).
 
 **Canonical root rules:** All agents and actors must follow the doctrine in **`lupo-rules/root/`**. Agent-specific rule files (e.g. `.cursor/rules/`, `.kiro/rules/`, `.windsurf/rules/`) are **derived** from those root rules; the root is the single source of truth. See [Canonical root rules](#canonical-root-rules) and [New agent onboarding](#new-agent--web-terminal-agent-onboarding).
 
@@ -244,7 +244,7 @@ This is one of the most important parts of Lupopedia. **LUPOPEDIA HEADERS** are 
 Lupopedia organizes itself via directories with the `lupo-` prefix: `/lupo-api`, `/lupo-uploads`, `/lupo-channels`, `/lupo-agents`, `/lupo-actors`, `/lupo-docs`, `/lupo-prompts`, and related `lupo-*` folders. These hold artifacts for documentation, channel content, agent/session data, uploaded objects, semantic references, and registry material. The **`legacy/`** folder is the intentional exception: it holds legacy read-only code (e.g. Crafty Syntax reference) and is not renamed to `lupo-legacy`.
 
 **Database domains:**
-The database schema is defined in `lupo-database/lupopedia/mysql/install/install_new_lupopedia.sql` — **install SQL is the authoritative schema source**. TOON files are **derived artifacts** (do not edit by hand); they are generated into `lupo-database/lupopedia/toon/` by `python lupo-scripts/generate_toon_from_sql.py` or `python lupo-scripts/generate_toon_files.py`. The former path is canonical (no longer `lupo-docs/toons/`). Canonical table count: **159** as of 4.0.75 (see [TABLE_COUNT_DOCTRINE](lupo-docs/doctrine/TABLE_COUNT_DOCTRINE.md)); table ceiling is advisory only. Domains include identity (`lupo_actors`, `lupo_auth_users`), orchestration (`lupo_agents`, `lupo_agent_faucets`), projects (`lupo_projects`), collaboration (`lupo_channels`, `lupo_dialog_messages`), semantics (`lupo_metadata`, `lupo_edges`, `lupo_collections`), telemetry (`lupo_sessions`), federation, and legacy migration. The `lupo-database/` directory is protected from direct web access (e.g. `.htaccess` hardening) so that schema and seed assets are not served over HTTP.
+The database schema is defined in `lupo-database/lupopedia/mysql/install/install_new_lupopedia.sql` — **install SQL is the authoritative schema source**. TOON files are **derived artifacts** (do not edit by hand); they are generated into `lupo-database/lupopedia/toon/` by `python lupo-scripts/generate_toon_from_sql.py` or `python lupo-scripts/generate_toon_files.py`. The former path is canonical (no longer `lupo-docs/toons/`). Canonical table count: **159** as of 4.0.76 (see [TABLE_COUNT_DOCTRINE](lupo-docs/doctrine/TABLE_COUNT_DOCTRINE.md)); table ceiling is advisory only. Domains include identity (`lupo_actors`, `lupo_auth_users`), orchestration (`lupo_agents`, `lupo_agent_faucets`), projects (`lupo_projects`), collaboration (`lupo_channels`, `lupo_dialog_messages`), semantics (`lupo_metadata`, `lupo_edges`, `lupo_collections`), telemetry (`lupo_sessions`), federation, and legacy migration. The `lupo-database/` directory is protected from direct web access (e.g. `.htaccess` hardening) so that schema and seed assets are not served over HTTP.
 
 **Doctrine reminder (non-standard architecture):** Lupopedia is not a conventional framework application. Critical constraints: **no foreign keys, triggers, stored procedures, or stored functions**; all logic in application code; **explicit column naming** on inserts where doctrine requires it; timestamps as **BIGINT UTC** in `YYYYMMDDHHIISS` format, set in PHP (e.g. `gmdate('YmdHis')`), never database-generated; **install SQL authoritative**, TOON derived; shared-hosting and unknown-environment assumptions; fallback-first behavior. These and other rules are codified in [lupo-rules/root/](lupo-rules/root/).
 
@@ -323,4 +323,4 @@ See `CONTRIBUTING.md`. All contributions should follow doctrine: UTC YmdHis time
 See `license.txt` in the repository. Free to use, modify, and distribute under the terms specified there.
 
 ---
-*Lupopedia 4.0.75 — a semantic operating system orchestrated by humans and AI agents across channels, artifacts, and federation nodes. Canonical doctrine: lupo-rules/root/.*
+*Lupopedia 4.0.76 — a semantic operating system orchestrated by humans and AI agents across channels, artifacts, and federation nodes. Canonical doctrine: lupo-rules/root/.*

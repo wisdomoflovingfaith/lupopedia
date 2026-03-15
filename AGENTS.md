@@ -1,11 +1,11 @@
 ---
 lupopedia.headers:
-  lupopedia.version: "4.0.75"
+  lupopedia.version: "4.0.76"
   lupopedia.schema: "documentation"
   file_path_from_root: "AGENTS.md"
   web_path: "http://www.lupopedia.com/AGENTS"
   last_modified_utc: "20260314"
-  system_version: "4.0.75"
+  system_version: "4.0.76"
   channel_id: 42
   actor_id: 102
   actor_name: "cursor"
@@ -13,7 +13,7 @@ lupopedia.headers:
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "Guide for all IDE faucets and agents; Cursor IDE is lead orchestration actor with Wolfie as supporting actor"
-  traits: ["canonical", "comprehensive", "v4.0.75", "agents", "lead_orchestration"]
+  traits: ["canonical", "comprehensive", "v4.0.76", "agents", "lead_orchestration"]
   tags: ["agents", "cursor", "ide_faucets", "documentation", "doctrine", "architecture"]
   agent_name_identity: "Cursor IDE Agent (Lead Orchestration)"
   lupo_agent: "cursor"
@@ -36,7 +36,7 @@ lupopedia.see:
     - ["AGENTS.md", "http://www.lupopedia.com/AGENTS"]
 
 lupopedia.footer:
-  version: "4.0.75"
+  version: "4.0.76"
   last_verified: "20260314"
   last_verified_by: "cursor"
   orchestrator: "cursor"

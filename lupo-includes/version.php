@@ -6,7 +6,7 @@
  * version-related constants and helper functions.
  * 
  * @package Lupopedia
- * @version 4.0.75
+ * @version 4.0.76
  * 
  * @note VERSION DOCTRINE: This file now loads version from GLOBAL_CURRENT_LUPOPEDIA_VERSION
  *       atom in config/global_atoms.yaml (Phase 2 implementation). Constants are defined
@@ -128,7 +128,7 @@ function lupopedia_get_version()
         }
     }
     // Fallback to constant
-    return defined('LUPOPEDIA_VERSION') ? LUPOPEDIA_VERSION : '4.0.75';
+    return defined('LUPOPEDIA_VERSION') ? LUPOPEDIA_VERSION : '4.0.76';
 }
 
 /**
@@ -138,7 +138,7 @@ function lupopedia_get_version()
  */
 function get_lupo_version()
 {
-    return function_exists('lupopedia_get_version') ? lupopedia_get_version() : (defined('LUPOPEDIA_VERSION') ? LUPOPEDIA_VERSION : '4.0.75');
+    return function_exists('lupopedia_get_version') ? lupopedia_get_version() : (defined('LUPOPEDIA_VERSION') ? LUPOPEDIA_VERSION : '4.0.76');
 }
 
 /**

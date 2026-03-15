@@ -1,24 +1,28 @@
 # file: Lupopedia Version History — session: L-LUPO-ANTIGRAVITY — delegation: antigravity:cursor:captain  — web_path: http://www.lupopedia.com/docs/version
 ---
 lupopedia.headers:
-  lupopedia.version: "4.0.75"
+  lupopedia.version: "4.0.76"
   lupopedia.schema: "documentation"
   file_path_from_root: "lupo-docs/version.md"
-  last_modified_utc: "20260314"
-  system_version: "4.0.75"
+  last_modified_utc: "20260315"
+  system_version: "4.0.76"
   purpose: "Version history and upgrade notes for Lupopedia"
-  traits: ["versioning", "v4.0.75", "multi-agent", "evolution"]
+  traits: ["versioning", "v4.0.76", "multi-agent", "evolution"]
   tags: ["version", "changelog", "upgrade"]
 ---
 
 # Lupopedia version history
 
-Current version: **4.0.75**  
-Date: 2026-03-14
+Current version: **4.0.76**  
+Date: 2026-03-15
+
+## Summary of changes (4.0.76)
+
+- **Version bump:** Post–4.0.75 release. Active development version. All canonical version markers and atoms updated to 4.0.76. Recurring install/upgrade validation and regression passes continue under this version. No schema or behavioral changes in this bump.
 
 ## Summary of changes (4.0.75)
 
-- **Version bump:** Post–4.0.74 push to GitHub. All canonical version markers (LUPEDIA_VERSION, version.php, atoms, install wizard fallback, CHANGELOG, README, TODO, plan, AGENTS.md) updated to 4.0.75. No schema or behavioral changes.
+- **Released and finalized.** Version bump, rules and governance updates, multi-agent propagation, schema-reference continuity, ONBOARDING, Safe DB Operations (DB009). Fresh install and Crafty 3.7.5 upgrade validation were performed during the 4.0.75 cycle; continued repeated validation is carried forward to v4.0.76.
 
 ## Summary of changes (4.0.74)
 

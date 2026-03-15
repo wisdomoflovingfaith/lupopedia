@@ -5,24 +5,24 @@ lupopedia.init:
   artifact_kind: "metadata-snapshot"
   namespace: "lupopedia"
   domain: "core"
-  system_version: "4.0.75"
+  system_version: "4.0.76"
 
 lupopedia.metadata:
   comment: "Snapshot of metadata for this file or entity at artifact creation."
 
 lupopedia.headers:
-  lupopedia.version: "4.0.75"
+  lupopedia.version: "4.0.76"
   lupopedia.schema: "documentation"
   file_path_from_root: "TODO.md"
   web_path: "http://www.lupopedia.com/TODO"
-  last_modified_utc: "20260314"
-  system_version: "4.0.75"
+  last_modified_utc: "20260315"
+  system_version: "4.0.76"
   channel_id: 42
   actor_id: 102
   artifact_type: "repository-core"
   artifact_kind: "todo"
-  purpose: "Root-level pending tasks and next actions for Lupopedia (v4.0.75)."
-  tags: ["todo", "tasks", "core", "v4.0.75"]
+  purpose: "Root-level pending tasks and next actions for Lupopedia (v4.0.76 active)."
+  tags: ["todo", "tasks", "core", "v4.0.76"]
 
 lupopedia.edges:
   comment: "Snapshot at artifact creation. Core repo files."
@@ -34,12 +34,12 @@ lupopedia.edges:
 
 lupopedia.engagement:
   comment: "Root TODO for orchestrator and agents."
-  meta: "L-LUPO-ROOT-CURSOR; v4.0.75."
+  meta: "L-LUPO-ROOT-CURSOR; v4.0.76."
   views: 0
 
 lupopedia.footer:
-  version: "4.0.75"
-  last_verified: "20260314"
+  version: "4.0.76"
+  last_verified: "20260315"
   last_verified_by: "cursor"
   orchestrator: "cursor"
   next_action:

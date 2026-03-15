@@ -26,11 +26,11 @@ lupopedia.comments:
   - { comment_id: 2, channel_id: 42, actor_id: 102, actor_name: "cursor", faucet_id: 102, faucet_name: "cursor", comment_text: "Second example comment for 4.0.73 to demonstrate multiple comment records in the lupopedia.comments block.", comment_type: "comment", created_ymdhis: 20260313151500, updated_ymdhis: 20260313151500 }
 
 lupopedia.headers:
-  lupopedia.version: "4.0.75"
+  lupopedia.version: "4.0.76"
   lupopedia.schema: "documentation"
   file_path_from_root: "CHANGELOG.md"
-  system_version: "4.0.75"
-  last_modified_utc: "20260314"
+  system_version: "4.0.76"
+  last_modified_utc: "20260315"
   channel_id: 42
   actor_id: 1
   actor_name: "wolfie"
@@ -52,8 +52,8 @@ lupopedia.edges:
  
 lupopedia.footer:
   archive_note: "For historical changelog entries from 4.0.67 and earlier, see CHANGELOG_ARCHIVE.md"
-  version: "4.0.75"
-  last_verified: "20260314"
+  version: "4.0.76"
+  last_verified: "20260315"
   last_verified_by: "codex"
   orchestrator: "wolfie"
   next_action:
@@ -74,7 +74,15 @@ Older entries (≤4.0.67) are archived in [CHANGELOG_ARCHIVE.md](CHANGELOG_ARCHI
 
 ---
 
-## 4.0.75 — rules and updates to governance
+## 4.0.76 — Active development (post–4.0.75 release)
+
+**Release Date:** 2026-03-15
+
+Version bump after 4.0.75 release push and tag. **Active development version.** All canonical version markers and atoms updated to 4.0.76. Recurring install/upgrade validation and regression passes continue under this version. No schema or behavioral changes in this bump.
+
+---
+
+## 4.0.75 — rules and updates to governance (released)
 
 **Release Date:** 2026-03-14
 
