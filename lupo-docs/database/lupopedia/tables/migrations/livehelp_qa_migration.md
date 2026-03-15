@@ -81,10 +81,10 @@ flip.footer: {
     { from: "lupo-docs/doctrine/migrations/MIGRATION_MAPPING_REFERENCE.md", type: "references", weight: 0.9, hashtag: "#index" }
   ],
   outbound_edges: [
-    { to: "lupo-docs/doctrine/database/truth_questions.md", type: "documents", weight: 1.0, hashtag: "#target_table" },
-    { to: "lupo-docs/doctrine/database/truth_answers.md", type: "documents", weight: 1.0, hashtag: "#target_table" },
-    { to: "lupo-docs/doctrine/database/collections.md", type: "documents", weight: 0.9, hashtag: "#target_table" },
-    { to: "lupo-docs/doctrine/database/collection_tabs.md", type: "documents", weight: 0.9, hashtag: "#target_table" },
+    { to: "lupo-docs/doctrine/DATABASE_DOCTRINE.md", type: "documents", weight: 1.0, hashtag: "#target_table" },
+    { to: "lupo-docs/database/lupopedia/tables/active/lupo_truth_answers.md", type: "documents", weight: 1.0, hashtag: "#target_table" },
+    { to: "lupo-docs/database/lupopedia/tables/active/lupo_collections.md", type: "documents", weight: 0.9, hashtag: "#target_table" },
+    { to: "lupo-docs/database/lupopedia/tables/active/lupo_collection_tabs.md", type: "documents", weight: 0.9, hashtag: "#target_table" },
     { to: "lupo-database/migrations/old_crafty_syntax_3_7_5_start.sql", type: "references", weight: 0.7, hashtag: "#source" }
   ],
   referenced_by_actors: [1001, 1002, 10000],

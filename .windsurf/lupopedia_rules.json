@@ -157,6 +157,18 @@
             "status": "active"
         },
         {
+            "id": "PLAN001",
+            "text": "Structure phases by what must be done before what, never by how long they might take. Use dependency order, not duration estimates.",
+            "enforcement": "error",
+            "scope": [
+                "all_agents"
+            ],
+            "source_path": "lupo-rules/root/task-planning-doctrine.md",
+            "slug": "task-planning-doctrine",
+            "category": "planning",
+            "status": "active"
+        },
+        {
             "id": "DB007",
             "text": "TOON files are derived from canonical schema; canonical schema comes from install SQL",
             "enforcement": "error",

@@ -82,8 +82,8 @@ flip.footer: {
     { from: "install.php", type: "uses", weight: 0.8, hashtag: "#installer" }
   ],
   outbound_edges: [
-    { to: "lupo-docs/doctrine/database/auth_users.md", type: "documents", weight: 1.0, hashtag: "#target_table" },
-    { to: "lupo-docs/doctrine/database/actors.md", type: "documents", weight: 1.0, hashtag: "#target_table" },
+    { to: "lupo-docs/database/lupopedia/tables/active/lupo_auth_users.md", type: "documents", weight: 1.0, hashtag: "#target_table" },
+    { to: "lupo-docs/database/lupopedia/tables/active/lupo_actors.md", type: "documents", weight: 1.0, hashtag: "#target_table" },
     { to: "lupo-docs/doctrine/migrations/operator_to_roles_migration.md", type: "references", weight: 0.9, hashtag: "#permissions" },
     { to: "lupo-database/migrations/old_crafty_syntax_3_7_5_start.sql", type: "references", weight: 0.8, hashtag: "#source" },
     { to: "lupo-docs/audits/OPERATOR_TO_ROLE_BASED_SWEEP_REPORT.md", type: "references", weight: 0.7, hashtag: "#audit" }
@@ -137,7 +137,7 @@ Lupopedia replaces this with a real identity system:
 - **lupo_auth_users** — authentication and credentials (username, display_name, email, password_hash, auth_provider, provider_id, last_login_ymdhis). On import, **auth_user_id = 10000 + livehelp_users.user_id** so that human IDs stay in the reserved range (actor_id 0–9999 = lupo-agents/system only; humans ≥ 10000).
 - **lupo_actors** — unified identity layer (one row per human/agent/service; actor_id = auth_user_id for imported users, so imported human actor_id ≥ 10000).
 - **lupo_actor_properties** — presence, device, and behavioral metadata.
-- **Permissions** — there is no lupo_operators table. Operator/staff permissions use the **3-level role system**: (1) **lupo_actor_channel_roles** (channel-scoped: captain, administrator, monitor); (2) **lupo_department_roles** (department-scoped); (3) system (department_id = 0 = global admin). Resolution order: channel → department → system. The install wizard assigns captain on personal channels and on channel_id = 1 (Administration) for Crafty admins (livehelp_users.isadmin = 'Y'). See lupo-docs/audits/OPERATOR_TO_ROLE_BASED_SWEEP_REPORT.md and lupo-docs/doctrine/database/actor_channel_roles.md.
+- **Permissions** — there is no lupo_operators table. Operator/staff permissions use the **3-level role system**: (1) **lupo_actor_channel_roles** (channel-scoped: captain, administrator, monitor); (2) **lupo_department_roles** (department-scoped); (3) system (department_id = 0 = global admin). Resolution order: channel → department → system. The install wizard assigns captain on personal channels and on channel_id = 1 (Administration) for Crafty admins (livehelp_users.isadmin = 'Y'). See lupo-docs/audits/OPERATOR_TO_ROLE_BASED_SWEEP_REPORT.md and lupo-docs/database/lupopedia/tables/active/lupo_actor_channel_roles.md.
 
 Only meaningful identity data is imported. The legacy table is dropped after migration.
 

@@ -53,6 +53,8 @@ These rule files mirror the content of `.cursor/rules/*.mdc` with LUPOPEDIA head
 | pk-reference-naming-doctrine | [pk-reference-naming-doctrine.md](pk-reference-naming-doctrine.md) | .cursor/rules/pk-reference-naming-doctrine.mdc |
 | required-tables-future-features-doctrine | [required-tables-future-features-doctrine.md](required-tables-future-features-doctrine.md) | .cursor/rules/required-tables-future-features-doctrine.mdc |
 | single-install-no-4.0-upgrade-doctrine | [single-install-no-4.0-upgrade-doctrine.md](single-install-no-4.0-upgrade-doctrine.md) | .cursor/rules/single-install-no-4.0-upgrade-doctrine.mdc |
+| task-planning-doctrine | [task-planning-doctrine.md](task-planning-doctrine.md) | .cursor/rules/task-planning-doctrine.mdc |
+| safe-database-operations-doctrine | [safe-database-operations-doctrine.md](safe-database-operations-doctrine.md) | .cursor/rules/safe-database-operations-doctrine.mdc |
 
 ## Seed (actor_id 1)
 

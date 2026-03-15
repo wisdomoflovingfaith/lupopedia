@@ -15,7 +15,7 @@ lupopedia.headers:
   lupopedia.version: "4.0.75"
   lupopedia.schema: "windsurf_rule"
   file_path_from_root: ".windsurf/rules/database-logic-prohibition-doctrine.md"
-  last_modified_utc: "20260314"
+  last_modified_utc: "20260315"
   system_version: "4.0.75"
   source_path: "lupo-rules/root/database-logic-prohibition-doctrine.md"
   artifact_type: "rule"
@@ -34,14 +34,14 @@ lupopedia.rules:
   overrides: []
   provenance:
     authored_by: "wolfie"
-    authored_date: "20260314"
+    authored_date: "20260315"
     last_reviewed_by: "windsurf"
-    last_reviewed_date: "20260314"
+    last_reviewed_date: "20260315"
     version: "1.0"
     status: "active"
 lupopedia.footer:
   version: "4.0.75"
-  last_verified: "20260314"
+  last_verified: "20260315"
   last_verified_by: "windsurf"
   orchestrator: "windsurf"
   next_action:

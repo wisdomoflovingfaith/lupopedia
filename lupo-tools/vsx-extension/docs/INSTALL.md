@@ -1,4 +1,4 @@
-# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+# LUPOPEDIA Header (aliases: LUPOPEDIA HEADERS)
 ---
 lupopedia.headers:
   lupopedia.version: "4.0.73"
@@ -28,7 +28,7 @@ lupopedia.footer:
   last_verified_by: "windsurf"
 ---
 
-# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+# LUPOPEDIA Header (aliases: LUPOPEDIA HEADERS)
 
 ---
 lupopedia.headers:

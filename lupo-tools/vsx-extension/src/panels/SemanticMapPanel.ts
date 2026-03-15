@@ -1,7 +1,7 @@
 // src/panels/SemanticMapPanel.ts
 
 import * as vscode from 'vscode';
-import { MetadataIndex } from '../lupopedia/flip/parser/types';
+import { MetadataIndex } from '../lupopedia/headers/parser/types';
 
 export class SemanticMapPanel {
     public static currentPanel: SemanticMapPanel | undefined;

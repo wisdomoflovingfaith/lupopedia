@@ -107,7 +107,7 @@ This document is a concise index of legacy → Lupopedia table/behavior mappings
 | Legacy | New | Notes |
 |--------|-----|--------|
 | livehelp_users | lupo_auth_users | Identity/credentials (username, display_name, email, password_hash, auth_provider, provider_id, last_login_ymdhis). Operators imported first, then visitors. |
-| livehelp_users | lupo_actors, lupo_actor_properties | Related: presence, device, behavioral metadata in actor_properties. **Operator permissions** are not a table; they use the **3-level role system**: channel roles (lupo_actor_channel_roles: captain, administrator, monitor), department roles (lupo_department_roles), system (department_id = 0). See lupo-docs/doctrine/database/actor_channel_roles.md and OPERATOR_TO_ROLE_BASED_SWEEP_REPORT. |
+| livehelp_users | lupo_actors, lupo_actor_properties | Related: presence, device, behavioral metadata in actor_properties. **Operator permissions** are not a table; they use the **3-level role system**: channel roles (lupo_actor_channel_roles: captain, administrator, monitor), department roles (lupo_department_roles), system (department_id = 0). See lupo-docs/database/lupopedia/tables/active/lupo_actor_channel_roles.md and OPERATOR_TO_ROLE_BASED_SWEEP_REPORT. |
 | livehelp_operator_departments | lupo_actor_departments | recno→actor_department_id, user_id→actor_id, department→department_id, extra→title. |
 
 ---

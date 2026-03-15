@@ -82,8 +82,8 @@ flip.footer: {
     { from: "lupo-docs/doctrine/migrations/livehelp_messages_migration.md", type: "references", weight: 0.8, hashtag: "#related" }
   ],
   outbound_edges: [
-    { to: "lupo-docs/doctrine/database/dialog_threads.md", type: "documents", weight: 1.0, hashtag: "#target_table" },
-    { to: "lupo-docs/doctrine/database/dialog_messages.md", type: "documents", weight: 1.0, hashtag: "#target_table" },
+    { to: "lupo-docs/database/lupopedia/tables/active/lupo_dialog_threads.md", type: "documents", weight: 1.0, hashtag: "#target_table" },
+    { to: "lupo-docs/database/lupopedia/tables/active/lupo_dialog_messages.md", type: "documents", weight: 1.0, hashtag: "#target_table" },
     { to: "lupo-database/migrations/old_crafty_syntax_3_7_5_start.sql", type: "references", weight: 0.8, hashtag: "#source" },
     { to: "test_dialog_migration.php", type: "tested_by", weight: 0.7, hashtag: "#testing" }
   ],

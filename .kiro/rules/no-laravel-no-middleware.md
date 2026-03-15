@@ -6,7 +6,7 @@ lupopedia.headers:
   lupopedia.version: "4.0.75"
   lupopedia.schema: "kiro_rule"
   file_path_from_root: ".kiro/rules/no-laravel-no-middleware.md"
-  last_modified_utc: "20260314"
+  last_modified_utc: "20260315"
   system_version: "4.0.75"
   source_path: "lupo-rules/root/no-laravel-no-middleware.md"
   artifact_type: "rule"

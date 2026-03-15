@@ -1,11 +1,11 @@
 // src/lupopedia/commands/ScanWorkspace.ts
 
 import * as vscode from 'vscode';
-import { HeaderParser } from '../flip/parser/HeaderParser';
-import { FooterParser } from '../flip/parser/FooterParser';
-import { HashGenerator } from '../flip/storage/HashGenerator';
-import { ArtifactIndex } from '../flip/storage/ArtifactIndex';
-import { EdgeMapper } from '../flip/edge/EdgeMapper';
+import { HeaderParser } from '../headers/parser/HeaderParser';
+import { FooterParser } from '../headers/parser/FooterParser';
+import { HashGenerator } from '../headers/storage/HashGenerator';
+import { ArtifactIndex } from '../headers/storage/ArtifactIndex';
+import { EdgeMapper } from '../headers/edge/EdgeMapper';
 
 export async function scanWorkspace(context: vscode.ExtensionContext, artifactIndex: ArtifactIndex) {
     const headerParser = new HeaderParser();
@@ -26,7 +26,7 @@ export async function scanWorkspace(context: vscode.ExtensionContext, artifactIn
 
             const header = headerParser.extractHeader(content);
             if (!header) {
-                console.warn(`Missing or invalid FLIP header in ${file.fsPath}`);
+                console.warn(`Missing or invalid LUPOPEDIA Header in ${file.fsPath}`);
                 continue;
             }
 
@@ -54,9 +54,9 @@ export async function scanWorkspace(context: vscode.ExtensionContext, artifactIn
                     if (isChannel && header.identity.channel_id === undefined) {
                         header.identity.channel_id = folderId;
                     }
-                } else if (header.wolfie?.headers) {
-                    if (isChannel && header.wolfie.headers.channel_id === undefined) {
-                        header.wolfie.headers.channel_id = folderId;
+                } else if (header.lupopedia?.headers) {
+                    if (isChannel && header.lupopedia.headers.channel_id === undefined) {
+                        header.lupopedia.headers.channel_id = folderId;
                     }
                 }
             }
@@ -74,7 +74,7 @@ export async function scanWorkspace(context: vscode.ExtensionContext, artifactIn
                 });
 
                 if (footer) {
-                    edgeMapper.processFooter(file.fsPath, footer);
+                    edgeMapper.processFooter(file.fsPath, footer as any);
                 }
                 artifactsUpdated++;
             }

@@ -81,8 +81,8 @@ flip.footer: {
     { from: "lupo-database/migrations/import_from_old_crafty_syntax.sql", type: "documents", weight: 0.7, hashtag: "#migration" }
   ],
   outbound_edges: [
-    { to: "lupo-docs/doctrine/database/sessions.md", type: "documents", weight: 0.9, hashtag: "#anonymous_sessions" },
-    { to: "lupo-docs/doctrine/database/actors.md", type: "documents", weight: 0.8, hashtag: "#no_anonymous_actors" },
+    { to: "lupo-docs/database/lupopedia/tables/active/lupo_sessions.md", type: "documents", weight: 0.9, hashtag: "#anonymous_sessions" },
+    { to: "lupo-docs/database/lupopedia/tables/active/lupo_actors.md", type: "documents", weight: 0.8, hashtag: "#no_anonymous_actors" },
     { to: "lupo-database/migrations/old_crafty_syntax_3_7_5_start.sql", type: "references", weight: 0.7, hashtag: "#source" }
   ],
   referenced_by_actors: [1001, 10000],

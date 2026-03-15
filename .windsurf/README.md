@@ -15,7 +15,7 @@ lupopedia.headers:
   lupopedia.version: "4.0.75"
   lupopedia.schema: "windsurf_guide"
   file_path_from_root: ".windsurf/README.md"
-  last_modified_utc: "20260314"
+  last_modified_utc: "20260315"
   system_version: "4.0.75"
   artifact_type: "guide"
   artifact_kind: "documentation"
@@ -23,7 +23,7 @@ lupopedia.headers:
 
 lupopedia.footer:
   version: "4.0.75"
-  last_verified: "20260314"
+  last_verified: "20260315"
   last_verified_by: "windsurf"
   orchestrator: "windsurf"
   next_action:

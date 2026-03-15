@@ -1,5 +1,5 @@
 import * as vscode from 'vscode';
-import { HeaderParser } from '../lupopedia/flip/parser/HeaderParser';
+import { HeaderParser } from '../lupopedia/headers/parser/HeaderParser';
 import * as path from 'path';
 
 export class ComplianceProvider {
@@ -40,7 +40,7 @@ export class ComplianceProvider {
             const range = new vscode.Range(0, 0, 0, 1);
             const diagnostic = new vscode.Diagnostic(
                 range,
-                "Lupopedia FLIP Header Missing. This file is an ANUBIS auto-repair candidate.",
+                "Lupopedia LUPOPEDIA Header Missing. This file is an ANUBIS auto-repair candidate.",
                 vscode.DiagnosticSeverity.Information
             );
             diagnostic.code = 'HEADER_MISSING';
@@ -71,7 +71,7 @@ export class ComplianceProvider {
         // For now, if it's very old (e.g. < 4.0.0), mark as possible deletion candidate
         let version = '';
         if ('identity' in header) version = header.identity.system_version;
-        else if (header.wolfie?.headers) version = header.wolfie.headers.system_version;
+        else if (header.lupopedia?.headers) version = header.lupopedia.headers.system_version;
 
         if (version && version.startsWith('4.0.2')) {
             const range = new vscode.Range(0, 0, 0, 1);

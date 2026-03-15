@@ -213,7 +213,7 @@ async function lookupKnownActorsApi(apiBaseUrl: string): Promise<ActorIdentity[]
     return resolved;
 }
 
-import { parseFlipHeader } from './flip';
+import { parseLupopediaHeader } from './headers';
 
 // ... (previous interfaces)
 

@@ -14,7 +14,7 @@ lupopedia.headers:
   namespace: "core"
   channel_id: 1
   actor_id: 1003
-  last_modified_utc: "20260313"
+  last_modified_utc: "20260315"
   artifact_type: "table_documentation"
   purpose: "Complete documentation for lupo_actors table - unified actor identity and management system"
   mood_rgb: "4B0082"
@@ -22,9 +22,10 @@ lupopedia.headers:
   traits: ["canonical", "core_system", "identity_management", "unified_model", "antigravity_rotation", "v4.0.73"]
   tags: ["database", "actors", "identity", "users", "agents", "unified"]
   lupo_agent: "antigravity"
-  table_primary_key: "actor_id"
+  table_primary_key: "actor_name"
   # Table-specific metadata from TOON
-  lupo_actors.actor_id: "BIGINT primary key containing YYYYMMDDHHMMSS UTC timestamp"
+  lupo_actors.actor_name: "VARCHAR(64) canonical actor identity primary key"
+  lupo_actors.actor_id: "BIGINT unique actor numeric mapping used for joins and scoped allocation"
   lupo_actors.actor_type: "VARCHAR(64) NOT NULL type of actor (system, human, agent, etc.)"
   lupo_actors.slug: "VARCHAR(255) NOT NULL unique URL-friendly identifier"
   lupo_actors.name: "VARCHAR(255) NOT NULL display name"
@@ -54,7 +55,8 @@ lupopedia.headers:
   table_charset: "utf8mb4"
   table_collation: "utf8mb4_unicode_ci"
   table_indexes: ["PRIMARY", "lupo_actors_idx_actor_type", "lupo_actors_idx_created_ymdhis", "lupo_actors_idx_is_active", "lupo_actors_unique_slug"]
-  table_foreign_keys: ["primary_federation_node_id", "department_id", "adversarial_oversight_actor_id", "paired_actor_id"]
+  reference_columns: ["primary_federation_node_id", "department_id", "adversarial_oversight_actor_id", "paired_actor_id"]
+  doctrine_note: "No database foreign keys; referential integrity enforced in application code."
 
 # 💡 FLARE Edge Automation Tip:
 # Use the FLARE Edge Suggester Tool to automatically discover and suggest edges:
@@ -67,16 +69,16 @@ lupopedia.edges:
   meta: "Thread: Finalize 4.0.72 → Push to GitHub → Initialize 4.0.73 → Migrate Tasks → Validate Upgrade Path"
   outbound_edges:
     - { to: "lupo-database/lupopedia/toon/lupo_actors.toon.json", type: "schema_reference", weight: 1.0, reason: "TOON schema definition", db_source: "lupo_actors" }
-    - { to: "lupo-actors/registry.json", type: "references", weight: 1.0, reason: "Actor registry and configuration", db_source: "lupo_actors" }
-    - { to: "lupo-docs/database/lupopedia/tables/lupo_contents.md", type: "references", weight: 0.9, reason: "Content author relationships", db_source: "lupo_actors" }
-    - { to: "lupo-docs/database/lupopedia/tables/lupo_channels.md", type: "references", weight: 0.9, reason: "Channel ownership and participation", db_source: "lupo_actors" }
-    - { to: "lupo-docs/database/lupopedia/tables/lupo_dialog_messages.md", type: "references", weight: 0.8, reason: "Dialog message authorship", db_source: "lupo_actors" }
-    - { to: "lupo-docs/database/lupopedia/tables/lupo_sessions.md", type: "references", weight: 0.8, reason: "User session management", db_source: "lupo_actors" }
-    - { to: "lupo-docs/database/lupopedia/tables/lupo_artifacts.md", type: "references", weight: 0.7, reason: "Artifact ownership", db_source: "lupo_actors" }
-    - { to: "lupo-docs/database/lupopedia/tables/lupo_departments.md", type: "references", weight: 0.7, reason: "Department assignments", db_source: "lupo_actors" }
-    - { to: "lupo-docs/database/lupopedia/tables/lupo_federation_nodes.md", type: "references", weight: 0.7, reason: "Federation node assignments", db_source: "lupo_actors" }
-    - { to: "lupo-docs/database/lupopedia/tables/lupo_actor_history.md", type: "references", weight: 0.9, reason: "Actor achievement and legacy history", db_source: "lupo_actors" }
-    - { to: "lupo-docs/database/lupopedia/tables/lupo_actor_events.md", type: "references", weight: 0.9, reason: "Actor behavioral stream", db_source: "lupo_actors" }
+    - { to: "lupo-database/lupopedia/actors/actor_id/registry.json", type: "references", weight: 1.0, reason: "Canonical actor registry and ID mapping", db_source: "lupo_actors" }
+    - { to: "lupo-docs/database/lupopedia/tables/active/lupo_contents.md", type: "references", weight: 0.9, reason: "Content author relationships", db_source: "lupo_actors" }
+    - { to: "lupo-docs/database/lupopedia/tables/active/lupo_channels.md", type: "references", weight: 0.9, reason: "Channel ownership and participation", db_source: "lupo_actors" }
+    - { to: "lupo-docs/database/lupopedia/tables/active/lupo_dialog_messages.md", type: "references", weight: 0.8, reason: "Dialog message authorship", db_source: "lupo_actors" }
+    - { to: "lupo-docs/database/lupopedia/tables/active/lupo_sessions.md", type: "references", weight: 0.8, reason: "User session management", db_source: "lupo_actors" }
+    - { to: "lupo-docs/database/lupopedia/tables/active/lupo_artifacts.md", type: "references", weight: 0.7, reason: "Artifact ownership", db_source: "lupo_actors" }
+    - { to: "lupo-docs/database/lupopedia/tables/active/lupo_departments.md", type: "references", weight: 0.7, reason: "Department assignments", db_source: "lupo_actors" }
+    - { to: "lupo-docs/database/lupopedia/tables/active/lupo_federation_nodes.md", type: "references", weight: 0.7, reason: "Federation node assignments", db_source: "lupo_actors" }
+    - { to: "lupo-docs/database/lupopedia/tables/active/lupo_actor_history.md", type: "references", weight: 0.9, reason: "Actor achievement and legacy history", db_source: "lupo_actors" }
+    - { to: "lupo-docs/database/lupopedia/tables/active/lupo_actor_events.md", type: "references", weight: 0.9, reason: "Actor behavioral stream", db_source: "lupo_actors" }
 
 lupopedia.engagement:
   comment: "Snapshot of files edited during 4.0.73 finalization and initialization thread by ANTIGRAVITY IDE Agent. Engagement metrics track edit frequency and importance of each file in the version transition process."
@@ -116,7 +118,10 @@ The `lupo_actors` table implements a unified actor model that serves as the sing
 ## 🗃️ **Schema Reference**
 
 ### **Primary Key**
-- **`actor_id`** (BIGINT) - YYYYMMDDHHMMSS UTC timestamp, unique identifier.
+- **`actor_name`** (VARCHAR(64)) - canonical semantic actor identity primary key.
+
+### **Unique Numeric Identity**
+- **`actor_id`** (BIGINT) - unique numeric actor mapping for joins, registry alignment, and orchestration linkage.
 
 ### **Core Identity Fields**
 | Field | Type | Description | Notes |

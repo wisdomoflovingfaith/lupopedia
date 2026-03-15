@@ -221,7 +221,7 @@ export async function joinChannel(
 }
 
 // ... (previous imports)
-import { parseFlipHeader } from './flip';
+import { parseLupopediaHeader } from './headers';
 
 export async function discoverChannelsLocal(): Promise<number[]> {
     const folders = vscode.workspace.workspaceFolders;

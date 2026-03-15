@@ -6,7 +6,7 @@ lupopedia.headers:
   lupopedia.version: "4.0.75"
   lupopedia.schema: "kiro_guide"
   file_path_from_root: ".kiro/README.md"
-  last_modified_utc: "20260314"
+  last_modified_utc: "20260315"
   system_version: "4.0.75"
   artifact_type: "guide"
   artifact_kind: "documentation"

@@ -1,7 +1,7 @@
 // src/lupopedia/commands/ShowStatus.ts
 
 import * as vscode from 'vscode';
-import { ArtifactIndex } from '../flip/storage/ArtifactIndex';
+import { ArtifactIndex } from '../headers/storage/ArtifactIndex';
 
 export async function showLupopediaStatus(artifactIndex: ArtifactIndex) {
     const panel = vscode.window.createWebviewPanel(
@@ -39,7 +39,7 @@ export async function showLupopediaStatus(artifactIndex: ArtifactIndex) {
                 </div>
                 <div class="stat-card">
                     <div class="stat-label">Registry Mode</div>
-                    <div class="stat-value">v4.0.37-FLIPv2</div>
+                    <div class="stat-value">v4.0.37-LUPOPEDIA HEADERv2</div>
                 </div>
             </div>
 

@@ -1,5 +1,5 @@
 import * as vscode from 'vscode';
-import { FlipHeaderV2, FlipHeaderV3, FlipFooterV2, FlipFooterV3 } from '../lupopedia/flip/parser/types';
+import { LupopediaHeaderV2, LupopediaHeaderV3, LupopediaFooterV2, LupopediaFooterV3 } from '../lupopedia/headers/parser/types';
 import * as path from 'path';
 
 export class ArtifactPanel {
@@ -28,7 +28,7 @@ export class ArtifactPanel {
         );
     }
 
-    public static createOrShow(extensionUri: vscode.Uri, artifact: { filePath: string, header: FlipHeaderV2 | FlipHeaderV3, footer?: FlipFooterV2 | FlipFooterV3 }) {
+    public static createOrShow(extensionUri: vscode.Uri, artifact: { filePath: string, header: LupopediaHeaderV2 | LupopediaHeaderV3, footer?: LupopediaFooterV2 | LupopediaFooterV3 }) {
         const column = vscode.window.activeTextEditor ? vscode.window.activeTextEditor.viewColumn : undefined;
 
         if (ArtifactPanel.currentPanel) {
@@ -37,7 +37,7 @@ export class ArtifactPanel {
             return;
         }
 
-        const title = 'identity' in artifact.header ? artifact.header.identity.agent_slug : (artifact.header as FlipHeaderV2).wolfie.headers.file_path_from_root;
+        const title = 'identity' in artifact.header ? artifact.header.identity.agent_slug : (artifact.header as LupopediaHeaderV2).lupopedia.headers.file_path_from_root;
 
         const panel = vscode.window.createWebviewPanel(
             'artifactViewer',
@@ -50,8 +50,8 @@ export class ArtifactPanel {
         ArtifactPanel.currentPanel._update(artifact);
     }
 
-    private _update(artifact: { filePath: string, header: FlipHeaderV2 | FlipHeaderV3, footer?: FlipFooterV2 | FlipFooterV3 }) {
-        const title = 'identity' in artifact.header ? artifact.header.identity.agent_slug : (artifact.header as FlipHeaderV2).wolfie.headers.file_path_from_root;
+    private _update(artifact: { filePath: string, header: LupopediaHeaderV2 | LupopediaHeaderV3, footer?: LupopediaFooterV2 | LupopediaFooterV3 }) {
+        const title = 'identity' in artifact.header ? artifact.header.identity.agent_slug : (artifact.header as LupopediaHeaderV2).lupopedia.headers.file_path_from_root;
         this._panel.title = `Artifact: ${path.basename(title)}`;
         this._panel.webview.html = this._getHtmlForWebview(artifact);
     }
@@ -65,28 +65,28 @@ export class ArtifactPanel {
         }
     }
 
-    private _getHtmlForWebview(artifact: { filePath: string, header: FlipHeaderV2 | FlipHeaderV3, footer?: FlipFooterV2 | FlipFooterV3 }) {
+    private _getHtmlForWebview(artifact: { filePath: string, header: LupopediaHeaderV2 | LupopediaHeaderV3, footer?: LupopediaFooterV2 | LupopediaFooterV3 }) {
         let moodRgb = '666666';
         let title = artifact.filePath;
         let type = 'file';
         let kind = '';
 
         if ('identity' in artifact.header) {
-            const h = artifact.header as FlipHeaderV3;
+            const h = artifact.header as LupopediaHeaderV3;
             moodRgb = '569cd6';
             title = h.identity.agent_slug;
             type = h.classification.artifact_type;
             kind = h.classification.artifact_kind;
         } else {
-            const h = artifact.header as FlipHeaderV2;
-            moodRgb = h.wolfie.headers.mood_rgb || '666666';
-            title = h.wolfie.headers.file_path_from_root;
-            type = h.wolfie.headers.artifact_type || 'file';
-            kind = h.wolfie.headers.artifact_kind || '';
+            const h = artifact.header as LupopediaHeaderV2;
+            moodRgb = h.lupopedia.headers.mood_rgb || '666666';
+            title = h.lupopedia.headers.file_path_from_root;
+            type = h.lupopedia.headers.artifact_type || 'file';
+            kind = h.lupopedia.headers.artifact_kind || '';
         }
 
         const renderV3Header = () => {
-            const h = artifact.header as FlipHeaderV3;
+            const h = artifact.header as LupopediaHeaderV3;
             return `
             <div class="section">
                 <div class="section-title">Identity Layer (v3)</div>
@@ -110,7 +110,7 @@ export class ArtifactPanel {
         };
 
         const renderV2Header = () => {
-            const h = (artifact.header as FlipHeaderV2).wolfie.headers;
+            const h = (artifact.header as LupopediaHeaderV2).lupopedia.headers;
             return `
             <div class="section">
                 <div class="section-title">Core Identity (v2)</div>
@@ -128,7 +128,7 @@ export class ArtifactPanel {
             if (!artifact.footer) return '';
 
             if ('relations' in artifact.footer) {
-                const f = artifact.footer as FlipFooterV3;
+                const f = artifact.footer as LupopediaFooterV3;
                 return `
                 <div class="section">
                     <div class="section-title">Relations Layer (v3)</div>
@@ -151,7 +151,7 @@ export class ArtifactPanel {
                     </ul>
                 </div>` : ''}`;
             } else {
-                const f = (artifact.footer as FlipFooterV2).flip.footer;
+                const f = (artifact.footer as LupopediaFooterV2).lupopedia.footer;
                 return `
                 <div class="section">
                     <div class="section-title">Semantic Context (v2)</div>

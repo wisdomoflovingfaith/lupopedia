@@ -1,4 +1,4 @@
-# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+# LUPOPEDIA Header (aliases: LUPOPEDIA HEADERS)
 ---
 lupopedia.headers:
   lupopedia.version: "4.0.73"
@@ -28,7 +28,7 @@ lupopedia.footer:
   last_verified_by: "windsurf"
 ---
 
-# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+# LUPOPEDIA Header (aliases: LUPOPEDIA HEADERS)
 
 ---
 lupopedia.headers:
@@ -58,7 +58,7 @@ lupopedia.headers:
 lupopedia.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
-    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use lupopedia.headers"]
+    deprecation_notes: ["Legacy Wolfie/LUPOPEDIA HEADER block preserved; migrate tools to use lupopedia.headers"]
 ---
 
 # Lupopedia — VS Code / Open-VSX Extension (v4.0.33)
@@ -77,7 +77,7 @@ Connect your IDE to **Lupopedia** — a semantic operating system for organizing
 | **Lupopedia: Show Channel Thread** | Open a live-updating thread view for a channel |
 | **Lupopedia: Explain This File** | Request a semantic explanation of the active file |
 | **Lupopedia: Show Related Atoms** | Find semantically related content atoms |
-| **Lupopedia: Validate FLIP Header** | Parse and validate the FLIP front-matter block in the active file |
+| **Lupopedia: Validate LUPOPEDIA Header** | Parse and validate the LUPOPEDIA HEADER front-matter block in the active file |
 | **Lupopedia: Log Agent Action** | record agent actions to the audit trail |
 
 ---
@@ -130,14 +130,14 @@ See [lupo-docs/USAGE.md](lupo-docs/USAGE.md).
 
 ---
 
-## FLIP Headers
+## LUPOPEDIA Headers
 
-A FLIP header is a YAML front-matter block that anchors a file to the Lupopedia semantic graph:
+A LUPOPEDIA Header is a YAML front-matter block that anchors a file to the Lupopedia semantic graph:
 
 ```yaml
 ---
-# FLIP Header
-wolfie.headers: explicit architecture with structured clarity for every file.
+# LUPOPEDIA Header
+lupopedia.headers: explicit architecture with structured clarity for every file.
 file_path_from_root: lupo-docs/example.md
 file.last_modified_system_version: "4.0.33"
 file.last_modified_utc: "20260223171000"
@@ -152,13 +152,13 @@ X-LUPO-channels.channel_id: 42
 
 ### Database Mapping Layer (v4.0.28+)
 
-The FLIP header system supports an optional database mapping layer:
+The LUPOPEDIA Header system supports an optional database mapping layer:
 
 - **Format**: `X-LUPO-{table}.{column}: <value>`
 - **Purpose**: Explicit mapping between header fields and database schema
 - **Usage**: Advanced tooling, migrations, and schema-aware agents
 
-Use **Lupopedia: Validate FLIP Header** to check any file's FLIP block.
+Use **Lupopedia: Validate LUPOPEDIA Header** to check any file's LUPOPEDIA HEADER block.
 
 ---
 

@@ -121,6 +121,16 @@
             "slug": "reserved-id-doctrine"
         },
         {
+            "id": "DB009",
+            "text": "All database migrations and schema-changing operations MUST be executed through validated, logged wrappers \u2013 never directly via command-line MySQL.",
+            "enforcement": "error",
+            "scope": [
+                "all_agents"
+            ],
+            "source_path": "lupo-rules/root/safe-database-operations-doctrine.md",
+            "slug": "safe-database-operations-doctrine"
+        },
+        {
             "id": "ARC004",
             "text": "No Lupopedia to Lupopedia upgrade until 4.1.0; all schema in install plus seed",
             "enforcement": "error",
@@ -129,6 +139,16 @@
             ],
             "source_path": "lupo-rules/root/single-install-no-4.0-upgrade-doctrine.md",
             "slug": "single-install-no-4.0-upgrade-doctrine"
+        },
+        {
+            "id": "PLAN001",
+            "text": "Structure phases by what must be done before what, never by how long they might take. Use dependency order, not duration estimates.",
+            "enforcement": "error",
+            "scope": [
+                "all_agents"
+            ],
+            "source_path": "lupo-rules/root/task-planning-doctrine.md",
+            "slug": "task-planning-doctrine"
         },
         {
             "id": "DB007",

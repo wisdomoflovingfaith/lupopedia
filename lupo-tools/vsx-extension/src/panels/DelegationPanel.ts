@@ -1,8 +1,8 @@
 // src/panels/DelegationPanel.ts
 
 import * as vscode from 'vscode';
-import { MetadataIndex } from '../lupopedia/flip/parser/types';
-import { DelegationEngine } from '../lupopedia/flip/logic/DelegationEngine';
+import { MetadataIndex } from '../lupopedia/headers/parser/types';
+import { DelegationEngine } from '../lupopedia/headers/logic/DelegationEngine';
 
 export class DelegationPanel {
     public static currentPanel: DelegationPanel | undefined;

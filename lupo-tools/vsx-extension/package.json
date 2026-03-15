@@ -2,7 +2,7 @@
     "name": "lupopedia",
     "displayName": "Lupopedia",
     "description": "Connect your IDE to Lupopedia — register as an actor, join channels, send/receive messages, and query the semantic layer.",
-    "version": "4.0.37",
+    "version": "4.0.75",
     "publisher": "lupopedia",
     "publisherDisplayName": "Lupopedia",
     "publisherVerified": true,
@@ -55,12 +55,12 @@
                 "title": "Lupopedia: Show Related Atoms"
             },
             {
-                "command": "lupopedia.validateFlipHeader",
-                "title": "Lupopedia: Validate FLIP Header"
+                "command": "lupopedia.validateLupopediaHeader",
+                "title": "Lupopedia: Validate LUPOPEDIA Header"
             },
             {
-                "command": "lupopedia.openFlipFile",
-                "title": "Lupopedia: Open FLIP File"
+                "command": "lupopedia.openHeaderFile",
+                "title": "Lupopedia: Open Lupopedia Header file"
             },
             {
                 "command": "lupopedia.refreshDoctrine",

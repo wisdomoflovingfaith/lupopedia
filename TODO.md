@@ -43,19 +43,20 @@ lupopedia.footer:
   last_verified_by: "cursor"
   orchestrator: "cursor"
   next_action:
-    - "v4.0.75: Test fresh install and Crafty 3.7.5 upgrade paths (see By version below)"
+    - "v4.0.76: Continue repeated install/upgrade validation (see By version below)"
     - "If using orchestrator rules: run future_features_lupopedia.sql for lupo_orchestrator_rules, then php lupo-scripts/sync_orchestrator_rules_to_db.php"
 ---
 # file: TODO (root) — session: L-LUPO-ROOT-CURSOR — delegation: cursor:root — web_path: http://www.lupopedia.com/TODO
 
 # TODO (root)
 
-Pending tasks and next actions for Lupopedia. **v4.0.75** is the current release: schema (lupo_projects, 12-table expansion), seed wiring (seed_projects.sql), path normalization (lupo-* prefix; `legacy/` intentional exception), and advisory table-count doctrine are in place. Remaining work is validation and optional follow-ups.
+Pending tasks and next actions for Lupopedia. **v4.0.75** is **finalized and released** (tagged 4.0.75). **v4.0.76** is the active development version. Schema (lupo_projects, 12-table expansion), seed wiring, path normalization, and governance (root rules, IDE propagation, ONBOARDING, Safe DB Operations) are in place. Continued validation and regression work proceed under v4.0.76.
 
-## Immediate
+## Immediate (v4.0.76)
 
-- [ ] **v4.0.75:** Test **upgrade from Crafty Syntax 3.7.5** end-to-end (drop tables → load Crafty 3.7.5 → run install.php → verify).
-- [ ] **v4.0.75:** Test **fresh Lupopedia install** end-to-end (install SQL + seeds including seed_projects.sql).
+- [ ] **v4.0.76:** **Repeated** validation: **fresh Lupopedia install** end-to-end (install SQL + seeds including seed_projects.sql). Already exercised during the 4.0.75 cycle; ongoing regression confidence.
+- [ ] **v4.0.76:** **Repeated** validation: **upgrade from Crafty Syntax 3.7.5** end-to-end (drop tables → load Crafty 3.7.5 → run install.php → verify). Already exercised during the 4.0.75 cycle; ongoing regression confidence.
+- [ ] **v4.0.76:** Optional: final documentation review and cross-reference validation (see [V4_0_75_FINALIZATION_REPORT.md](lupo-docs/status/V4_0_75_FINALIZATION_REPORT.md)).
 
 ## Optional / follow-up
 
@@ -68,7 +69,8 @@ Pending tasks and next actions for Lupopedia. **v4.0.75** is the current release
 
 - **v4.0.73:** Consolidation release. Supported paths: fresh install, Crafty 3.7.5 → Lupopedia upgrade only.
 - **v4.0.74:** Pushed to GitHub. Implemented: lupo_projects + seed_projects.sql (wired), 12-table expansion, path normalization (legacy/ exception), table count 159 (advisory doctrine), image paths (lupo-images/).
-- **v4.0.75:** Version bump post-push. No schema changes. Remaining: upgrade and fresh-install validation tests. See [CHANGELOG.md](CHANGELOG.md) and [plan.md](plan.md).
+- **v4.0.75:** **Finalized and released.** Version bump, rules and governance updates, multi-agent propagation, schema-reference continuity, ONBOARDING, Safe DB Operations (DB009). Fresh install and Crafty 3.7.5 upgrade validation were performed during the 4.0.75 cycle; continued repeated validation is carried forward to v4.0.76. See [CHANGELOG.md](CHANGELOG.md) and [plan.md](plan.md).
+- **v4.0.76:** Active development. Recurring install/upgrade validation and regression passes; optional doc polish.
 
 ## Doctrine
 

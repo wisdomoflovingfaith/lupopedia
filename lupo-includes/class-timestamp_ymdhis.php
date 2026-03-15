@@ -137,6 +137,28 @@ class timestamp_ymdhis
         return (int) gmdate('YmdHis', strtotime($str . ' UTC'));
     }
 
+    /**
+     * Convert BIGINT(14) YmdHis to ISO8601 UTC string (YYYY-MM-DDTHH:MM:SSZ).
+     */
+    public static function convert_bigint_to_iso8601(int $ts): string
+    {
+        $c = self::explode($ts);
+        return sprintf(
+            '%04d-%02d-%02dT%02d:%02d:%02dZ',
+            $c['year'], $c['month'], $c['day'],
+            $c['hour'], $c['minute'], $c['second']
+        );
+    }
+
+    /**
+     * Convert ISO8601 string to BIGINT(14) YmdHis (UTC).
+     */
+    public static function convert_iso8601_to_bigint(string $iso): int
+    {
+        $epoch = strtotime($iso);
+        return (int) gmdate('YmdHis', $epoch);
+    }
+
     /* ============================================================
      * INTERVAL HELPERS
      * ============================================================ */

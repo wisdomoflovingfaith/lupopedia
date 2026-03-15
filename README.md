@@ -86,7 +86,7 @@ lupopedia.footer:
 
 ---
 
-**Current Release: [v4.0.75](lupo-docs/version.md)** — Rules and governance updates: **canonical root rules** in `lupo-rules/root/`, IDE rule propagation (Cursor, Kiro, Windsurf, JetBrains), TOON path unified to `lupo-database/lupopedia/toon/`, and `lupo-database/` security hardening. The only supported upgrade path is **Crafty Syntax 3.7.5 → Lupopedia 4.0.x**. See [plan.md](plan.md) and [report.md](report.md).
+**Current Release: [v4.0.75](lupo-docs/version.md)** — Rules and governance updates: **canonical root rules** in `lupo-rules/root/`, IDE rule propagation (Cursor, Kiro, Windsurf, JetBrains), TOON path unified to `lupo-database/lupopedia/toon/`, `lupo-database/` security hardening, and **Antigravity VSX Extension** integration (including full LUPOPEDIA HEADERS terminology adoption and feature UI scaffolding). The only supported upgrade path is **Crafty Syntax 3.7.5 → Lupopedia 4.0.x**. See [plan.md](plan.md) and [report.md](report.md).
 
 **Canonical root rules:** All agents and actors must follow the doctrine in **`lupo-rules/root/`**. Agent-specific rule files (e.g. `.cursor/rules/`, `.kiro/rules/`, `.windsurf/rules/`) are **derived** from those root rules; the root is the single source of truth. See [Canonical root rules](#canonical-root-rules) and [New agent onboarding](#new-agent--web-terminal-agent-onboarding).
 
@@ -96,7 +96,7 @@ lupopedia.footer:
 
 - [Required Reading Before Using Lupopedia](#required-reading-before-using-lupopedia)
 - [Canonical root rules](#canonical-root-rules)
-- [New agent / web terminal agent onboarding](#new-agent--web-terminal-agent-onboarding)
+- [New agent / web terminal agent onboarding](#new-agent--web-terminal-agent-onboarding) — **Start here: [ONBOARDING.md](ONBOARDING.md)**
 - [What Lupopedia Is](#what-lupopedia-is)
 - [Core Identity Model](#core-identity-model)
 - [Core Concepts](#core-concepts)
@@ -137,6 +137,8 @@ Lupopedia is **doctrine-driven** and **header-driven**. To avoid invalid initial
 ---
 
 ## New agent / web terminal agent onboarding
+
+**First stop for new agents:** Read **[ONBOARDING.md](ONBOARDING.md)** for the operational quick-start (what to read first, non-negotiable rules, how to begin or continue work). It applies to IDE agents, external LLM agents, and human contributors.
 
 If you are a **new IDE agent** (e.g. a new IDE or AI coding assistant joining the repo) or a **new web terminal agent**, you **must not** start contributing as an unnamed or anonymous participant. Lupopedia uses **explicit actor identity** and **registration** for safe multi-agent operation.
 

@@ -52,6 +52,7 @@ These files provide detailed documentation for specific database tables:
 These files provide cross-cutting documentation and references:
 
 - **README.md**: This file - directory overview and structure guide
+- **lupopedia_actors_collections_organization_reference.md**: Canonical cross-table reference for actor, collection, and organization schema structure and doctrine constraints
 - **CHANNEL_SYSTEM_TLDR.md**: Quick reference guide for channel system operations (NOT table documentation)
 - **MIGRATION_MAPPING_REFERENCE.md**: Legacy to modern table mapping
 - **SESSION_MANAGEMENT_SYSTEM.md**: Multi-agent isolation and sync guide

@@ -5,7 +5,7 @@
  *   POST /semantic/explain
  *   POST /semantic/related
  *   POST /semantic/paths
- *   POST /semantic/flip-header
+ *   POST /semantic/lupopedia-header
  *
  * @module lupopedia/semantic
  */
@@ -110,32 +110,32 @@ export async function getSemanticPaths(
     return res.data.paths ?? [];
 }
 
-// ─── FLIP Header via Semantic API ─────────────────────────────────────────────
+// ─── LUPOPEDIA Header via Semantic API ─────────────────────────────────────────────
 
-export interface FlipHeaderSemanticRequest {
+export interface LupopediaHeaderSemanticRequest {
     file_path?: string;
     content_id?: number;
     url?: string;
 }
 
-export interface FlipHeaderSemanticResponse {
+export interface LupopediaHeaderSemanticResponse {
     header: string;
     resolved: boolean;
     channel_id?: number;
     [key: string]: unknown;
 }
 
-export async function getFlipHeaderFromServer(
+export async function getLupopediaHeaderFromServer(
     baseUrl: string,
-    request: FlipHeaderSemanticRequest
-): Promise<FlipHeaderSemanticResponse> {
-    const res = await lupoPost<FlipHeaderSemanticResponse>(
+    request: LupopediaHeaderSemanticRequest
+): Promise<LupopediaHeaderSemanticResponse> {
+    const res = await lupoPost<LupopediaHeaderSemanticResponse>(
         baseUrl,
-        '/semantic/flip-header',
+        '/semantic/lupopedia-header',
         request
     );
     if (!res.ok) {
-        throw new Error(`FLIP header fetch failed (HTTP ${res.status}): ${JSON.stringify(res.data)}`);
+        throw new Error(`LUPOPEDIA Header fetch failed (HTTP ${res.status}): ${JSON.stringify(res.data)}`);
     }
     return res.data;
 }

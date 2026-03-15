@@ -129,6 +129,6 @@ Lupopedia originally had **lupo_operators** (and related operator_* tables) for 
 ## 4. References
 
 - **lupo-docs/audits/OPERATOR_TO_ROLE_BASED_SWEEP_REPORT.md** — What was changed when lupo_operators was removed.
-- **lupo-docs/doctrine/database/actor_channel_roles.md** — Use of lupo_actor_channel_roles and role keys.
+- **lupo-docs/database/lupopedia/tables/active/lupo_actor_channel_roles.md** — Use of lupo_actor_channel_roles and role keys.
 - **lupo-docs/doctrine/migrations/livehelp_users_migration.md** — livehelp_users → lupo_auth_users / lupo_actors; notes that operator permissions use the 3-level role system.
 - **lupo-database/migrations_legacy/migration_operator_to_actor_channel_roles.sql** — One-time migration from lupo_channel_roles to lupo_actor_channel_roles for existing installs (not run by wizard).

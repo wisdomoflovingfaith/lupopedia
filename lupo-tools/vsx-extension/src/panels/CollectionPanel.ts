@@ -1,6 +1,6 @@
 import * as vscode from 'vscode';
 import { CollectionInfo } from '../lupopedia/collections';
-import { ArtifactRecord } from '../lupopedia/flip/storage/ArtifactIndex';
+import { ArtifactRecord } from '../lupopedia/headers/storage/ArtifactIndex';
 
 export class CollectionPanel {
     public static currentPanel: CollectionPanel | undefined;

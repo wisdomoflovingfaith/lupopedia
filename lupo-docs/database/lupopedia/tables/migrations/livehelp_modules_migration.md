@@ -81,7 +81,7 @@ flip.footer: {
     { from: "lupo-database/migrations/import_from_old_crafty_syntax.sql", type: "documents", weight: 0.7, hashtag: "#migration" }
   ],
   outbound_edges: [
-    { to: "lupo-docs/doctrine/database/modules.md", type: "documents", weight: 1.0, hashtag: "#target_table" },
+    { to: "lupo-docs/doctrine/DATABASE_DOCTRINE.md", type: "documents", weight: 1.0, hashtag: "#target_table" },
     { to: "lupo-database/migrations/old_crafty_syntax_3_7_5_start.sql", type: "references", weight: 0.7, hashtag: "#source" },
     { to: "lupo-includes/modules/module-loader.php", type: "replaced_by", weight: 0.8, hashtag: "#module_system" }
   ],

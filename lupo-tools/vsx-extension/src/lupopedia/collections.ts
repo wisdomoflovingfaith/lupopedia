@@ -1,6 +1,6 @@
 import * as vscode from 'vscode';
-import { ArtifactIndex, ArtifactRecord } from './flip/storage/ArtifactIndex';
-import { FlipHeaderV2 } from './flip/parser/types';
+import { ArtifactIndex, ArtifactRecord } from './headers/storage/ArtifactIndex';
+import { LupopediaHeaderV2 } from './headers/parser/types';
 
 export interface CollectionInfo {
     id: string;
@@ -36,9 +36,9 @@ export class CollectionManager {
                     traits: header.classification.traits,
                     filePath: a.id
                 });
-            } else if (header.wolfie && header.wolfie.headers) {
+            } else if (header.lupopedia && header.lupopedia.headers) {
                 // v2 support
-                const h = header.wolfie.headers;
+                const h = header.lupopedia.headers;
                 results.push({
                     id: h.collection_id || 'unknown',
                     title: h.collection_title || h.collection_id || 'Untitled Collection',

@@ -83,7 +83,7 @@ flip.footer: {
   outbound_edges: [
     { to: "lupo-database/migrations/old_crafty_syntax_3_7_5_start.sql", type: "references", weight: 0.8, hashtag: "#source" },
     { to: "app/Services/CraftySyntax/LegacyAdmin.php", type: "used_by", weight: 0.6, hashtag: "#compatibility" },
-    { to: "lupo-docs/doctrine/database/crm_leads.md", type: "related_to", weight: 0.5, hashtag: "#offline_forms" }
+    { to: "lupo-docs/database/lupopedia/tables/active/lupo_crm_leads.md", type: "related_to", weight: 0.5, hashtag: "#offline_forms" }
   ],
   referenced_by_actors: [1001, 10000],
   references: {

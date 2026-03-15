@@ -13,16 +13,16 @@ import { initIdentityStorage, loadIdentity, ActorIdentity, buildActorRoster, res
 import { registerActor, lookupActor, lookupKnownActors } from './lupopedia/actor';
 import { sendMessage, getMessages, joinChannel, CommMode } from './lupopedia/channels';
 import { explainFile, getRelatedAtoms } from './lupopedia/semantic';
-import { parseFlipHeader, formatFlipHeader, inferRelativePath } from './lupopedia/flip';
+import { parseLupopediaHeader, formatLupopediaHeader, inferRelativePath } from './lupopedia/headers';
 import { ChannelViewerPanel } from './webviews/channelViewer';
 import { SemanticViewerPanel } from './webviews/semanticViewer';
-import { FlipEditorPanel } from './webviews/flipEditor';
-import { FlipTreeDataProvider } from './providers/flipTreeProvider';
+import { HeaderEditorPanel } from './webviews/headerEditor';
+import { HeaderTreeDataProvider } from './providers/headerTreeProvider';
 import * as fs from 'fs';
 import * as path from 'path';
 
-// FLIP v2 Imports
-import { ArtifactIndex } from './lupopedia/flip/storage/ArtifactIndex';
+// LUPOPEDIA HEADER v2 Imports
+import { ArtifactIndex } from './lupopedia/headers/storage/ArtifactIndex';
 import { initializeLupopedia } from './lupopedia/commands/Initialize';
 import { scanWorkspace } from './lupopedia/commands/ScanWorkspace';
 import { showLupopediaStatus } from './lupopedia/commands/ShowStatus';
@@ -30,22 +30,32 @@ import { forceOfflineMode } from './lupopedia/commands/ForceOffline';
 import { ComplianceProvider } from './providers/complianceProvider';
 
 // Concurrency & Persistence
-import { ThreadLockManager } from './lupopedia/flip/concurrency/ThreadLock';
-import { HeartbeatManager } from './lupopedia/flip/concurrency/Heartbeat';
+import { ThreadLockManager } from './lupopedia/headers/concurrency/ThreadLock';
+import { HeartbeatManager } from './lupopedia/headers/concurrency/Heartbeat';
 
 // Panels & Collections
 import { ArtifactPanel } from './panels/ArtifactPanel';
 import { CollectionPanel } from './panels/CollectionPanel';
 import { CollectionManager } from './lupopedia/collections';
-import { HeaderParser } from './lupopedia/flip/parser/HeaderParser';
-import { FooterParser } from './lupopedia/flip/parser/FooterParser';
-import { FlipArtifact } from './lupopedia/flip/parser/types';
-import { FlipQueryEngine } from './lupopedia/flip/query/QueryEngine';
-import { SemanticEventBus } from './lupopedia/flip/concurrency/EventBus';
+
+// Scaffolded modules 4.0.74 / 4.0.75
+import { loadRules } from './rules/ruleLoader';
+import { validateSql } from './schema/validator';
+import { generateActorName } from './actor/nameGenerator';
+import { openRegistryEditor } from './actor/registryEditor';
+import { detectMode } from './offline/modeDetector';
+import { viewTrust } from './federation/trustViewer';
+import { viewLogs } from './logs/unifiedLogViewer';
+import { viewHealth } from './health/snapshotDashboard';
+import { HeaderParser } from './lupopedia/headers/parser/HeaderParser';
+import { FooterParser } from './lupopedia/headers/parser/FooterParser';
+import { HeaderArtifact } from './lupopedia/headers/parser/types';
+import { HeaderQueryEngine } from './lupopedia/headers/query/QueryEngine';
+import { SemanticEventBus } from './lupopedia/headers/concurrency/EventBus';
 
 // v4.1 Services
-import { MetadataService } from './lupopedia/flip/logic/MetadataService';
-import { RepairService } from './lupopedia/flip/logic/RepairService';
+import { MetadataService } from './lupopedia/headers/logic/MetadataService';
+import { RepairService } from './lupopedia/headers/logic/RepairService';
 import { DelegationPanel } from './panels/DelegationPanel';
 import { SemanticMapPanel } from './panels/SemanticMapPanel';
 
@@ -129,10 +139,10 @@ export async function activate(ctx: vscode.ExtensionContext): Promise<void> {
             ? vscode.workspace.workspaceFolders[0].uri.fsPath
             : '';
 
-    const flipTreeProvider = new FlipTreeDataProvider(rootPath);
-    vscode.window.registerTreeDataProvider('lupopedia.doctrine', flipTreeProvider);
+    const headerTreeProvider = new HeaderTreeDataProvider(rootPath);
+    vscode.window.registerTreeDataProvider('lupopedia.doctrine', headerTreeProvider);
 
-    // FLIP v2 Components
+    // LUPOPEDIA HEADER v2 Components
     const artifactIndex = new ArtifactIndex(ctx);
     await artifactIndex.initialize();
 
@@ -143,6 +153,12 @@ export async function activate(ctx: vscode.ExtensionContext): Promise<void> {
 
     // ── Version 4.0.40 Compliance Gate ────────────────────────────────────────
     new ComplianceProvider(ctx);
+
+    // ── Version 4.0.75 Initialization ─────────────────────────────────────────
+    loadRules();
+    validateSql();
+    detectMode();
+    generateActorName('antigravity', 'ide');
 
     // ── Command: Initialize ──────────────────────────────────────────────────
     ctx.subscriptions.push(
@@ -197,7 +213,7 @@ export async function activate(ctx: vscode.ExtensionContext): Promise<void> {
             await vscode.window.withProgress(
                 { location: vscode.ProgressLocation.Notification },
                 async (progress) => {
-                    progress.report({ message: 'Scanning workspace for FLIP artifacts...' });
+                    progress.report({ message: 'Scanning workspace for LUPOPEDIA HEADER artifacts...' });
                     const results = await scanWorkspace(ctx, artifactIndex);
                     vscode.window.showInformationMessage(
                         `Scan complete: ${results.filesScanned} files, ` +
@@ -391,12 +407,12 @@ export async function activate(ctx: vscode.ExtensionContext): Promise<void> {
         })
     );
 
-    // ── Command: Flip Query (v3) ──────────────────────────────────────────────
+    // ── Command: Header Query (v3) ──────────────────────────────────────────────
     ctx.subscriptions.push(
-        vscode.commands.registerCommand('lupopedia.flipQuery', async () => {
-            const queryEngine = new FlipQueryEngine(artifactIndex);
+        vscode.commands.registerCommand('lupopedia.headerQuery', async () => {
+            const queryEngine = new HeaderQueryEngine(artifactIndex);
             const dsl = await vscode.window.showInputBox({
-                prompt: 'Enter Flip Query DSL',
+                prompt: 'Enter Header Query DSL',
                 placeHolder: 'e.g. relations inbound from QUICKSTART.md'
             });
             if (!dsl) return;
@@ -439,9 +455,9 @@ export async function activate(ctx: vscode.ExtensionContext): Promise<void> {
         initializeLupopedia(ctx, artifactIndex);
     }
 
-    // ── Command: Open FLIP File ─────────────────────────────────────────────
+    // ── Command: Open Lupopedia Header file ─────────────────────────────────────────────
     ctx.subscriptions.push(
-        vscode.commands.registerCommand('lupopedia.openFlipFile', (fsPath: string) => {
+        vscode.commands.registerCommand('lupopedia.openHeaderFile', (fsPath: string) => {
             vscode.workspace.openTextDocument(fsPath).then(doc => {
                 vscode.window.showTextDocument(doc);
             });
@@ -451,7 +467,7 @@ export async function activate(ctx: vscode.ExtensionContext): Promise<void> {
     // ── Command: Refresh Doctrine View ──────────────────────────────────────
     ctx.subscriptions.push(
         vscode.commands.registerCommand('lupopedia.refreshDoctrine', () => {
-            flipTreeProvider.refresh();
+            headerTreeProvider.refresh();
         })
     );
 
@@ -481,7 +497,7 @@ export async function activate(ctx: vscode.ExtensionContext): Promise<void> {
             let actorIdToLog = identity.actor_id;
 
             if (editor && editor.document.languageId === 'markdown') {
-                const result = parseFlipHeader(editor.document.getText());
+                const result = parseLupopediaHeader(editor.document.getText());
                 if (result.header) {
                     if (result.header.actor_id) {
                         actorIdToLog = result.header.actor_id;
@@ -517,38 +533,38 @@ export async function activate(ctx: vscode.ExtensionContext): Promise<void> {
 
                 fs.writeFileSync(logPath, JSON.stringify(logData, null, 2), 'utf-8');
                 vscode.window.showInformationMessage(`Lupopedia: Action logged to channel42_log.json`);
-                flipTreeProvider.refresh();
+                headerTreeProvider.refresh();
             } catch (err: unknown) {
                 vscode.window.showErrorMessage(`Failed to log action: ${err instanceof Error ? err.message : String(err)}`);
             }
         })
     );
 
-    // ── Command: Validate FLIP Header ───────────────────────────────────────
+    // ── Command: Validate LUPOPEDIA Header ───────────────────────────────────────
     ctx.subscriptions.push(
-        vscode.commands.registerCommand('lupopedia.validateFlipHeader', () => {
+        vscode.commands.registerCommand('lupopedia.validateLupopediaHeader', () => {
             const editor = vscode.window.activeTextEditor;
             if (!editor || editor.document.languageId !== 'markdown') {
-                vscode.window.showWarningMessage('Please open a Markdown file to validate its FLIP header.');
+                vscode.window.showWarningMessage('Please open a Markdown file to validate its LUPOPEDIA Header.');
                 return;
             }
 
             const text = editor.document.getText();
-            const result = parseFlipHeader(text);
+            const result = parseLupopediaHeader(text);
 
             if (result.valid && result.header) {
                 const h = result.header;
                 vscode.window.showInformationMessage(
-                    `✅ FLIP Header Valid: ${h.file_path_from_root} (v${h.file_last_modified_system_version})`
+                    `✅ LUPOPEDIA Header Valid: ${h.file_path_from_root} (v${h.file_last_modified_system_version})`
                 );
             } else {
                 const msg = result.errors.join(' | ');
-                vscode.window.showErrorMessage(`❌ FLIP Header Invalid: ${msg}`);
+                vscode.window.showErrorMessage(`❌ LUPOPEDIA Header Invalid: ${msg}`);
             }
         })
     );
 
-    // ── Global Document Watcher: FLIP Enforcement ────────────────────────────
+    // ── Global Document Watcher: LUPOPEDIA HEADER Enforcement ────────────────────────────
     ctx.subscriptions.push(
         vscode.workspace.onWillSaveTextDocument(async (event) => {
             if (event.document.languageId !== 'markdown') { return; }
@@ -558,7 +574,7 @@ export async function activate(ctx: vscode.ExtensionContext): Promise<void> {
             if (!fsPath.includes(`${path.sep}docs${path.sep}`)) { return; }
 
             const text = event.document.getText();
-            const result = parseFlipHeader(text);
+            const result = parseLupopediaHeader(text);
             const expectedPath = inferRelativePath(fsPath, rootPath);
 
             // If header exists, enforce Trinity and Path
@@ -605,7 +621,7 @@ export async function activate(ctx: vscode.ExtensionContext): Promise<void> {
                         updatedHeader.lupo_registry_mode = 'offline-fallback';
                         updatedHeader.lupo_registry_source = 'local-headers';
                         updatedHeader.lupo_location = 'Sioux Falls, South Dakota, US'; // Default for the Captain's location doctrine
-                        updatedHeader.tags = '["flip", "doctrine", "offline"]';
+                        updatedHeader.tags = '["lupopedia", "doctrine", "offline"]';
                         updatedHeader.mood_rgb = 'D2BEFA';
 
                         // New Phase 10: Semantic Database Parity
@@ -642,7 +658,7 @@ export async function activate(ctx: vscode.ExtensionContext): Promise<void> {
                         }
                     }
 
-                    const newHeaderText = formatFlipHeader(updatedHeader);
+                    const newHeaderText = formatLupopediaHeader(updatedHeader);
                     const oldHeaderText = `---${result.raw}---`;
 
                     const edit = new vscode.WorkspaceEdit();
@@ -655,12 +671,12 @@ export async function activate(ctx: vscode.ExtensionContext): Promise<void> {
                         await vscode.workspace.applyEdit(edit);
 
                         // Invalidate cache for this file
-                        flipTreeProvider.invalidate(fsPath);
+                        headerTreeProvider.invalidate(fsPath);
 
                         // Auto-log the update action
                         vscode.commands.executeCommand('lupopedia.internalLog', {
                             actor_id: updatedHeader.actor_id || 0,
-                            actor_name: updatedHeader.lupo_actor_identity || updatedHeader.from || 'System (FLIP Auto-Update)',
+                            actor_name: updatedHeader.lupo_actor_identity || updatedHeader.from || 'System (LUPOPEDIA HEADER Auto-Update)',
                             action: `Enforced 4.0.27 Doctrine (Path/Trinity) for ${expectedPath}`,
                             thread_id: updatedHeader.thread_id || '1001'
                         });
@@ -690,7 +706,7 @@ export async function activate(ctx: vscode.ExtensionContext): Promise<void> {
                 });
 
                 fs.writeFileSync(logPath, JSON.stringify(logData, null, 2), 'utf-8');
-                flipTreeProvider.refresh();
+                headerTreeProvider.refresh();
             } catch (err) { }
         })
     );
@@ -806,7 +822,7 @@ export async function activate(ctx: vscode.ExtensionContext): Promise<void> {
     // ── Command: Show Channel Thread ──────────────────────────────────────────
     ctx.subscriptions.push(
         vscode.commands.registerCommand('lupopedia.showChannelThread', async () => {
-            const id = requireIdentity(statusBar);
+            const id = await requireIdentity(statusBar);
             if (!id) {
                 return;
             }
@@ -838,7 +854,7 @@ export async function activate(ctx: vscode.ExtensionContext): Promise<void> {
     // ── Command: Explain This File ────────────────────────────────────────────
     ctx.subscriptions.push(
         vscode.commands.registerCommand('lupopedia.explainThisFile', async () => {
-            const id = requireIdentity(statusBar);
+            const id = await requireIdentity(statusBar);
             if (!id) {
                 return;
             }
@@ -879,7 +895,7 @@ export async function activate(ctx: vscode.ExtensionContext): Promise<void> {
     // ── Command: Show Related Atoms ───────────────────────────────────────────
     ctx.subscriptions.push(
         vscode.commands.registerCommand('lupopedia.showRelatedAtoms', async () => {
-            const id = requireIdentity(statusBar);
+            const id = await requireIdentity(statusBar);
             if (!id) {
                 return;
             }
@@ -919,9 +935,9 @@ export async function activate(ctx: vscode.ExtensionContext): Promise<void> {
         })
     );
 
-    // ── Command: Validate FLIP Header ─────────────────────────────────────────
+    // ── Command: Validate LUPOPEDIA Header ─────────────────────────────────────────
     ctx.subscriptions.push(
-        vscode.commands.registerCommand('lupopedia.validateFlipHeader', async () => {
+        vscode.commands.registerCommand('lupopedia.validateLupopediaHeader', async () => {
             const editor = vscode.window.activeTextEditor;
             if (!editor) {
                 vscode.window.showWarningMessage('Lupopedia: No active file to validate.');
@@ -929,25 +945,25 @@ export async function activate(ctx: vscode.ExtensionContext): Promise<void> {
             }
 
             const text = editor.document.getText();
-            const result = parseFlipHeader(text);
+            const result = parseLupopediaHeader(text);
 
             if (result.valid && result.header) {
-                const formatted = formatFlipHeader(result.header);
-                // Show the FLIP editor for valid headers (identity = effective logged-in user)
+                const formatted = formatLupopediaHeader(result.header);
+                // Show the LUPOPEDIA HEADER editor for valid headers (identity = effective logged-in user)
                 const identity = await resolveEffectiveActorId();
-                FlipEditorPanel.createOrShow(
+                HeaderEditorPanel.createOrShow(
                     ctx.extensionUri,
                     result.header,
                     getConfig().baseUrl,
                     identity
                 );
                 vscode.window.showInformationMessage(
-                    `Lupopedia: FLIP header is valid! Channel: ${result.header.channel_id ?? 'unresolved'}`
+                    `Lupopedia: LUPOPEDIA Header is valid! Channel: ${result.header.channel_id ?? 'unresolved'}`
                 );
             } else {
                 const errList = result.errors.join('\n• ');
                 vscode.window.showErrorMessage(
-                    `Lupopedia: FLIP header invalid:\n• ${errList}`
+                    `Lupopedia: LUPOPEDIA Header invalid:\n• ${errList}`
                 );
             }
         })
@@ -966,7 +982,7 @@ export async function activate(ctx: vscode.ExtensionContext): Promise<void> {
                 capabilities: [
                     'md_registry_loading',
                     'md_channel_discovery',
-                    'flip_metadata_persistence'
+                    'lupo_metadata_persistence'
                 ]
             };
             return status;

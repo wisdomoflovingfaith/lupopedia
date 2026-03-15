@@ -81,7 +81,7 @@ flip.footer: {
     { from: "lupo-docs/doctrine/migrations/livehelp_transcripts_migration.md", type: "references", weight: 0.8, hashtag: "#related" }
   ],
   outbound_edges: [
-    { to: "lupo-docs/doctrine/database/dialog_messages.md", type: "documents", weight: 0.9, hashtag: "#target_table" },
+    { to: "lupo-docs/database/lupopedia/tables/active/lupo_dialog_messages.md", type: "documents", weight: 0.9, hashtag: "#target_table" },
     { to: "lupo-docs/doctrine/migrations/livehelp_transcripts_migration.md", type: "references", weight: 0.8, hashtag: "#durable_data" },
     { to: "lupo-database/migrations/old_crafty_syntax_3_7_5_start.sql", type: "references", weight: 0.7, hashtag: "#source" }
   ],

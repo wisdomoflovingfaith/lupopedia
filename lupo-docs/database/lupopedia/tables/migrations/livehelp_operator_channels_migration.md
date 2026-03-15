@@ -81,8 +81,8 @@ flip.footer: {
     { from: "lupo-database/migrations/import_from_old_crafty_syntax.sql", type: "documents", weight: 0.7, hashtag: "#migration" }
   ],
   outbound_edges: [
-    { to: "lupo-docs/doctrine/database/channels.md", type: "documents", weight: 0.9, hashtag: "#target_system" },
-    { to: "lupo-docs/doctrine/database/actor_channel_roles.md", type: "documents", weight: 0.8, hashtag: "#permissions" },
+    { to: "lupo-docs/database/lupopedia/tables/active/lupo_channels.md", type: "documents", weight: 0.9, hashtag: "#target_system" },
+    { to: "lupo-docs/database/lupopedia/tables/active/lupo_actor_channel_roles.md", type: "documents", weight: 0.8, hashtag: "#permissions" },
     { to: "lupo-database/migrations/old_crafty_syntax_3_7_5_start.sql", type: "references", weight: 0.7, hashtag: "#source" }
   ],
   referenced_by_actors: [1001, 10000],

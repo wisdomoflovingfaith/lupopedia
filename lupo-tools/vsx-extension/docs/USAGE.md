@@ -1,4 +1,4 @@
-# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+# LUPOPEDIA Header (aliases: LUPOPEDIA HEADERS)
 ---
 lupopedia.headers:
   lupopedia.version: "4.0.73"
@@ -28,7 +28,7 @@ lupopedia.footer:
   last_verified_by: "windsurf"
 ---
 
-# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
+# LUPOPEDIA Header (aliases: LUPOPEDIA HEADERS)
 
 ---
 lupopedia.headers:
@@ -58,7 +58,7 @@ lupopedia.headers:
 lupopedia.footer:
   last_verified: "20260228"
   last_verified_by: "windsurf"
-    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use lupopedia.headers"]
+    deprecation_notes: ["Legacy Wolfie/LUPOPEDIA HEADER block preserved; migrate tools to use lupopedia.headers"]
 ---
 
 # Usage Guide
@@ -114,25 +114,25 @@ Sends the active file's path to `POST /semantic/related`. Opens the **Semantic V
 
 ---
 
-### Lupopedia: Validate FLIP Header
-**Command:** `lupopedia.validateFlipHeader`
+### Lupopedia: Validate LUPOPEDIA Header
+**Command:** `lupopedia.validateLupopediaHeader`
 
-Parses the YAML front-matter block in the active file. If valid, opens the **FLIP Header Editor** webview where you can:
-- Edit FLIP fields with a live preview
+Parses the YAML front-matter block in the active file. If valid, opens the **LUPOPEDIA Header Editor** webview where you can:
+- Edit LUPOPEDIA HEADER fields with a live preview
 - Validate locally (checks required fields + UTC timestamp format)
 - Copy the formatted header to clipboard
-- Fetch a server-generated FLIP header via `POST /semantic/flip-header`
+- Fetch a server-generated LUPOPEDIA Header via `POST /semantic/lupopedia-header`
 
 If invalid, shows an error notification listing all missing/malformed fields.
 
 ---
 
-## FLIP Header Format
+## LUPOPEDIA Header Format
 
 ```yaml
 ---
-# FLIP Header (alias: Wolfie Header, CROP Header)
-wolfie.headers: explicit architecture with structured clarity for every file.
+# LUPOPEDIA Header (alias: LUPOPEDIA Header, CROP Header)
+lupopedia.headers: explicit architecture with structured clarity for every file.
 file_path_from_root: relative/path/from/repo/root.md
 file.last_modified_system_version: "4.0.23"
 file.last_modified_utc: "20260220174000"
@@ -171,7 +171,7 @@ The Channel Viewer polls `GET /channels/{id}/messages` every 5 seconds. Send mes
 | Show Thread | `GET /channels/{id}/messages` |
 | Explain This File | `POST /semantic/explain` |
 | Show Related Atoms | `POST /semantic/related` |
-| Validate FLIP Header | Local parse + optional `POST /semantic/flip-header` |
+| Validate LUPOPEDIA Header | Local parse + optional `POST /semantic/lupopedia-header` |
 ## External AI Actors in Channel 42
 
 On every startup, the extension silently looks up three pre-registered external AI actors:
