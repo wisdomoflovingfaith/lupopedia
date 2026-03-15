@@ -1,9 +1,25 @@
 # Lupopedia Implementation Tasks - Project System Integration
 
-**Version:** 4.0.76  
+**Version:** 4.0.77  
 **Author:** Cursor (actor_id: 102)  
-**Scope:** Detailed task breakdown for Project Registry implementation  
-**Status:** Ready for execution - design phase complete  
+**Scope:** Detailed task breakdown for Project Registry and 4.0.77 validation  
+**Status:** 4.0.76 released; 4.0.77 active — Crafty 3.7.5 upgrade validation in progress  
+
+---
+
+## 4.0.77 — Crafty Syntax 3.7.5 Upgrade Validation (core task)
+
+**Purpose:** Confirm the only supported upgrade path (Crafty 3.7.5 → Lupopedia 4.0.x). No Lupopedia→Lupopedia upgrade is assumed before 4.1.0.
+
+**Required workflow:**
+1. Drop all current Lupopedia tables.
+2. Load original Crafty Syntax 3.7.5 schema/data baseline (e.g. `old_crafty_syntax_3_7_5_start.sql` or equivalent).
+3. Run Lupopedia install.php (install + seed including seed_projects.sql).
+4. Validate successful upgrade into 4.0.77 (tables present, default project 1, channels valid, no errors).
+
+**Task:** [ ] **Crafty Syntax 3.7.5 Upgrade Validation** — Execute workflow above and document result. Update this section and plan.md when complete.
+
+**References:** [CURSOR_PROJECT_SYSTEM_4_0_76_UPGRADE_GUIDE.md](lupo-docs/status/CURSOR_PROJECT_SYSTEM_4_0_76_UPGRADE_GUIDE.md), single-install doctrine (no Lupopedia→Lupopedia until 4.1.0).
 
 ---
 
@@ -274,7 +290,7 @@ Phase 1 aligned with Windsurf handoff: [lupo-docs/status/WINDSURF_TO_CURSOR_PROJ
 
 ---
 
-**Task File Status:** Phase 1 complete; Phases 2–4 blocked  
-**Next Action:** Phase 2 (schema) awaits design package approval; no production schema/app/API/testing changes until approved  
-**Review Date:** 4.0.76 Cursor Phase 1 implementation  
-**Implementation Guard:** No production changes without proper approval. Draft SQL remains in sql_drafts/; install SQL unchanged.
+**Task File Status:** Phase 1–4 complete (4.0.76); 4.0.77 active  
+**Next Action:** Execute Crafty Syntax 3.7.5 Upgrade Validation for 4.0.77  
+**Review Date:** 4.0.77 initialization  
+**Implementation Guard:** No Lupopedia→Lupopedia upgrade before 4.1.0. Single upgrade path: Crafty 3.7.5 → Lupopedia 4.0.x.

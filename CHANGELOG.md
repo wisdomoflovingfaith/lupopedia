@@ -26,11 +26,11 @@ lupopedia.comments:
   - { comment_id: 2, channel_id: 42, actor_id: 102, actor_name: "cursor", faucet_id: 102, faucet_name: "cursor", comment_text: "Second example comment for 4.0.73 to demonstrate multiple comment records in the lupopedia.comments block.", comment_type: "comment", created_ymdhis: 20260313151500, updated_ymdhis: 20260313151500 }
 
 lupopedia.headers:
-  lupopedia.version: "4.0.76"
+  lupopedia.version: "4.0.77"
   lupopedia.schema: "documentation"
   file_path_from_root: "CHANGELOG.md"
-  system_version: "4.0.76"
-  last_modified_utc: "20260315"
+  system_version: "4.0.77"
+  last_modified_utc: "20260316"
   channel_id: 42
   actor_id: 1
   actor_name: "wolfie"
@@ -52,12 +52,12 @@ lupopedia.edges:
  
 lupopedia.footer:
   archive_note: "For historical changelog entries from 4.0.67 and earlier, see CHANGELOG_ARCHIVE.md"
-  version: "4.0.76"
-  last_verified: "20260315"
-  last_verified_by: "codex"
+  version: "4.0.77"
+  last_verified: "20260316"
+  last_verified_by: "cursor"
   orchestrator: "wolfie"
   next_action:
-    - "Add next_action to any new 4.0.75 subsection entries"
+    - "Complete Crafty Syntax 3.7.5 upgrade validation for 4.0.77"
     - "Verify version and last_verified align with release"
     - "Keep required reading and doctrine links current"
 ---
@@ -74,11 +74,22 @@ Older entries (≤4.0.67) are archived in [CHANGELOG_ARCHIVE.md](CHANGELOG_ARCHI
 
 ---
 
-## 4.0.76 — Active development (post–4.0.75 release)
+## 4.0.77 — Active development (post–4.0.76 release)
+
+**Release Date:** 2026-03-16
+
+Version bump after 4.0.76 release and tag. **Active development version.** All canonical version markers and atoms updated to 4.0.77. No Lupopedia→Lupopedia upgrade path before 4.1.0.
+
+#### 4.0.77 core validation task
+- **Crafty Syntax 3.7.5 Upgrade Validation:** Drop all Lupopedia tables → load original Crafty Syntax 3.7.5 schema/data baseline → run Lupopedia install.php → validate successful upgrade into 4.0.77. Confirms the only supported upgrade path (Crafty 3.7.5 → Lupopedia 4.0.x) and that no Lupopedia→Lupopedia upgrade is assumed before 4.1.0. See [tasks.md](tasks.md) and [plan.md](plan.md).
+
+---
+
+## 4.0.76 — Released (project system and production readiness)
 
 **Release Date:** 2026-03-15
 
-Version bump after 4.0.75 release push and tag. **Active development version.** All canonical version markers and atoms updated to 4.0.76. Recurring install/upgrade validation and regression passes continue under this version. No schema or behavioral changes in this bump.
+Released and tagged 4.0.76. Project System schema, application, testing, and Windsurf final completion. All canonical version markers and atoms were 4.0.76. Recurring install/upgrade validation continues under 4.0.77.
 
 #### Documentation clarifications (4.0.76)
 - **Canonical actor identity:** [lupo-docs/ACTOR_REGISTRATION_CHECKLIST.md](lupo-docs/ACTOR_REGISTRATION_CHECKLIST.md) now includes a **Canonical Actor Identity** section. Clarifies that canonical identity is the entry in `lupo-database/lupopedia/actors/actor_id/registry.json` with the matching slug; example Cursor (actor_id **102**, slug `cursor`). Other cursor-related IDs (e.g. 1002, 1005) may exist as historical artifacts and must not be used for new work.

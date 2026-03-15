@@ -1,9 +1,9 @@
 # Lupopedia Implementation Plan - Project System Integration
 
-**Version:** 4.0.76  
+**Version:** 4.0.77  
 **Author:** Cursor (actor_id: 102)  
-**Scope:** Implementation roadmap for Project Registry design package  
-**Status:** Implementation complete; production-ready (Windsurf review addressed; see CURSOR_PROJECT_SYSTEM_4_0_76_FINAL_COMPLETION.md)  
+**Scope:** Implementation roadmap for Project Registry and 4.0.77 validation  
+**Status:** 4.0.76 released; 4.0.77 active — Crafty Syntax 3.7.5 upgrade validation is core task (see tasks.md)  
 
 ---
 

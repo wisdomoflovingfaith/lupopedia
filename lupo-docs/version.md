@@ -1,24 +1,28 @@
 # file: Lupopedia Version History — session: L-LUPO-ANTIGRAVITY — delegation: antigravity:cursor:captain  — web_path: http://www.lupopedia.com/docs/version
 ---
 lupopedia.headers:
-  lupopedia.version: "4.0.76"
+  lupopedia.version: "4.0.77"
   lupopedia.schema: "documentation"
   file_path_from_root: "lupo-docs/version.md"
-  last_modified_utc: "20260315"
-  system_version: "4.0.76"
+  last_modified_utc: "20260316"
+  system_version: "4.0.77"
   purpose: "Version history and upgrade notes for Lupopedia"
-  traits: ["versioning", "v4.0.76", "multi-agent", "evolution"]
+  traits: ["versioning", "v4.0.77", "multi-agent", "evolution"]
   tags: ["version", "changelog", "upgrade"]
 ---
 
 # Lupopedia version history
 
-Current version: **4.0.76**  
-Date: 2026-03-15
+Current version: **4.0.77**  
+Date: 2026-03-16
+
+## Summary of changes (4.0.77)
+
+- **Version bump:** Post–4.0.76 release. Active development version. All canonical version markers and atoms updated to 4.0.77. Core validation task for 4.0.77: **Crafty Syntax 3.7.5 Upgrade Validation** (drop tables → load Crafty 3.7.5 baseline → run install.php → validate upgrade into 4.0.77). No Lupopedia→Lupopedia upgrade path before 4.1.0.
 
 ## Summary of changes (4.0.76)
 
-- **Version bump:** Post–4.0.75 release. Active development version. All canonical version markers and atoms updated to 4.0.76. Recurring install/upgrade validation and regression passes continue under this version. No schema or behavioral changes in this bump.
+- **Released and tagged.** Project System schema, application, testing; Windsurf review final completion; upgrade guide; production-ready. All canonical version markers and atoms were 4.0.76. Recurring install/upgrade validation continues under 4.0.77.
 
 ## Summary of changes (4.0.75)
 
@@ -73,7 +77,7 @@ Date: 2026-03-15
 ## Recent version history
 
 | **4.0.75** | 2026-03-14 | Version bump post–4.0.74 push; no schema changes. |
-| **4.0.74** | 2026-03-14 | 12-table expansion, lupo_projects, path/image normalization, docs reconciliation; pushed to GitHub. |
+| **4.0.74** | 2026-03-14 | 12-table expansion, path/image normalization, docs reconciliation; pushed to GitHub. |
 | **4.0.73** | 2026-03-12 | Version 4.0.73 initialization, task consolidation, and upgrade path validation. |
 | **4.0.72** | 2026-03-12 | Version bump and finalization. |
 | **4.0.71** | 2026-03-12 | Synthesized Documentation Framework, semantic navbar backend, Session Model A. |
