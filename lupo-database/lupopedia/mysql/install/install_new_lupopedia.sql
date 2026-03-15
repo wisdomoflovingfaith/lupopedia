@@ -1224,6 +1224,7 @@ CREATE TABLE lupo_channels (
   awareness_version varchar(20) DEFAULT '3.0.0',
   channel_number int DEFAULT NULL,
   parent_channel_id bigint DEFAULT NULL,
+  project_id bigint DEFAULT NULL,
   is_kernel tinyint NOT NULL DEFAULT '0',
   boot_sequence_order int DEFAULT NULL,
   PRIMARY KEY (channel_id)
@@ -1235,6 +1236,7 @@ CREATE INDEX lupo_channels_idx_channel_key ON lupo_channels (channel_key);
 CREATE INDEX lupo_channels_idx_status ON lupo_channels (status_flag);
 CREATE INDEX lupo_channels_idx_dates ON lupo_channels (end_ymdhis);
 CREATE INDEX lupo_channels_idx_awareness_version ON lupo_channels (awareness_version);
+CREATE INDEX lupo_channels_idx_project_id ON lupo_channels (project_id);
 
 CREATE TABLE lupo_channel_boot_detail (
   detail_id bigint NOT NULL,
@@ -3298,32 +3300,41 @@ CREATE UNIQUE INDEX idx_registry_open_unique ON lupo_registry_open (entity_type,
 CREATE INDEX idx_registry_open_entity_type ON lupo_registry_open (entity_type);
 -- Unified unregistry for tracking unused/reserved IDs.
 
--- lupo_projects: core registry table for projects (KIRO proposal; Captain directive 4.0.74).
+-- lupo_projects: project registry (PROJECT_REGISTRY_SCHEMA_DESIGN.md, create_lupo_projects.sql.md). project_id application-assigned, no AUTO_INCREMENT.
 CREATE TABLE lupo_projects (
   project_id bigint NOT NULL,
   project_key varchar(64) NOT NULL,
-  project_name varchar(255) NOT NULL,
   project_slug varchar(255) NOT NULL,
-  description text,
-  channel_id bigint NOT NULL,
-  orchestrator_id bigint NOT NULL,
+  project_name varchar(255) NOT NULL,
   federation_node_id bigint NOT NULL,
+  default_channel_id bigint DEFAULT NULL,
+  orchestrator_id bigint NOT NULL,
+  project_type varchar(64) DEFAULT 'standard',
+  description text DEFAULT NULL,
   status varchar(32) NOT NULL DEFAULT 'active',
-  project_type varchar(64) NOT NULL DEFAULT 'general',
+  is_active tinyint NOT NULL DEFAULT 1,
+  is_deleted tinyint NOT NULL DEFAULT 0,
+  is_archived tinyint NOT NULL DEFAULT 0,
+  is_frozen tinyint NOT NULL DEFAULT 0,
   metadata_json json DEFAULT NULL,
   created_ymdhis bigint NOT NULL DEFAULT 0,
   updated_ymdhis bigint NOT NULL DEFAULT 0,
-  is_deleted tinyint NOT NULL DEFAULT 0,
-  deleted_ymdhis bigint NOT NULL DEFAULT 0,
+  deleted_ymdhis bigint DEFAULT 0,
+  created_by_actor_id bigint DEFAULT NULL,
+  updated_by_actor_id bigint DEFAULT NULL,
   PRIMARY KEY (project_id),
-  UNIQUE KEY lupo_projects_unq_key_per_node (project_key, federation_node_id)
+  UNIQUE KEY uk_project_key_node (project_key, federation_node_id),
+  UNIQUE KEY uk_project_slug_node (project_slug, federation_node_id)
 );
 
-CREATE INDEX lupo_projects_idx_channel ON lupo_projects(channel_id);
-CREATE INDEX lupo_projects_idx_orchestrator ON lupo_projects(orchestrator_id);
-CREATE INDEX lupo_projects_idx_node ON lupo_projects(federation_node_id);
-CREATE INDEX lupo_projects_idx_status ON lupo_projects(status);
-CREATE INDEX lupo_projects_idx_is_deleted ON lupo_projects(is_deleted);
+CREATE INDEX lupo_projects_idx_federation_node ON lupo_projects (federation_node_id, status, is_deleted);
+CREATE INDEX lupo_projects_idx_project_key ON lupo_projects (project_key, federation_node_id);
+CREATE INDEX lupo_projects_idx_project_slug ON lupo_projects (project_slug, federation_node_id);
+CREATE INDEX lupo_projects_idx_orchestrator ON lupo_projects (orchestrator_id, status, is_deleted);
+CREATE INDEX lupo_projects_idx_default_channel ON lupo_projects (default_channel_id);
+CREATE INDEX lupo_projects_idx_status ON lupo_projects (status, is_active, is_deleted);
+CREATE INDEX lupo_projects_idx_created ON lupo_projects (created_ymdhis);
+CREATE INDEX lupo_projects_idx_updated ON lupo_projects (updated_ymdhis);
 
 -- Unified import registry for collision resolution during federation imports.
 

@@ -8,6 +8,7 @@
  *   php lupo-scripts/propagate_agent_rules.php --target=jetbrains
  *   php lupo-scripts/propagate_agent_rules.php --target=cursor
  *   php lupo-scripts/propagate_agent_rules.php --target=kiro
+ *   php lupo-scripts/propagate_agent_rules.php --target=cascade
  */
 
 $repoRoot = dirname(__DIR__);
@@ -17,6 +18,7 @@ $cursorRulesDir = $cursorDir . DIRECTORY_SEPARATOR . 'rules';
 $ideaDir = $repoRoot . DIRECTORY_SEPARATOR . '.idea';
 $kiroDir = $repoRoot . DIRECTORY_SEPARATOR . '.kiro';
 $windsurfDir = $repoRoot . DIRECTORY_SEPARATOR . '.windsurf';
+$cascadeDir = $repoRoot . DIRECTORY_SEPARATOR . '.cascade';
 
 $target = 'all';
 foreach ($argv as $arg) {
@@ -27,9 +29,9 @@ foreach ($argv as $arg) {
 if ($target === 'jetbrains') {
     $target = 'idea';
 }
-$validTargets = array('all', 'cursor', 'idea', 'jetbrains', 'kiro', 'windsurf');
+$validTargets = array('all', 'cascade', 'cursor', 'idea', 'jetbrains', 'kiro', 'windsurf');
 if (!in_array($target, $validTargets, true)) {
-    fwrite(STDERR, "Unsupported target '$target'. Valid targets: all, cursor, idea, jetbrains, kiro, windsurf\n");
+    fwrite(STDERR, "Unsupported target '$target'. Valid targets: all, cascade, cursor, idea, jetbrains, kiro, windsurf\n");
     exit(1);
 }
 
@@ -383,6 +385,129 @@ function write_windsurf_outputs($windsurfDir, $rules)
     file_put_contents($windsurfDir . DIRECTORY_SEPARATOR . 'README.md', $readme);
 }
 
+function write_cascade_outputs($cascadeDir, $rules)
+{
+    ensure_dir($cascadeDir);
+    $cascadeRulesDir = $cascadeDir . DIRECTORY_SEPARATOR . 'rules';
+    ensure_dir($cascadeRulesDir);
+
+    $cascadeJson = array('rules' => array());
+    foreach ($rules as $rule) {
+        $cascadeJson['rules'][] = array(
+            'id' => $rule['id'],
+            'text' => $rule['text'],
+            'enforcement' => $rule['enforcement'],
+            'scope' => $rule['scope'],
+            'source_path' => $rule['source_path'],
+            'slug' => $rule['slug'],
+            'category' => $rule['category'],
+            'status' => $rule['status']
+        );
+    }
+    file_put_contents(
+        $cascadeDir . DIRECTORY_SEPARATOR . 'lupopedia_rules.json',
+        json_encode($cascadeJson, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES)
+    );
+
+    foreach ($rules as $rule) {
+        $body = str_replace('../../../', '../../', $rule['body']);
+        $mdc = "---\n";
+        $mdc .= "lupopedia.init:\n";
+        $mdc .= "  file_identity: \"" . $rule['slug'] . ".md\"\n";
+        $mdc .= "  artifact_type: \"cascade_rule\"\n";
+        $mdc .= "  artifact_kind: \"doctrine\"\n";
+        $mdc .= "  namespace: \"cascade\"\n";
+        $mdc .= "  system_version: \"4.0.76\"\n";
+        $mdc .= "  orchestrator_actor: \"cascade\"\n";
+        $mdc .= "  delegation_chain: \"cascade:captain\"\n";
+        $mdc .= "\n";
+        $mdc .= "lupopedia.headers:\n";
+        $mdc .= "  actor_id: 105\n";
+        $mdc .= "  actor_name: \"cascade\"\n";
+        $mdc .= "  delegation_chain: \"cascade:captain\"\n";
+        $mdc .= "  lupopedia.version: \"4.0.76\"\n";
+        $mdc .= "  lupopedia.schema: \"cascade_rule\"\n";
+        $mdc .= "  file_path_from_root: \".cascade/rules/" . $rule['slug'] . ".md\"\n";
+        $mdc .= "  last_modified_utc: \"" . date('Ymd') . "\"\n";
+        $mdc .= "  system_version: \"4.0.76\"\n";
+        $mdc .= "  source_path: \"lupo-rules/root/" . $rule['slug'] . ".md\"\n";
+        $mdc .= "  artifact_type: \"rule\"\n";
+        $mdc .= "  artifact_kind: \"cascade_doctrine\"\n";
+        $mdc .= "  purpose: \"Cascade-specific rule derived from canonical root rule\"\n";
+        $mdc .= "\n";
+        $mdc .= "lupopedia.rules:\n";
+        $mdc .= "  comment: \"Rule declaration and provenance block\"\n";
+        $mdc .= "  declares:\n";
+        $mdc .= "    - rule_id: \"" . $rule['id'] . "\"\n";
+        $mdc .= "      rule_text: \"" . str_replace('"', '\\"', $rule['text']) . "\"\n";
+        $mdc .= "      scope: \"" . (is_array($rule['scope']) ? implode(', ', $rule['scope']) : $rule['scope']) . "\"\n";
+        $mdc .= "      category: \"" . $rule['category'] . "\"\n";
+        $mdc .= "      status: \"" . $rule['status'] . "\"\n";
+        $mdc .= "  imports: []\n";
+        $mdc .= "  overrides: []\n";
+        $mdc .= "  provenance:\n";
+        $mdc .= "    authored_by: \"wolfie\"\n";
+        $mdc .= "    authored_date: \"" . date('Ymd') . "\"\n";
+        $mdc .= "    last_reviewed_by: \"cascade\"\n";
+        $mdc .= "    last_reviewed_date: \"" . date('Ymd') . "\"\n";
+        $mdc .= "    version: \"1.0\"\n";
+        $mdc .= "    status: \"active\"\n";
+        $mdc .= "lupopedia.footer:\n";
+        $mdc .= "  version: \"4.0.76\"\n";
+        $mdc .= "  last_verified: \"" . date('Ymd') . "\"\n";
+        $mdc .= "  last_verified_by: \"cascade\"\n";
+        $mdc .= "  orchestrator: \"cascade\"\n";
+        $mdc .= "  next_action:\n";
+        $mdc .= "    - \"Keep in sync with canonical root rules\"\n";
+        $mdc .= "---\n\n";
+        $mdc .= $body . "\n";
+        file_put_contents($cascadeRulesDir . DIRECTORY_SEPARATOR . $rule['slug'] . '.md', $mdc);
+    }
+
+    $readme = "---\n";
+    $readme .= "lupopedia.init:\n";
+    $readme .= "  file_identity: \"README.md\"\n";
+    $readme .= "  artifact_type: \"cascade_guide\"\n";
+    $readme .= "  artifact_kind: \"documentation\"\n";
+    $readme .= "  namespace: \"cascade\"\n";
+    $readme .= "  system_version: \"4.0.76\"\n";
+    $readme .= "  orchestrator_actor: \"cascade\"\n";
+    $readme .= "  delegation_chain: \"cascade:captain\"\n";
+    $readme .= "\n";
+    $readme .= "lupopedia.headers:\n";
+    $readme .= "  actor_id: 105\n";
+    $readme .= "  actor_name: \"cascade\"\n";
+    $readme .= "  delegation_chain: \"cascade:captain\"\n";
+    $readme .= "  lupopedia.version: \"4.0.76\"\n";
+    $readme .= "  lupopedia.schema: \"cascade_guide\"\n";
+    $readme .= "  file_path_from_root: \".cascade/README.md\"\n";
+    $readme .= "  last_modified_utc: \"" . date('Ymd') . "\"\n";
+    $readme .= "  system_version: \"4.0.76\"\n";
+    $readme .= "  artifact_type: \"guide\"\n";
+    $readme .= "  artifact_kind: \"documentation\"\n";
+    $readme .= "  purpose: \"Guide for Cascade rule system and propagation\"\n";
+    $readme .= "\n";
+    $readme .= "lupopedia.footer:\n";
+    $readme .= "  version: \"4.0.76\"\n";
+    $readme .= "  last_verified: \"" . date('Ymd') . "\"\n";
+    $readme .= "  last_verified_by: \"cascade\"\n";
+    $readme .= "  orchestrator: \"cascade\"\n";
+    $readme .= "  next_action:\n";
+    $readme .= "    - \"Run propagation: php lupo-scripts/propagate_agent_rules.php --target=cascade\"\n";
+    $readme .= "---\n\n";
+    $readme .= "# Cascade Rules Guide\n\n";
+    $readme .= "This directory contains Cascade-specific rule artifacts derived from canonical root rules.\n\n";
+    $readme .= "## Files\n\n";
+    $readme .= "- **lupopedia_rules.json** - Machine-readable rule index\n";
+    $readme .= "- **rules/** - Individual rule files with LUPOPEDIA HEADERS\n\n";
+    $readme .= "## Propagation\n\n";
+    $readme .= "Run: `php lupo-scripts/propagate_agent_rules.php --target=cascade`\n\n";
+    $readme .= "## Source\n\n";
+    $readme .= "All rules are derived from canonical root rules in `lupo-rules/root/`.\n";
+    $readme .= "See [lupo-rules/root/README.md](../../../lupo-rules/root/README.md) for canonical rule documentation.\n";
+    file_put_contents($cascadeDir . DIRECTORY_SEPARATOR . 'README.md', $readme);
+}
+
 function write_idea_outputs($ideaDir, $rules)
 {
     ensure_dir($ideaDir);
@@ -416,6 +541,9 @@ if ($target === 'all' || $target === 'idea') {
 }
 if ($target === 'all' || $target === 'windsurf') {
     write_windsurf_outputs($windsurfDir, $rules);
+}
+if ($target === 'all' || $target === 'cascade') {
+    write_cascade_outputs($cascadeDir, $rules);
 }
 
 foreach ($warnings as $warning) {

@@ -79,6 +79,12 @@ X-Lupo-File-Path: lupo-docs/doctrine/channels.md
 
 # Lupopedia Channel System Doctrine
 
+## Projects and Channels
+
+**Projects** exist as a semantic layer **above** channels. A **project** groups related channels, collections, and dialogs within a federation node. **Channels belong to exactly one project.** Dialog operations should be understood in project context. **IDE agents** infer project context from the workspace; **external actors** must declare project context explicitly. See [lupo-docs/projects/PROJECTS.md](../projects/PROJECTS.md), [lupo-docs/projects/PROJECTS_API.md](../projects/PROJECTS_API.md), and [PROJECT_REGISTRY_DOCTRINE.md](PROJECT_REGISTRY_DOCTRINE.md) for project doctrine, external actor API, and registry identity. This doctrine file continues to define channel behavior; project governance and lifecycle are defined in the projects documentation.
+
+---
+
 ## Purpose of the Channel System
 
 The channel system defines the communication spaces used by the Lupopedia

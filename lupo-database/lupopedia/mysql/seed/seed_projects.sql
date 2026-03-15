@@ -1,23 +1,46 @@
--- Seed: lupo_projects (4.0.74). Optional; run after install.
--- Application must supply project_id (no AUTO_INCREMENT); reserved IDs or allocate from registry.
-SET @now = 20260314000000;
+-- Seed: lupo_projects (4.0.76). Run after install. project_id application-assigned, no AUTO_INCREMENT.
+-- See PROJECT_REGISTRY_SCHEMA_DESIGN.md, create_lupo_projects.sql.md.
 
 INSERT INTO lupo_projects (
   project_id,
   project_key,
-  project_name,
   project_slug,
-  description,
-  channel_id,
-  orchestrator_id,
+  project_name,
   federation_node_id,
-  status,
+  default_channel_id,
+  orchestrator_id,
   project_type,
+  description,
+  status,
+  is_active,
+  is_deleted,
+  is_archived,
+  is_frozen,
   metadata_json,
   created_ymdhis,
   updated_ymdhis,
-  is_deleted,
-  deleted_ymdhis
-) VALUES
-(1, 'lupopedia-core', 'Lupopedia Core', 'lupopedia-core', 'Primary Lupopedia semantic OS instance.', 42, 102, 1, 'active', 'general', NULL, @now, @now, 0, 0),
-(2, 'federation-example', 'Federation Example', 'federation-example', 'Example federation node project.', 42, 102, 1, 'active', 'general', NULL, @now, @now, 0, 0);
+  deleted_ymdhis,
+  created_by_actor_id,
+  updated_by_actor_id
+) VALUES (
+  1,
+  'lupopedia-core',
+  'lupopedia-core',
+  'Lupopedia Core Development',
+  1,
+  42,
+  1,
+  'standard',
+  'Primary Lupopedia semantic OS instance; default development project.',
+  'active',
+  1,
+  0,
+  0,
+  0,
+  NULL,
+  20260316000000,
+  20260316000000,
+  0,
+  NULL,
+  NULL
+);

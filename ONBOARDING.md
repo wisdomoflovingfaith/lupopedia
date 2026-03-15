@@ -31,6 +31,15 @@ Lupopedia is a **semantic operating system** with:
 
 ## 3. First Files to Read
 
+### Reading order clarification
+
+| Read this first | Why it matters |
+|-----------------|----------------|
+| [ONBOARDING.md](ONBOARDING.md) | Operational quick-start – read this first to understand what actions to take |
+| [lupo-docs/INIT_README.md](lupo-docs/INIT_README.md) | Init doctrine and prerequisites – read before working with `lupopedia.init` headers |
+
+### Prioritized file list
+
 | Read this first | Why it matters |
 |-----------------|----------------|
 | [ONBOARDING.md](ONBOARDING.md) | Operational quick-start (this file) |
@@ -39,7 +48,54 @@ Lupopedia is a **semantic operating system** with:
 | [lupo-rules/root/README.md](lupo-rules/root/README.md) | Root rules index and non-negotiable constraints |
 | [lupo-docs/doctrine/DATABASE_DOCTRINE.md](lupo-docs/doctrine/DATABASE_DOCTRINE.md) | Core database rules (no FKs, no DB logic, timestamps, registry, soft deletes) |
 | [lupo-docs/ACTOR_REGISTRATION_CHECKLIST.md](lupo-docs/ACTOR_REGISTRATION_CHECKLIST.md) | If you need to register as an actor (new IDE or external agent) |
+| [lupo-docs/doctrine/AGENT_REGISTRY.md](lupo-docs/doctrine/AGENT_REGISTRY.md) | Canonical human-readable reference for actor identity, propagation support, and IDE roles |
 | [EXECUTIVE_SUMMARY.md](EXECUTIVE_SUMMARY.md) | Philosophy and architecture (why the system is designed this way) |
+
+---
+
+## Agent Status Determination
+
+Before proceeding with onboarding, determine your agent's status.
+
+### State A — Already registered
+
+Your `actor_id` already exists in:
+
+- `lupo-database/lupopedia/actors/actor_id/registry.json`
+- `lupo_actors` (when the database is available)
+
+**Actions:**
+
+- Verify your identity in the registry (canonical actor_id and slug).
+- Run rule propagation: `php lupo-scripts/propagate_agent_rules.php --target=<your-agent>`.
+- Begin contributing; no new registration.
+
+**Example:** Cursor (actor_id **102**, slug `cursor`).
+
+---
+
+### State B — New agent
+
+You do not exist in the actor registry.
+
+**Actions:**
+
+1. Follow the full [Actor Registration Checklist](lupo-docs/ACTOR_REGISTRATION_CHECKLIST.md).
+2. Add registry entry to `lupo-database/lupopedia/actors/actor_id/registry.json`.
+3. Insert actor into `lupo_actors` (or document fallback when DB is unavailable).
+4. Configure propagation target if your IDE is not yet supported (see [Extending rules propagation](#extending-rules-propagation)).
+
+---
+
+### State C — Exists but needs integration
+
+Your actor exists in the registry but your IDE is not yet supported in rule propagation.
+
+**Actions:**
+
+1. Add your target to [lupo-scripts/propagate_agent_rules.php](lupo-scripts/propagate_agent_rules.php) (see [Extending rules propagation](#extending-rules-propagation)).
+2. Generate your IDE rule files: `php lupo-scripts/propagate_agent_rules.php --target=<your-agent>`.
+3. Add a validation test (e.g. `lupo-tests/unit/<agent>_rules_enforcement.php`) following existing patterns.
 
 ---
 
@@ -88,9 +144,21 @@ After reading onboarding, complete these setup steps:
    ```bash
    php lupo-scripts/propagate_agent_rules.php --target=<your-agent-name>
    ```
-   Use `cursor`, `kiro`, `idea` (JetBrains), or `all` as needed.
+   Use `cursor`, `kiro`, `windsurf`, `cascade`, `idea` (JetBrains), or `all` as needed.
 5. **Verify your actor** appears in `lupo-database/lupopedia/actors/actor_id/registry.json` (or the canonical registry path for your setup).
 6. **Join channel 42** (Lupopedia Development) to see ongoing work; channel context is in [lupo-docs/doctrine/SESSION_DOCTRINE.md](lupo-docs/doctrine/SESSION_DOCTRINE.md) and root rule CTX001.
+
+### Agent status: already registered vs new vs integration-only
+
+Before following “new agent” registration, check which case applies:
+
+| State | What to do |
+|-------|------------|
+| **A — Agent already exists** | Do **not** register again. Confirm your `actor_id` and slug in the registry ([lupo-database/lupopedia/actors/actor_id/registry.json](lupo-database/lupopedia/actors/actor_id/registry.json)). Run rules propagation for your target (e.g. `--target=cascade`). Proceed with integration and contribution only. |
+| **B — Agent does not exist** | Follow the full [Actor Registration Checklist](lupo-docs/ACTOR_REGISTRATION_CHECKLIST.md): allocate ID, add registry entry, persist in DB or fallback, then add rules propagation support if your IDE is not yet a target. |
+| **C — Agent exists but not fully integrated** | No new actor registration. Add or complete: rules propagation target (see [Extending rules propagation](#extending-rules-propagation)), validation test parity, and any agent-specific config/docs. |
+
+If you are unsure, check the registry first; many IDE agents (e.g. Cascade, actor_id 105) are already registered and need only integration work.
 
 ---
 
@@ -116,6 +184,8 @@ When picking up work started by another agent or human:
 4. **Identify** the current target version and affected files before editing.
 5. **Avoid** duplicate or contradictory edits; align with existing conventions and doctrine.
 
+**Handoff best practice:** To leave work resumable, write a short status artifact (e.g. in `lupo-docs/status/`) with what was done, what is in progress, and suggested next actions; append to logs with timestamp and actor. The next agent should read status and logs before changing the same areas.
+
 Continuity and handoff rules are detailed in [lupo-docs/doctrine/IDE_AGENT_CONTINUITY_PROTOCOL.md](lupo-docs/doctrine/IDE_AGENT_CONTINUITY_PROTOCOL.md) (IACP).
 
 ---
@@ -136,9 +206,20 @@ Agents are expected to leave work in a **resumable state**:
 |------|---------|
 | Check system health | `php lupo-bin/lupo.php doctor` |
 | See your identity | `php lupo-bin/lupo.php whoami` |
-| Run rule propagation | `php lupo-scripts/propagate_agent_rules.php --target=<agent>` (e.g. `cursor`, `kiro`, `idea`, `all`) |
+| Run rule propagation | `php lupo-scripts/propagate_agent_rules.php --target=<agent>` (e.g. `cursor`, `kiro`, `windsurf`, `cascade`, `idea`, `all`) |
 | Generate TOONs from SQL | `python lupo-scripts/generate_toon_from_sql.py` |
 | View recent logs | Inspect `lupo-logs/admin/` or `lupo-logs/activity/` (files may be dated or named per local convention) |
+| Validate Cascade rules | `php lupo-tests/unit/cascade_rules_enforcement.php` (similar tests exist for cursor, kiro, windsurf) |
+
+### Extending rules propagation
+
+To add a **new IDE agent target** to the rules propagation system (e.g. for an already-registered agent that does not yet have a target):
+
+- **Where:** `lupo-scripts/propagate_agent_rules.php`. Canonical root rules live in `lupo-rules/root/*.md`.
+- **How to add a target:** (1) Add the target name to `$validTargets`. (2) Define a directory (e.g. `$newAgentDir = $repoRoot . '/.newagent'`). (3) Implement a `write_newagent_outputs($dir, $rules)` function following the pattern of `write_windsurf_outputs` or `write_cascade_outputs` (JSON index, `rules/*.md` with LUPOPEDIA HEADERS, README). (4) Call it when `$target === 'all' || $target === 'newagent'`.
+- **Output location:** Each target writes to its own directory (e.g. `.cascade/`, `.windsurf/`) with `lupopedia_rules.json` and `rules/<slug>.md`.
+- **Validation:** Add a unit test under `lupo-tests/unit/` following `cascade_rules_enforcement.php` or `windsurf_rules_enforcement.php` to verify artifacts exist, JSON is valid, rules match canonical root, and files have required headers.
+- **Avoid duplicate targets:** Check `$validTargets` and existing `write_*_outputs` functions before adding; do not register the same agent twice.
 
 ---
 

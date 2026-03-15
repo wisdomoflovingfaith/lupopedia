@@ -26,6 +26,7 @@
     "`awareness_version` varchar(20) DEFAULT '3.0.0'",
     "`channel_number` int",
     "`parent_channel_id` bigint",
+    "`project_id` bigint",
     "`is_kernel` tinyint NOT NULL DEFAULT '0'",
     "`boot_sequence_order` int"
   ],
@@ -76,6 +77,14 @@
       "index_name": "lupo_channels_idx_awareness_version",
       "columns": [
         "awareness_version"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_channels_idx_project_id",
+      "columns": [
+        "project_id"
       ],
       "is_unique": false,
       "index_type": "BTREE"

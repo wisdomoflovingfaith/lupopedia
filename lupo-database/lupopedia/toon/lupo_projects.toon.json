@@ -3,26 +3,51 @@
   "fields": [
     "`project_id` bigint NOT NULL",
     "`project_key` varchar(64) NOT NULL",
-    "`project_name` varchar(255) NOT NULL",
     "`project_slug` varchar(255) NOT NULL",
-    "`description` text",
-    "`channel_id` bigint NOT NULL",
-    "`orchestrator_id` bigint NOT NULL",
+    "`project_name` varchar(255) NOT NULL",
     "`federation_node_id` bigint NOT NULL",
+    "`default_channel_id` bigint",
+    "`orchestrator_id` bigint NOT NULL",
+    "`project_type` varchar(64) DEFAULT 'standard'",
+    "`description` text",
     "`status` varchar(32) NOT NULL DEFAULT 'active'",
-    "`project_type` varchar(64) NOT NULL DEFAULT 'general'",
+    "`is_active` tinyint NOT NULL DEFAULT 1",
+    "`is_deleted` tinyint NOT NULL DEFAULT 0",
+    "`is_archived` tinyint NOT NULL DEFAULT 0",
+    "`is_frozen` tinyint NOT NULL DEFAULT 0",
     "`metadata_json` json",
     "`created_ymdhis` bigint NOT NULL DEFAULT 0",
     "`updated_ymdhis` bigint NOT NULL DEFAULT 0",
-    "`is_deleted` tinyint NOT NULL DEFAULT 0",
-    "`deleted_ymdhis` bigint NOT NULL DEFAULT 0"
+    "`deleted_ymdhis` bigint DEFAULT 0",
+    "`created_by_actor_id` bigint",
+    "`updated_by_actor_id` bigint"
   ],
   "data": [],
   "indexes": [
     {
-      "index_name": "lupo_projects_idx_channel",
+      "index_name": "lupo_projects_idx_federation_node",
       "columns": [
-        "channel_id"
+        "federation_node_id",
+        "status",
+        "is_deleted"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_projects_idx_project_key",
+      "columns": [
+        "project_key",
+        "federation_node_id"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_projects_idx_project_slug",
+      "columns": [
+        "project_slug",
+        "federation_node_id"
       ],
       "is_unique": false,
       "index_type": "BTREE"
@@ -30,15 +55,17 @@
     {
       "index_name": "lupo_projects_idx_orchestrator",
       "columns": [
-        "orchestrator_id"
+        "orchestrator_id",
+        "status",
+        "is_deleted"
       ],
       "is_unique": false,
       "index_type": "BTREE"
     },
     {
-      "index_name": "lupo_projects_idx_node",
+      "index_name": "lupo_projects_idx_default_channel",
       "columns": [
-        "federation_node_id"
+        "default_channel_id"
       ],
       "is_unique": false,
       "index_type": "BTREE"
@@ -46,15 +73,25 @@
     {
       "index_name": "lupo_projects_idx_status",
       "columns": [
-        "status"
+        "status",
+        "is_active",
+        "is_deleted"
       ],
       "is_unique": false,
       "index_type": "BTREE"
     },
     {
-      "index_name": "lupo_projects_idx_is_deleted",
+      "index_name": "lupo_projects_idx_created",
       "columns": [
-        "is_deleted"
+        "created_ymdhis"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_projects_idx_updated",
+      "columns": [
+        "updated_ymdhis"
       ],
       "is_unique": false,
       "index_type": "BTREE"

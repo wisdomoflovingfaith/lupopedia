@@ -245,6 +245,12 @@ if (isset($GLOBALS['mydatabase'])) {
             $GLOBALS['lupo_upload_service'] = new \App\Services\UploadService();
         }
     }
+    if (file_exists($app_services . DIRECTORY_SEPARATOR . 'ProjectService.php')) {
+        require_once $app_services . DIRECTORY_SEPARATOR . 'ProjectService.php';
+        if (class_exists('App\Services\ProjectService')) {
+            $GLOBALS['lupo_project_service'] = new \App\Services\ProjectService($GLOBALS['mydatabase']);
+        }
+    }
 }
 if (file_exists($app_support . DIRECTORY_SEPARATOR . 'AtomLoader.php')) {
     require_once $app_support . DIRECTORY_SEPARATOR . 'AtomLoader.php';

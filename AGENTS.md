@@ -51,7 +51,39 @@ lupopedia.footer:
 
 This file provides guidance for **all IDE agents and faucets** (Cursor, Windsurf, Kiro, Antigravity, Warp, Cascade, Codex) when working with this repository. **Cursor IDE** (actor_id 102) is the **lead orchestration actor**; **Wolfie** (actor_id 1) is the **supporting actor**. Resolve actor and faucet IDs from the canonical registry; see [Lead orchestration and IDE faucets](#lead-orchestration-and-ide-faucets) below.
 
+**Canonical identity, propagation targets, and IDE roles** are centralized in [lupo-docs/doctrine/AGENT_REGISTRY.md](lupo-docs/doctrine/AGENT_REGISTRY.md). Use that doctrine file as the single root reference for who is registered, which IDEs are propagation targets, and what role each agent plays. This file (AGENTS.md) remains the high-level guide; AGENT_REGISTRY.md is the doctrine-grade reference.
+
 **New IDE or web terminal agent?** You must register as an actor before participating. Follow the step-by-step **[Actor Registration Checklist](lupo-docs/ACTOR_REGISTRATION_CHECKLIST.md)** (derived from TOON/database and `lupo-database` fallback). The checklist covers registry update, database or fallback persistence, and validation. Do not contribute as an anonymous or unregistered agent.
+
+## Lead Orchestration (Cursor, actor_id 102)
+
+Cursor is the **lead orchestration IDE agent** for Lupopedia. This role exists to maintain repository continuity when multiple agents contribute concurrently.
+
+### Documentation stewardship
+
+- Consolidating root documentation: `README.md`, `CHANGELOG.md`, `plan.md`, `report.md`.
+
+### Rule propagation oversight
+
+Ensuring all IDE agents have the current root rules by validating runs of:
+
+`php lupo-scripts/propagate_agent_rules.php`
+
+### Cross-agent plan integration
+
+Merging or reconciling plans produced by other agents (e.g. `plan_kiro.md`, `plan_windsurf.md`, `plan_codex.md`, `plan_jetbrains.md`) where they exist.
+
+### Continuity enforcement
+
+Maintaining cross-agent continuity using the **IDE Agent Continuity Protocol (IACP)** ([lupo-docs/doctrine/IDE_AGENT_CONTINUITY_PROTOCOL.md](lupo-docs/doctrine/IDE_AGENT_CONTINUITY_PROTOCOL.md)).
+
+### Documentation drift resolution
+
+When multiple agents modify documentation simultaneously, Cursor acts as the **canonical consolidator** for root-level consistency.
+
+This role **does not grant exclusive authority**. Other agents may propose changes; **Cursor maintains root-level consistency** and consolidates where needed.
+
+---
 
 ## What This Project Is
 

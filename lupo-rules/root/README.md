@@ -66,7 +66,7 @@ Each row inserts into `lupo_metadata` with `entity_type='actor'`, `entity_id=1`,
 
 ## Syncing to IDE Agents
 
-The canonical rules must be propagated to the IDE agent environments (.cursor, .idea, .kiro) via the rule transformer.
+The canonical rules must be propagated to the IDE agent environments (.cursor, .idea, .kiro, .windsurf, .cascade) via the rule transformer. For canonical agent identity and propagation targets, see [lupo-docs/doctrine/AGENT_REGISTRY.md](../../lupo-docs/doctrine/AGENT_REGISTRY.md).
 
 ```bash
 php lupo-scripts/propagate_agent_rules.php

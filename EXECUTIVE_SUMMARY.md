@@ -63,7 +63,13 @@ Actor identity is first-class: IDE agents and services are registered as actors,
 
 ---
 
-## 6. Channels: The Core Work Context
+## 6. Projects as Semantic Universes
+
+**Projects** are a first-class semantic layer above channels. Lupopedia can be understood as **one primary project** in its current development form; **federation nodes** may host multiple projects. Each project groups related **channels**, **collections**, and **dialogs**. Channels and dialogs exist **inside** projects; actors operate across projects but must **declare context** (project_id, channel_id). **IDE agents** infer project context from the workspace or repository context. **External agents** must declare project (and channel/thread) explicitly in every request. Project lifecycle (active, archived, frozen) and governance are documented in [lupo-docs/projects/PROJECTS.md](lupo-docs/projects/PROJECTS.md); external actor API rules are in [lupo-docs/projects/PROJECTS_API.md](lupo-docs/projects/PROJECTS_API.md). For deeper reading: [PROJECT_REGISTRY_DOCTRINE](lupo-docs/doctrine/PROJECT_REGISTRY_DOCTRINE.md) (identity and allocation), [PROJECT_REGISTRY_WORKFLOW](lupo-docs/doctrine/PROJECT_REGISTRY_WORKFLOW.md) (creation and lifecycle workflows), and [PROJECT_REGISTRY_SCHEMA_DESIGN](lupo-docs/database/lupopedia/tables/PROJECT_REGISTRY_SCHEMA_DESIGN.md) (table design; schema implementation remains pending approval).
+
+---
+
+## 7. Channels: The Core Work Context
 
 **Channels** represent conversation spaces, workspaces, and orchestration contexts. Within a channel, actors collaborate, tasks are performed, and documents and decisions are tracked. Channels define **scope boundaries**: operations and data are associated with a `channel_id`, which groups work and constrains visibility and authority.
 
@@ -71,7 +77,7 @@ Channels are not just chat rooms; they are the primary unit of work context. Per
 
 ---
 
-## 7. Channel-Based Task Execution
+## 8. Channel-Based Task Execution
 
 Tasks are scoped by **`channel_id`** and **`actor_id`**. Channels provide contextual boundaries, task grouping, audit trails, and a clear coordination model for multiple agents. When an IDE agent or service performs work, that work is tied to a channel and an actor. This makes it possible to reason about who did what, where, and to hand off or resume work across agents without losing context.
 
@@ -79,7 +85,7 @@ Channels are the **primary coordination model** for multi-agent work: they bound
 
 ---
 
-## 8. Federation and Scope
+## 9. Federation and Scope
 
 Lupopedia is designed for **federation**: multiple nodes can operate independently while sharing data and identity where needed. Scope is hierarchical and can include **federation node**, **department**, **channel**, and **actor**. Queries and operations respect these boundaries so that data and permissions do not leak across nodes or contexts. Federation and scoping rules are documented in doctrine; application code enforces them.
 
@@ -90,11 +96,13 @@ Lupopedia is designed for **federation**: multiple nodes can operate independent
            |
            +-- Department (lupo_departments)
            |
-           +-- Channel (lupo_channels)  <-- primary work context
-                   |
-                   +-- Actors (lupo_actors) participate via lupo_actor_channels / lupo_actor_channel_roles
-                   +-- Collections (lupo_collections, lupo_collection_tabs, ...) scope content
-                   +-- Tasks, dialogs, sessions scoped by channel_id
+           +-- Project (semantic container; see lupo-docs/projects/PROJECTS.md)
+           |         |
+           |         +-- Channel (lupo_channels)  <-- primary work context; each channel belongs to one project
+           |                 |
+           |                 +-- Actors (lupo_actors) participate via lupo_actor_channels / lupo_actor_channel_roles
+           |                 +-- Collections (lupo_collections, lupo_collection_tabs, ...) scope content
+           |                 +-- Tasks, dialogs, sessions scoped by channel_id
            |
   Registry (lupo_registry) allocates IDs for actors, channels, and other reserved entities.
   Edges / metadata (lupo_metadata, content graph) link artifacts and identity.
@@ -102,7 +110,7 @@ Lupopedia is designed for **federation**: multiple nodes can operate independent
 
 ---
 
-## 9. Documentation as Architecture
+## 10. Documentation as Architecture
 
 Documentation is **first-class architecture**. Key directories:
 
@@ -115,7 +123,7 @@ Documentation defines system behavior; doctrine files are the source of truth fo
 
 ---
 
-## 10. Multi-Agent Development
+## 11. Multi-Agent Development
 
 Lupopedia is built for **multiple IDE agents working simultaneously** (e.g. Cursor, Windsurf, JetBrains, Antigravity). The architecture supports this through:
 

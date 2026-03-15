@@ -253,7 +253,7 @@ When an agent takes over a task, it must follow this order:
 5. inspect affected files
 6. resume work
 
-Agents must **never resume work blindly from prompts alone**.
+Agents must **never resume work blindly from prompts alone**. To leave work resumable for the next agent, write a short status artifact (e.g. in `lupo-docs/status/`) with what was done and suggested next actions, and append to logs with timestamp and actor_id; the next agent should read status and logs before changing the same areas.
 
 ---
 

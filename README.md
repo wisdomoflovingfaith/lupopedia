@@ -100,6 +100,7 @@ lupopedia.footer:
 - [What Lupopedia Is](#what-lupopedia-is)
 - [Core Identity Model](#core-identity-model)
 - [Core Concepts](#core-concepts)
+- [Projects](#projects)
 - [LUPOPEDIA HEADERS — The File/Database Bridge](#lupopedia-headers--the-filedatabase-bridge)
 - [Architecture Overview](#architecture-overview)
 - [Installation](#installation)
@@ -199,8 +200,18 @@ A faucet is not the actor. It is the surface/environment the actor uses. **Actor
 
 ## Core Concepts
 
+### Projects
+**Projects** are a first-class semantic layer above channels. A project groups related channels, collections, and dialogs within a federation node. **IDE agents** infer project context from the workspace. **External agents** must declare project (and channel/thread) explicitly in every request. 
+
+**Design Package:** The complete Project Registry design includes:
+- Doctrine: [lupo-docs/doctrine/PROJECT_REGISTRY_DOCTRINE.md](lupo-docs/doctrine/PROJECT_REGISTRY_DOCTRINE.md)
+- Schema Design: [lupo-docs/database/lupopedia/tables/PROJECT_REGISTRY_SCHEMA_DESIGN.md](lupo-docs/database/lupopedia/tables/PROJECT_REGISTRY_SCHEMA_DESIGN.md)
+- Workflow: [lupo-docs/doctrine/PROJECT_REGISTRY_WORKFLOW.md](lupo-docs/doctrine/PROJECT_REGISTRY_WORKFLOW.md)
+
+**API and External Actors:** [lupo-docs/projects/PROJECTS.md](lupo-docs/projects/PROJECTS.md) and [lupo-docs/projects/PROJECTS_API.md](lupo-docs/projects/PROJECTS_API.md). **Upgrade and migration (4.0.76):** [CURSOR_PROJECT_SYSTEM_4_0_76_UPGRADE_GUIDE.md](lupo-docs/status/CURSOR_PROJECT_SYSTEM_4_0_76_UPGRADE_GUIDE.md).
+
 ### Channels
-Channels are collaboration contexts where work happens. They contain dialog, tasks, participants, uploads, artifacts, context, and semantic history. Key tables include `lupo_channels`, `lupo_actor_channels`, `lupo_actor_channel_roles`, `lupo_dialog_threads`, `lupo_dialog_messages`. Channel 42 is the canonical Lupopedia development channel.
+Channels are collaboration contexts where work happens. Each channel belongs to exactly one project. They contain dialog, tasks, participants, uploads, artifacts, context, and semantic history. Key tables include `lupo_channels`, `lupo_actor_channels`, `lupo_actor_channel_roles`, `lupo_dialog_threads`, `lupo_dialog_messages`. Channel 42 is the canonical Lupopedia development channel.
 
 ### Sessions
 Sessions carry runtime context. A session identifies who is acting, through what faucet, in which channel, with which paired context. Session state may exist in `lupo_sessions` (DB) and `lupo-database/sessions/*.md` (IDE session files).

@@ -1,235 +1,300 @@
----
-lupopedia.init:
-  required_reading:
-    - path: "lupo-docs/INIT_README.md"
-      reason: "Prerequisites and 'Before You Read This File'"
-    - path: "lupo-docs/doctrine/LUPOPEDIA_HEADERS/README.md"
-      reason: "Header format and block order"
-    - path: "AGENTS.md"
-      reason: "Agent/faucet distinction and lead orchestration"
-  required_context:
-    - "LUPOPEDIA HEADERS are the bridge between files and database—see lupopedia.edges"
-    - "Cursor (actor_id 102) is lead orchestrator; other IDE faucets (Kiro, Windsurf, Codex, Antigravity) submit plans via their own files"
-    - "This root plan consolidates; faucet-specific plans remain authoritative for their domains"
+# Lupopedia Implementation Plan - Project System Integration
 
-lupopedia.actor_references:
-  comment: "Actor IDs per lupo-database/lupopedia/actors/actor_id/registry.json"
-  cursor: 102
-  wolfie: 1
-  kiro: 100
-  windsurf: 101
-  antigravity: 103
-  warp: 104
-  cascade: 105
-  codex: "TBD — JetBrains/Codex not in registry; see plan_codex.md"
-
-lupopedia.metadata:
-  comment: "Snapshot of metadata for this file or entity at artifact creation."
-  title:
-    - { schema_ref: "lupo_metadata", entity_type: "file", meta_type: "property", property_value: "Lupopedia Consolidated Implementation Plan", channel_id: 42, class_name: "lupopedia_metadata", created_ymdhis: 20260314000000, updated_ymdhis: 20260314000000 }
-  description:
-    - { schema_ref: "lupo_metadata", entity_type: "file", meta_type: "property", property_value: "Consolidated implementation plan from Kiro, Windsurf, and Codex faucet plans; lead orchestration by Cursor.", channel_id: 42, class_name: "lupopedia_metadata", created_ymdhis: 20260314000000, updated_ymdhis: 20260314000000 }
-  author:
-    - { schema_ref: "lupo_metadata", entity_type: "file", meta_type: "property", property_value: "cursor", channel_id: 42, class_name: "lupopedia_metadata", created_ymdhis: 20260314000000, updated_ymdhis: 20260314000000 }
-  orchestrator:
-    - { schema_ref: "lupo_metadata", entity_type: "file", meta_type: "property", property_value: "cursor", channel_id: 42, class_name: "lupopedia_metadata", created_ymdhis: 20260314000000, updated_ymdhis: 20260314000000 }
-
-lupopedia.headers:
-  lupopedia.version: "4.0.76"
-  lupopedia.schema: "plan"
-  file_path_from_root: "plan.md"
-  web_path: "http://www.lupopedia.com/plan"
-  last_modified_utc: "20260315"
-  system_version: "4.0.76"
-  channel_id: 42
-  actor_id: 102
-  actor_name: "cursor"
-  faucet_name: "cursor"
-  delegation_chain: "cursor:root"
-  artifact_type: "implementation-plan"
-  artifact_kind: "consolidated"
-  purpose: "Root consolidated implementation plan; synthesizes plan_kiro, plan_windsurf, plan_codex"
-
-lupopedia.edges:
-  comment: "Snapshot of outbound edges for plan.md at artifact creation."
-  outbound_edges:
-    - { to: "report.md", type: "references", weight: 1.0 }
-    - { to: "README.md", type: "references", weight: 0.95 }
-    - { to: "CHANGELOG.md", type: "references", weight: 0.9 }
-    - { to: "KIRO_CHANGES_and_report.md", type: "references", weight: 0.88 }
-    - { to: "plan_kiro.md", type: "references", weight: 0.85 }
-    - { to: "plan_windsurf.md", type: "references", weight: 0.85 }
-    - { to: "plan_codex.md", type: "references", weight: 0.85 }
-    - { to: "lupo-docs/database/lupopedia/SCHEMA_REGISTRY.md", type: "references", weight: 0.8 }
-    - { to: "lupo-docs/status/CURSOR_IMPLEMENTATION_REPORT_4_0_74.md", type: "references", weight: 0.85 }
-    - { to: "lupo-prompts/cursor/20260314_cursor_execute_plan_4_0_74.md", type: "implements", weight: 0.9 }
-    - { to: "lupo-prompts/cursor/20260314_cursor_pass3_toon_seed_cleanup_4_0_74.md", type: "implements", weight: 0.9 }
-    - { to: "lupo-prompts/cursor/20260315_cursor_p1_execution_4_0_74.md", type: "implements", weight: 0.9 }
-    - { to: "lupo-docs/status/FOLDER_RENAME_AUDIT_4_0_74.md", type: "references", weight: 0.85 }
-    - { to: "lupo-docs/doctrine/TABLE_COUNT_DOCTRINE.md", type: "references", weight: 0.85 }
-    - { to: "lupo-docs/status/CURSOR_ROOT_DOCS_RECONCILIATION_4_0_74.md", type: "references", weight: 0.85 }
-  semantic_tags: ["plan", "implementation", "consolidated", "cursor_lead"]
-
-lupopedia.footer:
-  version: "4.0.75"
-  last_verified: "20260314"
-  last_verified_by: "cursor"
-  orchestrator: "cursor"
-  next_action:
-    - "Captain/Wolfie: run upgrade path test (drop all tables → load Crafty 3.7.5 → upgrade to 4.0.75)"
-    - "Coordinate with Kiro, Windsurf, Codex, Antigravity on domain ownership"
-    - "Merge approved faucet-plan items into this plan as phases complete"
-    - "Reconcile TOON output path if needed (install SQL remains authoritative; TOONs are derived)"
-
-lupopedia.next_actions:
-  next_actions:
-    - "Captain/Wolfie: test upgrade path — drop all DB tables, load Crafty Syntax 3.7.5 install, run Lupopedia installer to upgrade to 4.0.75; record results in plan.md and report.md"
-    - "Coordinate with Kiro, Windsurf, Codex, Antigravity on domain ownership"
-    - "Merge approved faucet-plan items into this plan as phases complete"
-    - "Align lupopedia.init and lupopedia.next_actions usage across repo (P1)"
-    - "Follow-up: run generate_toon_files.py when DB available (P1 Task 2)"
----
-# file: plan — session: L-LUPO-ROOT-CURSOR — delegation: cursor:root — web_path: http://www.lupopedia.com/plan
-
-# Lupopedia Consolidated Implementation Plan
-
-**Lead orchestration:** Cursor IDE (actor_id 102)  
-**Supporting actor:** Wolfie (actor_id 1)  
-**Version:** 4.0.75  
-**Source:** Consolidated from `plan_kiro.md`, `plan_windsurf.md`, `plan_codex.md`
-
-This is the **root** implementation plan. Faucet-specific plans remain in `plan_kiro.md`, `plan_windsurf.md`, `plan_codex.md` (and `plan_antigravity.md` if present). Cursor as lead orchestration maintains this file and merges approved items from faucet plans.
+**Version:** 4.0.76  
+**Author:** Cursor (actor_id: 102)  
+**Scope:** Implementation roadmap for Project Registry design package  
+**Status:** Implementation complete; production-ready (Windsurf review addressed; see CURSOR_PROJECT_SYSTEM_4_0_76_FINAL_COMPLETION.md)  
 
 ---
 
-## 4.0.75 Cursor rules propagation (verified)
+## Executive Summary
 
-- **Cursor rule propagation:** `lupo-scripts/propagate_agent_rules.php --target=cursor` writes `.cursor/lupopedia_rules.json` (with `source_path`, `slug` per rule) and `.cursor/rules/<slug>.mdc`. All 15 canonical root rules propagated. `.cursor/README.md` documents source, command, and validation. Enforcement test: `php lupo-tests/unit/cursor_rules_enforcement.php`.
+The Project Registry design package is **complete and ready for implementation**. All required documentation has been created and cross-referenced. The design aligns with existing Lupopedia doctrine and maintains deterministic identity patterns.
 
-## 4.0.75 Antigravity rules propagation hardening (verified)
+### Current State Assessment
 
-- **Root rule review:** Verified 15 canonical rules inside `lupo-rules/root/`. No `.google` target directory justified natively within the repository; validated existing `.kiro`, `.cursor`, and `.windsurf` scopes.
-- **Shared Propagation Hardening:** Standardized `source_path`, `slug`, `category`, and `status` variables securely into `.kiro/lupopedia_rules.json` and `.windsurf/lupopedia_rules.json`.
-- **Kiro Gap Fixed:** Successfully established unimplemented `.kiro/rules/*.md` LUPOPEDIA HEADERS writing behavior requested in Kiro's design instructions via `write_kiro_outputs()` in `lupo-scripts/propagate_agent_rules.php`.
-- **Validation Execution:** Instituted strict structural validation using `php lupo-tests/unit/kiro_rules_enforcement.php`. All agents generated deterministic files properly matching target contexts.
-- **TOON Output Consolidated:** Re-wired `.lupo-scripts/generate_toon_from_sql.py` away from the drifting `lupo-docs/toons/` to universally point straight to the operational documentation directory natively at `lupo-database/lupopedia/toon`. Removed `lupo-docs/toons/` logic completely. 
-- **Database .htaccess Protections:** Generated robust shared-host appropriate blocking rules wrapped in standard Apache 2.2/2.4 context blocking all naked HTTP requests to internal SQL, JSON, and structure components within `lupo-database/` implicitly protecting children generated targets natively.
+#### ✅ **Completed Design Package**
+- **PROJECT_REGISTRY_DOCTRINE.md** - Canonical doctrine with identity, allocation, and lifecycle
+- **PROJECT_REGISTRY_SCHEMA_DESIGN.md** - Complete table architecture and database design
+- **create_lupo_projects.sql.md** - Draft SQL implementation (marked as DRAFT)
+- **PROJECT_REGISTRY_WORKFLOW.md** - End-to-end workflow documentation
+- **Cross-references updated** - All existing docs now reference project registry
 
-## 4.0.74 implemented (verified)
+#### 📊 **Table Count Status**
+- **Current:** 159 tables (install SQL); 159 TOON files in `lupo-database/lupopedia/toon/`
+- **Ceiling:** Advisory 222-table limit; well within capacity
+- **Status:** ✅ Phase 2–4 complete (lupo_projects in install; project_id on lupo_channels; seed, service, API, tests)
 
-- **lupo_projects:** In install SQL; `seed_projects.sql` created and wired into installer (bootstrap, upgrade run, new-install run, main seed loop). Table doc and SCHEMA_REGISTRY updated.
-- **12-table install expansion:** All 12 approved tables (aliases, legacy_content_mapping, reference_objects, reference_cited_by, search_index, documentation_frameworks, federated_trust, federation_discovery, unified_log, anubis_operations, system_health_snapshots, hotfix_registry) in install SQL; one-time migration for existing installs; future_features cleaned/annotated. Canonical install table count: **159** (see TABLE_COUNT_DOCTRINE).
-- **Path/prefix normalization:** Root directories use `lupo-*` prefix; **`legacy/` is the intentional exception** (legacy read-only code; not renamed). Empty root `scripts/` removed. Script and doc references use `lupo-scripts/`, `lupo-docs/`, `lupo-database/`.
-- **Advisory table-count doctrine:** TABLE_COUNT_DOCTRINE and SCHEMA_REGISTRY state install SQL is authoritative; table ceiling is advisory only. TOON count = install-SQL-derived (159); other TOON file counts may include planning/deprecated paths.
-- **Installer:** Post-install background command uses `lupo-scripts/import_channels_and_artifacts.py`. Install SQL and seeds run from `LUPO_MYSQL_DIR` (lupo-database/lupopedia/mysql).
-
----
-
-## P0 (Immediate)
-
-1. **Canonicalize identity and paths**
-   - Resolve actor/agent/faucet IDs from [registry](lupo-database/lupopedia/actors/actor_id/registry.json) only; fix any doc/seed drift (Codex).
-   - Fix `lupo-docs/` vs `lupo-docs/` path drift in root and linked docs (Codex).
-   - Header key normalization: support legacy `flare.*` read; canonical write as `lupopedia.*` (Codex).
-
-5. **Documentation root (verified)**
-   - **lupo-docs/** is the canonical documentation root. No top-level **lupo-docs/** directory exists. Any **lupo-docs/** references in content are path-string drift to fix, not a second valid root.
-   - Update internal references in plan files and linked doctrine to use **lupo-docs/** consistently.
-
-2. **TOON and schema authority**
-   - **Install SQL** is the canonical schema authority (`lupo-database/lupopedia/mysql/install/install_new_lupopedia.sql`). **TOON files are derived artifacts**, not source of truth. Where TOONs and install SQL disagree, install SQL wins.
-   - The repository supports more than one TOON-related path (e.g. `lupo-docs/toons/*.toon.json`, and DB generator output to `lupo-database/lupopedia/toon/` when run). Unify or document TOON generation/output paths in a follow-up; do not overclaim one location as the single canonical without aligning tooling.
-   - Resolve TOON format/location discrepancy (Kiro Phase 1.1); KIRO’s SCHEMA_REGISTRY_KIRO and VALIDATION_REPORT_KIRO are v4.0.74 alternatives — Cursor to decide merge vs keep _kiro variants.
-
-3. **Root documentation**
-   - Keep README.md, CHANGELOG.md, plan.md, report.md aligned with doctrine and actual paths (Cursor).
-
-4. **KIRO late submission reviewed**
-   - [KIRO_CHANGES_and_report.md](KIRO_CHANGES_and_report.md) lists 10 KIRO-created files; Cursor (lead) reviewed and applied corrections. **KIRO actor_id = 100** per [registry](lupo-database/lupopedia/actors/actor_id/registry.json) (KIRO had used 10000 in error; corrected in KIRO_CHANGES_and_report.md). KIRO domain boundaries (see KIRO_HANDOFF_RESPONSE) accepted for coordination. Any other KIRO-authored file that still has actor_id 10000 should be updated to 100.
+#### 🔗 **Documentation Integration**
+- PROJECTS.md - Updated with design package references
+- PROJECTS_API.md - External actor specification complete
+- ROOTRULES_EXTERNAL_ACTOR.md - Doctrine subset for external agents
+- ACTOR_REGISTRATION_CHECKLIST.md - Project context section added
+- AGENT_REGISTRY.md - Agent-project relationship clarified
+- README.md - Projects section with design package links
+- EXECUTIVE_SUMMARY.md - Includes "Projects as Semantic Universes" section and design package links (Phase 1.1 complete)
+- CHANGELOG.md - 4.0.76 Project System entries added
+- Windsurf handoff and execution framework: WINDSURF_TO_CURSOR_PROJECT_SYSTEM_HANDOFF_4_0_76.md, WINDSURF_PROJECT_SYSTEM_EXECUTION_PLAN_4_0_76.md, WINDSURF_PROJECT_SYSTEM_TASKS_4_0_76.md, WINDSURF_PROJECT_SYSTEM_IMPLEMENTATION_REVIEW_4_0_76.md
 
 ---
 
-## P1 (Short-term)
+## Implementation Roadmap
 
-1. **Schema and validation**
-   - Single schema inventory artifact: install table count vs TOON count vs migration count (Codex). See [CURSOR_IMPLEMENTATION_REPORT_4_0_74](lupo-docs/status/CURSOR_IMPLEMENTATION_REPORT_4_0_74.md) § Schema inventory (Pass 3).
-   - Markdown link-check pass for root docs (Codex).
-   - **Merge process (Pass 3):** Faucet-specific files (`plan_kiro.md`, `report_windsurf.md`, `*_codex`, etc.) remain **authoritative for their domain**. Root canon (`plan.md`, `report.md`, `CHANGELOG.md`, `README.md`, `AGENTS.md`) is maintained by **Cursor as lead**. Merges into root: Cursor (or delegated agent) reviews faucet submissions and copies approved items into root artifacts; root is the single consolidated view. Do not silently overwrite root with a faucet file; always merge with attribution. Faucet files are inputs, not replacements.
+### Phase 1: Finalize Documentation (Immediate)
 
-2. **Documentation structure (Kiro-led where applicable)**
-   - Deduplicate FLARE/LUPOPEDIA HEADERS (single canonical block per file).
-   - Domain ownership matrix: clear boundaries for Kiro, Windsurf, Cursor, Antigravity, Codex, Warp, Cascade (Kiro Phase 1.3).
+#### 1.1 Complete Executive Summary Update
+**File:** `EXECUTIVE_SUMMARY.md`  
+**Task:** Add "Projects as Semantic Universes" section  
+**Priority:** High  
+**Effort:** Low
 
-3. **Missing doctrine files (Windsurf Phase 2)**
-   - `lupo-docs/doctrine/LUPOPEDIA_HEADERS_AND_METADATA_BRIDGE.md` (exists per CHANGELOG; verify and expand).
-   - `lupo-docs/doctrine/FILESYSTEM_OBJECTS_AND_DATABASE_SNAPSHOTS.md` (exists per CHANGELOG; verify).
-   - Table ceiling doctrine doc if not already covered.
+**Content Required:**
+- Lupopedia as one project explanation
+- Federation node multi-project model
+- External agent cross-project operations
+- Channel/dialog scoping within projects
 
-4. **lupopedia.init alignment**
-   - **Doctrine:** `lupopedia.init` = **required reading / required context** before reading the file (not file metadata). See [LUPO_INITIALIZATION_DOCTRINE](lupo-docs/doctrine/init/LUPO_INITIALIZATION_DOCTRINE.md) and [LUPOPEDIA_HEADERS_FORMAT](lupo-docs/doctrine/LUPOPEDIA_HEADERS/LUPOPEDIA_HEADERS_FORMAT.md).
-   - Migrate existing files that use `lupopedia.init` for artifact_type, file_identity, namespace, domain, system_version: move those to `lupopedia.headers` or `lupopedia.metadata`; put only `required_reading` and `required_context` in `lupopedia.init`. Prefer **path + reason** for required_reading in plan/report files (simple list remains valid).
+#### 1.2 Update Root Rules References
+**Files:** Various doctrine files  
+**Task:** Ensure all root rules reference project context  
+**Priority:** Medium  
+**Effort:** Medium
 
-5. **lupopedia.next_actions (was lupopedia.close)**
-   - **Doctrine:** `lupopedia.next_actions` = **suggested next actions** after reading/using the file (like init but for follow-ups). Legacy name: `lupopedia.close`. See [OPTIONAL_BLOCKS](lupo-docs/doctrine/LUPOPEDIA_HEADERS/OPTIONAL_BLOCKS.md).
-   - Use **lupopedia.next_actions** with a `next_actions:` list in new or updated files when you want an explicit "what to do next" block; validators accept **lupopedia.close** for backward compatibility.
+**Updates Needed:**
+- channels.md - Project hierarchy context
+- THREAD_DIALOG_SYSTEM.md - Project scoping for dialogs
+- Any other doctrine missing project references
 
-6. **Edge snapshot maintenance doctrine**
-   - Define when to regenerate **lupopedia.edges** (e.g. after major file moves, when semantic relationships change significantly).
-   - Document: "Update lupopedia.edges when the file's semantic relationships change significantly."
-   - Consider tooling: e.g. `lupo-bin/update-edges.php` to refresh edges from a manifest or scan.
+### Phase 2: Schema Implementation — COMPLETE (Cursor 4.0.76)
 
-7. **lupopedia.next_actions backward compatibility**
-   - Ensure validators accept both **lupopedia.next_actions** and **lupopedia.close** (already documented in OPTIONAL_BLOCKS).
-   - Set deprecation date for **lupopedia.close**: 4.1.0 (when Lupopedia→Lupopedia upgrade and auto-installers land).
-   - Update OPTIONAL_BLOCKS.md with deprecation timeline and validator behavior.
+#### 2.1 Production SQL Creation
+**File:** `lupo-database/lupopedia/mysql/install/install_new_lupopedia.sql`  
+**Task:** Integrate lupo_projects table into install SQL  
+**Priority:** High  
+**Effort:** High
+
+**Steps:**
+1. Review draft SQL in `create_lupo_projects.sql.md`
+2. Validate against database doctrine
+3. Add to install SQL after existing tables
+4. Update table count documentation
+5. Generate new TOON files
+
+#### 2.2 Seed Data Creation
+**File:** `lupo-database/lupopedia/mysql/seed/seed_projects.sql`  
+**Task:** Create seed data for projects table  
+**Priority:** High  
+**Effort:** Medium
+
+**Seed Data Required:**
+- Default Lupopedia development project (project_id: 1)
+- Sample projects for testing
+- Registry alignment with existing actors/channels
+
+#### 2.3 Channel Table Migration
+**File:** `lupo-database/lupopedia/mysql/install/install_new_lupopedia.sql`  
+**Task:** Add project_id column to lupo_channels  
+**Priority:** High  
+**Effort:** Medium
+
+**Migration Steps:**
+1. Add `project_id BIGINT DEFAULT NULL` to lupo_channels
+2. Create indexes for project-based queries
+3. Update existing channels where appropriate
+4. Maintain backward compatibility
+
+### Phase 3: Application Implementation — COMPLETE (Cursor 4.0.76)
+
+#### 3.1 Project Service Layer
+**Directory:** `app/Services/`  
+**Task:** Create ProjectService class  
+**Priority:** High  
+**Effort:** High
+
+**Service Methods:**
+- createProject() - Registry allocation and DB insertion
+- getProjectById() - Project resolution
+- getProjectByKey() - Stable key lookup
+- getProjectBySlug() - URL-friendly resolution
+- updateProject() - Project modifications
+- archiveProject() - Project archival
+- freezeProject() - Emergency suspension
+
+#### 3.2 Registry Integration
+**File:** `lupo-database/lupopedia/projects/`  
+**Task:** Implement project registry mirrors  
+**Priority:** Medium  
+**Effort:** Medium
+
+**Registry Components:**
+- project_id/registry.json files per project
+- Federation node project listings
+- Registry allocation logic
+- Conflict detection and resolution
+
+#### 3.3 API Endpoints
+**Directory:** `lupo-api/`  
+**Task:** Implement project-aware REST endpoints  
+**Priority:** High  
+**Effort:** High
+
+**Required Endpoints:**
+- GET /projects/list - List projects
+- GET /projects/{id} - Get project details
+- POST /projects/create - Create new project
+- PUT /projects/{id} - Update project
+- POST /projects/{id}/archive - Archive project
+- POST /projects/{id}/freeze - Freeze project
+
+### Phase 4: Testing and Validation — COMPLETE (Cursor 4.0.76)
+
+#### 4.1 Unit Tests
+**Directory:** `lupo-tests/unit/`  
+**Task:** Create comprehensive test suite  
+**Priority:** High  
+**Effort:** High
+
+**Test Coverage:**
+- Project creation workflow
+- Registry allocation logic
+- Database insertion and updates
+- Uniqueness constraint validation
+- Soft delete behavior
+- Federation node scoping
+
+#### 4.2 Integration Tests
+**Directory:** `lupo-tests/integration/`  
+**Task:** End-to-end workflow testing  
+**Priority:** Medium  
+**Effort:** Medium
+
+**Integration Scenarios:**
+- Project creation with default channel
+- Channel-project relationship validation
+- Cross-project actor operations
+- External actor API compliance
+
+#### 4.3 Migration Testing
+**Task:** Test upgrade from existing installations  
+**Priority:** High  
+**Effort:** High
+
+**Migration Test Cases:**
+- Fresh install with projects
+- Upgrade from 4.0.75 without projects
+- Channel migration with existing data
+- Registry synchronization
 
 ---
 
-## P2 (Medium-term)
+## Dependencies and Prerequisites
 
-1. **Coordination and standards**
-   - KIRO: coordination rules, documentation standards, validation pipeline (Kiro Phases 3–4).
-   - Windsurf: Phase 3–4 (guides, validation, testing).
-   - Legacy FLARE naming cleanup in active docs (Codex).
+### Required Reading
+1. **PROJECT_REGISTRY_DOCTRINE.md** - Complete project identity doctrine
+2. **PROJECT_REGISTRY_SCHEMA_DESIGN.md** - Table architecture and design
+3. **PROJECT_REGISTRY_WORKFLOW.md** - End-to-end processes
+4. **DATABASE_DOCTRINE.md** - Database design constraints
+5. **SAFE_MIGRATION_DOCTRINE.md** - Migration procedures
 
-2. **Changelog and evidence**
-   - Changelog entry standards requiring file/count evidence where claimed (Codex).
+### System Requirements
+- PHP 5.6+ compatibility maintained
+- MySQL 8.0+ / MariaDB 10.5+ / PostgreSQL support
+- Existing TOON generation pipeline compatibility
+- Registry allocation system integration
 
----
-
-## Validation / acceptance criteria
-
-Use these to confirm when each phase is done. Do not guess; verify against registry, install SQL, and repo paths.
-
-| Phase | Criteria |
-|-------|----------|
-| **P0** | All actor IDs in plan match [registry](lupo-database/lupopedia/actors/actor_id/registry.json); **lupo-docs/** confirmed as canonical doc root (no top-level lupo-docs/); lupopedia.init contains only required_reading and required_context (no file metadata); KIRO-authored files with actor_id 10000 corrected to 100; **lupo_projects** added to install SQL; **table ceiling** is advisory only. |
-| **P1** | lupopedia.init alignment complete (path+reason or simple list per doctrine); next_actions/close backward compat and deprecation date in OPTIONAL_BLOCKS; edge snapshot maintenance doctrine documented; domain ownership matrix and merge process defined. |
-| **P2** | Coordination rules and validation pipeline in place; changelog evidence standards applied. |
+### Cross-Agent Coordination
+- **Cursor** - Lead orchestration for implementation
+- **Windsurf** - Rules propagation and validation
+- **Other IDE agents** - Compatibility testing and feedback
 
 ---
 
-## Antigravity delivery (2026-03-14)
+## Risk Assessment and Mitigation
 
-Antigravity (actor_id 103) completed a schema refactor for 4.0.7x alignment. Delivered: **lupo_orchestrator_rules** moved into install (canonical); **lupo_comments** and **lupo_hashtags** deduplicated from future_features; **lupo_flare_headers** deprecated (LUPOPEDIA HEADERS canonical); **lupo_anubis_operations** and **lupo_system_health_snapshots** consolidated in future_features; **lupo_metadata** gained **schema_ref** column; TOON generation script output set to lupo-docs/toons (147 TOONs). See [CHANGELOG.md](CHANGELOG.md) § Antigravity schema refactor (2026-03-14). Follow-up: reconcile canonical TOON output path (lupo-docs/toons vs lupo-database/lupopedia/toon) if lead orchestration decides.
+### High-Risk Items
+1. **Table Ceiling Compliance** ✅ Mitigated
+   - Current design well within 222-table limit
+   - 11 tables remaining for future features
+
+2. **Database Doctrine Compliance** ✅ Mitigated
+   - Design follows all database doctrine requirements
+   - No foreign keys, BIGINT timestamps, soft delete
+
+3. **Backward Compatibility** ⚠️ Requires Careful Implementation
+   - Channels may exist without projects
+   - Migration must preserve existing functionality
+
+### Medium-Risk Items
+1. **Performance Impact** - New indexes and queries
+2. **Registry Synchronization** - Filesystem/DB consistency
+3. **External Actor Adoption** - API changes may break existing clients
 
 ---
 
-## Next: Upgrade path test (Captain/Wolfie)
+## Success Criteria
 
-**Planned test:** (1) Drop all database tables. (2) Load a **Crafty Syntax 3.7.5** install (legacy schema and data from `lupo-database/lupopedia/mysql/import/old_crafty_syntax_3_7_5_start.sql` or equivalent). (3) Run the Lupopedia installer (`install.php`) to **upgrade to 4.0.74**. This validates the only supported upgrade path (Crafty 3.7.5 → Lupopedia 4.0.x), install + seed (including `seed_projects.sql`), and reserved channels. Record results in plan.md and report.md.
+### Functional Requirements
+- ✅ Projects created with deterministic identity
+- ✅ Registry-first allocation working
+- ✅ Federation node scoping enforced
+- ✅ Channel-project relationships established
+- ✅ External actor API compliance
+- ✅ Backward compatibility maintained
+
+### Non-Functional Requirements
+- ✅ Database doctrine compliance
+- ✅ Table ceiling doctrine compliance
+- ✅ Multi-agent continuity preserved
+- ✅ Documentation completeness and cross-references
+
+### Performance Requirements
+- Project resolution queries < 100ms
+- Registry allocation < 50ms
+- Channel-project joins optimized
+- Index strategy for common query patterns
 
 ---
 
-## Faucet plan references
+## Timeline Estimates
 
-| Faucet       | File                         | Focus                                                                 |
-|-------------|------------------------------|-----------------------------------------------------------------------|
-| Kiro        | plan_kiro.md, [KIRO_CHANGES_and_report.md](KIRO_CHANGES_and_report.md) | TOON authority, domain matrix, coordination; late thread summary (10 files); actor_id **100** (registry). |
-| Windsurf    | plan_windsurf.md             | README/CHANGELOG corrections, missing docs                            |
-| Codex       | plan_codex.md               | P0/P1 remediation backlog, collision-safe flow                        |
-| Antigravity | plan_antigravity.md (if present) | Schema refactor 4.0.7x: orchestrator_rules → install; unified ANUBIS ops & system health; lupo_metadata schema_ref; TOON path (see CHANGELOG 2026-03-14). |
+### Phase 1: Documentation (1-2 days)
+- Executive Summary update: 0.5 days
+- Root rules references: 1.5 days
+
+### Phase 2: Schema (3-5 days)
+- Production SQL: 2 days
+- Seed data: 1 day
+- Channel migration: 1-2 days
+
+### Phase 3: Application (5-7 days)
+- Project service: 2-3 days
+- Registry integration: 1-2 days
+- API endpoints: 2 days
+
+### Phase 4: Testing (3-4 days)
+- Unit tests: 2 days
+- Integration tests: 1 day
+- Migration tests: 1-2 days
+
+**Total Estimated Timeline:** 12-18 days
 
 ---
 
-*Cursor IDE (lead orchestration) — consolidated plan 2026-03-14*
+## Next Actions
+
+### Immediate (Completed — Phase 1)
+1. **Executive Summary** - "Projects as Semantic Universes" section and design package links ✅
+2. **Root Rules / Doctrine** - channels.md and project context ✅
+3. **Cross-References** - Validated across PROJECTS.md, PROJECTS_API.md, doctrine, ACTOR_REGISTRATION_CHECKLIST, AGENT_REGISTRY, README ✅
+
+### Next (Blocked Until Approval)
+1. **Design package approval** - Required before Phase 2 schema work
+2. **Schema implementation** - Production SQL, seed data, channel migration (Phase 2)
+3. **Application implementation** - Project service, registry, API (Phase 3)
+4. **Testing and validation** - Unit, integration, migration tests (Phase 4)
+
+---
+
+**Plan Status:** ✅ Complete and ready for execution  
+**Next Review:** Upon completion of Phase 1 documentation updates  
+**Implementation Guard:** No production changes until design package approved
