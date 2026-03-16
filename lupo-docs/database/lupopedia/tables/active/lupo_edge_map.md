@@ -10,6 +10,7 @@ lupopedia.headers:
   lupo_agent: "antigravity"
   artifact_type: "table_documentation"
   purpose: "Mapping of semantic edges between objects/contents"
+  namespace: "core"
   tags: ["database", "table", "semantic_navbar"]
 ---
 

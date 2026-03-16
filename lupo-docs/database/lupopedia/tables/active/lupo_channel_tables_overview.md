@@ -59,6 +59,7 @@ lupopedia.headers:
   artifact_type: "guide"
   artifact_kind: "documentation"
   purpose: "lupo_channel_* Tables Overview"
+  namespace: "channels"
   mood_rgb: "4169E1"
   traits: ["flare", "indexed", "v4.0.56"]
   tags: ["lupo-docs", "database", "lupopedia", "tables", "lupo_channel_tables_overviewmd"]

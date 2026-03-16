@@ -1,109 +1,90 @@
 ---
 lupopedia.headers:
-  lupopedia.version: "4.0.73"
-  lupopedia.schema: "documentation"
+  lupopedia.version: "4.0.78"
+  lupopedia.schema: "database_table"
+  system_version: "4.0.78"
   file_path_from_root: "lupo-docs/database/lupopedia/tables/active/lupo_collections.md"
-  system_version: "4.0.73"
-  namespace: "collection"
-  channel_id: 1
-  actor_id: 1003
-  last_modified_utc: "20260313"
-  artifact_type: "documentation"
-  artifact_kind: "database_table"
-  purpose: "JetBrains domain table documentation for lupo_collections"
-  lupo_agent: "antigravity"
+  web_path: "[lupo_collections](http://www.lupopedia.com/database/lupopedia/tables/active/lupo_collections)"
+  last_modified_utc: "20260316"
+  channel_id: 42
+  actor_id: 102
+  artifact_type: "table_documentation"
+  artifact_kind: "table"
+  namespace: "content"
+  purpose: "Collection management; resource bundles for content grouping, navigation, and channel-scoped organization"
+  traits: ["canonical", "content", "collections", "v4.0.78"]
+  tags: ["database", "collections", "content", "navigation"]
+  table_primary_key: "collection_id"
+  doctrine_note: "No database foreign keys; referential integrity enforced in application code. All timestamps BIGINT UTC YYYYMMDDHHIISS."
 
 lupopedia.edges:
-  comment: "Snapshot of files related to lupo_collections at artifact creation. Separate runtime/code references from documentation references."
-  meta: "Table doc: lupo_collections"
-
+  comment: "Snapshot of edges for lupo_collections table doc at 4.0.78."
   outbound_edges:
-    code:
-      - { to: "lupo-database/lupopedia/content/lupo-app/Services/CollectionTabsService.php", type: "references", weight: 1.0 }
-      - { to: "lupo-database/lupopedia/content/lupo-app/Services/CollectionZeroService.php", type: "references", weight: 1.0 }
-      - { to: "lupo-database/lupopedia/content/lupo-app/Services/SavedCollectionsService.php", type: "references", weight: 1.0 }
-      - { to: "lupo-includes/functions/collection-tabs-loader.php", type: "references", weight: 0.95 }
-      - { to: "lupo-api/list_user_collections.php", type: "references", weight: 0.95 }
-      - { to: "lupo-api/load_collection_tabs.php", type: "references", weight: 0.95 }
-      - { to: "lupo-includes/modules/truth/truth-controller.php", type: "references", weight: 0.9 }
-      - { to: "lupo-includes/modules/api/semantic-navbar-api.php", type: "references", weight: 0.9 }
-      - { to: "lupo-includes/class-SearchIndexer.php", type: "references", weight: 0.85 }
-      - { to: "lupo-includes/themes/default/components/collection_tabs.php", type: "references", weight: 0.85 }
-      - { to: "lupo-includes/themes/default/components/collections_dropdown.php", type: "references", weight: 0.85 }
-      - { to: "lupo-includes/themes/default/components/saved-collections-nav.php", type: "references", weight: 0.85 }
-      - { to: "lupo-includes/functions/render-saved-collections.php", type: "references", weight: 0.85 }
-      - { to: "lupo-includes/modules/content/renderers/content-renderer.php", type: "references", weight: 0.8 }
-      - { to: "lupo-includes/modules/content/content-model.php", type: "references", weight: 0.8 }
-      - { to: "lupo-includes/modules/content/content-controller.php", type: "references", weight: 0.8 }
-      - { to: "lupo-includes/themes/default/layouts/main_layout.php", type: "references", weight: 0.8 }
-      - { to: "lupo-includes/themes/default/components/collection_selector.php", type: "references", weight: 0.75 }
-      - { to: "lupo-includes/themes/default/components/collection_tabs_horizontal.php", type: "references", weight: 0.75 }
-      - { to: "lupo-includes/bootstrap.php", type: "references", weight: 0.7 }
-      - { to: "lupo-includes/header.php", type: "references", weight: 0.7 }
-    documentation:
-      - { to: "README.md", type: "documents", weight: 0.7 }
-      - { to: "HOW_TO_USE_LUPOPEDIA.md", type: "documents", weight: 0.6 }
-      - { to: "lupo-docs/database/lupopedia/tables/active/lupo_collection_tabs.md", type: "related_table", weight: 0.95 }
-
-  semantic_tags: ["lupo_collections", "database_table", "php_references", "documentation_references", "collections"]
-
-lupopedia.engagement:
-  comment: "Snapshot of files edited during 4.0.73 finalization and initialization thread by ANTIGRAVITY IDE Agent. Engagement metrics track edit frequency and importance of each file in the version transition process."
-  meta: "Thread: Finalize 4.0.72 → Push to GitHub → Initialize 4.0.73 → Migrate Tasks → Validate Upgrade Path"
-  views: 0
+    - { to: "lupo-database/lupopedia/mysql/install/install_new_lupopedia.sql", type: "schema_reference", weight: 1.0 }
+    - { to: "lupo-docs/database/lupopedia/tables/active/lupo_channels.md", type: "references", weight: 0.8 }
+    - { to: "lupo-docs/database/lupopedia/tables/active/lupo_departments.md", type: "references", weight: 0.8 }
+    - { to: "lupo-docs/database/lupopedia/tables/active/lupo_contents.md", type: "references", weight: 0.9 }
+    - { to: "lupo-docs/database/lupopedia/tables/active/lupo_federation_nodes.md", type: "references", weight: 0.7 }
 
 lupopedia.footer:
-  version: "4.0.73"
-  last_verified: "20260313"
-  last_verified_by: "antigravity"
-  orchestrator: "antigravity"
-  next_action:
-    - "Keep code and documentation edges in sync with codebase and table docs"
+  version: "4.0.78"
+  last_verified: "20260316"
+  last_verified_by: "cursor"
 ---
+# file: lupo_collections — web_path: http://www.lupopedia.com/database/lupopedia/tables/active/lupo_collections
 
 # Table: lupo_collections
 
 ## Table Overview
-- purpose: Collection containers used to organize content and navigation structures.
-- category: active
-- status: active (present in current TOON and install schema)
-- version introduced: not explicitly documented in TOON/install comments
-- version deprecated: not applicable
-- removal notes: not applicable
-- migration references: MIGRATION_MAPPING_REFERENCE.md, livehelp_qa_migration.md
+
+- **Purpose:** Collections are resource bundles that group content for navigation, knowledge domains, and UI presentation. Each collection has a name, slug (unique per federation node), optional department and actor, channel scope, sort order, and optional nav menu usage (is_nav_menu, nav_icon). Supports hierarchy via parent_id and channel-scoped organization (channel_id, 4.0.69+).
+- **Category:** Content / Collections
+- **Status:** Active (in install_new_lupopedia.sql)
+- **Version introduced:** 4.0.x (channel_id, is_nav_menu, nav_icon in 4.0.69)
+
+## Where This Table Is Used
+
+- **Content grouping:** Content rows can reference default_collection_id or be linked via collection_tab_map; collections organize content for help trees, knowledge bases, and listing pages.
+- **Navigation:** is_nav_menu and nav_icon drive UI navigation; collections appear as menu groups or tabs.
+- **Federation and departments:** federation_node_id scopes collections per node; department_id and actor_id assign ownership; slug is unique per (federation_node_id, slug).
+- **Channel scope:** channel_id scopes a collection to a channel for channel-specific resource bundles.
 
 ## Column Documentation
-| Column | Type | Nullability | Default | Description |
-|---|---|---|---|---|
-| collection_id | bigint auto_increment | NOT NULL | none/unspecified | TOON-defined field; canonical semantic description not specified in TOON. |
-| federation_node_id | bigint | NOT NULL | none/unspecified | TOON-defined field; canonical semantic description not specified in TOON. |
-| actor_id | bigint | Nullable/unspecified | none/unspecified | TOON-defined field; canonical semantic description not specified in TOON. |
-| department_id | bigint | Nullable/unspecified | none/unspecified | TOON-defined field; canonical semantic description not specified in TOON. |
-| name | varchar(255) | NOT NULL | none/unspecified | TOON-defined field; canonical semantic description not specified in TOON. |
-| slug | varchar(100) | NOT NULL | none/unspecified | TOON-defined field; canonical semantic description not specified in TOON. |
-| color | char(6) | Nullable/unspecified | ''666666 | TOON-defined field; canonical semantic description not specified in TOON. |
-| description | text | Nullable/unspecified | none/unspecified | TOON-defined field; canonical semantic description not specified in TOON. |
-| sort_order | int | Nullable/unspecified | 0 | TOON-defined field; canonical semantic description not specified in TOON. |
-| properties | text | Nullable/unspecified | none/unspecified | TOON-defined field; canonical semantic description not specified in TOON. |
-| published_ymdhis | bigint | Nullable/unspecified | none/unspecified | TOON-defined field; canonical semantic description not specified in TOON. |
-| created_ymdhis | bigint | NOT NULL | 0 | TOON-defined field; canonical semantic description not specified in TOON. |
-| updated_ymdhis | bigint | NOT NULL | none/unspecified | TOON-defined field; canonical semantic description not specified in TOON. |
-| is_deleted | tinyint | NOT NULL | 0 | TOON-defined field; canonical semantic description not specified in TOON. |
-| deleted_ymdhis | bigint | Nullable/unspecified | none/unspecified | TOON-defined field; canonical semantic description not specified in TOON. |
-| parent_id | bigint | Nullable/unspecified | none/unspecified | TOON-defined field; canonical semantic description not specified in TOON. |
-| channel_id | bigint | Nullable/unspecified | none/unspecified | TOON-defined field; canonical semantic description not specified in TOON. |
-| is_nav_menu | tinyint | NOT NULL | 0 | TOON-defined field; canonical semantic description not specified in TOON. |
-| nav_icon | varchar(64) | Nullable/unspecified | none/unspecified | TOON-defined field; canonical semantic description not specified in TOON. |
+
+| Column | Type | Nullable | Default | Description |
+|--------|------|----------|---------|-------------|
+| collection_id | bigint | No | — | Primary key. |
+| federation_node_id | bigint | No | — | Federation node; slug unique per node. |
+| actor_id | bigint | Yes | NULL | Owning actor. |
+| department_id | bigint | Yes | NULL | Department assignment. |
+| name | varchar(255) | No | — | Display name. |
+| slug | varchar(100) | No | — | URL-friendly slug; unique per federation_node_id. |
+| color | char(6) | Yes | '666666' | Hex color. |
+| description | text | Yes | NULL | Description. |
+| sort_order | int | Yes | 0 | Sort order. |
+| properties | text | Yes | NULL | Additional properties. |
+| published_ymdhis | bigint | Yes | NULL | Publication timestamp (BIGINT UTC). |
+| created_ymdhis | bigint | No | 0 | Creation timestamp (BIGINT UTC). |
+| updated_ymdhis | bigint | No | — | Last update timestamp (BIGINT UTC). |
+| is_deleted | tinyint | No | 0 | Soft delete flag. |
+| deleted_ymdhis | bigint | Yes | NULL | Soft delete timestamp. |
+| parent_id | bigint | Yes | NULL | Parent collection for hierarchy. |
+| channel_id | bigint | Yes | NULL | Channel scope (4.0.69+). |
+| is_nav_menu | tinyint | No | 0 | Show in nav menu (4.0.69+). |
+| nav_icon | varchar(64) | Yes | NULL | Nav icon identifier (4.0.69+). |
+
+## Indexes
+
+- **PRIMARY KEY:** collection_id
+- **UNIQUE:** lupo_collections_unique_collection_slug_domain (federation_node_id, slug)
+- **INDEX:** lupo_collections_idx_name, lupo_collections_idx_domain, lupo_collections_idx_department, lupo_collections_idx_created_ymdhis, lupo_collections_idx_updated_ymdhis, lupo_collections_idx_is_deleted, lupo_collections_idx_sort_order, lupo_collections_idx_actor, lupo_collections_idx_channel_id, lupo_collections_idx_is_nav_menu
 
 ## Relationships
-- foreign keys: none (database doctrine forbids foreign keys)
-- inbound references: no canonical inbound reference list found in TOON
-- outbound references: No foreign keys or explicit relationships in TOON (`relationships: []`).
-- join patterns: Join by `collection_id`; common joins: `lupo_collection_tabs.collection_id`, `lupo_contents.default_collection_id`.
 
-## Usage Notes
-- migration notes: TOON and install schema are aligned for this table name.
-- compatibility notes: current schema uses BIGINT timestamp doctrine and soft-delete patterns where present.
-- warnings: avoid assuming implicit constraints; use doctrine that logic is application-side.
-- future considerations: if additional relationships are introduced, document via TOON updates first.
-- historical changes if updating existing docs: existing flat documentation was retained; this file is the category-structured canonical doc for this domain pass.
+- **Logical references (no DB FKs):** federation_node_id → lupo_federation_nodes; actor_id → lupo_actors; department_id → lupo_departments; parent_id → lupo_collections; channel_id → lupo_channels. lupo_collection_tabs and lupo_collection_tab_map link tabs and items to collections.
+
+## Doctrine notes
+
+- No database foreign keys; referential integrity enforced in application code.
+- All timestamps BIGINT UTC YYYYMMDDHHIISS.
+- Soft delete: filter `is_deleted = 0` unless querying deleted rows.

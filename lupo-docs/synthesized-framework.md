@@ -1,40 +1,58 @@
 ---
-FILE: lupopedia.docs/synthesized-framework.md
-CLASS: Lupopedia.headers.framework
-NAMESPACE: lupopedia.frameworks.documentation
-CHANNEL: ide.antigravity
-COLLECTION: doctrine-aligned-reports
-ORCHESTRATOR: WolfieAI
-FACET: anti-chaos
-AGENT: Antigravity
-ROLE: Framework Synthesis / Refactoring
-TASK: Combine reports into unified documentation framework
-TIMESTAMP_UTC: 20260312093300
+lupopedia.headers:
+  lupopedia.version: "4.0.78"
+  lupopedia.schema: "doctrine"
+  system_version: "4.0.78"
+  file_path_from_root: "lupo-docs/synthesized-framework.md"
+  web_path: "[synthesized-framework](http://www.lupopedia.com/docs/synthesized-framework)"
+  last_modified_utc: "20260316"
+  channel_id: 42
+  channel_name: "Lupopedia Development (general)"
+  actor_id: 103
+  actor_name: "antigravity"
+  delegation_chain: "antigravity:wolfie"
+  artifact_type: "doctrine"
+  artifact_kind: "framework"
+  purpose: "Lupopedia Synthesized Documentation Framework — quadrant ontology and canonical header integration for AI agent documentation"
+  namespace: "core"
+  traits: ["canonical", "synthesized", "quadrant", "v4.0.78"]
+  tags: ["framework", "doctrine", "quadrant", "headers", "multi-agent"]
 
-DATABASE.TABLE:
-NAME: documentation_frameworks
-COLLECTION: active
-CHANNEL: ide
-NAMESPACE: lupopedia.tables.documentation_frameworks
+lupopedia.metadata:
+  comment: "Historical quadrant and framework fields preserved from pre-4.0.78 synthesized header format. Dotted namespace and custom field names are conceptual; canonical headers use approved taxonomy (see lupopedia.headers.namespace)."
+  quadrant_class: "Lupopedia.headers.framework"
+  quadrant_namespace_historical: "lupopedia.frameworks.documentation"
+  quadrant_channel: "ide.antigravity"
+  quadrant_collection: "doctrine-aligned-reports"
+  orchestrator: "WolfieAI"
+  facet: "anti-chaos"
+  agent: "Antigravity"
+  role: "Framework Synthesis / Refactoring"
+  task: "Combine reports into unified documentation framework"
+  timestamp_utc: "20260312093300"
+  historical_file_path: "lupopedia.docs/synthesized-framework.md"
+  database_table_name: "documentation_frameworks"
+  database_table_collection: "active"
+  database_table_channel: "ide"
+  database_table_namespace: "lupopedia.tables.documentation_frameworks"
+  database_edges_snapshot: "documentation_frameworks → agents; documentation_frameworks → channels; documentation_frameworks → collections"
+  runtime_min_php: "5.6"
+  runtime_syntax: "PHP 5.3 compatible"
+  runtime_includes_path: "<prefix>lupo-includes/"
 
-DATABASE.EDGES (SNAPSHOT):
-documentation_frameworks → agents
-documentation_frameworks → channels
-documentation_frameworks → collections
+lupopedia.footer:
+  version: "4.0.78"
+  last_verified: "20260316"
+  last_verified_by: "cursor"
+  orchestrator: "antigravity"
+  next_action:
+    - "Keep quadrant metadata aligned with LUPOPEDIA_HEADERS doctrine"
+    - "Reference this document for historical quadrant semantics; use lupopedia.headers for validation"
+---
+# file: Lupopedia AI Agent Documentation Framework — session: L-LUPO-ROOT — delegation: cursor:root — web_path: http://www.lupopedia.com/docs/synthesized-framework
 
-COMMENTS:
-Edges are dynamic.
-Query live edges using:
+**Documentation debt note (4.0.78):** This file was migrated to canonical LUPOPEDIA_HEADERS. The quadrant model (CLASS, NAMESPACE, CHANNEL, COLLECTION) and dotted notation (e.g. `lupopedia.frameworks.documentation`) are **historical conceptual notation** and are preserved in the **`lupopedia.metadata`** block. Canonical headers now use the **single-word namespace taxonomy** (`core`, `auth`, `channels`, etc.) per [LUPOPEDIA_HEADERS_FORMAT.md](doctrine/LUPOPEDIA_HEADERS/LUPOPEDIA_HEADERS_FORMAT.md) §2.2. The conceptual architecture below is unchanged.
 
-Python:
-python query_edges.py lupopedia.tables.documentation_frameworks
-
-PHP:
-php query_edges.php lupopedia.tables.documentation_frameworks
-
-RUNTIME.MIN_PHP: 5.6
-RUNTIME.SYNTAX: PHP 5.3 compatible
-RUNTIME.INCLUDES_PATH: <prefix>lupo-includes/
 ---
 
 # Lupopedia AI Agent Documentation Framework: Synthesized Strategy
@@ -67,7 +85,7 @@ The unified framework treats documentation as a **virtual extension of the datab
 Documentation MUST be categorized into one of the four quadrants to ensure deterministic placement and discovery:
 
 1.  **CLASS (Archetype / Blueprint):** Defines the structural type of the documentation (e.g., `Lupopedia.headers.framework`).
-2.  **NAMESPACE (Jurisdiction / Ownership):** Defines the logical authority and pathing (e.g., `lupopedia.frameworks.documentation`).
+2.  **NAMESPACE (Jurisdiction / Ownership):** Defines the logical authority and pathing. **LUPOPEDIA_HEADERS alignment (4.0.78+):** The canonical header field is **`namespace`** in **`lupopedia.headers`**. For table documentation and other artifact types where policy applies, use the **approved single-word taxonomy** from [LUPOPEDIA_HEADERS_FORMAT.md](doctrine/LUPOPEDIA_HEADERS/LUPOPEDIA_HEADERS_FORMAT.md) §2.2: `auth`, `channels`, `core`, `content`, `analytics`, `federation`, `governance`, `integration`, `legacy`. Dotted notation (e.g. `lupopedia.frameworks.documentation`) is historical in this framework document; validators and header compliance use the approved taxonomy in the header field.
 3.  **CHANNEL (Communication Bus):** Defines the operational surface where the artifact was generated or is discussed (e.g., `ide.antigravity`).
 4.  **COLLECTION (Library / Grouping):** Defines the logical grouping for batch retrieval (e.g., `doctrine-aligned-reports`).
 
@@ -82,7 +100,7 @@ Every Lupopedia artifact must begin with the following YAML-compliant block. The
 | :--- | :--- | :--- |
 | **FILE** | Physical path from root | `lupopedia.docs/synthesized-framework.md` |
 | **CLASS** | Ontological archetype | `Lupopedia.headers.framework` |
-| **NAMESPACE** | Jurisdiction path | `lupopedia.frameworks.documentation` |
+| **NAMESPACE** | Jurisdiction path (header: use approved taxonomy per LUPOPEDIA_HEADERS_FORMAT §2.2) | `core`, `auth`, `channels`, etc.; or historical `lupopedia.frameworks.documentation` |
 | **CHANNEL** | Communication context | `ide.antigravity` |
 | **COLLECTION** | Batched library ID | `doctrine-aligned-reports` |
 | **ORCHESTRATOR** | Directing authority | `WolfieAI` |
@@ -169,9 +187,3 @@ Lupopedia separates documentation state from runtime state to allow for **offlin
 ## 10. Conclusion
 
 The Lupopedia Documentation Framework moves beyond mere "notetaking" into the realm of **Dynamic Knowledge Governance**. By enforcing the quadrant ontology and canonical header schema, we transform documentation into a robust, machine-parsable subsystem of the Semantic OS.
-
----
-
-Lupopedia.footer:
-orchestrator.actor: "WolfieAI.Antigravity"
-Lupopedia.version_written: "4.0.70"

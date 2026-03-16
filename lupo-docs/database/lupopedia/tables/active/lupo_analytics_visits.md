@@ -1,206 +1,112 @@
-# LUPOPEDIA HEADERS (replaces FLARE)
 ---
 lupopedia.headers:
-  lupopedia.version: "4.0.73"
-  lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\database\lupopedia\tables\lupo_analytics_visits.md"
-  file_hash: "35a496c3489fac0bc609d233814e3101f0647297345846d6b40cdbd463849ebb"
-  last_updated_utc: "20260228155738"
-  system_version: "4.0.51"
-  channel_id: 1
-  actor_id: 1002
-  delegation_chain: "1002:10000"
-  artifact_type: "documentation"
-  artifact_kind: "documentation"
-  purpose: "Documentation file with LUPOPEDIA HEADERS applied"
-  mood_rgb: "4169E1"
-  traits: ["flare", "indexed", "v4.0.51"]
-  tags: ["documentation", "flare_applied"]
-  lupo_agent: "windsurf"
+  lupopedia.version: "4.0.78"
+  lupopedia.schema: "database_table"
+  system_version: "4.0.78"
+  file_path_from_root: "lupo-docs/database/lupopedia/tables/active/lupo_analytics_visits.md"
+  web_path: "[lupo_analytics_visits](http://www.lupopedia.com/database/lupopedia/tables/active/lupo_analytics_visits)"
+  last_modified_utc: "20260316"
+  channel_id: 42
+  actor_id: 102
+  artifact_type: "table_documentation"
+  artifact_kind: "table"
+  namespace: "analytics"
+  purpose: "Documentation for lupo_analytics_visits table - analytics visit and session activity for traffic and usage tracking"
+  traits: ["canonical", "analytics", "visits", "v4.0.78"]
+  tags: ["database", "analytics", "visits", "traffic"]
+  table_primary_key: "analytics_visit_id"
+  doctrine_note: "No database foreign keys; schema source: existing table documentation. This table is not in install_new_lupopedia.sql as of 4.0.78; for visit tracking in the current install see lupo_visits."
 
 lupopedia.edges:
+  comment: "Snapshot of edges for lupo_analytics_visits table doc at 4.0.78."
   outbound_edges:
-    - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/database/lupopedia/tables/active/lupo_visits.md", type: "references", weight: 0.9, reason: "Visit tracking in current install" }
+    - { to: "lupo-docs/database/lupopedia/tables/active/lupo_contents.md", type: "references", weight: 0.8 }
+    - { to: "lupo-docs/database/lupopedia/tables/active/lupo_channels.md", type: "references", weight: 0.7 }
 
 lupopedia.footer:
-  last_verified: "20260228155738"
-  last_verified_by: "windsurf"
+  version: "4.0.78"
+  last_verified: "20260316"
+  last_verified_by: "cursor"
 ---
-
-# LUPOPEDIA HEADERS (replaces FLARE) see http://www.lupopedia.com/lupopedia/content/FLARE and see http://www.lupopedia.com/lupopedia/qa/FLARE
----
-lupopedia.headers:
-  file_path_from_root: "lupo-docs/database/lupopedia/tables/lupo_analytics_visits.md"
-  system_version: "4.0.49"
-  channel_id: 1
-  actor_id: 1007
-  last_modified_utc: "20260227"
-  delegation_chain: "1007:10000"
-  artifact_type: "table_documentation"
-  purpose: "Analytics visit tracking for content and sessions"
-  dialog_message: "DBDOC batch 2: enriched documentation and optimization notes."
-  mood_rgb: "4B0082"
-  artifact_kind: "table"
-  traits: ["canonical", "database", "curated"]
-  tags: ["database", "table", "lupo_analytics_visits"]
-  lupo_agent: "codex-ide"
-  lupo_analytics_visits.analytics_visit_id: "bigint NOT NULL"
-  lupo_analytics_visits.visit_type: "varchar(20) NOT NULL DEFAULT 'realtime'"
-  lupo_analytics_visits.session_id: "varchar(100) NOT NULL"
-  lupo_analytics_visits.actor_id: "bigint NOT NULL DEFAULT 0"
-  lupo_analytics_visits.content_id: "bigint"
-  lupo_analytics_visits.federation_node_id: "bigint NOT NULL"
-  lupo_analytics_visits.url_path: "varchar(500) NOT NULL DEFAULT ''"
-  lupo_analytics_visits.referer_url: "varchar(500)"
-  lupo_analytics_visits.referer_domain: "varchar(255)"
-  lupo_analytics_visits.referer_path: "varchar(500)"
-  lupo_analytics_visits.came_from: "varchar(500)"
-  lupo_analytics_visits.department_id: "bigint NOT NULL DEFAULT 1"
-  lupo_analytics_visits.period_type: "varchar(64)"
-  lupo_analytics_visits.period_date: "bigint"
-  lupo_analytics_visits.date_ymd: "bigint"
-  lupo_analytics_visits.date_ym: "bigint"
-  lupo_analytics_visits.first_seen_ymdhis: "bigint NOT NULL"
-  lupo_analytics_visits.last_seen_ymdhis: "bigint NOT NULL"
-  lupo_analytics_visits.view_count: "int NOT NULL DEFAULT 1"
-  lupo_analytics_visits.visits: "int NOT NULL DEFAULT 0"
-  lupo_analytics_visits.unique_sessions: "int NOT NULL DEFAULT 0"
-  lupo_analytics_visits.unique_actors: "int NOT NULL DEFAULT 0"
-  lupo_analytics_visits.direct_visits: "int NOT NULL DEFAULT 0"
-  lupo_analytics_visits.internal_visits: "int NOT NULL DEFAULT 0"
-  lupo_analytics_visits.entry_count: "int NOT NULL DEFAULT 0"
-  lupo_analytics_visits.exit_count: "int NOT NULL DEFAULT 0"
-  lupo_analytics_visits.seconds_active: "int NOT NULL DEFAULT 0"
-  lupo_analytics_visits.total_seconds: "int NOT NULL DEFAULT 0"
-  lupo_analytics_visits.avg_seconds: "int NOT NULL DEFAULT 0"
-  lupo_analytics_visits.user_agent: "varchar(255)"
-  lupo_analytics_visits.ip_address: "varchar(45)"
-  lupo_analytics_visits.created_ymdhis: "bigint NOT NULL DEFAULT 0"
-  lupo_analytics_visits.updated_ymdhis: "bigint NOT NULL"
-  lupo_analytics_visits.is_deleted: "tinyint NOT NULL DEFAULT 0"
-  lupo_analytics_visits.deleted_ymdhis: "bigint DEFAULT 0"
-  lupo_analytics_visits.archived_ymdhis: "bigint DEFAULT 0"
-  table_primary_key: "analytics_visit_id"
-  table_engine: "unknown"
-  table_charset: "unknown"
-  table_collation: "unknown"
-  table_indexes: ["lupo_analytics_visits_idx_actor", "lupo_analytics_visits_idx_content", "lupo_analytics_visits_idx_created", "lupo_analytics_visits_idx_date_ym", "lupo_analytics_visits_idx_date_ymd", "lupo_analytics_visits_idx_department", "lupo_analytics_visits_idx_period_date", "lupo_analytics_visits_idx_session", "lupo_analytics_visits_idx_updated", "lupo_analytics_visits_idx_visit_type", "lupo_analytics_visits_uq_daily", "lupo_analytics_visits_uq_monthly", "lupo_analytics_visits_uq_period", "lupo_analytics_visits_uq_realtime"]
-  table_foreign_keys: []
-
-# FLARE Edge Automation Tip:
-# Use the FLARE Edge Suggester Tool to automatically discover and suggest edges:
-# python lupo-scripts/flare_edge_suggester.py --file <path> --include-db --format yaml
-
-lupopedia.footer:
-  outbound_edges:
-    - { to: "lupo-database/lupopedia/toon/lupo_analytics_visits.toon.json", type: "schema_reference", weight: 1.0, reason: "TOON schema definition", db_source: "lupo_analytics_visits" }
-    - { to: "lupo-docs/database/lupopedia/tables/lupo_contents.md", type: "references", weight: 0.7, reason: "content analytics" }
-    - { to: "lupo-docs/database/lupopedia/tables/lupo_channels.md", type: "references", weight: 0.6, reason: "department/channel scope" }
-  inbound_edges: []
-  semantic_tags: ["database", "table", "analytics"]
-  version: "4.0.49"
-  last_verified: "20260227"
-  last_verified_by: "codex-ide"
----
+# file: lupo_analytics_visits — web_path: http://www.lupopedia.com/database/lupopedia/tables/active/lupo_analytics_visits
 
 # Table: lupo_analytics_visits
 
-Purpose: Tracks analytics visits and session activity for content and channels.
-Type: database_table
-Status: production_ready
-Volume: high
+## Schema source note
 
-## 1. Overview
-- Key responsibilities: capture per-visit metrics and aggregation flags.
-- System role: feeds analytics dashboards and reporting.
-- Importance: core telemetry for content and operator insights.
+**This table is not present in `install_new_lupopedia.sql` as of 4.0.78.** The schema below is from existing table documentation (and TOON-derived content where applicable). For visit/session tracking in the current install schema, see **lupo_visits**. When lupo_analytics_visits is added to install or future_features SQL, this doc should be aligned to that DDL.
 
-## 2. Schema Reference
-Primary Key: analytics_visit_id
-Field Categories: identity, session, metrics, aggregation, lifecycle.
+## Table Overview
 
-### All Fields
-| Column | Type | Notes |
-|---|---|---|
-| analytics_visit_id | bigint NOT NULL | Primary key. |
-| visit_type | varchar(20) NOT NULL DEFAULT 'realtime' | Visit bucket. |
-| session_id | varchar(100) NOT NULL | Session identity. |
-| actor_id | bigint NOT NULL DEFAULT 0 | Actor reference. |
-| content_id | bigint | Content reference. |
-| federation_node_id | bigint NOT NULL | Federation scope. |
-| url_path | varchar(500) NOT NULL DEFAULT '' | URL path. |
-| referer_url | varchar(500) | Referrer URL. |
-| referer_domain | varchar(255) | Referrer domain. |
-| referer_path | varchar(500) | Referrer path. |
-| came_from | varchar(500) | Campaign tag. |
-| department_id | bigint NOT NULL DEFAULT 1 | Department scope. |
-| period_type | varchar(64) | Period label. |
-| period_date | bigint | Period date bucket. |
-| date_ymd | bigint | YYYYMMDD bucket. |
-| date_ym | bigint | YYYYMM bucket. |
-| first_seen_ymdhis | bigint NOT NULL | First seen timestamp. |
-| last_seen_ymdhis | bigint NOT NULL | Last seen timestamp. |
-| view_count | int NOT NULL DEFAULT 1 | Views. |
-| visits | int NOT NULL DEFAULT 0 | Visit count. |
-| unique_sessions | int NOT NULL DEFAULT 0 | Unique sessions. |
-| unique_actors | int NOT NULL DEFAULT 0 | Unique actors. |
-| direct_visits | int NOT NULL DEFAULT 0 | Direct hits. |
-| internal_visits | int NOT NULL DEFAULT 0 | Internal hits. |
-| entry_count | int NOT NULL DEFAULT 0 | Entry count. |
-| exit_count | int NOT NULL DEFAULT 0 | Exit count. |
-| seconds_active | int NOT NULL DEFAULT 0 | Active seconds. |
-| total_seconds | int NOT NULL DEFAULT 0 | Total seconds. |
-| avg_seconds | int NOT NULL DEFAULT 0 | Average seconds. |
-| user_agent | varchar(255) | User agent. |
-| ip_address | varchar(45) | IP address. |
-| created_ymdhis | bigint NOT NULL DEFAULT 0 | Created timestamp. |
-| updated_ymdhis | bigint NOT NULL | Updated timestamp. |
-| is_deleted | tinyint NOT NULL DEFAULT 0 | Soft delete flag. |
-| deleted_ymdhis | bigint DEFAULT 0 | Soft delete timestamp. |
-| archived_ymdhis | bigint DEFAULT 0 | Archive timestamp. |
+- **Purpose:** Records analytics visit and session activity for traffic and usage tracking. Supports realtime and aggregated (daily, monthly, period) visit records, referrer/path/campaign analysis, and audience behavior metrics. Used for dashboards, reporting rollups, and analytics pipelines.
+- **Category:** Analytics / Telemetry
+- **Status:** Documented; not in current install SQL (see schema source note above).
+- **Relationship to lupo_visits:** install_new_lupopedia.sql defines **lupo_visits** (visit_id, session_id, actor_id, path_url, enter/exit content, etc.) for visit tracking; lupo_analytics_visits represents a richer analytics-specific design (referrer, period buckets, view/visit counts) when present.
 
-## 3. Relationships and Dependencies
-- Primary relationships: content_id, department_id, federation_node_id.
-- Referencing tables: analytics summaries, reporting.
-- Integration points: reporting dashboards and retention jobs.
+## Where This Table Is Used
 
-## 4. Indexes and Performance
-Primary Indexes:
-- analytics_visit_id
-Performance Indexes:
-- lupo_analytics_visits_idx_session
-- lupo_analytics_visits_uq_realtime
-- lupo_analytics_visits_uq_daily
-- lupo_analytics_visits_uq_monthly
-Index Strategy: optimize for session and period-based lookups.
+- **Visit and session analytics:** Per-session and per-actor visit records for realtime and period-based reporting (visit_type: realtime, pageview, etc.).
+- **Traffic analysis and dashboards:** Aggregations by date_ymd, date_ym, period_date, and department_id for traffic summaries and dashboards.
+- **Referrer, path, and campaign analysis:** referer_url, referer_domain, referer_path, came_from support referrer and campaign attribution.
+- **Audience behavior measurement:** unique_sessions, unique_actors, direct_visits, internal_visits, entry_count, exit_count, seconds_active/total_seconds/avg_seconds for engagement and retention metrics.
+- **Reporting rollups:** period_type and period_date support daily, monthly, or custom period rollups; view_count, visits, and related counters feed reporting pipelines.
+- **Connection to analytics pipelines:** Raw or summarized visit storage (depending on visit_type and period_type) for ETL, reporting jobs, and retention/cohort analysis.
+- **Relationship to channels, actors, sessions:** actor_id and session_id tie visits to actors and sessions; department_id and federation_node_id provide channel/federation scope when the table is in use.
 
-## 5. Usage Patterns
-Common Queries:
-```sql
-SELECT * FROM lupo_analytics_visits WHERE session_id = :sid AND visit_type = 'realtime';
-SELECT * FROM lupo_analytics_visits WHERE content_id = :content AND date_ymd = :ymd AND visit_type = 'pageview';
-SELECT COUNT(*) AS total FROM lupo_analytics_visits WHERE date_ymd = :ymd AND is_deleted = 0;
-UPDATE lupo_analytics_visits SET updated_ymdhis = :ts WHERE analytics_visit_id = :id;
-```
-Best Practices: batch inserts and update aggregate counts rather than re-deriving.
-Anti-Patterns: full scans without date buckets.
+## Column Documentation
 
-## 6. Performance Considerations
-- High-volume operations: continuous inserts and updates.
-- Optimization tips: add composite index on (federation_node_id, date_ymd) for federation reports.
-- Scaling considerations: consider partitioning by date_ymd in high-volume environments.
+| Column | Type | Nullable | Default | Description |
+|--------|------|----------|---------|-------------|
+| analytics_visit_id | bigint | No | — | Primary key. |
+| visit_type | varchar(20) | No | 'realtime' | Visit bucket (e.g. realtime, pageview). |
+| session_id | varchar(100) | No | — | Session identity. |
+| actor_id | bigint | No | 0 | Actor reference. |
+| content_id | bigint | Yes | — | Content reference. |
+| federation_node_id | bigint | No | — | Federation scope. |
+| url_path | varchar(500) | No | '' | URL path. |
+| referer_url | varchar(500) | Yes | — | Referrer URL. |
+| referer_domain | varchar(255) | Yes | — | Referrer domain. |
+| referer_path | varchar(500) | Yes | — | Referrer path. |
+| came_from | varchar(500) | Yes | — | Campaign/source tag. |
+| department_id | bigint | No | 1 | Department scope. |
+| period_type | varchar(64) | Yes | — | Period label (e.g. daily, monthly). |
+| period_date | bigint | Yes | — | Period date bucket. |
+| date_ymd | bigint | Yes | — | YYYYMMDD bucket. |
+| date_ym | bigint | Yes | — | YYYYMM bucket. |
+| first_seen_ymdhis | bigint | No | — | First seen timestamp (BIGINT UTC). |
+| last_seen_ymdhis | bigint | No | — | Last seen timestamp (BIGINT UTC). |
+| view_count | int | No | 1 | View count. |
+| visits | int | No | 0 | Visit count. |
+| unique_sessions | int | No | 0 | Unique sessions in aggregate. |
+| unique_actors | int | No | 0 | Unique actors in aggregate. |
+| direct_visits | int | No | 0 | Direct hits. |
+| internal_visits | int | No | 0 | Internal hits. |
+| entry_count | int | No | 0 | Entry count. |
+| exit_count | int | No | 0 | Exit count. |
+| seconds_active | int | No | 0 | Active seconds. |
+| total_seconds | int | No | 0 | Total seconds. |
+| avg_seconds | int | No | 0 | Average seconds. |
+| user_agent | varchar(255) | Yes | — | User agent. |
+| ip_address | varchar(45) | Yes | — | IP address. |
+| created_ymdhis | bigint | No | 0 | Created timestamp (BIGINT UTC). |
+| updated_ymdhis | bigint | No | — | Updated timestamp (BIGINT UTC). |
+| is_deleted | tinyint | No | 0 | Soft delete flag. |
+| deleted_ymdhis | bigint | Yes | 0 | Soft delete timestamp. |
+| archived_ymdhis | bigint | Yes | 0 | Archive timestamp. |
 
-## 7. Data Integrity
-- Constraints: session_id required, first_seen/last_seen required.
-- Validation rules: enforce visit_type values.
-- Soft delete: archive before delete.
+## Indexes
 
-## 8. Common Issues and Solutions
-- Slow reports: use date_ymd/date_ym buckets and indexes.
-- Hot partitions: rotate archival and purge by archived_ymdhis.
-- Data drift: ensure federation_node_id aligns with content node.
+- **PRIMARY KEY:** analytics_visit_id
+- **Indexes (from existing documentation):** lupo_analytics_visits_idx_actor, lupo_analytics_visits_idx_content, lupo_analytics_visits_idx_created, lupo_analytics_visits_idx_date_ym, lupo_analytics_visits_idx_date_ymd, lupo_analytics_visits_idx_department, lupo_analytics_visits_idx_period_date, lupo_analytics_visits_idx_session, lupo_analytics_visits_idx_updated, lupo_analytics_visits_idx_visit_type; unique indexes lupo_analytics_visits_uq_daily, lupo_analytics_visits_uq_monthly, lupo_analytics_visits_uq_period, lupo_analytics_visits_uq_realtime. Confirm against DDL when table is added to install/future_features.
 
-## 9. Future Enhancements
-- Add summary rollups for weekly periods.
-- Add composite index for (department_id, date_ymd).
+## Relationships
+
+- **Logical references (no DB FKs):** actor_id → lupo_actors.actor_id; content_id → lupo_contents.content_id; department_id → department/channel scope; federation_node_id → federation node; session_id is application-defined session identity. All integrity in application code.
+
+## Doctrine Notes
+
+- **No foreign keys.** All referential integrity in application code.
+- **Timestamps:** created_ymdhis, updated_ymdhis, first_seen_ymdhis, last_seen_ymdhis, period_date, date_ymd, date_ym, deleted_ymdhis, archived_ymdhis are BIGINT UTC; set in PHP only.
+- **Soft delete:** Filter by is_deleted = 0 unless querying deleted or archived rows.
+- **Schema source:** Table not in install_new_lupopedia.sql as of 4.0.78; columns and indexes above from existing documentation. Align to install or future_features DDL when available.

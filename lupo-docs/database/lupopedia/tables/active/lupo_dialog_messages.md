@@ -1,17 +1,17 @@
 ---
 lupopedia.headers:
-  lupopedia.version: "4.0.73"
+  lupopedia.version: "4.0.78"
   lupopedia.schema: "database_table"
   file_path_from_root: "lupo-docs/database/lupopedia/tables/active/lupo_dialog_messages.md"
-  system_version: "4.0.73"
-  namespace: "dialog"
+  system_version: "4.0.78"
+  namespace: "content"
   channel_id: 1
   actor_id: 1003
-  last_modified_utc: "20260313"
+  last_modified_utc: "20260316"
   artifact_type: "table_documentation"
   purpose: "Complete documentation for lupo_dialog_messages table - dialog message storage and delivery system"
   mood_rgb: "4169E1"
-  traits: ["canonical", "dialog", "communication", "antigravity_rotation", "v4.0.73"]
+  traits: ["canonical", "dialog", "communication", "v4.0.78"]
   tags: ["database", "dialogs", "messages", "chat", "communication"]
   lupo_agent: "antigravity"
 
@@ -29,10 +29,11 @@ lupopedia.engagement:
   views: 0
 
 lupopedia.footer:
-  version: "4.0.73"
-  last_verified: "20260313"
-  last_verified_by: "antigravity"
+  version: "4.0.78"
+  last_verified: "20260316"
+  last_verified_by: "cursor"
 ---
+# file: lupo_dialog_messages — session: L-LUPO-ROOT — web_path: http://www.lupopedia.com/database/lupopedia/tables/active/lupo_dialog_messages
 
 # Table: lupo_dialog_messages
 

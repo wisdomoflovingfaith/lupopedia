@@ -13,6 +13,7 @@ lupopedia.headers:
   artifact_type: "documentation"
   artifact_kind: "documentation"
   purpose: "Documentation file with LUPOPEDIA HEADERS applied"
+  namespace: "governance"
   mood_rgb: "4169E1"
   traits: ["flare", "indexed", "v4.0.51"]
   tags: ["documentation", "flare_applied"]

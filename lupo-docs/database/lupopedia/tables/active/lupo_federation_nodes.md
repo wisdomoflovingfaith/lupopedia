@@ -1,90 +1,92 @@
 ---
 lupopedia.headers:
-  lupopedia.version: "4.0.73"
-  lupopedia.schema: "documentation"
+  lupopedia.version: "4.0.78"
+  lupopedia.schema: "database_table"
+  system_version: "4.0.78"
   file_path_from_root: "lupo-docs/database/lupopedia/tables/active/lupo_federation_nodes.md"
-  system_version: "4.0.73"
-  namespace: "federation"
-  channel_id: 1
-  actor_id: 1003
-  last_modified_utc: "20260313"
+  web_path: "[lupo_federation_nodes](http://www.lupopedia.com/database/lupopedia/tables/active/lupo_federation_nodes)"
+  last_modified_utc: "20260316"
+  channel_id: 42
+  actor_id: 102
   artifact_type: "table_documentation"
-  purpose: "Federation node registry and metadata documentation"
-  mood_rgb: "4169E1"
-  traits: ["canonical", "federation", "antigravity_rotation", "v4.0.73"]
+  artifact_kind: "table"
+  namespace: "federation"
+  purpose: "Federation node registry; base URL, trust level, status, cached counts, and node metadata for multi-node Lupopedia"
+  traits: ["canonical", "federation", "v4.0.78"]
   tags: ["database", "federation", "nodes", "registry"]
-  lupo_agent: "antigravity"
+  table_primary_key: "federation_node_id"
+  doctrine_note: "No database foreign keys; referential integrity enforced in application code. All timestamps BIGINT UTC YYYYMMDDHHIISS. Reserved-ID doctrine may apply to federation_node_id."
 
 lupopedia.edges:
-  comment: "Snapshot of files edited during 4.0.73 finalization and initialization thread by ANTIGRAVITY IDE Agent. Edges reflect discovered relationships between database tables and PHP/Python codebase entities. Values should be verified against live database schemas/queries for the most current semantic graph state."
-  meta: "Thread: Finalize 4.0.72 → Push to GitHub → Initialize 4.0.73 → Migrate Tasks → Validate Upgrade Path"
+  comment: "Snapshot of edges for lupo_federation_nodes table doc at 4.0.78."
   outbound_edges:
-    - { to: "lupo-database/lupopedia/toon/lupo_federation_nodes.toon.json", type: "schema_reference", weight: 1.0, reason: "TOON schema definition", db_source: "lupo_federation_nodes" }
-    - { to: "lupo-docs/database/lupopedia/tables/active/lupo_channels.md", type: "references", weight: 0.8 }
-    - { to: "lupo-docs/database/lupopedia/tables/active/lupo_actors.md", type: "references", weight: 0.8 }
-
-lupopedia.engagement:
-  comment: "Snapshot of files edited during 4.0.73 finalization and initialization thread by ANTIGRAVITY IDE Agent. Engagement metrics track edit frequency and importance of each file in the version transition process."
-  meta: "Thread: Finalize 4.0.72 → Push to GitHub → Initialize 4.0.73 → Migrate Tasks → Validate Upgrade Path"
-  views: 0
+    - { to: "lupo-database/lupopedia/mysql/install/install_new_lupopedia.sql", type: "schema_reference", weight: 1.0 }
+    - { to: "lupo-docs/database/lupopedia/tables/active/lupo_channels.md", type: "references", weight: 0.9 }
+    - { to: "lupo-docs/database/lupopedia/tables/active/lupo_departments.md", type: "references", weight: 0.8 }
+    - { to: "lupo-docs/database/lupopedia/tables/active/lupo_collections.md", type: "references", weight: 0.8 }
+    - { to: "lupo-docs/database/lupopedia/tables/active/lupo_registry.md", type: "references", weight: 0.8 }
 
 lupopedia.footer:
-  version: "4.0.73"
-  last_verified: "20260313"
-  last_verified_by: "antigravity"
+  version: "4.0.78"
+  last_verified: "20260316"
+  last_verified_by: "cursor"
 ---
+# file: lupo_federation_nodes — web_path: http://www.lupopedia.com/database/lupopedia/tables/active/lupo_federation_nodes
 
-# Table Overview: lupo_federation_nodes
+# Table: lupo_federation_nodes
 
-- **Purpose**: Central registry for all nodes participating in the Lupopedia federation. It stores base connectivity information, trust levels, and aggregated metadata for each node.
-- **Category**: Federation / Network
-- **Status**: Active
-- **Version Introduced**: 4.0.0
-- **Governance**: Managed by System (Actor 0) and Federation Discovery services.
+## Table Overview
+
+- **Purpose:** Central registry for federation nodes. Each row is one node: federation_node_id (PK), node_type (e.g. local), node_base_url, default_department_id, node_name, node_description, allows_foreign_traits, node_contact, meta_json, cached counts (content_count, atom_count, hashtag_count, actor_count), last_sync_ymdhis, trust_level, status, soft delete, timestamps, and active_theme_slug. Used for multi-node connectivity, trust, and sync.
+- **Category:** Federation / Network
+- **Status:** Active (in install_new_lupopedia.sql)
+- **Version introduced:** 4.0.x
+
+## Where This Table Is Used
+
+- **Channel and content partitioning:** Channels, collections, departments, and content reference federation_node_id; routing and queries scope by node.
+- **Trust and sync:** trust_level and last_sync_ymdhis support federated sync and trust policies; node_base_url is used for outbound requests to the node.
+- **Default department:** default_department_id assigns a default department for content originating from this node.
+- **Cached counts:** content_count, atom_count, hashtag_count, actor_count are denormalized counts for display or sync decisions.
 
 ## Column Documentation
 
-| Column Name | Type | Nullable | Default | Description |
-| :--- | :--- | :--- | :--- | :--- |
-| `federation_node_id` | BIGINT | No | - | Primary Key. Numeric identifier for the federation node. |
-| `node_base_url` | VARCHAR(500) | No | - | The absolute base URL of the remote node's Lupopedia install. |
-| `default_department_id` | BIGINT | Yes | - | The default department assigned to content originating from this node. |
-| `node_name` | VARCHAR(255) | Yes | - | Human-readable name of the node. |
-| `node_description` | TEXT | Yes | - | Brief description or purpose of the node. |
-| `node_contact` | VARCHAR(255) | Yes | - | Contact email or identifier for the node administrator. |
-| `meta_json` | JSON | Yes | - | Flexible storage for node-specific configuration and extended metadata. |
-| `content_count` | BIGINT | No | 0 | Cached count of content nodes imported/known from this node. |
-| `atom_count` | BIGINT | No | 0 | Cached count of atoms imported/known from this node. |
-| `hashtag_count` | BIGINT | No | 0 | Cached count of hashtags associated with this node. |
-| `actor_count` | BIGINT | No | 0 | Cached count of actors associated with/originating from this node. |
-| `last_sync_ymdhis` | BIGINT | No | 0 | Timestamp (YYYYMMDDHHIISS) of the last successful synchronization. |
-| `trust_level` | TINYINT | No | 0 | Trust level bitmask (0=untrusted, 1=verified, 2=trusted, etc.). |
-| `status` | TINYINT | No | 1 | Operating status (1=active, 0=inactive). |
-| `is_deleted` | TINYINT | No | 0 | Soft delete flag (1=deleted). |
-| `deleted_ymdhis` | BIGINT | No | 0 | Soft delete timestamp (YYYYMMDDHHIISS). |
-| `created_ymdhis` | BIGINT | No | 0 | Records the time the node was first registered. |
-| `updated_ymdhis` | BIGINT | No | 0 | Records the last modification to this registry entry. |
-| `active_theme_slug` | VARCHAR(64) | Yes | 'default' | The theme slug to apply when viewing content from this node (faucet-specific). |
+| Column | Type | Nullable | Default | Description |
+|--------|------|----------|---------|-------------|
+| federation_node_id | bigint | No | — | Primary key. |
+| node_type | varchar(32) | No | 'local' | Node type (e.g. local). |
+| node_base_url | varchar(500) | No | — | Base URL of the node. |
+| default_department_id | bigint | Yes | NULL | Default department for this node. |
+| node_name | varchar(255) | Yes | NULL | Display name. |
+| node_description | text | Yes | NULL | Description. |
+| allows_foreign_traits | tinyint | No | 1 | Allow foreign traits flag. |
+| node_contact | varchar(255) | Yes | NULL | Contact for node admin. |
+| meta_json | json | Yes | NULL | Node metadata (JSON). |
+| content_count | bigint | No | 0 | Cached content count. |
+| atom_count | bigint | No | 0 | Cached atom count. |
+| hashtag_count | bigint | No | 0 | Cached hashtag count. |
+| actor_count | bigint | No | 0 | Cached actor count. |
+| last_sync_ymdhis | bigint | No | 0 | Last sync timestamp (BIGINT UTC). |
+| trust_level | tinyint | No | 0 | Trust level. |
+| status | tinyint | No | 1 | Status. |
+| is_deleted | tinyint | No | 0 | Soft delete flag. |
+| deleted_ymdhis | bigint | No | 0 | Soft delete timestamp. |
+| created_ymdhis | bigint | No | 0 | Creation timestamp (BIGINT UTC). |
+| updated_ymdhis | bigint | No | 0 | Last update timestamp (BIGINT UTC). |
+| active_theme_slug | varchar(64) | Yes | 'default' | Active theme slug. |
+
+## Indexes
+
+- **PRIMARY KEY:** federation_node_id
+- **INDEX:** lupo_federation_nodes_idx_node_base_url (node_base_url), lupo_federation_nodes_idx_status (status), lupo_federation_nodes_idx_trust_level (trust_level), lupo_federation_nodes_idx_is_deleted (is_deleted)
 
 ## Relationships
 
-### Foreign Keys
-- None (Post-migration Lupopedia architecture enforces relationships in PHP).
+- **Logical references (no DB FKs):** default_department_id → lupo_departments. lupo_channels, lupo_collections, lupo_departments, lupo_registry, and other tables reference federation_node_id to scope data per node.
 
-### Inbound References
-- `lupo_channels.federation_node_id`: Links channels to their home federation node.
-- `lupo_actors.federation_node_id`: (Conceptually) links actors to their origin node.
-- `lupo_contents.federation_node_id`: (Conceptually) identifies the source node of content.
+## Doctrine notes
 
-### Outbound References
-- `lupo_departments.department_id`: Referenced by `default_department_id`.
-
-## Usage Notes
-
-- **Migration Notes**: Replaces legacy `livehelp_websites` mapping for multi-site deployments.
-- **Compatibility Notes**: All node URLs must be normalized (lowercase, no trailing slash) before insertion to avoid duplicate registry entries.
-- **Warnings**: Do not hard-delete nodes; use `is_deleted = 1` to preserve historical content references.
-- **Synchronization**: The `last_sync_ymdhis` is updated by the `FederationSyncService` after successful completion of a full node refresh.
-
----
-*Created by Antigravity (Actor 103) as part of the Database Documentation Program.*
+- No database foreign keys; referential integrity enforced in application code.
+- All timestamps BIGINT UTC YYYYMMDDHHIISS.
+- Reserved-ID doctrine may apply: federation_node_id is often application-supplied (e.g. 1 = local).
+- Soft delete: filter `is_deleted = 0` unless querying deleted rows.

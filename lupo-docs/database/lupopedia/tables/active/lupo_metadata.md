@@ -1,114 +1,85 @@
 ---
 lupopedia.headers:
-  lupopedia.version: "4.0.73"
+  lupopedia.version: "4.0.78"
   lupopedia.schema: "database_table"
+  system_version: "4.0.78"
   file_path_from_root: "lupo-docs/database/lupopedia/tables/active/lupo_metadata.md"
-  system_version: "4.0.73"
-  namespace: "core"
-  channel_id: 1
-  actor_id: 1003
-  last_modified_utc: "20260313"
+  web_path: "[lupo_metadata](http://www.lupopedia.com/database/lupopedia/tables/active/lupo_metadata)"
+  last_modified_utc: "20260316"
+  channel_id: 42
+  actor_id: 102
   artifact_type: "table_documentation"
-  purpose: "Complete documentation for lupo_metadata table - generalized entity metadata storage"
-  mood_rgb: "4169E1"
-  traits: ["canonical", "core_system", "metadata", "antigravity_rotation", "v4.0.73"]
-  tags: ["database", "metadata", "entity_properties"]
-  lupo_agent: "antigravity"
+  artifact_kind: "table"
+  namespace: "core"
+  purpose: "Generalized entity metadata storage; LUPOPEDIA HEADERS and extensible key-value metadata for files, channels, and other entities"
+  traits: ["canonical", "core_system", "metadata", "v4.0.78"]
+  tags: ["database", "metadata", "entity_properties", "headers"]
+  table_primary_key: "metadata_id"
+  doctrine_note: "No database foreign keys; referential integrity enforced in application code. All timestamps BIGINT UTC YYYYMMDDHHIISS."
 
 lupopedia.edges:
-  comment: "Snapshot of files edited during 4.0.73 finalization and initialization thread by ANTIGRAVITY IDE Agent. Edges reflect discovered relationships between database tables and PHP/Python codebase entities. Values should be verified against live database schemas/queries for the most current semantic graph state."
-  meta: "Thread: Finalize 4.0.72 → Push to GitHub → Initialize 4.0.73 → Migrate Tasks → Validate Upgrade Path"
+  comment: "Snapshot of edges for lupo_metadata table doc at 4.0.78."
   outbound_edges:
-    - { to: "lupo-database/lupopedia/toon/lupo_metadata.toon.json", type: "schema_reference", weight: 1.0, reason: "TOON schema definition", db_source: "lupo_metadata" }
-    - { to: "lupo-docs/doctrine/database/README.md", type: "references", weight: 0.8, reason: "Database doctrine" }
-
-lupopedia.engagement:
-  comment: "Snapshot of files edited during 4.0.73 finalization and initialization thread by ANTIGRAVITY IDE Agent. Engagement metrics track edit frequency and importance of each file in the version transition process."
-  meta: "Thread: Finalize 4.0.72 → Push to GitHub → Initialize 4.0.73 → Migrate Tasks → Validate Upgrade Path"
-  views: 0
+    - { to: "lupo-database/lupopedia/mysql/install/install_new_lupopedia.sql", type: "schema_reference", weight: 1.0 }
+    - { to: "lupo-docs/database/lupopedia/tables/active/lupo_channels.md", type: "references", weight: 0.8 }
+    - { to: "lupo-docs/database/lupopedia/tables/active/lupo_actors.md", type: "references", weight: 0.8 }
+    - { to: "lupo-docs/doctrine/LUPOPEDIA_HEADERS/README.md", type: "references", weight: 0.9 }
 
 lupopedia.footer:
-  version: "4.0.73"
-  last_verified: "20260313"
-  last_verified_by: "antigravity"
+  version: "4.0.78"
+  last_verified: "20260316"
+  last_verified_by: "cursor"
 ---
+# file: lupo_metadata — web_path: http://www.lupopedia.com/database/lupopedia/tables/active/lupo_metadata
 
 # Table: lupo_metadata
 
-Purpose: Auto-generated documentation for lupo_metadata from TOON schema.
-Type: database_table
-Status: production_ready
-Volume: unknown
+## Table Overview
 
-## 1. Overview
-- Key responsibilities: schema reference, storage, and lookup for this table.
-- System role: persists data for the Lupopedia database subsystem.
-- Importance: enables data integrity and downstream features tied to this table.
+- **Purpose:** Consolidated metadata table for entity-scoped key-value properties. Replaces legacy lupo_actor_meta, lupo_actor_properties, lupo_agent_properties. Stores LUPOPEDIA HEADERS and extensible metadata for files, channels, content, and other entities. Supports channel-scoped and hierarchical metadata (parent_metadata_id, class_name). Used for header storage, entity properties, and configuration.
+- **Category:** Core System / Metadata
+- **Status:** Active (in install_new_lupopedia.sql)
+- **Version introduced:** 4.0.68+ (channel_id, parent_metadata_id, class_name)
 
-## 2. Schema Reference
-Primary Key: metadata_id
-Field Categories: see full field list below.
+## Where This Table Is Used
 
-### All Fields
-| Column | Type | Notes |
-|---|---|---|
-| metadata_id | bigint NOT NULL | from TOON |
-| entity_type | varchar(32) NOT NULL | from TOON |
-| entity_id | bigint NOT NULL | from TOON |
-| domain_id | bigint | from TOON |
-| meta_type | varchar(64) | from TOON |
-| property_key | varchar(255) NOT NULL | from TOON |
-| property_value | text | from TOON |
-| created_ymdhis | bigint NOT NULL DEFAULT 0 | from TOON |
-| updated_ymdhis | bigint NOT NULL | from TOON |
-| is_deleted | tinyint NOT NULL DEFAULT 0 | from TOON |
-| deleted_ymdhis | bigint | from TOON |
+- **LUPOPEDIA HEADERS storage:** Header blocks (lupopedia.headers, lupopedia.metadata, lupopedia.footer) are stored in `lupo_metadata` keyed by entity_type and entity_id (and optionally channel_id). Validators and tooling read/write via this table.
+- **Entity properties:** Arbitrary key-value metadata for actors, channels, content, and other entity types; meta_type and property_key identify the property.
+- **Channel-scoped metadata:** channel_id scopes metadata to a channel; queries filter by channel_id for channel-specific headers or properties.
+- **Hierarchical metadata:** parent_metadata_id links child metadata rows for nested structures; class_name identifies the metadata class.
 
-## 3. Relationships and Dependencies
-- Primary relationships: not specified in TOON relationships array.
-- Referencing tables: unknown (use edge suggester tool).
-- Integration points: see outbound edges in lupopedia.edges.
+## Column Documentation
 
-## 4. Indexes and Performance
-Primary Indexes:
-- metadata_id
-Performance Indexes:
-- lupo_metadata_idx_created_ymdhis
-- lupo_metadata_idx_domain
-- lupo_metadata_idx_entity
-- lupo_metadata_idx_is_deleted
-- lupo_metadata_idx_meta_type
-- lupo_metadata_idx_property_key
-- lupo_metadata_idx_updated_ymdhis
-- lupo_metadata_unique_entity_domain_property
-Index Strategy: derived from TOON index definitions.
+| Column | Type | Nullable | Default | Description |
+|--------|------|----------|---------|-------------|
+| metadata_id | bigint | No | — | Primary key. Application-supplied; reserved-ID doctrine where applicable. |
+| entity_type | varchar(32) | No | — | Entity type (e.g. file, channel, content). |
+| entity_id | bigint | No | — | Entity identifier. |
+| domain_id | bigint | Yes | NULL | Optional domain/scope. |
+| meta_type | varchar(64) | Yes | NULL | Metadata type or category. |
+| property_key | varchar(255) | No | — | Property name or key. |
+| property_value | text | Yes | — | Property value. |
+| created_ymdhis | bigint | No | 0 | Creation timestamp (BIGINT UTC YYYYMMDDHHIISS). |
+| updated_ymdhis | bigint | No | — | Last update timestamp (BIGINT UTC). |
+| is_deleted | tinyint | No | 0 | Soft delete flag. |
+| deleted_ymdhis | bigint | Yes | NULL | Soft delete timestamp. |
+| channel_id | bigint | Yes | NULL | Channel scope (4.0.68+). |
+| parent_metadata_id | bigint | Yes | NULL | Parent metadata row for hierarchy (4.0.68+). |
+| class_name | varchar(128) | Yes | NULL | Metadata class identifier (4.0.68+). |
+| schema_ref | varchar(64) | Yes | NULL | Schema reference. |
 
-## 5. Usage Patterns
-Common Queries:
-```sql
-SELECT * FROM lupo_metadata WHERE metadata_id = :id;
-SELECT COUNT(*) AS total FROM lupo_metadata WHERE is_deleted = 0;
-SELECT * FROM lupo_metadata ORDER BY metadata_id DESC LIMIT 25;
-UPDATE lupo_metadata SET updated_ymdhis = :ts WHERE metadata_id = :id;
-```
-Best Practices: always filter soft deletes where applicable.
-Anti-Patterns: avoid full table scans on large datasets.
+## Indexes
 
-## 6. Performance Considerations
-- High-volume operations: dependent on feature usage.
-- Optimization tips: rely on existing indexes; add new indexes only with TOON updates.
-- Scaling considerations: paginate reads and batch writes.
+- **PRIMARY KEY:** metadata_id
+- **UNIQUE:** lupo_metadata_unique_entity_domain_property (entity_type, entity_id, domain_id, property_key)
+- **INDEX:** lupo_metadata_idx_entity, lupo_metadata_idx_domain, lupo_metadata_idx_meta_type, lupo_metadata_idx_property_key, lupo_metadata_idx_created_ymdhis, lupo_metadata_idx_updated_ymdhis, lupo_metadata_idx_is_deleted, lupo_metadata_idx_channel_id, lupo_metadata_idx_parent_metadata_id, lupo_metadata_idx_class_name, lupo_metadata_idx_entity_deleted, lupo_metadata_idx_channel_deleted, lupo_metadata_idx_parent_deleted, lupo_metadata_idx_meta_type_deleted, lupo_metadata_idx_class_deleted
 
-## 7. Data Integrity
-- Constraints: see NOT NULL and DEFAULT values in TOON fields.
-- Validation rules: enforced at application layer.
-- Soft delete: use is_deleted/deleted_ymdhis if present.
+## Relationships
 
-## 8. Common Issues and Solutions
-- Performance issues: add missing indexes via schema update.
-- Data consistency: ensure foreign key relationships are enforced in application logic.
-- Troubleshooting: compare against TOON schema for mismatches.
+- **Logical references (no DB FKs):** channel_id → lupo_channels; parent_metadata_id → lupo_metadata (self). entity_type/entity_id reference various entities (actors, channels, content) by application convention.
 
-## 9. Future Enhancements
-- Enrich relationships with discovered edges.
-- Add usage-specific examples once feature usage is known.
+## Doctrine notes
+
+- No database foreign keys; referential integrity enforced in application code.
+- All timestamps BIGINT UTC YYYYMMDDHHIISS; set in PHP with `gmdate('YmdHis')`.
+- Soft delete: filter `is_deleted = 0` unless querying deleted rows.

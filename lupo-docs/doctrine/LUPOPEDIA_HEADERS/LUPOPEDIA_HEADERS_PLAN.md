@@ -194,7 +194,9 @@ Minimum core fields (stored as property rows under `lupopedia.headers` block) in
 
 - `lupopedia.version`, `lupopedia.schema`, `file_path_from_root`, `web_path`, `last_modified_utc`, `system_version`, `channel_id`, `actor_id`, `delegation_chain`, `artifact_type`, `artifact_kind`, `purpose`
 
-Optional but supported: `actor_name`, `mood_rgb`, `traits`, `tags`, `lupo_agent`, `agent_name_identity`, **`channel_name`** (human-readable channel name), **`thread_name`** (human-readable thread name when thread-scoped). **Session fields** (`session_id`, `session_name`, `channel_id`, `channel_name`, `thread_id`, `thread_name`, and other session-file fields) belong in **`lupopedia.session`** when used for session context, and may also appear in `lupopedia.headers` for display.
+For **table documentation**, **`namespace`** is also required (approved taxonomy: auth, channels, core, content, analytics, federation, governance, integration, legacy). See [LUPOPEDIA_HEADERS_FORMAT.md](./LUPOPEDIA_HEADERS_FORMAT.md) §2.2.
+
+Optional but supported: `actor_name`, `mood_rgb`, `traits`, `tags`, `lupo_agent`, `agent_name_identity`, **`channel_name`** (human-readable channel name), **`thread_name`** (human-readable thread name when thread-scoped), **`namespace`** (when not required for artifact type). **Session fields** (`session_id`, `session_name`, `channel_id`, `channel_name`, `thread_id`, `thread_name`, and other session-file fields) belong in **`lupopedia.session`** when used for session context, and may also appear in `lupopedia.headers` for display.
 
 ---
 

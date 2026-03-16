@@ -2,7 +2,7 @@
 
 Used by `php lupo-bin/lupo.php headers validate <path>` and `php lupo-scripts/validate_lupopedia_headers.php <path>`.
 
-## Expected results (4.0.77 validator)
+## Expected results (4.0.77 / 4.0.78 validator)
 
 | File | Expected |
 |------|----------|
@@ -12,6 +12,16 @@ Used by `php lupo-bin/lupo.php headers validate <path>` and `php lupo-scripts/va
 | missing-required-field.md | FAIL (missing last_modified_utc) |
 | wrong-block-order.md | FAIL (identity line on line 1) |
 | missing-snapshot-comment.md | FAIL (lupopedia.edges without comment containing snapshot/static) |
+| valid-namespace.md | PASS (has namespace; not under tables/ so namespace not required) |
+| namespace-on-wrong-artifact.md | PASS (non-table artifact; namespace optional, value valid) |
+
+**Namespace fixtures (4.0.78) — table-doc path required for missing/invalid:**  
+Run validator on files under `lupo-docs/database/lupopedia/tables/_validator_fixtures/`:
+
+| Path (under tables/) | Expected |
+|----------------------|----------|
+| _validator_fixtures/missing-required-namespace.md | FAIL (table doc requires namespace) |
+| _validator_fixtures/invalid-namespace-value.md | FAIL (namespace value not in approved taxonomy) |
 
 ## Run manually
 

@@ -4,7 +4,7 @@ lupopedia.headers:
   lupopedia.schema: "database_table"
   file_path_from_root: "lupo-docs/database/lupopedia/tables/active/development/lupo_world_registry.md"
   system_version: "4.0.77"
-  namespace: "world"
+  namespace: "core"
   channel_id: 42
   actor_id: 106
   last_modified_utc: "20260316"

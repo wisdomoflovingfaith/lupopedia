@@ -1,16 +1,17 @@
 ---
 lupopedia.headers:
-  lupopedia.version: "4.0.73"
-  lupopedia.schema: "documentation"
+  lupopedia.version: "4.0.78"
+  lupopedia.schema: "database_table"
   file_path_from_root: "lupo-docs/database/lupopedia/tables/active/lupo_uploads.md"
-  system_version: "4.0.70"
+  system_version: "4.0.78"
   channel_id: 1
   actor_id: 103
-  last_modified_utc: "20260312"
+  last_modified_utc: "20260316"
   artifact_type: "table_documentation"
   purpose: "Registry for binary file uploads"
+  namespace: "content"
   mood_rgb: "4169E1"
-  traits: ["canonical", "storage", "uploads", "v4.0.70"]
+  traits: ["canonical", "storage", "uploads", "v4.0.78"]
   tags: ["database", "uploads", "files", "binary_storage"]
   lupo_agent: "antigravity"
 
@@ -20,8 +21,9 @@ lupopedia.edges:
     - { to: "lupo-docs/database/lupopedia/tables/active/lupo_actors.md", type: "references", weight: 0.8 }
 
 lupopedia.footer:
-  last_verified: "20260312"
-  last_verified_by: "antigravity"
+  version: "4.0.78"
+  last_verified: "20260316"
+  last_verified_by: "cursor"
 ---
 
 # Table Overview: lupo_uploads

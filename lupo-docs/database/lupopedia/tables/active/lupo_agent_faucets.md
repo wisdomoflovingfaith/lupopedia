@@ -1,16 +1,17 @@
 ---
 lupopedia.headers:
-  lupopedia.version: "4.0.73"
+  lupopedia.version: "4.0.78"
   lupopedia.schema: "database_table"
   file_path_from_root: "lupo-docs/database/lupopedia/tables/active/lupo_agent_faucets.md"
-  system_version: "4.0.70"
+  system_version: "4.0.78"
   channel_id: 1
   actor_id: 102
-  last_modified_utc: "20260312"
+  last_modified_utc: "20260316"
   artifact_type: "table_documentation"
   purpose: "Per-actor faucets (IDE/surface): slug, model, prompts, style"
+  namespace: "core"
   mood_rgb: "4169E1"
-  traits: ["canonical", "agent", "faucet", "cursor_domain", "v4.0.70"]
+  traits: ["canonical", "agent", "faucet", "cursor_domain", "v4.0.78"]
   tags: ["database", "agents", "faucets", "ide"]
   lupo_agent: "cursor"
 
@@ -21,7 +22,8 @@ lupopedia.edges:
     - { to: "lupo-docs/database/lupopedia/tables/active/lupo_agent_faucet_credentials.md", type: "references", weight: 0.8 }
 
 lupopedia.footer:
-  last_verified: "20260312"
+  version: "4.0.78"
+  last_verified: "20260316"
   last_verified_by: "cursor"
 ---
 

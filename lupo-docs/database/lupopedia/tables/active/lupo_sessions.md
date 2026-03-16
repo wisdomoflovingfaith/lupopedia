@@ -1,8 +1,8 @@
 ---
 lupopedia.headers:
-  lupopedia.version: "4.0.77"
+  lupopedia.version: "4.0.78"
   lupopedia.schema: "database_table"
-  system_version: "4.0.77"
+  system_version: "4.0.78"
   file_path_from_root: "lupo-docs/database/lupopedia/tables/active/lupo_sessions.md"
   web_path: "[lupo_sessions](http://www.lupopedia.com/database/lupopedia/tables/active/lupo_sessions)"
   last_modified_utc: "20260316"
@@ -11,7 +11,8 @@ lupopedia.headers:
   artifact_type: "table_documentation"
   artifact_kind: "table"
   purpose: "DB-backed session authority (Model A). Web and API session storage; identity resolved from lupo_sessions via App\\Auth\\Session."
-  traits: ["canonical", "session", "auth", "v4.0.77"]
+  namespace: "auth"
+  traits: ["canonical", "session", "auth", "v4.0.78"]
   tags: ["database", "sessions", "auth", "identity"]
   doctrine_note: "No database foreign keys; referential integrity enforced in application code. All session access via App\\Auth\\Session and PDO_DB."
 
@@ -24,7 +25,7 @@ lupopedia.edges:
     - { to: "app/Auth/Session.php", type: "referenced_by", weight: 1.0 }
 
 lupopedia.footer:
-  version: "4.0.77"
+  version: "4.0.78"
   last_verified: "20260316"
   last_verified_by: "cursor"
 ---

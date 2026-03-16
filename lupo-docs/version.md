@@ -19,6 +19,7 @@ Date: 2026-03-16
 ## Summary of changes (4.0.78)
 
 - **Version bump:** Post–4.0.77 release. Active development version. All canonical version markers and atoms updated to 4.0.78. Unfinished work from 4.0.77 carried forward: table documentation initiative (Priority 1–3 tables, mass header cleanup), optional markdown-from-TOON automation, repo-wide doc/schema validation. See [TABLE_DOCUMENTATION_4_0_77_STOP_LINE.md](status/TABLE_DOCUMENTATION_4_0_77_STOP_LINE.md) and `lupo-docs/versions/4.0.78/PLAN.md`, `TODO.md`. No Lupopedia→Lupopedia upgrade path before 4.1.0.
+- **Namespace doctrine and cleanup (4.0.78):** Namespace formalized as first-class field in LUPOPEDIA_HEADERS (required for table docs; approved taxonomy). Validator enhanced; audit report generated; systematic namespace added/normalized across table documentation. See CHANGELOG.md § Cursor — Namespace doctrine, validator, audit, and cleanup.
 
 ## Summary of changes (4.0.77) — Released 2026-03-16
 

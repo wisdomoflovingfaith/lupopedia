@@ -89,7 +89,7 @@ The `{session_name}` in the identity line MUST be taken from **`lupopedia.sessio
 
 ## 2. Required header fields (in lupopedia.headers)
 
-Stored as metadata properties (or in YAML when written to file). Use **lupopedia.*** keys in new files; validators accept legacy `lupopedia.version` / `lupopedia.schema`. Minimum: `lupopedia.version`, `lupopedia.schema`, `file_path_from_root`, `web_path`, `last_modified_utc`, `system_version`, `channel_id`, `actor_id`, `delegation_chain`, `artifact_type`, `artifact_kind`, `purpose`. Optional: `actor_name`, `mood_rgb`, `traits`, `tags`, `lupo_agent`, `agent_name_identity`. **Session-related fields** (e.g. `session_id`, `session_name`) belong in **`lupopedia.session`**, not in `lupopedia.headers`.
+Stored as metadata properties (or in YAML when written to file). Use **lupopedia.*** keys in new files; validators accept legacy `lupopedia.version` / `lupopedia.schema`. Minimum: `lupopedia.version`, `lupopedia.schema`, `file_path_from_root`, `web_path`, `last_modified_utc`, `system_version`, `channel_id`, `actor_id`, `delegation_chain`, `artifact_type`, `artifact_kind`, `purpose`. For **table documentation** (see §2.2), **`namespace`** is also required. Optional: `actor_name`, `mood_rgb`, `traits`, `tags`, `lupo_agent`, `agent_name_identity`, `namespace` (when artifact type does not require it). **Session-related fields** (e.g. `session_id`, `session_name`) belong in **`lupopedia.session`**, not in `lupopedia.headers`.
 
 **Optional channel and thread (human-readable):** In addition to `channel_id`, headers MAY include **`channel_name`** — a human-readable name for the channel (e.g. `"Lupopedia Development (general)"` for channel_id 42). When the artifact is scoped to a specific thread, **`thread_name`** MAY be included (human-readable thread name) alongside `thread_id` (which may appear in `lupopedia.session`). These aid display and context without changing resolution logic.
 
@@ -99,6 +99,20 @@ Stored as metadata properties (or in YAML when written to file). Use **lupopedia
 | `channel_name` | lupopedia.headers or lupopedia.session | Human-readable channel name (optional). |
 | `thread_id` | lupopedia.session | Thread identifier when artifact is thread-scoped (optional). |
 | `thread_name` | lupopedia.headers or lupopedia.session | Human-readable thread name when available (optional). |
+
+### 2.2 Namespace (lupopedia.headers)
+
+**`namespace`** is a first-class field in **`lupopedia.headers`**. It classifies the artifact for logical grouping, discovery, and jurisdiction. Namespace is **node-local by default**; federation-wide namespace mapping is future-facing and not required in 4.0.78.
+
+| Aspect | Rule |
+|--------|------|
+| **Where it belongs** | In `lupopedia.headers` only. Do not move it into a separate block or invent a second namespace model. |
+| **Table documentation** | **Required.** Every table documentation file (artifact_type consistent with table docs, e.g. under `lupo-docs/database/lupopedia/tables/`) MUST include `namespace` with a value from the approved taxonomy. |
+| **Other artifact types** | **Optional until policy is defined.** For API docs, rule docs, skill docs, planning artifacts, and status reports, namespace is optional until explicit policy per artifact type is documented. Validators SHOULD warn when namespace is present on artifact types where policy is not yet defined; they MUST NOT treat absence as error for those types. |
+| **Approved taxonomy (table docs)** | Values MUST be one of: `auth`, `channels`, `core`, `content`, `analytics`, `federation`, `governance`, `integration`, `legacy`. Use lowercase; no spaces. |
+| **Naming style** | Single lowercase word (or approved value). No dotted paths in the header field; dotted notation (e.g. `lupopedia.frameworks.documentation`) belongs to other systems (e.g. synthesized framework historical use), not to the `namespace` header value in LUPOPEDIA_HEADERS. |
+| **Node-scoping** | Namespace is node-local. Cross-node or federation namespace mapping is out of scope for 4.0.78. |
+| **Validation** | Validators MUST report missing namespace on table docs as error; invalid namespace value (not in taxonomy) as error; inappropriate placement (e.g. namespace on artifact types where policy says it must not appear) per doctrine. |
 
 **Canonical block order:** When validating or exporting, enforce order: lupopedia.init → **lupopedia.routing** → lupopedia.conditional → lupopedia.headers → **lupopedia.session** → lupopedia.edges → **lupopedia.engagement** → lupopedia.footer → lupopedia.see → **lupopedia.next_actions** (or legacy lupopedia.close) (same order for legacy lupopedia.init, flare.*, lupopedia.see, lupopedia.close). Optional blocks may be absent; if present, order MUST be correct. Session fields (session_id, session_name, etc.) belong in lupopedia.session, not in lupopedia.headers.
 

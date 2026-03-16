@@ -1,218 +1,106 @@
 ---
-lupopedia.init:
-  document_type: "table_documentation"
-  system_version: "4.0.73"
-
-lupopedia.metadata:
-  comment: "Snapshot of metadata for this file or entity at artifact creation."
-
 lupopedia.headers:
-  lupopedia.version: "4.0.73"
+  lupopedia.version: "4.0.78"
   lupopedia.schema: "database_table"
+  system_version: "4.0.78"
   file_path_from_root: "lupo-docs/database/lupopedia/tables/active/lupo_actors.md"
-  system_version: "4.0.73"
-  namespace: "core"
-  channel_id: 1
-  actor_id: 1003
-  last_modified_utc: "20260315"
+  web_path: "[lupo_actors](http://www.lupopedia.com/database/lupopedia/tables/active/lupo_actors)"
+  last_modified_utc: "20260316"
+  channel_id: 42
+  actor_id: 102
   artifact_type: "table_documentation"
-  purpose: "Complete documentation for lupo_actors table - unified actor identity and management system"
-  mood_rgb: "4B0082"
   artifact_kind: "table"
-  traits: ["canonical", "core_system", "identity_management", "unified_model", "antigravity_rotation", "v4.0.73"]
-  tags: ["database", "actors", "identity", "users", "agents", "unified"]
-  lupo_agent: "antigravity"
+  namespace: "core"
+  purpose: "Documentation for lupo_actors table - unified actor identity and management"
+  traits: ["canonical", "core_system", "identity", "v4.0.78"]
+  tags: ["database", "actors", "identity", "registry"]
   table_primary_key: "actor_name"
-  # Table-specific metadata from TOON
-  lupo_actors.actor_name: "VARCHAR(64) canonical actor identity primary key"
-  lupo_actors.actor_id: "BIGINT unique actor numeric mapping used for joins and scoped allocation"
-  lupo_actors.actor_type: "VARCHAR(64) NOT NULL type of actor (system, human, agent, etc.)"
-  lupo_actors.slug: "VARCHAR(255) NOT NULL unique URL-friendly identifier"
-  lupo_actors.name: "VARCHAR(255) NOT NULL display name"
-  lupo_actors.created_ymdhis: "BIGINT NOT NULL DEFAULT 0 YYYYMMDDHHIISS UTC timestamp"
-  lupo_actors.updated_ymdhis: "BIGINT NOT NULL YYYYMMDDHHIISS UTC timestamp"
-  lupo_actors.is_active: "TINYINT NOT NULL DEFAULT 1 active status flag"
-  lupo_actors.is_deleted: "TINYINT NOT NULL DEFAULT 0 soft delete flag"
-  lupo_actors.deleted_ymdhis: "BIGINT YYYYMMDDHHIISS UTC soft delete timestamp"
-  lupo_actors.actor_source_id: "BIGINT source system identifier"
-  lupo_actors.actor_source_type: "VARCHAR(64) source system type"
-  lupo_actors.metadata: "TEXT legacy metadata field"
-  lupo_actors.adversarial_role: "VARCHAR(64) DEFAULT 'none' adversarial role designation"
-  lupo_actors.adversarial_oversight_actor_id: "BIGINT oversight actor for adversarial actors"
-  lupo_actors.avatar_hash: "VARCHAR(64) avatar image hash"
-  lupo_actors.primary_federation_node_id: "BIGINT NOT NULL DEFAULT 1 primary federation node"
-  lupo_actors.department_id: "BIGINT department assignment"
-  lupo_actors.is_kernel: "TINYINT NOT NULL DEFAULT 0 kernel/system actor flag"
-  lupo_actors.can_login: "TINYINT NOT NULL DEFAULT 0 login capability flag"
-  lupo_actors.metadata_json: "JSON structured metadata and properties (Identity Capsule source)"
-  lupo_actors.identity_provider_config: "JSON identity provider configuration"
-  lupo_actors.paired_actor_id: "BIGINT NOT NULL DEFAULT 0 paired actor relationship"
-  lupo_actors.is_agent: "TINYINT NOT NULL DEFAULT 0 AI agent flag"
-  lupo_actors.actor_root_path: "VARCHAR(512) filesystem path to actor directory"
-  lupo_actors.who_json_sync_status: "VARCHAR(64) status of WHO.json synchronization"
-  lupo_actors.last_sync_ymdhis: "BIGINT YYYYMMDDHHIISS of last filesystem sync"
-  table_engine: "InnoDB"
-  table_charset: "utf8mb4"
-  table_collation: "utf8mb4_unicode_ci"
-  table_indexes: ["PRIMARY", "lupo_actors_idx_actor_type", "lupo_actors_idx_created_ymdhis", "lupo_actors_idx_is_active", "lupo_actors_unique_slug"]
-  reference_columns: ["primary_federation_node_id", "department_id", "adversarial_oversight_actor_id", "paired_actor_id"]
-  doctrine_note: "No database foreign keys; referential integrity enforced in application code."
-
-# 💡 FLARE Edge Automation Tip:
-# Use the FLARE Edge Suggester Tool to automatically discover and suggest edges:
-# python lupo-scripts/flare_edge_suggester.py --file <path> --include-db --format yaml
-# This will analyze content, TOON schemas, and database relationships to suggest
-# appropriate outbound_edges with weights, reasons, and discovery methods.
+  doctrine_note: "No database foreign keys; referential integrity enforced in application code. actor_id is NOT AUTO_INCREMENT; application must supply explicit ID (reserved-ID doctrine)."
 
 lupopedia.edges:
-  comment: "Snapshot of files edited during 4.0.73 finalization and initialization thread by ANTIGRAVITY IDE Agent. Edges reflect discovered relationships between database tables and PHP/Python codebase entities. Values should be verified against live database schemas/queries for the most current semantic graph state."
-  meta: "Thread: Finalize 4.0.72 → Push to GitHub → Initialize 4.0.73 → Migrate Tasks → Validate Upgrade Path"
+  comment: "Snapshot of edges for lupo_actors table doc at 4.0.78."
   outbound_edges:
-    - { to: "lupo-database/lupopedia/toon/lupo_actors.toon.json", type: "schema_reference", weight: 1.0, reason: "TOON schema definition", db_source: "lupo_actors" }
-    - { to: "lupo-database/lupopedia/actors/actor_id/registry.json", type: "references", weight: 1.0, reason: "Canonical actor registry and ID mapping", db_source: "lupo_actors" }
-    - { to: "lupo-docs/database/lupopedia/tables/active/lupo_contents.md", type: "references", weight: 0.9, reason: "Content author relationships", db_source: "lupo_actors" }
-    - { to: "lupo-docs/database/lupopedia/tables/active/lupo_channels.md", type: "references", weight: 0.9, reason: "Channel ownership and participation", db_source: "lupo_actors" }
-    - { to: "lupo-docs/database/lupopedia/tables/active/lupo_dialog_messages.md", type: "references", weight: 0.8, reason: "Dialog message authorship", db_source: "lupo_actors" }
-    - { to: "lupo-docs/database/lupopedia/tables/active/lupo_sessions.md", type: "references", weight: 0.8, reason: "User session management", db_source: "lupo_actors" }
-    - { to: "lupo-docs/database/lupopedia/tables/active/lupo_artifacts.md", type: "references", weight: 0.7, reason: "Artifact ownership", db_source: "lupo_actors" }
-    - { to: "lupo-docs/database/lupopedia/tables/active/lupo_departments.md", type: "references", weight: 0.7, reason: "Department assignments", db_source: "lupo_actors" }
-    - { to: "lupo-docs/database/lupopedia/tables/active/lupo_federation_nodes.md", type: "references", weight: 0.7, reason: "Federation node assignments", db_source: "lupo_actors" }
-    - { to: "lupo-docs/database/lupopedia/tables/active/lupo_actor_history.md", type: "references", weight: 0.9, reason: "Actor achievement and legacy history", db_source: "lupo_actors" }
-    - { to: "lupo-docs/database/lupopedia/tables/active/lupo_actor_events.md", type: "references", weight: 0.9, reason: "Actor behavioral stream", db_source: "lupo_actors" }
-
-lupopedia.engagement:
-  comment: "Snapshot of files edited during 4.0.73 finalization and initialization thread by ANTIGRAVITY IDE Agent. Engagement metrics track edit frequency and importance of each file in the version transition process."
-  meta: "Thread: Finalize 4.0.72 → Push to GitHub → Initialize 4.0.73 → Migrate Tasks → Validate Upgrade Path"
-  views: 0
+    - { to: "lupo-database/lupopedia/mysql/install/install_new_lupopedia.sql", type: "schema_reference", weight: 1.0 }
+    - { to: "lupo-database/lupopedia/actors/actor_id/registry.json", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/database/lupopedia/tables/active/lupo_channels.md", type: "references", weight: 0.9 }
+    - { to: "lupo-docs/database/lupopedia/tables/active/lupo_sessions.md", type: "references", weight: 0.9 }
+    - { to: "lupo-docs/database/lupopedia/tables/active/lupo_contents.md", type: "references", weight: 0.8 }
 
 lupopedia.footer:
-  version: "4.0.73"
-  last_verified: "20260313"
-  last_verified_by: "antigravity"
+  version: "4.0.78"
+  last_verified: "20260316"
+  last_verified_by: "cursor"
 ---
+# file: lupo_actors — web_path: http://www.lupopedia.com/database/lupopedia/tables/active/lupo_actors
 
-# 👥 Table: lupo_actors
+# Table: lupo_actors
 
-**Purpose:** Unified actor identity and management system for all entities in Lupopedia.  
-**Type:** Core System Table  
-**Status:** ✅ Production Ready  
-**Volume:** Medium (identity storage)
+## Table Overview
 
----
+- **Purpose:** Single source of truth for all identities in Lupopedia: human users, AI agents, system processes, IDE faucets, and external entities. Primary key is actor_name (canonical semantic identity); actor_id is a unique numeric mapping used for joins, registry alignment, and session ownership. Supports identity capsule (actor_root_path, WHO.json sync), federation node, department, paired-actor relationship, and adversarial oversight.
+- **Category:** Core System / Identity
+- **Status:** Active (in install_new_lupopedia.sql)
+- **Version introduced:** 4.0.x
 
-## 🎯 **Overview**
+## Where This Table Is Used
 
-The `lupo_actors` table implements a unified actor model that serves as the single source of truth for all identities in Lupopedia, including human users, AI agents, system processes, and external entities. As of v4.0.48, it also serves as the database anchor for the **Identity Capsule** system, tracking synchronization with the filesystem-based `WHO.json` and actor directories.
+- **IDE agent registration:** IDE agents (Cursor, Windsurf, Kiro, Zencoder, etc.) are registered as actors; actor_id and slug are defined in the canonical registry (lupo-database/lupopedia/actors/actor_id/registry.json) and persisted here. Propagation and rule targets resolve actors from this table.
+- **Human user identity:** Human users have actor_type 'human' and are linked to lupo_auth_users; can_login and identity_provider_config support web login. Session ownership (lupo_sessions.actor_id) resolves to this table.
+- **Orchestrator roles:** Lead orchestration and supporting actors (e.g. Cursor, Wolfie) are identified by actor_id and slug; AGENTS.md and doctrine reference this table for who operates the repo.
+- **Session ownership:** lupo_sessions stores actor_id; current user/agent identity is resolved from lupo_actors. Auth guard and session lifecycle use this table for actor_id → name/slug/type.
+- **Federation actor identities:** primary_federation_node_id anchors each actor to a federation node; multi-node deployments use this for locality and authority.
+- **Content and channel ownership:** lupo_contents.actor_id, lupo_channels.created_by_actor_id and default_actor_id, and dialog/message authorship reference lupo_actors.
 
-### **Key Responsibilities**
-- **Unified Identity:** Single source of truth for all actor types.
-- **Actor Types:** Support for humans, AI agents, system processes, external entities.
-- **Federation Support:** Multi-node actor management.
-- **Authentication:** Login capabilities and identity provider integration.
-- **Identity Portability:** Tracks synchronization with the `lupo-actors/` directory structure.
-- **Adversarial Management:** Oversight and control of adversarial actors.
-- **Metadata Storage:** Flexible JSON metadata for actor properties.
+## Column Documentation
 
----
+| Column | Type | Nullable | Default | Description |
+|--------|------|----------|---------|-------------|
+| actor_name | varchar(64) | No | — | Primary key. Canonical semantic actor identity (e.g. wolfie, cursor). |
+| actor_id | bigint | Yes | — | Unique numeric mapping; used for joins, registry, sessions. Not AUTO_INCREMENT; application supplies explicit ID (reserved-ID doctrine). |
+| actor_type | varchar(64) | No | — | Type: e.g. system, human, agent, system_tool, external_ai. |
+| slug | varchar(255) | No | — | Unique URL-friendly identifier. |
+| name | varchar(255) | No | — | Display name. |
+| created_ymdhis | bigint | No | 0 | Creation timestamp (BIGINT UTC). |
+| updated_ymdhis | bigint | No | — | Last update timestamp (BIGINT UTC). |
+| is_active | tinyint | No | 1 | Active status flag. |
+| is_deleted | tinyint | No | 0 | Soft delete flag. |
+| deleted_ymdhis | bigint | Yes | — | Soft delete timestamp. |
+| actor_source_id | bigint | Yes | — | Source system identifier. |
+| actor_source_type | varchar(64) | Yes | — | Source system type. |
+| metadata | text | Yes | — | Legacy metadata. |
+| adversarial_role | varchar(64) | Yes | 'none' | Adversarial role designation. |
+| adversarial_oversight_actor_id | bigint | Yes | — | Oversight actor for adversarial actors. Logical reference to lupo_actors. |
+| avatar_hash | varchar(64) | Yes | — | Avatar image hash. |
+| primary_federation_node_id | bigint | No | 1 | Primary federation node. Logical reference to lupo_federation_nodes. |
+| department_id | bigint | Yes | — | Department assignment. Logical reference to lupo_departments. |
+| is_kernel | tinyint | No | 0 | Kernel/system actor flag. |
+| can_login | tinyint | No | 0 | Login capability flag. |
+| metadata_json | json | Yes | — | Structured metadata (e.g. Identity Capsule, capabilities). |
+| identity_provider_config | json | Yes | — | Identity provider configuration. |
+| paired_actor_id | bigint | No | 0 | Paired actor relationship (e.g. IDE agent paired to human orchestrator). Logical reference to lupo_actors. |
+| is_agent | tinyint | No | 0 | AI agent flag. |
+| actor_root_path | varchar(512) | Yes | 'actors/{actor_id}' | Filesystem path to actor directory (Identity Capsule). |
+| workspace_path | varchar(255) | Yes | — | Workspace path. |
+| php_namespace | varchar(120) | Yes | — | PHP namespace when applicable. |
+| who_json_sync_status | varchar(64) | Yes | 'pending' | Status of WHO.json synchronization. |
+| last_sync_ymdhis | bigint | Yes | 0 | Last filesystem sync timestamp (BIGINT UTC). |
 
-## 🗃️ **Schema Reference**
+## Indexes
 
-### **Primary Key**
-- **`actor_name`** (VARCHAR(64)) - canonical semantic actor identity primary key.
+- **PRIMARY KEY:** actor_name
+- **UNIQUE:** lupo_actors_unique_actor_id (actor_id), lupo_actors_unique_slug (slug)
+- **INDEX:** lupo_actors_idx_actor_type, lupo_actors_idx_is_active, lupo_actors_idx_created_ymdhis, lupo_actors_idx_workspace_path, lupo_actors_idx_php_namespace
 
-### **Unique Numeric Identity**
-- **`actor_id`** (BIGINT) - unique numeric actor mapping for joins, registry alignment, and orchestration linkage.
+## Relationships
 
-### **Core Identity Fields**
-| Field | Type | Description | Notes |
-|-------|------|-------------|-------|
-| `actor_type` | VARCHAR(64) NOT NULL | Type of actor | system, human, agent, external |
-| `slug` | VARCHAR(255) NOT NULL | Unique URL-friendly identifier | Must be unique |
-| `name` | VARCHAR(255) NOT NULL | Display name | Human-readable name |
+- **Logical references (no DB FKs):** primary_federation_node_id → lupo_federation_nodes; department_id → lupo_departments; adversarial_oversight_actor_id, paired_actor_id → lupo_actors.
+- **Tables that reference lupo_actors:** lupo_sessions, lupo_contents, lupo_channels (created_by_actor_id, default_actor_id), lupo_dialog_messages, lupo_auth_users (via actor_id mapping), lupo_actor_channels, lupo_agents, and other actor-scoped tables use actor_id or actor_name as the join key.
 
-### **Status & Management Fields**
-| Field | Type | Default | Description |
-|-------|------|---------|-------------|
-| `is_active` | TINYINT | 1 | Active status flag |
-| `is_deleted` | TINYINT | 0 | Soft delete flag |
-| `is_kernel` | TINYINT | 0 | Kernel/system actor flag |
-| `can_login` | TINYINT | 0 | Login capability flag |
-| `is_agent` | TINYINT | 0 | AI agent flag |
+## Doctrine Notes
 
-### **Identity Capsule & Sync Fields (v4.0.48)**
-| Field | Type | Default | Description |
-|-------|------|---------|-------------|
-| `actor_root_path` | VARCHAR(512) | 'lupo-actors/{id}' | Root directory for the actor capsule |
-| `who_json_sync_status` | VARCHAR(64) | 'pending' | Sync status with WHO.json |
-| `last_sync_ymdhis` | BIGINT | 0 | Timestamp of last filesystem sync |
-
-### **Timestamp Fields**
-| Field | Type | Format | Description |
-|-------|------|--------|-------------|
-| `created_ymdhis` | BIGINT | YYYYMMDDHHIISS UTC | Creation timestamp |
-| `updated_ymdhis` | BIGINT | YYYYMMDDHHIISS UTC | Last update |
-| `deleted_ymdhis` | BIGINT | YYYYMMDDHHIISS UTC | Soft delete time |
-
-### **Relationship Fields**
-| Field | Type | Reference | Description |
-|-------|------|-----------|-------------|
-| `primary_federation_node_id` | BIGINT | lupo_federation_nodes.id | Primary federation node |
-| `department_id` | BIGINT | lupo_departments.id | Department assignment |
-| `adversarial_oversight_actor_id` | BIGINT | lupo_actors.actor_id | Oversight actor |
-| `paired_actor_id` | BIGINT | lupo_actors.actor_id | Paired actor relationship |
-
----
-
-## 🔗 **Relationships & Dependencies**
-
-### **Primary Relationships**
-- **Federation:** Every actor is anchored to a `primary_federation_node_id`.
-- **Organization:** Actors are mapped to departments via `department_id` or `lupo_actor_departments`.
-- **Governance:** Adversarial actors are monitored via `adversarial_oversight_actor_id`.
-
-### **Referencing Tables**
-- **lupo_actor_history:** Detailed legacy and contribution history.
-- **lupo_actor_events:** Real-time behavioral event stream.
-- **lupo_auth_users:** Authentication details for human actors.
-- **lupo_agents:** Technical configuration for AI agents.
-- **lupo_session_recovery:** Active session state snapshots.
-
----
-
-## 🚀 **Usage Patterns**
-
-### **Identity Capsule Sync**
-Queries used by the sync service to find actors requiring filesystem refresh.
-
-```sql
-SELECT actor_id, actor_root_path, metadata_json 
-FROM lupo_actors 
-WHERE who_json_sync_status = 'outdated' 
-   OR last_sync_ymdhis < updated_ymdhis 
-  AND is_deleted = 0;
-```
-
-### **Active Human Users**
-Retrieving primary contact info for active human participants.
-
-```sql
-SELECT a.actor_id, a.name, au.email 
-FROM lupo_actors a
-JOIN lupo_auth_users au ON a.actor_id = au.auth_user_id
-WHERE a.actor_type = 'human' AND a.is_active = 1;
-```
-
----
-
-## 🛡️ **Security & Privacy**
-
-### **IP Address Tracking**
-- **Identity Integrity**: Actor creation and sensitive status changes (e.g., `is_active` toggle) are logged in `lupo_actor_events` including the initiating IP address.
-- **Locality Awareness**: The `primary_federation_node_id` determines which node has authority over IP-based authentication policies for that specific actor.
-
-### **Data Sovereignty**
-- The **Identity Capsule** (`actor_root_path`) is the portable home for an actor. If an actor migrates node, this path and its database mirror are exported as a signed bundle.
-
----
-
-*This table documentation is part of the v4.0.48 Identity Persistence update.*
+- **No foreign keys.** All referential integrity in application code.
+- **Reserved ID:** actor_id must be supplied explicitly; never use AUTO_INCREMENT or lastInsertId() for this table. Allocate from registry or COALESCE(MAX(actor_id),0)+1; use SELECT then UPDATE or INSERT with explicit ID.
+- **Primary key:** actor_name is canonical identity; use ActorService::getActorByName / resolveActor for lookups. actor_id is the join key in most referencing tables.
+- **Human actor IDs:** Human actors typically have actor_id >= 1000 per Human Actor ID doctrine; IDE/system actors use reserved IDs from registry.
+- **Timestamps:** BIGINT YYYYMMDDHHIISS UTC; set in PHP with `gmdate('YmdHis')`.
+- **Soft delete:** Filter by `is_deleted = 0` unless querying deleted actors.

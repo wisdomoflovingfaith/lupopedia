@@ -48,6 +48,21 @@ Validators and tooling MUST align with the following for a coherent, channel-awa
 
 ---
 
+## 1.1 Namespace validation (4.0.78)
+
+Validators MUST enforce namespace per [LUPOPEDIA_HEADERS_FORMAT.md](./LUPOPEDIA_HEADERS_FORMAT.md) §2.2:
+
+| Check | Behavior |
+|-------|----------|
+| **Table documentation** | Require `namespace` in `lupopedia.headers`. Treat missing namespace as **error**. |
+| **Namespace value** | If `namespace` is present, value MUST be one of: `auth`, `channels`, `core`, `content`, `analytics`, `federation`, `governance`, `integration`, `legacy`. Invalid value → **error**. |
+| **Artifact-type policy** | For artifact types where namespace policy is not yet defined (e.g. API docs, rule docs, skill docs, planning, status), absence of namespace is **not** an error; if namespace is present, validator MAY **warn** that policy is undefined. Do not invent hidden required checks for those types. |
+| **Inappropriate placement** | If doctrine later defines that namespace must not appear on certain artifact types, report as error; for 4.0.78 only table-doc requirement and value taxonomy are canonical. |
+
+**Table-doc detection:** Treat files under `lupo-docs/database/lupopedia/tables/` (any subdirectory) with `artifact_type` consistent with table documentation (e.g. `table_documentation`, `database_table`, or path-based heuristic) as table docs for namespace requirement.
+
+---
+
 ## 2. Export (DB → YAML)
 
 - Build canonical YAML header from `lupo_metadata` rows: root → block rows → property rows → repeating structures (edges, mappings, actions).

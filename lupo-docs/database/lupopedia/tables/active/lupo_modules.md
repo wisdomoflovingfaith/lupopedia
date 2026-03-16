@@ -1,70 +1,96 @@
 ---
 lupopedia.headers:
-  lupopedia.version: "4.0.73"
-  lupopedia.schema: "documentation"
+  lupopedia.version: "4.0.78"
+  lupopedia.schema: "database_table"
+  system_version: "4.0.78"
   file_path_from_root: "lupo-docs/database/lupopedia/tables/active/lupo_modules.md"
-  last_modified_utc: "20260312"
-  system_version: "4.0.69"
-  channel_id: 1
-  actor_id: 103
-  delegation_chain: "103:10000"
-  artifact_type: "documentation"
-  artifact_kind: "database_table"
-  purpose: "JetBrains domain table documentation for lupo_modules"
-  lupo_agent: "jetbrains"
+  web_path: "[lupo_modules](http://www.lupopedia.com/database/lupopedia/tables/active/lupo_modules)"
+  last_modified_utc: "20260316"
+  channel_id: 42
+  actor_id: 102
+  artifact_type: "table_documentation"
+  artifact_kind: "table"
+  namespace: "core"
+  purpose: "Module registry and configuration; plugin/module key, namespace, version, paths, config_json, and federation node scoping"
+  traits: ["canonical", "core_system", "modules", "v4.0.78"]
+  tags: ["database", "modules", "plugins", "routing"]
+  table_primary_key: "module_id"
+  doctrine_note: "No database foreign keys; referential integrity enforced in application code. All timestamps BIGINT UTC YYYYMMDDHHIISS."
+
+lupopedia.edges:
+  comment: "Snapshot of edges for lupo_modules table doc at 4.0.78."
+  outbound_edges:
+    - { to: "lupo-database/lupopedia/mysql/install/install_new_lupopedia.sql", type: "schema_reference", weight: 1.0 }
+    - { to: "lupo-docs/database/lupopedia/tables/active/lupo_federation_nodes.md", type: "references", weight: 0.8 }
+    - { to: "lupo-includes/modules/module-loader.php", type: "references", weight: 0.9 }
+
+lupopedia.footer:
+  version: "4.0.78"
+  last_verified: "20260316"
+  last_verified_by: "cursor"
 ---
+# file: lupo_modules — web_path: http://www.lupopedia.com/database/lupopedia/tables/active/lupo_modules
 
 # Table: lupo_modules
 
 ## Table Overview
-- purpose: Module registry and configuration records.
-- category: active
-- status: active (present in current TOON and install schema)
-- version introduced: not explicitly documented in TOON/install comments
-- version deprecated: not applicable
-- removal notes: not applicable
-- migration references: MIGRATION_MAPPING_REFERENCE.md, livehelp_config_migration.md, livehelp_modules_dep_migration.md, livehelp_modules_migration.md
+
+- **Purpose:** Module registry and configuration for Lupopedia plugins/modules. Each row defines a module by module_key (unique), module_name, namespace, version, version_code, minimum_core_version, optional user_path/admin_path/api_path, route_params, description, dependencies, conflicts, config_json (required), and federation_node_id. is_system and is_active control loading; installed_ymdhis and settings support lifecycle and per-instance settings.
+- **Category:** Core System / Modules
+- **Status:** Active (in install_new_lupopedia.sql)
+- **Version introduced:** 4.0.x
+
+## Where This Table Is Used
+
+- **Module loading and routing:** Module loader and routing resolve modules by module_key; user_path, admin_path, api_path and route_params drive URL routing and entry points.
+- **Dependency and conflict resolution:** dependencies and conflicts text fields support declarative dependency checks before activation.
+- **Federation scoping:** federation_node_id scopes modules per node for multi-node deployments.
+- **Configuration:** config_json and settings store module configuration; is_active and is_deleted control visibility and lifecycle.
 
 ## Column Documentation
-| Column | Type | Nullability | Default | Description |
-|---|---|---|---|---|
-| module_id | bigint | NOT NULL | none/unspecified | TOON-defined field; canonical semantic description not specified in TOON. |
-| module_key | varchar(100) | NOT NULL | none/unspecified | TOON-defined field; canonical semantic description not specified in TOON. |
-| module_name | varchar(150) | NOT NULL | none/unspecified | TOON-defined field; canonical semantic description not specified in TOON. |
-| namespace | varchar(100) | NOT NULL | none/unspecified | TOON-defined field; canonical semantic description not specified in TOON. |
-| version | varchar(50) | NOT NULL | none/unspecified | TOON-defined field; canonical semantic description not specified in TOON. |
-| version_code | int | NOT NULL | none/unspecified | TOON-defined field; canonical semantic description not specified in TOON. |
-| minimum_core_version | varchar(50) | NOT NULL | none/unspecified | TOON-defined field; canonical semantic description not specified in TOON. |
-| user_path | varchar(255) | Nullable/unspecified | none/unspecified | TOON-defined field; canonical semantic description not specified in TOON. |
-| admin_path | varchar(255) | Nullable/unspecified | none/unspecified | TOON-defined field; canonical semantic description not specified in TOON. |
-| api_path | varchar(255) | Nullable/unspecified | none/unspecified | TOON-defined field; canonical semantic description not specified in TOON. |
-| route_params | text | Nullable/unspecified | none/unspecified | TOON-defined field; canonical semantic description not specified in TOON. |
-| description | text | Nullable/unspecified | none/unspecified | TOON-defined field; canonical semantic description not specified in TOON. |
-| author | varchar(100) | Nullable/unspecified | none/unspecified | TOON-defined field; canonical semantic description not specified in TOON. |
-| website | varchar(255) | Nullable/unspecified | none/unspecified | TOON-defined field; canonical semantic description not specified in TOON. |
-| icon | varchar(100) | Nullable/unspecified | ''puzzle-piece | TOON-defined field; canonical semantic description not specified in TOON. |
-| dependencies | text | Nullable/unspecified | none/unspecified | TOON-defined field; canonical semantic description not specified in TOON. |
-| conflicts | text | Nullable/unspecified | none/unspecified | TOON-defined field; canonical semantic description not specified in TOON. |
-| config_json | text | NOT NULL | none/unspecified | TOON-defined field; canonical semantic description not specified in TOON. |
-| is_system | tinyint | NOT NULL | 0 | TOON-defined field; canonical semantic description not specified in TOON. |
-| is_active | tinyint | NOT NULL | 0 | TOON-defined field; canonical semantic description not specified in TOON. |
-| federation_node_id | bigint | NOT NULL | 1 | TOON-defined field; canonical semantic description not specified in TOON. |
-| settings | text | Nullable/unspecified | none/unspecified | TOON-defined field; canonical semantic description not specified in TOON. |
-| installed_ymdhis | bigint | Nullable/unspecified | none/unspecified | TOON-defined field; canonical semantic description not specified in TOON. |
-| created_ymdhis | bigint | NOT NULL | 0 | TOON-defined field; canonical semantic description not specified in TOON. |
-| updated_ymdhis | bigint | Nullable/unspecified | none/unspecified | TOON-defined field; canonical semantic description not specified in TOON. |
-| is_deleted | tinyint | NOT NULL | 0 | TOON-defined field; canonical semantic description not specified in TOON. |
-| deleted_ymdhis | bigint | Nullable/unspecified | none/unspecified | TOON-defined field; canonical semantic description not specified in TOON. |
+
+| Column | Type | Nullable | Default | Description |
+|--------|------|----------|---------|-------------|
+| module_id | bigint | No | — | Primary key. |
+| module_key | varchar(100) | No | — | Unique module identifier. |
+| module_name | varchar(150) | No | — | Display name. |
+| namespace | varchar(100) | No | — | Module namespace. |
+| version | varchar(50) | No | — | Version string. |
+| version_code | int | No | — | Numeric version. |
+| minimum_core_version | varchar(50) | No | — | Minimum core version required. |
+| user_path | varchar(255) | Yes | NULL | User-facing path. |
+| admin_path | varchar(255) | Yes | NULL | Admin path. |
+| api_path | varchar(255) | Yes | NULL | API path. |
+| route_params | text | Yes | NULL | Route parameters. |
+| description | text | Yes | NULL | Description. |
+| author | varchar(100) | Yes | NULL | Author. |
+| website | varchar(255) | Yes | NULL | Website. |
+| icon | varchar(100) | Yes | 'puzzle-piece' | Icon identifier. |
+| dependencies | text | Yes | NULL | Dependency list. |
+| conflicts | text | Yes | NULL | Conflict list. |
+| config_json | text | No | — | Module configuration (JSON). |
+| is_system | tinyint | No | 0 | System module flag. |
+| is_active | tinyint | No | 0 | Active flag. |
+| federation_node_id | bigint | No | 1 | Federation node. |
+| settings | text | Yes | NULL | Instance settings. |
+| installed_ymdhis | bigint | Yes | NULL | Install timestamp (BIGINT UTC). |
+| created_ymdhis | bigint | No | 0 | Creation timestamp (BIGINT UTC). |
+| updated_ymdhis | bigint | Yes | NULL | Last update timestamp (BIGINT UTC). |
+| is_deleted | tinyint | No | 0 | Soft delete flag. |
+| deleted_ymdhis | bigint | Yes | NULL | Soft delete timestamp. |
+
+## Indexes
+
+- **PRIMARY KEY:** module_id
+- **UNIQUE:** lupo_modules_uq_module_key (module_key)
+- **INDEX:** lupo_modules_idx_namespace (namespace), lupo_modules_idx_status (is_active, is_deleted), lupo_modules_idx_system (is_system), lupo_modules_idx_installed (installed_ymdhis)
 
 ## Relationships
-- foreign keys: none (database doctrine forbids foreign keys)
-- inbound references: no canonical inbound reference list found in TOON
-- outbound references: No foreign keys or explicit relationships in TOON (`relationships: []`).
-- join patterns: Join by `module_id` where module-specific policy or UI mappings are maintained.
 
-## Usage Notes
-- migration notes: TOON and install schema are aligned for this table name.
-- compatibility notes: current schema uses BIGINT timestamp doctrine and soft-delete patterns where present.
-- warnings: avoid assuming implicit constraints; use doctrine that logic is application-side.
-- future considerations: if additional relationships are introduced, document via TOON updates first.
-- historical changes if updating existing docs: existing flat documentation was retained; this file is the category-structured canonical doc for this domain pass.
+- **Logical references (no DB FKs):** federation_node_id → lupo_federation_nodes. Module loader and routing code reference this table; no DB foreign keys.
+
+## Doctrine notes
+
+- No database foreign keys; referential integrity enforced in application code.
+- All timestamps BIGINT UTC YYYYMMDDHHIISS.
+- Soft delete: filter `is_deleted = 0` unless querying deleted rows.

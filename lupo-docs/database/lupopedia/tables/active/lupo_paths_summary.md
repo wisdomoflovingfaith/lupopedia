@@ -10,6 +10,7 @@ lupopedia.headers:
   lupo_agent: "antigravity"
   artifact_type: "table_documentation"
   purpose: "Summary metrics for visitor paths and usage frequency"
+  namespace: "core"
   tags: ["database", "table", "analytics", "semantic_navbar"]
 ---
 

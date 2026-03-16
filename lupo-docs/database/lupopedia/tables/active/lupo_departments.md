@@ -1,70 +1,82 @@
 ---
 lupopedia.headers:
-  lupopedia.version: "4.0.73"
-  lupopedia.schema: "documentation"
+  lupopedia.version: "4.0.78"
+  lupopedia.schema: "database_table"
+  system_version: "4.0.78"
   file_path_from_root: "lupo-docs/database/lupopedia/tables/active/lupo_departments.md"
-  system_version: "4.0.73"
-  namespace: "org"
-  channel_id: 1
-  actor_id: 1003
-  last_modified_utc: "20260313"
-  artifact_type: "documentation"
-  artifact_kind: "database_table"
-  purpose: "JetBrains domain table documentation for lupo_departments"
-  lupo_agent: "antigravity"
+  web_path: "[lupo_departments](http://www.lupopedia.com/database/lupopedia/tables/active/lupo_departments)"
+  last_modified_utc: "20260316"
+  channel_id: 42
+  actor_id: 102
+  artifact_type: "table_documentation"
+  artifact_kind: "table"
+  namespace: "governance"
+  purpose: "Department organization; operator assignment, channel grouping, and department-type segmentation per federation node"
+  traits: ["canonical", "governance", "departments", "v4.0.78"]
+  tags: ["database", "departments", "organization", "channels"]
+  table_primary_key: "department_id"
+  doctrine_note: "No database foreign keys; referential integrity enforced in application code. All timestamps BIGINT UTC YYYYMMDDHHIISS."
 
 lupopedia.edges:
-  comment: "Snapshot of files edited during 4.0.73 finalization and initialization thread by ANTIGRAVITY IDE Agent. Edges reflect discovered relationships between database tables and PHP/Python codebase entities. Values should be verified against live database schemas/queries for the most current semantic graph state."
-  meta: "Thread: Finalize 4.0.72 → Push to GitHub → Initialize 4.0.73 → Migrate Tasks → Validate Upgrade Path"
+  comment: "Snapshot of edges for lupo_departments table doc at 4.0.78."
   outbound_edges:
-    - { to: "lupo-database/lupopedia/toon/lupo_departments.toon.json", type: "schema_reference", weight: 1.0, reason: "TOON schema definition", db_source: "lupo_departments" }
-
-lupopedia.engagement:
-  comment: "Snapshot of files edited during 4.0.73 finalization and initialization thread by ANTIGRAVITY IDE Agent. Engagement metrics track edit frequency and importance of each file in the version transition process."
-  meta: "Thread: Finalize 4.0.72 → Push to GitHub → Initialize 4.0.73 → Migrate Tasks → Validate Upgrade Path"
-  views: 0
+    - { to: "lupo-database/lupopedia/mysql/install/install_new_lupopedia.sql", type: "schema_reference", weight: 1.0 }
+    - { to: "lupo-docs/database/lupopedia/tables/active/lupo_channels.md", type: "references", weight: 0.9 }
+    - { to: "lupo-docs/database/lupopedia/tables/active/lupo_channel_departments.md", type: "references", weight: 0.9 }
+    - { to: "lupo-docs/database/lupopedia/tables/active/lupo_actors.md", type: "references", weight: 0.8 }
+    - { to: "lupo-docs/database/lupopedia/tables/active/lupo_federation_nodes.md", type: "references", weight: 0.8 }
+    - { to: "lupo-docs/database/lupopedia/tables/active/lupo_collections.md", type: "references", weight: 0.7 }
 
 lupopedia.footer:
-  version: "4.0.73"
-  last_verified: "20260313"
-  last_verified_by: "antigravity"
+  version: "4.0.78"
+  last_verified: "20260316"
+  last_verified_by: "cursor"
 ---
+# file: lupo_departments — web_path: http://www.lupopedia.com/database/lupopedia/tables/active/lupo_departments
 
 # Table: lupo_departments
 
 ## Table Overview
-- purpose: Department registry for organizational scoping.
-- category: active
-- status: active (present in current TOON and install schema)
-- version introduced: not explicitly documented in TOON/install comments
-- version deprecated: not applicable
-- removal notes: not applicable
-- migration references: MIGRATION_MAPPING_REFERENCE.md, livehelp_departments_migration.md
+
+- **Purpose:** Departments organize channels and operators within a federation node. Each department has a name, type (e.g. general), default_actor_id for assignment, optional settings_json, and timestamps. Used for operator assignment, channel-department grouping (via lupo_channel_departments), and department-based content segmentation.
+- **Category:** Governance / Organization
+- **Status:** Active (in install_new_lupopedia.sql)
+- **Version introduced:** 4.0.x
+
+## Where This Table Is Used
+
+- **Channel organization:** lupo_channels.department_id and lupo_channel_departments link channels to departments; routing and UI group by department.
+- **Operator assignment:** default_actor_id and lupo_department_roles assign actors to departments; used for workload and permission context.
+- **Federation scoping:** federation_node_id scopes departments per node; multi-node deployments have separate department sets.
+- **Collections and content:** lupo_collections and related tables can scope by department_id for department-specific content and tabs.
 
 ## Column Documentation
-| Column | Type | Nullability | Default | Description |
-|---|---|---|---|---|
-| department_id | bigint | NOT NULL | none/unspecified | TOON-defined field; canonical semantic description not specified in TOON. |
-| federation_node_id | bigint | NOT NULL | none/unspecified | TOON-defined field; canonical semantic description not specified in TOON. |
-| name | varchar(64) | NOT NULL | none/unspecified | TOON-defined field; canonical semantic description not specified in TOON. |
-| description | text | Nullable/unspecified | none/unspecified | TOON-defined field; canonical semantic description not specified in TOON. |
-| department_type | varchar(32) | NOT NULL | ''general | TOON-defined field; canonical semantic description not specified in TOON. |
-| default_actor_id | bigint | NOT NULL | 1 | TOON-defined field; canonical semantic description not specified in TOON. |
-| settings_json | json | Nullable/unspecified | none/unspecified | TOON-defined field; canonical semantic description not specified in TOON. |
-| created_ymdhis | bigint | NOT NULL | 0 | TOON-defined field; canonical semantic description not specified in TOON. |
-| updated_ymdhis | bigint | NOT NULL | none/unspecified | TOON-defined field; canonical semantic description not specified in TOON. |
-| is_deleted | tinyint | NOT NULL | 0 | TOON-defined field; canonical semantic description not specified in TOON. |
-| deleted_ymdhis | bigint | Nullable/unspecified | none/unspecified | TOON-defined field; canonical semantic description not specified in TOON. |
+
+| Column | Type | Nullable | Default | Description |
+|--------|------|----------|---------|-------------|
+| department_id | bigint | No | — | Primary key. |
+| federation_node_id | bigint | No | — | Federation node this department belongs to. |
+| name | varchar(64) | No | — | Department name. |
+| description | text | Yes | NULL | Description. |
+| department_type | varchar(32) | No | 'general' | Type (e.g. general). |
+| default_actor_id | bigint | No | 1 | Default actor for the department. |
+| settings_json | json | Yes | NULL | Optional JSON settings. |
+| created_ymdhis | bigint | No | 0 | Creation timestamp (BIGINT UTC). |
+| updated_ymdhis | bigint | No | — | Last update timestamp (BIGINT UTC). |
+| is_deleted | tinyint | No | 0 | Soft delete flag. |
+| deleted_ymdhis | bigint | Yes | NULL | Soft delete timestamp. |
+
+## Indexes
+
+- **PRIMARY KEY:** department_id
+- **INDEX:** lupo_departments_idx_name (name), lupo_departments_idx_type (department_type), lupo_departments_idx_federation_node (federation_node_id)
 
 ## Relationships
-- foreign keys: none (database doctrine forbids foreign keys)
-- inbound references: no canonical inbound reference list found in TOON
-- outbound references: No foreign keys or explicit relationships in TOON (`relationships: []`).
-- join patterns: Join by `department_id`; common joins: `lupo_department_roles.department_id`, `lupo_department_metadata.department_id`, `lupo_contents.department_id`.
 
-## Usage Notes
-- migration notes: TOON and install schema are aligned for this table name.
-- compatibility notes: current schema uses BIGINT timestamp doctrine and soft-delete patterns where present.
-- warnings: avoid assuming implicit constraints; use doctrine that logic is application-side.
-- future considerations: if additional relationships are introduced, document via TOON updates first.
-- historical changes if updating existing docs: existing flat documentation was retained; this file is the category-structured canonical doc for this domain pass.
+- **Logical references (no DB FKs):** federation_node_id → lupo_federation_nodes; default_actor_id → lupo_actors. lupo_channel_departments links channels to departments (many-to-many); lupo_department_roles links actors to departments; lupo_channels.department_id and lupo_collections.department_id reference this table.
+
+## Doctrine notes
+
+- No database foreign keys; referential integrity enforced in application code.
+- All timestamps BIGINT UTC YYYYMMDDHHIISS.
+- Soft delete: filter `is_deleted = 0` unless querying deleted rows.

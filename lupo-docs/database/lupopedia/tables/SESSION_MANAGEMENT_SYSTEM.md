@@ -12,6 +12,7 @@ lupopedia.headers:
   artifact_type: "documentation"
   artifact_kind: "system_overview"
   purpose: "Comprehensive documentation of the Lupopedia session management system for multi-agent isolation and sync with default session templates"
+  namespace: "core"
   mood_rgb: "4169E1"
   traits: ["session_management", "multi_agent", "isolation", "v4.0.53"]
   tags: ["sessions", "lupo_sessions", "ide_agents", "ai_agents", "sync", "default_sessions"]

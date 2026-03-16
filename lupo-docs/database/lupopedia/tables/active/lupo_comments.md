@@ -1,10 +1,10 @@
 ---
 lupopedia.headers:
-  lupopedia.version: "4.0.73"
-  lupopedia.schema: "database"
+  lupopedia.version: "4.0.78"
+  lupopedia.schema: "database_table"
   file_path_from_root: "lupo-docs/database/lupopedia/tables/active/lupo_comments.md"
-  system_version: "4.0.73"
-  last_modified_utc: "20260313"
+  system_version: "4.0.78"
+  last_modified_utc: "20260316"
   channel_id: 42
   actor_id: 1
   actor_name: "wolfie"
@@ -12,6 +12,7 @@ lupopedia.headers:
   artifact_type: "table"
   artifact_kind: "comments"
   purpose: "Comments on artifacts, documents, and content with faucet traceability"
+  namespace: "content"
 lupopedia.edges:
   code:
     - to: "lupo-includes/classes/CommentService.php"
@@ -32,7 +33,7 @@ lupopedia.edges:
       type: "implements"
       weight: 1.0
 lupopedia.footer:
-  version: "4.0.73"
+  version: "4.0.78"
   last_verified: "20260313"
   last_verified_by: "windsurf"
   orchestrator: "wolfie"

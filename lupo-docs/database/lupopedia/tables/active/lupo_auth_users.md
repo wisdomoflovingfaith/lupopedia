@@ -1,79 +1,86 @@
 ---
 lupopedia.headers:
-  lupopedia.version: "4.0.73"
+  lupopedia.version: "4.0.78"
   lupopedia.schema: "database_table"
+  system_version: "4.0.78"
   file_path_from_root: "lupo-docs/database/lupopedia/tables/active/lupo_auth_users.md"
-  system_version: "4.0.73"
-  namespace: "auth"
-  channel_id: 1
-  actor_id: 1003
-  last_modified_utc: "20260312"
+  web_path: "[lupo_auth_users](http://www.lupopedia.com/database/lupopedia/tables/active/lupo_auth_users)"
+  last_modified_utc: "20260316"
+  channel_id: 42
+  actor_id: 102
   artifact_type: "table_documentation"
-  purpose: "Authentication and identity accounts for human operators and users"
-  mood_rgb: "4169E1"
-  traits: ["canonical", "auth", "identity", "antigravity_rotation", "v4.0.73"]
+  artifact_kind: "table"
+  namespace: "auth"
+  purpose: "Authentication and identity accounts for human operators and users; username, credentials, provider linkage, login metadata"
+  traits: ["canonical", "auth", "identity", "v4.0.78"]
   tags: ["database", "auth", "users", "credentials", "identity"]
-  lupo_agent: "antigravity"
+  table_primary_key: "auth_user_id"
+  doctrine_note: "No database foreign keys; referential integrity enforced in application code. RESERVED ID DOCTRINE: auth_user_id is NOT AUTO_INCREMENT; application must supply explicit ID. All timestamps BIGINT UTC YYYYMMDDHHIISS."
 
 lupopedia.edges:
-  comment: "Snapshot of files edited during 4.0.73 finalization and initialization thread by ANTIGRAVITY IDE Agent. Edges reflect discovered relationships between database tables and PHP/Python codebase entities. Values should be verified against live database schemas/queries for the most current semantic graph state."
-  meta: "Thread: Finalize 4.0.72 → Push to GitHub → Initialize 4.0.73 → Migrate Tasks → Validate Upgrade Path"
+  comment: "Snapshot of edges for lupo_auth_users table doc at 4.0.78."
   outbound_edges:
-    - { to: "lupo-database/lupopedia/toon/lupo_auth_users.toon.json", type: "schema_reference", weight: 1.0 }
+    - { to: "lupo-database/lupopedia/mysql/install/install_new_lupopedia.sql", type: "schema_reference", weight: 1.0 }
     - { to: "lupo-docs/database/lupopedia/tables/active/lupo_actors.md", type: "references", weight: 0.9 }
-    - { to: "lupo-docs/database/lupopedia/tables/active/lupo_sessions.md", type: "references", weight: 0.8 }
+    - { to: "lupo-docs/database/lupopedia/tables/active/lupo_sessions.md", type: "references", weight: 0.9 }
     - { to: "lupo-docs/database/lupopedia/tables/active/lupo_auth_providers.md", type: "references", weight: 0.8 }
-    - { to: "lupo-includes/functions/auth-helpers.php", type: "referenced_by", weight: 1.0 }
-    - { to: "app/Services/AuthService.php", type: "referenced_by", weight: 0.9 }
-
-lupopedia.engagement:
-  comment: "Snapshot of files edited during 4.0.73 finalization and initialization thread by ANTIGRAVITY IDE Agent. Engagement metrics track edit frequency and importance of each file in the version transition process."
-  meta: "Thread: Finalize 4.0.72 → Push to GitHub → Initialize 4.0.73 → Migrate Tasks → Validate Upgrade Path"
-  views: 0
+    - { to: "app/Services/AuthService.php", type: "references", weight: 0.8 }
 
 lupopedia.footer:
-  version: "4.0.73"
-  last_verified: "20260312"
-  last_verified_by: "antigravity"
+  version: "4.0.78"
+  last_verified: "20260316"
+  last_verified_by: "cursor"
 ---
+# file: lupo_auth_users — web_path: http://www.lupopedia.com/database/lupopedia/tables/active/lupo_auth_users
 
 # Table: lupo_auth_users
 
 ## Table Overview
 
-- **Purpose:** Stores authentication and identity data for human operators and users. Credentials, provider linkage, and login metadata. Mapped from legacy `livehelp_users` on Crafty Syntax upgrade.
-- **Category:** User / Authentication / Identity
-- **Status:** Active
-- **Version introduced:** 4.0.0
-- **Migration references:** See `lupo-docs/database/lupopedia/tables/MIGRATION_MAPPING_REFERENCE.md` (livehelp_users → lupo_auth_users).
+- **Purpose:** Stores authentication and identity data for human operators and users. Each row is one auth user: auth_user_id (PK, application-supplied), username (unique), display_name, email, password_hash, auth_provider, provider_id (unique per provider), profile_image_url, last_login_ymdhis, created_ymdhis, updated_ymdhis, is_active, and soft delete. Mapped from legacy livehelp_users on Crafty Syntax upgrade. Linked to lupo_actors for orchestration identity.
+- **Category:** Auth / Identity
+- **Status:** Active (in install_new_lupopedia.sql)
+- **Version introduced:** 4.0.x
+
+## Where This Table Is Used
+
+- **Login and authentication:** Auth guard and login flow resolve users by username or (auth_provider, provider_id); password_hash verified for local auth; AuthService and session logic reference this table.
+- **Actor mapping:** Human users map to lupo_actors; auth_user_id or username links session and actor identity for orchestration and permissions.
+- **Provider linkage:** auth_provider and provider_id support OAuth/SSO; unique (auth_provider, provider_id) prevents duplicate provider accounts.
+- **Profile and display:** display_name, email, profile_image_url used in UI and identity resolution.
 
 ## Column Documentation
 
 | Column | Type | Nullable | Default | Description |
 |--------|------|----------|---------|-------------|
-| auth_user_id | bigint | No | — | Primary key. Application-assigned; do not use AUTO_INCREMENT per reserved-ID doctrine. |
+| auth_user_id | bigint | No | — | Primary key. **Reserved-ID:** application must supply explicit ID; do not use AUTO_INCREMENT/lastInsertId. |
 | username | varchar(255) | No | — | Unique username. |
 | display_name | varchar(42) | No | — | Display name. |
-| email | varchar(100) | Yes | — | Email address. |
-| password_hash | varchar(255) | Yes | — | Hashed password (local auth). |
-| auth_provider | varchar(50) | Yes | — | Provider name (e.g. local, oauth). |
-| provider_id | varchar(255) | Yes | — | External provider user id. |
-| profile_image_url | varchar(2000) | Yes | — | Optional profile image URL. |
-| last_login_ymdhis | bigint | Yes | — | Last login timestamp (YYYYMMDDHHIISS UTC). |
-| created_ymdhis | bigint | No | 0 | Creation timestamp. |
-| updated_ymdhis | bigint | No | — | Last update timestamp. |
+| email | varchar(100) | Yes | NULL | Email. |
+| password_hash | varchar(255) | Yes | NULL | Password hash (local auth). |
+| auth_provider | varchar(50) | Yes | NULL | Auth provider (e.g. google, local). |
+| provider_id | varchar(255) | Yes | NULL | Provider-specific user ID. |
+| profile_image_url | varchar(2000) | Yes | NULL | Profile image URL. |
+| last_login_ymdhis | bigint | Yes | NULL | Last login timestamp (BIGINT UTC). |
+| created_ymdhis | bigint | No | 0 | Creation timestamp (BIGINT UTC). |
+| updated_ymdhis | bigint | No | — | Last update timestamp (BIGINT UTC). |
 | is_active | tinyint | No | 1 | Active flag. |
-| is_deleted | tinyint | No | 0 | Soft-delete flag. |
-| deleted_ymdhis | bigint | Yes | — | Soft-delete timestamp. |
+| is_deleted | tinyint | No | 0 | Soft delete flag. |
+| deleted_ymdhis | bigint | Yes | NULL | Soft delete timestamp. |
+
+## Indexes
+
+- **PRIMARY KEY:** auth_user_id
+- **UNIQUE:** lupo_auth_users_unique_username (username), lupo_auth_users_unique_provider_user (auth_provider, provider_id)
+- **INDEX:** lupo_auth_users_idx_email (email), lupo_auth_users_idx_is_active (is_active), lupo_auth_users_idx_is_deleted (is_deleted), lupo_auth_users_idx_created_ymdhis (created_ymdhis), lupo_auth_users_idx_updated_ymdhis (updated_ymdhis)
 
 ## Relationships
 
-- **Logical references (no DB FKs):** Identity links to `lupo_actors` via application logic; sessions reference auth via actor. `auth_provider` / `provider_id` align with `lupo_auth_providers.provider_name`.
-- **Inbound:** Sessions, actor resolution, and login flows read this table.
-- **Join patterns:** Lookup by `username`, or by `(auth_provider, provider_id)` (unique).
+- **Logical references (no DB FKs):** Application links auth_user_id to lupo_actors for human orchestrators; lupo_sessions and auth flow resolve identity via this table. lupo_auth_providers documents available providers.
 
-## Usage Notes
+## Doctrine notes
 
-- **Reserved ID:** Inserts must supply `auth_user_id` explicitly; use registry or allocation pattern. No `lastInsertId()` for this table.
-- **Timestamps:** All timestamps BIGINT YYYYMMDDHHIISS UTC; set in application with `gmdate('YmdHis')`.
-- **Indexes:** `lupo_auth_users_unique_username`, `lupo_auth_users_unique_provider_user`, plus idx on created_ymdhis, email, is_active, is_deleted, updated_ymdhis.
+- No database foreign keys; referential integrity enforced in application code.
+- **Reserved-ID doctrine:** auth_user_id is NOT AUTO_INCREMENT; application must supply explicit ID (e.g. from registry or import). Do not use lastInsertId() for this table; use SELECT/UPDATE or INSERT with explicit ID.
+- All timestamps BIGINT UTC YYYYMMDDHHIISS.
+- Soft delete: filter `is_deleted = 0` unless querying deleted rows.

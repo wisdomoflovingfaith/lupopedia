@@ -4,7 +4,7 @@ lupopedia.headers:
   lupopedia.schema: "database_table"
   file_path_from_root: "lupo-docs/database/lupopedia/tables/active/lupo_session_recovery.md"
   system_version: "4.0.73"
-  namespace: "session"
+  namespace: "auth"
   channel_id: 1
   actor_id: 1003
   last_modified_utc: "20260313"

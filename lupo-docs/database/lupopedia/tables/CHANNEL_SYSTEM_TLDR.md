@@ -40,6 +40,7 @@ lupopedia.headers:
   delegation_chain: "0:10000"
   artifact_type: "documentation"
   purpose: "Channel operation description"
+  namespace: "core"
   mood_rgb: "4169E1"
   traits: ["channel", "federation", "v4.0.52"]
   tags: ["channels", "content", "federation"]

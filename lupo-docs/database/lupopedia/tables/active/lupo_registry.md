@@ -1,115 +1,87 @@
 ---
 lupopedia.headers:
-  lupopedia.version: "4.0.73"
+  lupopedia.version: "4.0.78"
   lupopedia.schema: "database_table"
+  system_version: "4.0.78"
   file_path_from_root: "lupo-docs/database/lupopedia/tables/active/lupo_registry.md"
-  system_version: "4.0.73"
-  namespace: "core"
-  channel_id: 1
-  actor_id: 1003
-  last_modified_utc: "20260313"
+  web_path: "[lupo_registry](http://www.lupopedia.com/database/lupopedia/tables/active/lupo_registry)"
+  last_modified_utc: "20260316"
+  channel_id: 42
+  actor_id: 102
   artifact_type: "table_documentation"
-  purpose: "Complete documentation for lupo_registry table - central system for entity indexing and reservation"
-  mood_rgb: "4169E1"
-  traits: ["canonical", "core_system", "registry", "antigravity_rotation", "v4.0.73"]
-  tags: ["database", "registry", "indexing", "reservation"]
-  lupo_agent: "antigravity"
+  artifact_kind: "table"
+  namespace: "core"
+  purpose: "Unified registry for entity indexing and ID reservation across federation nodes; entity_type, entity_index_id, optional metadata"
+  traits: ["canonical", "core_system", "registry", "v4.0.78"]
+  tags: ["database", "registry", "indexing", "reservation", "federation"]
+  table_primary_key: "registry_id"
+  doctrine_note: "No database foreign keys; referential integrity enforced in application code. All timestamps BIGINT UTC YYYYMMDDHHIISS. Reserved-ID and allocation logic in application."
 
 lupopedia.edges:
-  comment: "Snapshot of files edited during 4.0.73 finalization and initialization thread by ANTIGRAVITY IDE Agent. Edges reflect discovered relationships between database tables and PHP/Python codebase entities. Values should be verified against live database schemas/queries for the most current semantic graph state."
-  meta: "Thread: Finalize 4.0.72 → Push to GitHub → Initialize 4.0.73 → Migrate Tasks → Validate Upgrade Path"
+  comment: "Snapshot of edges for lupo_registry table doc at 4.0.78."
   outbound_edges:
-    - { to: "lupo-database/lupopedia/toon/lupo_registry.toon.json", type: "schema_reference", weight: 1.0, reason: "TOON schema definition", db_source: "lupo_registry" }
-    - { to: "lupo-docs/doctrine/database/README.md", type: "references", weight: 0.8, reason: "Database doctrine" }
-
-lupopedia.engagement:
-  comment: "Snapshot of files edited during 4.0.73 finalization and initialization thread by ANTIGRAVITY IDE Agent. Engagement metrics track edit frequency and importance of each file in the version transition process."
-  meta: "Thread: Finalize 4.0.72 → Push to GitHub → Initialize 4.0.73 → Migrate Tasks → Validate Upgrade Path"
-  views: 0
+    - { to: "lupo-database/lupopedia/mysql/install/install_new_lupopedia.sql", type: "schema_reference", weight: 1.0 }
+    - { to: "lupo-docs/database/lupopedia/tables/active/lupo_federation_nodes.md", type: "references", weight: 0.8 }
+    - { to: "lupo-docs/database/lupopedia/tables/active/lupo_actors.md", type: "references", weight: 0.7 }
+    - { to: "lupo-docs/database/lupopedia/tables/active/lupo_channels.md", type: "references", weight: 0.7 }
 
 lupopedia.footer:
-  version: "4.0.73"
-  last_verified: "20260313"
-  last_verified_by: "antigravity"
+  version: "4.0.78"
+  last_verified: "20260316"
+  last_verified_by: "cursor"
 ---
+# file: lupo_registry — web_path: http://www.lupopedia.com/database/lupopedia/tables/active/lupo_registry
 
 # Table: lupo_registry
 
-Purpose: Auto-generated documentation for lupo_registry from TOON schema.
-Type: database_table
-Status: production_ready
-Volume: unknown
+## Table Overview
 
-## 1. Overview
-- Key responsibilities: schema reference, storage, and lookup for this table.
-- System role: persists data for the Lupopedia database subsystem.
-- Importance: enables data integrity and downstream features tied to this table.
+- **Purpose:** Unified registry for entity indexing and ID reservation across federation nodes. Each row records an entity_type (e.g. actor, channel), entity_index_id and entity_index for allocation or lookup, federation_node_id, reserved_ymdhis, and optional metadata/entity_key/entity_name/entity_table. Used to avoid ID collisions and to track reserved IDs per node and type.
+- **Category:** Core System / Registry
+- **Status:** Active (in install_new_lupopedia.sql)
+- **Version introduced:** 4.0.x
 
-## 2. Schema Reference
-Primary Key: registry_id
-Field Categories: see full field list below.
+## Where This Table Is Used
 
-### All Fields
-| Column | Type | Notes |
-|---|---|---|
-| registry_id | bigint NOT NULL auto_increment | from TOON |
-| entity_type | varchar(50) NOT NULL | from TOON |
-| entity_index_id | bigint NOT NULL DEFAULT 0 | from TOON |
-| entity_index | bigint NOT NULL DEFAULT 0 | from TOON |
-| federation_node_id | bigint NOT NULL DEFAULT 0 | from TOON |
-| reserved_ymdhis | bigint NOT NULL DEFAULT 0 | from TOON |
-| metadata | text | from TOON |
-| entity_key | varchar(255) | from TOON |
-| entity_name | varchar(255) | from TOON |
-| entity_table | varchar(255) | from TOON |
-| created_ymdhis | bigint NOT NULL DEFAULT 0 | from TOON |
-| updated_ymdhis | bigint NOT NULL DEFAULT 0 | from TOON |
-| is_deleted | tinyint NOT NULL DEFAULT 0 | from TOON |
-| deleted_ymdhis | bigint | from TOON |
-| is_active | tinyint NOT NULL DEFAULT 1 | from TOON |
-| is_kernel | tinyint NOT NULL DEFAULT 0 | from TOON |
-| metadata_json | text | from TOON |
+- **ID reservation and allocation:** Application allocates or reserves IDs for registry-backed tables (e.g. actors, channels) by consulting or inserting rows keyed by entity_type and federation_node_id; entity_index_id and entity_index support next-ID or range semantics.
+- **Federation scoping:** federation_node_id scopes registry entries per node; unique constraint on (entity_type, entity_index_id, federation_node_id) prevents duplicate reservations per node.
+- **Entity metadata:** entity_key, entity_name, entity_table, metadata, metadata_json store optional context for the registered entity; is_kernel and is_active support system vs user entities.
 
-## 3. Relationships and Dependencies
-- Primary relationships: not specified in TOON relationships array.
-- Referencing tables: unknown (use edge suggester tool).
-- Integration points: see outbound edges in lupopedia.edges.
+## Column Documentation
 
-## 4. Indexes and Performance
-Primary Indexes:
-- registry_id
-Performance Indexes:
-- idx_registry_entity_type
-- idx_registry_federation_node
-- idx_registry_unique
-Index Strategy: derived from TOON index definitions.
+| Column | Type | Nullable | Default | Description |
+|--------|------|----------|---------|-------------|
+| registry_id | bigint | No | — | Primary key. |
+| entity_type | varchar(50) | No | — | Entity type (e.g. actor, channel). |
+| entity_index_id | bigint | No | 0 | Entity index identifier. |
+| entity_index | bigint | No | 0 | Entity index value. |
+| federation_node_id | bigint | No | 0 | Federation node. |
+| reserved_ymdhis | bigint | No | 0 | Reservation timestamp (BIGINT UTC). |
+| metadata | text | Yes | NULL | Legacy metadata. |
+| entity_key | varchar(255) | Yes | NULL | Optional entity key. |
+| entity_name | varchar(255) | Yes | NULL | Optional entity name. |
+| entity_table | varchar(255) | Yes | NULL | Optional table name. |
+| created_ymdhis | bigint | No | 0 | Creation timestamp (BIGINT UTC). |
+| updated_ymdhis | bigint | No | 0 | Last update timestamp (BIGINT UTC). |
+| is_deleted | tinyint | No | 0 | Soft delete flag. |
+| deleted_ymdhis | bigint | Yes | NULL | Soft delete timestamp. |
+| is_active | tinyint | No | 1 | Active flag. |
+| is_kernel | tinyint | No | 0 | Kernel/system entity flag. |
+| metadata_json | text | Yes | NULL | JSON metadata. |
 
-## 5. Usage Patterns
-Common Queries:
-```sql
-SELECT * FROM lupo_registry WHERE registry_id = :id;
-SELECT COUNT(*) AS total FROM lupo_registry WHERE is_deleted = 0;
-SELECT * FROM lupo_registry ORDER BY registry_id DESC LIMIT 25;
-UPDATE lupo_registry SET updated_ymdhis = :ts WHERE registry_id = :id;
-```
-Best Practices: always filter soft deletes where applicable.
-Anti-Patterns: avoid full table scans on large datasets.
+## Indexes
 
-## 6. Performance Considerations
-- High-volume operations: dependent on feature usage.
-- Optimization tips: rely on existing indexes; add new indexes only with TOON updates.
-- Scaling considerations: paginate reads and batch writes.
+- **PRIMARY KEY:** registry_id
+- **UNIQUE:** idx_registry_unique (entity_type, entity_index_id, federation_node_id)
+- **INDEX:** idx_registry_entity_type (entity_type), idx_registry_federation_node (federation_node_id)
 
-## 7. Data Integrity
-- Constraints: see NOT NULL and DEFAULT values in TOON fields.
-- Validation rules: enforced at application layer.
-- Soft delete: use is_deleted/deleted_ymdhis if present.
+## Relationships
 
-## 8. Common Issues and Solutions
-- Performance issues: add missing indexes via schema update.
-- Data consistency: ensure foreign key relationships are enforced in application logic.
-- Troubleshooting: compare against TOON schema for mismatches.
+- **Logical references (no DB FKs):** federation_node_id → lupo_federation_nodes. Application uses this table to allocate or reserve IDs for lupo_actors, lupo_channels, and other registry-backed entities.
 
-## 9. Future Enhancements
-- Enrich relationships with discovered edges.
-- Add usage-specific examples once feature usage is known.
+## Doctrine notes
+
+- No database foreign keys; referential integrity enforced in application code.
+- All timestamps BIGINT UTC YYYYMMDDHHIISS.
+- Reserved-ID doctrine: application supplies explicit IDs for registry-backed tables; this table supports allocation and collision avoidance.
+- Soft delete: filter `is_deleted = 0` unless querying deleted rows.

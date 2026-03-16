@@ -9,6 +9,7 @@ lupopedia.headers:
   delegation_chain: "1002:10000"
   artifact_type: "documentation"
   purpose: "Index and overview for Lupopedia database table documentation"
+  namespace: "core"
   dialog_message: "Consolidated redundant headers and merged outbound edges for canonical documentation index."
   mood_rgb: "4169E1"
   traits: ["canonical", "documentation", "index", "structure", "v4.0.52"]

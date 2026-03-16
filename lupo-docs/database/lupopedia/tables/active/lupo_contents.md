@@ -1,8 +1,8 @@
 ---
 lupopedia.headers:
-  lupopedia.version: "4.0.77"
+  lupopedia.version: "4.0.78"
   lupopedia.schema: "database_table"
-  system_version: "4.0.77"
+  system_version: "4.0.78"
   file_path_from_root: "lupo-docs/database/lupopedia/tables/active/lupo_contents.md"
   web_path: "[lupo_contents](http://www.lupopedia.com/database/lupopedia/tables/active/lupo_contents)"
   last_modified_utc: "20260316"
@@ -11,7 +11,8 @@ lupopedia.headers:
   artifact_type: "table_documentation"
   artifact_kind: "table"
   purpose: "Documentation for lupo_contents table - primary content records for knowledge and documentation entities"
-  traits: ["canonical", "content", "knowledge", "v4.0.77"]
+  namespace: "content"
+  traits: ["canonical", "content", "knowledge", "v4.0.78"]
   tags: ["database", "content", "knowledge", "collections"]
   doctrine_note: "No database foreign keys; referential integrity enforced in application code."
 
@@ -24,7 +25,7 @@ lupopedia.edges:
     - { to: "lupo-docs/database/lupopedia/tables/active/lupo_collections.md", type: "references", weight: 0.9 }
 
 lupopedia.footer:
-  version: "4.0.77"
+  version: "4.0.78"
   last_verified: "20260316"
   last_verified_by: "cursor"
 ---

@@ -5,10 +5,13 @@
  * Or: from lupo.php "headers validate <path>", require this file and call validate_lupopedia_headers($path).
  * Returns: array of error strings (empty if valid). Exit 0 if valid, 1 if invalid; errors to stderr when run as CLI.
  * 4.0.77: partial implementation — checks file order, required block/fields, snapshot comment.
+ * 4.0.78: namespace validation — table docs require namespace; value must be in approved taxonomy.
  *
  * @param string $path Path to .md file
  * @return array List of error messages
  */
+$GLOBALS['lupopedia_headers_approved_namespaces'] = array('auth', 'channels', 'core', 'content', 'analytics', 'federation', 'governance', 'integration', 'legacy');
+
 function validate_lupopedia_headers($path) {
     $errors = array();
     if (!is_file($path)) {
@@ -93,6 +96,25 @@ function validate_lupopedia_headers($path) {
         if (!preg_match('/comment\s*:/', $yaml_block)) {
             $errors[] = "lupopedia.engagement block must contain a comment field.";
         }
+    }
+
+    // 9. Namespace (4.0.78): table docs require namespace; value must be in approved taxonomy
+    $is_table_doc = (strpos(str_replace('\\', '/', $path), 'lupo-docs/database/lupopedia/tables/') !== false);
+    $namespace_value = null;
+    if (preg_match('/^\s*namespace\s*:\s*["\']?([a-z_]+)["\']?\s*$/m', $yaml_block, $m)) {
+        $namespace_value = trim($m[1]);
+    } elseif (preg_match('/^\s*namespace\s*:\s*(.+)\s*$/m', $yaml_block, $m)) {
+        $namespace_value = trim(trim($m[1]), '"\'');
+    }
+    $approved = isset($GLOBALS['lupopedia_headers_approved_namespaces']) ? $GLOBALS['lupopedia_headers_approved_namespaces'] : array('auth', 'channels', 'core', 'content', 'analytics', 'federation', 'governance', 'integration', 'legacy');
+    if ($is_table_doc) {
+        if ($namespace_value === null || $namespace_value === '') {
+            $errors[] = "Table documentation requires 'namespace' in lupopedia.headers (approved: " . implode(', ', $approved) . ").";
+        } elseif (!in_array($namespace_value, $approved, true)) {
+            $errors[] = "Invalid namespace value '" . $namespace_value . "'; must be one of: " . implode(', ', $approved) . ".";
+        }
+    } elseif ($namespace_value !== null && $namespace_value !== '' && !in_array($namespace_value, $approved, true)) {
+        $errors[] = "Invalid namespace value '" . $namespace_value . "'; must be one of: " . implode(', ', $approved) . ".";
     }
 
     return $errors;
