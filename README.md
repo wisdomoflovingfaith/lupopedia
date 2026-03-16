@@ -46,12 +46,12 @@ lupopedia.metadata:
     - { schema_ref: "lupo_metadata", entity_type: "file", meta_type: "property", property_value: "cursor", channel_id: 42, class_name: "lupopedia_metadata", created_ymdhis: 20260313000000, updated_ymdhis: 20260313000000 }
 
 lupopedia.headers:
-  lupopedia.version: "4.0.78"
+  lupopedia.version: "4.0.79"
   lupopedia.schema: "documentation"
   file_path_from_root: "README.md"
   web_path: "http://www.lupopedia.com/"
-  last_modified_utc: "20260315"
-  system_version: "4.0.78"
+  last_modified_utc: "20260316"
+  system_version: "4.0.79"
   channel_id: 42
   actor_id: 102
   actor_name: "cursor"

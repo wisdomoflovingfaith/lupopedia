@@ -26,10 +26,10 @@ lupopedia.comments:
   - { comment_id: 2, channel_id: 42, actor_id: 102, actor_name: "cursor", faucet_id: 102, faucet_name: "cursor", comment_text: "Second example comment for 4.0.73 to demonstrate multiple comment records in the lupopedia.comments block.", comment_type: "comment", created_ymdhis: 20260313151500, updated_ymdhis: 20260313151500 }
 
 lupopedia.headers:
-  lupopedia.version: "4.0.78"
+  lupopedia.version: "4.0.79"
   lupopedia.schema: "documentation"
   file_path_from_root: "CHANGELOG.md"
-  system_version: "4.0.78"
+  system_version: "4.0.79"
   last_modified_utc: "20260316"
   channel_id: 42
   actor_id: 1
@@ -52,7 +52,7 @@ lupopedia.edges:
  
 lupopedia.footer:
   archive_note: "For historical changelog entries from 4.0.67 and earlier, see CHANGELOG_ARCHIVE.md"
-  version: "4.0.78"
+  version: "4.0.79"
   last_verified: "20260316"
   last_verified_by: "cursor"
   orchestrator: "wolfie"
@@ -73,11 +73,25 @@ Older entries (≤4.0.67) are archived in [CHANGELOG_ARCHIVE.md](CHANGELOG_ARCHI
 
 ---
 
-## 4.0.78 — Active development (post–4.0.77 release)
+## 4.0.79 — Active development (post–4.0.78 release)
 
 **Opened:** 2026-03-16
 
-Version bump after 4.0.77 release and tag. **Active development version.** All canonical version markers and atoms updated to 4.0.78. Unfinished work from 4.0.77 carried forward.
+Version bump after 4.0.78 release and tag. **Active development version.** All canonical version markers and atoms updated to 4.0.79. Unfinished work from 4.0.78 carried forward.
+
+#### Carried forward into 4.0.79
+- **Remaining Top 50 table documentation:** Auth (lupo_auth_providers, lupo_auth_audit_log, lupo_banned_actors, lupo_bans_log); content (lupo_content_versions, lupo_content_revisions, lupo_content_tags, lupo_content_collections); analytics (lupo_unified_log, lupo_analytics_campaign_vars, lupo_analytics_events); core (lupo_agents, lupo_actor_channels); remaining tables from install SQL to round out Top 50. Authority: [review_of_cursor_cleanup_and_top_50_table_plan.md](lupo-docs/status/review_of_cursor_cleanup_and_top_50_table_plan.md).
+- **Bounded cleanup:** Header version update for remaining Top 50 scope; add LUPOPEDIA_HEADERS to TABLE_INDEX.md (only doc missing headers); namespace compliance for Top 50; duplicate/FLARE cleanup only for high-priority table docs.
+- **Optional:** Markdown-from-TOON automation; repo-wide table-doc/schema alignment validation.
+- **Completed 4.0.78 work is closed** and not repeated; 25 table docs shipped in 4.0.78. See [4.0.79 PLAN](lupo-docs/versions/4.0.79/PLAN.md) and [TODO](lupo-docs/versions/4.0.79/TODO.md).
+
+---
+
+## 4.0.78 — Released (Top 50 reframing phase)
+
+**Release Date:** 2026-03-16
+
+**Released and tagged 4.0.78.** Version bump after 4.0.77 release. All canonical version markers and atoms updated to 4.0.78. Top 50 reframing completed; unfinished work carried forward to 4.0.79.
 
 #### Carried forward from 4.0.77 (4.0.78)
 - **Table documentation initiative:** Priority 1 (lupo_channels, lupo_actors refresh), Priority 2 (lupo_actor_apps, lupo_channel_departments, lupo_edge_type_definitions), Priority 3 (lupo_analytics_visits, lupo_audit_log, lupo_system_logs). Use Zencoder pattern and [TABLE_DOCUMENTATION_4_0_77_STOP_LINE.md](lupo-docs/status/TABLE_DOCUMENTATION_4_0_77_STOP_LINE.md) for next-step guidance.

@@ -1,25 +1,28 @@
 # file: Lupopedia Version History — session: L-LUPO-ANTIGRAVITY — delegation: antigravity:cursor:captain  — web_path: http://www.lupopedia.com/docs/version
 ---
 lupopedia.headers:
-  lupopedia.version: "4.0.78"
+  lupopedia.version: "4.0.79"
   lupopedia.schema: "documentation"
   file_path_from_root: "lupo-docs/version.md"
   last_modified_utc: "20260316"
-  system_version: "4.0.78"
+  system_version: "4.0.79"
   purpose: "Version history and upgrade notes for Lupopedia"
-  traits: ["versioning", "v4.0.78", "multi-agent", "evolution"]
+  traits: ["versioning", "v4.0.79", "multi-agent", "evolution"]
   tags: ["version", "changelog", "upgrade"]
 ---
 
 # Lupopedia version history
 
-Current version: **4.0.78**  
+Current version: **4.0.79**  
 Date: 2026-03-16
 
-## Summary of changes (4.0.78)
+## Summary of changes (4.0.79)
 
-- **Version bump:** Post–4.0.77 release. Active development version. All canonical version markers and atoms updated to 4.0.78. Unfinished work from 4.0.77 carried forward: table documentation initiative (Priority 1–3 tables, mass header cleanup), optional markdown-from-TOON automation, repo-wide doc/schema validation. See [TABLE_DOCUMENTATION_4_0_77_STOP_LINE.md](status/TABLE_DOCUMENTATION_4_0_77_STOP_LINE.md) and `lupo-docs/versions/4.0.78/PLAN.md`, `TODO.md`. No Lupopedia→Lupopedia upgrade path before 4.1.0.
-- **Namespace doctrine and cleanup (4.0.78):** Namespace formalized as first-class field in LUPOPEDIA_HEADERS (required for table docs; approved taxonomy). Validator enhanced; audit report generated; systematic namespace added/normalized across table documentation. See CHANGELOG.md § Cursor — Namespace doctrine, validator, audit, and cleanup.
+- **Version bump:** Post–4.0.78 release. Active development version. All canonical version markers and atoms updated to 4.0.79. Unfinished work from 4.0.78 carried forward: remaining Top 50 operational table documentation, bounded header/namespace cleanup (TABLE_INDEX.md missing headers, Top 50 scope). See [lupo-docs/versions/4.0.79/PLAN.md](versions/4.0.79/PLAN.md) and [TODO.md](versions/4.0.79/TODO.md). No Lupopedia→Lupopedia upgrade path before 4.1.0.
+
+## Summary of changes (4.0.78) — Released 2026-03-16
+
+- **Released and tagged.** Top 50 reframing; 25 table docs completed (lupo_actors, lupo_channels, lupo_contents, lupo_sessions, lupo_comments, lupo_uploads, lupo_visits, lupo_dialog_messages, lupo_agent_faucets, lupo_actor_apps, lupo_channel_departments, lupo_edge_type_definitions, lupo_analytics_visits, lupo_audit_log, lupo_system_logs, lupo_metadata, lupo_atoms, lupo_collections, lupo_departments, lupo_registry, lupo_modules, lupo_federation_nodes, lupo_auth_users). Namespace doctrine, validator, audit, and cleanup. See CHANGELOG.md for full 4.0.78 record.
 
 ## Summary of changes (4.0.77) — Released 2026-03-16
 
