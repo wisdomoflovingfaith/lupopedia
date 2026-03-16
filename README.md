@@ -46,12 +46,12 @@ lupopedia.metadata:
     - { schema_ref: "lupo_metadata", entity_type: "file", meta_type: "property", property_value: "cursor", channel_id: 42, class_name: "lupopedia_metadata", created_ymdhis: 20260313000000, updated_ymdhis: 20260313000000 }
 
 lupopedia.headers:
-  lupopedia.version: "4.0.77"
+  lupopedia.version: "4.0.78"
   lupopedia.schema: "documentation"
   file_path_from_root: "README.md"
   web_path: "http://www.lupopedia.com/"
   last_modified_utc: "20260315"
-  system_version: "4.0.77"
+  system_version: "4.0.78"
   channel_id: 42
   actor_id: 102
   actor_name: "cursor"
@@ -89,25 +89,25 @@ lupopedia.edges:
   semantic_tags: ["project_overview", "onboarding", "semantic_os", "multi_agent", "root_rules"]
 
 lupopedia.footer:
-  version: "4.0.77"
+  version: "4.0.78"
   last_verified: "20260315"
   last_verified_by: "cursor"
   orchestrator: "cursor"
   next_action:
     - "Point new contributors to Required Reading (INIT_README, LUPOPEDIA_HEADERS), lupo-rules/root/, and actor registration checklist (lupo-docs/ACTOR_REGISTRATION_CHECKLIST.md)"
-    - "Keep Getting Started and install steps aligned with 4.0.77"
+    - "Keep Getting Started and install steps aligned with 4.0.78"
     - "Review actor/faucet and registration guidance when doctrine paths change"
 ---
 # file: Lupopedia README — session: L-LUPO-ROOT-CURSOR — delegation: cursor:root — web_path: http://www.lupopedia.com/
 
-# Lupopedia Semantic OS v4.0.77
+# Lupopedia Semantic OS v4.0.78
 
-[![Version](https://img.shields.io/badge/version-4.0.77-blue.svg)](lupo-docs/version.md)
+[![Version](https://img.shields.io/badge/version-4.0.78-blue.svg)](lupo-docs/version.md)
 [![docs](https://img.shields.io/badge/docs-HELP.md-green)](lupo-docs/HELP.md)
 
 ---
 
-**Current version: [v4.0.77](lupo-docs/version.md)** (active development). **Released: [v4.0.76](lupo-docs/version.md).** Rules and governance updates: **canonical root rules** in `lupo-rules/root/`, IDE rule propagation (Cursor, Kiro, Windsurf, JetBrains), TOON path unified to `lupo-database/lupopedia/toon/`, `lupo-database/` security hardening, and **Antigravity VSX Extension** integration (including full LUPOPEDIA HEADERS terminology adoption and feature UI scaffolding). The only supported upgrade path is **Crafty Syntax 3.7.5 → Lupopedia 4.0.x**. See [plan.md](plan.md) and [report.md](report.md).
+**Current version: [v4.0.78](lupo-docs/version.md)** (active development). **Released: [v4.0.77](lupo-docs/version.md), [v4.0.76](lupo-docs/version.md).** Rules and governance updates: **canonical root rules** in `lupo-rules/root/`, IDE rule propagation (Cursor, Kiro, Windsurf, JetBrains), TOON path unified to `lupo-database/lupopedia/toon/`, `lupo-database/` security hardening, and **Antigravity VSX Extension** integration (including full LUPOPEDIA HEADERS terminology adoption and feature UI scaffolding). The only supported upgrade path is **Crafty Syntax 3.7.5 → Lupopedia 4.0.x**. See [plan.md](plan.md) and [report.md](report.md).
 
 **Canonical root rules:** All agents and actors must follow the doctrine in **`lupo-rules/root/`**. Agent-specific rule files (e.g. `.cursor/rules/`, `.kiro/rules/`, `.windsurf/rules/`) are **derived** from those root rules; the root is the single source of truth. See [Canonical root rules](#canonical-root-rules) and [New agent onboarding](#new-agent--web-terminal-agent-onboarding).
 
@@ -361,4 +361,4 @@ See `CONTRIBUTING.md`. All contributions should follow doctrine: UTC YmdHis time
 See `license.txt` in the repository. Free to use, modify, and distribute under the terms specified there.
 
 ---
-*Lupopedia 4.0.77 — a semantic operating system orchestrated by humans and AI agents across channels, artifacts, and federation nodes. Canonical doctrine: lupo-rules/root/.*
+*Lupopedia 4.0.78 — a semantic operating system orchestrated by humans and AI agents across channels, artifacts, and federation nodes. Canonical doctrine: lupo-rules/root/.*

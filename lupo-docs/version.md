@@ -1,24 +1,28 @@
 # file: Lupopedia Version History — session: L-LUPO-ANTIGRAVITY — delegation: antigravity:cursor:captain  — web_path: http://www.lupopedia.com/docs/version
 ---
 lupopedia.headers:
-  lupopedia.version: "4.0.77"
+  lupopedia.version: "4.0.78"
   lupopedia.schema: "documentation"
   file_path_from_root: "lupo-docs/version.md"
   last_modified_utc: "20260316"
-  system_version: "4.0.77"
+  system_version: "4.0.78"
   purpose: "Version history and upgrade notes for Lupopedia"
-  traits: ["versioning", "v4.0.77", "multi-agent", "evolution"]
+  traits: ["versioning", "v4.0.78", "multi-agent", "evolution"]
   tags: ["version", "changelog", "upgrade"]
 ---
 
 # Lupopedia version history
 
-Current version: **4.0.77**  
+Current version: **4.0.78**  
 Date: 2026-03-16
 
-## Summary of changes (4.0.77)
+## Summary of changes (4.0.78)
 
-- **Version bump:** Post–4.0.76 release. Active development version. All canonical version markers and atoms updated to 4.0.77. Core validation task for 4.0.77: **Crafty Syntax 3.7.5 Upgrade Validation** (drop tables → load Crafty 3.7.5 baseline → run install.php → validate upgrade into 4.0.77). No Lupopedia→Lupopedia upgrade path before 4.1.0. See [UPGRADE_POLICY_DOCTRINE.md](doctrine/UPGRADE_POLICY_DOCTRINE.md) for the canonical 4.0.x upgrade policy.
+- **Version bump:** Post–4.0.77 release. Active development version. All canonical version markers and atoms updated to 4.0.78. Unfinished work from 4.0.77 carried forward: table documentation initiative (Priority 1–3 tables, mass header cleanup), optional markdown-from-TOON automation, repo-wide doc/schema validation. See [TABLE_DOCUMENTATION_4_0_77_STOP_LINE.md](status/TABLE_DOCUMENTATION_4_0_77_STOP_LINE.md) and `lupo-docs/versions/4.0.78/PLAN.md`, `TODO.md`. No Lupopedia→Lupopedia upgrade path before 4.1.0.
+
+## Summary of changes (4.0.77) — Released 2026-03-16
+
+- **Released and tagged.** Constitutional root rules, LUPOPEDIA_HEADERS enhancements, Bayesian Decision foundation, Zencoder/Windsurf/Cursor table documentation initiative with stop line, header tooling (export/import/validate), Crafty 3.7.5 → 4.0.77 upgrade validation. See CHANGELOG.md for full 4.0.77 record.
 
 ## Summary of changes (4.0.76)
 

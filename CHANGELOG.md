@@ -26,10 +26,10 @@ lupopedia.comments:
   - { comment_id: 2, channel_id: 42, actor_id: 102, actor_name: "cursor", faucet_id: 102, faucet_name: "cursor", comment_text: "Second example comment for 4.0.73 to demonstrate multiple comment records in the lupopedia.comments block.", comment_type: "comment", created_ymdhis: 20260313151500, updated_ymdhis: 20260313151500 }
 
 lupopedia.headers:
-  lupopedia.version: "4.0.77"
+  lupopedia.version: "4.0.78"
   lupopedia.schema: "documentation"
   file_path_from_root: "CHANGELOG.md"
-  system_version: "4.0.77"
+  system_version: "4.0.78"
   last_modified_utc: "20260316"
   channel_id: 42
   actor_id: 1
@@ -52,7 +52,7 @@ lupopedia.edges:
  
 lupopedia.footer:
   archive_note: "For historical changelog entries from 4.0.67 and earlier, see CHANGELOG_ARCHIVE.md"
-  version: "4.0.77"
+  version: "4.0.78"
   last_verified: "20260316"
   last_verified_by: "cursor"
   orchestrator: "wolfie"
@@ -73,11 +73,24 @@ Older entries (≤4.0.67) are archived in [CHANGELOG_ARCHIVE.md](CHANGELOG_ARCHI
 
 ---
 
-## 4.0.77 — Active development (post–4.0.76 release)
+## 4.0.78 — Active development (post–4.0.77 release)
+
+**Opened:** 2026-03-16
+
+Version bump after 4.0.77 release and tag. **Active development version.** All canonical version markers and atoms updated to 4.0.78. Unfinished work from 4.0.77 carried forward.
+
+#### Carried forward from 4.0.77 (4.0.78)
+- **Table documentation initiative:** Priority 1 (lupo_channels, lupo_actors refresh), Priority 2 (lupo_actor_apps, lupo_channel_departments, lupo_edge_type_definitions), Priority 3 (lupo_analytics_visits, lupo_audit_log, lupo_system_logs). Use Zencoder pattern and TABLE_DOCUMENTATION_4_0_77_STOP_LINE.md for next-step guidance.
+- **Header/version cleanup:** Mass update of 80+ table docs with outdated headers (4.0.73 or earlier) to 4.0.78 where appropriate; prefer when materially improving a doc.
+- **Optional:** Markdown-from-TOON automation; repo-wide table-doc/schema alignment validation.
+
+---
+
+## 4.0.77 — Released (documentation stop line and multi-agent integration)
 
 **Release Date:** 2026-03-16
 
-Version bump after 4.0.76 release and tag. **Active development version.** All canonical version markers and atoms updated to 4.0.77. No Lupopedia→Lupopedia upgrade path before 4.1.0.
+**Released and tagged 4.0.77.** Version bump after 4.0.76 release. All canonical version markers and atoms updated to 4.0.77. Table documentation initiative reached stop line (Zencoder → Windsurf → Cursor); unfinished work deferred to 4.0.78. No Lupopedia→Lupopedia upgrade path before 4.1.0.
 
 #### Constitutional Root Rules Consolidation (4.0.77)
 - **Constitutional Root Rules:** Created `lupo-rules/root/LUPOPEDIA_CONSTITUTIONAL_ROOT_RULES.md` - Single source of absolute constitutional rules consolidating and superseding 18 fragmented root rules. Covers 8 constitutional categories: Database Doctrine, Time/Planning, Identity/Lineage, Application Logic, Documentation, Multi-Agent Safety, Federation, Semantic OS. Includes 76 constitutional rules with complete coverage of all aspects previously scattered across fragmented files.
@@ -171,6 +184,7 @@ Version bump after 4.0.76 release and tag. **Active development version.** All c
 - **Table documentation continuation:** Cursor (102), as lead agent, continued the Zencoder → Windsurf table documentation initiative. Improved **lupo_sessions.md** and **lupo_contents.md** with 4.0.77 LUPOPEDIA_HEADERS, explicit "Where This Table Is Used" sections, schema-aligned descriptions, and doctrine notes, following the pattern established by Zencoder's four development table docs.
 - **Stop line and handoff:** Created `lupo-docs/status/TABLE_DOCUMENTATION_4_0_77_STOP_LINE.md` defining what 4.0.77 accomplished (recovery, Windsurf TOON/backlog, Cursor priority doc improvements) and what moves to 4.0.78 (remaining 161-table modernization, mass header cleanup, optional automation). Clear next-step guidance for future agents; no ambiguity about "done" vs "deferred."
 - **Truth surfaces updated:** CHANGELOG, PLAN.md, TODO.md, and status docs (report_and_next_implementation_for_cursor, zencoder_takeover_by_windsurf_4.0.77, report_on_what_needs_to_be_reassigned) updated to reflect completion state and 4.0.78 handoff.
+- **Deferred to 4.0.78:** Full 161-table documentation modernization, mass header/version cleanup (80+ files), remaining priority tables (lupo_channels, lupo_actors, lupo_actor_apps, lupo_channel_departments, lupo_edge_type_definitions, lupo_analytics_visits, lupo_audit_log, lupo_system_logs), optional markdown-from-TOON automation, repo-wide doc/schema validation. See `lupo-docs/status/TABLE_DOCUMENTATION_4_0_77_STOP_LINE.md` and `lupo-docs/versions/4.0.78/PLAN.md`, `TODO.md`.
 
 ---
 
