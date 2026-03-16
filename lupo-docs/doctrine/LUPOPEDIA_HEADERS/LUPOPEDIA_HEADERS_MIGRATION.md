@@ -4,7 +4,7 @@ lupopedia.headers:
   lupopedia.schema: "doctrine"
   system_version: "4.0.69"
   file_path_from_root: "lupo-docs/doctrine/LUPOPEDIA_HEADERS/LUPOPEDIA_HEADERS_MIGRATION.md"
-  web_path: "http://www.lupopedia.com/doctrine/LUPOPEDIA_HEADERS/LUPOPEDIA_HEADERS_MIGRATION"
+  web_path: "[web_path](http://www.lupopedia.com/doctrine/LUPOPEDIA_HEADERS/LUPOPEDIA_HEADERS_MIGRATION)"
   title: "LUPOPEDIA HEADERS Migration"
   delegation_chain: "cursor:root"
   artifact_type: "doctrine"

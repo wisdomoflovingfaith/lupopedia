@@ -1,5 +1,5 @@
--- Seed: lupo_projects (4.0.76). Run after install. project_id application-assigned, no AUTO_INCREMENT.
--- See PROJECT_REGISTRY_SCHEMA_DESIGN.md, create_lupo_projects.sql.md.
+-- Seed: lupo_projects (4.0.77). Run after install. project_id application-assigned, no AUTO_INCREMENT.
+-- Reserved project_id 0 = lupopedia-core. See PROJECT_REGISTRY_SCHEMA_DESIGN.md, create_lupo_projects.sql.md.
 
 INSERT INTO lupo_projects (
   project_id,
@@ -11,6 +11,7 @@ INSERT INTO lupo_projects (
   orchestrator_id,
   project_type,
   description,
+  github_repository,
   status,
   is_active,
   is_deleted,
@@ -23,7 +24,7 @@ INSERT INTO lupo_projects (
   created_by_actor_id,
   updated_by_actor_id
 ) VALUES (
-  1,
+  0,
   'lupopedia-core',
   'lupopedia-core',
   'Lupopedia Core Development',
@@ -32,6 +33,7 @@ INSERT INTO lupo_projects (
   1,
   'standard',
   'Primary Lupopedia semantic OS instance; default development project.',
+  'https://github.com/wisdomoflovingfaith/lupopedia',
   'active',
   1,
   0,

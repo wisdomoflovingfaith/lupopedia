@@ -1,15 +1,36 @@
 ---
 lupopedia.init:
+  # Required reading for new or existing IDE agents (onboarding). Read in order when joining or resuming work.
+  # Scripts exist that re-generate header snapshots (e.g. export/import from lupo_metadata, propagate_agent_rules); this init block may be updated by tooling.
   required_reading:
+    - path: "ONBOARDING.md"
+      reason: "Operational quick-start; first file for new or existing IDE agents"
+    - path: "README.md"
+      reason: "High-level overview, install, canonical root rules, and required reading"
     - path: "lupo-docs/INIT_README.md"
-      reason: "Prerequisites and 'Before You Read This File'"
+      reason: "Prerequisites and init doctrine before working with lupopedia.init"
     - path: "lupo-docs/doctrine/LUPOPEDIA_HEADERS/README.md"
-      reason: "Header format and block order"
+      reason: "Header format, block order, and file structure"
     - path: "AGENTS.md"
-      reason: "Agent/faucet distinction and lead orchestration"
+      reason: "Agent/faucet distinction, lead orchestration, and IDE faucet roles"
+    - path: "lupo-rules/root/README.md"
+      reason: "Root rules index and non-negotiable constraints"
+    - path: "lupo-docs/ACTOR_REGISTRATION_CHECKLIST.md"
+      reason: "Register as an actor (new IDE or external agent)"
+    - path: "lupo-docs/doctrine/AGENT_REGISTRY.md"
+      reason: "Canonical actor identity, propagation targets, and IDE roles"
+    - path: "CHANGELOG.md"
+      reason: "Current version and latest changes"
+    - path: "EXECUTIVE_SUMMARY.md"
+      reason: "Philosophy and architecture (why the system is designed this way)"
+    - path: "plan.md"
+      reason: "Current implementation plan"
+    - path: "report.md"
+      reason: "Current status and report"
   required_context:
-    - "lupo-docs/ is the canonical documentation root; lupo-docs/ does not exist at project root."
+    - "lupo-docs/ is the canonical documentation root."
     - "Cursor (actor_id 102) is lead orchestration; install SQL is schema authority."
+    - "Scripts re-generate header snapshots; do not assume init/header content is hand-only."
 
 lupopedia.metadata:
   comment: "Snapshot of metadata for this file or entity at artifact creation."
@@ -118,9 +139,14 @@ lupopedia.footer:
 
 Lupopedia is **doctrine-driven** and **header-driven**. To avoid invalid initialization, broken headers, or corrupted doctrine lineage, read the following in order before working with `lupopedia.init` or editing LUPOPEDIA HEADERS:
 
-1. **[lupo-docs/INIT_README.md](lupo-docs/INIT_README.md)** — Prerequisites and "Before You Read This File" for anything that uses `lupopedia.init`.
-2. **[lupo-docs/doctrine/LUPOPEDIA_HEADERS/](lupo-docs/doctrine/LUPOPEDIA_HEADERS/README.md)** — Header format, file order (first line `---`, identity line after closing `---`), and block order.
-3. **[lupo-docs/doctrine/init/LUPO_INITIALIZATION_DOCTRINE.md](lupo-docs/doctrine/init/LUPO_INITIALIZATION_DOCTRINE.md)** — Full prerequisite doctrine list (versioning, directory structure, agent/faucet, semantic/collections) and why each is required.
+The **canonical, full onboarding reading list** is maintained in this file’s header at `lupopedia.init.required_reading` (top of file).
+
+Minimum required set (read in order):
+
+1. **[ONBOARDING.md](ONBOARDING.md)** — Operational quick-start; first file for new or existing IDE agents.
+2. **[lupo-docs/INIT_README.md](lupo-docs/INIT_README.md)** — Prerequisites and "Before You Read This File" for anything that uses `lupopedia.init`.
+3. **[lupo-docs/doctrine/LUPOPEDIA_HEADERS/README.md](lupo-docs/doctrine/LUPOPEDIA_HEADERS/README.md)** — Header format, file order (first line `---`, identity line after closing `---`), and block order.
+4. **[lupo-docs/doctrine/init/LUPO_INITIALIZATION_DOCTRINE.md](lupo-docs/doctrine/init/LUPO_INITIALIZATION_DOCTRINE.md)** — Full prerequisite doctrine list (versioning, directory structure, agent/faucet, semantic/collections) and why each is required.
 
 **`lupopedia.init` is not the first file to read.** Understanding LUPOPEDIA HEADERS and versioning first ensures correct initialization and validation.
 
@@ -255,7 +281,7 @@ This is one of the most important parts of Lupopedia. **LUPOPEDIA HEADERS** are 
 Lupopedia organizes itself via directories with the `lupo-` prefix: `/lupo-api`, `/lupo-uploads`, `/lupo-channels`, `/lupo-agents`, `/lupo-actors`, `/lupo-docs`, `/lupo-prompts`, and related `lupo-*` folders. These hold artifacts for documentation, channel content, agent/session data, uploaded objects, semantic references, and registry material. The **`legacy/`** folder is the intentional exception: it holds legacy read-only code (e.g. Crafty Syntax reference) and is not renamed to `lupo-legacy`.
 
 **Database domains:**
-The database schema is defined in `lupo-database/lupopedia/mysql/install/install_new_lupopedia.sql` — **install SQL is the authoritative schema source**. TOON files are **derived artifacts** (do not edit by hand); they are generated into `lupo-database/lupopedia/toon/` by `python lupo-scripts/generate_toon_from_sql.py` or `python lupo-scripts/generate_toon_files.py`. The former path is canonical (no longer `lupo-docs/toons/`). Canonical table count: **159** as of 4.0.77 (see [TABLE_COUNT_DOCTRINE](lupo-docs/doctrine/TABLE_COUNT_DOCTRINE.md)); table ceiling is advisory only. Domains include identity (`lupo_actors`, `lupo_auth_users`), orchestration (`lupo_agents`, `lupo_agent_faucets`), projects (`lupo_projects`), collaboration (`lupo_channels`, `lupo_dialog_messages`), semantics (`lupo_metadata`, `lupo_edges`, `lupo_collections`), telemetry (`lupo_sessions`), federation, and legacy migration. The `lupo-database/` directory is protected from direct web access (e.g. `.htaccess` hardening) so that schema and seed assets are not served over HTTP.
+The database schema is defined in `lupo-database/lupopedia/mysql/install/install_new_lupopedia.sql` — **install SQL is the authoritative schema source**. TOON files are **derived artifacts** (do not edit by hand); they are generated into `lupo-database/lupopedia/toon/` by `python lupo-scripts/generate_toon_from_sql.py` or `python lupo-scripts/generate_toon_files.py`. The former path is canonical (no longer `lupo-docs/toons/`). Canonical table count: **161** as of 4.0.77 (see [TABLE_COUNT_DOCTRINE](lupo-docs/doctrine/TABLE_COUNT_DOCTRINE.md)); table ceiling is advisory only. Domains include identity (`lupo_actors`, `lupo_auth_users`), orchestration (`lupo_agents`, `lupo_agent_faucets`), projects (`lupo_projects`), collaboration (`lupo_channels`, `lupo_dialog_messages`), semantics (`lupo_metadata`, `lupo_edges`, `lupo_collections`), telemetry (`lupo_sessions`), federation, and legacy migration. The `lupo-database/` directory is protected from direct web access (e.g. `.htaccess` hardening) so that schema and seed assets are not served over HTTP.
 
 **Doctrine reminder (non-standard architecture):** Lupopedia is not a conventional framework application. Critical constraints: **no foreign keys, triggers, stored procedures, or stored functions**; all logic in application code; **explicit column naming** on inserts where doctrine requires it; timestamps as **BIGINT UTC** in `YYYYMMDDHHIISS` format, set in PHP (e.g. `gmdate('YmdHis')`), never database-generated; **install SQL authoritative**, TOON derived; shared-hosting and unknown-environment assumptions; fallback-first behavior. These and other rules are codified in [lupo-rules/root/](lupo-rules/root/).
 
@@ -277,7 +303,8 @@ cd lupopedia
 Then visit: `https://your-host/lupopedia/install.php`
 
 ### Upgrade from Crafty Syntax 3.7.5
-The supported upgrade path is: **Crafty Syntax 3.7.5 → Lupopedia 4.0.x**
+The supported upgrade path is: **Crafty Syntax 3.7.5 → Lupopedia 4.0.x**. There is **no Lupopedia→Lupopedia upgrade** in 4.0.x; version-to-version upgrades start in 4.1.0. See [lupo-docs/doctrine/UPGRADE_POLICY_DOCTRINE.md](lupo-docs/doctrine/UPGRADE_POLICY_DOCTRINE.md) for the full policy.
+
 1. Back up the old database and files.
 2. Load/install Lupopedia schema + data seeds.
 3. Follow the migration mapping documentation. 

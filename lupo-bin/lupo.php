@@ -21,7 +21,7 @@ if (!$db && class_exists('DatabaseFactory')) {
 
 $argv = isset($GLOBALS['argv']) ? $GLOBALS['argv'] : array();
 $command = isset($argv[1]) ? $argv[1] : 'help';
-$need_db = ($command !== 'whoami' && $command !== 'context' && $command !== 'help' && $command !== 'docs' && $command !== 'version' && $command !== 'doctor' && $command !== 'doctor-context' && $command !== 'auth' && $command !== 'who' && $command !== 'actor-context' && $command !== 'skills');
+$need_db = ($command !== 'whoami' && $command !== 'context' && $command !== 'help' && $command !== 'docs' && $command !== 'version' && $command !== 'doctor' && $command !== 'doctor-context' && $command !== 'auth' && $command !== 'who' && $command !== 'actor-context' && $command !== 'skills' && $command !== 'headers');
 if (!$db && $need_db) {
     die("Error: Database connection failed.\n");
 }
@@ -608,6 +608,94 @@ try {
                 require_once ABSPATH . 'lupo-includes/classes/ContextKernel.php';
                 $argv_doc = isset($GLOBALS['argv']) ? $GLOBALS['argv'] : array();
                 lupo_doctor_context(ABSPATH, $db, $table_prefix, $state_file, $argv_doc);
+            }
+            break;
+        case 'headers':
+            $headers_sub = isset($argv[2]) ? trim($argv[2]) : '';
+            $headers_arg_index = 3;
+            $headers_path = isset($argv[$headers_arg_index]) ? trim($argv[$headers_arg_index]) : '';
+            if ($headers_path !== '' && !is_file($headers_path) && count($argv) > 4) {
+                $joined = implode('/', array_slice($argv, $headers_arg_index));
+                if (is_file($joined) || is_file(ABSPATH . $joined)) {
+                    $headers_path = $joined;
+                }
+            }
+            if ($headers_path !== '' && $headers_path[0] !== '/' && !preg_match('/^[a-zA-Z]:[\\\\\\/]/', $headers_path)) {
+                $headers_path = ABSPATH . $headers_path;
+            }
+            if ($headers_sub === 'validate') {
+                if ($headers_path === '' || !is_file($headers_path)) {
+                    echo "Usage: php lupo.php headers validate <path/to/file.md>\n";
+                    exit(1);
+                }
+                require_once ABSPATH . 'lupo-scripts/validate_lupopedia_headers.php';
+                $header_errors = validate_lupopedia_headers($headers_path);
+                if (count($header_errors) > 0) {
+                    foreach ($header_errors as $e) {
+                        fwrite(STDERR, "[headers:validate] " . $e . "\n");
+                    }
+                    exit(1);
+                }
+                echo "OK: LUPOPEDIA HEADERS valid.\n";
+            } elseif ($headers_sub === 'export') {
+                if ($headers_path === '' || !is_file($headers_path)) {
+                    echo "Usage: php lupo.php headers export <path/to/file.md> [--output=path] [--json]\n";
+                    exit(1);
+                }
+                require_once ABSPATH . 'lupo-scripts/export_lupopedia_headers.php';
+                $export_opts = array();
+                if (isset($argv[4])) {
+                    for ($ei = 4; $ei < count($argv); $ei++) {
+                        if (strpos($argv[$ei], '--output=') === 0) {
+                            $export_opts['output'] = trim(substr($argv[$ei], 9));
+                        }
+                        if ($argv[$ei] === '--json') {
+                            $export_opts['json'] = true;
+                        }
+                    }
+                }
+                $export_result = export_lupopedia_headers($headers_path, $export_opts);
+                if (!$export_result['success']) {
+                    fwrite(STDERR, "[headers:export] " . $export_result['error'] . "\n");
+                    exit(1);
+                }
+                if (isset($export_opts['output']) && $export_opts['output'] !== '') {
+                    $out = isset($export_opts['json']) && $export_opts['json'] ? json_encode(array('yaml' => $export_result['yaml'], 'body' => $export_result['body'])) : $export_result['yaml'];
+                    file_put_contents($export_opts['output'], $out);
+                    echo "Exported to " . $export_opts['output'] . "\n";
+                } else {
+                    echo $export_result['yaml'];
+                }
+            } elseif ($headers_sub === 'import') {
+                $source_arg = isset($argv[4]) ? trim($argv[4]) : '';
+                if ($headers_path === '' || !is_file($headers_path)) {
+                    echo "Usage: php lupo.php headers import <path/to/target.md> [path/to/source.yaml]\n";
+                    exit(1);
+                }
+                require_once ABSPATH . 'lupo-scripts/import_lupopedia_headers.php';
+                $yaml_content = '';
+                if ($source_arg !== '' && $source_arg !== '--' && is_file($source_arg)) {
+                    $yaml_content = file_get_contents($source_arg);
+                } elseif ($source_arg === '--' || $source_arg === '') {
+                    $yaml_content = @stream_get_contents(STDIN);
+                } elseif ($source_arg !== '' && !is_file($source_arg)) {
+                    $yaml_content = file_get_contents(ABSPATH . $source_arg);
+                }
+                if (trim($yaml_content) === '') {
+                    fwrite(STDERR, "[headers:import] No source: provide path to YAML file or pipe YAML via stdin.\n");
+                    exit(1);
+                }
+                $import_result = import_lupopedia_headers($headers_path, $yaml_content);
+                if (!$import_result['success']) {
+                    fwrite(STDERR, "[headers:import] " . $import_result['error'] . "\n");
+                    exit(1);
+                }
+                echo "OK: Header imported into " . $headers_path . "\n";
+            } else {
+                echo "Usage: php lupo.php headers <validate|export|import> <path> [options]\n";
+                echo "  validate <path/to/file.md>\n";
+                echo "  export   <path/to/file.md> [--output=path] [--json]\n";
+                echo "  import   <path/to/target.md> [path/to/source.yaml]\n";
             }
             break;
         case 'docs':

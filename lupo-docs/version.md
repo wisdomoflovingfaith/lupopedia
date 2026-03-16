@@ -18,7 +18,7 @@ Date: 2026-03-16
 
 ## Summary of changes (4.0.77)
 
-- **Version bump:** Post–4.0.76 release. Active development version. All canonical version markers and atoms updated to 4.0.77. Core validation task for 4.0.77: **Crafty Syntax 3.7.5 Upgrade Validation** (drop tables → load Crafty 3.7.5 baseline → run install.php → validate upgrade into 4.0.77). No Lupopedia→Lupopedia upgrade path before 4.1.0.
+- **Version bump:** Post–4.0.76 release. Active development version. All canonical version markers and atoms updated to 4.0.77. Core validation task for 4.0.77: **Crafty Syntax 3.7.5 Upgrade Validation** (drop tables → load Crafty 3.7.5 baseline → run install.php → validate upgrade into 4.0.77). No Lupopedia→Lupopedia upgrade path before 4.1.0. See [UPGRADE_POLICY_DOCTRINE.md](doctrine/UPGRADE_POLICY_DOCTRINE.md) for the canonical 4.0.x upgrade policy.
 
 ## Summary of changes (4.0.76)
 

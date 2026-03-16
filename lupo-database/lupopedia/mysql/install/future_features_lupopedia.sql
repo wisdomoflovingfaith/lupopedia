@@ -780,6 +780,89 @@ CREATE UNIQUE INDEX lupo_modules_departments_uniq_mod_dept ON lupo_modules_depar
 CREATE UNIQUE INDEX lupo_pack_role_registry_unique_agent_role ON lupo_pack_role_registry (agent_id);
 
 -- =============================================================================
+-- Bayesian Decision Tracking tables — MOVED to install_new_lupopedia.sql in v4.0.77
+-- lupo_decisions, lupo_decision_edges, lupo_decision_influences are now required
+-- tables and live in the canonical install SQL instead of future_features.
+-- =============================================================================
+
+-- =============================================================================
+-- Bayesian Decision Tracking (optional / future feature)
+-- Doctrine-aligned: no foreign keys, BIGINT timestamps, deterministic BIGINT IDs.
+-- Optional feature: not required for core install; lives in future_features only.
+-- =============================================================================
+
+CREATE TABLE lupo_decisions (
+  decision_id bigint NOT NULL,
+  actor_id bigint NOT NULL,
+  channel_id bigint DEFAULT NULL,
+  session_id bigint NOT NULL,
+  root_decision_id bigint DEFAULT NULL,
+  parent_decision_id bigint DEFAULT NULL,
+  depth int NOT NULL DEFAULT 0,
+  decision_type varchar(50) NOT NULL,
+  decision_status varchar(32) NOT NULL,
+  decision_key varchar(255) DEFAULT NULL,
+  probability decimal(4,3) DEFAULT NULL,
+  probability_lower decimal(4,3) DEFAULT NULL,
+  probability_upper decimal(4,3) DEFAULT NULL,
+  probability_model varchar(64) DEFAULT NULL,
+  state_snapshot_id bigint DEFAULT NULL,
+  federation_node_id bigint NOT NULL DEFAULT 1,
+  origin_decision_id bigint DEFAULT NULL,
+  created_ymdhis bigint NOT NULL,
+  created_by_actor_id bigint NOT NULL,
+  updated_ymdhis bigint DEFAULT NULL,
+  abandoned_ymdhis bigint DEFAULT NULL,
+  pruned_ymdhis bigint DEFAULT NULL,
+  is_deleted tinyint NOT NULL DEFAULT 0,
+  deleted_ymdhis bigint DEFAULT NULL,
+  PRIMARY KEY (decision_id)
+);
+
+CREATE INDEX lupo_decisions_idx_actor_time ON lupo_decisions (actor_id, created_ymdhis);
+CREATE INDEX lupo_decisions_idx_session_time ON lupo_decisions (session_id, created_ymdhis);
+CREATE INDEX lupo_decisions_idx_root_depth ON lupo_decisions (root_decision_id, depth);
+CREATE INDEX lupo_decisions_idx_parent ON lupo_decisions (parent_decision_id);
+CREATE INDEX lupo_decisions_idx_status ON lupo_decisions (decision_status);
+CREATE INDEX lupo_decisions_idx_probability ON lupo_decisions (probability);
+CREATE INDEX lupo_decisions_idx_federation ON lupo_decisions (federation_node_id);
+
+CREATE TABLE lupo_decision_edges (
+  source_decision_id bigint NOT NULL,
+  target_decision_id bigint NOT NULL,
+  edge_type varchar(50) NOT NULL,
+  probability decimal(4,3) DEFAULT NULL,
+  session_id bigint DEFAULT NULL,
+  federation_node_id bigint NOT NULL DEFAULT 1,
+  created_ymdhis bigint NOT NULL,
+  created_by_actor_id bigint NOT NULL,
+  is_deleted tinyint NOT NULL DEFAULT 0,
+  deleted_ymdhis bigint DEFAULT NULL,
+  PRIMARY KEY (source_decision_id, target_decision_id, edge_type)
+);
+
+CREATE INDEX lupo_decision_edges_idx_target ON lupo_decision_edges (target_decision_id);
+CREATE INDEX lupo_decision_edges_idx_probability ON lupo_decision_edges (probability);
+CREATE INDEX lupo_decision_edges_idx_session ON lupo_decision_edges (session_id);
+
+CREATE TABLE lupo_decision_influences (
+  decision_id bigint NOT NULL,
+  influencing_decision_id bigint NOT NULL,
+  influence_type varchar(50) NOT NULL,
+  weight decimal(4,3) DEFAULT NULL,
+  session_id bigint DEFAULT NULL,
+  federation_node_id bigint NOT NULL DEFAULT 1,
+  created_ymdhis bigint NOT NULL,
+  created_by_actor_id bigint NOT NULL,
+  is_deleted tinyint NOT NULL DEFAULT 0,
+  deleted_ymdhis bigint DEFAULT NULL,
+  PRIMARY KEY (decision_id, influencing_decision_id, influence_type)
+);
+
+CREATE INDEX lupo_decision_influences_idx_influencing ON lupo_decision_influences (influencing_decision_id);
+CREATE INDEX lupo_decision_influences_idx_weight ON lupo_decision_influences (weight);
+
+-- =============================================================================
 -- lupo_documentation_frameworks — MOVED TO install_new_lupopedia.sql v4.0.74 (12-table expansion).
 -- =============================================================================
 

@@ -7,7 +7,7 @@ lupopedia.headers:
   lupopedia.version: "4.0.74"
   lupopedia.schema: "doctrine"
   file_path_from_root: "lupo-docs/doctrine/LUPOPEDIA_HEADERS/DEPRECATION_FLARE_FLIP_FLP.md"
-  web_path: "http://www.lupopedia.com/doctrine/LUPOPEDIA_HEADERS/DEPRECATION"
+  web_path: "[web_path](http://www.lupopedia.com/doctrine/LUPOPEDIA_HEADERS/DEPRECATION)"
   system_version: "4.0.71"
   last_modified_utc: "20260312"
   channel_id: 42

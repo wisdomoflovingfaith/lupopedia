@@ -4,7 +4,7 @@ lupopedia.headers:
   lupopedia.schema: "doctrine"
   system_version: "4.0.69"
   file_path_from_root: "lupo-docs/doctrine/LUPOPEDIA_HEADERS/README.md"
-  web_path: "http://www.lupopedia.com/doctrine/LUPOPEDIA_HEADERS"
+  web_path: "[web_path](http://www.lupopedia.com/doctrine/LUPOPEDIA_HEADERS)"
   title: "LUPOPEDIA HEADERS"
   delegation_chain: "cursor:root"
   artifact_type: "doctrine"
@@ -26,7 +26,7 @@ lupopedia.session:
   human_actor_name: "root"
   paired_actor_id: 10000
 ---
-# file: LUPOPEDIA HEADERS — session: L-LUPO-ROOT-CURSOR — delegation: cursor:root — web_path: http://www.lupopedia.com/doctrine/LUPOPEDIA_HEADERS
+# file: LUPOPEDIA HEADERS — session: L-LUPO-ROOT-CURSOR — delegation: cursor:root — web_path: "[web_path](http://www.lupopedia.com/doctrine/LUPOPEDIA_HEADERS)"
 
 # LUPOPEDIA HEADERS
 

@@ -99,6 +99,7 @@ Canonical source: `lupo-database/lupopedia/actors/actor_id/registry.json`. This 
 | 103 | antigravity | Antigravity (IDE) | ide_faucet | — | no | canonical | IDE faucet; verify propagation support |
 | 104 | warp | Warp | ide_faucet | — | no | canonical | Warp terminal/IDE; integration pending |
 | 105 | cascade | Cascade | ide_faucet | — | yes | canonical | Cascade IDE; target: cascade |
+| 106 | zencoder | Zencoder IDE | ide_faucet | — | no | canonical | Zencoder IDE Agent; documentation and development; propagation pending |
 | 1000 | root | Root | human | — | — | canonical | Human orchestrator |
 | — | idea / jetbrains | JetBrains / Idea | ide_faucet | — | yes | propagation only | Target `idea`; no single actor_id in registry; Codex (Wolfie flow) |
 | — | trae | Trae | ide_faucet | — | no | not yet supported | Verify in registry.json if added |
@@ -126,6 +127,7 @@ Source: `lupo-scripts/propagate_agent_rules.php`. Valid targets: `all`, `cursor`
 | all | (all of the above) | yes | All supported output paths | Run without `--target` or `--target=all` |
 | antigravity | Antigravity IDE | no | — | Not yet a propagation target; verify in script |
 | warp | Warp | no | — | Not yet a propagation target |
+| zencoder | Zencoder IDE | no | — | Not yet a propagation target; integration pending |
 | trae | Trae | no | — | Not yet a propagation target |
 | zed | Zed | no | — | Not yet a propagation target |
 
@@ -144,6 +146,7 @@ Based on repo doctrine and AGENTS.md. Conservative; only documented roles are st
 | cascade | IDE contributor | — | — | — | Follow IACP |
 | antigravity (103) | Governance, doctrine | — | — | — | Verify in docs |
 | warp | Terminal/IDE contributor | — | — | — | Integration pending |
+| zencoder | Documentation, development | — | — | Table documentation, CHANGELOG | Follow IACP |
 | idea / jetbrains | JetBrains IDE consumer | — | — | — | Use propagated rules |
 
 ---

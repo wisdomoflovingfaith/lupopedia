@@ -57,7 +57,6 @@ lupopedia.footer:
   last_verified_by: "cursor"
   orchestrator: "wolfie"
   next_action:
-    - "Complete Crafty Syntax 3.7.5 upgrade validation for 4.0.77"
     - "Verify version and last_verified align with release"
     - "Keep required reading and doctrine links current"
 ---
@@ -80,8 +79,98 @@ Older entries (≤4.0.67) are archived in [CHANGELOG_ARCHIVE.md](CHANGELOG_ARCHI
 
 Version bump after 4.0.76 release and tag. **Active development version.** All canonical version markers and atoms updated to 4.0.77. No Lupopedia→Lupopedia upgrade path before 4.1.0.
 
+#### Constitutional Root Rules Consolidation (4.0.77)
+- **Constitutional Root Rules:** Created `lupo-rules/root/LUPOPEDIA_CONSTITUTIONAL_ROOT_RULES.md` - Single source of absolute constitutional rules consolidating and superseding 18 fragmented root rules. Covers 8 constitutional categories: Database Doctrine, Time/Planning, Identity/Lineage, Application Logic, Documentation, Multi-Agent Safety, Federation, Semantic OS. Includes 76 constitutional rules with complete coverage of all aspects previously scattered across fragmented files.
+- **Rule Structure:** Organized into 8 constitutional categories with absolute authority over all module-level rules. Applies to all IDE agents, external actors, generators, and automated subsystems. Non-negotiable doctrine with enforcement protocols.
+- **Missing Rules Added:** BIGINT UTC timestamps, soft deletes, explicit column listing, deterministic output, Lupopedia Headers requirement, and Semantic OS doctrine. Fills critical gaps identified in constitutional framework.
+- **Documentation Update:** Updated `lupo-rules/root/README.md` to reflect constitutional structure with clear migration path from fragmented rules to consolidated constitution.
+
+#### LUPOPEDIA_HEADERS Enhancement (4.0.77)
+- **lupopedia.routing Block:** Added comprehensive routing and approval metadata block to LUPOPEDIA_HEADERS specification. Supports planning artifacts requiring multi-actor approval, cross-team coordination, and workflow-driven documentation. Includes fields for channel, actor, recipients, session, priority, and approval requirements.
+- **Updated Documentation:** Enhanced `LUPOPEDIA_HEADERS_FORMAT.md` with complete routing block documentation, field definitions, and usage examples. Updated `OPTIONAL_BLOCKS.md` with comprehensive routing specification.
+- **Canonical Order Update:** Updated canonical block order to include `lupopedia.routing` after `lupopedia.init` in the header sequence.
+- **Version Update:** Updated LUPOPEDIA_HEADERS_PLAN.md to version 4.0.77 with snapshot comment explaining headers represent database-stored structure with generation scripts.
+
+#### Web Path Format Standardization (4.0.77)
+- **Markdown Link Format:** Updated web_path format across all LUPOPEDIA_HEADERS documentation to use markdown link format `[web_path](http://www.lupopedia.com/...)` instead of plain URLs.
+- **Files Updated:** Standardized web_path format in LUPOPEDIA_HEADERS_FORMAT.md, VALIDATORS_AND_TOOLING.md, README.md, OPTIONAL_BLOCKS.md, LUPOPEDIA_HEADERS_PLAN.md, LUPOPEDIA_HEADERS_MIGRATION.md, and DEPRECATION_FLARE_FLIP_FLP.md.
+- **Root Rules Update:** Updated `lupo-rules/root/README.md` web_path to match standardized format.
+
+#### Bayesian Decision Tracking Planning (4.0.77)
+- **Comprehensive Plan:** Created `docs/planning/bayesian_decision_tracking_PLAN.md` - Complete planning document for Bayesian Decision Tracking System incorporating LILITH review recommendations. Includes executive summary, schema definitions, state snapshot doctrine, integration contracts, federation design, and performance considerations.
+- **Task Breakdown:** Created `docs/planning/bayesian_decision_tracking_TASKS.md` - Atomic task breakdown with 7 phases and 26 specific tasks. Includes dependency relationships, parallel execution options, resource requirements, and risk mitigation strategies.
+- **Schema Design:** Complete table definitions for lupo_decisions, lupo_decision_edges, and lupo_decision_influences following constitutional doctrine (no FKs, BIGINT UTC, registry-based IDs).
+- **Integration Contracts:** Defined integration patterns for Dialog→Decisions, Sessions→Decisions, Tasks→Decisions, and Rules→Decisions systems.
+- **LUPOPEDIA_HEADERS:** Both planning documents include proper LUPOPEDIA_HEADERS with routing metadata for approval workflow.
+
+#### Bayesian Decision Tracking Foundation (4.0.77)
+- **Schema foundation (required in install):** Implemented doctrine-aligned decision tables (`lupo_decisions`, `lupo_decision_edges`, `lupo_decision_influences`) as **required tables** in `lupo-database/lupopedia/mysql/install/install_new_lupopedia.sql` (no longer only in `future_features_lupopedia.sql`), following constitutional doctrine (no FKs/triggers, BIGINT UTC timestamps, deterministic BIGINT IDs, soft delete).
+- **TOON artifacts:** Added matching TOON definitions under `lupo-database/lupopedia/toon/` and planning copies under `lupo-docs/database/lupopedia/tables/planning/` (for `lupo_decisions`) so schema regeneration and documentation workflows can reason about the decision tables consistently with the canonical install schema.
+- **Doctrine and minimal engine scaffold:** Created and updated `lupo-docs/doctrine/BAYESIAN_DECISION_DOCTRINE.md` to document the decision foundation, metadata usage (`decision_state` snapshots stored in `lupo_metadata`), and added a minimal `BayesianDecisionService` in `lupo-database/lupopedia/content/lupo-app/Services/` for basic decision/edge/influence CRUD (schema + doctrine + thin service scaffold only; higher-level traversal, integrations, and APIs remain deferred and are tracked in per-version PLAN/TODO artifacts).
+
+#### lupo_projects: github_repository and seeded record 0 (4.0.77)
+- **Schema:** Added `github_repository` column (`varchar(512) DEFAULT NULL`) to `lupo_projects` in `install_new_lupopedia.sql` for canonical GitHub repo URL per project.
+- **Seed:** Updated `seed_projects.sql` to seed reserved **project_id 0** as **lupopedia-core** with `github_repository = 'https://github.com/wisdomoflovingfaith/lupopedia'`. Project key/slug remain `lupopedia-core`; description and other fields unchanged. Seed comment updated to 4.0.77 and reserved project_id 0.
+
 #### 4.0.77 core validation task
 - **Crafty Syntax 3.7.5 Upgrade Validation:** Drop all Lupopedia tables → load original Crafty Syntax 3.7.5 schema/data baseline → run Lupopedia install.php → validate successful upgrade into 4.0.77. Confirms the only supported upgrade path (Crafty 3.7.5 → Lupopedia 4.0.x) and that no Lupopedia→Lupopedia upgrade is assumed before 4.1.0. See [tasks.md](tasks.md) and [plan.md](plan.md).
+
+#### Upgrade Policy documentation (4.0.77)
+- **Canonical doctrine:** Created `lupo-docs/doctrine/UPGRADE_POLICY_DOCTRINE.md` — single source of truth for 4.0.x upgrade policy: no Lupopedia→Lupopedia upgrade; fresh install or Crafty Syntax 3.7.5 upgrade only; migrations dev-only; version-to-version upgrades from 4.1.0.
+- **Install guide:** Created `lupo-docs/INSTALL.md` with prominent Upgrade Policy section linking to the doctrine.
+- **Version-specific:** Created `lupo-docs/versions/4.0.77/README.md` with upgrade notes for 4.0.77.
+- **Cross-references:** Root README.md Installation section, `lupo-docs/version.md`, and `lupo-docs/status/cursor_next_actions.md` now reference or link to UPGRADE_POLICY_DOCTRINE.md. Future schema changes must respect this policy (see cursor_next_actions.md).
+
+#### Bayesian schema scope and 4.0.77 solidification (4.0.77)
+- **Channel/project scope (architecture fix):** `lupo_decisions`, `lupo_decision_edges`, and `lupo_decision_influences` now require `channel_id BIGINT NOT NULL` and `project_id BIGINT NOT NULL`. Scoped indexes added (channel_time, project_time, channel_project_time). Install SQL and TOONs updated; BAYESIAN_DECISION_DOCTRINE.md §2 Scope boundaries added. `BayesianDecisionService::recordDecision()` now requires and validates `channel_id` and `project_id`.
+- **Documentation reconciliation:** `docs/planning/bayesian_decision_tracking_TASKS.md` and `PLAN.md` status set to schema foundation shipped; migration language reframed for 4.0.x (install SQL only; migrations dev-only). No Lupopedia→Lupopedia upgrade; see UPGRADE_POLICY_DOCTRINE.md.
+- **Canonical source doctrine:** Created `lupo-docs/doctrine/SCHEMA_CANONICAL_SOURCES.md` — priority order when install SQL, TOONs, doctrine, or planning docs disagree (install SQL highest; code adapts to schema).
+- **LUPOPEDIA HEADERS validator:** Implemented `php lupo-bin/lupo.php headers validate <path>` and `lupo-scripts/validate_lupopedia_headers.php`. Checks: first line `---`, single YAML block, identity line after `---`, required lupopedia.headers fields, lupopedia.edges/engagement snapshot comment. Fixtures under `lupo-tests/fixtures/headers/` with README. Export/import still deferred.
+- **Upgrade validation artifact:** Created `lupo-docs/status/CRAFTY_3_7_5_TO_4_0_77_UPGRADE_VALIDATION.md` — procedure documented; validation run pending (not yet evidenced). CHANGELOG no longer overclaims execution.
+- **Coordination:** Created `lupo-database/coordination/4.0.77/` with README (handshake protocol rules) and status files: header-validator.status, upgrade-validation.status, bayesian-foundation-alignment.status, truth-alignment.status. PLAN/TODO updated to reflect completed and deferred work.
+
+#### Upgrade validation run and table count (4.0.77)
+- **Validation performed:** Drop all tables → load Crafty Syntax 3.7.5 baseline → run Lupopedia install.php → regenerate TOONs via `python lupo-scripts/generate_toon_files.py`. Upgrade path to 4.0.77 confirmed. Status artifact `lupo-docs/status/CRAFTY_3_7_5_TO_4_0_77_UPGRADE_VALIDATION.md` can be updated to record run as evidenced.
+- **Table count:** 161 tables (TOON count post-install). `lupo-docs/doctrine/TABLE_COUNT_DOCTRINE.md` and root README.md updated to 161; TABLE_COUNT_DOCTRINE version set to 4.0.77.
+
+#### Table documentation and canonical sources (4.0.77)
+- **Bayesian table docs:** Added per-table documentation for `lupo_decisions`, `lupo_decision_edges`, and `lupo_decision_influences` under `lupo-docs/database/lupopedia/tables/active/` (purpose, schema summary, doctrine notes, edges to install SQL and TOON).
+- **SCHEMA_CANONICAL_SOURCES:** Reference to table documentation path (`lupo-docs/database/lupopedia/tables/`) and example links to the three Bayesian table docs added in References section.
+
+#### Upgrade validation evidenced and header export/import (4.0.77)
+- **Upgrade validation evidenced:** Coordination `upgrade-validation.status` set to `validated`; artifact `CRAFTY_3_7_5_TO_4_0_77_UPGRADE_VALIDATION.md` already records validation performed 2026-03-16 (161 tables). No overclaim; status matches evidence.
+- **Header export:** `lupo-scripts/export_lupopedia_headers.php` and `php lupo-bin/lupo.php headers export <path> [--output=path] [--json]` — extract front-matter YAML from a Markdown file for round-trip or backup.
+- **Header import:** `lupo-scripts/import_lupopedia_headers.php` and `php lupo-bin/lupo.php headers import <target.md> [source.yaml]` — replace header block in a file from YAML (file or stdin); body preserved; replacement validated for required lupopedia.headers fields.
+- **Round-trip:** Steps documented in `lupo-tests/fixtures/headers/README.md` § Round-trip validation; content-equivalence intended; exact byte identity not guaranteed.
+- **lupo_metadata integration:** Documented as **deferred** in `lupo-docs/doctrine/LUPOPEDIA_HEADERS/VALIDATORS_AND_TOOLING.md`. Current export/import are file-based only; DB ↔ YAML sync to follow when implemented.
+
+#### Zencoder IDE Agent registration and table documentation (4.0.77) — actor_id 106
+- **Zencoder registered as actor:** New IDE faucet agent **Zencoder** (actor_id **106**, slug `zencoder`, actor_name `zencoder-ide`) registered following the full Actor Registration Checklist. Updated `lupo-database/lupopedia/actors/actor_id/registry.json` (entry added), `lupo-database/lupopedia/csv/lupo_actors.csv` (fallback row added), and `lupo-docs/doctrine/AGENT_REGISTRY.md` (canonical table, propagation matrix, and capability matrix updated). Seed file `lupo-database/lupopedia/mysql/seed/seed_actor_zencoder_4.0.77.sql` created for DB persistence. Actor directory `lupo-database/lupopedia/actors/actor_id/106/` initialized. Propagation target (`--target=zencoder`) is pending; integration follows IACP.
+- **Table documentation — development tables:** Created full LUPOPEDIA HEADERS-compliant documentation for three previously undocumented development tables under `lupo-docs/database/lupopedia/tables/active/development/`:
+  - `lupo_actor_apps.md` — Maps actors to filesystem app paths; covers schema, usage, doctrine notes, and where used in actor filesystem isolation and bootstrap.
+  - `lupo_channel_departments.md` — Junction table mapping channels to departments; documents department routing, operator assignment, and Crafty Syntax upgrade context.
+  - `lupo_edge_type_definitions.md` — Canonical registry of semantic edge types; documents schema, domain/type validation pattern, edge graph tooling integration, and usage examples.
+
+#### Zencoder actor workspace and development table documentation expansion (4.0.77) — actor_id 106
+- **Actor workspace created:** `lupo-actors/zencoder/` directory initialized with canonical subdirectory structure (`api/`, `apps/`, `db-changes/`, `docs/`, `logs/`, `needs/`, `prompts/`, `skills/`, `tools/`, `www/`) matching other IDE faucet agent workspaces (cascade, warp, cursor).
+- **Development table docs — five tables enriched:** Rewrote five auto-generated template table docs under `lupo-docs/database/lupopedia/tables/active/development/` with full LUPOPEDIA HEADERS, proper "Where This Table Is Used" sections, column documentation, indexes, usage pattern examples (PHP), and doctrine notes:
+  - `lupo_analytics_campaign_vars.md` — Per-period UTM/campaign key-value analytics; documents analytics pipeline integration with visits tables and admin reporting.
+  - `lupo_world_registry.md` — Canonical registry of named semantic worlds/namespaces; documents semantic edge scoping, federation partitioning, and world-aware query context.
+  - `lupo_auth_audit_log.md` — Immutable auth event audit trail (login, logout, failure, token); documents AuthService integration, security monitoring, Crafty Syntax migration context, and compliance usage.
+  - `lupo_channel_boot_detail.md` — Per-channel load step details within a boot lifecycle event; documents `channel_startup_lifecycle.php` integration, boot progress monitoring, and error diagnostics.
+  - `lupo_anubis_log.md` — Central ANUBIS integrity audit trail; added "Where This Table Is Used" section covering ANUBIS worker/watcher integration, governance cross-reference, and header compliance enforcement.
+#### Windsurf takeover of Zencoder table documentation work (4.0.77)
+- **Token limit recovery:** Zencoder IDE hit token limit while working on database table documentation expansion. Windsurf (101) reconstructed Zencoder's workstream and continued the unfinished tasks.
+- **Zencoder pattern identified:** Zencoder established excellent documentation pattern with proper LUPOPEDIA_HEADERS (4.0.77), comprehensive table metadata, "Where This Table Is Used" sections, and cross-reference context. Completed 4 development table docs: `lupo_analytics_campaign_vars.md`, `lupo_world_registry.md`, `lupo_auth_audit_log.md`, `lupo_channel_boot_detail.md`.
+- **TOON regeneration:** Windsurf regenerated all 161 TOON files using `lupo-scripts/generate_toon_files.py` to ensure canonical schema truth availability for documentation updates.
+- **Documentation inventory completed:** Analyzed all 161 table documentation files; identified 80+ files with outdated headers, 120+ files missing usage context, and clear prioritization for remaining work.
+- **Recovery status artifact:** Created `lupo-docs/status/zencoder_takeover_by_windsurf_4.0.77.md` documenting the takeover, reconstructed workstream, and remaining backlog for 4.0.78 continuation.
+- **Git integration:** Zencoder's verified work (workspace `lupo-actors/zencoder/`, four development table docs — lupo_analytics_campaign_vars, lupo_world_registry, lupo_auth_audit_log, lupo_channel_boot_detail — and seed_actor_zencoder_4.0.77.sql) committed and pushed by Cursor on Zencoder's behalf after git failure on Zencoder side. Canonical repository directories use the **lupo-** prefix (lupo-actors, lupo-docs, lupo-database, etc.); noted in lupo-actors/README.md and cross-agent report.
+
+#### Cursor lead completion — table documentation and 4.0.77 stop line (4.0.77)
+- **Table documentation continuation:** Cursor (102), as lead agent, continued the Zencoder → Windsurf table documentation initiative. Improved **lupo_sessions.md** and **lupo_contents.md** with 4.0.77 LUPOPEDIA_HEADERS, explicit "Where This Table Is Used" sections, schema-aligned descriptions, and doctrine notes, following the pattern established by Zencoder's four development table docs.
+- **Stop line and handoff:** Created `lupo-docs/status/TABLE_DOCUMENTATION_4_0_77_STOP_LINE.md` defining what 4.0.77 accomplished (recovery, Windsurf TOON/backlog, Cursor priority doc improvements) and what moves to 4.0.78 (remaining 161-table modernization, mass header cleanup, optional automation). Clear next-step guidance for future agents; no ambiguity about "done" vs "deferred."
+- **Truth surfaces updated:** CHANGELOG, PLAN.md, TODO.md, and status docs (report_and_next_implementation_for_cursor, zencoder_takeover_by_windsurf_4.0.77, report_on_what_needs_to_be_reassigned) updated to reflect completion state and 4.0.78 handoff.
 
 ---
 

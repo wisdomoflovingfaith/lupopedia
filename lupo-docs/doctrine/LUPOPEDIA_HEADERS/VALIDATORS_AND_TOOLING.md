@@ -4,7 +4,7 @@ lupopedia.headers:
   lupopedia.schema: "doctrine"
   system_version: "4.0.69"
   file_path_from_root: "lupo-docs/doctrine/LUPOPEDIA_HEADERS/VALIDATORS_AND_TOOLING.md"
-  web_path: "http://www.lupopedia.com/doctrine/LUPOPEDIA_HEADERS/VALIDATORS_AND_TOOLING"
+  web_path: "[web_path](http://www.lupopedia.com/doctrine/LUPOPEDIA_HEADERS/VALIDATORS_AND_TOOLING)"
   title: "LUPOPEDIA HEADERS Validators and Tooling"
   delegation_chain: "cursor:root"
   artifact_type: "doctrine"
@@ -26,7 +26,7 @@ lupopedia.session:
   human_actor_name: "root"
   paired_actor_id: 10000
 ---
-# file: LUPOPEDIA HEADERS Validators and Tooling — session: L-LUPO-ROOT-CURSOR — delegation: cursor:root — web_path: http://www.lupopedia.com/doctrine/LUPOPEDIA_HEADERS/VALIDATORS_AND_TOOLING
+# file: LUPOPEDIA HEADERS Validators and Tooling — session: L-LUPO-ROOT-CURSOR — delegation: cursor:root — web_path: [web_path](http://www.lupopedia.com/doctrine/LUPOPEDIA_HEADERS)/VALIDATORS_AND_TOOLING
 
 # LUPOPEDIA HEADERS — Validators and tooling (4.0.69)
 
@@ -66,9 +66,14 @@ Validators and tooling MUST align with the following for a coherent, channel-awa
 
 ---
 
-## 4. Existing tooling
+## 4. Existing tooling (4.0.77)
 
-- **lupo-tools:** `flare_validate.py`, `flare_apply.py`, and related scripts should be updated to accept both legacy FLARE and 4.0.68+ LUPOPEDIA format, enforce canonical order, and (where they resolve headers from DB) support channel_id-based resolution.
+- **Validator:** `php lupo-bin/lupo.php headers validate <path>` and `lupo-scripts/validate_lupopedia_headers.php` — validate file structure, required blocks/fields, snapshot comments.
+- **Export (file → YAML):** `php lupo-bin/lupo.php headers export <path> [--output=path] [--json]` and `lupo-scripts/export_lupopedia_headers.php` — extract the front-matter YAML block for round-trip or backup.
+- **Import (YAML → file):** `php lupo-bin/lupo.php headers import <target.md> [source.yaml]` and `lupo-scripts/import_lupopedia_headers.php` — replace the header block in a Markdown file; body is preserved. Source can be file path or stdin.
+- **Round-trip:** Export then import then validate; see `lupo-tests/fixtures/headers/README.md` § Round-trip validation. Content-equivalence is intended; exact byte identity is not guaranteed.
+- **lupo_metadata integration:** Sync between LUPOPEDIA HEADERS in files and the `lupo_metadata` table (DB → YAML, YAML → DB) is **deferred**. Current export/import operate on files only. When implemented, export will build YAML from `lupo_metadata` rows and import will parse YAML into the row-based model per §2–3 above.
+- **Legacy lupo-tools:** `flare_validate.py`, `flare_apply.py`, and related scripts should be updated to accept both legacy FLARE and 4.0.68+ LUPOPEDIA format, enforce canonical order, and (where they resolve headers from DB) support channel_id-based resolution.
 - **PHP/runtime:** Any code that reads or writes header metadata should use `lupo_metadata` with the three structural columns and the row-based model; lookup by entity and/or channel as needed.
 
 ---

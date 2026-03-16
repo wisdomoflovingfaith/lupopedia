@@ -1,0 +1,131 @@
+{
+  "table_name": "lupo_decisions",
+  "fields": [
+    "`decision_id` bigint NOT NULL",
+    "`actor_id` bigint NOT NULL",
+    "`channel_id` bigint NOT NULL",
+    "`project_id` bigint NOT NULL",
+    "`session_id` bigint NOT NULL",
+    "`root_decision_id` bigint",
+    "`parent_decision_id` bigint",
+    "`depth` int NOT NULL DEFAULT 0",
+    "`decision_type` varchar(50) NOT NULL",
+    "`decision_status` varchar(32) NOT NULL",
+    "`decision_key` varchar(255)",
+    "`probability` decimal(4,3)",
+    "`probability_lower` decimal(4,3)",
+    "`probability_upper` decimal(4,3)",
+    "`probability_model` varchar(64)",
+    "`state_snapshot_id` bigint",
+    "`federation_node_id` bigint NOT NULL DEFAULT 1",
+    "`origin_decision_id` bigint",
+    "`created_ymdhis` bigint NOT NULL",
+    "`created_by_actor_id` bigint NOT NULL",
+    "`updated_ymdhis` bigint",
+    "`abandoned_ymdhis` bigint",
+    "`pruned_ymdhis` bigint",
+    "`is_deleted` tinyint NOT NULL DEFAULT 0",
+    "`deleted_ymdhis` bigint"
+  ],
+  "data": [],
+  "indexes": [
+    {
+      "index_name": "lupo_decisions_idx_actor_time",
+      "columns": [
+        "actor_id",
+        "created_ymdhis"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_decisions_idx_channel_project_time",
+      "columns": [
+        "channel_id",
+        "project_id",
+        "created_ymdhis"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_decisions_idx_channel_time",
+      "columns": [
+        "channel_id",
+        "created_ymdhis"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_decisions_idx_federation",
+      "columns": [
+        "federation_node_id"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_decisions_idx_parent",
+      "columns": [
+        "parent_decision_id"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_decisions_idx_probability",
+      "columns": [
+        "probability"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_decisions_idx_project_time",
+      "columns": [
+        "project_id",
+        "created_ymdhis"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_decisions_idx_root_depth",
+      "columns": [
+        "root_decision_id",
+        "depth"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_decisions_idx_session_time",
+      "columns": [
+        "session_id",
+        "created_ymdhis"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_decisions_idx_status",
+      "columns": [
+        "decision_status"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    }
+  ],
+  "primary_key": {
+    "column_name": "decision_id",
+    "expected_name": "decision_id",
+    "is_correct": true,
+    "needs_rename": false
+  },
+  "doctrine_metadata": {
+    "no_foreign_keys": true,
+    "no_triggers": true
+  },
+  "relationships": []
+}

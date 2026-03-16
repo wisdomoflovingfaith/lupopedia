@@ -16,6 +16,7 @@
     { "id": 103, "type": "ide_faucet", "slug": "antigravity", "dir": "actors/103" },
     { "id": 104, "type": "ide_faucet", "slug": "warp", "dir": "actors/104" },
     { "id": 105, "type": "ide_faucet", "slug": "cascade", "dir": "actors/105" },
+    { "id": 106, "type": "ide_faucet", "slug": "zencoder", "dir": "actors/106" },
     { "id": 1000, "type": "human", "slug": "root", "dir": "actors/1000" }
   ]
 }

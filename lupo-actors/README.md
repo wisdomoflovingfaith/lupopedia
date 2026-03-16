@@ -1,6 +1,6 @@
 # Lupo-Actors
 
-Centralized hub for actor-specific resources. Each subdirectory is named by actor ID (e.g. `0`, `1`).
+Centralized hub for actor-specific resources. Each subdirectory is named by actor slug (e.g. `wolfie`, `zencoder`) or ID. **Canonical repository directories** at repo root use the **`lupo-` prefix** (e.g. `lupo-actors`, `lupo-docs`, `lupo-database`, `lupo-bin`, `lupo-scripts`, `lupo-tests`, `lupo-rules`).
 
 **Full documentation:** [lupo-docs/actors.md](../docs/actors.md)
 

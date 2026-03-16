@@ -3,7 +3,7 @@ lupopedia.headers:
   lupopedia.version: "4.0.74"
   lupopedia.schema: "doctrine"
   file_path_from_root: "lupo-docs/doctrine/LUPOPEDIA_HEADERS/OPTIONAL_BLOCKS.md"
-  web_path: "http://www.lupopedia.com/doctrine/LUPOPEDIA_HEADERS/OPTIONAL_BLOCKS"
+  web_path: "[web_path](http://www.lupopedia.com/doctrine/LUPOPEDIA_HEADERS/OPTIONAL_BLOCKS)"
   system_version: "4.0.71"
   last_modified_utc: "20260312"
   channel_id: 42
@@ -23,7 +23,52 @@ lupopedia.footer:
 
 # LUPOPEDIA HEADERS — Optional blocks (routing, lists)
 
-Functionality that existed in the deprecated **FLARE** system is fully supported in LUPOPEDIA HEADERS. The following optional blocks may be used when needed; they are not required for every file.
+**Optional blocks** extend LUPOPEDIA HEADERS for specialized use cases. These blocks are optional and may be included when needed.
+
+---
+
+## 1. lupopedia.routing
+
+**Purpose:** Routing and approval metadata for planning artifacts and cross-actor workflows.
+
+**Use cases:**
+- Planning documents requiring multi-actor approval
+- Architecture specifications that need review
+- Cross-team coordination artifacts
+- Workflow-driven documentation
+
+**Fields:**
+
+| Field | Type | Purpose |
+|-------|------|---------|
+| `channel_id` | integer | Channel identifier for the routing context |
+| `actor_id` | integer | ID of the actor creating/initiating the artifact |
+| `actor_name` | string | Name of the actor creating/initiating the artifact |
+| `recipient_actor_ids` | array | List of actor IDs that should receive or review this artifact |
+| `recipient_actor_names` | array | List of actor names corresponding to recipient_actor_ids |
+| `session_id` | string | Session identifier for the workflow context |
+| `session_name` | string | Human-readable name for the session/workflow |
+| `priority` | string | Priority level (e.g., "high", "medium", "low") |
+| `requires_approval_from` | array | List of actor names whose approval is required before proceeding |
+| `next_status_on_approve` | string | Status to set when approval is granted |
+| `next_location_on_approve` | string | Target location/path for approved artifacts |
+
+**Example:**
+
+```yaml
+lupopedia.routing:
+  channel_id: 42
+  actor_id: 103
+  actor_name: "antigravity"
+  recipient_actor_ids: [1000]
+  recipient_actor_names: ["captain"]
+  session_id: "L-LUPO-ANTIGRAVITY-PLANNING"
+  session_name: "Bayesian Decision Tracking — Planning Phase"
+  priority: "high"
+  requires_approval_from: ["captain", "lilith"]
+  next_status_on_approve: "approved-planning"
+  next_location_on_approve: "docs/status/"
+```
 
 ---
 

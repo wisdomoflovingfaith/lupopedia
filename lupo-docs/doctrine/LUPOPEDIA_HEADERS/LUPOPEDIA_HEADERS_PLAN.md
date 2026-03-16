@@ -1,10 +1,17 @@
 ---
+lupopedia.init:
+  comment: >
+    LUPOPEDIA HEADERS in this file represent a snapshot of the header structure
+    at the time this document was written. The authoritative source for current
+    headers is stored in the lupo_metadata database table. Header generation and
+    validation scripts are available in lupo-scripts/ and lupo-tools/ directories.
+
 lupopedia.headers:
-  lupopedia.version: "4.0.69"
+  lupopedia.version: "4.0.77"
   lupopedia.schema: "doctrine"
-  system_version: "4.0.69"
+  system_version: "4.0.77"
   file_path_from_root: "lupo-docs/doctrine/LUPOPEDIA_HEADERS/LUPOPEDIA_HEADERS_PLAN.md"
-  web_path: "http://www.lupopedia.com/doctrine/LUPOPEDIA_HEADERS/LUPOPEDIA_HEADERS_PLAN"
+  web_path: "[web_path](http://www.lupopedia.com/doctrine/LUPOPEDIA_HEADERS/LUPOPEDIA_HEADERS_PLAN)"
   title: "LUPOPEDIA HEADERS Plan"
   delegation_chain: "cursor:root"
   artifact_type: "doctrine"
@@ -28,9 +35,9 @@ lupopedia.session:
 ---
 # file: LUPOPEDIA HEADERS Plan — session: L-LUPO-ROOT-CURSOR — delegation: cursor:root — web_path: http://www.lupopedia.com/doctrine/LUPOPEDIA_HEADERS/LUPOPEDIA_HEADERS_PLAN
 
-# LUPOPEDIA HEADERS — Plan (4.0.69)
+# LUPOPEDIA HEADERS — Plan (4.0.77)
 
-**Status:** Authoritative design for 4.0.68  
+**Status:** Authoritative design for 4.0.77  
 **Canonical name:** LUPOPEDIA HEADERS (replaces FLARE, FLIP, FLP — all **deprecated** as of 4.0.71)  
 **Logical structure:** Preserved from FLARE (block model and canonical order)  
 **Storage:** `lupo_metadata` table "metadata" (with table prefix of "lupo_"), structured as rows, not a single YAML blob.  
@@ -41,9 +48,10 @@ lupopedia.session:
 ## 1. Authoritative direction
 
 - **LUPOPEDIA HEADERS** are the canonical metadata system name from **4.0.68** onward.
-- **Canonical block names from 4.0.69:** Use `lupopedia.*` in new or modified files. Legacy `flare.*` and `flame.*` remain valid; validators accept both.
+- **Canonical block names from 4.0.77:** Use `lupopedia.*` in new or modified files. Legacy `flare.*` and `flame.*` remain valid; validators accept both.
 - Canonical blocks (preferred in YAML):
   - `lupopedia.init`
+  - `lupopedia.routing`
   - `lupopedia.conditional`
   - `lupopedia.headers`
   - `lupopedia.metadata` (optional; snapshot of metadata rows for this artifact — see OPTIONAL_BLOCKS; not table schema)

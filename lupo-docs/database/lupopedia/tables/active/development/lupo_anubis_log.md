@@ -58,6 +58,14 @@ lupopedia.footer:
 - `lupo_actors.actor_id`: Identified by `assigned_to_actor_id`.
 - `lupo_anubis_events.anubis_event_id`: Higher-level operational events related to this log entry.
 
+## Where This Table Is Used
+
+- **ANUBIS integrity checks:** `lupo-bin/anubis_worker.php` and `lupo-bin/guard_anubis_structure.php` write rows when inconsistencies, orphaned records, or missing headers are detected across any Lupopedia table.
+- **ANUBIS watcher daemon:** `lupo-bin/anubis_watcher_db_first.php` reads `Pending` rows from this table to decide which reconciliation actions to dispatch to workers.
+- **Governance and audit trail:** The `lupo_audit_log` and governance subsystems cross-reference this table for integrity violations that must be escalated to human actors.
+- **Header compliance enforcement:** When the LUPOPEDIA HEADERS validator (`php lupo-bin/lupo.php headers validate`) detects non-conformant headers, it logs events here with `event_type = 'HEADER_COMPLIANCE'` for ANUBIS to resolve.
+- **Admin diagnostics panel:** The admin section queries this table filtered by `status = 'Pending'` or `severity = 'critical'` to surface open integrity issues requiring human attention.
+
 ## Usage Notes
 
 - **Doctrine Compliance**: Although TOON may mention `auto_increment` for some Anubis tables, Lupopedia doctrine requires explicit ID generation in PHP.

@@ -9,11 +9,11 @@ lupopedia.init:
     - "Install SQL is the schema authority. Table count is advisory only (Captain directive 4.0.74)."
 
 lupopedia.headers:
-  lupopedia.version: "4.0.76"
+  lupopedia.version: "4.0.77"
   lupopedia.schema: "doctrine"
   file_path_from_root: "lupo-docs/doctrine/TABLE_COUNT_DOCTRINE.md"
   last_modified_utc: "20260316"
-  system_version: "4.0.76"
+  system_version: "4.0.77"
   channel_id: 42
   actor_id: 102
   artifact_type: "doctrine"
@@ -21,7 +21,7 @@ lupopedia.headers:
   purpose: "Canonical table count reference and advisory ceiling doctrine."
 
 lupopedia.footer:
-  version: "4.0.76"
+  version: "4.0.77"
   last_verified: "20260316"
   last_verified_by: "cursor"
   next_action:
@@ -29,13 +29,13 @@ lupopedia.footer:
 ---
 # file: TABLE_COUNT_DOCTRINE — canonical table count and ceiling
 
-# Table Count Doctrine (4.0.76)
+# Table Count Doctrine (4.0.77)
 
 ## Canonical table count
 
 - **Source:** `lupo-database/lupopedia/mysql/install/install_new_lupopedia.sql`
-- **Method:** Count of `CREATE TABLE` statements in that file (e.g. `grep -c "CREATE TABLE" install_new_lupopedia.sql`).
-- **Verified 2026-03-16 (4.0.76 Project System schema):** **159** tables. Script `generate_toon_from_sql.py` outputs TOONs to `lupo-database/lupopedia/toon/`; the install file is the schema authority. Table ceiling remains advisory (e.g. 222); current count is within capacity.
+- **Method:** Count of `CREATE TABLE` statements in that file, or run `python lupo-scripts/generate_toon_files.py` and count TOON files in `lupo-database/lupopedia/toon/`.
+- **Verified 2026-03-16 (4.0.77, post-install TOON regeneration):** **161** tables. After drop → load Crafty 3.7.5 baseline → run install → `python lupo-scripts/generate_toon_files.py`, TOON count is 161. Install file is the schema authority. Table ceiling remains advisory (e.g. 222); current count is within capacity.
 
 Use this count when documenting "current number of tables" or when comparing install vs. TOON vs. live DB. Do not hardcode a table count in multiple places; derive from install SQL or from this doctrine.
 
@@ -62,7 +62,7 @@ Use this count when documenting "current number of tables" or when comparing ins
 | Question | Answer |
 |----------|--------|
 | Where is table count defined? | Count of `CREATE TABLE` in `install_new_lupopedia.sql`. |
-| What is the current count? | 159 (as of 2026-03-16; generate_toon_from_sql.py confirms). |
+| What is the current count? | 161 (as of 2026-03-16; generate_toon_files.py post-install confirms). |
 | Are TOONs authoritative? | No. TOONs are derived; install SQL is authoritative. |
 | Is there a hard table limit? | No. Table ceiling is advisory only. |
 

@@ -4,7 +4,7 @@ lupopedia.headers:
   lupopedia.schema: "doctrine"
   system_version: "4.0.69"
   file_path_from_root: "lupo-docs/doctrine/LUPOPEDIA_HEADERS/LUPOPEDIA_HEADERS_FORMAT.md"
-  web_path: "http://www.lupopedia.com/doctrine/LUPOPEDIA_HEADERS/LUPOPEDIA_HEADERS_FORMAT"
+  web_path: "[web_path](http://www.lupopedia.com/doctrine/LUPOPEDIA_HEADERS/LUPOPEDIA_HEADERS_FORMAT)"
   title: "LUPOPEDIA HEADERS Format"
   delegation_chain: "cursor:root"
   artifact_type: "doctrine"
@@ -59,6 +59,7 @@ The **first line** of the file MUST be:
 Then the YAML header blocks in **canonical order** (see [LUPOPEDIA_HEADERS_PLAN.md](./LUPOPEDIA_HEADERS_PLAN.md) §4). Use **lupopedia.*** block names in new or modified files (4.0.69+); validators accept legacy flare.*/flame.*:
 
 - **lupopedia.init** — Optional. Lists **required reading** and **required context** that must be read or understood **before** reading this file (e.g. `required_reading:`, `required_context:`). It is **not** for file metadata; use `lupopedia.headers` or `lupopedia.metadata` for artifact_type, file_identity, namespace, domain, system_version. See [LUPO_INITIALIZATION_DOCTRINE.md](../init/LUPO_INITIALIZATION_DOCTRINE.md). Supported forms: simple list of paths, or list of `path`/`reason` objects.
+- **lupopedia.routing** — Optional. Routing and approval metadata for planning artifacts and cross-actor workflows. Includes channel, actor, recipient, session, priority, and approval requirements.
 - **lupopedia.actor_references** — Optional. Actor IDs from canonical registry (plan/report files). See [OPTIONAL_BLOCKS.md](./OPTIONAL_BLOCKS.md).
 - lupopedia.conditional
 - lupopedia.headers (required)
@@ -99,7 +100,7 @@ Stored as metadata properties (or in YAML when written to file). Use **lupopedia
 | `thread_id` | lupopedia.session | Thread identifier when artifact is thread-scoped (optional). |
 | `thread_name` | lupopedia.headers or lupopedia.session | Human-readable thread name when available (optional). |
 
-**Known channels (reference):** channel_id **42** = **Lupopedia Development (general)**. Other channel names come from `lupo_channels.channel_name` or project seed.
+**Canonical block order:** When validating or exporting, enforce order: lupopedia.init → **lupopedia.routing** → lupopedia.conditional → lupopedia.headers → **lupopedia.session** → lupopedia.edges → **lupopedia.engagement** → lupopedia.footer → lupopedia.see → **lupopedia.next_actions** (or legacy lupopedia.close) (same order for legacy lupopedia.init, flare.*, lupopedia.see, lupopedia.close). Optional blocks may be absent; if present, order MUST be correct. Session fields (session_id, session_name, etc.) belong in lupopedia.session, not in lupopedia.headers.
 
 ### 2.1 Session block (lupopedia.session)
 
@@ -249,7 +250,50 @@ lupopedia.edges:
 
 **Backward compatibility:** A **flat** form remains valid: `outbound_edges: [ { to: "...", type: "...", weight: 0.9 }, ... ]` (a single list). Validators and import logic MUST accept both: if `outbound_edges` is an array with numeric keys, treat as flat; if it is an object with string keys (e.g. `code`, `documentation`), treat each key as the edge category and each value as the list of edges for that category. When exporting from the database, group by `lupo_edges.edge_category` to produce grouped YAML.
 
-### 2.2 Engagement block (lupopedia.engagement)
+### 2.3 Routing block (lupopedia.routing)
+
+The **`lupopedia.routing`** block (optional) provides routing and approval metadata for planning artifacts and cross-actor workflows. This is used for planning documents, architecture specifications, and artifacts that require actor coordination or approval workflows.
+
+**Fields:**
+
+| Field | Type | Purpose |
+|-------|------|---------|
+| `channel_id` | integer | Channel identifier for the routing context. |
+| `actor_id` | integer | ID of the actor creating/initiating the artifact. |
+| `actor_name` | string | Name of the actor creating/initiating the artifact. |
+| `recipient_actor_ids` | array | List of actor IDs that should receive or review this artifact. |
+| `recipient_actor_names` | array | List of actor names corresponding to recipient_actor_ids. |
+| `session_id` | string | Session identifier for the workflow context. |
+| `session_name` | string | Human-readable name for the session/workflow. |
+| `priority` | string | Priority level (e.g., "high", "medium", "low"). |
+| `requires_approval_from` | array | List of actor names whose approval is required before proceeding. |
+| `next_status_on_approve` | string | Status to set when approval is granted. |
+| `next_location_on_approve` | string | Target location/path for approved artifacts. |
+
+**Example:**
+
+```yaml
+lupopedia.routing:
+  channel_id: 42
+  actor_id: 103
+  actor_name: "antigravity"
+  recipient_actor_ids: [1000]
+  recipient_actor_names: ["captain"]
+  session_id: "L-LUPO-ANTIGRAVITY-PLANNING"
+  session_name: "Bayesian Decision Tracking — Planning Phase"
+  priority: "high"
+  requires_approval_from: ["captain", "lilith"]
+  next_status_on_approve: "approved-planning"
+  next_location_on_approve: "docs/status/"
+```
+
+**Usage contexts:**
+- Planning documents requiring multi-actor approval
+- Architecture specifications that need review
+- Cross-team coordination artifacts
+- Workflow-driven documentation
+
+### 2.4 Engagement block (lupopedia.engagement)
 
 The **`lupopedia.engagement`** block (new in 4.0.74) tracks engagement metrics. Like **`lupopedia.edges`**, it is a snapshot and MUST have **`comment`** and SHOULD have **`meta`** (same convention as §2.1.5).
 

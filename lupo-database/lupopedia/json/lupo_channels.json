@@ -26,6 +26,7 @@
     "`awareness_version` varchar(20) DEFAULT '3.0.0'",
     "`channel_number` int",
     "`parent_channel_id` bigint",
+    "`project_id` bigint",
     "`is_kernel` tinyint NOT NULL DEFAULT 0",
     "`boot_sequence_order` int"
   ],
@@ -47,8 +48,8 @@
       "status_flag": 1,
       "end_ymdhis": null,
       "duration_seconds": null,
-      "created_ymdhis": 20260314165649,
-      "updated_ymdhis": 20260314165649,
+      "created_ymdhis": 20260316162721,
+      "updated_ymdhis": 20260316162721,
       "is_deleted": 0,
       "deleted_ymdhis": null,
       "aal_metadata_json": null,
@@ -56,6 +57,7 @@
       "awareness_version": "3.0.0",
       "channel_number": null,
       "parent_channel_id": null,
+      "project_id": null,
       "is_kernel": 1,
       "boot_sequence_order": null
     }
@@ -89,6 +91,14 @@
       "index_name": "lupo_channels_idx_domain",
       "columns": [
         "federation_node_id"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_channels_idx_project_id",
+      "columns": [
+        "project_id"
       ],
       "is_unique": false,
       "index_type": "BTREE"

@@ -49,6 +49,7 @@ Core registry table for **projects** (scope: channel, orchestrator, federation n
 | project_name | varchar(255) NOT NULL | Display name. |
 | project_slug | varchar(255) NOT NULL | URL-friendly slug. |
 | description | text | Optional description. |
+| github_repository | varchar(512) DEFAULT NULL | Canonical GitHub repository URL (e.g. https://github.com/org/repo). |
 | channel_id | bigint NOT NULL | Channel scope. |
 | orchestrator_id | bigint NOT NULL | Orchestrator actor_id. |
 | federation_node_id | bigint NOT NULL | Federation node. |
@@ -68,12 +69,12 @@ Core registry table for **projects** (scope: channel, orchestrator, federation n
 
 - **No foreign keys** — references to channel_id, orchestrator_id, federation_node_id are logical; application enforces.
 - **Timestamps:** BIGINT YYYYMMDDHHIISS UTC; set in application (e.g. `gmdate('YmdHis')`).
-- **Reserved ID / registry:** project_id is explicit; allocate from registry or use reserved IDs (e.g. seed uses 1, 2).
+- **Reserved ID / registry:** project_id is explicit; allocate from registry or use reserved IDs (e.g. seed uses 0 for lupopedia-core).
 - **JSON:** metadata_json allowed for flexible attributes; no DB logic.
 
 ## Seed
 
-- **lupo-database/lupopedia/mysql/seed/seed_projects.sql** — Inserts Lupopedia core (project_id 1) and federation example (project_id 2). Run after install; timestamps use `@now`.
+- **lupo-database/lupopedia/mysql/seed/seed_projects.sql** — Inserts reserved **project_id 0** as lupopedia-core with `github_repository = 'https://github.com/wisdomoflovingfaith/lupopedia'`. Run after install; timestamps use seed defaults.
 
 ---
 

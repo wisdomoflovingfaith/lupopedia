@@ -1,42 +1,34 @@
 ---
 lupopedia.headers:
-  lupopedia.version: "4.0.73"
+  lupopedia.version: "4.0.77"
   lupopedia.schema: "database_table"
+  system_version: "4.0.77"
   file_path_from_root: "lupo-docs/database/lupopedia/tables/active/lupo_sessions.md"
-  system_version: "4.0.73"
-  namespace: "session"
-  channel_id: 1
-  actor_id: 1003
-  last_modified_utc: "20260313"
+  web_path: "[lupo_sessions](http://www.lupopedia.com/database/lupopedia/tables/active/lupo_sessions)"
+  last_modified_utc: "20260316"
+  channel_id: 42
+  actor_id: 102
   artifact_type: "table_documentation"
-  artifact_kind: "database_table"
-  purpose: "DB-backed session authority (Model A). Web and API session storage; identity from lupo_sessions."
-  traits: ["canonical", "session", "auth", "antigravity_rotation", "v4.0.73"]
+  artifact_kind: "table"
+  purpose: "DB-backed session authority (Model A). Web and API session storage; identity resolved from lupo_sessions via App\\Auth\\Session."
+  traits: ["canonical", "session", "auth", "v4.0.77"]
   tags: ["database", "sessions", "auth", "identity"]
-  lupo_agent: "antigravity"
+  doctrine_note: "No database foreign keys; referential integrity enforced in application code. All session access via App\\Auth\\Session and PDO_DB."
 
 lupopedia.edges:
-  comment: "Snapshot of files edited during 4.0.73 finalization and initialization thread by ANTIGRAVITY IDE Agent. Edges reflect discovered relationships between database tables and PHP/Python codebase entities. Values should be verified against live database schemas/queries for the most current semantic graph state."
-  meta: "Thread: Finalize 4.0.72 → Push to GitHub → Initialize 4.0.73 → Migrate Tasks → Validate Upgrade Path"
+  comment: "Snapshot of edges for lupo_sessions table doc at 4.0.77 lead pass."
   outbound_edges:
-    - { to: "lupo-database/lupopedia/toon/lupo_sessions.toon.json", type: "schema_reference", weight: 1.0 }
+    - { to: "lupo-database/lupopedia/mysql/install/install_new_lupopedia.sql", type: "schema_reference", weight: 1.0 }
     - { to: "lupo-docs/database/lupopedia/tables/active/lupo_actors.md", type: "references", weight: 0.9 }
-    - { to: "lupo-docs/database/lupopedia/tables/active/lupo_session_events.md", type: "references", weight: 0.8 }
-    - { to: "lupo-docs/database/lupopedia/tables/active/lupo_session_recovery.md", type: "references", weight: 0.7 }
+    - { to: "lupo-docs/database/lupopedia/tables/active/lupo_channels.md", type: "references", weight: 0.8 }
     - { to: "app/Auth/Session.php", type: "referenced_by", weight: 1.0 }
-    - { to: "lupo-includes/functions/session-compat-5.6.php", type: "referenced_by", weight: 0.9 }
-
-lupopedia.engagement:
-  comment: "Snapshot of files edited during 4.0.73 finalization and initialization thread by ANTIGRAVITY IDE Agent. Engagement metrics track edit frequency and importance of each file in the version transition process."
-  meta: "Thread: Finalize 4.0.72 → Push to GitHub → Initialize 4.0.73 → Migrate Tasks → Validate Upgrade Path"
-  views: 0
 
 lupopedia.footer:
-  version: "4.0.73"
-  last_verified: "20260313"
-  last_verified_by: "antigravity"
+  version: "4.0.77"
+  last_verified: "20260316"
+  last_verified_by: "cursor"
 ---
-# file: lupo_sessions (table) — web_path: http://www.lupopedia.com/database/lupopedia/tables/active/lupo_sessions
+# file: lupo_sessions — session: L-LUPO-ROOT-CURSOR — web_path: http://www.lupopedia.com/database/lupopedia/tables/active/lupo_sessions
 
 # Table: lupo_sessions
 
@@ -46,6 +38,13 @@ lupopedia.footer:
 - **Category:** Session / Authentication
 - **Status:** Active
 - **Version introduced:** 4.0.0
+
+## Where This Table Is Used
+
+- **Session handler:** `App\Auth\Session` reads and writes this table exclusively for web and API session state. Lookup by `session_id`; identity (actor_id, channel_id) resolved from rows.
+- **Auth guard:** Authentication and authorization logic use session rows to determine current actor, channel, and federation node.
+- **Session lifecycle:** Session creation on login or anonymous visit; updates to `last_seen_ymdhis`, `expires_ymdhis`; soft delete via `is_deleted` and `deleted_ymdhis`.
+- **Session events / recovery:** Related tables `lupo_session_events` and session recovery flows reference or extend session context; session_id is the join key.
 
 ## Column Documentation
 

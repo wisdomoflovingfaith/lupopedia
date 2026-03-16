@@ -1,113 +1,81 @@
 ---
 lupopedia.headers:
-  lupopedia.version: "4.0.73"
-  lupopedia.schema: "documentation"
+  lupopedia.version: "4.0.77"
+  lupopedia.schema: "database_table"
+  system_version: "4.0.77"
   file_path_from_root: "lupo-docs/database/lupopedia/tables/active/lupo_contents.md"
-  system_version: "4.0.73"
-  namespace: "content"
-  channel_id: 1
-  actor_id: 1003
-  last_modified_utc: "20260313"
-  artifact_type: "documentation"
-  artifact_kind: "database_table"
-  purpose: "JetBrains domain table documentation for lupo_contents"
-  lupo_agent: "antigravity"
+  web_path: "[lupo_contents](http://www.lupopedia.com/database/lupopedia/tables/active/lupo_contents)"
+  last_modified_utc: "20260316"
+  channel_id: 42
+  actor_id: 102
+  artifact_type: "table_documentation"
+  artifact_kind: "table"
+  purpose: "Documentation for lupo_contents table - primary content records for knowledge and documentation entities"
+  traits: ["canonical", "content", "knowledge", "v4.0.77"]
+  tags: ["database", "content", "knowledge", "collections"]
+  doctrine_note: "No database foreign keys; referential integrity enforced in application code."
 
 lupopedia.edges:
-  comment: "Snapshot of files edited during 4.0.73 finalization and initialization thread by ANTIGRAVITY IDE Agent. Edges reflect discovered relationships between database tables and PHP/Python codebase entities. Values should be verified against live database schemas/queries for the most current semantic graph state."
-  meta: "Thread: Finalize 4.0.72 → Push to GitHub → Initialize 4.0.73 → Migrate Tasks → Validate Upgrade Path"
+  comment: "Snapshot of edges for lupo_contents table doc at 4.0.77 lead pass."
   outbound_edges:
-    - { to: "lupo-database/lupopedia/toon/lupo_contents.toon.json", type: "schema_reference", weight: 1.0, reason: "TOON schema definition", db_source: "lupo_contents" }
-
-lupopedia.engagement:
-  comment: "Snapshot of files edited during 4.0.73 finalization and initialization thread by ANTIGRAVITY IDE Agent. Engagement metrics track edit frequency and importance of each file in the version transition process."
-  meta: "Thread: Finalize 4.0.72 → Push to GitHub → Initialize 4.0.73 → Migrate Tasks → Validate Upgrade Path"
-  views: 0
+    - { to: "lupo-database/lupopedia/mysql/install/install_new_lupopedia.sql", type: "schema_reference", weight: 1.0 }
+    - { to: "lupo-docs/database/lupopedia/tables/active/lupo_actors.md", type: "references", weight: 0.9 }
+    - { to: "lupo-docs/database/lupopedia/tables/active/lupo_channels.md", type: "references", weight: 0.8 }
+    - { to: "lupo-docs/database/lupopedia/tables/active/lupo_collections.md", type: "references", weight: 0.9 }
 
 lupopedia.footer:
-  version: "4.0.73"
-  last_verified: "20260313"
-  last_verified_by: "antigravity"
+  version: "4.0.77"
+  last_verified: "20260316"
+  last_verified_by: "cursor"
 ---
+# file: lupo_contents — session: L-LUPO-ROOT-CURSOR — web_path: http://www.lupopedia.com/database/lupopedia/tables/active/lupo_contents
 
 # Table: lupo_contents
 
 ## Table Overview
-- purpose: Primary content records for knowledge and documentation entities.
-- category: active
-- status: active (present in current TOON and install schema)
-- version introduced: not explicitly documented in TOON/install comments
-- version deprecated: not applicable
-- removal notes: not applicable
-- migration references: none found in migration docs scanned
 
-## Column Documentation
-| Column | Type | Nullability | Default | Description |
-|---|---|---|---|---|
-| content_id | bigint | NOT NULL | none/unspecified | TOON-defined field; canonical semantic description not specified in TOON. |
-| content_parent_id | bigint | Nullable/unspecified | none/unspecified | TOON-defined field; canonical semantic description not specified in TOON. |
-| federation_node_id | bigint | Nullable/unspecified | 1 | TOON-defined field; canonical semantic description not specified in TOON. |
-| federation_source_url | varchar(2000) COMMENT ''Canonical URL of content at source | Nullable/unspecified | none/unspecified | TOON-defined field; canonical semantic description not specified in TOON. |
-| channel_id | bigint COMMENT ''Channel this content belongs to (doctrine: content | Nullable/unspecified | none/unspecified | TOON-defined field; canonical semantic description not specified in TOON. |
-| department_id | bigint | Nullable/unspecified | none/unspecified | TOON-defined field; canonical semantic description not specified in TOON. |
-| actor_id | bigint | Nullable/unspecified | none/unspecified | TOON-defined field; canonical semantic description not specified in TOON. |
-| title | varchar(255) | NOT NULL | none/unspecified | TOON-defined field; canonical semantic description not specified in TOON. |
-| slug | varchar(255) | NOT NULL | none/unspecified | TOON-defined field; canonical semantic description not specified in TOON. |
-| custom_path | varchar(255) | Nullable/unspecified | none/unspecified | TOON-defined field; canonical semantic description not specified in TOON. |
-| description | text | Nullable/unspecified | none/unspecified | TOON-defined field; canonical semantic description not specified in TOON. |
-| seo_keywords | varchar(500) | Nullable/unspecified | none/unspecified | TOON-defined field; canonical semantic description not specified in TOON. |
-| body | text | Nullable/unspecified | none/unspecified | TOON-defined field; canonical semantic description not specified in TOON. |
-| content | text | Nullable/unspecified | none/unspecified | TOON-defined field; canonical semantic description not specified in TOON. |
-| content_type | varchar(50) | Nullable/unspecified | ''article | TOON-defined field; canonical semantic description not specified in TOON. |
-| format | varchar(20) | Nullable/unspecified | ''markdown | TOON-defined field; canonical semantic description not specified in TOON. |
-| content_url | varchar(2000) | Nullable/unspecified | none/unspecified | TOON-defined field; canonical semantic description not specified in TOON. |
-| default_collection_id | bigint | Nullable/unspecified | none/unspecified | TOON-defined field; canonical semantic description not specified in TOON. |
-| source_url | varchar(2000) | Nullable/unspecified | none/unspecified | TOON-defined field; canonical semantic description not specified in TOON. |
-| source_title | varchar(500) | Nullable/unspecified | none/unspecified | TOON-defined field; canonical semantic description not specified in TOON. |
-| is_template | tinyint | NOT NULL | 0 | TOON-defined field; canonical semantic description not specified in TOON. |
-| status | varchar(64) | Nullable/unspecified | ''draft | TOON-defined field; canonical semantic description not specified in TOON. |
-| visibility | varchar(64) | Nullable/unspecified | ''public | TOON-defined field; canonical semantic description not specified in TOON. |
-| view_count | int | Nullable/unspecified | 0 | TOON-defined field; canonical semantic description not specified in TOON. |
-| created_ymdhis | bigint | NOT NULL | 0 | TOON-defined field; canonical semantic description not specified in TOON. |
-| utc_cycle | varchar(64) | NOT NULL | none/unspecified | TOON-defined field; canonical semantic description not specified in TOON. |
-| triage_status | varchar(64) | NOT NULL | ''untriaged | TOON-defined field; canonical semantic description not specified in TOON. |
-| triage_notes | text | Nullable/unspecified | none/unspecified | TOON-defined field; canonical semantic description not specified in TOON. |
-| updated_ymdhis | bigint | NOT NULL | none/unspecified | TOON-defined field; canonical semantic description not specified in TOON. |
-| is_deleted | tinyint | NOT NULL | 0 | TOON-defined field; canonical semantic description not specified in TOON. |
-| is_active | tinyint | NOT NULL | 1 | TOON-defined field; canonical semantic description not specified in TOON. |
-| deleted_ymdhis | bigint | Nullable/unspecified | none/unspecified | TOON-defined field; canonical semantic description not specified in TOON. |
-| content_sections | json | Nullable/unspecified | none/unspecified | TOON-defined field; canonical semantic description not specified in TOON. |
-| version_number | int | NOT NULL | 1 | TOON-defined field; canonical semantic description not specified in TOON. |
-| file_path_from_root | varchar(500) COMMENT ''FLIP Header: path from repo root (4.0.13) | Nullable/unspecified | none/unspecified | TOON-defined field; canonical semantic description not specified in TOON. |
-| file_last_modified_system_version | varchar(20) COMMENT ''FLIP: system version | Nullable/unspecified | none/unspecified | TOON-defined field; canonical semantic description not specified in TOON. |
-| file_last_modified_utc | bigint COMMENT ''FLIP: UTC last modified YYYYMMDDHHIISS | Nullable/unspecified | none/unspecified | TOON-defined field; canonical semantic description not specified in TOON. |
-| tags | json | Nullable/unspecified | none/unspecified | TOON-defined field; canonical semantic description not specified in TOON. |
-| dialog_notes | text | Nullable/unspecified | none/unspecified | TOON-defined field; canonical semantic description not specified in TOON. |
-| atom_mappings | json COMMENT ''Consolidated from lupo_content_atom_map | Nullable/unspecified | none/unspecified | TOON-defined field; canonical semantic description not specified in TOON. |
-| category_mappings | json COMMENT ''Consolidated from lupo_content_category_map | Nullable/unspecified | none/unspecified | TOON-defined field; canonical semantic description not specified in TOON. |
-| content_events | json COMMENT ''Consolidated from lupo_content_events | Nullable/unspecified | none/unspecified | TOON-defined field; canonical semantic description not specified in TOON. |
-| hashtags | json COMMENT ''Consolidated from lupo_content_hashtag | Nullable/unspecified | none/unspecified | TOON-defined field; canonical semantic description not specified in TOON. |
-| inbound_links | json COMMENT ''Consolidated from lupo_content_inbound_links | Nullable/unspecified | none/unspecified | TOON-defined field; canonical semantic description not specified in TOON. |
-| like_users | json COMMENT ''Consolidated from lupo_content_likes | Nullable/unspecified | none/unspecified | TOON-defined field; canonical semantic description not specified in TOON. |
-| media_attachments | json COMMENT ''Consolidated from lupo_content_media | Nullable/unspecified | none/unspecified | TOON-defined field; canonical semantic description not specified in TOON. |
-| question_mappings | json COMMENT ''Consolidated from lupo_content_question_map | Nullable/unspecified | none/unspecified | TOON-defined field; canonical semantic description not specified in TOON. |
-| content_references | json COMMENT ''Consolidated from lupo_content_references | Nullable/unspecified | none/unspecified | TOON-defined field; canonical semantic description not specified in TOON. |
-| revision_history | json COMMENT ''Consolidated from lupo_content_revisions | Nullable/unspecified | none/unspecified | TOON-defined field; canonical semantic description not specified in TOON. |
-| share_users | json COMMENT ''Consolidated from lupo_content_shares | Nullable/unspecified | none/unspecified | TOON-defined field; canonical semantic description not specified in TOON. |
-| tag_relationships | json COMMENT ''Consolidated from lupo_content_tag_relationships | Nullable/unspecified | none/unspecified | TOON-defined field; canonical semantic description not specified in TOON. |
-| like_count | bigint | NOT NULL | 0 | TOON-defined field; canonical semantic description not specified in TOON. |
-| share_count | bigint | NOT NULL | 0 | TOON-defined field; canonical semantic description not specified in TOON. |
-| comment_count | bigint | NOT NULL | 0 | TOON-defined field; canonical semantic description not specified in TOON. |
+- **Purpose:** Primary content records for knowledge and documentation entities. Stores articles, pages, and semantic content with title, slug, body/content, format (e.g. markdown), channel and actor scope, status, visibility, and optional JSON denormalizations (tags, sections, revision history, media, etc.).
+- **Category:** Content / Knowledge
+- **Status:** Active (present in install schema)
+- **Version introduced:** 4.0.x
+
+## Where This Table Is Used
+
+- **Content routing and display:** Modules resolve content by slug or content_id for public and channel-scoped pages; `lupo_contents` is the main source for body, title, and metadata.
+- **Knowledge base and help:** Help tree and knowledge collections reference content rows; `default_collection_id` and collection maps link content to collections.
+- **Author and channel scope:** `actor_id` and `channel_id` scope content to an actor and channel; used for permission and filtering in admin and API.
+- **Semantic and truth integration:** Content can be referenced by truth/knowledge tables and edges; `file_path_from_root` and FLIP-style fields support file-artifact linkage.
+- **Content lifecycle:** Status (draft/published), visibility, triage_status, and soft delete (`is_deleted`, `deleted_ymdhis`) drive workflow and display. Timestamps use BIGINT YYYYMMDDHHIISS UTC.
+
+## Key Columns (summary)
+
+| Column | Type | Description |
+|--------|------|-------------|
+| content_id | bigint | Primary key. |
+| content_parent_id | bigint | Optional parent content for hierarchy. |
+| channel_id | bigint | Channel this content belongs to. |
+| actor_id | bigint | Content author/owner. |
+| title | varchar(255) | Display title. |
+| slug | varchar(255) | URL-friendly identifier. |
+| body / content | text | Main content body. |
+| content_type | varchar(50) | e.g. article. |
+| format | varchar(20) | e.g. markdown. |
+| status | varchar(64) | e.g. draft, published. |
+| visibility | varchar(64) | e.g. public, private. |
+| created_ymdhis | bigint | Creation timestamp (BIGINT UTC). |
+| updated_ymdhis | bigint | Last update. |
+| is_deleted | tinyint | Soft delete flag. |
+| deleted_ymdhis | bigint | Soft delete timestamp. |
+
+Many additional columns exist for JSON denormalizations (tags, atom_mappings, category_mappings, content_events, revision_history, etc.); see install SQL or TOON for the full list.
 
 ## Relationships
-- foreign keys: none (database doctrine forbids foreign keys)
-- inbound references: no canonical inbound reference list found in TOON
-- outbound references: No foreign keys or explicit relationships in TOON (`relationships: []`).
-- join patterns: Join by `content_id`; common joins: `lupo_help_tree.content_id`, truth/knowledge references by id where applicable.
 
-## Usage Notes
-- migration notes: TOON and install schema are aligned for this table name.
-- compatibility notes: current schema uses BIGINT timestamp doctrine and soft-delete patterns where present.
-- warnings: avoid assuming implicit constraints; use doctrine that logic is application-side.
-- future considerations: if additional relationships are introduced, document via TOON updates first.
-- historical changes if updating existing docs: existing flat documentation was retained; this file is the category-structured canonical doc for this domain pass.
+- **Logical references:** `actor_id` → lupo_actors; `channel_id` → lupo_channels; `content_parent_id` → lupo_contents; `default_collection_id` → collection tables. No database foreign keys; application code enforces relationships.
+- **Join patterns:** Lookup by `content_id` or `slug` (and channel_id/actor_id where scoped); joins to lupo_help_tree, collection maps, and truth/knowledge where content is referenced.
+
+## Doctrine Notes
+
+- **No foreign keys.** All referential integrity in application code.
+- **Timestamps:** BIGINT YYYYMMDDHHIISS UTC; set in PHP with `gmdate('YmdHis')`.
+- **Soft delete:** Filter by `is_deleted = 0` unless querying deleted content.
