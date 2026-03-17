@@ -46,23 +46,22 @@ lupopedia.metadata:
     - { schema_ref: "lupo_metadata", entity_type: "file", meta_type: "property", property_value: "cursor", channel_id: 42, class_name: "lupopedia_metadata", created_ymdhis: 20260313000000, updated_ymdhis: 20260313000000 }
 
 lupopedia.headers:
-  lupopedia.version: "4.0.79"
+  lupopedia.version: "4.0.80"
   lupopedia.schema: "documentation"
   file_path_from_root: "README.md"
   web_path: "http://www.lupopedia.com/"
-  last_modified_utc: "20260316"
-  system_version: "4.0.79"
+  last_modified_utc: "20260317"
+  system_version: "4.0.80"
   channel_id: 42
-  actor_id: 102
-  actor_name: "cursor"
-  faucet_name: "cursor"
-  delegation_chain: "cursor:root"
-  artifact_type: "guide"
+  actor_id: 1
+  actor_name: "wolfie"
+  delegation_chain: "wolfie:root"
+  artifact_type: "documentation"
   artifact_kind: "documentation"
   purpose: "Primary project documentation and onboarding — Install & upgrade validation, canonical root rules, actor registration, lupo-channels/actors/agents"
   mood_rgb: "4169E1"
-  traits: ["essential", "entrypoint", "onboarding", "v4.0.79"]
-  tags: ["readme", "getting_started", "semantic_os", "multi_agent", "root_rules", "v4.0.79"]
+  traits: ["essential", "entrypoint", "onboarding", "v4.0.80"]
+  tags: ["readme", "getting_started", "semantic_os", "multi_agent", "root_rules", "v4.0.80"]
 
 lupopedia.session:
   session_id: "L-LUPO-ROOT-CURSOR"
@@ -89,25 +88,32 @@ lupopedia.edges:
   semantic_tags: ["project_overview", "onboarding", "semantic_os", "multi_agent", "root_rules"]
 
 lupopedia.footer:
-  version: "4.0.79"
-  last_verified: "20260316"
-  last_verified_by: "cursor"
-  orchestrator: "cursor"
+  version: "4.0.80"
+  last_verified: "20260317"
+  last_verified_by: "wolfie"
+  orchestrator: "wolfie"
   next_action:
     - "Point new contributors to Required Reading (INIT_README, LUPOPEDIA_HEADERS), lupo-rules/root/, and actor registration checklist (lupo-docs/ACTOR_REGISTRATION_CHECKLIST.md)"
-    - "Keep Getting Started and install steps aligned with 4.0.79"
+    - "Keep Getting Started and install steps aligned with 4.0.80"
     - "Review actor/faucet and registration guidance when doctrine paths change"
 ---
 # file: Lupopedia README — session: L-LUPO-ROOT-CURSOR — delegation: cursor:root — web_path: http://www.lupopedia.com/
 
-# Lupopedia Semantic OS v4.0.79
+# Lupopedia Semantic OS v4.0.80
 
-[![Version](https://img.shields.io/badge/version-4.0.79-blue.svg)](lupo-docs/version.md)
+[![Version](https://img.shields.io/badge/version-4.0.80-blue.svg)](lupo-docs/version.md)
 [![docs](https://img.shields.io/badge/docs-HELP.md-green)](lupo-docs/HELP.md)
 
 ---
 
-**Current version: [v4.0.79](lupo-docs/version.md)** (active development). **Released: [v4.0.78](lupo-docs/version.md), [v4.0.77](lupo-docs/version.md), [v4.0.76](lupo-docs/version.md).** Rules and governance updates: **canonical root rules** in `lupo-rules/root/`, IDE rule propagation (Cursor, Kiro, Windsurf, JetBrains), TOON path unified to `lupo-database/lupopedia/toon/`, `lupo-database/` security hardening, and **Antigravity VSX Extension** integration (including full LUPOPEDIA HEADERS terminology adoption and feature UI scaffolding). The only supported upgrade path is **Crafty Syntax 3.7.5 → Lupopedia 4.0.x**. See [plan.md](plan.md) and [report.md](report.md).
+## 🚧 Current Development — v4.0.80
+
+**Current version: [v4.0.80](lupo-docs/version.md)** (active development). **Released: [v4.0.79](lupo-docs/version.md), [v4.0.78](lupo-docs/version.md), [v4.0.77](lupo-docs/version.md).** Rules and governance updates: **canonical root rules** in `lupo-rules/root/`, IDE rule propagation (Cursor, Kiro, Windsurf, JetBrains), TOON path unified to `lupo-database/lupopedia/toon/`, `lupo-database/` security hardening, and **Antigravity VSX Extension** integration (including full LUPOPEDIA HEADERS terminology adoption and feature UI scaffolding). The only supported upgrade path is **Crafty Syntax 3.7.5 → Lupopedia 4.0.x**. See [plan.md](plan.md) and [report.md](report.md).
+
+**Focus areas for v4.0.80:**
+- **Completion of Top 50 table documentation** - Finishing comprehensive documentation for critical database tables
+- **Bayesian Decision Tracking expansion** - Evidence history, multi-level influences, performance optimizations
+- **Documentation completeness + validation tooling** - Ensuring 100% coverage and quality validation
 
 **Canonical root rules:** All agents and actors must follow the doctrine in **`lupo-rules/root/`**. Agent-specific rule files (e.g. `.cursor/rules/`, `.kiro/rules/`, `.windsurf/rules/`) are **derived** from those root rules; the root is the single source of truth. See [Canonical root rules](#canonical-root-rules) and [New agent onboarding](#new-agent--web-terminal-agent-onboarding).
 

@@ -73,7 +73,15 @@ Older entries (≤4.0.67) are archived in [CHANGELOG_ARCHIVE.md](CHANGELOG_ARCHI
 
 ---
 
-## 4.0.79 — Active development (post–4.0.78 release)
+## [4.0.80] — Active Development
+
+- **Continuation of Top 50 table documentation completion** - Auth domain (lupo_auth_providers, lupo_auth_audit_log, lupo_banned_actors, lupo_bans_log), Analytics domain (lupo_unified_log), and Top 50 expansion tasks carried forward from 4.0.79.
+- **Continued Bayesian Decision Tracking expansion** - Decision update history table, multi-level influence propagation, evidence correlation modeling, and performance optimizations planned for 4.0.80.
+- **Follow-up improvements from v4.0.79** - Header version normalization, namespace validation, TABLE_INDEX.md completion, and documentation quality validation.
+
+---
+
+## 4.0.79 — Released (2026-03-17)
 
 ### 🧩 The Correct Atom Scope Hierarchy
 **Documentation:** See [GLOBAL_ATOMS_DOCTRINE.md](lupo-docs/channels/doctrine/GLOBAL_ATOMS_DOCTRINE.md) for complete atom scope hierarchy and addressing model.
