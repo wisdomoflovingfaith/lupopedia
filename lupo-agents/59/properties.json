@@ -1,3 +1,20 @@
 {
-  "properties": {}
+  "properties": {
+    "resolution_order": ["channel", "thread", "actor", "default"],
+    "default_channel": 42,
+    "default_thread": 1,
+    "default_actor": 3,
+    "quarantine_channel": 666,
+    "primary_channels": [666, 42, 0, 51],
+    "monitoring_targets": [420],
+    "personality_traits": [
+      "weighing",
+      "methodical",
+      "judicious",
+      "patient",
+      "ceremonial",
+      "ancient-wisdom",
+      "threshold-guarding"
+    ]
+  }
 }

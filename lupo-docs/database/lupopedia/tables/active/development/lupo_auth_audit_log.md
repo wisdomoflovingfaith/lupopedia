@@ -1,50 +1,37 @@
 ---
 lupopedia.headers:
-  lupopedia.version: "4.0.77"
+  lupopedia.version: "4.0.79"
   lupopedia.schema: "database_table"
+  system_version: "4.0.79"
   file_path_from_root: "lupo-docs/database/lupopedia/tables/active/development/lupo_auth_audit_log.md"
-  system_version: "4.0.77"
-  namespace: "auth"
+  web_path: "[lupo_auth_audit_log](http://www.lupopedia.com/database/lupopedia/tables/active/lupo_auth_audit_log)"
+  last_modified_utc: "20260317"
   channel_id: 42
-  actor_id: 106
-  last_modified_utc: "20260316"
+  actor_id: 102
+  actor_name: "cursor"
+  delegation_chain: "cursor:root"
   artifact_type: "table_documentation"
-  purpose: "Documentation for lupo_auth_audit_log table - records authentication events (login, logout, failure) with IP and user_agent"
-  mood_rgb: "4169E1"
   artifact_kind: "table"
-  traits: ["development", "auth", "audit", "security", "v4.0.77"]
-  tags: ["database", "auth", "audit", "security", "logging", "development"]
-  lupo_agent: "zencoder"
-  table_primary_key: "auth_audit_log_id"
-  lupo_auth_audit_log.auth_audit_log_id: "BIGINT NOT NULL primary key"
-  lupo_auth_audit_log.user_id: "BIGINT — references lupo_auth_users.user_id (no FK)"
-  lupo_auth_audit_log.crafty_operator_id: "INT — legacy Crafty Syntax operator ID for migrated records"
-  lupo_auth_audit_log.event_type: "VARCHAR(50) NOT NULL — event class (login_success, login_failure, logout, password_reset, etc.)"
-  lupo_auth_audit_log.system_context: "VARCHAR(50) NOT NULL — subsystem that generated the event (web, api, cli, admin)"
-  lupo_auth_audit_log.ip_address: "VARCHAR(45) — client IP address (supports IPv4 and IPv6)"
-  lupo_auth_audit_log.user_agent: "TEXT — HTTP User-Agent string from the request"
-  lupo_auth_audit_log.event_data: "JSON — structured payload with event-specific details"
-  lupo_auth_audit_log.success: "TINYINT NOT NULL DEFAULT 1 — 1 = success, 0 = failure"
-  lupo_auth_audit_log.error_message: "TEXT — error description for failed events"
-  lupo_auth_audit_log.created_at: "BIGINT — YYYYMMDDHHIISS UTC timestamp of event"
-  lupo_auth_audit_log.updated_at: "BIGINT — YYYYMMDDHHIISS UTC last-update timestamp"
-  table_engine: "InnoDB"
-  table_charset: "utf8mb4"
-  table_indexes: ["lupo_auth_audit_log_idx_user_id", "lupo_auth_audit_log_idx_crafty_operator_id", "lupo_auth_audit_log_idx_event_type", "lupo_auth_audit_log_idx_system_context", "lupo_auth_audit_log_idx_success", "lupo_auth_audit_log_idx_created_at"]
-  doctrine_note: "No database foreign keys; referential integrity enforced in application code."
+  namespace: "auth"
+  purpose: "Documentation for lupo_auth_audit_log table - records authentication events (login, logout, failure) with IP and user_agent"
+  tags: ["database", "table", "auth"]
 
 lupopedia.edges:
+  comment: "Snapshot of edges for lupo_auth_audit_log table doc at 4.0.79 (grounded by repo search; non-exhaustive)."
+  meta: "php_hits=2 python_hits=0"
   outbound_edges:
-    - { to: "lupo-docs/database/lupopedia/tables/active/lupo_auth_users.md", type: "references", weight: 1.0 }
-    - { to: "lupo-docs/database/lupopedia/tables/active/lupo_sessions.md", type: "references", weight: 0.8 }
-    - { to: "lupo-database/lupopedia/mysql/install/install_new_lupopedia.sql", type: "schema_reference", weight: 0.9 }
+    - { to: "database.table.lupo_auth_audit_log", type: "DEFINES_SCHEMA_FOR", weight: 1.0 }
+    - { to: "lupo-database/lupopedia/mysql/install/install_new_lupopedia.sql", type: "schema_reference", weight: 1.0 }
+    - { to: "lupo-database/lupopedia/content/lupo-app/Http/Controllers/Admin/AuthenticationController.php", type: "USED_IN_PHP", weight: 0.6 }
+    - { to: "lupo-database/lupopedia/content/lupo-app/auth/AuthManager.php", type: "USED_IN_PHP", weight: 0.6 }
+    - { to: "(no_python_refs_found)", type: "USED_IN_PYTHON", weight: 0.0 }
 
 lupopedia.footer:
-  version: "4.0.77"
-  last_verified: "20260316"
-  last_verified_by: "zencoder"
+  version: "4.0.79"
+  last_verified: "20260317"
+  last_verified_by: "cursor"
 ---
-
+# file: lupo_auth_audit_log ? web_path: http://www.lupopedia.com/database/lupopedia/tables/active/lupo_auth_audit_log
 # Table: lupo_auth_audit_log
 
 ## Table Overview

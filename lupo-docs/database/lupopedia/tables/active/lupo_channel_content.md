@@ -1,6 +1,36 @@
-# LUPOPEDIA HEADERS (replaces FLARE)
-
 ---
+lupopedia.headers:
+  lupopedia.version: "4.0.79"
+  lupopedia.schema: "database_table"
+  system_version: "4.0.79"
+  file_path_from_root: "lupo-docs/database/lupopedia/tables/active/lupo_channel_content.md"
+  web_path: "[lupo_channel_content](http://www.lupopedia.com/database/lupopedia/tables/active/lupo_channel_content)"
+  last_modified_utc: "20260317"
+  channel_id: 42
+  actor_id: 102
+  actor_name: "cursor"
+  delegation_chain: "cursor:root"
+  artifact_type: "table_documentation"
+  artifact_kind: "table"
+  namespace: "channels"
+  purpose: "lupo_channel_content"
+  tags: ["database", "table", "channels"]
+
+lupopedia.edges:
+  comment: "Snapshot of edges for lupo_channel_content table doc at 4.0.79 (grounded by repo search; non-exhaustive)."
+  meta: "php_hits=1 python_hits=1"
+  outbound_edges:
+    - { to: "database.table.lupo_channel_content", type: "DEFINES_SCHEMA_FOR", weight: 1.0 }
+    - { to: "lupo-database/lupopedia/mysql/install/install_new_lupopedia.sql", type: "schema_reference", weight: 1.0 }
+    - { to: "lupo-bin/initialize_system.php", type: "USED_IN_PHP", weight: 0.6 }
+    - { to: "analyze_unused_tables.py", type: "USED_IN_PYTHON", weight: 0.5 }
+
+lupopedia.footer:
+  version: "4.0.79"
+  last_verified: "20260317"
+  last_verified_by: "cursor"
+---
+# file: lupo_channel_content ? web_path: http://www.lupopedia.com/database/lupopedia/tables/active/lupo_channel_content
 lupopedia.init:
   requirements:
     flare:
@@ -81,145 +111,6 @@ lupopedia.close:
     - type: register_completion
       channel_id: 0
   actor_id: 1004
----
-
-# lupo_channel_content
-
-## Overview
-
-The `lupo_channel_content` table manages federation node content and web path mapping within the Lupopedia Semantic OS. This table provides the foundation for FLARE federation node management.
-
-## Schema
-
-### Table Definition
-
-```sql
-CREATE TABLE lupo_channel_content (
-  channel_content_id bigint NOT NULL AUTO_INCREMENT,
-  channel_id int NOT NULL,
-  federation_node_id int NOT NULL,
-  file_path varchar(500) NOT NULL,
-  web_path varchar(500) NOT NULL,
-  metadata_json json DEFAULT NULL,
-  created_ymdhis bigint NOT NULL DEFAULT 0,
-  updated_ymdhis bigint NOT NULL DEFAULT 0,
-  is_deleted tinyint NOT NULL DEFAULT 0,
-  PRIMARY KEY (channel_content_id)
-);
-```
-
-### Field Descriptions
-
-| Field | Type | Description | Example |
-|-------|------|-------------|---------|
-| `channel_content_id` | bigint | Primary key, auto-increment identifier | 12345 |
-| `channel_id` | int | Channel identifier (42 for development) | 42 |
-| `federation_node_id` | int | Federation node identifier | 0 |
-| `file_path` | varchar(500) | Repository file path | `lupo-channels/42/content/federation_node_id/0/FLARE.md` |
-| `web_path` | varchar(500) | Canonical web URL | `http://www.lupopedia.com/FLARE` |
-| `metadata_json` | json | Flexible metadata storage | `{"description": "Root FLARE definition"}` |
-| `created_ymdhis` | bigint | Creation timestamp (YYYYMMDDHHIISS) | 20260301120000 |
-| `updated_ymdhis` | bigint | Last update timestamp (YYYYMMDDHHIISS) | 20260301120000 |
-| `is_deleted` | tinyint | Soft delete flag (0=active, 1=deleted) | 0 |
-
-## Indexes
-
-### Performance Indexes
-
-```sql
-CREATE INDEX lupo_channel_content_idx_channel ON lupo_channel_content (channel_id);
-CREATE INDEX lupo_channel_content_idx_federation_node ON lupo_channel_content (federation_node_id);
-CREATE INDEX lupo_channel_content_idx_file_path ON lupo_channel_content (file_path);
-CREATE INDEX lupo_channel_content_idx_web_path ON lupo_channel_content (web_path);
-CREATE INDEX lupo_channel_content_idx_created ON lupo_channel_content (created_ymdhis);
-CREATE INDEX lupo_channel_content_idx_updated ON lupo_channel_content (updated_ymdhis);
-CREATE INDEX lupo_channel_content_idx_is_deleted ON lupo_channel_content (is_deleted);
-```
-
-### Index Purposes
-
-| Index | Purpose | Use Case |
-|--------|---------|-----------|
-| `idx_channel` | Channel-based queries | Find all content in a channel |
-| `idx_federation_node` | Federation node queries | Find content for specific federation node |
-| `idx_file_path` | File path lookups | Quick file path resolution |
-| `idx_web_path` | Web path lookups | URL resolution and routing |
-| `idx_created` | Time-based queries | Recent content queries |
-| `idx_updated` | Update tracking | Modified content queries |
-| `idx_is_deleted` | Soft delete filtering | Active content only |
-
-## Usage Patterns
-
-### Federation Node Management
-
-```sql
--- Get all federation nodes in a channel
-SELECT federation_node_id, file_path, web_path, metadata_json
-FROM lupo_channel_content 
-WHERE channel_id = 42 AND is_deleted = 0
-ORDER BY federation_node_id;
-
--- Get specific federation node
-SELECT file_path, web_path, metadata_json
-FROM lupo_channel_content 
-WHERE channel_id = 42 AND federation_node_id = 0 AND is_deleted = 0;
-
--- Search by web path
-SELECT content_id, file_path, metadata_json
-FROM lupo_channel_content 
-WHERE web_path = 'http://www.lupopedia.com/FLARE' AND is_deleted = 0;
-```
-
-### Integration Points
-
-#### FLARE System
-- **Web Path Resolution**: Maps repository paths to canonical URLs
-- **Federation Hierarchy**: Supports multiple federation nodes per channel
-- **Metadata Storage**: JSON field for flexible federation requirements
-
-#### Semantic OS
-- **Content Management**: Integrates with lupo_contents for unified content handling
-- **Channel Organization**: Aligns with channel-based content organization
-- **Actor Registry**: Links to lupo-actors/registry.json for actor validation
-
-## Data Relationships
-
-### Foreign Key Relationships
-
-| Table | Relationship | Purpose |
-|-------|------------|---------|
-| `lupo_channels` | channel_id | Channel validation and metadata |
-| `lupo_actors` | actor_id | Actor validation and delegation |
-| `lupo_contents` | content_id | Content federation and linking |
-
-### Constraints and Rules
-
-### Data Integrity
-- **Primary Key**: `content_id` ensures unique content identification
-- **Soft Deletes**: `is_deleted` prevents data loss while maintaining history
-- **Timestamp Format**: All timestamps use YYYYMMDDHHIISS UTC format
-
-### Business Rules
-- **Channel 42**: Development channel for federation content
-- **Federation Node 0**: Root FLARE definition node
-- **Web Path Uniqueness**: Each web_path should be unique within channel
-- **File Path Validation**: Repository paths must be valid and accessible
-
-## Migration Notes
-
-### Version History
-- **4.0.52**: Initial table creation for federation node management
-- **MySQL 5.7 Compatible**: No partial indexes, no JSON constraints
-- **Performance Optimized**: Comprehensive indexing for common query patterns
-
-### Related Documentation
-
-- **FLARE Doctrine**: `lupo-docs/doctrine/FLARE/FLARE_DOCTRINE.md`
-- **FLARE API**: `lupo-docs/api/FLARE_API.md`
-- **Installation**: `lupo-database/migrations/install_lupopedia.sql`
-- **Federation Guide**: `lupo-channels/42/content/federation_node_id/0/FLARE.md`
-
----
 
 **Table Created**: 2026-03-01  
 **Lead Agent**: Windsurf (1002)  

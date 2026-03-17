@@ -1,12 +1,47 @@
-# LUPOPEDIA HEADERS (replaces FLARE)
 ---
 lupopedia.headers:
-  lupopedia.version: "4.0.73"
+  lupopedia.version: "4.0.79"
+  lupopedia.schema: "database_table"
+  system_version: "4.0.79"
+  file_path_from_root: "lupo-docs/database/lupopedia/tables/active/lupo_actor_departments.md"
+  web_path: "[lupo_actor_departments](http://www.lupopedia.com/database/lupopedia/tables/active/lupo_actor_departments)"
+  last_modified_utc: "20260317"
+  channel_id: 42
+  actor_id: 102
+  actor_name: "cursor"
+  delegation_chain: "cursor:root"
+  artifact_type: "table_documentation"
+  artifact_kind: "table"
+  namespace: "core"
+  purpose: "Documentation file with LUPOPEDIA HEADERS applied"
+  tags: ["database", "table", "core"]
+
+lupopedia.edges:
+  comment: "Snapshot of edges for lupo_actor_departments table doc at 4.0.79 (grounded by repo search; non-exhaustive)."
+  meta: "php_hits=3 python_hits=3"
+  outbound_edges:
+    - { to: "database.table.lupo_actor_departments", type: "DEFINES_SCHEMA_FOR", weight: 1.0 }
+    - { to: "lupo-database/lupopedia/mysql/install/install_new_lupopedia.sql", type: "schema_reference", weight: 1.0 }
+    - { to: "check_db_state.php", type: "USED_IN_PHP", weight: 0.6 }
+    - { to: "lupo-database/lupopedia/content/lupo-app/Services/SavedCollectionsService.php", type: "USED_IN_PHP", weight: 0.6 }
+    - { to: "lupo-database/lupopedia/content/lupo-app/auth/AuthRoleResolver.php", type: "USED_IN_PHP", weight: 0.6 }
+    - { to: "analyze_unused_tables.py", type: "USED_IN_PYTHON", weight: 0.5 }
+    - { to: "lupo-scripts/rebuild_schema_from_toons.py", type: "USED_IN_PYTHON", weight: 0.5 }
+    - { to: "lupo-scripts/wolfie_orms.py", type: "USED_IN_PYTHON", weight: 0.5 }
+
+lupopedia.footer:
+  version: "4.0.79"
+  last_verified: "20260317"
+  last_verified_by: "cursor"
+---
+# file: lupo_actor_departments ? web_path: http://www.lupopedia.com/database/lupopedia/tables/active/lupo_actor_departments
+lupopedia.headers:
+  \1"4.0.79"
   lupopedia.schema: "documentation"
   file_path_from_root: ".\docs\database\lupopedia\tables\lupo_actor_departments.md"
   file_hash: "5cb216663aafbcc24d5a682301dd4d48d8ae8971e3949a4bc6e13c36aadbd0ec"
   last_updated_utc: "20260228155738"
-  system_version: "4.0.51"
+  \1"4.0.79"
   channel_id: 1
   actor_id: 1002
   delegation_chain: "1002:10000"
@@ -27,66 +62,7 @@ lupopedia.edges:
 lupopedia.footer:
   last_verified: "20260228155738"
   last_verified_by: "windsurf"
----
 
-# LUPOPEDIA HEADERS (replaces FLARE)
-
----
-lupopedia.headers:
-  lupopedia.version: "4.0.73"
-  lupopedia.schema: "documentation"
-  lupopedia.edges: []
-  file_path_from_root: "lupo-docs\database\lupopedia\tables\lupo_actor_departments.md"
-  file_hash: "ab39efa9e2d42dbf1a8bf6f3812857e9a93ed0c3c7b3a386206d12d9aa00b57c"
-  file_path_from_root: "lupo-docs\database\lupopedia\tables\lupo_actor_departments.md"
-  file_hash: "6617c70b93784bc8698dac2d7fa2a65df9b0df4821c2f50202bea6a643543736"
-  last_updated_utc: "20260228"
-  system_version: "4.0.50"
-  channel_id: 1
-  actor_id: 1002
-  delegation_chain: null
-  artifact_type: "guide"
-  artifact_kind: "documentation"
-  purpose: "Documentation for lupo_actor_departments.md"
-  mood_rgb: "4169E1"
-  traits: ["flare", "indexed", "v4.0.50"]
-  tags: ["docs", "database", "lupopedia", "tables", "lupo_actor_departmentsmd"]
-  lupo_agent: "windsurf"
-
-  needs_review: ["delegation_chain"]
-  system_version: "4.0.50"
-  last_updated_utc: "20260228"
-lupopedia.footer:
-  last_verified: "20260228"
-  last_verified_by: "windsurf"
-    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use lupopedia.headers"]
----
-
----
-wolfie.headers: {
-  file_path_from_root: "lupo-docs/database/lupopedia/tables/lupo_actor_departments.md",
-  system_version: "4.0.48",
-  channel_id: 1,
-  actor_id: 1003,
-  created_ymdhis: 20260227000000,
-  updated_ymdhis: 20260227000000,
-  message_type: "table_documentation",
-  visibility: "public",
-  priority: "high",
-  mood_rgb: "4B0082",
-  artifact_kind: "table",
-  traits: ["canonical", "organization_mapping", "department_assignment"],
-  tags: ["database", "departments", "organization", "actors", "mapping"]
-}
-flip.footer: {
-  outbound_edges: [
-    { to: "lupo-database/lupopedia/toon/lupo_actor_departments.toon.json", type: "schema_reference", weight: 1.0 },
-    { to: "lupo-docs/database/lupopedia/tables/lupo_actors.md", type: "references", weight: 0.9 },
-    { to: "lupo-docs/database/lupopedia/tables/lupo_departments.md", type: "references", weight: 0.9 }
-  ],
-  semantic_tags: ["organization_hierarchy", "routing_logic", "departmental_identity"]
-}
----
 
 # 🏢 Table: lupo_actor_departments
 
@@ -95,19 +71,6 @@ flip.footer: {
 **Status:** ✅ Production Ready  
 **Volume:** Medium (one or more departments per actor)
 
----
-
-## 🎯 **Overview**
-
-The `lupo_actor_departments` table defines the organizational context for actors. While an actor exists globally in `lupo_actors`, their organizational responsibility (e.g., "Customer Support", "Core Development") is defined here. This supports department-based routing of messages and tasks, as well as department-scoped security.
-
-### **Key Responsibilities**
-- **Membership Management:** Tracks which actors belong to which business or technical units.
-- **Relational Context:** Stores the actor's specific `title` or designation within the department (e.g., "Senior Lead").
-- **Routing Optimization:** Enables the system to route tasks (`current_focus.json`) to the most appropriate departmental pool.
-- **Permission Layering:** Acts as the bridge to `lupo_department_roles` for intermediate authorization.
-
----
 
 ## 🗃️ **Schema Reference**
 
@@ -128,18 +91,6 @@ The `lupo_actor_departments` table defines the organizational context for actors
 | `created_ymdhis` | BIGINT | 0 | YYYYMMDDHHIISS of assignment |
 | `is_deleted` | TINYINT | 0 | Soft-delete mapping |
 
----
-
-## 🔗 **Relationships & Dependencies**
-
-### **Primary Relationships**
-- **Actor:** `actor_id` → `lupo_actors.actor_id`
-- **Department:** `department_id` → `lupo_departments.department_id`
-
-### **Authorization Order**
-Membership in this table is a prerequisite for roles in `lupo_department_roles`. It represents the "Level 2" permission context in the Lupopedia security model.
-
----
 
 ## 🚀 **Usage Patterns**
 
@@ -163,14 +114,5 @@ FROM lupo_actor_departments
 WHERE actor_id = :actor_id AND is_primary = 1 AND is_deleted = 0;
 ```
 
----
-
-## 🛡️ **Security & Privacy**
-
-- **IP Scoping:** Some departments (e.g., 'Financials') may have strict IP-whitelist requirements enforced during session establishment for any actor associated with them.
-- **Attribute Sensitivity:** Departmental associations are part of the actor's Identity Capsule and exported during portability events.
-- **Access Control:** De-assigning an actor from a department immediately revokes all department-scoped roles.
-
----
 
 *This documentation is part of the v4.0.48 Organizational Identity framework.*

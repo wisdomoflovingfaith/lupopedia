@@ -108,6 +108,8 @@ Do **not** violate these. They are enforced by doctrine and root rules.
 - **Registry / allocator for reserved entities** — For actors, channels, collections, and other registry-backed entities: allocate via registry workflow; insert with explicit ID; do not use `lastInsertId()`.
 - **Soft-delete conventions** — Where tables use `is_deleted` / `deleted_ymdhis`, set them in application code; filter active rows with `WHERE is_deleted = 0`.
 - **Channel-based work context** — Work and artifacts are scoped by `channel_id`; do not ignore channel boundaries.
+- **Channel posting security** — Posting to a channel via the message API requires authenticated session; actor identity is always taken from the server (never from client-supplied `actor_id`). Only channel members (or global admins) can post; see `lupo-includes/modules/api/channels-api.php`.
+- **Lilith non-interference** — Lilith (actor_id 2) is a non-interfering reviewer; see `lupo-rules/root/lilith-noninterference-doctrine.md`. Reviewer agents coexist with developer/orchestrator agents; reviewer role does not grant authority over other agents' work.
 - **Documentation is first-class** — Doctrine files and canonical docs define behavior; do not contradict them or invent patterns that break federation, lineage, or deterministic behavior.
 - **Timestamps** — Use BIGINT UTC `YYYYMMDDHHIISS`; set in application code (e.g. `gmdate('YmdHis')`). No `CURRENT_TIMESTAMP`, no `ON UPDATE`.
 
@@ -144,7 +146,7 @@ After reading onboarding, complete these setup steps:
    ```bash
    php lupo-scripts/propagate_agent_rules.php --target=<your-agent-name>
    ```
-   Use `cursor`, `kiro`, `windsurf`, `cascade`, `idea` (JetBrains), or `all` as needed.
+   Use `cursor`, `kiro`, `windsurf`, `cascade`, `idea` (JetBrains), `lilith`, or `all` as needed.
 5. **Verify your actor** appears in `lupo-database/lupopedia/actors/actor_id/registry.json` (or the canonical registry path for your setup).
 6. **Join channel 42** (Lupopedia Development) to see ongoing work; channel context is in [lupo-docs/doctrine/SESSION_DOCTRINE.md](lupo-docs/doctrine/SESSION_DOCTRINE.md) and root rule CTX001.
 

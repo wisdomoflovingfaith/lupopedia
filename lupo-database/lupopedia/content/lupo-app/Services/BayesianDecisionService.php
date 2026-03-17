@@ -43,6 +43,110 @@ class BayesianDecisionService {
     }
 
     /**
+     * Assert probability value is valid (0.0 to 1.0).
+     *
+     * @param mixed $value
+     * @param string $fieldName
+     * @return float
+     * @throws InvalidArgumentException
+     */
+    private function assertProbability($value, $fieldName) {
+        if (!is_numeric($value)) {
+            throw new InvalidArgumentException($fieldName . ' must be numeric.');
+        }
+        $v = (float) $value;
+        if ($v < 0.0 || $v > 1.0) {
+            throw new InvalidArgumentException($fieldName . ' must be between 0.0 and 1.0.');
+        }
+        return $v;
+    }
+
+    /**
+     * Calculate posterior probability using Bayes' theorem.
+     *
+     * @param float $prior Prior probability
+     * @param float $likelihood Likelihood of evidence
+     * @param float $evidenceProbability Probability of evidence
+     * @return float Posterior probability
+     */
+    public function calculatePosterior($prior, $likelihood, $evidenceProbability) {
+        $pPrior = $this->assertProbability($prior, 'prior');
+        $pLike  = $this->assertProbability($likelihood, 'likelihood');
+        $pEv    = $this->assertProbability($evidenceProbability, 'evidence');
+        if ($pEv == 0.0) {
+            throw new InvalidArgumentException('evidenceProbability must be > 0 for Bayes update.');
+        }
+        $posterior = ($pPrior * $pLike) / $pEv;
+        return $this->normalizeProbability($posterior);
+    }
+
+    /**
+     * Normalize probability to valid range.
+     *
+     * @param float $p
+     * @return float Normalized probability
+     */
+    public function normalizeProbability($p) {
+        if ($p < 0.0) { return 0.0; }
+        if ($p > 1.0) { return 1.0; }
+        return (float) $p;
+    }
+
+    /**
+     * Combine evidence sequentially using Bayes updates.
+     *
+     * @param float $prior Initial prior probability
+     * @param array $likelihoods Array of likelihoods
+     * @param float $evidenceProbability Probability of evidence
+     * @return float Final posterior probability
+     */
+    public function combineEvidenceSequential($prior, array $likelihoods, $evidenceProbability) {
+        $p = $this->assertProbability($prior, 'prior');
+        foreach ($likelihoods as $idx => $lik) {
+            $p = $this->calculatePosterior($p, $lik, $evidenceProbability);
+        }
+        return $p;
+    }
+
+    /**
+     * Update decision probability from evidence.
+     *
+     * @param int $decisionId
+     * @param array $likelihoods Evidence likelihoods
+     * @param float $evidenceProbability Evidence probability
+     * @return float Updated posterior probability
+     */
+    public function updateDecisionProbabilityFromEvidence($decisionId, array $likelihoods, $evidenceProbability) {
+        $decision = $this->getDecisionById($decisionId);
+        if (!$decision) {
+            throw new RuntimeException('Decision not found: ' . (int)$decisionId);
+        }
+        $prior = isset($decision['probability']) ? $decision['probability'] : 0.5;
+        $posterior = $this->combineEvidenceSequential($prior, $likelihoods, $evidenceProbability);
+        $this->saveDecisionProbability($decisionId, $prior, $posterior);
+        return $posterior;
+    }
+
+    /**
+     * Save decision probability with optional history tracking.
+     *
+     * @param int $decisionId
+     * @param float $oldProbability
+     * @param float $newProbability
+     */
+    private function saveDecisionProbability($decisionId, $oldProbability, $newProbability) {
+        $this->db->update(
+            $this->table_decisions,
+            array(
+                'probability' => $newProbability,
+                'updated_ymdhis' => gmdate('YmdHis')
+            ),
+            'decision_id = :id',
+            array('id' => $decisionId)
+        );
+    }
+
+    /**
      * Record a decision row and return its decision_id.
      *
      * The caller must provide a deterministic decision_id that follows
@@ -157,14 +261,132 @@ class BayesianDecisionService {
     /**
      * Fetch influences for a decision.
      *
-     * @param int $decision_id
+     * @param int $decisionId
      * @return array
      */
-    public function getInfluences($decision_id) {
+    public function getInfluencesForDecision($decisionId) {
         $sql = "SELECT * FROM " . $this->table_influences . "
-                WHERE decision_id = :id AND is_deleted = 0";
+                 WHERE target_decision_id = :id AND is_deleted = 0";
+        return $this->db->fetchAll($sql, array('id' => (int)$decisionId));
+    }
 
-        return $this->db->fetchAll($sql, array('id' => $decision_id));
+    /**
+     * Record evidence for a decision.
+     *
+     * @param int $decisionId
+     * @param int $channelId
+     * @param int $projectId
+     * @param string $type
+     * @param string $source
+     * @param string $value
+     * @param float $likelihood
+     * @param float $confidence
+     * @return int evidence_id
+     */
+    public function recordEvidence($decisionId, $channelId, $projectId, $type, $source, $value, $likelihood, $confidence) {
+        $evidenceId = $this->generateDecisionEvidenceId();
+        $now = gmdate('YmdHis');
+        
+        $this->db->insert($this->table_prefix . 'decision_evidence', array(
+            'decision_evidence_id' => $evidenceId,
+            'decision_id' => $decisionId,
+            'channel_id' => $channelId,
+            'project_id' => $projectId,
+            'evidence_type' => $type,
+            'evidence_source' => $source,
+            'evidence_value' => $value,
+            'likelihood' => $likelihood,
+            'confidence' => $confidence,
+            'status' => 'active',
+            'created_ymdhis' => $now,
+            'updated_ymdhis' => $now,
+            'federation_node_id' => 1,
+            'is_deleted' => 0
+        ));
+        
+        return $evidenceId;
+    }
+
+    /**
+     * Get evidence for a decision.
+     *
+     * @param int $decisionId
+     * @return array
+     */
+    public function getEvidenceForDecision($decisionId) {
+        $sql = "SELECT * FROM " . $this->table_prefix . "decision_evidence"
+                 . " WHERE decision_id = :id AND is_deleted = 0"
+                 . " ORDER BY created_ymdhis ASC";
+        return $this->db->fetchAll($sql, array('id' => (int)$decisionId));
+    }
+
+    /**
+     * Generate deterministic decision_evidence_id.
+     *
+     * @return int
+     */
+    private function generateDecisionEvidenceId() {
+        $sql = "SELECT COALESCE(MAX(decision_evidence_id), 0) + 1 
+                   FROM " . $this->table_prefix . "decision_evidence";
+        $result = $this->db->fetch($sql);
+        return $result ? (int)$result[0] : 1;
+    }
+
+    /**
+     * Set decision state to pending.
+     *
+     * @param int $decisionId
+     * @return bool
+     */
+    public function setStatePending($decisionId) {
+        return $this->updateDecisionState($decisionId, 'pending');
+    }
+
+    /**
+     * Set decision state to evaluating.
+     *
+     * @param int $decisionId
+     * @return bool
+     */
+    public function setStateEvaluating($decisionId) {
+        return $this->updateDecisionState($decisionId, 'evaluating');
+    }
+
+    /**
+     * Set decision state to confirmed.
+     *
+     * @param int $decisionId
+     * @return bool
+     */
+    public function confirmDecision($decisionId) {
+        return $this->updateDecisionState($decisionId, 'confirmed');
+    }
+
+    /**
+     * Set decision state to rejected.
+     *
+     * @param int $decisionId
+     * @return bool
+     */
+    public function rejectDecision($decisionId) {
+        return $this->updateDecisionState($decisionId, 'rejected');
+    }
+
+    /**
+     * Update decision state.
+     *
+     * @param int $decisionId
+     * @param string $state
+     * @return bool
+     */
+    private function updateDecisionState($decisionId, $state) {
+        $sql = "UPDATE " . $this->table_decisions . "
+                SET decision_status = :state, updated_ymdhis = :updated
+                WHERE decision_id = :id";
+        return $this->db->update($sql, array(
+            'state' => $state,
+            'updated' => gmdate('YmdHis'),
+            'id' => $decisionId
+        ));
     }
 }
-

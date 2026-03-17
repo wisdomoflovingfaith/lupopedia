@@ -7,9 +7,9 @@ lupopedia.init:
     validation scripts are available in lupo-scripts/ and lupo-tools/ directories.
 
 lupopedia.headers:
-  lupopedia.version: "4.0.77"
+  lupopedia.version: "4.0.79"
   lupopedia.schema: "doctrine"
-  system_version: "4.0.77"
+  system_version: "4.0.79"
   file_path_from_root: "lupo-docs/doctrine/LUPOPEDIA_HEADERS/LUPOPEDIA_HEADERS_PLAN.md"
   web_path: "[web_path](http://www.lupopedia.com/doctrine/LUPOPEDIA_HEADERS/LUPOPEDIA_HEADERS_PLAN)"
   title: "LUPOPEDIA HEADERS Plan"
@@ -35,9 +35,9 @@ lupopedia.session:
 ---
 # file: LUPOPEDIA HEADERS Plan — session: L-LUPO-ROOT-CURSOR — delegation: cursor:root — web_path: http://www.lupopedia.com/doctrine/LUPOPEDIA_HEADERS/LUPOPEDIA_HEADERS_PLAN
 
-# LUPOPEDIA HEADERS — Plan (4.0.77)
+# LUPOPEDIA HEADERS — Plan (4.0.79)
 
-**Status:** Authoritative design for 4.0.77  
+**Status:** Authoritative design for 4.0.79  
 **Canonical name:** LUPOPEDIA HEADERS (replaces FLARE, FLIP, FLP — all **deprecated** as of 4.0.71)  
 **Logical structure:** Preserved from FLARE (block model and canonical order)  
 **Storage:** `lupo_metadata` table "metadata" (with table prefix of "lupo_"), structured as rows, not a single YAML blob.  

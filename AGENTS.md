@@ -217,6 +217,16 @@ Version lives in `config/global_atoms.yaml` as `GLOBAL_CURRENT_LUPOPEDIA_VERSION
 - Tables: `lupo_actors` (unified), `lupo_auth_users` (human login metadata), `lupo_agents` (AI agent metadata).
 - Lilith (actor 2) has a **flame header expert** faucet (slug `lilith-flame`) in `lupo_agent_faucets` for channel 42; see [LUPOPEDIA HEADERS doctrine](lupo-docs/doctrine/LUPOPEDIA_HEADERS/README.md) and [LILITH_FLAME_FAUCET_REPORT](lupo-docs/status/LILITH_FLAME_FAUCET_REPORT.md).
 
+### Channel security (4.0.79+)
+
+- **Channel posting** requires valid **channel membership** (`lupo_actor_channels`) for the authenticated actor, or global admin via `AuthService::isAdmin()`. The channel message API (`lupo-includes/modules/api/channels-api.php`) enforces this before insert; non-members receive HTTP 403.
+- **Actor identity for posting** comes from the **session/auth context** only. Client-supplied `actor_id` in the request body is **never** trusted; the server resolves the actor from AuthService, current_user, or session and uses that for insertion. This prevents actor spoofing.
+
+### Lilith as non-interfering reviewer
+
+- **Lilith** (actor_id 2) operates as a **non-interfering reviewer/critic**. See [lupo-rules/root/lilith-noninterference-doctrine.md](lupo-rules/root/lilith-noninterference-doctrine.md) (LIL001): Lilith must not modify other agents' work without explicit review context; must not block or delay other agents' operations; outputs must be clearly attributable; her presence must not alter permissions for other agents.
+- Lilith participates in channels via explicit membership and roles (e.g. `role_key: critic` or `monitor`). Reviewer agents and developer/orchestrator agents coexist on the same channel; channel security applies to all actors equally. Rule propagation supports `--target=lilith` (outputs to `.lilith/`).
+
 ### Agent Identity Registry
 
 Actor and agent IDs are defined in the **canonical registry**:

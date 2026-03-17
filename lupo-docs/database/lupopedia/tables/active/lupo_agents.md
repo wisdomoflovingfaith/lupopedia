@@ -1,39 +1,43 @@
 ---
 lupopedia.headers:
-  lupopedia.version: "4.0.73"
+  lupopedia.version: "4.0.79"
   lupopedia.schema: "database_table"
+  system_version: "4.0.79"
   file_path_from_root: "lupo-docs/database/lupopedia/tables/active/lupo_agents.md"
-  system_version: "4.0.73"
-  namespace: "core"
-  channel_id: 1
-  actor_id: 1003
-  last_modified_utc: "20260313"
+  web_path: "[lupo_agents](http://www.lupopedia.com/database/lupopedia/tables/active/lupo_agents)"
+  last_modified_utc: "20260317"
+  channel_id: 42
+  actor_id: 102
+  actor_name: "cursor"
+  delegation_chain: "cursor:root"
   artifact_type: "table_documentation"
+  artifact_kind: "table"
+  namespace: "core"
   purpose: "AI agent registry: key, name, model, provider, prompts, and Kapu/governance fields"
-  mood_rgb: "4169E1"
-  traits: ["canonical", "agent", "identity", "antigravity_rotation", "v4.0.73"]
-  tags: ["database", "agents", "identity", "llm"]
-  lupo_agent: "antigravity"
+  tags: ["database", "table", "core"]
 
 lupopedia.edges:
-  comment: "Snapshot of files edited during 4.0.73 finalization and initialization thread by ANTIGRAVITY IDE Agent. Edges reflect discovered relationships between database tables and PHP/Python codebase entities. Values should be verified against live database schemas/queries for the most current semantic graph state."
-  meta: "Thread: Finalize 4.0.72 → Push to GitHub → Initialize 4.0.73 → Migrate Tasks → Validate Upgrade Path"
+  comment: "Snapshot of edges for lupo_agents table doc at 4.0.79 (grounded by repo search; non-exhaustive)."
+  meta: "php_hits=5 python_hits=4"
   outbound_edges:
-    - { to: "lupo-database/lupopedia/toon/lupo_agents.toon.json", type: "schema_reference", weight: 1.0 }
-    - { to: "lupo-docs/database/lupopedia/tables/active/lupo_agent_faucets.md", type: "references", weight: 0.9 }
-    - { to: "lupo-docs/database/lupopedia/tables/active/lupo_agent_versions.md", type: "references", weight: 0.7 }
-
-lupopedia.engagement:
-  comment: "Snapshot of files edited during 4.0.73 finalization and initialization thread by ANTIGRAVITY IDE Agent. Engagement metrics track edit frequency and importance of each file in the version transition process."
-  meta: "Thread: Finalize 4.0.72 → Push to GitHub → Initialize 4.0.73 → Migrate Tasks → Validate Upgrade Path"
-  views: 0
+    - { to: "database.table.lupo_agents", type: "DEFINES_SCHEMA_FOR", weight: 1.0 }
+    - { to: "lupo-database/lupopedia/mysql/install/install_new_lupopedia.sql", type: "schema_reference", weight: 1.0 }
+    - { to: "install_wizard_classes.php", type: "USED_IN_PHP", weight: 0.6 }
+    - { to: "lupo-scripts/audit_schema_doctrine.php", type: "USED_IN_PHP", weight: 0.7 }
+    - { to: "lupo-scripts/migrate_filesystem_to_db.php", type: "USED_IN_PHP", weight: 0.7 }
+    - { to: "lupo-scripts/verify_architecture_files.php", type: "USED_IN_PHP", weight: 0.7 }
+    - { to: "lupo-scripts/verify_grounded_architecture.php", type: "USED_IN_PHP", weight: 0.7 }
+    - { to: "analyze_unused_tables.py", type: "USED_IN_PYTHON", weight: 0.5 }
+    - { to: "lupo-scripts/audit_schema_doctrine.py", type: "USED_IN_PYTHON", weight: 0.5 }
+    - { to: "lupo-scripts/migrate_filesystem_to_db.py", type: "USED_IN_PYTHON", weight: 0.5 }
+    - { to: "lupo-scripts/wolfie_orms.py", type: "USED_IN_PYTHON", weight: 0.5 }
 
 lupopedia.footer:
-  version: "4.0.73"
-  last_verified: "20260313"
-  last_verified_by: "antigravity"
+  version: "4.0.79"
+  last_verified: "20260317"
+  last_verified_by: "cursor"
 ---
-
+# file: lupo_agents ? web_path: http://www.lupopedia.com/database/lupopedia/tables/active/lupo_agents
 # Table: lupo_agents
 
 ## Table Overview

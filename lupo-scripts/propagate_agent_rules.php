@@ -19,6 +19,8 @@ $ideaDir = $repoRoot . DIRECTORY_SEPARATOR . '.idea';
 $kiroDir = $repoRoot . DIRECTORY_SEPARATOR . '.kiro';
 $windsurfDir = $repoRoot . DIRECTORY_SEPARATOR . '.windsurf';
 $cascadeDir = $repoRoot . DIRECTORY_SEPARATOR . '.cascade';
+$lilithDir = $repoRoot . DIRECTORY_SEPARATOR . '.lilith';
+$lexaDir = $repoRoot . DIRECTORY_SEPARATOR . '.lexa';
 
 $target = 'all';
 foreach ($argv as $arg) {
@@ -29,9 +31,9 @@ foreach ($argv as $arg) {
 if ($target === 'jetbrains') {
     $target = 'idea';
 }
-$validTargets = array('all', 'cascade', 'cursor', 'idea', 'jetbrains', 'kiro', 'windsurf');
+$validTargets = array('all', 'cascade', 'cursor', 'idea', 'jetbrains', 'kiro', 'windsurf', 'lilith', 'lexa');
 if (!in_array($target, $validTargets, true)) {
-    fwrite(STDERR, "Unsupported target '$target'. Valid targets: all, cascade, cursor, idea, jetbrains, kiro, windsurf\n");
+    fwrite(STDERR, "Unsupported target '$target'. Valid targets: all, cascade, cursor, idea, jetbrains, kiro, windsurf, lilith, lexa\n");
     exit(1);
 }
 
@@ -385,6 +387,77 @@ function write_windsurf_outputs($windsurfDir, $rules)
     file_put_contents($windsurfDir . DIRECTORY_SEPARATOR . 'README.md', $readme);
 }
 
+function write_lilith_outputs($lilithDir, $rules)
+{
+    ensure_dir($lilithDir);
+    $lilithRulesDir = $lilithDir . DIRECTORY_SEPARATOR . 'rules';
+    ensure_dir($lilithRulesDir);
+
+    $lilithJson = array('rules' => array());
+    foreach ($rules as $rule) {
+        $lilithJson['rules'][] = array(
+            'id' => $rule['id'],
+            'text' => $rule['text'],
+            'enforcement' => $rule['enforcement'],
+            'scope' => $rule['scope'],
+            'source_path' => $rule['source_path'],
+            'slug' => $rule['slug'],
+            'category' => $rule['category'],
+            'status' => $rule['status']
+        );
+
+        $body = str_replace('../../../', '../../', $rule['body']);
+
+        $mdc = "---\n";
+        $mdc .= "lupopedia.headers:\n";
+        $mdc .= "  actor_id: 2\n";
+        $mdc .= "  actor_name: \"lilith\"\n";
+        $mdc .= "  delegation_chain: \"lilith:root\"\n";
+        $mdc .= "  lupopedia.version: \"4.0.79\"\n";
+        $mdc .= "  lupopedia.schema: \"lilith_rule\"\n";
+        $mdc .= "  file_path_from_root: \".lilith/rules/" . $rule['slug'] . ".md\"\n";
+        $mdc .= "  last_modified_utc: \"" . date('Ymd') . "\"\n";
+        $mdc .= "  system_version: \"4.0.79\"\n";
+        $mdc .= "  source_path: \"lupo-rules/root/" . $rule['slug'] . ".md\"\n";
+        $mdc .= "  artifact_type: \"rule\"\n";
+        $mdc .= "  artifact_kind: \"lilith_doctrine\"\n";
+        $mdc .= "  purpose: \"Lilith-specific review and dissent rule derivative\"\n";
+        $mdc .= "---\n\n";
+        $mdc .= $body . "\n";
+
+        file_put_contents($lilithRulesDir . DIRECTORY_SEPARATOR . $rule['slug'] . '.md', $mdc);
+    }
+
+    file_put_contents(
+        $lilithDir . DIRECTORY_SEPARATOR . 'lupopedia_rules.json',
+        json_encode($lilithJson, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES)
+    );
+
+    $readme = "---\n";
+    $readme .= "lupopedia.headers:\n";
+    $readme .= "  actor_id: 2\n";
+    $readme .= "  actor_name: \"lilith\"\n";
+    $readme .= "  delegation_chain: \"lilith:root\"\n";
+    $readme .= "  lupopedia.version: \"4.0.79\"\n";
+    $readme .= "  lupopedia.schema: \"lilith_guide\"\n";
+    $readme .= "  file_path_from_root: \".lilith/README.md\"\n";
+    $readme .= "  last_modified_utc: \"" . date('Ymd') . "\"\n";
+    $readme .= "  system_version: \"4.0.79\"\n";
+    $readme .= "  artifact_type: \"guide\"\n";
+    $readme .= "  artifact_kind: \"documentation\"\n";
+    $readme .= "  purpose: \"Lilith rule propagation status and guidance\"\n";
+    $readme .= "---\n\n";
+    $readme .= "# Lilith Rules Guide\n\n";
+    $readme .= "This directory contains Lilith-specific rule artifacts and non-interference policy derived from canonical root rules in `lupo-rules/root/`.\n\n";
+    $readme .= "## Propagation\n\n";
+    $readme .= "Run: `php lupo-scripts/propagate_agent_rules.php --target=lilith`\n\n";
+    $readme .= "## Source\n\n";
+    $readme .= "All rules are derived from canonical root rules in `lupo-rules/root/`.\n";
+    $readme .= "See [lupo-rules/root/README.md](../lupo-rules/root/README.md) for canonical rule documentation.\n";
+
+    file_put_contents($lilithDir . DIRECTORY_SEPARATOR . 'README.md', $readme);
+}
+
 function write_cascade_outputs($cascadeDir, $rules)
 {
     ensure_dir($cascadeDir);
@@ -508,6 +581,130 @@ function write_cascade_outputs($cascadeDir, $rules)
     file_put_contents($cascadeDir . DIRECTORY_SEPARATOR . 'README.md', $readme);
 }
 
+function write_lexa_outputs($lexaDir, $rules)
+{
+    ensure_dir($lexaDir);
+    $lexaRulesDir = $lexaDir . DIRECTORY_SEPARATOR . 'rules';
+    ensure_dir($lexaRulesDir);
+
+    $lexaJson = array('rules' => array());
+    foreach ($rules as $rule) {
+        $lexaJson['rules'][] = array(
+            'id' => $rule['id'],
+            'text' => $rule['text'],
+            'enforcement' => $rule['enforcement'],
+            'scope' => $rule['scope'],
+            'source_path' => $rule['source_path'],
+            'slug' => $rule['slug'],
+            'category' => $rule['category'],
+            'status' => $rule['status']
+        );
+    }
+    file_put_contents(
+        $lexaDir . DIRECTORY_SEPARATOR . 'lupopedia_rules.json',
+        json_encode($lexaJson, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES)
+    );
+
+    foreach ($rules as $rule) {
+        $body = str_replace('../../../', '../../', $rule['body']);
+        $mdc = "---\n";
+        $mdc .= "lupopedia.init:\n";
+        $mdc .= "  file_identity: \"" . $rule['slug'] . ".md\"\n";
+        $mdc .= "  artifact_type: \"lexa_rule\"\n";
+        $mdc .= "  artifact_kind: \"doctrine\"\n";
+        $mdc .= "  namespace: \"lexa\"\n";
+        $mdc .= "  system_version: \"4.0.76\"\n";
+        $mdc .= "  orchestrator_actor: \"lexa\"\n";
+        $mdc .= "  delegation_chain: \"lexa:captain\"\n";
+        $mdc .= "\n";
+        $mdc .= "lupopedia.headers:\n";
+        $mdc .= "  actor_id: 24\n";
+        $mdc .= "  actor_name: \"lexa\"\n";
+        $mdc .= "  delegation_chain: \"lexa:captain\"\n";
+        $mdc .= "  lupopedia.version: \"4.0.76\"\n";
+        $mdc .= "  lupopedia.schema: \"lexa_rule\"\n";
+        $mdc .= "  file_path_from_root: \".lexa/rules/" . $rule['slug'] . ".md\"\n";
+        $mdc .= "  last_modified_utc: \"" . date('Ymd') . "\"\n";
+        $mdc .= "  system_version: \"4.0.76\"\n";
+        $mdc .= "  source_path: \"lupo-rules/root/" . $rule['slug'] . ".md\"\n";
+        $mdc .= "  artifact_type: \"rule\"\n";
+        $mdc .= "  artifact_kind: \"lexa_doctrine\"\n";
+        $mdc .= "  purpose: \"LEXA-specific rule derived from canonical root rule - Boundary Keeper enforcement\"\n";
+        $mdc .= "\n";
+        $mdc .= "lupopedia.rules:\n";
+        $mdc .= "  comment: \"Rule declaration and provenance block\"\n";
+        $mdc .= "  declares:\n";
+        $mdc .= "    - rule_id: \"" . $rule['id'] . "\"\n";
+        $mdc .= "      rule_text: \"" . str_replace('"', '\\"', $rule['text']) . "\"\n";
+        $mdc .= "      scope: \"" . (is_array($rule['scope']) ? implode(', ', $rule['scope']) : $rule['scope']) . "\"\n";
+        $mdc .= "      category: \"" . $rule['category'] . "\"\n";
+        $mdc .= "      status: \"" . $rule['status'] . "\"\n";
+        $mdc .= "  imports: []\n";
+        $mdc .= "  overrides: []\n";
+        $mdc .= "  provenance:\n";
+        $mdc .= "    authored_by: \"wolfie\"\n";
+        $mdc .= "    authored_date: \"" . date('Ymd') . "\"\n";
+        $mdc .= "    last_reviewed_by: \"lexa\"\n";
+        $mdc .= "    last_reviewed_date: \"" . date('Ymd') . "\"\n";
+        $mdc .= "    version: \"1.0\"\n";
+        $mdc .= "    status: \"active\"\n";
+        $mdc .= "lupopedia.footer:\n";
+        $mdc .= "  version: \"4.0.76\"\n";
+        $mdc .= "  last_verified: \"" . date('Ymd') . "\"\n";
+        $mdc .= "  last_verified_by: \"lexa\"\n";
+        $mdc .= "  orchestrator: \"lexa\"\n";
+        $mdc .= "  next_action:\n";
+        $mdc .= "    - \"Keep in sync with canonical root rules\"\n";
+        $mdc .= "---\n\n";
+        $mdc .= $body . "\n";
+        file_put_contents($lexaRulesDir . DIRECTORY_SEPARATOR . $rule['slug'] . '.md', $mdc);
+    }
+
+    $readme = "---\n";
+    $readme .= "lupopedia.init:\n";
+    $readme .= "  file_identity: \"README.md\"\n";
+    $readme .= "  artifact_type: \"lexa_guide\"\n";
+    $readme .= "  artifact_kind: \"documentation\"\n";
+    $readme .= "  namespace: \"lexa\"\n";
+    $readme .= "  system_version: \"4.0.76\"\n";
+    $readme .= "  orchestrator_actor: \"lexa\"\n";
+    $readme .= "  delegation_chain: \"lexa:captain\"\n";
+    $readme .= "\n";
+    $readme .= "lupopedia.headers:\n";
+    $readme .= "  actor_id: 24\n";
+    $readme .= "  actor_name: \"lexa\"\n";
+    $readme .= "  delegation_chain: \"lexa:captain\"\n";
+    $readme .= "  lupopedia.version: \"4.0.76\"\n";
+    $readme .= "  lupopedia.schema: \"lexa_guide\"\n";
+    $readme .= "  file_path_from_root: \".lexa/README.md\"\n";
+    $readme .= "  last_modified_utc: \"" . date('Ymd') . "\"\n";
+    $readme .= "  system_version: \"4.0.76\"\n";
+    $readme .= "  artifact_type: \"guide\"\n";
+    $readme .= "  artifact_kind: \"documentation\"\n";
+    $readme .= "  purpose: \"Guide for LEXA rule system and boundary enforcement\"\n";
+    $readme .= "\n";
+    $readme .= "lupopedia.footer:\n";
+    $readme .= "  version: \"4.0.76\"\n";
+    $readme .= "  last_verified: \"" . date('Ymd') . "\"\n";
+    $readme .= "  last_verified_by: \"lexa\"\n";
+    $readme .= "  orchestrator: \"lexa\"\n";
+    $readme .= "  next_action:\n";
+    $readme .= "    - \"Run propagation: php lupo-scripts/propagate_agent_rules.php --target=lexa\"\n";
+    $readme .= "---\n\n";
+    $readme .= "# LEXA Rules Guide\n\n";
+    $readme .= "This directory contains LEXA-specific rule artifacts derived from canonical root rules.\n\n";
+    $readme .= "LEXA (actor_id 24) is the Law Enforcement eXecution Agent - Boundary Keeper and Security Enforcer.\n\n";
+    $readme .= "## Files\n\n";
+    $readme .= "- **lupopedia_rules.json** - Machine-readable rule index\n";
+    $readme .= "- **rules/** - Individual rule files with LUPOPEDIA HEADERS\n\n";
+    $readme .= "## Propagation\n\n";
+    $readme .= "Run: `php lupo-scripts/propagate_agent_rules.php --target=lexa`\n\n";
+    $readme .= "## Source\n\n";
+    $readme .= "All rules are derived from canonical root rules in `lupo-rules/root/`.\n";
+    $readme .= "See [lupo-rules/root/README.md](../../../lupo-rules/root/README.md) for canonical rule documentation.\n";
+    file_put_contents($lexaDir . DIRECTORY_SEPARATOR . 'README.md', $readme);
+}
+
 function write_idea_outputs($ideaDir, $rules)
 {
     ensure_dir($ideaDir);
@@ -544,6 +741,12 @@ if ($target === 'all' || $target === 'windsurf') {
 }
 if ($target === 'all' || $target === 'cascade') {
     write_cascade_outputs($cascadeDir, $rules);
+}
+if ($target === 'all' || $target === 'lilith') {
+    write_lilith_outputs($lilithDir, $rules);
+}
+if ($target === 'all' || $target === 'lexa') {
+    write_lexa_outputs($lexaDir, $rules);
 }
 
 foreach ($warnings as $warning) {

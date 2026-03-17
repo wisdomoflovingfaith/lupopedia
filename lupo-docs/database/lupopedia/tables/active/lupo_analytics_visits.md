@@ -1,36 +1,38 @@
 ---
 lupopedia.headers:
-  lupopedia.version: "4.0.78"
+  lupopedia.version: "4.0.79"
   lupopedia.schema: "database_table"
-  system_version: "4.0.78"
+  system_version: "4.0.79"
   file_path_from_root: "lupo-docs/database/lupopedia/tables/active/lupo_analytics_visits.md"
   web_path: "[lupo_analytics_visits](http://www.lupopedia.com/database/lupopedia/tables/active/lupo_analytics_visits)"
-  last_modified_utc: "20260316"
+  last_modified_utc: "20260317"
   channel_id: 42
   actor_id: 102
+  actor_name: "cursor"
+  delegation_chain: "cursor:root"
   artifact_type: "table_documentation"
   artifact_kind: "table"
   namespace: "analytics"
   purpose: "Documentation for lupo_analytics_visits table - analytics visit and session activity for traffic and usage tracking"
-  traits: ["canonical", "analytics", "visits", "v4.0.78"]
-  tags: ["database", "analytics", "visits", "traffic"]
-  table_primary_key: "analytics_visit_id"
-  doctrine_note: "No database foreign keys; schema source: existing table documentation. This table is not in install_new_lupopedia.sql as of 4.0.78; for visit tracking in the current install see lupo_visits."
+  tags: ["database", "table", "analytics"]
 
 lupopedia.edges:
-  comment: "Snapshot of edges for lupo_analytics_visits table doc at 4.0.78."
+  comment: "Snapshot of edges for lupo_analytics_visits table doc at 4.0.79 (grounded by repo search; non-exhaustive)."
+  meta: "php_hits=2 python_hits=2"
   outbound_edges:
-    - { to: "lupo-docs/database/lupopedia/tables/active/lupo_visits.md", type: "references", weight: 0.9, reason: "Visit tracking in current install" }
-    - { to: "lupo-docs/database/lupopedia/tables/active/lupo_contents.md", type: "references", weight: 0.8 }
-    - { to: "lupo-docs/database/lupopedia/tables/active/lupo_channels.md", type: "references", weight: 0.7 }
+    - { to: "database.table.lupo_analytics_visits", type: "DEFINES_SCHEMA_FOR", weight: 1.0 }
+    - { to: "lupo-database/lupopedia/mysql/install/install_new_lupopedia.sql", type: "schema_reference", weight: 1.0 }
+    - { to: "admin.php", type: "USED_IN_PHP", weight: 0.6 }
+    - { to: "lupo-includes/schema-config.php", type: "USED_IN_PHP", weight: 0.9 }
+    - { to: "analyze_unused_tables.py", type: "USED_IN_PYTHON", weight: 0.5 }
+    - { to: "lupo-scripts/wolfie_orms.py", type: "USED_IN_PYTHON", weight: 0.5 }
 
 lupopedia.footer:
-  version: "4.0.78"
-  last_verified: "20260316"
+  version: "4.0.79"
+  last_verified: "20260317"
   last_verified_by: "cursor"
 ---
-# file: lupo_analytics_visits — web_path: http://www.lupopedia.com/database/lupopedia/tables/active/lupo_analytics_visits
-
+# file: lupo_analytics_visits ? web_path: http://www.lupopedia.com/database/lupopedia/tables/active/lupo_analytics_visits
 # Table: lupo_analytics_visits
 
 ## Schema source note

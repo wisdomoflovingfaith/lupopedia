@@ -1,3 +1,21 @@
+---
+lupopedia.headers:
+  lupopedia.version: "4.0.79"
+  lupopedia.schema: "documentation"
+  system_version: "4.0.79"
+  file_path_from_root: "lupo-docs/database/lupopedia/tables/TABLE_INDEX.md"
+  web_path: "[TABLE_INDEX](http://www.lupopedia.com/database/lupopedia/tables/TABLE_INDEX)"
+  last_modified_utc: "20260317"
+  channel_id: 42
+  actor_id: 102
+  actor_name: "cursor"
+  delegation_chain: "cursor:root"
+  artifact_type: "index"
+  artifact_kind: "table_index"
+  purpose: "Index of documented Lupopedia tables with category, agent, status, and migration references"
+  tags: ["table_index", "tables", "documentation", "4.0.79"]
+---
+
 | Table | Category | Agent | Description | Status | Existing Migration Ref |
 |---|---|---|---|---|---|
 | lupo_collections | active | JetBrains IDE | Collection containers used to organize content and navigation structures. | active | MIGRATION_MAPPING_REFERENCE.md, livehelp_qa_migration.md |
@@ -61,3 +79,47 @@
 - **Domain Coverage:** Antigravity domain (Federation/Anubis) documentation consolidated into `active/` and `deprecated/` subdirectories. 100% active table coverage confirmed.
 - **Duplicate cleanup:** Flat legacy docs in root `tables/` have been processed; active canonical docs moved to `active/`, stale legacy docs moved to `deprecated/`, and migration docs moved to `migrations/`.
 - **System Version:** Index now aligns with version 4.0.71 state.
+
+## Top 50 completion (4.0.79)
+| Table | Category | Agent | Description | Status | Existing Migration Ref |
+|---|---|---|---|---|---|
+| lupo_actors | active | Cursor IDE | Top 50 operational table (4.0.79) | active | install_new_lupopedia.sql |
+| lupo_actor_channels | active | Cursor IDE | Top 50 operational table (4.0.79) | active | install_new_lupopedia.sql |
+| lupo_actor_departments | active | Cursor IDE | Top 50 operational table (4.0.79) | active | install_new_lupopedia.sql |
+| lupo_agents | active | Cursor IDE | Top 50 operational table (4.0.79) | active | install_new_lupopedia.sql |
+| lupo_agent_faucets | active | Cursor IDE | Top 50 operational table (4.0.79) | active | install_new_lupopedia.sql |
+| lupo_analytics_visits | active | Cursor IDE | Top 50 operational table (4.0.79) | active | install_new_lupopedia.sql |
+| lupo_atoms | active | Cursor IDE | Top 50 operational table (4.0.79) | active | install_new_lupopedia.sql |
+| lupo_audit_log | active | Cursor IDE | Top 50 operational table (4.0.79) | active | install_new_lupopedia.sql |
+| lupo_auth_providers | active | Cursor IDE | Top 50 operational table (4.0.79) | active | install_new_lupopedia.sql |
+| lupo_auth_users | active | Cursor IDE | Top 50 operational table (4.0.79) | active | install_new_lupopedia.sql |
+| lupo_banned_actors | active | Cursor IDE | Top 50 operational table (4.0.79) | active | install_new_lupopedia.sql |
+| lupo_bans_log | active | Cursor IDE | Top 50 operational table (4.0.79) | active | install_new_lupopedia.sql |
+| lupo_channels | active | Cursor IDE | Top 50 operational table (4.0.79) | active | install_new_lupopedia.sql |
+| lupo_comments | active | Cursor IDE | Top 50 operational table (4.0.79) | active | install_new_lupopedia.sql |
+| lupo_dialog_messages | active | Cursor IDE | Top 50 operational table (4.0.79) | active | install_new_lupopedia.sql |
+| lupo_metadata | active | Cursor IDE | Top 50 operational table (4.0.79) | active | install_new_lupopedia.sql |
+| lupo_registry | active | Cursor IDE | Top 50 operational table (4.0.79) | active | install_new_lupopedia.sql |
+| lupo_sessions | active | Cursor IDE | Top 50 operational table (4.0.79) | active | install_new_lupopedia.sql |
+| lupo_system_logs | active | Cursor IDE | Top 50 operational table (4.0.79) | active | install_new_lupopedia.sql |
+| lupo_visits | active | Cursor IDE | Top 50 operational table (4.0.79) | active | install_new_lupopedia.sql |
+| lupo_actor_apps | active | Cursor IDE | Top 50 operational table (4.0.79) | active | install_new_lupopedia.sql |
+| lupo_analytics_campaign_vars | active | Cursor IDE | Top 50 operational table (4.0.79) | active | install_new_lupopedia.sql |
+| lupo_auth_audit_log | active | Cursor IDE | Top 50 operational table (4.0.79) | active | install_new_lupopedia.sql |
+| lupo_channel_departments | active | Cursor IDE | Top 50 operational table (4.0.79) | active | install_new_lupopedia.sql |
+| lupo_edge_type_definitions | active | Cursor IDE | Top 50 operational table (4.0.79) | active | install_new_lupopedia.sql |
+| lupo_channel_content | active | Cursor IDE | Top 50 operational table (4.0.79) | active | install_new_lupopedia.sql |
+| lupo_legacy_content_mapping | active | Cursor IDE | Top 50 operational table (4.0.79) | active | install_new_lupopedia.sql |
+| lupo_cip_analytics | active | Cursor IDE | Top 50 operational table (4.0.79) | active | install_new_lupopedia.sql |
+| lupo_actor_capabilities | active | Cursor IDE | Top 50 operational table (4.0.79) | active | install_new_lupopedia.sql |
+| lupo_actor_actions | active | Cursor IDE | Top 50 operational table (4.0.79) | active | install_new_lupopedia.sql |
+| lupo_actor_channel_roles | active | Cursor IDE | Top 50 operational table (4.0.79) | active | install_new_lupopedia.sql |
+| lupo_actor_traits | active | Cursor IDE | Top 50 operational table (4.0.79) | active | install_new_lupopedia.sql |
+| lupo_action_authorization | active | Cursor IDE | Top 50 operational table (4.0.79) | active | install_new_lupopedia.sql |
+| lupo_channel_state | active | Cursor IDE | Top 50 operational table (4.0.79) | active | install_new_lupopedia.sql |
+| lupo_dialog_threads | active | Cursor IDE | Top 50 operational table (4.0.79) | active | install_new_lupopedia.sql |
+| lupo_permissions | active | Cursor IDE | Top 50 operational table (4.0.79) | active | install_new_lupopedia.sql |
+| lupo_search_index | active | Cursor IDE | Top 50 operational table (4.0.79) | active | install_new_lupopedia.sql |
+| lupo_semantic_index | active | Cursor IDE | Top 50 operational table (4.0.79) | active | install_new_lupopedia.sql |
+| lupo_tasks | active | Cursor IDE | Top 50 operational table (4.0.79) | active | install_new_lupopedia.sql |
+| lupo_unified_log | active | Cursor IDE | Top 50 operational table (4.0.79) | active | install_new_lupopedia.sql |

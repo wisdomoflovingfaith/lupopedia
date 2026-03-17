@@ -1,48 +1,36 @@
 ---
 lupopedia.headers:
-  lupopedia.version: "4.0.78"
+  lupopedia.version: "4.0.79"
   lupopedia.schema: "database_table"
+  system_version: "4.0.79"
   file_path_from_root: "lupo-docs/database/lupopedia/tables/active/lupo_comments.md"
-  system_version: "4.0.78"
-  last_modified_utc: "20260316"
+  web_path: "[lupo_comments](http://www.lupopedia.com/database/lupopedia/tables/active/lupo_comments)"
+  last_modified_utc: "20260317"
   channel_id: 42
-  actor_id: 1
-  actor_name: "wolfie"
-  faucet_name: "windsurf"
-  artifact_type: "table"
-  artifact_kind: "comments"
-  purpose: "Comments on artifacts, documents, and content with faucet traceability"
+  actor_id: 102
+  actor_name: "cursor"
+  delegation_chain: "cursor:root"
+  artifact_type: "table_documentation"
+  artifact_kind: "table"
   namespace: "content"
+  purpose: "Comments on artifacts, documents, and content with faucet traceability"
+  tags: ["database", "table", "content"]
+
 lupopedia.edges:
-  code:
-    - to: "lupo-includes/classes/CommentService.php"
-      type: "implements"
-      weight: 1.0
-    - to: "lupo-includes/modules/api/comments-api.php"
-      type: "implements"
-      weight: 1.0
-  documentation:
-    - to: "lupo-docs/doctrine/COMMENTS_DOCTRINE.md"
-      type: "documents"
-      weight: 1.0
-    - to: "lupo-docs/api/COMMENTS_API_REFERENCE.md"
-      type: "documents"
-      weight: 1.0
-  schema:
-    - to: "lupo-database/lupopedia/mysql/install/install_new_lupopedia.sql"
-      type: "implements"
-      weight: 1.0
+  comment: "Snapshot of edges for lupo_comments table doc at 4.0.79 (grounded by repo search; non-exhaustive)."
+  meta: "php_hits=0 python_hits=1"
+  outbound_edges:
+    - { to: "database.table.lupo_comments", type: "DEFINES_SCHEMA_FOR", weight: 1.0 }
+    - { to: "lupo-database/lupopedia/mysql/install/install_new_lupopedia.sql", type: "schema_reference", weight: 1.0 }
+    - { to: "lupo-scripts/antigravity_refactor.py", type: "USED_IN_PYTHON", weight: 0.5 }
+    - { to: "(no_php_refs_found)", type: "USED_IN_PHP", weight: 0.0 }
+
 lupopedia.footer:
-  version: "4.0.78"
-  last_verified: "20260313"
-  last_verified_by: "windsurf"
-  orchestrator: "wolfie"
-  next_action:
-    - "Create CommentService class for CRUD operations"
-    - "Implement comments API endpoints"
-    - "Add comments UI components"
-    - "Create seed data for comments"
+  version: "4.0.79"
+  last_verified: "20260317"
+  last_verified_by: "cursor"
 ---
+# file: lupo_comments ? web_path: http://www.lupopedia.com/database/lupopedia/tables/active/lupo_comments
 # file: lupo_comments — web_path: http://www.lupopedia.com/database/lupopedia/tables/active/lupo_comments
 
 # lupo_comments (v4.0.73)

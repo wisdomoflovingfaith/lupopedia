@@ -1,8 +1,8 @@
 ---
 lupopedia.headers:
-  lupopedia.version: "4.0.69"
+  lupopedia.version: "4.0.79"
   lupopedia.schema: "doctrine"
-  system_version: "4.0.69"
+  system_version: "4.0.79"
   file_path_from_root: "lupo-docs/doctrine/LUPOPEDIA_HEADERS/LUPOPEDIA_HEADERS_FORMAT.md"
   web_path: "[web_path](http://www.lupopedia.com/doctrine/LUPOPEDIA_HEADERS/LUPOPEDIA_HEADERS_FORMAT)"
   title: "LUPOPEDIA HEADERS Format"
@@ -44,6 +44,15 @@ lupopedia.footer:
 
 ---
 
+## 0. Doctrine note (general docs vs active table docs)
+
+Apply this principle:
+
+**Headers declare the artifact. The database declares the world around it.**
+
+- **Ordinary documentation artifacts** (doctrine/spec/foundation/status) should keep handwritten headers **stable and human-authored** (identity + intent). Do not teach dynamic relationship/usage/engagement blocks as universal defaults.
+- **Active table documentation** (`lupo-docs/database/lupopedia/tables/active/*.md`) is the special exception: it must include a **verbose `Lupopedia.edges`** mapping surface, grounded in real repository evidence (PHP/Python/schema/seed/install SQL usage).
+
 ## 1. Markdown file structure
 
 The **first line** of the file MUST be:
@@ -65,8 +74,8 @@ Then the YAML header blocks in **canonical order** (see [LUPOPEDIA_HEADERS_PLAN.
 - lupopedia.headers (required)
 - lupopedia.metadata (optional; snapshot of metadata rows for this artifact — see OPTIONAL_BLOCKS; not table schema)
 - lupopedia.session (optional; session context)
-- lupopedia.edges (optional)
-- lupopedia.engagement (optional; engagement metrics — see §2.2)
+- lupopedia.edges (optional; required only for certain artifact types — notably active table docs)
+- lupopedia.engagement (optional; engagement metrics — rarely used, not a general-doc default)
 - lupopedia.footer (optional)
 - lupopedia.see (optional)
 - **lupopedia.next_actions** (optional) — Suggested next actions after reading or using this file (like **lupopedia.init** but for follow-ups). Use **lupopedia.next_actions** in new files; **lupopedia.close** is the legacy name (validators accept both). See [OPTIONAL_BLOCKS.md](./OPTIONAL_BLOCKS.md) § lupopedia.next_actions.
@@ -213,6 +222,8 @@ lupopedia.session:
 #### 2.1.5 Edges and Engagement Snapshot Requirement (comment and meta)
 
 Both **`lupopedia.edges`** and **`lupopedia.engagement`** MUST include a **`comment`** property stating that they are only a **snapshot** at artifact creation time (query the database for latest values). Both SHOULD include **`meta`** with a short thread/context description (e.g. version transition or workflow step). Use the same **`meta`** value in both blocks when present.
+
+**Doctrinal placement:** For ordinary docs, do not include these blocks unless the artifact type explicitly requires them. For active table docs, `Lupopedia.edges` (often stored as `lupopedia.edges`) is required and should be verbose.
 
 **For lupopedia.edges:** Use a single **`outbound_edges`** object. You may use either a **flat list** (legacy) or **grouped by category** (see §2.1.6).
 

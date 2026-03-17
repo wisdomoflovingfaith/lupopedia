@@ -1,19 +1,38 @@
 ---
 lupopedia.headers:
-  lupopedia.version: "4.0.73"
-  lupopedia.schema: "documentation"
+  lupopedia.version: "4.0.79"
+  lupopedia.schema: "database_table"
+  system_version: "4.0.79"
   file_path_from_root: "lupo-docs/database/lupopedia/tables/active/lupo_artifacts.md"
-  last_modified_utc: "20260312"
-  system_version: "4.0.69"
-  channel_id: 1
-  actor_id: 103
-  delegation_chain: "103:10000"
-  artifact_type: "documentation"
-  artifact_kind: "database_table"
+  web_path: "[lupo_artifacts](http://www.lupopedia.com/database/lupopedia/tables/active/lupo_artifacts)"
+  last_modified_utc: "20260317"
+  channel_id: 42
+  actor_id: 102
+  actor_name: "cursor"
+  delegation_chain: "cursor:root"
+  artifact_type: "table_documentation"
+  artifact_kind: "table"
+  namespace: "content"
   purpose: "JetBrains domain table documentation for lupo_artifacts"
-  lupo_agent: "jetbrains"
----
+  tags: ["database", "table", "content"]
 
+lupopedia.edges:
+  comment: "Snapshot of edges for lupo_artifacts table doc at 4.0.79 (grounded by repo search; non-exhaustive)."
+  meta: "php_hits=2 python_hits=2"
+  outbound_edges:
+    - { to: "database.table.lupo_artifacts", type: "DEFINES_SCHEMA_FOR", weight: 1.0 }
+    - { to: "lupo-database/lupopedia/mysql/install/install_new_lupopedia.sql", type: "schema_reference", weight: 1.0 }
+    - { to: "lupo-api/v1/artifact.php", type: "USED_IN_PHP", weight: 0.6 }
+    - { to: "lupo-api/v1/timeline.php", type: "USED_IN_PHP", weight: 0.6 }
+    - { to: "lupo-scripts/import_channels_and_artifacts.py", type: "USED_IN_PYTHON", weight: 0.5 }
+    - { to: "lupo-scripts/wolfie_orms.py", type: "USED_IN_PYTHON", weight: 0.5 }
+
+lupopedia.footer:
+  version: "4.0.79"
+  last_verified: "20260317"
+  last_verified_by: "cursor"
+---
+# file: lupo_artifacts ? web_path: http://www.lupopedia.com/database/lupopedia/tables/active/lupo_artifacts
 # Table: lupo_artifacts
 
 ## Table Overview

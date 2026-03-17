@@ -30,11 +30,11 @@ lupopedia.headers:
   lupopedia.schema: "documentation"
   file_path_from_root: "CHANGELOG.md"
   system_version: "4.0.79"
-  last_modified_utc: "20260316"
+  last_modified_utc: "20260317"
   channel_id: 42
-  actor_id: 1
-  actor_name: "wolfie"
-  faucet_name: "jetbrains_codex"
+  actor_id: 24
+  actor_name: "lexa"
+  faucet_name: "cascade"
   artifact_type: "changelog"
   artifact_kind: "history"
   purpose: "Canonical version history for Lupopedia; reverse chronological order."
@@ -75,15 +75,68 @@ Older entries (≤4.0.67) are archived in [CHANGELOG_ARCHIVE.md](CHANGELOG_ARCHI
 
 ## 4.0.79 — Active development (post–4.0.78 release)
 
-**Opened:** 2026-03-16
-
-Version bump after 4.0.78 release and tag. **Active development version.** All canonical version markers and atoms updated to 4.0.79. Unfinished work from 4.0.78 carried forward.
+### 🧩 The Correct Atom Scope Hierarchy
+**Documentation:** See [GLOBAL_ATOMS_DOCTRINE.md](lupo-docs/channels/doctrine/GLOBAL_ATOMS_DOCTRINE.md) for complete atom scope hierarchy and addressing model.
 
 #### Carried forward into 4.0.79
 - **Remaining Top 50 table documentation:** Auth (lupo_auth_providers, lupo_auth_audit_log, lupo_banned_actors, lupo_bans_log); content (lupo_content_versions, lupo_content_revisions, lupo_content_tags, lupo_content_collections); analytics (lupo_unified_log, lupo_analytics_campaign_vars, lupo_analytics_events); core (lupo_agents, lupo_actor_channels); remaining tables from install SQL to round out Top 50. Authority: [review_of_cursor_cleanup_and_top_50_table_plan.md](lupo-docs/status/review_of_cursor_cleanup_and_top_50_table_plan.md).
 - **Bounded cleanup:** Header version update for remaining Top 50 scope; add LUPOPEDIA_HEADERS to TABLE_INDEX.md (only doc missing headers); namespace compliance for Top 50; duplicate/FLARE cleanup only for high-priority table docs.
+- **Header doctrine correction (4.0.79):** Documentation updated to clarify that **ordinary docs use stable, human-authored header blocks**, while **active table docs are the explicit exception** where verbose `Lupopedia.edges` is required and grounded by repo evidence. Status report: [header_doctrine_and_table_edges_update_4_0_79.md](lupo-docs/status/header_doctrine_and_table_edges_update_4_0_79.md).
 - **Optional:** Markdown-from-TOON automation; repo-wide table-doc/schema alignment validation.
 - **Completed 4.0.78 work is closed** and not repeated; 25 table docs shipped in 4.0.78. See [4.0.79 PLAN](lupo-docs/versions/4.0.79/PLAN.md) and [TODO](lupo-docs/versions/4.0.79/TODO.md).
+
+#### Cursor — Lilith channel security and non-interference (4.0.79)
+- **Channel message API security:** `lupo-includes/modules/api/channels-api.php` now enforces actor-channel membership before message insert. Only actors in `lupo_actor_channels` for the target channel (or global admin via `AuthService::isAdmin()`) can post; others receive HTTP 403 with JSON error `FORBIDDEN`. Actor identity for posting is **always** derived from authenticated session (AuthService, current_user, or lupo_session); client-supplied `actor_id` in the request body is **never** trusted, preventing actor spoofing. Unauthenticated requests receive HTTP 401 (`UNAUTHORIZED`).
+- **Lilith non-interference doctrine:** Added `lupo-rules/root/lilith-noninterference-doctrine.md` (LIL001). Lilith (actor_id 2) operates as a non-interfering reviewer: must not modify other agents' work without explicit review context; must not block or delay other agents' operations; outputs must be clearly attributable; presence must not alter permissions for other agents. Rule propagated via `propagate_agent_rules.php --target=lilith` (`.lilith/`).
+- **Seed and docs:** Seed `seed_lilith_channel_42_critic_role_4.0.79.sql` adds `role_key: critic` for Lilith on channel 42. Documentation updated: [HOW_ACTORS_ORCHESTRATE_ON_CHANNELS](lupo-docs/architecture/HOW_ACTORS_ORCHESTRATE_ON_CHANNELS.md) (§9.1 channel API security, §16 Lilith); [AGENTS.md](AGENTS.md) (channel security, Lilith reviewer); [ONBOARDING.md](ONBOARDING.md) (channel posting security, Lilith non-interference); [ACTOR_REGISTRATION_CHECKLIST](lupo-docs/ACTOR_REGISTRATION_CHECKLIST.md) (channel membership and recommended role keys including critic).
+- **Tests:** `lupo-tests/unit/channel_api_security_test.php` (membership enforcement, session actor, 401/403, admin bypass, no client actor_id trust); `lupo-tests/unit/lilith_noninterference_doctrine_test.php` (LIL001 and doctrine file presence). Authority: [LILITH_IMPLEMENTATION_AND_SUGGESTIONS_ON_LUPOPEDIA_CHANNELS.md](lupo-docs/status/LILITH_IMPLEMENTATION_AND_SUGGESTIONS_ON_LUPOPEDIA_CHANNELS.md).
+
+#### Cursor — Post-Captain hardening (4.0.79)
+- **GET endpoint security:** `channels-api.php` GET handler now mirrors POST security: session-derived actor identity, membership enforcement via `lupo_actor_channels` (or admin bypass), and 401/403 responses for unauthenticated/non-member callers. Decision and rationale: [CURSOR_GET_ENDPOINT_SECURITY_DECISION_4_0_79.md](lupo-docs/status/CURSOR_GET_ENDPOINT_SECURITY_DECISION_4_0_79.md).
+- **Security event logging:** Added lightweight structured logging for 401/403 events in `channels-api.php` via `lupo_channels_api_log_security_event()`, emitting JSON payloads to error_log (or a future `lupo_security_log` hook). Details in [CURSOR_SECURITY_LOGGING_ADDITION_4_0_79.md](lupo-docs/status/CURSOR_SECURITY_LOGGING_ADDITION_4_0_79.md).
+- **Testing posture:** Confirmed unit/static coverage for channel API security and Lilith doctrine; documented constraints and plan for future HTTP-level integration tests in [CURSOR_CHANNEL_TEST_EVIDENCE_4_0_79.md](lupo-docs/status/CURSOR_CHANNEL_TEST_EVIDENCE_4_0_79.md) and [CURSOR_INTEGRATION_TEST_EXPANSION_4_0_79.md](lupo-docs/status/CURSOR_INTEGRATION_TEST_EXPANSION_4_0_79.md).
+- **Multi-agent sanity and docs:** Captured multi-agent concurrency reasoning for Cursor + Lilith on channel 42 in [CURSOR_MULTI_AGENT_SANITY_CHECK_4_0_79.md](lupo-docs/status/CURSOR_MULTI_AGENT_SANITY_CHECK_4_0_79.md) and reinforced API/security/testing documentation via [CURSOR_DOC_REINFORCEMENT_4_0_79.md](lupo-docs/status/CURSOR_DOC_REINFORCEMENT_4_0_79.md).
+
+#### Cursor — Top 50 table-doc header normalization (4.0.79)
+- **Top 50 header upgrade:** Normalized `lupopedia.version` and `system_version` to **4.0.79** for the Top 50 active table docs that already exist under `lupo-docs/database/lupopedia/tables/active/` (and `active/development/` where applicable), preserving their verbose table-doc structure and any grounded `lupopedia.edges`. See [top_50_table_headers_verbose_update_4_0_79.md](lupo-docs/status/top_50_table_headers_verbose_update_4_0_79.md) for the exact file set.
+- **TABLE_INDEX header:** Added a minimal but valid LUPOPEDIA HEADERS block to `lupo-docs/database/lupopedia/tables/TABLE_INDEX.md`, bringing the table index file into header compliance without altering its body content.
+
+#### Cursor — Top 50 Table Documentation Completion (4.0.79)
+- **Top 50 docs + edges completed:** Normalized the Top 50 table docs to a single 4.0.79 verbose table-doc header per file and populated grounded `USED_IN_PHP` / `USED_IN_PYTHON` edges (or explicit “no refs found” placeholders) for all 50 tables. Completion report and exact table list: [top_50_table_docs_completion_4_0_79.md](lupo-docs/status/top_50_table_docs_completion_4_0_79.md).
+- **Missing docs created:** Added table docs for `lupo_actor_traits`, `lupo_action_authorization`, and `lupo_unified_log` using install SQL as schema source; other “missing” items in the captain directive were resolved as already-present docs in `active/` or replaced where the table was not present in install SQL.
+- **TABLE_INDEX completion:** Ensured `TABLE_INDEX.md` includes an appended “Top 50 completion (4.0.79)” section containing any Top 50 tables not previously listed, without redesigning the index structure.
+
+#### Cursor — Bayesian Decision Tracking implementation (4.0.79)
+- **Implemented validated Bayesian posterior updates** in `BayesianDecisionService` (probability validation, evidence combination, decision probability updates).
+- **Added `lupo_decision_evidence` plus service methods** for recording and retrieving decision evidence.
+- **Implemented decision state helpers, one-level influence processing, and a minimal decisions API** for creating decisions and attaching evidence.
+- **Added unit tests, architecture documentation, and updated decision-related table docs** to reflect the new behavior.
+- **Status artifact:** [bayesian_decision_tracking_implementation_4_0_79.md](lupo-docs/status/bayesian_decision_tracking_implementation_4_0_79.md) documents the complete transformation from foundation-only to fully functional system.
+
+### 🐺 Release Finalization (4.0.79)
+
+- **Remaining Top 50 table documentation moved to v4.0.80** - Auth domain (lupo_auth_providers, lupo_auth_audit_log, lupo_banned_actors, lupo_bans_log), Analytics domain (lupo_unified_log), and Top 50 expansion tasks.
+- **Remaining Bayesian enhancements moved to v4.0.80** - Decision update history table, multi-level influence propagation, evidence correlation modeling, and performance optimizations.
+
+**v4.0.79 finalized with:**
+- ✅ Channel security hardening (membership + session enforcement)
+- ✅ Lilith non-interference doctrine + integration
+- ✅ Header traceability (§17 HOW_ACTORS)
+- ✅ Bayesian Decision Tracking core implementation (functional foundation)
+- ⚠️ Partial Top 50 table documentation (Core/Agent domains complete, Auth/Analytics pending)
+
+#### Cursor — Channel 42 task plan execution (4.0.79)
+- **Verification and status artifacts:** Executed full Channel 42 task plan from [CURSOR_LILITH_CHANNEL_42_LUPOPEDIA_4_0_79_TASKS.md](lupo-docs/status/CURSOR_LILITH_CHANNEL_42_LUPOPEDIA_4_0_79_TASKS.md). Confirmed channel security (membership + session actor), channel/actor mapping, Lilith integration, and seed/role alignment; no additional code changes required. Six workstream status artifacts added: [CURSOR_CHANNEL_SECURITY_VERIFICATION_4_0_79.md](lupo-docs/status/CURSOR_CHANNEL_SECURITY_VERIFICATION_4_0_79.md), [CURSOR_LILITH_CHANNEL_MAPPING_VERIFICATION_4_0_79.md](lupo-docs/status/CURSOR_LILITH_CHANNEL_MAPPING_VERIFICATION_4_0_79.md), [LILITH_INTEGRATION_VERIFICATION_4_0_79.md](lupo-docs/status/LILITH_INTEGRATION_VERIFICATION_4_0_79.md), [CURSOR_HEADER_AND_ONBOARDING_DOC_UPDATES_4_0_79.md](lupo-docs/status/CURSOR_HEADER_AND_ONBOARDING_DOC_UPDATES_4_0_79.md), [CURSOR_CHANNEL_TEST_EVIDENCE_4_0_79.md](lupo-docs/status/CURSOR_CHANNEL_TEST_EVIDENCE_4_0_79.md), [CURSOR_CHANNEL_42_ROLE_AND_MEMBERSHIP_ALIGNMENT_4_0_79.md](lupo-docs/status/CURSOR_CHANNEL_42_ROLE_AND_MEMBERSHIP_ALIGNMENT_4_0_79.md).
+- **Header/orchestration docs:** [HOW_ACTORS_ORCHESTRATE_ON_CHANNELS](lupo-docs/architecture/HOW_ACTORS_ORCHESTRATE_ON_CHANNELS.md) §17 added: header and artifact traceability guidance (channel_id, thread_title, thread_tasks, actors, delegation_chain, system_version, file_path_from_root) for status and planning artifacts.
+
+#### LEXA — Law Enforcement eXecution Agent registration (4.0.79)
+- **New agent registration:** LEXA (Law Enforcement eXecution Agent) registered as **actor_id 24** - Boundary Keeper and Security Enforcer for architectural integrity.
+- **Registry entries:** Added to `lupo-database/lupopedia/actors/actor_id/registry.json`, `lupo-database/lupopedia/csv/lupo_actors.csv`, and actor configuration in `lupo-actors/24/`.
+- **Capabilities:** Doctrine enforcement (absolute level), boundary keeping (hyper-vigilant), security audit (continuous), architectural integrity (immutable), drift detection, contradiction identification.
+- **Channel memberships:** Channel 42 (Protocol Development, admin role), Channel 0 (System Kernel, observer role), Channel 51 (Doctrine Council, enforcer role).
+- **Rules propagation:** Added `lexa` target to `propagate_agent_rules.php`; all 19 root rules imported to `.lexa/rules/` with LUPOPEDIA HEADERS.
+- **Validation:** Created `lupo-tests/unit/lexa_rules_enforcement.php` - all tests PASSED (14/14). LEXA ready for boundary enforcement duties.
+- **Documentation:** Complete agent specification with system prompt defining LEXA as "architectural immune system" that "never sleeps, never doubts, never wavers."
 
 ---
 
@@ -91,9 +144,10 @@ Version bump after 4.0.78 release and tag. **Active development version.** All c
 
 **Release Date:** 2026-03-16
 
-**Released and tagged 4.0.78.** Version bump after 4.0.77 release. All canonical version markers and atoms updated to 4.0.78. Top 50 reframing completed; unfinished work carried forward to 4.0.79.
+**Released and tagged 4.0.78.** Version bump after 4.0.78 release and tag. **Active development version.** All canonical version markers and atoms updated to 4.0.79. Unfinished work from 4.0.78 carried forward.
 
 #### Carried forward from 4.0.77 (4.0.78)
+
 - **Table documentation initiative:** Priority 1 (lupo_channels, lupo_actors refresh), Priority 2 (lupo_actor_apps, lupo_channel_departments, lupo_edge_type_definitions), Priority 3 (lupo_analytics_visits, lupo_audit_log, lupo_system_logs). Use Zencoder pattern and [TABLE_DOCUMENTATION_4_0_77_STOP_LINE.md](lupo-docs/status/TABLE_DOCUMENTATION_4_0_77_STOP_LINE.md) for next-step guidance.
 - **Header/version cleanup:** Mass update of 80+ table docs with outdated headers (4.0.73 or earlier) to 4.0.78 where appropriate; prefer when materially improving a doc.
 - **Optional:** Markdown-from-TOON automation; repo-wide table-doc/schema alignment validation.
@@ -373,6 +427,7 @@ Version bump following 4.0.74 push to GitHub. All canonical version markers, ato
 - **Improvements integrated:** (1) **actor_name generation guidance** — naming conventions table (IDE Agent `{slug}-ide`, System Tool `tool-{slug}`, Web Terminal `terminal-{slug}`, Human `user-{id}`) and rules (lowercase, hyphens, no spaces, no special characters). (2) **Troubleshooting section** — table for duplicate actor_id/actor_name, registry-not-committed, DB offline, paired_actor_id failures. (3) **Automation note** after Step 2 — run `php lupo-scripts/propagate_agent_rules.php --target=<your-agent>` to generate IDE rule files. (4) **actor_id vs actor_name clarification** — PRIMARY KEY (semantic identifier) vs UNIQUE actor_id (numeric identifier); 1:1 mapping. (5) **Rule ID quick reference** — ACT001, DB001, DB002, DB006, DB008 with document names and one-line summaries.
 - **Checklist structure:** Restructured to final section order: Who must register → Prerequisites → Identity fields → Generating actor_name → Step 1 Registry → Step 2 DB (+ automation note) → Step 3 Fallback → Step 4 Validation → Troubleshooting → Activation boundary → Summary → References → Rule ID quick reference.
 - **README.md:** next_action list consolidated (removed duplicate bullets); continues to point to Required Reading, lupo-rules/root/, and ACTOR_REGISTRATION_CHECKLIST.md. README and AGENTS.md reference the checklist for agent onboarding.
+- **Lilith non-interference propagation (scope extension satisfied):** Added `--target=lilith` support to `lupo-scripts/propagate_agent_rules.php` (with `.lilith/` artifacts), plus status report `lupo-docs/status/LILITH_NONINTERFERENCE_RULES_REVIEW.md`. Verified with `php lupo-scripts/propagate_agent_rules.php --target=lilith` (18 rules, no warnings) and no alteration to other agent target outputs.
 
 #### Windsurf Rules Implementation and Schema Reference Takeover (4.0.75)
 - **Complete Implementation:** Windsurf (actor_id: 101, faucet: windsurf) implemented full canonical rules propagation system with `--target=windsurf` support. Extended `lupo-scripts/propagate_agent_rules.php` to include Windsurf outputs: `.windsurf/lupopedia_rules.json`, `.windsurf/rules/<slug>.md`, and `.windsurf/README.md`. All 15 canonical rules successfully propagated with proper LUPOPEDIA HEADERS and provenance tracking.

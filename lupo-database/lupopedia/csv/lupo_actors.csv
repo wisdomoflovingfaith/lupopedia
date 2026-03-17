@@ -21,3 +21,4 @@
 12150,user,helen-at-lupopedia-com-at-lupo,helen,20260220133938,20260220133938,1,0,,12150,lupo_auth_users,,none,,
 1006,ide_agent,gemini-cli,"Gemini CLI",20260226000000,20260226000000,1,0,,,ide_agent,"{""client_id"":""gemini"",""provider"":""google"",""purpose"":""IDE_integration"",""full_name"":""Google Gemini CLI""}",none,,
 106,ide_faucet,zencoder,"Zencoder IDE",20260316000000,20260316000000,1,0,,,ide_faucet,"{""client_id"":""zencoder"",""provider"":""zencoder"",""purpose"":""IDE_integration"",""full_name"":""Zencoder IDE Agent"",""paired_actor_id"":1000,""default_channel_id"":42}",none,,
+24,agent,lexa-agent,"LEXA AI",20260317112000,20260317112000,1,0,,,agent,"{""capabilities"":[""doctrine_enforcement"",""boundary_keeping"",""security_audit""],""enforcement_level"":""absolute"",""domain"":""system_integrity"",""archetype"":""boundary_keeper"",""purpose"":""Law Enforcement eXecution Agent - Security Enforcer"",""paired_actor_id"":1000}",none,,

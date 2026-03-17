@@ -1,87 +1,115 @@
-# LUPOPEDIA HEADERS (replaces FLARE)
 ---
 lupopedia.headers:
-  lupopedia.version: "4.0.73"
-  lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\database\lupopedia\tables\lupo_permissions.md"
-  file_hash: "f63483b72f65a112c84acc58c859ee779ef730f9de7ee705966c46bfb6e090ee"
-  last_updated_utc: "20260228155738"
-  system_version: "4.0.51"
-  channel_id: 1
-  actor_id: 1002
-  delegation_chain: "1002:10000"
-  artifact_type: "documentation"
-  artifact_kind: "documentation"
-  purpose: "Documentation file with LUPOPEDIA HEADERS applied"
+  lupopedia.version: "4.0.79"
+  lupopedia.schema: "database_table"
+  system_version: "4.0.79"
+  file_path_from_root: "lupo-docs/database/lupopedia/tables/active/lupo_permissions.md"
+  web_path: "[lupo_permissions](http://www.lupopedia.com/database/lupopedia/tables/active/lupo_permissions)"
+  last_modified_utc: "20260317"
+  channel_id: 42
+  actor_id: 1
+  actor_name: "wolfie"
+  delegation_chain: "wolfie:root"
+  artifact_type: "table_documentation"
+  artifact_kind: "table"
   namespace: "core"
-  mood_rgb: "4169E1"
-  traits: ["flare", "indexed", "v4.0.51"]
-  tags: ["documentation", "flare_applied"]
-  lupo_agent: "windsurf"
+  purpose: "Permission definitions and role-based access control; manages what actors can do and where"
+  tags: ["database", "table", "core"]
 
 lupopedia.edges:
+  comment: "Snapshot of edges for lupo_permissions table doc at 4.0.79 (grounded by repo search; non-exhaustive)."
+  meta: "php_hits=3 python_hits=1"
   outbound_edges:
-    - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "database.table.lupo_permissions", type: "DEFINES_SCHEMA_FOR", weight: 1.0 }
+    - { to: "lupo-database/lupopedia/mysql/install/install_new_lupopedia.sql", type: "schema_reference", weight: 1.0 }
+    - { to: "debug_captain.php", type: "USED_IN_PHP", weight: 0.6 }
+    - { to: "lupo-database/lupopedia/content/lupo-app/Services/SavedCollectionsService.php", type: "USED_IN_PHP", weight: 0.6 }
+    - { to: "lupo-database/lupopedia/content/lupo-app/auth/AuthRoleResolver.php", type: "USED_IN_PHP", weight: 0.6 }
 
 lupopedia.footer:
-  last_verified: "20260228155738"
-  last_verified_by: "windsurf"
+  version: "4.0.79"
+  last_verified: "20260317"
+  last_verified_by: "wolfie"
 ---
+# file: lupo_permissions — session: L-LUPO-ROOT-WOLFIE — delegation: wolfie:root — web_path: http://www.lupopedia.com/database/lupopedia/tables/active/lupo_permissions
 
-# LUPOPEDIA HEADERS (replaces FLARE)
+# Table: lupo_permissions
+
+Canonical table for **permission definitions and role-based access control**. Manages what actors can do and where, supporting fine-grained authorization across the Lupopedia system.
+
+## Purpose
+
+- Define granular permissions for system resources
+- Support role-based permission assignment
+- Enable permission checking and authorization
+- Provide audit trail for permission changes
+- Support multi-level permission inheritance
+
+## Schema (install SQL authority)
+
+| Column | Type | Description |
+|--------|------|-------------|
+| permission_id | bigint NOT NULL | Primary key; **application-supplied** (no AUTO_INCREMENT). |
+| actor_id | bigint DEFAULT NULL | Actor this permission is assigned to. |
+| resource_type | varchar(64) NOT NULL | Type of resource (channel, project, task, etc.). |
+| resource_id | bigint DEFAULT NULL | ID of the specific resource. |
+| permission_name | varchar(128) NOT NULL | Human-readable permission name. |
+| permission_action | varchar(64) NOT NULL | Action allowed (create, read, update, delete, admin). |
+| scope | varchar(64) DEFAULT NULL | Permission scope (global, channel, project, etc.). |
+| granted_by_actor_id | bigint DEFAULT NULL | Actor who granted this permission. |
+| created_ymdhis | bigint NOT NULL DEFAULT 0 | UTC timestamp when permission was created. |
+| updated_ymdhis | bigint NOT NULL DEFAULT 0 | UTC timestamp when permission was last updated. |
+| is_deleted | tinyint NOT NULL DEFAULT 0 | Soft delete flag. |
+| deleted_ymdhis | bigint DEFAULT NULL | UTC timestamp when permission was deleted. |
+
+## Indexes
+
+- `PRIMARY KEY (permission_id)`
+- `INDEX lupo_permissions_idx_actor` ON `lupo_permissions` (`actor_id`)
+- `INDEX lupo_permissions_idx_resource` ON `lupo_permissions` (`resource_type`, `resource_id`)
+- `INDEX lupo_permissions_idx_permission` ON `lupo_permissions` (`permission_name`)
+- `INDEX lupo_permissions_idx_scope` ON `lupo_permissions` (`scope`, `is_deleted`)
+- `INDEX lupo_permissions_idx_created` ON `lupo_permissions` (`created_ymdhis`, `is_deleted`)
+
+## Where This Table Is Used
+
+### Core System Usage
+
+- **Authorization system** - Permission checking and enforcement
+- **Role management** - Role-based permission assignment
+- **Access control** - Resource access validation
+- **Security auditing** - Permission change tracking
+
+### Integration Points
+
+- **Authentication middleware** - Permission validation on requests
+- **Administrative interfaces** - Permission CRUD operations
+- **API endpoints** - Permission checking and role resolution
+- **Channel management** - Channel-specific permission enforcement
+
+## Permission Actions
+
+- `create` - Create new resources
+- `read` - View or access resources
+- `update` - Modify existing resources
+- `delete` - Remove resources
+- `admin` - Administrative operations
+
+## Resource Types
+
+- `channel` - Channel-related permissions
+- `project` - Project-related permissions
+- `task` - Task-related permissions
+- `system` - System-wide permissions
+- `content` - Content management permissions
+
+## Namespace
+
+- **Domain:** Core
+- **Subdomain:** Security & Authorization
+- **Related Tables:** `lupo_actors`, `lupo_actor_capabilities`, `lupo_roles`
 ---
-lupopedia.headers:
-  file_path_from_root: "lupo-docs/database/lupopedia/tables/lupo_permissions.md"
-  system_version: "4.0.50"
-  channel_id: 1
-  actor_id: 1007
-  last_modified_utc: "20260227"
-  delegation_chain: "1007:10000"
-  artifact_type: "table_documentation"
-  purpose: "Complete documentation for lupo_permissions table"
-  dialog_message: "Recommended next step: review auto-generated table docs for accuracy and enrich relationships as needed."
-  mood_rgb: "4B0082"
-  artifact_kind: "table"
-  traits: ["canonical", "database", "autogenerated"]
-  tags: ["database", "table", "lupo_permissions"]
-  lupo_agent: "codex-ide"
-  lupo_permissions.permission_id: "bigint NOT NULL"
-  lupo_permissions.target_type: "varchar(64) NOT NULL"
-  lupo_permissions.target_id: "bigint NOT NULL"
-  lupo_permissions.user_id: "bigint"
-  lupo_permissions.department_id: "bigint"
-  lupo_permissions.permission: "varchar(64) NOT NULL DEFAULT 'read'"
-  lupo_permissions.created_ymdhis: "bigint NOT NULL DEFAULT 0"
-  lupo_permissions.updated_ymdhis: "bigint"
-  lupo_permissions.is_deleted: "tinyint NOT NULL DEFAULT 0"
-  lupo_permissions.deleted_ymdhis: "bigint"
-  table_primary_key: "permission_id"
-  table_engine: "unknown"
-  table_charset: "unknown"
-  table_collation: "unknown"
-  table_indexes: ["lupo_permissions_idx_created_ymdhis","lupo_permissions_idx_deleted","lupo_permissions_idx_department","lupo_permissions_idx_permission","lupo_permissions_idx_target","lupo_permissions_idx_user","lupo_permissions_uniq_target_department","lupo_permissions_uniq_target_user"]
-  table_foreign_keys: []
-
-# FLARE Edge Automation Tip:
-# Use the FLARE Edge Suggester Tool to automatically discover and suggest edges:
-# python lupo-scripts/flare_edge_suggester.py --file <path> --include-db --format yaml
-
-  last_updated_utc: "20260228"
-lupopedia.footer:
-  outbound_edges:
-    - { to: "lupo-database/lupopedia/toon/lupo_permissions.toon.json", type: "schema_reference", weight: 1.0, reason: "TOON schema definition", db_source: "lupo_permissions" }
-    - { to: "lupo-docs/FLARE_HEADERS_COMPLETE_REFERENCE.md", type: "references", weight: 0.9, reason: "FLARE header reference" }
-    - { to: "lupo-docs/doctrine/FLARE/FLARE_DOCTRINE.md", type: "references", weight: 0.9, reason: "FLARE doctrine" }
-    - { to: "lupo-docs/doctrine/database/README.md", type: "references", weight: 0.8, reason: "Database doctrine" }
-    - { to: "lupo-docs/database/lupopedia/README.md", type: "references", weight: 0.8, reason: "Database documentation index" }
-  inbound_edges: []
-  semantic_tags: ["database", "table", "lupo_permissions"]
-  version: "4.0.48"
-  last_verified: "20260227"
-  last_verified_by: "codex-ide"
----
-
+# file: lupo_permissions ? web_path: http://www.lupopedia.com/database/lupopedia/tables/active/lupo_permissions
 # Table: lupo_permissions
 
 Purpose: Auto-generated documentation for lupo_permissions from TOON schema.

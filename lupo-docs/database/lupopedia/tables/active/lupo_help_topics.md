@@ -1,19 +1,37 @@
 ---
 lupopedia.headers:
-  lupopedia.version: "4.0.73"
-  lupopedia.schema: "documentation"
+  lupopedia.version: "4.0.79"
+  lupopedia.schema: "database_table"
+  system_version: "4.0.79"
   file_path_from_root: "lupo-docs/database/lupopedia/tables/active/lupo_help_topics.md"
-  last_modified_utc: "20260312"
-  system_version: "4.0.69"
-  channel_id: 1
-  actor_id: 103
-  delegation_chain: "103:10000"
-  artifact_type: "documentation"
-  artifact_kind: "database_table"
-  purpose: "JetBrains domain table documentation for lupo_help_topics"
-  lupo_agent: "jetbrains"
----
+  web_path: "[lupo_help_topics](http://www.lupopedia.com/database/lupopedia/tables/active/lupo_help_topics)"
+  last_modified_utc: "20260317"
+  channel_id: 42
+  actor_id: 1
+  actor_name: "wolfie"
+  delegation_chain: "wolfie:root"
+  artifact_type: "table_documentation"
+  artifact_kind: "table"
+  namespace: "content"
+  purpose: "Help topic management; organizes help content, categories, and support documentation"
+  tags: ["database", "table", "content"]
 
+lupopedia.edges:
+  comment: "Snapshot of edges for lupo_help_topics table doc at 4.0.79 (grounded by repo search; non-exhaustive)."
+  meta: "php_hits=1 python_hits=1"
+  outbound_edges:
+    - { to: "database.table.lupo_help_topics", type: "DEFINES_SCHEMA_FOR", weight: 1.0 }
+    - { to: "lupo-database/lupopedia/mysql/install/install_new_lupopedia.sql", type: "schema_reference", weight: 1.0 }
+    - { to: "lupo-scripts/setup_help_list_modules.php", type: "USED_IN_PHP", weight: 0.7 }
+
+lupopedia.footer:
+  version: "4.0.79"
+  last_verified: "20260317"
+  last_verified_by: "wolfie"
+---
+# file: lupo_help_topics — session: L-LUPO-ROOT-WOLFIE — delegation: wolfie:root — web_path: http://www.lupopedia.com/database/lupopedia/tables/active/lupo_help_topics
+
+# file: lupo_help_topics ? web_path: http://www.lupopedia.com/database/lupopedia/tables/active/lupo_help_topics
 # Table: lupo_help_topics
 
 ## Table Overview

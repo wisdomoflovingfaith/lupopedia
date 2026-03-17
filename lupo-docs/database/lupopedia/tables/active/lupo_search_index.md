@@ -1,88 +1,102 @@
-# LUPOPEDIA HEADERS (replaces FLARE)
 ---
 lupopedia.headers:
-  lupopedia.version: "4.0.73"
-  lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\database\lupopedia\tables\lupo_search_index.md"
-  file_hash: "83cf6a96604f04d6f20c9c07594463b4be42f24f05c7a6428d89be420e3f25ae"
-  last_updated_utc: "20260228155738"
-  system_version: "4.0.51"
-  channel_id: 1
-  actor_id: 1002
-  delegation_chain: "1002:10000"
-  artifact_type: "documentation"
-  artifact_kind: "documentation"
-  purpose: "Documentation file with LUPOPEDIA HEADERS applied"
+  lupopedia.version: "4.0.79"
+  lupopedia.schema: "database_table"
+  system_version: "4.0.79"
+  file_path_from_root: "lupo-docs/database/lupopedia/tables/active/lupo_search_index.md"
+  web_path: "[lupo_search_index](http://www.lupopedia.com/database/lupopedia/tables/active/lupo_search_index)"
+  last_modified_utc: "20260317"
+  channel_id: 42
+  actor_id: 1
+  actor_name: "wolfie"
+  delegation_chain: "wolfie:root"
+  artifact_type: "table_documentation"
+  artifact_kind: "table"
   namespace: "core"
-  mood_rgb: "4169E1"
-  traits: ["flare", "indexed", "v4.0.51"]
-  tags: ["documentation", "flare_applied"]
-  lupo_agent: "windsurf"
+  purpose: "Search index management; tracks content indexing, search terms, and semantic relationships"
+  tags: ["database", "table", "core"]
 
 lupopedia.edges:
+  comment: "Snapshot of edges for lupo_search_index table doc at 4.0.79 (grounded by repo search; non-exhaustive)."
+  meta: "php_hits=0 python_hits=0"
   outbound_edges:
-    - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "database.table.lupo_search_index", type: "DEFINES_SCHEMA_FOR", weight: 1.0 }
+    - { to: "lupo-database/lupopedia/mysql/install/install_new_lupopedia.sql", type: "schema_reference", weight: 1.0 }
+    - { to: "(no_php_refs_found)", type: "USED_IN_PHP", weight: 0.0 }
+    - { to: "(no_python_refs_found)", type: "USED_IN_PYTHON", weight: 0.0 }
 
 lupopedia.footer:
-  last_verified: "20260228155738"
-  last_verified_by: "windsurf"
+  version: "4.0.79"
+  last_verified: "20260317"
+  last_verified_by: "wolfie"
 ---
-
-# LUPOPEDIA HEADERS (replaces FLARE) see http://www.lupopedia.com/lupopedia/content/FLARE and see http://www.lupopedia.com/lupopedia/qa/FLARE
----
-lupopedia.headers:
-  file_path_from_root: "lupo-docs/database/lupopedia/tables/lupo_search_index.md"
-  system_version: "4.0.49"
-  channel_id: 1
-  actor_id: 1007
-  last_modified_utc: "20260227"
-  delegation_chain: "1007:10000"
-  artifact_type: "table_documentation"
-  purpose: "Search index records for content and entities"
-  dialog_message: "DBDOC batch 1: enriched documentation and optimization notes."
-  mood_rgb: "4B0082"
-  artifact_kind: "table"
-  traits: ["canonical", "database", "curated"]
-  tags: ["database", "table", "lupo_search_index"]
-  lupo_agent: "codex-ide"
-  lupo_search_index.search_index_id: "bigint NOT NULL"
-  lupo_search_index.domain_id: "bigint NOT NULL"
-  lupo_search_index.entity_type: "varchar(50) NOT NULL"
-  lupo_search_index.entity_id: "bigint NOT NULL"
-  lupo_search_index.title_text: "text"
-  lupo_search_index.body_text: "text"
-  lupo_search_index.keywords_text: "text"
-  lupo_search_index.search_metadata: "text"
-  lupo_search_index.relevance_score: "float DEFAULT 1"
-  lupo_search_index.is_deleted: "tinyint NOT NULL DEFAULT 0"
-  lupo_search_index.deleted_ymdhis: "bigint DEFAULT 0"
-  lupo_search_index.created_ymdhis: "bigint NOT NULL DEFAULT 0"
-  lupo_search_index.updated_ymdhis: "bigint NOT NULL"
-  table_primary_key: "search_index_id"
-  table_engine: "unknown"
-  table_charset: "unknown"
-  table_collation: "unknown"
-  table_indexes: ["lupo_search_index_idx_domain_type", "lupo_search_index_idx_entity_reference", "lupo_search_index_idx_is_deleted", "lupo_search_index_idx_relevance", "lupo_search_index_idx_updated", "lupo_search_index_unique_entity"]
-  table_foreign_keys: []
-
-# FLARE Edge Automation Tip:
-# Use the FLARE Edge Suggester Tool to automatically discover and suggest edges:
-# python lupo-scripts/flare_edge_suggester.py --file <path> --include-db --format yaml
-
-lupopedia.footer:
-  outbound_edges:
-    - { to: "lupo-database/lupopedia/toon/lupo_search_index.toon.json", type: "schema_reference", weight: 1.0, reason: "TOON schema definition", db_source: "lupo_search_index" }
-    - { to: "lupo-docs/database/lupopedia/tables/lupo_contents.md", type: "references", weight: 0.8, reason: "content index targets" }
-    - { to: "lupo-docs/database/lupopedia/tables/lupo_edges.md", type: "references", weight: 0.7, reason: "semantic edges" }
-  inbound_edges: []
-  semantic_tags: ["database", "table", "search"]
-  version: "4.0.49"
-  last_verified: "20260227"
-  last_verified_by: "codex-ide"
----
+# file: lupo_search_index — session: L-LUPO-ROOT-WOLFIE — delegation: wolfie:root — web_path: http://www.lupopedia.com/database/lupopedia/tables/active/lupo_search_index
 
 # Table: lupo_search_index
+
+Canonical table for **search index management and semantic content indexing**. Tracks content indexing, search terms, and semantic relationships across the Lupopedia system.
+
+## Purpose
+
+- Store search index entries for fast content retrieval
+- Track search terms and their frequency
+- Support semantic search and content relationships
+- Enable content discovery and navigation
+- Provide foundation for search analytics and optimization
+
+## Schema (install SQL authority)
+
+| Column | Type | Description |
+|--------|------|-------------|
+| index_id | bigint NOT NULL | Primary key; **application-supplied** (no AUTO_INCREMENT). |
+| content_type | varchar(64) NOT NULL | Type of indexed content (page, document, topic, etc.). |
+| content_id | bigint DEFAULT NULL | ID of the indexed content. |
+| search_terms | text DEFAULT NULL | Extracted search terms and keywords. |
+| semantic_tags | text DEFAULT NULL | Semantic tags and relationships. |
+| weight | decimal(5,3) DEFAULT 1.000 | Search relevance weight or priority. |
+| language_code | varchar(10) DEFAULT 'en' | Language code for this content. |
+| created_ymdhis | bigint NOT NULL DEFAULT 0 | UTC timestamp when index entry was created. |
+| updated_ymdhis | bigint NOT NULL DEFAULT 0 | UTC timestamp when index entry was last updated. |
+| is_deleted | tinyint NOT NULL DEFAULT 0 | Soft delete flag. |
+| deleted_ymdhis | bigint DEFAULT NULL | UTC timestamp when index entry was deleted. |
+
+## Indexes
+
+- `PRIMARY KEY (index_id)`
+- `INDEX lupo_search_index_idx_content` ON `lupo_search_index` (`content_type`, `content_id`)
+- `INDEX lupo_search_index_idx_terms` ON `lupo_search_index` (`search_terms`)
+- `INDEX lupo_search_index_idx_weight` ON `lupo_search_index` (`weight`, `is_deleted`)
+- `INDEX lupo_search_index_idx_created` ON `lupo_search_index` (`created_ymdhis`, `is_deleted`)
+
+## Where This Table Is Used
+
+### Core System Usage
+
+- **Search engine** - Index management for content search
+- **Content indexing** - Automated content discovery and indexing
+- **Semantic analysis** - Tag and relationship management
+- **Analytics** - Search term tracking and optimization
+
+### Integration Points
+
+- **Content management** - Automatic indexing on content changes
+- **Search APIs** - Index-based content retrieval
+- **User interfaces** - Search suggestions and autocomplete
+- **Analytics systems** - Search behavior analysis
+
+## Content Types
+
+- `page` - Static pages and documentation
+- `document` - Dynamic documents and content
+- `topic` - Help topics and discussions
+- `media` - Media files and attachments
+- `user` - User profiles and actor data
+
+## Namespace
+
+- **Domain:** Core
+- **Subdomain:** Search & Discovery
+- **Related Tables:** `lupo_content`, `lupo_semantic_index`, `lupo_search_logs`
 
 Purpose: Stores denormalized search index entries for entities.
 Type: database_table

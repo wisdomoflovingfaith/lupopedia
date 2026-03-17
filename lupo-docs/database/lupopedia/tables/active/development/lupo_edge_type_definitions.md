@@ -1,36 +1,36 @@
 ---
 lupopedia.headers:
-  lupopedia.version: "4.0.78"
+  lupopedia.version: "4.0.79"
   lupopedia.schema: "database_table"
-  system_version: "4.0.78"
+  system_version: "4.0.79"
   file_path_from_root: "lupo-docs/database/lupopedia/tables/active/development/lupo_edge_type_definitions.md"
-  web_path: "[lupo_edge_type_definitions](http://www.lupopedia.com/database/lupopedia/tables/active/development/lupo_edge_type_definitions)"
-  last_modified_utc: "20260316"
+  web_path: "[lupo_edge_type_definitions](http://www.lupopedia.com/database/lupopedia/tables/active/lupo_edge_type_definitions)"
+  last_modified_utc: "20260317"
   channel_id: 42
   actor_id: 102
+  actor_name: "cursor"
+  delegation_chain: "cursor:root"
   artifact_type: "table_documentation"
   artifact_kind: "table"
   namespace: "core"
   purpose: "Documentation for lupo_edge_type_definitions table - semantic edge type registry"
-  traits: ["canonical", "semantic_os", "edges", "registry", "v4.0.78"]
-  tags: ["database", "edges", "semantic", "registry"]
-  table_primary_key: "edge_type_definition_id"
-  doctrine_note: "No database foreign keys; referential integrity enforced in application code."
+  tags: ["database", "table", "core"]
 
 lupopedia.edges:
-  comment: "Snapshot of edges for lupo_edge_type_definitions table doc at 4.0.78."
+  comment: "Snapshot of edges for lupo_edge_type_definitions table doc at 4.0.79 (grounded by repo search; non-exhaustive)."
+  meta: "php_hits=0 python_hits=0"
   outbound_edges:
+    - { to: "database.table.lupo_edge_type_definitions", type: "DEFINES_SCHEMA_FOR", weight: 1.0 }
     - { to: "lupo-database/lupopedia/mysql/install/install_new_lupopedia.sql", type: "schema_reference", weight: 1.0 }
-    - { to: "lupo-docs/database/lupopedia/tables/active/lupo_edges.md", type: "references", weight: 1.0 }
-    - { to: "lupo-docs/database/lupopedia/tables/active/lupo_actors.md", type: "references", weight: 0.8 }
+    - { to: "(no_php_refs_found)", type: "USED_IN_PHP", weight: 0.0 }
+    - { to: "(no_python_refs_found)", type: "USED_IN_PYTHON", weight: 0.0 }
 
 lupopedia.footer:
-  version: "4.0.78"
-  last_verified: "20260316"
+  version: "4.0.79"
+  last_verified: "20260317"
   last_verified_by: "cursor"
 ---
-# file: lupo_edge_type_definitions — web_path: http://www.lupopedia.com/database/lupopedia/tables/active/development/lupo_edge_type_definitions
-
+# file: lupo_edge_type_definitions ? web_path: http://www.lupopedia.com/database/lupopedia/tables/active/lupo_edge_type_definitions
 # Table: lupo_edge_type_definitions
 
 ## Table Overview

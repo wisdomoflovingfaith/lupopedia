@@ -1,33 +1,73 @@
-# LUPOPEDIA HEADERS (replaces FLARE)
 ---
 lupopedia.headers:
-  lupopedia.version: "4.0.73"
-  lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\database\lupopedia\tables\lupo_actor_events.md"
-  file_hash: "322b8bdd43b9cba7ded1e0f876ff62c803844a4ad533ce0971e8d78d6dd1bcb9"
-  last_updated_utc: "20260228155738"
-  system_version: "4.0.51"
-  channel_id: 1
-  actor_id: 1002
-  delegation_chain: "1002:10000"
-  artifact_type: "documentation"
-  artifact_kind: "documentation"
-  purpose: "Documentation file with LUPOPEDIA HEADERS applied"
+  lupopedia.version: "4.0.79"
+  lupopedia.schema: "database_table"
+  system_version: "4.0.79"
+  file_path_from_root: "lupo-docs/database/lupopedia/tables/active/lupo_actor_events.md"
+  web_path: "[lupo_actor_events](http://www.lupopedia.com/database/lupopedia/tables/active/lupo_actor_events)"
+  last_modified_utc: "20260317"
+  channel_id: 42
+  actor_id: 1
+  actor_name: "wolfie"
+  delegation_chain: "wolfie:root"
+  artifact_type: "table_documentation"
+  artifact_kind: "table"
   namespace: "core"
-  mood_rgb: "4169E1"
-  traits: ["flare", "indexed", "v4.0.51"]
-  tags: ["documentation", "flare_applied"]
-  lupo_agent: "windsurf"
+  purpose: "Actor activity and lifecycle events; tracks actor state changes, actions, and system interactions"
+  tags: ["database", "table", "core"]
 
 lupopedia.edges:
+  comment: "Snapshot of edges for lupo_actor_events table doc at 4.0.79 (table not present in install SQL - deferred)."
+  meta: "php_hits=0 python_hits=0"
   outbound_edges:
-    - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "(no_table_in_install_sql)", type: "DEFINES_SCHEMA_FOR", weight: 1.0 }
+    - { to: "(no_php_refs_found)", type: "USED_IN_PHP", weight: 0.0 }
+    - { to: "(no_python_refs_found)", type: "USED_IN_PYTHON", weight: 0.0 }
 
 lupopedia.footer:
-  last_verified: "20260228155738"
-  last_verified_by: "windsurf"
+  version: "4.0.79"
+  last_verified: "20260317"
+  last_verified_by: "wolfie"
 ---
+# file: lupo_actor_events — session: L-LUPO-ROOT-WOLFIE — delegation: wolfie:root — web_path: http://www.lupopedia.com/database/lupopedia/tables/active/lupo_actor_events
+
+# Table: lupo_actor_events
+
+**DEFERRED - Table not present in install SQL**
+
+This table documentation is deferred because the `lupo_actor_events` table does not exist in the current install SQL schema. The table was planned but not implemented in the current database structure.
+
+## Purpose (Planned)
+
+- Track actor activity and lifecycle events
+- Record actor state changes and system interactions
+- Provide audit trail for actor behavior
+- Support actor analytics and monitoring
+
+## Schema (Planned)
+
+| Column | Type | Description |
+|--------|------|-------------|
+| actor_event_id | bigint NOT NULL | Primary key; **application-supplied** (no AUTO_INCREMENT). |
+| actor_id | bigint NOT NULL | Actor this event relates to. |
+| event_type | varchar(64) NOT NULL | Type of event (login, logout, state_change, action, etc.). |
+| event_data | text DEFAULT NULL | Event-specific data or metadata. |
+| channel_id | bigint DEFAULT NULL | Channel context for the event. |
+| project_id | bigint DEFAULT 0 | Project context for the event. |
+| created_ymdhis | bigint NOT NULL DEFAULT 0 | UTC timestamp when event occurred. |
+| created_by_actor_id | bigint DEFAULT NULL | Actor who triggered this event. |
+| is_deleted | tinyint NOT NULL DEFAULT 0 | Soft delete flag. |
+| deleted_ymdhis | bigint DEFAULT NULL | UTC timestamp when event was deleted. |
+
+## Status
+
+**DEFERRED** - This table is not implemented in the current schema. Consider for future implementation when actor event tracking is required.
+
+## Namespace
+
+- **Domain:** Core
+- **Subdomain:** Actor Management
+- **Related Tables:** `lupo_actors`, `lupo_actor_channels`, `lupo_actor_capabilities`
 
 # LUPOPEDIA HEADERS (replaces FLARE)
 

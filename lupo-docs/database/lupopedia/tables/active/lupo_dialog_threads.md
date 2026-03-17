@@ -1,96 +1,41 @@
-# LUPOPEDIA HEADERS (replaces FLARE)
 ---
 lupopedia.headers:
-  lupopedia.version: "4.0.73"
-  lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\database\lupopedia\tables\lupo_dialog_threads.md"
-  file_hash: "b3adc3a6052f002d63004aba6f13c032582affae43b7760fa4b77ab334f41ca9"
-  last_updated_utc: "20260228155738"
-  system_version: "4.0.51"
-  channel_id: 1
-  actor_id: 1002
-  delegation_chain: "1002:10000"
-  artifact_type: "documentation"
-  artifact_kind: "documentation"
-  purpose: "Documentation file with LUPOPEDIA HEADERS applied"
-  namespace: "content"
-  mood_rgb: "4169E1"
-  traits: ["flare", "indexed", "v4.0.51"]
-  tags: ["documentation", "flare_applied"]
-  lupo_agent: "windsurf"
+  lupopedia.version: "4.0.79"
+  lupopedia.schema: "database_table"
+  system_version: "4.0.79"
+  file_path_from_root: "lupo-docs/database/lupopedia/tables/active/lupo_dialog_threads.md"
+  web_path: "[lupo_dialog_threads](http://www.lupopedia.com/database/lupopedia/tables/active/lupo_dialog_threads)"
+  last_modified_utc: "20260317"
+  channel_id: 42
+  actor_id: 1
+  actor_name: "wolfie"
+  delegation_chain: "wolfie:root"
+  artifact_type: "table_documentation"
+  artifact_kind: "table"
+  namespace: "channels"
+  purpose: "Dialog thread management; tracks conversation threads, message organization, and dialog lifecycle"
+  tags: ["database", "table", "channels"]
 
 lupopedia.edges:
+  comment: "Snapshot of edges for lupo_dialog_threads table doc at 4.0.79 (grounded by repo search; non-exhaustive)."
+  meta: "php_hits=9 python_hits=5"
   outbound_edges:
-    - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "database.table.lupo_dialog_threads", type: "DEFINES_SCHEMA_FOR", weight: 1.0 }
+    - { to: "lupo-database/lupopedia/mysql/install/install_new_lupopedia.sql", type: "schema_reference", weight: 1.0 }
+    - { to: "check_db_state.php", type: "USED_IN_PHP", weight: 0.6 }
+    - { to: "lupo-api/v1/dialog/health.php", type: "USED_IN_PHP", weight: 0.6 }
+    - { to: "lupo-api/v1/dialog/metrics.php", type: "USED_IN_PHP", weight: 0.6 }
+    - { to: "lupo-database/lupopedia/content/lupo-app/Services/TriggerReplacements/DialogMessagesInsertService.php", type: "USED_IN_PHP", weight: 0.6 }
+    - { to: "lupo-includes/Dialog/Database/DialogDatabase.php", type: "USED_IN_PHP", weight: 0.9 }
+    - { to: "lupo-includes/modules/channels/ChannelsController.php", type: "USED_IN_PHP", weight: 0.9 }
+    - { to: "lupo-tools/anubis_orphan_scanner.py", type: "USED_IN_PYTHON", weight: 0.5 }
 
 lupopedia.footer:
-  last_verified: "20260228155738"
-  last_verified_by: "windsurf"
+  version: "4.0.79"
+  last_verified: "20260317"
+  last_verified_by: "cursor"
 ---
-
-# LUPOPEDIA HEADERS (replaces FLARE) see http://www.lupopedia.com/lupopedia/content/FLARE and see http://www.lupopedia.com/lupopedia/qa/FLARE
----
-lupopedia.headers:
-  file_path_from_root: "lupo-docs/database/lupopedia/tables/lupo_dialog_threads.md"
-  system_version: "4.0.49"
-  channel_id: 1
-  actor_id: 1007
-  last_modified_utc: "20260227"
-  delegation_chain: "1007:10000"
-  artifact_type: "table_documentation"
-  purpose: "Dialog thread registry for channel conversations"
-  dialog_message: "DBDOC batch 2: enriched documentation and optimization notes."
-  mood_rgb: "4B0082"
-  artifact_kind: "table"
-  traits: ["canonical", "database", "curated"]
-  tags: ["database", "table", "lupo_dialog_threads"]
-  lupo_agent: "codex-ide"
-  lupo_dialog_threads.dialog_thread_id: "bigint NOT NULL"
-  lupo_dialog_threads.title: "varchar(255) NOT NULL"
-  lupo_dialog_threads.last_message_ymdhis: "bigint"
-  lupo_dialog_threads.federation_node_id: "bigint NOT NULL DEFAULT 1"
-  lupo_dialog_threads.channel_id: "bigint"
-  lupo_dialog_threads.project_slug: "varchar(100)"
-  lupo_dialog_threads.task_name: "varchar(255)"
-  lupo_dialog_threads.created_by_actor_id: "bigint NOT NULL"
-  lupo_dialog_threads.summary_text: "text"
-  lupo_dialog_threads.bg_color: "char(6) NOT NULL DEFAULT 'FFFFFF'"
-  lupo_dialog_threads.text_color: "char(6) NOT NULL DEFAULT '000000'"
-  lupo_dialog_threads.alt_text_color: "char(6) NOT NULL DEFAULT '666666'"
-  lupo_dialog_threads.status: "varchar(64) NOT NULL DEFAULT 'Open'"
-  lupo_dialog_threads.artifacts: "json"
-  lupo_dialog_threads.metadata_json: "json"
-  lupo_dialog_threads.created_ymdhis: "bigint NOT NULL DEFAULT 0"
-  lupo_dialog_threads.updated_ymdhis: "bigint NOT NULL"
-  lupo_dialog_threads.is_deleted: "tinyint NOT NULL DEFAULT 0"
-  lupo_dialog_threads.deleted_ymdhis: "bigint"
-  lupo_dialog_threads.escalated_to_operator_id: "bigint"
-  lupo_dialog_threads.escalation_reason: "varchar(255)"
-  lupo_dialog_threads.escalation_timestamp: "bigint"
-  table_primary_key: "dialog_thread_id"
-  table_engine: "unknown"
-  table_charset: "unknown"
-  table_collation: "unknown"
-  table_indexes: ["lupo_dialog_threads_idx_channel", "lupo_dialog_threads_idx_created", "lupo_dialog_threads_idx_created_by_actor", "lupo_dialog_threads_idx_deleted", "lupo_dialog_threads_idx_last_message", "lupo_dialog_threads_idx_node", "lupo_dialog_threads_idx_project", "lupo_dialog_threads_idx_status", "lupo_dialog_threads_idx_task", "lupo_dialog_threads_idx_updated"]
-  table_foreign_keys: []
-
-# FLARE Edge Automation Tip:
-# Use the FLARE Edge Suggester Tool to automatically discover and suggest edges:
-# python lupo-scripts/flare_edge_suggester.py --file <path> --include-db --format yaml
-
-lupopedia.footer:
-  outbound_edges:
-    - { to: "lupo-database/lupopedia/toon/lupo_dialog_threads.toon.json", type: "schema_reference", weight: 1.0, reason: "TOON schema definition", db_source: "lupo_dialog_threads" }
-    - { to: "lupo-docs/database/lupopedia/tables/lupo_dialog_messages.md", type: "references", weight: 0.8, reason: "message linkage" }
-    - { to: "lupo-docs/database/lupopedia/tables/lupo_channels.md", type: "references", weight: 0.7, reason: "channel context" }
-  inbound_edges: []
-  semantic_tags: ["database", "table", "dialog"]
-  version: "4.0.49"
-  last_verified: "20260227"
-  last_verified_by: "codex-ide"
----
-
+# file: lupo_dialog_threads ? web_path: http://www.lupopedia.com/database/lupopedia/tables/active/lupo_dialog_threads
 # Table: lupo_dialog_threads
 
 Purpose: Stores conversation thread metadata for channel dialogs.

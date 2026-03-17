@@ -1,8 +1,8 @@
 ---
 lupopedia.headers:
-  lupopedia.version: "4.0.69"
+  lupopedia.version: "4.0.79"
   lupopedia.schema: "doctrine"
-  system_version: "4.0.69"
+  system_version: "4.0.79"
   file_path_from_root: "lupo-docs/doctrine/LUPOPEDIA_HEADERS/README.md"
   web_path: "[web_path](http://www.lupopedia.com/doctrine/LUPOPEDIA_HEADERS)"
   title: "LUPOPEDIA HEADERS"
@@ -36,6 +36,55 @@ lupopedia.session:
 - **Schema additions:** Only `channel_id`, `parent_metadata_id`, `class_name`.
 - **Format:** First line of file is `---`; then YAML blocks in canonical order; then `---`; then the identity line `# file: ...` as the first line of the body; then document content.
 
+## Core doctrine (4.0.79)
+
+Apply this principle:
+
+**Headers declare the artifact.  
+The database declares the world around it.**
+
+### General rule (ordinary documentation)
+
+For ordinary documentation artifacts (doctrine/spec/foundation/status), the **handwritten header** should contain only **human-authored, stable identity and intent**. Do **not** treat DB-derived, computed, relational, inferred, or dynamic “world state” as default handwritten header content.
+
+Canonical handwritten block model for general docs:
+
+- `Lupopedia.init`
+- `Lupopedia.routing`
+- `Lupopedia.metadata`
+- `Lupopedia.environment`
+- `Lupopedia.next_actions`
+- `Lupopedia.comments`
+
+What should **not** be taught as default handwritten header content for general docs (DB-derived/synthetic-view concerns):
+
+- `Lupopedia.engagement`
+- `Lupopedia.lineage`
+- `Lupopedia.actors`
+- `Lupopedia.graph`
+- `Lupopedia.references`
+- `Lupopedia.relationships`
+- `Lupopedia.usage`
+
+### Special exception (active table documentation)
+
+For active table documentation files under:
+
+- `lupo-docs/database/lupopedia/tables/active/*.md`
+
+`Lupopedia.edges` is **required** and should be **verbose**, populated from grounded repository evidence:
+
+- `USED_IN_PHP`
+- `USED_IN_PYTHON`
+- `DEPENDS_ON_TABLE`
+- `REFERENCED_BY_TABLE`
+- `DEFINES_SCHEMA_FOR`
+- `USED_BY_MODULE`
+- `USED_BY_SERVICE`
+- `USED_BY_AGENT`
+
+This is an explicit exception: **active table documentation is a semantic mapping surface**, so edges are declared in those files.
+
 ## Docs in this folder
 
 | Document | Purpose |
@@ -52,10 +101,8 @@ lupopedia.session:
 - **Exactly one front matter block:** Do not duplicate; one opening `---`, one YAML block, one closing `---` per file. No second header block.
 - **Then:** YAML blocks (canonical order) → `---` → identity line `# file: {title} — session: {session_name} — delegation: {delegation_chain} — web_path: {web_path}` → body
 - **Session:** Session information belongs in **`lupopedia.session`**, not in `lupopedia.headers`. **Headers = artifact metadata**; **session = runtime execution context**. By default, agents read session from the **active runtime** (PHP `$_SESSION[]` or IDE session file in **`lupo-database/sessions/`**), not from the file. Session file naming: `L-LUPO-<ACTOR_NAME>_<ACTOR_FAUCET>_<UUID>.md` (e.g. `L-LUPO-CURSOR_DEV_3F6A9B2A.md`). Normally only `lupopedia.headers` is written into artifact files; when **verbose output** is enabled, `lupopedia.session` may be embedded as a snapshot at artifact creation time (optional flag `embedded_session_snapshot: true`). See [LUPOPEDIA_HEADERS_FORMAT.md](./LUPOPEDIA_HEADERS_FORMAT.md) §2.1 for full semantics and the canonical session comment.
-- **Blocks (canonical from 4.0.69):** Use **lupopedia.*** names in new or modified files:
-  - `lupopedia.init`, `lupopedia.conditional`, `lupopedia.headers`, **`lupopedia.session`**, `lupopedia.edges`, **`lupopedia.engagement`**, `lupopedia.footer`, `lupopedia.see`, **`lupopedia.next_actions`** (legacy: `lupopedia.close`)
-- **Snapshots:** Blocks like **`lupopedia.edges`** and **`lupopedia.engagement`** MUST include a `comment` or `meta` property stating that they are only a **snapshot** of the values at artifact creation time, and that the database should be queried to get the latest values.
-- **Engagement:** The **`lupopedia.engagement`** block (new in 4.0.74) calculates and displays engagement metrics such as `views: x`.
+- **Block naming note:** Much of the repository currently uses lowercase `lupopedia.*` block names for historical/validator compatibility. In doctrine and templates going forward, prefer the canonical conceptual names `Lupopedia.*` (Init/Routing/Metadata/Environment/Edges/Next_Actions/Comments). Implementations may store/serialize the same data under legacy `lupopedia.*` keys until validators/tooling complete the naming transition.
+- **Snapshots (dynamic blocks):** When present, dynamic blocks (e.g. `Lupopedia.edges`, `Lupopedia.engagement`) MUST be labeled as a **snapshot** (query the database for latest values). These blocks are **not** default for ordinary docs; they are used when a specific artifact type requires them (notably: active table docs).
 - **Deprecated:** `flare.*` and `flame.*` are accepted by validators for backward compatibility only; do not use for new files. See [DEPRECATION_FLARE_FLIP_FLP.md](./DEPRECATION_FLARE_FLIP_FLP.md).
 - **Lookup:** by `entity_type` + `entity_id` and/or `channel_id`
 - **Optional human-readable:** **`channel_name`** (with `channel_id`) and **`thread_name`** (with `thread_id` when thread-scoped). Example: channel_id 42 = "Lupopedia Development (general)". See [LUPOPEDIA_HEADERS_FORMAT.md](./LUPOPEDIA_HEADERS_FORMAT.md) §2 and [LUPOPEDIA_HEADERS_PLAN.md](./LUPOPEDIA_HEADERS_PLAN.md) §4.1.

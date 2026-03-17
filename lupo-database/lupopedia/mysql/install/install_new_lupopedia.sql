@@ -404,6 +404,30 @@ CREATE INDEX lupo_decision_edges_idx_session ON lupo_decision_edges (session_id)
 CREATE INDEX lupo_decision_edges_idx_channel ON lupo_decision_edges (channel_id);
 CREATE INDEX lupo_decision_edges_idx_project ON lupo_decision_edges (project_id);
 
+CREATE TABLE lupo_decision_evidence (
+  decision_evidence_id bigint NOT NULL,
+  decision_id bigint NOT NULL,
+  channel_id bigint NOT NULL,
+  project_id bigint DEFAULT 0,
+  evidence_type varchar(64) NOT NULL,
+  evidence_source varchar(255) NOT NULL,
+  evidence_value text,
+  likelihood decimal(10,6) DEFAULT NULL,
+  confidence decimal(10,6) DEFAULT NULL,
+  federation_node_id bigint NOT NULL DEFAULT 1,
+  status varchar(32) NOT NULL DEFAULT 'active',
+  created_ymdhis bigint NOT NULL DEFAULT 0,
+  updated_ymdhis bigint NOT NULL,
+  is_deleted tinyint NOT NULL DEFAULT 0,
+  deleted_ymdhis bigint DEFAULT NULL,
+  PRIMARY KEY (decision_evidence_id)
+);
+
+CREATE INDEX lupo_decision_evidence_idx_decision ON lupo_decision_evidence (decision_id);
+CREATE INDEX lupo_decision_evidence_idx_channel ON lupo_decision_evidence (channel_id);
+CREATE INDEX lupo_decision_evidence_idx_status ON lupo_decision_evidence (status);
+CREATE INDEX lupo_decision_evidence_idx_is_deleted ON lupo_decision_evidence (is_deleted);
+
 CREATE TABLE lupo_decision_influences (
   decision_id bigint NOT NULL,
   influencing_decision_id bigint NOT NULL,

@@ -1,37 +1,45 @@
 ---
 lupopedia.headers:
-  lupopedia.version: "4.0.78"
+  lupopedia.version: "4.0.79"
   lupopedia.schema: "database_table"
-  system_version: "4.0.78"
+  system_version: "4.0.79"
   file_path_from_root: "lupo-docs/database/lupopedia/tables/active/lupo_registry.md"
   web_path: "[lupo_registry](http://www.lupopedia.com/database/lupopedia/tables/active/lupo_registry)"
-  last_modified_utc: "20260316"
+  last_modified_utc: "20260317"
   channel_id: 42
   actor_id: 102
+  actor_name: "cursor"
+  delegation_chain: "cursor:root"
   artifact_type: "table_documentation"
   artifact_kind: "table"
   namespace: "core"
   purpose: "Unified registry for entity indexing and ID reservation across federation nodes; entity_type, entity_index_id, optional metadata"
-  traits: ["canonical", "core_system", "registry", "v4.0.78"]
-  tags: ["database", "registry", "indexing", "reservation", "federation"]
-  table_primary_key: "registry_id"
-  doctrine_note: "No database foreign keys; referential integrity enforced in application code. All timestamps BIGINT UTC YYYYMMDDHHIISS. Reserved-ID and allocation logic in application."
+  tags: ["database", "table", "core"]
 
 lupopedia.edges:
-  comment: "Snapshot of edges for lupo_registry table doc at 4.0.78."
+  comment: "Snapshot of edges for lupo_registry table doc at 4.0.79 (grounded by repo search; non-exhaustive)."
+  meta: "php_hits=4 python_hits=7"
   outbound_edges:
+    - { to: "database.table.lupo_registry", type: "DEFINES_SCHEMA_FOR", weight: 1.0 }
     - { to: "lupo-database/lupopedia/mysql/install/install_new_lupopedia.sql", type: "schema_reference", weight: 1.0 }
-    - { to: "lupo-docs/database/lupopedia/tables/active/lupo_federation_nodes.md", type: "references", weight: 0.8 }
-    - { to: "lupo-docs/database/lupopedia/tables/active/lupo_actors.md", type: "references", weight: 0.7 }
-    - { to: "lupo-docs/database/lupopedia/tables/active/lupo_channels.md", type: "references", weight: 0.7 }
+    - { to: "install_wizard_classes.php", type: "USED_IN_PHP", weight: 0.6 }
+    - { to: "lupo-includes/classes/AdminRegistryHandler.php", type: "USED_IN_PHP", weight: 0.9 }
+    - { to: "lupo-includes/classes/AgentService.php", type: "USED_IN_PHP", weight: 0.9 }
+    - { to: "lupo-scripts/audit_schema_doctrine.php", type: "USED_IN_PHP", weight: 0.7 }
+    - { to: "analyze_unused_tables.py", type: "USED_IN_PYTHON", weight: 0.5 }
+    - { to: "lupo-scripts/actor_agent_doctrine.py", type: "USED_IN_PYTHON", weight: 0.5 }
+    - { to: "lupo-scripts/audit_schema_doctrine.py", type: "USED_IN_PYTHON", weight: 0.5 }
+    - { to: "lupo-scripts/generate_seed_from_toons.py", type: "USED_IN_PYTHON", weight: 0.5 }
+    - { to: "lupo-scripts/generate_toon_files.py", type: "USED_IN_PYTHON", weight: 0.5 }
+    - { to: "lupo-scripts/rebuild_schema_from_toons.py", type: "USED_IN_PYTHON", weight: 0.5 }
+    - { to: "lupo-tools/md_flip_ingest.py", type: "USED_IN_PYTHON", weight: 0.5 }
 
 lupopedia.footer:
-  version: "4.0.78"
-  last_verified: "20260316"
+  version: "4.0.79"
+  last_verified: "20260317"
   last_verified_by: "cursor"
 ---
-# file: lupo_registry — web_path: http://www.lupopedia.com/database/lupopedia/tables/active/lupo_registry
-
+# file: lupo_registry ? web_path: http://www.lupopedia.com/database/lupopedia/tables/active/lupo_registry
 # Table: lupo_registry
 
 ## Table Overview

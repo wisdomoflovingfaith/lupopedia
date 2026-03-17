@@ -1,35 +1,36 @@
 ---
 lupopedia.headers:
-  lupopedia.version: "4.0.78"
+  lupopedia.version: "4.0.79"
   lupopedia.schema: "database_table"
-  system_version: "4.0.78"
+  system_version: "4.0.79"
   file_path_from_root: "lupo-docs/database/lupopedia/tables/active/development/lupo_actor_apps.md"
-  web_path: "[lupo_actor_apps](http://www.lupopedia.com/database/lupopedia/tables/active/development/lupo_actor_apps)"
-  last_modified_utc: "20260316"
+  web_path: "[lupo_actor_apps](http://www.lupopedia.com/database/lupopedia/tables/active/lupo_actor_apps)"
+  last_modified_utc: "20260317"
   channel_id: 42
   actor_id: 102
+  actor_name: "cursor"
+  delegation_chain: "cursor:root"
   artifact_type: "table_documentation"
   artifact_kind: "table"
   namespace: "core"
   purpose: "Documentation for lupo_actor_apps table - maps actors to filesystem application workspaces"
-  traits: ["canonical", "actor_system", "filesystem", "v4.0.78"]
-  tags: ["database", "actors", "apps", "filesystem"]
-  table_primary_key: "actor_app_id"
-  doctrine_note: "No database foreign keys; referential integrity enforced in application code."
+  tags: ["database", "table", "core"]
 
 lupopedia.edges:
-  comment: "Snapshot of edges for lupo_actor_apps table doc at 4.0.78."
+  comment: "Snapshot of edges for lupo_actor_apps table doc at 4.0.79 (grounded by repo search; non-exhaustive)."
+  meta: "php_hits=0 python_hits=0"
   outbound_edges:
+    - { to: "database.table.lupo_actor_apps", type: "DEFINES_SCHEMA_FOR", weight: 1.0 }
     - { to: "lupo-database/lupopedia/mysql/install/install_new_lupopedia.sql", type: "schema_reference", weight: 1.0 }
-    - { to: "lupo-docs/database/lupopedia/tables/active/lupo_actors.md", type: "references", weight: 1.0 }
+    - { to: "(no_php_refs_found)", type: "USED_IN_PHP", weight: 0.0 }
+    - { to: "(no_python_refs_found)", type: "USED_IN_PYTHON", weight: 0.0 }
 
 lupopedia.footer:
-  version: "4.0.78"
-  last_verified: "20260316"
+  version: "4.0.79"
+  last_verified: "20260317"
   last_verified_by: "cursor"
 ---
-# file: lupo_actor_apps — web_path: http://www.lupopedia.com/database/lupopedia/tables/active/development/lupo_actor_apps
-
+# file: lupo_actor_apps ? web_path: http://www.lupopedia.com/database/lupopedia/tables/active/lupo_actor_apps
 # Table: lupo_actor_apps
 
 ## Table Overview

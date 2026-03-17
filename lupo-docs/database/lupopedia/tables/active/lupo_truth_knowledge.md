@@ -1,19 +1,37 @@
 ---
 lupopedia.headers:
-  lupopedia.version: "4.0.73"
-  lupopedia.schema: "documentation"
+  lupopedia.version: "4.0.79"
+  lupopedia.schema: "database_table"
+  system_version: "4.0.79"
   file_path_from_root: "lupo-docs/database/lupopedia/tables/active/lupo_truth_knowledge.md"
-  last_modified_utc: "20260312"
-  system_version: "4.0.69"
-  channel_id: 1
-  actor_id: 103
-  delegation_chain: "103:10000"
-  artifact_type: "documentation"
-  artifact_kind: "database_table"
-  purpose: "JetBrains domain table documentation for lupo_truth_knowledge"
-  lupo_agent: "jetbrains"
----
+  web_path: "[lupo_truth_knowledge](http://www.lupopedia.com/database/lupopedia/tables/active/lupo_truth_knowledge)"
+  last_modified_utc: "20260317"
+  channel_id: 42
+  actor_id: 1
+  actor_name: "wolfie"
+  delegation_chain: "wolfie:root"
+  artifact_type: "table_documentation"
+  artifact_kind: "table"
+  namespace: "truth"
+  purpose: "Knowledge base and truth management; stores verified facts, knowledge entities, and semantic relationships"
+  tags: ["database", "table", "truth"]
 
+lupopedia.edges:
+  comment: "Snapshot of edges for lupo_truth_knowledge table doc at 4.0.79 (grounded by repo search; non-exhaustive)."
+  meta: "php_hits=1 python_hits=1"
+  outbound_edges:
+    - { to: "database.table.lupo_truth_knowledge", type: "DEFINES_SCHEMA_FOR", weight: 1.0 }
+    - { to: "lupo-database/lupopedia/mysql/install/install_new_lupopedia.sql", type: "schema_reference", weight: 1.0 }
+    - { to: "lupo-includes/modules/truth/truth-model.php", type: "USED_IN_PHP", weight: 0.9 }
+
+lupopedia.footer:
+  version: "4.0.79"
+  last_verified: "20260317"
+  last_verified_by: "wolfie"
+---
+# file: lupo_truth_knowledge — session: L-LUPO-ROOT-WOLFIE — delegation: wolfie:root — web_path: http://www.lupopedia.com/database/lupopedia/tables/active/lupo_truth_knowledge
+
+# file: lupo_truth_knowledge ? web_path: http://www.lupopedia.com/database/lupopedia/tables/active/lupo_truth_knowledge
 # Table: lupo_truth_knowledge
 
 ## Table Overview

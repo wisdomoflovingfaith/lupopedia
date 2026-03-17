@@ -1,0 +1,202 @@
+{
+  "lupo_action_authorization": {
+    "php": 1,
+    "py": 1
+  },
+  "lupo_actor_actions": {
+    "php": 2,
+    "py": 1
+  },
+  "lupo_actor_apps": {
+    "php": 0,
+    "py": 0
+  },
+  "lupo_actor_capabilities": {
+    "php": 1,
+    "py": 1
+  },
+  "lupo_actor_channel_roles": {
+    "php": 15,
+    "py": 3
+  },
+  "lupo_actor_channels": {
+    "php": 8,
+    "py": 4
+  },
+  "lupo_actor_departments": {
+    "php": 3,
+    "py": 3
+  },
+  "lupo_actor_traits": {
+    "php": 0,
+    "py": 1
+  },
+  "lupo_actors": {
+    "php": 33,
+    "py": 12
+  },
+  "lupo_agent_faucets": {
+    "php": 3,
+    "py": 2
+  },
+  "lupo_agents": {
+    "php": 5,
+    "py": 4
+  },
+  "lupo_analytics_campaign_vars": {
+    "php": 1,
+    "py": 1
+  },
+  "lupo_analytics_visits": {
+    "php": 2,
+    "py": 2
+  },
+  "lupo_artifact_chunks": {
+    "php": 1,
+    "py": 0
+  },
+  "lupo_artifacts": {
+    "php": 2,
+    "py": 2
+  },
+  "lupo_atoms": {
+    "php": 0,
+    "py": 3
+  },
+  "lupo_audit_log": {
+    "php": 1,
+    "py": 2
+  },
+  "lupo_auth_audit_log": {
+    "php": 2,
+    "py": 0
+  },
+  "lupo_auth_providers": {
+    "php": 0,
+    "py": 1
+  },
+  "lupo_auth_users": {
+    "php": 16,
+    "py": 3
+  },
+  "lupo_banned_actors": {
+    "php": 3,
+    "py": 3
+  },
+  "lupo_bans_log": {
+    "php": 2,
+    "py": 0
+  },
+  "lupo_channel_content": {
+    "php": 1,
+    "py": 1
+  },
+  "lupo_channel_departments": {
+    "php": 0,
+    "py": 0
+  },
+  "lupo_channel_state": {
+    "php": 1,
+    "py": 1
+  },
+  "lupo_channels": {
+    "php": 17,
+    "py": 8
+  },
+  "lupo_cip_analytics": {
+    "php": 3,
+    "py": 0
+  },
+  "lupo_collections": {
+    "php": 0,
+    "py": 1
+  },
+  "lupo_comments": {
+    "php": 0,
+    "py": 1
+  },
+  "lupo_contents": {
+    "php": 15,
+    "py": 11
+  },
+  "lupo_departments": {
+    "php": 8,
+    "py": 1
+  },
+  "lupo_dialog_messages": {
+    "php": 23,
+    "py": 7
+  },
+  "lupo_dialog_threads": {
+    "php": 9,
+    "py": 5
+  },
+  "lupo_edge_type_definitions": {
+    "php": 0,
+    "py": 0
+  },
+  "lupo_federation_nodes": {
+    "php": 2,
+    "py": 4
+  },
+  "lupo_help_topics": {
+    "php": 1,
+    "py": 1
+  },
+  "lupo_legacy_content_mapping": {
+    "php": 0,
+    "py": 0
+  },
+  "lupo_metadata": {
+    "php": 4,
+    "py": 2
+  },
+  "lupo_modules": {
+    "php": 2,
+    "py": 1
+  },
+  "lupo_permissions": {
+    "php": 3,
+    "py": 1
+  },
+  "lupo_registry": {
+    "php": 4,
+    "py": 7
+  },
+  "lupo_search_index": {
+    "php": 0,
+    "py": 0
+  },
+  "lupo_semantic_index": {
+    "php": 0,
+    "py": 1
+  },
+  "lupo_sessions": {
+    "php": 26,
+    "py": 4
+  },
+  "lupo_system_logs": {
+    "php": 0,
+    "py": 1
+  },
+  "lupo_tasks": {
+    "php": 4,
+    "py": 1
+  },
+  "lupo_truth_knowledge": {
+    "php": 1,
+    "py": 1
+  },
+  "lupo_unified_log": {
+    "php": 0,
+    "py": 0
+  },
+  "lupo_uploads": {
+    "php": 1,
+    "py": 0
+  },
+  "lupo_visits": {
+    "php": 3,
+    "py": 2
+  }
+}

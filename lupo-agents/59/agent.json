@@ -1,9 +1,9 @@
 {
-  "code": "QUERYMASTER",
-  "name": "QUERYMASTER",
-  "layer": "system_ops",
-  "is_required": false,
-  "is_kernel": false,
+  "code": "ANUBIS",
+  "name": "ANUBIS",
+  "layer": "kernel",
+  "is_required": true,
+  "is_kernel": true,
   "recommended_slot": 59,
   "version": "1.0.0"
 }

@@ -1,30 +1,37 @@
 ---
 lupopedia.headers:
-  lupopedia.version: "4.0.73"
+  lupopedia.version: "4.0.79"
   lupopedia.schema: "database_table"
+  system_version: "4.0.79"
   file_path_from_root: "lupo-docs/database/lupopedia/tables/active/lupo_bans_log.md"
-  system_version: "4.0.70"
-  channel_id: 1
+  web_path: "[lupo_bans_log](http://www.lupopedia.com/database/lupopedia/tables/active/lupo_bans_log)"
+  last_modified_utc: "20260317"
+  channel_id: 42
   actor_id: 102
-  last_modified_utc: "20260312"
+  actor_name: "cursor"
+  delegation_chain: "cursor:root"
   artifact_type: "table_documentation"
+  artifact_kind: "table"
+  namespace: "analytics"
   purpose: "Audit log of ban events (URI, scope, actor, IP, user agent)"
-  mood_rgb: "4169E1"
-  traits: ["canonical", "acl", "audit", "cursor_domain", "v4.0.70"]
-  tags: ["database", "bans", "audit", "security"]
-  lupo_agent: "cursor"
+  tags: ["database", "table", "analytics"]
 
 lupopedia.edges:
+  comment: "Snapshot of edges for lupo_bans_log table doc at 4.0.79 (grounded by repo search; non-exhaustive)."
+  meta: "php_hits=2 python_hits=0"
   outbound_edges:
-    - { to: "lupo-database/lupopedia/toon/lupo_bans_log.toon.json", type: "schema_reference", weight: 1.0 }
-    - { to: "lupo-docs/database/lupopedia/tables/active/lupo_actors.md", type: "references", weight: 0.8 }
-    - { to: "lupo-docs/database/lupopedia/tables/active/lupo_banned_actors.md", type: "references", weight: 0.7 }
+    - { to: "database.table.lupo_bans_log", type: "DEFINES_SCHEMA_FOR", weight: 1.0 }
+    - { to: "lupo-database/lupopedia/mysql/install/install_new_lupopedia.sql", type: "schema_reference", weight: 1.0 }
+    - { to: "install.php", type: "USED_IN_PHP", weight: 0.6 }
+    - { to: "lupo-includes/functions/ban_gate.php", type: "USED_IN_PHP", weight: 0.9 }
+    - { to: "(no_python_refs_found)", type: "USED_IN_PYTHON", weight: 0.0 }
 
 lupopedia.footer:
-  last_verified: "20260312"
+  version: "4.0.79"
+  last_verified: "20260317"
   last_verified_by: "cursor"
 ---
-
+# file: lupo_bans_log ? web_path: http://www.lupopedia.com/database/lupopedia/tables/active/lupo_bans_log
 # Table: lupo_bans_log
 
 ## Table Overview

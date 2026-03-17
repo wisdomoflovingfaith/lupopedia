@@ -1,46 +1,36 @@
 ---
 lupopedia.headers:
-  lupopedia.version: "4.0.77"
+  lupopedia.version: "4.0.79"
   lupopedia.schema: "database_table"
+  system_version: "4.0.79"
   file_path_from_root: "lupo-docs/database/lupopedia/tables/active/development/lupo_analytics_campaign_vars.md"
-  system_version: "4.0.77"
-  namespace: "analytics"
+  web_path: "[lupo_analytics_campaign_vars](http://www.lupopedia.com/database/lupopedia/tables/active/lupo_analytics_campaign_vars)"
+  last_modified_utc: "20260317"
   channel_id: 42
-  actor_id: 106
-  last_modified_utc: "20260316"
+  actor_id: 102
+  actor_name: "cursor"
+  delegation_chain: "cursor:root"
   artifact_type: "table_documentation"
-  purpose: "Documentation for lupo_analytics_campaign_vars table - stores per-period campaign key/value analytics data"
-  mood_rgb: "4169E1"
   artifact_kind: "table"
-  traits: ["development", "analytics", "campaigns", "v4.0.77"]
-  tags: ["database", "analytics", "campaigns", "development"]
-  lupo_agent: "zencoder"
-  table_primary_key: "campaign_var_id"
-  lupo_analytics_campaign_vars.campaign_var_id: "BIGINT NOT NULL primary key"
-  lupo_analytics_campaign_vars.period: "VARCHAR(64) NOT NULL — time period label (e.g. 'daily', 'monthly', '2026-03')"
-  lupo_analytics_campaign_vars.date_ymd: "BIGINT — date in YYYYMMDD format for day-level aggregations"
-  lupo_analytics_campaign_vars.yearmonth: "INT — year-month composite (e.g. 202603) for monthly rollups"
-  lupo_analytics_campaign_vars.year: "INT — calendar year for yearly aggregations"
-  lupo_analytics_campaign_vars.campaign_key: "VARCHAR(255) NOT NULL — UTM or campaign parameter name"
-  lupo_analytics_campaign_vars.campaign_value: "VARCHAR(500) — campaign parameter value"
-  lupo_analytics_campaign_vars.metadata_json: "JSON — extended attributes for this campaign data point"
-  lupo_analytics_campaign_vars.created_ymdhis: "BIGINT NOT NULL DEFAULT 0 — YYYYMMDDHHIISS UTC creation timestamp"
-  table_engine: "InnoDB"
-  table_charset: "utf8mb4"
-  table_indexes: []
-  doctrine_note: "No database foreign keys; referential integrity enforced in application code."
+  namespace: "analytics"
+  purpose: "Documentation for lupo_analytics_campaign_vars table - stores per-period campaign key/value analytics data"
+  tags: ["database", "table", "analytics"]
 
 lupopedia.edges:
+  comment: "Snapshot of edges for lupo_analytics_campaign_vars table doc at 4.0.79 (grounded by repo search; non-exhaustive)."
+  meta: "php_hits=1 python_hits=1"
   outbound_edges:
-    - { to: "lupo-docs/database/lupopedia/tables/active/lupo_analytics_visits.md", type: "references", weight: 0.9 }
-    - { to: "lupo-database/lupopedia/mysql/install/install_new_lupopedia.sql", type: "schema_reference", weight: 0.9 }
+    - { to: "database.table.lupo_analytics_campaign_vars", type: "DEFINES_SCHEMA_FOR", weight: 1.0 }
+    - { to: "lupo-database/lupopedia/mysql/install/install_new_lupopedia.sql", type: "schema_reference", weight: 1.0 }
+    - { to: "lupo-includes/schema-config.php", type: "USED_IN_PHP", weight: 0.9 }
+    - { to: "lupo-scripts/wolfie_orms.py", type: "USED_IN_PYTHON", weight: 0.5 }
 
 lupopedia.footer:
-  version: "4.0.77"
-  last_verified: "20260316"
-  last_verified_by: "zencoder"
+  version: "4.0.79"
+  last_verified: "20260317"
+  last_verified_by: "cursor"
 ---
-
+# file: lupo_analytics_campaign_vars ? web_path: http://www.lupopedia.com/database/lupopedia/tables/active/lupo_analytics_campaign_vars
 # Table: lupo_analytics_campaign_vars
 
 ## Table Overview

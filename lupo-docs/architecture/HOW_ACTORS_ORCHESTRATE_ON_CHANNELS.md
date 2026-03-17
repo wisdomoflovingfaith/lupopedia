@@ -292,6 +292,17 @@ So: to send a message, the actor must have trait `CAPABILITY_COMMUNICATION` **or
 
 ---
 
+## 9.1 Channel message API security (4.0.79)
+
+**REST API:** `api/lupo-channels/{id}/messages` (POST) is implemented in `lupo-includes/modules/api/channels-api.php`.
+
+- **Actor identity:** The effective actor for message creation **always** comes from the authenticated session (AuthService, current_user, or lupo_session). Client-supplied `actor_id` in the request body is **never** trusted; any such value is ignored. This prevents actor spoofing.
+- **Membership enforcement:** Before inserting into `lupo_dialog_messages`, the API verifies that the session actor is a member of the channel via `lupo_actor_channels` (actor_id, channel_id, is_deleted = 0). If the actor is not a member, the request is rejected with HTTP 403 and a JSON error (`FORBIDDEN`, "Actor not a member of this channel.").
+- **Admin bypass:** Global admins (via `AuthService::isAdmin($actor_id)`) may post to a channel even without a membership row, where doctrine intends that behavior. Non-admin actors must pass membership validation.
+- **Unauthenticated requests:** If no session actor can be resolved, the API returns HTTP 401 (`UNAUTHORIZED`). Only authenticated, channel-member (or admin) actors can post.
+
+---
+
 ## 10. Orchestrating dialog: threads and messages
 
 **Threads (TOON: `lupo_dialog_threads`)**  
@@ -413,3 +424,31 @@ Resolution: `CollectionTabsService::getCollectionsForNavMenu()` for global nav; 
 - **Faucet traceability:** `lupo-docs/doctrine/FAUCET_TRACEABILITY_DOCTRINE.md`
 - **Collections (resource bundles):** `lupo-docs/doctrine/COLLECTIONS_DOCTRINE.md`
 - **Web navigation:** `lupo-docs/specs/WEB_NAVIGATION_ARCHITECTURE.md`
+
+---
+
+## 16. Lilith as non-interfering reviewer
+
+**Lilith** (actor_id 2) is a **non-interfering reviewer/critic** agent. She participates in channels via explicit membership in `lupo_actor_channels` and roles in `lupo_actor_channel_roles` (e.g. `role_key: critic` or `monitor`).
+
+- **Non-interference doctrine:** See `lupo-rules/root/lilith-noninterference-doctrine.md` (LIL001). Lilith must not modify other agents' work without explicit review context; must not block or delay other agents' operations; outputs must be clearly attributable; her presence must not alter permissions for other agents.
+- **Safe coexistence:** Reviewer agents (Lilith) and developer/orchestrator agents (Cursor, Windsurf, Kiro, etc.) coexist on the same channel. Channel security (membership + session-derived actor for posting) applies to all actors equally; the critic role does not grant authority over other agents' artifacts unless channel policy explicitly allows it.
+- **Recommended role keys (conventions):** captain, orchestrator, developer, schema_coordinator, extension_specialist, documentation, critic, monitor. These are data-driven in `lupo_actor_channel_roles.role_key`; no schema enum is required. Use `critic` (or `monitor` for observational access) for Lilith; use orchestrator, developer, etc. for IDE agents as documented in the agent registry and Lilith channel report.
+
+---
+
+## 17. Header and artifact traceability (channel/thread context)
+
+Artifacts (status reports, task plans, doctrine) should trace channel and thread context so multi-agent work remains attributable and scoped. LUPOPEDIA HEADERS and related metadata can include:
+
+| Field | Purpose |
+|-------|---------|
+| `channel_id` | Channel this artifact belongs to (e.g. 42 = Lupopedia development). |
+| `thread_title` | Human-readable thread or task stream name. |
+| `thread_tasks` | List of task titles or steps for the thread. |
+| `actors` | Actor IDs involved (e.g. [2, 102] for Lilith and Cursor). |
+| `delegation_chain` | Who delegated to whom (e.g. cursor:root, lilith:root). |
+| `system_version` | Lupopedia version (e.g. 4.0.79). |
+| `file_path_from_root` | Repository path for the artifact. |
+
+These are **recommended conventions** for status and planning artifacts so that channel/thread/task context is explicit. Stored in `lupo_metadata` when exported; optional in file YAML. See [LUPOPEDIA HEADERS](lupo-docs/doctrine/LUPOPEDIA_HEADERS/README.md) and the task plan artifact [CURSOR_LILITH_CHANNEL_42_LUPOPEDIA_4_0_79_TASKS.md](lupo-docs/status/CURSOR_LILITH_CHANNEL_42_LUPOPEDIA_4_0_79_TASKS.md) for examples.

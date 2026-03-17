@@ -54,6 +54,9 @@ lupopedia.footer:
 - **2.1 Top 50 header version**  
   - Update remaining Top 50 table docs to 4.0.79 headers where still not at current version. Use [table_doc_header_version_report_4_0_78.md](lupo-docs/status/table_doc_header_version_report_4_0_78.md) (or refreshed 4.0.79 report) for targeting; no blind mass-edit of full corpus.
 
+- **2.1a Header doctrine + table-doc edges exception (docs + active table docs)**  
+  - Update LUPOPEDIA HEADERS doctrine/spec/templates/examples so ordinary docs teach only stable, human-authored header blocks, with active table docs as the explicit exception where verbose edges are required. Populate grounded verbose table-doc edges in `lupo-docs/database/lupopedia/tables/active/*.md` when PHP/Python references exist. Track in: [header_doctrine_and_table_edges_update_4_0_79.md](lupo-docs/status/header_doctrine_and_table_edges_update_4_0_79.md).
+
 - **2.2 Missing LUPOPEDIA_HEADERS**  
   - Add LUPOPEDIA_HEADERS to **TABLE_INDEX.md** (only doc missing headers per report). Use minimal valid block; artifact type appropriate for index file.
 

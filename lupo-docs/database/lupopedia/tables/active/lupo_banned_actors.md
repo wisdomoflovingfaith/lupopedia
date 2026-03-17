@@ -1,30 +1,40 @@
 ---
 lupopedia.headers:
-  lupopedia.version: "4.0.73"
+  lupopedia.version: "4.0.79"
   lupopedia.schema: "database_table"
+  system_version: "4.0.79"
   file_path_from_root: "lupo-docs/database/lupopedia/tables/active/lupo_banned_actors.md"
-  system_version: "4.0.70"
-  channel_id: 1
+  web_path: "[lupo_banned_actors](http://www.lupopedia.com/database/lupopedia/tables/active/lupo_banned_actors)"
+  last_modified_utc: "20260317"
+  channel_id: 42
   actor_id: 102
-  last_modified_utc: "20260312"
+  actor_name: "cursor"
+  delegation_chain: "cursor:root"
   artifact_type: "table_documentation"
+  artifact_kind: "table"
+  namespace: "core"
   purpose: "Ban list: actors and optionally IPs, with reason and ban metadata"
-  mood_rgb: "4169E1"
-  traits: ["canonical", "acl", "security", "cursor_domain", "v4.0.70"]
-  tags: ["database", "bans", "access_control", "security"]
-  lupo_agent: "cursor"
+  tags: ["database", "table", "core"]
 
 lupopedia.edges:
+  comment: "Snapshot of edges for lupo_banned_actors table doc at 4.0.79 (grounded by repo search; non-exhaustive)."
+  meta: "php_hits=3 python_hits=3"
   outbound_edges:
-    - { to: "lupo-database/lupopedia/toon/lupo_banned_actors.toon.json", type: "schema_reference", weight: 1.0 }
-    - { to: "lupo-docs/database/lupopedia/tables/active/lupo_actors.md", type: "references", weight: 0.9 }
-    - { to: "lupo-docs/database/lupopedia/tables/active/lupo_bans_log.md", type: "references", weight: 0.7 }
+    - { to: "database.table.lupo_banned_actors", type: "DEFINES_SCHEMA_FOR", weight: 1.0 }
+    - { to: "lupo-database/lupopedia/mysql/install/install_new_lupopedia.sql", type: "schema_reference", weight: 1.0 }
+    - { to: "install_wizard_classes.php", type: "USED_IN_PHP", weight: 0.6 }
+    - { to: "lupo-includes/classes/ANUBIS_Resolver.php", type: "USED_IN_PHP", weight: 0.9 }
+    - { to: "lupo-includes/functions/ban_gate.php", type: "USED_IN_PHP", weight: 0.9 }
+    - { to: "analyze_unused_tables.py", type: "USED_IN_PYTHON", weight: 0.5 }
+    - { to: "lupo-scripts/rebuild_schema_from_toons.py", type: "USED_IN_PYTHON", weight: 0.5 }
+    - { to: "lupo-tools/anubis_orphan_scanner.py", type: "USED_IN_PYTHON", weight: 0.5 }
 
 lupopedia.footer:
-  last_verified: "20260312"
+  version: "4.0.79"
+  last_verified: "20260317"
   last_verified_by: "cursor"
 ---
-
+# file: lupo_banned_actors ? web_path: http://www.lupopedia.com/database/lupopedia/tables/active/lupo_banned_actors
 # Table: lupo_banned_actors
 
 ## Table Overview

@@ -1,40 +1,56 @@
 ---
 lupopedia.headers:
-  lupopedia.version: "4.0.78"
+  lupopedia.version: "4.0.79"
   lupopedia.schema: "database_table"
+  system_version: "4.0.79"
   file_path_from_root: "lupo-docs/database/lupopedia/tables/active/lupo_dialog_messages.md"
-  system_version: "4.0.78"
-  namespace: "content"
-  channel_id: 1
-  actor_id: 1003
-  last_modified_utc: "20260316"
+  web_path: "[lupo_dialog_messages](http://www.lupopedia.com/database/lupopedia/tables/active/lupo_dialog_messages)"
+  last_modified_utc: "20260317"
+  channel_id: 42
+  actor_id: 102
+  actor_name: "cursor"
+  delegation_chain: "cursor:root"
   artifact_type: "table_documentation"
+  artifact_kind: "table"
+  namespace: "content"
   purpose: "Complete documentation for lupo_dialog_messages table - dialog message storage and delivery system"
-  mood_rgb: "4169E1"
-  traits: ["canonical", "dialog", "communication", "v4.0.78"]
-  tags: ["database", "dialogs", "messages", "chat", "communication"]
-  lupo_agent: "antigravity"
+  tags: ["database", "table", "content"]
 
 lupopedia.edges:
-  comment: "Snapshot of files edited during 4.0.73 finalization and initialization thread by ANTIGRAVITY IDE Agent. Edges reflect discovered relationships between database tables and PHP/Python codebase entities. Values should be verified against live database schemas/queries for the most current semantic graph state."
-  meta: "Thread: Finalize 4.0.72 → Push to GitHub → Initialize 4.0.73 → Migrate Tasks → Validate Upgrade Path"
+  comment: "Snapshot of edges for lupo_dialog_messages table doc at 4.0.79 (grounded by repo search; non-exhaustive)."
+  meta: "php_hits=23 python_hits=7"
   outbound_edges:
-    - { to: "lupo-database/lupopedia/toon/lupo_dialog_messages.toon.json", type: "schema_reference", weight: 1.0, reason: "TOON schema definition", db_source: "lupo_dialog_messages" }
-    - { to: "lupo-docs/database/lupopedia/tables/active/lupo_dialog_threads.md", type: "references", weight: 0.8, reason: "thread linkage" }
-    - { to: "lupo-docs/database/lupopedia/tables/active/lupo_channels.md", type: "references", weight: 0.7, reason: "channel context" }
-
-lupopedia.engagement:
-  comment: "Snapshot of files edited during 4.0.73 finalization and initialization thread by ANTIGRAVITY IDE Agent. Engagement metrics track edit frequency and importance of each file in the version transition process."
-  meta: "Thread: Finalize 4.0.72 → Push to GitHub → Initialize 4.0.73 → Migrate Tasks → Validate Upgrade Path"
-  views: 0
+    - { to: "database.table.lupo_dialog_messages", type: "DEFINES_SCHEMA_FOR", weight: 1.0 }
+    - { to: "lupo-database/lupopedia/mysql/install/install_new_lupopedia.sql", type: "schema_reference", weight: 1.0 }
+    - { to: "admin.php", type: "USED_IN_PHP", weight: 0.6 }
+    - { to: "check_db_state.php", type: "USED_IN_PHP", weight: 0.6 }
+    - { to: "lupo-api/v1/dialog/health.php", type: "USED_IN_PHP", weight: 0.6 }
+    - { to: "lupo-api/v1/dialog/metrics.php", type: "USED_IN_PHP", weight: 0.6 }
+    - { to: "lupo-database/lupopedia/content/lupo-app/Services/AnubisUnknownRecipientService.php", type: "USED_IN_PHP", weight: 0.6 }
+    - { to: "lupo-database/lupopedia/content/lupo-app/Services/TriggerReplacements/DialogMessagesDeleteService.php", type: "USED_IN_PHP", weight: 0.6 }
+    - { to: "lupo-database/lupopedia/content/lupo-app/Services/TriggerReplacements/DialogMessagesInsertService.php", type: "USED_IN_PHP", weight: 0.6 }
+    - { to: "lupo-includes/Dialog/Database/DialogDatabase.php", type: "USED_IN_PHP", weight: 0.9 }
+    - { to: "lupo-includes/DialogChannelMigration/MessageBuilder.php", type: "USED_IN_PHP", weight: 0.9 }
+    - { to: "lupo-includes/DialogChannelMigration/MigrationOrchestrator.php", type: "USED_IN_PHP", weight: 0.9 }
+    - { to: "lupo-includes/DialogChannelMigration/ValidationTool.php", type: "USED_IN_PHP", weight: 0.9 }
+    - { to: "lupo-includes/class-dialog-manager.php", type: "USED_IN_PHP", weight: 0.9 }
+    - { to: "lupo-includes/classes/ANUBIS_Resolver.php", type: "USED_IN_PHP", weight: 0.9 }
+    - { to: "lupo-includes/classes/ChannelService.php", type: "USED_IN_PHP", weight: 0.9 }
+    - { to: "lupo-includes/modules/channels/ChannelsController.php", type: "USED_IN_PHP", weight: 0.9 }
+    - { to: "analyze_unused_tables.py", type: "USED_IN_PYTHON", weight: 0.5 }
+    - { to: "lupo-scripts/audit_schema_doctrine.py", type: "USED_IN_PYTHON", weight: 0.5 }
+    - { to: "lupo-scripts/check_doc_schema_consistency.py", type: "USED_IN_PYTHON", weight: 0.5 }
+    - { to: "lupo-scripts/fetch_doctrines.py", type: "USED_IN_PYTHON", weight: 0.5 }
+    - { to: "lupo-scripts/import_channels_and_artifacts.py", type: "USED_IN_PYTHON", weight: 0.5 }
+    - { to: "lupo-scripts/rebuild_schema_from_toons.py", type: "USED_IN_PYTHON", weight: 0.5 }
+    - { to: "lupo-tools/anubis_orphan_scanner.py", type: "USED_IN_PYTHON", weight: 0.5 }
 
 lupopedia.footer:
-  version: "4.0.78"
-  last_verified: "20260316"
+  version: "4.0.79"
+  last_verified: "20260317"
   last_verified_by: "cursor"
 ---
-# file: lupo_dialog_messages — session: L-LUPO-ROOT — web_path: http://www.lupopedia.com/database/lupopedia/tables/active/lupo_dialog_messages
-
+# file: lupo_dialog_messages ? web_path: http://www.lupopedia.com/database/lupopedia/tables/active/lupo_dialog_messages
 # Table: lupo_dialog_messages
 
 Purpose: Stores messages for dialog threads and channel conversations.

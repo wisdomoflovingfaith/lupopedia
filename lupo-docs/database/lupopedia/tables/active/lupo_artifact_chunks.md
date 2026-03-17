@@ -1,19 +1,36 @@
 ---
 lupopedia.headers:
-  lupopedia.version: "4.0.73"
-  lupopedia.schema: "documentation"
+  lupopedia.version: "4.0.79"
+  lupopedia.schema: "database_table"
+  system_version: "4.0.79"
   file_path_from_root: "lupo-docs/database/lupopedia/tables/active/lupo_artifact_chunks.md"
-  last_modified_utc: "20260312"
-  system_version: "4.0.69"
-  channel_id: 1
-  actor_id: 103
-  delegation_chain: "103:10000"
-  artifact_type: "documentation"
-  artifact_kind: "database_table"
+  web_path: "[lupo_artifact_chunks](http://www.lupopedia.com/database/lupopedia/tables/active/lupo_artifact_chunks)"
+  last_modified_utc: "20260317"
+  channel_id: 42
+  actor_id: 102
+  actor_name: "cursor"
+  delegation_chain: "cursor:root"
+  artifact_type: "table_documentation"
+  artifact_kind: "table"
+  namespace: "content"
   purpose: "JetBrains domain table documentation for lupo_artifact_chunks"
-  lupo_agent: "jetbrains"
----
+  tags: ["database", "table", "content"]
 
+lupopedia.edges:
+  comment: "Snapshot of edges for lupo_artifact_chunks table doc at 4.0.79 (grounded by repo search; non-exhaustive)."
+  meta: "php_hits=1 python_hits=0"
+  outbound_edges:
+    - { to: "database.table.lupo_artifact_chunks", type: "DEFINES_SCHEMA_FOR", weight: 1.0 }
+    - { to: "lupo-database/lupopedia/mysql/install/install_new_lupopedia.sql", type: "schema_reference", weight: 1.0 }
+    - { to: "lupo-includes/schema-config.php", type: "USED_IN_PHP", weight: 0.9 }
+    - { to: "(no_python_refs_found)", type: "USED_IN_PYTHON", weight: 0.0 }
+
+lupopedia.footer:
+  version: "4.0.79"
+  last_verified: "20260317"
+  last_verified_by: "cursor"
+---
+# file: lupo_artifact_chunks ? web_path: http://www.lupopedia.com/database/lupopedia/tables/active/lupo_artifact_chunks
 # Table: lupo_artifact_chunks
 
 ## Table Overview

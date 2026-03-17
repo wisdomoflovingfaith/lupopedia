@@ -1,35 +1,36 @@
 ---
 lupopedia.headers:
-  lupopedia.version: "4.0.78"
+  lupopedia.version: "4.0.79"
   lupopedia.schema: "database_table"
-  system_version: "4.0.78"
+  system_version: "4.0.79"
   file_path_from_root: "lupo-docs/database/lupopedia/tables/active/lupo_system_logs.md"
   web_path: "[lupo_system_logs](http://www.lupopedia.com/database/lupopedia/tables/active/lupo_system_logs)"
-  last_modified_utc: "20260316"
+  last_modified_utc: "20260317"
   channel_id: 42
   actor_id: 102
+  actor_name: "cursor"
+  delegation_chain: "cursor:root"
   artifact_type: "table_documentation"
   artifact_kind: "table"
   namespace: "governance"
   purpose: "Documentation for lupo_system_logs table - operational and application-level logging for the Lupopedia system"
-  traits: ["canonical", "logging", "operational", "v4.0.78"]
-  tags: ["database", "logging", "system", "diagnostics"]
-  table_primary_key: "log_id"
-  doctrine_note: "No database foreign keys. Schema source: existing table documentation. This table is not in install_new_lupopedia.sql as of 4.0.78; current install uses lupo_unified_log for consolidated application logging."
+  tags: ["database", "table", "governance"]
 
 lupopedia.edges:
-  comment: "Snapshot of edges for lupo_system_logs table doc at 4.0.78."
+  comment: "Snapshot of edges for lupo_system_logs table doc at 4.0.79 (grounded by repo search; non-exhaustive)."
+  meta: "php_hits=0 python_hits=1"
   outbound_edges:
-    - { to: "lupo-docs/database/lupopedia/tables/active/lupo_audit_log.md", type: "references", weight: 0.8, reason: "Audit vs system log distinction" }
-  schema_note: "lupo_unified_log in install_new_lupopedia.sql provides consolidated log_type/log_level/log_message storage; lupo_system_logs doc reflects alternate design when present."
+    - { to: "database.table.lupo_system_logs", type: "DEFINES_SCHEMA_FOR", weight: 1.0 }
+    - { to: "lupo-database/lupopedia/mysql/install/install_new_lupopedia.sql", type: "schema_reference", weight: 1.0 }
+    - { to: "lupo-scripts/wolfie_orms.py", type: "USED_IN_PYTHON", weight: 0.5 }
+    - { to: "(no_php_refs_found)", type: "USED_IN_PHP", weight: 0.0 }
 
 lupopedia.footer:
-  version: "4.0.78"
-  last_verified: "20260316"
+  version: "4.0.79"
+  last_verified: "20260317"
   last_verified_by: "cursor"
 ---
-# file: lupo_system_logs — web_path: http://www.lupopedia.com/database/lupopedia/tables/active/lupo_system_logs
-
+# file: lupo_system_logs ? web_path: http://www.lupopedia.com/database/lupopedia/tables/active/lupo_system_logs
 # Table: lupo_system_logs
 
 ## Schema source note

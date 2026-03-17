@@ -1,38 +1,38 @@
 ---
 lupopedia.headers:
-  lupopedia.version: "4.0.78"
+  lupopedia.version: "4.0.79"
   lupopedia.schema: "database_table"
-  system_version: "4.0.78"
+  system_version: "4.0.79"
   file_path_from_root: "lupo-docs/database/lupopedia/tables/active/lupo_atoms.md"
   web_path: "[lupo_atoms](http://www.lupopedia.com/database/lupopedia/tables/active/lupo_atoms)"
-  last_modified_utc: "20260316"
+  last_modified_utc: "20260317"
   channel_id: 42
   actor_id: 102
+  actor_name: "cursor"
+  delegation_chain: "cursor:root"
   artifact_type: "table_documentation"
   artifact_kind: "table"
   namespace: "core"
   purpose: "System-wide atomic configuration and constants storage; global atoms, version, and config values with context scoping"
-  traits: ["canonical", "core_system", "configuration", "v4.0.78"]
-  tags: ["database", "atoms", "configuration", "constants", "global_settings"]
-  table_primary_key: "atom_id"
-  doctrine_note: "No database foreign keys; referential integrity enforced in application code. Timestamps BIGINT YYYYMMDD UTC."
+  tags: ["database", "table", "core"]
 
 lupopedia.edges:
-  comment: "Snapshot of edges for lupo_atoms table doc at 4.0.78."
+  comment: "Snapshot of edges for lupo_atoms table doc at 4.0.79 (grounded by repo search; non-exhaustive)."
+  meta: "php_hits=0 python_hits=3"
   outbound_edges:
+    - { to: "database.table.lupo_atoms", type: "DEFINES_SCHEMA_FOR", weight: 1.0 }
     - { to: "lupo-database/lupopedia/mysql/install/install_new_lupopedia.sql", type: "schema_reference", weight: 1.0 }
-    - { to: "config/global_atoms.yaml", type: "references", weight: 0.9 }
-    - { to: "lupo-docs/database/lupopedia/tables/active/lupo_channels.md", type: "references", weight: 0.7 }
-    - { to: "lupo-docs/database/lupopedia/tables/active/lupo_actors.md", type: "references", weight: 0.7 }
-    - { to: "lupo-docs/database/lupopedia/tables/active/lupo_contents.md", type: "references", weight: 0.7 }
+    - { to: "analyze_unused_tables.py", type: "USED_IN_PYTHON", weight: 0.5 }
+    - { to: "lupo-scripts/generate_install_sql.py", type: "USED_IN_PYTHON", weight: 0.5 }
+    - { to: "lupo-scripts/wolfie_orms.py", type: "USED_IN_PYTHON", weight: 0.5 }
+    - { to: "(no_php_refs_found)", type: "USED_IN_PHP", weight: 0.0 }
 
 lupopedia.footer:
-  version: "4.0.78"
-  last_verified: "20260316"
+  version: "4.0.79"
+  last_verified: "20260317"
   last_verified_by: "cursor"
 ---
-# file: lupo_atoms — web_path: http://www.lupopedia.com/database/lupopedia/tables/active/lupo_atoms
-
+# file: lupo_atoms ? web_path: http://www.lupopedia.com/database/lupopedia/tables/active/lupo_atoms
 # Table: lupo_atoms
 
 ## Table Overview

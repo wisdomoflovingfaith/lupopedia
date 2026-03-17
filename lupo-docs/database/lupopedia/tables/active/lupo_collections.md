@@ -1,38 +1,36 @@
 ---
 lupopedia.headers:
-  lupopedia.version: "4.0.78"
+  lupopedia.version: "4.0.79"
   lupopedia.schema: "database_table"
-  system_version: "4.0.78"
+  system_version: "4.0.79"
   file_path_from_root: "lupo-docs/database/lupopedia/tables/active/lupo_collections.md"
   web_path: "[lupo_collections](http://www.lupopedia.com/database/lupopedia/tables/active/lupo_collections)"
-  last_modified_utc: "20260316"
+  last_modified_utc: "20260317"
   channel_id: 42
   actor_id: 102
+  actor_name: "cursor"
+  delegation_chain: "cursor:root"
   artifact_type: "table_documentation"
   artifact_kind: "table"
   namespace: "content"
   purpose: "Collection management; resource bundles for content grouping, navigation, and channel-scoped organization"
-  traits: ["canonical", "content", "collections", "v4.0.78"]
-  tags: ["database", "collections", "content", "navigation"]
-  table_primary_key: "collection_id"
-  doctrine_note: "No database foreign keys; referential integrity enforced in application code. All timestamps BIGINT UTC YYYYMMDDHHIISS."
+  tags: ["database", "table", "content"]
 
 lupopedia.edges:
-  comment: "Snapshot of edges for lupo_collections table doc at 4.0.78."
+  comment: "Snapshot of edges for lupo_collections table doc at 4.0.79 (grounded by repo search; non-exhaustive)."
+  meta: "php_hits=0 python_hits=1"
   outbound_edges:
+    - { to: "database.table.lupo_collections", type: "DEFINES_SCHEMA_FOR", weight: 1.0 }
     - { to: "lupo-database/lupopedia/mysql/install/install_new_lupopedia.sql", type: "schema_reference", weight: 1.0 }
-    - { to: "lupo-docs/database/lupopedia/tables/active/lupo_channels.md", type: "references", weight: 0.8 }
-    - { to: "lupo-docs/database/lupopedia/tables/active/lupo_departments.md", type: "references", weight: 0.8 }
-    - { to: "lupo-docs/database/lupopedia/tables/active/lupo_contents.md", type: "references", weight: 0.9 }
-    - { to: "lupo-docs/database/lupopedia/tables/active/lupo_federation_nodes.md", type: "references", weight: 0.7 }
+    - { to: "analyze_unused_tables.py", type: "USED_IN_PYTHON", weight: 0.5 }
+    - { to: "(no_php_refs_found)", type: "USED_IN_PHP", weight: 0.0 }
 
 lupopedia.footer:
-  version: "4.0.78"
-  last_verified: "20260316"
+  version: "4.0.79"
+  last_verified: "20260317"
   last_verified_by: "cursor"
 ---
-# file: lupo_collections — web_path: http://www.lupopedia.com/database/lupopedia/tables/active/lupo_collections
-
+# file: lupo_collections ? web_path: http://www.lupopedia.com/database/lupopedia/tables/active/lupo_collections
 # Table: lupo_collections
 
 ## Table Overview

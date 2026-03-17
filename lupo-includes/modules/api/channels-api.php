@@ -23,6 +23,31 @@ if (!$db) {
     exit;
 }
 
+/**
+ * Lightweight security event logger for channel API.
+ *
+ * @param string $event_type  Event type: unauthorized, forbidden
+ * @param int    $channel_id  Channel ID
+ * @param int|null $actor_id  Actor ID if known, null otherwise
+ */
+function lupo_channels_api_log_security_event($event_type, $channel_id, $actor_id)
+{
+    $log = array(
+        'event' => 'channel_api_security',
+        'event_type' => $event_type,
+        'channel_id' => (int) $channel_id,
+        'actor_id' => $actor_id !== null ? (int) $actor_id : null,
+        'timestamp_ymdhis' => (int) gmdate('YmdHis'),
+    );
+
+    // Prefer project-level security logger if one is introduced later.
+    if (function_exists('lupo_security_log')) {
+        lupo_security_log($log);
+    } else {
+        error_log('[lupopedia_security] ' . json_encode($log));
+    }
+}
+
 $table_prefix = defined('LUPO_TABLE_PREFIX') ? LUPO_TABLE_PREFIX : 'lupo_';
 $method = isset($_SERVER['REQUEST_METHOD']) ? $_SERVER['REQUEST_METHOD'] : 'GET';
 
@@ -37,6 +62,59 @@ if ($channel_id <= 0) {
 
 // ── GET: Retrieve messages ─────────────────────────────────────────────────────
 if ($method === 'GET') {
+    // Require authenticated actor and membership (or admin) for message retrieval.
+    $actor_id = null;
+    $authService = isset($GLOBALS['lupo_auth_service']) ? $GLOBALS['lupo_auth_service'] : null;
+    if ($authService) {
+        $user = $authService->getCurrentUser();
+        if ($user && !empty($user['actor_id'])) {
+            $actor_id = (int) $user['actor_id'];
+        }
+    }
+    if (!$actor_id && function_exists('current_user')) {
+        $user = current_user();
+        if ($user && !empty($user['actor_id'])) {
+            $actor_id = (int) $user['actor_id'];
+        }
+    }
+    if (!$actor_id && ($s = isset($GLOBALS['lupo_session']) ? $GLOBALS['lupo_session'] : null)) {
+        if (is_object($s) && method_exists($s, 'validateSession')) {
+            $actor_id = $s->validateSession();
+            if ($actor_id !== null && $actor_id !== false) {
+                $actor_id = (int) $actor_id;
+            } else {
+                $actor_id = null;
+            }
+        }
+    }
+
+    if (!$actor_id || $actor_id <= 0) {
+        lupo_channels_api_log_security_event('unauthorized', $channel_id, null);
+        http_response_code(401);
+        echo json_encode(['success' => false, 'error' => ['code' => 'UNAUTHORIZED', 'message' => 'Authenticated actor required to read messages.']]);
+        exit;
+    }
+
+    // Membership enforcement for GET: same rule as POST.
+    $t_actor_channels = $table_prefix . 'actor_channels';
+    $has_channel_access = false;
+    $stmt = $db->prepare("SELECT 1 FROM {$t_actor_channels} WHERE actor_id = :actor_id AND channel_id = :channel_id AND is_deleted = 0 LIMIT 1");
+    $stmt->execute(array(':actor_id' => $actor_id, ':channel_id' => $channel_id));
+    if ($stmt->fetch() !== false) {
+        $has_channel_access = true;
+    }
+    if (!$has_channel_access && $authService && is_object($authService) && method_exists($authService, 'isAdmin')) {
+        if ($authService->isAdmin($actor_id)) {
+            $has_channel_access = true;
+        }
+    }
+    if (!$has_channel_access) {
+        lupo_channels_api_log_security_event('forbidden', $channel_id, $actor_id);
+        http_response_code(403);
+        echo json_encode(['success' => false, 'error' => ['code' => 'FORBIDDEN', 'message' => 'Actor not a member of this channel.']]);
+        exit;
+    }
+
     $since = isset($_GET['since']) ? trim($_GET['since']) : '';
     $limit = isset($_GET['limit']) ? min(200, max(1, (int) $_GET['limit'])) : 50;
     $offset = isset($_GET['offset']) ? max(0, (int) $_GET['offset']) : 0;
@@ -95,20 +173,73 @@ if ($method === 'GET') {
 // ── POST: Send message ─────────────────────────────────────────────────────────
 if ($method === 'POST') {
     $input = json_decode(file_get_contents('php://input'), true);
-    if (!$input || !isset($input['actor_id']) || !isset($input['body'])) {
+    if (!$input || !isset($input['body'])) {
         http_response_code(400);
-        echo json_encode(['success' => false, 'error' => ['code' => 'INVALID_JSON', 'message' => 'Request body must include actor_id and body.']]);
+        echo json_encode(['success' => false, 'error' => ['code' => 'INVALID_JSON', 'message' => 'Request body must include body.']]);
         exit;
     }
 
-    $actor_id = (int) $input['actor_id'];
     $body = trim($input['body']);
     $message_type = isset($input['message_type']) ? trim($input['message_type']) : 'text';
     $meta = isset($input['meta']) ? json_encode($input['meta']) : null;
 
-    if ($actor_id <= 0 || $body === '') {
+    if ($body === '') {
         http_response_code(400);
-        echo json_encode(['success' => false, 'error' => ['code' => 'INVALID_JSON', 'message' => 'actor_id must be positive and body must not be empty.']]);
+        echo json_encode(['success' => false, 'error' => ['code' => 'INVALID_JSON', 'message' => 'body must not be empty.']]);
+        exit;
+    }
+
+    // Actor identity MUST come from authenticated session / server-side context only.
+    // Client-supplied actor_id is never trusted for authorization or insertion.
+    $actor_id = null;
+    $authService = isset($GLOBALS['lupo_auth_service']) ? $GLOBALS['lupo_auth_service'] : null;
+    if ($authService) {
+        $user = $authService->getCurrentUser();
+        if ($user && !empty($user['actor_id'])) {
+            $actor_id = (int) $user['actor_id'];
+        }
+    }
+    if (!$actor_id && function_exists('current_user')) {
+        $user = current_user();
+        if ($user && !empty($user['actor_id'])) {
+            $actor_id = (int) $user['actor_id'];
+        }
+    }
+    if (!$actor_id && ($s = isset($GLOBALS['lupo_session']) ? $GLOBALS['lupo_session'] : null)) {
+        if (is_object($s) && method_exists($s, 'validateSession')) {
+            $actor_id = $s->validateSession();
+            if ($actor_id !== null && $actor_id !== false) {
+                $actor_id = (int) $actor_id;
+            } else {
+                $actor_id = null;
+            }
+        }
+    }
+
+    if (!$actor_id || $actor_id <= 0) {
+        lupo_channels_api_log_security_event('unauthorized', $channel_id, null);
+        http_response_code(401);
+        echo json_encode(['success' => false, 'error' => ['code' => 'UNAUTHORIZED', 'message' => 'Authenticated actor required to post.']]);
+        exit;
+    }
+
+    // Membership enforcement: actor must be in lupo_actor_channels for this channel, or global admin.
+    $t_actor_channels = $table_prefix . 'actor_channels';
+    $has_channel_access = false;
+    $stmt = $db->prepare("SELECT 1 FROM {$t_actor_channels} WHERE actor_id = :actor_id AND channel_id = :channel_id AND is_deleted = 0 LIMIT 1");
+    $stmt->execute(array(':actor_id' => $actor_id, ':channel_id' => $channel_id));
+    if ($stmt->fetch() !== false) {
+        $has_channel_access = true;
+    }
+    if (!$has_channel_access && $authService && is_object($authService) && method_exists($authService, 'isAdmin')) {
+        if ($authService->isAdmin($actor_id)) {
+            $has_channel_access = true;
+        }
+    }
+    if (!$has_channel_access) {
+        lupo_channels_api_log_security_event('forbidden', $channel_id, $actor_id);
+        http_response_code(403);
+        echo json_encode(['success' => false, 'error' => ['code' => 'FORBIDDEN', 'message' => 'Actor not a member of this channel.']]);
         exit;
     }
 

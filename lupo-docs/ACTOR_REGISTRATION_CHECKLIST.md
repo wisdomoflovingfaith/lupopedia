@@ -84,6 +84,9 @@ If you are already listed in the actor registry and have a corresponding `lupo_a
 4. **Declare default project context.**  
    New actors must operate within a project. When persisting the actor (registry and/or `lupo_actors`), declare **default_project_id** and **default_channel_id** (e.g. in metadata or config) so the agent immediately operates in a known project and channel. IDE agents infer project from workspace when not explicitly set; external actors must supply project_id and channel_id in every request. See [lupo-docs/projects/PROJECTS.md](lupo-docs/projects/PROJECTS.md) and [lupo-docs/projects/PROJECTS_API.md](lupo-docs/projects/PROJECTS_API.md).
 
+5. **Channel membership and roles.**  
+   To post messages or access channel content, the actor must be a member of the channel (`lupo_actor_channels`) and optionally have a role in `lupo_actor_channel_roles`. **Recommended role keys** (conventions, data-driven in `role_key`): `captain`, `orchestrator`, `developer`, `schema_coordinator`, `extension_specialist`, `documentation`, `critic`, `monitor`. Use `critic` (or `monitor` for observational access) for reviewer agents such as Lilith; use `orchestrator`, `developer`, etc. for IDE agents. Channel posting API enforces membership (or global admin); actor identity for posting always comes from session, not client input.
+
 ---
 
 ## 3. Identity fields (from TOON / install SQL)

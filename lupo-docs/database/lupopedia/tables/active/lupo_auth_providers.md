@@ -1,39 +1,36 @@
 ---
 lupopedia.headers:
-  lupopedia.version: "4.0.73"
+  lupopedia.version: "4.0.79"
   lupopedia.schema: "database_table"
+  system_version: "4.0.79"
   file_path_from_root: "lupo-docs/database/lupopedia/tables/active/lupo_auth_providers.md"
-  system_version: "4.0.73"
-  namespace: "auth"
-  channel_id: 1
-  actor_id: 1003
-  last_modified_utc: "20260312"
+  web_path: "[lupo_auth_providers](http://www.lupopedia.com/database/lupopedia/tables/active/lupo_auth_providers)"
+  last_modified_utc: "20260317"
+  channel_id: 42
+  actor_id: 102
+  actor_name: "cursor"
+  delegation_chain: "cursor:root"
   artifact_type: "table_documentation"
+  artifact_kind: "table"
+  namespace: "auth"
   purpose: "OAuth/SSO provider configuration for authentication"
-  mood_rgb: "4169E1"
-  traits: ["canonical", "auth", "antigravity_rotation", "v4.0.73"]
-  tags: ["database", "auth", "oauth", "providers"]
-  lupo_agent: "antigravity"
+  tags: ["database", "table", "auth"]
 
 lupopedia.edges:
-  comment: "Snapshot of files edited during 4.0.73 finalization and initialization thread by ANTIGRAVITY IDE Agent. Edges reflect discovered relationships between database tables and PHP/Python codebase entities. Values should be verified against live database schemas/queries for the most current semantic graph state."
-  meta: "Thread: Finalize 4.0.72 → Push to GitHub → Initialize 4.0.73 → Migrate Tasks → Validate Upgrade Path"
+  comment: "Snapshot of edges for lupo_auth_providers table doc at 4.0.79 (grounded by repo search; non-exhaustive)."
+  meta: "php_hits=0 python_hits=1"
   outbound_edges:
-    - { to: "lupo-database/lupopedia/toon/lupo_auth_providers.toon.json", type: "schema_reference", weight: 1.0 }
-    - { to: "lupo-docs/database/lupopedia/tables/active/lupo_auth_users.md", type: "references", weight: 0.9 }
-    - { to: "lupo-includes/functions/auth-helpers.php", type: "referenced_by", weight: 0.8 }
-
-lupopedia.engagement:
-  comment: "Snapshot of files edited during 4.0.73 finalization and initialization thread by ANTIGRAVITY IDE Agent. Engagement metrics track edit frequency and importance of each file in the version transition process."
-  meta: "Thread: Finalize 4.0.72 → Push to GitHub → Initialize 4.0.73 → Migrate Tasks → Validate Upgrade Path"
-  views: 0
+    - { to: "database.table.lupo_auth_providers", type: "DEFINES_SCHEMA_FOR", weight: 1.0 }
+    - { to: "lupo-database/lupopedia/mysql/install/install_new_lupopedia.sql", type: "schema_reference", weight: 1.0 }
+    - { to: "lupo-scripts/wolfie_orms.py", type: "USED_IN_PYTHON", weight: 0.5 }
+    - { to: "(no_php_refs_found)", type: "USED_IN_PHP", weight: 0.0 }
 
 lupopedia.footer:
-  version: "4.0.73"
-  last_verified: "20260312"
-  last_verified_by: "antigravity"
+  version: "4.0.79"
+  last_verified: "20260317"
+  last_verified_by: "cursor"
 ---
-
+# file: lupo_auth_providers ? web_path: http://www.lupopedia.com/database/lupopedia/tables/active/lupo_auth_providers
 # Table: lupo_auth_providers
 
 ## Table Overview

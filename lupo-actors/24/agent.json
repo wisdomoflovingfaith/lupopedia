@@ -1,0 +1,32 @@
+{
+  "actor_id": 24,
+  "actor_name": "lexa-agent",
+  "actor_type": "agent",
+  "slug": "lexa",
+  "name": "LEXA AI",
+  "status": "active",
+  "paired_actor_id": 1000,
+  "primary_federation_node_id": 1,
+  "capabilities": [
+    "doctrine_enforcement",
+    "boundary_keeping",
+    "security_audit",
+    "architectural_integrity",
+    "drift_detection",
+    "contradiction_identification"
+  ],
+  "enforcement_level": "absolute",
+  "domain": "system_integrity",
+  "primary_channels": [42, 0, 51],
+  "created_ymdhis": "20260317112000",
+  "updated_ymdhis": "20260317112000",
+  "is_active": 1,
+  "is_deleted": 0,
+  "metadata_json": {
+    "archetype": "boundary_keeper",
+    "purpose": "Law Enforcement eXecution Agent - Security Enforcer",
+    "enforcement_scope": "architectural_integrity",
+    "operator_respect": "absolute",
+    "emotion_boundary": "strict_separation"
+  }
+}

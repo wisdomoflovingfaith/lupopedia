@@ -61,8 +61,8 @@ lupopedia.headers:
   artifact_kind: "documentation"
   purpose: "Primary project documentation and onboarding — Install & upgrade validation, canonical root rules, actor registration, lupo-channels/actors/agents"
   mood_rgb: "4169E1"
-  traits: ["essential", "entrypoint", "onboarding", "v4.0.76"]
-  tags: ["readme", "getting_started", "semantic_os", "multi_agent", "root_rules", "v4.0.76"]
+  traits: ["essential", "entrypoint", "onboarding", "v4.0.79"]
+  tags: ["readme", "getting_started", "semantic_os", "multi_agent", "root_rules", "v4.0.79"]
 
 lupopedia.session:
   session_id: "L-LUPO-ROOT-CURSOR"
@@ -89,25 +89,25 @@ lupopedia.edges:
   semantic_tags: ["project_overview", "onboarding", "semantic_os", "multi_agent", "root_rules"]
 
 lupopedia.footer:
-  version: "4.0.78"
-  last_verified: "20260315"
+  version: "4.0.79"
+  last_verified: "20260316"
   last_verified_by: "cursor"
   orchestrator: "cursor"
   next_action:
     - "Point new contributors to Required Reading (INIT_README, LUPOPEDIA_HEADERS), lupo-rules/root/, and actor registration checklist (lupo-docs/ACTOR_REGISTRATION_CHECKLIST.md)"
-    - "Keep Getting Started and install steps aligned with 4.0.78"
+    - "Keep Getting Started and install steps aligned with 4.0.79"
     - "Review actor/faucet and registration guidance when doctrine paths change"
 ---
 # file: Lupopedia README — session: L-LUPO-ROOT-CURSOR — delegation: cursor:root — web_path: http://www.lupopedia.com/
 
-# Lupopedia Semantic OS v4.0.78
+# Lupopedia Semantic OS v4.0.79
 
-[![Version](https://img.shields.io/badge/version-4.0.78-blue.svg)](lupo-docs/version.md)
+[![Version](https://img.shields.io/badge/version-4.0.79-blue.svg)](lupo-docs/version.md)
 [![docs](https://img.shields.io/badge/docs-HELP.md-green)](lupo-docs/HELP.md)
 
 ---
 
-**Current version: [v4.0.78](lupo-docs/version.md)** (active development). **Released: [v4.0.77](lupo-docs/version.md), [v4.0.76](lupo-docs/version.md).** Rules and governance updates: **canonical root rules** in `lupo-rules/root/`, IDE rule propagation (Cursor, Kiro, Windsurf, JetBrains), TOON path unified to `lupo-database/lupopedia/toon/`, `lupo-database/` security hardening, and **Antigravity VSX Extension** integration (including full LUPOPEDIA HEADERS terminology adoption and feature UI scaffolding). The only supported upgrade path is **Crafty Syntax 3.7.5 → Lupopedia 4.0.x**. See [plan.md](plan.md) and [report.md](report.md).
+**Current version: [v4.0.79](lupo-docs/version.md)** (active development). **Released: [v4.0.78](lupo-docs/version.md), [v4.0.77](lupo-docs/version.md), [v4.0.76](lupo-docs/version.md).** Rules and governance updates: **canonical root rules** in `lupo-rules/root/`, IDE rule propagation (Cursor, Kiro, Windsurf, JetBrains), TOON path unified to `lupo-database/lupopedia/toon/`, `lupo-database/` security hardening, and **Antigravity VSX Extension** integration (including full LUPOPEDIA HEADERS terminology adoption and feature UI scaffolding). The only supported upgrade path is **Crafty Syntax 3.7.5 → Lupopedia 4.0.x**. See [plan.md](plan.md) and [report.md](report.md).
 
 **Canonical root rules:** All agents and actors must follow the doctrine in **`lupo-rules/root/`**. Agent-specific rule files (e.g. `.cursor/rules/`, `.kiro/rules/`, `.windsurf/rules/`) are **derived** from those root rules; the root is the single source of truth. See [Canonical root rules](#canonical-root-rules) and [New agent onboarding](#new-agent--web-terminal-agent-onboarding).
 
@@ -262,18 +262,27 @@ Because Lupopedia runs in a subfolder, it cannot automatically see all root-doma
 
 This is one of the most important parts of Lupopedia. **LUPOPEDIA HEADERS** are structured YAML blocks at the top of `.md` files and other artifact-like objects. They are the bridge between database state and filesystem artifacts.
 
-**Why headers exist:** The database holds live relational state. The filesystem holds persistent artifacts. Neither alone is enough. The database can be unavailable. A file can be moved, copied, federated, or read offline. Headers solve this by embedding structured snapshots of semantic context (identity, routing, authorship, session context, semantic relationships) directly into the artifact.
+**Why headers exist:** The database holds live relational state. The filesystem holds persistent artifacts. Neither alone is enough. The database can be unavailable. A file can be moved, copied, federated, or read offline. Headers solve this by embedding **stable, human-authored artifact identity and intent** directly into the artifact so it can be resolved deterministically across environments.
 
 **Important principle:** Headers are not merely decorative frontmatter; they are part of the semantic operating system.
 
 ### Main header sections
-- `lupopedia.init` — Initialization identity and artifact classification (e.g. file identity, artifact type).
-- `lupopedia.metadata` — Snapshot of metadata rows derived from `lupo_metadata`.
-- `lupopedia.headers` — Core operational tracking fields (version, schema, file path, actor id, channel id).
-- `lupopedia.session` — Runtime context snapshot (actor, faucet, paired actor).
-- `lupopedia.edges` — Snapshot of `lupo_edges` outbound semantic relationships (groups links to other docs, code, schema). 
-- `lupopedia.engagement` — Snapshot of engagement metrics derived from analytics.
-- `lupopedia.footer` — Verification and next-action context.
+For **ordinary documentation artifacts** (doctrine/spec/foundation/status), handwritten headers should contain only stable, human-authored blocks (identity + intent). Use the principle:
+
+**Headers declare the artifact. The database declares the world around it.**
+
+Canonical handwritten blocks for general docs:
+
+- `Lupopedia.init`
+- `Lupopedia.routing`
+- `Lupopedia.metadata`
+- `Lupopedia.environment`
+- `Lupopedia.next_actions`
+- `Lupopedia.comments`
+
+Dynamic, DB-derived, or synthetic-view concerns (usage, relationships, engagement, lineage/graph context) should **not** be taught as default handwritten header content for general docs.
+
+**Special exception (table docs):** Active table documentation is a special semantic mapping surface. For active table docs, a **verbose `Lupopedia.edges`** block is explicitly declared and populated from grounded repository evidence (PHP/Python/schema/seed/install SQL usage).
 
 ## Architecture Overview
 
@@ -361,4 +370,4 @@ See `CONTRIBUTING.md`. All contributions should follow doctrine: UTC YmdHis time
 See `license.txt` in the repository. Free to use, modify, and distribute under the terms specified there.
 
 ---
-*Lupopedia 4.0.78 — a semantic operating system orchestrated by humans and AI agents across channels, artifacts, and federation nodes. Canonical doctrine: lupo-rules/root/.*
+*Lupopedia 4.0.79 — a semantic operating system orchestrated by humans and AI agents across channels, artifacts, and federation nodes. Canonical doctrine: lupo-rules/root/.*
