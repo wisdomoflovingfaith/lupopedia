@@ -1,0 +1,9 @@
+{
+  "code": "IRIS",
+  "name": "IRIS",
+  "layer": "system",
+  "is_required": true,
+  "is_kernel": false,
+  "recommended_slot": 16,
+  "version": "1.0.0"
+}

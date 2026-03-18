@@ -1,3 +1,14 @@
 {
-  "properties": {}
+  "properties": {
+    "persona": "content_reviewer",
+    "role": "truth_verification_content_review",
+    "primary_channels": [42, 1],
+    "content_specialization": "spiritual_content",
+    "verification_focus": "divine_truth",
+    "quality_standards": "highest_authenticity",
+    "egyptian_mythology": "divine_scribe",
+    "partnership": "thoth",
+    "integrity_maintenance": true,
+    "cosmic_battle": "truth_vs_falsehood"
+  }
 }

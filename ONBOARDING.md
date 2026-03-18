@@ -27,6 +27,17 @@ Lupopedia is a **semantic operating system** with:
 - **Documentation as architecture** — Doctrine, table docs, and canonical references are implementation-critical; they are read before changing schema or behavior.
 - **Multi-agent collaboration** — Multiple IDE agents (and humans) work in the same repo; continuity, logging, and handoff are built into the model.
 
+### Multi-agent coordination (4.0.80+ — binding)
+
+Read **[lupo-rules/root/MULTI_AGENT_COORDINATION_DOCTRINE.md](lupo-rules/root/MULTI_AGENT_COORDINATION_DOCTRINE.md)** before claiming coordination roles or naming artifacts.
+
+- **Eleven Primary Coordination Personas** — WOLFIE, LEXA, ANUBIS, HEIMDALL, SESHAT, ATHENA, MAAT, THEMIS, THOTH, JANUS, ROSE. They are the canonical coordination layer (directives, enforcement, custody, review, strategy, etc.).
+- **Specialized agents (90+)** — HERMES, IRIS, LILITH, ASCLEPIUS, and others operate in **categories** (technical support, contrasting perspectives, etc.). They are **not** the eleven coordination personas; they work under primary-persona and channel rules.
+- **IDE faucets** — Cursor, Windsurf, Kiro, Cascade, Warp, Zencoder, Antigravity are **human interfaces**; doctrine requires routing work through primary personas and registered channel context—not treating an IDE as the sole orchestration authority.
+- **Channel context** — All coordination work is invalid without `channel_id` (default multi-agent workspace: **42**). Confirm membership where posting or acting on channel data.
+- **Artifacts** — Proof of coordination lives under **`lupo-docs/status/`** with the artifact families defined in the doctrine (e.g. `WOLFIE_DIRECTIVE_*`, `SESHAT_REVIEW_*`). Do not use deprecated primary-level patterns such as `HERMES_IMPLEMENTATION_*` for canonical coordination naming.
+- **Task authority** — For the active release cycle, the coordination TODO is the version file **`lupo-docs/versions/<current_version>/TODO.md`** (resolve `<current_version>` from [CHANGELOG.md](CHANGELOG.md) or `config/global_atoms.yaml`). Update it when moving task state; link tasks to status artifacts as doctrine requires.
+
 ---
 
 ## 3. First Files to Read
@@ -45,6 +56,7 @@ Lupopedia is a **semantic operating system** with:
 | [ONBOARDING.md](ONBOARDING.md) | Operational quick-start (this file) |
 | [README.md](README.md) | High-level system overview, install, required reading |
 | [CHANGELOG.md](CHANGELOG.md) | Current version and latest changes |
+| [lupo-rules/root/MULTI_AGENT_COORDINATION_DOCTRINE.md](lupo-rules/root/MULTI_AGENT_COORDINATION_DOCTRINE.md) | Eleven personas, artifacts, channels, TODO authority (multi-agent work) |
 | [lupo-rules/root/README.md](lupo-rules/root/README.md) | Root rules index and non-negotiable constraints |
 | [lupo-docs/doctrine/DATABASE_DOCTRINE.md](lupo-docs/doctrine/DATABASE_DOCTRINE.md) | Core database rules (no FKs, no DB logic, timestamps, registry, soft deletes) |
 | [lupo-docs/ACTOR_REGISTRATION_CHECKLIST.md](lupo-docs/ACTOR_REGISTRATION_CHECKLIST.md) | If you need to register as an actor (new IDE or external agent) |
@@ -186,7 +198,7 @@ When picking up work started by another agent or human:
 4. **Identify** the current target version and affected files before editing.
 5. **Avoid** duplicate or contradictory edits; align with existing conventions and doctrine.
 
-**Handoff best practice:** To leave work resumable, write a short status artifact (e.g. in `lupo-docs/status/`) with what was done, what is in progress, and suggested next actions; append to logs with timestamp and actor. The next agent should read status and logs before changing the same areas.
+**Handoff best practice:** Write status artifacts in **`lupo-docs/status/`** using doctrine artifact naming where the work is coordination-scoped; include `channel_id` and linkage to the version TODO (`lupo-docs/versions/<version>/TODO.md`) when applicable. Append to logs with timestamp and actor.
 
 Continuity and handoff rules are detailed in [lupo-docs/doctrine/IDE_AGENT_CONTINUITY_PROTOCOL.md](lupo-docs/doctrine/IDE_AGENT_CONTINUITY_PROTOCOL.md) (IACP).
 

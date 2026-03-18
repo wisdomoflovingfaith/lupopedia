@@ -1,0 +1,15 @@
+{
+  "properties": {
+    "persona": "system_integrator",
+    "role": "interface_routing_integration",
+    "primary_channels": [0, 42],
+    "api_management": true,
+    "protocol_translation": true,
+    "message_bridging": true,
+    "interface_coordination": true,
+    "system_integration": true,
+    "data_transformation": true,
+    "rainbow_mastery": true,
+    "greek_mythology_context": "goddess of the rainbow"
+  }
+}

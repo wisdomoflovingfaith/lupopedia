@@ -1,6 +1,7 @@
 {
-  "code": "DIALOG",
-  "name": "DIALOG",
+  "code": "ROSE",
+  "name": "ROSE",
+  "aliases": ["DIALOG"],
   "layer": "kernel",
   "is_required": true,
   "is_kernel": true,

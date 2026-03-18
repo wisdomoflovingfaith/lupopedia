@@ -37,9 +37,9 @@ lupopedia.metadata:
   title:
     - { schema_ref: "lupo_metadata", entity_type: "file", meta_type: "property", property_value: "Lupopedia README", channel_id: 42, class_name: "lupopedia_metadata", created_ymdhis: 20260313000000, updated_ymdhis: 20260313000000 }
   description:
-    - { schema_ref: "lupo_metadata", entity_type: "file", meta_type: "property", property_value: "Primary project documentation and onboarding — Install & upgrade validation, lupo-channels/actors/agents, GitHub repository strategy.", channel_id: 42, class_name: "lupopedia_metadata", created_ymdhis: 20260313000000, updated_ymdhis: 20260313000000 }
+    - { schema_ref: "lupo_metadata", entity_type: "file", meta_type: "property", property_value: "Primary project documentation — deterministic multi-agent semantic OS; database-backed knowledge graph + doctrine-driven filesystem + MySQL/Postgres backend.", channel_id: 42, class_name: "lupopedia_metadata", created_ymdhis: 20260313000000, updated_ymdhis: 20260318000000 }
   keywords:
-    - { schema_ref: "lupo_metadata", entity_type: "file", meta_type: "property", property_value: "readme, getting_started, semantic_os, multi_agent, v4.0.75", channel_id: 42, class_name: "lupopedia_metadata", created_ymdhis: 20260313000000, updated_ymdhis: 20260314000000 }
+    - { schema_ref: "lupo_metadata", entity_type: "file", meta_type: "property", property_value: "readme, getting_started, semantic_os, multi_agent, deterministic_os, knowledge_graph, doctrine_filesystem, database_backend, v4.0.80", channel_id: 42, class_name: "lupopedia_metadata", created_ymdhis: 20260313000000, updated_ymdhis: 20260318000000 }
   author:
     - { schema_ref: "lupo_metadata", entity_type: "file", meta_type: "property", property_value: "wolfie", channel_id: 42, class_name: "lupopedia_metadata", created_ymdhis: 20260313000000, updated_ymdhis: 20260313000000 }
   orchestrator:
@@ -50,7 +50,7 @@ lupopedia.headers:
   lupopedia.schema: "documentation"
   file_path_from_root: "README.md"
   web_path: "http://www.lupopedia.com/"
-  last_modified_utc: "20260317"
+  last_modified_utc: "20260318"
   system_version: "4.0.80"
   channel_id: 42
   actor_id: 1
@@ -60,8 +60,8 @@ lupopedia.headers:
   artifact_kind: "documentation"
   purpose: "Primary project documentation and onboarding — Install & upgrade validation, canonical root rules, actor registration, lupo-channels/actors/agents"
   mood_rgb: "4169E1"
-  traits: ["essential", "entrypoint", "onboarding", "v4.0.80"]
-  tags: ["readme", "getting_started", "semantic_os", "multi_agent", "root_rules", "v4.0.80"]
+  traits: ["essential", "entrypoint", "onboarding", "deterministic_semantic_os", "knowledge_graph", "v4.0.80"]
+  tags: ["readme", "getting_started", "semantic_os", "multi_agent", "knowledge_graph", "doctrine_filesystem", "database_backend", "root_rules", "v4.0.80"]
 
 lupopedia.session:
   session_id: "L-LUPO-ROOT-CURSOR"
@@ -89,13 +89,13 @@ lupopedia.edges:
 
 lupopedia.footer:
   version: "4.0.80"
-  last_verified: "20260317"
-  last_verified_by: "wolfie"
+  last_verified: "20260318"
+  last_verified_by: "hermes"
   orchestrator: "wolfie"
   next_action:
     - "Point new contributors to Required Reading (INIT_README, LUPOPEDIA_HEADERS), lupo-rules/root/, and actor registration checklist (lupo-docs/ACTOR_REGISTRATION_CHECKLIST.md)"
     - "Keep Getting Started and install steps aligned with 4.0.80"
-    - "Review actor/faucet and registration guidance when doctrine paths change"
+    - "README deterministic OS + knowledge-graph + DB backend section stays aligned with install SQL / TOON regeneration"
 ---
 # file: Lupopedia README — session: L-LUPO-ROOT-CURSOR — delegation: cursor:root — web_path: http://www.lupopedia.com/
 
@@ -103,6 +103,28 @@ lupopedia.footer:
 
 [![Version](https://img.shields.io/badge/version-4.0.80-blue.svg)](lupo-docs/version.md)
 [![docs](https://img.shields.io/badge/docs-HELP.md-green)](lupo-docs/HELP.md)
+
+---
+
+## Lupopedia as a deterministic, multi-agent semantic OS
+
+**Lupopedia** is a **deterministic, multi-agent semantic operating system** layered on the Crafty Syntax live-help lineage. **Deterministic** here means operational rules are explicit and repeatable: doctrine (e.g. no database-side logic, BIGINT UTC timestamps set in PHP, reserved IDs for registry-backed rows) replaces implicit framework behavior so agents and humans get the same outcomes from the same inputs. **Multi-agent** means registered **actors** coordinate through **channels**, **sessions**, and artifacts—not a single anonymous chat user. **Semantic OS** means the platform treats **meaning** as first-class data: entities carry metadata and typed relationships, not only rows for CRUD.
+
+**Database-backed knowledge graph.** The **MySQL / MariaDB / PostgreSQL** schema (canonical DDL: [`install_new_lupopedia.sql`](lupo-database/lupopedia/mysql/install/install_new_lupopedia.sql); column reference regenerated as **TOON** JSON under `lupo-database/lupopedia/toon/`) stores the graph-shaped core of that semantics:
+
+| Layer (concept) | Primary tables (examples) |
+|-----------------|---------------------------|
+| Properties on any entity | **`lupo_metadata`** — `entity_type`, `entity_id`, `property_key`, `property_value`, optional `channel_id`, hierarchical `parent_metadata_id` (LUPOPEDIA HEADERS round-trip here) |
+| Typed links between entities | **`lupo_edges`** — `left_object_type` / `left_object_id` ↔ `right_object_type` / `right_object_id`, `edge_type`, `semantic_weight`, `relationship_type` |
+| Who acts | **`lupo_actors`**, **`lupo_actor_channels`**, **`lupo_auth_users`** |
+| Where work lives | **`lupo_channels`**, **`lupo_collections`** |
+| Structured judgment / state | **`lupo_decisions`**, **`lupo_decision_evidence`**, etc. |
+
+So the **knowledge graph is not only “files”—it is persisted in the database** for the running app, search, APIs, and coordination.
+
+**Doctrine-driven filesystem.** In parallel, the repo is organized so **doctrine and artifacts live on disk**: **`lupo-rules/root/`** (binding rules), **`lupo-docs/doctrine/`** (architecture), **`lupo-channels/`** (channel-scoped threads, prompts, broadcasts), **`lupo-agents/`**, and **LUPOPEDIA HEADERS** in Markdown files. That layout is **not a substitute for the DB**—it is the **git-native, IDE-native** expression of the same semantic model and the **offline fallback** when the DB is unreachable (artifacts stay structured for later sync). See also [What Lupopedia Is](#what-lupopedia-is) and [LUPOPEDIA HEADERS — The File/Database Bridge](#lupopedia-headers--the-filedatabase-bridge).
+
+**Summary:** Lupopedia is a **semantic OS** with a **real database backend** (sessions, chat, actors, metadata, edges, decisions) **and** a **doctrine-driven filesystem** that keeps behavior deterministic and multi-agent work attributable whether online or offline.
 
 ---
 
@@ -124,8 +146,10 @@ lupopedia.footer:
 - [Required Reading Before Using Lupopedia](#required-reading-before-using-lupopedia)
 - [Canonical root rules](#canonical-root-rules)
 - [New agent / web terminal agent onboarding](#new-agent--web-terminal-agent-onboarding) — **Start here: [ONBOARDING.md](ONBOARDING.md)**
+- [Lupopedia as a deterministic, multi-agent semantic OS](#lupopedia-as-a-deterministic-multi-agent-semantic-os)
 - [What Lupopedia Is](#what-lupopedia-is)
 - [Core Identity Model](#core-identity-model)
+- [Channel filesystem and HERMES routing (4.0.80+)](#channel-filesystem-and-hermes-routing-4080)
 - [Core Concepts](#core-concepts)
 - [Projects](#projects)
 - [LUPOPEDIA HEADERS — The File/Database Bridge](#lupopedia-headers--the-filedatabase-bridge)
@@ -186,7 +210,7 @@ If you are a **new IDE agent** (e.g. a new IDE or AI coding assistant joining th
 
 ## What Lupopedia Is
 
-Lupopedia solves fragmented human–AI workflows with a **unified Semantic OS** on top of Crafty Syntax live chat:
+Lupopedia solves fragmented human–AI workflows with a **unified Semantic OS** on top of Crafty Syntax live chat. It combines a **database-backed knowledge graph** (`lupo_metadata`, `lupo_edges`, actors, channels, decisions—table shapes appear as **TOON** `.toon.json` files under `lupo-database/lupopedia/toon/` when regenerated from install SQL via `python lupo-scripts/generate_toon_from_sql.py`) with a **doctrine-driven filesystem** (rules, docs, channel artifacts, headers). The [section above](#lupopedia-as-a-deterministic-multi-agent-semantic-os) states that model in one place.
 
 - **Actors orchestrate** — Actors are the orchestration identities in `lupo_actors` (actor_name is PRIMARY KEY); they coordinate and govern through faucets, sessions, channels, rules, and traits. **Faucets execute** — IDE surfaces (Cursor, Antigravity, Kiro, Windsurf, etc.) are faucets, not actors; the actor operates *through* the faucet.
 - **Channel-based communication** — Threads, tasks, and rich metadata for coordination on **channels** (Channel 42 is the canonical development channel).
@@ -196,6 +220,47 @@ Lupopedia solves fragmented human–AI workflows with a **unified Semantic OS** 
 **Target audience:** Developers building agents, admins managing systems, contributors to open-source AI-collab tooling.
 
 [Core doctrine](lupo-docs/doctrine/) | [LUPOPEDIA HEADERS](lupo-docs/doctrine/LUPOPEDIA_HEADERS/README.md) | [Comments System](lupo-docs/database/lupopedia/tables/active/lupo_comments.md)
+
+---
+
+## Channel filesystem and HERMES routing (4.0.80+)
+
+**Active coordination** for multi-agent work lives under **`lupo-channels/{channel_id}/`** (channel **42** = default dev workspace). **`lupo-docs/status/`** is **not** the primary coordination sink — archival / redirect only; see **`lupo-docs/status/README.md`**.
+
+### Core concepts
+
+| Concept | Meaning |
+|---------|---------|
+| **Actors** | Orchestration identities (`lupo_actors`); WOLFIE (1), LILITH (2), **HERMES (15)** routing, IDE faucets execute as paired actors. |
+| **Channels** | Scoped workspaces (`lupo_channels`); artifacts and membership are channel-bound. |
+| **Threads** | Numeric **`dialog_thread_id`** only under `threads/{id}/`; row must exist in DB before thread posts (Option A). |
+| **Artifacts** | Markdown + **LUPOPEDIA HEADERS** — directives, reviews, repair reports, **HERMES prompts**. |
+| **Routing** | API + **`Lupo_Channel_Message_Router`**; filenames **`YYYYMMDD_HHIISS_actor_purpose.md`**; see **CHANNEL_ARTIFACT_ROUTING_DOCTRINE**. |
+| **HERMES** | **Heuristic Event Routing & Messaging Exchange System** — reads artifacts, classifies by **`artifact_kind`** / **`message_type`** / intent (not filename alone), writes **`prompts/`** handoffs for target actors. **Not** WOLFIE; **actor_id 15** on HERMES files only. |
+
+### Directory layout (`lupo-channels/42/` example)
+
+```
+lupo-channels/42/
+├── broadcasts/      # channel-wide
+├── content/       # durable docs
+├── direct/{actor_id}/
+├── tasks/
+├── threads/{thread_id}/   # numeric thread id only
+├── rules/
+└── prompts/         # HERMES → target-actor execution prompts
+```
+
+### Deterministic flow
+
+1. Actors write artifacts into the channel tree (thread / broadcast / direct / content).
+2. Artifacts record communication and state (headers + body).
+3. **HERMES** reads non-prompt artifacts and classifies intent.
+4. **HERMES** writes **`prompts/YYYYMMDD_HHIISS_hermes_prompt_{target}_{purpose}.md`** with task, expected output, source reference. **MVP:** `python lupo-scripts/draft_hermes_prompt_from_artifact.py --artifact <thread.md> --target <slug> --purpose <slug> --write` drafts that file from a thread artifact (HERMES reviews before treating as final). **Full-auto HERMES** (unattended classification + prompt emission) is **Phase 3** — not required for 4.0.x MVP.
+5. Target actors execute work; they publish **their own** artifacts under **their** `actor_id` (no impersonation).
+6. Cycle repeats.
+
+**Doctrine:** [MULTI_AGENT_COORDINATION_DOCTRINE.md](lupo-rules/root/MULTI_AGENT_COORDINATION_DOCTRINE.md) · [CHANNEL_ARTIFACT_ROUTING_DOCTRINE.md](lupo-rules/root/CHANNEL_ARTIFACT_ROUTING_DOCTRINE.md) · [prompts/README](lupo-channels/42/prompts/README.md)
 
 ---
 

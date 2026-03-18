@@ -1,34 +1,38 @@
 ---
 lupopedia.headers:
-  lupopedia.version: "4.0.74"
+  lupopedia.version: "4.0.80"
   lupopedia.schema: "database_table"
   file_path_from_root: "lupo-docs/database/lupopedia/tables/active/lupo_projects.md"
-  system_version: "4.0.74"
+  system_version: "4.0.80"
   namespace: "core"
   channel_id: 42
-  actor_id: 102
-  last_modified_utc: "20260314"
+  actor_id: 14
+  actor_name: "hephaestus"
+  last_modified_utc: "20260318"
   artifact_type: "table_documentation"
-  purpose: "Documentation for lupo_projects table - core registry for projects (KIRO proposal, Captain directive 4.0.74)"
+  purpose: "Documentation for lupo_projects table - core registry for projects"
   artifact_kind: "table"
-  traits: ["canonical", "core_system", "registry", "v4.0.74"]
+  traits: ["canonical", "core_system", "registry", "v4.0.80"]
   tags: ["database", "projects", "registry", "orchestrator"]
 
 lupopedia.edges:
-  comment: "Snapshot of edges for lupo_projects table doc at creation."
+  comment: "Snapshot of edges for lupo_projects table doc at 4.0.80 (grounded by repo search; non-exhaustive)."
+  meta: "php_hits=2 python_hits=0"
   outbound_edges:
+    - { to: "database.table.lupo_projects", type: "DEFINES_SCHEMA_FOR", weight: 1.0 }
     - { to: "lupo-database/lupopedia/mysql/install/install_new_lupopedia.sql", type: "schema_reference", weight: 1.0 }
     - { to: "lupo-database/lupopedia/mysql/seed/seed_projects.sql", type: "references", weight: 0.95 }
+    - { to: "lupo-includes/classes/ProjectService.php", type: "USED_IN_PHP", weight: 0.9 }
 
 lupopedia.footer:
-  version: "4.0.74"
-  last_verified: "20260314"
-  last_verified_by: "cursor"
-  orchestrator: "cursor"
+  version: "4.0.80"
+  last_verified: "20260318"
+  last_verified_by: "hephaestus"
+  orchestrator: "hephaestus"
   next_action:
     - "Regenerate TOON for lupo_projects when DB or generate_toon_from_sql is run"
 ---
-# file: lupo_projects — session: L-LUPO-ROOT-CURSOR — delegation: cursor:root
+# file: lupo_projects — session: L-LUPO-ROOT-HEPHAESTUS — delegation: hephaestus:root
 
 # lupo_projects
 
@@ -78,4 +82,4 @@ Core registry table for **projects** (scope: channel, orchestrator, federation n
 
 ---
 
-*Cursor IDE (actor_id 102) — table doc 2026-03-14*
+*HEPHAESTUS (actor_id 14) — table doc 2026-03-18*

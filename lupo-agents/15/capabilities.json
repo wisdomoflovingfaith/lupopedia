@@ -1,0 +1,14 @@
+{
+  "capabilities": [
+    "channel_artifact_read",
+    "intent_classification",
+    "target_actor_selection",
+    "actionable_prompt_generation",
+    "message_routing",
+    "queue_management",
+    "protocol_enforcement",
+    "channel_management",
+    "inter_agent_communication",
+    "coordination_handoff_normalization"
+  ]
+}

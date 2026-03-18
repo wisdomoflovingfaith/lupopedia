@@ -1102,3 +1102,252 @@ function channels_handle_edit_channel_save($channel_id) {
     header('Location: ' . $base . '/channels/' . $channel_id . '/edit');
     exit;
 }
+
+/**
+ * List channel artifacts by type
+ *
+ * @param int $channel_id Channel ID
+ * @param string|null $artifact_type Artifact type (broadcast, direct, thread, content, tasks, rules)
+ * @return array List of artifacts with metadata
+ */
+function channels_list_artifacts($channel_id, $artifact_type = null) {
+    $channel_id = (int) $channel_id;
+    $base_path = defined('LUPOPEDIA_PATH') ? LUPOPEDIA_PATH : LUPOPEDIA_ABSPATH;
+    $sep = DIRECTORY_SEPARATOR;
+    $channel_dir = rtrim($base_path, $sep) . $sep . 'lupo-channels' . $sep . $channel_id;
+    $artifacts = array();
+
+    $subdirs = array(
+        'broadcast' => 'broadcasts',
+        'direct' => 'direct',
+        'thread' => 'threads',
+        'content' => 'content',
+        'task' => 'tasks',
+        'rule' => 'rules',
+    );
+
+    if ($artifact_type !== null && $artifact_type !== '' && isset($subdirs[$artifact_type])) {
+        $scan_dirs = array($artifact_type => $subdirs[$artifact_type]);
+    } else {
+        $scan_dirs = $subdirs;
+    }
+
+    foreach ($scan_dirs as $type => $subdir) {
+        $dir_path = $channel_dir . $sep . $subdir;
+        $files = array();
+        if ($type === 'direct' || $type === 'thread') {
+            if (is_dir($dir_path)) {
+                $nested = glob($dir_path . $sep . '*' . $sep . '*.md');
+                if (is_array($nested)) {
+                    $files = $nested;
+                }
+            }
+        } else {
+            if (is_dir($dir_path)) {
+                $top = glob($dir_path . $sep . '*.md');
+                $files = is_array($top) ? $top : array();
+            }
+        }
+        foreach ($files as $file) {
+            $filename = basename($file, '.md');
+            $headers = parse_channel_file_headers($file);
+            $ts = isset($headers['created_ymdhis']) ? (string) $headers['created_ymdhis'] : '';
+            if ($ts === '' && preg_match('/^(\d{14})/', $filename, $m)) {
+                $ts = $m[1];
+            }
+            if ($ts === '') {
+                $ts = '0';
+            }
+            $rel = str_replace(rtrim($base_path, $sep) . $sep, '', $file);
+            $rel = str_replace('\\', '/', $rel);
+            $artifacts[] = array(
+                'filename' => $filename,
+                'file_path' => $rel,
+                'type' => $type,
+                'timestamp' => $ts,
+                'headers' => $headers,
+                'created_ymdhis' => isset($headers['created_ymdhis']) ? $headers['created_ymdhis'] : $ts,
+                'dialog_message_id' => isset($headers['dialog_message_id']) ? $headers['dialog_message_id'] : null,
+                'thread_id' => isset($headers['dialog_thread_id']) ? $headers['dialog_thread_id'] : null,
+                'to_actor_id' => isset($headers['to_actor_id']) ? $headers['to_actor_id'] : null,
+            );
+        }
+    }
+
+    usort($artifacts, function ($a, $b) {
+        return strcmp((string) $b['timestamp'], (string) $a['timestamp']);
+    });
+
+    return $artifacts;
+}
+
+/**
+ * Alias for channels_list_artifacts (channel system API naming).
+ *
+ * @param int $channel_id
+ * @param string|null $artifact_type broadcast|direct|thread|content|task|rule
+ * @return array
+ */
+function channels_list_channel_artifacts($channel_id, $artifact_type = null)
+{
+    return channels_list_artifacts($channel_id, $artifact_type);
+}
+
+/**
+ * Get thread messages
+ *
+ * @param int $channel_id Channel ID
+ * @param int $thread_id Thread ID
+ * @param int $limit Maximum number of messages
+ * @return array Thread messages with metadata
+ */
+function channels_get_thread_messages($channel_id, $thread_id, $limit = 50) {
+    $channel_id = (int) $channel_id;
+    $thread_id = (int) $thread_id;
+    $limit = max(1, min(200, (int) $limit));
+    $table_prefix = defined('LUPO_TABLE_PREFIX') ? LUPO_TABLE_PREFIX : 'lupo_';
+    
+    global $db;
+    
+    try {
+        $t_msg = $table_prefix . 'dialog_messages';
+        $t_actors = $table_prefix . 'actors';
+        
+        $stmt = $db->prepare(
+            "SELECT m.dialog_message_id, m.from_actor_id, m.to_actor_id, m.message_text,
+                    m.message_type, m.created_ymdhis, m.metadata_json,
+                    a.name AS from_actor_name, a.actor_type
+             FROM {$t_msg} m
+             LEFT JOIN {$t_actors} a ON a.actor_id = m.from_actor_id AND a.is_deleted = 0
+             WHERE m.channel_id = :channel_id AND m.dialog_thread_id = :thread_id AND m.is_deleted = 0
+             ORDER BY m.created_ymdhis ASC
+             LIMIT {$limit}"
+        );
+
+        $stmt->execute(array(
+            ':channel_id' => $channel_id,
+            ':thread_id' => $thread_id,
+        ));
+
+        $messages = array();
+        while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+            $meta = null;
+            if (!empty($row['metadata_json'])) {
+                $meta = json_decode($row['metadata_json'], true);
+            }
+            if (!is_array($meta)) {
+                $meta = array();
+            }
+            $messages[] = array(
+                'message_id' => (int) $row['dialog_message_id'],
+                'from_actor_id' => (int) $row['from_actor_id'],
+                'to_actor_id' => !empty($row['to_actor_id']) ? (int) $row['to_actor_id'] : null,
+                'actor_name' => isset($row['from_actor_name']) ? $row['from_actor_name'] : null,
+                'actor_type' => isset($row['actor_type']) ? $row['actor_type'] : null,
+                'message_text' => $row['message_text'],
+                'message_type' => $row['message_type'],
+                'created_ymdhis' => $row['created_ymdhis'],
+                'metadata' => $meta,
+            );
+        }
+
+        return $messages;
+        
+    } catch (Exception $e) {
+        error_log("Error getting thread messages: " . $e->getMessage());
+        return [];
+    }
+}
+
+/**
+ * Get direct messages for actor
+ *
+ * @param int $channel_id Channel ID
+ * @param int $actor_id Actor ID
+ * @param int $limit Maximum number of messages
+ * @return array Direct messages with metadata
+ */
+function channels_get_direct_messages($channel_id, $actor_id, $limit = 50) {
+    $channel_id = (int) $channel_id;
+    $actor_id = (int) $actor_id;
+    $limit = max(1, min(200, (int) $limit));
+    $table_prefix = defined('LUPO_TABLE_PREFIX') ? LUPO_TABLE_PREFIX : 'lupo_';
+    
+    global $db;
+    
+    try {
+        $t_msg = $table_prefix . 'dialog_messages';
+        $t_actors = $table_prefix . 'actors';
+        
+        $stmt = $db->prepare(
+            "SELECT m.dialog_message_id, m.from_actor_id, m.to_actor_id, m.message_text,
+                    m.message_type, m.created_ymdhis, m.metadata_json,
+                    a.name AS from_actor_name, a.actor_type
+             FROM {$t_msg} m
+             LEFT JOIN {$t_actors} a ON a.actor_id = m.from_actor_id AND a.is_deleted = 0
+             WHERE m.channel_id = :channel_id AND m.is_deleted = 0
+               AND m.dialog_thread_id IS NULL
+               AND m.to_actor_id IS NOT NULL
+               AND (m.to_actor_id = :actor_id OR m.from_actor_id = :actor_id_b)
+             ORDER BY m.created_ymdhis DESC
+             LIMIT {$limit}"
+        );
+
+        $stmt->execute(array(
+            ':channel_id' => $channel_id,
+            ':actor_id' => $actor_id,
+            ':actor_id_b' => $actor_id,
+        ));
+
+        $messages = array();
+        while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+            $meta = null;
+            if (!empty($row['metadata_json'])) {
+                $meta = json_decode($row['metadata_json'], true);
+            }
+            if (!is_array($meta)) {
+                $meta = array();
+            }
+            $messages[] = array(
+                'message_id' => (int) $row['dialog_message_id'],
+                'from_actor_id' => (int) $row['from_actor_id'],
+                'to_actor_id' => (int) $row['to_actor_id'],
+                'actor_name' => isset($row['from_actor_name']) ? $row['from_actor_name'] : null,
+                'actor_type' => isset($row['actor_type']) ? $row['actor_type'] : null,
+                'message_text' => $row['message_text'],
+                'message_type' => $row['message_type'],
+                'created_ymdhis' => $row['created_ymdhis'],
+                'metadata' => $meta,
+            );
+        }
+
+        return $messages;
+        
+    } catch (Exception $e) {
+        error_log("Error getting direct messages: " . $e->getMessage());
+        return [];
+    }
+}
+
+/**
+ * Parse channel file headers
+ *
+ * @param string $file_path Path to the file
+ * @return array Parsed headers
+ */
+function parse_channel_file_headers($file_path) {
+    $headers = [];
+    $content = file_get_contents($file_path);
+    
+    if (preg_match('/^---\n(.*?)\n---/s', $content, $matches)) {
+        $header_lines = explode("\n", $matches[1]);
+        foreach ($header_lines as $line) {
+            if (strpos($line, ':') !== false) {
+                list($key, $value) = explode(':', $line, 2);
+                $headers[trim($key)] = trim($value);
+            }
+        }
+    }
+    
+    return $headers;
+}

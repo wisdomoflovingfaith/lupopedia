@@ -182,11 +182,35 @@ if ($method === 'POST') {
     $body = trim($input['body']);
     $message_type = isset($input['message_type']) ? trim($input['message_type']) : 'text';
     $meta = isset($input['meta']) ? json_encode($input['meta']) : null;
+    $routing_type = isset($input['routing_type']) ? trim($input['routing_type']) : 'broadcast';
+    $to_actor_id = isset($input['to_actor_id']) ? (int) $input['to_actor_id'] : null;
+    $thread_raw = isset($input['thread_id']) ? $input['thread_id'] : null;
+    $thread_id = null;
+    if ($routing_type === 'thread') {
+        require_once __DIR__ . '/../../classes/Lupo_Channel_Artifact_Validator.php';
+        if (!Lupo_Channel_Artifact_Validator::isValidDialogThreadId($thread_raw)) {
+            http_response_code(400);
+            echo json_encode(array('success' => false, 'error' => array('code' => 'INVALID_THREAD_ID', 'message' => 'thread_id must be a positive integer matching lupo_dialog_threads.dialog_thread_id')));
+            exit;
+        }
+        $thread_id = (int) $thread_raw;
+    }
 
     if ($body === '') {
         http_response_code(400);
         echo json_encode(['success' => false, 'error' => ['code' => 'INVALID_JSON', 'message' => 'body must not be empty.']]);
         exit;
+    }
+
+    if ($routing_type === 'thread') {
+        require_once __DIR__ . '/../../classes/Lupo_Channel_Artifact_Validator.php';
+        $thrErr = Lupo_Channel_Artifact_Validator::validateThreadPostBody($body, $message_type, $meta);
+        if ($thrErr !== null) {
+            $code = (stripos($thrErr, 'help_response') !== false) ? 'THREAD_HELP_RESPONSE_BODY' : 'THREAD_REVIEW_BODY';
+            http_response_code(400);
+            echo json_encode(array('success' => false, 'error' => array('code' => $code, 'message' => $thrErr)));
+            exit;
+        }
     }
 
     // Actor identity MUST come from authenticated session / server-side context only.
@@ -243,46 +267,87 @@ if ($method === 'POST') {
         exit;
     }
 
-    $t_msg = $table_prefix . 'dialog_messages';
-    $now = (int) gmdate('YmdHis');
+    require_once __DIR__ . '/../../classes/Lupo_Channel_Artifact_Validator.php';
+    $is_admin = ($authService && is_object($authService) && method_exists($authService, 'isAdmin') && $authService->isAdmin($actor_id));
 
-    try {
-        // Allocate message_id
-        $message_id = null;
-        if (function_exists('lupo_findpuka')) {
-            $message_id = lupo_findpuka($db, $t_msg, 'dialog_message_id', 1, null);
+    $t_roles = $table_prefix . 'actor_channel_roles';
+    $role_keys = array();
+    $stmt = $db->prepare("SELECT DISTINCT role_key FROM {$t_roles} WHERE actor_id = :a AND channel_id = :c AND is_deleted = 0");
+    $stmt->execute(array(':a' => $actor_id, ':c' => $channel_id));
+    while ($rk = $stmt->fetch(PDO::FETCH_ASSOC)) {
+        if (!empty($rk['role_key'])) {
+            $role_keys[] = strtolower(trim($rk['role_key']));
         }
-        if ($message_id === null) {
-            $stmt = $db->prepare("SELECT MAX(dialog_message_id) AS max_id FROM {$t_msg}");
-            $stmt->execute();
-            $row = $stmt->fetch(PDO::FETCH_ASSOC);
-            $message_id = ($row && $row['max_id'] !== null) ? ((int) $row['max_id'] + 1) : 1;
+    }
+
+    $coord_action = isset($input['coordination_action']) ? strtolower(trim((string) $input['coordination_action'])) : '';
+
+    $broadcast_roles = array('captain', 'guardian', 'critic', 'steward', 'administrator', 'monitor', 'orchestrator');
+    $content_roles = array('editor', 'author', 'custodian', 'administrator', 'captain', 'orchestrator');
+    $task_roles = array('assignee', 'owner', 'administrator', 'captain', 'orchestrator');
+    $rule_roles = array('guardian', 'orchestrator', 'administrator', 'captain');
+
+    $has_any = function ($need, $keys) {
+        foreach ($need as $n) {
+            if (in_array($n, $keys, true)) {
+                return true;
+            }
         }
+        return false;
+    };
 
-        $stmt = $db->prepare(
-            "INSERT INTO {$t_msg} (dialog_message_id, channel_id, from_actor_id, message_text, message_type, metadata_json, created_ymdhis) "
-            . "VALUES (:msg_id, :channel_id, :actor_id, :body, :msg_type, :meta, :created)"
-        );
-        $stmt->execute([
-            'msg_id'     => $message_id,
-            'channel_id' => $channel_id,
-            'actor_id'   => $actor_id,
-            'body'       => $body,
-            'msg_type'   => $message_type,
-            'meta'       => $meta,
-            'created'    => $now,
-        ]);
+    if (!$is_admin && $routing_type === 'broadcast' && count($role_keys) > 0 && !$has_any($broadcast_roles, $role_keys)) {
+        lupo_channels_api_log_security_event('forbidden', $channel_id, $actor_id);
+        http_response_code(403);
+        echo json_encode(array('success' => false, 'error' => array('code' => 'FORBIDDEN_ROLE', 'message' => 'Broadcast requires captain, guardian, critic, steward, administrator, monitor, or orchestrator role on this channel.')));
+        exit;
+    }
 
+    if (!$is_admin && $coord_action !== '') {
+        $need = null;
+        if ($coord_action === 'content') {
+            $need = $content_roles;
+        } elseif ($coord_action === 'task') {
+            $need = $task_roles;
+        } elseif ($coord_action === 'rule') {
+            $need = $rule_roles;
+        } elseif ($coord_action === 'broadcast') {
+            $need = $broadcast_roles;
+        }
+        if ($need !== null && !$has_any($need, $role_keys)) {
+            lupo_channels_api_log_security_event('forbidden', $channel_id, $actor_id);
+            http_response_code(403);
+            echo json_encode(array('success' => false, 'error' => array('code' => 'FORBIDDEN_ROLE', 'message' => 'coordination_action requires appropriate channel role.')));
+            exit;
+        }
+    }
+
+    require_once __DIR__ . '/../../classes/Lupo_Channel_Message_Router.php';
+    $router = new Lupo_Channel_Message_Router($db, $table_prefix);
+    if ($routing_type === 'direct') {
+        $result = $router->handleDirectMessage($channel_id, $actor_id, $to_actor_id, $body, $message_type, $meta);
+    } elseif ($routing_type === 'thread') {
+        $result = $router->handleThreadMessage($channel_id, $thread_id, $actor_id, $body, $message_type, $meta);
+    } else {
+        $result = $router->handleBroadcast($channel_id, $actor_id, $body, $message_type, $meta);
+    }
+
+    if (!empty($result['success'])) {
         http_response_code(201);
-        echo json_encode([
-            'success'    => true,
-            'accepted'   => true,
-            'message_id' => $message_id,
+        $fp = isset($result['file_path']) ? $result['file_path'] : null;
+        echo json_encode(array(
+            'success' => true,
+            'accepted' => true,
+            'message_id' => $result['message_id'],
             'channel_id' => $channel_id,
-        ]);
-    } catch (Exception $e) {
-        http_response_code(500);
-        echo json_encode(['success' => false, 'error' => ['code' => 'INSERT_ERROR', 'message' => $e->getMessage()]]);
+            'routing_type' => $routing_type,
+            'file_path' => $fp,
+        ));
+    } else {
+        $err = isset($result['error']) ? $result['error'] : 'Unknown error';
+        $code = (strpos((string) $err, 'require') !== false) ? 400 : 500;
+        http_response_code($code);
+        echo json_encode(array('success' => false, 'error' => array('code' => 'ROUTER_ERROR', 'message' => $err)));
     }
     exit;
 }

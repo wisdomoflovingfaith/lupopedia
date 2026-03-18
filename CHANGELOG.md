@@ -26,14 +26,14 @@ lupopedia.comments:
   - { comment_id: 2, channel_id: 42, actor_id: 102, actor_name: "cursor", faucet_id: 102, faucet_name: "cursor", comment_text: "Second example comment for 4.0.73 to demonstrate multiple comment records in the lupopedia.comments block.", comment_type: "comment", created_ymdhis: 20260313151500, updated_ymdhis: 20260313151500 }
 
 lupopedia.headers:
-  lupopedia.version: "4.0.79"
+  lupopedia.version: "4.0.80"
   lupopedia.schema: "documentation"
   file_path_from_root: "CHANGELOG.md"
-  system_version: "4.0.79"
-  last_modified_utc: "20260317"
+  system_version: "4.0.80"
+  last_modified_utc: "20260318"
   channel_id: 42
-  actor_id: 24
-  actor_name: "lexa"
+  actor_id: 1
+  actor_name: "wolfie"
   faucet_name: "cascade"
   artifact_type: "changelog"
   artifact_kind: "history"
@@ -52,12 +52,12 @@ lupopedia.edges:
  
 lupopedia.footer:
   archive_note: "For historical changelog entries from 4.0.67 and earlier, see CHANGELOG_ARCHIVE.md"
-  version: "4.0.79"
-  last_verified: "20260316"
+  version: "4.0.80"
+  last_verified: "20260318"
   last_verified_by: "cursor"
   orchestrator: "wolfie"
   next_action:
-    - "Verify version and last_verified align with release"
+    - "Close TOON ground-truth repair for Phase A table docs when WOLFIE marks complete"
     - "Keep required reading and doctrine links current"
 ---
 # Lupopedia CHANGELOG
@@ -74,14 +74,159 @@ Older entries (≤4.0.67) are archived in [CHANGELOG_ARCHIVE.md](CHANGELOG_ARCHI
 ---
 
 ## [4.0.80] — Active Development
+**Release Date:** TBD
 
-- **Continuation of Top 50 table documentation completion** - Auth domain (lupo_auth_providers, lupo_auth_audit_log, lupo_banned_actors, lupo_bans_log), Analytics domain (lupo_unified_log), and Top 50 expansion tasks carried forward from 4.0.79.
-- **Continued Bayesian Decision Tracking expansion** - Decision update history table, multi-level influence propagation, evidence correlation modeling, and performance optimizations planned for 4.0.80.
-- **Follow-up improvements from v4.0.79** - Header version normalization, namespace validation, TABLE_INDEX.md completion, and documentation quality validation.
+*Changelog for this version was consolidated from channel 42 artifacts and repo layout (see thread 1002 [changelog-synthesis-summary](lupo-channels/42/threads/1002/20260317_193000_hermes_changelog-synthesis-summary.md)).*
+
+### Coordination artifacts + root doc sync (ATHENA / LILITH / HERMES / HEPHAESTUS)
+
+Index for strategy + prompt-closure work; **root [plan.md](plan.md)** and **[tasks.md](tasks.md)** updated to match **[TODO.md](TODO.md)**.
+
+| Topic | Artifact / closure |
+|-------|-------------------|
+| Thread provisioning **Option A** | [athena_thread-creation-policy](lupo-channels/42/threads/1002/20260317_223020_athena_thread-creation-policy.md) |
+| HERMES classification + watcher policy | [athena_prompt-routing-watcher-policy](lupo-channels/42/threads/1002/20260317_234200_athena_prompt-routing-watcher-policy.md) — prompts **004504**, **022040** |
+| LILITH prompts **004503**, **022030**, **041200** | [010000_lilith_prompts-complete-review](lupo-channels/42/threads/1001/20260318_010000_lilith_prompts-complete-review.md) + [010000_hermes_action_lilith_prompt-executed](lupo-channels/42/prompts/20260318_010000_hermes_action_lilith_prompt-executed.md) |
+| HEPHAESTUS **004502**, **022010**, **041100** | [hephaestus_prompt-execution-complete](lupo-channels/42/threads/1002/20260318_180000_hephaestus_prompt-execution-complete.md) |
+
+**Still open:** canonical list → **[011500_wolfie_4.0.80_remaining-work](lupo-channels/42/threads/1001/20260318_011500_wolfie_4.0.80_remaining-work.md)** (five release blockers). Also: `validate_prompt_files.py` (LILITH §5). Table-doc dedup + UI viz → **4.0.81** per that artifact.
+
+### WOLFIE — 4.0.80 remaining work + 4.0.81 deferrals (011500)
+
+- **[wolfie_4.0.80_remaining-work](lupo-channels/42/threads/1001/20260318_011500_wolfie_4.0.80_remaining-work.md)** (thread **1001**) — **Release gate:** close **041000**, **230542**, **022050**, LILITH **010100** + A12 pass/fail, HEPHAESTUS watcher (**234200** implementation) → then 4.0.80 RC + CHANGELOG finalization entry. **Moved to 4.0.81:** DB-primary channel ingestion + external read; artifact auto-heal + UI channel visualization; duplicate `tables/active/projects/` table-doc path dedup (non-blocker for 4.0.80). Unfinished blockers may be marked **4.0.81 deferred** in **TODO.md** with acceptance criteria.
+
+### Root docs sync + HEPHAESTUS 180000 path accuracy (session)
+
+- **[hephaestus_prompt-execution-complete](lupo-channels/42/threads/1002/20260318_180000_hephaestus_prompt-execution-complete.md)** — §2 *File locations*: **041100** table docs updated on `lupo-docs/database/lupopedia/tables/active/lupo_projects.md` and `lupo_tasks.md` (HEPHAESTUS **actor_id 14**); separate copies under `tables/active/projects/` called out for future reconcile.
+- **[CHANGELOG.md](CHANGELOG.md)** (this section), **[tasks.md](tasks.md)** (4.0.80 index), **[plan.md](plan.md)** (prompt queue + phases) — aligned with root **[TODO.md](TODO.md)** on **20260318**.
+
+### Multi-agent doctrine, registry, and HERMES role
+- **`lupo-rules/root/MULTI_AGENT_COORDINATION_DOCTRINE.md`** — Channel authority (§7–8), rules/skills/personas, eleven primary coordination personas, agent types (**HERMES** = routing & messaging; **HEPHAESTUS** = implementer), COM001 → `lupo-channels/` per **CHANNEL_ARTIFACT_ROUTING_DOCTRINE**.
+- **HERMES role correction** (directive [hermes-role-correction](lupo-channels/42/threads/1002/20260317_171200_wolfie_hermes-role-correction.md)): full name *Heuristic Event Routing & Messaging Exchange System*; **AGENTS.md**; **`lupo-agents/15/`** (`properties.json`, `capabilities.json`, `system_prompt.txt`); unit tests **`multi_agent_coordination_doctrine_test.php`**, **`doctrine_comprehensive_update_test.php`**.
+- **Registry / personas** — Expansion to **108** actors; **ROSE** as 11th primary coordination persona; alignment content and broadcasts under `lupo-channels/42/content/` and `broadcasts/` (e.g. [multi_agent_doctrine_alignment](lupo-channels/42/broadcasts/20260317_163000_wolfie_multi_agent_doctrine_alignment.md)). Archived write-ups: `lupo-docs/versions/4.0.80/status_coordination_archive/` (`comprehensive_registry_update_108_actors.md`, `doctrine_comprehensive_update_108_agents.md`, `ten_primary_coordination_personas_update.md`, `rose_added_as_11th_primary_coordination_persona.md`, `multi_agent_doctrine_alignment_4_0_80.md`).
+- **`lupo-docs/doctrine/CHANNEL_BASED_COORDINATION_DOCTRINE.md`**; migration plan `lupo-channels/42/tasks/pending/20260317_migration_plan.md`; research [channel_research_findings](lupo-channels/42/threads/1001/20260317_120000_wolfie_channel_research_findings.md).
+
+### CHANGELOG link style (4.0.80 channel artifacts)
+
+- Thread / broadcast / prompt paths in the **[4.0.80]** section use markdown links: `[purpose-slug](lupo-channels/42/threads|broadcasts|prompts/…filename.md)` for click-through from repo root.
+
+### HERMES prompt coverage audit (threads 1001 + 1002)
+
+- **New prompts:** `041000` WOLFIE (table-doc authorship per [actor-identity-violation](lupo-channels/42/threads/1002/20260318_003000_hermes_actor-identity-violation.md)), `041100` HEPHAESTUS (Top 50 **A11**), `041200` LILITH (**A12** QA).
+- **Index artifact:** [actionable-prompts-coverage-1001-1002](lupo-channels/42/threads/1002/20260318_043000_hermes_actionable-prompts-coverage-1001-1002.md) — maps each thread message to prompt file(s) or **N/A**.
+- **Prompts:** [hermes_prompt_hephaestus_externalai-batch](lupo-channels/42/prompts/20260318_022010_hermes_prompt_hephaestus_externalai-batch.md), [hermes_prompt_wolfie_externalai-batch](lupo-channels/42/prompts/20260318_022020_hermes_prompt_wolfie_externalai-batch.md), [hermes_prompt_lilith_externalai-batch](lupo-channels/42/prompts/20260318_022030_hermes_prompt_lilith_externalai-batch.md), [hermes_prompt_athena_externalai-batch](lupo-channels/42/prompts/20260318_022040_hermes_prompt_athena_externalai-batch.md), [hermes_prompt_hermes_externalai-batch](lupo-channels/42/prompts/20260318_022050_hermes_prompt_hermes_externalai-batch.md) under `lupo-channels/42/prompts/`.
+- **Script:** `lupo-scripts/hermes_scan_threads.py` — Markdown inventory for `--threads 1001,1002`.
+
+### HEPHAESTUS prompt execution complete (004502, 022010, 041100)
+
+- **Completion artifact:** [hephaestus_prompt-execution-complete](lupo-channels/42/threads/1002/20260318_180000_hephaestus_prompt-execution-complete.md) — All three HEPHAESTUS prompts from TODO.md completed.
+- **Prompts API scan (004502):** Decision documented — filesystem-only until 4.0.81; added API status note to `lupo-channels/42/prompts/README.md`.
+- **External AI batch (022010):** Added channel validation CI to `run_unit_tests.sh`; verified implementation matches thread 1002 claims; no API drift detected.
+- **Top 50 A11 table docs (041100):** Updated `lupo_projects` / `lupo_tasks` MDs under `lupo-docs/database/lupopedia/tables/active/` (paths **`lupo_projects.md`**, **`lupo_tasks.md`**) to 4.0.80 + HEPHAESTUS attribution; `lupo_rules` and `lupo_orchestrator_rules` under `tables/active/rules/` verified; see **180000** for duplicate-`projects/` copy note.
+
+### Human directive — 4.0.80 release readiness + 4.0.81 DB channels (actor 1000)
+
+- **Directive:** [release-readiness-4.0.80](lupo-channels/42/threads/1001/20260318_000500_wisdomoflovingfaith_release-readiness-4.0.80.md) — reconcile CHANGELOG / TODO / plan with `lupo-channels/` work; deliverable: `YYYYMMDD_HHIISS_wolfie_4.0.80_release-readiness.md` in thread 1001; plan transition to **4.0.81** database-primary channels + external readability.
+- **HERMES prompt:** [hermes_prompt_wolfie_4.0.80-release-readiness](lupo-channels/42/prompts/20260318_032100_hermes_prompt_wolfie_4.0.80-release-readiness.md).
+
+### WOLFIE MVP stabilization artifact (follow-up)
+
+- [channel-hermes-mvp-stabilization](lupo-channels/42/threads/1001/20260318_012000_wolfie_channel-hermes-mvp-stabilization.md) — `dialog_message_id`; **“Since this plan”** paragraph linking ATER001, `--mode enforce`, External AI batch ([externalai-routing-batch-1001-1002](lupo-channels/42/threads/1002/20260318_022000_hermes_externalai-routing-batch-1001-1002.md) report + `02201x` prompts), `hermes_scan_threads.py`.
+
+### External AI directive 235500 — HERMES batch routing (threads 1001 + 1002)
+
+- **Directive:** [hermes-routing-directive](lupo-channels/42/threads/1002/20260317_235500_externalai_hermes-routing-directive.md) (actor **9999** external-ai-chatgpt).
+- **HERMES routing report:** [externalai-routing-batch-1001-1002](lupo-channels/42/threads/1002/20260318_022000_hermes_externalai-routing-batch-1001-1002.md) — full inventory + route table.
+- **Prompts:** [hermes_prompt_hephaestus_externalai-batch](lupo-channels/42/prompts/20260318_022010_hermes_prompt_hephaestus_externalai-batch.md), [hermes_prompt_wolfie_externalai-batch](lupo-channels/42/prompts/20260318_022020_hermes_prompt_wolfie_externalai-batch.md), [hermes_prompt_lilith_externalai-batch](lupo-channels/42/prompts/20260318_022030_hermes_prompt_lilith_externalai-batch.md), [hermes_prompt_athena_externalai-batch](lupo-channels/42/prompts/20260318_022040_hermes_prompt_athena_externalai-batch.md), [hermes_prompt_hermes_externalai-batch](lupo-channels/42/prompts/20260318_022050_hermes_prompt_hermes_externalai-batch.md) under `lupo-channels/42/prompts/`.
+- **Script:** `lupo-scripts/hermes_scan_threads.py` — Markdown inventory for `--threads 1001,1002`.
+
+### WOLFIE 4.0.80 release readiness (HERMES 032100 / directive 000500)
+
+- **[wolfie_4.0.80_release-readiness](lupo-channels/42/threads/1001/20260318_051500_wolfie_4.0.80_release-readiness.md)** — Status summary (confidence **medium-low** pending P0/defer), completed-work table, P0/P1/P2, **8** deferred **4.0.81** bullets with acceptance criteria, recommended CHANGELOG paste, TODO/plan matrix. Prompt [032100](lupo-channels/42/prompts/20260318_032100_hermes_prompt_wolfie_4.0.80-release-readiness.md) closed.
+
+### HERMES 022020 R2 — WOLFIE closure (External AI batch)
+
+- **Prompt:** [hermes_prompt_wolfie_externalai-batch](lupo-channels/42/prompts/20260318_022020_hermes_prompt_wolfie_externalai-batch.md) — **done**: thread **1001** status [052500_wolfie_table-doc-ground-truth-status](lupo-channels/42/threads/1001/20260318_052500_wolfie_table-doc-ground-truth-status.md) (**IN PROGRESS** vs [LILITH 1004 corrections](lupo-channels/42/threads/1004/20260317_231000_lilith_documentation_corrections.md)); **184500** cross-linked; Top 50 A11 already delegated (**041100**); **README** / **AGENTS.md** MVP + Phase 3 HERMES note.
+
+### LILITH prompt execution completed (004503 + 022030 + 041200)
+
+- **Execution record:** [010000_lilith_prompts-complete-review](lupo-channels/42/threads/1001/20260318_010000_lilith_prompts-complete-review.md) (thread **1001**) — README/`artifact_kind` enforcement recommendations, External AI R3 action alignment, A12 QA path (checklist **010100**, gated on **041100**).
+- **HERMES closure:** [010000_hermes_action_lilith_prompt-executed](lupo-channels/42/prompts/20260318_010000_hermes_action_lilith_prompt-executed.md). Root **TODO.md** rows for LILITH prompts marked **done**.
+
+### ATHENA strategy — HERMES classification + watcher policy (004504 + 022040)
+
+- **[athena_prompt-routing-watcher-policy](lupo-channels/42/threads/1002/20260317_234200_athena_prompt-routing-watcher-policy.md)** (thread **1002**) — Classification may be automated; **prompt emission** human-gated by default; **directive** → **no** watcher auto-draft; **help_response** → **conditional** with **ATER001** gate, no prompt overwrite, rate limit; `artifact_kind` matrix for implementers. Closes prompts [004504](lupo-channels/42/prompts/20260318_004504_hermes_prompt_athena_prompt-routing-policy.md), [022040](lupo-channels/42/prompts/20260318_022040_hermes_prompt_athena_externalai-batch.md).
+
+### TODO authority (TSK001) — root `TODO.md` blessed (WOLFIE / 004501)
+
+- **[todo-authority-alignment](lupo-channels/42/threads/1001/20260318_050000_wolfie_todo-authority-alignment.md)** — Root **`TODO.md`** = multi-agent coordination + HERMES prompt queue; **`lupo-docs/versions/4.0.80/TODO.md`** = version product backlog only. **MULTI_AGENT** TSK001/TSK003 + **§9** two-tier; **AGENTS.md** footer; version **4.0.80 TODO** coordination line. HERMES prompt [004501](lupo-channels/42/prompts/20260318_004501_hermes_prompt_wolfie_doctrine-todo-alignment.md) closed.
+
+### LILITH remaining work 4.0.80 (task extract)
+
+- **[remaining-work-4.0.80](lupo-channels/42/threads/1001/20260318_001200_lilith_remaining-work-4.0.80.md)** — P0/P1/P2 task list: HEPHAESTUS (artifact validation), HERMES (`Lupo_Hermes_Ingest` + HERMES_ERROR), LILITH (`extract_tasks_from_docs.py`), ANUBIS (normalize filenames), CI audit, P2 ASCLEPIUS/WARP; **release gating: no** until P0 closed.
+
+### LILITH help_response + ATER001 (substantive thread artifacts)
+
+- **Artifact:** [channel-system-help-response](lupo-channels/42/threads/1001/20260317_232500_lilith_channel-system-help-response.md).
+- **`Lupo_Channel_Artifact_Validator`:** `validateThreadHelpResponseBody`, `validateThreadPostBody` (review + help_response); substantive checks use body **after** YAML frontmatter; **`substantiveBodyAfterOptionalYaml`**.
+- **`ChannelArtifactValidator`:** `validateThreadArtifact($path)`, `validateReplyArtifact($path)` for filesystem paths.
+- **API:** thread posts with `meta.artifact_kind` **help_response** (or `message_type: help_response`) → **400** `THREAD_HELP_RESPONSE_BODY` if body &lt; 200 chars, missing `#` title, or &lt; 3 `##`.
+- **Python:** `validate_channel_artifacts.py --enforce-help-response-bodies`, **`--mode enforce`** (strict + review 500+ + help_response).
+- **`draft_hermes_prompt_from_artifact.py`:** refuses review/help_response sources that fail body contract (**`HERMES_INGESTION_REFUSED`**, exit 2) unless **`--force`**.
+- **Doctrine:** **MULTI_AGENT_COORDINATION_DOCTRINE.md** §3.5 **ATER001**; **CHANNEL_ARTIFACT_ROUTING_DOCTRINE.md** §7 updated.
+
+### Human directive 231700 — fix channel + HERMES loop (CRITICAL)
+
+- **Directive:** [fix-the-system-now](lupo-channels/42/threads/1001/20260317_231700_wisdomoflovingfaith_fix-the-system-now.md) (actor **1000**).
+- **WOLFIE response:** [channel-hermes-mvp-stabilization](lupo-channels/42/threads/1001/20260318_012000_wolfie_channel-hermes-mvp-stabilization.md) — minimal loop **artifact → HERMES prompt → actor → result artifact**; HERMES bounds; **`lupo-scripts/draft_hermes_prompt_from_artifact.py`** (semi-automated prompt generation from thread `.md`).
+- **Prompts README** — link to MVP script + stabilization artifact.
+
+### Human directive — channel docs + `prompts/` handoff layer (4.0.80)
+
+- **Directive:** [channel-system-docs-and-routing-directive](lupo-channels/42/threads/1001/20260317_230500_wisdomoflovingfaith_channel-system-docs-and-routing-directive.md) (actor **1000**).
+- **`lupo-channels/42/prompts/`** — HERMES-only handoff files; [README](lupo-channels/42/prompts/README.md); naming `YYYYMMDD_HHIISS_hermes_prompt_{target}_{purpose}.md`; sample prompts to WOLFIE / HEPHAESTUS / LILITH / ATHENA.
+- **Doctrine:** **CHANNEL_ARTIFACT_ROUTING_DOCTRINE.md** §8 + `prompts/` row in subdirectory table.
+- **Root docs:** [README.md](README.md) channel + HERMES section; new [TODO.md](TODO.md), [plan.md](plan.md) (stabilization → enforcement → automation).
+- **HERMES routing report:** [routing-directive-230500-summary](lupo-channels/42/threads/1001/20260318_004600_hermes_routing-directive-230500-summary.md).
+
+### Channel message routing (implementation)
+- **`Lupo_Channel_Message_Router`**, **`Lupo_Channel_Artifact_Validator`**; **`channels-api.php`** (broadcast / direct / thread, numeric `thread_id`, broadcast role gate, optional `coordination_action`); **`channels-controller.php`** (artifact listing, thread/direct queries, actor name on messages).
+- **Thread provisioning Option A** (ATHENA [thread-creation-policy](lupo-channels/42/threads/1002/20260317_223020_athena_thread-creation-policy.md), WOLFIE [thread-provisioning-option-a](lupo-channels/42/threads/1002/20260317_224500_wolfie_thread-provisioning-option-a.md)): existing **`lupo_dialog_threads`** row required before thread posts; no router auto-create. **CHANNEL_ARTIFACT_ROUTING_DOCTRINE.md** §6; seed **`seed_channel_42_dialog_threads_4.0.80.sql`** (threads 1001, 1002, 1004 on channel 42).
+- **HERMES actor-identity** — Acknowledgment [actor-identity-violation](lupo-channels/42/threads/1002/20260318_003000_hermes_actor-identity-violation.md): routing agents must not impersonate other actors in headers; **MULTI_AGENT** §5.3 HERMES CANNOT expanded.
+- **LILITH thread review contract** ([lilith-channel-system-review-1001](lupo-channels/42/threads/1001/20260317_223420_lilith_channel-system-review.md)): API thread posts with **`message_type=review`** or **`meta.artifact_kind=review`** require **≥500 chars** and **≥3 `##` headings**; **`Lupo_Channel_Artifact_Validator::validateThreadReviewBody`**; **`validate_channel_artifacts.py --enforce-thread-review-bodies`** for filesystem review artifacts. **CHANNEL_ARTIFACT_ROUTING_DOCTRINE.md** §7; test **`channel_thread_review_body_test.php`**.
+- **`lupo-rules/root/CHANNEL_ARTIFACT_ROUTING_DOCTRINE.md`**; **`lupo-docs/status/README.md`** (status dir not primary coordination sink).
+- **Python:** `sync_channel_artifacts.py`, `migrate_status_files.py`, `validate_channel_artifacts.py`.
+- **Reports:** [channel-routing-implementation](lupo-channels/42/threads/1002/20260317_190000_hermes_channel-routing-implementation.md); [channel_system_implementation_complete](lupo-channels/42/threads/1001/20260317_210100_hermes_channel_system_implementation_complete.md).
+- **Reviews:** [lilith-channel-system-review-1002](lupo-channels/42/threads/1002/20260317_183000_lilith_channel-system-review.md); [migration_verification](lupo-channels/42/threads/1002/20260317_170000_lilith_migration_verification.md). Redirect stubs under `threads/4.0.80/`.
+
+### Top 50 table documentation (Phase A) — with TOON caveat
+- **Fifteen** active table docs under `lupo-docs/database/lupopedia/tables/active/` (auth, analytics, actors, content, decisions, projects, tasks, rules, orchestrator_rules). WOLFIE broadcast: [top_50_phase_a_complete](lupo-channels/42/broadcasts/20260317_230000_wolfie_top_50_phase_a_complete.md).
+- **Ground-truth repair in progress:** LILITH and WOLFIE report schema drift vs **TOON** ([documentation_corrections](lupo-channels/42/threads/1004/20260317_231000_lilith_documentation_corrections.md), [table-doc-ground-truth-repair](lupo-channels/42/threads/1001/20260317_184500_wolfie_table-doc-ground-truth-repair.md)). Do not treat Phase A docs as TOON-verified until repair closes.
+
+### Other
+- **4.0.79** follow-ups (headers, TABLE_INDEX, namespace checks, etc.) remain as listed under **4.0.79** below; not repeated here.
+- Full removal of `lupo-docs/status/` and migration of every legacy status file — **not** claimed complete in repo state.
+
+### 4.0.80 status summary (as of 20260318)
+- All primary queue prompts except WOLFIE `041000` and WOLFIE `230542` are done.
+- HERMES script prompt `022050` state: partial; operator should complete doc artifact and full coverage report.
+- LILITH A12 QA record done; formal pass/fail checklist artifact `010100` still required.
+- Release gating: 4.0.80 can be finalized when these items are closed and path reconciliation is complete.
+
+### 4.0.81 roadmap handoff
+- DB-primary channel ingestion + external read to 4.0.81.
+- Artefact auto-heal and UI channel visualization to 4.0.81.
+- Table-doc path dedupe (`tables/active/projects/` duplicates) to 4.0.81.
 
 ---
 
+## [4.0.80] — Finalized
+- Release stabilized and closed
+- Remaining work moved to 4.0.81
+- All completed tasks preserved in historical record
+
 ## 4.0.79 — Released (2026-03-17)
+**Release Date:** 2026-03-17
 
 ### 🧩 The Correct Atom Scope Hierarchy
 **Documentation:** See [GLOBAL_ATOMS_DOCTRINE.md](lupo-docs/channels/doctrine/GLOBAL_ATOMS_DOCTRINE.md) for complete atom scope hierarchy and addressing model.

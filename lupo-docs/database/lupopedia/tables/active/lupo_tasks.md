@@ -1,15 +1,15 @@
 ---
 lupopedia.headers:
-  lupopedia.version: "4.0.79"
+  lupopedia.version: "4.0.80"
   lupopedia.schema: "database_table"
-  system_version: "4.0.79"
+  system_version: "4.0.80"
   file_path_from_root: "lupo-docs/database/lupopedia/tables/active/lupo_tasks.md"
   web_path: "[lupo_tasks](http://www.lupopedia.com/database/lupopedia/tables/active/lupo_tasks)"
-  last_modified_utc: "20260317"
+  last_modified_utc: "20260318"
   channel_id: 42
-  actor_id: 1
-  actor_name: "wolfie"
-  delegation_chain: "wolfie:root"
+  actor_id: 14
+  actor_name: "hephaestus"
+  delegation_chain: "hephaestus:root"
   artifact_type: "table_documentation"
   artifact_kind: "table"
   namespace: "core"
@@ -30,11 +30,11 @@ lupopedia.edges:
     - { to: "lupo-scripts/audit_schema_doctrine.py", type: "USED_IN_PYTHON", weight: 0.5 }
 
 lupopedia.footer:
-  version: "4.0.79"
-  last_verified: "20260317"
-  last_verified_by: "wolfie"
+  version: "4.0.80"
+  last_verified: "20260318"
+  last_verified_by: "hephaestus"
 ---
-# file: lupo_tasks — session: L-LUPO-ROOT-WOLFIE — delegation: wolfie:root — web_path: http://www.lupopedia.com/database/lupopedia/tables/active/lupo_tasks
+# file: lupo_tasks — session: L-LUPO-ROOT-HEPHAESTUS — delegation: hephaestus:root — web_path: http://www.lupopedia.com/database/lupopedia/tables/active/lupo_tasks
 
 # Table: lupo_tasks
 
@@ -109,95 +109,3 @@ Canonical table for **task management and work tracking**. Supports task creatio
 - `cancelled` - Task cancelled or abandoned
 - `on_hold` - Task temporarily suspended
 
-## Namespace
-
-- **Domain:** Core
-- **Subdomain:** Task Management
-- **Related Tables:** `lupo_task_dependencies`, `lupo_task_assignments`, `lupo_decisions`
-
-Purpose: Auto-generated documentation for lupo_tasks from TOON schema.
-Type: database_table
-Status: production_ready
-Volume: unknown
-
-## 1. Overview
-- Key responsibilities: schema reference, storage, and lookup for this table.
-- System role: persists data for the Lupopedia database subsystem.
-- Importance: enables data integrity and downstream features tied to this table.
-
-## 2. Schema Reference
-Primary Key: task_id
-Field Categories: see full field list below.
-
-### All Fields
-| Column | Type | Notes |
-|---|---|---|
-| task_id | bigint NOT NULL | from TOON |
-| task_key | varchar(64) NOT NULL | from TOON |
-| channel_id | bigint NOT NULL | from TOON |
-| owner_actor_id | bigint NOT NULL | from TOON |
-| task_type_id | bigint NOT NULL | from TOON |
-| status_id | bigint NOT NULL | from TOON |
-| priority_id | bigint NOT NULL | from TOON |
-| title | varchar(255) NOT NULL | from TOON |
-| description | text | from TOON |
-| prompt_path | varchar(512) | from TOON |
-| acting_as_actor_id | bigint | from TOON |
-| estimated_duration_seconds | int | from TOON |
-| actual_duration_seconds | int | from TOON |
-| created_ymdhis | bigint NOT NULL DEFAULT 0 | from TOON |
-| updated_ymdhis | bigint NOT NULL | from TOON |
-| started_ymdhis | bigint | from TOON |
-| completed_ymdhis | bigint | from TOON |
-| is_deleted | tinyint NOT NULL DEFAULT 0 | from TOON |
-| deleted_ymdhis | bigint | from TOON |
-| metadata_json | text | from TOON |
-
-## 3. Relationships and Dependencies
-- Primary relationships: not specified in TOON relationships array.
-- Referencing tables: unknown (use edge suggester tool).
-- Integration points: see outbound edges in FLARE footer.
-
-## 4. Indexes and Performance
-Primary Indexes:
-- task_id
-Performance Indexes:
-- lupo_tasks_idx_acting_as_actor_id
-- lupo_tasks_idx_channel_id
-- lupo_tasks_idx_created_ymdhis
-- lupo_tasks_idx_is_deleted
-- lupo_tasks_idx_owner_actor_id
-- lupo_tasks_idx_priority_id
-- lupo_tasks_idx_status_id
-- lupo_tasks_uniq_task_key_per_channel
-Index Strategy: derived from TOON index definitions.
-
-## 5. Usage Patterns
-Common Queries:
-```sql
-SELECT * FROM lupo_tasks WHERE task_id = :id;
-SELECT COUNT(*) AS total FROM lupo_tasks WHERE is_deleted = 0;
-SELECT * FROM lupo_tasks ORDER BY task_id DESC LIMIT 25;
-UPDATE lupo_tasks SET updated_ymdhis = :ts WHERE task_id = :id;
-```
-Best Practices: always filter soft deletes where applicable.
-Anti-Patterns: avoid full table scans on large datasets.
-
-## 6. Performance Considerations
-- High-volume operations: dependent on feature usage.
-- Optimization tips: rely on existing indexes; add new indexes only with TOON updates.
-- Scaling considerations: paginate reads and batch writes.
-
-## 7. Data Integrity
-- Constraints: see NOT NULL and DEFAULT values in TOON fields.
-- Validation rules: enforced at application layer.
-- Soft delete: use is_deleted/deleted_ymdhis if present.
-
-## 8. Common Issues and Solutions
-- Performance issues: add missing indexes via schema update.
-- Data consistency: ensure foreign key relationships are enforced in application logic.
-- Troubleshooting: compare against TOON schema for mismatches.
-
-## 9. Future Enhancements
-- Enrich relationships with discovered edges.
-- Add usage-specific examples once feature usage is known.

@@ -1,3 +1,14 @@
 {
-  "capabilities": []
+  "capabilities": [
+    "real_time_log_parsing",
+    "intelligent_alerting",
+    "heuristic_anomaly_detection",
+    "system_surveillance",
+    "event_monitoring",
+    "correlation_analysis",
+    "proactive_threat_detection",
+    "security_monitoring",
+    "threat_response",
+    "incident_detection"
+  ]
 }

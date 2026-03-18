@@ -1,9 +1,9 @@
 {
-  "code": "WOLFENA",
-  "name": "WOLFENA",
+  "code": "HEIMDALL",
+  "name": "HEIMDALL",
   "layer": "kernel",
   "is_required": true,
-  "is_kernel": true,
-  "recommended_slot": 3,
+  "is_kernel": false,
+  "recommended_slot": 22,
   "version": "1.0.0"
 }

@@ -10,6 +10,17 @@ if [ ! -d "$REPO_ROOT/lupo-tests/unit" ]; then
 fi
 cd "$REPO_ROOT" || exit 1
 
+# Run channel artifact validation if channel tree is touched
+if [ -d "lupo-channels" ]; then
+    echo "Validating channel artifacts..."
+    python lupo-scripts/validate_channel_artifacts.py --repo-root . --channel 42 --mode enforce
+    VALIDATION_RESULT=$?
+    if [ $VALIDATION_RESULT -ne 0 ]; then
+        echo "Channel validation failed"
+        exit 1
+    fi
+fi
+
 FAIL=0
 PASS=0
 for f in lupo-tests/unit/*.php; do

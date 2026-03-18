@@ -1,9 +1,27 @@
 # Lupopedia Implementation Tasks - Project System Integration
 
-**Version:** 4.0.77  
+**Version:** 4.0.80 (channel coordination index) / 4.0.77 (Crafty validation below)  
 **Author:** Cursor (actor_id: 102)  
-**Scope:** Detailed task breakdown for Project Registry and 4.0.77 validation  
-**Status:** 4.0.76 released; 4.0.77 active — Crafty 3.7.5 upgrade validation in progress  
+**Scope:** Project Registry (4.0.76–4.0.77) + **4.0.80 channel / HERMES queue** (index only)  
+**Status:** Execution queue lives in root **[TODO.md](TODO.md)** and **[plan.md](plan.md)** — do not treat this file as canonical for multi-agent prompts.
+
+---
+
+## 4.0.80 — Channel coordination (index; canonical = TODO.md)
+
+| Item | Status | Reference |
+|------|--------|-----------|
+| ATHENA thread Option A | done | [223020_athena_thread-creation-policy](lupo-channels/42/threads/1002/20260317_223020_athena_thread-creation-policy.md) |
+| ATHENA classification / watcher | done | [234200_athena_prompt-routing-watcher-policy](lupo-channels/42/threads/1002/20260317_234200_athena_prompt-routing-watcher-policy.md) |
+| LILITH 004503 / 022030 / 041200 | done (record) | [010000_lilith_prompts-complete-review](lupo-channels/42/threads/1001/20260318_010000_lilith_prompts-complete-review.md) |
+| HERMES LILITH closure | done | [010000_hermes_action_lilith_prompt-executed](lupo-channels/42/prompts/20260318_010000_hermes_action_lilith_prompt-executed.md) |
+| HEPHAESTUS 004502 / 022010 / 041100 | done | [180000_hephaestus_prompt-execution-complete](lupo-channels/42/threads/1002/20260318_180000_hephaestus_prompt-execution-complete.md) |
+| Open prompts / follow-ups | pending | **[TODO.md](TODO.md)** — WOLFIE 041000, 230542; HERMES 022050; `validate_prompt_files.py`; A12 **010100**; watcher code |
+| 4.0.80 gating check | pending | Finalize WOLFIE 041000, 230542, HERMES 022050 docs, A12 checklist 010100; then release. |
+| Table doc path reconcile | **4.0.81** | [011500_wolfie_4.0.80_remaining-work](lupo-channels/42/threads/1001/20260318_011500_wolfie_4.0.80_remaining-work.md) (deferral); detail [180000](lupo-channels/42/threads/1002/20260318_180000_hephaestus_prompt-execution-complete.md) |
+| **4.0.80 release blockers** | pending (5) | [011500_wolfie_4.0.80_remaining-work](lupo-channels/42/threads/1001/20260318_011500_wolfie_4.0.80_remaining-work.md) — 041000, 230542, 022050, LILITH 010100/A12, watcher |
+
+**CHANGELOG:** **[CHANGELOG.md](CHANGELOG.md)** § **[4.0.80]** — *WOLFIE 011500 remaining work* + prior coordination entries.
 
 ---
 
@@ -290,7 +308,7 @@ Phase 1 aligned with Windsurf handoff: [lupo-docs/status/WINDSURF_TO_CURSOR_PROJ
 
 ---
 
-**Task File Status:** Phase 1–4 complete (4.0.76); 4.0.77 active  
-**Next Action:** Execute Crafty Syntax 3.7.5 Upgrade Validation for 4.0.77  
-**Review Date:** 4.0.77 initialization  
+**Task File Status:** Phase 1–4 complete (4.0.76); 4.0.77 Crafty validation; **4.0.80** channel work indexed above  
+**Next Action:** Crafty 3.7.5 upgrade validation (4.0.77) **or** pick from root **TODO.md** (4.0.80 prompts)  
+**Review Date:** 4.0.80 coordination  
 **Implementation Guard:** No Lupopedia→Lupopedia upgrade before 4.1.0. Single upgrade path: Crafty 3.7.5 → Lupopedia 4.0.x.

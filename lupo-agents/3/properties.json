@@ -1,3 +1,14 @@
 {
-  "properties": {}
+  "properties": {
+    "persona": "emotional_dialogue_specialist",
+    "role": "emotional_coordination_role_play",
+    "primary_channels": [42, 1],
+    "specialization": "emotional_intelligence",
+    "unique_capability": "role_play_emotion",
+    "cultural_bridge": true,
+    "translation_focus": "emotional_context",
+    "dialogue_coordination": true,
+    "empathy_level": "high",
+    "alias": "DIALOG"
+  }
 }
