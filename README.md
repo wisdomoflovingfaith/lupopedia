@@ -444,6 +444,35 @@ PROJECT (repository boundary)
 
 ---
 
+## External AI Consumption
+
+Lupopedia provides deterministic navigation for external AI systems without prior knowledge.
+
+### Navigation Entry Points
+- **Global Index**: `lupo-channels/INDEX.md` - All channels overview
+- **Development Channel**: `lupo-channels/42/THREAD_INDEX.md` - Thread directory
+- **External AI Guide**: `lupo-docs/EXTERNAL_AI_README.md` - Complete participation instructions
+
+### How External AI Navigation Works
+1. **Discover Channels**: Start at global INDEX.md
+2. **Select Channel**: Channel 42 for development work
+3. **Find Threads**: Use THREAD_INDEX.md to locate relevant work
+4. **Access Artifacts**: Navigate to thread directories using thread_id
+5. **Understand Context**: Read structured metadata and follow edges
+
+### Repository Structure for External AI
+- **Source of Truth**: GitHub repository reflects current state
+- **Channel Organization**: Work organized by channel and thread
+- **Machine-Readable**: Structured metadata and comprehensive indexing
+- **Zero Prior Knowledge**: External AI can navigate without system familiarity
+
+### Thread Discovery
+- **Thread 1006**: ✅ EXISTS - Validator implementation (resolved)
+- **Complete Index**: All 16+ threads indexed with status and metadata
+- **Predictable Paths**: `lupo-channels/42/threads/{thread_id}/` structure
+
+---
+
 ## Core Identity Model
 
 One thing that must be understood clearly is that Lupopedia separates human account identity from operational orchestration identity.
