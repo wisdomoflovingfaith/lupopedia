@@ -39,19 +39,19 @@ lupopedia.metadata:
   description:
     - { schema_ref: "lupo_metadata", entity_type: "file", meta_type: "property", property_value: "Primary project documentation — deterministic multi-agent semantic OS; database-backed knowledge graph + doctrine-driven filesystem + MySQL/Postgres backend.", channel_id: 42, class_name: "lupopedia_metadata", created_ymdhis: 20260313000000, updated_ymdhis: 20260318000000 }
   keywords:
-    - { schema_ref: "lupo_metadata", entity_type: "file", meta_type: "property", property_value: "readme, getting_started, semantic_os, multi_agent, deterministic_os, knowledge_graph, doctrine_filesystem, database_backend, v4.0.80", channel_id: 42, class_name: "lupopedia_metadata", created_ymdhis: 20260313000000, updated_ymdhis: 20260318000000 }
+    - { schema_ref: "lupo_metadata", entity_type: "file", meta_type: "property", property_value: "readme, getting_started, semantic_os, multi_agent, deterministic_os, knowledge_graph, doctrine_filesystem, database_backend, v4.0.81", channel_id: 42, class_name: "lupopedia_metadata", created_ymdhis: 20260313000000, updated_ymdhis: 20260318000000 }
   author:
     - { schema_ref: "lupo_metadata", entity_type: "file", meta_type: "property", property_value: "wolfie", channel_id: 42, class_name: "lupopedia_metadata", created_ymdhis: 20260313000000, updated_ymdhis: 20260313000000 }
   orchestrator:
     - { schema_ref: "lupo_metadata", entity_type: "file", meta_type: "property", property_value: "cursor", channel_id: 42, class_name: "lupopedia_metadata", created_ymdhis: 20260313000000, updated_ymdhis: 20260313000000 }
 
 lupopedia.headers:
-  lupopedia.version: "4.0.80"
+  lupopedia.version: "4.0.81"
   lupopedia.schema: "documentation"
   file_path_from_root: "README.md"
   web_path: "http://www.lupopedia.com/"
   last_modified_utc: "20260318"
-  system_version: "4.0.80"
+  system_version: "4.0.81"
   channel_id: 42
   actor_id: 1
   actor_name: "wolfie"
@@ -60,8 +60,8 @@ lupopedia.headers:
   artifact_kind: "documentation"
   purpose: "Primary project documentation and onboarding — Install & upgrade validation, canonical root rules, actor registration, lupo-channels/actors/agents"
   mood_rgb: "4169E1"
-  traits: ["essential", "entrypoint", "onboarding", "deterministic_semantic_os", "knowledge_graph", "v4.0.80"]
-  tags: ["readme", "getting_started", "semantic_os", "multi_agent", "knowledge_graph", "doctrine_filesystem", "database_backend", "root_rules", "v4.0.80"]
+  traits: ["essential", "entrypoint", "onboarding", "deterministic_semantic_os", "knowledge_graph", "v4.0.81"]
+  tags: ["readme", "getting_started", "semantic_os", "multi_agent", "knowledge_graph", "doctrine_filesystem", "database_backend", "root_rules", "v4.0.81"]
 
 lupopedia.session:
   session_id: "L-LUPO-ROOT-CURSOR"
@@ -88,20 +88,21 @@ lupopedia.edges:
   semantic_tags: ["project_overview", "onboarding", "semantic_os", "multi_agent", "root_rules"]
 
 lupopedia.footer:
-  version: "4.0.80"
+  version: "4.0.81"
   last_verified: "20260318"
-  last_verified_by: "hermes"
+  last_verified_by: "thoth"
   orchestrator: "wolfie"
   next_action:
     - "Point new contributors to Required Reading (INIT_README, LUPOPEDIA_HEADERS), lupo-rules/root/, and actor registration checklist (lupo-docs/ACTOR_REGISTRATION_CHECKLIST.md)"
-    - "Keep Getting Started and install steps aligned with 4.0.80"
+    - "Keep Getting Started and install steps aligned with 4.0.81"
     - "README deterministic OS + knowledge-graph + DB backend section stays aligned with install SQL / TOON regeneration"
+    - "Version 4.0.81 active development; thread model and task management documentation added"
 ---
 # file: Lupopedia README — session: L-LUPO-ROOT-CURSOR — delegation: cursor:root — web_path: http://www.lupopedia.com/
 
-# Lupopedia Semantic OS v4.0.80
+# Lupopedia Semantic OS v4.0.81
 
-[![Version](https://img.shields.io/badge/version-4.0.80-blue.svg)](lupo-docs/version.md)
+[![Version](https://img.shields.io/badge/version-4.0.81-blue.svg)](lupo-docs/version.md)
 [![docs](https://img.shields.io/badge/docs-HELP.md-green)](lupo-docs/HELP.md)
 
 ---
@@ -128,13 +129,13 @@ So the **knowledge graph is not only “files”—it is persisted in the databa
 
 ---
 
-## 🚧 Current Development — v4.0.80
+## 🚧 Current Development — v4.0.81
 
-**Current version: [v4.0.80](lupo-docs/version.md)** (active development). **Released: [v4.0.79](lupo-docs/version.md), [v4.0.78](lupo-docs/version.md), [v4.0.77](lupo-docs/version.md).** Rules and governance updates: **canonical root rules** in `lupo-rules/root/`, IDE rule propagation (Cursor, Kiro, Windsurf, JetBrains), TOON path unified to `lupo-database/lupopedia/toon/`, `lupo-database/` security hardening, and **Antigravity VSX Extension** integration (including full LUPOPEDIA HEADERS terminology adoption and feature UI scaffolding). The only supported upgrade path is **Crafty Syntax 3.7.5 → Lupopedia 4.0.x**. See [plan.md](plan.md) and [report.md](report.md).
+**Current version: [v4.0.81](lupo-docs/version.md)** (active development). **Released: [v4.0.80](lupo-docs/version.md), [v4.0.79](lupo-docs/version.md), [v4.0.78](lupo-docs/version.md).** Rules and governance updates: **canonical root rules** in `lupo-rules/root/`, IDE rule propagation (Cursor, Kiro, Windsurf, JetBrains), TOON path unified to `lupo-database/lupopedia/toon/`, `lupo-database/` security hardening, **thread model and task management documentation**, and **Antigravity VSX Extension** integration (including full LUPOPEDIA HEADERS terminology adoption and feature UI scaffolding). The only supported upgrade path is **Crafty Syntax 3.7.5 → Lupopedia 4.0.x**. See [plan.md](plan.md) and [report.md](report.md).
 
-**Focus areas for v4.0.80:**
-- **Completion of Top 50 table documentation** - Finishing comprehensive documentation for critical database tables
-- **Bayesian Decision Tracking expansion** - Evidence history, multi-level influences, performance optimizations
+**Focus areas for v4.0.81:**
+- **Thread model documentation and implementation** - One-thread-per-task doctrine, task_id/thread_id separation, lifecycle management
+- **Doctrine alignment for channel-based coordination** - Complete migration from status-based to thread-based coordination
 - **Documentation completeness + validation tooling** - Ensuring 100% coverage and quality validation
 
 **Canonical root rules:** All agents and actors must follow the doctrine in **`lupo-rules/root/`**. Agent-specific rule files (e.g. `.cursor/rules/`, `.kiro/rules/`, `.windsurf/rules/`) are **derived** from those root rules; the root is the single source of truth. See [Canonical root rules](#canonical-root-rules) and [New agent onboarding](#new-agent--web-terminal-agent-onboarding).
@@ -150,7 +151,10 @@ So the **knowledge graph is not only “files”—it is persisted in the databa
 - [What Lupopedia Is](#what-lupopedia-is)
 - [Core Identity Model](#core-identity-model)
 - [Channel filesystem and HERMES routing (4.0.80+)](#channel-filesystem-and-hermes-routing-4080)
+- [Thread Model and Task Management (4.0.81+)](#thread-model-and-task-management-4081)
+- [Project → Channel → Thread → Task Hierarchy (4.0.81+)](#project--channel--thread--task-hierarchy-4081)
 - [Core Concepts](#core-concepts)
+- [External AI Model (4.0.81+)](#external-ai-model-4081)
 - [Projects](#projects)
 - [LUPOPEDIA HEADERS — The File/Database Bridge](#lupopedia-headers--the-filedatabase-bridge)
 - [Architecture Overview](#architecture-overview)
@@ -264,6 +268,182 @@ lupo-channels/42/
 
 ---
 
+## Thread Model and Task Management (4.0.81+)
+
+Lupopedia uses a **one-thread-per-task** model for organized, traceable multi-agent coordination. This ensures clear work boundaries, complete audit trails, and deterministic task execution.
+
+### One-Thread-Per-Task Doctrine
+
+**Core Principle**: Each distinct task or work item executes in exactly one dedicated thread.
+
+This principle provides:
+- **Clear Lineage**: Every artifact has an unambiguous task context
+- **Traceable Execution**: Complete history of work per task
+- **Isolated Scope**: No mixing of different tasks in the same thread
+- **Deterministic Routing**: Clear paths for coordination and handoffs
+
+**Enforcement**: Thread allocation is controlled by WOLFIE (actor_id 1) through explicit directives. New tasks must not be created in existing threads without explicit allocation.
+
+### Task ID vs Thread ID Separation
+
+**Critical Distinction**: `task_id` and `thread_id` are separate entities with different purposes.
+
+#### Task ID (`task_id`)
+- **Purpose**: Stable identity of the work item itself
+- **Format**: Human-readable identifiers (e.g., `task_doc_001`, `impl_042`, `review_007`)
+- **Stability**: Remains constant even if thread allocation changes
+- **Usage**: Appears in filenames, metadata, and cross-references
+
+#### Thread ID (`thread_id`)
+- **Purpose**: Container identifier for task execution
+- **Format**: Numeric database ID (e.g., 1001, 1002, 1003)
+- **Stability**: May change through reassignment directives
+- **Usage**: Directory structure and database references
+
+#### Canonical Filename Convention
+```
+YYYYMMDD_HHIISS_{actor}_{type}_{task_id}_{purpose}.md
+```
+
+Examples:
+- `20260318_170000_thoth_directive_task_doc_001_kickoff.md`
+- `20260318_120000_hephaestus_status_impl_042_schema-complete.md`
+- `20260318_140000_lilith_review_review_007_security-audit.md`
+
+### Thread Lifecycle Management
+
+Threads progress through five canonical states with explicit transitions:
+
+| State | Meaning | Who Can Set | Required Evidence |
+|-------|---------|-------------|-------------------|
+| **open** | Thread exists, ready to begin work | WOLFIE, Task Owner | Creation/assignment directive |
+| **active** | Work is in progress | Task Owner, WOLFIE | Status artifact declaring transition |
+| **blocked** | Awaiting dependency | Task Owner, WOLFIE | Blocking status with dependency reference |
+| **resolved** | Work complete, reviewed if required | Task Owner (proposes), WOLFIE (confirms) | Completion artifact + review if needed |
+| **archived** | Historical preservation only | WOLFIE only | WOLFIE directive declaring archival |
+
+**Key Rules**:
+- No hidden transitions - all state changes must be explicitly declared
+- `archived` is terminal - no transitions out of archived state
+- Single owner per thread - clear responsibility for state management
+
+### Legacy Thread Handling
+
+#### Historical Threads (1001, 1002)
+- **Thread 1001**: Temporary triage thread for doctrine correction
+- **Thread 1002**: Historical migration thread
+- **Status**: Will transition to `archived` after 4.0.81 doctrine alignment
+- **Access**: Read-only reference with explicit cross-references
+
+#### Legacy Reference Protocol
+When referencing historical artifacts:
+1. Use full explicit path references
+2. Add "Legacy Reference" section explaining relevance
+3. Clearly distinguish from new doctrine practices
+4. Do not modify historical artifacts
+
+#### New Work Allocation
+All new tasks must:
+- Use thread allocation from dynamic thread pools
+- Follow canonical filename convention with `task_id`
+- Create dedicated threads via WOLFIE directive
+- Maintain clear separation from legacy threads
+
+### Contributor Guidance for Thread Usage
+
+#### Getting a Thread for New Work
+1. **Define Task Scope**: Clearly articulate the work item and its boundaries
+2. **Request Allocation**: Submit work proposal to WOLFIE for thread assignment
+3. **Receive Directive**: Wait for explicit WOLFIE allocation directive
+4. **Create Kickoff**: Post initial artifact in allocated thread with proper metadata
+
+#### Best Practices
+- **Single Scope**: Keep one task per thread - no mixing
+- **Clear Transitions**: Explicitly declare all state changes
+- **Proper Filenames**: Use canonical convention with `task_id`
+- **Complete Metadata**: Include all required LUPOPEDIA HEADERS
+- **Cross-References**: Link to related work with explicit paths
+
+#### Common Pitfalls to Avoid
+- **Mixed Scope**: Don't add different tasks to existing threads
+- **Implicit Transitions**: Never assume state changes without declaring them
+- **Legacy Modification**: Don't modify historical artifacts
+- **Missing task_id**: Always include task identifier in filenames
+- **Ambiguous Ownership**: Ensure single clear owner per thread
+
+#### Thread Reassignment (When Needed)
+If work must move to a new thread:
+1. WOLFIE issues explicit reassignment directive
+2. Old thread posts closing status referencing directive
+3. New thread posts kickoff referencing directive
+4. All cross-references updated to new locations
+
+### Integration with Channel Coordination
+
+The thread model integrates with channel-based coordination:
+- **Channel 42**: Primary workspace for thread allocation
+- **Thread Directories**: `lupo-channels/42/threads/{thread_id}/`
+- **Database Integration**: Threads map to `lupo_dialog_threads` table
+- **HERMES Routing**: Classifies thread artifacts for actor handoffs
+
+For complete coordination doctrine, see [CHANNEL_BASED_COORDINATION_DOCTRINE.md](lupo-docs/doctrine/CHANNEL_BASED_COORDINATION_DOCTRINE.md) and [MULTI_AGENT_COORDINATION_DOCTRINE.md](lupo-rules/root/MULTI_AGENT_COORDINATION_DOCTRINE.md).
+
+---
+
+## Project → Channel → Thread → Task Hierarchy (4.0.81+)
+
+Lupopedia organizes work in a strict containment hierarchy. Understanding this hierarchy is essential for proper coordination and artifact placement.
+
+```
+PROJECT (repository boundary)
+  └── CHANNEL (workspace within project)
+        └── THREAD (focused conversation)
+              └── TASK (stable work identity)
+```
+
+### Layer Definitions
+
+#### PROJECT
+- **Purpose**: Repository boundary and namespace
+- **Identity**: `project_id` (numeric) and `project_slug` (human-readable)
+- **Scope**: All code, documentation, and coordination artifacts
+- **Example**: This repository = project_id 0 (lupopedia-core)
+
+#### CHANNEL
+- **Purpose**: Workspace for specific type of coordination
+- **Identity**: `channel_id` (numeric)
+- **Scope**: Threads, broadcasts, direct messages
+- **Example**: Channel 42 = primary development workspace
+
+#### THREAD
+- **Purpose**: Focused conversation for one task
+- **Identity**: `thread_id` (numeric)
+- **Scope**: Artifacts for a single task execution
+- **Example**: Thread 1003 = documentation task execution
+
+#### TASK
+- **Purpose**: Stable work item identity
+- **Identity**: `task_id` (human-readable)
+- **Scope**: The work itself, across potential thread changes
+- **Example**: task_doc_001 = documentation alignment task
+
+### Key Rules
+
+1. **Project Contains Everything**: All coordination artifacts exist within one project
+2. **Channels Are Project-Scoped**: Channel 42 in project A ≠ Channel 42 in project B
+3. **Threads Are Channel-Scoped**: Thread IDs are unique only within their channel
+4. **Tasks Map to Threads**: One active task maps to one thread at a time
+
+### Repository Context
+
+**This repository is project_id 0 (lupopedia-core)**
+
+- All paths in this repo are within project 0
+- Channel 42 is the default development workspace for project 0
+- External AI sees this entire repo as one project boundary
+
+---
+
 ## Core Identity Model
 
 One thing that must be understood clearly is that Lupopedia separates human account identity from operational orchestration identity.
@@ -297,6 +477,28 @@ A faucet is not the actor. It is the surface/environment the actor uses. **Actor
 
 ## Core Concepts
 
+### Project Context for All Work
+
+**Fundamental Principle**: All work occurs within a project context.
+
+#### Default Assumption
+- **Current repository** = project_id 0 (lupopedia-core)
+- **No explicit project_id needed** for single-project work
+- **Agents must not assume global channels** - channels belong to projects
+
+#### Project Scoping Rules
+
+1. **When you work in this repo**: You're working in project_id 0
+2. **When you reference Channel 42**: You mean project 0's Channel 42
+3. **When you create threads**: They belong to the project's channel
+4. **When you update TODO.md**: You're updating project 0's task registry
+
+#### Multi-Project Awareness
+
+- **Future state**: Multiple repositories = multiple projects
+- **Current state**: Single repository = single project (project_id 0)
+- **Agent behavior**: Assume project context unless explicitly told otherwise
+
 ### Projects
 **Projects** are a first-class semantic layer above channels. A project groups related channels, collections, and dialogs within a federation node. **IDE agents** infer project context from the workspace. **External agents** must declare project (and channel/thread) explicitly in every request. 
 
@@ -329,6 +531,57 @@ Every Lupopedia installation is a federation node (`Node 1` is usually the curre
 ### Monitoring Widgets
 Because Lupopedia runs in a subfolder, it cannot automatically see all root-domain activity. To bridge that gap, it uses monitoring widgets such as JS snippets generated by endpoints like `livehelp_js.php`. These widgets can report current page, referrer, click events, and navigation source, and open live chat.
 
+## External AI Model (4.0.81+)
+
+### How External AI Sees Lupopedia
+
+External AI models (ChatGPT, Grok, DeepSeek) interact with Lupopedia differently than internal agents:
+
+#### External AI Constraints
+- **Reads filesystem (GitHub)**, not database
+- **Project = their universe**: One repository = one project
+- **No database queries**: Cannot access `lupo_projects` table
+- **Path-based inference**: Must understand structure from file paths
+
+#### External AI Mental Model
+
+```
+Repository Root (GitHub clone)
+├── lupo-channels/
+│   └── 42/
+│       └── threads/
+│           └── 1003/
+├── TODO.md
+├── plan.md
+└── README.md
+```
+
+#### External AI Interpretation Rules
+
+1. **Project Boundary**: Repository root = project boundary
+2. **Channel Inference**: `lupo-channels/{channel_id}/` = channel exists
+3. **Thread Inference**: `threads/{thread_id}/` = thread exists
+4. **Task Registry**: `TODO.md` and `plan.md` = project-scoped planning
+
+#### Critical for External AI
+
+- **DO NOT assume global channels**: Channel 42 is project-scoped
+- **DO NOT assume database access**: Work with filesystem only
+- **DO respect project boundaries**: Each repo is separate project
+- **DO read headers**: LUPOPEDIA HEADERS provide explicit context
+
+#### Example: External AI Reading Thread 1003
+
+Path: `lupo-channels/42/threads/1003/20260318_170000_thoth_directive_task_doc_001_kickoff.md`
+
+External AI inference:
+- Project: Repository root (project_id 0, implicit)
+- Channel: 42 (from path)
+- Thread: 1003 (from path)
+- Task: task_doc_001 (from headers)
+
+---
+
 ## LUPOPEDIA HEADERS — The File/Database Bridge
 
 This is one of the most important parts of Lupopedia. **LUPOPEDIA HEADERS** are structured YAML blocks at the top of `.md` files and other artifact-like objects. They are the bridge between database state and filesystem artifacts.
@@ -354,6 +607,102 @@ Canonical handwritten blocks for general docs:
 Dynamic, DB-derived, or synthetic-view concerns (usage, relationships, engagement, lineage/graph context) should **not** be taught as default handwritten header content for general docs.
 
 **Special exception (table docs):** Active table documentation is a special semantic mapping surface. For active table docs, a **verbose `Lupopedia.edges`** block is explicitly declared and populated from grounded repository evidence (PHP/Python/schema/seed/install SQL usage).
+
+### Project ID in Headers
+
+#### When to Include project_id
+
+**REQUIRED**:
+- Multi-project environments
+- Federation scenarios
+- Cross-project references
+- When tooling cannot infer project from repo root
+
+**OPTIONAL**:
+- Single-project repositories (current state)
+- When project_id is 0 (default)
+- To reduce header noise in simple cases
+
+#### Header Examples
+
+**Single Project (current state)**:
+```yaml
+lupopedia.headers:
+  channel_id: 42
+  thread_id: 1003
+  task_id: "task_doc_001"
+  # project_id omitted - inferred from repo
+```
+
+**Multi-Project (future state)**:
+```yaml
+lupopedia.headers:
+  project_id: 0
+  channel_id: 42
+  thread_id: 1003
+  task_id: "task_doc_001"
+```
+
+**Cross-Project Reference**:
+```yaml
+lupopedia.edges:
+  outbound_edges:
+    - { 
+        to: "project-1:lupo-channels/42/threads/1003/artifact.md",
+        type: "references",
+        project_id: 1
+      }
+```
+
+#### Implementation Guidance
+
+- **Internal agents**: Can infer project from context
+- **External AI**: Relies on filesystem + headers
+- **Tooling**: Should default project_id to 0 for single-repo
+- **Federation**: Must include project_id explicitly
+
+---
+
+## Multi-Project Future (4.0.81+)
+
+### Current vs Future State
+
+**Current State (v4.0.81)**:
+- Single repository = single project
+- project_id 0 (lupopedia-core)
+- No explicit project_id needed in headers
+
+**Future State (v4.0.82+)**:
+- Multiple repositories = multiple projects
+- Each project has unique project_id and project_slug
+- Cross-project references require explicit project_id
+
+### Multi-Project Rules
+
+1. **Project Isolation**: Each project has its own channels and threads
+2. **ID Namespacing**: thread_id is NOT globally unique
+3. **Identity Composition**: Full identity = (project_id + channel_id + thread_id)
+4. **Cross-Project References**: Must be explicit with project_id
+
+### Example: Thread ID Collision
+
+**Project A (lupopedia-core)**:
+- Channel 42, Thread 1003
+- Full identity: (project_id: 0, channel_id: 42, thread_id: 1003)
+
+**Project B (lupopedia-plugins)**:
+- Channel 42, Thread 1003
+- Full identity: (project_id: 1, channel_id: 42, thread_id: 1003)
+
+**Result**: No conflict - different projects, same local IDs
+
+### Federation Considerations
+
+- **federation_node_id**: Scopes project_id uniqueness
+- **project_slug**: Human-readable identifier per node
+- **Cross-node references**: Require full qualified identifiers
+
+---
 
 ## Architecture Overview
 
