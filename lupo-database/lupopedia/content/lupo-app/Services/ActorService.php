@@ -512,6 +512,19 @@ class ActorService
         if ($authUserId <= 0 || $email === '') {
             return false;
         }
+
+        // SYSTEM_LIMITS enforcement: actor registry hard cap (>= 999 blocks new actor creation)
+        try {
+            $totalActors = (int) $this->db->fetchOne(
+                "SELECT COUNT(*) FROM {$this->prefix}actors WHERE (is_deleted = 0 OR is_deleted IS NULL)"
+            );
+            if ($totalActors >= 999) {
+                return false;
+            }
+        } catch (\Exception $e) {
+            // Fail open: if the count query fails, don't block logins for unrelated reasons.
+        }
+
         $now = class_exists('\timestamp_ymdhis') ? \timestamp_ymdhis::now() : (int) gmdate('YmdHis');
         $emailNormalized = strtolower(trim($email));
         $slug = str_replace('@', '-at-', $emailNormalized);

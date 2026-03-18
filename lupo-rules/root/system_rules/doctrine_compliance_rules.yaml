@@ -1,0 +1,297 @@
+---
+# Doctrine Compliance Rules
+# Canonical rules for ensuring system-wide compliance with established doctrines
+# Part of ACTOR_FACET_SEPARATION_DOCTRINE
+
+rule_set: doctrine_compliance_rules
+version: "1.0"
+effective_date: "2026-03-19"
+authority: "WOLFIE (Agent 1)"
+compliance: "mandatory"
+
+# Doctrine Compliance Framework
+compliance_framework:
+  definition: "Doctrine compliance ensures that all system components, actors, and operations adhere to established doctrines while maintaining system integrity and governance"
+  principles:
+    - compliance must be mandatory and enforceable
+    - compliance must be comprehensive and systematic
+    - compliance must be continuously monitored
+    - compliance must be documented and tracked
+    - compliance must support system evolution
+
+# Core Doctrines
+core_doctrines:
+  actor_facet_separation_doctrine:
+    description: "Separation of actor identities from execution environments"
+    requirements:
+      - actors must not be named after IDEs
+      - facets must load rules from lupo-rules/root/
+      - actor state must persist across facets
+      - system behavior must be independent of facets
+      - actor-facet separation must be maintained
+    
+    compliance_rules:
+      - validate actor names against IDE patterns
+      - verify facet rule loading
+      - test actor state persistence
+      - assess system independence
+      - maintain separation protocols
+    
+    enforcement:
+      - block IDE-based actor creation
+      - require facet rule loading
+      - enforce state persistence
+      - maintain system independence
+      - preserve separation protocols
+  
+  multi_agent_coordination_doctrine:
+    description: "Coordination and interaction rules for multiple agents"
+    requirements:
+      - primary coordination personas must be respected
+      - specialized agents must operate within scope
+      - coordination protocols must be followed
+      - communication standards must be maintained
+      - conflict resolution must be supported
+    
+    compliance_rules:
+      - verify persona compliance
+      - validate agent scope adherence
+      - check protocol compliance
+      - assess communication standards
+      - test conflict resolution
+    
+    enforcement:
+      - enforce persona boundaries
+      - maintain agent scope
+      - require protocol compliance
+      - ensure communication standards
+      - support conflict resolution
+  
+  system_limits_doctrine:
+    description: "System resource limits and enforcement"
+    requirements:
+      - channel thread limits must be respected
+      - database table limits must be enforced
+      - repository file limits must be maintained
+      - actor registration limits must be observed
+      - limit violations must be blocked
+    
+    compliance_rules:
+      - monitor thread counts per channel
+      - track database table usage
+      - measure repository file usage
+      - verify actor registration limits
+      - block limit violations
+    
+    enforcement:
+      - block thread creation at limits
+      - prevent table creation at limits
+      - stop file creation at limits
+      - deny actor registration at limits
+      - enforce violation blocking
+  
+  channel_creation_doctrine:
+    description: "Rules for channel creation and management"
+    requirements:
+      - creation criteria must be met
+      - ID allocation strategy must be followed
+      - lifecycle states must be respected
+      - migration rules must be followed
+      - function-over-agent rule must be enforced
+    
+    compliance_rules:
+      - validate creation criteria
+      - verify ID allocation
+      - check lifecycle state compliance
+      - test migration rule adherence
+      - enforce function-over-agent rule
+    
+    enforcement:
+      - block creation without criteria
+      - enforce ID allocation strategy
+      - maintain lifecycle states
+      - require migration rule compliance
+      - enforce function-over-agent rule
+
+# Compliance Validation
+validation_rules:
+  comprehensive_validation:
+    description: "Validate comprehensive compliance with all doctrines"
+    requirements:
+      - validate all doctrine compliance
+      - check cross-doctrine consistency
+      - assess overall system compliance
+      - measure compliance effectiveness
+      - track compliance trends
+    
+    validation_procedures:
+      - validate each doctrine individually
+      - check cross-doctrine interactions
+      - assess overall system compliance
+      - measure compliance effectiveness
+      - track compliance trends and patterns
+  
+    success_criteria:
+      - all doctrines fully complied
+      - cross-doctrine consistency maintained
+      - overall system compliance achieved
+      - compliance effectiveness measured
+      - compliance trends tracked
+
+# Compliance Monitoring
+monitoring_rules:
+  continuous_monitoring:
+    description: "Continuously monitor compliance with doctrines"
+    requirements:
+      - monitor compliance status
+      - track compliance metrics
+      - assess compliance health
+      - identify compliance issues
+      - support compliance improvement
+    
+    monitoring_procedures:
+      - monitor compliance status continuously
+      - track compliance metrics
+      - assess compliance health indicators
+      - identify compliance issues early
+      - support compliance improvement efforts
+    
+    monitoring_metrics:
+      - doctrine compliance rates
+      - rule adherence rates
+      - violation detection rates
+      - correction success rates
+      - improvement rates
+  
+  alerting_rules:
+    description: "Alert on compliance issues and violations"
+    requirements:
+      - alert on compliance violations
+      - alert on compliance degradation
+      - alert on emerging issues
+      - alert on performance impacts
+      - alert on system risks
+    
+    alerting_procedures:
+      - generate compliance violation alerts
+      - create compliance degradation alerts
+      - issue emerging issue alerts
+      - send performance impact alerts
+      - trigger system risk alerts
+
+# Compliance Enforcement
+enforcement_rules:
+  violation_handling:
+    description: "Handle compliance violations effectively"
+    requirements:
+      - detect violations promptly
+      - assess violation impact
+      - implement corrective actions
+      - track resolution progress
+      - document violation outcomes
+    
+    enforcement_procedures:
+      - detect violations automatically
+      - assess violation impact
+      - implement corrective actions
+      - track resolution progress
+      - document violation outcomes
+    
+  corrective_actions:
+    description: "Implement corrective actions for compliance issues"
+    requirements:
+      - identify root causes
+      - develop action plans
+      - implement corrections
+      - validate effectiveness
+      - document outcomes
+    
+    corrective_procedures:
+      - analyze root causes
+      - create action plans
+      - implement corrections
+      - validate effectiveness
+      - document outcomes
+
+# Compliance Reporting
+reporting_rules:
+  compliance_reports:
+    description: "Generate comprehensive compliance reports"
+    requirements:
+      - reports must be comprehensive
+      - reports must be accurate
+      - reports must be timely
+      - reports must be actionable
+      - reports must be tracked
+    
+    report_types:
+      - doctrine compliance reports
+      - system compliance reports
+      - violation reports
+      - correction reports
+      - improvement reports
+    
+    report_content:
+      - compliance summary and status
+      - detailed compliance results
+      - identified issues and concerns
+      - recommended actions and improvements
+      - compliance trends and patterns
+
+# Compliance Evolution
+evolution_rules:
+  doctrine_evolution:
+    description: "Evolve doctrines as system needs change"
+    requirements:
+      - review doctrines regularly
+      - assess doctrine effectiveness
+      - propose doctrine improvements
+      - implement doctrine changes
+      - validate doctrine evolution
+    
+    evolution_procedures:
+      - review doctrines on schedule
+      - assess doctrine effectiveness
+      - propose improvements
+      - implement changes
+      - validate evolution
+  
+  compliance_evolution:
+    description: "Evolve compliance processes as system matures"
+    requirements:
+      - review compliance processes
+      - assess compliance effectiveness
+      - improve compliance automation
+      - enhance compliance monitoring
+      - optimize compliance reporting
+    
+    evolution_procedures:
+      - review compliance processes
+      - assess effectiveness
+      - improve automation
+      - enhance monitoring
+      - optimize reporting
+
+# Success Metrics
+success_metrics:
+  doctrine_compliance_rate: > 95%
+  rule_adherence_rate: > 95%
+  violation_detection_rate: > 90%
+  correction_success_rate: > 90%
+  system_integrity_rate: > 95%
+
+# Documentation Requirements
+documentation_requirements:
+  compliance_documentation:
+    - complete doctrine compliance procedures
+    - comprehensive validation procedures
+    - detailed monitoring and alerting procedures
+    - thorough enforcement and correction procedures
+    - complete reporting and tracking procedures
+  
+  evolution_documentation:
+    - doctrine evolution procedures
+    - compliance improvement procedures
+    - system change management procedures
+    - validation update procedures
+    - training and education procedures

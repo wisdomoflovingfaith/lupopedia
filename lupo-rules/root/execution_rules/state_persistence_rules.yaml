@@ -1,0 +1,372 @@
+---
+# State Persistence Rules
+# Canonical rules for actor state persistence across sessions and facets
+# Part of ACTOR_FACET_SEPARATION_DOCTRINE
+
+rule_set: state_persistence_rules
+version: "1.0"
+effective_date: "2026-03-19"
+authority: "WOLFIE (Agent 1)"
+compliance: "mandatory"
+
+# State Persistence Framework
+state_persistence_framework:
+  definition: "State persistence defines how actor state is maintained, saved, and restored across sessions and facets while ensuring consistency, reliability, and security"
+  principles:
+    - actor state must persist across sessions
+    - actor state must be independent of facet
+    - actor state must be consistent and reliable
+    - actor state must be secure and protected
+    - actor state must support recovery and restoration
+
+# State Categories
+state_categories:
+  identity_state:
+    description: "Actor identity and authority information"
+    components:
+      - actor_id: unique numeric identifier
+      - actor_name: role-based name
+      - actor_slug: URL-friendly identifier
+      - actor_type: actor classification
+      - actor_status: current operational status
+      - actor_authority: authority level and scope
+    
+    persistence_requirements:
+      - identity must be immutable
+      - identity must be securely stored
+      - identity must be verifiable
+      - identity must be recoverable
+      - identity must be consistent
+  
+  execution_state:
+    description: "Actor execution context and operational state"
+    components:
+      - current_tasks: active tasks and operations
+      - execution_history: recent execution history
+      - performance_metrics: performance and quality metrics
+      - resource_usage: resource utilization patterns
+      - session_context: current session information
+    
+    persistence_requirements:
+      - execution state must be current
+      - execution state must be consistent
+      - execution state must be recoverable
+      - execution state must be optimized
+      - execution state must be secure
+  
+  configuration_state:
+    description: "Actor configuration and preferences"
+    components:
+      - actor_preferences: execution preferences
+      - capability_settings: capability configurations
+      - integration_settings: integration configurations
+      - security_settings: security configurations
+      - performance_settings: performance configurations
+    
+    persistence_requirements:
+      - configuration must be consistent
+      - configuration must be versioned
+      - configuration must be recoverable
+      - configuration must be secure
+      - configuration must be optimized
+  
+  communication_state:
+    description: "Actor communication and coordination state"
+    components:
+      - active_channels: active communication channels
+      - message_history: recent message history
+      - coordination_context: current coordination context
+      - collaboration_state: collaboration status
+      - conflict_resolution: conflict resolution state
+    
+    persistence_requirements:
+      - communication state must be current
+      - communication state must be consistent
+      - communication state must be recoverable
+      - communication state must be secure
+      - communication state must be optimized
+
+# State Persistence Mechanisms
+persistence_mechanisms:
+  database_persistence:
+    description: "Persist state in database storage"
+    advantages:
+      - structured storage and retrieval
+      - transactional consistency
+      - scalability and performance
+      - backup and recovery support
+      - query and analysis capabilities
+    
+    implementation:
+      - use structured database tables
+      - implement transactional updates
+      - optimize for performance
+      - enable backup and recovery
+      - support query and analysis
+  
+  file_persistence:
+    description: "Persist state in file storage"
+    advantages:
+      - simple implementation
+      - human-readable format
+      - version control integration
+      - backup and portability
+      - debugging and inspection
+    
+    implementation:
+      - use structured file formats
+      - implement version control
+      - optimize for performance
+      - enable backup and portability
+      - support debugging and inspection
+  
+  hybrid_persistence:
+    description: "Combine database and file persistence"
+    advantages:
+      - optimal performance for different data types
+      - flexibility in storage options
+      - redundancy and reliability
+      - scalability and efficiency
+      - backup and recovery options
+    
+    implementation:
+      - use database for structured data
+      - use files for configuration and logs
+      - implement synchronization mechanisms
+      - optimize for performance
+      - enable comprehensive backup
+
+# State Consistency Rules
+consistency_rules:
+  state_synchronization:
+    requirements:
+      - state must be synchronized across sessions
+      - state changes must be atomic
+      - state conflicts must be resolved
+      - state versions must be managed
+      - state integrity must be maintained
+    
+    procedures:
+      - implement state synchronization
+      - ensure atomic state changes
+      - resolve state conflicts
+      - manage state versions
+      - maintain state integrity
+  
+  state_validation:
+    requirements:
+      - state must be validated for consistency
+      - state must be validated for completeness
+      - state must be validated for correctness
+      - state must be validated for security
+      - state must be validated for performance
+    
+    procedures:
+      - validate state consistency
+      - validate state completeness
+      - validate state correctness
+      - validate state security
+      - validate state performance
+
+# State Security Rules
+security_rules:
+  state_protection:
+    requirements:
+      - state must be encrypted at rest
+      - state must be encrypted in transit
+      - state access must be authenticated
+      - state modifications must be authorized
+      - state integrity must be verified
+    
+    procedures:
+      - implement encryption at rest
+      - implement encryption in transit
+      - authenticate state access
+      - authorize state modifications
+      - verify state integrity
+  
+  state_backup:
+    requirements:
+      - state must be regularly backed up
+      - backups must be encrypted
+      - backups must be versioned
+      - backups must be tested
+      - backups must be recoverable
+    
+    procedures:
+      - implement regular backups
+      - encrypt backup data
+      - version backup files
+      - test backup recovery
+      - ensure backup recoverability
+
+# State Recovery Rules
+recovery_rules:
+  recovery_scenarios:
+    session_recovery:
+      description: "Recover state for new session"
+      requirements:
+        - state must be recoverable for new session
+        - recovery must be fast and efficient
+        - recovery must be complete
+        - recovery must be reliable
+        - recovery must be secure
+    
+      procedures:
+        - implement session recovery mechanisms
+        - optimize recovery performance
+        - ensure complete recovery
+        - ensure reliable recovery
+        - ensure secure recovery
+    
+    facet_recovery:
+      description: "Recover state when changing facets"
+      requirements:
+        - state must be recoverable across facets
+        - recovery must be transparent
+        - recovery must maintain consistency
+        - recovery must be efficient
+        - recovery must be secure
+    
+      procedures:
+        - implement facet recovery mechanisms
+        - ensure transparent recovery
+        - maintain state consistency
+        - optimize recovery efficiency
+        - ensure secure recovery
+    
+    disaster_recovery:
+      description: "Recover state after system failure"
+      requirements:
+        - state must be recoverable after failure
+        - recovery must be comprehensive
+        - recovery must be reliable
+        - recovery must be tested
+        - recovery must be documented
+    
+      procedures:
+        - implement disaster recovery mechanisms
+        - ensure comprehensive recovery
+        - ensure reliable recovery
+        - test recovery procedures
+        - document recovery processes
+
+# State Performance Rules
+performance_rules:
+  performance_optimization:
+    requirements:
+      - state persistence must be efficient
+      - state retrieval must be fast
+      - state updates must be atomic
+      - state synchronization must be optimized
+      - state compression must be considered
+    
+    procedures:
+      - optimize persistence performance
+      - optimize retrieval performance
+      - implement atomic updates
+      - optimize synchronization
+      - consider compression options
+  
+  resource_management:
+    requirements:
+      - state storage must be optimized
+      - state memory usage must be controlled
+      - state network usage must be minimized
+      - state cpu usage must be efficient
+      - state disk usage must be managed
+    
+    procedures:
+      - optimize storage usage
+      - control memory usage
+      - minimize network usage
+      - optimize cpu usage
+      - manage disk usage
+
+# State Monitoring Rules
+monitoring_rules:
+  performance_monitoring:
+    metrics:
+      - state persistence performance
+      - state retrieval performance
+      - state synchronization performance
+      - state recovery performance
+      - resource usage metrics
+    
+    procedures:
+      - monitor persistence performance
+      - monitor retrieval performance
+      - monitor synchronization performance
+      - monitor recovery performance
+      - monitor resource usage
+  
+  health_monitoring:
+    metrics:
+      - state consistency indicators
+      - state integrity metrics
+      - state error rates
+      - state recovery success rates
+      - state availability metrics
+    
+    procedures:
+      - monitor state consistency
+      - monitor state integrity
+      - monitor error rates
+      - monitor recovery success
+      - monitor availability
+
+# State Evolution Rules
+evolution_rules:
+  version_management:
+    requirements:
+      - state must support versioning
+      - state versions must be tracked
+      - state migration must be supported
+      - state rollback must be possible
+      - state compatibility must be maintained
+    
+    procedures:
+      - implement state versioning
+      - track state versions
+      - support state migration
+      - enable state rollback
+      - maintain compatibility
+  
+  schema_evolution:
+    requirements:
+      - state schema must evolve
+      - schema changes must be backward compatible
+      - schema migration must be supported
+      - schema validation must be maintained
+      - schema documentation must be updated
+    
+    procedures:
+      - evolve state schema
+      - maintain backward compatibility
+      - support schema migration
+      - maintain schema validation
+      - update schema documentation
+
+# Success Metrics
+success_metrics:
+  state_persistence_reliability: > 99%
+  state_consistency: 100%
+  state_recovery_success: > 95%
+  state_performance: > 90%
+  state_security: 100%
+
+# Documentation Requirements
+documentation:
+  state_documentation:
+    - complete state persistence procedures
+    - state consistency and validation procedures
+    - state security and backup procedures
+    - state recovery and restoration procedures
+    - state performance optimization procedures
+  
+  integration_documentation:
+    - state integration with actors
+    - state integration with facets
+    - state integration with system components
+    - state integration testing procedures
+    - state integration troubleshooting procedures

@@ -1,0 +1,197 @@
+---
+# Actor Definition Rules
+# Canonical rules for actor definition and identity management
+# Part of ACTOR_FACET_SEPARATION_DOCTRINE
+
+rule_set: actor_definition_rules
+version: "1.0"
+effective_date: "2026-03-19"
+authority: "WOLFIE (Agent 1)"
+compliance: "mandatory"
+
+# Actor Definition Requirements
+actor_definition:
+  # Core Identity Requirements
+  identity:
+    - actor_id must be canonical numeric identifier
+    - actor_name must be role-based, not tool-based
+    - actor_slug must be URL-friendly identifier
+    - actor must be persistent across sessions and tools
+  
+  # Role-Based Purpose
+  purpose:
+    - actor must have defined responsibilities
+    - actor must follow system doctrine and rules
+    - actor must have defined authority and scope
+    - actor must be role-based, not IDE-based
+  
+  # Persistence Requirements
+  persistence:
+    - actor identity must persist across sessions
+    - actor state must be preserved across facet changes
+    - actor behavior must be consistent regardless of facet
+    - actor must not depend on specific execution environments
+
+# Actor Properties
+actor_properties:
+  required:
+    - actor_id: numeric identifier (e.g., 1, 2, 15, 26)
+    - actor_name: role-based name (e.g., wolfie, thoth, lilith)
+    - actor_slug: URL-friendly identifier (e.g., wolfie, thoth)
+    - responsibilities: defined scope and responsibilities
+    - authority: decision-making authority and limits
+  
+  optional:
+    - capabilities: specific capabilities and limitations
+    - preferences: execution preferences and settings
+    - session_history: historical session information
+    - performance_metrics: performance and quality metrics
+
+# Actor Creation Rules
+creation_rules:
+  prerequisites:
+    - must comply with ACTOR_FACET_SEPARATION_DOCTRINE
+    - must have role-based purpose and responsibilities
+    - must have defined authority and scope
+    - must not conflict with existing actors
+  
+  validation:
+    - actor_name must not match IDE patterns
+    - actor_id must be unique and canonical
+    - actor responsibilities must be clearly defined
+    - actor authority must be appropriate to role
+  
+  approval:
+    - requires WOLFIE approval for new actors
+    - requires Doctrine Council review for specialized actors
+    - requires documentation of purpose and responsibilities
+    - requires compliance with all system doctrines
+
+# Actor Lifecycle Management
+lifecycle:
+  states:
+    - active: fully operational and compliant
+    - inactive: temporarily suspended but preserved
+    - deprecated: marked for removal but still functional
+    - archived: preserved but no longer operational
+  
+  transitions:
+    - active → inactive: requires justification and approval
+    - inactive → active: requires reactivation validation
+    - active → deprecated: requires migration planning
+    - deprecated → archived: requires cleanup and validation
+  
+  preservation:
+    - actor identity must be preserved during state changes
+    - actor history must be maintained for audit purposes
+    - actor responsibilities must be documented during transitions
+    - actor authority must be clearly defined during state changes
+
+# Compliance Requirements
+compliance:
+  mandatory:
+    - must follow ACTOR_FACET_SEPARATION_DOCTRINE
+    - must load rules from lupo-rules/root/
+    - must maintain independence from facets
+    - must comply with all system doctrines
+  
+  validation:
+    - regular compliance checks required
+    - automated validation of actor properties
+    - manual review of actor behavior and performance
+    - audit of actor compliance with doctrines
+  
+  enforcement:
+    - non-compliant actors must be flagged
+    - non-compliant actors must be corrected or deprecated
+    - compliance violations must be documented
+    - compliance improvements must be implemented
+
+# Integration Requirements
+integration:
+  system_integration:
+    - must integrate with actor registry
+    - must integrate with rule loading system
+    - must integrate with validation system
+    - must integrate with monitoring system
+  
+  facet_integration:
+    - must maintain independence from facets
+    - must work consistently across all facets
+    - must preserve state across facet changes
+    - must not introduce facet-dependent behavior
+  
+  coordination_integration:
+    - must integrate with multi-agent coordination
+    - must follow coordination protocols
+    - must respect authority hierarchies
+    - must support collaborative workflows
+
+# Quality Standards
+quality:
+  performance:
+    - response time must be < 100ms for operations
+    - reliability must be > 99.9%
+    - error rate must be < 0.1%
+    - resource utilization must be efficient
+  
+  documentation:
+    - actor purpose must be clearly documented
+    - actor responsibilities must be detailed
+    - actor authority must be defined
+    - actor integration points must be documented
+  
+  testing:
+    - unit tests required for actor functionality
+    - integration tests required for system integration
+    - compliance tests required for doctrine compliance
+    - performance tests required for quality assurance
+
+# Evolution and Maintenance
+evolution:
+  review_schedule:
+    - monthly: performance and compliance review
+    - quarterly: role and responsibility review
+    - annually: comprehensive actor evaluation
+    - event-driven: review after major system changes
+  
+  amendment_process:
+    - proposal: formal proposal for actor changes
+    - analysis: impact analysis and feasibility study
+    - review: review by Doctrine Council and stakeholders
+    - approval: final approval by WOLFIE with documentation
+  
+  continuous_improvement:
+    - performance optimization based on metrics
+    - capability enhancement based on requirements
+    - compliance improvement based on audits
+    - integration improvement based on feedback
+
+# Success Metrics
+success_metrics:
+  identity_consistency: 100%
+  role_clarity: > 95%
+  system_independence: 100%
+  compliance_rate: > 99%
+  user_satisfaction: > 90%
+  performance_quality: > 95%
+
+# Enforcement Rules
+enforcement:
+  validation_rules:
+    - actor_name must not match IDE patterns
+    - actor_id must be canonical and persistent
+    - actor responsibilities must be role-based
+    - actor behavior must be facet-independent
+  
+  blocking_rules:
+    - block creation of IDE-based actors
+    - block actors without proper definition
+    - block actors without clear authority
+    - block actors that violate system doctrines
+  
+  correction_rules:
+    - flag non-compliant actors for correction
+    - require documentation of violations
+    - mandate correction within defined timeframe
+    - track correction progress and completion

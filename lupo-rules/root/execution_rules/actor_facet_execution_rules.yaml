@@ -1,0 +1,345 @@
+---
+# Actor-Facet Execution Rules
+# Canonical rules for actor execution within facets
+# Part of ACTOR_FACET_SEPARATION_DOCTRINE
+
+rule_set: actor_facet_execution_rules
+version: "1.0"
+effective_date: "2026-03-19"
+authority: "WOLFIE (Agent 1)"
+compliance: "mandatory"
+
+# Execution Framework
+execution_framework:
+  definition: "Actor-facet execution defines how actors operate within facets while maintaining identity separation, state persistence, and system independence"
+  principles:
+    - actors maintain identity regardless of facet
+    - actor state persists across facet changes
+    - actor behavior is consistent across facets
+    - actor authority is independent of facet
+    - actor execution is facet-agnostic
+
+# Execution Model
+execution_model:
+  actor_centric_model:
+    description: "Actors are the primary execution entities, facets provide execution environments"
+    characteristics:
+      - actor identity is primary and persistent
+      - actor state is maintained across sessions
+      - actor behavior is consistent regardless of facet
+      - actor authority is independent of execution environment
+    
+    implementation:
+      - actor executes through facet interface
+      - facet provides execution environment
+      - actor maintains separation from facet
+      - facet supports actor execution requirements
+  
+  facet_support_model:
+    description: "Facets support actor execution without influencing actor identity"
+    characteristics:
+      - facet provides execution capabilities
+      - facet maintains actor-facet separation
+      - facet supports actor state management
+      - facet enables actor coordination
+    
+    implementation:
+      - facet loads actor execution interfaces
+      - facet maintains actor independence
+      - facet supports actor state persistence
+      - facet enables actor communication
+
+# Actor Execution Rules
+actor_execution_rules:
+  identity_maintenance:
+    requirements:
+      - actor identity must be preserved during execution
+      - actor identity must be consistent across facets
+      - actor identity must not be influenced by facet
+      - actor identity must be verifiable
+      - actor identity must be authenticatable
+    
+    procedures:
+      - preserve actor identity during execution
+      - maintain identity consistency across facets
+      - prevent facet influence on actor identity
+      - implement identity verification mechanisms
+      - support actor authentication
+    
+  state_persistence:
+    requirements:
+      - actor state must persist across sessions
+      - actor state must be preserved across facet changes
+      - actor state must be consistent and reliable
+      - actor state must be recoverable
+      - actor state must be synchronized
+    
+    procedures:
+      - implement actor state persistence
+      - maintain state across facet changes
+      - ensure state consistency and reliability
+      - support state recovery procedures
+      - synchronize state across sessions
+  
+  authority_preservation:
+    requirements:
+      - actor authority must be preserved during execution
+      - actor authority must be consistent across facets
+      - actor authority must not be influenced by facet
+      - actor authority must be enforceable
+      - actor authority must be verifiable
+    
+    procedures:
+      - preserve actor authority during execution
+      - maintain authority consistency across facets
+      - prevent facet influence on actor authority
+      - implement authority enforcement mechanisms
+      - support authority verification
+
+# Facet Execution Support Rules
+facet_support_rules:
+  interface_provision:
+    requirements:
+      - facets must provide actor execution interfaces
+      - facets must support actor communication protocols
+      - facets must enable actor coordination mechanisms
+      - facets must support actor state management
+      - facets must maintain actor-facet separation
+    
+    procedures:
+      - implement actor execution interfaces
+      - support actor communication protocols
+      - enable actor coordination mechanisms
+      - support actor state management
+      - maintain actor-facet separation
+  
+  environment_independence:
+    requirements:
+      - facets must not influence actor behavior
+      - facets must not affect actor identity
+      - facets must not modify actor authority
+      - facets must not interfere with actor state
+      - facets must support actor independence
+    
+    procedures:
+      - prevent facet influence on actor behavior
+      - avoid facet impact on actor identity
+      - maintain actor authority independence
+      - protect actor state from facet interference
+      - support actor independence mechanisms
+
+# Execution Coordination Rules
+coordination_rules:
+  actor_coordination:
+    requirements:
+      - actors must coordinate regardless of facet
+      - actor coordination must be facet-agnostic
+      - actor communication must be reliable
+      - actor collaboration must be supported
+      - actor conflict resolution must be available
+    
+    procedures:
+      - implement facet-agnostic coordination
+      - support reliable actor communication
+      - enable actor collaboration mechanisms
+      - provide actor conflict resolution
+      - maintain coordination consistency
+  
+  multi_facet_coordination:
+    requirements:
+      - actors must coordinate across multiple facets
+      - cross-facet coordination must be seamless
+      - cross-facet communication must be reliable
+      - cross-facet collaboration must be supported
+      - cross-facet state must be synchronized
+    
+    procedures:
+      - support multi-facet actor coordination
+      - enable seamless cross-facet communication
+      - maintain reliable cross-facet collaboration
+      - synchronize actor state across facets
+      - ensure coordination consistency
+
+# Execution Isolation Rules
+isolation_rules:
+  actor_isolation:
+    requirements:
+      - actor execution must be isolated from facet
+      - actor state must be protected from facet
+      - actor identity must be independent of facet
+      - actor authority must not be affected by facet
+      - actor behavior must be consistent regardless of facet
+    
+    procedures:
+      - implement actor execution isolation
+      - protect actor state from facet interference
+      - maintain actor identity independence
+      - preserve actor authority from facet influence
+      - ensure behavior consistency across facets
+  
+  facet_isolation:
+    requirements:
+      - facet behavior must not affect actors
+      - facet state must not influence actors
+      - facet capabilities must not modify actors
+      - facet limitations must not constrain actors
+      - facet changes must not disrupt actors
+    
+    procedures:
+      - prevent facet behavior impact on actors
+      - isolate facet state from actor influence
+      - maintain actor independence from facet capabilities
+      - ensure facet limitations don't constrain actors
+      - protect actors from facet changes
+
+# Execution Performance Rules
+performance_rules:
+  execution_efficiency:
+    requirements:
+      - actor execution must be efficient
+      - facet support must not degrade performance
+      - actor-facet interaction must be optimized
+      - resource usage must be controlled
+      - scalability must be maintained
+    
+    procedures:
+      - optimize actor execution performance
+      - minimize facet performance impact
+      - optimize actor-facet interaction
+      - control resource usage effectively
+      - maintain execution scalability
+  
+  resource_management:
+    requirements:
+      - resources must be allocated efficiently
+      - resource usage must be tracked
+      - resource limits must be enforced
+      - resource optimization must be continuous
+      - resource recovery must be supported
+    
+    procedures:
+      - implement efficient resource allocation
+      - track resource usage patterns
+      - enforce resource usage limits
+      - optimize resource utilization
+      - support resource recovery procedures
+
+# Execution Security Rules
+security_rules:
+  actor_security:
+    requirements:
+      - actor execution must be secure
+      - actor identity must be protected
+      - actor state must be secured
+      - actor authority must be authenticated
+      - actor communication must be encrypted
+    
+    procedures:
+      - implement secure actor execution
+      - protect actor identity from compromise
+      - secure actor state and data
+      - authenticate actor authority
+      - encrypt actor communication channels
+  
+  facet_security:
+    requirements:
+      - facet execution must be secure
+      - facet capabilities must be controlled
+      - facet access must be authorized
+      - facet operations must be audited
+      - facet vulnerabilities must be mitigated
+    
+    procedures:
+      - implement secure facet execution
+      - control facet capabilities and access
+      - authorize facet operations
+      - audit facet activities
+      - mitigate facet security vulnerabilities
+
+# Execution Validation Rules
+validation_rules:
+  identity_validation:
+    requirements:
+      - actor identity must be validated
+      - identity consistency must be verified
+      - identity authenticity must be confirmed
+      - identity integrity must be maintained
+      - identity changes must be tracked
+    
+    procedures:
+      - validate actor identity during execution
+      - verify identity consistency across facets
+      - confirm identity authenticity
+      - maintain identity integrity checks
+      - track identity changes and updates
+  
+  behavior_validation:
+    requirements:
+      - actor behavior must be validated
+      - behavior consistency must be verified
+      - behavior compliance must be checked
+      - behavior performance must be measured
+      - behavior improvements must be identified
+    
+    procedures:
+      - validate actor behavior patterns
+      - verify behavior consistency across facets
+      - check behavior compliance with rules
+      - measure behavior performance metrics
+      - identify behavior improvement opportunities
+
+# Execution Monitoring Rules
+monitoring_rules:
+  execution_monitoring:
+    metrics:
+      - actor execution performance
+      - facet support effectiveness
+      - actor-facet interaction quality
+      - resource utilization efficiency
+      - system stability and reliability
+    
+    procedures:
+      - monitor actor execution performance
+      - track facet support effectiveness
+      - measure actor-facet interaction quality
+      - monitor resource utilization
+      - assess system stability and reliability
+  
+  health_monitoring:
+    metrics:
+      - actor health indicators
+      - facet health indicators
+      - execution health trends
+      - error rates and patterns
+      - recovery success rates
+    
+    procedures:
+      - monitor actor health indicators
+      - track facet health metrics
+      - analyze execution health trends
+      - track error patterns and rates
+      - measure recovery success rates
+
+# Success Metrics
+success_metrics:
+  execution_reliability: > 99%
+  identity_consistency: 100%
+  state_persistence: > 95%
+  performance_efficiency: > 90%
+  user_satisfaction: > 90%
+
+# Documentation Requirements
+documentation:
+  execution_documentation:
+    - complete actor execution procedures
+    - facet support implementation guidelines
+    - actor-facet interaction protocols
+    - execution coordination mechanisms
+    - performance optimization procedures
+  
+  integration_documentation:
+    - actor integration with facets
+    - facet integration with system components
+    - cross-facet coordination procedures
+    - multi-facet execution guidelines
+    - troubleshooting and support procedures

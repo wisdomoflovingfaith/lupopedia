@@ -1,0 +1,392 @@
+---
+# Session Management Rules
+# Canonical rules for session management across actor-facet execution
+# Part of ACTOR_FACET_SEPARATION_DOCTRINE
+
+rule_set: session_management_rules
+version: "1.0"
+effective_date: "2026-03-19"
+authority: "WOLFIE (Agent 1)"
+compliance: "mandatory"
+
+# Session Management Framework
+session_management_framework:
+  definition: "Session management defines how execution sessions are created, maintained, and terminated while preserving actor identity, state, and authority across different facets"
+  principles:
+    - sessions maintain actor identity and authority
+    - sessions support actor state persistence
+    - sessions enable facet-agnostic execution
+    - sessions provide isolation and security
+    - sessions support coordination and collaboration
+
+# Session Lifecycle Management
+lifecycle_management:
+  session_creation:
+    description: "Create new session with actor context and facet environment"
+    requirements:
+      - establish actor identity and authority
+      - initialize session state and metadata
+      - configure facet environment for actor
+      - establish communication channels
+      - enable session monitoring and logging
+    
+    procedures:
+      - authenticate actor identity and authority
+      - initialize session state with actor context
+      - configure facet for actor execution
+      - establish actor communication channels
+      - start session monitoring and logging
+    
+    validation:
+      - actor identity authenticated
+      - session state initialized
+      - facet configured for actor
+      - communication channels established
+      - monitoring systems operational
+  
+  session_activation:
+    description: "Activate session for actor execution"
+    requirements:
+      - load actor execution context
+      - establish actor-facet separation
+      - initialize execution environment
+      - enable actor coordination
+      - prepare for operational execution
+    
+    procedures:
+      - load actor execution context and state
+      - establish actor-facet separation protocols
+      - initialize execution environment
+      - enable actor coordination mechanisms
+      - prepare for operational execution
+    
+    validation:
+      - actor context loaded
+      - actor-facet separation established
+      - execution environment ready
+      - coordination mechanisms enabled
+      - operational execution prepared
+  
+  session_execution:
+    description: "Execute actor operations within session"
+    requirements:
+      - maintain actor identity and authority
+      - preserve actor state across operations
+      - support actor coordination and communication
+      - manage resource usage and performance
+      - monitor session health and stability
+    
+    procedures:
+      - maintain actor identity and authority
+      - preserve actor state during operations
+      - support actor coordination and communication
+      - manage resource usage and performance
+      - monitor session health and stability
+    
+    validation:
+      - actor identity maintained
+      - actor state preserved
+      - coordination supported
+      - resources managed effectively
+      - session health stable
+  
+  session_deactivation:
+    description: "Deactivate session and prepare for termination"
+    requirements:
+      - save actor state if needed
+      - cleanup execution resources
+      - preserve session logs and metadata
+      - update session statistics
+      - prepare for graceful shutdown
+    
+    procedures:
+      - save actor state to persistent storage
+      - cleanup execution resources
+      - archive session logs and metadata
+      - update session usage statistics
+      - prepare for graceful shutdown
+    
+    validation:
+      - actor state saved
+      - resources cleaned up
+      - logs archived
+      - statistics updated
+      - shutdown prepared
+  
+  session_termination:
+    description: "Terminate session and release all resources"
+    requirements:
+      - release all allocated resources
+      - terminate all active operations
+      - archive session data
+      - update system statistics
+      - handle errors gracefully
+    
+    procedures:
+      - release all allocated resources
+      - terminate active operations
+      - archive session data and logs
+      - update system usage statistics
+      - handle termination errors gracefully
+    
+    validation:
+      - resources released
+      - operations terminated
+      - data archived
+      - statistics updated
+      - errors handled
+
+# Session State Management
+state_management:
+  state_persistence:
+    requirements:
+      - actor state must persist across sessions
+      - state changes must be tracked
+      - state recovery must be supported
+      - state consistency must be maintained
+      - state synchronization must be handled
+    
+    procedures:
+      - implement state persistence mechanisms
+      - track state changes and versions
+      - support state recovery procedures
+      - maintain state consistency checks
+      - handle state synchronization
+    
+  state_sharing:
+    requirements:
+      - state sharing must be controlled
+      - shared state must be synchronized
+      - state conflicts must be resolved
+      - state access must be authorized
+      - state integrity must be maintained
+    
+    procedures:
+      - implement controlled state sharing
+      - synchronize shared state changes
+      - resolve state conflicts automatically
+      - authorize state access requests
+      - maintain state integrity checks
+
+# Session Coordination Management
+coordination_management:
+  actor_coordination:
+    requirements:
+      - sessions must support actor coordination
+      - coordination must be facet-agnostic
+      - communication must be reliable
+      - collaboration must be supported
+      - conflict resolution must be available
+    
+    procedures:
+      - implement actor coordination mechanisms
+      - enable facet-agnostic coordination
+      - ensure reliable communication
+      - support collaboration features
+      - provide conflict resolution
+    
+  multi_session_coordination:
+    requirements:
+      - sessions must coordinate with each other
+      - cross-session communication must be reliable
+      - cross-session collaboration must be supported
+      - cross-session state must be synchronized
+      - cross-session conflicts must be resolved
+    
+    procedures:
+      - implement multi-session coordination
+      - enable cross-session communication
+      - support cross-session collaboration
+      - synchronize cross-session state
+      - resolve cross-session conflicts
+
+# Session Resource Management
+resource_management:
+  resource_allocation:
+    requirements:
+      - resources must be allocated per session
+      - resource usage must be tracked
+      - resource limits must be enforced
+      - resource optimization must be implemented
+      - resource recovery must be supported
+    
+    procedures:
+      - allocate resources per session
+      - track resource usage patterns
+      - enforce resource usage limits
+      - optimize resource utilization
+      - support resource recovery procedures
+  
+  resource_sharing:
+    requirements:
+      - resource sharing must be controlled
+      - shared resources must be synchronized
+      - resource conflicts must be resolved
+      - resource access must be authorized
+      - resource integrity must be maintained
+    
+    procedures:
+      - implement controlled resource sharing
+      - synchronize shared resource access
+      - resolve resource conflicts
+      - authorize resource access
+      - maintain resource integrity
+
+# Session Security Management
+security_management:
+  session_authentication:
+    requirements:
+      - sessions must be authenticated
+      - session authentication must be maintained
+      - session tokens must be secure
+      - session expiration must be enforced
+      - session revocation must be supported
+    
+    procedures:
+      - implement session authentication
+      - maintain session authentication
+      - generate secure session tokens
+      - enforce session expiration
+      - support session revocation
+  
+  session_authorization:
+    requirements:
+      - session actions must be authorized
+      - session permissions must be enforced
+      - session access must be controlled
+      - session privileges must be limited
+      - session auditing must be implemented
+    
+    procedures:
+      - implement session authorization
+      - enforce session permissions
+      - control session access
+      - limit session privileges
+      - audit session activities
+
+# Session Monitoring Management
+monitoring_management:
+  performance_monitoring:
+    metrics:
+      - session creation and termination rates
+      - session duration and lifecycle statistics
+      - resource usage per session
+      - session health and stability metrics
+      - session error rates and types
+    
+    procedures:
+      - collect session performance metrics
+      - analyze session performance trends
+      - identify performance bottlenecks
+      - optimize session performance
+      - report session performance status
+  
+  health_monitoring:
+    metrics:
+      - session health indicators
+      - session stability metrics
+      - session error patterns
+      - session recovery statistics
+      - session user satisfaction
+    
+    procedures:
+      - monitor session health indicators
+      - track session stability metrics
+      - analyze session error patterns
+      - measure session recovery success
+      - assess session user satisfaction
+
+# Session Scalability Management
+scalability_management:
+  concurrent_sessions:
+    requirements:
+      - system must support multiple concurrent sessions
+      - session isolation must be maintained at scale
+      - resource allocation must scale appropriately
+      - performance must degrade gracefully
+      - system must handle session load balancing
+    
+    procedures:
+      - implement concurrent session support
+      - maintain isolation at scale
+      - scale resource allocation
+      - implement graceful degradation
+      - support session load balancing
+  
+  session_persistence:
+    requirements:
+      - session state must persist across restarts
+      - session recovery must be reliable
+      - session migration must be supported
+      - session backup must be implemented
+      - session restoration must be efficient
+    
+    procedures:
+      - implement session state persistence
+      - support reliable session recovery
+      - enable session migration
+      - implement session backup
+      - optimize session restoration
+
+# Session Error Management
+error_management:
+  error_categories:
+    session_errors:
+      - session creation failures
+      - session initialization errors
+      - session execution errors
+      - session termination failures
+      - session resource errors
+    
+    state_errors:
+      - state persistence failures
+      - state synchronization errors
+      - state corruption issues
+      - state recovery failures
+      - state consistency problems
+    
+    coordination_errors:
+      - coordination failures
+      - communication breakdowns
+      - collaboration issues
+      - conflict resolution failures
+      - multi-session synchronization problems
+  
+  recovery_procedures:
+    automatic_recovery:
+      - implement automatic error detection
+      - attempt automatic error recovery
+      - fallback to safe operational mode
+      - implement graceful degradation
+      - maintain session integrity
+    
+    manual_recovery:
+      - provide clear error messages
+      - offer recovery procedures
+      - support manual intervention
+      - provide debugging information
+      - enable session restoration
+
+# Success Metrics
+success_metrics:
+  session_reliability: > 99%
+  session_performance: > 90%
+  state_persistence: > 95%
+  coordination_effectiveness: > 90%
+  user_satisfaction: > 90%
+
+# Documentation Requirements
+documentation:
+  session_documentation:
+    - complete session lifecycle procedures
+    - session state management guidelines
+    - session coordination procedures
+    - session resource management procedures
+    - session security and monitoring procedures
+  
+  integration_documentation:
+    - session integration with actors
+    - session integration with facets
+    - session integration with system components
+    - session integration testing procedures
+    - session integration troubleshooting procedures

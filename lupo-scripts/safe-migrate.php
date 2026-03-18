@@ -147,6 +147,43 @@ if (!$db) {
     exit(1);
 }
 
+$table_prefix = defined('LUPO_TABLE_PREFIX') ? LUPO_TABLE_PREFIX : 'lupo_';
+$max_tables = 199;
+$total_tables = 0;
+try {
+    $pdo = method_exists($db, 'getPdo') ? $db->getPdo() : null;
+    $driver = $pdo ? $pdo->getAttribute(PDO::ATTR_DRIVER_NAME) : 'mysql';
+    $pref = $table_prefix . '%';
+
+    if ($driver === 'pgsql') {
+        $sql = "SELECT COUNT(*) FROM information_schema.tables
+                WHERE table_schema = 'public' AND table_name LIKE :pref";
+        $total_tables = (int) $db->fetchOne($sql, array(':pref' => $pref));
+    } elseif ($driver === 'sqlite') {
+        $sql = "SELECT COUNT(*) FROM sqlite_master
+                WHERE type='table' AND name LIKE :pref";
+        $total_tables = (int) $db->fetchOne($sql, array(':pref' => $pref));
+    } else {
+        // mysql / mariadb default
+        $sql = "SELECT COUNT(*) FROM information_schema.tables
+                WHERE table_schema = DATABASE() AND table_name LIKE :pref";
+        $total_tables = (int) $db->fetchOne($sql, array(':pref' => $pref));
+    }
+} catch (Exception $e) {
+    // Fail open: if we cannot compute the count, don't block migrations.
+    $total_tables = 0;
+}
+
+// SYSTEM_LIMITS enforcement: block schema changes when table count hits/exceeds 199.
+if ($total_tables >= $max_tables) {
+    $log_entry['status'] = 'failed';
+    $log_entry['error'] = 'SYSTEM_LIMITS: schema change blocked (total_tables=' . $total_tables . ' >= ' . $max_tables . ')';
+    $log_entry['completed_at'] = gmdate('YmdHis');
+    file_put_contents($log_file, json_encode($log_entry) . "\n", FILE_APPEND | LOCK_EX);
+    fwrite(STDERR, "Error: Schema change blocked by SYSTEM_LIMITS (tables >= 199).\n");
+    exit(1);
+}
+
 $ok = true;
 try {
     if (method_exists($db, 'beginTransaction')) {

@@ -109,8 +109,80 @@ if (!is_array($meta) || empty($meta['crafty_syntax']) || $meta_thread !== $dialo
 
 $now = gmdate('YmdHis');
 
+// SYSTEM_LIMITS enforcement:
+// - Channel thread limit (>= 999): block accepting the pending visitor thread into this channel.
+// - Channel near-limit (>= 950): set channel status_flag to "retiring" (numeric doctrine mapping).
+$thread_count_sql = "SELECT COUNT(DISTINCT dialog_thread_id) AS thread_count
+                     FROM {$table_prefix}dialog_threads
+                     WHERE channel_id = :channel_id AND is_deleted = 0";
+$stmtCount = $db->prepare($thread_count_sql);
+$stmtCount->execute(array(':channel_id' => $operator_channel_id));
+$countRow = $stmtCount->fetch(PDO::FETCH_ASSOC);
+$thread_count = $countRow ? (int) $countRow['thread_count'] : 0;
+
+// Doctrine mapping: status_flag tinyint where 1=active, 2=retiring.
+$retiring_status_flag = 2;
+$warning_msg = null;
+$near_limit = ($thread_count >= 950);
+$hard_limit = ($thread_count >= 999);
+$set_retiring_inside_tx = false;
+
+if ($near_limit) {
+    if ($hard_limit) {
+        // Best-effort retiring marking before hard block response.
+        try {
+            $stmt = $db->prepare(
+                "UPDATE {$table_prefix}channels
+                 SET status_flag = :status_flag, updated_ymdhis = :now
+                 WHERE channel_id = :channel_id AND is_deleted = 0"
+            );
+            $stmt->execute(array(
+                ':status_flag' => $retiring_status_flag,
+                ':now'          => $now,
+                ':channel_id'  => $operator_channel_id
+            ));
+        } catch (Exception $e) {
+            // If status update fails, still enforce the hard limit below.
+        }
+    } else {
+        $warning_msg = 'Channel ' . $operator_channel_id . ' is nearing max threads (' . $thread_count . '/999). Channel marked as retiring.';
+        $set_retiring_inside_tx = true;
+    }
+}
+
+if ($hard_limit) {
+    http_response_code(403);
+    header('Content-Type: application/json; charset=utf-8');
+    echo json_encode(array(
+        'error' => 'CHANNEL_THREAD_LIMIT_REACHED',
+        'message' => 'Channel ' . $operator_channel_id . ' has reached max threads (999). Channel must be retired.',
+        'channel_id' => $operator_channel_id,
+        'thread_count' => $thread_count,
+        'limit' => 999
+    ));
+    exit;
+}
+
 try {
     $db->beginTransaction();
+
+    // Near-limit state marking (>=950) is part of the same transaction as accepting the thread.
+    if ($set_retiring_inside_tx) {
+        try {
+            $stmt = $db->prepare(
+                "UPDATE {$table_prefix}channels
+                 SET status_flag = :status_flag, updated_ymdhis = :now
+                 WHERE channel_id = :channel_id AND is_deleted = 0"
+            );
+            $stmt->execute(array(
+                ':status_flag' => $retiring_status_flag,
+                ':now'          => $now,
+                ':channel_id'  => $operator_channel_id
+            ));
+        } catch (Exception $e) {
+            // Best-effort: accept the thread even if status update fails.
+        }
+    }
 
     // 1) Move thread onto operator's channel
     $stmt = $db->prepare("UPDATE {$table_prefix}dialog_threads SET channel_id = :cid, updated_ymdhis = :now WHERE dialog_thread_id = :tid");
@@ -158,4 +230,5 @@ echo json_encode(array(
     'ok'                => true,
     'dialog_thread_id'  => $dialog_thread_id,
     'operator_channel_id' => $operator_channel_id,
+    'warning'          => $warning_msg,
 ));
