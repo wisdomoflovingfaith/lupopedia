@@ -26,10 +26,10 @@ lupopedia.comments:
   - { comment_id: 2, channel_id: 42, actor_id: 102, actor_name: "cursor", faucet_id: 102, faucet_name: "cursor", comment_text: "Second example comment for 4.0.73 to demonstrate multiple comment records in the lupopedia.comments block.", comment_type: "comment", created_ymdhis: 20260313151500, updated_ymdhis: 20260313151500 }
 
 lupopedia.headers:
-  lupopedia.version: "4.0.80"
+  lupopedia.version: "4.0.81"
   lupopedia.schema: "documentation"
   file_path_from_root: "CHANGELOG.md"
-  system_version: "4.0.80"
+  system_version: "4.0.81"
   last_modified_utc: "20260318"
   channel_id: 42
   actor_id: 1
@@ -66,7 +66,11 @@ lupopedia.footer:
 - **Global Channel Index**: Created `lupo-channels/INDEX.md` for system-wide navigation
 - **External AI Guide**: Created `lupo-docs/EXTERNAL_AI_README.md` with participation instructions
 - **Machine-Readable Structure**: External AI can now discover and navigate without prior knowledge
-- **Thread 1006 Verification**: Confirmed validator thread exists and is accessible (external AI failure was incorrect)
+- **Thread 1006 Verification**: Confirmed validator thread exists and accessible (external AI failure was incorrect)
+- **System Consistency Fix**: Resolved critical thread 1006 external truth consistency issue with complete lifecycle documentation
+- **V-THREAD Continuity Validation**: Implemented comprehensive thread continuity enforcement (V-THREAD-001..005) for deterministic thread truth and external AI readability
+- **V-PROJECT Global Coherence**: Implemented complete validation stack (V-TODO, V-PLAN, V-THREAD, V-PROJECT) for system-wide consistency guarantees and drift detection
+- **CHANGELOG Maintenance**: Updated 4.0.81 section with complete thread coverage including V-THREAD and V-PROJECT validation implementations
 
 ---
 # Lupopedia CHANGELOG
@@ -113,18 +117,30 @@ Older entries (≤4.0.67) are archived in [CHANGELOG_ARCHIVE.md](CHANGELOG_ARCHI
   - Validated deterministic parsing without YAML complexity
   - Established foundation for scalable task/thread coordination
 
-#### **THREAD1006 Validator Implementation**
-- **HEPHAESTUS Implementation** (`lupo-channels/42/threads/1006/20260318_203000_hephaestus_result_task_val_001_validator-run.md`)
-  - Implemented complete validator per approved specification
-  - Added 15 validation rules (V-TODO-001 through V-TODO-015)
-  - Created automated TODO.md and plan.md validation scripts
-  - Successfully validated repository with 0 errors, 1 warning
+#### **THREAD1018 V-THREAD Continuity Validation**
+- **WOLFIE Closure** (`lupo-channels/42/threads/1018/20260319_002000_wolfie_closure_task_val_003_thread-continuity.md`)
+  - Formally closed task_val_003 with V-THREAD continuity validation accepted
+  - Established complete validation stack: V-TODO, V-PLAN, V-THREAD, V-PROJECT
+  - Documented transition from manual reconciliation to validator-enforced thread truth
+  - Confirmed external AI readability materially improved
 
-- **LILITH Review** (`lupo-channels/42/threads/1006/20260318_210000_lilith_review_task_val_001_validator-implementation.md`)
-  - Confirmed implementation matches approved specification
-  - Verified all rules correctly mapped and declared
-  - Identified one non-blocking warning behavior (W-TODO-001)
-  - Validated parser robustness and edge case handling
+#### **THREAD1019 V-PROJECT Global Coherence Validation**
+- **ATHENA Specification** (`lupo-channels/42/threads/1019/20260318_163836_athena_spec_task_val_004_project-validation.md`)
+  - Designed comprehensive V-PROJECT global coherence validation system
+  - Defined V-PROJECT-001..006 for cross-layer consistency checks
+  - Established TODO/plan/thread/project global coherence framework
+- **HEPHAESTUS Implementation** (`lupo-channels/42/threads/1019/20260319_031500_hephaestus_impl_task_val_004_project-validation.md`)
+  - Implemented complete V-PROJECT validation system with allowlist support
+  - Integrated with V-TODO/V-PLAN/V-THREAD for comprehensive coverage
+  - Created `validate_vproject.py` with strict/warn enforcement policies
+- **LILITH Review** (`lupo-channels/42/threads/1019/20260319_043000_lilith_review_task_val_004_project-validation-implementation.md`)
+  - Confirmed implementation matches ATHENA specification with accurate integration
+  - Validated reported failures are believable and represent current system state
+  - Identified non-blocking refinement opportunities for V-PROJECT-006 closure detection
+- **WOLFIE Closure** (`lupo-channels/42/threads/1019/20260319_050000_wolfie_closure_task_val_004_project-validation.md`)
+  - Formally accepted V-PROJECT global coherence validation
+  - Completed comprehensive validation stack (V-TODO, V-PLAN, V-THREAD, V-PROJECT)
+  - Documented system-wide consistency guarantees and drift detection capabilities
 
 #### **Project Layer Architecture**
 - **ATHENA Project Model** (`lupo-channels/42/threads/1009/20260318_144653_athena_strategy_project-layer-model.md`)
@@ -137,6 +153,8 @@ Older entries (≤4.0.67) are archived in [CHANGELOG_ARCHIVE.md](CHANGELOG_ARCHI
 - **README.md Updates** - Thread model section, version references, contributor guidance
 - **CHANNEL_BASED_COORDINATION_DOCTRINE.md** - Channel architecture research findings
 - **MULTI_AGENT_COORDINATION_DOCTRINE.md** - 108-agent ecosystem documentation
+- **Header normalization (WOLFIE AI)** - Removed non-canonical `lupopedia.init` / `lupopedia.metadata` blocks from `WOLFIE_ORIGIN.md`, `TIMESTAMP_DOCTRINE.md`, and `FALLBACK_ENGINEERING.md`, consolidating into `lupopedia.headers` and tightening fallback precision per WOLFIE review
+- **New doctrine: `HEADER_STRUCTURE_DOCTRINE.md`** - Introduced canonical top-level header block rules and documented future drift gate `V-DOC-HEADER-001` for non-canonical header blocks
 
 ### 🏗️ System Architecture Transformation
 

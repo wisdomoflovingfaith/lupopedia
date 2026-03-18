@@ -13,7 +13,7 @@ lupopedia.headers:
 lupopedia.footer:
   version: "4.0.75"
   last_verified: "20260315"
-  next_action: ["Keep in sync with lupo-logs/ layout and status artifact patterns"]
+  next_action: ["Keep in sync with lupo-logs/ layout and channel checkpoint artifact patterns"]
 ---
 
 # IDE Agent Continuity Protocol (IACP)
@@ -41,9 +41,9 @@ This protocol turns agent work into **durable artifacts inside the repository**.
 
 All meaningful work must be continuously persisted into:
 
-- `lupo-docs/status/`
 - `lupo-logs/`
-- TODO files
+- `lupo-channels/{channel_id}/` channel checkpoint artifacts (threads + tasks)
+- task handoff notes (owned thread + channel tasks)
 
 This guarantees that **Human + Agents + Repository** share a **common source of truth**.
 
@@ -60,10 +60,10 @@ Agent Work
 Activity Logs   (lupo-logs/)
      │
      ▼
-Status Artifacts (lupo-docs/status/)
+Channel Checkpoint Artifacts (lupo-channels/{channel_id}/threads + tasks)
      │
      ▼
-Task Continuation (TODO files)
+Task Continuation / Handoff Notes (owned thread + channel tasks)
      │
      ▼
 Next Agent Takeover
@@ -74,8 +74,7 @@ Each serves a different purpose.
 | Layer  | Purpose                                 |
 | ------ | --------------------------------------- |
 | Logs   | chronological machine-readable activity |
-| Status | human-readable summary of work          |
-| TODO   | task continuation plan                  |
+| Checkpoint | channel thread/task checkpoint artifacts |
 | Docs   | final durable output                    |
 
 ---
@@ -127,22 +126,21 @@ Logs should capture: files opened, files modified, grep/search operations, docum
 
 ---
 
-## Rule 2 — Status Checkpoints
+## Rule 2 — Channel Checkpoints (Thread/Task Artifacts)
 
-Every agent must periodically write a **checkpoint status artifact** into **`lupo-docs/status/`**. These are **human-readable summaries of work state**.
+Every agent must periodically publish a **checkpoint artifact** inside the owning channel context so another agent can resume work without relying on chat-time state.
 
-Status files should be created when:
+A checkpoint should be created when:
 
 - workstream begins
 - major milestone reached
 - agent token usage >80%
 - agent preparing to hand off
 
-Filename pattern: **`<AGENT>_<TASK>_STATUS_<VERSION>.md`**
+Checkpoint artifact filename convention: **`YYYYMMDD_HHIISS_{actor}_{type}_{purpose}.md`** (see `lupo-rules/root/CHANNEL_ARTIFACT_ROUTING_DOCTRINE.md`).
+Checkpoint artifacts MUST include `lupopedia.headers.channel_id` and the relevant thread/task identity.
 
-Example: `JETBRAINS_TO_WINDSURF_SCHEMA_REFERENCE_CONTINUITY_HANDOFF_4_0_75.md`
-
-Status artifacts must include:
+Checkpoint artifacts must include:
 
 - Executive Summary
 - Files Reviewed
@@ -154,11 +152,11 @@ Status artifacts must include:
 
 ---
 
-## Rule 3 — TODO Handoff Files
+## Rule 3 — Task Handoff Notes
 
-When an agent is nearing termination or finishing a task, it must produce a task continuation file (e.g. **`TODO_windsurf.md`**).
+When an agent is nearing termination or finishing a task, it must leave resumable handoff notes in the channel system (owned thread + channel tasks).
 
-TODO files contain:
+Handoff notes should contain:
 
 - Context
 - Completed Work
@@ -168,7 +166,7 @@ TODO files contain:
 - Guardrails
 - First Actions
 
-These files allow the next agent to **resume work immediately**.
+These notes allow the next agent to **resume work immediately**.
 
 ---
 
@@ -179,8 +177,8 @@ Agents must checkpoint before token exhaustion.
 | Token Usage | Required Action           |
 | ----------- | ------------------------- |
 | 70%         | write log checkpoint      |
-| 85%         | write status artifact     |
-| 90%         | create TODO handoff       |
+| 85%         | publish channel checkpoint artifact |
+| 90%         | ensure task handoff notes updated |
 | 95%         | write final takeover logs |
 
 This prevents the situation where an agent dies without persisting state.
@@ -191,7 +189,7 @@ This prevents the situation where an agent dies without persisting state.
 
 Every task must record its **agent chain of custody** (e.g. Antigravity → JetBrains → Windsurf).
 
-Logs and status artifacts must include:
+Logs and channel checkpoint artifacts must include:
 
 - prior_owner
 - handoff_from
@@ -219,7 +217,7 @@ The only authoritative sources are:
 
 - repository files
 - logs
-- status artifacts
+- channel checkpoint artifacts
 - documentation
 
 If work exists only in a conversation thread, it is considered **unsafe and incomplete**.
@@ -247,13 +245,13 @@ This prevents agents from introducing architecture drift.
 When an agent takes over a task, it must follow this order:
 
 1. read doctrine
-2. read status artifacts
-3. read TODO files
+2. read channel checkpoint artifacts (owning thread/task)
+3. read task handoff notes (owned thread + channel tasks)
 4. inspect logs
 5. inspect affected files
 6. resume work
 
-Agents must **never resume work blindly from prompts alone**. To leave work resumable for the next agent, write a short status artifact (e.g. in `lupo-docs/status/`) with what was done and suggested next actions, and append to logs with timestamp and actor_id; the next agent should read status and logs before changing the same areas.
+Agents must **never resume work blindly from prompts alone**. To leave work resumable for the next agent, publish a channel checkpoint / handoff artifact in the owning thread/task and append to logs with timestamp and actor_id; the next agent should read checkpoint artifacts and logs before changing the same areas.
 
 ---
 
@@ -261,7 +259,7 @@ Agents must **never resume work blindly from prompts alone**. To leave work resu
 
 If an agent fails before writing logs, the takeover agent must reconstruct missing activity entries from:
 
-- status artifacts
+- channel checkpoint artifacts
 - file timestamps
 - git history
 - documentation updates
@@ -278,7 +276,7 @@ Agents must respect the documentation structure:
 - TOON files → generated structure
 - tables/active → table documentation
 - cross-domain docs → architectural explanation
-- status docs → activity summaries
+- channel thread/task checkpoint docs → activity summaries
 - logs → machine-readable history
 
 No document should contradict the layers above it.
@@ -291,8 +289,12 @@ No document should contradict the layers above it.
 lupo-docs/
     doctrine/
     database/
-    status/
     architecture/
+
+lupo-channels/
+    {channel_id}/
+    threads/
+    tasks/
 
 lupo-logs/
     admin/
@@ -308,9 +310,9 @@ lupo-logs/
 
 | Problem              | Solution                           |
 | -------------------- | ---------------------------------- |
-| IDE crash            | logs + status allow reconstruction |
+| IDE crash            | logs + channel checkpoints allow reconstruction |
 | token exhaustion     | automatic checkpoint rules         |
-| agent switching      | TODO handoff files                 |
+| agent switching      | channel handoff notes in threads/tasks |
 | unclear work history | chain-of-custody logs              |
 | lost context         | repository persistence             |
 

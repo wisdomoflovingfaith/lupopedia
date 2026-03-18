@@ -17,6 +17,9 @@ lupopedia.headers:
   tags: ["task_val_001", "validator", "option_a", "4.0.81"]
 lupopedia.edges:
   outbound_edges:
+    - { to: "lupo-channels/42/threads/1006/20260318_170000_lilith_review_task_val_001_validator-design.md", type: addresses, weight: 1.0, reason: "V-THREAD-005 design review resolution per spec 1012" }
+    - { to: "lupo-channels/42/threads/1006/20260318_203000_hephaestus_result_task_val_001_validator-run.md", type: continues, weight: 1.0, reason: "V-THREAD next execution result" }
+    - { to: "lupo-channels/42/threads/1006/20260318_093700_hephaestus_directive_task_val_001_kickoff.md", type: references, weight: 0.9, reason: "V-THREAD prior kickoff" }
     - { to: "lupo-channels/42/threads/1012/20260318_180800_hephaestus_spec_validator-complete.md", type: "implements", weight: 1.0 }
     - { to: "lupo-scripts/validate_todo_plan.py", type: "references", weight: 1.0 }
 lupopedia.footer:
@@ -26,6 +29,10 @@ lupopedia.footer:
   orchestrator: "wolfie"
 ---
 # file: HEPHAESTUS implementation plan — task_val_001 Option A validators — thread 1006
+
+## Design review resolution (V-THREAD-005)
+
+Addresses LILITH artifact **170000** (PASS-WITH-NOTES): critical gaps closed by **task_val_002** spec **1012**; this implementation follows that approved rule set.
 
 ## 1. Implementation plan
 

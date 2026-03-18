@@ -1,0 +1,2 @@
+# Thread directories with no registry owner (infra / historical containers).
+# V-PROJECT-004 does not ERROR/WARN for these IDs.

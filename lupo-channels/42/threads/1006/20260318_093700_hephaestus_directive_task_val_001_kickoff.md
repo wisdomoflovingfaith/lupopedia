@@ -14,6 +14,7 @@ lupopedia.headers:
   message_type: "directive"
   purpose: "Kickoff: implement Option A validators for TODO.md Global Task Registry and plan.md Strategic Roadmap (file-based enforcement only)"
   status: "draft"
+  thread_continuity_enforce: true
 lupopedia.edges:
   outbound_edges:
     - { to: "lupo-channels/42/threads/1005/20260318_163000_wolfie_directive_task_impl_001_acceptance-and-followup.md", type: "implements", weight: 1.0, reason: "task_val_001 allocation and scope" }
@@ -24,6 +25,7 @@ lupopedia.edges:
     - { to: "plan.md", type: "validates", weight: 1.0 }
     - { to: "README.md", type: "references", weight: 0.6 }
     - { to: "lupo-scripts/validate_channel_artifacts.py", type: "references", weight: 0.9, reason: "Existing validator entrypoint to extend (no DB dependencies)" }
+    - { to: "lupo-channels/42/threads/1006/20260318_170000_lilith_review_task_val_001_validator-design.md", type: continues, weight: 1.0, reason: "V-THREAD-001 next artifact in thread" }
 lupopedia.footer:
   version: "4.0.81"
   last_verified: "20260318"

@@ -35,8 +35,8 @@ Read **[lupo-rules/root/MULTI_AGENT_COORDINATION_DOCTRINE.md](lupo-rules/root/MU
 - **Specialized agents (90+)** — HERMES, IRIS, LILITH, ASCLEPIUS, and others operate in **categories** (technical support, contrasting perspectives, etc.). They are **not** the eleven coordination personas; they work under primary-persona and channel rules.
 - **IDE faucets** — Cursor, Windsurf, Kiro, Cascade, Warp, Zencoder, Antigravity are **human interfaces**; doctrine requires routing work through primary personas and registered channel context—not treating an IDE as the sole orchestration authority.
 - **Channel context** — All coordination work is invalid without `channel_id` (default multi-agent workspace: **42**). Confirm membership where posting or acting on channel data.
-- **Artifacts** — Proof of coordination lives under **`lupo-docs/status/`** with the artifact families defined in the doctrine (e.g. `WOLFIE_DIRECTIVE_*`, `SESHAT_REVIEW_*`). Do not use deprecated primary-level patterns such as `HERMES_IMPLEMENTATION_*` for canonical coordination naming.
-- **Task authority** — For the active release cycle, the coordination TODO is the version file **`lupo-docs/versions/<current_version>/TODO.md`** (resolve `<current_version>` from [CHANGELOG.md](CHANGELOG.md) or `config/global_atoms.yaml`). Update it when moving task state; link tasks to status artifacts as doctrine requires.
+- **Artifacts** — Proof of coordination lives under **`lupo-channels/{channel_id}/`** (threads/tasks/broadcasts/direct) with the artifact families defined in the doctrine (e.g. `WOLFIE_DIRECTIVE_*`, `SESHAT_REVIEW_*`). `lupo-docs/status/` is archival/legacy only; the channel system is authoritative for continuity.
+- **Task authority** — For the active release cycle, the coordination TODO is the version file **`lupo-docs/versions/<current_version>/TODO.md`** (resolve `<current_version>` from [CHANGELOG.md](CHANGELOG.md) or `config/global_atoms.yaml`). Update it when moving task state; link tasks to their owning thread/task checkpoint artifacts as doctrine requires.
 
 ---
 
@@ -193,12 +193,12 @@ If you are an **external agent** (e.g. OpenAI, ChatGPT) without full repo-native
 When picking up work started by another agent or human:
 
 1. **Read** [CHANGELOG.md](CHANGELOG.md) for recent changes and version.
-2. **Review** current task docs, prompts, and status files (e.g. under `lupo-docs/status/`).
+2. **Review** current task docs, prompts, and owning channel thread/task artifacts (e.g. under `lupo-channels/{channel_id}/threads/` and `lupo-channels/{channel_id}/tasks/`).
 3. **Check** structured logs if present (e.g. `lupo-logs/admin/`, `lupo-logs/activity/`) for handoff context, `task_context`, and `handoff_from` / `handoff_to`.
 4. **Identify** the current target version and affected files before editing.
 5. **Avoid** duplicate or contradictory edits; align with existing conventions and doctrine.
 
-**Handoff best practice:** Write status artifacts in **`lupo-docs/status/`** using doctrine artifact naming where the work is coordination-scoped; include `channel_id` and linkage to the version TODO (`lupo-docs/versions/<version>/TODO.md`) when applicable. Append to logs with timestamp and actor.
+**Handoff best practice:** Publish a final checkpoint/handoff post in the owning thread directory and/or update the owning task note under `lupo-channels/{channel_id}/tasks/`; include `channel_id` and linkage to the version TODO (`lupo-docs/versions/<version>/TODO.md`) when applicable. Append to logs with timestamp and actor.
 
 Continuity and handoff rules are detailed in [lupo-docs/doctrine/IDE_AGENT_CONTINUITY_PROTOCOL.md](lupo-docs/doctrine/IDE_AGENT_CONTINUITY_PROTOCOL.md) (IACP).
 
@@ -209,7 +209,7 @@ Continuity and handoff rules are detailed in [lupo-docs/doctrine/IDE_AGENT_CONTI
 Agents are expected to leave work in a **resumable state**:
 
 - **Structured documentation** — Use existing doctrine and doc structure; update docs when you change behavior or schema.
-- **Status / task artifacts** — Where relevant, leave status files or task summaries under `lupo-docs/status/` so the next agent can see what was done.
+- **Thread/task artifacts** — Where relevant, leave checkpoint posts or task summaries under the owning thread/task directories in `lupo-channels/{channel_id}/` so the next agent can see what was done.
 - **Structured logs** — Append-only logs under `lupo-logs/` (e.g. admin, activity, agents) with fields such as `timestamp`, `actor_id`, `event_type`, `file_path`, `task_context`; prefer BIGINT UTC `YYYYMMDDHHIISS` for timestamps.
 - **CHANGELOG** — Update CHANGELOG when your changes warrant it (new features, doctrine changes, notable fixes).
 - **Machine- and human-readable** — Prefer formats that support both audit and handoff (e.g. JSONL for logs, Markdown for status).
@@ -244,7 +244,7 @@ To add a **new IDE agent target** to the rules propagation system (e.g. for an a
 - [ ] Read [CHANGELOG.md](CHANGELOG.md)
 - [ ] Confirm current version
 - [ ] Review [lupo-rules/root/README.md](lupo-rules/root/README.md) and relevant doctrine
-- [ ] Check current task context (status, logs, prompts)
+- [ ] Check current task context (thread/task state, logs, prompts)
 - [ ] Identify affected files before editing
 - [ ] Make changes consistently with doctrine
 - [ ] Update docs and CHANGELOG when appropriate
@@ -254,7 +254,7 @@ To add a **new IDE agent target** to the rules propagation system (e.g. for an a
 ## Getting help
 
 - **Channel 42** — Primary development channel. Join to see ongoing work; channel context is documented in doctrine and root rules (CTX001).
-- **Status files** — Check `lupo-docs/status/` for recent activity and handoff reports.
+- **Channel threads/tasks** — Check `lupo-channels/42/threads/` and `lupo-channels/42/tasks/` for recent activity and handoff reports.
 - **Root rules** — If unsure, check [lupo-rules/root/](lupo-rules/root/README.md) before acting; root rules are the source of truth for constraints.
 
 ---

@@ -16,6 +16,10 @@ lupopedia.headers:
   message_type: "review"
   purpose: "Final implementation review for task_val_001 validating code matches approved spec"
   tags: ["validator", "task_val_001", "implementation_review"]
+lupopedia.edges:
+  outbound_edges:
+    - { to: "lupo-channels/42/threads/1006/20260318_203000_hephaestus_result_task_val_001_validator-run.md", type: references, weight: 1.0, reason: "V-THREAD prior validator run" }
+    - { to: "lupo-channels/42/threads/1006/20260318_211500_wolfie_closure_task_val_001_validator.md", type: continues, weight: 1.0, reason: "V-THREAD next closure" }
 ---
 
 # LILITH review — task_val_001 validator implementation

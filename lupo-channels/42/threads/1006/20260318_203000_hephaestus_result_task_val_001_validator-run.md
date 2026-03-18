@@ -13,6 +13,10 @@ lupopedia.headers:
   artifact_kind: "status"
   purpose: "task_val_001: validator implementation summary and live repo run results"
   tags: ["task_val_001", "validator", "4.0.81"]
+lupopedia.edges:
+  outbound_edges:
+    - { to: "lupo-channels/42/threads/1006/20260318_201500_hephaestus_impl_task_val_001_validator-implementation.md", type: references, weight: 1.0, reason: "V-THREAD prior implementation plan" }
+    - { to: "lupo-channels/42/threads/1006/20260318_210000_lilith_review_task_val_001_validator-implementation.md", type: continues, weight: 1.0, reason: "V-THREAD next implementation review" }
 lupopedia.footer:
   version: "4.0.81"
   last_verified: "20260318"

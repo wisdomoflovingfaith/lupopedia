@@ -1,0 +1,121 @@
+---
+lupopedia.headers:
+  lupopedia.version: "4.0.81"
+  lupopedia.schema: "doctrine"
+  file_path_from_root: "lupo-docs/doctrine/TIMESTAMP_DOCTRINE.md"
+  web_path: "http://www.lupopedia.com/doctrine/TIMESTAMP_DOCTRINE"
+  last_modified_utc: "20260319"
+  system_version: "4.0.81"
+  channel_id: 42
+  actor_id: 10
+  actor_name: "thoth"
+  delegation_chain: "thoth:wolfie"
+  artifact_type: "doctrine"
+  artifact_kind: "timestamp_rules"
+  purpose: "Define canonical timestamp handling: single timezone, BIGINT YYYYMMDDHHIISS format"
+  tags: ["doctrine", "timestamp", "timezone", "bigint", "core"]
+  required_reading:
+    - path: "lupo-docs/origin/WOLFIE_ORIGIN.md"
+      reason: "Understand why time discipline matters to the architect"
+    - path: "lupo-docs/doctrine/DATABASE_DOCTRINE.md"
+      reason: "Database timestamp column requirements"
+  title: "Timestamp Doctrine – One Global Time Lens"
+  description: "Canonical doctrine for timestamp handling: BIGINT YYYYMMDDHHIISS, single timezone context, no column-level timezone confusion"
+  keywords: ["timestamp", "timezone", "doctrine", "bigint", "yyyymmddhhiiss", "global-time"]
+  author: "thoth"
+  orchestrator: "wolfie"
+
+lupopedia.edges:
+  outbound_edges:
+    - { to: "lupo-docs/origin/WOLFIE_ORIGIN.md", type: "explains_why", weight: 0.9 }
+    - { to: "lupo-database/lupopedia/mysql/install/install_new_lupopedia.sql", type: "implements_in", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/FALLBACK_ENGINEERING.md", type: "related_philosophy", weight: 0.8 }
+
+---
+# file: Timestamp Doctrine – One Global Time Lens — session: L-LUPO-ROOT-THOTH — delegation: thoth:wolfie — web_path: http://www.lupopedia.com/doctrine/TIMESTAMP_DOCTRINE
+
+# Timestamp Doctrine – One Global Time Lens
+
+## 1. Core Principle
+
+**Lupopedia does not shove a timezone string onto every column.**
+
+Instead, the entire system shares a single, documented timezone context (set once in configuration) and stores every temporal value as a 14-digit BIGINT: `YYYYMMDDHHIISS`.
+
+**Example:** `20251114083045` means November 14, 2025, 08:30:45 UTC (or configured timezone).
+
+## 2. Why Integer Timestamps Win
+
+| Property | Benefit |
+|----------|---------|
+| **Consistency** | One timezone eliminates "created in UTC, updated in PST, deleted in EST" confusion. Every log, queue, and report lines up. |
+| **Sortability** | Lexicographic order matches chronological order. Index scans and CSV comparisons stay fast even on shared hosting. |
+| **Human Readable** | Ops teams can glance at raw data and know exactly when something happened—no conversion scripts required. |
+| **Deterministic Math** | Maintenance scripts treat timestamps as integers. Calculating windows or truncating to day/hour is a single arithmetic operation. |
+| **2038-Proof** | Values live in `BIGINT` columns—not 32-bit UNIX epochs—so Lupopedia glides past the January 19, 2038 overflow that will nuke legacy INT-based systems. |
+
+## 3. The Architect's Statement
+
+> "Modern frameworks bolt a timezone onto every column 'for safety.' Safer for what? Creating records in UTC, updating them in PST, and deleting them in EST? What business actually needs this?"
+
+Wolfie's philosophy: validate at the boundary, store uniformly, let automation rely on simple, reliable data.
+
+## 4. Implementation Rules
+
+### 4.1 Database Columns
+- All timestamp columns MUST be `BIGINT`
+- No `DATETIME`, `TIMESTAMP`, or `TIMESTAMPTZ` types
+- No column-level timezone information
+
+### 4.2 Application Code
+- Timestamps MUST be set in application code using `gmdate('YmdHis')` (UTC) or configured timezone
+- NEVER use database-generated timestamps (`CURRENT_TIMESTAMP`, `ON UPDATE`)
+- Timezone is configured once, globally
+
+### 4.3 Display
+- Display functions convert integers to human-readable format on output
+- Internal representation remains integer for all operations
+
+### 4.4 Example
+
+```php
+// Setting a timestamp
+$now = (int) gmdate('YmdHis'); // 20260319143045
+
+// Inserting into database
+$sql = "INSERT INTO lupo_events (event_id, event_time) VALUES (?, ?)";
+$stmt = $db->prepare($sql);
+$stmt->execute([$event_id, $now]);
+
+// Calculating a window
+$one_day_ago = $now - 1000000; // 24 hours in YmdHis terms
+// (Note: proper date arithmetic uses dedicated functions, not raw subtraction)
+```
+
+## 5. Comparison: Modern Frameworks vs Lupopedia
+
+| Framework Approach | Lupopedia Approach |
+|--------------------|---------------------|
+| TIMESTAMPTZ per column | One global timezone |
+| Stored as string/object | Stored as integer |
+| Timezone logic in queries | Timezone logic at boundary |
+| Requires conversion for math | Direct integer comparison |
+| 2038 risk on 32-bit systems | 2038-proof (BIGINT) |
+
+## 6. Historical Context
+
+This discipline comes directly from Crafty Syntax (2003). Wolfie built it then, proved it across 1.2M installations and 22 years, and encoded it as doctrine for Lupopedia.
+
+> "The same integer timestamps that kept 1.2M installs consistent when cron jobs ran on bargain-bin hosts now power Lupopedia's multi-agent coordination."
+
+## 7. Enforcement
+
+- Schema validation scripts check for `DATETIME`/`TIMESTAMP` columns
+- Code review flags any use of `CURRENT_TIMESTAMP`
+- Migration tools convert legacy timestamp formats during upgrade
+
+## 8. See Also
+
+- `lupo-docs/origin/WOLFIE_ORIGIN.md` – Why this philosophy exists
+- `lupo-database/lupopedia/mysql/install/install_new_lupopedia.sql` – Implementation
+- `lupo-docs/doctrine/DATABASE_DOCTRINE.md` – Broader database rules

@@ -14,6 +14,10 @@ lupopedia.headers:
   message_type: "review"
   purpose: "Validator design design review for task_val_001 (pre-implementation)"
   tags: ["validator", "a12", "lilith"]
+lupopedia.edges:
+  outbound_edges:
+    - { to: "lupo-channels/42/threads/1006/20260318_093700_hephaestus_directive_task_val_001_kickoff.md", type: references, weight: 1.0, reason: "V-THREAD prior kickoff" }
+    - { to: "lupo-channels/42/threads/1006/20260318_201500_hephaestus_impl_task_val_001_validator-implementation.md", type: continues, weight: 1.0, reason: "V-THREAD next implementation plan" }
 ---
 
 # LILITH review — task_val_001 validator design

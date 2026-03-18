@@ -14,6 +14,7 @@ Usage:
   python lupo-scripts/validate_channel_artifacts.py --repo-root . --channel 42 --enforce-project
   python lupo-scripts/validate_channel_artifacts.py --repo-root . --channel 42 --mode enforce
   python lupo-scripts/validate_channel_artifacts.py --repo-root . --option-a-registry
+  python lupo-scripts/validate_channel_artifacts.py --repo-root . --channel 42 --thread-validation
 """
 from __future__ import annotations
 
@@ -410,7 +411,23 @@ def main() -> int:
         action="store_true",
         help="With --option-a-registry: exit 1 on WARN",
     )
+    ap.add_argument(
+        "--thread-validation",
+        action="store_true",
+        help="After channel (and/or option-a) run V-THREAD-001..005 on numeric threads for --channel",
+    )
     args = ap.parse_args()
+
+    def _run_threads(root: Path) -> int:
+        vt = Path(__file__).resolve().parent / "validate_threads.py"
+        spec = importlib.util.spec_from_file_location("validate_threads", vt)
+        if spec is None or spec.loader is None:
+            print("validate_threads.py not found", file=sys.stderr)
+            return 2
+        mod = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(mod)
+        return mod.run(root, args.channel, None)
+
     if args.option_a_registry:
         root = Path(args.repo_root).resolve()
         vtp = Path(__file__).resolve().parent / "validate_todo_plan.py"
@@ -420,7 +437,12 @@ def main() -> int:
             return 2
         mod = importlib.util.module_from_spec(spec)
         spec.loader.exec_module(mod)
-        return mod.run(root, args.warnings_as_errors_registry)
+        rc = mod.run(root, args.warnings_as_errors_registry)
+        if args.thread_validation:
+            tr = _run_threads(root)
+            if tr > rc:
+                rc = tr
+        return rc
     enforce_rev = args.enforce_thread_review_bodies
     enforce_help = args.enforce_help_response_bodies
     if args.mode == "enforce":
@@ -462,9 +484,12 @@ def main() -> int:
             "(includes %d PROJECT_WARN; strict exit uses errors only)" % warn_count,
             file=sys.stderr,
         )
-    if args.strict and err_only:
-        return 1
-    return 0
+    rc = 1 if (args.strict and err_only) else 0
+    if args.thread_validation:
+        tr = _run_threads(root)
+        if tr > rc:
+            rc = tr
+    return rc
 
 
 if __name__ == "__main__":
