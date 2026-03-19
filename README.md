@@ -39,19 +39,19 @@ lupopedia.metadata:
   description:
     - { schema_ref: "lupo_metadata", entity_type: "file", meta_type: "property", property_value: "Primary project documentation — deterministic multi-agent semantic OS; database-backed knowledge graph + doctrine-driven filesystem + MySQL/Postgres backend.", channel_id: 42, class_name: "lupopedia_metadata", created_ymdhis: 20260313000000, updated_ymdhis: 20260318000000 }
   keywords:
-    - { schema_ref: "lupo_metadata", entity_type: "file", meta_type: "property", property_value: "readme, getting_started, semantic_os, multi_agent, deterministic_os, knowledge_graph, doctrine_filesystem, database_backend, v4.0.82", channel_id: 42, class_name: "lupopedia_metadata", created_ymdhis: 20260313000000, updated_ymdhis: 20260318000000 }
+    - { schema_ref: "lupo_metadata", entity_type: "file", meta_type: "property", property_value: "readme, getting_started, semantic_os, multi_agent, deterministic_os, knowledge_graph, doctrine_filesystem, database_backend, v4.0.83", channel_id: 42, class_name: "lupopedia_metadata", created_ymdhis: 20260313000000, updated_ymdhis: 20260320000000 }
   author:
     - { schema_ref: "lupo_metadata", entity_type: "file", meta_type: "property", property_value: "wolfie", channel_id: 42, class_name: "lupopedia_metadata", created_ymdhis: 20260313000000, updated_ymdhis: 20260313000000 }
   orchestrator:
     - { schema_ref: "lupo_metadata", entity_type: "file", meta_type: "property", property_value: "cursor", channel_id: 42, class_name: "lupopedia_metadata", created_ymdhis: 20260313000000, updated_ymdhis: 20260313000000 }
 
 lupopedia.headers:
-  lupopedia.version: "4.0.82"
+  lupopedia.version: "4.0.83"
   lupopedia.schema: "documentation"
   file_path_from_root: "README.md"
   web_path: "http://www.lupopedia.com/"
-  last_modified_utc: "20260319"
-  system_version: "4.0.82"
+  last_modified_utc: "20260320"
+  system_version: "4.0.83"
   channel_id: 42
   actor_id: 1
   actor_name: "wolfie"
@@ -60,8 +60,8 @@ lupopedia.headers:
   artifact_kind: "documentation"
   purpose: "Primary project documentation and onboarding — Install & upgrade validation, canonical root rules, actor registration, lupo-channels/actors/agents"
   mood_rgb: "4169E1"
-  traits: ["essential", "entrypoint", "onboarding", "deterministic_semantic_os", "knowledge_graph", "v4.0.82"]
-  tags: ["readme", "getting_started", "semantic_os", "multi_agent", "knowledge_graph", "doctrine_filesystem", "database_backend", "root_rules", "v4.0.82"]
+  traits: ["essential", "entrypoint", "onboarding", "deterministic_semantic_os", "knowledge_graph", "v4.0.83"]
+  tags: ["readme", "getting_started", "semantic_os", "multi_agent", "knowledge_graph", "doctrine_filesystem", "database_backend", "root_rules", "v4.0.83"]
 
 lupopedia.session:
   session_id: "L-LUPO-ROOT-CURSOR"
@@ -88,23 +88,23 @@ lupopedia.edges:
   semantic_tags: ["project_overview", "onboarding", "semantic_os", "multi_agent", "root_rules"]
 
 lupopedia.footer:
-  version: "4.0.82"
-  last_verified: "20260319"
+  version: "4.0.83"
+  last_verified: "20260320"
   last_verified_by: "wolfie"
   orchestrator: "wolfie"
   next_action:
     - "Point new contributors to Required Reading (INIT_README, LUPOPEDIA_HEADERS), lupo-rules/root/, and actor registration checklist (lupo-docs/ACTOR_REGISTRATION_CHECKLIST.md)"
-    - "Single active version: 4.0.82 — see CHANGELOG.md, TODO.md, plan.md, notes_for_next_session.md, and WOLFIE master consolidation (lupo-channels/1/threads/1035/20260319_190000_wolfie_master_shutdown_consolidation.md)"
+    - "Single active version: 4.0.83 — see CHANGELOG.md, TODO.md, plan.md, notes_for_next_session.md, and WOLFIE master consolidation (lupo-channels/1/threads/1035/20260319_190000_wolfie_master_shutdown_consolidation.md)"
     - "README deterministic OS + knowledge-graph + DB backend section stays aligned with install SQL / TOON regeneration"
     - "Actor–facet separation + channel migration execution are 4.0.82 scope; deferred DB-primary/UI/dedupe items are in root TODO.md"
 ---
 # file: Lupopedia README — session: L-LUPO-ROOT-CURSOR — delegation: cursor:root — web_path: http://www.lupopedia.com/
 
-# Lupopedia Semantic OS v4.0.82
+# Lupopedia Semantic OS v4.0.83
 
 [**GitHub repo**](https://github.com/wisdomoflovingfaith/lupopedia)
 
-[![Version](https://img.shields.io/badge/version-4.0.82-blue.svg)](lupo-docs/version.md)
+[![Version](https://img.shields.io/badge/version-4.0.83-blue.svg)](lupo-docs/version.md)
 [![docs](https://img.shields.io/badge/docs-HELP.md-green)](lupo-docs/HELP.md)
 
 ---
@@ -131,16 +131,16 @@ So the **knowledge graph is not only “files”—it is persisted in the databa
 
 ---
 
-## 🚧 Current Development — v4.0.82 (active development)  
-**Previous Release**: 4.0.81 (finalized and released)  
+## 🚧 Current Development — v4.0.83 (active development)  
+**Previous Release**: 4.0.82 (finalized and released)  
 **Status**: Active development on 4.0.82 features and improvements. Rules and governance updates: **canonical root rules** in `lupo-rules/root/`, IDE rule propagation (Cursor, Kiro, Windsurf, JetBrains), TOON path unified to `lupo-database/lupopedia/toon/`, `lupo-database/` security hardening, **thread model and task management documentation**, and **Antigravity VSX Extension** integration (including full LUPOPEDIA HEADERS terminology adoption and feature UI scaffolding). The only supported upgrade path is **Crafty Syntax 3.7.5 → Lupopedia 4.0.x**. See [plan.md](plan.md) and [report.md](report.md).
 
-**Focus areas for v4.0.81 (completed):**
+**Focus areas for v4.0.82 (completed):**
 - **Thread model documentation and implementation** - One-thread-per-task doctrine, task_id/thread_id separation, lifecycle management
 - **Doctrine alignment for channel-based coordination** - Complete migration from status-based to thread-based coordination
 - **Documentation completeness + validation tooling** - Ensuring 100% coverage and quality validation
 
-**Focus areas for v4.0.82 (current):**
+**Focus areas for v4.0.83 (current):**
 - **Continued validator enhancement and enforcement** - Expanding validation coverage and automation
 - **Project-aware coordination improvements** - Enhanced project-scoped task management
 - **External AI integration and navigation** - Improved discoverability and participation
@@ -217,6 +217,32 @@ If you are a **new IDE agent** (e.g. a new IDE or AI coding assistant joining th
 4. **Avoid unregistered participation.** Operating as an untracked or anonymous worker undermines the actor model and makes it impossible to enforce doctrine and attribute work. Register, then contribute.
 
 **Summary:** Do not “just start coding.” Complete the [actor registration checklist](lupo-docs/ACTOR_REGISTRATION_CHECKLIST.md), have an actor identity in the registry (and DB or fallback), review the root rules first, and use the root rules as source of truth. See also [AGENTS.md](AGENTS.md) for lead orchestration and registry usage.
+
+---
+
+## Versioning Model (Locked)
+
+Lupopedia uses single-field versioning for all new artifacts:
+
+**version_when_written only**
+
+- New artifacts store only `version_when_written` (immutable creation version)
+- Runtime version is resolved dynamically from the canonical resolver
+- No stored runtime version in artifact headers
+
+**runtime version resolved dynamically**
+
+- Current system version obtained from `get_lupopedia_system_version()`
+- Primary source: `LUPEDIA_VERSION` file
+- Secondary sources: version.php runtime helper, config fallback
+
+**no stored runtime version**
+
+- Forbidden fields: `lupopedia.version` and `system_version`
+- Validators reject these fields in new artifacts
+- Prevents version drift and duplicated state
+
+**Doctrine Status:** 🔒 LOCKED - Thread 1005 closed and doctrine-locked
 
 ---
 

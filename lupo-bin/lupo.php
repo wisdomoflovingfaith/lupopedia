@@ -21,7 +21,7 @@ if (!$db && class_exists('DatabaseFactory')) {
 
 $argv = isset($GLOBALS['argv']) ? $GLOBALS['argv'] : array();
 $command = isset($argv[1]) ? $argv[1] : 'help';
-$need_db = ($command !== 'whoami' && $command !== 'context' && $command !== 'help' && $command !== 'docs' && $command !== 'version' && $command !== 'doctor' && $command !== 'doctor-context' && $command !== 'auth' && $command !== 'who' && $command !== 'actor-context' && $command !== 'skills' && $command !== 'headers');
+$need_db = ($command !== 'whoami' && $command !== 'context' && $command !== 'help' && $command !== 'docs' && $command !== 'version' && $command !== 'doctor' && $command !== 'doctor-context' && $command !== 'auth' && $command !== 'who' && $command !== 'actor-context' && $command !== 'skills' && $command !== 'headers' && $command !== 'channel66-ingest');
 if (!$db && $need_db) {
     die("Error: Database connection failed.\n");
 }
@@ -698,6 +698,39 @@ try {
                 echo "  import   <path/to/target.md> [path/to/source.yaml]\n";
             }
             break;
+        case 'channel66-ingest':
+            // Dispatch to Channel 66 Thread 1001 P0 bounded-authority ingestion
+            $scope_root = isset($argv[2]) ? trim($argv[2]) : ABSPATH;
+            $thread_id = isset($argv[3]) ? (int)$argv[3] : 1001;
+            $toon_dir = isset($argv[4]) ? trim($argv[4]) : ABSPATH . 'lupo-database/lupopedia/toon/';
+            
+            // Build argument array for ingestion script
+            $ingest_script = ABSPATH . 'lupo-scripts/ingest_channel66_headers_bounded_authority.php';
+            $ingest_args = array(
+                '--scope-root=' . $scope_root,
+                '--thread-id=' . $thread_id,
+                '--toon-dir=' . $toon_dir,
+                '--mode=p0',
+                '--edges=metadata_only'
+            );
+            
+            // Include and run the ingestion script
+            require_once ABSPATH . 'lupo-scripts/ingest_channel66_headers_bounded_authority.php';
+            
+            // Save original argv and replace with our arguments
+            $original_argv = $GLOBALS['argv'];
+            $GLOBALS['argv'] = array_merge(array('php', $ingest_script), $ingest_args);
+            
+            try {
+                // The ingestion script will handle its own output and exit codes
+                return;
+            } catch (Exception $e) {
+                fwrite(STDERR, "Channel 66 ingestion failed: " . $e->getMessage() . "\n");
+                exit(1);
+            } finally {
+                // Restore original argv
+                $GLOBALS['argv'] = $original_argv;
+            }
         case 'docs':
             $topic = isset($argv[2]) ? trim($argv[2]) : '';
             $base = ABSPATH . 'docs/';

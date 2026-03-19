@@ -246,7 +246,15 @@ Any new subsystem must define:
 - its kapakai boundaries
 - its stewardship responsibilities
 
-8.4 Doctrine is the source of truth
+8.4 Doctrine and Path Authority
+
+**Collections do not override directory structure.** Collection slugs may appear similar to directory names (e.g., "core-docs"), but this is convention only. File locations are determined by:
+
+1. **Directory doctrine** - This document defines canonical directory structure
+2. **Path constants** - `file_path_from_root` in headers specifies exact file location
+3. **Filesystem reality** - Actual file system layout, not derived from collection membership
+
+**Namespace does not override directory structure.** Namespace values classify artifacts for policy but do not determine where files live on disk.
 If filesystem and doctrine disagree, doctrine wins.
 
 9. Summary

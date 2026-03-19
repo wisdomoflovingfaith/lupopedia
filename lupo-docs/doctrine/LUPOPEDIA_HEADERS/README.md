@@ -40,12 +40,12 @@ lupopedia.session:
 
 Apply this principle:
 
-**Headers declare the artifact.  
+**Headers declare artifact.  
 The database declares the world around it.**
 
 ### General rule (ordinary documentation)
 
-For ordinary documentation artifacts (doctrine/spec/foundation/status), the **handwritten header** should contain only **human-authored, stable identity and intent**. Do **not** treat DB-derived, computed, relational, inferred, or dynamic “world state” as default handwritten header content.
+For ordinary documentation artifacts (doctrine/spec/foundation/status), **handwritten header** should contain only **human-authored, stable identity and intent**. Do **not** treat DB-derived, computed, relational, inferred, or dynamic “world state” as default handwritten header content.
 
 Canonical handwritten block model for general docs:
 
@@ -84,6 +84,21 @@ For active table documentation files under:
 - `USED_BY_AGENT`
 
 This is an explicit exception: **active table documentation is a semantic mapping surface**, so edges are declared in those files.
+
+## Relationship to Collections
+
+Collections and namespaces are **conditionally coupled** dimensions that serve different purposes:
+
+| Aspect | Collections | Namespaces |
+|---------|-------------|------------|
+| **Purpose** | Membership in named sets for navigation, filtering, and UI grouping | Domain/jurisdiction classification for policy, taxonomy, and validation |
+| **Field location** | `collections` array in headers (or DB membership) | `namespace` single string in `lupopedia.headers` |
+| **Cardinality** | Many-to-many (artifact can belong to multiple collections) | Many-to-one (artifact has exactly one namespace) |
+| **Authority scope** | Navigation, tabs, URLs, breadcrumbs through database structure | Policy, validation, and table-document requirements |
+| **Precedence** | For navigation/display decisions: collections win | For policy/validation decisions: namespace wins |
+| **Path authority** | Neither collections nor namespaces define filesystem paths | Neither collections nor namespaces define filesystem paths |
+
+**Key principle:** When both fields are present and inform the same decision, resolve by scope - not by treating both as equally authoritative.
 
 ## Docs in this folder
 

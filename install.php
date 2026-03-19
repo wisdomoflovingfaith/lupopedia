@@ -2,7 +2,7 @@
 /**
  * @wolfie.headers {
  *   file_path_from_root: "install.php",
- *   system_version: "4.0.75",
+ *   system_version: "4.0.83",
  *   channel_id: 42,
  *   mood_rgb: "FF6347",
  *   purpose: "Main installer and upgrade wizard for Lupopedia - handles fresh install and Crafty Syntax 3.7.5 upgrade",

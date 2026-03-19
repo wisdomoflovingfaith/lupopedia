@@ -30,7 +30,7 @@ lupopedia.headers:
 
 | thread_id | task_id | title | status | actor | created_utc | updated_utc |
 |-----------|-----------|--------|--------|--------|-------------|-------------|
-| 1001 | thread001 | THREAD001 triage and canonicalization | resolved | wolfie | 20260318_100000 | 20260318_110000 |
+| 1001 | thread001 | THREAD001 triage and canonicalization | completed | wolfie | 20260318_100000 | 20260320_680000 |
 | 1002 | task_release_001 | Channel migration execution | resolved | hermes | 20260317_160000 | 20260317_170000 |
 | 1003 | task_doc_001 | Documentation thread allocation | resolved | thoth | 20260318_170000 | 20260318_175000 |
 | 1004 | task_plan_001 | Planning system acceptance | resolved | athena | 20260318_141109 | 20260318_150000 |

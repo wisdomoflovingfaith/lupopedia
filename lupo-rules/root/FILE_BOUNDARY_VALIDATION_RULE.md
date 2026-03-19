@@ -59,6 +59,12 @@ A file is **SAFE** to modify if and only if:
    - Files without headers are OUT OF BOUNDS
    - Legacy Crafty files require explicit migration
 
+4. **Path Authority Clarification**
+   - File location is determined by **directory doctrine and `file_path_from_root`**
+   - **Collections do not define filesystem paths** - they organize navigation only
+   - **Namespace does not define filesystem paths** - it classifies for policy only
+   - Any logic deriving file path from collection slug or namespace value is a boundary violation
+
 ### File Safety Failure
 A file is **UNSAFE** to modify if:
 

@@ -1,12 +1,9 @@
 # Collections Doctrine (4.0.69)
 
-Collections are **channel-scoped resource bundles** that group artifacts, internal content, external URLs, and navigation paths for use in the Web UI (menus, sidebars, tabbed views). This doctrine defines the Collection → Tab → Entry model and its relation to channels, federation, and navigation.
+Collections are **channel-scoped resource bundles** that group artifacts, internal content, external URLs, and navigation paths for use in Web UI (menus, sidebars, tabbed views). This doctrine defines the Collection → Tab → Entry model and its relation to channels, federation, and navigation.
 
----
+**Critical distinction:** Collections drive navigation, tabs, URLs, and breadcrumbs through `lupo_collection_tab_paths` but **do not define filesystem directory layout**. File paths are determined by directory doctrine and `file_path_from_root`, not by collection slugs.
 
-## 1. Concepts
-
-| Concept | Meaning |
 |--------|--------|
 | **Collection** | A resource bundle: a top-level container with optional channel scope and navigation flags. Stored in `lupo_collections`. |
 | **Tab** | A named, grouped view within a collection (e.g. "Specs", "Code", "Links"). Stored in `lupo_collection_tabs`. |
@@ -73,3 +70,18 @@ Collections are **channel-scoped resource bundles** that group artifacts, intern
 - TOONs: `lupo-database/lupopedia/toon/lupo_collections.toon`, `lupo_collection_tabs.toon`, `lupo_collection_tab_map.toon`, `lupo_collection_tab_paths.toon`
 - Web navigation: `lupo-docs/specs/WEB_NAVIGATION_ARCHITECTURE.md`
 - Orchestration: `lupo-docs/architecture/HOW_ACTORS_ORCHESTRATE_ON_CHANNELS.md`
+
+---
+
+## 8. Precedence When Used with Namespace
+
+When collections and namespaces are both present on an artifact, precedence is determined by scope:
+
+| Decision Type | Winner | Rule |
+|---------------|--------|------|
+| **Policy / validation / jurisdiction** | **Namespace** | Domain/jurisdiction (namespace) determines policy and validation (e.g. table-doc requirement, governance). Collection determines nav/filter/display grouping. |
+| **Navigation / tabs / UI grouping** | **Collections** | Collections drive navigation menus, tabs, URLs, and breadcrumbs through database structure. Namespace does not override nav structure. |
+| **File path / filesystem location** | **Filesystem** | File location is determined by directory doctrine and `file_path_from_root`. Collection membership does not override or define where a file lives on disk. |
+| **Header vs DB for collections** | **Context-dependent** | For ingestion and file-authored truth: header `collections` is source of truth. For navigation menu and tab contents at runtime: DB (lupo_collections, tabs) is source of truth. |
+
+**Summary:** Collections organize navigation and display; namespace enforces policy and taxonomy; filesystem paths follow directory doctrine.
