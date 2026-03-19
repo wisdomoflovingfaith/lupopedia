@@ -1,5 +1,5 @@
 ---
-version_when_written: "4.0.83"
+version_when_written: "4.0.84"
 file_path_from_root: "plan.md"
 web_path: "http://www.lupopedia.com/plan.md"
 last_modified_utc: "20260320"
@@ -14,7 +14,7 @@ delegation_chain: "wolfie:root"
 artifact_type: "roadmap"
 artifact_kind: "plan"
 purpose: "Root plan — Channel 66 production migration fixes and Thread 1004 semantic validation coordination"
-tags: ["wolfie", "plan", "roadmap", "4.0.83", "channel66", "thread1004", "semantic_validation", "production_migration"]
+tags: ["wolfie", "plan", "roadmap", "4.0.84", "channel66", "thread1004", "semantic_validation", "production_migration"]
 lupopedia.interpretation:
   whoami:
     facet: "cursor"
@@ -50,7 +50,7 @@ Phases are **dependency-ordered** (no time estimates). **Prompt file names** bel
 
 ## Current phase (where the system actually is)
 
-- **Version:** 4.0.83 only for active execution.
+- **Version:** 4.0.84 only for active execution.
 - **Done or materially advanced:** HERMES mapping + WOLFIE ratification; HEPHAESTUS copy-not-move for mapped threads + system-limits hooks (see CHANGELOG [4.0.82], [4.0.83]); actor–facet doctrine + `lupo-rules/root/` packs; Option A TODO/plan structure; many prompts closed (041000, 022050, etc.).
 - **Thread 1004 mapping revision (ATHENA):** revised Crafty `livehelp_*` → Lupopedia `lupo_` structural mapping after LILITH attack; verified **34** legacy tables and defined SQL-first documentation authority hierarchy (artifact: `lupo-channels/88/threads/1004/20260319_300000_athena_revised_structural_mapping_model_crafty_lupo_after_lilith_attack.md`). Next: WOLFIE narrowing; HEPHAESTUS blocked until remaining P0 semantic validation.
 - **Channel 66 Thread 1001:** reposted Channel 66 Phase 1 audit into correct thread-local working artifact (routing correction), then responded to LILITH attack by reframing Channel 66 architecture boundaries and elevating header ingestion to P0.

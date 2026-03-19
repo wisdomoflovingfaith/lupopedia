@@ -39,19 +39,19 @@ lupopedia.metadata:
   description:
     - { schema_ref: "lupo_metadata", entity_type: "file", meta_type: "property", property_value: "Primary project documentation — deterministic multi-agent semantic OS; database-backed knowledge graph + doctrine-driven filesystem + MySQL/Postgres backend.", channel_id: 42, class_name: "lupopedia_metadata", created_ymdhis: 20260313000000, updated_ymdhis: 20260318000000 }
   keywords:
-    - { schema_ref: "lupo_metadata", entity_type: "file", meta_type: "property", property_value: "readme, getting_started, semantic_os, multi_agent, deterministic_os, knowledge_graph, doctrine_filesystem, database_backend, v4.0.83", channel_id: 42, class_name: "lupopedia_metadata", created_ymdhis: 20260313000000, updated_ymdhis: 20260320000000 }
+    - { schema_ref: "lupo_metadata", entity_type: "file", meta_type: "property", property_value: "readme, getting_started, semantic_os, multi_agent, deterministic_os, knowledge_graph, doctrine_filesystem, database_backend, v4.0.84", channel_id: 42, class_name: "lupopedia_metadata", created_ymdhis: 20260313000000, updated_ymdhis: 20260320000000 }
   author:
     - { schema_ref: "lupo_metadata", entity_type: "file", meta_type: "property", property_value: "wolfie", channel_id: 42, class_name: "lupopedia_metadata", created_ymdhis: 20260313000000, updated_ymdhis: 20260313000000 }
   orchestrator:
     - { schema_ref: "lupo_metadata", entity_type: "file", meta_type: "property", property_value: "cursor", channel_id: 42, class_name: "lupopedia_metadata", created_ymdhis: 20260313000000, updated_ymdhis: 20260313000000 }
 
 lupopedia.headers:
-  lupopedia.version: "4.0.83"
+  lupopedia.version: "4.0.84"
   lupopedia.schema: "documentation"
   file_path_from_root: "README.md"
   web_path: "http://www.lupopedia.com/"
   last_modified_utc: "20260320"
-  system_version: "4.0.83"
+  system_version: "4.0.84"
   channel_id: 42
   actor_id: 1
   actor_name: "wolfie"
@@ -60,8 +60,8 @@ lupopedia.headers:
   artifact_kind: "documentation"
   purpose: "Primary project documentation and onboarding — Install & upgrade validation, canonical root rules, actor registration, lupo-channels/actors/agents"
   mood_rgb: "4169E1"
-  traits: ["essential", "entrypoint", "onboarding", "deterministic_semantic_os", "knowledge_graph", "v4.0.83"]
-  tags: ["readme", "getting_started", "semantic_os", "multi_agent", "knowledge_graph", "doctrine_filesystem", "database_backend", "root_rules", "v4.0.83"]
+  traits: ["essential", "entrypoint", "onboarding", "deterministic_semantic_os", "knowledge_graph", "v4.0.84"]
+  tags: ["readme", "getting_started", "semantic_os", "multi_agent", "knowledge_graph", "doctrine_filesystem", "database_backend", "root_rules", "v4.0.84"]
 
 lupopedia.session:
   session_id: "L-LUPO-ROOT-CURSOR"

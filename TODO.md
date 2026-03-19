@@ -1,5 +1,5 @@
 ---
-version_when_written: "4.0.83"
+version_when_written: "4.0.84"
 file_path_from_root: "TODO.md"
 web_path: "http://www.lupopedia.com/TODO.md"
 last_modified_utc: "20260320"
@@ -13,8 +13,8 @@ actor_name: "wolfie"
 delegation_chain: "wolfie:root"
 artifact_type: "task_list"
 artifact_kind: "task_list"
-purpose: "Active execution queue for 4.0.83 - rolled forward from 4.0.82"
-tags: ["wolfie", "todo", "task-registry", "4.0.83", "protocol-development", "global-task-registry"]
+purpose: "Active execution queue for 4.0.84 - rolled forward from 4.0.83"
+tags: ["wolfie", "todo", "task-registry", "4.0.84", "protocol-development", "global-task-registry"]
 lupopedia.interpretation:
   whoami:
     facet: "cursor"
@@ -72,7 +72,7 @@ next_action:
 | task_deferred_0004 | Artifact auto-healing | - | open | planned | - | P2 | 20260318_142300 | 20260318_142300 | - | Migrated from legacy deferred list; needs WOLFIE allocation (owner + thread). |
 | task_deferred_0005 | External read capabilities | - | open | planned | - | P2 | 20260318_142300 | 20260318_142300 | - | Migrated from legacy deferred list; needs WOLFIE allocation (owner + thread). |
 
-## 4.0.83 Active Tasks (Rolled Forward from 4.0.82)
+## 4.0.84 Active Tasks (Rolled Forward from 4.0.83)
 
 ### Channel 88 Active Tasks
 - **task_channel88_1004_semantic_validation_001** — Thread 1004 semantic validation and P0 blocker resolution

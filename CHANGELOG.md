@@ -26,9 +26,7 @@ lupopedia.comments:
   - { comment_id: 2, channel_id: 42, actor_id: 102, actor_name: "cursor", faucet_id: 102, faucet_name: "cursor", comment_text: "Second example comment for 4.0.73 to demonstrate multiple comment records in the lupopedia.comments block.", comment_type: "comment", created_ymdhis: 20260313151500, updated_ymdhis: 20260313151500 }
 
 lupopedia.headers:
-  lupopedia.schema: "documentation"
-  file_path_from_root: "CHANGELOG.md"
-  version_when_written: "4.0.83"
+  version_when_written: "4.0.84"
   last_modified_utc: "20260320"
   channel_id: 42
   actor_id: 1
@@ -79,6 +77,27 @@ Canonical version history for Lupopedia.
 Entries are listed **in reverse chronological order**.
 
 Older entries (≤4.0.67) are archived in [CHANGELOG_ARCHIVE.md](CHANGELOG_ARCHIVE.md).
+
+---
+
+## [4.0.84] — Active Development (20260320)
+
+**Scope:** Development rollover from 4.0.83 - unfinished work continued.
+
+### Status: 🔄 ACTIVE DEVELOPMENT
+
+**Rollover from 4.0.83:**
+- Thread 1004 P0 semantic validation blocker (both channels 66 and 88)
+- A12.4 constitutional signoff (task_prompt_010100)
+- Watcher auto-draft acceptance (task_prompt_234200)
+- Deferred P2 tasks (task_deferred_0001-0005)
+
+**Key Focus Areas:**
+- Semantic validation fixes for `lupo_visits.actor_id` mapping
+- HEPHAESTUS implementation plan execution
+- A12 compliance and constitutional signoff
+- Channel 66 production deployment safety
+
 
 ---
 
@@ -333,7 +352,7 @@ Older entries (≤4.0.67) are archived in [CHANGELOG_ARCHIVE.md](CHANGELOG_ARCHI
 
 ---
 
-## [4.0.83] — Channel 66 Versioning Doctrine & Enforcement Workstream (20260320)
+## [4.0.82] — Channel 66 Versioning Doctrine & Enforcement Workstream (20260320)
 
 **Scope:** Complete Channel 66 workstream covering Threads 1001-1005, single-field versioning doctrine implementation, adversarial validation, and system-wide enforcement.
 
@@ -387,100 +406,7 @@ Older entries (≤4.0.67) are archived in [CHANGELOG_ARCHIVE.md](CHANGELOG_ARCHI
 - **Channel 66 Thread 1002:** No activity during this workstream; previously addressed bounded authority constraints in earlier workstream.
 - **Channel 66 Thread 1003:** produced a decision-ready narrowing artifact converting ATHENA’s revised collections vs namespaces model into an operational working position (doctrine impact identified; implementation behavior change blocked until doctrine update).
 - **Channel 66 Thread 1004:** created the question thread for Crafty Syntax `livehelp_*` → Lupopedia `lupo_*` table mapping and located documentation sources for the mapping investigation.
-- **[20260320] [WOLFIE] [Thread 1001] Documentation reconciliation workstream complete — verified by LILITH — all P0 violations resolved**
-
----
-
- 
-## [4.0.82] — Channel 66 Production Migration & Thread 1004 Semantic Validation (20260319)
-
-**Scope:** Comprehensive update covering Channel 66 production migration completion and Thread 1004 P0 semantic attack work.
-
-### Channel 66 Production Migration Completion
-
-**Status:** ✅ BLOCKED FOR PRODUCTION DEPLOYMENT  
-**Owner:** LILITH (actor_id 2) - Final Production Gate Review  
-**Key Outcome:** HEPHAESTUS production migration extended execution rejected due to 15 critical violations
-
-**Major Achievements:**
-- ✅ Complete P0 bounded-authority ingestion scaffold implemented and tested
-- ✅ Comprehensive extended testing suite with 35+ scenarios
-- ✅ Production deployment automation with backup and rollback procedures
-- ✅ Real-time performance monitoring and alerting framework
-- ✅ Full compliance with Thread 1002 bounded authority constraints
-
-**Critical Issues Identified:**
-- 🔴 6 bounded authority violations (retry logic, batch processing, concurrency)
-- 🔴 3 determinism violations (batch ordering, entity ID calculation)
-- 🔴 3 failure mode violations (rollback, backup, health checks)
-- 🔴 2 deployment safety violations (atomic deployment, config validation)
-
-**Status:** 🔄 ACTIVE - P0 SEMANTIC ATTACK IN PROGRESS  
-**Owner:** LILITH (actor_id 2) - Adversarial Semantic Validation  
-**Key Achievement:** ✅ CRITICAL P0 BLOCKER IDENTIFIED
-
-**Critical Finding:** `lupo_visits.actor_id` semantic mapping invalid
-- **Issue:** `livehelp_visits_daily.livehelp_id` (site/instance ID) incorrectly mapped to `lupo_visits.actor_id` (user/actor ID)
-- **Impact:** P0 semantic blocker - violates data meaning integrity
-- **Evidence:** Source schema shows `livehelp_id` defaults to '1' as site identifier
-
-**Other Risks Classified:**
-- 🟡 Dropped table dependencies (P1) - Runtime references confined to legacy directories
-- 🟡 Edge case handling (P1) - Documentation gaps but implementation adequate
-
-**Next Steps:**
-- Awaiting HEPHAESTUS implementation plan for semantic fix
-- Thread 1004 ready for implementation phase after P0 blocker resolved
-
-### Multi-Agent Coordination
-
-- WOLFIE: Structural risk identification and narrowing
-- LILITH: P0 semantic attack and adversarial validation
-- HEPHAESTUS: Implementation of semantic fixes (pending)
-
-### Thread 1001 & 1002 Reference
-
-**Completed Work:**
-- Thread 1001: P0 bounded-authority ingestion scaffold (APPROVED for development)
-- Thread 1002: Bounded authority closure with Thread 1001 constraints (COMPLETED)
-
-### Documentation Updates
-
-**Artifacts Created:**
-- LILITH final production gate review (15 critical violations documented)
-- LILITH P0 semantic attack on Thread 1004 (critical blocker identified)
-- Channel 66 and 88 thread indexes updated
-
-### System Impact
-
-**Architecture:** Production migration safety mechanisms validated and hardened
-**Quality:** Adversarial review process proven effective at identifying critical issues
-**Coordination:** Multi-agent workflow successfully executing across channels 66, 88, and 42
-
-### 🔄 Version Roll Forward
-- **Release Date**: 2026-03-19
-- **Previous Version**: 4.0.81 (finalized and released)
-- **Status**: Released
-
-### 📋 Major Deliverables
-
-#### **Channel model and validation**
-- **Channel models ratified** — All channel models understood and ratified, including Channel 66’s question-driven model.
-- **Strict-mode validation** — All channels validated clean under strict-mode; channel model doctrine finalized.
-- **CHANNEL_MODEL_DOCTRINE.md** — Canonical channel model documentation aligned and current.
-
-#### **Root documentation alignment**
-- **CHANGELOG.md** — Updated for 4.0.82; release section and continuity with 4.0.81/4.0.83 maintained.
-- **plan.md** — Synchronized with remaining work and roadmap.
-- **TODO.md** — Cleaned and aligned with current roadmap.
-
-#### **Doctrine and indices**
-- **Doctrine finalized** — All doctrine, indices, and channel models finalized for version 4.0.82.
-- **Release integrity** — System state verified; release operations (stage, commit, push, tag) authorized and documented.
-
-### 🧾 Session / artifact context
-- **Roll-forward**: [WOLFIE status task_release_005 rollforward](lupo-channels/42/threads/1024/20260319_200000_wolfie_status_task_release_005_rollforward.md) — workspace rolled forward to 4.0.82 after 4.0.81 finalization.
-- **CHANGELOG working entry**: [WOLFIE status task_release_005 changelog_entry](lupo-channels/42/threads/1024/20260319_230000_wolfie_status_task_release_005_changelog_entry.md).
+- [20260320] [WOLFIE] [Thread 1001] Documentation reconciliation workstream complete — verified by LILITH — all P0 violations resolved
 
 ---
 
