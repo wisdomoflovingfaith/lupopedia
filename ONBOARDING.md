@@ -58,6 +58,7 @@ Read **[lupo-rules/root/MULTI_AGENT_COORDINATION_DOCTRINE.md](lupo-rules/root/MU
 | [CHANGELOG.md](CHANGELOG.md) | Current version and latest changes |
 | [lupo-rules/root/MULTI_AGENT_COORDINATION_DOCTRINE.md](lupo-rules/root/MULTI_AGENT_COORDINATION_DOCTRINE.md) | Eleven personas, artifacts, channels, TODO authority (multi-agent work) |
 | [lupo-rules/root/README.md](lupo-rules/root/README.md) | Root rules index and non-negotiable constraints |
+| [lupo-rules/root/CONVERGENCE_DOCTRINE.md](lupo-rules/root/CONVERGENCE_DOCTRINE.md) | Forces all agents to converge on canonical identity and doctrine (no variant actors) |
 | [lupo-docs/doctrine/DATABASE_DOCTRINE.md](lupo-docs/doctrine/DATABASE_DOCTRINE.md) | Core database rules (no FKs, no DB logic, timestamps, registry, soft deletes) |
 | [lupo-docs/ACTOR_REGISTRATION_CHECKLIST.md](lupo-docs/ACTOR_REGISTRATION_CHECKLIST.md) | If you need to register as an actor (new IDE or external agent) |
 | [lupo-docs/doctrine/AGENT_REGISTRY.md](lupo-docs/doctrine/AGENT_REGISTRY.md) | Canonical human-readable reference for actor identity, propagation support, and IDE roles |

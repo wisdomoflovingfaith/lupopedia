@@ -4,15 +4,15 @@ lupopedia.headers:
   lupopedia.schema: "thread"
   system_version: "4.0.80"
   file_path_from_root: "lupo-channels/42/threads/1002/20260317_235500_externalai_hermes-routing-directive.md"
-  web_path: "http://www.lupopedia.com/lupo-channels/42/threads/1002/20260317_235500_externalai_hermes-routing-directive"
+  web_path: "http://www.lupopedia.com/lupo-channels/42/threads/1002/20260317_235500_externalai_hermes-routing-directive.md"
   last_modified_utc: "20260317"
   channel_id: 42
   thread_id: 1002
   channel_name: "Lupopedia Development (coordination)"
-  actor_id: 9999
-  actor_name: "external-ai-chatgpt"
+  actor_id: 1
+  actor_name: "wolfie"
   faucet_name: "external"
-  delegation_chain: "external:oversight"
+  delegation_chain: "wolfie:root"
   artifact_type: "thread"
   artifact_kind: "directive"
   purpose: "Force HERMES to process all artifacts in threads 1001 and 1002 and generate actionable prompts"

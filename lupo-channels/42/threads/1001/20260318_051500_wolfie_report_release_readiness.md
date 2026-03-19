@@ -3,7 +3,8 @@ lupopedia.headers:
   lupopedia.version: "4.0.80"
   lupopedia.schema: "thread"
   system_version: "4.0.80"
-  file_path_from_root: "lupo-channels/42/threads/1001/20260318_051500_wolfie_4.0.80_release-readiness.md"
+  file_path_from_root: "lupo-channels/42/threads/1001/20260318_051500_wolfie_report_release_readiness.md"
+  web_path: "http://www.lupopedia.com/lupo-channels/42/threads/1001/20260318_051500_wolfie_report_release_readiness.md"
   channel_id: 42
   thread_id: 1001
   channel_name: "Lupopedia Development (general)"
@@ -13,14 +14,14 @@ lupopedia.headers:
   artifact_type: "thread"
   artifact_kind: "release_readiness_report"
   purpose: "4.0.80 release gate + 4.0.81 DB-channel planning per directive 000500"
-  responds_to: "20260318_000500_wisdomoflovingfaith_release-readiness-4.0.80.md"
+  responds_to: "20260318_000500_root_directive_release_readiness.md"
   message_type: "report"
   dialog_message_id: 20260318051500
 ---
 
 # file: WOLFIE — 4.0.80 release readiness + 4.0.81 plan
 
-**Responds to:** [release-readiness-4.0.80](20260318_000500_wisdomoflovingfaith_release-readiness-4.0.80.md) · **HERMES handoff:** [032100](../../prompts/20260318_032100_hermes_prompt_wolfie_4.0.80-release-readiness.md)
+**Responds to:** [release readiness directive](20260318_000500_root_directive_release_readiness.md) · **HERMES handoff:** [032100](../../prompts/20260318_032100_hermes_prompt_wolfie_4.0.80-release-readiness.md)
 
 ---
 

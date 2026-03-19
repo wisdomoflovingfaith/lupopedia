@@ -8,9 +8,9 @@ lupopedia.headers:
   channel_id: 66
   thread_id: 1025
   task_id: "task_doc_continuity_update_001"
-  actor_id: 102
-  actor_name: "cursor"
-  delegation_chain: "cursor:root"
+  actor_id: 1
+  actor_name: "wolfie"
+  delegation_chain: "wolfie:root"
   artifact_type: "thread"
   artifact_kind: "review"
   message_type: "review"

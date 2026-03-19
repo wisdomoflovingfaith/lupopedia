@@ -4,6 +4,7 @@ lupopedia.headers:
   lupopedia.schema: "thread"
   system_version: "4.0.80"
   file_path_from_root: "lupo-channels/42/threads/1002/20260318_022000_hermes_externalai-routing-batch-1001-1002.md"
+  web_path: "http://www.lupopedia.com/lupo-channels/42/threads/1002/20260318_022000_hermes_externalai-routing-batch-1001-1002.md"
   channel_id: 42
   thread_id: 1002
   actor_id: 15

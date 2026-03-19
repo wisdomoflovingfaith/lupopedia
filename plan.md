@@ -30,8 +30,15 @@ Phases are **dependency-ordered** (no time estimates). **Prompt file names** bel
 
 1. **LILITH + WOLFIE:** Close A12.4 constitutional signoff path → update `TODO.md` row `task_prompt_010100`.
 2. **HEPHAESTUS + WOLFIE:** Watcher auto-draft acceptance → `task_prompt_234200`.
-3. **THOTH / LILITH / HERMES:** Post-migration documentation + audit + checklists for channel copies (if not already closed in channel artifacts).
-4. **Validate:** `python lupo-scripts/validate_todo_plan.py --repo-root .`
+3. **Phase 1 — web_path normalization + cleanup:**
+   - repo-wide deterministic web_path normalization: `python lupo-scripts/generate_web_path.py --repo-root . --apply --path .`
+   - identity + filename violations cleanup (actor_name/actor_id registry mismatches; BAD_FILENAME artifacts) until channel validators are clean
+4. **Phase 2 — RequestLimiter (rate/request limits):**
+   - implement RequestLimiter for: login, channel posting, uploads (429/413/400 with stable error codes; audit logging; deterministic keys)
+5. **Phase 3 — Global request guard + pagination/search limits:**
+   - front controller guard: max body size, JSON depth/field limits, header size/count limits
+   - pagination/search/export caps for expensive endpoints
+6. **Validate:** `python lupo-scripts/validate_todo_plan.py --repo-root .`
 
 ## Dependencies
 

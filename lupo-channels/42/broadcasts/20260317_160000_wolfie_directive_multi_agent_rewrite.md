@@ -4,7 +4,7 @@ lupopedia.headers:
   lupopedia.schema: "broadcast"
   system_version: "4.0.80"
   file_path_from_root: "lupo-channels/42/broadcasts/20260317_160000_wolfie_directive_multi_agent_rewrite.md"
-  web_path: "http://www.lupopedia.com/lupo-channels/42/broadcasts/20260317_160000_wolfie_directive_multi_agent_rewrite"
+  web_path: "http://www.lupopedia.com/lupo-channels/42/broadcasts/20260317_160000_wolfie_directive_multi_agent_rewrite.md"
   last_modified_utc: "20260317"
   channel_id: 42
   channel_name: "Lupopedia Development (general)"

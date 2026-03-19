@@ -4,6 +4,7 @@ lupopedia.headers:
   lupopedia.schema: "thread"
   system_version: "4.0.80"
   file_path_from_root: "lupo-channels/42/threads/1001/20260318_050000_wolfie_todo-authority-alignment.md"
+  web_path: "http://www.lupopedia.com/lupo-channels/42/threads/1001/20260318_050000_wolfie_todo-authority-alignment.md"
   channel_id: 42
   thread_id: 1001
   channel_name: "Lupopedia Development (general)"

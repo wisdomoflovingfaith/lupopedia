@@ -2,6 +2,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.81"
   file_path_from_root: "lupo-channels/42/threads/1001/20260318_133434_hephaestus_status_watcher-auto-draft.md"
+  web_path: "http://www.lupopedia.com/lupo-channels/42/threads/1001/20260318_133434_hephaestus_status_watcher-auto-draft.md"
   channel_id: 42
   thread_id: 1001
   actor_id: 14

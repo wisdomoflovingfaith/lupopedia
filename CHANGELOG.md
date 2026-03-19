@@ -114,10 +114,13 @@ Older entries (≤4.0.67) are archived in [CHANGELOG_ARCHIVE.md](CHANGELOG_ARCHI
 
 ### 🧾 2026-03-19 Session Checkpoint (4.0.82)
 - **Master consolidation (single sync point):** [WOLFIE master shutdown consolidation](lupo-channels/1/threads/1035/20260319_190000_wolfie_master_shutdown_consolidation.md) — normalize root docs + version truth to **4.0.82** only for active work.
+- **Global shutdown state sync directive:** `channel_id: 1 thread_id: 1041 task_id: task_global_state_sync_001` — force all actors to synchronize state into `CHANGELOG.md`, `TODO.md`, `plan.md` before shutdown.
 - **HERMES mapping:** `lupo-channels/42/threads/1027/20260318_155033_hermes_report_thread_channel_mapping.md` — deterministic Channel 42 thread→target-channel table (**24 threads** in report).
 - **Migration ratification:** [WOLFIE Directive 1033](lupo-channels/51/threads/1033/20260319_170500_wolfie_directive_channel-migration-ratification.md) — copy-not-move authorized; originals on Channel 42 preserved.
 - **Filesystem migration execution (HEPHAESTUS):** copy-not-move for mapped threads + redirect artifacts in source threads; audit: [enforcement_and_migration](lupo-channels/7/threads/1035/20260318_212358_hephaestus_enforcement_and_migration.md).
 - **System limits (application layer, no DB triggers):** per `SYSTEM_LIMITS_DOCTRINE.md` — channel thread cap / actor cap / table cap / repo file check: `operator-accept-visitor-api.php`, `ActorService::createActorForAuthUser`, `safe-migrate.php`, `lupo-scripts/check_repo_limits.php` (see Hephaestus audit above).
+- **Interpretation header hardening (HEPHAESTUS):** added `lupo-scripts/validate_interpretation_headers.py` and integrated into `lupo-scripts/validate_channel_artifacts.py` so validators enforce lowercase stored keys (`whoami`, `whoareyou`, `whoopposesyou`), WHOAMI identity isolation, non-persistent default opposition resolution to `lilith`, and self-opposition rejection.
+- **web_path canonicalization (deterministic addressing):** `web_path = http://www.lupopedia.com/ + file_path_from_root` is now enforced as a **blocking** validator rule for channel artifacts; generator `lupo-scripts/generate_web_path.py` added and used to normalize Channel 42 artifacts.
 - **Actor–facet separation doctrine:** [ACTOR_FACET_SEPARATION_DOCTRINE](lupo-docs/doctrine/ACTOR_FACET_SEPARATION_DOCTRINE.md) + `lupo-rules/root/` YAML rule packs; doctrine artifact [1037](lupo-channels/51/threads/1037/20260319_370000_wolfie_actor_facet_doctrine.md).
 - **Prompt/task state (carried from 4.0.81 → 4.0.82):**
   - `task_prompt_041000`: **complete**

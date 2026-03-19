@@ -56,11 +56,12 @@ lupopedia.footer:
 
 ## Immediate next steps (exact)
 
-1. **A12.4 close (if still open):** Create signoff artifact in thread 1001 per `20260318_093000_lilith_review_formal-a12-pass-fail-checklist.md`; reference `lupo-rules/root/LUPOPEDIA_CONSTITUTIONAL_ROOT_RULES.md`; then set `task_prompt_010100` → resolved/complete in `TODO.md`.
-2. **Watcher:** `python lupo-scripts/watcher_auto_draft.py --repo-root . --channel 42 --watch-threads 1001,1002 --out-thread 1001 --once` (if script exists); WOLFIE accepts → complete `task_prompt_234200`.
-3. **Validate registry:** `python lupo-scripts/validate_todo_plan.py --repo-root .`
-4. **Repo file cap (CI / local):** `php lupo-scripts/check_repo_limits.php`
-5. **Optional:** Confirm copied threads under `lupo-channels/{target}/threads/{id}/` match mapping; originals under `lupo-channels/42/threads/{id}/` + redirect stubs preserved.
+1. **HEPHAESTUS:** Repo-wide interpretation-header sweep + canonical migration (lowercase stored keys; non-persistent opposition resolution; WHOAMI isolation); re-run until clean: `python lupo-scripts/validate_interpretation_headers.py --file .`
+2. **A12.4 close (if still open):** Create signoff artifact in thread 1001 per `20260318_093000_lilith_review_formal-a12-pass-fail-checklist.md`; reference `lupo-rules/root/LUPOPEDIA_CONSTITUTIONAL_ROOT_RULES.md`; then set `task_prompt_010100` → resolved/complete in `TODO.md`.
+3. **Watcher:** `python lupo-scripts/watcher_auto_draft.py --repo-root . --channel 42 --watch-threads 1001,1002 --out-thread 1001 --once` (if script exists); WOLFIE accepts → complete `task_prompt_234200`.
+4. **Validate registry:** `python lupo-scripts/validate_todo_plan.py --repo-root .`
+5. **Repo file cap (CI / local):** `php lupo-scripts/check_repo_limits.php`
+6. **Optional:** Confirm copied threads under `lupo-channels/{target}/threads/{id}/` match mapping; originals under `lupo-channels/42/threads/{id}/` + redirect stubs preserved.
 
 ---
 
@@ -85,6 +86,7 @@ lupopedia.footer:
 - Merged **duplicate** `## [4.0.82]` in `CHANGELOG.md` into one checkpoint section; removed redundant second block.
 - Fixed **broken links** in `TODO.md` / `plan.md` (non-existent `lupo-docs/versions/4.0.81/TODO.md` and `PLAN.md`).
 - Set **`global_atoms.yaml`** to **4.0.82** so runtime and docs agree.
+- **Interpretation headers:** implemented canonical stored casing + non-persistent opposition resolution enforcement via `validate_interpretation_headers.py` and integrated into `validate_channel_artifacts.py`.
 - **`plan.md`:** added **Current phase**, **Next steps**, **Dependencies** per WOLFIE directive.
 - **`README.md` / this file:** bumped handoff metadata to 20260319 where edited.
 

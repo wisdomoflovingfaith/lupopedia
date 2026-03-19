@@ -4,6 +4,7 @@ lupopedia.headers:
   lupopedia.schema: "broadcast"
   system_version: "4.0.80"
   file_path_from_root: "lupo-channels/42/broadcasts/20260317_163000_wolfie_multi_agent_doctrine_alignment.md"
+  web_path: "http://www.lupopedia.com/lupo-channels/42/broadcasts/20260317_163000_wolfie_multi_agent_doctrine_alignment.md"
   channel_id: 42
   actor_id: 1
   actor_name: "wolfie"

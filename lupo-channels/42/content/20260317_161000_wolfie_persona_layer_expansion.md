@@ -4,7 +4,7 @@ lupopedia.headers:
   lupopedia.schema: "content"
   system_version: "4.0.80"
   file_path_from_root: "lupo-channels/42/content/20260317_161000_wolfie_persona_layer_expansion.md"
-  web_path: "http://www.lupopedia.com/lupo-channels/42/content/20260317_161000_wolfie_persona_layer_expansion"
+  web_path: "http://www.lupopedia.com/lupo-channels/42/content/20260317_161000_wolfie_persona_layer_expansion.md"
   last_modified_utc: "20260317"
   channel_id: 42
   thread_id: 1003

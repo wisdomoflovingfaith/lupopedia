@@ -4,6 +4,7 @@ lupopedia.headers:
   lupopedia.schema: "thread"
   system_version: "4.0.81"
   file_path_from_root: "lupo-channels/42/threads/1018/20260318_235000_lilith_review_task_val_003_thread-continuity-spec.md"
+  web_path: "http://www.lupopedia.com/lupo-channels/42/threads/1018/20260318_235000_lilith_review_task_val_003_thread-continuity-spec.md"
   last_modified_utc: "20260318"
   channel_id: 42
   thread_id: 1018

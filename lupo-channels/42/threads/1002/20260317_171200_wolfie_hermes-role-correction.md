@@ -4,7 +4,7 @@ lupopedia.headers:
   lupopedia.schema: "thread"
   system_version: "4.0.80"
   file_path_from_root: "lupo-channels/42/threads/1002/20260317_171200_wolfie_hermes-role-correction.md"
-  web_path: "http://www.lupopedia.com/lupo-channels/42/threads/1002/20260317_171200_wolfie_hermes-role-correction"
+  web_path: "http://www.lupopedia.com/lupo-channels/42/threads/1002/20260317_171200_wolfie_hermes-role-correction.md"
   last_modified_utc: "20260317"
   channel_id: 42
   thread_id: 1002

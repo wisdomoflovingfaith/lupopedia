@@ -4,7 +4,7 @@ lupopedia.headers:
   lupopedia.schema: "thread"
   system_version: "4.0.82"
   file_path_from_root: "lupo-channels/1/threads/1035/20260319_190000_wolfie_master_shutdown_consolidation.md"
-  web_path: "http://www.lupopedia.com/lupo-channels/1/threads/1035/20260319_190000_wolfie_master_shutdown_consolidation"
+  web_path: "http://www.lupopedia.com/lupo-channels/1/threads/1035/20260319_190000_wolfie_master_shutdown_consolidation.md"
   last_modified_utc: "20260319"
   project_id: 0
   project_slug: "lupopedia-core"

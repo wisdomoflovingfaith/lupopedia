@@ -4,7 +4,7 @@ lupopedia.headers:
   lupopedia.schema: "task"
   system_version: "4.0.80"
   file_path_from_root: "lupo-channels/42/tasks/pending/20260317_migration_plan.md"
-  web_path: "http://www.lupopedia.com/lupo-channels/42/tasks/pending/20260317_migration_plan"
+  web_path: "http://www.lupopedia.com/lupo-channels/42/tasks/pending/20260317_migration_plan.md"
   last_modified_utc: "20260317"
   channel_id: 42
   channel_name: "Lupopedia Development (general)"

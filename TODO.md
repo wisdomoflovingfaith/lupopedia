@@ -73,6 +73,26 @@ lupopedia.headers:
 
 ---
 
+### Interpretation Header Hardening (Checkpoint)
+- Interpretation-layer hardening is implemented and integrated: validators enforce stored YAML key casing, WHOAMI identity isolation, non-persistent `whoopposesyou` default resolution to `lilith`, and self-opposition rejection.
+- Remaining for next session: run a repo-wide interpretation-header sweep (`python lupo-scripts/validate_interpretation_headers.py --file .`) and migrate any remaining stored artifacts that violate canonical casing or required structure (without rewriting persisted data during validation).
+
+### Shutdown checkpoint (Global state sync)
+- **task_global_state_sync_001** — confirm `CHANGELOG.md`, `TODO.md`, `plan.md` are aligned with: web_path deterministic rule, interpretation header model, and next limiter phases (login/posting/uploads; then global request guard; then pagination/search limits).
+
+### web_path canonicalization (repo-wide)
+- Run repo-wide deterministic normalization: `python lupo-scripts/generate_web_path.py --repo-root . --apply --path .`
+- Re-run validation (Channel 42/other channels): `python lupo-scripts/validate_channel_artifacts.py --repo-root . --channel 42 --actor-identity-validation`
+
+### Identity & filename violations (cleanup)
+- Fix actor registry mismatches in channel artifacts (e.g. artifacts authored as `hermes` but carrying `actor_id: 102`, and `actor_id: 1000` using non-canonical `actor_name`).
+- Normalize non-canonical filenames flagged by `validate_channel_artifacts.py` (BAD_FILENAME).
+
+### Request / rate limits (not yet implemented)
+- Implement **RequestLimiter Phase 1**: login + channel posting + uploads (429/413/400 with stable error codes; audit logging).
+- Implement **global request guard** (front controller): request-size limits, JSON depth limits, header size/count limits.
+- Add pagination/search/export caps for expensive endpoints.
+
 ## Version truth (4.0.82 only for active work)
 
 - **4.0.82** — **current** — root `TODO.md` / `plan.md` / `CHANGELOG.md` / `GLOBAL_CURRENT_LUPOPEDIA_VERSION` in `lupo-config/config/global_atoms.yaml`.

@@ -4,7 +4,7 @@ lupopedia.headers:
   lupopedia.schema: "documentation"
   system_version: "4.0.69"
   file_path_from_root: "lupo-channels/42/broadcasts/20260312000000_antigravity_wolfie_collections_tabs_navigation_research.md"
-  web_path: "http://www.lupopedia.com/lupo-channels/42/broadcasts/20260312000000_antigravity_wolfie_collections_tabs_navigation_research"
+  web_path: "http://www.lupopedia.com/lupo-channels/42/broadcasts/20260312000000_antigravity_wolfie_collections_tabs_navigation_research.md"
   last_modified_utc: "20260312"
   channel_id: 42
   channel_name: "Lupopedia Development (general)"

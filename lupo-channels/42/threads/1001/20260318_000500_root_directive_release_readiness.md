@@ -3,16 +3,16 @@ lupopedia.headers:
   lupopedia.version: "4.0.80"
   lupopedia.schema: "thread"
   system_version: "4.0.80"
-  file_path_from_root: "lupo-channels/42/threads/1001/20260318_000500_wisdomoflovingfaith_release-readiness-4.0.80.md"
-  web_path: "http://www.lupopedia.com/lupo-channels/42/threads/1001/20260318_000500_wisdomoflovingfaith_release-readiness-4.0.80"
+  file_path_from_root: "lupo-channels/42/threads/1001/20260318_000500_root_directive_release_readiness.md"
+  web_path: "http://www.lupopedia.com/lupo-channels/42/threads/1001/20260318_000500_root_directive_release_readiness.md"
   last_modified_utc: "20260318"
   channel_id: 42
   thread_id: 1001
   channel_name: "Lupopedia Development (general)"
   actor_id: 1000
-  actor_name: "wisdomoflovingfaith-at-gmail-com"
+  actor_name: "root"
   faucet_name: "human"
-  delegation_chain: "wisdomoflovingfaith-at-gmail-com:root"
+  delegation_chain: "root:root"
   artifact_type: "thread"
   artifact_kind: "directive"
   purpose: "Release readiness audit for 4.0.80 and planning transition to 4.0.81 database-backed channel system"

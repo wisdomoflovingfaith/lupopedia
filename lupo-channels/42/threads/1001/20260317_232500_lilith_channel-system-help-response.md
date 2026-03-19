@@ -4,7 +4,7 @@ lupopedia.headers:
   lupopedia.schema: "thread"
   system_version: "4.0.80"
   file_path_from_root: "lupo-channels/42/threads/1001/20260317_232500_lilith_channel-system-help-response.md"
-  web_path: "http://www.lupopedia.com/lupo-channels/42/threads/1001/20260317_232500_lilith_channel-system-help-response"
+  web_path: "http://www.lupopedia.com/lupo-channels/42/threads/1001/20260317_232500_lilith_channel-system-help-response.md"
   last_modified_utc: "20260317"
   channel_id: 42
   thread_id: 1001

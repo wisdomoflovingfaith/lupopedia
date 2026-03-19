@@ -4,12 +4,12 @@ lupopedia.headers:
   lupopedia.schema: "thread"
   system_version: "4.0.80"
   file_path_from_root: "lupo-channels/66/threads/1004/20260317_224000_lilith_quality_assurance_a12.md"
-  web_path: "http://www.lupopedia.com/lupo-channels/66/threads/1004/20260317_224000_lilith_quality_assurance_a12"
+  web_path: "http://www.lupopedia.com/lupo-channels/66/threads/1004/20260317_224000_lilith_quality_assurance_a12.md"
   last_modified_utc: "20260317"
   channel_id: 66
   thread_id: 1004
   channel_name: "Lupopedia Development (general)"
-  actor_id: 105
+  actor_id: 2
   actor_name: "lilith"
   faucet_name: "cascade"
   delegation_chain: "lilith:wolfie"

@@ -4,7 +4,7 @@ lupopedia.headers:
   lupopedia.schema: "thread"
   system_version: "4.0.81"
   file_path_from_root: "lupo-channels/42/threads/1023/20260319_122000_thoth_doctrine_header_structure.md"
-  web_path: "http://www.lupopedia.com/lupo-channels/42/threads/1023/20260319_122000_thoth_doctrine_header_structure"
+  web_path: "http://www.lupopedia.com/lupo-channels/42/threads/1023/20260319_122000_thoth_doctrine_header_structure.md"
   last_modified_utc: "20260319"
   channel_id: 42
   thread_id: 1023

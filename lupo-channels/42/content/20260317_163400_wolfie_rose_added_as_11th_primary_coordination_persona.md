@@ -4,6 +4,7 @@ lupopedia.headers:
   lupopedia.schema: "content"
   system_version: "4.0.80"
   file_path_from_root: "lupo-channels/42/content/20260317_163400_wolfie_rose_added_as_11th_primary_coordination_persona.md"
+  web_path: "http://www.lupopedia.com/lupo-channels/42/content/20260317_163400_wolfie_rose_added_as_11th_primary_coordination_persona.md"
   channel_id: 42
   actor_id: 1
   actor_name: "wolfie"

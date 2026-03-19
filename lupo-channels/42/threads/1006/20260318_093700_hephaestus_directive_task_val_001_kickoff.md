@@ -2,6 +2,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.81"
   file_path_from_root: "lupo-channels/42/threads/1006/20260318_093700_hephaestus_directive_task_val_001_kickoff.md"
+  web_path: "http://www.lupopedia.com/lupo-channels/42/threads/1006/20260318_093700_hephaestus_directive_task_val_001_kickoff.md"
   last_modified_utc: "20260318"
   channel_id: 42
   thread_id: 1006

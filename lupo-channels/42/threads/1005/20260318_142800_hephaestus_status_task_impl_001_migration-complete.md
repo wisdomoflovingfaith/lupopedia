@@ -2,6 +2,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.81"
   file_path_from_root: "lupo-channels/42/threads/1005/20260318_142800_hephaestus_status_task_impl_001_migration-complete.md"
+  web_path: "http://www.lupopedia.com/lupo-channels/42/threads/1005/20260318_142800_hephaestus_status_task_impl_001_migration-complete.md"
   last_modified_utc: "20260318"
   channel_id: 42
   thread_id: 1005

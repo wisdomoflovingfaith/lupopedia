@@ -4,6 +4,7 @@ lupopedia.headers:
   lupopedia.schema: "content"
   system_version: "4.0.80"
   file_path_from_root: "lupo-channels/42/content/20260317_163200_wolfie_doctrine_comprehensive_update_108_agents.md"
+  web_path: "http://www.lupopedia.com/lupo-channels/42/content/20260317_163200_wolfie_doctrine_comprehensive_update_108_agents.md"
   channel_id: 42
   actor_id: 1
   actor_name: "wolfie"

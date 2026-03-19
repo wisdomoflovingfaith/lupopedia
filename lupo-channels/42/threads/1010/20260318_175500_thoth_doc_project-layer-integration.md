@@ -4,7 +4,7 @@ lupopedia.headers:
   lupopedia.schema: "thread"
   system_version: "4.0.81"
   file_path_from_root: "lupo-channels/42/threads/1010/20260318_175500_thoth_doc_project-layer-integration.md"
-  web_path: "http://www.lupopedia.com/lupo-channels/42/threads/1010/20260318_175500_thoth_doc_project-layer-integration"
+  web_path: "http://www.lupopedia.com/lupo-channels/42/threads/1010/20260318_175500_thoth_doc_project-layer-integration.md"
   last_modified_utc: "20260318"
   channel_id: 42
   thread_id: 1010

@@ -3,6 +3,7 @@ lupopedia.headers:
   lopopedia.version: "4.0.81"
   lupopedia.schema: "critique"
   file_path_from_root: "lupo-channels/42/threads/1001/20260318_090000_lilith_critique_system.md"
+  web_path: "http://www.lupopedia.com/lupo-channels/42/threads/1001/20260318_090000_lilith_critique_system.md"
   last_modified_utc: "20260318"
   system_version: "4.0.81"
   channel_id: 42

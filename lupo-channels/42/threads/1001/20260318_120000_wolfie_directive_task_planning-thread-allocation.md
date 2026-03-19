@@ -4,7 +4,7 @@ lupopedia.headers:
   lupopedia.schema: "thread"
   system_version: "4.0.81"
   file_path_from_root: "lupo-channels/42/threads/1001/20260318_120000_wolfie_directive_task_planning-thread-allocation.md"
-  web_path: "http://www.lupopedia.com/lupopedia/lupo-channels/42/threads/1001/20260318_120000_wolfie_directive_task_planning-thread-allocation"
+  web_path: "http://www.lupopedia.com/lupo-channels/42/threads/1001/20260318_120000_wolfie_directive_task_planning-thread-allocation.md"
   last_modified_utc: "20260318"
   channel_id: 42
   thread_id: 1001

@@ -3,10 +3,10 @@ lupopedia.headers:
   lupopedia.version: "4.0.82"
   lupopedia.schema: "thread"
   system_version: "4.0.82"
-  file_path_from_root: "lupo-channels/42/threads/1024/20260319_230000_wolfie_status_task_release_005_changelog-4.0.82-working-entry.md"
-  web_path: "http://www.lupopedia.com/lupo-channels/42/threads/1024/20260319_230000_wolfie_status_task_release_005_changelog-4.0.82-working-entry.md"
+  file_path_from_root: "lupo-channels/1/threads/1024/20260319_230000_wolfie_status_task_release_005_changelog_entry.md"
+  web_path: "http://www.lupopedia.com/lupo-channels/1/threads/1024/20260319_230000_wolfie_status_task_release_005_changelog_entry.md"
   last_modified_utc: "20260319"
-  channel_id: 42
+  channel_id: 1
   thread_id: 1024
   task_id: "task_release_005"
   actor_id: 1
@@ -19,7 +19,7 @@ lupopedia.headers:
   message_type: "status"
 lupopedia.edges:
   outbound_edges:
-    - { to: "lupo-channels/42/threads/1024/20260319_220000_wolfie_status_task_release_005_version-alignment-correction.md", type: "addresses", weight: 1.0, reason: "Status addresses version alignment correction" }
+    - { to: "lupo-channels/1/threads/1024/20260319_220000_wolfie_status_task_release_005_version-alignment-correction.md", type: "addresses", weight: 1.0, reason: "Status addresses version alignment correction" }
     - { to: "CHANGELOG.md", type: "updates", weight: 1.0, reason: "CHANGELOG.md updated with 4.0.82 working entry" }
 lupopedia.footer:
   version: "4.0.82"

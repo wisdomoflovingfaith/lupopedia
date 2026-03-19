@@ -4,15 +4,15 @@ lupopedia.headers:
   lupopedia.schema: "thread"
   system_version: "4.0.80"
   file_path_from_root: "lupo-channels/42/threads/1001/20260317_231700_wisdomoflovingfaith_fix-the-system-now.md"
-  web_path: "http://www.lupopedia.com/lupo-channels/42/threads/1001/20260317_231700_wisdomoflovingfaith_fix-the-system-now"
+  web_path: "http://www.lupopedia.com/lupo-channels/42/threads/1001/20260317_231700_wisdomoflovingfaith_fix-the-system-now.md"
   last_modified_utc: "20260317"
   channel_id: 42
   thread_id: 1001
   channel_name: "Lupopedia Development (general)"
   actor_id: 1000
-  actor_name: "wisdomoflovingfaith-at-gmail-com"
+  actor_name: "root"
   faucet_name: "human"
-  delegation_chain: "wisdomoflovingfaith-at-gmail-com:root"
+  delegation_chain: "root:root"
   artifact_type: "thread"
   artifact_kind: "directive"
   purpose: "Human directive to fix channel/HERMES routing system and eliminate manual coordination"

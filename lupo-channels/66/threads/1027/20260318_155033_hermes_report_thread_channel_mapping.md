@@ -4,7 +4,7 @@ lupopedia.headers:
   lupopedia.schema: "report"
   system_version: "4.0.79"
   file_path_from_root: "lupo-channels/66/threads/1027/20260318_155033_hermes_report_thread_channel_mapping.md"
-  web_path: "http://www.lupopedia.com/lupo-channels/66/threads/1027/20260318_155033_hermes_report_thread_channel_mapping"
+  web_path: "http://www.lupopedia.com/lupo-channels/66/threads/1027/20260318_155033_hermes_report_thread_channel_mapping.md"
   last_modified_utc: "20260318"
   channel_id: 66
   thread_id: 1027

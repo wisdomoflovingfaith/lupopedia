@@ -102,6 +102,8 @@ lupopedia.footer:
 
 # Lupopedia Semantic OS v4.0.82
 
+[**GitHub repo**](https://github.com/wisdomoflovingfaith/lupopedia)
+
 [![Version](https://img.shields.io/badge/version-4.0.82-blue.svg)](lupo-docs/version.md)
 [![docs](https://img.shields.io/badge/docs-HELP.md-green)](lupo-docs/HELP.md)
 

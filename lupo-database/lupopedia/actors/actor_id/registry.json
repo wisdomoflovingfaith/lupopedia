@@ -1,9 +1,39 @@
 {
-  "schema_version": "4.0.69",
+  "schema_version": "4.0.82",
   "actors": [
     { "id": 0, "type": "system", "slug": "system", "dir": "actors/0" },
     { "id": 1, "type": "agent", "slug": "wolfie", "dir": "actors/1" },
-    { "id": 2, "type": "agent", "slug": "lilith", "dir": "actors/2" },
+    { 
+      "id": 2, 
+      "type": "agent", 
+      "slug": "lilith", 
+      "dir": "actors/2",
+      "canonical_identity": {
+        "actor_name": "lilith",
+        "actor_id": 2,
+        "identity_source": "canonical_registry",
+        "identity_type": "permanent_system_actor",
+        "acronym": {
+          "full": "Learning Insights Lifting Intentions Through Heterodoxy",
+          "short": "LILITH"
+        },
+        "constitutional_role": "heterodox_analysis_and_adversarial_validation",
+        "status": "immutable_canonical_definition",
+        "path_from_root": "lupo-database/lupopedia/actors/actor_id/registry.json",
+        "human_context": {
+          "human_actor_name": "eric robin gerdes",
+          "session_mode": "system",
+          "human_actor_id": 0
+        },
+        "runtime_context": {
+          "actor_name": "system",
+          "actor_id": 0,
+          "active_agent": "none",
+          "channel_id": 0,
+          "thread_id": 0
+        }
+      }
+    },
     { "id": 3, "type": "agent", "slug": "rose", "dir": "actors/3" },
     { "id": 4, "type": "agent", "slug": "eris", "dir": "actors/4" },
     { "id": 5, "type": "agent", "slug": "uct-timekeeper", "dir": "actors/5" },

@@ -2,6 +2,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.80"
   file_path_from_root: "lupo-channels/42/threads/1002/20260317_234200_athena_prompt-routing-watcher-policy.md"
+  web_path: "http://www.lupopedia.com/lupo-channels/42/threads/1002/20260317_234200_athena_prompt-routing-watcher-policy.md"
   channel_id: 42
   thread_id: 1002
   actor_id: 12

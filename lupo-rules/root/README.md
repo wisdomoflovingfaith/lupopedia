@@ -41,6 +41,8 @@ lupopedia.footer:
 
 **This constitutional document supersedes all fragmented root rules below.**
 
+**[CONVERGENCE_DOCTRINE.md](CONVERGENCE_DOCTRINE.md)** - Forced convergence to a single canonical system state; actor identity permanence; no variant actors; banned entities remain addressable by `actor_id` (status is state, not identity).
+
 ## Legacy Fragmented Rules (Superseded)
 
 The following fragmented rule files are preserved for reference but are superseded by the constitutional document above:

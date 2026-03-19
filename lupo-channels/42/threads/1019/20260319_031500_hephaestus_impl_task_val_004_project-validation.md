@@ -4,6 +4,7 @@ lupopedia.headers:
   lupopedia.schema: "thread"
   system_version: "4.0.81"
   file_path_from_root: "lupo-channels/42/threads/1019/20260319_031500_hephaestus_impl_task_val_004_project-validation.md"
+  web_path: "http://www.lupopedia.com/lupo-channels/42/threads/1019/20260319_031500_hephaestus_impl_task_val_004_project-validation.md"
   last_modified_utc: "20260319"
   channel_id: 42
   thread_id: 1019

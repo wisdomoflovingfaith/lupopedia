@@ -3,8 +3,8 @@ lupopedia.headers:
   lupopedia.version: "4.0.80"
   lupopedia.schema: "thread"
   system_version: "4.0.80"
-  file_path_from_root: "lupo-channels/42/threads/1001/20260318_011500_wolfie_4.0.80_remaining-work.md"
-  web_path: "http://www.lupopedia.com/lupo-channels/42/threads/1001/20260318_011500_wolfie_4.0.80_remaining-work"
+  file_path_from_root: "lupo-channels/42/threads/1001/20260318_011500_wolfie_status_remaining_work.md"
+  web_path: "http://www.lupopedia.com/lupo-channels/42/threads/1001/20260318_011500_wolfie_status_remaining_work.md"
   last_modified_utc: "20260318"
   channel_id: 42
   thread_id: 1001

@@ -6,7 +6,7 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "channel-content"
   file_path_from_root: "lupo-channels/42/content/federation_node_id/0/SKILLS.md"
-  web_path: "http://www.lupopedia.com/channels/42/SKILLS"
+  web_path: "http://www.lupopedia.com/lupo-channels/42/content/federation_node_id/0/SKILLS.md"
   last_modified_utc: "20260310"
   system_version: "4.0.68"
   channel_id: 42

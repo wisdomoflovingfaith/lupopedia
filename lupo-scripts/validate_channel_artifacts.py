@@ -36,6 +36,69 @@ HEADER_PROJECT_SLUG = re.compile(
 )
 MD_LINK = re.compile(r"\[([^\]]*)\]\(([^)]+)\)")
 
+WEB_BASE = "http://www.lupopedia.com/"
+HEADER_FILE_PATH_FROM_ROOT = re.compile(
+    r'^\s*file_path_from_root\s*:\s*(?:"([^"]+)"|([^\s#]+))\s*$',
+    re.MULTILINE,
+)
+HEADER_WEB_PATH = re.compile(
+    r'^\s*web_path\s*:\s*(?:"([^"]+)"|([^\s#]+))\s*$',
+    re.MULTILINE,
+)
+
+
+def _header_scalar_value(m: re.Match | None) -> str | None:
+    if not m:
+        return None
+    return m.group(1) if m.group(1) is not None else m.group(2)
+
+
+def _expected_web_path(file_path_from_root: str) -> str:
+    p = (file_path_from_root or "").strip().lstrip("/")
+    return WEB_BASE + p
+
+
+def validate_web_path_canonicalization(path: Path, frontmatter: str | None) -> list[str]:
+    """
+    Blocking:
+    - web_path missing when file_path_from_root exists
+    - web_path != WEB_BASE + file_path_from_root (deterministic)
+    - for .md files: file_path_from_root must end with .md and web_path must end with .md
+    """
+    if not frontmatter:
+        return []
+    m_fp = HEADER_FILE_PATH_FROM_ROOT.search(frontmatter)
+    fp = _header_scalar_value(m_fp)
+    if not fp:
+        return []
+    fp = fp.strip().lstrip("/")
+    expected = _expected_web_path(fp)
+    m_wp = HEADER_WEB_PATH.search(frontmatter)
+    wp = _header_scalar_value(m_wp)
+    if not wp:
+        return [
+            "HEADER_ERROR[WEBPATH_MISSING]: %s file_path_from_root present but web_path missing (expected %s)"
+            % (path, expected)
+        ]
+    wp = wp.strip()
+    if wp != expected:
+        return [
+            "HEADER_ERROR[WEBPATH_MISMATCH]: %s web_path '%s' does not match expected '%s'"
+            % (path, wp, expected)
+        ]
+    if path.suffix.lower() == ".md":
+        if not fp.lower().endswith(".md"):
+            return [
+                "HEADER_ERROR[FILEPATH_NOT_MD]: %s file_path_from_root must end with .md for markdown artifacts; got '%s'"
+                % (path, fp)
+            ]
+        if not wp.lower().endswith(".md"):
+            return [
+                "HEADER_ERROR[WEBPATH_NOT_MD]: %s web_path must end with .md for markdown artifacts; got '%s'"
+                % (path, wp)
+            ]
+    return []
+
 
 def infer_project_context(
     repo_root: Path,
@@ -279,6 +342,10 @@ def validate_channel(
     enforce_help_response_bodies: bool = False,
     project_root: Path | None = None,
     enforce_project: bool = False,
+    actor_identity_validation: bool = False,
+    actor_validate_fn=None,
+    actor_registry=None,
+    interpretation_validate_fn=None,
 ) -> list[str]:
     errors: list[str] = []
     pr = project_root if project_root is not None else repo.resolve()
@@ -310,15 +377,27 @@ def validate_channel(
                         errors.extend(validate_thread_review_body(f))
                     if enforce_help_response_bodies:
                         errors.extend(validate_thread_help_response_body(f))
-                    if enforce_project:
+                    if enforce_project or actor_identity_validation:
                         try:
                             full = f.read_text(encoding="utf-8", errors="replace")
                         except OSError as e:
                             errors.append("READ_ERROR: %s (%s)" % (f, e))
                         else:
-                            errors.extend(validate_v_project_002_003_links(f, full, pr))
                             fm = parse_frontmatter_block(full)
-                            errors.extend(validate_v_project_004_warn(f, fm))
+                            errors.extend(validate_web_path_canonicalization(f, fm))
+                            if enforce_project:
+                                errors.extend(validate_v_project_002_003_links(f, full, pr))
+                                errors.extend(validate_v_project_004_warn(f, fm))
+                    if actor_identity_validation and actor_validate_fn is not None and actor_registry is not None:
+                                errors.extend(actor_validate_fn(full, f, actor_registry))
+                    if (
+                        actor_identity_validation
+                        and interpretation_validate_fn is not None
+                        and actor_registry is not None
+                    ):
+                        errors.extend(
+                            interpretation_validate_fn(full, f, actor_registry)
+                        )
 
     if not audit_all:
         if enforce_project:
@@ -336,6 +415,22 @@ def validate_channel(
                 errors.extend(validate_v_project_001(f, pr))
                 if not CANONICAL_MD.match(f.name):
                     errors.append("BAD_FILENAME: %s" % f.relative_to(repo))
+                if actor_identity_validation and actor_validate_fn is not None and actor_registry is not None:
+                    try:
+                        full = f.read_text(encoding="utf-8", errors="replace")
+                    except OSError as e:
+                        errors.append("READ_ERROR: %s (%s)" % (f, e))
+                    else:
+                        fm = parse_frontmatter_block(full)
+                        errors.extend(validate_web_path_canonicalization(f, fm))
+                        errors.extend(actor_validate_fn(full, f, actor_registry))
+                        if (
+                            interpretation_validate_fn is not None
+                            and actor_registry is not None
+                        ):
+                            errors.extend(
+                                interpretation_validate_fn(full, f, actor_registry)
+                            )
 
     dr = base / "direct"
     if dr.is_dir():
@@ -351,6 +446,22 @@ def validate_channel(
                 errors.extend(validate_v_project_001(f, pr))
                 if not CANONICAL_MD.match(f.name):
                     errors.append("BAD_FILENAME: %s" % f.relative_to(repo))
+                if actor_identity_validation and actor_validate_fn is not None and actor_registry is not None:
+                    try:
+                        full = f.read_text(encoding="utf-8", errors="replace")
+                    except OSError as e:
+                        errors.append("READ_ERROR: %s (%s)" % (f, e))
+                    else:
+                        fm = parse_frontmatter_block(full)
+                        errors.extend(validate_web_path_canonicalization(f, fm))
+                        errors.extend(actor_validate_fn(full, f, actor_registry))
+                        if (
+                            interpretation_validate_fn is not None
+                            and actor_registry is not None
+                        ):
+                            errors.extend(
+                                interpretation_validate_fn(full, f, actor_registry)
+                            )
 
     if enforce_project:
         errors.extend(validate_todo_plan_project_scope(repo, pr, enforce_links=True))
@@ -416,6 +527,11 @@ def main() -> int:
         action="store_true",
         help="After channel (and/or option-a) run V-THREAD-001..005 on numeric threads for --channel",
     )
+    ap.add_argument(
+        "--actor-identity-validation",
+        action="store_true",
+        help="Enforce actor/facet convergence + identity canonicality via validate_actor_identity.py",
+    )
     args = ap.parse_args()
 
     def _run_threads(root: Path) -> int:
@@ -449,7 +565,28 @@ def main() -> int:
         args.strict = True
         enforce_rev = True
         enforce_help = True
+        args.actor_identity_validation = True
     root = Path(args.repo_root).resolve()
+    actor_validate_fn = None
+    actor_registry = None
+    if args.actor_identity_validation:
+        av = Path(__file__).resolve().parent / "validate_actor_identity.py"
+        spec = importlib.util.spec_from_file_location("validate_actor_identity", av)
+        if spec is None or spec.loader is None:
+            print("validate_actor_identity.py not found", file=sys.stderr)
+            return 2
+        mod = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(mod)
+        actor_registry = mod.load_actor_registry(root)
+        actor_validate_fn = mod.validate_actor_identity_text
+        iv = Path(__file__).resolve().parent / "validate_interpretation_headers.py"
+        ispec = importlib.util.spec_from_file_location("validate_interpretation_headers", iv)
+        if ispec is None or ispec.loader is None:
+            print("validate_interpretation_headers.py not found", file=sys.stderr)
+            return 2
+        imod = importlib.util.module_from_spec(ispec)
+        ispec.loader.exec_module(imod)
+        interpretation_validate_fn = imod.validate_interpretation_headers_text
     ctx = infer_project_context(root, args.project_id, args.project_slug)
     print(
         "project_context: project_id=%s project_slug=%s project_root=%s"
@@ -470,9 +607,19 @@ def main() -> int:
         enforce_help_response_bodies=enforce_help,
         project_root=ctx["project_root"],
         enforce_project=args.enforce_project,
+        actor_identity_validation=args.actor_identity_validation,
+        actor_validate_fn=actor_validate_fn,
+        actor_registry=actor_registry,
+        interpretation_validate_fn=interpretation_validate_fn if args.actor_identity_validation else None,
     )
-    warn_count = sum(1 for e in errs if "PROJECT_WARN[" in e)
-    err_only = [e for e in errs if "PROJECT_WARN[" not in e]
+    warn_count = sum(
+        1 for e in errs if ("PROJECT_WARN[" in e or "INTERPRETATION_WARN[" in e)
+    )
+    err_only = [
+        e
+        for e in errs
+        if ("PROJECT_WARN[" not in e and "INTERPRETATION_WARN[" not in e)
+    ]
     for e in errs:
         print(e)
     print(
@@ -484,7 +631,7 @@ def main() -> int:
             "(includes %d PROJECT_WARN; strict exit uses errors only)" % warn_count,
             file=sys.stderr,
         )
-    rc = 1 if (args.strict and err_only) else 0
+    rc = 1 if ((args.strict or args.actor_identity_validation) and err_only) else 0
     if args.thread_validation:
         tr = _run_threads(root)
         if tr > rc:

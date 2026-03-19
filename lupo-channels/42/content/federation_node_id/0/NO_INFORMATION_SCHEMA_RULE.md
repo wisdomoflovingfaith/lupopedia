@@ -6,7 +6,7 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "rule"
   file_path_from_root: "lupo-channels/42/content/federation_node_id/0/NO_INFORMATION_SCHEMA_RULE.md"
-  web_path: "http://www.lupopedia.com/channels/42/rules/no-information-schema"
+  web_path: "http://www.lupopedia.com/lupo-channels/42/content/federation_node_id/0/NO_INFORMATION_SCHEMA_RULE.md"
   last_modified_utc: "20260310"
   system_version: "4.0.68"
   rule_id: 1002
