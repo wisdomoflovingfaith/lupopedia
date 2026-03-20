@@ -145,8 +145,9 @@ lupopedia.footer:
 
 - [Thread 1004](../../lupo-channels/42/threads/1004/) - Semantic validation coordination
 - [Channel 66](../../lupo-channels/66/) - Production deployment channel
-- [LUPOPEDIA_HEADERS Doctrine](../../doctrine/LUPOPEDIA_HEADERS/) - Header format and requirements
-- [VERSIONING_DOCTRINE.md](../../doctrine/VERSIONING_DOCTRINE.md) - Versioning policy and rules
+- [LUPOPEDIA_HEADERS Doctrine](../../../doctrine/LUPOPEDIA_HEADERS/) - Header format and requirements
+- [VERSIONING_DOCTRINE.md](../../../doctrine/VERSIONING_DOCTRINE.md) - Versioning policy and rules
+- [Version 4.0.84 Documentation](./) - Complete version archive and plans
 
 ## 📝 Notes
 

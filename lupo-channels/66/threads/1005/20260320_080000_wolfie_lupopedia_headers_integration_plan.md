@@ -82,6 +82,7 @@ This plan outlines a **comprehensive improvement** to LUPOPEDIA_HEADERS integrat
 - **VERSIONING_DOCTRINE.md** - Single-field versioning model (updated)
 - **generate_headers_from_db.py** - TOON-based header generation
 - **import_content.py** - Content import with header integration
+- **Version 4.0.84 Documentation:** `lupo-docs/versions/4.0.84/` (PLAN.md, TODO.md, database_changes/, organization_changes/, etc.)
 - **Deployment Structure:** `lupopedia.com/lupopedia/` (web root) + `/lupopedia/` (project folder)
 - **Header Generation Script:** `generate_headers_from_db.py` reads TOON files
 - **Content Import Script:** `import_content.py` updates database from file content
