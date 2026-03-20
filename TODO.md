@@ -33,6 +33,12 @@ lupopedia.interpretation:
 
 next_action:
     - "Resolve Thread 1001 test-evidence inconsistency for full production deployment"
+    - "Complete LUPOPEDIA_HEADERS doctrine cleanup and single-field versioning model enforcement (4.0.84)"
+    - "Remove all lupopedia.version, system_version, last_verified_system_version from documentation"
+    - "Update LUPOPEDIA_HEADERS_FORMAT.md with baseline rewrite rules"
+    - "Convert VERSIONING_MODEL.md to obsolete stub"
+    - "Add LILITH edge case analysis to README.md"
+    - "Create WOLFIE script generate_headers_from_db.py for TOON-based header generation"
     - "Implement Thread 1004 semantic validation fixes"
     - "Coordinate HEPHAESTUS implementation across channels 66, 88, and 42"
     - "Monitor Channel 66 production deployment safety"

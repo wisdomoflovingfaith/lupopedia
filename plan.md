@@ -32,6 +32,12 @@ lupopedia.interpretation:
     authority_level: "canonical_orchestrator"
  
 lupopedia.next_action:
+    - "Complete LUPOPEDIA_HEADERS doctrine cleanup and single-field versioning model enforcement (4.0.84)"
+    - "Remove all lupopedia.version, system_version, last_verified_system_version from documentation"
+    - "Update LUPOPEDIA_HEADERS_FORMAT.md with baseline rewrite rules"
+    - "Convert VERSIONING_MODEL.md to obsolete stub"
+    - "Add LILITH edge case analysis to README.md"
+    - "Create WOLFIE script generate_headers_from_db.py for TOON-based header generation"
     - "Resolve Thread 1001 test-evidence inconsistency for full production deployment"
     - "Implement Thread 1004 semantic validation fixes"
     - "Monitor Channel 66 production deployment safety"
@@ -136,9 +142,20 @@ Phases are **dependency-ordered** (no time estimates). **Prompt file names** bel
 - **Files Updated:** CHANGELOG.md, TODO.md, PLAN.md, README.md, THREAD_INDEX.md (Channels 66 & 88)
 - ✅ LUPOPEDIA HEADERS doctrine cleanup (remove obsolete multi-version model references; enforce `version_when_written`-only; baseline rewrite-on-write rule; identity-line form fixes; optional-blocks canonicalization) completed
 - ✅ LUPOPEDIA HEADERS doctrine glue-layer rules completed (serialization key constraints, DB↔YAML export/import mapping layer, routing precedence, metadata identity, placeholder constraints, next_actions/footer precedence, close deprecation, objective edge update criteria) and deterministic `import_content.py` importer implemented
+- ✅ Root repo + `lupo-docs/` root header-baseline pass completed: top-level Markdown files aligned to `version_when_written: "4.0.84"` with missing LUPOPEDIA front matter added where required
+- ✅ `import_content.py` upgraded for doctrine-safe DB behavior: application-layer SELECT->UPDATE/INSERT (no vendor-specific upsert), strict `last_modified_utc` validation, deterministic expanded re-import updates, and success output only after commit + file write
 - **System Consistency:** Documentation matches reality across all files, no contradictions detected
 - **Final Status:** ✅ NORMALIZATION COMPLETE - System truth verified as consistent
 - **Quality Assurance:** No references to forbidden version fields, single-field doctrine properly documented everywhere
+
+## Active Implementation (Current Thread)
+
+- **Task:** `lupo-scripts/generate_headers_from_db.py` (DB-driven LUPOPEDIA header reconstruction)
+- **Status:** 🔄 In progress (not finalized)
+- **Completed so far:**
+  - TOON-backed schema verification for `lupo_contents` and `lupo_metadata` completed (table and column names validated before generation logic)
+  - Doctrine mapping constraints gathered for canonical block order, legacy normalization, and non-default session omission
+- **Next dependency step:** implement deterministic DB resolution + block reconstruction + file merge/write path with `--dry-run` parity
 
 ## Next steps (ordered)
 
