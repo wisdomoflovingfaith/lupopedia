@@ -26,6 +26,7 @@ Requirements:
 import argparse
 import json
 import os
+import subprocess
 import sys
 import yaml
 from pathlib import Path
@@ -47,21 +48,14 @@ class MockDBConnection:
         self.contents_dir = Path("lupo-database/lupopedia/content")
         self.metadata_dir = Path("lupo-database/lupopedia/metadata")
     
-    def execute_query(self, query: str, params: tuple = ()) -> List[Dict]:
+    def execute_query(self, query: str, params: tuple = ()) -> Optional[Dict]:
         """Execute a query and return results."""
         # Mock implementation - in production this would be actual SQL
-        if query == "SELECT * FROM lupo_contents WHERE file_path_from_root = ? OR content_id = ?":
-            file_path = params[0] if params else None
-            content_id = params[1] if len(params) > 1 else None
-            
-            if file_path:
-                return self._fetch_by_file_path(file_path)
-            elif content_id:
-                return self._fetch_by_content_id(content_id)
-            else:
-                return []
-        
-        return []
+        if "file_path_from_root" in query and params:
+            return self._fetch_by_file_path(params[0])
+        if "content_id" in query and params:
+            return self._fetch_by_content_id(params[0])
+        return None
     
     def _fetch_by_file_path(self, file_path: str) -> Optional[Dict]:
         """Fetch content record by file path."""
@@ -135,21 +129,74 @@ def parse_args():
     
     return parser.parse_args()
 
+
+def _attempt_import_missing_file(file_path: str) -> bool:
+    """
+    Import a markdown artifact into lupo_contents when missing.
+
+    Uses the existing importer script so this tool can self-heal a missing
+    content row for a known file_path_from_root.
+    """
+    script_path = Path(__file__).resolve().parent / "import_content.py"
+    try:
+        result = subprocess.run(
+            [sys.executable, str(script_path), file_path],
+            check=False,
+            capture_output=True,
+            text=True
+        )
+    except Exception as exc:
+        print(f"ERROR: Failed to invoke importer for {file_path}: {exc}", file=sys.stderr)
+        return False
+
+    if result.returncode == 0:
+        return True
+
+    stderr_text = (result.stderr or "").strip()
+    stdout_text = (result.stdout or "").strip()
+    details = stderr_text if stderr_text else stdout_text
+    print(
+        f"ERROR: Auto-import failed for {file_path}. Importer output: {details}",
+        file=sys.stderr
+    )
+    return False
+
 def resolve_artifact(args) -> Dict:
     """Resolve artifact from database using file_path or content_id."""
     db = get_db_connection()
     
     if args.file_path:
+        synthesized_content = False
         content_row = db.execute_query(
             "SELECT * FROM lupo_contents WHERE file_path_from_root = ?",
             (args.file_path,)
         )
-        
+
         if not content_row:
-            print(f"ERROR: No content found for file_path: {args.file_path}", file=sys.stderr)
-            sys.exit(1)
+            file_on_disk = Path(args.file_path)
+            if file_on_disk.exists():
+                if _attempt_import_missing_file(args.file_path):
+                    content_row = db.execute_query(
+                        "SELECT * FROM lupo_contents WHERE file_path_from_root = ?",
+                        (args.file_path,)
+                    )
+
+                # Fallback for environments where DB-backed metadata is unavailable:
+                # keep command-line flow working with a minimal synthesized row.
+                if not content_row:
+                    synthesized_content = True
+                    content_row = {
+                        'content_id': f'pending-{datetime.now().strftime("%Y%m%d%H%M%S")}',
+                        'file_path_from_root': args.file_path,
+                        'title': Path(args.file_path).stem,
+                        'body': file_on_disk.read_text(encoding='utf-8', errors='replace'),
+                        'created_ymdhis': datetime.now().strftime('%Y%m%d%H%M%S')
+                    }
+            else:
+                print(f"ERROR: No content found for file_path: {args.file_path}", file=sys.stderr)
+                sys.exit(1)
         
-        metadata_rows = db.fetch_metadata_rows('file', content_row['content_id'])
+        metadata_rows = [] if synthesized_content else db.fetch_metadata_rows('file', content_row['content_id'])
         
         return {
             'content': content_row,
@@ -184,12 +231,26 @@ def build_block_tree(metadata_rows: List[Dict]) -> Dict[str, Dict]:
     for row in metadata_rows:
         property_key = row['property_key']
         property_value = row['property_value']
-        
-        # Initialize block if not exists
-        if property_key not in blocks:
-            blocks[property_key] = {}
-        
-        blocks[property_key][property_key] = property_value
+
+        # Map plain keys to lupopedia.headers by default.
+        # Example: version_when_written -> lupopedia.headers.version_when_written
+        if '.' not in property_key:
+            block_name = 'lupopedia.headers'
+            field_name = property_key
+        else:
+            # Support keys like "lupopedia.headers.file_path_from_root"
+            parts = property_key.split('.')
+            if len(parts) >= 3 and parts[0] == 'lupopedia':
+                block_name = '.'.join(parts[0:2])
+                field_name = '.'.join(parts[2:])
+            else:
+                block_name = 'lupopedia.headers'
+                field_name = property_key
+
+        if block_name not in blocks:
+            blocks[block_name] = {}
+
+        blocks[block_name][field_name] = property_value
     
     return blocks
 
@@ -297,70 +358,83 @@ def build_metadata_block(blocks: Dict[str, Dict]) -> Dict[str, Any]:
 
 def generate_identity_line(headers: Dict[str, Any], content: Dict[str, Any]) -> str:
     """Generate canonical identity line."""
-    title = headers.get('title', 'Untitled Document')
+    title = headers.get('title') or headers.get('file_path_from_root') or 'Untitled Document'
     delegation_chain = headers.get('delegation_chain', 'root')
     web_path = headers.get('web_path', '')
     
     return f"# file: {title} — delegation: {delegation_chain} — web_path: {web_path}"
 
-def merge_front_matter_with_existing_body(file_path: Path, front_matter: str) -> None:
-    """Merge generated front matter with existing body content."""
-    if not file_path.exists():
-        # Create new file
-        body = content.get('body', '') if 'content' in front_matter else ''
-        full_content = f"---\n{front_matter}---\n{generate_identity_line(front_matter, {})}\n\n{body}"
-        
-        with open(file_path, 'w', encoding='utf-8') as f:
-            f.write(full_content)
-        
-        print(f"Created new file: {file_path}")
-        return
-    
-    # Read existing body
-    with open(file_path, 'r', encoding='utf-8') as f:
-        existing_body = f.read()
-    
-    # Find the identity line in existing content
-    lines = existing_body.split('\n')
-    identity_line_idx = None
-    for i, line in enumerate(lines):
-        if line.startswith('# file:'):
-            identity_line_idx = i
-            break
-    
-    if identity_line_idx is None:
-        print(f"WARNING: No identity line found in {file_path}, appending", file=sys.stderr)
-        identity_line_idx = len(lines)
-    
-    # Merge: everything before identity line + new front matter + identity line + everything after
-    before = lines[:identity_line_idx]
-    after = lines[identity_line_idx + 1:] if identity_line_idx < len(lines) else []
-    
-    # Build new content
-    if 'content' in front_matter:
-        body = content.get('body', '')
-    else:
-        body = '\n'.join(after)
-    
-    full_content = ''.join(before) + f"---\n{front_matter}---\n{generate_identity_line(yaml.safe_load(front_matter), {})}\n\n{body}"
-    
-    with open(file_path, 'w', encoding='utf-8') as f:
-        f.write(full_content)
-    
-    print(f"Updated existing file: {file_path}")
+def _split_existing_markdown(text: str) -> Dict[str, Any]:
+    """
+    Split markdown into front matter dict, identity line, and body.
+    Keeps behavior safe when front matter is missing or malformed.
+    """
+    result = {
+        'front_matter': {},
+        'identity_line': None,
+        'body': text
+    }
 
-def write_output_file(file_path: Path, front_matter: str, content: Dict[str, Any]):
-    """Write output file with front matter and body."""
-    if file_path.exists():
-        merge_front_matter_with_existing_body(file_path, front_matter)
+    if not text.startswith('---\n'):
+        return result
+
+    end_marker = text.find('\n---\n', 4)
+    if end_marker < 0:
+        return result
+
+    yaml_text = text[4:end_marker]
+    remainder = text[end_marker + len('\n---\n'):]
+    try:
+        parsed = yaml.safe_load(yaml_text)
+        if isinstance(parsed, dict):
+            result['front_matter'] = parsed
+    except Exception:
+        pass
+
+    rem_lines = remainder.splitlines()
+    if rem_lines and rem_lines[0].startswith('# file:'):
+        result['identity_line'] = rem_lines[0]
+        result['body'] = '\n'.join(rem_lines[1:]).lstrip('\n')
     else:
-        # Create new file
+        result['body'] = remainder.lstrip('\n')
+
+    return result
+
+def write_output_file(file_path: Path, front_matter_dict: Dict[str, Any], content: Dict[str, Any]):
+    """Write output file with front matter and body."""
+    file_existed = file_path.exists()
+    existing = {'front_matter': {}, 'identity_line': None, 'body': ''}
+    if file_existed:
+        existing_text = file_path.read_text(encoding='utf-8', errors='replace')
+        existing = _split_existing_markdown(existing_text)
+
+    # If generated dict is empty, keep existing front matter unchanged.
+    effective_front_matter = front_matter_dict if front_matter_dict else existing.get('front_matter', {})
+    if not isinstance(effective_front_matter, dict):
+        effective_front_matter = {}
+
+    headers_block = effective_front_matter.get('lupopedia.headers', {})
+    if not isinstance(headers_block, dict):
+        headers_block = {}
+
+    identity_line = generate_identity_line(headers_block, content)
+
+    body = existing.get('body', '')
+    if not body:
         body = content.get('body', '')
-        full_content = f"---\n{front_matter}---\n{generate_identity_line(yaml.safe_load(front_matter), content)}\n\n{body}"
-        
-        with open(file_path, 'w', encoding='utf-8') as f:
-            f.write(full_content)
-        
+
+    yaml_out = yaml.safe_dump(
+        effective_front_matter,
+        default_flow_style=False,
+        sort_keys=False,
+        allow_unicode=False
+    ).rstrip()
+
+    full_content = "---\n" + yaml_out + "\n---\n" + identity_line + "\n\n" + body
+    file_path.write_text(full_content, encoding='utf-8')
+    if file_existed:
+        print(f"Updated existing file: {file_path}")
+    else:
         print(f"Created new file: {file_path}")
 
 def main():
@@ -412,12 +486,8 @@ def main():
         if block_name in ordered_blocks and ordered_blocks[block_name]:
             front_matter_dict[block_name] = ordered_blocks[block_name]
     
-    # Convert to YAML
-    front_matter = yaml.dump(front_matter_dict, default_flow_style=False, sort_keys=False)
-    
-    # Add body content if available
-    if 'body' in content:
-        front_matter_dict['body'] = content['body']
+    # Convert to YAML for preview
+    front_matter = yaml.safe_dump(front_matter_dict, default_flow_style=False, sort_keys=False, allow_unicode=False)
     
     if args.dry_run:
         print("=== DRY RUN - RECONSTRUCTED YAML ===")
@@ -432,7 +502,7 @@ def main():
     
     # Write output file
     output_path = Path(args.file_path) if args.file_path else Path(content['file_path_from_root'])
-    write_output_file(output_path, front_matter, content)
+    write_output_file(output_path, front_matter_dict, content)
 
 if __name__ == '__main__':
     main()

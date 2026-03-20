@@ -1,3 +1,35 @@
+---
+lupopedia.headers:
+  lupopedia.schema: documentation
+  file_path_from_root: EXECUTIVE_SUMMARY.md
+  content_id: 8051410727660352640
+  version_when_written: 4.0.84
+  web_path: http://www.lupopedia.com/EXECUTIVE_SUMMARY
+  last_modified_utc: '20260319000000'
+  channel_id: 42
+  actor_id: 102
+  actor_name: cursor
+  delegation_chain: cursor:root
+  artifact_type: guide
+  artifact_kind: documentation
+  purpose: Executive technical summary of Lupopedia architecture and doctrine constraints.
+  tags:
+  - executive-summary
+  - architecture
+  - doctrine
+  - multi-agent
+  - semantic-os
+lupopedia.footer:
+  version: 4.0.84
+  last_verified: '20260319'
+  last_verified_by: cursor
+  orchestrator: cursor
+  next_action:
+  - Keep summary aligned with doctrine updates and install model constraints.
+  - Re-verify links and examples after major architecture edits.
+---
+# file: EXECUTIVE_SUMMARY.md — delegation: cursor:root — web_path: http://www.lupopedia.com/EXECUTIVE_SUMMARY
+
 # Lupopedia — Executive Summary
 
 **Technical overview of core design philosophy and architecture.**  
@@ -7,15 +39,17 @@ For new developers, IDE agents, and contributors. **For what to do first operati
 
 ## 1. What Lupopedia Is
 
-Lupopedia is a **semantic operating system** built for **multi-agent development**, **federated deployments**, and **documentation-driven architecture**. It continues the lineage of Crafty Syntax Live Help (PHP live-chat) but is rebuilt around a unified actor model, explicit identity, and doctrine that prioritizes portability, deterministic behavior, merge-safe data, and cross-agent collaboration.
+Lupopedia is a **semantic operating system** for **multi-agent development**, **federated operation**, and **doctrine-driven architecture**. It continues the lineage of Crafty Syntax Live Help (PHP live-chat) and rebuilds it around a unified actor model, explicit identity, and deterministic rules that prioritize portability, auditability, and merge-safe collaboration.
 
-The system is optimized for environments where multiple IDE agents (Cursor, Windsurf, JetBrains, Antigravity, and others) work on the same codebase and documentation. Architecture and rules are expressed in doctrine files, schema is defined in install SQL and TOON snapshots, and work is scoped by **channels** and **actors** so that contributions are traceable and conflicts are manageable. The design favors clarity, auditability, and safe data movement over convenience features that lock behavior inside the database or make replication and merging unpredictable.
+In the 4.0.x line, Lupopedia follows a **single install model**: install from Crafty Syntax 3.7.5 into the current Lupopedia codebase (no Lupopedia-to-Lupopedia upgrade path until 4.1.0). Schema authority lives in canonical install SQL and seed files, while TOON artifacts are generated references used for validation and tooling. Work is scoped by **channel_id** and **actor_id** so tasks, ownership, and handoffs remain attributable across IDE agents and offline workflows.
+
+The result is a system designed for teams and agents working concurrently: rules are explicit, behavior is reviewable, and state transitions are documented instead of hidden behind database-side automation.
 
 ---
 
 ## 2. What Lupopedia Intentionally Does NOT Do
 
-Lupopedia deliberately diverges from common database practice in three areas. Understanding these is essential.
+Lupopedia deliberately diverges from conventional database practice in three core areas. These constraints are foundational, not optional.
 
 ### No Foreign Keys
 
