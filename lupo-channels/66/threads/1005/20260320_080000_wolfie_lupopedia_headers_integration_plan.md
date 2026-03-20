@@ -68,6 +68,7 @@ This plan outlines a **comprehensive improvement** to LUPOPEDIA_HEADERS integrat
 
 ### Existing System
 - **TOON Schema:** Authoritative database structure in `lupo-database/lupopedia/json/`
+- **GitHub Repository:** https://github.com/wisdomoflovingfaith/lupopedia/json/
 - **Header Generation Script:** `generate_headers_from_db.py` reads TOON files
 - **Content Import Script:** `import_content.py` updates database from file content
 - **Manual Gap:** No automated synchronization between database changes and file headers
