@@ -25,7 +25,6 @@ lupopedia.session:
   human_actor_name: "root"
   paired_actor_id: 10000
 lupopedia.footer:
-  version: "4.0.84"
   last_verified: "20260320"
   last_verified_by: "cursor"
   orchestrator: "cursor"
@@ -384,8 +383,9 @@ When a file includes a **`lupopedia.footer`** block, it MUST include **`orchestr
 
 - **`orchestrator:`** — Actor or delegation chain that orchestrated last update (e.g. `"cursor"`, `"wolfie:root"`).
 - **`last_verified_by:`** — Actor or faucet that verified the artifact.
-- **`next_action:`** — YAML list of 1–3 contextual, forward-looking strings; no version jumps beyond current release (e.g. 4.0.84).
+- **`next_action:`** — YAML list of 1–3 contextual, forward-looking strings; no version jumps beyond current release.
 - At least one of `last_verified:` is REQUIRED when footer is present
+- **Note:** Version should NOT be stored in footer - always read from resolver
 
 **Example:**
 
@@ -397,7 +397,6 @@ lupopedia.footer:
   next_action:
     - "Review related TOON definitions for schema alignment"
     - "Validate LUPOPEDIA HEADERS consistency across sibling files"
-    - "Update documentation to reflect new schema changes"
 ```
 
 **Other optional footer fields:** `view_count`, `like_count`, `share_count` (engagement), `archive_note`. Required when footer is present: **`orchestrator:`**, **`last_verified_by:`**, **`next_action:`**, plus at least one of `last_verified` or `version`.
