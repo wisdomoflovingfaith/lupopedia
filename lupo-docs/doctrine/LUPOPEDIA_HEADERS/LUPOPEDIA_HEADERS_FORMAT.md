@@ -95,9 +95,20 @@ The `{session_name}` in the identity line MUST be taken from **`lupopedia.sessio
 
 ---
 
-## 2. Required header fields (in lupopedia.headers)
+## 2. **Required fields (in lupopedia.headers):**
+- **`version_when_written`** - Version when artifact was written (REQUIRED)
+- **`file_path_from_root`** - File path from repository root (REQUIRED)
+- Optional: `lupopedia.schema`, `web_path`, `last_modified_utc`, `channel_id`, `actor_id`, `delegation_chain`, `artifact_type`, `artifact_kind`, `purpose`. For **table documentation**, **`namespace`** is also required. Optional: `actor_name`, `mood_rgb`, `traits`, `tags`, `lupo_agent`, `agent_name_identity`, `namespace` (when artifact type does not require it). **Session-related fields** (e.g. `session_id`, `session_name`) belong in **`lupopedia.session`**, not in `lupopedia.headers`.
 
-Stored as metadata properties (or in YAML when written to file). Use **lupopedia.*** keys in new files; validators accept legacy `lupopedia.version` / `lupopedia.schema`. Minimum: `lupopedia.version`, `lupopedia.schema`, `file_path_from_root`, `web_path`, `last_modified_utc`, `system_version`, `channel_id`, `actor_id`, `delegation_chain`, `artifact_type`, `artifact_kind`, `purpose`. For **table documentation** (see §2.2), **`namespace`** is also required. Optional: `actor_name`, `mood_rgb`, `traits`, `tags`, `lupo_agent`, `agent_name_identity`, `namespace` (when artifact type does not require it). **Session-related fields** (e.g. `session_id`, `session_name`) belong in **`lupopedia.session`**, not in `lupopedia.headers`.
+**Version update requirements:**
+- When `version_when_written` < current system version (4.0.84), headers MUST be re-written with current version
+- Current version is always read from resolver, not from headers
+
+**Database integration requirements:**
+- When file is imported into lupo_content table, a `content_id` metadata field MUST be set
+- If content_id is NULL or not set, the file has not been properly imported
+- Content_id should be generated when file is added to lupo_content table
+- This ensures traceability between filesystem and database
 
 **Optional channel and thread (human-readable):** In addition to `channel_id`, headers MAY include **`channel_name`** — a human-readable name for the channel (e.g. `"Lupopedia Development (general)"` for channel_id 42). When the artifact is scoped to a specific thread, **`thread_name`** MAY be included (human-readable thread name) alongside `thread_id` (which may appear in `lupopedia.session`). These aid display and context without changing resolution logic.
 
@@ -367,19 +378,19 @@ Resolution and validators MUST support channel-aware lookup.
 
 ## 5. lupopedia.footer and required metadata (required when footer is present)
 
-When a file includes a **`lupopedia.footer`** block, it MUST include **`orchestrator:`**, **`last_verified_by:`**, and **`next_action:`**, plus at least one of `version:` or `last_verified:`. See required fields below.
+When a file includes a **`lupopedia.footer`** block, it MUST include **`orchestrator:`**, **`last_verified_by:`**, and **`next_action:`**, plus at least one of `last_verified:`. See required fields below.
 
 **Required footer fields:**
 
-- **`orchestrator:`** — Actor or delegation chain that orchestrated the last update (e.g. `"cursor"`, `"wolfie:root"`).
+- **`orchestrator:`** — Actor or delegation chain that orchestrated last update (e.g. `"cursor"`, `"wolfie:root"`).
 - **`last_verified_by:`** — Actor or faucet that verified the artifact.
-- **`next_action:`** — YAML list of 1–3 contextual, forward-looking strings; no version jumps beyond current release (e.g. 4.0.72).
+- **`next_action:`** — YAML list of 1–3 contextual, forward-looking strings; no version jumps beyond current release (e.g. 4.0.84).
+- At least one of `last_verified:` is REQUIRED when footer is present
 
 **Example:**
 
 ```yaml
 lupopedia.footer:
-  version: "4.0.84"
   last_verified: "20260320"
   last_verified_by: "cursor"
   orchestrator: "cursor"
