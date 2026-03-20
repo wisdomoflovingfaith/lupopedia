@@ -1,14 +1,12 @@
 ---
 lupopedia.init:
   document_type: "doctrine"
-  system_version: "4.0.84"
 
 lupopedia.headers:
   version_when_written: "4.0.84"
   lupopedia.schema: "doctrine"
   file_path_from_root: "lupo-docs/doctrine/LUPOPEDIA_HEADERS/DEPRECATION_FLARE_FLIP_FLP.md"
   web_path: "[web_path](http://www.lupopedia.com/doctrine/LUPOPEDIA_HEADERS/DEPRECATION)"
-  system_version: "4.0.84"
   last_modified_utc: "20260320"
   channel_id: 42
   actor_id: 1003

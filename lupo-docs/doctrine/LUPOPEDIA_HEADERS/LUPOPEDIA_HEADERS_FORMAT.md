@@ -65,7 +65,7 @@ The **first line** of the file MUST be:
 
 Then the YAML header blocks in **canonical order** (see [LUPOPEDIA_HEADERS_PLAN.md](./LUPOPEDIA_HEADERS_PLAN.md) §4). Use **lupopedia.*** block names in new or modified files (4.0.69+); validators accept legacy flare.*/flame.*:
 
-- **lupopedia.init** — Optional. Lists **required reading** and **required context** that must be read or understood **before** reading this file (e.g. `required_reading:`, `required_context:`). It is **not** for file metadata; use `lupopedia.headers` or `lupopedia.metadata` for artifact_type, file_identity, namespace, domain, system_version. See [LUPO_INITIALIZATION_DOCTRINE.md](../init/LUPO_INITIALIZATION_DOCTRINE.md). Supported forms: simple list of paths, or list of `path`/`reason` objects.
+- **lupopedia.init** — Optional. Lists **required reading** and **required context** that must be read or understood **before** reading this file (e.g. `required_reading:`, `required_context:`). It is **not** for file metadata; use `lupopedia.headers` or `lupopedia.metadata` for artifact_type, file_identity, namespace, domain. See [LUPO_INITIALIZATION_DOCTRINE.md](../init/LUPO_INITIALIZATION_DOCTRINE.md). Supported forms: simple list of paths, or list of `path`/`reason` objects.
 - **lupopedia.routing** — Optional. Routing and approval metadata for planning artifacts and cross-actor workflows. Includes channel, actor, recipient, session, priority, and approval requirements.
 - **lupopedia.actor_references** — Optional. Actor IDs from canonical registry (plan/report files). See [OPTIONAL_BLOCKS.md](./OPTIONAL_BLOCKS.md).
 - lupopedia.conditional
@@ -94,20 +94,22 @@ The `{session_name}` in the identity line MUST be taken from **`lupopedia.sessio
 
 ---
 
-## 2. **Required fields (in lupopedia.headers):**
-- **`version_when_written`** - Version when artifact was written (REQUIRED)
-- **`file_path_from_root`** - File path from repository root (REQUIRED)
-- Optional: `lupopedia.schema`, `web_path`, `last_modified_utc`, `channel_id`, `actor_id`, `delegation_chain`, `artifact_type`, `artifact_kind`, `purpose`. For **table documentation**, **`namespace`** is also required. Optional: `actor_name`, `mood_rgb`, `traits`, `tags`, `lupo_agent`, `agent_name_identity`, `namespace` (when artifact type does not require it). **Session-related fields** (e.g. `session_id`, `session_name`) belong in **`lupopedia.session`**, not in `lupopedia.headers`.
+## 2. **Required fields (in lupopedia.headers)**
 
-**Version update requirements:**
-- When `version_when_written` < current system version (4.0.84), headers MUST be re-written with current version
-- Current version is always read from resolver, not from headers
+**Minimum (always):**
 
-**Database integration requirements:**
-- When file is imported into lupo_content table, a `content_id` metadata field MUST be set
-- If content_id is NULL or not set, the file has not been properly imported
-- Content_id should be generated when file is added to lupo_content table
-- This ensures traceability between filesystem and database
+- **`version_when_written`** — Immutable creation-time system version (e.g. `"4.0.84"`). Set once when the artifact is first written; **do not** change it on later edits. This is the **only** canonical version field in `lupopedia.headers`. Do **not** use `lupopedia.version`, `system_version`, `last_verified_system_version`, or a standalone `version` key here.
+- **`file_path_from_root`** — Path from repository root (REQUIRED).
+
+**Conditional:**
+
+- **`content_id`** — Present when the file is **actually** imported into **`lupo_content`** (or otherwise database-managed as content). Handwritten doctrine and repo files usually **omit** it; tooling may add it on import.
+
+**Optional / conditional (unchanged):** `lupopedia.schema`, `web_path`, `last_modified_utc`, `channel_id`, `actor_id`, `delegation_chain`, `artifact_type`, `artifact_kind`, `purpose`, `tags`, `namespace`, etc. For **table documentation**, **`namespace`** is **required** (approved taxonomy). Optional: `actor_name`, `mood_rgb`, `traits`, `lupo_agent`, `agent_name_identity`. **Session-related fields** (e.g. `session_id`, `session_name`) belong in **`lupopedia.session`**, not in `lupopedia.headers`.
+
+**After first publication:** Prefer **`last_modified_utc`** (optional), **`lupopedia.footer`** verification fields, or runtime reads of **`LUPEDIA_VERSION`** / config atoms when you need “current system version”—not additional `version*` keys in `lupopedia.headers`.
+
+**Database integration (`content_id`):** When a file is imported into `lupo_content`, a `content_id` metadata field MUST be set for traceability. If `content_id` is absent, treat the file as not yet imported (for handwritten files this is normal).
 
 **Optional channel and thread (human-readable):** In addition to `channel_id`, headers MAY include **`channel_name`** — a human-readable name for the channel (e.g. `"Lupopedia Development (general)"` for channel_id 42). When the artifact is scoped to a specific thread, **`thread_name`** MAY be included (human-readable thread name) alongside `thread_id` (which may appear in `lupopedia.session`). These aid display and context without changing resolution logic.
 
@@ -146,7 +148,7 @@ Session information MUST be in a separate block **`lupopedia.session`**, not in 
 
 | Block | Purpose |
 |-------|--------|
-| **lupopedia.headers** | Canonical artifact metadata (identity, version, channel, purpose). |
+| **lupopedia.headers** | Canonical artifact metadata (identity, **`version_when_written`**, channel, purpose). |
 | **lupopedia.session** | Runtime execution context (session, actor, faucet, environment). |
 
 Agents SHOULD assume: **headers = artifact metadata**; **session = runtime context**. By default, **session state is read from the active runtime**, not from the file. Normally only **lupopedia.headers** is written into artifact files; runtime state comes from the active session or from the database.
@@ -230,6 +232,8 @@ lupopedia.session:
     artifact was produced with verbose output enabled. In this case the
     session block documents the runtime state of the agent that produced
     the artifact at the time the file was written.
+```
+
 #### 2.1.5 Edges and Engagement Snapshot Requirement (comment and meta)
 
 Both **`lupopedia.edges`** and **`lupopedia.engagement`** MUST include a **`comment`** property stating that they are only a **snapshot** at artifact creation time (query the database for latest values). Both SHOULD include **`meta`** with a short thread/context description (e.g. version transition or workflow step). Use the same **`meta`** value in both blocks when present.
@@ -385,7 +389,7 @@ When a file includes a **`lupopedia.footer`** block, it MUST include **`orchestr
 - **`last_verified_by:`** — Actor or faucet that verified the artifact.
 - **`next_action:`** — YAML list of 1–3 contextual, forward-looking strings; no version jumps beyond current release.
 - At least one of `last_verified:` is REQUIRED when footer is present
-- **Note:** Version should NOT be stored in footer - always read from resolver
+- **Note:** Do not use a **`version`** key in `lupopedia.footer` for system or header schema version; read current system version from **`LUPEDIA_VERSION`** / runtime atoms when needed.
 
 **Example:**
 
@@ -399,4 +403,4 @@ lupopedia.footer:
     - "Validate LUPOPEDIA HEADERS consistency across sibling files"
 ```
 
-**Other optional footer fields:** `view_count`, `like_count`, `share_count` (engagement), `archive_note`. Required when footer is present: **`orchestrator:`**, **`last_verified_by:`**, **`next_action:`**, plus at least one of `last_verified` or `version`.
+**Other optional footer fields:** `view_count`, `like_count`, `share_count` (engagement), `archive_note`. Required when footer is present: **`orchestrator:`**, **`last_verified_by:`**, **`next_action:`**, plus at least one of **`last_verified:`**.

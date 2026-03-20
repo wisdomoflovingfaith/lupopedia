@@ -12,8 +12,9 @@ lupopedia.headers:
   purpose: "Optional LUPOPEDIA HEADERS blocks: routing and lists (carried over from FLARE)."
   tags: ["lupopedia_headers", "routing", "lists", "optional"]
 lupopedia.footer:
-  version: 
   last_verified: "20260320"
+  last_verified_by: "cursor"
+  orchestrator: "cursor"
   next_action:
     - "Use lupopedia.routing / lupopedia.lists when adding new header blocks"
     - "Validate optional blocks against LUPOPEDIA_HEADERS_FORMAT §5"

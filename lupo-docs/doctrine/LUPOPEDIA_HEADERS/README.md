@@ -109,9 +109,18 @@ Collections and namespaces are **conditionally coupled** dimensions that serve d
 | [LUPOPEDIA_HEADERS_MIGRATION.md](./LUPOPEDIA_HEADERS_MIGRATION.md) | Incremental migration from FLARE, validator and tooling expectations. |
 | [DEPRECATION_FLARE_FLIP_FLP.md](./DEPRECATION_FLARE_FLIP_FLP.md) | Deprecation notice: FLARE, FLIP, FLP replaced by LUPOPEDIA HEADERS. |
 | [OPTIONAL_BLOCKS.md](./OPTIONAL_BLOCKS.md) | Optional blocks: lupopedia.routing, lupopedia.lists, **lupopedia.next_actions** (suggested next actions; legacy: lupopedia.close). |
+| [VERSIONING_MODEL.md](./VERSIONING_MODEL.md) | **Obsolete stub only** — historical links; canonical rules are in LUPOPEDIA_HEADERS_FORMAT.md §2. |
 
 ## Quick reference
 
+- **Versioning in `lupopedia.headers`:** The only canonical version field is **`version_when_written`** (immutable system version at creation time). See [LUPOPEDIA_HEADERS_FORMAT.md](./LUPOPEDIA_HEADERS_FORMAT.md) §2 for current required fields.
+- **Minimal `lupopedia.headers` shape (new files):**
+  ```yaml
+  lupopedia.headers:
+    version_when_written: "4.0.84"
+    file_path_from_root: "path/from/repo/root.md"
+    # optional: lupopedia.schema, web_path, channel_id, actor_id, …
+  ```
 - **First line of file:** `---` (nothing else on line 1 — no identity line, no heading). **Identity line** `# file: ...` goes **after** the closing `---`, as the first line of the body. See .cursor/rules/lupopedia-headers-file-order.mdc for mandatory order (all IDE agents).
 - **Exactly one front matter block:** Do not duplicate; one opening `---`, one YAML block, one closing `---` per file. No second header block.
 - **Then:** YAML blocks (canonical order) → `---` → identity line `# file: {title} — session: {session_name} — delegation: {delegation_chain} — web_path: {web_path}` → body

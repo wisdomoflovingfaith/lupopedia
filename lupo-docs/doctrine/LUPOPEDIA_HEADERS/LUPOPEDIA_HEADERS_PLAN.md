@@ -105,7 +105,7 @@ Children of the root represent blocks. Use canonical `lupopedia.*` or legacy `fl
 
 Under each block row, each field is a metadata row, e.g. under `lupopedia.headers` (or legacy `lupopedia.headers`):
 
-- `property_key` = `'lupopedia.version_when_written'`, `'lupopedia.schema'`, `'file_path_from_root'`, `'web_path'`, `'system_version'`, `'actor_id'`, `'delegation_chain'`, `'purpose'`, `'title'`, **`channel_name`** (optional), **`thread_name`** (optional), etc. (legacy: `lupopedia.version`, `lupopedia.schema`). Under **`lupopedia.session`**: `session_id`, `session_name`, `actor_id`, `actor_name`, `channel_id`, **`channel_name`** (optional), **`thread_id`** (optional), **`thread_name`** (optional), **`embedded_session_snapshot`** (optional; true when block was captured at artifact creation time), `federation_node_id`, `context_source`, `department_id`, `agent_name`, `actor_type`, `actor_nature`, `human_actor_name`, `paired_actor_id` (same as session file). Session = runtime context; headers = artifact metadata. Default: read session from active runtime; session in file only when verbose output embeds a snapshot. See [LUPOPEDIA_HEADERS_FORMAT.md](./LUPOPEDIA_HEADERS_FORMAT.md) §2.1.
+- `property_key` = `'version_when_written'`, `'lupopedia.schema'`, `'file_path_from_root'`, `'web_path'`, `'content_id'` (when content-imported), `'actor_id'`, `'delegation_chain'`, `'purpose'`, `'title'`, **`channel_name`** (optional), **`thread_name`** (optional), etc. **Do not** store deprecated header version keys (`lupopedia.version`, `system_version`, `last_verified_system_version`, standalone `version`) under `lupopedia.headers`. Under **`lupopedia.session`**: `session_id`, `session_name`, `actor_id`, `actor_name`, `channel_id`, **`channel_name`** (optional), **`thread_id`** (optional), **`thread_name`** (optional), **`embedded_session_snapshot`** (optional; true when block was captured at artifact creation time), `federation_node_id`, `context_source`, `department_id`, `agent_name`, `actor_type`, `actor_nature`, `human_actor_name`, `paired_actor_id` (same as session file). Session = runtime context; headers = artifact metadata. Default: read session from active runtime; session in file only when verbose output embeds a snapshot. See [LUPOPEDIA_HEADERS_FORMAT.md](./LUPOPEDIA_HEADERS_FORMAT.md) §2.1.
 - `property_value` = corresponding value
 
 ### 3.4 Repeating structures
@@ -189,11 +189,18 @@ The `{session_name}` in the identity line is taken from **`lupopedia.session.ses
 
 ## 8. Required header fields (as properties)
 
-Minimum core fields (stored as property rows under `lupopedia.headers` block) include:
+**Required** under `lupopedia.headers` (minimum):
 
-- `lupopedia.version`, `lupopedia.schema`, `file_path_from_root`, `web_path`, `last_modified_utc`, `system_version`, `channel_id`, `actor_id`, `delegation_chain`, `artifact_type`, `artifact_kind`, `purpose`
+- **`version_when_written`** — only canonical version field; immutable at creation time
+- **`file_path_from_root`**
+
+**Conditional:** **`content_id`** when the artifact is imported into `lupo_content` or otherwise database-managed as content (usually not handwritten).
+
+**Optional** (examples): `lupopedia.schema`, `web_path`, `last_modified_utc`, `channel_id`, `actor_id`, `delegation_chain`, `artifact_type`, `artifact_kind`, `purpose`, `tags`, and other fields per [LUPOPEDIA_HEADERS_FORMAT.md](./LUPOPEDIA_HEADERS_FORMAT.md) §2.
 
 For **table documentation**, **`namespace`** is also required (approved taxonomy: auth, channels, core, content, analytics, federation, governance, integration, legacy). See [LUPOPEDIA_HEADERS_FORMAT.md](./LUPOPEDIA_HEADERS_FORMAT.md) §2.2.
+
+**Deprecated / do not use in `lupopedia.headers`:** `lupopedia.version`, `system_version`, `last_verified_system_version`, standalone `version`. See [VERSIONING_MODEL.md](./VERSIONING_MODEL.md) (obsolete stub) and LUPOPEDIA_HEADERS_FORMAT.md §2.
 
 Optional but supported: `actor_name`, `mood_rgb`, `traits`, `tags`, `lupo_agent`, `agent_name_identity`, **`channel_name`** (human-readable channel name), **`thread_name`** (human-readable thread name when thread-scoped), **`namespace`** (when not required for artifact type). **Session fields** (`session_id`, `session_name`, `channel_id`, `channel_name`, `thread_id`, `thread_name`, and other session-file fields) belong in **`lupopedia.session`** when used for session context, and may also appear in `lupopedia.headers` for display.
 
@@ -211,5 +218,6 @@ Optional but supported: `actor_name`, `mood_rgb`, `traits`, `tags`, `lupo_agent`
 ## 10. Reference
 
 - FLARE logical structure and block semantics: [FLARE_DOCTRINE.md](../FLARE/FLARE_DOCTRINE.md)
-- Format and version rule: [LUPOPEDIA_HEADERS_FORMAT.md](./LUPOPEDIA_HEADERS_FORMAT.md)
+- Format and required header fields (including **`version_when_written` only**): [LUPOPEDIA_HEADERS_FORMAT.md](./LUPOPEDIA_HEADERS_FORMAT.md)
 - Migration path: [LUPOPEDIA_HEADERS_MIGRATION.md](./LUPOPEDIA_HEADERS_MIGRATION.md)
+- Historical / obsolete versioning stub (do not treat as active doctrine): [VERSIONING_MODEL.md](./VERSIONING_MODEL.md)
