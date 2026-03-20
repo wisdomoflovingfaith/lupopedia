@@ -104,6 +104,20 @@ Older entries (≤4.0.79) are archived in [CHANGELOG_ARCHIVE.md](CHANGELOG_ARCHI
 - `lupo-scripts/import_content.py` hardened for doctrine compliance: removed MySQL-specific upsert behavior, switched to application-layer SELECT->UPDATE/INSERT flow, strict `last_modified_utc` validation, deterministic expanded re-import updates, and success logging only after DB commit + file rewrite
 - `lupo-scripts/generate_headers_from_db.py` implementation scope started with TOON-grounded schema verification (`lupo_contents`, `lupo_metadata`) and DB->YAML mapping preparation (work in progress; not finalized)
 
+### Channel 42 Thread-Hierarchy Phase-1 Governance Closure (Thread 1029)
+
+- ATHENA strategy stream executed from hierarchy normalization through governance closure-readiness validation in thread 1029.
+- WOLFIE issued omnibus adjudication execution directive for provisional set 1021-1027 and 2002 with deterministic index behavior constraints.
+- HEPHAESTUS execution pass confirmed THREAD_INDEX already matched adjudicated phase-1 behavior with no unauthorized index changes.
+- LILITH final governance audit returned pass (critical/high/medium/low = 0) and marked phase-1 closure-readiness.
+- ATHENA final validation confirmed strategy alignment and recommended closing phase-1 without scope expansion.
+
+### Channel 42 Database-Backed Visibility Reconciliation (New Stream)
+
+- New Channel 42 planning stream opened for database-backed channel/thread/task visibility and 4.0.84 documentation reconciliation.
+- Scope includes practical visibility surfaces for channels, threads, task ownership, execution status, and web review path planning.
+- Root documentation surfaces (`CHANGELOG.md`, `TODO.md`, `plan.md`) reconciled to include this stream as active work.
+
 
 ---
 

@@ -66,6 +66,39 @@ Phases are **dependency-ordered** (no time estimates). **Prompt file names** bel
 - **Channel 88 Thread 1004:** created the Crafty `livehelp_*` → Lupopedia `lupo_*` mapping question thread and linked existing mapping/schema documentation sources.
 - **Blocking release-quality closure:** `task_prompt_010100` (A12.4 signoff) and `task_prompt_234200` (watcher acceptance) — see `TODO.md`.
 - **Parallel / non-blocking until allocated:** `task_deferred_0001`–`0005` (dedupe, UI, DB-primary, auto-heal, external read).
+- **Channel 42 Thread 1029 status:** phase-1 hierarchy normalization governance loop completed and closure-ready (omnibus adjudication, execution validation, final LILITH audit, final ATHENA strategy validation).
+- **New active stream (Channel 42 Thread 1030):** database-backed channel/thread/task visibility planning plus 4.0.84 documentation reconciliation.
+
+## Channel 42 Visibility Reconciliation Stream (Thread 1030)
+
+Objective:
+- Make channels, threads, tasks, ownership, and execution state practically reviewable across file surfaces, database surfaces, and a deterministic web review interface.
+
+Current grounded assets:
+- File-visible coordination truth: `lupo-channels/42/THREAD_INDEX.md` + thread artifacts.
+- Structural DB tables: `lupo_channels`, `lupo_dialog_threads`, `lupo_dialog_messages`, `lupo_tasks`, `lupo_edges`, `lupo_metadata`.
+- Existing script surfaces touching channel/thread/content metadata: `lupo-scripts/import_content.py`, `lupo-scripts/import_channels_and_artifacts.py`, `lupo-scripts/export_channel_snapshots.py`, `lupo-scripts/migrate_filesystem_to_db.py`, `lupo-scripts/validate_channel_artifacts.py`, `lupo-scripts/generate_web_path.py`.
+
+Phase-ordered execution plan:
+
+1. Documentation reconciliation phase (now active)
+- Align `CHANGELOG.md`, `TODO.md`, and `plan.md` with artifact-backed 4.0.84 completion/active/pending state.
+
+2. Database readiness and normalization phase
+- Validate active table docs against TOON/current install SQL for visibility-critical tables.
+- Resolve table-documentation drift (including `lupo_task_dependencies` documentation mismatch versus active TOON/install authority).
+
+3. Projection and review-record phase
+- Define explicit application-layer projection from file-visible artifacts into DB review records (no hidden sync, no DB-side logic).
+- Define deterministic export path from DB back into reviewable file/UI surfaces.
+
+4. Web review interface phase
+- Define read-only operational pages for channel list, thread list, task ownership/status, and lineage/hierarchy view where applicable.
+- Keep persistence logic in app layer and timestamps as BIGINT `YYYYMMDDHHIISS` UTC.
+
+5. Validation and maintenance phase
+- Add deterministic checks for drift between file coordination surfaces and DB review surfaces.
+- Gate status transitions on explicit, file-visible evidence and validator outputs.
 
 ## Completed (Channel 66 Workstream - Threads 1001-1005)
 

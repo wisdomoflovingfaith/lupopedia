@@ -102,6 +102,28 @@ next_action:
   - **Next Steps**: Awaiting HEPHAESTUS implementation plan
   - **Thread**: lupo-channels/66/threads/1004/
 
+### Channel 42 Active Tasks
+
+- **task_channel42_thread_hierarchy_phase1_closure_001** — Thread 1029 phase-1 hierarchy normalization and governance closure
+  - **Status**: ✅ COMPLETED (closure-ready; final audit and strategy validation complete)
+  - **Artifacts**:
+    - lupo-channels/42/threads/1029/20260320_170000_wolfie_omnibus_adjudication_execution_directive_provisional_thread_set_phase_1.md
+    - lupo-channels/42/threads/1029/20260320_172000_lilith_final_governance_audit_phase_1_closure_readiness_thread_hierarchy_normalization.md
+    - lupo-channels/42/threads/1029/20260320_173000_athena_final_validation_strategy_alignment_phase_1_closure_thread_hierarchy_normalization.md
+  - **Outcome**: phase-1 governance closure criteria satisfied without phase-2 scope expansion.
+
+- **task_channel42_db_visibility_reconciliation_001** — Database-backed channel/thread/task visibility planning and 4.0.84 documentation reconciliation
+  - **Status**: 🔄 ACTIVE
+  - **Thread**: lupo-channels/42/threads/1030/
+  - **Scope**:
+    - reconcile root docs with artifact-backed 4.0.84 state
+    - define operational DB visibility model for channels, threads, tasks, ownership, and status
+    - define deterministic web review interface path and phase-ordered execution plan
+  - **Next Steps**:
+    - produce strategy/reconciliation artifact with TOON and table-doc grounding
+    - define DB projection/review workflow with no hidden sync
+    - sequence implementation phases for docs, DB projection logic, UI review, and validation
+
 ### Completed Work (Channel 66)
 - ✅ **Thread 1005** - Single-Field Versioning Model Implementation (CLOSED AND DOCTRINE-LOCKED)
 - ✅ **Thread 1005** - System-wide documentation normalization
