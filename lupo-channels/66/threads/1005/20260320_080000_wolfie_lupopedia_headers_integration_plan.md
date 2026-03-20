@@ -68,10 +68,12 @@ This plan outlines a **comprehensive improvement** to LUPOPEDIA_HEADERS integrat
 
 ### Existing System
 - **TOON Schema:** Authoritative database structure in `lupo-database/lupopedia/json/`
-- **GitHub Repository:** https://github.com/wisdomoflovingfaith/lupopedia/json/
+- **GitHub Repository:** https://github.com/wisdomoflovingfaith/lupopedia
+- **Deployment Structure:** `lupopedia.com/lupopedia/` (web root) + `/lupopedia/` (project folder)
 - **Header Generation Script:** `generate_headers_from_db.py` reads TOON files
 - **Content Import Script:** `import_content.py` updates database from file content
 - **Manual Gap:** No automated synchronization between database changes and file headers
+- **API Requirement:** External AI agents need REST API for GitHub operations
 
 ### Identified Limitations
 1. **Unidirectional Flow** - Scripts only read FROM database, don't update headers
@@ -136,7 +138,12 @@ CREATE TABLE lupo_file_headers (
    - Update table relationships documentation
    - Validate schema consistency
 
-3. **Migration Script**
+3. **Create REST API for External AI**
+   - GitHub API endpoints for file operations
+   - Authentication for external AI agents
+   - Rate limiting and security measures
+
+4. **Migration Script**
    - Create migration for new table
    - Handle existing data migration
    - Ensure backward compatibility
@@ -161,7 +168,12 @@ CREATE TABLE lupo_file_headers (
    - Support batch processing
    - Generate audit logs
 
-3. **Enhanced `import_content.py`**
+3. **Create REST API for External AI**
+   - GitHub API endpoints for file operations
+   - Authentication for external AI agents
+   - Rate limiting and security measures
+
+4. **Enhanced `import_content.py`**
    - Automatic header synchronization on import
    - Header validation against database
    - Conflict resolution prompts
