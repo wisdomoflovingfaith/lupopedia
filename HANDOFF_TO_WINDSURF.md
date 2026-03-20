@@ -98,8 +98,12 @@ lupopedia.footer:
   last_verified_by: "cursor"
   orchestrator: "cursor"
   next_action:
-    - "Windsurf validates import_content.py against doctrine and sample fixtures."
-    - "Windsurf implements generate_headers_from_db.py using TOON-grounded schema and deterministic mapping."
+    - "Complete LUPOPEDIA_HEADERS doctrine cleanup and single-field versioning model enforcement (4.0.84)"
+    - "Remove all lupopedia.version, system_version, last_verified_system_version from documentation"
+    - "Update LUPOPEDIA_HEADERS_FORMAT.md with baseline rewrite rules"
+    - "Convert VERSIONING_MODEL.md to obsolete stub"
+    - "Add LILITH edge case analysis to README.md"
+    - "Create WOLFIE script generate_headers_from_db.py for TOON-based header generation"
     - "Windsurf updates CHANGELOG/TODO/plan after takeover execution checkpoints."
 
 lupopedia.next_actions:
