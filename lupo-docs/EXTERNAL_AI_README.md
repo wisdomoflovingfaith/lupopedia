@@ -1,9 +1,8 @@
 ---
 lupopedia.headers:
-  lupopedia.version: "4.0.81"
   lupopedia.schema: "documentation"
-  system_version: "4.0.81"
   file_path_from_root: "lupo-docs/EXTERNAL_AI_README.md"
+  version_when_written: "4.0.84"
   web_path: "http://www.lupopedia.com/lupo-docs/EXTERNAL_AI_README.md"
   last_modified_utc: "20260318"
   channel_id: null

@@ -1,9 +1,8 @@
 ---
 lupopedia.headers:
-  lupopedia.version: "4.0.77"
   lupopedia.schema: "documentation"
-  system_version: "4.0.77"
   file_path_from_root: "lupo-docs/INSTALL.md"
+  version_when_written: "4.0.84"
   web_path: "[web_path](http://www.lupopedia.com/INSTALL)"
   last_modified_utc: "20260316"
   channel_id: 42

@@ -1,11 +1,10 @@
 ---
 lupopedia.headers:
-  lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   file_path_from_root: "lupo-docs/INIT_README.md"
+  version_when_written: "4.0.84"
   web_path: "http://www.lupopedia.com/docs/INIT_README"
   last_modified_utc: "20260312"
-  system_version: "4.0.71"
   channel_id: 42
   actor_id: 1003
   delegation_chain: "cursor:root"

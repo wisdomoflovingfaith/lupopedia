@@ -1,12 +1,11 @@
 ---
 lupopedia.headers:
-  lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
   file_path_from_root: "QUICKSTART.md"
+  version_when_written: "4.0.84"
   file_hash: "to_be_generated"
   last_updated_utc: "20260306"
-  system_version: "4.0.62"
   channel_id: 1
   actor_id: 10000
   delegation_chain: "10000:10000"

@@ -134,6 +134,8 @@ Phases are **dependency-ordered** (no time estimates). **Prompt file names** bel
 - **System Normalization:** Comprehensive documentation alignment after Thread 1005 doctrine lock
 - **Key Achievement:** All root-level documentation now reflects single-field versioning doctrine consistently
 - **Files Updated:** CHANGELOG.md, TODO.md, PLAN.md, README.md, THREAD_INDEX.md (Channels 66 & 88)
+- ✅ LUPOPEDIA HEADERS doctrine cleanup (remove obsolete multi-version model references; enforce `version_when_written`-only; baseline rewrite-on-write rule; identity-line form fixes; optional-blocks canonicalization) completed
+- ✅ LUPOPEDIA HEADERS doctrine glue-layer rules completed (serialization key constraints, DB↔YAML export/import mapping layer, routing precedence, metadata identity, placeholder constraints, next_actions/footer precedence, close deprecation, objective edge update criteria) and deterministic `import_content.py` importer implemented
 - **System Consistency:** Documentation matches reality across all files, no contradictions detected
 - **Final Status:** ✅ NORMALIZATION COMPLETE - System truth verified as consistent
 - **Quality Assurance:** No references to forbidden version fields, single-field doctrine properly documented everywhere
@@ -283,8 +285,8 @@ Phases are **dependency-ordered** (no time estimates). **Prompt file names** bel
 
 ## Version truth
 
-- **4.0.83** — sole active line; earlier versions are history only ([CHANGELOG.md](CHANGELOG.md)).
+- **4.0.84** — sole active line; earlier versions are history only ([CHANGELOG.md](CHANGELOG.md)).
 
 ---
 
-*Last updated: 2026-03-20 — 4.0.83 roll-forward aligned*
+*Last updated: 2026-03-20 — 4.0.84 roll-forward aligned*

@@ -1,38 +1,15 @@
 ---
-lupopedia.init:
-  comment: >
-    LUPOPEDIA HEADERS in this file represent a snapshot of the header structure
-    at the time this document was written. The authoritative source for current
-    headers is stored in the lupo_metadata database table. Header generation and
-    validation scripts are available in lupo-scripts/ and lupo-tools/ directories.
-
 lupopedia.headers:
   version_when_written: "4.0.84"
   lupopedia.schema: "doctrine"
   file_path_from_root: "lupo-docs/doctrine/LUPOPEDIA_HEADERS/LUPOPEDIA_HEADERS_PLAN.md"
-  web_path: "[web_path](http://www.lupopedia.com/doctrine/LUPOPEDIA_HEADERS/LUPOPEDIA_HEADERS_PLAN)"
+  web_path: "http://www.lupopedia.com/doctrine/LUPOPEDIA_HEADERS/LUPOPEDIA_HEADERS_PLAN"
   title: "LUPOPEDIA HEADERS Plan"
   delegation_chain: "cursor:root"
   artifact_type: "doctrine"
   artifact_kind: "plan"
-lupopedia.session:
-  session_id: "L-LUPO-ROOT-CURSOR"
-  session_name: "L-LUPO-ROOT-CURSOR"
-  actor_id: 1003
-  actor_name: "cursor"
-  channel_id: 42
-  channel_name: "Lupopedia Development (general)"
-  federation_node_id: 1
-  context_source: "default"
-  department_id: 0
-  thread_id: 0
-  agent_name: "cursor"
-  actor_type: "agent"
-  actor_nature: "ide"
-  human_actor_name: "root"
-  paired_actor_id: 10000
 ---
-# file: LUPOPEDIA HEADERS Plan — session: L-LUPO-ROOT-CURSOR — delegation: cursor:root — web_path: http://www.lupopedia.com/doctrine/LUPOPEDIA_HEADERS/LUPOPEDIA_HEADERS_PLAN
+# file: LUPOPEDIA HEADERS Plan — delegation: cursor:root — web_path: http://www.lupopedia.com/doctrine/LUPOPEDIA_HEADERS/LUPOPEDIA_HEADERS_PLAN
 
 # LUPOPEDIA HEADERS — Plan (4.0.79)
 
@@ -48,6 +25,9 @@ lupopedia.session:
 
 - **LUPOPEDIA HEADERS** are the canonical metadata system name from **4.0.68** onward.
 - **Canonical block names from 4.0.77:** Use `lupopedia.*` in new or modified files. Legacy `flare.*` and `flame.*` remain valid; validators accept both.
+- Block naming rule (concept vs on-disk key):
+  - `Lupopedia.*` = conceptual/doctrinal block names used in prose and rule descriptions.
+  - `lupopedia.*` = the current serialized/validator-compatible YAML keys that appear in Markdown front matter.
 - Canonical blocks (preferred in YAML):
   - `lupopedia.init`
   - `lupopedia.routing`
@@ -114,6 +94,42 @@ Edges, mappings, actions (e.g. under `lupopedia.edges`, `lupopedia.see`, `lupope
 
 - `class_name` = `'lupopedia_edge'` | `'lupopedia_mapping'` | `'lupopedia_action'` | `'lupopedia_engagement'`
 
+### 3.5 Export/Import Mapping Rules
+
+This section defines the missing transformation layer between:
+
+- serialized YAML front matter (keys like `lupopedia.headers`, `lupopedia.session`, ...)
+- canonical structured rows in `lupo_metadata` (root -> blocks -> properties -> repeating child rows)
+
+#### Block mapping (YAML block -> `lupopedia_block` row)
+
+- Each YAML front matter block named `lupopedia.*` maps to a database block row with:
+  - `class_name` = `'lupopedia_block'`
+  - `meta_type` = `'block'`
+  - `property_key` = the serialized YAML block name exactly (e.g. `'lupopedia.headers'`, `'lupopedia.session'`, `'lupopedia.engagement'`).
+
+#### Property mapping (fields inside a block -> `lupopedia_property` rows)
+
+- Each key/value field inside a YAML block maps to a database property row with:
+  - `class_name` = `'lupopedia_property'`
+  - `meta_type` = `'property'`
+  - `property_key` = the YAML field name exactly (e.g. `version_when_written`, `file_path_from_root`, `embedded_session_snapshot`)
+  - `property_value` = the YAML value (as represented by the YAML loader).
+
+#### Repeating child-row mapping (edges/mappings/actions)
+
+- YAML `lupopedia.edges` child rows map to `class_name` = `'lupopedia_edge'`.
+- YAML `lupopedia.engagement` child rows map to `class_name` = `'lupopedia_engagement'`.
+  - Naming transformation: dot -> underscore after the `lupopedia.` prefix:
+    - `lupopedia.engagement` -> `lupopedia_engagement`
+- YAML `lupopedia.next_actions` (legacy `lupopedia.close`) child rows map to `class_name` = `'lupopedia_action'`.
+
+#### Exporter/importer determinism
+
+- Exporters MUST read from DB rows, group by block (`property_key`), then emit YAML using `lupopedia.*` keys (never `Lupopedia.*` in serialized YAML).
+- Importers MUST parse YAML blocks, create the corresponding block row + property rows deterministically, then populate repeating child rows according to the explicit `class_name` rules above.
+- Importers MUST strip or ignore deprecated version keys inside `lupopedia.headers` and rely on baseline rewrite logic (`§2.0` / directives) for compliance restoration.
+
 ---
 
 ## 4. Canonical block order
@@ -121,14 +137,17 @@ Edges, mappings, actions (e.g. under `lupopedia.edges`, `lupopedia.see`, `lupope
 Validators and YAML exporters MUST emit blocks in this order when present. Use **lupopedia.*** names in new files (4.0.69+):
 
 1. `lupopedia.init`
-2. `lupopedia.conditional`
-3. `lupopedia.headers`
-4. `lupopedia.session`
-5. `lupopedia.edges`
-6. `lupopedia.engagement`
-7. `lupopedia.footer`
-8. `lupopedia.see`
-9. `lupopedia.next_actions` (legacy: `lupopedia.close`)
+2. `lupopedia.routing`
+3. `lupopedia.actor_references`
+4. `lupopedia.conditional`
+5. `lupopedia.headers`
+6. `lupopedia.metadata`
+7. `lupopedia.session`
+8. `lupopedia.edges`
+9. `lupopedia.engagement`
+10. `lupopedia.footer`
+11. `lupopedia.see`
+12. `lupopedia.next_actions` (legacy: `lupopedia.close`)
 
 Optional blocks may be absent; if present, order is fixed. Validators accept both lupopedia.* and legacy flare.*/flame.*.
 
@@ -165,6 +184,19 @@ Lookup must allow loading metadata by channel, not only by entity.
 
 The **first line** of a LUPOPEDIA-headed Markdown file is `---`. Then YAML header blocks in canonical order, then `---`, then the identity line as the first line of the body, then the rest of the document:
 
+Ordinary identity-line form (default; no `session:`):
+
+```text
+---
+<yaml header blocks in canonical order>
+---
+# file: {title} — delegation: {delegation_chain} — web_path: {web_path}
+
+<body content>
+```
+
+Verbose/session-snapshot identity-line form (alternative; only when intentionally embedding a verbose session snapshot):
+
 ```text
 ---
 <yaml header blocks in canonical order>
@@ -174,15 +206,17 @@ The **first line** of a LUPOPEDIA-headed Markdown file is `---`. Then YAML heade
 <body content>
 ```
 
-The `{session_name}` in the identity line is taken from **`lupopedia.session.session_name`** when a `lupopedia.session` block is present. Session = runtime execution context; by default agents read session from active runtime (PHP `$_SESSION[]` or IDE session file in **lupo-database/sessions/**). Session file naming: `L-LUPO-<ACTOR_NAME>_<ACTOR_FAUCET>_<UUID>.md`. Session block in a file = only when verbose output embeds a snapshot (`embedded_session_snapshot: true`). So: **`---` first**, then YAML (including `lupopedia.session` when session context is needed), then `---`, then identity line, then body.
+Use the ordinary identity line by default (no `session:`).
+
+If a `lupopedia.session` block is present and you are intentionally embedding a verbose session snapshot, use the verbose form and take `{session_name}` from **`lupopedia.session.session_name`**. Session = runtime execution context; by default agents read session from active runtime (PHP `$_SESSION[]` or IDE session file in **lupo-database/sessions/**). Session file naming: `L-LUPO-<ACTOR_NAME>_<ACTOR_FAUCET>_<UUID>.md`. Session block in a file = only when verbose output embeds a snapshot (`embedded_session_snapshot: true`). So: **`---` first**, then YAML (including `lupopedia.session` only when intentionally embedding a verbose session snapshot), then `---`, then identity line, then body.
 
 ---
 
-## 7. Version and migration rule (4.0.68)
+## 7. Version and migration rule (4.0.69)
 
-- **From 4.0.68+:** New or modified metadata-bearing Markdown MUST use LUPOPEDIA HEADERS rules.
+- **From 4.0.69+:** New or modified metadata-bearing Markdown MUST use LUPOPEDIA HEADERS rules.
 - **Existing FLARE-headed artifacts** remain valid until migrated.
-- **Validators** MUST accept both legacy FLARE artifacts and 4.0.68+ LUPOPEDIA-backed artifacts during transition.
+- **Validators** MUST accept both legacy FLARE artifacts and 4.0.69+ LUPOPEDIA-backed artifacts during transition.
 - **Canonical storage** is `lupo_metadata`; migration is **incremental**, not an instant cutover.
 
 ---
@@ -191,7 +225,10 @@ The `{session_name}` in the identity line is taken from **`lupopedia.session.ses
 
 **Required** under `lupopedia.headers` (minimum):
 
-- **`version_when_written`** — only canonical version field; immutable at creation time
+- **`version_when_written`**
+  - Initial write: set to the system version when the header generation is first written.
+  - Pre-4.0.84 artifacts: mandatory baseline rewrite on write may restamp `version_when_written` to the current system version.
+  - After baseline compliance: treat it as stable for normal edits; do not bump it on every touch.
 - **`file_path_from_root`**
 
 **Conditional:** **`content_id`** when the artifact is imported into `lupo_content` or otherwise database-managed as content (usually not handwritten).
@@ -202,7 +239,9 @@ For **table documentation**, **`namespace`** is also required (approved taxonomy
 
 **Deprecated / do not use in `lupopedia.headers`:** `lupopedia.version`, `system_version`, `last_verified_system_version`, standalone `version`. See [VERSIONING_MODEL.md](./VERSIONING_MODEL.md) (obsolete stub) and LUPOPEDIA_HEADERS_FORMAT.md §2.
 
-Optional but supported: `actor_name`, `mood_rgb`, `traits`, `tags`, `lupo_agent`, `agent_name_identity`, **`channel_name`** (human-readable channel name), **`thread_name`** (human-readable thread name when thread-scoped), **`namespace`** (when not required for artifact type). **Session fields** (`session_id`, `session_name`, `channel_id`, `channel_name`, `thread_id`, `thread_name`, and other session-file fields) belong in **`lupopedia.session`** when used for session context, and may also appear in `lupopedia.headers` for display.
+Optional but supported: `actor_name`, `mood_rgb`, `traits`, `tags`, `lupo_agent`, `agent_name_identity`, **`channel_name`** (human-readable channel name), **`thread_name`** (human-readable thread name when thread-scoped), **`namespace`** (when not required for artifact type).
+
+Session fields (`session_id`, `session_name`, `channel_id`, `channel_name`, `thread_id`, `thread_name`, and other session-file fields) belong in **`lupopedia.session`** when used for session context. Header/session mixing is not the default doctrine.
 
 ---
 

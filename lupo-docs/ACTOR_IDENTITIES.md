@@ -1,3 +1,18 @@
+---
+lupopedia.headers:
+  version_when_written: "4.0.84"
+  lupopedia.schema: "documentation"
+  file_path_from_root: "lupo-docs/ACTOR_IDENTITIES.md"
+  web_path: "http://www.lupopedia.com/ACTOR_IDENTITIES"
+  title: "ACTOR IDENTITIES"
+  delegation_chain: "cursor:root"
+  artifact_type: "documentation"
+  artifact_kind: "reference"
+  purpose: "Canonical actor_id values for the Lupopedia actor system."
+  tags: ["actors", "identity", "registry"]
+---
+# file: ACTOR IDENTITIES — delegation: cursor:root — web_path: http://www.lupopedia.com/ACTOR_IDENTITIES
+
 # Canonical Actor Identities
 
 This document defines **canonical actor_id** values for the Lupopedia actor system. Channel_id and actor_id are distinct namespaces: channels are communication or grouping entities; actors are execution agents.

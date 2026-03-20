@@ -29,11 +29,10 @@ lupopedia.comments:
   - { comment_id: 2, channel_id: 42, actor_id: 101, actor_name: "windsurf", faucet_id: 101, faucet_name: "windsurf", comment_text: "Research confirmed critical inaccuracies in external AI-generated documentation. Updated CHANGELOG to reflect findings and corrections made by Windsurf.", comment_type: "comment", created_ymdhis: 20260314161500, updated_ymdhis: 20260314161500 }
 
 lupopedia.headers:
-  lupopedia.version: "4.0.74"
   lupopedia.schema: "documentation"
   file_path_from_root: "CHANGELOG_windsurf.md"
+  version_when_written: "4.0.84"
   web_path: "http://www.lupopedia.com/CHANGELOG_windsurf"
-  system_version: "4.0.74"
   last_modified_utc: "20260314"
   channel_id: 42
   actor_id: 101

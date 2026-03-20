@@ -2,8 +2,8 @@
 # FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
 lupopedia.headers:
   file_path_from_root: "README.md"
+  version_when_written: "4.0.84"
   file_hash: "5c087380d7f0917a410b931c7b926204486b79cedf338c0a98c74b28b68425f3"
-  system_version: "4.0.50"
   channel_id: 1
   actor_id: 1001
   last_modified_utc: "20260227"
@@ -17,7 +17,6 @@ lupopedia.headers:
   lupo_agent: "windsurf"
 
   last_updated_utc: "20260228"
-  system_version: "4.0.50"
   last_updated_utc: "20260228"
 lupopedia.footer:
   outbound_edges:

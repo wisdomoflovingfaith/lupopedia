@@ -2,8 +2,8 @@
 # FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
 lupopedia.headers:
   file_path_from_root: "CHANGELOG_ARCHIVE.md"
+  version_when_written: "4.0.84"
   file_hash: "c4d1d6346617ce4c2ab0ba467d3bc966d4f63bc9104e932c7a5b4752233f0e55"
-  system_version: "4.0.50"
   channel_id: 1
   actor_id: 1003
   last_modified_utc: "20260227"

@@ -1,11 +1,10 @@
 # file: Lupopedia Version History — session: L-LUPO-ANTIGRAVITY — delegation: antigravity:cursor:captain  — web_path: http://www.lupopedia.com/docs/version
 ---
 lupopedia.headers:
-  lupopedia.version: "4.0.79"
   lupopedia.schema: "documentation"
   file_path_from_root: "lupo-docs/version.md"
+  version_when_written: "4.0.84"
   last_modified_utc: "20260316"
-  system_version: "4.0.79"
   purpose: "Version history and upgrade notes for Lupopedia"
   traits: ["versioning", "v4.0.79", "multi-agent", "evolution"]
   tags: ["version", "changelog", "upgrade"]

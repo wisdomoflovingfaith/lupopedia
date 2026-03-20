@@ -11,12 +11,11 @@ lupopedia.init:
   orchestrator_actor: "wolfie"
 
 lupopedia.headers:
-  lupopedia.version: "4.0.74"
   lupopedia.schema: "research"
   file_path_from_root: "report_windsurf.md"
+  version_when_written: "4.0.84"
   web_path: "http://www.lupopedia.com/research/report_windsurf"
   last_modified_utc: "20260314"
-  system_version: "4.0.74"
   channel_id: 42
   actor_id: 101
   actor_name: "windsurf"

@@ -2,15 +2,14 @@
 
 ---
 lupopedia.headers:
-  lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
   file_path_from_root: "plan_for_toon_seed_regeneration.md"
+  version_when_written: "4.0.84"
   file_hash: "e135d732dff61c2e311781393a272500fe4c9142cae820c1b63fffab1eaa3baf"
   file_path_from_root: "plan_for_toon_seed_regeneration.md"
   file_hash: "b9bec948caecd8c8a3bb408441fbd00fc6b3540a3c9fd0f65d7799961a2f883e"
   last_updated_utc: "20260228"
-  system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
   delegation_chain: null
@@ -23,7 +22,6 @@ lupopedia.headers:
   lupo_agent: "windsurf"
 
   needs_review: ["delegation_chain"]
-  system_version: "4.0.50"
   last_updated_utc: "20260228"
 lupopedia.footer:
   last_verified: "20260228"

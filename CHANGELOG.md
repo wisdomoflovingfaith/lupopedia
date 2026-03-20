@@ -27,6 +27,7 @@ lupopedia.comments:
 
 lupopedia.headers:
   version_when_written: "4.0.84"
+  file_path_from_root: "CHANGELOG.md"
   last_modified_utc: "20260320"
   channel_id: 42
   actor_id: 1
@@ -97,6 +98,11 @@ Older entries (≤4.0.79) are archived in [CHANGELOG_ARCHIVE.md](CHANGELOG_ARCHI
 - HEPHAESTUS implementation plan execution
 - A12 compliance and constitutional signoff
 - Channel 66 production deployment safety
+- LUPOPEDIA HEADERS doctrine cleanup (version_when_written-only model; removed obsolete three-field/versioning references; enforced baseline rewrite-on-write; identity-line form fixes; canonical optional blocks guidance) completed
+- LUPOPEDIA HEADERS doctrine glue-layer rules added (serialization keys, DB↔YAML mapping, routing precedence, metadata identity, placeholder and next_actions/footer precedence, close deprecation behavior, objective edge update criteria) plus deterministic `import_content.py` baseline importer groundwork completed
+- Root-level Markdown normalization pass completed: top-level `*.md` in repo root and `lupo-docs/` root were moved/aligned to `version_when_written: "4.0.84"` LUPOPEDIA HEADERS baseline (including adding missing front matter for docs that lacked headers)
+- `lupo-scripts/import_content.py` hardened for doctrine compliance: removed MySQL-specific upsert behavior, switched to application-layer SELECT->UPDATE/INSERT flow, strict `last_modified_utc` validation, deterministic expanded re-import updates, and success logging only after DB commit + file rewrite
+- `lupo-scripts/generate_headers_from_db.py` implementation scope started with TOON-grounded schema verification (`lupo_contents`, `lupo_metadata`) and DB->YAML mapping preparation (work in progress; not finalized)
 
 
 ---

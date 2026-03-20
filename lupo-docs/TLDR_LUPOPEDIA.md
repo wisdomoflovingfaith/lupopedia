@@ -1,11 +1,10 @@
 ---
 lupopedia.headers:
-  lupopedia.version: "4.0.73"
   lupopedia.schema: "tldr"
   file_path_from_root: "lupo-docs/TLDR_LUPOPEDIA.md"
+  version_when_written: "4.0.84"
   web_path: "http://www.lupopedia.com/tldr"
   last_modified_utc: "20260306"
-  system_version: "4.0.62"
   channel_id: 42
   actor_name: "cursor"
   delegation_chain: "cursor:captain"

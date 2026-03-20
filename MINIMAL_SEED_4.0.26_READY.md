@@ -2,15 +2,14 @@
 
 ---
 lupopedia.headers:
-  lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
   file_path_from_root: "MINIMAL_SEED_4.0.26_READY.md"
+  version_when_written: "4.0.84"
   file_hash: "f46c37a8e939c5015e3c735fc39801ac173d90381038d698d99c5fef55335893"
   file_path_from_root: "MINIMAL_SEED_4.0.26_READY.md"
   file_hash: "c36a14e356ada7bed8a301825c93eef94592d8edd7733afe07b90acc38b7a56d"
   last_updated_utc: "20260228"
-  system_version: "4.0.50"
   channel_id: 1
   actor_id: 1002
   delegation_chain: null
@@ -23,7 +22,6 @@ lupopedia.headers:
   lupo_agent: "windsurf"
 
   needs_review: ["delegation_chain"]
-  system_version: "4.0.50"
   last_updated_utc: "20260228"
 lupopedia.footer:
   last_verified: "20260228"

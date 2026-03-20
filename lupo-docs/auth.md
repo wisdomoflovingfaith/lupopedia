@@ -1,11 +1,10 @@
 ---
 # FLARE Header
 lupopedia.headers:
-  lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   file_path_from_root: "lupo-docs/auth.md"
+  version_when_written: "4.0.84"
   last_modified_utc: "20260306"
-  system_version: "4.0.61"
   purpose: "Authentication and actor context for Antigravity and conflict resolution"
   traits: ["auth", "actor", "antigravity", "v4.0.61"]
   tags: ["auth", "actor", "lupo_auth_users", "antigravity"]

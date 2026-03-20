@@ -1,3 +1,18 @@
+---
+lupopedia.headers:
+  version_when_written: "4.0.84"
+  lupopedia.schema: "documentation"
+  file_path_from_root: "lupo-docs/TOON_REFERENCE.md"
+  web_path: "http://www.lupopedia.com/TOON_REFERENCE"
+  title: "TOON REFERENCE"
+  delegation_chain: "cursor:root"
+  artifact_type: "documentation"
+  artifact_kind: "reference"
+  purpose: "TOON Reference — Database Structure Representation"
+  tags: ["toons", "schema", "documentation"]
+---
+# file: TOON REFERENCE — delegation: cursor:root — web_path: http://www.lupopedia.com/TOON_REFERENCE
+
 # TOON Reference — Database Structure Representation
 
 TOONs are **canonical representations of the Lupopedia database structure**. They describe tables, columns, indexes, and (optionally) canonical row data. TOONs are used to document and validate schema, drive tooling, and keep the codebase aligned with the database without querying the live DB.

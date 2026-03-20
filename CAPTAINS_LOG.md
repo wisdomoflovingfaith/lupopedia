@@ -1,11 +1,10 @@
 ---
 lupopedia.headers:
-  lupopedia.version: "4.0.80"
   lupopedia.schema: "documentation"
   file_path_from_root: "CAPTAINS_LOG.md"
+  version_when_written: "4.0.84"
   web_path: "http://www.lupopedia.com/CAPTAINS_LOG"
   last_modified_utc: "20260318"
-  system_version: "4.0.81"
   channel_id: 420
   actor_id: 420
   actor_name: "?"

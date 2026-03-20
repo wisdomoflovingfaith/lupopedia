@@ -46,12 +46,11 @@ lupopedia.metadata:
     - { schema_ref: "lupo_metadata", entity_type: "file", meta_type: "property", property_value: "cursor", channel_id: 42, class_name: "lupopedia_metadata", created_ymdhis: 20260313000000, updated_ymdhis: 20260313000000 }
 
 lupopedia.headers:
-  lupopedia.version: "4.0.84"
   lupopedia.schema: "documentation"
   file_path_from_root: "README.md"
+  version_when_written: "4.0.84"
   web_path: "http://www.lupopedia.com/"
   last_modified_utc: "20260320"
-  system_version: "4.0.84"
   channel_id: 42
   actor_id: 1
   actor_name: "wolfie"
@@ -88,23 +87,23 @@ lupopedia.edges:
   semantic_tags: ["project_overview", "onboarding", "semantic_os", "multi_agent", "root_rules"]
 
 lupopedia.footer:
-  version: "4.0.83"
+  version: "4.0.84"
   last_verified: "20260320"
   last_verified_by: "wolfie"
   orchestrator: "wolfie"
   next_action:
     - "Point new contributors to Required Reading (INIT_README, LUPOPEDIA_HEADERS), lupo-rules/root/, and actor registration checklist (lupo-docs/ACTOR_REGISTRATION_CHECKLIST.md)"
-    - "Single active version: 4.0.83 — see CHANGELOG.md, TODO.md, plan.md, notes_for_next_session.md, and WOLFIE master consolidation (lupo-channels/1/threads/1035/20260319_190000_wolfie_master_shutdown_consolidation.md)"
+    - "Single active version: 4.0.84 — see CHANGELOG.md, TODO.md, plan.md, notes_for_next_session.md, and WOLFIE master consolidation (lupo-channels/1/threads/1035/20260319_190000_wolfie_master_shutdown_consolidation.md)"
     - "README deterministic OS + knowledge-graph + DB backend section stays aligned with install SQL / TOON regeneration"
     - "Actor–facet separation + channel migration execution are 4.0.82 scope; deferred DB-primary/UI/dedupe items are in root TODO.md"
 ---
 # file: Lupopedia README — session: L-LUPO-ROOT-CURSOR — delegation: cursor:root — web_path: http://www.lupopedia.com/
 
-# Lupopedia Semantic OS v4.0.83
+# Lupopedia Semantic OS v4.0.84
 
 [**GitHub repo**](https://github.com/wisdomoflovingfaith/lupopedia)
 
-[![Version](https://img.shields.io/badge/version-4.0.83-blue.svg)](lupo-docs/version.md)
+[![Version](https://img.shields.io/badge/version-4.0.84-blue.svg)](lupo-docs/version.md)
 [![docs](https://img.shields.io/badge/docs-HELP.md-green)](lupo-docs/HELP.md)
 
 ---
@@ -131,7 +130,7 @@ So the **knowledge graph is not only “files”—it is persisted in the databa
 
 ---
 
-## 🚧 Current Development — v4.0.83 (active development)  
+## 🚧 Current Development — v4.0.84 (active development)  
 **Previous Release**: 4.0.82 (finalized and released)  
 **Status**: Active development on 4.0.82 features and improvements. Rules and governance updates: **canonical root rules** in `lupo-rules/root/`, IDE rule propagation (Cursor, Kiro, Windsurf, JetBrains), TOON path unified to `lupo-database/lupopedia/toon/`, `lupo-database/` security hardening, **thread model and task management documentation**, and **Antigravity VSX Extension** integration (including full LUPOPEDIA HEADERS terminology adoption and feature UI scaffolding). The only supported upgrade path is **Crafty Syntax 3.7.5 → Lupopedia 4.0.x**. See [plan.md](plan.md) and [report.md](report.md).
 
@@ -140,10 +139,11 @@ So the **knowledge graph is not only “files”—it is persisted in the databa
 - **Doctrine alignment for channel-based coordination** - Complete migration from status-based to thread-based coordination
 - **Documentation completeness + validation tooling** - Ensuring 100% coverage and quality validation
 
-**Focus areas for v4.0.83 (current):**
+**Focus areas for v4.0.84 (current):**
 - **Continued validator enhancement and enforcement** - Expanding validation coverage and automation
 - **Project-aware coordination improvements** - Enhanced project-scoped task management
 - **External AI integration and navigation** - Improved discoverability and participation
+- **LUPOPEDIA HEADERS doctrine cleanup** - Enforced `version_when_written`-only versioning, baseline rewrite-on-write eligibility, and corrected identity-line / optional-blocks documentation
 - **Documentation quality and consistency** - Ongoing alignment and standardization
 
 **Canonical root rules:** All agents and actors must follow the doctrine in **`lupo-rules/root/`**. Agent-specific rule files (e.g. `.cursor/rules/`, `.kiro/rules/`, `.windsurf/rules/`) are **derived** from those root rules; the root is the single source of truth. See [Canonical root rules](#canonical-root-rules) and [New agent onboarding](#new-agent--web-terminal-agent-onboarding).
@@ -227,6 +227,7 @@ Lupopedia uses single-field versioning for all new artifacts:
 **version_when_written only**
 
 - New artifacts store only `version_when_written` (immutable creation version)
+- Minimum baseline for handwritten/hand-edited LUPOPEDIA HEADERS is `version_when_written: "4.0.84"`; if a file is below that baseline (or contains deprecated version keys), tooling MUST rewrite `lupopedia.headers` on save to the current system version (baseline rewrite-on-write).
 - Runtime version is resolved dynamically from the canonical resolver
 - No stored runtime version in artifact headers
 

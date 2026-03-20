@@ -150,7 +150,12 @@ Treat the file as **below baseline** and **rewrite `lupopedia.headers`** (remove
 - Keep **one** YAML front matter block; obey block order, session vs headers separation, and **`lupopedia.footer`** rules per **[LUPOPEDIA_HEADERS_FORMAT.md](lupo-docs/doctrine/LUPOPEDIA_HEADERS/LUPOPEDIA_HEADERS_FORMAT.md)** and **[LUPOPEDIA_HEADERS/README.md](lupo-docs/doctrine/LUPOPEDIA_HEADERS/README.md)**.
 
 ### After baseline
-Once the file complies ( **`version_when_written` ≥ 4.0.84** and no deprecated version keys), **`version_when_written`** is **stable** for ordinary edits: do not bump it on every save; use **`last_modified_utc`** (optional) and footer verification for freshness unless a new doctrine baseline explicitly requires re-stamping.
+Once the file complies (**`version_when_written` ≥ 4.0.84** and no deprecated version keys), treat **`version_when_written`** as **stable** for ordinary edits:
+- do not bump it on every save
+- `last_modified_utc` is only for “header freshness” convenience when present and is **not** used to determine whether a file is on the 4.0.84+ model (baseline eligibility depends only on `version_when_written` + absence of deprecated version keys)
+
+For dependency tracking/change detection driven by headers, treat `last_modified_utc` as authoritative for header updates when present; do **not** assume it is synchronized with filesystem timestamps or git history.
+Use **`lupopedia.footer`** and/or `last_modified_utc` for verification cadence/freshness unless a new doctrine baseline explicitly requires re-stamping (again, based on the same eligibility conditions).
 
 ### Enforcement
 - **All IDE agents and automation**: Run this check **before** completing a save on any headed Markdown file.

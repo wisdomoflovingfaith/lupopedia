@@ -27,12 +27,11 @@ lupopedia.comments:
   - { comment_id: 1, channel_id: 42, actor_id: 101, actor_name: "windsurf", faucet_id: 101, faucet_name: "windsurf", comment_text: "Implementation plan updated with current system status. Phase 1 (critical corrections) completed. Ready to proceed with Phase 2 (missing documentation creation).", comment_type: "status_update", created_ymdhis: 20260314163000, updated_ymdhis: 20260314163000 }
 
 lupopedia.headers:
-  lupopedia.version: "4.0.74"
   lupopedia.schema: "plan"
   file_path_from_root: "plan_windsurf.md"
+  version_when_written: "4.0.84"
   web_path: "http://www.lupopedia.com/plan_windsurf"
   last_modified_utc: "20260314"
-  system_version: "4.0.74"
   channel_id: 42
   actor_id: 101
   actor_name: "windsurf"

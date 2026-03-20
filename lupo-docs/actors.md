@@ -1,12 +1,11 @@
 # file: Lupopedia Actor Model — session: L-LUPO-ANTIGRAVITY — delegation: antigravity:cursor:captain  — web_path: http://www.lupopedia.com/docs/actors
 ---
 lupopedia.headers:
-  lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   file_path_from_root: "lupo-docs/actors.md"
+  version_when_written: "4.0.84"
   web_path: "http://www.lupopedia.com/docs/actors"
   last_modified_utc: "20260305"
-  system_version: "4.0.61"
   channel_id: 1
   actor_id: 1002
   delegation_chain: "1002:10000"

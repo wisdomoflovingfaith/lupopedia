@@ -1,9 +1,8 @@
 ---
 lupopedia.headers:
-  lupopedia.version: "4.0.82"
   lupopedia.schema: "session_notes"
-  system_version: "4.0.82"
   file_path_from_root: "notes_for_next_session.md"
+  version_when_written: "4.0.84"
   web_path: "http://www.lupopedia.com/notes_for_next_session"
   last_modified_utc: "20260319"
   project_id: 0

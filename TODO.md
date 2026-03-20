@@ -154,10 +154,19 @@ next_action:
 - ✅ TODO.md: Removed completed Thread 1005 tasks, updated priorities
 - ✅ PLAN.md: Marked Thread 1005 complete, added dedicated section
 - ✅ README.md: Added clear "Versioning Model (Locked)" section
+- ✅ LUPOPEDIA HEADERS doctrine cleanup (remove obsolete three-field model references; enforce `version_when_written`-only; add baseline rewrite-on-write rule; fix identity-line forms; canonicalize optional blocks docs) completed
+- ✅ LUPOPEDIA HEADERS doctrine glue-layer rules completed (routing precedence, metadata identity/dedup, placeholder constraints, next_actions vs footer precedence, close deprecation behavior, objective edge update criteria) and deterministic `import_content.py` implemented
+- ✅ Root-level header baseline pass completed for repo root and `lupo-docs/` root Markdown files: `version_when_written` aligned to `4.0.84` and missing LUPOPEDIA front matter added where absent
+- ✅ `import_content.py` doctrine hardening completed: vendor-specific upsert removed, application-layer SELECT->UPDATE/INSERT applied, strict `last_modified_utc` validation enforced, deterministic expanded update columns on re-import, success output delayed until commit + file write
 - ✅ THREAD_INDEX.md (Channel 66): Validated Thread 1005 closure status
 - ✅ THREAD_INDEX.md (Channel 88): Updated monitoring to reflect completion
 - ✅ System consistency achieved: Documentation matches reality across all files
 - ✅ Contradiction detection: No forbidden version fields or doctrine conflicts found
+
+#### Header Generation From DB - IN PROGRESS 🔄
+- 🔄 `lupo-scripts/generate_headers_from_db.py` implementation started
+- 🔄 TOON-grounded schema validation completed for `lupo_contents` and `lupo_metadata` (table/column names verified before coding)
+- 🔄 DB->YAML deterministic mapping layer design in progress (canonical block order + legacy normalization rules)
 
 #### Channel 66 Production Migration Fixes
 - Resolve all 15 critical violations identified by LILITH final production gate review
@@ -197,11 +206,11 @@ next_action:
 - Implement **global request guard** (front controller): request-size limits, JSON depth limits, header size/count limits.
 - Add pagination/search/export caps for expensive endpoints.
 
-## Version truth (4.0.83 only for active work)
+## Version truth (4.0.84 only for active work)
 
-- **4.0.83** — **current** — root `TODO.md` / `plan.md` / `CHANGELOG.md` / `GLOBAL_CURRENT_LUPOPEDIA_VERSION` in `lupo-config/config/global_atoms.yaml`.
+- **4.0.84** — **current** — root `TODO.md` / `plan.md` / `CHANGELOG.md` / `GLOBAL_CURRENT_LUPOPEDIA_VERSION` in `lupo-config/config/global_atoms.yaml`.
 - **4.0.82 / 4.0.81 / 4.0.80** — historical; unfinished items live only as rows above.
 
 ---
 
-*Last updated: 2026-03-20 (4.0.83 roll-forward aligned)*
+*Last updated: 2026-03-20 (4.0.84 roll-forward aligned)*

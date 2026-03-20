@@ -1,12 +1,11 @@
 # LUPOPEDIA HEADERS (replaces FLARE)
 ---
 lupopedia.headers:
-  lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   file_path_from_root: ".\docs\AGENT_INVENTORY.md"
+  version_when_written: "4.0.84"
   file_hash: "0a53833b5a151b71b009141bf4f68e3023f3d8405dce1f4dba5a8467ae6a9820"
   last_updated_utc: "20260228155738"
-  system_version: "4.0.51"
   channel_id: 1
   actor_id: 1002
   delegation_chain: "1002:10000"

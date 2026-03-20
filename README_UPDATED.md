@@ -21,12 +21,11 @@ lupopedia.metadata:
     - { schema_ref: "lupo_metadata", entity_type: "file", meta_type: "property", property_value: "kiro", channel_id: 42, class_name: "lupopedia_metadata", created_ymdhis: 20260314000000, updated_ymdhis: 20260314000000 }
 
 lupopedia.headers:
-  lupopedia.version: "4.0.74"
   lupopedia.schema: "documentation"
   file_path_from_root: "README_UPDATED.md"
+  version_when_written: "4.0.84"
   web_path: "http://www.lupopedia.com/README_UPDATED"
   last_modified_utc: "20260314"
-  system_version: "4.0.74"
   channel_id: 42
   actor_id: 10000
   actor_name: "kiro"

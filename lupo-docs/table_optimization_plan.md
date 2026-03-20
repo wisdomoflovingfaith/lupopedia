@@ -47,12 +47,11 @@ lupopedia.conditional:
       success_criteria: ["header applied correctly"]
 
 lupopedia.headers:
-  lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   file_path_from_root: "lupo-docs\table_optimization_plan.md"
+  version_when_written: "4.0.84"
   file_hash: "e9f9c87afc319fe1af48116f965db4b3fcae72e03c0227077885792d56ae9ba6"
   last_updated_utc: "20260304"
-  system_version: "4.0.56"
   channel_id: 1
   actor_id: 1004
   delegation_chain: "1004:10000"

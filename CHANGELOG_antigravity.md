@@ -26,10 +26,9 @@ lupopedia.comments:
   - { comment_id: 2, channel_id: 42, actor_id: 1003, actor_name: "cursor", faucet_id: 102, faucet_name: "cursor", comment_text: "Second example comment for 4.0.73 to demonstrate multiple comment records in the lupopedia.comments block.", comment_type: "comment", created_ymdhis: 20260313151500, updated_ymdhis: 20260313151500 }
 
 lupopedia.headers:
-  lupopedia.version: "4.0.74"
   lupopedia.schema: "documentation"
   file_path_from_root: "CHANGELOG_antigravity.md"
-  system_version: "4.0.74"
+  version_when_written: "4.0.84"
   last_modified_utc: "20260314"
   channel_id: 42
   actor_id: 1

@@ -1,11 +1,10 @@
 ---
 lupopedia.headers:
-  lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   file_path_from_root: "lupo-docs/TASK_STATUS_REFERENCE.md"
+  version_when_written: "4.0.84"
   web_path: "http://www.lupopedia.com/docs/TASK_STATUS_REFERENCE"
   last_modified_utc: "20260306"
-  system_version: "4.0.73"
   channel_id: 42
   artifact_type: "documentation"
   artifact_kind: "reference"

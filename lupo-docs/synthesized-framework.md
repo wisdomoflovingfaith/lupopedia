@@ -1,9 +1,8 @@
 ---
 lupopedia.headers:
-  lupopedia.version: "4.0.78"
   lupopedia.schema: "doctrine"
-  system_version: "4.0.78"
   file_path_from_root: "lupo-docs/synthesized-framework.md"
+  version_when_written: "4.0.84"
   web_path: "[synthesized-framework](http://www.lupopedia.com/docs/synthesized-framework)"
   last_modified_utc: "20260316"
   channel_id: 42

@@ -1,12 +1,11 @@
 # file: Lupopedia Directory Structure — session: L-LUPO-ANTIGRAVITY — delegation: antigravity:cursor:captain  — web_path: http://www.lupopedia.com/docs/DIRECTORY_STRUCTURE
 ---
 lupopedia.headers:
-  lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   file_path_from_root: "lupo-docs/DIRECTORY_STRUCTURE.md"
+  version_when_written: "4.0.84"
   web_path: "http://www.lupopedia.com/docs/DIRECTORY_STRUCTURE"
   last_modified_utc: "20260307"
-  system_version: "4.0.64"
   channel_id: 1
   actor_id: 42
   actor_name: "antigravity"

@@ -3,31 +3,33 @@ lupopedia.headers:
   version_when_written: "4.0.84"
   lupopedia.schema: "doctrine"
   file_path_from_root: "lupo-docs/doctrine/LUPOPEDIA_HEADERS/OPTIONAL_BLOCKS.md"
-  web_path: "[web_path](http://www.lupopedia.com/doctrine/LUPOPEDIA_HEADERS/OPTIONAL_BLOCKS)"
+  web_path: "http://www.lupopedia.com/doctrine/LUPOPEDIA_HEADERS/OPTIONAL_BLOCKS"
   last_modified_utc: "20260320"
   channel_id: 42
   actor_id: 1003
+  delegation_chain: "cursor:root"
   artifact_type: "doctrine"
   artifact_kind: "reference"
-  purpose: "Optional LUPOPEDIA HEADERS blocks: routing and lists (carried over from FLARE)."
+  title: "LUPOPEDIA HEADERS Optional Blocks"
+  purpose: "Reference for optional LUPOPEDIA HEADERS blocks, including routing, lists, metadata snapshots, next actions, actor references, footer, engagement, and edges."
   tags: ["lupopedia_headers", "routing", "lists", "optional"]
 lupopedia.footer:
   last_verified: "20260320"
   last_verified_by: "cursor"
   orchestrator: "cursor"
   next_action:
-    - "Use lupopedia.routing / lupopedia.lists when adding new header blocks"
-    - "Validate optional blocks against LUPOPEDIA_HEADERS_FORMAT §5"
+    - "Validate optional block definitions against LUPOPEDIA_HEADERS_FORMAT.md"
+    - "Keep canonical vs legacy optional block semantics explicit across doctrine files"
 ---
-# file: Optional blocks — web_path: http://www.lupopedia.com/doctrine/LUPOPEDIA_HEADERS/OPTIONAL_BLOCKS
+# file: LUPOPEDIA HEADERS Optional Blocks — delegation: cursor:root — web_path: http://www.lupopedia.com/doctrine/LUPOPEDIA_HEADERS/OPTIONAL_BLOCKS
 
-# LUPOPEDIA HEADERS — Optional blocks (routing, lists)
+# LUPOPEDIA HEADERS — Optional Blocks
 
 **Optional blocks** extend LUPOPEDIA HEADERS for specialized use cases. These blocks are optional and may be included when needed.
 
 ---
 
-## 1. lupopedia.routing
+## lupopedia.routing (canonical; approval/workflow metadata)
 
 **Purpose:** Routing and approval metadata for planning artifacts and cross-actor workflows.
 
@@ -53,6 +55,14 @@ lupopedia.footer:
 | `next_status_on_approve` | string | Status to set when approval is granted |
 | `next_location_on_approve` | string | Target location/path for approved artifacts |
 
+**Routing precedence rules (deterministic parsing / no silent drift):**
+- Only ONE `lupopedia.routing` block SHOULD exist per artifact.
+- If both canonical and legacy field sets are present:
+  - Canonical fields are authoritative.
+  - Legacy fields are treated as supplementary.
+- New artifacts MUST use the canonical routing structure.
+- Importers MAY map legacy fields into canonical equivalents when possible.
+
 **Example:**
 
 ```yaml
@@ -72,9 +82,11 @@ lupopedia.routing:
 
 ---
 
-## lupopedia.routing (optional)
+## lupopedia.routing (legacy/compat expanded structure; flare.routing-compatible)
 
 Tracks lifecycle, delivery, and delegation of artifacts across the multi-agent ecosystem. Use **`lupopedia.routing`** in YAML (legacy name was `flare.routing`).
+
+New files should prefer the canonical approval/workflow structure documented in the **canonical** `lupopedia.routing` section above; the expanded FLARE-compatible structure remains accepted for legacy/imported artifacts when those additional fields are required.
 
 | Field | Type | Description | Example |
 |-------|------|-------------|---------|
@@ -87,13 +99,18 @@ Tracks lifecycle, delivery, and delegation of artifacts across the multi-agent e
 | read_by | array | Actors who have acknowledged the message | `[1006, 10000]` |
 | routing_path | array | Logical or physical directories traversed | `["lupo-channels/42/threads/"]` |
 
-**Canonical order:** If present, place `lupopedia.routing` after `lupopedia.headers` and before `lupopedia.session` (or per LUPOPEDIA_HEADERS_PLAN block order).
+**Placement:** Follow the canonical YAML block order from `LUPOPEDIA_HEADERS_FORMAT.md`. Do not add local placement rules here.
 
 ---
 
 ## lupopedia.lists (optional)
 
-Links to external CSV-based history and discussion records. Use **`lupopedia.lists`** in YAML (legacy name was `flare.lists`).
+Links to external CSV-based history and discussion records.
+
+**Status:** Optional but current for new files when you need `file.dialog` / `file.history` / `file.actors` CSV references.
+Legacy `flare.lists` is accepted by validators for backward compatibility (not deprecated).
+
+**Canonical-order note:** `lupopedia.lists` is optional and is supported by validators, but it is **not** part of the strict canonical block-order list in `LUPOPEDIA_HEADERS_FORMAT.md`. Use this file as the authoritative documentation for `lupopedia.lists`.
 
 | Field | Type | Description | Example |
 |-------|------|-------------|---------|
@@ -101,7 +118,7 @@ Links to external CSV-based history and discussion records. Use **`lupopedia.lis
 | file.history | string | Path to change history CSV | `"thread_history.csv"` |
 | file.actors | string | Path to actors list CSV | `"thread_actors.csv"` |
 
-**Canonical order:** If present, place after `lupopedia.edges` or before `lupopedia.footer` as documented in LUPOPEDIA_HEADERS_PLAN.
+**Placement:** Follow the canonical YAML block order from `LUPOPEDIA_HEADERS_FORMAT.md`. Do not add local placement rules here.
 
 ---
 
@@ -142,6 +159,16 @@ lupopedia.metadata:
 
 **Transferability:** Rows in `lupo_metadata` can be exported into `lupopedia.metadata`; `lupopedia.metadata` can be re-imported into `lupo_metadata`. The file is a deterministic snapshot; the database remains the authority for current state.
 
+**Metadata identity rule (round-trip fidelity):**
+- `lupopedia.metadata` exports MUST NOT include `metadata_id` (database-internal and non-portable).
+- Imports MUST treat all rows as new inserts unless rows match deterministically using:
+  - `entity_type`
+  - `entity_id`
+  - `property_key`
+  - `property_value`
+  - `class_name`
+- Systems MUST NOT rely on `metadata_id` for import matching or deduplication.
+
 **Wrong (do not use):** Listing column names and SQL types under `lupopedia.metadata` (e.g. `metadata_id: "bigint"`, `property_key: "varchar(255)"`). That describes the **table schema**, not metadata **content**.
 
 **Common property_key values:** For repository-core and documentation artifacts, these keys are commonly used so that metadata is consistent and transferable:
@@ -154,7 +181,12 @@ lupopedia.metadata:
 | author         | Primary author or owner (actor name or slug, e.g. "wolfie"). |
 | orchestrator   | Actor or faucet that orchestrated the last update (e.g. "cursor", "windsurf"). |
 
-Example with common keys (row-like entries; omit or use placeholders for `entity_id` / timestamps when not yet synced from DB):
+**Placeholder usage rule (documentation examples only):**
+- Angle-bracket placeholders (e.g. `<value>`, `<entity_id>`, `<UUID>`) are allowed ONLY in documentation examples.
+- Production artifacts MUST NOT contain placeholders.
+- If a value is unknown at write time: omit the field, OR use a deterministic default (e.g. `0` or an empty string).
+
+Example with common keys (documentation example; placeholder values may be shown when DB values are unknown):
 
 ```yaml
 lupopedia.metadata:
@@ -194,11 +226,18 @@ lupopedia.next_actions:
     - "Merge approved faucet-plan items into root plan as phases complete"
 ```
 
-**Relationship to lupopedia.footer:** When **lupopedia.footer** is present, it MUST include **next_action:** (a short list of 1–3 items). The optional **lupopedia.next_actions** block can hold a fuller or more structured set of follow-ups. When both exist, footer.next_action may summarize or repeat the same list; **lupopedia.next_actions** is the dedicated block for "what to do next" when you want it explicit and easy to find.
+**Relationship to lupopedia.footer (precedence):**
+- **`lupopedia.next_actions`** is the authoritative full action list.
+- **`lupopedia.footer.next_action`** is REQUIRED as a short summary list (1–3 items).
+- If both exist, `lupopedia.footer.next_action` MUST be derived from `lupopedia.next_actions` and MUST NOT introduce new actions not present in `lupopedia.next_actions`.
 
-**Canonical order:** If present, place **lupopedia.next_actions** after **lupopedia.see** and before the closing `---` (same position as legacy **lupopedia.close**).
+**Placement:** Follow the canonical YAML block order from `LUPOPEDIA_HEADERS_FORMAT.md`. Do not add local ordering rules here.
 
-**Backward compatibility and deprecation:** Validators MUST accept both **lupopedia.next_actions** and **lupopedia.close**. When both block names are present in tooling or docs, prefer **lupopedia.next_actions**. **Deprecation timeline:** **lupopedia.close** is deprecated as of 4.0.74; removal or hard error for **lupopedia.close** is planned for **4.1.0** (when Lupopedia→Lupopedia upgrade and auto-installers are introduced). Until then, writers should use **lupopedia.next_actions** in new or updated files; readers and validators should accept **lupopedia.close** for backward compatibility.
+**Backward compatibility and deprecation (tooling/validator behavior):**
+- Before **4.1.0**: validators MUST accept **`lupopedia.close`**; they SHOULD emit a warning that it is deprecated.
+- At **4.1.0** and after: validators MUST reject **`lupopedia.close`** with: `Deprecated block — use lupopedia.next_actions`.
+
+Until the 4.1.0 cutoff, writers should prefer **lupopedia.next_actions** in new or updated files.
 
 ---
 
@@ -224,7 +263,7 @@ lupopedia.actor_references:
   codex: "TBD — JetBrains/Codex not in registry; see plan_codex.md"
 ```
 
-**Canonical order:** If present, place after **lupopedia.init** and before **lupopedia.metadata** (or per LUPOPEDIA_HEADERS_PLAN block order).
+**Placement:** Follow the canonical YAML block order from `LUPOPEDIA_HEADERS_FORMAT.md`. Do not add local ordering rules here.
 
 ---
 
@@ -263,7 +302,15 @@ Outbound/inbound edges and semantic_tags are defined in [LUPOPEDIA_HEADERS_FORMA
 
 **Snapshot requirement:** **`lupopedia.edges`** MUST include **`comment`** (snapshot notice) and SHOULD include **`meta`** (thread/context string), in the same way as **`lupopedia.engagement`**.
 
-**When to update edges:** The block is a **snapshot at artifact creation**. When the file's semantic relationships change significantly (e.g. major file moves, new references, removed links), **regenerate or manually update** **lupopedia.edges** so the snapshot stays accurate. Doctrine: *"Update lupopedia.edges when the file's semantic relationships change significantly."* Consider tooling (e.g. `lupo-bin/update-edges.php`) to refresh edges from a manifest or scan; see plan.md P1.6.
+**When to update edges:** The block is a **snapshot at artifact creation**. Update `lupopedia.edges` when ANY of the following structural changes occur:
+- A referenced file/path is added or removed
+- A dependency relationship changes (e.g. implements/depends_on/supersedes links)
+- A file is renamed or moved
+- A new outbound or inbound edge is introduced
+
+Do NOT update `lupopedia.edges` for spelling/formatting changes that do not affect relationships.
+
+Consider tooling (e.g. `lupo-bin/update-edges.php`) to refresh edges from a manifest or scan; see plan.md P1.6.
 
 **Grouped outbound_edges (4.0.74+):** **`outbound_edges`** MAY be a single object with **category keys** (e.g. `code`, `documentation`, `schema`, `runtime`), each holding a list of edge objects. This is the preferred form for table docs and collections so that code references are separate from documentation references. When edges are imported into the database, the category key is stored in **`lupo_edges.edge_category`**; export groups by `edge_category` to rehydrate grouped YAML. Flat form **`outbound_edges: [ { to, type, weight }, ... ]`** remains valid for backward compatibility.
 

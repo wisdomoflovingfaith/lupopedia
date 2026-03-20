@@ -1,11 +1,10 @@
 ---
 lupopedia.headers:
-  lupopedia.version: "4.0.80"
   lupopedia.schema: "documentation"
   file_path_from_root: "AGENTS.md"
+  version_when_written: "4.0.84"
   web_path: "http://www.lupopedia.com/AGENTS"
   last_modified_utc: "20260317"
-  system_version: "4.0.80"
   channel_id: 42
   actor_id: 102
   actor_name: "cursor"

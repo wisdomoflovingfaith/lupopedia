@@ -1,11 +1,10 @@
 ---
 lupopedia.headers:
-  lupopedia.version: "4.0.75"
   lupopedia.schema: "documentation"
   file_path_from_root: "lupo-docs/ACTOR_FORENSIC_LOGGING_AND_COLLECTIONS_INTELLIGENCE_PLAN.md"
+  version_when_written: "4.0.84"
   web_path: "http://www.lupopedia.com/lupo-docs/ACTOR_FORENSIC_LOGGING_AND_COLLECTIONS_INTELLIGENCE_PLAN"
   last_modified_utc: "20260315"
-  system_version: "4.0.75"
   channel_id: 42
   actor_id: 103
   actor_name: "antigravity"

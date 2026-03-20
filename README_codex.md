@@ -1,10 +1,9 @@
 ---
 lupopedia.headers:
-  lupopedia.version: "4.0.74"
   lupopedia.schema: "documentation"
   file_path_from_root: "README_codex.md"
+  version_when_written: "4.0.84"
   last_modified_utc: "20260314"
-  system_version: "4.0.74"
   channel_id: 42
   actor_id: 1
   actor_name: "wolfie"

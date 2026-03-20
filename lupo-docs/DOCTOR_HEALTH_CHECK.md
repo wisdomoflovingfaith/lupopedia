@@ -1,11 +1,10 @@
 ---
 lupopedia.headers:
-  lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   file_path_from_root: "lupo-docs/DOCTOR_HEALTH_CHECK.md"
+  version_when_written: "4.0.84"
   web_path: "http://www.lupopedia.com/docs/DOCTOR_HEALTH_CHECK"
   last_modified_utc: "20260307"
-  system_version: "4.0.62"
   channel_id: 42
   artifact_type: "documentation"
   artifact_kind: "reference"

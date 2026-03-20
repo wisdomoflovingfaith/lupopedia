@@ -1,3 +1,18 @@
+---
+lupopedia.headers:
+  version_when_written: "4.0.84"
+  lupopedia.schema: "documentation"
+  file_path_from_root: "lupo-docs/CLOUDFLARE_INTEGRATION.md"
+  web_path: "http://www.lupopedia.com/CLOUDFLARE_INTEGRATION"
+  title: "CLOUDFLARE INTEGRATION"
+  delegation_chain: "cursor:root"
+  artifact_type: "documentation"
+  artifact_kind: "reference"
+  purpose: "Cloudflare Integration guide for Lupopedia actor system."
+  tags: ["cloudflare", "integration", "security", "documentation"]
+---
+# file: CLOUDFLARE INTEGRATION (Lupopedia) — delegation: cursor:root — web_path: http://www.lupopedia.com/CLOUDFLARE_INTEGRATION
+
 # Cloudflare Integration (Lupopedia)
 
 This document describes how **Cloudflare** (the CDN/WAF) is integrated with Lupopedia’s actor system for real client IP, geolocation, logging, and optional security. It is separate from **FLARE** (Lupopedia’s file-level metadata protocol). See [CLOUDFLARE_VS_FLARE.md](doctrine/CLOUDFLARE_VS_FLARE.md).

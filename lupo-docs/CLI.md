@@ -1,11 +1,10 @@
 ---
 # FLARE Header
 lupopedia.headers:
-  lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   file_path_from_root: "lupo-docs/CLI.md"
+  version_when_written: "4.0.84"
   last_modified_utc: "20260306"
-  system_version: "4.0.62"
   purpose: "CLI reference for Lupopedia lupo commands"
   traits: ["cli", "reference", "v4.0.62"]
   tags: ["cli", "lupo", "help", "whoami", "context"]

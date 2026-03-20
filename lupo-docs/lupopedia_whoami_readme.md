@@ -1,11 +1,10 @@
 # file: Lupopedia Whoami — session: L-LUPO-ANTIGRAVITY — delegation: antigravity:cursor:captain  — web_path: http://www.lupopedia.com/docs/lupopedia_whoami_readme
 ---
 lupopedia.headers:
-  lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   file_path_from_root: "lupo-docs/lupopedia_whoami_readme.md"
+  version_when_written: "4.0.84"
   last_modified_utc: "20260306"
-  system_version: "4.0.61"
   channel_id: 42
   actor_id: 42
   actor_name: "antigravity"

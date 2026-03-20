@@ -1,12 +1,11 @@
 # LUPOPEDIA HEADERS (replaces FLARE)
 ---
 lupopedia.headers:
-  lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   file_path_from_root: ".\docs\notes_from_legacy_craftysyntax.md"
+  version_when_written: "4.0.84"
   file_hash: "e504e691f612f3bbc9d6be55503ca53105b45708487d256757d2c70e596adf7b"
   last_updated_utc: "20260228155738"
-  system_version: "4.0.51"
   channel_id: 1
   actor_id: 1002
   delegation_chain: "1002:10000"

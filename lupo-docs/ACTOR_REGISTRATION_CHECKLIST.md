@@ -3,11 +3,10 @@ lupopedia.headers:
   actor_id: 102
   actor_name: "cursor"
   delegation_chain: "cursor:captain"
-  lupopedia.version: "4.0.75"
   lupopedia.schema: "documentation"
   file_path_from_root: "lupo-docs/ACTOR_REGISTRATION_CHECKLIST.md"
+  version_when_written: "4.0.84"
   last_modified_utc: "20260315"
-  system_version: "4.0.75"
   artifact_type: "guide"
   artifact_kind: "checklist"
   purpose: "Canonical actor registration checklist for new IDE and web terminal agents; derived from TOON/database and lupo-database fallback; integrates Lilith review improvements."

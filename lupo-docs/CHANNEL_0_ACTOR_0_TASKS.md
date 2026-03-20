@@ -1,11 +1,10 @@
 ---
 lupopedia.headers:
-  lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   file_path_from_root: "lupo-docs/CHANNEL_0_ACTOR_0_TASKS.md"
+  version_when_written: "4.0.84"
   web_path: "http://www.lupopedia.com/docs/CHANNEL_0_ACTOR_0_TASKS"
   last_modified_utc: "20260306"
-  system_version: "4.0.62"
   channel_id: 0
   actor_id: 0
   artifact_type: "documentation"
