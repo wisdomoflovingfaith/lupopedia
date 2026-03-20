@@ -96,9 +96,23 @@ The `{session_name}` in the identity line MUST be taken from **`lupopedia.sessio
 
 ## 2. **Required fields (in lupopedia.headers)**
 
+### 2.0 Baseline rewrite on write (4.0.84+)
+
+When you **save** changes to a file that uses LUPOPEDIA HEADERS, you MUST **rewrite** the `lupopedia.headers` block (and strip deprecated keys) if **any** of the following is true:
+
+- **`version_when_written`** is missing, **or**
+- It names a system version **strictly before 4.0.84** (for `4.0.PATCH`, compare **PATCH** numerically — e.g. `4.0.83` is below baseline; do not use naive string compare on patch), **or**
+- **`lupopedia.headers`** still contains deprecated version keys: `lupopedia.version`, `system_version`, `last_verified_system_version`, or standalone `version`.
+
+**On that rewrite:** set **`version_when_written`** to the **current** system version (read **`LUPEDIA_VERSION`** / canonical atoms at rewrite time), set **`file_path_from_root`** correctly, remove deprecated keys, and keep other optional fields per §2. Follow the same expectations documented in **[directives.md](../../../directives.md)** (§ *LUPOPEDIA HEADERS baseline rewrite*) and **[lupo-rules/root/LUPOPEDIA_HEADERS_VERSION_BASELINE_REWRITE_RULE.md](../../../lupo-rules/root/LUPOPEDIA_HEADERS_VERSION_BASELINE_REWRITE_RULE.md)**.
+
+**After** the artifact is on the **4.0.84+** model (no deprecated keys; `version_when_written` ≥ 4.0.84), treat **`version_when_written`** as **stable** for normal edits: do not bump it on every touch; use **`last_modified_utc`** (optional) and **`lupopedia.footer`** for verification cadence unless a new doctrine baseline explicitly requires re-stamping.
+
+---
+
 **Minimum (always):**
 
-- **`version_when_written`** — Immutable creation-time system version (e.g. `"4.0.84"`). Set once when the artifact is first written; **do not** change it on later edits. This is the **only** canonical version field in `lupopedia.headers`. Do **not** use `lupopedia.version`, `system_version`, `last_verified_system_version`, or a standalone `version` key here.
+- **`version_when_written`** — System version when this header generation was written (e.g. `"4.0.84"`). This is the **only** canonical version field in `lupopedia.headers`. Do **not** use `lupopedia.version`, `system_version`, `last_verified_system_version`, or a standalone `version` key here. **§2.0** overrides “never change” for the **pre-4.0.84 migration** case: a mandatory rewrite **replaces** the old value with the current system version.
 - **`file_path_from_root`** — Path from repository root (REQUIRED).
 
 **Conditional:**

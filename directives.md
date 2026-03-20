@@ -1,11 +1,10 @@
 ---
 lupopedia.headers:
-  lupopedia.version: "4.0.82"
+  version_when_written: "4.0.84"
   lupopedia.schema: "directives"
-  system_version: "4.0.82"
   file_path_from_root: "directives.md"
   web_path: "http://www.lupopedia.com/directives"
-  last_modified_utc: "20260319"
+  last_modified_utc: "20260320"
   project_id: 0
   project_slug: "lupopedia-core"
   channel_id: 51
@@ -19,13 +18,12 @@ lupopedia.headers:
   purpose: "Canonical compilation of all WOLFIE directives and doctrines for system-wide enforcement"
   tags: ["wolfie", "directives", "canonical", "system_wide", "enforcement"]
 lupopedia.footer:
-  version: "4.0.82"
-  last_verified: "20260319"
+  last_verified: "20260320"
   last_verified_by: "wolfie"
   orchestrator: "wolfie"
   next_action:
     - "Propagate to all agents"
-    - "Implement enforcement"
+    - "Rewrite sub-4.0.84 headers on write per baseline rule"
     - "Maintain canonical compliance"
 ---
 
@@ -43,10 +41,11 @@ These directives compile and index canonical doctrine. For permanent “source o
 1. [Convergence Doctrine](#convergence-doctrine)
 2. [Actor State Doctrine](#actor-state-doctrine)
 3. [File Boundary Rule](#file-boundary-rule)
-4. [LILITH Canonical Identity](#lilith-canonical-identity)
-5. [Identity Resolution Rules](#identity-resolution-rules)
-6. [WHOAMI Command Specification](#whoami-command-specification)
-7. [Facet-Accurate Identity Context](#facet-accurate-identity-context)
+4. [LUPOPEDIA HEADERS Baseline Rewrite (4.0.84+)](#lupopedia-headers-baseline-rewrite-4084)
+5. [LILITH Canonical Identity](#lilith-canonical-identity)
+6. [Identity Resolution Rules](#identity-resolution-rules)
+7. [WHOAMI Command Specification](#whoami-command-specification)
+8. [Facet-Accurate Identity Context](#facet-accurate-identity-context)
 
 ---
 
@@ -128,6 +127,40 @@ A file is **UNSAFE** to modify if:
 - **File**: `lupo-rules/root/FILE_BOUNDARY_VALIDATION_RULE.md`
 - **Status**: Canonical and locked
 - **Purpose**: System protection from unauthorized modifications
+
+---
+
+## 📌 **LUPOPEDIA HEADERS BASELINE REWRITE (4.0.84+)**
+
+### Constitutional Rule
+> **Any time a file with LUPOPEDIA HEADERS is written or materially edited, if its header is below the 4.0.84 baseline, the `lupopedia.headers` block MUST be rewritten in the same change before the file is saved.**
+
+### When rewrite is mandatory
+Treat the file as **below baseline** and **rewrite `lupopedia.headers`** (remove deprecated keys, restamp version) when **any** of the following holds:
+
+1. **`version_when_written`** is missing from `lupopedia.headers`, **or**
+2. **`version_when_written`** names a Lupopedia system version **strictly before 4.0.84** (for versions of the form `4.0.PATCH`, compare **PATCH** as an integer — e.g. `83` &lt; `84`; do not use naive string sort on patch segments), **or**
+3. **`lupopedia.headers`** still contains **deprecated** version-related keys: `lupopedia.version`, `system_version`, `last_verified_system_version`, or a standalone `version` key under that block.
+
+### What “rewrite” means (same edit)
+- Set **`version_when_written`** to the **current** system version read from **`LUPEDIA_VERSION`** (or the project’s canonical version atom / resolver) **at rewrite time**.
+- Ensure **`file_path_from_root`** matches the path from the repository root.
+- **Delete** all deprecated version keys listed above from `lupopedia.headers`.
+- Preserve or refresh **valid** optional fields (`lupopedia.schema`, `web_path`, `channel_id`, `actor_id`, `purpose`, `tags`, `namespace` when required by artifact type, etc.) per format doctrine.
+- Keep **one** YAML front matter block; obey block order, session vs headers separation, and **`lupopedia.footer`** rules per **[LUPOPEDIA_HEADERS_FORMAT.md](lupo-docs/doctrine/LUPOPEDIA_HEADERS/LUPOPEDIA_HEADERS_FORMAT.md)** and **[LUPOPEDIA_HEADERS/README.md](lupo-docs/doctrine/LUPOPEDIA_HEADERS/README.md)**.
+
+### After baseline
+Once the file complies ( **`version_when_written` ≥ 4.0.84** and no deprecated version keys), **`version_when_written`** is **stable** for ordinary edits: do not bump it on every save; use **`last_modified_utc`** (optional) and footer verification for freshness unless a new doctrine baseline explicitly requires re-stamping.
+
+### Enforcement
+- **All IDE agents and automation**: Run this check **before** completing a save on any headed Markdown file.
+- **HEPHAESTUS**: Implement or extend validators to flag sub-baseline headers.
+- **LILITH**: May audit samples for lingering deprecated keys.
+
+### Source
+- **Rule file**: `lupo-rules/root/LUPOPEDIA_HEADERS_VERSION_BASELINE_REWRITE_RULE.md`
+- **Format / fields**: `lupo-docs/doctrine/LUPOPEDIA_HEADERS/LUPOPEDIA_HEADERS_FORMAT.md` (especially §2.0)
+- **Status**: Canonical for 4.0.84+ header work
 
 ---
 
@@ -290,6 +323,7 @@ Current Runtime Context:
 - ✅ **Convergence Doctrine**: Ratified and canonical
 - ✅ **Actor State Doctrine**: Ratified and canonical
 - ✅ **File Boundary Rule**: Implemented and enforced
+- ✅ **LUPOPEDIA HEADERS baseline rewrite (4.0.84+)**: Documented in this file and `lupo-rules/root/LUPOPEDIA_HEADERS_VERSION_BASELINE_REWRITE_RULE.md`
 - ✅ **LILITH Identity**: Canonicalized and locked
 - ✅ **Identity Resolution**: Rules defined and implemented
 - ✅ **WHOAMI Specification**: Complete and ready for implementation
@@ -315,8 +349,9 @@ Current Runtime Context:
 1. **Convergence**: All agents must implement identical canonical rules
 2. **Identity Permanence**: Actor identities never change
 3. **File Boundaries**: Only modify files with Lupopedia headers
-4. **No Variants**: Never create variant actor identities
-5. **Context Accuracy**: Maintain proper identity vs execution separation
+4. **Header baseline (4.0.84+)**: On write, rewrite `lupopedia.headers` when `version_when_written` &lt; 4.0.84 or deprecated version keys are present (see § LUPOPEDIA HEADERS baseline rewrite)
+5. **No Variants**: Never create variant actor identities
+6. **Context Accuracy**: Maintain proper identity vs execution separation
 
 ### Enforcement Principles
 - **Zero Exceptions**: No agent may exempt themselves
@@ -331,6 +366,8 @@ Current Runtime Context:
 - **CONVERGENCE_DOCTRINE.md**: Single canonical system state
 - **ACTOR_STATE_DOCTRINE.md**: Identity vs state separation
 - **FILE_BOUNDARY_VALIDATION_RULE.md**: Protected file modifications
+- **LUPOPEDIA_HEADERS_VERSION_BASELINE_REWRITE_RULE.md**: Mandatory header refresh when below 4.0.84
+- **LUPOPEDIA_HEADERS_FORMAT.md** / **LUPOPEDIA_HEADERS/README.md**: Current header field and block rules
 - **MULTI_AGENT_COORDINATION_DOCTRINE.md**: Agent coordination protocols
 - **WHOAMI_COMMAND_SPECIFICATION.md**: Identity resolution commands
 

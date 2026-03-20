@@ -221,3 +221,4 @@ Optional but supported: `actor_name`, `mood_rgb`, `traits`, `tags`, `lupo_agent`
 - Format and required header fields (including **`version_when_written` only**): [LUPOPEDIA_HEADERS_FORMAT.md](./LUPOPEDIA_HEADERS_FORMAT.md)
 - Migration path: [LUPOPEDIA_HEADERS_MIGRATION.md](./LUPOPEDIA_HEADERS_MIGRATION.md)
 - Historical / obsolete versioning stub (do not treat as active doctrine): [VERSIONING_MODEL.md](./VERSIONING_MODEL.md)
+- Baseline rewrite on write (4.0.84+): [LUPOPEDIA_HEADERS_FORMAT.md](./LUPOPEDIA_HEADERS_FORMAT.md) §2.0; [lupo-rules/root/LUPOPEDIA_HEADERS_VERSION_BASELINE_REWRITE_RULE.md](../../../lupo-rules/root/LUPOPEDIA_HEADERS_VERSION_BASELINE_REWRITE_RULE.md); [directives.md](../../../directives.md)

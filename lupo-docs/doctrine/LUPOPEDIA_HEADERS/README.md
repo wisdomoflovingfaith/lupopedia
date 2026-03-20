@@ -110,10 +110,56 @@ Collections and namespaces are **conditionally coupled** dimensions that serve d
 | [DEPRECATION_FLARE_FLIP_FLP.md](./DEPRECATION_FLARE_FLIP_FLP.md) | Deprecation notice: FLARE, FLIP, FLP replaced by LUPOPEDIA HEADERS. |
 | [OPTIONAL_BLOCKS.md](./OPTIONAL_BLOCKS.md) | Optional blocks: lupopedia.routing, lupopedia.lists, **lupopedia.next_actions** (suggested next actions; legacy: lupopedia.close). |
 | [VERSIONING_MODEL.md](./VERSIONING_MODEL.md) | **Obsolete stub only** — historical links; canonical rules are in LUPOPEDIA_HEADERS_FORMAT.md §2. |
+| [lupo-rules/root/LUPOPEDIA_HEADERS_VERSION_BASELINE_REWRITE_RULE.md](../../../lupo-rules/root/LUPOPEDIA_HEADERS_VERSION_BASELINE_REWRITE_RULE.md) | **Mandatory header rewrite** when `version_when_written` &lt; 4.0.84 or deprecated version keys exist — pair with [directives.md](../../../directives.md). |
+
+---
+
+## Edge Cases and Structural Analysis
+
+### LILITH-001: Dual-State Artifacts (Handwritten + Database)
+
+**Issue:** The "Core doctrine" section distinguishes "handwritten header content" from "DB-derived/synthetic-view concerns" but provides no mechanism for reconciling these when a file is both a human-authored artifact and a database record with computed fields. The artifact exists in two states simultaneously.
+
+**Analysis:** This creates a semantic ambiguity where the same file has conflicting authority sources. Doctrine needs resolution rules for when handwritten fields take precedence vs. when database-derived fields override.
+
+---
+
+### LILITH-002: Grounding Evidence Verification
+
+**Issue:** The special exception for active table documentation requires `Lupopedia.edges` to be "verbose" and "populated from grounded repository evidence." The doctrine does not specify how this grounding evidence is verified or updated when the repository changes but the human-authored file does not.
+
+**Analysis:** Creates a maintenance gap where table documentation can become stale without clear update triggers or verification mechanisms.
+
+---
+
+### LILITH-003: Collections Absence Ambiguity
+
+**Issue:** The "Relationship to Collections" section defines precedence rules for navigation vs. policy decisions but omits the case where an artifact has no collections field but is discoverable via collections membership in the database. The doctrine does not specify whether absence implies empty set or database authority.
+
+**Analysis:** Missing rule for implicit vs. explicit collections membership creates potential conflicts between file-level and database-level navigation.
+
+---
+
+### LILITH-004: Case Normalization Gap
+
+**Issue:** The quick reference states "prefer canonical conceptual names `Lupopedia.*`" but notes implementations may use lowercase `lupopedia.*` for compatibility. This creates two valid but distinct representations of the same semantic block, with no normalization rule for storage or comparison.
+
+**Analysis:** Dual-case representation creates comparison and storage inconsistencies without canonical normalization rules.
+
+---
+
+### LILITH-005: External Rule Conflict Resolution
+
+**Issue:** The document references multiple external files for baseline rewrite rules but does not define the behavior when those external rules conflict with each other or with this document's own §2.0, which already contains rewrite logic.
+
+**Analysis:** Missing conflict resolution hierarchy between internal doctrine and external rule files.
+
+---
 
 ## Quick reference
 
-- **Versioning in `lupopedia.headers`:** The only canonical version field is **`version_when_written`** (immutable system version at creation time). See [LUPOPEDIA_HEADERS_FORMAT.md](./LUPOPEDIA_HEADERS_FORMAT.md) §2 for current required fields.
+- **Baseline rewrite on write:** If you edit a file and `version_when_written` is **below 4.0.84** (or deprecated version keys remain in `lupopedia.headers`), **rewrite headers** to current doctrine before save. See [LUPOPEDIA_HEADERS_FORMAT.md](./LUPOPEDIA_HEADERS_FORMAT.md) §2.0, **[directives.md](../../../directives.md)** (baseline rewrite section), and **[LUPOPEDIA_HEADERS_VERSION_BASELINE_REWRITE_RULE.md](../../../lupo-rules/root/LUPOPEDIA_HEADERS_VERSION_BASELINE_REWRITE_RULE.md)**.
+- **Versioning in `lupopedia.headers`:** The only canonical version field is **`version_when_written`**. See [LUPOPEDIA_HEADERS_FORMAT.md](./LUPOPEDIA_HEADERS_FORMAT.md) §2 for required fields and §2.0 for migration-on-write.
 - **Minimal `lupopedia.headers` shape (new files):**
   ```yaml
   lupopedia.headers:
