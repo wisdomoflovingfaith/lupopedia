@@ -1,8 +1,7 @@
 ---
 lupopedia.headers:
-  lupopedia.version: "4.0.69"
+  version_when_written: "4.0.84"
   lupopedia.schema: "doctrine"
-  system_version: "4.0.69"
   file_path_from_root: "lupo-docs/doctrine/LUPOPEDIA_HEADERS/LUPOPEDIA_HEADERS_MIGRATION.md"
   web_path: "[web_path](http://www.lupopedia.com/doctrine/LUPOPEDIA_HEADERS/LUPOPEDIA_HEADERS_MIGRATION)"
   title: "LUPOPEDIA HEADERS Migration"

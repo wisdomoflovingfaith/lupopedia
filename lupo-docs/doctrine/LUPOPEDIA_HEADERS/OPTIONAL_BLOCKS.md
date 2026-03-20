@@ -1,20 +1,19 @@
 ---
 lupopedia.headers:
-  lupopedia.version: "4.0.74"
+  version_when_written: "4.0.84"
   lupopedia.schema: "doctrine"
   file_path_from_root: "lupo-docs/doctrine/LUPOPEDIA_HEADERS/OPTIONAL_BLOCKS.md"
   web_path: "[web_path](http://www.lupopedia.com/doctrine/LUPOPEDIA_HEADERS/OPTIONAL_BLOCKS)"
-  system_version: "4.0.71"
-  last_modified_utc: "20260312"
+  last_modified_utc: "20260320"
   channel_id: 42
   actor_id: 1003
   artifact_type: "doctrine"
   artifact_kind: "reference"
   purpose: "Optional LUPOPEDIA HEADERS blocks: routing and lists (carried over from FLARE)."
-  tags: ["lupopedia_headers", "routing", "lists", "optional", "4.0.71"]
+  tags: ["lupopedia_headers", "routing", "lists", "optional", "4.0.84"]
 lupopedia.footer:
-  version: "4.0.71"
-  last_verified: "20260312"
+  version: "4.0.84"
+  last_verified: "20260320"
   next_action:
     - "Use lupopedia.routing / lupopedia.lists when adding new header blocks"
     - "Validate optional blocks against LUPOPEDIA_HEADERS_FORMAT §5"

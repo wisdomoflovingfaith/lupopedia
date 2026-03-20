@@ -76,7 +76,7 @@ lupopedia.footer:
 Canonical version history for Lupopedia.  
 Entries are listed **in reverse chronological order**.
 
-Older entries (≤4.0.67) are archived in [CHANGELOG_ARCHIVE.md](CHANGELOG_ARCHIVE.md).
+Older entries (≤4.0.79) are archived in [CHANGELOG_ARCHIVE.md](CHANGELOG_ARCHIVE.md).
 
 ---
 

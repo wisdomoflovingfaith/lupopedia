@@ -1,14 +1,14 @@
 ---
 lupopedia.headers:
-  lupopedia.version: "4.0.79"
+  version_when_written: "4.0.84"
   lupopedia.schema: "doctrine"
-  system_version: "4.0.79"
   file_path_from_root: "lupo-docs/doctrine/LUPOPEDIA_HEADERS/README.md"
   web_path: "[web_path](http://www.lupopedia.com/doctrine/LUPOPEDIA_HEADERS)"
   title: "LUPOPEDIA HEADERS"
   delegation_chain: "cursor:root"
   artifact_type: "doctrine"
   artifact_kind: "index"
+  
 lupopedia.session:
   session_id: "L-LUPO-ROOT-CURSOR"
   session_name: "L-LUPO-ROOT-CURSOR"

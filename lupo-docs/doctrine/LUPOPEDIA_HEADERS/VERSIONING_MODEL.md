@@ -1,6 +1,6 @@
 ---
 lupopedia.headers:
-  version_when_written: "4.0.83"
+  version_when_written: "4.0.84"
   file_path_from_root: "lupo-docs/doctrine/LUPOPEDIA_HEADERS/VERSIONING_MODEL.md"
   web_path: "http://www.lupopedia.com/doctrine/LUPOPEDIA_HEADERS/VERSIONING_MODEL"
   last_modified_utc: "20260320"
@@ -20,7 +20,7 @@ lupopedia.edges:
     - { to: "LUPEDIA_VERSION", type: "requires_reading", weight: 1.0, reason: "System version source of truth" }
     - { to: "lupo-channels/66/threads/1005/20260319_110000_wolfie_question_versioning_model_lupopedia_headers.md", type: "derived_from", weight: 1.0, reason: "WOLFIE question artifact" }
 lupopedia.footer:
-  version: "4.0.83"
+  version: "4.0.84"
   last_verified: "20260320"
   last_verified_by: "wolfie"
   orchestrator: "wolfie"

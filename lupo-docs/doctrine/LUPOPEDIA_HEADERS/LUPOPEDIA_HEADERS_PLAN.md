@@ -7,9 +7,8 @@ lupopedia.init:
     validation scripts are available in lupo-scripts/ and lupo-tools/ directories.
 
 lupopedia.headers:
-  lupopedia.version: "4.0.79"
+  version_when_written: "4.0.84"
   lupopedia.schema: "doctrine"
-  system_version: "4.0.79"
   file_path_from_root: "lupo-docs/doctrine/LUPOPEDIA_HEADERS/LUPOPEDIA_HEADERS_PLAN.md"
   web_path: "[web_path](http://www.lupopedia.com/doctrine/LUPOPEDIA_HEADERS/LUPOPEDIA_HEADERS_PLAN)"
   title: "LUPOPEDIA HEADERS Plan"
@@ -106,7 +105,7 @@ Children of the root represent blocks. Use canonical `lupopedia.*` or legacy `fl
 
 Under each block row, each field is a metadata row, e.g. under `lupopedia.headers` (or legacy `lupopedia.headers`):
 
-- `property_key` = `'lupopedia.version'`, `'lupopedia.schema'`, `'file_path_from_root'`, `'web_path'`, `'system_version'`, `'actor_id'`, `'delegation_chain'`, `'purpose'`, `'title'`, **`channel_name`** (optional), **`thread_name`** (optional), etc. (legacy: `lupopedia.version`, `lupopedia.schema`). Under **`lupopedia.session`**: `session_id`, `session_name`, `actor_id`, `actor_name`, `channel_id`, **`channel_name`** (optional), **`thread_id`** (optional), **`thread_name`** (optional), **`embedded_session_snapshot`** (optional; true when block was captured at artifact creation time), `federation_node_id`, `context_source`, `department_id`, `agent_name`, `actor_type`, `actor_nature`, `human_actor_name`, `paired_actor_id` (same as session file). Session = runtime context; headers = artifact metadata. Default: read session from active runtime; session in file only when verbose output embeds a snapshot. See [LUPOPEDIA_HEADERS_FORMAT.md](./LUPOPEDIA_HEADERS_FORMAT.md) §2.1.
+- `property_key` = `'lupopedia.version_when_written'`, `'lupopedia.schema'`, `'file_path_from_root'`, `'web_path'`, `'system_version'`, `'actor_id'`, `'delegation_chain'`, `'purpose'`, `'title'`, **`channel_name`** (optional), **`thread_name`** (optional), etc. (legacy: `lupopedia.version`, `lupopedia.schema`). Under **`lupopedia.session`**: `session_id`, `session_name`, `actor_id`, `actor_name`, `channel_id`, **`channel_name`** (optional), **`thread_id`** (optional), **`thread_name`** (optional), **`embedded_session_snapshot`** (optional; true when block was captured at artifact creation time), `federation_node_id`, `context_source`, `department_id`, `agent_name`, `actor_type`, `actor_nature`, `human_actor_name`, `paired_actor_id` (same as session file). Session = runtime context; headers = artifact metadata. Default: read session from active runtime; session in file only when verbose output embeds a snapshot. See [LUPOPEDIA_HEADERS_FORMAT.md](./LUPOPEDIA_HEADERS_FORMAT.md) §2.1.
 - `property_value` = corresponding value
 
 ### 3.4 Repeating structures

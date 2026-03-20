@@ -1,8 +1,7 @@
 ---
 lupopedia.headers:
-  lupopedia.version: "4.0.79"
+  version_when_written: "4.0.84"
   lupopedia.schema: "doctrine"
-  system_version: "4.0.79"
   file_path_from_root: "lupo-docs/doctrine/LUPOPEDIA_HEADERS/LUPOPEDIA_HEADERS_FORMAT.md"
   web_path: "[web_path](http://www.lupopedia.com/doctrine/LUPOPEDIA_HEADERS/LUPOPEDIA_HEADERS_FORMAT)"
   title: "LUPOPEDIA HEADERS Format"
@@ -26,8 +25,8 @@ lupopedia.session:
   human_actor_name: "root"
   paired_actor_id: 10000
 lupopedia.footer:
-  version: "4.0.72"
-  last_verified: "20260312"
+  version: "4.0.84"
+  last_verified: "20260320"
   last_verified_by: "cursor"
   orchestrator: "cursor"
   next_action:
@@ -380,8 +379,8 @@ When a file includes a **`lupopedia.footer`** block, it MUST include **`orchestr
 
 ```yaml
 lupopedia.footer:
-  version: "4.0.72"
-  last_verified: "20260312"
+  version: "4.0.84"
+  last_verified: "20260320"
   last_verified_by: "cursor"
   orchestrator: "cursor"
   next_action:
