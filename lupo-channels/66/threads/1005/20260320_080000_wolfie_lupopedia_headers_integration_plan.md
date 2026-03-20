@@ -68,7 +68,20 @@ This plan outlines a **comprehensive improvement** to LUPOPEDIA_HEADERS integrat
 
 ### Existing System
 - **TOON Schema:** Authoritative database structure in `lupo-database/lupopedia/json/`
-- **GitHub Repository:** https://github.com/wisdomoflovingfaith/lupopedia
+- **GitHub Repository:** https://github.com/wisdomoflovingfaith/lupopedia  
+**Deployment Structure:** 
+- **Web Root:** `lupopedia.com/lupopedia/` (accessible via web server)
+- **Project Folder:** `/lupopedia/` (where GitHub files are installed)
+- **FTP Deployment:** Files copied from project folder to web root
+
+### Key Files to Reference
+- **CHANGELOG.md** - Complete version history and 4.0.84 changes
+- **TODO.md** - Active task registry with completion status
+- **plan.md** - Dependency-ordered execution roadmap
+- **LUPOPEDIA_HEADERS_FORMAT.md** - Header format and baseline rewrite rules
+- **VERSIONING_DOCTRINE.md** - Single-field versioning model (updated)
+- **generate_headers_from_db.py** - TOON-based header generation
+- **import_content.py** - Content import with header integration
 - **Deployment Structure:** `lupopedia.com/lupopedia/` (web root) + `/lupopedia/` (project folder)
 - **Header Generation Script:** `generate_headers_from_db.py` reads TOON files
 - **Content Import Script:** `import_content.py` updates database from file content
