@@ -68,6 +68,53 @@ Phases are **dependency-ordered** (no time estimates). **Prompt file names** bel
 - **Parallel / non-blocking until allocated:** `task_deferred_0001`–`0005` (dedupe, UI, DB-primary, auto-heal, external read).
 - **Channel 42 Thread 1029 status:** phase-1 hierarchy normalization governance loop completed and closure-ready (omnibus adjudication, execution validation, final LILITH audit, final ATHENA strategy validation).
 - **New active stream (Channel 42 Thread 1030):** database-backed channel/thread/task visibility planning plus 4.0.84 documentation reconciliation.
+- **New active stream (Channel 42 Thread 1031):** canonical schema implementation for database-backed visibility (Phase 1 complete).
+
+## Channel 42 Database-Backed Visibility Implementation (Thread 1031)
+
+**Objective:**
+- Implement real database schema changes to support web UI visibility for channels, threads, and tasks
+- Stop pattern of documentation-only updates and create actual database structures
+- Support channel visibility, thread hierarchy, task ownership, and review/audit state
+
+**Current Status:**
+- **Phase 1:** Complete - Schema changes implemented in install SQL
+- **Phase 2:** Pending - TOON regeneration by THOTH
+- **Phase 3:** Planned - Migration logic by HEPHAESTUS
+- **Phase 4:** Planned - Documentation update by THOTH
+- **Phase 5:** Planned - UI read layer by ATHENA
+
+**Phase 1 Implementation (Complete):**
+
+**Schema Extensions Implemented:**
+- **lupo_channels:** Added visibility_status, owner_actor_id, access_level, channel_metadata, ui_preferences, last_activity_ymdhis
+- **lupo_dialog_threads:** Added parent_thread_id, root_thread_id, thread_depth, visibility_status, owner_actor_id, assigned_actor_id, thread_type, thread_priority, thread_metadata, review_status, review_actor_id, review_ymdhis
+- **lupo_tasks:** Added visibility_status, assigned_actor_id, reviewer_actor_id, review_status, review_ymdhis, task_dependencies
+- **lupo_visibility_state:** New canonical table for granular visibility permissions
+
+**TOON Files Updated:**
+- Updated existing TOON files to match schema changes
+- Created new lupo_visibility_state.toon file
+- All indexes properly defined for performance
+
+**Architecture Compliance:**
+- No foreign keys, triggers, or stored procedures
+- No vendor time types (bigint only)
+- No AUTO_INCREMENT/UUID (application-supplied IDs)
+- Database as dumb storage, logic in application layer
+
+**Next Phases:**
+- **Phase 2:** THOTH will regenerate TOON files and validate consistency
+- **Phase 3:** HEPHAESTUS will implement migration logic and application-layer code
+- **Phase 4:** THOTH will update documentation to match new schema
+- **Phase 5:** ATHENA will design UI read layer for visibility features
+
+**Web UI Support Enabled:**
+- Channel list with visibility status and ownership
+- Thread hierarchy tree with parent-child relationships
+- Task ownership, assignment, and review state tracking
+- Review and audit trail capabilities
+- Granular visibility permissions through lupo_visibility_state
 
 ## Channel 42 Visibility Reconciliation Stream (Thread 1030)
 

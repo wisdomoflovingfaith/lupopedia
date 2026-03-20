@@ -97,6 +97,119 @@ Older entries (≤4.0.79) are archived in [CHANGELOG_ARCHIVE.md](CHANGELOG_ARCHI
 - Semantic validation fixes for `lupo_visits.actor_id` mapping
 - HEPHAESTUS implementation plan execution
 - A12 compliance and constitutional signoff
+
+---
+
+### Database-Backed Visibility Implementation (Thread 1031)
+
+**Thread:** 1031 - Canonical Schema Implementation for Database-Backed Channel, Thread, and Task Visibility  
+**Actor:** WOLFIE (directive), HEPHAESTUS (implementation)  
+**Status:** ✅ Phase 1 Complete - Schema Changes Implemented
+
+#### Schema Extensions Implemented
+
+**lupo_channels table extensions:**
+- Added `visibility_status` varchar(32) NOT NULL DEFAULT 'active'
+- Added `channel_type` varchar(32) NOT NULL DEFAULT 'protocol'
+- Added `owner_actor_id` bigint NOT NULL DEFAULT 1
+- Added `access_level` varchar(32) NOT NULL DEFAULT 'public'
+- Added `channel_metadata` json DEFAULT NULL
+- Added `ui_preferences` json DEFAULT NULL
+- Added `last_activity_ymdhis` bigint NOT NULL DEFAULT 0
+- Added 4 new indexes for visibility support
+
+**lupo_dialog_threads table extensions:**
+- Added `parent_thread_id` bigint DEFAULT NULL
+- Added `root_thread_id` bigint DEFAULT NULL
+- Added `thread_depth` int NOT NULL DEFAULT 0
+- Added `visibility_status` varchar(32) NOT NULL DEFAULT 'active'
+- Added `owner_actor_id` bigint NOT NULL
+- Added `assigned_actor_id` bigint DEFAULT NULL
+- Added `thread_type` varchar(32) NOT NULL DEFAULT 'discussion'
+- Added `thread_priority` varchar(32) NOT NULL DEFAULT 'normal'
+- Added `thread_metadata` json DEFAULT NULL
+- Added `review_status` varchar(32) DEFAULT NULL
+- Added `review_actor_id` bigint DEFAULT NULL
+- Added `review_ymdhis` bigint DEFAULT NULL
+- Added 11 new indexes for hierarchy and visibility support
+
+**lupo_tasks table extensions:**
+- Added `visibility_status` varchar(32) NOT NULL DEFAULT 'active'
+- Added `assigned_actor_id` bigint DEFAULT NULL
+- Added `reviewer_actor_id` bigint DEFAULT NULL
+- Added `review_status` varchar(32) DEFAULT NULL
+- Added `review_ymdhis` bigint DEFAULT NULL
+- Added `task_dependencies` json DEFAULT NULL
+- Added 5 new indexes for visibility and review support
+
+**New canonical table: lupo_visibility_state**
+- Created for granular visibility permissions
+- Supports actor-specific access control
+- Includes time-based visibility grants
+- Added 7 indexes for performance
+
+#### TOON Files Updated
+
+**Phase 2 Preparation:**
+- Updated `lupo_channels.toon` with visibility extensions
+- Updated `lupo_dialog_threads.toon` with hierarchy and visibility fields
+- Updated `lupo_tasks.toon` with review and assignment fields
+- Created new `lupo_visibility_state.toon` file
+
+#### Implementation Impact
+
+**Web UI Support:**
+- Database now supports channel, thread, and task visibility
+- Thread hierarchy relationships persisted
+- Review and audit state trackable
+- Ownership and assignment tracking available
+
+**Architecture Compliance:**
+- No foreign keys, triggers, or stored procedures
+- No vendor time types (bigint only)
+- No AUTO_INCREMENT/UUID (application-supplied IDs)
+- Database as dumb storage, logic in application layer
+
+#### Next Phases
+
+**Phase 2:** TOON regeneration (THOTH)  
+**Phase 3:** Migration logic (HEPHAESTUS)  
+**Phase 4:** Documentation update (THOTH)  
+**Phase 5:** UI read layer (ATHENA)
+
+---
+
+### THOTH Table Doc Correction Set (Thread 1030)
+
+**Thread:** 1030 - Database visibility reconciliation and table doc corrections  
+**Actor:** THOTH  
+**Status:** ✅ Complete
+
+#### Documentation Corrections Completed
+
+**Table Docs Corrected:**
+- `lupo_dialog_messages.md` - Schema fully replaced from install SQL + TOON
+- `lupo_tasks.md` - Schema fully replaced from install SQL + TOON  
+- `lupo_edges.md` - Schema fully replaced from install SQL + TOON
+- `lupo_task_dependencies.md` - Moved to legacy/ with proper notice
+
+#### Schema Authority Restored
+
+**Key Corrections:**
+- Removed schema-implying narrative claims
+- Added TOON references to edges
+- Updated all headers to 4.0.84 with THOTH attribution
+- Ensured schema matches install SQL exactly
+
+#### Legacy Disposition
+
+**Non-Canonical Table:**
+- `lupo_task_dependencies` moved to `lupo-docs/database/lupopedia/tables/legacy/`
+- Updated artifact_kind to `legacy_table_doc`
+- Added notice about non-canonical status
+- No schema authority - retained for historical reference only
+
+---
 - Channel 66 production deployment safety
 - LUPOPEDIA HEADERS doctrine cleanup (version_when_written-only model; removed obsolete three-field/versioning references; enforced baseline rewrite-on-write; identity-line form fixes; canonical optional blocks guidance) completed
 - LUPOPEDIA HEADERS doctrine glue-layer rules added (serialization keys, DB↔YAML mapping, routing precedence, metadata identity, placeholder and next_actions/footer precedence, close deprecation behavior, objective edge update criteria) plus deterministic `import_content.py` baseline importer groundwork completed

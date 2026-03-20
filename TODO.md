@@ -77,6 +77,8 @@ next_action:
 | task_deferred_0003 | DB-primary channel ingestion | - | open | planned | - | P2 | 20260318_142300 | 20260318_142300 | - | Migrated from legacy deferred list; needs WOLFIE allocation (owner + thread). |
 | task_deferred_0004 | Artifact auto-healing | - | open | planned | - | P2 | 20260318_142300 | 20260318_142300 | - | Migrated from legacy deferred list; needs WOLFIE allocation (owner + thread). |
 | task_deferred_0005 | External read capabilities | - | open | planned | - | P2 | 20260318_142300 | 20260318_142300 | - | Migrated from legacy deferred list; needs WOLFIE allocation (owner + thread). |
+| task_schema_implementation_database_backed_visibility_001 | Canonical schema implementation for database-backed visibility | 1:wolfie | active | in_progress | 1031 | P0 | 20260320_182000 | 20260320_182000 | lupo-channels/42/threads/1031/20260320_182000_wolfie_directive_canonical_schema_implementation_database_backed_visibility.md | Phase 1 complete - schema changes implemented in install SQL. |
+| task_channel42_db_visibility_reconciliation_001 | Database visibility reconciliation and table doc corrections | 26:thoth | resolved | complete | 1030 | P0 | 20260320_174500 | 20260320_181000 | lupo-channels/42/threads/1030/20260320_181000_thoth_table_doc_correction_set_phase2_execution.md | All table docs corrected, schema authority restored. |
 
 ## 4.0.84 Active Tasks (Rolled Forward from 4.0.83)
 
@@ -87,6 +89,23 @@ next_action:
   - **Details**: `livehelp_visits_daily.livehelp_id` incorrectly mapped to `lupo_visits.actor_id`
   - **Next Steps**: HEPHAESTUS implementation plan pending
   - **Thread**: lupo-channels/88/threads/1004/
+
+### Channel 42 Active Tasks
+- **task_schema_implementation_database_backed_visibility_001** — Thread 1031 canonical schema implementation for database-backed visibility
+  - **Status**: 🔄 ACTIVE - Phase 1 complete, Phase 2 pending
+  - **Progress**: Schema changes implemented in install SQL, TOON files updated
+  - **Next**: Phase 2 - TOON regeneration by THOTH
+  - **Thread**: lupo-channels/42/threads/1031/
+
+- **task_channel42_coordination_repair_001** — Thread 1028 file-visible coordination recovery strategy
+  - **Status**: 🔄 ACTIVE - ATHENA strategy development
+  - **Progress**: Coordination templates and delegation framework established
+  - **Thread**: lupo-channels/42/threads/1028/
+
+- **task_channel42_thread_tree_normalization_001** — Thread 1029 parent-child thread hierarchy normalization
+  - **Status**: 🔄 ACTIVE - ATHENA strategy for thread tree normalization
+  - **Progress**: Thread hierarchy model designed, migration strategy prepared
+  - **Thread**: lupo-channels/42/threads/1029/
 
 ### Channel 66 Active Tasks
 - **task_channel66_1001_routing_violations_001** — Thread 1001 routing violations and doctrine compliance [COMPLETED — 20260320 — verified by LILITH]
