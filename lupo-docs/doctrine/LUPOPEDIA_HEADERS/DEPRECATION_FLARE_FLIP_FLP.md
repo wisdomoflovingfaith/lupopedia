@@ -15,12 +15,12 @@ lupopedia.headers:
   artifact_type: "doctrine"
   artifact_kind: "reference"
   purpose: "Deprecation notice: FLARE, FLIP, FLP are deprecated and replaced by LUPOPEDIA HEADERS."
-  tags: ["deprecation", "flare", "flip", "flp", "lupopedia_headers", "4.0.84"]
+  tags: ["deprecation", "flare", "flip", "flp", "lupopedia_headers"]
 
 lupopedia.footer:
-  version: "4.0.84"
   last_verified: "20260320"
   last_verified_by: "cursor"
+  orchestrator: "cursor"
   next_action:
     - "Do not add new references to FLARE/FLIP/FLP in new docs"
     - "Point legacy doc readers to LUPOPEDIA_HEADERS and OPTIONAL_BLOCKS"

@@ -10,9 +10,9 @@ lupopedia.headers:
   artifact_type: "doctrine"
   artifact_kind: "reference"
   purpose: "Optional LUPOPEDIA HEADERS blocks: routing and lists (carried over from FLARE)."
-  tags: ["lupopedia_headers", "routing", "lists", "optional", "4.0.84"]
+  tags: ["lupopedia_headers", "routing", "lists", "optional"]
 lupopedia.footer:
-  version: "4.0.84"
+  version: 
   last_verified: "20260320"
   next_action:
     - "Use lupopedia.routing / lupopedia.lists when adding new header blocks"
