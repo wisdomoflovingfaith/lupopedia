@@ -74,6 +74,15 @@ lupopedia.footer:
 
 ## 🔄 In Progress Tasks
 
+### LUPOPEDIA Headers Reliability (Channel 66 / Thread 1005)
+- [ ] Implement canonical header key registry shared by generation/import/validation
+- [ ] Add table-aware projection for channels, threads, actors, collections, tasks, and edges
+- [ ] Enforce `channel_id` + `thread_id` + `actor_id` integrity checks before DB write
+- [ ] Add dry-run diff + conflict detection for header import operations
+- [ ] Add round-trip tests: DB -> header -> edited header -> DB
+- [ ] Include all TOON tables containing `channel_id` in validation coverage
+- [ ] Track implementation against artifact: `lupo-channels/66/threads/1005/20260320_700000_lilith_headers_improvement_plan_channel_scoped_metadata_sync.md`
+
 ### Semantic Validation Fixes (Thread 1004)
 - [ ] Fix `lupo_visits.actor_id` mapping semantic validation issues
 - [ ] Resolve validation blockers in Channel 66

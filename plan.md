@@ -157,19 +157,33 @@ Phases are **dependency-ordered** (no time estimates). **Prompt file names** bel
   - Doctrine mapping constraints gathered for canonical block order, legacy normalization, and non-default session omission
 - **Next dependency step:** implement deterministic DB resolution + block reconstruction + file merge/write path with `--dry-run` parity
 
+## 4.0.84 Focus Addendum - LUPOPEDIA Headers Reliability
+
+- **New focus artifact (Channel 66 / Thread 1005):** `lupo-channels/66/threads/1005/20260320_700000_lilith_headers_improvement_plan_channel_scoped_metadata_sync.md`
+- **Primary objective:** make LUPOPEDIA headers fully reversible and deterministic for DB import/export, with strict channel-aware validation.
+- **Entity scope:** channels, threads, actors, collections, tasks, graph edges (including decision edges and metadata projection paths).
+- **Required table coverage rule:** include all TOON tables that contain `channel_id` in generation/import validation scope.
+- **Immediate implementation priorities:**
+  - define canonical header key registry and entity-specific import allowlists
+  - implement table-aware projection engine from header blocks to normalized DB targets
+  - enforce `channel_id` / `thread_id` / `actor_id` integrity checks before write
+  - add dry-run diff and conflict detection before commit paths
+  - add round-trip tests (DB -> header -> edited header -> DB)
+
 ## Next steps (ordered)
 
 1. **LILITH + WOLFIE:** Close A12.4 constitutional signoff path → update `TODO.md` row `task_prompt_010100`.
 2. **HEPHAESTUS + WOLFIE:** Watcher auto-draft acceptance → `task_prompt_234200`.
-3. **Phase 1 — web_path normalization + cleanup:**
+3. **HEPHAESTUS + LILITH + WOLFIE:** execute Channel 66 Thread 1005 LUPOPEDIA headers reliability phases (A-E) with channel_id table coverage and round-trip validation.
+4. **Phase 1 — web_path normalization + cleanup:**
    - repo-wide deterministic web_path normalization: `python lupo-scripts/generate_web_path.py --repo-root . --apply --path .`
    - identity + filename violations cleanup (actor_name/actor_id registry mismatches; BAD_FILENAME artifacts) until channel validators are clean
-4. **Phase 2 — RequestLimiter (rate/request limits):**
+5. **Phase 2 — RequestLimiter (rate/request limits):**
    - implement RequestLimiter for: login, channel posting, uploads (429/413/400 with stable error codes; audit logging; deterministic keys)
-5. **Phase 3 — Global request guard + pagination/search limits:**
+6. **Phase 3 — Global request guard + pagination/search limits:**
    - front controller guard: max body size, JSON depth/field limits, header size/count limits
    - pagination/search/export caps for expensive endpoints
-6. **Validate:** `python lupo-scripts/validate_todo_plan.py --repo-root .`
+7. **Validate:** `python lupo-scripts/validate_todo_plan.py --repo-root .`
 
 ## Dependencies
 
