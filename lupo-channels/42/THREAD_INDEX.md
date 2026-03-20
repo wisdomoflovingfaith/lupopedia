@@ -58,7 +58,8 @@ lupopedia.headers:
 | 1027 | unknown | Provisional legacy thread 1027 | provisional | hermes | 20260318_155033 | 20260318_211843 | legacy_flat | 0 | 1027 | 0 | none | provisional |
 | 1028 | task_strategy_coordination_repair_001 | ATHENA strategy for file-visible coordination recovery and header-first operational control | active | athena | 20260320_120000 | 20260320_120000 | parent | 0 | 1028 | 0 | parent_rollup | confirmed |
 | 1029 | task_strategy_thread_tree_normalization_001 | ATHENA strategy for parent-child thread hierarchy and channel thread tree normalization | active | athena | 20260320_140000 | 20260320_140000 | child | 1028 | 1028 | 1 | parent_rollup | confirmed |
-| 2002 | task_web_path_canonicalization_001_web_path_canonicalization | Provisional legacy thread 2002 | provisional | wolfie | 20260319_520000 | 20260319_520000 | legacy_flat | 0 | 2002 | 0 | none | provisional |
+| 1030 | task_channel42_db_visibility_reconciliation_001 | Database visibility reconciliation and table doc corrections | active | thoth | 20260320_174500 | 20260320_181000 | parent | 0 | 1030 | 0 | parent_rollup | confirmed |
+| 1031 | task_schema_implementation_database_backed_visibility_001 | Canonical schema implementation for database-backed channel, thread, and task visibility | active | wolfie | 20260320_182000 | 20260320_182000 | parent | 0 | 1031 | 0 | parent_rollup | confirmed |
 
 ---
 
@@ -77,6 +78,12 @@ lupopedia.headers:
 ### Root 1028
 - [PARENT] 1028 task=task_strategy_coordination_repair_001 status=active rollup_scope=parent_rollup
   - [CHILD] 1029 task=task_strategy_thread_tree_normalization_001 status=active rollup_scope=parent_rollup
+
+### Root 1030
+- [PARENT] 1030 task=task_channel42_db_visibility_reconciliation_001 status=active rollup_scope=parent_rollup
+
+### Root 1031
+- [PARENT] 1031 task=task_schema_implementation_database_backed_visibility_001 status=active rollup_scope=parent_rollup
 
 ---
 
@@ -100,13 +107,15 @@ lupopedia.headers:
 - 1019: V-PROJECT global coherence validation
 - 1020: CHANGELOG.md 4.0.81 maintenance
 
-### **Active Threads** (6)
+### **Active Threads** (8)
 - 1007: Validator design corrections (HEPHAESTUS)
 - 1008: Project awareness implementation (HEPHAESTUS)
 - 1012: Substring matching refinement (pending)
 - 1013: Project awareness corrections (pending)
 - 1028: File-visible coordination recovery strategy (ATHENA)
 - 1029: Parent-child thread hierarchy strategy (ATHENA)
+- 1030: Database visibility reconciliation and table doc corrections (THOTH)
+- 1031: Canonical schema implementation for database-backed visibility (WOLFIE)
 
 ### **Thread Categories**
 
@@ -139,6 +148,8 @@ lupopedia.headers:
 - 1008: Project awareness fixes
 - 1028: Coordination recovery strategy and delegation frame
 - 1029: Thread tree normalization strategy and migration model
+- 1030: Database visibility reconciliation and documentation corrections
+- 1031: Canonical schema implementation for database-backed visibility
 
 ---
 
