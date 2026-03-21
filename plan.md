@@ -70,51 +70,50 @@ Phases are **dependency-ordered** (no time estimates). **Prompt file names** bel
 - **New active stream (Channel 42 Thread 1030):** database-backed channel/thread/task visibility planning plus 4.0.84 documentation reconciliation.
 - **New active streams (Channel 42 Thread 1031 / 1032):** canonical schema implementation for database-backed visibility, project models, and corrective governance natively cleaning install DDL and providing dev migration (Phase 1 complete and corrected).
 
-## Channel 42 Database-Backed Visibility Implementation (Thread 1031)
+## Channel 42 Database-Backed Visibility Implementation (Thread 1031 & 1032)
 
 **Objective:**
-- Implement real database schema changes to support web UI visibility for channels, threads, and tasks
-- Stop pattern of documentation-only updates and create actual database structures
-- Support channel visibility, thread hierarchy, task ownership, and review/audit state
+- Implement real database schema changes to support web UI visibility for channels, threads, and tasks.
+- Stop pattern of documentation-only updates and create actual database structures.
+- Support channel visibility, thread hierarchy, and task ownership under strict WOLFIE Thread 1032 canonical constraints.
 
 **Current Status:**
-- **Phase 1:** Complete - Schema changes implemented in install SQL
-- **Phase 2:** Pending - TOON regeneration by THOTH
-- **Phase 3:** Planned - Migration logic by HEPHAESTUS
-- **Phase 4:** Planned - Documentation update by THOTH
-- **Phase 5:** Planned - UI read layer by ATHENA
+- **Phase 1:** Complete - Schema changes corrected and implemented natively in `install_new_lupopedia.sql`.
+- **Phase 2:** Pending - TOON regeneration exactly matching the pruned schema (THOTH), and LILITH audit.
+- **Phase 3:** Planned - Migration logic execution by HEPHAESTUS via `dev_20260321` snapshot.
+- **Phase 4:** Planned - Documentation update by THOTH.
+- **Phase 5:** Planned - UI read layer by ATHENA.
 
-**Phase 1 Implementation (Complete):**
+**Phase 1 Implementation (Complete & Corrected):**
 
-**Schema Extensions Implemented:**
-- **lupo_channels:** Added visibility_status, owner_actor_id, access_level, channel_metadata, ui_preferences, last_activity_ymdhis
-- **lupo_dialog_threads:** Added parent_thread_id, root_thread_id, thread_depth, visibility_status, owner_actor_id, assigned_actor_id, thread_type, thread_priority, thread_metadata, review_status, review_actor_id, review_ymdhis
-- **lupo_tasks:** Added visibility_status, assigned_actor_id, reviewer_actor_id, review_status, review_ymdhis, task_dependencies
-- **lupo_visibility_state:** New canonical table for granular visibility permissions
+**Schema Extensions Implemented & Reconciled:**
+- **lupo_channels:** Added `visibility_status`, `owner_actor_id`, `access_level`, `last_activity_ymdhis`. 
+  - *Rejected via 1032:* `channel_metadata`, `ui_preferences`
+- **lupo_dialog_threads:** Added `parent_thread_id`, `root_thread_id`, `thread_depth`, `visibility_status`, `owner_actor_id`, `assigned_actor_id`, `thread_type`, `thread_priority`.
+  - *Rejected via 1032:* `thread_metadata`, `review_status`, `review_actor_id`, `review_ymdhis`
+- **lupo_tasks:** Added `visibility_status`, `assigned_actor_id`.
+  - *Rejected via 1032:* `reviewer_actor_id`, `review_status`, `review_ymdhis`, `task_dependencies JSON`
+- **lupo_visibility_state:** 🚫 *Rejected completely via 1032. Granular visibility control deferred to future designated directive.*
 
 **TOON Files Updated:**
-- Updated existing TOON files to match schema changes
-- Created new lupo_visibility_state.toon file
-- All indexes properly defined for performance
+- TOON files will be regenerated (Phase 2) dynamically absent the rejected columns to strictly represent actual valid DB state.
 
 **Architecture Compliance:**
-- No foreign keys, triggers, or stored procedures
-- No vendor time types (bigint only)
-- No AUTO_INCREMENT/UUID (application-supplied IDs)
-- Database as dumb storage, logic in application layer
+- The initial 1031 bypass was heavily flagged by LILITH and WOLFIE. Thread 1032 forcibly restored the schema to canonical doctrine.
+- No foreign keys, triggers, or stored procedures.
+- No vendor time types (bigint only).
+- No AUTO_INCREMENT/UUID (application-supplied IDs).
 
 **Next Phases:**
-- **Phase 2:** THOTH will regenerate TOON files and validate consistency
-- **Phase 3:** HEPHAESTUS will implement migration logic and application-layer code
-- **Phase 4:** THOTH will update documentation to match new schema
-- **Phase 5:** ATHENA will design UI read layer for visibility features
+- **Phase 2:** THOTH will regenerate TOON files capturing only the approved canonical baseline.
+- **Phase 3:** HEPHAESTUS will formally apply the `dev_20260321_project_model_and_schema_authority.sql` migrations.
+- **Phase 4:** THOTH will update documentation.
+- **Phase 5:** ATHENA will abstract the read layer.
 
 **Web UI Support Enabled:**
-- Channel list with visibility status and ownership
-- Thread hierarchy tree with parent-child relationships
-- Task ownership, assignment, and review state tracking
-- Review and audit trail capabilities
-- Granular visibility permissions through lupo_visibility_state
+- Core channel list visibility control.
+- Parent-child thread hierarchy.
+- Foundational assignment tracking.
 
 ## Channel 42 Visibility Reconciliation Stream (Thread 1030)
 
@@ -255,7 +254,8 @@ Phase-ordered execution plan:
 1. **LILITH + WOLFIE:** Close A12.4 constitutional signoff path → update `TODO.md` row `task_prompt_010100`.
 2. **HEPHAESTUS + WOLFIE:** Watcher auto-draft acceptance → `task_prompt_234200`.
 3. **HEPHAESTUS + LILITH + WOLFIE:** execute Channel 66 Thread 1005 LUPOPEDIA headers reliability phases (A-E) with channel_id table coverage and round-trip validation.
-4. **Phase 1 — web_path normalization + cleanup:**
+4. **THOTH + WOLFIE:** Reconcile `plan.md` and repository indexes comprehensively against Thread 1032 corrective outcomes to eliminate systemic documentation drift.
+5. **Phase 1 — web_path normalization + cleanup:**
    - repo-wide deterministic web_path normalization: `python lupo-scripts/generate_web_path.py --repo-root . --apply --path .`
    - identity + filename violations cleanup (actor_name/actor_id registry mismatches; BAD_FILENAME artifacts) until channel validators are clean
 5. **Phase 2 — RequestLimiter (rate/request limits):**

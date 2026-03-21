@@ -87,7 +87,6 @@ lupopedia.edges:
   semantic_tags: ["project_overview", "onboarding", "semantic_os", "multi_agent", "root_rules"]
 
 lupopedia.footer:
-  version: "4.0.84"
   last_verified: "20260320"
   last_verified_by: "wolfie"
   orchestrator: "wolfie"
@@ -204,7 +203,7 @@ Minimum required set (read in order):
 
 - **What they are:** Root rules are Markdown files (e.g. `database-logic-prohibition-doctrine.md`, `pdo-db-database-access-doctrine.md`) that define mandatory constraints: no database-side logic, PDO_DB-only access, PHP 5.6+ compatibility, install SQL as schema authority, TOON files as derived artifacts, actor/identity and context boundaries, and more. Each rule has a unique ID (e.g. DB001, ARC002, ACT001) and is tracked in a `lupopedia.rules` block.
 - **Governance:** All agents and actors must follow the root rules. Lupopedia is non-standard (shared-hosting, fallback-first, no foreign keys, explicit timestamps, etc.); the root rules exist so that contributors and agents do not apply conventional framework assumptions that violate doctrine.
-- **Derived outputs:** Agent-specific rule files (e.g. `.cursor/rules/*.mdc`, `.kiro/rules/*.md`, `.windsurf/rules/*.md`) are **generated** from the root rules by `lupo-scripts/propagate_agent_rules.php`. **Validation Rule:** Derived rules must be regenerated via `propagate_agent_rules.php` whenever a root rule changes. Agents executing with stale derived rules are out-of-compliance and risk operating on deprecated constraints. Do not treat those outputs as the source of doctrine; edit only `lupo-rules/root/` and re-run propagation.
+- **Derived outputs:** Agent-specific rule files (e.g. `.cursor/rules/*.mdc`, `.kiro/rules/*.md`, `.windsurf/rules/*.md`) are **generated** from the root rules by `lupo-scripts/propagate_agent_rules.php`. **Validation Rule:** Derived rules must be regenerated via `propagate_agent_rules.php` whenever a root rule changes. Agents executing with stale derived rules are out-of-compliance and risk operating on deprecated constraints. A repository validation hook `verify_agent_rules_sync.php` is intended to execute on formal PRs to automatically fail the commit if root rules drift from the derived IDE files. Do not treat those outputs as the source of doctrine; edit only `lupo-rules/root/` and re-run propagation.
 - **Where to read:** Full rule text and index: [lupo-rules/root/README.md](lupo-rules/root/README.md). Individual rule files live in `lupo-rules/root/*.md`.
 
 ---
@@ -568,7 +567,7 @@ A faucet is not the actor. It is the surface/environment the actor uses. **Actor
 - **Agent behavior**: Assume project context unless explicitly told otherwise
 
 ### Projects
-**Projects** are a first-class semantic layer above channels. A project groups related channels, collections, and dialogs within a federation node. Per the **Thread 1032 Directive**, `project_id = 0` is the canonical system/default project. The `lupo_projects` (and `lupo_actor_projects`) tables define the actual models. Additional projects require formal DB creation prior to artifact bindings. **IDE agents** infer project context from the workspace. **External agents** must declare project (and channel/thread) explicitly in every request. 
+**Projects** are a first-class semantic layer above channels. A project groups related channels, collections, and dialogs within a federation node. Per the **Thread 1032 Directive**, `project_id = 0` is the canonical system/default project. The `lupo_projects` (and `lupo_actor_projects`) tables define the actual models. Additional projects require formal DB creation prior to artifact bindings. WOLFIE operates as the sole directive authority capable of approving new project creation; subsequent provisioning is executed formally via HEPHAESTUS schema insertion scripts. **IDE agents** infer project context from the workspace. **External agents** must declare project (and channel/thread) explicitly in every request. 
 
 **Design Package:** The complete Project Registry design includes:
 - Doctrine: [lupo-docs/doctrine/PROJECT_REGISTRY_DOCTRINE.md](lupo-docs/doctrine/PROJECT_REGISTRY_DOCTRINE.md)
@@ -637,7 +636,7 @@ Repository Root (GitHub clone)
 - **DO NOT assume database access**: Work with filesystem only
 - **DO respect project boundaries**: Each repo is separate project
 - **DO read headers**: LUPOPEDIA HEADERS provide explicit context
-- **Database-only Threads Resolution**: If a thread exists in the database but lacks filesystem artifacts, external AI cannot infer its identity directly from missing folders. In these cases, external AI must rely on dynamically generated file constraints (e.g., triggering `THREAD_INDEX.md` regenerations) or instruct an internal actor to flush DB thread metadata to the filesystem before interaction.
+- **Database-only Threads Resolution**: If a thread exists in the database but lacks filesystem artifacts, external AI cannot infer its identity directly from missing folders. In these cases, external AI lacking database query interfaces must write an explicit request artifact to `lupo-channels/42/broadcasts/` directing executing agents (`HEPHAESTUS` or `THOTH`) to formally flush the target DB thread metadata back to a generated `THREAD_INDEX.md` list.
 
 #### Example: External AI Reading Thread 1003
 
@@ -689,7 +688,7 @@ Dynamic, DB-derived, or synthetic-view concerns (usage, relationships, engagemen
 - Cross-project references
 
 **OPTIONAL**:
-- Previously considered optional in early versions, **project_id is now natively required** per Thread 1032 constraints. Legacy artifacts missing it will implicitly resolve to `project_id: 0`.
+- Previously considered optional in early versions, **project_id is now natively required** per Thread 1032 constraints. Legacy artifacts missing it will implicitly resolve to `project_id: 0`. These legacy artifacts transition automatically to the explicit compliance requirement the next time their headers are rewritten during an ordinary save containing `version_when_written` (a standard baseline rewrite-on-write event).
 
 #### Header Examples
 
@@ -740,6 +739,7 @@ lupopedia.edges:
 - Per Thread 1032, `project_id` bindings are strictly required across `lupo_channels`, `lupo_dialog_threads`, `lupo_edges`, `lupo_tasks`, and `lupo_metadata`.
 - Cross-project references require explicit explicit `project_id` values.
 - New configurations are orchestrated using `lupo_actor_projects`.
+- WOLFIE Thread 1032 acts as the foundational authority concerning active database modeling. `plan.md` must be considered strictly aligned and authoritative alongside this standard constraint; legacy claims to the contrary found in previous versions or orphaned files are non-canonical.
 
 ### Multi-Project Rules
 
