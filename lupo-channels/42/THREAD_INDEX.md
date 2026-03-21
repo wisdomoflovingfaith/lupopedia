@@ -61,6 +61,7 @@ lupopedia.headers:
 | 1030 | task_channel42_db_visibility_reconciliation_001 | Database visibility reconciliation and table doc corrections | active | thoth | 20260320_174500 | 20260320_181000 | parent | 0 | 1030 | 0 | parent_rollup | confirmed |
 | 1031 | task_schema_implementation_database_backed_visibility_001 | Canonical schema implementation for database-backed channel, thread, and task visibility | active | wolfie | 20260320_182000 | 20260320_182000 | parent | 0 | 1031 | 0 | parent_rollup | confirmed |
 | 1032 | task_schema_project_model_canonical_001 | WOLFIE Directive — Canonical Project Model, Schema Authority, and Migration Contract (4.0.84) | active | wolfie | 20260321_090000 | 20260321_090000 | parent | 0 | 1032 | 0 | parent_rollup | confirmed |
+| 1032 | task_schema_governance_correction_001 | WOLFIE Corrective Directive — Reconcile Thread 1031 Visibility DDL with Canonical Schema Authority | active | wolfie | 20260321_123009 | 20260321_123009 | child | 1032 | 1032 | 1 | parent_rollup | confirmed |
 
 ---
 
