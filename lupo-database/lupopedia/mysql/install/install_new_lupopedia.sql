@@ -1336,6 +1336,10 @@ CREATE TABLE lupo_channels (
   project_id bigint DEFAULT NULL,
   is_kernel tinyint NOT NULL DEFAULT '0',
   boot_sequence_order int DEFAULT NULL,
+  visibility_status varchar(32) NOT NULL DEFAULT 'active',
+  owner_actor_id bigint NOT NULL DEFAULT 1,
+  access_level varchar(32) NOT NULL DEFAULT 'public',
+  last_activity_ymdhis bigint NOT NULL DEFAULT 0,
   PRIMARY KEY (channel_id)
 );
 
@@ -1346,6 +1350,10 @@ CREATE INDEX lupo_channels_idx_status ON lupo_channels (status_flag);
 CREATE INDEX lupo_channels_idx_dates ON lupo_channels (end_ymdhis);
 CREATE INDEX lupo_channels_idx_awareness_version ON lupo_channels (awareness_version);
 CREATE INDEX lupo_channels_idx_project_id ON lupo_channels (project_id);
+CREATE INDEX lupo_channels_idx_visibility_status ON lupo_channels (visibility_status);
+CREATE INDEX lupo_channels_idx_owner_actor_id ON lupo_channels (owner_actor_id);
+CREATE INDEX lupo_channels_idx_access_level ON lupo_channels (access_level);
+CREATE INDEX lupo_channels_idx_last_activity ON lupo_channels (last_activity_ymdhis);
 
 CREATE TABLE lupo_channel_boot_detail (
   detail_id bigint NOT NULL,
@@ -2193,6 +2201,11 @@ CREATE TABLE lupo_dialog_threads (
   escalated_to_operator_id bigint DEFAULT NULL,
   escalation_reason varchar(255) DEFAULT NULL,
   escalation_timestamp bigint DEFAULT NULL,
+  visibility_status varchar(32) NOT NULL DEFAULT 'active',
+  owner_actor_id bigint NOT NULL,
+  assigned_actor_id bigint DEFAULT NULL,
+  thread_type varchar(32) NOT NULL DEFAULT 'discussion',
+  thread_priority varchar(32) NOT NULL DEFAULT 'normal',
   PRIMARY KEY (dialog_thread_id)
 );
 
@@ -2203,6 +2216,11 @@ CREATE INDEX lupo_dialog_threads_idx_task ON lupo_dialog_threads (task_name);
 CREATE INDEX lupo_dialog_threads_idx_status ON lupo_dialog_threads (status);
 CREATE INDEX lupo_dialog_threads_idx_created ON lupo_dialog_threads (created_ymdhis);
 CREATE INDEX lupo_dialog_threads_idx_updated ON lupo_dialog_threads (updated_ymdhis);
+CREATE INDEX lupo_dialog_threads_idx_visibility_status ON lupo_dialog_threads (visibility_status);
+CREATE INDEX lupo_dialog_threads_idx_owner_actor_id ON lupo_dialog_threads (owner_actor_id);
+CREATE INDEX lupo_dialog_threads_idx_assigned_actor_id ON lupo_dialog_threads (assigned_actor_id);
+CREATE INDEX lupo_dialog_threads_idx_thread_type ON lupo_dialog_threads (thread_type);
+CREATE INDEX lupo_dialog_threads_idx_thread_priority ON lupo_dialog_threads (thread_priority);
 CREATE INDEX lupo_dialog_threads_idx_deleted ON lupo_dialog_threads (is_deleted);
 CREATE INDEX lupo_dialog_threads_idx_created_by_actor ON lupo_dialog_threads (created_by_actor_id);
 CREATE INDEX lupo_dialog_threads_idx_last_message ON lupo_dialog_threads (last_message_ymdhis);
@@ -3736,6 +3754,7 @@ CREATE TABLE lupo_tasks (
   consensus_hash varchar(255) DEFAULT NULL,
   approval_chain_json json DEFAULT NULL,
   task_embeddings text DEFAULT NULL,
+  visibility_status varchar(32) NOT NULL DEFAULT 'active',
   PRIMARY KEY (task_id)
 );
 
@@ -3749,6 +3768,7 @@ CREATE INDEX lupo_tasks_idx_created_ymdhis ON lupo_tasks (created_ymdhis);
 CREATE INDEX lupo_tasks_idx_acting_as_actor_id ON lupo_tasks (acting_as_actor_id);
 CREATE INDEX lupo_tasks_idx_is_deleted ON lupo_tasks (is_deleted);
 CREATE INDEX lupo_tasks_idx_parent_agent_id ON lupo_tasks (parent_agent_id);
+CREATE INDEX lupo_tasks_idx_visibility_status ON lupo_tasks (visibility_status);
 -- RESERVED ID DOCTRINE: task_id is NOT AUTO_INCREMENT; application must supply explicit ID.
 
 -- lupo_rolls: actor roles in channels (multi-agent evolution)
@@ -3987,89 +4007,4 @@ CREATE INDEX lupo_orchestrator_rules_idx_updated ON lupo_orchestrator_rules (upd
 -- Database-Backed Visibility Extensions (Thread 1031 - Phase 1)
 -- These extensions support web UI visibility for channels, threads, and tasks
 
--- lupo_channels table extensions for visibility support
-ALTER TABLE lupo_channels ADD COLUMN visibility_status varchar(32) NOT NULL DEFAULT 'active';
-ALTER TABLE lupo_channels ADD COLUMN channel_type varchar(32) NOT NULL DEFAULT 'protocol';
-ALTER TABLE lupo_channels ADD COLUMN owner_actor_id bigint NOT NULL DEFAULT 1;
-ALTER TABLE lupo_channels ADD COLUMN access_level varchar(32) NOT NULL DEFAULT 'public';
-ALTER TABLE lupo_channels ADD COLUMN channel_metadata json DEFAULT NULL;
-ALTER TABLE lupo_channels ADD COLUMN ui_preferences json DEFAULT NULL;
-ALTER TABLE lupo_channels ADD COLUMN last_activity_ymdhis bigint NOT NULL DEFAULT 0;
 
--- Indexes for lupo_channels visibility extensions
-CREATE INDEX lupo_channels_idx_visibility_status ON lupo_channels (visibility_status);
-CREATE INDEX lupo_channels_idx_owner_actor_id ON lupo_channels (owner_actor_id);
-CREATE INDEX lupo_channels_idx_access_level ON lupo_channels (access_level);
-CREATE INDEX lupo_channels_idx_last_activity ON lupo_channels (last_activity_ymdhis);
-
--- lupo_dialog_threads table extensions for visibility and hierarchy support
-ALTER TABLE lupo_dialog_threads ADD COLUMN parent_thread_id bigint DEFAULT NULL;
-ALTER TABLE lupo_dialog_threads ADD COLUMN root_thread_id bigint DEFAULT NULL;
-ALTER TABLE lupo_dialog_threads ADD COLUMN thread_depth int NOT NULL DEFAULT 0;
-ALTER TABLE lupo_dialog_threads ADD COLUMN visibility_status varchar(32) NOT NULL DEFAULT 'active';
-ALTER TABLE lupo_dialog_threads ADD COLUMN owner_actor_id bigint NOT NULL;
-ALTER TABLE lupo_dialog_threads ADD COLUMN assigned_actor_id bigint DEFAULT NULL;
-ALTER TABLE lupo_dialog_threads ADD COLUMN thread_type varchar(32) NOT NULL DEFAULT 'discussion';
-ALTER TABLE lupo_dialog_threads ADD COLUMN thread_priority varchar(32) NOT NULL DEFAULT 'normal';
-ALTER TABLE lupo_dialog_threads ADD COLUMN thread_metadata json DEFAULT NULL;
-ALTER TABLE lupo_dialog_threads ADD COLUMN review_status varchar(32) DEFAULT NULL;
-ALTER TABLE lupo_dialog_threads ADD COLUMN review_actor_id bigint DEFAULT NULL;
-ALTER TABLE lupo_dialog_threads ADD COLUMN review_ymdhis bigint DEFAULT NULL;
-
--- Indexes for lupo_dialog_threads visibility extensions
-CREATE INDEX lupo_dialog_threads_idx_parent_thread_id ON lupo_dialog_threads (parent_thread_id);
-CREATE INDEX lupo_dialog_threads_idx_root_thread_id ON lupo_dialog_threads (root_thread_id);
-CREATE INDEX lupo_dialog_threads_idx_thread_depth ON lupo_dialog_threads (thread_depth);
-CREATE INDEX lupo_dialog_threads_idx_visibility_status ON lupo_dialog_threads (visibility_status);
-CREATE INDEX lupo_dialog_threads_idx_owner_actor_id ON lupo_dialog_threads (owner_actor_id);
-CREATE INDEX lupo_dialog_threads_idx_assigned_actor_id ON lupo_dialog_threads (assigned_actor_id);
-CREATE INDEX lupo_dialog_threads_idx_thread_type ON lupo_dialog_threads (thread_type);
-CREATE INDEX lupo_dialog_threads_idx_thread_priority ON lupo_dialog_threads (thread_priority);
-CREATE INDEX lupo_dialog_threads_idx_review_status ON lupo_dialog_threads (review_status);
-CREATE INDEX lupo_dialog_threads_idx_review_actor_id ON lupo_dialog_threads (review_actor_id);
-CREATE INDEX lupo_dialog_threads_idx_review_ymdhis ON lupo_dialog_threads (review_ymdhis);
-
--- lupo_tasks table extensions for visibility and review support
-ALTER TABLE lupo_tasks ADD COLUMN visibility_status varchar(32) NOT NULL DEFAULT 'active';
-ALTER TABLE lupo_tasks ADD COLUMN assigned_actor_id bigint DEFAULT NULL;
-ALTER TABLE lupo_tasks ADD COLUMN reviewer_actor_id bigint DEFAULT NULL;
-ALTER TABLE lupo_tasks ADD COLUMN review_status varchar(32) DEFAULT NULL;
-ALTER TABLE lupo_tasks ADD COLUMN review_ymdhis bigint DEFAULT NULL;
-ALTER TABLE lupo_tasks ADD COLUMN task_dependencies json DEFAULT NULL;
-
--- Indexes for lupo_tasks visibility extensions
-CREATE INDEX lupo_tasks_idx_visibility_status ON lupo_tasks (visibility_status);
-CREATE INDEX lupo_tasks_idx_assigned_actor_id ON lupo_tasks (assigned_actor_id);
-CREATE INDEX lupo_tasks_idx_reviewer_actor_id ON lupo_tasks (reviewer_actor_id);
-CREATE INDEX lupo_tasks_idx_review_status ON lupo_tasks (review_status);
-CREATE INDEX lupo_tasks_idx_review_ymdhis ON lupo_tasks (review_ymdhis);
-
--- New canonical table: lupo_visibility_state for granular visibility permissions
-CREATE TABLE lupo_visibility_state (
-  visibility_id bigint NOT NULL,
-  entity_type varchar(50) NOT NULL,
-  entity_id bigint NOT NULL,
-  visibility_level varchar(32) NOT NULL DEFAULT 'public',
-  access_actor_id bigint DEFAULT NULL,
-  granted_ymdhis bigint NOT NULL DEFAULT 0,
-  expires_ymdhis bigint DEFAULT NULL,
-  granted_by_actor_id bigint NOT NULL,
-  visibility_reason varchar(255) DEFAULT NULL,
-  metadata_json json DEFAULT NULL,
-  is_deleted tinyint NOT NULL DEFAULT '0',
-  deleted_ymdhis bigint DEFAULT NULL,
-  created_ymdhis bigint NOT NULL DEFAULT 0,
-  updated_ymdhis bigint NOT NULL,
-  PRIMARY KEY (visibility_id)
-);
-
--- Indexes for lupo_visibility_state table
-CREATE INDEX lupo_visibility_state_idx_entity ON lupo_visibility_state (entity_type, entity_id);
-CREATE INDEX lupo_visibility_state_idx_actor ON lupo_visibility_state (access_actor_id);
-CREATE INDEX lupo_visibility_state_idx_level ON lupo_visibility_state (visibility_level);
-CREATE INDEX lupo_visibility_state_idx_created ON lupo_visibility_state (created_ymdhis);
-CREATE INDEX lupo_visibility_state_idx_granted_actor ON lupo_visibility_state (granted_by_actor_id);
-CREATE INDEX lupo_visibility_state_idx_expires ON lupo_visibility_state (expires_ymdhis);
-CREATE INDEX lupo_visibility_state_idx_is_deleted ON lupo_visibility_state (is_deleted);
-
--- RESERVED ID DOCTRINE: visibility_id is NOT AUTO_INCREMENT; application must supply explicit ID.
