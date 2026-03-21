@@ -60,6 +60,7 @@ lupopedia.headers:
 | 1029 | task_strategy_thread_tree_normalization_001 | ATHENA strategy for parent-child thread hierarchy and channel thread tree normalization | active | athena | 20260320_140000 | 20260320_140000 | child | 1028 | 1028 | 1 | parent_rollup | confirmed |
 | 1030 | task_channel42_db_visibility_reconciliation_001 | Database visibility reconciliation and table doc corrections | active | thoth | 20260320_174500 | 20260320_181000 | parent | 0 | 1030 | 0 | parent_rollup | confirmed |
 | 1031 | task_schema_implementation_database_backed_visibility_001 | Canonical schema implementation for database-backed channel, thread, and task visibility | active | wolfie | 20260320_182000 | 20260320_182000 | parent | 0 | 1031 | 0 | parent_rollup | confirmed |
+| 1032 | task_schema_authority_project_model_001 | Schema authority and project model resolution | active | wolfie | 20260321_071000 | 20260321_071000 | parent | 0 | 1032 | 0 | parent_rollup | confirmed |
 
 ---
 
@@ -85,6 +86,9 @@ lupopedia.headers:
 ### Root 1031
 - [PARENT] 1031 task=task_schema_implementation_database_backed_visibility_001 status=active rollup_scope=parent_rollup
 
+### Root 1032
+- [PARENT] 1032 task=task_schema_authority_project_model_001 status=active rollup_scope=parent_rollup
+
 ---
 
 ## Thread Status Summary
@@ -107,7 +111,7 @@ lupopedia.headers:
 - 1019: V-PROJECT global coherence validation
 - 1020: CHANGELOG.md 4.0.81 maintenance
 
-### **Active Threads** (8)
+### **Active Threads** (9)
 - 1007: Validator design corrections (HEPHAESTUS)
 - 1008: Project awareness implementation (HEPHAESTUS)
 - 1012: Substring matching refinement (pending)
@@ -116,6 +120,7 @@ lupopedia.headers:
 - 1029: Parent-child thread hierarchy strategy (ATHENA)
 - 1030: Database visibility reconciliation and table doc corrections (THOTH)
 - 1031: Canonical schema implementation for database-backed visibility (WOLFIE)
+- 1032: Schema authority and project model resolution (WOLFIE)
 
 ### **Thread Categories**
 
@@ -150,6 +155,7 @@ lupopedia.headers:
 - 1029: Thread tree normalization strategy and migration model
 - 1030: Database visibility reconciliation and documentation corrections
 - 1031: Canonical schema implementation for database-backed visibility
+- 1032: Schema authority and project model resolution
 
 ---
 
