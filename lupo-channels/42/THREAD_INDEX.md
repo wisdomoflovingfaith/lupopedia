@@ -60,7 +60,7 @@ lupopedia.headers:
 | 1029 | task_strategy_thread_tree_normalization_001 | ATHENA strategy for parent-child thread hierarchy and channel thread tree normalization | active | athena | 20260320_140000 | 20260320_140000 | child | 1028 | 1028 | 1 | parent_rollup | confirmed |
 | 1030 | task_channel42_db_visibility_reconciliation_001 | Database visibility reconciliation and table doc corrections | active | thoth | 20260320_174500 | 20260320_181000 | parent | 0 | 1030 | 0 | parent_rollup | confirmed |
 | 1031 | task_schema_implementation_database_backed_visibility_001 | Canonical schema implementation for database-backed channel, thread, and task visibility | active | wolfie | 20260320_182000 | 20260320_182000 | parent | 0 | 1031 | 0 | parent_rollup | confirmed |
-| 1032 | task_schema_authority_project_model_001 | Schema authority and project model resolution | active | wolfie | 20260321_071000 | 20260321_071000 | parent | 0 | 1032 | 0 | parent_rollup | confirmed |
+| 1032 | task_schema_project_model_canonical_001 | WOLFIE Directive — Canonical Project Model, Schema Authority, and Migration Contract (4.0.84) | active | wolfie | 20260321_090000 | 20260321_090000 | parent | 0 | 1032 | 0 | parent_rollup | confirmed |
 
 ---
 
