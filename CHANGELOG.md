@@ -100,82 +100,52 @@ Older entries (≤4.0.79) are archived in [CHANGELOG_ARCHIVE.md](CHANGELOG_ARCHI
 
 ---
 
-### Database-Backed Visibility Implementation (Thread 1031)
+### Database-Backed Visibility Implementation & Schema Reconciliation (Threads 1031 / 1032)
 
-**Thread:** 1031 - Canonical Schema Implementation for Database-Backed Channel, Thread, and Task Visibility  
-**Actor:** WOLFIE (directive), HEPHAESTUS (implementation)  
-**Status:** ✅ Phase 1 Complete - Schema Changes Implemented
+**Threads:** 
+- 1031 - Canonical Schema Implementation for Database-Backed Channel, Thread, and Task Visibility
+- 1032 - Corrective Directive: Reconcile Thread 1031 Visibility DDL with Canonical Schema Authority
+**Actor:** WOLFIE (directive), HEPHAESTUS (implementation)
+**Status:** ✅ Phase 1 Complete - Schema Corrected and Implemented
 
-#### Schema Extensions Implemented
+#### Schema Extensions Reconciled and Implemented
 
-**lupo_channels table extensions:**
+A critical intervention was executed by WOLFIE (Thread 1032) to correct undisciplined DDL appends applied by an external agent during Thread 1031's visibility phase. All `ALTER TABLE` statements incorrectly concatenated entirely to the bottom of the install script were purged, and approved `keep_in_install` properties were natively integrated into `install_new_lupopedia.sql` core `CREATE TABLE` and `CREATE INDEX` payloads. Additional updates were tracked appropriately in active schema migrations.
+
+**lupo_channels table extensions (Approved & Integrated natively):**
 - Added `visibility_status` varchar(32) NOT NULL DEFAULT 'active'
-- Added `channel_type` varchar(32) NOT NULL DEFAULT 'protocol'
 - Added `owner_actor_id` bigint NOT NULL DEFAULT 1
 - Added `access_level` varchar(32) NOT NULL DEFAULT 'public'
-- Added `channel_metadata` json DEFAULT NULL
-- Added `ui_preferences` json DEFAULT NULL
 - Added `last_activity_ymdhis` bigint NOT NULL DEFAULT 0
-- Added 4 new indexes for visibility support
+- *(Rejected: `channel_type`, `channel_metadata`, `ui_preferences`)*
 
-**lupo_dialog_threads table extensions:**
-- Added `parent_thread_id` bigint DEFAULT NULL
-- Added `root_thread_id` bigint DEFAULT NULL
-- Added `thread_depth` int NOT NULL DEFAULT 0
+**lupo_dialog_threads table extensions (Approved & Integrated natively):**
 - Added `visibility_status` varchar(32) NOT NULL DEFAULT 'active'
-- Added `owner_actor_id` bigint NOT NULL
+- Added `owner_actor_id` bigint NOT NULL DEFAULT 1
 - Added `assigned_actor_id` bigint DEFAULT NULL
 - Added `thread_type` varchar(32) NOT NULL DEFAULT 'discussion'
 - Added `thread_priority` varchar(32) NOT NULL DEFAULT 'normal'
-- Added `thread_metadata` json DEFAULT NULL
-- Added `review_status` varchar(32) DEFAULT NULL
-- Added `review_actor_id` bigint DEFAULT NULL
-- Added `review_ymdhis` bigint DEFAULT NULL
-- Added 11 new indexes for hierarchy and visibility support
+- *(Rejected/Redesign Required: `parent_thread_id`, `root_thread_id`, `thread_depth`, `thread_metadata`, `review_status`, `review_actor_id`, `review_ymdhis`)*
 
-**lupo_tasks table extensions:**
+**lupo_tasks table extensions (Approved & Integrated natively):**
 - Added `visibility_status` varchar(32) NOT NULL DEFAULT 'active'
-- Added `assigned_actor_id` bigint DEFAULT NULL
-- Added `reviewer_actor_id` bigint DEFAULT NULL
-- Added `review_status` varchar(32) DEFAULT NULL
-- Added `review_ymdhis` bigint DEFAULT NULL
-- Added `task_dependencies` json DEFAULT NULL
-- Added 5 new indexes for visibility and review support
+- *(Rejected/Redesign Required: `assigned_actor_id`, `reviewer_actor_id`, `review_status`, `review_ymdhis`, `task_dependencies`)*
 
-**New canonical table: lupo_visibility_state**
-- Created for granular visibility permissions
-- Supports actor-specific access control
-- Includes time-based visibility grants
-- Added 7 indexes for performance
+**Rejected Table Creation:**
+- ❌ `lupo_visibility_state` table creation was firmly rejected as visibility parameters natively fit application structures without dedicated persistence structures. 
 
-#### TOON Files Updated
-
-**Phase 2 Preparation:**
-- Updated `lupo_channels.toon` with visibility extensions
-- Updated `lupo_dialog_threads.toon` with hierarchy and visibility fields
-- Updated `lupo_tasks.toon` with review and assignment fields
-- Created new `lupo_visibility_state.toon` file
+#### Proper Migration Paths
+- Appended Thread 1031 and 1032 visibility features into deterministic `dev_20260321_project_model_and_schema_authority.sql` Dev Migration via formal `ALTER TABLE` queries for live instances.
 
 #### Implementation Impact
-
-**Web UI Support:**
-- Database now supports channel, thread, and task visibility
-- Thread hierarchy relationships persisted
-- Review and audit state trackable
-- Ownership and assignment tracking available
-
-**Architecture Compliance:**
-- No foreign keys, triggers, or stored procedures
-- No vendor time types (bigint only)
-- No AUTO_INCREMENT/UUID (application-supplied IDs)
-- Database as dumb storage, logic in application layer
+- **Web UI Support:** Phase 1 database visibility fields available.
+- **Architecture Compliance Restored:** DDL definitions secured cleanly natively per strict canonical rules (`no-hidden-sync`, `database as dumb storage`, logic in application layer, explicit relational schemas).
+- **Corrected Authority:** Re-established file-visible coordination (avoiding hidden dependencies via DB structures).
 
 #### Next Phases
-
 **Phase 2:** TOON regeneration (THOTH)  
-**Phase 3:** Migration logic (HEPHAESTUS)  
-**Phase 4:** Documentation update (THOTH)  
-**Phase 5:** UI read layer (ATHENA)
+**Phase 3:** Documentation update and audit (THOTH and LILITH)  
+**Phase 4:** UI read layer mapping (ATHENA)
 
 ---
 

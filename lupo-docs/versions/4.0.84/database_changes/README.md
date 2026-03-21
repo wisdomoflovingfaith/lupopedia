@@ -27,21 +27,24 @@ lupopedia.footer:
 
 ## Summary
 
-Version 4.0.84 includes **no database schema changes**. The focus is on metadata consistency and version field cleanup in documentation and code.
+Version 4.0.84 includes **significant canonical schema interventions** (via Channel 42 Threads 1031 and 1032). The focus was enforcing project model constraints and restructuring unapproved visibility DDL definitions.
 
 ## Database Changes
 
 ### Schema Changes
-- **None** - No table modifications required
-- **No** new columns added
-- **No** table drops or alterations
+- **lupo_actor_projects** - New table installed for global system project scope mappings.
+- **Project IDs introduced globally** - `project_id` added natively to `lupo_channels`, `lupo_dialog_threads`, `lupo_tasks`, `lupo_edges`, `lupo_metadata`, and `lupo_atoms`.
+- **Visibility parameters** - `visibility_status` appended to threads, tasks, edges, channels.
+- **Granular visibility control** - Additional fields defined for `owner_actor_id`, `access_level`, `assigned_actor_id`
+- **Tables Rejected:** `lupo_visibility_state` (purged by WOLFIE governance).
 
 ### Data Changes
 - **Metadata consistency** - Version fields in `lupo_metadata` may need cleanup
 - **Content versioning** - Ensure `version_when_written` is used consistently
+- **System Backfills** - Default visibility settings applied (e.g. `visibility_status`='active', `project_id`=0 where null).
 
 ### Migration Scripts
-- **None required** - This is a documentation and code cleanup version
+- **dev_20260321_project_model_and_schema_authority.sql** - Formal path to evolve instances to capture Thread 1031 visibility and Thread 1032 project constraints safely.
 
 ## Impact Analysis
 

@@ -80,6 +80,12 @@ Version 4.0.84 focuses on completing the LUPOPEDIA_HEADERS doctrine cleanup and 
    - Established clear baseline rewrite requirements
    - Documented version resolution and dynamic version handling
 
+4. **Canonical Schema Refactoring (Threads 1031 / 1032)**
+   - Re-secured install schema via strict canonical governance standards
+   - Flushed out illegally appended DDL payload blocks
+   - Natively integrated Phase 1 Visibility extensions into structural payloads
+   - Defined `lupo_actor_projects` and established `project_id` bindings globally
+
 ### 🔄 In Progress Objectives
 
 1. **Semantic Validation Fixes (Thread 1004)**
@@ -96,8 +102,9 @@ Version 4.0.84 focuses on completing the LUPOPEDIA_HEADERS doctrine cleanup and 
 
 ### Database Changes
 **Location:** `database_changes/`
-- No schema changes required for 4.0.84
-- Focus on metadata consistency and version field cleanup
+- Integrated Phase 1 Visibility configuration parameters natively into `lupo_channels`, `lupo_tasks`, `lupo_dialog_threads`.
+- Bootstrapped Canonical Project tracking natively with `lupo_actor_projects` and `project_id`.
+- Developed explicit `dev_20260321_project_model_and_schema_authority.sql` Dev Migration script for DDL deployment tracking.
 
 ### Organization Changes  
 **Location:** `organization_changes/`

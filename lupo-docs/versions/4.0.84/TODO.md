@@ -65,6 +65,12 @@ lupopedia.footer:
 - [x] Update VERSIONING_DOCTRINE.md with single-field versioning model
 - [x] Create 4.0.84 version directory structure
 
+### Schema Governance and Reconciliations (Thread 1031 / 1032)
+- [x] Implement Canonical Project Model (projects to channels, threads, tasks, edges, metadata, atoms)
+- [x] Purge unapproved native DDL blocks appended onto `install_new_lupopedia.sql`
+- [x] Re-home approved visibility/access schema into native core `CREATE TABLE` and `CREATE INDEX` payloads.
+- [x] Provide exact deterministic DDL statements in the `dev_20260321_project_model_and_schema_authority.sql` Dev Migration.
+
 ### Documentation Updates
 - [x] Update CHANGELOG.md with 4.0.84 entries
 - [x] Update TODO.md with completion status
@@ -89,6 +95,11 @@ lupopedia.footer:
 - [ ] Resolve validation blockers in Channel 88
 - [ ] Complete HEPHAESTUS implementation plan execution
 - [ ] Test semantic validation fixes in production environment
+
+### Phase 2 Visibility Infrastructure (Thread 1031/1030)
+- [ ] Complete TOON regeneration reflecting native integration (THOTH)
+- [ ] Post-audit LILITH reviews on schema authority compliance
+- [ ] Design Phase 4/5 integration capabilities in UI reading layer
 
 ### Production Deployment Monitoring
 - [ ] Monitor Channel 66 production deployment safety

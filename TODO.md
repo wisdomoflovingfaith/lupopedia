@@ -77,8 +77,10 @@ next_action:
 | task_deferred_0003 | DB-primary channel ingestion | - | open | planned | - | P2 | 20260318_142300 | 20260318_142300 | - | Migrated from legacy deferred list; needs WOLFIE allocation (owner + thread). |
 | task_deferred_0004 | Artifact auto-healing | - | open | planned | - | P2 | 20260318_142300 | 20260318_142300 | - | Migrated from legacy deferred list; needs WOLFIE allocation (owner + thread). |
 | task_deferred_0005 | External read capabilities | - | open | planned | - | P2 | 20260318_142300 | 20260318_142300 | - | Migrated from legacy deferred list; needs WOLFIE allocation (owner + thread). |
-| task_schema_implementation_database_backed_visibility_001 | Canonical schema implementation for database-backed visibility | 1:wolfie | active | in_progress | 1031 | P0 | 20260320_182000 | 20260320_182000 | lupo-channels/42/threads/1031/20260320_182000_wolfie_directive_canonical_schema_implementation_database_backed_visibility.md | Phase 1 complete - schema changes implemented in install SQL. |
+| task_schema_implementation_database_backed_visibility_001 | Canonical schema implementation for database-backed visibility | 1:wolfie | active | in_progress | 1031 | P0 | 20260320_182000 | 20260320_182000 | lupo-channels/42/threads/1031/20260320_182000_wolfie_directive_canonical_schema_implementation_database_backed_visibility.md | Phase 1 schema initially added. See Thread 1032 for correction and integration. |
 | task_channel42_db_visibility_reconciliation_001 | Database visibility reconciliation and table doc corrections | 26:thoth | resolved | complete | 1030 | P0 | 20260320_174500 | 20260320_181000 | lupo-channels/42/threads/1030/20260320_181000_thoth_table_doc_correction_set_phase2_execution.md | All table docs corrected, schema authority restored. |
+| task_schema_governance_reconciliation_001 | Corrective schema purge of unapproved DDL appends & native integrations | 3:hephaestus | resolved | complete | 1032 | P0 | 20260321_123000 | 20260321_143000 | lupo-channels/42/threads/1032/20260321_123009_wolfie_directive_reconcile_thread_1031_visibility.md | WOLFIE mandate correctly purged unapproved alterations from bottom of install_new_lupopedia.sql and correctly re-homed into core CREATE TABLE layouts. Appended safely to 20260321 Dev Migration script. |
+| task_project_model_implementation_001 | Implement Canonical Project Model (project_id fields, actor_projects table) | 3:hephaestus | resolved | complete | 1032 | P0 | 20260321_090000 | 20260321_143000 | lupo-channels/42/threads/1032/20260321_090000_wolfie_directive_canonical_project_model_schema_authority_and_migration_contract_4_0_84.md | WOLFIE mandate correctly integrated global project_id tracking properties and created lupo_actor_projects table. Wrote Dev Migration script dev_20260321_project_model_and_schema_authority.sql |
 
 ## 4.0.84 Active Tasks (Rolled Forward from 4.0.83)
 
@@ -91,11 +93,16 @@ next_action:
   - **Thread**: lupo-channels/88/threads/1004/
 
 ### Channel 42 Active Tasks
-- **task_schema_implementation_database_backed_visibility_001** — Thread 1031 canonical schema implementation for database-backed visibility
-  - **Status**: 🔄 ACTIVE - Phase 1 complete, Phase 2 pending
-  - **Progress**: Schema changes implemented in install SQL, TOON files updated
-  - **Next**: Phase 2 - TOON regeneration by THOTH
-  - **Thread**: lupo-channels/42/threads/1031/
+- **task_schema_implementation_database_backed_visibility_001** — Thread 1031 & 1032 canonical schema implementation for database-backed visibility
+  - **Status**: 🔄 ACTIVE - Phase 1 Schema Corrected, Phase 2 pending
+  - **Progress**: Schema corrected and integrated flawlessly into native DDL and migration pathways (`dev_20260321_project_model_and_schema_authority.sql`) via WOLFIE Schema Governance mandate.
+  - **Next**: Phase 2 - TOON regeneration by THOTH, LILITH audit
+  - **Thread**: lupo-channels/42/threads/1031/ & 1032
+
+- **task_project_model_implementation_001** — Thread 1032 canonical project model implementation
+  - **Status**: ✅ COMPLETED
+  - **Progress**: Clean integration of `project_id` constraints across primary system structures. `lupo_actor_projects` created.
+  - **Thread**: lupo-channels/42/threads/1032/
 
 - **task_channel42_coordination_repair_001** — Thread 1028 file-visible coordination recovery strategy
   - **Status**: 🔄 ACTIVE - ATHENA strategy development

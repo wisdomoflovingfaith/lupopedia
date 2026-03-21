@@ -141,10 +141,14 @@ So the **knowledge graph is not only “files”—it is persisted in the databa
 
 **Focus areas for v4.0.84 (current):**
 - **Continued validator enhancement and enforcement** - Expanding validation coverage and automation
-- **Project-aware coordination improvements** - Enhanced project-scoped task management
+- **Project-aware coordination improvements** - Enhanced project-scoped task management (Thread 1032 Project IDs)
+- **Database-Backed Visibility & Schema Governance** - Reconciling visibility DDL via Thread 1031 & 1032 WOLFIE enforcement
 - **External AI integration and navigation** - Improved discoverability and participation
 - **LUPOPEDIA HEADERS doctrine cleanup** - Enforced `version_when_written`-only versioning, baseline rewrite-on-write eligibility, and corrected identity-line / optional-blocks documentation
 - **Documentation quality and consistency** - Ongoing alignment and standardization
+
+**Active Version Directory Subsystems (`lupo-docs/versions/4.0.84/`):** 
+To navigate granular augmentations occurring exclusively inside this version stream, review the [OVERVIEW_ORGANIZATION.md](lupo-docs/versions/4.0.84/OVERVIEW_ORGANIZATION.md) index detailing specific class, database, script, and doctrinal documentation changes.
 
 **Canonical root rules:** All agents and actors must follow the doctrine in **`lupo-rules/root/`**. Agent-specific rule files (e.g. `.cursor/rules/`, `.kiro/rules/`, `.windsurf/rules/`) are **derived** from those root rules; the root is the single source of truth. See [Canonical root rules](#canonical-root-rules) and [New agent onboarding](#new-agent--web-terminal-agent-onboarding).
 
@@ -200,7 +204,7 @@ Minimum required set (read in order):
 
 - **What they are:** Root rules are Markdown files (e.g. `database-logic-prohibition-doctrine.md`, `pdo-db-database-access-doctrine.md`) that define mandatory constraints: no database-side logic, PDO_DB-only access, PHP 5.6+ compatibility, install SQL as schema authority, TOON files as derived artifacts, actor/identity and context boundaries, and more. Each rule has a unique ID (e.g. DB001, ARC002, ACT001) and is tracked in a `lupopedia.rules` block.
 - **Governance:** All agents and actors must follow the root rules. Lupopedia is non-standard (shared-hosting, fallback-first, no foreign keys, explicit timestamps, etc.); the root rules exist so that contributors and agents do not apply conventional framework assumptions that violate doctrine.
-- **Derived outputs:** Agent-specific rule files (e.g. `.cursor/rules/*.mdc`, `.kiro/rules/*.md`, `.windsurf/rules/*.md`) are **generated** from the root rules by `lupo-scripts/propagate_agent_rules.php`. Do not treat those outputs as the source of doctrine; edit only `lupo-rules/root/` and re-run propagation for your target (e.g. `--target=cursor`).
+- **Derived outputs:** Agent-specific rule files (e.g. `.cursor/rules/*.mdc`, `.kiro/rules/*.md`, `.windsurf/rules/*.md`) are **generated** from the root rules by `lupo-scripts/propagate_agent_rules.php`. **Validation Rule:** Derived rules must be regenerated via `propagate_agent_rules.php` whenever a root rule changes. Agents executing with stale derived rules are out-of-compliance and risk operating on deprecated constraints. Do not treat those outputs as the source of doctrine; edit only `lupo-rules/root/` and re-run propagation.
 - **Where to read:** Full rule text and index: [lupo-rules/root/README.md](lupo-rules/root/README.md). Individual rule files live in `lupo-rules/root/*.md`.
 
 ---
@@ -564,7 +568,7 @@ A faucet is not the actor. It is the surface/environment the actor uses. **Actor
 - **Agent behavior**: Assume project context unless explicitly told otherwise
 
 ### Projects
-**Projects** are a first-class semantic layer above channels. A project groups related channels, collections, and dialogs within a federation node. **IDE agents** infer project context from the workspace. **External agents** must declare project (and channel/thread) explicitly in every request. 
+**Projects** are a first-class semantic layer above channels. A project groups related channels, collections, and dialogs within a federation node. Per the **Thread 1032 Directive**, `project_id = 0` is the canonical system/default project. The `lupo_projects` (and `lupo_actor_projects`) tables define the actual models. Additional projects require formal DB creation prior to artifact bindings. **IDE agents** infer project context from the workspace. **External agents** must declare project (and channel/thread) explicitly in every request. 
 
 **Design Package:** The complete Project Registry design includes:
 - Doctrine: [lupo-docs/doctrine/PROJECT_REGISTRY_DOCTRINE.md](lupo-docs/doctrine/PROJECT_REGISTRY_DOCTRINE.md)
@@ -633,6 +637,7 @@ Repository Root (GitHub clone)
 - **DO NOT assume database access**: Work with filesystem only
 - **DO respect project boundaries**: Each repo is separate project
 - **DO read headers**: LUPOPEDIA HEADERS provide explicit context
+- **Database-only Threads Resolution**: If a thread exists in the database but lacks filesystem artifacts, external AI cannot infer its identity directly from missing folders. In these cases, external AI must rely on dynamically generated file constraints (e.g., triggering `THREAD_INDEX.md` regenerations) or instruct an internal actor to flush DB thread metadata to the filesystem before interaction.
 
 #### Example: External AI Reading Thread 1003
 
@@ -677,15 +682,14 @@ Dynamic, DB-derived, or synthetic-view concerns (usage, relationships, engagemen
 #### When to Include project_id
 
 **REQUIRED**:
+- All `lupo_channels`, `lupo_dialog_threads`, `lupo_tasks`, `lupo_edges`, and `lupo_metadata` DB inserts per the Thread 1032 canonical project model. 
+- In LUPOPEDIA HEADERS, `project_id` must be explicitly declared (defaulting to `0` for the system/default project) to maintain deterministic alignment with the implemented schema.
 - Multi-project environments
 - Federation scenarios
 - Cross-project references
-- When tooling cannot infer project from repo root
 
 **OPTIONAL**:
-- Single-project repositories (current state)
-- When project_id is 0 (default)
-- To reduce header noise in simple cases
+- Previously considered optional in early versions, **project_id is now natively required** per Thread 1032 constraints. Legacy artifacts missing it will implicitly resolve to `project_id: 0`.
 
 #### Header Examples
 
@@ -727,19 +731,15 @@ lupopedia.edges:
 
 ---
 
-## Multi-Project Future (4.0.81+)
+## Canonical Project Model (4.0.84+)
 
-### Current vs Future State
+### Thread 1032 Consolidation 
 
-**Current State (v4.0.81)**:
-- Single repository = single project
-- project_id 0 (lupopedia-core)
-- No explicit project_id needed in headers
-
-**Future State (v4.0.82+)**:
-- Multiple repositories = multiple projects
-- Each project has unique project_id and project_slug
-- Cross-project references require explicit project_id
+**Current State (v4.0.84)**:
+- Single repository = single project (`project_id: 0` is the system/default project).
+- Per Thread 1032, `project_id` bindings are strictly required across `lupo_channels`, `lupo_dialog_threads`, `lupo_edges`, `lupo_tasks`, and `lupo_metadata`.
+- Cross-project references require explicit explicit `project_id` values.
+- New configurations are orchestrated using `lupo_actor_projects`.
 
 ### Multi-Project Rules
 
@@ -854,4 +854,4 @@ See `CONTRIBUTING.md`. All contributions should follow doctrine: UTC YmdHis time
 See `license.txt` in the repository. Free to use, modify, and distribute under the terms specified there.
 
 ---
-*Lupopedia 4.0.82 — a semantic operating system orchestrated by humans and AI agents across channels, artifacts, and federation nodes. Canonical doctrine: lupo-rules/root/.*
+*Lupopedia 4.0.84 — a semantic operating system orchestrated by humans and AI agents across channels, artifacts, and federation nodes. Canonical doctrine: lupo-rules/root/.*

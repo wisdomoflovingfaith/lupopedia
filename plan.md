@@ -68,7 +68,7 @@ Phases are **dependency-ordered** (no time estimates). **Prompt file names** bel
 - **Parallel / non-blocking until allocated:** `task_deferred_0001`–`0005` (dedupe, UI, DB-primary, auto-heal, external read).
 - **Channel 42 Thread 1029 status:** phase-1 hierarchy normalization governance loop completed and closure-ready (omnibus adjudication, execution validation, final LILITH audit, final ATHENA strategy validation).
 - **New active stream (Channel 42 Thread 1030):** database-backed channel/thread/task visibility planning plus 4.0.84 documentation reconciliation.
-- **New active stream (Channel 42 Thread 1031):** canonical schema implementation for database-backed visibility (Phase 1 complete).
+- **New active streams (Channel 42 Thread 1031 / 1032):** canonical schema implementation for database-backed visibility, project models, and corrective governance natively cleaning install DDL and providing dev migration (Phase 1 complete and corrected).
 
 ## Channel 42 Database-Backed Visibility Implementation (Thread 1031)
 
