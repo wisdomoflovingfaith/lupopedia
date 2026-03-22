@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\channels\architecture\WOLFIE_COGNITIVE_ARCHITECTURE.md"
+  file_path_from_root: "lupo-docs/channels/architecture/WOLFIE_COGNITIVE_ARCHITECTURE.md"
   file_hash: "d55ca6599f8680e5223d33c4baf87e6674eafba9ae524c74542d0d0825a7376f"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"
@@ -290,7 +290,7 @@ Understanding Wolfie = understanding Lupopedia.
 - **[PACK_BEHAVIOR_DOCTRINE.md](../doctrine/PACK_BEHAVIOR_DOCTRINE.md)** - Pack behavioral layer
 - **[PACK_MEMORY_DOCTRINE.md](../doctrine/PACK_MEMORY_DOCTRINE.md)** - Pack memory layer
 - **[PACK_SYNC_DOCTRINE.md](../doctrine/PACK_SYNC_DOCTRINE.md)** - Pack synchronization layer
-- **[LIMITS.md](../LIMITS.md)** - Architectural limits and weekend mode rules
+- **[LIMITS.md](../doctrine/LIMITS.md)** - Architectural limits and weekend mode rules
 
 ---
 

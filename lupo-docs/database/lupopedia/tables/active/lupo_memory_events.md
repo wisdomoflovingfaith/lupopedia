@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\database\lupopedia\tables\lupo_memory_events.md"
+  file_path_from_root: "lupo-docs/database/lupopedia/tables/active/lupo_memory_events.md"
   file_hash: "d032fe44fe839b6bc4e1553fb1429b072acb0d4f647ad48e7e9db6cd40cc50b4"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

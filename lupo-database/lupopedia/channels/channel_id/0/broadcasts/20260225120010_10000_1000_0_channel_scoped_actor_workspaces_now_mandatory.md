@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\channels\0\broadcasts\20260225120010_10000_1000_0_channel_scoped_actor_workspaces_now_mandatory.md"
+  file_path_from_root: "lupo-database/lupopedia/channels/channel_id/0/broadcasts/20260225120010_10000_1000_0_channel_scoped_actor_workspaces_now_mandatory.md"
   file_hash: "6f1f92a92c92c94a55989fe41c574686fbce75c5e3ac2ee338c487df6f058a39"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

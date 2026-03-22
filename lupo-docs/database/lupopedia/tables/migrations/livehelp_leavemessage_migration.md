@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\database\lupopedia\tables\livehelp_leavemessage_migration.md"
+  file_path_from_root: "lupo-docs/database/lupopedia/tables/migrations/livehelp_leavemessage_migration.md"
   file_hash: "162d56d3f8d7fce6d7d4b0d1fbd9fccef96e14958d021010e3bb2eb92f0428bd"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

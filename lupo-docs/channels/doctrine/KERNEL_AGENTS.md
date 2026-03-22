@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\channels\doctrine\KERNEL_AGENTS.md"
+  file_path_from_root: "lupo-docs/channels/doctrine/KERNEL_AGENTS.md"
   file_hash: "372749741326eadfa7e0e5bff3cb64ab199bf50b9098e2b68986dbd647e8e10a"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"
@@ -330,7 +330,7 @@ response: "current_utc_time_yyyymmddhhiiss: 20260117215945"
 - Conflict resolution
 - Data healing
 
-**See:** [ANUBIS_DOCTRINE.md](ANUBIS_DOCTRINE.md)
+**See:** ANUBIS_DOCTRINE.md
 
 ### MAAT (Slot 20)
 
@@ -420,7 +420,7 @@ When working with kernel agents:
 
 - **[LUPOPEDIA_AGENT_DEDICATED_SLOT_RANGES.md](LUPOPEDIA_AGENT_DEDICATED_SLOT_RANGES.md)** â€” Agent slot ranges including kernel (0-49)
 - **[SYSTEM_AGENT_SAFETY_DOCTRINE.md](SYSTEM_AGENT_SAFETY_DOCTRINE.md)** â€” SYSTEM agent governance
-- **[ANUBIS_DOCTRINE.md](ANUBIS_DOCTRINE.md)** â€” ANUBIS orphan repair system
+- **ANUBIS_DOCTRINE.md** â€” ANUBIS orphan repair system
 - **[EMOTIONAL_GEOMETRY.md](EMOTIONAL_GEOMETRY.md)** â€” Multi-domain emotional architecture
 - **[META_AGENTS.md](META_AGENTS.md)** â€” Meta-agent architecture
 

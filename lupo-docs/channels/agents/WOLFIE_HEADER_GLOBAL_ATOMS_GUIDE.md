@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\channels\agents\WOLFIE_HEADER_GLOBAL_ATOMS_GUIDE.md"
+  file_path_from_root: "lupo-docs/channels/agents/WOLFIE_HEADER_GLOBAL_ATOMS_GUIDE.md"
   file_hash: "20e3ece17c6bad48679194c838d731ae81b35bec229857468c4aff6c39aa94d3"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"
@@ -456,10 +456,10 @@ DIRR_DOCS_VERSION: "3.0.1"
 ## Related Documentation
 
 - **[WOLFIE_HEADER_SPECIFICATION.md](WOLFIE_HEADER_SPECIFICATION.md)** — Complete WOLFIE Header specification
-- **[wolfie_headers.yaml](../../wolfie_headers.yaml)** — Machine-readable YAML schema
-- **[global_atoms.yaml](../../config/global_atoms.yaml)** — Global atoms definitions
+- **[wolfie_headers.yaml](../../../wolfie_headers.yaml)** — Machine-readable YAML schema
+- **global_atoms.yaml** — Global atoms definitions
 - **[_dir_atoms.yaml.example](_dir_atoms.yaml.example)** — Example directory atoms file
-- **[module_atoms.yaml.example](../../modules/craftysyntax/module_atoms.yaml.example)** — Example module atoms file
+- **module_atoms.yaml.example** — Example module atoms file
 
 ---
 

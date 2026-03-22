@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\FLARE_HEADERS_COMPLETE_REFERENCE.md"
+  file_path_from_root: "lupo-docs/api/FLARE_HEADERS_COMPLETE_REFERENCE.md"
   file_hash: "fa41412c4ffd4c6970e16fa4b68d5e030b7525bcf6b3d51437fce5ef392c7771"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

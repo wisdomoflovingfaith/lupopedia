@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\doctrine\TABLE_CEILING_DEFENSE_PLAN.md"
+  file_path_from_root: "lupo-docs/doctrine/TABLE_CEILING_DEFENSE_PLAN.md"
   file_hash: "c4f06a4a22ee621ddce0959179b2bed50c33ac418ada37f5c8a993758c32a742"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

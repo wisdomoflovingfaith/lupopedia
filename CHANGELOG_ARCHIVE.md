@@ -180,7 +180,7 @@ Lupopedia development is divided into four distinct phases of maturation:
 #### Cursor — Top 50 next core batch (4.0.78)
 - **Next bounded Top 50 batch completed:** **lupo_registry**, **lupo_modules**, **lupo_federation_nodes** (core/federation), **lupo_auth_users** (auth). All four updated to 4.0.78 LUPOPEDIA_HEADERS with Table Overview, "Where This Table Is Used," column documentation from [install_new_lupopedia.sql](lupo-database/lupopedia/mysql/install/install_new_lupopedia.sql), indexes, relationships, and doctrine notes. Zencoder pattern; namespace core/federation/auth as appropriate; reserved-ID doctrine noted for lupo_auth_users.
 - **Core-first domain order maintained:** Core and federation tables done in this pass; auth domain started with lupo_auth_users.
-- **Reports refreshed:** [table_doc_header_version_report_4_0_80.md](lupo-docs/status/table_doc_header_version_report_4_0_80.md) 25 at 4.0.80, 325 requiring update; [namespace_audit_4_0_80.md](lupo-docs/status/namespace_audit_4_0_80.md) 135 missing, 214 valid. Validator pass confirmed on all four docs.
+- **Reports refreshed:** table_doc_header_version_report_4_0_80.md 25 at 4.0.80, 325 requiring update; namespace_audit_4_0_80.md 135 missing, 214 valid. Validator pass confirmed on all four docs.
 
 ---
 
@@ -2044,7 +2044,7 @@ lupo-tools/      # Development tools (MOVED)
 - **Directory Reorganization**: Moved `bin/`, `lupo-actors/`, `sessions/`, `logs/`, and `lupo-docs/` to `lupo-*` namespaces (`lupo-bin/`, `lupo-actors/`, `lupo-sessions/`, `lupo-logs/`, `lupo-docs/`) with updated global constants.
 - **PHP 5.3 Compatibility**: Refactored `LupoUploadHandler` and `ANUBIS_QueueProcessor` to remove short array syntax (`[]`) and modern PHP features, ensuring stability on legacy environments.
 - **Channel Directory Refactor**: Renamed the `channels` folder to `lupo-channels` and established `LUPO_CHANNEL_DIR` as the canonical reference across all system include paths.
-- **Overwrite Hierarchy Documentation**: Documented the resolution priority (Filesystem > Database > CSV/TOON) in `lupo-docs/doctrine/FLARE/FLARE_DOCTRINE.md` and created a dedicated [hierarchy.md](file:///C:/ServBay/www/servbay/lupopedia/docs/hierarchy.md) guide.
+- **Overwrite Hierarchy Documentation**: Documented the resolution priority (Filesystem > Database > CSV/TOON) in `lupo-docs/doctrine/FLARE/FLARE_DOCTRINE.md` and created a dedicated [hierarchy.md](lupo-docs/hierarchy.md) guide.
 - **Root Truth Adoption**: Implemented Filesystem-First resolution for actors via `ActorService::getActor()` and `lupo_get_actor()` helper.
 
 ### Key Changes
@@ -2064,7 +2064,7 @@ lupo-tools/      # Development tools (MOVED)
 #### Session Management & Isolation
 - **Multi-Agent Session Anchors**: Implemented `session.json` across all 17 actor directories.
 - **Mandatory L-lupo Prefix**: Enforced `L-lupo-<actor_id>` prefix for all `session_id` generation.
-- **Isolation Documentation**: Created comprehensive [SESSION_MANAGEMENT_SYSTEM.md](file:///C:/ServBay/www/servbay/lupopedia/docs/database/lupopedia/tables/SESSION_MANAGEMENT_SYSTEM.md).
+- **Isolation Documentation**: Created comprehensive [SESSION_MANAGEMENT_SYSTEM.md](lupo-docs/database/lupopedia/tables/SESSION_MANAGEMENT_SYSTEM.md).
 - **Agent Coverage**: Verified isolation for all IDE (Kiro, Windsurf, etc.) and AI (Gemini, Lilith, etc.) agents.
 
 #### Documentation & Governance

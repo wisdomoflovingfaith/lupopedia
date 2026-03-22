@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\channels\doctrine\LIMITS.md"
+  file_path_from_root: "lupo-docs/channels/doctrine/LIMITS.md"
   file_hash: "a37d3952efa6ceab866bea0069c585ecb10c40af8766fd4b2befd30a1765df8f"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

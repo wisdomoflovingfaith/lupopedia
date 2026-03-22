@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\channels\doctrine\SUBDIRECTORY_INSTALLATION_DOCTRINE.md"
+  file_path_from_root: "lupo-docs/channels/doctrine/SUBDIRECTORY_INSTALLATION_DOCTRINE.md"
   file_hash: "aad1c05cbf7cb6acda5d965f73f892406161b250a070de034035eeb4b1854a9e"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"
@@ -479,6 +479,6 @@ This doctrine is **absolute and binding** for all Lupopedia code.
 - [AGENT_ROUTING_DOCTRINE.md](AGENT_ROUTING_DOCTRINE.md) - How Lupopedia routes messages to AI agents
 - [Lupopedia-Reference-Layer-Doctrine.md](Lupopedia-Reference-Layer-Doctrine.md) - Reference layer principles
 - [GLOSSARY.md](../appendix/appendix/GLOSSARY.md) - Terminology definitions including "host website"
-- [MODULE_SYSTEM.md](MODULE_SYSTEM.md) - How modules use public paths
-- [Installation Guide](../INSTALLATION.md) - Installation instructions
+- MODULE_SYSTEM.md - How modules use public paths
+- Installation Guide - Installation instructions
 - [Timestamp Doctrine](TIMESTAMP_DOCTRINE.md) - Time handling rules

@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\channels\kernel\services\INDEX.md"
+  file_path_from_root: "lupo-docs/channels/kernel/services/INDEX.md"
   file_hash: "a8b550eab8ec0c1ae8eca9caab4199d345e6f2c077c9f20be511798ab442d50b"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

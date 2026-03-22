@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\channels\schema\migrations\analysis\PHASE2_CHAT_ENGINE_MIGRATION_REPORT.md"
+  file_path_from_root: "lupo-docs/channels/schema/migrations/analysis/PHASE2_CHAT_ENGINE_MIGRATION_REPORT.md"
   file_hash: "5b322e1c0640dbca59b4efa714311efdd5046bbae6625c94dd5a41fb9246e77c"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

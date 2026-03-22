@@ -20,11 +20,12 @@
     "`metadata_json` text",
     "`task_type` varchar(64)",
     "`task_status` varchar(64)",
-    "`task_priority` varchar(64)",
+    "`task_priority` enum('low','normal','high','urgent','critical') NOT NULL DEFAULT 'normal'",
     "`parent_agent_id` bigint",
     "`consensus_hash` varchar(255)",
     "`approval_chain_json` json",
-    "`task_embeddings` text"
+    "`task_embeddings` text",
+    "`visibility_status` varchar(32) NOT NULL DEFAULT 'active'"
   ],
   "data": [],
   "indexes": [
@@ -96,6 +97,14 @@
       "index_name": "lupo_tasks_idx_task_type",
       "columns": [
         "task_type"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_tasks_idx_visibility_status",
+      "columns": [
+        "visibility_status"
       ],
       "is_unique": false,
       "index_type": "BTREE"

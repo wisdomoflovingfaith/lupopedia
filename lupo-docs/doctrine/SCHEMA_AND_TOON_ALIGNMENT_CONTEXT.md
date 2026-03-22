@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\doctrine\SCHEMA_AND_TOON_ALIGNMENT_CONTEXT.md"
+  file_path_from_root: "lupo-docs/doctrine/SCHEMA_AND_TOON_ALIGNMENT_CONTEXT.md"
   file_hash: "5d5a73268040c7c392de5d90d264e7a746ccb13f494465217e5db96605ae2768"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

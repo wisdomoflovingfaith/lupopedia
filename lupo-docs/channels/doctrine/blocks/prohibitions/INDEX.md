@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\channels\doctrine\blocks\prohibitions\INDEX.md"
+  file_path_from_root: "lupo-docs/channels/doctrine/blocks/prohibitions/INDEX.md"
   file_hash: "f1a5ef3f2c30425215e60d847e06233bc579fe545e559b67607e558e41ebcc19"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

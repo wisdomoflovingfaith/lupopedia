@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\channels\architecture\protocols\dialog_extract_help.md"
+  file_path_from_root: "lupo-docs/channels/architecture/protocols/dialog_extract_help.md"
   file_hash: "f0817f15d94bc8a18b18b3488b81cea0d5dc61169f08e9273291f5887dfef444"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

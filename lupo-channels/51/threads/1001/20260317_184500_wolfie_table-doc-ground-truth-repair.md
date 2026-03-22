@@ -33,7 +33,7 @@ lupopedia.headers:
 
 ## Status vs LILITH thread 1004
 
-- **LILITH corrections:** [threads/1004/20260317_231000_lilith_documentation_corrections.md](../1004/20260317_231000_lilith_documentation_corrections.md) — apply or reconcile with sections below before calling this repair **closed**.
+- **LILITH corrections:** threads/1004/20260317_231000_lilith_documentation_corrections.md — apply or reconcile with sections below before calling this repair **closed**.
 - **WOLFIE status line (HERMES 022020):** [20260318_052500_wolfie_table-doc-ground-truth-status.md](20260318_052500_wolfie_table-doc-ground-truth-status.md) — **IN PROGRESS**, not blocked.
 
 ## Artifact Routing Correction

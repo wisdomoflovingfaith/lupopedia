@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\channels\0\roles\installer.md"
+  file_path_from_root: "lupo-database/lupopedia/channels/channel_id/0/roles/installer.md"
   file_hash: "e5defe2143a0f2fe7585da6ff1cd8cc5e33ed6f852cf9aa41dc99e3beda6f5b3"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\channels\dialogs\dev\DIALOG_SYSTEM_FULL_IMPLEMENTATION.md"
+  file_path_from_root: "lupo-docs/channels/dialogs/dev/DIALOG_SYSTEM_FULL_IMPLEMENTATION.md"
   file_hash: "9447dc644ceddb36e34a8f742797951cf3724757099b89eed685ba3d5678d192"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

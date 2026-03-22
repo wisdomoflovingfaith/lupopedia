@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\channels\doctrine\SQL_REFACTOR_MAPPING_DOCTRINE.md"
+  file_path_from_root: "lupo-docs/channels/doctrine/SQL_REFACTOR_MAPPING_DOCTRINE.md"
   file_hash: "d3e89ea74fe5cf1e306ffe4c2480ece7bc024c88e6ee537c5a486ddb3d3dac9b"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\database\lupopedia\tables\lupo_analytics_referers_periods.md"
+  file_path_from_root: "lupo-docs/database/lupopedia/tables/active/lupo_analytics_referers_periods.md"
   file_hash: "894ee8a50c85d2bd694a1cba973498b43a8fd5442a285a5fba373708289e8eb6"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

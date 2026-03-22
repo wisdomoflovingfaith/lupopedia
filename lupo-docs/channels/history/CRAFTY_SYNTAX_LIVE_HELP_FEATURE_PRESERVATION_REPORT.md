@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\channels\history\CRAFTY_SYNTAX_LIVE_HELP_FEATURE_PRESERVATION_REPORT.md"
+  file_path_from_root: "lupo-docs/channels/history/CRAFTY_SYNTAX_LIVE_HELP_FEATURE_PRESERVATION_REPORT.md"
   file_hash: "5cffb8dabdc85d0208f4d1758e0f1f13a5c98b40056e0cd9bd976a5102c9bb0e"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

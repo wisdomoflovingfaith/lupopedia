@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\database\lupopedia\tables\lupo_tickets.md"
+  file_path_from_root: "lupo-docs/database/lupopedia/tables/active/lupo_tickets.md"
   file_hash: "05a8a49d6727c963990923a3028ea6da17a6db83d145f0b876b53a3d51814923"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

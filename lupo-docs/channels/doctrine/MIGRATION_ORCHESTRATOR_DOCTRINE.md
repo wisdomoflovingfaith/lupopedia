@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\channels\doctrine\MIGRATION_ORCHESTRATOR_DOCTRINE.md"
+  file_path_from_root: "lupo-docs/channels/doctrine/MIGRATION_ORCHESTRATOR_DOCTRINE.md"
   file_hash: "5fa21fa81cc4468eacf2d0391dccdef060a4cbbfd364b553112eb90dab51f0a9"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"
@@ -266,9 +266,9 @@ The Migration Orchestrator provides **safe, observable, and recoverable** schema
 ## 📚 Related Documentation
 
 - [Schema Federation Doctrine](SCHEMA_FEDERATION_DOCTRINE.md)
-- [Table Budget Doctrine](TABLE_BUDGET_DOCTRINE.md)
-- [Rollback Protocol](ROLLBACK_PROTOCOL.md)
-- [Migration Orchestrator API](../api/MIGRATION_ORCHESTRATOR_API.md)
+- Table Budget Doctrine
+- Rollback Protocol
+- Migration Orchestrator API
 
 ---
 

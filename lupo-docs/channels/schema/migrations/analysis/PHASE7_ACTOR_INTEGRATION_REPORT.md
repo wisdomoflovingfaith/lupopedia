@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\channels\schema\migrations\analysis\PHASE7_ACTOR_INTEGRATION_REPORT.md"
+  file_path_from_root: "lupo-docs/channels/schema/migrations/analysis/PHASE7_ACTOR_INTEGRATION_REPORT.md"
   file_hash: "268150f680796c5f35ec39216c6bef18775897bdaa4c7294417d77e2836742bb"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

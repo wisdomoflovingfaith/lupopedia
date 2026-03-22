@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\channels\gov\META_DOCTRINE.md"
+  file_path_from_root: "lupo-docs/channels/gov/META_DOCTRINE.md"
   file_hash: "7baec2ea5f4ba03b7f3cae3cad3c897dec19d6bf5e4e939bbea7fc15a26857a5"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

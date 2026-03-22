@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\channels\doctrine\PACK_SYNC_DOCTRINE.md"
+  file_path_from_root: "lupo-docs/channels/doctrine/PACK_SYNC_DOCTRINE.md"
   file_hash: "e03cce91dc4c4bfb1b504869737851599fc2423f7f836115dee97fb1fe8cad2f"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"
@@ -431,9 +431,9 @@ $lastTimestamp = $context->getLastSyncTimestamp();
 
 ## Related Documentation
 
-- **[PACK_MEMORY_DOCTRINE.md](lupo-docs/PACK_MEMORY_DOCTRINE.md)** - Pack memory layer (3.0.110)
-- **[PACK_BEHAVIOR_DOCTRINE.md](lupo-docs/PACK_BEHAVIOR_DOCTRINE.md)** - Pack behavioral layer (3.0.109)
-- **[EMOTIONAL_GEOMETRY.md](lupo-docs/doctrine/EMOTIONAL_GEOMETRY.md)** - Emotional geometry doctrine (3.0.108)
+- **[PACK_MEMORY_DOCTRINE.md](PACK_MEMORY_DOCTRINE.md)** - Pack memory layer (3.0.110)
+- **[PACK_BEHAVIOR_DOCTRINE.md](PACK_BEHAVIOR_DOCTRINE.md)** - Pack behavioral layer (3.0.109)
+- **[EMOTIONAL_GEOMETRY.md](EMOTIONAL_GEOMETRY.md)** - Emotional geometry doctrine (3.0.108)
 
 ---
 

@@ -124,18 +124,18 @@ lupopedia.footer:
 ## 🔗 Quick Access Links
 
 ### Core Files
-- [LUPEDIA_VERSION](LUPEDIA_VERSION) - Master version string
-- [global_atoms.yaml](lupo-config/global_atoms.yaml) - Primary configuration
-- [version.php](lupo-includes/version.php) - Version management
+- [LUPEDIA_VERSION](../LUPEDIA_VERSION) - Master version string
+- [global_atoms.yaml](../lupo-config/global_atoms.yaml) - Primary configuration
+- [version.php](../lupo-includes/version.php) - Version management
 
 ### Documentation
-- [CHANGELOG.md](CHANGELOG.md) - Version history
-- [TODO.md](TODO.md) - Active tasks
-- [README.md](README.md) - Project documentation
+- [CHANGELOG.md](../CHANGELOG.md) - Version history
+- [TODO.md](../TODO.md) - Active tasks
+- [README.md](../../README.md) - Project documentation
 
 ### Task Management
-- [Priority Task](lupo-channels/42/tasks/4.0.73_priority_full_upgrade_test.md) - Main 4.0.73 task
-- [Development Thread](lupo-channels/42/threads/4.0.73/thread_4.0.73_development_cycle.md) - Development cycle
+- [Priority Task](../lupo-channels/42/tasks/4.0.73_priority_full_upgrade_test.md) - Main 4.0.73 task
+- Development Thread - Development cycle
 
 ---
 

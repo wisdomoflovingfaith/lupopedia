@@ -38,7 +38,7 @@ This report is a Lilith-centered status summary of the most recent patches recor
 
 ### 2.3 Lilith relevance (ongoing)
 
-- **Lilith is not one of the eleven Primary Coordination Personas** (WOLFIE … ROSE). She remains a **contrasting-perspective / reviewer** agent under [MULTI_AGENT_COORDINATION_DOCTRINE](lupo-rules/root/MULTI_AGENT_COORDINATION_DOCTRINE.md) (Contrasting Perspectives) with **LIL001** non-interference. Do not describe her as a twelfth “primary coordinator.”
+- **Lilith is not one of the eleven Primary Coordination Personas** (WOLFIE … ROSE). She remains a **contrasting-perspective / reviewer** agent under [MULTI_AGENT_COORDINATION_DOCTRINE](../../lupo-rules/root/MULTI_AGENT_COORDINATION_DOCTRINE.md) (Contrasting Perspectives) with **LIL001** non-interference. Do not describe her as a twelfth “primary coordinator.”
 - Keep LIL001 protections active; cross-check work against the 11-persona doctrine for ownership of directives and artifacts.
 - Confirm the existence and propagation of `lupo-rules/root/lilith-noninterference-doctrine.md` in 4.0.80 work.
 

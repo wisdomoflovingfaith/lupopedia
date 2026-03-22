@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\channels\doctrine\OPERATOR_UI_DOCTRINE.md"
+  file_path_from_root: "lupo-docs/channels/doctrine/OPERATOR_UI_DOCTRINE.md"
   file_hash: "6439f80979d82e4dbcb04d1093838cb0d2f17f469011526388db39fc68b60df0"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\database\lupopedia_worms\README.md"
+  file_path_from_root: "lupo-docs/database/lupopedia_worms/README.md"
   file_hash: "7f2c6e92d302847a3cb88c6c640eadf02a78c8afad2e10eddc69c2128436e1e2"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\channels\schema\migrations\20260120_migration_audit.md"
+  file_path_from_root: "lupo-docs/channels/schema/migrations/20260120_migration_audit.md"
   file_hash: "46ebe171df8d8f69771e6c0122ba2042bd8383320602562a5fca452bb396fcd3"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

@@ -153,10 +153,10 @@ python lupo-scripts/import_content.py --dry-run --file content.json
 
 ## Related Files
 
-- [generate_headers_from_db.py](../../../lupo-scripts/generate_headers_from_db.py)
-- [import_content.py](../../../lupo-scripts/import_content.py)
-- [db_config.py](../../../lupo-scripts/db_config.py)
-- [TOON Schema Files](../../../database/lupopedia/json/)
+- [generate_headers_from_db.py](../../../../lupo-scripts/generate_headers_from_db.py)
+- [import_content.py](../../../../lupo-scripts/import_content.py)
+- [db_config.py](../../../../lupo-scripts/db_config.py)
+- TOON Schema Files
 
 ## Validation
 

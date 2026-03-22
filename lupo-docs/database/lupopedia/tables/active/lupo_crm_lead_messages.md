@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\database\lupopedia\tables\lupo_crm_lead_messages.md"
+  file_path_from_root: "lupo-docs/database/lupopedia/tables/active/lupo_crm_lead_messages.md"
   file_hash: "d8eba8dc4a27424d8050773d64646b9e9dd2c5c52a9a37d1f6f0c7c6e986f97a"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

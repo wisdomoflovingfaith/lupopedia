@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\channels\appendix\appendix\INVESTOR_COMMUNICATIONS.md"
+  file_path_from_root: "lupo-docs/channels/appendix/appendix/INVESTOR_COMMUNICATIONS.md"
   file_hash: "29a1447847fae3b9343db51191a0d103bcc7e628779d5ca0bcf9ea7d856430a0"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

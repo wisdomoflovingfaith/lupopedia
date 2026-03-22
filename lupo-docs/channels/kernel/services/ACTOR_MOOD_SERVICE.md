@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\channels\kernel\services\ACTOR_MOOD_SERVICE.md"
+  file_path_from_root: "lupo-docs/channels/kernel/services/ACTOR_MOOD_SERVICE.md"
   file_hash: "cb6d50e52106a7d64b685a4f1d6ca03957f096231801e5ee8c4c8dc74590c306"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"
@@ -607,12 +607,12 @@ $thresholds = $coherenceService->getThresholds();
 ## Related Documentation
 
 ### Canonical Emotional Geometry
-- [EMOTIONAL_GEOMETRY_DOCTRINE.md](../doctrine/EMOTIONAL_GEOMETRY_DOCTRINE.md) - 2-Actor RGB Mood Model
+- [EMOTIONAL_GEOMETRY_DOCTRINE.md](../../doctrine/legacy-import/EMOTIONAL_GEOMETRY_DOCTRINE.md) - 2-Actor RGB Mood Model
 - [COUNTING_IN_LIGHT.md](../../appendix/appendix/COUNTING_IN_LIGHT.md) - RGB Axis Semantics
 - [MOOD_RGB_DOCTRINE.md](../../doctrine/MOOD_RGB_DOCTRINE.md) - Mood Color System
 
 ### Deprecated Models
-- [DEPRECATED_EMOTIONAL_GEOMETRY.md](../../doctrine/deprecated/DEPRECATED_EMOTIONAL_GEOMETRY.md) - Legacy scalar/5-tuple models
+- [DEPRECATED_EMOTIONAL_GEOMETRY.md](../../doctrine/legacy-import/deprecated/DEPRECATED_EMOTIONAL_GEOMETRY.md) - Legacy scalar/5-tuple models
 
 ### Cleanup Report
 - [LEGACY_EMOTIONAL_GEOMETRY_CLEANUP.md](../../overview/reports/LEGACY_EMOTIONAL_GEOMETRY_CLEANUP.md) - Repository sweep results

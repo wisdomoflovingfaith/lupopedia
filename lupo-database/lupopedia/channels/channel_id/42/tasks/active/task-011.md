@@ -51,7 +51,7 @@ lupopedia.conditional:
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "task"
-  file_path_from_root: "lupo-database/lupopedia/channels/lupo-channels/42/tasks/active/task-011.md"
+  file_path_from_root: "lupo-database/lupopedia/channels/channel_id/42/tasks/active/task-011.md"
   file_hash: "33b0f6fb25e4bfa7abc893fd18ef4d1dc447defd1dc5b90801d38868064d5ab9"
   last_updated_utc: "20260304"
   system_version: "4.0.73"

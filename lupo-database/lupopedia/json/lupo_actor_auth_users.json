@@ -1,0 +1,97 @@
+{
+  "table_name": "lupo_actor_auth_users",
+  "fields": [
+    "`actor_auth_user_id` bigint NOT NULL",
+    "`actor_id` bigint NOT NULL",
+    "`auth_user_id` bigint NOT NULL",
+    "`relationship_role` varchar(64) NOT NULL DEFAULT 'supporting_human'",
+    "`is_primary` tinyint NOT NULL DEFAULT 0",
+    "`routing_priority` smallint NOT NULL DEFAULT 100",
+    "`status` varchar(32) NOT NULL DEFAULT 'active'",
+    "`metadata_json` json",
+    "`created_ymdhis` bigint NOT NULL DEFAULT 0",
+    "`updated_ymdhis` bigint NOT NULL",
+    "`is_deleted` tinyint NOT NULL DEFAULT 0",
+    "`deleted_ymdhis` bigint DEFAULT 0"
+  ],
+  "data": [],
+  "indexes": [
+    {
+      "index_name": "lupo_actor_auth_users_idx_actor_role_primary_lookup",
+      "columns": [
+        "actor_id",
+        "relationship_role",
+        "status",
+        "is_deleted",
+        "is_primary",
+        "routing_priority",
+        "auth_user_id"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_actor_auth_users_idx_actor_routing",
+      "columns": [
+        "actor_id",
+        "status",
+        "is_deleted",
+        "relationship_role",
+        "is_primary",
+        "routing_priority",
+        "auth_user_id"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_actor_auth_users_idx_actor_status_primary_priority",
+      "columns": [
+        "actor_id",
+        "status",
+        "is_primary",
+        "routing_priority"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_actor_auth_users_idx_auth_user_status",
+      "columns": [
+        "auth_user_id",
+        "status"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_actor_auth_users_idx_status",
+      "columns": [
+        "status"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_actor_auth_users_unq_actor_user_role",
+      "columns": [
+        "actor_id",
+        "auth_user_id",
+        "relationship_role"
+      ],
+      "is_unique": true,
+      "index_type": "BTREE"
+    }
+  ],
+  "primary_key": {
+    "column_name": "actor_auth_user_id",
+    "expected_name": "actor_auth_user_id",
+    "is_correct": true,
+    "needs_rename": false
+  },
+  "doctrine_metadata": {
+    "no_foreign_keys": true,
+    "no_triggers": true
+  },
+  "relationships": []
+}

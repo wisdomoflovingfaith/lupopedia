@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\channels\doctrine\WHS_LHP_INDEX.md"
+  file_path_from_root: "lupo-docs/channels/doctrine/WHS_LHP_INDEX.md"
   file_hash: "f84c99e08786dac728ea6d41d0c0df8d4de53e4d7ec794566823fcb983613052"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

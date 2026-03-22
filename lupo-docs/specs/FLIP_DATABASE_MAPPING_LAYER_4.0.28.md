@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\specs\FLIP_DATABASE_MAPPING_LAYER_4.0.28.md"
+  file_path_from_root: "lupo-docs/specs/FLIP_DATABASE_MAPPING_LAYER_4.0.28.md"
   file_hash: "5493e770ec420498f356dec2168ff058921d744314efb6b9d4c5223c57cf621f"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

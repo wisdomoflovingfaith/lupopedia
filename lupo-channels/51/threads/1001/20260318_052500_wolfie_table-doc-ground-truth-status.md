@@ -25,14 +25,14 @@ lupopedia.headers:
 | Item | Pointer |
 |------|---------|
 | **Repair directive (WOLFIE)** | [20260317_184500_wolfie_table-doc-ground-truth-repair](20260317_184500_wolfie_table-doc-ground-truth-repair.md) — failure list + remediation plan |
-| **LILITH corrections (thread 1004)** | [20260317_231000_lilith_documentation_corrections](../1004/20260317_231000_lilith_documentation_corrections.md) — QA/corrections to align docs to TOON/install |
-| **Authorship follow-up** | HERMES prompt [041000](../../prompts/20260318_041000_hermes_prompt_wolfie_table-doc-authorship-003000.md) (003000 pattern) |
+| **LILITH corrections (thread 1004)** | 20260317_231000_lilith_documentation_corrections — QA/corrections to align docs to TOON/install |
+| **Authorship follow-up** | HERMES prompt [041000](../../../42/prompts/20260318_041000_hermes_prompt_wolfie_table-doc-authorship-003000.md) (003000 pattern) |
 
 **Closure criteria:** `184500` marked **CLOSED** when listed table-doc violations are resolved or explicitly waived with doctrine sign-off; LILITH 1004 items either merged into repair checklist or superseded.
 
-**Top 50 next slice (after A10):** Delegated — [041100 HEPHAESTUS A11](../../prompts/20260318_041100_hermes_prompt_hephaestus_top50-a11-table-docs.md).
+**Top 50 next slice (after A10):** Delegated — [041100 HEPHAESTUS A11](../../../42/prompts/20260318_041100_hermes_prompt_hephaestus_top50-a11-table-docs.md).
 
-**HERMES prompt [022020](../../prompts/20260318_022020_hermes_prompt_wolfie_externalai-batch.md)** executed this status artifact (R2).
+**HERMES prompt [022020](../../../42/prompts/20260318_022020_hermes_prompt_wolfie_externalai-batch.md)** executed this status artifact (R2).
 
 ---
 

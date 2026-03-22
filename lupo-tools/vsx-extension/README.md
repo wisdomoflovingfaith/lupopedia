@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\tools\vsx-extension\README.md"
+  file_path_from_root: "lupo-tools/vsx-extension/README.md"
   file_hash: "af4141576e9f1bc9e16fac72fadaeafdb15fa702fc44551d75666cbc8cc052b5"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"
@@ -122,11 +122,11 @@ If another IDE (e.g. Windsurf, KIRO, Warp) is running on the same codebase, each
 
 ## Installation
 
-See [lupo-docs/INSTALL.md](lupo-docs/INSTALL.md).
+See [lupo-docs/INSTALL.md](../../lupo-docs/INSTALL.md).
 
 ## Usage Guide
 
-See [lupo-docs/USAGE.md](lupo-docs/USAGE.md).
+See [lupo-docs/USAGE.md](docs/USAGE.md).
 
 ---
 

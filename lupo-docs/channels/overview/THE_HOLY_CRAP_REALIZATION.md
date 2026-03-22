@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\channels\overview\THE_HOLY_CRAP_REALIZATION.md"
+  file_path_from_root: "lupo-docs/channels/overview/THE_HOLY_CRAP_REALIZATION.md"
   file_hash: "a17fbcba6510140a40e136f8519ba5825cd96a4702df45c7d7f03ff74546a40d"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

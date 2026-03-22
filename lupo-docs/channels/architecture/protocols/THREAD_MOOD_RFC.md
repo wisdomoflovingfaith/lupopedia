@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\channels\architecture\protocols\THREAD_MOOD_RFC.md"
+  file_path_from_root: "lupo-docs/channels/architecture/protocols/THREAD_MOOD_RFC.md"
   file_hash: "e325ea7c639b6a026c53e9b38e8ff1a72a4134a2e3bf2abbc82488a2b79c12a2"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

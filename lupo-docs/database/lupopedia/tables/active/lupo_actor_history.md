@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\database\lupopedia\tables\lupo_actor_history.md"
+  file_path_from_root: "lupo-docs/database/lupopedia/tables/active/lupo_actor_history.md"
   file_hash: "2c38feac11bd470dc88076e14ff2896a744cc374a46312cec10313fde413d5cf"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

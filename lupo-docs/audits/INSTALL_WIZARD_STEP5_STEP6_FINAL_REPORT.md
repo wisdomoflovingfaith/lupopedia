@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\audits\INSTALL_WIZARD_STEP5_STEP6_FINAL_REPORT.md"
+  file_path_from_root: "lupo-docs/audits/INSTALL_WIZARD_STEP5_STEP6_FINAL_REPORT.md"
   file_hash: "d85729ba7b4c9c6c701aba9199916fcdcc4bd84c7495f62b44d88c1b0f58c481"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

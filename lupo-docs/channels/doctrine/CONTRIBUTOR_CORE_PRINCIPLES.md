@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\channels\doctrine\CONTRIBUTOR_CORE_PRINCIPLES.md"
+  file_path_from_root: "lupo-docs/channels/doctrine/CONTRIBUTOR_CORE_PRINCIPLES.md"
   file_hash: "1499a8f8da3f8c8ed775f70c37092337a355cb41cd415bd17641ff483b855882"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"
@@ -799,10 +799,10 @@ Before contributing, you MUST read:
 2. **[NO_TRIGGERS_DOCTRINE.md](NO_TRIGGERS_DOCTRINE.md)** - Why triggers are forbidden
 3. **[NO_STORED_PROCEDURES_DOCTRINE.md](NO_STORED_PROCEDURES_DOCTRINE.md)** - Why stored procedures are forbidden
 4. **[NO_FOREIGN_KEYS_DOCTRINE.md](NO_FOREIGN_KEYS_DOCTRINE.md)** - Why foreign keys are forbidden
-5. **[ANUBIS_DOCTRINE.md](ANUBIS_DOCTRINE.md)** - How the orphan repair system works
+5. **ANUBIS_DOCTRINE.md** - How the orphan repair system works
 6. **[WHY_NO_FRAMEWORKS.md](WHY_NO_FRAMEWORKS.md)** - Why we don't use frameworks
 7. **[DATABASE_PHILOSOPHY.md](../architecture/DATABASE_PHILOSOPHY.md)** - Core database design principles
-8. **[PHILOSOPHY.md](../../PHILOSOPHY.md)** - Overall system philosophy
+8. **[PHILOSOPHY.md](../overview/PHILOSOPHY.md)** - Overall system philosophy
 
 ---
 

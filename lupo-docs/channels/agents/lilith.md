@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\channels\agents\lilith.md"
+  file_path_from_root: "lupo-docs/channels/agents/lilith.md"
   file_hash: "4e965a86609826a85f9696815f58d180deb3269b8d95ab612515b4ada1358fb7"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

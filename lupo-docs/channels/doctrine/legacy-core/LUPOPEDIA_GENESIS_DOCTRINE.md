@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\channels\doctrine\legacy-core\LUPOPEDIA_GENESIS_DOCTRINE.md"
+  file_path_from_root: "lupo-docs/channels/doctrine/legacy-core/LUPOPEDIA_GENESIS_DOCTRINE.md"
   file_hash: "42c4c2a838fdaa1f757d694438f0a4c1d7086fc40cb8f30646a37b6514ecf389"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

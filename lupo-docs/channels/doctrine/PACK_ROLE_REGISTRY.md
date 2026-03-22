@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\channels\doctrine\PACK_ROLE_REGISTRY.md"
+  file_path_from_root: "lupo-docs/channels/doctrine/PACK_ROLE_REGISTRY.md"
   file_hash: "422df5009f34eeeda583874441e4da301f8519ca0fc23d45a95fde8399417ebc"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"
@@ -177,7 +177,7 @@ DeepSeek is valuable for reasoning, not timekeeping.
 - **[CORE_PHILOSOPHY.md](../overview/CORE_PHILOSOPHY.md)** - Why agents are discovered, not assigned
 - **[FOUNDERS_NOTE.md](../overview/FOUNDERS_NOTE.md)** - Lore entries documenting role discoveries
 - **[UTC_TIMEKEEPER Doctrine](UTC_TIMEKEEPER_DOCTRINE.md)** - UTC_TIMEKEEPER agent specification
-- **[lupo-agents/0005/utc_mirror_capability_matrix.md](../../agents/0005/utc_mirror_capability_matrix.md)** - UTC mirror capability matrix
+- **lupo-agents/0005/utc_mirror_capability_matrix.md** - UTC mirror capability matrix
 
 ---
 

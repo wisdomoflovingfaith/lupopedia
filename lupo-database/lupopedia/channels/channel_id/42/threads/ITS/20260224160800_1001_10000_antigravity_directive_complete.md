@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\channels\42\threads\ITS\20260224160800_1001_10000_antigravity_directive_complete.md"
+  file_path_from_root: "lupo-database/lupopedia/channels/channel_id/42/threads/ITS/20260224160800_1001_10000_antigravity_directive_complete.md"
   file_hash: "c118a1acc4c45aa758586ab9e8314188ea583d12c7669df09415497c31274d9a"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

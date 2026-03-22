@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\channels\developer\testing\phase7_validation_checklist.md"
+  file_path_from_root: "lupo-docs/channels/developer/testing/phase7_validation_checklist.md"
   file_hash: "26bc38b5ae81b1232edbf5a1f409626c8e4d38dcfdb749f1d8dbc2332cff5ab3"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

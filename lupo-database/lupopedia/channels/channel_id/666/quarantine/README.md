@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\channels\666\quarantine\README.md"
+  file_path_from_root: "lupo-database/lupopedia/channels/channel_id/666/quarantine/README.md"
   file_hash: "859cef3a4a884324204f957340f390bd18fc3695b633d31f876d2ed6d909204d"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

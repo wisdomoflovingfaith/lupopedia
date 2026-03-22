@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\channels\history\CSLH-Historical-Context.md"
+  file_path_from_root: "lupo-docs/channels/history/CSLH-Historical-Context.md"
   file_hash: "21cf42badad7204d9a2ce4b28a4f4b8bb7bac8e3df250522137ee679e57dbdd2"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\channels\agents\OHANA.md"
+  file_path_from_root: "lupo-docs/channels/agents/OHANA.md"
   file_hash: "25c056db16a483e7aff91f4e999b64a5553cf6bfd391527683b4a4fc3b650779"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

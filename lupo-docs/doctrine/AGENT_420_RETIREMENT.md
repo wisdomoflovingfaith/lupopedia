@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\doctrine\AGENT_420_RETIREMENT.md"
+  file_path_from_root: "lupo-docs/doctrine/AGENT_420_RETIREMENT.md"
   file_hash: "42e68579a5411a8096d30c6b60058251e57b79de61f365c113a0044b430cf682"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

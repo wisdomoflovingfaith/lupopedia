@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\channels\0\actors\1\tasks\assigned\README.md"
+  file_path_from_root: "lupo-database/lupopedia/channels/channel_id/0/actors/actor_id/1/tasks/assigned/README.md"
   file_hash: "4f8d939596460c3ca7f792024110975d412a03959266b307b43d4c5818735c63"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"
@@ -68,7 +68,7 @@ Tasks are centrally managed in `/channels/0/tasks/` and referenced here for acto
 
 ## Active Tasks
 
-- [registry_lock.md](../../../../tasks/active/registry_lock.md) - Registry Lock and Validation (HIGH)
+- registry_lock.md - Registry Lock and Validation (HIGH)
 
 ## How to Use
 

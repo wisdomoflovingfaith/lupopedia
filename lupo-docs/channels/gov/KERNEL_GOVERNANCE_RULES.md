@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\channels\gov\KERNEL_GOVERNANCE_RULES.md"
+  file_path_from_root: "lupo-docs/channels/gov/KERNEL_GOVERNANCE_RULES.md"
   file_hash: "edadc4ae70b1e268d08d37dcb24fbb9e332b0bd55e3a35ad53d275b4b42bfe74"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

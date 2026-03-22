@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\database\lupopedia\tables\lupo_actor_truth_edges.md"
+  file_path_from_root: "lupo-docs/database/lupopedia/tables/active/lupo_actor_truth_edges.md"
   file_hash: "9d1428b749616c121db48ad19c0f53c1429eb567399f472c627448154aecf091"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\channels\42\broadcasts\20260225130009_10000_1000_42_kiro_reply_to_captain_wolfie_confirming_version_4_0_42_initialization_complete.md"
+  file_path_from_root: "lupo-database/lupopedia/channels/channel_id/42/broadcasts/20260225130009_10000_1000_42_kiro_reply_to_captain_wolfie_confirming_version_4_0_42_initialization_complete.md"
   file_hash: "46a5f1b5ef0dc9005505e93b9f5ee8f5caae7468ebb96f611c2cea360105ae27"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

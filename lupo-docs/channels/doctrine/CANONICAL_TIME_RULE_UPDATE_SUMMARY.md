@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\channels\doctrine\CANONICAL_TIME_RULE_UPDATE_SUMMARY.md"
+  file_path_from_root: "lupo-docs/channels/doctrine/CANONICAL_TIME_RULE_UPDATE_SUMMARY.md"
   file_hash: "f0ffbc28c12cba02ccd942b75b03da9c4b5078ee64facaf3094cef93f803f816"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

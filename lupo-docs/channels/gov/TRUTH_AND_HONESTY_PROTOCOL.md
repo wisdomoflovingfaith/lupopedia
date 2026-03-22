@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\channels\gov\TRUTH_AND_HONESTY_PROTOCOL.md"
+  file_path_from_root: "lupo-docs/channels/gov/TRUTH_AND_HONESTY_PROTOCOL.md"
   file_hash: "638e2af36592cf23b2d04c3e52531f9ccfcf346a66ea22c703fad2e789a45de4"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

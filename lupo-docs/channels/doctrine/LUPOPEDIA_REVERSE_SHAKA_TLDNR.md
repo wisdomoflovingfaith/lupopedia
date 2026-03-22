@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\channels\doctrine\LUPOPEDIA_REVERSE_SHAKA_TLDNR.md"
+  file_path_from_root: "lupo-docs/channels/doctrine/LUPOPEDIA_REVERSE_SHAKA_TLDNR.md"
   file_hash: "30e02e23d8d8ef169ee5168e1cd4e54ce2fc9967811b6d485455743339211a3e"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

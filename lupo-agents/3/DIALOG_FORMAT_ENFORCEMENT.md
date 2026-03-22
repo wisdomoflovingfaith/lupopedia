@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\lupo-agents\3\DIALOG_FORMAT_ENFORCEMENT.md"
+  file_path_from_root: "lupo-agents/3/DIALOG_FORMAT_ENFORCEMENT.md"
   file_hash: "03360dcca6cbf065e645209442f9d72512125298380857a5fb71199a3c919795"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

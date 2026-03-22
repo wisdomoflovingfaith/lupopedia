@@ -30,7 +30,7 @@ Skill documentation for actor capabilities. Actors declare skills via the `lupop
 | Skill | Description | Path |
 |-------|-------------|------|
 | Lupopedia Headers | Header format, structure, and usage | [lupopedia-headers/](lupopedia-headers/) |
-| Uploads | Canonical upload layout, date partitioning, hash-named files, auth_users namespace | [lupo-uploads/](lupo-uploads/) |
+| Uploads | Canonical upload layout, date partitioning, hash-named files, auth_users namespace | [lupo-uploads/](../lupo-uploads) |
 
 ## See also
 

@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\channels\overview\WHAT_LUPOPEDIA_IS.md"
+  file_path_from_root: "lupo-docs/channels/overview/WHAT_LUPOPEDIA_IS.md"
   file_hash: "a1186ddb278e32af67de420f8212a7c4b3b061bbf896ad41be33bd279f925f3f"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"
@@ -356,7 +356,7 @@ You're not just sitting on a unique dataset. You're building the semantic OS tha
 
 *See also:*
 - [VISION.md](VISION.md) - Vision statement and definitions
-- [README.md](../README.md) - Main project documentation
+- [README.md](../../../../README.md) - Main project documentation
 - [lupo-docs/core/WHY_LUPOPEDIA_NEEDS_CRAFTY_SYNTAX.md](../architecture/WHY_LUPOPEDIA_NEEDS_CRAFTY_SYNTAX.md) - Detailed explanation of the symbiotic relationship
 - [lupo-docs/core/WHY_THIS_DATASET_CANNOT_EXIST_TODAY.md](WHY_THIS_DATASET_CANNOT_EXIST_TODAY.md) - Why the 25-year dataset is unique
-- [emotional.htm](../emotional.htm) - The Emotional Operating System (EOS) whitepaper
+- emotional.htm - The Emotional Operating System (EOS) whitepaper

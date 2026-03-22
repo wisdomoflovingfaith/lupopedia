@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\channels\dialogs\architecture\CHANNEL_DIALOG_SCHEMA_REVIEW.md"
+  file_path_from_root: "lupo-docs/channels/dialogs/architecture/CHANNEL_DIALOG_SCHEMA_REVIEW.md"
   file_hash: "04033470e7355b872824d84c9602c866e99497c5e0ad11ff67f11f44e4a09bad"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\examples\FLIP_DESIGN_COLLABORATION_EXAMPLE.md"
+  file_path_from_root: "lupo-docs/examples/FLIP_DESIGN_COLLABORATION_EXAMPLE.md"
   file_hash: "589a3d9d5780432f4943c292ab264f76ad493543eadebdf165fe60d6b227b742"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

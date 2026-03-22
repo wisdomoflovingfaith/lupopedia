@@ -61,7 +61,7 @@ All implemented in **`lupo-scripts/validate_channel_artifacts.py`**.
 | Rule | Severity | Behavior |
 |------|----------|----------|
 | **V-PROJECT-001** | ERROR | Every scanned artifact path must resolve under `project_root` (symlink / layout escape fails). |
-| **V-PROJECT-002** | ERROR | Markdown links `[text](target)` with a non-HTTP target that resolves **outside** `project_root` must use explicit **`project-<id>:<relative-path>`**; otherwise reported. |
+| **V-PROJECT-002** | ERROR | Markdown links `text` with a non-HTTP target that resolves **outside** `project_root` must use explicit **`project-<id>:<relative-path>`**; otherwise reported. |
 | **V-PROJECT-003** | ERROR | `project-N:inner` must be repo-relative with no `..` segments in the inner path. |
 | **V-PROJECT-004** | WARN | If frontmatter contains **`federation_node_id:`** or an edge **`to: project-N:...`**, and **`project_id:`** is absent in that frontmatter → warning. |
 
@@ -113,8 +113,8 @@ python lupo-scripts/validate_channel_artifacts.py --repo-root . --channel 42 --s
 
 **After (`--enforce-project`):**
 
-- Link `[x](../../outside/repo/file.md)` → `PROJECT_ERROR[V-PROJECT-002]: ... escapes project root; use project-<id>:<path>`.
-- Link `[x](project-1:lupo-channels/42/threads/1/x.md)` → allowed (cross-project **by convention**; path not opened on disk for project 1).
+- Link `x` → `PROJECT_ERROR[V-PROJECT-002]: ... escapes project root; use project-<id>:<path>`.
+- Link `x` → allowed (cross-project **by convention**; path not opened on disk for project 1).
 - Frontmatter edge `to: "project-1:..."` without `project_id:` → `PROJECT_WARN[V-PROJECT-004]`.
 
 ---

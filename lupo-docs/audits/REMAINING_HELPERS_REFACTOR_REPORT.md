@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\REMAINING_HELPERS_REFACTOR_REPORT.md"
+  file_path_from_root: "lupo-docs/audits/REMAINING_HELPERS_REFACTOR_REPORT.md"
   file_hash: "80b0b32198271dca78289e34b4d692dd48ca25e9aba9a39a4677cce2b4a7e224"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

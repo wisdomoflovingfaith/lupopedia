@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: "lupo-channels/0/initialize_readme.md"
+  file_path_from_root: "lupo-database/lupopedia/channels/channel_id/0/initialize_readme.md"
   federation_node_id: 0
   web_path: "http://www.lupopedia.com/initialize_readme"
   last_updated_utc: "20260301121500"

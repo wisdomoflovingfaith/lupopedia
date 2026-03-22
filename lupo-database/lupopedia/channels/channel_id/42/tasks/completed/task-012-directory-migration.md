@@ -51,7 +51,7 @@ lupopedia.conditional:
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "task"
-  file_path_from_root: "lupo-database/lupopedia/channels/lupo-channels/42/tasks/active/task-012-directory-migration.md"
+  file_path_from_root: "lupo-database/lupopedia/channels/channel_id/42/tasks/completed/task-012-directory-migration.md"
   file_hash: "a6bcad76c9ff03cf29f15422a4f67cc2887f9f62ad9ad39374c682def7dedcb5"
   last_updated_utc: "20260304"
   system_version: "4.0.56"

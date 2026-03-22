@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\doctrine\migrations\livehelp_migrations_readme.md"
+  file_path_from_root: "lupo-docs/doctrine/migrations/livehelp_migrations_readme.md"
   file_hash: "f0ea78fe25078175c9753082a770431bf4581b068fef7a7d5023eb4039d88cce"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

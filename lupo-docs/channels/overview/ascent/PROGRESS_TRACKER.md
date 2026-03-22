@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\channels\overview\ascent\PROGRESS_TRACKER.md"
+  file_path_from_root: "lupo-docs/channels/overview/ascent/PROGRESS_TRACKER.md"
   file_hash: "5ff6f991eb5ab7cd0e59b81e6cf465e27540e5f8bbfa746688e5fa74956536a3"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

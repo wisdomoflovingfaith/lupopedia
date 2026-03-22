@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\database\lupopedia\tables\lupo_crafty_user_mapping.md"
+  file_path_from_root: "lupo-docs/database/lupopedia/tables/active/lupo_crafty_user_mapping.md"
   file_hash: "216a1f04842f77561173e1a79beb79fde97e4450e4961f57d9f723c236433e32"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

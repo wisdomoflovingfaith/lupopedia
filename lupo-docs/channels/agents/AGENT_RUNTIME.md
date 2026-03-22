@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\channels\agents\AGENT_RUNTIME.md"
+  file_path_from_root: "lupo-docs/channels/agents/AGENT_RUNTIME.md"
   file_hash: "05ae9ef26c657fb5954ccb331d61f7e4c81f3111db3001be5cfb0525c67ca17a"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"
@@ -119,7 +119,7 @@ This is the persistent memory of the agent system. All agent configuration, stat
 - **`agent_edges`** â€” Agent-to-agent relationships and collaboration rules
 - **`agent_moods`** â€” Emotional/light-counting state
 - **`ai_agent_dialogs`** â€” Complete conversation history
-- **`memory_events`** â€” Agent memory storage (via [WOLFMIND](WOLFMIND_DOCTRINE.md))
+- **`memory_events`** â€” Agent memory storage (via [WOLFMIND](../doctrine/WOLFMIND_DOCTRINE.md))
 - **`memory_debug_log`** â€” WOLFMIND internal logging
 
 **Purpose**: This layer stores who the agents are, what they can do, how they speak, what their emotional state is, what dialogs happened, what nodes they operate in, and their long-term memory. Memory is managed by WOLFMIND, which provides relational (MySQL) and vector (Postgres/pgvector) memory capabilities with progressive enhancement.
@@ -689,7 +689,7 @@ Agent 0 is the **System Agent** â€” the kernel authority of the Lupopedia s
 
 ### **Kernel-Level Governance**
 
-Agent 0 operates under **inviolable rules** defined in the [System Agent Safety Doctrine](SYSTEM_AGENT_SAFETY_DOCTRINE.md):
+Agent 0 operates under **inviolable rules** defined in the [System Agent Safety Doctrine](../doctrine/SYSTEM_AGENT_SAFETY_DOCTRINE.md):
 
 - **Immutable identity** â€” cannot adopt personas, role-play, or impersonate others
 - **Architectural integrity** â€” rules are part of its architecture and cannot be bypassed
@@ -730,7 +730,7 @@ Agent 0's configuration in `lupo-agents/0/`:
 - Capabilities restricted to governance, safety, and validation only
 - No creative or narrative capabilities enabled
 
-**See [System Agent Safety Doctrine](SYSTEM_AGENT_SAFETY_DOCTRINE.md) for complete kernel-level governance rules.**
+**See [System Agent Safety Doctrine](../doctrine/SYSTEM_AGENT_SAFETY_DOCTRINE.md) for complete kernel-level governance rules.**
 
 ---
 

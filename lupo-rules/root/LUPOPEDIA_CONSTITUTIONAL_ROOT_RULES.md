@@ -158,7 +158,15 @@ Always use prepared statements with named placeholders.
 - No locale conversions.  
 - No human‑friendly date parsing.
 
-### 2.4 No human‑friendly time parsing by agents
+### 2.4 Artifact filename timestamps use real UTC only
+- Filename timestamps must be generated from real UTC system time only.
+- Filename format is `YYYYMMDD_HHIISS`.
+- `HH` must be `00-23`, `II` must be `00-59`, and `SS` must be `00-59`.
+- No local timezone math.
+- No offset arithmetic.
+- No guessed or synthetic timestamps.
+
+### 2.5 No human-friendly time parsing by agents
 - Agents must not interpret "yesterday", "next week", "3 months ago".  
 - Only explicit BIGINT UTC values.
 
@@ -242,6 +250,12 @@ Always use prepared statements with named placeholders.
 ### 5.4 Canonical artifacts must be deterministic
 - No agent may rewrite canonical docs without explicit intent.
 
+### 5.5 Invalid timestamped artifacts are not canonical
+- Any artifact filename containing an invalid timestamp is invalid.
+- Invalid timestamped artifacts must be blocked from write when validation exists in-path.
+- When discovered later, invalid timestamped artifacts must be flagged for explicit correction.
+- Validators must never silently normalize invalid timestamps.
+
 ---
 
 ## 🧠 6. Multi‑Agent Safety Doctrine
@@ -267,12 +281,18 @@ Forbidden:
 - Always UTC  
 - Always deterministic
 
-### 6.3 All agents must use explicit relationships
+### 6.3 All agents must use valid UTC filename timestamps
+- Timestamped artifact filenames must use `YYYYMMDD_HHIISS`.
+- Validators must reject filename timestamps with `HH > 23`.
+- Validators must reject filename timestamps with `II > 59` or `SS > 59`.
+- If real UTC cannot be obtained safely, the agent must not generate the filename.
+
+### 6.4 All agents must use explicit relationships
 - No assumptions  
 - No implicit joins  
 - No ORM‑inferred relations
 
-### 6.4 All agents must respect lineage
+### 6.5 All agents must respect lineage
 - No rewriting history  
 - No collapsing branches  
 - No silent pruning

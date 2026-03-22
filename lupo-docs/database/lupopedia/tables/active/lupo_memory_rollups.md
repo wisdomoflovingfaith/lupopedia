@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\database\lupopedia\tables\lupo_memory_rollups.md"
+  file_path_from_root: "lupo-docs/database/lupopedia/tables/active/lupo_memory_rollups.md"
   file_hash: "464206ee67c77f55cc888ba5fe745e6c991e8e34c06bd9e8e748eb554e7c997b"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

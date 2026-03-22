@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\channels\doctrine\SQL_TYPE_DOCTRINE.md"
+  file_path_from_root: "lupo-docs/channels/doctrine/SQL_TYPE_DOCTRINE.md"
   file_hash: "f62349abf96bebead9804b7062806d25bbd6a9b3b67b2447706490ab4a9e8567"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"
@@ -224,7 +224,7 @@ MODIFY COLUMN `permission_id` BIGINT(20) NOT NULL AUTO_INCREMENT;
 
 ## Related Doctrine
 
-- **[ID Column Standard](../internal/published/standards/WOLFIE_ID_COLUMN_STANDARD.md)** - BIGINT NOT UNSIGNED for all IDs
+- **ID Column Standard** - BIGINT NOT UNSIGNED for all IDs
 - **[SQL Rewrite Doctrine](SQL_REWRITE_DOCTRINE.md)** - Rules for rewriting SQL
 - **[Charset Collation Doctrine](CHARSET_COLLATION_DOCTRINE.md)** - Table-level charset/collation rules
 - **[Table Prefixing Doctrine](TABLE_PREFIXING_DOCTRINE.md)** - Table naming and prefixing rules

@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\channels\doctrine\IDENTITY_BRIDGE.md"
+  file_path_from_root: "lupo-docs/channels/doctrine/IDENTITY_BRIDGE.md"
   file_hash: "ea5cd1f8a873fe6b8a334ec5420d87501aaffe689cd1f3ea08ac155d2d10b303"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

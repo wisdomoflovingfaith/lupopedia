@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\channels\42\actors\2035\help.md"
+  file_path_from_root: "lupo-database/lupopedia/channels/channel_id/42/actors/2035/help.md"
   file_hash: "7716a102cf4bedcc6412ce85bd9ac71fb5eae5c9059845ddb3e706682f2c70e3"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

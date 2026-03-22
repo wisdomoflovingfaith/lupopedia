@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\channels\doctrine\PACK_IDENTITY_DRAFT.md"
+  file_path_from_root: "lupo-docs/channels/doctrine/PACK_IDENTITY_DRAFT.md"
   file_hash: "467b9d23e36a24aee3166ca5192b11aa057f14e4b970dc0bee34ed0a92b749a6"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"
@@ -326,7 +326,7 @@ This identity will be finalized and activated in 3.1.0.
 
 ## Related Documentation
 
-- **[MONDAY_WOLFIE_BRIEFING_3.0.114_TO_3.1.0.md](../overview/MONDAY_WOLFIE_BRIEFING_3.0.114_TO_3.1.0.md)** - Complete briefing for 3.1.0 activation
+- **MONDAY_WOLFIE_BRIEFING_3.0.114_TO_3.1.0.md** - Complete briefing for 3.1.0 activation
 - **[WOLFIE_COGNITIVE_ARCHITECTURE.md](../architecture/WOLFIE_COGNITIVE_ARCHITECTURE.md)** - Cognitive architecture that Pack mirrors
 - **[PACK_BEHAVIOR_DOCTRINE.md](PACK_BEHAVIOR_DOCTRINE.md)** - Pack behavioral layer doctrine
 - **[PACK_MEMORY_DOCTRINE.md](PACK_MEMORY_DOCTRINE.md)** - Pack memory layer doctrine

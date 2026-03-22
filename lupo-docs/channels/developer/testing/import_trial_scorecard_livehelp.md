@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\channels\developer\testing\import_trial_scorecard_livehelp.md"
+  file_path_from_root: "lupo-docs/channels/developer/testing/import_trial_scorecard_livehelp.md"
   file_hash: "b586f89048e73fa0197f7b7526d553d686e312eb92c991eacb86745b30b3b901"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

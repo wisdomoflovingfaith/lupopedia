@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\database\lupopedia\tables\lupo_persona_profiles.md"
+  file_path_from_root: "lupo-docs/database/lupopedia/tables/active/lupo_persona_profiles.md"
   file_hash: "baf85217a1f2a83ce8ace3b69a1509874daeec40941e1f04a997205d40279156"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

@@ -1,6 +1,6 @@
 ---
 lupopedia.headers:
-  file_path_from_root: "lupo-docs/database/lupopedia/tables/lupo_dialog_channels.md"
+  file_path_from_root: "lupo-docs/database/lupopedia/tables/active/lupo_dialog_channels.md"
   system_version: "4.0.50"
   channel_id: 1
   actor_id: 1003

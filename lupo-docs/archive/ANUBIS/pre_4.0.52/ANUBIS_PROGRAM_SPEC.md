@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\doctrine\ANUBIS\ANUBIS_PROGRAM_SPEC.md"
+  file_path_from_root: "lupo-docs/archive/ANUBIS/pre_4.0.52/ANUBIS_PROGRAM_SPEC.md"
   file_hash: "0ffaebe22698c6bcd2491ceb96f6dab474ffcfe09edb514d74318b3d04b17862"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

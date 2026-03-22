@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\channels\schema\migrations\analysis\TOON_DATA_ANALYSIS_REPORT.md"
+  file_path_from_root: "lupo-docs/channels/schema/migrations/analysis/TOON_DATA_ANALYSIS_REPORT.md"
   file_hash: "d3aa3164832450df98729c217c35280920828dbf048ebcc06a23aa7e40d7cd99"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

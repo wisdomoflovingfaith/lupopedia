@@ -37,7 +37,7 @@ Lupopedia is **doctrine-driven** and **header-driven**. Before working with `lup
 2. **[lupo-docs/doctrine/LUPOPEDIA_HEADERS/](doctrine/LUPOPEDIA_HEADERS/README.md)** — Header format, file order (first line `---`, identity line after closing `---`), block order.
 3. **[lupo-docs/doctrine/init/LUPO_INITIALIZATION_DOCTRINE.md](doctrine/init/LUPO_INITIALIZATION_DOCTRINE.md)** — Full prerequisite list and why each is required.
 
-See the project root [README.md](../README.md) for "Required Reading Before Using Lupopedia" and onboarding.
+See the project root [README.md](../../README.md) for "Required Reading Before Using Lupopedia" and onboarding.
 
 ---
 
@@ -49,7 +49,7 @@ If you add a new doctrine or architectural note, place it here (or in the approp
 
 ## Core Architecture
 
-- **[Channel System Doctrine (51 and system channels)](../channels/51/identity-layer-architecture.md)** - Lupopedia Channel Architecture: Complete documentation of the Semantic OS identity layer covering channels, actors, and memberships.
+- **[Channel System Doctrine (51 and system channels)](../lupo-backups/filesystem_migration_20260131_133426/channels/5100/identity-layer-architecture.md)** - Lupopedia Channel Architecture: Complete documentation of the Semantic OS identity layer covering channels, actors, and memberships.
 
 ### Channel Numbering Clarifications
 

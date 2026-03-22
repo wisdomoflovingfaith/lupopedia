@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\doctrine\FLIP\FLP_CHANNEL_666.md"
+  file_path_from_root: "lupo-docs/doctrine/FLIP/FLP_CHANNEL_666.md"
   file_hash: "f7e52d756809d7d0447ae9e1c65dadd01f909bba3b3b379c0e9611fd7e048f7c"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

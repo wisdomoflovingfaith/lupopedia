@@ -122,7 +122,7 @@ lupopedia.footer:
 | **Phase 3 — Application** | ⏸️ Blocked | Pending Phase 2. No ProjectService, registry integration, or project-aware API until schema is in place. |
 | **Phase 4 — Testing** | ⏸️ Blocked | Pending Phase 3. No unit/integration/migration tests until application layer exists. |
 
-**Draft SQL:** [lupo-docs/database/lupopedia/tables/sql_drafts/create_lupo_projects.sql.md](lupo-docs/database/lupopedia/tables/sql_drafts/create_lupo_projects.sql.md) remains **draft only**; not promoted to install SQL.
+**Draft SQL:** [lupo-docs/database/lupopedia/tables/sql_drafts/create_lupo_projects.sql.md](../database/lupopedia/tables/sql_drafts/create_lupo_projects.sql.md) remains **draft only**; not promoted to install SQL.
 
 ---
 

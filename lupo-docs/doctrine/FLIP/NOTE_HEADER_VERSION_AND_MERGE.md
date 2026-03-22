@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\doctrine\FLIP\NOTE_HEADER_VERSION_AND_MERGE.md"
+  file_path_from_root: "lupo-docs/doctrine/FLIP/NOTE_HEADER_VERSION_AND_MERGE.md"
   file_hash: "9feff93dab47bf89d360979f1383da41b05a6dc7ae5c80978f815f773f3c63d2"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

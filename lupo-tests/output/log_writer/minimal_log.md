@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\tests\output\log_writer\minimal_log.md"
+  file_path_from_root: "lupo-tests/output/log_writer/minimal_log.md"
   file_hash: "80657868eea6a57fecca2c2cb7c50843dcad94bc5f510a5b54c42b48a6f1e5cf"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

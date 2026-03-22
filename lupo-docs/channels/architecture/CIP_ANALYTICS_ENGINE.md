@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\channels\architecture\CIP_ANALYTICS_ENGINE.md"
+  file_path_from_root: "lupo-docs/channels/architecture/CIP_ANALYTICS_ENGINE.md"
   file_hash: "a87f9ef167dbc98227ab85e12c0a71e9d39ec20d495804479bbfdf60463dd6dc"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

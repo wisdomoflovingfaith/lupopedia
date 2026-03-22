@@ -49,7 +49,7 @@ lupopedia.conditional:
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: "lupo-docs\audits\FILEOPT_v4.0.52_FINAL_REPORT.md"
+  file_path_from_root: "lupo-docs/audits/FILEOPT_v4.0.52_FINAL_REPORT.md"
   file_hash: "4a458e1c1f0a34a78baf5622f7493f85f05c9a2c2059da005f858c593f1f7409"
   last_updated_utc: "20260304"
   system_version: "4.0.56"

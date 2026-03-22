@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\channels\42\threads\DEVELOPMENT_CYCLE_4_0_48\20260227065600_1001_10000_actor_identity_capsule_complete.md"
+  file_path_from_root: "lupo-database/lupopedia/channels/channel_id/42/threads/DEVELOPMENT_CYCLE_4_0_48/20260227065600_1001_10000_actor_identity_capsule_complete.md"
   file_hash: "70a7309879c42e6458ea12b413c4f22a3ff690e81d40059ec1862d754af0461c"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

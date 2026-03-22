@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\doctrine\channels\filesystem_padding_layer.md"
+  file_path_from_root: "lupo-docs/doctrine/channels/filesystem_padding_layer.md"
   file_hash: "fb62de18e5144fb3fa545708a8b3c4d850a8f63a683cf904e3eb273b04656141"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\actors\plans\20260227_actor_directory_expansion_plan.md"
+  file_path_from_root: "lupo-database/lupopedia/actors/actor_id/plans/20260227_actor_directory_expansion_plan.md"
   file_hash: "3caf20e398db1ab7577d7c82225845c2f464d38cbc1d4f382cfb19fefd44c850"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\doctrine\DOCTRINE_TABLES_TRANSITION_NOTE.md"
+  file_path_from_root: "lupo-docs/doctrine/DOCTRINE_TABLES_TRANSITION_NOTE.md"
   file_hash: "bb7e826667e0119ea51b7920ca4ff1eaec3f4e55b207b08df8ec5fc35f8ea69d"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

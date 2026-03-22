@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\channels\architecture\system_truth_table_3_0_81.md"
+  file_path_from_root: "lupo-docs/channels/architecture/system_truth_table_3_0_81.md"
   file_hash: "700382d296e0ea5fd670ffe7afa6899ed0382064f5c17e250b96eb94f477713c"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

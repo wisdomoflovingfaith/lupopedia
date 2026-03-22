@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\doctrine\FLIP\FLP_COUNCILS_AS_CHANNELS.md"
+  file_path_from_root: "lupo-docs/doctrine/FLIP/FLP_COUNCILS_AS_CHANNELS.md"
   file_hash: "41d0e11b277615fcf58b3186fa9cec129a11cb9173c14b9733a93e8dde88035a"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"
@@ -77,7 +77,7 @@ X-Lupo-File-Path: lupo-docs/doctrine/FLIP/FLP_COUNCILS_AS_CHANNELS.md
 
 **Status:** Permanent. Documentation only.  
 **Audience:** All AI agents (including Cursor), contributors, and system stewards.  
-**Related:** [channels.md](../database/channels.md) (lupo_channels), [FLP_OVERVIEW.md](FLP_OVERVIEW.md).
+**Related:** channels.md (lupo_channels), [FLP_OVERVIEW.md](FLP_OVERVIEW.md).
 
 ---
 

@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\doctrine\FLIP\FLIPQL_SPECIFICATION.md"
+  file_path_from_root: "lupo-docs/doctrine/FLIP/FLIPQL_SPECIFICATION.md"
   file_hash: "56fc40aa1285cef44ccba7f9e7679327b00d891bf0e9ee0446fb8d9e8cf112cb"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

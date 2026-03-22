@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\doctrine\AI_AGENT_BOOT_NOTES.md"
+  file_path_from_root: "lupo-docs/doctrine/AI_AGENT_BOOT_NOTES.md"
   file_hash: "2c9972ba5c69d761ff3da24781d09c586ef4a29d417a9fe14c3573505786f04b"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"
@@ -222,7 +222,7 @@ This document will serve as the foundation for that system.
 ## Related Documentation
 
 - [`LUPOPEDIA_CANONICAL_DOCTRINE.md`](LUPOPEDIA_CANONICAL_DOCTRINE.md) — Full canonical doctrine
-- [`/docs/toons/`](../toons/) — TOON schema definitions
+- `/docs/toons/` — TOON schema definitions
 - [`LEXA_GATEWAY_INTEGRATION.md`](LEXA_GATEWAY_INTEGRATION.md) — LEXA enforcement details
 - [`AGENT_BOUNDARIES_COMPACT.md`](AGENT_BOUNDARIES_COMPACT.md) — Compact doctrine reference
 

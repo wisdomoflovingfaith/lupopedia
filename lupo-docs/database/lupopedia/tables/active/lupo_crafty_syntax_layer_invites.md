@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\database\lupopedia\tables\lupo_crafty_syntax_layer_invites.md"
+  file_path_from_root: "lupo-docs/database/lupopedia/tables/active/lupo_crafty_syntax_layer_invites.md"
   file_hash: "7fa2b6eb8b1b169d1441f601435f1327b05b345286fac6d74f119de93523cce7"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

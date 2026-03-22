@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\channels\schema\migrations\analysis\PERSONA_AWARE_DIALOGUE_QUERY_LAYER.md"
+  file_path_from_root: "lupo-docs/channels/schema/migrations/analysis/PERSONA_AWARE_DIALOGUE_QUERY_LAYER.md"
   file_hash: "9a53c997a0dbcaa05d34e21a50991f424e78129a3cf79ccb7e56e3e57c5bba8a"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

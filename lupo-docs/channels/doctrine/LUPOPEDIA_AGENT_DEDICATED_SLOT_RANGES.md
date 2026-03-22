@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\channels\doctrine\LUPOPEDIA_AGENT_DEDICATED_SLOT_RANGES.md"
+  file_path_from_root: "lupo-docs/channels/doctrine/LUPOPEDIA_AGENT_DEDICATED_SLOT_RANGES.md"
   file_hash: "ce6676254b7219b1c5750d4faae104690ac454f8bd30da774b59dc583f348aa0"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

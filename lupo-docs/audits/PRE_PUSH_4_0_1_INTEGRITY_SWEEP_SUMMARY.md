@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\audits\PRE_PUSH_4_0_1_INTEGRITY_SWEEP_SUMMARY.md"
+  file_path_from_root: "lupo-docs/audits/PRE_PUSH_4_0_1_INTEGRITY_SWEEP_SUMMARY.md"
   file_hash: "4ba275a0a74d458775b4f2f012b4830a098373623310a5e518ff4ce4f465cef3"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

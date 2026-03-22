@@ -119,5 +119,5 @@ When `lupo-agents/1009/doctor.php` exists, `lupo doctor` is handled by the DOCTO
 - [CLI.md](CLI.md) — doctor and doctor-context commands
 - [HELP.md](HELP.md) — Documentation hub
 - [TASK_STATUS_REFERENCE.md](TASK_STATUS_REFERENCE.md) — Task statuses and paths
-- [lupo-prompts/lilith/20260306_doctor_sql_queries.md](../prompts/lilith/20260306_doctor_sql_queries.md) — SQL for the same data DOCTOR uses
-- [lupo-agents/1009/](../lupo-agents/1009/) — DOCTOR actor (1009) when used for `lupo doctor`
+- [lupo-prompts/lilith/20260306_doctor_sql_queries.md](../lupo-prompts/lilith/20260306_doctor_sql_queries.md) — SQL for the same data DOCTOR uses
+- lupo-agents/1009/ — DOCTOR actor (1009) when used for `lupo doctor`

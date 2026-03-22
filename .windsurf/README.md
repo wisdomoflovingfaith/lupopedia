@@ -46,4 +46,4 @@ Run: `php lupo-scripts/propagate_agent_rules.php --target=windsurf`
 ## Source
 
 All rules are derived from canonical root rules in `lupo-rules/root/`.
-See [lupo-rules/root/README.md](../../../lupo-rules/root/README.md) for canonical rule documentation.
+See lupo-rules/root/README.md for canonical rule documentation.

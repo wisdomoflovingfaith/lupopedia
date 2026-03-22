@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\channels\doctrine\bridges\README.md"
+  file_path_from_root: "lupo-docs/channels/doctrine/bridges/README.md"
   file_hash: "5be5930844363a7dcabb4f121133e8a8bbd6166bd1f03812f4b99d8642b07d0b"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\channels\gov\AGENT_BEHAVIOR_CONTRACTS.md"
+  file_path_from_root: "lupo-docs/channels/gov/AGENT_BEHAVIOR_CONTRACTS.md"
   file_hash: "a645f0a020175ac4e715a9489b8e990a1c6af15ca86a60885ee66a870e3e9b54"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

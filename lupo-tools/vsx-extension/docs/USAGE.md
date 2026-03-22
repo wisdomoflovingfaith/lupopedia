@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\tools\vsx-extension\docs\USAGE.md"
+  file_path_from_root: "lupo-tools/vsx-extension/docs/USAGE.md"
   file_hash: "ed2cdb6fbccc556508ef8639b85ff9952b39332e6291b5a1072b3ca7717e9fd8"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

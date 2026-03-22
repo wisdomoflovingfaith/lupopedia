@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\channels\doctrine\SYSTEM_AGENT_SAFETY_DOCTRINE.md"
+  file_path_from_root: "lupo-docs/channels/doctrine/SYSTEM_AGENT_SAFETY_DOCTRINE.md"
   file_hash: "e0990215707a1a5ba5621c10bd4f1aa05d7833f98396fde42dc3352f37fd478c"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"
@@ -352,9 +352,9 @@ The PHP runtime must validate Agent 0's responses against this doctrine before e
 ## Related Documentation
 
 - **[Agent Runtime Architecture](AGENT_RUNTIME.md)** â€” How agents interact with the system
-- **[Inline Dialog Specification](INLINE_DIALOG_SPECIFICATION.md)** â€” Communication format for logging
-- **[WOLFIE Header Specification](WOLFIE_HEADER_SPECIFICATION.md)** â€” Metadata format for all files
-- **[lupo-agents/readme.md](../lupo-agents/readme.md)** â€” Agent directory structure and configuration
+- **[Inline Dialog Specification](../dialogs/agents/INLINE_DIALOG_SPECIFICATION.md)** â€” Communication format for logging
+- **[WOLFIE Header Specification](../agents/WOLFIE_HEADER_SPECIFICATION.md)** â€” Metadata format for all files
+- **lupo-agents/readme.md** â€” Agent directory structure and configuration
 
 ---
 

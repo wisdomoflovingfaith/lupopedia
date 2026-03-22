@@ -49,7 +49,7 @@ lupopedia.conditional:
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "task"
-  file_path_from_root: "lupo-database/lupopedia/channels/lupo-channels/666/tasks/completed/DB-MIGRATION-001.md"
+  file_path_from_root: "lupo-database/lupopedia/channels/channel_id/666/tasks/completed/DB-MIGRATION-001.md"
   file_hash: "cb9a0d607f36f3997e8027941295acf564d909305c26bcd966a22cd95ffb42cd"
   last_updated_utc: "20260304"
   system_version: "4.0.56"

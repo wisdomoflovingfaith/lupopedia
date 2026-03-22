@@ -14,7 +14,7 @@ lupopedia.headers:
   delegation_chain: "wolfie:root"
   lupopedia.version: "4.0.74"
   lupopedia.schema: "index"
-  file_path_from_root: "lupo-rules/root/README.md"
+  file_path_from_root: "lupo-actors/59/rules/README.md"
   web_path: "[web_path](http://www.lupopedia.com/rules/root)"
   last_modified_utc: "20260313"
   system_version: "4.0.74"
@@ -75,7 +75,7 @@ Current seed: `seed_actor_1_cursor_rules_4.0.68.sql` (18 fragmented entries)
 
 ## Syncing to IDE Agents
 
-The constitutional rules must be propagated to all IDE agent environments (.cursor, .idea, .kiro, .windsurf, .cascade) via the rule transformer. For canonical agent identity and propagation targets, see [lupo-docs/doctrine/AGENT_REGISTRY.md](../../lupo-docs/doctrine/AGENT_REGISTRY.md).
+The constitutional rules must be propagated to all IDE agent environments (.cursor, .idea, .kiro, .windsurf, .cascade) via the rule transformer. For canonical agent identity and propagation targets, see [lupo-docs/doctrine/AGENT_REGISTRY.md](../../../lupo-docs/doctrine/AGENT_REGISTRY.md).
 
 ```bash
 php lupo-scripts/propagate_agent_rules.php

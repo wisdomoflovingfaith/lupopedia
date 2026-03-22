@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\channels\doctrine\MOOD_RGB_DOCTRINE.md"
+  file_path_from_root: "lupo-docs/channels/doctrine/MOOD_RGB_DOCTRINE.md"
   file_hash: "37fdb28090f5305f1eabf39b4547180d6ee1ddbf3884f8af78aa6a033864ff7f"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

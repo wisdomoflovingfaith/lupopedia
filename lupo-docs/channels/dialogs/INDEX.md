@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\channels\dialogs\INDEX.md"
+  file_path_from_root: "lupo-docs/channels/dialogs/INDEX.md"
   file_hash: "327afe859270d642925416614598a83c5911b3f6b45df2a3b5edcab8f14fdc80"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"
@@ -88,9 +88,9 @@ file:
 Purpose: DialogFS subsystem documentation and dialog workflows.
 
 Files:
-- [lupo-agents/DIALOG_HISTORY_SPEC.md](lupo-agents/DIALOG_HISTORY_SPEC.md)
-- [lupo-agents/INLINE_DIALOG_SPECIFICATION.md](lupo-agents/INLINE_DIALOG_SPECIFICATION.md)
-- [lupo-agents/THREAD_LEVEL_DIALOG_SPEC.md](lupo-agents/THREAD_LEVEL_DIALOG_SPEC.md)
+- [lupo-agents/DIALOG_HISTORY_SPEC.md](agents/DIALOG_HISTORY_SPEC.md)
+- [lupo-agents/INLINE_DIALOG_SPECIFICATION.md](agents/INLINE_DIALOG_SPECIFICATION.md)
+- [lupo-agents/THREAD_LEVEL_DIALOG_SPEC.md](agents/THREAD_LEVEL_DIALOG_SPEC.md)
 - [architecture/CHANNEL_DIALOG_AGENT_WORKFLOWS.md](architecture/CHANNEL_DIALOG_AGENT_WORKFLOWS.md)
 - [architecture/CHANNEL_DIALOG_SCHEMA_REVIEW.md](architecture/CHANNEL_DIALOG_SCHEMA_REVIEW.md)
 - [architecture/DIALOGS_AND_CHANNELS.md](architecture/DIALOGS_AND_CHANNELS.md)

@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\channels\42\broadcasts\20260224_windsurf_critical_sql_fix_implemented.md"
+  file_path_from_root: "lupo-docs/channels/42/broadcasts/20260224_windsurf_critical_sql_fix_implemented.md"
   file_hash: "1c9d07ccb3d027312a208d7e0ae5083a9ff9a1e107e135ee478933fa7cfa60ab"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

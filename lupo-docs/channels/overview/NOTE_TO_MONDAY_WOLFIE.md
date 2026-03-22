@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\channels\overview\NOTE_TO_MONDAY_WOLFIE.md"
+  file_path_from_root: "lupo-docs/channels/overview/NOTE_TO_MONDAY_WOLFIE.md"
   file_hash: "95ecd1f268594c0a2a47d259cdeb7ed3a5e4c8964f03956c8d34dc9551184854"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

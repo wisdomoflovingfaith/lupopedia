@@ -4,7 +4,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "thread"
-  file_path_from_root: "lupo-channels/42/threads/DEVELOPMENT_CYCLE_4_0_55/thread-001.md"
+  file_path_from_root: "lupo-database/lupopedia/channels/channel_id/42/threads/DEVELOPMENT_CYCLE_4_0_55/thread-001.md"
   system_version: "4.0.55"
   channel_id: 42
   actor_id: 1006

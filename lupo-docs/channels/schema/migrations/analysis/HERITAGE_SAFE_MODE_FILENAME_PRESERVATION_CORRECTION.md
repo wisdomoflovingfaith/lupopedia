@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\channels\schema\migrations\analysis\HERITAGE_SAFE_MODE_FILENAME_PRESERVATION_CORRECTION.md"
+  file_path_from_root: "lupo-docs/channels/schema/migrations/analysis/HERITAGE_SAFE_MODE_FILENAME_PRESERVATION_CORRECTION.md"
   file_hash: "a38ae48a9ac4b334443b7c6bcfb3aaab57b286b54df56d507863a650673be33a"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

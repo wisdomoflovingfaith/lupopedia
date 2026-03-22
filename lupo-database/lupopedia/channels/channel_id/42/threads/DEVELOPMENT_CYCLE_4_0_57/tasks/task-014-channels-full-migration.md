@@ -51,7 +51,7 @@ lupopedia.conditional:
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "task"
-  file_path_from_root: "lupo-database/lupopedia/channels/lupo-channels/42/threads/DEVELOPMENT_CYCLE_4_0_57/tasks/task-014-channels-full-migration.md"
+  file_path_from_root: "lupo-database/lupopedia/channels/channel_id/42/threads/DEVELOPMENT_CYCLE_4_0_57/tasks/task-014-channels-full-migration.md"
   file_hash: "a38deec5f1359306c75e125d7a416ae6f683f6c174cd0aceb27f4cc1b67f403d"
   last_updated_utc: "20260304"
   system_version: "4.0.56"

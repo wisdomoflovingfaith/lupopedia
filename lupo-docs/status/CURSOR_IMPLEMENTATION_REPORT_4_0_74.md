@@ -171,7 +171,7 @@ Files actually modified or created in the 4.0.74 implementation (verified):
 
 ## Pass 2 — Cursor execution directive (2026-03-14)
 
-Per [lupo-prompts/cursor/20260314_cursor_execute_plan_4_0_74.md](../../prompts/cursor/20260314_cursor_execute_plan_4_0_74.md), Cursor executed P0 and direct P1 items.
+Per [lupo-prompts/cursor/20260314_cursor_execute_plan_4_0_74.md](../../lupo-prompts/cursor/20260314_cursor_execute_plan_4_0_74.md), Cursor executed P0 and direct P1 items.
 
 **Files changed this pass:**
 
@@ -190,7 +190,7 @@ Per [lupo-prompts/cursor/20260314_cursor_execute_plan_4_0_74.md](../../prompts/c
 
 ## Pass 3 — TOON alignment, seed integration, schema inventory (2026-03-14)
 
-Per [lupo-prompts/cursor/20260314_cursor_pass3_toon_seed_cleanup_4_0_74.md](../../prompts/cursor/20260314_cursor_pass3_toon_seed_cleanup_4_0_74.md), Cursor executed TOON path alignment, seed wiring, schema inventory, and merge-process documentation.
+Per [lupo-prompts/cursor/20260314_cursor_pass3_toon_seed_cleanup_4_0_74.md](../../lupo-prompts/cursor/20260314_cursor_pass3_toon_seed_cleanup_4_0_74.md), Cursor executed TOON path alignment, seed wiring, schema inventory, and merge-process documentation.
 
 **Files changed this pass:**
 
@@ -231,7 +231,7 @@ Per [lupo-prompts/cursor/20260314_cursor_pass3_toon_seed_cleanup_4_0_74.md](../.
 
 ## Pass 4 — P1 execution start (2026-03-15)
 
-Per [lupo-prompts/cursor/20260315_cursor_p1_execution_4_0_74.md](../../prompts/cursor/20260315_cursor_p1_execution_4_0_74.md), Cursor began P1 execution: folder rename audit and table count doctrine.
+Per [lupo-prompts/cursor/20260315_cursor_p1_execution_4_0_74.md](../../lupo-prompts/cursor/20260315_cursor_p1_execution_4_0_74.md), Cursor began P1 execution: folder rename audit and table count doctrine.
 
 **Files changed this pass:**
 

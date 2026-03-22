@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\directives\channel_42_antigravity_vsx_test_plan_execution.md"
+  file_path_from_root: "lupo-docs/directives/channel_42_antigravity_vsx_test_plan_execution.md"
   file_hash: "cb6a00b28efa3175b22db55ceb4110346174c44e5f006d0e02d9fef29fb6bcc3"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

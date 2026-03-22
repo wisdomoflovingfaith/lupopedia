@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\channels\gov\AUDITABILITY_AND_TRACEABILITY_DOCTRINE.md"
+  file_path_from_root: "lupo-docs/channels/gov/AUDITABILITY_AND_TRACEABILITY_DOCTRINE.md"
   file_hash: "3fa7ce93725b45d947fcd7668c4e0b06ebc93cbab7b77384ab51d712f4a75ef3"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

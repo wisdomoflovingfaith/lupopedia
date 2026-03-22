@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\channels\developer\ACTOR_ONBOARDING_GUIDE.md"
+  file_path_from_root: "lupo-docs/channels/developer/ACTOR_ONBOARDING_GUIDE.md"
   file_hash: "b9c8c6c849f084db5e3df5cf9a8de152d3078d49c93ad9d50cb2cddccb234987"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\channels\appendix\appendix\MYSQL_TO_POSTGRES_MEMORY.md"
+  file_path_from_root: "lupo-docs/channels/appendix/appendix/MYSQL_TO_POSTGRES_MEMORY.md"
   file_hash: "292c968f25230e1f1e3c5c6c991bae53db40a643bedc57737d10f6a802bceb66"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

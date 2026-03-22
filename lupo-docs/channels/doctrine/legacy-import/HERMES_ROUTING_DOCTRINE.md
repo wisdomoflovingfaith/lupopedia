@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\channels\doctrine\legacy-import\HERMES_ROUTING_DOCTRINE.md"
+  file_path_from_root: "lupo-docs/channels/doctrine/legacy-import/HERMES_ROUTING_DOCTRINE.md"
   file_hash: "1fc044281dd3b8c1f8f6f5a0beb184b37ff99e2f19182ecff8e7ed43ec247089"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

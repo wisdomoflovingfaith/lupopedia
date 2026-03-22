@@ -367,7 +367,6 @@ def main() -> int:
         print("Triggering CSV export...")
         try:
             import subprocess
-            import sys
             
             # Get the project root directory
             project_root = Path(__file__).parent.parent

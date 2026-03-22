@@ -26,7 +26,7 @@ lupopedia.footer:
 
 # Lupopedia Installation
 
-For full installation steps (clone, web server, installer), see the root [README.md](../README.md) § Installation.
+For full installation steps (clone, web server, installer), see the root [README.md](../../README.md) § Installation.
 
 ---
 

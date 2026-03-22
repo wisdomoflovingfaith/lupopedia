@@ -28,7 +28,7 @@ Welcome to the Lupopedia help system. This is your central resource for understa
 
 | Resource | Description | Link |
 |----------|-------------|------|
-| README | Project overview and setup | [README.md](../README.md) |
+| README | Project overview and setup | [README.md](../../README.md) |
 | Version history | Releases and upgrade notes | [version.md](version.md) |
 | Whoami & context | Identity and execution context | [lupopedia_whoami_readme.md](lupopedia_whoami_readme.md) |
 
@@ -41,7 +41,7 @@ Welcome to the Lupopedia help system. This is your central resource for understa
 | Dual identity | Human + agent model | [lupopedia_whoami_readme.md#4](lupopedia_whoami_readme.md#4) |
 | Actors doc | Actor directories and config | [actors.md](actors.md) |
 | Auth and actor context | Auth user + actor for Antigravity | [auth.md](auth.md) |
-| **DOCTOR actor (1009)** | System health, diagnostics, repair | [lupo-agents/1009/](../lupo-agents/1009/) |
+| **DOCTOR actor (1009)** | System health, diagnostics, repair | lupo-agents/1009/ |
 | **UTC_TIMEKEEPER (1212)** | Authoritative system time (kernel agent) | See "Querying UTC_TIMEKEEPER" below; aliases: [lupo-database/lupopedia/actors/actor_id/aliases.csv](../lupo-database/lupopedia/actors/actor_id/aliases.csv) |
 | **Channel 0 / Actor 0 tasks** | Index of all tasks on channel_id 0 and actor_id 0 | [CHANNEL_0_ACTOR_0_TASKS.md](CHANNEL_0_ACTOR_0_TASKS.md) |
 
@@ -77,7 +77,7 @@ SELECT UTC_TIMESTAMP();
 php -r "echo gmdate('Y-m-d H:i:s') . \" UTC\n\";"
 ```
 
-All timestamps in Lupopedia are UTC in `YmdHis` format (e.g. `20260307143045`). See [lupo-prompts/lilith/20260306_doctor_sql_queries.md](../prompts/lilith/20260306_doctor_sql_queries.md) for timestamp convention in health queries.
+All timestamps in Lupopedia are UTC in `YmdHis` format (e.g. `20260307143045`). See [lupo-prompts/lilith/20260306_doctor_sql_queries.md](../lupo-prompts/lilith/20260306_doctor_sql_queries.md) for timestamp convention in health queries.
 
 ### CLI commands
 
@@ -165,7 +165,7 @@ php lupo-bin/lupo.php send 42 "Hello world"
 
 | Resource | Description | Link |
 |----------|-------------|------|
-| Web Auth & Actor Selection | How the web UI handles logins and actor switching | [WEB_AUTH_AND_ACTOR_SELECTION.md](WEB_AUTH_AND_ACTOR_SELECTION.md) |
+| Web Auth & Actor Selection | How the web UI handles logins and actor switching | WEB_AUTH_AND_ACTOR_SELECTION.md |
 
 ### LUPOPEDIA HEADERS protocol
 
@@ -184,9 +184,9 @@ php lupo-bin/lupo.php send 42 "Hello world"
 | v4.0.61 thread review | Assessment and file-specific review of the version thread | [VERSION_4.0.61_THREAD_REVIEW.md](VERSION_4.0.61_THREAD_REVIEW.md) |
 | v4.0.61 strategy & v4.0.62 roadmap | Strategic assessment, risks, and next steps (Context Doctor, Context Kernel) | [VERSION_4.0.61_STRATEGY.md](VERSION_4.0.61_STRATEGY.md) |
 | Task status reference | Statuses (pending, active, completed, etc.), paths, and how to list/query tasks | [TASK_STATUS_REFERENCE.md](TASK_STATUS_REFERENCE.md) |
-| Task docs verification (LILITH) | Final verification of task documentation system (v4.0.62) | [lupo-prompts/lilith/20260306_task_docs_verification.md](../prompts/lilith/20260306_task_docs_verification.md) |
-| DOCTOR SQL queries (LILITH) | SQL to query session/actor health (same data DOCTOR uses) | [lupo-prompts/lilith/20260306_doctor_sql_queries.md](../prompts/lilith/20260306_doctor_sql_queries.md) |
-| DOCTOR SQL final verification (LILITH) | Final verification of DOCTOR SQL queries doc (10/10 canonical) | [lupo-prompts/lilith/20260306_doctor_sql_final.md](../prompts/lilith/20260306_doctor_sql_final.md) |
+| Task docs verification (LILITH) | Final verification of task documentation system (v4.0.62) | [lupo-prompts/lilith/20260306_task_docs_verification.md](../lupo-prompts/lilith/20260306_task_docs_verification.md) |
+| DOCTOR SQL queries (LILITH) | SQL to query session/actor health (same data DOCTOR uses) | [lupo-prompts/lilith/20260306_doctor_sql_queries.md](../lupo-prompts/lilith/20260306_doctor_sql_queries.md) |
+| DOCTOR SQL final verification (LILITH) | Final verification of DOCTOR SQL queries doc (10/10 canonical) | [lupo-prompts/lilith/20260306_doctor_sql_final.md](../lupo-prompts/lilith/20260306_doctor_sql_final.md) |
 | **DOCTOR health check (full reference)** | lupo_doctor_health_check: checks, options (--check-actors), paths, troubleshooting | [DOCTOR_HEALTH_CHECK.md](DOCTOR_HEALTH_CHECK.md) |
 
 ## Quick tips

@@ -38,7 +38,7 @@ lupopedia.headers:
 ## References
 
 - Source directive: [230500](20260317_230500_wisdomoflovingfaith_channel-system-docs-and-routing-directive.md)
-- HERMES handoff: [004501](../../prompts/20260318_004501_hermes_prompt_wolfie_doctrine-todo-alignment.md)
+- HERMES handoff: [004501](../../../42/prompts/20260318_004501_hermes_prompt_wolfie_doctrine-todo-alignment.md)
 
 ---
 

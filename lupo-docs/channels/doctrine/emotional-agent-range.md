@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\channels\doctrine\emotional-agent-range.md"
+  file_path_from_root: "lupo-docs/channels/doctrine/emotional-agent-range.md"
   file_hash: "08e886448683ec24855a81c4a60f04dd820a9e7a5f86f58434d14dac13f66c43"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

@@ -49,7 +49,7 @@ lupopedia.conditional:
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: "lupo-database\lupopedia\channels\lupo-channels\42\threads\DEVELOPMENT_CYCLE_4_0_55\thread-006-channels-migration-directive.md"
+  file_path_from_root: "lupo-database/lupopedia/channels/channel_id/42/threads/DEVELOPMENT_CYCLE_4_0_55/thread-006-channels-migration-directive.md"
   file_hash: "2a3a5cb691c49bc57f3b1d4ed7359ac0629c2112dc698cc58cc4394c8b2f38f4"
   last_updated_utc: "20260304"
   system_version: "4.0.56"

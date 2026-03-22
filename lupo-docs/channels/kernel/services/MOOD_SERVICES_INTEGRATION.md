@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\channels\kernel\services\MOOD_SERVICES_INTEGRATION.md"
+  file_path_from_root: "lupo-docs/channels/kernel/services/MOOD_SERVICES_INTEGRATION.md"
   file_hash: "da893a248dbbf3c95dba9d8e012d7aaff3d7d156a0d5e08ee15d9897acef6360"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

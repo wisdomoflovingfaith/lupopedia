@@ -1,6 +1,6 @@
 ---
 wolfie.headers: explicit architecture with structured clarity for every file.
-file.last_modified_system_version: 4.0.83
+file.last_modified_system_version: 4.0.85
 file.channel: schema
 # Global Atoms Configuration
 # Single source of truth for ecosystem-wide metadata used in WOLFIE Headers
@@ -14,12 +14,12 @@ file.channel: schema
 # - Cursor MUST preserve symbolic references exactly as written when modifying
 # - Cursor MUST NOT generate or modify this file unless explicitly instructed
 
-version: "4.0.83"
-last_updated: "20260320"
-# VERSION 4.0.83
+version: "4.0.85"
+last_updated: "20260321"
+# VERSION 4.0.85
 
 # Global Version Atoms
-GLOBAL_CURRENT_LUPOPEDIA_VERSION: "4.0.83"
+GLOBAL_CURRENT_LUPOPEDIA_VERSION: "4.0.85"
 GLOBAL_FLIP_SCHEMA_VERSION: "2.0"
 
 # System Configuration Atoms
@@ -55,10 +55,10 @@ project:
 
 # Version Information
 versions:
-  lupopedia: "4.0.83"
-  crafty_syntax: "4.0.83"
-  wolfie_headers: "4.0.83"
-  schema: "4.0.83"
+  lupopedia: "4.0.85"
+  crafty_syntax: "4.0.85"
+  wolfie_headers: "4.0.85"
+  schema: "4.0.85"
 
 # Common Metadata
 metadata:

@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\REQUIRED_TABLES_4.0.21.md"
+  file_path_from_root: "lupo-docs/versions/REQUIRED_TABLES_4.0.21.md"
   file_hash: "b000338a2c7ad46631f65ef6b8738556bfeb8a42105362e2d721b48e8a77e76c"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

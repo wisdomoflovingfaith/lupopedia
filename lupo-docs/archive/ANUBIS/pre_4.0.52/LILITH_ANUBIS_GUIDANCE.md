@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\doctrine\ANUBIS\LILITH_ANUBIS_GUIDANCE.md"
+  file_path_from_root: "lupo-docs/archive/ANUBIS/pre_4.0.52/LILITH_ANUBIS_GUIDANCE.md"
   file_hash: "96074d63c94a1de78d79d2c856b7c9f1feac8f13df7698318267acffa953809f"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

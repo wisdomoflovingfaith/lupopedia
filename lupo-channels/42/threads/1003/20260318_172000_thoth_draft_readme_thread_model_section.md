@@ -162,7 +162,7 @@ The thread model integrates with channel-based coordination:
 - **Database Integration**: Threads map to `lupo_dialog_threads` table
 - **HERMES Routing**: Classifies thread artifacts for actor handoffs
 
-For complete coordination doctrine, see [CHANNEL_BASED_COORDINATION_DOCTRINE.md](lupo-docs/doctrine/CHANNEL_BASED_COORDINATION_DOCTRINE.md) and [MULTI_AGENT_COORDINATION_DOCTRINE.md](lupo-rules/root/MULTI_AGENT_COORDINATION_DOCTRINE.md).
+For complete coordination doctrine, see [CHANNEL_BASED_COORDINATION_DOCTRINE.md](../../../../lupo-docs/doctrine/CHANNEL_BASED_COORDINATION_DOCTRINE.md) and [MULTI_AGENT_COORDINATION_DOCTRINE.md](../../../../lupo-rules/root/MULTI_AGENT_COORDINATION_DOCTRINE.md).
 
 ---
 

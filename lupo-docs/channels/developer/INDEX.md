@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\channels\developer\INDEX.md"
+  file_path_from_root: "lupo-docs/channels/developer/INDEX.md"
   file_hash: "498462737e14af1951a3d22d6c1d21e067729da24bc95b063869880e7fa40d34"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"
@@ -89,7 +89,7 @@ Purpose: Developer guides, implementation notes, and templates.
 
 Files:
 - [ACTOR_ONBOARDING_GUIDE.md](ACTOR_ONBOARDING_GUIDE.md)
-- [lupo-api/MINIMAL_REST_API.md](lupo-api/MINIMAL_REST_API.md)
+- [lupo-api/MINIMAL_REST_API.md](api/MINIMAL_REST_API.md)
 - [CANONICAL_WOLFIE_HEADER_TEMPLATE.md](CANONICAL_WOLFIE_HEADER_TEMPLATE.md)
 - [dev/architecture_layers.md](dev/architecture_layers.md)
 - [dev/AUTH_IMPLEMENTATION_PLAN_3.0.8.md](dev/AUTH_IMPLEMENTATION_PLAN_3.0.8.md)
@@ -116,14 +116,14 @@ Files:
 - [modules/UPGRADE_PLAN_3.7.5_TO_3.0.0.md](modules/UPGRADE_PLAN_3.7.5_TO_3.0.0.md)
 - [RELEASE_READINESS_CHECKLIST_3.0.7.md](RELEASE_READINESS_CHECKLIST_3.0.7.md)
 - [specifications/LMS_v2.0.md](specifications/LMS_v2.0.md)
-- [lupo-templates/LABS_HANDSHAKE_TEMPLATE.md](lupo-templates/LABS_HANDSHAKE_TEMPLATE.md)
-- [lupo-templates/WOLFIE_HEADER_TEMPLATE.md](lupo-templates/WOLFIE_HEADER_TEMPLATE.md)
+- [lupo-templates/LABS_HANDSHAKE_TEMPLATE.md](templates/LABS_HANDSHAKE_TEMPLATE.md)
+- [lupo-templates/WOLFIE_HEADER_TEMPLATE.md](templates/WOLFIE_HEADER_TEMPLATE.md)
 - [testing/crafty_import_validation_4.2.1.md](testing/crafty_import_validation_4.2.1.md)
 - [testing/import_trial_scorecard_livehelp.md](testing/import_trial_scorecard_livehelp.md)
 - [testing/mapping_validation_scorecard.md](testing/mapping_validation_scorecard.md)
 - [testing/phase7_validation_checklist.md](testing/phase7_validation_checklist.md)
 - [TLDR_HELP_MIGRATION_2026.md](TLDR_HELP_MIGRATION_2026.md)
-- [lupo-tools/WOLFIE_DOCUMENTATION_TRANSFORMER_SPEC.md](lupo-tools/WOLFIE_DOCUMENTATION_TRANSFORMER_SPEC.md)
+- [lupo-tools/WOLFIE_DOCUMENTATION_TRANSFORMER_SPEC.md](tools/WOLFIE_DOCUMENTATION_TRANSFORMER_SPEC.md)
 
 Related Channels:
 - [architecture](../architecture/README.md)

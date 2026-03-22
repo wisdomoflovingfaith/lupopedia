@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\channels\schema\migrations\analysis\ANALYTICS_OVERRIDE_IMPLEMENTATION_PLAN.md"
+  file_path_from_root: "lupo-docs/channels/schema/migrations/analysis/ANALYTICS_OVERRIDE_IMPLEMENTATION_PLAN.md"
   file_hash: "4d498d0b399c9298beae03fda339359766085f813bbfdec34d6654e20504a802"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

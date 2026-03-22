@@ -234,9 +234,9 @@ SELECT COUNT(*) FROM lupo_registry;
 ## Documentation References
 
 - [FLIP Doctrine](lupo-docs/doctrine/FLIP/FLIP_DOCTRINE.md)
-- [Schema Fixes](lupo-database/migrations/CRITICAL_SCHEMA_FIX_4.0.26.sql)
-- [Verification Script](lupo-database/migrations/verify_active_agents_4.0.26.sql)
-- [Global Agent Sync](messages/GLOBAL_AGENT_SYNC_4.0.27.md)
+- Schema Fixes
+- Verification Script
+- Global Agent Sync
 
 ---
 

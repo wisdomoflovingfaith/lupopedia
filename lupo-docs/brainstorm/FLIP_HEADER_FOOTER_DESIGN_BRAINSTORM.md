@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\brainstorm\FLIP_HEADER_FOOTER_DESIGN_BRAINSTORM.md"
+  file_path_from_root: "lupo-docs/brainstorm/FLIP_HEADER_FOOTER_DESIGN_BRAINSTORM.md"
   file_hash: "e7a5aa092a8dcef68e26d7f544465793e79e8ae2fea51f4a868b5378147d0e9c"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

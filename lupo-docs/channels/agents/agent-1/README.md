@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\channels\agents\agent-1\README.md"
+  file_path_from_root: "lupo-docs/channels/agents/agent-1/README.md"
   file_hash: "34a7276633ebe9b8f485c70bb4e9cf0c7f7ee5aad68c7aa5716343316e95134f"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"
@@ -123,8 +123,8 @@ This directory structure is being initialized as part of Lupopedia 3.0.16. The c
 
 ## Related Documentation
 
-- **[Channel and Dialog Agent Workflows](../../docs/ARCHITECTURE/CHANNEL_DIALOG_AGENT_WORKFLOWS.md)** � How IDE agents and php_ai_terminal agents interact with channels and dialogs
-- **[Channel Dialog Schema Review](../../docs/ARCHITECTURE/CHANNEL_DIALOG_SCHEMA_REVIEW.md)** � Database schema review for channel and dialog tables
+- **[Channel and Dialog Agent Workflows](../../dialogs/architecture/CHANNEL_DIALOG_AGENT_WORKFLOWS.md)** � How IDE agents and php_ai_terminal agents interact with channels and dialogs
+- **[Channel Dialog Schema Review](../../dialogs/architecture/CHANNEL_DIALOG_SCHEMA_REVIEW.md)** � Database schema review for channel and dialog tables
 
 ---
 

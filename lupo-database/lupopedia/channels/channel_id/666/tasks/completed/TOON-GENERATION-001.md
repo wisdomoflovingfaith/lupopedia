@@ -49,7 +49,7 @@ lupopedia.conditional:
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "task"
-  file_path_from_root: "lupo-database/lupopedia/channels/lupo-channels/666/tasks/completed/TOON-GENERATION-001.md"
+  file_path_from_root: "lupo-database/lupopedia/channels/channel_id/666/tasks/completed/TOON-GENERATION-001.md"
   file_hash: "dcd0b31707f13a54849c312fc1061c91cc08f5122ac40be9786f94c22756e438"
   last_updated_utc: "20260304"
   system_version: "4.0.56"

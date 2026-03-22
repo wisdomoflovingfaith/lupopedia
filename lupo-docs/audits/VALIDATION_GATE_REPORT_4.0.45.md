@@ -5,7 +5,7 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "VALIDATION_GATE_REPORT_4.0.45.md"
+  file_path_from_root: "lupo-docs/audits/VALIDATION_GATE_REPORT_4.0.45.md"
   file_hash: "a9229da23d5037e81949883b80abc52faa07da7dae31be7de73a0e99cdf6ab79"
   file_path_from_root: "VALIDATION_GATE_REPORT_4.0.45.md"
   file_hash: "e64c40bf4b36ee4da7a8d41a1674245df5279cdabe76e48d9c0dab06e75eb521"

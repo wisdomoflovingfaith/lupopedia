@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\doctrine\TABLE_CONSOLIDATION_PLAN.md"
+  file_path_from_root: "lupo-docs/doctrine/TABLE_CONSOLIDATION_PLAN.md"
   file_hash: "7f80c6a3cb05fd5f89eed57df457575ac460f5ec175ab02312437deb8b8ea078"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

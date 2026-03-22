@@ -3,7 +3,7 @@ lupopedia.headers:
   lupopedia.version: "4.0.78"
   lupopedia.schema: "status"
   system_version: "4.0.78"
-  file_path_from_root: "lupo-docs/status/namespace-on-wrong-artifact.md"
+  file_path_from_root: "lupo-tests/fixtures/headers/namespace-on-wrong-artifact.md"
   web_path: "[web_path](http://www.lupopedia.com/status/namespace-on-wrong-artifact)"
   last_modified_utc: "20260316"
   channel_id: 42

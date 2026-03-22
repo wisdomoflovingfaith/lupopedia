@@ -27,6 +27,6 @@ lupopedia.headers:
 
 ---
 
-**Done (execution record):** [010000_lilith_prompts-complete-review](lupo-channels/42/threads/1001/20260318_010000_lilith_prompts-complete-review.md) — formal A12 pass/fail after **041100**; checklist **010100** per §4.
+**Done (execution record):** [010000_lilith_prompts-complete-review](../threads/1001/20260318_010000_lilith_prompts-complete-review.md) — formal A12 pass/fail after **041100**; checklist **010100** per §4.
 
 *HERMES actor_id 15*

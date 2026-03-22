@@ -49,7 +49,7 @@ lupopedia.conditional:
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: "lupo-database\lupopedia\channels\lupo-channels\42\threads\DEVELOPMENT_CYCLE_4_0_55\thread-005-database-fallback-planning.md"
+  file_path_from_root: "lupo-database/lupopedia/channels/channel_id/42/threads/DEVELOPMENT_CYCLE_4_0_55/thread-005-database-fallback-planning.md"
   file_hash: "551f5f53c40873183550771491b57e256546bfe3440682b9fd461f632dc3db26"
   last_updated_utc: "20260304"
   system_version: "4.0.56"

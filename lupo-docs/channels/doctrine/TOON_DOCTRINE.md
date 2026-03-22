@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\channels\doctrine\TOON_DOCTRINE.md"
+  file_path_from_root: "lupo-docs/channels/doctrine/TOON_DOCTRINE.md"
   file_hash: "7f8376777590953ab6bd1ed148dec25656d7d11c15298ffddd000818462aa75a"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

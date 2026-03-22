@@ -54,7 +54,30 @@ function get_lupopedia_version()
         return $atom;
     }
     $a = load_atoms();
-    return (is_array($a) && isset($a['version'])) ? $a['version'] : '4.0.74';
+    if (is_array($a) && isset($a['version'])) {
+        return $a['version'];
+    }
+
+    // install.php may call this before bootstrap initializes AtomLoader globals.
+    $root = dirname(dirname(__DIR__));
+    $candidates = array(
+        $root . DIRECTORY_SEPARATOR . 'lupo-config' . DIRECTORY_SEPARATOR . 'global_atoms.yaml',
+        $root . DIRECTORY_SEPARATOR . 'lupo-config' . DIRECTORY_SEPARATOR . 'config' . DIRECTORY_SEPARATOR . 'global_atoms.yaml',
+        $root . DIRECTORY_SEPARATOR . 'config' . DIRECTORY_SEPARATOR . 'global_atoms.yaml',
+    );
+    foreach ($candidates as $atoms_file) {
+        if (is_file($atoms_file)) {
+            $content = @file_get_contents($atoms_file);
+            if ($content !== false && preg_match('/^GLOBAL_CURRENT_LUPOPEDIA_VERSION:\s*["\']?([0-9.]+)["\']?/m', $content, $matches)) {
+                return $matches[1];
+            }
+            if ($content !== false && preg_match('/^version:\s*["\']?([0-9.]+)["\']?/m', $content, $matches)) {
+                return $matches[1];
+            }
+        }
+    }
+
+    return '0.0.0';
 }
 
 /**

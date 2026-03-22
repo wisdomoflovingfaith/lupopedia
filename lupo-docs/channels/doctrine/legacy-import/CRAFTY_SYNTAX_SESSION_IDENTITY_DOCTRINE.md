@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\channels\doctrine\legacy-import\CRAFTY_SYNTAX_SESSION_IDENTITY_DOCTRINE.md"
+  file_path_from_root: "lupo-docs/channels/doctrine/legacy-import/CRAFTY_SYNTAX_SESSION_IDENTITY_DOCTRINE.md"
   file_hash: "538326fe78e132cdf5235b93e1e060cea0542dd7897f74f8822a497fa22f3dbe"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

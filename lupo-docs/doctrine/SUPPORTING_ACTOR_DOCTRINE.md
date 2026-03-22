@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\doctrine\SUPPORTING_ACTOR_DOCTRINE.md"
+  file_path_from_root: "lupo-docs/doctrine/SUPPORTING_ACTOR_DOCTRINE.md"
   file_hash: "4a4297665c9d93c99d991491e05495300f511f6976268f756b19e3ab64ce3681"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

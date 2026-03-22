@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\api\antigravity_ide_endpoints_4.0.23.md"
+  file_path_from_root: "lupo-docs/api/antigravity_ide_endpoints_4.0.23.md"
   file_hash: "06477dd05da23224c93477af6077b58a5e5e8d77d589baebdb877ec149fc47a8"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

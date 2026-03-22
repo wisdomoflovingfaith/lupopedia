@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\AUTH_REFACTOR_REPORT.md"
+  file_path_from_root: "lupo-docs/audits/AUTH_REFACTOR_REPORT.md"
   file_hash: "7c375ff449b8f7ea17444d48bd0097dd1237e0c96739c67bbc381cabdba76e4e"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

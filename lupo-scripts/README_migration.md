@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\scripts\README_migration.md"
+  file_path_from_root: "lupo-scripts/README_migration.md"
   file_hash: "bb026afc0451b13f1d59522842132c55783369848744f52f5303b77c64230d60"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

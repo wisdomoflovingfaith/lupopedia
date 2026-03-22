@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\channels\doctrine\EMOTIONAL_GEOMETRY_THREE_AXIS_MODEL_2026.md"
+  file_path_from_root: "lupo-docs/channels/doctrine/EMOTIONAL_GEOMETRY_THREE_AXIS_MODEL_2026.md"
   file_hash: "e6b8d9ecff6086c0f01dc019d352b3e48556ed6b9e32a08bcb06634378e0482d"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

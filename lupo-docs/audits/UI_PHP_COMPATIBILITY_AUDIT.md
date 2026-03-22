@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\audits\UI_PHP_COMPATIBILITY_AUDIT.md"
+  file_path_from_root: "lupo-docs/audits/UI_PHP_COMPATIBILITY_AUDIT.md"
   file_hash: "21c6162ab27d266fa52a697bf7afede8b1eab543d6e7a53ada6249bae09d4feb"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

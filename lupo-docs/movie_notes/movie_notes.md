@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\movie_notes\movie_notes.md"
+  file_path_from_root: "lupo-docs/movie_notes/movie_notes.md"
   file_hash: "098efb260e5692ed83506a348767ed1ca2dbf0f8151318489ea0a313ed92273c"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

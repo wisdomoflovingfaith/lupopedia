@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\channels\666\quarantine\20260224150000_10000_1001_sql_fixes_complete_restart_needed.md"
+  file_path_from_root: "lupo-database/lupopedia/channels/channel_id/666/quarantine/20260224150000_10000_1001_sql_fixes_complete_restart_needed.md"
   file_hash: "7f92160feff3281bd86055095bd7e8b1e653beee3125550a6e325a891968dc98"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

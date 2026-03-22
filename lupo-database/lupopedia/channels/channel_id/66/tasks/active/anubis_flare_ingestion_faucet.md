@@ -51,7 +51,7 @@ lupopedia.conditional:
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "task"
-  file_path_from_root: "lupo-database/lupopedia/channels/lupo-channels/66/tasks/active/anubis_flare_ingestion_faucet.md"
+  file_path_from_root: "lupo-database/lupopedia/channels/channel_id/66/tasks/active/anubis_flare_ingestion_faucet.md"
   file_hash: "f21d84af20b1ce53d4f45f1be2d96c9662924c896ba91632b6971d125a2d082f"
   last_updated_utc: "20260304"
   system_version: "4.0.73"

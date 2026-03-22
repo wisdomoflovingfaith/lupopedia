@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\channels\doctrine\ORCHESTRATOR_DOCTRINE.md"
+  file_path_from_root: "lupo-docs/channels/doctrine/ORCHESTRATOR_DOCTRINE.md"
   file_hash: "c1c68db52722e012ab41c0a47d5ef1d2421230f40cf82b0b10c5fadba14ed900"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

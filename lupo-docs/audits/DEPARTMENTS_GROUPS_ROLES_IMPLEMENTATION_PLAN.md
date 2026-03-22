@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\audits\DEPARTMENTS_GROUPS_ROLES_IMPLEMENTATION_PLAN.md"
+  file_path_from_root: "lupo-docs/audits/DEPARTMENTS_GROUPS_ROLES_IMPLEMENTATION_PLAN.md"
   file_hash: "1b5526bb1d21e6d2ad5af33ae206b469863f20fec07af962548802e42345474b"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

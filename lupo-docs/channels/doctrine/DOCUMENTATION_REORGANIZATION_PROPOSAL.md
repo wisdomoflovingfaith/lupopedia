@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\channels\doctrine\DOCUMENTATION_REORGANIZATION_PROPOSAL.md"
+  file_path_from_root: "lupo-docs/channels/doctrine/DOCUMENTATION_REORGANIZATION_PROPOSAL.md"
   file_hash: "340593bedd9568f42d2d3058fc5b9f4a7ac0d6fe0042ab66b0eeb52528dd3adc"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\versions\4.0.36\ROADMAP.md"
+  file_path_from_root: "lupo-docs/versions/4.0.36/ROADMAP.md"
   file_hash: "905561696e25ad2f31f76fdf1aa372a9f2e892559f09bb8f100ec0bf24f78d79"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

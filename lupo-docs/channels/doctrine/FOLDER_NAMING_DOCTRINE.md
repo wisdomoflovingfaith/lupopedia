@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\channels\doctrine\FOLDER_NAMING_DOCTRINE.md"
+  file_path_from_root: "lupo-docs/channels/doctrine/FOLDER_NAMING_DOCTRINE.md"
   file_hash: "9d99650faffb6278af3099569c4dd4d0003c2f584650ac47232bb3a5fd250d78"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

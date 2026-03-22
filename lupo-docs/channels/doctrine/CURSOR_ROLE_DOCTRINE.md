@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\channels\doctrine\CURSOR_ROLE_DOCTRINE.md"
+  file_path_from_root: "lupo-docs/channels/doctrine/CURSOR_ROLE_DOCTRINE.md"
   file_hash: "20edf7e6dc712368856617654401e7e5c97b419ad061940b5cde935dd662929a"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

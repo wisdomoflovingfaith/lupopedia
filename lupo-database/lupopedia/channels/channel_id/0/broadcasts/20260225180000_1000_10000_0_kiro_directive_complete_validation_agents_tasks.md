@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\channels\0\broadcasts\20260225180000_1000_10000_0_kiro_directive_complete_validation_agents_tasks.md"
+  file_path_from_root: "lupo-database/lupopedia/channels/channel_id/0/broadcasts/20260225180000_1000_10000_0_kiro_directive_complete_validation_agents_tasks.md"
   file_hash: "a3012c9c5ff16d50c839b2fc6a88dc4773fdd349e4a2e3584ceb4ff2c1a65074"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

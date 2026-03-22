@@ -18,6 +18,7 @@ CREATE TABLE lupo_actors (
   actor_source_id bigint DEFAULT NULL,
   actor_source_type varchar(64) DEFAULT NULL,
   metadata text,
+  actor_config text,
   adversarial_role varchar(64) DEFAULT 'none',
   adversarial_oversight_actor_id bigint DEFAULT NULL,
   avatar_hash varchar(64) DEFAULT NULL,
@@ -155,6 +156,33 @@ CREATE INDEX lupo_actor_channels_idx_status ON lupo_actor_channels (status);
 CREATE INDEX lupo_actor_channels_idx_created ON lupo_actor_channels (created_ymdhis);
 CREATE INDEX lupo_actor_channels_idx_updated ON lupo_actor_channels (updated_ymdhis);
 CREATE INDEX lupo_actor_channels_idx_deleted ON lupo_actor_channels (is_deleted);
+
+-- Auth-user to actor relationship mapping (many-to-many, doctrine-safe, no FKs)
+CREATE TABLE lupo_actor_auth_users (
+  actor_auth_user_id bigint NOT NULL,
+  actor_id bigint NOT NULL,
+  auth_user_id bigint NOT NULL,
+  relationship_role varchar(64) NOT NULL DEFAULT 'supporting_human',
+  -- is_primary must be application-enforced as 0 or 1.
+  is_primary tinyint NOT NULL DEFAULT '0',
+  -- routing_priority must be application-enforced as non-negative (>= 0).
+  routing_priority smallint NOT NULL DEFAULT '100',
+  -- Allowed status values (application-enforced): 'active', 'inactive', 'disabled'.
+  status varchar(32) NOT NULL DEFAULT 'active',
+  metadata_json json DEFAULT NULL,
+  created_ymdhis bigint NOT NULL DEFAULT 0,
+  updated_ymdhis bigint NOT NULL,
+  is_deleted tinyint NOT NULL DEFAULT '0',
+  deleted_ymdhis bigint DEFAULT 0,
+  PRIMARY KEY (actor_auth_user_id)
+);
+
+CREATE UNIQUE INDEX lupo_actor_auth_users_unq_actor_user_role ON lupo_actor_auth_users (actor_id, auth_user_id, relationship_role);
+CREATE INDEX lupo_actor_auth_users_idx_auth_user_status ON lupo_actor_auth_users (auth_user_id, status);
+CREATE INDEX lupo_actor_auth_users_idx_actor_status_primary_priority ON lupo_actor_auth_users (actor_id, status, is_primary, routing_priority);
+CREATE INDEX lupo_actor_auth_users_idx_actor_role_primary_lookup ON lupo_actor_auth_users (actor_id, relationship_role, status, is_deleted, is_primary, routing_priority, auth_user_id);
+CREATE INDEX lupo_actor_auth_users_idx_actor_routing ON lupo_actor_auth_users (actor_id, status, is_deleted, relationship_role, is_primary, routing_priority, auth_user_id);
+CREATE INDEX lupo_actor_auth_users_idx_status ON lupo_actor_auth_users (status);
 
 CREATE TABLE lupo_actor_channel_roles (
   actor_channel_role_id bigint NOT NULL,
@@ -1321,6 +1349,7 @@ CREATE TABLE lupo_channels (
   description text,
   website_link varchar(512) DEFAULT NULL,
   metadata_json text,
+  channel_config text DEFAULT NULL,
   status_flag tinyint NOT NULL DEFAULT '1',
   end_ymdhis bigint DEFAULT NULL,
   duration_seconds int DEFAULT NULL,
@@ -2194,6 +2223,7 @@ CREATE TABLE lupo_dialog_threads (
   status varchar(64) NOT NULL DEFAULT 'Open',
   artifacts json DEFAULT NULL,
   metadata_json json DEFAULT NULL,
+  thread_lineage text DEFAULT NULL,
   created_ymdhis bigint NOT NULL DEFAULT 0,
   updated_ymdhis bigint NOT NULL,
   is_deleted tinyint NOT NULL DEFAULT '0',
@@ -2224,6 +2254,28 @@ CREATE INDEX lupo_dialog_threads_idx_thread_priority ON lupo_dialog_threads (thr
 CREATE INDEX lupo_dialog_threads_idx_deleted ON lupo_dialog_threads (is_deleted);
 CREATE INDEX lupo_dialog_threads_idx_created_by_actor ON lupo_dialog_threads (created_by_actor_id);
 CREATE INDEX lupo_dialog_threads_idx_last_message ON lupo_dialog_threads (last_message_ymdhis);
+
+-- Thread metadata table for storing additional thread information
+CREATE TABLE lupo_thread_metadata (
+  thread_metadata_id bigint NOT NULL,
+  dialog_thread_id bigint NOT NULL,
+  metadata_key varchar(255) NOT NULL,
+  metadata_value text,
+  metadata_type varchar(64) NOT NULL DEFAULT 'string',
+  created_ymdhis bigint NOT NULL DEFAULT 0,
+  updated_ymdhis bigint NOT NULL,
+  created_by_actor_id bigint NOT NULL,
+  is_deleted tinyint NOT NULL DEFAULT '0',
+  deleted_ymdhis bigint DEFAULT NULL,
+  PRIMARY KEY (thread_metadata_id)
+);
+
+CREATE UNIQUE INDEX lupo_thread_metadata_unq_thread_key ON lupo_thread_metadata (dialog_thread_id, metadata_key);
+CREATE INDEX lupo_thread_metadata_idx_thread_id ON lupo_thread_metadata (dialog_thread_id);
+CREATE INDEX lupo_thread_metadata_idx_key ON lupo_thread_metadata (metadata_key);
+CREATE INDEX lupo_thread_metadata_idx_type ON lupo_thread_metadata (metadata_type);
+CREATE INDEX lupo_thread_metadata_idx_created ON lupo_thread_metadata (created_ymdhis);
+CREATE INDEX lupo_thread_metadata_idx_deleted ON lupo_thread_metadata (is_deleted);
 
 CREATE TABLE lupo_doctrine_evolution_audit (
   doctrine_evolution_audit_id bigint NOT NULL,
@@ -3749,7 +3801,7 @@ CREATE TABLE lupo_tasks (
   metadata_json text,
   task_type varchar(64),
   task_status varchar(64),
-  task_priority varchar(64),
+  task_priority ENUM('low', 'normal', 'high', 'urgent', 'critical') NOT NULL DEFAULT 'normal',
   parent_agent_id bigint DEFAULT NULL,
   consensus_hash varchar(255) DEFAULT NULL,
   approval_chain_json json DEFAULT NULL,
@@ -3770,6 +3822,25 @@ CREATE INDEX lupo_tasks_idx_is_deleted ON lupo_tasks (is_deleted);
 CREATE INDEX lupo_tasks_idx_parent_agent_id ON lupo_tasks (parent_agent_id);
 CREATE INDEX lupo_tasks_idx_visibility_status ON lupo_tasks (visibility_status);
 -- RESERVED ID DOCTRINE: task_id is NOT AUTO_INCREMENT; application must supply explicit ID.
+
+CREATE TABLE lupo_escalation_tasks (
+  escalation_task_id bigint NOT NULL,
+  actor_id bigint NOT NULL,
+  thread_id bigint NOT NULL,
+  message_id bigint NOT NULL,
+  task_type varchar(64) NOT NULL,
+  status varchar(32) NOT NULL DEFAULT 'open',
+  assigned_actor_id bigint NOT NULL,
+  created_ymdhis bigint NOT NULL DEFAULT 0,
+  updated_ymdhis bigint NOT NULL,
+  PRIMARY KEY (escalation_task_id)
+);
+
+CREATE INDEX lupo_escalation_tasks_idx_actor_id ON lupo_escalation_tasks (actor_id);
+CREATE INDEX lupo_escalation_tasks_idx_thread_id ON lupo_escalation_tasks (thread_id);
+CREATE INDEX lupo_escalation_tasks_idx_message_id ON lupo_escalation_tasks (message_id);
+CREATE INDEX lupo_escalation_tasks_idx_status ON lupo_escalation_tasks (status);
+CREATE INDEX lupo_escalation_tasks_idx_assigned_actor_id ON lupo_escalation_tasks (assigned_actor_id);
 
 -- lupo_rolls: actor roles in channels (multi-agent evolution)
 CREATE TABLE lupo_rolls (
@@ -4006,5 +4077,186 @@ CREATE INDEX lupo_orchestrator_rules_idx_updated ON lupo_orchestrator_rules (upd
 
 -- Database-Backed Visibility Extensions (Thread 1031 - Phase 1)
 -- These extensions support web UI visibility for channels, threads, and tasks
+
+-- Dialog Routing Decisions (Thread 2012 MVP)
+-- Deterministic actor->human routing decision ledger
+CREATE TABLE lupo_routing_decisions (
+  routing_decision_id BIGINT NOT NULL PRIMARY KEY,
+  actor_id BIGINT NOT NULL,
+  thread_id BIGINT NOT NULL,
+  task_id BIGINT DEFAULT NULL,
+  routing_strategy VARCHAR(64) NOT NULL,
+  candidate_users_json TEXT NOT NULL,
+  selected_auth_user_id BIGINT NOT NULL,
+  fallback_index INT NOT NULL DEFAULT 0,
+  decision_reason TEXT,
+  decision_status VARCHAR(32) NOT NULL,
+  trigger_type VARCHAR(64) NOT NULL,
+  created_ymdhis BIGINT NOT NULL,
+  completed_ymdhis BIGINT DEFAULT 0,
+  idempotency_key VARCHAR(40) DEFAULT NULL
+);
+
+CREATE UNIQUE INDEX lupo_routing_decisions_unq_idempotency ON lupo_routing_decisions (idempotency_key);
+CREATE INDEX lupo_routing_decisions_idx_loop_break ON lupo_routing_decisions(actor_id, thread_id, trigger_type, created_ymdhis);
+CREATE INDEX lupo_routing_decisions_idx_thread_created ON lupo_routing_decisions(thread_id, created_ymdhis);
+CREATE INDEX lupo_routing_decisions_idx_selected_status ON lupo_routing_decisions(selected_auth_user_id, decision_status, created_ymdhis);
+
+-- Human-Targeted Thread Requests (Thread 1038)
+-- Supports human-AI coordination with deterministic governance
+CREATE TABLE lupo_human_requests (
+  request_id BIGINT NOT NULL PRIMARY KEY,
+  -- Composite: {thread_id}_{ymdhis}_{seq}
+  
+  -- Thread context
+  thread_id BIGINT NOT NULL,
+  channel_id BIGINT NOT NULL,
+  project_id BIGINT NOT NULL DEFAULT 0,
+  
+  -- Participants
+  initiator_actor_id BIGINT NOT NULL,
+  -- Agent or human actor who created the request
+  
+  target_auth_user_id BIGINT NOT NULL,
+  -- Which auth user must respond
+  
+  -- Request content (explicit fields)
+  request_type VARCHAR(64) NOT NULL,
+  -- ENUM: 'clarification' | 'approval' | 'verification' | 'direct_response'
+  
+  request_title VARCHAR(255) NOT NULL,
+  request_description TEXT NOT NULL,
+  
+  -- Subject context
+  subject_type VARCHAR(64),
+  -- ENUM: 'thread_artifact' | 'schema_change' | 'doctrine_question' | 'implementation'
+  
+  subject_reference VARCHAR(255),
+  -- Reference to specific item (table_name, file_path, etc.)
+  
+  -- Priority and status
+  priority VARCHAR(64) DEFAULT 'normal',
+  -- ENUM: 'high' | 'normal' | 'low'
+
+  request_mode VARCHAR(64) DEFAULT 'single_human',
+  -- Values: 'single_human' | 'multi_human' (future-safe)
+  
+  status VARCHAR(64) NOT NULL DEFAULT 'pending',
+  -- ENUM: 'draft' | 'pending' | 'answered' | 'resolved' | 'cancelled' | 'expired'
+  
+  -- Response fields
+  response_text TEXT,
+  response_auth_user_id BIGINT,
+  response_actor_id BIGINT,
+  
+  -- Timestamps (BIGINT UTC only)
+  created_ymdhis BIGINT NOT NULL,
+  updated_ymdhis BIGINT NOT NULL,
+  answered_ymdhis BIGINT,
+  resolved_ymdhis BIGINT DEFAULT 0,
+  expires_ymdhis BIGINT DEFAULT 0,
+  
+  -- Audit
+  is_deleted TINYINT DEFAULT 0,
+  deleted_ymdhis BIGINT DEFAULT 0
+);
+
+-- Indexes for efficient querying
+CREATE INDEX idx_target_user_status ON lupo_human_requests(target_auth_user_id, status);
+CREATE INDEX idx_thread_requests ON lupo_human_requests(thread_id, created_ymdhis DESC);
+CREATE INDEX idx_initiator_actor ON lupo_human_requests(initiator_actor_id, created_ymdhis DESC);
+CREATE INDEX idx_priority_status ON lupo_human_requests(priority, status, created_ymdhis DESC);
+CREATE INDEX idx_status_expires ON lupo_human_requests(status, expires_ymdhis);
+
+-- Normalized context for thread-scoped requests
+CREATE TABLE lupo_human_request_context (
+  context_id BIGINT NOT NULL PRIMARY KEY,
+  request_id BIGINT NOT NULL,
+  
+  context_type VARCHAR(64) NOT NULL,
+  -- ENUM: 'thread_artifact' | 'code_excerpt' | 'schema_def' | 'decision_point'
+  
+  content TEXT NOT NULL,
+  -- The actual context content
+  
+  source_artifact_path VARCHAR(512),
+  -- Path to referenced file/artifact
+  
+  source_line_range VARCHAR(64),
+  -- Line numbers or section reference
+  
+  created_ymdhis BIGINT NOT NULL
+);
+
+CREATE INDEX idx_request_context ON lupo_human_request_context(request_id);
+
+-- Detailed responses with human and actor attribution
+CREATE TABLE lupo_human_request_responses (
+  response_id BIGINT NOT NULL PRIMARY KEY,
+  request_id BIGINT NOT NULL,
+  
+  auth_user_id BIGINT NOT NULL,
+  -- Human user who responded
+  
+  actor_id BIGINT NOT NULL,
+  -- Which supporting actor they used
+  
+  response_type VARCHAR(64) NOT NULL,
+  -- ENUM: 'answer' | 'decision' | 'clarification' | 'escalation'
+  
+  response_text TEXT NOT NULL,
+  reasoning TEXT,
+  
+  -- Decision/approval specific
+  decision VARCHAR(64),
+  -- ENUM: 'approved' | 'rejected' | 'needs_revision' | 'deferred'
+  
+  conditions TEXT,
+  -- If decision = needs_revision
+  
+  response_ymdhis BIGINT NOT NULL,
+  
+  -- Audit
+  is_deleted TINYINT DEFAULT 0,
+  deleted_ymdhis BIGINT DEFAULT 0
+);
+
+CREATE INDEX idx_response_request ON lupo_human_request_responses(request_id);
+CREATE INDEX idx_response_user ON lupo_human_request_responses(auth_user_id, response_ymdhis DESC);
+
+-- Extend lupo_actors to support auth_user_id linkage (if not already present)
+-- Check if column exists before adding
+SET @column_exists = (
+    SELECT COUNT(*)
+    FROM information_schema.columns
+    WHERE table_name = 'lupo_actors'
+      AND column_name = 'auth_user_id'
+      AND table_schema = DATABASE()
+);
+
+SET @sql = IF(@column_exists = 0, 
+    'ALTER TABLE lupo_actors ADD COLUMN auth_user_id BIGINT DEFAULT NULL',
+    'SELECT "Column auth_user_id already exists"'
+);
+PREPARE stmt FROM @sql;
+EXECUTE stmt;
+DEALLOCATE PREPARE stmt;
+
+-- Add actor_tier column for clarity (if not already present)
+SET @column_exists = (
+    SELECT COUNT(*)
+    FROM information_schema.columns
+    WHERE table_name = 'lupo_actors'
+      AND column_name = 'actor_tier'
+      AND table_schema = DATABASE()
+);
+
+SET @sql = IF(@column_exists = 0, 
+    'ALTER TABLE lupo_actors ADD COLUMN actor_tier TINYINT DEFAULT 3',
+    'SELECT "Column actor_tier already exists"'
+);
+PREPARE stmt FROM @sql;
+EXECUTE stmt;
+DEALLOCATE PREPARE stmt;
 
 

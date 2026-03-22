@@ -355,10 +355,10 @@ This demonstrates the complete verbose header format...
 
 ## Related Artifacts
 
-- [TOON Schema Files](../../../database/lupopedia/json/) - Database structure definitions
-- [Current Scripts](../../../lupo-scripts/) - Header generation and content import
-- [LUPOPEDIA_HEADERS Documentation](../../../doctrine/LUPOPEDIA_HEADERS/) - Header format and requirements
-- [Database Documentation](../../../database/lupopedia/tables/active/) - Table definitions
+- TOON Schema Files - Database structure definitions
+- Current Scripts - Header generation and content import
+- LUPOPEDIA_HEADERS Documentation - Header format and requirements
+- Database Documentation - Table definitions
 
 ## Next Actions
 

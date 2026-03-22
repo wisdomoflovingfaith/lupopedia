@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\channels\CHANNEL_42_COORDINATION_PROTOCOL.md"
+  file_path_from_root: "lupo-docs/channels/CHANNEL_42_COORDINATION_PROTOCOL.md"
   file_hash: "e0283df067854c614b57dabf5cbece72616b42a8d9dc3f28663603f5ffa05d74"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

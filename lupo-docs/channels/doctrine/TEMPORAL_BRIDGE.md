@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\channels\doctrine\TEMPORAL_BRIDGE.md"
+  file_path_from_root: "lupo-docs/channels/doctrine/TEMPORAL_BRIDGE.md"
   file_hash: "62ccd41f73f785fdb9a2fa1d2ebbaaa4e00250f8bd84c653b0731d9b0989a962"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

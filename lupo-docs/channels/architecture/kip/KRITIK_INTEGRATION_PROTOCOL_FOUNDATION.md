@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\channels\architecture\kip\KRITIK_INTEGRATION_PROTOCOL_FOUNDATION.md"
+  file_path_from_root: "lupo-docs/channels/architecture/kip/KRITIK_INTEGRATION_PROTOCOL_FOUNDATION.md"
   file_hash: "24ec340440a5150abd0b816b2f32f6a94659b4c455de6ef3c4b823f4fdf6dedd"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

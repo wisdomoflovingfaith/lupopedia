@@ -14,6 +14,7 @@
     "`actor_source_id` bigint",
     "`actor_source_type` varchar(64)",
     "`metadata` text",
+    "`actor_config` text",
     "`adversarial_role` varchar(64) DEFAULT 'none'",
     "`adversarial_oversight_actor_id` bigint",
     "`avatar_hash` varchar(64)",
@@ -29,7 +30,9 @@
     "`workspace_path` varchar(255)",
     "`php_namespace` varchar(120)",
     "`who_json_sync_status` varchar(64) DEFAULT 'pending'",
-    "`last_sync_ymdhis` bigint DEFAULT 0"
+    "`last_sync_ymdhis` bigint DEFAULT 0",
+    "`auth_user_id` bigint",
+    "`actor_tier` tinyint DEFAULT 3"
   ],
   "data": [
     {
@@ -46,6 +49,7 @@
       "actor_source_id": 2031,
       "actor_source_type": "system_tool",
       "metadata": "{\"purpose\":\"IDE_integration\",\"capabilities\":[\"code_generation\",\"file_editing\",\"project_management\",\"git_integration\",\"vsx_extension_development\"],\"version\":\"1.0.0\",\"client_id\":\"windsurf\",\"provider\":\"windsurf\",\"integration_ready\":true,\"paired_actor_id\":10000,\"note\":\"Reassigned from actor_id 2 to avoid CAPTAIN conflict\"}",
+      "actor_config": null,
       "adversarial_role": "none",
       "adversarial_oversight_actor_id": null,
       "avatar_hash": null,
@@ -61,7 +65,9 @@
       "workspace_path": null,
       "php_namespace": null,
       "who_json_sync_status": "pending",
-      "last_sync_ymdhis": 0
+      "last_sync_ymdhis": 0,
+      "auth_user_id": null,
+      "actor_tier": 3
     }
   ],
   "indexes": [

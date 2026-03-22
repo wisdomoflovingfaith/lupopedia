@@ -2,7 +2,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: "lupo-docs/database/lupopedia/tables/active/lupo_anubis_log.md"
+  file_path_from_root: "lupo-docs/database/lupopedia/tables/active/development/lupo_anubis_log.md"
   system_version: "4.0.70"
   channel_id: 1
   actor_id: 103

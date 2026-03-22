@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\actors\ARCHITECTURE.md"
+  file_path_from_root: "lupo-database/lupopedia/actors/actor_id/ARCHITECTURE.md"
   file_hash: "28bb0464f0e3ca81f006750c9bd618f831d46165287424c78c4b23d8afcb308b"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

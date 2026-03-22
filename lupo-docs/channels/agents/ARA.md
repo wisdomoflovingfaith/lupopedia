@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\channels\agents\ARA.md"
+  file_path_from_root: "lupo-docs/channels/agents/ARA.md"
   file_hash: "a849589df2f3719b11d1c4a04fbb5818765fb4f3b0d7a1c0e21fd9e0ec72e580"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"
@@ -241,7 +241,7 @@ ARA is explicitly **Grokâ€‘aligned**:
 
 ## ðŸ”— Related Documentation
 
-- [THEMIS Agent](THEMIS.md) â€” Ethics enforcement agent (when it exists)
+- THEMIS Agent â€” Ethics enforcement agent (when it exists)
 - [Agent Runtime Architecture](AGENT_RUNTIME.md) â€” Agent system architecture
 - [NO_FOREIGN_KEYS_DOCTRINE.md](../doctrine/NO_FOREIGN_KEYS_DOCTRINE.md) â€” Doctrine that ARA may challenge
 - [WOLFIE_HEADER_RFC.md](../architecture/protocols/WOLFIE_HEADER_RFC.md) â€” RFC that ARA may review

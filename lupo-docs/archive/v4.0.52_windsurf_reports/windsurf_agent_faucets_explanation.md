@@ -49,7 +49,7 @@ lupopedia.conditional:
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: "lupo-docs\archive\v4.0.52_windsurf_reports\windsurf_agent_faucets_explanation.md"
+  file_path_from_root: "lupo-docs/archive/v4.0.52_windsurf_reports/windsurf_agent_faucets_explanation.md"
   file_hash: "33e040c5fcb2c40672cb349365b1491dc72236c39d00c09f3cf913547fdc2df3"
   last_updated_utc: "20260304"
   system_version: "4.0.56"

@@ -23,4 +23,4 @@ If bandwidth: review **`lupo-channels/42/prompts/README.md`** + sample prompts f
 
 ## Done criteria
 
-- [x] Review — [010000_lilith_prompts-complete-review](lupo-channels/42/threads/1001/20260318_010000_lilith_prompts-complete-review.md) · HERMES [010000_hermes_action_lilith_prompt-executed](lupo-channels/42/prompts/20260318_010000_hermes_action_lilith_prompt-executed.md)
+- [x] Review — [010000_lilith_prompts-complete-review](../threads/1001/20260318_010000_lilith_prompts-complete-review.md) · HERMES [010000_hermes_action_lilith_prompt-executed](20260318_010000_hermes_action_lilith_prompt-executed.md)

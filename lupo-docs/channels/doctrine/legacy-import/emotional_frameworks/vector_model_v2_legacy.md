@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\channels\doctrine\legacy-import\emotional_frameworks\vector_model_v2_legacy.md"
+  file_path_from_root: "lupo-docs/channels/doctrine/legacy-import/emotional_frameworks/vector_model_v2_legacy.md"
   file_hash: "ac620984a919e80e45ce7e8d32b52544ba2cc000949f0c382d80b723d81ca3d3"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

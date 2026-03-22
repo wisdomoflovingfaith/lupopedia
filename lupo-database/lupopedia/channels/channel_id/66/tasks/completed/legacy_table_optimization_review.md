@@ -49,7 +49,7 @@ lupopedia.conditional:
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "task"
-  file_path_from_root: "lupo-database/lupopedia/channels/lupo-channels/66/tasks/completed/legacy_table_optimization_review.md"
+  file_path_from_root: "lupo-database/lupopedia/channels/channel_id/66/tasks/completed/legacy_table_optimization_review.md"
   file_hash: "2ddb455bff479c135646d7aa0c60597d33bd24652ce542336d21282060674f2a"
   last_updated_utc: "20260304"
   system_version: "4.0.56"

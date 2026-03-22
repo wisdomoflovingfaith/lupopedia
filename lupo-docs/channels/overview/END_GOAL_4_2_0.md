@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\channels\overview\END_GOAL_4_2_0.md"
+  file_path_from_root: "lupo-docs/channels/overview/END_GOAL_4_2_0.md"
   file_hash: "c28eebfad5aa063e9993239237dfbe76b531142714e68ee34685ddd3feed5581"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

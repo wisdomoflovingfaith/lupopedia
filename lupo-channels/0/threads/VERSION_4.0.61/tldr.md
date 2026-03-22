@@ -21,7 +21,7 @@ lupopedia.headers:
 # Lupopedia TL;DR — HELP • FLAME • WOLFIE • Routing • Core Architecture (v4.0.61)
 
 **Thread location:** `{LUPO_CHANNELS_DIR}/0/threads/VERSION_4.0.61/tldr.md`  
-**Canonical original:** [lupo-docs/TLDR_LUPOPEDIA.md](../../../docs/TLDR_LUPOPEDIA.md)
+**Canonical original:** [lupo-docs/TLDR_LUPOPEDIA.md](../../../../lupo-docs/TLDR_LUPOPEDIA.md)
 
 ---
 

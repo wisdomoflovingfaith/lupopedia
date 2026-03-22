@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "prompt"
-  file_path_from_root: "lupo-channels/0/ide_survival_prompt.md"
+  file_path_from_root: "lupo-database/lupopedia/channels/channel_id/0/ide_survival_prompt.md"
   system_version: "4.0.52"
   last_modified_utc: "20260301"
   channel_id: 0

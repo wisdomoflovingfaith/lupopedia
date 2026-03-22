@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\channels\doctrine\LUPOPEDIA_ACTOR_BASELINE_STATE_DOCTRINE.md"
+  file_path_from_root: "lupo-docs/channels/doctrine/LUPOPEDIA_ACTOR_BASELINE_STATE_DOCTRINE.md"
   file_hash: "14000ca51de955ad14c132eb182e3aeb47e075dbfa67e4f328392c3a53eadb3b"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

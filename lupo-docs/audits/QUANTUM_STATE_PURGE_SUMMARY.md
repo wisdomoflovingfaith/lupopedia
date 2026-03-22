@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\audits\QUANTUM_STATE_PURGE_SUMMARY.md"
+  file_path_from_root: "lupo-docs/audits/QUANTUM_STATE_PURGE_SUMMARY.md"
   file_hash: "e9ae9e7d2cde73479a992a8150ed4600e5208580cbdd6d0d061fc145f17c1199"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

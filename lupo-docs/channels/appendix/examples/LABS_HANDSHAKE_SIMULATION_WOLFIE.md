@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\channels\appendix\examples\LABS_HANDSHAKE_SIMULATION_WOLFIE.md"
+  file_path_from_root: "lupo-docs/channels/appendix/examples/LABS_HANDSHAKE_SIMULATION_WOLFIE.md"
   file_hash: "9deddcaa1ff70fae0a040b33750f2c78f586a5b6cf9a32ae51dc41003147d112"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

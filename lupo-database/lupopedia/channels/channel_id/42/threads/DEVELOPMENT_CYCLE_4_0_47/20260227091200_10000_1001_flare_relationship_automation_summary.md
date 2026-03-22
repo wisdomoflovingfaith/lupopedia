@@ -1,6 +1,6 @@
 ---
 lupopedia.headers:
-  file_path_from_root: "lupo-channels/42/threads/DEVELOPMENT_CYCLE_4_0_47/20260227091200_10000_1001_flare_relationship_automation_summary.md"
+  file_path_from_root: "lupo-database/lupopedia/channels/channel_id/42/threads/DEVELOPMENT_CYCLE_4_0_47/20260227091200_10000_1001_flare_relationship_automation_summary.md"
   file_hash: "bf0ec849ebc5dd5b20c0d4bffe9379056d63df37b8b992204748c6e7f715403a"
   system_version: "4.0.50"
   channel_id: 42

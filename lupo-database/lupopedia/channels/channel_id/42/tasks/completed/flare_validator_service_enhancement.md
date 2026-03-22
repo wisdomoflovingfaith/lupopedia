@@ -49,7 +49,7 @@ lupopedia.conditional:
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "task"
-  file_path_from_root: "lupo-database/lupopedia/channels/lupo-channels/42/tasks/completed/flare_validator_service_enhancement.md"
+  file_path_from_root: "lupo-database/lupopedia/channels/channel_id/42/tasks/completed/flare_validator_service_enhancement.md"
   file_hash: "44b27f43500d0ce51c6ad6ad1aeda2686b4255e25b3dbd82112854dab0014ee9"
   last_updated_utc: "20260304"
   system_version: "4.0.56"

@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\channels\doctrine\GOV-PROHIBIT-005.md"
+  file_path_from_root: "lupo-docs/channels/doctrine/GOV-PROHIBIT-005.md"
   file_hash: "cec095177c938ad1b872cbc42cb805ea0a946c717764a0914b1ebc80697de1e5"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

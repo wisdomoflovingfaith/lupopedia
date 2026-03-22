@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\channels\42\broadcasts\20260223_windsurf_sql_seed_alignment.md"
+  file_path_from_root: "lupo-docs/channels/42/broadcasts/20260223_windsurf_sql_seed_alignment.md"
   file_hash: "dfbac8e17bef2fa95ec26b265068ded3ad1bc63ec436614f82c04ccce55e291b"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

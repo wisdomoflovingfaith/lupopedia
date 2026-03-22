@@ -26,14 +26,14 @@ lupopedia.footer:
 
 **Opened:** 2026-03-16 (post–4.0.78 release and tag). Unfinished work from 4.0.78 carried forward. **4.0.78 is released;** completed 4.0.78 work is closed and not repeated here.
 
-**Active scope (4.0.79):** Bounded to the **remaining Top 50 operational tables** and related cleanup. Domain priority: (1) core, (2) channels, (3) auth, (4) content, (5) analytics. Authority: [review_of_cursor_cleanup_and_top_50_table_plan.md](lupo-docs/status/review_of_cursor_cleanup_and_top_50_table_plan.md). The full table-doc corpus (351 docs) remains background backlog; success is measured against completing the Top 50 and bounded cleanup only.
+**Active scope (4.0.79):** Bounded to the **remaining Top 50 operational tables** and related cleanup. Domain priority: (1) core, (2) channels, (3) auth, (4) content, (5) analytics. Authority: [review_of_cursor_cleanup_and_top_50_table_plan.md](../../status/review_of_cursor_cleanup_and_top_50_table_plan.md). The full table-doc corpus (351 docs) remains background backlog; success is measured against completing the Top 50 and bounded cleanup only.
 
 ---
 
 ## Phase 1 — Remaining Top 50 table documentation
 
 - **1.1 Auth (remaining)**  
-  - **lupo_auth_providers**, **lupo_auth_audit_log**, **lupo_banned_actors**, **lupo_bans_log** — Update to 4.0.79 LUPOPEDIA_HEADERS with Table Overview, "Where This Table Is Used," column docs from [install_new_lupopedia.sql](lupo-database/lupopedia/mysql/install/install_new_lupopedia.sql) where present, indexes, relationships, doctrine notes. Zencoder pattern; namespace auth.
+  - **lupo_auth_providers**, **lupo_auth_audit_log**, **lupo_banned_actors**, **lupo_bans_log** — Update to 4.0.79 LUPOPEDIA_HEADERS with Table Overview, "Where This Table Is Used," column docs from [install_new_lupopedia.sql](../../../lupo-database/lupopedia/mysql/install/install_new_lupopedia.sql) where present, indexes, relationships, doctrine notes. Zencoder pattern; namespace auth.
 
 - **1.2 Content (remaining)**  
   - **lupo_content_versions**, **lupo_content_revisions**, **lupo_content_tags**, **lupo_content_collections** (or equivalent from install SQL) — Same pattern; namespace content.
@@ -45,23 +45,23 @@ lupopedia.footer:
   - **lupo_agents**, **lupo_actor_channels** — Same pattern; namespace core/channels. Additional tables from install SQL to round out Top 50 as needed.
 
 - **1.5 Pattern and truth**  
-  - Schema truth: [install_new_lupopedia.sql](lupo-database/lupopedia/mysql/install/install_new_lupopedia.sql) → TOON → table markdown. Pattern: [TABLE_DOCUMENTATION_4_0_77_STOP_LINE.md](lupo-docs/status/TABLE_DOCUMENTATION_4_0_77_STOP_LINE.md).
+  - Schema truth: [install_new_lupopedia.sql](../../../lupo-database/lupopedia/mysql/install/install_new_lupopedia.sql) → TOON → table markdown. Pattern: [TABLE_DOCUMENTATION_4_0_77_STOP_LINE.md](../../status/TABLE_DOCUMENTATION_4_0_77_STOP_LINE.md).
 
 ---
 
 ## Phase 2 — Bounded header and namespace cleanup
 
 - **2.1 Top 50 header version**  
-  - Update remaining Top 50 table docs to 4.0.79 headers where still not at current version. Use [table_doc_header_version_report_4_0_78.md](lupo-docs/status/table_doc_header_version_report_4_0_78.md) (or refreshed 4.0.79 report) for targeting; no blind mass-edit of full corpus.
+  - Update remaining Top 50 table docs to 4.0.79 headers where still not at current version. Use [table_doc_header_version_report_4_0_78.md](../../status/table_doc_header_version_report_4_0_78.md) (or refreshed 4.0.79 report) for targeting; no blind mass-edit of full corpus.
 
 - **2.1a Header doctrine + table-doc edges exception (docs + active table docs)**  
-  - Update LUPOPEDIA HEADERS doctrine/spec/templates/examples so ordinary docs teach only stable, human-authored header blocks, with active table docs as the explicit exception where verbose edges are required. Populate grounded verbose table-doc edges in `lupo-docs/database/lupopedia/tables/active/*.md` when PHP/Python references exist. Track in: [header_doctrine_and_table_edges_update_4_0_79.md](lupo-docs/status/header_doctrine_and_table_edges_update_4_0_79.md).
+  - Update LUPOPEDIA HEADERS doctrine/spec/templates/examples so ordinary docs teach only stable, human-authored header blocks, with active table docs as the explicit exception where verbose edges are required. Populate grounded verbose table-doc edges in `lupo-docs/database/lupopedia/tables/active/*.md` when PHP/Python references exist. Track in: [header_doctrine_and_table_edges_update_4_0_79.md](../../status/header_doctrine_and_table_edges_update_4_0_79.md).
 
 - **2.2 Missing LUPOPEDIA_HEADERS**  
   - Add LUPOPEDIA_HEADERS to **TABLE_INDEX.md** (only doc missing headers per report). Use minimal valid block; artifact type appropriate for index file.
 
 - **2.3 Namespace for Top 50**  
-  - Ensure remaining Top 50 table docs have valid `namespace` per [LUPOPEDIA_HEADERS_FORMAT.md](lupo-docs/doctrine/LUPOPEDIA_HEADERS/LUPOPEDIA_HEADERS_FORMAT.md). Use [namespace_audit_4_0_78.md](lupo-docs/status/namespace_audit_4_0_78.md) (or refreshed audit) for targeting.
+  - Ensure remaining Top 50 table docs have valid `namespace` per [LUPOPEDIA_HEADERS_FORMAT.md](../../doctrine/LUPOPEDIA_HEADERS/LUPOPEDIA_HEADERS_FORMAT.md). Use [namespace_audit_4_0_78.md](../../status/namespace_audit_4_0_78.md) (or refreshed audit) for targeting.
 
 - **2.4 Duplicate / FLARE cleanup**  
   - Only where it affects active Top 50 or high-priority table docs; do not expand to full corpus.

@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\channels\doctrine\AI_UNCERTAINTY_EXPRESSION_DOCTRINE.md"
+  file_path_from_root: "lupo-docs/channels/doctrine/AI_UNCERTAINTY_EXPRESSION_DOCTRINE.md"
   file_hash: "3de2155b7f43344d7e0ae6f23db23c5d8cfff881c5c1a1640eab04c36ad5e15a"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

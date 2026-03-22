@@ -5,7 +5,7 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "KIRO_TAKEOVER_REPORT.md"
+  file_path_from_root: "lupo-docs/audits/KIRO_TAKEOVER_REPORT.md"
   file_hash: "6d3c621ac6933fedee84c8d7f25a61c204e1bb81ce20cbafff7361770a9a11a7"
   file_path_from_root: "KIRO_TAKEOVER_REPORT.md"
   file_hash: "968ecb7a35ef0721a8cbc6aaba66988f18ff5ee27d17646c9efeacfa383793ea"

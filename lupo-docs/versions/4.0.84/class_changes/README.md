@@ -97,7 +97,7 @@ Version 4.0.84 introduces **new header generation classes** and updates existing
 
 ## Related Files
 
-- [generate_headers_from_db.py](../../../lupo-scripts/generate_headers_from_db.py)
+- [generate_headers_from_db.py](../../../../lupo-scripts/generate_headers_from_db.py)
 - [LUPOPEDIA_HEADERS_FORMAT.md](../../../doctrine/LUPOPEDIA_HEADERS/LUPOPEDIA_HEADERS_FORMAT.md)
 - [VERSIONING_DOCTRINE.md](../../../doctrine/VERSIONING_DOCTRINE.md)
 

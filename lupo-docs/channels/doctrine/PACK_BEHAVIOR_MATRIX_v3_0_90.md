@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\channels\doctrine\PACK_BEHAVIOR_MATRIX_v3_0_90.md"
+  file_path_from_root: "lupo-docs/channels/doctrine/PACK_BEHAVIOR_MATRIX_v3_0_90.md"
   file_hash: "77297e58cb7623e2bed46104da17be2d934cd20ddab25bcc1f95a8149ba4574f"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

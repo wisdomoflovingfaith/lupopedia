@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\channels\agents\agent-1\workflows\channel_initialization.workflow.md"
+  file_path_from_root: "lupo-docs/channels/agents/agent-1/workflows/channel_initialization.workflow.md"
   file_hash: "a85c0f0aaccdaba759ea1ec8659deaeadf61c9bd3df06097667702bcfccdca69"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"
@@ -398,9 +398,9 @@ WHERE channel_id = :channel_id AND is_deleted = 0;
 
 - **[Channel Initialization Protocol](../doctrine/CHANNEL_INITIALIZATION_PROTOCOL.md)** � Complete CIP doctrine
 - **[WOLFIE UTC Authority Doctrine](../doctrine/WOLFIE_UTC_AUTHORITY.md)** � Timestamp authority rules
-- **[UTC_TIMEKEEPER Doctrine](../../5/doctrine/UTC_TIMEKEEPER.md)** � UTC_TIMEKEEPER agent specification
-- **[Channel Identity Block Template](../templates/channel_identity_block.template.md)** � Template for channel identity
-- **[Channel Dialog Agent Workflows](../../../docs/ARCHITECTURE/CHANNEL_DIALOG_AGENT_WORKFLOWS.md)** � How agents interact with channels
+- **UTC_TIMEKEEPER Doctrine** � UTC_TIMEKEEPER agent specification
+- **Channel Identity Block Template** � Template for channel identity
+- **[Channel Dialog Agent Workflows](../../../dialogs/architecture/CHANNEL_DIALOG_AGENT_WORKFLOWS.md)** � How agents interact with channels
 
 ---
 

@@ -78,7 +78,7 @@ lupo-docs/versions/4.0.84/
 
 - [LUPOPEDIA_HEADERS README](../../../doctrine/LUPOPEDIA_HEADERS/README.md)
 - [VERSIONING_DOCTRINE.md](../../../doctrine/VERSIONING_DOCTRINE.md)
-- [CHANGELOG.md](../../../CHANGELOG.md)
+- CHANGELOG.md
 
 ## Validation
 

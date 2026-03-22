@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\channels\doctrine\EMO_AGENT_RULES.md"
+  file_path_from_root: "lupo-docs/channels/doctrine/EMO_AGENT_RULES.md"
   file_hash: "d66839dc5f6e683202299654a1e5df2c5f738bad7d8514f4e6b9f3d69df8fb7a"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

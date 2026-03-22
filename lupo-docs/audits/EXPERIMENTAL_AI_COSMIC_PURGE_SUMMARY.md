@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\audits\EXPERIMENTAL_AI_COSMIC_PURGE_SUMMARY.md"
+  file_path_from_root: "lupo-docs/audits/EXPERIMENTAL_AI_COSMIC_PURGE_SUMMARY.md"
   file_hash: "d139ed3c2923d3926c9e618e11d5695d2dff8e99f26f350497c51dadda9e33b4"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

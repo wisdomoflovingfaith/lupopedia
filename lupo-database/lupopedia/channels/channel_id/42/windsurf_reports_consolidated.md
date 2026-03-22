@@ -49,7 +49,7 @@ lupopedia.conditional:
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: "lupo-database\lupopedia\channels\lupo-channels\42\windsurf_reports_consolidated.md"
+  file_path_from_root: "lupo-database/lupopedia/channels/channel_id/42/windsurf_reports_consolidated.md"
   file_hash: "ea74a92c04d61c0aa979f58c7f29a3d037d864bc8c4ae04c546e31fe5023149b"
   last_updated_utc: "20260304"
   system_version: "4.0.56"

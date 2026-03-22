@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\channels\architecture\protocols\CADUCEUS_ROUTING_RFC.md"
+  file_path_from_root: "lupo-docs/channels/architecture/protocols/CADUCEUS_ROUTING_RFC.md"
   file_hash: "22d1d033a60e145220af96ce9b022968147b1077ceeafc7fed1e82c6fa96b03b"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

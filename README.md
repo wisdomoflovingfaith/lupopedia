@@ -39,7 +39,7 @@ lupopedia.metadata:
   description:
     - { schema_ref: "lupo_metadata", entity_type: "file", meta_type: "property", property_value: "Primary project documentation — deterministic multi-agent semantic OS; database-backed knowledge graph + doctrine-driven filesystem + MySQL/Postgres backend.", channel_id: 42, class_name: "lupopedia_metadata", created_ymdhis: 20260313000000, updated_ymdhis: 20260318000000 }
   keywords:
-    - { schema_ref: "lupo_metadata", entity_type: "file", meta_type: "property", property_value: "readme, getting_started, semantic_os, multi_agent, deterministic_os, knowledge_graph, doctrine_filesystem, database_backend, v4.0.84", channel_id: 42, class_name: "lupopedia_metadata", created_ymdhis: 20260313000000, updated_ymdhis: 20260320000000 }
+    - { schema_ref: "lupo_metadata", entity_type: "file", meta_type: "property", property_value: "readme, getting_started, semantic_os, multi_agent, deterministic_os, knowledge_graph, doctrine_filesystem, database_backend, v4.0.85", channel_id: 42, class_name: "lupopedia_metadata", created_ymdhis: 20260313000000, updated_ymdhis: 20260320000000 }
   author:
     - { schema_ref: "lupo_metadata", entity_type: "file", meta_type: "property", property_value: "wolfie", channel_id: 42, class_name: "lupopedia_metadata", created_ymdhis: 20260313000000, updated_ymdhis: 20260313000000 }
   orchestrator:
@@ -48,9 +48,9 @@ lupopedia.metadata:
 lupopedia.headers:
   lupopedia.schema: "documentation"
   file_path_from_root: "README.md"
-  version_when_written: "4.0.84"
+  version_when_written: "4.0.85"
   web_path: "http://www.lupopedia.com/"
-  last_modified_utc: "20260320"
+  last_modified_utc: "20260322_235900"
   channel_id: 42
   actor_id: 1
   actor_name: "wolfie"
@@ -59,8 +59,8 @@ lupopedia.headers:
   artifact_kind: "documentation"
   purpose: "Primary project documentation and onboarding — Install & upgrade validation, canonical root rules, actor registration, lupo-channels/actors/agents"
   mood_rgb: "4169E1"
-  traits: ["essential", "entrypoint", "onboarding", "deterministic_semantic_os", "knowledge_graph", "v4.0.84"]
-  tags: ["readme", "getting_started", "semantic_os", "multi_agent", "knowledge_graph", "doctrine_filesystem", "database_backend", "root_rules", "v4.0.84"]
+  traits: ["essential", "entrypoint", "onboarding", "deterministic_semantic_os", "knowledge_graph", "v4.0.85"]
+  tags: ["readme", "getting_started", "semantic_os", "multi_agent", "knowledge_graph", "doctrine_filesystem", "database_backend", "root_rules", "v4.0.85"]
 
 lupopedia.session:
   session_id: "L-LUPO-ROOT-CURSOR"
@@ -87,67 +87,105 @@ lupopedia.edges:
   semantic_tags: ["project_overview", "onboarding", "semantic_os", "multi_agent", "root_rules"]
 
 lupopedia.footer:
-  last_verified: "20260320"
+  last_verified: "20260321"
   last_verified_by: "wolfie"
   orchestrator: "wolfie"
   next_action:
     - "Point new contributors to Required Reading (INIT_README, LUPOPEDIA_HEADERS), lupo-rules/root/, and actor registration checklist (lupo-docs/ACTOR_REGISTRATION_CHECKLIST.md)"
-    - "Single active version: 4.0.84 — see CHANGELOG.md, TODO.md, plan.md, notes_for_next_session.md, and WOLFIE master consolidation (lupo-channels/1/threads/1035/20260319_190000_wolfie_master_shutdown_consolidation.md)"
+    - "Single active version: 4.0.85 — see CHANGELOG.md, TODO.md, plan.md, notes_for_next_session.md, and WOLFIE master consolidation (lupo-channels/1/threads/1035/20260319_190000_wolfie_master_shutdown_consolidation.md)"
     - "README deterministic OS + knowledge-graph + DB backend section stays aligned with install SQL / TOON regeneration"
     - "Actor–facet separation + channel migration execution are 4.0.82 scope; deferred DB-primary/UI/dedupe items are in root TODO.md"
+    - "Operational reality sections (§3-7) now canonical; sync all architecture docs to dual-mode model (Thread 1033, §5)"
 ---
 # file: Lupopedia README — session: L-LUPO-ROOT-CURSOR — delegation: cursor:root — web_path: http://www.lupopedia.com/
 
-# Lupopedia Semantic OS v4.0.84
+# Lupopedia Semantic OS v4.0.85
 
 [**GitHub repo**](https://github.com/wisdomoflovingfaith/lupopedia)
 
-[![Version](https://img.shields.io/badge/version-4.0.84-blue.svg)](lupo-docs/version.md)
+[![Version](https://img.shields.io/badge/version-4.0.85-blue.svg)](lupo-docs/version.md)
 [![docs](https://img.shields.io/badge/docs-HELP.md-green)](lupo-docs/HELP.md)
+
+---
+
+## Controlled Synchronization v9
+
+- Authoritative task and question state lives only in `lupo-docs/versions/4.0.85/TASK_REGISTRY.md`.
+- `lupo-channels/*/THREAD_INDEX.md` files are derived navigation surfaces only.
+- LILITH output is validation-only; violations route through `lupo-docs/versions/4.0.85/CONTRADICTIONS.md` and linked task entries.
 
 ---
 
 ## Lupopedia as a deterministic, multi-agent semantic OS
 
-**Lupopedia** is a **deterministic, multi-agent semantic operating system** layered on the Crafty Syntax live-help lineage. **Deterministic** here means operational rules are explicit and repeatable: doctrine (e.g. no database-side logic, BIGINT UTC timestamps set in PHP, reserved IDs for registry-backed rows) replaces implicit framework behavior so agents and humans get the same outcomes from the same inputs. **Multi-agent** means registered **actors** coordinate through **channels**, **sessions**, and artifacts—not a single anonymous chat user. **Semantic OS** means the platform treats **meaning** as first-class data: entities carry metadata and typed relationships, not only rows for CRUD.
+**Lupopedia** is a **deterministic semantic operating system** built from two durable lineages and adapted for current multi-actor work.
 
-**Database-backed knowledge graph.** The **MySQL / MariaDB / PostgreSQL** schema (canonical DDL: [`install_new_lupopedia.sql`](lupo-database/lupopedia/mysql/install/install_new_lupopedia.sql); column reference regenerated as **TOON** JSON under `lupo-database/lupopedia/toon/`) stores the graph-shaped core of that semantics:
+- From **Crafty Syntax** it keeps the idea that real work happens through **channels, threads, and human dialog**.
+- From **Doom Emacs research** it takes conceptual lessons about **relationships, composition, layered structure, and collections of relationships**.
 
-| Layer (concept) | Primary tables (examples) |
-|-----------------|---------------------------|
-| Properties on any entity | **`lupo_metadata`** — `entity_type`, `entity_id`, `property_key`, `property_value`, optional `channel_id`, hierarchical `parent_metadata_id` (LUPOPEDIA HEADERS round-trip here) |
-| Typed links between entities | **`lupo_edges`** — `left_object_type` / `left_object_id` ↔ `right_object_type` / `right_object_id`, `edge_type`, `semantic_weight`, `relationship_type` |
-| Who acts | **`lupo_actors`**, **`lupo_actor_channels`**, **`lupo_auth_users`** |
-| Where work lives | **`lupo_channels`**, **`lupo_collections`** |
-| Structured judgment / state | **`lupo_decisions`**, **`lupo_decision_evidence`**, etc. |
+It is not a generic chatbot wrapper, not just a ticket queue, and not only a graph database. It is a system for coordinating humans, actors, agents, rules, documents, and decisions in a way that can be inspected, replayed, and validated.
 
-So the **knowledge graph is not only “files”—it is persisted in the database** for the running app, search, APIs, and coordination.
+### What is first-class in Lupopedia
 
-**Doctrine-driven filesystem.** In parallel, the repo is organized so **doctrine and artifacts live on disk**: **`lupo-rules/root/`** (binding rules), **`lupo-docs/doctrine/`** (architecture), **`lupo-channels/`** (channel-scoped threads, prompts, broadcasts), **`lupo-agents/`**, and **LUPOPEDIA HEADERS** in Markdown files. That layout is **not a substitute for the DB**—it is the **git-native, IDE-native** expression of the same semantic model and the **offline fallback** when the DB is unreachable (artifacts stay structured for later sync). See also [What Lupopedia Is](#what-lupopedia-is) and [LUPOPEDIA HEADERS — The File/Database Bridge](#lupopedia-headers--the-filedatabase-bridge).
+| Layer | What it means in practice |
+|---|---|
+| **Edges and metadata** | `lupo_edges` and `lupo_metadata` store typed relationships and properties as first-class system data rather than treating links as informal prose only. |
+| **Channels and threads** | `lupo_channels`, `lupo_dialog_threads`, `lupo_dialog_messages`, and filesystem thread artifacts provide the coordination structure for ongoing work. |
+| **Actors and humans** | `lupo_actors`, `lupo_auth_users`, and `lupo_actor_auth_users` separate orchestration identity from login identity and support many-to-many human support pools. |
+| **Decisions and contradictions** | `lupo_decisions`, decision-evidence tables, `TASK_REGISTRY.md`, and `CONTRADICTIONS.md` support traceability instead of hidden judgment. |
+| **Doctrine** | Root rules and doctrine files replace implicit framework behavior with explicit constraints that agents and humans can follow repeatably. |
 
-**Summary:** Lupopedia is a **semantic OS** with a **real database backend** (sessions, chat, actors, metadata, edges, decisions) **and** a **doctrine-driven filesystem** that keeps behavior deterministic and multi-agent work attributable whether online or offline.
+### Why it is structured this way
+
+**Crafty Syntax was chosen for durability of the human interaction model.** It has more than 20 years of real-world live-help usage behind its channel, thread, and dialog patterns. Lupopedia keeps that proven shape because human coordination is not theoretical here; it needs a model that already survived real operational use.
+
+**Doom Emacs research was chosen for durability of compositional structure.** The relevant lesson is not “Emacs as an editor.” The useful lesson is that a long-lived system can remain extensible when relationships, ordering, gating, and layered composition are explicit. Lupopedia applies that concept to edges, collections, task dependencies, contradictions, and decision lineage. In 4.0.85 this remains **research-informed and partial**, not a claim of completed Doom-derived implementation.
+
+### Database + filesystem duality
+
+Lupopedia is intentionally split across two authoritative modes that describe the same system from different angles:
+
+- The **database** holds runtime state: actors, auth users, channels, threads, messages, metadata, edges, tasks, routing decisions, and request records.
+- The **filesystem** holds doctrine, thread artifacts, version documentation, LUPOPEDIA HEADERS, and agent-readable continuity records.
+
+This is not duplication for its own sake. The database is the live operational substrate. The filesystem is the inspectable, git-native, external-AI-readable coordination surface. Together they let Lupopedia work as both a running application and a doctrine-driven repository.
+
+### Current 4.0.85 reality
+
+In 4.0.85, Lupopedia already has the structural foundation for channel/thread/dialog work, but the system is still uneven across surfaces:
+
+- dialog already exists in **channels, threads, artifacts, and schema**
+- actor-to-human routing has an implemented **MVP** with deterministic selection and audited corrections
+- actor to auth-user support pools use the corrected **many-to-many** relationship model from Thread 2011
+- version-folder governance replaced flat root status tracking for 4.0.85+
+- Thread 2013 explicitly cleared the current system for the canonical drop -> Crafty import -> install.php cycle
+- the **web dialog interface is not complete yet**
+- current real usage still depends heavily on **filesystem artifacts, CLI workflows, IDE faucets, and external AI participation**
+
+So the right description is: **foundational and operational in parts, but not yet a finished end-user dialog UI.**
 
 ---
 
-## 🚧 Current Development — v4.0.84 (active development)  
-**Previous Release**: 4.0.82 (finalized and released)  
-**Status**: Active development on 4.0.82 features and improvements. Rules and governance updates: **canonical root rules** in `lupo-rules/root/`, IDE rule propagation (Cursor, Kiro, Windsurf, JetBrains), TOON path unified to `lupo-database/lupopedia/toon/`, `lupo-database/` security hardening, **thread model and task management documentation**, and **Antigravity VSX Extension** integration (including full LUPOPEDIA HEADERS terminology adoption and feature UI scaffolding). The only supported upgrade path is **Crafty Syntax 3.7.5 → Lupopedia 4.0.x**. See [plan.md](plan.md) and [report.md](report.md).
+## 🚧 Current Development — v4.0.85 (active development)  
+**Status**: 4.0.85 is a stabilization and synchronization version. It exists to bring schema authority, TOON parity, thread/task authority, actor/auth routing semantics, and documentation surfaces into a coherent state before larger feature work continues. The only supported upgrade path remains **Crafty Syntax 3.7.5 → Lupopedia 4.0.x**.
 
-**Focus areas for v4.0.82 (completed):**
-- **Thread model documentation and implementation** - One-thread-per-task doctrine, task_id/thread_id separation, lifecycle management
-- **Doctrine alignment for channel-based coordination** - Complete migration from status-based to thread-based coordination
-- **Documentation completeness + validation tooling** - Ensuring 100% coverage and quality validation
+**What 4.0.85 established:**
+- **Thread 1047** — TASK_REGISTRY as the only authoritative task surface; THREAD_INDEX demoted to navigation-only
+- **Thread 2004** — install SQL and TOON parity restored; stale `lupo_visibility_state` projection removed
+- **Thread 2011** — many-to-many `actor` ↔ `auth_user` support model corrected and validated for routing use
+- **Thread 2012** — deterministic dialog routing MVP implemented, corrected, and validated as COMPLIANT
+- **Thread 2013** — dual PASS install-readiness verdict issued for install schema and runtime system
+- **Thread 2015** — `mood_rgb` resolved into authoritative canonical tokens plus non-authoritative routing vector semantics
+- **4.0.85 version directory** — version-specific docs now carry the detailed record that no flat root changelog can safely represent
 
-**Focus areas for v4.0.84 (current):**
-- **Continued validator enhancement and enforcement** - Expanding validation coverage and automation
-- **Project-aware coordination improvements** - Enhanced project-scoped task management (Thread 1032 Project IDs)
-- **Database-Backed Visibility & Schema Governance** - Reconciling visibility DDL via Thread 1031 & 1032 WOLFIE enforcement
-- **External AI integration and navigation** - Improved discoverability and participation
-- **LUPOPEDIA HEADERS doctrine cleanup** - Enforced `version_when_written`-only versioning, baseline rewrite-on-write eligibility, and corrected identity-line / optional-blocks documentation
-- **Documentation quality and consistency** - Ongoing alignment and standardization
+**Final 4.0.85 declaration:** install ready + system compliant. Structured changes are documented in `lupo-docs/versions/4.0.85/`.
 
-**Active Version Directory Subsystems (`lupo-docs/versions/4.0.84/`):** 
-To navigate granular augmentations occurring exclusively inside this version stream, review the [OVERVIEW_ORGANIZATION.md](lupo-docs/versions/4.0.84/OVERVIEW_ORGANIZATION.md) index detailing specific class, database, script, and doctrinal documentation changes.
+Final documentation consolidation (Channel 42, Thread 2016) confirms version 4.0.85 as INSTALL READY + SYSTEM COMPLIANT with authoritative details under `lupo-docs/versions/4.0.85/`.
+
+**Version-folder orientation:**
+- `lupo-docs/versions/4.0.85/README.md` explains what 4.0.85 is and why the version directory exists
+- `lupo-docs/versions/4.0.85/OVERVIEW.md` explains system-level outcomes of the version
+- `lupo-docs/versions/4.0.85/OVERVIEW_ORGANIZATION.md` explains how work, authority, and documentation surfaces are organized
 
 **Canonical root rules:** All agents and actors must follow the doctrine in **`lupo-rules/root/`**. Agent-specific rule files (e.g. `.cursor/rules/`, `.kiro/rules/`, `.windsurf/rules/`) are **derived** from those root rules; the root is the single source of truth. See [Canonical root rules](#canonical-root-rules) and [New agent onboarding](#new-agent--web-terminal-agent-onboarding).
 
@@ -166,6 +204,11 @@ To navigate granular augmentations occurring exclusively inside this version str
 - [Project → Channel → Thread → Task Hierarchy (4.0.81+)](#project--channel--thread--task-hierarchy-4081)
 - [Core Concepts](#core-concepts)
 - [External AI Model (4.0.81+)](#external-ai-model-4081)
+- [§3 Current Operational Reality (4.0.85)](#3-current-operational-reality-4085)
+- [§4 Dual-Mode Architecture](#4-dual-mode-architecture)
+- [§5 Channel 66 Question Graph System (4.0.85+)](#5-channel-66-question-graph-system-4085)
+- [§6 External AI Zero-Database Access Constraint](#6-external-ai-zero-database-access-constraint-binding)
+- [§7 Project_id Implementation Requirements (4.0.85)](#7-project_id-implementation-requirements-4085)
 - [Projects](#projects)
 - [LUPOPEDIA HEADERS — The File/Database Bridge](#lupopedia-headers--the-filedatabase-bridge)
 - [Architecture Overview](#architecture-overview)
@@ -230,7 +273,7 @@ Lupopedia uses single-field versioning for all new artifacts:
 **version_when_written only**
 
 - New artifacts store only `version_when_written` (immutable creation version)
-- Minimum baseline for handwritten/hand-edited LUPOPEDIA HEADERS is `version_when_written: "4.0.84"`; if a file is below that baseline (or contains deprecated version keys), tooling MUST rewrite `lupopedia.headers` on save to the current system version (baseline rewrite-on-write).
+- Minimum baseline for handwritten/hand-edited LUPOPEDIA HEADERS is `version_when_written: "4.0.85"`; if a file is below that baseline (or contains deprecated version keys), tooling MUST rewrite `lupopedia.headers` on save to the current system version (baseline rewrite-on-write).
 - Runtime version is resolved dynamically from the canonical resolver
 - No stored runtime version in artifact headers
 
@@ -261,7 +304,7 @@ Lupopedia solves fragmented human–AI workflows with a **unified Semantic OS** 
 
 **Target audience:** Developers building agents, admins managing systems, contributors to open-source AI-collab tooling.
 
-[Core doctrine](lupo-docs/doctrine/) | [LUPOPEDIA HEADERS](lupo-docs/doctrine/LUPOPEDIA_HEADERS/README.md) | [Comments System](lupo-docs/database/lupopedia/tables/active/lupo_comments.md)
+[Core doctrine](lupo-docs/doctrine) | [LUPOPEDIA HEADERS](lupo-docs/doctrine/LUPOPEDIA_HEADERS/README.md) | [Comments System](lupo-docs/database/lupopedia/tables/active/lupo_comments.md)
 
 ---
 
@@ -650,6 +693,143 @@ External AI inference:
 
 ---
 
+## §3 Current Operational Reality (4.0.85)
+
+**Lupopedia operates as a dual-mode system in actual practice:**
+
+1. **Filesystem-first coordination** — Artifacts live on disk; GitHub is the primary coordination surface. External AI agents (Claude, GPT, etc.) read filesystem only.
+2. **LUPOPEDIA HEADERS as active execution layer** — Headers are not metadata; they drive routing, workflow, and semantic meaning. Treat headers as code.
+3. **Database as structural authority** — Database holds schema (install SQL), identity (actors, projects), and temporal state (timestamps, soft deletes), but **not** coordination flow.
+4. **External AI zero-database-access constraint** — External AI models cannot query the database. They work exclusively with LUPOPEDIA HEADERS and file artifacts.
+5. **Deterministic round-trip requirement** — System must guarantee bidirectional equivalence: Database State ↔ HEADERS produces identical outcomes both directions.
+
+**This is not the intended architecture described in conceptual docs. It is the actual operational reality.** See Thread 1033 §3-4 for full analysis.
+
+---
+
+## §4 Dual-Mode Architecture (Filesystem + Database)
+
+### Mode 1: Filesystem Mode (External AI Surface)
+- **Who works here**: External AI agents (Claude, GPT, etc.) via IDE faucets
+- **What they see**: LUPOPEDIA HEADERS + file artifacts + indexes
+- **Database access**: **Zero** — no query capability at all
+- **Coordination layer**: Thread/task/channel structure inferred from file paths
+- **Authority level**: Read-only on filesystem; write-only to filesystem artifacts
+
+### Mode 2: Database Mode (Internal Runtime Surface)
+- **Who works here**: Internal runtime (PHP services, HERMES, scheduled tasks)
+- **What it manages**: Schema authority, identity registry, temporal state, referential integrity
+- **Filesystem access**: **Via LUPOPEDIA HEADERS only**
+- **Coordination layer**: Queries `lupo_metadata`, `lupo_edges`, `lupo_channels` for live state
+- **Authority level**: Source of truth for structure
+
+### Critical Consequence
+**Round-trip equivalence is mandatory.** If database state changes, filesystem must be projectable to identical state. If headers change, database ingestion must produce identical state. This is a hard constraint, not an aspiration.
+
+See [HEADER_DB_REVERSIBILITY_DOCTRINE.md](lupo-docs/doctrine/HEADER_DB_REVERSIBILITY_DOCTRINE.md) for binding rules on deterministic projection, ingestion, collision detection, and confidence levels.
+
+---
+
+## §5 Channel 66 Question Graph System (4.0.85+)
+
+**Channel 66 is the canonical question-driven semantic resolution system for all 4.0.x releases.** It is not experimental; it is proven (Threads 1001-1005 completed).
+
+### Channel 66 Model
+- **Purpose**: Resolve architectural questions through evidence-based investigation → doctrine binding
+- **Thread identity**: Each thread = one semantic question in natural language
+- **Lifecycle**: Question → Investigation → Doctrine Draft → LILITH Review → WOLFIE Closure → Binding
+- **Role assignments**: WOLFIE (orchestrator), THOTH (investigator), ATHENA (strategist), LILITH (reviewer), HEPHAESTUS (awaits doctrine)
+- **Edge model**: required_reading (0.9-1.0), resolves, contradicts, refines, depends_on, next_action with weighted relationships
+
+### Non-Blocking Workflow
+- Channel 66 work happens **in parallel** to implementation
+- Binding doctrine from Channel 66 **immediately affects** implementation
+- No grandfather clause — binding doctrine is effective upon WOLFIE closure
+
+### Quality Standard
+- Evidence-based (references source code, schema, thread artifacts)
+- Deterministic (testable propositions, reproducible findings)
+- Testable (validators provided for each claim)
+- Bounded scope (one question per thread, no scope creep)
+
+**Doctrine**: [CHANNEL_66_QUESTION_GRAPH_DOCTRINE.md](lupo-docs/doctrine/CHANNEL_66_QUESTION_GRAPH_DOCTRINE.md)
+
+---
+
+## §6 External AI Zero-Database Access Constraint (Binding)
+
+This is a hard architectural constraint, not a limitation we're working around.
+
+### Why Zero Access?
+- **Offline operation**: Filesystem must work when database is unreachable
+- **IDE faucet operation**: IDE agents lack database connection infrastructure
+- **Determinism**: External AI cannot create implicit state dependencies
+- **Reproducibility**: Work must be expressible in checked-in artifacts
+
+### What This Means
+- **External AI CANNOT**: Query database, execute SQL, call database APIs, access database credentials, see live database tables
+- **External AI CAN**: Read git-tracked files, read LUPOPEDIA HEADERS, write artifacts to channel structure, reference thread/task/channel via paths
+
+### Implementation Consequence
+**All external AI work must be FSY expressible in committed Markdown artifacts with LUPOPEDIA HEADERS.** If work requires querying the database, it must be done by:
+1. Internal runtime (PHP services)
+2. HERMES routing to THOTH/HEPHAESTUS
+3. Broadcast request to executing agents
+
+**Never ask external AI to do database work directly.**
+
+---
+
+## §7 Project_id Implementation Requirements (4.0.85)
+
+Per Thread 1032 Canonical Project Model Directive:
+
+### Required Changes
+Schema changes to 6 tables (bindings executed via migration `dev_20260321_project_model_and_schema_authority.sql`):
+
+| Table | Change | Default | Rationale |
+|-------|--------|---------|-----------|
+| `lupo_channels` | Modify `project_id` from nullable to `NOT NULL DEFAULT 0` | 0 (system project) | Every channel belongs to exactly one project |
+| `lupo_dialog_threads` | Add `project_id BIGINT NOT NULL DEFAULT 0` | 0 | Thread identity includes project scope |
+| `lupo_tasks` | Add `project_id BIGINT NOT NULL DEFAULT 0` | 0 | Task allocation is project-scoped |
+| `lupo_edges` | Add `project_id BIGINT NOT NULL DEFAULT 0` | 0 | Edge context is project-scoped |
+| `lupo_metadata` | Add `project_id BIGINT NOT NULL DEFAULT 0` | 0 | Metadata clustering by project |
+| `lupo_atoms` | Add `project_id BIGINT NOT NULL DEFAULT 0` | 0 | Atom namespace scoping |
+
+### New Table
+**`lupo_actor_projects`** — Maps actors to projects with roles:
+```
+actor_id BIGINT NOT NULL
+project_id BIGINT NOT NULL DEFAULT 0
+role_key VARCHAR(64) — 'admin', 'contributor', 'viewer', 'reviewer'
+created_ymdhis BIGINT NOT NULL
+updated_ymdhis BIGINT NOT NULL
+is_deleted TINYINT DEFAULT 0
+deleted_ymdhis BIGINT DEFAULT 0
+```
+
+### Header Declaration
+In LUPOPEDIA HEADERS:
+```yaml
+lupopedia.headers:
+  project_id: 0  # system/default project
+  channel_id: 42
+  ...
+```
+
+### Project_id=0 Semantics
+- `project_id=0` is the **system/default project** — all current work (`lupo_channels`, `lupo_dialog_threads`, etc.) defaults to it
+- Multi-project work requires explicit `project_id > 0` 
+- Single-repository (current state) implicitly operates in `project_id=0` context
+- Project isolation is enforced at query time (WHERE `project_id = ?`), not by schema
+
+### Migration Path
+1. **Immediate** (4.0.85): Schema modified to add `project_id` with `DEFAULT 0`
+2. **Transparent** (4.0.85-4.0.86): All existing work continues to work (defaults to `project_id=0`)
+3. **Future** (4.1.0): Multi-project support becomes explicit requirement
+
+---
+
 ## LUPOPEDIA HEADERS — The File/Database Bridge
 
 This is one of the most important parts of Lupopedia. **LUPOPEDIA HEADERS** are structured YAML blocks at the top of `.md` files and other artifact-like objects. They are the bridge between database state and filesystem artifacts.
@@ -730,11 +910,11 @@ lupopedia.edges:
 
 ---
 
-## Canonical Project Model (4.0.84+)
+## Canonical Project Model (4.0.85+)
 
 ### Thread 1032 Consolidation 
 
-**Current State (v4.0.84)**:
+**Current State (v4.0.85)**:
 - Single repository = single project (`project_id: 0` is the system/default project).
 - Per Thread 1032, `project_id` bindings are strictly required across `lupo_channels`, `lupo_dialog_threads`, `lupo_edges`, `lupo_tasks`, and `lupo_metadata`.
 - Cross-project references require explicit explicit `project_id` values.
@@ -776,7 +956,7 @@ Lupopedia organizes itself via directories with the `lupo-` prefix: `/lupo-api`,
 **Database domains:**
 The database schema is defined in `lupo-database/lupopedia/mysql/install/install_new_lupopedia.sql` — **install SQL is the authoritative schema source**. TOON files are **derived artifacts** (do not edit by hand); they are generated into `lupo-database/lupopedia/toon/` by `python lupo-scripts/generate_toon_from_sql.py` or `python lupo-scripts/generate_toon_files.py`. The former path is canonical (no longer `lupo-docs/toons/`). Canonical table count: **161** as of 4.0.77 (see [TABLE_COUNT_DOCTRINE](lupo-docs/doctrine/TABLE_COUNT_DOCTRINE.md)); table ceiling is advisory only. Domains include identity (`lupo_actors`, `lupo_auth_users`), orchestration (`lupo_agents`, `lupo_agent_faucets`), projects (`lupo_projects`), collaboration (`lupo_channels`, `lupo_dialog_messages`), semantics (`lupo_metadata`, `lupo_edges`, `lupo_collections`), telemetry (`lupo_sessions`), federation, and legacy migration. The `lupo-database/` directory is protected from direct web access (e.g. `.htaccess` hardening) so that schema and seed assets are not served over HTTP.
 
-**Doctrine reminder (non-standard architecture):** Lupopedia is not a conventional framework application. Critical constraints: **no foreign keys, triggers, stored procedures, or stored functions**; all logic in application code; **explicit column naming** on inserts where doctrine requires it; timestamps as **BIGINT UTC** in `YYYYMMDDHHIISS` format, set in PHP (e.g. `gmdate('YmdHis')`), never database-generated; **install SQL authoritative**, TOON derived; shared-hosting and unknown-environment assumptions; fallback-first behavior. These and other rules are codified in [lupo-rules/root/](lupo-rules/root/).
+**Doctrine reminder (non-standard architecture):** Lupopedia is not a conventional framework application. Critical constraints: **no foreign keys, triggers, stored procedures, or stored functions**; all logic in application code; **explicit column naming** on inserts where doctrine requires it; timestamps as **BIGINT UTC** in `YYYYMMDDHHIISS` format, set in PHP (e.g. `gmdate('YmdHis')`), never database-generated; **install SQL authoritative**, TOON derived; shared-hosting and unknown-environment assumptions; fallback-first behavior. These and other rules are codified in [lupo-rules/root/](lupo-rules/root).
 
 **Filesystem/database relationship:**
 The database is the live relational layer. The filesystem is the artifact memory layer. Headers are the synchronization and portability layer between them.
@@ -854,4 +1034,4 @@ See `CONTRIBUTING.md`. All contributions should follow doctrine: UTC YmdHis time
 See `license.txt` in the repository. Free to use, modify, and distribute under the terms specified there.
 
 ---
-*Lupopedia 4.0.84 — a semantic operating system orchestrated by humans and AI agents across channels, artifacts, and federation nodes. Canonical doctrine: lupo-rules/root/.*
+*Lupopedia 4.0.85 — a semantic operating system orchestrated by humans and AI agents across channels, artifacts, and federation nodes. Canonical doctrine: lupo-rules/root/.*

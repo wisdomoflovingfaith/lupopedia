@@ -13,7 +13,7 @@ lupopedia.headers:
 
 # Version 4.0.61 Changelog (Thread Copy)
 
-This file summarizes the changelog entries for version 4.0.61. Full history: project root [CHANGELOG.md](../../../CHANGELOG.md).
+This file summarizes the changelog entries for version 4.0.61. Full history: project root CHANGELOG.md.
 
 Thread path from config: **LUPO_CHANNELS_DIR** in lupopedia-config.php → `lupo-channels/0/threads/VERSION_4.0.61/`.
 

@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\doctrine\DEVELOPMENT_WORKFLOW_DOCTRINE.md"
+  file_path_from_root: "lupo-docs/doctrine/DEVELOPMENT_WORKFLOW_DOCTRINE.md"
   file_hash: "963e20a875cde4e24b4fc5246d8cd44ff2927bf4881185cd82c6952b04ebadc9"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

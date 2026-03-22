@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\channels\doctrine\UTC_CODING_CYCLE_DOCTRINE.md"
+  file_path_from_root: "lupo-docs/channels/doctrine/UTC_CODING_CYCLE_DOCTRINE.md"
   file_hash: "238852de5b37c991d1f8948384abeacadbca09b61408d63fe51a544f26cd5304"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

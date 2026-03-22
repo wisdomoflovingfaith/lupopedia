@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\specs\COLLECTION_FLIP_HEADERS_USAGE.md"
+  file_path_from_root: "lupo-docs/specs/COLLECTION_FLIP_HEADERS_USAGE.md"
   file_hash: "00323f6ed476f962ab121aa7dd958dc7034d782505b7813ccd2ac9c12ae8ffe5"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"
@@ -235,7 +235,7 @@ For existing files without collection headers:
 
 - [FLIP Headers Complete 4.0.24](FLIP_HEADERS_COMPLETE_4.0.24.md)
 - [FLIP Headers Master Index 4.0.24](FLIP_HEADERS_MASTER_INDEX_4.0.24.md)
-- [Collections Schema Documentation](../doctrine/COLLECTIONS_SCHEMA.md)
+- Collections Schema Documentation
 - [Saved Collections Navigation](../../lupo-includes/themes/default/components/saved-collections-nav.php)
 
 ---

@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\channels\developer\TLDR_HELP_MIGRATION_2026.md"
+  file_path_from_root: "lupo-docs/channels/developer/TLDR_HELP_MIGRATION_2026.md"
   file_hash: "69189d7525d66a8f9b511585a88d23edc3dcd173d82543df94dd059a755a599b"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

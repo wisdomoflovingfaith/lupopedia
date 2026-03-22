@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\channels\developer\templates\LABS_HANDSHAKE_TEMPLATE.md"
+  file_path_from_root: "lupo-docs/channels/developer/templates/LABS_HANDSHAKE_TEMPLATE.md"
   file_hash: "9618077e3ed6f1a095ffd2b6c8313612c3eccb217674862f30c4fd0ba5423013"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

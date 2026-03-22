@@ -1,6 +1,6 @@
 ---
 lupopedia.headers:
-  file_path_from_root: "lupo-channels/42/actors/1003/20260226_flare_protocol_v410_detailed.md"
+  file_path_from_root: "lupo-database/lupopedia/channels/channel_id/42/actors/1003/20260226_flare_protocol_v410_detailed.md"
   file_hash: "ba04fa811aa6b85f51da453c8d4262d2c1c9b9c8972c7862b195f562263b99b7"
   system_version: "4.0.50"
   channel_id: 42

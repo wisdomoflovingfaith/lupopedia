@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\doctrine\CRAFTY_SYNTAX_MIGRATION_PROJECT_BRIEF.md"
+  file_path_from_root: "lupo-docs/doctrine/CRAFTY_SYNTAX_MIGRATION_PROJECT_BRIEF.md"
   file_hash: "087cd21bcf0267a99b0f3227a3c5a019422116898939ed5dda22431fc8ccddb7"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

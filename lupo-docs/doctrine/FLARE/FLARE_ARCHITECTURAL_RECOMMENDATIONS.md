@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\doctrine\FLARE\FLARE_ARCHITECTURAL_RECOMMENDATIONS.md"
+  file_path_from_root: "lupo-docs/doctrine/FLARE/FLARE_ARCHITECTURAL_RECOMMENDATIONS.md"
   file_hash: "0536c1c4245f1f4006f7e8e9d493aed9ba2b6da35c6717e6a8bf46ad226c43b3"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

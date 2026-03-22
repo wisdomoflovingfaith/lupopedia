@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\channels\doctrine\GLOBAL_ATOMS_DOCTRINE.md"
+  file_path_from_root: "lupo-docs/channels/doctrine/GLOBAL_ATOMS_DOCTRINE.md"
   file_hash: "3aa4f49b211c5301b24678f4ab913571d09732b94a7e1a483498f584e9fd57a8"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

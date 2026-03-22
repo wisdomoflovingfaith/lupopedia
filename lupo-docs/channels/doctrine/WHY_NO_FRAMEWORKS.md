@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\channels\doctrine\WHY_NO_FRAMEWORKS.md"
+  file_path_from_root: "lupo-docs/channels/doctrine/WHY_NO_FRAMEWORKS.md"
   file_hash: "bd6da844da8704e60a9c99364df3763bad32b7170a6acb8e056f9cd5b636f997"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

@@ -359,11 +359,11 @@ You need to reference decisions or work from threads 1001/1002.
 ## 9. Resources and References
 
 ### Essential Reading
-- [README.md - Thread Model Section](README.md#thread-model-and-task-management-4081)
-- [CHANNEL_BASED_COORDINATION_DOCTRINE.md](lupo-docs/doctrine/CHANNEL_BASED_COORDINATION_DOCTRINE.md)
-- [MULTI_AGENT_COORDINATION_DOCTRINE.md](lupo-rules/root/MULTI_AGENT_COORDINATION_DOCTRINE.md)
-- [THREAD001 Triage Decision](lupo-channels/42/threads/1001/20260318_110000_wolfie_directive_thread001-triage.md)
-- [ATHENA Thread Lifecycle Strategy](lupo-channels/42/threads/1001/20260318_135527_athena_strategy_thread-lifecycle.md)
+- [README.md - Thread Model Section](../../../../README.md#thread-model-and-task-management-4081)
+- [CHANNEL_BASED_COORDINATION_DOCTRINE.md](../../../../lupo-docs/doctrine/CHANNEL_BASED_COORDINATION_DOCTRINE.md)
+- [MULTI_AGENT_COORDINATION_DOCTRINE.md](../../../../lupo-rules/root/MULTI_AGENT_COORDINATION_DOCTRINE.md)
+- [THREAD001 Triage Decision](../../../42/threads/1001/20260318_110000_wolfie_directive_thread001-triage.md)
+- [ATHENA Thread Lifecycle Strategy](../../../42/threads/1001/20260318_135527_athena_strategy_thread-lifecycle.md)
 
 ### Templates and Examples
 - Thread allocation request template (Section 3.2)

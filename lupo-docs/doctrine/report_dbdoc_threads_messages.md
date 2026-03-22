@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\doctrine\report_dbdoc_threads_messages.md"
+  file_path_from_root: "lupo-docs/doctrine/report_dbdoc_threads_messages.md"
   file_hash: "831372fcec673d6d1ad46574c920a056e9e82b16919e6f7704e22d2c24893433"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

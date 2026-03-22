@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\doctrine\HEADERS\FLIP_FOOTER_DOCTRINE_4_0_31.md"
+  file_path_from_root: "lupo-docs/doctrine/HEADERS/FLIP_FOOTER_DOCTRINE_4_0_31.md"
   file_hash: "65c69b6d325d81b25f061a650bdce705d199f53621edd3b5a775bb711ae21846"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

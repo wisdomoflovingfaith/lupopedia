@@ -249,7 +249,7 @@ WHERE a.actor_name IS NULL AND s.is_deleted = 0;
 
 ## 5. Tasks (file-based)
 
-Task status is stored in **files** under channel task directories, not in the database. See [lupo-docs/TASK_STATUS_REFERENCE.md](../../docs/TASK_STATUS_REFERENCE.md). To count by status, use the filesystem (e.g. `find .../tasks/active/ -name "*.md"`). There is no standard `lupo_tasks` table in the core schema.
+Task status is stored in **files** under channel task directories, not in the database. See [lupo-docs/TASK_STATUS_REFERENCE.md](../../lupo-docs/TASK_STATUS_REFERENCE.md). To count by status, use the filesystem (e.g. `find .../tasks/active/ -name "*.md"`). There is no standard `lupo_tasks` table in the core schema.
 
 ---
 

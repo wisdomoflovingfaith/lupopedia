@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\channels\overview\ascent\02_DIALOG_MIGRATION.md"
+  file_path_from_root: "lupo-docs/channels/overview/ascent/02_DIALOG_MIGRATION.md"
   file_hash: "da21adddd22956f888e9ba01deb5d39f7d23c7edc0936a98bb24a7452ddc977c"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

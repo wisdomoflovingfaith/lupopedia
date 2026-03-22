@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\channels\doctrine\GOV-ANTI-PATTERNS-001.md"
+  file_path_from_root: "lupo-docs/channels/doctrine/GOV-ANTI-PATTERNS-001.md"
   file_hash: "21e3ee76167353de6452c9c1fcd78a7a9809c8085bd8539ddd53a03d549e2354"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

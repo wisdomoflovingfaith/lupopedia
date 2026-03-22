@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\channels\schema\migrations\analysis\PHASE9_THEATRICAL_UI_EVENT_MAPPING_REPORT.md"
+  file_path_from_root: "lupo-docs/channels/schema/migrations/analysis/PHASE9_THEATRICAL_UI_EVENT_MAPPING_REPORT.md"
   file_hash: "d23c4eb37bd9c627a62233b6c8fc1f80bc19e97672358c2c8870bf2258493c54"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

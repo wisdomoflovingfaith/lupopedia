@@ -17,7 +17,7 @@ lupopedia.headers:
 
 This checklist is the **canonical** process for registering a new IDE agent or web terminal agent as a Lupopedia actor. It is derived from the actual data model (TOON files, install SQL, seed files) and from the repository's **actor registry** and **lupo-database** fallback behavior. Do not participate as an unnamed or unregistered agent.
 
-**Source of truth for schema:** `lupo-database/lupopedia/mysql/install/install_new_lupopedia.sql` (table `lupo_actors`) and TOON files in `lupo-database/lupopedia/toon/`. **Tooling registry:** `lupo-database/lupopedia/actors/actor_id/registry.json`. For canonical identity resolution and propagation support context, see [lupo-docs/doctrine/AGENT_REGISTRY.md](lupo-docs/doctrine/AGENT_REGISTRY.md).
+**Source of truth for schema:** `lupo-database/lupopedia/mysql/install/install_new_lupopedia.sql` (table `lupo_actors`) and TOON files in `lupo-database/lupopedia/toon/`. **Tooling registry:** `lupo-database/lupopedia/actors/actor_id/registry.json`. For canonical identity resolution and propagation support context, see [lupo-docs/doctrine/AGENT_REGISTRY.md](doctrine/AGENT_REGISTRY.md).
 
 ---
 
@@ -49,7 +49,7 @@ Check which case applies **before** doing full registration:
 
 | State | What to do |
 |-------|------------|
-| **A — Agent already exists in registry** | Do **not** register again. Verify your `actor_id` and slug in [registry.json](lupo-database/lupopedia/actors/actor_id/registry.json). Run rules propagation for your target (e.g. `php lupo-scripts/propagate_agent_rules.php --target=cascade`). Proceed with integration and contribution only. Example: Cascade (actor_id 105) is already registered; it needs only propagation and validation, not a new actor. |
+| **A — Agent already exists in registry** | Do **not** register again. Verify your `actor_id` and slug in [registry.json](../lupo-database/lupopedia/actors/actor_id/registry.json). Run rules propagation for your target (e.g. `php lupo-scripts/propagate_agent_rules.php --target=cascade`). Proceed with integration and contribution only. Example: Cascade (actor_id 105) is already registered; it needs only propagation and validation, not a new actor. |
 | **B — Agent does not exist** | Follow this full checklist: registry entry, DB or fallback persistence, then rules propagation support if your IDE is not yet a supported target. |
 | **C — Agent exists but not fully integrated** | No new actor. Complete: rules propagation target (see [Extending rules propagation](#extending-rules-propagation)), validation test (e.g. `lupo-tests/unit/<agent>_rules_enforcement.php`), and any agent-specific config or docs. |
 
@@ -81,7 +81,7 @@ If you are already listed in the actor registry and have a corresponding `lupo_a
    The human directing the agent is the **orchestrator** and is represented by an auth user / actor (typically `actor_id >= 1000`). In seed data, IDE agents often have `paired_actor_id = 1000` (root). Set `paired_actor_id` to the orchestrator's actor_id when known.
 
 4. **Declare default project context.**  
-   New actors must operate within a project. When persisting the actor (registry and/or `lupo_actors`), declare **default_project_id** and **default_channel_id** (e.g. in metadata or config) so the agent immediately operates in a known project and channel. IDE agents infer project from workspace when not explicitly set; external actors must supply project_id and channel_id in every request. See [lupo-docs/projects/PROJECTS.md](lupo-docs/projects/PROJECTS.md) and [lupo-docs/projects/PROJECTS_API.md](lupo-docs/projects/PROJECTS_API.md).
+   New actors must operate within a project. When persisting the actor (registry and/or `lupo_actors`), declare **default_project_id** and **default_channel_id** (e.g. in metadata or config) so the agent immediately operates in a known project and channel. IDE agents infer project from workspace when not explicitly set; external actors must supply project_id and channel_id in every request. See [lupo-docs/projects/PROJECTS.md](projects/PROJECTS.md) and [lupo-docs/projects/PROJECTS_API.md](projects/PROJECTS_API.md).
 
 5. **Channel membership and roles.**  
    To post messages or access channel content, the actor must be a member of the channel (`lupo_actor_channels`) and optionally have a role in `lupo_actor_channel_roles`. **Recommended role keys** (conventions, data-driven in `role_key`): `captain`, `orchestrator`, `developer`, `schema_coordinator`, `extension_specialist`, `documentation`, `critic`, `monitor`. Use `critic` (or `monitor` for observational access) for reviewer agents such as Lilith; use `orchestrator`, `developer`, etc. for IDE agents. Channel posting API enforces membership (or global admin); actor identity for posting always comes from session, not client input.
@@ -240,7 +240,7 @@ When an **already-registered** agent (e.g. Cascade, actor_id 105) does not yet h
 - **Script:** `lupo-scripts/propagate_agent_rules.php`. Add the target to `$validTargets`, define the output directory (e.g. `.cascade/`), implement a `write_<target>_outputs($dir, $rules)` function patterned on `write_cascade_outputs` or `write_windsurf_outputs`, and invoke it when `$target === 'all' || $target === '<target>'`.
 - **Output:** Target directory gets `lupopedia_rules.json`, `rules/<slug>.md` (one per root rule), and `README.md`. Use the same LUPOPEDIA HEADERS and provenance structure as other targets.
 - **Validation:** Add `lupo-tests/unit/<target>_rules_enforcement.php` following `cascade_rules_enforcement.php` to verify artifacts exist, JSON is valid, rules match canonical root, and headers are present.
-- **Docs:** [ONBOARDING.md](../../ONBOARDING.md) describes the same steps under “Extending rules propagation.”
+- **Docs:** [ONBOARDING.md](../ONBOARDING.md) describes the same steps under “Extending rules propagation.”
 
 ---
 
@@ -258,8 +258,8 @@ Actors may declare default project context during registration, but **actor iden
 - Actors can work across multiple projects regardless of default assignment
 
 **See Also:**
-- [PROJECT_REGISTRY_DOCTRINE.md](lupo-docs/doctrine/PROJECT_REGISTRY_DOCTRINE.md) for project identity
-- [PROJECT_REGISTRY_WORKFLOW.md](lupo-docs/doctrine/PROJECT_REGISTRY_WORKFLOW.md) for project lifecycle
+- [PROJECT_REGISTRY_DOCTRINE.md](doctrine/PROJECT_REGISTRY_DOCTRINE.md) for project identity
+- [PROJECT_REGISTRY_WORKFLOW.md](doctrine/PROJECT_REGISTRY_WORKFLOW.md) for project lifecycle
 
 ---
 
@@ -270,7 +270,7 @@ Actors may declare default project context during registration, but **actor iden
 - [reserved-id-doctrine.md](../lupo-rules/root/reserved-id-doctrine.md) (DB006).
 - [database-offline-fallback-import-doctrine.md](../lupo-rules/root/database-offline-fallback-import-doctrine.md) (DB008).
 - [AGENTS.md](../AGENTS.md) — Lead orchestration, registry path, IDE faucets.
-- [README.md](../README.md) — New agent onboarding summary and links to this checklist.
+- [README.md](../../README.md) — New agent onboarding summary and links to this checklist.
 - `lupo-database/lupopedia/toon/lupo_actors.toon.json` — Column/type reference (derived from install SQL).
 - `lupo-database/lupopedia/mysql/seed/seed_actors_agents_4.0.45.sql` — Example actor/seed pattern.
 

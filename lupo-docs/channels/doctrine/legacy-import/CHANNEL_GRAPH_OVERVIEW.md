@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\channels\doctrine\legacy-import\CHANNEL_GRAPH_OVERVIEW.md"
+  file_path_from_root: "lupo-docs/channels/doctrine/legacy-import/CHANNEL_GRAPH_OVERVIEW.md"
   file_hash: "f899e08d05f041884221ca1507b692d2f6c96b3300f568f4027ce56f8cc2fbcc"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

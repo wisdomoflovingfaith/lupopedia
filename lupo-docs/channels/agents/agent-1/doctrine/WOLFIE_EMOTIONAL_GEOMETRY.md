@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\channels\agents\agent-1\doctrine\WOLFIE_EMOTIONAL_GEOMETRY.md"
+  file_path_from_root: "lupo-docs/channels/agents/agent-1/doctrine/WOLFIE_EMOTIONAL_GEOMETRY.md"
   file_hash: "9df56169bce10aa041dfcf259d824c9dd341e359b42b16cb831bbabb27a4e4f5"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"
@@ -89,7 +89,7 @@ file:
 **Status:** DEPRECATED as of 4.4.x  
 **Agent:** WOLFIE (agent_id = 1)  
 **Replaced By:** 2-Actor RGB Mood Model  
-**See:** [EMOTIONAL_GEOMETRY_DOCTRINE.md](../../../doctrine/EMOTIONAL_GEOMETRY_DOCTRINE.md)
+**See:** [EMOTIONAL_GEOMETRY_DOCTRINE.md](../../../doctrine/legacy-import/EMOTIONAL_GEOMETRY_DOCTRINE.md)
 
 ---
 
@@ -161,11 +161,11 @@ Instead of WOLFIE-specific emotional processing, the new model focuses on emotio
 ## Related Documentation
 
 ### Current Implementation
-- [EMOTIONAL_GEOMETRY_DOCTRINE.md](../../../doctrine/EMOTIONAL_GEOMETRY_DOCTRINE.md) - Canonical 2-actor RGB mood model
+- [EMOTIONAL_GEOMETRY_DOCTRINE.md](../../../doctrine/legacy-import/EMOTIONAL_GEOMETRY_DOCTRINE.md) - Canonical 2-actor RGB mood model
 - [MOOD_RGB_DOCTRINE.md](../../../doctrine/MOOD_RGB_DOCTRINE.md) - RGB mood specification
 
 ### Deprecated Models
-- [DEPRECATED_EMOTIONAL_GEOMETRY.md](../../../doctrine/deprecated/DEPRECATED_EMOTIONAL_GEOMETRY.md) - Legacy model documentation
+- [DEPRECATED_EMOTIONAL_GEOMETRY.md](../../../doctrine/legacy-import/deprecated/DEPRECATED_EMOTIONAL_GEOMETRY.md) - Legacy model documentation
 
 ---
 

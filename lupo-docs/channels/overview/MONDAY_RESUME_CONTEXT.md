@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\channels\overview\MONDAY_RESUME_CONTEXT.md"
+  file_path_from_root: "lupo-docs/channels/overview/MONDAY_RESUME_CONTEXT.md"
   file_hash: "a4c400a13502965154dad0a80a60d2d3c5f541ae5919227b6930bb834e39b064"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

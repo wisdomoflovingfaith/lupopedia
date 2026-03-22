@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\channels\gov\ETHICAL_TRIAD_DOCTRINE.md"
+  file_path_from_root: "lupo-docs/channels/gov/ETHICAL_TRIAD_DOCTRINE.md"
   file_hash: "a31d45d635d63dd4e0d4420e1b8ce949df11972461782f5f179c589a9a9834e7"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

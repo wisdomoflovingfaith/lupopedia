@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "doctrine"
-  file_path_from_root: "lupo-channels/0/content/federation_node_id/0/FLARE.md"
+  file_path_from_root: "lupo-database/lupopedia/channels/channel_id/0/content/federation_node_id/0/FLARE.md"
   system_version: "4.0.53"
   last_modified_utc: "20260301"
   channel_id: 0

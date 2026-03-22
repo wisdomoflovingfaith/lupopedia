@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\channels\schema\migrations\analysis\TABLE_STRUCTURE_ANALYSIS_LUPO_USERS_VS_LUPO_ACTORS.md"
+  file_path_from_root: "lupo-docs/channels/schema/migrations/analysis/TABLE_STRUCTURE_ANALYSIS_LUPO_USERS_VS_LUPO_ACTORS.md"
   file_hash: "841e057a18d4fe6ce09986d7bea51e7bbece72385a42edd50d413c2538d188a3"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

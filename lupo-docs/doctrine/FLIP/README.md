@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\doctrine\FLIP\README.md"
+  file_path_from_root: "lupo-docs/doctrine/FLIP/README.md"
   file_hash: "21683315f73111d7c3a991d78555f531948b32180902028a6c4cfbf8df5af8ac"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"
@@ -113,4 +113,4 @@ The FLP sits entirely on top of existing Lupopedia architecture (channels, actor
 ## Cross-references
 
 - **MOOD_RGB:** [lupo-docs/channels/doctrine/MOOD_RGB_DOCTRINE.md](../../channels/doctrine/MOOD_RGB_DOCTRINE.md)
-- **Channels (DB):** [lupo-docs/doctrine/database/channels.md](../database/channels.md)
+- **Channels (DB):** lupo-docs/doctrine/database/channels.md

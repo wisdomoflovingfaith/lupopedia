@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\channels\overview\big-rock-2\DialogChannelMigrationAnalysis.md"
+  file_path_from_root: "lupo-docs/channels/overview/big-rock-2/DialogChannelMigrationAnalysis.md"
   file_hash: "a3d157ef30ff0904a8a35477b562ff73970663dc37a463c12cf2f8709becdd62"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

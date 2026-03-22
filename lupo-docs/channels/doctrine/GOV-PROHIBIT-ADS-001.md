@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\channels\doctrine\GOV-PROHIBIT-ADS-001.md"
+  file_path_from_root: "lupo-docs/channels/doctrine/GOV-PROHIBIT-ADS-001.md"
   file_hash: "c5528df3ceadfac2b9ff03000ee3b357593ba59b7e01cf9f1ca90e0c77e85a11"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

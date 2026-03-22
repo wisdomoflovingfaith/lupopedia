@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\doctrine\migrations\crafty_syntax_ancestral_intent.md"
+  file_path_from_root: "lupo-docs/doctrine/migrations/crafty_syntax_ancestral_intent.md"
   file_hash: "1853e57b2efcf78fa053a879d9e7ad78f990e7d64a3d648831599288da3c03db"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

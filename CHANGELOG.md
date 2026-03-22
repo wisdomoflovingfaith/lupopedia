@@ -1,85 +1,48 @@
----
-lupopedia.init:
-  required_reading:
-    - path: "lupo-docs/INIT_README.md"
-      reason: "Prerequisites and init doctrine"
-    - path: "lupo-docs/doctrine/LUPOPEDIA_HEADERS/README.md"
-      reason: "Header format and block order"
-  required_context:
-    - "Canonical version history; reverse chronological; install SQL is schema authority."
-
-lupopedia.metadata:
-  comment: "Snapshot of metadata for this file or entity at artifact creation."
-  title:
-    - { schema_ref: "lupo_metadata", entity_type: "file", meta_type: "property", property_value: "Lupopedia CHANGELOG", channel_id: 42, class_name: "lupopedia_metadata", created_ymdhis: 20260313000000, updated_ymdhis: 20260313000000 }
-  description:
-    - { schema_ref: "lupo_metadata", entity_type: "file", meta_type: "property", property_value: "Canonical version history for Lupopedia; reverse chronological order.", channel_id: 42, class_name: "lupopedia_metadata", created_ymdhis: 20260313000000, updated_ymdhis: 20260313000000 }
-  keywords:
-    - { schema_ref: "lupo_metadata", entity_type: "file", meta_type: "property", property_value: "changelog, version_history, lupopedia, v4.0.74", channel_id: 42, class_name: "lupopedia_metadata", created_ymdhis: 20260313000000, updated_ymdhis: 20260314000000 }
-  author:
-    - { schema_ref: "lupo_metadata", entity_type: "file", meta_type: "property", property_value: "wolfie", channel_id: 42, class_name: "lupopedia_metadata", created_ymdhis: 20260313000000, updated_ymdhis: 20260313000000 }
-  orchestrator:
-    - { schema_ref: "lupo_metadata", entity_type: "file", meta_type: "property", property_value: "cursor", channel_id: 42, class_name: "lupopedia_metadata", created_ymdhis: 20260313000000, updated_ymdhis: 20260313000000 }
-
-lupopedia.comments:
-  - { comment_id: 1, channel_id: 42, actor_id: 1, actor_name: "wolfie", faucet_id: 101, faucet_name: "windsurf", comment_text: "Excellent work on the 4.0.73 implementation! All priority tasks completed successfully. The comments system will enhance our documentation and collaboration capabilities.", comment_type: "comment", created_ymdhis: 20260313150000, updated_ymdhis: 20260313150000 }
-  - { comment_id: 2, channel_id: 42, actor_id: 102, actor_name: "cursor", faucet_id: 102, faucet_name: "cursor", comment_text: "Second example comment for 4.0.73 to demonstrate multiple comment records in the lupopedia.comments block.", comment_type: "comment", created_ymdhis: 20260313151500, updated_ymdhis: 20260313151500 }
-
+﻿---
 lupopedia.headers:
-  version_when_written: "4.0.84"
+  version_when_written: "4.0.85"
   file_path_from_root: "CHANGELOG.md"
-  last_modified_utc: "20260320"
+  last_modified_utc: "20260322"
   channel_id: 42
+  thread_id: 1047
   actor_id: 1
   actor_name: "wolfie"
-  faucet_name: "cascade"
   artifact_type: "changelog"
   artifact_kind: "history"
-  purpose: "Canonical version history for Lupopedia; reverse chronological order."
-
-lupopedia.edges:
-  comment: "Snapshot of outbound edges for CHANGELOG at artifact creation."
-  meta: "Changelog; version history; core repo."
-  outbound_edges:
-    - { to: "README.md", type: "references", weight: 1.0 }
-    - { to: "TODO.md", type: "references", weight: 0.9 }
-    - { to: "CHANGELOG_ARCHIVE.md", type: "references", weight: 0.9 }
-    - { to: "lupo-docs/status/implementation_cursor_audit_fixes.md", type: "references", weight: 0.8 }
-    - { to: "lupo-docs/doctrine/LUPOPEDIA_HEADERS/OPTIONAL_BLOCKS.md", type: "references", weight: 0.8 }
-  semantic_tags: ["changelog", "version_history", "core", "lupopedia"]
- 
-lupopedia.footer:
-  archive_note: "For historical changelog entries from 4.0.79 and earlier, see CHANGELOG_ARCHIVE.md"
-  version: "4.0.83"
-  last_verified: "20260320"
-  last_verified_by: "wolfie"
-  orchestrator: "wolfie"
-  next_action:
-    - "4.0.83 only for active work; master consolidation lupo-channels/1/threads/1035/20260319_190000_wolfie_master_shutdown_consolidation.md"
-    - "Close TOON ground-truth repair for Phase A table docs when WOLFIE marks complete"
-    - "Keep required reading and doctrine links current"
-
-### 📋 Critical System Fixes
-- **External AI Navigation**: Fixed critical external AI discovery failure by implementing comprehensive navigation infrastructure
-- **Thread Indexing**: Created `lupo-channels/42/THREAD_INDEX.md` with complete thread directory
-- **Global Channel Index**: Created `lupo-channels/INDEX.md` for system-wide navigation
-- **External AI Guide**: Created `lupo-docs/EXTERNAL_AI_README.md` with participation instructions
-- **Machine-Readable Structure**: External AI can now discover and navigate without prior knowledge
-- **Thread 1006 Verification**: Confirmed validator thread exists and accessible (external AI failure was incorrect)
-- **System Consistency Fix**: Resolved critical thread 1006 external truth consistency issue with complete lifecycle documentation
-- **V-THREAD Continuity Validation**: Implemented comprehensive thread continuity enforcement (V-THREAD-001..005) for deterministic thread truth and external AI readability
-- **V-PROJECT Global Coherence**: Implemented complete validation stack (V-TODO, V-PLAN, V-THREAD, V-PROJECT) for system-wide consistency guarantees and drift detection
-- **CHANGELOG Maintenance**: Updated 4.0.81 section with complete thread coverage including V-THREAD and V-PROJECT validation implementations
-
+  purpose: "Canonical version history for Lupopedia with verified 4.0.85 recovery changes merged on top of intact historical entries."
 ---
-# Lupopedia CHANGELOG
 
-Canonical version history for Lupopedia.  
-Entries are listed **in reverse chronological order**.
+# CHANGELOG
 
-Older entries (≤4.0.79) are archived in [CHANGELOG_ARCHIVE.md](CHANGELOG_ARCHIVE.md).
+## Version 4.0.85+
 
----
+For versions 4.0.85 and above, the canonical record of changes is located under:
+
+`lupo-docs/versions/<version>/`
+
+Structured changes are documented in `lupo-docs/versions/4.0.85/`.
+
+See lupo-docs/versions/4.0.85/ for structured changes.
+
+### Why this model changed
+- Lupopedia change tracking is now multi-dimensional (database, doctrine, organization, structure, research, contradictions, and task state).
+- System complexity increased beyond what a flat chronological changelog can represent safely.
+- A single root list is no longer sufficient to preserve authority without omissions or contradictions.
+- Version directories provide a structured, authoritative breakdown by artifact type and governance surface.
+
+### How to read changes
+- Start at `lupo-docs/versions/<version>/` for the version you are reviewing.
+- Read category-specific documents (for example: task registry state, contradictions, database/doc updates, doctrine updates, research artifacts).
+- Use this root `CHANGELOG.md` as a historical index and transition marker, not as the complete source of 4.0.85+ implementation detail.
+
+### Authority statement
+- For 4.0.85+, version-folder documentation is authoritative.
+- Root-level summaries must not duplicate or override version-folder records.
+
+## [4.0.85] - 20260322
+- Transition point: 4.0.85 introduces the version-directory governance model.
+- Canonical details for 4.0.85 are maintained under `lupo-docs/versions/4.0.85/`.
+- 4.0.85 final state: INSTALL READY + SYSTEM COMPLIANT.
 
 ## [4.0.84] — Active Development (20260320)
 
@@ -826,3 +789,5 @@ Index for strategy + prompt-closure work; **root [plan.md](plan.md)** and **[tas
 - DB-primary channel ingestion + external read.
 - Artefact auto-heal and UI channel visualization.
 - Table-doc path dedupe (`tables/active/projects/` duplicates).
+
+

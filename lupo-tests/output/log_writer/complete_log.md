@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\tests\output\log_writer\complete_log.md"
+  file_path_from_root: "lupo-tests/output/log_writer/complete_log.md"
   file_hash: "b0afe8c69fbbc520e75693babb34b34521e5fef4575888bbf4aa636cded9a615"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

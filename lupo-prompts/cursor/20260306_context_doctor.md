@@ -58,4 +58,4 @@ Add `lupo doctor-context` (or `php lupo-bin/lupo.php doctor-context`) to validat
 
 ## See Also
 
-- [lupo-docs/VERSION_4.0.61_STRATEGY.md](../../docs/VERSION_4.0.61_STRATEGY.md) — Risk 1 (session vs DB drift), Priority 1 (Context Doctor).
+- [lupo-docs/VERSION_4.0.61_STRATEGY.md](../../lupo-docs/VERSION_4.0.61_STRATEGY.md) — Risk 1 (session vs DB drift), Priority 1 (Context Doctor).

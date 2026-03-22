@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\PATHS_FIRSTS_VS_ANALYTICS_PATHS_ANALYSIS.md"
+  file_path_from_root: "lupo-docs/audits/PATHS_FIRSTS_VS_ANALYTICS_PATHS_ANALYSIS.md"
   file_hash: "bf01f4f619163582c7d8c40bb275f1e86bacb39b0ce5a5caaa26d5d962a2fa36"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

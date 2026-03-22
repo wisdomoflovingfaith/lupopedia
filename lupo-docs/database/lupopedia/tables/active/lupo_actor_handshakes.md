@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\database\lupopedia\tables\lupo_actor_handshakes.md"
+  file_path_from_root: "lupo-docs/database/lupopedia/tables/active/lupo_actor_handshakes.md"
   file_hash: "4c9298ef2cb9229e3f0dcf615bb71cc4e744bac79d6f2851739b7cc0683cb5f7"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

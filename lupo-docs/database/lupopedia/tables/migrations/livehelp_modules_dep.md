@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\database\lupopedia\tables\livehelp_modules_dep.md"
+  file_path_from_root: "lupo-docs/database/lupopedia/tables/migrations/livehelp_modules_dep.md"
   file_hash: "aad9d5267f8fc4411848f457fa9183b1b3f1e9ed5e24bbb4fe2ec310b0bae9a3"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

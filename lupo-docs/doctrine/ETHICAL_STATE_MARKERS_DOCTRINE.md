@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\doctrine\ETHICAL_STATE_MARKERS_DOCTRINE.md"
+  file_path_from_root: "lupo-docs/doctrine/ETHICAL_STATE_MARKERS_DOCTRINE.md"
   file_hash: "272668da57e269db28d6b4e9085e5ad2c71a2001ae4b5f4ccd935c6e452d925b"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

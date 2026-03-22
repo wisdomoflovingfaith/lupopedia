@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\channels\doctrine\legacy-import\IDE_DEVELOPMENT_DOCTRINE.md"
+  file_path_from_root: "lupo-docs/channels/doctrine/legacy-import/IDE_DEVELOPMENT_DOCTRINE.md"
   file_hash: "63509af079adbfaf0a864819250cb0e6afa799770fddf4e6ea09a19d60b0e72a"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

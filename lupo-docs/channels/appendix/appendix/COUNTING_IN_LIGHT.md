@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\channels\appendix\appendix\COUNTING_IN_LIGHT.md"
+  file_path_from_root: "lupo-docs/channels/appendix/appendix/COUNTING_IN_LIGHT.md"
   file_hash: "bb62dd9e3531f5598867a46a19aa3a5410bfd74b8a870ee5c885c0b1e57fc088"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

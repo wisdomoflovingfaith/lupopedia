@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\DIALOG_TABLE_REMOVAL_REPORT.md"
+  file_path_from_root: "lupo-docs/audits/DIALOG_TABLE_REMOVAL_REPORT.md"
   file_hash: "47fbe740a3cc75418fb54deeb6945463b611e13a15158cc131743ab1d5ee0f73"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

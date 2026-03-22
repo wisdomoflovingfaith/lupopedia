@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\channels\doctrine\legacy-import\HUMOR_SARCASM_CLARIFICATION_PROTOCOL.md"
+  file_path_from_root: "lupo-docs/channels/doctrine/legacy-import/HUMOR_SARCASM_CLARIFICATION_PROTOCOL.md"
   file_hash: "e9fc1d775ad51828c9caa7d9ec2d29b1b6bd5e9782ca3943a1ff966bc50325f0"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

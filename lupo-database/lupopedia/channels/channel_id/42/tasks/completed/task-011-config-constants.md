@@ -51,7 +51,7 @@ lupopedia.conditional:
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "task"
-  file_path_from_root: "lupo-database/lupopedia/channels/lupo-channels/42/tasks/active/task-011-config-constants.md"
+  file_path_from_root: "lupo-database/lupopedia/channels/channel_id/42/tasks/completed/task-011-config-constants.md"
   file_hash: "851bf19ec9d7af7e21a7486420a6036e97cef5a5e0da20a1563eb7599fa72ef4"
   last_updated_utc: "20260304"
   system_version: "4.0.56"

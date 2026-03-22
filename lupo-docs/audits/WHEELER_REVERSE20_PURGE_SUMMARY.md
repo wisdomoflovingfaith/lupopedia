@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\audits\WHEELER_REVERSE20_PURGE_SUMMARY.md"
+  file_path_from_root: "lupo-docs/audits/WHEELER_REVERSE20_PURGE_SUMMARY.md"
   file_hash: "29e11bdceef0ad54ce419c1a5cea03344937e68b9b8594057aaba8cf6cfbb454"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

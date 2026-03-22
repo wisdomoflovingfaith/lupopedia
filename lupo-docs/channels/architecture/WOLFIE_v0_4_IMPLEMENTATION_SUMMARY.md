@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\channels\architecture\WOLFIE_v0_4_IMPLEMENTATION_SUMMARY.md"
+  file_path_from_root: "lupo-docs/channels/architecture/WOLFIE_v0_4_IMPLEMENTATION_SUMMARY.md"
   file_hash: "54cee7975070ad82c5491808846af9b1379c757f4d6dc69a5161280e1de3eba9"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

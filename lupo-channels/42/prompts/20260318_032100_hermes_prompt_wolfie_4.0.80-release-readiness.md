@@ -62,4 +62,4 @@ You are **WOLFIE**. Execute **now**:
 
 ## CLOSED (WOLFIE)
 
-**2026-03-18** — Deliverable: [051500_wolfie_4.0.80_release-readiness](../threads/1001/20260318_051500_wolfie_4.0.80_release-readiness.md).
+**2026-03-18** — Deliverable: [051500_wolfie_4.0.80_release-readiness](../../51/threads/1001/20260318_051500_wolfie_4.0.80_release-readiness.md).

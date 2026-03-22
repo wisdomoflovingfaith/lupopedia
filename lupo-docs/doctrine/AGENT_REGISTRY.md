@@ -73,7 +73,7 @@ Before onboarding or registration, determine which state applies.
 | State | Meaning | Validation | Next action |
 |-------|---------|------------|-------------|
 | **A — Already registered** | Your `actor_id` and slug exist in `registry.json` (and in `lupo_actors` when DB is available). | Check `registry.json` for your slug; confirm row in `lupo_actors` if DB is used. | Verify identity; run propagation for your target; contribute. Do **not** register again. |
-| **B — New agent** | You do not exist in the actor registry. | No matching slug in `registry.json`. | Follow full [Actor Registration Checklist](lupo-docs/ACTOR_REGISTRATION_CHECKLIST.md): allocate ID, update registry, persist actor, add propagation target if needed, update this doc and ONBOARDING/AGENTS as needed. |
+| **B — New agent** | You do not exist in the actor registry. | No matching slug in `registry.json`. | Follow full [Actor Registration Checklist](../ACTOR_REGISTRATION_CHECKLIST.md): allocate ID, update registry, persist actor, add propagation target if needed, update this doc and ONBOARDING/AGENTS as needed. |
 | **C — Exists but needs integration** | You exist in `registry.json` but your IDE is not yet a propagation target or tooling is incomplete. | Slug present in registry; `propagate_agent_rules.php` has no `--target=<you>` or validation test missing. | Add target to `propagate_agent_rules.php`; generate IDE rule files; add validation test; update this doc. Do **not** create a new actor. |
 
 ---
@@ -168,7 +168,7 @@ Deterministic steps for adding a new agent. Order matters.
    Ensure the actor is represented in `lupo_actors` (install/seed or migration). Use explicit `actor_id`; never rely on `lastInsertId()` for registry-backed tables.
 
 5. **Add propagation target if needed**  
-   If the agent’s IDE should receive rules: extend `lupo-scripts/propagate_agent_rules.php` with a new target (e.g. `--target=zed`), output directories, and write function. See [Extending rules propagation](lupo-docs/ACTOR_REGISTRATION_CHECKLIST.md#extending-rules-propagation) in the checklist.
+   If the agent’s IDE should receive rules: extend `lupo-scripts/propagate_agent_rules.php` with a new target (e.g. `--target=zed`), output directories, and write function. See [Extending rules propagation](../ACTOR_REGISTRATION_CHECKLIST.md#extending-rules-propagation) in the checklist.
 
 6. **Update AGENT_REGISTRY.md**  
    Add or update the row in the [Canonical Agent Registry Table](#canonical-agent-registry-table) and, if applicable, the [Propagation Targets Matrix](#propagation-targets-matrix) and [IDE Capability / Responsibility Matrix](#ide-capability--responsibility-matrix).

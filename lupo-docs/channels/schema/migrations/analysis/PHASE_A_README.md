@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\channels\schema\migrations\analysis\PHASE_A_README.md"
+  file_path_from_root: "lupo-docs/channels/schema/migrations/analysis/PHASE_A_README.md"
   file_hash: "1e7753b4558c732781d6c7836f90f7b3f3c4f7a7c053df6345f0edb68af570b2"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"
@@ -171,9 +171,9 @@ $db->query("SELECT * FROM " . lupo_table('lupo_audit_log') . " WHERE ...");
 
 ## Related Documentation
 
-- [Schema Federation Doctrine](../../docs/doctrine/SCHEMA_FEDERATION_DOCTRINE.md)
-- [Table Budget Doctrine](../../docs/doctrine/TABLE_BUDGET_DOCTRINE.md)
-- [Database Schema Reference](../../docs/schema/DATABASE_SCHEMA.md)
+- [Schema Federation Doctrine](../../../doctrine/SCHEMA_FEDERATION_DOCTRINE.md)
+- Table Budget Doctrine
+- [Database Schema Reference](../../DATABASE_SCHEMA.md)
 
 ---
 

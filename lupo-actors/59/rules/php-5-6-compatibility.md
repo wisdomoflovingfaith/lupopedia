@@ -14,7 +14,7 @@ lupopedia.headers:
   delegation_chain: "wolfie:root"
   lupopedia.version: "4.0.74"
   lupopedia.schema: "cursor_rule"
-  file_path_from_root: "lupo-rules/root/php-5-6-compatibility.md"
+  file_path_from_root: "lupo-actors/59/rules/php-5-6-compatibility.md"
   web_path: "http://www.lupopedia.com/rules/root/php-5-6-compatibility"
   last_modified_utc: "20260313"
   system_version: "4.0.74"

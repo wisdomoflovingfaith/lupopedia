@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\channels\schema\migrations\state_machine_validation.md"
+  file_path_from_root: "lupo-docs/channels/schema/migrations/state_machine_validation.md"
   file_hash: "dfc6fde2bb1bdb01c284aaa9ab4d62ad766040005ba696f55ea88849ddd1240c"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

@@ -161,7 +161,7 @@ Lupopedia solves fragmented human–AI workflows with a **unified Semantic OS** 
 
 **Target audience:** Developers building agents, admins managing systems, contributors to open-source AI-collab tooling.
 
-[Core doctrine](lupo-docs/doctrine/) | [LUPOPEDIA HEADERS](lupo-docs/doctrine/LUPOPEDIA_HEADERS/README.md) | [Comments System](lupo-docs/database/lupopedia/tables/active/lupo_comments.md)
+[Core doctrine](lupo-docs/doctrine) | [LUPOPEDIA HEADERS](lupo-docs/doctrine/LUPOPEDIA_HEADERS/README.md) | [Comments System](lupo-docs/database/lupopedia/tables/active/lupo_comments.md)
 
 ---
 
@@ -375,7 +375,7 @@ cd lupopedia
 
 1. Backup your existing Crafty setup and database.
 2. Load the Lupopedia schema and run the install wizard; the only supported upgrade path is **Crafty Syntax 3.7.5 → Lupopedia 4.0.x**.
-3. Follow the [migration mapping reference](lupo-docs/doctrine/migrations/MIGRATION_MAPPING_REFERENCE.md).
+3. Follow the [migration mapping reference](lupo-docs/database/lupopedia/tables/MIGRATION_MAPPING_REFERENCE.md).
 
 Troubleshoot with: `php lupo-bin/lupo.php doctor`
 
@@ -419,9 +419,9 @@ graph LR
 
 - [Federation and registry](lupo-docs/architecture/FEDERATION_AND_REGISTRY.md) — Multi-node and global ID space (when present)
 - [DOCTOR health check](lupo-docs/DOCTOR_HEALTH_CHECK.md) — System health and `doctor-context --repair`
-- [Context Kernel](lupo-docs/status/CHANNEL_42_CONTEXT_KERNEL_4.0.62.md) — Unified identity resolution
+- Context Kernel — Unified identity resolution
 - [TOONs](lupo-docs/TOON_REFERENCE.md) — Database structure representation: what TOONs are, where they live (`lupo-database/lupopedia/json/` and `lupo-database/lupopedia/toon/`), and how to generate them (`python lupo-scripts/generate_toon_files.py`).
-- [Doctrine](lupo-docs/doctrine/) — Database, FLARE, timestamps, migrations
+- [Doctrine](lupo-docs/doctrine) — Database, FLARE, timestamps, migrations
 
 ---
 
@@ -438,7 +438,7 @@ graph LR
 - **New developers** — Getting Started, First Commands
 - **System administrators** — Installation, **Production Ready** | Context Kernel | DOCTOR System | Multi-Agent Federation | Web Authentication
 - **Agent developers** — Multi-Agent System, Actor Registry, DOCTOR
-- **Contributors** — [CONTRIBUTING.md](CONTRIBUTING.md), [lupo-docs/doctrine/](lupo-docs/doctrine/)
+- **Contributors** — [CONTRIBUTING.md](CONTRIBUTING.md), [lupo-docs/doctrine/](lupo-docs/doctrine)
 
 ---
 

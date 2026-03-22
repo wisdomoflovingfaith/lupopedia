@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\channels\doctrine\SATURDAY_GOVERNANCE_PROTOCOL_v1_0.md"
+  file_path_from_root: "lupo-docs/channels/doctrine/SATURDAY_GOVERNANCE_PROTOCOL_v1_0.md"
   file_hash: "5805bd6460259702bc9ba822c48dcb10a24e877f79667d01af7e31ec23394cb8"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

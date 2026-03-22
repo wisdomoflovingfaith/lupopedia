@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\specs\AGENT_ROLES_4.0.24.md"
+  file_path_from_root: "lupo-docs/specs/AGENT_ROLES_4.0.24.md"
   file_hash: "7258152d56f57b585cdcf48abe27b5ae0853a09864b58da2410f1b9d54000e5f"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

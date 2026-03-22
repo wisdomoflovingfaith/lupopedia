@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\doctrine\BAN_ENFORCEMENT_4_0_30.md"
+  file_path_from_root: "lupo-docs/doctrine/BAN_ENFORCEMENT_4_0_30.md"
   file_hash: "bf7abd09e06e9ad7420f468ffa4af583c31e22989e11dbf8d2bf28df42f849c8"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

@@ -36,7 +36,7 @@ All implementation plans MUST use **dependency ordering**, not time estimates. P
 
 ## Full Doctrine
 
-Full doctrine, rationale, format examples, and reusable prompt fragment: **[lupo-docs/doctrine/TASK_PLANNING_DOCTRINE.md](../../lupo-docs/doctrine/TASK_PLANNING_DOCTRINE.md)**.
+Full doctrine, rationale, format examples, and reusable prompt fragment: **[lupo-docs/doctrine/TASK_PLANNING_DOCTRINE.md](../../../lupo-docs/doctrine/TASK_PLANNING_DOCTRINE.md)**.
 
 ## Non-Negotiable Violations
 

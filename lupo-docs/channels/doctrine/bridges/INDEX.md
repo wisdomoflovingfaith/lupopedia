@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\channels\doctrine\bridges\INDEX.md"
+  file_path_from_root: "lupo-docs/channels/doctrine/bridges/INDEX.md"
   file_hash: "7a45582caced3546ad75c4695653a65900acf0b2139a7e107316537a92e46e90"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

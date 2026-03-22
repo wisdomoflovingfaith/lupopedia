@@ -54,4 +54,4 @@ Introduce a **ContextKernel** (or equivalent) as the single runtime context obje
 
 ## See Also
 
-- [lupo-docs/VERSION_4.0.61_STRATEGY.md](../../docs/VERSION_4.0.61_STRATEGY.md) — Risk 2 (multiple resolvers), Priority 3 (Context Kernel).
+- [lupo-docs/VERSION_4.0.61_STRATEGY.md](../../lupo-docs/VERSION_4.0.61_STRATEGY.md) — Risk 2 (multiple resolvers), Priority 3 (Context Kernel).

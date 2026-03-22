@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\registry\REGISTERED_IDS.md"
+  file_path_from_root: "lupo-docs/registry/REGISTERED_IDS.md"
   file_hash: "76e015d218893d0399fd27297e8efbc7f9b4b1e84946981de46978255b962dd4"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

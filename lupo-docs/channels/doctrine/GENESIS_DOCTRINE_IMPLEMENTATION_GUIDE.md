@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\channels\doctrine\GENESIS_DOCTRINE_IMPLEMENTATION_GUIDE.md"
+  file_path_from_root: "lupo-docs/channels/doctrine/GENESIS_DOCTRINE_IMPLEMENTATION_GUIDE.md"
   file_hash: "2845083b6edf7c5645e0f197cb577b9f1f76669d999dfdf7e2d5ef23dc0cb80a"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

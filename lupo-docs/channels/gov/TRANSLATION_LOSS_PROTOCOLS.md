@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\channels\gov\TRANSLATION_LOSS_PROTOCOLS.md"
+  file_path_from_root: "lupo-docs/channels/gov/TRANSLATION_LOSS_PROTOCOLS.md"
   file_hash: "542d8d78e14a37dd293c84be323898a6a815d4280183b4378f964e6051050efc"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

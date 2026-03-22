@@ -135,7 +135,7 @@ $admin_menu_sections = array(
             'Agents' => 'admin.php?section=agents',
             'Actors' => 'admin.php?section=actors',
             'Actor Status' => 'admin.php?section=actor_status',
-            'Channels' => 'admin.php?section=channels',
+            'Channels' => $base . '/channels',
             'Tasks' => 'admin.php?section=tasks',
             'Registry' => 'admin.php?section=registry',
         ),
@@ -183,6 +183,7 @@ $admin_menu_sections = array(
         'title' => 'Modules',
         'items' => array(
             'Questions & Answers' => 'admin.php?section=module-qa',
+            'Channel 66 Q&A' => 'admin.php?section=channel66-qa',
         ),
     ),
     array(
@@ -256,7 +257,7 @@ if (!$isAdmin) {
     $admin_main_content = '<p class="admin-section-description">Welcome to the admin area. Use the sidebar to open a section.</p>'
         . '<ul class="admin-dashboard-links">'
         . '<li><a href="' . htmlspecialchars($base . '/admin.php?section=users') . '" class="admin-link">Users</a> — Manage auth users and channel roles</li>'
-        . '<li><a href="' . htmlspecialchars($base . '/admin.php?section=channels') . '" class="admin-link">Channels</a> — List channels</li>'
+        . '<li><a href="' . htmlspecialchars($base . '/channels') . '" class="admin-link">Channels</a> — Open the MVP dialog channel list</li>'
         . '<li><a href="' . htmlspecialchars($base . '/admin.php?section=agents') . '" class="admin-link">Agents</a> — List agents</li>'
         . '<li><a href="' . htmlspecialchars($base . '/admin.php?section=departments') . '" class="admin-link">Departments</a> — List departments</li>'
         . '<li><a href="' . htmlspecialchars($base . '/admin.php?section=leads') . '" class="admin-link">Leads</a> — CRM leads database</li>'
@@ -266,6 +267,12 @@ if (!$isAdmin) {
 
 if ($isAdmin && isset($_GET['section']) && is_string($_GET['section'])) {
     $section = trim($_GET['section']);
+
+    if (($section === 'channels' || $section === 'channel_view') && !headers_sent()) {
+        header('Location: ' . $base . '/channels', true, 302);
+        exit;
+    }
+
     $db = isset($GLOBALS['mydatabase']) ? $GLOBALS['mydatabase'] : null;
     $prefix = defined('LUPO_TABLE_PREFIX') ? LUPO_TABLE_PREFIX : 'lupo_';
 
@@ -307,6 +314,7 @@ if ($isAdmin && isset($_GET['section']) && is_string($_GET['section'])) {
         'data-keywords' => array('Keywords', 'Keywords'),
         'csv-export' => array('CSV Data Export', 'CSV Data Export'),
         'module-qa' => array('Questions & Answers', 'Questions & Answers'),
+        'channel66-qa' => array('Channel 66 Q&A', 'Channel 66 Q&A'),
         'directory' => array('View Directory', 'View Directory'),
         'donations' => array('Donations', 'Donations'),
         'updates' => array('Updates', 'Updates'),
@@ -387,6 +395,11 @@ if ($isAdmin && isset($_GET['section']) && is_string($_GET['section'])) {
         require_once LUPOPEDIA_PATH . '/lupo-includes/classes/AdminSettingsHandler.php';
         $handler = new AdminSettingsHandler($db, $prefix, $base);
         $admin_main_content = $handler->render();
+    } elseif ($section === 'channel66-qa' && $db) {
+        $admin_page_title = 'Channel 66 Q&A';
+        $admin_active_key = 'Channel 66 Q&A';
+        require_once LUPOPEDIA_PATH . '/lupo-includes/classes/AdminChannel66QaHandler.php';
+        $admin_main_content = AdminChannel66QaHandler::render($db, $prefix, $base);
     } elseif (isset($section_titles[$section])) {
         $admin_page_title = $section_titles[$section][0];
         $admin_active_key = $section_titles[$section][1];

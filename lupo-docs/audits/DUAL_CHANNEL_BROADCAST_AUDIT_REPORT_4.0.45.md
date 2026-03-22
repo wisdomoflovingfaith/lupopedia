@@ -5,7 +5,7 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "DUAL_CHANNEL_BROADCAST_AUDIT_REPORT_4.0.45.md"
+  file_path_from_root: "lupo-docs/audits/DUAL_CHANNEL_BROADCAST_AUDIT_REPORT_4.0.45.md"
   file_hash: "ca2e533665c936197206d8fe9ba7f65db293cebb9bc8a15bcfc45a499538d70d"
   file_path_from_root: "DUAL_CHANNEL_BROADCAST_AUDIT_REPORT_4.0.45.md"
   file_hash: "00d8c3a97b5699c228e44b5b784b4a3c21f9d2e2e42c4578c57ff31c93757971"

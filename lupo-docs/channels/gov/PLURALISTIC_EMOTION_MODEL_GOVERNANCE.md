@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\channels\gov\PLURALISTIC_EMOTION_MODEL_GOVERNANCE.md"
+  file_path_from_root: "lupo-docs/channels/gov/PLURALISTIC_EMOTION_MODEL_GOVERNANCE.md"
   file_hash: "beacc473d3afab2e27dfc80ff4f68c4f826e5e076d3115eed9d69ccd285dda12"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

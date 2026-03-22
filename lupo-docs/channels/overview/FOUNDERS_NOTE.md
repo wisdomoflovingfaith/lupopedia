@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\channels\overview\FOUNDERS_NOTE.md"
+  file_path_from_root: "lupo-docs/channels/overview/FOUNDERS_NOTE.md"
   file_hash: "f1031ed89e776a35cdb1b10b490e95a709ab864ffce7b48e9e53e0f731034205"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"
@@ -133,7 +133,7 @@ Welcome to Lupopedia.
 
 ## Related Documentation
 
-- **[VISION.md](../VISION.md)** - Formal vision statement and definitions
+- **[VISION.md](VISION.md)** - Formal vision statement and definitions
 - **[WOLFIE_COGNITIVE_ARCHITECTURE.md](../architecture/WOLFIE_COGNITIVE_ARCHITECTURE.md)** - Explanation of Wolfie as cognitive architecture pattern
 - **[README.md](../../README.md)** - Project overview and getting started
 - **[CSLH-Historical-Context.md](../history/CSLH-Historical-Context.md)** - Historical context of Crafty Syntax Live Help

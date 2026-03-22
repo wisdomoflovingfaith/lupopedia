@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\channels\appendix\recovery\12_steps.md"
+  file_path_from_root: "lupo-docs/channels/appendix/recovery/12_steps.md"
   file_hash: "29b997aae9847328009eaf57d1314836f8facd8079dc3c8c212ea4e794e29260"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\channels\overview\INDEX.md"
+  file_path_from_root: "lupo-docs/channels/overview/INDEX.md"
   file_hash: "07e2a1ba99200cba649a5d173ca447b38e997c08bf80848865d2f148d67e7704"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"
@@ -88,12 +88,12 @@ file:
 Purpose: High-level orientation, releases, roadmaps, and program status.
 
 Files:
-- [3.1.0/LAUNCH_SEQUENCE_T0_4_1_0.md](3.1.0/LAUNCH_SEQUENCE_T0_4_1_0.md)
-- [3.1.0/MISSION_BRIEFING_4_1_0.md](3.1.0/MISSION_BRIEFING_4_1_0.md)
-- [3.1.0/PUBLIC_RELEASE_NOTES_4_1_0.md](3.1.0/PUBLIC_RELEASE_NOTES_4_1_0.md)
-- [3.1.0/RELEASE_BANNER_4_1_0.md](3.1.0/RELEASE_BANNER_4_1_0.md)
-- [3.1.0_ACTIVATION.md](3.1.0_ACTIVATION.md)
-- [3.1.1/RELEASE_NOTES_4_1_1.md](3.1.1/RELEASE_NOTES_4_1_1.md)
+- 3.1.0/LAUNCH_SEQUENCE_T0_4_1_0.md
+- 3.1.0/MISSION_BRIEFING_4_1_0.md
+- 3.1.0/PUBLIC_RELEASE_NOTES_4_1_0.md
+- 3.1.0/RELEASE_BANNER_4_1_0.md
+- 3.1.0_ACTIVATION.md
+- 3.1.1/RELEASE_NOTES_4_1_1.md
 - [ascent/01_HISTORY_RECONCILIATION.md](ascent/01_HISTORY_RECONCILIATION.md)
 - [ascent/02_DIALOG_MIGRATION.md](ascent/02_DIALOG_MIGRATION.md)
 - [ascent/PROGRESS_TRACKER.md](ascent/PROGRESS_TRACKER.md)
@@ -113,8 +113,8 @@ Files:
 - [LUPOPEDIA_REENTRY_SPELL.md](LUPOPEDIA_REENTRY_SPELL.md)
 - [MONDAY_RESUME_CONTEXT.md](MONDAY_RESUME_CONTEXT.md)
 - [MONDAY_START_OF_DAY.md](MONDAY_START_OF_DAY.md)
-- [MONDAY_WOLFIE_3.1.0_ACTIVATION_SCRIPT.md](MONDAY_WOLFIE_3.1.0_ACTIVATION_SCRIPT.md)
-- [MONDAY_WOLFIE_BRIEFING_3.0.114_TO_3.1.0.md](MONDAY_WOLFIE_BRIEFING_3.0.114_TO_3.1.0.md)
+- MONDAY_WOLFIE_3.1.0_ACTIVATION_SCRIPT.md
+- MONDAY_WOLFIE_BRIEFING_3.0.114_TO_3.1.0.md
 - [postmortems/3.0.81.md](postmortems/3.0.81.md)
 - [releases/LUPOPEDIA_4_1_0_RELEASE_TIMELINE.md](releases/LUPOPEDIA_4_1_0_RELEASE_TIMELINE.md)
 - [reports/LEGACY_EMOTIONAL_GEOMETRY_CLEANUP.md](reports/LEGACY_EMOTIONAL_GEOMETRY_CLEANUP.md)
@@ -125,8 +125,8 @@ Files:
 - [V4_1_0_ASCENT_MANIFEST_CLEAN.md](V4_1_0_ASCENT_MANIFEST_CLEAN.md)
 - [VERSION_3_0_60_PLAN.md](VERSION_3_0_60_PLAN.md)
 - [VERSION_4_4_1_PATCH_SUMMARY.md](VERSION_4_4_1_PATCH_SUMMARY.md)
-- [versioning/3.1.14_changes.md](versioning/3.1.14_changes.md)
-- [versioning/3.1.15_changes.md](versioning/3.1.15_changes.md)
+- versioning/3.1.14_changes.md
+- versioning/3.1.15_changes.md
 - [versioning/4.2.0_changes.md](versioning/4.2.0_changes.md)
 - [versioning/4.2.1_hotfix_window.md](versioning/4.2.1_hotfix_window.md)
 - [WHAT_LUPOPEDIA_IS.md](WHAT_LUPOPEDIA_IS.md)

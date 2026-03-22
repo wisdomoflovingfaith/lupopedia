@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\channels\doctrine\WEB_ROUTING_DOCTRINE_4_0_18.md"
+  file_path_from_root: "lupo-docs/channels/doctrine/WEB_ROUTING_DOCTRINE_4_0_18.md"
   file_hash: "b0f5f7fc0e6d23cd644ed5cc591e2ec6cd3579f85805d5587edd76943047d6d6"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

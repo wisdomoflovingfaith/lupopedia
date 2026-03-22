@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\channels\doctrine\legacy-import\DYNAMIC_DUO_2026_DOCTRINE.md"
+  file_path_from_root: "lupo-docs/channels/doctrine/legacy-import/DYNAMIC_DUO_2026_DOCTRINE.md"
   file_hash: "faac3c2ecf298f525821eea29ef473060c06f4af83c9fcad4b4dab66ea5970ea"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"
@@ -1255,7 +1255,7 @@ class FallbackChain {
     
     execute(method, ...args) {
         const strategy = this.fallbackStrategies.get(this.currentMode);
-        return strategy[method](...args);
+        return strategymethod;
     }
     
     // GPU Mode - Full 3D acceleration

@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\channels\developer\dev\AUTH_READINESS_REPORT_3.0.8.md"
+  file_path_from_root: "lupo-docs/channels/developer/dev/AUTH_READINESS_REPORT_3.0.8.md"
   file_hash: "3979ac9a2c3d551600025064c5a76f9eea30156d8888e43ea5ba8d9ec43a43f2"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

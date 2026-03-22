@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\channels\schema\migrations\orchestrator_forensic_timeline.md"
+  file_path_from_root: "lupo-docs/channels/schema/migrations/orchestrator_forensic_timeline.md"
   file_hash: "328aeccca4834fe74896be98b74aa36a972c273ea83d08d0d94dfc557a1513d9"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

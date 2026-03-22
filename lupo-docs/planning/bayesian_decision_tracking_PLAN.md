@@ -8,7 +8,7 @@ lupopedia.init:
   environment: "lupopedia-core"
 
 lupopedia.metadata:
-  file_path_from_root: "docs/planning/bayesian_decision_tracking_PLAN.md"
+  file_path_from_root: "lupo-docs/planning/bayesian_decision_tracking_PLAN.md"
   artifact_type: "planning-prompt"
   artifact_kind: "architecture-specification"
   purpose: "Define canonical planning artifacts for Bayesian Decision Tracking System after LILITH review"

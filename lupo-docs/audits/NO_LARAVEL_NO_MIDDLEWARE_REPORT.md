@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\NO_LARAVEL_NO_MIDDLEWARE_REPORT.md"
+  file_path_from_root: "lupo-docs/audits/NO_LARAVEL_NO_MIDDLEWARE_REPORT.md"
   file_hash: "4ec8d7548149c1428c0cd4ad6c30eb00e3fb956c809b41a6303c2903970b13a1"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

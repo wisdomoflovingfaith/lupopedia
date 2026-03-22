@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\doctrine\FLIP\FLP_ESCROW_AND_FUND_LAYER.md"
+  file_path_from_root: "lupo-docs/doctrine/FLIP/FLP_ESCROW_AND_FUND_LAYER.md"
   file_hash: "4b2e60c8cfe2e623dba47d88e6b0c3455be8769467d9e4fc48e1afa0460f7227"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\channels\doctrine\METADATA_GOVERNANCE.md"
+  file_path_from_root: "lupo-docs/channels/doctrine/METADATA_GOVERNANCE.md"
   file_hash: "da3e65ec511d2a791a3dc324a560c2ca4e2957aaf549bcc6cda346faa656dcaf"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"
@@ -655,7 +655,7 @@ file:
 **Example 3: Correct Cross-Reference Metadata**
 ```yaml
 # In file A referencing file B
-- **[Related Documentation](../doctrine/RELATED_DOCTRINE.md)** - Related governance rules
+- **Related Documentation** - Related governance rules
 
 # In file B referencing file A (bidirectional)
 - **[Metadata Governance](METADATA_GOVERNANCE.md)** - Comprehensive metadata management rules

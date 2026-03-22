@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\doctrine\HYBRID_ACTOR_DOCTRINE_4.0.29.md"
+  file_path_from_root: "lupo-docs/doctrine/HYBRID_ACTOR_DOCTRINE_4.0.29.md"
   file_hash: "3d5c7e681f8583c44669496946b512a2e1df529e17c73ce60899d6b57e033a68"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

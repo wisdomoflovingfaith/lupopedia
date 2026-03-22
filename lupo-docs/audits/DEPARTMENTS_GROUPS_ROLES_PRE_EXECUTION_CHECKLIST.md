@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\audits\DEPARTMENTS_GROUPS_ROLES_PRE_EXECUTION_CHECKLIST.md"
+  file_path_from_root: "lupo-docs/audits/DEPARTMENTS_GROUPS_ROLES_PRE_EXECUTION_CHECKLIST.md"
   file_hash: "01cee10687b8b8fd9ce15e30c4b9702c2ef691584e98335915caa1718989b2a9"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

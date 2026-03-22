@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\audits\EXPERIMENTAL_AI_ARTIFACT_PURGE_SUMMARY.md"
+  file_path_from_root: "lupo-docs/audits/EXPERIMENTAL_AI_ARTIFACT_PURGE_SUMMARY.md"
   file_hash: "827fd8acf134e6fd96da2bb10b1d3f91ca148f19a825c466ee2751d3db278fb4"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

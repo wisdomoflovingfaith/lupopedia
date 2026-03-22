@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\doctrine\ANUBIS_FALLBACK_DOCTRINE.md"
+  file_path_from_root: "lupo-docs/doctrine/ANUBIS_FALLBACK_DOCTRINE.md"
   file_hash: "db250dc75ddb90da56ae2ecbeebd70ee945a34794a366096ae06f09874d4ea2c"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

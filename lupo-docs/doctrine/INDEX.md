@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\doctrine\INDEX.md"
+  file_path_from_root: "lupo-docs/doctrine/INDEX.md"
   file_hash: "b50570a731b3260bf6404c1bb67b0f1b5456ee177d0f863dd717ffded3b6f26f"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"
@@ -98,7 +98,7 @@ Governs Semantic OS operations via non-negotiable architectural boundaries and e
 
 1.  **[Lupopedia Master Doctrine](LUPOPEDIA_DOCTRINE.md)** — The foundational rules of the system.
 2.  **[FLARE Protocol Doctrine](FLARE/FLARE_DOCTRINE.md)** — File-level metadata and relationship standards.
-3.  **[Database Philosophy](../architecture/DATABASE_PHILOSOPHY.md)** — Why we use no foreign keys, triggers, or stored procedures.
+3.  **[Database Philosophy](../channels/architecture/DATABASE_PHILOSOPHY.md)** — Why we use no foreign keys, triggers, or stored procedures.
 4.  **[Identity Authority](IDENTITY_AUTHORITY_DOCTRINE.md)** — Universal actor model and registry hierarchy.
 5.  **[Table Ceiling Protocol](CASCADE_TABLE_CEILING_PROTOCOL.md)** — Governance of the 199-table limit.
 

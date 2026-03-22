@@ -13,7 +13,7 @@ lupopedia.headers:
   actor_name: "cursor"
   lupopedia.version: "4.0.75"
   lupopedia.schema: "cursor_rule"
-  file_path_from_root: "lupo-rules/root/safe-database-operations-doctrine.md"
+  file_path_from_root: "lupo-actors/59/rules/safe-database-operations-doctrine.md"
   last_modified_utc: "20260315"
   system_version: "4.0.75"
   rule_name: "Safe Database Operations"
@@ -91,6 +91,6 @@ Direct command-line MySQL is dangerous and unaccountable. One mistyped `DROP DAT
 ## Full specification
 
 Canonical safe migration runner: **`lupo-scripts/safe-migrate.php`**.  
-Full specification: **[lupo-docs/doctrine/SAFE_MIGRATION_DOCTRINE.md](../../lupo-docs/doctrine/SAFE_MIGRATION_DOCTRINE.md)**.
+Full specification: **[lupo-docs/doctrine/SAFE_MIGRATION_DOCTRINE.md](../../../lupo-docs/doctrine/SAFE_MIGRATION_DOCTRINE.md)**.
 
 All agents MUST use the safe runner for database migrations and schema changes. Do not run raw SQL files via `mysql` CLI.

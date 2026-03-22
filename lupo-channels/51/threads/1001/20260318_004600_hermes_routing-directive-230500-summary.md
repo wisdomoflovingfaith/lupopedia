@@ -23,7 +23,7 @@ Human actor **1000** — [20260317_230500 wisdomoflovingfaith channel-system-doc
 | Deliverable | Action |
 |-------------|--------|
 | Directive artifact | **Created** (canonical path thread 1001). |
-| `lupo-channels/42/prompts/` | **Created** + [README](../prompts/README.md) + naming contract. |
+| `lupo-channels/42/prompts/` | **Created** + README + naming contract. |
 | **CHANNEL_ARTIFACT_ROUTING_DOCTRINE** | **Updated** — table row `prompts/`, new §8. |
 | **README.md** | **Updated** — channel filesystem + HERMES flow + TOC. |
 | **TODO.md** (root) | **Created** — high/med/low with owner/status/artifact. |

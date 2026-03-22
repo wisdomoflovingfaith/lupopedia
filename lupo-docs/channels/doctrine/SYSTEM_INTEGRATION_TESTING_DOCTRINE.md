@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\channels\doctrine\SYSTEM_INTEGRATION_TESTING_DOCTRINE.md"
+  file_path_from_root: "lupo-docs/channels/doctrine/SYSTEM_INTEGRATION_TESTING_DOCTRINE.md"
   file_hash: "0a937ee3b9ae35445b9bc945ceb0ce497bdc7b6ecb97f9d63b29548e7841b3c2"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

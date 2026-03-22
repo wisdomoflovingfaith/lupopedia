@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\channels\appendix\appendix\WHAT_NOT_TO_DO_AND_WHY.md"
+  file_path_from_root: "lupo-docs/channels/appendix/appendix/WHAT_NOT_TO_DO_AND_WHY.md"
   file_hash: "f4c0acded18cad35cc5e83e9ad0c2488204f45e5f501e90cfbcb1f47f6b00445"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

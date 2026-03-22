@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\doctrine\MINIMAL_HOSTING_REQUIREMENTS.md"
+  file_path_from_root: "lupo-docs/doctrine/MINIMAL_HOSTING_REQUIREMENTS.md"
   file_hash: "d0ee28c396351ff1fd25d070ad883e753f8f93d4cf28af332da5f0708ae56cb9"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

@@ -49,7 +49,7 @@ lupopedia.conditional:
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "task"
-  file_path_from_root: "lupo-database/lupopedia/channels/lupo-channels/42/tasks/active/file_count_optimization_4_1_0.md"
+  file_path_from_root: "lupo-database/lupopedia/channels/channel_id/42/tasks/active/file_count_optimization_4_1_0.md"
   file_hash: "cc9ddca010dffc4defcf130d8d4fce77d46c883e42703a926a066e44aa963fef"
   last_updated_utc: "20260304"
   system_version: "4.0.73"
@@ -205,7 +205,7 @@ lupopedia.close:
 
 - [Repository Cleanup Task](repository_cleanup_legacy_files_removal.md) - Phase 1 coordination
 - [Database Documentation Task](database_documentation_remaining_tables.md) - Avoid removing active docs
-- [FLARE Validator Enhancement](flare_validator_service_enhancement.md) - Ensure system stability
+- FLARE Validator Enhancement - Ensure system stability
 
 ## Next Actions
 

@@ -74,9 +74,9 @@ Lupopedia v4.0.81 is in active development with work rolled forward from complet
 
 | # | Prompt | Target | Owner | Status | Notes |
 |---|---------|--------|-------|-------|
-| 1 | [041000_wolfie_table-doc-authorship-003000.md](../prompts/20260318_041000_wolfie_prompt_wolfie_table-doc-authorship-003000.md) | **WOLFIE** | pending | Fix authorship on `184500` repair artifact |
-| 2 | [022050_hermes_externalai-batch.md](../prompts/20260318_022050_hermes_prompt_hermes_externalai-batch.md) | **HERMES** | partial | Complete documentation and full coverage report |
-| 3 | [010100_lilith_formal-a12-pass-fail-checklist.md](../prompts/20260318_010100_lilith_prompt_lilith_formal-a12-pass-fail-checklist.md) | **LILITH** | pending | Formal A12 pass/fail QA checklist + result thread 1001 |
+| 1 | 041000_wolfie_table-doc-authorship-003000.md | **WOLFIE** | pending | Fix authorship on `184500` repair artifact |
+| 2 | [022050_hermes_externalai-batch.md](../../prompts/20260318_022050_hermes_prompt_hermes_externalai-batch.md) | **HERMES** | partial | Complete documentation and full coverage report |
+| 3 | 010100_lilith_formal-a12-pass-fail-checklist.md | **LILITH** | pending | Formal A12 pass/fail QA checklist + result thread 1001 |
 | 4 | [234200_athena_prompt-routing-watcher-policy.md](../../threads/1002/20260317_234200_athena_prompt-routing-watcher-policy.md) | **HEPHAESTUS** | pending | Implement filesystem watcher / auto-draft per policy |
 
 ### 📋 Deferred Work (Non-blocking for 4.0.81)

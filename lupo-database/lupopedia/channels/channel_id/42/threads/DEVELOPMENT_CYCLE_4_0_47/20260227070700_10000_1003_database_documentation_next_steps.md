@@ -1,6 +1,6 @@
 ---
 lupopedia.headers:
-  file_path_from_root: "lupo-channels/42/threads/DEVELOPMENT_CYCLE_4_0_47/20260227070700_10000_1003_database_documentation_next_steps.md"
+  file_path_from_root: "lupo-database/lupopedia/channels/channel_id/42/threads/DEVELOPMENT_CYCLE_4_0_47/20260227070700_10000_1003_database_documentation_next_steps.md"
   file_hash: "290b55ba196b5c595658e91f47a0ba87707ca9c9c0af719eb25c6704ce78b0da"
   system_version: "4.0.50"
   channel_id: 42

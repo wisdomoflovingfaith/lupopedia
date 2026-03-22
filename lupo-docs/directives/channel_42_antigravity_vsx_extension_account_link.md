@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\directives\channel_42_antigravity_vsx_extension_account_link.md"
+  file_path_from_root: "lupo-docs/directives/channel_42_antigravity_vsx_extension_account_link.md"
   file_hash: "ca1eaf050d26e21eee9ba9b3eea4b278d19855e05b18ff4c44575883804a287e"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

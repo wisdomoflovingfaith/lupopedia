@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\channels\schema\migrations\analysis\IDENTITY_OVERRIDE_IMPLEMENTATION_PLAN.md"
+  file_path_from_root: "lupo-docs/channels/schema/migrations/analysis/IDENTITY_OVERRIDE_IMPLEMENTATION_PLAN.md"
   file_hash: "81b7d84ccae785ef644b76e1b21b38521631c1e7ed41abf8fac5834430a03c0c"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

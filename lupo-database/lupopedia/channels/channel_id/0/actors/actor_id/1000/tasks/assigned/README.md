@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\channels\0\actors\1000\tasks\assigned\README.md"
+  file_path_from_root: "lupo-database/lupopedia/channels/channel_id/0/actors/actor_id/1000/tasks/assigned/README.md"
   file_hash: "1ee2d98c437db6b1bc56893a00070d8c5db69f9f9fef43259e1b5ff31cb5d59e"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"
@@ -68,7 +68,7 @@ Tasks are centrally managed in `/channels/0/tasks/` and referenced here for acto
 
 ## Active Tasks
 
-- [broadcast_normalization.md](../../../../tasks/active/broadcast_normalization.md) - Broadcast Normalization (58 Files) (HIGH)
+- broadcast_normalization.md - Broadcast Normalization (58 Files) (HIGH)
 
 ## How to Use
 

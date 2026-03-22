@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\channels\doctrine\legacy-core\METADATA_GOVERNANCE.md"
+  file_path_from_root: "lupo-docs/channels/doctrine/legacy-core/METADATA_GOVERNANCE.md"
   file_hash: "58265ce8dcb09d82c5487e60ba7e700f4c05c3c294c593f93cf79072cdcae59b"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"
@@ -210,8 +210,8 @@ Resolution order (first match wins):
 ```markdown
 ## Related Documentation
 
-- **[Document Title](../path/DOCUMENT.md)** - Brief description
-- **[Another Document](../other/DOCUMENT.md)** - Brief description
+- **Document Title** - Brief description
+- **Another Document** - Brief description
 ```
 
 ### 4.3 Cross-Reference Maintenance

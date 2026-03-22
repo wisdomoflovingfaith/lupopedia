@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\channels\developer\modules\CONTENT_INTERFACE_AND_NAVIGATION.md"
+  file_path_from_root: "lupo-docs/channels/developer/modules/CONTENT_INTERFACE_AND_NAVIGATION.md"
   file_hash: "20ff94c8f757b8340a37da506d3a12eba751b2a98cbdf7524d7f8e33a2a6b94a"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"
@@ -354,7 +354,7 @@ The Content Interface in Crafty Syntax 3.0.0 is more than a file manager.
 ## **Related Documentation**
 
 - **[Semantic Navigation System](../../architecture/SEMANTIC_NAVIGATION.md)** â€” Technical details on how semantic navigation works at the database and API level
-- **[Crafty Syntax Module](../modules/craftysyntax/README.md)** â€” Complete Crafty Syntax 3.0.0 module documentation
+- **Crafty Syntax Module** â€” Complete Crafty Syntax 3.0.0 module documentation
 - **[Upgrade Plan: Crafty Syntax 3.7.5 â†’ 3.0.0](UPGRADE_PLAN_3.7.5_TO_3.0.0.md)** â€” Upgrade path from Crafty Syntax 3.7.5
 - **[Architecture Overview](../../architecture/ARCHITECTURE.md)** â€” Overall Lupopedia architecture including semantic layer
 

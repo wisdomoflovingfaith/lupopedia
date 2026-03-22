@@ -48,7 +48,7 @@ Nothing else is required for the loop to *function*; automation layers sit on to
 ## 2. HERMES behavior (stabilized)
 
 - **Only** routes + generates prompts (handoffs). **Does not** impersonate WOLFIE or any other `actor_id` on channel artifacts.
-- **Consistent output:** every prompt file matches [prompts/README.md](../../prompts/README.md) (YAML + task + source reference).
+- **Consistent output:** every prompt file matches prompts/README.md (YAML + task + source reference).
 - **Identity:** headers on HERMES-authored files: `actor_id: 15`, `actor_name: hermes`.
 
 ## 3. Prompt pipeline

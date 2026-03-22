@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\channels\doctrine\CHARSET_COLLATION_DOCTRINE.md"
+  file_path_from_root: "lupo-docs/channels/doctrine/CHARSET_COLLATION_DOCTRINE.md"
   file_hash: "18a5c5fc6afccc8f98c9f00b887ecea775180a6c3dcf1d1ad2d7e089617221bd"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\channels\42\broadcasts\20260223_multi_agent_tasklist.md"
+  file_path_from_root: "lupo-docs/channels/42/broadcasts/20260223_multi_agent_tasklist.md"
   file_hash: "25e26b6ba5bb0d6e1856d196faf7baec61785b13f3364c0844b461d4578bc7a1"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\channels\doctrine\CLASS_HEADER_COMMENT_DOCTRINE_SUMMARY.md"
+  file_path_from_root: "lupo-docs/channels/doctrine/CLASS_HEADER_COMMENT_DOCTRINE_SUMMARY.md"
   file_hash: "7ea4b3d0f800ec989c4997ca33089fed9cec063fe8643aed0a8643e658f7fec1"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"
@@ -134,12 +134,12 @@ All AI-generated PHP classes MUST include this structure at the top:
 ```php
 //
 // CLASS [CLASS_NAME] FUNCTION LIST:
-//      function [method1]([params])  - [description]
-//      function [method2]([params])  - [description]
+//      function method1  - [description]
+//      function method2  - [description]
 //      [... all public methods ...]
 //
 // PRIVATE/PROTECTED METHODS:
-//      function [privateMethod]([params])  - [description]
+//      function privateMethod  - [description]
 //
 ```
 

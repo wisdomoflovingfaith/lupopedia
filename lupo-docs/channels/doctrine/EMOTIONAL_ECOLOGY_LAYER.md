@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\channels\doctrine\EMOTIONAL_ECOLOGY_LAYER.md"
+  file_path_from_root: "lupo-docs/channels/doctrine/EMOTIONAL_ECOLOGY_LAYER.md"
   file_hash: "009bb1ff6e3795652136e162823b759b1f365874ab77c7a51667ce3e7d2ee477"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

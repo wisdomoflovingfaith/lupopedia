@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\channels\doctrine\NO_TRIGGERS_DOCTRINE.md"
+  file_path_from_root: "lupo-docs/channels/doctrine/NO_TRIGGERS_DOCTRINE.md"
   file_hash: "df7de5ee67837f3ac6ab3dd9ac70177e3b8b52d6cb4ad2e1a173525b1d8fe621"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"
@@ -589,9 +589,9 @@ This doctrine works in conjunction with:
 - **[NO_STORED_PROCEDURES_DOCTRINE.md](NO_STORED_PROCEDURES_DOCTRINE.md)** â€” Database logic is forbidden; all computation in application layer
 - **[WOLFIE_TIMESTAMP_DOCTRINE.md](../developer/dev/WOLFIE_TIMESTAMP_DOCTRINE.md)** â€” Explicit timestamp format requirements (BIGINT UTC YYYYMMDDHHIISS)
 - **[DATABASE_PHILOSOPHY.md](../architecture/DATABASE_PHILOSOPHY.md)** â€” Application logic first, database logic second
-- **[anubis_DOCTRINE.md](anubis_DOCTRINE.md)** â€” Custodial intelligence handles data repair without triggers
+- **anubis_DOCTRINE.md** â€” Custodial intelligence handles data repair without triggers
 
----- [anubis_DOCTRINE.md](anubis_DOCTRINE.md) â€” How anubis handles data repair
-- [PHILOSOPHY.md](../../PHILOSOPHY.md) â€” Overall database philosophy
+---- anubis_DOCTRINE.md â€” How anubis handles data repair
+- [PHILOSOPHY.md](../overview/PHILOSOPHY.md) â€” Overall database philosophy
 
 ---

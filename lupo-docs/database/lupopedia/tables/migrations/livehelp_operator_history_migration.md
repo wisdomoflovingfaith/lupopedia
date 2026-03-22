@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\database\lupopedia\tables\livehelp_operator_history_migration.md"
+  file_path_from_root: "lupo-docs/database/lupopedia/tables/migrations/livehelp_operator_history_migration.md"
   file_hash: "ff70416724fc379f1910ddcd29205ca6ee1f6e49d77762e5d46724ee60a69d3f"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

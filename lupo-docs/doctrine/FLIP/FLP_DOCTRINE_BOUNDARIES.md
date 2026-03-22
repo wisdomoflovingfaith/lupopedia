@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\doctrine\FLIP\FLP_DOCTRINE_BOUNDARIES.md"
+  file_path_from_root: "lupo-docs/doctrine/FLIP/FLP_DOCTRINE_BOUNDARIES.md"
   file_hash: "f7f728603a702eb2572928b70664fe158e7636b55fb08d333ee3343a83074cca"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

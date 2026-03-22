@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\doctrine\ANUBIS\ANUBIS_ORPHAN_RULES.md"
+  file_path_from_root: "lupo-docs/archive/ANUBIS/pre_4.0.52/ANUBIS_ORPHAN_RULES.md"
   file_hash: "2a6701264fcdabeb78cbb5a1839fef95c662d272e4115da2b903207a59e7bb27"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\channels\42\broadcasts\20260224_critical_sql_fixes_implemented.md"
+  file_path_from_root: "lupo-docs/channels/42/broadcasts/20260224_critical_sql_fixes_implemented.md"
   file_hash: "93a30fc6b2562d4d03e4dcc2c6c5d98a7e2a76fb98d29802281a7c03aedadac7"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

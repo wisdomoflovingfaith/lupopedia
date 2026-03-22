@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\archive\CHANNEL_420_TOMBSTONE.md"
+  file_path_from_root: "lupo-docs/archive/CHANNEL_420_TOMBSTONE.md"
   file_hash: "636c908a073263b191075618a41f4eb1097c3b99fe7522243412ea3e7862bed0"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

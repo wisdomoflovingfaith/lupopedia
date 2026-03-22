@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\channels\doctrine\NO_TRIGGERS_NO_PROCEDURES_DOCTRINE.md"
+  file_path_from_root: "lupo-docs/channels/doctrine/NO_TRIGGERS_NO_PROCEDURES_DOCTRINE.md"
   file_hash: "92d3aaff9929ad957c61e1a394be6c26b0100df0ce1263ed45281baf43172491"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

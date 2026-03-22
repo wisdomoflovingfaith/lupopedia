@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\channels\dialogs\agents\INLINE_DIALOG_SPECIFICATION.md"
+  file_path_from_root: "lupo-docs/channels/dialogs/agents/INLINE_DIALOG_SPECIFICATION.md"
   file_hash: "d9b2cdf884286a2ee05e6e3f090a37d61fb646f58bccd351b88b089b6a25d716"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"
@@ -378,9 +378,9 @@ Future versions may add optional fields (e.g., severity, tags) but MUST remain b
 - **[WOLFIE_HEADER_SPECIFICATION.md](../../agents/WOLFIE_HEADER_SPECIFICATION.md)** â€” Header dialog format and metadata requirements
 - **[AGENT_RUNTIME.md](../../agents/AGENT_RUNTIME.md)** â€” Complete guide to agent system runtime behavior
 - **[Dialog Doctrine](../../doctrine/DIALOG_DOCTRINE.md)** â€” MANDATORY rules for dialog file placement, naming, and organization
-- **[Database Philosophy](DATABASE_PHILOSOPHY.md)** â€” Contains Inline Dialog examples and multi-agent coordination notes
-- **[Dialog Module](../modules/dialog/README.md)** â€” Database tables and PHP integration
-- **[DIALOG.md](../modules/dialog/DIALOG.md)** â€” Temporary markdown fallback (being migrated to database)
+- **[Database Philosophy](../../architecture/DATABASE_PHILOSOPHY.md)** â€” Contains Inline Dialog examples and multi-agent coordination notes
+- **Dialog Module** â€” Database tables and PHP integration
+- **DIALOG.md** â€” Temporary markdown fallback (being migrated to database)
 
 ---
 

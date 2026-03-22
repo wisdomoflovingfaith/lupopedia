@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\channels\666\quarantine\20260224145000_10000_1001_install_sql_errors_critical.md"
+  file_path_from_root: "lupo-database/lupopedia/channels/channel_id/666/quarantine/20260224145000_10000_1001_install_sql_errors_critical.md"
   file_hash: "18439751f0251dd2dcaeaac3bdfed101bacc43a04efeeb4ade10196de4fc1fe6"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

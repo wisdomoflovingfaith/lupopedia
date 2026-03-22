@@ -170,6 +170,7 @@ Collections and namespaces are **conditionally coupled** dimensions that serve d
     file_path_from_root: "path/from/repo/root.md"
     # optional: lupopedia.schema, web_path, channel_id, actor_id, …
   ```
+- **Timestamped artifact filenames:** When a headed artifact filename includes a timestamp, it must use real UTC in `YYYYMMDD_HHIISS` format. `HH` must be `00-23` only. Invalid filename timestamps are invalid artifacts and must be blocked or flagged, never silently normalized. See `lupo-rules/root/TIMESTAMP_DOCTRINE.md`.
 - **First line of file:** `---` (nothing else on line 1 — no identity line, no heading). **Identity line** `# file: ...` goes **after** the closing `---`, as the first line of the body. See .cursor/rules/lupopedia-headers-file-order.mdc for mandatory order (all IDE agents).
 - **Exactly one front matter block:** Do not duplicate; one opening `---`, one YAML block, one closing `---` per file. No second header block.
 - **Then:** YAML blocks (canonical order) → `---` → identity line `# file: {title} — delegation: {delegation_chain} — web_path: {web_path}` (include `session: {session_name}` only when a `lupopedia.session` block is present) → body

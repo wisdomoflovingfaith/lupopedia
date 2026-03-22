@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\database\lupopedia\tables\livehelp_emailque_migration.md"
+  file_path_from_root: "lupo-docs/database/lupopedia/tables/migrations/livehelp_emailque_migration.md"
   file_hash: "0f8f4333d9ee5496089536e4f744d9513aca6036226d2340c08801214726e9e2"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

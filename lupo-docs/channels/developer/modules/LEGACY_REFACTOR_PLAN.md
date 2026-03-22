@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\channels\developer\modules\LEGACY_REFACTOR_PLAN.md"
+  file_path_from_root: "lupo-docs/channels/developer/modules/LEGACY_REFACTOR_PLAN.md"
   file_hash: "dcec3c4730e113a8605f4b812237b1ca2c20c49814d3109deb3d0c536bd162a0"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"
@@ -109,9 +109,9 @@ This document provides a comprehensive plan for refactoring legacy Crafty Syntax
 
 Refactor all PHP files from `lupo-legacy/craftysyntax/` into the Lupopedia 3.0.0 structure in `lupopedia/`, following all Lupopedia doctrines:
 
-- [CURSOR_REFACTOR_DOCTRINE.md](CURSOR_REFACTOR_DOCTRINE.md)
-- [SQL_REWRITE_DOCTRINE.md](SQL_REWRITE_DOCTRINE.md)
-- [PDO_CONVERSION_DOCTRINE.md](PDO_CONVERSION_DOCTRINE.md)
+- [CURSOR_REFACTOR_DOCTRINE.md](../../doctrine/CURSOR_REFACTOR_DOCTRINE.md)
+- [SQL_REWRITE_DOCTRINE.md](../../doctrine/SQL_REWRITE_DOCTRINE.md)
+- [PDO_CONVERSION_DOCTRINE.md](../../doctrine/PDO_CONVERSION_DOCTRINE.md)
 - [TOON_DOCTRINE.md](../../doctrine/TOON_DOCTRINE.md)
 
 ### **1.2 Scope**
@@ -298,7 +298,7 @@ For each PHP file:
 3. Use `new_table` from TOON file
 4. Apply prefix placeholder if specified
 
-**See [SQL_REFACTOR_MAPPING_DOCTRINE.md](SQL_REFACTOR_MAPPING_DOCTRINE.md) for detailed mapping rules.**
+**See [SQL_REFACTOR_MAPPING_DOCTRINE.md](../../doctrine/SQL_REFACTOR_MAPPING_DOCTRINE.md) for detailed mapping rules.**
 
 **Example:**
 ```sql
@@ -317,7 +317,7 @@ FROM {{prefix}}crafty_auto_invite
 3. Verify new column name exists in toon data file (`lupo-database/toon_data/{new_table_name}.toon`)
 4. Use exact column name (preserve typos like "visiblity")
 
-**See [SQL_REFACTOR_MAPPING_DOCTRINE.md](SQL_REFACTOR_MAPPING_DOCTRINE.md) for detailed mapping rules.**
+**See [SQL_REFACTOR_MAPPING_DOCTRINE.md](../../doctrine/SQL_REFACTOR_MAPPING_DOCTRINE.md) for detailed mapping rules.**
 
 **Example:**
 ```sql

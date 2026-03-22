@@ -48,7 +48,7 @@ lupopedia.conditional:
 
 lupopedia.headers:
   lupopedia.schema: "documentation"
-  file_path_from_root: "lupo-docs\table_optimization_plan.md"
+  file_path_from_root: "lupo-docs/table_optimization_plan.md"
   version_when_written: "4.0.84"
   file_hash: "e9f9c87afc319fe1af48116f965db4b3fcae72e03c0227077885792d56ae9ba6"
   last_updated_utc: "20260304"

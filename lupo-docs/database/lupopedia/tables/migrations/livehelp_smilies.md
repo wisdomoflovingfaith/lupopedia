@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\database\lupopedia\tables\livehelp_smilies.md"
+  file_path_from_root: "lupo-docs/database/lupopedia/tables/migrations/livehelp_smilies.md"
   file_hash: "66316ca88b88c751704ccf6b87c0d295c46116bbb54ee98ffe652d3961f03e29"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

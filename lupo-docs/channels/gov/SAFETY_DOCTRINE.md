@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\channels\gov\SAFETY_DOCTRINE.md"
+  file_path_from_root: "lupo-docs/channels/gov/SAFETY_DOCTRINE.md"
   file_hash: "3a2697eaac5e0ebaeb72c5c1416651c0540ef9acec71b0017b9005bb10a04c72"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

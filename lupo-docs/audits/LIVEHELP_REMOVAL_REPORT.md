@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\LIVEHELP_REMOVAL_REPORT.md"
+  file_path_from_root: "lupo-docs/audits/LIVEHELP_REMOVAL_REPORT.md"
   file_hash: "f655afdbfc829e6d877dd4caecca859692d03046d0434f11e789eb9909ff76d5"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

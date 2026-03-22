@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\audits\FUTURE_FEATURES_AND_REQUIRED_TABLES_ALIGNMENT_SUMMARY.md"
+  file_path_from_root: "lupo-docs/audits/FUTURE_FEATURES_AND_REQUIRED_TABLES_ALIGNMENT_SUMMARY.md"
   file_hash: "d80ac972e9ff1f5e20947a6844d87e10dba48e259880ebaca9fcfc34265f7e05"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

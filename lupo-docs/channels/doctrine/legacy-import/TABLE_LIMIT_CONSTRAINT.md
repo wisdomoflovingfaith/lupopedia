@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\channels\doctrine\legacy-import\TABLE_LIMIT_CONSTRAINT.md"
+  file_path_from_root: "lupo-docs/channels/doctrine/legacy-import/TABLE_LIMIT_CONSTRAINT.md"
   file_hash: "04626511599d63414725f0a4f54057792606fc04f549a7c66e380d3d93756fb1"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

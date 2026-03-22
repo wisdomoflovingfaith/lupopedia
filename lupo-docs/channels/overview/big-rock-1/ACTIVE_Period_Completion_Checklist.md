@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\channels\overview\big-rock-1\ACTIVE_Period_Completion_Checklist.md"
+  file_path_from_root: "lupo-docs/channels/overview/big-rock-1/ACTIVE_Period_Completion_Checklist.md"
   file_hash: "1e0f9bbebb515dbb44e8a4f549280de3b5c08c80845ee8a43ba84b9a87bd6f49"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

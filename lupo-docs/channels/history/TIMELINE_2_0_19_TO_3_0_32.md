@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\channels\history\TIMELINE_2_0_19_TO_3_0_32.md"
+  file_path_from_root: "lupo-docs/channels/history/TIMELINE_2_0_19_TO_3_0_32.md"
   file_hash: "d6bf293f245eb166d5889de89549830e06d1a81bdb7a3a073c57b755110b7692"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"
@@ -245,7 +245,7 @@ This document provides the **complete, unified canonical timeline** from Crafty 
 ## **ðŸ“š Related Documentation**
 
 - **[HISTORY.md](HISTORY.md)** - Detailed origin story and personal narrative
-- **[CHANGELOG.md](../../CHANGELOG.md)** - Complete changelog from 3.0.0 forward
+- **CHANGELOG.md** - Complete changelog from 3.0.0 forward
 - **[FOUNDERS_NOTE.md](../appendix/appendix/FOUNDERS_NOTE.md)** - First-person account of the journey
 - **[Database Philosophy](../architecture/DATABASE_PHILOSOPHY.md)** - Core principles shaped by this history
 

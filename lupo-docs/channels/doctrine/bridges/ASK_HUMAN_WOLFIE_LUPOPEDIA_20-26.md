@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\channels\doctrine\bridges\ASK_HUMAN_WOLFIE_LUPOPEDIA_20-26.md"
+  file_path_from_root: "lupo-docs/channels/doctrine/bridges/ASK_HUMAN_WOLFIE_LUPOPEDIA_20-26.md"
   file_hash: "1ceca1cb554ce4572445704364b28697a08a155b50880cb89dfc36fdf05bb26a"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

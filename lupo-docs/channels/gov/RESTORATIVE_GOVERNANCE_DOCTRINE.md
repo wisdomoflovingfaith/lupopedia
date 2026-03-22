@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\channels\gov\RESTORATIVE_GOVERNANCE_DOCTRINE.md"
+  file_path_from_root: "lupo-docs/channels/gov/RESTORATIVE_GOVERNANCE_DOCTRINE.md"
   file_hash: "bd7f28244245fb6b5373bcf3c9a0c69deccefdec0d96e414071a594147baa3de"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

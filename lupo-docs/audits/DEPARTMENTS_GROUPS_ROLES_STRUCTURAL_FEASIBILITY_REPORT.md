@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\audits\DEPARTMENTS_GROUPS_ROLES_STRUCTURAL_FEASIBILITY_REPORT.md"
+  file_path_from_root: "lupo-docs/audits/DEPARTMENTS_GROUPS_ROLES_STRUCTURAL_FEASIBILITY_REPORT.md"
   file_hash: "9a1ac39526b4f6a4081cbf4b64642d9c8792050f20ef5a5558b0bed0e77fe536"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

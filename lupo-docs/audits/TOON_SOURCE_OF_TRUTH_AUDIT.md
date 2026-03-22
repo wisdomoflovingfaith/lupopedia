@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\TOON_SOURCE_OF_TRUTH_AUDIT.md"
+  file_path_from_root: "lupo-docs/audits/TOON_SOURCE_OF_TRUTH_AUDIT.md"
   file_hash: "5797a899d4e0ac4831364c706329063142dbbdfc7d19a70f86252309160c31fd"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

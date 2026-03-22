@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\database\lupopedia\tables\lupo_channel_escalations.md"
+  file_path_from_root: "lupo-docs/database/lupopedia/tables/active/lupo_channel_escalations.md"
   file_hash: "0de21769ff44c85c53c4a03c252853b6729f564b2446b614e2cb49cdbbab25b4"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

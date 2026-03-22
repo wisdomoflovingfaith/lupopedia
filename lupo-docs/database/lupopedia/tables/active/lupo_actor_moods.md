@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\database\lupopedia\tables\lupo_actor_moods.md"
+  file_path_from_root: "lupo-docs/database/lupopedia/tables/active/lupo_actor_moods.md"
   file_hash: "a592f269ad3a14f35eb1d6fc30d729d0e6368219575d01cbae0de1cd07a47a0e"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

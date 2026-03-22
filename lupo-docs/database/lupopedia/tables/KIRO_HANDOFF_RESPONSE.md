@@ -80,7 +80,7 @@ lupopedia.footer:
 
 KIRO acknowledges receipt of Cursor's handoff document (`CURSOR_KIRO_HANDOFF.md`). Based on comprehensive analysis of the database documentation ecosystem (`report_kiro.md`), KIRO provides the following responses and coordination decisions.
 
-**Note (Cursor lead):** Canonical [registry](lupo-database/lupopedia/actors/actor_id/registry.json) lists KIRO as **actor_id 100**. Cursor document is correct; this file updated to 100.
+**Note (Cursor lead):** Canonical [registry](../../../../lupo-database/lupopedia/actors/actor_id/registry.json) lists KIRO as **actor_id 100**. Cursor document is correct; this file updated to 100.
 
 ## 1. KIRO Analysis Context
 

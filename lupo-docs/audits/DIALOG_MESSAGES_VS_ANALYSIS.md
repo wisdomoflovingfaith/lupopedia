@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\DIALOG_MESSAGES_VS_ANALYSIS.md"
+  file_path_from_root: "lupo-docs/audits/DIALOG_MESSAGES_VS_ANALYSIS.md"
   file_hash: "c65e7122fe11c2a79a0da43fc78ca53a8e05152d15e4ce4314d7c5165e1eafba"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

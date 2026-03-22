@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\channels\kernel\registries\MOOD_AXIS_REGISTRY.md"
+  file_path_from_root: "lupo-docs/channels/kernel/registries/MOOD_AXIS_REGISTRY.md"
   file_hash: "eb49283b22e64a7fdd89424aeb26d8b8c7cf5f4f903225a9dfde2ab46ef8f5fa"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

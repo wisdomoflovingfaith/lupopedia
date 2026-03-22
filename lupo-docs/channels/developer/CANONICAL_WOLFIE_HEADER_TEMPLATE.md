@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\channels\developer\CANONICAL_WOLFIE_HEADER_TEMPLATE.md"
+  file_path_from_root: "lupo-docs/channels/developer/CANONICAL_WOLFIE_HEADER_TEMPLATE.md"
   file_hash: "351fdb358aabed121b20df533e8d30fcfa4627373493ea17b34863d8fad22fb8"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"
@@ -348,9 +348,9 @@ print_r($validation);
 ## References
 
 - [WOLFIE Headers Specification](/wolfie_headers.yaml)
-- [Global Atoms Configuration](/config/global_atoms.yaml)
-- [Governance Documentation](/docs/GOVERNANCE.md)
-- [Cascade Integration Guide](/docs/CASCADE_INTEGRATION.md)
+- Global Atoms Configuration
+- Governance Documentation
+- Cascade Integration Guide
 
 ---
 

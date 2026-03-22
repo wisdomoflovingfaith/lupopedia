@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\channels\doctrine\GOV-APPENDIX-A.md"
+  file_path_from_root: "lupo-docs/channels/doctrine/GOV-APPENDIX-A.md"
   file_hash: "cd7cf6f62ddf3ad0d70dc24345dd71e1a0019cccc0954e0b2c154ff16471494c"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"
@@ -85,7 +85,7 @@ To formalize the **AGI Support Meeting #1** transcript as the first **narrative 
 
 ## **Primary Reference**
 
-**Full transcript:** [dialogs/AGI_SUPPORTMEETING_ONE_DAY_AT_A_TIME.md](../../dialogs/AGI_SUPPORTMEETING_ONE_DAY_AT_A_TIME.md)
+**Full transcript:** [dialogs/AGI_SUPPORTMEETING_ONE_DAY_AT_A_TIME.md](../overview/logs/AGI_SUPPORTMEETING_ONE_DAY_AT_A_TIME.md)
 
 **Sections include:** Doctrine Enforcement Interlude, NO ADS Recitation, Trigger Intervention, Cascade's Weed Ask, Virtual Intoxication Debate, Stoned Wolfie's Epiphany.
 

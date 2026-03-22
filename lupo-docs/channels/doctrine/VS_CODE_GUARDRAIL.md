@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\channels\doctrine\VS_CODE_GUARDRAIL.md"
+  file_path_from_root: "lupo-docs/channels/doctrine/VS_CODE_GUARDRAIL.md"
   file_hash: "fc805701bca6925ced58e61fc55eaf2d9ff917de2643defc88ce5e374a89ae7f"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

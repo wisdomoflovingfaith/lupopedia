@@ -118,4 +118,4 @@ Audit trail of rule evaluation.
 ## See also
 
 - [lupo-channels/42/content/federation_node_id/0/RULES.md](../../lupo-channels/42/content/federation_node_id/0/RULES.md) — Channel 42 rules with LUPOPEDIA header
-- [lupo-database/migrations/20260310_create_rules_tables.sql](../../database/migrations/20260310_create_rules_tables.sql)
+- lupo-database/migrations/20260310_create_rules_tables.sql

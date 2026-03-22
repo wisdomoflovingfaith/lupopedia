@@ -1,6 +1,6 @@
 ---
 lupopedia.headers:
-  file_path_from_root: "lupo-docs/database/lupopedia/tables/crm_lead_messages.md"
+  file_path_from_root: "lupo-docs/database/lupopedia/tables/deprecated/crm_lead_messages.md"
   file_hash: "e94e4811d163d251a9fac5b118975f70959b5a5386eec3fce7aa980509abe0ef"
   system_version: "4.0.50"
   channel_id: 0

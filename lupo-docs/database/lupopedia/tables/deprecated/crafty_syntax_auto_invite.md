@@ -1,6 +1,6 @@
 ---
 lupopedia.headers:
-  file_path_from_root: "lupo-docs/database/lupopedia/tables/crafty_syntax_auto_invite.md"
+  file_path_from_root: "lupo-docs/database/lupopedia/tables/deprecated/crafty_syntax_auto_invite.md"
   file_hash: "5860fddf421455752c1843384a31fecdc9eafb878e47445129fd41916b0db88c"
   system_version: "4.0.50"
   channel_id: 0

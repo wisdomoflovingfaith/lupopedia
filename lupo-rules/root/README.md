@@ -41,6 +41,8 @@ lupopedia.footer:
 
 **This constitutional document supersedes all fragmented root rules below.**
 
+**[TIMESTAMP_DOCTRINE.md](TIMESTAMP_DOCTRINE.md)** - Canonical UTC timestamp generation, filename validation, artifact invalidation, and cross-agent enforcement doctrine. Validators must reject invalid filename hours above 23.
+
 **[CONVERGENCE_DOCTRINE.md](CONVERGENCE_DOCTRINE.md)** - Forced convergence to a single canonical system state; actor identity permanence; no variant actors; banned entities remain addressable by `actor_id` (status is state, not identity).
 
 **[LUPOPEDIA_HEADERS_VERSION_BASELINE_REWRITE_RULE.md](LUPOPEDIA_HEADERS_VERSION_BASELINE_REWRITE_RULE.md)** — When editing headed Markdown: if `version_when_written` is below **4.0.84** or deprecated header version keys remain, **rewrite `lupopedia.headers`** in the same save. Procedural checklist: **[directives.md](../../directives.md)** § *LUPOPEDIA HEADERS baseline rewrite*; format: **[lupo-docs/doctrine/LUPOPEDIA_HEADERS/LUPOPEDIA_HEADERS_FORMAT.md](../../lupo-docs/doctrine/LUPOPEDIA_HEADERS/LUPOPEDIA_HEADERS_FORMAT.md)** §2.0.

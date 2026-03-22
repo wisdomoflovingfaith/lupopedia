@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\channels\doctrine\NO_FOREIGN_KEYS_DOCTRINE.md"
+  file_path_from_root: "lupo-docs/channels/doctrine/NO_FOREIGN_KEYS_DOCTRINE.md"
   file_hash: "0e355aae19b630235e64d7d9fec7ecc26374a043031d650c89b1c50aac7567d2"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"
@@ -300,7 +300,7 @@ The `node_id` field is a scoping identifier, not a relational dependency. It ind
 
 anubis is the **custodial intelligence system** that replaces foreign key constraints in Lupopedia.
 
-**See [anubis_DOCTRINE.md](anubis_DOCTRINE.md) for complete documentation.**
+**See anubis_DOCTRINE.md for complete documentation.**
 
 anubis is responsible for:
 
@@ -453,7 +453,7 @@ This is how Lupopedia stays alive, flexible, emotional, and selfâ€‘healing.
 
 - **[Database Philosophy](../architecture/DATABASE_PHILOSOPHY.md)** - Core principle that database is ledger, application is brain - supports no FK doctrine
 - **[AI Schema Guide](../schema/AI_SCHEMA_GUIDE.md)** - Why schema references avoid foreign key assumptions and use explicit structure
-- **[anubis Doctrine](anubis_DOCTRINE.md)** - Complete custodial intelligence system that replaces foreign key constraints
+- **anubis Doctrine** - Complete custodial intelligence system that replaces foreign key constraints
 - **[Architecture Sync](../architecture/ARCHITECTURE_SYNC.md)** - System architecture implementing no-FK principles
 - **[WOLFMIND Doctrine](WOLFMIND_DOCTRINE.md)** - Memory system that uses application-managed relationships instead of foreign keys
 

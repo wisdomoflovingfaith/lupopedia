@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\channels\42\broadcasts\20260223_v4_0_33_stoned_wolfie_metadata_sync.md"
+  file_path_from_root: "lupo-docs/channels/42/broadcasts/20260223_v4_0_33_stoned_wolfie_metadata_sync.md"
   file_hash: "35e73e4a42183dee7b2f90466af9b399528b9be6271957dbc22212664fe5cf97"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

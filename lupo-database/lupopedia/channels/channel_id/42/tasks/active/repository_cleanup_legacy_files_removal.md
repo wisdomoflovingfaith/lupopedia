@@ -49,7 +49,7 @@ lupopedia.conditional:
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "task"
-  file_path_from_root: "lupo-database/lupopedia/channels/lupo-channels/42/tasks/active/repository_cleanup_legacy_files_removal.md"
+  file_path_from_root: "lupo-database/lupopedia/channels/channel_id/42/tasks/active/repository_cleanup_legacy_files_removal.md"
   file_hash: "86333982713023f0fdab6e6c901137d3b0f42aa76e97ba9ec95bc1d065e3fa84"
   last_updated_utc: "20260304"
   system_version: "4.0.73"

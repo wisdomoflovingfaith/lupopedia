@@ -41,13 +41,13 @@ lupopedia.footer:
 2. **Lupopedia Versioning Doctrine** — [lupo-docs/doctrine/VERSIONING_DOCTRINE.md](doctrine/VERSIONING_DOCTRINE.md)  
    Version rules and system version alignment. **Why:** Init and artifact lifecycle are version-bound; tooling and init blocks must match the current release.
 
-3. **Directory and project structure** — [README.md](../README.md) (project root), [lupo-docs/README.md](README.md)  
+3. **Directory and project structure** — [README.md](../../README.md) (project root), [lupo-docs/README.md](../../README.md)  
    Where init-related and doctrine files live. **Why:** Required before adding or moving init-controlled artifacts.
 
 4. **Agent & Faucet Doctrine** — [lupo-docs/doctrine/ActorFaucetOntology.md](doctrine/ActorFaucetOntology.md), [lupo-docs/doctrine/FAUCET_TRACEABILITY_DOCTRINE.md](doctrine/FAUCET_TRACEABILITY_DOCTRINE.md)  
    Actors orchestrate; faucets execute; sessions carry context. **Why:** Init/close blocks can reference actor_id and faucet; misunderstanding causes misattribution and broken delegation.
 
-5. **Semantic graph & collections** (recommended) — [lupo-docs/channels/doctrine/SEMANTIC_GRAPH_DOCTRINE.md](lupo-channels/doctrine/SEMANTIC_GRAPH_DOCTRINE.md), [lupo-docs/doctrine/COLLECTIONS_DOCTRINE.md](doctrine/COLLECTIONS_DOCTRINE.md)  
+5. **Semantic graph & collections** (recommended) — [lupo-docs/channels/doctrine/SEMANTIC_GRAPH_DOCTRINE.md](channels/doctrine/SEMANTIC_GRAPH_DOCTRINE.md), [lupo-docs/doctrine/COLLECTIONS_DOCTRINE.md](doctrine/COLLECTIONS_DOCTRINE.md)  
    How content participates in the semantic graph and collections. **Why:** When init applies to such content, scope and context resolution depend on these doctrines.
 
 ---

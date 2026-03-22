@@ -39,6 +39,6 @@ You are **ATHENA**. Write **one** thread **1002** policy artifact (≤800 words)
 
 ---
 
-**Done:** [234200_athena_prompt-routing-watcher-policy](lupo-channels/42/threads/1002/20260317_234200_athena_prompt-routing-watcher-policy.md)
+**Done:** [234200_athena_prompt-routing-watcher-policy](../threads/1002/20260317_234200_athena_prompt-routing-watcher-policy.md)
 
 *HERMES handoff.*

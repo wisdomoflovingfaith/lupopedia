@@ -58,10 +58,10 @@ lupopedia.footer:
 
 ## What to read
 
-- **Canonical doctrine:** [lupo-docs/doctrine/LUPOPEDIA_HEADERS/README.md](../../../lupo-docs/doctrine/LUPOPEDIA_HEADERS/README.md) — Overview, storage in `lupo_metadata`, schema.
-- **Format and file structure:** [LUPOPEDIA_HEADERS_FORMAT.md](../../../lupo-docs/doctrine/LUPOPEDIA_HEADERS/LUPOPEDIA_HEADERS_FORMAT.md) — Markdown file structure, required fields, database and channel resolution.
-- **Plan and block order:** [LUPOPEDIA_HEADERS_PLAN.md](../../../lupo-docs/doctrine/LUPOPEDIA_HEADERS/LUPOPEDIA_HEADERS_PLAN.md) — Authoritative plan, block order, channel support.
-- **Validators and tooling:** [VALIDATORS_AND_TOOLING.md](../../../lupo-docs/doctrine/LUPOPEDIA_HEADERS/VALIDATORS_AND_TOOLING.md) — How headers work with the database (read/write via `lupo_metadata`) and how headers can be written to the file (export/import).
+- **Canonical doctrine:** lupo-docs/doctrine/LUPOPEDIA_HEADERS/README.md — Overview, storage in `lupo_metadata`, schema.
+- **Format and file structure:** [LUPOPEDIA_HEADERS_FORMAT.md](../../lupo-docs/doctrine/LUPOPEDIA_HEADERS/LUPOPEDIA_HEADERS_FORMAT.md) — Markdown file structure, required fields, database and channel resolution.
+- **Plan and block order:** [LUPOPEDIA_HEADERS_PLAN.md](../../lupo-docs/doctrine/LUPOPEDIA_HEADERS/LUPOPEDIA_HEADERS_PLAN.md) — Authoritative plan, block order, channel support.
+- **Validators and tooling:** [VALIDATORS_AND_TOOLING.md](../../lupo-docs/doctrine/LUPOPEDIA_HEADERS/VALIDATORS_AND_TOOLING.md) — How headers work with the database (read/write via `lupo_metadata`) and how headers can be written to the file (export/import).
 
 ## Database and writing to file
 

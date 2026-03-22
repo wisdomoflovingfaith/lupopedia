@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\channels\doctrine\ETHICAL_FOUNDATIONS.md"
+  file_path_from_root: "lupo-docs/channels/doctrine/ETHICAL_FOUNDATIONS.md"
   file_hash: "b4fcecb4fd786440d80a995d698b64986db03d9c24e8e4b7d4bc6b499b64658a"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

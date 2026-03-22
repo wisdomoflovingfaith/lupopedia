@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\channels\agents\agent-1\doctrine\CHANNEL_MANIFEST_SPEC.md"
+  file_path_from_root: "lupo-docs/channels/agents/agent-1/doctrine/CHANNEL_MANIFEST_SPEC.md"
   file_hash: "d3c6e627caa85a5d7124b2e65b350d0096983bcffdbe5472a2ffe7ae018f2f9a"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"
@@ -924,11 +924,11 @@ The following validation rules MUST be enforced for all Channel Manifests:
 
 - **[Channel Identity Block Doctrine](./CHANNEL_IDENTITY_BLOCK.md)** — Source specification for CIB fields
 - **[Channel Initialization Protocol](./CHANNEL_INITIALIZATION_PROTOCOL.md)** — Complete CIP doctrine
-- **[Channel Dialog Agent Workflows](../../../docs/ARCHITECTURE/CHANNEL_DIALOG_AGENT_WORKFLOWS.md)** — How agents interact with channels
-- **[Channel Dialog Schema Review](../../../docs/ARCHITECTURE/CHANNEL_DIALOG_SCHEMA_REVIEW.md)** — Database schema for channels
-- **[HERMES and CADUCEUS](../../../docs/agents/HERMES_AND_CADUCEUS.md)** — Routing and emotional balancing subsystems
-- **[Emotional Geometry Doctrine](../../../docs/doctrine/EMOTIONAL_GEOMETRY.md)** — Emotional geometry principles
-- **[MOOD_RGB Doctrine](../../../docs/doctrine/MOOD_RGB_DOCTRINE.md)** — Mood tracking specification
+- **[Channel Dialog Agent Workflows](../../../dialogs/architecture/CHANNEL_DIALOG_AGENT_WORKFLOWS.md)** — How agents interact with channels
+- **[Channel Dialog Schema Review](../../../dialogs/architecture/CHANNEL_DIALOG_SCHEMA_REVIEW.md)** — Database schema for channels
+- **[HERMES and CADUCEUS](../../HERMES_AND_CADUCEUS.md)** — Routing and emotional balancing subsystems
+- **[Emotional Geometry Doctrine](../../../doctrine/EMOTIONAL_GEOMETRY.md)** — Emotional geometry principles
+- **[MOOD_RGB Doctrine](../../../doctrine/MOOD_RGB_DOCTRINE.md)** — Mood tracking specification
 
 ---
 

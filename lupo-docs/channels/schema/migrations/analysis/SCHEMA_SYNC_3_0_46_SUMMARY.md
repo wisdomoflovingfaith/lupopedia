@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\channels\schema\migrations\analysis\SCHEMA_SYNC_3_0_46_SUMMARY.md"
+  file_path_from_root: "lupo-docs/channels/schema/migrations/analysis/SCHEMA_SYNC_3_0_46_SUMMARY.md"
   file_hash: "3218ccdda891c8dc335b80ac32d3cea4a55c9d27c051656d6fed662177e17cf8"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

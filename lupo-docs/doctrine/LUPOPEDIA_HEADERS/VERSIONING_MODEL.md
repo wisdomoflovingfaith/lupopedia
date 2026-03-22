@@ -9,7 +9,7 @@ lupopedia.headers:
 
 An **alternate multi-version-field** proposal for `lupopedia.headers` was discussed in early 2026 threads; it was **never adopted** as final doctrine and is **permanently removed** from canonical guidance.
 
-**Current rule (4.0.84+):** The only canonical version field in `lupopedia.headers` is **`version_when_written`** — the immutable system version at the time the artifact was created or first written. See **[LUPOPEDIA_HEADERS_FORMAT.md](./LUPOPEDIA_HEADERS_FORMAT.md)** §2 and **[README.md](./README.md)** for required fields and examples.
+**Current rule (4.0.84+):** The only canonical version field in `lupopedia.headers` is **`version_when_written`** — the immutable system version at the time the artifact was created or first written. See **[LUPOPEDIA_HEADERS_FORMAT.md](./LUPOPEDIA_HEADERS_FORMAT.md)** §2 and **[README.md](../../../README.md)** for required fields and examples.
 
 **Do not** use, require, or document in examples: `lupopedia.version`, `system_version`, `last_verified_system_version`, or a standalone `version` key inside `lupopedia.headers`.
 

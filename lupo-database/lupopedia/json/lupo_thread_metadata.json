@@ -1,0 +1,78 @@
+{
+  "table_name": "lupo_thread_metadata",
+  "fields": [
+    "`thread_metadata_id` bigint NOT NULL",
+    "`dialog_thread_id` bigint NOT NULL",
+    "`metadata_key` varchar(255) NOT NULL",
+    "`metadata_value` text",
+    "`metadata_type` varchar(64) NOT NULL DEFAULT 'string'",
+    "`created_ymdhis` bigint NOT NULL DEFAULT 0",
+    "`updated_ymdhis` bigint NOT NULL",
+    "`created_by_actor_id` bigint NOT NULL",
+    "`is_deleted` tinyint NOT NULL DEFAULT 0",
+    "`deleted_ymdhis` bigint"
+  ],
+  "data": [],
+  "indexes": [
+    {
+      "index_name": "lupo_thread_metadata_idx_created",
+      "columns": [
+        "created_ymdhis"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_thread_metadata_idx_deleted",
+      "columns": [
+        "is_deleted"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_thread_metadata_idx_key",
+      "columns": [
+        "metadata_key"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_thread_metadata_idx_thread_id",
+      "columns": [
+        "dialog_thread_id"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_thread_metadata_idx_type",
+      "columns": [
+        "metadata_type"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_thread_metadata_unq_thread_key",
+      "columns": [
+        "dialog_thread_id",
+        "metadata_key"
+      ],
+      "is_unique": true,
+      "index_type": "BTREE"
+    }
+  ],
+  "primary_key": {
+    "column_name": "thread_metadata_id",
+    "expected_name": "thread_metadata_id",
+    "is_correct": true,
+    "needs_rename": false
+  },
+  "doctrine_metadata": {
+    "no_foreign_keys": true,
+    "no_triggers": true
+  },
+  "relationships": []
+}

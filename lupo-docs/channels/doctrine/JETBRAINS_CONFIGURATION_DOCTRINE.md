@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\channels\doctrine\JETBRAINS_CONFIGURATION_DOCTRINE.md"
+  file_path_from_root: "lupo-docs/channels/doctrine/JETBRAINS_CONFIGURATION_DOCTRINE.md"
   file_hash: "6520b5b18565c6a0bd4d29540fb868ade4514195456de9cfbbd28b09fb97244a"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

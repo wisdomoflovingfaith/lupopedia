@@ -23,4 +23,4 @@ Human directive §5: *any artifact not already a HERMES prompt should be interpr
 
 ## Done criteria
 
-- [x] Explicit stance on automation vs human-in-loop for classification — [234200_athena_prompt-routing-watcher-policy](lupo-channels/42/threads/1002/20260317_234200_athena_prompt-routing-watcher-policy.md)
+- [x] Explicit stance on automation vs human-in-loop for classification — [234200_athena_prompt-routing-watcher-policy](../threads/1002/20260317_234200_athena_prompt-routing-watcher-policy.md)

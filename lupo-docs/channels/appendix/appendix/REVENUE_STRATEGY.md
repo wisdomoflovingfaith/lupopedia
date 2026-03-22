@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\channels\appendix\appendix\REVENUE_STRATEGY.md"
+  file_path_from_root: "lupo-docs/channels/appendix/appendix/REVENUE_STRATEGY.md"
   file_hash: "5686982412e6914eb789897c02c255482c2a8914ee39dc6b305134fca2a7f637"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

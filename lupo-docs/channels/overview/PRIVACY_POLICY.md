@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\channels\overview\PRIVACY_POLICY.md"
+  file_path_from_root: "lupo-docs/channels/overview/PRIVACY_POLICY.md"
   file_hash: "1044e55e8dffbcd5d726d6c12e9ce192c5a90ffad0b6d9dc39ed8cd50a0fb6a5"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

@@ -6,7 +6,7 @@ Implementation of the collections/tabs/navigation expansion recommended by Antig
 
 ## 1. Files reviewed
 
-- **Source:** `lupo-docs/status/ANTIGRAVITY_COLLECTIONS_TABS_NAVIGATION_REVIEW_4.0.69.md`, `lupo-channels/42/broadcasts/20260312000000_antigravity_wolfie_collections_tabs_navigation_research.md`
+- **Source:** `lupo-docs/status/ANTIGRAVITY_COLLECTIONS_TABS_NAVIGATION_REVIEW_4.0.69.md`, `lupo-channels/42/broadcasts/20260312_000000_antigravity_wolfie_collections_tabs_navigation_research.md`
 - **Schema:** `lupo-database/lupopedia/mysql/install/install_new_lupopedia.sql` (lupo_collections, lupo_collection_tabs, lupo_collection_tab_map, lupo_collection_tab_paths)
 - **TOONs:** lupo_collections.toon, lupo_collection_tabs.toon, lupo_collection_tab_map.toon, lupo_collection_tab_paths.toon
 - **PHP:** `lupo-database/lupopedia/content/lupo-app/Services/CollectionTabsService.php`, CollectionZeroService.php, SavedCollectionsService.php, `lupo-includes/functions/collection-tabs-loader.php`

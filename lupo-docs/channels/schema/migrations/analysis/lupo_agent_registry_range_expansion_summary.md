@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\channels\schema\migrations\analysis\lupo_agent_registry_range_expansion_summary.md"
+  file_path_from_root: "lupo-docs/channels/schema/migrations/analysis/lupo_agent_registry_range_expansion_summary.md"
   file_hash: "85f08cb99e805bf5d9ca183ddee66d2ee83029bbcd29873b8450192c0d16c958"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

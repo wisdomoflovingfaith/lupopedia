@@ -27,7 +27,7 @@ lupopedia.headers:
 
 ## 4.0.80 status summary
 
-Channel **42** threads **1001** and **1002** hold **26+** coordination artifacts; routing API, validators, `prompts/` layer, ATER001, TODO two-tier (TSK001), and CHANGELOG link style are **shipped**. **However:** root **TODO.md** still lists **12+ pending HERMES prompts**, LILITH **[001200_remaining-work](20260318_001200_lilith_remaining-work-4.0.80.md)** records **no** on immediate release, table-doc TOON repair is **open**, and Phase **2/3** checkboxes in **plan.md** are **not** all closed. **Confidence to tag a dated 4.0.80 release: medium-low** — acceptable only if orchestrator explicitly **defers** prompt queue + LILITH P0 to **4.0.81** in CHANGELOG; otherwise **hold** until P0 scope is narrowed or executed.
+Channel **42** threads **1001** and **1002** hold **26+** coordination artifacts; routing API, validators, `prompts/` layer, ATER001, TODO two-tier (TSK001), and CHANGELOG link style are **shipped**. **However:** root **TODO.md** still lists **12+ pending HERMES prompts**, LILITH **[001200_remaining-work](../../../51/threads/1001/20260318_001200_lilith_remaining-work-4.0.80.md)** records **no** on immediate release, table-doc TOON repair is **open**, and Phase **2/3** checkboxes in **plan.md** are **not** all closed. **Confidence to tag a dated 4.0.80 release: medium-low** — acceptable only if orchestrator explicitly **defers** prompt queue + LILITH P0 to **4.0.81** in CHANGELOG; otherwise **hold** until P0 scope is narrowed or executed.
 
 ---
 
@@ -42,7 +42,7 @@ Channel **42** threads **1001** and **1002** hold **26+** coordination artifacts
 | Root TODO blessed (TSK001) | [050000](20260318_050000_wolfie_todo-authority-alignment.md), MULTI_AGENT §9 | y (partially) |
 | TODO authority prompt closed | 004501 → 050000 | y |
 | Prompt coverage index | [043000](../1002/20260318_043000_hermes_actionable-prompts-coverage-1001-1002.md) | y |
-| LILITH remaining-work extract | [001200](20260318_001200_lilith_remaining-work-4.0.80.md) | y |
+| LILITH remaining-work extract | [001200](../../../51/threads/1001/20260318_001200_lilith_remaining-work-4.0.80.md) | y |
 | MVP stabilization + 231700 response | [012000](20260318_012000_wolfie_channel-hermes-mvp-stabilization.md) | y |
 | Thread 1001 artifacts 000500, 001200, 050000, 051500 (this) | this thread | 051500 = add on merge |
 
@@ -56,7 +56,7 @@ Channel **42** threads **1001** and **1002** hold **26+** coordination artifacts
 
 | Item | Owner | Evidence |
 |------|-------|----------|
-| Close or defer LILITH P0 blockers (ingest gate, full body enforcement per 001200) | HEPHAESTUS / HERMES / WOLFIE | [001200](20260318_001200_lilith_remaining-work-4.0.80.md) |
+| Close or defer LILITH P0 blockers (ingest gate, full body enforcement per 001200) | HEPHAESTUS / HERMES / WOLFIE | [001200](../../../51/threads/1001/20260318_001200_lilith_remaining-work-4.0.80.md) |
 | Table-doc ground truth vs TOON | WOLFIE + LILITH | [184500](20260317_184500_wolfie_table-doc-ground-truth-repair.md), thread 1004 |
 | Authorship on 184500 if still ambiguous | WOLFIE | prompt **041000** |
 | Release narrative: either execute critical prompts or state deferral | WOLFIE | this report |
@@ -97,7 +97,7 @@ Channel **42** threads **1001** and **1002** hold **26+** coordination artifacts
 
 Paste under **[4.0.80] — Active Development** when cutting release (or when freezing scope):
 
-- **Release readiness report:** [wolfie_4.0.80_release-readiness](lupo-channels/42/threads/1001/20260318_051500_wolfie_4.0.80_release-readiness.md) — WOLFIE (actor **1**); **confidence medium-low** unless P0 items below deferred by name.
+- **Release readiness report:** [wolfie_4.0.80_release-readiness](../../../51/threads/1001/20260318_051500_wolfie_4.0.80_release-readiness.md) — WOLFIE (actor **1**); **confidence medium-low** unless P0 items below deferred by name.
 - **Deferred to 4.0.81 (if shipping 4.0.80 now):** HERMES prompt-queue execution (see root **TODO.md** table), LILITH **001200** P0 implementation, Top 50 A11/A12, optional `Lupo_Hermes_Ingest`, external read API.
 - **If not shipping:** set **Release Date:** TBD; add bullet “Blocked per 051500 until …” (orchestrator fills).
 

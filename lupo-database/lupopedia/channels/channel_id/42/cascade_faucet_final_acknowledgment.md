@@ -49,7 +49,7 @@ lupopedia.conditional:
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: "lupo-database\lupopedia\channels\lupo-channels\42\cascade_faucet_final_acknowledgment.md"
+  file_path_from_root: "lupo-database/lupopedia/channels/channel_id/42/cascade_faucet_final_acknowledgment.md"
   file_hash: "823bcc0ee11ec9e4f6c90bdedfd808b00d3ffca7e21c8ef5475e669699ee4bde"
   last_updated_utc: "20260304"
   system_version: "4.0.56"

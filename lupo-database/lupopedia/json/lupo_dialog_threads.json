@@ -16,16 +16,30 @@
     "`status` varchar(64) NOT NULL DEFAULT 'Open'",
     "`artifacts` json",
     "`metadata_json` json",
+    "`thread_lineage` text",
     "`created_ymdhis` bigint NOT NULL DEFAULT 0",
     "`updated_ymdhis` bigint NOT NULL",
     "`is_deleted` tinyint NOT NULL DEFAULT 0",
     "`deleted_ymdhis` bigint",
     "`escalated_to_operator_id` bigint",
     "`escalation_reason` varchar(255)",
-    "`escalation_timestamp` bigint"
+    "`escalation_timestamp` bigint",
+    "`visibility_status` varchar(32) NOT NULL DEFAULT 'active'",
+    "`owner_actor_id` bigint NOT NULL",
+    "`assigned_actor_id` bigint",
+    "`thread_type` varchar(32) NOT NULL DEFAULT 'discussion'",
+    "`thread_priority` varchar(32) NOT NULL DEFAULT 'normal'"
   ],
   "data": [],
   "indexes": [
+    {
+      "index_name": "lupo_dialog_threads_idx_assigned_actor_id",
+      "columns": [
+        "assigned_actor_id"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
     {
       "index_name": "lupo_dialog_threads_idx_channel",
       "columns": [
@@ -75,6 +89,14 @@
       "index_type": "BTREE"
     },
     {
+      "index_name": "lupo_dialog_threads_idx_owner_actor_id",
+      "columns": [
+        "owner_actor_id"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
       "index_name": "lupo_dialog_threads_idx_project",
       "columns": [
         "project_slug"
@@ -99,9 +121,33 @@
       "index_type": "BTREE"
     },
     {
+      "index_name": "lupo_dialog_threads_idx_thread_priority",
+      "columns": [
+        "thread_priority"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_dialog_threads_idx_thread_type",
+      "columns": [
+        "thread_type"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
       "index_name": "lupo_dialog_threads_idx_updated",
       "columns": [
         "updated_ymdhis"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_dialog_threads_idx_visibility_status",
+      "columns": [
+        "visibility_status"
       ],
       "is_unique": false,
       "index_type": "BTREE"

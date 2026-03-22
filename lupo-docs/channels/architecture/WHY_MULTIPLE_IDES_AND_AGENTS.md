@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\channels\architecture\WHY_MULTIPLE_IDES_AND_AGENTS.md"
+  file_path_from_root: "lupo-docs/channels/architecture/WHY_MULTIPLE_IDES_AND_AGENTS.md"
   file_hash: "95e0db60d0fb41136fe48b808e624eb73135a9462d99727a209196e1a178047e"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

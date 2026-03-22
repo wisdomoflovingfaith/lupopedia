@@ -259,15 +259,18 @@ Version lives in `config/global_atoms.yaml` as `GLOBAL_CURRENT_LUPOPEDIA_VERSION
 ### Timestamp Rules
 - All timestamps are `BIGINT` in `YYYYMMDDHHIISS` UTC format (e.g., `20260214153045`).
 - Set with `gmdate('YmdHis')` in PHP — never database-generated.
+- Timestamped artifact filenames must use real UTC in `YYYYMMDD_HHIISS` format.
+- Valid filename hours are `00` through `23` only; validators must reject `HH > 23`.
+- No local timezone math, no offset arithmetic, and no guessed timestamps in filename generation.
 - **Never** add seconds directly to the integer (`$t + 86400` produces invalid values). Use `timestamp_ymdhis::addSeconds()`.
 - Forbidden: `DATETIME`, `TIMESTAMP`, epoch seconds, ISO8601, `time()`.
 
 ### Actor Model
 - **Actors orchestrate; faucets execute.** `actor_id` is the universal identity key. There is no `user_id` in relationships.
 - Actor IDs 0–999 are reserved for non-human (orchestration) actors; human actors start at 1000. IDE surfaces (Cursor, Windsurf, Warp, etc.) are **faucets** — human interfaces with registry `actor_id` for identity; they are **not** among the eleven Primary Coordination Personas.
-- **Actor and agent IDs are defined in the project’s actor registry** (e.g. `lupo-database/lupopedia/actors/` or `lupo-database/lupopedia/actors/actor_id/registry.json`). Tooling and docs must resolve IDs from the registry; do not maintain inline ID lists as canonical. LUPOPEDIA HEADERS may include optional **agent_name_identity** (e.g. “Cursor IDE Agent”) for human-readable identification—see [LUPOPEDIA HEADERS doctrine](lupo-docs/doctrine/LUPOPEDIA_HEADERS/README.md) and [AGENT_IDENTITY_REGISTRY](lupo-docs/status/AGENT_IDENTITY_REGISTRY_4.0.57.md).
+- **Actor and agent IDs are defined in the project’s actor registry** (e.g. `lupo-database/lupopedia/actors/` or `lupo-database/lupopedia/actors/actor_id/registry.json`). Tooling and docs must resolve IDs from the registry; do not maintain inline ID lists as canonical. LUPOPEDIA HEADERS may include optional **agent_name_identity** (e.g. “Cursor IDE Agent”) for human-readable identification—see [LUPOPEDIA HEADERS doctrine](lupo-docs/doctrine/LUPOPEDIA_HEADERS/README.md) and AGENT_IDENTITY_REGISTRY.
 - Tables: `lupo_actors` (unified), `lupo_auth_users` (human login metadata), `lupo_agents` (AI agent metadata).
-- Lilith (actor 2) has a **flame header expert** faucet (slug `lilith-flame`) in `lupo_agent_faucets` for channel 42; see [LUPOPEDIA HEADERS doctrine](lupo-docs/doctrine/LUPOPEDIA_HEADERS/README.md) and [LILITH_FLAME_FAUCET_REPORT](lupo-docs/status/LILITH_FLAME_FAUCET_REPORT.md).
+- Lilith (actor 2) has a **flame header expert** faucet (slug `lilith-flame`) in `lupo_agent_faucets` for channel 42; see [LUPOPEDIA HEADERS doctrine](lupo-docs/doctrine/LUPOPEDIA_HEADERS/README.md) and LILITH_FLAME_FAUCET_REPORT.
 
 ### Channel security (4.0.79+)
 
@@ -293,7 +296,7 @@ lupopedia.headers:
   agent_name_identity: "Cursor IDE Agent"
 ```
 
-See [LUPOPEDIA HEADERS doctrine](lupo-docs/doctrine/LUPOPEDIA_HEADERS/README.md) and [AGENT_IDENTITY_REGISTRY](lupo-docs/status/AGENT_IDENTITY_REGISTRY_4.0.57.md) for complete documentation. Headers are stored in `lupo_metadata` and can also be written to the file as YAML.
+See [LUPOPEDIA HEADERS doctrine](lupo-docs/doctrine/LUPOPEDIA_HEADERS/README.md) and AGENT_IDENTITY_REGISTRY for complete documentation. Headers are stored in `lupo_metadata` and can also be written to the file as YAML.
 
 ### Path Handling
 - Lupopedia is always in a subdirectory. All URLs must use `LUPOPEDIA_PUBLIC_PATH` (e.g., `LUPOPEDIA_PUBLIC_PATH . '/login'`). Hardcoded root paths like `/login` are forbidden.

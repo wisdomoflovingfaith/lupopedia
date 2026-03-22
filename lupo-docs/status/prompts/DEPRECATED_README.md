@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\prompts\DEPRECATED_README.md"
+  file_path_from_root: "lupo-docs/status/prompts/DEPRECATED_README.md"
   file_hash: "97b1166638352990459c6f6dac734b49f2a9edd8310d75003fb388c086a85a62"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

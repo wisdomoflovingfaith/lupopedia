@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\directives\channel_42_antigravity_vsx_extension_md_fallback.md"
+  file_path_from_root: "lupo-docs/directives/channel_42_antigravity_vsx_extension_md_fallback.md"
   file_hash: "5f4628aa99656e823dc87597b95f53d61578678f3d194a37326aabf6ec30b0f3"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\channels\doctrine\DOCTRINAL_COMPLEMENTARITY_SYSTEM.md"
+  file_path_from_root: "lupo-docs/channels/doctrine/DOCTRINAL_COMPLEMENTARITY_SYSTEM.md"
   file_hash: "9b4b851784f5386ac5d3b57abc90ab94115b4ae7d58f4125ef0875c6627ac0e5"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"
@@ -642,7 +642,7 @@ The **Doctrinal Complementarity System** replaces hierarchical doctrine with com
 - **[Pack Behavior Doctrine](PACK_BEHAVIOR_DOCTRINE.md)** - Behavioral patterns from doctrine pairs
 - **[Pack Memory Doctrine](PACK_MEMORY_DOCTRINE.md)** - Memory with doctrinal context
 - **[Pack Sync Doctrine](PACK_SYNC_DOCTRINE.md)** - Sync operations with doctrinal influence
-- **[LIMITS.md](../LIMITS.md)** - LIMITS governance interacting with complementarity
+- **[LIMITS.md](LIMITS.md)** - LIMITS governance interacting with complementarity
 
 ---
 

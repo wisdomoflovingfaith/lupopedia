@@ -27,7 +27,7 @@ lupopedia.footer:
 
 # Lupopedia 4.0.77
 
-Active development version (post–4.0.76 release). See [PLAN.md](PLAN.md) and [TODO.md](TODO.md) for remaining work.
+Active development version (post–4.0.76 release). See [PLAN.md](../../../PLAN.md) and [TODO.md](../../../TODO.md) for remaining work.
 
 ---
 

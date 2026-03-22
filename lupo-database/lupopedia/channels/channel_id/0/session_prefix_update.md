@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "instruction"
-  file_path_from_root: "lupo-channels/0/session_prefix_update.md"
+  file_path_from_root: "lupo-database/lupopedia/channels/channel_id/0/session_prefix_update.md"
   system_version: "4.0.52"
   last_modified_utc: "20260301152952"
   channel_id: 0

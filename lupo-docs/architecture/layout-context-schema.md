@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\architecture\layout-context-schema.md"
+  file_path_from_root: "lupo-docs/architecture/layout-context-schema.md"
   file_hash: "935ace4babc619e7fcc465a9b892f381ed2c435248732cbfb0cdfdc1dd0c97db"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

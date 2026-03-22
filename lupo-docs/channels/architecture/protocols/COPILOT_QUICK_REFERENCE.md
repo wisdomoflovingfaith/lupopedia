@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\channels\architecture\protocols\COPILOT_QUICK_REFERENCE.md"
+  file_path_from_root: "lupo-docs/channels/architecture/protocols/COPILOT_QUICK_REFERENCE.md"
   file_hash: "03c906060e626e82b148f27d9d4133d2f1fa7f5a048027ff6715692fd4e878e2"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

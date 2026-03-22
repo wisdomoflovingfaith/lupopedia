@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\scripts\README_PYTHON.md"
+  file_path_from_root: "lupo-scripts/README_PYTHON.md"
   file_hash: "701f90cad4bdea3213d5a0bed8670114cb0328f2fe26b70718e69da717bc13fe"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

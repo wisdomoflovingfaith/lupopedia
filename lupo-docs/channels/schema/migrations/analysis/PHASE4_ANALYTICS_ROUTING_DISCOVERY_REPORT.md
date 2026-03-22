@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\channels\schema\migrations\analysis\PHASE4_ANALYTICS_ROUTING_DISCOVERY_REPORT.md"
+  file_path_from_root: "lupo-docs/channels/schema/migrations/analysis/PHASE4_ANALYTICS_ROUTING_DISCOVERY_REPORT.md"
   file_hash: "2ef8731d9e90a28652e40a88c58f4f40c5448f0b3ff9dd99a242a2402d5c2ef3"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

@@ -42,5 +42,5 @@ whoami, context, help, docs, version, doctor, auth, who, actor-context (session.
 
 ## Reference
 
-- [lupo-docs/CLI.md](../../../../../../../docs/CLI.md) — Full CLI reference
-- [lupo-docs/HELP.md](../../../../../../../docs/HELP.md) — Help hub
+- [lupo-docs/CLI.md](../../../../../../../lupo-docs/CLI.md) — Full CLI reference
+- lupo-docs/HELP.md — Help hub

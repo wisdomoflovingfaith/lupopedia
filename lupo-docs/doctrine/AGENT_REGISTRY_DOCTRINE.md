@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\doctrine\AGENT_REGISTRY_DOCTRINE.md"
+  file_path_from_root: "lupo-docs/doctrine/AGENT_REGISTRY_DOCTRINE.md"
   file_hash: "b20a0217dcaf278f543dd3b9f460db52745627adfe541349f15bf0b633867190"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

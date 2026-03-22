@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\channels\developer\README_IMPROVEMENT_RECOMMENDATIONS.md"
+  file_path_from_root: "lupo-docs/channels/developer/README_IMPROVEMENT_RECOMMENDATIONS.md"
   file_hash: "24a9513310dc6d05e850db5feebc260187a3801d1e405514c6a2654f04600ea8"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"
@@ -110,34 +110,34 @@ Lupopedia is built on five non-negotiable principles that make it fundamentally 
 - No dependency rot, no framework deprecation
 - Designed to last decades, not years
 - **Why:** Frameworks optimize for convenience. Lupopedia optimizes for longevity.
-- **See:** [Why No Frameworks](lupo-docs/core/WHY_NO_FRAMEWORKS.md)
+- **See:** [Why No Frameworks](../doctrine/WHY_NO_FRAMEWORKS.md)
 
 ### 2. No Foreign Keys
 - All relationships managed in application code
 - Database stores facts, agents enforce correctness
 - anubis handles orphan resolution and data repair
 - **Why:** Enables data merging, federation, and self-healing
-- **See:** [No Foreign Keys Doctrine](lupo-docs/doctrine/NO_FOREIGN_KEYS_DOCTRINE.md)
+- **See:** [No Foreign Keys Doctrine](../doctrine/NO_FOREIGN_KEYS_DOCTRINE.md)
 
 ### 3. No Triggers (MANDATORY)
 - All timestamps set explicitly in INSERT/UPDATE statements
 - No database-side automation
 - **Format:** BIGINT(14) YYYYMMDDHHIISS UTC
 - **Why:** Preserves historical accuracy for merging and federation
-- **See:** [No Triggers Doctrine](lupo-docs/doctrine/NO_TRIGGERS_DOCTRINE.md)
+- **See:** [No Triggers Doctrine](../doctrine/NO_TRIGGERS_DOCTRINE.md)
 
 ### 4. No Stored Procedures (MANDATORY)
 - Database is for storage, not computation
 - All logic lives in application layer (PHP)
 - **Why:** Portability across MySQL/PostgreSQL/SQLite, version control, debugging
-- **See:** [No Stored Procedures Doctrine](lupo-docs/doctrine/NO_STORED_PROCEDURES_DOCTRINE.md)
+- **See:** [No Stored Procedures Doctrine](../doctrine/NO_STORED_PROCEDURES_DOCTRINE.md)
 
 ### 5. Explicit Timestamp Handling
 - **Format:** BIGINT(14) YYYYMMDDHHIISS UTC
 - **Never:** DATETIME, TIMESTAMP, epoch seconds, ISO8601 strings
 - **Always:** Use `timestamp_ymdhis` class for arithmetic
 - **Critical:** Never add seconds directly to YYYYMMDDHHIISS (produces invalid timestamps)
-- **See:** [Timestamp Doctrine](lupo-docs/doctrine/TIMESTAMP_DOCTRINE.md)
+- **See:** [Timestamp Doctrine](../../doctrine/TIMESTAMP_DOCTRINE.md)
 
 > **⚠️ These principles are absolute and binding for all AI agents, IDEs, and developers.**
 ```
@@ -155,7 +155,7 @@ Lupopedia is built on five non-negotiable principles that make it fundamentally 
 **Recommendation:** Keep the detailed sections but add a **visual callout box** at the very top of README (right after the version line):
 
 ```markdown
-**Version:** GLOBAL_CURRENT_LUPOPEDIA_VERSION | [Documentation](lupo-docs/) | [History](HISTORY.md) | [Changelog](CHANGELOG.md)
+**Version:** GLOBAL_CURRENT_LUPOPEDIA_VERSION | [Documentation](../../../../../../..) | History | [Changelog](../../../CHANGELOG.md)
 
 > **🚨 CRITICAL FOR ALL DEVELOPERS & AI AGENTS:**  
 > Lupopedia uses **NO frameworks**, **NO foreign keys**, **NO triggers**, **NO stored procedures**.  
@@ -203,8 +203,8 @@ Lupopedia is built on five non-negotiable principles that make it fundamentally 
 
 4. **Before You Code**
    - Read [Core Principles](#core-architectural-principles)
-   - Review [No Frameworks](lupo-docs/core/WHY_NO_FRAMEWORKS.md)
-   - Understand [Timestamp Doctrine](lupo-docs/doctrine/TIMESTAMP_DOCTRINE.md)
+   - Review [No Frameworks](../doctrine/WHY_NO_FRAMEWORKS.md)
+   - Understand [Timestamp Doctrine](../../doctrine/TIMESTAMP_DOCTRINE.md)
 ```
 
 ---
@@ -224,13 +224,13 @@ Lupopedia is built on five non-negotiable principles that make it fundamentally 
 > 
 > **If you add any of these, you will make Captain cry.**
 > 
-> The database stores raw facts. The agents enforce correctness. [anubis](lupo-docs/doctrine/anubis_DOCTRINE.md) heals and maintains lineage.
+> The database stores raw facts. The agents enforce correctness. anubis heals and maintains lineage.
 > 
 > **⚠️ TRIGGERS ARE FORBIDDEN (MANDATORY):** Triggers must never be created, suggested, or added. All timestamps must be set explicitly in INSERT/UPDATE statements in YMDHIS UTC format. Triggers interfere with data merging, historical accuracy, anubis repair operations, and federation sync.
 > 
 > **⚠️ STORED PROCEDURES/FUNCTIONS ARE FORBIDDEN (MANDATORY):** Stored procedures and functions must never be created, suggested, or added. The database is for storage, not computation. All logic must be in application code. Stored procedures/functions interfere with data merging, federation across different database engines, anubis repair operations, and version control.
 > 
-> **See [NO FOREIGN KEYS DOCTRINE](lupo-docs/doctrine/NO_FOREIGN_KEYS_DOCTRINE.md), [NO TRIGGERS DOCTRINE](lupo-docs/doctrine/NO_TRIGGERS_DOCTRINE.md), [NO STORED PROCEDURES DOCTRINE](lupo-docs/doctrine/NO_STORED_PROCEDURES_DOCTRINE.md), and [anubis DOCTRINE](lupo-docs/doctrine/anubis_DOCTRINE.md) for complete details.**
+> **See [NO FOREIGN KEYS DOCTRINE](../doctrine/NO_FOREIGN_KEYS_DOCTRINE.md), [NO TRIGGERS DOCTRINE](../doctrine/NO_TRIGGERS_DOCTRINE.md), [NO STORED PROCEDURES DOCTRINE](../doctrine/NO_STORED_PROCEDURES_DOCTRINE.md), and anubis DOCTRINE for complete details.**
 > 
 > This is **non-negotiable core doctrine**. All AI tools (Cursor, Copilot, DeepSeek, Claude, Gemini, Grok, Windsurf) must follow this rule.
 
@@ -250,7 +250,7 @@ Lupopedia is built on five non-negotiable principles that make it fundamentally 
 ```markdown
 # 🚀 **What Makes Lupopedia Different**
 
-> 📖 **For a comprehensive explanation of why Lupopedia is fundamentally different from any existing knowledge system, see [Why Lupopedia Is Different](lupo-docs/WHY_LUPOPEDIA_IS_DIFFERENT.md).**
+> 📖 **For a comprehensive explanation of why Lupopedia is fundamentally different from any existing knowledge system, see [Why Lupopedia Is Different](../overview/WHY_LUPOPEDIA_IS_DIFFERENT.md).**
 
 ### **🏗️ Architectural Philosophy (What Makes This Possible)**
 
@@ -269,7 +269,7 @@ These aren't limitations — they're **advantages** that enable:
 - Portability across hosting environments
 - Longevity without framework deprecation
 
-**See:** [Why No Frameworks](lupo-docs/core/WHY_NO_FRAMEWORKS.md) for the complete philosophy.
+**See:** [Why No Frameworks](../doctrine/WHY_NO_FRAMEWORKS.md) for the complete philosophy.
 
 ### **🧠 Semantic Navigation (Core Innovation)**
 [... existing content ...]
@@ -289,11 +289,11 @@ These aren't limitations — they're **advantages** that enable:
 Before contributing or extending Lupopedia, review these mandatory doctrines:
 
 ### Must Read (Non-Negotiable)
-1. **[No Foreign Keys Doctrine](lupo-docs/doctrine/NO_FOREIGN_KEYS_DOCTRINE.md)** — Why FK constraints are forbidden
-2. **[No Triggers Doctrine](lupo-docs/doctrine/NO_TRIGGERS_DOCTRINE.md)** — Why triggers are forbidden (MANDATORY)
-3. **[No Stored Procedures Doctrine](lupo-docs/doctrine/NO_STORED_PROCEDURES_DOCTRINE.md)** — Why stored procedures are forbidden (MANDATORY)
-4. **[Timestamp Doctrine](lupo-docs/doctrine/TIMESTAMP_DOCTRINE.md)** — BIGINT(14) YYYYMMDDHHIISS UTC format (MANDATORY)
-5. **[Why No Frameworks](lupo-docs/core/WHY_NO_FRAMEWORKS.md)** — Philosophy behind framework-free architecture
+1. **[No Foreign Keys Doctrine](../doctrine/NO_FOREIGN_KEYS_DOCTRINE.md)** — Why FK constraints are forbidden
+2. **[No Triggers Doctrine](../doctrine/NO_TRIGGERS_DOCTRINE.md)** — Why triggers are forbidden (MANDATORY)
+3. **[No Stored Procedures Doctrine](../doctrine/NO_STORED_PROCEDURES_DOCTRINE.md)** — Why stored procedures are forbidden (MANDATORY)
+4. **[Timestamp Doctrine](../../doctrine/TIMESTAMP_DOCTRINE.md)** — BIGINT(14) YYYYMMDDHHIISS UTC format (MANDATORY)
+5. **[Why No Frameworks](../doctrine/WHY_NO_FRAMEWORKS.md)** — Philosophy behind framework-free architecture
 
 ### Code Standards
 - **Timestamps:** Always `BIGINT(14)` with `YYYYMMDDHHIISS` UTC format

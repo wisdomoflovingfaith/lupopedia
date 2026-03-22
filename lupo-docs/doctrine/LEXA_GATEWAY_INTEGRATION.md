@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\doctrine\LEXA_GATEWAY_INTEGRATION.md"
+  file_path_from_root: "lupo-docs/doctrine/LEXA_GATEWAY_INTEGRATION.md"
   file_hash: "abe282d78605c5cf39516f14e184121ce49d5272cf85b68e0014e1a586a54dfd"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

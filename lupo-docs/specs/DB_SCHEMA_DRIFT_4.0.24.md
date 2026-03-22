@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\specs\DB_SCHEMA_DRIFT_4.0.24.md"
+  file_path_from_root: "lupo-docs/specs/DB_SCHEMA_DRIFT_4.0.24.md"
   file_hash: "9a84fa7e62003ed044649db38a39a429496ec46b4d4e993acf907fe65d299a21"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

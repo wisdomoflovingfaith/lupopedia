@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\channels\developer\dev\AUTH_SQL_VERIFICATION_3.0.8.md"
+  file_path_from_root: "lupo-docs/channels/developer/dev/AUTH_SQL_VERIFICATION_3.0.8.md"
   file_hash: "5606f2bebff222fe2962d39d3d5c51d7f5d86e0ac4b263fc54fac5d3c7b24d9e"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\database\lupopedia\tables\lupo_gov_valuations.md"
+  file_path_from_root: "lupo-docs/database/lupopedia/tables/active/lupo_gov_valuations.md"
   file_hash: "f21ad175ba5e9a947a3d7c527118ee6a2bfd1a4150fc7f06328821a0e905c4a0"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

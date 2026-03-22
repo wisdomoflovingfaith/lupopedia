@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\tools\vsx-extension\LUPOPEDIA HEADER_INTEGRATION_README.md"
+  file_path_from_root: "lupo-tools/vsx-extension/LUPOPEDIA_HEADERS_INTEGRATION_README.md"
   file_hash: "01c30d1bbbc1a7c1560208594414d23ef6d131086465d705b0835dde2cf661e1"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

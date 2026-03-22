@@ -451,4 +451,4 @@ Artifacts (status reports, task plans, doctrine) should trace channel and thread
 | `system_version` | Lupopedia version (e.g. 4.0.79). |
 | `file_path_from_root` | Repository path for the artifact. |
 
-These are **recommended conventions** for status and planning artifacts so that channel/thread/task context is explicit. Stored in `lupo_metadata` when exported; optional in file YAML. See [LUPOPEDIA HEADERS](lupo-docs/doctrine/LUPOPEDIA_HEADERS/README.md) and the task plan artifact [CURSOR_LILITH_CHANNEL_42_LUPOPEDIA_4_0_79_TASKS.md](lupo-docs/status/CURSOR_LILITH_CHANNEL_42_LUPOPEDIA_4_0_79_TASKS.md) for examples.
+These are **recommended conventions** for status and planning artifacts so that channel/thread/task context is explicit. Stored in `lupo_metadata` when exported; optional in file YAML. See [LUPOPEDIA HEADERS](../doctrine/LUPOPEDIA_HEADERS/README.md) and the task plan artifact [CURSOR_LILITH_CHANNEL_42_LUPOPEDIA_4_0_79_TASKS.md](../status/CURSOR_LILITH_CHANNEL_42_LUPOPEDIA_4_0_79_TASKS.md) for examples.

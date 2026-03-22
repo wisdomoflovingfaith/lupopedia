@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\channels\doctrine\doctrines\THREAD_AGGREGATION_PROTOCOL.md"
+  file_path_from_root: "lupo-docs/channels/doctrine/doctrines/THREAD_AGGREGATION_PROTOCOL.md"
   file_hash: "14e697724e3b59d5bc660ce06e8b27fa7783837e0986a8a5b7bfad80809350ac"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

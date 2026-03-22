@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\tests\output\log_writer\empty_arrays.md"
+  file_path_from_root: "lupo-tests/output/log_writer/empty_arrays.md"
   file_hash: "86b3eb9eb5a7a5a0368527c27cc133b927f343595750da09b5d8879177c9be90"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

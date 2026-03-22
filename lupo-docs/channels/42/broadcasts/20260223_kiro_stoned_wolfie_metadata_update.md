@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\channels\42\broadcasts\20260223_kiro_stoned_wolfie_metadata_update.md"
+  file_path_from_root: "lupo-docs/channels/42/broadcasts/20260223_kiro_stoned_wolfie_metadata_update.md"
   file_hash: "d3fda769b2d2d0af423e4a0b75452b6acc276c16f95195de3a2dbb82b17c2570"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

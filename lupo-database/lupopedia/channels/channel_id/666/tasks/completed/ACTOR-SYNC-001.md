@@ -49,7 +49,7 @@ lupopedia.conditional:
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "task"
-  file_path_from_root: "lupo-database/lupopedia/channels/lupo-channels/666/tasks/completed/ACTOR-SYNC-001.md"
+  file_path_from_root: "lupo-database/lupopedia/channels/channel_id/666/tasks/completed/ACTOR-SYNC-001.md"
   file_hash: "e3165deaf067d9bc0249fc46c6a98850b166dd89aecfb8472a2b4a54db0c7d09"
   last_updated_utc: "20260304"
   system_version: "4.0.56"

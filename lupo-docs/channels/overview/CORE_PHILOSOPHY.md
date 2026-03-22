@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\channels\overview\CORE_PHILOSOPHY.md"
+  file_path_from_root: "lupo-docs/channels/overview/CORE_PHILOSOPHY.md"
   file_hash: "6a67507ee3dc07df4c7e1abb7cde9f0ecd9ec69dae162f6848e1368f69ada203"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"
@@ -316,10 +316,10 @@ If you're contributing to Lupopedia:
 ## Related Documentation
 
 - **[FOUNDERS_NOTE.md](FOUNDERS_NOTE.md)** - Personal narrative and lore entries
-- **[VISION.md](../../VISION.md)** - Formal vision statement
+- **[VISION.md](VISION.md)** - Formal vision statement
 - **[WOLFIE_COGNITIVE_ARCHITECTURE.md](../architecture/WOLFIE_COGNITIVE_ARCHITECTURE.md)** - Cognitive architecture patterns
 - **[DATABASE_PHILOSOPHY.md](../architecture/DATABASE_PHILOSOPHY.md)** - Database design principles
-- **[PHILOSOPHY.md](../../PHILOSOPHY.md)** - The architect's lineage and background
+- **[PHILOSOPHY.md](PHILOSOPHY.md)** - The architect's lineage and background
 
 ---
 

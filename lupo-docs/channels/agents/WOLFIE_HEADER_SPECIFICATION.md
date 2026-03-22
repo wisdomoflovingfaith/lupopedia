@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\channels\agents\WOLFIE_HEADER_SPECIFICATION.md"
+  file_path_from_root: "lupo-docs/channels/agents/WOLFIE_HEADER_SPECIFICATION.md"
   file_hash: "62df74c322b2f9fc7062272c9e9d3f760b6581584c21b7a63834a62faa1c949a"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

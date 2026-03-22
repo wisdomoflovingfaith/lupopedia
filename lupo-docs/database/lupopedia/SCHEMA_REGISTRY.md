@@ -23,7 +23,7 @@ lupopedia.footer:
 
 # Schema Registry
 
-**Source and authority:** This registry is cross-checked against **install SQL** ([lupo-database/lupopedia/mysql/install/install_new_lupopedia.sql](lupo-database/lupopedia/mysql/install/install_new_lupopedia.sql)), **TOON artifacts** (e.g. in `lupo-docs/toons/`), and table docs under `lupo-docs/database/lupopedia/tables/` (flat, active/, deprecated/, migrations/). **Install SQL is authoritative** where disagreements exist. TOON files are derived representations. The repo supports more than one TOON-related path; `lupo-docs/toons/` is the current in-repo TOON set.
+**Source and authority:** This registry is cross-checked against **install SQL** ([lupo-database/lupopedia/mysql/install/install_new_lupopedia.sql](../../../lupo-database/lupopedia/mysql/install/install_new_lupopedia.sql)), **TOON artifacts** (e.g. in `lupo-docs/toons/`), and table docs under `lupo-docs/database/lupopedia/tables/` (flat, active/, deprecated/, migrations/). **Install SQL is authoritative** where disagreements exist. TOON files are derived representations. The repo supports more than one TOON-related path; `lupo-docs/toons/` is the current in-repo TOON set.
 
 **Agent assignment** (from MULTI_AGENT_DATABASE_DOCUMENTATION_PLAN.md; Cursor has taken over KIRO responsibilities):
 

@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\channels\schema\migrations\analysis\CROSS_FRAME_COMMUNICATION_PRESERVATION_ANALYSIS.md"
+  file_path_from_root: "lupo-docs/channels/schema/migrations/analysis/CROSS_FRAME_COMMUNICATION_PRESERVATION_ANALYSIS.md"
   file_hash: "84f78f161a82be485d5d3db2e1c1a8c51b09e32eedc5ebba88692842e3e55d8b"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

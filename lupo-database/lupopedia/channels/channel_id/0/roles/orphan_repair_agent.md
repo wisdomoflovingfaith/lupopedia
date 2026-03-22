@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\channels\0\roles\orphan_repair_agent.md"
+  file_path_from_root: "lupo-database/lupopedia/channels/channel_id/0/roles/orphan_repair_agent.md"
   file_hash: "4f92e779c962c53080568a57fc92f451cbaf49e600755ef45cdc1d29f4ca8929"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

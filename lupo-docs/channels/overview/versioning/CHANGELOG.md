@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\channels\overview\versioning\CHANGELOG.md"
+  file_path_from_root: "lupo-docs/channels/overview/versioning/CHANGELOG.md"
   file_hash: "6f3bb9fc7a7dc7d2bbd419e1c4af02f7fcd79bbc36f7b841e6d9add6a741718c"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"
@@ -2091,7 +2091,7 @@ system_context:
 - **A. The Bridging Rule:** Canonical Form (kernel operators = OS-level, authoritative; lens markers `~[ ]~`, `|{ }|`, `?{ }` = interpretive overlays only; must never replace, redefine, or modify kernel meaning). Lens-Layer Form: `|{Kernel grammar}|` ?{remains canonical} while `~[lens markers]~` operate as optional overlays. **Governance Summary:** Kernel first; Lens optional; No drift across layers; Lens may reinterpret but never redefine; Kernel meaning always recoverable and authoritative.
 
 **Updated (SYMBOL_OPERATOR_DOCTRINE �4):**
-- Bridging Rule (Kernel�Lens) cross-reference before Cursor Enforcement Rules: Kernel first, lens optional, no drift, lens may reinterpret never redefine, kernel recoverable; full formulation in [SEMANTIC_LENSES_DOCTRINE](lupo-docs/doctrine/SEMANTIC_LENSES_DOCTRINE.md) �2.1.
+- Bridging Rule (Kernel�Lens) cross-reference before Cursor Enforcement Rules: Kernel first, lens optional, no drift, lens may reinterpret never redefine, kernel recoverable; full formulation in [SEMANTIC_LENSES_DOCTRINE](../../doctrine/SEMANTIC_LENSES_DOCTRINE.md) �2.1.
 
 **Notes**
 - Documentation-only. No schema or code changes.
@@ -6704,7 +6704,7 @@ This project does **NOT** use Git or GitHub until Lupopedia reaches version 3.0.
 
 ## 📌 Unified Versioning Policy
 
-**Lupopedia** and **Crafty Syntax** are version-locked and always released together. Both systems share the same version number (stored in `GLOBAL_CURRENT_LUPOPEDIA_VERSION` atom) to reflect their unified architecture and coordinated development cycle. See [Ecosystem Versioning Doctrine](lupo-docs/doctrine/VERSION_DOCTRINE.md) for complete versioning rules.
+**Lupopedia** and **Crafty Syntax** are version-locked and always released together. Both systems share the same version number (stored in `GLOBAL_CURRENT_LUPOPEDIA_VERSION` atom) to reflect their unified architecture and coordinated development cycle. See [Ecosystem Versioning Doctrine](../../../doctrine/VERSION_DOCTRINE.md) for complete versioning rules.
 
 For module-specific changelogs, see:
 - **Crafty Syntax Module:** `modules/craftysyntax/CHANGELOG.md`  
@@ -8703,7 +8703,7 @@ This project does **NOT** use Git or GitHub until Lupopedia reaches version 3.0.
 
 ## 📌 Unified Versioning Policy
 
-**Lupopedia** and **Crafty Syntax** are version-locked and always released together. Both systems share the same version number (stored in `GLOBAL_CURRENT_LUPOPEDIA_VERSION` atom) to reflect their unified architecture and coordinated development cycle. See [Ecosystem Versioning Doctrine](lupo-docs/doctrine/VERSION_DOCTRINE.md) for complete versioning rules.
+**Lupopedia** and **Crafty Syntax** are version-locked and always released together. Both systems share the same version number (stored in `GLOBAL_CURRENT_LUPOPEDIA_VERSION` atom) to reflect their unified architecture and coordinated development cycle. See [Ecosystem Versioning Doctrine](../../../doctrine/VERSION_DOCTRINE.md) for complete versioning rules.
 
 For module-specific changelogs, see:
 - **Crafty Syntax Module:** `modules/craftysyntax/CHANGELOG.md`  
@@ -9530,7 +9530,7 @@ For module-specific changelogs, see:
   - `renderers/content-renderer.php` - master renderer that routes to format-specific renderers, includes `render_content_page()` and `render_main_layout()` functions
   - `renderers/render-html.php` - HTML renderer (returns HTML as-is with basic sanitization)
   - `renderers/render-markdown.php` - **Implemented** Markdown to HTML renderer with basic parser (no external dependencies)
-    - Supports: headers (h1-h6), bold (**text**), italic (*text*), links [text](url), images ![alt](url), code blocks (```code```), inline code (`code`), unordered lists (- or *), ordered lists (1. 2. 3.), horizontal rules (---), blockquotes (> text), paragraphs
+    - Supports: headers (h1-h6), bold (**text**), italic (*text*), links text, images !alt, code blocks (```code```), inline code (`code`), unordered lists (- or *), ordered lists (1. 2. 3.), horizontal rules (---), blockquotes (> text), paragraphs
     - Line-by-line processing with proper block handling (code blocks, lists, paragraphs)
   - `renderers/render-json.php` - **Implemented** JSON/JSONFeed renderer
     - Parses JSON and detects JSONFeed format automatically

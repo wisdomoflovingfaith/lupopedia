@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\channels\architecture\ARCHITECTURE.md"
+  file_path_from_root: "lupo-docs/channels/architecture/ARCHITECTURE.md"
   file_hash: "39778abcd473718130ea9c29f504224eb32f779d67a6be37e35d79e193d5847d"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

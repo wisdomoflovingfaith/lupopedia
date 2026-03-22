@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\channels\0\broadcasts\20260225120024_10000_1000_0_install_php_creates_all_tables.md"
+  file_path_from_root: "lupo-database/lupopedia/channels/channel_id/0/broadcasts/20260225120024_10000_1000_0_install_php_creates_all_tables.md"
   file_hash: "4630b57da80980cf27ac765a04ad4f3254aaa49848ead40cf38446bc9249f6db"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

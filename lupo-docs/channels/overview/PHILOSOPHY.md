@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\channels\overview\PHILOSOPHY.md"
+  file_path_from_root: "lupo-docs/channels/overview/PHILOSOPHY.md"
   file_hash: "533a7a724253a34f34c166a906722d47fbcb528fafbffc86ece644908130c821"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"
@@ -182,7 +182,7 @@ This document explains the reasoning behind our architectural choices and the ph
 
 **This dual lineage explains the doctrine.**
 
-> **Database Philosophy Note:** For detailed database design principles, especially regarding polymorphic relationships and application-managed integrity, see [DATABASE_PHILOSOPHY.md](lupo-docs/DATABASE_PHILOSOPHY.md).
+> **Database Philosophy Note:** For detailed database design principles, especially regarding polymorphic relationships and application-managed integrity, see [DATABASE_PHILOSOPHY.md](../architecture/DATABASE_PHILOSOPHY.md).
 
 ---
 
@@ -209,9 +209,9 @@ Because:
 
 > **If it isn't portable, visible, and explicit — it doesn't belong in the database.**
 
-> **⚠️ TRIGGERS ARE FORBIDDEN (MANDATORY):** Triggers must never be created, suggested, or added. All timestamps must be set explicitly in INSERT/UPDATE statements in YMDHIS UTC format. See [NO_TRIGGERS_DOCTRINE.md](lupo-docs/doctrine/NO_TRIGGERS_DOCTRINE.md) for complete requirements.
+> **⚠️ TRIGGERS ARE FORBIDDEN (MANDATORY):** Triggers must never be created, suggested, or added. All timestamps must be set explicitly in INSERT/UPDATE statements in YMDHIS UTC format. See [NO_TRIGGERS_DOCTRINE.md](../doctrine/NO_TRIGGERS_DOCTRINE.md) for complete requirements.
 
-> **⚠️ STORED PROCEDURES/FUNCTIONS ARE FORBIDDEN (MANDATORY):** Stored procedures and functions must never be created, suggested, or added. The database is for storage, not computation. All logic must be in application code. See [NO_STORED_PROCEDURES_DOCTRINE.md](lupo-docs/doctrine/NO_STORED_PROCEDURES_DOCTRINE.md) for complete requirements.
+> **⚠️ STORED PROCEDURES/FUNCTIONS ARE FORBIDDEN (MANDATORY):** Stored procedures and functions must never be created, suggested, or added. The database is for storage, not computation. All logic must be in application code. See [NO_STORED_PROCEDURES_DOCTRINE.md](../doctrine/NO_STORED_PROCEDURES_DOCTRINE.md) for complete requirements.
 
 ---
 
@@ -268,9 +268,9 @@ And most importantly:
 
 This ensures consistency across all engines and environments.
 
-> **⚠️ MANDATORY TIMESTAMP CONTROL:** All timestamps must be set explicitly in INSERT/UPDATE statements in YMDHIS UTC format. The database must NEVER mutate timestamps automatically (no triggers, no auto-update, no database-level timestamp automation). This is required for data merging, historical accuracy, anubis repair operations, and federation sync. See [NO_TRIGGERS_DOCTRINE.md](lupo-docs/doctrine/NO_TRIGGERS_DOCTRINE.md) for complete requirements.
+> **⚠️ MANDATORY TIMESTAMP CONTROL:** All timestamps must be set explicitly in INSERT/UPDATE statements in YMDHIS UTC format. The database must NEVER mutate timestamps automatically (no triggers, no auto-update, no database-level timestamp automation). This is required for data merging, historical accuracy, anubis repair operations, and federation sync. See [NO_TRIGGERS_DOCTRINE.md](../doctrine/NO_TRIGGERS_DOCTRINE.md) for complete requirements.
 
-> **📘 WOLFIE Timestamp Doctrine:** For complete requirements, code examples, and enforcement rules, see [WOLFIE_TIMESTAMP_DOCTRINE.md](lupo-docs/DEVELOPMENT/WOLFIE_TIMESTAMP_DOCTRINE.md). This doctrine is **non-negotiable** and applies to all code, migrations, and data models.
+> **📘 WOLFIE Timestamp Doctrine:** For complete requirements, code examples, and enforcement rules, see [WOLFIE_TIMESTAMP_DOCTRINE.md](../developer/dev/WOLFIE_TIMESTAMP_DOCTRINE.md). This doctrine is **non-negotiable** and applies to all code, migrations, and data models.
 
 ---
 

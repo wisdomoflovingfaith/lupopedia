@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\channels\doctrine\REVERSE_SHAKA_HANDSHAKE_PROTOCOL.md"
+  file_path_from_root: "lupo-docs/channels/doctrine/REVERSE_SHAKA_HANDSHAKE_PROTOCOL.md"
   file_hash: "deec9d5b995b58279250689eef5dfc880f7fcff29f7400e86a2f3153563add6b"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

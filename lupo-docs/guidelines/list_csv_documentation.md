@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\guidelines\list_csv_documentation.md"
+  file_path_from_root: "lupo-docs/guidelines/list_csv_documentation.md"
   file_hash: "449d12695d98d2585a405602de6641bd1fd7a77830eb99749ab04cd9b5e6e5ed"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

@@ -1,7 +1,7 @@
 ---
 # FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
 lupopedia.headers:
-  file_path_from_root: "README.md"
+  file_path_from_root: "README_OLD.md"
   version_when_written: "4.0.84"
   file_hash: "5c087380d7f0917a410b931c7b926204486b79cedf338c0a98c74b28b68425f3"
   channel_id: 1
@@ -729,7 +729,7 @@ Examples:
 ❌ `/login`  
 
 `LUPOPEDIA_PUBLIC_PATH` is automatically set to `'/' . basename(__DIR__)`, which evaluates to the folder name (e.g., `/lupopedia`). This ensures Lupopedia works in any subdirectory without code changes.  
-See [SUBDIRECTORY_INSTALLATION_DOCTRINE.md](lupo-docs/doctrine/SUBDIRECTORY_INSTALLATION_DOCTRINE.md) for complete details.
+See [SUBDIRECTORY_INSTALLATION_DOCTRINE.md](lupo-docs/channels/doctrine/SUBDIRECTORY_INSTALLATION_DOCTRINE.md) for complete details.
 
 ### 🔒 SECURITY DOCTRINE — MANDATORY FOR ALL CONTRIBUTORS
 #### 8.1 PHP Compatibility Security
@@ -802,7 +802,7 @@ Lupopedia does not participate in advertising, SEO manipulation, marketing optim
 - data distortion for visibility  
 
 Lupopedia recommendations are based solely on **DATA and SYSTEM LOGIC — never money.** This rule is absolute. No exceptions. No negotiations.  
-🚨 **Trauma Boundary:** This prohibition also protects the system architect from PTSD-like responses to advertising manipulation. See [PTSD & Emotional Harm From Advertising Manipulation](lupo-docs/doctrine/PTSD_ADVERTISING_DOCTRINE.md) for complete context.
+🚨 **Trauma Boundary:** This prohibition also protects the system architect from PTSD-like responses to advertising manipulation. See PTSD & Emotional Harm From Advertising Manipulation for complete context.
 
 ### What You Don't Build / What You Do Build
 **You don't build** every system, define tabs for users, or impose meaning.  
@@ -816,7 +816,7 @@ See `lupo-docs/channels/appendix/HISTORY.md` for the complete historical narrati
 When implementing or migrating features from Crafty Syntax, three areas are essential:  
 - **lupo-docs/doctrine/database/** — Per-table doctrine for Lupopedia tables that are migration targets or central to the upgrade path. Each file (e.g. `auth_users.md`, `actors.md`, `sessions.md`) describes the table’s purpose, how it is used, and how it was mapped from legacy Crafty tables. The [README in that folder](lupo-docs/doctrine/database/README.md) is the index and summarizes the 3-level permission model. Use these as the canonical guide for how Lupopedia tables work and how they map from Crafty.  
 - **lupo-legacy/craftysyntax/** — The original Crafty Syntax codebase, kept **read-only** and **reference-only**. It exists to show which features and behaviors must be reimplemented in Lupopedia. Do not modify files under `lupo-legacy/craftysyntax`; use them only to understand legacy behavior, then implement against Lupopedia tables and doctrine.  
-- **lupo-docs/doctrine/migrations/** — Legacy → Lupopedia mapping and migration notes. [MIGRATION_MAPPING_REFERENCE.md](lupo-docs/doctrine/migrations/MIGRATION_MAPPING_REFERENCE.md) is the concise index. Each migration file (e.g. `livehelp_users_migration.md`, `operator_to_roles_migration.md`) describes one or more legacy Crafty tables and their replacement in Lupopedia. Use these to know which old tables map to which new tables; do not infer from the live database.  
+- **lupo-docs/doctrine/migrations/** — Legacy → Lupopedia mapping and migration notes. [MIGRATION_MAPPING_REFERENCE.md](lupo-docs/database/lupopedia/tables/MIGRATION_MAPPING_REFERENCE.md) is the concise index. Each migration file (e.g. `livehelp_users_migration.md`, `operator_to_roles_migration.md`) describes one or more legacy Crafty tables and their replacement in Lupopedia. Use these to know which old tables map to which new tables; do not infer from the live database.  
 
 Schema source of truth for column names and types is **lupo-database/lupopedia/toon/*.toon.json** (TOON files). The lupo-database/doctrine and migrations docs describe purpose and mapping; TOONs define the schema.
 
@@ -979,7 +979,7 @@ The **Antigravity VSX Extension** (Actor 2035) serves as the primary FLIP engine
 - **Auto-Injection**: Validates and injects missing headers (Path and Actor) on every save.  
 - **Hierarchical Navigation**: Renders the `lupo-docs/` tree based on channel and actor groupings.  
 - **Inference UI**: Displays tooltips with Survivor Protocol status and Actor Trinity verification.  
-- **Doc Link**: See [FLIP_INTEGRATION_README.md](lupo-tools/vsx-extension/FLIP_INTEGRATION_README.md).  
+- **Doc Link**: See FLIP_INTEGRATION_README.md.  
 
 #### Best Practices for Agents
 - **Don't Guess**: If a header is missing, do not assume values from folder names. Inject the missing header or report a doctrine violation.  

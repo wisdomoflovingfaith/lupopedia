@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\channels\schema\DATABASE_SCHEMA.md"
+  file_path_from_root: "lupo-docs/channels/schema/DATABASE_SCHEMA.md"
   file_hash: "e33309faf763107078d6a2c3b74950e777c83477aaf35a60c1b6a9483b72ed94"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"
@@ -227,7 +227,7 @@ Cursor must follow these rules:
 - **Soft Deletion** â€” `is_deleted` and `deleted_ymdhis` on all tables
 - **Node Scoping** â€” Multi-tenant support via `node_id`
 - **Application-Managed Integrity** â€” Referential integrity in PHP code
-- **System IDs (ID = 0)** â€” Reserved for kernel space (system channels, bootstrapping, migrations). See [Database Philosophy](DATABASE_PHILOSOPHY.md#-8-system-ids-and-the-use-of-zero) for details.
+- **System IDs (ID = 0)** â€” Reserved for kernel space (system channels, bootstrapping, migrations). See [Database Philosophy](../architecture/DATABASE_PHILOSOPHY.md#-8-system-ids-and-the-use-of-zero) for details.
 
 ### Key Features
 - **Merged Architecture**: Unified Crafty + Lupopedia systems

@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\channels\developer\api\MINIMAL_REST_API.md"
+  file_path_from_root: "lupo-docs/channels/developer/api/MINIMAL_REST_API.md"
   file_hash: "673b26e2940172ef6349e80b8a472a6ca2e26f6c4b145e7ab332b26fd4d7b5ad"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

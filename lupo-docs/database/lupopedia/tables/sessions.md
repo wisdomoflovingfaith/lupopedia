@@ -43,7 +43,7 @@ Purpose: **Session storage** for authenticated and anonymous users: session_id, 
 - **Request handling:** Session middleware or auth layer loads session by session_id (e.g. cookie), resolves actor_id, and attaches actor to the request. All session reads/writes go through the Session class (App\Auth\Session) using PDO_DB.
 - **Actor binding:** Each session row is tied to an actor_id (and from v4.0.58, **actor_name** / whoami) so permissions and UI can use “current actor” without re-looking up from a separate user table.
 - **Expiry:** expires_ymdhis (or equivalent in schema) used for cleanup and invalidation. No DB-side DEFAULT CURRENT_TIMESTAMP; set in application code per doctrine.
-- **Whoami / actor_name:** For identity and CLI, see [lupopedia_whoami_readme](../../../../docs/lupopedia_whoami_readme.md) (actor_name primary for this actor_id).
+- **Whoami / actor_name:** For identity and CLI, see [lupopedia_whoami_readme](../../../lupopedia_whoami_readme.md) (actor_name primary for this actor_id).
 
 ### 3. Mapping from Crafty Syntax
 

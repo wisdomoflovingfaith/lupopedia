@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\channels\developer\testing\mapping_validation_scorecard.md"
+  file_path_from_root: "lupo-docs/channels/developer/testing/mapping_validation_scorecard.md"
   file_hash: "9728aeba795ddafa07705c687431db24d264fa3bf0c786cc0616b06753e5feaa"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

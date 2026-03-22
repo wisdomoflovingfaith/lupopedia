@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\database\lupopedia\tables\lupo_doctrine_evolution_audit.md"
+  file_path_from_root: "lupo-docs/database/lupopedia/tables/active/lupo_doctrine_evolution_audit.md"
   file_hash: "ad489b0c1b47c548d1cf74c995dddc49d6c2fe7933e1dc55119b6605958a55bd"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

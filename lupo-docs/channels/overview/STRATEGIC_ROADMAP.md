@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\channels\overview\STRATEGIC_ROADMAP.md"
+  file_path_from_root: "lupo-docs/channels/overview/STRATEGIC_ROADMAP.md"
   file_hash: "a92d21201f6b01b7b132df771066366709afba1f7d5ad7e75507b02df1d092ce"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"
@@ -334,8 +334,8 @@ Human intent is highest authority.
 
 ## Related Documentation
 
-- **[Vision Statement](../VISION.md)** â€” What Lupopedia is and why it exists
-- **[Philosophy](../PHILOSOPHY.md)** â€” Architectural principles and design philosophy
+- **[Vision Statement](VISION.md)** â€” What Lupopedia is and why it exists
+- **[Philosophy](PHILOSOPHY.md)** â€” Architectural principles and design philosophy
 - **[AI Integration Safety Doctrine](../doctrine/AI_INTEGRATION_SAFETY_DOCTRINE.md)** â€” Mandatory AI constraints
 - **[Database Security Doctrine](../doctrine/DATABASE_SECURITY_DOCTRINE.md)** â€” Database permission lockdown
 - **[Migration Doctrine](../doctrine/MIGRATION_DOCTRINE.md)** â€” Safe migration procedures

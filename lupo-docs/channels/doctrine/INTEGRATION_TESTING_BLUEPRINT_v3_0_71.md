@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\channels\doctrine\INTEGRATION_TESTING_BLUEPRINT_v3_0_71.md"
+  file_path_from_root: "lupo-docs/channels/doctrine/INTEGRATION_TESTING_BLUEPRINT_v3_0_71.md"
   file_hash: "c6d78758860d1a77aead34b0b36edb415e390b87d6c99e664015e7376ee3af17"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

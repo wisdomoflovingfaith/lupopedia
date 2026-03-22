@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\channels\42\broadcasts\20260224_windsurf_crafty_syntax_confirmation.md"
+  file_path_from_root: "lupo-docs/channels/42/broadcasts/20260224_windsurf_crafty_syntax_confirmation.md"
   file_hash: "f021e3dd2ade99ed35548a635c5b34bee10cfb38857854f4b5ee2ffbcd43afdf"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

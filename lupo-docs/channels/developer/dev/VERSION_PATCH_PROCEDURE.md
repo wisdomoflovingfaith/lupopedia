@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\channels\developer\dev\VERSION_PATCH_PROCEDURE.md"
+  file_path_from_root: "lupo-docs/channels/developer/dev/VERSION_PATCH_PROCEDURE.md"
   file_hash: "6dfc6eefdae8f0f08eae76cd717c9024c41d4d82fc0eba249ae8761eb6ebfcd4"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"
@@ -373,10 +373,10 @@ This procedure increments the **PATCH** level only.
 
 ## Related Documentation
 
-- [Ecosystem Versioning Doctrine](lupo-docs/doctrine/VERSION_DOCTRINE.md)
-- [WOLFIE Header Doctrine](lupo-docs/doctrine/WOLFIE_HEADER_DOCTRINE.md)
-- [Universal Wolfie Header Specification](lupo-docs/doctrine/UNIVERSAL_WOLFIE_HEADER_SPECIFICATION.md)
-- [Lupopedia Header Profile](lupo-docs/doctrine/LUPOPEDIA_HEADER_PROFILE.md)
+- [Ecosystem Versioning Doctrine](../../../doctrine/VERSION_DOCTRINE.md)
+- [WOLFIE Header Doctrine](../../doctrine/WOLFIE_HEADER_DOCTRINE.md)
+- Universal Wolfie Header Specification
+- [Lupopedia Header Profile](../../doctrine/LUPOPEDIA_HEADER_PROFILE.md)
 
 ---
 

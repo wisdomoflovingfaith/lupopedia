@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\channels\dialogs\architecture\CHANNEL_DIALOG_AGENT_WORKFLOWS.md"
+  file_path_from_root: "lupo-docs/channels/dialogs/architecture/CHANNEL_DIALOG_AGENT_WORKFLOWS.md"
   file_hash: "60bf615266554f1aef9dc482a1fc83f351ebd5f6da4e8f261831aaa0d6cd4185"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"
@@ -741,8 +741,8 @@ php_ai_terminal agents follow this fallback hierarchy:
 - **[DIALOGS_AND_CHANNELS.md](DIALOGS_AND_CHANNELS.md)** â€” Thread vs channel distinction
 - **[DIALOG_DOCTRINE.md](../../doctrine/DIALOG_DOCTRINE.md)** â€” Dialog system doctrine
 - **[CHANNEL_DOCTRINE.md](../../doctrine/CHANNEL_DOCTRINE.md)** â€” Channel doctrine
-- **[lupo-database/generate_toon_files.py](../../database/generate_toon_files.py)** â€” Toon file generator
-- **[lupo-database/toon_data/](../../database/toon_data/)** â€” Toon file storage
+- **[lupo-database/generate_toon_files.py](../../../../lupo-scripts/generate_toon_files.py)** â€” Toon file generator
+- **lupo-database/toon_data/** â€” Toon file storage
 
 ---
 

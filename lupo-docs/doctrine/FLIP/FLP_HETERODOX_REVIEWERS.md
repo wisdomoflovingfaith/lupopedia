@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\doctrine\FLIP\FLP_HETERODOX_REVIEWERS.md"
+  file_path_from_root: "lupo-docs/doctrine/FLIP/FLP_HETERODOX_REVIEWERS.md"
   file_hash: "1442eab8159205eb7281ae5bc05a55082a4b5263aa739b74289bb89202cc386a"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

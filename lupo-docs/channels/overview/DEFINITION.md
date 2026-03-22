@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\channels\overview\DEFINITION.md"
+  file_path_from_root: "lupo-docs/channels/overview/DEFINITION.md"
   file_hash: "4d8166aa39d0182d3d7d7fde18d9915836d7831f1e89ee0dcc90a7970ffafe9d"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"
@@ -150,8 +150,8 @@ Lupopedia is a distributed, multiâ€‘agent Web-Organized Linked Federated In
 - [ARCHITECTURE_SYNC.md](../architecture/ARCHITECTURE_SYNC.md) â€” Subsystem reference (HERMES, CADUCEUS, IRIS, etc.)
 - [GLOSSARY.md](../appendix/appendix/GLOSSARY.md) â€” Terminology definitions including "node," "domain installation," and "semantic node"
 - [README.md](../../README.md) â€” Main project documentation
-- [VISION.md](../../VISION.md) â€” Vision statement and guiding principles
-- [EXECUTIVE_SUMMARY.md](../../EXECUTIVE_SUMMARY.md) â€” High-level overview and value proposition
+- [VISION.md](VISION.md) â€” Vision statement and guiding principles
+- EXECUTIVE_SUMMARY.md â€” High-level overview and value proposition
 
 ---
 

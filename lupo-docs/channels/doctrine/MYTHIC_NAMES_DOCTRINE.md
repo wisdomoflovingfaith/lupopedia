@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\channels\doctrine\MYTHIC_NAMES_DOCTRINE.md"
+  file_path_from_root: "lupo-docs/channels/doctrine/MYTHIC_NAMES_DOCTRINE.md"
   file_hash: "f4a473e99eecfdc2477484d857d51e702f597f0b25534786e7aedab921cc48de"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

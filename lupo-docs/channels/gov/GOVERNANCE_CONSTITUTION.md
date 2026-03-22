@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\channels\gov\GOVERNANCE_CONSTITUTION.md"
+  file_path_from_root: "lupo-docs/channels/gov/GOVERNANCE_CONSTITUTION.md"
   file_hash: "d5fe8fb73f01a30256fd1e9840f8d926d8b01508ad5b3fb43ecab94e94162415"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

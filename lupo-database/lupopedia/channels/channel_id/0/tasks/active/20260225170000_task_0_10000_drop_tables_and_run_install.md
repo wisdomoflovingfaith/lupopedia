@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\channels\0\tasks\active\20260225170000_task_0_10000_drop_tables_and_run_install.md"
+  file_path_from_root: "lupo-database/lupopedia/channels/channel_id/0/tasks/active/20260225170000_task_0_10000_drop_tables_and_run_install.md"
   file_hash: "d6a68f131727cc35633aa57f687b8539feab8816668ae766686ab15414379aad"
   last_updated_utc: "20260228155738"
   system_version: "4.0.73"

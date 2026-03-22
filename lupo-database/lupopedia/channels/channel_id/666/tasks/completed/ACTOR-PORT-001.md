@@ -49,7 +49,7 @@ lupopedia.conditional:
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "task"
-  file_path_from_root: "lupo-database/lupopedia/channels/lupo-channels/666/tasks/completed/ACTOR-PORT-001.md"
+  file_path_from_root: "lupo-database/lupopedia/channels/channel_id/666/tasks/completed/ACTOR-PORT-001.md"
   file_hash: "0d5f21f300daa26a481a38bc2e20bcb22df1c770e6761c559d803516d26fc8d5"
   last_updated_utc: "20260304"
   system_version: "4.0.56"

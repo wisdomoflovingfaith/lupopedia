@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\channels\overview\LUPOPEDIA_REENTRY_SPELL.md"
+  file_path_from_root: "lupo-docs/channels/overview/LUPOPEDIA_REENTRY_SPELL.md"
   file_hash: "3989f3dd45d7b9857d373a21bbabb2e09b9e2ef416f83978db9dde77212997fe"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

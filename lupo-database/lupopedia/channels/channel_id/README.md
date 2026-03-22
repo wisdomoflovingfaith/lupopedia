@@ -1,6 +1,6 @@
 ---
 lupopedia.headers:
-  file_path_from_root: "lupo-channels/README.md"
+  file_path_from_root: "lupo-database/lupopedia/channels/channel_id/README.md"
   file_hash: "d8243ff6edd36e3fa7c89d0b832f0c11f36baa913c1d9c90fc8469947d72a7e3"
   system_version: "4.0.50"
   channel_id: 1

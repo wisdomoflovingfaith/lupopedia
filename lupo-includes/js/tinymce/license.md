@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\lupo-includes\js\tinymce\license.md"
+  file_path_from_root: "lupo-includes/js/tinymce/license.md"
   file_hash: "e00958448a0b90a612a8bb244e2eb387f8a7c247e1640c3edfb324562954292d"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

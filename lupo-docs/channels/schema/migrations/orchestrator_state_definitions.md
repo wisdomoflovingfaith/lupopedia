@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\channels\schema\migrations\orchestrator_state_definitions.md"
+  file_path_from_root: "lupo-docs/channels/schema/migrations/orchestrator_state_definitions.md"
   file_hash: "43d9d59a4b38209043848af7fb63182b1780b11782c95d9cdf9aa91f514b19eb"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

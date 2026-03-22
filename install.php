@@ -2,7 +2,7 @@
 /**
  * @wolfie.headers {
  *   file_path_from_root: "install.php",
- *   system_version: "4.0.83",
+ *   system_version: "4.0.85",
  *   channel_id: 42,
  *   mood_rgb: "FF6347",
  *   purpose: "Main installer and upgrade wizard for Lupopedia - handles fresh install and Crafty Syntax 3.7.5 upgrade",
@@ -50,7 +50,7 @@
  *   },
  *   semantic_tags: ["installer", "upgrade_wizard", "crafty_syntax_3_7_5", "identity_normalization", "reserved_channels"],
  *   enrichment: { llm_inferred_edges: [], federated_metrics: {} },
- *   version: "4.0.75",
+ *   version: "4.0.85",
  *   last_verified_utc: "20260308",
  *   last_verified_by: "kiro"
  * }
@@ -107,8 +107,8 @@ if (!is_dir(LUPO_MYSQL_DIR)) {
     die('MySQL installer directory not found at LUPO_MYSQL_DIR: ' . LUPO_MYSQL_DIR);
 }
 
-// Version for wizard UI - Direct parse from global_atoms.yaml (install.php runs standalone, no bootstrap)
-$lupo_wizard_version = '4.0.75'; // Fallback when no atoms file found
+// Version for wizard UI. Canonical source is GLOBAL_CURRENT_LUPOPEDIA_VERSION in atoms.
+$lupo_wizard_version = null;
 $atoms_candidates = array(
     LUPOPEDIA_PATH . DIRECTORY_SEPARATOR . 'lupo-config' . DIRECTORY_SEPARATOR . 'global_atoms.yaml',
     LUPOPEDIA_PATH . DIRECTORY_SEPARATOR . 'lupo-config' . DIRECTORY_SEPARATOR . 'config' . DIRECTORY_SEPARATOR . 'global_atoms.yaml',
@@ -125,15 +125,16 @@ if ($atoms_content !== null && preg_match('/^GLOBAL_CURRENT_LUPOPEDIA_VERSION:\s
     $lupo_wizard_version = $matches[1];
 }
 
-// Also load version.php for constants (but wizard version already set from atoms)
+// Fallback to version.php only when atoms are unavailable.
 $version_php = LUPOPEDIA_PATH . DIRECTORY_SEPARATOR . 'lupo-includes' . DIRECTORY_SEPARATOR . 'version.php';
-if (is_file($version_php)) {
+if ($lupo_wizard_version === null && is_file($version_php)) {
     require_once $version_php;
 }
-// Use LUPOPEDIA_VERSION if defined and different from atoms (shouldn't happen, but safety check)
-if (defined('LUPOPEDIA_VERSION') && LUPOPEDIA_VERSION !== $lupo_wizard_version) {
-    // Atoms take precedence in install.php
+if ($lupo_wizard_version === null && defined('LUPOPEDIA_VERSION')) {
     $lupo_wizard_version = LUPOPEDIA_VERSION;
+}
+if ($lupo_wizard_version === null) {
+    $lupo_wizard_version = '0.0.0';
 }
 
 /**
@@ -366,11 +367,17 @@ if ($step === 'credentials') {
                 $bootstrapLog = array();
                 $table_prefix = isset($_SESSION['lupo_table_prefix']) ? $_SESSION['lupo_table_prefix'] : 'lupo_';
                 try {
-                    InstallWizardSqlRunner::runSqlFile($pdo, $mysqlDir . DIRECTORY_SEPARATOR . 'install' . DIRECTORY_SEPARATOR . 'install_new_lupopedia.sql', $bootstrapLog, $table_prefix);
+                    $install_ok = InstallWizardSqlRunner::runSqlFile($pdo, $mysqlDir . DIRECTORY_SEPARATOR . 'install' . DIRECTORY_SEPARATOR . 'install_new_lupopedia.sql', $bootstrapLog, $table_prefix);
+                    if (!$install_ok) {
+                        throw new RuntimeException('Critical schema install failed (install_new_lupopedia.sql). Stop and fix SQL errors before continuing.');
+                    }
                     InstallWizardSqlRunner::runSqlFile($pdo, $mysqlDir . DIRECTORY_SEPARATOR . 'seed' . DIRECTORY_SEPARATOR . 'seed_registry_comprehensive_4.0.45.sql', $bootstrapLog, $table_prefix);
                     InstallWizardSqlRunner::runSqlFile($pdo, $mysqlDir . DIRECTORY_SEPARATOR . 'seed' . DIRECTORY_SEPARATOR . 'seed_registry_additional_csv_entities_4.0.45.sql', $bootstrapLog, $table_prefix);
                     InstallWizardSqlRunner::runSqlFile($pdo, $mysqlDir . DIRECTORY_SEPARATOR . 'seed' . DIRECTORY_SEPARATOR . 'seed_registry_open_4.0.45.sql', $bootstrapLog, $table_prefix);
-                    InstallWizardSqlRunner::runSqlFile($pdo, $mysqlDir . DIRECTORY_SEPARATOR . 'seed' . DIRECTORY_SEPARATOR . 'seed_actors_agents_4.0.45.sql', $bootstrapLog, $table_prefix);
+                    $seed_actors_ok = InstallWizardSqlRunner::runSqlFile($pdo, $mysqlDir . DIRECTORY_SEPARATOR . 'seed' . DIRECTORY_SEPARATOR . 'seed_actors_agents_4.0.45.sql', $bootstrapLog, $table_prefix);
+                    if (!$seed_actors_ok) {
+                        throw new RuntimeException('Critical actor seed failed (seed_actors_agents_4.0.45.sql). Stop and fix SQL errors before continuing.');
+                    }
                     // 4.0.68 seeds: rules, skills, changelog metadata, actor 1 cursor rules (idempotent)
                     $seed_4_0_68 = array('seed_rules_doctrine_4.0.68.sql', 'seed_skills_4.0.68.sql', 'seed_lupo_metadata_changelog_headers_4.0.68.sql', 'seed_actor_1_cursor_rules_4.0.68.sql');
                     foreach ($seed_4_0_68 as $seedFile) {
@@ -591,11 +598,17 @@ if ($step === 'run') {
                 }
                 if (!$schema_ok) {
                     $log[] = InstallWizardLogger::logEntry('ok', 'Schema missing (e.g. tables dropped); running install and bootstrap seeds first.');
-                    InstallWizardSqlRunner::runSqlFile($pdo, $mysqlDir . DIRECTORY_SEPARATOR . 'install' . DIRECTORY_SEPARATOR . 'install_new_lupopedia.sql', $log, $table_prefix);
+                    $install_ok = InstallWizardSqlRunner::runSqlFile($pdo, $mysqlDir . DIRECTORY_SEPARATOR . 'install' . DIRECTORY_SEPARATOR . 'install_new_lupopedia.sql', $log, $table_prefix);
+                    if (!$install_ok) {
+                        throw new RuntimeException('Critical schema install failed (install_new_lupopedia.sql). Stop and fix SQL errors before continuing.');
+                    }
                     InstallWizardSqlRunner::runSqlFile($pdo, $mysqlDir . DIRECTORY_SEPARATOR . 'seed' . DIRECTORY_SEPARATOR . 'seed_registry_comprehensive_4.0.45.sql', $log, $table_prefix);
                     InstallWizardSqlRunner::runSqlFile($pdo, $mysqlDir . DIRECTORY_SEPARATOR . 'seed' . DIRECTORY_SEPARATOR . 'seed_registry_additional_csv_entities_4.0.45.sql', $log, $table_prefix);
                     InstallWizardSqlRunner::runSqlFile($pdo, $mysqlDir . DIRECTORY_SEPARATOR . 'seed' . DIRECTORY_SEPARATOR . 'seed_registry_open_4.0.45.sql', $log, $table_prefix);
-                    InstallWizardSqlRunner::runSqlFile($pdo, $mysqlDir . DIRECTORY_SEPARATOR . 'seed' . DIRECTORY_SEPARATOR . 'seed_actors_agents_4.0.45.sql', $log, $table_prefix);
+                    $seed_actors_ok = InstallWizardSqlRunner::runSqlFile($pdo, $mysqlDir . DIRECTORY_SEPARATOR . 'seed' . DIRECTORY_SEPARATOR . 'seed_actors_agents_4.0.45.sql', $log, $table_prefix);
+                    if (!$seed_actors_ok) {
+                        throw new RuntimeException('Critical actor seed failed (seed_actors_agents_4.0.45.sql). Stop and fix SQL errors before continuing.');
+                    }
                     $seed_4_0_68 = array('seed_rules_doctrine_4.0.68.sql', 'seed_skills_4.0.68.sql', 'seed_lupo_metadata_changelog_headers_4.0.68.sql', 'seed_actor_1_cursor_rules_4.0.68.sql');
                     foreach ($seed_4_0_68 as $seedFile) {
                         $path = $mysqlDir . DIRECTORY_SEPARATOR . 'seed' . DIRECTORY_SEPARATOR . $seedFile;
@@ -627,11 +640,17 @@ if ($step === 'run') {
             }
 
             if ($install_type === 'new') {
-                InstallWizardSqlRunner::runSqlFile($pdo, $mysqlDir . DIRECTORY_SEPARATOR . 'install' . DIRECTORY_SEPARATOR . 'install_new_lupopedia.sql', $log, $table_prefix);
+                $install_ok = InstallWizardSqlRunner::runSqlFile($pdo, $mysqlDir . DIRECTORY_SEPARATOR . 'install' . DIRECTORY_SEPARATOR . 'install_new_lupopedia.sql', $log, $table_prefix);
+                if (!$install_ok) {
+                    throw new RuntimeException('Critical schema install failed (install_new_lupopedia.sql). Stop and fix SQL errors before continuing.');
+                }
                 InstallWizardSqlRunner::runSqlFile($pdo, $mysqlDir . DIRECTORY_SEPARATOR . 'seed' . DIRECTORY_SEPARATOR . 'seed_registry_comprehensive_4.0.45.sql', $log, $table_prefix);
                 InstallWizardSqlRunner::runSqlFile($pdo, $mysqlDir . DIRECTORY_SEPARATOR . 'seed' . DIRECTORY_SEPARATOR . 'seed_registry_additional_csv_entities_4.0.45.sql', $log, $table_prefix);
                 InstallWizardSqlRunner::runSqlFile($pdo, $mysqlDir . DIRECTORY_SEPARATOR . 'seed' . DIRECTORY_SEPARATOR . 'seed_registry_open_4.0.45.sql', $log, $table_prefix);
-                InstallWizardSqlRunner::runSqlFile($pdo, $mysqlDir . DIRECTORY_SEPARATOR . 'seed' . DIRECTORY_SEPARATOR . 'seed_actors_agents_4.0.45.sql', $log, $table_prefix);
+                $seed_actors_ok = InstallWizardSqlRunner::runSqlFile($pdo, $mysqlDir . DIRECTORY_SEPARATOR . 'seed' . DIRECTORY_SEPARATOR . 'seed_actors_agents_4.0.45.sql', $log, $table_prefix);
+                if (!$seed_actors_ok) {
+                    throw new RuntimeException('Critical actor seed failed (seed_actors_agents_4.0.45.sql). Stop and fix SQL errors before continuing.');
+                }
                 InstallWizardDepartments::ensureSystemDepartment($pdo, $log);
                 InstallWizardChannels::createReservedSystemChannels($pdo, $log);
                 // 4.0.68 seeds (new install): rules, skills, changelog metadata, actor 1 cursor rules (idempotent)

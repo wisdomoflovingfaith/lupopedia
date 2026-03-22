@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\scripts\PYTHON_VS_PHP.md"
+  file_path_from_root: "lupo-scripts/PYTHON_VS_PHP.md"
   file_hash: "2836461e0485b79fd747c2f57ddd6e63ed7ac82ceb73d26d2421fbe84ee5a540"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

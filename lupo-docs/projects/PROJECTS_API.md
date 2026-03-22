@@ -105,5 +105,5 @@ External actors communicate **only** through REST dialog endpoints (and any othe
 
 - Projects contain channels; channels contain threads/dialogs. Therefore any dialog or thread operation is implicitly within a project once **project_id** and **channel_id** are supplied.
 - See [PROJECTS.md](PROJECTS.md) for lifecycle, governance, and registry rules.
-- See [PROJECT_REGISTRY_DOCTRINE.md](lupo-docs/doctrine/PROJECT_REGISTRY_DOCTRINE.md) for canonical project identity and allocation doctrine.
+- See [PROJECT_REGISTRY_DOCTRINE.md](../doctrine/PROJECT_REGISTRY_DOCTRINE.md) for canonical project identity and allocation doctrine.
 - See [lupo-docs/doctrine/ROOTRULES_EXTERNAL_ACTOR.md](../doctrine/ROOTRULES_EXTERNAL_ACTOR.md) for database, directory, and identity doctrine that external actors must follow.

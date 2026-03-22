@@ -2,7 +2,7 @@
 lupopedia.headers:
   lupopedia.version: "4.1.0"
   lupopedia.schema: "thread"
-  file_path_from_root: "lupo-channels/66/threads/1001/incompatible_version_thread1001.md"
+  file_path_from_root: "lupo-tests/fixtures/channel66_ingestion/thread1001/incompatible_version_thread1001.md"
   web_path: "http://www.lupopedia.com/lupo-channels/66/threads/1001/incompatible_version_thread1001"
   last_modified_utc: "20260319"
   system_version: "4.0.80"

@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\channels\agents\agent-1\doctrine\CHANNEL_IDENTITY_BLOCK.md"
+  file_path_from_root: "lupo-docs/channels/agents/agent-1/doctrine/CHANNEL_IDENTITY_BLOCK.md"
   file_hash: "738f4a81cb6eb417563cfe3c07c89af321d3d9f45ba1f9980adbefe7bbc106ea"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"
@@ -711,12 +711,12 @@ The Channel Identity Block integrates with the following Lupopedia subsystems:
 ## 11. Related Documentation
 
 - **[Channel Initialization Protocol](./CHANNEL_INITIALIZATION_PROTOCOL.md)** — Complete CIP doctrine
-- **[Channel Dialog Agent Workflows](../../../docs/ARCHITECTURE/CHANNEL_DIALOG_AGENT_WORKFLOWS.md)** — How agents interact with channels
-- **[Channel Dialog Schema Review](../../../docs/ARCHITECTURE/CHANNEL_DIALOG_SCHEMA_REVIEW.md)** — Database schema for channels
-- **[Dialogs and Channels Architecture](../../../docs/ARCHITECTURE/DIALOGS_AND_CHANNELS.md)** — Thread vs channel distinction
-- **[HERMES and CADUCEUS](../../../docs/agents/HERMES_AND_CADUCEUS.md)** — Routing and emotional balancing subsystems
-- **[Emotional Geometry Doctrine](../../../docs/doctrine/EMOTIONAL_GEOMETRY.md)** — Emotional geometry principles
-- **[MOOD_RGB Doctrine](../../../docs/doctrine/MOOD_RGB_DOCTRINE.md)** — Mood tracking specification
+- **[Channel Dialog Agent Workflows](../../../dialogs/architecture/CHANNEL_DIALOG_AGENT_WORKFLOWS.md)** — How agents interact with channels
+- **[Channel Dialog Schema Review](../../../dialogs/architecture/CHANNEL_DIALOG_SCHEMA_REVIEW.md)** — Database schema for channels
+- **[Dialogs and Channels Architecture](../../../dialogs/architecture/DIALOGS_AND_CHANNELS.md)** — Thread vs channel distinction
+- **[HERMES and CADUCEUS](../../HERMES_AND_CADUCEUS.md)** — Routing and emotional balancing subsystems
+- **[Emotional Geometry Doctrine](../../../doctrine/EMOTIONAL_GEOMETRY.md)** — Emotional geometry principles
+- **[MOOD_RGB Doctrine](../../../doctrine/MOOD_RGB_DOCTRINE.md)** — Mood tracking specification
 
 ---
 

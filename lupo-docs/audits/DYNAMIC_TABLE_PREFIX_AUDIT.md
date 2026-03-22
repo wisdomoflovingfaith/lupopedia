@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\audits\DYNAMIC_TABLE_PREFIX_AUDIT.md"
+  file_path_from_root: "lupo-docs/audits/DYNAMIC_TABLE_PREFIX_AUDIT.md"
   file_hash: "6fb59c7ff3424507ce81706fb246196238d706d4f7cfbcdf97a3a70fa31320f5"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

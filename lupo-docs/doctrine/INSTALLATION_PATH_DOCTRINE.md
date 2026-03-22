@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\doctrine\INSTALLATION_PATH_DOCTRINE.md"
+  file_path_from_root: "lupo-docs/doctrine/INSTALLATION_PATH_DOCTRINE.md"
   file_hash: "b47ea55c821216487813e75cbb17151818d6724b168bea3afe82df262d74ebf9"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"
@@ -127,4 +127,4 @@ Agents must **refuse** any future request that violates this doctrine and must p
 
 ---
 
-*See also: [Subdirectory Installation Doctrine](SUBDIRECTORY_INSTALLATION_DOCTRINE.md) in `lupo-docs/channels/doctrine/`.*
+*See also: [Subdirectory Installation Doctrine](../channels/doctrine/SUBDIRECTORY_INSTALLATION_DOCTRINE.md) in `lupo-docs/channels/doctrine/`.*

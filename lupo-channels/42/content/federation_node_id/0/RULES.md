@@ -55,5 +55,5 @@ Rules are attached to Channel 42 in `lupo_rule_targets` (target_table = 'channel
 
 ## See Also
 
-- [lupo-docs/doctrine/RULES_DOCTRINE.md](../../../../lupo-docs/doctrine/RULES_DOCTRINE.md)
-- [lupo-database/migrations/20260310_create_rules_tables.sql](../../../../database/migrations/20260310_create_rules_tables.sql)
+- [lupo-docs/doctrine/RULES_DOCTRINE.md](../../../../../lupo-docs/doctrine/RULES_DOCTRINE.md)
+- lupo-database/migrations/20260310_create_rules_tables.sql

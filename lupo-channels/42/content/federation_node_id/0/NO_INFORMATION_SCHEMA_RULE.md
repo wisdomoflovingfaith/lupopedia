@@ -88,6 +88,6 @@ This rule is enforced by:
 
 Paths below are from **project root**. Resolve with `LUPOPEDIA_PROJECT_ROOT` in `lupo-config/global_atoms.yaml` (e.g. `C:/ServBay/www/servbay/lupopedia`), or use the links (relative from this file).
 
-- [lupo-docs/doctrine/DATABASE_DOCTRINE.md](../../../../lupo-docs/doctrine/DATABASE_DOCTRINE.md)
-- [lupo-scripts/generate_toon_files.py](../../../../lupo-scripts/generate_toon_files.py)
-- [lupo-includes/classes/ToonValidator.php](../../../../lupo-includes/classes/ToonValidator.php)
+- [lupo-docs/doctrine/DATABASE_DOCTRINE.md](../../../../../lupo-docs/doctrine/DATABASE_DOCTRINE.md)
+- [lupo-scripts/generate_toon_files.py](../../../../../lupo-scripts/generate_toon_files.py)
+- [lupo-includes/classes/ToonValidator.php](../../../../../lupo-includes/classes/ToonValidator.php)

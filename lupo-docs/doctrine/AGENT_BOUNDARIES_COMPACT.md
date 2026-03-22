@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\doctrine\AGENT_BOUNDARIES_COMPACT.md"
+  file_path_from_root: "lupo-docs/doctrine/AGENT_BOUNDARIES_COMPACT.md"
   file_hash: "063855eeed00d34b4b26bdb418965c8f0d8f62beab8db105dbd91a72ebaff3c8"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

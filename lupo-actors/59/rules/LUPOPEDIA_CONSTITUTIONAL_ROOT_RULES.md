@@ -14,7 +14,7 @@ lupopedia.headers:
   delegation_chain: "cursor:root"
   lupopedia.version: "4.0.76"
   lupopedia.schema: "constitutional_rules"
-  file_path_from_root: "lupo-rules/root/LUPOPEDIA_CONSTITUTIONAL_ROOT_RULES.md"
+  file_path_from_root: "lupo-actors/59/rules/LUPOPEDIA_CONSTITUTIONAL_ROOT_RULES.md"
   web_path: "http://www.lupopedia.com/rules/root/constitutional"
   last_modified_utc: "20260316"
   system_version: "4.0.76"

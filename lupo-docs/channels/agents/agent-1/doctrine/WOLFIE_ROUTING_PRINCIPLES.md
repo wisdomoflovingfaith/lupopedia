@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\channels\agents\agent-1\doctrine\WOLFIE_ROUTING_PRINCIPLES.md"
+  file_path_from_root: "lupo-docs/channels/agents/agent-1/doctrine/WOLFIE_ROUTING_PRINCIPLES.md"
   file_hash: "51f965cf92a5745d48a9f336ec978836d14acd2d6dde65fe31f4ab753832a6a8"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"
@@ -617,10 +617,10 @@ WOLFIE maintains UTC authority for all channels. Timestamps used in routing deci
 - **[Channel Manifest Specification](./CHANNEL_MANIFEST_SPEC.md)** — Manifest specification
 - **[Channel Initialization Protocol](./CHANNEL_INITIALIZATION_PROTOCOL.md)** — CIP doctrine
 - **[WOLFIE UTC Authority Doctrine](./WOLFIE_UTC_AUTHORITY.md)** — Timestamp authority rules
-- **[UTC_TIMEKEEPER Doctrine](../../5/doctrine/UTC_TIMEKEEPER.md)** — UTC_TIMEKEEPER agent specification
-- **[Agent Routing Doctrine](../../../docs/doctrine/AGENT_ROUTING_DOCTRINE.md)** — HERMES and CADUCEUS routing details
-- **[HERMES and CADUCEUS](../../../docs/agents/HERMES_AND_CADUCEUS.md)** — Routing and emotional balancing subsystems
-- **[Emotional Geometry Doctrine](../../../docs/doctrine/EMOTIONAL_GEOMETRY.md)** — Emotional geometry principles
+- **UTC_TIMEKEEPER Doctrine** — UTC_TIMEKEEPER agent specification
+- **[Agent Routing Doctrine](../../../doctrine/AGENT_ROUTING_DOCTRINE.md)** — HERMES and CADUCEUS routing details
+- **[HERMES and CADUCEUS](../../HERMES_AND_CADUCEUS.md)** — Routing and emotional balancing subsystems
+- **[Emotional Geometry Doctrine](../../../doctrine/EMOTIONAL_GEOMETRY.md)** — Emotional geometry principles
 
 ---
 

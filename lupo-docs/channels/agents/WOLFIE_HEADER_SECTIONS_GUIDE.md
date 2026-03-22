@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\channels\agents\WOLFIE_HEADER_SECTIONS_GUIDE.md"
+  file_path_from_root: "lupo-docs/channels/agents/WOLFIE_HEADER_SECTIONS_GUIDE.md"
   file_hash: "990785ee08e64bc2a86eed457d2ee6506db08f77e386956fb236f2d6fbc59dde"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"
@@ -358,7 +358,7 @@ Before committing a file with `sections:` module:
 
 - **[WOLFIE_HEADER_SPECIFICATION.md](WOLFIE_HEADER_SPECIFICATION.md)** â€” Complete WOLFIE Header specification
 - **[INLINE_DIALOG_SPECIFICATION.md](../dialogs/agents/INLINE_DIALOG_SPECIFICATION.md)** â€” Inline Dialog format
-- **[wolfie_headers.yaml](../../wolfie_headers.yaml)** â€” Machine-readable YAML schema
+- **[wolfie_headers.yaml](../../../wolfie_headers.yaml)** â€” Machine-readable YAML schema
 
 ---
 

@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\database\lupopedia\tables\lupo_kapu_events.md"
+  file_path_from_root: "lupo-docs/database/lupopedia/tables/active/lupo_kapu_events.md"
   file_hash: "af5fbbfcbfd7aa87d75b04111916cfe2e4b029bf40c3cf65616ca5b94138628f"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

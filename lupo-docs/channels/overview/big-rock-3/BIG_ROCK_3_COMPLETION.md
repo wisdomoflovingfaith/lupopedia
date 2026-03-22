@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\channels\overview\big-rock-3\BIG_ROCK_3_COMPLETION.md"
+  file_path_from_root: "lupo-docs/channels/overview/big-rock-3/BIG_ROCK_3_COMPLETION.md"
   file_hash: "8ff11b5feba22f02053134283a8babb68fdad72ca9acb6e80b0043b3cf5e74f7"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

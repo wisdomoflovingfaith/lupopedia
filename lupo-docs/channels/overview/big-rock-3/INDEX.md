@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\channels\overview\big-rock-3\INDEX.md"
+  file_path_from_root: "lupo-docs/channels/overview/big-rock-3/INDEX.md"
   file_hash: "4b2a6ed204122ecbc28e4b8e6b13e16dc2393589e1a5f9939e1bbf8ac6c3d48c"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\channels\agents\AGENT_GUIDELINES.md"
+  file_path_from_root: "lupo-docs/channels/agents/AGENT_GUIDELINES.md"
   file_hash: "8e2d0519483f00eea048bb5eb76ca17cfb823d81996eefee668dca42864dbb59"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

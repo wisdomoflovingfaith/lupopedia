@@ -1,6 +1,6 @@
 ---
 lupopedia.headers:
-  file_path_from_root: "lupo-docs/database/lupopedia/tables/audit_log.md"
+  file_path_from_root: "lupo-docs/database/lupopedia/tables/deprecated/audit_log.md"
   file_hash: "5c7488a1f39139af1c714488f099c35c4a95b5080cf29df2198c5ffce922b609"
   system_version: "4.0.50"
   channel_id: 0

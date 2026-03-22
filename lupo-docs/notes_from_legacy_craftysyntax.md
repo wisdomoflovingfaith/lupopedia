@@ -2,7 +2,7 @@
 ---
 lupopedia.headers:
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\notes_from_legacy_craftysyntax.md"
+  file_path_from_root: "lupo-docs/notes_from_legacy_craftysyntax.md"
   version_when_written: "4.0.84"
   file_hash: "e504e691f612f3bbc9d6be55503ca53105b45708487d256757d2c70e596adf7b"
   last_updated_utc: "20260228155738"

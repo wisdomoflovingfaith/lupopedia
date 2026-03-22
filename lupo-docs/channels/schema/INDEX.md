@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\channels\schema\INDEX.md"
+  file_path_from_root: "lupo-docs/channels/schema/INDEX.md"
   file_hash: "0b04f6d09edc26d181f3a39acd915a1fce2065b238ea85ac1550a8c8e301eff1"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"
@@ -121,18 +121,18 @@ Files:
 - [migrations/3.0.77.md](migrations/3.0.77.md)
 - [migrations/3.0.78.md](migrations/3.0.78.md)
 - [migrations/3.0.81.md](migrations/3.0.81.md)
-- [migrations/3.1.1.md](migrations/3.1.1.md)
-- [migrations/3.1.12.md](migrations/3.1.12.md)
-- [migrations/3.1.13.md](migrations/3.1.13.md)
-- [migrations/3.1.14.md](migrations/3.1.14.md)
-- [migrations/3.1.15_doctrine_corrections.md](migrations/3.1.15_doctrine_corrections.md)
-- [migrations/3.1.16.md](migrations/3.1.16.md)
-- [migrations/3.1.18_consolidation_plan.md](migrations/3.1.18_consolidation_plan.md)
-- [migrations/3.1.2.md](migrations/3.1.2.md)
-- [migrations/3.1.20.md](migrations/3.1.20.md)
-- [migrations/4.2.3.md](migrations/4.2.3.md)
-- [migrations/4.3.1.md](migrations/4.3.1.md)
-- [migrations/8_TABLE_REDUCTION_PLAN_3.1.17.md](migrations/8_TABLE_REDUCTION_PLAN_3.1.17.md)
+- migrations/3.1.1.md
+- migrations/3.1.12.md
+- migrations/3.1.13.md
+- migrations/3.1.14.md
+- migrations/3.1.15_doctrine_corrections.md
+- migrations/3.1.16.md
+- migrations/3.1.18_consolidation_plan.md
+- migrations/3.1.2.md
+- migrations/3.1.20.md
+- migrations/4.2.3.md
+- migrations/4.3.1.md
+- migrations/8_TABLE_REDUCTION_PLAN_3.1.17.md
 - [migrations/orchestrator_forensic_timeline.md](migrations/orchestrator_forensic_timeline.md)
 - [migrations/orchestrator_state_definitions.md](migrations/orchestrator_state_definitions.md)
 - [migrations/state_machine_validation.md](migrations/state_machine_validation.md)

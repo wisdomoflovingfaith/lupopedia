@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\channels\doctrine\legacy-import\EMOTIONAL_GEOMETRY_DOCTRINE.md"
+  file_path_from_root: "lupo-docs/channels/doctrine/legacy-import/EMOTIONAL_GEOMETRY_DOCTRINE.md"
   file_hash: "cd61f6199b4e050accc7f4236f18115aa89042563747d921fa57e201e2a8852f"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

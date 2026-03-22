@@ -49,7 +49,7 @@ lupopedia.conditional:
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "task"
-  file_path_from_root: "lupo-database/lupopedia/channels/lupo-channels/42/threads/DEVELOPMENT_CYCLE_4_0_56/tasks/database_documentation_remaining_tables.md"
+  file_path_from_root: "lupo-database/lupopedia/channels/channel_id/42/threads/DEVELOPMENT_CYCLE_4_0_56/tasks/database_documentation_remaining_tables.md"
   file_hash: "7db20cbeaa45129a69bf4bf93b85fddb998e042046e32d198e0dc0b37a0f9b1c"
   last_updated_utc: "20260304"
   system_version: "4.0.56"

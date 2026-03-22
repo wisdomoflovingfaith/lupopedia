@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\channels\42\broadcasts\20260225130006_10000_1000_42_kiro_acknowledgment_of_captain_s_crafty_syntax_priority_directive_for_version_4_0_39.md"
+  file_path_from_root: "lupo-database/lupopedia/channels/channel_id/42/broadcasts/20260225130006_10000_1000_42_kiro_acknowledgment_of_captain_s_crafty_syntax_priority_directive_for_version_4_0_39.md"
   file_hash: "5ae809e15bca6245a176e0368363fdd4440b9590d91c2fc297159b06ab537474"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

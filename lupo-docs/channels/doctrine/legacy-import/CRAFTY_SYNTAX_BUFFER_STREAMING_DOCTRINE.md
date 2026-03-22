@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\channels\doctrine\legacy-import\CRAFTY_SYNTAX_BUFFER_STREAMING_DOCTRINE.md"
+  file_path_from_root: "lupo-docs/channels/doctrine/legacy-import/CRAFTY_SYNTAX_BUFFER_STREAMING_DOCTRINE.md"
   file_hash: "c1e9015fd7d2aca1b1a6ad94dd4bbeb27a48769431d1ea2586256afb3f80f2b2"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

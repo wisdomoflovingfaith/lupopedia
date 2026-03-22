@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\channels\doctrine\INDEX.md"
+  file_path_from_root: "lupo-docs/channels/doctrine/INDEX.md"
   file_hash: "2f018f493e4c7d4f5fda2c231386e002ccefe4cda2ceaf3bf7316b949c4f6f50"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"
@@ -88,7 +88,7 @@ file:
 Purpose: Rules, governance constraints, and doctrinal specifications.
 
 Files:
-- [3.1.20_doctrine_audit.md](3.1.20_doctrine_audit.md)
+- 3.1.20_doctrine_audit.md
 - [AGENT_AWARENESS_DOCTRINE.md](AGENT_AWARENESS_DOCTRINE.md)
 - [AGENT_CLASSIFICATION.md](AGENT_CLASSIFICATION.md)
 - [AGENT_FILESYSTEM_DOCTRINE.md](AGENT_FILESYSTEM_DOCTRINE.md)
@@ -98,7 +98,7 @@ Files:
 - [AGENT_RUNTIME.md](AGENT_RUNTIME.md)
 - [AI_INTEGRATION_SAFETY_DOCTRINE.md](AI_INTEGRATION_SAFETY_DOCTRINE.md)
 - [AI_UNCERTAINTY_EXPRESSION_DOCTRINE.md](AI_UNCERTAINTY_EXPRESSION_DOCTRINE.md)
-- [anubis_DOCTRINE.md](anubis_DOCTRINE.md)
+- anubis_DOCTRINE.md
 - [ARCHITECTURE_SYNC.md](ARCHITECTURE_SYNC.md)
 - [as_above_so_below.md](as_above_so_below.md)
 - [ATOM_RESOLUTION_SPECIFICATION.md](ATOM_RESOLUTION_SPECIFICATION.md)

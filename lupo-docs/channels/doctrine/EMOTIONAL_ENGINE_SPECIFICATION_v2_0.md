@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\channels\doctrine\EMOTIONAL_ENGINE_SPECIFICATION_v2_0.md"
+  file_path_from_root: "lupo-docs/channels/doctrine/EMOTIONAL_ENGINE_SPECIFICATION_v2_0.md"
   file_hash: "b473d0595ac2441e5871e623142e50baaf91a91c2a89ef4a1361706740e7005b"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

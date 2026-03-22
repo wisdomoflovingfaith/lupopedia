@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\channels\architecture\lupopedia_v3_0_70_agent_awareness_layer.md"
+  file_path_from_root: "lupo-docs/channels/architecture/lupopedia_v3_0_70_agent_awareness_layer.md"
   file_hash: "218b40f25242fe19c2127bf049f5126dc8cbfd7abffcd58fd1e20a462b42e5bc"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\channels\doctrine\ATOM_RESOLUTION_SPECIFICATION.md"
+  file_path_from_root: "lupo-docs/channels/doctrine/ATOM_RESOLUTION_SPECIFICATION.md"
   file_hash: "d8e18bdbc0acbd83cdd781681d544d207f81d61f77433ccafda7f2ec3ae46735"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

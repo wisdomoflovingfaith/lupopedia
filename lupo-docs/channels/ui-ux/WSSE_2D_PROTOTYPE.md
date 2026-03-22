@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\channels\ui-ux\WSSE_2D_PROTOTYPE.md"
+  file_path_from_root: "lupo-docs/channels/ui-ux/WSSE_2D_PROTOTYPE.md"
   file_hash: "207f8aa0b265144bd117ac05c503437bde211fcaf47b377b42c299d86c1f61ee"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

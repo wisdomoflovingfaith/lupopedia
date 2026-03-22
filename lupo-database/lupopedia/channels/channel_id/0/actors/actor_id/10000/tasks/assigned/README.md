@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\channels\0\actors\10000\tasks\assigned\README.md"
+  file_path_from_root: "lupo-database/lupopedia/channels/channel_id/0/actors/actor_id/10000/tasks/assigned/README.md"
   file_hash: "0ac1ce5a7613104168592d30330adeb08669e4666f0c840cf8ff972492184309"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"
@@ -68,9 +68,9 @@ Tasks are centrally managed in `/channels/0/tasks/` and referenced here for acto
 
 ## Active Tasks
 
-- [db_reset_and_install.md](../../../../tasks/active/db_reset_and_install.md) - Database Reset and Fresh Install (CRITICAL)
-- [registry_lock.md](../../../../tasks/active/registry_lock.md) - Registry Lock and Validation (HIGH)
-- [installer_integration.md](../../../../tasks/active/installer_integration.md) - Installer Integration and Testing (MEDIUM)
+- db_reset_and_install.md - Database Reset and Fresh Install (CRITICAL)
+- registry_lock.md - Registry Lock and Validation (HIGH)
+- installer_integration.md - Installer Integration and Testing (MEDIUM)
 
 ## How to Use
 

@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\channels\42\broadcasts\20260224_windsurf_kiro_dialog_fix_required.md"
+  file_path_from_root: "lupo-docs/channels/42/broadcasts/20260224_windsurf_kiro_dialog_fix_required.md"
   file_hash: "bdc535600b8b5b27b04f58cc7dfaef623fd8881a0f2f6091ad4e0920b2055813"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

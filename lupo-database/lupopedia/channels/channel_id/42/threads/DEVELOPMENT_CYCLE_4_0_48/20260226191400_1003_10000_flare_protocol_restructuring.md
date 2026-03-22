@@ -1,6 +1,6 @@
 ---
 lupopedia.headers:
-  file_path_from_root: "lupo-channels/42/threads/DEVELOPMENT_CYCLE_4_0_48/20260226191400_1003_10000_flare_protocol_restructuring.md"
+  file_path_from_root: "lupo-database/lupopedia/channels/channel_id/42/threads/DEVELOPMENT_CYCLE_4_0_48/20260226191400_1003_10000_flare_protocol_restructuring.md"
   file_hash: "f95b85f33ec7311a576841e68b554f82ce4a86511e1c15ad4db90a83921906dd"
   system_version: "4.0.50"
   channel_id: 42

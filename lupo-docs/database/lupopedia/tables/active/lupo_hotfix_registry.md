@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\database\lupopedia\tables\lupo_hotfix_registry.md"
+  file_path_from_root: "lupo-docs/database/lupopedia/tables/active/lupo_hotfix_registry.md"
   file_hash: "c4dd1e2a4d589ba4a79a42bbd79f103a697a4df948bfdbd443b1471744557a74"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

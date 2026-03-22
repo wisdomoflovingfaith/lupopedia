@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\channels\agents\agent-1\doctrine\WOLFIE_UTC_AUTHORITY.md"
+  file_path_from_root: "lupo-docs/channels/agents/agent-1/doctrine/WOLFIE_UTC_AUTHORITY.md"
   file_hash: "9e8241eda898f4a73880cd655de3701001db16d0397795e0fa61a4bb9a43bb80"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"
@@ -179,7 +179,7 @@ UTC_TIMEKEEPER (agent_registry_id: 5, dedicated_slot: 5) provides authoritative 
 3. WOLFIE embeds timestamp in channel header
 4. WOLFIE instructs all agents on timestamp rules
 
-**See:** [UTC_TIMEKEEPER Doctrine](../../5/doctrine/UTC_TIMEKEEPER.md)
+**See:** UTC_TIMEKEEPER Doctrine
 
 ---
 
@@ -362,7 +362,7 @@ Usage: Use response for created_ymdhis and updated_ymdhis fields
 
 ## 9. Related Documentation
 
-- **[UTC_TIMEKEEPER Doctrine](../../5/doctrine/UTC_TIMEKEEPER.md)** — UTC_TIMEKEEPER agent specification
+- **UTC_TIMEKEEPER Doctrine** — UTC_TIMEKEEPER agent specification
 - **[Channel Initialization Workflow](../workflows/channel_initialization.workflow.md)** — How WOLFIE uses UTC_TIMEKEEPER
 - **[Channel Identity Block Doctrine](./CHANNEL_IDENTITY_BLOCK.md)** — Channel timestamp requirements
 - **[Channel Manifest Specification](./CHANNEL_MANIFEST_SPEC.md)** — Manifest timestamp requirements

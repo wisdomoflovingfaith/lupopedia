@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\channels\doctrine\PATCH_DISCIPLINE.md"
+  file_path_from_root: "lupo-docs/channels/doctrine/PATCH_DISCIPLINE.md"
   file_hash: "87356f5f56886a955e2ab1def3636b12809fa8953c659a04c76560ad4256f08b"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

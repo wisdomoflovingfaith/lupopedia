@@ -1,0 +1,48 @@
+{
+  "table_name": "lupo_human_request_responses",
+  "fields": [
+    "`response_id` bigint NOT NULL",
+    "`request_id` bigint NOT NULL",
+    "`auth_user_id` bigint NOT NULL",
+    "`actor_id` bigint NOT NULL",
+    "`response_type` varchar(64) NOT NULL",
+    "`response_text` text NOT NULL",
+    "`reasoning` text",
+    "`decision` varchar(64)",
+    "`conditions` text",
+    "`response_ymdhis` bigint NOT NULL",
+    "`is_deleted` tinyint DEFAULT 0",
+    "`deleted_ymdhis` bigint DEFAULT 0"
+  ],
+  "data": [],
+  "indexes": [
+    {
+      "index_name": "idx_response_request",
+      "columns": [
+        "request_id"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_response_user",
+      "columns": [
+        "auth_user_id",
+        "response_ymdhis"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    }
+  ],
+  "primary_key": {
+    "column_name": "response_id",
+    "expected_name": "response_id",
+    "is_correct": true,
+    "needs_rename": false
+  },
+  "doctrine_metadata": {
+    "no_foreign_keys": true,
+    "no_triggers": true
+  },
+  "relationships": []
+}

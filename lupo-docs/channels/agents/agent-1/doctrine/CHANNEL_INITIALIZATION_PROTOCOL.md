@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\channels\agents\agent-1\doctrine\CHANNEL_INITIALIZATION_PROTOCOL.md"
+  file_path_from_root: "lupo-docs/channels/agents/agent-1/doctrine/CHANNEL_INITIALIZATION_PROTOCOL.md"
   file_hash: "92a975337f0017530179e113b8daee3232ef524e2a90cc8c3fe219e0a12c5e4b"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"
@@ -196,9 +196,9 @@ The Channel Initialization Workflow defines the step-by-step process for creatin
 
 ## Related Documentation
 
-- **[Channel Dialog Agent Workflows](../../../docs/ARCHITECTURE/CHANNEL_DIALOG_AGENT_WORKFLOWS.md)** — How agents interact with channels
-- **[Channel Dialog Schema Review](../../../docs/ARCHITECTURE/CHANNEL_DIALOG_SCHEMA_REVIEW.md)** — Database schema for channels
-- **[Dialogs and Channels Architecture](../../../docs/ARCHITECTURE/DIALOGS_AND_CHANNELS.md)** — Thread vs channel distinction
+- **[Channel Dialog Agent Workflows](../../../dialogs/architecture/CHANNEL_DIALOG_AGENT_WORKFLOWS.md)** — How agents interact with channels
+- **[Channel Dialog Schema Review](../../../dialogs/architecture/CHANNEL_DIALOG_SCHEMA_REVIEW.md)** — Database schema for channels
+- **[Dialogs and Channels Architecture](../../../dialogs/architecture/DIALOGS_AND_CHANNELS.md)** — Thread vs channel distinction
 
 ---
 

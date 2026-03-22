@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\channels\doctrine\META_AGENTS.md"
+  file_path_from_root: "lupo-docs/channels/doctrine/META_AGENTS.md"
   file_hash: "55b56c6469bbab99b1f3ae913a9ab8a1fe88b1ee761878dd9c796fcc16844d79"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

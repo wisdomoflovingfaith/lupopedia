@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\channels\doctrine\legacy-import\deprecated\DEPRECATED_EMOTIONAL_GEOMETRY.md"
+  file_path_from_root: "lupo-docs/channels/doctrine/legacy-import/deprecated/DEPRECATED_EMOTIONAL_GEOMETRY.md"
   file_hash: "793773b2d95939f8d797ca8fd80347fca6284dcf1042458195ddbf4638bc046e"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"
@@ -318,8 +318,8 @@ Replace functions like:
 
 ### 8.1 Current Documentation
 - [EMOTIONAL_GEOMETRY_DOCTRINE.md](../EMOTIONAL_GEOMETRY_DOCTRINE.md) - Canonical 2-actor model
-- [MOOD_RGB_DOCTRINE.md](../MOOD_RGB_DOCTRINE.md) - RGB mood specification
-- [COUNTING_IN_LIGHT.md](../appendix/COUNTING_IN_LIGHT.md) - Discrete value foundation
+- [MOOD_RGB_DOCTRINE.md](../../MOOD_RGB_DOCTRINE.md) - RGB mood specification
+- COUNTING_IN_LIGHT.md - Discrete value foundation
 
 ### 8.2 Migration Support
 - Contact development team for migration assistance

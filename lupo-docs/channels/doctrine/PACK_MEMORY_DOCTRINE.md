@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\channels\doctrine\PACK_MEMORY_DOCTRINE.md"
+  file_path_from_root: "lupo-docs/channels/doctrine/PACK_MEMORY_DOCTRINE.md"
   file_hash: "5c7d6341b055a9492f92af19a6f04196be070e009d7e6eff59c15476f0ae331e"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"
@@ -412,8 +412,8 @@ $handoffs = $service->handoffs('TerminalAI_001');
 
 ## Related Documentation
 
-- **[PACK_BEHAVIOR_DOCTRINE.md](lupo-docs/PACK_BEHAVIOR_DOCTRINE.md)** - Pack behavioral layer (3.0.109)
-- **[EMOTIONAL_GEOMETRY.md](lupo-docs/doctrine/EMOTIONAL_GEOMETRY.md)** - Emotional geometry doctrine (3.0.108)
+- **[PACK_BEHAVIOR_DOCTRINE.md](PACK_BEHAVIOR_DOCTRINE.md)** - Pack behavioral layer (3.0.109)
+- **[EMOTIONAL_GEOMETRY.md](EMOTIONAL_GEOMETRY.md)** - Emotional geometry doctrine (3.0.108)
 
 ---
 

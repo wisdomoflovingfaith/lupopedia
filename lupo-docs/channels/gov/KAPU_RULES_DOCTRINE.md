@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\channels\gov\KAPU_RULES_DOCTRINE.md"
+  file_path_from_root: "lupo-docs/channels/gov/KAPU_RULES_DOCTRINE.md"
   file_hash: "6b6b807dfcdff375c0f5447cd0117c5c5741867aee29c03e86406ad19c4f87c7"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

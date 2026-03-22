@@ -43,6 +43,6 @@ No code changes required unless you choose to patch docs.
 
 ---
 
-**Done:** [010000_lilith_prompts-complete-review](lupo-channels/42/threads/1001/20260318_010000_lilith_prompts-complete-review.md) · [010000_hermes_action_lilith_prompt-executed](lupo-channels/42/prompts/20260318_010000_hermes_action_lilith_prompt-executed.md)
+**Done:** [010000_lilith_prompts-complete-review](../threads/1001/20260318_010000_lilith_prompts-complete-review.md) · [010000_hermes_action_lilith_prompt-executed](20260318_010000_hermes_action_lilith_prompt-executed.md)
 
 *HERMES handoff.*

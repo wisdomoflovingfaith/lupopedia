@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\channels\overview\index\MASTER_INDEX.md"
+  file_path_from_root: "lupo-docs/channels/overview/index/MASTER_INDEX.md"
   file_hash: "fbd5b35b839806355dbcc4fb105bc1e06aae1e44b2002d632f00643c7d2ab182"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"
@@ -182,8 +182,8 @@ lupo-docs/
 
 ### Development References (`/docs/dev/`)
 
-- **[Getting Started](../dev/GETTING_STARTED.md)** - Installation and setup guide
-- **[Development Guide](../dev/DEVELOPMENT_GUIDE.md)** - Development best practices
+- **Getting Started** - Installation and setup guide
+- **Development Guide** - Development best practices
 
 ---
 
@@ -214,7 +214,7 @@ All new subsystems are fully integrated with:
 
 - **For implementers**: Start with [Doctrines README](../../doctrine/doctrines/README.md)
 - **For agents**: Review [Agent Guidelines](../../agents/AGENT_GUIDELINES.md)
-- **For developers**: See [Getting Started](../dev/GETTING_STARTED.md)
+- **For developers**: See Getting Started
 - **For system architects**: Read [Core Architecture](../../architecture/ARCHITECTURE.md)
 
 ### Search Strategy

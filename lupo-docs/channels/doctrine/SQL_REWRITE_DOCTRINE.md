@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\channels\doctrine\SQL_REWRITE_DOCTRINE.md"
+  file_path_from_root: "lupo-docs/channels/doctrine/SQL_REWRITE_DOCTRINE.md"
   file_hash: "c3f9e39048118a176e507c83b0d37757a91e6d5f7af3d6abe7de0665da7ef4bd"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

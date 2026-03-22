@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\channels\kernel\systems\AFFECTIVE_DISCREPANCY_ENGINE.md"
+  file_path_from_root: "lupo-docs/channels/kernel/systems/AFFECTIVE_DISCREPANCY_ENGINE.md"
   file_hash: "a9c5be973543241952ebf94e2a6ec3e9fc03fb979d7e4ab3f4d9fa932dc54ae1"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

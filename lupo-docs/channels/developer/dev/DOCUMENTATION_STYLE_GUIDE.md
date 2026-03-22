@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\channels\developer\dev\DOCUMENTATION_STYLE_GUIDE.md"
+  file_path_from_root: "lupo-docs/channels/developer/dev/DOCUMENTATION_STYLE_GUIDE.md"
   file_hash: "31ffc902cba5bd908d080e0ea5230881e502d9a50455c80cd231730e71d5a16f"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"
@@ -107,7 +107,7 @@ Each document should include:
 - Write for **global English** speakers
 
 ### Terminology
-- Use terms consistently as defined in [TERMINOLOGY.md](../TERMINOLOGY.md)
+- Use terms consistently as defined in [TERMINOLOGY.md](../../appendix/appendix/TERMINOLOGY.md)
 - **Bold** key terms on first use
 - Use `code font` for:
   - File paths: `lupo-docs/ARCHITECTURE.md`
@@ -177,7 +177,7 @@ Format: `purpose_description.ext` (e.g., `architecture_overview.png`)
 
 ### Alt Text
 ```markdown
-![Description of image for accessibility](path/to/image.png)
+!Description of image for accessibility
 ```
 
 ### Mermaid Diagrams
@@ -195,7 +195,7 @@ graph TD
 
 ### Internal Links
 ```markdown
-[Link text](relative/path/to/file.md#section-id)
+Link text
 ```
 
 ### External Links

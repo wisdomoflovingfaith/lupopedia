@@ -1,6 +1,6 @@
 ---
 lupopedia.headers:
-  file_path_from_root: "lupo-docs/database/lupopedia/tables/crm_leads.md"
+  file_path_from_root: "lupo-docs/database/lupopedia/tables/deprecated/crm_leads.md"
   file_hash: "fcb926e9d9d2628ad7573d3b21a071649695e62d7759fe31a23e983eb315804f"
   system_version: "4.0.50"
   channel_id: 0

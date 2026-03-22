@@ -190,14 +190,14 @@ lupopedia.footer:
 
 #### Proposed Style
 ```
-- Validator enhanced for namespace: [`validate_lupopedia_headers.php`](lupo-scripts/validate_lupopedia_headers.php)
-- Namespace audit generated: [`namespace_audit_4_0.78.md`](lupo-docs/status/namespace_audit_4_0.78.md)
+- Validator enhanced for namespace: [`validate_lupopedia_headers.php`](../../lupo-scripts/validate_lupopedia_headers.php)
+- Namespace audit generated: `namespace_audit_4_0.78.md`
 ```
 
 #### Linking Rules
 | Element | Style | Example |
 |---------|-------|---------|
-| **Files** | Markdown links | [`file.md`](path/to/file.md) |
+| **Files** | Markdown links | `file.md` |
 | **Commands** | Inline code | `php validate_lupopedia_headers.php` |
 | **Variables** | Inline code | `namespace: "auth"` |
 | **Code snippets** | Code blocks | ```php ... ``` |
@@ -309,4 +309,4 @@ lupopedia.footer:
 
 ## 11. Cursor cleanup pass (4.0.78, post-audit)
 
-Cursor completed a compliance cleanup pass: (1) File-reference style in CHANGELOG, PLAN, TODO updated to Markdown links (Option A). (2) Namespace and 4.0.78 headers applied to lupo_sessions, lupo_contents, lupo_agent_faucets, lupo_comments, lupo_uploads, lupo_visits, lupo_dialog_messages. (3) [apply_namespace_to_table_docs.py](lupo-scripts/apply_namespace_to_table_docs.py) updated to handle Windows `\r\n` line endings. (4) Reports refreshed: namespace audit 136 missing / 213 valid; header version report 17 at 4.0.78 / 333 requiring update. Backlog reduced but not eliminated; next pass can continue from current reports.
+Cursor completed a compliance cleanup pass: (1) File-reference style in CHANGELOG, PLAN, TODO updated to Markdown links (Option A). (2) Namespace and 4.0.78 headers applied to lupo_sessions, lupo_contents, lupo_agent_faucets, lupo_comments, lupo_uploads, lupo_visits, lupo_dialog_messages. (3) [apply_namespace_to_table_docs.py](../../lupo-scripts/apply_namespace_to_table_docs.py) updated to handle Windows `\r\n` line endings. (4) Reports refreshed: namespace audit 136 missing / 213 valid; header version report 17 at 4.0.78 / 333 requiring update. Backlog reduced but not eliminated; next pass can continue from current reports.

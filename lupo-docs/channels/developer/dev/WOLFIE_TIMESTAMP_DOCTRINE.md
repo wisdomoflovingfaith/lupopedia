@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\channels\developer\dev\WOLFIE_TIMESTAMP_DOCTRINE.md"
+  file_path_from_root: "lupo-docs/channels/developer/dev/WOLFIE_TIMESTAMP_DOCTRINE.md"
   file_hash: "7121e9c9b748a61798cd8b9c530f0fe5f97996032186046470622011ad005311"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

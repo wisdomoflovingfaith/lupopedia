@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\actors\10000\history\resume.md"
+  file_path_from_root: "lupo-database/lupopedia/actors/actor_id/10000/history/resume.md"
   file_hash: "b94f116712e25e0dff3f16a95df1dbae215a91e4de491d6c9ba245d0e26a531f"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

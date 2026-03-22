@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\channels\gov\SCHEMA_EVOLUTION_PROTOCOL.md"
+  file_path_from_root: "lupo-docs/channels/gov/SCHEMA_EVOLUTION_PROTOCOL.md"
   file_hash: "d556c7582c7f58f651268318e62ea5ed664b20203c0e53237c20046ebf74321d"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

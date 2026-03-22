@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\channels\dev-teams\governance\UTC_DAY_GOVERNANCE.md"
+  file_path_from_root: "lupo-docs/channels/dev-teams/governance/UTC_DAY_GOVERNANCE.md"
   file_hash: "f3f65e642608a9d416a5c0bb8a12f811c68b6735d8b0b7c99756f66e3368134a"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

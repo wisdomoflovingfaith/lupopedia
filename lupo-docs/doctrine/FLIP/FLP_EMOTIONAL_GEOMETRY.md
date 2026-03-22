@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\doctrine\FLIP\FLP_EMOTIONAL_GEOMETRY.md"
+  file_path_from_root: "lupo-docs/doctrine/FLIP/FLP_EMOTIONAL_GEOMETRY.md"
   file_hash: "b2a2b132e7d6caf45c06249ba96ac0a4cc2b5524ef99b2fe29e3cd5307663859"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

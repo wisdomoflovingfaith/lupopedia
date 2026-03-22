@@ -8,7 +8,7 @@ lupopedia.init:
   environment: "lupopedia-core"
 
 lupopedia.metadata:
-  file_path_from_root: "docs/planning/bayesian_decision_tracking_TASKS.md"
+  file_path_from_root: "lupo-docs/planning/bayesian_decision_tracking_TASKS.md"
   artifact_type: "planning-tasks"
   artifact_kind: "task-breakdown"
   purpose: "Atomic task breakdown for Bayesian Decision Tracking System implementation"

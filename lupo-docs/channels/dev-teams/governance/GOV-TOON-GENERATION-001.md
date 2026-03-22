@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\channels\dev-teams\governance\GOV-TOON-GENERATION-001.md"
+  file_path_from_root: "lupo-docs/channels/dev-teams/governance/GOV-TOON-GENERATION-001.md"
   file_hash: "5a300c3bfc4c1da4fc4bbf71ec49cbd3dc4fa7bf875a248416cdd7ab1197973e"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

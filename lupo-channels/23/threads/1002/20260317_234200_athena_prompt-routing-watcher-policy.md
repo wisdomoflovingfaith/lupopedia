@@ -28,7 +28,7 @@ lupopedia.footer:
 
 # ATHENA_STRATEGY — HERMES classification & filesystem watcher (004504 + 022040)
 
-**Closes:** [004504](lupo-channels/42/prompts/20260318_004504_hermes_prompt_athena_prompt-routing-policy.md) · [022040](lupo-channels/42/prompts/20260318_022040_hermes_prompt_athena_externalai-batch.md)
+**Closes:** [004504](../../../42/prompts/20260318_004504_hermes_prompt_athena_prompt-routing-policy.md) · [022040](../../../42/prompts/20260318_022040_hermes_prompt_athena_externalai-batch.md)
 
 ---
 

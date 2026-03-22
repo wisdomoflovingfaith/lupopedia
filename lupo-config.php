@@ -46,7 +46,15 @@ if (!defined('LUPOPEDIA_DEBUG')) {
 
 // Version information
 if (!defined('LUPOPEDIA_VERSION')) {
-    define('LUPOPEDIA_VERSION', '4.0.47');
+    $lupo_version = null;
+    $atoms_loader = LUPOPEDIA_PATH . 'lupo-includes/functions/load_atoms.php';
+    if (is_file($atoms_loader)) {
+        require_once $atoms_loader;
+        if (function_exists('get_lupopedia_version')) {
+            $lupo_version = get_lupopedia_version();
+        }
+    }
+    define('LUPOPEDIA_VERSION', ($lupo_version !== null && $lupo_version !== '') ? $lupo_version : '0.0.0');
 }
 
 // Mark config as loaded

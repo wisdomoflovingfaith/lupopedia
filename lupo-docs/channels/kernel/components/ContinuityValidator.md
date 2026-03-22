@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\channels\kernel\components\ContinuityValidator.md"
+  file_path_from_root: "lupo-docs/channels/kernel/components/ContinuityValidator.md"
   file_hash: "d1769bbb2571127ce4c8b573f62acc4724186a1aa5b303b208d46ae74b60834b"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

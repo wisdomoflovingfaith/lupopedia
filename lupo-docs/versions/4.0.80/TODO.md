@@ -31,7 +31,7 @@ lupopedia.footer:
 **Date:** 2026-03-18  
 **Status:** RELEASED AND CLOSED
 - **Theme:** Completion of Top 50 operational table documentation + Bayesian Decision Tracking expansion
-- **Source:** Carried over from 4.0.79 incomplete tasks. Pattern: [TABLE_DOCUMENTATION_4_0_77_STOP_LINE.md](lupo-docs/status/TABLE_DOCUMENTATION_4_0_77_STOP_LINE.md).
+- **Source:** Carried over from 4.0.79 incomplete tasks. Pattern: [TABLE_DOCUMENTATION_4_0_77_STOP_LINE.md](../../status/TABLE_DOCUMENTATION_4_0_77_STOP_LINE.md).
 - **Coordination:** Multi-agent **execution** (who owns prompt handoffs, channel stabilization) — **[root `TODO.md`](../../../TODO.md)** per [MULTI_AGENT §9](../../../lupo-rules/root/MULTI_AGENT_COORDINATION_DOCTRINE.md). **This file** = **4.0.80 product backlog** (Top 50, Bayesian, migration notes); link to root TODO when a backlog item is in active cross-agent execution.
 
 ## Z. Channel-Based Coordination Migration (NEW)

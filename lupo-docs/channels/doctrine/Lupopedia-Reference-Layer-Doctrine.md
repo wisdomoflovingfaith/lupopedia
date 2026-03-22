@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\channels\doctrine\Lupopedia-Reference-Layer-Doctrine.md"
+  file_path_from_root: "lupo-docs/channels/doctrine/Lupopedia-Reference-Layer-Doctrine.md"
   file_hash: "d9d40ca270ceba43fbb0a6016ccb1fac437699ed90b80829815f2c69c72ec779"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

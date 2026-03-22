@@ -49,7 +49,7 @@ lupopedia.conditional:
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "task"
-  file_path_from_root: "lupo-database/lupopedia/channels/lupo-channels/42/threads/DEVELOPMENT_CYCLE_4_0_56/tasks/registry_lock.md"
+  file_path_from_root: "lupo-database/lupopedia/channels/channel_id/42/threads/DEVELOPMENT_CYCLE_4_0_56/tasks/registry_lock.md"
   file_hash: "8f789fc9ee1e97c9da590bdb950d80dba1b0b7743490bf8ca516b400569de55f"
   last_updated_utc: "20260304"
   system_version: "4.0.56"

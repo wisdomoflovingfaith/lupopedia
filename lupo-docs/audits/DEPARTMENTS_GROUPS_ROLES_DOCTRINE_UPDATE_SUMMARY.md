@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\audits\DEPARTMENTS_GROUPS_ROLES_DOCTRINE_UPDATE_SUMMARY.md"
+  file_path_from_root: "lupo-docs/audits/DEPARTMENTS_GROUPS_ROLES_DOCTRINE_UPDATE_SUMMARY.md"
   file_hash: "8c0665efccce20566406d0ebd9661aa34cbeff2c96753031c4a7d151619f72b8"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

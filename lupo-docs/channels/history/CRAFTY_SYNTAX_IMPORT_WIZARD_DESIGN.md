@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\channels\history\CRAFTY_SYNTAX_IMPORT_WIZARD_DESIGN.md"
+  file_path_from_root: "lupo-docs/channels/history/CRAFTY_SYNTAX_IMPORT_WIZARD_DESIGN.md"
   file_hash: "f07931c36ba1cdd12988c6874ca542ae80a67fa98973aee408a3ae99ef6c1556"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

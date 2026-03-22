@@ -267,7 +267,7 @@ Replace:
 With:
 ```
 11. **Top 50 table documentation**
-   - [ ] Complete documentation for top 50 operational tables by domain priority (core, channels, auth, content, analytics). See [review_of_cursor_cleanup_and_top_50_table_plan.md](lupo-docs/status/review_of_cursor_cleanup_and_top_50_table_plan.md) for complete list and priorities.
+   - [ ] Complete documentation for top 50 operational tables by domain priority (core, channels, auth, content, analytics). See [review_of_cursor_cleanup_and_top_50_table_plan.md](review_of_cursor_cleanup_and_top_50_table_plan.md) for complete list and priorities.
 ```
 
 #### PLAN.md Section Updates

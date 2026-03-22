@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\tests\output\log_writer\checksum_test.md"
+  file_path_from_root: "lupo-tests/output/log_writer/checksum_test.md"
   file_hash: "7599db5a2f8d5456e26b54182bcef261d394210961f6e8d05ff76d6b261dbbc7"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

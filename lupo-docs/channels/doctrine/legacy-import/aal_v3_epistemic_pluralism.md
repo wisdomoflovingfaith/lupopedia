@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\channels\doctrine\legacy-import\aal_v3_epistemic_pluralism.md"
+  file_path_from_root: "lupo-docs/channels/doctrine/legacy-import/aal_v3_epistemic_pluralism.md"
   file_hash: "fecdc6c4ca2360151034b0a5a23f952a06b00a80755b35c0ffdfa20ea2acef51"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

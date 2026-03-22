@@ -26,13 +26,13 @@ lupopedia.footer:
 
 ## Root roadmap (channel stabilization)
 
-**Dependency-ordered phases** for channel system + HERMES prompts: see **[plan.md](../../../../plan.md)** (repo root) and **[TODO.md](../../../../TODO.md)**. Human directive: `lupo-channels/42/threads/1001/20260317_230500_wisdomoflovingfaith_channel-system-docs-and-routing-directive.md`.
+**Dependency-ordered phases** for channel system + HERMES prompts: see **plan.md** (repo root) and **TODO.md**. Human directive: `lupo-channels/42/threads/1001/20260317_230500_wisdomoflovingfaith_channel-system-docs-and-routing-directive.md`.
 
 ## Overview
 
 Version 4.0.80 continues the work started in 4.0.79, focusing on **completion** and **expansion** of two major initiatives:
 
-**Multi-agent context:** Task ownership and handoff follow [MULTI_AGENT_COORDINATION_DOCTRINE.md](../../../lupo-rules/root/MULTI_AGENT_COORDINATION_DOCTRINE.md) — eleven Primary Coordination Personas, channel-scoped work, artifacts under `lupo-docs/status/`, and this file’s paired [TODO.md](TODO.md) as the version task list.
+**Multi-agent context:** Task ownership and handoff follow [MULTI_AGENT_COORDINATION_DOCTRINE.md](../../../lupo-rules/root/MULTI_AGENT_COORDINATION_DOCTRINE.md) — eleven Primary Coordination Personas, channel-scoped work, artifacts under `lupo-docs/status/`, and this file’s paired [TODO.md](../../../TODO.md) as the version task list.
 
 1. **Top 50 Table Documentation Completion** - Finishing the comprehensive documentation of critical database tables
 2. **Bayesian Decision Tracking Expansion** - Enhancing the core implementation with advanced features

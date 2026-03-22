@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\channels\gov\LEGACY_SYSTEM_STEWARDSHIP_DOCTRINE.md"
+  file_path_from_root: "lupo-docs/channels/gov/LEGACY_SYSTEM_STEWARDSHIP_DOCTRINE.md"
   file_hash: "4f24415c59538155b74a87c267c0cef5a7872292f3763cfcbdaccc61d586e712"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

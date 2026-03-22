@@ -26,7 +26,7 @@ lupopedia.headers:
 **Created:** 2026-03-06  
 **Lead Agent:** Cursor (actor_name: cursor)
 
-**Config path (canonical):** This thread is also available at the path defined in **lupopedia-config.php**: `LUPO_CHANNELS_DIR` = `lupo-channels` → [lupo-channels/0/threads/VERSION_4.0.61/](../../../../../../../../lupo-channels/0/threads/VERSION_4.0.61/README.md). Prefer that path when resolving from config.
+**Config path (canonical):** This thread is also available at the path defined in **lupopedia-config.php**: `LUPO_CHANNELS_DIR` = `lupo-channels` → lupo-channels/0/threads/VERSION_4.0.61/. Prefer that path when resolving from config.
 
 ## Overview
 
@@ -49,7 +49,7 @@ This thread contains all documentation and implementation details for Lupopedia 
 
 | File | Description |
 |------|-------------|
-| [CHANGELOG.md](CHANGELOG.md) | Version 4.0.61 changelog entries |
+| [CHANGELOG.md](../../../../../../../CHANGELOG.md) | Version 4.0.61 changelog entries |
 | [dual_identity.md](dual_identity.md) | Dual-identity runtime context implementation |
 | [help_system.md](help_system.md) | HelpRenderer and HELP.md documentation |
 | [session_format.md](session_format.md) | Session file format |
@@ -75,10 +75,10 @@ See feature docs for class roles; implementation lives in repo:
 
 ## Related Documentation
 
-- [lupo-docs/HELP.md](../../../../../../../docs/HELP.md) — Main help hub (from project root)
-- [lupo-docs/lupopedia_whoami_readme.md](../../../../../../../docs/lupopedia_whoami_readme.md) — Identity documentation
-- [lupo-docs/auth.md](../../../../../../../docs/auth.md) — Auth and actor context
-- [lupo-docs/version.md](../../../../../../../docs/version.md) — Version history
+- lupo-docs/HELP.md — Main help hub (from project root)
+- [lupo-docs/lupopedia_whoami_readme.md](../../../../../../../lupo-docs/lupopedia_whoami_readme.md) — Identity documentation
+- [lupo-docs/auth.md](../../../../../../../lupo-docs/auth.md) — Auth and actor context
+- [lupo-docs/version.md](../../../../../../../lupo-docs/version.md) — Version history
 - [lupo-database/session.md](../../../../../../session.md) — Session file
 
 ## Version Information
@@ -110,4 +110,4 @@ See feature docs for class roles; implementation lives in repo:
 ---
 
 **Last Updated:** 2026-03-06  
-**For more information:** See [lupo-docs/HELP.md](../../../../../../../docs/HELP.md)
+**For more information:** See lupo-docs/HELP.md

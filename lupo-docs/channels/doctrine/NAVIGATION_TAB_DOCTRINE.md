@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\channels\doctrine\NAVIGATION_TAB_DOCTRINE.md"
+  file_path_from_root: "lupo-docs/channels/doctrine/NAVIGATION_TAB_DOCTRINE.md"
   file_hash: "973dceb620fb0193b50fa074f34573e66dde1123f2260553b7265c00f7a6e15c"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

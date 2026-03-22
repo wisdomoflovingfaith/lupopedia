@@ -49,7 +49,7 @@ lupopedia.conditional:
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: "lupo-docs\archive\v4.0.52_windsurf_reports\windsurf_hardening_complete.md"
+  file_path_from_root: "lupo-docs/archive/v4.0.52_windsurf_reports/windsurf_hardening_complete.md"
   file_hash: "389afe30eac54802299a4f86cf7bd7ae3b13d35e94bb18126da5eaaf4f8ea371"
   last_updated_utc: "20260304"
   system_version: "4.0.56"

@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\OPERATOR_TABLES_REMOVAL_AND_ROLE_VERIFICATION_REPORT.md"
+  file_path_from_root: "lupo-docs/audits/OPERATOR_TABLES_REMOVAL_AND_ROLE_VERIFICATION_REPORT.md"
   file_hash: "2095c81b8f884ca8d3c76054ec498dfb3379ed7a2b2e30f5aa20ce3a9bc0cb80"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

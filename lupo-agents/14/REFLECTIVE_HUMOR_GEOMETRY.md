@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\lupo-agents\14\REFLECTIVE_HUMOR_GEOMETRY.md"
+  file_path_from_root: "lupo-agents/14/REFLECTIVE_HUMOR_GEOMETRY.md"
   file_hash: "c02f2f0347415a7121654db6a908d75fd2e4d02aceba71e022be334f47812047"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

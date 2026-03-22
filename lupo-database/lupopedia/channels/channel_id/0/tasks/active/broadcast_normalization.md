@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\channels\0\tasks\active\broadcast_normalization.md"
+  file_path_from_root: "lupo-database/lupopedia/channels/channel_id/0/tasks/active/broadcast_normalization.md"
   file_hash: "f49fcfc0f832e9a5de98ed39e58ade49e12b8ea3ab3d962a42d2d80c85892066"
   last_updated_utc: "20260228155738"
   system_version: "4.0.73"

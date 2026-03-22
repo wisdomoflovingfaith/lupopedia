@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\tests\output\log_writer\flip_header_test.md"
+  file_path_from_root: "lupo-tests/output/log_writer/flip_header_test.md"
   file_hash: "939880b426ce9550e33509050ea39a4dd643234782bcbe8a870e4bc2357d5db3"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

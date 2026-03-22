@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\channels\doctrine\DOCTRINE_EMOTIONAL_LOGGING.md"
+  file_path_from_root: "lupo-docs/channels/doctrine/DOCTRINE_EMOTIONAL_LOGGING.md"
   file_hash: "ae98d845e48648911596122ce8a25dcae975d938903c6e8abf7be6ffbc3076f6"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

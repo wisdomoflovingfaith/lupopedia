@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\channels\42\broadcasts\20260223_system_wide_version_alignment_4_0_36.md"
+  file_path_from_root: "lupo-docs/channels/42/broadcasts/20260223_system_wide_version_alignment_4_0_36.md"
   file_hash: "130ad13dc006c78acc5efa5b888328ed4409b768b07f1f64aeea45900afc04c6"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

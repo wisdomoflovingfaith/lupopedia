@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\channels\architecture\VERSION_3_INGESTION_RULES.md"
+  file_path_from_root: "lupo-docs/channels/architecture/VERSION_3_INGESTION_RULES.md"
   file_hash: "d01b9649f7c761ca2f9e98e846e2a94ab858c2a0083c66731a4bf3de561e84ea"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

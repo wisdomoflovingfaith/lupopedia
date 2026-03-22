@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\database\lupopedia\tables\lupo_system_commands.md"
+  file_path_from_root: "lupo-docs/database/lupopedia/tables/active/lupo_system_commands.md"
   file_hash: "72489bb261d3ec9c3e83de072fd000eb0286acb70ec849c5805d75ab74898851"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

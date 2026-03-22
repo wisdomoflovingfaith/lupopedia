@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\channels\developer\dev\INSTALLER_FLOW.md"
+  file_path_from_root: "lupo-docs/channels/developer/dev/INSTALLER_FLOW.md"
   file_hash: "9687dee45a244998c3261372a1cb2994d6bf655b7e861999867ea5a0502a2f1a"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

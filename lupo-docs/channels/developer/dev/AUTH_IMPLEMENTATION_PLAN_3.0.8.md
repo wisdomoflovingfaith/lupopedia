@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\channels\developer\dev\AUTH_IMPLEMENTATION_PLAN_3.0.8.md"
+  file_path_from_root: "lupo-docs/channels/developer/dev/AUTH_IMPLEMENTATION_PLAN_3.0.8.md"
   file_hash: "abb0c6cf0a209d02e295db34db3d34c7c19fdd4186162a8eddd2ca87c1b2c439"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

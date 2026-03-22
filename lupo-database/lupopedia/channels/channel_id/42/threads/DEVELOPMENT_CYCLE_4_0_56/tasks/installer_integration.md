@@ -49,7 +49,7 @@ lupopedia.conditional:
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "task"
-  file_path_from_root: "lupo-database/lupopedia/channels/lupo-channels/42/threads/DEVELOPMENT_CYCLE_4_0_56/tasks/installer_integration.md"
+  file_path_from_root: "lupo-database/lupopedia/channels/channel_id/42/threads/DEVELOPMENT_CYCLE_4_0_56/tasks/installer_integration.md"
   file_hash: "fb6b1c8a33b7688882b536b56df00232a0f8e9d2e6a821a5376bd17c665cc0b6"
   last_updated_utc: "20260304"
   system_version: "4.0.56"

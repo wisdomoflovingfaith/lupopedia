@@ -28,7 +28,7 @@ lupopedia.headers:
 - All HERMES prompts through 041200 are resolved; execution artifacts are present:
   - [010000_lilith_prompts-complete-review](20260318_010000_lilith_prompts-complete-review.md) ✅
   - [180000_hephaestus_prompt-execution-complete](../1002/20260318_180000_hephaestus_prompt-execution-complete.md) ✅
-  - [051500_wolfie_4.0.80_release-readiness](20260318_051500_wolfie_4.0.80_release-readiness.md) ✅
+  - [051500_wolfie_4.0.80_release-readiness](../../../51/threads/1001/20260318_051500_wolfie_4.0.80_release-readiness.md) ✅
 - [CHANGELOG.md](../../../../CHANGELOG.md), [TODO.md](../../../../TODO.md), [plan.md](../../../../plan.md) are updated and now include current state, as of 20260318.
 - [tasks.md](../../../../tasks.md) index reflects the same 4.0.80 in-progress queue and base closure items.
 

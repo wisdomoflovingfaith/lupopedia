@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\database\lupopedia\tables\MIGRATION_MAPPING_REFERENCE.md"
+  file_path_from_root: "lupo-docs/database/lupopedia/tables/MIGRATION_MAPPING_REFERENCE.md"
   file_hash: "df289e0f079d8d4ec8273077d48b72ec36ba1dad29a5eb3e115e8b4a3a9461f3"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"
@@ -99,7 +99,7 @@ These database tables should never be used in the new Lupopedia system. They exi
 This document is a concise index of legacy → Lupopedia table/behavior mappings. Use it together with `lupo-docs/notes_from_legacy_craftysyntax.md` (behavior) and the individual migration `.md` files (authoritative).
 
 > [!NOTE]
-> For historical context on the evolution from Crafty Syntax to Lupopedia and the rationale behind legacy deprecation, see the [Full Project History](file:///c:/ServBay/www/servbay/lupopedia/docs/channels/appendix/HISTORY.md).
+> For historical context on the evolution from Crafty Syntax to Lupopedia and the rationale behind legacy deprecation, see the Full Project History.
 
 ---
 

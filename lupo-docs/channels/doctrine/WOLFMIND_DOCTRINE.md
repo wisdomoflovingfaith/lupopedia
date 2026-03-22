@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\channels\doctrine\WOLFMIND_DOCTRINE.md"
+  file_path_from_root: "lupo-docs/channels/doctrine/WOLFMIND_DOCTRINE.md"
   file_hash: "f1a44d0a495738ed39059781d03a53e37b7fc2c2936c9f816037aff48c515e16"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"
@@ -492,7 +492,7 @@ WOLFMIND implements progressive enhancement:
 
 When upgrading from MySQL to Postgres + pgvector:
 
-- **See [MYSQL_TO_POSTGRES_MEMORY.md](migrations/MYSQL_TO_POSTGRES_MEMORY.md)** for complete migration specification
+- **See [MYSQL_TO_POSTGRES_MEMORY.md](../appendix/appendix/MYSQL_TO_POSTGRES_MEMORY.md)** for complete migration specification
 - All memory tables must be converted using exact type mappings
 - Vector tables (`memory_embeddings`, `memory_semantic_index`) are created separately
 - No foreign keys added during migration

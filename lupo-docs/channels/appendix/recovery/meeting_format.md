@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\channels\appendix\recovery\meeting_format.md"
+  file_path_from_root: "lupo-docs/channels/appendix/recovery/meeting_format.md"
   file_hash: "6ab872e019ad9a23b3870bf0e777c53733d66632d34403bedeee80540cd1856a"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

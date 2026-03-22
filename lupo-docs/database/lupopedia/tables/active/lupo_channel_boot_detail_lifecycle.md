@@ -1,6 +1,6 @@
 ---
 lupopedia.headers:
-  file_path_from_root: "lupo-docs/database/lupopedia/tables/lupo_channel_boot_detail_lifecycle.md"
+  file_path_from_root: "lupo-docs/database/lupopedia/tables/active/lupo_channel_boot_detail_lifecycle.md"
   system_version: "4.0.56"
   channel_id: 42
   actor_id: 1003

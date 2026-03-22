@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\channels\doctrine\CLASS_HEADER_COMMENT_DOCTRINE.md"
+  file_path_from_root: "lupo-docs/channels/doctrine/CLASS_HEADER_COMMENT_DOCTRINE.md"
   file_hash: "d557dce2d9107ea7c09bb4794ff41e5b2cbe22904fbc9c2c59d8e4ae69e066ec"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"
@@ -125,14 +125,14 @@ Every PHP class file MUST begin with this structure:
  */
 //
 // CLASS [CLASS_NAME] FUNCTION LIST:
-//      function [method1]([params])  - [description]
-//      function [method2]([params])  - [description]
-//      function [method3]([params])  - [description]
+//      function method1  - [description]
+//      function method2  - [description]
+//      function method3  - [description]
 //      [... all public methods listed ...]
 //
 // PRIVATE/PROTECTED METHODS:
-//      function [privateMethod1]([params])  - [description]
-//      function [privateMethod2]([params])  - [description]
+//      function privateMethod1  - [description]
+//      function privateMethod2  - [description]
 //
 // ORIGINAL CODE:
 // ---------------------------------------------------------

@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\channels\doctrine\OPERATOR_REGISTRY_DOCTRINE.md"
+  file_path_from_root: "lupo-docs/channels/doctrine/OPERATOR_REGISTRY_DOCTRINE.md"
   file_hash: "752ebda9d9813d1769994926d5e4b7c609fb06d8b526ddf5ee8b80c23eed49ee"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

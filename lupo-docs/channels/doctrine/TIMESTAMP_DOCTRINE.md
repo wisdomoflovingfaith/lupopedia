@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\channels\doctrine\TIMESTAMP_DOCTRINE.md"
+  file_path_from_root: "lupo-docs/channels/doctrine/TIMESTAMP_DOCTRINE.md"
   file_hash: "9751fe0a4cff3925904ef17a7e72b770756c1a23cc946a5a81606b95c8d7e7f6"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

@@ -5,7 +5,7 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "ANUBIS_VISHWAKARMA_VERIFICATION_REPORT_4.0.45.md"
+  file_path_from_root: "lupo-docs/audits/ANUBIS_VISHWAKARMA_VERIFICATION_REPORT_4.0.45.md"
   file_hash: "14f3b194bf193cae2391e1d39acade581defaa422c82e7bddf2be84d2f5ee435"
   file_path_from_root: "ANUBIS_VISHWAKARMA_VERIFICATION_REPORT_4.0.45.md"
   file_hash: "7f22dd0e29c5df708eedb07b4309d27247ea8532e40a976b1fb6070dc48601a7"

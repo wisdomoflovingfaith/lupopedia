@@ -136,7 +136,7 @@ Version 4.0.84 implements a **major doctrine cleanup** by enforcing the single-f
 - [LUPOPEDIA_HEADERS_FORMAT.md](../../../doctrine/LUPOPEDIA_HEADERS/LUPOPEDIA_HEADERS_FORMAT.md)
 - [VERSIONING_DOCTRINE.md](../../../doctrine/VERSIONING_DOCTRINE.md)
 - [LUPOPEDIA_HEADERS README](../../../doctrine/LUPOPEDIA_HEADERS/README.md)
-- [Baseline Rewrite Rule](../../../lupo-rules/root/LUPOPEDIA_HEADERS_VERSION_BASELINE_REWRITE_RULE.md)
+- [Baseline Rewrite Rule](../../../../lupo-rules/root/LUPOPEDIA_HEADERS_VERSION_BASELINE_REWRITE_RULE.md)
 
 ## Validation
 

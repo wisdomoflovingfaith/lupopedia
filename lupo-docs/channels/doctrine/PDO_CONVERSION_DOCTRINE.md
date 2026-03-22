@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\channels\doctrine\PDO_CONVERSION_DOCTRINE.md"
+  file_path_from_root: "lupo-docs/channels/doctrine/PDO_CONVERSION_DOCTRINE.md"
   file_hash: "987688c49e7d0340aed662f079c52174e04ce8fa5349afc9fba2d41dd4c2e0f4"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

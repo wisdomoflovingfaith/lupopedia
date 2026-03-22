@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\doctrine\MESSAGE_ATTRIBUTION.md"
+  file_path_from_root: "lupo-docs/doctrine/MESSAGE_ATTRIBUTION.md"
   file_hash: "61f5deefdba59b8592ca92eee9bf71d8049f667cd8639a9a813f73edc0ba4694"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\channels\gov\AUTHORITY_AND_OVERSIGHT_RULES.md"
+  file_path_from_root: "lupo-docs/channels/gov/AUTHORITY_AND_OVERSIGHT_RULES.md"
   file_hash: "f61821ccdcc17b6ca01daa6b2c24b748a8db24132d49810a2310f5c8b8b433df"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

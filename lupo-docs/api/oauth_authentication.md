@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\oauth_authentication.md"
+  file_path_from_root: "lupo-docs/api/oauth_authentication.md"
   file_hash: "157ed1dd76d7dd4b8877a2eb243f2b17fbd9a971831f11581eec34521fa019b1"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

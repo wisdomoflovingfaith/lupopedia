@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\channels\doctrine\MASTER_BRIDGE.md"
+  file_path_from_root: "lupo-docs/channels/doctrine/MASTER_BRIDGE.md"
   file_hash: "d4c9b61b4fd4a784c665ccc9cdd7b8c7a6c53ebbef351518ff5de5a411559c1f"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

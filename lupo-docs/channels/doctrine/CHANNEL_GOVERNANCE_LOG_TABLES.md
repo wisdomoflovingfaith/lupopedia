@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\channels\doctrine\CHANNEL_GOVERNANCE_LOG_TABLES.md"
+  file_path_from_root: "lupo-docs/channels/doctrine/CHANNEL_GOVERNANCE_LOG_TABLES.md"
   file_hash: "3983e38a42e1cbea77c29266529dd48bfb2feb84d0ee6b09ac69888c4d54d0b2"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

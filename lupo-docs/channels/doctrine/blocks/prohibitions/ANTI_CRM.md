@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\channels\doctrine\blocks\prohibitions\ANTI_CRM.md"
+  file_path_from_root: "lupo-docs/channels/doctrine/blocks/prohibitions/ANTI_CRM.md"
   file_hash: "f1df5dde95c72346c1e54867b794504b7a1e75a5bcf03f6e4a5ab68a74e13dca"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"
@@ -492,7 +492,7 @@ WOLFMIND implements progressive enhancement:
 
 When upgrading from MySQL to Postgres + pgvector:
 
-- **See [MYSQL_TO_POSTGRES_MEMORY.md](migrations/MYSQL_TO_POSTGRES_MEMORY.md)** for complete migration specification
+- **See [MYSQL_TO_POSTGRES_MEMORY.md](../../../appendix/appendix/MYSQL_TO_POSTGRES_MEMORY.md)** for complete migration specification
 - All memory tables must be converted using exact type mappings
 - Vector tables (`memory_embeddings`, `memory_semantic_index`) are created separately
 - No foreign keys added during migration
@@ -545,10 +545,10 @@ This is how Lupopedia agents become truly intelligent over time.
 
 ## Related Documentation
 
-- **[Architecture Sync](../architecture/ARCHITECTURE_SYNC.md)** - Complete WOLFMIND integration with DialogManager and agent system
-- **[Database Philosophy](../architecture/DATABASE_PHILOSOPHY.md)** - Application-first validation principles that WOLFMIND follows
-- **[No Foreign Keys Doctrine](NO_FOREIGN_KEYS_DOCTRINE.md)** - Why WOLFMIND uses application-managed relationships
-- **[Agent Runtime](../agents/AGENT_RUNTIME.md)** - How agents interact with WOLFMIND memory system
-- **[MySQL to Postgres Memory](../appendix/appendix/MYSQL_TO_POSTGRES_MEMORY.md)** - Complete migration specification for memory tables
+- **Architecture Sync** - Complete WOLFMIND integration with DialogManager and agent system
+- **[Database Philosophy](../../../architecture/DATABASE_PHILOSOPHY.md)** - Application-first validation principles that WOLFMIND follows
+- **[No Foreign Keys Doctrine](../../NO_FOREIGN_KEYS_DOCTRINE.md)** - Why WOLFMIND uses application-managed relationships
+- **Agent Runtime** - How agents interact with WOLFMIND memory system
+- **[MySQL to Postgres Memory](../../../appendix/appendix/MYSQL_TO_POSTGRES_MEMORY.md)** - Complete migration specification for memory tables
 
 ---

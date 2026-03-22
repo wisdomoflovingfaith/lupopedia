@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\channels\gov\CHANNEL_CREATION_POLICY.md"
+  file_path_from_root: "lupo-docs/channels/gov/CHANNEL_CREATION_POLICY.md"
   file_hash: "65b58f4953dcbeb89747fc6bb68b066931b2882990ddf3a9827d79e75c68141f"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

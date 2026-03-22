@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\channels\agents\thoth.md"
+  file_path_from_root: "lupo-docs/channels/agents/thoth.md"
   file_hash: "709855a30ca9b115ce7ab319a62de58f6d36611497f469ac4e70dea9e1194175"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\doctrine\IDE_TASK_PRIORITY_DOCTRINE.md"
+  file_path_from_root: "lupo-docs/doctrine/IDE_TASK_PRIORITY_DOCTRINE.md"
   file_hash: "3acdfc828c28813415113d62efe640566bd15701f1344c4a80f4de95f9313634"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

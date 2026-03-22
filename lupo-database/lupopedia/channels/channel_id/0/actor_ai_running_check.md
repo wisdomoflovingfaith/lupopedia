@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "instruction"
-  file_path_from_root: "lupo-channels/0/actor_ai_running_check.md"
+  file_path_from_root: "lupo-database/lupopedia/channels/channel_id/0/actor_ai_running_check.md"
   system_version: "4.0.53"
   last_modified_utc: "20260301"
   channel_id: 0

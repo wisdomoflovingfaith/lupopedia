@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\archive\channel_420_final_messages.md"
+  file_path_from_root: "lupo-docs/archive/channel_420_final_messages.md"
   file_hash: "f3bf08724cc7c720f689e521c9c7b99ec52f233410ba8e4abedadaae15ca4115"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

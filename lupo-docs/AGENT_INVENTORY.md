@@ -2,7 +2,7 @@
 ---
 lupopedia.headers:
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\AGENT_INVENTORY.md"
+  file_path_from_root: "lupo-docs/AGENT_INVENTORY.md"
   version_when_written: "4.0.84"
   file_hash: "0a53833b5a151b71b009141bf4f68e3023f3d8405dce1f4dba5a8467ae6a9820"
   last_updated_utc: "20260228155738"
@@ -215,7 +215,7 @@ Task status is managed in specialized status documents referenced in the footer:
 *   ✅ **FLIP Footer Rollout**: Systematic application across all system files.
 *   ✅ **Semantic Scan**: Completed for 4.0.32.
 
-See [lupo-docs/status/AGENT_TASK_TRACKER.md](lupo-docs/status/AGENT_TASK_TRACKER.md) for full details.
+See lupo-docs/status/AGENT_TASK_TRACKER.md for full details.
 
 ---
 

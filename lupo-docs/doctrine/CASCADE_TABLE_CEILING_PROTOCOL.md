@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\doctrine\CASCADE_TABLE_CEILING_PROTOCOL.md"
+  file_path_from_root: "lupo-docs/doctrine/CASCADE_TABLE_CEILING_PROTOCOL.md"
   file_hash: "03ef5686c1a47e750a6acfb41c8530c47f83416d1fcb63b709245f50fdf20746"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

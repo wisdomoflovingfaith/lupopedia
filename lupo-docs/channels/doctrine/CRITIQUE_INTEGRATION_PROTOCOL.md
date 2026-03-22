@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\channels\doctrine\CRITIQUE_INTEGRATION_PROTOCOL.md"
+  file_path_from_root: "lupo-docs/channels/doctrine/CRITIQUE_INTEGRATION_PROTOCOL.md"
   file_hash: "00bc43f899f1ef5b21a797add60e6514c822a35f0ba3b917ae83dc40ae3ab0b1"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

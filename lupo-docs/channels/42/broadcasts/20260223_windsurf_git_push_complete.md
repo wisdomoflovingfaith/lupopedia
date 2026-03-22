@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\channels\42\broadcasts\20260223_windsurf_git_push_complete.md"
+  file_path_from_root: "lupo-docs/channels/42/broadcasts/20260223_windsurf_git_push_complete.md"
   file_hash: "87972ae9ae72a490aa5069b890d3afe2fc3fa49819c18a997038a2406d9cfbda"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

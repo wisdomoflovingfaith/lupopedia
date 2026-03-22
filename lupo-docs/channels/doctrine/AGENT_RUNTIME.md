@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\channels\doctrine\AGENT_RUNTIME.md"
+  file_path_from_root: "lupo-docs/channels/doctrine/AGENT_RUNTIME.md"
   file_hash: "0fd4f1a9eee550044254ab5be37c9d9185e1ba2e0ab816e4d6baa298be0764f3"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\doctrine\CONSOLIDATION_VALIDATION_REQUIREMENTS.md"
+  file_path_from_root: "lupo-docs/doctrine/CONSOLIDATION_VALIDATION_REQUIREMENTS.md"
   file_hash: "a914576a0d0609bfe26b6ed8ee61939dc909c9d9aed302976f41b73a520d8afe"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

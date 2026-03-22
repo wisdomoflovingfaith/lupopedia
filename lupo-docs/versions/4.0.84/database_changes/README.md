@@ -62,7 +62,7 @@ Version 4.0.84 includes **significant canonical schema interventions** (via Chan
 
 - [LUPOPEDIA_HEADERS_FORMAT.md](../../../doctrine/LUPOPEDIA_HEADERS/LUPOPEDIA_HEADERS_FORMAT.md)
 - [VERSIONING_DOCTRINE.md](../../../doctrine/VERSIONING_DOCTRINE.md)
-- [TOON Schema Files](../../../database/lupopedia/json/)
+- TOON Schema Files
 
 ## Validation
 

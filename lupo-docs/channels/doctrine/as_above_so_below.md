@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\channels\doctrine\as_above_so_below.md"
+  file_path_from_root: "lupo-docs/channels/doctrine/as_above_so_below.md"
   file_hash: "44d10187f42f887b0e2f19a55110a628b26612e24a204f6767385ab748e8066a"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

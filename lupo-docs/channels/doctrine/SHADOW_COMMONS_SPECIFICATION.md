@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\channels\doctrine\SHADOW_COMMONS_SPECIFICATION.md"
+  file_path_from_root: "lupo-docs/channels/doctrine/SHADOW_COMMONS_SPECIFICATION.md"
   file_hash: "3d08d138f0e25bfabafa3dad0a7dac1053747a1e3201175c7f19738dc14ab892"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"
@@ -701,7 +701,7 @@ The **Shadow Commons Specification** establishes a sovereign, ungoverned emotion
 - **[Pack Behavior Doctrine](PACK_BEHAVIOR_DOCTRINE.md)** - Shadow Commons behavioral autonomy
 - **[Pack Memory Doctrine](PACK_MEMORY_DOCTRINE.md)** - Shadow Commons memory autonomy
 - **[Pack Sync Doctrine](PACK_SYNC_DOCTRINE.md)** - Shadow Commons sync exemption
-- **[LIMITS.md](../LIMITS.md)** - LIMITS respects Shadow Commons sovereignty
+- **[LIMITS.md](LIMITS.md)** - LIMITS respects Shadow Commons sovereignty
 
 ---
 

@@ -199,7 +199,7 @@ Reported as: `session.md`, `session.md + registry`, `lupo_sessions`, or `default
 
 While the sources are different, both methods ultimately resolve to an actor in the `lupo_actors` table and are recorded in the `lupo_sessions` table, ensuring a consistent identity across the system.
 
-For more details on the web authentication flow, see [WEB_AUTH_AND_ACTOR_SELECTION.md](WEB_AUTH_AND_ACTOR_SELECTION.md).
+For more details on the web authentication flow, see WEB_AUTH_AND_ACTOR_SELECTION.md.
 
 ## Exit codes
 

@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\channels\architecture\DATABASE_PHILOSOPHY.md"
+  file_path_from_root: "lupo-docs/channels/architecture/DATABASE_PHILOSOPHY.md"
   file_hash: "8a0562df49511318a8c852704085c58f0bcaafe656dbd6c0b25d6de5301be68a"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"
@@ -278,7 +278,7 @@ Every table should have:
 
 **Nothing more.**
 
-> **ðŸ“˜ WOLFIE Timestamp Doctrine:** All timestamps MUST use the `YYYYMMDDHHIISS` format (UTC, zero-padded, numeric). See [WOLFIE_TIMESTAMP_DOCTRINE.md](DEVELOPMENT/WOLFIE_TIMESTAMP_DOCTRINE.md) for complete requirements and code examples.
+> **ðŸ“˜ WOLFIE Timestamp Doctrine:** All timestamps MUST use the `YYYYMMDDHHIISS` format (UTC, zero-padded, numeric). See [WOLFIE_TIMESTAMP_DOCTRINE.md](../developer/dev/WOLFIE_TIMESTAMP_DOCTRINE.md) for complete requirements and code examples.
 
 ---
 

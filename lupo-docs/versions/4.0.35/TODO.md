@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\versions\4.0.35\TODO.md"
+  file_path_from_root: "lupo-docs/versions/4.0.35/TODO.md"
   file_hash: "8938d069877bf09a43b9b8398a29df43742f413720df5fdabb899b4897f071ec"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

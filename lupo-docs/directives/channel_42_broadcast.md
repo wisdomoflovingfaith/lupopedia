@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\directives\channel_42_broadcast.md"
+  file_path_from_root: "lupo-docs/directives/channel_42_broadcast.md"
   file_hash: "f8fe2cca77389f6e6feb7129df5a765e74535db861df6ccc3ffe8644ecaa3252"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

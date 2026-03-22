@@ -1,0 +1,462 @@
+[
+  {
+    "task_id": "ta",
+    "thread_id": "1001",
+    "channel_id": "66",
+    "actor": "unknown",
+    "artifact_count": 27,
+    "purpose": "No purpose recorded",
+    "path": "lupo-channels\\66\\threads\\1001",
+    "latest_artifact": "20260319_190000_lilith_review_channel66_audit_routing_and_doctrine.md"
+  },
+  {
+    "task_id": "t",
+    "thread_id": "1002",
+    "channel_id": "66",
+    "actor": "wolfie:root",
+    "artifact_count": 9,
+    "purpose": "No purpose recorded",
+    "path": "lupo-channels\\66\\threads\\1002",
+    "latest_artifact": "20260319_233000_wolfie_lupopedia_headers_canonical_source_of_truth.md"
+  },
+  {
+    "task_id": "t",
+    "thread_id": "1003",
+    "channel_id": "66",
+    "actor": "wolfie:root",
+    "artifact_count": 10,
+    "purpose": "No purpose recorded",
+    "path": "lupo-channels\\66\\threads\\1003",
+    "latest_artifact": "20260319_233500_wolfie_collections_and_namespaces_system_structure.md"
+  },
+  {
+    "task_id": "task_channel88_craft",
+    "thread_id": "1004",
+    "channel_id": "88",
+    "actor": "unknown",
+    "artifact_count": 7,
+    "purpose": "No purpose recorded",
+    "path": "lupo-channels\\88\\threads\\1004",
+    "latest_artifact": "20260319_230000_wolfie_question_crafty_lupo_table_mapping.md"
+  },
+  {
+    "task_id": "task_doctrine_compliance_confirmation_001",
+    "thread_id": "1005",
+    "channel_id": "66",
+    "actor": "wolfie:r",
+    "artifact_count": 25,
+    "purpose": "WOLFIE closure a",
+    "path": "lupo-channels\\66\\threads\\1005",
+    "latest_artifact": "20260319_110000_wolfie_question_versioning_model_lupopedia_headers.md"
+  },
+  {
+    "task_id": "task_val_001",
+    "thread_id": "1006",
+    "channel_id": "7",
+    "actor": "hephaestus:implementation",
+    "artifact_count": 7,
+    "purpose": "Kickoff: implement Option A validators for TODO.md Glob",
+    "path": "lupo-channels\\7\\threads\\1006",
+    "latest_artifact": "20260318_093700_hephaestus_directive_task_val_001_kickoff.md"
+  },
+  {
+    "task_id": "task_enforcement_doctrine_001",
+    "thread_id": "1007",
+    "channel_id": "66",
+    "actor": "12",
+    "artifact_count": 1,
+    "purpose": "No purpose recorded",
+    "path": "lupo-channels\\66\\threads\\1007",
+    "latest_artifact": "20260320_150000_athena_enforcement_doctrine_for_version_when_written_correctness.md"
+  },
+  {
+    "task_id": "task_arch_001",
+    "thread_id": "1009",
+    "channel_id": "42",
+    "actor": "athe",
+    "artifact_count": 2,
+    "purpose": "No purpose recorded",
+    "path": "lupo-channels\\42\\threads\\1009",
+    "latest_artifact": "20260318_144653_athena_strategy_project-layer-model.md"
+  },
+  {
+    "task_id": "task_doc_003",
+    "thread_id": "1010",
+    "channel_id": "42",
+    "actor": "thoth:",
+    "artifact_count": 2,
+    "purpose": "No purpose recorded",
+    "path": "lupo-channels\\42\\threads\\1010",
+    "latest_artifact": "20260318_175500_thoth_doc_project-layer-integration.md"
+  },
+  {
+    "task_id": "task_impl_002",
+    "thread_id": "1011",
+    "channel_id": "7",
+    "actor": "hephaestus:implementation",
+    "artifact_count": 4,
+    "purpose": "Project-aware validati",
+    "path": "lupo-channels\\7\\threads\\1011",
+    "latest_artifact": "20260318_180000_hephaestus_impl_project-awareness.md"
+  },
+  {
+    "task_id": "task_val_002",
+    "thread_id": "1012",
+    "channel_id": "7",
+    "actor": "hephaestus:implementation",
+    "artifact_count": 3,
+    "purpose": "Authoritative validator design",
+    "path": "lupo-channels\\7\\threads\\1012",
+    "latest_artifact": "20260318_180800_hephaestus_spec_validator-complete.md"
+  },
+  {
+    "task_id": "task_doc_004",
+    "thread_id": "1014",
+    "channel_id": "42",
+    "actor": "wo",
+    "artifact_count": 4,
+    "purpose": "No purpose recorded",
+    "path": "lupo-channels\\42\\threads\\1014",
+    "latest_artifact": "20260318_170000_wolfie_directive_task_doc_004_kickoff.md"
+  },
+  {
+    "task_id": "task_release_004",
+    "thread_id": "1015",
+    "channel_id": "42",
+    "actor": "heph",
+    "artifact_count": 2,
+    "purpose": "No purpose recorded",
+    "path": "lupo-channels\\42\\threads\\1015",
+    "latest_artifact": "20260318_211843_hephaestus_thread_migration_redirect_thread_1015_to_channel_1.md"
+  },
+  {
+    "task_id": "external_ai_failure_analysis",
+    "thread_id": "1016",
+    "channel_id": "42",
+    "actor": "he",
+    "artifact_count": 2,
+    "purpose": "No purpose recorded",
+    "path": "lupo-channels\\42\\threads\\1016",
+    "latest_artifact": "20260318_211843_hephaestus_thread_migration_redirect_thread_1016_to_channel_31.md"
+  },
+  {
+    "task_id": "thread1006_reconciliation",
+    "thread_id": "1017",
+    "channel_id": "66",
+    "actor": "he",
+    "artifact_count": 2,
+    "purpose": "No purpose recorded",
+    "path": "lupo-channels\\66\\threads\\1017",
+    "latest_artifact": "20260318_211805_hephaestus_thread_migration_redirect_thread_1017_to_channel_66.md"
+  },
+  {
+    "task_id": "task_val_003",
+    "thread_id": "1018",
+    "channel_id": "7",
+    "actor": "hephaes",
+    "artifact_count": 6,
+    "purpose": "V-THREAD-001..005 thread continuity validator \u2014 rules, mapping, tests, thread 1006 reconciliation",
+    "path": "lupo-channels\\7\\threads\\1018",
+    "latest_artifact": "20260318_211805_hephaestus_thread_migration_redirect_thread_1018_to_channel_7.md"
+  },
+  {
+    "task_id": "task_val_004",
+    "thread_id": "1019",
+    "channel_id": "7",
+    "actor": "athena:strategy",
+    "artifact_count": 5,
+    "purpose": "V-PROJECT layer: global coherence a",
+    "path": "lupo-channels\\7\\threads\\1019",
+    "latest_artifact": "20260318_163836_athena_spec_task_val_004_project-validation.md"
+  },
+  {
+    "task_id": "task_doc_005",
+    "thread_id": "1020",
+    "channel_id": "42",
+    "actor": "he",
+    "artifact_count": 4,
+    "purpose": "No purpose recorded",
+    "path": "lupo-channels\\42\\threads\\1020",
+    "latest_artifact": "20260318_211843_hephaestus_thread_migration_redirect_thread_1020_to_channel_11.md"
+  },
+  {
+    "task_id": "task_doc_006",
+    "thread_id": "1021",
+    "channel_id": "51",
+    "actor": "he",
+    "artifact_count": 2,
+    "purpose": "No purpose recorded",
+    "path": "lupo-channels\\51\\threads\\1021",
+    "latest_artifact": "20260318_211805_hephaestus_thread_migration_redirect_thread_1021_to_channel_51.md"
+  },
+  {
+    "task_id": "task_wolfie_ai_artifacts_001",
+    "thread_id": "1022",
+    "channel_id": "51",
+    "actor": "he",
+    "artifact_count": 3,
+    "purpose": "No purpose recorded",
+    "path": "lupo-channels\\51\\threads\\1022",
+    "latest_artifact": "20260318_211805_hephaestus_thread_migration_redirect_thread_1022_to_channel_51.md"
+  },
+  {
+    "task_id": "task_doc_007",
+    "thread_id": "1023",
+    "channel_id": "51",
+    "actor": "he",
+    "artifact_count": 5,
+    "purpose": "No purpose recorded",
+    "path": "lupo-channels\\51\\threads\\1023",
+    "latest_artifact": "20260318_211805_hephaestus_thread_migration_redirect_thread_1023_to_channel_51.md"
+  },
+  {
+    "task_id": "task_release_005",
+    "thread_id": "1024",
+    "channel_id": "42",
+    "actor": "heph",
+    "artifact_count": 11,
+    "purpose": "No purpose recorded",
+    "path": "lupo-channels\\42\\threads\\1024",
+    "latest_artifact": "20260318_211843_hephaestus_thread_migration_redirect_thread_1024_to_channel_1.md"
+  },
+  {
+    "task_id": "task_doc_continui",
+    "thread_id": "1025",
+    "channel_id": "66",
+    "actor": "unknown",
+    "artifact_count": 3,
+    "purpose": "No purpose recorded",
+    "path": "lupo-channels\\66\\threads\\1025",
+    "latest_artifact": "20260318_175542_cursor_review_task_doc_continuity_update_001_channel-system-continuity-alignment.md"
+  },
+  {
+    "task_id": "task_auto_1026",
+    "thread_id": "1026",
+    "channel_id": "51",
+    "actor": "he",
+    "artifact_count": 7,
+    "purpose": "D",
+    "path": "lupo-channels\\51\\threads\\1026",
+    "latest_artifact": "20260318_211805_hephaestus_thread_migration_redirect_thread_1026_to_channel_51.md"
+  },
+  {
+    "task_id": "task_auto_1027",
+    "thread_id": "1027",
+    "channel_id": "66",
+    "actor": "hermes:wolfie",
+    "artifact_count": 3,
+    "purpose": "No purpose recorded",
+    "path": "lupo-channels\\66\\threads\\1027",
+    "latest_artifact": "20260318_155033_hermes_report_thread_channel_mapping.md"
+  },
+  {
+    "task_id": "task_strategy_coordination_repair_001",
+    "thread_id": "1028",
+    "channel_id": "42",
+    "actor": "12",
+    "artifact_count": 3,
+    "purpose": "No purpose recorded",
+    "path": "lupo-channels\\42\\threads\\1028",
+    "latest_artifact": "20260320_120000_athena_strategy_file_visible_coordination_recovery.md"
+  },
+  {
+    "task_id": "task_strategy_",
+    "thread_id": "1029",
+    "channel_id": "42",
+    "actor": "unknown",
+    "artifact_count": 21,
+    "purpose": "No purpose recorded",
+    "path": "lupo-channels\\42\\threads\\1029",
+    "latest_artifact": "20260320_140000_athena_strategy_parent_child_thread_hierarchy_channel_thread_tree_normalization.md"
+  },
+  {
+    "task_id": "task",
+    "thread_id": "1030",
+    "channel_id": "42",
+    "actor": "unknown",
+    "artifact_count": 10,
+    "purpose": "Thread inde",
+    "path": "lupo-channels\\42\\threads\\1030",
+    "latest_artifact": "20260320_174000_athena_strategy_and_documentation_reconciliation_for_database_backed_channel_thread_task_visibility.md"
+  },
+  {
+    "task_id": "task_schema_implementation_",
+    "thread_id": "1031",
+    "channel_id": "42",
+    "actor": "unknown",
+    "artifact_count": 1,
+    "purpose": "No purpose recorded",
+    "path": "lupo-channels\\42\\threads\\1031",
+    "latest_artifact": "20260320_182000_wolfie_directive_canonical_schema_implementation_database_backed_visibility.md"
+  },
+  {
+    "task_id": "task_auto_1032",
+    "thread_id": "1032",
+    "channel_id": "51",
+    "actor": "1",
+    "artifact_count": 1,
+    "purpose": "Doctrine artifact est",
+    "path": "lupo-channels\\51\\threads\\1032",
+    "latest_artifact": "20260319_120000_wolfie_doctrine_system_limits.md"
+  },
+  {
+    "task_id": "task_cha",
+    "thread_id": "1033",
+    "channel_id": "51",
+    "actor": "unknown",
+    "artifact_count": 2,
+    "purpose": "No purpose recorded",
+    "path": "lupo-channels\\51\\threads\\1033",
+    "latest_artifact": "20260319_170500_wolfie_directive_channel-migration-ratification.md"
+  },
+  {
+    "task_id": "system_limits_enforcement",
+    "thread_id": "1034",
+    "channel_id": "7",
+    "actor": "hephaestus:implementation",
+    "artifact_count": 1,
+    "purpose": "System limits enforcement roadmap \u2014 t",
+    "path": "lupo-channels\\7\\threads\\1034",
+    "latest_artifact": "20260319_130000_hephaestus_directive_system_limits_enforcement.md"
+  },
+  {
+    "task_id": "task_auto_1035",
+    "thread_id": "1035",
+    "channel_id": "7",
+    "actor": "hephaestus:enforcement",
+    "artifact_count": 1,
+    "purpose": "No purpose recorded",
+    "path": "lupo-channels\\7\\threads\\1035",
+    "latest_artifact": "20260318_212358_hephaestus_enforcement_and_migration.md"
+  },
+  {
+    "task_id": "task_athena_actor_architecture_001",
+    "thread_id": "1036",
+    "channel_id": "42",
+    "actor": "athena:wolfie",
+    "artifact_count": 1,
+    "purpose": "No purpose recorded",
+    "path": "lupo-channels\\42\\threads\\1036",
+    "latest_artifact": "20260321_150000_athena_canonical_actor_architecture_and_repair_plan.md"
+  },
+  {
+    "task_id": "task_actor_state_doctrine_001",
+    "thread_id": "1037",
+    "channel_id": "51",
+    "actor": "wolfie:root",
+    "artifact_count": 9,
+    "purpose": "Ratify ACTOR_STATE_DOCTRINE with LILITH heterodox corrections and promote to canonical doct",
+    "path": "lupo-channels\\51\\threads\\1037",
+    "latest_artifact": "20260319_230000_wolfie_ratification_actor_state_doctrine_canonical.md"
+  },
+  {
+    "task_id": "task_auto_1038",
+    "thread_id": "1038",
+    "channel_id": "66",
+    "actor": "unknown",
+    "artifact_count": 2,
+    "purpose": "No purpose recorded",
+    "path": "lupo-channels\\66\\threads\\1038",
+    "latest_artifact": "20260319_235500_wolfie_directive_task_channel66_question_model_001.md"
+  },
+  {
+    "task_id": "task_interpretation_opposition_001",
+    "thread_id": "1039",
+    "channel_id": "51",
+    "actor": "wolfie:root",
+    "artifact_count": 2,
+    "purpose": "Formalize opposition/counter-lens interpretation field and extend canonical interpretatio",
+    "path": "lupo-channels\\51\\threads\\1039",
+    "latest_artifact": "20260319_020000_wolfie_directive_opposition_lens_interpretation_doctrine.md"
+  },
+  {
+    "task_id": "task_auto_1041",
+    "thread_id": "1041",
+    "channel_id": "42",
+    "actor": "unknown",
+    "artifact_count": 1,
+    "purpose": "No purpose recorded",
+    "path": "lupo-channels\\42\\threads\\1041",
+    "latest_artifact": "20260321_165629_wolfie_directive_utc_timestamp_doctrine_filename_validation_and_permanent_enforcement.md"
+  },
+  {
+    "task_id": "task_wolfie_reconciliation_001",
+    "thread_id": "1042",
+    "channel_id": "42",
+    "actor": "wolfie:ro",
+    "artifact_count": 1,
+    "purpose": "No purpose recorded",
+    "path": "lupo-channels\\42\\threads\\1042",
+    "latest_artifact": "20260321_200000_wolfie_root_reality_reconciliation_and_4_0_85_execution_plan.md"
+  },
+  {
+    "task_id": "task_upgrade_crafty_to_lupo_4_0_85_001",
+    "thread_id": "1043",
+    "channel_id": "42",
+    "actor": "unknown",
+    "artifact_count": 8,
+    "purpose": "No purpose recorded",
+    "path": "lupo-channels\\42\\threads\\1043",
+    "latest_artifact": "20260321_170000_wolfie_upgrade_validation_loop_crafty_to_lupo_4_0_85.md"
+  },
+  {
+    "task_id": "task_phase_3_timestamp_enforcement_001",
+    "thread_id": "1044",
+    "channel_id": "42",
+    "actor": "wolfie:he",
+    "artifact_count": 9,
+    "purpose": "No purpose recorded",
+    "path": "lupo-channels\\42\\threads\\1044",
+    "latest_artifact": "20260321_030000_hephaestus_phase_3_execution_kickoff.md"
+  },
+  {
+    "task_id": "task_system_reconciliation_4_0_85_001",
+    "thread_id": "1045",
+    "channel_id": "42",
+    "actor": "wolfi",
+    "artifact_count": 10,
+    "purpose": "No purpose recorded",
+    "path": "lupo-channels\\42\\threads\\1045",
+    "latest_artifact": "20260321_181000_thoth_system_thread_task_registry_4_0_85.md"
+  },
+  {
+    "task_id": "task_schema_governance_correction_001",
+    "thread_id": "1046",
+    "channel_id": "42",
+    "actor": "1",
+    "artifact_count": 4,
+    "purpose": "Thread inde",
+    "path": "lupo-channels\\42\\threads\\1046",
+    "latest_artifact": "20260321_123009_wolfie_directive_reconcile_thread_1031_visibility.md"
+  },
+  {
+    "task_id": "task_version_4_0_85_documentation_synchronization_001",
+    "thread_id": "1047",
+    "channel_id": "42",
+    "actor": "unknown",
+    "artifact_count": 4,
+    "purpose": "No purpose recorded",
+    "path": "lupo-channels\\42\\threads\\1047",
+    "latest_artifact": "20260321_200000_wolfie_system_broadcast_version_4_0_85_documentation_synchronization_directive.md"
+  },
+  {
+    "task_id": "task_dua",
+    "thread_id": "1420",
+    "channel_id": "420",
+    "actor": "unknown",
+    "artifact_count": 1,
+    "purpose": "No purpose recorded",
+    "path": "lupo-channels\\420\\threads\\1420",
+    "latest_artifact": "20260319_180000_wolfie_directive_dual_context_identity_model.md"
+  },
+  {
+    "task_id": "task_web_path_canonicalization_001",
+    "thread_id": "2002",
+    "channel_id": "42",
+    "actor": "wolfie:root",
+    "artifact_count": 1,
+    "purpose": "No purpose recorded",
+    "path": "lupo-channels\\42\\threads\\2002",
+    "latest_artifact": "20260319_040000_wolfie_directive_task_web_path_canonicalization_001_web_path_canonicalization.md"
+  }
+]

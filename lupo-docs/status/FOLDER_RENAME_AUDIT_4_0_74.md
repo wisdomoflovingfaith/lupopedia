@@ -32,7 +32,7 @@ lupopedia.footer:
 # Folder Rename Dependency Audit (4.0.74)
 
 **Date:** 2026-03-15  
-**Directive:** [lupo-prompts/cursor/20260315_cursor_p1_execution_4_0_74.md](../../prompts/cursor/20260315_cursor_p1_execution_4_0_74.md)  
+**Directive:** [lupo-prompts/cursor/20260315_cursor_p1_execution_4_0_74.md](../../lupo-prompts/cursor/20260315_cursor_p1_execution_4_0_74.md)  
 **Outcome:** Audit only. **No folder renames performed.**
 
 Target directories were checked for existence at project root and for references in PHP, .htaccess, Markdown, config, and scripts. Reference counts are approximate (grep across repo; some hits are substrings or nested paths).

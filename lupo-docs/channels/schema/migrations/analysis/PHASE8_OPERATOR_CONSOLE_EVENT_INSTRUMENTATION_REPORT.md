@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\channels\schema\migrations\analysis\PHASE8_OPERATOR_CONSOLE_EVENT_INSTRUMENTATION_REPORT.md"
+  file_path_from_root: "lupo-docs/channels/schema/migrations/analysis/PHASE8_OPERATOR_CONSOLE_EVENT_INSTRUMENTATION_REPORT.md"
   file_hash: "b6371ca53ab8ca755fd187a8b95fe34afb5ec372a1f6e95e227202162e64837c"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

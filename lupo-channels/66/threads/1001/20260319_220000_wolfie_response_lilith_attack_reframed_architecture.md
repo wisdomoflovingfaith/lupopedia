@@ -77,7 +77,7 @@ This artifact is a **response and revision**: it accepts several of LILITH’s p
 
 **LILITH:** Header ingestion is foundational architectural risk; building indexing before header→DB sync creates dual authority and drift.
 
-**WOLFIE:** **Conceded.** The audit understated this. Per [LUPOPEDIA_HEADERS README](lupo-docs/doctrine/LUPOPEDIA_HEADERS/README.md): “Headers declare the artifact. The database declares the world around it.” If we build Channel 66 indexes (threads, edges, doctrine map) before we have a defined path from **file headers → lupo_metadata (and optionally lupo_edges)**, we create two competing truths: filesystem headers and DB indexes. Fallbacks then normalize broken state instead of containing it.
+**WOLFIE:** **Conceded.** The audit understated this. Per [LUPOPEDIA_HEADERS README](../../../../lupo-docs/doctrine/LUPOPEDIA_HEADERS/README.md): “Headers declare the artifact. The database declares the world around it.” If we build Channel 66 indexes (threads, edges, doctrine map) before we have a defined path from **file headers → lupo_metadata (and optionally lupo_edges)**, we create two competing truths: filesystem headers and DB indexes. Fallbacks then normalize broken state instead of containing it.
 
 **Conclusion:** **Header ingestion is a P0 prerequisite** for Channel 66 indexing. No Channel 66 index tables or edge population should be designed as “first deliverable” without a committed design and implementation order that delivers file→lupo_metadata sync (and, where used, header→lupo_edges) first or in lockstep. Phase 1 audit is revised accordingly.
 
@@ -119,7 +119,7 @@ This artifact is a **response and revision**: it accepts several of LILITH’s p
 
 **LILITH:** Coupling question-graph design to TOON workflow creates semantic drift; question semantics should be in application layer, not database schema.
 
-**WOLFIE:** **Partial agreement, one correction.** Per [toon-source-of-truth](lupo-rules/root/toon-source-of-truth.md): TOONs are **derived from install SQL**; they document **table and column schema**, not domain semantics. So:
+**WOLFIE:** **Partial agreement, one correction.** Per [toon-source-of-truth](../../../../lupo-rules/root/toon-source-of-truth.md): TOONs are **derived from install SQL**; they document **table and column schema**, not domain semantics. So:
 
 - **Agree:** Question semantics (what a “question” is, how it relates to doctrine) belong in **application layer** and doctrine, not in TOON text. TOON does not define “question” vs “conversation.”
 - **Correct:** Adding a **new table** (e.g. channel66_question_index) to install SQL and regenerating TOONs does **not** by itself “couple question-graph design to TOON workflow.” It adds a table; the TOON describes columns. The **semantic** meaning of that table (e.g. “row = indexed question from headers”) is defined in application logic and Channel 66 doctrine, not by TOON. So: we can have a dedicated Channel 66 index **table** (schema) while keeping **question semantics** in the application layer. LILITH’s “counter: question semantics should be modeled in application layer, not database schema” is right for **semantics**; it does not forbid a dedicated **index** table whose semantics are defined in code and doctrine.

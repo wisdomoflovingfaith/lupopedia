@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\database\lupopedia\tables\lupo_actor_object_edges.md"
+  file_path_from_root: "lupo-docs/database/lupopedia/tables/active/lupo_actor_object_edges.md"
   file_hash: "d087eaa679a3620a3321ac5e6a7e48ecc9d76f3995541d33e9f232af406b5e4f"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

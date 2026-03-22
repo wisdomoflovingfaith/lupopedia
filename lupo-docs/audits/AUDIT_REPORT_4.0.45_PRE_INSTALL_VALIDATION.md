@@ -5,7 +5,7 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "AUDIT_REPORT_4.0.45_PRE_INSTALL_VALIDATION.md"
+  file_path_from_root: "lupo-docs/audits/AUDIT_REPORT_4.0.45_PRE_INSTALL_VALIDATION.md"
   file_hash: "b0b76faf9f0e485a258cef36556412155bf17ef4b4fef021a6b9ea6fa1522853"
   file_path_from_root: "AUDIT_REPORT_4.0.45_PRE_INSTALL_VALIDATION.md"
   file_hash: "ac03bbde68c3fae7d2a703a87480beacebde2029d0d752fedc98a80f4ac90337"

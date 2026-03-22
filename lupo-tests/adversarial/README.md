@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\tests\adversarial\README.md"
+  file_path_from_root: "lupo-tests/adversarial/README.md"
   file_hash: "06a5556ba99fd09b19e4b56e24b890ea2e0a20f43c01c68c6982d542f95581a3"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

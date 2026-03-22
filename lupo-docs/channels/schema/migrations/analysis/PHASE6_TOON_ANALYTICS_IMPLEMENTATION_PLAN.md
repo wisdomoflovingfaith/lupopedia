@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\channels\schema\migrations\analysis\PHASE6_TOON_ANALYTICS_IMPLEMENTATION_PLAN.md"
+  file_path_from_root: "lupo-docs/channels/schema/migrations/analysis/PHASE6_TOON_ANALYTICS_IMPLEMENTATION_PLAN.md"
   file_hash: "908e0159fc6e15327de4bbdd7b13e81e84b4ec95f59de77dad8e79d957e06e13"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

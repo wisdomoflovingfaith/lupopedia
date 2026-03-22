@@ -133,7 +133,7 @@ Valid status values: `pending`, `active`, `completed`, `blocked`, `failed`, `arc
 
 ## Full reference
 
-See [lupo-docs/TASK_STATUS_REFERENCE.md](../../docs/TASK_STATUS_REFERENCE.md) for paths, all statuses, and query examples.
+See [lupo-docs/TASK_STATUS_REFERENCE.md](../../lupo-docs/TASK_STATUS_REFERENCE.md) for paths, all statuses, and query examples.
 
 ---
 

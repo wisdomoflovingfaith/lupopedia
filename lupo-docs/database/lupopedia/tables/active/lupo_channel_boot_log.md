@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\database\lupopedia\tables\lupo_channel_boot_log.md"
+  file_path_from_root: "lupo-docs/database/lupopedia/tables/active/lupo_channel_boot_log.md"
   file_hash: "4175f726849d4668f4cee9b8959cc072ee6d293daefddcf892c5c13cab8b4c89"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

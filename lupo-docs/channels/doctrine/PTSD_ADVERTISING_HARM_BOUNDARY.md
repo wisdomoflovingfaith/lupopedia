@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\channels\doctrine\PTSD_ADVERTISING_HARM_BOUNDARY.md"
+  file_path_from_root: "lupo-docs/channels/doctrine/PTSD_ADVERTISING_HARM_BOUNDARY.md"
   file_hash: "7f3c7d1b4b470ab651c38174705f222b8528f05d4dd9f12cdae7f68506d4eb5f"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

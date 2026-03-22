@@ -428,7 +428,7 @@ Example:
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "database_table"
-  file_path_from_root: "lupo-docs/database/lupopedia/tables/active/lupo_channels.md"
+  file_path_from_root: "MULTI_AGENT_DATABASE_DOCUMENTATION_PLAN.md"
   system_version: "4.0.69"
   channel_id: 42
   actor_id: <agent>  # Use your documented actor_id from registry

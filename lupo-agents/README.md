@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\lupo-agents\README.md"
+  file_path_from_root: "lupo-agents/README.md"
   file_hash: "bc3f876ee71020bffb59f1a2b4fda7286746dede2aa2b3ce1d238dd77e0cba2c"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"
@@ -263,7 +263,7 @@ The `lupo-database/toon_data/lupo_agent_registry.toon` file is the **authoritati
 **Why TOON Files Are Authoritative:**
 
 - **Database-Generated:** TOON files are generated from the live database schema
-- **Read-Only for IDEs:** IDEs must not modify TOON files (see [TOON_DOCTRINE.md](../docs/doctrine/TOON_DOCTRINE.md))
+- **Read-Only for IDEs:** IDEs must not modify TOON files (see [TOON_DOCTRINE.md](../lupo-docs/channels/doctrine/TOON_DOCTRINE.md))
 - **Semantic Documentation:** TOON files serve as semantic maps, not editable configuration
 - **Single Source:** The database is the source of truth; TOON files reflect it
 
@@ -825,6 +825,6 @@ The slot-based structure ensures that:
 - **Global Atoms:** `config/global_atoms.yaml` → `GLOBAL_LUPOPEDIA_V3_0_2_CORE_AGENTS`
 
 **For agent system documentation, see:**
-- **[AGENT_RUNTIME.md](../docs/agents/AGENT_RUNTIME.md)** — How agents work
-- **[WOLFIE_HEADER_SPECIFICATION.md](../docs/agents/WOLFIE_HEADER_SPECIFICATION.md)** — Agent metadata format
-- **[INLINE_DIALOG_SPECIFICATION.md](../docs/agents/INLINE_DIALOG_SPECIFICATION.md)** — Agent communication format
+- **AGENT_RUNTIME.md** — How agents work
+- **[WOLFIE_HEADER_SPECIFICATION.md](../lupo-docs/channels/agents/WOLFIE_HEADER_SPECIFICATION.md)** — Agent metadata format
+- **[INLINE_DIALOG_SPECIFICATION.md](../lupo-docs/channels/dialogs/agents/INLINE_DIALOG_SPECIFICATION.md)** — Agent communication format

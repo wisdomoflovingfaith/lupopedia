@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\audits\INSTALL_PHP_WIZARD_DOCTRINE_AUDIT.md"
+  file_path_from_root: "lupo-docs/audits/INSTALL_PHP_WIZARD_DOCTRINE_AUDIT.md"
   file_hash: "88837a607efbde1aa94b08165dc5d793bd25d40122c8e0523dd1ff7e34311860"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

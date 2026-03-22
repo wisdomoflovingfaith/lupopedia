@@ -49,7 +49,7 @@ You are **WOLFIE**. In one working session:
 ## CLOSED (WOLFIE)
 
 - **When:** 20260318 (actor_id **1**).
-- **Evidence:** Root `TODO.md` already satisfies single TODO authority ([050000](lupo-channels/42/threads/1001/20260318_050000_wolfie_todo-authority-alignment.md)); **235500** + prompts already in **CHANGELOG**; Top 50 A11 → [041100](20260318_041100_hermes_prompt_hephaestus_top50-a11-table-docs.md); table-doc **IN PROGRESS** + LILITH 1004 pointer → [052500_wolfie_table-doc-ground-truth-status](../threads/1001/20260318_052500_wolfie_table-doc-ground-truth-status.md); **AGENTS.md** + **README** MVP / Phase 3 note added.
+- **Evidence:** Root `TODO.md` already satisfies single TODO authority ([050000](../threads/1001/20260318_050000_wolfie_todo-authority-alignment.md)); **235500** + prompts already in **CHANGELOG**; Top 50 A11 → [041100](20260318_041100_hermes_prompt_hephaestus_top50-a11-table-docs.md); table-doc **IN PROGRESS** + LILITH 1004 pointer → [052500_wolfie_table-doc-ground-truth-status](../threads/1001/20260318_052500_wolfie_table-doc-ground-truth-status.md); **AGENTS.md** + **README** MVP / Phase 3 note added.
 
 ---
 

@@ -29,7 +29,7 @@ The Lupopedia channel system is a comprehensive framework for managing communica
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: "path/to/file.md"
+  file_path_from_root: "lupo-docs/database/lupopedia/tables/CHANNEL_SYSTEM_TLDR.md"
   system_version: "4.0.52"
   file.last_modified_system_version: "4.0.52"  # Added for tracking
   channel_id: 0  # System channel focus

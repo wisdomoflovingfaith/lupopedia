@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\channels\0\broadcasts\20260225120020_10000_1000_0_database_schema_source_of_truth_doctrine.md"
+  file_path_from_root: "lupo-database/lupopedia/channels/channel_id/0/broadcasts/20260225120020_10000_1000_0_database_schema_source_of_truth_doctrine.md"
   file_hash: "31925ac5d604d8c752818478517647019e2c5608a9b67af04bbbbd41c9bcbb28"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

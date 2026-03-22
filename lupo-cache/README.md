@@ -1,7 +1,7 @@
 ---
 # FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
 lupopedia.headers:
-  file_path_from_root: "README.md"
+  file_path_from_root: "lupo-cache/README.md"
   system_version: "4.0.48"
   channel_id: 1
   actor_id: 1001
@@ -40,7 +40,7 @@ lupopedia.footer:
 **Status:** Active Development  
 **Mission:** FLARE enhancement, database documentation, and repository cleanup building on Crafty Syntax 3.7.5 upgrade foundation.
 
-**Start Here:** [QUICKSTART.md](QUICKSTART.md) • [HOW_TO_USE_LUPOPEDIA.md](HOW_TO_USE_LUPOPEDIA.md) • [Doctrine Index](lupo-docs/doctrine/) • [VSX Extension](lupo-tools/vsx-extension/)
+**Start Here:** [QUICKSTART.md](../QUICKSTART.md) • [HOW_TO_USE_LUPOPEDIA.md](../HOW_TO_USE_LUPOPEDIA.md) • [Doctrine Index](../lupo-docs/doctrine) • [VSX Extension](../lupo-tools/vsx-extension)
 
 ---
 
@@ -72,7 +72,7 @@ Lupopedia preserves **Crafty Syntax 3.7.5 exactly** (live chat, operators, depar
 
 1. **Install in subdirectory** (required doctrine)
 2. Visit: `https://localhost/lupopedia/install.php`
-3. **Crafty 3.7.5 → Lupopedia upgrade:** Load baseline tables → run installer → validate with [migration mapping docs](lupo-docs/doctrine/migrations/MIGRATION_MAPPING_REFERENCE.md)
+3. **Crafty 3.7.5 → Lupopedia upgrade:** Load baseline tables → run installer → validate with [migration mapping docs](../lupo-docs/database/lupopedia/tables/MIGRATION_MAPPING_REFERENCE.md)
 
 ### CLI Basics
 
@@ -103,13 +103,13 @@ php bin/lupo.php messages 42
 
 ## Core Concepts
 
-**Actor Model** — Universal identity system. `actor_id` everywhere for humans, IDE agents, and AI assistants. No `user_id` in relationships. [Canonical IDs](lupo-docs/AGENT_INVENTORY.md)
+**Actor Model** — Universal identity system. `actor_id` everywhere for humans, IDE agents, and AI assistants. No `user_id` in relationships. [Canonical IDs](../lupo-docs/AGENT_INVENTORY.md)
 
-**Channels & Threads** — Offline governance system. Development coordination via persistent markdown messages in `lupo-channels/{id}/threads/`. [Full documentation](lupo-docs/architecture/CHANNELS_AND_THREADS.md)
+**Channels & Threads** — Offline governance system. Development coordination via persistent markdown messages in `lupo-channels/{id}/threads/`. Full documentation
 
-**FLARE Protocol** — File-level metadata system. Headers contain attributes, footers contain relationships. FLARE is canonical; legacy aliases: Wolfie/FLIP/FLP/CROP. [FLARE Doctrine](lupo-docs/doctrine/FLARE/FLARE_DOCTRINE.md)
+**FLARE Protocol** — File-level metadata system. Headers contain attributes, footers contain relationships. FLARE is canonical; legacy aliases: Wolfie/FLIP/FLP/CROP. [FLARE Doctrine](../lupo-docs/doctrine/FLARE/FLARE_DOCTRINE.md)
 
-**TOON Schema Authority** — `lupo-docs/toons/*.toon.json` files are the only source of truth for database structure. No schema changes without TOON updates. [Schema Doctrine](lupo-docs/doctrine/database/README.md)
+**TOON Schema Authority** — `lupo-docs/toons/*.toon.json` files are the only source of truth for database structure. No schema changes without TOON updates. [Schema Doctrine](../lupo-docs/doctrine/database/README.md)
 
 ---
 
@@ -122,7 +122,7 @@ php bin/lupo.php messages 42
 - ✅ Subdirectory installation required
 - ✅ PHP 5.3+ compatibility (no modern features)
 
-**Full doctrine:** [lupo-docs/doctrine/](lupo-docs/doctrine/)
+**Full doctrine:** [lupo-docs/doctrine/](../lupo-docs/doctrine)
 
 ---
 
@@ -130,7 +130,7 @@ php bin/lupo.php messages 42
 
 The VSX extension integrates your IDE into the multi-agent ecosystem. Provides real-time access to actor model, semantic content graph, and channel communication. Three modes: DB-online, hybrid, offline fallback.
 
-**Extension docs:** [lupo-tools/vsx-extension/README.md](lupo-tools/vsx-extension/README.md)
+**Extension docs:** [lupo-tools/vsx-extension/README.md](../lupo-tools/vsx-extension/README.md)
 
 ---
 
@@ -138,5 +138,5 @@ The VSX extension integrates your IDE into the multi-agent ecosystem. Provides r
 
 All installations worldwide share unified ID spaces for actors, channels, and collections. Global registry ensures consistent identity across federated nodes. ANUBIS pipeline manages adoption and collision resolution.
 
-**Federation docs:** [lupo-docs/architecture/FEDERATION_AND_REGISTRY.md](lupo-docs/architecture/FEDERATION_AND_REGISTRY.md)  
-**ANUBIS docs:** [lupo-docs/architecture/ANUBIS_ADOPTION_PIPELINE.md](lupo-docs/architecture/ANUBIS_ADOPTION_PIPELINE.md)
+**Federation docs:** [lupo-docs/architecture/FEDERATION_AND_REGISTRY.md](../lupo-docs/architecture/FEDERATION_AND_REGISTRY.md)  
+**ANUBIS docs:** lupo-docs/architecture/ANUBIS_ADOPTION_PIPELINE.md

@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\channels\architecture\ARCHITECTURE_SYNC.md"
+  file_path_from_root: "lupo-docs/channels/architecture/ARCHITECTURE_SYNC.md"
   file_hash: "c7fd6cddbee7c1b23431283ceafba261f39342b7f1c70199c5fb627cd347d425"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"
@@ -1382,4 +1382,4 @@ Cursor must treat all of the above as **canonical architecture** for Lupopedia.
 - **[Agent Classification](../doctrine/AGENT_CLASSIFICATION.md)** - Agent classification system and routing identity metadata
 - **[Timestamp Doctrine](../doctrine/TIMESTAMP_DOCTRINE.md)** - Canonical BIGINT(14) YMDHIS UTC timestamp format requirements
 - **[Database Philosophy](DATABASE_PHILOSOPHY.md)** - Core principles behind Lupopedia's database design
-- **[Protocol Documentation](../protocols/)** - Communication protocols and federation standards
+- **Protocol Documentation** - Communication protocols and federation standards

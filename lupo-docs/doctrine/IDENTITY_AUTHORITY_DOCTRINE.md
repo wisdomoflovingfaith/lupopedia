@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\doctrine\IDENTITY_AUTHORITY_DOCTRINE.md"
+  file_path_from_root: "lupo-docs/doctrine/IDENTITY_AUTHORITY_DOCTRINE.md"
   file_hash: "0a14c513be31a78c50d81012fa0e680259680b9876b52d818d305df7fcab8b6d"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

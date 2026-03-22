@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\channels\doctrine\blocks\pattern_ethics\INDEX.md"
+  file_path_from_root: "lupo-docs/channels/doctrine/blocks/pattern_ethics/INDEX.md"
   file_hash: "11e6eff37bfacb5278b55871e441ef5eb6ef21f86797443abf1f2b285b7ff9aa"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

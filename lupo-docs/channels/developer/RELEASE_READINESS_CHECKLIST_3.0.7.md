@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\channels\developer\RELEASE_READINESS_CHECKLIST_3.0.7.md"
+  file_path_from_root: "lupo-docs/channels/developer/RELEASE_READINESS_CHECKLIST_3.0.7.md"
   file_hash: "095d02eb0d039d78259548d696dcb117bca3c231113aab61f72ce771dd1f2dbf"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

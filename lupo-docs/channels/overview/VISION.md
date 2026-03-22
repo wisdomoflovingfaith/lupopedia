@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\channels\overview\VISION.md"
+  file_path_from_root: "lupo-docs/channels/overview/VISION.md"
   file_hash: "1da03def5eab1a85bfed69244c301639069f2f8f4c83632a7a180413d3a12d5c"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\channels\appendix\examples\README.md"
+  file_path_from_root: "lupo-docs/channels/appendix/examples/README.md"
   file_hash: "615083905b410ef158f26c94c4d2be81050786654bda949eb57ce1e7bbfd0ad5"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

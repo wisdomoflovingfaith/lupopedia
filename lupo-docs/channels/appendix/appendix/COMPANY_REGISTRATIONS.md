@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\channels\appendix\appendix\COMPANY_REGISTRATIONS.md"
+  file_path_from_root: "lupo-docs/channels/appendix/appendix/COMPANY_REGISTRATIONS.md"
   file_hash: "84b90dab418df260b1a57778cff643e64ca9233fdf15ef2a581a3383517311ae"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

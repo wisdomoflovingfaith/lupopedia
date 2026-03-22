@@ -49,7 +49,7 @@ lupopedia.conditional:
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: "lupo-docs\architecture\FEDERATION_AND_REGISTRY.md"
+  file_path_from_root: "lupo-docs/architecture/FEDERATION_AND_REGISTRY.md"
   file_hash: "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
   last_updated_utc: "20260304"
   system_version: "4.0.56"

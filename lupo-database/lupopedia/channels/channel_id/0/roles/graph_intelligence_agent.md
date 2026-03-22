@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\channels\0\roles\graph_intelligence_agent.md"
+  file_path_from_root: "lupo-database/lupopedia/channels/channel_id/0/roles/graph_intelligence_agent.md"
   file_hash: "729dfb1fd49ab670e162a35df908cfcfb49ad1a154d96e45c0c653abca2ebcd7"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

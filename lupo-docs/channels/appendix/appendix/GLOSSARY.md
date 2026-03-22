@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\channels\appendix\appendix\GLOSSARY.md"
+  file_path_from_root: "lupo-docs/channels/appendix/appendix/GLOSSARY.md"
   file_hash: "20062248388741e536bdad34de712f102de108d2d3a0e61851b91a4ae02a2f62"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"
@@ -106,7 +106,7 @@ A Web-Organized Linked Federated Intelligent Ecosystem (WOLFIE) that hosts agent
 
 The architecture type that defines Lupopedia's distributed, multi-agent knowledge system. Originally stood for "Wisdom Of Loving Faith Integrity Ethics" when the project began in August 2025 as a spiritual research engine, but was repurposed to reflect the technical architecture.
 
-**See:** [README.md](../../README.md), [HISTORY.md](../../history/HISTORY.md)
+**See:** README.md, [HISTORY.md](../../history/HISTORY.md)
 
 ---
 
@@ -338,7 +338,7 @@ A navigation universe inside Lupopedia with its own tabs, sub-tabs, content, str
 - "Desktop" Collection: WHO, WHAT, WHERE, WHEN, WHY, HOW, DO
 - "County of Honolulu" Collection: Departments, Parks & Recreation, Activities & Programs
 
-**See:** [README.md](../../README.md)
+**See:** README.md
 
 ---
 
@@ -597,7 +597,7 @@ A mandatory, non-negotiable rule or principle that governs Lupopedia architectur
 - TIMESTAMP_DOCTRINE.md
 - URL_ROUTING_DOCTRINE.md
 
-**See:** [lupo-docs/doctrine/](../doctrine/)
+**See:** lupo-docs/doctrine/
 
 ---
 

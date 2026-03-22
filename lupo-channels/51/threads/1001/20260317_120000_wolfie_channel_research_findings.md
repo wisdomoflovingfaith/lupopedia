@@ -64,8 +64,8 @@ lupo-channels/
 **Existing Format**: `YYYYMMDD_HHIISS_actor_type_purpose.md`
 
 **Examples Found**:
-- `20260312000000_antigravity_wolfie_collections_tabs_navigation_research.md`
-- `20260312120500_antigravity_captain_semantic_navbar_rebuild_complete.md`
+- `20260312_000000_antigravity_wolfie_collections_tabs_navigation_research.md`
+- `20260312_120500_antigravity_captain_semantic_navbar_rebuild_complete.md`
 
 **Format Components**:
 - `YYYYMMDD`: Date (20260312)

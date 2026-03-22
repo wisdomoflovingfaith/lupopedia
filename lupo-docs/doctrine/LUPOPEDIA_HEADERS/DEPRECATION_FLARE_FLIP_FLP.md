@@ -70,4 +70,4 @@ All behavior that existed in FLARE/FLIP/FLP is supported under LUPOPEDIA HEADERS
 - **Optional lists (file.dialog, file.history, file.actors):** `lupopedia.lists` (see OPTIONAL_BLOCKS.md)
 - **See/next_actions blocks:** `lupopedia.see`, **`lupopedia.next_actions`** (suggested next actions; legacy name: `lupopedia.close`)
 
-See [README.md](./README.md) and [LUPOPEDIA_HEADERS_FORMAT.md](./LUPOPEDIA_HEADERS_FORMAT.md) for the full current specification.
+See [README.md](../../../README.md) and [LUPOPEDIA_HEADERS_FORMAT.md](./LUPOPEDIA_HEADERS_FORMAT.md) for the full current specification.

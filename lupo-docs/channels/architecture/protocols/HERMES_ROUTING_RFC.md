@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\channels\architecture\protocols\HERMES_ROUTING_RFC.md"
+  file_path_from_root: "lupo-docs/channels/architecture/protocols/HERMES_ROUTING_RFC.md"
   file_hash: "f51c98680f8a1300938458aa76c14a30ac84ea51a21a1164526063fda33e447d"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

@@ -170,6 +170,6 @@ lupopedia.headers:
 
 - [CHANNEL_0_ACTOR_0_TASKS.md](CHANNEL_0_ACTOR_0_TASKS.md) — Index of tasks on channel_id 0 and actor_id 0
 - [HELP.md](HELP.md) — Documentation hub
-- [lupo-prompts/lilith/20260306_task_status_explanation.md](../prompts/lilith/20260306_task_status_explanation.md) — LILITH’s explanation of the task status system
-- [lupo-prompts/lilith/20260306_task_docs_verification.md](../prompts/lilith/20260306_task_docs_verification.md) — LILITH final verification of task documentation suite
-- [lupo-prompts/lilith/20260306_agent_task_execution.md](../prompts/lilith/20260306_agent_task_execution.md) — Agent task execution across channels
+- [lupo-prompts/lilith/20260306_task_status_explanation.md](../lupo-prompts/lilith/20260306_task_status_explanation.md) — LILITH’s explanation of the task status system
+- [lupo-prompts/lilith/20260306_task_docs_verification.md](../lupo-prompts/lilith/20260306_task_docs_verification.md) — LILITH final verification of task documentation suite
+- [lupo-prompts/lilith/20260306_agent_task_execution.md](../lupo-prompts/lilith/20260306_agent_task_execution.md) — Agent task execution across channels

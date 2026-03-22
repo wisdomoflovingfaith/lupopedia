@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\channels\developer\WINDOWS_DEVELOPMENT_ENVIRONMENT.md"
+  file_path_from_root: "lupo-docs/channels/developer/WINDOWS_DEVELOPMENT_ENVIRONMENT.md"
   file_hash: "8bc2f3e22c77d8f39120dcc592c120993d7ea942128b74fca3ec8fc299ef6f56"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

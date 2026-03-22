@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\doctrine\CRAFTY_SYNTAX_STATE_BASED_IMPLEMENTATION_PLAN.md"
+  file_path_from_root: "lupo-docs/doctrine/CRAFTY_SYNTAX_STATE_BASED_IMPLEMENTATION_PLAN.md"
   file_hash: "fa6bdf4a06b3672b62e2cfe67f73fa34cf1ed4a0a6d546b6808055ff3dc40f35"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

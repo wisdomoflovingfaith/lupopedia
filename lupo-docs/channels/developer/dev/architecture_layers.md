@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\channels\developer\dev\architecture_layers.md"
+  file_path_from_root: "lupo-docs/channels/developer/dev/architecture_layers.md"
   file_hash: "685734f53946398ec93f3b6d1161aa67a748859cc485af5bb7c637c9536a4312"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

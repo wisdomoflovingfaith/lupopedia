@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\database\lupopedia\tables\lupo_governance_overrides.md"
+  file_path_from_root: "lupo-docs/database/lupopedia/tables/active/lupo_governance_overrides.md"
   file_hash: "f8f85cc8efff73ea7e7e8b63162869d9e86e9649dcda6ed572bc31690bd10af6"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\channels\doctrine\non_religious_position.md"
+  file_path_from_root: "lupo-docs/channels/doctrine/non_religious_position.md"
   file_hash: "0148c76ea7a01c7682463484f17a1867f986cd9f40298dbfe7dd634b34ea368f"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

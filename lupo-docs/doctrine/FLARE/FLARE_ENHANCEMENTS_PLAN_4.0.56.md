@@ -118,7 +118,7 @@ lupopedia.conditional:
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: "example.md"
+  file_path_from_root: "lupo-docs/doctrine/FLARE/FLARE_ENHANCEMENTS_PLAN_4.0.56.md"
   system_version: "4.0.56"
   actor_id: 1004
   channel_id: 42

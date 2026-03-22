@@ -3,7 +3,7 @@ lupopedia.headers:
   lupopedia.version: "4.0.82"
   lupopedia.schema: "channel"
   system_version: "4.0.82"
-  file_path_from_root: "lupo-channels/CHANNEL_INDEX.md"
+  file_path_from_root: "lupo-channels/channel_index.md"
   web_path: "http://www.lupopedia.com/lupo-channels/CHANNEL_INDEX.md"
   last_modified_utc: "20260319"
   channel_id: null

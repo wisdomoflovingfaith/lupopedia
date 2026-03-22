@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "instruction"
-  file_path_from_root: "lupo-channels/0/boot_enhancements_crafty_upgrade.md"
+  file_path_from_root: "lupo-database/lupopedia/channels/channel_id/0/startup_enhancements_crafty_upgrade.md"
   system_version: "4.0.53"
   last_modified_utc: "20260301155700"
   channel_id: 0

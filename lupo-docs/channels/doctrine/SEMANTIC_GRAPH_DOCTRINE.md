@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\channels\doctrine\SEMANTIC_GRAPH_DOCTRINE.md"
+  file_path_from_root: "lupo-docs/channels/doctrine/SEMANTIC_GRAPH_DOCTRINE.md"
   file_hash: "b84e891407b446091f888d0a75790b4f8ce3277230d0d6320c02674a9919107b"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

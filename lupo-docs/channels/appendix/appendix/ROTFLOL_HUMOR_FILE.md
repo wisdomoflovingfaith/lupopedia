@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\channels\appendix\appendix\ROTFLOL_HUMOR_FILE.md"
+  file_path_from_root: "lupo-docs/channels/appendix/appendix/ROTFLOL_HUMOR_FILE.md"
   file_hash: "b723014060e135893d0c3d57e4e68cb05dca312df2caa8fb9eba38d24aa5bd35"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

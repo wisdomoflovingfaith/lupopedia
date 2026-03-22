@@ -49,7 +49,7 @@ lupopedia.conditional:
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: "lupo-database\lupopedia\channels\lupo-channels\42\collections\meta-collection.md"
+  file_path_from_root: "lupo-database/lupopedia/channels/channel_id/42/collections/meta-collection.md"
   file_hash: "6e018e678d673c8014a56370578f3e3d4783309fc786c2013b4225c73cf805d5"
   last_updated_utc: "20260304"
   system_version: "4.0.56"

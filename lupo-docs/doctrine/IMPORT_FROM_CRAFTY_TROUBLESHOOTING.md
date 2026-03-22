@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\doctrine\IMPORT_FROM_CRAFTY_TROUBLESHOOTING.md"
+  file_path_from_root: "lupo-docs/doctrine/IMPORT_FROM_CRAFTY_TROUBLESHOOTING.md"
   file_hash: "1033f40536b03e5e38446592499b8499ec07cbc15643eb39d6d4d4ec8820cc71"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

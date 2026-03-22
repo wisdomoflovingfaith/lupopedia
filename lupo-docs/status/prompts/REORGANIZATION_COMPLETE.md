@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\prompts\REORGANIZATION_COMPLETE.md"
+  file_path_from_root: "lupo-docs/status/prompts/REORGANIZATION_COMPLETE.md"
   file_hash: "9bd6d583c98f0b3cfe3c521b3feafca32c126ddfb45eb55061788791ac254b34"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

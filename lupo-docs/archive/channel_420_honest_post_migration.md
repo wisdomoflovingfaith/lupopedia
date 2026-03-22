@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\archive\channel_420_honest_post_migration.md"
+  file_path_from_root: "lupo-docs/archive/channel_420_honest_post_migration.md"
   file_hash: "c2fa0cc9858db61d6bbf7febbd41715fc19e953a227847519d7638b8831f1660"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

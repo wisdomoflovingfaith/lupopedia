@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\channels\0\tasks\active\registry_lock.md"
+  file_path_from_root: "lupo-database/lupopedia/channels/channel_id/0/tasks/active/registry_lock.md"
   file_hash: "c8bf87723cb288893f9f07ef175b8e16465bda09f359f190836c770e894e29b9"
   last_updated_utc: "20260228155738"
   system_version: "4.0.73"

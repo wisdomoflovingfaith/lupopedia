@@ -49,7 +49,7 @@ lupopedia.conditional:
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "task"
-  file_path_from_root: "lupo-database/lupopedia/channels/lupo-channels/66/tasks/completed/ACTOR-CAPSULE-001.md"
+  file_path_from_root: "lupo-database/lupopedia/channels/channel_id/66/tasks/completed/ACTOR-CAPSULE-001.md"
   file_hash: "cf36c9c097d25a41f24c7ef9afd1a7ecb469eef77bbfe0c42f2945a3bb7d2902"
   last_updated_utc: "20260304"
   system_version: "4.0.56"

@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\channels\architecture\WHY_LUPOPEDIA_NEEDS_CRAFTY_SYNTAX.md"
+  file_path_from_root: "lupo-docs/channels/architecture/WHY_LUPOPEDIA_NEEDS_CRAFTY_SYNTAX.md"
   file_hash: "fbe2b07d4c1100e4fb2fafd3460019c20c4db2e1b34f6c72a3434a59b089cf37"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"
@@ -557,7 +557,7 @@ Together = Living organism
 - **[HISTORY.md](../history/HISTORY.md)** â€” Complete history from Crafty Syntax to Lupopedia
 - **[FOUNDERS_NOTE.md](../appendix/appendix/FOUNDERS_NOTE.md)** â€” Personal narrative of the journey
 - **[WHY_NO_FRAMEWORKS.md](../doctrine/WHY_NO_FRAMEWORKS.md)** â€” Why we build from first principles
-- **[PHILOSOPHY.md](../../PHILOSOPHY.md)** â€” Core architectural philosophy
+- **[PHILOSOPHY.md](../overview/PHILOSOPHY.md)** â€” Core architectural philosophy
 - **[EMOTIONAL_GEOMETRY.md](../doctrine/EMOTIONAL_GEOMETRY.md)** â€” Multi-domain emotional architecture
 - **[CARMEN_DOCTRINE.md](../doctrine/CARMEN_DOCTRINE.md)** â€” Emotional interpretation meta-agent
 

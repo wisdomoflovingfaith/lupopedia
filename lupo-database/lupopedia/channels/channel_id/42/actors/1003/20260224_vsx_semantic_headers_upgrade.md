@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\channels\42\actors\1003\20260224_vsx_semantic_headers_upgrade.md"
+  file_path_from_root: "lupo-database/lupopedia/channels/channel_id/42/actors/1003/20260224_vsx_semantic_headers_upgrade.md"
   file_hash: "5100e1be639a324bb42c8a89eaba5766f61a721d5fdc075292a23b241e92925b"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

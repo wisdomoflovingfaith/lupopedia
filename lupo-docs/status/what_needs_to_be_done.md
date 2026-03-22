@@ -85,7 +85,7 @@ lupopedia.footer:
 |------|---------|--------------|--------|----------|
 | **Constitutional Root Rules** | Complete consolidation of 18 fragmented rules | **Complete** | `LUPOPEDIA_CONSTITUTIONAL_ROOT_RULES.md` exists with 76 rules, 8 categories |
 | **LUPOPEDIA_HEADERS routing block** | Add routing/approval metadata | **Complete** | `LUPOPEDIA_HEADERS_FORMAT.md` updated with routing documentation, `OPTIONAL_BLOCKS.md` enhanced |
-| **Web Path Format Standardization** | Convert to markdown link format | **Complete** | All LUPOPEDIA_HEADERS files updated to `[web_path](URL)` format |
+| **Web Path Format Standardization** | Convert to markdown link format | **Complete** | All LUPOPEDIA_HEADERS files updated to `web_path` format |
 | **Header Validator Tooling** | Create validation and import/export tools | **Complete** | `headers validate`, `headers export`, `headers import` in lupo.php; validate/export/import scripts in lupo-scripts/; fixtures and round-trip steps in lupo-tests/fixtures/headers/README.md. |
 | **Header Import/Export Tools** | Create round-trip tooling | **Complete** | File-based export/import implemented; lupo_metadata (DB sync) deferred per VALIDATORS_AND_TOOLING.md. |
 | **Round-trip Validation** | Test header consistency | **Documented** | Round-trip steps in fixtures README; export → import → validate verifiable. |

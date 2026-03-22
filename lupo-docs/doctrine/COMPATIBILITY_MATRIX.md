@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\doctrine\COMPATIBILITY_MATRIX.md"
+  file_path_from_root: "lupo-docs/doctrine/COMPATIBILITY_MATRIX.md"
   file_hash: "1bb6c9d049e92f627895a9aca5406b2662d691237507772eead4ef663ffafd9e"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

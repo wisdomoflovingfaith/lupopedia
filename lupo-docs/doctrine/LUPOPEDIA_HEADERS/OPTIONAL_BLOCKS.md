@@ -243,7 +243,7 @@ Until the 4.1.0 cutoff, writers should prefer **lupopedia.next_actions** in new 
 
 ## lupopedia.actor_references — Actor ID reference (optional)
 
-**Purpose:** Optional block for plan/report (or other coordination) files to list **actor IDs** resolved from the canonical registry, so readers and tooling do not guess. The single source of truth remains [lupo-database/lupopedia/actors/actor_id/registry.json](lupo-database/lupopedia/actors/actor_id/registry.json).
+**Purpose:** Optional block for plan/report (or other coordination) files to list **actor IDs** resolved from the canonical registry, so readers and tooling do not guess. The single source of truth remains [lupo-database/lupopedia/actors/actor_id/registry.json](../../../lupo-database/lupopedia/actors/actor_id/registry.json).
 
 **Recommended structure:**
 

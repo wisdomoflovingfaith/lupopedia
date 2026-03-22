@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\channels\doctrine\EMOTIONAL_GEOMETRY.md"
+  file_path_from_root: "lupo-docs/channels/doctrine/EMOTIONAL_GEOMETRY.md"
   file_hash: "b8f4b194d43162690112018594aa715994d6afef30f00ef2daf1b884a0543bff"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"
@@ -85,7 +85,7 @@ file:
 
 **Status: DEPRECATED as of 4.4.x**  
 **Replacement: 2-Actor RGB Mood Model**  
-**See: [EMOTIONAL_GEOMETRY_DOCTRINE.md](../../doctrine/EMOTIONAL_GEOMETRY_DOCTRINE.md)**
+**See: [EMOTIONAL_GEOMETRY_DOCTRINE.md](legacy-import/EMOTIONAL_GEOMETRY_DOCTRINE.md)**
 
 ---
 
@@ -97,7 +97,7 @@ file:
 
 Previous scalar and 5-tuple emotional models (3.0.x–4.2.x) are deprecated and replaced by the 2-actor RGB mood geometry.
 
-**For current implementation, see**: [EMOTIONAL_GEOMETRY_DOCTRINE.md](../../doctrine/EMOTIONAL_GEOMETRY_DOCTRINE.md)
+**For current implementation, see**: [EMOTIONAL_GEOMETRY_DOCTRINE.md](legacy-import/EMOTIONAL_GEOMETRY_DOCTRINE.md)
 
 ---
 
@@ -133,7 +133,7 @@ Each axis = one of three discrete values:
 
 **Key Change**: Instead of domain-specific axes, the new model uses standardized RGB axes applied to actor relationships.
 
-**For complete specification, see**: [EMOTIONAL_GEOMETRY_DOCTRINE.md](../../doctrine/EMOTIONAL_GEOMETRY_DOCTRINE.md)
+**For complete specification, see**: [EMOTIONAL_GEOMETRY_DOCTRINE.md](legacy-import/EMOTIONAL_GEOMETRY_DOCTRINE.md)
 
 ---
 
@@ -156,7 +156,7 @@ Lupopedia now uses the **2-Actor RGB Mood Model** which focuses on relationships
 **Migration Path:**
 Previous domain-specific emotions should be mapped to RGB mood vectors representing the relationship between relevant actors.
 
-**For current implementation, see**: [EMOTIONAL_GEOMETRY_DOCTRINE.md](../../doctrine/EMOTIONAL_GEOMETRY_DOCTRINE.md)
+**For current implementation, see**: [EMOTIONAL_GEOMETRY_DOCTRINE.md](legacy-import/EMOTIONAL_GEOMETRY_DOCTRINE.md)
 
 ---
 
@@ -176,7 +176,7 @@ Applied to relationships between **two actors** (human, AI agent, persona, or sy
 
 **Migration Note:** Domain-specific emotions should be converted to RGB mood vectors representing the relationship between the relevant actors.
 
-**For current implementation, see**: [EMOTIONAL_GEOMETRY_DOCTRINE.md](../../doctrine/EMOTIONAL_GEOMETRY_DOCTRINE.md)
+**For current implementation, see**: [EMOTIONAL_GEOMETRY_DOCTRINE.md](legacy-import/EMOTIONAL_GEOMETRY_DOCTRINE.md)
 
 ---
 
@@ -190,7 +190,7 @@ Each emotional domain previously supported optional "Emotional Texture" fields w
 **New Approach (4.4.x+):**
 The 2-Actor RGB Mood Model focuses on discrete, computable mood vectors between actors rather than domain-specific textures.
 
-**For current implementation, see**: [EMOTIONAL_GEOMETRY_DOCTRINE.md](../../doctrine/EMOTIONAL_GEOMETRY_DOCTRINE.md)
+**For current implementation, see**: [EMOTIONAL_GEOMETRY_DOCTRINE.md](legacy-import/EMOTIONAL_GEOMETRY_DOCTRINE.md)
 
 ---
 
@@ -219,7 +219,7 @@ Applied to relationships between **two actors**.
 **Migration Guide:**
 Previous domain-specific emotions should be mapped to RGB mood vectors representing the relationship between the relevant actors.
 
-**For current implementation, see**: [EMOTIONAL_GEOMETRY_DOCTRINE.md](../../doctrine/EMOTIONAL_GEOMETRY_DOCTRINE.md)
+**For current implementation, see**: [EMOTIONAL_GEOMETRY_DOCTRINE.md](legacy-import/EMOTIONAL_GEOMETRY_DOCTRINE.md)
 
 ---
 
@@ -385,12 +385,12 @@ The 2-Actor RGB Mood Model provides a simpler, more focused approach to emotiona
 **Migration Path:**
 Pack architectures should use the 2-Actor RGB Mood Model to represent emotional relationships between Pack agents and between Packs.
 
-**For current implementation, see**: [EMOTIONAL_GEOMETRY_DOCTRINE.md](../../doctrine/EMOTIONAL_GEOMETRY_DOCTRINE.md)
+**For current implementation, see**: [EMOTIONAL_GEOMETRY_DOCTRINE.md](legacy-import/EMOTIONAL_GEOMETRY_DOCTRINE.md)
 
 **Previous scalar and 5-tuple emotional models (3.0.x–4.2.x) are deprecated and replaced by the 2-actor RGB mood geometry.**
 
 ---
 
 **Document Status**: DEPRECATED as of version 4.4.x  
-**Replacement**: [EMOTIONAL_GEOMETRY_DOCTRINE.md](../../doctrine/EMOTIONAL_GEOMETRY_DOCTRINE.md)  
+**Replacement**: [EMOTIONAL_GEOMETRY_DOCTRINE.md](legacy-import/EMOTIONAL_GEOMETRY_DOCTRINE.md)  
 **Migration Required**: Yes, update all references to use the 2-Actor RGB Mood Model

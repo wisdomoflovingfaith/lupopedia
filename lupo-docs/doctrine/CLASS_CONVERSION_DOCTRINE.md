@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\doctrine\CLASS_CONVERSION_DOCTRINE.md"
+  file_path_from_root: "lupo-docs/doctrine/CLASS_CONVERSION_DOCTRINE.md"
   file_hash: "9949d529792c6857459aaa533de5252546e379b407adaa9affd60aded7250301"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

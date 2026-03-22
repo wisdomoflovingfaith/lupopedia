@@ -84,4 +84,4 @@ Actor_id 0 (system) does not have per-channel task assignments in the current la
 
 - [HELP.md](HELP.md) — Doc hub
 - [VERSION_4.0.61_STRATEGY.md](VERSION_4.0.61_STRATEGY.md) — Context Doctor, Context Kernel
-- [lupo-prompts/lilith/20260306_agent_task_execution.md](../prompts/lilith/20260306_agent_task_execution.md) — Agent task execution across channels (discovery, execution, reporting)
+- [lupo-prompts/lilith/20260306_agent_task_execution.md](../lupo-prompts/lilith/20260306_agent_task_execution.md) — Agent task execution across channels (discovery, execution, reporting)

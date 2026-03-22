@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\specs\FLIP_HEADERS_MASTER_INDEX_4.0.24.md"
+  file_path_from_root: "lupo-docs/specs/FLIP_HEADERS_MASTER_INDEX_4.0.24.md"
   file_hash: "366c08ae75debed1f252f94c57f417d760a7e8239f7116a7eb356c1bfc3e3f76"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

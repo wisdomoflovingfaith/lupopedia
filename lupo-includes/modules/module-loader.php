@@ -537,6 +537,75 @@ function lupo_route_slug($slug)
         return render_main_layout($context);
     }
 
+    // Dialog MVP web views
+    if ($slug === 'channels') {
+        $app_root = defined('LUPOPEDIA_PATH') ? LUPOPEDIA_PATH : LUPOPEDIA_ABSPATH;
+        $view_path = rtrim($app_root, '/\\') . DIRECTORY_SEPARATOR . 'lupo-views' . DIRECTORY_SEPARATOR . 'dialog' . DIRECTORY_SEPARATOR . 'channels.php';
+        if (file_exists($view_path)) {
+            require_once $view_path;
+            exit;
+        }
+    }
+
+    if ($slug === 'threads') {
+        $app_root = defined('LUPOPEDIA_PATH') ? LUPOPEDIA_PATH : LUPOPEDIA_ABSPATH;
+        $view_path = rtrim($app_root, '/\\') . DIRECTORY_SEPARATOR . 'lupo-views' . DIRECTORY_SEPARATOR . 'dialog' . DIRECTORY_SEPARATOR . 'threads.php';
+        if (file_exists($view_path)) {
+            require_once $view_path;
+            exit;
+        }
+    }
+
+    if ($slug === 'messages') {
+        $app_root = defined('LUPOPEDIA_PATH') ? LUPOPEDIA_PATH : LUPOPEDIA_ABSPATH;
+        $view_path = rtrim($app_root, '/\\') . DIRECTORY_SEPARATOR . 'lupo-views' . DIRECTORY_SEPARATOR . 'dialog' . DIRECTORY_SEPARATOR . 'messages.php';
+        if (file_exists($view_path)) {
+            require_once $view_path;
+            exit;
+        }
+    }
+
+    // Dialog MVP APIs
+    if ($slug === 'thread') {
+        $app_root = defined('LUPOPEDIA_PATH') ? LUPOPEDIA_PATH : LUPOPEDIA_ABSPATH;
+        $api_path = rtrim($app_root, '/\\') . DIRECTORY_SEPARATOR . 'lupo-api' . DIRECTORY_SEPARATOR . 'dialog' . DIRECTORY_SEPARATOR . 'create-thread.php';
+        if (file_exists($api_path)) {
+            require_once $api_path;
+            exit;
+        }
+    }
+
+    if ($slug === 'message') {
+        $app_root = defined('LUPOPEDIA_PATH') ? LUPOPEDIA_PATH : LUPOPEDIA_ABSPATH;
+        $api_path = rtrim($app_root, '/\\') . DIRECTORY_SEPARATOR . 'lupo-api' . DIRECTORY_SEPARATOR . 'dialog' . DIRECTORY_SEPARATOR . 'post-message.php';
+        if (file_exists($api_path)) {
+            require_once $api_path;
+            exit;
+        }
+    }
+
+    if (preg_match('#^message/(\d+)/actor/?$#', $slug, $api_m)) {
+        $dialog_assign_message_id = (int) $api_m[1];
+        $GLOBALS['dialog_assign_message_id'] = $dialog_assign_message_id;
+        $app_root = defined('LUPOPEDIA_PATH') ? LUPOPEDIA_PATH : LUPOPEDIA_ABSPATH;
+        $api_path = rtrim($app_root, '/\\') . DIRECTORY_SEPARATOR . 'lupo-api' . DIRECTORY_SEPARATOR . 'dialog' . DIRECTORY_SEPARATOR . 'assign-actor.php';
+        if (file_exists($api_path)) {
+            require_once $api_path;
+            exit;
+        }
+    }
+
+    if (preg_match('#^message/(\d+)/route/?$#', $slug, $api_m)) {
+        $dialog_route_message_id = (int) $api_m[1];
+        $GLOBALS['dialog_route_message_id'] = $dialog_route_message_id;
+        $app_root = defined('LUPOPEDIA_PATH') ? LUPOPEDIA_PATH : LUPOPEDIA_ABSPATH;
+        $api_path = rtrim($app_root, '/\\') . DIRECTORY_SEPARATOR . 'lupo-api' . DIRECTORY_SEPARATOR . 'dialog' . DIRECTORY_SEPARATOR . 'trigger-routing.php';
+        if (file_exists($api_path)) {
+            require_once $api_path;
+            exit;
+        }
+    }
+
     // ── REST API: Registry (actor lookup / register) ─────────────────────────
     if (preg_match('#^api/registry/actors/(lookup|register)$#', $slug, $api_m)) {
         $registry_api_action = $api_m[1];
@@ -885,6 +954,17 @@ function lupo_route_slug($slug)
             $result = list_handle_slug($slug);
             if (!empty($result)) {
                 return $result;
+            }
+        }
+    }
+
+    // Check for VISIBILITY/HUMAN_REQUESTS routes
+    if (strpos($slug, 'visibility/human-inbox') === 0) {
+        $human_requests_controller = LUPOPEDIA_ABSPATH . '/lupo-routes/human_requests.php';
+        if (file_exists($human_requests_controller)) {
+            require_once $human_requests_controller;
+            if (function_exists('human_requests_handle_slug')) {
+                return human_requests_handle_slug($slug);
             }
         }
     }

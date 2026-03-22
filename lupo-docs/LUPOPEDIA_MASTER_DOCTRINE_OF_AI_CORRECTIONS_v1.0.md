@@ -2,7 +2,7 @@
 ---
 lupopedia.headers:
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\LUPOPEDIA_MASTER_DOCTRINE_OF_AI_CORRECTIONS_v1.0.md"
+  file_path_from_root: "lupo-docs/LUPOPEDIA_MASTER_DOCTRINE_OF_AI_CORRECTIONS_v1.0.md"
   version_when_written: "4.0.84"
   file_hash: "6076096e0ea54af997d3820a8812ae94d076e932055b262dfe7a54b3c854849f"
   last_updated_utc: "20260228155738"

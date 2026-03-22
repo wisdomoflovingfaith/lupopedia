@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\channels\gov\EMOTIONAL_GEOMETRY_GOVERNANCE.md"
+  file_path_from_root: "lupo-docs/channels/gov/EMOTIONAL_GEOMETRY_GOVERNANCE.md"
   file_hash: "cea434b4e2016095503314e6c0384c75d11e1f6360079cf0e53ebcc258f99b23"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

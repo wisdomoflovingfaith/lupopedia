@@ -2,7 +2,7 @@
 
 Centralized hub for actor-specific resources. Each subdirectory is named by actor slug (e.g. `wolfie`, `zencoder`) or ID. **Canonical repository directories** at repo root use the **`lupo-` prefix** (e.g. `lupo-actors`, `lupo-docs`, `lupo-database`, `lupo-bin`, `lupo-scripts`, `lupo-tests`, `lupo-rules`).
 
-**Full documentation:** [lupo-docs/actors.md](../docs/actors.md)
+**Full documentation:** lupo-docs/actors.md
 
 - **Actor 0** — System (core platform, security, low-level management)
 - **Actor 1** — WOLFIE (governing agent, coordination, orchestration)

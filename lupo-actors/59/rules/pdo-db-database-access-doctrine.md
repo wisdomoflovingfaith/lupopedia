@@ -14,7 +14,7 @@ lupopedia.headers:
   delegation_chain: "wolfie:root"
   lupopedia.version: "4.0.74"
   lupopedia.schema: "cursor_rule"
-  file_path_from_root: "lupo-rules/root/pdo-db-database-access-doctrine.md"
+  file_path_from_root: "lupo-actors/59/rules/pdo-db-database-access-doctrine.md"
   web_path: "http://www.lupopedia.com/rules/root/pdo-db-database-access-doctrine"
   last_modified_utc: "20260313"
   system_version: "4.0.74"

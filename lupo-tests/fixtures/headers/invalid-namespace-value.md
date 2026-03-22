@@ -3,7 +3,7 @@ lupopedia.headers:
   lupopedia.version: "4.0.78"
   lupopedia.schema: "database_table"
   system_version: "4.0.78"
-  file_path_from_root: "lupo-docs/database/lupopedia/tables/active/invalid-namespace-value.md"
+  file_path_from_root: "lupo-tests/fixtures/headers/invalid-namespace-value.md"
   web_path: "[web_path](http://www.lupopedia.com/test/invalid-namespace-value)"
   last_modified_utc: "20260316"
   channel_id: 42

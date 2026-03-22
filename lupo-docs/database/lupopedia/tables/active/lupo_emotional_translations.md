@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\database\lupopedia\tables\lupo_emotional_translations.md"
+  file_path_from_root: "lupo-docs/database/lupopedia/tables/active/lupo_emotional_translations.md"
   file_hash: "70245ca5bdde7aadf679dac727b2d8e0731d8e4ad455a9108e6e4d5ba4a32df8"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\channels\doctrine\legacy-import\CRAFTY_SYNTAX_CHAT_DOCTRINE.md"
+  file_path_from_root: "lupo-docs/channels/doctrine/legacy-import/CRAFTY_SYNTAX_CHAT_DOCTRINE.md"
   file_hash: "6228cbea9f516e45b88653a8e9687824d2af4d983b57923ec6fec2c4efd74ec6"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

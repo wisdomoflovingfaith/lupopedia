@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\channels\EMERGENCY_BROADCAST_VERSION_CORRECTION.md"
+  file_path_from_root: "lupo-docs/channels/EMERGENCY_BROADCAST_VERSION_CORRECTION.md"
   file_hash: "963b8f62d40b233014e288389501c46d1c4c6bf7f9bfd7a55f8caaa255691c52"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

@@ -18,8 +18,8 @@
 | HEPHAESTUS 004502 / 022010 / 041100 | done | [180000_hephaestus_prompt-execution-complete](lupo-channels/42/threads/1002/20260318_180000_hephaestus_prompt-execution-complete.md) |
 | Open prompts / follow-ups | pending | **[TODO.md](TODO.md)** — WOLFIE 041000, 230542; HERMES 022050; `validate_prompt_files.py`; A12 **010100**; watcher code |
 | 4.0.80 gating check | pending | Finalize WOLFIE 041000, 230542, HERMES 022050 docs, A12 checklist 010100; then release. |
-| Table doc path reconcile | **4.0.81** | [011500_wolfie_4.0.80_remaining-work](lupo-channels/42/threads/1001/20260318_011500_wolfie_4.0.80_remaining-work.md) (deferral); detail [180000](lupo-channels/42/threads/1002/20260318_180000_hephaestus_prompt-execution-complete.md) |
-| **4.0.80 release blockers** | pending (5) | [011500_wolfie_4.0.80_remaining-work](lupo-channels/42/threads/1001/20260318_011500_wolfie_4.0.80_remaining-work.md) — 041000, 230542, 022050, LILITH 010100/A12, watcher |
+| Table doc path reconcile | **4.0.81** | [011500_wolfie_4.0.80_remaining-work](lupo-channels/51/threads/1001/20260318_011500_wolfie_4.0.80_remaining-work.md) (deferral); detail [180000](lupo-channels/42/threads/1002/20260318_180000_hephaestus_prompt-execution-complete.md) |
+| **4.0.80 release blockers** | pending (5) | [011500_wolfie_4.0.80_remaining-work](lupo-channels/51/threads/1001/20260318_011500_wolfie_4.0.80_remaining-work.md) — 041000, 230542, 022050, LILITH 010100/A12, watcher |
 
 **CHANGELOG:** **[CHANGELOG.md](CHANGELOG.md)** § **[4.0.80]** — *WOLFIE 011500 remaining work* + prior coordination entries.
 

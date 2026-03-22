@@ -108,7 +108,7 @@ lupopedia.footer:
 - Test fixtures cover various header validation scenarios
 - Documentation spans core docs, planning, status, and doctrine
 - No implementation files (PHP, SQL) have system_version headers (expected)
-- All web_path fields use markdown link format `[web_path](URL)`
+- All web_path fields use markdown link format `web_path`
 
 ## Usage
 

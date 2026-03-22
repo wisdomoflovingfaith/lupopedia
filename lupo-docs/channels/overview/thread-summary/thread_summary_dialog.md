@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\channels\overview\thread-summary\thread_summary_dialog.md"
+  file_path_from_root: "lupo-docs/channels/overview/thread-summary/thread_summary_dialog.md"
   file_hash: "f66c7d64b4997ef8bc1185a03720017fe6f9342a873efa531f63ea1be94d0715"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

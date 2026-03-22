@@ -82,7 +82,7 @@ Tasks for a channel are stored at:
 - `{LUPO_CHANNELS_DIR}/{node_id}/{channel_id}/tasks/`
 - `lupo-database/lupopedia/channels/channel_id/{channel_id}/tasks/active/` and `.../pending/`
 
-**Channel 0 / Actor 0:** See [lupo-docs/CHANNEL_0_ACTOR_0_TASKS.md](../../docs/CHANNEL_0_ACTOR_0_TASKS.md) for the full index of tasks on channel_id 0 and actor_id 0.
+**Channel 0 / Actor 0:** See [lupo-docs/CHANNEL_0_ACTOR_0_TASKS.md](../../lupo-docs/CHANNEL_0_ACTOR_0_TASKS.md) for the full index of tasks on channel_id 0 and actor_id 0.
 
 ---
 

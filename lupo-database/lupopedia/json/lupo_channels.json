@@ -14,6 +14,7 @@
     "`description` text",
     "`website_link` varchar(512)",
     "`metadata_json` text",
+    "`channel_config` text",
     "`status_flag` tinyint NOT NULL DEFAULT 1",
     "`end_ymdhis` bigint",
     "`duration_seconds` int",
@@ -28,7 +29,11 @@
     "`parent_channel_id` bigint",
     "`project_id` bigint",
     "`is_kernel` tinyint NOT NULL DEFAULT 0",
-    "`boot_sequence_order` int"
+    "`boot_sequence_order` int",
+    "`visibility_status` varchar(32) NOT NULL DEFAULT 'active'",
+    "`owner_actor_id` bigint NOT NULL DEFAULT 1",
+    "`access_level` varchar(32) NOT NULL DEFAULT 'public'",
+    "`last_activity_ymdhis` bigint NOT NULL DEFAULT 0"
   ],
   "data": [
     {
@@ -45,11 +50,12 @@
       "description": "System channel (kernel/system operations).",
       "website_link": null,
       "metadata_json": null,
+      "channel_config": null,
       "status_flag": 1,
       "end_ymdhis": null,
       "duration_seconds": null,
-      "created_ymdhis": 20260316162721,
-      "updated_ymdhis": 20260316162721,
+      "created_ymdhis": 20260322173336,
+      "updated_ymdhis": 20260322173336,
       "is_deleted": 0,
       "deleted_ymdhis": null,
       "aal_metadata_json": null,
@@ -59,10 +65,22 @@
       "parent_channel_id": null,
       "project_id": null,
       "is_kernel": 1,
-      "boot_sequence_order": null
+      "boot_sequence_order": null,
+      "visibility_status": "active",
+      "owner_actor_id": 1,
+      "access_level": "public",
+      "last_activity_ymdhis": 0
     }
   ],
   "indexes": [
+    {
+      "index_name": "lupo_channels_idx_access_level",
+      "columns": [
+        "access_level"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
     {
       "index_name": "lupo_channels_idx_awareness_version",
       "columns": [
@@ -96,6 +114,22 @@
       "index_type": "BTREE"
     },
     {
+      "index_name": "lupo_channels_idx_last_activity",
+      "columns": [
+        "last_activity_ymdhis"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_channels_idx_owner_actor_id",
+      "columns": [
+        "owner_actor_id"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
       "index_name": "lupo_channels_idx_project_id",
       "columns": [
         "project_id"
@@ -107,6 +141,14 @@
       "index_name": "lupo_channels_idx_status",
       "columns": [
         "status_flag"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_channels_idx_visibility_status",
+      "columns": [
+        "visibility_status"
       ],
       "is_unique": false,
       "index_type": "BTREE"

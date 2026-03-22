@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\channels\doctrine\SCHEMA_FEDERATION_DOCTRINE.md"
+  file_path_from_root: "lupo-docs/channels/doctrine/SCHEMA_FEDERATION_DOCTRINE.md"
   file_hash: "4913d986b26b0e046af00d7d77024951597bc3a1a8fbe86c68c47d6cc472ec9c"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"
@@ -264,7 +264,7 @@ Monitoring dashboard tracks:
 
 ## Related Documentation
 
-- [Table Budget Doctrine](TABLE_BUDGET_DOCTRINE.md) - 111-table limit doctrine
+- Table Budget Doctrine - 111-table limit doctrine
 - [Migration Doctrine](MIGRATION_DOCTRINE.md) - Migration rules and procedures
 - [Database Schema Reference](../schema/DATABASE_SCHEMA.md) - Complete table documentation
 

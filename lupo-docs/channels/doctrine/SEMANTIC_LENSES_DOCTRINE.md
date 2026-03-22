@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\channels\doctrine\SEMANTIC_LENSES_DOCTRINE.md"
+  file_path_from_root: "lupo-docs/channels/doctrine/SEMANTIC_LENSES_DOCTRINE.md"
   file_hash: "0d1d3d04cfc5c3e5b64d8bc8632d8ec88dbae5596d8093a34f302a858039dc91"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

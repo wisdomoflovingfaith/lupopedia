@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\channels\doctrine\REFLECTIVE_EMOTIONAL_GEOMETRY_DOCTRINE.md"
+  file_path_from_root: "lupo-docs/channels/doctrine/REFLECTIVE_EMOTIONAL_GEOMETRY_DOCTRINE.md"
   file_hash: "5f1ff56c04b46ba56ed9482240f3d294f7cf43b6674b549a975050bb7d4805c9"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

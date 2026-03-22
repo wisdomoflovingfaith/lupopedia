@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\channels\overview\WHY_THIS_DATASET_CANNOT_EXIST_TODAY.md"
+  file_path_from_root: "lupo-docs/channels/overview/WHY_THIS_DATASET_CANNOT_EXIST_TODAY.md"
   file_hash: "eb208c0b7e3cf78a50ae4ae3d390866b8bf3de2f8915e588507adbd07de49e86"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

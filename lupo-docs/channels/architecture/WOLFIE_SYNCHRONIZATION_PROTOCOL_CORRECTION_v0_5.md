@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\channels\architecture\WOLFIE_SYNCHRONIZATION_PROTOCOL_CORRECTION_v0_5.md"
+  file_path_from_root: "lupo-docs/channels/architecture/WOLFIE_SYNCHRONIZATION_PROTOCOL_CORRECTION_v0_5.md"
   file_hash: "dc6cbff61ebf3a5d5f3e3b761cead040401cc7f81e1e11aeac2ec08295bff454"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

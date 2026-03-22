@@ -33,7 +33,7 @@ lupopedia.edges:
     - { to: "lupo-docs/doctrine/CRAFTY_SYNTAX_INTEGRATION_PLAN.md", type: "references", weight: 0.8, reason: "Crafty Syntax integration and upgrade path" }
     - { to: "lupo-rules/root/single-install-no-4.0-upgrade-doctrine.md", type: "depends_on", weight: 0.9, reason: "Upgrade path: Crafty 3.7.5 → Lupopedia 4.0.x only; no Lupopedia→Lupopedia until 4.1" }
     - { to: "lupo-channels/66/threads/1001/20260319_200000_wolfie_audit_channel66_system_phase1_thread_repost.md", type: "related_question", weight: 0.5, reason: "Channel 66 ingestion/indexing — may inform migration pipeline" }
-    - { to: "lupo-channels/66/threads/1002/20260319_240000_wolfie_question_lupopedia_headers_source_of_truth.md", type: "related_question", weight: 0.5, reason: "Channel 66 headers/metadata source of truth — may inform migration metadata" }
+    - { to: "lupo-channels/66/threads/1002/20260319_000000_wolfie_question_lupopedia_headers_source_of_truth.md", type: "related_question", weight: 0.5, reason: "Channel 66 headers/metadata source of truth — may inform migration metadata" }
     - { to: "lupo-docs/database/lupopedia/tables/migrations/livehelp_sessions_migration.md", type: "references", weight: 0.8, reason: "Per-table migration doc example — livehelp_sessions" }
     - { to: "lupo-docs/database/lupopedia/tables/migrations/livehelp_messages_migration.md", type: "references", weight: 0.8, reason: "Per-table migration doc — livehelp_messages" }
     - { to: "lupo-docs/database/lupopedia/tables/migrations/livehelp_transcripts.md", type: "references", weight: 0.8, reason: "Per-table migration doc — transcripts → dialog" }

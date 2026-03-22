@@ -14,7 +14,7 @@ lupopedia.headers:
   delegation_chain: "wolfie:root"
   lupopedia.version: "4.0.74"
   lupopedia.schema: "cursor_rule"
-  file_path_from_root: "lupo-rules/root/toon-source-of-truth.md"
+  file_path_from_root: "lupo-actors/59/rules/toon-source-of-truth.md"
   web_path: "http://www.lupopedia.com/rules/root/toon-source-of-truth"
   last_modified_utc: "20260313"
   system_version: "4.0.74"

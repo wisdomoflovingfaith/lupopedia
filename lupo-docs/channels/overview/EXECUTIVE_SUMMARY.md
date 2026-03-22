@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\channels\overview\EXECUTIVE_SUMMARY.md"
+  file_path_from_root: "lupo-docs/channels/overview/EXECUTIVE_SUMMARY.md"
   file_hash: "07dab2693374ea9253a20059bd3164174192cd377edd209e95b6809f4543a1c4"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"
@@ -277,6 +277,6 @@ Unlike traditional CMS platforms that force rigid structures or cloud services t
 
 ---
 
-*For technical details, see [Technical Architecture](lupo-docs/ARCHITECTURE.md)*  
-*For database structure, see [Database Schema Reference](lupo-docs/DATABASE_SCHEMA.md)*  
+*For technical details, see Technical Architecture*  
+*For database structure, see [Database Schema Reference](../schema/DATABASE_SCHEMA.md)*  
 *For vision and philosophy, see [Vision Statement](VISION.md)*

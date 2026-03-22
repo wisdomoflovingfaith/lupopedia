@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: "lupo-channels/42/content/federation_node_id/0/flare/readme.md"
+  file_path_from_root: "lupo-database/lupopedia/channels/channel_id/42/content/federation_node_id/0/flare/readme.md"
   file_hash: "to_be_generated"
   federation_node_id: 0
   web_path: "http://www.lupopedia.com/flare/readme"

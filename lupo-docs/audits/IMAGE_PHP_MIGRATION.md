@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\IMAGE_PHP_MIGRATION.md"
+  file_path_from_root: "lupo-docs/audits/IMAGE_PHP_MIGRATION.md"
   file_hash: "c96895d2f5e6c917297e45c9b60a7c2997ae76240c31bcd7cd05d68aebf08643"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

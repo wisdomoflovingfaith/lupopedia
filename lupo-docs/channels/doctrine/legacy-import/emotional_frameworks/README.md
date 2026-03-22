@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\channels\doctrine\legacy-import\emotional_frameworks\README.md"
+  file_path_from_root: "lupo-docs/channels/doctrine/legacy-import/emotional_frameworks/README.md"
   file_hash: "314e61a308c6a36dd63b3ba0723dfd540e0d8bc7f5e02c264c68e3f469bf415d"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

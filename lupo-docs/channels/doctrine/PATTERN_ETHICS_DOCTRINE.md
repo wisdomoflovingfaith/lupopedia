@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\channels\doctrine\PATTERN_ETHICS_DOCTRINE.md"
+  file_path_from_root: "lupo-docs/channels/doctrine/PATTERN_ETHICS_DOCTRINE.md"
   file_hash: "42cece75821b6e66ea480122333f41e3c9474855069e2d1dd68b12f3e8901569"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"
@@ -193,7 +193,7 @@ If uncertainty remains, the default is **prohibition**.
 - [GOV-PROHIBIT-001](GOV-PROHIBIT-001.md)
 - [GOV-AD-PROHIBIT-001](GOV-AD-PROHIBIT-001.md)
 - [GOV-APPENDIX-A](GOV-APPENDIX-A.md)
-- [AGI Support Meeting #1 — Getting Started](../dialogs/AGI_SUPPORT_MEETING_01_GETTING_STARTED_ORIENTATION.md)
+- AGI Support Meeting #1 — Getting Started
 
 ---
 

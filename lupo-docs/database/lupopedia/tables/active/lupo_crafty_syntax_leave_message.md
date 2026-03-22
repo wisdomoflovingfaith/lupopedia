@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\database\lupopedia\tables\lupo_crafty_syntax_leave_message.md"
+  file_path_from_root: "lupo-docs/database/lupopedia/tables/active/lupo_crafty_syntax_leave_message.md"
   file_hash: "edbb8c703c51c16c423626a6927bbc63b44b0fce8852afd0110c00d77adccde1"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

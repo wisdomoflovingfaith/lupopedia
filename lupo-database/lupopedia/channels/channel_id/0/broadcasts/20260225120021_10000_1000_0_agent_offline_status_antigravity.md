@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\channels\0\broadcasts\20260225120021_10000_1000_0_agent_offline_status_antigravity.md"
+  file_path_from_root: "lupo-database/lupopedia/channels/channel_id/0/broadcasts/20260225120021_10000_1000_0_agent_offline_status_antigravity.md"
   file_hash: "ec9c53f89d3d4c6a8ae7a445d275cffd1d46f448f8a0f4b69aff6213717bf571"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

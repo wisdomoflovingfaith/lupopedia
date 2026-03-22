@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\channels\doctrine\CHANNEL_JOIN_PROTOCOL.md"
+  file_path_from_root: "lupo-docs/channels/doctrine/CHANNEL_JOIN_PROTOCOL.md"
   file_hash: "f851577f8d51a88e8b950043b643e30e2d85a21be31b949e372543eadf557210"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

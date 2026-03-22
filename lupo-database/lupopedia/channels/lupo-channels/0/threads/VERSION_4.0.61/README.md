@@ -56,7 +56,7 @@ This thread respects the paths defined in `lupopedia-config.php`:
 
 | File | Description |
 |------|-------------|
-| [CHANGELOG.md](CHANGELOG.md) | Version 4.0.61 changelog entries |
+| [CHANGELOG.md](../../../../../../../CHANGELOG.md) | Version 4.0.61 changelog entries |
 | [dual_identity.md](dual_identity.md) | Dual-identity runtime context |
 | [help_system.md](help_system.md) | HelpRenderer and HELP.md |
 | [session_format.md](session_format.md) | Session file format |
@@ -73,10 +73,10 @@ This thread respects the paths defined in `lupopedia-config.php`:
 
 ## Related Documentation (config-based paths)
 
-- Main help hub: [lupo-docs/HELP.md](../../../../../../../docs/HELP.md)
-- Identity docs: [lupo-docs/lupopedia_whoami_readme.md](../../../../../../../docs/lupopedia_whoami_readme.md)
-- Auth docs: [lupo-docs/auth.md](../../../../../../../docs/auth.md)
-- Version history: [lupo-docs/version.md](../../../../../../../docs/version.md)
+- Main help hub: lupo-docs/HELP.md
+- Identity docs: [lupo-docs/lupopedia_whoami_readme.md](../../../../../../../lupo-docs/lupopedia_whoami_readme.md)
+- Auth docs: [lupo-docs/auth.md](../../../../../../../lupo-docs/auth.md)
+- Version history: [lupo-docs/version.md](../../../../../../../lupo-docs/version.md)
 - Session file: [lupo-database/session.md](../../../../../../session.md)
 
 ## Version Information
@@ -109,4 +109,4 @@ This thread respects the paths defined in `lupopedia-config.php`:
 
 **Last Updated:** 2026-03-06  
 **Configuration source:** `lupopedia-config.php`  
-**For more information:** [lupo-docs/HELP.md](../../../../../../../docs/HELP.md)
+**For more information:** lupo-docs/HELP.md

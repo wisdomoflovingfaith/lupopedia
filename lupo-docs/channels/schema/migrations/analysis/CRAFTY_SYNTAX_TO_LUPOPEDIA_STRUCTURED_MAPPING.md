@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\channels\schema\migrations\analysis\CRAFTY_SYNTAX_TO_LUPOPEDIA_STRUCTURED_MAPPING.md"
+  file_path_from_root: "lupo-docs/channels/schema/migrations/analysis/CRAFTY_SYNTAX_TO_LUPOPEDIA_STRUCTURED_MAPPING.md"
   file_hash: "2a10434046f04b991ffdb97dca9bdd2f8d12e0563cd4aa3e746825fb954b86a2"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

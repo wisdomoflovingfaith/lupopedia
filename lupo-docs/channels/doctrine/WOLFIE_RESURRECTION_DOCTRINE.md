@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\channels\doctrine\WOLFIE_RESURRECTION_DOCTRINE.md"
+  file_path_from_root: "lupo-docs/channels/doctrine/WOLFIE_RESURRECTION_DOCTRINE.md"
   file_hash: "6a9b9b0654e799173ea37360ffba99007b2efcf287cbfc100343e35b964d6446"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

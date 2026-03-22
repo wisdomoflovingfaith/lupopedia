@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\channels\gov\MIGRATION_APPROVAL_PROTOCOL.md"
+  file_path_from_root: "lupo-docs/channels/gov/MIGRATION_APPROVAL_PROTOCOL.md"
   file_hash: "0f57d05909a11fa9393edc7a6155599e8898bbc15451d6d8defb28a6090f435b"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

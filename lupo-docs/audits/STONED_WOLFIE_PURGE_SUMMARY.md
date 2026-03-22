@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\audits\STONED_WOLFIE_PURGE_SUMMARY.md"
+  file_path_from_root: "lupo-docs/audits/STONED_WOLFIE_PURGE_SUMMARY.md"
   file_hash: "dbdadc56936728bdfbe33d8281c6ad19d66216fbb4f514347cc1656ca8ae1ce4"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

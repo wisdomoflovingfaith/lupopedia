@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\channels\0\tasks\active\installer_integration.md"
+  file_path_from_root: "lupo-database/lupopedia/channels/channel_id/0/tasks/active/installer_integration.md"
   file_hash: "31660f43c3a5a211848e9ac3054a3b0ec9819ce9a964abefb7b3df8c231111b2"
   last_updated_utc: "20260228155738"
   system_version: "4.0.73"

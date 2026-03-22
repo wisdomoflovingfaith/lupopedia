@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\channels\agents\AGENT_PROMPT_TEMPLATING_STANDARD.md"
+  file_path_from_root: "lupo-docs/channels/agents/AGENT_PROMPT_TEMPLATING_STANDARD.md"
   file_hash: "d57e74c85b221e8fd364a050324db3e7ca7264a832bfd8bb38d1b75a7eef2aa8"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"
@@ -271,7 +271,7 @@ Both root-level and versioned prompts must be updated:
 ## **Related Documentation**
 
 - **[AGENT_RUNTIME.md](AGENT_RUNTIME.md)** — How agents load and execute
-- **[lupo-agents/README.md](../../lupo-agents/README.md)** — Agent directory structure
+- **lupo-agents/README.md** — Agent directory structure
 - **[WOLFIE_HEADER_SPECIFICATION.md](WOLFIE_HEADER_SPECIFICATION.md)** — File metadata format
 
 ---

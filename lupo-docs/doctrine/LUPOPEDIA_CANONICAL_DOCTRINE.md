@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\doctrine\LUPOPEDIA_CANONICAL_DOCTRINE.md"
+  file_path_from_root: "lupo-docs/doctrine/LUPOPEDIA_CANONICAL_DOCTRINE.md"
   file_hash: "7959561c97b0203da3135fdabac304d98fcc9134f7eeaf789fd3a8a0dd994505"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

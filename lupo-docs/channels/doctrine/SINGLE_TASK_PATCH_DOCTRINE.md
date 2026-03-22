@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\channels\doctrine\SINGLE_TASK_PATCH_DOCTRINE.md"
+  file_path_from_root: "lupo-docs/channels/doctrine/SINGLE_TASK_PATCH_DOCTRINE.md"
   file_hash: "a2c1e2e0a99c471045887d1abace9bb7b345f399efd2224cc5c2f39c7a5546c2"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

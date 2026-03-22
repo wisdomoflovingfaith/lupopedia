@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\channels\doctrine\AGENT_AWARENESS_DOCTRINE.md"
+  file_path_from_root: "lupo-docs/channels/doctrine/AGENT_AWARENESS_DOCTRINE.md"
   file_hash: "821d2d8ccdc6fa2fcb1f9e98cc0c6d8665e1359bdb5490c6854a9cf12a503fc3"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\PDO_DB_DOCTRINE_REFACTOR_REPORT.md"
+  file_path_from_root: "lupo-docs/audits/PDO_DB_DOCTRINE_REFACTOR_REPORT.md"
   file_hash: "23e5e599d2f858d6667caeda1d9786644aa6943429421700349992e63eb1e87a"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

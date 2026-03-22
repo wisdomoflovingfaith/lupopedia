@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\doctrine\FLARE\FLARE_CHANNEL_666.md"
+  file_path_from_root: "lupo-docs/doctrine/FLARE/FLARE_CHANNEL_666.md"
   file_hash: "f70a713479a386b11ef5f650e200edd0c8016152c72c47f37f88cec3ccee8dac"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\channels\gov\FLEET_COMPOSITION_RULES.md"
+  file_path_from_root: "lupo-docs/channels/gov/FLEET_COMPOSITION_RULES.md"
   file_hash: "f3a7d74b3cae7e818bf940ba9faf1152d3f0340e499d05b765ddd88a348afa47"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

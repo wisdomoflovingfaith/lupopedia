@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\SESSIONS_VS_SESSIONS_INVESTIGATION.md"
+  file_path_from_root: "lupo-docs/audits/SESSIONS_VS_SESSIONS_INVESTIGATION.md"
   file_hash: "f48cf9fb317f5ecd3beaae93fb2206f7868ee9e70745f5b244c93330d55dd3a5"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

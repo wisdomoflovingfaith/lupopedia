@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\channels\doctrine\NO_STORED_PROCEDURES_DOCTRINE.md"
+  file_path_from_root: "lupo-docs/channels/doctrine/NO_STORED_PROCEDURES_DOCTRINE.md"
   file_hash: "c8dd22e3adc52cdf400d5184db37be04f47a1b850784687bee4bf255d28bdd17"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"
@@ -716,9 +716,9 @@ This is how Lupopedia maintains portability, enables data merging, supports fede
 **See also:**
 - [NO_FOREIGN_KEYS_DOCTRINE.md](NO_FOREIGN_KEYS_DOCTRINE.md) â€” Related doctrine on foreign keys
 - [NO_TRIGGERS_DOCTRINE.md](NO_TRIGGERS_DOCTRINE.md) â€” Related doctrine on triggers
-- [anubis_DOCTRINE.md](anubis_DOCTRINE.md) â€” Custodial intelligence system
+- anubis_DOCTRINE.md â€” Custodial intelligence system
 - [DATABASE_PHILOSOPHY.md](../architecture/DATABASE_PHILOSOPHY.md) â€” Database design principles
-- [anubis_DOCTRINE.md](anubis_DOCTRINE.md) â€” How anubis handles data repair
-- [PHILOSOPHY.md](../../PHILOSOPHY.md) â€” Overall database philosophy
+- anubis_DOCTRINE.md â€” How anubis handles data repair
+- [PHILOSOPHY.md](../overview/PHILOSOPHY.md) â€” Overall database philosophy
 
 ---

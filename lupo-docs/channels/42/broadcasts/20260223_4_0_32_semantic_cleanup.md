@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\channels\42\broadcasts\20260223_4_0_32_semantic_cleanup.md"
+  file_path_from_root: "lupo-docs/channels/42/broadcasts/20260223_4_0_32_semantic_cleanup.md"
   file_hash: "b4d0143d0992cb3feaf87325769b213a4db4c2ded5dbeefd89b20d8502e4c085"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

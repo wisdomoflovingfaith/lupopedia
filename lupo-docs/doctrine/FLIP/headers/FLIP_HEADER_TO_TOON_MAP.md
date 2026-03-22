@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\doctrine\FLIP\headers\FLIP_HEADER_TO_TOON_MAP.md"
+  file_path_from_root: "lupo-docs/doctrine/FLIP/headers/FLIP_HEADER_TO_TOON_MAP.md"
   file_hash: "32c8f2003276a17740d649f1dfedc0d1c6d5e9a0bab19cd418e94473268d924b"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

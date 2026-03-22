@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\audits\INSTALL_PHP_WIZARD_FIX_PLAN.md"
+  file_path_from_root: "lupo-docs/audits/INSTALL_PHP_WIZARD_FIX_PLAN.md"
   file_hash: "58794bbab3562042119b6d6f955c3ed5a7e314b0ebe01696da9da11642b58226"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

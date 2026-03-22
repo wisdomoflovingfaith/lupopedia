@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\channels\doctrine\legacy-import\ACTOR_IDENTITY_DOCTRINE.md"
+  file_path_from_root: "lupo-docs/channels/doctrine/legacy-import/ACTOR_IDENTITY_DOCTRINE.md"
   file_hash: "f567dd052898ee47fc8806f6ab54067b39c7282ddca3bea6303a919dc6f9a3f0"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

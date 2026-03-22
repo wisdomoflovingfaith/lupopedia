@@ -199,7 +199,7 @@ Use **`lupopedia.footer`** and/or `last_modified_utc` for verification cadence/f
 - **Forbidden**: Create variant identities, rename herself, simulate alternate versions
 
 ### Source
-- **File**: `lupo-channels/51/threads/1037/20260319_250000_wolfie_canonical_lilith_identity_artifact.md`
+- **File**: `lupo-channels/51/threads/1037/20260319_010000_wolfie_canonical_lilith_identity_artifact.md`
 - **Registry**: `lupo-database/lupopedia/actors/actor_id/registry.json`
 - **Status**: Canonical and locked
 

@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\ACTOR_CHANNEL_ROLES_VS_CHANNEL_ROLES_ANALYSIS.md"
+  file_path_from_root: "lupo-docs/audits/ACTOR_CHANNEL_ROLES_VS_CHANNEL_ROLES_ANALYSIS.md"
   file_hash: "90c184d9058a0032f21e84c456c9af99662273b239020c353be725dec6411f72"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

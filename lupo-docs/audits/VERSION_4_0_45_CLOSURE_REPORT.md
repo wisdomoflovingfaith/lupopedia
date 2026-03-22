@@ -5,7 +5,7 @@ lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
   lupopedia.edges: []
-  file_path_from_root: "VERSION_4_0_45_CLOSURE_REPORT.md"
+  file_path_from_root: "lupo-docs/audits/VERSION_4_0_45_CLOSURE_REPORT.md"
   file_hash: "103ecd51420dfc9d1a518cc1187d56abd725f43420aef0ddea0ec37dc9cd5cdd"
   file_path_from_root: "VERSION_4_0_45_CLOSURE_REPORT.md"
   file_hash: "38c68ea0becd68f611bb963095f2214c7fe296e084a315ad03b723fea50fdd50"

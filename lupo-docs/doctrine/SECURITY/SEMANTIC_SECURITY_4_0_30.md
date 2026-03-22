@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\doctrine\SECURITY\SEMANTIC_SECURITY_4_0_30.md"
+  file_path_from_root: "lupo-docs/doctrine/SECURITY/SEMANTIC_SECURITY_4_0_30.md"
   file_hash: "4bad95b1e7b5f8b7afdfef377ed7a4ded61ff7ad3ff8c59d9ffdc5732ac0f6f3"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

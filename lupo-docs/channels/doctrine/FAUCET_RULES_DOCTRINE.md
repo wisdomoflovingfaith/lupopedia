@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\channels\doctrine\FAUCET_RULES_DOCTRINE.md"
+  file_path_from_root: "lupo-docs/channels/doctrine/FAUCET_RULES_DOCTRINE.md"
   file_hash: "cbf683b15996ab675ab560e2279f6f8274070e445dfc7186c72b06cd41bff782"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

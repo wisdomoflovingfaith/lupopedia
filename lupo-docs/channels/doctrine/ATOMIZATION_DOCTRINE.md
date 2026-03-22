@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\channels\doctrine\ATOMIZATION_DOCTRINE.md"
+  file_path_from_root: "lupo-docs/channels/doctrine/ATOMIZATION_DOCTRINE.md"
   file_hash: "6e782570450ddf737035f8fcd9d0da759f481d11aaf7085f602afc60ef6dfae7"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"
@@ -859,7 +859,7 @@ This doctrine complements:
 - **[NO_TRIGGERS_DOCTRINE.md](NO_TRIGGERS_DOCTRINE.md)** — Uses atoms for doctrine constants
 - **[NO_STORED_PROCEDURES_DOCTRINE.md](NO_STORED_PROCEDURES_DOCTRINE.md)** — Uses atoms for doctrine constants
 - **[DOCUMENTATION_DOCTRINE.md](DOCUMENTATION_DOCTRINE.md)** — Documentation must use atoms, not hardcoded values
-- **[global_atoms.yaml](../../config/global_atoms.yaml)** — Single source of truth for all global atoms
+- **global_atoms.yaml** — Single source of truth for all global atoms
 
 ---
 

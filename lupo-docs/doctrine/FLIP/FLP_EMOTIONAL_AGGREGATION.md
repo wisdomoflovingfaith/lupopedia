@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\doctrine\FLIP\FLP_EMOTIONAL_AGGREGATION.md"
+  file_path_from_root: "lupo-docs/doctrine/FLIP/FLP_EMOTIONAL_AGGREGATION.md"
   file_hash: "2692cc87e038b9f5d55fcdaf4706beb13703908df7da339f378921adfd8932a0"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

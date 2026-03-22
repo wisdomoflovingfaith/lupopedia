@@ -9,9 +9,9 @@ This thread manages the transition to version 4.0.62, focusing on persistent act
 - **Registry Sync:** Automated consistency between DB and JSON registry.
 
 ## Documentation
-- [DOCTOR_HEALTH_CHECK.md](../../../docs/DOCTOR_HEALTH_CHECK.md)
-- [ACTOR_WORKSPACE_NAMESPACE_MIGRATION_4.0.62.md](../../../docs/status/ACTOR_WORKSPACE_NAMESPACE_MIGRATION_4.0.62.md)
-- [VERSION_SYNC_REPORT_4.0.62.md](../../../docs/status/VERSION_SYNC_REPORT_4.0.62.md)
+- [DOCTOR_HEALTH_CHECK.md](../../../../lupo-docs/DOCTOR_HEALTH_CHECK.md)
+- ACTOR_WORKSPACE_NAMESPACE_MIGRATION_4.0.62.md
+- VERSION_SYNC_REPORT_4.0.62.md
 
 ---
 **Status:** Active Development (v4.0.62)

@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\database\lupopedia\tables\lupo_pack_role_registry.md"
+  file_path_from_root: "lupo-docs/database/lupopedia/tables/active/lupo_pack_role_registry.md"
   file_hash: "10c6105158f75907e8f162a67ba192cbaa08f59fdfe79073047378a25d668f01"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

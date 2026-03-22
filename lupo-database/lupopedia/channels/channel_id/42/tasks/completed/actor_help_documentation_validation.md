@@ -49,7 +49,7 @@ lupopedia.conditional:
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "task"
-  file_path_from_root: "lupo-database/lupopedia/channels/lupo-channels/42/tasks/completed/actor_help_documentation_validation.md"
+  file_path_from_root: "lupo-database/lupopedia/channels/channel_id/42/tasks/completed/actor_help_documentation_validation.md"
   file_hash: "43d1f47e3cb116e69de4dc5a0a821e482181618350427151a73e5a0f39ed4feb"
   last_updated_utc: "20260304"
   system_version: "4.0.56"

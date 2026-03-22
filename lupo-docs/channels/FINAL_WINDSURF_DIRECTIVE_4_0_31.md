@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\channels\FINAL_WINDSURF_DIRECTIVE_4_0_31.md"
+  file_path_from_root: "lupo-docs/channels/FINAL_WINDSURF_DIRECTIVE_4_0_31.md"
   file_hash: "99a31f3f3b2f0cfc3623d8a5fd89814edb10b7cb807f329db25c53952f04f001"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

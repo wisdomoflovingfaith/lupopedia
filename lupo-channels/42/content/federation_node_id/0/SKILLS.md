@@ -47,9 +47,9 @@ Everyone on **Channel 42** has the following skills by channel scope. Use these 
 
 ### Uploads skill (canonical reference)
 
-- **Path:** [lupo-skills/uploads/](../../../../lupo-skills/uploads/)
+- **Path:** lupo-skills/uploads/
 - **Entities:** actors, auth_users, channels, documents, tasks, uploads (optional: actor_faucets, actor_instances).
 - **Layout:** `/lupopedia/uploads/<entity>/<YYYY>/<MM>/<sha256>.<ext>`.
 - **auth_users:** Authentication layer; own namespace for human uploads (avatars, documents, preferences, etc.). Mapping auth_user → actors in DB, not filesystem.
 
-See [lupo-skills/uploads/README.md](../../../../lupo-skills/uploads/README.md) for full doctrine.
+See lupo-skills/uploads/README.md for full doctrine.

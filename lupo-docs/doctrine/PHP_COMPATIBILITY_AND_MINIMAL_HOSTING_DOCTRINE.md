@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\doctrine\PHP_COMPATIBILITY_AND_MINIMAL_HOSTING_DOCTRINE.md"
+  file_path_from_root: "lupo-docs/doctrine/PHP_COMPATIBILITY_AND_MINIMAL_HOSTING_DOCTRINE.md"
   file_hash: "336e9a958c59463835d518bb609d9f772cfb87974448b1da4e7de46cd3a4799e"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

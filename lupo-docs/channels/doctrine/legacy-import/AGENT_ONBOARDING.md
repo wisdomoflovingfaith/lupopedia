@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\channels\doctrine\legacy-import\AGENT_ONBOARDING.md"
+  file_path_from_root: "lupo-docs/channels/doctrine/legacy-import/AGENT_ONBOARDING.md"
   file_hash: "4d88d2e655b6fadeee42ec13a2b824d6214afb505f325df08cf7f1d511f84caa"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

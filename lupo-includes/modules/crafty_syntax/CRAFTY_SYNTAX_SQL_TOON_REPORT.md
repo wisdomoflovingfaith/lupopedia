@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\lupo-includes\modules\crafty_syntax\CRAFTY_SYNTAX_SQL_TOON_REPORT.md"
+  file_path_from_root: "lupo-includes/modules/crafty_syntax/CRAFTY_SYNTAX_SQL_TOON_REPORT.md"
   file_hash: "6ef33efc63f0ee5f74f7c6113de67676460fbb8d55ce521e9fe65d0e5c5ec936"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

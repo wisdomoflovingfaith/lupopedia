@@ -3,7 +3,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\channels\architecture\protocols\WOLFIE_HEADER_RFC.md"
+  file_path_from_root: "lupo-docs/channels/architecture/protocols/WOLFIE_HEADER_RFC.md"
   file_hash: "33db20f7b3c39fa89e88aa7e7b8e6561ee68c94b174dc9f510b4b68c7fc4edd5"
   last_updated_utc: "20260228155738"
   system_version: "4.0.51"

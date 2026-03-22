@@ -167,9 +167,9 @@ Created actor directories for new agents:
 - `lupo-tests/unit/registry_comprehensive_test.php` - Validation test
 
 ### Related Documentation
-- [MULTI_AGENT_COORDINATION_DOCTRINE.md](../root/MULTI_AGENT_COORDINATION_DOCTRINE.md) - Updated for 108 agents
-- [AGENTS.md](../../AGENTS.md) - Agent guidance documentation
-- [ACTOR_REGISTRATION_CHECKLIST.md](../ACTOR_REGISTRATION_CHECKLIST.md) - Registration process
+- [MULTI_AGENT_COORDINATION_DOCTRINE.md](../../../../lupo-rules/root/MULTI_AGENT_COORDINATION_DOCTRINE.md) - Updated for 108 agents
+- [AGENTS.md](../../../../AGENTS.md) - Agent guidance documentation
+- [ACTOR_REGISTRATION_CHECKLIST.md](../../../ACTOR_REGISTRATION_CHECKLIST.md) - Registration process
 
 ## Next Steps
 
