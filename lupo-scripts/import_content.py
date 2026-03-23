@@ -28,6 +28,8 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any, Dict, List, Tuple
 
+from lib.header_validation import validate_header
+
 try:
     import yaml
 except ModuleNotFoundError:
@@ -561,6 +563,9 @@ def main() -> int:
     try:
         yaml_data, yaml_text, body_content = _parse_markdown_front_matter(original_text)
         headers = _extract_lupopedia_headers_block(yaml_data)
+        validation = validate_header(headers)
+        if not validation.get("valid"):
+            raise ValueError(__import__("json").dumps(validation))
         header_fields = _extract_required_header_fields(headers)
         # Include last_modified_utc in header_fields if present (for file_last_modified_utc).
         if headers.get("last_modified_utc") is not None:

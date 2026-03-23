@@ -19,6 +19,8 @@ import hashlib
 from datetime import datetime
 from pathlib import Path
 
+from lib.header_validation import parse_front_matter_header, validate_header
+
 # Add parent directory to path for imports
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
@@ -72,23 +74,19 @@ def parse_markdown_file(filepath):
     """Parse markdown file with YAML front matter"""
     with open(filepath, 'r', encoding='utf-8') as f:
         content = f.read()
-    
-    # Extract YAML front matter
-    yaml_match = re.match(r'^---\s*\n(.*?)\n---\s*\n(.*)$', content, re.DOTALL)
-    if not yaml_match:
-        return None
-    
-    yaml_content = yaml_match.group(1)
-    message_body = yaml_match.group(2).strip()
-    
-    # Parse YAML manually (simple key: value pairs)
-    metadata = {}
-    for line in yaml_content.split('\n'):
-        if ':' in line and not line.strip().startswith('#'):
-            key, value = line.split(':', 1)
-            key = key.strip()
-            value = value.strip().strip('"\'')
-            metadata[key] = value
+
+    parse_result = parse_front_matter_header(content)
+    if not parse_result.get('valid'):
+        raise ValueError(json.dumps({
+            'valid': False,
+            'errors': parse_result.get('errors', ['Malformed header'])
+        }))
+
+    metadata = parse_result.get('header') or {}
+    validation = validate_header(metadata)
+    if not validation.get('valid'):
+        raise ValueError(json.dumps(validation))
+    message_body = (parse_result.get('body') or '').strip()
     
     # Extract message text (first 1000 chars of body, no YAML)
     message_text = message_body[:1000]
@@ -135,10 +133,6 @@ def generate_dialog_message_id(cursor, table_prefix, base_timestamp):
 def import_broadcast(cursor, table_prefix, filepath, dry_run=False, verbose=False):
     """Import a single broadcast message"""
     data = parse_markdown_file(filepath)
-    if not data:
-        if verbose:
-            print(f"  SKIP: {filepath} (no YAML front matter)")
-        return False
     
     metadata = data['metadata']
     

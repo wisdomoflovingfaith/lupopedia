@@ -10,6 +10,8 @@ import sys
 import mysql.connector
 from datetime import datetime
 
+from lib.header_validation import parse_front_matter_header, validate_header
+
 try:
     import yaml
 except ImportError:
@@ -195,8 +197,18 @@ def main():
                 slug = rel_path[:-3].replace('\\', '/').replace(' ', '-').lower()
                 with open(filepath, 'r', encoding='utf-8') as f:
                     content = f.read()
-                # FLIP Header (canonical); Wolfie/CROP/FLIPPING are aliases. Extract all FLIP fields; store in lupo_contents.
-                header_dict, _ = extract_flip_header(content)
+                parsed = parse_front_matter_header(content)
+                if not parsed.get("valid"):
+                    print("SKIP invalid header: %s -> %s" % (filename, json.dumps({
+                        "valid": False,
+                        "errors": parsed.get("errors", [])
+                    })))
+                    continue
+                header_dict = parsed.get("header") or {}
+                validation = validate_header(header_dict)
+                if not validation.get("valid"):
+                    print("SKIP invalid header: %s -> %s" % (filename, json.dumps(validation)))
+                    continue
                 file_path_from_root = None
                 file_last_modified_system_version = None
                 file_last_modified_utc = None

@@ -2,6 +2,8 @@ import os
 import mysql.connector
 from datetime import datetime
 
+from lib.header_validation import parse_front_matter_header, validate_header
+
 # --- CONFIG ---
 DOCS_DIR = "../docs"
 CHANNEL_ID = 0  # root/system kernel channel
@@ -50,6 +52,17 @@ def main():
             filepath = os.path.join(DOCS_DIR, filename)
             with open(filepath, 'r', encoding='utf-8') as f:
                 content = f.read()
+                parsed = parse_front_matter_header(content)
+                if not parsed.get("valid"):
+                    print("SKIP invalid header: %s -> %s" % (filename, {
+                        "valid": False,
+                        "errors": parsed.get("errors", [])
+                    }))
+                    continue
+                validation = validate_header((parsed.get("header") or {}))
+                if not validation.get("valid"):
+                    print("SKIP invalid header: %s -> %s" % (filename, validation))
+                    continue
                 slug = filename[:-3]  # remove .md
                 title = filename.replace('-', ' ').replace('_', ' ').title()
                 content_id = insert_content(slug, title, content)

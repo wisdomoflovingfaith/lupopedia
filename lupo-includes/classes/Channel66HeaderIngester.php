@@ -17,6 +17,7 @@ require_once __DIR__ . DIRECTORY_SEPARATOR . 'BoundedHeaderAuthorityValidator.ph
 require_once __DIR__ . DIRECTORY_SEPARATOR . 'HeaderFieldPreservationMatrix.php';
 require_once __DIR__ . DIRECTORY_SEPARATOR . 'Channel66HeaderProjection.php';
 require_once __DIR__ . DIRECTORY_SEPARATOR . 'Channel66IngestionLogger.php';
+require_once __DIR__ . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'lupo-database' . DIRECTORY_SEPARATOR . 'lupopedia' . DIRECTORY_SEPARATOR . 'content' . DIRECTORY_SEPARATOR . 'lupo-app' . DIRECTORY_SEPARATOR . 'Services' . DIRECTORY_SEPARATOR . 'Validation' . DIRECTORY_SEPARATOR . 'HeaderValidationService.php';
 
 class Channel66HeaderIngester
 {
@@ -32,6 +33,8 @@ class Channel66HeaderIngester
     private $projection;
     /** @var Channel66IngestionLogger */
     private $logger;
+    /** @var \App\Services\Validation\HeaderValidationService */
+    private $headerValidator;
 
     public function __construct($db = null)
     {
@@ -41,6 +44,8 @@ class Channel66HeaderIngester
         $this->preservation = new HeaderFieldPreservationMatrix();
         $this->projection = new Channel66HeaderProjection($this->db);
         $this->logger = new Channel66IngestionLogger();
+        $actorService = isset($GLOBALS['lupo_actor_service']) ? $GLOBALS['lupo_actor_service'] : null;
+        $this->headerValidator = new \App\Services\Validation\HeaderValidationService($actorService);
     }
 
     /**
@@ -288,80 +293,52 @@ class Channel66HeaderIngester
 
             $raw = @file_get_contents($absFile);
             if ($raw === false) {
-                // Treat as malformed YAML outcome.
-                $this->db->beginTransaction();
-                try {
-                    $this->projection->writeFullTree(
-                        $entityId,
-                        66,
-                        'rejected',
-                        array(
-                            'reject_type' => 'malformed_yaml',
-                            'parse_error' => '1',
-                            'parse_error_message' => 'read_failed',
-                        ),
-                        array(),
-                        array()
-                    );
-                    $this->db->commit();
-                    $counts['rejected']++;
-                    $this->logger->log(array(
-                        'file_path_from_root' => $filePathFromRoot,
-                        'entity_id' => $entityId,
-                        'outcome' => 'rejected',
-                        'reject_type' => 'malformed_yaml',
-                    ));
-                } catch (Exception $e) {
-                    $this->db->rollBack();
-                    $this->logger->log(array(
-                        'file_path_from_root' => $filePathFromRoot,
-                        'entity_id' => $entityId,
-                        'outcome' => 'rejected',
-                        'reject_type' => 'malformed_yaml',
-                        'error' => $e->getMessage(),
-                    ));
-                }
+                $counts['rejected']++;
+                $this->logger->log(array(
+                    'file_path_from_root' => $filePathFromRoot,
+                    'entity_id' => $entityId,
+                    'outcome' => 'rejected',
+                    'reject_type' => 'malformed_yaml',
+                    'validation_result' => json_encode(array(
+                        'valid' => false,
+                        'errors' => array('Malformed header: read_failed')
+                    ), JSON_UNESCAPED_SLASHES),
+                ));
                 continue;
             }
 
             $parseResult = $this->extractAndParseFrontMatter($raw);
             if (!$parseResult['ok']) {
-                $this->db->beginTransaction();
-                try {
-                    $this->projection->writeFullTree(
-                        $entityId,
-                        66,
-                        'rejected',
-                        array(
-                            'reject_type' => 'malformed_yaml',
-                            'parse_error' => '1',
-                            'parse_error_message' => $parseResult['error'],
-                        ),
-                        array(),
-                        array()
-                    );
-                    $this->db->commit();
-                    $counts['rejected']++;
-                    $this->logger->log(array(
-                        'file_path_from_root' => $filePathFromRoot,
-                        'entity_id' => $entityId,
-                        'outcome' => 'rejected',
-                        'reject_type' => 'malformed_yaml',
-                    ));
-                } catch (Exception $e) {
-                    $this->db->rollBack();
-                    $this->logger->log(array(
-                        'file_path_from_root' => $filePathFromRoot,
-                        'entity_id' => $entityId,
-                        'outcome' => 'rejected',
-                        'reject_type' => 'malformed_yaml',
-                        'error' => $e->getMessage(),
-                    ));
-                }
+                $counts['rejected']++;
+                $this->logger->log(array(
+                    'file_path_from_root' => $filePathFromRoot,
+                    'entity_id' => $entityId,
+                    'outcome' => 'rejected',
+                    'reject_type' => 'malformed_yaml',
+                    'validation_result' => json_encode(array(
+                        'valid' => false,
+                        'errors' => array('Malformed header: ' . $parseResult['error'])
+                    ), JSON_UNESCAPED_SLASHES),
+                ));
                 continue;
             }
 
             $parsedYaml = $parseResult['yaml'];
+            $headerBlock = isset($parsedYaml['lupopedia.headers']) && is_array($parsedYaml['lupopedia.headers'])
+                ? $parsedYaml['lupopedia.headers']
+                : array();
+            $headerValidation = $this->headerValidator->validate($headerBlock);
+            if (!isset($headerValidation['valid']) || !$headerValidation['valid']) {
+                $counts['rejected']++;
+                $this->logger->log(array(
+                    'file_path_from_root' => $filePathFromRoot,
+                    'entity_id' => $entityId,
+                    'outcome' => 'rejected',
+                    'reject_type' => 'header_validation_failed',
+                    'validation_result' => json_encode($headerValidation, JSON_UNESCAPED_SLASHES),
+                ));
+                continue;
+            }
             $validation = $this->validator->validateP0($parsedYaml, $filePathFromRoot, $toonDir, $threadId);
 
             if (!is_array($validation) || !isset($validation['outcome'])) {

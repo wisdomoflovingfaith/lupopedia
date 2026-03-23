@@ -71,6 +71,8 @@ from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Any
 
+from lib.header_validation import parse_front_matter_header, validate_header
+
 try:
     import pymysql  # type: ignore
     import pymysql.cursors
@@ -916,6 +918,44 @@ def build_arg_parser() -> argparse.ArgumentParser:
 
 
 # ---------------------------------------------------------------------------
+# Optional markdown header gate for actor trees
+# ---------------------------------------------------------------------------
+
+def validate_actor_tree_markdown_headers(repo_root: Path, strict: bool, summary: Summary) -> None:
+    """
+    Validate LUPOPEDIA headers for markdown files that contain frontmatter
+    under actor/agent trees before DB writes begin.
+    """
+    scan_roots = (
+        repo_root / "lupo-actors",
+        repo_root / "lupo-agents",
+    )
+    for root in scan_roots:
+        if not root.is_dir():
+            continue
+        for md in root.rglob("*.md"):
+            try:
+                text = md.read_text(encoding="utf-8", errors="replace")
+            except Exception:
+                continue
+            if not text.startswith("---"):
+                continue
+            parsed = parse_front_matter_header(text)
+            if not parsed.get("valid"):
+                summary.record_error(str(md), "; ".join(parsed.get("errors", [])))
+                if strict:
+                    print("[STRICT] Invalid header in %s: %s" % (md, parsed.get("errors", [])), file=sys.stderr)
+                    sys.exit(1)
+                continue
+            validation = validate_header(parsed.get("header") or {})
+            if not validation.get("valid"):
+                summary.record_error(str(md), "; ".join(validation.get("errors", [])))
+                if strict:
+                    print("[STRICT] Invalid header in %s: %s" % (md, validation.get("errors", [])), file=sys.stderr)
+                    sys.exit(1)
+
+
+# ---------------------------------------------------------------------------
 # Entry point
 # ---------------------------------------------------------------------------
 
@@ -939,6 +979,8 @@ def main() -> int:
     table_prefix = args.table_prefix
     summary = Summary()
     now = now_ymdhis()
+
+    validate_actor_tree_markdown_headers(repo_root, args.strict, summary)
 
     # -----------------------------------------------------------------------
     # Phase 1: Discover actors from filesystem

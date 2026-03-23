@@ -1,4 +1,5 @@
 <?php
+require_once dirname(__DIR__) . DIRECTORY_SEPARATOR . 'lupo-database' . DIRECTORY_SEPARATOR . 'lupopedia' . DIRECTORY_SEPARATOR . 'content' . DIRECTORY_SEPARATOR . 'lupo-app' . DIRECTORY_SEPARATOR . 'Services' . DIRECTORY_SEPARATOR . 'Validation' . DIRECTORY_SEPARATOR . 'HeaderValidationService.php';
 /**
  * Import LUPOPEDIA HEADERS into a Markdown file (replace existing header with supplied YAML).
  * Usage: php import_lupopedia_headers.php <path/to/target.md> [path/to/source.yaml]
@@ -22,17 +23,21 @@ function import_lupopedia_headers($target_path, $yaml_content) {
     if (preg_match('/^---\s*\n(.*)\n---\s*$/s', $yaml_content, $m)) {
         $yaml_content = trim($m[1]);
     }
-    // Minimal validation: required block and fields
-    if (strpos($yaml_content, 'lupopedia.headers:') === false) {
-        $result['error'] = 'Replacement YAML must contain lupopedia.headers block.';
+    $header = parse_lupopedia_header_block($yaml_content);
+    if (!is_array($header) || empty($header)) {
+        $validation = array(
+            'valid' => false,
+            'errors' => array('Malformed header: unable to parse lupopedia.headers block.')
+        );
+        $result['error'] = json_encode($validation, JSON_UNESCAPED_SLASHES);
         return $result;
     }
-    $required = array('lupopedia.version', 'file_path_from_root', 'last_modified_utc', 'system_version');
-    foreach ($required as $key) {
-        if (!preg_match('/^\s*' . preg_quote($key, '/') . '\s*:/m', $yaml_content)) {
-            $result['error'] = 'Replacement YAML missing required field in lupopedia.headers: ' . $key;
-            return $result;
-        }
+    $actorService = isset($GLOBALS['lupo_actor_service']) ? $GLOBALS['lupo_actor_service'] : null;
+    $validator = new \App\Services\Validation\HeaderValidationService($actorService);
+    $validation = $validator->validate($header);
+    if (!isset($validation['valid']) || !$validation['valid']) {
+        $result['error'] = json_encode($validation, JSON_UNESCAPED_SLASHES);
+        return $result;
     }
     if (!is_file($target_path)) {
         $result['error'] = 'Target file not found: ' . $target_path;
@@ -64,6 +69,48 @@ function import_lupopedia_headers($target_path, $yaml_content) {
     }
     $result['success'] = true;
     return $result;
+}
+
+/**
+ * Parse lupopedia.headers block into flat key=>value map.
+ *
+ * @param string $yaml_content
+ * @return array
+ */
+function parse_lupopedia_header_block($yaml_content)
+{
+    if (function_exists('yaml_parse')) {
+        $parsed = @yaml_parse($yaml_content);
+        if (is_array($parsed) && isset($parsed['lupopedia.headers']) && is_array($parsed['lupopedia.headers'])) {
+            return $parsed['lupopedia.headers'];
+        }
+    }
+
+    $lines = explode("\n", str_replace("\r\n", "\n", $yaml_content));
+    $inHeaders = false;
+    $out = array();
+    foreach ($lines as $line) {
+        if (!$inHeaders) {
+            if (preg_match('/^\s*lupopedia\.headers\s*:\s*$/', $line)) {
+                $inHeaders = true;
+            }
+            continue;
+        }
+
+        if (preg_match('/^\S/', $line)) {
+            break;
+        }
+
+        if (preg_match('/^\s{2,}([A-Za-z0-9_\.]+)\s*:\s*(.*)\s*$/', $line, $m)) {
+            $key = trim($m[1]);
+            $val = trim($m[2]);
+            if (preg_match('/^["\'](.*)["\']$/', $val, $v)) {
+                $val = $v[1];
+            }
+            $out[$key] = $val;
+        }
+    }
+    return $out;
 }
 
 if (php_sapi_name() === 'cli' && isset($argv) && isset($argv[1])) {

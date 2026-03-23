@@ -14,6 +14,7 @@ require_once __DIR__ . DIRECTORY_SEPARATOR . 'Channel66ProductionErrorHandler.ph
 require_once __DIR__ . DIRECTORY_SEPARATOR . 'Channel66PerformanceMonitor.php';
 require_once __DIR__ . DIRECTORY_SEPARATOR . 'Channel66ProductionLogger.php';
 require_once __DIR__ . DIRECTORY_SEPARATOR . 'Channel66BatchProcessor.php';
+require_once __DIR__ . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'lupo-database' . DIRECTORY_SEPARATOR . 'lupopedia' . DIRECTORY_SEPARATOR . 'content' . DIRECTORY_SEPARATOR . 'lupo-app' . DIRECTORY_SEPARATOR . 'Services' . DIRECTORY_SEPARATOR . 'Validation' . DIRECTORY_SEPARATOR . 'HeaderValidationService.php';
 
 class Channel66ProductionIngester
 {
@@ -23,6 +24,7 @@ class Channel66ProductionIngester
     private $errorHandler;
     private $logger;
     private $batchProcessor;
+    private $headerValidator;
     
     public function __construct($db, Channel66ProductionConfig $config, 
                                 Channel66PerformanceMonitor $performanceMonitor,
@@ -36,6 +38,8 @@ class Channel66ProductionIngester
         $this->errorHandler = $errorHandler;
         $this->logger = $logger;
         $this->batchProcessor = $batchProcessor;
+        $actorService = isset($GLOBALS['lupo_actor_service']) ? $GLOBALS['lupo_actor_service'] : null;
+        $this->headerValidator = new \App\Services\Validation\HeaderValidationService($actorService);
     }
     
     /**
@@ -215,10 +219,10 @@ class Channel66ProductionIngester
                         $batchResult['files_conflict_flagged']++;
                         break;
                 }
+            } catch (Exception $e) {
+                // Re-throw to stop batch processing
+                throw $e;
             }
-        } catch (Exception $e) {
-            // Re-throw to stop batch processing
-            throw $e;
         }
         
         return $batchResult;
@@ -254,60 +258,43 @@ class Channel66ProductionIngester
     {
         // Get repo-relative path
         $repoRelativePath = $this->getRepoRelativePath($filePath);
-        
-        // Acquire file lock for conflict detection
-        $lockFile = $filePath . '.lock';
-        $lockTimeout = 30; // 30 seconds
-        $lockAcquired = false;
-        
-        // Try to acquire lock with timeout
-        $startTime = time();
-        while ((time() - $startTime) < $lockTimeout) {
-            if (file_exists($lockFile)) {
-                // Check if lock is stale
-                $lockTime = filemtime($lockFile);
-                if ((time() - $lockTime) > $lockTimeout) {
-                    // Lock is stale, remove and continue
-                    unlink($lockFile);
-                } else {
-                    // Lock is active, wait and retry
-                    usleep(100000); // 100ms
-                    continue;
-                }
-            } else {
-                // Acquire lock
-        // P0 validation
+
+        $yamlData = $this->extractYamlFrontMatter($filePath);
+        if (!$yamlData) {
+            return array(
+                'valid' => false,
+                'validation_status' => 'rejected',
+                'reject_type' => 'malformed_yaml',
+                'errors' => array('Malformed header: unable to parse YAML frontmatter.')
+            );
+        }
+
+        // P0 + mandatory header gate.
         $validation = $this->validateP0Requirements($yamlData, $repoRelativePath);
-        if (!$validation['valid']) {
+        if (!isset($validation['valid']) || !$validation['valid']) {
             return $validation;
         }
-        
-        // Atomic conflict detection
-        $initialMtime = filemtime($filePath);
+
+        $initialMtime = @filemtime($filePath);
         clearstatcache();
-        $currentMtime = filemtime($filePath);
-        
+        $currentMtime = @filemtime($filePath);
         if ($initialMtime !== $currentMtime) {
             return array(
+                'valid' => false,
                 'validation_status' => 'conflict_flagged',
                 'conflict_type' => 'concurrent_edit',
                 'conflict_reason' => 'file_mtime_changed'
             );
         }
-        
-        // Project to database (only if not dry run)
+
         $entityId = $this->computeDeterministicEntityId($repoRelativePath);
         $this->projectToDatabase($entityId, $yamlData, $validation);
-        
+
         return array(
+            'valid' => true,
             'validation_status' => 'ingested',
             'entity_id' => $entityId
         );
-    } finally {
-        // Always release lock
-        if ($lockAcquired) {
-            unlink($lockFile);
-        }
     }
     
     /**
@@ -331,6 +318,16 @@ class Channel66ProductionIngester
                 'validation_status' => 'rejected',
                 'reject_type' => 'structural_validation_failure',
                 'validation_warnings' => array('missing_lupopedia_headers_block')
+            );
+        }
+
+        $headerValidation = $this->headerValidator->validate($yamlData['lupopedia.headers']);
+        if (!isset($headerValidation['valid']) || !$headerValidation['valid']) {
+            return array(
+                'valid' => false,
+                'validation_status' => 'rejected',
+                'reject_type' => 'header_validation_failed',
+                'errors' => isset($headerValidation['errors']) ? $headerValidation['errors'] : array('header_validation_failed')
             );
         }
         

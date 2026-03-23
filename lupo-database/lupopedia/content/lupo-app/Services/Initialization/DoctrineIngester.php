@@ -37,6 +37,8 @@ class DoctrineIngester implements DoctrineIngesterInterface
      * @var array
      */
     private $doctrines;
+    /** @var object|null */
+    private $headerValidator;
     
     /**
      * Constructor
@@ -49,6 +51,7 @@ class DoctrineIngester implements DoctrineIngesterInterface
         $this->flipParser = $flipParser;
         $this->logger = $logger;
         $this->doctrines = array();
+        $this->headerValidator = null;
     }
     
     /**
@@ -155,21 +158,89 @@ class DoctrineIngester implements DoctrineIngesterInterface
         
         // Parse FLIP header
         $header = $this->flipParser->parse($content);
-        
-        // Check if header exists
+
         if (empty($header)) {
-            $this->logger->warning(
-                ErrorMessages::missingFLIPHeader($filePath)
+            throw new DoctrineIngestionException(
+                'Header validation failed: ' . json_encode(array(
+                    'valid' => false,
+                    'errors' => array('Missing or malformed header block.')
+                ))
             );
-            
-            // Try to extract metadata from content
-            return $this->extractMetadataFromContent($filePath, $content);
+        }
+
+        $canonicalHeader = $this->extractCanonicalHeader($header);
+        $validationResult = $this->getHeaderValidator()->validate($canonicalHeader);
+        if (!isset($validationResult['valid']) || !$validationResult['valid']) {
+            throw new DoctrineIngestionException(
+                'Header validation failed: ' . json_encode($validationResult)
+            );
         }
         
         // Extract doctrine metadata from header
         $doctrine = $this->extractDoctrineMetadata($filePath, $header, $content);
         
         return $doctrine;
+    }
+
+    /**
+     * Build canonical header shape for HeaderValidationService from parser output.
+     *
+     * @param array $parsedHeader
+     * @return array
+     */
+    private function extractCanonicalHeader($parsedHeader)
+    {
+        $h = array();
+
+        if (isset($parsedHeader['lupopedia.headers']) && is_array($parsedHeader['lupopedia.headers'])) {
+            $h = $parsedHeader['lupopedia.headers'];
+        } else {
+            $h = $parsedHeader;
+        }
+
+        $out = array();
+        $keys = array(
+            'version_when_written',
+            'file_path_from_root',
+            'last_modified_utc',
+            'channel_id',
+            'thread_id',
+            'actor_id',
+            'actor_name',
+            'artifact_type',
+            'artifact_kind',
+        );
+
+        foreach ($keys as $k) {
+            if (isset($h[$k])) {
+                $out[$k] = $h[$k];
+            }
+        }
+
+        return $out;
+    }
+
+    /**
+     * @return \App\Services\Validation\HeaderValidationService
+     */
+    private function getHeaderValidator()
+    {
+        if ($this->headerValidator !== null) {
+            return $this->headerValidator;
+        }
+
+        $base = defined('LUPOPEDIA_ABSPATH') ? LUPOPEDIA_ABSPATH : dirname(dirname(dirname(dirname(dirname(__DIR__))))) . DIRECTORY_SEPARATOR;
+        $appDir = defined('LUPO_APP_DIR')
+            ? LUPO_APP_DIR
+            : 'lupo-database' . DIRECTORY_SEPARATOR . 'lupopedia' . DIRECTORY_SEPARATOR . 'content' . DIRECTORY_SEPARATOR . 'lupo-app';
+        $servicePath = rtrim($base, '/\\') . DIRECTORY_SEPARATOR . $appDir . DIRECTORY_SEPARATOR . 'Services' . DIRECTORY_SEPARATOR . 'Validation' . DIRECTORY_SEPARATOR . 'HeaderValidationService.php';
+        if (file_exists($servicePath)) {
+            require_once $servicePath;
+        }
+
+        $actorService = isset($GLOBALS['lupo_actor_service']) ? $GLOBALS['lupo_actor_service'] : null;
+        $this->headerValidator = new \App\Services\Validation\HeaderValidationService($actorService);
+        return $this->headerValidator;
     }
     
     /**

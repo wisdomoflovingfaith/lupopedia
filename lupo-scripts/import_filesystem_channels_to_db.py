@@ -55,6 +55,8 @@ from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Any
 
+from lib.header_validation import validate_header
+
 try:
     import yaml  # type: ignore
     _HAVE_YAML = True
@@ -476,6 +478,9 @@ def validate_artifact(
     On strict mode any validation failure causes immediate abort.
     """
     errors = []
+    header_gate = validate_header(art.headers if isinstance(art.headers, dict) else {})
+    if not header_gate.get("valid"):
+        errors.extend(header_gate.get("errors", []))
 
     # file_path_from_root must match actual path
     declared = art.headers.get("file_path_from_root", "")
