@@ -96,11 +96,11 @@ lupopedia.footer:
 ---
 # file: Lupopedia README — session: L-LUPO-ROOT-CURSOR — delegation: cursor:root — web_path: http://www.lupopedia.com/
 
-# Lupopedia Semantic OS v4.0.85
+# Lupopedia Semantic OS v4.0.86
 
 [**GitHub repo**](https://github.com/wisdomoflovingfaith/lupopedia)
 
-[![Version](https://img.shields.io/badge/version-4.0.85-blue.svg)](lupo-docs/version.md)
+[![Version](https://img.shields.io/badge/version-4.0.86-blue.svg)](lupo-docs/version.md)
 [![docs](https://img.shields.io/badge/docs-HELP.md-green)](lupo-docs/HELP.md)
 
 ---
