@@ -1,0 +1,5 @@
+traits:
+  - orchestrator
+  - continuity_guardian
+  - doctrine_aligned
+immutable: true

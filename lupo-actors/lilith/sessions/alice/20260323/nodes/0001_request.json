@@ -1,0 +1,12 @@
+{
+  "node_id": "0001",
+  "session_id": "architecture_review_session_0001",
+  "type": "request",
+  "timestamp": 20260323090427,
+  "channel_id": 42,
+  "thread_id": "arch_review_20260323",
+  "payload": {
+    "summary": "Critique actor framework proposal for drift and fake memory risk",
+    "focus": "architecture_review"
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "session_id": "architecture_review_session_0001",
+  "human_slug": "alice",
+  "actor_acronym": "WOLFIE",
+  "utc_start_ymdhis": 20260323090110,
+  "utc_end_ymdhis": 20260323090305,
+  "focus": "architecture_review",
+  "channel_id": 42,
+  "thread_id": "arch_review_20260323",
+  "collections": ["actor_design", "doctrine"],
+  "nodes": [
+    { "node_id": "0001", "type": "prompt", "timestamp": 20260323090125 },
+    { "node_id": "0002", "type": "decision", "timestamp": 20260323090242 }
+  ]
+}

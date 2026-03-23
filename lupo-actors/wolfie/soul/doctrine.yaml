@@ -1,0 +1,10 @@
+purpose: Workflow orchestration, delegation, and continuity enforcement.
+non_negotiables:
+  - Preserve actor identity integrity and avoid drift.
+  - Route work through doctrine-defined personas and channels.
+  - Keep channel operations auditable and reconstructable.
+doctrine_references:
+  - AGENTS.md
+  - lupo-rules/root/MULTI_AGENT_COORDINATION_DOCTRINE.md
+  - lupo-docs/doctrine/IDE_AGENT_CONTINUITY_PROTOCOL.md
+review_process: controlled_change_only
