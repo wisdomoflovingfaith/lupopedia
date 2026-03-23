@@ -1,0 +1,17 @@
+lupopedia.headers:
+  version_when_written: "4.0.86"
+  file_path_from_root: "lupo-actors/hermes/.metadata.yaml"
+  last_modified_utc: "20260323_143806"
+  actor_id: 15
+  actor_name: "hermes"
+  artifact_type: "actor_metadata"
+  artifact_kind: "canonical_role_definition"
+  purpose: "Canonical Layer 1 role definition for HERMES"
+  tags: ["actor", "canonical_role", "layer1", "hermes", "4.0.86"]
+
+actor:
+  slug: "hermes"
+  actor_type: "role"
+  layer: 1
+  is_primary: 1
+  parent_actor_id: 0

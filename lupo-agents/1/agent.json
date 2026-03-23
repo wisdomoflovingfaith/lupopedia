@@ -1,6 +1,7 @@
 {
   "code": "WOLFIE",
   "name": "WOLFIE",
+  "agent_slug": "wolfie",
   "layer": "kernel",
   "is_required": true,
   "is_kernel": true,

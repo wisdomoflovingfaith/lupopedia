@@ -1,14 +1,22 @@
 {
   "properties": {
-    "persona": "emotional_dialogue_specialist",
-    "role": "emotional_coordination_role_play",
+    "persona": "translation_context_dialogue",
+    "role": "translation_context_dialogue",
+    "description": "Translation and context agent preserving meaning across communication styles and personas",
     "primary_channels": [42, 1],
-    "specialization": "emotional_intelligence",
-    "unique_capability": "role_play_emotion",
+    "specialization": "meaning_preservation",
+    "unique_capability": "semantic_translation_across_personas",
     "cultural_bridge": true,
     "translation_focus": "emotional_context",
     "dialogue_coordination": true,
     "empathy_level": "high",
-    "alias": "DIALOG"
+    "alias": "DIALOG",
+    "constraints": [
+      "no_implementation",
+      "no_validation",
+      "no_db_writes",
+      "no_enforcement"
+    ],
+    "pipeline": "ROSE -> ATHENA -> HEPHAESTUS -> LILITH"
   }
 }

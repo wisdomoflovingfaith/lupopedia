@@ -21,3 +21,10 @@ This folder initializes version 4.0.86 planning and execution.
 - DOCTRINE.md: non-negotiable policy and constraints
 - TODO.md: actionable work queue for the version
 - MIGRATION_PLAN.md: staged migration and validation workflow
+- CHANGELOG.md: version change history and scope updates
+- OVERVIEW.md: high-level status and objectives
+- thread_artifacts_20260323.md: docs created and updated in thread 1001 work
+
+## Canonical Doctrine Links
+- lupo-docs/doctrine/ROSE_DOCTRINE.md
+- lupo-docs/doctrine/IDENTITY_MODEL.md

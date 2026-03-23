@@ -3,7 +3,7 @@
 -- No Crafty Syntax logic, no migration, no DROP TABLE.
 SET @now = 20260224000000;
 
--- ACTOR PRIMARY KEY DOCTRINE (v4.0.58): actor_name is primary; actor_id is unique secondary.
+-- ACTOR PRIMARY KEY DOCTRINE (v4.0.86): actor_name is primary; actor_id is unique secondary.
 CREATE TABLE lupo_actors (
   actor_name varchar(64) NOT NULL,
   actor_id bigint DEFAULT NULL,
@@ -85,7 +85,7 @@ CREATE TABLE lupo_bans_log (
 CREATE INDEX lupo_bans_log_idx_actor_id ON lupo_bans_log (actor_id);
 CREATE INDEX lupo_bans_log_idx_banned_ymdhis ON lupo_bans_log (banned_ymdhis);
 CREATE INDEX lupo_bans_log_idx_ban_scope ON lupo_bans_log (ban_scope);
--- Router Ban at Gate (4.0.18 T7): audit log for 403 events; lupo_log_ban_event() writes here.
+-- Router Ban at Gate (4.0.86 T7): audit log for 403 events; lupo_log_ban_event() writes here.
 
 CREATE TABLE lupo_actor_actions (
   actor_action_id bigint NOT NULL,
@@ -346,7 +346,7 @@ CREATE INDEX lupo_actor_traits_idx_trait_key ON lupo_actor_traits (trait_key);
 CREATE INDEX lupo_actor_traits_idx_federation ON lupo_actor_traits (federation_node_id);
 CREATE INDEX lupo_actor_traits_idx_is_deleted ON lupo_actor_traits (is_deleted);
 
--- Old actor events table removed in v4.0.55 - consolidated into lupo_unified_log
+-- Old actor events table removed in v4.0.86 - consolidated into lupo_unified_log
 
 CREATE TABLE lupo_actor_handshakes (
   actor_handshake_id bigint NOT NULL,
@@ -368,7 +368,7 @@ CREATE INDEX lupo_actor_handshakes_idx_actor_id ON lupo_actor_handshakes (actor_
 CREATE INDEX lupo_actor_handshakes_idx_is_deleted ON lupo_actor_handshakes (is_deleted);
 CREATE INDEX lupo_actor_handshakes_idx_utc_timestamp ON lupo_actor_handshakes (`utc_timestamp`);
 
--- Bayesian Decision Tracking tables (v4.0.77)
+-- Bayesian Decision Tracking tables (v4.0.86)
 -- Scope: every decision/edge/influence is scoped by channel_id and project_id (required).
 CREATE TABLE lupo_decisions (
   decision_id bigint NOT NULL,
@@ -478,7 +478,7 @@ CREATE INDEX lupo_decision_influences_idx_channel ON lupo_decision_influences (c
 CREATE INDEX lupo_decision_influences_idx_project ON lupo_decision_influences (project_id);
 
 -- Consolidated metadata table replacing lupo_actor_meta, lupo_actor_properties, lupo_agent_properties
--- 4.0.68: LUPOPEDIA HEADERS — added channel_id, parent_metadata_id, class_name for channel-scoped and hierarchical metadata
+-- 4.0.86: LUPOPEDIA HEADERS — added channel_id, parent_metadata_id, class_name for channel-scoped and hierarchical metadata
 CREATE TABLE lupo_metadata (
   metadata_id bigint NOT NULL,
   entity_type varchar(32) NOT NULL,
@@ -816,7 +816,7 @@ CREATE INDEX lupo_agent_versions_agent_id ON lupo_agent_versions (agent_id);
 CREATE INDEX lupo_agent_versions_version_label ON lupo_agent_versions (version_label);
 CREATE INDEX lupo_agent_versions_semver_major ON lupo_agent_versions (semver_major, semver_minor, semver_patch);
 
--- lupo_aliases moved to future_features_lupopedia.sql (v4.0.57)
+-- lupo_aliases moved to future_features_lupopedia.sql (v4.0.86)
 
 CREATE TABLE lupo_analytics_campaign_vars (
   campaign_var_id bigint NOT NULL,
@@ -832,7 +832,7 @@ CREATE TABLE lupo_analytics_campaign_vars (
 );
 
 
--- PATHS/VISITS doctrine (4.0.68): visits = raw events; paths = aggregated flows. gc.php aggregates visits -> paths.
+-- PATHS/VISITS doctrine (4.0.86): visits = raw events; paths = aggregated flows. gc.php aggregates visits -> paths.
 -- lupo_visits: raw per-event navigation logs (high-volume, append-only). is_processed set by gc.php when aggregated.
 CREATE TABLE lupo_visits (
   visit_id bigint NOT NULL AUTO_INCREMENT,
@@ -902,7 +902,7 @@ CREATE TABLE lupo_anubis_events (
 );
 
 
--- lupo_anubis_orphaned moved to future_features_lupopedia.sql (v4.0.57)
+-- lupo_anubis_orphaned moved to future_features_lupopedia.sql (v4.0.86)
 
 CREATE TABLE lupo_anubis_redirects (
   anubis_redirect_id bigint NOT NULL,
@@ -915,7 +915,7 @@ CREATE TABLE lupo_anubis_redirects (
   PRIMARY KEY (anubis_redirect_id)
 );
 
--- ANUBIS queue tables (required by install Activations Block for actor_id 19; previously in migrations/anubis_queue_tables_4.0.53.sql).
+-- ANUBIS queue tables (required by install Activations Block for actor_id 19; previously in migrations/anubis_queue_tables_4.0.86.sql).
 CREATE TABLE lupo_anubis_queue (
   queue_id bigint NOT NULL AUTO_INCREMENT,
   file_path varchar(512) NOT NULL,
@@ -988,7 +988,7 @@ CREATE TABLE lupo_anubis_quarantine (
 CREATE INDEX lupo_anubis_quarantine_idx_expires ON lupo_anubis_quarantine (expires_utc);
 CREATE INDEX lupo_anubis_quarantine_idx_queue ON lupo_anubis_quarantine (queue_id);
 
--- 12-table install expansion v4.0.74: unified ANUBIS operations audit
+-- 12-table install expansion v4.0.86: unified ANUBIS operations audit
 CREATE TABLE lupo_anubis_operations (
   operation_id bigint NOT NULL AUTO_INCREMENT,
   operation_type varchar(64) NOT NULL,
@@ -1180,7 +1180,7 @@ CREATE INDEX lupo_atoms_idx_context_id ON lupo_atoms (context_id);
 CREATE INDEX lupo_atoms_idx_authoritative ON lupo_atoms (is_authoritative);
 CREATE INDEX lupo_atoms_idx_atom_context ON lupo_atoms (atom_name, context_id);
 
--- 12-table install expansion v4.0.74 (directive 20260314): aliases for routing/redirects
+-- 12-table install expansion v4.0.86 (directive 20260314): aliases for routing/redirects
 CREATE TABLE lupo_aliases (
   alias_id bigint NOT NULL,
   slug varchar(255) NOT NULL,
@@ -1212,7 +1212,7 @@ CREATE INDEX lupo_audit_log_idx_entity ON lupo_audit_log (entity_type, entity_id
 CREATE INDEX lupo_audit_log_idx_event ON lupo_audit_log (event_type);
 CREATE INDEX lupo_audit_log_idx_table ON lupo_audit_log (table_name, table_id);
 
--- 12-table install expansion v4.0.74: unified log (consolidated log types)
+-- 12-table install expansion v4.0.86: unified log (consolidated log types)
 CREATE TABLE lupo_unified_log (
   log_id bigint NOT NULL AUTO_INCREMENT,
   log_type varchar(64) NOT NULL,
@@ -1507,9 +1507,9 @@ CREATE INDEX lupo_channel_files_idx_file_hash ON lupo_channel_files (file_hash);
 CREATE INDEX lupo_channel_files_idx_is_deleted ON lupo_channel_files (is_deleted);
 CREATE INDEX lupo_channel_files_idx_upload_ymdhis ON lupo_channel_files (upload_ymdhis);
 
--- Old channel logs table removed in v4.0.55 - consolidated into lupo_unified_log
+-- Old channel logs table removed in v4.0.86 - consolidated into lupo_unified_log
 
--- Old channel log types table removed in v4.0.55 - consolidated into lupo_unified_log
+-- Old channel log types table removed in v4.0.86 - consolidated into lupo_unified_log
 
 CREATE TABLE lupo_channel_state (
   channel_state_id bigint NOT NULL,
@@ -1637,7 +1637,7 @@ CREATE INDEX lupo_collections_idx_actor ON lupo_collections (actor_id);
 CREATE INDEX lupo_collections_idx_channel_id ON lupo_collections (channel_id);
 CREATE INDEX lupo_collections_idx_is_nav_menu ON lupo_collections (is_nav_menu);
 ALTER TABLE lupo_collections CHANGE collection_id collection_id bigint NOT NULL AUTO_INCREMENT;
--- Collections as channel-scoped resource bundles (4.0.69): channel_id, is_nav_menu, nav_icon for UI/navigation.
+-- Collections as channel-scoped resource bundles (4.0.86): channel_id, is_nav_menu, nav_icon for UI/navigation.
 
 CREATE TABLE lupo_collection_tabs (
   collection_tab_id bigint NOT NULL,
@@ -1669,7 +1669,7 @@ CREATE INDEX lupo_collection_tabs_idx_actor_id ON lupo_collection_tabs (actor_id
 CREATE INDEX lupo_collection_tabs_idx_slug ON lupo_collection_tabs (slug);
 CREATE INDEX lupo_collection_tabs_idx_is_active ON lupo_collection_tabs (is_active);
 ALTER TABLE lupo_collection_tabs CHANGE collection_tab_id collection_tab_id bigint NOT NULL AUTO_INCREMENT;
--- Tabs: actor_id (was user_id), visibility_rule, tab_type for channel/nav (4.0.69).
+-- Tabs: actor_id (was user_id), visibility_rule, tab_type for channel/nav (4.0.86).
 
 CREATE TABLE lupo_collection_tab_map (
   collection_tab_map_id bigint NOT NULL,
@@ -1748,12 +1748,12 @@ CREATE TABLE lupo_contents (
   deleted_ymdhis bigint DEFAULT NULL,
   content_sections json DEFAULT NULL,
   version_number int NOT NULL DEFAULT '1',
-  file_path_from_root varchar(500) DEFAULT NULL COMMENT 'FLIP Header: path from repo root (4.0.13)',
+  file_path_from_root varchar(500) DEFAULT NULL COMMENT 'FLIP Header: path from repo root (4.0.86)',
   file_last_modified_system_version varchar(20) DEFAULT NULL COMMENT 'FLIP: system version at last file edit',
   file_last_modified_utc bigint DEFAULT NULL COMMENT 'FLIP: UTC last modified YYYYMMDDHHIISS',
   tags json DEFAULT NULL,
   dialog_notes text,
-  -- 4.0.21 Consolidation: Database-first identity columns
+  -- 4.0.86 Consolidation: Database-first identity columns
   atom_mappings JSON DEFAULT NULL COMMENT 'Consolidated from lupo_content_atom_map',
   category_mappings JSON DEFAULT NULL COMMENT 'Consolidated from lupo_content_category_map',
   content_events JSON DEFAULT NULL COMMENT 'Consolidated from lupo_content_events',
@@ -1788,13 +1788,13 @@ CREATE INDEX lupo_contents_idx_channel_id ON lupo_contents (channel_id);
 CREATE INDEX lupo_contents_idx_department ON lupo_contents (department_id);
 CREATE INDEX lupo_contents_idx_user ON lupo_contents (actor_id);
 
--- 4.0.21 Consolidation: Performance indexes for JSON columns
+-- 4.0.86 Consolidation: Performance indexes for JSON columns
 CREATE INDEX lupo_contents_idx_engagement_counts ON lupo_contents (like_count, share_count, comment_count);
 CREATE INDEX lupo_contents_idx_has_media ON lupo_contents ((JSON_LENGTH(media_attachments) > 0));
 CREATE INDEX lupo_contents_idx_has_events ON lupo_contents ((JSON_LENGTH(content_events) > 0));
 CREATE INDEX lupo_contents_idx_has_hashtags ON lupo_contents ((JSON_LENGTH(hashtags) > 0));
 
--- 12-table install expansion v4.0.74: legacy URL mapping, references, search index
+-- 12-table install expansion v4.0.86: legacy URL mapping, references, search index
 CREATE TABLE lupo_legacy_content_mapping (
   mapping_id bigint NOT NULL,
   legacy_url varchar(255) NOT NULL,
@@ -2326,7 +2326,7 @@ CREATE TABLE lupo_ticket_messages (
 
 CREATE INDEX lupo_ticket_messages_idx_ticket ON lupo_ticket_messages (ticket_id);
 
--- DEPRECATED in 4.0.42: lupo_doctrine_refinements replaced by lupo_tickets
+-- DEPRECATED in 4.0.86: lupo_doctrine_refinements replaced by lupo_tickets
 -- CREATE TABLE lupo_doctrine_refinements (
 --   doctrine_refinement_id bigint NOT NULL,
 --   cip_event_id bigint NOT NULL,
@@ -2345,7 +2345,7 @@ CREATE INDEX lupo_ticket_messages_idx_ticket ON lupo_ticket_messages (ticket_id)
 -- );
 
 
--- lupo_documents and lupo_document_chunks replaced by lupo_artifacts and lupo_artifact_chunks in 4.0.42.
+-- lupo_documents and lupo_document_chunks replaced by lupo_artifacts and lupo_artifact_chunks in 4.0.86.
 
 
 -- Enhanced edges table replacing lupo_edge_types, lupo_relationships, lupo_entity_edges
@@ -2400,7 +2400,7 @@ CREATE INDEX lupo_edges_idx_flare_weight ON lupo_edges (flare_weight, edge_type)
 CREATE INDEX lupo_edges_idx_flare_discovered ON lupo_edges (flare_discovered_via, flare_auto_generated);
 CREATE INDEX lupo_edges_idx_flare_files ON lupo_edges (left_object_type, left_object_id, edge_type, right_object_type, right_object_id);
 
--- Edge type registry: canonical edge types and semantics (4.0.69 LILITH implementation prompt). No FK; IDs from application.
+-- Edge type registry: canonical edge types and semantics (4.0.86 LILITH implementation prompt). No FK; IDs from application.
 CREATE TABLE lupo_edge_type_definitions (
   edge_type_definition_id bigint NOT NULL,
   edge_type varchar(100) NOT NULL,
@@ -2417,7 +2417,7 @@ CREATE TABLE lupo_edge_type_definitions (
 );
 CREATE INDEX lupo_edge_type_definitions_idx_domain ON lupo_edge_type_definitions (domain);
 
--- Pre-action authorization: required traits/capabilities/roles per action (4.0.69 LILITH implementation prompt). No FK; IDs from application.
+-- Pre-action authorization: required traits/capabilities/roles per action (4.0.86 LILITH implementation prompt). No FK; IDs from application.
 CREATE TABLE lupo_action_authorization (
   action_authorization_id bigint NOT NULL,
   action_key varchar(100) NOT NULL,
@@ -2467,7 +2467,7 @@ CREATE INDEX lupo_emotional_geometry_calibrations_idx_target ON lupo_emotional_g
 CREATE INDEX lupo_emotional_geometry_calibrations_idx_validation_status ON lupo_emotional_geometry_calibrations (validation_status);
 CREATE INDEX lupo_emotional_geometry_calibrations_idx_confidence ON lupo_emotional_geometry_calibrations (confidence_score);
 
--- Old event log table removed in v4.0.55 - consolidated into lupo_unified_log
+-- Old event log table removed in v4.0.86 - consolidated into lupo_unified_log
 
 CREATE TABLE lupo_event_metadata (
   metadata_id bigint NOT NULL,
@@ -2545,7 +2545,7 @@ CREATE INDEX lupo_federation_nodes_idx_status ON lupo_federation_nodes (status);
 CREATE INDEX lupo_federation_nodes_idx_trust_level ON lupo_federation_nodes (trust_level);
 CREATE INDEX lupo_federation_nodes_idx_is_deleted ON lupo_federation_nodes (is_deleted);
 
--- 12-table install expansion v4.0.74: federated trust and discovery
+-- 12-table install expansion v4.0.86: federated trust and discovery
 CREATE TABLE lupo_federated_trust (
   trust_id bigint NOT NULL,
   source_node_id bigint NOT NULL,
@@ -2665,7 +2665,7 @@ CREATE INDEX lupo_help_tree_idx_action ON lupo_help_tree (action_type, action_ta
 CREATE INDEX lupo_help_tree_idx_created ON lupo_help_tree (created_ymdhis);
 CREATE INDEX lupo_help_tree_idx_updated ON lupo_help_tree (updated_ymdhis);
 
--- 12-table install expansion v4.0.74: documentation frameworks (LUPOPEDIA HEADERS alignment)
+-- 12-table install expansion v4.0.86: documentation frameworks (LUPOPEDIA HEADERS alignment)
 CREATE TABLE lupo_documentation_frameworks (
   documentation_framework_id bigint NOT NULL,
   framework_key varchar(64) NOT NULL,
@@ -2761,7 +2761,7 @@ CREATE INDEX lupo_labs_violations_idx_violation_code ON lupo_labs_violations (vi
 CREATE INDEX lupo_labs_violations_idx_created ON lupo_labs_violations (created_ymdhis);
 CREATE INDEX lupo_labs_violations_idx_deleted ON lupo_labs_violations (is_deleted);
 
--- Old memory events table removed in v4.0.55 - consolidated into lupo_unified_log
+-- Old memory events table removed in v4.0.86 - consolidated into lupo_unified_log
 
 CREATE TABLE lupo_memory_rollups (
   memory_rollup_id bigint NOT NULL,
@@ -2774,7 +2774,7 @@ CREATE TABLE lupo_memory_rollups (
 
 CREATE INDEX lupo_memory_rollups_idx_actor_created ON lupo_memory_rollups (actor_id, created_ymdhis);
 
--- Old meta log events table removed in v4.0.55 - consolidated into lupo_unified_log
+-- Old meta log events table removed in v4.0.86 - consolidated into lupo_unified_log
 
 CREATE TABLE lupo_modules (
   module_id bigint NOT NULL,
@@ -2989,7 +2989,7 @@ CREATE INDEX lupo_sessions_idx_federation ON lupo_sessions (federation_node_id);
 CREATE INDEX lupo_sessions_idx_is_active ON lupo_sessions (is_active);
 CREATE INDEX lupo_sessions_idx_last_seen ON lupo_sessions (last_seen_ymdhis);
 
--- Old session events table removed in v4.0.55 - consolidated into lupo_unified_log
+-- Old session events table removed in v4.0.86 - consolidated into lupo_unified_log
 
 CREATE TABLE lupo_system_config (
   system_config_id bigint NOT NULL,
@@ -3003,7 +3003,7 @@ CREATE TABLE lupo_system_config (
 
 CREATE UNIQUE INDEX lupo_system_config_config_key ON lupo_system_config (config_key);
 
--- 12-table install expansion v4.0.74: system health snapshots and hotfix registry
+-- 12-table install expansion v4.0.86: system health snapshots and hotfix registry
 CREATE TABLE lupo_system_health_snapshots (
   snapshot_id bigint NOT NULL AUTO_INCREMENT,
   snapshot_type varchar(64) NOT NULL,
@@ -3031,7 +3031,7 @@ CREATE TABLE lupo_hotfix_registry (
   PRIMARY KEY (hotfix_id)
 );
 
--- Old logging tables removed in v4.0.55 - consolidated into lupo_unified_log
+-- Old logging tables removed in v4.0.86 - consolidated into lupo_unified_log
 
 CREATE TABLE lupo_system_commands (
   command_id bigint NOT NULL,
@@ -3064,11 +3064,11 @@ CREATE INDEX lupo_system_commands_idx_status_heartbeat ON lupo_system_commands (
 CREATE INDEX lupo_system_commands_idx_created_ymdhis ON lupo_system_commands (created_ymdhis);
 CREATE INDEX lupo_system_commands_idx_is_deleted ON lupo_system_commands (is_deleted);
 
--- Old tab events table removed in v4.0.55 - consolidated into lupo_unified_log
+-- Old tab events table removed in v4.0.86 - consolidated into lupo_unified_log
 
 -- lupo_temporal_coherence_snapshots moved to future_features_lupopedia.sql (unused at runtime)
 
--- lupo_tldnr moved to future_features_lupopedia.sql (v4.0.57)
+-- lupo_tldnr moved to future_features_lupopedia.sql (v4.0.86)
 
 -- Consolidated truth knowledge table replacing 6 truth tables
 CREATE TABLE lupo_truth_knowledge (
@@ -3193,7 +3193,7 @@ CREATE INDEX lupo_paths_idx_created ON lupo_paths (created_ymdhis);
 CREATE INDEX lupo_paths_idx_is_deleted ON lupo_paths (is_deleted);
 
 -- ============================================================
--- SEMANTIC NAVBAR BACKEND (4.0.71): references, hashtags, folders
+-- SEMANTIC NAVBAR BACKEND (4.0.86): references, hashtags, folders
 -- No FKs; application enforces relations. BIGINT timestamps only.
 -- ============================================================
 CREATE TABLE lupo_references (
@@ -3292,7 +3292,7 @@ CREATE INDEX lupo_folder_map_idx_folder ON lupo_folder_map (folder_id);
 CREATE INDEX lupo_folder_map_idx_object ON lupo_folder_map (object_type, object_id);
 CREATE INDEX lupo_folder_map_idx_is_deleted ON lupo_folder_map (is_deleted);
 
--- Previous Pages Summary (4.0.71)
+-- Previous Pages Summary (4.0.86)
 CREATE TABLE lupo_paths_summary (
   summary_id bigint NOT NULL AUTO_INCREMENT,
   path_id bigint NOT NULL,
@@ -3304,7 +3304,7 @@ CREATE TABLE lupo_paths_summary (
 );
 CREATE INDEX lupo_paths_summary_idx_path ON lupo_paths_summary (path_id);
 
--- Reference Map (Explicit mapping table, 4.0.71)
+-- Reference Map (Explicit mapping table, 4.0.86)
 CREATE TABLE lupo_reference_map (
   reference_map_id bigint NOT NULL AUTO_INCREMENT,
   reference_id bigint NOT NULL,
@@ -3317,7 +3317,7 @@ CREATE TABLE lupo_reference_map (
 CREATE INDEX lupo_reference_map_idx_reference ON lupo_reference_map (reference_id);
 CREATE INDEX lupo_reference_map_idx_target ON lupo_reference_map (target_type, target_id);
 
--- Collection Links (Explicit link objects within collections, 4.0.71)
+-- Collection Links (Explicit link objects within collections, 4.0.86)
 CREATE TABLE lupo_collection_links (
   collection_link_id bigint NOT NULL AUTO_INCREMENT,
   collection_id bigint NOT NULL,
@@ -3331,7 +3331,7 @@ CREATE TABLE lupo_collection_links (
 );
 CREATE INDEX lupo_collection_links_idx_collection ON lupo_collection_links (collection_id);
 
--- Collection Map (Mapping collections to multiple objects, 4.0.71)
+-- Collection Map (Mapping collections to multiple objects, 4.0.86)
 CREATE TABLE lupo_collection_map (
   collection_map_id bigint NOT NULL AUTO_INCREMENT,
   collection_id bigint NOT NULL,
@@ -3345,7 +3345,7 @@ CREATE TABLE lupo_collection_map (
 CREATE INDEX lupo_collection_map_idx_collection ON lupo_collection_map (collection_id);
 CREATE INDEX lupo_collection_map_idx_object ON lupo_collection_map (object_type, object_id);
 
--- Edge Types (Definitions for semantic edges, 4.0.71)
+-- Edge Types (Definitions for semantic edges, 4.0.86)
 CREATE TABLE lupo_edge_types (
   edge_type_id bigint NOT NULL AUTO_INCREMENT,
   slug varchar(64) NOT NULL,
@@ -3359,7 +3359,7 @@ CREATE TABLE lupo_edge_types (
 );
 CREATE UNIQUE INDEX lupo_edge_types_uniq_slug ON lupo_edge_types (slug);
 
--- Edge Map (Mapping edges between objects, 4.0.71)
+-- Edge Map (Mapping edges between objects, 4.0.86)
 CREATE TABLE lupo_edge_map (
   edge_map_id bigint NOT NULL AUTO_INCREMENT,
   edge_id bigint NOT NULL,
@@ -3377,7 +3377,7 @@ CREATE INDEX lupo_edge_map_idx_type ON lupo_edge_map (edge_type_id);
 CREATE INDEX lupo_edge_map_idx_source ON lupo_edge_map (source_type, source_id);
 CREATE INDEX lupo_edge_map_idx_target ON lupo_edge_map (target_type, target_id);
 
--- Questions (Semantic Q/A, 4.0.71)
+-- Questions (Semantic Q/A, 4.0.86)
 CREATE TABLE lupo_questions (
   question_id bigint NOT NULL AUTO_INCREMENT,
   slug varchar(128) NOT NULL,
@@ -3390,7 +3390,7 @@ CREATE TABLE lupo_questions (
 );
 CREATE UNIQUE INDEX lupo_questions_uniq_slug ON lupo_questions (slug);
 
--- Answers (Semantic Q/A, 4.0.71)
+-- Answers (Semantic Q/A, 4.0.86)
 CREATE TABLE lupo_answers (
   answer_id bigint NOT NULL AUTO_INCREMENT,
   question_id bigint NOT NULL,
@@ -3403,7 +3403,7 @@ CREATE TABLE lupo_answers (
 );
 CREATE INDEX lupo_answers_idx_question ON lupo_answers (question_id);
 
--- Question Map (Mapping questions to objects/contexts, 4.0.71)
+-- Question Map (Mapping questions to objects/contexts, 4.0.86)
 CREATE TABLE lupo_question_map (
   question_map_id bigint NOT NULL AUTO_INCREMENT,
   question_id bigint NOT NULL,
@@ -3542,7 +3542,7 @@ CREATE INDEX lupo_uploads_idx_channel_id ON lupo_uploads (channel_id);
 CREATE INDEX lupo_uploads_idx_file_extension ON lupo_uploads (file_extension);
 CREATE INDEX lupo_uploads_idx_created_ymdhis ON lupo_uploads (created_ymdhis);
 
--- Old world events table removed in v4.0.55 - consolidated into lupo_unified_log
+-- Old world events table removed in v4.0.86 - consolidated into lupo_unified_log
 
 CREATE TABLE lupo_world_registry (
   world_id bigint NOT NULL,
@@ -3562,17 +3562,17 @@ CREATE INDEX lupo_world_registry_idx_created_ymdhis ON lupo_world_registry (crea
 CREATE INDEX lupo_world_registry_idx_is_active ON lupo_world_registry (is_active);
 
 -- ============================================================
--- SEED DATA REMOVED - USE seed_minimal_4.0.26.sql INSTEAD
+-- SEED DATA REMOVED - USE seed_minimal_4.0.86.sql INSTEAD
 -- ============================================================
 -- ALL SEED DATA COMMENTED OUT (2026-02-22)
 -- Reason: Schema mismatches between INSERT column names and actual table definitions
--- Solution: Seed data moved to database/migrations/seed_minimal_4.0.26.sql
+-- Solution: Seed data moved to database/migrations/seed_minimal_4.0.86.sql
 -- This file now contains ONLY table definitions (CREATE TABLE statements)
--- install.php loads schema from this file, then seeds from seed_minimal_4.0.26.sql
+-- install.php loads schema from this file, then seeds from seed_minimal_4.0.86.sql
 -- ============================================================
 
 -- ============================================================
--- FINAL IDE & AI ACTOR INTEGRATION (Lupopedia 4.0.23)
+-- FINAL IDE & AI ACTOR INTEGRATION (Lupopedia 4.0.86)
 -- ============================================================
 -- CSV-driven unregistry allocation - FINAL ACTOR IDs:
 -- Cursor IDE: 2031, Kiro IDE: 2032, Zed IDE: 2033, VS Code IDE: 2034
@@ -3670,7 +3670,7 @@ VALUES
 ON DUPLICATE KEY UPDATE role_key = VALUES(role_key), updated_ymdhis = @now, is_deleted = 0;
 
 -- ============================================================
--- WARP IDE ACTOR INTEGRATION (Lupopedia 4.0.25)
+-- WARP IDE ACTOR INTEGRATION (Lupopedia 4.0.86)
 -- ============================================================
 -- Warp IDE: actor_id 2039, system_tool, federation_node_id 0 (local node)
 -- paired_actor_id = 10000 (human operator)
@@ -3698,7 +3698,7 @@ VALUES (12039, 2039, 0, 'member', @now, @now, 0, NULL)
 ON DUPLICATE KEY UPDATE role_key = VALUES(role_key), updated_ymdhis = @now, is_deleted = 0;
 
 -- ============================================================
--- WINDSURF IDE ACTOR INTEGRATION (Lupopedia 4.0.25)
+-- WINDSURF IDE ACTOR INTEGRATION (Lupopedia 4.0.86)
 -- ============================================================
 -- Windsurf IDE: actor_id 2040 (reassigned from conflicting actor_id 2 = CAPTAIN)
 -- paired_actor_id = 10000 (human operator), federation_node_id 0 (local node)
@@ -3726,7 +3726,7 @@ VALUES (12040, 2040, 0, 'member', @now, @now, 0, NULL)
 ON DUPLICATE KEY UPDATE role_key = VALUES(role_key), updated_ymdhis = @now, is_deleted = 0;
 
 -- ============================================================
--- PAIRED ACTOR + FEDERATION NODE FIXES (Lupopedia 4.0.25)
+-- PAIRED ACTOR + FEDERATION NODE FIXES (Lupopedia 4.0.86)
 -- ============================================================
 -- Fix paired_actor_id for Copilot (2036) and LILITH (2038)
 -- Fix federation_node_id: Copilot/LILITH = 1 (remote), others local = 0
@@ -3746,7 +3746,7 @@ UPDATE lupo_actors SET paired_actor_id = 10000, updated_ymdhis = COALESCE(@now, 
 -- ============================================================
 
 -- ============================================================
--- FLIP v2 REGISTRY ENTRIES (Lupopedia 4.0.37)
+-- FLIP v2 REGISTRY ENTRIES (Lupopedia 4.0.86)
 -- ============================================================
 
 -- FLIP Schema Version Registry
@@ -3773,12 +3773,12 @@ VALUES (9005005, 'edge_type', 2, 2, 'semantic_relationship', 'Semantic Relations
 ON DUPLICATE KEY UPDATE entity_name = VALUES(entity_name), metadata_json = VALUES(metadata_json), updated_ymdhis = @now, is_deleted = 0;
 
 -- ============================================================
--- TASK MANAGEMENT SYSTEM (Lupopedia 4.0.45)
+-- TASK MANAGEMENT SYSTEM (Lupopedia 4.0.86)
 -- ============================================================
 -- Tables for task management and offline task import support
 -- Supports MD file task import and database-driven task tracking
 -- Added: 2026-02-25 by Kiro (1000)
--- Task lookup tables removed in v4.0.55 - consolidated into lupo_tasks VARCHAR columns
+-- Task lookup tables removed in v4.0.86 - consolidated into lupo_tasks VARCHAR columns
 
 -- Core Tasks Table
 CREATE TABLE lupo_tasks (
@@ -3859,14 +3859,14 @@ CREATE INDEX lupo_rolls_idx_role ON lupo_rolls (role_slug);
 
 -- Task Assignments
 -- Task Dependencies
--- Old task events table removed in v4.0.55 - consolidated into lupo_unified_log
+-- Old task events table removed in v4.0.86 - consolidated into lupo_unified_log
 
 -- ============================================================
 -- END OF TASK MANAGEMENT SYSTEM
 -- ============================================================
 
 -- ============================================================
--- ACTOR IDENTITY CAPSULE SYSTEM (v4.0.48)
+-- ACTOR IDENTITY CAPSULE SYSTEM (v4.0.86)
 -- ============================================================
 
 -- Table 1: lupo_actor_history
@@ -3967,7 +3967,7 @@ VALUES
 );
 
 -- ============================================================
--- RULES SYSTEM (4.0.68)
+-- RULES SYSTEM (4.0.86)
 -- ============================================================
 -- lupo_rules: canonical registry of rules (rule_id explicit; no AUTO_INCREMENT per registry doctrine)
 CREATE TABLE lupo_rules (
@@ -4022,7 +4022,7 @@ CREATE INDEX lupo_rule_logs_idx_actor_id ON lupo_rule_logs (actor_id);
 CREATE INDEX lupo_rule_logs_idx_created_ymdhis ON lupo_rule_logs (created_ymdhis);
 
 -- ============================================================
--- COMMENTS SYSTEM (4.0.73)
+-- COMMENTS SYSTEM (4.0.86)
 -- ============================================================
 -- lupo_comments: comments on artifacts, documents, and content
 CREATE TABLE lupo_comments (
@@ -4055,7 +4055,7 @@ CREATE INDEX lupo_comments_idx_is_deleted ON lupo_comments (is_deleted);
 -- ============================================================
 
 -- =============================================================================
--- lupo_orchestrator_rules (optional; v4.0.73 — orchestrator rule storage)
+-- lupo_orchestrator_rules (optional; v4.0.86 — orchestrator rule storage)
 -- =============================================================================
 CREATE TABLE lupo_orchestrator_rules (
   rule_id bigint NOT NULL AUTO_INCREMENT,
@@ -4258,5 +4258,31 @@ SET @sql = IF(@column_exists = 0,
 PREPARE stmt FROM @sql;
 EXECUTE stmt;
 DEALLOCATE PREPARE stmt;
+
+-- Context Graph Edges Table (Channel 61 - Context Graph Architecture)
+CREATE TABLE lupo_context_edges (
+  edge_id BIGINT PRIMARY KEY,
+
+  source_type VARCHAR(64) NOT NULL,
+  source_id BIGINT NOT NULL,
+
+  target_type VARCHAR(64) NOT NULL,
+  target_id BIGINT NOT NULL,
+
+  edge_type VARCHAR(64) NOT NULL,
+
+  metadata_json TEXT,
+
+  created_ymdhis BIGINT NOT NULL,
+  updated_ymdhis BIGINT NOT NULL,
+
+  is_deleted TINYINT DEFAULT 0,
+  deleted_ymdhis BIGINT DEFAULT 0
+);
+
+CREATE INDEX idx_source ON lupo_context_edges (source_type, source_id);
+CREATE INDEX idx_target ON lupo_context_edges (target_type, target_id);
+CREATE INDEX idx_type ON lupo_context_edges (edge_type);
+CREATE INDEX idx_created ON lupo_context_edges (created_ymdhis);
 
 

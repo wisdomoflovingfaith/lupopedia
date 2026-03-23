@@ -1,3 +1,10 @@
 {
-  "capabilities": []
+  "capabilities": [
+    "emotional_framing",
+    "persona_translation",
+    "cultural_context",
+    "narrative_exploration",
+    "multi_style_communication",
+    "dialogue_coordination"
+  ]
 }

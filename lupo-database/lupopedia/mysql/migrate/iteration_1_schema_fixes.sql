@@ -1,5 +1,5 @@
 -- Migration script for iteration 1 schema fixes
--- Applies to existing Lupopedia 4.0.85 installations
+-- Applies to existing Lupopedia 4.0.86 installations
 -- Run after install_new_lupopedia.sql updates
 -- Author: HEPHAESTUS (actor_id 8)
 -- Date: 20260321_240000

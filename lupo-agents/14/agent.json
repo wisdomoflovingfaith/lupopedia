@@ -1,6 +1,7 @@
 {
   "code": "THALIA",
   "name": "THALIA",
+  "agent_slug": "thalia",
   "layer": "kernel",
   "is_required": true,
   "is_kernel": true,

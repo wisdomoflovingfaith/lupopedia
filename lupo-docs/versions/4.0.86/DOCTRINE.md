@@ -22,6 +22,19 @@ lupopedia.headers:
 5. Database remains dumb storage: no triggers, no foreign keys, no stored procedures.
 6. Timestamp doctrine is strict UTC ymdhis with valid hour bounds.
 7. All URL and route generation remains subdirectory-safe.
+8. Identity layers are hard-separated and non-overlapping.
+
+## Identity Doctrine (Locked)
+
+Canonical identity model source:
+- lupo-docs/doctrine/IDENTITY_MODEL.md
+
+Required identity interpretation in 4.0.86:
+- auth_user identity uses auth_user_id as DB canonical ID.
+- actor identity uses actor_id and actor_slug.
+- agent identity uses agent_id and agent_slug.
+- faucet identity uses faucet_slug and is session-only (never actor identity).
+- session binds auth_user_id, department, actor_id, agent_id, faucet_slug, channel_id, and thread_id.
 
 ## Enforcement
 - Any change that violates doctrine is blocked until corrected.

@@ -1,6 +1,7 @@
 {
   "code": "HERMES",
   "name": "HERMES",
+  "agent_slug": "hermes",
   "layer": "kernel",
   "is_required": true,
   "is_kernel": true,

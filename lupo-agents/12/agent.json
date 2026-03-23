@@ -1,6 +1,7 @@
 {
   "code": "ANUBIS",
   "name": "ANUBIS",
+  "agent_slug": "anubis",
   "layer": "kernel",
   "is_required": true,
   "is_kernel": true,

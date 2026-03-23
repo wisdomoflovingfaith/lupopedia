@@ -71,6 +71,17 @@ lupopedia.headers:
 - [ ] Update lupo-docs/actors.md
 - [ ] Update lupo-actors/README.md
 - [ ] Update lupo-docs/ACTOR_IDENTITIES.md
+- [ ] Align Channel 58 thread docs with `lupo-docs/doctrine/IDENTITY_MODEL.md`
+
+### Identity Doctrine Clarity (LOCK)
+- [ ] Confirm canonical definitions are explicit for:
+  - auth_user (`auth_user_id` in `lupo_auth_users`)
+  - actor (`actor_id`, `actor_slug` in `lupo_actors` and `lupo-actors/<actor_slug>/`)
+  - agent (`agent_id`, `agent_slug` in `lupo_agents` and preferred `lupo-agents/<agent_slug>/`)
+  - faucet (`faucet_slug` in session context only)
+  - session binding tuple (`auth_user_id + department + actor_id + agent_id + faucet_slug + channel_id + thread_id`)
+- [ ] Verify no docs collapse actor and faucet identity
+- [ ] Verify no docs use faucet as canonical routing identity
 
 ### Implementation
 - [ ] Implement resolution algorithm in app/Services/
@@ -115,6 +126,7 @@ lupopedia.headers:
 #### Definition Requirements
 - [ ] Create JSON definitions for all 22 agents in lupo-agents/
 - [ ] Ensure required fields: agent_id, slug, provider, capabilities
+- [ ] Ensure `agent_slug` exists in agent definitions where missing
 - [ ] Validate structure and syntax compliance
 
 #### Actor Alignment Tasks
@@ -170,6 +182,7 @@ lupopedia.headers:
 - [ ] Coordinate cross-channel references (58, 59, 60)
 - [ ] Maintain agent registry updates
 - [ ] Document agent system decisions
+- [ ] Add identity-model alignment artifacts for Channels 59, 60, and 61
 
 ---
 

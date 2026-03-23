@@ -67,6 +67,9 @@ This scope lock ensures focused execution with measurable completion criteria an
    - Establish root authority model
    - Implement deterministic resolution algorithm
    - Align database, filesystem, and doctrine
+   - Cross-link canonical role boundaries with `lupo-docs/doctrine/ROSE_DOCTRINE.md`
+   - Lock identity layers with `lupo-docs/doctrine/IDENTITY_MODEL.md`
+   - Keep actor definitions canonical in `lupo_actors` (actor_id) and `lupo-actors/<actor_slug>/`
 
 2. **Complete ROSE/DIALOG System (Channel 59)**
    - Design and implement ROSE packet contract
@@ -80,6 +83,17 @@ This scope lock ensures focused execution with measurable completion criteria an
    - Ensure database ↔ filesystem alignment
    - Enforce ROSE compatibility requirements
    - Validate all agent definitions and structures
+   - Ensure agent definitions include canonical slug identity (`agent_slug`) and map to `agent_id`
+
+4. **Complete Identity Model Lock (System-Wide)**
+   - Canonical doctrine source: `lupo-docs/doctrine/IDENTITY_MODEL.md`
+   - Ensure clear doctrine for what `auth_user`, `actor`, `agent`, `faucet`, and `session` mean
+   - Ensure where definitions live is explicit:
+     - auth users: `lupo_auth_users` (`auth_user_id`)
+     - actors: `lupo_actors` + `lupo-actors/<actor_slug>/`
+     - agents: `lupo_agents` + preferred `lupo-agents/<agent_slug>/` (numeric aliases allowed for compatibility)
+     - faucet: session `faucet_slug` only
+   - Ensure usage boundaries are explicit and non-overlapping in channels 58 to 61 documentation
 
 ---
 
@@ -209,6 +223,12 @@ Version 4.0.86 is COMPLETE when ALL are true:
 - [ ] All agents have comprehensive documentation
 - [ ] Database ↔ filesystem alignment is validated
 - [ ] ROSE compatibility is enforced where applicable
+
+### Identity Model (System-Wide)
+- [ ] Identity doctrine is published and locked (`IDENTITY_MODEL.md`)
+- [ ] PLAN and TODO explicitly define `auth_user`, `actor`, `agent`, `faucet`, and `session`
+- [ ] Core agent definitions include `agent_slug` where missing
+- [ ] Channel docs in 58, 59, 60, and 61 reflect actor/agent/faucet separation
 
 ---
 

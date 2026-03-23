@@ -21,8 +21,10 @@ lupopedia.init:
       reason: "Canonical actor identity, propagation targets, and IDE roles"
     - path: "CHANGELOG.md"
       reason: "Current version and latest changes"
+    - path: "lupo-docs/versions/4.0.86/"
+      reason: "Version 4.0.86 comprehensive documentation and status"
     - path: "EXECUTIVE_SUMMARY.md"
-      reason: "Philosophy and architecture (why the system is designed this way)"
+      reason: "Philosophy and architecture (why system is designed this way)"
     - path: "plan.md"
       reason: "Current implementation plan"
     - path: "report.md"
@@ -31,15 +33,16 @@ lupopedia.init:
     - "lupo-docs/ is the canonical documentation root."
     - "Cursor (actor_id 102) is lead orchestration; install SQL is schema authority."
     - "Scripts re-generate header snapshots; do not assume init/header content is hand-only."
+    - "Version 4.0.86 is SCOPE LOCKED to Channels 58, 59, 60, and 61."
 
 lupopedia.metadata:
   comment: "Snapshot of metadata for this file or entity at artifact creation."
   title:
-    - { schema_ref: "lupo_metadata", entity_type: "file", meta_type: "property", property_value: "Lupopedia README", channel_id: 42, class_name: "lupopedia_metadata", created_ymdhis: 20260313000000, updated_ymdhis: 20260313000000 }
+    - { schema_ref: "lupo_metadata", entity_type: "file", meta_type: "property", property_value: "Lupopedia README", channel_id: 42, class_name: "lupopedia_metadata", created_ymdhis: 20260313000000, updated_ymdhis: 20260323000000 }
   description:
-    - { schema_ref: "lupo_metadata", entity_type: "file", meta_type: "property", property_value: "Primary project documentation — deterministic multi-agent semantic OS; database-backed knowledge graph + doctrine-driven filesystem + MySQL/Postgres backend.", channel_id: 42, class_name: "lupopedia_metadata", created_ymdhis: 20260313000000, updated_ymdhis: 20260318000000 }
+    - { schema_ref: "lupo_metadata", entity_type: "file", meta_type: "property", property_value: "Primary project documentation — deterministic multi-agent semantic OS; database-backed knowledge graph + doctrine-driven filesystem + MySQL/Postgres backend. Version 4.0.86 with comprehensive actor system, context graph architecture, and canonical role layer enforcement.", channel_id: 42, class_name: "lupopedia_metadata", created_ymdhis: 20260313000000, updated_ymdhis: 20260323000000 }
   keywords:
-    - { schema_ref: "lupo_metadata", entity_type: "file", meta_type: "property", property_value: "readme, getting_started, semantic_os, multi_agent, deterministic_os, knowledge_graph, doctrine_filesystem, database_backend, v4.0.85", channel_id: 42, class_name: "lupopedia_metadata", created_ymdhis: 20260313000000, updated_ymdhis: 20260320000000 }
+    - { schema_ref: "lupo_metadata", entity_type: "file", meta_type: "property", property_value: "readme, getting_started, semantic_os, multi_agent, deterministic_os, knowledge_graph, doctrine_filesystem, database_backend, v4.0.86, canonical_role_layer, context_graph, actor_system", channel_id: 42, class_name: "lupopedia_metadata", created_ymdhis: 20260313000000, updated_ymdhis: 20260323000000 }
   author:
     - { schema_ref: "lupo_metadata", entity_type: "file", meta_type: "property", property_value: "wolfie", channel_id: 42, class_name: "lupopedia_metadata", created_ymdhis: 20260313000000, updated_ymdhis: 20260313000000 }
   orchestrator:
@@ -48,21 +51,15 @@ lupopedia.metadata:
 lupopedia.headers:
   lupopedia.schema: "documentation"
   file_path_from_root: "README.md"
-  version_when_written: "4.0.85"
-  web_path: "http://www.lupopedia.com/"
-  last_modified_utc: "20260322_235900"
+  last_modified_utc: "20260323_230000"
   channel_id: 42
+  thread_id: "1001"
   actor_id: 1
   actor_name: "wolfie"
-  delegation_chain: "wolfie:root"
-  artifact_type: "documentation"
-  artifact_kind: "documentation"
-  purpose: "Primary project documentation and onboarding — Install & upgrade validation, canonical root rules, actor registration, lupo-channels/actors/agents"
-  mood_rgb: "4169E1"
-  traits: ["essential", "entrypoint", "onboarding", "deterministic_semantic_os", "knowledge_graph", "v4.0.85"]
-  tags: ["readme", "getting_started", "semantic_os", "multi_agent", "knowledge_graph", "doctrine_filesystem", "database_backend", "root_rules", "v4.0.85"]
-
-lupopedia.session:
+  artifact_type: "project_documentation"
+  artifact_kind: "readme"
+  purpose: "Primary project documentation with version 4.0.86 comprehensive updates."
+  tags: ["wolfie", "readme", "v4.0.86", "project_overview"]
   session_id: "L-LUPO-ROOT-CURSOR"
   session_name: "L-LUPO-ROOT-CURSOR"
   actor_id: 102

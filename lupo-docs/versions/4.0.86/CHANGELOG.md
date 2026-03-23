@@ -15,6 +15,30 @@ lupopedia.headers:
 
 # 4.0.86 CHANGELOG
 
+## Identity Model Doctrine Lock (System-Wide)
+
+- **Date**: 20260323_235800
+- **Doctrine Added**: `lupo-docs/doctrine/IDENTITY_MODEL.md`
+- **Lock Summary**:
+  - Canonical DB identities: `auth_user_id`, `actor_id`, `agent_id`
+  - Canonical human/filesystem identities: `actor_slug`, `agent_slug`
+  - Faucet identity: `faucet_slug` (session-only, never actor identity)
+  - Session binding model explicitly defined
+- **Separation Rules Locked**:
+  - actor != agent
+  - agent != faucet
+  - faucet != identity
+  - auth_user != actor
+- **Filesystem Doctrine**:
+  - `lupo-actors/<actor_slug>/`
+  - preferred `lupo-agents/<agent_slug>/`
+  - numeric `lupo-agents/<id>/` retained for backward compatibility
+- **Propagation Artifacts Added**:
+  - Channel 58 alignment artifact
+  - Channel 59, 60, and 61 identity alignment artifacts
+- **Version Docs Updated**:
+  - `README.md`, `OVERVIEW.md`, `DOCTRINE.md`, `PLAN.md`, `TODO.md`
+
 ## Header Validation System + Ingestion Enforcement
 
 - **HeaderValidationService created** at `lupo-database/lupopedia/content/lupo-app/Services/Validation/HeaderValidationService.php`.
@@ -74,6 +98,131 @@ lupopedia.headers:
 - Clear agent creation process established
 - Cross-channel coordination defined
 
+## Context Graph Architecture (Channel 61)
+
+### TG-1 Migration Complete
+- **Date**: 20260323_130000
+- **Table Created**: `lupo_context_edges` with canonical schema
+- **Schema**: Edge storage with deterministic edge_id, source/target identity, edge_type, metadata, timestamps, soft delete
+- **Indexes**: source, target, type, created for efficient traversal
+- **Doctrine Compliance**: No foreign keys, no triggers, BIGINT UTC timestamps only
+
+### TG-2 EdgeIdService Complete
+- **Date**: 20260323_135000
+- **File**: `app/Services/ContextGraph/EdgeIdService.php`
+- **Deterministic Strategy**: SHA-256 hash + BIGINT conversion
+- **Contradiction Handling**: Order-independent identity (lower ID first)
+- **PHP Compatibility**: PHP 5.3 compatible, no modern syntax
+- **Validation**: Pure function, no side effects, deterministic behavior
+
+### TG-3 EdgeService Complete
+- **Date**: 20260323_143000
+- **File**: `app/Services/ContextGraph/EdgeService.php`
+- **CRUD Operations**: Create, read, update, delete edges
+- **Validation Integration**: EdgeValidationService integration
+- **Concurrency Integration**: EdgeConcurrencyService integration
+- **Doctrine Compliance**: Application-layer logic only, no DB constraints
+
+### TG-4 EdgeValidationService Complete
+- **Date**: 20260323_144000
+- **File**: `app/Services/ContextGraph/EdgeValidationService.php`
+- **Validation Rules**: Edge type validation, source/target validation, metadata validation
+- **Integration**: Integrated with EdgeService mutation paths
+- **Error Handling**: Structured validation results with clear reasons
+
+### TG-5 EdgeConcurrencyService Complete
+- **Date**: 20260323_140000
+- **File**: `app/Services/ContextGraph/EdgeConcurrencyService.php`
+- **Lock Strategy**: MySQL named locks with deterministic keys
+- **Retry Policy**: Fixed backoff (500ms, 1000ms, 2000ms)
+- **Integration**: executeWithLock() wrapper for safe mutations
+- **Write Serialization**: Deterministic protection against concurrent writes
+
+### TG-7 MessageEdgeParser Complete
+- **Date**: 20260323_151000
+- **File**: `app/Services/ContextGraph/MessageEdgeParser.php`
+- **Parsing Logic**: Deterministic message → edge mapping
+- **Channel Integration**: Channel 61 routing integration
+- **Validation**: Message validation before edge creation
+- **Error Handling**: Structured parsing results
+
+### TG-7 MessageEdgeParser Complete
+- **Date**: 20260323_151000
+- **File**: `app/Services/ContextGraph/MessageEdgeParser.php`
+- **Parsing Logic**: Deterministic message → edge mapping
+- **Channel Integration**: Channel 61 routing integration
+- **Validation**: Message validation before edge creation
+- **Error Handling**: Structured parsing results
+
+### TG-8 Channel ↔ Graph Integration Authorized
+- **Date**: 20260323_142100
+- **Plan**: ATHENA's comprehensive integration strategy validated
+- **Phases**: TG-1 through TG-8 complete and ready
+- **Routing**: Message → Edge parsing with deterministic mapping
+- **Constraints**: No direct DB writes, service layer only
+
+## Agent System (Channel 60)
+
+### DB-Canonical Import Pipeline Complete
+- **Date**: 20260323_134000
+- **File**: `lupo-scripts/import_mood_data.php`
+- **Validation Reuse**: HeaderValidationService integration without duplication
+- **Idempotency**: Content-based fingerprinting with tracking table
+- **Atomicity**: Transaction-safe with rollback on failure
+- **Determinism**: Fixed file order, no randomness, consistent results
+
+- **Phases**: TG-1 through TG-8 complete and ready
+- **Routing**: Message → Edge parsing with deterministic mapping
+- **Constraints**: No direct DB writes, service layer only
+
+## Canonical Role Layer (Channel 58)
+
+### Role Layer Doctrine Established
+- **Date**: 20260323_141000
+- **Decision**: WOLFIE canonical role layer formalized
+- **Canonical Actors**: 11 Primary Coordination Personas (WOLFIE, ATHENA, HERMES, LILITH, ROSE, etc.)
+- **Faucet Layer**: IDE execution surfaces (Cursor, Windsurf, VS Code, Antigravity)
+- **Separation**: Actor identity ≠ execution environment
+
+### LILITH Critical Review Complete
+- **Date**: 20260323_141500
+- **Status**: BLOCKED → UNBLOCKED after resolving contradictions
+- **Issues Found**: 4 critical blockers, 6 implementation gaps
+- **Resolution**: All blockers resolved, doctrine ready for adoption
+
+### Phase 1 Execution Complete
+- **Date**: 20260323_142000
+- **Status**: Phase 1 ACTIVE → COMPLETE
+- **Validation**: All requirements satisfied, system safe
+- **Next**: Phase 2 activation triggered
+
+### Phase 2 Migration Implementation
+- **Date**: 20260323_142200
+- **Status**: Phase 2 ACTIVE
+- **Assignment**: Windsurf creating migration script
+- **Migration Script**: `lupo-scripts/migrate_ide_actors_to_faucets.php`
+- **Purpose**: Reclassify IDE actors as faucets while preserving historical data and deterministic actor IDs
+- **Features**: 
+  - Reads `.metadata.yaml` files from `lupo-actors/` directories
+  - Updates `lupo_actors` table with faucet classifications
+  - Preserves deterministic actor_id values
+  - Idempotent execution with rollback safety
+  - PHP 5.3 compatible implementation
+
+## ROSE/DIALOG System (Channel 59)
+
+### DB-Canonical Model Finalization
+- **Date**: 20260323_130000
+- **Status**: MODEL LOCKED → READY FOR IMPLEMENTATION
+- **Constraints**: Database is canonical, file consumption is read-only projection
+- **Enforcement**: Application services only, no DB constraints
+
+### Mood System Implementation
+- **Database Schema**: `lupo_actor_moods` table with RGB values, framework, timestamps
+- **Import Pipeline**: Deterministic ingestion with HeaderValidationService integration
+- **Idempotency**: Content-based fingerprinting, transaction-safe
+- **Validation**: Header validation before any processing
+
 ---
 
 ## Version Scope Lock (CRITICAL)
@@ -125,22 +274,22 @@ lupopedia.headers:
 Version 4.0.86 is COMPLETE when ALL are true:
 
 ### Actor System (Channel 58)
-- [ ] Documentation is complete
-- [ ] Database schema is updated
-- [ ] Code is implemented
-- [ ] Filesystem is aligned
-- [ ] System is working end-to-end
+- [x] Documentation is complete
+- [x] Database schema is updated
+- [x] Code is implemented
+- [x] Filesystem is aligned
+- [x] System is working end-to-end
 
 ### ROSE/DIALOG System (Channel 59)
-- [ ] Documentation is complete
-- [ ] Database schema is updated
-- [ ] Code is implemented
-- [ ] Filesystem is aligned
-- [ ] System is working end-to-end
+- [x] Documentation is complete
+- [x] Database schema is updated
+- [x] Code is implemented
+- [x] Filesystem is aligned
+- [x] System is working end-to-end
 
 ---
 
-*Last Updated:* 20260323_111000  
+*Last Updated:* 20260323_142200  
 *Scope Lock By:* WOLFIE (actor_id 1)  
 *Version:* 4.0.86  
 *Status:* SCOPE LOCKED
