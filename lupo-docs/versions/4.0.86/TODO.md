@@ -29,6 +29,10 @@ lupopedia.headers:
 - [x] Update LUPOPEDIA HEADERS doctrine for stable `version_when_written`.
 - [x] Create `VERIFICATION_GUIDE.md` for artifact auditing.
 - [x] Audit 169 table documentation artifacts into status-based folders.
+- [x] Activate Edge Graph layer (ATHENA_STRATEGY Tracks 1-3).
+  - [x] Seed `lupo_edge_types` and `lupo_edge_type_definitions`.
+  - [x] Backfill `channel_parent` edges.
+  - [x] Create migration script for `dialog_channels` JSON data.
 
 ### 4.0.86 Remaining Work (Consolidation Target)
 - [ ] Initialize documentation and headers for all 22+ agents in `lupo-actors/`.

@@ -1,39 +1,60 @@
 ---
 lupopedia.headers:
-  lupopedia.version: "4.0.79"
-  lupopedia.schema: "database_table"
-  system_version: "4.0.79"
-  file_path_from_root: "lupo-docs/database/lupopedia/tables/active/lupo_dialog_threads.md"
-  web_path: "[lupo_dialog_threads](http://www.lupopedia.com/database/lupopedia/tables/active/lupo_dialog_threads)"
-  last_modified_utc: "20260317"
+  lupopedia.schema: database_table
+  file_path_from_root: lupo-docs/database/lupopedia/tables/active/lupo_dialog_threads.md
+  web_path: '[lupo_dialog_threads](http://www.lupopedia.com/database/lupopedia/tables/active/lupo_dialog_threads)'
+  last_modified_utc: '20260317'
   channel_id: 42
   actor_id: 1
-  actor_name: "wolfie"
-  delegation_chain: "wolfie:root"
-  artifact_type: "table_documentation"
-  artifact_kind: "table"
-  namespace: "channels"
-  purpose: "Dialog thread management; tracks conversation threads, message organization, and dialog lifecycle"
-  tags: ["database", "table", "channels"]
-
+  actor_name: wolfie
+  delegation_chain: wolfie:root
+  artifact_type: table_documentation
+  artifact_kind: table
+  namespace: channels
+  purpose: Dialog thread management; tracks conversation threads, message organization,
+    and dialog lifecycle
+  tags:
+  - database
+  - table
+  - channels
+  when_updated: '20260324174654'
 lupopedia.edges:
-  comment: "Snapshot of edges for lupo_dialog_threads table doc at 4.0.79 (grounded by repo search; non-exhaustive)."
-  meta: "php_hits=9 python_hits=5"
+  comment: Snapshot of edges for lupo_dialog_threads table doc at 4.0.79 (grounded
+    by repo search; non-exhaustive).
+  meta: php_hits=9 python_hits=5
   outbound_edges:
-    - { to: "database.table.lupo_dialog_threads", type: "DEFINES_SCHEMA_FOR", weight: 1.0 }
-    - { to: "lupo-database/lupopedia/mysql/install/install_new_lupopedia.sql", type: "schema_reference", weight: 1.0 }
-    - { to: "check_db_state.php", type: "USED_IN_PHP", weight: 0.6 }
-    - { to: "lupo-api/v1/dialog/health.php", type: "USED_IN_PHP", weight: 0.6 }
-    - { to: "lupo-api/v1/dialog/metrics.php", type: "USED_IN_PHP", weight: 0.6 }
-    - { to: "lupo-database/lupopedia/content/lupo-app/Services/TriggerReplacements/DialogMessagesInsertService.php", type: "USED_IN_PHP", weight: 0.6 }
-    - { to: "lupo-includes/Dialog/Database/DialogDatabase.php", type: "USED_IN_PHP", weight: 0.9 }
-    - { to: "lupo-includes/modules/channels/ChannelsController.php", type: "USED_IN_PHP", weight: 0.9 }
-    - { to: "lupo-tools/anubis_orphan_scanner.py", type: "USED_IN_PYTHON", weight: 0.5 }
-
+  - to: database.table.lupo_dialog_threads
+    type: DEFINES_SCHEMA_FOR
+    weight: 1.0
+  - to: lupo-database/lupopedia/mysql/install/install_new_lupopedia.sql
+    type: schema_reference
+    weight: 1.0
+  - to: check_db_state.php
+    type: USED_IN_PHP
+    weight: 0.6
+  - to: lupo-api/v1/dialog/health.php
+    type: USED_IN_PHP
+    weight: 0.6
+  - to: lupo-api/v1/dialog/metrics.php
+    type: USED_IN_PHP
+    weight: 0.6
+  - to: lupo-database/lupopedia/content/lupo-app/Services/TriggerReplacements/DialogMessagesInsertService.php
+    type: USED_IN_PHP
+    weight: 0.6
+  - to: lupo-includes/Dialog/Database/DialogDatabase.php
+    type: USED_IN_PHP
+    weight: 0.9
+  - to: lupo-includes/modules/channels/ChannelsController.php
+    type: USED_IN_PHP
+    weight: 0.9
+  - to: lupo-tools/anubis_orphan_scanner.py
+    type: USED_IN_PYTHON
+    weight: 0.5
 lupopedia.footer:
-  version: "4.0.79"
-  last_verified: "20260317"
-  last_verified_by: "cursor"
+  last_verified: '20260317000000'
+  last_verified_by: cursor
+  last_verified_by_actor_id: 102
+  orchestrator: cursor:root
 ---
 # file: lupo_dialog_threads ? web_path: http://www.lupopedia.com/database/lupopedia/tables/active/lupo_dialog_threads
 # Table: lupo_dialog_threads
@@ -47,6 +68,8 @@ Volume: medium
 - Key responsibilities: thread identity, status, and routing metadata.
 - System role: anchors dialog messages to a thread entity.
 - Importance: enables chat history, moderation, and escalation.
+
+> **Deprecation Notice (4.0.86):** The `thread_lineage` text column is deprecated. All new thread lineage relationships (continuations, forks, citations) must be stored in `lupo_edges` using `thread_continuation` or `thread_spawned_from` edge types. Existing data is being migrated.
 
 ## 2. Schema Reference
 Primary Key: dialog_thread_id

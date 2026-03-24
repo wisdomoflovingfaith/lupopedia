@@ -1,17 +1,22 @@
 ---
 lupopedia.headers:
-  lupopedia.version: "4.0.73"
-  lupopedia.schema: "documentation"
-  file_path_from_root: "lupo-docs/database/lupopedia/tables/active/lupo_truth_answers.md"
-  last_modified_utc: "20260312"
-  system_version: "4.0.69"
+  lupopedia.schema: documentation
+  file_path_from_root: lupo-docs/database/lupopedia/tables/active/lupo_truth_answers.md
+  last_modified_utc: '20260312'
   channel_id: 1
   actor_id: 103
-  delegation_chain: "103:10000"
-  artifact_type: "documentation"
-  artifact_kind: "database_table"
-  purpose: "JetBrains domain table documentation for lupo_truth_answers"
-  lupo_agent: "jetbrains"
+  delegation_chain: 103:10000
+  artifact_type: documentation
+  artifact_kind: database_table
+  purpose: JetBrains domain table documentation for lupo_truth_answers
+  lupo_agent: jetbrains
+  when_updated: '20260324174654'
+lupopedia:
+  footer:
+    last_verified: '20260324174654'
+    last_verified_by: cursor
+    last_verified_by_actor_id: 102
+    orchestrator: cursor:root
 ---
 
 # Table: lupo_truth_answers

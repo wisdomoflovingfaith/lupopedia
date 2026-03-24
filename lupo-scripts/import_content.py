@@ -1,4 +1,19 @@
 #!/usr/bin/env python3
+# lupopedia.headers:
+#   when_updated: "20260324182200"
+#   file_path_from_root: "lupo-scripts/import_content.py"
+#   last_modified_utc: "20260324182200"
+#   channel_id: 42
+#   actor_id: 102
+#   actor_name: "cursor"
+#   delegation_chain: "cursor:root"
+#   artifact_type: "tooling"
+#   artifact_kind: "script"
+# lupopedia.footer:
+#   last_verified: "20260324182200"
+#   last_verified_by: "cursor"
+#   last_verified_by_actor_id: 102
+
 """
 import_content.py
 
@@ -230,16 +245,16 @@ def _set_content_id_in_yaml(yaml_data: Dict[str, Any], content_id: int) -> None:
 
 def _extract_required_header_fields(headers: Dict[str, Any]) -> Dict[str, Any]:
     file_path_from_root = headers.get("file_path_from_root")
-    version_when_written = headers.get("version_when_written")
+    when_updated = headers.get("when_updated")
 
     if not file_path_from_root:
         raise ValueError("lupopedia.headers.file_path_from_root missing")
-    if not version_when_written:
-        raise ValueError("lupopedia.headers.version_when_written missing")
+    if not when_updated:
+        raise ValueError("lupopedia.headers.when_updated missing")
 
     out = {
         "file_path_from_root": str(file_path_from_root),
-        "version_when_written": str(version_when_written),
+        "when_updated": str(when_updated),
     }
 
     if "title" in headers and headers.get("title") is not None:
@@ -337,7 +352,7 @@ def _build_values_for_lupo_contents(
     now = _now_ymdhis()
 
     file_path_from_root = headers["file_path_from_root"]
-    version_when_written = headers["version_when_written"]
+    when_updated = headers["when_updated"]
     title = headers.get("title") or _title_from_file_path(file_path_from_root)
     slug = _slugify_content_path(file_path_from_root)
 
@@ -379,7 +394,7 @@ def _build_values_for_lupo_contents(
         "content_sections": None,
         "version_number": 1,
         "file_path_from_root": file_path_from_root,
-        "file_last_modified_system_version": version_when_written,
+        "file_last_modified_system_version": when_updated,
         "file_last_modified_utc": _parse_last_modified_utc(headers),
         "tags": None,
         "dialog_notes": None,
@@ -506,7 +521,7 @@ def _update_lupopedia_headers_content_id_in_yaml_text(yaml_text: str, content_id
             yaml_lines[content_id_line_idx] = new_line
             return "".join(yaml_lines)
 
-        # Otherwise insert after file_path_from_root if present, else after version_when_written.
+        # Otherwise insert after file_path_from_root if present, else after when_updated.
         insert_after_idx = None
         for j in range(start_idx + 1, end_idx):
             if yaml_lines[j].strip().startswith("file_path_from_root:"):
@@ -514,7 +529,7 @@ def _update_lupopedia_headers_content_id_in_yaml_text(yaml_text: str, content_id
                 break
         if insert_after_idx is None:
             for j in range(start_idx + 1, end_idx):
-                if yaml_lines[j].strip().startswith("version_when_written:"):
+                if yaml_lines[j].strip().startswith("when_updated:"):
                     insert_after_idx = j
                     break
         if insert_after_idx is None:
@@ -701,4 +716,3 @@ def main() -> int:
 
 if __name__ == "__main__":
     raise SystemExit(main())
-

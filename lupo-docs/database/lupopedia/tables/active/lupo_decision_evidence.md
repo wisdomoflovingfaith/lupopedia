@@ -1,17 +1,29 @@
 ---
 lupopedia.headers:
-  lupopedia.version: "4.0.80"
-  lupopedia.schema: "table"
-  file_path_from_root: "lupo-docs/database/lupopedia/tables/active/decisions/lupo_decision_evidence.md"
+  lupopedia.schema: table
+  file_path_from_root: lupo-docs/database/lupopedia/tables/active/lupo_decision_evidence.md
   channel_id: 42
   actor_id: 102
-  actor_name: "hermes"
-  faucet_name: "cascade"
-  artifact_type: "table_documentation"
-  artifact_kind: "database_schema"
-  purpose: "Complete documentation for lupo_decision_evidence table - decision evidence tracking"
-  tags: ["table_documentation", "decisions", "evidence", "bayesian", "4.0.80"]
-  created_ymdhis: 20260317_214000
+  actor_name: hermes
+  faucet_name: cascade
+  artifact_type: table_documentation
+  artifact_kind: database_schema
+  purpose: Complete documentation for lupo_decision_evidence table - decision evidence
+    tracking
+  tags:
+  - table_documentation
+  - decisions
+  - evidence
+  - bayesian
+  - 4.0.80
+  created_ymdhis: 20260317214000
+  when_updated: '20260324174654'
+lupopedia:
+  footer:
+    last_verified: '20260324174654'
+    last_verified_by: cursor
+    last_verified_by_actor_id: 102
+    orchestrator: cursor:root
 ---
 
 # lupo_decision_evidence - Decision Evidence Tracking

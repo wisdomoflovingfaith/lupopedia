@@ -1,4 +1,19 @@
 #!/usr/bin/env python3
+# lupopedia.headers:
+#   when_updated: "20260324182200"
+#   file_path_from_root: "lupo-scripts/validate_channel_artifacts.py"
+#   last_modified_utc: "20260324182200"
+#   channel_id: 42
+#   actor_id: 102
+#   actor_name: "cursor"
+#   delegation_chain: "cursor:root"
+#   artifact_type: "tooling"
+#   artifact_kind: "script"
+# lupopedia.footer:
+#   last_verified: "20260324182200"
+#   last_verified_by: "cursor"
+#   last_verified_by_actor_id: 102
+
 """
 Validate lupo-channels/{id}/ tree.
 
@@ -346,6 +361,14 @@ def validate_channel(
     actor_validate_fn=None,
     actor_registry=None,
     interpretation_validate_fn=None,
+    footer_validation: bool = True,
+    footer_validate_fn=None,
+    footer_autofix_fn=None,
+    footer_actor_registry=None,
+    footer_cutoff_utc_ymdhis: int = 20260301000000,
+    footer_autofix: bool = True,
+    footer_validator_actor_id: int = 102,
+    footer_validator_actor_name: str = "cursor",
 ) -> list[str]:
     errors: list[str] = []
     pr = project_root if project_root is not None else repo.resolve()
@@ -377,7 +400,7 @@ def validate_channel(
                         errors.extend(validate_thread_review_body(f))
                     if enforce_help_response_bodies:
                         errors.extend(validate_thread_help_response_body(f))
-                    if enforce_project or actor_identity_validation:
+                    if enforce_project or actor_identity_validation or footer_validation:
                         try:
                             full = f.read_text(encoding="utf-8", errors="replace")
                         except OSError as e:
@@ -388,6 +411,35 @@ def validate_channel(
                             if enforce_project:
                                 errors.extend(validate_v_project_002_003_links(f, full, pr))
                                 errors.extend(validate_v_project_004_warn(f, fm))
+                            if footer_validation and footer_validate_fn is not None:
+                                footer_issues = footer_validate_fn(
+                                    full,
+                                    f,
+                                    footer_actor_registry,
+                                    footer_cutoff_utc_ymdhis,
+                                )
+                                if footer_issues and footer_autofix and footer_autofix_fn is not None:
+                                    updated, changed, fix_err = footer_autofix_fn(
+                                        full,
+                                        int(footer_validator_actor_id),
+                                        str(footer_validator_actor_name),
+                                    )
+                                    if fix_err is not None:
+                                        errors.append(
+                                            "FOOTER_AUTOFIX_ERROR: %s (%s)" % (f, fix_err)
+                                        )
+                                    elif changed and updated != full:
+                                        try:
+                                            f.write_text(updated, encoding="utf-8")
+                                            footer_issues = footer_validate_fn(
+                                                updated,
+                                                f,
+                                                footer_actor_registry,
+                                                footer_cutoff_utc_ymdhis,
+                                            )
+                                        except OSError as e:
+                                            errors.append("WRITE_ERROR: %s (%s)" % (f, e))
+                                errors.extend(footer_issues)
                     if actor_identity_validation and actor_validate_fn is not None and actor_registry is not None:
                                 errors.extend(actor_validate_fn(full, f, actor_registry))
                     if (
@@ -415,7 +467,7 @@ def validate_channel(
                 errors.extend(validate_v_project_001(f, pr))
                 if not CANONICAL_MD.match(f.name):
                     errors.append("BAD_FILENAME: %s" % f.relative_to(repo))
-                if actor_identity_validation and actor_validate_fn is not None and actor_registry is not None:
+                if actor_identity_validation or footer_validation:
                     try:
                         full = f.read_text(encoding="utf-8", errors="replace")
                     except OSError as e:
@@ -423,14 +475,42 @@ def validate_channel(
                     else:
                         fm = parse_frontmatter_block(full)
                         errors.extend(validate_web_path_canonicalization(f, fm))
-                        errors.extend(actor_validate_fn(full, f, actor_registry))
-                        if (
-                            interpretation_validate_fn is not None
-                            and actor_registry is not None
-                        ):
-                            errors.extend(
-                                interpretation_validate_fn(full, f, actor_registry)
+                        if actor_identity_validation and actor_validate_fn is not None and actor_registry is not None:
+                            errors.extend(actor_validate_fn(full, f, actor_registry))
+                            if (
+                                interpretation_validate_fn is not None
+                                and actor_registry is not None
+                            ):
+                                errors.extend(
+                                    interpretation_validate_fn(full, f, actor_registry)
+                                )
+                        if footer_validation and footer_validate_fn is not None:
+                            footer_issues = footer_validate_fn(
+                                full,
+                                f,
+                                footer_actor_registry,
+                                footer_cutoff_utc_ymdhis,
                             )
+                            if footer_issues and footer_autofix and footer_autofix_fn is not None:
+                                updated, changed, fix_err = footer_autofix_fn(
+                                    full,
+                                    int(footer_validator_actor_id),
+                                    str(footer_validator_actor_name),
+                                )
+                                if fix_err is not None:
+                                    errors.append("FOOTER_AUTOFIX_ERROR: %s (%s)" % (f, fix_err))
+                                elif changed and updated != full:
+                                    try:
+                                        f.write_text(updated, encoding="utf-8")
+                                        footer_issues = footer_validate_fn(
+                                            updated,
+                                            f,
+                                            footer_actor_registry,
+                                            footer_cutoff_utc_ymdhis,
+                                        )
+                                    except OSError as e:
+                                        errors.append("WRITE_ERROR: %s (%s)" % (f, e))
+                            errors.extend(footer_issues)
 
     dr = base / "direct"
     if dr.is_dir():
@@ -446,7 +526,7 @@ def validate_channel(
                 errors.extend(validate_v_project_001(f, pr))
                 if not CANONICAL_MD.match(f.name):
                     errors.append("BAD_FILENAME: %s" % f.relative_to(repo))
-                if actor_identity_validation and actor_validate_fn is not None and actor_registry is not None:
+                if actor_identity_validation or footer_validation:
                     try:
                         full = f.read_text(encoding="utf-8", errors="replace")
                     except OSError as e:
@@ -454,14 +534,42 @@ def validate_channel(
                     else:
                         fm = parse_frontmatter_block(full)
                         errors.extend(validate_web_path_canonicalization(f, fm))
-                        errors.extend(actor_validate_fn(full, f, actor_registry))
-                        if (
-                            interpretation_validate_fn is not None
-                            and actor_registry is not None
-                        ):
-                            errors.extend(
-                                interpretation_validate_fn(full, f, actor_registry)
+                        if actor_identity_validation and actor_validate_fn is not None and actor_registry is not None:
+                            errors.extend(actor_validate_fn(full, f, actor_registry))
+                            if (
+                                interpretation_validate_fn is not None
+                                and actor_registry is not None
+                            ):
+                                errors.extend(
+                                    interpretation_validate_fn(full, f, actor_registry)
+                                )
+                        if footer_validation and footer_validate_fn is not None:
+                            footer_issues = footer_validate_fn(
+                                full,
+                                f,
+                                footer_actor_registry,
+                                footer_cutoff_utc_ymdhis,
                             )
+                            if footer_issues and footer_autofix and footer_autofix_fn is not None:
+                                updated, changed, fix_err = footer_autofix_fn(
+                                    full,
+                                    int(footer_validator_actor_id),
+                                    str(footer_validator_actor_name),
+                                )
+                                if fix_err is not None:
+                                    errors.append("FOOTER_AUTOFIX_ERROR: %s (%s)" % (f, fix_err))
+                                elif changed and updated != full:
+                                    try:
+                                        f.write_text(updated, encoding="utf-8")
+                                        footer_issues = footer_validate_fn(
+                                            updated,
+                                            f,
+                                            footer_actor_registry,
+                                            footer_cutoff_utc_ymdhis,
+                                        )
+                                    except OSError as e:
+                                        errors.append("WRITE_ERROR: %s (%s)" % (f, e))
+                            errors.extend(footer_issues)
 
     if enforce_project:
         errors.extend(validate_todo_plan_project_scope(repo, pr, enforce_links=True))
@@ -532,6 +640,48 @@ def main() -> int:
         action="store_true",
         help="Enforce actor/facet convergence + identity canonicality via validate_actor_identity.py",
     )
+    ap.add_argument(
+        "--footer-validation",
+        dest="footer_validation",
+        action="store_true",
+        default=True,
+        help="Enforce lupopedia.footer verification freshness and validator identity (default: on)",
+    )
+    ap.add_argument(
+        "--no-footer-validation",
+        dest="footer_validation",
+        action="store_false",
+        help="Disable lupopedia.footer verification checks",
+    )
+    ap.add_argument(
+        "--footer-autofix",
+        dest="footer_autofix",
+        action="store_true",
+        default=True,
+        help="Auto-update stale/missing footer verification fields while scanning (default: on)",
+    )
+    ap.add_argument(
+        "--no-footer-autofix",
+        dest="footer_autofix",
+        action="store_false",
+        help="Do not auto-update footers; report revalidation-required issues only",
+    )
+    ap.add_argument(
+        "--footer-cutoff-utc",
+        default="20260301000000",
+        help="Revalidation cutoff in UTC YYYYMMDDHHIISS (default: 20260301000000)",
+    )
+    ap.add_argument(
+        "--footer-validator-actor-id",
+        type=int,
+        default=102,
+        help="Actor ID written when footer autofix updates verification fields",
+    )
+    ap.add_argument(
+        "--footer-validator-actor-name",
+        default="cursor",
+        help="Actor name written when footer autofix updates verification fields",
+    )
     args = ap.parse_args()
 
     def _run_threads(root: Path) -> int:
@@ -569,6 +719,10 @@ def main() -> int:
     root = Path(args.repo_root).resolve()
     actor_validate_fn = None
     actor_registry = None
+    footer_validate_fn = None
+    footer_autofix_fn = None
+    footer_actor_registry = None
+    footer_cutoff_utc_ymdhis = 20260301000000
     if args.actor_identity_validation:
         av = Path(__file__).resolve().parent / "validate_actor_identity.py"
         spec = importlib.util.spec_from_file_location("validate_actor_identity", av)
@@ -587,6 +741,22 @@ def main() -> int:
         imod = importlib.util.module_from_spec(ispec)
         ispec.loader.exec_module(imod)
         interpretation_validate_fn = imod.validate_interpretation_headers_text
+    if args.footer_validation:
+        fv = Path(__file__).resolve().parent / "validate_footer_verification.py"
+        fspec = importlib.util.spec_from_file_location("validate_footer_verification", fv)
+        if fspec is None or fspec.loader is None:
+            print("validate_footer_verification.py not found", file=sys.stderr)
+            return 2
+        fmod = importlib.util.module_from_spec(fspec)
+        fspec.loader.exec_module(fmod)
+        footer_validate_fn = fmod.validate_footer_verification_text
+        footer_autofix_fn = fmod.autofix_footer_verification_text
+        footer_actor_registry = fmod.load_actor_registry(root)
+        try:
+            footer_cutoff_utc_ymdhis = int(str(args.footer_cutoff_utc).strip())
+        except (TypeError, ValueError):
+            print("Invalid --footer-cutoff-utc: expected YYYYMMDDHHIISS integer", file=sys.stderr)
+            return 2
     ctx = infer_project_context(root, args.project_id, args.project_slug)
     print(
         "project_context: project_id=%s project_slug=%s project_root=%s"
@@ -611,6 +781,14 @@ def main() -> int:
         actor_validate_fn=actor_validate_fn,
         actor_registry=actor_registry,
         interpretation_validate_fn=interpretation_validate_fn if args.actor_identity_validation else None,
+        footer_validation=args.footer_validation,
+        footer_validate_fn=footer_validate_fn,
+        footer_autofix_fn=footer_autofix_fn,
+        footer_actor_registry=footer_actor_registry,
+        footer_cutoff_utc_ymdhis=footer_cutoff_utc_ymdhis,
+        footer_autofix=args.footer_autofix,
+        footer_validator_actor_id=args.footer_validator_actor_id,
+        footer_validator_actor_name=args.footer_validator_actor_name,
     )
     warn_count = sum(
         1 for e in errs if ("PROJECT_WARN[" in e or "INTERPRETATION_WARN[" in e)

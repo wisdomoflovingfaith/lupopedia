@@ -1,4 +1,19 @@
 #!/usr/bin/env python3
+# lupopedia.headers:
+#   when_updated: "20260324175617"
+#   file_path_from_root: "lupo-scripts/normalize_version_4_0_x_to_3_0_x.py"
+#   last_modified_utc: "20260324175617"
+#   channel_id: 42
+#   actor_id: 102
+#   actor_name: "cursor"
+#   delegation_chain: "cursor:root"
+#   artifact_type: "tooling"
+#   artifact_kind: "script"
+# lupopedia.footer:
+#   last_verified: "20260324175617"
+#   last_verified_by: "cursor"
+#   last_verified_by_actor_id: 102
+
 """
 One-time script: replace 4.0.N -> 3.0.N and 4_0_N -> 3_0_N (and v4_0_N -> v3_0_N)
 in text files. Excludes: 4.0.1 (canonical), 4.1.0 (future), and date-like patterns.

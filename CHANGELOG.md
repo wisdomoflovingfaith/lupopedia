@@ -48,29 +48,42 @@ For version 4.0.87, canonical multi-agent details are in:
 - `lupo-docs/versions/4.0.87/TODO.md`
 - `lupo-docs/versions/4.0.87/TASK_REGISTRY.md`
 
-Primary focus areas initialized for 4.0.87:
-
-- atoms and version propagation
-- channels and documentation reconciliation
-- LUPOPEDIA HEADERS system (`lupopedia.init`, `lupopedia.edges`, `lupopedia.footer`)
-- actor/agent/auth_user/department/faucet implementation clarity
-- admin web interface LLM chatbot path via `localhost/lupopedia/admin.php`
+### Summary
+- **Junie Registration (Actor 108)**: Registered Junie as a canonical agent with root user/department.
+- **LUPOPEDIA HEADERS Refactor**: Implemented the Version Semantics Triad Model and namespace distinction.
+- **Edge Graph Activation**: Activated relationship layer (Tracks 1-3) for channels and threads.
+- **Config Consolidation**: Unified all settings into root `lupopedia-config.php`.
+- **Admin Chat UI**: Implemented `admin.php?section=channel-chat` with Effective Actor resolution.
+- **Documentation Audit**: Reorganized 169 table artifacts and populated 22+ agents in `lupo-agents/`.
 
 ## [4.0.86] - 20260324
 
-For version 4.0.86, this root changelog is an index only.
+### Summary
+- Version 4.0.86 marks the completion of the **Phase 1 Identity Model and Documentation Baseline**.
+- Authoritative multi-agent history and detailed changes are documented in `lupo-docs/versions/4.0.86/`.
 
-Authoritative multi-agent history is in:
+### Added
+- **Junie Registration**: Registered **Junie** (Actor 108) as a canonical agent with root department (1) and root user (0) mapping.
+- **Edge Graph Activation**: Activated the `lupo_edges` relationship layer for channels and threads (ATHENA_STRATEGY).
+  - Seeded `lupo_edge_types` and `lupo_edge_type_definitions` with channel/thread vocabulary.
+  - Backfilled hierarchical parent edges from `lupo_channels.parent_channel_id`.
+  - Created `lupo-scripts/migrate_dialog_channel_edges.php` for JSON-to-Relational migration.
+- **Verification Doctrine**: Created `lupo-docs/doctrine/LUPOPEDIA_HEADERS/VERIFICATION_GUIDE.md` for formal audit procedures.
+- **Header Standards**: Implemented **Version Semantics Model** and **namespace** distinction in LUPOPEDIA HEADERS.
 
-- `lupo-docs/versions/4.0.86/CHANGELOG.md`
-- `lupo-docs/versions/4.0.86/TASK_REGISTRY.md`
-- `lupo-docs/versions/4.0.86/thread_artifacts_20260323.md`
+### Changed
+- **Config Consolidation**: Unified redundant configs into a single root `lupopedia-config.php`.
+- **Identity Normalization**: Standardized root `auth_user_id` to `0` and locked the Unified Identity Model doctrine.
+- **Root Documentation**: Reorganized `README.md` and `AGENTS.md` to reflect the Semantic OS layer and v4.0.86 orchestration.
+- **Table Documentation**: Audited and reorganized 169 table artifacts into status-based directories.
 
-This includes work across agents/personas (for example WOLFIE, HEPHAESTUS, LILITH, WINDSURF, JUNIE) and channel-scoped outputs.
+### Fixed
+- Resolved contradictions in Channels 58-61 regarding agent identities and version scope.
+- Corrected `web_path` construction to be subdirectory-aware across all documentation.
 
-Junie-specific consolidation changes for 4.0.86 are tracked in:
-
-- `lupo-docs/versions/4.0.86/CHANGELOG.md` under "Junie Root and Header Consolidation (Channel 42)".
+### Notes
+- **22-Agent Requirement**: Initialized complete documentation structure for 22+ agents in `lupo-agents/`.
+- Canonical history for 4.0.86 is in `lupo-docs/versions/4.0.86/CHANGELOG.md` and `TASK_REGISTRY.md`.
 
 ## [4.0.85] - 20260322
 - Transition point: 4.0.85 introduces the version-directory governance model.

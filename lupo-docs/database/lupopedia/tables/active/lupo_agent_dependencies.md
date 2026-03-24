@@ -1,27 +1,37 @@
 ---
 lupopedia.headers:
-  lupopedia.version: "4.0.73"
-  lupopedia.schema: "database_table"
-  file_path_from_root: "lupo-docs/database/lupopedia/tables/active/lupo_agent_dependencies.md"
-  system_version: "4.0.70"
+  lupopedia.schema: database_table
+  file_path_from_root: lupo-docs/database/lupopedia/tables/active/lupo_agent_dependencies.md
   channel_id: 1
   actor_id: 102
-  last_modified_utc: "20260312"
-  artifact_type: "table_documentation"
-  purpose: "Agent-to-agent dependency graph (depends_on_agent_id, is_required)"
-  mood_rgb: "4169E1"
-  traits: ["canonical", "agent", "cursor_domain", "v4.0.70"]
-  tags: ["database", "agents", "dependencies"]
-  lupo_agent: "cursor"
-
+  last_modified_utc: '20260312'
+  artifact_type: table_documentation
+  purpose: Agent-to-agent dependency graph (depends_on_agent_id, is_required)
+  mood_rgb: 4169E1
+  traits:
+  - canonical
+  - agent
+  - cursor_domain
+  - v4.0.70
+  tags:
+  - database
+  - agents
+  - dependencies
+  lupo_agent: cursor
+  when_updated: '20260324174654'
 lupopedia.edges:
   outbound_edges:
-    - { to: "lupo-database/lupopedia/toon/lupo_agent_dependencies.toon.json", type: "schema_reference", weight: 1.0 }
-    - { to: "lupo-docs/database/lupopedia/tables/active/lupo_agents.md", type: "references", weight: 0.9 }
-
+  - to: lupo-database/lupopedia/toon/lupo_agent_dependencies.toon.json
+    type: schema_reference
+    weight: 1.0
+  - to: lupo-docs/database/lupopedia/tables/active/lupo_agents.md
+    type: references
+    weight: 0.9
 lupopedia.footer:
-  last_verified: "20260312"
-  last_verified_by: "cursor"
+  last_verified: '20260312000000'
+  last_verified_by: cursor
+  last_verified_by_actor_id: 102
+  orchestrator: cursor:root
 ---
 
 # Table: lupo_agent_dependencies

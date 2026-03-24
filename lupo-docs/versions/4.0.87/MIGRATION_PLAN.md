@@ -1,15 +1,22 @@
 ---
 lupopedia.headers:
-  version_when_written: "4.0.87"
-  file_path_from_root: "lupo-docs/versions/4.0.87/MIGRATION_PLAN.md"
-  last_modified_utc: "20260324_143710"
+  file_path_from_root: lupo-docs/versions/4.0.87/MIGRATION_PLAN.md
+  last_modified_utc: '20260324180128'
   channel_id: 42
-  thread_id: "4.0.87-init"
+  thread_id: 4.0.87-init
   actor_id: 102
-  actor_name: "cursor"
-  artifact_type: "planning"
-  artifact_kind: "migration_plan"
-  purpose: "Staged migration and rollout plan for 4.0.87."
+  actor_name: cursor
+  artifact_type: planning
+  artifact_kind: migration_plan
+  purpose: Staged migration and rollout plan for 4.0.87.
+  when_updated: '20260324180128'
+  web_path: http://www.lupopedia.com/lupo-docs/versions/4.0.87/MIGRATION_PLAN.md
+  delegation_chain: cursor:root
+lupopedia.footer:
+  last_verified: '20260324180128'
+  last_verified_by: cursor
+  last_verified_by_actor_id: 102
+  orchestrator: cursor:root
 ---
 
 # 4.0.87 MIGRATION PLAN
@@ -29,3 +36,7 @@ lupopedia.headers:
 ## Phase 4: Validation + Release Readiness
 - Execute version checklist.
 - Update changelog/task registry/next-session handoff.
+
+## Upgrade Compatibility Statement
+- No Lupopedia -> Lupopedia upgrade migration path is in scope for 4.0.87.
+- Migration/installation focus remains fresh install and Crafty Syntax import path.

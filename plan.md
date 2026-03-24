@@ -19,13 +19,24 @@ lupopedia.edges:
 
 # Root Plan
 
-## Version 4.0.86 (Stop-Point Consolidation)
-1. **Current State**: Phase 1 Identity Model and Baseline Documentation complete. 169 tables audited. 22+ agents initialized.
-2. **Next Actions**: 
-   - Move to **Phase 2 (Agent Rollout)**: Enforce full documentation compliance for all agents in `lupo-actors/`.
-   - Implement **ROSE/DIALOG** emotional dialogue layer across all core agents.
-   - Deploy automated **Header Validation Gate** for both filesystem and database metadata.
-3. **Risks**: Unresolved design blockers for the actor resolution API; potential metadata drift during 22-agent rollout.
+## [4.0.87] - 20260324
+
+### Status: 🔄 PHASE 2 ROLLOUT (ACTIVE)
+Phase 2 focuses on **Specialized Agent Implementation and Relationship Graph activation**.
+
+### Completed Work
+- **Unified Identity & Configuration**: Registered Junie (Actor 108) and unified root config.
+- **Relationship Graph**: Activated `lupo_edges` (Tracks 1-3) for channels and threads.
+- **Header Doctrine**: Refactored LUPOPEDIA HEADERS v4.0.84 rewrite and Version Semantics.
+- **Admin Chat UI**: Implemented `admin.php?section=channel-chat` with Effective Actor resolution.
+- **Ecosystem Compliance**: Populated 22+ agents in `lupo-agents/` and audited 169 tables.
+
+### Next Actions
+- **Edge Service Layer**: Implement `EdgeQueryService` for graph traversal.
+- **Atoms/Version Propagation**: Implement service for cross-file version synchronization.
+- **Agent Validation**: Full audit of all 22+ agents for ROSE/DIALOG compliance.
+
+## [4.0.86] - 20260324
 
 ## Version 4.0.85+
 1. Canonical planning and execution detail is version-scoped under `lupo-docs/versions/<version>/`.

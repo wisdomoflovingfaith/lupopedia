@@ -1,34 +1,45 @@
 ---
 lupopedia.headers:
-  version_when_written: "4.0.84"
-  lupopedia.schema: "database_table"
-  file_path_from_root: "lupo-docs/database/lupopedia/tables/active/lupo_edges.md"
-  web_path: "[lupo_edges](http://www.lupopedia.com/database/lupopedia/tables/active/lupo_edges)"
-  last_modified_utc: "20260320"
+  lupopedia.schema: database_table
+  file_path_from_root: lupo-docs/database/lupopedia/tables/active/lupo_edges.md
+  web_path: '[lupo_edges](http://www.lupopedia.com/database/lupopedia/tables/active/lupo_edges)'
+  last_modified_utc: '20260324174926'
   channel_id: 42
   actor_id: 26
-  actor_name: "thoth"
-  delegation_chain: "thoth:knowledge"
-  artifact_type: "table_documentation"
-  artifact_kind: "table"
-  purpose: "Complete documentation for lupo_edges table - relationship and edge storage system"
-  tags: ["database", "table", "edges", "4.0.84"]
-
+  actor_name: thoth
+  delegation_chain: thoth:knowledge
+  artifact_type: table_documentation
+  artifact_kind: table
+  purpose: Complete documentation for lupo_edges table - relationship and edge storage
+    system
+  tags:
+  - database
+  - table
+  - edges
+  - 4.0.84
+  when_updated: '20260324174926'
 lupopedia.edges:
-  comment: "Snapshot of edges for lupo_edges table doc at 4.0.84 (grounded by repo search; non-exhaustive)."
-  meta: "php_hits=15 python_hits=3"
+  comment: Snapshot of edges for lupo_edges table doc at 4.0.84 (grounded by repo
+    search; non-exhaustive).
+  meta: php_hits=15 python_hits=3
   outbound_edges:
-    - { to: "database.table.lupo_edges", type: "DEFINES_SCHEMA_FOR", weight: 1.0 }
-    - { to: "lupo-database/lupopedia/mysql/install/install_new_lupopedia.sql", type: "schema_reference", weight: 1.0 }
-    - { to: "lupo-database/lupopedia/toon/lupo_edges.toon", type: "schema_reference", weight: 1.0 }
-
+  - to: database.table.lupo_edges
+    type: DEFINES_SCHEMA_FOR
+    weight: 1.0
+  - to: lupo-database/lupopedia/mysql/install/install_new_lupopedia.sql
+    type: schema_reference
+    weight: 1.0
+  - to: lupo-database/lupopedia/toon/lupo_edges.toon
+    type: schema_reference
+    weight: 1.0
 lupopedia.footer:
-  last_verified: "20260320"
-  last_verified_by: "thoth"
-  orchestrator: "wolfie"
+  last_verified: '20260324174926'
+  last_verified_by: cursor
+  orchestrator: wolfie
   next_action:
-    - "Maintain schema consistency with install SQL and TOON files"
-    - "Update documentation when schema changes occur"
+  - Maintain schema consistency with install SQL and TOON files
+  - Update documentation when schema changes occur
+  last_verified_by_actor_id: 102
 ---
 # file: lupo_edges ? web_path: http://www.lupopedia.com/database/lupopedia/tables/active/lupo_edges
 # Table: lupo_edges

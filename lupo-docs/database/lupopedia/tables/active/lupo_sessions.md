@@ -1,51 +1,96 @@
 ---
 lupopedia.headers:
-  lupopedia.version: "4.0.79"
-  lupopedia.schema: "database_table"
-  system_version: "4.0.79"
-  file_path_from_root: "lupo-docs/database/lupopedia/tables/active/lupo_sessions.md"
-  web_path: "[lupo_sessions](http://www.lupopedia.com/database/lupopedia/tables/active/lupo_sessions)"
-  last_modified_utc: "20260317"
+  lupopedia.schema: database_table
+  file_path_from_root: lupo-docs/database/lupopedia/tables/active/lupo_sessions.md
+  web_path: '[lupo_sessions](http://www.lupopedia.com/database/lupopedia/tables/active/lupo_sessions)'
+  last_modified_utc: '20260317'
   channel_id: 42
   actor_id: 102
-  actor_name: "cursor"
-  delegation_chain: "cursor:root"
-  artifact_type: "table_documentation"
-  artifact_kind: "table"
-  namespace: "auth"
-  purpose: "DB-backed session authority (Model A). Web and API session storage; identity resolved from lupo_sessions via App\\Auth\\Session."
-  tags: ["database", "table", "auth"]
-
+  actor_name: cursor
+  delegation_chain: cursor:root
+  artifact_type: table_documentation
+  artifact_kind: table
+  namespace: auth
+  purpose: DB-backed session authority (Model A). Web and API session storage; identity
+    resolved from lupo_sessions via App\Auth\Session.
+  tags:
+  - database
+  - table
+  - auth
+  when_updated: '20260324174654'
 lupopedia.edges:
-  comment: "Snapshot of edges for lupo_sessions table doc at 4.0.79 (grounded by repo search; non-exhaustive)."
-  meta: "php_hits=26 python_hits=4"
+  comment: Snapshot of edges for lupo_sessions table doc at 4.0.79 (grounded by repo
+    search; non-exhaustive).
+  meta: php_hits=26 python_hits=4
   outbound_edges:
-    - { to: "database.table.lupo_sessions", type: "DEFINES_SCHEMA_FOR", weight: 1.0 }
-    - { to: "lupo-database/lupopedia/mysql/install/install_new_lupopedia.sql", type: "schema_reference", weight: 1.0 }
-    - { to: "debug_login.php", type: "USED_IN_PHP", weight: 0.6 }
-    - { to: "live.php", type: "USED_IN_PHP", weight: 0.6 }
-    - { to: "lupo-bin/lupo.php", type: "USED_IN_PHP", weight: 0.6 }
-    - { to: "lupo-bin/session_manager.php", type: "USED_IN_PHP", weight: 0.6 }
-    - { to: "lupo-database/lupopedia/content/lupo-app/Http/Controllers/Admin/AuthenticationController.php", type: "USED_IN_PHP", weight: 0.6 }
-    - { to: "lupo-database/lupopedia/content/lupo-app/Services/CraftySyntax/LegacyAdminChatFlush.php", type: "USED_IN_PHP", weight: 0.6 }
-    - { to: "lupo-database/lupopedia/content/lupo-app/Services/CraftySyntax/LegacyAdminOptions.php", type: "USED_IN_PHP", weight: 0.6 }
-    - { to: "lupo-database/lupopedia/content/lupo-app/Services/CraftySyntax/LegacyChannels.php", type: "USED_IN_PHP", weight: 0.6 }
-    - { to: "lupo-database/lupopedia/content/lupo-app/Services/CraftySyntax/LegacyFunctions.php", type: "USED_IN_PHP", weight: 0.6 }
-    - { to: "lupo-database/lupopedia/content/lupo-app/Services/CraftySyntax/LegacySessionManager.php", type: "USED_IN_PHP", weight: 0.6 }
-    - { to: "lupo-database/lupopedia/content/lupo-app/auth/AuthGuard.php", type: "USED_IN_PHP", weight: 0.6 }
-    - { to: "lupo-database/lupopedia/content/lupo-app/auth/Session.php", type: "USED_IN_PHP", weight: 0.6 }
-    - { to: "lupo-database/lupopedia/content/lupo-app/auth/UnifiedSessionHandler.php", type: "USED_IN_PHP", weight: 0.6 }
-    - { to: "lupo-includes/class-SessionManager.php", type: "USED_IN_PHP", weight: 0.9 }
-    - { to: "lupo-includes/classes/ContextResolver.php", type: "USED_IN_PHP", weight: 0.9 }
-    - { to: "analyze_unused_tables.py", type: "USED_IN_PYTHON", weight: 0.5 }
-    - { to: "lupo-scripts/audit_schema_doctrine.py", type: "USED_IN_PYTHON", weight: 0.5 }
-    - { to: "lupo-scripts/check_doc_schema_consistency.py", type: "USED_IN_PYTHON", weight: 0.5 }
-    - { to: "lupo-scripts/wolfie_orms.py", type: "USED_IN_PYTHON", weight: 0.5 }
-
+  - to: database.table.lupo_sessions
+    type: DEFINES_SCHEMA_FOR
+    weight: 1.0
+  - to: lupo-database/lupopedia/mysql/install/install_new_lupopedia.sql
+    type: schema_reference
+    weight: 1.0
+  - to: debug_login.php
+    type: USED_IN_PHP
+    weight: 0.6
+  - to: live.php
+    type: USED_IN_PHP
+    weight: 0.6
+  - to: lupo-bin/lupo.php
+    type: USED_IN_PHP
+    weight: 0.6
+  - to: lupo-bin/session_manager.php
+    type: USED_IN_PHP
+    weight: 0.6
+  - to: lupo-database/lupopedia/content/lupo-app/Http/Controllers/Admin/AuthenticationController.php
+    type: USED_IN_PHP
+    weight: 0.6
+  - to: lupo-database/lupopedia/content/lupo-app/Services/CraftySyntax/LegacyAdminChatFlush.php
+    type: USED_IN_PHP
+    weight: 0.6
+  - to: lupo-database/lupopedia/content/lupo-app/Services/CraftySyntax/LegacyAdminOptions.php
+    type: USED_IN_PHP
+    weight: 0.6
+  - to: lupo-database/lupopedia/content/lupo-app/Services/CraftySyntax/LegacyChannels.php
+    type: USED_IN_PHP
+    weight: 0.6
+  - to: lupo-database/lupopedia/content/lupo-app/Services/CraftySyntax/LegacyFunctions.php
+    type: USED_IN_PHP
+    weight: 0.6
+  - to: lupo-database/lupopedia/content/lupo-app/Services/CraftySyntax/LegacySessionManager.php
+    type: USED_IN_PHP
+    weight: 0.6
+  - to: lupo-database/lupopedia/content/lupo-app/auth/AuthGuard.php
+    type: USED_IN_PHP
+    weight: 0.6
+  - to: lupo-database/lupopedia/content/lupo-app/auth/Session.php
+    type: USED_IN_PHP
+    weight: 0.6
+  - to: lupo-database/lupopedia/content/lupo-app/auth/UnifiedSessionHandler.php
+    type: USED_IN_PHP
+    weight: 0.6
+  - to: lupo-includes/class-SessionManager.php
+    type: USED_IN_PHP
+    weight: 0.9
+  - to: lupo-includes/classes/ContextResolver.php
+    type: USED_IN_PHP
+    weight: 0.9
+  - to: analyze_unused_tables.py
+    type: USED_IN_PYTHON
+    weight: 0.5
+  - to: lupo-scripts/audit_schema_doctrine.py
+    type: USED_IN_PYTHON
+    weight: 0.5
+  - to: lupo-scripts/check_doc_schema_consistency.py
+    type: USED_IN_PYTHON
+    weight: 0.5
+  - to: lupo-scripts/wolfie_orms.py
+    type: USED_IN_PYTHON
+    weight: 0.5
 lupopedia.footer:
-  version: "4.0.79"
-  last_verified: "20260317"
-  last_verified_by: "cursor"
+  last_verified: '20260317000000'
+  last_verified_by: cursor
+  last_verified_by_actor_id: 102
+  orchestrator: cursor:root
 ---
 # file: lupo_sessions ? web_path: http://www.lupopedia.com/database/lupopedia/tables/active/lupo_sessions
 # Table: lupo_sessions

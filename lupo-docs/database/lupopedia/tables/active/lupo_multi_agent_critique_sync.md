@@ -1,26 +1,35 @@
 ---
 lupopedia.headers:
-  lupopedia.version: "4.0.73"
-  lupopedia.schema: "documentation"
-  file_path_from_root: "lupo-docs/database/lupopedia/tables/active/lupo_multi_agent_critique_sync.md"
-  system_version: "4.0.70"
+  lupopedia.schema: documentation
+  file_path_from_root: lupo-docs/database/lupopedia/tables/active/lupo_multi_agent_critique_sync.md
   channel_id: 1
   actor_id: 103
-  last_modified_utc: "20260312"
-  artifact_type: "table_documentation"
-  purpose: "Synchronization state for multi-agent consensus and critique"
-  mood_rgb: "4169E1"
-  traits: ["canonical", "multi_agent", "sync", "v4.0.70"]
-  tags: ["database", "sync", "consensus", "critique"]
-  lupo_agent: "antigravity"
-
+  last_modified_utc: '20260312'
+  artifact_type: table_documentation
+  purpose: Synchronization state for multi-agent consensus and critique
+  mood_rgb: 4169E1
+  traits:
+  - canonical
+  - multi_agent
+  - sync
+  - v4.0.70
+  tags:
+  - database
+  - sync
+  - consensus
+  - critique
+  lupo_agent: antigravity
+  when_updated: '20260324174654'
 lupopedia.edges:
   outbound_edges:
-    - { to: "lupo-database/lupopedia/toon/lupo_multi_agent_critique_sync.toon", type: "references", weight: 1.0 }
-
+  - to: lupo-database/lupopedia/toon/lupo_multi_agent_critique_sync.toon
+    type: references
+    weight: 1.0
 lupopedia.footer:
-  last_verified: "20260312"
-  last_verified_by: "antigravity"
+  last_verified: '20260312000000'
+  last_verified_by: cursor
+  last_verified_by_actor_id: 102
+  orchestrator: cursor:root
 ---
 
 # Table Overview: lupo_multi_agent_critique_sync

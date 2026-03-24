@@ -1,27 +1,39 @@
 ---
 lupopedia.headers:
-  lupopedia.version: "4.0.73"
-  lupopedia.schema: "database_table"
-  file_path_from_root: "lupo-docs/database/lupopedia/tables/active/lupo_api_clients.md"
-  system_version: "4.0.70"
+  lupopedia.schema: database_table
+  file_path_from_root: lupo-docs/database/lupopedia/tables/active/lupo_api_clients.md
   channel_id: 1
   actor_id: 102
-  last_modified_utc: "20260312"
-  artifact_type: "table_documentation"
-  purpose: "API client credentials (client_key, client_secret) per actor"
-  mood_rgb: "4169E1"
-  traits: ["canonical", "api", "auth", "cursor_domain", "v4.0.70"]
-  tags: ["database", "api", "clients", "credentials"]
-  lupo_agent: "cursor"
-
+  last_modified_utc: '20260312'
+  artifact_type: table_documentation
+  purpose: API client credentials (client_key, client_secret) per actor
+  mood_rgb: 4169E1
+  traits:
+  - canonical
+  - api
+  - auth
+  - cursor_domain
+  - v4.0.70
+  tags:
+  - database
+  - api
+  - clients
+  - credentials
+  lupo_agent: cursor
+  when_updated: '20260324174654'
 lupopedia.edges:
   outbound_edges:
-    - { to: "lupo-database/lupopedia/toon/lupo_api_clients.toon.json", type: "schema_reference", weight: 1.0 }
-    - { to: "lupo-docs/database/lupopedia/tables/active/lupo_actors.md", type: "references", weight: 0.8 }
-
+  - to: lupo-database/lupopedia/toon/lupo_api_clients.toon.json
+    type: schema_reference
+    weight: 1.0
+  - to: lupo-docs/database/lupopedia/tables/active/lupo_actors.md
+    type: references
+    weight: 0.8
 lupopedia.footer:
-  last_verified: "20260312"
-  last_verified_by: "cursor"
+  last_verified: '20260312000000'
+  last_verified_by: cursor
+  last_verified_by_actor_id: 102
+  orchestrator: cursor:root
 ---
 
 # Table: lupo_api_clients

@@ -1,26 +1,29 @@
 ---
 lupopedia.init:
-  document_type: "documentation"
-  system_version: "4.0.71"
-
+  document_type: documentation
+  system_version: 4.0.71
 lupopedia.headers:
-  lupopedia.version: "4.0.73"
-  lupopedia.schema: "documentation"
-  file_path_from_root: "lupo-docs/database/lupopedia/tables/semantic_navbar/SEMANTIC_NAVBAR_OVERVIEW.md"
-  web_path: "http://www.lupopedia.com/database/lupopedia/tables/semantic_navbar"
-  system_version: "4.0.71"
-  last_modified_utc: "20260312"
+  lupopedia.schema: documentation
+  file_path_from_root: lupo-docs/database/lupopedia/tables/semantic_navbar/SEMANTIC_NAVBAR_OVERVIEW.md
+  web_path: http://www.lupopedia.com/database/lupopedia/tables/semantic_navbar
+  last_modified_utc: '20260312'
   channel_id: 42
   actor_id: 1003
-  artifact_type: "documentation"
-  artifact_kind: "overview"
-  purpose: "Overview of the semantic floating navigation bar and how it maps to DB tables, API, and JS."
-  tags: ["semantic_navbar", "frontend", "database", "4.0.71"]
-
+  artifact_type: documentation
+  artifact_kind: overview
+  purpose: Overview of the semantic floating navigation bar and how it maps to DB
+    tables, API, and JS.
+  tags:
+  - semantic_navbar
+  - frontend
+  - database
+  - 4.0.71
+  when_updated: '20260324174654'
 lupopedia.footer:
-  version: "4.0.71"
-  last_verified: "20260312"
-  last_verified_by: "cursor"
+  last_verified: '20260312000000'
+  last_verified_by: cursor
+  last_verified_by_actor_id: 102
+  orchestrator: cursor:root
 ---
 # file: Semantic Navbar Overview — web_path: http://www.lupopedia.com/database/lupopedia/tables/semantic_navbar
 

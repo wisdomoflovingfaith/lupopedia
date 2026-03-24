@@ -1,34 +1,45 @@
 ---
 lupopedia.headers:
-  lupopedia.version: "4.0.79"
-  lupopedia.schema: "database_table"
-  system_version: "4.0.79"
-  file_path_from_root: "lupo-docs/database/lupopedia/tables/active/lupo_action_authorization.md"
-  web_path: "[lupo_action_authorization](http://www.lupopedia.com/database/lupopedia/tables/active/lupo_action_authorization)"
-  last_modified_utc: "20260317"
+  lupopedia.schema: database_table
+  file_path_from_root: lupo-docs/database/lupopedia/tables/active/lupo_action_authorization.md
+  web_path: '[lupo_action_authorization](http://www.lupopedia.com/database/lupopedia/tables/active/lupo_action_authorization)'
+  last_modified_utc: '20260317'
   channel_id: 42
   actor_id: 102
-  actor_name: "cursor"
-  delegation_chain: "cursor:root"
-  artifact_type: "table_documentation"
-  artifact_kind: "table"
-  namespace: "core"
-  purpose: "Authorization rules for action keys, mapping required trait keys and/or required role keys for channel-scoped actions."
-  tags: ["database", "table", "core"]
-
+  actor_name: cursor
+  delegation_chain: cursor:root
+  artifact_type: table_documentation
+  artifact_kind: table
+  namespace: core
+  purpose: Authorization rules for action keys, mapping required trait keys and/or
+    required role keys for channel-scoped actions.
+  tags:
+  - database
+  - table
+  - core
+  when_updated: '20260324174654'
 lupopedia.edges:
-  comment: "Snapshot of edges for lupo_action_authorization table doc at 4.0.79 (grounded by repo search; non-exhaustive)."
-  meta: "php_hits=1 python_hits=1"
+  comment: Snapshot of edges for lupo_action_authorization table doc at 4.0.79 (grounded
+    by repo search; non-exhaustive).
+  meta: php_hits=1 python_hits=1
   outbound_edges:
-    - { to: "database.table.lupo_action_authorization", type: "DEFINES_SCHEMA_FOR", weight: 1.0 }
-    - { to: "lupo-database/lupopedia/mysql/install/install_new_lupopedia.sql", type: "schema_reference", weight: 1.0 }
-    - { to: "lupo-includes/classes/TraitEnforcer.php", type: "USED_IN_PHP", weight: 0.9 }
-    - { to: "lupo-scripts/check_doc_schema_consistency.py", type: "USED_IN_PYTHON", weight: 0.5 }
-
+  - to: database.table.lupo_action_authorization
+    type: DEFINES_SCHEMA_FOR
+    weight: 1.0
+  - to: lupo-database/lupopedia/mysql/install/install_new_lupopedia.sql
+    type: schema_reference
+    weight: 1.0
+  - to: lupo-includes/classes/TraitEnforcer.php
+    type: USED_IN_PHP
+    weight: 0.9
+  - to: lupo-scripts/check_doc_schema_consistency.py
+    type: USED_IN_PYTHON
+    weight: 0.5
 lupopedia.footer:
-  version: "4.0.79"
-  last_verified: "20260317"
-  last_verified_by: "cursor"
+  last_verified: '20260317000000'
+  last_verified_by: cursor
+  last_verified_by_actor_id: 102
+  orchestrator: cursor:root
 ---
 # file: lupo_action_authorization ? web_path: http://www.lupopedia.com/database/lupopedia/tables/active/lupo_action_authorization
 # Table: lupo_action_authorization

@@ -1,4 +1,19 @@
 #!/usr/bin/env python3
+# lupopedia.headers:
+#   when_updated: "20260324175617"
+#   file_path_from_root: "lupo-scripts/validate_todo_plan.py"
+#   last_modified_utc: "20260324175617"
+#   channel_id: 42
+#   actor_id: 102
+#   actor_name: "cursor"
+#   delegation_chain: "cursor:root"
+#   artifact_type: "tooling"
+#   artifact_kind: "script"
+# lupopedia.footer:
+#   last_verified: "20260324175617"
+#   last_verified_by: "cursor"
+#   last_verified_by_actor_id: 102
+
 """
 Option A registry validator: TODO.md Global Task Registry + plan.md Strategic Roadmap.
 Spec: lupo-channels/42/threads/1012/20260318_180800_hephaestus_spec_validator-complete.md

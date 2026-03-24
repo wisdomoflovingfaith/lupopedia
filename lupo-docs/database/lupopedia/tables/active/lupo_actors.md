@@ -1,57 +1,117 @@
 ---
 lupopedia.headers:
-  version_when_written: "4.0.86"
-  lupopedia.schema: "database_table"
-  file_path_from_root: "lupo-docs/database/lupopedia/tables/active/lupo_actors.md"
-  web_path: "http://www.lupopedia.com/database/lupopedia/tables/active/lupo_actors"
-  last_modified_utc: "20260324"
+  lupopedia.schema: database_table
+  file_path_from_root: lupo-docs/database/lupopedia/tables/active/lupo_actors.md
+  web_path: http://www.lupopedia.com/database/lupopedia/tables/active/lupo_actors
+  last_modified_utc: '20260324174926'
   channel_id: 42
   actor_id: 108
-  actor_name: "junie"
-  faucet_name: "jetbrains"
-  delegation_chain: "junie:root"
-  artifact_type: "table_documentation"
-  artifact_kind: "table"
-  namespace: "core"
-  purpose: "Documentation for lupo_actors table - unified actor identity and management (v4.0.86)"
-  tags: ["database", "table", "core", "identity", "v4.0.86"]
-
+  actor_name: junie
+  faucet_name: jetbrains
+  delegation_chain: junie:root
+  artifact_type: table_documentation
+  artifact_kind: table
+  namespace: core
+  purpose: Documentation for lupo_actors table - unified actor identity and management
+    (v4.0.86)
+  tags:
+  - database
+  - table
+  - core
+  - identity
+  - v4.0.86
+  when_updated: '20260324174926'
 lupopedia.edges:
-  comment: "Snapshot of edges for lupo_actors table doc at 4.0.79 (grounded by repo search; non-exhaustive)."
-  meta: "php_hits=33 python_hits=12"
+  comment: Snapshot of edges for lupo_actors table doc at 4.0.79 (grounded by repo
+    search; non-exhaustive).
+  meta: php_hits=33 python_hits=12
   outbound_edges:
-    - { to: "database.table.lupo_actors", type: "DEFINES_SCHEMA_FOR", weight: 1.0 }
-    - { to: "lupo-database/lupopedia/mysql/install/install_new_lupopedia.sql", type: "schema_reference", weight: 1.0 }
-    - { to: "debug_captain.php", type: "USED_IN_PHP", weight: 0.6 }
-    - { to: "init_actor_dirs.php", type: "USED_IN_PHP", weight: 0.6 }
-    - { to: "install.php", type: "USED_IN_PHP", weight: 0.6 }
-    - { to: "install_wizard_classes.php", type: "USED_IN_PHP", weight: 0.6 }
-    - { to: "lupo-bin/lupo.php", type: "USED_IN_PHP", weight: 0.6 }
-    - { to: "lupo-database/lupopedia/content/lupo-app/Http/Controllers/AuthController.php", type: "USED_IN_PHP", weight: 0.6 }
-    - { to: "lupo-database/lupopedia/content/lupo-app/Services/ActorService.php", type: "USED_IN_PHP", weight: 0.6 }
-    - { to: "lupo-database/lupopedia/content/lupo-app/Services/AnubisUnknownRecipientService.php", type: "USED_IN_PHP", weight: 0.6 }
-    - { to: "lupo-database/lupopedia/content/lupo-app/Services/CraftySyntax/LegacyFunctions.php", type: "USED_IN_PHP", weight: 0.6 }
-    - { to: "lupo-database/lupopedia/content/lupo-app/Services/HybridActorSecurityService.php", type: "USED_IN_PHP", weight: 0.6 }
-    - { to: "lupo-database/lupopedia/content/lupo-app/Services/SavedCollectionsService.php", type: "USED_IN_PHP", weight: 0.6 }
-    - { to: "lupo-database/lupopedia/content/lupo-app/auth/AuthService.php", type: "USED_IN_PHP", weight: 0.6 }
-    - { to: "lupo-includes/DialogChannelMigration/MessageBuilder.php", type: "USED_IN_PHP", weight: 0.9 }
-    - { to: "lupo-includes/class-iris.php", type: "USED_IN_PHP", weight: 0.9 }
-    - { to: "lupo-includes/classes/AdminRegistryHandler.php", type: "USED_IN_PHP", weight: 0.9 }
-    - { to: "analyze_unused_tables.py", type: "USED_IN_PYTHON", weight: 0.5 }
-    - { to: "lupo-scripts/actor_agent_doctrine.py", type: "USED_IN_PYTHON", weight: 0.5 }
-    - { to: "lupo-scripts/audit_and_move_dev_tables.py", type: "USED_IN_PYTHON", weight: 0.5 }
-    - { to: "lupo-scripts/audit_schema_doctrine.py", type: "USED_IN_PYTHON", weight: 0.5 }
-    - { to: "lupo-scripts/check_doc_schema_consistency.py", type: "USED_IN_PYTHON", weight: 0.5 }
-    - { to: "lupo-scripts/flare_edge_suggester.py", type: "USED_IN_PYTHON", weight: 0.5 }
-    - { to: "lupo-scripts/generate_seed_from_toons.py", type: "USED_IN_PYTHON", weight: 0.5 }
-    - { to: "lupo-scripts/init_all_actors.py", type: "USED_IN_PYTHON", weight: 0.5 }
-    - { to: "lupo-scripts/rebuild_schema_from_toons.py", type: "USED_IN_PYTHON", weight: 0.5 }
-    - { to: "lupo-scripts/verify_db_against_toons.py", type: "USED_IN_PYTHON", weight: 0.5 }
-
+  - to: database.table.lupo_actors
+    type: DEFINES_SCHEMA_FOR
+    weight: 1.0
+  - to: lupo-database/lupopedia/mysql/install/install_new_lupopedia.sql
+    type: schema_reference
+    weight: 1.0
+  - to: debug_captain.php
+    type: USED_IN_PHP
+    weight: 0.6
+  - to: init_actor_dirs.php
+    type: USED_IN_PHP
+    weight: 0.6
+  - to: install.php
+    type: USED_IN_PHP
+    weight: 0.6
+  - to: install_wizard_classes.php
+    type: USED_IN_PHP
+    weight: 0.6
+  - to: lupo-bin/lupo.php
+    type: USED_IN_PHP
+    weight: 0.6
+  - to: lupo-database/lupopedia/content/lupo-app/Http/Controllers/AuthController.php
+    type: USED_IN_PHP
+    weight: 0.6
+  - to: lupo-database/lupopedia/content/lupo-app/Services/ActorService.php
+    type: USED_IN_PHP
+    weight: 0.6
+  - to: lupo-database/lupopedia/content/lupo-app/Services/AnubisUnknownRecipientService.php
+    type: USED_IN_PHP
+    weight: 0.6
+  - to: lupo-database/lupopedia/content/lupo-app/Services/CraftySyntax/LegacyFunctions.php
+    type: USED_IN_PHP
+    weight: 0.6
+  - to: lupo-database/lupopedia/content/lupo-app/Services/HybridActorSecurityService.php
+    type: USED_IN_PHP
+    weight: 0.6
+  - to: lupo-database/lupopedia/content/lupo-app/Services/SavedCollectionsService.php
+    type: USED_IN_PHP
+    weight: 0.6
+  - to: lupo-database/lupopedia/content/lupo-app/auth/AuthService.php
+    type: USED_IN_PHP
+    weight: 0.6
+  - to: lupo-includes/DialogChannelMigration/MessageBuilder.php
+    type: USED_IN_PHP
+    weight: 0.9
+  - to: lupo-includes/class-iris.php
+    type: USED_IN_PHP
+    weight: 0.9
+  - to: lupo-includes/classes/AdminRegistryHandler.php
+    type: USED_IN_PHP
+    weight: 0.9
+  - to: analyze_unused_tables.py
+    type: USED_IN_PYTHON
+    weight: 0.5
+  - to: lupo-scripts/actor_agent_doctrine.py
+    type: USED_IN_PYTHON
+    weight: 0.5
+  - to: lupo-scripts/audit_and_move_dev_tables.py
+    type: USED_IN_PYTHON
+    weight: 0.5
+  - to: lupo-scripts/audit_schema_doctrine.py
+    type: USED_IN_PYTHON
+    weight: 0.5
+  - to: lupo-scripts/check_doc_schema_consistency.py
+    type: USED_IN_PYTHON
+    weight: 0.5
+  - to: lupo-scripts/flare_edge_suggester.py
+    type: USED_IN_PYTHON
+    weight: 0.5
+  - to: lupo-scripts/generate_seed_from_toons.py
+    type: USED_IN_PYTHON
+    weight: 0.5
+  - to: lupo-scripts/init_all_actors.py
+    type: USED_IN_PYTHON
+    weight: 0.5
+  - to: lupo-scripts/rebuild_schema_from_toons.py
+    type: USED_IN_PYTHON
+    weight: 0.5
+  - to: lupo-scripts/verify_db_against_toons.py
+    type: USED_IN_PYTHON
+    weight: 0.5
 lupopedia.footer:
-  version: "4.0.86"
-  last_verified: "20260324"
-  last_verified_by: "junie"
+  last_verified: '20260324174926'
+  last_verified_by: cursor
+  last_verified_by_actor_id: 102
+  orchestrator: cursor:root
 ---
 # file: lupo_actors — delegation: junie:root — web_path: http://www.lupopedia.com/database/lupopedia/tables/active/lupo_actors
 # Table: lupo_actors
@@ -91,6 +151,7 @@ lupopedia.footer:
 | adversarial_role | varchar(64) | Yes | 'none' | Adversarial designation. |
 | adversarial_oversight_actor_id | bigint | Yes | — | Oversight actor ID. |
 | avatar_hash | varchar(64) | Yes | — | Avatar image hash. |
+| actor_config | text | Yes | — | Actor-specific configuration (Serialized/JSON). |
 | primary_federation_node_id | bigint | No | 1 | Federation node ID. |
 | department_id | bigint | Yes | — | Primary department ID. |
 | is_kernel | tinyint | No | 0 | Kernel/system actor flag. |

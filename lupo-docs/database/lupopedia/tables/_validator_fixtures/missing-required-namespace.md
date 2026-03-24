@@ -1,23 +1,23 @@
 ---
 lupopedia.headers:
-  lupopedia.version: "4.0.78"
-  lupopedia.schema: "database_table"
-  system_version: "4.0.78"
-  file_path_from_root: "lupo-docs/database/lupopedia/tables/_validator_fixtures/missing-required-namespace.md"
-  web_path: "[web_path](http://www.lupopedia.com/database/tables/_validator_fixtures/missing-required-namespace)"
-  last_modified_utc: "20260316"
+  lupopedia.schema: database_table
+  file_path_from_root: lupo-docs/database/lupopedia/tables/_validator_fixtures/missing-required-namespace.md
+  web_path: '[web_path](http://www.lupopedia.com/database/tables/_validator_fixtures/missing-required-namespace)'
+  last_modified_utc: '20260316'
   channel_id: 42
   actor_id: 102
-  artifact_type: "table_documentation"
-  artifact_kind: "table"
-  purpose: "Table doc without namespace field — validator should FAIL"
-
+  artifact_type: table_documentation
+  artifact_kind: table
+  purpose: "Table doc without namespace field \u2014 validator should FAIL"
+  when_updated: '20260324174654'
 lupopedia.edges:
-  comment: "Snapshot of outbound edges."
+  comment: Snapshot of outbound edges.
   outbound_edges: []
-
 lupopedia.footer:
-  version: "4.0.78"
+  last_verified: '20260324174654'
+  last_verified_by: cursor
+  last_verified_by_actor_id: 102
+  orchestrator: cursor:root
 ---
 # file: Missing Required Namespace — session: L-LUPO-ROOT — delegation: cursor:root — web_path: http://www.lupopedia.com/database/tables/_validator_fixtures/missing-required-namespace
 

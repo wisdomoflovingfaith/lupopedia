@@ -1,26 +1,34 @@
 ---
 lupopedia.headers:
-  lupopedia.version: "4.0.73"
-  lupopedia.schema: "documentation"
-  file_path_from_root: "lupo-docs/database/lupopedia/tables/deprecated/lupo_federation_discovery.md"
-  system_version: "4.0.70"
+  lupopedia.schema: documentation
+  file_path_from_root: lupo-docs/database/lupopedia/tables/deprecated/lupo_federation_discovery.md
   channel_id: 1
   actor_id: 103
-  last_modified_utc: "20260312"
-  artifact_type: "table_documentation"
-  purpose: "Deprecated federation discovery table"
-  mood_rgb: "4169E1"
-  traits: ["deprecated", "federation", "v4.0.70"]
-  tags: ["database", "federation", "deprecated", "discovery"]
-  lupo_agent: "antigravity"
-
+  last_modified_utc: '20260312'
+  artifact_type: table_documentation
+  purpose: Deprecated federation discovery table
+  mood_rgb: 4169E1
+  traits:
+  - deprecated
+  - federation
+  - v4.0.70
+  tags:
+  - database
+  - federation
+  - deprecated
+  - discovery
+  lupo_agent: antigravity
+  when_updated: '20260324174654'
 lupopedia.edges:
   outbound_edges:
-    - { to: "lupo-database/lupopedia/toon/lupo_federation_discovery.toon.json", type: "references", weight: 1.0 }
-
+  - to: lupo-database/lupopedia/toon/lupo_federation_discovery.toon.json
+    type: references
+    weight: 1.0
 lupopedia.footer:
-  last_verified: "20260312"
-  last_verified_by: "antigravity"
+  last_verified: '20260312000000'
+  last_verified_by: cursor
+  last_verified_by_actor_id: 102
+  orchestrator: cursor:root
 ---
 
 # Table Overview: lupo_federation_discovery (DEPRECATED)

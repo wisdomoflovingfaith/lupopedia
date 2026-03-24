@@ -1,5 +1,37 @@
 <?php
 /**
+lupopedia.headers:
+  when_updated: "20260324175911"
+  file_path_from_root: "lupo-scripts/migrate_ide_actors_to_faucets.php"
+  last_modified_utc: "20260324175911"
+  channel_id: 42
+  actor_id: 102
+  actor_name: "cursor"
+  delegation_chain: "cursor:root"
+  artifact_type: "tooling"
+  artifact_kind: "script"
+lupopedia.footer:
+  last_verified: "20260324175911"
+  last_verified_by: "cursor"
+  last_verified_by_actor_id: 102
+*/
+/**
+lupopedia.headers:
+  when_updated: "20260324175617"
+  file_path_from_root: "lupo-scripts/migrate_ide_actors_to_faucets.php"
+  last_modified_utc: "20260324175617"
+  channel_id: 42
+  actor_id: 102
+  actor_name: "cursor"
+  delegation_chain: "cursor:root"
+  artifact_type: "tooling"
+  artifact_kind: "script"
+lupopedia.footer:
+  last_verified: "20260324175617"
+  last_verified_by: "cursor"
+  last_verified_by_actor_id: 102
+*/
+/**
  * Migrate IDE Actors to Faucets
  * 
  * Reclassifies existing IDE-named actors as faucets while preserving

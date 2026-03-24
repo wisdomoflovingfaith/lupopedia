@@ -1,74 +1,128 @@
 ---
 lupopedia.init:
-  file_identity: "VALIDATION_REPORT_KIRO.md"
-  artifact_type: "validation-report"
-  artifact_kind: "metadata-snapshot"
-  namespace: "lupopedia"
-  domain: "core"
-  system_version: "4.0.74"
-
+  file_identity: VALIDATION_REPORT_KIRO.md
+  artifact_type: validation-report
+  artifact_kind: metadata-snapshot
+  namespace: lupopedia
+  domain: core
+  system_version: 4.0.74
 lupopedia.metadata:
-  comment: "Snapshot of metadata for this file or entity at artifact creation."
+  comment: Snapshot of metadata for this file or entity at artifact creation.
   title:
-    - { schema_ref: "lupo_metadata", entity_type: "file", meta_type: "property", property_value: "KIRO Validation Report", channel_id: 42, class_name: "lupopedia_metadata", created_ymdhis: 20260314000000, updated_ymdhis: 20260314000000 }
+  - schema_ref: lupo_metadata
+    entity_type: file
+    meta_type: property
+    property_value: KIRO Validation Report
+    channel_id: 42
+    class_name: lupopedia_metadata
+    created_ymdhis: 20260314000000
+    updated_ymdhis: 20260314000000
   description:
-    - { schema_ref: "lupo_metadata", entity_type: "file", meta_type: "property", property_value: "Global validation of multi-agent database documentation (KIRO canonical)", channel_id: 42, class_name: "lupopedia_metadata", created_ymdhis: 20260314000000, updated_ymdhis: 20260314000000 }
+  - schema_ref: lupo_metadata
+    entity_type: file
+    meta_type: property
+    property_value: Global validation of multi-agent database documentation (KIRO
+      canonical)
+    channel_id: 42
+    class_name: lupopedia_metadata
+    created_ymdhis: 20260314000000
+    updated_ymdhis: 20260314000000
   keywords:
-    - { schema_ref: "lupo_metadata", entity_type: "file", meta_type: "property", property_value: "database, validation, coordination, kiro, canonical", channel_id: 42, class_name: "lupopedia_metadata", created_ymdhis: 20260314000000, updated_ymdhis: 20260314000000 }
+  - schema_ref: lupo_metadata
+    entity_type: file
+    meta_type: property
+    property_value: database, validation, coordination, kiro, canonical
+    channel_id: 42
+    class_name: lupopedia_metadata
+    created_ymdhis: 20260314000000
+    updated_ymdhis: 20260314000000
   author:
-    - { schema_ref: "lupo_metadata", entity_type: "file", meta_type: "property", property_value: "kiro", channel_id: 42, class_name: "lupopedia_metadata", created_ymdhis: 20260314000000, updated_ymdhis: 20260314000000 }
+  - schema_ref: lupo_metadata
+    entity_type: file
+    meta_type: property
+    property_value: kiro
+    channel_id: 42
+    class_name: lupopedia_metadata
+    created_ymdhis: 20260314000000
+    updated_ymdhis: 20260314000000
   orchestrator:
-    - { schema_ref: "lupo_metadata", entity_type: "file", meta_type: "property", property_value: "kiro", channel_id: 42, class_name: "lupopedia_metadata", created_ymdhis: 20260314000000, updated_ymdhis: 20260314000000 }
-
+  - schema_ref: lupo_metadata
+    entity_type: file
+    meta_type: property
+    property_value: kiro
+    channel_id: 42
+    class_name: lupopedia_metadata
+    created_ymdhis: 20260314000000
+    updated_ymdhis: 20260314000000
 lupopedia.headers:
-  lupopedia.version: "4.0.74"
-  lupopedia.schema: "database_table"
-  file_path_from_root: "lupo-docs/database/lupopedia/tables/VALIDATION_REPORT_KIRO.md"
-  web_path: "http://www.lupopedia.com/VALIDATION_REPORT_KIRO"
-  last_modified_utc: "20260314"
-  system_version: "4.0.74"
+  lupopedia.schema: database_table
+  file_path_from_root: lupo-docs/database/lupopedia/tables/VALIDATION_REPORT_KIRO.md
+  web_path: http://www.lupopedia.com/VALIDATION_REPORT_KIRO
+  last_modified_utc: '20260314'
   channel_id: 42
   actor_id: 100
-  actor_name: "kiro"
-  faucet_name: "kiro"
-  delegation_chain: "kiro:root"
-  artifact_type: "validation_report"
-  artifact_kind: "coordination"
-  purpose: "Global validation of multi-agent database documentation (KIRO canonical)"
-  mood_rgb: "4169E1"
-  traits: ["canonical", "validation", "kiro_authority", "v4.0.74"]
-  tags: ["database", "validation", "coordination", "kiro", "canonical"]
-
+  actor_name: kiro
+  faucet_name: kiro
+  delegation_chain: kiro:root
+  artifact_type: validation_report
+  artifact_kind: coordination
+  purpose: Global validation of multi-agent database documentation (KIRO canonical)
+  mood_rgb: 4169E1
+  traits:
+  - canonical
+  - validation
+  - kiro_authority
+  - v4.0.74
+  tags:
+  - database
+  - validation
+  - coordination
+  - kiro
+  - canonical
+  when_updated: '20260324174654'
 lupopedia.session:
-  session_id: "L-KIRO-VALIDATION-20260314"
-  session_name: "L-KIRO-VALIDATION-20260314"
+  session_id: L-KIRO-VALIDATION-20260314
+  session_name: L-KIRO-VALIDATION-20260314
   actor_id: 100
-  actor_name: "kiro"
-  faucet_name: "kiro"
+  actor_name: kiro
+  faucet_name: kiro
   channel_id: 42
-  channel_name: "Lupopedia Development (general)"
+  channel_name: Lupopedia Development (general)
   federation_node_id: 1
   paired_actor_id: 1000
-
 lupopedia.edges:
   outbound_edges:
-    - { to: "report_kiro.md", type: "references", weight: 1.0 }
-    - { to: "plan_kiro.md", type: "references", weight: 0.95 }
-    - { to: "lupo-docs/database/lupopedia/SCHEMA_REGISTRY_KIRO.md", type: "references", weight: 0.9 }
-    - { to: "lupo-docs/database/lupopedia/SCHEMA_REGISTRY.md", type: "references", weight: 0.85 }
-    - { to: "lupo-docs/database/lupopedia/tables/VALIDATION_REPORT.md", type: "references", weight: 0.85 }
-  semantic_tags: ["validation", "report", "coordination", "kiro", "database"]
-
+  - to: report_kiro.md
+    type: references
+    weight: 1.0
+  - to: plan_kiro.md
+    type: references
+    weight: 0.95
+  - to: lupo-docs/database/lupopedia/SCHEMA_REGISTRY_KIRO.md
+    type: references
+    weight: 0.9
+  - to: lupo-docs/database/lupopedia/SCHEMA_REGISTRY.md
+    type: references
+    weight: 0.85
+  - to: lupo-docs/database/lupopedia/tables/VALIDATION_REPORT.md
+    type: references
+    weight: 0.85
+  semantic_tags:
+  - validation
+  - report
+  - coordination
+  - kiro
+  - database
 lupopedia.footer:
-  version: "4.0.74"
-  last_verified: "20260314"
-  last_verified_by: "kiro"
-  orchestrator: "kiro"
+  last_verified: '20260314000000'
+  last_verified_by: cursor
+  orchestrator: kiro
   next_action:
-    - "Coordinate multi-agent documentation validation based on this report"
-    - "Resolve header duplication issues across documentation files"
-    - "Establish validation pipeline for automated checks"
-    - "Update coordination documents with KIRO findings"
+  - Coordinate multi-agent documentation validation based on this report
+  - Resolve header duplication issues across documentation files
+  - Establish validation pipeline for automated checks
+  - Update coordination documents with KIRO findings
+  last_verified_by_actor_id: 102
 ---
 # KIRO Validation Report — Multi-Agent Database Documentation (Canonical)
 

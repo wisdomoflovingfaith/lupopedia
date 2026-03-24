@@ -1,14 +1,20 @@
 ---
 lupopedia.headers:
-  lupopedia.version: "4.0.75"
-  lupopedia.schema: "documentation"
-  file_path_from_root: "lupo-docs/database/lupopedia/tables/active/planning/README.md"
-  system_version: "4.0.75"
-  last_modified_utc: "20260315"
+  lupopedia.schema: documentation
+  file_path_from_root: lupo-docs/database/lupopedia/tables/planning/README.md
+  last_modified_utc: '20260315'
   channel_id: 42
-  artifact_type: "documentation"
-  artifact_kind: "index"
-  purpose: "Clarify planning folder role vs tables/active authority; prevent duplication drift."
+  artifact_type: documentation
+  artifact_kind: index
+  purpose: Clarify planning folder role vs tables/active authority; prevent duplication
+    drift.
+  when_updated: '20260324174654'
+lupopedia:
+  footer:
+    last_verified: '20260324174654'
+    last_verified_by: cursor
+    last_verified_by_actor_id: 102
+    orchestrator: cursor:root
 ---
 
 # Planning Folder — Authority and Usage

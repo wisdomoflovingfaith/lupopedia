@@ -1,83 +1,168 @@
 ---
 lupopedia.init:
-  file_identity: "PROJECT_REGISTRY_SCHEMA_DESIGN.md"
-  artifact_type: "schema_design"
-  artifact_kind: "database_documentation"
-  namespace: "projects"
-  domain: "database"
-  system_version: "4.0.76"
-  design_actor: "cursor"
-  design_faucet: "cursor"
-  orchestrator_actor: "wolfie"
-
+  file_identity: PROJECT_REGISTRY_SCHEMA_DESIGN.md
+  artifact_type: schema_design
+  artifact_kind: database_documentation
+  namespace: projects
+  domain: database
+  system_version: 4.0.76
+  design_actor: cursor
+  design_faucet: cursor
+  orchestrator_actor: wolfie
 lupopedia.metadata:
-  comment: "Snapshot of metadata for this file or entity at artifact creation."
+  comment: Snapshot of metadata for this file or entity at artifact creation.
   title:
-    - { schema_ref: "lupo_metadata", entity_type: "file", meta_type: "property", property_value: "Project Registry Schema Design - Database Architecture for lupo_projects", channel_id: 42, class_name: "lupo_metadata", created_ymdhis: 20260315233000, updated_ymdhis: 20260315233000 }
+  - schema_ref: lupo_metadata
+    entity_type: file
+    meta_type: property
+    property_value: Project Registry Schema Design - Database Architecture for lupo_projects
+    channel_id: 42
+    class_name: lupo_metadata
+    created_ymdhis: 20260315233000
+    updated_ymdhis: 20260315233000
   description:
-    - { schema_ref: "lupo_metadata", entity_type: "file", meta_type: "property", property_value: "Database schema design documentation for Project Registry. Defines table structure, column purposes, uniqueness strategy, indexes, and relationships with existing tables.", channel_id: 42, class_name: "lupo_metadata", created_ymdhis: 20260315233000, updated_ymdhis: 20260315233000 }
+  - schema_ref: lupo_metadata
+    entity_type: file
+    meta_type: property
+    property_value: Database schema design documentation for Project Registry. Defines
+      table structure, column purposes, uniqueness strategy, indexes, and relationships
+      with existing tables.
+    channel_id: 42
+    class_name: lupo_metadata
+    created_ymdhis: 20260315233000
+    updated_ymdhis: 20260315233000
   keywords:
-    - { schema_ref: "lupo_metadata", entity_type: "file", meta_type: "property", property_value: "project_registry, schema_design, database, lupo_projects, indexes, uniqueness, lupopedia", channel_id: 42, class_name: "lupo_metadata", created_ymdhis: 20260315233000, updated_ymdhis: 20260315233000 }
+  - schema_ref: lupo_metadata
+    entity_type: file
+    meta_type: property
+    property_value: project_registry, schema_design, database, lupo_projects, indexes,
+      uniqueness, lupopedia
+    channel_id: 42
+    class_name: lupo_metadata
+    created_ymdhis: 20260315233000
+    updated_ymdhis: 20260315233000
   author:
-    - { schema_ref: "lupo_metadata", entity_type: "file", meta_type: "property", property_value: "cursor", channel_id: 42, class_name: "lupo_metadata", created_ymdhis: 20260315233000, updated_ymdhis: 20260315233000 }
+  - schema_ref: lupo_metadata
+    entity_type: file
+    meta_type: property
+    property_value: cursor
+    channel_id: 42
+    class_name: lupo_metadata
+    created_ymdhis: 20260315233000
+    updated_ymdhis: 20260315233000
   orchestrator:
-    - { schema_ref: "lupo_metadata", entity_type: "file", meta_type: "property", property_value: "wolfie", channel_id: 42, class_name: "lupo_metadata", created_ymdhis: 20260315233000, updated_ymdhis: 20260315233000 }
-
+  - schema_ref: lupo_metadata
+    entity_type: file
+    meta_type: property
+    property_value: wolfie
+    channel_id: 42
+    class_name: lupo_metadata
+    created_ymdhis: 20260315233000
+    updated_ymdhis: 20260315233000
 lupopedia.comments:
-  - { comment_id: 1, channel_id: 42, actor_id: 102, actor_name: "cursor", faucet_id: 102, faucet_name: "cursor", comment_text: "Project Registry Schema Design created - defines database architecture for lupo_projects table with deterministic identity patterns.", comment_type: "schema_design", created_ymdhis: 20260315233500, updated_ymdhis: 20260315233500 }
-  - { comment_id: 2, channel_id: 42, actor_id: 102, actor_name: "cursor", faucet_id: 102, faucet_name: "cursor", comment_text: "Design aligns with existing database doctrine and maintains compatibility with actor/channel patterns.", comment_type: "alignment", created_ymdhis: 20260315234000, updated_ymdhis: 20260315234000 }
-  - { comment_id: 3, channel_id: 42, actor_id: 102, actor_name: "cursor", faucet_id: 102, faucet_name: "cursor", comment_text: "Index strategy optimized for common query patterns while maintaining database-agnostic compatibility.", comment_type: "optimization", created_ymdhis: 20260315234500, updated_ymdhis: 20260315234500 }
-
+- comment_id: 1
+  channel_id: 42
+  actor_id: 102
+  actor_name: cursor
+  faucet_id: 102
+  faucet_name: cursor
+  comment_text: Project Registry Schema Design created - defines database architecture
+    for lupo_projects table with deterministic identity patterns.
+  comment_type: schema_design
+  created_ymdhis: 20260315233500
+  updated_ymdhis: 20260315233500
+- comment_id: 2
+  channel_id: 42
+  actor_id: 102
+  actor_name: cursor
+  faucet_id: 102
+  faucet_name: cursor
+  comment_text: Design aligns with existing database doctrine and maintains compatibility
+    with actor/channel patterns.
+  comment_type: alignment
+  created_ymdhis: 20260315234000
+  updated_ymdhis: 20260315234000
+- comment_id: 3
+  channel_id: 42
+  actor_id: 102
+  actor_name: cursor
+  faucet_id: 102
+  faucet_name: cursor
+  comment_text: Index strategy optimized for common query patterns while maintaining
+    database-agnostic compatibility.
+  comment_type: optimization
+  created_ymdhis: 20260315234500
+  updated_ymdhis: 20260315234500
 lupopedia.headers:
-  lupopedia.version: "4.0.76"
-  lupopedia.schema: "schema_design"
-  file_path_from_root: "lupo-docs/database/lupopedia/tables/PROJECT_REGISTRY_SCHEMA_DESIGN.md"
-  web_path: "http://www.lupopedia.com/database/PROJECT_REGISTRY_SCHEMA_DESIGN"
-  last_modified_utc: "20260315"
-  system_version: "4.0.76"
+  lupopedia.schema: schema_design
+  file_path_from_root: lupo-docs/database/lupopedia/tables/PROJECT_REGISTRY_SCHEMA_DESIGN.md
+  web_path: http://www.lupopedia.com/database/PROJECT_REGISTRY_SCHEMA_DESIGN
+  last_modified_utc: '20260315'
   channel_id: 42
   actor_id: 102
-  actor_name: "cursor"
-  faucet_name: "cursor"
-  delegation_chain: "cursor:root"
-  artifact_type: "schema_design"
-  artifact_kind: "database_documentation"
-  purpose: "Database schema design documentation for Project Registry"
-  mood_rgb: "2F4F4F"
-  traits: ["schema_design", "database_architecture", "deterministic", "4.0.76"]
-  tags: ["project_registry", "schema_design", "database", "lupo_projects", "indexes"]
-
+  actor_name: cursor
+  faucet_name: cursor
+  delegation_chain: cursor:root
+  artifact_type: schema_design
+  artifact_kind: database_documentation
+  purpose: Database schema design documentation for Project Registry
+  mood_rgb: 2F4F4F
+  traits:
+  - schema_design
+  - database_architecture
+  - deterministic
+  - 4.0.76
+  tags:
+  - project_registry
+  - schema_design
+  - database
+  - lupo_projects
+  - indexes
+  when_updated: '20260324174654'
 lupopedia.session:
-  session_id: "L-LUPO-PROJECT-SCHEMA-DESIGN"
-  session_name: "L-LUPO-PROJECT-SCHEMA-DESIGN"
+  session_id: L-LUPO-PROJECT-SCHEMA-DESIGN
+  session_name: L-LUPO-PROJECT-SCHEMA-DESIGN
   actor_id: 102
-  actor_name: "cursor"
-  faucet_name: "cursor"
+  actor_name: cursor
+  faucet_name: cursor
   channel_id: 42
-  channel_name: "Lupopedia Development (general)"
+  channel_name: Lupopedia Development (general)
   federation_node_id: 1
   paired_actor_id: 1000
-
 lupopedia.edges:
-  comment: "Snapshot of relationships for Project Registry Schema Design."
+  comment: Snapshot of relationships for Project Registry Schema Design.
   outbound_edges:
-    - { to: "lupo-docs/doctrine/PROJECT_REGISTRY_DOCTRINE.md", type: "implements", weight: 1.0 }
-    - { to: "lupo-docs/database/lupopedia/tables/sql_drafts/create_lupo_projects.sql.md", type: "specifies", weight: 0.95 }
-    - { to: "lupo-docs/database/lupopedia/tables/active/lupo_channels.md", type: "relates_to", weight: 0.9 }
-    - { to: "lupo-docs/database/lupopedia/tables/active/lupo_actors.md", type: "relates_to", weight: 0.85 }
-    - { to: "lupo-docs/doctrine/DATABASE_DOCTRINE.md", type: "follows", weight: 0.9 }
-    - { to: "lupo-docs/doctrine/PROJECT_REGISTRY_WORKFLOW.md", type: "informs", weight: 0.8 }
-  semantic_tags: ["project_registry_schema", "database_design", "table_architecture"]
-
+  - to: lupo-docs/doctrine/PROJECT_REGISTRY_DOCTRINE.md
+    type: implements
+    weight: 1.0
+  - to: lupo-docs/database/lupopedia/tables/sql_drafts/create_lupo_projects.sql.md
+    type: specifies
+    weight: 0.95
+  - to: lupo-docs/database/lupopedia/tables/active/lupo_channels.md
+    type: relates_to
+    weight: 0.9
+  - to: lupo-docs/database/lupopedia/tables/active/lupo_actors.md
+    type: relates_to
+    weight: 0.85
+  - to: lupo-docs/doctrine/DATABASE_DOCTRINE.md
+    type: follows
+    weight: 0.9
+  - to: lupo-docs/doctrine/PROJECT_REGISTRY_WORKFLOW.md
+    type: informs
+    weight: 0.8
+  semantic_tags:
+  - project_registry_schema
+  - database_design
+  - table_architecture
 lupopedia.footer:
-  version: "4.0.76"
-  last_verified: "20260315"
-  last_verified_by: "cursor"
-  orchestrator: "cursor"
+  last_verified: '20260315000000'
+  last_verified_by: cursor
+  orchestrator: cursor
   next_action:
-    - "Create draft SQL based on this schema design"
-    - "Validate compatibility with existing table patterns"
-    - "Review index strategy for performance optimization"
+  - Create draft SQL based on this schema design
+  - Validate compatibility with existing table patterns
+  - Review index strategy for performance optimization
+  last_verified_by_actor_id: 102
 ---
 # file: Project Registry Schema Design — session: L-LUPO-PROJECT-SCHEMA-DESIGN — delegation: cursor:root (faucet: cursor) — web_path: http://www.lupopedia.com/database/PROJECT_REGISTRY_SCHEMA_DESIGN
 

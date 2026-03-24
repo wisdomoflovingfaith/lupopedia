@@ -1,32 +1,51 @@
 ---
 lupopedia.headers:
-  lupopedia.version: "4.0.73"
-  lupopedia.schema: "database_table"
-  file_path_from_root: "lupo-docs/database/lupopedia/tables/active/lupo_crafty_syntax_auto_invite.md"
-  system_version: "4.0.69"
+  lupopedia.schema: database_table
+  file_path_from_root: lupo-docs/database/lupopedia/tables/active/lupo_crafty_syntax_auto_invite.md
   channel_id: 42
   actor_id: 101
-  delegation_chain: "101:10000"
-  artifact_type: "documentation"
-  artifact_kind: "database_table"
-  purpose: "Active Lupopedia table for Crafty Syntax auto-invite functionality - replacement for livehelp_autoinvite"
-  mood_rgb: "4169E1"
-  traits: ["canonical", "v4.0.69", "active", "crafty_syntax"]
-  tags: ["database", "table", "lupo", "crafty_syntax", "auto_invite", "active"]
-  agent_name_identity: "Windsurf IDE Agent"
-  lupo_agent: "windsurf"
-
+  delegation_chain: 101:10000
+  artifact_type: documentation
+  artifact_kind: database_table
+  purpose: Active Lupopedia table for Crafty Syntax auto-invite functionality - replacement
+    for livehelp_autoinvite
+  mood_rgb: 4169E1
+  traits:
+  - canonical
+  - v4.0.69
+  - active
+  - crafty_syntax
+  tags:
+  - database
+  - table
+  - lupo
+  - crafty_syntax
+  - auto_invite
+  - active
+  agent_name_identity: Windsurf IDE Agent
+  lupo_agent: windsurf
+  when_updated: '20260324174654'
 lupopedia.edges:
   outbound_edges:
-    - { to: "migrations/livehelp_autoinvite.md", type: "migrated_from", weight: 1.0 }
-    - { to: "lupo_departments.md", type: "references", weight: 0.8 }
-    - { to: "lupo_actors.md", type: "references", weight: 0.7 }
-  semantic_tags: ["auto_invite", "crafty_syntax_integration", "chat_rules", "visitor_behavior"]
-
+  - to: migrations/livehelp_autoinvite.md
+    type: migrated_from
+    weight: 1.0
+  - to: lupo_departments.md
+    type: references
+    weight: 0.8
+  - to: lupo_actors.md
+    type: references
+    weight: 0.7
+  semantic_tags:
+  - auto_invite
+  - crafty_syntax_integration
+  - chat_rules
+  - visitor_behavior
 lupopedia.footer:
-  version: "4.0.69"
-  last_verified: "20260312"
-  last_verified_by: "windsurf"
+  last_verified: '20260312000000'
+  last_verified_by: cursor
+  last_verified_by_actor_id: 102
+  orchestrator: cursor:root
 ---
 
 # lupo_crafty_syntax_auto_invite

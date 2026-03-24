@@ -1,41 +1,69 @@
 ---
 lupopedia.headers:
-  version_when_written: "4.0.86"
-  lupopedia.schema: "database_table"
-  file_path_from_root: "lupo-docs/database/lupopedia/tables/active/lupo_agents.md"
-  web_path: "http://www.lupopedia.com/database/lupopedia/tables/active/lupo_agents"
-  last_modified_utc: "20260324"
+  lupopedia.schema: database_table
+  file_path_from_root: lupo-docs/database/lupopedia/tables/active/lupo_agents.md
+  web_path: http://www.lupopedia.com/database/lupopedia/tables/active/lupo_agents
+  last_modified_utc: '20260324174926'
   channel_id: 42
   actor_id: 108
-  actor_name: "junie"
-  faucet_name: "jetbrains"
-  delegation_chain: "junie:root"
-  artifact_type: "table_documentation"
-  artifact_kind: "table"
-  namespace: "core"
-  purpose: "AI agent registry: key, name, model, provider, prompts, and identity alignment (v4.0.86)"
-  tags: ["database", "table", "core", "agent", "v4.0.86"]
-
+  actor_name: junie
+  faucet_name: jetbrains
+  delegation_chain: junie:root
+  artifact_type: table_documentation
+  artifact_kind: table
+  namespace: core
+  purpose: 'AI agent registry: key, name, model, provider, prompts, and identity alignment
+    (v4.0.86)'
+  tags:
+  - database
+  - table
+  - core
+  - agent
+  - v4.0.86
+  when_updated: '20260324174926'
 lupopedia.edges:
-  comment: "Snapshot of edges for lupo_agents table doc at 4.0.79 (grounded by repo search; non-exhaustive)."
-  meta: "php_hits=5 python_hits=4"
+  comment: Snapshot of edges for lupo_agents table doc at 4.0.79 (grounded by repo
+    search; non-exhaustive).
+  meta: php_hits=5 python_hits=4
   outbound_edges:
-    - { to: "database.table.lupo_agents", type: "DEFINES_SCHEMA_FOR", weight: 1.0 }
-    - { to: "lupo-database/lupopedia/mysql/install/install_new_lupopedia.sql", type: "schema_reference", weight: 1.0 }
-    - { to: "install_wizard_classes.php", type: "USED_IN_PHP", weight: 0.6 }
-    - { to: "lupo-scripts/audit_schema_doctrine.php", type: "USED_IN_PHP", weight: 0.7 }
-    - { to: "lupo-scripts/migrate_filesystem_to_db.php", type: "USED_IN_PHP", weight: 0.7 }
-    - { to: "lupo-scripts/verify_architecture_files.php", type: "USED_IN_PHP", weight: 0.7 }
-    - { to: "lupo-scripts/verify_grounded_architecture.php", type: "USED_IN_PHP", weight: 0.7 }
-    - { to: "analyze_unused_tables.py", type: "USED_IN_PYTHON", weight: 0.5 }
-    - { to: "lupo-scripts/audit_schema_doctrine.py", type: "USED_IN_PYTHON", weight: 0.5 }
-    - { to: "lupo-scripts/migrate_filesystem_to_db.py", type: "USED_IN_PYTHON", weight: 0.5 }
-    - { to: "lupo-scripts/wolfie_orms.py", type: "USED_IN_PYTHON", weight: 0.5 }
-
+  - to: database.table.lupo_agents
+    type: DEFINES_SCHEMA_FOR
+    weight: 1.0
+  - to: lupo-database/lupopedia/mysql/install/install_new_lupopedia.sql
+    type: schema_reference
+    weight: 1.0
+  - to: install_wizard_classes.php
+    type: USED_IN_PHP
+    weight: 0.6
+  - to: lupo-scripts/audit_schema_doctrine.php
+    type: USED_IN_PHP
+    weight: 0.7
+  - to: lupo-scripts/migrate_filesystem_to_db.php
+    type: USED_IN_PHP
+    weight: 0.7
+  - to: lupo-scripts/verify_architecture_files.php
+    type: USED_IN_PHP
+    weight: 0.7
+  - to: lupo-scripts/verify_grounded_architecture.php
+    type: USED_IN_PHP
+    weight: 0.7
+  - to: analyze_unused_tables.py
+    type: USED_IN_PYTHON
+    weight: 0.5
+  - to: lupo-scripts/audit_schema_doctrine.py
+    type: USED_IN_PYTHON
+    weight: 0.5
+  - to: lupo-scripts/migrate_filesystem_to_db.py
+    type: USED_IN_PYTHON
+    weight: 0.5
+  - to: lupo-scripts/wolfie_orms.py
+    type: USED_IN_PYTHON
+    weight: 0.5
 lupopedia.footer:
-  version: "4.0.86"
-  last_verified: "20260324"
-  last_verified_by: "junie"
+  last_verified: '20260324174926'
+  last_verified_by: cursor
+  last_verified_by_actor_id: 102
+  orchestrator: cursor:root
 ---
 # file: lupo_agents — delegation: junie:root — web_path: http://www.lupopedia.com/database/lupopedia/tables/active/lupo_agents
 # Table: lupo_agents

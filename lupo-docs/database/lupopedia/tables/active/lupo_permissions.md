@@ -1,35 +1,48 @@
 ---
 lupopedia.headers:
-  lupopedia.version: "4.0.79"
-  lupopedia.schema: "database_table"
-  system_version: "4.0.79"
-  file_path_from_root: "lupo-docs/database/lupopedia/tables/active/lupo_permissions.md"
-  web_path: "[lupo_permissions](http://www.lupopedia.com/database/lupopedia/tables/active/lupo_permissions)"
-  last_modified_utc: "20260317"
+  lupopedia.schema: database_table
+  file_path_from_root: lupo-docs/database/lupopedia/tables/active/lupo_permissions.md
+  web_path: '[lupo_permissions](http://www.lupopedia.com/database/lupopedia/tables/active/lupo_permissions)'
+  last_modified_utc: '20260317'
   channel_id: 42
   actor_id: 1
-  actor_name: "wolfie"
-  delegation_chain: "wolfie:root"
-  artifact_type: "table_documentation"
-  artifact_kind: "table"
-  namespace: "core"
-  purpose: "Permission definitions and role-based access control; manages what actors can do and where"
-  tags: ["database", "table", "core"]
-
+  actor_name: wolfie
+  delegation_chain: wolfie:root
+  artifact_type: table_documentation
+  artifact_kind: table
+  namespace: core
+  purpose: Permission definitions and role-based access control; manages what actors
+    can do and where
+  tags:
+  - database
+  - table
+  - core
+  when_updated: '20260324174654'
 lupopedia.edges:
-  comment: "Snapshot of edges for lupo_permissions table doc at 4.0.79 (grounded by repo search; non-exhaustive)."
-  meta: "php_hits=3 python_hits=1"
+  comment: Snapshot of edges for lupo_permissions table doc at 4.0.79 (grounded by
+    repo search; non-exhaustive).
+  meta: php_hits=3 python_hits=1
   outbound_edges:
-    - { to: "database.table.lupo_permissions", type: "DEFINES_SCHEMA_FOR", weight: 1.0 }
-    - { to: "lupo-database/lupopedia/mysql/install/install_new_lupopedia.sql", type: "schema_reference", weight: 1.0 }
-    - { to: "debug_captain.php", type: "USED_IN_PHP", weight: 0.6 }
-    - { to: "lupo-database/lupopedia/content/lupo-app/Services/SavedCollectionsService.php", type: "USED_IN_PHP", weight: 0.6 }
-    - { to: "lupo-database/lupopedia/content/lupo-app/auth/AuthRoleResolver.php", type: "USED_IN_PHP", weight: 0.6 }
-
+  - to: database.table.lupo_permissions
+    type: DEFINES_SCHEMA_FOR
+    weight: 1.0
+  - to: lupo-database/lupopedia/mysql/install/install_new_lupopedia.sql
+    type: schema_reference
+    weight: 1.0
+  - to: debug_captain.php
+    type: USED_IN_PHP
+    weight: 0.6
+  - to: lupo-database/lupopedia/content/lupo-app/Services/SavedCollectionsService.php
+    type: USED_IN_PHP
+    weight: 0.6
+  - to: lupo-database/lupopedia/content/lupo-app/auth/AuthRoleResolver.php
+    type: USED_IN_PHP
+    weight: 0.6
 lupopedia.footer:
-  version: "4.0.79"
-  last_verified: "20260317"
-  last_verified_by: "wolfie"
+  last_verified: '20260317000000'
+  last_verified_by: cursor
+  last_verified_by_actor_id: 102
+  orchestrator: cursor:root
 ---
 # file: lupo_permissions — session: L-LUPO-ROOT-WOLFIE — delegation: wolfie:root — web_path: http://www.lupopedia.com/database/lupopedia/tables/active/lupo_permissions
 

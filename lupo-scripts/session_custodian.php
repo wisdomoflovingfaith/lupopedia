@@ -1,6 +1,22 @@
 #!/usr/bin/env php
 <?php
 /**
+lupopedia.headers:
+  when_updated: "20260324175911"
+  file_path_from_root: "lupo-scripts/session_custodian.php"
+  last_modified_utc: "20260324175911"
+  channel_id: 42
+  actor_id: 102
+  actor_name: "cursor"
+  delegation_chain: "cursor:root"
+  artifact_type: "tooling"
+  artifact_kind: "script"
+lupopedia.footer:
+  last_verified: "20260324175911"
+  last_verified_by: "cursor"
+  last_verified_by_actor_id: 102
+*/
+/**
  * SessionCustodian — optional tool for Antigravity (or any IDE) to audit/correct lupo-database/sessions/*.md (4.0.69).
  * Audits: paired_actor_id (e.g. 1000 for human root), required fields. Optionally corrects drift (dry_run by default).
  * Doctrine: SESSION_RECONCILIATION_DOCTRINE; no silent auto-correction without explicit flag.

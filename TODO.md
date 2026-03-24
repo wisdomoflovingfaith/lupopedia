@@ -22,13 +22,22 @@ lupopedia.edges:
 - This file is a root coordination pointer only.
 - For 4.0.85+, authoritative task/change state is version-scoped under `lupo-docs/versions/<version>/`.
 
-## Version 4.0.86 Remaining Work
+## [4.0.87] - 20260324
 
-Authoritative details for 4.0.86 are maintained under `lupo-docs/versions/4.0.86/`. Key focus areas for this version before scope closure:
-1. **Agent System Rollout**: Validate documentation and structures for all 22+ agents in `lupo-agents/` and `lupo-actors/`.
-2. **ROSE/DIALOG Integration**: Implement mood-RGB and mood-label fields in DB schema and agent prompts.
-3. **Actor Resolution API**: Finalize deterministic resolution logic in `app/Services/`.
-4. **Validation Hardening**: Ensure cross-language parity (PHP/Python) for LUPOPEDIA HEADERS validation.
+### 4.0.87 COMPLETED WORK (PHASE 2 ROLLOUT)
+- [x] Registered Junie (Actor 108) as a canonical agent.
+- [x] Implemented LUPOPEDIA HEADERS Triad Model and verification guide.
+- [x] Activated Edge Graph (Tracks 1-3) for channels and threads.
+- [x] Unified all settings in root `lupopedia-config.php`.
+- [x] Implemented Admin Chat UI with Effective Actor resolution.
+- [x] Audited 169 tables and populated 22+ agents in `lupo-agents/`.
+
+### 4.0.87 NEXT ACTIONS
+- [ ] Initialize atoms and version propagation service.
+- [ ] Reconcile channel documentation (Channels 1-57).
+- [ ] Implement `EdgeQueryService` (Track 4 of ATHENA_STRATEGY).
+- [ ] Validate 22-agent full documentation compliance.
+- [ ] Hardening of `admin.php` LLM chatbot call path.
 
 ## Version 4.0.85+ Read Path
 1. Open `lupo-docs/versions/<version>/TODO.md` for version-scoped backlog intent.

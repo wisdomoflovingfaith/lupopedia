@@ -640,7 +640,7 @@ function lupo_route_slug($slug)
     }
 
     // ── REST API: Context Graph ────────────────────────────────────────────────
-    if (preg_match('#^api/context-graph/(context|edges|edge)$#', $slug, $api_m)) {
+    if (preg_match('#^api/context-graph/(context|edges|edge|channel-map)$#', $slug, $api_m)) {
         $context_graph_api_action = $api_m[1];
         $app_root = defined('LUPOPEDIA_PATH') ? LUPOPEDIA_PATH : LUPOPEDIA_ABSPATH;
         $api_path = rtrim($app_root, '/\\') . DIRECTORY_SEPARATOR . 'lupo-includes' . DIRECTORY_SEPARATOR . 'modules' . DIRECTORY_SEPARATOR . 'api' . DIRECTORY_SEPARATOR . 'context-graph-api.php';

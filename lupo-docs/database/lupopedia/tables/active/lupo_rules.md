@@ -1,17 +1,28 @@
 ---
 lupopedia.headers:
-  lupopedia.version: "4.0.80"
-  lupopedia.schema: "table"
-  file_path_from_root: "lupo-docs/database/lupopedia/tables/active/rules/lupo_rules.md"
+  lupopedia.schema: table
+  file_path_from_root: lupo-docs/database/lupopedia/tables/active/lupo_rules.md
   channel_id: 42
   actor_id: 102
-  actor_name: "hermes"
-  faucet_name: "cascade"
-  artifact_type: "table_documentation"
-  artifact_kind: "database_schema"
-  purpose: "Complete documentation for lupo_rules table - rule engine definitions"
-  tags: ["table_documentation", "rules", "engine", "automation", "4.0.80"]
-  created_ymdhis: 20260317_222000
+  actor_name: hermes
+  faucet_name: cascade
+  artifact_type: table_documentation
+  artifact_kind: database_schema
+  purpose: Complete documentation for lupo_rules table - rule engine definitions
+  tags:
+  - table_documentation
+  - rules
+  - engine
+  - automation
+  - 4.0.80
+  created_ymdhis: 20260317222000
+  when_updated: '20260324174654'
+lupopedia:
+  footer:
+    last_verified: '20260324174654'
+    last_verified_by: cursor
+    last_verified_by_actor_id: 102
+    orchestrator: cursor:root
 ---
 
 # lupo_rules - Rule Engine Definitions

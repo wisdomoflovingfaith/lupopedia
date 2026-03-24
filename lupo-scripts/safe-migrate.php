@@ -1,6 +1,22 @@
 #!/usr/bin/env php
 <?php
 /**
+lupopedia.headers:
+  when_updated: "20260324175911"
+  file_path_from_root: "lupo-scripts/safe-migrate.php"
+  last_modified_utc: "20260324175911"
+  channel_id: 42
+  actor_id: 102
+  actor_name: "cursor"
+  delegation_chain: "cursor:root"
+  artifact_type: "tooling"
+  artifact_kind: "script"
+lupopedia.footer:
+  last_verified: "20260324175911"
+  last_verified_by: "cursor"
+  last_verified_by_actor_id: 102
+*/
+/**
  * Safe migration runner (DB009).
  * All database migrations MUST be run through this script – never via direct mysql CLI.
  *

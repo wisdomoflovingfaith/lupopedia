@@ -1,4 +1,36 @@
 <?php
+/**
+lupopedia.headers:
+  when_updated: "20260324175911"
+  file_path_from_root: "lupo-scripts/import_lupopedia_headers.php"
+  last_modified_utc: "20260324175911"
+  channel_id: 42
+  actor_id: 102
+  actor_name: "cursor"
+  delegation_chain: "cursor:root"
+  artifact_type: "tooling"
+  artifact_kind: "script"
+lupopedia.footer:
+  last_verified: "20260324175911"
+  last_verified_by: "cursor"
+  last_verified_by_actor_id: 102
+*/
+/**
+lupopedia.headers:
+  when_updated: "20260324175617"
+  file_path_from_root: "lupo-scripts/import_lupopedia_headers.php"
+  last_modified_utc: "20260324175617"
+  channel_id: 42
+  actor_id: 102
+  actor_name: "cursor"
+  delegation_chain: "cursor:root"
+  artifact_type: "tooling"
+  artifact_kind: "script"
+lupopedia.footer:
+  last_verified: "20260324175617"
+  last_verified_by: "cursor"
+  last_verified_by_actor_id: 102
+*/
 require_once dirname(__DIR__) . DIRECTORY_SEPARATOR . 'lupo-database' . DIRECTORY_SEPARATOR . 'lupopedia' . DIRECTORY_SEPARATOR . 'content' . DIRECTORY_SEPARATOR . 'lupo-app' . DIRECTORY_SEPARATOR . 'Services' . DIRECTORY_SEPARATOR . 'Validation' . DIRECTORY_SEPARATOR . 'HeaderValidationService.php';
 /**
  * Import LUPOPEDIA HEADERS into a Markdown file (replace existing header with supplied YAML).

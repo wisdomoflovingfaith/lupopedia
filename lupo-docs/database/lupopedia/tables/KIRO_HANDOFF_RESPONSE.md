@@ -1,73 +1,129 @@
 ---
 lupopedia.init:
-  file_identity: "KIRO_HANDOFF_RESPONSE.md"
-  artifact_type: "handoff-response"
-  artifact_kind: "metadata-snapshot"
-  namespace: "lupopedia"
-  domain: "core"
-  system_version: "4.0.74"
-
+  file_identity: KIRO_HANDOFF_RESPONSE.md
+  artifact_type: handoff-response
+  artifact_kind: metadata-snapshot
+  namespace: lupopedia
+  domain: core
+  system_version: 4.0.74
 lupopedia.metadata:
-  comment: "Snapshot of metadata for this file or entity at artifact creation."
+  comment: Snapshot of metadata for this file or entity at artifact creation.
   title:
-    - { schema_ref: "lupo_metadata", entity_type: "file", meta_type: "property", property_value: "KIRO Handoff Response", channel_id: 42, class_name: "lupopedia_metadata", created_ymdhis: 20260314000000, updated_ymdhis: 20260314000000 }
+  - schema_ref: lupo_metadata
+    entity_type: file
+    meta_type: property
+    property_value: KIRO Handoff Response
+    channel_id: 42
+    class_name: lupopedia_metadata
+    created_ymdhis: 20260314000000
+    updated_ymdhis: 20260314000000
   description:
-    - { schema_ref: "lupo_metadata", entity_type: "file", meta_type: "property", property_value: "KIRO response to Cursor handoff with analysis and coordination decisions", channel_id: 42, class_name: "lupopedia_metadata", created_ymdhis: 20260314000000, updated_ymdhis: 20260314000000 }
+  - schema_ref: lupo_metadata
+    entity_type: file
+    meta_type: property
+    property_value: KIRO response to Cursor handoff with analysis and coordination
+      decisions
+    channel_id: 42
+    class_name: lupopedia_metadata
+    created_ymdhis: 20260314000000
+    updated_ymdhis: 20260314000000
   keywords:
-    - { schema_ref: "lupo_metadata", entity_type: "file", meta_type: "property", property_value: "handoff, response, kiro, cursor, coordination, governance", channel_id: 42, class_name: "lupopedia_metadata", created_ymdhis: 20260314000000, updated_ymdhis: 20260314000000 }
+  - schema_ref: lupo_metadata
+    entity_type: file
+    meta_type: property
+    property_value: handoff, response, kiro, cursor, coordination, governance
+    channel_id: 42
+    class_name: lupopedia_metadata
+    created_ymdhis: 20260314000000
+    updated_ymdhis: 20260314000000
   author:
-    - { schema_ref: "lupo_metadata", entity_type: "file", meta_type: "property", property_value: "kiro", channel_id: 42, class_name: "lupopedia_metadata", created_ymdhis: 20260314000000, updated_ymdhis: 20260314000000 }
+  - schema_ref: lupo_metadata
+    entity_type: file
+    meta_type: property
+    property_value: kiro
+    channel_id: 42
+    class_name: lupopedia_metadata
+    created_ymdhis: 20260314000000
+    updated_ymdhis: 20260314000000
   orchestrator:
-    - { schema_ref: "lupo_metadata", entity_type: "file", meta_type: "property", property_value: "kiro", channel_id: 42, class_name: "lupopedia_metadata", created_ymdhis: 20260314000000, updated_ymdhis: 20260314000000 }
-
+  - schema_ref: lupo_metadata
+    entity_type: file
+    meta_type: property
+    property_value: kiro
+    channel_id: 42
+    class_name: lupopedia_metadata
+    created_ymdhis: 20260314000000
+    updated_ymdhis: 20260314000000
 lupopedia.headers:
-  lupopedia.version: "4.0.74"
-  lupopedia.schema: "documentation"
-  file_path_from_root: "lupo-docs/database/lupopedia/tables/KIRO_HANDOFF_RESPONSE.md"
-  web_path: "http://www.lupopedia.com/KIRO_HANDOFF_RESPONSE"
-  last_modified_utc: "20260314"
-  system_version: "4.0.74"
+  lupopedia.schema: documentation
+  file_path_from_root: lupo-docs/database/lupopedia/tables/KIRO_HANDOFF_RESPONSE.md
+  web_path: http://www.lupopedia.com/KIRO_HANDOFF_RESPONSE
+  last_modified_utc: '20260314'
   channel_id: 42
   actor_id: 100
-  actor_name: "kiro"
-  faucet_name: "kiro"
-  delegation_chain: "kiro:root"
-  artifact_type: "handoff"
-  artifact_kind: "response"
-  purpose: "KIRO response to Cursor handoff with analysis and coordination decisions"
-  mood_rgb: "4169E1"
-  traits: ["handoff", "response", "kiro", "coordination", "v4.0.74"]
-  tags: ["handoff", "response", "kiro", "cursor", "coordination", "governance"]
-
+  actor_name: kiro
+  faucet_name: kiro
+  delegation_chain: kiro:root
+  artifact_type: handoff
+  artifact_kind: response
+  purpose: KIRO response to Cursor handoff with analysis and coordination decisions
+  mood_rgb: 4169E1
+  traits:
+  - handoff
+  - response
+  - kiro
+  - coordination
+  - v4.0.74
+  tags:
+  - handoff
+  - response
+  - kiro
+  - cursor
+  - coordination
+  - governance
+  when_updated: '20260324174654'
 lupopedia.session:
-  session_id: "L-KIRO-HANDOFF-RESPONSE-20260314"
-  session_name: "L-KIRO-HANDOFF-RESPONSE-20260314"
+  session_id: L-KIRO-HANDOFF-RESPONSE-20260314
+  session_name: L-KIRO-HANDOFF-RESPONSE-20260314
   actor_id: 100
-  actor_name: "kiro"
-  faucet_name: "kiro"
+  actor_name: kiro
+  faucet_name: kiro
   channel_id: 42
-  channel_name: "Lupopedia Development (general)"
+  channel_name: Lupopedia Development (general)
   federation_node_id: 1
   paired_actor_id: 1000
-
 lupopedia.edges:
   outbound_edges:
-    - { to: "lupo-docs/database/lupopedia/tables/CURSOR_KIRO_HANDOFF.md", type: "references", weight: 1.0 }
-    - { to: "report_kiro.md", type: "references", weight: 0.95 }
-    - { to: "plan_kiro.md", type: "references", weight: 0.9 }
-    - { to: "lupo-docs/database/lupopedia/SCHEMA_REGISTRY_KIRO.md", type: "references", weight: 0.85 }
-    - { to: "lupo-docs/database/lupopedia/tables/VALIDATION_REPORT_KIRO.md", type: "references", weight: 0.85 }
-  semantic_tags: ["handoff", "response", "kiro", "cursor", "coordination"]
-
+  - to: lupo-docs/database/lupopedia/tables/CURSOR_KIRO_HANDOFF.md
+    type: references
+    weight: 1.0
+  - to: report_kiro.md
+    type: references
+    weight: 0.95
+  - to: plan_kiro.md
+    type: references
+    weight: 0.9
+  - to: lupo-docs/database/lupopedia/SCHEMA_REGISTRY_KIRO.md
+    type: references
+    weight: 0.85
+  - to: lupo-docs/database/lupopedia/tables/VALIDATION_REPORT_KIRO.md
+    type: references
+    weight: 0.85
+  semantic_tags:
+  - handoff
+  - response
+  - kiro
+  - cursor
+  - coordination
 lupopedia.footer:
-  version: "4.0.74"
-  last_verified: "20260314"
-  last_verified_by: "kiro"
-  orchestrator: "kiro"
+  last_verified: '20260314000000'
+  last_verified_by: cursor
+  orchestrator: kiro
   next_action:
-    - "Coordinate with Cursor on boundary clarifications"
-    - "Implement KIRO governance documentation for core tables"
-    - "Establish clear domain boundaries per KIRO analysis"
+  - Coordinate with Cursor on boundary clarifications
+  - Implement KIRO governance documentation for core tables
+  - Establish clear domain boundaries per KIRO analysis
+  last_verified_by_actor_id: 102
 ---
 # KIRO Handoff Response
 

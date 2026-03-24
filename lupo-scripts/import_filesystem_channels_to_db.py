@@ -1,4 +1,19 @@
 #!/usr/bin/env python3
+# lupopedia.headers:
+#   when_updated: "20260324182200"
+#   file_path_from_root: "lupo-scripts/import_filesystem_channels_to_db.py"
+#   last_modified_utc: "20260324182200"
+#   channel_id: 42
+#   actor_id: 102
+#   actor_name: "cursor"
+#   delegation_chain: "cursor:root"
+#   artifact_type: "tooling"
+#   artifact_kind: "script"
+# lupopedia.footer:
+#   last_verified: "20260324182200"
+#   last_verified_by: "cursor"
+#   last_verified_by_actor_id: 102
+
 """
 import_filesystem_channels_to_db.py
 ------------------------------------
@@ -511,9 +526,11 @@ def validate_artifact(
         except (TypeError, ValueError):
             errors.append(f"thread_id not an integer in header: {hdr_th!r}")
 
-    # version_when_written should exist
-    if not art.headers.get("version_when_written"):
-        errors.append("missing version_when_written")
+    # when_updated should exist (version_when_written is deprecated)
+    if not art.headers.get("when_updated"):
+        errors.append("missing when_updated")
+    if art.headers.get("version_when_written"):
+        errors.append("deprecated field version_when_written present; use when_updated")
 
     # Validate timestamps from header
     for ts_key in ("last_modified_utc", "created_ymdhis"):
@@ -872,7 +889,7 @@ def import_artifacts(
 
         hdrs = art.headers
         actor_id = int(hdrs.get("actor_id") or SYSTEM_ACTOR_ID_DEFAULT)
-        created_raw = hdrs.get("last_modified_utc") or hdrs.get("created_ymdhis")
+        created_raw = hdrs.get("when_updated") or hdrs.get("last_modified_utc") or hdrs.get("created_ymdhis")
         created = parse_ymdhis(created_raw) or now
         artifact_type = hdrs.get("artifact_type") or "document"
         artifact_kind = hdrs.get("artifact_kind") or artifact_type
@@ -963,7 +980,7 @@ def import_dialog_messages(
             {
                 "file_path_from_root": art.file_path_from_root,
                 "artifact_kind": hdrs.get("artifact_kind") or hdrs.get("artifact_type") or "document",
-                "version_when_written": hdrs.get("version_when_written"),
+                "when_updated": hdrs.get("when_updated"),
             }
         )
         dialog_message_id = stable_id("dialog_message", art.file_path_from_root)
@@ -1010,7 +1027,7 @@ VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
 # ---------------------------------------------------------------------------
 
 _HEADER_METADATA_KEYS = (
-    "version_when_written",
+    "when_updated",
     "lupopedia.schema",
     "web_path",
     "task_id",
@@ -1088,7 +1105,7 @@ VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
             ("thread_status", footer.get("thread_status")),
             ("artifact_count", footer.get("artifact_count")),
             ("purpose", hdrs.get("purpose")),
-            ("version_when_written", hdrs.get("version_when_written")),
+            ("when_updated", hdrs.get("when_updated")),
         ):
             if mval is None:
                 continue

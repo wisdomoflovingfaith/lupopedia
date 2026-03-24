@@ -1,34 +1,44 @@
 ---
 lupopedia.headers:
-  lupopedia.version: "4.0.79"
-  lupopedia.schema: "database_table"
-  system_version: "4.0.79"
-  file_path_from_root: "lupo-docs/database/lupopedia/tables/active/lupo_legacy_content_mapping.md"
-  web_path: "[lupo_legacy_content_mapping](http://www.lupopedia.com/database/lupopedia/tables/active/lupo_legacy_content_mapping)"
-  last_modified_utc: "20260317"
+  lupopedia.schema: database_table
+  file_path_from_root: lupo-docs/database/lupopedia/tables/active/lupo_legacy_content_mapping.md
+  web_path: '[lupo_legacy_content_mapping](http://www.lupopedia.com/database/lupopedia/tables/active/lupo_legacy_content_mapping)'
+  last_modified_utc: '20260317'
   channel_id: 42
   actor_id: 102
-  actor_name: "cursor"
-  delegation_chain: "cursor:root"
-  artifact_type: "table_documentation"
-  artifact_kind: "table"
-  namespace: "core"
-  purpose: "Documentation file with LUPOPEDIA HEADERS applied"
-  tags: ["database", "table", "core"]
-
+  actor_name: cursor
+  delegation_chain: cursor:root
+  artifact_type: table_documentation
+  artifact_kind: table
+  namespace: core
+  purpose: Documentation file with LUPOPEDIA HEADERS applied
+  tags:
+  - database
+  - table
+  - core
+  when_updated: '20260324174654'
 lupopedia.edges:
-  comment: "Snapshot of edges for lupo_legacy_content_mapping table doc at 4.0.79 (grounded by repo search; non-exhaustive)."
-  meta: "php_hits=0 python_hits=0"
+  comment: Snapshot of edges for lupo_legacy_content_mapping table doc at 4.0.79 (grounded
+    by repo search; non-exhaustive).
+  meta: php_hits=0 python_hits=0
   outbound_edges:
-    - { to: "database.table.lupo_legacy_content_mapping", type: "DEFINES_SCHEMA_FOR", weight: 1.0 }
-    - { to: "lupo-database/lupopedia/mysql/install/install_new_lupopedia.sql", type: "schema_reference", weight: 1.0 }
-    - { to: "(no_php_refs_found)", type: "USED_IN_PHP", weight: 0.0 }
-    - { to: "(no_python_refs_found)", type: "USED_IN_PYTHON", weight: 0.0 }
-
+  - to: database.table.lupo_legacy_content_mapping
+    type: DEFINES_SCHEMA_FOR
+    weight: 1.0
+  - to: lupo-database/lupopedia/mysql/install/install_new_lupopedia.sql
+    type: schema_reference
+    weight: 1.0
+  - to: (no_php_refs_found)
+    type: USED_IN_PHP
+    weight: 0.0
+  - to: (no_python_refs_found)
+    type: USED_IN_PYTHON
+    weight: 0.0
 lupopedia.footer:
-  version: "4.0.79"
-  last_verified: "20260317"
-  last_verified_by: "cursor"
+  last_verified: '20260317000000'
+  last_verified_by: cursor
+  last_verified_by_actor_id: 102
+  orchestrator: cursor:root
 ---
 # file: lupo_legacy_content_mapping ? web_path: http://www.lupopedia.com/database/lupopedia/tables/active/lupo_legacy_content_mapping
 # Table: lupo_legacy_content_mapping

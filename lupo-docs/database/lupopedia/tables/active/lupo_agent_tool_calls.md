@@ -1,28 +1,41 @@
 ---
 lupopedia.headers:
-  lupopedia.version: "4.0.73"
-  lupopedia.schema: "database_table"
-  file_path_from_root: "lupo-docs/database/lupopedia/tables/active/lupo_agent_tool_calls.md"
-  system_version: "4.0.70"
+  lupopedia.schema: database_table
+  file_path_from_root: lupo-docs/database/lupopedia/tables/active/lupo_agent_tool_calls.md
   channel_id: 1
   actor_id: 102
-  last_modified_utc: "20260312"
-  artifact_type: "table_documentation"
-  purpose: "Tool-call log per agent/faucet: tool_name, input/output, tokens, cost, status"
-  mood_rgb: "4169E1"
-  traits: ["canonical", "agent", "cursor_domain", "v4.0.70"]
-  tags: ["database", "agents", "tool_calls"]
-  lupo_agent: "cursor"
-
+  last_modified_utc: '20260312'
+  artifact_type: table_documentation
+  purpose: 'Tool-call log per agent/faucet: tool_name, input/output, tokens, cost,
+    status'
+  mood_rgb: 4169E1
+  traits:
+  - canonical
+  - agent
+  - cursor_domain
+  - v4.0.70
+  tags:
+  - database
+  - agents
+  - tool_calls
+  lupo_agent: cursor
+  when_updated: '20260324174654'
 lupopedia.edges:
   outbound_edges:
-    - { to: "lupo-database/lupopedia/toon/lupo_agent_tool_calls.toon.json", type: "schema_reference", weight: 1.0 }
-    - { to: "lupo-docs/database/lupopedia/tables/active/lupo_agents.md", type: "references", weight: 0.9 }
-    - { to: "lupo-docs/database/lupopedia/tables/active/lupo_agent_faucets.md", type: "references", weight: 0.7 }
-
+  - to: lupo-database/lupopedia/toon/lupo_agent_tool_calls.toon.json
+    type: schema_reference
+    weight: 1.0
+  - to: lupo-docs/database/lupopedia/tables/active/lupo_agents.md
+    type: references
+    weight: 0.9
+  - to: lupo-docs/database/lupopedia/tables/active/lupo_agent_faucets.md
+    type: references
+    weight: 0.7
 lupopedia.footer:
-  last_verified: "20260312"
-  last_verified_by: "cursor"
+  last_verified: '20260312000000'
+  last_verified_by: cursor
+  last_verified_by_actor_id: 102
+  orchestrator: cursor:root
 ---
 
 # Table: lupo_agent_tool_calls

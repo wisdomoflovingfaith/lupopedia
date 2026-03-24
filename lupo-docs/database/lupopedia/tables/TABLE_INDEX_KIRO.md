@@ -1,73 +1,129 @@
 ---
 lupopedia.init:
-  file_identity: "TABLE_INDEX_KIRO.md"
-  artifact_type: "table-index"
-  artifact_kind: "metadata-snapshot"
-  namespace: "lupopedia"
-  domain: "core"
-  system_version: "4.0.74"
-
+  file_identity: TABLE_INDEX_KIRO.md
+  artifact_type: table-index
+  artifact_kind: metadata-snapshot
+  namespace: lupopedia
+  domain: core
+  system_version: 4.0.74
 lupopedia.metadata:
-  comment: "Snapshot of metadata for this file or entity at artifact creation."
+  comment: Snapshot of metadata for this file or entity at artifact creation.
   title:
-    - { schema_ref: "lupo_metadata", entity_type: "file", meta_type: "property", property_value: "KIRO Table Index", channel_id: 42, class_name: "lupopedia_metadata", created_ymdhis: 20260314000000, updated_ymdhis: 20260314000000 }
+  - schema_ref: lupo_metadata
+    entity_type: file
+    meta_type: property
+    property_value: KIRO Table Index
+    channel_id: 42
+    class_name: lupopedia_metadata
+    created_ymdhis: 20260314000000
+    updated_ymdhis: 20260314000000
   description:
-    - { schema_ref: "lupo_metadata", entity_type: "file", meta_type: "property", property_value: "Comprehensive table index with KIRO authority and multi-agent domain coverage", channel_id: 42, class_name: "lupopedia_metadata", created_ymdhis: 20260314000000, updated_ymdhis: 20260314000000 }
+  - schema_ref: lupo_metadata
+    entity_type: file
+    meta_type: property
+    property_value: Comprehensive table index with KIRO authority and multi-agent
+      domain coverage
+    channel_id: 42
+    class_name: lupopedia_metadata
+    created_ymdhis: 20260314000000
+    updated_ymdhis: 20260314000000
   keywords:
-    - { schema_ref: "lupo_metadata", entity_type: "file", meta_type: "property", property_value: "table, index, database, kiro, coordination, multi-agent", channel_id: 42, class_name: "lupopedia_metadata", created_ymdhis: 20260314000000, updated_ymdhis: 20260314000000 }
+  - schema_ref: lupo_metadata
+    entity_type: file
+    meta_type: property
+    property_value: table, index, database, kiro, coordination, multi-agent
+    channel_id: 42
+    class_name: lupopedia_metadata
+    created_ymdhis: 20260314000000
+    updated_ymdhis: 20260314000000
   author:
-    - { schema_ref: "lupo_metadata", entity_type: "file", meta_type: "property", property_value: "kiro", channel_id: 42, class_name: "lupopedia_metadata", created_ymdhis: 20260314000000, updated_ymdhis: 20260314000000 }
+  - schema_ref: lupo_metadata
+    entity_type: file
+    meta_type: property
+    property_value: kiro
+    channel_id: 42
+    class_name: lupopedia_metadata
+    created_ymdhis: 20260314000000
+    updated_ymdhis: 20260314000000
   orchestrator:
-    - { schema_ref: "lupo_metadata", entity_type: "file", meta_type: "property", property_value: "kiro", channel_id: 42, class_name: "lupopedia_metadata", created_ymdhis: 20260314000000, updated_ymdhis: 20260314000000 }
-
+  - schema_ref: lupo_metadata
+    entity_type: file
+    meta_type: property
+    property_value: kiro
+    channel_id: 42
+    class_name: lupopedia_metadata
+    created_ymdhis: 20260314000000
+    updated_ymdhis: 20260314000000
 lupopedia.headers:
-  lupopedia.version: "4.0.74"
-  lupopedia.schema: "database_table"
-  file_path_from_root: "lupo-docs/database/lupopedia/tables/TABLE_INDEX_KIRO.md"
-  web_path: "http://www.lupopedia.com/TABLE_INDEX_KIRO"
-  last_modified_utc: "20260314"
-  system_version: "4.0.74"
+  lupopedia.schema: database_table
+  file_path_from_root: lupo-docs/database/lupopedia/tables/TABLE_INDEX_KIRO.md
+  web_path: http://www.lupopedia.com/TABLE_INDEX_KIRO
+  last_modified_utc: '20260314'
   channel_id: 42
   actor_id: 100
-  actor_name: "kiro"
-  faucet_name: "kiro"
-  delegation_chain: "kiro:root"
-  artifact_type: "index"
-  artifact_kind: "coordination"
-  purpose: "Comprehensive table index with KIRO authority and multi-agent domain coverage"
-  mood_rgb: "4169E1"
-  traits: ["canonical", "index", "kiro_authority", "v4.0.74", "multi-agent"]
-  tags: ["table", "index", "database", "kiro", "coordination", "multi-agent"]
-
+  actor_name: kiro
+  faucet_name: kiro
+  delegation_chain: kiro:root
+  artifact_type: index
+  artifact_kind: coordination
+  purpose: Comprehensive table index with KIRO authority and multi-agent domain coverage
+  mood_rgb: 4169E1
+  traits:
+  - canonical
+  - index
+  - kiro_authority
+  - v4.0.74
+  - multi-agent
+  tags:
+  - table
+  - index
+  - database
+  - kiro
+  - coordination
+  - multi-agent
+  when_updated: '20260324174654'
 lupopedia.session:
-  session_id: "L-KIRO-TABLE-INDEX-20260314"
-  session_name: "L-KIRO-TABLE-INDEX-20260314"
+  session_id: L-KIRO-TABLE-INDEX-20260314
+  session_name: L-KIRO-TABLE-INDEX-20260314
   actor_id: 100
-  actor_name: "kiro"
-  faucet_name: "kiro"
+  actor_name: kiro
+  faucet_name: kiro
   channel_id: 42
-  channel_name: "Lupopedia Development (general)"
+  channel_name: Lupopedia Development (general)
   federation_node_id: 1
   paired_actor_id: 1000
-
 lupopedia.edges:
   outbound_edges:
-    - { to: "lupo-docs/database/lupopedia/tables/TABLE_INDEX.md", type: "references", weight: 1.0 }
-    - { to: "lupo-docs/database/lupopedia/SCHEMA_REGISTRY_KIRO.md", type: "references", weight: 0.95 }
-    - { to: "lupo-docs/database/lupopedia/tables/VALIDATION_REPORT_KIRO.md", type: "references", weight: 0.9 }
-    - { to: "report_kiro.md", type: "references", weight: 0.85 }
-    - { to: "plan_kiro.md", type: "references", weight: 0.85 }
-  semantic_tags: ["table", "index", "kiro", "coordination", "database"]
-
+  - to: lupo-docs/database/lupopedia/tables/TABLE_INDEX.md
+    type: references
+    weight: 1.0
+  - to: lupo-docs/database/lupopedia/SCHEMA_REGISTRY_KIRO.md
+    type: references
+    weight: 0.95
+  - to: lupo-docs/database/lupopedia/tables/VALIDATION_REPORT_KIRO.md
+    type: references
+    weight: 0.9
+  - to: report_kiro.md
+    type: references
+    weight: 0.85
+  - to: plan_kiro.md
+    type: references
+    weight: 0.85
+  semantic_tags:
+  - table
+  - index
+  - kiro
+  - coordination
+  - database
 lupopedia.footer:
-  version: "4.0.74"
-  last_verified: "20260314"
-  last_verified_by: "kiro"
-  orchestrator: "kiro"
+  last_verified: '20260314000000'
+  last_verified_by: cursor
+  orchestrator: kiro
   next_action:
-    - "Use this index for multi-agent coordination and domain verification"
-    - "Reference KIRO-authored coordination documents for current state"
-    - "Report discrepancies to KIRO for resolution"
+  - Use this index for multi-agent coordination and domain verification
+  - Reference KIRO-authored coordination documents for current state
+  - Report discrepancies to KIRO for resolution
+  last_verified_by_actor_id: 102
 ---
 # KIRO Table Index (Canonical)
 

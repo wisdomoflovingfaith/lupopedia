@@ -28,6 +28,11 @@ lupopedia.headers:
   - Normalized LUPOPEDIA HEADERS usage across core docs/table docs; removed deprecated header keys.
   - Corrected subdirectory-aware `web_path` handling using `LUPOPEDIA_BASE_URL`.
   - Resolved 58/59/60/61 identity contradictions (actor/agent/faucet boundaries).
+  - **Edge Graph Activation (ATHENA_STRATEGY)**:
+    - Seeded `lupo_edge_types` and `lupo_edge_type_definitions` for channel/thread relationships.
+    - Backfilled hierarchy edges from `lupo_channels.parent_channel_id`.
+    - Created `lupo-scripts/migrate_dialog_channel_edges.php` for JSON-to-Relational migration.
+    - Added comprehensive documentation for `lupo_context_edges` and `lupo_edges`.
 
 ## Identity Model Doctrine Lock (System-Wide)
 

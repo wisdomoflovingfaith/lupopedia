@@ -1,82 +1,164 @@
 ---
 lupopedia.init:
-  file_identity: "create_lupo_projects.sql.md"
-  artifact_type: "sql_draft"
-  artifact_kind: "database_schema"
-  namespace: "projects"
-  domain: "database"
-  system_version: "4.0.76"
-  design_actor: "cursor"
-  design_faucet: "cursor"
-  orchestrator_actor: "wolfie"
-
+  file_identity: create_lupo_projects.sql.md
+  artifact_type: sql_draft
+  artifact_kind: database_schema
+  namespace: projects
+  domain: database
+  system_version: 4.0.76
+  design_actor: cursor
+  design_faucet: cursor
+  orchestrator_actor: wolfie
 lupopedia.metadata:
-  comment: "Snapshot of metadata for this file or entity at artifact creation."
+  comment: Snapshot of metadata for this file or entity at artifact creation.
   title:
-    - { schema_ref: "lupo_metadata", entity_type: "file", meta_type: "property", property_value: "Draft SQL for lupo_projects Table - Project Registry Implementation", channel_id: 42, class_name: "lupo_metadata", created_ymdhis: 20260315235000, updated_ymdhis: 20260315235000 }
+  - schema_ref: lupo_metadata
+    entity_type: file
+    meta_type: property
+    property_value: Draft SQL for lupo_projects Table - Project Registry Implementation
+    channel_id: 42
+    class_name: lupo_metadata
+    created_ymdhis: 20260315235000
+    updated_ymdhis: 20260315235000
   description:
-    - { schema_ref: "lupo_metadata", entity_type: "file", meta_type: "property", property_value: "Draft SQL implementation for Project Registry lupo_projects table. Includes CREATE TABLE statement, column definitions, indexes, and design rationale. DRAFT ONLY - not yet approved for production.", channel_id: 42, class_name: "lupo_metadata", created_ymdhis: 20260315235000, updated_ymdhis: 20260315235000 }
+  - schema_ref: lupo_metadata
+    entity_type: file
+    meta_type: property
+    property_value: Draft SQL implementation for Project Registry lupo_projects table.
+      Includes CREATE TABLE statement, column definitions, indexes, and design rationale.
+      DRAFT ONLY - not yet approved for production.
+    channel_id: 42
+    class_name: lupo_metadata
+    created_ymdhis: 20260315235000
+    updated_ymdhis: 20260315235000
   keywords:
-    - { schema_ref: "lupo_metadata", entity_type: "file", meta_type: "property", property_value: "lupo_projects, sql_draft, create_table, project_registry, database_schema, lupopedia", channel_id: 42, class_name: "lupo_metadata", created_ymdhis: 20260315235000, updated_ymdhis: 20260315235000 }
+  - schema_ref: lupo_metadata
+    entity_type: file
+    meta_type: property
+    property_value: lupo_projects, sql_draft, create_table, project_registry, database_schema,
+      lupopedia
+    channel_id: 42
+    class_name: lupo_metadata
+    created_ymdhis: 20260315235000
+    updated_ymdhis: 20260315235000
   author:
-    - { schema_ref: "lupo_metadata", entity_type: "file", meta_type: "property", property_value: "cursor", channel_id: 42, class_name: "lupo_metadata", created_ymdhis: 20260315235000, updated_ymdhis: 20260315235000 }
+  - schema_ref: lupo_metadata
+    entity_type: file
+    meta_type: property
+    property_value: cursor
+    channel_id: 42
+    class_name: lupo_metadata
+    created_ymdhis: 20260315235000
+    updated_ymdhis: 20260315235000
   orchestrator:
-    - { schema_ref: "lupo_metadata", entity_type: "file", meta_type: "property", property_value: "wolfie", channel_id: 42, class_name: "lupo_metadata", created_ymdhis: 20260315235000, updated_ymdhis: 20260315235000 }
-
+  - schema_ref: lupo_metadata
+    entity_type: file
+    meta_type: property
+    property_value: wolfie
+    channel_id: 42
+    class_name: lupo_metadata
+    created_ymdhis: 20260315235000
+    updated_ymdhis: 20260315235000
 lupopedia.comments:
-  - { comment_id: 1, channel_id: 42, actor_id: 102, actor_name: "cursor", faucet_id: 102, faucet_name: "cursor", comment_text: "Draft SQL for lupo_projects table created - implements Project Registry schema design with deterministic identity patterns.", comment_type: "sql_draft", created_ymdhis: 20260315235500, updated_ymdhis: 20260315235500 }
-  - { comment_id: 2, channel_id: 42, actor_id: 102, actor_name: "cursor", faucet_id: 102, faucet_name: "cursor", comment_text: "SQL follows database doctrine - no foreign keys, BIGINT timestamps, soft delete pattern, proper indexes.", comment_type: "doctrine_compliance", created_ymdhis: 20260315236000, updated_ymdhis: 20260315236000 }
-  - { comment_id: 3, channel_id: 42, actor_id: 102, actor_name: "cursor", faucet_id: 102, faucet_name: "cursor", comment_text: "DRAFT ONLY - not yet approved for production install SQL. Requires design package approval before implementation.", comment_type: "implementation_guard", created_ymdhis: 20260315236500, updated_ymdhis: 20260315236500 }
-
+- comment_id: 1
+  channel_id: 42
+  actor_id: 102
+  actor_name: cursor
+  faucet_id: 102
+  faucet_name: cursor
+  comment_text: Draft SQL for lupo_projects table created - implements Project Registry
+    schema design with deterministic identity patterns.
+  comment_type: sql_draft
+  created_ymdhis: 20260315235500
+  updated_ymdhis: 20260315235500
+- comment_id: 2
+  channel_id: 42
+  actor_id: 102
+  actor_name: cursor
+  faucet_id: 102
+  faucet_name: cursor
+  comment_text: SQL follows database doctrine - no foreign keys, BIGINT timestamps,
+    soft delete pattern, proper indexes.
+  comment_type: doctrine_compliance
+  created_ymdhis: 20260315236000
+  updated_ymdhis: 20260315236000
+- comment_id: 3
+  channel_id: 42
+  actor_id: 102
+  actor_name: cursor
+  faucet_id: 102
+  faucet_name: cursor
+  comment_text: DRAFT ONLY - not yet approved for production install SQL. Requires
+    design package approval before implementation.
+  comment_type: implementation_guard
+  created_ymdhis: 20260315236500
+  updated_ymdhis: 20260315236500
 lupopedia.headers:
-  lupopedia.version: "4.0.76"
-  lupopedia.schema: "sql_draft"
-  file_path_from_root: "lupo-docs/database/lupopedia/tables/sql_drafts/create_lupo_projects.sql.md"
-  web_path: "http://www.lupopedia.com/database/sql_drafts/create_lupo_projects"
-  last_modified_utc: "20260315"
-  system_version: "4.0.76"
+  lupopedia.schema: sql_draft
+  file_path_from_root: lupo-docs/database/lupopedia/tables/sql_drafts/create_lupo_projects.sql.md
+  web_path: http://www.lupopedia.com/database/sql_drafts/create_lupo_projects
+  last_modified_utc: '20260315'
   channel_id: 42
   actor_id: 102
-  actor_name: "cursor"
-  faucet_name: "cursor"
-  delegation_chain: "cursor:root"
-  artifact_type: "sql_draft"
-  artifact_kind: "database_schema"
-  purpose: "Draft SQL implementation for Project Registry lupo_projects table"
-  mood_rgb: "B22222"
-  traits: ["sql_draft", "database_schema", "implementation_ready", "4.0.76"]
-  tags: ["lupo_projects", "sql_draft", "create_table", "project_registry"]
-
+  actor_name: cursor
+  faucet_name: cursor
+  delegation_chain: cursor:root
+  artifact_type: sql_draft
+  artifact_kind: database_schema
+  purpose: Draft SQL implementation for Project Registry lupo_projects table
+  mood_rgb: B22222
+  traits:
+  - sql_draft
+  - database_schema
+  - implementation_ready
+  - 4.0.76
+  tags:
+  - lupo_projects
+  - sql_draft
+  - create_table
+  - project_registry
+  when_updated: '20260324174654'
 lupopedia.session:
-  session_id: "L-LUPO-PROJECT-SQL-DRAFT"
-  session_name: "L-LUPO-PROJECT-SQL-DRAFT"
+  session_id: L-LUPO-PROJECT-SQL-DRAFT
+  session_name: L-LUPO-PROJECT-SQL-DRAFT
   actor_id: 102
-  actor_name: "cursor"
-  faucet_name: "cursor"
+  actor_name: cursor
+  faucet_name: cursor
   channel_id: 42
-  channel_name: "Lupopedia Development (general)"
+  channel_name: Lupopedia Development (general)
   federation_node_id: 1
   paired_actor_id: 1000
-
 lupopedia.edges:
-  comment: "Snapshot of relationships for Project Registry SQL Draft."
+  comment: Snapshot of relationships for Project Registry SQL Draft.
   outbound_edges:
-    - { to: "lupo-docs/database/lupopedia/tables/PROJECT_REGISTRY_SCHEMA_DESIGN.md", type: "implements", weight: 1.0 }
-    - { to: "lupo-docs/doctrine/PROJECT_REGISTRY_DOCTRINE.md", type: "implements", weight: 0.95 }
-    - { to: "lupo-docs/doctrine/DATABASE_DOCTRINE.md", type: "follows", weight: 0.9 }
-    - { to: "lupo-docs/database/lupopedia/mysql/install/install_new_lupopedia.sql", type: "would_update", weight: 0.85 }
-    - { to: "lupo-docs/doctrine/PROJECT_REGISTRY_WORKFLOW.md", type: "enables", weight: 0.8 }
-  semantic_tags: ["project_registry_sql", "database_implementation", "schema_draft"]
-
+  - to: lupo-docs/database/lupopedia/tables/PROJECT_REGISTRY_SCHEMA_DESIGN.md
+    type: implements
+    weight: 1.0
+  - to: lupo-docs/doctrine/PROJECT_REGISTRY_DOCTRINE.md
+    type: implements
+    weight: 0.95
+  - to: lupo-docs/doctrine/DATABASE_DOCTRINE.md
+    type: follows
+    weight: 0.9
+  - to: lupo-docs/database/lupopedia/mysql/install/install_new_lupopedia.sql
+    type: would_update
+    weight: 0.85
+  - to: lupo-docs/doctrine/PROJECT_REGISTRY_WORKFLOW.md
+    type: enables
+    weight: 0.8
+  semantic_tags:
+  - project_registry_sql
+  - database_implementation
+  - schema_draft
 lupopedia.footer:
-  version: "4.0.76"
-  last_verified: "20260315"
-  last_verified_by: "cursor"
-  orchestrator: "cursor"
+  last_verified: '20260315000000'
+  last_verified_by: cursor
+  orchestrator: cursor
   next_action:
-    - "Review and approve design package before production implementation"
-    - "Validate SQL against database doctrine requirements"
-    - "Test indexes and uniqueness constraints"
+  - Review and approve design package before production implementation
+  - Validate SQL against database doctrine requirements
+  - Test indexes and uniqueness constraints
+  last_verified_by_actor_id: 102
 ---
 # file: Draft SQL for lupo_projects Table — session: L-LUPO-PROJECT-SQL-DRAFT — delegation: cursor:root (faucet: cursor) — web_path: http://www.lupopedia.com/database/sql_drafts/create_lupo_projects
 

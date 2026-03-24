@@ -1,33 +1,44 @@
 ---
 lupopedia.headers:
-  lupopedia.version: "4.0.77"
-  lupopedia.schema: "database_table"
-  system_version: "4.0.77"
-  file_path_from_root: "lupo-docs/database/lupopedia/tables/active/lupo_decision_influences.md"
-  web_path: "[web_path](http://www.lupopedia.com/database/lupopedia/tables/active/lupo_decision_influences)"
-  last_modified_utc: "20260316"
+  lupopedia.schema: database_table
+  file_path_from_root: lupo-docs/database/lupopedia/tables/active/lupo_decision_influences.md
+  web_path: '[web_path](http://www.lupopedia.com/database/lupopedia/tables/active/lupo_decision_influences)'
+  last_modified_utc: '20260316'
   channel_id: 42
   actor_id: 102
-  artifact_type: "table_documentation"
-  artifact_kind: "table"
-  purpose: "Documentation for lupo_decision_influences table — Bayesian Decision Tracking influences; required channel_id and project_id (4.0.77)"
-  tags: ["database", "bayesian", "decisions", "influences", "4.0.77"]
-
+  artifact_type: table_documentation
+  artifact_kind: table
+  purpose: "Documentation for lupo_decision_influences table \u2014 Bayesian Decision\
+    \ Tracking influences; required channel_id and project_id (4.0.77)"
+  tags:
+  - database
+  - bayesian
+  - decisions
+  - influences
+  - 4.0.77
+  when_updated: '20260324174654'
 lupopedia.edges:
-  comment: "Snapshot of edges for lupo_decision_influences table doc at creation."
+  comment: Snapshot of edges for lupo_decision_influences table doc at creation.
   outbound_edges:
-    - { to: "lupo-database/lupopedia/mysql/install/install_new_lupopedia.sql", type: "schema_reference", weight: 1.0 }
-    - { to: "lupo-database/lupopedia/toon/lupo_decision_influences.toon.json", type: "schema_reference", weight: 0.95 }
-    - { to: "lupo-docs/doctrine/BAYESIAN_DECISION_DOCTRINE.md", type: "references", weight: 0.9 }
-    - { to: "lupo-docs/database/lupopedia/tables/active/lupo_decisions.md", type: "references", weight: 0.85 }
-
+  - to: lupo-database/lupopedia/mysql/install/install_new_lupopedia.sql
+    type: schema_reference
+    weight: 1.0
+  - to: lupo-database/lupopedia/toon/lupo_decision_influences.toon.json
+    type: schema_reference
+    weight: 0.95
+  - to: lupo-docs/doctrine/BAYESIAN_DECISION_DOCTRINE.md
+    type: references
+    weight: 0.9
+  - to: lupo-docs/database/lupopedia/tables/active/lupo_decisions.md
+    type: references
+    weight: 0.85
 lupopedia.footer:
-  version: "4.0.77"
-  last_verified: "20260316"
-  last_verified_by: "cursor"
-  orchestrator: "cursor"
+  last_verified: '20260316000000'
+  last_verified_by: cursor
+  orchestrator: cursor
   next_action:
-    - "Keep aligned with install SQL and TOON; see SCHEMA_CANONICAL_SOURCES.md"
+  - Keep aligned with install SQL and TOON; see SCHEMA_CANONICAL_SOURCES.md
+  last_verified_by_actor_id: 102
 ---
 # file: lupo_decision_influences — session: L-LUPO-ROOT-CURSOR — delegation: cursor:root
 

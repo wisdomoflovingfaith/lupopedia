@@ -1,4 +1,19 @@
 #!/usr/bin/env python3
+# lupopedia.headers:
+#   when_updated: "20260324182200"
+#   file_path_from_root: "lupo-scripts/lib/header_validation.py"
+#   last_modified_utc: "20260324182200"
+#   channel_id: 42
+#   actor_id: 102
+#   actor_name: "cursor"
+#   delegation_chain: "cursor:root"
+#   artifact_type: "tooling"
+#   artifact_kind: "script"
+# lupopedia.footer:
+#   last_verified: "20260324182200"
+#   last_verified_by: "cursor"
+#   last_verified_by_actor_id: 102
+
 """
 Deterministic LUPOPEDIA header parser and validator.
 
@@ -21,7 +36,7 @@ except Exception:  # pragma: no cover
 
 
 REQUIRED_FIELDS = (
-    "version_when_written",
+    "when_updated",
     "file_path_from_root",
     "last_modified_utc",
     "channel_id",
@@ -33,7 +48,6 @@ REQUIRED_FIELDS = (
 )
 
 STRING_FIELDS = (
-    "version_when_written",
     "file_path_from_root",
     "actor_name",
     "artifact_type",
@@ -162,15 +176,17 @@ def validate_header(
     if "last_modified_utc" in header and not _is_empty_string(header.get("last_modified_utc")):
         if not _is_bigint_compatible(header.get("last_modified_utc")):
             errors.append("Timestamp field must be BIGINT or numeric string: last_modified_utc")
+    if "when_updated" in header and not _is_empty_string(header.get("when_updated")):
+        if not _is_bigint_compatible(header.get("when_updated")):
+            errors.append("Timestamp field must be BIGINT or numeric string: when_updated")
 
     for field in NUMERIC_FIELDS:
         if field in header and not _is_empty_string(header.get(field)):
             if not _is_numeric_id(header.get(field)):
                 errors.append("ID field must be numeric: %s" % field)
 
-    if "version_when_written" in header and isinstance(header.get("version_when_written"), str):
-        if not re.match(r"^\d+\.\d+\.\d+$", header.get("version_when_written").strip()):
-            errors.append("Invalid version_when_written format. Expected semver (x.y.z).")
+    if "version_when_written" in header:
+        errors.append("Deprecated header field present: version_when_written (use when_updated)")
 
     if "file_path_from_root" in header and isinstance(header.get("file_path_from_root"), str):
         if not _is_valid_relative_path(header.get("file_path_from_root")):

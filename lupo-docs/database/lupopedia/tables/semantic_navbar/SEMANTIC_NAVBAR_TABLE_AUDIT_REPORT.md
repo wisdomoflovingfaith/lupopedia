@@ -1,26 +1,29 @@
 ---
 lupopedia.init:
-  document_type: "audit"
-  system_version: "4.0.71"
-
+  document_type: audit
+  system_version: 4.0.71
 lupopedia.headers:
-  lupopedia.version: "4.0.73"
-  lupopedia.schema: "documentation"
-  file_path_from_root: "lupo-docs/database/lupopedia/tables/semantic_navbar/SEMANTIC_NAVBAR_TABLE_AUDIT_REPORT.md"
-  web_path: "http://www.lupopedia.com/database/lupopedia/tables/semantic_navbar"
-  system_version: "4.0.71"
-  last_modified_utc: "20260312"
+  lupopedia.schema: documentation
+  file_path_from_root: lupo-docs/database/lupopedia/tables/semantic_navbar/SEMANTIC_NAVBAR_TABLE_AUDIT_REPORT.md
+  web_path: http://www.lupopedia.com/database/lupopedia/tables/semantic_navbar
+  last_modified_utc: '20260312'
   channel_id: 42
   actor_id: 1003
-  artifact_type: "audit"
-  artifact_kind: "table_audit"
-  purpose: "Audit of DB tables required for the semantic floating navigation bar (previous pages, references, contexts, edges, hashtags, folders, Q/A, next pages)."
-  tags: ["semantic_navbar", "audit", "database", "4.0.71"]
-
+  artifact_type: audit
+  artifact_kind: table_audit
+  purpose: Audit of DB tables required for the semantic floating navigation bar (previous
+    pages, references, contexts, edges, hashtags, folders, Q/A, next pages).
+  tags:
+  - semantic_navbar
+  - audit
+  - database
+  - 4.0.71
+  when_updated: '20260324174654'
 lupopedia.footer:
-  version: "4.0.71"
-  last_verified: "20260312"
-  last_verified_by: "cursor"
+  last_verified: '20260312000000'
+  last_verified_by: cursor
+  last_verified_by_actor_id: 102
+  orchestrator: cursor:root
 ---
 # file: Semantic Navbar Table Audit Report — web_path: http://www.lupopedia.com/database/lupopedia/tables/semantic_navbar
 

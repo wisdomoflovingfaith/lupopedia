@@ -1,5 +1,37 @@
 <?php
 /**
+lupopedia.headers:
+  when_updated: "20260324175911"
+  file_path_from_root: "lupo-scripts/validate_lupopedia_headers.php"
+  last_modified_utc: "20260324175911"
+  channel_id: 42
+  actor_id: 102
+  actor_name: "cursor"
+  delegation_chain: "cursor:root"
+  artifact_type: "tooling"
+  artifact_kind: "script"
+lupopedia.footer:
+  last_verified: "20260324175911"
+  last_verified_by: "cursor"
+  last_verified_by_actor_id: 102
+*/
+/**
+lupopedia.headers:
+  when_updated: "20260324182200"
+  file_path_from_root: "lupo-scripts/validate_lupopedia_headers.php"
+  last_modified_utc: "20260324182200"
+  channel_id: 42
+  actor_id: 102
+  actor_name: "cursor"
+  delegation_chain: "cursor:root"
+  artifact_type: "tooling"
+  artifact_kind: "script"
+lupopedia.footer:
+  last_verified: "20260324182200"
+  last_verified_by: "cursor"
+  last_verified_by_actor_id: 102
+*/
+/**
  * Validate LUPOPEDIA HEADERS in a Markdown file.
  * Usage: php validate_lupopedia_headers.php <path/to/file.md>
  * Or: from lupo.php "headers validate <path>", require this file and call validate_lupopedia_headers($path).
@@ -77,11 +109,14 @@ function validate_lupopedia_headers($path) {
     }
 
     // 6. Required fields in lupopedia.headers
-    $required_in_headers = array('lupopedia.version', 'file_path_from_root', 'last_modified_utc', 'system_version');
+    $required_in_headers = array('when_updated', 'file_path_from_root', 'last_modified_utc');
     foreach ($required_in_headers as $key) {
         if (!preg_match('/^\s*' . preg_quote($key, '/') . '\s*:/m', $yaml_block)) {
             $errors[] = "Missing required field in lupopedia.headers: " . $key;
         }
+    }
+    if (preg_match('/^\s*version_when_written\s*:/m', $yaml_block)) {
+        $errors[] = "Deprecated field present in lupopedia.headers: version_when_written (use when_updated).";
     }
 
     // 7. If lupopedia.edges present, must have comment with snapshot or static
@@ -98,7 +133,33 @@ function validate_lupopedia_headers($path) {
         }
     }
 
-    // 9. Namespace (4.0.78): table docs require namespace; value must be in approved taxonomy
+    // 9. Footer verification requirements
+    if (!preg_match('/lupopedia\.footer\s*:/', $yaml_block)) {
+        $errors[] = "Missing required block: lupopedia.footer";
+    } else {
+        if (!preg_match('/^\s*last_verified\s*:\s*(.+)\s*$/m', $yaml_block, $mVerified)) {
+            $errors[] = "lupopedia.footer.last_verified is required.";
+        } else {
+            $raw = trim(trim($mVerified[1]), "\"'");
+            $digits = preg_replace('/[^0-9]/', '', $raw);
+            if (strlen($digits) === 8) {
+                $digits .= '000000';
+            }
+            if (!preg_match('/^\d{14}$/', $digits)) {
+                $errors[] = "lupopedia.footer.last_verified must be UTC date/time (YYYYMMDD or YYYYMMDDHHIISS).";
+            } elseif ((int)$digits < 20260301000000) {
+                $errors[] = "lupopedia.footer.last_verified is stale (before 2026-03-01 00:00:00 UTC); revalidation required.";
+            }
+        }
+        if (!preg_match('/^\s*last_verified_by\s*:\s*(.+)\s*$/m', $yaml_block)) {
+            $errors[] = "lupopedia.footer.last_verified_by is required.";
+        }
+        if (!preg_match('/^\s*last_verified_by_actor_id\s*:\s*["\']?(\d+)["\']?\s*$/m', $yaml_block)) {
+            $errors[] = "lupopedia.footer.last_verified_by_actor_id is required.";
+        }
+    }
+
+    // 10. Namespace (4.0.78): table docs require namespace; value must be in approved taxonomy
     $is_table_doc = (strpos(str_replace('\\', '/', $path), 'lupo-docs/database/lupopedia/tables/') !== false);
     $namespace_value = null;
     if (preg_match('/^\s*namespace\s*:\s*["\']?([a-z_]+)["\']?\s*$/m', $yaml_block, $m)) {

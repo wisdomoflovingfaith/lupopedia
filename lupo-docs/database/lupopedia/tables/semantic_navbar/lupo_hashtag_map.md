@@ -1,19 +1,24 @@
 ---
 lupopedia.headers:
-  lupopedia.version: "4.0.73"
-  lupopedia.schema: "database_table"
-  file_path_from_root: "lupo-docs/database/lupopedia/tables/semantic_navbar/lupo_hashtag_map.md"
-  system_version: "4.0.71"
-  last_modified_utc: "20260312"
+  lupopedia.schema: database_table
+  file_path_from_root: lupo-docs/database/lupopedia/tables/semantic_navbar/lupo_hashtag_map.md
+  last_modified_utc: '20260312'
   channel_id: 42
   actor_id: 1003
-  artifact_type: "table_documentation"
-  artifact_kind: "database_table"
-  purpose: "Junction table linking lupo_hashtags to objects for the semantic navbar Hashtags feature."
-  tags: ["semantic_navbar", "hashtags", "4.0.71"]
+  artifact_type: table_documentation
+  artifact_kind: database_table
+  purpose: Junction table linking lupo_hashtags to objects for the semantic navbar
+    Hashtags feature.
+  tags:
+  - semantic_navbar
+  - hashtags
+  - 4.0.71
+  when_updated: '20260324174654'
 lupopedia.footer:
-  version: "4.0.71"
-  last_verified: "20260312"
+  last_verified: '20260312000000'
+  last_verified_by: cursor
+  last_verified_by_actor_id: 102
+  orchestrator: cursor:root
 ---
 # Table: lupo_hashtag_map
 

@@ -1,26 +1,46 @@
 ---
 lupopedia.headers:
-  file_path_from_root: "lupo-docs/database/lupopedia/tables/active/lupo_channel_boot_detail_lifecycle.md"
-  system_version: "4.0.56"
+  file_path_from_root: lupo-docs/database/lupopedia/tables/active/lupo_channel_boot_detail_lifecycle.md
   channel_id: 42
   actor_id: 1003
-  last_modified_utc: "20260303"
-  artifact_type: "table_documentation"
-  purpose: "Channel boot detail lifecycle — per-channel boot phase details (content load, duration, status)"
-  traits: ["database", "table", "channel", "cursor"]
-  tags: ["database", "table", "lupo_channel_boot_detail_lifecycle", "channel", "boot"]
-  lupo_agent: "cursor"
-
+  last_modified_utc: '20260303'
+  artifact_type: table_documentation
+  purpose: "Channel boot detail lifecycle \u2014 per-channel boot phase details (content\
+    \ load, duration, status)"
+  traits:
+  - database
+  - table
+  - channel
+  - cursor
+  tags:
+  - database
+  - table
+  - lupo_channel_boot_detail_lifecycle
+  - channel
+  - boot
+  lupo_agent: cursor
+  when_updated: '20260324174654'
 lupopedia.edges:
   outbound_edges:
-    - { to: "lupo-database/lupopedia/toon/lupo_channel_boot_detail_lifecycle.toon.json", type: "schema_reference", weight: 1.0 }
-    - { to: "lupo-docs/database/lupopedia/tables/lupo_channel_boot_log.md", type: "references", weight: 0.9 }
-    - { to: "lupo-docs/database/lupopedia/tables/lupo_channels.md", type: "references", weight: 0.8 }
-  semantic_tags: ["channel", "boot", "lifecycle"]
-
+  - to: lupo-database/lupopedia/toon/lupo_channel_boot_detail_lifecycle.toon.json
+    type: schema_reference
+    weight: 1.0
+  - to: lupo-docs/database/lupopedia/tables/lupo_channel_boot_log.md
+    type: references
+    weight: 0.9
+  - to: lupo-docs/database/lupopedia/tables/lupo_channels.md
+    type: references
+    weight: 0.8
+  semantic_tags:
+  - channel
+  - boot
+  - lifecycle
 lupopedia.footer:
-  last_verified_utc: "20260303"
-  last_verified_by: "cursor"
+  last_verified_utc: '20260303'
+  last_verified_by: cursor
+  last_verified: '20260324174654'
+  last_verified_by_actor_id: 102
+  orchestrator: cursor:root
 ---
 
 # Database Documentation: lupo_channel_boot_detail_lifecycle

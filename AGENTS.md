@@ -1,48 +1,90 @@
 ---
 lupopedia.headers:
-  lupopedia.schema: "documentation"
-  file_path_from_root: "AGENTS.md"
-  version_when_written: "4.0.84"
-  web_path: "http://www.lupopedia.com/AGENTS"
-  last_modified_utc: "20260317"
+  lupopedia.schema: documentation
+  file_path_from_root: AGENTS.md
+  version_when_written: 4.0.84
+  web_path: http://www.lupopedia.com/AGENTS
+  last_modified_utc: '20260324174926'
   channel_id: 42
   actor_id: 102
-  actor_name: "cursor"
-  delegation_chain: "cursor:root"
-  artifact_type: "guide"
-  artifact_kind: "documentation"
-  purpose: "Guide for IDE faucets and agents; aligns with 11 Primary Coordination Personas and MULTI_AGENT_COORDINATION_DOCTRINE"
-  traits: ["canonical", "comprehensive", "v4.0.80", "agents", "lead_orchestration", "eleven_personas"]
-  tags: ["agents", "cursor", "ide_faucets", "documentation", "doctrine", "architecture", "multi_agent"]
-  agent_name_identity: "Cursor IDE Agent (Lead Orchestration)"
-  lupo_agent: "cursor"
-
+  actor_name: cursor
+  delegation_chain: cursor:root
+  artifact_type: guide
+  artifact_kind: documentation
+  purpose: Guide for IDE faucets and agents; aligns with 11 Primary Coordination Personas
+    and MULTI_AGENT_COORDINATION_DOCTRINE
+  traits:
+  - canonical
+  - comprehensive
+  - v4.0.80
+  - agents
+  - lead_orchestration
+  - eleven_personas
+  tags:
+  - agents
+  - cursor
+  - ide_faucets
+  - documentation
+  - doctrine
+  - architecture
+  - multi_agent
+  agent_name_identity: Cursor IDE Agent (Lead Orchestration)
+  lupo_agent: cursor
+  when_updated: '20260324174926'
 lupopedia.edges:
   outbound_edges:
-    - { to: "lupo-rules/root/MULTI_AGENT_COORDINATION_DOCTRINE.md", type: "references", weight: 1.0, reason: "Canonical multi-agent coordination" }
-    - { to: "lupo-docs/ACTOR_REGISTRATION_CHECKLIST.md", type: "references", weight: 1.0 }
-    - { to: "lupo-docs/status/AGENT_IDENTITY_REGISTRY_4.0.57.md", type: "references", weight: 0.95 }
-    - { to: "lupo-docs/doctrine/LUPOPEDIA_HEADERS/README.md", type: "references", weight: 1.0 }
-    - { to: "lupo-database/lupopedia/actors/actor_id/registry.json", type: "references", weight: 0.9 }
-    - { to: "lupo-docs/status/LILITH_FLAME_FAUCET_REPORT.md", type: "references", weight: 0.8 }
-    - { to: "lupo-agents/", type: "references", weight: 0.8 }
-    - { to: "lupo-docs/database/lupopedia/tables/active", type: "references", weight: 0.9, reason: "Per-table documentation for all TOON/schema tables" }
-    - { to: "plan.md", type: "references", weight: 0.85 }
-    - { to: "report.md", type: "references", weight: 0.85 }
-  semantic_tags: ["agents", "cursor", "lead_orchestration", "development_environment", "architecture", "doctrine"]
-
+  - to: lupo-rules/root/MULTI_AGENT_COORDINATION_DOCTRINE.md
+    type: references
+    weight: 1.0
+    reason: Canonical multi-agent coordination
+  - to: lupo-docs/ACTOR_REGISTRATION_CHECKLIST.md
+    type: references
+    weight: 1.0
+  - to: lupo-docs/status/AGENT_IDENTITY_REGISTRY_4.0.57.md
+    type: references
+    weight: 0.95
+  - to: lupo-docs/doctrine/LUPOPEDIA_HEADERS/README.md
+    type: references
+    weight: 1.0
+  - to: lupo-database/lupopedia/actors/actor_id/registry.json
+    type: references
+    weight: 0.9
+  - to: lupo-docs/status/LILITH_FLAME_FAUCET_REPORT.md
+    type: references
+    weight: 0.8
+  - to: lupo-agents/
+    type: references
+    weight: 0.8
+  - to: lupo-docs/database/lupopedia/tables/active
+    type: references
+    weight: 0.9
+    reason: Per-table documentation for all TOON/schema tables
+  - to: plan.md
+    type: references
+    weight: 0.85
+  - to: report.md
+    type: references
+    weight: 0.85
+  semantic_tags:
+  - agents
+  - cursor
+  - lead_orchestration
+  - development_environment
+  - architecture
+  - doctrine
 lupopedia.see:
   mappings:
-    - ["AGENTS.md", "http://www.lupopedia.com/AGENTS"]
-
+  - - AGENTS.md
+    - http://www.lupopedia.com/AGENTS
 lupopedia.footer:
-  last_verified: "20260324"
-  last_verified_by: "junie"
-  orchestrator: "junie:root"
+  last_verified: '20260324174926'
+  last_verified_by: cursor
+  orchestrator: junie:root
   next_action:
-    - "Keep agent identity and faucet links current with registry"
-    - "Validate LUPOPEDIA HEADERS and next_action when updating this guide"
-    - "Point new IDE agents to MULTI_AGENT_COORDINATION_DOCTRINE and ONBOARDING.md"
+  - Keep agent identity and faucet links current with registry
+  - Validate LUPOPEDIA HEADERS and next_action when updating this guide
+  - Point new IDE agents to MULTI_AGENT_COORDINATION_DOCTRINE and ONBOARDING.md
+  last_verified_by_actor_id: 102
 ---
 # file: AGENTS — delegation: junie:root — web_path: http://www.lupopedia.com/AGENTS
 

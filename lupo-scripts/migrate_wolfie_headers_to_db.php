@@ -1,5 +1,37 @@
 <?php
 /**
+lupopedia.headers:
+  when_updated: "20260324175911"
+  file_path_from_root: "lupo-scripts/migrate_wolfie_headers_to_db.php"
+  last_modified_utc: "20260324175911"
+  channel_id: 42
+  actor_id: 102
+  actor_name: "cursor"
+  delegation_chain: "cursor:root"
+  artifact_type: "tooling"
+  artifact_kind: "script"
+lupopedia.footer:
+  last_verified: "20260324175911"
+  last_verified_by: "cursor"
+  last_verified_by_actor_id: 102
+*/
+/**
+lupopedia.headers:
+  when_updated: "20260324175617"
+  file_path_from_root: "lupo-scripts/migrate_wolfie_headers_to_db.php"
+  last_modified_utc: "20260324175617"
+  channel_id: 42
+  actor_id: 102
+  actor_name: "cursor"
+  delegation_chain: "cursor:root"
+  artifact_type: "tooling"
+  artifact_kind: "script"
+lupopedia.footer:
+  last_verified: "20260324175617"
+  last_verified_by: "cursor"
+  last_verified_by_actor_id: 102
+*/
+/**
  * Wolfie Header v2.6 Migration Script
  * 
  * Populates lupo_files and lupo_file_edges tables from existing headers

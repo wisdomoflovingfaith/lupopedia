@@ -1,24 +1,29 @@
 ---
 lupopedia.headers:
-  version_when_written: "4.0.86"
-  lupopedia.schema: "documentation_index"
-  file_path_from_root: "lupo-docs/database/lupopedia/tables/TABLE_INDEX.md"
-  web_path: "http://www.lupopedia.com/database/lupopedia/tables/TABLE_INDEX"
-  last_modified_utc: "20260324"
+  lupopedia.schema: documentation_index
+  file_path_from_root: lupo-docs/database/lupopedia/tables/TABLE_INDEX.md
+  web_path: http://www.lupopedia.com/database/lupopedia/tables/TABLE_INDEX
+  last_modified_utc: '20260324'
   channel_id: 42
   actor_id: 108
-  actor_name: "junie"
-  faucet_name: "jetbrains"
-  delegation_chain: "junie:root"
-  artifact_type: "database_documentation"
-  artifact_kind: "index"
-  purpose: "Consolidated index of all 169 database tables (v4.0.86) categorized by status and model alignment."
-  tags: ["database", "index", "v4.0.86", "table_registry"]
-
+  actor_name: junie
+  faucet_name: jetbrains
+  delegation_chain: junie:root
+  artifact_type: database_documentation
+  artifact_kind: index
+  purpose: Consolidated index of all 169 database tables (v4.0.86) categorized by
+    status and model alignment.
+  tags:
+  - database
+  - index
+  - v4.0.86
+  - table_registry
+  when_updated: '20260324174654'
 lupopedia.footer:
-  version: "4.0.86"
-  last_verified: "20260324"
-  last_verified_by: "junie"
+  last_verified: '20260324000000'
+  last_verified_by: cursor
+  last_verified_by_actor_id: 102
+  orchestrator: cursor:root
 ---
 # file: Database Table Index — delegation: junie:root — web_path: http://www.lupopedia.com/database/lupopedia/tables/TABLE_INDEX
 # Database Table Index (v4.0.86)

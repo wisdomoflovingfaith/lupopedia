@@ -1,30 +1,41 @@
 ---
 lupopedia.headers:
-  lupopedia.version: "4.0.76"
-  lupopedia.schema: "doctrine"
-  file_path_from_root: "lupo-docs/doctrine/AGENT_REGISTRY.md"
-  last_modified_utc: "20260315"
-  system_version: "4.0.76"
+  lupopedia.version: 4.0.76
+  lupopedia.schema: doctrine
+  file_path_from_root: lupo-docs/doctrine/AGENT_REGISTRY.md
+  last_modified_utc: '20260324174926'
+  system_version: 4.0.76
   channel_id: 42
   actor_id: 102
-  purpose: "Canonical human-readable reference for agent identity, propagation targets, and IDE capabilities."
-  artifact_type: "doctrine"
-  artifact_kind: "reference"
-
+  purpose: Canonical human-readable reference for agent identity, propagation targets,
+    and IDE capabilities.
+  artifact_type: doctrine
+  artifact_kind: reference
+  when_updated: '20260324174926'
 lupopedia.edges:
   outbound_edges:
-    - { to: "lupo-database/lupopedia/actors/actor_id/registry.json", type: "references", weight: 1.0 }
-    - { to: "lupo-scripts/propagate_agent_rules.php", type: "references", weight: 1.0 }
-    - { to: "ONBOARDING.md", type: "references", weight: 0.9 }
-    - { to: "AGENTS.md", type: "references", weight: 0.9 }
-    - { to: "lupo-docs/ACTOR_REGISTRATION_CHECKLIST.md", type: "references", weight: 0.9 }
-
+  - to: lupo-database/lupopedia/actors/actor_id/registry.json
+    type: references
+    weight: 1.0
+  - to: lupo-scripts/propagate_agent_rules.php
+    type: references
+    weight: 1.0
+  - to: ONBOARDING.md
+    type: references
+    weight: 0.9
+  - to: AGENTS.md
+    type: references
+    weight: 0.9
+  - to: lupo-docs/ACTOR_REGISTRATION_CHECKLIST.md
+    type: references
+    weight: 0.9
 lupopedia.footer:
-  version: "4.0.76"
-  last_verified: "20260315"
-  last_verified_by: "cursor"
+  last_verified: '20260324174926'
+  last_verified_by: cursor
   next_action:
-    - "Keep registry table and propagation matrix in sync with registry.json and propagate_agent_rules.php"
+  - Keep registry table and propagation matrix in sync with registry.json and propagate_agent_rules.php
+  last_verified_by_actor_id: 102
+  orchestrator: cursor:root
 ---
 
 # Agent Registry Doctrine

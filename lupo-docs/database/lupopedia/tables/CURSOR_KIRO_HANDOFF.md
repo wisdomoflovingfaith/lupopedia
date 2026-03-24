@@ -1,22 +1,32 @@
 ---
 lupopedia.headers:
-  lupopedia.version: "4.0.73"
-  lupopedia.schema: "documentation"
-  file_path_from_root: "lupo-docs/database/lupopedia/tables/CURSOR_KIRO_HANDOFF.md"
-  system_version: "4.0.70"
+  lupopedia.schema: documentation
+  file_path_from_root: lupo-docs/database/lupopedia/tables/CURSOR_KIRO_HANDOFF.md
   channel_id: 1
   actor_id: 102
-  last_modified_utc: "20260312"
-  artifact_type: "handoff"
-  purpose: "Cursor-to-KIRO handoff: overlap questions and permissions/auth boundary"
-  mood_rgb: "4169E1"
-  traits: ["handoff", "cursor", "kiro", "v4.0.70"]
-  tags: ["database", "handoff", "kiro", "cursor", "governance", "auth"]
-  lupo_agent: "cursor"
-
+  last_modified_utc: '20260312'
+  artifact_type: handoff
+  purpose: 'Cursor-to-KIRO handoff: overlap questions and permissions/auth boundary'
+  mood_rgb: 4169E1
+  traits:
+  - handoff
+  - cursor
+  - kiro
+  - v4.0.70
+  tags:
+  - database
+  - handoff
+  - kiro
+  - cursor
+  - governance
+  - auth
+  lupo_agent: cursor
+  when_updated: '20260324174654'
 lupopedia.footer:
-  last_verified: "20260312"
-  last_verified_by: "cursor"
+  last_verified: '20260312000000'
+  last_verified_by: cursor
+  last_verified_by_actor_id: 102
+  orchestrator: cursor:root
 ---
 
 # Cursor → KIRO Handoff Note

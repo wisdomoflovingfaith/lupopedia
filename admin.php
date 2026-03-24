@@ -144,6 +144,7 @@ $admin_menu_sections = array(
         'title' => 'Live Help',
         'items' => array(
             'Live' => 'admin.php?section=live',
+            'Channel Chat' => 'admin.php?section=channel-chat',
             'Quick replies' => 'admin.php?section=quick-replies',
             'Quick images' => 'admin.php?section=quick-images',
             'Quick URLs' => 'admin.php?section=quick-urls',
@@ -225,6 +226,7 @@ $admin_section_info = array(
     'proactive-leads' => array('description' => 'Proactive lead outreach and automation. Configure triggers and templates.', 'links' => array()),
     'import-leads' => array('description' => 'Import leads from CSV or other sources into lupo_crm_leads.', 'links' => array('Leads' => 'admin.php?section=leads')),
     'live' => array('description' => 'Live help session monitor and controls.', 'links' => array()),
+    'channel-chat' => array('description' => 'Channel chat interface with effective actor resolution by agent, department, and preferences.', 'links' => array()),
     'quick-replies' => array('description' => 'Quick reply templates for operators (lupo_actor_reply_templates).', 'links' => array()),
     'quick-images' => array('description' => 'Quick image assets for chat.', 'links' => array()),
     'quick-urls' => array('description' => 'Quick URL shortcuts.', 'links' => array()),
@@ -296,6 +298,7 @@ if ($isAdmin && isset($_GET['section']) && is_string($_GET['section'])) {
         'channels' => array('Channels', 'Channels'),
         'registry' => array('Registry', 'Registry'),
         'live' => array('Live', 'Live'),
+        'channel-chat' => array('Channel Chat', 'Channel Chat'),
         'quick-replies' => array('Quick replies', 'Quick replies'),
         'quick-images' => array('Quick images', 'Quick images'),
         'quick-urls' => array('Quick URLs', 'Quick URLs'),
@@ -400,10 +403,15 @@ if ($isAdmin && isset($_GET['section']) && is_string($_GET['section'])) {
         $admin_active_key = 'Channel 66 Q&A';
         require_once LUPOPEDIA_PATH . '/lupo-includes/classes/AdminChannel66QaHandler.php';
         $admin_main_content = AdminChannel66QaHandler::render($db, $prefix, $base);
+    } elseif ($section === 'channel-chat' && $db) {
+        $admin_page_title = 'Channel Chat';
+        $admin_active_key = 'Channel Chat';
+        require_once LUPOPEDIA_PATH . '/lupo-includes/classes/AdminChannelChatHandler.php';
+        $admin_main_content = AdminChannelChatHandler::render($db, $prefix, $base);
     } elseif (isset($section_titles[$section])) {
         $admin_page_title = $section_titles[$section][0];
         $admin_active_key = $section_titles[$section][1];
-        if ($section === 'channels' || $section === 'agents' || $section === 'actors' || $section === 'departments' || $section === 'leads' || $section === 'registry') {
+        if ($section === 'channels' || $section === 'agents' || $section === 'actors' || $section === 'departments' || $section === 'leads' || $section === 'registry' || $section === 'channel-chat') {
             $admin_main_content = '<p class="admin-empty">Database not available.</p>';
         } elseif (isset($admin_section_info[$section])) {
             $info = $admin_section_info[$section];

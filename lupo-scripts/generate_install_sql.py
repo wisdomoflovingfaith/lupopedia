@@ -1,4 +1,19 @@
 #!/usr/bin/env python3
+# lupopedia.headers:
+#   when_updated: "20260324175617"
+#   file_path_from_root: "lupo-scripts/generate_install_sql.py"
+#   last_modified_utc: "20260324175617"
+#   channel_id: 42
+#   actor_id: 102
+#   actor_name: "cursor"
+#   delegation_chain: "cursor:root"
+#   artifact_type: "tooling"
+#   artifact_kind: "script"
+# lupopedia.footer:
+#   last_verified: "20260324175617"
+#   last_verified_by: "cursor"
+#   last_verified_by_actor_id: 102
+
 """
 Generate DB-agnostic install_new_lupopedia.sql from lupopedia_mysql.sql.
 Doctrine 17: BIGINT/INT/SMALLINT/TINYINT only, no display widths, no UNSIGNED,

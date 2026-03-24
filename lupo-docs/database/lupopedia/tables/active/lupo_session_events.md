@@ -1,36 +1,51 @@
 ---
 lupopedia.headers:
-  lupopedia.version: "4.0.73"
-  lupopedia.schema: "database_table"
-  file_path_from_root: "lupo-docs/database/lupopedia/tables/active/lupo_session_events.md"
-  system_version: "4.0.73"
-  namespace: "auth"
+  lupopedia.schema: database_table
+  file_path_from_root: lupo-docs/database/lupopedia/tables/active/lupo_session_events.md
+  namespace: auth
   channel_id: 1
   actor_id: 1003
-  last_modified_utc: "20260313"
-  artifact_type: "table_documentation"
-  purpose: "Per-session event log (tab, world, event type)"
-  mood_rgb: "4169E1"
-  traits: ["canonical", "session", "antigravity_rotation", "v4.0.73"]
-  tags: ["database", "sessions", "events"]
-  lupo_agent: "antigravity"
-
+  last_modified_utc: '20260313'
+  artifact_type: table_documentation
+  purpose: Per-session event log (tab, world, event type)
+  mood_rgb: 4169E1
+  traits:
+  - canonical
+  - session
+  - antigravity_rotation
+  - v4.0.73
+  tags:
+  - database
+  - sessions
+  - events
+  lupo_agent: antigravity
+  when_updated: '20260324174654'
 lupopedia.edges:
-  comment: "Snapshot of files edited during 4.0.73 finalization and initialization thread by ANTIGRAVITY IDE Agent. Edges reflect discovered relationships between database tables and PHP/Python codebase entities. Values should be verified against live database schemas/queries for the most current semantic graph state."
-  meta: "Thread: Finalize 4.0.72 → Push to GitHub → Initialize 4.0.73 → Migrate Tasks → Validate Upgrade Path"
+  comment: Snapshot of files edited during 4.0.73 finalization and initialization
+    thread by ANTIGRAVITY IDE Agent. Edges reflect discovered relationships between
+    database tables and PHP/Python codebase entities. Values should be verified against
+    live database schemas/queries for the most current semantic graph state.
+  meta: "Thread: Finalize 4.0.72 \u2192 Push to GitHub \u2192 Initialize 4.0.73 \u2192\
+    \ Migrate Tasks \u2192 Validate Upgrade Path"
   outbound_edges:
-    - { to: "lupo-database/lupopedia/toon/lupo_session_events.toon.json", type: "schema_reference", weight: 1.0 }
-    - { to: "lupo-docs/database/lupopedia/tables/active/lupo_sessions.md", type: "references", weight: 0.9 }
-
+  - to: lupo-database/lupopedia/toon/lupo_session_events.toon.json
+    type: schema_reference
+    weight: 1.0
+  - to: lupo-docs/database/lupopedia/tables/active/lupo_sessions.md
+    type: references
+    weight: 0.9
 lupopedia.engagement:
-  comment: "Snapshot of files edited during 4.0.73 finalization and initialization thread by ANTIGRAVITY IDE Agent. Engagement metrics track edit frequency and importance of each file in the version transition process."
-  meta: "Thread: Finalize 4.0.72 → Push to GitHub → Initialize 4.0.73 → Migrate Tasks → Validate Upgrade Path"
+  comment: Snapshot of files edited during 4.0.73 finalization and initialization
+    thread by ANTIGRAVITY IDE Agent. Engagement metrics track edit frequency and importance
+    of each file in the version transition process.
+  meta: "Thread: Finalize 4.0.72 \u2192 Push to GitHub \u2192 Initialize 4.0.73 \u2192\
+    \ Migrate Tasks \u2192 Validate Upgrade Path"
   views: 0
-
 lupopedia.footer:
-  version: "4.0.73"
-  last_verified: "20260313"
-  last_verified_by: "antigravity"
+  last_verified: '20260313000000'
+  last_verified_by: cursor
+  last_verified_by_actor_id: 102
+  orchestrator: cursor:root
 ---
 
 # Table: lupo_session_events

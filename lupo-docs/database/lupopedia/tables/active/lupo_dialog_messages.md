@@ -1,56 +1,111 @@
 ---
 lupopedia.headers:
-  version_when_written: "4.0.84"
-  lupopedia.schema: "database_table"
-  file_path_from_root: "lupo-docs/database/lupopedia/tables/active/lupo_dialog_messages.md"
-  web_path: "[lupo_dialog_messages](http://www.lupopedia.com/database/lupopedia/tables/active/lupo_dialog_messages)"
-  last_modified_utc: "20260320"
+  lupopedia.schema: database_table
+  file_path_from_root: lupo-docs/database/lupopedia/tables/active/lupo_dialog_messages.md
+  web_path: '[lupo_dialog_messages](http://www.lupopedia.com/database/lupopedia/tables/active/lupo_dialog_messages)'
+  last_modified_utc: '20260320'
   channel_id: 42
   actor_id: 26
-  actor_name: "thoth"
-  delegation_chain: "thoth:knowledge"
-  artifact_type: "table_documentation"
-  artifact_kind: "table"
-  purpose: "Complete documentation for lupo_dialog_messages table - dialog message storage and delivery system"
-  tags: ["database", "table", "content", "4.0.84"]
-
+  actor_name: thoth
+  delegation_chain: thoth:knowledge
+  artifact_type: table_documentation
+  artifact_kind: table
+  purpose: Complete documentation for lupo_dialog_messages table - dialog message
+    storage and delivery system
+  tags:
+  - database
+  - table
+  - content
+  - 4.0.84
+  when_updated: '20260324174654'
 lupopedia.edges:
-  comment: "Snapshot of edges for lupo_dialog_messages table doc at 4.0.79 (grounded by repo search; non-exhaustive)."
-  meta: "php_hits=23 python_hits=7"
+  comment: Snapshot of edges for lupo_dialog_messages table doc at 4.0.79 (grounded
+    by repo search; non-exhaustive).
+  meta: php_hits=23 python_hits=7
   outbound_edges:
-    - { to: "database.table.lupo_dialog_messages", type: "DEFINES_SCHEMA_FOR", weight: 1.0 }
-    - { to: "lupo-database/lupopedia/mysql/install/install_new_lupopedia.sql", type: "schema_reference", weight: 1.0 }
-    - { to: "lupo-database/lupopedia/toon/lupo_dialog_messages.toon", type: "schema_reference", weight: 1.0 }
-    - { to: "admin.php", type: "USED_IN_PHP", weight: 0.6 }
-    - { to: "check_db_state.php", type: "USED_IN_PHP", weight: 0.6 }
-    - { to: "lupo-api/v1/dialog/health.php", type: "USED_IN_PHP", weight: 0.6 }
-    - { to: "lupo-api/v1/dialog/metrics.php", type: "USED_IN_PHP", weight: 0.6 }
-    - { to: "lupo-database/lupopedia/content/lupo-app/Services/AnubisUnknownRecipientService.php", type: "USED_IN_PHP", weight: 0.6 }
-    - { to: "lupo-database/lupopedia/content/lupo-app/Services/TriggerReplacements/DialogMessagesDeleteService.php", type: "USED_IN_PHP", weight: 0.6 }
-    - { to: "lupo-database/lupopedia/content/lupo-app/Services/TriggerReplacements/DialogMessagesInsertService.php", type: "USED_IN_PHP", weight: 0.6 }
-    - { to: "lupo-includes/Dialog/Database/DialogDatabase.php", type: "USED_IN_PHP", weight: 0.9 }
-    - { to: "lupo-includes/DialogChannelMigration/MessageBuilder.php", type: "USED_IN_PHP", weight: 0.9 }
-    - { to: "lupo-includes/DialogChannelMigration/MigrationOrchestrator.php", type: "USED_IN_PHP", weight: 0.9 }
-    - { to: "lupo-includes/DialogChannelMigration/ValidationTool.php", type: "USED_IN_PHP", weight: 0.9 }
-    - { to: "lupo-includes/class-dialog-manager.php", type: "USED_IN_PHP", weight: 0.9 }
-    - { to: "lupo-includes/classes/ANUBIS_Resolver.php", type: "USED_IN_PHP", weight: 0.9 }
-    - { to: "lupo-includes/classes/ChannelService.php", type: "USED_IN_PHP", weight: 0.9 }
-    - { to: "lupo-includes/modules/channels/ChannelsController.php", type: "USED_IN_PHP", weight: 0.9 }
-    - { to: "analyze_unused_tables.py", type: "USED_IN_PYTHON", weight: 0.5 }
-    - { to: "lupo-scripts/audit_schema_doctrine.py", type: "USED_IN_PYTHON", weight: 0.5 }
-    - { to: "lupo-scripts/check_doc_schema_consistency.py", type: "USED_IN_PYTHON", weight: 0.5 }
-    - { to: "lupo-scripts/fetch_doctrines.py", type: "USED_IN_PYTHON", weight: 0.5 }
-    - { to: "lupo-scripts/import_channels_and_artifacts.py", type: "USED_IN_PYTHON", weight: 0.5 }
-    - { to: "lupo-scripts/rebuild_schema_from_toons.py", type: "USED_IN_PYTHON", weight: 0.5 }
-    - { to: "lupo-tools/anubis_orphan_scanner.py", type: "USED_IN_PYTHON", weight: 0.5 }
-
+  - to: database.table.lupo_dialog_messages
+    type: DEFINES_SCHEMA_FOR
+    weight: 1.0
+  - to: lupo-database/lupopedia/mysql/install/install_new_lupopedia.sql
+    type: schema_reference
+    weight: 1.0
+  - to: lupo-database/lupopedia/toon/lupo_dialog_messages.toon
+    type: schema_reference
+    weight: 1.0
+  - to: admin.php
+    type: USED_IN_PHP
+    weight: 0.6
+  - to: check_db_state.php
+    type: USED_IN_PHP
+    weight: 0.6
+  - to: lupo-api/v1/dialog/health.php
+    type: USED_IN_PHP
+    weight: 0.6
+  - to: lupo-api/v1/dialog/metrics.php
+    type: USED_IN_PHP
+    weight: 0.6
+  - to: lupo-database/lupopedia/content/lupo-app/Services/AnubisUnknownRecipientService.php
+    type: USED_IN_PHP
+    weight: 0.6
+  - to: lupo-database/lupopedia/content/lupo-app/Services/TriggerReplacements/DialogMessagesDeleteService.php
+    type: USED_IN_PHP
+    weight: 0.6
+  - to: lupo-database/lupopedia/content/lupo-app/Services/TriggerReplacements/DialogMessagesInsertService.php
+    type: USED_IN_PHP
+    weight: 0.6
+  - to: lupo-includes/Dialog/Database/DialogDatabase.php
+    type: USED_IN_PHP
+    weight: 0.9
+  - to: lupo-includes/DialogChannelMigration/MessageBuilder.php
+    type: USED_IN_PHP
+    weight: 0.9
+  - to: lupo-includes/DialogChannelMigration/MigrationOrchestrator.php
+    type: USED_IN_PHP
+    weight: 0.9
+  - to: lupo-includes/DialogChannelMigration/ValidationTool.php
+    type: USED_IN_PHP
+    weight: 0.9
+  - to: lupo-includes/class-dialog-manager.php
+    type: USED_IN_PHP
+    weight: 0.9
+  - to: lupo-includes/classes/ANUBIS_Resolver.php
+    type: USED_IN_PHP
+    weight: 0.9
+  - to: lupo-includes/classes/ChannelService.php
+    type: USED_IN_PHP
+    weight: 0.9
+  - to: lupo-includes/modules/channels/ChannelsController.php
+    type: USED_IN_PHP
+    weight: 0.9
+  - to: analyze_unused_tables.py
+    type: USED_IN_PYTHON
+    weight: 0.5
+  - to: lupo-scripts/audit_schema_doctrine.py
+    type: USED_IN_PYTHON
+    weight: 0.5
+  - to: lupo-scripts/check_doc_schema_consistency.py
+    type: USED_IN_PYTHON
+    weight: 0.5
+  - to: lupo-scripts/fetch_doctrines.py
+    type: USED_IN_PYTHON
+    weight: 0.5
+  - to: lupo-scripts/import_channels_and_artifacts.py
+    type: USED_IN_PYTHON
+    weight: 0.5
+  - to: lupo-scripts/rebuild_schema_from_toons.py
+    type: USED_IN_PYTHON
+    weight: 0.5
+  - to: lupo-tools/anubis_orphan_scanner.py
+    type: USED_IN_PYTHON
+    weight: 0.5
 lupopedia.footer:
-  last_verified: "20260320"
-  last_verified_by: "thoth"
-  orchestrator: "wolfie"
+  last_verified: '20260320000000'
+  last_verified_by: cursor
+  orchestrator: wolfie
   next_action:
-    - "Maintain schema consistency with install SQL and TOON files"
-    - "Update documentation when schema changes occur"
+  - Maintain schema consistency with install SQL and TOON files
+  - Update documentation when schema changes occur
+  last_verified_by_actor_id: 102
 ---
 # file: lupo_dialog_messages ? web_path: http://www.lupopedia.com/database/lupopedia/tables/active/lupo_dialog_messages
 # Table: lupo_dialog_messages

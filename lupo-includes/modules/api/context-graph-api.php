@@ -41,7 +41,7 @@ $cg_services_dir = defined('LUPOPEDIA_PATH')
     ? rtrim(LUPOPEDIA_PATH, '/\\') . DIRECTORY_SEPARATOR . 'app' . DIRECTORY_SEPARATOR . 'Services' . DIRECTORY_SEPARATOR . 'ContextGraph' . DIRECTORY_SEPARATOR
     : dirname(dirname(dirname(__DIR__))) . DIRECTORY_SEPARATOR . 'app' . DIRECTORY_SEPARATOR . 'Services' . DIRECTORY_SEPARATOR . 'ContextGraph' . DIRECTORY_SEPARATOR;
 
-foreach (array('EdgeIdService', 'EdgeValidationService', 'EdgeService', 'EdgeConcurrencyService', 'ResolutionEngine') as $cg_class) {
+foreach (array('EdgeIdService', 'EdgeValidationService', 'EdgeService', 'EdgeConcurrencyService', 'ResolutionEngine', 'ChannelThreadEdgeMapService') as $cg_class) {
     if (!class_exists($cg_class)) {
         $cg_file = $cg_services_dir . $cg_class . '.php';
         if (file_exists($cg_file)) {
@@ -128,6 +128,40 @@ function lupo_cg_error($http_code, $code, $message, $details = array())
     exit;
 }
 
+/**
+ * Verify actor can access a channel via membership or global admin.
+ *
+ * @param object $db
+ * @param string $table_prefix
+ * @param int $actor_id
+ * @param object|null $auth_service
+ * @param int $channel_id
+ * @return bool
+ */
+function lupo_cg_can_access_channel($db, $table_prefix, $actor_id, $auth_service, $channel_id)
+{
+    $actor_id = (int) $actor_id;
+    $channel_id = (int) $channel_id;
+    if ($actor_id <= 0 || $channel_id <= 0) {
+        return false;
+    }
+
+    $t_actor_channels = $table_prefix . 'actor_channels';
+    $stmt = $db->prepare("SELECT 1 FROM {$t_actor_channels} WHERE actor_id = :actor_id AND channel_id = :channel_id AND (is_deleted = 0 OR is_deleted IS NULL) LIMIT 1");
+    $stmt->execute(array(':actor_id' => $actor_id, ':channel_id' => $channel_id));
+    if ($stmt->fetch() !== false) {
+        return true;
+    }
+
+    if ($auth_service && is_object($auth_service) && method_exists($auth_service, 'isAdmin')) {
+        if ($auth_service->isAdmin($actor_id)) {
+            return true;
+        }
+    }
+
+    return false;
+}
+
 // ── Route dispatch ─────────────────────────────────────────────────────────────
 
 // ── GET api/context-graph/context ─────────────────────────────────────────────
@@ -172,6 +206,35 @@ if ($cg_action === 'edges' && $cg_method === 'GET') {
         'source_type' => $source_type,
         'source_id'  => $source_id,
         'edges'      => $edges
+    ));
+    exit;
+}
+
+// ── GET api/context-graph/channel-map ─────────────────────────────────────────
+if ($cg_action === 'channel-map' && $cg_method === 'GET') {
+    $channel_id = isset($_GET['channel_id']) ? (int) $_GET['channel_id'] : 0;
+    $thread_limit = isset($_GET['thread_limit']) ? (int) $_GET['thread_limit'] : 200;
+    $edge_limit = isset($_GET['edge_limit']) ? (int) $_GET['edge_limit'] : 2000;
+
+    if ($channel_id <= 0) {
+        lupo_cg_error(400, 'INVALID_PARAM', 'channel_id must be a positive integer.');
+    }
+
+    $cg_prefix = defined('LUPO_TABLE_PREFIX') ? LUPO_TABLE_PREFIX : 'lupo_';
+    if (!lupo_cg_can_access_channel($cg_db, $cg_prefix, $cg_actor_id, $cg_auth, $channel_id)) {
+        lupo_cg_error(403, 'FORBIDDEN', 'Actor does not have access to this channel.');
+    }
+
+    $map_service = new ChannelThreadEdgeMapService($cg_db, $cg_prefix);
+    $channel_map = $map_service->buildChannelMap($channel_id, $thread_limit, $edge_limit);
+    if (!$channel_map) {
+        lupo_cg_error(404, 'NOT_FOUND', 'Channel not found.');
+    }
+
+    echo json_encode(array(
+        'success' => true,
+        'channel_id' => $channel_id,
+        'map' => $channel_map
     ));
     exit;
 }

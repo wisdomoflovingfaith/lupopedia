@@ -1,17 +1,27 @@
 ---
 lupopedia.headers:
-  lupopedia.version: "4.0.80"
-  lupopedia.schema: "table"
-  file_path_from_root: "lupo-docs/database/lupopedia/tables/active/projects/lupo_projects.md"
+  lupopedia.schema: table
+  file_path_from_root: lupo-docs/database/lupopedia/tables/active/lupo_projects.md
   channel_id: 42
   actor_id: 102
-  actor_name: "hermes"
-  faucet_name: "cascade"
-  artifact_type: "table_documentation"
-  artifact_kind: "database_schema"
-  purpose: "Complete documentation for lupo_projects table - project management"
-  tags: ["table_documentation", "projects", "management", "4.0.80"]
-  created_ymdhis: 20260317_220000
+  actor_name: hermes
+  faucet_name: cascade
+  artifact_type: table_documentation
+  artifact_kind: database_schema
+  purpose: Complete documentation for lupo_projects table - project management
+  tags:
+  - table_documentation
+  - projects
+  - management
+  - 4.0.80
+  created_ymdhis: 20260317220000
+  when_updated: '20260324174654'
+lupopedia:
+  footer:
+    last_verified: '20260324174654'
+    last_verified_by: cursor
+    last_verified_by_actor_id: 102
+    orchestrator: cursor:root
 ---
 
 # lupo_projects - Project Management

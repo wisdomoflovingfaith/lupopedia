@@ -48,6 +48,20 @@ function lupo_channels_api_log_security_event($event_type, $channel_id, $actor_i
     }
 }
 
+/**
+ * Resolve authenticated effective actor for channel operations.
+ * Uses active actor and chat identity preferences via EffectiveActorResolver.
+ *
+ * @param object $db
+ * @param int $channel_id
+ * @return array
+ */
+function lupo_channels_api_resolve_effective_actor($db, $channel_id)
+{
+    require_once __DIR__ . '/../../classes/EffectiveActorResolver.php';
+    return EffectiveActorResolver::resolveForCurrentUser($db, (int) $channel_id);
+}
+
 $table_prefix = defined('LUPO_TABLE_PREFIX') ? LUPO_TABLE_PREFIX : 'lupo_';
 $method = isset($_SERVER['REQUEST_METHOD']) ? $_SERVER['REQUEST_METHOD'] : 'GET';
 
@@ -62,31 +76,10 @@ if ($channel_id <= 0) {
 
 // ── GET: Retrieve messages ─────────────────────────────────────────────────────
 if ($method === 'GET') {
-    // Require authenticated actor and membership (or admin) for message retrieval.
-    $actor_id = null;
+    // Require authenticated effective actor and membership (or admin) for message retrieval.
     $authService = isset($GLOBALS['lupo_auth_service']) ? $GLOBALS['lupo_auth_service'] : null;
-    if ($authService) {
-        $user = $authService->getCurrentUser();
-        if ($user && !empty($user['actor_id'])) {
-            $actor_id = (int) $user['actor_id'];
-        }
-    }
-    if (!$actor_id && function_exists('current_user')) {
-        $user = current_user();
-        if ($user && !empty($user['actor_id'])) {
-            $actor_id = (int) $user['actor_id'];
-        }
-    }
-    if (!$actor_id && ($s = isset($GLOBALS['lupo_session']) ? $GLOBALS['lupo_session'] : null)) {
-        if (is_object($s) && method_exists($s, 'validateSession')) {
-            $actor_id = $s->validateSession();
-            if ($actor_id !== null && $actor_id !== false) {
-                $actor_id = (int) $actor_id;
-            } else {
-                $actor_id = null;
-            }
-        }
-    }
+    $resolved_actor = lupo_channels_api_resolve_effective_actor($db, $channel_id);
+    $actor_id = isset($resolved_actor['actor_id']) ? (int) $resolved_actor['actor_id'] : 0;
 
     if (!$actor_id || $actor_id <= 0) {
         lupo_channels_api_log_security_event('unauthorized', $channel_id, null);
@@ -213,32 +206,11 @@ if ($method === 'POST') {
         }
     }
 
-    // Actor identity MUST come from authenticated session / server-side context only.
+    // Actor identity MUST come from authenticated session / server-side effective context only.
     // Client-supplied actor_id is never trusted for authorization or insertion.
-    $actor_id = null;
     $authService = isset($GLOBALS['lupo_auth_service']) ? $GLOBALS['lupo_auth_service'] : null;
-    if ($authService) {
-        $user = $authService->getCurrentUser();
-        if ($user && !empty($user['actor_id'])) {
-            $actor_id = (int) $user['actor_id'];
-        }
-    }
-    if (!$actor_id && function_exists('current_user')) {
-        $user = current_user();
-        if ($user && !empty($user['actor_id'])) {
-            $actor_id = (int) $user['actor_id'];
-        }
-    }
-    if (!$actor_id && ($s = isset($GLOBALS['lupo_session']) ? $GLOBALS['lupo_session'] : null)) {
-        if (is_object($s) && method_exists($s, 'validateSession')) {
-            $actor_id = $s->validateSession();
-            if ($actor_id !== null && $actor_id !== false) {
-                $actor_id = (int) $actor_id;
-            } else {
-                $actor_id = null;
-            }
-        }
-    }
+    $resolved_actor = lupo_channels_api_resolve_effective_actor($db, $channel_id);
+    $actor_id = isset($resolved_actor['actor_id']) ? (int) $resolved_actor['actor_id'] : 0;
 
     if (!$actor_id || $actor_id <= 0) {
         lupo_channels_api_log_security_event('unauthorized', $channel_id, null);

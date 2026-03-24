@@ -1,20 +1,29 @@
 ---
 lupopedia.headers:
-  lupopedia.version: "4.0.80"
-  lupopedia.schema: "documentation"
-  system_version: "4.0.80"
-  file_path_from_root: "lupo-docs/database/lupopedia/tables/active/auth/lupo_auth_audit_log.md"
-  web_path: "http://www.lupopedia.com/lupo-docs/database/lupopedia/tables/active/auth/lupo_auth_audit_log"
-  last_modified_utc: "20260317"
+  lupopedia.schema: documentation
+  file_path_from_root: lupo-docs/database/lupopedia/tables/active/lupo_auth_audit_log.md
+  web_path: http://www.lupopedia.com/lupo-docs/database/lupopedia/tables/active/auth/lupo_auth_audit_log
+  last_modified_utc: '20260317'
   channel_id: 42
   actor_id: 102
-  actor_name: "hermes"
-  faucet_name: "cascade"
-  delegation_chain: "hermes:wolfie"
-  artifact_type: "documentation"
-  artifact_kind: "table_documentation"
-  purpose: "Documentation for lupo_auth_audit_log table - authentication event auditing"
-  tags: ["table_documentation", "auth", "4.0.80", "top_50"]
+  actor_name: hermes
+  faucet_name: cascade
+  delegation_chain: hermes:wolfie
+  artifact_type: documentation
+  artifact_kind: table_documentation
+  purpose: Documentation for lupo_auth_audit_log table - authentication event auditing
+  tags:
+  - table_documentation
+  - auth
+  - 4.0.80
+  - top_50
+  when_updated: '20260324174654'
+lupopedia:
+  footer:
+    last_verified: '20260324174654'
+    last_verified_by: cursor
+    last_verified_by_actor_id: 102
+    orchestrator: cursor:root
 ---
 
 # lupo_auth_audit_log.md

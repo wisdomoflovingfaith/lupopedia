@@ -1,4 +1,19 @@
 #!/usr/bin/env python3
+# lupopedia.headers:
+#   when_updated: "20260324175617"
+#   file_path_from_root: "lupo-scripts/generate_web_path.py"
+#   last_modified_utc: "20260324175617"
+#   channel_id: 42
+#   actor_id: 102
+#   actor_name: "cursor"
+#   delegation_chain: "cursor:root"
+#   artifact_type: "tooling"
+#   artifact_kind: "script"
+# lupopedia.footer:
+#   last_verified: "20260324175617"
+#   last_verified_by: "cursor"
+#   last_verified_by_actor_id: 102
+
 """
 Deterministically generate `web_path` from `file_path_from_root` for Markdown artifacts.
 
@@ -149,4 +164,3 @@ def main() -> int:
 
 if __name__ == "__main__":
     raise SystemExit(main())
-

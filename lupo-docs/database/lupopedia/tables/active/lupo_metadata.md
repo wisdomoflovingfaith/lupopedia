@@ -1,17 +1,27 @@
 ---
 lupopedia.headers:
-  lupopedia.version: "4.0.80"
-  lupopedia.schema: "table"
-  file_path_from_root: "lupo-docs/database/lupopedia/tables/active/metadata/lupo_metadata.md"
+  lupopedia.schema: table
+  file_path_from_root: lupo-docs/database/lupopedia/tables/active/lupo_metadata.md
   channel_id: 42
   actor_id: 102
-  actor_name: "hermes"
-  faucet_name: "cascade"
-  artifact_type: "table_documentation"
-  artifact_kind: "database_schema"
-  purpose: "Complete documentation for lupo_metadata table - unified metadata system"
-  tags: ["table_documentation", "metadata", "unified_system", "4.0.80"]
+  actor_name: hermes
+  faucet_name: cascade
+  artifact_type: table_documentation
+  artifact_kind: database_schema
+  purpose: Complete documentation for lupo_metadata table - unified metadata system
+  tags:
+  - table_documentation
+  - metadata
+  - unified_system
+  - 4.0.80
   created_ymdhis: 20260317172000
+  when_updated: '20260324174654'
+lupopedia:
+  footer:
+    last_verified: '20260324174654'
+    last_verified_by: cursor
+    last_verified_by_actor_id: 102
+    orchestrator: cursor:root
 ---
 
 # lupo_metadata - Unified Metadata System

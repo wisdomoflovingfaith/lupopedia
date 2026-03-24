@@ -1,42 +1,79 @@
 ---
 lupopedia.headers:
-  lupopedia.version: "4.0.75"
-  lupopedia.schema: "documentation"
-  file_path_from_root: "lupo-docs/database/lupopedia/tables/lupopedia_actors_collections_organization_reference.md"
-  system_version: "4.0.75"
+  lupopedia.schema: documentation
+  file_path_from_root: lupo-docs/database/lupopedia/tables/lupopedia_actors_collections_organization_reference.md
   channel_id: 42
   actor_id: 102
-  last_modified_utc: "20260315"
-  artifact_type: "schema_reference"
-  artifact_kind: "documentation"
-  purpose: "Canonical TOON structure reference for actor, collection, and organization tables with implementation doctrine constraints."
-  traits: ["canonical", "schema_reference", "toon_aligned", "implementation_aware", "v4.0.75"]
-  tags: ["database", "toon", "actors", "collections", "channels", "federation", "doctrine"]
-  lupo_agent: "cursor"
-
+  last_modified_utc: '20260315'
+  artifact_type: schema_reference
+  artifact_kind: documentation
+  purpose: Canonical TOON structure reference for actor, collection, and organization
+    tables with implementation doctrine constraints.
+  traits:
+  - canonical
+  - schema_reference
+  - toon_aligned
+  - implementation_aware
+  - v4.0.75
+  tags:
+  - database
+  - toon
+  - actors
+  - collections
+  - channels
+  - federation
+  - doctrine
+  lupo_agent: cursor
+  when_updated: '20260324174654'
 lupopedia.edges:
   outbound_edges:
-    - { to: "lupo-database/lupopedia/mysql/install/install_new_lupopedia.sql", type: "references", weight: 1.0 }
-    - { to: "lupo-database/lupopedia/toon/", type: "references", weight: 1.0 }
-    - { to: "lupo-docs/database/lupopedia/tables/active/lupo_actors.md", type: "references", weight: 0.95 }
-    - { to: "lupo-docs/database/lupopedia/tables/active/lupo_collections.md", type: "references", weight: 0.95 }
-    - { to: "lupo-docs/database/lupopedia/tables/active/lupo_channels.md", type: "references", weight: 0.95 }
-    - { to: "lupo-docs/database/lupopedia/tables/active/lupo_sessions.md", type: "references", weight: 0.9 }
-    - { to: "lupo-docs/database/lupopedia/tables/active/lupo_registry.md", type: "references", weight: 0.95 }
-    - { to: "lupo-docs/doctrine/DATABASE_DOCTRINE.md", type: "references", weight: 1.0 }
-    - { to: "lupo-docs/doctrine/COLLECTIONS_DOCTRINE.md", type: "references", weight: 0.95 }
-    - { to: "lupo-docs/doctrine/FEDERATION_SCOPING_DOCTRINE.md", type: "references", weight: 0.95 }
-    - { to: "lupo-docs/doctrine/SESSION_DOCTRINE.md", type: "references", weight: 0.9 }
-    - { to: "lupo-docs/ACTOR_REGISTRATION_CHECKLIST.md", type: "references", weight: 0.95 }
-    - { to: "lupo-docs/ACTOR_FORENSIC_LOGGING_AND_COLLECTIONS_INTELLIGENCE_PLAN.md", type: "references", weight: 0.9 }
-
+  - to: lupo-database/lupopedia/mysql/install/install_new_lupopedia.sql
+    type: references
+    weight: 1.0
+  - to: lupo-database/lupopedia/toon/
+    type: references
+    weight: 1.0
+  - to: lupo-docs/database/lupopedia/tables/active/lupo_actors.md
+    type: references
+    weight: 0.95
+  - to: lupo-docs/database/lupopedia/tables/active/lupo_collections.md
+    type: references
+    weight: 0.95
+  - to: lupo-docs/database/lupopedia/tables/active/lupo_channels.md
+    type: references
+    weight: 0.95
+  - to: lupo-docs/database/lupopedia/tables/active/lupo_sessions.md
+    type: references
+    weight: 0.9
+  - to: lupo-docs/database/lupopedia/tables/active/lupo_registry.md
+    type: references
+    weight: 0.95
+  - to: lupo-docs/doctrine/DATABASE_DOCTRINE.md
+    type: references
+    weight: 1.0
+  - to: lupo-docs/doctrine/COLLECTIONS_DOCTRINE.md
+    type: references
+    weight: 0.95
+  - to: lupo-docs/doctrine/FEDERATION_SCOPING_DOCTRINE.md
+    type: references
+    weight: 0.95
+  - to: lupo-docs/doctrine/SESSION_DOCTRINE.md
+    type: references
+    weight: 0.9
+  - to: lupo-docs/ACTOR_REGISTRATION_CHECKLIST.md
+    type: references
+    weight: 0.95
+  - to: lupo-docs/ACTOR_FORENSIC_LOGGING_AND_COLLECTIONS_INTELLIGENCE_PLAN.md
+    type: references
+    weight: 0.9
 lupopedia.footer:
-  version: "4.0.75"
-  last_verified: "20260315"
-  last_verified_by: "cursor"
-  orchestrator: "cursor"
+  last_verified: '20260315000000'
+  last_verified_by: cursor
+  orchestrator: cursor
   next_action:
-    - "Update this reference when install SQL or TOON schemas change in actor, collection, or organization domains."
+  - Update this reference when install SQL or TOON schemas change in actor, collection,
+    or organization domains.
+  last_verified_by_actor_id: 102
 ---
 
 # Lupopedia Actors, Collections, and Organization Reference
