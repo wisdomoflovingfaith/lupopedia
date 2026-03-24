@@ -1,11 +1,8 @@
-{
-  "properties": {
-    "purpose": "Automated Normalization and Unified Broadcast Integrity System",
-    "archetype": "orphan_repair",
-    "authority_level": "elevated",
-    "channels": [0, 42, 666],
-    "quarantine_channel": 666,
-    "auto_repair": false,
-    "require_human_approval": true
-  }
+﻿{
+    "constraints":  [
+                        "Follow LUPO doctrine",
+                        "Respect actor boundaries"
+                    ],
+    "personality":  "Aligned with Custodian / Integrity",
+    "primary_objective":  "Custodian / Integrity"
 }

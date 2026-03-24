@@ -2,7 +2,7 @@
 lupopedia.headers:
   version_when_written: "4.0.85"
   file_path_from_root: "CHANGELOG.md"
-  last_modified_utc: "20260322"
+  last_modified_utc: "20260324"
   channel_id: 42
   thread_id: 1047
   actor_id: 1
@@ -38,6 +38,22 @@ See lupo-docs/versions/4.0.85/ for structured changes.
 ### Authority statement
 - For 4.0.85+, version-folder documentation is authoritative.
 - Root-level summaries must not duplicate or override version-folder records.
+
+## [4.0.86] - 20260324
+
+For version 4.0.86, this root changelog is an index only.
+
+Authoritative multi-agent history is in:
+
+- `lupo-docs/versions/4.0.86/CHANGELOG.md`
+- `lupo-docs/versions/4.0.86/TASK_REGISTRY.md`
+- `lupo-docs/versions/4.0.86/thread_artifacts_20260323.md`
+
+This includes work across agents/personas (for example WOLFIE, HEPHAESTUS, LILITH, WINDSURF, JUNIE) and channel-scoped outputs.
+
+Junie-specific consolidation changes for 4.0.86 are tracked in:
+
+- `lupo-docs/versions/4.0.86/CHANGELOG.md` under "Junie Root and Header Consolidation (Channel 42)".
 
 ## [4.0.85] - 20260322
 - Transition point: 4.0.85 introduces the version-directory governance model.
@@ -789,5 +805,3 @@ Index for strategy + prompt-closure work; **root [plan.md](plan.md)** and **[tas
 - DB-primary channel ingestion + external read.
 - Artefact auto-heal and UI channel visualization.
 - Table-doc path dedupe (`tables/active/projects/` duplicates).
-
-

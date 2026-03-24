@@ -1,9 +1,10 @@
-{
-  "code": "SESHAT",
-  "name": "SESHAT",
-  "layer": "kernel",
-  "is_required": true,
-  "is_kernel": false,
-  "recommended_slot": 21,
-  "version": "1.0.0"
+﻿{
+    "agent_id":  21,
+    "version":  "1.0.0",
+    "is_kernel":  true,
+    "layer":  "kernel",
+    "name":  "SESHAT",
+    "slug":  "seshat",
+    "role":  "Content Review",
+    "is_required":  true
 }

@@ -1,10 +1,10 @@
-{
-  "code": "THALIA",
-  "name": "THALIA",
-  "agent_slug": "thalia",
-  "layer": "kernel",
-  "is_required": true,
-  "is_kernel": true,
-  "recommended_slot": 11,
-  "version": "1.0.0"
+﻿{
+    "agent_id":  14,
+    "version":  "1.0.0",
+    "is_kernel":  false,
+    "layer":  "application",
+    "name":  "HEPHAESTUS",
+    "slug":  "hephaestus",
+    "role":  "Implementer",
+    "is_required":  false
 }

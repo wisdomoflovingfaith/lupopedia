@@ -11,7 +11,13 @@
  */
 
 // Bootstrap
-require_once dirname(__DIR__) . '/../lupo-config/lupo-config.php';
+require_once dirname(__DIR__, 2) . '/lupopedia-config.php';
+
+try {
+    $db = DatabaseFactory::getConnection();
+} catch (Exception $e) {
+    die("Database connection failed: " . $e->getMessage());
+}
 
 // Get channel ID from URL
 $channel_id = isset($_GET['id']) ? (int)$_GET['id'] : 0;

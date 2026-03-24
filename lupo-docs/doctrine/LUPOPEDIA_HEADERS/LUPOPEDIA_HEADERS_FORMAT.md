@@ -5,19 +5,20 @@ lupopedia.headers:
   file_path_from_root: "lupo-docs/doctrine/LUPOPEDIA_HEADERS/LUPOPEDIA_HEADERS_FORMAT.md"
   web_path: "http://www.lupopedia.com/doctrine/LUPOPEDIA_HEADERS/LUPOPEDIA_HEADERS_FORMAT"
   title: "LUPOPEDIA HEADERS Format"
-  delegation_chain: "cursor:root"
+  delegation_chain: "junie:root"
   artifact_type: "doctrine"
   artifact_kind: "reference"
+  namespace: "governance"
 lupopedia.footer:
-  last_verified: "20260320"
-  last_verified_by: "cursor"
-  orchestrator: "cursor"
+  last_verified: "20260324"
+  last_verified_by: "junie"
+  orchestrator: "junie:root"
   next_action:
-    - "Apply next_action and orchestrator to all files with lupopedia.footer"
-    - "Validate LUPOPEDIA HEADERS consistency across doctrine files"
-    - "Update FLARE_HEADERS_COMPLETE_REFERENCE footer example with orchestrator"
+    - "Integrate verification guide into agent system prompts"
+    - "Update footer examples across all doctrine files to use junie"
+    - "Point agents to VERIFICATION_GUIDE.md for correctness audits"
 ---
-# file: LUPOPEDIA HEADERS Format — delegation: cursor:root — web_path: http://www.lupopedia.com/doctrine/LUPOPEDIA_HEADERS/LUPOPEDIA_HEADERS_FORMAT
+# file: LUPOPEDIA HEADERS Format — delegation: junie:root — web_path: http://www.lupopedia.com/doctrine/LUPOPEDIA_HEADERS/LUPOPEDIA_HEADERS_FORMAT
 
 # LUPOPEDIA HEADERS — File format and version rule
 
@@ -35,7 +36,39 @@ Apply this principle:
 - **Ordinary documentation artifacts** (doctrine/spec/foundation/status) should keep handwritten headers **stable and human-authored** (identity + intent). Do not teach dynamic relationship/usage/engagement blocks as universal defaults.
 - **Active table documentation** (`lupo-docs/database/lupopedia/tables/active/*.md`) is the special exception: it must include a **verbose `Lupopedia.edges`** mapping surface, grounded in real repository evidence (PHP/Python/schema/seed/install SQL usage).
 
-## 1. Markdown file structure
+## 1. Version Semantics Model (4.0.84+)
+
+Lupopedia 4.0.84+ separates **authorship/baseline history** from **freshness** and **validation status**.
+
+### 1.1 Canonical Version Triad
+
+| Field | Meaning | Scope | Rule |
+|-------|---------|-------|------|
+| **`version_when_written`** | **Historical artifact authorship / baseline era.** Represents the Lupopedia version context when the artifact was originally authored OR baseline-rewritten (e.g. pre-4.0.84 → 4.0.84+). | Authorship / Intent | **STABLE.** MUST NOT change on routine edits. ONLY changes when crossing a doctrinal baseline boundary OR explicit full re-authoring of the artifact. |
+| **`last_modified_utc`** | **Latest meaningful modification.** Records the last time any part of the header OR body was changed. | Freshness | **DYNAMIC.** Used for freshness indicators. Optional but recommended. DOES NOT affect `version_when_written`. |
+| **`lupopedia.footer.last_verified`** | **Latest human/agent verification.** Records the last time the artifact was audited or verified for correctness. | Trust / Integrity | **CADENCE-DRIVEN.** Independent of authorship and modification. Used for trust and validation cadence. |
+
+### 1.2 What `version_when_written` is NOT
+
+To ensure semantic integrity, remember that `version_when_written` is:
+
+- **NOT** a freshness indicator.
+- **NOT** the current system version (which is always in `LUPEDIA_VERSION`).
+- **NOT** updated on every save.
+- **NOT** tied to git commits or filesystem timestamps.
+- **NOT** a replacement for `last_modified_utc`.
+- **NOT** a validation signal.
+
+### 1.3 Semantic Integrity Principle (ROSE Alignment)
+
+`version_when_written` preserves **artifact-era meaning**, not system state. This aligns with ROSE doctrine:
+- Preserve meaning first.
+- Avoid multi-purpose fields.
+- Ensure one field = one responsibility.
+
+---
+
+## 2. Markdown file structure
 
 The **first line** of the file MUST be:
 
@@ -94,40 +127,44 @@ Then the **identity line** as the first line of the body:
 
 ---
 
-## 2. **Required fields (in lupopedia.headers)**
+## 3. Required fields (in lupopedia.headers)
 
-### 2.0 Baseline rewrite on write (4.0.84+)
+### 3.1 Baseline Rewrite Rule (STRICT)
 
-When you **save** changes to a file that uses LUPOPEDIA HEADERS, you MUST **rewrite** the `lupopedia.headers` block (and strip deprecated keys) if **any** of the following is true:
+A rewrite of `lupopedia.headers` (specifically updating `version_when_written`) occurs ONLY when crossing a doctrinal baseline.
 
-- **`version_when_written`** is missing, **or**
-- It names a system version **strictly before 4.0.84** (for `4.0.PATCH`, compare **PATCH** numerically — e.g. `4.0.83` is below baseline; do not use naive string compare on patch), **or**
+**A rewrite is REQUIRED if:**
+
+- **`version_when_written`** is missing, **OR**
+- It names a system version **strictly before 4.0.84**, **OR**
 - **`lupopedia.headers`** still contains deprecated version keys: `lupopedia.version`, `system_version`, `last_verified_system_version`, or standalone `version`.
 
-**On that rewrite:** set **`version_when_written`** to the **current** system version (read **`LUPEDIA_VERSION`** / canonical atoms at rewrite time), set **`file_path_from_root`** correctly, remove deprecated keys, and keep other optional fields per §2. Follow the same expectations documented in **[directives.md](../../../directives.md)** (§ *LUPOPEDIA HEADERS baseline rewrite*) and **[lupo-rules/root/LUPOPEDIA_HEADERS_VERSION_BASELINE_REWRITE_RULE.md](../../../lupo-rules/root/LUPOPEDIA_HEADERS_VERSION_BASELINE_REWRITE_RULE.md)**.
+**ON REWRITE:**
+- Set **`version_when_written`** to the **current** system version (read **`LUPEDIA_VERSION`**).
+- Remove all deprecated keys.
+- Ensure **`file_path_from_root`** is accurate.
 
-**Baseline eligibility is determined ONLY by**:
-- presence/absence of deprecated version keys inside `lupopedia.headers` (including forbidden `lupopedia.version` / `system_version` / `last_verified_system_version` / standalone `version`), and
-- whether `version_when_written` is **≥ 4.0.84**.
-
-`last_modified_utc` is **not** part of baseline eligibility. It is used only for human/readability and “header freshness” convenience when present.
-
-For dependency tracking and change detection driven by headers, **treat `last_modified_utc` as authoritative for header updates when present**. Do **not** assume it is synchronized with filesystem timestamps or git commit times.
-
-**After** the artifact is on the **4.0.84+** model, treat **`version_when_written`** as **stable** for normal edits: do not bump it on every touch; use **`last_modified_utc`** (optional) and **`lupopedia.footer`** for verification cadence unless a new doctrine baseline explicitly requires re-stamping (which still keys off the same eligibility conditions above).
+**AFTER REWRITE:**
+- **`version_when_written`** becomes **STABLE**.
+- **DO NOT** update it on normal edits, even if the system version has since increased.
+- Use **`last_modified_utc`** (optional) and **`lupopedia.footer`** for tracking changes and verification.
 
 ---
 
 **Minimum (always):**
 
-- **`version_when_written`** — System version when this header generation was written (e.g. `"4.0.84"`). This is the **only** canonical version field in `lupopedia.headers`. Do **not** use `lupopedia.version`, `system_version`, `last_verified_system_version`, or a standalone `version` key here. **§2.0** overrides “never change” for the **pre-4.0.84 migration** case: a mandatory rewrite **replaces** the old value with the current system version.
+- **`version_when_written`** — Historical context version (e.g. `"4.0.84"`). This is the **only** canonical version field in `lupopedia.headers`. Do **not** use `lupopedia.version`, `system_version`, `last_verified_system_version`, or a standalone `version` key here.
 - **`file_path_from_root`** — Path from repository root (REQUIRED).
+- **`web_path`** — Canonical web URL for the artifact (OPTIONAL). When present, it MUST be a fully qualified URL (including protocol and domain). 
+  - **Path construction rule:** Because Lupopedia is always installed in a subdirectory (never at the web root), the `web_path` MUST include the `LUPOPEDIA_BASE_URL` (defined in `lupopedia-config.php`).
+  - **Example:** If `LUPOPEDIA_BASE_URL` is `/lupopedia/` and the file is `README.md`, the `web_path` would be `http://www.lupopedia.com/lupopedia/README`.
+  - **Implicit suffixing:** Do not include `.md` or `.php` extensions in the `web_path` unless the target is a physical file that is not routed through the semantic OS.
 
 **Conditional:**
 
 - **`content_id`** — Present when the file is **actually** imported into **`lupo_content`** (or otherwise database-managed as content). Handwritten doctrine and repo files usually **omit** it; tooling may add it on import.
 
-**Optional / conditional (unchanged):** `lupopedia.schema`, `web_path`, `last_modified_utc`, `channel_id`, `actor_id`, `delegation_chain`, `artifact_type`, `artifact_kind`, `purpose`, `tags`, `namespace`, etc. For **table documentation**, **`namespace`** is **required** (approved taxonomy). Optional: `actor_name`, `mood_rgb`, `traits`, `lupo_agent`, `agent_name_identity`. **Session-related fields** (e.g. `session_id`, `session_name`) belong in **`lupopedia.session`**, not in `lupopedia.headers`.
+**Optional / conditional (unchanged):** `lupopedia.schema`, `last_modified_utc`, `channel_id`, `actor_id`, `delegation_chain`, `artifact_type`, `artifact_kind`, `purpose`, `tags`, `namespace`, etc. For **table documentation**, **`namespace`** is **required** (approved taxonomy). Optional: `actor_name`, `mood_rgb`, `traits`, `lupo_agent`, `agent_name_identity`. **Session-related fields** (e.g. `session_id`, `session_name`) belong in **`lupopedia.session`**, not in `lupopedia.headers`.
 
 **After first publication:** Prefer **`last_modified_utc`** (optional) and **`lupopedia.footer`** verification fields for “header freshness” when present. If `last_modified_utc` is absent, tooling may fall back to filesystem timestamps for convenience; **never** treat filesystem timestamps as baseline eligibility.
 
@@ -145,6 +182,24 @@ For dependency tracking and change detection driven by headers, **treat `last_mo
 ### 2.1 Namespace (lupopedia.headers)
 
 **`namespace`** is a first-class field in **`lupopedia.headers`**. It classifies the artifact for logical grouping, discovery, and jurisdiction. Namespace is **node-local by default**; federation-wide namespace mapping is future-facing and not required in 4.0.78.
+
+#### 2.1.1 Distinction from PHP Namespace (MANDATORY)
+
+Do not confuse the `namespace` header with the PHP `namespace` keyword. They are independent and serve different purposes:
+
+- **Header `namespace`:** A metadata string in YAML front matter used to classify the **artifact** (the file) within the Lupopedia semantic graph. It is used for validation policy, access control, and doctrinal grouping.
+- **PHP `namespace`:** A language feature in PHP source code used to organize **classes and functions** into logical hierarchies to avoid name collisions.
+
+**Rule:** The presence of a `namespace` in the headers does not imply or require a matching PHP namespace in the code, and vice versa.
+
+| Aspect | Header Namespace | PHP Namespace |
+|--------|------------------|---------------|
+| **Format** | YAML key in `lupopedia.headers` block | PHP keyword at top of `.php` file |
+| **Value** | Single lowercase word from taxonomy | Dotted or backslashed hierarchy |
+| **Scope** | Artifact (file-level) metadata | Code (symbol-level) organization |
+| **Authority** | LUPOPEDIA HEADERS doctrine | PHP language specification |
+
+#### 2.1.2 Namespace Rules
 
 | Aspect | Rule |
 |--------|------|
@@ -172,7 +227,7 @@ Session information MUST be in a separate block **`lupopedia.session`**, not in 
 
 | Block | Purpose |
 |-------|--------|
-| **lupopedia.headers** | Canonical artifact metadata (identity, **`version_when_written`**, channel, purpose). |
+| **lupopedia.headers** | Canonical artifact metadata (identity, **`version_when_written`** (historical authorship/baseline era), channel, purpose). |
 | **lupopedia.session** | Runtime execution context (session, actor, faucet, environment). |
 
 Agents SHOULD assume: **headers = artifact metadata**; **session = runtime context**. By default, **session state is read from the active runtime**, not from the file. Normally only **lupopedia.headers** is written into artifact files; runtime state comes from the active session or from the database.
@@ -392,19 +447,18 @@ lupopedia.engagement:
 
 ---
 
-## 3. Version rule (4.0.69+)
+## 4. Version rule (4.0.84+)
 
-- **New or modified** metadata-bearing Markdown from **4.0.69+** onward MUST use LUPOPEDIA HEADERS rules and this format.
+- **New or modified** metadata-bearing Markdown from **4.0.84+** onward MUST use LUPOPEDIA HEADERS rules and the Version Semantics Model defined in **§1**.
 
 Threshold summary:
-- **LUPOPEDIA HEADERS format rules** apply from **4.0.69+**
 - **Baseline rewrite-on-write enforcement** applies from **4.0.84+**
 - **Existing FLARE-headed** files remain valid until migrated; validators MUST accept both during transition.
 - Canonical storage is `lupo_metadata`; migration is incremental.
 
 ---
 
-## 4. Database and channel resolution
+## 5. Database and channel resolution
 
 Headers can be attached by:
 
@@ -416,25 +470,28 @@ Resolution and validators MUST support channel-aware lookup.
 
 ---
 
-## 5. lupopedia.footer and required metadata (required when footer is present)
+## 6. lupopedia.footer and required metadata (required when footer is present)
 
 When a file includes a **`lupopedia.footer`** block, it MUST include **`orchestrator:`**, **`last_verified_by:`**, **`next_action:`**, and **`last_verified:`**. See required fields below.
 
+Verification of an artifact involves auditing it against the **[VERIFICATION_GUIDE.md](./VERIFICATION_GUIDE.md)** to ensure doctrine compliance and ground truth accuracy.
+
 **Required footer fields:**
 
-- **`orchestrator:`** — Actor or delegation chain that orchestrated last update (e.g. `"cursor"`, `"wolfie:root"`).
-- **`last_verified_by:`** — Actor or faucet that verified the artifact.
+- **`orchestrator:`** — Actor or delegation chain that orchestrated the last update (e.g. `"junie"`, `"wolfie:root"`).
+- **`last_verified_by:`** — Actor or faucet that verified the artifact (e.g., `"junie"`, `"cursor"`). Verification implies a check against the `VERIFICATION_GUIDE.md`.
 - **`next_action:`** — YAML list of 1–3 contextual, forward-looking strings; no version jumps beyond current release.
-- **`last_verified:`** is REQUIRED when `lupopedia.footer` is present.
-- **Note:** Do not use a **`version`** key in `lupopedia.footer` for system or header schema version; read current system version from **`LUPEDIA_VERSION`** / runtime atoms when needed.
+- **`last_verified:`** — REQUIRED when `lupopedia.footer` is present. Format: `YYYYMMDD`.
 
-**Example:**
+**Note:** Do not use a **`version`** key in `lupopedia.footer` for system or header schema version; read current system version from **`LUPEDIA_VERSION`** / runtime atoms when needed.
+
+**Example (using Junie Actor 108):**
 
 ```yaml
 lupopedia.footer:
-  last_verified: "20260320"
-  last_verified_by: "cursor"
-  orchestrator: "cursor"
+  last_verified: "20260324"
+  last_verified_by: "junie"
+  orchestrator: "junie:root"
   next_action:
     - "Review related TOON definitions for schema alignment"
     - "Validate LUPOPEDIA HEADERS consistency across sibling files"

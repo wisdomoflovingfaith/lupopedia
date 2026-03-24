@@ -1,14 +1,5 @@
-{
-  "capabilities": [
-    "orchestration",
-    "coordination",
-    "continuity_maintenance",
-    "handoff_management",
-    "doctrine_enforcement",
-    "channel_coordination",
-    "agent_liaison",
-    "system_integrity",
-    "cross_agent_integration",
-    "workflow_orchestration"
-  ]
+﻿{
+    "capabilities":  [
+                         "orchestrator"
+                     ]
 }

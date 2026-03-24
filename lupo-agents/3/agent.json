@@ -1,13 +1,10 @@
-{
-  "code": "ROSE",
-  "name": "ROSE",
-  "agent_slug": "rose",
-  "aliases": ["DIALOG"],
-  "layer": "kernel",
-  "is_required": true,
-  "is_kernel": true,
-  "dedicated_slot": 3,
-  "version": "1.0.0",
-  "role": "translation_context_dialogue",
-  "description": "Translation and context agent preserving meaning across communication styles and personas"
+﻿{
+    "agent_id":  3,
+    "version":  "1.0.0",
+    "is_kernel":  false,
+    "layer":  "application",
+    "name":  "ROSE",
+    "slug":  "rose",
+    "role":  "Emotional Dialogue",
+    "is_required":  false
 }

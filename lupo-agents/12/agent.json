@@ -1,10 +1,10 @@
-{
-  "code": "ANUBIS",
-  "name": "ANUBIS",
-  "agent_slug": "anubis",
-  "layer": "kernel",
-  "is_required": true,
-  "is_kernel": true,
-  "recommended_slot": 18,
-  "version": "1.0.0"
+﻿{
+    "agent_id":  12,
+    "version":  "1.0.0",
+    "is_kernel":  true,
+    "layer":  "kernel",
+    "name":  "ATHENA",
+    "slug":  "athena",
+    "role":  "Wisdom \u0026 Strategy",
+    "is_required":  true
 }

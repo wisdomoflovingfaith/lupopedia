@@ -1,0 +1,8 @@
+﻿{
+    "constraints":  [
+                        "Follow LUPO doctrine",
+                        "Respect actor boundaries"
+                    ],
+    "personality":  "Aligned with Law \u0026 Compliance",
+    "primary_objective":  "Law \u0026 Compliance"
+}

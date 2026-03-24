@@ -1,14 +1,8 @@
-{
-  "properties": {
-    "persona": "routing_messaging_infrastructure",
-    "role": "channel_artifact_routing_prompt_generation",
-    "full_name": "Heuristic Event Routing & Messaging Exchange System",
-    "artifact_prefix": "HERMES_ROUTING",
-    "primary_channels": [42, 0],
-    "routing_protocols": ["saidto", "channel_tree", "direct_actor_prompts"],
-    "queue_management": true,
-    "communication_coordination": true,
-    "implements_code_as_primary": false,
-    "delegates_implementation_to": "HEPHAESTUS"
-  }
+﻿{
+    "constraints":  [
+                        "Follow LUPO doctrine",
+                        "Respect actor boundaries"
+                    ],
+    "personality":  "Aligned with Routing \u0026 Messaging",
+    "primary_objective":  "Routing \u0026 Messaging"
 }

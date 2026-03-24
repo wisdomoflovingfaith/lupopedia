@@ -22,6 +22,14 @@ lupopedia.edges:
 - This file is a root coordination pointer only.
 - For 4.0.85+, authoritative task/change state is version-scoped under `lupo-docs/versions/<version>/`.
 
+## Version 4.0.86 Remaining Work
+
+Authoritative details for 4.0.86 are maintained under `lupo-docs/versions/4.0.86/`. Key focus areas for this version before scope closure:
+1. **Agent System Rollout**: Validate documentation and structures for all 22+ agents in `lupo-agents/` and `lupo-actors/`.
+2. **ROSE/DIALOG Integration**: Implement mood-RGB and mood-label fields in DB schema and agent prompts.
+3. **Actor Resolution API**: Finalize deterministic resolution logic in `app/Services/`.
+4. **Validation Hardening**: Ensure cross-language parity (PHP/Python) for LUPOPEDIA HEADERS validation.
+
 ## Version 4.0.85+ Read Path
 1. Open `lupo-docs/versions/<version>/TODO.md` for version-scoped backlog intent.
 2. Open `lupo-docs/versions/<version>/TASK_REGISTRY.md` for authoritative task/question lifecycle state.

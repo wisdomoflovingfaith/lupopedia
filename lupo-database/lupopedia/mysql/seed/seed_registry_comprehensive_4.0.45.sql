@@ -32,16 +32,16 @@ VALUES
 -- IDE Agents (1000-1999)
 INSERT INTO lupo_registry (registry_id, entity_type, entity_index_id, entity_index, federation_node_id, reserved_ymdhis, entity_key, entity_name, entity_table, created_ymdhis, updated_ymdhis, is_deleted, is_active, is_kernel, metadata_json)
 VALUES
-(9001000, 'actor', 1000, 1000, 1, @now, 'kiro-ide', 'Kiro IDE', 'lupo_actors', @now, @now, 0, 1, 0, '{"actor_type":"ide_agent","client_id":"kiro","provider":"kiro","paired_actor_id":10000}'),
-(9001001, 'actor', 1001, 1001, 1, @now, 'windsurf-ide', 'Windsurf IDE', 'lupo_actors', @now, @now, 0, 1, 0, '{"actor_type":"ide_agent","client_id":"windsurf","provider":"windsurf","paired_actor_id":10000}'),
-(9001002, 'actor', 1002, 1002, 1, @now, 'cursor-ide', 'Cursor IDE', 'lupo_actors', @now, @now, 0, 1, 0, '{"actor_type":"ide_agent","client_id":"cursor","provider":"cursor","paired_actor_id":10000}'),
-(9001003, 'actor', 1003, 1003, 1, @now, 'antigravity-ide', 'Antigravity IDE', 'lupo_actors', @now, @now, 0, 1, 0, '{"actor_type":"ide_agent","client_id":"antigravity","provider":"antigravity","paired_actor_id":10000}'),
-(9001004, 'actor', 1004, 1004, 1, @now, 'warp-ide', 'Warp IDE', 'lupo_actors', @now, @now, 0, 1, 0, '{"actor_type":"ide_agent","client_id":"warp","provider":"warp","paired_actor_id":10000}'),
-(9001005, 'actor', 1005, 1005, 1, @now, 'cascade-ide', 'Cascade IDE', 'lupo_actors', @now, @now, 0, 1, 0, '{"actor_type":"ide_agent","client_id":"cascade","provider":"cascade","paired_actor_id":10000}');
+(9001000, 'actor', 1000, 1000, 1, @now, 'kiro-ide', 'Kiro IDE', 'lupo_actors', @now, @now, 0, 1, 0, '{"actor_type":"ide_agent","client_id":"kiro","provider":"kiro","paired_actor_id":0}'),
+(9001001, 'actor', 1001, 1001, 1, @now, 'windsurf-ide', 'Windsurf IDE', 'lupo_actors', @now, @now, 0, 1, 0, '{"actor_type":"ide_agent","client_id":"windsurf","provider":"windsurf","paired_actor_id":0}'),
+(9001002, 'actor', 1002, 1002, 1, @now, 'cursor-ide', 'Cursor IDE', 'lupo_actors', @now, @now, 0, 1, 0, '{"actor_type":"ide_agent","client_id":"cursor","provider":"cursor","paired_actor_id":0}'),
+(9001003, 'actor', 1003, 1003, 1, @now, 'antigravity-ide', 'Antigravity IDE', 'lupo_actors', @now, @now, 0, 1, 0, '{"actor_type":"ide_agent","client_id":"antigravity","provider":"antigravity","paired_actor_id":0}'),
+(9001004, 'actor', 1004, 1004, 1, @now, 'warp-ide', 'Warp IDE', 'lupo_actors', @now, @now, 0, 1, 0, '{"actor_type":"ide_agent","client_id":"warp","provider":"warp","paired_actor_id":0}'),
+(9001005, 'actor', 1005, 1005, 1, @now, 'cascade-ide', 'Cascade IDE', 'lupo_actors', @now, @now, 0, 1, 0, '{"actor_type":"ide_agent","client_id":"cascade","provider":"cascade","paired_actor_id":0}');
 
--- Root user (ID: 10000)
+-- Root user (ID: 0)
 INSERT INTO lupo_registry (registry_id, entity_type, entity_index_id, entity_index, federation_node_id, reserved_ymdhis, entity_key, entity_name, entity_table, created_ymdhis, updated_ymdhis, is_deleted, is_active, is_kernel, metadata_json)
-VALUES (9010000, 'actor', 10000, 10000, 1, @now, 'root-10000', 'Root', 'lupo_actors', @now, @now, 0, 1, 1, '{"actor_type":"human","role":"root_admin","full_access":true}');
+VALUES (9010000, 'actor', 0, 0, 1, @now, 'root-0', 'Root', 'lupo_actors', @now, @now, 0, 1, 1, '{"actor_type":"human","role":"root_admin","full_access":true}');
 
 -- ============================================================================
 -- PART 2: RESERVED CHANNELS

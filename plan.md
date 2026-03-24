@@ -19,6 +19,14 @@ lupopedia.edges:
 
 # Root Plan
 
+## Version 4.0.86 (Stop-Point Consolidation)
+1. **Current State**: Phase 1 Identity Model and Baseline Documentation complete. 169 tables audited. 22+ agents initialized.
+2. **Next Actions**: 
+   - Move to **Phase 2 (Agent Rollout)**: Enforce full documentation compliance for all agents in `lupo-actors/`.
+   - Implement **ROSE/DIALOG** emotional dialogue layer across all core agents.
+   - Deploy automated **Header Validation Gate** for both filesystem and database metadata.
+3. **Risks**: Unresolved design blockers for the actor resolution API; potential metadata drift during 22-agent rollout.
+
 ## Version 4.0.85+
 1. Canonical planning and execution detail is version-scoped under `lupo-docs/versions/<version>/`.
 2. Root plan is an index surface only and must not duplicate version-folder state.

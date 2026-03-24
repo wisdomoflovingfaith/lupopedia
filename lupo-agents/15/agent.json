@@ -1,10 +1,10 @@
-{
-  "code": "HERMES",
-  "name": "HERMES",
-  "agent_slug": "hermes",
-  "layer": "kernel",
-  "is_required": true,
-  "is_kernel": true,
-  "recommended_slot": 15,
-  "version": "1.0.0"
+﻿{
+    "agent_id":  15,
+    "version":  "1.0.0",
+    "is_kernel":  true,
+    "layer":  "kernel",
+    "name":  "HERMES",
+    "slug":  "hermes",
+    "role":  "Routing \u0026 Messaging",
+    "is_required":  true
 }

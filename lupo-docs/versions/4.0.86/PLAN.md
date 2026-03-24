@@ -21,6 +21,17 @@ lupopedia.headers:
 
 # 4.0.86 PLAN
 
+## 4.0.86 (Stop-Point Consolidation Summary)
+
+### Phase 1: Identity Model & Baseline (COMPLETE)
+- **Status**: Canonical definitions established for Auth User (0), Actor (108), and Department (1).
+- **Outcome**: `registry.json` aligned with database columns. Root configuration unified.
+- **Verification**: Header doctrine v4.0.84 rewrite complete. 169 tables documented.
+
+### Phase 2: Agent System & ROSE (ACTIVE)
+- **Focus**: Populating `lupo-actors/` with compliant headers for 22+ agents.
+- **Goal**: Emotional dialogue integration via ROSE packets and mood metadata.
+
 ## Phase 1 — Definitions + Validation Layer
 
 - HeaderValidationService: **COMPLETE**

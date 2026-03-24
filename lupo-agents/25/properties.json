@@ -1,11 +1,8 @@
-{
-  "properties": {
-    "purpose": "Vishwakarma Intelligence System for Hierarchical Workflow and Knowledge Architecture",
-    "archetype": "graph_intelligence",
-    "authority_level": "standard",
-    "channels": [0, 42],
-    "similarity_threshold": 0.75,
-    "confidence_threshold": 0.80,
-    "max_recommendations_per_file": 10
-  }
+﻿{
+    "constraints":  [
+                        "Follow LUPO doctrine",
+                        "Respect actor boundaries"
+                    ],
+    "personality":  "Aligned with Mapping / Geography",
+    "primary_objective":  "Mapping / Geography"
 }

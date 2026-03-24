@@ -2,7 +2,7 @@
 lupopedia.headers:
   version_when_written: "4.0.86"
   file_path_from_root: "lupo-docs/versions/4.0.86/CHANGELOG.md"
-  last_modified_utc: "20260323_111000"
+  last_modified_utc: "20260324_133141"
   channel_id: 42
   thread_id: "version-scope-lock"
   actor_id: 1
@@ -14,6 +14,20 @@ lupopedia.headers:
 ---
 
 # 4.0.86 CHANGELOG
+
+## Junie Root and Header Consolidation (Channel 42)
+
+- **Date**: 20260324
+- **Actor**: JUNIE (actor_id 108)
+- **Scope**: Root documentation consolidation, identity/header normalization, and contradiction cleanup aligned to 4.0.86.
+- **Changes**:
+  - Registered Junie in canonical actor registry with root department and auth mapping.
+  - Added `lupo-docs/doctrine/LUPOPEDIA_HEADERS/VERIFICATION_GUIDE.md` for header audit procedures.
+  - Consolidated root config authority to `lupopedia-config.php`.
+  - Rewrote root `README.md` to align with 4.0.86 identity/orchestration model.
+  - Normalized LUPOPEDIA HEADERS usage across core docs/table docs; removed deprecated header keys.
+  - Corrected subdirectory-aware `web_path` handling using `LUPOPEDIA_BASE_URL`.
+  - Resolved 58/59/60/61 identity contradictions (actor/agent/faucet boundaries).
 
 ## Identity Model Doctrine Lock (System-Wide)
 

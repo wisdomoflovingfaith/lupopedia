@@ -1,12 +1,5 @@
-{
-  "capabilities": [
-    "analyze_file_relationships",
-    "detect_semantic_similarity",
-    "recommend_edges",
-    "identify_duplicates",
-    "build_content_graph",
-    "generate_visualizations",
-    "calculate_similarity_scores",
-    "find_related_documents"
-  ]
+﻿{
+    "capabilities":  [
+                         "mapping_/_geography"
+                     ]
 }

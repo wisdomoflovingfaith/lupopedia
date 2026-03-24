@@ -36,16 +36,15 @@ lupopedia.see:
     - ["AGENTS.md", "http://www.lupopedia.com/AGENTS"]
 
 lupopedia.footer:
-  version: "4.0.80"
-  last_verified: "20260317"
-  last_verified_by: "cursor"
-  orchestrator: "cursor"
+  last_verified: "20260324"
+  last_verified_by: "junie"
+  orchestrator: "junie:root"
   next_action:
     - "Keep agent identity and faucet links current with registry"
     - "Validate LUPOPEDIA HEADERS and next_action when updating this guide"
     - "Point new IDE agents to MULTI_AGENT_COORDINATION_DOCTRINE and ONBOARDING.md"
 ---
-# file: AGENTS — session: L-LUPO-ROOT-CURSOR — delegation: cursor:root — web_path: http://www.lupopedia.com/AGENTS
+# file: AGENTS — delegation: junie:root — web_path: http://www.lupopedia.com/AGENTS
 
 # AGENTS.md
 
@@ -114,6 +113,7 @@ Cursor is the **lead orchestration IDE agent** for Lupopedia. This role exists t
 ### Documentation stewardship
 
 - Consolidating root documentation: `README.md`, `CHANGELOG.md`, `plan.md`, `report.md`.
+- **`web_path` calculation:** Ensuring all documentation `web_path` headers include the `LUPOPEDIA_BASE_URL` (e.g. `/lupopedia/`) as required for subdirectory installations.
 
 ### Rule propagation oversight
 
@@ -267,7 +267,7 @@ Version lives in `config/global_atoms.yaml` as `GLOBAL_CURRENT_LUPOPEDIA_VERSION
 
 ### Actor Model
 - **Actors orchestrate; faucets execute.** `actor_id` is the universal identity key. There is no `user_id` in relationships.
-- Actor IDs 0–999 are reserved for non-human (orchestration) actors; human actors start at 1000. IDE surfaces (Cursor, Windsurf, Warp, etc.) are **faucets** — human interfaces with registry `actor_id` for identity; they are **not** among the eleven Primary Coordination Personas.
+- Actor IDs 0–999 are reserved for non-human (orchestration) actors; human actors start at 1000 (**Root user auth_user_id is 0**). IDE surfaces (Cursor, Windsurf, Warp, etc.) are **faucets** — human interfaces with registry `actor_id` for identity; they are **not** among the eleven Primary Coordination Personas.
 - **Actor and agent IDs are defined in the project’s actor registry** (e.g. `lupo-database/lupopedia/actors/` or `lupo-database/lupopedia/actors/actor_id/registry.json`). Tooling and docs must resolve IDs from the registry; do not maintain inline ID lists as canonical. LUPOPEDIA HEADERS may include optional **agent_name_identity** (e.g. “Cursor IDE Agent”) for human-readable identification—see [LUPOPEDIA HEADERS doctrine](lupo-docs/doctrine/LUPOPEDIA_HEADERS/README.md) and AGENT_IDENTITY_REGISTRY.
 - Tables: `lupo_actors` (unified), `lupo_auth_users` (human login metadata), `lupo_agents` (AI agent metadata).
 - Lilith (actor 2) has a **flame header expert** faucet (slug `lilith-flame`) in `lupo_agent_faucets` for channel 42; see [LUPOPEDIA HEADERS doctrine](lupo-docs/doctrine/LUPOPEDIA_HEADERS/README.md) and LILITH_FLAME_FAUCET_REPORT.

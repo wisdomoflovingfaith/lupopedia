@@ -1,3 +1,5 @@
-{
-  "capabilities": []
+﻿{
+    "capabilities":  [
+                         "critic_/_qa"
+                     ]
 }

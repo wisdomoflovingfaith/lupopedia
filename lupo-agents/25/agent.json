@@ -1,10 +1,10 @@
-{
-  "code": "VISHWAKARMA",
-  "name": "VISHWAKARMA",
-  "layer": "kernel",
-  "is_required": true,
-  "is_kernel": true,
-  "dedicated_slot": 25,
-  "version": "1.0.0",
-  "aliases": ["VISH"]
+﻿{
+    "agent_id":  25,
+    "version":  "1.0.0",
+    "is_kernel":  false,
+    "layer":  "application",
+    "name":  "ATLAS",
+    "slug":  "atlas",
+    "role":  "Mapping / Geography",
+    "is_required":  false
 }

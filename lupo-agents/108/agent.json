@@ -1,0 +1,11 @@
+{
+  "agent_id": 108,
+  "slug": "junie",
+  "name": "Junie",
+  "provider": "JetBrains",
+  "capabilities": ["code_analysis", "project_management", "documentation"],
+  "layer": "application",
+  "is_required": false,
+  "is_kernel": false,
+  "version": "1.0.0"
+}

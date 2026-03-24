@@ -1,20 +1,20 @@
 ---
 lupopedia.headers:
-  lupopedia.version: "4.0.79"
+  version_when_written: "4.0.86"
   lupopedia.schema: "database_table"
-  system_version: "4.0.79"
   file_path_from_root: "lupo-docs/database/lupopedia/tables/active/lupo_auth_users.md"
-  web_path: "[lupo_auth_users](http://www.lupopedia.com/database/lupopedia/tables/active/lupo_auth_users)"
-  last_modified_utc: "20260317"
+  web_path: "http://www.lupopedia.com/database/lupopedia/tables/active/lupo_auth_users"
+  last_modified_utc: "20260324"
   channel_id: 42
-  actor_id: 102
-  actor_name: "cursor"
-  delegation_chain: "cursor:root"
+  actor_id: 108
+  actor_name: "junie"
+  faucet_name: "jetbrains"
+  delegation_chain: "junie:root"
   artifact_type: "table_documentation"
   artifact_kind: "table"
   namespace: "auth"
-  purpose: "Authentication and identity accounts for human operators and users; username, credentials, provider linkage, login metadata"
-  tags: ["database", "table", "auth"]
+  purpose: "Authentication accounts for physical human users; paired with Actors for orchestration (v4.0.86)"
+  tags: ["database", "table", "auth", "identity", "v4.0.86"]
 
 lupopedia.edges:
   comment: "Snapshot of edges for lupo_auth_users table doc at 4.0.79 (grounded by repo search; non-exhaustive)."
@@ -42,19 +42,19 @@ lupopedia.edges:
     - { to: "lupo-scripts/wolfie_orms.py", type: "USED_IN_PYTHON", weight: 0.5 }
 
 lupopedia.footer:
-  version: "4.0.79"
-  last_verified: "20260317"
-  last_verified_by: "cursor"
+  version: "4.0.86"
+  last_verified: "20260324"
+  last_verified_by: "junie"
 ---
-# file: lupo_auth_users ? web_path: http://www.lupopedia.com/database/lupopedia/tables/active/lupo_auth_users
+# file: lupo_auth_users — delegation: junie:root — web_path: http://www.lupopedia.com/database/lupopedia/tables/active/lupo_auth_users
 # Table: lupo_auth_users
 
 ## Table Overview
 
-- **Purpose:** Stores authentication and identity data for human operators and users. Each row is one auth user: auth_user_id (PK, application-supplied), username (unique), display_name, email, password_hash, auth_provider, provider_id (unique per provider), profile_image_url, last_login_ymdhis, created_ymdhis, updated_ymdhis, is_active, and soft delete. Mapped from legacy livehelp_users on Crafty Syntax upgrade. Linked to lupo_actors for orchestration identity.
+- **Purpose:** Stores authentication credentials for human users. In the **Unified Identity Model (v4.0.86)**, an `auth_user` represents the *physical* human, while a paired `actor` represents their *operational* identity. The link is managed via `lupo_actor_auth_users` or `lupo_actors.auth_user_id`.
 - **Category:** Auth / Identity
-- **Status:** Active (in install_new_lupopedia.sql)
-- **Version introduced:** 4.0.x
+- **Status:** Active
+- **Version introduced:** 4.0.0
 
 ## Where This Table Is Used
 
@@ -67,7 +67,7 @@ lupopedia.footer:
 
 | Column | Type | Nullable | Default | Description |
 |--------|------|----------|---------|-------------|
-| auth_user_id | bigint | No | — | Primary key. **Reserved-ID:** application must supply explicit ID; do not use AUTO_INCREMENT/lastInsertId. |
+| auth_user_id | bigint | No | — | Primary key. **Reserved-ID:** application must supply explicit ID; do not use AUTO_INCREMENT/lastInsertId. **Root User ID is 0.** |
 | username | varchar(255) | No | — | Unique username. |
 | display_name | varchar(42) | No | — | Display name. |
 | email | varchar(100) | Yes | NULL | Email. |

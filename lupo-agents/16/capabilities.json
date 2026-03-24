@@ -1,13 +1,5 @@
-{
-  "capabilities": [
-    "api_gateway_management",
-    "protocol_translation",
-    "message_routing",
-    "communication_bridge",
-    "interface_management",
-    "system_integration",
-    "communication_coordination",
-    "data_transformation",
-    "interfaith_dialogue_enhancement"
-  ]
+﻿{
+    "capabilities":  [
+                         "interface_/_integration"
+                     ]
 }

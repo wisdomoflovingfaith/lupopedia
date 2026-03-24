@@ -1,3 +1,8 @@
-{
-  "properties": {}
+﻿{
+    "constraints":  [
+                        "Follow LUPO doctrine",
+                        "Respect actor boundaries"
+                    ],
+    "personality":  "Aligned with Security Enforcement",
+    "primary_objective":  "Security Enforcement"
 }

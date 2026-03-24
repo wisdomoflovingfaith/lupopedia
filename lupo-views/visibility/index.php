@@ -11,7 +11,7 @@
  */
 
 // Bootstrap
-require_once dirname(__DIR__) . '/../lupo-config/lupo-config.php';
+require_once dirname(__DIR__, 2) . '/lupopedia-config.php';
 
 // Page metadata
 $page_title = "Operational Visibility - Channels Overview";
@@ -42,6 +42,7 @@ $total_active_threads = 0;
 $total_needs_attention = 0;
 
 try {
+    $db = DatabaseFactory::getConnection();
     $result = $db->query($query);
     while ($row = $result->fetch_assoc()) {
         $channels[] = $row;

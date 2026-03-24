@@ -61,20 +61,20 @@ VALUES ('lilith-web', 2038, 'agent', 'lilith-web', 'LILITH (Web)', @now, @now, 1
 
 INSERT INTO lupo_actors (actor_name, actor_id, actor_type, slug, name, created_ymdhis, updated_ymdhis, is_active, is_deleted, is_kernel, can_login, is_agent, paired_actor_id, primary_federation_node_id, metadata_json)
 VALUES
-('kiro', 100, 'ide_agent', 'kiro-ide', 'Kiro IDE', @now, @now, 1, 0, 0, 0, 0, 1000, 1, '{"client_id":"kiro","provider":"kiro","purpose":"IDE_integration"}'),
-('windsurf', 101, 'ide_agent', 'windsurf-ide', 'Windsurf IDE', @now, @now, 1, 0, 0, 0, 0, 1000, 1, '{"client_id":"windsurf","provider":"windsurf","purpose":"IDE_integration"}'),
-('cursor-ide', 102, 'ide_agent', 'cursor-ide', 'Cursor IDE', @now, @now, 1, 0, 0, 0, 0, 1000, 1, '{"client_id":"cursor","provider":"cursor","purpose":"IDE_integration"}'),
-('antigravity-ide', 103, 'ide_agent', 'antigravity-ide', 'Antigravity IDE', @now, @now, 1, 0, 0, 0, 0, 1000, 1, '{"client_id":"antigravity","provider":"antigravity","purpose":"IDE_integration"}'),
-('warp', 104, 'ide_agent', 'warp-ide', 'Warp IDE', @now, @now, 1, 0, 0, 0, 0, 1000, 1, '{"client_id":"warp","provider":"warp","purpose":"IDE_integration"}'),
-('cascade', 105, 'ide_agent', 'cascade-ide', 'Cascade IDE', @now, @now, 1, 0, 0, 0, 0, 1000, 1, '{"client_id":"cascade","provider":"cascade","purpose":"IDE_integration"}'),
-('gemini-cli', 108, 'ide_agent', 'gemini-cli', 'Gemini CLI', @now, @now, 1, 0, 0, 0, 0, 1000, 1, '{"client_id":"gemini","provider":"google","purpose":"IDE_integration","full_name":"Google Gemini CLI"}'),
-('codex', 109, 'ide_agent', 'codex-ide', 'Codex IDE', @now, @now, 1, 0, 0, 0, 0, 1000, 1, '{"client_id":"codex","provider":"codex","purpose":"IDE_integration"}'),
-('trae', 110, 'ide_agent', 'trae-ide', 'Trae IDE', @now, @now, 1, 0, 0, 0, 0, 1000, 1, '{"client_id":"trae","provider":"trae","purpose":"IDE_integration"}'),
-('doctor', 111, 'ide_agent', 'doctor-ide', 'Doctor IDE', @now, @now, 1, 0, 0, 0, 0, 1000, 1, '{"client_id":"doctor","provider":"internal","purpose":"diagnostic_integration"}');
+('kiro', 100, 'ide_agent', 'kiro-ide', 'Kiro IDE', @now, @now, 1, 0, 0, 0, 0, 0, 1, '{"client_id":"kiro","provider":"kiro","purpose":"IDE_integration"}'),
+('windsurf', 101, 'ide_agent', 'windsurf-ide', 'Windsurf IDE', @now, @now, 1, 0, 0, 0, 0, 0, 1, '{"client_id":"windsurf","provider":"windsurf","purpose":"IDE_integration"}'),
+('cursor-ide', 102, 'ide_agent', 'cursor-ide', 'Cursor IDE', @now, @now, 1, 0, 0, 0, 0, 0, 1, '{"client_id":"cursor","provider":"cursor","purpose":"IDE_integration"}'),
+('antigravity-ide', 103, 'ide_agent', 'antigravity-ide', 'Antigravity IDE', @now, @now, 1, 0, 0, 0, 0, 0, 1, '{"client_id":"antigravity","provider":"antigravity","purpose":"IDE_integration"}'),
+('warp', 104, 'ide_agent', 'warp-ide', 'Warp IDE', @now, @now, 1, 0, 0, 0, 0, 0, 1, '{"client_id":"warp","provider":"warp","purpose":"IDE_integration"}'),
+('cascade', 105, 'ide_agent', 'cascade-ide', 'Cascade IDE', @now, @now, 1, 0, 0, 0, 0, 0, 1, '{"client_id":"cascade","provider":"cascade","purpose":"IDE_integration"}'),
+('gemini-cli', 108, 'ide_agent', 'gemini-cli', 'Gemini CLI', @now, @now, 1, 0, 0, 0, 0, 0, 1, '{"client_id":"gemini","provider":"google","purpose":"IDE_integration","full_name":"Google Gemini CLI"}'),
+('codex', 109, 'ide_agent', 'codex-ide', 'Codex IDE', @now, @now, 1, 0, 0, 0, 0, 0, 1, '{"client_id":"codex","provider":"codex","purpose":"IDE_integration"}'),
+('trae', 110, 'ide_agent', 'trae-ide', 'Trae IDE', @now, @now, 1, 0, 0, 0, 0, 0, 1, '{"client_id":"trae","provider":"trae","purpose":"IDE_integration"}'),
+('doctor', 111, 'ide_agent', 'doctor-ide', 'Doctor IDE', @now, @now, 1, 0, 0, 0, 0, 0, 1, '{"client_id":"doctor","provider":"internal","purpose":"diagnostic_integration"}');
 
 -- Root user (ID: 1000)
-INSERT INTO lupo_actors (actor_name, actor_id, actor_type, slug, name, created_ymdhis, updated_ymdhis, is_active, is_deleted, is_agent, metadata_json, is_kernel, can_login, primary_federation_node_id)
-VALUES ('root', 1000, 'human', 'root-1000', 'Root', 20260217000000, 20260220134555, 1, 0, 0, '{"email":"captain@lupopedia.com","role":"root_admin","full_access":true}', 1, 1, 1);
+INSERT INTO lupo_actors (actor_name, actor_id, actor_type, slug, name, created_ymdhis, updated_ymdhis, is_active, is_deleted, is_agent, metadata_json, is_kernel, can_login, primary_federation_node_id, auth_user_id)
+VALUES ('root', 1000, 'human', 'root-1000', 'Root', 20260217000000, 20260220134555, 1, 0, 0, '{"email":"captain@lupopedia.com","role":"root_admin","full_access":true}', 1, 1, 1, 0);
 
 -- Test Users (IDs 2001-2010)
 INSERT INTO lupo_actors (actor_name, actor_id, actor_type, slug, name, created_ymdhis, updated_ymdhis, is_active, is_deleted, is_agent, metadata_json)

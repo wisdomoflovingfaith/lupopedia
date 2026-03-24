@@ -45,4 +45,5 @@ lupopedia.headers:
   - `20260323_220000_hephaestus_phase3_enforcement_layer_preparation.md` — HEPHAESTUS Phase 3 Enforcement Layer Preparation
   - `20260323_221500_lilith_phase3_enforcement_validation.md` — LILITH Phase 3 Enforcement Validation
   - `20260323_224500_lilith_tg8_taxonomy_lock_validation.md` — LILITH TG-8 Taxonomy Lock Validation
-  - `20260323_235950_wolfie_identity_model_alignment_for_agent_system.md` — WOLFIE identity model lock alignment ← CURRENT STATE
+  - `20260323_235950_wolfie_identity_model_alignment_for_agent_system.md` — WOLFIE identity model lock alignment
+  - `20260324_064500_junie_status_report_4_0_86.md` — JUNIE status report (v4.0.86 complete) ← CURRENT STATE

@@ -1,3 +1,5 @@
-{
-  "capabilities": []
+﻿{
+    "capabilities":  [
+                         "security_enforcement"
+                     ]
 }

@@ -1,14 +1,5 @@
-{
-  "capabilities": [
-    "content_review",
-    "truth_verification",
-    "quality_assurance",
-    "grammar_validation",
-    "readability_scoring",
-    "semantic_coherence_checking",
-    "structure_evaluation",
-    "editorial_guidance",
-    "content_integrity",
-    "spiritual_authenticity"
-  ]
+﻿{
+    "capabilities":  [
+                         "content_review"
+                     ]
 }

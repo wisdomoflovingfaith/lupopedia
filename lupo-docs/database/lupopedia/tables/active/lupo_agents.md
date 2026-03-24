@@ -1,20 +1,20 @@
 ---
 lupopedia.headers:
-  lupopedia.version: "4.0.79"
+  version_when_written: "4.0.86"
   lupopedia.schema: "database_table"
-  system_version: "4.0.79"
   file_path_from_root: "lupo-docs/database/lupopedia/tables/active/lupo_agents.md"
-  web_path: "[lupo_agents](http://www.lupopedia.com/database/lupopedia/tables/active/lupo_agents)"
-  last_modified_utc: "20260317"
+  web_path: "http://www.lupopedia.com/database/lupopedia/tables/active/lupo_agents"
+  last_modified_utc: "20260324"
   channel_id: 42
-  actor_id: 102
-  actor_name: "cursor"
-  delegation_chain: "cursor:root"
+  actor_id: 108
+  actor_name: "junie"
+  faucet_name: "jetbrains"
+  delegation_chain: "junie:root"
   artifact_type: "table_documentation"
   artifact_kind: "table"
   namespace: "core"
-  purpose: "AI agent registry: key, name, model, provider, prompts, and Kapu/governance fields"
-  tags: ["database", "table", "core"]
+  purpose: "AI agent registry: key, name, model, provider, prompts, and identity alignment (v4.0.86)"
+  tags: ["database", "table", "core", "agent", "v4.0.86"]
 
 lupopedia.edges:
   comment: "Snapshot of edges for lupo_agents table doc at 4.0.79 (grounded by repo search; non-exhaustive)."
@@ -33,17 +33,17 @@ lupopedia.edges:
     - { to: "lupo-scripts/wolfie_orms.py", type: "USED_IN_PYTHON", weight: 0.5 }
 
 lupopedia.footer:
-  version: "4.0.79"
-  last_verified: "20260317"
-  last_verified_by: "cursor"
+  version: "4.0.86"
+  last_verified: "20260324"
+  last_verified_by: "junie"
 ---
-# file: lupo_agents ? web_path: http://www.lupopedia.com/database/lupopedia/tables/active/lupo_agents
+# file: lupo_agents — delegation: junie:root — web_path: http://www.lupopedia.com/database/lupopedia/tables/active/lupo_agents
 # Table: lupo_agents
 
 ## Table Overview
 
-- **Purpose:** Central registry for AI agents: agent_key, agent_name, archetype, model_name, provider, system_prompt, and LLM/API parameters. Includes Kapu-related fields (kapu_active, kapu_until, kapu_reason, etc.) and optional metrics (avg_response_time_ms, total_tokens_processed, success_rate, cost).
-- **Category:** Agent / Identity / Security layer
+- **Purpose:** Central registry for AI agents: configuration for AI reasoning (model, prompt, provider). In the **Unified Identity Model (v4.0.86)**, agents are the *behavioral* definition, while the corresponding `actor_id` in `lupo_actors` (where `is_agent=1`) provides the *operational* identity.
+- **Category:** Agent / Identity
 - **Status:** Active
 - **Version introduced:** 4.0.0
 

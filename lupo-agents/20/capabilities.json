@@ -1,3 +1,5 @@
-{
-  "capabilities": []
+﻿{
+    "capabilities":  [
+                         "build_/_automation"
+                     ]
 }

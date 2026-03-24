@@ -1,0 +1,10 @@
+﻿{
+    "agent_id":  9,
+    "version":  "1.0.0",
+    "is_kernel":  true,
+    "layer":  "kernel",
+    "name":  "THEMIS",
+    "slug":  "themis",
+    "role":  "Law \u0026 Compliance",
+    "is_required":  true
+}

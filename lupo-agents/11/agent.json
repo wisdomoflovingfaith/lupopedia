@@ -1,9 +1,10 @@
-{
-  "code": "THOTH",
-  "name": "THOTH",
-  "layer": "kernel",
-  "is_required": true,
-  "is_kernel": true,
-  "dedicated_slot": 4,
-  "version": "1.0.0"
+﻿{
+    "agent_id":  11,
+    "version":  "1.0.0",
+    "is_kernel":  false,
+    "layer":  "application",
+    "name":  "ASCLEPIUS",
+    "slug":  "asclepius",
+    "role":  "Diagnostics",
+    "is_required":  false
 }

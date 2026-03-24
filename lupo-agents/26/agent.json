@@ -1,9 +1,10 @@
-{
-  "code": "ERIS",
-  "name": "ERIS",
-  "layer": "kernel",
-  "is_required": true,
-  "is_kernel": true,
-  "recommended_slot": 9,
-  "version": "1.0.0"
+﻿{
+    "agent_id":  26,
+    "version":  "1.0.0",
+    "is_kernel":  true,
+    "layer":  "kernel",
+    "name":  "THOTH",
+    "slug":  "thoth",
+    "role":  "Knowledge \u0026 Records",
+    "is_required":  true
 }

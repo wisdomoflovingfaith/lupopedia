@@ -1,9 +1,10 @@
-{
-  "code": "HEIMDALL",
-  "name": "HEIMDALL",
-  "layer": "kernel",
-  "is_required": true,
-  "is_kernel": false,
-  "recommended_slot": 22,
-  "version": "1.0.0"
+﻿{
+    "agent_id":  22,
+    "version":  "1.0.0",
+    "is_kernel":  true,
+    "layer":  "kernel",
+    "name":  "HEIMDALL",
+    "slug":  "heimdall",
+    "role":  "Security Guardian",
+    "is_required":  true
 }

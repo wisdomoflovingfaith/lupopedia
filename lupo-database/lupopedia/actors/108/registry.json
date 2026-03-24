@@ -1,0 +1,10 @@
+{
+  "actor_id": 108,
+  "slug": "junie",
+  "actor_name": "junie",
+  "actor_type": "agent",
+  "department_id": 1,
+  "auth_user_id": 0,
+  "faucet": "ide",
+  "description": "Junie - Autonomous programming agent by JetBrains."
+}

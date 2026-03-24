@@ -21,10 +21,7 @@ if (!defined('LUPOPEDIA_PATH')) {
 
 $config = $repo_root . DIRECTORY_SEPARATOR . 'lupopedia-config.php';
 if (!file_exists($config)) {
-    $config = $repo_root . DIRECTORY_SEPARATOR . 'lupo-config.php';
-}
-if (!file_exists($config)) {
-    fwrite(STDERR, "Error: Config not found. Expect lupopedia-config.php or lupo-config.php in repo root.\n");
+    fwrite(STDERR, "Error: Config not found. Expect lupopedia-config.php in repo root.\n");
     exit(1);
 }
 require_once $config;

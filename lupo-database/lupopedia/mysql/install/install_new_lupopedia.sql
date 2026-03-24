@@ -3732,10 +3732,10 @@ ON DUPLICATE KEY UPDATE role_key = VALUES(role_key), updated_ymdhis = @now, is_d
 -- Fix federation_node_id: Copilot/LILITH = 1 (remote), others local = 0
 -- ============================================================
 
--- paired_actor_id: Copilot → 10000 (human operator)
-UPDATE lupo_actors SET paired_actor_id = 10000, updated_ymdhis = COALESCE(@now, updated_ymdhis) WHERE actor_id = 2036 AND (paired_actor_id IS NULL OR paired_actor_id = 0);
--- paired_actor_id: LILITH → 10000 (human operator)
-UPDATE lupo_actors SET paired_actor_id = 10000, updated_ymdhis = COALESCE(@now, updated_ymdhis) WHERE actor_id = 2038 AND (paired_actor_id IS NULL OR paired_actor_id = 0);
+-- paired_actor_id: Copilot → 0 (human operator)
+UPDATE lupo_actors SET paired_actor_id = 0, updated_ymdhis = COALESCE(@now, updated_ymdhis) WHERE actor_id = 2036;
+-- paired_actor_id: LILITH → 0 (human operator)
+UPDATE lupo_actors SET paired_actor_id = 0, updated_ymdhis = COALESCE(@now, updated_ymdhis) WHERE actor_id = 2038;
 
 -- ============================================================
 -- FLIP v2: use lupo_artifacts with entity_type = 'flip_artifact'

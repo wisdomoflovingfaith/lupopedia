@@ -1,20 +1,20 @@
 ---
 lupopedia.headers:
-  lupopedia.version: "4.0.79"
+  version_when_written: "4.0.86"
   lupopedia.schema: "database_table"
-  system_version: "4.0.79"
   file_path_from_root: "lupo-docs/database/lupopedia/tables/active/lupo_departments.md"
-  web_path: "[lupo_departments](http://www.lupopedia.com/database/lupopedia/tables/active/lupo_departments)"
-  last_modified_utc: "20260317"
+  web_path: "http://www.lupopedia.com/database/lupopedia/tables/active/lupo_departments"
+  last_modified_utc: "20260324"
   channel_id: 42
-  actor_id: 102
-  actor_name: "cursor"
-  delegation_chain: "cursor:root"
+  actor_id: 108
+  actor_name: "junie"
+  faucet_name: "jetbrains"
+  delegation_chain: "junie:root"
   artifact_type: "table_documentation"
   artifact_kind: "table"
   namespace: "governance"
-  purpose: "Department organization; operator assignment, channel grouping, and department-type segmentation per federation node"
-  tags: ["database", "table", "governance"]
+  purpose: "Department organization: grouping Actors and Users for orchestration (v4.0.86)"
+  tags: ["database", "table", "governance", "identity", "v4.0.86"]
 
 lupopedia.edges:
   comment: "Snapshot of edges for lupo_departments table doc at 4.0.79 (grounded by repo search; non-exhaustive)."
@@ -33,19 +33,19 @@ lupopedia.edges:
     - { to: "analyze_unused_tables.py", type: "USED_IN_PYTHON", weight: 0.5 }
 
 lupopedia.footer:
-  version: "4.0.79"
-  last_verified: "20260317"
-  last_verified_by: "cursor"
+  version: "4.0.86"
+  last_verified: "20260324"
+  last_verified_by: "junie"
 ---
-# file: lupo_departments ? web_path: http://www.lupopedia.com/database/lupopedia/tables/active/lupo_departments
+# file: lupo_departments — delegation: junie:root — web_path: http://www.lupopedia.com/database/lupopedia/tables/active/lupo_departments
 # Table: lupo_departments
 
 ## Table Overview
 
-- **Purpose:** Departments organize channels and operators within a federation node. Each department has a name, type (e.g. general), default_actor_id for assignment, optional settings_json, and timestamps. Used for operator assignment, channel-department grouping (via lupo_channel_departments), and department-based content segmentation.
-- **Category:** Governance / Organization
-- **Status:** Active (in install_new_lupopedia.sql)
-- **Version introduced:** 4.0.x
+- **Purpose:** Departments are the organizational units that group **Actors** and **Users**. In the **Unified Identity Model (v4.0.86)**, they define the context for orchestration (e.g., "Root", "Dev", "QA"). They organize channels, actors, and permissions per federation node.
+- **Category:** Governance / Identity
+- **Status:** Active
+- **Version introduced:** 4.0.0
 
 ## Where This Table Is Used
 

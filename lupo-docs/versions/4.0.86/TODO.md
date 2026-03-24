@@ -20,6 +20,22 @@ lupopedia.headers:
 
 # 4.0.86 TODO
 
+## 4.0.86 (Stop-Point Consolidation)
+
+### 4.0.86 Completed (v4.0.86-01)
+- [x] Consolidate `lupo-config.php` and `lupopedia-config.php` into root.
+- [x] Standardize `auth_user_id: 0` for root in seeds and registry.
+- [x] Register Junie (Actor 108) with correct user/department pairing.
+- [x] Update LUPOPEDIA HEADERS doctrine for stable `version_when_written`.
+- [x] Create `VERIFICATION_GUIDE.md` for artifact auditing.
+- [x] Audit 169 table documentation artifacts into status-based folders.
+
+### 4.0.86 Remaining Work (Consolidation Target)
+- [ ] Initialize documentation and headers for all 22+ agents in `lupo-actors/`.
+- [ ] Implement `lupo-scripts/validate_headers.py` with cross-language parity.
+- [ ] Add `mood_label` and `mood_rgb` to `lupo_agents` schema in `install_new_lupopedia.sql`.
+- [ ] Finalize `ACTOR_RESOLUTION_CONTRACT.md` for v4.0.86.
+
 ## Header Validation Follow-up
 
 ### Python Validation Parity

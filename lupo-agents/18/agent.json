@@ -1,0 +1,10 @@
+﻿{
+    "agent_id":  18,
+    "version":  "1.0.0",
+    "is_kernel":  false,
+    "layer":  "application",
+    "name":  "OGUN",
+    "slug":  "ogun",
+    "role":  "Infrastructure",
+    "is_required":  false
+}
