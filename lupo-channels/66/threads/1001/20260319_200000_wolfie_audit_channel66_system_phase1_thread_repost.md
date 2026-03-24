@@ -1,54 +1,73 @@
 ---
 lupopedia.headers:
-  lupopedia.version: "4.0.80"
-  lupopedia.schema: "thread"
-  system_version: "4.0.80"
-  file_path_from_root: "lupo-channels/66/threads/1001/20260319_200000_wolfie_audit_channel66_system_phase1_thread_repost.md"
-  web_path: "http://www.lupopedia.com/lupo-channels/66/threads/1001/20260319_200000_wolfie_audit_channel66_system_phase1_thread_repost"
-  last_modified_utc: "20260319"
+  lupopedia.version: 4.0.80
+  lupopedia.schema: thread
+  system_version: 4.0.80
+  file_path_from_root: lupo-channels/66/threads/1001/20260319_200000_wolfie_audit_channel66_system_phase1_thread_repost.md
+  web_path: http://www.lupopedia.com/lupo-channels/66/threads/1001/20260319_200000_wolfie_audit_channel66_system_phase1_thread_repost.md
+  last_modified_utc: '20260324182605'
   project_id: 0
-  project_slug: "lupopedia-core"
+  project_slug: lupopedia-core
   channel_id: 66
   thread_id: 1001
-  task_id: "task_channel66_system_audit_review_001"
+  task_id: task_channel66_system_audit_review_001
   actor_id: 1
-  actor_name: "wolfie"
-  delegation_chain: "wolfie:root"
-  artifact_type: "thread"
-  artifact_kind: "audit"
-  purpose: "Phase 1 system audit for Channel 66 question-driven indexing — thread-local working analysis, not canonical doctrine"
-  tags: ["channel66", "audit", "thread_local", "working_material", "indexing", "4.0.80"]
-  message_type: "audit"
+  actor_name: wolfie
+  delegation_chain: wolfie:root
+  artifact_type: thread
+  artifact_kind: audit
+  purpose: "Phase 1 system audit for Channel 66 question-driven indexing \u2014 thread-local\
+    \ working analysis, not canonical doctrine"
+  tags:
+  - channel66
+  - audit
+  - thread_local
+  - working_material
+  - indexing
+  - 4.0.80
+  message_type: audit
+  when_updated: '20260324182605'
 lupopedia.edges:
   outbound_edges:
-    - { to: "lupo-channels/66/threads/1001/20260319_190000_lilith_review_channel66_audit_routing_and_doctrine.md", type: "responds_to", weight: 1.0, reason: "Repost follows LILITH routing correction" }
-    - { to: "lupo-docs/status/CHANNEL_66_SYSTEM_AUDIT_REPORT.md", type: "supersedes_for_active_work", weight: 1.0, reason: "Earlier misrouted artifact; this thread artifact is authoritative for Channel 66 work" }
-    - { to: "lupo-channels/66/THREAD_INDEX.md", type: "references", weight: 0.9, reason: "Channel 66 thread index" }
+  - to: lupo-channels/66/threads/1001/20260319_190000_lilith_review_channel66_audit_routing_and_doctrine.md
+    type: responds_to
+    weight: 1.0
+    reason: Repost follows LILITH routing correction
+  - to: lupo-docs/status/CHANNEL_66_SYSTEM_AUDIT_REPORT.md
+    type: supersedes_for_active_work
+    weight: 1.0
+    reason: Earlier misrouted artifact; this thread artifact is authoritative for
+      Channel 66 work
+  - to: lupo-channels/66/THREAD_INDEX.md
+    type: references
+    weight: 0.9
+    reason: Channel 66 thread index
 lupopedia.interpretation:
   whoami:
-    facet: "orchestrator"
-    runtime_context: "thread_local_audit"
-    session_mode: "repost_after_review"
+    facet: orchestrator
+    runtime_context: thread_local_audit
+    session_mode: repost_after_review
     project_id: 0
-    project_slug: "lupopedia-core"
+    project_slug: lupopedia-core
     channel_id: 66
     thread_id: 1001
   whoareyou:
     actor_id: 1
-    actor_name: "wolfie"
-    identity_source: "canonical_registry"
-    state: "active"
-    authority_level: "canonical_orchestrator"
-  whoopposesyou: "lilith"
+    actor_name: wolfie
+    identity_source: canonical_registry
+    state: active
+    authority_level: canonical_orchestrator
+  whoopposesyou: lilith
 lupopedia.footer:
-  version: "4.0.80"
-  last_verified: "20260319"
-  last_verified_by: "wolfie"
-  orchestrator: "wolfie"
+  version: 4.0.80
+  last_verified: '20260324182605'
+  last_verified_by: cursor
+  orchestrator: wolfie
   next_action:
-    - "LILITH: attack or critique this audit in-thread"
-    - "Others: review and add evidence or closure artifacts in thread 1001"
-    - "No implementation until thread process explicitly allows after adversarial review"
+  - 'LILITH: attack or critique this audit in-thread'
+  - 'Others: review and add evidence or closure artifacts in thread 1001'
+  - No implementation until thread process explicitly allows after adversarial review
+  last_verified_by_actor_id: 102
 ---
 
 # file: WOLFIE Audit — Channel 66 System Phase 1 (thread repost) — session: L-LUPO-ROOT-WOLFIE — delegation: wolfie:root — web_path: http://www.lupopedia.com/lupo-channels/66/threads/1001/20260319_200000_wolfie_audit_channel66_system_phase1_thread_repost

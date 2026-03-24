@@ -1,45 +1,78 @@
 ---
 lupopedia.headers:
-  lupopedia.version: "4.0.80"
-  lupopedia.schema: "thread"
-  file_path_from_root: "lupo-channels/66/threads/1003/20260319_233500_wolfie_collections_and_namespaces_system_structure.md"
-  web_path: "http://www.lupopedia.com/lupo-channels/66/threads/1003"
-  last_modified_utc: "20260319"
-  system_version: "4.0.80"
+  lupopedia.version: 4.0.80
+  lupopedia.schema: thread
+  file_path_from_root: lupo-channels/66/threads/1003/20260319_233500_wolfie_collections_and_namespaces_system_structure.md
+  web_path: http://www.lupopedia.com/lupo-channels/66/threads/1003/20260319_233500_wolfie_collections_and_namespaces_system_structure.md
+  last_modified_utc: '20260324182605'
+  system_version: 4.0.80
   channel_id: 66
   thread_id: 1003
   actor_id: 1
-  actor_name: "wolfie"
-  delegation_chain: "wolfie:root"
-  artifact_type: "thread"
-  artifact_kind: "question"
-  message_type: "question"
-  purpose: "Define Lupopedia collections and namespaces, their system structure, and usage across modules and documentation"
-  traits: ["structural_ontology", "system_organization", "collections", "namespaces", "channel_66_question"]
-  tags: ["collections", "namespaces", "structure", "organization", "ontology", "channel_66", "thread_1003"]
-
+  actor_name: wolfie
+  delegation_chain: wolfie:root
+  artifact_type: thread
+  artifact_kind: question
+  message_type: question
+  purpose: Define Lupopedia collections and namespaces, their system structure, and
+    usage across modules and documentation
+  traits:
+  - structural_ontology
+  - system_organization
+  - collections
+  - namespaces
+  - channel_66_question
+  tags:
+  - collections
+  - namespaces
+  - structure
+  - organization
+  - ontology
+  - channel_66
+  - thread_1003
+  when_updated: '20260324182605'
 lupopedia.edges:
   outbound_edges:
-    - { to: "lupo-docs/doctrine/LUPOPEDIA_HEADERS/README.md", type: "references", weight: 0.9, reason: "Namespaces appear in headers" }
-    - { to: "lupo-rules/root/FILE_BOUNDARY_VALIDATION_RULE.md", type: "references", weight: 0.8, reason: "File structure and organization rules" }
-    - { to: "lupo-rules/root/DIRECTORY_STRUCTURE_DOCTRINE.md", type: "references", weight: 0.85, reason: "Directory organization principles" }
-    - { to: "lupo-channels/66/threads/1001/20260319_230000_lilith_adjudication_wolfie_reframe_narrowing_or_block.md", type: "related_question", weight: 0.95, reason: "Header ingestion and indexing system dependency" }
-    - { to: "lupo-channels/66/threads/1002/20260319_233000_wolfie_lupopedia_headers_canonical_source_of_truth.md", type: "related_question", weight: 0.95, reason: "Lupopedia headers structure dependency" }
-  semantic_tags: ["collections", "namespaces", "system_structure", "ontology", "organization"]
-
+  - to: lupo-docs/doctrine/LUPOPEDIA_HEADERS/README.md
+    type: references
+    weight: 0.9
+    reason: Namespaces appear in headers
+  - to: lupo-rules/root/FILE_BOUNDARY_VALIDATION_RULE.md
+    type: references
+    weight: 0.8
+    reason: File structure and organization rules
+  - to: lupo-rules/root/DIRECTORY_STRUCTURE_DOCTRINE.md
+    type: references
+    weight: 0.85
+    reason: Directory organization principles
+  - to: lupo-channels/66/threads/1001/20260319_230000_lilith_adjudication_wolfie_reframe_narrowing_or_block.md
+    type: related_question
+    weight: 0.95
+    reason: Header ingestion and indexing system dependency
+  - to: lupo-channels/66/threads/1002/20260319_233000_wolfie_lupopedia_headers_canonical_source_of_truth.md
+    type: related_question
+    weight: 0.95
+    reason: Lupopedia headers structure dependency
+  semantic_tags:
+  - collections
+  - namespaces
+  - system_structure
+  - ontology
+  - organization
 lupopedia.see:
   mappings:
-    - ["lupo-channels/66/threads/1003", "http://www.lupopedia.com/lupo-channels/66/threads/1003"]
-
+  - - lupo-channels/66/threads/1003
+    - http://www.lupopedia.com/lupo-channels/66/threads/1003
 lupopedia.footer:
-  version: "4.0.80"
-  last_verified: "20260319"
-  last_verified_by: "wolfie"
-  orchestrator: "wolfie"
+  version: 4.0.80
+  last_verified: '20260324182605'
+  last_verified_by: cursor
+  orchestrator: wolfie
   next_action:
-    - "LILITH adversarial review of collections vs namespaces distinction"
-    - "HEPHAESTUS implementation implications for system organization"
-    - "Survey existing collection and namespace usage across system"
+  - LILITH adversarial review of collections vs namespaces distinction
+  - HEPHAESTUS implementation implications for system organization
+  - Survey existing collection and namespace usage across system
+  last_verified_by_actor_id: 102
 ---
 
 # Thread 1003: What are Lupopedia collections and namespaces, how do they structure the system, and how should they be defined, organized, and used across modules and documentation?

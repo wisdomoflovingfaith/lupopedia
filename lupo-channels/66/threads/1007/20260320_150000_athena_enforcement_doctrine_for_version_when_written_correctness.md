@@ -1,47 +1,93 @@
 ---
-version_when_written: "4.0.83"
-file_path_from_root: "lupo-channels/66/threads/1007/20260320_150000_athena_enforcement_doctrine_for_version_when_written_correctness.md"
-web_path: "http://www.lupopedia.com/lupo-channels/66/threads/1007/20260320_150000_athena_enforcement_doctrine_for_version_when_written_correctness.md"
-last_modified_utc: "20260320"
+version_when_written: 4.0.83
+file_path_from_root: lupo-channels/66/threads/1007/20260320_150000_athena_enforcement_doctrine_for_version_when_written_correctness.md
+web_path: http://www.lupopedia.com/lupo-channels/66/threads/1007/20260320_150000_athena_enforcement_doctrine_for_version_when_written_correctness.md
+last_modified_utc: '20260320'
 project_id: 0
-project_slug: "lupopedia-core"
+project_slug: lupopedia-core
 channel_id: 66
 thread_id: 1007
-task_id: "task_enforcement_doctrine_001"
+task_id: task_enforcement_doctrine_001
 actor_id: 12
-actor_name: "athena"
-delegation_chain: "athena:root"
-artifact_type: "thread"
-artifact_kind: "doctrine_enforcement"
-purpose: "ATHENA enforcement model for version_when_written correctness"
-traits: ["doctrine_enforcement", "version_when_written", "system_guarantees", "thread_1007", "athena"]
-tags: ["doctrine_enforcement", "version_when_written", "system_guarantees", "thread_1007", "athena"]
-message_type: "doctrine_enforcement"
+actor_name: athena
+delegation_chain: athena:root
+artifact_type: thread
+artifact_kind: doctrine_enforcement
+purpose: ATHENA enforcement model for version_when_written correctness
+traits:
+- doctrine_enforcement
+- version_when_written
+- system_guarantees
+- thread_1007
+- athena
+tags:
+- doctrine_enforcement
+- version_when_written
+- system_guarantees
+- thread_1007
+- athena
+message_type: doctrine_enforcement
 lupopedia.edges:
   outbound_edges:
-    - { to: "lupo-channels/66/threads/1005/20260320_120000_wolfie_closure_doctrine_lock_single_field_versioning.md", type: "enforces", weight: 1.0, reason: "Enforces version correctness in closure artifact" }
-    - { to: "lupo-channels/42/threads/1001/20260320_140000_wolfie_system_wide_documentation_normalization_after_thread1005.md", type: "enforces", weight: 1.0, reason: "Enforces version correctness in normalization artifact" }
-    - { to: "lupo-includes/functions/version_resolver.php", type: "locks", weight: 1.0, reason: "Locks resolver as sole authority" }
-    - { to: "lupo-includes/classes/LupopediaArtifactTemplateGenerator.php", type: "enforces", weight: 1.0, reason: "Enforces resolver usage in template generation" }
-    - { to: "lupo-includes/classes/SingleFieldVersioningValidator.php", type: "enforces", weight: 1.0, reason: "Enforces version validation" }
-    - { to: "lupo-includes/classes/Channel66HeaderProjection.php", type: "enforces", weight: 1.0, reason: "Enforces version in projection" }
-    - { to: "LUPEDIA_VERSION", type: "validates", weight: 1.0, reason: "Validates version source of truth" }
+  - to: lupo-channels/66/threads/1005/20260320_120000_wolfie_closure_doctrine_lock_single_field_versioning.md
+    type: enforces
+    weight: 1.0
+    reason: Enforces version correctness in closure artifact
+  - to: lupo-channels/42/threads/1001/20260320_140000_wolfie_system_wide_documentation_normalization_after_thread1005.md
+    type: enforces
+    weight: 1.0
+    reason: Enforces version correctness in normalization artifact
+  - to: lupo-includes/functions/version_resolver.php
+    type: locks
+    weight: 1.0
+    reason: Locks resolver as sole authority
+  - to: lupo-includes/classes/LupopediaArtifactTemplateGenerator.php
+    type: enforces
+    weight: 1.0
+    reason: Enforces resolver usage in template generation
+  - to: lupo-includes/classes/SingleFieldVersioningValidator.php
+    type: enforces
+    weight: 1.0
+    reason: Enforces version validation
+  - to: lupo-includes/classes/Channel66HeaderProjection.php
+    type: enforces
+    weight: 1.0
+    reason: Enforces version in projection
+  - to: LUPEDIA_VERSION
+    type: validates
+    weight: 1.0
+    reason: Validates version source of truth
 lupopedia.interpretation:
   whoami:
-    facet: "doctrine_enforcement"
-    runtime_context: "system_guarantees"
-    session_mode: "enforcement"
+    facet: doctrine_enforcement
+    runtime_context: system_guarantees
+    session_mode: enforcement
     project_id: 0
-    project_slug: "lupopedia-core"
+    project_slug: lupopedia-core
     channel_id: 66
     thread_id: 1007
   whoareyou:
     actor_id: 12
-    actor_name: "athena"
-    identity_source: "canonical_registry"
-    state: "active"
-    authority_level: "wisdom_strategy"
-  whoopposesyou: "version_inconsistency"
+    actor_name: athena
+    identity_source: canonical_registry
+    state: active
+    authority_level: wisdom_strategy
+  whoopposesyou: version_inconsistency
+lupopedia.headers:
+  file_path_from_root: lupo-channels/66/threads/1007/20260320_150000_athena_enforcement_doctrine_for_version_when_written_correctness.md
+  web_path: http://www.lupopedia.com/lupo-channels/66/threads/1007/20260320_150000_athena_enforcement_doctrine_for_version_when_written_correctness.md
+  when_updated: '20260324182605'
+  last_modified_utc: '20260324182605'
+  channel_id: 66
+  thread_id: 1007
+  actor_name: athena
+  actor_id: 12
+  delegation_chain: athena:root
+lupopedia.footer:
+  last_verified: '20260324182605'
+  last_verified_by: cursor
+  last_verified_by_actor_id: 102
+  orchestrator: cursor:root
 ---
 
 # file: ATHENA Enforcement Doctrine — Thread 1007 — session: L-LUPO-ROOT-ATHENA — delegation: athena:root — web_path: http://www.lupopedia.com/lupo-channels/66/threads/1007/20260320_150000_athena_enforcement_doctrine_for_version_when_written_correctness.md

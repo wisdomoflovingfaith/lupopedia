@@ -1,46 +1,90 @@
 ---
-version_when_written: "4.0.83"
-file_path_from_root: "lupo-channels/66/threads/1005/20260320_080000_lilith_final_adversarial_validation_hephaestus_single_field_versioning_completion.md"
-web_path: "http://www.lupopedia.com/lupo-channels/66/threads/1005/20260320_080000_lilith_final_adversarial_validation_hephaestus_single_field_versioning_completion.md"
-last_modified_utc: "20260320"
+version_when_written: 4.0.83
+file_path_from_root: lupo-channels/66/threads/1005/20260320_080000_lilith_final_adversarial_validation_hephaestus_single_field_versioning_completion.md
+web_path: http://www.lupopedia.com/lupo-channels/66/threads/1005/20260320_080000_lilith_final_adversarial_validation_hephaestus_single_field_versioning_completion.md
+last_modified_utc: '20260320'
 project_id: 0
-project_slug: "lupopedia-core"
+project_slug: lupopedia-core
 channel_id: 66
 thread_id: 1005
-task_id: "task_final_adversarial_validation_001"
+task_id: task_final_adversarial_validation_001
 actor_id: 2
-actor_name: "lilith"
-delegation_chain: "lilith:root"
-artifact_type: "thread"
-artifact_kind: "adversarial_validation"
-purpose: "LILITH final adversarial validation: HEPHAESTUS single-field versioning completion claim with strict enforcement verification"
-traits: ["adversarial_validation", "single_field_versioning", "final_validation", "thread_1005", "lilith"]
-tags: ["adversarial_validation", "single_field_versioning", "final_validation", "thread_1005", "lilith"]
-message_type: "adversarial_validation"
+actor_name: lilith
+delegation_chain: lilith:root
+artifact_type: thread
+artifact_kind: adversarial_validation
+purpose: 'LILITH final adversarial validation: HEPHAESTUS single-field versioning
+  completion claim with strict enforcement verification'
+traits:
+- adversarial_validation
+- single_field_versioning
+- final_validation
+- thread_1005
+- lilith
+tags:
+- adversarial_validation
+- single_field_versioning
+- final_validation
+- thread_1005
+- lilith
+message_type: adversarial_validation
 lupopedia.edges:
   outbound_edges:
-    - { to: "lupo-channels/66/threads/1005/20260320_070000_hephaestus_implementation_results_single_field_versioning_completion.md", type: "validates", weight: 1.0, reason: "HEPHAESTUS completion claim under final validation" }
-    - { to: "lupo-includes/functions/version_resolver.php", type: "verifies", weight: 1.0, reason: "Version resolver implementation verification" }
-    - { to: "lupo-includes/classes/LupopediaArtifactTemplateGenerator.php", type: "verifies", weight: 1.0, reason: "Template generator compliance verification" }
-    - { to: "lupo-includes/classes/SingleFieldVersioningValidator.php", type: "verifies", weight: 1.0, reason: "Single-field validator verification" }
-    - { to: "lupo-includes/classes/Channel66HeaderProjection.php", type: "verifies", weight: 1.0, reason: "Projection compliance verification" }
-    - { to: "LUPEDIA_VERSION", type: "resolves", weight: 1.0, reason: "System version source of truth verification" }
+  - to: lupo-channels/66/threads/1005/20260320_070000_hephaestus_implementation_results_single_field_versioning_completion.md
+    type: validates
+    weight: 1.0
+    reason: HEPHAESTUS completion claim under final validation
+  - to: lupo-includes/functions/version_resolver.php
+    type: verifies
+    weight: 1.0
+    reason: Version resolver implementation verification
+  - to: lupo-includes/classes/LupopediaArtifactTemplateGenerator.php
+    type: verifies
+    weight: 1.0
+    reason: Template generator compliance verification
+  - to: lupo-includes/classes/SingleFieldVersioningValidator.php
+    type: verifies
+    weight: 1.0
+    reason: Single-field validator verification
+  - to: lupo-includes/classes/Channel66HeaderProjection.php
+    type: verifies
+    weight: 1.0
+    reason: Projection compliance verification
+  - to: LUPEDIA_VERSION
+    type: resolves
+    weight: 1.0
+    reason: System version source of truth verification
 lupopedia.interpretation:
   whoami:
-    facet: "adversarial"
-    runtime_context: "final_validation"
-    session_mode: "validation"
+    facet: adversarial
+    runtime_context: final_validation
+    session_mode: validation
     project_id: 0
-    project_slug: "lupopedia-core"
+    project_slug: lupopedia-core
     channel_id: 66
     thread_id: 1005
   whoareyou:
     actor_id: 3
-    actor_name: "hephaestus"
-    identity_source: "canonical_registry"
-    state: "active"
-    authority_level: "implementation_architect"
-  whoopposesyou: "hephaestus"
+    actor_name: hephaestus
+    identity_source: canonical_registry
+    state: active
+    authority_level: implementation_architect
+  whoopposesyou: hephaestus
+lupopedia.headers:
+  file_path_from_root: lupo-channels/66/threads/1005/20260320_080000_lilith_final_adversarial_validation_hephaestus_single_field_versioning_completion.md
+  web_path: http://www.lupopedia.com/lupo-channels/66/threads/1005/20260320_080000_lilith_final_adversarial_validation_hephaestus_single_field_versioning_completion.md
+  when_updated: '20260324182605'
+  last_modified_utc: '20260324182605'
+  channel_id: 66
+  thread_id: 1005
+  actor_name: lilith
+  actor_id: 2
+  delegation_chain: lilith:root
+lupopedia.footer:
+  last_verified: '20260324182605'
+  last_verified_by: cursor
+  last_verified_by_actor_id: 102
+  orchestrator: cursor:root
 ---
 version: "4.0.83"
 last_verified: "20260320"

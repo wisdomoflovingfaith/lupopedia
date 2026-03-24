@@ -1,34 +1,57 @@
 ---
 lupopedia.headers:
-  version_when_written: "4.0.83"
-  file_path_from_root: "lupo-channels/66/threads/1005/20260320_040000_wolfie_doctrine_enforcement_single_field_versioning_model.md"
-  web_path: "http://www.lupopedia.com/lupo-channels/66/threads/1005/20260320_040000_wolfie_doctrine_enforcement_single_field_versioning_model.md"
-  last_modified_utc: "20260320"
+  version_when_written: 4.0.83
+  file_path_from_root: lupo-channels/66/threads/1005/20260320_040000_wolfie_doctrine_enforcement_single_field_versioning_model.md
+  web_path: http://www.lupopedia.com/lupo-channels/66/threads/1005/20260320_040000_wolfie_doctrine_enforcement_single_field_versioning_model.md
+  last_modified_utc: '20260324182605'
   channel_id: 66
   thread_id: 1005
   actor_id: 1
-  actor_name: "wolfie"
-  delegation_chain: "wolfie:root"
-  artifact_type: "thread"
-  artifact_kind: "doctrine_enforcement"
-  purpose: "WOLFIE doctrine enforcement: single-field versioning model implementation complete"
-  tags: ["doctrine_enforcement", "single_field_versioning", "implementation_complete", "version_when_written", "wolfie"]
+  actor_name: wolfie
+  delegation_chain: wolfie:root
+  artifact_type: thread
+  artifact_kind: doctrine_enforcement
+  purpose: 'WOLFIE doctrine enforcement: single-field versioning model implementation
+    complete'
+  tags:
+  - doctrine_enforcement
+  - single_field_versioning
+  - implementation_complete
+  - version_when_written
+  - wolfie
+  when_updated: '20260324182605'
 lupopedia.edges:
   outbound_edges:
-    - { to: "lupo-docs/doctrine/LUPOPEDIA_HEADERS/VERSIONING_MODEL.md", type: "enforces", weight: 1.0, reason: "Doctrine enforcement for single-field versioning" }
-    - { to: "lupo-includes/classes/LupopediaArtifactTemplateGenerator.php", type: "implements", weight: 1.0, reason: "Template generator updated for single-field output" }
-    - { to: "lupo-includes/classes/SingleFieldVersioningValidator.php", type: "creates", weight: 1.0, reason: "New validator for single-field enforcement" }
-    - { to: "lupo-includes/functions/version_resolver.php", type: "updates", weight: 1.0, reason: "Resolver updated for single-field model" }
-    - { to: "lupo-includes/classes/Channel66HeaderProjection.php", type: "updates", weight: 1.0, reason: "Projection updated to write only version_when_written" }
+  - to: lupo-docs/doctrine/LUPOPEDIA_HEADERS/VERSIONING_MODEL.md
+    type: enforces
+    weight: 1.0
+    reason: Doctrine enforcement for single-field versioning
+  - to: lupo-includes/classes/LupopediaArtifactTemplateGenerator.php
+    type: implements
+    weight: 1.0
+    reason: Template generator updated for single-field output
+  - to: lupo-includes/classes/SingleFieldVersioningValidator.php
+    type: creates
+    weight: 1.0
+    reason: New validator for single-field enforcement
+  - to: lupo-includes/functions/version_resolver.php
+    type: updates
+    weight: 1.0
+    reason: Resolver updated for single-field model
+  - to: lupo-includes/classes/Channel66HeaderProjection.php
+    type: updates
+    weight: 1.0
+    reason: Projection updated to write only version_when_written
 lupopedia.footer:
-  version: "4.0.79"
-  last_verified: "20260320"
-  last_verified_by: "wolfie"
-  orchestrator: "wolfie"
+  version: 4.0.79
+  last_verified: '20260324182605'
+  last_verified_by: cursor
+  orchestrator: wolfie
   next_action:
-    - "Enforce single-field versioning across all new artifact creation"
-    - "Monitor compliance with new validation rules"
-    - "Phase out three-field versioning model completely"
+  - Enforce single-field versioning across all new artifact creation
+  - Monitor compliance with new validation rules
+  - Phase out three-field versioning model completely
+  last_verified_by_actor_id: 102
 ---
 
 # file: WOLFIE Doctrine Enforcement — Single-Field Versioning Model — session: L-LUPO-ROOT-WOLFIE — delegation: wolfie:root — web_path: http://www.lupopedia.com/lupo-channels/66/threads/1005/20260320_520000_wolfie_doctrine_enforcement_single_field_versioning_model

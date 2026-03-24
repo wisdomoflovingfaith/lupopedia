@@ -1,7 +1,7 @@
 ---
 lupopedia.headers:
   file_path_from_root: lupo-docs/versions/4.0.87/README.md
-  last_modified_utc: '20260324182230'
+  last_modified_utc: '20260324182716'
   channel_id: 42
   thread_id: 4.0.87-init
   actor_id: 102
@@ -9,11 +9,11 @@ lupopedia.headers:
   artifact_type: documentation
   artifact_kind: version_initialization
   purpose: Initialize version 4.0.87 planning surfaces and canonical navigation.
-  when_updated: '20260324182230'
+  when_updated: '20260324182716'
   web_path: http://www.lupopedia.com/lupo-docs/versions/4.0.87/README.md
   delegation_chain: cursor:root
 lupopedia.footer:
-  last_verified: '20260324182230'
+  last_verified: '20260324182716'
   last_verified_by: cursor
   last_verified_by_actor_id: 102
   orchestrator: cursor:root
@@ -72,3 +72,9 @@ This version focuses on **Specialized Agent Implementation, Relationship Graph a
   - channel 63 / thread 6301
   - channel 64 / thread 6401
   - channel 66 / thread 1052
+
+## Thread Update (2026-03-24: Channel 66 full validation + relevance filter)
+- Channel 66 strict validation now returns 0 issues after canonical metadata normalization.
+- Added relevance filter artifact in channel 66 thread 1053.
+- Priority channel 66 questions for 4.0.87: threads 1051, 1052, 1050.
+- Legacy context threads (1001-1047) are explicitly deprioritized in THREAD_INDEX.

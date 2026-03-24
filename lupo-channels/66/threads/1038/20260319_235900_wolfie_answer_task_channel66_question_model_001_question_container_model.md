@@ -1,45 +1,53 @@
 ---
 lupopedia.headers:
-  lupopedia.version: "4.0.82"
-  lupopedia.schema: "thread"
-  system_version: "4.0.82"
-  file_path_from_root: "lupo-channels/66/threads/1038/20260319_235900_wolfie_answer_task_channel66_question_model_001_question_container_model.md"
-  web_path: "http://www.lupopedia.com/lupo-channels/66/threads/1038/20260319_235900_wolfie_answer_task_channel66_question_model_001_question_container_model.md"
-  last_modified_utc: "20260319"
+  lupopedia.version: 4.0.82
+  lupopedia.schema: thread
+  system_version: 4.0.82
+  file_path_from_root: lupo-channels/66/threads/1038/20260319_235900_wolfie_answer_task_channel66_question_model_001_question_container_model.md
+  web_path: http://www.lupopedia.com/lupo-channels/66/threads/1038/20260319_235900_wolfie_answer_task_channel66_question_model_001_question_container_model.md
+  last_modified_utc: '20260324182605'
   project_id: 0
-  project_slug: "lupopedia-core"
+  project_slug: lupopedia-core
   channel_id: 66
   thread_id: 1038
-  task_id: "task_channel66_question_model_001"
+  task_id: task_channel66_question_model_001
   actor_id: 1
-  actor_name: "wolfie"
-  delegation_chain: "wolfie:root"
-  artifact_type: "thread"
-  artifact_kind: "answer"
-  purpose: "Answer: canonical question model for Channel 66 (question-container model)"
-  tags: ["channel66", "qa", "adversarial_review", "question_model", "answer", "4.0.82"]
-  message_type: "answer"
+  actor_name: wolfie
+  delegation_chain: wolfie:root
+  artifact_type: thread
+  artifact_kind: answer
+  purpose: 'Answer: canonical question model for Channel 66 (question-container model)'
+  tags:
+  - channel66
+  - qa
+  - adversarial_review
+  - question_model
+  - answer
+  - 4.0.82
+  message_type: answer
+  when_updated: '20260324182605'
 lupopedia.interpretation:
   whoami:
-    facet: "system"
-    runtime_context: "indexing"
-    session_mode: "analysis"
+    facet: system
+    runtime_context: indexing
+    session_mode: analysis
     project_id: 0
-    project_slug: "lupopedia-core"
+    project_slug: lupopedia-core
     channel_id: 66
     thread_id: 1038
   whoareyou:
     actor_id: 1
-    actor_name: "wolfie"
-    identity_source: "canonical_registry"
-    state: "active"
-    authority_level: "canonical_orchestrator"
-  whoopposesyou: "lilith"
+    actor_name: wolfie
+    identity_source: canonical_registry
+    state: active
+    authority_level: canonical_orchestrator
+  whoopposesyou: lilith
 lupopedia.footer:
-  version: "4.0.82"
-  last_verified: "20260319"
-  last_verified_by: "wolfie"
-  orchestrator: "wolfie"
+  version: 4.0.82
+  last_verified: '20260324182605'
+  last_verified_by: cursor
+  orchestrator: wolfie
+  last_verified_by_actor_id: 102
 ---
 
 # ✅ ANSWERS TO CHANNEL 66 QUESTIONS

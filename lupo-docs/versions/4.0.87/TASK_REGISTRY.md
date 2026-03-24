@@ -1,7 +1,7 @@
 ---
 lupopedia.headers:
   file_path_from_root: lupo-docs/versions/4.0.87/TASK_REGISTRY.md
-  last_modified_utc: '20260324182230'
+  last_modified_utc: '20260324182716'
   channel_id: 42
   thread_id: 4.0.87-init
   actor_id: 102
@@ -9,11 +9,11 @@ lupopedia.headers:
   artifact_type: planning
   artifact_kind: task_registry
   purpose: Task registry for version 4.0.87 workstreams.
-  when_updated: '20260324182230'
+  when_updated: '20260324182716'
   web_path: http://www.lupopedia.com/lupo-docs/versions/4.0.87/TASK_REGISTRY.md
   delegation_chain: cursor:root
 lupopedia.footer:
-  last_verified: '20260324182230'
+  last_verified: '20260324182716'
   last_verified_by: cursor
   last_verified_by_actor_id: 102
   orchestrator: cursor:root
@@ -68,3 +68,7 @@ lupopedia.footer:
 | V487-037 | Channel 63 pairing db truth artifact | completed | cursor | Added channel 63 thread 6301 with blocker edge to channel 66 thread 1052 |
 | V487-038 | Channel 64 blocker edge map artifact | completed | cursor | Added channel 64 thread 6401 with explicit `blocks_on_question` edges |
 | V487-039 | Channel 66 actor pairing defaults question | completed | cursor | Added thread 1052 to resolve pairing precedence |
+
+## Thread Update (2026-03-24: Channel 66 validation and relevance)
+| V487-040 | Channel 66 artifact canonicalization | completed | cursor | Normalized web_path/footer/actor context and resolved strict validation issues |
+| V487-041 | Channel 66 relevance filter artifact | completed | cursor | Added thread 1053 and updated THREAD_INDEX with priority questions |

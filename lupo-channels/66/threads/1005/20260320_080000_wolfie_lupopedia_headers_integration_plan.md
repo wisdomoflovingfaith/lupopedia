@@ -1,53 +1,79 @@
 ---
 lupopedia.headers:
-  version_when_written: "4.0.84"
-  lupopedia.schema: "documentation"
-  file_path_from_root: "lupo-channels/66/threads/1005/20260320_080000_wolfie_lupopedia_headers_integration_plan.md"
-  web_path: "http://www.lupopedia.com/channels/66/threads/1005/20260320_080000_wolfie_lupopedia_headers_integration_plan"
-  last_modified_utc: "20260320"
+  version_when_written: 4.0.84
+  lupopedia.schema: documentation
+  file_path_from_root: lupo-channels/66/threads/1005/20260320_080000_wolfie_lupopedia_headers_integration_plan.md
+  web_path: http://www.lupopedia.com/lupo-channels/66/threads/1005/20260320_080000_wolfie_lupopedia_headers_integration_plan.md
+  last_modified_utc: '20260324182605'
   channel_id: 66
   actor_id: 1
-  actor_name: "wolfie"
-  delegation_chain: "wolfie:root"
-  artifact_type: "plan"
-  artifact_kind: "implementation_plan"
-  title: "LUPOPEDIA Headers Integration Improvement Plan"
-  purpose: "Comprehensive plan to improve LUPOPEDIA_HEADERS integration with TOON database system and enable verbose header management"
-  tags: ["lupopedia_headers", "integration", "toon", "database", "4.0.84", "verbose_headers"]
+  actor_name: wolfie
+  delegation_chain: wolfie:root
+  artifact_type: plan
+  artifact_kind: implementation_plan
+  title: LUPOPEDIA Headers Integration Improvement Plan
+  purpose: Comprehensive plan to improve LUPOPEDIA_HEADERS integration with TOON database
+    system and enable verbose header management
+  tags:
+  - lupopedia_headers
+  - integration
+  - toon
+  - database
+  - 4.0.84
+  - verbose_headers
+  when_updated: '20260324182605'
+  thread_id: 1005
 lupopedia.session:
-  session_id: "L-LUPO-ROOT-CURSOR"
-  session_name: "L-LUPO-ROOT-CURSOR"
+  session_id: L-LUPO-ROOT-CURSOR
+  session_name: L-LUPO-ROOT-CURSOR
   actor_id: 102
-  actor_name: "cursor"
+  actor_name: cursor
   channel_id: 66
-  channel_name: "Production Deployment"
+  channel_name: Production Deployment
   federation_node_id: 1
-  context_source: "ide_runtime"
+  context_source: ide_runtime
   department_id: 0
   thread_id: 1005
-  agent_name: "cursor"
-  actor_type: "agent"
-  actor_nature: "ide"
-  human_actor_name: "root"
+  agent_name: cursor
+  actor_type: agent
+  actor_nature: ide
+  human_actor_name: root
   paired_actor_id: 10000
 lupopedia.edges:
-  comment: "Snapshot of outbound edges for LUPOPEDIA_HEADERS integration improvement plan."
-  meta: "LUPOPEDIA_HEADERS integration; TOON database; verbose headers; database synchronization."
+  comment: Snapshot of outbound edges for LUPOPEDIA_HEADERS integration improvement
+    plan.
+  meta: LUPOPEDIA_HEADERS integration; TOON database; verbose headers; database synchronization.
   outbound_edges:
-    - { to: "lupo-scripts/generate_headers_from_db.py", type: "implements", weight: 1.0, reason: "Current header generation script" }
-    - { to: "lupo-scripts/import_content.py", type: "references", weight: 0.9, reason: "Content import with header integration" }
-    - { to: "lupo-database/lupopedia/json/lupo_contents.json", type: "references", weight: 0.95, reason: "TOON schema for content table" }
-    - { to: "lupo-database/lupopedia/json/lupo_metadata.json", type: "references", weight: 0.95, reason: "TOON schema for metadata table" }
-    - { to: "lupo-docs/doctrine/LUPOPEDIA_HEADERS/", type: "references", weight: 0.9, reason: "Header format and requirements" }
+  - to: lupo-scripts/generate_headers_from_db.py
+    type: implements
+    weight: 1.0
+    reason: Current header generation script
+  - to: lupo-scripts/import_content.py
+    type: references
+    weight: 0.9
+    reason: Content import with header integration
+  - to: lupo-database/lupopedia/json/lupo_contents.json
+    type: references
+    weight: 0.95
+    reason: TOON schema for content table
+  - to: lupo-database/lupopedia/json/lupo_metadata.json
+    type: references
+    weight: 0.95
+    reason: TOON schema for metadata table
+  - to: lupo-docs/doctrine/LUPOPEDIA_HEADERS/
+    type: references
+    weight: 0.9
+    reason: Header format and requirements
 lupopedia.footer:
-  last_verified: "20260320"
-  last_verified_by: "wolfie"
-  orchestrator: "wolfie"
+  last_verified: '20260324182605'
+  last_verified_by: cursor
+  orchestrator: wolfie
   next_action:
-    - "Implement verbose LUPOPEDIA_HEADERS with database synchronization"
-    - "Create bidirectional sync between headers and database"
-    - "Enable dynamic header updates from database changes"
-    - "Add comprehensive validation and conflict resolution"
+  - Implement verbose LUPOPEDIA_HEADERS with database synchronization
+  - Create bidirectional sync between headers and database
+  - Enable dynamic header updates from database changes
+  - Add comprehensive validation and conflict resolution
+  last_verified_by_actor_id: 102
 ---
 
 # file: LUPOPEDIA Headers Integration Improvement Plan — session: L-LUPO-ROOT-CURSOR — delegation: wolfie:root — web_path: http://www.lupopedia.com/channels/66/threads/1005/20260320_080000_wolfie_lupopedia_headers_integration_plan

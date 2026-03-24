@@ -1,49 +1,59 @@
 ---
 lupopedia.headers:
-  lupopedia.version: "4.0.82"
-  lupopedia.schema: "thread"
-  system_version: "4.0.82"
-  file_path_from_root: "lupo-channels/66/threads/1038/20260319_235500_wolfie_directive_task_channel66_question_model_001.md"
-  web_path: "http://www.lupopedia.com/lupo-channels/66/threads/1038/20260319_235500_wolfie_directive_task_channel66_question_model_001.md"
-  last_modified_utc: "20260319"
+  lupopedia.version: 4.0.82
+  lupopedia.schema: thread
+  system_version: 4.0.82
+  file_path_from_root: lupo-channels/66/threads/1038/20260319_235500_wolfie_directive_task_channel66_question_model_001.md
+  web_path: http://www.lupopedia.com/lupo-channels/66/threads/1038/20260319_235500_wolfie_directive_task_channel66_question_model_001.md
+  last_modified_utc: '20260324182605'
   project_id: 0
-  project_slug: "lupopedia-core"
+  project_slug: lupopedia-core
   channel_id: 66
   thread_id: 1038
-  task_id: "task_channel66_question_model_001"
+  task_id: task_channel66_question_model_001
   actor_id: 1
-  actor_name: "wolfie"
-  delegation_chain: "wolfie:root"
-  artifact_type: "thread"
-  artifact_kind: "directive"
-  purpose: "Clarify the canonical thread model for Channel 66: every thread is a question-driven QA/adversarial task, even when artifacts are reviews, reports, or closures."
-  tags: ["wolfie", "channel66", "qa", "adversarial_review", "question_model", "thread_model", "4.0.82"]
-  message_type: "directive"
+  actor_name: wolfie
+  delegation_chain: wolfie:root
+  artifact_type: thread
+  artifact_kind: directive
+  purpose: 'Clarify the canonical thread model for Channel 66: every thread is a question-driven
+    QA/adversarial task, even when artifacts are reviews, reports, or closures.'
+  tags:
+  - wolfie
+  - channel66
+  - qa
+  - adversarial_review
+  - question_model
+  - thread_model
+  - 4.0.82
+  message_type: directive
+  when_updated: '20260324182605'
 lupopedia.interpretation:
   whoami:
-    facet: "windsurf"
-    runtime_context: "system"
-    session_mode: "clarification"
+    facet: windsurf
+    runtime_context: system
+    session_mode: clarification
     project_id: 0
-    project_slug: "lupopedia-core"
+    project_slug: lupopedia-core
     channel_id: 66
     thread_id: 1038
   whoareyou:
     actor_id: 1
-    actor_name: "wolfie"
-    identity_source: "canonical_registry"
-    state: "active"
-    authority_level: "canonical_orchestrator"
-  whoopposesyou: "lilith"
+    actor_name: wolfie
+    identity_source: canonical_registry
+    state: active
+    authority_level: canonical_orchestrator
+  whoopposesyou: lilith
 lupopedia.footer:
-  version: "4.0.82"
-  last_verified: "20260319"
-  last_verified_by: "wolfie"
-  orchestrator: "wolfie"
+  version: 4.0.82
+  last_verified: '20260324182605'
+  last_verified_by: cursor
+  orchestrator: wolfie
   next_action:
-    - "Create Channel 66 THREAD_INDEX.md"
-    - "Model every Channel 66 thread as a question-driven QA task"
-    - "Do not treat missing explicit question artifacts as missing thread purpose"
+  - Create Channel 66 THREAD_INDEX.md
+  - Model every Channel 66 thread as a question-driven QA task
+  - Do not treat missing explicit question artifacts as missing thread purpose
+  last_verified_by_actor_id: 102
 ---
 
 # 🐺 WOLFIE DIRECTIVE — CHANNEL 66 QUESTION MODEL

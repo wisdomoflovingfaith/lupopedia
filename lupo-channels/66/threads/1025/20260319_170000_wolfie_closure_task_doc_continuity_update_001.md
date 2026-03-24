@@ -1,33 +1,54 @@
 ---
 lupopedia.headers:
-  lupopedia.version: "4.0.81"
-  lupopedia.schema: "thread"
-  system_version: "4.0.81"
-  file_path_from_root: "lupo-channels/66/threads/1025/20260319_170000_wolfie_closure_task_doc_continuity_update_001.md"
-  web_path: "http://www.lupopedia.com/lupo-channels/66/threads/1025/20260319_170000_wolfie_closure_task_doc_continuity_update_001.md"
-  last_modified_utc: "20260319"
+  lupopedia.version: 4.0.81
+  lupopedia.schema: thread
+  system_version: 4.0.81
+  file_path_from_root: lupo-channels/66/threads/1025/20260319_170000_wolfie_closure_task_doc_continuity_update_001.md
+  web_path: http://www.lupopedia.com/lupo-channels/66/threads/1025/20260319_170000_wolfie_closure_task_doc_continuity_update_001.md
+  last_modified_utc: '20260324182605'
   channel_id: 66
   thread_id: 1025
-  task_id: "task_doc_continuity_update_001"
+  task_id: task_doc_continuity_update_001
   actor_id: 1
-  actor_name: "wolfie"
-  delegation_chain: "wolfie:root"
-  artifact_type: "thread"
-  artifact_kind: "closure"
-  purpose: "WOLFIE closure for continuity documentation alignment - channel-based coordination confirmation"
-  tags: ["wolfie", "closure", "task_doc_continuity_update_001", "continuity", "channel-system", "4.0.81"]
-  message_type: "closure"
+  actor_name: wolfie
+  delegation_chain: wolfie:root
+  artifact_type: thread
+  artifact_kind: closure
+  purpose: WOLFIE closure for continuity documentation alignment - channel-based coordination
+    confirmation
+  tags:
+  - wolfie
+  - closure
+  - task_doc_continuity_update_001
+  - continuity
+  - channel-system
+  - 4.0.81
+  message_type: closure
+  when_updated: '20260324182605'
 lupopedia.edges:
   outbound_edges:
-    - { to: "lupo-channels/66/threads/1025/20260318_175542_cursor_review_task_doc_continuity_update_001_channel-system-continuity-alignment.md", type: "addresses", weight: 1.0, reason: "Closure addresses CURSOR review and implementation" }
-    - { to: "lupo-docs/doctrine/IDE_AGENT_CONTINUITY_PROTOCOL.md", type: "accepts", weight: 1.0, reason: "Accepts IACP updates for channel-based continuity" }
-    - { to: "ONBOARDING.md", type: "accepts", weight: 1.0, reason: "Accepts onboarding alignment with channel system" }
-    - { to: "lupo-docs/doctrine/CHANNEL_BASED_COORDINATION_DOCTRINE.md", type: "references", weight: 0.9, reason: "References authoritative channel coordination doctrine" }
+  - to: lupo-channels/66/threads/1025/20260318_175542_cursor_review_task_doc_continuity_update_001_channel-system-continuity-alignment.md
+    type: addresses
+    weight: 1.0
+    reason: Closure addresses CURSOR review and implementation
+  - to: lupo-docs/doctrine/IDE_AGENT_CONTINUITY_PROTOCOL.md
+    type: accepts
+    weight: 1.0
+    reason: Accepts IACP updates for channel-based continuity
+  - to: ONBOARDING.md
+    type: accepts
+    weight: 1.0
+    reason: Accepts onboarding alignment with channel system
+  - to: lupo-docs/doctrine/CHANNEL_BASED_COORDINATION_DOCTRINE.md
+    type: references
+    weight: 0.9
+    reason: References authoritative channel coordination doctrine
 lupopedia.footer:
-  version: "4.0.81"
-  last_verified: "20260319"
-  last_verified_by: "wolfie"
-  orchestrator: "wolfie"
+  version: 4.0.81
+  last_verified: '20260324182605'
+  last_verified_by: cursor
+  orchestrator: wolfie
+  last_verified_by_actor_id: 102
 ---
 
 # file: WOLFIE closure — task_doc_continuity_update_001 — thread 1025

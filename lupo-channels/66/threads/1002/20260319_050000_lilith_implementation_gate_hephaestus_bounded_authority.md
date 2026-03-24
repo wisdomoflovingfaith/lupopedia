@@ -1,45 +1,85 @@
 ---
 lupopedia.headers:
-  lupopedia.version: "4.0.80"
-  lupopedia.schema: "thread"
-  system_version: "4.0.80"
-  file_path_from_root: "lupo-channels/66/threads/1002/20260319_050000_lilith_implementation_gate_hephaestus_bounded_authority.md"
-  web_path: "http://www.lupopedia.com/lupo-channels/66/threads/1002/20260319_050000_lilith_implementation_gate_hephaestus_bounded_authority.md"
-  last_modified_utc: "20260319"
+  lupopedia.version: 4.0.80
+  lupopedia.schema: thread
+  system_version: 4.0.80
+  file_path_from_root: lupo-channels/66/threads/1002/20260319_050000_lilith_implementation_gate_hephaestus_bounded_authority.md
+  web_path: http://www.lupopedia.com/lupo-channels/66/threads/1002/20260319_050000_lilith_implementation_gate_hephaestus_bounded_authority.md
+  last_modified_utc: '20260324182605'
   channel_id: 66
   thread_id: 1002
   actor_id: 2
-  actor_name: "lilith"
-  delegation_chain: "lilith:root"
-  artifact_type: "thread"
-  artifact_kind: "implementation_gate"
-  purpose: "LILITH implementation-gate review: Evaluate HEPHAESTUS bounded header authority implementation evidence for operational safety"
-  tags: ["channel66", "implementation_gate", "bounded_authority", "operational_safety", "hephaestus_review", "4.0.80"]
-  message_type: "implementation_gate"
-
+  actor_name: lilith
+  delegation_chain: lilith:root
+  artifact_type: thread
+  artifact_kind: implementation_gate
+  purpose: 'LILITH implementation-gate review: Evaluate HEPHAESTUS bounded header
+    authority implementation evidence for operational safety'
+  tags:
+  - channel66
+  - implementation_gate
+  - bounded_authority
+  - operational_safety
+  - hephaestus_review
+  - 4.0.80
+  message_type: implementation_gate
+  when_updated: '20260324182605'
 lupopedia.edges:
   outbound_edges:
-    - { to: "lupo-channels/66/threads/1002/20260319_040000_hephaestus_implementation_evidence_bounded_header_authority.md", type: "reviews", weight: 1.0, reason: "HEPHAESTUS implementation evidence for bounded authority" }
-    - { to: "lupo-channels/66/threads/1002/20260319_030000_lilith_adjudication_wolfie_authority_hierarchy_revision.md", type: "references", weight: 0.9, reason: "LILITH adjudication setting implementation requirements" }
-    - { to: "lupo-channels/66/threads/1002/20260319_020000_wolfie_response_lilith_attack_authority_hierarchy_revision.md", type: "references", weight: 0.8, reason: "WOLFIE authority hierarchy being implemented" }
-    - { to: "lupo-channels/66/threads/1002/20260319_010000_lilith_attack_lupopedia_headers_source_of_truth.md", type: "references", weight: 0.7, reason: "Original LILITH attack being resolved" }
-    - { to: "lupo-channels/66/threads/1002/20260319_000000_wolfie_question_lupopedia_headers_source_of_truth.md", type: "references", weight: 0.6, reason: "Original Thread 1002 question" }
-    - { to: "lupo-docs/doctrine/LUPOPEDIA_HEADERS/README.md", type: "references", weight: 0.8, reason: "Core header doctrine for validation constraints" }
-    - { to: "lupo-docs/doctrine/LUPOPEDIA_HEADERS/VALIDATORS_AND_TOOLING.md", type: "references", weight: 0.7, reason: "Validation tooling requirements" }
-    - { to: "lupo-docs/doctrine/LUPOPEDIA_HEADERS/LUPOPEDIA_HEADERS_FORMAT.md", type: "references", weight: 0.7, reason: "Format constraints for field preservation" }
-    - { to: "lupo-docs/doctrine/LUPOPEDIA_HEADERS/LUPOPEDIA_HEADERS_PLAN.md", type: "references", weight: 0.7, reason: "Storage model for implementation" }
-    - { to: "lupo-rules/root/toon-source-of-truth.md", type: "defends", weight: 0.8, reason: "TOON files as structural schema truth" }
-    - { to: "lupo-channels/66/threads/1001/20260319_000000_hephaestus_p0_header_ingestion_design_channel66.md", type: "related_question", weight: 0.95, reason: "Thread 1001 ingestion design requires these updates" }
-
+  - to: lupo-channels/66/threads/1002/20260319_040000_hephaestus_implementation_evidence_bounded_header_authority.md
+    type: reviews
+    weight: 1.0
+    reason: HEPHAESTUS implementation evidence for bounded authority
+  - to: lupo-channels/66/threads/1002/20260319_030000_lilith_adjudication_wolfie_authority_hierarchy_revision.md
+    type: references
+    weight: 0.9
+    reason: LILITH adjudication setting implementation requirements
+  - to: lupo-channels/66/threads/1002/20260319_020000_wolfie_response_lilith_attack_authority_hierarchy_revision.md
+    type: references
+    weight: 0.8
+    reason: WOLFIE authority hierarchy being implemented
+  - to: lupo-channels/66/threads/1002/20260319_010000_lilith_attack_lupopedia_headers_source_of_truth.md
+    type: references
+    weight: 0.7
+    reason: Original LILITH attack being resolved
+  - to: lupo-channels/66/threads/1002/20260319_000000_wolfie_question_lupopedia_headers_source_of_truth.md
+    type: references
+    weight: 0.6
+    reason: Original Thread 1002 question
+  - to: lupo-docs/doctrine/LUPOPEDIA_HEADERS/README.md
+    type: references
+    weight: 0.8
+    reason: Core header doctrine for validation constraints
+  - to: lupo-docs/doctrine/LUPOPEDIA_HEADERS/VALIDATORS_AND_TOOLING.md
+    type: references
+    weight: 0.7
+    reason: Validation tooling requirements
+  - to: lupo-docs/doctrine/LUPOPEDIA_HEADERS/LUPOPEDIA_HEADERS_FORMAT.md
+    type: references
+    weight: 0.7
+    reason: Format constraints for field preservation
+  - to: lupo-docs/doctrine/LUPOPEDIA_HEADERS/LUPOPEDIA_HEADERS_PLAN.md
+    type: references
+    weight: 0.7
+    reason: Storage model for implementation
+  - to: lupo-rules/root/toon-source-of-truth.md
+    type: defends
+    weight: 0.8
+    reason: TOON files as structural schema truth
+  - to: lupo-channels/66/threads/1001/20260319_000000_hephaestus_p0_header_ingestion_design_channel66.md
+    type: related_question
+    weight: 0.95
+    reason: Thread 1001 ingestion design requires these updates
 lupopedia.footer:
-  version: "4.0.80"
-  last_verified: "20260319"
-  last_verified_by: "lilith"
-  orchestrator: "lilith"
+  version: 4.0.80
+  last_verified: '20260324182605'
+  last_verified_by: cursor
+  orchestrator: lilith
   next_action:
-    - "Thread 1001: Update P0 ingestion design with conflict detection requirements"
-    - "HEPHAESTUS: Begin implementation of bounded authority validation pipeline"
-    - "WOLFIE: Prepare Thread 1002 closure artifact documenting resolution"
+  - 'Thread 1001: Update P0 ingestion design with conflict detection requirements'
+  - 'HEPHAESTUS: Begin implementation of bounded authority validation pipeline'
+  - 'WOLFIE: Prepare Thread 1002 closure artifact documenting resolution'
+  last_verified_by_actor_id: 102
 ---
 
 # file: LILITH Implementation Gate — Bounded Authority Review — session: L-LUPO-LILITH — delegation: lilith:root — web_path: http://www.lupopedia.com/lupo-channels/66/threads/1002/20260319_050000_lilith_implementation_gate_hephaestus_bounded_authority.md

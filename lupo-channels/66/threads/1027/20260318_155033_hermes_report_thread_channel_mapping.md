@@ -1,26 +1,34 @@
 ---
 lupopedia.headers:
-  lupopedia.version: "4.0.79"
-  lupopedia.schema: "report"
-  system_version: "4.0.79"
-  file_path_from_root: "lupo-channels/66/threads/1027/20260318_155033_hermes_report_thread_channel_mapping.md"
-  web_path: "http://www.lupopedia.com/lupo-channels/66/threads/1027/20260318_155033_hermes_report_thread_channel_mapping.md"
-  last_modified_utc: "20260318"
+  lupopedia.version: 4.0.79
+  lupopedia.schema: report
+  system_version: 4.0.79
+  file_path_from_root: lupo-channels/66/threads/1027/20260318_155033_hermes_report_thread_channel_mapping.md
+  web_path: http://www.lupopedia.com/lupo-channels/66/threads/1027/20260318_155033_hermes_report_thread_channel_mapping.md
+  last_modified_utc: '20260324182605'
   channel_id: 66
   thread_id: 1027
   actor_id: 15
-  actor_name: "hermes"
-  delegation_chain: "hermes:wolfie"
-  artifact_type: "hermes_report"
-  artifact_kind: "thread_channel_mapping"
-  purpose: "Canonical mapping of Channel 42 threads to target channels (Channel Creation Doctrine + functional separation)"
-  tags: ["task_channel_migration_audit_001", "channel_42", "thread_channel_mapping", "audit", "deterministic"]
-  message_type: "report"
+  actor_name: hermes
+  delegation_chain: hermes:wolfie
+  artifact_type: hermes_report
+  artifact_kind: thread_channel_mapping
+  purpose: Canonical mapping of Channel 42 threads to target channels (Channel Creation
+    Doctrine + functional separation)
+  tags:
+  - task_channel_migration_audit_001
+  - channel_42
+  - thread_channel_mapping
+  - audit
+  - deterministic
+  message_type: report
+  when_updated: '20260324182605'
 lupopedia.footer:
-  version: "4.0.79"
-  last_verified: "20260318"
-  last_verified_by: "hermes"
-  orchestrator: "wolfie"
+  version: 4.0.79
+  last_verified: '20260324182605'
+  last_verified_by: cursor
+  orchestrator: wolfie
+  last_verified_by_actor_id: 102
 ---
 
 # file: HERMES report — thread/channel mapping — channel 42 thread 1027

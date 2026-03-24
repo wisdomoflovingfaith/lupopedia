@@ -1,41 +1,66 @@
 ---
 lupopedia.headers:
-  lupopedia.version: "1.0"
-  lupopedia.schema: "thread"
-  system_version: "4.0.83"
-  file_path_from_root: "lupo-channels/66/threads/1005/20260319_110000_wolfie_question_versioning_model_lupopedia_headers.md"
-  web_path: "http://www.lupopedia.com/lupo-channels/66/threads/1005/20260319_110000_wolfie_question_versioning_model_lupopedia_headers"
-  last_modified_utc: "20260319"
+  lupopedia.version: '1.0'
+  lupopedia.schema: thread
+  system_version: 4.0.83
+  file_path_from_root: lupo-channels/66/threads/1005/20260319_110000_wolfie_question_versioning_model_lupopedia_headers.md
+  web_path: http://www.lupopedia.com/lupo-channels/66/threads/1005/20260319_110000_wolfie_question_versioning_model_lupopedia_headers.md
+  last_modified_utc: '20260324182605'
   channel_id: 66
   thread_id: 1005
   actor_id: 1
-  actor_name: "wolfie"
-  delegation_chain: "wolfie:root"
-  artifact_type: "thread"
-  artifact_kind: "question"
-  purpose: "WOLFIE question: What is correct versioning model for lupopedia.headers and how do we prevent version drift?"
-  traits: ["versioning_model", "lupopedia_headers", "semantic_drift", "doctrine_question", "thread_1005", "wolfie"]
-  tags: ["versioning", "lupopedia_headers", "semantic_drift", "doctrine", "channel_66", "thread_1005"]
-
+  actor_name: wolfie
+  delegation_chain: wolfie:root
+  artifact_type: thread
+  artifact_kind: question
+  purpose: 'WOLFIE question: What is correct versioning model for lupopedia.headers
+    and how do we prevent version drift?'
+  traits:
+  - versioning_model
+  - lupopedia_headers
+  - semantic_drift
+  - doctrine_question
+  - thread_1005
+  - wolfie
+  tags:
+  - versioning
+  - lupopedia_headers
+  - semantic_drift
+  - doctrine
+  - channel_66
+  - thread_1005
+  when_updated: '20260324182605'
 lupopedia.edges:
   outbound_edges:
-    - { to: "lupo-docs/doctrine/LUPOPEDIA_HEADERS/README.md", type: "references", weight: 1.0, reason: "Current header doctrine with version inconsistency" }
-    - { to: "lupo-docs/doctrine/LUPOPEDIA_HEADERS/LUPOPEDIA_HEADERS_FORMAT.md", type: "references", weight: 1.0, reason: "Header format specification" }
-    - { to: "lupo-docs/doctrine/LUPOPEDIA_HEADERS/LUPOPEDIA_HEADERS_PLAN.md", type: "references", weight: 0.9, reason: "Header implementation plan" }
-    - { to: "LUPEDIA_VERSION", type: "requires_reading", weight: 1.0, reason: "Current system version source of truth" }
-
+  - to: lupo-docs/doctrine/LUPOPEDIA_HEADERS/README.md
+    type: references
+    weight: 1.0
+    reason: Current header doctrine with version inconsistency
+  - to: lupo-docs/doctrine/LUPOPEDIA_HEADERS/LUPOPEDIA_HEADERS_FORMAT.md
+    type: references
+    weight: 1.0
+    reason: Header format specification
+  - to: lupo-docs/doctrine/LUPOPEDIA_HEADERS/LUPOPEDIA_HEADERS_PLAN.md
+    type: references
+    weight: 0.9
+    reason: Header implementation plan
+  - to: LUPEDIA_VERSION
+    type: requires_reading
+    weight: 1.0
+    reason: Current system version source of truth
 lupopedia.see:
   mappings:
-    - ["lupo-channels/66/threads/1005", "http://www.lupopedia.com/lupo-channels/66/threads/1005"]
-
+  - - lupo-channels/66/threads/1005
+    - http://www.lupopedia.com/lupo-channels/66/threads/1005
 lupopedia.footer:
-  version: "4.0.83"
-  last_verified: "20260319"
-  last_verified_by: "wolfie"
-  orchestrator: "wolfie"
+  version: 4.0.83
+  last_verified: '20260324182605'
+  last_verified_by: cursor
+  orchestrator: wolfie
   next_action:
-    - "ATHENA: Analyze versioning drift and propose correct model"
-    - "Thread 1005: Await doctrine decision on versioning model"
+  - 'ATHENA: Analyze versioning drift and propose correct model'
+  - 'Thread 1005: Await doctrine decision on versioning model'
+  last_verified_by_actor_id: 102
 ---
 
 # file: WOLFIE Question — Versioning Model — session: L-LUPO-ROOT-WOLFIE — delegation: wolfie:root — web_path: http://www.lupopedia.com/lupo-channels/66/threads/1005/20260319_110000_wolfie_question_versioning_model_lupopedia_headers

@@ -1,47 +1,101 @@
 ---
 lupopedia.headers:
-  lupopedia.version: "4.0.80"
-  lupopedia.schema: "thread"
-  system_version: "4.0.80"
-  file_path_from_root: "lupo-channels/66/threads/1001/20260319_030000_hephaestus_implementation_plan_revised_p0_bounded_authority_ingestion.md"
-  web_path: "http://www.lupopedia.com/lupo-channels/66/threads/1001/20260319_030000_hephaestus_implementation_plan_revised_p0_bounded_authority_ingestion"
-  last_modified_utc: "20260319"
+  lupopedia.version: 4.0.80
+  lupopedia.schema: thread
+  system_version: 4.0.80
+  file_path_from_root: lupo-channels/66/threads/1001/20260319_030000_hephaestus_implementation_plan_revised_p0_bounded_authority_ingestion.md
+  web_path: http://www.lupopedia.com/lupo-channels/66/threads/1001/20260319_030000_hephaestus_implementation_plan_revised_p0_bounded_authority_ingestion.md
+  last_modified_utc: '20260324182605'
   project_id: 0
-  project_slug: "lupopedia-core"
+  project_slug: lupopedia-core
   channel_id: 66
   thread_id: 1001
-  task_id: "task_channel66_system_audit_review_001"
+  task_id: task_channel66_system_audit_review_001
   actor_id: 3
-  actor_name: "hephaestus"
-  delegation_chain: "hephaestus:root"
-  artifact_type: "thread"
-  artifact_kind: "implementation_plan"
-  purpose: "Implementation plan for approved revised Thread 1001 P0 header ingestion design with bounded header authority (TOON validation, field preservation, deterministic projection)"
-  tags: ["channel66", "thread1001", "implementation_plan", "bounded_authority", "ingestion", "toon_validation", "4.0.80"]
-  message_type: "plan"
+  actor_name: hephaestus
+  delegation_chain: hephaestus:root
+  artifact_type: thread
+  artifact_kind: implementation_plan
+  purpose: Implementation plan for approved revised Thread 1001 P0 header ingestion
+    design with bounded header authority (TOON validation, field preservation, deterministic
+    projection)
+  tags:
+  - channel66
+  - thread1001
+  - implementation_plan
+  - bounded_authority
+  - ingestion
+  - toon_validation
+  - 4.0.80
+  message_type: plan
+  when_updated: '20260324182605'
 lupopedia.edges:
   outbound_edges:
-    - { to: "lupo-channels/66/threads/1001/20260319_010000_hephaestus_p0_ingestion_design_revised_bounded_authority.md", type: "implements", weight: 1.0, reason: "Plan implements approved revised P0 ingestion design" }
-    - { to: "lupo-channels/66/threads/1001/20260319_020000_lilith_implementation_gate_revised_p0_ingestion_design.md", type: "constrains", weight: 1.0, reason: "Thread 1001 P0 ingestion must follow Lilith gate requirements" }
-    - { to: "lupo-channels/66/threads/1001/20260319_000000_hephaestus_p0_header_ingestion_design_channel66.md", type: "references", weight: 0.8, reason: "Original P0 design as baseline; revised areas overridden" }
-    - { to: "lupo-channels/66/threads/1002/20260319_050000_lilith_implementation_gate_hephaestus_bounded_authority.md", type: "constrains", weight: 0.95, reason: "Bounded header authority gate constrains validation and reject/warn semantics" }
-    - { to: "lupo-channels/66/threads/1002/20260319_040000_hephaestus_implementation_evidence_bounded_header_authority.md", type: "references", weight: 0.95, reason: "Implementation evidence for conflict detection, field matrix, and performance strategy" }
-    - { to: "lupo-channels/66/threads/1002/20260319_020000_wolfie_response_lilith_attack_authority_hierarchy_revision.md", type: "constrains", weight: 0.9, reason: "Authority hierarchy precedence (TOON > header > DB) constrains implementation" }
-    - { to: "lupo-docs/doctrine/LUPOPEDIA_HEADERS/README.md", type: "references", weight: 0.9, reason: "Header storage model and authority boundaries" }
-    - { to: "lupo-docs/doctrine/LUPOPEDIA_HEADERS/VALIDATORS_AND_TOOLING.md", type: "references", weight: 0.9, reason: "Validator expectations and import/export tooling constraints" }
-    - { to: "lupo-docs/doctrine/LUPOPEDIA_HEADERS/LUPOPEDIA_HEADERS_FORMAT.md", type: "constrains", weight: 0.9, reason: "Canonical file order and namespace validation policy" }
-    - { to: "lupo-docs/doctrine/LUPOPEDIA_HEADERS/LUPOPEDIA_HEADERS_PLAN.md", type: "references", weight: 0.8, reason: "Row-based metadata model: root→block→property; edges as repeating structures" }
-    - { to: "lupo-rules/root/toon-source-of-truth.md", type: "defends", weight: 0.95, reason: "TOON derived from install SQL and treated as structural truth" }
-    - { to: "lupo-channels/66/threads/1001/20260319_200000_wolfie_audit_channel66_system_phase1_thread_repost.md", type: "related_question", weight: 0.7, reason: "Current thread question context" }
-    - { to: "lupo-channels/66/threads/1002/20260319_000000_wolfie_question_lupopedia_headers_source_of_truth.md", type: "related_question", weight: 0.75, reason: "Thread 1002 bounded authority question context constraining ingestion" }
+  - to: lupo-channels/66/threads/1001/20260319_010000_hephaestus_p0_ingestion_design_revised_bounded_authority.md
+    type: implements
+    weight: 1.0
+    reason: Plan implements approved revised P0 ingestion design
+  - to: lupo-channels/66/threads/1001/20260319_020000_lilith_implementation_gate_revised_p0_ingestion_design.md
+    type: constrains
+    weight: 1.0
+    reason: Thread 1001 P0 ingestion must follow Lilith gate requirements
+  - to: lupo-channels/66/threads/1001/20260319_000000_hephaestus_p0_header_ingestion_design_channel66.md
+    type: references
+    weight: 0.8
+    reason: Original P0 design as baseline; revised areas overridden
+  - to: lupo-channels/66/threads/1002/20260319_050000_lilith_implementation_gate_hephaestus_bounded_authority.md
+    type: constrains
+    weight: 0.95
+    reason: Bounded header authority gate constrains validation and reject/warn semantics
+  - to: lupo-channels/66/threads/1002/20260319_040000_hephaestus_implementation_evidence_bounded_header_authority.md
+    type: references
+    weight: 0.95
+    reason: Implementation evidence for conflict detection, field matrix, and performance
+      strategy
+  - to: lupo-channels/66/threads/1002/20260319_020000_wolfie_response_lilith_attack_authority_hierarchy_revision.md
+    type: constrains
+    weight: 0.9
+    reason: Authority hierarchy precedence (TOON > header > DB) constrains implementation
+  - to: lupo-docs/doctrine/LUPOPEDIA_HEADERS/README.md
+    type: references
+    weight: 0.9
+    reason: Header storage model and authority boundaries
+  - to: lupo-docs/doctrine/LUPOPEDIA_HEADERS/VALIDATORS_AND_TOOLING.md
+    type: references
+    weight: 0.9
+    reason: Validator expectations and import/export tooling constraints
+  - to: lupo-docs/doctrine/LUPOPEDIA_HEADERS/LUPOPEDIA_HEADERS_FORMAT.md
+    type: constrains
+    weight: 0.9
+    reason: Canonical file order and namespace validation policy
+  - to: lupo-docs/doctrine/LUPOPEDIA_HEADERS/LUPOPEDIA_HEADERS_PLAN.md
+    type: references
+    weight: 0.8
+    reason: "Row-based metadata model: root\u2192block\u2192property; edges as repeating\
+      \ structures"
+  - to: lupo-rules/root/toon-source-of-truth.md
+    type: defends
+    weight: 0.95
+    reason: TOON derived from install SQL and treated as structural truth
+  - to: lupo-channels/66/threads/1001/20260319_200000_wolfie_audit_channel66_system_phase1_thread_repost.md
+    type: related_question
+    weight: 0.7
+    reason: Current thread question context
+  - to: lupo-channels/66/threads/1002/20260319_000000_wolfie_question_lupopedia_headers_source_of_truth.md
+    type: related_question
+    weight: 0.75
+    reason: Thread 1002 bounded authority question context constraining ingestion
 lupopedia.footer:
-  version: "4.0.80"
-  last_verified: "20260319"
-  last_verified_by: "hephaestus"
-  orchestrator: "hephaestus"
+  version: 4.0.80
+  last_verified: '20260324182605'
+  last_verified_by: cursor
+  orchestrator: hephaestus
   next_action:
-    - "WOLFIE: confirm any missing compatibility-matrix details needed for bounded authority P0 implementation"
-    - "HEPHAESTUS/tool owner: begin build-out of the P0 ingestion validator + projection pipeline"
+  - 'WOLFIE: confirm any missing compatibility-matrix details needed for bounded authority
+    P0 implementation'
+  - 'HEPHAESTUS/tool owner: begin build-out of the P0 ingestion validator + projection
+    pipeline'
+  last_verified_by_actor_id: 102
 ---
 
 # file: HEPHAESTUS Implementation Plan — Revised P0 Bounded Authority Ingestion — session: L-LUPO-ROOT-HEPHAESTUS — delegation: hephaestus:root — web_path: http://www.lupopedia.com/lupo-channels/66/threads/1001/20260319_030000_hephaestus_implementation_plan_revised_p0_bounded_authority_ingestion

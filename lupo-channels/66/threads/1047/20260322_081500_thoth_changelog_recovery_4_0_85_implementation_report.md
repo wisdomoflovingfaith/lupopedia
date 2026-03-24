@@ -1,34 +1,59 @@
 ---
 lupopedia.headers:
-  version_when_written: "4.0.85"
-  lupopedia.schema: "implementation_report"
-  file_path_from_root: "lupo-channels/66/threads/1047/20260322_081500_thoth_changelog_recovery_4_0_85_implementation_report.md"
-  web_path: "http://www.lupopedia.com/lupo-channels/66/threads/1047/changelog_recovery_4_0_85_implementation_report"
-  last_modified_utc: "20260322"
+  version_when_written: 4.0.85
+  lupopedia.schema: implementation_report
+  file_path_from_root: lupo-channels/66/threads/1047/20260322_081500_thoth_changelog_recovery_4_0_85_implementation_report.md
+  web_path: http://www.lupopedia.com/lupo-channels/66/threads/1047/20260322_081500_thoth_changelog_recovery_4_0_85_implementation_report.md
+  last_modified_utc: '20260324182605'
   channel_id: 66
   thread_id: 1047
-  task_id: "task_controlled_system_synchronization_4_0_85_001"
+  task_id: task_controlled_system_synchronization_4_0_85_001
   actor_id: 26
-  actor_name: "thoth"
-  delegation_chain: "wolfie:root"
-  artifact_type: "implementation_report"
-  artifact_kind: "changelog_recovery_4_0_85"
-  purpose: "THOTH recovery report for CHANGELOG.md data loss and reconstruction during controlled synchronization v10"
-  mood_rgb: "FFA500"
-  traits: ["4.0.85", "implementation_report", "changelog_recovery", "data_loss", "thoth", "recovery"]
-  tags: ["thoth", "4.0.85", "implementation_report", "changelog_recovery", "data_loss", "recovery"]
-
+  actor_name: thoth
+  delegation_chain: wolfie:root
+  artifact_type: implementation_report
+  artifact_kind: changelog_recovery_4_0_85
+  purpose: THOTH recovery report for CHANGELOG.md data loss and reconstruction during
+    controlled synchronization v10
+  mood_rgb: FFA500
+  traits:
+  - 4.0.85
+  - implementation_report
+  - changelog_recovery
+  - data_loss
+  - thoth
+  - recovery
+  tags:
+  - thoth
+  - 4.0.85
+  - implementation_report
+  - changelog_recovery
+  - data_loss
+  - recovery
+  when_updated: '20260324182605'
 lupopedia.edges:
   outbound_edges:
-    - { to: "lupo-channels/66/threads/1047/20260322_080000_wolfie_controlled_system_synchronization_v10_directive.md", type: "responds_to", weight: 1.0, reason: "Responds to v10 synchronization directive with recovery task" }
-    - { to: "CHANGELOG.md", type: "recovers", weight: 1.0, reason: "Recovers CHANGELOG.md from data loss" }
-    - { to: "origin/main:CHANGELOG.md", type: "restores_from", weight: 1.0, reason: "Restores from GitHub main branch" }
-
+  - to: lupo-channels/66/threads/1047/20260322_080000_wolfie_controlled_system_synchronization_v10_directive.md
+    type: responds_to
+    weight: 1.0
+    reason: Responds to v10 synchronization directive with recovery task
+  - to: CHANGELOG.md
+    type: recovers
+    weight: 1.0
+    reason: Recovers CHANGELOG.md from data loss
+  - to: origin/main:CHANGELOG.md
+    type: restores_from
+    weight: 1.0
+    reason: Restores from GitHub main branch
 lupopedia.footer:
-  report_type: "changelog_recovery"
-  recovery_status: "in_progress"
+  report_type: changelog_recovery
+  recovery_status: in_progress
   data_loss_confirmed: true
   reconstruction_required: true
+  last_verified: '20260324182605'
+  last_verified_by: cursor
+  last_verified_by_actor_id: 102
+  orchestrator: cursor:root
 ---
 
 # THOTH Implementation Report — CHANGELOG.md Recovery 4.0.85

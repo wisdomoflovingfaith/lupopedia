@@ -1,25 +1,65 @@
 ---
-version_when_written: "4.0.83"
-file_path_from_root: "lupo-channels/66/threads/1005/20260320_120000_wolfie_closure_doctrine_lock_single_field_versioning.md"
-web_path: "http://www.lupopedia.com/lupo-channels/66/threads/1005/20260320_120000_wolfie_closure_doctrine_lock_single_field_versioning.md"
-last_modified_utc: "20260320"
+version_when_written: 4.0.83
+file_path_from_root: lupo-channels/66/threads/1005/20260320_120000_wolfie_closure_doctrine_lock_single_field_versioning.md
+web_path: http://www.lupopedia.com/lupo-channels/66/threads/1005/20260320_120000_wolfie_closure_doctrine_lock_single_field_versioning.md
+last_modified_utc: '20260320'
 channel_id: 66
 thread_id: 1005
 actor_id: 1
-actor_name: "wolfie"
-delegation_chain: "wolfie:root"
-artifact_type: "thread"
-artifact_kind: "closure"
-purpose: "WOLFIE closure and doctrine lock for single-field Lupopedia header versioning model"
-tags: ["closure", "doctrine_lock", "single_field_versioning", "version_when_written", "thread_1005", "wolfie"]
+actor_name: wolfie
+delegation_chain: wolfie:root
+artifact_type: thread
+artifact_kind: closure
+purpose: WOLFIE closure and doctrine lock for single-field Lupopedia header versioning
+  model
+tags:
+- closure
+- doctrine_lock
+- single_field_versioning
+- version_when_written
+- thread_1005
+- wolfie
 lupopedia.edges:
   outbound_edges:
-    - { to: "lupo-channels/66/threads/1005/20260319_000000_athena_doctrine_compliance_confirmation_single_field_versioning.md", type: "closes", weight: 1.0, reason: "Closes Thread 1005 based on ATHENA's compliance confirmation" }
-    - { to: "lupo-docs/doctrine/LUPOPEDIA_HEADERS/VERSIONING_MODEL.md", type: "locks", weight: 1.0, reason: "Locks single-field versioning model as canonical doctrine" }
-    - { to: "lupo-includes/functions/version_resolver.php", type: "validates", weight: 1.0, reason: "Validates resolver as single source of truth" }
-    - { to: "lupo-includes/classes/LupopediaArtifactTemplateGenerator.php", type: "validates", weight: 1.0, reason: "Validates template generator for single-field output" }
-    - { to: "lupo-includes/classes/SingleFieldVersioningValidator.php", type: "validates", weight: 1.0, reason: "Validates new validator for single-field enforcement" }
-    - { to: "lupo-includes/classes/Channel66HeaderProjection.php", type: "validates", weight: 1.0, reason: "Validates projection for single-field writing" }
+  - to: lupo-channels/66/threads/1005/20260319_000000_athena_doctrine_compliance_confirmation_single_field_versioning.md
+    type: closes
+    weight: 1.0
+    reason: Closes Thread 1005 based on ATHENA's compliance confirmation
+  - to: lupo-docs/doctrine/LUPOPEDIA_HEADERS/VERSIONING_MODEL.md
+    type: locks
+    weight: 1.0
+    reason: Locks single-field versioning model as canonical doctrine
+  - to: lupo-includes/functions/version_resolver.php
+    type: validates
+    weight: 1.0
+    reason: Validates resolver as single source of truth
+  - to: lupo-includes/classes/LupopediaArtifactTemplateGenerator.php
+    type: validates
+    weight: 1.0
+    reason: Validates template generator for single-field output
+  - to: lupo-includes/classes/SingleFieldVersioningValidator.php
+    type: validates
+    weight: 1.0
+    reason: Validates new validator for single-field enforcement
+  - to: lupo-includes/classes/Channel66HeaderProjection.php
+    type: validates
+    weight: 1.0
+    reason: Validates projection for single-field writing
+lupopedia.headers:
+  file_path_from_root: lupo-channels/66/threads/1005/20260320_120000_wolfie_closure_doctrine_lock_single_field_versioning.md
+  web_path: http://www.lupopedia.com/lupo-channels/66/threads/1005/20260320_120000_wolfie_closure_doctrine_lock_single_field_versioning.md
+  when_updated: '20260324182605'
+  last_modified_utc: '20260324182605'
+  channel_id: 66
+  thread_id: 1005
+  actor_name: wolfie
+  actor_id: 1
+  delegation_chain: wolfie:root
+lupopedia.footer:
+  last_verified: '20260324182605'
+  last_verified_by: cursor
+  last_verified_by_actor_id: 102
+  orchestrator: cursor:root
 ---
 
 # file: WOLFIE Closure and Doctrine Lock — Thread 1005 — session: L-LUPO-ROOT-WOLFIE — delegation: wolfie:root — web_path: http://www.lupopedia.com/lupo-channels/66/threads/1005/20260320_120000_wolfie_closure_doctrine_lock_single_field_versioning.md

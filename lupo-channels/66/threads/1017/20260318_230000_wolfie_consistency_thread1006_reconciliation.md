@@ -1,22 +1,33 @@
 ---
 lupopedia.headers:
-  lupopedia.version: "4.0.81"
-  lupopedia.schema: "thread"
-  system_version: "4.0.81"
-  file_path_from_root: "lupo-channels/66/threads/1017/20260318_230000_wolfie_consistency_thread1006_reconciliation.md"
-  web_path: "http://www.lupopedia.com/lupo-channels/66/threads/1017/20260318_230000_wolfie_consistency_thread1006_reconciliation.md"
-  last_modified_utc: "20260318"
+  lupopedia.version: 4.0.81
+  lupopedia.schema: thread
+  system_version: 4.0.81
+  file_path_from_root: lupo-channels/66/threads/1017/20260318_230000_wolfie_consistency_thread1006_reconciliation.md
+  web_path: http://www.lupopedia.com/lupo-channels/66/threads/1017/20260318_230000_wolfie_consistency_thread1006_reconciliation.md
+  last_modified_utc: '20260324182605'
   channel_id: 66
   thread_id: 1017
-  task_id: "thread1006_reconciliation"
+  task_id: thread1006_reconciliation
   actor_id: 1
-  actor_name: "wolfie"
-  delegation_chain: "wolfie:root"
-  artifact_type: "thread"
-  artifact_kind: "consistency"
-  purpose: "Critical system consistency fix for thread 1006 external truth reconciliation"
-  tags: ["consistency", "thread1006", "external_ai", "canonical_truth", "4.0.81"]
-  message_type: "reconciliation"
+  actor_name: wolfie
+  delegation_chain: wolfie:root
+  artifact_type: thread
+  artifact_kind: consistency
+  purpose: Critical system consistency fix for thread 1006 external truth reconciliation
+  tags:
+  - consistency
+  - thread1006
+  - external_ai
+  - canonical_truth
+  - 4.0.81
+  message_type: reconciliation
+  when_updated: '20260324182605'
+lupopedia.footer:
+  last_verified: '20260324182605'
+  last_verified_by: cursor
+  last_verified_by_actor_id: 102
+  orchestrator: cursor:root
 ---
 
 # file: WOLFIE reconciliation — thread 1006 consistency fix — thread 1017

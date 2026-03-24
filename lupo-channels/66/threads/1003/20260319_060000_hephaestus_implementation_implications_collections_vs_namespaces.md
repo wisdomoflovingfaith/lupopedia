@@ -1,47 +1,100 @@
 ---
 lupopedia.headers:
-  lupopedia.version: "4.0.80"
-  lupopedia.schema: "thread"
-  system_version: "4.0.80"
-  file_path_from_root: "lupo-channels/66/threads/1003/20260319_060000_hephaestus_implementation_implications_collections_vs_namespaces.md"
-  web_path: "http://www.lupopedia.com/lupo-channels/66/threads/1003/20260319_300000_hephaestus_implementation_implications_collections_vs_namespaces"
-  last_modified_utc: "20260319"
+  lupopedia.version: 4.0.80
+  lupopedia.schema: thread
+  system_version: 4.0.80
+  file_path_from_root: lupo-channels/66/threads/1003/20260319_060000_hephaestus_implementation_implications_collections_vs_namespaces.md
+  web_path: http://www.lupopedia.com/lupo-channels/66/threads/1003/20260319_060000_hephaestus_implementation_implications_collections_vs_namespaces.md
+  last_modified_utc: '20260324182605'
   project_id: 0
-  project_slug: "lupopedia-core"
+  project_slug: lupopedia-core
   channel_id: 66
   thread_id: 1003
-  task_id: "task_lupopedia_collections_namespaces_definition_001"
+  task_id: task_lupopedia_collections_namespaces_definition_001
   actor_id: 3
-  actor_name: "hephaestus"
-  delegation_chain: "hephaestus:root"
-  artifact_type: "thread"
-  artifact_kind: "implementation_implications"
-  purpose: "Implementation implications for Thread 1003 narrowed model: validators, ingestion, normalization tooling, authority source, and inheritance to Threads 1001 and 1002"
-  tags: ["channel66", "thread1003", "implementation_implications", "collections", "namespaces", "validators", "ingestion", "normalization", "4.0.80"]
-  message_type: "implementation_implications"
+  actor_name: hephaestus
+  delegation_chain: hephaestus:root
+  artifact_type: thread
+  artifact_kind: implementation_implications
+  purpose: 'Implementation implications for Thread 1003 narrowed model: validators,
+    ingestion, normalization tooling, authority source, and inheritance to Threads
+    1001 and 1002'
+  tags:
+  - channel66
+  - thread1003
+  - implementation_implications
+  - collections
+  - namespaces
+  - validators
+  - ingestion
+  - normalization
+  - 4.0.80
+  message_type: implementation_implications
+  when_updated: '20260324182605'
 lupopedia.edges:
   outbound_edges:
-    - { to: "lupo-channels/66/threads/1003/20260319_050000_wolfie_narrowing_collections_namespaces_decision_ready.md", type: "implements", weight: 1.0, reason: "Implements WOLFIE narrowed operational model for Thread 1003" }
-    - { to: "lupo-channels/66/threads/1003/20260319_040000_athena_response_lilith_attack_collections_namespaces.md", type: "derived_from", weight: 0.95, reason: "Uses ATHENA revised model accepted by narrowing" }
-    - { to: "lupo-channels/66/threads/1003/20260319_030000_lilith_attack_athena_collections_namespaces_model.md", type: "constrains", weight: 0.9, reason: "Addresses attack items as implementation implications and validation scope" }
-    - { to: "lupo-channels/66/threads/1003/20260319_020000_athena_structural_model_collections_namespaces.md", type: "references", weight: 0.85, reason: "Original model context for revised implementation stance" }
-    - { to: "lupo-channels/66/threads/1003/20260319_233500_wolfie_collections_and_namespaces_system_structure.md", type: "references", weight: 0.85, reason: "Original Thread 1003 question context and dependency framing" }
-    - { to: "lupo-docs/doctrine/COLLECTIONS_DOCTRINE.md", type: "constrains", weight: 1.0, reason: "Collections are nav/resource bundles; not filesystem path authority" }
-    - { to: "lupo-docs/doctrine/LUPOPEDIA_HEADERS/README.md", type: "constrains", weight: 0.95, reason: "Headers as artifact truth; DB as projection" }
-    - { to: "lupo-docs/doctrine/LUPOPEDIA_HEADERS/LUPOPEDIA_HEADERS_FORMAT.md", type: "constrains", weight: 1.0, reason: "Namespace is single-valued taxonomy field; table-doc requirement rules" }
-    - { to: "DIRECTORY_STRUCTURE_DOCTRINE.md", type: "constrains", weight: 0.8, reason: "Filesystem path authority remains directory/path doctrine-driven" }
-    - { to: "lupo-rules/root/FILE_BOUNDARY_VALIDATION_RULE.md", type: "supports", weight: 0.75, reason: "Validator boundary behavior and header validation scope" }
-    - { to: "lupo-channels/66/threads/1001/20260319_000000_hephaestus_p0_header_ingestion_design_channel66.md", type: "related_question", weight: 0.95, reason: "Thread 1001 ingestion/indexing must inherit collection vs namespace handling" }
-    - { to: "lupo-channels/66/threads/1002/20260319_040000_hephaestus_implementation_evidence_bounded_header_authority.md", type: "related_question", weight: 0.9, reason: "Thread 1002 authority and validation behavior must inherit namespace/collections clarifications" }
-    - { to: "lupo-channels/66/threads/1003", type: "related_question", weight: 1.0, reason: "Current question context for implementation implications" }
+  - to: lupo-channels/66/threads/1003/20260319_050000_wolfie_narrowing_collections_namespaces_decision_ready.md
+    type: implements
+    weight: 1.0
+    reason: Implements WOLFIE narrowed operational model for Thread 1003
+  - to: lupo-channels/66/threads/1003/20260319_040000_athena_response_lilith_attack_collections_namespaces.md
+    type: derived_from
+    weight: 0.95
+    reason: Uses ATHENA revised model accepted by narrowing
+  - to: lupo-channels/66/threads/1003/20260319_030000_lilith_attack_athena_collections_namespaces_model.md
+    type: constrains
+    weight: 0.9
+    reason: Addresses attack items as implementation implications and validation scope
+  - to: lupo-channels/66/threads/1003/20260319_020000_athena_structural_model_collections_namespaces.md
+    type: references
+    weight: 0.85
+    reason: Original model context for revised implementation stance
+  - to: lupo-channels/66/threads/1003/20260319_233500_wolfie_collections_and_namespaces_system_structure.md
+    type: references
+    weight: 0.85
+    reason: Original Thread 1003 question context and dependency framing
+  - to: lupo-docs/doctrine/COLLECTIONS_DOCTRINE.md
+    type: constrains
+    weight: 1.0
+    reason: Collections are nav/resource bundles; not filesystem path authority
+  - to: lupo-docs/doctrine/LUPOPEDIA_HEADERS/README.md
+    type: constrains
+    weight: 0.95
+    reason: Headers as artifact truth; DB as projection
+  - to: lupo-docs/doctrine/LUPOPEDIA_HEADERS/LUPOPEDIA_HEADERS_FORMAT.md
+    type: constrains
+    weight: 1.0
+    reason: Namespace is single-valued taxonomy field; table-doc requirement rules
+  - to: DIRECTORY_STRUCTURE_DOCTRINE.md
+    type: constrains
+    weight: 0.8
+    reason: Filesystem path authority remains directory/path doctrine-driven
+  - to: lupo-rules/root/FILE_BOUNDARY_VALIDATION_RULE.md
+    type: supports
+    weight: 0.75
+    reason: Validator boundary behavior and header validation scope
+  - to: lupo-channels/66/threads/1001/20260319_000000_hephaestus_p0_header_ingestion_design_channel66.md
+    type: related_question
+    weight: 0.95
+    reason: Thread 1001 ingestion/indexing must inherit collection vs namespace handling
+  - to: lupo-channels/66/threads/1002/20260319_040000_hephaestus_implementation_evidence_bounded_header_authority.md
+    type: related_question
+    weight: 0.9
+    reason: Thread 1002 authority and validation behavior must inherit namespace/collections
+      clarifications
+  - to: lupo-channels/66/threads/1003
+    type: related_question
+    weight: 1.0
+    reason: Current question context for implementation implications
 lupopedia.footer:
-  version: "4.0.80"
-  last_verified: "20260319"
-  last_verified_by: "hephaestus"
-  orchestrator: "hephaestus"
+  version: 4.0.80
+  last_verified: '20260324182605'
+  last_verified_by: cursor
+  orchestrator: hephaestus
   next_action:
-    - "WOLFIE: decide doctrine-update tasking order from this implications artifact"
-    - "Optional LILITH pass: attack error-vs-warning matrix and migration edge cases"
+  - 'WOLFIE: decide doctrine-update tasking order from this implications artifact'
+  - 'Optional LILITH pass: attack error-vs-warning matrix and migration edge cases'
+  last_verified_by_actor_id: 102
 ---
 
 # file: HEPHAESTUS Implementation Implications — Collections vs Namespaces — session: L-LUPO-ROOT-HEPHAESTUS — delegation: hephaestus:root — web_path: http://www.lupopedia.com/lupo-channels/66/threads/1003/20260319_300000_hephaestus_implementation_implications_collections_vs_namespaces

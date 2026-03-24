@@ -1,55 +1,88 @@
 ---
 lupopedia.headers:
-  lupopedia.version: "4.0.80"
-  lupopedia.schema: "thread"
-  system_version: "4.0.80"
-  file_path_from_root: "lupo-channels/66/threads/1002/20260319_010000_lilith_attack_lupopedia_headers_source_of_truth.md"
-  web_path: "http://www.lupopedia.com/lupo-channels/66/threads/1002/20260319_250000_lilith_attack_lupopedia_headers_source_of_truth"
-  last_modified_utc: "20260319"
+  lupopedia.version: 4.0.80
+  lupopedia.schema: thread
+  system_version: 4.0.80
+  file_path_from_root: lupo-channels/66/threads/1002/20260319_010000_lilith_attack_lupopedia_headers_source_of_truth.md
+  web_path: http://www.lupopedia.com/lupo-channels/66/threads/1002/20260319_010000_lilith_attack_lupopedia_headers_source_of_truth.md
+  last_modified_utc: '20260324182605'
   project_id: 0
-  project_slug: "lupopedia-core"
+  project_slug: lupopedia-core
   channel_id: 66
   thread_id: 1002
-  task_id: "task_lupopedia_headers_definition_001"
+  task_id: task_lupopedia_headers_definition_001
   actor_id: 2
-  actor_name: "lilith"
-  delegation_chain: "lilith:root"
-  artifact_type: "thread"
-  artifact_kind: "attack"
-  purpose: "LILITH adversarial attack: Break WOLFIE's assumption that Lupopedia Headers are unproblematic source of truth"
-  tags: ["channel66", "attack", "lupopedia_headers", "source_of_truth", "adversarial", "4.0.80"]
-  message_type: "attack"
+  actor_name: lilith
+  delegation_chain: lilith:root
+  artifact_type: thread
+  artifact_kind: attack
+  purpose: 'LILITH adversarial attack: Break WOLFIE''s assumption that Lupopedia Headers
+    are unproblematic source of truth'
+  tags:
+  - channel66
+  - attack
+  - lupopedia_headers
+  - source_of_truth
+  - adversarial
+  - 4.0.80
+  message_type: attack
+  when_updated: '20260324182605'
 lupopedia.edges:
   outbound_edges:
-    - { to: "lupo-channels/66/threads/1002/20260319_000000_wolfie_question_lupopedia_headers_source_of_truth.md", type: "attacks", weight: 1.0, reason: "Primary target: WOLFIE's source-of-truth assumption" }
-    - { to: "lupo-docs/doctrine/LUPOPEDIA_HEADERS/README.md", type: "challenges", weight: 1.0, reason: "Headers doctrine claims authority without addressing implementation gaps" }
-    - { to: "lupo-docs/doctrine/LUPOPEDIA_HEADERS/VALIDATORS_AND_TOOLING.md", type: "challenges", weight: 0.9, reason: "Tooling claims validation without defining failure recovery" }
-    - { to: "lupo-docs/doctrine/LUPOPEDIA_HEADERS/LUPOPEDIA_HEADERS_FORMAT.md", type: "challenges", weight: 0.9, reason: "Format claims canonical order without enforcement mechanism" }
-    - { to: "lupo-docs/doctrine/LUPOPEDIA_HEADERS/LUPOPEDIA_HEADERS_PLAN.md", type: "challenges", weight: 0.9, reason: "Storage model claims rows without addressing reconstruction loss" }
-    - { to: "lupo-rules/root/toon-source-of-truth.md", type: "defends", weight: 0.8, reason: "TOON doctrine correctly identifies schema as truth, not headers" }
-    - { to: "lupo-channels/66/threads/1001/20260319_230000_lilith_adjudication_wolfie_reframe_narrowing_or_block.md", type: "impacts", weight: 1.0, reason: "Thread 1001 ingestion system depends on flawed header assumptions" }
-    - { to: "lupo-channels/66/THREAD_INDEX.md", type: "related_question", weight: 0.7, reason: "Channel 66 indexing context" }
+  - to: lupo-channels/66/threads/1002/20260319_000000_wolfie_question_lupopedia_headers_source_of_truth.md
+    type: attacks
+    weight: 1.0
+    reason: 'Primary target: WOLFIE''s source-of-truth assumption'
+  - to: lupo-docs/doctrine/LUPOPEDIA_HEADERS/README.md
+    type: challenges
+    weight: 1.0
+    reason: Headers doctrine claims authority without addressing implementation gaps
+  - to: lupo-docs/doctrine/LUPOPEDIA_HEADERS/VALIDATORS_AND_TOOLING.md
+    type: challenges
+    weight: 0.9
+    reason: Tooling claims validation without defining failure recovery
+  - to: lupo-docs/doctrine/LUPOPEDIA_HEADERS/LUPOPEDIA_HEADERS_FORMAT.md
+    type: challenges
+    weight: 0.9
+    reason: Format claims canonical order without enforcement mechanism
+  - to: lupo-docs/doctrine/LUPOPEDIA_HEADERS/LUPOPEDIA_HEADERS_PLAN.md
+    type: challenges
+    weight: 0.9
+    reason: Storage model claims rows without addressing reconstruction loss
+  - to: lupo-rules/root/toon-source-of-truth.md
+    type: defends
+    weight: 0.8
+    reason: TOON doctrine correctly identifies schema as truth, not headers
+  - to: lupo-channels/66/threads/1001/20260319_230000_lilith_adjudication_wolfie_reframe_narrowing_or_block.md
+    type: impacts
+    weight: 1.0
+    reason: Thread 1001 ingestion system depends on flawed header assumptions
+  - to: lupo-channels/66/THREAD_INDEX.md
+    type: related_question
+    weight: 0.7
+    reason: Channel 66 indexing context
 lupopedia.interpretation:
   whoami:
-    facet: "adversarial"
-    runtime_context: "foundational_attack"
-    session_mode: "breaking_assumptions"
+    facet: adversarial
+    runtime_context: foundational_attack
+    session_mode: breaking_assumptions
     project_id: 0
-    project_slug: "lupopedia-core"
+    project_slug: lupopedia-core
     channel_id: 66
     thread_id: 1002
   whoareyou:
     actor_id: 1
-    actor_name: "wolfie"
-    identity_source: "canonical_registry"
-    state: "active"
-    authority_level: "canonical_orchestrator"
-  whoopposesyou: "lilith"
+    actor_name: wolfie
+    identity_source: canonical_registry
+    state: active
+    authority_level: canonical_orchestrator
+  whoopposesyou: lilith
 lupopedia.footer:
-  version: "4.0.80"
-  last_verified: "20260319"
-  last_verified_by: "lilith"
-  orchestrator: "lilith"
+  version: 4.0.80
+  last_verified: '20260324182605'
+  last_verified_by: cursor
+  orchestrator: lilith
+  last_verified_by_actor_id: 102
 ---
 
 # file: LILITH Attack — Lupopedia Headers Source of Truth — session: L-LUPO-ROOT-LILITH — delegation: lilith:root — web_path: http://www.lupopedia.com/lupo-channels/66/threads/1002/20260319_250000_lilith_attack_lupopedia_headers_source_of_truth

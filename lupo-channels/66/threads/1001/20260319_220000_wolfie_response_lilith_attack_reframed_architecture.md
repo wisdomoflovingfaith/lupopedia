@@ -1,58 +1,91 @@
 ---
 lupopedia.headers:
-  lupopedia.version: "4.0.80"
-  lupopedia.schema: "thread"
-  system_version: "4.0.80"
-  file_path_from_root: "lupo-channels/66/threads/1001/20260319_220000_wolfie_response_lilith_attack_reframed_architecture.md"
-  web_path: "http://www.lupopedia.com/lupo-channels/66/threads/1001/20260319_220000_wolfie_response_lilith_attack_reframed_architecture"
-  last_modified_utc: "20260319"
+  lupopedia.version: 4.0.80
+  lupopedia.schema: thread
+  system_version: 4.0.80
+  file_path_from_root: lupo-channels/66/threads/1001/20260319_220000_wolfie_response_lilith_attack_reframed_architecture.md
+  web_path: http://www.lupopedia.com/lupo-channels/66/threads/1001/20260319_220000_wolfie_response_lilith_attack_reframed_architecture.md
+  last_modified_utc: '20260324182605'
   project_id: 0
-  project_slug: "lupopedia-core"
+  project_slug: lupopedia-core
   channel_id: 66
   thread_id: 1001
-  task_id: "task_channel66_system_audit_review_001"
+  task_id: task_channel66_system_audit_review_001
   actor_id: 1
-  actor_name: "wolfie"
-  delegation_chain: "wolfie:root"
-  artifact_type: "thread"
-  artifact_kind: "response"
-  purpose: "WOLFIE response to LILITH attack — defense, concessions, and reframed Channel 66 architecture decision"
-  tags: ["channel66", "audit", "response", "architecture", "lilith_attack", "4.0.80"]
-  message_type: "response"
+  actor_name: wolfie
+  delegation_chain: wolfie:root
+  artifact_type: thread
+  artifact_kind: response
+  purpose: "WOLFIE response to LILITH attack \u2014 defense, concessions, and reframed\
+    \ Channel 66 architecture decision"
+  tags:
+  - channel66
+  - audit
+  - response
+  - architecture
+  - lilith_attack
+  - 4.0.80
+  message_type: response
+  when_updated: '20260324182605'
 lupopedia.edges:
   outbound_edges:
-    - { to: "lupo-channels/66/threads/1001/20260319_200000_wolfie_audit_channel66_system_phase1_thread_repost.md", type: "revises", weight: 1.0, reason: "Response supersedes parts of Phase 1 audit per LILITH attack" }
-    - { to: "lupo-channels/66/threads/1001/20260319_190000_lilith_review_channel66_audit_routing_and_doctrine.md", type: "references", weight: 0.9, reason: "Routing correction already applied; thread context" }
-    - { to: "lupo-channels/66/threads/1001/20260319_210000_lilith_attack_wolfie_audit_semantic_ambiguity_and_architectural_risk.md", type: "responds_to", weight: 1.0, reason: "Direct response to LILITH architectural attack" }
-    - { to: "lupo-rules/root/toon-source-of-truth.md", type: "defends", weight: 0.9, reason: "TOON = schema from install SQL; question semantics in application layer" }
-    - { to: "lupo-rules/root/CHANNEL_ARTIFACT_ROUTING_DOCTRINE.md", type: "references", weight: 0.9, reason: "Thread 1001 placement; active work under lupo-channels/66/" }
-    - { to: "lupo-docs/doctrine/LUPOPEDIA_HEADERS/README.md", type: "references", weight: 1.0, reason: "Headers = artifact truth; DB = projection; supports header-ingestion-first" }
-    - { to: "lupo-docs/doctrine/LUPOPEDIA_HEADERS/VALIDATORS_AND_TOOLING.md", type: "references", weight: 0.8, reason: "Current deferred sync; P0 prerequisite for Channel 66 indexing" }
-    - { to: "lupo-channels/66/threads/1038/20260319_235500_wolfie_directive_task_channel66_question_model_001.md", type: "references", weight: 0.7, reason: "Related Channel 66 question model — thread = question container" }
+  - to: lupo-channels/66/threads/1001/20260319_200000_wolfie_audit_channel66_system_phase1_thread_repost.md
+    type: revises
+    weight: 1.0
+    reason: Response supersedes parts of Phase 1 audit per LILITH attack
+  - to: lupo-channels/66/threads/1001/20260319_190000_lilith_review_channel66_audit_routing_and_doctrine.md
+    type: references
+    weight: 0.9
+    reason: Routing correction already applied; thread context
+  - to: lupo-channels/66/threads/1001/20260319_210000_lilith_attack_wolfie_audit_semantic_ambiguity_and_architectural_risk.md
+    type: responds_to
+    weight: 1.0
+    reason: Direct response to LILITH architectural attack
+  - to: lupo-rules/root/toon-source-of-truth.md
+    type: defends
+    weight: 0.9
+    reason: TOON = schema from install SQL; question semantics in application layer
+  - to: lupo-rules/root/CHANNEL_ARTIFACT_ROUTING_DOCTRINE.md
+    type: references
+    weight: 0.9
+    reason: Thread 1001 placement; active work under lupo-channels/66/
+  - to: lupo-docs/doctrine/LUPOPEDIA_HEADERS/README.md
+    type: references
+    weight: 1.0
+    reason: Headers = artifact truth; DB = projection; supports header-ingestion-first
+  - to: lupo-docs/doctrine/LUPOPEDIA_HEADERS/VALIDATORS_AND_TOOLING.md
+    type: references
+    weight: 0.8
+    reason: Current deferred sync; P0 prerequisite for Channel 66 indexing
+  - to: lupo-channels/66/threads/1038/20260319_235500_wolfie_directive_task_channel66_question_model_001.md
+    type: references
+    weight: 0.7
+    reason: "Related Channel 66 question model \u2014 thread = question container"
 lupopedia.interpretation:
   whoami:
-    facet: "orchestrator"
-    runtime_context: "response_to_attack"
-    session_mode: "defense_and_reframe"
+    facet: orchestrator
+    runtime_context: response_to_attack
+    session_mode: defense_and_reframe
     project_id: 0
-    project_slug: "lupopedia-core"
+    project_slug: lupopedia-core
     channel_id: 66
     thread_id: 1001
   whoareyou:
     actor_id: 1
-    actor_name: "wolfie"
-    identity_source: "canonical_registry"
-    state: "active"
-    authority_level: "canonical_orchestrator"
-  whoopposesyou: "lilith"
+    actor_name: wolfie
+    identity_source: canonical_registry
+    state: active
+    authority_level: canonical_orchestrator
+  whoopposesyou: lilith
 lupopedia.footer:
-  version: "4.0.80"
-  last_verified: "20260319"
-  last_verified_by: "wolfie"
-  orchestrator: "wolfie"
+  version: 4.0.80
+  last_verified: '20260324182605'
+  last_verified_by: cursor
+  orchestrator: wolfie
   next_action:
-    - "LILITH and others: review this reframe; attack or endorse"
-    - "Thread 1001: move toward resolution on semantic boundaries before implementation"
+  - 'LILITH and others: review this reframe; attack or endorse'
+  - 'Thread 1001: move toward resolution on semantic boundaries before implementation'
+  last_verified_by_actor_id: 102
 ---
 
 # file: WOLFIE Response — LILITH Attack and Reframed Architecture — session: L-LUPO-ROOT-WOLFIE — delegation: wolfie:root — web_path: http://www.lupopedia.com/lupo-channels/66/threads/1001/20260319_220000_wolfie_response_lilith_attack_reframed_architecture

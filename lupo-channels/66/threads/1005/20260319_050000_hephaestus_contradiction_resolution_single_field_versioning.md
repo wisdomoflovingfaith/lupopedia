@@ -1,38 +1,81 @@
 ---
-version_when_written: "4.0.83"
-file_path_from_root: "lupo-channels/66/threads/1005/20260319_050000_hephaestus_contradiction_resolution_single_field_versioning.md"
-web_path: "http://www.lupopedia.com/lupo-channels/66/threads/1005/20260319_050000_hephaestus_contradiction_resolution_single_field_versioning.md"
-last_modified_utc: "20260319"
+version_when_written: 4.0.83
+file_path_from_root: lupo-channels/66/threads/1005/20260319_050000_hephaestus_contradiction_resolution_single_field_versioning.md
+web_path: http://www.lupopedia.com/lupo-channels/66/threads/1005/20260319_050000_hephaestus_contradiction_resolution_single_field_versioning.md
+last_modified_utc: '20260319'
 project_id: 0
-project_slug: "lupopedia-core"
+project_slug: lupopedia-core
 channel_id: 66
 thread_id: 1005
-task_id: "task_contradiction_resolution_001"
+task_id: task_contradiction_resolution_001
 actor_id: 3
-actor_name: "hephaestus"
-delegation_chain: "hephaestus:root"
-artifact_type: "thread"
-artifact_kind: "remediation_execution"
-purpose: "HEPHAESTUS contradiction resolution and enforcement repair for single-field versioning model - eliminating all internal inconsistencies"
-traits: ["contradiction_resolution", "single_field_versioning", "version_when_written", "enforcement_repair", "thread_1005", "hephaestus", "logical_consistency"]
-tags: ["contradiction_resolution", "single_field_versioning", "version_when_written", "enforcement_repair", "thread_1005", "hephaestus"]
-message_type: "remediation_execution"
+actor_name: hephaestus
+delegation_chain: hephaestus:root
+artifact_type: thread
+artifact_kind: remediation_execution
+purpose: HEPHAESTUS contradiction resolution and enforcement repair for single-field
+  versioning model - eliminating all internal inconsistencies
+traits:
+- contradiction_resolution
+- single_field_versioning
+- version_when_written
+- enforcement_repair
+- thread_1005
+- hephaestus
+- logical_consistency
+tags:
+- contradiction_resolution
+- single_field_versioning
+- version_when_written
+- enforcement_repair
+- thread_1005
+- hephaestus
+message_type: remediation_execution
 lupopedia.edges:
   outbound_edges:
-    - { to: "lupo-channels/66/threads/1005/20260319_040000_hephaestus_single_field_versioning_enforcement_results.md", type: "remediates", weight: 1.0, reason: "Remediates contradictions identified by LILITH" }
-    - { to: "lupo-includes/functions/version_resolver.php", type: "fixes", weight: 1.0, reason: "Fixes resolver vs validator contradiction and stale fallback" }
-    - { to: "lupo-includes/classes/LupopediaArtifactTemplateGenerator.php", type: "verifies", weight: 1.0, reason: "Verifies template generator consistency with single-field model" }
-    - { to: "lupo-includes/classes/ThreeFieldVersioningValidator.php", type: "verifies", weight: 1.0, reason: "Verifies validator consistency with single-field model" }
-    - { to: "lupo-includes/classes/Channel66HeaderProjection.php", type: "verifies", weight: 1.0, reason: "Verifies projection writes only version_when_written" }
-    - { to: "LUPEDIA_VERSION", type: "resolves", weight: 1.0, reason: "Single source of truth for version resolution" }
+  - to: lupo-channels/66/threads/1005/20260319_040000_hephaestus_single_field_versioning_enforcement_results.md
+    type: remediates
+    weight: 1.0
+    reason: Remediates contradictions identified by LILITH
+  - to: lupo-includes/functions/version_resolver.php
+    type: fixes
+    weight: 1.0
+    reason: Fixes resolver vs validator contradiction and stale fallback
+  - to: lupo-includes/classes/LupopediaArtifactTemplateGenerator.php
+    type: verifies
+    weight: 1.0
+    reason: Verifies template generator consistency with single-field model
+  - to: lupo-includes/classes/ThreeFieldVersioningValidator.php
+    type: verifies
+    weight: 1.0
+    reason: Verifies validator consistency with single-field model
+  - to: lupo-includes/classes/Channel66HeaderProjection.php
+    type: verifies
+    weight: 1.0
+    reason: Verifies projection writes only version_when_written
+  - to: LUPEDIA_VERSION
+    type: resolves
+    weight: 1.0
+    reason: Single source of truth for version resolution
 lupopedia.footer:
-  version: "1.0"
-  last_verified: "20260319"
-  last_verified_by: "hephaestus"
-  orchestrator: "hephaestus"
+  version: '1.0'
+  last_verified: '20260324182605'
+  last_verified_by: cursor
+  orchestrator: hephaestus
   next_action:
-    - "Thread 1005: Contradictions resolved - system now logically consistent"
-    - "All artifact creation paths: Verified to use resolver only"
+  - 'Thread 1005: Contradictions resolved - system now logically consistent'
+  - 'All artifact creation paths: Verified to use resolver only'
+  last_verified_by_actor_id: 102
+lupopedia.headers:
+  file_path_from_root: lupo-channels/66/threads/1005/20260319_050000_hephaestus_contradiction_resolution_single_field_versioning.md
+  web_path: http://www.lupopedia.com/lupo-channels/66/threads/1005/20260319_050000_hephaestus_contradiction_resolution_single_field_versioning.md
+  when_updated: '20260324182605'
+  last_modified_utc: '20260324182605'
+  channel_id: 66
+  thread_id: 1005
+  actor_name: hephaestus
+  actor_id: 14
+  delegation_chain: hephaestus:root
 ---
 
 # file: HEPHAESTUS Contradiction Resolution Results — Thread 1005 — session: L-LUPO-ROOT-HEPHAESTUS — delegation: hephaestus:root — web_path: http://www.lupopedia.com/lupo-channels/66/threads/1005/20260319_050000_hephaestus_contradiction_resolution_single_field_versioning.md

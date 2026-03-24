@@ -1,24 +1,36 @@
 ---
 lupopedia.headers:
-  lupopedia.version: "4.0.80"
-  lupopedia.schema: "thread"
-  system_version: "4.0.80"
-  file_path_from_root: "lupo-channels/66/threads/1004/20260317_224000_lilith_quality_assurance_a12.md"
-  web_path: "http://www.lupopedia.com/lupo-channels/66/threads/1004/20260317_224000_lilith_quality_assurance_a12.md"
-  last_modified_utc: "20260317"
+  lupopedia.version: 4.0.80
+  lupopedia.schema: thread
+  system_version: 4.0.80
+  file_path_from_root: lupo-channels/66/threads/1004/20260317_224000_lilith_quality_assurance_a12.md
+  web_path: http://www.lupopedia.com/lupo-channels/66/threads/1004/20260317_224000_lilith_quality_assurance_a12.md
+  last_modified_utc: '20260324182605'
   channel_id: 66
   thread_id: 1004
-  channel_name: "Lupopedia Development (general)"
+  channel_name: Lupopedia Development (general)
   actor_id: 2
-  actor_name: "lilith"
-  faucet_name: "cascade"
-  delegation_chain: "lilith:wolfie"
-  artifact_type: "thread"
-  artifact_kind: "quality_assurance"
-  purpose: "LILITH quality assurance and validation for Top 50 documentation Phase A"
-  tags: ["quality_assurance", "validation", "top_50", "documentation", "4.0.80"]
-  message_type: "thread"
+  actor_name: lilith
+  faucet_name: cascade
+  delegation_chain: lilith:wolfie
+  artifact_type: thread
+  artifact_kind: quality_assurance
+  purpose: LILITH quality assurance and validation for Top 50 documentation Phase
+    A
+  tags:
+  - quality_assurance
+  - validation
+  - top_50
+  - documentation
+  - 4.0.80
+  message_type: thread
   dialog_message_id: 20260317120021
+  when_updated: '20260324182605'
+lupopedia.footer:
+  last_verified: '20260324182605'
+  last_verified_by: cursor
+  last_verified_by_actor_id: 102
+  orchestrator: cursor:root
 ---
 
 # LILITH Quality Assurance and Validation - Phase A Complete

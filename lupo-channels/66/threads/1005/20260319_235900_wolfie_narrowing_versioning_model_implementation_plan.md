@@ -1,45 +1,79 @@
 ---
 lupopedia.headers:
-  lupopedia.version: "1.0"
-  lupopedia.schema: "thread"
-  system_version: "4.0.83"
-  file_path_from_root: "lupo-channels/66/threads/1005/20260319_235900_wolfie_narrowing_versioning_model_implementation_plan.md"
-  web_path: "http://www.lupopedia.com/lupo-channels/66/threads/1005/20260319_235900_wolfie_narrowing_versioning_model_implementation_plan"
-  last_modified_utc: "20260319"
+  lupopedia.version: '1.0'
+  lupopedia.schema: thread
+  system_version: 4.0.83
+  file_path_from_root: lupo-channels/66/threads/1005/20260319_235900_wolfie_narrowing_versioning_model_implementation_plan.md
+  web_path: http://www.lupopedia.com/lupo-channels/66/threads/1005/20260319_235900_wolfie_narrowing_versioning_model_implementation_plan.md
+  last_modified_utc: '20260324182605'
   channel_id: 66
   thread_id: 1005
   actor_id: 1
-  actor_name: "wolfie"
-  delegation_chain: "wolfie:root"
-  artifact_type: "thread"
-  artifact_kind: "narrowing"
-  purpose: "WOLFIE narrowing and implementation planning: operationalizing ATHENA's versioning model doctrine decision"
-  traits: ["narrowing", "implementation_plan", "versioning_model", "operationalization", "thread_1005", "wolfie"]
-  tags: ["narrowing", "implementation_plan", "versioning_model", "lupopedia_headers", "operationalization", "channel_66", "thread_1005"]
-
+  actor_name: wolfie
+  delegation_chain: wolfie:root
+  artifact_type: thread
+  artifact_kind: narrowing
+  purpose: 'WOLFIE narrowing and implementation planning: operationalizing ATHENA''s
+    versioning model doctrine decision'
+  traits:
+  - narrowing
+  - implementation_plan
+  - versioning_model
+  - operationalization
+  - thread_1005
+  - wolfie
+  tags:
+  - narrowing
+  - implementation_plan
+  - versioning_model
+  - lupopedia_headers
+  - operationalization
+  - channel_66
+  - thread_1005
+  when_updated: '20260324182605'
 lupopedia.edges:
   outbound_edges:
-    - { to: "lupo-channels/66/threads/1005/20260319_233000_athena_canonical_doctrine_decision_versioning_model.md", type: "operationalizes", weight: 1.0, reason: "ATHENA's canonical doctrine decision" }
-    - { to: "lupo-docs/doctrine/LUPOPEDIA_HEADERS/VERSIONING_MODEL.md", type: "references", weight: 1.0, reason: "Canonical versioning model doctrine" }
-    - { to: "lupo-docs/doctrine/LUPOPEDIA_HEADERS/README.md", type: "references", weight: 1.0, reason: "Header format specification" }
-    - { to: "lupo-docs/doctrine/LUPOPEDIA_HEADERS/LUPOPEDIA_HEADERS_FORMAT.md", type: "references", weight: 1.0, reason: "Format specification" }
-    - { to: "lupo-docs/doctrine/LUPOPEDIA_HEADERS/LUPOPEDIA_HEADERS_PLAN.md", type: "references", weight: 0.9, reason: "Header implementation plan" }
-    - { to: "LUPEDIA_VERSION", type: "requires_reading", weight: 1.0, reason: "System version source of truth" }
-    - { to: "lupo-includes/version.php", type: "requires_reading", weight: 1.0, reason: "Version resolution functions" }
-
+  - to: lupo-channels/66/threads/1005/20260319_233000_athena_canonical_doctrine_decision_versioning_model.md
+    type: operationalizes
+    weight: 1.0
+    reason: ATHENA's canonical doctrine decision
+  - to: lupo-docs/doctrine/LUPOPEDIA_HEADERS/VERSIONING_MODEL.md
+    type: references
+    weight: 1.0
+    reason: Canonical versioning model doctrine
+  - to: lupo-docs/doctrine/LUPOPEDIA_HEADERS/README.md
+    type: references
+    weight: 1.0
+    reason: Header format specification
+  - to: lupo-docs/doctrine/LUPOPEDIA_HEADERS/LUPOPEDIA_HEADERS_FORMAT.md
+    type: references
+    weight: 1.0
+    reason: Format specification
+  - to: lupo-docs/doctrine/LUPOPEDIA_HEADERS/LUPOPEDIA_HEADERS_PLAN.md
+    type: references
+    weight: 0.9
+    reason: Header implementation plan
+  - to: LUPEDIA_VERSION
+    type: requires_reading
+    weight: 1.0
+    reason: System version source of truth
+  - to: lupo-includes/version.php
+    type: requires_reading
+    weight: 1.0
+    reason: Version resolution functions
 lupopedia.see:
   mappings:
-    - ["lupo-channels/66/threads/1005", "http://www.lupopedia.com/lupo-channels/66/threads/1005"]
-
+  - - lupo-channels/66/threads/1005
+    - http://www.lupopedia.com/lupo-channels/66/threads/1005
 lupopedia.footer:
-  version: "4.0.83"
-  last_verified: "20260319"
-  last_verified_by: "wolfie"
-  orchestrator: "wolfie"
+  version: 4.0.83
+  last_verified: '20260324182605'
+  last_verified_by: cursor
+  orchestrator: wolfie
   next_action:
-    - "HEPHAESTUS: Update templates and validators for three-field versioning model"
-    - "Thread 1005: Ready for implementation execution"
-
+  - 'HEPHAESTUS: Update templates and validators for three-field versioning model'
+  - 'Thread 1005: Ready for implementation execution'
+  last_verified_by_actor_id: 102
 ---
 
 # file: WOLFIE Narrowing — Versioning Model Implementation Plan — session: L-LUPO-ROOT-WOLFIE — delegation: wolfie:root — web_path: http://www.lupopedia.com/lupo-channels/66/threads/1005/20260319_235900_wolfie_narrowing_versioning_model_implementation_plan

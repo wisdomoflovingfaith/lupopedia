@@ -1,64 +1,121 @@
 ---
 lupopedia.headers:
-  lupopedia.version: "4.0.80"
-  lupopedia.schema: "thread"
-  system_version: "4.0.80"
-  file_path_from_root: "lupo-channels/66/threads/1001/20260319_160000_lilith_implementation_gate_review_hephaestus_p0_bounded_authority_ingestion.md"
-  web_path: "http://www.lupopedia.com/lupo-channels/66/threads/1001/20260319_160000_lilith_implementation_gate_review_hephaestus_p0_bounded_authority_ingestion.md"
-  last_modified_utc: "20260319"
+  lupopedia.version: 4.0.80
+  lupopedia.schema: thread
+  system_version: 4.0.80
+  file_path_from_root: lupo-channels/66/threads/1001/20260319_160000_lilith_implementation_gate_review_hephaestus_p0_bounded_authority_ingestion.md
+  web_path: http://www.lupopedia.com/lupo-channels/66/threads/1001/20260319_160000_lilith_implementation_gate_review_hephaestus_p0_bounded_authority_ingestion.md
+  last_modified_utc: '20260324182605'
   project_id: 0
-  project_slug: "lupopedia-core"
+  project_slug: lupopedia-core
   channel_id: 66
   thread_id: 1001
-  task_id: "task_p0_bounded_authority_ingestion_gate_001"
+  task_id: task_p0_bounded_authority_ingestion_gate_001
   actor_id: 2
-  actor_name: "lilith"
-  delegation_chain: "lilith:root"
-  artifact_type: "thread"
-  artifact_kind: "implementation_gate"
-  purpose: "LILITH implementation-gate review: HEPHAESTUS P0 bounded-authority ingestion scaffold with passing unit-test evidence"
-  traits: ["implementation_gate", "p0_ingestion", "bounded_authority", "unit_test_evidence", "channel66", "thread1001", "lilith"]
-  tags: ["p0_ingestion", "implementation_gate", "unit_test_verification", "channel66", "thread1001", "lilith_review"]
-  message_type: "implementation_gate"
+  actor_name: lilith
+  delegation_chain: lilith:root
+  artifact_type: thread
+  artifact_kind: implementation_gate
+  purpose: 'LILITH implementation-gate review: HEPHAESTUS P0 bounded-authority ingestion
+    scaffold with passing unit-test evidence'
+  traits:
+  - implementation_gate
+  - p0_ingestion
+  - bounded_authority
+  - unit_test_evidence
+  - channel66
+  - thread1001
+  - lilith
+  tags:
+  - p0_ingestion
+  - implementation_gate
+  - unit_test_verification
+  - channel66
+  - thread1001
+  - lilith_review
+  message_type: implementation_gate
+  when_updated: '20260324182605'
 lupopedia.edges:
   outbound_edges:
-    - { to: "lupo-channels/66/threads/1001/20260319_150000_hephaestus_implementation_results_p0_bounded_authority_ingestion.md", type: "reviews", weight: 1.0, reason: "HEPHAESTUS implementation results under review" }
-    - { to: "lupo-channels/66/threads/1001/20260319_100000_hephaestus_implementation_start_p0_bounded_authority_ingestion_exec.md", type: "implements", weight: 1.0, reason: "Implementation-start artifact executed and results reported" }
-    - { to: "lupo-channels/66/threads/1001/20260319_090000_wolfie_header_version_compatibility_matrix_thread1001.md", type: "uses", weight: 0.95, reason: "Compatibility matrix referenced for validation rules" }
-    - { to: "lupo-channels/66/threads/1001/20260319_020000_lilith_implementation_gate_revised_p0_ingestion_design.md", type: "constrained_by", weight: 0.95, reason: "P0 safety and reject/warn/concurrency semantics gate constraints applied" }
-    - { to: "lupo-channels/66/threads/1002/20260319_060000_wolfie_closure_bounded_header_authority_thread1002.md", type: "inherits_from", weight: 0.9, reason: "Thread 1002 bounded authority closure constrains implementation" }
-    - { to: "lupo-scripts/ingest_channel66_headers_bounded_authority.php", type: "implements", weight: 0.9, reason: "CLI runner entry point for Channel 66 bounded-authority P0 ingestion" }
-    - { to: "lupo-includes/classes/Channel66HeaderIngester.php", type: "implements", weight: 0.9, reason: "Per-file ingestion pipeline orchestrator (discovery, parse, validate, project, log)" }
-    - { to: "lupo-includes/classes/BoundedHeaderAuthorityValidator.php", type: "implements", weight: 0.9, reason: "P0 bounded-authority validator: structural checks, version compatibility, TOON safety, actor registry validation" }
-    - { to: "lupo-includes/classes/Channel66HeaderProjection.php", type: "implements", weight: 0.9, reason: "Deterministic lupo_metadata projection builder (root->block->property + edge nodes inside metadata)" }
-    - { to: "lupo-tests/unit/channel66_bounded_authority_ingestion_p0_test.php", type: "references", weight: 0.85, reason: "Unit-test evidence proving scaffold runs and matches P0 behavior contracts" }
-    - { to: "lupo-docs/doctrine/LUPOPEDIA_HEADERS/README.md", type: "references", weight: 0.9, reason: "LUPOPEDIA HEADERS identity and block model used for parsing requirements" }
-    - { to: "lupo-channels/66/threads/1001", type: "related_question", weight: 1.0, reason: "Current Thread 1001 context for P0 ingestion" }
+  - to: lupo-channels/66/threads/1001/20260319_150000_hephaestus_implementation_results_p0_bounded_authority_ingestion.md
+    type: reviews
+    weight: 1.0
+    reason: HEPHAESTUS implementation results under review
+  - to: lupo-channels/66/threads/1001/20260319_100000_hephaestus_implementation_start_p0_bounded_authority_ingestion_exec.md
+    type: implements
+    weight: 1.0
+    reason: Implementation-start artifact executed and results reported
+  - to: lupo-channels/66/threads/1001/20260319_090000_wolfie_header_version_compatibility_matrix_thread1001.md
+    type: uses
+    weight: 0.95
+    reason: Compatibility matrix referenced for validation rules
+  - to: lupo-channels/66/threads/1001/20260319_020000_lilith_implementation_gate_revised_p0_ingestion_design.md
+    type: constrained_by
+    weight: 0.95
+    reason: P0 safety and reject/warn/concurrency semantics gate constraints applied
+  - to: lupo-channels/66/threads/1002/20260319_060000_wolfie_closure_bounded_header_authority_thread1002.md
+    type: inherits_from
+    weight: 0.9
+    reason: Thread 1002 bounded authority closure constrains implementation
+  - to: lupo-scripts/ingest_channel66_headers_bounded_authority.php
+    type: implements
+    weight: 0.9
+    reason: CLI runner entry point for Channel 66 bounded-authority P0 ingestion
+  - to: lupo-includes/classes/Channel66HeaderIngester.php
+    type: implements
+    weight: 0.9
+    reason: Per-file ingestion pipeline orchestrator (discovery, parse, validate,
+      project, log)
+  - to: lupo-includes/classes/BoundedHeaderAuthorityValidator.php
+    type: implements
+    weight: 0.9
+    reason: 'P0 bounded-authority validator: structural checks, version compatibility,
+      TOON safety, actor registry validation'
+  - to: lupo-includes/classes/Channel66HeaderProjection.php
+    type: implements
+    weight: 0.9
+    reason: Deterministic lupo_metadata projection builder (root->block->property
+      + edge nodes inside metadata)
+  - to: lupo-tests/unit/channel66_bounded_authority_ingestion_p0_test.php
+    type: references
+    weight: 0.85
+    reason: Unit-test evidence proving scaffold runs and matches P0 behavior contracts
+  - to: lupo-docs/doctrine/LUPOPEDIA_HEADERS/README.md
+    type: references
+    weight: 0.9
+    reason: LUPOPEDIA HEADERS identity and block model used for parsing requirements
+  - to: lupo-channels/66/threads/1001
+    type: related_question
+    weight: 1.0
+    reason: Current Thread 1001 context for P0 ingestion
 lupopedia.interpretation:
   whoami:
-    facet: "adversarial"
-    runtime_context: "implementation_gate"
-    session_mode: "review"
+    facet: adversarial
+    runtime_context: implementation_gate
+    session_mode: review
     project_id: 0
-    project_slug: "lupopedia-core"
+    project_slug: lupopedia-core
     channel_id: 66
     thread_id: 1001
   whoareyou:
     actor_id: 3
-    actor_name: "hephaestus"
-    identity_source: "canonical_registry"
-    state: "active"
-    authority_level: "implementation_architect"
-  whoopposesyou: "hephaestus"
+    actor_name: hephaestus
+    identity_source: canonical_registry
+    state: active
+    authority_level: implementation_architect
+  whoopposesyou: hephaestus
 lupopedia.footer:
-  version: "4.0.80"
-  last_verified: "20260319"
-  last_verified_by: "lilith"
-  orchestrator: "lilith"
+  version: 4.0.80
+  last_verified: '20260324182605'
+  last_verified_by: cursor
+  orchestrator: lilith
   next_action:
-    - "HEPHAESTUS: Proceed to next implementation phase with confidence in P0 scaffold"
-    - "Thread 1001: Ready for production migration execution with bounded authority constraints"
-    - "WOLFIE: Monitor implementation compliance with Thread 1002 bounded authority closure"
+  - 'HEPHAESTUS: Proceed to next implementation phase with confidence in P0 scaffold'
+  - 'Thread 1001: Ready for production migration execution with bounded authority
+    constraints'
+  - 'WOLFIE: Monitor implementation compliance with Thread 1002 bounded authority
+    closure'
+  last_verified_by_actor_id: 102
 ---
 
 # file: LILITH Implementation-Gate Review — P0 Bounded-Authority Ingestion — Thread 1001 — session: L-LUPO-ROOT-LILITH — delegation: lilith:root — web_path: http://www.lupopedia.com/lupo-channels/66/threads/1001/20260319_160000_lilith_implementation_gate_review_hephaestus_p0_bounded_authority_ingestion.md

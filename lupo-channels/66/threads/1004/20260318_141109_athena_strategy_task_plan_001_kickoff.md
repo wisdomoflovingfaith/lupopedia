@@ -1,39 +1,80 @@
 ---
 lupopedia.headers:
-  lupopedia.version: "4.0.81"
-  lupopedia.schema: "thread"
-  system_version: "4.0.81"
-  file_path_from_root: "lupo-channels/66/threads/1004/20260318_141109_athena_strategy_task_plan_001_kickoff.md"
-  web_path: "http://www.lupopedia.com/lupo-channels/66/threads/1004/20260318_141109_athena_strategy_task_plan_001_kickoff.md"
-  last_modified_utc: "20260318"
+  lupopedia.version: 4.0.81
+  lupopedia.schema: thread
+  system_version: 4.0.81
+  file_path_from_root: lupo-channels/66/threads/1004/20260318_141109_athena_strategy_task_plan_001_kickoff.md
+  web_path: http://www.lupopedia.com/lupo-channels/66/threads/1004/20260318_141109_athena_strategy_task_plan_001_kickoff.md
+  last_modified_utc: '20260324182605'
   channel_id: 66
   thread_id: 1004
-  task_id: "task_plan_001"
+  task_id: task_plan_001
   actor_id: 12
-  actor_name: "athena"
-  delegation_chain: "athena:strategy"
-  artifact_type: "thread"
-  artifact_kind: "strategy_decision"
-  purpose: "Kickoff strategy: Option A planning system (TODO.md task registry + plan.md roadmap + threads as execution containers) with lifecycle/status mapping and migration approach"
-  tags: ["athena", "strategy", "task_plan_001", "option_a", "todo_registry", "plan_roadmap", "task_id", "thread_id", "lifecycle", "migration", "4.0.81"]
+  actor_name: athena
+  delegation_chain: athena:strategy
+  artifact_type: thread
+  artifact_kind: strategy_decision
+  purpose: 'Kickoff strategy: Option A planning system (TODO.md task registry + plan.md
+    roadmap + threads as execution containers) with lifecycle/status mapping and migration
+    approach'
+  tags:
+  - athena
+  - strategy
+  - task_plan_001
+  - option_a
+  - todo_registry
+  - plan_roadmap
+  - task_id
+  - thread_id
+  - lifecycle
+  - migration
+  - 4.0.81
+  when_updated: '20260324182605'
 lupopedia.edges:
   outbound_edges:
-    - { to: "lupo-channels/42/threads/1001/20260318_120000_wolfie_directive_task_planning-thread-allocation.md", type: "implements", weight: 1.0, reason: "Allocation + Option A decision" }
-    - { to: "TODO.md", type: "analyzes", weight: 1.0, reason: "Current task registry structure" }
-    - { to: "plan.md", type: "analyzes", weight: 1.0, reason: "Current roadmap structure" }
-    - { to: "lupo-channels/42/threads/1001/20260318_110000_wolfie_directive_thread001-triage.md", type: "aligns_with", weight: 0.9, reason: "task_id/thread_id separation + canonical filename pattern" }
-    - { to: "lupo-channels/42/threads/1001/20260318_135527_athena_strategy_thread-lifecycle.md", type: "uses", weight: 1.0, reason: "Canonical lifecycle state machine" }
-    - { to: "lupo-channels/42/threads/1003/20260318_175000_thoth_status_task_doc_001_complete.md", type: "references", weight: 0.7, reason: "README explains thread model; informs planning doc alignment" }
-    - { to: "lupo-docs/doctrine/CHANNEL_BASED_COORDINATION_DOCTRINE.md", type: "aligns_with", weight: 0.8, reason: "Channel layout + coordination flows" }
-    - { to: "lupo-rules/root/MULTI_AGENT_COORDINATION_DOCTRINE.md", type: "aligns_with", weight: 0.8, reason: "TSK001/TSK002/TSK003 and artifact governance" }
+  - to: lupo-channels/42/threads/1001/20260318_120000_wolfie_directive_task_planning-thread-allocation.md
+    type: implements
+    weight: 1.0
+    reason: Allocation + Option A decision
+  - to: TODO.md
+    type: analyzes
+    weight: 1.0
+    reason: Current task registry structure
+  - to: plan.md
+    type: analyzes
+    weight: 1.0
+    reason: Current roadmap structure
+  - to: lupo-channels/42/threads/1001/20260318_110000_wolfie_directive_thread001-triage.md
+    type: aligns_with
+    weight: 0.9
+    reason: task_id/thread_id separation + canonical filename pattern
+  - to: lupo-channels/42/threads/1001/20260318_135527_athena_strategy_thread-lifecycle.md
+    type: uses
+    weight: 1.0
+    reason: Canonical lifecycle state machine
+  - to: lupo-channels/42/threads/1003/20260318_175000_thoth_status_task_doc_001_complete.md
+    type: references
+    weight: 0.7
+    reason: README explains thread model; informs planning doc alignment
+  - to: lupo-docs/doctrine/CHANNEL_BASED_COORDINATION_DOCTRINE.md
+    type: aligns_with
+    weight: 0.8
+    reason: Channel layout + coordination flows
+  - to: lupo-rules/root/MULTI_AGENT_COORDINATION_DOCTRINE.md
+    type: aligns_with
+    weight: 0.8
+    reason: TSK001/TSK002/TSK003 and artifact governance
 lupopedia.footer:
-  version: "4.0.81"
-  last_verified: "20260318"
-  last_verified_by: "athena"
-  orchestrator: "wolfie"
+  version: 4.0.81
+  last_verified: '20260324182605'
+  last_verified_by: cursor
+  orchestrator: wolfie
   next_action:
-    - "After acceptance: produce detailed structure spec artifact(s) for TODO.md and plan.md (no edits yet)"
-    - "After structure spec: HEPHAESTUS implements validators + safe migration steps (separate task allocation)"
+  - 'After acceptance: produce detailed structure spec artifact(s) for TODO.md and
+    plan.md (no edits yet)'
+  - 'After structure spec: HEPHAESTUS implements validators + safe migration steps
+    (separate task allocation)'
+  last_verified_by_actor_id: 102
 ---
 # file: ATHENA strategy kickoff — task_plan_001 (Option A planning system) — channel 42 thread 1004
 

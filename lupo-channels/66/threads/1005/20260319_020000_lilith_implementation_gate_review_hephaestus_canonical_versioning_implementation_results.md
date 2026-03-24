@@ -1,63 +1,113 @@
 ---
 lupopedia.headers:
-  lupopedia.version: "4.0.82"
-  lupopedia.schema: "thread"
-  system_version: "4.0.82"
-  file_path_from_root: "lupo-channels/66/threads/1005/20260319_020000_lilith_implementation_gate_review_hephaestus_canonical_versioning_implementation_results.md"
-  web_path: "http://www.lupopedia.com/lupo-channels/66/threads/1005/20260319_020000_lilith_implementation_gate_review_hephaestus_canonical_versioning_implementation_results.md"
-  last_modified_utc: "20260319"
+  lupopedia.version: 4.0.82
+  lupopedia.schema: thread
+  system_version: 4.0.82
+  file_path_from_root: lupo-channels/66/threads/1005/20260319_020000_lilith_implementation_gate_review_hephaestus_canonical_versioning_implementation_results.md
+  web_path: http://www.lupopedia.com/lupo-channels/66/threads/1005/20260319_020000_lilith_implementation_gate_review_hephaestus_canonical_versioning_implementation_results.md
+  last_modified_utc: '20260324182605'
   project_id: 0
-  project_slug: "lupopedia-core"
+  project_slug: lupopedia-core
   channel_id: 66
   thread_id: 1005
-  task_id: "task_implementation_gate_review_canonical_versioning_001"
+  task_id: task_implementation_gate_review_canonical_versioning_001
   actor_id: 2
-  actor_name: "lilith"
-  delegation_chain: "lilith:root"
-  artifact_type: "thread"
-  artifact_kind: "implementation_gate"
-  purpose: "LILITH implementation-gate review: HEPHAESTUS canonical versioning model implementation results with truth-and-compliance assessment"
-  traits: ["implementation_gate", "canonical_versioning", "version_when_written", "adversarial_review", "truth_and_compliance", "thread_1005", "lilith"]
-  tags: ["implementation_gate", "canonical_versioning", "version_when_written", "adversarial_review", "truth_and_compliance", "thread_1005", "lilith"]
-  message_type: "implementation_gate"
+  actor_name: lilith
+  delegation_chain: lilith:root
+  artifact_type: thread
+  artifact_kind: implementation_gate
+  purpose: 'LILITH implementation-gate review: HEPHAESTUS canonical versioning model
+    implementation results with truth-and-compliance assessment'
+  traits:
+  - implementation_gate
+  - canonical_versioning
+  - version_when_written
+  - adversarial_review
+  - truth_and_compliance
+  - thread_1005
+  - lilith
+  tags:
+  - implementation_gate
+  - canonical_versioning
+  - version_when_written
+  - adversarial_review
+  - truth_and_compliance
+  - thread_1005
+  - lilith
+  message_type: implementation_gate
+  when_updated: '20260324182605'
 lupopedia.edges:
   outbound_edges:
-    - { to: "lupo-channels/66/threads/1005/20260319_000000_hephaestus_canonical_versioning_implementation_results.md", type: "reviews", weight: 1.0, reason: "HEPHAESTUS canonical versioning implementation results under review" }
-    - { to: "lupo-channels/66/threads/1005/20260319_233000_athena_canonical_doctrine_decision_versioning_model.md", type: "implements", weight: 1.0, reason: "Implements ATHENA's canonical doctrine decision for versioning model" }
-    - { to: "lupo-channels/66/threads/1005/20260319_235900_wolfie_narrowing_versioning_model_implementation_plan.md", type: "implements", weight: 1.0, reason: "Implements WOLFIE's narrowing implementation plan" }
-    - { to: "lupo-docs/doctrine/LUPOPEDIA_HEADERS/README.md", type: "uses", weight: 1.0, reason: "Uses LUPOPEDIA HEADERS doctrine for versioning compliance" }
-    - { to: "lupo-docs/doctrine/LUPOPEDIA_HEADERS/VERSIONING_MODEL.md", type: "uses", weight: 1.0, reason: "Uses LUPOPEDIA HEADERS versioning model doctrine" }
-    - { to: "lupo-includes/functions/version_resolver.php", type: "verifies", weight: 1.0, reason: "Canonical version resolver implementation verified" }
-    - { to: "lupo-includes/classes/Channel66HeaderProjection.php", type: "verifies", weight: 1.0, reason: "Projection integration with canonical model verified" }
-    - { to: "lupo-includes/classes/ThreeFieldVersioningValidator.php", type: "verifies", weight: 1.0, reason: "Canonical validator implementation verified" }
-    - { to: "lupo-includes/classes/LupopediaArtifactTemplateGenerator.php", type: "verifies", weight: 1.0, reason: "Template generator compliance with canonical model verified" }
-    - { to: "lupo-tests/integration/three_field_versioning_test.php", type: "verifies", weight: 1.0, reason: "Test evidence integrity and results verified" }
-    - { to: "LUPEDIA_VERSION", type: "resolves", weight: 1.0, reason: "System version source of truth for version resolution" }
+  - to: lupo-channels/66/threads/1005/20260319_000000_hephaestus_canonical_versioning_implementation_results.md
+    type: reviews
+    weight: 1.0
+    reason: HEPHAESTUS canonical versioning implementation results under review
+  - to: lupo-channels/66/threads/1005/20260319_233000_athena_canonical_doctrine_decision_versioning_model.md
+    type: implements
+    weight: 1.0
+    reason: Implements ATHENA's canonical doctrine decision for versioning model
+  - to: lupo-channels/66/threads/1005/20260319_235900_wolfie_narrowing_versioning_model_implementation_plan.md
+    type: implements
+    weight: 1.0
+    reason: Implements WOLFIE's narrowing implementation plan
+  - to: lupo-docs/doctrine/LUPOPEDIA_HEADERS/README.md
+    type: uses
+    weight: 1.0
+    reason: Uses LUPOPEDIA HEADERS doctrine for versioning compliance
+  - to: lupo-docs/doctrine/LUPOPEDIA_HEADERS/VERSIONING_MODEL.md
+    type: uses
+    weight: 1.0
+    reason: Uses LUPOPEDIA HEADERS versioning model doctrine
+  - to: lupo-includes/functions/version_resolver.php
+    type: verifies
+    weight: 1.0
+    reason: Canonical version resolver implementation verified
+  - to: lupo-includes/classes/Channel66HeaderProjection.php
+    type: verifies
+    weight: 1.0
+    reason: Projection integration with canonical model verified
+  - to: lupo-includes/classes/ThreeFieldVersioningValidator.php
+    type: verifies
+    weight: 1.0
+    reason: Canonical validator implementation verified
+  - to: lupo-includes/classes/LupopediaArtifactTemplateGenerator.php
+    type: verifies
+    weight: 1.0
+    reason: Template generator compliance with canonical model verified
+  - to: lupo-tests/integration/three_field_versioning_test.php
+    type: verifies
+    weight: 1.0
+    reason: Test evidence integrity and results verified
+  - to: LUPEDIA_VERSION
+    type: resolves
+    weight: 1.0
+    reason: System version source of truth for version resolution
 lupopedia.interpretation:
   whoami:
-    facet: "adversarial"
-    runtime_context: "implementation_gate"
-    session_mode: "review"
+    facet: adversarial
+    runtime_context: implementation_gate
+    session_mode: review
     project_id: 0
-    project_slug: "lupopedia-core"
+    project_slug: lupopedia-core
     channel_id: 66
     thread_id: 1005
   whoareyou:
     actor_id: 3
-    actor_name: "hephaestus"
-    identity_source: "canonical_registry"
-    state: "active"
-    authority_level: "implementation_architect"
-  whoopposesyou: "hephaestus"
+    actor_name: hephaestus
+    identity_source: canonical_registry
+    state: active
+    authority_level: implementation_architect
+  whoopposesyou: hephaestus
 lupopedia.footer:
-  version: "4.0.82"
-  last_verified: "20260319"
-  last_verified_by: "lilith"
-  orchestrator: "lilith"
+  version: 4.0.82
+  last_verified: '20260324182605'
+  last_verified_by: cursor
+  orchestrator: lilith
   next_action:
-    - "HEPHAESTUS: Fix critical canonical versioning model violations"
-    - "Thread 1005: Ready for next implementation phase after compliance fixes"
-    - "ATHENA: Review canonical versioning model doctrine compliance"
+  - 'HEPHAESTUS: Fix critical canonical versioning model violations'
+  - 'Thread 1005: Ready for next implementation phase after compliance fixes'
+  - 'ATHENA: Review canonical versioning model doctrine compliance'
+  last_verified_by_actor_id: 102
 ---
 
 # file: LILITH Implementation-Gate Review — Canonical Versioning Model — Thread 1005 — session: L-LUPO-ROOT-LILITH — delegation: lilith:root — web_path: http://www.lupopedia.com/lupo-channels/66/threads/1005/20260319_020000_lilith_implementation_gate_review_hephaestus_canonical_versioning_implementation_results.md

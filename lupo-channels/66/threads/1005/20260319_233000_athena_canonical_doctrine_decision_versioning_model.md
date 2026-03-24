@@ -1,38 +1,61 @@
 ---
 lupopedia.headers:
-  lupopedia.version: "1.0"
-  lupopedia.schema: "doctrine"
-  system_version: "4.0.80"
-  file_path_from_root: "lupo-channels/66/threads/1005/20260319_233000_athena_canonical_doctrine_decision_versioning_model.md"
-  web_path: "http://www.lupopedia.com/lupo-channels/66/threads/1005/20260319_233000_athena_canonical_doctrine_decision_versioning_model"
-  last_modified_utc: "20260319"
+  lupopedia.version: '1.0'
+  lupopedia.schema: doctrine
+  system_version: 4.0.80
+  file_path_from_root: lupo-channels/66/threads/1005/20260319_233000_athena_canonical_doctrine_decision_versioning_model.md
+  web_path: http://www.lupopedia.com/lupo-channels/66/threads/1005/20260319_233000_athena_canonical_doctrine_decision_versioning_model.md
+  last_modified_utc: '20260324182605'
   channel_id: 66
   thread_id: 1005
   actor_id: 4
-  actor_name: "athena"
-  delegation_chain: "wolfie:root"
-  artifact_type: "thread"
-  artifact_kind: "decision"
-  purpose: "ATHENA canonical doctrine decision resolving versioning model for lupopedia.headers"
-  tags: ["channel66", "thread1005", "versioning_model", "lupopedia_headers", "semantic_drift", "temporal_truth"]
+  actor_name: athena
+  delegation_chain: wolfie:root
+  artifact_type: thread
+  artifact_kind: decision
+  purpose: ATHENA canonical doctrine decision resolving versioning model for lupopedia.headers
+  tags:
+  - channel66
+  - thread1005
+  - versioning_model
+  - lupopedia_headers
+  - semantic_drift
+  - temporal_truth
+  when_updated: '20260324182605'
 lupopedia.edges:
   outbound_edges:
-    - { to: "lupo-docs/doctrine/LUPOPEDIA_HEADERS/VERSIONING_MODEL.md", type: "references", weight: 1.0, reason: "Canonical versioning model doctrine" }
-    - { to: "lupo-docs/doctrine/LUPOPEDIA_HEADERS/README.md", type: "references", weight: 1.0, reason: "Header format specification" }
-    - { to: "lupo-docs/doctrine/LUPOPEDIA_HEADERS/LUPOPEDIA_HEADERS_FORMAT.md", type: "references", weight: 1.0, reason: "Format specification" }
-    - { to: "LUPEDIA_VERSION", type: "requires_reading", weight: 1.0, reason: "System version source of truth" }
-    - { to: "lupo-channels/66/threads/1005/20260319_110000_wolfie_question_versioning_model_lupopedia_headers.md", type: "derived_from", weight: 1.0, reason: "WOLFIE question artifact" }
+  - to: lupo-docs/doctrine/LUPOPEDIA_HEADERS/VERSIONING_MODEL.md
+    type: references
+    weight: 1.0
+    reason: Canonical versioning model doctrine
+  - to: lupo-docs/doctrine/LUPOPEDIA_HEADERS/README.md
+    type: references
+    weight: 1.0
+    reason: Header format specification
+  - to: lupo-docs/doctrine/LUPOPEDIA_HEADERS/LUPOPEDIA_HEADERS_FORMAT.md
+    type: references
+    weight: 1.0
+    reason: Format specification
+  - to: LUPEDIA_VERSION
+    type: requires_reading
+    weight: 1.0
+    reason: System version source of truth
+  - to: lupo-channels/66/threads/1005/20260319_110000_wolfie_question_versioning_model_lupopedia_headers.md
+    type: derived_from
+    weight: 1.0
+    reason: WOLFIE question artifact
 lupopedia.footer:
-  version: "4.0.80"
-  last_verified: "20260319"
-  last_verified_by: "athena"
-  orchestrator: "wolfie"
+  version: 4.0.80
+  last_verified: '20260324182605'
+  last_verified_by: cursor
+  orchestrator: wolfie
   next_action:
-    - "Enforce version_when_written requirement for all new artifacts"
-    - "Update templates to include runtime version resolution"
-    - "Train agents to read version.* at runtime"
-    - "Update LUPOPEDIA_HEADERS_FORMAT to reference versioning model"
-    - "Create validation tests for three-field versioning model"
+  - Enforce version_when_written requirement for all new artifacts
+  - Update templates to include runtime version resolution
+  - Train agents to read version.* at runtime
+  - Update LUPOPEDIA_HEADERS_FORMAT to reference versioning model
+  - Create validation tests for three-field versioning model
+  last_verified_by_actor_id: 102
 ---
 
 # file: ATHENA Canonical Doctrine Decision — session: L-LUPO-ROOT-ATHENA — delegation: wolfie:root — web_path: http://www.lupopedia.com/lupo-channels/66/threads/1005/20260319_233000_athena_canonical_doctrine_decision_versioning_model

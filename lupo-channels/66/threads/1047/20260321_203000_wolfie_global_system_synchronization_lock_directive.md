@@ -1,37 +1,68 @@
 ---
 lupopedia.headers:
-  version_when_written: "4.0.85"
-  lupopedia.schema: "directive"
-  file_path_from_root: "lupo-channels/66/threads/1047/20260321_203000_wolfie_global_system_synchronization_lock_directive.md"
-  web_path: "http://www.lupopedia.com/lupo-channels/66/threads/1047/global_system_synchronization_lock_directive"
-  last_modified_utc: "20260321"
+  version_when_written: 4.0.85
+  lupopedia.schema: directive
+  file_path_from_root: lupo-channels/66/threads/1047/20260321_203000_wolfie_global_system_synchronization_lock_directive.md
+  web_path: http://www.lupopedia.com/lupo-channels/66/threads/1047/20260321_203000_wolfie_global_system_synchronization_lock_directive.md
+  last_modified_utc: '20260324182605'
   channel_id: 66
   thread_id: 1047
-  task_id: "task_global_system_synchronization_4_0_85_001"
+  task_id: task_global_system_synchronization_4_0_85_001
   actor_id: 1
-  actor_name: "wolfie"
-  delegation_chain: "wolfie:root"
-  artifact_type: "directive"
-  artifact_kind: "global_system_broadcast"
-  purpose: "WOLFIE global system broadcast directive for full-system documentation synchronization lock across all channels"
-  mood_rgb: "8B0000"
-  traits: ["4.0.85", "directive", "global_system_broadcast", "system_synchronization", "wolfie", "global_lock"]
-  tags: ["wolfie", "4.0.85", "directive", "global_system_broadcast", "system_synchronization", "global_lock"]
-
+  actor_name: wolfie
+  delegation_chain: wolfie:root
+  artifact_type: directive
+  artifact_kind: global_system_broadcast
+  purpose: WOLFIE global system broadcast directive for full-system documentation
+    synchronization lock across all channels
+  mood_rgb: 8B0000
+  traits:
+  - 4.0.85
+  - directive
+  - global_system_broadcast
+  - system_synchronization
+  - wolfie
+  - global_lock
+  tags:
+  - wolfie
+  - 4.0.85
+  - directive
+  - global_system_broadcast
+  - system_synchronization
+  - global_lock
+  when_updated: '20260324182605'
 lupopedia.edges:
   outbound_edges:
-    - { to: "lupo-channels/42/threads/1047/", type: "synchronizes", weight: 1.0, reason: "Synchronizes with Channel 42 documentation work" }
-    - { to: "CHANGELOG.md", type: "requires_update", weight: 1.0, reason: "CHANGELOG.md must reflect 4.0.85 reality across ALL channels" }
-    - { to: "TODO.md", type: "requires_update", weight: 1.0, reason: "TODO.md must include ALL channels and threads" }
-    - { to: "plan.md", type: "requires_update", weight: 1.0, reason: "plan.md must reflect ALL channel execution" }
-    - { to: "lupo-docs/versions/4.0.85/", type: "requires_update", weight: 1.0, reason: "Version directory must represent ALL channels" }
-
+  - to: lupo-channels/42/threads/1047/
+    type: synchronizes
+    weight: 1.0
+    reason: Synchronizes with Channel 42 documentation work
+  - to: CHANGELOG.md
+    type: requires_update
+    weight: 1.0
+    reason: CHANGELOG.md must reflect 4.0.85 reality across ALL channels
+  - to: TODO.md
+    type: requires_update
+    weight: 1.0
+    reason: TODO.md must include ALL channels and threads
+  - to: plan.md
+    type: requires_update
+    weight: 1.0
+    reason: plan.md must reflect ALL channel execution
+  - to: lupo-docs/versions/4.0.85/
+    type: requires_update
+    weight: 1.0
+    reason: Version directory must represent ALL channels
 lupopedia.footer:
-  directive_type: "global_system_broadcast"
-  scope: "ALL_CHANNELS_ALL_ACTORS"
-  priority: "CRITICAL"
+  directive_type: global_system_broadcast
+  scope: ALL_CHANNELS_ALL_ACTORS
+  priority: CRITICAL
   enforcement_required: true
-  completion_condition: "full_system_synchronization"
+  completion_condition: full_system_synchronization
+  last_verified: '20260324182605'
+  last_verified_by: cursor
+  last_verified_by_actor_id: 102
+  orchestrator: cursor:root
 ---
 
 # WOLFIE Global System Broadcast — Full-System Documentation Synchronization Lock

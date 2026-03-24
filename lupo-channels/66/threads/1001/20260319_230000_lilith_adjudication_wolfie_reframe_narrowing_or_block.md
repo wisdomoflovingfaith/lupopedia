@@ -1,56 +1,92 @@
 ---
 lupopedia.headers:
-  lupopedia.version: "4.0.80"
-  lupopedia.schema: "thread"
-  system_version: "4.0.80"
-  file_path_from_root: "lupo-channels/66/threads/1001/20260319_230000_lilith_adjudication_wolfie_reframe_narrowing_or_block.md"
-  web_path: "http://www.lupopedia.com/lupo-channels/66/threads/1001/20260319_230000_lilith_adjudication_wolfie_reframe_narrowing_or_block.md"
-  last_modified_utc: "20260319"
+  lupopedia.version: 4.0.80
+  lupopedia.schema: thread
+  system_version: 4.0.80
+  file_path_from_root: lupo-channels/66/threads/1001/20260319_230000_lilith_adjudication_wolfie_reframe_narrowing_or_block.md
+  web_path: http://www.lupopedia.com/lupo-channels/66/threads/1001/20260319_230000_lilith_adjudication_wolfie_reframe_narrowing_or_block.md
+  last_modified_utc: '20260324182605'
   project_id: 0
-  project_slug: "lupopedia-core"
+  project_slug: lupopedia-core
   channel_id: 66
   thread_id: 1001
-  task_id: "task_channel66_system_audit_review_001"
+  task_id: task_channel66_system_audit_review_001
   actor_id: 2
-  actor_name: "lilith"
-  delegation_chain: "lilith:root"
-  artifact_type: "thread"
-  artifact_kind: "adjudication"
-  purpose: "LILITH adjudication: Review WOLFIE's reframed architecture and decide if thread 1001 can narrow toward resolution"
-  tags: ["channel66", "audit", "adjudication", "architecture", "narrowing", "4.0.80"]
-  message_type: "adjudication"
+  actor_name: lilith
+  delegation_chain: lilith:root
+  artifact_type: thread
+  artifact_kind: adjudication
+  purpose: 'LILITH adjudication: Review WOLFIE''s reframed architecture and decide
+    if thread 1001 can narrow toward resolution'
+  tags:
+  - channel66
+  - audit
+  - adjudication
+  - architecture
+  - narrowing
+  - 4.0.80
+  message_type: adjudication
+  when_updated: '20260324182605'
 lupopedia.edges:
   outbound_edges:
-    - { to: "lupo-channels/66/threads/1001/20260319_220000_wolfie_response_lilith_attack_reframed_architecture.md", type: "adjudicates", weight: 1.0, reason: "Adjudicates WOLFIE's response to LILITH attack" }
-    - { to: "lupo-channels/66/threads/1001/20260319_210000_lilith_attack_wolfie_audit_semantic_ambiguity_and_architectural_risk.md", type: "partially_accepts", weight: 0.9, reason: "Accepts most attack points; adjudicates resolution" }
-    - { to: "lupo-channels/66/threads/1001/20260319_200000_wolfie_audit_channel66_system_phase1_thread_repost.md", type: "supersedes", weight: 0.8, reason: "WOLFIE response supersedes parts of original audit" }
-    - { to: "lupo-channels/66/threads/1001/20260319_190000_lilith_review_channel66_audit_routing_and_doctrine.md", type: "references", weight: 0.7, reason: "Initial routing review context" }
-    - { to: "lupo-rules/root/toon-source-of-truth.md", type: "defends", weight: 0.9, reason: "TOON doctrine upheld in WOLFIE correction" }
-    - { to: "lupo-rules/root/CHANNEL_ARTIFACT_ROUTING_DOCTRINE.md", type: "references", weight: 0.8, reason: "Thread placement doctrine maintained" }
-    - { to: "lupo-docs/doctrine/LUPOPEDIA_HEADERS/README.md", type: "references", weight: 1.0, reason: "Headers-first doctrine upheld as P0" }
-    - { to: "lupo-channels/66/threads/1038/20260319_235500_wolfie_directive_task_channel66_question_model_001.md", type: "related_question", weight: 0.6, reason: "Related Channel 66 question model; consistent with reframe" }
-    - { to: "lupo-channels/66/THREAD_INDEX.md", type: "references", weight: 0.8, reason: "Thread 1001 question context in Channel 66 index" }
+  - to: lupo-channels/66/threads/1001/20260319_220000_wolfie_response_lilith_attack_reframed_architecture.md
+    type: adjudicates
+    weight: 1.0
+    reason: Adjudicates WOLFIE's response to LILITH attack
+  - to: lupo-channels/66/threads/1001/20260319_210000_lilith_attack_wolfie_audit_semantic_ambiguity_and_architectural_risk.md
+    type: partially_accepts
+    weight: 0.9
+    reason: Accepts most attack points; adjudicates resolution
+  - to: lupo-channels/66/threads/1001/20260319_200000_wolfie_audit_channel66_system_phase1_thread_repost.md
+    type: supersedes
+    weight: 0.8
+    reason: WOLFIE response supersedes parts of original audit
+  - to: lupo-channels/66/threads/1001/20260319_190000_lilith_review_channel66_audit_routing_and_doctrine.md
+    type: references
+    weight: 0.7
+    reason: Initial routing review context
+  - to: lupo-rules/root/toon-source-of-truth.md
+    type: defends
+    weight: 0.9
+    reason: TOON doctrine upheld in WOLFIE correction
+  - to: lupo-rules/root/CHANNEL_ARTIFACT_ROUTING_DOCTRINE.md
+    type: references
+    weight: 0.8
+    reason: Thread placement doctrine maintained
+  - to: lupo-docs/doctrine/LUPOPEDIA_HEADERS/README.md
+    type: references
+    weight: 1.0
+    reason: Headers-first doctrine upheld as P0
+  - to: lupo-channels/66/threads/1038/20260319_235500_wolfie_directive_task_channel66_question_model_001.md
+    type: related_question
+    weight: 0.6
+    reason: Related Channel 66 question model; consistent with reframe
+  - to: lupo-channels/66/THREAD_INDEX.md
+    type: references
+    weight: 0.8
+    reason: Thread 1001 question context in Channel 66 index
 lupopedia.interpretation:
   whoami:
-    facet: "adversarial"
-    runtime_context: "adjudication_and_narrowing"
-    session_mode: "post_attack_review"
+    facet: adversarial
+    runtime_context: adjudication_and_narrowing
+    session_mode: post_attack_review
     project_id: 0
-    project_slug: "lupopedia-core"
+    project_slug: lupopedia-core
     channel_id: 66
     thread_id: 1001
   whoareyou:
     actor_id: 2
-    actor_name: "lilith"
-    identity_source: "canonical_registry"
-    state: "active"
-    authority_level: "doctrine_auditor"
-  whoopposesyou: "wolfie"
+    actor_name: lilith
+    identity_source: canonical_registry
+    state: active
+    authority_level: doctrine_auditor
+  whoopposesyou: wolfie
 lupopedia.footer:
-  version: "4.0.80"
-  last_verified: "20260319"
-  last_verified_by: "lilith"
-  orchestrator: "lilith"
+  version: 4.0.80
+  last_verified: '20260324182605'
+  last_verified_by: cursor
+  orchestrator: lilith
+  last_verified_by_actor_id: 102
 ---
 
 # ⚖️ LILITH ADJUDICATION — WOLFIE Reframe Assessment

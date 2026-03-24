@@ -1,38 +1,72 @@
 ---
 lupopedia.headers:
-  version_when_written: "4.0.85"
-  lupopedia.schema: "directive"
-  file_path_from_root: "lupo-channels/66/threads/1047/20260322_080000_wolfie_controlled_system_synchronization_v10_directive.md"
-  web_path: "http://www.lupopedia.com/lupo-channels/66/threads/1047/controlled_system_synchronization_v10_directive"
-  last_modified_utc: "20260322"
+  version_when_written: 4.0.85
+  lupopedia.schema: directive
+  file_path_from_root: lupo-channels/66/threads/1047/20260322_080000_wolfie_controlled_system_synchronization_v10_directive.md
+  web_path: http://www.lupopedia.com/lupo-channels/66/threads/1047/20260322_080000_wolfie_controlled_system_synchronization_v10_directive.md
+  last_modified_utc: '20260324182605'
   channel_id: 66
   thread_id: 1047
-  task_id: "task_controlled_system_synchronization_4_0_85_001"
+  task_id: task_controlled_system_synchronization_4_0_85_001
   actor_id: 1
-  actor_name: "wolfie"
-  delegation_chain: "wolfie:root"
-  artifact_type: "directive"
-  artifact_kind: "global_system_broadcast"
-  purpose: "WOLFIE global system broadcast directive for controlled system synchronization v10 across all channels"
-  mood_rgb: "8B0000"
-  traits: ["4.0.85", "directive", "global_system_broadcast", "controlled_synchronization", "wolfie", "v10"]
-  tags: ["wolfie", "4.0.85", "directive", "global_system_broadcast", "controlled_synchronization", "v10"]
-
+  actor_name: wolfie
+  delegation_chain: wolfie:root
+  artifact_type: directive
+  artifact_kind: global_system_broadcast
+  purpose: WOLFIE global system broadcast directive for controlled system synchronization
+    v10 across all channels
+  mood_rgb: 8B0000
+  traits:
+  - 4.0.85
+  - directive
+  - global_system_broadcast
+  - controlled_synchronization
+  - wolfie
+  - v10
+  tags:
+  - wolfie
+  - 4.0.85
+  - directive
+  - global_system_broadcast
+  - controlled_synchronization
+  - v10
+  when_updated: '20260324182605'
 lupopedia.edges:
   outbound_edges:
-    - { to: "lupo-channels/42/threads/1047/", type: "synchronizes", weight: 1.0, reason: "Synchronizes with Channel 42 documentation work" }
-    - { to: "lupo-docs/versions/4.0.85/TASK_REGISTRY.md", type: "requires_creation", weight: 1.0, reason: "TASK_REGISTRY is the single source of truth" }
-    - { to: "lupo-docs/versions/4.0.85/CONTRADICTIONS.md", type: "requires_creation", weight: 1.0, reason: "CONTRADICTIONS is the diagnostic index" }
-    - { to: "CHANGELOG.md", type: "requires_update", weight: 1.0, reason: "CHANGELOG.md must reflect 4.0.85 current state" }
-    - { to: "TODO.md", type: "requires_update", weight: 1.0, reason: "TODO.md must be derived view only" }
-    - { to: "plan.md", type: "requires_update", weight: 1.0, reason: "plan.md must be derived view only" }
-
+  - to: lupo-channels/42/threads/1047/
+    type: synchronizes
+    weight: 1.0
+    reason: Synchronizes with Channel 42 documentation work
+  - to: lupo-docs/versions/4.0.85/TASK_REGISTRY.md
+    type: requires_creation
+    weight: 1.0
+    reason: TASK_REGISTRY is the single source of truth
+  - to: lupo-docs/versions/4.0.85/CONTRADICTIONS.md
+    type: requires_creation
+    weight: 1.0
+    reason: CONTRADICTIONS is the diagnostic index
+  - to: CHANGELOG.md
+    type: requires_update
+    weight: 1.0
+    reason: CHANGELOG.md must reflect 4.0.85 current state
+  - to: TODO.md
+    type: requires_update
+    weight: 1.0
+    reason: TODO.md must be derived view only
+  - to: plan.md
+    type: requires_update
+    weight: 1.0
+    reason: plan.md must be derived view only
 lupopedia.footer:
-  directive_type: "global_system_broadcast"
-  scope: "ALL_CHANNELS_ALL_ACTORS"
-  priority: "CRITICAL"
+  directive_type: global_system_broadcast
+  scope: ALL_CHANNELS_ALL_ACTORS
+  priority: CRITICAL
   enforcement_required: true
-  completion_condition: "controlled_system_synchronization_v10"
+  completion_condition: controlled_system_synchronization_v10
+  last_verified: '20260324182605'
+  last_verified_by: cursor
+  last_verified_by_actor_id: 102
+  orchestrator: cursor:root
 ---
 
 # WOLFIE Global System Broadcast — Controlled System Synchronization v10

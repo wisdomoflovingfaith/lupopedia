@@ -1,7 +1,7 @@
 ---
 lupopedia.headers:
   file_path_from_root: lupo-docs/versions/4.0.87/CHANGELOG.md
-  last_modified_utc: '20260324182230'
+  last_modified_utc: '20260324182716'
   channel_id: 42
   thread_id: 4.0.87-init
   actor_id: 102
@@ -9,11 +9,11 @@ lupopedia.headers:
   artifact_type: changelog
   artifact_kind: version_history
   purpose: Version 4.0.87 changelog for multi-agent contributions.
-  when_updated: '20260324182230'
+  when_updated: '20260324182716'
   web_path: http://www.lupopedia.com/lupo-docs/versions/4.0.87/CHANGELOG.md
   delegation_chain: cursor:root
 lupopedia.footer:
-  last_verified: '20260324182230'
+  last_verified: '20260324182716'
   last_verified_by: cursor
   last_verified_by_actor_id: 102
   orchestrator: cursor:root
@@ -116,3 +116,9 @@ lupopedia.footer:
   - channel 63 thread 6301 (blocks on channel 66 thread 1052)
   - channel 64 thread 6401 (blocks on channel 66 threads 1051/1052)
   - channel 66 thread 1052 (pairing defaults question)
+
+## Implemented (2026-03-24, channel 66 full validation and relevance cleanup)
+- Canonicalized channel 66 thread artifacts (web_path + footer verification + actor attribution) and eliminated strict validation errors.
+- Renamed non-canonical `threads/1047/THREAD_INDEX.md` to a canonical artifact filename.
+- Added channel 66 thread `1053` as relevance-validation artifact for 4.0.87.
+- Rebuilt `lupo-channels/66/THREAD_INDEX.md` with explicit 4.0.87 priority questions and legacy-thread deprioritization.

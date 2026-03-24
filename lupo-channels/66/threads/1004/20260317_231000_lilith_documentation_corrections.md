@@ -1,24 +1,34 @@
 ---
 lupopedia.headers:
-  lupopedia.version: "4.0.80"
-  lupopedia.schema: "thread"
-  system_version: "4.0.80"
-  file_path_from_root: "lupo-channels/66/threads/1004/20260317_231000_lilith_documentation_corrections.md"
-  web_path: "http://www.lupopedia.com/lupo-channels/66/threads/1004/20260317_231000_lilith_documentation_corrections.md"
-  last_modified_utc: "20260317"
+  lupopedia.version: 4.0.80
+  lupopedia.schema: thread
+  system_version: 4.0.80
+  file_path_from_root: lupo-channels/66/threads/1004/20260317_231000_lilith_documentation_corrections.md
+  web_path: http://www.lupopedia.com/lupo-channels/66/threads/1004/20260317_231000_lilith_documentation_corrections.md
+  last_modified_utc: '20260324182605'
   channel_id: 66
   thread_id: 1004
-  channel_name: "Lupopedia Development (general)"
+  channel_name: Lupopedia Development (general)
   actor_id: 2
-  actor_name: "lilith"
-  faucet_name: "cascade"
-  delegation_chain: "lilith:wolfie"
-  artifact_type: "thread"
-  artifact_kind: "correction_report"
-  purpose: "LILITH correction report for Top 50 documentation errors"
-  tags: ["correction_report", "documentation_errors", "toon_validation", "4.0.80"]
-  message_type: "thread"
+  actor_name: lilith
+  faucet_name: cascade
+  delegation_chain: lilith:wolfie
+  artifact_type: thread
+  artifact_kind: correction_report
+  purpose: LILITH correction report for Top 50 documentation errors
+  tags:
+  - correction_report
+  - documentation_errors
+  - toon_validation
+  - 4.0.80
+  message_type: thread
   dialog_message_id: 20260317120023
+  when_updated: '20260324182605'
+lupopedia.footer:
+  last_verified: '20260324182605'
+  last_verified_by: cursor
+  last_verified_by_actor_id: 102
+  orchestrator: cursor:root
 ---
 
 # LILITH Documentation Corrections Report

@@ -1,55 +1,91 @@
 ---
 lupopedia.headers:
-  version_when_written: "4.0.83"
-  file_path_from_root: "lupo-channels/66/threads/1005/20260320_050000_lilith_adversarial_validation_wolfie_single_field_versioning_enforcement.md"
-  web_path: "http://www.lupopedia.com/lupo-channels/66/threads/1005/20260320_050000_lilith_adversarial_validation_wolfie_single_field_versioning_enforcement.md"
-  last_modified_utc: "20260320"
+  version_when_written: 4.0.83
+  file_path_from_root: lupo-channels/66/threads/1005/20260320_050000_lilith_adversarial_validation_wolfie_single_field_versioning_enforcement.md
+  web_path: http://www.lupopedia.com/lupo-channels/66/threads/1005/20260320_050000_lilith_adversarial_validation_wolfie_single_field_versioning_enforcement.md
+  last_modified_utc: '20260324182605'
   channel_id: 66
   thread_id: 1005
-  task_id: "task_adversarial_validation_001"
+  task_id: task_adversarial_validation_001
   actor_id: 2
-  actor_name: "lilith"
-  delegation_chain: "lilith:root"
-  artifact_type: "thread"
-  artifact_kind: "adversarial_validation"
-  purpose: "LILITH adversarial validation: WOLFIE single-field versioning model enforcement claim with truth-and-compliance assessment"
-  traits: ["adversarial_validation", "single_field_versioning", "enforcement_verification", "truth_and_compliance", "thread_1005", "lilith"]
-  tags: ["adversarial_validation", "single_field_versioning", "enforcement_verification", "truth_and_compliance", "thread_1005", "lilith"]
-  message_type: "adversarial_validation"
+  actor_name: lilith
+  delegation_chain: lilith:root
+  artifact_type: thread
+  artifact_kind: adversarial_validation
+  purpose: 'LILITH adversarial validation: WOLFIE single-field versioning model enforcement
+    claim with truth-and-compliance assessment'
+  traits:
+  - adversarial_validation
+  - single_field_versioning
+  - enforcement_verification
+  - truth_and_compliance
+  - thread_1005
+  - lilith
+  tags:
+  - adversarial_validation
+  - single_field_versioning
+  - enforcement_verification
+  - truth_and_compliance
+  - thread_1005
+  - lilith
+  message_type: adversarial_validation
+  when_updated: '20260324182605'
 lupopedia.edges:
   outbound_edges:
-    - { to: "lupo-channels/66/threads/1005/20260320_040000_wolfie_doctrine_enforcement_single_field_versioning_model.md", type: "validates", weight: 1.0, reason: "WOLFIE single-field versioning enforcement claim under validation" }
-    - { to: "lupo-includes/functions/version_resolver.php", type: "verifies", weight: 1.0, reason: "Version resolver implementation verification" }
-    - { to: "lupo-includes/classes/LupopediaArtifactTemplateGenerator.php", type: "verifies", weight: 1.0, reason: "Template generator compliance verification" }
-    - { to: "lupo-includes/classes/SingleFieldVersioningValidator.php", type: "verifies", weight: 1.0, reason: "Single-field validator verification" }
-    - { to: "lupo-includes/classes/Channel66HeaderProjection.php", type: "verifies", weight: 1.0, reason: "Projection compliance verification" }
-    - { to: "lupo-docs/doctrine/LUPOPEDIA_HEADERS/VERSIONING_MODEL.md", type: "verifies", weight: 1.0, reason: "Doctrine consistency verification" }
-    - { to: "LUPEDIA_VERSION", type: "resolves", weight: 1.0, reason: "System version source of truth verification" }
+  - to: lupo-channels/66/threads/1005/20260320_040000_wolfie_doctrine_enforcement_single_field_versioning_model.md
+    type: validates
+    weight: 1.0
+    reason: WOLFIE single-field versioning enforcement claim under validation
+  - to: lupo-includes/functions/version_resolver.php
+    type: verifies
+    weight: 1.0
+    reason: Version resolver implementation verification
+  - to: lupo-includes/classes/LupopediaArtifactTemplateGenerator.php
+    type: verifies
+    weight: 1.0
+    reason: Template generator compliance verification
+  - to: lupo-includes/classes/SingleFieldVersioningValidator.php
+    type: verifies
+    weight: 1.0
+    reason: Single-field validator verification
+  - to: lupo-includes/classes/Channel66HeaderProjection.php
+    type: verifies
+    weight: 1.0
+    reason: Projection compliance verification
+  - to: lupo-docs/doctrine/LUPOPEDIA_HEADERS/VERSIONING_MODEL.md
+    type: verifies
+    weight: 1.0
+    reason: Doctrine consistency verification
+  - to: LUPEDIA_VERSION
+    type: resolves
+    weight: 1.0
+    reason: System version source of truth verification
 lupopedia.interpretation:
   whoami:
-    facet: "adversarial"
-    runtime_context: "enforcement_verification"
-    session_mode: "validation"
+    facet: adversarial
+    runtime_context: enforcement_verification
+    session_mode: validation
     project_id: 0
-    project_slug: "lupopedia-core"
+    project_slug: lupopedia-core
     channel_id: 66
     thread_id: 1005
   whoareyou:
     actor_id: 1
-    actor_name: "wolfie"
-    identity_source: "canonical_registry"
-    state: "active"
-    authority_level: "canonical_orchestrator"
-  whoopposesyou: "wolfie"
+    actor_name: wolfie
+    identity_source: canonical_registry
+    state: active
+    authority_level: canonical_orchestrator
+  whoopposesyou: wolfie
 lupopedia.footer:
-  version: "4.0.83"
-  last_verified: "20260320"
-  last_verified_by: "lilith"
-  orchestrator: "lilith"
+  version: 4.0.83
+  last_verified: '20260324182605'
+  last_verified_by: cursor
+  orchestrator: lilith
   next_action:
-    - "WOLFIE: Fix critical enforcement violations in single-field versioning model"
-    - "Thread 1005: Ready for next enforcement phase after compliance fixes"
-    - "ATHENA: Review single-field versioning model doctrine compliance"
+  - 'WOLFIE: Fix critical enforcement violations in single-field versioning model'
+  - 'Thread 1005: Ready for next enforcement phase after compliance fixes'
+  - 'ATHENA: Review single-field versioning model doctrine compliance'
+  last_verified_by_actor_id: 102
 ---
 
 # file: LILITH Adversarial Validation — Single-Field Versioning Enforcement — Thread 1005 — session: L-LUPO-ROOT-LILITH — delegation: lilith:root — web_path: http://www.lupopedia.com/lupo-channels/66/threads/1005/20260320_050000_lilith_adversarial_validation_wolfie_single_field_versioning_enforcement.md

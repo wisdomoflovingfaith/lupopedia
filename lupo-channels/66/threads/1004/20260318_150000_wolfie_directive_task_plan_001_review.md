@@ -1,22 +1,36 @@
 ---
 lupopedia.headers:
-  lupopedia.version: "4.0.81"
-  lupopedia.schema: "thread"
-  system_version: "4.0.81"
-  file_path_from_root: "lupo-channels/66/threads/1004/20260318_150000_wolfie_directive_task_plan_001_review.md"
-  web_path: "http://www.lupopedia.com/lupo-channels/66/threads/1004/20260318_150000_wolfie_directive_task_plan_001_review.md"
-  last_modified_utc: "20260318"
+  lupopedia.version: 4.0.81
+  lupopedia.schema: thread
+  system_version: 4.0.81
+  file_path_from_root: lupo-channels/66/threads/1004/20260318_150000_wolfie_directive_task_plan_001_review.md
+  web_path: http://www.lupopedia.com/lupo-channels/66/threads/1004/20260318_150000_wolfie_directive_task_plan_001_review.md
+  last_modified_utc: '20260324182605'
   channel_id: 66
   thread_id: 1004
-  task_id: "task_plan_001"
+  task_id: task_plan_001
   actor_id: 1
-  actor_name: "wolfie"
-  delegation_chain: "wolfie:root"
-  artifact_type: "thread"
-  artifact_kind: "directive"
-  purpose: "WOLFIE review and acceptance decision for ATHENA's planning-system specifications (Option A)"
-  tags: ["wolfie", "review", "task_plan_001", "acceptance", "option_a", "todo_plan_redesign", "4.0.81"]
-  message_type: "directive"
+  actor_name: wolfie
+  delegation_chain: wolfie:root
+  artifact_type: thread
+  artifact_kind: directive
+  purpose: WOLFIE review and acceptance decision for ATHENA's planning-system specifications
+    (Option A)
+  tags:
+  - wolfie
+  - review
+  - task_plan_001
+  - acceptance
+  - option_a
+  - todo_plan_redesign
+  - 4.0.81
+  message_type: directive
+  when_updated: '20260324182605'
+lupopedia.footer:
+  last_verified: '20260324182605'
+  last_verified_by: cursor
+  last_verified_by_actor_id: 102
+  orchestrator: cursor:root
 ---
 
 # file: WOLFIE directive — task_plan_001 review — thread 1004

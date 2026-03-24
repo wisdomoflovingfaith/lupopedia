@@ -1,36 +1,58 @@
 ---
 lupopedia.headers:
-  lupopedia.version: "4.0.81"
-  file_path_from_root: "lupo-channels/66/threads/1025/20260318_175542_cursor_review_task_doc_continuity_update_001_channel-system-continuity-alignment.md"
-  web_path: "http://www.lupopedia.com/lupo-channels/66/threads/1025/20260318_175542_cursor_review_task_doc_continuity_update_001_channel-system-continuity-alignment.md"
-  last_modified_utc: "20260318"
-  system_version: "4.0.81"
+  lupopedia.version: 4.0.81
+  file_path_from_root: lupo-channels/66/threads/1025/20260318_175542_cursor_review_task_doc_continuity_update_001_channel-system-continuity-alignment.md
+  web_path: http://www.lupopedia.com/lupo-channels/66/threads/1025/20260318_175542_cursor_review_task_doc_continuity_update_001_channel-system-continuity-alignment.md
+  last_modified_utc: '20260324182605'
+  system_version: 4.0.81
   channel_id: 66
   thread_id: 1025
-  task_id: "task_doc_continuity_update_001"
+  task_id: task_doc_continuity_update_001
   actor_id: 1
-  actor_name: "wolfie"
-  delegation_chain: "wolfie:root"
-  artifact_type: "thread"
-  artifact_kind: "review"
-  message_type: "review"
-  purpose: "Wolfie review: doc alignment to channel/thread/task continuity system"
-  tags: ["wolfie", "review", "documentation", "continuity", "channel-system"]
-  status: "draft"
+  actor_name: wolfie
+  delegation_chain: wolfie:root
+  artifact_type: thread
+  artifact_kind: review
+  message_type: review
+  purpose: 'Wolfie review: doc alignment to channel/thread/task continuity system'
+  tags:
+  - wolfie
+  - review
+  - documentation
+  - continuity
+  - channel-system
+  status: draft
+  when_updated: '20260324182605'
 lupopedia.edges:
   outbound_edges:
-    - { to: "lupo-docs/doctrine/IDE_AGENT_CONTINUITY_PROTOCOL.md", type: "updates", weight: 1.0, reason: "Continuity checkpoint requirement moved from lupo-docs/status to channel checkpoint artifacts" }
-    - { to: "ONBOARDING.md", type: "updates", weight: 1.0, reason: "Onboarding guidance now points handoff/continuity at lupo-channels threads/tasks" }
-    - { to: "lupo-docs/doctrine/CHANNEL_BASED_COORDINATION_DOCTRINE.md", type: "references", weight: 0.8, reason: "Channel-based coordination is authoritative for continuity + routing" }
-  semantic_tags: ["documentation_alignment", "IACP", "channel_checkpoints", "wolfie_review"]
+  - to: lupo-docs/doctrine/IDE_AGENT_CONTINUITY_PROTOCOL.md
+    type: updates
+    weight: 1.0
+    reason: Continuity checkpoint requirement moved from lupo-docs/status to channel
+      checkpoint artifacts
+  - to: ONBOARDING.md
+    type: updates
+    weight: 1.0
+    reason: Onboarding guidance now points handoff/continuity at lupo-channels threads/tasks
+  - to: lupo-docs/doctrine/CHANNEL_BASED_COORDINATION_DOCTRINE.md
+    type: references
+    weight: 0.8
+    reason: Channel-based coordination is authoritative for continuity + routing
+  semantic_tags:
+  - documentation_alignment
+  - IACP
+  - channel_checkpoints
+  - wolfie_review
 lupopedia.footer:
-  version: "4.0.81"
-  last_verified: "20260318"
-  last_verified_by: "cursor"
-  orchestrator: "wolfie"
+  version: 4.0.81
+  last_verified: '20260324182605'
+  last_verified_by: cursor
+  orchestrator: wolfie
   next_action:
-    - "Review and approve the channel-based continuity documentation alignment."
-    - "If approved, we can treat remaining lupo-docs/status references as archival/legacy only (optional follow-up cleanup)."
+  - Review and approve the channel-based continuity documentation alignment.
+  - If approved, we can treat remaining lupo-docs/status references as archival/legacy
+    only (optional follow-up cleanup).
+  last_verified_by_actor_id: 102
 ---
 
 # file: Cursor review — channel-based continuity doc alignment — thread 1025

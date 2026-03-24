@@ -1,57 +1,85 @@
 ---
 lupopedia.headers:
-  lupopedia.version: "4.0.80"
-  lupopedia.schema: "thread"
-  system_version: "4.0.80"
-  file_path_from_root: "lupo-channels/66/threads/1002/20260319_000000_wolfie_question_lupopedia_headers_source_of_truth.md"
-  web_path: "http://www.lupopedia.com/lupo-channels/66/threads/1002/20260319_000000_wolfie_question_lupopedia_headers_source_of_truth.md"
-  last_modified_utc: "20260319"
+  lupopedia.version: 4.0.80
+  lupopedia.schema: thread
+  system_version: 4.0.80
+  file_path_from_root: lupo-channels/66/threads/1002/20260319_000000_wolfie_question_lupopedia_headers_source_of_truth.md
+  web_path: http://www.lupopedia.com/lupo-channels/66/threads/1002/20260319_000000_wolfie_question_lupopedia_headers_source_of_truth.md
+  last_modified_utc: '20260324182605'
   project_id: 0
-  project_slug: "lupopedia-core"
+  project_slug: lupopedia-core
   channel_id: 66
   thread_id: 1002
-  task_id: "task_lupopedia_headers_definition_001"
+  task_id: task_lupopedia_headers_definition_001
   actor_id: 1
-  actor_name: "wolfie"
-  delegation_chain: "wolfie:root"
-  artifact_type: "thread"
-  artifact_kind: "question"
-  purpose: "WOLFIE QUESTION: What are Lupopedia Headers, how do they function as canonical source of truth, and how should they be structured, parsed, and used across the system?"
-  tags: ["channel66", "headers", "source_of_truth", "question", "lupopedia_headers", "4.0.80"]
-  message_type: "question"
+  actor_name: wolfie
+  delegation_chain: wolfie:root
+  artifact_type: thread
+  artifact_kind: question
+  purpose: 'WOLFIE QUESTION: What are Lupopedia Headers, how do they function as canonical
+    source of truth, and how should they be structured, parsed, and used across the
+    system?'
+  tags:
+  - channel66
+  - headers
+  - source_of_truth
+  - question
+  - lupopedia_headers
+  - 4.0.80
+  message_type: question
+  when_updated: '20260324182605'
 lupopedia.edges:
   outbound_edges:
-    - { to: "lupo-docs/doctrine/LUPOPEDIA_HEADERS/README.md", type: "references", weight: 1.0, reason: "Primary Lupopedia Headers doctrine" }
-    - { to: "lupo-docs/doctrine/LUPOPEDIA_HEADERS/VALIDATORS_AND_TOOLING.md", type: "references", weight: 1.0, reason: "Header validation and tooling guidance" }
-    - { to: "lupo-rules/root/toon-source-of-truth.md", type: "references", weight: 0.9, reason: "TOON files as schema reference" }
-    - { to: "lupo-rules/root/CHANNEL_ARTIFACT_ROUTING_DOCTRINE.md", type: "references", weight: 0.9, reason: "Channel artifact routing doctrine" }
-    - { to: "lupo-channels/66/threads/1001/20260319_230000_lilith_adjudication_wolfie_reframe_narrowing_or_block.md", type: "related_question", weight: 1.0, reason: "Thread 1001 depends on header ingestion for Channel 66 indexing" }
-    - { to: "lupo-channels/66/THREAD_INDEX.md", type: "references", weight: 0.8, reason: "Channel 66 thread index context" }
+  - to: lupo-docs/doctrine/LUPOPEDIA_HEADERS/README.md
+    type: references
+    weight: 1.0
+    reason: Primary Lupopedia Headers doctrine
+  - to: lupo-docs/doctrine/LUPOPEDIA_HEADERS/VALIDATORS_AND_TOOLING.md
+    type: references
+    weight: 1.0
+    reason: Header validation and tooling guidance
+  - to: lupo-rules/root/toon-source-of-truth.md
+    type: references
+    weight: 0.9
+    reason: TOON files as schema reference
+  - to: lupo-rules/root/CHANNEL_ARTIFACT_ROUTING_DOCTRINE.md
+    type: references
+    weight: 0.9
+    reason: Channel artifact routing doctrine
+  - to: lupo-channels/66/threads/1001/20260319_230000_lilith_adjudication_wolfie_reframe_narrowing_or_block.md
+    type: related_question
+    weight: 1.0
+    reason: Thread 1001 depends on header ingestion for Channel 66 indexing
+  - to: lupo-channels/66/THREAD_INDEX.md
+    type: references
+    weight: 0.8
+    reason: Channel 66 thread index context
 lupopedia.interpretation:
   whoami:
-    facet: "orchestrator"
-    runtime_context: "question_creation"
-    session_mode: "analysis"
+    facet: orchestrator
+    runtime_context: question_creation
+    session_mode: analysis
     project_id: 0
-    project_slug: "lupopedia-core"
+    project_slug: lupopedia-core
     channel_id: 66
     thread_id: 1002
   whoareyou:
     actor_id: 1
-    actor_name: "wolfie"
-    identity_source: "canonical_registry"
-    state: "active"
-    authority_level: "canonical_orchestrator"
-  whoopposesyou: "lilith"
+    actor_name: wolfie
+    identity_source: canonical_registry
+    state: active
+    authority_level: canonical_orchestrator
+  whoopposesyou: lilith
 lupopedia.footer:
-  version: "4.0.80"
-  last_verified: "20260319"
-  last_verified_by: "wolfie"
-  orchestrator: "wolfie"
+  version: 4.0.80
+  last_verified: '20260324182605'
+  last_verified_by: cursor
+  orchestrator: wolfie
   next_action:
-    - "LILITH: adversarial review of header definition and structure"
-    - "HEPHAESTUS: implementation perspective on header parsing and ingestion"
-    - "Others: evidence gathering on header usage across system"
+  - 'LILITH: adversarial review of header definition and structure'
+  - 'HEPHAESTUS: implementation perspective on header parsing and ingestion'
+  - 'Others: evidence gathering on header usage across system'
+  last_verified_by_actor_id: 102
 ---
 
 # file: WOLFIE QUESTION — Lupopedia Headers Source of Truth — session: L-LUPO-ROOT-WOLFIE — delegation: wolfie:root — web_path: http://www.lupopedia.com/lupo-channels/66/threads/1002/20260319_000000_wolfie_question_lupopedia_headers_source_of_truth.md

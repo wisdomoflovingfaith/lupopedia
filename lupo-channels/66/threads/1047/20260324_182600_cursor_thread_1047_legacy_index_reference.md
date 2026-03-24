@@ -1,26 +1,42 @@
 ---
 lupopedia.headers:
-  version_when_written: "4.0.85"
-  lupopedia.schema: "thread_index"
-  file_path_from_root: "lupo-channels/66/threads/1047/THREAD_INDEX.md"
-  web_path: "http://www.lupopedia.com/lupo-channels/66/threads/1047"
-  last_modified_utc: "20260322"
+  lupopedia.schema: thread_index
+  file_path_from_root: lupo-channels/66/threads/1047/20260324_182600_cursor_thread_1047_legacy_index_reference.md
+  web_path: http://www.lupopedia.com/lupo-channels/66/threads/1047/20260324_182600_cursor_thread_1047_legacy_index_reference.md
+  last_modified_utc: '20260324182716'
   channel_id: 66
   thread_id: 1047
-  task_id: "task_controlled_system_synchronization_4_0_85_001"
+  task_id: task_controlled_system_synchronization_4_0_85_001
   actor_id: 1
-  actor_name: "wolfie"
-  delegation_chain: "wolfie:root"
-  artifact_type: "thread_index"
-  artifact_kind: "derived_thread_index"
-  purpose: "Derived navigation-only thread index for Channel 66 Thread 1047 under controlled synchronization v10"
-  mood_rgb: "8B0000"
-  traits: ["4.0.85", "thread_index", "derived_navigation", "controlled_synchronization", "wolfie", "v10"]
-  tags: ["wolfie", "4.0.85", "thread_index", "derived_navigation", "controlled_synchronization", "v10"]
-
+  actor_name: wolfie
+  delegation_chain: wolfie:root
+  artifact_type: thread_index
+  artifact_kind: derived_thread_index
+  purpose: Derived navigation-only thread index for Channel 66 Thread 1047 under controlled
+    synchronization v10
+  mood_rgb: 8B0000
+  traits:
+  - 4.0.85
+  - thread_index
+  - derived_navigation
+  - controlled_synchronization
+  - wolfie
+  - v10
+  tags:
+  - wolfie
+  - 4.0.85
+  - thread_index
+  - derived_navigation
+  - controlled_synchronization
+  - v10
+  when_updated: '20260324182716'
 lupopedia.footer:
-  last_updated: "20260322_080000"
+  last_updated: '20260322_080000'
   artifact_count: 2
+  last_verified: '20260324182716'
+  last_verified_by: cursor
+  last_verified_by_actor_id: 102
+  orchestrator: cursor:root
 ---
 
 # Thread 1047 Index - Controlled System Synchronization v10

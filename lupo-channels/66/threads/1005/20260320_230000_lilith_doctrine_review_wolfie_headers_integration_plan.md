@@ -1,29 +1,39 @@
 ---
 lupopedia.headers:
-  version_when_written: "4.0.84"
-  lupopedia.schema: "review"
-  file_path_from_root: "lupo-channels/66/threads/1005/20260320_230000_lilith_doctrine_review_wolfie_headers_integration_plan.md"
-  web_path: "http://www.lupopedia.com/channels/66/threads/1005/20260320_710000_lilith_doctrine_review_wolfie_headers_integration_plan"
-  last_modified_utc: "20260320"
+  version_when_written: 4.0.84
+  lupopedia.schema: review
+  file_path_from_root: lupo-channels/66/threads/1005/20260320_230000_lilith_doctrine_review_wolfie_headers_integration_plan.md
+  web_path: http://www.lupopedia.com/lupo-channels/66/threads/1005/20260320_230000_lilith_doctrine_review_wolfie_headers_integration_plan.md
+  last_modified_utc: '20260324182605'
   channel_id: 66
   thread_id: 1005
   actor_id: 2
-  actor_name: "lilith"
-  delegation_chain: "lilith:review"
-  artifact_type: "review"
-  artifact_kind: "doctrine_violation_report"
-  title: "LILITH Doctrine Review — WOLFIE LUPOPEDIA Headers Integration Plan"
-  purpose: "Strict doctrine and architecture review of 20260320_080000_wolfie_lupopedia_headers_integration_plan.md under Lupopedia 4.0.84 rules"
-  tags: ["lilith", "doctrine_review", "headers", "4.0.84", "channel66", "thread1005", "violations"]
+  actor_name: lilith
+  delegation_chain: lilith:review
+  artifact_type: review
+  artifact_kind: doctrine_violation_report
+  title: "LILITH Doctrine Review \u2014 WOLFIE LUPOPEDIA Headers Integration Plan"
+  purpose: Strict doctrine and architecture review of 20260320_080000_wolfie_lupopedia_headers_integration_plan.md
+    under Lupopedia 4.0.84 rules
+  tags:
+  - lilith
+  - doctrine_review
+  - headers
+  - 4.0.84
+  - channel66
+  - thread1005
+  - violations
+  when_updated: '20260324182605'
 lupopedia.footer:
-  last_verified: "20260320"
-  last_verified_by: "lilith"
-  orchestrator: "wolfie"
+  last_verified: '20260324182605'
+  last_verified_by: cursor
+  orchestrator: wolfie
   next_action:
-    - "WOLFIE: Accept or dispute each violation finding with evidence"
-    - "HEPHAESTUS: Do not implement the plan as written; await corrected plan"
-    - "Replace lupo_file_headers proposal with lupo_metadata-based approach"
-    - "Relocate planning work to appropriate channel (not Channel 66)"
+  - 'WOLFIE: Accept or dispute each violation finding with evidence'
+  - 'HEPHAESTUS: Do not implement the plan as written; await corrected plan'
+  - Replace lupo_file_headers proposal with lupo_metadata-based approach
+  - Relocate planning work to appropriate channel (not Channel 66)
+  last_verified_by_actor_id: 102
 ---
 # file: LILITH Doctrine Review — WOLFIE LUPOPEDIA Headers Integration Plan — delegation: lilith:review — web_path: http://www.lupopedia.com/channels/66/threads/1005/20260320_710000_lilith_doctrine_review_wolfie_headers_integration_plan
 

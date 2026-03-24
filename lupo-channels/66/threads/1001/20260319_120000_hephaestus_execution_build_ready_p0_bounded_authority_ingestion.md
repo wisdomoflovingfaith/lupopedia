@@ -1,44 +1,93 @@
 ---
 lupopedia.headers:
-  lupopedia.version: "4.0.80"
-  lupopedia.schema: "thread"
-  system_version: "4.0.80"
-  file_path_from_root: "lupo-channels/66/threads/1001/20260319_120000_hephaestus_execution_build_ready_p0_bounded_authority_ingestion.md"
-  web_path: "http://www.lupopedia.com/lupo-channels/66/threads/1001/20260319_360000_hephaestus_execution_build_ready_p0_bounded_authority_ingestion"
-  last_modified_utc: "20260319"
+  lupopedia.version: 4.0.80
+  lupopedia.schema: thread
+  system_version: 4.0.80
+  file_path_from_root: lupo-channels/66/threads/1001/20260319_120000_hephaestus_execution_build_ready_p0_bounded_authority_ingestion.md
+  web_path: http://www.lupopedia.com/lupo-channels/66/threads/1001/20260319_120000_hephaestus_execution_build_ready_p0_bounded_authority_ingestion.md
+  last_modified_utc: '20260324182605'
   channel_id: 66
   thread_id: 1001
   actor_id: 3
-  actor_name: "hephaestus"
-  delegation_chain: "hephaestus:root"
-  artifact_type: "thread"
-  artifact_kind: "implementation_execution_plan"
-  purpose: "Build-ready execution artifact for Thread 1001 Channel 66 P0 bounded-authority LUPOPEDIA HEADERS ingestion (validators + TOON checks + deterministic lupo_metadata projection + concurrency conflict + fixtures/tests)."
-  tags: ["channel66", "thread1001", "implementation_execution", "p0_ingestion", "bounded_authority", "toon_validation", "deterministic_projection", "concurrent_edit_detection"]
-  message_type: "implementation_execution_plan"
+  actor_name: hephaestus
+  delegation_chain: hephaestus:root
+  artifact_type: thread
+  artifact_kind: implementation_execution_plan
+  purpose: Build-ready execution artifact for Thread 1001 Channel 66 P0 bounded-authority
+    LUPOPEDIA HEADERS ingestion (validators + TOON checks + deterministic lupo_metadata
+    projection + concurrency conflict + fixtures/tests).
+  tags:
+  - channel66
+  - thread1001
+  - implementation_execution
+  - p0_ingestion
+  - bounded_authority
+  - toon_validation
+  - deterministic_projection
+  - concurrent_edit_detection
+  message_type: implementation_execution_plan
+  when_updated: '20260324182605'
 lupopedia.edges:
-  comment: "static"
+  comment: static
   outbound_edges:
-    - { to: "lupo-channels/66/threads/1001/20260319_000000_hephaestus_p0_header_ingestion_design_channel66.md", type: "references", weight: 0.9, reason: "Base P0 ingestion scope and lupo_metadata row model." }
-    - { to: "lupo-channels/66/threads/1001/20260319_010000_hephaestus_p0_ingestion_design_revised_bounded_authority.md", type: "derived_from", weight: 1.0, reason: "Revised P0 bounded authority flow (TOON validation, field preservation, P0 vs P1 separation)." }
-    - { to: "lupo-channels/66/threads/1001/20260319_020000_lilith_implementation_gate_revised_p0_ingestion_design.md", type: "constrains", weight: 1.0, reason: "Approved safety constraints for first-pass implementation." }
-    - { to: "lupo-channels/66/threads/1001/20260319_030000_hephaestus_implementation_plan_revised_p0_bounded_authority_ingestion.md", type: "references", weight: 0.9, reason: "Recommended execution order and unit-test requirements." }
-    - { to: "lupo-channels/66/threads/1001/20260319_090000_wolfie_header_version_compatibility_matrix_thread1001.md", type: "implements", weight: 1.0, reason: "Locked header version compatibility decisions for P0 reject/warn." }
-    - { to: "lupo-channels/66/threads/1002/20260319_060000_wolfie_closure_bounded_header_authority_thread1002.md", type: "constrains", weight: 1.0, reason: "Bounded authority hierarchy is locked; implement P0 consequences without reopening architecture." }
-    - { to: "lupo-docs/doctrine/LUPOPEDIA_HEADERS/README.md", type: "references", weight: 0.95, reason: "Headers declare artifact; DB declares world; collections/namespace not involved; row model." }
-    - { to: "lupo-docs/doctrine/LUPOPEDIA_HEADERS/VALIDATORS_AND_TOOLING.md", type: "references", weight: 0.95, reason: "Validator/tooling expectations and existing CLI validator contracts." }
-    - { to: "lupo-docs/doctrine/LUPOPEDIA_HEADERS/LUPOPEDIA_HEADERS_FORMAT.md", type: "references", weight: 0.95, reason: "Canonical file format, block order expectations, and required header fields." }
-    - { to: "lupo-docs/doctrine/LUPOPEDIA_HEADERS/LUPOPEDIA_HEADERS_PLAN.md", type: "references", weight: 0.95, reason: "Canonical root -> blocks -> properties storage model for lupo_metadata." }
-    - { to: "lupo-rules/root/toon-source-of-truth.md", type: "references", weight: 1.0, reason: "Install SQL / TOON hierarchy as structural truth for TOON validation." }
-
+  - to: lupo-channels/66/threads/1001/20260319_000000_hephaestus_p0_header_ingestion_design_channel66.md
+    type: references
+    weight: 0.9
+    reason: Base P0 ingestion scope and lupo_metadata row model.
+  - to: lupo-channels/66/threads/1001/20260319_010000_hephaestus_p0_ingestion_design_revised_bounded_authority.md
+    type: derived_from
+    weight: 1.0
+    reason: Revised P0 bounded authority flow (TOON validation, field preservation,
+      P0 vs P1 separation).
+  - to: lupo-channels/66/threads/1001/20260319_020000_lilith_implementation_gate_revised_p0_ingestion_design.md
+    type: constrains
+    weight: 1.0
+    reason: Approved safety constraints for first-pass implementation.
+  - to: lupo-channels/66/threads/1001/20260319_030000_hephaestus_implementation_plan_revised_p0_bounded_authority_ingestion.md
+    type: references
+    weight: 0.9
+    reason: Recommended execution order and unit-test requirements.
+  - to: lupo-channels/66/threads/1001/20260319_090000_wolfie_header_version_compatibility_matrix_thread1001.md
+    type: implements
+    weight: 1.0
+    reason: Locked header version compatibility decisions for P0 reject/warn.
+  - to: lupo-channels/66/threads/1002/20260319_060000_wolfie_closure_bounded_header_authority_thread1002.md
+    type: constrains
+    weight: 1.0
+    reason: Bounded authority hierarchy is locked; implement P0 consequences without
+      reopening architecture.
+  - to: lupo-docs/doctrine/LUPOPEDIA_HEADERS/README.md
+    type: references
+    weight: 0.95
+    reason: Headers declare artifact; DB declares world; collections/namespace not
+      involved; row model.
+  - to: lupo-docs/doctrine/LUPOPEDIA_HEADERS/VALIDATORS_AND_TOOLING.md
+    type: references
+    weight: 0.95
+    reason: Validator/tooling expectations and existing CLI validator contracts.
+  - to: lupo-docs/doctrine/LUPOPEDIA_HEADERS/LUPOPEDIA_HEADERS_FORMAT.md
+    type: references
+    weight: 0.95
+    reason: Canonical file format, block order expectations, and required header fields.
+  - to: lupo-docs/doctrine/LUPOPEDIA_HEADERS/LUPOPEDIA_HEADERS_PLAN.md
+    type: references
+    weight: 0.95
+    reason: Canonical root -> blocks -> properties storage model for lupo_metadata.
+  - to: lupo-rules/root/toon-source-of-truth.md
+    type: references
+    weight: 1.0
+    reason: Install SQL / TOON hierarchy as structural truth for TOON validation.
 lupopedia.footer:
-  version: "4.0.80"
-  last_verified: "20260319"
-  last_verified_by: "hephaestus"
-  orchestrator: "hephaestus"
+  version: 4.0.80
+  last_verified: '20260324182605'
+  last_verified_by: cursor
+  orchestrator: hephaestus
   next_action:
-    - "HEPHAESTUS/tool owner: implement Thread 1001 Channel 66 P0 bounded-authority ingestion pipeline code and tests, strictly following this artifact."
-    - "Optional: LILITH pass only if TOON parsing/column validation behavior mismatches expected `.toon` JSON structure during implementation."
+  - 'HEPHAESTUS/tool owner: implement Thread 1001 Channel 66 P0 bounded-authority
+    ingestion pipeline code and tests, strictly following this artifact.'
+  - 'Optional: LILITH pass only if TOON parsing/column validation behavior mismatches
+    expected `.toon` JSON structure during implementation.'
+  last_verified_by_actor_id: 102
 ---
 
 # file: HEPHAESTUS Build-Ready Execution - Thread 1001 P0 Bounded-Authority Ingestion (Channel 66) - session: L-LUPO-ROOT-HEPHAESTUS - delegation: hephaestus:root - web_path: http://www.lupopedia.com/lupo-channels/66/threads/1001/20260319_360000_hephaestus_execution_build_ready_p0_bounded_authority_ingestion

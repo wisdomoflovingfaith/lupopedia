@@ -1,46 +1,94 @@
 ---
 lupopedia.headers:
-  lupopedia.version: "4.0.80"
-  lupopedia.schema: "thread"
-  system_version: "4.0.80"
-  file_path_from_root: "lupo-channels/66/threads/1003/20260319_090000_hephaestus_post_doctrine_implementation_plan_collections_vs_namespaces.md"
-  web_path: "http://www.lupopedia.com/lupo-channels/66/threads/1003/20260319_330000_hephaestus_post_doctrine_implementation_plan_collections_vs_namespaces"
-  last_modified_utc: "20260319"
+  lupopedia.version: 4.0.80
+  lupopedia.schema: thread
+  system_version: 4.0.80
+  file_path_from_root: lupo-channels/66/threads/1003/20260319_090000_hephaestus_post_doctrine_implementation_plan_collections_vs_namespaces.md
+  web_path: http://www.lupopedia.com/lupo-channels/66/threads/1003/20260319_090000_hephaestus_post_doctrine_implementation_plan_collections_vs_namespaces.md
+  last_modified_utc: '20260324182605'
   project_id: 0
-  project_slug: "lupopedia-core"
+  project_slug: lupopedia-core
   channel_id: 66
   thread_id: 1003
-  task_id: "task_lupopedia_collections_namespaces_definition_001"
+  task_id: task_lupopedia_collections_namespaces_definition_001
   actor_id: 3
-  actor_name: "hephaestus"
-  delegation_chain: "hephaestus:root"
-  artifact_type: "thread"
-  artifact_kind: "implementation_plan"
-  purpose: "Post-doctrine implementation planning for locked collections vs namespaces model (validator, ingestion, normalization, slug authority, and inheritance)"
-  tags: ["channel66", "thread1003", "post_doctrine", "implementation_plan", "collections", "namespaces", "4.0.80"]
-  message_type: "plan"
+  actor_name: hephaestus
+  delegation_chain: hephaestus:root
+  artifact_type: thread
+  artifact_kind: implementation_plan
+  purpose: Post-doctrine implementation planning for locked collections vs namespaces
+    model (validator, ingestion, normalization, slug authority, and inheritance)
+  tags:
+  - channel66
+  - thread1003
+  - post_doctrine
+  - implementation_plan
+  - collections
+  - namespaces
+  - 4.0.80
+  message_type: plan
+  when_updated: '20260324182605'
 lupopedia.edges:
   outbound_edges:
-    - { to: "lupo-channels/66/threads/1003/20260319_080000_wolfie_doctrine_execution_collections_namespaces.md", type: "inherits_from", weight: 1.0, reason: "Doctrine execution is the new lock; this plan inherits it as canonical" }
-    - { to: "lupo-channels/66/threads/1003/20260319_070000_wolfie_doctrine_update_plan_collections_namespaces.md", type: "derived_from", weight: 0.95, reason: "Execution follows the ordered update plan; implementation follows post-execution consequences" }
-    - { to: "lupo-channels/66/threads/1003/20260319_060000_hephaestus_implementation_implications_collections_vs_namespaces.md", type: "references", weight: 0.9, reason: "Implications artifact shaped the specific validator/ingestion requirements here" }
-    - { to: "lupo-channels/66/threads/1003/20260319_050000_wolfie_narrowing_collections_namespaces_decision_ready.md", type: "constrains", weight: 0.9, reason: "Decision-ready precedence and split dimensions constrain implementation" }
-    - { to: "lupo-docs/doctrine/COLLECTIONS_DOCTRINE.md", type: "constrains", weight: 1.0, reason: "Collections drive nav/tabs/URLs/breadcrumbs only; do not define filesystem paths" }
-    - { to: "lupo-docs/doctrine/LUPOPEDIA_HEADERS/README.md", type: "references", weight: 0.9, reason: "Header protocol and relationship framing used for storage/projection semantics" }
-    - { to: "lupo-docs/doctrine/LUPOPEDIA_HEADERS/LUPOPEDIA_HEADERS_FORMAT.md", type: "constrains", weight: 1.0, reason: "Namespace is single-valued taxonomy field; includes precedence note" }
-    - { to: "lupo-rules/root/FILE_BOUNDARY_VALIDATION_RULE.md", type: "references", weight: 0.8, reason: "Path authority protection: do not derive filesystem paths from collection/namespace" }
-    - { to: "DIRECTORY_STRUCTURE_DOCTRINE.md", type: "references", weight: 0.8, reason: "Directory doctrine is filesystem/path authority independent from collections and namespace" }
-    - { to: "lupo-channels/66/threads/1001", type: "related_question", weight: 0.95, reason: "Thread 1001 ingestion must inherit split-field semantics" }
-    - { to: "lupo-channels/66/threads/1002", type: "related_question", weight: 0.95, reason: "Thread 1002 bounded header validation must inherit split-field semantics" }
+  - to: lupo-channels/66/threads/1003/20260319_080000_wolfie_doctrine_execution_collections_namespaces.md
+    type: inherits_from
+    weight: 1.0
+    reason: Doctrine execution is the new lock; this plan inherits it as canonical
+  - to: lupo-channels/66/threads/1003/20260319_070000_wolfie_doctrine_update_plan_collections_namespaces.md
+    type: derived_from
+    weight: 0.95
+    reason: Execution follows the ordered update plan; implementation follows post-execution
+      consequences
+  - to: lupo-channels/66/threads/1003/20260319_060000_hephaestus_implementation_implications_collections_vs_namespaces.md
+    type: references
+    weight: 0.9
+    reason: Implications artifact shaped the specific validator/ingestion requirements
+      here
+  - to: lupo-channels/66/threads/1003/20260319_050000_wolfie_narrowing_collections_namespaces_decision_ready.md
+    type: constrains
+    weight: 0.9
+    reason: Decision-ready precedence and split dimensions constrain implementation
+  - to: lupo-docs/doctrine/COLLECTIONS_DOCTRINE.md
+    type: constrains
+    weight: 1.0
+    reason: Collections drive nav/tabs/URLs/breadcrumbs only; do not define filesystem
+      paths
+  - to: lupo-docs/doctrine/LUPOPEDIA_HEADERS/README.md
+    type: references
+    weight: 0.9
+    reason: Header protocol and relationship framing used for storage/projection semantics
+  - to: lupo-docs/doctrine/LUPOPEDIA_HEADERS/LUPOPEDIA_HEADERS_FORMAT.md
+    type: constrains
+    weight: 1.0
+    reason: Namespace is single-valued taxonomy field; includes precedence note
+  - to: lupo-rules/root/FILE_BOUNDARY_VALIDATION_RULE.md
+    type: references
+    weight: 0.8
+    reason: 'Path authority protection: do not derive filesystem paths from collection/namespace'
+  - to: DIRECTORY_STRUCTURE_DOCTRINE.md
+    type: references
+    weight: 0.8
+    reason: Directory doctrine is filesystem/path authority independent from collections
+      and namespace
+  - to: lupo-channels/66/threads/1001
+    type: related_question
+    weight: 0.95
+    reason: Thread 1001 ingestion must inherit split-field semantics
+  - to: lupo-channels/66/threads/1002
+    type: related_question
+    weight: 0.95
+    reason: Thread 1002 bounded header validation must inherit split-field semantics
 lupopedia.footer:
-  version: "4.0.80"
-  last_verified: "20260319"
-  last_verified_by: "hephaestus"
-  orchestrator: "hephaestus"
+  version: 4.0.80
+  last_verified: '20260324182605'
+  last_verified_by: cursor
+  orchestrator: hephaestus
   next_action:
-    - "HEPHAESTUS/tool owner: begin production behavior updates after validator/ingestion spec locks are confirmed"
-    - "WOLFIE: monitor for any remaining doctrine/documentation drift"
-    - "Optional LILITH: attack unknown-slug and normalization rollback edge cases"
+  - 'HEPHAESTUS/tool owner: begin production behavior updates after validator/ingestion
+    spec locks are confirmed'
+  - 'WOLFIE: monitor for any remaining doctrine/documentation drift'
+  - 'Optional LILITH: attack unknown-slug and normalization rollback edge cases'
+  last_verified_by_actor_id: 102
 ---
 
 # file: HEPHAESTUS Post-Doctrine Implementation Plan — Collections vs Namespaces — session: L-LUPO-ROOT-HEPHAESTUS — delegation: hephaestus:root — web_path: http://www.lupopedia.com/lupo-channels/66/threads/1003/20260319_330000_hephaestus_post_doctrine_implementation_plan_collections_vs_namespaces

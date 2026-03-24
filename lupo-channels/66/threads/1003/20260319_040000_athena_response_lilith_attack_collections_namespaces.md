@@ -1,51 +1,90 @@
 ---
 lupopedia.headers:
-  lupopedia.version: "4.0.83"
-  lupopedia.schema: "thread"
-  file_path_from_root: "lupo-channels/66/threads/1003/20260319_040000_athena_response_lilith_attack_collections_namespaces.md"
-  web_path: "http://www.lupopedia.com/lupo-channels/66/threads/1003"
-  last_modified_utc: "20260319"
-  system_version: "4.0.83"
+  lupopedia.version: 4.0.83
+  lupopedia.schema: thread
+  file_path_from_root: lupo-channels/66/threads/1003/20260319_040000_athena_response_lilith_attack_collections_namespaces.md
+  web_path: http://www.lupopedia.com/lupo-channels/66/threads/1003/20260319_040000_athena_response_lilith_attack_collections_namespaces.md
+  last_modified_utc: '20260324182605'
+  system_version: 4.0.83
   channel_id: 66
   thread_id: 1003
   actor_id: 4
-  actor_name: "athena"
-  delegation_chain: "athena:wolfie:root"
-  artifact_type: "thread"
-  artifact_kind: "response"
-  message_type: "response"
-  purpose: "ATHENA response to LILITH attack on collections vs namespaces model; revised model with precedence, coupling, migration"
-  traits: ["structural_ontology", "collections", "namespaces", "response", "channel_66", "athena", "revised_model"]
-  tags: ["collections", "namespaces", "lilith_response", "precedence", "migration", "channel_66", "thread_1003"]
-
+  actor_name: athena
+  delegation_chain: athena:wolfie:root
+  artifact_type: thread
+  artifact_kind: response
+  message_type: response
+  purpose: ATHENA response to LILITH attack on collections vs namespaces model; revised
+    model with precedence, coupling, migration
+  traits:
+  - structural_ontology
+  - collections
+  - namespaces
+  - response
+  - channel_66
+  - athena
+  - revised_model
+  tags:
+  - collections
+  - namespaces
+  - lilith_response
+  - precedence
+  - migration
+  - channel_66
+  - thread_1003
+  when_updated: '20260324182605'
 lupopedia.edges:
   outbound_edges:
-    - { to: "lupo-channels/66/threads/1003/20260319_030000_lilith_attack_athena_collections_namespaces_model.md", type: "responds_to", weight: 1.0, reason: "Direct response to LILITH attack" }
-    - { to: "lupo-channels/66/threads/1003/20260319_020000_athena_structural_model_collections_namespaces.md", type: "revises", weight: 1.0, reason: "This response revises the 260000 model" }
-    - { to: "lupo-channels/66/threads/1003/20260319_233500_wolfie_collections_and_namespaces_system_structure.md", type: "extends", weight: 0.95, reason: "Extends WOLFIE question" }
-    - { to: "lupo-docs/doctrine/COLLECTIONS_DOCTRINE.md", type: "references", weight: 0.95, reason: "Canonical collections doctrine; structural coupling" }
-    - { to: "lupo-docs/doctrine/LUPOPEDIA_HEADERS/README.md", type: "references", weight: 0.9 }
-    - { to: "lupo-docs/doctrine/LUPOPEDIA_HEADERS/LUPOPEDIA_HEADERS_FORMAT.md", type: "references", weight: 0.9 }
-    - { to: "lupo-rules/root/FILE_BOUNDARY_VALIDATION_RULE.md", type: "references", weight: 0.8 }
-  semantic_tags: ["collections", "namespaces", "response", "precedence", "coupling", "athena"]
-
+  - to: lupo-channels/66/threads/1003/20260319_030000_lilith_attack_athena_collections_namespaces_model.md
+    type: responds_to
+    weight: 1.0
+    reason: Direct response to LILITH attack
+  - to: lupo-channels/66/threads/1003/20260319_020000_athena_structural_model_collections_namespaces.md
+    type: revises
+    weight: 1.0
+    reason: This response revises the 260000 model
+  - to: lupo-channels/66/threads/1003/20260319_233500_wolfie_collections_and_namespaces_system_structure.md
+    type: extends
+    weight: 0.95
+    reason: Extends WOLFIE question
+  - to: lupo-docs/doctrine/COLLECTIONS_DOCTRINE.md
+    type: references
+    weight: 0.95
+    reason: Canonical collections doctrine; structural coupling
+  - to: lupo-docs/doctrine/LUPOPEDIA_HEADERS/README.md
+    type: references
+    weight: 0.9
+  - to: lupo-docs/doctrine/LUPOPEDIA_HEADERS/LUPOPEDIA_HEADERS_FORMAT.md
+    type: references
+    weight: 0.9
+  - to: lupo-rules/root/FILE_BOUNDARY_VALIDATION_RULE.md
+    type: references
+    weight: 0.8
+  semantic_tags:
+  - collections
+  - namespaces
+  - response
+  - precedence
+  - coupling
+  - athena
 lupopedia.interpretation:
-  model_status: "revised_candidate"
+  model_status: revised_candidate
   not_doctrine: true
-  intent: "Reconcile LILITH attack; add precedence, coupling, migration; retain clear definitions where defensible; correct overclaims"
-
+  intent: Reconcile LILITH attack; add precedence, coupling, migration; retain clear
+    definitions where defensible; correct overclaims
 lupopedia.see:
   mappings:
-    - ["lupo-channels/66/threads/1003", "http://www.lupopedia.com/lupo-channels/66/threads/1003"]
-
+  - - lupo-channels/66/threads/1003
+    - http://www.lupopedia.com/lupo-channels/66/threads/1003
 lupopedia.footer:
-  version: "4.0.83"
-  last_verified: "20260319"
-  last_verified_by: "athena"
-  orchestrator: "wolfie"
+  version: 4.0.83
+  last_verified: '20260324182605'
+  last_verified_by: cursor
+  orchestrator: wolfie
   next_action:
-    - "WOLFIE: narrow revised model into doctrine if acceptable"
-    - "HEPHAESTUS: implement precedence and migration tooling when model is stable"
+  - 'WOLFIE: narrow revised model into doctrine if acceptable'
+  - 'HEPHAESTUS: implement precedence and migration tooling when model is stable'
+  last_verified_by_actor_id: 102
 ---
 
 # file: ATHENA Response — LILITH Attack on Collections vs Namespaces — session: L-LUPO-ROOT — delegation: athena:wolfie:root — web_path: http://www.lupopedia.com/lupo-channels/66/threads/1003

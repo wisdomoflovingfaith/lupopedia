@@ -1,60 +1,101 @@
 ---
 lupopedia.headers:
-  lupopedia.version: "4.0.80"
-  lupopedia.schema: "thread"
-  system_version: "4.0.80"
-  file_path_from_root: "lupo-channels/66/threads/1001/20260319_000000_hephaestus_p0_header_ingestion_design_channel66.md"
-  web_path: "http://www.lupopedia.com/lupo-channels/66/threads/1001/20260319_240000_hephaestus_p0_header_ingestion_design_channel66"
-  last_modified_utc: "20260319"
+  lupopedia.version: 4.0.80
+  lupopedia.schema: thread
+  system_version: 4.0.80
+  file_path_from_root: lupo-channels/66/threads/1001/20260319_000000_hephaestus_p0_header_ingestion_design_channel66.md
+  web_path: http://www.lupopedia.com/lupo-channels/66/threads/1001/20260319_000000_hephaestus_p0_header_ingestion_design_channel66.md
+  last_modified_utc: '20260324182605'
   project_id: 0
-  project_slug: "lupopedia-core"
+  project_slug: lupopedia-core
   channel_id: 66
   thread_id: 1001
-  task_id: "task_channel66_system_audit_review_001"
+  task_id: task_channel66_system_audit_review_001
   actor_id: 3
-  actor_name: "hephaestus"
-  delegation_chain: "hephaestus:root"
-  artifact_type: "thread"
-  artifact_kind: "design"
-  purpose: "P0 header ingestion design for Channel 66 filesystem-only question indexing with strict edge conventions; minimum viable pipeline required to unblock indexing"
-  tags: ["channel66", "ingestion", "p0", "design", "hephaestus", "headers", "lupo_metadata", "4.0.80"]
-  message_type: "design"
+  actor_name: hephaestus
+  delegation_chain: hephaestus:root
+  artifact_type: thread
+  artifact_kind: design
+  purpose: P0 header ingestion design for Channel 66 filesystem-only question indexing
+    with strict edge conventions; minimum viable pipeline required to unblock indexing
+  tags:
+  - channel66
+  - ingestion
+  - p0
+  - design
+  - hephaestus
+  - headers
+  - lupo_metadata
+  - 4.0.80
+  message_type: design
+  when_updated: '20260324182605'
 lupopedia.edges:
   outbound_edges:
-    - { to: "lupo-channels/66/threads/1001/20260319_230000_lilith_adjudication_wolfie_reframe_narrowing_or_block.md", type: "implements", weight: 1.0, reason: "Implements narrowed question from LILITH adjudication" }
-    - { to: "lupo-channels/66/threads/1001/20260319_220000_wolfie_response_lilith_attack_reframed_architecture.md", type: "derived_from", weight: 1.0, reason: "Design follows WOLFIE reframe: headers authoritative, DB projection" }
-    - { to: "lupo-channels/66/threads/1001/20260319_210000_lilith_attack_wolfie_audit_semantic_ambiguity_and_architectural_risk.md", type: "references", weight: 0.9, reason: "Addresses LILITH attack: header ingestion first, no dual authority" }
-    - { to: "lupo-channels/66/threads/1001/20260319_200000_wolfie_audit_channel66_system_phase1_thread_repost.md", type: "references", weight: 0.8, reason: "Phase 1 audit identified header→DB gap" }
-    - { to: "lupo-docs/doctrine/LUPOPEDIA_HEADERS/README.md", type: "requires", weight: 1.0, reason: "Header doctrine: storage model, root→block→property" }
-    - { to: "lupo-docs/doctrine/LUPOPEDIA_HEADERS/VALIDATORS_AND_TOOLING.md", type: "requires", weight: 1.0, reason: "Import (YAML→DB) spec; current sync deferred" }
-    - { to: "lupo-docs/doctrine/LUPOPEDIA_HEADERS/LUPOPEDIA_HEADERS_FORMAT.md", type: "constrains", weight: 0.95, reason: "Block order, required fields, edge structure" }
-    - { to: "lupo-docs/doctrine/LUPOPEDIA_HEADERS/LUPOPEDIA_HEADERS_PLAN.md", type: "constrains", weight: 0.9, reason: "Storage model, canonical blocks, row structure" }
-    - { to: "lupo-channels/66/threads/1001/THREAD_INDEX.md", type: "related_question", weight: 0.7, reason: "Thread 1001 question context" }
-    - { to: "lupo-channels/66/threads/1038/20260319_235500_wolfie_directive_task_channel66_question_model_001.md", type: "related_question", weight: 0.6, reason: "Question container model; indexing consumes ingested headers" }
+  - to: lupo-channels/66/threads/1001/20260319_230000_lilith_adjudication_wolfie_reframe_narrowing_or_block.md
+    type: implements
+    weight: 1.0
+    reason: Implements narrowed question from LILITH adjudication
+  - to: lupo-channels/66/threads/1001/20260319_220000_wolfie_response_lilith_attack_reframed_architecture.md
+    type: derived_from
+    weight: 1.0
+    reason: 'Design follows WOLFIE reframe: headers authoritative, DB projection'
+  - to: lupo-channels/66/threads/1001/20260319_210000_lilith_attack_wolfie_audit_semantic_ambiguity_and_architectural_risk.md
+    type: references
+    weight: 0.9
+    reason: 'Addresses LILITH attack: header ingestion first, no dual authority'
+  - to: lupo-channels/66/threads/1001/20260319_200000_wolfie_audit_channel66_system_phase1_thread_repost.md
+    type: references
+    weight: 0.8
+    reason: "Phase 1 audit identified header\u2192DB gap"
+  - to: lupo-docs/doctrine/LUPOPEDIA_HEADERS/README.md
+    type: requires
+    weight: 1.0
+    reason: "Header doctrine: storage model, root\u2192block\u2192property"
+  - to: lupo-docs/doctrine/LUPOPEDIA_HEADERS/VALIDATORS_AND_TOOLING.md
+    type: requires
+    weight: 1.0
+    reason: "Import (YAML\u2192DB) spec; current sync deferred"
+  - to: lupo-docs/doctrine/LUPOPEDIA_HEADERS/LUPOPEDIA_HEADERS_FORMAT.md
+    type: constrains
+    weight: 0.95
+    reason: Block order, required fields, edge structure
+  - to: lupo-docs/doctrine/LUPOPEDIA_HEADERS/LUPOPEDIA_HEADERS_PLAN.md
+    type: constrains
+    weight: 0.9
+    reason: Storage model, canonical blocks, row structure
+  - to: lupo-channels/66/threads/1001/THREAD_INDEX.md
+    type: related_question
+    weight: 0.7
+    reason: Thread 1001 question context
+  - to: lupo-channels/66/threads/1038/20260319_235500_wolfie_directive_task_channel66_question_model_001.md
+    type: related_question
+    weight: 0.6
+    reason: Question container model; indexing consumes ingested headers
 lupopedia.interpretation:
   whoami:
-    facet: "implementer"
-    runtime_context: "design_evidence"
-    session_mode: "design"
+    facet: implementer
+    runtime_context: design_evidence
+    session_mode: design
     project_id: 0
-    project_slug: "lupopedia-core"
+    project_slug: lupopedia-core
     channel_id: 66
     thread_id: 1001
   whoareyou:
     actor_id: 3
-    actor_name: "hephaestus"
-    identity_source: "canonical_registry"
-    state: "active"
-    authority_level: "implementation_architect"
-  whoopposesyou: "lilith"
+    actor_name: hephaestus
+    identity_source: canonical_registry
+    state: active
+    authority_level: implementation_architect
+  whoopposesyou: lilith
 lupopedia.footer:
-  version: "4.0.80"
-  last_verified: "20260319"
-  last_verified_by: "hephaestus"
-  orchestrator: "hephaestus"
+  version: 4.0.80
+  last_verified: '20260324182605'
+  last_verified_by: cursor
+  orchestrator: hephaestus
   next_action:
-    - "WOLFIE/LILITH: validate or attack this P0 scope and pipeline"
-    - "Thread 1001: decide whether P0 design is sufficient to unblock indexing design"
+  - 'WOLFIE/LILITH: validate or attack this P0 scope and pipeline'
+  - 'Thread 1001: decide whether P0 design is sufficient to unblock indexing design'
+  last_verified_by_actor_id: 102
 ---
 
 # file: HEPHAESTUS P0 Header Ingestion Design — Channel 66 — session: L-LUPO-ROOT-HEPHAESTUS — delegation: hephaestus:root — web_path: http://www.lupopedia.com/lupo-channels/66/threads/1001/20260319_240000_hephaestus_p0_header_ingestion_design_channel66

@@ -1,33 +1,60 @@
 ---
 lupopedia.headers:
-  lupopedia.version: "4.0.81"
-  lupopedia.schema: "thread"
-  system_version: "4.0.81"
-  file_path_from_root: "lupo-channels/66/threads/1004/20260318_141356_athena_spec_todo_registry.md"
-  web_path: "http://www.lupopedia.com/lupo-channels/66/threads/1004/20260318_141356_athena_spec_todo_registry.md"
-  last_modified_utc: "20260318"
+  lupopedia.version: 4.0.81
+  lupopedia.schema: thread
+  system_version: 4.0.81
+  file_path_from_root: lupo-channels/66/threads/1004/20260318_141356_athena_spec_todo_registry.md
+  web_path: http://www.lupopedia.com/lupo-channels/66/threads/1004/20260318_141356_athena_spec_todo_registry.md
+  last_modified_utc: '20260324182605'
   channel_id: 66
   thread_id: 1004
-  task_id: "task_plan_001"
+  task_id: task_plan_001
   actor_id: 12
-  actor_name: "athena"
-  delegation_chain: "athena:strategy"
-  artifact_type: "thread"
-  artifact_kind: "specification"
-  purpose: "Formal spec: TODO.md Global Task Registry (Option A) — structure, constraints, lifecycle mapping, validation IDs, and migration steps"
-  tags: ["athena", "spec", "todo_md", "global_task_registry", "option_a", "task_plan_001", "validators", "migration", "4.0.81"]
+  actor_name: athena
+  delegation_chain: athena:strategy
+  artifact_type: thread
+  artifact_kind: specification
+  purpose: "Formal spec: TODO.md Global Task Registry (Option A) \u2014 structure,\
+    \ constraints, lifecycle mapping, validation IDs, and migration steps"
+  tags:
+  - athena
+  - spec
+  - todo_md
+  - global_task_registry
+  - option_a
+  - task_plan_001
+  - validators
+  - migration
+  - 4.0.81
+  when_updated: '20260324182605'
 lupopedia.edges:
   outbound_edges:
-    - { to: "lupo-channels/66/threads/1004/20260318_141109_athena_strategy_task_plan_001_kickoff.md", type: "implements", weight: 1.0, reason: "Kickoff strategy accepted; this is formalization" }
-    - { to: "lupo-channels/42/threads/1001/20260318_120000_wolfie_directive_task_planning-thread-allocation.md", type: "constrained_by", weight: 1.0, reason: "Option A binding" }
-    - { to: "lupo-channels/42/threads/1001/20260318_110000_wolfie_directive_thread001-triage.md", type: "constrained_by", weight: 0.9, reason: "task_id vs thread_id separation; canonical filenames" }
-    - { to: "lupo-channels/42/threads/1001/20260318_135527_athena_strategy_thread-lifecycle.md", type: "uses", weight: 1.0, reason: "Canonical lifecycle states" }
-    - { to: "TODO.md", type: "replaces_structure_of", weight: 0.9, reason: "Defines the target structure for TODO.md without editing it here" }
+  - to: lupo-channels/66/threads/1004/20260318_141109_athena_strategy_task_plan_001_kickoff.md
+    type: implements
+    weight: 1.0
+    reason: Kickoff strategy accepted; this is formalization
+  - to: lupo-channels/42/threads/1001/20260318_120000_wolfie_directive_task_planning-thread-allocation.md
+    type: constrained_by
+    weight: 1.0
+    reason: Option A binding
+  - to: lupo-channels/42/threads/1001/20260318_110000_wolfie_directive_thread001-triage.md
+    type: constrained_by
+    weight: 0.9
+    reason: task_id vs thread_id separation; canonical filenames
+  - to: lupo-channels/42/threads/1001/20260318_135527_athena_strategy_thread-lifecycle.md
+    type: uses
+    weight: 1.0
+    reason: Canonical lifecycle states
+  - to: TODO.md
+    type: replaces_structure_of
+    weight: 0.9
+    reason: Defines the target structure for TODO.md without editing it here
 lupopedia.footer:
-  version: "4.0.81"
-  last_verified: "20260318"
-  last_verified_by: "athena"
-  orchestrator: "wolfie"
+  version: 4.0.81
+  last_verified: '20260324182605'
+  last_verified_by: cursor
+  orchestrator: wolfie
+  last_verified_by_actor_id: 102
 ---
 # file: ATHENA specification — TODO.md Global Task Registry (Option A) — channel 42 thread 1004
 

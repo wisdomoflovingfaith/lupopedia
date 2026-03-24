@@ -1,19 +1,38 @@
 ---
 lupopedia.headers:
-  when_updated: '20260324182407'
+  when_updated: '20260324182716'
   lupopedia.schema: index
   file_path_from_root: lupo-channels/66/THREAD_INDEX.md
   web_path: http://www.lupopedia.com/lupo-channels/66/THREAD_INDEX.md
-  last_modified_utc: '20260324182407'
+  last_modified_utc: '20260324182716'
   channel_id: 66
   actor_id: 102
   actor_name: cursor
   delegation_chain: cursor:root
   artifact_type: index
   artifact_kind: thread_index
-  purpose: Navigation index for channel 66 production question and execution threads
+  purpose: Curated thread index for channel 66 with 4.0.87 relevance filtering
+lupopedia.edges:
+  comment: Snapshot of priority question threads and relevance filter artifact for
+    4.0.87.
+  outbound_edges:
+  - to: lupo-channels/66/threads/1050/20260324_182000_cursor_question_root_archive_scope.md
+    type: references
+    weight: 0.95
+  - to: lupo-channels/66/threads/1051/20260324_182100_cursor_question_edge_review_assignments.md
+    type: references
+    weight: 1.0
+  - to: lupo-channels/66/threads/1052/20260324_185200_cursor_question_actor_pairing_defaults.md
+    type: references
+    weight: 1.0
+  - to: lupo-channels/66/threads/1053/20260324_183600_cursor_channel66_relevance_validation_4_0_87.md
+    type: references
+    weight: 1.0
+  - to: lupo-docs/versions/4.0.87/EDGE_REVIEW_QUEUE.md
+    type: references
+    weight: 0.95
 lupopedia.footer:
-  last_verified: '20260324182407'
+  last_verified: '20260324182716'
   last_verified_by: cursor
   last_verified_by_actor_id: 102
   orchestrator: cursor:root
@@ -22,19 +41,22 @@ lupopedia.footer:
 
 # Channel 66 Thread Index
 
-## Navigation Note
+## Scope
 
-Derived navigation only. Version `TASK_REGISTRY.md` remains the authoritative status surface.
+This index prioritizes 4.0.87 blockers and active production questions.
 
-## New Questions (2026-03-24)
+## Priority 4.0.87 Questions
 
-- `1050/20260324_182000_cursor_question_root_archive_scope.md`
 - `1051/20260324_182100_cursor_question_edge_review_assignments.md`
-
-## Related Version Docs
-
-- `lupo-docs/versions/4.0.87/EDGE_REVIEW_QUEUE.md`
-- `lupo-docs/versions/4.0.87/PLAN.md`
-- `lupo-docs/versions/4.0.87/CHANNEL_ORGANIZATION_STREAM.md`
-## New Questions (major-agent pass)
 - `1052/20260324_185200_cursor_question_actor_pairing_defaults.md`
+- `1050/20260324_182000_cursor_question_root_archive_scope.md`
+
+## Relevance Validation Artifact
+
+- `1053/20260324_183600_cursor_channel66_relevance_validation_4_0_87.md`
+
+## Legacy Context Threads (deprioritized for current release)
+
+- `1001`, `1002`, `1003`, `1004`, `1005`, `1006`, `1007`, `1017`, `1025`, `1027`, `1038`, `1047`
+
+These remain part of lineage and audit history but are not the primary question queue for 4.0.87 signoff.

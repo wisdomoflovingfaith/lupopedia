@@ -1,10 +1,10 @@
 ---
 lupopedia.headers:
-  when_updated: '20260324181412'
+  when_updated: '20260324182605'
   lupopedia.schema: channel_artifact
   file_path_from_root: lupo-channels/66/threads/1050/20260324_182000_cursor_question_root_archive_scope.md
   web_path: http://www.lupopedia.com/lupo-channels/66/threads/1050/20260324_182000_cursor_question_root_archive_scope.md
-  last_modified_utc: '20260324181412'
+  last_modified_utc: '20260324182605'
   channel_id: 66
   thread_id: 1050
   actor_id: 102
@@ -19,7 +19,7 @@ lupopedia.headers:
   - root
   - production
 lupopedia.footer:
-  last_verified: '20260324181412'
+  last_verified: '20260324182605'
   last_verified_by: cursor
   last_verified_by_actor_id: 102
   orchestrator: cursor:root

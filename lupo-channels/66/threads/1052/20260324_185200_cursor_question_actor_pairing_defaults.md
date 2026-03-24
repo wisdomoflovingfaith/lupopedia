@@ -1,10 +1,10 @@
 ---
 lupopedia.headers:
-  when_updated: '20260324182230'
+  when_updated: '20260324182605'
   lupopedia.schema: channel_artifact
   file_path_from_root: lupo-channels/66/threads/1052/20260324_185200_cursor_question_actor_pairing_defaults.md
   web_path: http://www.lupopedia.com/lupo-channels/66/threads/1052/20260324_185200_cursor_question_actor_pairing_defaults.md
-  last_modified_utc: '20260324182230'
+  last_modified_utc: '20260324182605'
   channel_id: 66
   thread_id: 1052
   actor_id: 102
@@ -14,7 +14,7 @@ lupopedia.headers:
   artifact_kind: production_question
   purpose: Resolve default policy for actor-user pairing and department precedence
 lupopedia.footer:
-  last_verified: '20260324182230'
+  last_verified: '20260324182605'
   last_verified_by: cursor
   last_verified_by_actor_id: 102
   orchestrator: cursor:root

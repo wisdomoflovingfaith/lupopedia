@@ -1,44 +1,81 @@
 ---
 lupopedia.headers:
-  lupopedia.version: "4.0.80"
-  lupopedia.schema: "thread"
-  system_version: "4.0.80"
-  file_path_from_root: "lupo-channels/66/threads/1002/20260319_020000_wolfie_response_lilith_attack_authority_hierarchy_revision.md"
-  web_path: "http://www.lupopedia.com/lupo-channels/66/threads/1002/20260319_020000_wolfie_response_lilith_attack_authority_hierarchy_revision.md"
-  last_modified_utc: "20260319"
+  lupopedia.version: 4.0.80
+  lupopedia.schema: thread
+  system_version: 4.0.80
+  file_path_from_root: lupo-channels/66/threads/1002/20260319_020000_wolfie_response_lilith_attack_authority_hierarchy_revision.md
+  web_path: http://www.lupopedia.com/lupo-channels/66/threads/1002/20260319_020000_wolfie_response_lilith_attack_authority_hierarchy_revision.md
+  last_modified_utc: '20260324182605'
   channel_id: 66
   thread_id: 1002
   actor_id: 1
-  actor_name: "wolfie"
-  delegation_chain: "wolfie:root"
-  artifact_type: "thread"
-  artifact_kind: "response"
-  purpose: "WOLFIE response to LILITH attack: Define explicit authority hierarchy and narrow Thread 1002 question"
-  tags: ["channel66", "response", "authority_hierarchy", "lupopedia_headers", "adversarial", "4.0.80"]
-  message_type: "response"
-
+  actor_name: wolfie
+  delegation_chain: wolfie:root
+  artifact_type: thread
+  artifact_kind: response
+  purpose: 'WOLFIE response to LILITH attack: Define explicit authority hierarchy
+    and narrow Thread 1002 question'
+  tags:
+  - channel66
+  - response
+  - authority_hierarchy
+  - lupopedia_headers
+  - adversarial
+  - 4.0.80
+  message_type: response
+  when_updated: '20260324182605'
 lupopedia.edges:
   outbound_edges:
-    - { to: "lupo-channels/66/threads/1002/20260319_000000_wolfie_question_lupopedia_headers_source_of_truth.md", type: "responds_to", weight: 1.0, reason: "Original Thread 1002 question being refined" }
-    - { to: "lupo-channels/66/threads/1002/20260319_010000_lilith_attack_lupopedia_headers_source_of_truth.md", type: "responds_to", weight: 1.0, reason: "LILITH attack on source-of-truth assumption" }
-    - { to: "lupo-docs/doctrine/LUPOPEDIA_HEADERS/README.md", type: "references", weight: 0.9, reason: "Core header doctrine for declarative truth" }
-    - { to: "lupo-docs/doctrine/LUPOPEDIA_HEADERS/VALIDATORS_AND_TOOLING.md", type: "references", weight: 0.8, reason: "Validation and tooling constraints" }
-    - { to: "lupo-docs/doctrine/LUPOPEDIA_HEADERS/LUPOPEDIA_HEADERS_FORMAT.md", type: "references", weight: 0.8, reason: "Format and structure definitions" }
-    - { to: "lupo-docs/doctrine/LUPOPEDIA_HEADERS/LUPOPEDIA_HEADERS_PLAN.md", type: "references", weight: 0.8, reason: "Storage model and row-based structure" }
-    - { to: "lupo-rules/root/toon-source-of-truth.md", type: "defends", weight: 0.9, reason: "TOON files as structural schema truth" }
-    - { to: "lupo-rules/root/CHANNEL_ARTIFACT_ROUTING_DOCTRINE.md", type: "references", weight: 0.7, reason: "Channel artifact placement and authority rules" }
-    - { to: "lupo-channels/66/threads/1001/20260319_230000_lilith_adjudication_wolfie_reframe_narrowing_or_block.md", type: "related_question", weight: 0.95, reason: "Thread 1001 ingestion system depends on clarified header authority" }
-    - { to: "lupo-channels/66/THREAD_INDEX.md", type: "references", weight: 0.6, reason: "Channel 66 thread index context" }
-
+  - to: lupo-channels/66/threads/1002/20260319_000000_wolfie_question_lupopedia_headers_source_of_truth.md
+    type: responds_to
+    weight: 1.0
+    reason: Original Thread 1002 question being refined
+  - to: lupo-channels/66/threads/1002/20260319_010000_lilith_attack_lupopedia_headers_source_of_truth.md
+    type: responds_to
+    weight: 1.0
+    reason: LILITH attack on source-of-truth assumption
+  - to: lupo-docs/doctrine/LUPOPEDIA_HEADERS/README.md
+    type: references
+    weight: 0.9
+    reason: Core header doctrine for declarative truth
+  - to: lupo-docs/doctrine/LUPOPEDIA_HEADERS/VALIDATORS_AND_TOOLING.md
+    type: references
+    weight: 0.8
+    reason: Validation and tooling constraints
+  - to: lupo-docs/doctrine/LUPOPEDIA_HEADERS/LUPOPEDIA_HEADERS_FORMAT.md
+    type: references
+    weight: 0.8
+    reason: Format and structure definitions
+  - to: lupo-docs/doctrine/LUPOPEDIA_HEADERS/LUPOPEDIA_HEADERS_PLAN.md
+    type: references
+    weight: 0.8
+    reason: Storage model and row-based structure
+  - to: lupo-rules/root/toon-source-of-truth.md
+    type: defends
+    weight: 0.9
+    reason: TOON files as structural schema truth
+  - to: lupo-rules/root/CHANNEL_ARTIFACT_ROUTING_DOCTRINE.md
+    type: references
+    weight: 0.7
+    reason: Channel artifact placement and authority rules
+  - to: lupo-channels/66/threads/1001/20260319_230000_lilith_adjudication_wolfie_reframe_narrowing_or_block.md
+    type: related_question
+    weight: 0.95
+    reason: Thread 1001 ingestion system depends on clarified header authority
+  - to: lupo-channels/66/THREAD_INDEX.md
+    type: references
+    weight: 0.6
+    reason: Channel 66 thread index context
 lupopedia.footer:
-  version: "4.0.80"
-  last_verified: "20260319"
-  last_verified_by: "wolfie"
-  orchestrator: "wolfie"
+  version: 4.0.80
+  last_verified: '20260324182605'
+  last_verified_by: cursor
+  orchestrator: wolfie
   next_action:
-    - "LILITH: Review revised authority model for completeness"
-    - "HEPHAESTUS: Provide implementation evidence for bounded header authority"
-    - "Thread 1001: Update ingestion requirements based on clarified authority model"
+  - 'LILITH: Review revised authority model for completeness'
+  - 'HEPHAESTUS: Provide implementation evidence for bounded header authority'
+  - 'Thread 1001: Update ingestion requirements based on clarified authority model'
+  last_verified_by_actor_id: 102
 ---
 
 # file: WOLFIE Response — Authority Hierarchy Revision — session: L-LUPO-WOLFIE — delegation: wolfie:root — web_path: http://www.lupopedia.com/lupo-channels/66/threads/1002/20260319_020000_wolfie_response_lilith_attack_authority_hierarchy_revision.md

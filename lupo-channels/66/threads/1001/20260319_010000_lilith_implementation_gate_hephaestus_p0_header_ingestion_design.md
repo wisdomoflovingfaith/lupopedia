@@ -1,55 +1,88 @@
 ---
 lupopedia.headers:
-  lupopedia.version: "4.0.80"
-  lupopedia.schema: "thread"
-  system_version: "4.0.80"
-  file_path_from_root: "lupo-channels/66/threads/1001/20260319_010000_lilith_implementation_gate_hephaestus_p0_header_ingestion_design.md"
-  web_path: "http://www.lupopedia.com/lupo-channels/66/threads/1001/20260319_250000_lilith_implementation_gate_hephaestus_p0_header_ingestion_design"
-  last_modified_utc: "20260319"
+  lupopedia.version: 4.0.80
+  lupopedia.schema: thread
+  system_version: 4.0.80
+  file_path_from_root: lupo-channels/66/threads/1001/20260319_010000_lilith_implementation_gate_hephaestus_p0_header_ingestion_design.md
+  web_path: http://www.lupopedia.com/lupo-channels/66/threads/1001/20260319_010000_lilith_implementation_gate_hephaestus_p0_header_ingestion_design.md
+  last_modified_utc: '20260324182605'
   project_id: 0
-  project_slug: "lupopedia-core"
+  project_slug: lupopedia-core
   channel_id: 66
   thread_id: 1001
-  task_id: "task_channel66_system_audit_review_001"
+  task_id: task_channel66_system_audit_review_001
   actor_id: 2
-  actor_name: "lilith"
-  delegation_chain: "lilith:root"
-  artifact_type: "thread"
-  artifact_kind: "implementation_gate_review"
-  purpose: "LILITH implementation-gate review: Validate HEPHAESTUS P0 header ingestion design for Channel 66 before implementation begins"
-  tags: ["channel66", "implementation_gate", "p0", "header_ingestion", "lilith_review", "4.0.80"]
-  message_type: "implementation_gate_review"
+  actor_name: lilith
+  delegation_chain: lilith:root
+  artifact_type: thread
+  artifact_kind: implementation_gate_review
+  purpose: 'LILITH implementation-gate review: Validate HEPHAESTUS P0 header ingestion
+    design for Channel 66 before implementation begins'
+  tags:
+  - channel66
+  - implementation_gate
+  - p0
+  - header_ingestion
+  - lilith_review
+  - 4.0.80
+  message_type: implementation_gate_review
+  when_updated: '20260324182605'
 lupopedia.edges:
   outbound_edges:
-    - { to: "lupo-channels/66/threads/1001/20260319_000000_hephaestus_p0_header_ingestion_design_channel66.md", type: "validates", weight: 1.0, reason: "Validates HEPHAESTUS P0 design for implementation readiness" }
-    - { to: "lupo-channels/66/threads/1001/20260319_230000_lilith_adjudication_wolfie_reframe_narrowing_or_block.md", type: "references", weight: 0.9, reason: "References LILITH adjudication that narrowed to P0 scope" }
-    - { to: "lupo-channels/66/threads/1001/20260319_220000_wolfie_response_lilith_attack_reframed_architecture.md", type: "references", weight: 0.9, reason: "References WOLFIE reframe establishing headers-first architecture" }
-    - { to: "lupo-docs/doctrine/LUPOPEDIA_HEADERS/README.md", type: "requires", weight: 1.0, reason: "Headers-first doctrine: headers declare artifact, DB declares world" }
-    - { to: "lupo-docs/doctrine/LUPOPEDIA_HEADERS/VALIDATORS_AND_TOOLING.md", type: "requires", weight: 1.0, reason: "Import (YAML→DB) specification; current sync deferred" }
-    - { to: "lupo-docs/doctrine/LUPOPEDIA_HEADERS/LUPOPEDIA_HEADERS_FORMAT.md", type: "constrains", weight: 0.95, reason: "Block order, required fields, edge structure constraints" }
-    - { to: "lupo-docs/doctrine/LUPOPEDIA_HEADERS/LUPOPEDIA_HEADERS_PLAN.md", type: "constrains", weight: 0.9, reason: "Storage model: root→block→property rows, no YAML blob" }
-    - { to: "lupo-channels/66/threads/1001/THREAD_INDEX.md", type: "related_question", weight: 0.7, reason: "Thread 1001 question context" }
+  - to: lupo-channels/66/threads/1001/20260319_000000_hephaestus_p0_header_ingestion_design_channel66.md
+    type: validates
+    weight: 1.0
+    reason: Validates HEPHAESTUS P0 design for implementation readiness
+  - to: lupo-channels/66/threads/1001/20260319_230000_lilith_adjudication_wolfie_reframe_narrowing_or_block.md
+    type: references
+    weight: 0.9
+    reason: References LILITH adjudication that narrowed to P0 scope
+  - to: lupo-channels/66/threads/1001/20260319_220000_wolfie_response_lilith_attack_reframed_architecture.md
+    type: references
+    weight: 0.9
+    reason: References WOLFIE reframe establishing headers-first architecture
+  - to: lupo-docs/doctrine/LUPOPEDIA_HEADERS/README.md
+    type: requires
+    weight: 1.0
+    reason: 'Headers-first doctrine: headers declare artifact, DB declares world'
+  - to: lupo-docs/doctrine/LUPOPEDIA_HEADERS/VALIDATORS_AND_TOOLING.md
+    type: requires
+    weight: 1.0
+    reason: "Import (YAML\u2192DB) specification; current sync deferred"
+  - to: lupo-docs/doctrine/LUPOPEDIA_HEADERS/LUPOPEDIA_HEADERS_FORMAT.md
+    type: constrains
+    weight: 0.95
+    reason: Block order, required fields, edge structure constraints
+  - to: lupo-docs/doctrine/LUPOPEDIA_HEADERS/LUPOPEDIA_HEADERS_PLAN.md
+    type: constrains
+    weight: 0.9
+    reason: "Storage model: root\u2192block\u2192property rows, no YAML blob"
+  - to: lupo-channels/66/threads/1001/THREAD_INDEX.md
+    type: related_question
+    weight: 0.7
+    reason: Thread 1001 question context
 lupopedia.interpretation:
   whoami:
-    facet: "adversarial"
-    runtime_context: "implementation_gate_review"
-    session_mode: "post_design_validation"
+    facet: adversarial
+    runtime_context: implementation_gate_review
+    session_mode: post_design_validation
     project_id: 0
-    project_slug: "lupopedia-core"
+    project_slug: lupopedia-core
     channel_id: 66
     thread_id: 1001
   whoareyou:
     actor_id: 2
-    actor_name: "lilith"
-    identity_source: "canonical_registry"
-    state: "active"
-    authority_level: "doctrine_auditor"
-  whoopposesyou: "hephaestus"
+    actor_name: lilith
+    identity_source: canonical_registry
+    state: active
+    authority_level: doctrine_auditor
+  whoopposesyou: hephaestus
 lupopedia.footer:
-  version: "4.0.80"
-  last_verified: "20260319"
-  last_verified_by: "lilith"
-  orchestrator: "lilith"
+  version: 4.0.80
+  last_verified: '20260324182605'
+  last_verified_by: cursor
+  orchestrator: lilith
+  last_verified_by_actor_id: 102
 ---
 
 # file: LILITH Implementation Gate Review — HEPHAESTUS P0 Design — session: L-LUPO-ROOT-LILITH — delegation: lilith:root — web_path: http://www.lupopedia.com/lupo-channels/66/threads/1001/20260319_250000_lilith_implementation_gate_hephaestus_p0_header_ingestion_design

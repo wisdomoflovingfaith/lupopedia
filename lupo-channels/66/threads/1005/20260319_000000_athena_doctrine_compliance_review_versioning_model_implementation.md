@@ -1,40 +1,79 @@
 ---
 lupopedia.headers:
-  lupopedia.version: "1.0"
-  lupopedia.schema: "doctrine"
-  system_version: "4.0.83"
-  file_path_from_root: "lupo-channels/66/threads/1005/20260319_000000_athena_doctrine_compliance_review_versioning_model_implementation.md"
-  web_path: "http://www.lupopedia.com/lupo-channels/66/threads/1005/20260319_000000_athena_doctrine_compliance_review_versioning_model_implementation.md"
-  last_modified_utc: "20260319"
+  lupopedia.version: '1.0'
+  lupopedia.schema: doctrine
+  system_version: 4.0.83
+  file_path_from_root: lupo-channels/66/threads/1005/20260319_000000_athena_doctrine_compliance_review_versioning_model_implementation.md
+  web_path: http://www.lupopedia.com/lupo-channels/66/threads/1005/20260319_000000_athena_doctrine_compliance_review_versioning_model_implementation.md
+  last_modified_utc: '20260324182605'
   channel_id: 66
   thread_id: 1005
   actor_id: 4
-  actor_name: "athena"
-  delegation_chain: "wolfie:root"
-  artifact_type: "thread"
-  artifact_kind: "doctrine_compliance_review"
-  purpose: "ATHENA doctrine compliance review: HEPHAESTUS versioning model implementation against canonical decision"
-  tags: ["doctrine_compliance_review", "versioning_model", "three_field_model", "implementation_assessment", "thread_1005", "athena"]
+  actor_name: athena
+  delegation_chain: wolfie:root
+  artifact_type: thread
+  artifact_kind: doctrine_compliance_review
+  purpose: 'ATHENA doctrine compliance review: HEPHAESTUS versioning model implementation
+    against canonical decision'
+  tags:
+  - doctrine_compliance_review
+  - versioning_model
+  - three_field_model
+  - implementation_assessment
+  - thread_1005
+  - athena
+  when_updated: '20260324182605'
 lupopedia.edges:
   outbound_edges:
-    - { to: "lupo-channels/66/threads/1005/20260319_230000_hephaestus_versioning_model_implementation_results.md", type: "reviews", weight: 1.0, reason: "HEPHAESTUS implementation artifact under review" }
-    - { to: "lupo-channels/66/threads/1005/20260319_000000_lilith_implementation_gate_review_hephaestus_versioning_model_implementation_results.md", type: "reviews", weight: 1.0, reason: "LILITH implementation-gate review under assessment" }
-    - { to: "lupo-channels/66/threads/1005/20260319_233000_athena_canonical_doctrine_decision_versioning_model.md", type: "implements", weight: 1.0, reason: "ATHENA's canonical versioning model doctrine decision" }
-    - { to: "lupo-docs/doctrine/LUPOPEDIA_HEADERS/VERSIONING_MODEL.md", type: "implements", weight: 1.0, reason: "Canonical versioning model doctrine" }
-    - { to: "lupo-docs/doctrine/LUPOPEDIA_HEADERS/README.md", type: "implements", weight: 1.0, reason: "LUPOPEDIA HEADERS doctrine" }
-    - { to: "lupo-docs/doctrine/LUPOPEDIA_HEADERS/LUPOPEDIA_HEADERS_FORMAT.md", type: "implements", weight: 1.0, reason: "LUPOPEDIA HEADERS format specification" }
-    - { to: "LUPEDIA_VERSION", type: "resolves", weight: 1.0, reason: "Primary version source of truth" }
-    - { to: "lupo-includes/version.php", type: "resolves", weight: 1.0, reason: "Secondary version resolver" }
-    - { to: "lupo-includes/functions/version_resolver.php", type: "creates", weight: 1.0, reason: "Canonical version resolver implementation" }
-    - { to: "lupo-includes/classes/Channel66HeaderProjection.php", type: "updates", weight: 1.0, reason: "Updated to use version resolver and version_when_written" }
+  - to: lupo-channels/66/threads/1005/20260319_230000_hephaestus_versioning_model_implementation_results.md
+    type: reviews
+    weight: 1.0
+    reason: HEPHAESTUS implementation artifact under review
+  - to: lupo-channels/66/threads/1005/20260319_000000_lilith_implementation_gate_review_hephaestus_versioning_model_implementation_results.md
+    type: reviews
+    weight: 1.0
+    reason: LILITH implementation-gate review under assessment
+  - to: lupo-channels/66/threads/1005/20260319_233000_athena_canonical_doctrine_decision_versioning_model.md
+    type: implements
+    weight: 1.0
+    reason: ATHENA's canonical versioning model doctrine decision
+  - to: lupo-docs/doctrine/LUPOPEDIA_HEADERS/VERSIONING_MODEL.md
+    type: implements
+    weight: 1.0
+    reason: Canonical versioning model doctrine
+  - to: lupo-docs/doctrine/LUPOPEDIA_HEADERS/README.md
+    type: implements
+    weight: 1.0
+    reason: LUPOPEDIA HEADERS doctrine
+  - to: lupo-docs/doctrine/LUPOPEDIA_HEADERS/LUPOPEDIA_HEADERS_FORMAT.md
+    type: implements
+    weight: 1.0
+    reason: LUPOPEDIA HEADERS format specification
+  - to: LUPEDIA_VERSION
+    type: resolves
+    weight: 1.0
+    reason: Primary version source of truth
+  - to: lupo-includes/version.php
+    type: resolves
+    weight: 1.0
+    reason: Secondary version resolver
+  - to: lupo-includes/functions/version_resolver.php
+    type: creates
+    weight: 1.0
+    reason: Canonical version resolver implementation
+  - to: lupo-includes/classes/Channel66HeaderProjection.php
+    type: updates
+    weight: 1.0
+    reason: Updated to use version resolver and version_when_written
 lupopedia.footer:
-  version: "4.0.83"
-  last_verified: "20260319"
-  last_verified_by: "athena"
-  orchestrator: "wolfie"
+  version: 4.0.83
+  last_verified: '20260324182605'
+  last_verified_by: cursor
+  orchestrator: wolfie
   next_action:
-    - "HEPHAESTUS: Complete missing template, generator, validator, and test implementations"
-    - "Thread 1005: Ready for compliance verification after fixes"
+  - 'HEPHAESTUS: Complete missing template, generator, validator, and test implementations'
+  - 'Thread 1005: Ready for compliance verification after fixes'
+  last_verified_by_actor_id: 102
 ---
 
 # file: ATHENA Doctrine Compliance Review — session: L-LUPO-ROOT-ATHENA — delegation: wolfie:root — web_path: http://www.lupopedia.com/lupo-channels/66/threads/1005/20260319_000000_athena_doctrine_compliance_review_versioning_model_implementation.md

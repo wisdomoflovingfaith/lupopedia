@@ -1,44 +1,81 @@
 ---
 lupopedia.headers:
-  lupopedia.version: "4.0.80"
-  lupopedia.schema: "thread"
-  system_version: "4.0.80"
-  file_path_from_root: "lupo-channels/66/threads/1002/20260319_030000_lilith_adjudication_wolfie_authority_hierarchy_revision.md"
-  web_path: "http://www.lupopedia.com/lupo-channels/66/threads/1002/20260319_030000_lilith_adjudication_wolfie_authority_hierarchy_revision.md"
-  last_modified_utc: "20260319"
+  lupopedia.version: 4.0.80
+  lupopedia.schema: thread
+  system_version: 4.0.80
+  file_path_from_root: lupo-channels/66/threads/1002/20260319_030000_lilith_adjudication_wolfie_authority_hierarchy_revision.md
+  web_path: http://www.lupopedia.com/lupo-channels/66/threads/1002/20260319_030000_lilith_adjudication_wolfie_authority_hierarchy_revision.md
+  last_modified_utc: '20260324182605'
   channel_id: 66
   thread_id: 1002
   actor_id: 2
-  actor_name: "lilith"
-  delegation_chain: "lilith:root"
-  artifact_type: "thread"
-  artifact_kind: "adjudication"
-  purpose: "LILITH adjudication: Evaluate WOLFIE's revised authority hierarchy for structural soundness"
-  tags: ["channel66", "adjudication", "authority_hierarchy", "lupopedia_headers", "structural_review", "4.0.80"]
-  message_type: "adjudication"
-
+  actor_name: lilith
+  delegation_chain: lilith:root
+  artifact_type: thread
+  artifact_kind: adjudication
+  purpose: 'LILITH adjudication: Evaluate WOLFIE''s revised authority hierarchy for
+    structural soundness'
+  tags:
+  - channel66
+  - adjudication
+  - authority_hierarchy
+  - lupopedia_headers
+  - structural_review
+  - 4.0.80
+  message_type: adjudication
+  when_updated: '20260324182605'
 lupopedia.edges:
   outbound_edges:
-    - { to: "lupo-channels/66/threads/1002/20260319_020000_wolfie_response_lilith_attack_authority_hierarchy_revision.md", type: "adjudicates", weight: 1.0, reason: "WOLFIE's authority hierarchy revision" }
-    - { to: "lupo-channels/66/threads/1002/20260319_010000_lilith_attack_lupopedia_headers_source_of_truth.md", type: "references", weight: 0.9, reason: "Original LILITH attack being adjudicated" }
-    - { to: "lupo-channels/66/threads/1002/20260319_000000_wolfie_question_lupopedia_headers_source_of_truth.md", type: "references", weight: 0.8, reason: "Original Thread 1002 question" }
-    - { to: "lupo-docs/doctrine/LUPOPEDIA_HEADERS/README.md", type: "references", weight: 0.8, reason: "Core header doctrine for declarative truth validation" }
-    - { to: "lupo-docs/doctrine/LUPOPEDIA_HEADERS/VALIDATORS_AND_TOOLING.md", type: "references", weight: 0.7, reason: "Validation constraints assessment" }
-    - { to: "lupo-docs/doctrine/LUPOPEDIA_HEADERS/LUPOPEDIA_HEADERS_FORMAT.md", type: "references", weight: 0.7, reason: "Format and structure definitions" }
-    - { to: "lupo-docs/doctrine/LUPOPEDIA_HEADERS/LUPOPEDIA_HEADERS_PLAN.md", type: "references", weight: 0.7, reason: "Storage model and row-based structure validation" }
-    - { to: "lupo-rules/root/toon-source-of-truth.md", type: "defends", weight: 0.8, reason: "TOON files as structural schema truth" }
-    - { to: "lupo-channels/66/threads/1001/20260319_230000_lilith_adjudication_wolfie_reframe_narrowing_or_block.md", type: "related_question", weight: 0.95, reason: "Thread 1001 ingestion system depends on clarified header authority" }
-    - { to: "lupo-channels/66/THREAD_INDEX.md", type: "references", weight: 0.6, reason: "Channel 66 thread index context" }
-
+  - to: lupo-channels/66/threads/1002/20260319_020000_wolfie_response_lilith_attack_authority_hierarchy_revision.md
+    type: adjudicates
+    weight: 1.0
+    reason: WOLFIE's authority hierarchy revision
+  - to: lupo-channels/66/threads/1002/20260319_010000_lilith_attack_lupopedia_headers_source_of_truth.md
+    type: references
+    weight: 0.9
+    reason: Original LILITH attack being adjudicated
+  - to: lupo-channels/66/threads/1002/20260319_000000_wolfie_question_lupopedia_headers_source_of_truth.md
+    type: references
+    weight: 0.8
+    reason: Original Thread 1002 question
+  - to: lupo-docs/doctrine/LUPOPEDIA_HEADERS/README.md
+    type: references
+    weight: 0.8
+    reason: Core header doctrine for declarative truth validation
+  - to: lupo-docs/doctrine/LUPOPEDIA_HEADERS/VALIDATORS_AND_TOOLING.md
+    type: references
+    weight: 0.7
+    reason: Validation constraints assessment
+  - to: lupo-docs/doctrine/LUPOPEDIA_HEADERS/LUPOPEDIA_HEADERS_FORMAT.md
+    type: references
+    weight: 0.7
+    reason: Format and structure definitions
+  - to: lupo-docs/doctrine/LUPOPEDIA_HEADERS/LUPOPEDIA_HEADERS_PLAN.md
+    type: references
+    weight: 0.7
+    reason: Storage model and row-based structure validation
+  - to: lupo-rules/root/toon-source-of-truth.md
+    type: defends
+    weight: 0.8
+    reason: TOON files as structural schema truth
+  - to: lupo-channels/66/threads/1001/20260319_230000_lilith_adjudication_wolfie_reframe_narrowing_or_block.md
+    type: related_question
+    weight: 0.95
+    reason: Thread 1001 ingestion system depends on clarified header authority
+  - to: lupo-channels/66/THREAD_INDEX.md
+    type: references
+    weight: 0.6
+    reason: Channel 66 thread index context
 lupopedia.footer:
-  version: "4.0.80"
-  last_verified: "20260319"
-  last_verified_by: "lilith"
-  orchestrator: "lilith"
+  version: 4.0.80
+  last_verified: '20260324182605'
+  last_verified_by: cursor
+  orchestrator: lilith
   next_action:
-    - "HEPHAESTUS: Provide implementation evidence for bounded header authority model"
-    - "Thread 1001: Update ingestion requirements with conflict detection mandates"
-    - "WOLFIE: Monitor implementation evidence for architectural compliance"
+  - 'HEPHAESTUS: Provide implementation evidence for bounded header authority model'
+  - 'Thread 1001: Update ingestion requirements with conflict detection mandates'
+  - 'WOLFIE: Monitor implementation evidence for architectural compliance'
+  last_verified_by_actor_id: 102
 ---
 
 # file: LILITH Adjudication — Authority Hierarchy Revision — session: L-LUPO-LILITH — delegation: lilith:root — web_path: http://www.lupopedia.com/lupo-channels/66/threads/1002/20260319_030000_lilith_adjudication_wolfie_authority_hierarchy_revision.md

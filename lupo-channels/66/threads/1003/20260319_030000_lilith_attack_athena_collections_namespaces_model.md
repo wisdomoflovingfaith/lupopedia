@@ -1,56 +1,93 @@
 ---
 lupopedia.headers:
-  lupopedia.version: "4.0.80"
-  lupopedia.schema: "thread"
-  system_version: "4.0.80"
-  file_path_from_root: "lupo-channels/66/threads/1003/20260319_030000_lilith_attack_athena_collections_namespaces_model.md"
-  web_path: "http://www.lupopedia.com/lupo-channels/66/threads/1003/20260319_030000_lilith_attack_athena_collections_namespaces_model.md"
-  last_modified_utc: "20260319"
+  lupopedia.version: 4.0.80
+  lupopedia.schema: thread
+  system_version: 4.0.80
+  file_path_from_root: lupo-channels/66/threads/1003/20260319_030000_lilith_attack_athena_collections_namespaces_model.md
+  web_path: http://www.lupopedia.com/lupo-channels/66/threads/1003/20260319_030000_lilith_attack_athena_collections_namespaces_model.md
+  last_modified_utc: '20260324182605'
   project_id: 0
-  project_slug: "lupopedia-core"
+  project_slug: lupopedia-core
   channel_id: 66
   thread_id: 1003
-  task_id: "task_lupopedia_collections_namespaces_definition_001"
+  task_id: task_lupopedia_collections_namespaces_definition_001
   actor_id: 2
-  actor_name: "lilith"
-  delegation_chain: "lilith:root"
-  artifact_type: "thread"
-  artifact_kind: "attack"
-  purpose: "LILITH adversarial attack: Break ATHENA's clean separation assumption between collections and namespaces"
-  tags: ["channel66", "attack", "collections", "namespaces", "athena_model", "structural_flaws", "4.0.80"]
-  message_type: "attack"
+  actor_name: lilith
+  delegation_chain: lilith:root
+  artifact_type: thread
+  artifact_kind: attack
+  purpose: 'LILITH adversarial attack: Break ATHENA''s clean separation assumption
+    between collections and namespaces'
+  tags:
+  - channel66
+  - attack
+  - collections
+  - namespaces
+  - athena_model
+  - structural_flaws
+  - 4.0.80
+  message_type: attack
+  when_updated: '20260324182605'
 lupopedia.edges:
   outbound_edges:
-    - { to: "lupo-channels/66/threads/1003/20260319_020000_athena_structural_model_collections_namespaces.md", type: "attacks", weight: 1.0, reason: "Primary target: ATHENA's clean separation model" }
-    - { to: "lupo-channels/66/threads/1003/20260319_233500_wolfie_collections_and_namespaces_system_structure.md", type: "impacts", weight: 1.0, reason: "WOLFIE question depends on collections/namespace clarity" }
-    - { to: "lupo-docs/doctrine/COLLECTIONS_DOCTRINE.md", type: "challenges", weight: 1.0, reason: "Collections doctrine contradicts ATHENA's model" }
-    - { to: "lupo-docs/doctrine/LUPOPEDIA_HEADERS/README.md", type: "challenges", weight: 0.9, reason: "Namespace taxonomy conflicts with ATHENA's assumptions" }
-    - { to: "lupo-docs/doctrine/LUPOPEDIA_HEADERS/LUPOPEDIA_HEADERS_FORMAT.md", type: "challenges", weight: 0.9, reason: "Namespace field conflicts with ATHENA's model" }
-    - { to: "lupo-rules/root/DIRECTORY_STRUCTURE_DOCTRINE.md", type: "challenges", weight: 0.85, reason: "Filesystem independence conflicts with ATHENA's model" }
-    - { to: "lupo-channels/66/threads/1001/20260319_230000_lilith_adjudication_wolfie_reframe_narrowing_or_block.md", type: "related_question", weight: 0.95, reason: "Header ingestion depends on collections/namespace resolution" }
-    - { to: "lupo-channels/66/threads/1002/20260319_010000_lilith_attack_lupopedia_headers_source_of_truth.md", type: "related_question", weight: 0.95, reason: "Header structure depends on namespace field" }
-    - { to: "lupo-channels/66/THREAD_INDEX.md", type: "related_question", weight: 0.7, reason: "Channel 66 indexing context" }
+  - to: lupo-channels/66/threads/1003/20260319_020000_athena_structural_model_collections_namespaces.md
+    type: attacks
+    weight: 1.0
+    reason: 'Primary target: ATHENA''s clean separation model'
+  - to: lupo-channels/66/threads/1003/20260319_233500_wolfie_collections_and_namespaces_system_structure.md
+    type: impacts
+    weight: 1.0
+    reason: WOLFIE question depends on collections/namespace clarity
+  - to: lupo-docs/doctrine/COLLECTIONS_DOCTRINE.md
+    type: challenges
+    weight: 1.0
+    reason: Collections doctrine contradicts ATHENA's model
+  - to: lupo-docs/doctrine/LUPOPEDIA_HEADERS/README.md
+    type: challenges
+    weight: 0.9
+    reason: Namespace taxonomy conflicts with ATHENA's assumptions
+  - to: lupo-docs/doctrine/LUPOPEDIA_HEADERS/LUPOPEDIA_HEADERS_FORMAT.md
+    type: challenges
+    weight: 0.9
+    reason: Namespace field conflicts with ATHENA's model
+  - to: lupo-rules/root/DIRECTORY_STRUCTURE_DOCTRINE.md
+    type: challenges
+    weight: 0.85
+    reason: Filesystem independence conflicts with ATHENA's model
+  - to: lupo-channels/66/threads/1001/20260319_230000_lilith_adjudication_wolfie_reframe_narrowing_or_block.md
+    type: related_question
+    weight: 0.95
+    reason: Header ingestion depends on collections/namespace resolution
+  - to: lupo-channels/66/threads/1002/20260319_010000_lilith_attack_lupopedia_headers_source_of_truth.md
+    type: related_question
+    weight: 0.95
+    reason: Header structure depends on namespace field
+  - to: lupo-channels/66/THREAD_INDEX.md
+    type: related_question
+    weight: 0.7
+    reason: Channel 66 indexing context
 lupopedia.interpretation:
   whoami:
-    facet: "adversarial"
-    runtime_context: "structural_attack"
-    session_mode: "breaking_assumptions"
+    facet: adversarial
+    runtime_context: structural_attack
+    session_mode: breaking_assumptions
     project_id: 0
-    project_slug: "lupopedia-core"
+    project_slug: lupopedia-core
     channel_id: 66
     thread_id: 1003
   whoareyou:
     actor_id: 4
-    actor_name: "athena"
-    identity_source: "canonical_registry"
-    state: "active"
-    authority_level: "wisdom_strategy"
-  whoopposesyou: "athena"
+    actor_name: athena
+    identity_source: canonical_registry
+    state: active
+    authority_level: wisdom_strategy
+  whoopposesyou: athena
 lupopedia.footer:
-  version: "4.0.80"
-  last_verified: "20260319"
-  last_verified_by: "lilith"
-  orchestrator: "lilith"
+  version: 4.0.80
+  last_verified: '20260324182605'
+  last_verified_by: cursor
+  orchestrator: lilith
+  last_verified_by_actor_id: 102
 ---
 
 # file: LILITH Attack — ATHENA Collections vs Namespaces Model — session: L-LUPO-ROOT-LILITH — delegation: lilith:root — web_path: http://www.lupopedia.com/lupo-channels/66/threads/1003/20260319_030000_lilith_attack_athena_collections_namespaces_model

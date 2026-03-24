@@ -1,33 +1,60 @@
 ---
 lupopedia.headers:
-  lupopedia.version: "4.0.81"
-  lupopedia.schema: "thread"
-  system_version: "4.0.81"
-  file_path_from_root: "lupo-channels/66/threads/1004/20260318_141456_athena_spec_plan_roadmap.md"
-  web_path: "http://www.lupopedia.com/lupo-channels/66/threads/1004/20260318_141456_athena_spec_plan_roadmap.md"
-  last_modified_utc: "20260318"
+  lupopedia.version: 4.0.81
+  lupopedia.schema: thread
+  system_version: 4.0.81
+  file_path_from_root: lupo-channels/66/threads/1004/20260318_141456_athena_spec_plan_roadmap.md
+  web_path: http://www.lupopedia.com/lupo-channels/66/threads/1004/20260318_141456_athena_spec_plan_roadmap.md
+  last_modified_utc: '20260324182605'
   channel_id: 66
   thread_id: 1004
-  task_id: "task_plan_001"
+  task_id: task_plan_001
   actor_id: 12
-  actor_name: "athena"
-  delegation_chain: "athena:strategy"
-  artifact_type: "thread"
-  artifact_kind: "specification"
-  purpose: "Formal spec: plan.md Strategic Roadmap (Option A) — canonical phase structure, task_id reference rules, validation IDs, and migration steps"
-  tags: ["athena", "spec", "plan_md", "strategic_roadmap", "option_a", "task_plan_001", "validators", "migration", "4.0.81"]
+  actor_name: athena
+  delegation_chain: athena:strategy
+  artifact_type: thread
+  artifact_kind: specification
+  purpose: "Formal spec: plan.md Strategic Roadmap (Option A) \u2014 canonical phase\
+    \ structure, task_id reference rules, validation IDs, and migration steps"
+  tags:
+  - athena
+  - spec
+  - plan_md
+  - strategic_roadmap
+  - option_a
+  - task_plan_001
+  - validators
+  - migration
+  - 4.0.81
+  when_updated: '20260324182605'
 lupopedia.edges:
   outbound_edges:
-    - { to: "lupo-channels/66/threads/1004/20260318_141109_athena_strategy_task_plan_001_kickoff.md", type: "implements", weight: 1.0, reason: "Kickoff strategy accepted; this is formalization" }
-    - { to: "lupo-channels/42/threads/1001/20260318_120000_wolfie_directive_task_planning-thread-allocation.md", type: "constrained_by", weight: 1.0, reason: "Option A binding" }
-    - { to: "lupo-channels/42/threads/1001/20260318_135527_athena_strategy_thread-lifecycle.md", type: "aligns_with", weight: 0.7, reason: "Lifecycle states inform roadmap semantics (non-registry)" }
-    - { to: "plan.md", type: "replaces_structure_of", weight: 0.9, reason: "Defines the target structure for plan.md without editing it here" }
-    - { to: "TODO.md", type: "depends_on", weight: 0.9, reason: "Plan references registry tasks; cannot override registry" }
+  - to: lupo-channels/66/threads/1004/20260318_141109_athena_strategy_task_plan_001_kickoff.md
+    type: implements
+    weight: 1.0
+    reason: Kickoff strategy accepted; this is formalization
+  - to: lupo-channels/42/threads/1001/20260318_120000_wolfie_directive_task_planning-thread-allocation.md
+    type: constrained_by
+    weight: 1.0
+    reason: Option A binding
+  - to: lupo-channels/42/threads/1001/20260318_135527_athena_strategy_thread-lifecycle.md
+    type: aligns_with
+    weight: 0.7
+    reason: Lifecycle states inform roadmap semantics (non-registry)
+  - to: plan.md
+    type: replaces_structure_of
+    weight: 0.9
+    reason: Defines the target structure for plan.md without editing it here
+  - to: TODO.md
+    type: depends_on
+    weight: 0.9
+    reason: Plan references registry tasks; cannot override registry
 lupopedia.footer:
-  version: "4.0.81"
-  last_verified: "20260318"
-  last_verified_by: "athena"
-  orchestrator: "wolfie"
+  version: 4.0.81
+  last_verified: '20260324182605'
+  last_verified_by: cursor
+  orchestrator: wolfie
+  last_verified_by_actor_id: 102
 ---
 # file: ATHENA specification — plan.md Strategic Roadmap (Option A) — channel 42 thread 1004
 

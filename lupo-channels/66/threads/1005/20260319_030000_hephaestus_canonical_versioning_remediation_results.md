@@ -1,43 +1,84 @@
 ---
 lupopedia.headers:
-  lupopedia.version: "1.0"
-  lupopedia.schema: "implementation_results"
-  version_when_written: "4.0.83"
-  file_path_from_root: "lupo-channels/66/threads/1005/20260319_030000_hephaestus_canonical_versioning_remediation_results.md"
-  web_path: "http://www.lupopedia.com/lupo-channels/66/threads/1005/20260319_030000_hephaestus_canonical_versioning_remediation_results.md"
-  last_modified_utc: "20260319"
+  lupopedia.version: '1.0'
+  lupopedia.schema: implementation_results
+  version_when_written: 4.0.83
+  file_path_from_root: lupo-channels/66/threads/1005/20260319_030000_hephaestus_canonical_versioning_remediation_results.md
+  web_path: http://www.lupopedia.com/lupo-channels/66/threads/1005/20260319_030000_hephaestus_canonical_versioning_remediation_results.md
+  last_modified_utc: '20260324182605'
   project_id: 0
-  project_slug: "lupopedia-core"
+  project_slug: lupopedia-core
   channel_id: 66
   thread_id: 1005
-  task_id: "task_canonical_versioning_remediation_001"
+  task_id: task_canonical_versioning_remediation_001
   actor_id: 3
-  actor_name: "hephaestus"
-  delegation_chain: "hephaestus:root"
-  artifact_type: "thread"
-  artifact_kind: "remediation_execution"
-  purpose: "HEPHAESTUS surgical remediation pass for Thread 1005 canonical versioning model implementation - truth-restoring implementation correction"
-  traits: ["remediation", "canonical_versioning", "version_when_written", "implementation_correction", "thread_1005", "hephaestus", "truth_restoring"]
-  tags: ["remediation", "canonical_versioning", "version_when_written", "implementation_correction", "thread_1005", "hephaestus"]
-  message_type: "remediation_execution"
+  actor_name: hephaestus
+  delegation_chain: hephaestus:root
+  artifact_type: thread
+  artifact_kind: remediation_execution
+  purpose: HEPHAESTUS surgical remediation pass for Thread 1005 canonical versioning
+    model implementation - truth-restoring implementation correction
+  traits:
+  - remediation
+  - canonical_versioning
+  - version_when_written
+  - implementation_correction
+  - thread_1005
+  - hephaestus
+  - truth_restoring
+  tags:
+  - remediation
+  - canonical_versioning
+  - version_when_written
+  - implementation_correction
+  - thread_1005
+  - hephaestus
+  message_type: remediation_execution
+  when_updated: '20260324182605'
 lupopedia.edges:
   outbound_edges:
-    - { to: "lupo-channels/66/threads/1005/20260319_020000_lilith_implementation_gate_review_hephaestus_canonical_versioning_implementation_results.md", type: "remediates", weight: 1.0, reason: "Remediates LILITH's identified critical violations" }
-    - { to: "lupo-channels/66/threads/1005/20260319_233000_athena_canonical_doctrine_decision_versioning_model.md", type: "implements", weight: 1.0, reason: "Implements ATHENA's canonical doctrine decision for versioning model" }
-    - { to: "lupo-channels/66/threads/1005/20260319_235900_wolfie_narrowing_versioning_model_implementation_plan.md", type: "implements", weight: 1.0, reason: "Implements WOLFIE's narrowing implementation plan" }
-    - { to: "lupo-includes/functions/version_resolver.php", type: "corrects", weight: 1.0, reason: "Fixes resolver to remove stale fallback and use canonical source" }
-    - { to: "lupo-includes/classes/LupopediaArtifactTemplateGenerator.php", type: "corrects", weight: 1.0, reason: "Fixes template generator to remove three-field model comments and comply with canonical model" }
-    - { to: "lupo-includes/classes/ThreeFieldVersioningValidator.php", type: "corrects", weight: 1.0, reason: "Fixes validator to enforce canonical model without system_version requirement" }
-    - { to: "lupo-tests/integration/three_field_versioning_test.php", type: "corrects", weight: 1.0, reason: "Fixes tests to provide truthful evidence and actual validation" }
-    - { to: "LUPEDIA_VERSION", type: "resolves", weight: 1.0, reason: "System version source of truth for version resolution" }
+  - to: lupo-channels/66/threads/1005/20260319_020000_lilith_implementation_gate_review_hephaestus_canonical_versioning_implementation_results.md
+    type: remediates
+    weight: 1.0
+    reason: Remediates LILITH's identified critical violations
+  - to: lupo-channels/66/threads/1005/20260319_233000_athena_canonical_doctrine_decision_versioning_model.md
+    type: implements
+    weight: 1.0
+    reason: Implements ATHENA's canonical doctrine decision for versioning model
+  - to: lupo-channels/66/threads/1005/20260319_235900_wolfie_narrowing_versioning_model_implementation_plan.md
+    type: implements
+    weight: 1.0
+    reason: Implements WOLFIE's narrowing implementation plan
+  - to: lupo-includes/functions/version_resolver.php
+    type: corrects
+    weight: 1.0
+    reason: Fixes resolver to remove stale fallback and use canonical source
+  - to: lupo-includes/classes/LupopediaArtifactTemplateGenerator.php
+    type: corrects
+    weight: 1.0
+    reason: Fixes template generator to remove three-field model comments and comply
+      with canonical model
+  - to: lupo-includes/classes/ThreeFieldVersioningValidator.php
+    type: corrects
+    weight: 1.0
+    reason: Fixes validator to enforce canonical model without system_version requirement
+  - to: lupo-tests/integration/three_field_versioning_test.php
+    type: corrects
+    weight: 1.0
+    reason: Fixes tests to provide truthful evidence and actual validation
+  - to: LUPEDIA_VERSION
+    type: resolves
+    weight: 1.0
+    reason: System version source of truth for version resolution
 lupopedia.footer:
-  version: "1.0"
-  last_verified: "20260319"
-  last_verified_by: "hephaestus"
-  orchestrator: "hephaestus"
+  version: '1.0'
+  last_verified: '20260324182605'
+  last_verified_by: cursor
+  orchestrator: hephaestus
   next_action:
-    - "Thread 1005: Ready for validation after remediation corrections"
-    - "ATHENA: Review canonical versioning model remediation compliance"
+  - 'Thread 1005: Ready for validation after remediation corrections'
+  - 'ATHENA: Review canonical versioning model remediation compliance'
+  last_verified_by_actor_id: 102
 ---
 
 # file: HEPHAESTUS Canonical Versioning Remediation Results — Thread 1005 — session: L-LUPO-ROOT-HEPHAESTUS — delegation: hephaestus:root — web_path: http://www.lupopedia.com/lupo-channels/66/threads/1005/20260319_030000_hephaestus_canonical_versioning_remediation_results.md

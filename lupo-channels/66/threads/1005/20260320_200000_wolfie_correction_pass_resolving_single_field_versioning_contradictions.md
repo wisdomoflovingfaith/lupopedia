@@ -1,44 +1,90 @@
 ---
-version_when_written: "4.0.83"
-file_path_from_root: "lupo-channels/66/threads/1005/20260320_200000_wolfie_correction_pass_resolving_single_field_versioning_contradictions.md"
-web_path: "http://www.lupopedia.com/lupo-channels/66/threads/1005/20260320_200000_wolfie_correction_pass_resolving_single_field_versioning_contradictions.md"
-last_modified_utc: "20260320"
+version_when_written: 4.0.83
+file_path_from_root: lupo-channels/66/threads/1005/20260320_200000_wolfie_correction_pass_resolving_single_field_versioning_contradictions.md
+web_path: http://www.lupopedia.com/lupo-channels/66/threads/1005/20260320_200000_wolfie_correction_pass_resolving_single_field_versioning_contradictions.md
+last_modified_utc: '20260320'
 channel_id: 66
 thread_id: 1005
 actor_id: 1
-actor_name: "wolfie"
-delegation_chain: "wolfie:root"
-artifact_type: "thread"
-artifact_kind: "correction_pass"
-purpose: "WOLFIE correction pass resolving single-field versioning contradictions"
-traits: ["correction_pass", "single_field_versioning", "contradiction_resolution", "wolfie", "thread_1005"]
-tags: ["correction_pass", "single_field_versioning", "contradiction_resolution", "wolfie", "thread_1005"]
-message_type: "correction_pass"
+actor_name: wolfie
+delegation_chain: wolfie:root
+artifact_type: thread
+artifact_kind: correction_pass
+purpose: WOLFIE correction pass resolving single-field versioning contradictions
+traits:
+- correction_pass
+- single_field_versioning
+- contradiction_resolution
+- wolfie
+- thread_1005
+tags:
+- correction_pass
+- single_field_versioning
+- contradiction_resolution
+- wolfie
+- thread_1005
+message_type: correction_pass
 lupopedia.edges:
   outbound_edges:
-    - { to: "lupo-includes/functions/version_resolver.php", type: "aligns", weight: 1.0, reason: "Resolver validation aligned with single-field model" }
-    - { to: "lupo-includes/classes/LupopediaArtifactTemplateGenerator.php", type: "aligns", weight: 1.0, reason: "Template generator comments updated" }
-    - { to: "lupo-includes/classes/SingleFieldVersioningValidator.php", type: "aligns", weight: 1.0, reason: "Validator already compliant" }
-    - { to: "lupo-includes/classes/ThreeFieldVersioningValidator.php", type: "aligns", weight: 1.0, reason: "Legacy validator fixed to not require forbidden fields" }
-    - { to: "lupo-docs/doctrine/LUPOPEDIA_HEADERS/VERSIONING_MODEL.md", type: "corrects", weight: 1.0, reason: "Doctrine artifact updated with correct version" }
-    - { to: "lupo-channels/66/threads/1005/20260320_120000_wolfie_closure_doctrine_lock_single_field_versioning.md", type: "corrects", weight: 1.0, reason: "WOLFIE closure artifact corrected" }
-    - { to: "lupo-channels/66/threads/1005/20260320_040000_wolfie_doctrine_enforcement_single_field_versioning_model.md", type: "corrects", weight: 1.0, reason: "WOLFIE doctrine enforcement artifact corrected" }
+  - to: lupo-includes/functions/version_resolver.php
+    type: aligns
+    weight: 1.0
+    reason: Resolver validation aligned with single-field model
+  - to: lupo-includes/classes/LupopediaArtifactTemplateGenerator.php
+    type: aligns
+    weight: 1.0
+    reason: Template generator comments updated
+  - to: lupo-includes/classes/SingleFieldVersioningValidator.php
+    type: aligns
+    weight: 1.0
+    reason: Validator already compliant
+  - to: lupo-includes/classes/ThreeFieldVersioningValidator.php
+    type: aligns
+    weight: 1.0
+    reason: Legacy validator fixed to not require forbidden fields
+  - to: lupo-docs/doctrine/LUPOPEDIA_HEADERS/VERSIONING_MODEL.md
+    type: corrects
+    weight: 1.0
+    reason: Doctrine artifact updated with correct version
+  - to: lupo-channels/66/threads/1005/20260320_120000_wolfie_closure_doctrine_lock_single_field_versioning.md
+    type: corrects
+    weight: 1.0
+    reason: WOLFIE closure artifact corrected
+  - to: lupo-channels/66/threads/1005/20260320_040000_wolfie_doctrine_enforcement_single_field_versioning_model.md
+    type: corrects
+    weight: 1.0
+    reason: WOLFIE doctrine enforcement artifact corrected
 lupopedia.interpretation:
   whoami:
-    facet: "correction_pass"
-    runtime_context: "versioning_contradiction_resolution"
-    session_mode: "coordination"
+    facet: correction_pass
+    runtime_context: versioning_contradiction_resolution
+    session_mode: coordination
     project_id: 0
-    project_slug: "lupopedia-core"
+    project_slug: lupopedia-core
     channel_id: 66
     thread_id: 1005
   whoareyou:
     actor_id: 1
-    actor_name: "wolfie"
-    identity_source: "canonical_registry"
-    state: "active"
-    authority_level: "canonical_orchestrator"
-  whoopposesyou: "versioning_contradiction"
+    actor_name: wolfie
+    identity_source: canonical_registry
+    state: active
+    authority_level: canonical_orchestrator
+  whoopposesyou: versioning_contradiction
+lupopedia.headers:
+  file_path_from_root: lupo-channels/66/threads/1005/20260320_200000_wolfie_correction_pass_resolving_single_field_versioning_contradictions.md
+  web_path: http://www.lupopedia.com/lupo-channels/66/threads/1005/20260320_200000_wolfie_correction_pass_resolving_single_field_versioning_contradictions.md
+  when_updated: '20260324182605'
+  last_modified_utc: '20260324182605'
+  channel_id: 66
+  thread_id: 1005
+  actor_name: wolfie
+  actor_id: 1
+  delegation_chain: wolfie:root
+lupopedia.footer:
+  last_verified: '20260324182605'
+  last_verified_by: cursor
+  last_verified_by_actor_id: 102
+  orchestrator: cursor:root
 ---
 
 # file: WOLFIE Correction Pass — Thread 1005 — session: L-LUPO-ROOT-WOLFIE — delegation: wolfie:root — web_path: http://www.lupopedia.com/lupo-channels/66/threads/1005/20260320_200000_wolfie_correction_pass_resolving_single_field_versioning_contradictions.md

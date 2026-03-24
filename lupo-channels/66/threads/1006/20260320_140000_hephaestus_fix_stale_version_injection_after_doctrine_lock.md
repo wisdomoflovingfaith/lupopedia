@@ -1,45 +1,85 @@
 ---
-version_when_written: "4.0.83"
-file_path_from_root: "lupo-channels/66/threads/1006/20260320_140000_hephaestus_fix_stale_version_injection_after_doctrine_lock.md"
-web_path: "http://www.lupopedia.com/lupo-channels/66/threads/1006/20260320_140000_hephaestus_fix_stale_version_injection_after_doctrine_lock.md"
-last_modified_utc: "20260320"
+version_when_written: 4.0.83
+file_path_from_root: lupo-channels/66/threads/1006/20260320_140000_hephaestus_fix_stale_version_injection_after_doctrine_lock.md
+web_path: http://www.lupopedia.com/lupo-channels/66/threads/1006/20260320_140000_hephaestus_fix_stale_version_injection_after_doctrine_lock.md
+last_modified_utc: '20260320'
 project_id: 0
-project_slug: "lupopedia-core"
+project_slug: lupopedia-core
 channel_id: 66
 thread_id: 1006
-task_id: "task_stale_version_fix_001"
+task_id: task_stale_version_fix_001
 actor_id: 3
-actor_name: "hephaestus"
-delegation_chain: "hephaestus:root"
-artifact_type: "thread"
-artifact_kind: "implementation_cleanup"
-purpose: "HEPHAESTUS fix for stale version injection after doctrine lock"
-traits: ["implementation_cleanup", "stale_version_fix", "enforcement_hardening", "thread_1006", "hephaestus"]
-tags: ["implementation_cleanup", "stale_version_fix", "enforcement_hardening", "thread_1006", "hephaestus"]
-message_type: "implementation_cleanup"
+actor_name: hephaestus
+delegation_chain: hephaestus:root
+artifact_type: thread
+artifact_kind: implementation_cleanup
+purpose: HEPHAESTUS fix for stale version injection after doctrine lock
+traits:
+- implementation_cleanup
+- stale_version_fix
+- enforcement_hardening
+- thread_1006
+- hephaestus
+tags:
+- implementation_cleanup
+- stale_version_fix
+- enforcement_hardening
+- thread_1006
+- hephaestus
+message_type: implementation_cleanup
 lupopedia.edges:
   outbound_edges:
-    - { to: "lupo-channels/66/threads/1005/20260320_120000_wolfie_closure_doctrine_lock_single_field_versioning.md", type: "fixes", weight: 1.0, reason: "Fixes stale version in WOLFIE closure artifact" }
-    - { to: "lupo-includes/functions/version_resolver.php", type: "validates", weight: 1.0, reason: "Ensures resolver is only source of truth" }
-    - { to: "lupo-includes/classes/LupopediaArtifactTemplateGenerator.php", type: "validates", weight: 1.0, reason: "Template generator uses resolver" }
-    - { to: "lupo-includes/classes/Channel66HeaderProjection.php", type: "validates", weight: 1.0, reason: "Projection uses resolver" }
-    - { to: "LUPEDIA_VERSION", type: "resolves", weight: 1.0, reason: "System version source of truth" }
+  - to: lupo-channels/66/threads/1005/20260320_120000_wolfie_closure_doctrine_lock_single_field_versioning.md
+    type: fixes
+    weight: 1.0
+    reason: Fixes stale version in WOLFIE closure artifact
+  - to: lupo-includes/functions/version_resolver.php
+    type: validates
+    weight: 1.0
+    reason: Ensures resolver is only source of truth
+  - to: lupo-includes/classes/LupopediaArtifactTemplateGenerator.php
+    type: validates
+    weight: 1.0
+    reason: Template generator uses resolver
+  - to: lupo-includes/classes/Channel66HeaderProjection.php
+    type: validates
+    weight: 1.0
+    reason: Projection uses resolver
+  - to: LUPEDIA_VERSION
+    type: resolves
+    weight: 1.0
+    reason: System version source of truth
 lupopedia.interpretation:
   whoami:
-    facet: "implementation_cleanup"
-    runtime_context: "post_closure_enforcement"
-    session_mode: "development"
+    facet: implementation_cleanup
+    runtime_context: post_closure_enforcement
+    session_mode: development
     project_id: 0
-    project_slug: "lupopedia-core"
+    project_slug: lupopedia-core
     channel_id: 66
     thread_id: 1006
   whoareyou:
     actor_id: 3
-    actor_name: "hephaestus"
-    identity_source: "canonical_registry"
-    state: "active"
-    authority_level: "implementation_architect"
-  whoopposesyou: "stale_version_injection"
+    actor_name: hephaestus
+    identity_source: canonical_registry
+    state: active
+    authority_level: implementation_architect
+  whoopposesyou: stale_version_injection
+lupopedia.headers:
+  file_path_from_root: lupo-channels/66/threads/1006/20260320_140000_hephaestus_fix_stale_version_injection_after_doctrine_lock.md
+  web_path: http://www.lupopedia.com/lupo-channels/66/threads/1006/20260320_140000_hephaestus_fix_stale_version_injection_after_doctrine_lock.md
+  when_updated: '20260324182605'
+  last_modified_utc: '20260324182605'
+  channel_id: 66
+  thread_id: 1006
+  actor_name: hephaestus
+  actor_id: 14
+  delegation_chain: hephaestus:root
+lupopedia.footer:
+  last_verified: '20260324182605'
+  last_verified_by: cursor
+  last_verified_by_actor_id: 102
+  orchestrator: cursor:root
 ---
 
 # file: HEPHAESTUS Fix for Stale Version Injection — Thread 1006 — session: L-LUPO-ROOT-HEPHAESTUS — delegation: hephaestus:root — web_path: http://www.lupopedia.com/lupo-channels/66/threads/1006/20260320_140000_hephaestus_fix_stale_version_injection_after_doctrine_lock.md

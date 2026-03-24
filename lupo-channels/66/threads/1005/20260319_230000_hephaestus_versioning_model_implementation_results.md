@@ -1,47 +1,94 @@
 ---
 lupopedia.headers:
-  lupopedia.version: "1.0"
-  lupopedia.schema: "thread"
-  system_version: "4.0.79"
-  file_path_from_root: "lupo-channels/66/threads/1005/20260319_230000_hephaestus_versioning_model_implementation_results.md"
-  web_path: "http://www.lupopedia.com/lupo-channels/66/threads/1005/20260319_230000_hephaestus_versioning_model_implementation_results.md"
-  last_modified_utc: "20260319"
+  lupopedia.version: '1.0'
+  lupopedia.schema: thread
+  system_version: 4.0.79
+  file_path_from_root: lupo-channels/66/threads/1005/20260319_230000_hephaestus_versioning_model_implementation_results.md
+  web_path: http://www.lupopedia.com/lupo-channels/66/threads/1005/20260319_230000_hephaestus_versioning_model_implementation_results.md
+  last_modified_utc: '20260324182605'
   project_id: 0
-  project_slug: "lupopedia-core"
+  project_slug: lupopedia-core
   channel_id: 66
   thread_id: 1005
-  task_id: "task_versioning_implementation_001"
+  task_id: task_versioning_implementation_001
   actor_id: 3
-  actor_name: "hephaestus"
-  delegation_chain: "hephaestus:root"
-  artifact_type: "thread"
-  artifact_kind: "implementation_results"
-  purpose: "HEPHAESTUS versioning model implementation results: three-field versioning model operationalized across creation, validation, and projection paths"
-  traits: ["versioning_implementation", "three_field_model", "operationalization", "thread_1005", "hephaestus", "canonical_resolver", "lupopedia_headers"]
-  tags: ["versioning", "implementation", "three_field_model", "lupopedia_headers", "athena_doctrine", "canonical_resolver", "operationalization"]
-  message_type: "implementation_results"
+  actor_name: hephaestus
+  delegation_chain: hephaestus:root
+  artifact_type: thread
+  artifact_kind: implementation_results
+  purpose: 'HEPHAESTUS versioning model implementation results: three-field versioning
+    model operationalized across creation, validation, and projection paths'
+  traits:
+  - versioning_implementation
+  - three_field_model
+  - operationalization
+  - thread_1005
+  - hephaestus
+  - canonical_resolver
+  - lupopedia_headers
+  tags:
+  - versioning
+  - implementation
+  - three_field_model
+  - lupopedia_headers
+  - athena_doctrine
+  - canonical_resolver
+  - operationalization
+  message_type: implementation_results
+  when_updated: '20260324182605'
 lupopedia.edges:
   outbound_edges:
-    - { to: "lupo-channels/66/threads/1005/20260319_235900_wolfie_narrowing_versioning_model_implementation_plan.md", type: "implements", weight: 1.0, reason: "Implements ATHENA's versioning model doctrine decision" }
-    - { to: "lupo-channels/66/threads/1005/20260319_233000_athena_canonical_doctrine_decision_versioning_model.md", type: "implements", weight: 1.0, reason: "Implements ATHENA's canonical doctrine decision" }
-    - { to: "lupo-docs/doctrine/LUPOPEDIA_HEADERS/VERSIONING_MODEL.md", type: "implements", weight: 1.0, reason: "Implements versioning model doctrine" }
-    - { to: "lupo-docs/doctrine/LUPOPEDIA_HEADERS/README.md", type: "implements", weight: 1.0, reason: "Implements LUPOPEDIA HEADERS doctrine" }
-    - { to: "lupo-docs/doctrine/LUPOPEDIA_HEADERS/LUPOPEDIA_HEADERS_FORMAT.md", type: "implements", weight: 1.0, reason: "Implements LUPOPEDIA HEADERS format" }
-    - { to: "lupo-docs/doctrine/LUPOPEDIA_HEADERS/LUPOPEDIA_HEADERS_PLAN.md", type: "implements", weight: 1.0, reason: "Implements LUPOPEDIA HEADERS plan" }
-    - { to: "LUPEDIA_VERSION", type: "resolves", weight: 1.0, reason: "Primary version source of truth" }
-    - { to: "lupo-includes/version.php", type: "resolves", weight: 1.0, reason: "Secondary version resolver" }
-    - { to: "lupo-includes/functions/version_resolver.php", type: "creates", weight: 1.0, reason: "Canonical version resolver implementation" }
-    - { to: "lupo-includes/classes/Channel66HeaderProjection.php", type: "updates", weight: 1.0, reason: "Updated to use version resolver and version_when_written" }
+  - to: lupo-channels/66/threads/1005/20260319_235900_wolfie_narrowing_versioning_model_implementation_plan.md
+    type: implements
+    weight: 1.0
+    reason: Implements ATHENA's versioning model doctrine decision
+  - to: lupo-channels/66/threads/1005/20260319_233000_athena_canonical_doctrine_decision_versioning_model.md
+    type: implements
+    weight: 1.0
+    reason: Implements ATHENA's canonical doctrine decision
+  - to: lupo-docs/doctrine/LUPOPEDIA_HEADERS/VERSIONING_MODEL.md
+    type: implements
+    weight: 1.0
+    reason: Implements versioning model doctrine
+  - to: lupo-docs/doctrine/LUPOPEDIA_HEADERS/README.md
+    type: implements
+    weight: 1.0
+    reason: Implements LUPOPEDIA HEADERS doctrine
+  - to: lupo-docs/doctrine/LUPOPEDIA_HEADERS/LUPOPEDIA_HEADERS_FORMAT.md
+    type: implements
+    weight: 1.0
+    reason: Implements LUPOPEDIA HEADERS format
+  - to: lupo-docs/doctrine/LUPOPEDIA_HEADERS/LUPOPEDIA_HEADERS_PLAN.md
+    type: implements
+    weight: 1.0
+    reason: Implements LUPOPEDIA HEADERS plan
+  - to: LUPEDIA_VERSION
+    type: resolves
+    weight: 1.0
+    reason: Primary version source of truth
+  - to: lupo-includes/version.php
+    type: resolves
+    weight: 1.0
+    reason: Secondary version resolver
+  - to: lupo-includes/functions/version_resolver.php
+    type: creates
+    weight: 1.0
+    reason: Canonical version resolver implementation
+  - to: lupo-includes/classes/Channel66HeaderProjection.php
+    type: updates
+    weight: 1.0
+    reason: Updated to use version resolver and version_when_written
 lupopedia.footer:
-  version: "1.0"
-  last_verified: "20260319"
-  last_verified_by: "hephaestus"
-  orchestrator: "hephaestus"
+  version: '1.0'
+  last_verified: '20260324182605'
+  last_verified_by: cursor
+  orchestrator: hephaestus
   next_action:
-    - "Deploy versioning model across all artifact creation paths"
-    - "Update templates to use resolved version values"
-    - "Train developers on three-field versioning model"
-    - "Monitor compliance with new validation rules"
+  - Deploy versioning model across all artifact creation paths
+  - Update templates to use resolved version values
+  - Train developers on three-field versioning model
+  - Monitor compliance with new validation rules
+  last_verified_by_actor_id: 102
 ---
 
 # file: HEPHAESTUS Versioning Model Implementation Results — Thread 1005 — session: L-LUPO-ROOT-HEPHAESTUS — delegation: hephaestus:root — web_path: http://www.lupopedia.com/lupo-channels/66/threads/1005/20260319_230000_hephaestus_versioning_model_implementation_results.md

@@ -1,28 +1,39 @@
 ---
 lupopedia.headers:
-  version_when_written: "4.0.84"
-  lupopedia.schema: "planning"
-  file_path_from_root: "lupo-channels/66/threads/1005/20260320_220000_lilith_headers_improvement_plan_channel_scoped_metadata_sync.md"
-  web_path: "http://www.lupopedia.com/channels/66/threads/1005/headers-improvement-plan"
-  last_modified_utc: "20260320"
+  version_when_written: 4.0.84
+  lupopedia.schema: planning
+  file_path_from_root: lupo-channels/66/threads/1005/20260320_220000_lilith_headers_improvement_plan_channel_scoped_metadata_sync.md
+  web_path: http://www.lupopedia.com/lupo-channels/66/threads/1005/20260320_220000_lilith_headers_improvement_plan_channel_scoped_metadata_sync.md
+  last_modified_utc: '20260324182605'
   channel_id: 66
   thread_id: 1005
   actor_id: 2
-  actor_name: "lilith"
-  delegation_chain: "lilith:review"
-  artifact_type: "plan"
-  artifact_kind: "headers_improvement"
-  title: "LUPOPEDIA Headers Improvement Plan (Channel-Scoped Metadata Sync)"
-  purpose: "Plan improvements to LUPOPEDIA headers generation/import across channel-linked entities and TOON table coverage"
-  tags: ["lilith", "headers", "4.0.84", "channel66", "thread1005", "toon", "metadata", "import"]
+  actor_name: lilith
+  delegation_chain: lilith:review
+  artifact_type: plan
+  artifact_kind: headers_improvement
+  title: LUPOPEDIA Headers Improvement Plan (Channel-Scoped Metadata Sync)
+  purpose: Plan improvements to LUPOPEDIA headers generation/import across channel-linked
+    entities and TOON table coverage
+  tags:
+  - lilith
+  - headers
+  - 4.0.84
+  - channel66
+  - thread1005
+  - toon
+  - metadata
+  - import
+  when_updated: '20260324182605'
 lupopedia.footer:
-  last_verified: "20260320"
-  last_verified_by: "lilith"
-  orchestrator: "wolfie"
+  last_verified: '20260324182605'
+  last_verified_by: cursor
+  orchestrator: wolfie
   next_action:
-    - "Implement deterministic header-to-metadata key registry and import rules"
-    - "Add table-aware projection for channel/thread/actor/collection/task/edge entities"
-    - "Ship dry-run diff and conflict detection before write paths"
+  - Implement deterministic header-to-metadata key registry and import rules
+  - Add table-aware projection for channel/thread/actor/collection/task/edge entities
+  - Ship dry-run diff and conflict detection before write paths
+  last_verified_by_actor_id: 102
 ---
 
 # file: LUPOPEDIA Headers Improvement Plan (Lilith) - channel 66 thread 1005

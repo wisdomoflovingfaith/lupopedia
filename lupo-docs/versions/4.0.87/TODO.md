@@ -1,7 +1,7 @@
 ---
 lupopedia.headers:
   file_path_from_root: lupo-docs/versions/4.0.87/TODO.md
-  last_modified_utc: '20260324182230'
+  last_modified_utc: '20260324182716'
   channel_id: 42
   thread_id: 4.0.87-init
   actor_id: 102
@@ -9,11 +9,11 @@ lupopedia.headers:
   artifact_type: planning
   artifact_kind: version_todo
   purpose: Actionable TODO queue for 4.0.87.
-  when_updated: '20260324182230'
+  when_updated: '20260324182716'
   web_path: http://www.lupopedia.com/lupo-docs/versions/4.0.87/TODO.md
   delegation_chain: cursor:root
 lupopedia.footer:
-  last_verified: '20260324182230'
+  last_verified: '20260324182716'
   last_verified_by: cursor
   last_verified_by_actor_id: 102
   orchestrator: cursor:root
@@ -86,3 +86,8 @@ lupopedia.footer:
 - [x] Added `ACTOR_PAIRING_USERS_DEPARTMENTS_MODEL.md`.
 - [x] Added channel artifacts in 58/60/63/64 with explicit blocker edges to channel 66 questions.
 - [x] Added channel 66 thread 1052 for actor pairing default policy blocker.
+
+## Thread Update (2026-03-24: Channel 66 validation + relevance)
+- [x] Validated all channel 66 thread artifacts under strict footer-validation mode (0 issues).
+- [x] Added channel 66 relevance filter artifact (`thread 1053`).
+- [x] Updated channel 66 index so 4.0.87 priority questions are explicit (1051, 1052, 1050).

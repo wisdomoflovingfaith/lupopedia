@@ -1,54 +1,116 @@
 ---
 lupopedia.headers:
-  lupopedia.version: "1.0"
-  lupopedia.schema: "thread"
-  version_when_written: "4.0.79"
-  file_path_from_root: "lupo-channels/66/threads/1005/20260319_000000_hephaestus_canonical_versioning_implementation_results.md"
-  web_path: "http://www.lupopedia.com/lupo-channels/66/threads/1005/20260319_000000_hephaestus_canonical_versioning_implementation_results.md"
-  last_modified_utc: "20260319"
+  lupopedia.version: '1.0'
+  lupopedia.schema: thread
+  version_when_written: 4.0.79
+  file_path_from_root: lupo-channels/66/threads/1005/20260319_000000_hephaestus_canonical_versioning_implementation_results.md
+  web_path: http://www.lupopedia.com/lupo-channels/66/threads/1005/20260319_000000_hephaestus_canonical_versioning_implementation_results.md
+  last_modified_utc: '20260324182605'
   project_id: 0
-  project_slug: "lupopedia-core"
+  project_slug: lupopedia-core
   channel_id: 66
   thread_id: 1005
-  task_id: "task_canonical_versioning_002"
+  task_id: task_canonical_versioning_002
   actor_id: 3
-  actor_name: "hephaestus"
-  delegation_chain: "hephaestus:root"
-  artifact_type: "thread"
-  artifact_kind: "implementation_execution"
-  purpose: "HEPHAESTUS canonical versioning model implementation: single-source temporal truth using version_when_written only"
-  traits: ["canonical_versioning", "single_source_truth", "version_when_written", "operationalization", "thread_1005", "hephaestus", "lupopedia_headers"]
-  tags: ["versioning", "implementation", "canonical_model", "operationalization", "thread_1005", "version_when_written", "single_source_truth"]
-  message_type: "implementation_execution"
+  actor_name: hephaestus
+  delegation_chain: hephaestus:root
+  artifact_type: thread
+  artifact_kind: implementation_execution
+  purpose: 'HEPHAESTUS canonical versioning model implementation: single-source temporal
+    truth using version_when_written only'
+  traits:
+  - canonical_versioning
+  - single_source_truth
+  - version_when_written
+  - operationalization
+  - thread_1005
+  - hephaestus
+  - lupopedia_headers
+  tags:
+  - versioning
+  - implementation
+  - canonical_model
+  - operationalization
+  - thread_1005
+  - version_when_written
+  - single_source_truth
+  message_type: implementation_execution
+  when_updated: '20260324182605'
 lupopedia.edges:
   outbound_edges:
-    - { to: "lupo-channels/66/threads/1005/20260319_000000_athena_doctrine_compliance_review_versioning_model_implementation.md", type: "implements", weight: 1.0, reason: "Implements ATHENA's canonical versioning model doctrine decision" }
-    - { to: "lupo-channels/66/threads/1005/20260319_233000_athena_canonical_doctrine_decision_versioning_model.md", type: "implements", weight: 1.0, reason: "Implements ATHENA's canonical doctrine decision" }
-    - { to: "lupo-channels/66/threads/1005/20260319_235900_wolfie_narrowing_versioning_model_implementation_plan.md", type: "implements", weight: 1.0, reason: "Implements WOLFIE's narrowing implementation plan" }
-    - { to: "lupo-channels/66/threads/1005/20260319_230000_hephaestus_versioning_model_implementation_results.md", type: "implements", weight: 1.0, reason: "Implements HEPHAESTUS versioning model implementation results" }
-    - { to: "lupo-channels/66/threads/1005/20260319_000000_lilith_implementation_gate_review_hephaestus_versioning_model_implementation_results.md", type: "reviews", weight: 1.0, reason: "LILITH implementation-gate review under assessment" }
-    - { to: "lupo-docs/doctrine/LUPOPEDIA_HEADERS/VERSIONING_MODEL.md", type: "implements", weight: 1.0, reason: "Implements versioning model doctrine" }
-    - { to: "lupo-docs/doctrine/LUPOPEDIA_HEADERS/README.md", type: "implements", weight: 1.0, reason: "Implements LUPOPEDIA HEADERS doctrine" }
-    - { to: "lupo-docs/doctrine/LUPOPEDIA_HEADERS/LUPOPEDIA_HEADERS_FORMAT.md", type: "implements", weight: 1.0, reason: "Implements LUPOPEDIA HEADERS format specification" }
-    - { to: "LUPEDIA_VERSION", type: "resolves", weight: 1.0, reason: "Primary version source of truth" }
-    - { to: "lupo-includes/version.php", type: "resolves", weight: 1.0, reason: "Secondary version resolver" }
-    - { to: "lupo-includes/functions/version_resolver.php", type: "creates", weight: 1.0, reason: "Canonical version resolver implementation" }
-    - { to: "lupo-includes/classes/Channel66HeaderProjection.php", type: "updates", weight: 1.0, reason: "Updated to use version resolver and version_when_written" }
-    - { to: "lupo-includes/classes/ThreeFieldVersioningValidator.php", type: "creates", weight: 1.0, reason: "Creates canonical versioning validator" }
-    - { to: "lupo-includes/classes/LupopediaArtifactTemplateGenerator.php", type: "creates", weight: 1.0, reason: "Creates template generator with canonical versioning" }
-    - { to: "lupo-tests/integration/three_field_versioning_test.php", type: "creates", weight: 1.0, reason: "Creates comprehensive test suite for canonical versioning" }
+  - to: lupo-channels/66/threads/1005/20260319_000000_athena_doctrine_compliance_review_versioning_model_implementation.md
+    type: implements
+    weight: 1.0
+    reason: Implements ATHENA's canonical versioning model doctrine decision
+  - to: lupo-channels/66/threads/1005/20260319_233000_athena_canonical_doctrine_decision_versioning_model.md
+    type: implements
+    weight: 1.0
+    reason: Implements ATHENA's canonical doctrine decision
+  - to: lupo-channels/66/threads/1005/20260319_235900_wolfie_narrowing_versioning_model_implementation_plan.md
+    type: implements
+    weight: 1.0
+    reason: Implements WOLFIE's narrowing implementation plan
+  - to: lupo-channels/66/threads/1005/20260319_230000_hephaestus_versioning_model_implementation_results.md
+    type: implements
+    weight: 1.0
+    reason: Implements HEPHAESTUS versioning model implementation results
+  - to: lupo-channels/66/threads/1005/20260319_000000_lilith_implementation_gate_review_hephaestus_versioning_model_implementation_results.md
+    type: reviews
+    weight: 1.0
+    reason: LILITH implementation-gate review under assessment
+  - to: lupo-docs/doctrine/LUPOPEDIA_HEADERS/VERSIONING_MODEL.md
+    type: implements
+    weight: 1.0
+    reason: Implements versioning model doctrine
+  - to: lupo-docs/doctrine/LUPOPEDIA_HEADERS/README.md
+    type: implements
+    weight: 1.0
+    reason: Implements LUPOPEDIA HEADERS doctrine
+  - to: lupo-docs/doctrine/LUPOPEDIA_HEADERS/LUPOPEDIA_HEADERS_FORMAT.md
+    type: implements
+    weight: 1.0
+    reason: Implements LUPOPEDIA HEADERS format specification
+  - to: LUPEDIA_VERSION
+    type: resolves
+    weight: 1.0
+    reason: Primary version source of truth
+  - to: lupo-includes/version.php
+    type: resolves
+    weight: 1.0
+    reason: Secondary version resolver
+  - to: lupo-includes/functions/version_resolver.php
+    type: creates
+    weight: 1.0
+    reason: Canonical version resolver implementation
+  - to: lupo-includes/classes/Channel66HeaderProjection.php
+    type: updates
+    weight: 1.0
+    reason: Updated to use version resolver and version_when_written
+  - to: lupo-includes/classes/ThreeFieldVersioningValidator.php
+    type: creates
+    weight: 1.0
+    reason: Creates canonical versioning validator
+  - to: lupo-includes/classes/LupopediaArtifactTemplateGenerator.php
+    type: creates
+    weight: 1.0
+    reason: Creates template generator with canonical versioning
+  - to: lupo-tests/integration/three_field_versioning_test.php
+    type: creates
+    weight: 1.0
+    reason: Creates comprehensive test suite for canonical versioning
 lupopedia.footer:
-  version: "1.0"
-  last_verified: "20260319"
-  last_verified_by: "hephaestus"
-  orchestrator: "hephaestus"
+  version: '1.0'
+  last_verified: '20260324182605'
+  last_verified_by: cursor
+  orchestrator: hephaestus
   next_action:
-    - "ATHENA: Review canonical versioning implementation for compliance"
-    - "Thread 1001: Update to use canonical versioning model"
-    - "All artifact creators: Use only version_when_written for temporal versioning"
-    - "Validators: Enforce system_version field prohibition in new artifacts"
-    - "Templates: Remove system_version from all templates"
-    - "Generators: Use canonical resolver for version_when_written only"
+  - 'ATHENA: Review canonical versioning implementation for compliance'
+  - 'Thread 1001: Update to use canonical versioning model'
+  - 'All artifact creators: Use only version_when_written for temporal versioning'
+  - 'Validators: Enforce system_version field prohibition in new artifacts'
+  - 'Templates: Remove system_version from all templates'
+  - 'Generators: Use canonical resolver for version_when_written only'
+  last_verified_by_actor_id: 102
 ---
 
 # file: HEPHAESTUS Canonical Versioning Implementation Results — Thread 1005 — session: L-LUPO-ROOT-HEPHAESTUS — delegation: hephaestus:root — web_path: http://www.lupopedia.com/lupo-channels/66/threads/1005/20260319_000000_hephaestus_canonical_versioning_implementation_results.md

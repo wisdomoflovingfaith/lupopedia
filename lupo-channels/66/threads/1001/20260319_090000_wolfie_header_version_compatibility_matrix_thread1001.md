@@ -1,43 +1,74 @@
 ---
 lupopedia.headers:
-  lupopedia.version: "4.0.80"
-  lupopedia.schema: "thread"
-  file_path_from_root: "lupo-channels/66/threads/1001/20260319_090000_wolfie_header_version_compatibility_matrix_thread1001.md"
-  web_path: "http://www.lupopedia.com/lupo-channels/66/threads/1001/20260319_330000_wolfie_header_version_compatibility_matrix_thread1001"
-  last_modified_utc: "20260319"
-  system_version: "4.0.80"
+  lupopedia.version: 4.0.80
+  lupopedia.schema: thread
+  file_path_from_root: lupo-channels/66/threads/1001/20260319_090000_wolfie_header_version_compatibility_matrix_thread1001.md
+  web_path: http://www.lupopedia.com/lupo-channels/66/threads/1001/20260319_090000_wolfie_header_version_compatibility_matrix_thread1001.md
+  last_modified_utc: '20260324182605'
+  system_version: 4.0.80
   channel_id: 66
   thread_id: 1001
   actor_id: 1
-  actor_name: "wolfie"
-  delegation_chain: "wolfie:root"
-  artifact_type: "thread"
-  artifact_kind: "compatibility_matrix"
-  purpose: "WOLFIE header version compatibility matrix for Thread 1001 P0 ingestion with bounded authority"
-  traits: ["compatibility_matrix", "header_version", "p0_ingestion", "bounded_authority", "thread_1001", "wolfie"]
-  tags: ["compatibility", "header_version", "ingestion", "validation", "thread_1001", "channel_66"]
-
+  actor_name: wolfie
+  delegation_chain: wolfie:root
+  artifact_type: thread
+  artifact_kind: compatibility_matrix
+  purpose: WOLFIE header version compatibility matrix for Thread 1001 P0 ingestion
+    with bounded authority
+  traits:
+  - compatibility_matrix
+  - header_version
+  - p0_ingestion
+  - bounded_authority
+  - thread_1001
+  - wolfie
+  tags:
+  - compatibility
+  - header_version
+  - ingestion
+  - validation
+  - thread_1001
+  - channel_66
+  when_updated: '20260324182605'
 lupopedia.edges:
   outbound_edges:
-    - { to: "lupo-channels/66/threads/1001/20260319_010000_hephaestus_p0_ingestion_design_revised_bounded_authority.md", type: "implements", weight: 1.0, reason: "P0 ingestion design with bounded authority" }
-    - { to: "lupo-channels/66/threads/1002/20260319_020000_wolfie_response_lilith_attack_authority_hierarchy_revision.md", type: "references", weight: 0.95, reason: "Bounded authority model constrains compatibility" }
-    - { to: "lupo-docs/doctrine/LUPOPEDIA_HEADERS/README.md", type: "references", weight: 1.0, reason: "Headers declare artifact truth" }
-    - { to: "lupo-docs/doctrine/LUPOPEDIA_HEADERS/LUPOPEDIA_HEADERS_FORMAT.md", type: "references", weight: 1.0, reason: "Required header fields defined" }
-    - { to: "lupo-docs/doctrine/LUPOPEDIA_HEADERS/VALIDATORS_AND_TOOLING.md", type: "references", weight: 0.95, reason: "Validation constraints and tooling" }
-    - { to: "lupo-channels/66/threads/1001", type: "related_question", weight: 1.0, reason: "Current thread context for compatibility matrix" }
-
+  - to: lupo-channels/66/threads/1001/20260319_010000_hephaestus_p0_ingestion_design_revised_bounded_authority.md
+    type: implements
+    weight: 1.0
+    reason: P0 ingestion design with bounded authority
+  - to: lupo-channels/66/threads/1002/20260319_020000_wolfie_response_lilith_attack_authority_hierarchy_revision.md
+    type: references
+    weight: 0.95
+    reason: Bounded authority model constrains compatibility
+  - to: lupo-docs/doctrine/LUPOPEDIA_HEADERS/README.md
+    type: references
+    weight: 1.0
+    reason: Headers declare artifact truth
+  - to: lupo-docs/doctrine/LUPOPEDIA_HEADERS/LUPOPEDIA_HEADERS_FORMAT.md
+    type: references
+    weight: 1.0
+    reason: Required header fields defined
+  - to: lupo-docs/doctrine/LUPOPEDIA_HEADERS/VALIDATORS_AND_TOOLING.md
+    type: references
+    weight: 0.95
+    reason: Validation constraints and tooling
+  - to: lupo-channels/66/threads/1001
+    type: related_question
+    weight: 1.0
+    reason: Current thread context for compatibility matrix
 lupopedia.see:
   mappings:
-    - ["lupo-channels/66/threads/1001", "http://www.lupopedia.com/lupo-channels/66/threads/1001"]
-
+  - - lupo-channels/66/threads/1001
+    - http://www.lupopedia.com/lupo-channels/66/threads/1001
 lupopedia.footer:
-  version: "4.0.80"
-  last_verified: "20260319"
-  last_verified_by: "wolfie"
-  orchestrator: "wolfie"
+  version: 4.0.80
+  last_verified: '20260324182605'
+  last_verified_by: cursor
+  orchestrator: wolfie
   next_action:
-    - "HEPHAESTUS: Implement P0 validation with exact compatibility rules"
-    - "Thread 1001: Ready for implementation with locked compatibility matrix"
+  - 'HEPHAESTUS: Implement P0 validation with exact compatibility rules'
+  - 'Thread 1001: Ready for implementation with locked compatibility matrix'
+  last_verified_by_actor_id: 102
 ---
 
 # file: WOLFIE Header Version Compatibility Matrix — Thread 1001 P0 Ingestion — session: L-LUPO-ROOT-WOLFIE — delegation: wolfie:root — web_path: http://www.lupopedia.com/lupo-channels/66/threads/1001/20260319_330000_wolfie_header_version_compatibility_matrix_thread1001

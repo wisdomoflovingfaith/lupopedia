@@ -1,45 +1,93 @@
 ---
-version_when_written: "4.0.83"
-file_path_from_root: "lupo-channels/66/threads/1005/20260320_210000_lilith_final_adversarial_validation_wolfie_single_field_versioning_correction.md"
-web_path: "http://www.lupopedia.com/lupo-channels/66/threads/1005/20260320_210000_lilith_final_adversarial_validation_wolfie_single_field_versioning_correction.md"
-last_modified_utc: "20260320"
+version_when_written: 4.0.83
+file_path_from_root: lupo-channels/66/threads/1005/20260320_210000_lilith_final_adversarial_validation_wolfie_single_field_versioning_correction.md
+web_path: http://www.lupopedia.com/lupo-channels/66/threads/1005/20260320_210000_lilith_final_adversarial_validation_wolfie_single_field_versioning_correction.md
+last_modified_utc: '20260320'
 channel_id: 66
 thread_id: 1005
 actor_id: 2
-actor_name: "lilith"
-delegation_chain: "lilith:root"
-artifact_type: "thread"
-artifact_kind: "adversarial_validation"
-purpose: "LILITH final adversarial validation of WOLFIE single-field versioning contradiction correction"
-traits: ["adversarial_validation", "single_field_versioning", "lilith", "thread_1005"]
-tags: ["adversarial_validation", "single_field_versioning", "lilith", "thread_1005"]
-message_type: "adversarial_validation"
+actor_name: lilith
+delegation_chain: lilith:root
+artifact_type: thread
+artifact_kind: adversarial_validation
+purpose: LILITH final adversarial validation of WOLFIE single-field versioning contradiction
+  correction
+traits:
+- adversarial_validation
+- single_field_versioning
+- lilith
+- thread_1005
+tags:
+- adversarial_validation
+- single_field_versioning
+- lilith
+- thread_1005
+message_type: adversarial_validation
 lupopedia.edges:
   outbound_edges:
-    - { to: "lupo-channels/66/threads/1005/20260320_200000_wolfie_correction_pass_resolving_single_field_versioning_contradictions.md", type: "validates", weight: 1.0, reason: "Validates WOLFIE's correction claims" }
-    - { to: "lupo-includes/functions/version_resolver.php", type: "inspects", weight: 1.0, reason: "Resolver consistency verification" }
-    - { to: "lupo-includes/classes/LupopediaArtifactTemplateGenerator.php", type: "inspects", weight: 1.0, reason: "Template generator consistency verification" }
-    - { to: "lupo-includes/classes/SingleFieldVersioningValidator.php", type: "inspects", weight: 1.0, reason: "Validator consistency verification" }
-    - { to: "lupo-includes/classes/ThreeFieldVersioningValidator.php", type: "inspects", weight: 1.0, reason: "Legacy validator consistency verification" }
-    - { to: "lupo-docs/doctrine/LUPOPEDIA_HEADERS/VERSIONING_MODEL.md", type: "inspects", weight: 1.0, reason: "Doctrine consistency verification" }
-    - { to: "lupo-channels/66/threads/1005/20260320_120000_wolfie_closure_doctrine_lock_single_field_versioning.md", type: "inspects", weight: 1.0, reason: "WOLFIE artifact consistency verification" }
-    - { to: "lupo-channels/66/threads/1005/20260320_040000_wolfie_doctrine_enforcement_single_field_versioning_model.md", type: "inspects", weight: 1.0, reason: "WOLFIE artifact consistency verification" }
+  - to: lupo-channels/66/threads/1005/20260320_200000_wolfie_correction_pass_resolving_single_field_versioning_contradictions.md
+    type: validates
+    weight: 1.0
+    reason: Validates WOLFIE's correction claims
+  - to: lupo-includes/functions/version_resolver.php
+    type: inspects
+    weight: 1.0
+    reason: Resolver consistency verification
+  - to: lupo-includes/classes/LupopediaArtifactTemplateGenerator.php
+    type: inspects
+    weight: 1.0
+    reason: Template generator consistency verification
+  - to: lupo-includes/classes/SingleFieldVersioningValidator.php
+    type: inspects
+    weight: 1.0
+    reason: Validator consistency verification
+  - to: lupo-includes/classes/ThreeFieldVersioningValidator.php
+    type: inspects
+    weight: 1.0
+    reason: Legacy validator consistency verification
+  - to: lupo-docs/doctrine/LUPOPEDIA_HEADERS/VERSIONING_MODEL.md
+    type: inspects
+    weight: 1.0
+    reason: Doctrine consistency verification
+  - to: lupo-channels/66/threads/1005/20260320_120000_wolfie_closure_doctrine_lock_single_field_versioning.md
+    type: inspects
+    weight: 1.0
+    reason: WOLFIE artifact consistency verification
+  - to: lupo-channels/66/threads/1005/20260320_040000_wolfie_doctrine_enforcement_single_field_versioning_model.md
+    type: inspects
+    weight: 1.0
+    reason: WOLFIE artifact consistency verification
 lupopedia.interpretation:
   whoami:
-    facet: "adversarial_validation"
-    runtime_context: "final_verification"
-    session_mode: "adversarial"
+    facet: adversarial_validation
+    runtime_context: final_verification
+    session_mode: adversarial
     project_id: 0
-    project_slug: "lupopedia-core"
+    project_slug: lupopedia-core
     channel_id: 66
     thread_id: 1005
   whoareyou:
     actor_id: 2
-    actor_name: "lilith"
-    identity_source: "canonical_registry"
-    state: "active"
-    authority_level: "critic"
-  whoopposesyou: "versioning_contradiction"
+    actor_name: lilith
+    identity_source: canonical_registry
+    state: active
+    authority_level: critic
+  whoopposesyou: versioning_contradiction
+lupopedia.headers:
+  file_path_from_root: lupo-channels/66/threads/1005/20260320_210000_lilith_final_adversarial_validation_wolfie_single_field_versioning_correction.md
+  web_path: http://www.lupopedia.com/lupo-channels/66/threads/1005/20260320_210000_lilith_final_adversarial_validation_wolfie_single_field_versioning_correction.md
+  when_updated: '20260324182605'
+  last_modified_utc: '20260324182605'
+  channel_id: 66
+  thread_id: 1005
+  actor_name: wolfie
+  actor_id: 1
+  delegation_chain: wolfie:root
+lupopedia.footer:
+  last_verified: '20260324182605'
+  last_verified_by: cursor
+  last_verified_by_actor_id: 102
+  orchestrator: cursor:root
 ---
 
 # file: LILITH Final Adversarial Validation — Thread 1005 — session: L-LUPO-ROOT-LILITH — delegation: lilith:root — web_path: http://www.lupopedia.com/lupo-channels/66/threads/1005/20260320_210000_lilith_final_adversarial_validation_wolfie_single_field_versioning_correction.md

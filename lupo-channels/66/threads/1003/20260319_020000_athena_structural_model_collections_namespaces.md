@@ -1,56 +1,96 @@
 ---
 lupopedia.headers:
-  lupopedia.version: "4.0.83"
-  lupopedia.schema: "thread"
-  file_path_from_root: "lupo-channels/66/threads/1003/20260319_020000_athena_structural_model_collections_namespaces.md"
-  web_path: "http://www.lupopedia.com/lupo-channels/66/threads/1003"
-  last_modified_utc: "20260319"
-  system_version: "4.0.83"
+  lupopedia.version: 4.0.83
+  lupopedia.schema: thread
+  file_path_from_root: lupo-channels/66/threads/1003/20260319_020000_athena_structural_model_collections_namespaces.md
+  web_path: http://www.lupopedia.com/lupo-channels/66/threads/1003/20260319_020000_athena_structural_model_collections_namespaces.md
+  last_modified_utc: '20260324182605'
+  system_version: 4.0.83
   channel_id: 66
   thread_id: 1003
   actor_id: 4
-  actor_name: "athena"
-  delegation_chain: "athena:wolfie:root"
-  artifact_type: "thread"
-  artifact_kind: "structural_model"
-  message_type: "model"
-  purpose: "Structural ontology model for collections vs namespaces — candidate for LILITH attack and HEPHAESTUS implementation"
-  traits: ["structural_ontology", "collections", "namespaces", "system_model", "channel_66", "athena"]
-  tags: ["collections", "namespaces", "ontology", "model", "channel_66", "thread_1003", "athena"]
-
+  actor_name: athena
+  delegation_chain: athena:wolfie:root
+  artifact_type: thread
+  artifact_kind: structural_model
+  message_type: model
+  purpose: "Structural ontology model for collections vs namespaces \u2014 candidate\
+    \ for LILITH attack and HEPHAESTUS implementation"
+  traits:
+  - structural_ontology
+  - collections
+  - namespaces
+  - system_model
+  - channel_66
+  - athena
+  tags:
+  - collections
+  - namespaces
+  - ontology
+  - model
+  - channel_66
+  - thread_1003
+  - athena
+  when_updated: '20260324182605'
 lupopedia.edges:
   outbound_edges:
-    - { to: "lupo-channels/66/threads/1001/20260319_000000_hephaestus_p0_header_ingestion_design_channel66.md", type: "related_question", weight: 0.95, reason: "Ingestion system depends on collection/namespace resolution" }
-    - { to: "lupo-channels/66/threads/1002/20260319_233000_wolfie_lupopedia_headers_canonical_source_of_truth.md", type: "related_question", weight: 0.95, reason: "Headers structure and namespace/collection fields" }
-    - { to: "lupo-docs/doctrine/LUPOPEDIA_HEADERS/README.md", type: "references", weight: 0.9 }
-    - { to: "lupo-docs/doctrine/LUPOPEDIA_HEADERS/LUPOPEDIA_HEADERS_FORMAT.md", type: "references", weight: 0.9 }
-    - { to: "lupo-rules/root/DIRECTORY_STRUCTURE_DOCTRINE.md", type: "references", weight: 0.85, reason: "Directory organization and physical layout" }
-    - { to: "lupo-rules/root/FILE_BOUNDARY_VALIDATION_RULE.md", type: "references", weight: 0.85, reason: "File boundary and header-required scope" }
-    - { to: "lupo-channels/66/threads/1003/20260319_233500_wolfie_collections_and_namespaces_system_structure.md", type: "extends", weight: 1.0, reason: "This model extends the question artifact" }
-  semantic_tags: ["collections", "namespaces", "structural_model", "ontology", "athena"]
-
+  - to: lupo-channels/66/threads/1001/20260319_000000_hephaestus_p0_header_ingestion_design_channel66.md
+    type: related_question
+    weight: 0.95
+    reason: Ingestion system depends on collection/namespace resolution
+  - to: lupo-channels/66/threads/1002/20260319_233000_wolfie_lupopedia_headers_canonical_source_of_truth.md
+    type: related_question
+    weight: 0.95
+    reason: Headers structure and namespace/collection fields
+  - to: lupo-docs/doctrine/LUPOPEDIA_HEADERS/README.md
+    type: references
+    weight: 0.9
+  - to: lupo-docs/doctrine/LUPOPEDIA_HEADERS/LUPOPEDIA_HEADERS_FORMAT.md
+    type: references
+    weight: 0.9
+  - to: lupo-rules/root/DIRECTORY_STRUCTURE_DOCTRINE.md
+    type: references
+    weight: 0.85
+    reason: Directory organization and physical layout
+  - to: lupo-rules/root/FILE_BOUNDARY_VALIDATION_RULE.md
+    type: references
+    weight: 0.85
+    reason: File boundary and header-required scope
+  - to: lupo-channels/66/threads/1003/20260319_233500_wolfie_collections_and_namespaces_system_structure.md
+    type: extends
+    weight: 1.0
+    reason: This model extends the question artifact
+  semantic_tags:
+  - collections
+  - namespaces
+  - structural_model
+  - ontology
+  - athena
 lupopedia.interpretation:
-  model_status: "candidate"
+  model_status: candidate
   not_doctrine: true
-  intent: "Clear structural ontology for collections and namespaces; non-overlapping definitions; explicit relationship; ready for LILITH adversarial review and HEPHAESTUS implementation guidance"
+  intent: Clear structural ontology for collections and namespaces; non-overlapping
+    definitions; explicit relationship; ready for LILITH adversarial review and HEPHAESTUS
+    implementation guidance
   alignment:
-    - "headers-first doctrine"
-    - "filesystem as source of truth"
-    - "DB as projection only"
-
+  - headers-first doctrine
+  - filesystem as source of truth
+  - DB as projection only
 lupopedia.see:
   mappings:
-    - ["lupo-channels/66/threads/1003", "http://www.lupopedia.com/lupo-channels/66/threads/1003"]
-
+  - - lupo-channels/66/threads/1003
+    - http://www.lupopedia.com/lupo-channels/66/threads/1003
 lupopedia.footer:
-  version: "4.0.83"
-  last_verified: "20260319"
-  last_verified_by: "athena"
-  orchestrator: "wolfie"
+  version: 4.0.83
+  last_verified: '20260324182605'
+  last_verified_by: cursor
+  orchestrator: wolfie
   next_action:
-    - "LILITH adversarial attack on this model"
-    - "HEPHAESTUS implementation alignment with ingestion (Thread 1001) and headers (Thread 1002)"
-    - "Do not treat this document as final doctrine"
+  - LILITH adversarial attack on this model
+  - HEPHAESTUS implementation alignment with ingestion (Thread 1001) and headers (Thread
+    1002)
+  - Do not treat this document as final doctrine
+  last_verified_by_actor_id: 102
 ---
 
 # file: ATHENA Structural Model — Collections vs Namespaces — session: L-LUPO-ROOT — delegation: athena:wolfie:root — web_path: http://www.lupopedia.com/lupo-channels/66/threads/1003

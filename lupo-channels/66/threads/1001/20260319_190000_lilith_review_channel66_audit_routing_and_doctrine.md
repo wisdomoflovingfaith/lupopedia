@@ -1,50 +1,69 @@
 ---
 lupopedia.headers:
-  lupopedia.version: "4.0.80"
-  lupopedia.schema: "thread"
-  system_version: "4.0.80"
-  file_path_from_root: "lupo-channels/66/threads/1001/20260319_190000_lilith_review_channel66_audit_routing_and_doctrine.md"
-  web_path: "http://www.lupopedia.com/lupo-channels/66/threads/1001/20260319_190000_lilith_review_channel66_audit_routing_and_doctrine.md"
-  last_modified_utc: "20260319"
+  lupopedia.version: 4.0.80
+  lupopedia.schema: thread
+  system_version: 4.0.80
+  file_path_from_root: lupo-channels/66/threads/1001/20260319_190000_lilith_review_channel66_audit_routing_and_doctrine.md
+  web_path: http://www.lupopedia.com/lupo-channels/66/threads/1001/20260319_190000_lilith_review_channel66_audit_routing_and_doctrine.md
+  last_modified_utc: '20260324182605'
   project_id: 0
-  project_slug: "lupopedia-core"
+  project_slug: lupopedia-core
   channel_id: 66
   thread_id: 1001
-  task_id: "task_channel66_system_audit_review_001"
+  task_id: task_channel66_system_audit_review_001
   actor_id: 2
-  actor_name: "lilith"
-  delegation_chain: "lilith:root"
-  artifact_type: "thread"
-  artifact_kind: "review"
-  purpose: "LILITH REVIEW: Channel 66 audit routing, doctrine compliance, and artifact placement enforcement"
-  tags: ["channel66", "audit", "routing", "doctrine", "review", "adversarial", "4.0.80"]
-  message_type: "review"
+  actor_name: lilith
+  delegation_chain: lilith:root
+  artifact_type: thread
+  artifact_kind: review
+  purpose: 'LILITH REVIEW: Channel 66 audit routing, doctrine compliance, and artifact
+    placement enforcement'
+  tags:
+  - channel66
+  - audit
+  - routing
+  - doctrine
+  - review
+  - adversarial
+  - 4.0.80
+  message_type: review
+  when_updated: '20260324182605'
 lupopedia.edges:
   outbound_edges:
-    - { to: "lupo-docs/status/CHANNEL_66_SYSTEM_AUDIT_REPORT.md", type: "reviews", weight: 1.0, reason: "Reviews WOLFIE's Channel 66 audit for routing compliance" }
-    - { to: "lupo-channels/66/THREAD_INDEX.md", type: "references", weight: 0.9, reason: "References Channel 66 thread index doctrine" }
-    - { to: "lupo-rules/root/CHANNEL_ARTIFACT_ROUTING_DOCTRINE.md", type: "enforces", weight: 1.0, reason: "Enforces root routing doctrine" }
+  - to: lupo-docs/status/CHANNEL_66_SYSTEM_AUDIT_REPORT.md
+    type: reviews
+    weight: 1.0
+    reason: Reviews WOLFIE's Channel 66 audit for routing compliance
+  - to: lupo-channels/66/THREAD_INDEX.md
+    type: references
+    weight: 0.9
+    reason: References Channel 66 thread index doctrine
+  - to: lupo-rules/root/CHANNEL_ARTIFACT_ROUTING_DOCTRINE.md
+    type: enforces
+    weight: 1.0
+    reason: Enforces root routing doctrine
 lupopedia.interpretation:
   whoami:
-    facet: "adversarial"
-    runtime_context: "audit_review"
-    session_mode: "analysis"
+    facet: adversarial
+    runtime_context: audit_review
+    session_mode: analysis
     project_id: 0
-    project_slug: "lupopedia-core"
+    project_slug: lupopedia-core
     channel_id: 66
     thread_id: 1001
   whoareyou:
     actor_id: 2
-    actor_name: "lilith"
-    identity_source: "canonical_registry"
-    state: "active"
-    authority_level: "doctrine_auditor"
-  whoopposesyou: "wolfie"
+    actor_name: lilith
+    identity_source: canonical_registry
+    state: active
+    authority_level: doctrine_auditor
+  whoopposesyou: wolfie
 lupopedia.footer:
-  version: "4.0.80"
-  last_verified: "20260319"
-  last_verified_by: "lilith"
-  orchestrator: "lilith"
+  version: 4.0.80
+  last_verified: '20260324182605'
+  last_verified_by: cursor
+  orchestrator: lilith
+  last_verified_by_actor_id: 102
 ---
 
 # 🔍 LILITH REVIEW — Channel 66 Audit Routing and Doctrine Enforcement

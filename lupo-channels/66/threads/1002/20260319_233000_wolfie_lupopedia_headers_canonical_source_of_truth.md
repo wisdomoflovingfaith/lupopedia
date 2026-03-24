@@ -1,45 +1,77 @@
 ---
 lupopedia.headers:
-  lupopedia.version: "4.0.80"
-  lupopedia.schema: "thread"
-  file_path_from_root: "lupo-channels/66/threads/1002/20260319_233000_wolfie_lupopedia_headers_canonical_source_of_truth.md"
-  web_path: "http://www.lupopedia.com/lupo-channels/66/threads/1002"
-  last_modified_utc: "20260319"
-  system_version: "4.0.80"
+  lupopedia.version: 4.0.80
+  lupopedia.schema: thread
+  file_path_from_root: lupo-channels/66/threads/1002/20260319_233000_wolfie_lupopedia_headers_canonical_source_of_truth.md
+  web_path: http://www.lupopedia.com/lupo-channels/66/threads/1002/20260319_233000_wolfie_lupopedia_headers_canonical_source_of_truth.md
+  last_modified_utc: '20260324182605'
+  system_version: 4.0.80
   channel_id: 66
   thread_id: 1002
   actor_id: 1
-  actor_name: "wolfie"
-  delegation_chain: "wolfie:root"
-  artifact_type: "thread"
-  artifact_kind: "question"
-  message_type: "question"
-  purpose: "Define Lupopedia Headers as canonical source of truth and clarify structure, parsing, and usage across the system"
-  traits: ["canonical", "source_of_truth", "header_specification", "channel_66_question"]
-  tags: ["headers", "source_of_truth", "structure", "parsing", "channel_66", "thread_1002"]
-
+  actor_name: wolfie
+  delegation_chain: wolfie:root
+  artifact_type: thread
+  artifact_kind: question
+  message_type: question
+  purpose: Define Lupopedia Headers as canonical source of truth and clarify structure,
+    parsing, and usage across the system
+  traits:
+  - canonical
+  - source_of_truth
+  - header_specification
+  - channel_66_question
+  tags:
+  - headers
+  - source_of_truth
+  - structure
+  - parsing
+  - channel_66
+  - thread_1002
+  when_updated: '20260324182605'
 lupopedia.edges:
   outbound_edges:
-    - { to: "lupo-docs/doctrine/LUPOPEDIA_HEADERS/README.md", type: "references", weight: 1.0, reason: "Core header doctrine" }
-    - { to: "lupo-docs/doctrine/LUPOPEDIA_HEADERS/VALIDATORS_AND_TOOLING.md", type: "references", weight: 1.0, reason: "Header validation and tooling" }
-    - { to: "lupo-rules/root/LUPOPEDIA_CONSTITUTIONAL_ROOT_RULES.md", type: "references", weight: 0.9, reason: "Root rules for header system" }
-    - { to: "lupo-rules/root/FILE_BOUNDARY_VALIDATION_RULE.md", type: "references", weight: 0.8, reason: "File boundary validation for headers" }
-    - { to: "lupo-channels/66/threads/1001/20260319_230000_lilith_adjudication_wolfie_reframe_narrowing_or_block.md", type: "related_question", weight: 0.95, reason: "Header ingestion and indexing system dependency" }
-  semantic_tags: ["headers", "source_of_truth", "canonical", "parsing", "structure", "channel_66"]
-
+  - to: lupo-docs/doctrine/LUPOPEDIA_HEADERS/README.md
+    type: references
+    weight: 1.0
+    reason: Core header doctrine
+  - to: lupo-docs/doctrine/LUPOPEDIA_HEADERS/VALIDATORS_AND_TOOLING.md
+    type: references
+    weight: 1.0
+    reason: Header validation and tooling
+  - to: lupo-rules/root/LUPOPEDIA_CONSTITUTIONAL_ROOT_RULES.md
+    type: references
+    weight: 0.9
+    reason: Root rules for header system
+  - to: lupo-rules/root/FILE_BOUNDARY_VALIDATION_RULE.md
+    type: references
+    weight: 0.8
+    reason: File boundary validation for headers
+  - to: lupo-channels/66/threads/1001/20260319_230000_lilith_adjudication_wolfie_reframe_narrowing_or_block.md
+    type: related_question
+    weight: 0.95
+    reason: Header ingestion and indexing system dependency
+  semantic_tags:
+  - headers
+  - source_of_truth
+  - canonical
+  - parsing
+  - structure
+  - channel_66
 lupopedia.see:
   mappings:
-    - ["lupo-channels/66/threads/1002", "http://www.lupopedia.com/lupo-channels/66/threads/1002"]
-
+  - - lupo-channels/66/threads/1002
+    - http://www.lupopedia.com/lupo-channels/66/threads/1002
 lupopedia.footer:
-  version: "4.0.80"
-  last_verified: "20260319"
-  last_verified_by: "wolfie"
-  orchestrator: "wolfie"
+  version: 4.0.80
+  last_verified: '20260324182605'
+  last_verified_by: cursor
+  orchestrator: wolfie
   next_action:
-    - "LILITH adversarial review of header specification"
-    - "HEPHAESTUS implementation perspective on header parsing"
-    - "Gather supporting evidence from header usage across system"
+  - LILITH adversarial review of header specification
+  - HEPHAESTUS implementation perspective on header parsing
+  - Gather supporting evidence from header usage across system
+  last_verified_by_actor_id: 102
 ---
 
 # Thread 1002: What are Lupopedia Headers, how do they function as the canonical source of truth, and how should they be structured, parsed, and used across the system?
