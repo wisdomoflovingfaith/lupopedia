@@ -77,7 +77,7 @@ lupopedia.footer:
 - [x] Track 4: `EdgeQueryService` PHP class created at `lupo-includes/classes/EdgeQueryService.php`.
 - [x] Published closure artifacts for channels 62, 63, 64.
 - [x] Updated 4.0.87 CHANGELOG, TASK_REGISTRY, EDGE_REVIEW_QUEUE, WHAT_TO_DO_NEXT_SESSION, README, PLAN, TODO.
-- [ ] Git add + push to `main` (run at end of 20260324 23:00 UTC handoff).
+- [x] Git add + push to `main` (remote `origin/main` up to date after handoff).
 
 ## Thread Update (2026-03-24: Metadata hardening)
 - [x] Migrated 4.0.87 version artifacts from `version_when_written` to `when_updated`.
