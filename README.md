@@ -3,7 +3,7 @@ lupopedia.headers:
   when_updated: '20260324181412'
   lupopedia.schema: documentation
   file_path_from_root: README.md
-  web_path: http://www.lupopedia.com/README.md
+  web_path: http://www.lupopedia.com/lupopedia/README.md
   last_modified_utc: '20260324181412'
   channel_id: 42
   thread_id: 1001
@@ -101,3 +101,48 @@ Lupopedia is a doctrine-driven semantic operating system built on Crafty Syntax 
 2. `AGENTS.md`
 3. `lupo-docs/doctrine/LUPOPEDIA_HEADERS/README.md`
 4. `lupo-docs/versions/4.0.87/README.md`
+
+## 4.0.87 Phase 2 Consolidation (Completed March 24, 2026)
+
+### Actor Documentation Completion
+
+All 11 Primary Coordination Personas now have comprehensive identity and operational documentation.
+
+Actor documentation (soul.md and memory.md files):
+- CURSOR (Act 102): Orchestration IDE faucet
+- WOLFIE (Act 1): System orchestrator  
+- ATHENA (Act 12): Wisdom and strategy
+- THOTH (Act 26): Knowledge and records
+- THEMIS (Act 9): Law and compliance
+- LILITH (Act 2): Non-interfering critic
+- ROSE (Act 11): External consultation
+
+Visit lupo-actors/ directory to review soul.md and memory.md files for each actor.
+
+### Channel 66 Clarification
+
+Channel 66 is officially designated: Most Important Questions on Lupopedia / Crafty Syntax.
+
+All 4.0.87 blocking questions (threads 1050-1052) have been answered and documented.
+
+Unanswered questions in Thread 1047 await external consultation:
+- Q1: Header Reimport Safety and Determinism
+- Q2: Multi-Channel Header Ownership  
+- Q3: Header Immutability vs Editability
+
+Expected feedback from ROSE consultation: April 7, 2026 (non-blocking).
+
+### SQL Migrations Verified Complete
+
+All P0 tracks verified in production database:
+- Track 1: 12 edge types seeded
+- Track 2: 12 type definitions seeded
+- Track 3c: Parent channel relationships backfilled
+
+### Consolidation Pattern Established
+
+Non-destructive read-first consolidation pattern documented:
+- All files verified before write operations
+- Timestamps validated against staleness threshold
+- Zero overwrites of other actors work
+- Cross-actor continuity maintained

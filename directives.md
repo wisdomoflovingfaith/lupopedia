@@ -3,7 +3,7 @@ lupopedia.headers:
   version_when_written: "4.0.84"
   lupopedia.schema: "directives"
   file_path_from_root: "directives.md"
-  web_path: "http://www.lupopedia.com/directives"
+  web_path: "http://www.lupopedia.com/lupopedia/directives"
   last_modified_utc: "20260320"
   project_id: 0
   project_slug: "lupopedia-core"

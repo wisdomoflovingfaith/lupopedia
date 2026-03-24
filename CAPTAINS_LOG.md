@@ -3,7 +3,7 @@ lupopedia.headers:
   lupopedia.schema: "documentation"
   file_path_from_root: "CAPTAINS_LOG.md"
   version_when_written: "4.0.84"
-  web_path: "http://www.lupopedia.com/CAPTAINS_LOG"
+  web_path: "http://www.lupopedia.com/lupopedia/CAPTAINS_LOG"
   last_modified_utc: "20260318"
   channel_id: 420
   actor_id: 420

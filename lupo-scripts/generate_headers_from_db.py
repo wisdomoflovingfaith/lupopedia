@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 # lupopedia.headers:
-#   when_updated: "20260324175617"
+#   when_updated: "20260324193500"
 #   file_path_from_root: "lupo-scripts/generate_headers_from_db.py"
-#   last_modified_utc: "20260324175617"
+#   last_modified_utc: "20260324193500"
 #   channel_id: 42
 #   actor_id: 102
 #   actor_name: "cursor"
@@ -10,7 +10,7 @@
 #   artifact_type: "tooling"
 #   artifact_kind: "script"
 # lupopedia.footer:
-#   last_verified: "20260324175617"
+#   last_verified: "20260324193500"
 #   last_verified_by: "cursor"
 #   last_verified_by_actor_id: 102
 
@@ -25,6 +25,16 @@ Authoritative sources:
 - TOON/JSON files in docs/toons/ (exact table/column names)
 - lupo_contents table (content records)
 - lupo_metadata table (header metadata)
+
+TIMESTAMP SEMANTICS (enforced):
+- `when_updated`: Logical content change time (preserved, never auto-modified)
+- `last_modified_utc`: File system write time (always updated to current UTC)
+- `last_verified`: Validation timestamp (only from DB footer, never inferred)
+
+STALENESS WARNINGS (non-mutating):
+- Warns if last_verified < 20260301000000 (regenerate recommended)
+- Warns if lupopedia.footer missing (adds validation gap)
+- Warns if header block order incorrect (canonicalization failure)
 
 Usage:
     python lupo-scripts/generate_headers_from_db.py --file-path path/from/root.md
@@ -45,8 +55,161 @@ import subprocess
 import sys
 import yaml
 from pathlib import Path
-from typing import Dict, List, Optional, Any
+from typing import Dict, List, Optional, Any, Tuple
 from datetime import datetime
+
+# ============================================================================
+# TIMESTAMP VALIDATION & STALENESS WARNINGS
+# ============================================================================
+
+def validate_timestamp_format(timestamp_str: str) -> bool:
+    """Validate timestamp is valid UTC YYYYMMDDHHIISS format."""
+    if not isinstance(timestamp_str, str):
+        return False
+    if len(timestamp_str) != 14:
+        return False
+    try:
+        datetime.strptime(timestamp_str, '%Y%m%d%H%M%S')
+        return True
+    except ValueError:
+        return False
+
+def is_staleness_threshold() -> str:
+    """Get staleness threshold timestamp (2026-03-01 00:00:00 UTC)."""
+    return "20260301000000"
+
+def check_timestamp_staleness(last_verified: Optional[str]) -> Tuple[bool, str]:
+    """
+    Check if last_verified is older than staleness threshold.
+    
+    Returns: (is_stale, timestamp_or_message)
+    """
+    if not last_verified:
+        return (None, "Missing last_verified timestamp")
+    
+    if not validate_timestamp_format(last_verified):
+        return (None, f"Invalid timestamp format: {last_verified} (expected YYYYMMDDHHIISS)")
+    
+    threshold = is_staleness_threshold()
+    is_stale = last_verified < threshold
+    
+    return (is_stale, last_verified)
+
+def check_header_block_order(front_matter_dict: Dict[str, Any]) -> Tuple[bool, str]:
+    """
+    Check if YAML blocks are in canonical order.
+    
+    Canonical order:
+    1. lupopedia.headers
+    2. lupopedia.footer  
+    3. lupopedia.edges
+    
+    Returns: (is_correct_order, message)
+    """
+    canonical_order = [
+        'lupopedia.headers',
+        'lupopedia.footer',
+        'lupopedia.edges'
+    ]
+    
+    existing_blocks = [k for k in front_matter_dict.keys() if k in canonical_order]
+    expected_order = [k for k in canonical_order if k in existing_blocks]
+    
+    if existing_blocks == expected_order:
+        return (True, "Header block order is correct")
+    
+    return (False, f"Header blocks out of order. Expected {expected_order}, got {existing_blocks}")
+
+def emit_staleness_warnings(existing_front_matter: Dict[str, Any]) -> None:
+    """
+    Emit non-mutating warnings about header staleness and gaps.
+    Does not modify any data, only surfaces drift for human review.
+    """
+    if not existing_front_matter:
+        return
+    
+    warnings = []
+    
+    # Check 1: Footer exists and has valid last_verified
+    footer = existing_front_matter.get('lupopedia.footer', {})
+    if not footer:
+        warnings.append("⚠️  WARNING: lupopedia.footer missing - no verification timestamp")
+    else:
+        last_verified = footer.get('last_verified')
+        is_stale, msg = check_timestamp_staleness(last_verified)
+        
+        if is_stale is None:
+            warnings.append(f"⚠️  WARNING: Invalid footer timestamp - {msg}")
+        elif is_stale:
+            threshold = is_staleness_threshold()
+            warnings.append(
+                f"⚠️  WARNING: header stale - last_verified ({msg}) is older than threshold ({threshold}). "
+                "Regeneration recommended."
+            )
+    
+    # Check 2: Header block order
+    is_correct, order_msg = check_header_block_order(existing_front_matter)
+    if not is_correct:
+        warnings.append(f"⚠️  WARNING: {order_msg} - canonicalization may be needed")
+    
+    # Emit all warnigns to stderr (non-fatal)
+    for warning in warnings:
+        print(warning, file=sys.stderr)
+    
+    if warnings:
+        print(file=sys.stderr)  # Blank line after warnings
+
+def enforce_timestamp_semantics(
+    existing_front_matter: Dict[str, Any],
+    new_front_matter: Dict[str, Any]
+) -> None:
+    """
+    Enforce strict timestamp semantics rules (non-mutating validation).
+    
+    Rules:
+    1. when_updated: Must never be auto-modified. Preserve from existing.
+    2. last_modified_utc: Must always update. Set to current UTC.
+    3. last_verified: Must never be inferred. Only use from DB/existing.
+    """
+    headers_existing = existing_front_matter.get('lupopedia.headers', {})
+    headers_new = new_front_matter.get('lupopedia.headers', {})
+    
+    # Rule 1: when_updated preservation
+    if 'when_updated' in headers_existing:
+        when_updated_existing = headers_existing['when_updated']
+        when_updated_new = headers_new.get('when_updated')
+        
+        if when_updated_new != when_updated_existing:
+            print(
+                f"NOTICE: when_updated preserved from existing ({when_updated_existing}). "
+                "Use explicit database update if content truly changed.",
+                file=sys.stderr
+            )
+            headers_new['when_updated'] = when_updated_existing
+    
+    # Rule 2: last_modified_utc must update
+    current_utc = datetime.utcnow().strftime('%Y%m%d%H%M%S')
+    if 'last_modified_utc' in headers_new and headers_new['last_modified_utc'] != current_utc:
+        print(
+            f"NOTICE: last_modified_utc updated to {current_utc} (file write time)",
+            file=sys.stderr
+        )
+    headers_new['last_modified_utc'] = current_utc
+    
+    # Rule 3: last_verified should not be in headers (belongs in footer only)
+    if 'last_verified' in headers_new:
+        print(
+            "WARNING: last_verified found in lupopedia.headers - should be in lupopedia.footer only",
+            file=sys.stderr
+        )
+        # Move to footer if possible
+        if 'lupopedia.footer' not in new_front_matter:
+            new_front_matter['lupopedia.footer'] = {}
+        new_front_matter['lupopedia.footer']['last_verified'] = headers_new.pop('last_verified')
+
+# ============================================================================
+# DATABASE CONNECTION
+# ============================================================================
 
 # Database connection (simplified for this implementation)
 def get_db_connection():

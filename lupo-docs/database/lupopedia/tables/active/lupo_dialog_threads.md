@@ -69,7 +69,7 @@ Volume: medium
 - System role: anchors dialog messages to a thread entity.
 - Importance: enables chat history, moderation, and escalation.
 
-> **Deprecation Notice (4.0.86):** The `thread_lineage` text column is deprecated. All new thread lineage relationships (continuations, forks, citations) must be stored in `lupo_edges` using `thread_continuation` or `thread_spawned_from` edge types. Existing data is being migrated.
+> **Deprecation Notice (4.0.87 — Track 5 Edge Graph Activation):** The `thread_lineage` text column is DEPRECATED for graph queries. As of 4.0.87, all thread continuation, fork, and citation relationships must be stored in `lupo_edges` using edge types: `thread_continuation`, `thread_spawned_from`, `thread_references`, `thread_crosses_channel`. The column is retained for legacy read compatibility until migration is validated. **Do not write new lineage data here; write to `lupo_edges` instead.** See [ATHENA_STRATEGY_20260324_120000 Track 3b](../../../lupo-actors/athena/docs/ATHENA_STRATEGY_20260324_120000_edge_graph_channel_thread_recommendations.md) for migration approach.
 
 ## 2. Schema Reference
 Primary Key: dialog_thread_id

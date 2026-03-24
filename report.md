@@ -40,7 +40,7 @@ lupopedia.headers:
   lupopedia.schema: "report"
   file_path_from_root: "report.md"
   version_when_written: "4.0.84"
-  web_path: "http://www.lupopedia.com/report"
+  web_path: "http://www.lupopedia.com/lupopedia/report"
   last_modified_utc: "20260315"
   channel_id: 42
   actor_id: 102

@@ -92,6 +92,7 @@ The `lupo_dialog_channels` table provides the bridge between the high-level `lup
 | `categories` | JSON | Array of category slugs |
 | `collections` | JSON | Array of collection IDs |
 | `tags` | JSON | Array of tag slugs |
+| `channels` | JSON | **DEPRECATED** (4.0.87) — Legacy related channels list. Use `lupo_edges` instead. |
 
 ### **System Fields**
 | Field | Type | Description |
@@ -101,6 +102,14 @@ The `lupo_dialog_channels` table provides the bridge between the high-level `lup
 | `message_count` | INT | Denormalized count of messages |
 | `created_timestamp`| BIGINT | Epoch-style creation timestamp |
 | `modified_timestamp`| BIGINT | Epoch-style modification timestamp |
+
+---
+
+## ⚠️ **Deprecation Notice (4.0.87 — Track 5 Edge Graph Activation)**
+
+The **`channels"` (JSON) column is DEPRECATED for graph queries**. As of 4.0.87, related channel references must be stored in `lupo_edges` with `edge_type = 'channel_related'`. The column is retained for legacy read compatibility. **Do not write new related-channel data here; write to `lupo_edges` instead.** 
+
+See [ATHENA_STRATEGY_20260324_120000 Track 3a](../../../lupo-actors/athena/docs/ATHENA_STRATEGY_20260324_120000_edge_graph_channel_thread_recommendations.md) for the migration service (`EdgeMigrationService::migrateDialogChannelRelations()`).
 
 ---
 

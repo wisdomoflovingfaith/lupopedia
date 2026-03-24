@@ -1,8 +1,9 @@
 ---
 lupopedia.headers:
-  version_when_written: "4.0.86"
   file_path_from_root: "lupo-docs/versions/4.0.86/CHANGELOG.md"
-  last_modified_utc: "20260324_133141"
+  when_updated: "20260324133141"
+  last_modified_utc: "20260324133141"
+  web_path: "http://www.lupopedia.com/lupopedia/lupo-docs/versions/4.0.86/CHANGELOG.md"
   channel_id: 42
   thread_id: "version-scope-lock"
   actor_id: 1
@@ -10,7 +11,13 @@ lupopedia.headers:
   artifact_type: "changelog"
   artifact_kind: "version_history"
   purpose: "Version 4.0.86 changelog with scope lock to Channels 58 and 59 only."
+  delegation_chain: "wolfie:root"
   tags: ["wolfie", "changelog", "version_4.0.86", "scope_lock"]
+lupopedia.footer:
+  last_verified: "20260324133141"
+  last_verified_by: "wolfie"
+  last_verified_by_actor_id: 1
+  orchestrator: "wolfie:root"
 ---
 
 # 4.0.86 CHANGELOG

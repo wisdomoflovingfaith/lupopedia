@@ -3,31 +3,52 @@ lupopedia.headers:
   lupopedia.schema: database_table
   file_path_from_root: lupo-docs/database/lupopedia/tables/active/lupo_context_edges.md
   web_path: http://www.lupopedia.com/database/lupopedia/tables/active/lupo_context_edges
-  last_modified_utc: '20260324'
+  last_modified_utc: '20260324194000'
   channel_id: 42
-  actor_id: 108
-  actor_name: junie
-  delegation_chain: junie:root
+  actor_id: 102
+  actor_name: cursor
+  delegation_chain: cursor:root
   artifact_type: table_documentation
   artifact_kind: table
-  purpose: Documentation for lupo_context_edges table - agent cognitive context links
+  purpose: Documentation for lupo_context_edges - AI-scoped cognitive context edges only. NOT for general entity relationships. Enhanced per Track 5 edge activation.
   tags:
   - database
   - table
   - context
   - edges
-  - 4.0.86
-  when_updated: '20260324174654'
+  - ai_scope
+  - 4.0.87
+  when_updated: '20260324194000'
 lupopedia.footer:
-  last_verified: '20260324000000'
+  last_verified: '20260324194000'
   last_verified_by: cursor
-  orchestrator: junie:root
+  orchestrator: cursor:root
   last_verified_by_actor_id: 102
 ---
 # Table: lupo_context_edges
 
 Purpose: Stores AI/agent cognitive context links.
 Status: active
+
+## CRITICAL SCOPE CLARIFICATION (2026-03-24, Track 5 Update)
+
+**⚠️ IMPORTANT**: `lupo_context_edges` is scoped ONLY to AI/agent cognitive context. It must NOT be used for channel-to-channel or thread-to-thread relationships.
+
+### What belongs in `lupo_context_edges`
+- ✅ References within an agent's reasoning chain
+- ✅ Context window boundary markers
+- ✅ Inference dependency edges between agent steps
+- ✅ Agent cognitive state links
+- ✅ LLM request/response trace relationships
+- ✅ Reasoning chain checkpoints
+
+### What does NOT belong in `lupo_context_edges`
+- ❌ Channel-to-channel relationships (use `lupo_edges` instead)
+- ❌ Thread-to-thread relationships (use `lupo_edges` instead)
+- ❌ Thread-to-channel relationships (use `lupo_edges` instead)
+- ❌ General entity connections (use `lupo_edges` instead)
+
+**See Also**: [lupo_edges.md](lupo_edges.md) — Canonical general-purpose edge table for ALL inter-entity relationships
 
 ## 1. Overview
 - **Scope:** `lupo_context_edges` stores ONLY AI/agent cognitive context links — references within an agent's reasoning chain, context window boundary markers, and inference dependency edges.

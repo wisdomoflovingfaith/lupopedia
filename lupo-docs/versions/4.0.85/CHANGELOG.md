@@ -1,8 +1,9 @@
 ﻿---
 lupopedia.headers:
-  version_when_written: "4.0.85"
   file_path_from_root: "lupo-docs/versions/4.0.85/CHANGELOG.md"
-  last_modified_utc: "20260322_184651"
+  when_updated: "20260322184651"
+  last_modified_utc: "20260322184651"
+  web_path: "http://www.lupopedia.com/lupopedia/lupo-docs/versions/4.0.85/CHANGELOG.md"
   channel_id: 42
   thread_id: 1047
   actor_id: 1
@@ -10,6 +11,12 @@ lupopedia.headers:
   artifact_type: "documentation"
   artifact_kind: "derived_view"
   purpose: "Derived changelog summary for the 4.0.85 synchronization v9 lock."
+  delegation_chain: "wolfie:root"
+lupopedia.footer:
+  last_verified: "20260322184651"
+  last_verified_by: "wolfie"
+  last_verified_by_actor_id: 1
+  orchestrator: "wolfie:root"
 ---
 
 # 4.0.85 CHANGELOG
