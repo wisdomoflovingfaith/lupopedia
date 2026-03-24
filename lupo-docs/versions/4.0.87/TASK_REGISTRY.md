@@ -1,7 +1,7 @@
 ---
 lupopedia.headers:
   file_path_from_root: lupo-docs/versions/4.0.87/TASK_REGISTRY.md
-  last_modified_utc: '20260324222000'
+  last_modified_utc: '20260324230000'
   channel_id: 42
   thread_id: 4.0.87-init
   actor_id: 102
@@ -9,15 +9,17 @@ lupopedia.headers:
   artifact_type: planning
   artifact_kind: task_registry
   purpose: Task registry for version 4.0.87 workstreams.
-  when_updated: '20260324222000'
+  when_updated: '20260324230000'
   web_path: http://www.lupopedia.com/lupo-docs/versions/4.0.87/TASK_REGISTRY.md
   delegation_chain: cursor:root
 lupopedia.footer:
-  last_verified: '20260324222000'
+  last_verified: '20260324230000'
   last_verified_by: cursor
   last_verified_by_actor_id: 102
-  orchestrator: cursor:root
+  orchestrator: wolfie:root
 ---
+
+# file: 4.0.87 TASK REGISTRY — delegation: cursor:root — web_path: http://www.lupopedia.com/lupo-docs/versions/4.0.87/TASK_REGISTRY.md
 
 # 4.0.87 TASK REGISTRY
 
@@ -31,7 +33,7 @@ lupopedia.footer:
 | V487-006 | Admin channel chat UI | completed | cursor | `admin.php?section=channel-chat` with channel send/read flow |
 | V487-007 | Effective actor routing for channel API | completed | cursor | Active actor + agent/department/user preferences used server-side |
 | V487-008 | Chat acting-context display | completed | cursor | UI now states actor + selected channel context while sending |
-| V487-009 | Channel 62 organization stream | in_progress | cursor | `lupo-*` folder organization, deprecation cleanup, docs accuracy |
+| V487-009 | Channel 62 organization stream | completed | cursor | Closure 20260324: `lupo-channels/62/threads/6201/20260324_230000_cursor_organization_pass_closure.md` |
 | V487-010 | Channel 63 database docs stream | completed | junie | 169 table audit into status folders, TABLE_INDEX sync |
 | V487-011 | Channel 64 edge governance stream | completed | junie | Edge Graph Activation (Tracks 1-3), seed/migration |
 | V487-012 | Channel registry reconciliation | completed | cursor | Added missing active channels (including 58-61 and others) to canonical registry |
@@ -42,12 +44,12 @@ lupopedia.footer:
 | V487-017 | Edge graph schema audit (TOON-based) | completed | cursor | Deep read of all 6 edge tables + channel/thread tables via TOON files; gaps documented |
 | V487-018 | EDGE_GRAPH_ANALYSIS_4_0_84 thread | completed | cursor/athena/rose | 4-message dialog thread in channel 42: cursor discovery → ATHENA strategy → ROSE dialogue → artifact publication |
 | V487-019 | ATHENA_STRATEGY_20260324_120000 artifact | completed | athena | Formal recommendations artifact: 6 tracks, SQL seeds for edge_types + edge_type_definitions, PHP migration skeleton, EdgeQueryService skeleton, example queries, priority matrix |
-| V487-020 | Track 1: Seed lupo_edge_types | queued | hephaestus | SQL in ATHENA_STRATEGY artifact; P0 blocking |
-| V487-021 | Track 2: Seed lupo_edge_type_definitions | queued | hephaestus | SQL in ATHENA_STRATEGY artifact; P0 blocking |
-| V487-022 | Track 3a: Migrate dialog_channels.channels JSON | queued | hephaestus | PHP migration in ATHENA_STRATEGY artifact; P1 |
-| V487-023 | Track 3c: Backfill parent_channel_id edges | queued | hephaestus | SQL in ATHENA_STRATEGY artifact; P1 |
-| V487-024 | Track 4: EdgeQueryService PHP class | queued | hephaestus | app/Services/EdgeQueryService.php; P2 |
-| V487-025 | Track 5/6: Context_edges doc + deprecation notices | queued | thoth | lupo_context_edges.md + updates to dialog_threads.md + dialog_channels.md; P1 |
+| V487-020 | Track 1: Seed lupo_edge_types | completed | hephaestus | Executed; 12 rows in `lupo_edge_types` (ERQ-001 closed) |
+| V487-021 | Track 2: Seed lupo_edge_type_definitions | completed | hephaestus | Executed; 12 rows in `lupo_edge_type_definitions` (ERQ-002 closed) |
+| V487-022 | Track 3a: Migrate dialog_channels.channels JSON | completed | hephaestus | Runner executed; zero rows for current dataset (see V487-045) |
+| V487-023 | Track 3c: Backfill parent_channel_id edges | completed | hephaestus | Executed; no-op where no `parent_channel_id` set |
+| V487-024 | Track 4: EdgeQueryService PHP class | completed | cursor | `lupo-includes/classes/EdgeQueryService.php` — 11 read-only query methods |
+| V487-025 | Track 5/6: Context_edges doc + deprecation notices | completed | thoth | Docs per PHASE_2 / ATHENA_STRATEGY; scope notices on legacy JSON fields |
 
 ## Thread Update (2026-03-24: Metadata hardening)
 | V487-026 | 4.0.87 header/footer normalization | completed | cursor | All 4.0.87 docs now use `when_updated` + footer verifier fields |
@@ -84,6 +86,14 @@ lupopedia.footer:
 | V487-049 | 4.0.87 release packet continuity docs refresh | completed | wolfie | PLAN/TODO/TASK_REGISTRY/WHAT_TO_DO_NEXT_SESSION/README synchronized 20260324_220000 under WOLFIE takeover |
 
 ## Session Update (2026-03-24 22:00 UTC — WOLFIE takeover from junie per thread 1054 directive)
-| V487-050 | Q4: Admin UI staleness panel | queued | hephaestus | Read-only section in admin.php, $isAdmin gate, query lupo_metadata for last_verified < 20260301000000 or NULL |
-| V487-051 | Q5: Tier 2/3 timestamp validation in generate_headers_from_db.py | queued | hephaestus | Semantic range + role-integrity checks; errors halt; warnings non-mutating |
+| V487-050 | Q4: Admin UI staleness panel | completed | cursor | Read-only section added to `admin.php` Dashboard; queries `lupo_metadata` for stale/missing `last_verified`; `$isAdmin` gate; no mutations |
+| V487-051 | Q5: Tier 2/3 timestamp validation in generate_headers_from_db.py | completed | cursor | `validate_timestamp_semantic_range()` + `validate_role_integrity()` added; called from `emit_staleness_warnings()`; 9/9 unit tests pass |
+
+## Session Update (2026-03-24 23:00 UTC — Cursor execution pass)
+| V487-052 | ERQ-001/002 SQL migration verification | completed | cursor | Confirmed 12 rows each in `lupo_edge_types` and `lupo_edge_type_definitions`; track 3c no-op confirmed |
+| V487-053 | EdgeQueryService PHP class | completed | cursor | `lupo-includes/classes/EdgeQueryService.php` — 11 read-only methods: getEdgesForObject, getOutboundEdges, getInboundEdges, getEdgesByType, getChannelParentEdges, getEdgesByChannel, getEdgeTypes, getEdgeTypeBySlug, getEdgeCountsByType, getTotalEdgeCount, edgeExists |
+| V487-054 | Channel 64 edge governance closure | completed | cursor | `lupo-channels/64/threads/6401/20260324_230000_cursor_edge_governance_closure.md` — ERQ-001 ✅ ERQ-002 ✅ ERQ-006 pending WOLFIE |
+| V487-055 | Channel 63 DB docs reconciliation closure | completed | cursor | `lupo-channels/63/threads/6301/20260324_230000_cursor_db_docs_reconciliation_closure.md` — surface tables reconciled |
+| V487-056 | Channel 62 organization pass closure | completed | cursor | `lupo-channels/62/threads/6201/20260324_230000_cursor_organization_pass_closure.md` — root retention policy applied |
+| V487-057 | Header validator unit tests | completed | cursor | `lupo-tests/unit/test_header_validators.py` — 9/9 tests pass (Tier 2 floor/future/order, Tier 3 valid/mismatch/unknown/skip/non-int) |
 

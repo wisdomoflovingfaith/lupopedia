@@ -1,7 +1,7 @@
 ---
 lupopedia.headers:
   file_path_from_root: lupo-docs/versions/4.0.87/CHANGELOG.md
-  last_modified_utc: '20260324200640'
+  last_modified_utc: '20260324230000'
   channel_id: 42
   thread_id: 4.0.87-init
   actor_id: 102
@@ -9,15 +9,17 @@ lupopedia.headers:
   artifact_type: changelog
   artifact_kind: version_history
   purpose: Version 4.0.87 changelog for multi-agent contributions.
-  when_updated: '20260324200640'
+  when_updated: '20260324230000'
   web_path: http://www.lupopedia.com/lupopedia/lupo-docs/versions/4.0.87/CHANGELOG.md
   delegation_chain: cursor:root
 lupopedia.footer:
-  last_verified: '20260324200640'
-  last_verified_by: wolfie
-  last_verified_by_actor_id: 1
+  last_verified: '20260324230000'
+  last_verified_by: cursor
+  last_verified_by_actor_id: 102
   orchestrator: wolfie:root
 ---
+
+# file: 4.0.87 CHANGELOG — delegation: cursor:root — web_path: http://www.lupopedia.com/lupopedia/lupo-docs/versions/4.0.87/CHANGELOG.md
 
 # 4.0.87 CHANGELOG
 
@@ -290,4 +292,21 @@ lupopedia.footer:
 - Added temporary takeover directive artifact:
   - `threads/1054/20260324_195917_wolfie_takeover_directive_4_0_87.md`
 - Updated 4.0.87 continuity docs to reflect temporary non-cursor ownership through `2026-04-03 00:00:00 UTC`.
+
+## Session: 20260324 23:00 UTC — Cursor execution pass (Q4/Q5, EdgeQueryService, channel 62/63/64 closures)
+
+**UTC execution log (single session handoff):**
+
+- **Q4 — Admin staleness panel**: Read-only Dashboard section in `admin.php` (behind `$isAdmin`), querying `lupo_metadata` for rows with `last_verified` NULL or before `20260301000000`; no writes.
+- **Q5 — Header script validators**: Tier 2 (`validate_timestamp_semantic_range`) and Tier 3 (`validate_role_integrity`) integrated into `lupo-scripts/generate_headers_from_db.py` via `emit_staleness_warnings()`. Unit coverage: `lupo-tests/unit/test_header_validators.py` — **9/9 passed**.
+- **ERQ-001 / ERQ-002**: Verified **12** active rows in `lupo_edge_types` and **12** rows in `lupo_edge_type_definitions`; Track 3c backfill logically correct no-op for dataset (no `parent_channel_id` in use).
+- **EdgeQueryService**: Shipped `lupo-includes/classes/EdgeQueryService.php` — **11** read-only query methods (object-centric edges, typed filters, channel scope, edge type catalog, aggregates, `edgeExists` duplicate guard).
+- **Channel closures (artifacts)**:
+  - 62 / 6201: `20260324_230000_cursor_organization_pass_closure.md`
+  - 63 / 6301: `20260324_230000_cursor_db_docs_reconciliation_closure.md`
+  - 64 / 6401: `20260324_230000_cursor_edge_governance_closure.md` (ERQ-001/002 closed; **ERQ-006** remains WOLFIE signoff).
+- **Channel 66**: Threads **1050 / 1051 / 1052** confirmed resolved with prior session artifacts; Q1–Q7 answer thread referenced from `WHAT_TO_DO_NEXT_SESSION.md`.
+- **Docs updated this handoff**: `TASK_REGISTRY.md` (V487-050/051 completed; V487-052–057 added), `EDGE_REVIEW_QUEUE.md` (ERQ-001/002 closed, ERQ-006 pending), `TODO.md`, `WHAT_TO_DO_NEXT_SESSION.md` (session state, artifact table, handoff checklist).
+
+**Remaining before 4.0.87 release closeout:** ERQ-006 (WOLFIE via channel 66), admin `section=channel-chat` validation evidence, atom/version audit for stray `4.0.86` references, CHANGELOG final polish, remove root dev scripts `check_edge_state.php` and `check_metadata_state.php` after release.
 

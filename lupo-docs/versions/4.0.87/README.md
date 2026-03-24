@@ -1,7 +1,7 @@
 ---
 lupopedia.headers:
   file_path_from_root: lupo-docs/versions/4.0.87/README.md
-  last_modified_utc: '20260324222000'
+  last_modified_utc: '20260324230000'
   channel_id: 42
   thread_id: 4.0.87-init
   actor_id: 102
@@ -9,15 +9,17 @@ lupopedia.headers:
   artifact_type: documentation
   artifact_kind: version_initialization
   purpose: Initialize version 4.0.87 planning surfaces and canonical navigation.
-  when_updated: '20260324222000'
+  when_updated: '20260324230000'
   web_path: http://www.lupopedia.com/lupo-docs/versions/4.0.87/README.md
   delegation_chain: cursor:root
 lupopedia.footer:
-  last_verified: '20260324222000'
+  last_verified: '20260324230000'
   last_verified_by: cursor
   last_verified_by_actor_id: 102
   orchestrator: cursor:root
 ---
+
+# file: 4.0.87 README — delegation: cursor:root — web_path: http://www.lupopedia.com/lupo-docs/versions/4.0.87/README.md
 
 # 4.0.87 (Phase 2 Agent Rollout)
 
@@ -88,8 +90,16 @@ This version focuses on **Specialized Agent Implementation, Relationship Graph a
   - `when_updated` is **file-global** (not per-channel).
   - Header reimport is **deprecated by design**; ingestion = upsert for new records only.
   - Permission model: **global admin, CLI/local, dry-run default, audit log**.
-- Q4 (admin staleness panel) and Q5 (timestamp Tier 2/3 validation) routed to HEPHAESTUS as implementation tasks (V487-050, V487-051).
+- Q4 (admin staleness panel) and Q5 (timestamp Tier 2/3 validation) were routed as V487-050 / V487-051; **implemented by Cursor 20260324 23:00 UTC** (see session block below).
 - All 4.0.87 version docs synchronized: TODO, TASK_REGISTRY, PLAN, WHAT_TO_DO_NEXT_SESSION, README.
+
+## Session Update (2026-03-24 23:00 UTC — Cursor execution pass)
+- **Q4**: Read-only staleness panel on `admin.php` Dashboard (`$isAdmin`); queries `lupo_metadata` for missing/stale `last_verified`.
+- **Q5**: Tier 2 + Tier 3 validators in `lupo-scripts/generate_headers_from_db.py`; `lupo-tests/unit/test_header_validators.py` **9/9** pass.
+- **EdgeQueryService**: `lupo-includes/classes/EdgeQueryService.php` — 11 read-only query methods.
+- **ERQ-001 / ERQ-002**: Verified 12 rows each in `lupo_edge_types` and `lupo_edge_type_definitions`.
+- **Channel 62 / 63 / 64**: Closure artifacts published (`20260324_230000_*` under respective threads).
+- **Release gate**: **ERQ-006** (WOLFIE signoff via channel 66) still open — see `WHAT_TO_DO_NEXT_SESSION.md`.
 
 ## Thread Update (2026-03-24: Seed idempotency + unanswered questions refresh)
 - Installer seed path now includes idempotent behavior for repeat runs in `seed_traits_edge_types_action_auth_4.0.69.sql`.
@@ -99,7 +109,7 @@ This version focuses on **Specialized Agent Implementation, Relationship Graph a
   - idempotent updates for `lupo_actor_traits` and `lupo_action_authorization`
 - Added Channel 66 unanswered snapshot artifact:
   - `lupo-channels/66/threads/1047/20260324_214000_ch66_unanswered_questions_inline_snapshot.md`
-- Current unanswered/open Channel 66 question count remains 7 (Q1-Q7) pending consultation, implementation, and governance decisions.
+- Superseded: Q1-Q7 answered in `lupo-channels/66/threads/1047/20260324_220000_cursor_answers_q1_q7_thread_1047.md` (thread 1054 takeover directive).
 
 ## Session Refresh (2026-03-24 20:04 UTC)
 
@@ -124,12 +134,12 @@ Because cursor and junie are unavailable until 2026-04-03 UTC, active 4.0.87 wor
 - LILITH (adversarial review),
 - ROSE (consultation synthesis).
 
-### Remaining Priority Work
+### Remaining Priority Work (as of 20260324 23:00 UTC)
 
-1. Close unresolved thread 1047 questions (Q1-Q7) in channel 66.
-2. Publish completion artifacts for channels 62/63/64 workstreams.
-3. Capture and publish admin chatbot call-path validation evidence.
-4. Final release-readiness sweep of 4.0.87 version docs + channel artifacts.
+1. ERQ-006: WOLFIE release signoff (channel 66).
+2. Validate admin `section=channel-chat` against `/api/channels/{id}/messages`; capture evidence artifact.
+3. Atom/version audit — close stray `4.0.86` references.
+4. Finalize CHANGELOG release packet; remove root dev diagnostics after release (`check_edge_state.php`, `check_metadata_state.php`).
 
 
 - TAKEOVER_CHANNEL_MAP_20260324.md: temporary ownership, channel/thread routing, and unresolved question map while cursor/junie are unavailable.

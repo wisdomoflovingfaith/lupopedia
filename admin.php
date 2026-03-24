@@ -265,6 +265,76 @@ if (!$isAdmin) {
         . '<li><a href="' . htmlspecialchars($base . '/admin.php?section=leads') . '" class="admin-link">Leads</a> — CRM leads database</li>'
         . '<li><a href="' . htmlspecialchars($base . '/admin.php?section=settings') . '" class="admin-link">Master Settings</a> — Configuration</li>'
         . '</ul>';
+
+    // Q4 (4.0.87): Read-only metadata staleness panel — no UI mutations, admin-only.
+    // Shows lupo_metadata rows where last_verified is NULL or < 20260301000000 (2026-03-01).
+    if (isset($GLOBALS['mydatabase'])) {
+        $meta_db     = $GLOBALS['mydatabase'];
+        $meta_prefix = defined('LUPO_TABLE_PREFIX') ? LUPO_TABLE_PREFIX : 'lupo_';
+        $stale_cutoff = 20260301000000;
+
+        $stale_rows = $meta_db->fetchAll(
+            "SELECT entity_type, entity_id, property_value AS last_verified, class_name
+             FROM {$meta_prefix}metadata
+             WHERE is_deleted = 0
+               AND property_key = 'last_verified'
+               AND (property_value IS NULL OR CAST(property_value AS UNSIGNED) < :cutoff)
+             ORDER BY property_value ASC
+             LIMIT 50",
+            array('cutoff' => $stale_cutoff)
+        );
+
+        // Entities that have NO last_verified row at all
+        $no_lv_row = $meta_db->fetchOne(
+            "SELECT COUNT(DISTINCT CONCAT(entity_type,':', CAST(entity_id AS CHAR))) AS cnt
+             FROM {$meta_prefix}metadata m
+             WHERE m.is_deleted = 0
+               AND NOT EXISTS (
+                 SELECT 1 FROM {$meta_prefix}metadata m2
+                 WHERE m2.entity_type = m.entity_type
+                   AND m2.entity_id   = m.entity_id
+                   AND m2.property_key = 'last_verified'
+                   AND m2.is_deleted   = 0
+               )"
+        );
+
+        $stale_count  = count($stale_rows);
+        $no_lv_count  = ($no_lv_row && isset($no_lv_row['cnt'])) ? (int) $no_lv_row['cnt'] : 0;
+
+        $panel = '<div class="admin-staleness-panel" style="margin-top:1.5em;padding:1em;border:1px solid #daa;background:#fff8f8;border-radius:4px;">';
+        $panel .= '<h3 style="margin-top:0;">Metadata Staleness <small style="font-weight:normal;font-size:.85em;">(read-only &mdash; threshold: 2026-03-01)</small></h3>';
+
+        if ($stale_count === 0 && $no_lv_count === 0) {
+            $panel .= '<p style="color:#080;">&#10003; All metadata records have current <code>last_verified</code> timestamps.</p>';
+        } else {
+            $panel .= '<p style="color:#a00;">&#9888; Stale <code>last_verified</code>: <strong>' . $stale_count . '</strong> &nbsp;|&nbsp; '
+                . 'Missing <code>last_verified</code> (entity): <strong>' . $no_lv_count . '</strong></p>';
+
+            if ($stale_count > 0) {
+                $panel .= '<table style="width:100%;border-collapse:collapse;font-size:.9em;">'
+                    . '<thead><tr style="background:#f0e0e0;">'
+                    . '<th style="padding:4px 8px;text-align:left;">entity_type</th>'
+                    . '<th style="padding:4px 8px;text-align:left;">entity_id</th>'
+                    . '<th style="padding:4px 8px;text-align:left;">last_verified</th>'
+                    . '<th style="padding:4px 8px;text-align:left;">class_name</th>'
+                    . '</tr></thead><tbody>';
+                foreach ($stale_rows as $sr) {
+                    $lv_val = isset($sr['last_verified']) ? (string) $sr['last_verified'] : '';
+                    $lv_display = ($lv_val !== '') ? htmlspecialchars($lv_val) : '<em>NULL</em>';
+                    $panel .= '<tr style="border-top:1px solid #ecc;">'
+                        . '<td style="padding:3px 8px;">' . htmlspecialchars((string) $sr['entity_type']) . '</td>'
+                        . '<td style="padding:3px 8px;">' . htmlspecialchars((string) $sr['entity_id']) . '</td>'
+                        . '<td style="padding:3px 8px;color:#900;">' . $lv_display . '</td>'
+                        . '<td style="padding:3px 8px;">' . htmlspecialchars((string) $sr['class_name']) . '</td>'
+                        . '</tr>';
+                }
+                $panel .= '</tbody></table>';
+            }
+        }
+        $panel .= '</div>';
+
+        $admin_main_content .= $panel;
+    }
 }
 
 if ($isAdmin && isset($_GET['section']) && is_string($_GET['section'])) {

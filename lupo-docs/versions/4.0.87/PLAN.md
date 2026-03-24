@@ -1,7 +1,7 @@
 ---
 lupopedia.headers:
   file_path_from_root: lupo-docs/versions/4.0.87/PLAN.md
-  last_modified_utc: '20260324222000'
+  last_modified_utc: '20260324230000'
   channel_id: 42
   thread_id: 4.0.87-init
   actor_id: 102
@@ -9,15 +9,17 @@ lupopedia.headers:
   artifact_type: planning
   artifact_kind: version_plan
   purpose: Execution plan for version 4.0.87.
-  when_updated: '20260324222000'
+  when_updated: '20260324230000'
   web_path: http://www.lupopedia.com/lupo-docs/versions/4.0.87/PLAN.md
   delegation_chain: cursor:root
 lupopedia.footer:
-  last_verified: '20260324222000'
+  last_verified: '20260324230000'
   last_verified_by: cursor
   last_verified_by_actor_id: 102
   orchestrator: cursor:root
 ---
+
+# file: 4.0.87 PLAN — delegation: cursor:root — web_path: http://www.lupopedia.com/lupo-docs/versions/4.0.87/PLAN.md
 
 # 4.0.87 PLAN
 
@@ -63,9 +65,9 @@ lupopedia.footer:
 - Channel 64: edge lifecycle governance (create/infer/update), `lupopedia.edges` generation, and DB population paths.
 - Ensure channel artifacts are produced in `lupo-channels/` for both streams.
 
-### WS8: Edge Service Layer (NEXT)
-- Implement `EdgeQueryService` (Track 4 of ATHENA_STRATEGY) to provide a unified API for graph traversal.
-- Deprecate direct `thread_lineage` reads in favor of the service layer.
+### WS8: Edge Service Layer (COMPLETE for 4.0.87 read path)
+- `EdgeQueryService` shipped at `lupo-includes/classes/EdgeQueryService.php` (11 read-only query methods; Track 4 of ATHENA_STRATEGY).
+- Long-term: reduce direct `thread_lineage` reads in favor of the service layer where traversal replaces text fields.
 
 ### WS9: Root Archive and Production Questions
 - Move stale root-level temporary and per-agent variant artifacts into `lupo-docs/archived/` with traceability.
@@ -112,32 +114,26 @@ lupopedia.footer:
 1. **Q1** — Header reimport deprecated; one-way DB→files only; new-record upsert via `file_path_from_root`.
 2. **Q2** — Creating channel owns `lupo_metadata` record; cross-channel presence = `lupopedia.edges`.
 3. **Q3** — Headers in files are immutable snapshots; all edits via DB + regeneration cycle.
-4. **Q4** — Admin UI staleness panel: read-only, `$isAdmin` gate, query `lupo_metadata`; → HEPHAESTUS.
-5. **Q5** — Three-tier timestamp validation in `generate_headers_from_db.py`; → HEPHAESTUS.
+4. **Q4** — Admin UI staleness panel: read-only, `$isAdmin` gate, query `lupo_metadata`; **implemented** (Cursor, 20260324 23:00 UTC).
+5. **Q5** — Three-tier timestamp validation in `generate_headers_from_db.py`; **implemented** (Cursor, 20260324 23:00 UTC; Tier 2/3 unit tests 9/9).
 6. **Q6** — `when_updated` is file-global, never per-channel.
 7. **Q7** — Global admin, CLI/local only, `--dry-run` default, `--write` for mutations, audit log mandatory.
 
-### Remaining for Next Agent
-- HEPHAESTUS: implement Q4 (admin.php staleness panel) and Q5 (generate_headers_from_db.py Tier 2/3).
-- Channel 62/63/64 closure artifacts still pending.
-- Admin LLM chatbot call path evidence artifact pending.
-- WOLFIE: release orchestration and blocker closure.
-- HEPHAESTUS: SQL/migration/service implementation tasks.
-- THOTH: documentation and table traceability tasks.
-- ATHENA: edge semantics and design signoff.
-- THEMIS: governance/policy decisions for unresolved question set.
-- LILITH: adversarial review.
-- ROSE: consultation synthesis for unresolved safety/determinism concerns.
+### Session (20260324 23:00 UTC — Cursor execution pass)
+
+- Q4/Q5 implemented; EdgeQueryService shipped; ERQ-001/ERQ-002 verified; channel 62/63/64 closure artifacts published.
+- **Remaining:** ERQ-006 (WOLFIE signoff); admin channel-chat validation evidence; atom `4.0.86` sweep; release packet finalization; post-release removal of root dev scripts.
+
+### Remaining for Next Agent (after 20260324 23:00 UTC)
+- WOLFIE: ERQ-006 release signoff (channel 66).
+- Cursor/HEPHAESTUS: admin LLM chatbot call path evidence artifact (if not already captured).
+- THOTH: documentation and table traceability (ongoing).
+- ATHENA / LILITH: ERQ-003–005 and adversarial passes per `EDGE_REVIEW_QUEUE.md`.
 
 ### Channel + Thread Execution Map
 
-- Channel 62: organization stream and archive hygiene completion.
-- Channel 63: DB docs vs TOON/json reconciliation completion.
-- Channel 64: edge governance queue closure (`ERQ-001`, `ERQ-002`, `ERQ-006`).
-- Channel 66: blocker Q&A + takeover directive:
-  - thread 1050 (archive scope answer),
-  - thread 1051 (edge ownership answer),
-  - thread 1052 (pairing defaults answer),
-  - thread 1054 (temporary takeover directive),
-  - thread 1047 (remaining unanswered legacy questions Q1-Q7).
+- Channel 62: **closure published** — `lupo-channels/62/threads/6201/20260324_230000_cursor_organization_pass_closure.md`.
+- Channel 63: **closure published** — `lupo-channels/63/threads/6301/20260324_230000_cursor_db_docs_reconciliation_closure.md`.
+- Channel 64: edge governance — **ERQ-001**, **ERQ-002** closed; **ERQ-006** pending WOLFIE — closure note `lupo-channels/64/threads/6401/20260324_230000_cursor_edge_governance_closure.md`.
+- Channel 66: threads **1050**, **1051**, **1052**, **1047** (Q1–Q7), **1054** — resolved per 20260324 artifacts; **ERQ-006** remains the release gate.
 

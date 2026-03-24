@@ -120,17 +120,149 @@ def check_header_block_order(front_matter_dict: Dict[str, Any]) -> Tuple[bool, s
     
     return (False, f"Header blocks out of order. Expected {expected_order}, got {existing_blocks}")
 
+
+# ============================================================================
+# TIER 2: SEMANTIC RANGE VALIDATION
+# ============================================================================
+
+def validate_timestamp_semantic_range(headers: Dict[str, Any]) -> List[str]:
+    """
+    Tier 2: Validate timestamps fall within semantic bounds and observe ordering.
+
+    Rules enforced:
+    - All timestamps >= 20000101000000 (project floor — before year 2000 is nonsensical)
+    - All timestamps <= current UTC (future timestamps are data-quality violations)
+    - when_updated <= last_modified_utc (logical: content change time must not
+      exceed the file write time recorded for that change)
+    """
+    issues: List[str] = []
+    FLOOR = "20000101000000"
+    now   = datetime.utcnow().strftime('%Y%m%d%H%M%S')
+
+    ts_fields = ['when_updated', 'last_modified_utc', 'created_ymdhis', 'updated_ymdhis']
+    for field in ts_fields:
+        val = headers.get(field)
+        if val is None:
+            continue
+        val_str = str(val).strip()
+        if not validate_timestamp_format(val_str):
+            issues.append(
+                f"Tier 2: {field}={val_str!r} is not a valid YYYYMMDDHHIISS timestamp"
+            )
+            continue
+        if val_str < FLOOR:
+            issues.append(
+                f"Tier 2: {field}={val_str} predates project floor ({FLOOR}) — likely data error"
+            )
+        if val_str > now:
+            issues.append(
+                f"Tier 2: {field}={val_str} is in the future (current UTC={now})"
+            )
+
+    # Ordering rule: when_updated must not exceed last_modified_utc
+    wu = str(headers.get('when_updated', '') or '').strip()
+    lm = str(headers.get('last_modified_utc', '') or '').strip()
+    if wu and lm and validate_timestamp_format(wu) and validate_timestamp_format(lm):
+        if wu > lm:
+            issues.append(
+                f"Tier 2: when_updated ({wu}) > last_modified_utc ({lm}): "
+                "logical content-change time must not exceed recorded file-write time"
+            )
+
+    return issues
+
+
+# ============================================================================
+# TIER 3: ROLE-INTEGRITY VALIDATION
+# ============================================================================
+
+_ACTOR_REGISTRY_CACHE: Optional[Dict[int, str]] = None
+
+
+def _load_actor_registry() -> Dict[int, str]:
+    """Load actor_id -> slug mapping from the canonical registry.json (cached)."""
+    global _ACTOR_REGISTRY_CACHE
+    if _ACTOR_REGISTRY_CACHE is not None:
+        return _ACTOR_REGISTRY_CACHE
+
+    registry_path = (
+        Path(__file__).resolve().parent.parent
+        / "lupo-database" / "lupopedia" / "actors" / "actor_id" / "registry.json"
+    )
+    if not registry_path.exists():
+        _ACTOR_REGISTRY_CACHE = {}
+        return _ACTOR_REGISTRY_CACHE
+
+    try:
+        with open(registry_path, 'r', encoding='utf-8') as fh:
+            data = json.load(fh)
+        _ACTOR_REGISTRY_CACHE = {
+            int(a['actor_id']): str(a['slug']).lower()
+            for a in data.get('actors', [])
+            if 'actor_id' in a and 'slug' in a
+        }
+    except Exception:
+        _ACTOR_REGISTRY_CACHE = {}
+
+    return _ACTOR_REGISTRY_CACHE
+
+
+def validate_role_integrity(headers: Dict[str, Any]) -> List[str]:
+    """
+    Tier 3: Validate actor identity integrity against the canonical registry.
+
+    Rules enforced:
+    - actor_id must be a recognised integer in registry.json (when present)
+    - actor_name must match the canonical slug for the stated actor_id
+      (case-insensitive; the registry stores slugs in lower-case)
+
+    Skipped silently when actor_id is absent (it is optional for non-actor files).
+    """
+    issues: List[str] = []
+
+    actor_id_raw = headers.get('actor_id')
+    if actor_id_raw is None:
+        return issues  # actor_id is optional
+
+    try:
+        actor_id = int(actor_id_raw)
+    except (ValueError, TypeError):
+        issues.append(f"Tier 3: actor_id={actor_id_raw!r} is not a valid integer")
+        return issues
+
+    registry = _load_actor_registry()
+    if not registry:
+        return issues  # Registry file unavailable; skip rather than false-positive
+
+    if actor_id not in registry:
+        issues.append(f"Tier 3: actor_id={actor_id} is not present in the actor registry")
+        return issues
+
+    canonical_slug = registry[actor_id]
+    actor_name     = str(headers.get('actor_name', '') or '').strip().lower()
+    if actor_name and actor_name != canonical_slug:
+        issues.append(
+            f"Tier 3: actor_name={actor_name!r} does not match canonical slug "
+            f"{canonical_slug!r} for actor_id={actor_id}"
+        )
+
+    return issues
+
 def emit_staleness_warnings(existing_front_matter: Dict[str, Any]) -> None:
     """
     Emit non-mutating warnings about header staleness and gaps.
     Does not modify any data, only surfaces drift for human review.
+
+    Tier 1 — staleness:      last_verified age vs. threshold
+    Tier 2 — semantic range: timestamp floor/ceiling + ordering rules
+    Tier 3 — role-integrity: actor_id/actor_name match against registry
     """
     if not existing_front_matter:
         return
     
     warnings = []
     
-    # Check 1: Footer exists and has valid last_verified
+    # ---- Tier 1: footer staleness -----------------------------------------------
     footer = existing_front_matter.get('lupopedia.footer', {})
     if not footer:
         warnings.append("⚠️  WARNING: lupopedia.footer missing - no verification timestamp")
@@ -147,12 +279,25 @@ def emit_staleness_warnings(existing_front_matter: Dict[str, Any]) -> None:
                 "Regeneration recommended."
             )
     
-    # Check 2: Header block order
+    # ---- Tier 1: header block order ---------------------------------------------
     is_correct, order_msg = check_header_block_order(existing_front_matter)
     if not is_correct:
         warnings.append(f"⚠️  WARNING: {order_msg} - canonicalization may be needed")
-    
-    # Emit all warnigns to stderr (non-fatal)
+
+    # ---- Tier 2: semantic range -------------------------------------------------
+    headers_block = existing_front_matter.get('lupopedia.headers', {})
+    if isinstance(headers_block, dict):
+        tier2_issues = validate_timestamp_semantic_range(headers_block)
+        for issue in tier2_issues:
+            warnings.append(f"⚠️  WARNING: {issue}")
+
+    # ---- Tier 3: role-integrity --------------------------------------------------
+    if isinstance(headers_block, dict):
+        tier3_issues = validate_role_integrity(headers_block)
+        for issue in tier3_issues:
+            warnings.append(f"⚠️  WARNING: {issue}")
+
+    # Emit all warnings to stderr (non-fatal)
     for warning in warnings:
         print(warning, file=sys.stderr)
     
