@@ -55,3 +55,4 @@ Which actor owns each edge verification segment before version lock?
 1. Are these owner boundaries accepted for channel 64 + 66 workstreams?
 2. What is the SLA per edge queue item before release gate?
 3. Which queue items are blocking 4.0.87 completion versus deferrable?
+

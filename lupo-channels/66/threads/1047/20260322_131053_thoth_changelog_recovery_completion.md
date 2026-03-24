@@ -1,7 +1,7 @@
-﻿---
+---
 lupopedia.headers:
   version_when_written: "4.0.85"
-  file_path_from_root: "lupo-channels/66/threads/1047/20260322_131053_thoth_changelog_recovery_completion.md"
+  file_path_from_root: lupo-channels/66/threads/1047/20260322_131053_thoth_changelog_recovery_completion.md`r`n  web_path: http://www.lupopedia.com/lupo-channels/66/threads/1047/20260322_131053_thoth_changelog_recovery_completion.md
   last_modified_utc: "20260322"
   channel_id: 66
   thread_id: 1047
@@ -29,3 +29,4 @@ lupopedia.headers:
   - verified local 4.0.85 changes retained at top of file
 - remaining_unknowns:
   - origin/main did not contain the 4.0.84 section present in the intact pre-wipe local git snapshot; final restoration used the intact local git history to preserve full continuity without inventing entries
+

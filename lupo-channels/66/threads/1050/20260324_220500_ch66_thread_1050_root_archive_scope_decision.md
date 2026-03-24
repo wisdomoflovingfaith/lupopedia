@@ -1,7 +1,7 @@
 ---
 lupopedia.headers:
   lupopedia.schema: channel_thread_update
-  file_path_from_root: lupo-channels/66/threads/1050/20260324_ch66_thread_1050_root_archive_scope_decision.md
+  file_path_from_root: lupo-channels/66/threads/1050/20260324_220500_ch66_thread_1050_root_archive_scope_decision.md
   when_updated: '20260324194500'
   last_modified_utc: '20260324194500'
   channel_id: 66
@@ -12,7 +12,7 @@ lupopedia.headers:
   artifact_type: resolution
   artifact_kind: decision
   purpose: Decision framework for root archive scope, allowlist, and retention policy per Channel 66 Thread 1050
-  web_path: http://www.lupopedia.com/lupopedia/lupo-channels/66/threads/1050/20260324_ch66_thread_1050_root_archive_scope_decision.md
+  web_path: http://www.lupopedia.com/lupo-channels/66/threads/1050/20260324_220500_ch66_thread_1050_root_archive_scope_decision.md
 lupopedia.footer:
   last_verified: '20260324194500'
   last_verified_by: cursor
@@ -103,3 +103,4 @@ lupopedia.footer:
 **Status**: ✅ **RESOLVED**  
 **Routing**: Awaiting THEMIS validation  
 **Documentation**: Updated in 4.0.87 version artifacts
+

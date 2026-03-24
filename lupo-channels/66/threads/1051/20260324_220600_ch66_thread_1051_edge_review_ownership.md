@@ -1,7 +1,7 @@
 ---
 lupopedia.headers:
   lupopedia.schema: channel_thread_update
-  file_path_from_root: lupo-channels/66/threads/1051/20260324_ch66_thread_1051_edge_review_ownership.md
+  file_path_from_root: lupo-channels/66/threads/1051/20260324_220600_ch66_thread_1051_edge_review_ownership.md
   when_updated: '20260324194500'
   last_modified_utc: '20260324194500'
   channel_id: 66
@@ -12,7 +12,7 @@ lupopedia.headers:
   artifact_type: resolution
   artifact_kind: actor_assignment
   purpose: Actor ownership and SLA for edge review queue per Channel 66 Thread 1051
-  web_path: http://www.lupopedia.com/lupopedia/lupo-channels/66/threads/1051/20260324_ch66_thread_1051_edge_review_ownership.md
+  web_path: http://www.lupopedia.com/lupo-channels/66/threads/1051/20260324_220600_ch66_thread_1051_edge_review_ownership.md
 lupopedia.footer:
   last_verified: '20260324194500'
   last_verified_by: cursor
@@ -123,3 +123,4 @@ lupopedia.footer:
 **Status**: ✅ **RESOLVED & ASSIGNED**  
 **Assigned to**: THOTH (primary), ATHENA (strategy), THEMIS (governance)  
 **Documentation**: Updated in 4.0.87 version artifacts
+

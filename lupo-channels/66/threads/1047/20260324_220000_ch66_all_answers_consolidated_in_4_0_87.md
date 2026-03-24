@@ -1,7 +1,7 @@
 ---
 lupopedia.headers:
   lupopedia.schema: channel_thread_update
-  file_path_from_root: lupo-channels/66/threads/1047/20260324_ch66_all_answers_consolidated_in_4_0_87.md
+  file_path_from_root: lupo-channels/66/threads/1047/20260324_220000_ch66_all_answers_consolidated_in_4_0_87.md
   when_updated: '20260324194000'
   last_modified_utc: '20260324194000'
   channel_id: 66
@@ -12,7 +12,7 @@ lupopedia.headers:
   artifact_type: session_summary
   artifact_kind: documentation_consolidation
   purpose: All Channel 66 Thread 1047 answered questions with links to consolidated 4.0.87 documentation
-  web_path: http://www.lupopedia.com/lupopedia/lupo-channels/66/threads/1047/20260324_ch66_all_answers_consolidated_in_4_0_87.md
+  web_path: http://www.lupopedia.com/lupo-channels/66/threads/1047/20260324_220000_ch66_all_answers_consolidated_in_4_0_87.md
 lupopedia.footer:
   last_verified: '20260324194000'
   last_verified_by: cursor
@@ -178,3 +178,4 @@ ROSE_CONSULTATION_QUERY_20260324.md ✅ Ready for external submission
 **All Answers Documented**: ✅ YES  
 **lupo-docs/versions/4.0.87 Updated**: ✅ YES  
 **No Overwrites**: ✅ CONFIRMED
+

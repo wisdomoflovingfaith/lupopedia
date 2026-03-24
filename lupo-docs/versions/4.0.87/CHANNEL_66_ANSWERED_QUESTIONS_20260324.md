@@ -2,8 +2,8 @@
 lupopedia.headers:
   lupopedia.schema: version_artifact
   file_path_from_root: lupo-docs/versions/4.0.87/CHANNEL_66_ANSWERED_QUESTIONS_20260324.md
-  when_updated: '20260324193500'
-  last_modified_utc: '20260324193500'
+  when_updated: '20260324200640'
+  last_modified_utc: '20260324200640'
   channel_id: 42
   actor_id: 102
   actor_name: cursor
@@ -13,10 +13,10 @@ lupopedia.headers:
   purpose: Comprehensive index of Channel 66 answered questions with resolutions and documentation updates for version 4.0.87
   web_path: http://www.lupopedia.com/lupopedia/lupo-docs/versions/4.0.87/CHANNEL_66_ANSWERED_QUESTIONS_20260324.md
 lupopedia.footer:
-  last_verified: '20260324193500'
-  last_verified_by: cursor
-  last_verified_by_actor_id: 102
-  orchestrator: cursor:root
+  last_verified: '20260324200640'
+  last_verified_by: wolfie
+  last_verified_by_actor_id: 1
+  orchestrator: wolfie:root
   next_action:
   - Monitor Channel 66 for external ROSE consultation response
   - Implement timestamp validation in generate_headers_from_db.py if needed
@@ -282,3 +282,4 @@ All artifacts created during the 2026-03-24 session have been validated:
 **Session**: 2026-03-24  
 **Lead Orchestration**: Cursor (actor_id 102)  
 **Review Date**: 2026-03-24 19:35:00 UTC
+

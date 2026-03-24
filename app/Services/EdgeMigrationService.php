@@ -20,8 +20,6 @@
 
 namespace App\Services;
 
-use App\Classes\PDO_DB;
-
 /**
  * EdgeMigrationService
  *
@@ -38,13 +36,16 @@ use App\Classes\PDO_DB;
  */
 class EdgeMigrationService
 {
-    private PDO_DB $db;
-    private string $prefix;
-    private int $actorId = 12; // ATHENA
+    /** @var mixed */
+    private $db;
+    /** @var string */
+    private $prefix;
+    /** @var int */
+    private $actorId = 12; // ATHENA
 
     public function __construct()
     {
-        $this->db = DatabaseFactory::getConnection();
+        $this->db = \DatabaseFactory::getConnection();
         $this->prefix = defined('LUPO_TABLE_PREFIX') ? LUPO_TABLE_PREFIX : 'lupo_';
     }
 
@@ -57,14 +58,14 @@ class EdgeMigrationService
      *
      * @return array ['success' => int, 'skipped' => int, 'errors' => array]
      */
-    public function migrateDialogChannelRelations(): array
+    public function migrateDialogChannelRelations()
     {
         $result = ['success' => 0, 'skipped' => 0, 'errors' => []];
 
         try {
             $rows = $this->db->fetchAll(
                 "SELECT channel_id, channels FROM {$this->prefix}dialog_channels 
-                 WHERE channels IS NOT NULL AND is_deleted = 0"
+                 WHERE channels IS NOT NULL"
             );
 
             if (empty($rows)) {
@@ -138,7 +139,7 @@ class EdgeMigrationService
      *
      * @return array ['success' => int, 'parsed' => int, 'unparseable' => int, 'errors' => array]
      */
-    public function migrateThreadLineage(): array
+    public function migrateThreadLineage()
     {
         $result = ['success' => 0, 'parsed' => 0, 'unparseable' => 0, 'errors' => []];
 
@@ -177,7 +178,7 @@ class EdgeMigrationService
      *
      * @return array ['total_edges' => int, 'by_type' => array]
      */
-    public function verifyMigration(): array
+    public function verifyMigration()
     {
         $result = ['total_edges' => 0, 'by_type' => []];
 

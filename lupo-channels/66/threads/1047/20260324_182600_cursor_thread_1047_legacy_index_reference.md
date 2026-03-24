@@ -59,3 +59,4 @@ lupopedia.footer:
 - authoritative_registry: lupo-docs/versions/4.0.85/TASK_REGISTRY.md
 - contradiction_registry: lupo-docs/versions/4.0.85/CONTRADICTIONS.md
 - channel_index: lupo-channels/66/THREAD_INDEX.md
+

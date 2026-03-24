@@ -1,7 +1,7 @@
 ---
 lupopedia.headers:
   file_path_from_root: lupo-docs/versions/4.0.87/TODO.md
-  last_modified_utc: '20260324182716'
+  last_modified_utc: '20260324200640'
   channel_id: 42
   thread_id: 4.0.87-init
   actor_id: 102
@@ -9,14 +9,14 @@ lupopedia.headers:
   artifact_type: planning
   artifact_kind: version_todo
   purpose: Actionable TODO queue for 4.0.87.
-  when_updated: '20260324182716'
+  when_updated: '20260324200640'
   web_path: http://www.lupopedia.com/lupo-docs/versions/4.0.87/TODO.md
   delegation_chain: cursor:root
 lupopedia.footer:
-  last_verified: '20260324182716'
-  last_verified_by: cursor
-  last_verified_by_actor_id: 102
-  orchestrator: cursor:root
+  last_verified: '20260324200640'
+  last_verified_by: wolfie
+  last_verified_by_actor_id: 1
+  orchestrator: wolfie:root
 ---
 
 # 4.0.87 TODO
@@ -91,3 +91,21 @@ lupopedia.footer:
 - [x] Validated all channel 66 thread artifacts under strict footer-validation mode (0 issues).
 - [x] Added channel 66 relevance filter artifact (`thread 1053`).
 - [x] Updated channel 66 index so 4.0.87 priority questions are explicit (1051, 1052, 1050).
+
+## Session Refresh (2026-03-24 20:04 UTC)
+
+### Newly Completed
+- [x] Executed Track 1 migration: `dev_20260324_seed_edge_types_channel_thread.sql`.
+- [x] Executed Track 2 migration: `dev_20260324_seed_edge_type_definitions.sql`.
+- [x] Executed Track 3c migration: `dev_20260324_backfill_parent_channel_edges.sql`.
+- [x] Added explicit answers for channel 66 production threads 1050/1051/1052.
+- [x] Added channel 66 takeover directive thread 1054 with temporary owner map through 2026-04-03.
+- [x] Added `lupo-scripts/run_edge_migration_track3a.php` runner and executed Track 3a pass.
+
+### Still Pending (Blocking)
+- [ ] Resolve channel 66 thread 1047 remaining unanswered Q1-Q7.
+- [ ] Publish channel 62 organization completion artifact with manifest.
+- [ ] Publish channel 63 DB docs reconciliation closure artifact.
+- [ ] Publish channel 64 edge queue closure artifact.
+- [ ] Finalize admin LLM/chatbot call path evidence artifact for 4.0.87 release packet.
+

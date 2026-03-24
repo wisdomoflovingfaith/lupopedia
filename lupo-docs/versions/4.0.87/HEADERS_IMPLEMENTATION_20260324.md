@@ -2,8 +2,8 @@
 lupopedia.headers:
   lupopedia.schema: version_artifact
   file_path_from_root: lupo-docs/versions/4.0.87/HEADERS_IMPLEMENTATION_20260324.md
-  when_updated: '20260324193000'
-  last_modified_utc: '20260324193000'
+  when_updated: '20260324200640'
+  last_modified_utc: '20260324200640'
   channel_id: 42
   actor_id: 102
   actor_name: cursor
@@ -13,10 +13,10 @@ lupopedia.headers:
   web_path: http://www.lupopedia.com/lupopedia/lupo-docs/versions/4.0.87/HEADERS_IMPLEMENTATION_20260324.md
   purpose: Implementation guide for LUPOPEDIA HEADERS safety, determinism, and timestamp semantics in 4.0.87
 lupopedia.footer:
-  last_verified: '20260324193000'
-  last_verified_by: cursor
-  last_verified_by_actor_id: 102
-  orchestrator: cursor:root
+  last_verified: '20260324200640'
+  last_verified_by: wolfie
+  last_verified_by_actor_id: 1
+  orchestrator: wolfie:root
   next_action:
   - await ROSE consultation response on header reimport safety
   - implement timestamp semantics validation in generate_headers_from_db.py
@@ -79,16 +79,16 @@ All `lupopedia.headers` files updated across:
 Files must NOT do:
 ```yaml
 # ❌ WRONG - All timestamps identical
-when_updated: "20260324150000"
-last_modified_utc: "20260324150000"  # Should be different time if regenerated!
+  when_updated: '20260324200640'
+  last_modified_utc: '20260324200640'
 lupopedia.footer.last_verified: "20260324150000"  # Should be different if not verified at modification!
 ```
 
 Files should do:
 ```yaml
 # ✅ CORRECT - Each timestamp has distinct meaning
-when_updated: "20260324120000"        # Content updated (logical time)
-last_modified_utc: "20260324150000"   # File regenerated (filesystem time)
+  when_updated: '20260324200640'
+  last_modified_utc: '20260324200640'
 lupopedia.footer.last_verified: "20260324150000"  # Verified during regeneration (review time)
 ```
 
@@ -253,3 +253,4 @@ The enforcement is **not restrictive** (no warnings); it's **structural** by des
 ---
 
 *This document is ready for team review and integration into 4.0.87 release notes.*
+

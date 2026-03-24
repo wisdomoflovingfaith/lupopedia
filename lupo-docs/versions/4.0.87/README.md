@@ -1,7 +1,7 @@
 ---
 lupopedia.headers:
   file_path_from_root: lupo-docs/versions/4.0.87/README.md
-  last_modified_utc: '20260324214000'
+  last_modified_utc: '20260324200640'
   channel_id: 42
   thread_id: 4.0.87-init
   actor_id: 102
@@ -9,14 +9,14 @@ lupopedia.headers:
   artifact_type: documentation
   artifact_kind: version_initialization
   purpose: Initialize version 4.0.87 planning surfaces and canonical navigation.
-  when_updated: '20260324214000'
+  when_updated: '20260324200640'
   web_path: http://www.lupopedia.com/lupo-docs/versions/4.0.87/README.md
   delegation_chain: cursor:root
 lupopedia.footer:
-  last_verified: '20260324214000'
-  last_verified_by: cursor
-  last_verified_by_actor_id: 102
-  orchestrator: cursor:root
+  last_verified: '20260324200640'
+  last_verified_by: wolfie
+  last_verified_by_actor_id: 1
+  orchestrator: wolfie:root
 ---
 
 # 4.0.87 (Phase 2 Agent Rollout)
@@ -88,3 +88,36 @@ This version focuses on **Specialized Agent Implementation, Relationship Graph a
 - Added Channel 66 unanswered snapshot artifact:
   - `lupo-channels/66/threads/1047/20260324_214000_ch66_unanswered_questions_inline_snapshot.md`
 - Current unanswered/open Channel 66 question count remains 7 (Q1-Q7) pending consultation, implementation, and governance decisions.
+
+## Session Refresh (2026-03-24 20:04 UTC)
+
+### 4.0.87 Current State
+
+- Edge seed execution status:
+  - Track 1 complete (edge types seeded).
+  - Track 2 complete (edge type definitions seeded).
+  - Track 3c complete (parent_channel backfill executed).
+  - Track 3a runner executed; no migratable dialog_channels JSON rows detected in this pass.
+- Channel 66 blocker questions 1050/1051/1052 are now explicitly answered.
+- Temporary takeover directive published in channel 66 thread 1054.
+
+### Ownership Through 2026-04-03
+
+Because cursor and junie are unavailable until 2026-04-03 UTC, active 4.0.87 work is reassigned to:
+- WOLFIE (orchestration),
+- HEPHAESTUS (implementation),
+- THOTH (documentation),
+- ATHENA (edge semantics),
+- THEMIS (governance),
+- LILITH (adversarial review),
+- ROSE (consultation synthesis).
+
+### Remaining Priority Work
+
+1. Close unresolved thread 1047 questions (Q1-Q7) in channel 66.
+2. Publish completion artifacts for channels 62/63/64 workstreams.
+3. Capture and publish admin chatbot call-path validation evidence.
+4. Final release-readiness sweep of 4.0.87 version docs + channel artifacts.
+
+
+- TAKEOVER_CHANNEL_MAP_20260324.md: temporary ownership, channel/thread routing, and unresolved question map while cursor/junie are unavailable.

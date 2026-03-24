@@ -1,7 +1,7 @@
 ---
 lupopedia.headers:
   file_path_from_root: lupo-docs/versions/4.0.87/PLAN.md
-  last_modified_utc: '20260324182230'
+  last_modified_utc: '20260324200640'
   channel_id: 42
   thread_id: 4.0.87-init
   actor_id: 102
@@ -9,14 +9,14 @@ lupopedia.headers:
   artifact_type: planning
   artifact_kind: version_plan
   purpose: Execution plan for version 4.0.87.
-  when_updated: '20260324182230'
+  when_updated: '20260324200640'
   web_path: http://www.lupopedia.com/lupo-docs/versions/4.0.87/PLAN.md
   delegation_chain: cursor:root
 lupopedia.footer:
-  last_verified: '20260324182230'
-  last_verified_by: cursor
-  last_verified_by_actor_id: 102
-  orchestrator: cursor:root
+  last_verified: '20260324200640'
+  last_verified_by: wolfie
+  last_verified_by_actor_id: 1
+  orchestrator: wolfie:root
 ---
 
 # 4.0.87 PLAN
@@ -92,3 +92,29 @@ lupopedia.footer:
 - Verify and normalize major agent packets (JSON + prompts) for WOLFIE, LILITH, ROSE, THEMIS, ATHENA, HEPHAESTUS, HERMES, IRIS, THOTH, VISHWAKARMA.
 - Keep a registry-backed manifest in `lupo-database/lupopedia/actors/major_agents_manifest.json`.
 - Maintain explicit blocker edges from channel 63/64 artifacts to channel 66 questions when unresolved decisions block implementation.
+
+## Session Refresh (2026-03-24 20:04 UTC)
+
+### Temporary Actor Reassignment (through 2026-04-03 00:00:00 UTC)
+
+- Cursor and Junie tasks reassigned temporarily.
+- WOLFIE: release orchestration and blocker closure.
+- HEPHAESTUS: SQL/migration/service implementation tasks.
+- THOTH: documentation and table traceability tasks.
+- ATHENA: edge semantics and design signoff.
+- THEMIS: governance/policy decisions for unresolved question set.
+- LILITH: adversarial review.
+- ROSE: consultation synthesis for unresolved safety/determinism concerns.
+
+### Channel + Thread Execution Map
+
+- Channel 62: organization stream and archive hygiene completion.
+- Channel 63: DB docs vs TOON/json reconciliation completion.
+- Channel 64: edge governance queue closure (`ERQ-001`, `ERQ-002`, `ERQ-006`).
+- Channel 66: blocker Q&A + takeover directive:
+  - thread 1050 (archive scope answer),
+  - thread 1051 (edge ownership answer),
+  - thread 1052 (pairing defaults answer),
+  - thread 1054 (temporary takeover directive),
+  - thread 1047 (remaining unanswered legacy questions Q1-Q7).
+

@@ -1,6 +1,6 @@
 ---
 lupopedia.headers:
-  when_updated: '20260324180128'
+  when_updated: '20260324200640'
   lupopedia.schema: documentation
   file_path_from_root: lupo-docs/versions/4.0.87/footer_revalidation_priority_plan.md
   web_path: http://www.lupopedia.com/lupo-docs/versions/4.0.87/footer_revalidation_priority_plan.md
@@ -11,12 +11,12 @@ lupopedia.headers:
   channel_id: 42
   actor_id: 102
   actor_name: cursor
-  last_modified_utc: '20260324180128'
+  last_modified_utc: '20260324200640'
 lupopedia.footer:
-  last_verified: '20260324180128'
-  last_verified_by: cursor
-  last_verified_by_actor_id: 102
-  orchestrator: cursor:root
+  last_verified: '20260324200640'
+  last_verified_by: wolfie
+  last_verified_by_actor_id: 1
+  orchestrator: wolfie:root
   next_action:
   - Run channel 42 validation with footer checks
   - Execute tier 0 and tier 1 revalidation first
@@ -83,3 +83,4 @@ python lupo-scripts/validate_channel_artifacts.py --repo-root . --channel 42
 ```
 
 Use `--no-footer-autofix` for audit-only runs and default mode for guided remediation.
+

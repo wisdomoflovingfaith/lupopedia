@@ -1,7 +1,7 @@
 ---
 lupopedia.headers:
   lupopedia.schema: question_subpart
-  file_path_from_root: lupo-channels/66/threads/1047/20260324_195300_q1_header_reimport_safety.md
+  file_path_from_root: lupo-channels/66/threads/1047/20260324_195300_q1_header_reimport_safety.md`r`n  web_path: http://www.lupopedia.com/lupo-channels/66/threads/1047/20260324_195300_q1_header_reimport_safety.md
   when_updated: '20260324195300'
   last_modified_utc: '20260324195300'
   channel_id: 66
@@ -94,3 +94,4 @@ Resolution of this question should enable:
 - ⏳ External consultation: Expected by 2026-04-07
 - ⏳ Decision: ATHENA + WOLFIE by 2026-04-15
 - ⏳ Implementation: Targeted for 4.0.88 release
+

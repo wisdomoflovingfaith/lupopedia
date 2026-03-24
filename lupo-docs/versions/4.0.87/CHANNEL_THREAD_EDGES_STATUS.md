@@ -1,7 +1,7 @@
 ---
 lupopedia.headers:
   file_path_from_root: lupo-docs/versions/4.0.87/CHANNEL_THREAD_EDGES_STATUS.md
-  last_modified_utc: '20260324180128'
+  last_modified_utc: '20260324200640'
   channel_id: 64
   thread_id: edge_generation_governance
   actor_id: 102
@@ -10,14 +10,14 @@ lupopedia.headers:
   artifact_kind: implementation_status
   purpose: Current state and improvement status for channel/thread edge handling in
     4.0.87.
-  when_updated: '20260324180128'
+  when_updated: '20260324200640'
   web_path: http://www.lupopedia.com/lupo-docs/versions/4.0.87/CHANNEL_THREAD_EDGES_STATUS.md
   delegation_chain: cursor:root
 lupopedia.footer:
-  last_verified: '20260324180128'
-  last_verified_by: cursor
-  last_verified_by_actor_id: 102
-  orchestrator: cursor:root
+  last_verified: '20260324200640'
+  last_verified_by: wolfie
+  last_verified_by_actor_id: 1
+  orchestrator: wolfie:root
 ---
 
 # Channel and Thread Edges: 4.0.87 Status
@@ -99,3 +99,4 @@ lupopedia.footer:
 ### Artifact Reference
 - Thread: `lupo-database/lupopedia/channels/channel_id/42/threads/EDGE_GRAPH_ANALYSIS_4_0_84.md`
 - Artifact: `lupo-actors/athena/docs/ATHENA_STRATEGY_20260324_120000_edge_graph_channel_thread_recommendations.md`
+

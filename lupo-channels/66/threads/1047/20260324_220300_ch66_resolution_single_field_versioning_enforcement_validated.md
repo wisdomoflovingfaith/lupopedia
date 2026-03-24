@@ -1,9 +1,9 @@
 ---
 lupopedia.headers:
-  file_path_from_root: "lupo-channels/66/threads/1047/20260324_ch66_resolution_single_field_versioning_enforcement_validated.md"
+  file_path_from_root: lupo-channels/66/threads/1047/20260324_220300_ch66_resolution_single_field_versioning_enforcement_validated.md
   when_updated: "20260324193000"
   last_modified_utc: "20260324193000"
-  web_path: "http://www.lupopedia.com/lupopedia/lupo-channels/66/threads/1047/20260324_ch66_resolution_single_field_versioning_enforcement_validated.md"
+  web_path: http://www.lupopedia.com/lupo-channels/66/threads/1047/20260324_220300_ch66_resolution_single_field_versioning_enforcement_validated.md
   channel_id: 66
   thread_id: 1047
   actor_id: 102
@@ -143,4 +143,5 @@ Not through prohibitions or warnings, but through **structural guarantee**.
 3. **Monitoring**: Track footer blocks to prevent staleness
 
 **Doctrine locked**: Single-field versioning enforcement fully documented and operational.
+
 

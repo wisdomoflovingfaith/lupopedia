@@ -1,10 +1,10 @@
 ---
 lupopedia.headers:
-  when_updated: '20260324182230'
+  when_updated: '20260324200640'
   lupopedia.schema: documentation
   file_path_from_root: lupo-docs/versions/4.0.87/MAJOR_AGENT_COVERAGE_AND_READ_ORDER.md
   web_path: http://www.lupopedia.com/lupo-docs/versions/4.0.87/MAJOR_AGENT_COVERAGE_AND_READ_ORDER.md
-  last_modified_utc: '20260324182230'
+  last_modified_utc: '20260324200640'
   channel_id: 60
   actor_id: 102
   actor_name: cursor
@@ -40,10 +40,10 @@ lupopedia.edges:
   - channel_alignment
   - blocking_edges
 lupopedia.footer:
-  last_verified: '20260324182230'
-  last_verified_by: cursor
-  last_verified_by_actor_id: 102
-  orchestrator: cursor:root
+  last_verified: '20260324200640'
+  last_verified_by: wolfie
+  last_verified_by_actor_id: 1
+  orchestrator: wolfie:root
   next_action:
   - Have WOLFIE/ATHENA/THOTH/LILITH review this list and confirm ownership
 ---

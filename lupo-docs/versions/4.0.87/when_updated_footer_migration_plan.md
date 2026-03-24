@@ -1,10 +1,10 @@
 ---
 lupopedia.headers:
-  when_updated: '20260324180128'
+  when_updated: '20260324200640'
   lupopedia.schema: documentation
   file_path_from_root: lupo-docs/versions/4.0.87/when_updated_footer_migration_plan.md
   web_path: http://www.lupopedia.com/lupo-docs/versions/4.0.87/when_updated_footer_migration_plan.md
-  last_modified_utc: '20260324180128'
+  last_modified_utc: '20260324200640'
   channel_id: 42
   actor_id: 102
   actor_name: cursor
@@ -20,10 +20,10 @@ lupopedia.headers:
   - doctrine
   - validation
 lupopedia.footer:
-  last_verified: '20260324180128'
-  last_verified_by: cursor
-  last_verified_by_actor_id: 102
-  orchestrator: cursor:root
+  last_verified: '20260324200640'
+  last_verified_by: wolfie
+  last_verified_by_actor_id: 1
+  orchestrator: wolfie:root
   next_action:
   - Run this plan each session until all core doctrine and active table docs are compliant
 ---

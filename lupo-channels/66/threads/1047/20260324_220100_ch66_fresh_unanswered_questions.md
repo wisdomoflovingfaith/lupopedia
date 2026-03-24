@@ -1,7 +1,7 @@
 ---
 lupopedia.headers:
   lupopedia.schema: channel_analysis
-  file_path_from_root: lupo-channels/66/threads/1047/20260324_ch66_fresh_unanswered_questions.md
+  file_path_from_root: lupo-channels/66/threads/1047/20260324_220100_ch66_fresh_unanswered_questions.md
   when_updated: '20260324193500'
   last_modified_utc: '20260324193500'
   channel_id: 66
@@ -12,7 +12,7 @@ lupopedia.headers:
   artifact_type: analysis
   artifact_kind: questions_queue
   purpose: Fresh summary of unanswered/open questions in Channel 66 after March 24 session
-  web_path: http://www.lupopedia.com/lupopedia/lupo-channels/66/threads/1047/20260324_ch66_fresh_unanswered_questions.md
+  web_path: http://www.lupopedia.com/lupo-channels/66/threads/1047/20260324_220100_ch66_fresh_unanswered_questions.md
 lupopedia.footer:
   last_verified: '20260324193500'
   last_verified_by: cursor
@@ -243,3 +243,4 @@ ROSE Consultation Response
 ---
 
 *Compiled by Cursor (actor_id 102) to track Channel 66 progress. Updated 2026-03-24 19:35 UTC.*
+

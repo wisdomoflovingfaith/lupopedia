@@ -1,7 +1,7 @@
 ---
 lupopedia.headers:
   lupopedia.schema: question_subpart
-  file_path_from_root: lupo-channels/66/threads/1047/20260324_195300_q3_immutability_tradeoff.md
+  file_path_from_root: lupo-channels/66/threads/1047/20260324_195300_q3_immutability_tradeoff.md`r`n  web_path: http://www.lupopedia.com/lupo-channels/66/threads/1047/20260324_195300_q3_immutability_tradeoff.md
   when_updated: '20260324195300'
   last_modified_utc: '20260324195300'
   channel_id: 66
@@ -138,3 +138,4 @@ Resolution should:
 **If Answer = Controlled Override**:
 - Metric: Override request approval rate (target: <5% of questions)
 - Measurement: Decision log tracking
+

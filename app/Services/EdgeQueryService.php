@@ -20,8 +20,6 @@
 
 namespace App\Services;
 
-use App\Classes\PDO_DB;
-
 /**
  * EdgeQueryService
  *
@@ -37,16 +35,18 @@ use App\Classes\PDO_DB;
  */
 class EdgeQueryService
 {
-    private static ?PDO_DB $db = null;
-    private static string $prefix = 'lupo_';
+    /** @var mixed|null */
+    private static $db = null;
+    /** @var string */
+    private static $prefix = 'lupo_';
 
     /**
      * Initialize database connection
      */
-    private static function ensureDb(): PDO_DB
+    private static function ensureDb()
     {
         if (self::$db === null) {
-            self::$db = DatabaseFactory::getConnection();
+            self::$db = \DatabaseFactory::getConnection();
             self::$prefix = defined('LUPO_TABLE_PREFIX') ? LUPO_TABLE_PREFIX : 'lupo_';
         }
         return self::$db;
@@ -61,7 +61,7 @@ class EdgeQueryService
      * @param string $edge_type Filter by edge type ('channel_related', 'channel_sibling', etc)
      * @return array
      */
-    public static function getRelatedChannels(int $channel_id, string $edge_type = 'channel_related'): array
+    public static function getRelatedChannels($channel_id, $edge_type = 'channel_related')
     {
         $db = self::ensureDb();
         $prefix = self::$prefix;
@@ -91,7 +91,7 @@ class EdgeQueryService
      * @param int $channel_id
      * @return array
      */
-    public static function getThreadsForChannel(int $channel_id): array
+    public static function getThreadsForChannel($channel_id)
     {
         $db = self::ensureDb();
         $prefix = self::$prefix;
@@ -122,7 +122,7 @@ class EdgeQueryService
      * @param int $maxDepth Limit recursion depth to prevent infinite loops
      * @return array
      */
-    public static function getThreadLineage(int $thread_id, int $maxDepth = 20): array
+    public static function getThreadLineage($thread_id, $maxDepth = 20)
     {
         $db = self::ensureDb();
         $prefix = self::$prefix;
@@ -162,7 +162,7 @@ class EdgeQueryService
      * @param int $object_id
      * @return array
      */
-    public static function getEdgesForObject(string $object_type, int $object_id): array
+    public static function getEdgesForObject($object_type, $object_id)
     {
         $db = self::ensureDb();
         $prefix = self::$prefix;
@@ -191,7 +191,7 @@ class EdgeQueryService
      * @param int $federation_node_id Optional federation filtering
      * @return array Graph structure: ['channels' => [...], 'edges' => [...]]
      */
-    public static function getChannelGraph(int $federation_node_id = 1): array
+    public static function getChannelGraph($federation_node_id = 1)
     {
         $db = self::ensureDb();
         $prefix = self::$prefix;
@@ -223,7 +223,7 @@ class EdgeQueryService
      * @param int $channel_id
      * @return array ['ancestors' => [...], 'descendants' => [...]]
      */
-    public static function getChannelHierarchy(int $channel_id): array
+    public static function getChannelHierarchy($channel_id)
     {
         $db = self::ensureDb();
         $prefix = self::$prefix;
@@ -269,7 +269,7 @@ class EdgeQueryService
      *
      * @return array Counts per edge type
      */
-    public static function getEdgeTypeStats(): array
+    public static function getEdgeTypeStats()
     {
         $db = self::ensureDb();
         $prefix = self::$prefix;

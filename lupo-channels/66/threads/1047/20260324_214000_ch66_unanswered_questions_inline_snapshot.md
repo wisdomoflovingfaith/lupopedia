@@ -12,7 +12,7 @@ lupopedia.headers:
   artifact_type: analysis
   artifact_kind: unanswered_questions_snapshot
   purpose: Inline-ready snapshot of all currently unanswered Channel 66 questions after seed idempotency updates.
-  web_path: http://www.lupopedia.com/lupopedia/lupo-channels/66/threads/1047/20260324_214000_ch66_unanswered_questions_inline_snapshot.md
+  web_path: http://www.lupopedia.com/lupo-channels/66/threads/1047/20260324_214000_ch66_unanswered_questions_inline_snapshot.md
 lupopedia.edges:
   outbound_edges:
   - to: lupo-channels/66/threads/1047/20260324_ch66_fresh_unanswered_questions.md
@@ -74,3 +74,4 @@ This snapshot lists all currently unanswered/open questions in Channel 66 that s
 
 - Fresh install seed path now includes idempotent edge/trait/action seeding to avoid duplicate-key failures on reruns.
 - Canonical expanded detail remains in 20260324_ch66_fresh_unanswered_questions.md.
+

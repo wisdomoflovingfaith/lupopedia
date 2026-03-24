@@ -1,7 +1,7 @@
 ---
 lupopedia.headers:
   file_path_from_root: lupo-docs/versions/4.0.87/CHANGELOG.md
-  last_modified_utc: '20260324214000'
+  last_modified_utc: '20260324200640'
   channel_id: 42
   thread_id: 4.0.87-init
   actor_id: 102
@@ -9,14 +9,14 @@ lupopedia.headers:
   artifact_type: changelog
   artifact_kind: version_history
   purpose: Version 4.0.87 changelog for multi-agent contributions.
-  when_updated: '20260324214000'
+  when_updated: '20260324200640'
   web_path: http://www.lupopedia.com/lupopedia/lupo-docs/versions/4.0.87/CHANGELOG.md
   delegation_chain: cursor:root
 lupopedia.footer:
-  last_verified: '20260324214000'
-  last_verified_by: cursor
-  last_verified_by_actor_id: 102
-  orchestrator: cursor:root
+  last_verified: '20260324200640'
+  last_verified_by: wolfie
+  last_verified_by_actor_id: 1
+  orchestrator: wolfie:root
 ---
 
 # 4.0.87 CHANGELOG
@@ -275,3 +275,19 @@ lupopedia.footer:
 2. Route Channel 66 resolutions to respective actors (THOTH, THEMIS, WOLFIE)
 3. Begin P2 organization stream work (Channel 62, 63, 64)
 4. Monitor edge graph activation for production readiness
+
+## Implemented (2026-03-24, 20:04 UTC takeover and execution update)
+- Executed one-time migrations:
+  - `dev_20260324_seed_edge_types_channel_thread.sql`
+  - `dev_20260324_seed_edge_type_definitions.sql`
+  - `dev_20260324_backfill_parent_channel_edges.sql`
+- Added Track 3a execution runner: `lupo-scripts/run_edge_migration_track3a.php`.
+- Track 3a execution run completed with zero migrated rows and no insert errors for this dataset.
+- Added channel 66 answer artifacts:
+  - `threads/1050/20260324_195013_cursor_answer_root_archive_scope.md`
+  - `threads/1051/20260324_195013_cursor_answer_edge_review_assignments.md`
+  - `threads/1052/20260324_195013_cursor_answer_actor_pairing_defaults.md`
+- Added temporary takeover directive artifact:
+  - `threads/1054/20260324_195917_wolfie_takeover_directive_4_0_87.md`
+- Updated 4.0.87 continuity docs to reflect temporary non-cursor ownership through `2026-04-03 00:00:00 UTC`.
+

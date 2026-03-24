@@ -1,7 +1,7 @@
 ---
 lupopedia.headers:
   file_path_from_root: lupo-docs/versions/4.0.87/CHANNEL_ORGANIZATION_STREAM.md
-  last_modified_utc: '20260324181412'
+  last_modified_utc: '20260324200640'
   channel_id: 62
   thread_id: folder-organization-charter
   actor_id: 102
@@ -10,14 +10,14 @@ lupopedia.headers:
   artifact_kind: channel_stream
   purpose: Channel stream for lupo-* folder organization, deprecated artifact cleanup,
     and lupo-docs accuracy lock.
-  when_updated: '20260324181412'
+  when_updated: '20260324200640'
   web_path: http://www.lupopedia.com/lupo-docs/versions/4.0.87/CHANNEL_ORGANIZATION_STREAM.md
   delegation_chain: cursor:root
 lupopedia.footer:
-  last_verified: '20260324181412'
-  last_verified_by: cursor
-  last_verified_by_actor_id: 102
-  orchestrator: cursor:root
+  last_verified: '20260324200640'
+  last_verified_by: wolfie
+  last_verified_by_actor_id: 1
+  orchestrator: wolfie:root
 ---
 
 # 4.0.87 Channel Stream: Lupo Folder Organization
@@ -55,3 +55,4 @@ lupopedia.footer:
 - Opened channel 66 production question threads to settle remaining policy decisions:
   - `1050`: archive scope and retention boundaries
   - `1051`: edge review actor ownership and SLA
+

@@ -1,9 +1,9 @@
 ---
 lupopedia.headers:
-  file_path_from_root: "lupo-channels/66/threads/1047/20260324_ch66_resolution_database_truth_headers_generated.md"
+  file_path_from_root: lupo-channels/66/threads/1047/20260324_220200_ch66_resolution_database_truth_headers_generated.md
   when_updated: "20260324193000"
   last_modified_utc: "20260324193000"
-  web_path: "http://www.lupopedia.com/lupopedia/lupo-channels/66/threads/1047/20260324_ch66_resolution_database_truth_headers_generated.md"
+  web_path: http://www.lupopedia.com/lupo-channels/66/threads/1047/20260324_220200_ch66_resolution_database_truth_headers_generated.md
   channel_id: 66
   thread_id: 1047
   actor_id: 102
@@ -129,4 +129,5 @@ See: `LUPOPEDIA_WEB_PATH_FIX_VERIFICATION.md`
 2. **Update metadata**: Ensure all `lupo_metadata` records match file records
 3. **Apply to production**: Regenerate headers for all artifacts from database
 4. **Monitor**: Track `last_verified` timestamps to prevent header staleness
+
 

@@ -1,7 +1,7 @@
 ---
 lupopedia.headers:
   lupopedia.schema: channel_thread_update
-  file_path_from_root: lupo-channels/66/threads/1052/20260324_ch66_thread_1052_actor_pairing_defaults.md
+  file_path_from_root: lupo-channels/66/threads/1052/20260324_220700_ch66_thread_1052_actor_pairing_defaults.md
   when_updated: '20260324194500'
   last_modified_utc: '20260324194500'
   channel_id: 66
@@ -12,7 +12,7 @@ lupopedia.headers:
   artifact_type: resolution
   artifact_kind: policy
   purpose: Actor pairing defaults and chat identity preference policy per Channel 66 Thread 1052
-  web_path: http://www.lupopedia.com/lupopedia/lupo-channels/66/threads/1052/20260324_ch66_thread_1052_actor_pairing_defaults.md
+  web_path: http://www.lupopedia.com/lupo-channels/66/threads/1052/20260324_220700_ch66_thread_1052_actor_pairing_defaults.md
 lupopedia.footer:
   last_verified: '20260324194500'
   last_verified_by: cursor
@@ -164,3 +164,4 @@ is_default:    1
 **Status**: ✅ **RESOLVED & IMPLEMENTED**  
 **Code**: Already in place (verified in 4.0.87 session)  
 **Documentation**: Updated in 4.0.87 version artifacts
+

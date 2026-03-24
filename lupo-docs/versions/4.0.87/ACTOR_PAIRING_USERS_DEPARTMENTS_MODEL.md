@@ -1,10 +1,10 @@
 ---
 lupopedia.headers:
-  when_updated: '20260324182230'
+  when_updated: '20260324200640'
   lupopedia.schema: doctrine
   file_path_from_root: lupo-docs/versions/4.0.87/ACTOR_PAIRING_USERS_DEPARTMENTS_MODEL.md
   web_path: http://www.lupopedia.com/lupo-docs/versions/4.0.87/ACTOR_PAIRING_USERS_DEPARTMENTS_MODEL.md
-  last_modified_utc: '20260324182230'
+  last_modified_utc: '20260324200640'
   channel_id: 63
   actor_id: 102
   actor_name: cursor
@@ -48,10 +48,10 @@ lupopedia.edges:
   - pairing
   - db_truth
 lupopedia.footer:
-  last_verified: '20260324182230'
-  last_verified_by: cursor
-  last_verified_by_actor_id: 102
-  orchestrator: cursor:root
+  last_verified: '20260324200640'
+  last_verified_by: wolfie
+  last_verified_by_actor_id: 1
+  orchestrator: wolfie:root
   next_action:
   - Resolve default pairing policy question in channel 66 thread 1052
 ---

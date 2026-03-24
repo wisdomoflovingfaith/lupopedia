@@ -1,10 +1,10 @@
 ---
 lupopedia.headers:
-  when_updated: '20260324214000'
+  when_updated: '20260324200640'
   lupopedia.schema: documentation
   file_path_from_root: README.md
-  web_path: http://www.lupopedia.com/lupopedia/README.md
-  last_modified_utc: '20260324214000'
+  web_path: http://www.lupopedia.com/README.md
+  last_modified_utc: '20260324200640'
   channel_id: 42
   thread_id: 1001
   actor_id: 102
@@ -51,10 +51,10 @@ lupopedia.edges:
     type: references
     weight: 0.8
 lupopedia.footer:
-  last_verified: '20260324214000'
-  last_verified_by: cursor
-  last_verified_by_actor_id: 102
-  orchestrator: cursor:root
+  last_verified: '20260324200640'
+  last_verified_by: wolfie
+  last_verified_by_actor_id: 1
+  orchestrator: wolfie:root
   next_action:
   - Keep README aligned with 4.0.87 version docs and doctrine updates
   - Revalidate links and edge references each release session
@@ -161,3 +161,16 @@ Non-destructive read-first consolidation pattern documented:
 - Latest inline snapshot artifact:
   - `lupo-channels/66/threads/1047/20260324_214000_ch66_unanswered_questions_inline_snapshot.md`
 - Current open count: 7 unanswered questions (Q1-Q7)
+
+## 4.0.87 Temporary Execution Ownership (through 2026-04-03 UTC)
+
+Cursor and Junie are unavailable until **2026-04-03 00:00:00 UTC**. For continuity, active responsibilities are temporarily routed to:
+- WOLFIE (release orchestration and closure)
+- HEPHAESTUS (migration/service implementation)
+- THOTH (documentation synchronization)
+- ATHENA (edge semantics)
+- THEMIS (governance decisions)
+- LILITH (adversarial review)
+- ROSE (consultation synthesis)
+
+Primary handoff artifact: `lupo-channels/66/threads/1054/20260324_195917_wolfie_takeover_directive_4_0_87.md`.

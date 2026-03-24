@@ -1,7 +1,7 @@
 ---
 lupopedia.headers:
   file_path_from_root: lupo-docs/versions/4.0.87/DOCUMENTATION_AND_EDGES_STREAM.md
-  last_modified_utc: '20260324181412'
+  last_modified_utc: '20260324200640'
   channel_id: 63
   thread_id: database_documentation
   actor_id: 102
@@ -9,14 +9,14 @@ lupopedia.headers:
   artifact_type: planning
   artifact_kind: channel_stream
   purpose: 4.0.87 stream for database documentation and edge-governance channels.
-  when_updated: '20260324181412'
+  when_updated: '20260324200640'
   web_path: http://www.lupopedia.com/lupo-docs/versions/4.0.87/DOCUMENTATION_AND_EDGES_STREAM.md
   delegation_chain: cursor:root
 lupopedia.footer:
-  last_verified: '20260324181412'
-  last_verified_by: cursor
-  last_verified_by_actor_id: 102
-  orchestrator: cursor:root
+  last_verified: '20260324200640'
+  last_verified_by: wolfie
+  last_verified_by_actor_id: 1
+  orchestrator: wolfie:root
 ---
 
 # 4.0.87 Documentation and Edges Stream
@@ -62,3 +62,4 @@ Edge governance stream advanced significantly in this session:
 ## Thread Update (2026-03-24: edge actor review queue)
 - Added `EDGE_REVIEW_QUEUE.md` under 4.0.87 docs to bind edge review items to actor owners.
 - Opened channel 66 thread 1051 to confirm actor ownership and SLA for blocking edge items.
+

@@ -2,8 +2,8 @@
 lupopedia.headers:
   lupopedia.schema: database_table
   file_path_from_root: lupo-docs/database/lupopedia/tables/active/lupo_dialog_threads.md
-  web_path: '[lupo_dialog_threads](http://www.lupopedia.com/database/lupopedia/tables/active/lupo_dialog_threads)'
-  last_modified_utc: '20260317'
+  web_path: http://www.lupopedia.com/database/lupopedia/tables/active/lupo_dialog_threads
+  last_modified_utc: '20260324200110'
   channel_id: 42
   actor_id: 1
   actor_name: wolfie
@@ -17,7 +17,7 @@ lupopedia.headers:
   - database
   - table
   - channels
-  when_updated: '20260324174654'
+  when_updated: '20260324200110'
 lupopedia.edges:
   comment: Snapshot of edges for lupo_dialog_threads table doc at 4.0.79 (grounded
     by repo search; non-exhaustive).
@@ -51,7 +51,7 @@ lupopedia.edges:
     type: USED_IN_PYTHON
     weight: 0.5
 lupopedia.footer:
-  last_verified: '20260317000000'
+  last_verified: '20260324200110'
   last_verified_by: cursor
   last_verified_by_actor_id: 102
   orchestrator: cursor:root

@@ -1,7 +1,7 @@
 ---
 lupopedia.headers:
   file_path_from_root: lupo-docs/versions/4.0.87/TASK_REGISTRY.md
-  last_modified_utc: '20260324182716'
+  last_modified_utc: '20260324200640'
   channel_id: 42
   thread_id: 4.0.87-init
   actor_id: 102
@@ -9,14 +9,14 @@ lupopedia.headers:
   artifact_type: planning
   artifact_kind: task_registry
   purpose: Task registry for version 4.0.87 workstreams.
-  when_updated: '20260324182716'
+  when_updated: '20260324200640'
   web_path: http://www.lupopedia.com/lupo-docs/versions/4.0.87/TASK_REGISTRY.md
   delegation_chain: cursor:root
 lupopedia.footer:
-  last_verified: '20260324182716'
-  last_verified_by: cursor
-  last_verified_by_actor_id: 102
-  orchestrator: cursor:root
+  last_verified: '20260324200640'
+  last_verified_by: wolfie
+  last_verified_by_actor_id: 1
+  orchestrator: wolfie:root
 ---
 
 # 4.0.87 TASK REGISTRY
@@ -72,3 +72,14 @@ lupopedia.footer:
 ## Thread Update (2026-03-24: Channel 66 validation and relevance)
 | V487-040 | Channel 66 artifact canonicalization | completed | cursor | Normalized web_path/footer/actor context and resolved strict validation issues |
 | V487-041 | Channel 66 relevance filter artifact | completed | cursor | Added thread 1053 and updated THREAD_INDEX with priority questions |
+
+## Session Refresh (2026-03-24: takeover + execution pass)
+| V487-042 | Track 1 edge type seed execution | completed | hephaestus | Executed via run_one_time_migration; version `20260324_edge_types_channel_thread` |
+| V487-043 | Track 2 edge type definitions execution | completed | hephaestus | Executed via run_one_time_migration; version `20260324_edge_type_definitions` |
+| V487-044 | Track 3c parent-channel backfill execution | completed | hephaestus | Executed via run_one_time_migration; version `20260324_backfill_parent_channel_edges` |
+| V487-045 | Track 3a migration runner + execution | in_progress | hephaestus | Runner added; current run produced zero rows (no dialog_channels JSON relations found) |
+| V487-046 | Channel 66 production answers finalized | completed | wolfie | Answer artifacts posted for threads 1050/1051/1052 |
+| V487-047 | Temporary owner reassignment (cursor/junie unavailable) | completed | wolfie | Takeover directive published in channel 66 thread 1054 |
+| V487-048 | Channel 66 unresolved legacy question closure (Q1-Q7) | queued | themis | Source thread 1047; cross-persona governance decisions pending |
+| V487-049 | 4.0.87 release packet continuity docs refresh | in_progress | thoth | PLAN/TODO/TASK_REGISTRY/WHAT_TO_DO_NEXT_SESSION/README synchronization |
+

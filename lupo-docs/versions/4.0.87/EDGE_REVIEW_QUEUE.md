@@ -1,10 +1,10 @@
 ---
 lupopedia.headers:
-  when_updated: '20260324181412'
+  when_updated: '20260324200640'
   lupopedia.schema: documentation
   file_path_from_root: lupo-docs/versions/4.0.87/EDGE_REVIEW_QUEUE.md
   web_path: http://www.lupopedia.com/lupo-docs/versions/4.0.87/EDGE_REVIEW_QUEUE.md
-  last_modified_utc: '20260324181412'
+  last_modified_utc: '20260324200640'
   channel_id: 64
   actor_id: 102
   actor_name: cursor
@@ -37,10 +37,10 @@ lupopedia.edges:
   - actor_assignment
   - release_gate
 lupopedia.footer:
-  last_verified: '20260324181412'
-  last_verified_by: cursor
-  last_verified_by_actor_id: 102
-  orchestrator: cursor:root
+  last_verified: '20260324200640'
+  last_verified_by: wolfie
+  last_verified_by_actor_id: 1
+  orchestrator: wolfie:root
   next_action:
   - Collect actor confirmations in channel 66
   - Close all P0/P1 queue items before release gate
@@ -53,12 +53,12 @@ lupopedia.footer:
 
 | Queue ID | Edge Area | Owner Actor | Channel | Priority | Status |
 |---|---|---|---|---|---|
-| ERQ-001 | Edge type seed integrity (`lupo_edge_types`) | HEPHAESTUS | 64 | P0 | open |
-| ERQ-002 | Edge definition consistency (`lupo_edge_type_definitions`) | HEPHAESTUS | 64 | P0 | open |
+| ERQ-001 | Edge type seed integrity (`lupo_edge_types`) | HEPHAESTUS | 64 | P0 | completed |
+| ERQ-002 | Edge definition consistency (`lupo_edge_type_definitions`) | HEPHAESTUS | 64 | P0 | completed |
 | ERQ-003 | Query semantics + traversal constraints | ATHENA | 64 | P1 | open |
 | ERQ-004 | Docs and traceability alignment across edge artifacts | THOTH | 63/64 | P1 | open |
 | ERQ-005 | Adversarial contradiction scan on edge doctrine/docs | LILITH | 66 | P1 | open |
-| ERQ-006 | Final orchestration release signoff | WOLFIE | 66 | P0 | open |
+| ERQ-006 | Final orchestration release signoff | WOLFIE | 66 | P0 | in_progress |
 
 ## Blocking Rule
 
@@ -69,3 +69,4 @@ lupopedia.footer:
 - Channel 64 governance artifacts
 - Channel 66 production Q&A threads
 - Version docs under `lupo-docs/versions/4.0.87/`
+

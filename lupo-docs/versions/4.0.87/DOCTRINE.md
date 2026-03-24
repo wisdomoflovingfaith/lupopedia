@@ -1,7 +1,7 @@
 ---
 lupopedia.headers:
   file_path_from_root: lupo-docs/versions/4.0.87/DOCTRINE.md
-  last_modified_utc: '20260324180128'
+  last_modified_utc: '20260324200640'
   channel_id: 42
   thread_id: 4.0.87-init
   actor_id: 102
@@ -9,14 +9,14 @@ lupopedia.headers:
   artifact_type: doctrine
   artifact_kind: version_doctrine
   purpose: Version-specific doctrine constraints and enforcement points for 4.0.87.
-  when_updated: '20260324180128'
+  when_updated: '20260324200640'
   web_path: http://www.lupopedia.com/lupo-docs/versions/4.0.87/DOCTRINE.md
   delegation_chain: cursor:root
 lupopedia.footer:
-  last_verified: '20260324180128'
-  last_verified_by: cursor
-  last_verified_by_actor_id: 102
-  orchestrator: cursor:root
+  last_verified: '20260324200640'
+  last_verified_by: wolfie
+  last_verified_by_actor_id: 1
+  orchestrator: wolfie:root
 ---
 
 # 4.0.87 DOCTRINE
@@ -33,3 +33,4 @@ lupopedia.footer:
 - Changes in 4.0.87 must advance atoms/channels/headers/identity/admin-LLM objectives.
 - If scope expands, additions must be recorded in `SCOPE_LOCK_SUMMARY.md` before implementation.
 - Upgrade path doctrine remains fixed: new install and Crafty Syntax 3.7.5 import only.
+
