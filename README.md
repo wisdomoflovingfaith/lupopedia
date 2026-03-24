@@ -1,10 +1,10 @@
 ---
 lupopedia.headers:
-  when_updated: '20260324181412'
+  when_updated: '20260324214000'
   lupopedia.schema: documentation
   file_path_from_root: README.md
   web_path: http://www.lupopedia.com/lupopedia/README.md
-  last_modified_utc: '20260324181412'
+  last_modified_utc: '20260324214000'
   channel_id: 42
   thread_id: 1001
   actor_id: 102
@@ -51,13 +51,14 @@ lupopedia.edges:
     type: references
     weight: 0.8
 lupopedia.footer:
-  last_verified: '20260324181412'
+  last_verified: '20260324214000'
   last_verified_by: cursor
   last_verified_by_actor_id: 102
   orchestrator: cursor:root
   next_action:
   - Keep README aligned with 4.0.87 version docs and doctrine updates
   - Revalidate links and edge references each release session
+  - Keep installer seed idempotent for repeat-run safety
 ---
 # file: Lupopedia README 4.0.87 - delegation: cursor:root - web_path: http://www.lupopedia.com/README.md
 
@@ -139,6 +140,14 @@ All P0 tracks verified in production database:
 - Track 2: 12 type definitions seeded
 - Track 3c: Parent channel relationships backfilled
 
+### Install Seed Reliability Update
+
+- Installer seed file now hardened for reruns (idempotent upserts) in `lupo-database/lupopedia/mysql/seed/seed_traits_edge_types_action_auth_4.0.69.sql`.
+- Prevents duplicate-key failures on repeated seed execution.
+- Includes full canonical edge seed set for 4.0.87:
+  - 12 `lupo_edge_types`
+  - 12 `lupo_edge_type_definitions`
+
 ### Consolidation Pattern Established
 
 Non-destructive read-first consolidation pattern documented:
@@ -146,3 +155,9 @@ Non-destructive read-first consolidation pattern documented:
 - Timestamps validated against staleness threshold
 - Zero overwrites of other actors work
 - Cross-actor continuity maintained
+
+### Channel 66 Unanswered Snapshot (Latest)
+
+- Latest inline snapshot artifact:
+  - `lupo-channels/66/threads/1047/20260324_214000_ch66_unanswered_questions_inline_snapshot.md`
+- Current open count: 7 unanswered questions (Q1-Q7)

@@ -1,7 +1,7 @@
 ---
 lupopedia.headers:
   file_path_from_root: lupo-docs/versions/4.0.87/WHAT_TO_DO_NEXT_SESSION.md
-  last_modified_utc: '20260324180128'
+  last_modified_utc: '20260324215500'
   channel_id: 42
   thread_id: 4.0.87-init
   actor_id: 102
@@ -9,11 +9,11 @@ lupopedia.headers:
   artifact_type: handoff
   artifact_kind: next_session
   purpose: Next session execution checklist for 4.0.87.
-  when_updated: '20260324180128'
+  when_updated: '20260324215500'
   web_path: http://www.lupopedia.com/lupo-docs/versions/4.0.87/WHAT_TO_DO_NEXT_SESSION.md
   delegation_chain: cursor:root
 lupopedia.footer:
-  last_verified: '20260324180128'
+  last_verified: '20260324215500'
   last_verified_by: cursor
   last_verified_by_actor_id: 102
   orchestrator: cursor:root
@@ -37,3 +37,17 @@ lupopedia.footer:
 - Continue script metadata rollout for remaining `.py` / `.php` under `lupo-scripts`.
 - Run `python lupo-scripts/validate_script_footer_verification.py --repo-root . --strict` and close failures.
 - Keep 4.0.87 docs on `when_updated` + fresh `lupopedia.footer` validation fields.
+
+## Thread Update (2026-03-24: Channel 66 question carry-forward)
+- Carry forward all open Channel 66 questions from `lupo-channels/66/threads/1047/20260324_214000_ch66_unanswered_questions_inline_snapshot.md`:
+  1. Q1: Header Reimport Safety and Determinism (awaiting ROSE external consultation)
+  2. Q2: Multi-Channel Header Ownership Model (architectural decision pending)
+  3. Q3: Header Immutability vs Editability (architectural decision pending)
+  4. Q4: Staleness Detection Warnings (implementation pending)
+  5. Q5: Timestamp Validation in `generate_headers_from_db.py` (implementation pending)
+  6. Q6: Channel-Specific Metadata Authority (governance/architecture consensus pending)
+  7. Q7: Permission Model for Header Reimport (security/governance decision pending)
+- Route execution ownership:
+  - Q1-Q3 -> ROSE / ATHENA / WOLFIE
+  - Q4-Q5 -> HEPHAESTUS
+  - Q6-Q7 -> THEMIS / HEIMDALL / LEXA

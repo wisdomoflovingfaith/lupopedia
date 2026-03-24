@@ -1,7 +1,7 @@
 ---
 lupopedia.headers:
   file_path_from_root: lupo-docs/versions/4.0.87/CHANGELOG.md
-  last_modified_utc: '20260324193500'
+  last_modified_utc: '20260324214000'
   channel_id: 42
   thread_id: 4.0.87-init
   actor_id: 102
@@ -9,11 +9,11 @@ lupopedia.headers:
   artifact_type: changelog
   artifact_kind: version_history
   purpose: Version 4.0.87 changelog for multi-agent contributions.
-  when_updated: '20260324193500'
+  when_updated: '20260324214000'
   web_path: http://www.lupopedia.com/lupopedia/lupo-docs/versions/4.0.87/CHANGELOG.md
   delegation_chain: cursor:root
 lupopedia.footer:
-  last_verified: '20260324193500'
+  last_verified: '20260324214000'
   last_verified_by: cursor
   last_verified_by_actor_id: 102
   orchestrator: cursor:root
@@ -218,6 +218,16 @@ lupopedia.footer:
   - ✅ Verified all existing 4.0.87 version artifacts (19 files)
   - ✅ All validation timestamps `≥ 20260324180128` (all current)
   - ✅ Added new consolidation artifacts without modifying existing work
+
+  ## Implemented (2026-03-24, seed idempotency hardening and unanswered snapshot refresh)
+  - Hardened installer seed idempotency in `lupo-database/lupopedia/mysql/seed/seed_traits_edge_types_action_auth_4.0.69.sql`:
+    - `lupo_actor_traits` now uses `ON DUPLICATE KEY UPDATE`
+    - `lupo_edge_types` includes 12 canonical 4.0.87 edge types with idempotent upsert
+    - `lupo_edge_type_definitions` includes 12 matching definitions with idempotent upsert
+    - `lupo_action_authorization` now uses `ON DUPLICATE KEY UPDATE`
+  - This prevents repeat install/seed runs from failing with duplicate-key errors (e.g., duplicate primary key in `lupo_actor_traits`).
+  - Added Channel 66 thread artifact snapshot: `lupo-channels/66/threads/1047/20260324_214000_ch66_unanswered_questions_inline_snapshot.md`.
+  - Confirmed currently open/unanswered Channel 66 set remains at 7 tracked questions (Q1-Q7) pending consultation, implementation, or governance decisions.
   - ✅ CHANGELOG.md updated with session summary only
 
 - **Validation Summary**:
