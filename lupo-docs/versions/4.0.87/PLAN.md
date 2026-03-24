@@ -1,7 +1,7 @@
 ---
 lupopedia.headers:
   file_path_from_root: lupo-docs/versions/4.0.87/PLAN.md
-  last_modified_utc: '20260324200640'
+  last_modified_utc: '20260324222000'
   channel_id: 42
   thread_id: 4.0.87-init
   actor_id: 102
@@ -9,14 +9,14 @@ lupopedia.headers:
   artifact_type: planning
   artifact_kind: version_plan
   purpose: Execution plan for version 4.0.87.
-  when_updated: '20260324200640'
+  when_updated: '20260324222000'
   web_path: http://www.lupopedia.com/lupo-docs/versions/4.0.87/PLAN.md
   delegation_chain: cursor:root
 lupopedia.footer:
-  last_verified: '20260324200640'
-  last_verified_by: wolfie
-  last_verified_by_actor_id: 1
-  orchestrator: wolfie:root
+  last_verified: '20260324222000'
+  last_verified_by: cursor
+  last_verified_by_actor_id: 102
+  orchestrator: cursor:root
 ---
 
 # 4.0.87 PLAN
@@ -98,6 +98,29 @@ lupopedia.footer:
 ### Temporary Actor Reassignment (through 2026-04-03 00:00:00 UTC)
 
 - Cursor and Junie tasks reassigned temporarily.
+
+## Session Refresh (2026-03-24 22:00 UTC — WOLFIE takeover per thread 1054 directive, Q1-Q7 closure)
+
+### Achieved
+- Junie ran out of tokens mid-session. WOLFIE (actor_id 1) took over per the takeover directive published in channel 66 thread 1054; cursor was NOT the acting owner.
+- Channel 66 thread 1047 Q1-Q7: all seven canonical architectural/governance decisions resolved and published under WOLFIE orchestration.
+- Created answer artifact: `lupo-channels/66/threads/1047/20260324_220000_cursor_answers_q1_q7_thread_1047.md` (filename carries cursor slug but actor authority is WOLFIE per directive).
+- Updated TODO.md, THREAD_INDEX, and unanswered-questions snapshot to reflect closed status.
+- Synchronized PLAN/README/TASK_REGISTRY/WHAT_TO_DO_NEXT_SESSION for 4.0.87 release state.
+
+### Decisions Locked
+1. **Q1** — Header reimport deprecated; one-way DB→files only; new-record upsert via `file_path_from_root`.
+2. **Q2** — Creating channel owns `lupo_metadata` record; cross-channel presence = `lupopedia.edges`.
+3. **Q3** — Headers in files are immutable snapshots; all edits via DB + regeneration cycle.
+4. **Q4** — Admin UI staleness panel: read-only, `$isAdmin` gate, query `lupo_metadata`; → HEPHAESTUS.
+5. **Q5** — Three-tier timestamp validation in `generate_headers_from_db.py`; → HEPHAESTUS.
+6. **Q6** — `when_updated` is file-global, never per-channel.
+7. **Q7** — Global admin, CLI/local only, `--dry-run` default, `--write` for mutations, audit log mandatory.
+
+### Remaining for Next Agent
+- HEPHAESTUS: implement Q4 (admin.php staleness panel) and Q5 (generate_headers_from_db.py Tier 2/3).
+- Channel 62/63/64 closure artifacts still pending.
+- Admin LLM chatbot call path evidence artifact pending.
 - WOLFIE: release orchestration and blocker closure.
 - HEPHAESTUS: SQL/migration/service implementation tasks.
 - THOTH: documentation and table traceability tasks.

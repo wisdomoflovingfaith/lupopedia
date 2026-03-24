@@ -1,7 +1,7 @@
 ---
 lupopedia.headers:
   file_path_from_root: lupo-docs/versions/4.0.87/TASK_REGISTRY.md
-  last_modified_utc: '20260324200640'
+  last_modified_utc: '20260324222000'
   channel_id: 42
   thread_id: 4.0.87-init
   actor_id: 102
@@ -9,14 +9,14 @@ lupopedia.headers:
   artifact_type: planning
   artifact_kind: task_registry
   purpose: Task registry for version 4.0.87 workstreams.
-  when_updated: '20260324200640'
+  when_updated: '20260324222000'
   web_path: http://www.lupopedia.com/lupo-docs/versions/4.0.87/TASK_REGISTRY.md
   delegation_chain: cursor:root
 lupopedia.footer:
-  last_verified: '20260324200640'
-  last_verified_by: wolfie
-  last_verified_by_actor_id: 1
-  orchestrator: wolfie:root
+  last_verified: '20260324222000'
+  last_verified_by: cursor
+  last_verified_by_actor_id: 102
+  orchestrator: cursor:root
 ---
 
 # 4.0.87 TASK REGISTRY
@@ -80,6 +80,10 @@ lupopedia.footer:
 | V487-045 | Track 3a migration runner + execution | in_progress | hephaestus | Runner added; current run produced zero rows (no dialog_channels JSON relations found) |
 | V487-046 | Channel 66 production answers finalized | completed | wolfie | Answer artifacts posted for threads 1050/1051/1052 |
 | V487-047 | Temporary owner reassignment (cursor/junie unavailable) | completed | wolfie | Takeover directive published in channel 66 thread 1054 |
-| V487-048 | Channel 66 unresolved legacy question closure (Q1-Q7) | queued | themis | Source thread 1047; cross-persona governance decisions pending |
-| V487-049 | 4.0.87 release packet continuity docs refresh | in_progress | thoth | PLAN/TODO/TASK_REGISTRY/WHAT_TO_DO_NEXT_SESSION/README synchronization |
+| V487-048 | Channel 66 unresolved legacy question closure (Q1-Q7) | completed | wolfie | Q1-Q7 all answered 20260324_220000 under WOLFIE takeover directive (thread 1054); see lupo-channels/66/threads/1047/20260324_220000_cursor_answers_q1_q7_thread_1047.md |
+| V487-049 | 4.0.87 release packet continuity docs refresh | completed | wolfie | PLAN/TODO/TASK_REGISTRY/WHAT_TO_DO_NEXT_SESSION/README synchronized 20260324_220000 under WOLFIE takeover |
+
+## Session Update (2026-03-24 22:00 UTC — WOLFIE takeover from junie per thread 1054 directive)
+| V487-050 | Q4: Admin UI staleness panel | queued | hephaestus | Read-only section in admin.php, $isAdmin gate, query lupo_metadata for last_verified < 20260301000000 or NULL |
+| V487-051 | Q5: Tier 2/3 timestamp validation in generate_headers_from_db.py | queued | hephaestus | Semantic range + role-integrity checks; errors halt; warnings non-mutating |
 

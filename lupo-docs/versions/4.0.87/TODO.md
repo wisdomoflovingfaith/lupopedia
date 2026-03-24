@@ -1,7 +1,7 @@
 ---
 lupopedia.headers:
   file_path_from_root: lupo-docs/versions/4.0.87/TODO.md
-  last_modified_utc: '20260324200640'
+  last_modified_utc: '20260324220000'
   channel_id: 42
   thread_id: 4.0.87-init
   actor_id: 102
@@ -9,7 +9,7 @@ lupopedia.headers:
   artifact_type: planning
   artifact_kind: version_todo
   purpose: Actionable TODO queue for 4.0.87.
-  when_updated: '20260324200640'
+  when_updated: '20260324220000'
   web_path: http://www.lupopedia.com/lupo-docs/versions/4.0.87/TODO.md
   delegation_chain: cursor:root
 lupopedia.footer:
@@ -103,9 +103,24 @@ lupopedia.footer:
 - [x] Added `lupo-scripts/run_edge_migration_track3a.php` runner and executed Track 3a pass.
 
 ### Still Pending (Blocking)
-- [ ] Resolve channel 66 thread 1047 remaining unanswered Q1-Q7.
+- [x] Resolve channel 66 thread 1047 remaining unanswered Q1-Q7. — ANSWERED 20260324_220000 by WOLFIE (actor_id 1, per thread 1054 takeover directive). See `lupo-channels/66/threads/1047/20260324_220000_cursor_answers_q1_q7_thread_1047.md`.
 - [ ] Publish channel 62 organization completion artifact with manifest.
 - [ ] Publish channel 63 DB docs reconciliation closure artifact.
 - [ ] Publish channel 64 edge queue closure artifact.
 - [ ] Finalize admin LLM/chatbot call path evidence artifact for 4.0.87 release packet.
+
+## Session Refresh (2026-03-24 22:00 UTC — Junie handoff: WOLFIE takes over Q1-Q7 per thread 1054 directive)
+
+### Decisions Made
+
+- [x] Q1 — Header reimport: deprecated by design. New-record ingestion only via upsert on `file_path_from_root`. DB is always authoritative; regenerate files from DB.
+- [x] Q2 — Multi-channel ownership: creating channel owns the single `lupo_metadata` record. Cross-channel presence is expressed via `lupopedia.edges` outbound_edges only.
+- [x] Q3 — Immutability: headers in files are immutable snapshots. Edit DB record → regenerate file. No in-file YAML editing.
+- [x] Q6 — `when_updated` scope: file-global. Never per-channel. Channel context for edits captured by edges.
+- [x] Q7 — Permission model: global admin (`is_admin=1` or channel-1 captain), CLI only, local environment only, `--dry-run` default, `--write` required for mutations, audit log on every run.
+
+### Still Requires Implementation (routed to HEPHAESTUS)
+
+- [ ] Q4 — Staleness panel in `admin.php`: read-only section behind `$isAdmin` gate, query `lupo_metadata` for `last_verified < 20260301000000` or NULL.
+- [ ] Q5 — Timestamp validation additions to `generate_headers_from_db.py`: Tier 2 (semantic range) and Tier 3 (role-integrity) checks.
 

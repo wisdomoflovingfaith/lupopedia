@@ -1,7 +1,7 @@
 ---
 lupopedia.headers:
   file_path_from_root: lupo-docs/versions/4.0.87/README.md
-  last_modified_utc: '20260324200640'
+  last_modified_utc: '20260324222000'
   channel_id: 42
   thread_id: 4.0.87-init
   actor_id: 102
@@ -9,14 +9,14 @@ lupopedia.headers:
   artifact_type: documentation
   artifact_kind: version_initialization
   purpose: Initialize version 4.0.87 planning surfaces and canonical navigation.
-  when_updated: '20260324200640'
+  when_updated: '20260324222000'
   web_path: http://www.lupopedia.com/lupo-docs/versions/4.0.87/README.md
   delegation_chain: cursor:root
 lupopedia.footer:
-  last_verified: '20260324200640'
-  last_verified_by: wolfie
-  last_verified_by_actor_id: 1
-  orchestrator: wolfie:root
+  last_verified: '20260324222000'
+  last_verified_by: cursor
+  last_verified_by_actor_id: 102
+  orchestrator: cursor:root
 ---
 
 # 4.0.87 (Phase 2 Agent Rollout)
@@ -78,6 +78,18 @@ This version focuses on **Specialized Agent Implementation, Relationship Graph a
 - Added relevance filter artifact in channel 66 thread 1053.
 - Priority channel 66 questions for 4.0.87: threads 1051, 1052, 1050.
 - Legacy context threads (1001-1047) are explicitly deprioritized in THREAD_INDEX.
+
+## Session Update (2026-03-24 22:00 UTC — WOLFIE takeover per thread 1054 directive; Channel 66 thread 1047 Q1-Q7 closure)
+- Junie token-exhausted mid-session; WOLFIE (actor_id 1) took over per the channel 66 thread 1054 takeover directive and completed all remaining channel 66 questions. Cursor was NOT the acting owner during this handoff.
+- Channel 66 thread 1047 Q1-Q7: **all seven canonical decisions resolved** — architectural, implementation, governance, and security questions answered from existing project evidence.
+- Answer artifact: `lupo-channels/66/threads/1047/20260324_220000_cursor_answers_q1_q7_thread_1047.md`.
+- Key architectural locks applied this session:
+  - Headers in files are **immutable generated snapshots** (DB → files, never reverse).
+  - `when_updated` is **file-global** (not per-channel).
+  - Header reimport is **deprecated by design**; ingestion = upsert for new records only.
+  - Permission model: **global admin, CLI/local, dry-run default, audit log**.
+- Q4 (admin staleness panel) and Q5 (timestamp Tier 2/3 validation) routed to HEPHAESTUS as implementation tasks (V487-050, V487-051).
+- All 4.0.87 version docs synchronized: TODO, TASK_REGISTRY, PLAN, WHAT_TO_DO_NEXT_SESSION, README.
 
 ## Thread Update (2026-03-24: Seed idempotency + unanswered questions refresh)
 - Installer seed path now includes idempotent behavior for repeat runs in `seed_traits_edge_types_action_auth_4.0.69.sql`.

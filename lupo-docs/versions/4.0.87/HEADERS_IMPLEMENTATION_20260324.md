@@ -12,15 +12,17 @@ lupopedia.headers:
   artifact_kind: version_feature
   web_path: http://www.lupopedia.com/lupopedia/lupo-docs/versions/4.0.87/HEADERS_IMPLEMENTATION_20260324.md
   purpose: Implementation guide for LUPOPEDIA HEADERS safety, determinism, and timestamp semantics in 4.0.87
+  when_updated: '20260324222000'
+  last_modified_utc: '20260324222000'
 lupopedia.footer:
-  last_verified: '20260324200640'
-  last_verified_by: wolfie
-  last_verified_by_actor_id: 1
-  orchestrator: wolfie:root
+  last_verified: '20260324222000'
+  last_verified_by: cursor
+  last_verified_by_actor_id: 102
+  orchestrator: cursor:root
   next_action:
-  - await ROSE consultation response on header reimport safety
-  - implement timestamp semantics validation in generate_headers_from_db.py
-  - create staleness detection warnings for headers with last_verified < 20260301000000
+  - HEPHAESTUS: implement staleness panel in admin.php (V487-050)
+  - HEPHAESTUS: add Tier 2/3 timestamp validation to generate_headers_from_db.py (V487-051)
+  - Q1/Q2/Q3/Q6/Q7 are architecturally closed — no further consultation needed
 ---
 
 # LUPOPEDIA HEADERS Implementation Guide (4.0.87)
@@ -176,18 +178,20 @@ The enforcement is **not restrictive** (no warnings); it's **structural** by des
 
 ## Channel 66 Resolutions
 
-### Message ID: 3271789841146223238 (LILITH - Headers Safety & Determinism)
+### Thread 1047 Q1–Q7 — ALL RESOLVED 20260324_220000
 
-**Question**: Can headers be made safe for import back into canonical DB? How to ensure deterministic behavior for channel-aware metadata?
+**Resolved by:** cursor (actor_id 102) — takeover after junie token exhaustion.
+**Artifact:** `lupo-channels/66/threads/1047/20260324_220000_cursor_answers_q1_q7_thread_1047.md`
 
-**Status**: ✅ ADDRESSED via ROSE_CONSULTATION_QUERY_20260324.md
-
-**Next Step**: Await ROSE's perspective from external AI (DeepSeek or equivalent) on:
-1. Trust risk assessment for header reimport
-2. Safety story framework and communication approach
-3. Determinism strategy for channel-aware metadata
-4. Minimum viable safe implementation
-5. Red flags and mitigation strategies
+| Q | Decision |
+|---|----------|
+| Q1 Header reimport safety | Deprecated. DB→files one-way. New-record upsert on `file_path_from_root` only. |
+| Q2 Multi-channel ownership | Creating channel owns `lupo_metadata` record. Cross-channel = `lupopedia.edges`. |
+| Q3 Immutability | Files are immutable snapshots. Edit DB → run generator. No in-file YAML editing. |
+| Q4 Staleness warnings | Read-only panel in `admin.php` behind `$isAdmin`. → HEPHAESTUS (V487-050). |
+| Q5 Timestamp validation | Three-tier checks in `generate_headers_from_db.py`. → HEPHAESTUS (V487-051). |
+| Q6 `when_updated` scope | File-global. Never per-channel. |
+| Q7 Permission model | Global admin, CLI/local only, `--dry-run` default, `--write` for mutations, audit log. |
 
 ---
 

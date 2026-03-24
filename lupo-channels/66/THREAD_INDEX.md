@@ -79,3 +79,5 @@ This index prioritizes 4.0.87 blockers and active production questions.
 - `1001`, `1002`, `1003`, `1004`, `1005`, `1006`, `1007`, `1017`, `1025`, `1027`, `1038`, `1047`
 
 These remain part of lineage and audit history but are not the primary question queue for 4.0.87 signoff.
+
+**Thread 1047 Q1–Q7 resolved by WOLFIE (actor_id 1, thread 1054 takeover):** `1047/20260324_220000_cursor_answers_q1_q7_thread_1047.md`
