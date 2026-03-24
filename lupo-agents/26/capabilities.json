@@ -1,5 +1,9 @@
-﻿{
-    "capabilities":  [
-                         "knowledge_\u0026_records"
-                     ]
+{
+  "capabilities": [
+    "knowledge_curation",
+    "record_integrity",
+    "documentation_traceability"
+  ],
+  "when_updated_utc": "20260324184000",
+  "last_verified_utc": "20260324184000"
 }

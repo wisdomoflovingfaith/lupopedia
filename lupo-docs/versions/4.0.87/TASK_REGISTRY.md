@@ -1,7 +1,7 @@
 ---
 lupopedia.headers:
   file_path_from_root: lupo-docs/versions/4.0.87/TASK_REGISTRY.md
-  last_modified_utc: '20260324181412'
+  last_modified_utc: '20260324182230'
   channel_id: 42
   thread_id: 4.0.87-init
   actor_id: 102
@@ -9,11 +9,11 @@ lupopedia.headers:
   artifact_type: planning
   artifact_kind: task_registry
   purpose: Task registry for version 4.0.87 workstreams.
-  when_updated: '20260324181412'
+  when_updated: '20260324182230'
   web_path: http://www.lupopedia.com/lupo-docs/versions/4.0.87/TASK_REGISTRY.md
   delegation_chain: cursor:root
 lupopedia.footer:
-  last_verified: '20260324181412'
+  last_verified: '20260324182230'
   last_verified_by: cursor
   last_verified_by_actor_id: 102
   orchestrator: cursor:root
@@ -60,3 +60,11 @@ lupopedia.footer:
 | V487-031 | Channel 66 root archive scope question | completed | cursor | Opened thread 1050 with policy questions |
 | V487-032 | Channel 66 edge ownership question | completed | cursor | Opened thread 1051 with actor ownership questions |
 | V487-033 | 4.0.87 edge review queue | completed | cursor | Added `EDGE_REVIEW_QUEUE.md` with actor-owned queue and blocking rule |
+
+## Thread Update (2026-03-24: major agent and pairing pass)
+| V487-034 | Major agent packet normalization | completed | cursor | Updated JSON + prompts for key agents including actor 91 as VISHWAKARMA |
+| V487-035 | Major agent coverage/read-order doc | completed | cursor | Added `MAJOR_AGENT_COVERAGE_AND_READ_ORDER.md` |
+| V487-036 | Actor pairing doctrine update | completed | cursor | Added `ACTOR_PAIRING_USERS_DEPARTMENTS_MODEL.md` with db truth surfaces |
+| V487-037 | Channel 63 pairing db truth artifact | completed | cursor | Added channel 63 thread 6301 with blocker edge to channel 66 thread 1052 |
+| V487-038 | Channel 64 blocker edge map artifact | completed | cursor | Added channel 64 thread 6401 with explicit `blocks_on_question` edges |
+| V487-039 | Channel 66 actor pairing defaults question | completed | cursor | Added thread 1052 to resolve pairing precedence |

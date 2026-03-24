@@ -1,7 +1,7 @@
 ---
 lupopedia.headers:
   file_path_from_root: lupo-docs/versions/4.0.87/CHANGELOG.md
-  last_modified_utc: '20260324181412'
+  last_modified_utc: '20260324182230'
   channel_id: 42
   thread_id: 4.0.87-init
   actor_id: 102
@@ -9,11 +9,11 @@ lupopedia.headers:
   artifact_type: changelog
   artifact_kind: version_history
   purpose: Version 4.0.87 changelog for multi-agent contributions.
-  when_updated: '20260324181412'
+  when_updated: '20260324182230'
   web_path: http://www.lupopedia.com/lupo-docs/versions/4.0.87/CHANGELOG.md
   delegation_chain: cursor:root
 lupopedia.footer:
-  last_verified: '20260324181412'
+  last_verified: '20260324182230'
   last_verified_by: cursor
   last_verified_by_actor_id: 102
   orchestrator: cursor:root
@@ -103,3 +103,16 @@ lupopedia.footer:
 - **Collections scope confirmed**: `lupo_collections` + `lupo_collection_map` correctly scoped to UI/navigation bundling. NOT a substitute for graph traversal. Polymorphic `object_type/object_id` design is correct for its purpose.
 - **ROSE's principle encoded**: "The connections already exist and were always intended — they are just waiting to be acknowledged." Recorded in artifact as guiding implementation principle.
 - Routing for implementation: HEPHAESTUS (actor 14) for SQL/PHP, THEMIS (actor 9) for doctrine validation, THOTH (actor 26) for table doc updates.
+
+## Implemented (2026-03-24, major agent coverage + blocker edges)
+- Normalized major-agent packets (`agent.json`, `capabilities.json`, `properties.json`, `system_prompt.txt`) for:
+  WOLFIE (1), LILITH (2), ROSE (3), THEMIS (9), ATHENA (12), HEPHAESTUS (14), HERMES (15), IRIS (16), THOTH (26), VISHWAKARMA (91).
+- Aligned actor 91 packet identity to `vishwakarma` per registry truth.
+- Added `lupo-database/lupopedia/actors/major_agents_manifest.json`.
+- Added `MAJOR_AGENT_COVERAGE_AND_READ_ORDER.md` and `ACTOR_PAIRING_USERS_DEPARTMENTS_MODEL.md` under 4.0.87 docs.
+- Published cross-channel read artifacts and blocker edges:
+  - channel 58 thread 5801
+  - channel 60 thread 6001
+  - channel 63 thread 6301 (blocks on channel 66 thread 1052)
+  - channel 64 thread 6401 (blocks on channel 66 threads 1051/1052)
+  - channel 66 thread 1052 (pairing defaults question)

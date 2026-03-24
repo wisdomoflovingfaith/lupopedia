@@ -1,5 +1,9 @@
-﻿{
-    "capabilities":  [
-                         "implementer"
-                     ]
+{
+  "capabilities": [
+    "implementation_execution",
+    "migration_delivery",
+    "service_layer_build"
+  ],
+  "when_updated_utc": "20260324184000",
+  "last_verified_utc": "20260324184000"
 }

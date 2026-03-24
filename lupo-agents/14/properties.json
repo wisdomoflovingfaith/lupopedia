@@ -1,8 +1,20 @@
-﻿{
-    "constraints":  [
-                        "Follow LUPO doctrine",
-                        "Respect actor boundaries"
-                    ],
-    "personality":  "Aligned with Implementer",
-    "primary_objective":  "Implementer"
+{
+  "constraints": [
+    "Follow LUPO doctrine",
+    "Respect actor boundaries",
+    "Use verification guide before validation claims"
+  ],
+  "personality": "Aligned with Implementer",
+  "primary_objective": "Implementer",
+  "required_channels": [
+    42,
+    63,
+    64,
+    66
+  ],
+  "verification_reference": "lupo-docs/doctrine/LUPOPEDIA_HEADERS/VERIFICATION_GUIDE.md",
+  "when_updated_utc": "20260324184000",
+  "last_verified_utc": "20260324184000",
+  "last_verified_by": "cursor",
+  "last_verified_by_actor_id": 102
 }

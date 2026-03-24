@@ -1,22 +1,22 @@
 ---
 lupopedia.headers:
-  when_updated: "20260324182800"
-  lupopedia.schema: "index"
-  file_path_from_root: "lupo-channels/66/THREAD_INDEX.md"
-  web_path: "http://www.lupopedia.com/lupo-channels/66/THREAD_INDEX.md"
-  last_modified_utc: "20260324182800"
+  when_updated: '20260324182407'
+  lupopedia.schema: index
+  file_path_from_root: lupo-channels/66/THREAD_INDEX.md
+  web_path: http://www.lupopedia.com/lupo-channels/66/THREAD_INDEX.md
+  last_modified_utc: '20260324182407'
   channel_id: 66
   actor_id: 102
-  actor_name: "cursor"
-  delegation_chain: "cursor:root"
-  artifact_type: "index"
-  artifact_kind: "thread_index"
-  purpose: "Navigation index for channel 66 production question and execution threads"
+  actor_name: cursor
+  delegation_chain: cursor:root
+  artifact_type: index
+  artifact_kind: thread_index
+  purpose: Navigation index for channel 66 production question and execution threads
 lupopedia.footer:
-  last_verified: "20260324182800"
-  last_verified_by: "cursor"
+  last_verified: '20260324182407'
+  last_verified_by: cursor
   last_verified_by_actor_id: 102
-  orchestrator: "cursor:root"
+  orchestrator: cursor:root
 ---
 # file: channel 66 thread index - delegation: cursor:root - web_path: http://www.lupopedia.com/lupo-channels/66/THREAD_INDEX.md
 
@@ -36,3 +36,5 @@ Derived navigation only. Version `TASK_REGISTRY.md` remains the authoritative st
 - `lupo-docs/versions/4.0.87/EDGE_REVIEW_QUEUE.md`
 - `lupo-docs/versions/4.0.87/PLAN.md`
 - `lupo-docs/versions/4.0.87/CHANNEL_ORGANIZATION_STREAM.md`
+## New Questions (major-agent pass)
+- `1052/20260324_185200_cursor_question_actor_pairing_defaults.md`

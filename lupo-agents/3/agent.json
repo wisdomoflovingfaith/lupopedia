@@ -1,10 +1,14 @@
-﻿{
-    "agent_id":  3,
-    "version":  "1.0.0",
-    "is_kernel":  false,
-    "layer":  "application",
-    "name":  "ROSE",
-    "slug":  "rose",
-    "role":  "Emotional Dialogue",
-    "is_required":  false
+{
+  "agent_id": 3,
+  "version": "1.0.1",
+  "is_kernel": false,
+  "layer": "application",
+  "name": "ROSE",
+  "slug": "rose",
+  "role": "Emotional Dialogue",
+  "is_required": true,
+  "when_updated_utc": "20260324184000",
+  "last_verified_utc": "20260324184000",
+  "last_verified_by": "cursor",
+  "last_verified_by_actor_id": 102
 }

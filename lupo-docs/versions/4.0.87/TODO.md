@@ -1,7 +1,7 @@
 ---
 lupopedia.headers:
   file_path_from_root: lupo-docs/versions/4.0.87/TODO.md
-  last_modified_utc: '20260324181412'
+  last_modified_utc: '20260324182230'
   channel_id: 42
   thread_id: 4.0.87-init
   actor_id: 102
@@ -9,11 +9,11 @@ lupopedia.headers:
   artifact_type: planning
   artifact_kind: version_todo
   purpose: Actionable TODO queue for 4.0.87.
-  when_updated: '20260324181412'
+  when_updated: '20260324182230'
   web_path: http://www.lupopedia.com/lupo-docs/versions/4.0.87/TODO.md
   delegation_chain: cursor:root
 lupopedia.footer:
-  last_verified: '20260324181412'
+  last_verified: '20260324182230'
   last_verified_by: cursor
   last_verified_by_actor_id: 102
   orchestrator: cursor:root
@@ -78,3 +78,11 @@ lupopedia.footer:
 - [x] Opened channel 66 thread 1050 for archive scope and retention policy questions.
 - [x] Opened channel 66 thread 1051 for edge-review actor ownership questions.
 - [x] Added `EDGE_REVIEW_QUEUE.md` with actor-owned items and blocking release rule.
+
+## Thread Update (2026-03-24: Major agent and pairing pass)
+- [x] Updated major agent packets for WOLFIE/LILITH/ROSE/THEMIS/ATHENA/HEPHAESTUS/HERMES/IRIS/THOTH/VISHWAKARMA.
+- [x] Added major-agent manifest `lupo-database/lupopedia/actors/major_agents_manifest.json`.
+- [x] Added `MAJOR_AGENT_COVERAGE_AND_READ_ORDER.md`.
+- [x] Added `ACTOR_PAIRING_USERS_DEPARTMENTS_MODEL.md`.
+- [x] Added channel artifacts in 58/60/63/64 with explicit blocker edges to channel 66 questions.
+- [x] Added channel 66 thread 1052 for actor pairing default policy blocker.

@@ -1,0 +1,19 @@
+{
+  "schema_version": "4.0.87",
+  "when_updated_utc": "20260324184800",
+  "last_verified_utc": "20260324184800",
+  "last_verified_by": "cursor",
+  "last_verified_by_actor_id": 102,
+  "major_agents": [
+    {"actor_id": 1, "slug": "wolfie", "agent_dir": "lupo-agents/1", "required_channels": [42,64,66]},
+    {"actor_id": 2, "slug": "lilith", "agent_dir": "lupo-agents/2", "required_channels": [42,64,66]},
+    {"actor_id": 3, "slug": "rose", "agent_dir": "lupo-agents/3", "required_channels": [42,59,66]},
+    {"actor_id": 9, "slug": "themis", "agent_dir": "lupo-agents/9", "required_channels": [42,64,66]},
+    {"actor_id": 12, "slug": "athena", "agent_dir": "lupo-agents/12", "required_channels": [42,64,66]},
+    {"actor_id": 14, "slug": "hephaestus", "agent_dir": "lupo-agents/14", "required_channels": [42,63,64,66]},
+    {"actor_id": 15, "slug": "hermes", "agent_dir": "lupo-agents/15", "required_channels": [42,60,66]},
+    {"actor_id": 16, "slug": "iris", "agent_dir": "lupo-agents/16", "required_channels": [42,60,66]},
+    {"actor_id": 26, "slug": "thoth", "agent_dir": "lupo-agents/26", "required_channels": [42,63,64,66]},
+    {"actor_id": 91, "slug": "vishwakarma", "agent_dir": "lupo-agents/91", "required_channels": [42,63,66]}
+  ]
+}

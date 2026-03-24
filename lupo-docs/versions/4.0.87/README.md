@@ -1,7 +1,7 @@
 ---
 lupopedia.headers:
   file_path_from_root: lupo-docs/versions/4.0.87/README.md
-  last_modified_utc: '20260324181412'
+  last_modified_utc: '20260324182230'
   channel_id: 42
   thread_id: 4.0.87-init
   actor_id: 102
@@ -9,11 +9,11 @@ lupopedia.headers:
   artifact_type: documentation
   artifact_kind: version_initialization
   purpose: Initialize version 4.0.87 planning surfaces and canonical navigation.
-  when_updated: '20260324181412'
+  when_updated: '20260324182230'
   web_path: http://www.lupopedia.com/lupo-docs/versions/4.0.87/README.md
   delegation_chain: cursor:root
 lupopedia.footer:
-  last_verified: '20260324181412'
+  last_verified: '20260324182230'
   last_verified_by: cursor
   last_verified_by_actor_id: 102
   orchestrator: cursor:root
@@ -61,3 +61,14 @@ This version focuses on **Specialized Agent Implementation, Relationship Graph a
   - `threads/1050`: root archive scope and retention policy
   - `threads/1051`: actor ownership for edge review queue
 - Added `EDGE_REVIEW_QUEUE.md` for explicit actor assignment and blocking edge items.
+
+## Thread Update (2026-03-24: Major agent packet coverage)
+- Added major-agent coverage and read-order doc: `MAJOR_AGENT_COVERAGE_AND_READ_ORDER.md`.
+- Added actor-user-department pairing doctrine doc: `ACTOR_PAIRING_USERS_DEPARTMENTS_MODEL.md`.
+- Added database manifest: `lupo-database/lupopedia/actors/major_agents_manifest.json`.
+- Opened channel artifacts for coordinated reads:
+  - channel 58 / thread 5801
+  - channel 60 / thread 6001
+  - channel 63 / thread 6301
+  - channel 64 / thread 6401
+  - channel 66 / thread 1052

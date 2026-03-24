@@ -3,7 +3,7 @@ lupopedia.headers:
   lupopedia.version: 4.0.76
   lupopedia.schema: doctrine
   file_path_from_root: lupo-docs/doctrine/AGENT_REGISTRY.md
-  last_modified_utc: '20260324174926'
+  last_modified_utc: '20260324182230'
   system_version: 4.0.76
   channel_id: 42
   actor_id: 102
@@ -11,7 +11,10 @@ lupopedia.headers:
     and IDE capabilities.
   artifact_type: doctrine
   artifact_kind: reference
-  when_updated: '20260324174926'
+  when_updated: '20260324182230'
+  web_path: http://www.lupopedia.com/lupo-docs/doctrine/AGENT_REGISTRY.md
+  delegation_chain: cursor:root
+  actor_name: cursor
 lupopedia.edges:
   outbound_edges:
   - to: lupo-database/lupopedia/actors/actor_id/registry.json
@@ -30,7 +33,7 @@ lupopedia.edges:
     type: references
     weight: 0.9
 lupopedia.footer:
-  last_verified: '20260324174926'
+  last_verified: '20260324182230'
   last_verified_by: cursor
   next_action:
   - Keep registry table and propagation matrix in sync with registry.json and propagate_agent_rules.php
@@ -214,3 +217,11 @@ Agents operate within project contexts but are **not project-owned identities**:
 - **Historical IDs** (e.g. old actor_id values that no longer match `registry.json`) may remain in filesystem artifacts, logs, or legacy docs. They are preserved for lineage and traceability.
 - They **do not** override canonical identity. New work must use the **current** canonical identity from `registry.json` (actor_id and slug).
 - Do not reuse legacy IDs for new actors. Do not point new tooling or docs at legacy IDs as the primary identity. When documenting history, you may reference legacy IDs with a note that they are non-canonical for new work.
+
+## Update (2026-03-24)
+Major-agent packet normalization and read-order artifacts are tracked in:
+- `lupo-docs/versions/4.0.87/MAJOR_AGENT_COVERAGE_AND_READ_ORDER.md`
+- `lupo-database/lupopedia/actors/major_agents_manifest.json`
+- Channel artifacts: 58/5801, 60/6001, 63/6301, 64/6401, 66/1052.
+
+Primary blocker mapping now uses explicit `blocks_on_question` edges to channel 66 questions.

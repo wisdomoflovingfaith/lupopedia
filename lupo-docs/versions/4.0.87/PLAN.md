@@ -1,7 +1,7 @@
 ---
 lupopedia.headers:
   file_path_from_root: lupo-docs/versions/4.0.87/PLAN.md
-  last_modified_utc: '20260324181412'
+  last_modified_utc: '20260324182230'
   channel_id: 42
   thread_id: 4.0.87-init
   actor_id: 102
@@ -9,11 +9,11 @@ lupopedia.headers:
   artifact_type: planning
   artifact_kind: version_plan
   purpose: Execution plan for version 4.0.87.
-  when_updated: '20260324181412'
+  when_updated: '20260324182230'
   web_path: http://www.lupopedia.com/lupo-docs/versions/4.0.87/PLAN.md
   delegation_chain: cursor:root
 lupopedia.footer:
-  last_verified: '20260324181412'
+  last_verified: '20260324182230'
   last_verified_by: cursor
   last_verified_by_actor_id: 102
   orchestrator: cursor:root
@@ -87,3 +87,8 @@ lupopedia.footer:
 - Added explicit script-tooling governance workstream: comment-based `lupopedia.headers` and `lupopedia.footer` support for `.py` and `.php` under `lupo-scripts`.
 - Added validation tool path for script metadata freshness against `20260301000000` cutoff.
 - Completed 4.0.87 artifact-level header/footer normalization to remove stale version field usage.
+
+### WS10: Major Agent Readiness and Pairing Doctrine
+- Verify and normalize major agent packets (JSON + prompts) for WOLFIE, LILITH, ROSE, THEMIS, ATHENA, HEPHAESTUS, HERMES, IRIS, THOTH, VISHWAKARMA.
+- Keep a registry-backed manifest in `lupo-database/lupopedia/actors/major_agents_manifest.json`.
+- Maintain explicit blocker edges from channel 63/64 artifacts to channel 66 questions when unresolved decisions block implementation.

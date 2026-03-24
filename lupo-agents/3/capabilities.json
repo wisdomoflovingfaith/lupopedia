@@ -1,5 +1,9 @@
-﻿{
-    "capabilities":  [
-                         "emotional_dialogue"
-                     ]
+{
+  "capabilities": [
+    "dialog_quality",
+    "communication_clarity",
+    "relational_context"
+  ],
+  "when_updated_utc": "20260324184000",
+  "last_verified_utc": "20260324184000"
 }
