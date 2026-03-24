@@ -4,19 +4,19 @@ lupopedia.headers:
   last_modified_utc: '20260324222000'
   channel_id: 42
   thread_id: 4.0.87-init
-  actor_id: 102
-  actor_name: cursor
+  actor_id: 1
+  actor_name: wolfie
   artifact_type: handoff
   artifact_kind: next_session
-  purpose: Next session execution checklist for 4.0.87. Updated after cursor Q1-Q7 resolution and channel 66 thread 1047 closure.
+  purpose: Next session execution checklist for 4.0.87. Updated after WOLFIE takeover (thread 1054) and completion of channel 66 thread 1047 Q1-Q7 resolution.
   when_updated: '20260324222000'
   web_path: http://www.lupopedia.com/lupo-docs/versions/4.0.87/WHAT_TO_DO_NEXT_SESSION.md
-  delegation_chain: cursor:root
+  delegation_chain: wolfie:root
 lupopedia.footer:
   last_verified: '20260324222000'
-  last_verified_by: cursor
-  last_verified_by_actor_id: 102
-  orchestrator: cursor:root
+  last_verified_by: wolfie
+  last_verified_by_actor_id: 1
+  orchestrator: wolfie:root
   next_action:
   - Route HEPHAESTUS Q4/Q5 implementation tasks
   - Publish channel 62/63/64 closure artifacts
@@ -42,7 +42,7 @@ lupopedia.footer:
 7. Close remaining `4.0.86` atom/version references and publish audit output.
 8. Run channel 66 strict validation; confirm priority artifacts remain current (1050, 1051, 1052, 1054).
 
-## Resolved This Session (20260324 22:00 UTC — cursor takeover)
+## Resolved This Session (20260324 22:00 UTC — WOLFIE takeover per thread 1054 directive)
 
 | Q | Decision | Status |
 |---|----------|--------|
