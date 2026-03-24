@@ -6,13 +6,13 @@
  * version-related constants and helper functions.
  * 
  * @package Lupopedia
- * @version 4.0.86
+ * @version 4.0.87
  * 
  * @note VERSION DOCTRINE: This file now loads version from GLOBAL_CURRENT_LUPOPEDIA_VERSION
  *       atom in config/global_atoms.yaml (Phase 2 implementation). Constants are defined
  *       from the atom at parse time, ensuring single source of truth. See
  *       docs/doctrine/VERSION_DOCTRINE.md for complete versioning doctrine.
- * @note FLIP v2: Version 4.0.86 includes FLIP v2 schema support and enhanced metadata
+ * @note FLIP v2: Version 4.0.87 includes FLIP v2 schema support and enhanced metadata
  */
 
 // Load atom loader function if not already loaded
@@ -108,7 +108,7 @@ if (!defined('LUPOPEDIA_VERSION_NUM')) {
  * @var int
  */
 if (!defined('LUPOPEDIA_VERSION_DATE')) {
-    define('LUPOPEDIA_VERSION_DATE', 20260320000000);
+    define('LUPOPEDIA_VERSION_DATE', 20260324000000);
 }
 
 /**
@@ -134,7 +134,7 @@ function lupopedia_get_version()
 /**
  * Get Lupopedia version (alias for CLI/help). Prefer get_lupo_version() in new code.
  *
- * @return string Version string (e.g. "4.0.86")
+ * @return string Version string (e.g. "4.0.87")
  */
 function get_lupo_version()
 {
@@ -144,7 +144,7 @@ function get_lupo_version()
 /**
  * Check if current version is at least the given minimum. PHP 5.3 safe.
  *
- * @param string $min_version Minimum version (e.g. "4.0.86")
+ * @param string $min_version Minimum version (e.g. "4.0.87")
  * @return bool
  */
 function is_version_at_least($min_version)

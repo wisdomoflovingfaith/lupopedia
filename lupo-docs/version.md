@@ -12,8 +12,14 @@ lupopedia.headers:
 
 # Lupopedia version history
 
-Current version: **4.0.79**  
-Date: 2026-03-16
+Current version: **4.0.87**  
+Date: 2026-03-24
+
+## Summary of changes (4.0.87)
+
+- **Version bump:** Updated canonical version markers to 4.0.87 (`LUPEDIA_VERSION`, `lupo-config/global_atoms.yaml`, `lupo-includes/version.php`).
+- **Version initialization:** Added `lupo-docs/versions/4.0.87/` template surfaces for planning, doctrine, migration, task registry, contradictions, and changelog.
+- **Execution focus for 4.0.87:** atoms, channels, documentation, LUPOPEDIA HEADERS (`lupopedia.init`, `lupopedia.edges`, `lupopedia.footer`), actor/agent/auth_user/department/faucet model clarity, and admin web interface LLM chatbot calls via `localhost/lupopedia/admin.php`.
 
 ## Summary of changes (4.0.79)
 

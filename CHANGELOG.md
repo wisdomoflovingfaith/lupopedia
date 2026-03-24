@@ -39,6 +39,23 @@ See lupo-docs/versions/4.0.85/ for structured changes.
 - For 4.0.85+, version-folder documentation is authoritative.
 - Root-level summaries must not duplicate or override version-folder records.
 
+## [4.0.87] - 20260324
+
+For version 4.0.87, canonical multi-agent details are in:
+
+- `lupo-docs/versions/4.0.87/CHANGELOG.md`
+- `lupo-docs/versions/4.0.87/PLAN.md`
+- `lupo-docs/versions/4.0.87/TODO.md`
+- `lupo-docs/versions/4.0.87/TASK_REGISTRY.md`
+
+Primary focus areas initialized for 4.0.87:
+
+- atoms and version propagation
+- channels and documentation reconciliation
+- LUPOPEDIA HEADERS system (`lupopedia.init`, `lupopedia.edges`, `lupopedia.footer`)
+- actor/agent/auth_user/department/faucet implementation clarity
+- admin web interface LLM chatbot path via `localhost/lupopedia/admin.php`
+
 ## [4.0.86] - 20260324
 
 For version 4.0.86, this root changelog is an index only.
