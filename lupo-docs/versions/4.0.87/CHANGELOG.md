@@ -1,7 +1,7 @@
 ---
 lupopedia.headers:
   file_path_from_root: lupo-docs/versions/4.0.87/CHANGELOG.md
-  last_modified_utc: '20260324180128'
+  last_modified_utc: '20260324181412'
   channel_id: 42
   thread_id: 4.0.87-init
   actor_id: 102
@@ -9,11 +9,11 @@ lupopedia.headers:
   artifact_type: changelog
   artifact_kind: version_history
   purpose: Version 4.0.87 changelog for multi-agent contributions.
-  when_updated: '20260324180128'
+  when_updated: '20260324181412'
   web_path: http://www.lupopedia.com/lupo-docs/versions/4.0.87/CHANGELOG.md
   delegation_chain: cursor:root
 lupopedia.footer:
-  last_verified: '20260324180128'
+  last_verified: '20260324181412'
   last_verified_by: cursor
   last_verified_by_actor_id: 102
   orchestrator: cursor:root
@@ -75,6 +75,14 @@ lupopedia.footer:
 - Updated LUPOPEDIA HEADERS doctrine docs to explicitly support `.py` and `.php` comment-based metadata validation.
 - Normalized database table docs footer freshness and `when_updated` migration baseline for revalidation workflow.
 - `admin.php` LLM chatbot call path hardening
+
+## Implemented (2026-03-24, organization and production questions)
+- Moved high-confidence stale root files into `lupo-docs/archived/root_stale_20260324/` with manifest at `ARCHIVE_MANIFEST.md`.
+- Opened channel 66 production question threads:
+  - `1050`: root archive scope, allowlist, and retention policy
+  - `1051`: edge review actor ownership and blocking SLA
+- Added `lupo-docs/versions/4.0.87/EDGE_REVIEW_QUEUE.md` to define actor-owned edge review queue and release blockers.
+- Updated root `README.md` to 4.0.87 baseline with current metadata/validation model and active workstream links.
 
 ## Session: 20260324 — Edge Graph Deep Analysis (cursor / ATHENA / ROSE)
 

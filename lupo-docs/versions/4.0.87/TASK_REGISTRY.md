@@ -1,7 +1,7 @@
 ---
 lupopedia.headers:
   file_path_from_root: lupo-docs/versions/4.0.87/TASK_REGISTRY.md
-  last_modified_utc: '20260324180128'
+  last_modified_utc: '20260324181412'
   channel_id: 42
   thread_id: 4.0.87-init
   actor_id: 102
@@ -9,11 +9,11 @@ lupopedia.headers:
   artifact_type: planning
   artifact_kind: task_registry
   purpose: Task registry for version 4.0.87 workstreams.
-  when_updated: '20260324180128'
+  when_updated: '20260324181412'
   web_path: http://www.lupopedia.com/lupo-docs/versions/4.0.87/TASK_REGISTRY.md
   delegation_chain: cursor:root
 lupopedia.footer:
-  last_verified: '20260324180128'
+  last_verified: '20260324181412'
   last_verified_by: cursor
   last_verified_by_actor_id: 102
   orchestrator: cursor:root
@@ -54,3 +54,9 @@ lupopedia.footer:
 | V487-027 | Script comment metadata doctrine + validator | completed | cursor | Added `validate_script_footer_verification.py` and doctrine updates |
 | V487-028 | Script metadata rollout to key tooling files | completed | cursor | Added comment metadata to core validator/import scripts |
 | V487-029 | Script metadata full-coverage sweep | queued | cursor | Extend to remaining legacy scripts under `lupo-scripts/` |
+
+## Thread Update (2026-03-24: Root organization + channel 66 questions)
+| V487-030 | Root stale file archival pass | completed | cursor | Moved high-confidence stale/temp root files into `lupo-docs/archived/root_stale_20260324/` |
+| V487-031 | Channel 66 root archive scope question | completed | cursor | Opened thread 1050 with policy questions |
+| V487-032 | Channel 66 edge ownership question | completed | cursor | Opened thread 1051 with actor ownership questions |
+| V487-033 | 4.0.87 edge review queue | completed | cursor | Added `EDGE_REVIEW_QUEUE.md` with actor-owned queue and blocking rule |

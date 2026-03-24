@@ -1,7 +1,7 @@
 ---
 lupopedia.headers:
   file_path_from_root: lupo-docs/versions/4.0.87/README.md
-  last_modified_utc: '20260324180128'
+  last_modified_utc: '20260324181412'
   channel_id: 42
   thread_id: 4.0.87-init
   actor_id: 102
@@ -9,11 +9,11 @@ lupopedia.headers:
   artifact_type: documentation
   artifact_kind: version_initialization
   purpose: Initialize version 4.0.87 planning surfaces and canonical navigation.
-  when_updated: '20260324180128'
+  when_updated: '20260324181412'
   web_path: http://www.lupopedia.com/lupo-docs/versions/4.0.87/README.md
   delegation_chain: cursor:root
 lupopedia.footer:
-  last_verified: '20260324180128'
+  last_verified: '20260324181412'
   last_verified_by: cursor
   last_verified_by_actor_id: 102
   orchestrator: cursor:root
@@ -44,6 +44,7 @@ This version focuses on **Specialized Agent Implementation, Relationship Graph a
 - WHAT_TO_DO_NEXT_SESSION.md: handoff checklist
 - CHANNEL_ORGANIZATION_STREAM.md: channel-focused stream for `lupo-*` folder cleanup and docs accuracy
 - DOCUMENTATION_AND_EDGES_STREAM.md: channels for database-doc accuracy and edge-governance
+- EDGE_REVIEW_QUEUE.md: actor-owned edge verification queue and release gate checklist
 
 ## 4.0.87 Focus Areas
 - Atoms and canonical version propagation
@@ -53,3 +54,10 @@ This version focuses on **Specialized Agent Implementation, Relationship Graph a
 - Admin web interface readiness for LLM chatbot calls via `localhost/lupopedia/admin.php`
 - Repository organization channel stream for `lupo-*` directories and deprecated artifact cleanup
 - Upgrade doctrine lock: no Lupopedia -> Lupopedia upgrade path in 4.0.x (new install or Crafty import only)
+
+## Thread Update (2026-03-24: Root cleanup + channel 66 questions)
+- Archived high-confidence stale root files under `lupo-docs/archived/root_stale_20260324/`.
+- Opened channel 66 questions in new threads:
+  - `threads/1050`: root archive scope and retention policy
+  - `threads/1051`: actor ownership for edge review queue
+- Added `EDGE_REVIEW_QUEUE.md` for explicit actor assignment and blocking edge items.

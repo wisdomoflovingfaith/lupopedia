@@ -1,162 +1,103 @@
 ---
 lupopedia.headers:
-  version_when_written: "4.0.86"
-  lupopedia.schema: "documentation"
-  file_path_from_root: "README.md"
-  web_path: "http://www.lupopedia.com/README"
-  last_modified_utc: "20260324"
+  when_updated: '20260324181412'
+  lupopedia.schema: documentation
+  file_path_from_root: README.md
+  web_path: http://www.lupopedia.com/README.md
+  last_modified_utc: '20260324181412'
   channel_id: 42
-  thread_id: "1001"
-  actor_id: 108
-  actor_name: "junie"
-  faucet_name: "jetbrains"
-  delegation_chain: "junie:root"
-  artifact_type: "project_documentation"
-  artifact_kind: "readme"
-  purpose: "Primary project documentation (v4.0.86) with comprehensive reorganization of core concepts."
-  tags: ["junie", "readme", "v4.0.86", "project_overview", "identity_model", "semantic_os"]
-
+  thread_id: 1001
+  actor_id: 102
+  actor_name: cursor
+  delegation_chain: cursor:root
+  artifact_type: project_documentation
+  artifact_kind: readme
+  purpose: Root overview for Lupopedia 4.0.87 architecture, doctrine, and active workstreams
+  tags:
+  - readme
+  - 4.0.87
+  - architecture
+  - doctrine
+  - workflow
 lupopedia.init:
   required_reading:
-    - path: "ONBOARDING.md"
-      reason: "Operational quick-start; first file for new or existing IDE agents"
-    - path: "README.md"
-      reason: "High-level overview, architecture, and canonical root rules"
-    - path: "AGENTS.md"
-      reason: "Agent/faucet distinction, eleven primary personas, and IDE faucet roles"
-    - path: "lupo-docs/doctrine/LUPOPEDIA_HEADERS/README.md"
-      reason: "Header format, block order, and file structure"
-    - path: "lupo-rules/root/README.md"
-      reason: "Root rules index and non-negotiable constraints"
-    - path: "lupo-docs/versions/4.0.86/"
-      reason: "Version 4.0.86 comprehensive documentation and scope lock"
-
+  - path: ONBOARDING.md
+    reason: Operational quick-start
+  - path: AGENTS.md
+    reason: Actor/faucet model and multi-agent coordination
+  - path: lupo-docs/doctrine/LUPOPEDIA_HEADERS/README.md
+    reason: Header/footer validation doctrine
+  - path: lupo-docs/versions/4.0.87/README.md
+    reason: Current version scope and execution status
 lupopedia.edges:
+  comment: Snapshot of root documentation references for v4.0.87.
   outbound_edges:
-    - { to: "AGENTS.md", type: "references", weight: 1.0 }
-    - { to: "lupo-rules/root/README.md", type: "references", weight: 0.98 }
-    - { to: "ONBOARDING.md", type: "references", weight: 0.95 }
-    - { to: "lupo-docs/versions/4.0.86/OVERVIEW.md", type: "references", weight: 0.95 }
-
+  - to: AGENTS.md
+    type: references
+    weight: 1.0
+  - to: ONBOARDING.md
+    type: references
+    weight: 0.95
+  - to: lupo-docs/versions/4.0.87/README.md
+    type: references
+    weight: 1.0
+  - to: lupo-docs/versions/4.0.87/PLAN.md
+    type: references
+    weight: 0.95
+  - to: lupo-docs/versions/4.0.87/EDGE_REVIEW_QUEUE.md
+    type: references
+    weight: 0.9
+  - to: lupo-docs/archived/root_stale_20260324/
+    type: references
+    weight: 0.8
 lupopedia.footer:
-  last_verified: "20260324"
-  last_verified_by: "junie"
-  orchestrator: "junie:root"
+  last_verified: '20260324181412'
+  last_verified_by: cursor
+  last_verified_by_actor_id: 102
+  orchestrator: cursor:root
   next_action:
-    - "Maintain README alignment with version-specific scope locks and doctrine changes."
-    - "Update core concept diagrams when the web dialog interface is finalized."
+  - Keep README aligned with 4.0.87 version docs and doctrine updates
+  - Revalidate links and edge references each release session
 ---
-# file: Lupopedia Semantic OS — delegation: junie:root — web_path: http://www.lupopedia.com/README
+# file: Lupopedia README 4.0.87 - delegation: cursor:root - web_path: http://www.lupopedia.com/README.md
 
-# Lupopedia Semantic OS v4.0.86
+# Lupopedia Semantic OS (v4.0.87)
 
-Lupopedia is a **deterministic semantic operating system** built on the durable foundation of Crafty Syntax (human coordination) and Doom Emacs research (compositional structure). It organizes humans, AI agents, rules, and documents into an inspectable, replayed, and validated knowledge graph.
+Lupopedia is a doctrine-driven semantic operating system built on Crafty Syntax 3.7.5 foundations, with explicit actor orchestration, channel/thread workflows, and verifiable artifact metadata.
 
-## 🚀 Version 4.0.86 (Active)
-**Status**: 4.0.86 is the **stabilization and synchronization** version. It focuses on clarifying the **Unified Identity Model**, enforcing **Channel Security**, and resolving documentation contradictions across the actor system.
-- **Scope Lock**: Channels 58 (Actor Model), 59 (ROSE/DIALOG), 60 (Agent System), and 61 (Enforcement).
-- **Authority**: WOLFIE (actor_id 1) is the final orchestrator; install SQL is the schema authority.
-- **Upgrade Path**: Crafty Syntax 3.7.5 → Lupopedia 4.0.x (the only supported path).
+## Current Version Status
 
----
+- Active version line: `4.0.87`
+- Scope lock: no Lupopedia-to-Lupopedia upgrade path in 4.0.x
+- Supported operational paths:
+  - fresh install
+  - Crafty Syntax 3.7.5 import/upgrade flow
 
-## 1. The Unified Identity Model
+## Core System Model
 
-Lupopedia separates human account identity from operational orchestration identity and AI behavioral metadata.
+- Actors orchestrate; faucets execute.
+- Identity is unified around `actor_id`.
+- Channels and threads are the primary coordination surfaces.
+- Edges are the relationship graph authority for cross-artifact/cross-entity linkage.
 
-### Auth Users (`lupo_auth_users`)
-- **Who you are**: The physical human logging in (credentials, 2FA, ownership).
-- **Rule**: Never use `user_id` for operations; operations use the paired `actor_id`.
+## Metadata and Validation Model
 
-### Departments (`lupo_departments`)
-- **Where you belong**: Organizational units for grouping and routing.
-- **System Departments**: `department_id: 0` (System), `department_id: 1` (General Default).
-- **Membership**: Managed via `lupo_actor_departments`.
+- Artifact update timestamp: `lupopedia.headers.when_updated` (UTC `YYYYMMDDHHIISS`)
+- Trust/verification timestamp: `lupopedia.footer.last_verified`
+- Required verifier fields: `last_verified_by`, `last_verified_by_actor_id`
+- Revalidation cutoff for trust-sensitive artifacts: `2026-03-01 00:00:00 UTC`
 
-### Actors (`lupo_actors`)
-- **How you act**: The universal operational identity layer.
-- **Identity Tiers**:
-  - `0–999`: System and Primary AI Actors (e.g., WOLFIE, LILITH, HERMES).
-  - `0`: Root / Master User (special exception in `auth_users` for human orchestration).
-  - `1000+`: Other human-led actors (linked to `auth_users`).
-- **Traits & Roles**: Intrinsic constraints (`traits`) vs. channel-local permissions (`roles`).
+## 4.0.87 Workstreams
 
-### Agents (`lupo_agents`)
-- **AI Behavior**: Metadata for AI reasoning (model, prompt, temperature, provider).
-- **Distinction**: The *actor* is the identity; the *agent* is the configuration.
+- Version execution plan: `lupo-docs/versions/4.0.87/PLAN.md`
+- Database docs + edge governance streams: channels 63 and 64
+- Production question stream: channel 66
+- Edge actor queue: `lupo-docs/versions/4.0.87/EDGE_REVIEW_QUEUE.md`
+- Root stale-file archival: `lupo-docs/archived/root_stale_20260324/`
 
-### Faucets (`lupo_agent_faucets`)
-- **Execution Surface**: The software/API used (e.g., Cursor, Windsurf, Warp, JetBrains).
-- **Core Doctrine**: **Actors orchestrate, Faucets execute.**
+## Required Root Reading
 
----
-
-## 2. Orchestration & Coordination
-
-Work happens in a strict containment hierarchy to ensure clear lineage and traceability.
-
-### The Hierarchy: Project → Channel → Thread → Task
-- **Project** (Namespace): The repository boundary (e.g., `project_id: 0` for core).
-- **Channel** (Workspace): Scoped environments for specific coordination (e.g., Channel 42 for Dev).
-- **Thread** (Conversation): A focused dialog for a single task (numeric `thread_id`).
-- **Task** (Work Item): Stable identity of the work itself (human-readable `task_id`).
-
-### Coordination Flow
-1. **WOLFIE** issues a directive or allocates a thread for a task.
-2. **Actors** write artifacts (Markdown + Headers) into the channel/thread tree.
-3. **HERMES (15)** reads artifacts, classifies intent, and writes executable prompts for target actors.
-4. **Target Actors** execute work and publish results under their own `actor_id`.
-
----
-
-## 3. The Semantic OS Layer
-
-Lupopedia treats relationships, properties, and decisions as first-class data.
-
-### LUPOPEDIA HEADERS
-Structured YAML blocks at the top of files that act as the **bridge between database and filesystem**.
-- **Self-Describing**: Artifacts carry their identity, intent, and relationships (edges).
-- **Subdirectory-Aware**: All `web_path` headers MUST include the `LUPOPEDIA_BASE_URL` (e.g., `/lupopedia/`) as the project is always installed in a subfolder.
-- **Deterministic**: Headers allow the system to reconstruct state even if the DB is unavailable.
-
-### Edges and Metadata
-- **Edges (`lupo_edges`)**: Typed, weighted relationships between entities (e.g., `references`, `resolves`, `depends_on`).
-- **Metadata (`lupo_metadata`)**: Property key-value pairs stored as first-class records.
-
-### Dialog & Messages
-- **Threads (`lupo_dialog_threads`)**: Containers for ongoing dialog.
-- **Messages (`lupo_dialog_messages`)**: Individual communication entries, audited by actor and faucet.
-
----
-
-## 4. Dual-Mode Architecture
-
-Lupopedia is split across two authoritative modes that must remain in sync:
-
-1. **Filesystem Mode**: The surface for External AI (Claude, GPT). It reads artifacts and headers; it has **Zero Database Access**.
-2. **Database Mode**: The surface for Internal Runtime (PHP, HERMES). It manages schema authority, identity registry, and temporal state.
-
-**Round-trip Equivalence**: Changes in one mode must be projectable to the other without data loss.
-
----
-
-## 5. Development Environment
-
-- **Runtime**: PHP 5.6 through 8.3+ (Core code must remain compatible with PHP 5.6).
-- **Database**: MySQL 8.0+ / MariaDB 10.5+ / PostgreSQL (Logic-free DB; all logic in PHP).
-- **Local Stack**: ServBay on Windows 11 / PowerShell.
-- **No Build Step**: Pure procedural PHP + PDO + Semantic Engine. No Composer or frameworks.
-- **Timestamps**: All timestamps are `BIGINT` in `YYYYMMDDHHIISS` UTC format (never DB-generated).
-
----
-
-## 6. Required Reading & Onboarding
-
-Lupopedia is **doctrine-driven**. Read in order:
-1. **[ONBOARDING.md](ONBOARDING.md)** (Quick Start).
-2. **[AGENTS.md](AGENTS.md)** (Roles & Registry).
-3. **[lupo-rules/root/README.md](lupo-rules/root/README.md)** (Non-negotiable rules).
-4. **[lupo-docs/doctrine/LUPOPEDIA_HEADERS/README.md](lupo-docs/doctrine/LUPOPEDIA_HEADERS/README.md)** (Header spec).
-
----
-*Lupopedia 4.0.86 — A semantic operating system orchestrating humans and AI across channels, artifacts, and nodes.*
+1. `ONBOARDING.md`
+2. `AGENTS.md`
+3. `lupo-docs/doctrine/LUPOPEDIA_HEADERS/README.md`
+4. `lupo-docs/versions/4.0.87/README.md`

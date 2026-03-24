@@ -1,7 +1,7 @@
 ---
 lupopedia.headers:
   file_path_from_root: lupo-docs/versions/4.0.87/PLAN.md
-  last_modified_utc: '20260324180128'
+  last_modified_utc: '20260324181412'
   channel_id: 42
   thread_id: 4.0.87-init
   actor_id: 102
@@ -9,11 +9,11 @@ lupopedia.headers:
   artifact_type: planning
   artifact_kind: version_plan
   purpose: Execution plan for version 4.0.87.
-  when_updated: '20260324180128'
+  when_updated: '20260324181412'
   web_path: http://www.lupopedia.com/lupo-docs/versions/4.0.87/PLAN.md
   delegation_chain: cursor:root
 lupopedia.footer:
-  last_verified: '20260324180128'
+  last_verified: '20260324181412'
   last_verified_by: cursor
   last_verified_by_actor_id: 102
   orchestrator: cursor:root
@@ -66,6 +66,18 @@ lupopedia.footer:
 ### WS8: Edge Service Layer (NEXT)
 - Implement `EdgeQueryService` (Track 4 of ATHENA_STRATEGY) to provide a unified API for graph traversal.
 - Deprecate direct `thread_lineage` reads in favor of the service layer.
+
+### WS9: Root Archive and Production Questions
+- Move stale root-level temporary and per-agent variant artifacts into `lupo-docs/archived/` with traceability.
+- Drive unresolved production questions through channel 66 numeric threads.
+- Use the edge queue in `EDGE_REVIEW_QUEUE.md` for actor ownership and release gating.
+
+## Edge Review Ownership (Actor Queue)
+- WOLFIE: release gate orchestration and closure approval.
+- ATHENA: edge semantics and traversal policy review.
+- THOTH: edge documentation traceability and consistency.
+- LILITH: adversarial validation of contradictions and stale assumptions.
+- HEPHAESTUS: implementation fixes for schema/seed/service items.
 
 ## Upgrade Path Lock
 - No Lupopedia -> Lupopedia upgrade compatibility work is required in 4.0.87.
