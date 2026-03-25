@@ -73,7 +73,7 @@ lupopedia.footer:
 - [ ] Validate `admin.php` `section=channel-chat` path against `/api/channels/{id}/messages` behavior; capture evidence artifact.
 - [x] ERQ-006 WOLFIE release signoff via channel 66 (final release gate).
 - [ ] Complete full atom/version marker audit and close mismatches.
-- [ ] Reconcile channel documentation to match live routing/security behavior.
+- [x] Reconcile channel documentation to match live routing/security behavior. — Completed via V487-002 alignment pass; evidence: `lupo-channels/42/threads/1054/20260325_231500_cursor_v487_002_channel_docs_alignment_completion.md`.
 - [ ] Produce `LUPOPEDIA_HEADERS` implementation matrix (`init`, `edges`, `footer`).
 - [ ] Add/refresh docs for actor-agent-auth_user-department-faucet relationships.
 - [ ] Verify DB docs for identity and membership tables are canonical and current.
@@ -191,3 +191,10 @@ lupopedia.footer:
 - [ ] Atom/version audit — close stray `4.0.86` references.
 - [ ] Regenerate `lupo-tools/flare_validate_issues.json` after CIP + edge table deletions.
 - [ ] Remove dev diagnostic scripts from root after release (`check_edge_state.php`, `check_metadata_state.php`, etc.).
+
+## Session Update (2026-03-25 23:15 UTC — V487-002 closeout)
+
+- [x] Completed V487-002 channel docs alignment closeout.
+- [x] Updated root `README.md` with mandatory channel documentation pack and channel/thread execution requirements.
+- [x] Updated `AGENTS.md` with mandatory channel literacy section for all actors and agents.
+- [x] Published completion artifact: `lupo-channels/42/threads/1054/20260325_231500_cursor_v487_002_channel_docs_alignment_completion.md`.

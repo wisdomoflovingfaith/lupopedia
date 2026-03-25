@@ -18,13 +18,13 @@ if (!defined('LUPOPEDIA_PATH')) {
 }
 
 // Load required classes
-require_once $repo_root . '/app/Services/Initialization/InitializationException.php';
-require_once $repo_root . '/app/Services/Initialization/LogWriterException.php';
-require_once $repo_root . '/app/Services/Initialization/Interfaces/TimestampHelperInterface.php';
-require_once $repo_root . '/app/Services/Initialization/Interfaces/InitializationLoggerInterface.php';
-require_once $repo_root . '/app/Services/Initialization/Interfaces/LogWriterInterface.php';
-require_once $repo_root . '/app/Services/Initialization/TimestampHelper.php';
-require_once $repo_root . '/app/Services/Initialization/LogWriter.php';
+require_once $repo_root . '/lupo-app/Services/Initialization/InitializationException.php';
+require_once $repo_root . '/lupo-app/Services/Initialization/LogWriterException.php';
+require_once $repo_root . '/lupo-app/Services/Initialization/Interfaces/TimestampHelperInterface.php';
+require_once $repo_root . '/lupo-app/Services/Initialization/Interfaces/InitializationLoggerInterface.php';
+require_once $repo_root . '/lupo-app/Services/Initialization/Interfaces/LogWriterInterface.php';
+require_once $repo_root . '/lupo-app/Services/Initialization/TimestampHelper.php';
+require_once $repo_root . '/lupo-app/Services/Initialization/LogWriter.php';
 
 // Mock logger for testing
 class MockInitializationLogger implements InitializationLoggerInterface

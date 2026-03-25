@@ -1,10 +1,10 @@
 ---
 lupopedia.headers:
-  when_updated: '20260325231500'
+  when_updated: '20260325204641'
   lupopedia.schema: documentation
   file_path_from_root: README.md
-  web_path: http://www.lupopedia.com/README.md
-  last_modified_utc: '20260325231500'
+  web_path: http://www.lupopedia.com/lupopedia/README.md
+  last_modified_utc: '20260325204641'
   channel_id: 42
   thread_id: 4.0.88-init
   actor_id: 102
@@ -33,6 +33,14 @@ lupopedia.init:
     reason: Final 4.0.87 release history and authorization state
   - path: lupo-docs/versions/4.0.88/TASK_REGISTRY.md
     reason: Active carryover work for the next version line
+  - path: lupo-channels/channel_index.md
+    reason: Canonical channel map and path policy
+  - path: lupo-channels/channel_creation_doctrine.md
+    reason: Channel semantics and creation/routing doctrine
+  - path: lupo-channels/42/THREAD_INDEX.md
+    reason: Canonical example of thread-scoped channel execution
+  - path: ORGANIZATION.md
+    reason: Canonical root folder map and repository write guidance
 lupopedia.edges:
   comment: Snapshot of root documentation references for 4.0.88 planning and release continuity.
   outbound_edges:
@@ -54,20 +62,29 @@ lupopedia.edges:
   - to: lupo-docs/versions/4.0.88/TASK_REGISTRY.md
     type: references
     weight: 1.0
+  - to: ORGANIZATION.md
+    type: references
+    weight: 0.95
   - to: lupo-docs/archived/root_stale_20260324/
     type: references
     weight: 0.8
 lupopedia.footer:
-  last_verified: '20260325231500'
-  last_verified_by: cursor
-  last_verified_by_actor_id: 102
+  last_verified: '20260325204641'
+  verified_by:
+    identity_type: actor
+    actor_id: 102
+    agent_name_identity: Cursor IDE Agent (Lead Orchestration)
+    department_id_delta: 0
+  verified_via:
+    type: faucet
+    faucet_slug: cursor
   orchestrator: wolfie:root
   next_action:
   - Keep README aligned with AGENTS.md and IDENTITY_LAYERS_DOCTRINE.md
   - Treat 4.0.87 as release-authorized history and 4.0.88 as active planning scope
   - Revalidate root links and doctrine edges each version rollover
 ---
-# file: Lupopedia README 4.0.88 - delegation: cursor:root - web_path: http://www.lupopedia.com/README.md
+# file: Lupopedia README 4.0.88 - delegation: cursor:root - web_path: [http://www.lupopedia.com/lupopedia/README.md](http://www.lupopedia.com/lupopedia/README.md)
 
 # Lupopedia Semantic OS (v4.0.88)
 
@@ -110,7 +127,8 @@ Binding rules remain:
 
 - Artifact update timestamp: `lupopedia.headers.when_updated` (UTC `YYYYMMDDHHIISS`)
 - Trust/verification timestamp: `lupopedia.footer.last_verified`
-- Required verifier fields: `last_verified_by`, `last_verified_by_actor_id`
+- Required verifier fields: `verified_by.identity_type`, `verified_by.actor_id`, `verified_via.type`, `verified_via.faucet_slug`
+- Recommended verifier clarity fields: `verified_by.agent_name_identity`, `verified_by.department_id_delta`
 - Revalidation cutoff for trust-sensitive artifacts: `2026-03-01 00:00:00 UTC`
 
 ## Release Continuity
@@ -127,6 +145,50 @@ Binding rules remain:
 - Canonical actor and coordination guide: `AGENTS.md`
 - Canonical identity doctrine: `lupo-docs/doctrine/IDENTITY_LAYERS_DOCTRINE.md`
 
+## Channel Documentation Pack (Mandatory)
+
+All actors and agents must know channel mechanics and thread-scoped execution.
+
+- `lupo-channels/channel_index.md`
+- `lupo-channels/channel_creation_doctrine.md`
+- `lupo-channels/42/THREAD_INDEX.md`
+- `AGENTS.md`
+
+Operational requirement:
+
+1. Select channel context first.
+2. Execute work inside a thread in that channel.
+3. Persist status/report artifacts in that thread path.
+
+## Repository Write Policy
+
+Write new work into the correct `lupo-*` surface, not the repository root.
+
+- Tests belong in `lupo-tests/`.
+- Status, summary, and report artifacts belong in `lupo-channels/<channel_id>/threads/<thread_id>/`.
+- Runtime/data artifacts belong in their domain folders (`lupo-logs/`, `lupo-tmp/`, `lupo-cache/`, `lupo-sessions/`, `lupo-archive/`, etc.).
+- Root is reserved for stable entry/docs surfaces only (for example: `README.md`, `CHANGELOG.md`, `CHANGELOG_ARCHIVE.md`, `plan.md`, `report.md`, `TODO.md`, and required runtime entry files).
+
+If an artifact belongs to channel context and no thread exists yet, create one under the target channel and store the artifact there.
+
+## Channel and Thread Context Model
+
+Lupopedia context is channel-first, then thread-scoped:
+
+1. A channel defines the coordination domain.
+2. A thread defines the specific workstream within that channel.
+3. Artifacts are persisted under that thread directory.
+
+Canonical path pattern:
+
+`lupo-channels/<channel_id>/threads/<thread_id>/<artifact>.md`
+
+Canonical references:
+
+- Channel index: `lupo-channels/channel_index.md`
+- Channel 42 thread index: `lupo-channels/42/THREAD_INDEX.md`
+- Root folder map and write guidance: `ORGANIZATION.md`
+
 ## Required Root Reading
 
 1. `ONBOARDING.md`
@@ -135,6 +197,7 @@ Binding rules remain:
 4. `lupo-docs/doctrine/IDENTITY_LAYERS_DOCTRINE.md`
 5. `lupo-docs/versions/4.0.87/CHANGELOG.md`
 6. `lupo-docs/versions/4.0.88/TASK_REGISTRY.md`
+7. `ORGANIZATION.md`
 
 ## 4.0.87 Closeout Summary
 

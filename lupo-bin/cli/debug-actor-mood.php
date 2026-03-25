@@ -30,8 +30,8 @@ if (php_sapi_name() !== 'cli') {
 
 // Bootstrap Lupopedia
 require_once __DIR__ . '/../../lupopedia-config.php';
-require_once __DIR__ . '/../../app/Services/ActorMoodService.php';
-require_once __DIR__ . '/../../app/Services/PackMoodCoherenceService.php';
+require_once __DIR__ . '/../../lupo-app/Services/ActorMoodService.php';
+require_once __DIR__ . '/../../lupo-app/Services/PackMoodCoherenceService.php';
 
 use App\Services\ActorMoodService;
 use App\Services\PackMoodCoherenceService;

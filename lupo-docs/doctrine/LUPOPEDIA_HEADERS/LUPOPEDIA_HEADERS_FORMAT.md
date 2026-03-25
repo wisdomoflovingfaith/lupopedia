@@ -1,10 +1,10 @@
 ---
 lupopedia.headers:
-  when_updated: "20260324190000"
+  when_updated: "20260325203444"
   lupopedia.schema: "doctrine"
   file_path_from_root: "lupo-docs/doctrine/LUPOPEDIA_HEADERS/LUPOPEDIA_HEADERS_FORMAT.md"
-  web_path: "http://www.lupopedia.com/lupo-docs/doctrine/LUPOPEDIA_HEADERS/LUPOPEDIA_HEADERS_FORMAT.md"
-  last_modified_utc: "20260324190000"
+  web_path: "http://www.lupopedia.com/lupopedia/lupo-docs/doctrine/LUPOPEDIA_HEADERS/LUPOPEDIA_HEADERS_FORMAT.md"
+  last_modified_utc: "20260325203444"
   channel_id: 42
   actor_id: 102
   actor_name: "cursor"
@@ -13,14 +13,20 @@ lupopedia.headers:
   artifact_kind: "reference"
   namespace: "governance"
 lupopedia.footer:
-  last_verified: "20260324190000"
-  last_verified_by: "cursor"
-  last_verified_by_actor_id: 102
+  last_verified: "20260325203444"
+  verified_by:
+    identity_type: "actor"
+    actor_id: 102
+    agent_name_identity: "Cursor IDE Agent (Lead Orchestration)"
+    department_id_delta: 0
+  verified_via:
+    type: "faucet"
+    faucet_slug: "cursor"
   orchestrator: "cursor:root"
   next_action:
     - "Keep all examples on when_updated plus footer verification"
 ---
-# file: LUPOPEDIA HEADERS FORMAT - delegation: cursor:root - web_path: http://www.lupopedia.com/lupo-docs/doctrine/LUPOPEDIA_HEADERS/LUPOPEDIA_HEADERS_FORMAT.md
+# file: LUPOPEDIA HEADERS FORMAT - delegation: cursor:root - web_path: [http://www.lupopedia.com/lupopedia/lupo-docs/doctrine/LUPOPEDIA_HEADERS/LUPOPEDIA_HEADERS_FORMAT.md](http://www.lupopedia.com/lupopedia/lupo-docs/doctrine/LUPOPEDIA_HEADERS/LUPOPEDIA_HEADERS_FORMAT.md)
 
 # LUPOPEDIA HEADERS Format
 
@@ -94,7 +100,14 @@ lupopedia.headers:
   
 lupopedia.footer:
   last_verified: "20260324150000"       # Agent verified during regeneration
-  last_verified_by: "cursor"
+  verified_by:
+    identity_type: "actor"
+    actor_id: 102
+    agent_name_identity: "Cursor IDE Agent (Lead Orchestration)"
+    department_id_delta: 0
+  verified_via:
+    type: "faucet"
+    faucet_slug: "cursor"
 ```
 
 Note: `last_modified_utc` is **later** than `when_updated` because the file was regenerated after content changed.
@@ -106,8 +119,19 @@ Note: `last_modified_utc` is **later** than `when_updated` because the file was 
 If `lupopedia.footer` exists, require:
 
 - `last_verified` (UTC `YYYYMMDD` or `YYYYMMDDHHIISS`)
-- `last_verified_by`
-- `last_verified_by_actor_id`
+- `verified_by.identity_type` (`actor` | `agent`)
+- `verified_by.actor_id`
+- `verified_via.type` (`faucet` | `direct`)
+- `verified_via.faucet_slug` (`none` if direct)
+
+Recommended:
+
+- `verified_by.agent_name_identity`
+- `verified_by.department_id_delta` (`0` until department delta is active)
+
+Deprecated:
+
+- Legacy flat verifier name/id keys.
 
 Revalidation rule:
 
@@ -142,8 +166,10 @@ Lupopedia enforces a **single-field versioning model** where artifacts use only 
 **Where**: `lupopedia.footer` block  
 **Required fields**:
 - `last_verified` (UTC YYYYMMDD or YYYYMMDDHHIISS)
-- `last_verified_by` (actor name)
-- `last_verified_by_actor_id` (numeric ID)
+- `verified_by.identity_type` (`actor` or `agent`)
+- `verified_by.actor_id` (numeric ID)
+- `verified_via.type` (`faucet` or `direct`)
+- `verified_via.faucet_slug` (faucet slug or `none`)
 
 **Enforcement basis**:
 ```
@@ -183,8 +209,10 @@ Non-Markdown script artifacts in `lupo-scripts/` can carry LUPOPEDIA metadata in
 - Use the same keys:
   - `lupopedia.headers.when_updated`
   - `lupopedia.footer.last_verified`
-  - `lupopedia.footer.last_verified_by`
-  - `lupopedia.footer.last_verified_by_actor_id`
+  - `lupopedia.footer.verified_by.identity_type`
+  - `lupopedia.footer.verified_by.actor_id`
+  - `lupopedia.footer.verified_via.type`
+  - `lupopedia.footer.verified_via.faucet_slug`
 
 Script comment metadata must follow the same stale rule: `last_verified >= 20260301000000`.
 
@@ -231,7 +259,7 @@ python lupo-scripts/generate_headers_from_db.py --dry-run --file-path path/to/fi
 
 Generated headers must maintain this order:
 1. `lupopedia.headers` (with required: `when_updated`, `file_path_from_root`, `last_modified_utc`)
-2. `lupopedia.footer` (if present; with required: `last_verified`, `last_verified_by`, `last_verified_by_actor_id`)
+2. `lupopedia.footer` (if present; with required: `last_verified`, `verified_by.*`, `verified_via.*`)
 3. `lupopedia.edges` (if present; only for active table docs)
 
 ## When Regeneration Is Necessary

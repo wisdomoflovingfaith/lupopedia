@@ -1,110 +1,70 @@
-# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
-
 ---
-lupopedia.init:
-  requirements:
-    flare:
-      version: ">=4.0.55"
-  execution_mode: "advisory"
-  pre_actions:
-    - type: dependency_check
-      path: "lupo-includes/bootstrap.php"
-
-lupopedia.conditional:
-  guards:
-    execution_mode: "advisory"
-    allow:
-      actor_ids: [0, 1004]
-      agent_names: ["system", "antigravity"]
-    deny:
-      actor_ids: []
-    time_window:
-      not_before_utc: "2026-03-04T00:00:00Z"
-      not_after_utc: "2026-03-11T00:00:00Z"
-    conditions:
-      - type: feature_flag_enabled
-        flag: "FLAME_V1"
-  brief:
-    who:
-      owner_actor_id: 1004
-      intended_actors: [0, 1004]
-      audience: ["agents"]
-    what:
-      artifact_type: "guide"
-      objective: "Collection: Identity (SOT)"
-    where:
-      repo_paths: ["lupo-database\lupopedia\channels\lupo-channels\42\collections\identity-collection.md"]
-      runtime_scope: "cli"
-      channels:
-        primary_channel_id: 1
-    when:
-      urgency: "standard"
-      effective_utc: "2026-03-04T10:08:32Z"
-    why:
-      rationale: "Standard artifact generation"
-    how:
-      method: "FLARE automated application"
-      success_criteria: ["header applied correctly"]
-
 lupopedia.headers:
-  lupopedia.version: "4.0.73"
+  lupopedia.version: "4.0.88"
   lupopedia.schema: "documentation"
   file_path_from_root: "lupo-database/lupopedia/channels/channel_id/42/collections/identity-collection.md"
-  file_hash: "a44b32ae3ff7e0634eba077be2bae861e49308a1e389cd7989ba7fc017c91852"
-  last_updated_utc: "20260304"
-  system_version: "4.0.56"
-  channel_id: 1
-  actor_id: 1004
-  delegation_chain: "1004:10000"
-  artifact_type: "guide"
-  artifact_kind: "documentation"
-  purpose: "Collection: Identity (SOT)"
-  mood_rgb: "4169E1"
-  traits: ["flare", "indexed", "v4.0.56"]
-  tags: ["lupo-database", "lupopedia", "channels", "lupo-channels", "42", "collections"]
-  lupo_agent: "antigravity"
+  web_path: "http://www.lupopedia.com/lupo-docs/collections/identity-collection"
+  when_updated: "20260325240000"
+  last_modified_utc: "20260325240000"
+  system_version: "4.0.88"
+  channel_id: 42
+  actor_id: 26
+  actor_name: "thoth"
+  delegation_chain: "26:1"
+  artifact_type: "collection"
+  artifact_kind: "source_of_truth"
+  purpose: "Canonical collection mapping for 5-layer identity model: auth user, actor, department, agent, and faucet"
+  tags: ["identity", "actors", "agents", "departments", "auth", "faucets", "4.0.88", "collection"]
 
 lupopedia.edges:
-  outbound_edges: []
+  outbound_edges:
+    - { to: "lupo-docs/doctrine/IDENTITY_LAYERS_DOCTRINE.md", type: "references", weight: 1.0, reason: "Canonical identity layer doctrine" }
+    - { to: "lupo-docs/doctrine/IDENTITY_MODEL.md", type: "references", weight: 0.95, reason: "Identity model companion" }
+    - { to: "lupo-database/lupopedia/actors/actor_id/registry.json", type: "maps_to", weight: 1.0, reason: "Actor registry source" }
+    - { to: "lupo-channels/42/threads/1006/", type: "derived_from", weight: 1.0, reason: "Original identity clarification thread" }
 
 lupopedia.footer:
-  last_verified: "20260304"
-  last_verified_by: "antigravity"
-
-lupopedia.see:
-  mappings:
-    - ["lupo-database\lupopedia\channels\lupo-channels\42\collections\identity-collection.md", "http://www.lupopedia.com/IDENTITY-COLLECTION"]
-
-lupopedia.close:
-  post_actions:
-    - type: register_completion
-      channel_id: 0
-  actor_id: 1004
+  last_verified: "20260325240000"
+  last_verified_by: "cursor"
+  last_verified_by_actor_id: 102
+  orchestrator: "thoth:1"
+  next_action: "Maintain alignment with evolving 5-layer identity topology"
 ---
 
 # Collection: Identity (SOT)
 
----
-wolfie.headers: {
-  file_path_from_root: "lupo-channels/42/collections/identity-collection.md",
-  system_version: "4.0.55",
-  channel_id: 42,
-  actor_id: 1006,
-  created_ymdhis: 20260302041350,
-  updated_ymdhis: 20260302041350,
-  message_type: "collection",
-  visibility: "public",
-  priority: "high"
-}
----
-
 ## Description
-The Source of Truth (SOT) for actor identities, authentication records, and system-wide identifiers.
 
-## Associated Tables
-- `identity`
-(Note: Often linked with `lupo_actors` and `lupo_auth_users`).
+The Source of Truth (SOT) collection for Lupopedia's canonical 5-layer identity model that separates and coordinates:
 
-## Optimization & MD Representation
-- **MD Mapping**: Identity data is managed via `registry.json` and agent-specific documentation files (e.g., `GEMINI.md`).
-- **Future Goal**: Flatten identity attributes into a single optimized registry to eliminate multi-join lookups.
+1. **Auth User** (`lupo_auth_users`) — Human login credentials and authentication metadata
+2. **Actor** (`lupo_actors`) — Operational orchestration identity; `actor_id` is the universal key
+3. **Department** (`lupo_actor_departments`, `lupo_departments`) — Execution context and authority scope
+4. **Agent** (`lupo_agents`) — AI model configuration, prompts, and capabilities
+5. **Faucet** (`lupo_agent_faucets`) — IDE/API execution surface (not orchestration identity)
+
+This model eliminates layer confusion and prevents privilege ambiguity by enforcing strict separation of concerns.
+
+## Associated Documentation
+
+- **Primary Doctrine**: `lupo-docs/doctrine/IDENTITY_LAYERS_DOCTRINE.md`
+- **Companion Model**: `lupo-docs/doctrine/IDENTITY_MODEL.md`
+- **Authoritative Registry**: `lupo-database/lupopedia/actors/actor_id/registry.json`
+- **Origin Thread**: Channel 42, Thread 1006 (Identity Model Clarification, 4.0.87 WS3)
+
+## Key Tables
+
+- `lupo_auth_users` — Human login and authentication
+- `lupo_actors` — Actor operational identities
+- `lupo_actor_departments` — Actor-department bindings
+- `lupo_departments` — Department context and authority scopes
+- `lupo_agents` — Agent configuration and metadata
+- `lupo_agent_faucets` — IDE/API surface bindings
+
+## Implementation Guidance
+
+- Keep identity-layer terminology consistent across docs and code
+- Use `actor_id` as the operational join key in all relationships
+- Treat `lupo_agents` as configuration metadata, not identity authority
+- Treat `lupo_agent_faucets` as interface surfaces, not orchestration identity
+- Enforce server-side actor context resolution (never trust client-supplied actor_id)

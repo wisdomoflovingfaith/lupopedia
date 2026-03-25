@@ -1,11 +1,10 @@
 ---
 lupopedia.headers:
-  lupopedia.version: "4.0.88"
   lupopedia.schema: "version_documentation"
   file_path_from_root: "lupo-docs/versions/4.0.88/README.md"
-  web_path: "http://www.lupopedia.com/lupo-docs/versions/4.0.88/README.md"
-  last_modified_utc: "20260325210000"
-  system_version: "4.0.88"
+  web_path: "http://www.lupopedia.com/lupopedia/lupo-docs/versions/4.0.88/README.md"
+  last_modified_utc: "20260325205227"
+  when_updated: "20260325205227"
   channel_id: 42
   thread_id: "4.0.88-init"
   actor_id: 1
@@ -23,12 +22,28 @@ lupopedia.edges:
     - { to: "lupo-docs/versions/4.0.87/CHANGELOG.md", type: "succeeds", weight: 1.0 }
     - { to: "TASK_REGISTRY.md", type: "includes", weight: 1.0 }
     - { to: "PLAN.md", type: "references", weight: 1.0 }
+    - { to: "TODO.md", type: "references", weight: 1.0 }
+    - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/LUPOPEDIA_HEADERS/README.md", type: "depends_on", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/LUPOPEDIA_HEADERS/VALIDATORS_AND_TOOLING.md", type: "depends_on", weight: 1.0 }
+    - { to: "README.md", type: "aligns_with", weight: 0.95 }
+    - { to: "AGENTS.md", type: "aligns_with", weight: 0.95 }
+    - { to: "ONBOARDING.md", type: "aligns_with", weight: 0.95 }
 
 lupopedia.footer:
-  last_verified: "20260325210000"
-  last_verified_by: "cascade"
+  last_verified: "20260325205227"
+  verified_by:
+    identity_type: "actor"
+    actor_id: 102
+    agent_name_identity: "Cursor IDE Agent (Lead Orchestration)"
+    department_id_delta: 0
+  verified_via:
+    type: "faucet"
+    faucet_slug: "cursor"
   next_action: "Begin 4.0.88 development planning and task execution"
 ---
+
+# file: Version 4.0.88 README - delegation: cursor:root - web_path: [http://www.lupopedia.com/lupopedia/lupo-docs/versions/4.0.88/README.md](http://www.lupopedia.com/lupopedia/lupo-docs/versions/4.0.88/README.md)
 
 # Version 4.0.88
 
@@ -65,6 +80,14 @@ Version 4.0.88 begins the next development cycle following the successful 4.0.87
 - Continue system optimization and documentation
 
 **Expected Timeline**: 2-3 weeks development cycle
+
+## Thread Outcomes (2026-03-25)
+
+- LUPOPEDIA_HEADERS doctrine updated to structured verifier metadata: `verified_by` and `verified_via`.
+- THOTH semantic truth-check authority formalized for stale artifact revalidation.
+- Compatibility policy clarified: `version_when_written` warns in 4.0.88, reject enforcement starts in 4.0.89.
+- Subdirectory web path doctrine enforced (`/lupopedia/`) with clickable `# file` web_path identity lines.
+- Root governance docs (`README.md`, `AGENTS.md`, `ONBOARDING.md`) aligned with channel-first execution and current metadata format.
 
 ---
 

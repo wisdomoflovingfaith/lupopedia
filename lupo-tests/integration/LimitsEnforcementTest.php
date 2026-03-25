@@ -10,7 +10,7 @@
  * @author CASCADE
  */
 
-require_once __DIR__ . '/../../app/Services/System/LimitsEnforcementService.php';
+require_once __DIR__ . '/../../lupo-app/Services/System/LimitsEnforcementService.php';
 
 class LimitsEnforcementTest {
     

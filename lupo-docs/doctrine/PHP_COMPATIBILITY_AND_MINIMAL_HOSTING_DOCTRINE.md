@@ -6,9 +6,9 @@ lupopedia.headers:
   file_path_from_root: "lupo-docs/doctrine/PHP_COMPATIBILITY_AND_MINIMAL_HOSTING_DOCTRINE.md"
   file_hash: "336e9a958c59463835d518bb609d9f772cfb87974448b1da4e7de46cd3a4799e"
   last_updated_utc: "20260228155738"
-  system_version: "4.0.51"
+  system_version: "4.0.88"
   channel_id: 1
-  actor_id: 1002
+  actor_id: 102
   delegation_chain: "1002:10000"
   artifact_type: "documentation"
   artifact_kind: "documentation"
@@ -25,7 +25,7 @@ lupopedia.edges:
 
 lupopedia.footer:
   last_verified: "20260228155738"
-  last_verified_by: "windsurf"
+  last_verified_by: "cursor"
 ---
 
 # LUPOPEDIA HEADERS (replaces FLARE)
@@ -40,9 +40,9 @@ lupopedia.headers:
   file_path_from_root: "lupo-docs\doctrine\PHP_COMPATIBILITY_AND_MINIMAL_HOSTING_DOCTRINE.md"
   file_hash: "17de19fc3279409c2ef8c285db6d7277387d1d3a9b20bfe97387ada6e513d36a"
   last_updated_utc: "20260228"
-  system_version: "4.0.50"
+  system_version: "4.0.88"
   channel_id: 1
-  actor_id: 1002
+  actor_id: 102
   delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
@@ -53,11 +53,11 @@ lupopedia.headers:
   lupo_agent: "windsurf"
 
   needs_review: ["delegation_chain"]
-  system_version: "4.0.50"
+  system_version: "4.0.88"
   last_updated_utc: "20260228"
 lupopedia.footer:
   last_verified: "20260228"
-  last_verified_by: "windsurf"
+  last_verified_by: "cursor"
     deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use lupopedia.headers"]
 ---
 
@@ -65,7 +65,7 @@ lupopedia.footer:
 # FLIP Header (alias: Wolfie Header, CROP Header, FLIPPING Header)
 wolfie.headers: explicit architecture with structured clarity for every file.
 file_path_from_root: lupo-docs/doctrine/PHP_COMPATIBILITY_AND_MINIMAL_HOSTING_DOCTRINE.md
-file.last_modified_system_version: "4.0.16"
+file.last_modified_system_version: "4.0.88"
 file.last_modified_utc: "20260218000000"
 channel_id: 42   # ANUBIS adoption channel
 tags: ["lost", "orphan", "doctrine"]

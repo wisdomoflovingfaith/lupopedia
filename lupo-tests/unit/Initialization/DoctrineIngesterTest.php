@@ -9,7 +9,7 @@
  */
 
 // Include the component to test
-require_once __DIR__ . '/../../../app/Services/Initialization/DoctrineIngester.php';
+require_once __DIR__ . '/../../../lupo-app/Services/Initialization/DoctrineIngester.php';
 
 class DoctrineIngesterTest
 {

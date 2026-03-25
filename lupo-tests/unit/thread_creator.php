@@ -12,12 +12,12 @@ define('LUPOPEDIA_PATH', dirname(dirname(__DIR__)));
 define('LUPOPEDIA_ABSPATH', LUPOPEDIA_PATH . '/');
 
 // Load required classes
-require_once LUPOPEDIA_PATH . '/app/Services/Initialization/InitializationException.php';
-require_once LUPOPEDIA_PATH . '/app/Services/Initialization/ThreadCreationException.php';
-require_once LUPOPEDIA_PATH . '/app/Services/Initialization/Interfaces/TimestampHelperInterface.php';
-require_once LUPOPEDIA_PATH . '/app/Services/Initialization/Interfaces/ThreadCreatorInterface.php';
-require_once LUPOPEDIA_PATH . '/app/Services/Initialization/TimestampHelper.php';
-require_once LUPOPEDIA_PATH . '/app/Services/Initialization/ThreadCreator.php';
+require_once LUPOPEDIA_PATH . '/lupo-app/Services/Initialization/InitializationException.php';
+require_once LUPOPEDIA_PATH . '/lupo-app/Services/Initialization/ThreadCreationException.php';
+require_once LUPOPEDIA_PATH . '/lupo-app/Services/Initialization/Interfaces/TimestampHelperInterface.php';
+require_once LUPOPEDIA_PATH . '/lupo-app/Services/Initialization/Interfaces/ThreadCreatorInterface.php';
+require_once LUPOPEDIA_PATH . '/lupo-app/Services/Initialization/TimestampHelper.php';
+require_once LUPOPEDIA_PATH . '/lupo-app/Services/Initialization/ThreadCreator.php';
 
 // Test counter
 $tests_passed = 0;

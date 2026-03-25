@@ -142,7 +142,7 @@ class DialogManager
         $msgId = (int) $this->db->insert('lupo_dialog_messages', $data);
 
         // Update counts and activity tracking (replacing triggers)
-        $servicePath = LUPOPEDIA_PATH . '/app/Services/TriggerReplacements/DialogMessagesInsertService.php';
+        $servicePath = LUPOPEDIA_PATH . '/lupo-app/Services/TriggerReplacements/DialogMessagesInsertService.php';
         if (file_exists($servicePath)) {
             require_once $servicePath;
             $insertService = new DialogMessagesInsertService($this->db);

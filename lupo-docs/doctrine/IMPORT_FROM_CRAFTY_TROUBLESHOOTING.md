@@ -6,9 +6,9 @@ lupopedia.headers:
   file_path_from_root: "lupo-docs/doctrine/IMPORT_FROM_CRAFTY_TROUBLESHOOTING.md"
   file_hash: "1033f40536b03e5e38446592499b8499ec07cbc15643eb39d6d4d4ec8820cc71"
   last_updated_utc: "20260228155738"
-  system_version: "4.0.51"
+  system_version: "4.0.88"
   channel_id: 1
-  actor_id: 1002
+  actor_id: 102
   delegation_chain: "1002:10000"
   artifact_type: "documentation"
   artifact_kind: "documentation"
@@ -25,7 +25,7 @@ lupopedia.edges:
 
 lupopedia.footer:
   last_verified: "20260228155738"
-  last_verified_by: "windsurf"
+  last_verified_by: "cursor"
 ---
 
 # LUPOPEDIA HEADERS (replaces FLARE)
@@ -40,9 +40,9 @@ lupopedia.headers:
   file_path_from_root: "lupo-docs\doctrine\IMPORT_FROM_CRAFTY_TROUBLESHOOTING.md"
   file_hash: "56946b2ea2082ec573a6b4bc29c9cb4f960c8cd21639533a2a1b20ae73f7badb"
   last_updated_utc: "20260228"
-  system_version: "4.0.50"
+  system_version: "4.0.88"
   channel_id: 1
-  actor_id: 1002
+  actor_id: 102
   delegation_chain: null
   artifact_type: "guide"
   artifact_kind: "documentation"
@@ -53,11 +53,11 @@ lupopedia.headers:
   lupo_agent: "windsurf"
 
   needs_review: ["delegation_chain"]
-  system_version: "4.0.50"
+  system_version: "4.0.88"
   last_updated_utc: "20260228"
 lupopedia.footer:
   last_verified: "20260228"
-  last_verified_by: "windsurf"
+  last_verified_by: "cursor"
     deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use lupopedia.headers"]
 ---
 
@@ -65,7 +65,7 @@ lupopedia.footer:
 # FLIP Header (alias: Wolfie Header, CROP Header, FLIPPING Header)
 wolfie.headers: explicit architecture with structured clarity for every file.
 file_path_from_root: lupo-docs/doctrine/IMPORT_FROM_CRAFTY_TROUBLESHOOTING.md
-file.last_modified_system_version: "4.0.16"
+file.last_modified_system_version: "4.0.88"
 file.last_modified_utc: "20260218000000"
 channel_id: 42   # ANUBIS adoption channel
 tags: ["lost", "orphan", "doctrine"]

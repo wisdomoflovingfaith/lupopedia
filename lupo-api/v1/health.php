@@ -16,7 +16,7 @@ if (!defined('LUPOPEDIA_PATH')) {
 }
 
 require_once __DIR__ . '/../../lupopedia-config.php';
-require_once __DIR__ . '/../../app/Services/System/SystemHealthService.php';
+require_once __DIR__ . '/../../lupo-app/Services/System/SystemHealthService.php';
 
 use App\Services\System\SystemHealthService;
 

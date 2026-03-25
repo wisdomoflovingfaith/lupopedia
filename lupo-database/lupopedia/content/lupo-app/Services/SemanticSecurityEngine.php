@@ -1,7 +1,7 @@
 ---
 # FLIP Header (alias: Wolfie Header, CROP Header)
 wolfie.headers: explicit architecture with structured clarity for every file.
-file_path_from_root: app/Services/SemanticSecurityEngine.php
+file_path_from_root: lupo-app/Services/SemanticSecurityEngine.php
 file.last_modified_system_version: "4.0.33"
 file.last_modified_utc: "20260223165000"
 actor_420_status: "banned_mythological"

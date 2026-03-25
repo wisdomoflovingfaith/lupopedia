@@ -1,39 +1,42 @@
 ---
-# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
 lupopedia.headers:
   file_path_from_root: "CHANGELOG_ARCHIVE.md"
-  version_when_written: "4.0.84"
-  file_hash: "c4d1d6346617ce4c2ab0ba467d3bc966d4f63bc9104e932c7a5b4752233f0e55"
-  channel_id: 1
-  actor_id: 1003
-  last_modified_utc: "20260227"
-  delegation_chain: "1003:10000"
+  version_when_written: "4.0.88"
+  last_modified_utc: "20260325"
+  last_modified_system_version: "4.0.88"
+  channel_id: 42
+  actor_id: 102
+  actor_name: "cursor"
   artifact_type: "changelog_archive"
-  purpose: "Historical version archive for Lupopedia with FLARE protocol migration documentation"
-  mood_rgb: "4B0082"
   artifact_kind: "version_history"
-  traits: ["archive", "comprehensive", "v4.0.48"]
-  tags: ["changelog", "versions", "releases", "history", "archive", "flare_migration"]
-  lupo_agent: "antigravity"
-  actor_ip: "127.0.0.1"
+  purpose: "Historical version archive for Lupopedia v0 through v4.0.84; documents FLARE protocol migration and ancestral decision context"
+  delegation_chain: "cursor:root"
+  web_path: "http://www.lupopedia.com/lupopedia/CHANGELOG_ARCHIVE.md"
+  traits: ["archive", "canonical", "historical", "v4.0.88"]
+  tags: ["changelog", "versions", "releases", "history", "archive", "migration", "pre_4.0.85"]
 
 lupopedia.edges:
-  file_path_from_root: "CHANGELOG_ARCHIVE.md"
   outbound_edges:
-    - { to: "CHANGELOG.md", type: "references", weight: 0.9, reason: "Current active development changelog" }
-    - { to: "lupo-docs/AGENT_INVENTORY.md", type: "references", weight: 0.8 }
-    - { to: "lupo-docs/doctrine/AGENT_REGISTRY_DOCTRINE.md", type: "references", weight: 0.7 }
-    - { to: "lupo-docs/doctrine/FLARE/FLARE_DOCTRINE.md", type: "references", weight: 1.0 }
-    - { to: "lupo-docs/FLARE_HEADERS_QUICK_REFERENCE.md", type: "references", weight: 0.9 }
-    - { to: "config/global_atoms.yaml", type: "references", weight: 0.8 }
-  semantic_tags: ["changelog", "versions", "releases", "history", "archive", "flare"]
+    - to: "CHANGELOG.md"
+      type: "references"
+      weight: 1.0
+      reason: "Current active development changelog (4.0.85+)"
+    - to: "lupo-docs/versions/4.0.88/CHANGELOG.md"
+      type: "references"
+      weight: 0.95
+      reason: "Current version-specific changelog"
+    - to: "lupo-docs/doctrine/FLARE/FLARE_DOCTRINE.md"
+      type: "references"
+      weight: 0.9
+      reason: "FLARE protocol documentation"
+  semantic_tags: ["changelog", "history", "migration", "versions", "archive"]
 
-  last_updated_utc: "20260228"
-  system_version: "4.0.50"
-  last_updated_utc: "20260228"
 lupopedia.footer:
-  last_verified_utc: "20260227"
-  last_verified_by: "antigravity"
+  last_verified: "20260325"
+  last_verified_by: "cursor"
+  last_verified_by_actor_id: 102
+  orchestrator: "cursor:root"
+  next_action: "Keep archive headers synchronized when major version milestones occur"
 ---
 
 ---

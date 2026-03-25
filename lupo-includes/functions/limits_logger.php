@@ -44,7 +44,7 @@ function safe_check_version_bump($currentVersion, $newVersion) {
             return true;
         }
         if (!class_exists('App\Services\System\LimitsEnforcementService')) {
-            $path = __DIR__ . '/../../app/Services/System/LimitsEnforcementService.php';
+            $path = __DIR__ . '/../../lupo-app/Services/System/LimitsEnforcementService.php';
             if (file_exists($path)) {
                 require_once $path;
             }
@@ -78,7 +78,7 @@ function safe_check_table_count($proposedNewTables = 0) {
             return true;
         }
         if (!class_exists('App\Services\System\LimitsEnforcementService')) {
-            $path = __DIR__ . '/../../app/Services/System/LimitsEnforcementService.php';
+            $path = __DIR__ . '/../../lupo-app/Services/System/LimitsEnforcementService.php';
             if (file_exists($path)) {
                 require_once $path;
             }
@@ -111,7 +111,7 @@ function safe_check_weekend_mode() {
             return true;
         }
         if (!class_exists('App\Services\System\LimitsEnforcementService')) {
-            $path = __DIR__ . '/../../app/Services/System/LimitsEnforcementService.php';
+            $path = __DIR__ . '/../../lupo-app/Services/System/LimitsEnforcementService.php';
             if (file_exists($path)) {
                 require_once $path;
             }

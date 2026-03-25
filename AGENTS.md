@@ -2,9 +2,8 @@
 lupopedia.headers:
   lupopedia.schema: documentation
   file_path_from_root: AGENTS.md
-  version_when_written: 4.0.84
-  web_path: http://www.lupopedia.com/AGENTS
-  last_modified_utc: '20260324174926'
+  web_path: http://www.lupopedia.com/lupopedia/AGENTS.md
+  last_modified_utc: '20260325204807'
   channel_id: 42
   actor_id: 102
   actor_name: cursor
@@ -30,7 +29,7 @@ lupopedia.headers:
   - multi_agent
   agent_name_identity: Cursor IDE Agent (Lead Orchestration)
   lupo_agent: cursor
-  when_updated: '20260324174926'
+  when_updated: '20260325204807'
 lupopedia.edges:
   outbound_edges:
   - to: lupo-rules/root/MULTI_AGENT_COORDINATION_DOCTRINE.md
@@ -75,18 +74,24 @@ lupopedia.edges:
 lupopedia.see:
   mappings:
   - - AGENTS.md
-    - http://www.lupopedia.com/AGENTS
+    - http://www.lupopedia.com/lupopedia/AGENTS.md
 lupopedia.footer:
-  last_verified: '20260324174926'
-  last_verified_by: cursor
+  last_verified: '20260325204807'
+  verified_by:
+    identity_type: actor
+    actor_id: 102
+    agent_name_identity: Cursor IDE Agent (Lead Orchestration)
+    department_id_delta: 0
+  verified_via:
+    type: faucet
+    faucet_slug: cursor
   orchestrator: junie:root
   next_action:
   - Keep agent identity and faucet links current with registry
   - Validate LUPOPEDIA HEADERS and next_action when updating this guide
   - Point new IDE agents to MULTI_AGENT_COORDINATION_DOCTRINE and ONBOARDING.md
-  last_verified_by_actor_id: 102
 ---
-# file: AGENTS — delegation: junie:root — web_path: http://www.lupopedia.com/AGENTS
+# file: AGENTS — delegation: junie:root — web_path: [http://www.lupopedia.com/lupopedia/AGENTS.md](http://www.lupopedia.com/lupopedia/AGENTS.md)
 
 # AGENTS.md
 
@@ -95,6 +100,24 @@ This file provides guidance for **IDE faucet agents** and contributors. **Canoni
 **Canonical identity, propagation targets, and IDE roles** remain in [lupo-docs/doctrine/AGENT_REGISTRY.md](lupo-docs/doctrine/AGENT_REGISTRY.md). Resolve `actor_id` and slugs from [lupo-database/lupopedia/actors/actor_id/registry.json](lupo-database/lupopedia/actors/actor_id/registry.json).
 
 **New IDE or web terminal agent?** Register via the **[Actor Registration Checklist](lupo-docs/ACTOR_REGISTRATION_CHECKLIST.md)**. Do not contribute as an anonymous or unregistered agent.
+
+## Mandatory Channel Literacy (All Actors and Agents)
+
+All actors and agents must operate with channel-first context and thread-scoped execution.
+
+Required references:
+
+- `README.md`
+- `lupo-channels/channel_index.md`
+- `lupo-channels/channel_creation_doctrine.md`
+- `lupo-channels/42/THREAD_INDEX.md`
+
+Required behavior:
+
+1. Select target channel before execution.
+2. Use an existing thread in that channel, or create one if missing.
+3. Write status/report/workstream artifacts into `lupo-channels/<channel_id>/threads/<thread_id>/`.
+4. Do not place channel-scoped work artifacts in repository root.
 
 ## Primary Coordination Personas (eleven)
 

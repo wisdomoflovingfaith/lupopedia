@@ -1,3 +1,69 @@
+---
+lupopedia.headers:
+   when_updated: '20260325205005'
+   lupopedia.schema: documentation
+   file_path_from_root: ONBOARDING.md
+   web_path: http://www.lupopedia.com/lupopedia/ONBOARDING.md
+   last_modified_utc: '20260325205005'
+   channel_id: 42
+   actor_id: 102
+   actor_name: cursor
+   delegation_chain: cursor:root
+   artifact_type: onboarding_guide
+   artifact_kind: operational_entry
+   purpose: Operational quick-start for agents and contributors with canonical actor, channel, and doctrine alignment.
+   tags:
+   - onboarding
+   - agents
+   - actors
+   - channels
+   - doctrine
+   - quickstart
+lupopedia.edges:
+   comment: Snapshot of canonical onboarding dependencies for actor/channel/doctrine execution.
+   outbound_edges:
+   - to: README.md
+      type: references
+      weight: 1.0
+   - to: AGENTS.md
+      type: aligns_with
+      weight: 1.0
+   - to: lupo-rules/root/MULTI_AGENT_COORDINATION_DOCTRINE.md
+      type: references
+      weight: 1.0
+   - to: lupo-docs/doctrine/LUPOPEDIA_HEADERS/README.md
+      type: references
+      weight: 1.0
+   - to: lupo-docs/doctrine/IDENTITY_LAYERS_DOCTRINE.md
+      type: references
+      weight: 1.0
+   - to: lupo-channels/channel_index.md
+      type: references
+      weight: 0.95
+   - to: lupo-channels/channel_creation_doctrine.md
+      type: references
+      weight: 0.95
+   - to: lupo-channels/42/THREAD_INDEX.md
+      type: references
+      weight: 0.95
+lupopedia.footer:
+   last_verified: '20260325205005'
+   verified_by:
+      identity_type: actor
+      actor_id: 102
+      agent_name_identity: Cursor IDE Agent (Lead Orchestration)
+      department_id_delta: 0
+   verified_via:
+      type: faucet
+      faucet_slug: cursor
+   orchestrator: cursor:root
+   next_action:
+   - Keep onboarding synchronized with AGENTS.md and channel doctrine updates
+   - Revalidate task-authority wording whenever MULTI_AGENT doctrine changes
+   - Ensure required-reading links resolve for new agents
+---
+# file: ONBOARDING - delegation: cursor:root - web_path: [http://www.lupopedia.com/lupopedia/ONBOARDING.md](http://www.lupopedia.com/lupopedia/ONBOARDING.md)
+
 # Lupopedia — Onboarding
 
 **Operational entry point for new agents and contributors.**  
@@ -36,7 +102,7 @@ Read **[lupo-rules/root/MULTI_AGENT_COORDINATION_DOCTRINE.md](lupo-rules/root/MU
 - **IDE faucets** — Cursor, Windsurf, Kiro, Cascade, Warp, Zencoder, Antigravity are **human interfaces**; doctrine requires routing work through primary personas and registered channel context—not treating an IDE as the sole orchestration authority.
 - **Channel context** — All coordination work is invalid without `channel_id` (default multi-agent workspace: **42**). Confirm membership where posting or acting on channel data.
 - **Artifacts** — Proof of coordination lives under **`lupo-channels/{channel_id}/`** (threads/tasks/broadcasts/direct) with the artifact families defined in the doctrine (e.g. `WOLFIE_DIRECTIVE_*`, `SESHAT_REVIEW_*`). `lupo-docs/status/` is archival/legacy only; the channel system is authoritative for continuity.
-- **Task authority** — For the active release cycle, the coordination TODO is the version file **`lupo-docs/versions/<current_version>/TODO.md`** (resolve `<current_version>` from [CHANGELOG.md](CHANGELOG.md) or `config/global_atoms.yaml`). Update it when moving task state; link tasks to their owning thread/task checkpoint artifacts as doctrine requires.
+- **Task authority** — Per MULTI_AGENT doctrine: root **`TODO.md`** is the multi-agent coordination queue (including HERMES prompt queue), while **`lupo-docs/versions/<current_version>/TODO.md`** is the version product backlog. Update the correct surface based on task type; always link to owning channel thread/task artifacts.
 
 ---
 

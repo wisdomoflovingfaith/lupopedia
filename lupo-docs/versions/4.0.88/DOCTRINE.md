@@ -1,11 +1,10 @@
 ---
 lupopedia.headers:
-  lupopedia.version: "4.0.88"
   lupopedia.schema: "doctrine"
   file_path_from_root: "lupo-docs/versions/4.0.88/DOCTRINE.md"
-  web_path: "http://www.lupopedia.com/lupo-docs/versions/4.0.88/DOCTRINE.md"
-  last_modified_utc: "20260325210000"
-  system_version: "4.0.88"
+  web_path: "http://www.lupopedia.com/lupopedia/lupo-docs/versions/4.0.88/DOCTRINE.md"
+  last_modified_utc: "20260325205227"
+  when_updated: "20260325205227"
   channel_id: 42
   thread_id: "4.0.88-doctrine"
   actor_id: 9
@@ -20,15 +19,28 @@ lupopedia.headers:
 
 lupopedia.edges:
   outbound_edges:
-    - { to: "lupo-docs/doctrine/MULTI_AGENT_COORDINATION_DOCTRINE.md", type: "implements", weight: 1.0 }
+    - { to: "lupo-rules/root/MULTI_AGENT_COORDINATION_DOCTRINE.md", type: "implements", weight: 1.0 }
     - { to: "lupo-docs/versions/4.0.87/DOCTRINE.md", type: "extends", weight: 1.0 }
     - { to: "PLAN.md", type: "governs", weight: 1.0 }
+    - { to: "TODO.md", type: "governs", weight: 1.0 }
+    - { to: "CHANGELOG.md", type: "governs", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/LUPOPEDIA_HEADERS/README.md", type: "depends_on", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/LUPOPEDIA_HEADERS/VALIDATORS_AND_TOOLING.md", type: "depends_on", weight: 1.0 }
 
 lupopedia.footer:
-  last_verified: "20260325210000"
-  last_verified_by: "cascade"
-  next_action: "Enforce doctrine compliance throughout 4.0.88 development"
+  last_verified: "20260325205227"
+  verified_by:
+    identity_type: "actor"
+    actor_id: 102
+    agent_name_identity: "Cursor IDE Agent (Lead Orchestration)"
+    department_id_delta: 0
+  verified_via:
+    type: "faucet"
+    faucet_slug: "cursor"
+  next_action: "Enforce doctrine compliance and faucet-neutral validation ownership throughout 4.0.88"
 ---
+
+# file: 4.0.88 DOCTRINE - delegation: cursor:root - web_path: [http://www.lupopedia.com/lupopedia/lupo-docs/versions/4.0.88/DOCTRINE.md](http://www.lupopedia.com/lupopedia/lupo-docs/versions/4.0.88/DOCTRINE.md)
 
 # 4.0.88 DOCTRINE
 
@@ -38,6 +50,13 @@ lupopedia.footer:
 **Status**: Active Doctrine  
 
 ---
+
+## Thread Doctrine Updates (2026-03-25)
+
+- Adopt structured footer verification metadata (`verified_by`, `verified_via`) for governed docs.
+- Require subdirectory web_path canonical form (`/lupopedia/`) in header metadata.
+- Treat THOTH as primary semantic truth-check authority for stale artifact verification workflows.
+- Apply compatibility policy: `version_when_written` warn-only in 4.0.88, reject from 4.0.89.
 
 ## 1. NON-NEGOTIABLE CONSTRAINTS
 
@@ -139,6 +158,21 @@ lupopedia.footer:
 - Decision rationale must be clearly stated
 - Alternatives considered must be documented
 - Impact assessment must be included
+
+### 3.3 Validation Ownership and Faucet Model
+
+**Canonical setup for LUPOPEDIA header/footer validation**:
+- **Primary validation owner**: THEMIS (actor_id 9) via `governance_validation` capability.
+- **Truth verification reviewer**: MAAT (actor_id 7) for semantic truth and justice checks.
+- **Content review support**: SESHAT (actor_id 21) for documentation quality and review flow.
+- **Critical reviewer**: LILITH (actor_id 2) as non-interfering critic under LIL001.
+- **Records and traceability**: THOTH (actor_id 26) for final documentation integrity.
+
+**Execution surface rules**:
+- Cascade, Cursor, Codex, Claude, and other IDE/API surfaces are faucets only.
+- Faucet selection must not change authoritative actor attribution.
+- Validation authority is actor-based and remains stable across faucets.
+- For stale artifacts (`last_verified < 20260301000000`), semantic review is mandatory before footer refresh.
 
 ---
 

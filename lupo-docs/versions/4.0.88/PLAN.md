@@ -3,8 +3,8 @@ lupopedia.headers:
   lupopedia.version: "4.0.88"
   lupopedia.schema: "development_plan"
   file_path_from_root: "lupo-docs/versions/4.0.88/PLAN.md"
-  web_path: "http://www.lupopedia.com/lupo-docs/versions/4.0.88/PLAN.md"
-  last_modified_utc: "20260325210000"
+  web_path: "http://www.lupopedia.com/lupopedia/lupo-docs/versions/4.0.88/PLAN.md"
+  last_modified_utc: "20260325204324"
   system_version: "4.0.88"
   channel_id: 42
   thread_id: "4.0.88-planning"
@@ -23,13 +23,25 @@ lupopedia.edges:
     - { to: "README.md", type: "complements", weight: 1.0 }
     - { to: "TASK_REGISTRY.md", type: "implements", weight: 1.0 }
     - { to: "TODO.md", type: "generates", weight: 1.0 }
+    - { to: "CHANGELOG.md", type: "synchronizes", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/LUPOPEDIA_HEADERS/README.md", type: "depends_on", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/LUPOPEDIA_HEADERS/VALIDATORS_AND_TOOLING.md", type: "depends_on", weight: 1.0 }
     - { to: "lupo-channels/42/", type: "executes_through", weight: 1.0 }
 
 lupopedia.footer:
-  last_verified: "20260325210000"
-  last_verified_by: "cascade"
+  last_verified: "20260325205227"
+  verified_by:
+    identity_type: "actor"
+    actor_id: 102
+    agent_name_identity: "Cursor IDE Agent (Lead Orchestration)"
+    department_id_delta: 0
+  verified_via:
+    type: "faucet"
+    faucet_slug: "cursor"
   next_action: "Begin task execution according to priority and dependencies"
 ---
+
+# file: 4.0.88 PLAN - delegation: cursor:root - web_path: [http://www.lupopedia.com/lupopedia/lupo-docs/versions/4.0.88/PLAN.md](http://www.lupopedia.com/lupopedia/lupo-docs/versions/4.0.88/PLAN.md)
 
 # 4.0.88 Development Plan
 
@@ -37,6 +49,23 @@ lupopedia.footer:
 **Version**: 4.0.88  
 **Planning Date**: 2026-03-25  
 **Status**: Development Initiated  
+
+---
+
+## Thread Execution Addendum (2026-03-25)
+
+### Scope completed
+
+1. Footer identity model clarified (`verified_by` and `verified_via`), replacing vague verifier semantics.
+2. THOTH authority model added for stale semantic verification governance.
+3. Web path doctrine corrected to require subdirectory install prefix (`/lupopedia/`).
+4. Validator doctrine updated with compatibility timeline (warn 4.0.88, enforce 4.0.89).
+
+### Next execution plan
+
+1. Propagate footer/web_path doctrine changes outside LUPOPEDIA_HEADERS docs.
+2. Implement validator script behavior aligned to compatibility policy.
+3. Produce channel evidence artifact and cross-link in 4.0.88 docs.
 
 ---
 

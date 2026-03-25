@@ -9,8 +9,8 @@
  */
 
 // Load the interface and class
-require_once __DIR__ . '/../../app/Services/Initialization/Interfaces/TimestampHelperInterface.php';
-require_once __DIR__ . '/../../app/Services/Initialization/TimestampHelper.php';
+require_once __DIR__ . '/../../lupo-app/Services/Initialization/Interfaces/TimestampHelperInterface.php';
+require_once __DIR__ . '/../../lupo-app/Services/Initialization/TimestampHelper.php';
 
 // Test counter
 $tests_passed = 0;

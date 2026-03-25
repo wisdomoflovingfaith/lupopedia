@@ -6,8 +6,8 @@ lupopedia.headers:
   version_when_written: "4.0.84"
   lupopedia.schema: "doctrine"
   file_path_from_root: "lupo-docs/doctrine/LUPOPEDIA_HEADERS/DEPRECATION_FLARE_FLIP_FLP.md"
-  web_path: "[web_path](http://www.lupopedia.com/doctrine/LUPOPEDIA_HEADERS/DEPRECATION)"
-  last_modified_utc: "20260320"
+  web_path: "http://www.lupopedia.com/lupopedia/lupo-docs/doctrine/LUPOPEDIA_HEADERS/DEPRECATION_FLARE_FLIP_FLP.md"
+  last_modified_utc: "20260325203002"
   channel_id: 42
   actor_id: 1003
   artifact_type: "doctrine"
@@ -16,15 +16,22 @@ lupopedia.headers:
   tags: ["deprecation", "flare", "flip", "flp", "lupopedia_headers"]
 
 lupopedia.footer:
-  last_verified: "20260320"
-  last_verified_by: "cursor"
+  last_verified: "20260325203002"
+  verified_by:
+    identity_type: "actor"
+    actor_id: 102
+    agent_name_identity: "Cursor IDE Agent (Lead Orchestration)"
+    department_id_delta: 0
+  verified_via:
+    type: "faucet"
+    faucet_slug: "cursor"
   orchestrator: "cursor"
   next_action:
     - "Do not add new references to FLARE/FLIP/FLP in new docs"
     - "Point legacy doc readers to LUPOPEDIA_HEADERS and OPTIONAL_BLOCKS"
     - "Keep deprecation table and mapping current"
 ---
-# file: Deprecation — FLARE, FLIP, FLP — web_path: http://www.lupopedia.com/doctrine/LUPOPEDIA_HEADERS/DEPRECATION
+# file: Deprecation — FLARE, FLIP, FLP — web_path: [http://www.lupopedia.com/lupopedia/lupo-docs/doctrine/LUPOPEDIA_HEADERS/DEPRECATION_FLARE_FLIP_FLP.md](http://www.lupopedia.com/lupopedia/lupo-docs/doctrine/LUPOPEDIA_HEADERS/DEPRECATION_FLARE_FLIP_FLP.md)
 
 # Deprecation: FLARE, FLIP, FLP — Use LUPOPEDIA HEADERS
 

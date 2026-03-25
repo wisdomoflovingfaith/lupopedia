@@ -13,13 +13,13 @@ define('LUPOPEDIA_PATH', dirname(dirname(__DIR__)));
 define('LUPOPEDIA_ABSPATH', LUPOPEDIA_PATH . '/');
 
 // Load required files
-require_once LUPOPEDIA_PATH . '/app/Services/Initialization/Interfaces/TimestampHelperInterface.php';
-require_once LUPOPEDIA_PATH . '/app/Services/Initialization/Interfaces/InitializationLoggerInterface.php';
-require_once LUPOPEDIA_PATH . '/app/Services/Initialization/Interfaces/ReportGeneratorInterface.php';
-require_once LUPOPEDIA_PATH . '/app/Services/Initialization/InitializationException.php';
-require_once LUPOPEDIA_PATH . '/app/Services/Initialization/TimestampHelper.php';
-require_once LUPOPEDIA_PATH . '/app/Services/Initialization/ReportGenerationException.php';
-require_once LUPOPEDIA_PATH . '/app/Services/Initialization/ReportGenerator.php';
+require_once LUPOPEDIA_PATH . '/lupo-app/Services/Initialization/Interfaces/TimestampHelperInterface.php';
+require_once LUPOPEDIA_PATH . '/lupo-app/Services/Initialization/Interfaces/InitializationLoggerInterface.php';
+require_once LUPOPEDIA_PATH . '/lupo-app/Services/Initialization/Interfaces/ReportGeneratorInterface.php';
+require_once LUPOPEDIA_PATH . '/lupo-app/Services/Initialization/InitializationException.php';
+require_once LUPOPEDIA_PATH . '/lupo-app/Services/Initialization/TimestampHelper.php';
+require_once LUPOPEDIA_PATH . '/lupo-app/Services/Initialization/ReportGenerationException.php';
+require_once LUPOPEDIA_PATH . '/lupo-app/Services/Initialization/ReportGenerator.php';
 
 // Simple logger implementation for testing
 class TestLogger implements InitializationLoggerInterface

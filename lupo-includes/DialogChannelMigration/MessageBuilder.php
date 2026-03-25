@@ -80,7 +80,7 @@ class MessageBuilder
             )";
 
             // Check protocol completion before insert (replaces tr_enforce_protocol_completion trigger)
-            require_once __DIR__ . '/../../app/Services/TriggerReplacements/EnforceProtocolCompletionService.php';
+            require_once __DIR__ . '/../../lupo-app/Services/TriggerReplacements/EnforceProtocolCompletionService.php';
             $protocolService = new EnforceProtocolCompletionService($this->db);
 
             // Get speaker actor_id from speaker name (assuming speaker is actor slug or name)
@@ -102,7 +102,7 @@ class MessageBuilder
                 $messageId = $this->db->lastInsertId();
 
                 // Update channel message count after insert (replaces tr_dialog_messages_insert trigger)
-                require_once __DIR__ . '/../../app/Services/TriggerReplacements/DialogMessagesInsertService.php';
+                require_once __DIR__ . '/../../lupo-app/Services/TriggerReplacements/DialogMessagesInsertService.php';
                 $insertService = new DialogMessagesInsertService($this->db);
                 $insertService->executeAfterInsert($channelId, $data['dialog_thread_id']);
 
@@ -401,7 +401,7 @@ class MessageBuilder
 
             if ($result) {
                 // Update channel message count after delete (replaces tr_dialog_messages_delete trigger)
-                require_once __DIR__ . '/../../app/Services/TriggerReplacements/DialogMessagesDeleteService.php';
+                require_once __DIR__ . '/../../lupo-app/Services/TriggerReplacements/DialogMessagesDeleteService.php';
                 $deleteService = new DialogMessagesDeleteService($this->db);
                 $deleteService->executeAfterDelete($channelId);
             }

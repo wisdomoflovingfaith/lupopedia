@@ -3,8 +3,8 @@ lupopedia.headers:
   version_when_written: "4.0.84"
   lupopedia.schema: "doctrine"
   file_path_from_root: "lupo-docs/doctrine/LUPOPEDIA_HEADERS/OPTIONAL_BLOCKS.md"
-  web_path: "http://www.lupopedia.com/doctrine/LUPOPEDIA_HEADERS/OPTIONAL_BLOCKS"
-  last_modified_utc: "20260320"
+  web_path: "http://www.lupopedia.com/lupopedia/lupo-docs/doctrine/LUPOPEDIA_HEADERS/OPTIONAL_BLOCKS.md"
+  last_modified_utc: "20260325203002"
   channel_id: 42
   actor_id: 1003
   delegation_chain: "cursor:root"
@@ -14,14 +14,21 @@ lupopedia.headers:
   purpose: "Reference for optional LUPOPEDIA HEADERS blocks, including routing, lists, metadata snapshots, next actions, actor references, footer, engagement, and edges."
   tags: ["lupopedia_headers", "routing", "lists", "optional"]
 lupopedia.footer:
-  last_verified: "20260320"
-  last_verified_by: "cursor"
+  last_verified: "20260325203002"
+  verified_by:
+    identity_type: "actor"
+    actor_id: 102
+    agent_name_identity: "Cursor IDE Agent (Lead Orchestration)"
+    department_id_delta: 0
+  verified_via:
+    type: "faucet"
+    faucet_slug: "cursor"
   orchestrator: "cursor"
   next_action:
     - "Validate optional block definitions against LUPOPEDIA_HEADERS_FORMAT.md"
     - "Keep canonical vs legacy optional block semantics explicit across doctrine files"
 ---
-# file: LUPOPEDIA HEADERS Optional Blocks — delegation: cursor:root — web_path: http://www.lupopedia.com/doctrine/LUPOPEDIA_HEADERS/OPTIONAL_BLOCKS
+# file: LUPOPEDIA HEADERS Optional Blocks — delegation: cursor:root — web_path: [http://www.lupopedia.com/lupopedia/lupo-docs/doctrine/LUPOPEDIA_HEADERS/OPTIONAL_BLOCKS.md](http://www.lupopedia.com/lupopedia/lupo-docs/doctrine/LUPOPEDIA_HEADERS/OPTIONAL_BLOCKS.md)
 
 # LUPOPEDIA HEADERS — Optional Blocks
 
@@ -278,7 +285,8 @@ In addition, footer MUST include orchestrator and verification metadata. Engagem
 | next_action | list (required) | 1–3 suggested next actions; contextual and forward-looking |
 | orchestrator | string (required) | Actor or delegation chain that orchestrated the last update |
 | last_verified | string | Last verification date (YYYYMMDD) |
-| last_verified_by | string (required) | Actor or faucet who verified |
+| verified_by | map (required) | Verification authority identity map (`identity_type`, `actor_id`, optional `agent_name_identity`, optional `department_id_delta`) |
+| verified_via | map (required) | Verification execution surface (`type`, `faucet_slug`) |
 
 ---
 

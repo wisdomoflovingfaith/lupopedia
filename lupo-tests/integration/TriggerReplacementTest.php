@@ -10,8 +10,8 @@
  * @author CASCADE
  */
 
-require_once __DIR__ . '/../../app/Services/TriggerReplacements/DialogMessagesInsertService.php';
-require_once __DIR__ . '/../../app/Services/TriggerReplacements/DialogMessagesDeleteService.php';
+require_once __DIR__ . '/../../lupo-app/Services/TriggerReplacements/DialogMessagesInsertService.php';
+require_once __DIR__ . '/../../lupo-app/Services/TriggerReplacements/DialogMessagesDeleteService.php';
 
 class TriggerReplacementTest {
     

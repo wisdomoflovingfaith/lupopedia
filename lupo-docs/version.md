@@ -1,114 +1,177 @@
-# file: Lupopedia Version History — session: L-LUPO-ANTIGRAVITY — delegation: antigravity:cursor:captain  — web_path: http://www.lupopedia.com/docs/version
+# file: Lupopedia Version History — delegation: 26:1 — web_path: http://www.lupopedia.com/docs/version
 ---
 lupopedia.headers:
+  lupopedia.version: "4.0.88"
   lupopedia.schema: "documentation"
   file_path_from_root: "lupo-docs/version.md"
-  version_when_written: "4.0.84"
-  last_modified_utc: "20260316"
+  web_path: "http://www.lupopedia.com/docs/version"
+  last_modified_utc: "20260325210000"
+  system_version: "4.0.88"
+  channel_id: 42
+  thread_id: 1035
+  actor_id: 26
+  delegation_chain: "26:1"
+  artifact_type: "documentation"
+  artifact_kind: "version_history"
   purpose: "Version history and upgrade notes for Lupopedia"
-  traits: ["versioning", "v4.0.79", "multi-agent", "evolution"]
-  tags: ["version", "changelog", "upgrade"]
+  mood_rgb: "9933FF"
+  traits: ["thoth_documentation", "versioning", "4.0.88", "history"]
+  tags: ["version", "changelog", "upgrade", "4.0.88"]
+lupopedia.edges:
+  outbound_edges:
+    - { to: "lupo-docs/versions/4.0.88/README.md", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/versions/4.0.87/CHANGELOG.md", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/versions/", type: "references", weight: 0.9 }
+lupopedia.footer:
+  last_verified: "20260325210000"
+  last_verified_by: "cascade"
+  next_action: "Keep version history current with each release"
 ---
 
 # Lupopedia version history
 
-Current version: **4.0.87**  
-Date: 2026-03-24
+Current version: **4.0.88**  
+Date: 2026-03-25  
+Status: Development In Progress
 
-## Summary of changes (4.0.87)
+## Summary of changes (4.0.88)
 
-- **Version bump:** Updated canonical version markers to 4.0.87 (`LUPEDIA_VERSION`, `lupo-config/global_atoms.yaml`, `lupo-includes/version.php`).
-- **Version initialization:** Added `lupo-docs/versions/4.0.87/` template surfaces for planning, doctrine, migration, task registry, contradictions, and changelog.
-- **Execution focus for 4.0.87:** atoms, channels, documentation, LUPOPEDIA HEADERS (`lupopedia.init`, `lupopedia.edges`, `lupopedia.footer`), actor/agent/auth_user/department/faucet model clarity, and admin web interface LLM chatbot calls via `localhost/lupopedia/admin.php`.
+**Development Focus**: Documentation polish and system stability
+- **Version initialization**: Updated canonical version markers to 4.0.88 (`LUPEDIA_VERSION`, `lupo-config/global_atoms.yaml`, `lupo-includes/version.php`)
+- **Documentation structure**: Created comprehensive 4.0.88 version documentation with README, PLAN, TODO, CHANGELOG, and DOCTRINE
+- **Development priorities**: WS6 test suite updates (carryover from 4.0.87), post-release monitoring, targeted improvements
+- **Documentation cleanup**: Major lupo-docs organization and cleanup effort underway
+
+## Summary of changes (4.0.87) — Released 2026-03-25
+
+**Major Release**: Identity Model Clarification and Edge Consolidation
+- **WS3: Identity Model Clarification**: Implemented 5-layer identity model (Auth User, Actor, Department, Agent, Faucet)
+- **WS2: Edge Model Consolidation**: Consolidated fragmented edge tables into single canonical `lupo_edges` table
+- **WS1: Decision System Cleanup**: Removed broken decision services and cleaned up CIP remnants
+- **ERQ-006 Release Signoff**: Complete release authorization with all blockers resolved
+- **Database updates**: All core personas (1-6) assigned to Department 1, identity model properly implemented
+- **Documentation**: AGENTS.md updated with identity layers, IDENTITY_LAYERS_DOCTRINE.md created
+
+## Summary of changes (4.0.86)
+
+**Development Version**: Post-4.0.85 stabilization
+- **Version bump**: Updated canonical version markers to 4.0.86
+- **Preparation work**: Set up for 4.0.87 major workstream execution
+- **Documentation updates**: Version documentation prepared for identity model work
+
+## Summary of changes (4.0.85)
+
+**Development Version**: Feature development and stabilization
+- **Version bump**: Updated canonical version markers to 4.0.85
+- **Feature development**: Continued development on identity and edge models
+- **Documentation preparation**: Set up documentation structure for major changes
+
+## Summary of changes (4.0.84)
+
+**Development Version**: Infrastructure and tooling improvements
+- **Version bump**: Updated canonical version markers to 4.0.84
+- **Tooling enhancements**: Improved development and documentation tooling
+- **Preparation**: Set up for identity model and edge consolidation work
+
+## Summary of changes (4.0.80-4.0.83)
+
+**Development Versions**: Various feature developments and stabilization
+- **Incremental improvements**: Multiple development cycles with feature additions
+- **Documentation updates**: Ongoing documentation improvements and organization
+- **System stability**: Continued focus on system stability and performance
 
 ## Summary of changes (4.0.79)
 
-- **Version bump:** Post–4.0.78 release. Active development version. All canonical version markers and atoms updated to 4.0.79. Unfinished work from 4.0.78 carried forward: remaining Top 50 operational table documentation, bounded header/namespace cleanup (TABLE_INDEX.md missing headers, Top 50 scope). See [lupo-docs/versions/4.0.79/PLAN.md](versions/4.0.79/PLAN.md) and [TODO.md](versions/4.0.79/TODO.md). No Lupopedia→Lupopedia upgrade path before 4.1.0.
+**Development Version**: Post-4.0.78 development
+- **Version bump**: Post–4.0.78 release. Active development version
+- **Carry-forward work**: Unfinished work from 4.0.78 carried forward
+- **Focus areas**: Top 50 operational table documentation, bounded header/namespace cleanup
 
 ## Summary of changes (4.0.78) — Released 2026-03-16
 
-- **Released and tagged.** Top 50 reframing; 25 table docs completed (lupo_actors, lupo_channels, lupo_contents, lupo_sessions, lupo_comments, lupo_uploads, lupo_visits, lupo_dialog_messages, lupo_agent_faucets, lupo_actor_apps, lupo_channel_departments, lupo_edge_type_definitions, lupo_analytics_visits, lupo_audit_log, lupo_system_logs, lupo_metadata, lupo_atoms, lupo_collections, lupo_departments, lupo_registry, lupo_modules, lupo_federation_nodes, lupo_auth_users). Namespace doctrine, validator, audit, and cleanup. See CHANGELOG.md for full 4.0.78 record.
+**Major Release**: Top 50 reframing and documentation
+- **Released and tagged**: Top 50 reframing; 25 table docs completed
+- **Namespace doctrine**: Validator, audit, and cleanup improvements
+- **Documentation**: Comprehensive table documentation completed
 
 ## Summary of changes (4.0.77) — Released 2026-03-16
 
-- **Released and tagged.** Constitutional root rules, LUPOPEDIA_HEADERS enhancements, Bayesian Decision foundation, Zencoder/Windsurf/Cursor table documentation initiative with stop line, header tooling (export/import/validate), Crafty 3.7.5 → 4.0.77 upgrade validation. See CHANGELOG.md for full 4.0.77 record.
+**Major Release**: Constitutional and tooling enhancements
+- **Released and tagged**: Constitutional root rules, LUPOPEDIA_HEADERS enhancements
+- **Bayesian Decision Foundation**: Foundation work for decision systems
+- **Tooling**: Header tooling (export/import/validate) implemented
 
 ## Summary of changes (4.0.76)
 
-- **Released and tagged.** Project System schema, application, testing; Windsurf review final completion; upgrade guide; production-ready. All canonical version markers and atoms were 4.0.76. Recurring install/upgrade validation continues under 4.0.77.
+**Major Release**: Project System and production readiness
+- **Released and tagged**: Project System schema, application, testing
+- **Production-ready**: Windsurf review final completion, upgrade guide
+- **Validation**: Install and upgrade validation performed
 
 ## Summary of changes (4.0.75)
 
-- **Released and finalized.** Version bump, rules and governance updates, multi-agent propagation, schema-reference continuity, ONBOARDING, Safe DB Operations (DB009). Fresh install and Crafty 3.7.5 upgrade validation were performed during the 4.0.75 cycle; continued repeated validation is carried forward to v4.0.76.
+**Major Release**: Rules and governance
+- **Released and finalized**: Version bump, rules and governance updates
+- **Multi-agent propagation**: Enhanced multi-agent coordination
+- **Safe DB Operations**: DB009 and safe database operations implemented
 
 ## Summary of changes (4.0.74)
 
-- **Documentation consolidation & architecture clarification:** 12-table install expansion, lupo_projects + seed_projects.sql wired, path normalization (lupo-* prefix; legacy/ exception), image paths (lupo-images/), table count 159, TOON/docs reconciliation. Pushed to GitHub as 4.0.74.
-
-## Summary of changes (4.0.73)
-
-- **Consolidated Version Transition:** Successfully finalized version 4.0.72 and initialized 4.0.73. 
-- **Full Upgrade Path Validation:** Validated Crafty Syntax 3.7.5 to Lupopedia 4.0.73 upgrade path with 0 errors.
-- **Task Consolidation:** All pending and active tasks from previous versions (4.0.69-4.0.72) have been consolidated into the 4.0.73 cycle.
-- **Semantic Navbar Backend Rebuild:** Authority audit and implementation of semantic navigation backend (SQL, API, and core logic).
-
-## Summary of changes (4.0.72)
-
-- **Version bump:** Updated all canonical version markers and initialized the 4.0.73 initialization repo.
-- **Next Action Doctrine:** Implemented `next_action` in `lupopedia.footer` as a core requirement for all documentation files.
-
-- **Channels Web Interface Implementation:** Active development of the web interface for channels management. The relevant implementation is in the installed subdirectory and is accessed from `http://domainname.com/<lupopedia-sub-folder>/channels/`. This version cycle focuses on reviewing, completing, and hardening the channels web UI so it is fully operational and aligned with current doctrine/schema/runtime expectations.
-- **Development Phase:** Transitioned to development version 4.0.68 for ongoing channels web interface development.
-
-## Summary of changes (4.0.67)
-
-- **Install & Upgrade Validation:** Release for testing the Crafty Syntax 3.7.5 → Lupopedia upgrade path. Table ceiling **199 tables**; main admin (actor 10000) named **root**; ROOT doctrine schema: `lupo_contents.channel_id` and `federation_source_url`, `lupo_channel_departments`, `lupo_schema_migrations`, `lupo_actor_apps`. Current table count from TOON files: run `python lupo-scripts/generate_toon_files.py`.
-- **Actor application folders (doctrine):** Every actor has an `apps/` directory with `skills/skills.md` (skill registry), `lupo-scripts/`, `assets/` (icons, images, prompts, templates), and `references/` (schema.md, manifest.json). See lupo-actors and ROOT doctrine emails.
-
-## Summary of changes (4.0.66)
-
-- **Multi-Agent Evolution Phase:** Implemented hierarchical multi-agent coordination with new kernel agents **LUPO** (Database Architect) and **THEMIS** (Ethical Auditor).
-- **Consensus Workflow:** Established `Lilith -> THEMIS -> WOLFIE` consensus loop for task validation and structural reviews.
-- **Improved Persistence:** Enhanced the `lupo-channels/` structure with versioned threads, status-driven task subdirectories, and roll-based permissions.
-- **Database Schema (canonical):** Multi-agent services use existing canonical tables: `lupo_dialog_threads`, `lupo_dialog_messages`, `lupo_actor_channel_roles`, and `lupo_tasks`. No duplicate `lupo_threads`/`lupo_messages`/`lupo_rolls`; see 4.0.66 remediation.
-
-- **Web Authentication Foundation:** Building upon the web authentication and actor selection features from 4.0.64.
-
-## Summary of changes (4.0.64)
-
-- **Web Authentication and Actor Selection:** Implemented dual-identity web flow and actor selector in admin interface. AuthService with active/preferred actor management, ActorService with user-can-act-as filtering, switch-actor.php with CSRF validation, admin_layout.php actor selector dropdown.
-- **Documentation Scaling:** Enhanced HELP.md, CLI.md, and DOCTOR_HEALTH_CHECK.md with comprehensive coverage of new authentication features.
-- **Version Management:** Updated all version files and global atoms for consistent version tracking.
-
-## Summary of changes (4.0.62)
-
-- **Actor Directory Refactor:** Name-based directories (e.g., `lupo-actors/wolfie/`) with `actor_name` as primary key.
-- **Agent WWW:** Web-accessible `www/` directory for actor profiles at `/agent/<name>/`.
-- **Skills System:** Modular capabilities hub in actor `skills/` subdirectory.
-- **Filesystem-First Logic:** Consolidated `ActorService` to prioritize name-based paths and WHO.json root truth.
+**Documentation Release**: Architecture clarification
+- **Documentation consolidation**: 12-table install expansion, path normalization
+- **TOON reconciliation**: TOON/docs reconciliation completed
+- **Table count**: Table count 159, pushed to GitHub as 4.0.74
 
 ## Recent version history
 
-| **4.0.75** | 2026-03-14 | Version bump post–4.0.74 push; no schema changes. |
-| **4.0.74** | 2026-03-14 | 12-table expansion, path/image normalization, docs reconciliation; pushed to GitHub. |
-| **4.0.73** | 2026-03-12 | Version 4.0.73 initialization, task consolidation, and upgrade path validation. |
-| **4.0.72** | 2026-03-12 | Version bump and finalization. |
-| **4.0.71** | 2026-03-12 | Synthesized Documentation Framework, semantic navbar backend, Session Model A. |
-| **4.0.69** | 2026-03-11 | Actor orchestration, Traits, Authorization, Documentation coherence. |
-| **4.0.68** | 2026-03-09 | Channels web interface implementation - active development. |
-| **4.0.67** | 2026-03-08 | Install & upgrade validation cycle; Crafty 3.7.5 baseline verification. |
-| **4.0.66** | 2026-03-08 | Multi-agent evolution: LUPO, THEMIS, consensus loops, and schema enhancements. |
-| **4.0.65** | 2026-03-07 | Development phase - ongoing feature development. |
-| **4.0.64** | 2026-03-07 | Web authentication, actor selection, documentation scaling, version management. |
-| **4.0.62** | 2026-03-06 | Context Kernel, DOCTOR actor (1009), Task system documentation, and version synchronization. |
-| **4.0.61** | 2026-03-06 | Session-file-first context; version tracking (version.php, version.md, config); help integration. |
-| **4.0.60** | 2026-03-06 | Dual-identity runtime context: Effective Actor, Human Identity, Active Agent, session_mode; paired_actor_id from DB; whoami/context output. |
-| **4.0.59** | 2026-03-06 | ContextResolver, DialogHeaderValidator, required dialog headers; session.md fallback; whoami/context CLI. |
-| **4.0.58** | 2026-03-06 | Whoami/actor_name as primary identity; session binding; whoami readme. |
-| **4.0.57** | 2026-03-05 | Migration and optimization; FLARE refinements; database optimization; lupo-install/doc seeds. |
+| **4.0.88** | 2026-03-25 | Development: Documentation polish, WS6 completion |
+| **4.0.87** | 2026-03-25 | RELEASED: Identity model, edge consolidation, decision cleanup |
+| **4.0.86** | 2026-03-24 | Development: Preparation for 4.0.87 workstreams |
+| **4.0.85** | 2026-03-23 | Development: Feature development and stabilization |
+| **4.0.84** | 2026-03-22 | Development: Infrastructure and tooling improvements |
+| **4.0.80-4.0.83** | Various | Development: Incremental improvements and stabilization |
+| **4.0.79** | 2026-03-21 | Development: Post-4.0.78 carry-forward work |
+| **4.0.78** | 2026-03-16 | RELEASED: Top 50 reframing, documentation |
+| **4.0.77** | 2026-03-16 | RELEASED: Constitutional rules, tooling |
+| **4.0.76** | 2026-03-15 | RELEASED: Project System, production-ready |
+| **4.0.75** | 2026-03-14 | RELEASED: Rules, governance, multi-agent |
+| **4.0.74** | 2026-03-14 | RELEASED: Documentation consolidation |
+| **4.0.73** | 2026-03-12 | Development: Task consolidation, upgrade validation |
+| **4.0.72** | 2026-03-12 | Development: Version bump, finalization |
+| **4.0.71** | 2026-03-12 | Development: Documentation framework, semantic navbar |
+
+## Current Development Status
+
+### 4.0.88 (In Progress)
+**Focus Areas**:
+- WS6 test suite updates (LILITH)
+- Documentation polish and cleanup (THOTH)
+- Post-release monitoring (ANUBIS)
+- Targeted improvements and optimizations
+
+**Expected Release**: 2026-04-15 (approximate)
+
+### 4.0.87 (Stable - Released 2026-03-25)
+**Major Achievements**:
+- 5-layer identity model implemented
+- Edge model consolidated
+- Decision system cleaned up
+- All critical workstreams complete
+
+**System State**: Production-ready, stable, enhanced security
 
 ## Upgrade notes
 
-- **4.0.56 → 4.0.61:** Only supported upgrade path remains Crafty Syntax 3.7.5 → Lupopedia 4.0.x. No Lupopedia→Lupopedia migration scripts; apply schema/migrations as documented.
-- **Session context:** To drive CLI identity from file when DB is down or for a fixed identity, edit `lupo-database/session.md` (YAML frontmatter: actor_name, channel_id, session_id, department_id, thread_id, paired_actor_id, etc.). See `lupo-docs/lupopedia_whoami_readme.md`.
-- **Version in code:** Use `get_lupo_version()` or `LUPOPEDIA_VERSION`; avoid hardcoding version strings in help/CLI.
+### Current Upgrade Path
+- **Crafty Syntax 3.7.5 → 4.0.88**: Supported upgrade path
+- **4.0.87 → 4.0.88**: Expected to be seamless (no schema changes planned)
+- **Earlier versions**: Upgrade via 4.0.87 stable release
+
+### Session Context
+To drive CLI identity from file when DB is down or for a fixed identity, edit `lupo-database/session.md` (YAML frontmatter: actor_name, channel_id, session_id, department_id, thread_id, paired_actor_id, etc.). See `lupo-docs/lupopedia_whoami_readme.md`.
+
+### Version in Code
+Use `get_lupo_version()` or `LUPOPEDIA_VERSION`; avoid hardcoding version strings in help/CLI.
+
+### Documentation Standards
+All documentation must follow LUPOPEDIA HEADERS standards. See [LUPOPEDIA HEADERS documentation](doctrine/LUPOPEDIA_HEADERS/README.md) for requirements.

@@ -22,15 +22,15 @@ if (!defined('LUPOPEDIA_PATH')) {
     define('LUPOPEDIA_PATH', $repo_root);
 }
 
-require_once $repo_root . '/app/Services/Initialization/InitializationException.php';
-require_once $repo_root . '/app/Services/Initialization/StatusAuditException.php';
-require_once $repo_root . '/app/Services/Initialization/Interfaces/FLIPHeaderParserInterface.php';
-require_once $repo_root . '/app/Services/Initialization/Interfaces/VersionClassifierInterface.php';
-require_once $repo_root . '/app/Services/Initialization/Interfaces/StatusAuditorInterface.php';
-require_once $repo_root . '/app/Services/Initialization/Interfaces/InitializationLoggerInterface.php';
-require_once $repo_root . '/app/Services/Initialization/FLIPHeaderParser.php';
-require_once $repo_root . '/app/Services/Initialization/VersionClassifier.php';
-require_once $repo_root . '/app/Services/Initialization/StatusAuditor.php';
+require_once $repo_root . '/lupo-app/Services/Initialization/InitializationException.php';
+require_once $repo_root . '/lupo-app/Services/Initialization/StatusAuditException.php';
+require_once $repo_root . '/lupo-app/Services/Initialization/Interfaces/FLIPHeaderParserInterface.php';
+require_once $repo_root . '/lupo-app/Services/Initialization/Interfaces/VersionClassifierInterface.php';
+require_once $repo_root . '/lupo-app/Services/Initialization/Interfaces/StatusAuditorInterface.php';
+require_once $repo_root . '/lupo-app/Services/Initialization/Interfaces/InitializationLoggerInterface.php';
+require_once $repo_root . '/lupo-app/Services/Initialization/FLIPHeaderParser.php';
+require_once $repo_root . '/lupo-app/Services/Initialization/VersionClassifier.php';
+require_once $repo_root . '/lupo-app/Services/Initialization/StatusAuditor.php';
 
 /**
  * Mock logger for testing

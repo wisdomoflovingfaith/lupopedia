@@ -3,7 +3,7 @@ lupopedia.headers:
   version_when_written: "4.0.84"
   lupopedia.schema: "doctrine"
   file_path_from_root: "lupo-docs/doctrine/LUPOPEDIA_HEADERS/LUPOPEDIA_HEADERS_MIGRATION.md"
-  web_path: "[web_path](http://www.lupopedia.com/doctrine/LUPOPEDIA_HEADERS/LUPOPEDIA_HEADERS_MIGRATION)"
+  web_path: "http://www.lupopedia.com/lupopedia/lupo-docs/doctrine/LUPOPEDIA_HEADERS/LUPOPEDIA_HEADERS_MIGRATION.md"
   title: "LUPOPEDIA HEADERS Migration"
   delegation_chain: "cursor:root"
   artifact_type: "doctrine"
@@ -25,7 +25,7 @@ lupopedia.session:
   human_actor_name: "root"
   paired_actor_id: 10000
 ---
-# file: LUPOPEDIA HEADERS Migration — session: L-LUPO-ROOT-CURSOR — delegation: cursor:root — web_path: http://www.lupopedia.com/doctrine/LUPOPEDIA_HEADERS/LUPOPEDIA_HEADERS_MIGRATION
+# file: LUPOPEDIA HEADERS Migration — session: L-LUPO-ROOT-CURSOR — delegation: cursor:root — web_path: [http://www.lupopedia.com/lupopedia/lupo-docs/doctrine/LUPOPEDIA_HEADERS/LUPOPEDIA_HEADERS_MIGRATION.md](http://www.lupopedia.com/lupopedia/lupo-docs/doctrine/LUPOPEDIA_HEADERS/LUPOPEDIA_HEADERS_MIGRATION.md)
 
 # LUPOPEDIA HEADERS — Incremental migration from FLARE
 

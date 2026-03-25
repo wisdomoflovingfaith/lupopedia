@@ -12,12 +12,12 @@ define('LUPOPEDIA_PATH', dirname(dirname(__DIR__)));
 define('LUPOPEDIA_ABSPATH', LUPOPEDIA_PATH . '/');
 
 // Load required classes
-require_once LUPOPEDIA_PATH . '/app/Services/Initialization/InitializationException.php';
-require_once LUPOPEDIA_PATH . '/app/Services/Initialization/ValidationException.php';
-require_once LUPOPEDIA_PATH . '/app/Services/Initialization/Interfaces/InitializationLoggerInterface.php';
-require_once LUPOPEDIA_PATH . '/app/Services/Initialization/Interfaces/ValidatorInterface.php';
-require_once LUPOPEDIA_PATH . '/app/Services/Initialization/InitializationLogger.php';
-require_once LUPOPEDIA_PATH . '/app/Services/Initialization/Validator.php';
+require_once LUPOPEDIA_PATH . '/lupo-app/Services/Initialization/InitializationException.php';
+require_once LUPOPEDIA_PATH . '/lupo-app/Services/Initialization/ValidationException.php';
+require_once LUPOPEDIA_PATH . '/lupo-app/Services/Initialization/Interfaces/InitializationLoggerInterface.php';
+require_once LUPOPEDIA_PATH . '/lupo-app/Services/Initialization/Interfaces/ValidatorInterface.php';
+require_once LUPOPEDIA_PATH . '/lupo-app/Services/Initialization/InitializationLogger.php';
+require_once LUPOPEDIA_PATH . '/lupo-app/Services/Initialization/Validator.php';
 
 // Test counter
 $tests_passed = 0;

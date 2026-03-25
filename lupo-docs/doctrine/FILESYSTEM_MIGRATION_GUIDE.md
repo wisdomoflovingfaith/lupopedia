@@ -4,9 +4,9 @@ lupopedia.headers:
   lupopedia.schema: "documentation"
   file_path_from_root: "lupo-docs/doctrine/FILESYSTEM_MIGRATION_GUIDE.md"
   last_updated_utc: "20260312"
-  system_version: "4.0.71"
+  system_version: "4.0.88"
   channel_id: 1
-  actor_id: 1002
+  actor_id: 102
   delegation_chain: "1002:10000"
   artifact_type: "documentation"
   artifact_kind: "documentation"
@@ -30,7 +30,7 @@ lupopedia.footer:
 # FLIP Header (alias: Wolfie Header, CROP Header, FLIPPING Header)
 wolfie.headers: explicit architecture with structured clarity for every file.
 file_path_from_root: lupo-docs/doctrine/FILESYSTEM_MIGRATION_GUIDE.md
-file.last_modified_system_version: "4.0.16"
+file.last_modified_system_version: "4.0.88"
 file.last_modified_utc: "20260218000000"
 channel_id: 42   # ANUBIS adoption channel
 tags: ["lost", "orphan", "doctrine"]

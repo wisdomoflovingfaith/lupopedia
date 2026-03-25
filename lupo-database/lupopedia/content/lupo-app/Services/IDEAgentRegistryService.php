@@ -1,7 +1,7 @@
 ---
 # FLIP Header (alias: Wolfie Header, CROP Header)
 wolfie.headers: explicit architecture with structured clarity for every file.
-file_path_from_root: "app/Services/IDEAgentRegistryService.php"
+file_path_from_root: "lupo-app/Services/IDEAgentRegistryService.php"
 file.last_modified_system_version: "4.0.31"
 file.last_modified_utc: "20260223144700"
 channel_id: 42
