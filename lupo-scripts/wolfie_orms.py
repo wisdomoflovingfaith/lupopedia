@@ -829,21 +829,6 @@ def select_one_from_lupo_auth_users(db):
     return db.query(sql)
 
 def select_one_from_lupo_calibration_impacts(db):
-    sql = """
-        SELECT
-            calibration_impact_id,
-            calibration_id,
-            impact_type,
-            impact_value,
-            created_ymdhis,
-            updated_ymdhis,
-            is_deleted,
-            deleted_ymdhis
-        FROM lupo_calibration_impacts
-        LIMIT 1;
-    """
-    return db.query(sql)
-
 def select_one_from_lupo_channels(db):
     sql = """
         SELECT

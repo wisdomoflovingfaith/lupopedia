@@ -21,6 +21,7 @@ class AdminUsersHandler {
     public static function render($db, $prefix, $base) {
         $au = $db->quoteIdentifier($prefix . 'auth_users');
         $ac = $db->quoteIdentifier($prefix . 'actors');
+        $aau = $db->quoteIdentifier($prefix . 'actor_auth_users');
         $cr = $db->quoteIdentifier($prefix . 'actor_channel_roles');
         $now = gmdate('YmdHis');
 
@@ -107,10 +108,32 @@ class AdminUsersHandler {
         // GET: edit permissions
         if (isset($_GET['edit_permissions'])) {
             $actor_id = (int) $_GET['edit_permissions'];
-            $user_row = $db->fetchRow(
-                "SELECT u.auth_user_id, u.username, u.display_name, u.email, a.actor_id FROM {$au} u INNER JOIN {$ac} a ON a.actor_source_id = u.auth_user_id AND a.actor_source_type = 'user' AND (a.is_deleted = 0 OR a.is_deleted IS NULL) WHERE a.actor_id = :aid AND (u.is_deleted = 0 OR u.is_deleted IS NULL) LIMIT 1",
-                array(':aid' => $actor_id)
-            );
+                        $user_row = $db->fetchRow(
+                                "SELECT u.auth_user_id, u.username, u.display_name, u.email, :aid AS actor_id
+                                 FROM {$au} u
+                                 WHERE u.auth_user_id = COALESCE(
+                                         (
+                                                 SELECT aau.auth_user_id
+                                                 FROM {$aau} aau
+                                                 WHERE aau.actor_id = :aid
+                                                     AND aau.status = 'active'
+                                                     AND (aau.is_deleted = 0 OR aau.is_deleted IS NULL)
+                                                 ORDER BY aau.is_primary DESC, aau.routing_priority ASC, aau.actor_auth_user_id ASC
+                                                 LIMIT 1
+                                         ),
+                                         (
+                                                 SELECT a.actor_source_id
+                                                 FROM {$ac} a
+                                                 WHERE a.actor_id = :aid
+                                                     AND (a.actor_source_type = 'user' OR a.actor_source_type = '{$prefix}auth_users')
+                                                     AND (a.is_deleted = 0 OR a.is_deleted IS NULL)
+                                                 LIMIT 1
+                                         )
+                                 )
+                                     AND (u.is_deleted = 0 OR u.is_deleted IS NULL)
+                                 LIMIT 1",
+                                array(':aid' => $actor_id)
+                        );
             if ($user_row) {
                 $role_row = $db->fetchRow("SELECT role_key FROM {$cr} WHERE actor_id = :aid AND channel_id = 1 AND (is_deleted = 0 OR is_deleted IS NULL) LIMIT 1", array(':aid' => $actor_id));
                 $channel1_role = $role_row ? (string) $role_row['role_key'] : '';
@@ -123,7 +146,19 @@ class AdminUsersHandler {
 
         // List all users with channel 1 role
         $users = $db->fetchAll(
-            "SELECT u.auth_user_id, u.username, u.display_name, u.email, u.is_active, a.actor_id FROM {$au} u LEFT JOIN {$ac} a ON a.actor_source_id = u.auth_user_id AND a.actor_source_type = 'user' AND (a.is_deleted = 0 OR a.is_deleted IS NULL) WHERE (u.is_deleted = 0 OR u.is_deleted IS NULL) ORDER BY u.username",
+            "SELECT u.auth_user_id, u.username, u.display_name, u.email, u.is_active,
+                    (
+                        SELECT aau.actor_id
+                        FROM {$aau} aau
+                        WHERE aau.auth_user_id = u.auth_user_id
+                          AND aau.status = 'active'
+                          AND (aau.is_deleted = 0 OR aau.is_deleted IS NULL)
+                        ORDER BY aau.is_primary DESC, aau.routing_priority ASC, aau.actor_auth_user_id ASC
+                        LIMIT 1
+                    ) AS actor_id
+             FROM {$au} u
+             WHERE (u.is_deleted = 0 OR u.is_deleted IS NULL)
+             ORDER BY u.username",
             array()
         );
         $actor_ids = array_values(array_filter(array_column($users, 'actor_id')));

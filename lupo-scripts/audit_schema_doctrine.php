@@ -104,7 +104,7 @@ $timeLikeSuffixes = array('_ymdhis', '_utc', '_timestamp', 'created_at', 'update
 $tablesRequiringSoftDelete = array(
     'lupo_actors', 'lupo_agents', 'lupo_dialog_messages', 'lupo_dialog_threads', 'lupo_tasks',
     'lupo_contents', 'lupo_sessions', 'lupo_registry', 'lupo_channels', 'lupo_auth_users',
-    'lupo_actor_channel_roles', 'lupo_metadata', 'lupo_visits', 'lupo_actor_edges', 'lupo_actor_collections'
+    'lupo_actor_channel_roles', 'lupo_metadata', 'lupo_visits', 'lupo_actor_collections'
 );
 $softDeleteLikelyPatterns = array('lupo_dialog_', 'lupo_task', 'lupo_content', 'lupo_agent', 'lupo_actor_channel', 'lupo_crm_', 'lupo_visit');
 $softDeleteExemptPrefixes = array('livehelp_');

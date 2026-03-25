@@ -3,7 +3,7 @@ lupopedia.headers:
   lupopedia.schema: database_table
   file_path_from_root: lupo-docs/database/lupopedia/tables/active/lupo_channels.md
   web_path: '[lupo_channels](http://www.lupopedia.com/database/lupopedia/tables/active/lupo_channels)'
-  last_modified_utc: '20260324174926'
+  last_modified_utc: '20260325105744'
   channel_id: 42
   actor_id: 102
   actor_name: cursor
@@ -17,7 +17,7 @@ lupopedia.headers:
   - database
   - table
   - channels
-  when_updated: '20260324174926'
+  when_updated: '20260325105744'
 lupopedia.edges:
   comment: Snapshot of edges for lupo_channels table doc at 4.0.79 (grounded by repo
     search; non-exhaustive).
@@ -99,7 +99,7 @@ lupopedia.edges:
     type: USED_IN_PYTHON
     weight: 0.5
 lupopedia.footer:
-  last_verified: '20260324174926'
+  last_verified: '20260325105744'
   last_verified_by: cursor
   last_verified_by_actor_id: 102
   orchestrator: cursor:root
@@ -142,7 +142,6 @@ lupopedia.footer:
 | metadata_json | text | Yes | — | Legacy metadata (deprecated in favor of JSON columns where used). |
 | status_flag | tinyint | No | 1 | Channel status. |
 | end_ymdhis | bigint | Yes | — | Channel end timestamp (BIGINT UTC YYYYMMDDHHIISS). |
-| duration_seconds | int | Yes | — | Channel duration in seconds. |
 | created_ymdhis | bigint | No | 0 | Creation timestamp (BIGINT UTC). |
 | updated_ymdhis | bigint | No | — | Last update timestamp (BIGINT UTC). |
 | is_deleted | tinyint | No | 0 | Soft delete flag. |

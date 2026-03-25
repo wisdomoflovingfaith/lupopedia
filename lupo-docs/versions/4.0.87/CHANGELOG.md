@@ -1,26 +1,27 @@
 ---
 lupopedia.headers:
   file_path_from_root: lupo-docs/versions/4.0.87/CHANGELOG.md
-  last_modified_utc: '20260325120000'
+  last_modified_utc: '20260325224500'
   channel_id: 42
   thread_id: 4.0.87-init
-  actor_id: 105
-  actor_name: "windsurf"
+  actor_id: 102
+  actor_name: cursor
   artifact_type: changelog
   artifact_kind: version_history
-  purpose: Version 4.0.87 changelog for multi-agent contributions including ROSE channel-native implementation and semantic tables cleanup
-  when_updated: '20260325120000'
+  purpose: Version 4.0.87 changelog — multi-agent contributions including ROSE channel-native implementation, semantic tables cleanup, CIP removal, Bayesian decision table removal, Edge Model Consolidation (WS2), WS3 completion (A-E), and ERQ-006 release authorization.
+  when_updated: '20260325224500'
   web_path: http://www.lupopedia.com/lupopedia/lupo-docs/versions/4.0.87/CHANGELOG.md
-  delegation_chain: windsurf:root
+  delegation_chain: cursor:root
 lupopedia.footer:
-  last_verified: '20260325120000'
-  last_verified_by: "windsurf"
-  last_verified_by_actor_id: 105
+  last_verified: '20260325224500'
+  last_verified_by: cursor
+  last_verified_by_actor_id: 102
   orchestrator: wolfie:root
   next_action:
+  - Publish final 4.0.87 release packet artifact
+  - Complete post-release housekeeping (dev diagnostics cleanup)
+  - Preserve WS6 regression coverage as post-release hardening track
   - Git add and push all 4.0.87 changes
-  - Prepare for 4.0.87 release
-  - Archive session documentation
 ---
 
 # file: 4.0.87 CHANGELOG — delegation: cursor:root — web_path: http://www.lupopedia.com/lupopedia/lupo-docs/versions/4.0.87/CHANGELOG.md
@@ -95,11 +96,101 @@ lupopedia.footer:
 - Reconciled canonical channel registry to include missing active channels, including 58, 59, 60, 61, and other existing channel directories.
 - Added context-graph endpoint `api/context-graph/channel-map` to expose channel edges, related channels, channel threads, and thread-edge relationships in one response.
 
+## Implemented (2026-03-25, table-structure-optimization + channel directory policy)
+- Confirmed actor-centric department mapping as canonical execution model:
+  - Department membership is actor-scoped (`lupo_actor_departments`), not agent-scoped.
+  - Effective runtime actor context is resolved server-side from agent context + department scope + supporting auth_user pairing.
+- Published/updated channel artifacts for this correction:
+  - `lupo-channels/table-structure-optimization/threads/20260325_103929_athena_actor_agent_department_pairing_strategy.md`
+  - `lupo-channels/table-structure-optimization/README.md`
+  - `lupo-channels/table-structure-optimization/threads/20260325_130000_windsurf_actor_table_analysis.md` (marked partially superseded where legacy assumptions conflicted)
+- Documented slug-first channel directory policy:
+  - New channels must use `channel_slug` directories under `lupo-channels/`.
+  - Legacy numeric channel directories remain valid historical compatibility paths.
+- Updated channel governance/navigation docs:
+  - `lupo-channels/channel_creation_doctrine.md`
+  - `lupo-channels/channel_index.md`
+  - `lupo-channels/INDEX.md`
+
+## Implemented (2026-03-25, table-structure-optimization thread outcomes + CIP removal)
+- Published thread artifact for admin identity alignment:
+  - `lupo-channels/table-structure-optimization/threads/20260325_163000_cursor_admin_ui_identity_alignment_4_0_87.md`
+- Published ATHENA semantic schema review artifact:
+  - `lupo-channels/table-structure-optimization/threads/20260325_170000_athena_semantic_table_architecture_review_4_0_87.md`
+- Executed CIP active-surface removal and published completion artifact:
+  - `lupo-channels/table-structure-optimization/threads/20260325_123500_cursor_cip_system_removal_4_0_87.md`
+- CIP removals executed:
+  - Removed CIP table blocks from `lupo-database/lupopedia/mysql/install/install_new_lupopedia.sql`
+  - Removed CIP table blocks from `lupo-database/lupopedia/mysql/install/install_new_lupopedia_backup.sql`
+  - Removed runtime CIP query function from `lupo-scripts/wolfie_orms.py`
+  - Removed active CIP docs under `lupo-docs/database/lupopedia/tables/active/`
+  - Removed active CIP architecture docs under `lupo-docs/channels/architecture/`
+  - Removed CIP TOON/JSON/CSV surfaces tied to removed active tables
+  - Updated `lupo-docs/database/lupopedia/tables/TABLE_INDEX.md` to remove `lupo_calibration_impacts` planning reference
+
+## Implemented (2026-03-25, CIP -> ROSE doctrine realignment prompt)
+- Added WOLFIE orchestration directive artifact:
+  - `lupo-channels/table-structure-optimization/threads/20260325_123538_wolfie_schema_triage_rose_intelligence_realignment_4_0_87.md`
+- Prompt-level architecture boundary locked:
+  - DB = storage
+  - edges = structure
+  - ROSE = meaning
+- Directive explicitly classifies CIP as replaced by ROSE and blocks reintroduction of database-driven intelligence pipelines.
+
+## Implemented (2026-03-25 13:11 UTC, Bayesian decision table removal — cursor)
+
+- **Bayesian Decision Table Removal (4.0.87)**: Complete removal of the Bayesian Decision Tracking system. Decision history is now represented through channels, threads, and artifacts. ROSE is the interpretation layer.
+  - **PHP files deleted**: `lupo-database/lupopedia/content/lupo-app/Services/BayesianDecisionService.php`, `lupo-includes/modules/api/decisions-api.php`, `lupo-tests/unit/bayesian_decision_service_test.php`.
+  - **DDL removed** from `lupo-database/lupopedia/mysql/install/install_new_lupopedia.sql`: all four `CREATE TABLE` blocks (`lupo_decisions`, `lupo_decision_edges`, `lupo_decision_evidence`, `lupo_decision_influences`) replaced with a deprecation comment block.
+  - **Table docs deprecated**: four active table documentation files marked `status: DEPRECATED` with `deprecated_in_version: 4.0.87`.
+  - **Doctrine superseded**: `lupo-docs/doctrine/BAYESIAN_DECISION_DOCTRINE.md` marked `DEPRECATED`, `superseded_by: DECISION_MODEL.md`.
+  - **New canonical doctrine**: `lupo-docs/doctrine/DECISION_MODEL.md` created — states decisions live in channel threads and artifacts, ROSE interprets decision context, no decision-tracking table system exists.
+  - **Validation**: PHP scan confirmed zero remaining references to `BayesianDecisionService` or `lupo_decision*` in any `.php` file. No broken dependencies (service and API were never wired into runtime load path).
+  - **TASK_REGISTRY**: V487-066 through V487-069 added.
+
+## Implemented (2026-03-25, THOTH doctrine lock)
+- Updated `lupo-docs/versions/4.0.87/DOCTRINE.md` to codify:
+  - CIP -> DEPRECATED
+  - ROSE -> canonical intelligence layer
+  - mandatory boundary: DB = storage, EDGES = structure, ROSE = meaning
+
 ## Pending Execution Areas
 - Atoms and global version propagation
 - Channel model and documentation reconciliation
 - LUPOPEDIA HEADERS implementation and verification
 - Identity model documentation/implementation clarity
+
+## Implemented (2026-03-25, Edge Model Consolidation — Workstream 2 — cursor/HEPHAESTUS)
+
+**Edge Model Consolidation**: Fragmented edge tables consolidated into single canonical `lupo_edges` table. All tables confirmed empty (0 rows) prior to removal — no data loss.
+
+### Schema Changes (`install_new_lupopedia.sql`)
+- **Removed** `lupo_actor_edges` DDL (CREATE TABLE + 10 indexes) — replaced with deprecation comment
+- **Removed** `lupo_reference_cited_by` DDL (CREATE TABLE + 5 indexes) — replaced with deprecation comment
+- Tables already absent from live DB (no action needed): `lupo_entity_edges`, `lupo_gov_event_actor_edges`, `lupo_gov_event_references`
+
+### Code Updates
+- `lupo-includes/classes/EmergentRoleDiscovery.php` — 3 SQL queries updated from `lupo_actor_edges` to `lupo_edges` with polymorphic column mapping (`left_object_type='actor'`, `right_object_type='actor'`)
+- `lupo-database/lupopedia/content/lupo-app/Services/ActorService.php` — `$edgesT` JOINs updated to `lupo_edges` with new column semantics for `getActorsUserCanActAs()`
+- `lupo-scripts/audit_schema_doctrine.php` — `lupo_actor_edges` removed from `$tablesRequiringSoftDelete` array
+
+### TOON Files Deleted
+- `lupo-database/lupopedia/toon/lupo_actor_edges.toon`
+- `lupo-database/lupopedia/toon/lupo_reference_cited_by.toon`
+
+### Migration Script
+- Created `lupo-database/lupopedia/mysql/migrations/dev_20260325_remove_redundant_edge_tables.sql`
+  — `DROP TABLE IF EXISTS lupo_actor_edges; DROP TABLE IF EXISTS lupo_reference_cited_by;`
+
+### Documentation (THOTH Phase A)
+- `lupo-docs/database/lupopedia/tables/active/lupo_edges.md` — Updated: canonical status, polymorphic object types, full edge type table, consolidated query examples, supersedes list
+- `lupo-docs/database/lupopedia/tables/deprecated/lupo_actor_edges.md` — Moved from `active/`; headers updated to 4.0.87 deprecated status with `superseded_by` link
+- `lupo-docs/database/lupopedia/tables/deprecated/lupo_reference_cited_by.md` — Headers updated to 4.0.87; migration column mapping table and replacement queries added
+- `lupo-docs/doctrine/EDGE_MODEL_DOCTRINE.md` — **Created** — canonical doctrine for single-table edge model, polymorphism rules, edge type registry, direction convention, prohibited patterns
+
+### Channel Artifacts
+- `lupo-channels/42/threads/1005/20260325_185000_hephaestus_edge_model_consolidation_4_0_87.md` — Workstream plan
+- `lupo-channels/42/threads/1005/20260325_200000_hephaestus_status_edge_consolidation_execution_complete.md` — Execution complete status addressed to WOLFIE, LILITH, ATHENA, ROSE
 
 ## Implemented (2026-03-24, metadata hardening pass)
 - Migrated `lupo-docs/versions/4.0.87/*.md` headers from `version_when_written` to `when_updated`.
@@ -337,9 +428,108 @@ lupopedia.footer:
 - **Channel closures (artifacts)**:
   - 62 / 6201: `20260324_230000_cursor_organization_pass_closure.md`
   - 63 / 6301: `20260324_230000_cursor_db_docs_reconciliation_closure.md`
-  - 64 / 6401: `20260324_230000_cursor_edge_governance_closure.md` (ERQ-001/002 closed; **ERQ-006** remains WOLFIE signoff).
+  - 64 / 6401: `20260324_230000_cursor_edge_governance_closure.md` (ERQ-001/002 closed; **ERQ-006** pending at that time, resolved 20260325).
 - **Channel 66**: Threads **1050 / 1051 / 1052** confirmed resolved with prior session artifacts; Q1–Q7 answer thread referenced from `WHAT_TO_DO_NEXT_SESSION.md`.
-- **Docs updated this handoff**: `TASK_REGISTRY.md` (V487-050/051 completed; V487-052–057 added), `EDGE_REVIEW_QUEUE.md` (ERQ-001/002 closed, ERQ-006 pending), `TODO.md`, `WHAT_TO_DO_NEXT_SESSION.md` (session state, artifact table, handoff checklist).
+- **Docs updated this handoff**: `TASK_REGISTRY.md` (V487-050/051 completed; V487-052–057 added), `EDGE_REVIEW_QUEUE.md` (ERQ-001/002 closed, ERQ-006 pending at that time; resolved 20260325), `TODO.md`, `WHAT_TO_DO_NEXT_SESSION.md` (session state, artifact table, handoff checklist).
 
-**Remaining before 4.0.87 release closeout:** ERQ-006 (WOLFIE via channel 66), admin `section=channel-chat` validation evidence, atom/version audit for stray `4.0.86` references, CHANGELOG final polish, remove root dev scripts `check_edge_state.php` and `check_metadata_state.php` after release.
+**Remaining before 4.0.87 release closeout (historical snapshot):** ERQ-006 (resolved 20260325), admin `section=channel-chat` validation evidence, atom/version audit for stray `4.0.86` references, CHANGELOG final polish, remove root dev scripts `check_edge_state.php` and `check_metadata_state.php` after release.
+
+## Session Update (2026-03-25 ~08:00 UTC — 4.0.87 Critical Findings Workstreams Planned)
+
+**Five workstreams initiated for post-WS2 execution**, defined in response to critical findings audit (WS1-2 complete, WS3-7 ready for design/implementation phase):
+
+### WS3: Identity Model Clarification (ATHENA, thread 1006)
+- **Artifact**: `lupo-channels/42/threads/1006/20260325_190000_athena_identity_model_clarification_4_0_87.md`
+- **Purpose**: Clarify separation between auth_users, actors, agents, faucets
+- **Scope**: Document actor_id ranges, binding rules, faucet overlap (IDs 100-106)
+- **Status**: Planning complete; ready for design documentation
+- **Next action**: Update AGENTS.md with identity layer definitions
+
+### WS4: Hidden Intelligence Tables Audit (THOTH, thread 1007)
+- **Artifact**: `lupo-channels/42/threads/1007/20260325_191000_thoth_hidden_intelligence_audit_4_0_87.md`
+- **Purpose**: Audit `lupo_human_request_context`, moods, emotional constellations
+- **Scope**: Classify as legitimate or hidden CIP-style intelligence systems
+- **Status**: Planning complete; ready for investigation
+- **Dependencies**: None (can execute immediately)
+
+### WS5: Questionable Tables Audit (THOTH, channel 66 thread 1008)
+- **Artifact**: `lupo-channels/66/threads/1008/20260325_192000_thoth_questionable_tables_audit_4_0_87.md`
+- **Purpose**: Classify 12 questionable tables for keep/remove/document
+- **Scope**: `lupo_meta_log_events`, `lupo_memory_events`, `lupo_pack_role_registry`, etc.
+- **Status**: Planning complete; ready for classification audit
+- **Dependencies**: None (can execute immediately)
+
+### WS6: Test Suite Update (LILITH, thread 1001)  
+- **Artifact**: `lupo-channels/42/threads/1001/20260325_193000_lilith_test_suite_update_4_0_87.md`
+- **Purpose**: Update test suite to match new schema (post-WS1,2)
+- **Scope**: Unit, integration, regression tests for removed tables and classes
+- **Status**: Blocked on WS1,2 completion (now UNBLOCKED)
+- **Dependencies**: COMPLETE — all test references cleared
+
+### WS7: Documentation Reconciliation Phase B-D (THOTH, thread 1034)
+- **Artifact**: `lupo-channels/42/threads/1034/20260325_194000_thoth_documentation_reconciliation_4_0_87.md`
+- **Purpose**: Final documentation sync after all workstreams complete
+- **Scope**: CHANGELOG, TODO, plan.md, decision system docs, identity/intelligence/questionable tables docs
+- **Status**: Planning complete; awaiting WS3-6 completion
+- **Dependencies**: All prior workstreams
+
+## Implemented (2026-03-25, WS3 doctrine propagation and doctrine stubs)
+
+- Updated `lupo-docs/doctrine/IDENTITY_LAYERS_DOCTRINE.md` to the WS3 five-layer model:
+  - Auth User (`lupo_auth_users`)
+  - Actor (`lupo_actors`)
+  - Department (`lupo_actor_departments`, `lupo_departments`)
+  - Agent (`lupo_agents`)
+  - Faucet (`lupo_agent_faucets`)
+- Updated `AGENTS.md` with the WS3 identity-layer section and binding requirements.
+- Created doctrine stubs derived from thread artifacts:
+  - `lupo-docs/doctrine/ws4_hidden_intelligence_doctrine.md`
+  - `lupo-docs/doctrine/ws5_questionable_tables_doctrine.md`
+  - `lupo-docs/doctrine/ws6_test_suite_alignment_doctrine.md`
+  - `lupo-docs/doctrine/ws7_documentation_reconciliation_doctrine.md`
+- Linked each stub to its source workstream thread (1007, 1008, 1001, 1034) for doctrine traceability.
+
+## Implemented (2026-03-25, WS3 Phase B data verification complete — HEPHAESTUS)
+
+- Source artifact added from thread 1006:
+  - `lupo-channels/42/threads/1006/20260325_200000_hephaestus_ws3_phase_b_data_verification_complete.md`
+- WS3 Phase B status: **COMPLETE**. Phase C faucet cleanup marked **not needed**.
+- Database verification confirmed identity-layer rollout state:
+  - Actor ranges validated for current dataset.
+  - Core personas 1-6 assigned to Department 1 in `lupo_actor_departments`.
+  - Department 1 (`default`, `crafty`) confirmed as configured core context.
+  - Faucet actor 106 verified with `auth_user_id = NULL`.
+- AGENTS identity-layer guidance validated against observed DB state.
+- WS3 progress checkpoint now recorded as:
+  - Phase A (documentation) complete.
+  - Phase B (data verification) complete.
+  - Phase C (faucet cleanup) complete/not required.
+  - Phase D (LILITH audit) next.
+  - Phase E (THOTH documentation sync) pending after Phase D.
+
+## Implemented (2026-03-25, WS3 Phase D/E complete + ERQ-006 release authorization)
+
+- **WS3 Phase D (LILITH audit): COMPLETE**
+  - Documentation accuracy verified.
+  - No contradictions found.
+  - Identity model implementation and security boundaries validated.
+- **WS3 Phase E (THOTH documentation sync): COMPLETE**
+  - CHANGELOG and version-doc synchronization finalized.
+  - Thread 1006 progression documented to completion state.
+  - Cross-references aligned between doctrine, version docs, and thread artifacts.
+- **ERQ-006 WOLFIE Release Signoff: COMPLETE**
+  - Release blockers resolved for WS1-WS5 and WS7.
+  - System stability and security assessment passed.
+  - 4.0.87 release state authorized for production deployment.
+
+## Implemented (2026-03-25, 4.0.87 release closeout task migration)
+
+- Open 4.0.87 task-registry items were carried into 4.0.88 planning scope:
+  - V487-001 -> V488-001
+  - V487-002 -> V488-002
+  - V487-005 -> V488-003
+  - V487-029 -> V488-004
+  - V487-045 -> V488-005
+- 4.0.87 task registry marked these source rows as completed via carryover and added closeout record V487-088.
+- New destination registry initialized at `lupo-docs/versions/4.0.88/TASK_REGISTRY.md`.
 

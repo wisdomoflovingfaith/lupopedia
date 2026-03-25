@@ -1,7 +1,7 @@
 ---
 lupopedia.headers:
   file_path_from_root: lupo-docs/versions/4.0.87/README.md
-  last_modified_utc: '20260324230000'
+  last_modified_utc: '20260325123121'
   channel_id: 42
   thread_id: 4.0.87-init
   actor_id: 102
@@ -9,11 +9,11 @@ lupopedia.headers:
   artifact_type: documentation
   artifact_kind: version_initialization
   purpose: Initialize version 4.0.87 planning surfaces and canonical navigation.
-  when_updated: '20260324230000'
+  when_updated: '20260325123121'
   web_path: http://www.lupopedia.com/lupo-docs/versions/4.0.87/README.md
   delegation_chain: cursor:root
 lupopedia.footer:
-  last_verified: '20260324230000'
+  last_verified: '20260325123121'
   last_verified_by: cursor
   last_verified_by_actor_id: 102
   orchestrator: cursor:root
@@ -100,6 +100,21 @@ This version focuses on **Specialized Agent Implementation, Relationship Graph a
 - **ERQ-001 / ERQ-002**: Verified 12 rows each in `lupo_edge_types` and `lupo_edge_type_definitions`.
 - **Channel 62 / 63 / 64**: Closure artifacts published (`20260324_230000_*` under respective threads).
 - **Release gate**: **ERQ-006** (WOLFIE signoff via channel 66) still open — see `WHAT_TO_DO_NEXT_SESSION.md`.
+
+## Session Update (2026-03-25 10:47 UTC — channel model/documentation corrections)
+- Confirmed and documented actor-centric department truth for table optimization work:
+  - Department membership is on actors (`lupo_actor_departments`), not a separate `lupo_agent_departments` execution surface.
+  - Agent context remains behavioral/configuration; effective execution identity remains actor-based with auth_user pairing.
+- Updated table-structure-optimization channel artifacts to reflect this model and corrected legacy assumptions.
+- Added slug-first channel directory rule in channel governance docs:
+  - New channels: `lupo-channels/<channel_slug>/`
+  - Legacy numeric paths retained for historical compatibility.
+
+## Session Update (2026-03-25 12:31 UTC — table-structure-optimization sync and CIP removal)
+- Added thread artifact: `lupo-channels/table-structure-optimization/threads/20260325_163000_cursor_admin_ui_identity_alignment_4_0_87.md`.
+- Added ATHENA schema review artifact: `lupo-channels/table-structure-optimization/threads/20260325_170000_athena_semantic_table_architecture_review_4_0_87.md`.
+- Added CIP removal completion artifact: `lupo-channels/table-structure-optimization/threads/20260325_123500_cursor_cip_system_removal_4_0_87.md`.
+- CIP active surfaces removed from installer SQL, active schema docs, generated TOON/JSON/CSV artifacts, and runtime query tooling.
 
 ## Thread Update (2026-03-24: Seed idempotency + unanswered questions refresh)
 - Installer seed path now includes idempotent behavior for repeat runs in `seed_traits_edge_types_action_auth_4.0.69.sql`.

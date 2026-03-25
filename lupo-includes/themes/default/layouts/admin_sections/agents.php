@@ -10,7 +10,8 @@ $agents = isset($agents) && is_array($agents) ? $agents : array();
 $base = isset($base) ? $base : (defined('LUPOPEDIA_PUBLIC_PATH') ? LUPOPEDIA_PUBLIC_PATH : '');
 ?>
 <div class="admin-agents-section">
-    <p class="admin-section-description">Complete listing of all agents in the system with IDE detection, operational metrics, and status tracking.</p>
+    <p class="admin-section-description">Actor-centric view of agent-capable actors. Operational identity stays on the actor record; model/provider behavior belongs to lupo_agents.</p>
+    <p class="admin-hint">This page lists actors flagged as agent-capable or agent-backed. Faucet or IDE execution context is separate from actor identity.</p>
     <?php if (empty($agents)): ?>
     <p class="admin-empty">No agents found.</p>
     <?php else: ?>
@@ -18,9 +19,9 @@ $base = isset($base) ? $base : (defined('LUPOPEDIA_PUBLIC_PATH') ? LUPOPEDIA_PUB
         <thead>
             <tr>
                 <th>Actor ID</th>
-                <th>Agent Name</th>
-                <th>Agent Type</th>
-                <th>IDE Agent</th>
+                <th>Actor Name</th>
+                <th>Actor Type</th>
+                <th>IDE Faucet Actor</th>
                 <th>Status</th>
                 <th>Created</th>
                 <th>Last Active</th>

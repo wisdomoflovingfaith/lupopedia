@@ -1,7 +1,7 @@
 ---
 lupopedia.headers:
   file_path_from_root: lupo-docs/versions/4.0.87/DOCTRINE.md
-  last_modified_utc: '20260324200640'
+  last_modified_utc: '20260325124408'
   channel_id: 42
   thread_id: 4.0.87-init
   actor_id: 102
@@ -9,11 +9,11 @@ lupopedia.headers:
   artifact_type: doctrine
   artifact_kind: version_doctrine
   purpose: Version-specific doctrine constraints and enforcement points for 4.0.87.
-  when_updated: '20260324200640'
+  when_updated: '20260325104751'
   web_path: http://www.lupopedia.com/lupo-docs/versions/4.0.87/DOCTRINE.md
   delegation_chain: cursor:root
 lupopedia.footer:
-  last_verified: '20260324200640'
+  last_verified: '20260325124408'
   last_verified_by: wolfie
   last_verified_by_actor_id: 1
   orchestrator: wolfie:root
@@ -23,11 +23,19 @@ lupopedia.footer:
 
 ## Non-Negotiables
 - Database remains dumb storage: no foreign keys, no triggers, no stored procedures.
+- CIP is deprecated in active architecture for 4.0.87 and must not be reintroduced in runtime, schema, or projection paths.
+- ROSE is the canonical intelligence layer for synthesis, interpretation, and decision-support context.
+- Intelligence boundary is mandatory:
+  - DB = storage
+  - EDGES = structure
+  - ROSE = meaning
 - Runtime remains compatible with minimum PHP baseline for project core.
 - LUPOPEDIA HEADERS remain required for governed documentation surfaces.
 - Identity model boundaries remain strict: actor != agent != faucet; auth_user mapping is explicit.
+- Department execution scope is actor-centric: operational membership mapping is through `lupo_actor_departments`.
 - All timestamps stay BIGINT UTC `YYYYMMDDHHIISS` format.
 - Version scope must not introduce Lupopedia -> Lupopedia upgrade compatibility assumptions in 4.0.x.
+- New channel directories are slug-first (`lupo-channels/<channel_slug>/`); numeric channel directories are legacy compatibility paths.
 
 ## Focus Constraints
 - Changes in 4.0.87 must advance atoms/channels/headers/identity/admin-LLM objectives.

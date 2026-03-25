@@ -1,4 +1,4 @@
----
+﻿---
 lupopedia.headers:
   when_updated: '20260324182605'
   lupopedia.schema: channel_artifact
@@ -27,7 +27,7 @@ lupopedia.edges:
   - to: lupo-docs/versions/4.0.87/EDGE_REVIEW_QUEUE.md
     type: references
     weight: 1.0
-  - to: lupo-channels/64/threads/edge_generation_governance/20260324_150925_channel_thread_edge_map_api_update.md
+  - to: lupo-channels/edge_generation_governance/threads/edge_generation_governance/20260324_150925_channel_thread_edge_map_api_update.md
     type: references
     weight: 0.9
 lupopedia.footer:

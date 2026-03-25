@@ -4,9 +4,13 @@
  *
  * Priority:
  * 1) Active actor selected in session (if still allowed)
- * 2) Saved chat preferences (preferred_actor_id, preferred_agent_id, preferred_department_id)
- * 3) Current authenticated user's actor_id
- * 4) First allowed actor
+ * 2) Explicit preferred_actor_id override
+ * 3) Current authenticated user's default actor_id
+ * 4) Preferred department fallback within allowed actors
+ * 5) First allowed actor
+ *
+ * preferred_agent_id is stored as an advisory behavior preference, but it does not
+ * directly become actor identity during resolution.
  *
  * Optional channel guard enforces actor-channel membership unless user is global admin.
  */
@@ -71,17 +75,25 @@ class EffectiveActorResolver
         $current_user_actor_id = isset($user['actor_id']) ? (int) $user['actor_id'] : 0;
 
         $candidate_ids = array();
+        $candidate_sources = array();
         if ($active_actor_id > 0) {
-            $candidate_ids[] = $active_actor_id;
+            if (!isset($candidate_sources[$active_actor_id])) {
+                $candidate_ids[] = $active_actor_id;
+            }
+            $candidate_sources[$active_actor_id] = 'active_actor';
         }
         if (!empty($prefs['preferred_actor_id'])) {
-            $candidate_ids[] = (int) $prefs['preferred_actor_id'];
-        }
-        if (!empty($prefs['preferred_agent_id'])) {
-            $candidate_ids[] = (int) $prefs['preferred_agent_id'];
+            $preferred_actor_id = (int) $prefs['preferred_actor_id'];
+            if (!isset($candidate_sources[$preferred_actor_id])) {
+                $candidate_ids[] = $preferred_actor_id;
+            }
+            $candidate_sources[$preferred_actor_id] = 'preferred_actor';
         }
         if ($current_user_actor_id > 0) {
-            $candidate_ids[] = $current_user_actor_id;
+            if (!isset($candidate_sources[$current_user_actor_id])) {
+                $candidate_ids[] = $current_user_actor_id;
+            }
+            $candidate_sources[$current_user_actor_id] = 'current_user_actor';
         }
 
         $actor_rows = self::fetchAllowedActorRows($db, $table_prefix, array_keys($allowed_ids));
@@ -108,10 +120,19 @@ class EffectiveActorResolver
                 if ($authService && is_object($authService) && method_exists($authService, 'setActiveActorId')) {
                     $authService->setActiveActorId($candidate_id);
                 }
+                $candidate_source = isset($candidate_sources[$candidate_id]) ? $candidate_sources[$candidate_id] : 'candidate';
+                $reason = 'Resolved from active actor or explicit preference candidate.';
+                if ($candidate_source === 'active_actor') {
+                    $reason = 'Resolved from active session actor.';
+                } elseif ($candidate_source === 'preferred_actor') {
+                    $reason = 'Resolved from preferred actor override.';
+                } elseif ($candidate_source === 'current_user_actor') {
+                    $reason = 'Resolved from authenticated user default actor.';
+                }
                 return array(
                     'actor_id' => $candidate_id,
-                    'source' => 'candidate',
-                    'reason' => 'Resolved from active actor or explicit preference candidate.',
+                    'source' => $candidate_source,
+                    'reason' => $reason,
                     'preferences' => $prefs,
                 );
             }
@@ -166,7 +187,7 @@ class EffectiveActorResolver
      * Persist chat identity preferences to session.
      *
      * @param int $preferred_actor_id
-     * @param int $preferred_agent_id
+    * @param int $preferred_agent_id Advisory behavior preference only; not a direct actor selector.
      * @param int $preferred_department_id
      * @return array
      */
@@ -190,7 +211,9 @@ class EffectiveActorResolver
     }
 
     /**
-     * Read chat identity preferences from session.
+    * Read chat identity preferences from session.
+    * preferred_agent_id is retained for UI state and future agent binding, but actor
+    * resolution remains actor-first.
      *
      * @return array
      */

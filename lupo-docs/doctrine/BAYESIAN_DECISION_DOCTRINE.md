@@ -1,32 +1,36 @@
 ---
 lupopedia.headers:
-  lupopedia.version: "4.0.77"
+  lupopedia.version: "4.0.87"
   lupopedia.schema: "doctrine"
-  system_version: "4.0.77"
+  system_version: "4.0.87"
   file_path_from_root: "lupo-docs/doctrine/BAYESIAN_DECISION_DOCTRINE.md"
   web_path: "[web_path](http://www.lupopedia.com/doctrine/BAYESIAN_DECISION_DOCTRINE)"
-  last_modified_utc: "20260316"
+  last_modified_utc: "20260325"
   channel_id: 42
   actor_id: 102
   actor_name: "cursor"
   delegation_chain: "cursor:root"
   artifact_type: "doctrine"
   artifact_kind: "design"
-  purpose: "Doctrine for optional Bayesian Decision Tracking foundation tables and metadata usage"
-  tags: ["bayesian", "decisions", "future_feature", "schema", "doctrine"]
+  status: DEPRECATED
+  deprecated_in_version: "4.0.87"
+  superseded_by: "lupo-docs/doctrine/DECISION_MODEL.md"
+  purpose: "DEPRECATED: Doctrine for Bayesian Decision Tracking tables — removed in 4.0.87"
+  tags: ["bayesian", "decisions", "deprecated", "4.0.87"]
 
 lupopedia.footer:
-  version: "4.0.77"
-  last_verified: "20260316"
+  version: "4.0.87"
+  last_verified: "20260325"
   last_verified_by: "cursor"
   orchestrator: "cursor"
   next_action:
-    - "Extend doctrine when core engine and integrations are implemented"
-    - "Align decision_state metadata examples with concrete usage"
+    - "This doctrine is superseded. See lupo-docs/doctrine/DECISION_MODEL.md"
 ---
 # file: BAYESIAN_DECISION_DOCTRINE — session: L-LUPO-ROOT-CURSOR — delegation: cursor:root — web_path: http://www.lupopedia.com/doctrine/BAYESIAN_DECISION_DOCTRINE
 
-# Bayesian Decision Doctrine (foundation, 4.0.77)
+> **DEPRECATED (4.0.87):** This doctrine is superseded by [DECISION_MODEL.md](DECISION_MODEL.md). The Bayesian Decision Tracking system (tables `lupo_decisions`, `lupo_decision_edges`, `lupo_decision_evidence`, `lupo_decision_influences`) has been removed. Decision history is now represented through channels, threads, and artifacts. ROSE interprets decision context from conversation history.
+
+# Bayesian Decision Doctrine (foundation, 4.0.77) — DEPRECATED
 
 ## 1. Scope and status
 

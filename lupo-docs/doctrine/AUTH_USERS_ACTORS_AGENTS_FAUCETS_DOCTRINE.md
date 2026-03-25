@@ -82,3 +82,8 @@ In Lupopedia, the separation between human authentication, operational orchestra
 | **Faucet** | Execution Surface | Computer / Keyboard | `lupo_agent_faucets` |
 
 *Remember:* To find out *who* did something, check the **actor**. To find out *how* it was done, check the **faucet** and **agent**.
+
+## Related Doctrine
+
+- `ACTOR_AGENT_AUTH_USER_MODEL.md` defines the actor-centric admin and web presentation model for 4.0.87.
+- `EFFECTIVE_ACTOR_RESOLUTION.md` documents how the server resolves posting actor identity at runtime.

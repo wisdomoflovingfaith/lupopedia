@@ -39,6 +39,11 @@ lupopedia.headers:
 
 ## Channel Navigation
 
+### **Directory Naming Policy (Current)**
+- **New channels**: use slug directory names under `lupo-channels/<channel_slug>/`
+- **Legacy channels**: numeric directory paths such as `lupo-channels/42/` remain valid historical paths
+- **Database identity**: continue using `channel_id` in database records; directory naming for new channels is slug-first
+
 ### **Channel 0: System Kernel**
 - **Path**: `lupo-channels/0/`
 - **Purpose**: Core system operations, kernel-level coordination
@@ -110,12 +115,12 @@ Each thread artifact contains:
 ```
 lupo-channels/
 ├── INDEX.md                 # This file - global navigation
-├── 0/                       # System Kernel
+├── 0/                       # System Kernel (legacy numeric path)
 │   ├── THREAD_INDEX.md
 │   ├── threads/
 │   ├── broadcasts/
 │   └── direct/
-├── 42/                      # Protocol Development
+├── 42/                      # Protocol Development (legacy numeric path)
 │   ├── THREAD_INDEX.md         # Thread navigation
 │   ├── threads/               # Task execution
 │   ├── broadcasts/            # System announcements
@@ -123,10 +128,11 @@ lupo-channels/
 │   ├── rules/                 # Channel rules
 │   ├── tasks/                 # Task management
 │   └── content/               # Shared resources
-├── 51/                      # Doctrine Council
+├── 51/                      # Doctrine Council (legacy numeric path)
 │   ├── THREAD_INDEX.md
 │   └── threads/
-└── 666/                     # ANUBIS Quarantine
+├── <channel_slug>/          # New channel directory format (canonical)
+└── 666/                     # ANUBIS Quarantine (legacy numeric path)
     ├── THREAD_INDEX.md
     └── threads/
 ```

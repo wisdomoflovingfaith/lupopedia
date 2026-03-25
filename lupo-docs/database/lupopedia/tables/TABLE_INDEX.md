@@ -3,7 +3,7 @@ lupopedia.headers:
   lupopedia.schema: documentation_index
   file_path_from_root: lupo-docs/database/lupopedia/tables/TABLE_INDEX.md
   web_path: http://www.lupopedia.com/database/lupopedia/tables/TABLE_INDEX
-  last_modified_utc: '20260324'
+  last_modified_utc: '20260325125423'
   channel_id: 42
   actor_id: 108
   actor_name: junie
@@ -18,9 +18,9 @@ lupopedia.headers:
   - index
   - v4.0.86
   - table_registry
-  when_updated: '20260324174654'
+  when_updated: '20260325125423'
 lupopedia.footer:
-  last_verified: '20260324000000'
+  last_verified: '20260325125423'
   last_verified_by: cursor
   last_verified_by_actor_id: 102
   orchestrator: cursor:root
@@ -55,9 +55,12 @@ These tables are the core of the **Unified Identity Model** and the **Semantic O
 
 ### Semantic Layer & Edges
 - [lupo_edges](active/lupo_edges.md) — Relationships between entities.
+- [lupo_edge_types](active/lupo_edge_types.md) — Canonical runtime edge type registry.
+- [lupo_edge_type_definitions](active/lupo_edge_type_definitions.md) — Edge type constraint/semantics registry.
 - [lupo_artifacts](active/lupo_artifacts.md) — File-based semantic objects.
 - [lupo_metadata](active/lupo_metadata.md) — Property key-value pairs.
 - [lupo_atoms](active/lupo_atoms.md) — System-wide constants and atoms.
+- [lupo_edge_surface_usage_baseline_4_0_87](active/lupo_edge_surface_usage_baseline_4_0_87.md) — 4.0.87 usage map, callsite matrix, baseline counts, duplicate-candidate baseline, and header edge-type clarification.
 
 ### Log & Audit (Unified Logging)
 - [lupo_unified_log](active/lupo_unified_log.md) — Consolidated system events.
@@ -78,7 +81,6 @@ These tables represent upcoming features or layers currently under active implem
 These tables are defined in TOONs but are not yet implemented in the core runtime.
 
 - [lupo_federated_trust](planning/lupo_federated_trust.md)
-- [lupo_calibration_impacts](planning/lupo_calibration_impacts.md)
 - [lupo_orchestrator_rules](planning/lupo_orchestrator_rules.md)
 
 ---

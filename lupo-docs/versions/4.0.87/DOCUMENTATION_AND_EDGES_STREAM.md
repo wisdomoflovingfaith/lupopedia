@@ -1,4 +1,4 @@
----
+﻿---
 lupopedia.headers:
   file_path_from_root: lupo-docs/versions/4.0.87/DOCUMENTATION_AND_EDGES_STREAM.md
   last_modified_utc: '20260324200640'
@@ -37,22 +37,22 @@ lupopedia.footer:
 - deliverables: doctrine + implementation map for edge systems
 - implemented checkpoint:
   - `GET api/context-graph/channel-map` for channel/thread edge visibility
-  - channel artifacts in `lupo-channels/64/threads/edge_generation_governance/`
+  - channel artifacts in `lupo-channels/edge_generation_governance/threads/edge_generation_governance/`
 
 ## 4.0.87 Scope Confirmation
 - Both streams are in scope for 4.0.87.
 - No Lupopedia -> Lupopedia upgrade compatibility scope is introduced.
 
-## Channel 64 Update — 20260324 (cursor / ATHENA / ROSE)
+## Channel 64 Update â€” 20260324 (cursor / ATHENA / ROSE)
 
 Edge governance stream advanced significantly in this session:
 
 - **Schema audit completed**: All six edge tables (`lupo_edges`, `lupo_edge_map`, `lupo_edge_types`, `lupo_edge_type_definitions`, `lupo_context_edges`, `lupo_actor_edges`) verified empty via TOON files. All fragment stores (`dialog_channels.channels` JSON, `thread_lineage` TEXT, `parent_channel_id` bigint) identified and documented.
 - **Multi-actor dialog thread produced**: `EDGE_GRAPH_ANALYSIS_4_0_84.md` in channel 42 captures the full conversation chain from discovery through strategic analysis and relational framing to artifact.
-- **Formal strategy artifact published**: `ATHENA_STRATEGY_20260324_120000_edge_graph_channel_thread_recommendations.md` in `lupo-actors/athena/docs/`. Contains all SQL and PHP needed for Tracks 1–4.
+- **Formal strategy artifact published**: `ATHENA_STRATEGY_20260324_120000_edge_graph_channel_thread_recommendations.md` in `lupo-actors/athena/docs/`. Contains all SQL and PHP needed for Tracks 1â€“4.
 - **Canonical mandate established**: `lupo_edges` is the authoritative general-purpose relationship graph. `lupo_context_edges` is explicitly scoped to AI/agent cognitive context only. Mandate is now on record in both the artifact and `CHANNEL_THREAD_EDGES_STATUS.md`.
 - **Collections boundary confirmed**: `lupo_collections` is UI/navigation bundling. `lupo_edges` is semantic/operational relationship traversal. These must not be conflated.
-- **Next action**: Route Tracks 1–2 SQL seeds to HEPHAESTUS for execution — these are P0 and block all data-layer edge work.
+- **Next action**: Route Tracks 1â€“2 SQL seeds to HEPHAESTUS for execution â€” these are P0 and block all data-layer edge work.
 
 ## Thread Update (2026-03-24: DB docs + script governance)
 - Regenerated `lupo-docs/database/lupopedia/tables/VALIDATION_REPORT_JUNIE.md` against current TOON state.

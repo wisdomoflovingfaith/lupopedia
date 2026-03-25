@@ -229,13 +229,6 @@ When the database is unreachable, verbose FLIP headers provide all semantic meta
 | `X-Lupo-Emotional-Framework` | `lupo_emotional_frameworks.framework_name` | VARCHAR(32) | `western_analytical` |
 | `X-Lupo-Emotional-Constellation-ID` | `lupo_emotional_constellations.constellation_id` | CHAR(26) | `01HFNXZ...` |
 
-### CIP (Critique Integration Propagation) Headers
-| Header | Maps To | Type | Example |
-|--------|---------|------|---------|
-| `X-Lupo-CIP-Event-ID` | `lupo_cip_events.cip_event_id` | BIGINT | `7001` |
-| `X-Lupo-Defensiveness-Index` | `lupo_cip_analytics.defensiveness_index` | DECIMAL(5,4) | `0.1250` |
-| `X-Lupo-Integration-Velocity` | `lupo_cip_analytics.integration_velocity` | DECIMAL(5,4) | `0.8750` |
-
 ### State & Flags Headers
 | Header | Maps To | Type | Example |
 |--------|---------|------|---------|

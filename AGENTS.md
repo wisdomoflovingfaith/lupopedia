@@ -314,6 +314,29 @@ Version lives in `config/global_atoms.yaml` as `GLOBAL_CURRENT_LUPOPEDIA_VERSION
 - Tables: `lupo_actors` (unified), `lupo_auth_users` (human login metadata), `lupo_agents` (AI agent metadata).
 - Lilith (actor 2) has a **flame header expert** faucet (slug `lilith-flame`) in `lupo_agent_faucets` for channel 42; see [LUPOPEDIA HEADERS doctrine](lupo-docs/doctrine/LUPOPEDIA_HEADERS/README.md) and LILITH_FLAME_FAUCET_REPORT.
 
+### Identity Layers (WS3, 4.0.87)
+
+Lupopedia uses five distinct identity layers and they must not be conflated:
+
+1. **Auth User** (`lupo_auth_users`)
+  - Human login/authentication surface.
+2. **Actor** (`lupo_actors`)
+  - Operational orchestration identity (`actor_id` is canonical).
+3. **Department** (`lupo_actor_departments`, `lupo_departments`)
+  - Execution context and authority scope for actor operations.
+4. **Agent** (`lupo_agents`)
+  - AI runtime configuration and capability metadata.
+5. **Faucet** (`lupo_agent_faucets`)
+  - Execution surface (IDE/API), not orchestration identity.
+
+Binding requirements:
+- Operational write identity is always resolved server-side to actor context.
+- Department context is part of effective actor resolution and permission boundaries.
+- Agent configuration does not override actor attribution.
+- Faucet surface does not imply elevated authority.
+
+Reference: `lupo-docs/doctrine/IDENTITY_LAYERS_DOCTRINE.md`.
+
 ### Channel security (4.0.79+)
 
 - **Channel posting** requires valid **channel membership** (`lupo_actor_channels`) for the authenticated actor, or global admin via `AuthService::isAdmin()`. The channel message API (`lupo-includes/modules/api/channels-api.php`) enforces this before insert; non-members receive HTTP 403.

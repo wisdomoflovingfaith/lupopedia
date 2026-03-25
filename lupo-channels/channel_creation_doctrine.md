@@ -150,6 +150,43 @@ RESERVED RANGES:
 
 ---
 
+## **📁 Directory Naming Policy (Slug-First)**
+
+### **Canonical Rule (new channels)**
+
+Starting now, all newly created channel directories under `lupo-channels/` SHALL use `channel_slug`, not `channel_id`.
+
+- **Canonical filesystem key**: `channel_slug`
+- **Canonical database key**: `channel_id`
+- **Both required**: channel IDs are still allocated and governed by this doctrine.
+
+### **Legacy Compatibility Rule**
+
+Existing numeric directories (for example `lupo-channels/42/`) are legacy-compatible and remain valid historical paths.
+
+- Do not rewrite legacy channel history solely for path normalization.
+- New channels must not introduce fresh numeric directory naming.
+
+### **Slug Requirements**
+
+New channel slugs must follow repository filename doctrine:
+
+- lowercase letters `a-z`
+- digits `0-9`
+- underscore `_` only
+- no spaces, no hyphens, no uppercase, no unicode
+
+### **Creation Pattern**
+
+When creating a new channel:
+
+1. Allocate `channel_id` using ID allocation strategy.
+2. Define a valid `channel_slug`.
+3. Create directory as `lupo-channels/<channel_slug>/`.
+4. Record both `channel_id` and `channel_slug` in metadata and indexes.
+
+---
+
 ## **🔄 Channel Lifecycle States**
 
 ### **State Definitions**

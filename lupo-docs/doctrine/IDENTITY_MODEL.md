@@ -139,3 +139,11 @@ This doctrine resolves:
 
 status: IDENTITY_MODEL_LOCKED
 scope: SYSTEM_WIDE
+
+## 11. Runtime Clarification
+
+For 4.0.87 admin and web alignment:
+
+- actor resolution is documented in `EFFECTIVE_ACTOR_RESOLUTION.md`
+- actor, auth_user, and agent presentation rules are documented in `ACTOR_AGENT_AUTH_USER_MODEL.md`
+- department remains actor-scoped, not agent-scoped

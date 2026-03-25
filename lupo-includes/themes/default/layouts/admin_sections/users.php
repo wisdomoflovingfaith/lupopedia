@@ -17,9 +17,14 @@ $channel1_role = isset($channel1_role) ? $channel1_role : '';
         <div class="admin-message"><?= htmlspecialchars($message) ?></div>
     <?php endif; ?>
 
+    <div style="margin-bottom: 1rem; padding: 0.85rem 1rem; background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 6px; color: #334155;">
+        <strong>Identity model:</strong> auth users log in, actors hold runtime permissions, and agents provide behavior/configuration. This page edits <strong>auth_user</strong> records and routes channel permissions through the linked <strong>actor_id</strong>.
+    </div>
+
     <?php if ($edit_profile_user !== null): ?>
         <div class="admin-users-edit-profile">
             <h2>Edit profile: <?= htmlspecialchars($edit_profile_user['username']) ?></h2>
+            <p class="admin-hint">This form updates the human auth record only. Runtime channel actions still execute through the paired actor.</p>
             <form method="post" action="<?= htmlspecialchars($base) ?>/admin.php?section=users&amp;save_profile=1">
                 <input type="hidden" name="csrf_token" value="<?= htmlspecialchars(function_exists('lupo_get_csrf_token') ? lupo_get_csrf_token() : '') ?>">
                 <input type="hidden" name="auth_user_id" value="<?= (int) $edit_profile_user['auth_user_id'] ?>">
@@ -34,6 +39,7 @@ $channel1_role = isset($channel1_role) ? $channel1_role : '';
         <div class="admin-users-edit-permissions">
             <h2>Edit permissions: <?= htmlspecialchars(isset($edit_permissions_user['display_name']) && $edit_permissions_user['display_name'] !== '' ? $edit_permissions_user['display_name'] : $edit_permissions_user['username']) ?></h2>
             <p class="admin-users-meta">Username: <?= htmlspecialchars($edit_permissions_user['username']) ?> · Actor ID: <?= (int) (isset($edit_permissions_user['actor_id']) ? $edit_permissions_user['actor_id'] : 0) ?></p>
+            <p class="admin-hint">Permissions are assigned to the actor, not directly to the auth user.</p>
             <form method="post" action="<?= htmlspecialchars($base) ?>/admin.php?section=users&amp;save_permissions=1">
                 <input type="hidden" name="csrf_token" value="<?= htmlspecialchars(function_exists('lupo_get_csrf_token') ? lupo_get_csrf_token() : '') ?>">
                 <input type="hidden" name="actor_id" value="<?= (int) (isset($edit_permissions_user['actor_id']) ? $edit_permissions_user['actor_id'] : 0) ?>">
@@ -54,9 +60,11 @@ $channel1_role = isset($channel1_role) ? $channel1_role : '';
             <table class="admin-users-table">
                 <thead>
                     <tr>
+                        <th>Auth User ID</th>
                         <th>Username</th>
                         <th>Display name</th>
                         <th>Email</th>
+                        <th>Primary Actor</th>
                         <th>Channel 1 role</th>
                         <th>Active</th>
                         <th>Actions</th>
@@ -65,9 +73,11 @@ $channel1_role = isset($channel1_role) ? $channel1_role : '';
                 <tbody>
                     <?php foreach ($users_list as $u): ?>
                         <tr>
+                            <td><?= (int) $u['auth_user_id'] ?></td>
                             <td><?= htmlspecialchars($u['username']) ?></td>
                             <td><?= htmlspecialchars(isset($u['display_name']) ? $u['display_name'] : '') ?></td>
                             <td><?= htmlspecialchars(isset($u['email']) ? $u['email'] : '') ?></td>
+                            <td><?= !empty($u['actor_id']) ? (int) $u['actor_id'] : 'Unpaired' ?></td>
                             <td><?= htmlspecialchars(isset($u['channel1_role']) ? $u['channel1_role'] : '—') ?></td>
                             <td><?= !empty($u['is_active']) ? 'Yes' : 'No' ?></td>
                             <td class="admin-users-actions">

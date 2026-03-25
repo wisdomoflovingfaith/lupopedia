@@ -159,14 +159,10 @@ This document provides the canonical mapping from **FLIP Header Keys** (used in 
 | `banned_actor_id` | `lupo_banned_actors` | `banned_actor_id` | Primary Key for banned actor. |
 | `bans_log_id` | `lupo_bans_log` | `bans_log_id` | Primary Key for bans log. |
 | `boot_id` | `lupo_channel_boot_log` | `boot_id` | Primary Key for boot. |
-| `calibration_impact_id` | `lupo_calibration_impacts` | `calibration_impact_id` | Primary Key for calibration impact. |
 | `campaign_var_id` | `lupo_analytics_campaign_vars` | `campaign_var_id` | Primary Key for campaign var. |
 | `category_id` | `lupo_semantic_categories` | `category_id` | Primary Key for category. |
 | `channel_log_id` | `lupo_channel_logs` | `channel_log_id` | Primary Key for channel log. |
 | `channel_state_id` | `lupo_channel_state` | `channel_state_id` | Primary Key for channel state. |
-| `cip_analytics_id` | `lupo_cip_analytics` | `cip_analytics_id` | Primary Key for cip analytics. |
-| `cip_propagation_tracking_id` | `lupo_cip_propagation_tracking` | `cip_propagation_tracking_id` | Primary Key for cip propagation tracking. |
-| `cip_trend_id` | `lupo_cip_trends` | `cip_trend_id` | Primary Key for cip trend. |
 | `collection_id` | `lupo_collections` | `collection_id` | Primary Key for collection. |
 | `collection_tab_id` | `lupo_collection_tabs` | `collection_tab_id` | Primary Key for collection tab. |
 | `collection_tab_map_id` | `lupo_collection_tab_map` | `collection_tab_map_id` | Primary Key for collection tab map. |
@@ -195,7 +191,6 @@ This document provides the canonical mapping from **FLIP Header Keys** (used in 
 | `document_id` | `lupo_documents` | `document_id` | Primary Key for document. |
 | `edge_id` | `lupo_edges`, `lupo_gov_event_actor_edges` | `edge_id` | Primary Key for edge. |
 | `edge_type_id` | `lupo_edge_types` | `edge_type_id` | Primary Key for edge type. |
-| `emotional_geometry_calibration_id` | `lupo_emotional_geometry_calibrations` | `emotional_geometry_calibration_id` | Primary Key for emotional geometry calibration. |
 | `entity_edge_id` | `lupo_entity_edges` | `entity_edge_id` | Primary Key for entity edge. |
 | `entity_property_id` | `lupo_entity_properties` | `entity_property_id` | Primary Key for entity property. |
 | `entity_type` | `lupo_unregistry` | `entity_type` | Primary Key for entity type. |
@@ -235,7 +230,6 @@ This document provides the canonical mapping from **FLIP Header Keys** (used in 
 | `module_department_id` | `lupo_modules_departments` | `module_department_id` | Primary Key for module department. |
 | `mood_assignment_id` | `lupo_mood_assignments` | `mood_assignment_id` | Primary Key for mood assignment. |
 | `mood_id` | `lupo_mood_registry` | `mood_id` | Primary Key for mood. |
-| `multi_agent_critique_sync_id` | `lupo_multi_agent_critique_sync` | `multi_agent_critique_sync_id` | Primary Key for multi agent critique sync. |
 | `navigation_id` | `lupo_semantic_navigation_overview` | `navigation_id` | Primary Key for navigation. |
 | `notification_id` | `lupo_notifications` | `notification_id` | Primary Key for notification. |
 | `pack_role_registry_id` | `lupo_pack_role_registry` | `pack_role_registry_id` | Primary Key for pack role registry. |

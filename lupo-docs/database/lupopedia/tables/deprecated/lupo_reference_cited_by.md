@@ -1,33 +1,91 @@
-# LUPOPEDIA HEADERS (replaces FLARE)
 ---
 lupopedia.headers:
-  lupopedia.version: "4.0.73"
+  lupopedia.version: "4.0.87"
   lupopedia.schema: "documentation"
   file_path_from_root: "lupo-docs/database/lupopedia/tables/deprecated/lupo_reference_cited_by.md"
-  file_hash: "3f969d7541a37eefea8efe34f434b62cd71ac1621a68449a427423fcbf01cb87"
-  last_updated_utc: "20260228155738"
-  system_version: "4.0.51"
-  channel_id: 1
-  actor_id: 1002
-  delegation_chain: "1002:10000"
+  last_updated_utc: "20260325200000"
+  system_version: "4.0.87"
+  channel_id: 42
+  actor_id: 26
+  actor_name: thoth
+  delegation_chain: "26:1"
   artifact_type: "documentation"
-  artifact_kind: "documentation"
-  purpose: "Documentation file with LUPOPEDIA HEADERS applied"
-  namespace: "core"
-  mood_rgb: "4169E1"
-  traits: ["flare", "indexed", "v4.0.51"]
-  tags: ["documentation", "flare_applied"]
-  lupo_agent: "windsurf"
+  artifact_kind: "table_documentation"
+  purpose: "DEPRECATED 4.0.87 — lupo_reference_cited_by removed, consolidated into lupo_edges"
+  mood_rgb: "808080"
+  traits: ["deprecated", "v4.0.87", "edge_consolidation"]
+  tags: ["documentation", "deprecated", "edge_consolidation"]
+  lupo_agent: "cursor"
 
 lupopedia.edges:
   outbound_edges:
-    - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/database/lupopedia/tables/active/lupo_edges.md", type: "superseded_by", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/EDGE_MODEL_DOCTRINE.md", type: "references", weight: 1.0 }
 
 lupopedia.footer:
-  last_verified: "20260228155738"
-  last_verified_by: "windsurf"
+  last_verified: "20260325200000"
+  last_verified_by: "cursor"
+  orchestrator: "wolfie:1"
 ---
+
+# Table: lupo_reference_cited_by (DEPRECATED)
+
+> **DEPRECATED in 4.0.87** — Table removed and consolidated into [`lupo_edges`](../active/lupo_edges.md).
+
+**Deprecated in:** 4.0.87
+**Superseded by:** [lupo_edges.md](../active/lupo_edges.md)
+**Removal planned:** Already removed in 4.0.87 install schema
+
+## Migration
+
+Citation relationships previously stored in `lupo_reference_cited_by` are now stored in `lupo_edges` with:
+
+| Old column | New mapping |
+|---|---|
+| `reference_object_id` | `right_object_id` (with `right_object_type = 'reference_object'`) |
+| `content_id` | `left_object_id` (with `left_object_type = 'content'`) |
+| `reference_type` | `edge_type` (use `'cites'`) |
+| `section_anchor_slug` | `properties` JSON field (key: `section_anchor_slug`) |
+| `section_order` | `sort_num` |
+| `raw_reference` | `edge_description` |
+| `meta_json` | `properties` (merge into JSON) |
+
+### Replacement Query
+
+```sql
+-- Find all references cited by a content item
+SELECT right_object_id AS reference_object_id,
+       properties->>'$.section_anchor_slug' AS section_anchor_slug,
+       sort_num AS section_order,
+       edge_description AS raw_reference
+FROM lupo_edges
+WHERE left_object_type = 'content'
+  AND left_object_id = :content_id
+  AND right_object_type = 'reference_object'
+  AND edge_type = 'cites'
+  AND is_deleted = 0;
+```
+
+## Original Schema (for reference)
+
+```sql
+-- REMOVED IN 4.0.87
+CREATE TABLE lupo_reference_cited_by (
+  reference_cited_by_id bigint NOT NULL,
+  reference_object_id bigint NOT NULL,
+  content_id bigint NOT NULL,
+  section_anchor_slug varchar(255) DEFAULT NULL,
+  section_order int NOT NULL DEFAULT 0,
+  reference_type varchar(50) NOT NULL,
+  raw_reference text,
+  meta_json json DEFAULT NULL,
+  is_deleted tinyint NOT NULL DEFAULT 0,
+  deleted_ymdhis bigint DEFAULT NULL,
+  created_ymdhis bigint NOT NULL DEFAULT 0,
+  updated_ymdhis bigint NOT NULL DEFAULT 0,
+  PRIMARY KEY (reference_cited_by_id)
+);
+```
 
 # LUPOPEDIA HEADERS (replaces FLARE) see http://www.lupopedia.com/lupopedia/content/FLARE and see http://www.lupopedia.com/lupopedia/qa/FLARE
 ---

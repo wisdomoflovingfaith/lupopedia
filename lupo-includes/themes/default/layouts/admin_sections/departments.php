@@ -9,7 +9,8 @@ $departments = isset($departments) && is_array($departments) ? $departments : ar
 $base = isset($base) ? $base : (defined('LUPOPEDIA_PUBLIC_PATH') ? LUPOPEDIA_PUBLIC_PATH : '');
 ?>
 <div class="admin-departments-section">
-    <p class="admin-section-description">Departments organize channels and operators. Department ID 0 is reserved (system). Listed below are non-deleted departments (up to 500).</p>
+    <p class="admin-section-description">Departments scope actor context, routing, and fallback selection. They do not attach to agents directly. Department ID 0 is reserved (system).</p>
+    <p class="admin-hint">Default actor is the actor-level fallback for the department. Agent behavior remains a separate layer.</p>
     <?php if (empty($departments)): ?>
     <p class="admin-empty">No departments found.</p>
     <?php else: ?>

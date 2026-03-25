@@ -134,15 +134,18 @@ class EmergentRoleDiscovery
             'temporal_patterns' => []
         ];
         
-        // Get actor edges from the database
+        // Get actor edges from the canonical edges table
         $sql = "
             SELECT 
                 edge_type,
                 COUNT(*) as count,
                 properties,
                 created_ymdhis
-            FROM lupo_actor_edges 
-            WHERE (source_actor_id = ? OR target_actor_id = ?)
+            FROM lupo_edges 
+            WHERE (
+                (left_object_type = 'actor' AND left_object_id = ?)
+                OR (right_object_type = 'actor' AND right_object_id = ?)
+            )
             AND is_deleted = 0
             AND created_ymdhis >= ?
             GROUP BY edge_type
@@ -199,14 +202,17 @@ class EmergentRoleDiscovery
             'behavioral_shifts' => []
         ];
         
-        // Get interactions during pressure periods
+        // Get interactions during pressure periods from the canonical edges table
         $sql = "
             SELECT 
                 edge_type,
                 properties,
                 created_ymdhis
-            FROM lupo_actor_edges 
-            WHERE (source_actor_id = ? OR target_actor_id = ?)
+            FROM lupo_edges 
+            WHERE (
+                (left_object_type = 'actor' AND left_object_id = ?)
+                OR (right_object_type = 'actor' AND right_object_id = ?)
+            )
             AND is_deleted = 0
             AND created_ymdhis BETWEEN ? AND ?
             ORDER BY created_ymdhis ASC
@@ -461,11 +467,12 @@ class EmergentRoleDiscovery
     {
         $affected_actors = [];
         
-        // Get actors in the pressure context domain/scope
+        // Get actors in the pressure context domain/scope from the canonical edges table
         $sql = "
             SELECT DISTINCT actor_id 
-            FROM lupo_actor_edges 
+            FROM lupo_edges 
             WHERE domain_id = ? 
+            AND actor_id IS NOT NULL
             AND is_deleted = 0
             AND created_ymdhis >= ?
         ";

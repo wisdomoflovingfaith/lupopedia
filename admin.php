@@ -226,7 +226,7 @@ $admin_section_info = array(
     'proactive-leads' => array('description' => 'Proactive lead outreach and automation. Configure triggers and templates.', 'links' => array()),
     'import-leads' => array('description' => 'Import leads from CSV or other sources into lupo_crm_leads.', 'links' => array('Leads' => 'admin.php?section=leads')),
     'live' => array('description' => 'Live help session monitor and controls.', 'links' => array()),
-    'channel-chat' => array('description' => 'Channel chat interface with effective actor resolution by agent, department, and preferences.', 'links' => array()),
+    'channel-chat' => array('description' => 'Channel chat interface with actor-first server-side resolution, optional actor override, and department-scoped fallback.', 'links' => array()),
     'quick-replies' => array('description' => 'Quick reply templates for operators (lupo_actor_reply_templates).', 'links' => array()),
     'quick-images' => array('description' => 'Quick image assets for chat.', 'links' => array()),
     'quick-urls' => array('description' => 'Quick URL shortcuts.', 'links' => array()),
@@ -258,10 +258,10 @@ if (!$isAdmin) {
 } else {
     $admin_main_content = '<p class="admin-section-description">Welcome to the admin area. Use the sidebar to open a section.</p>'
         . '<ul class="admin-dashboard-links">'
-        . '<li><a href="' . htmlspecialchars($base . '/admin.php?section=users') . '" class="admin-link">Users</a> — Manage auth users and channel roles</li>'
+        . '<li><a href="' . htmlspecialchars($base . '/admin.php?section=users') . '" class="admin-link">Users</a> — Manage auth users and their primary actor pairing for admin actions</li>'
         . '<li><a href="' . htmlspecialchars($base . '/channels') . '" class="admin-link">Channels</a> — Open the MVP dialog channel list</li>'
-        . '<li><a href="' . htmlspecialchars($base . '/admin.php?section=agents') . '" class="admin-link">Agents</a> — List agents</li>'
-        . '<li><a href="' . htmlspecialchars($base . '/admin.php?section=departments') . '" class="admin-link">Departments</a> — List departments</li>'
+        . '<li><a href="' . htmlspecialchars($base . '/admin.php?section=agents') . '" class="admin-link">Agents</a> — List actor identities that carry agent behavior</li>'
+        . '<li><a href="' . htmlspecialchars($base . '/admin.php?section=departments') . '" class="admin-link">Departments</a> — List actor-scoped departments and defaults</li>'
         . '<li><a href="' . htmlspecialchars($base . '/admin.php?section=leads') . '" class="admin-link">Leads</a> — CRM leads database</li>'
         . '<li><a href="' . htmlspecialchars($base . '/admin.php?section=settings') . '" class="admin-link">Master Settings</a> — Configuration</li>'
         . '</ul>';

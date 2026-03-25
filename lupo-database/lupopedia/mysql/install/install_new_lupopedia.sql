@@ -298,32 +298,10 @@ CREATE TABLE lupo_actor_apps (
 CREATE UNIQUE INDEX lupo_actor_apps_unq_actor ON lupo_actor_apps (actor_id);
 CREATE INDEX lupo_actor_apps_idx_updated ON lupo_actor_apps (updated_ymdhis);
 
-CREATE TABLE lupo_actor_edges (
-  actor_edge_id bigint NOT NULL,
-  domain_id bigint NOT NULL,
-  source_actor_id bigint NOT NULL,
-  target_actor_id bigint NOT NULL,
-  edge_type varchar(100) NOT NULL,
-  weight float DEFAULT '1',
-  properties text,
-  created_ymdhis bigint NOT NULL DEFAULT 0,
-  updated_ymdhis bigint DEFAULT NULL,
-  is_deleted tinyint NOT NULL DEFAULT '0',
-  deleted_ymdhis bigint DEFAULT NULL,
-  PRIMARY KEY (actor_edge_id)
-);
-
-CREATE UNIQUE INDEX lupo_actor_edges_unique_agent_edge ON lupo_actor_edges (domain_id, source_actor_id, target_actor_id, edge_type);
-CREATE INDEX lupo_actor_edges_idx_domain_id ON lupo_actor_edges (domain_id);
-CREATE INDEX lupo_actor_edges_idx_source_agent ON lupo_actor_edges (source_actor_id);
-CREATE INDEX lupo_actor_edges_idx_target_agent ON lupo_actor_edges (target_actor_id);
-CREATE INDEX lupo_actor_edges_idx_edge_type ON lupo_actor_edges (edge_type);
-CREATE INDEX lupo_actor_edges_idx_source_target ON lupo_actor_edges (source_actor_id, target_actor_id);
-CREATE INDEX lupo_actor_edges_idx_created_ymdhis ON lupo_actor_edges (created_ymdhis);
-CREATE INDEX lupo_actor_edges_idx_updated_ymdhis ON lupo_actor_edges (updated_ymdhis);
-CREATE INDEX lupo_actor_edges_idx_is_deleted ON lupo_actor_edges (is_deleted);
-CREATE INDEX lupo_actor_edges_idx_edge_source_relationship ON lupo_actor_edges (source_actor_id, edge_type);
-CREATE INDEX lupo_actor_edges_idx_edge_target_relationship ON lupo_actor_edges (target_actor_id, edge_type);
+-- DEPRECATED 4.0.87: lupo_actor_edges removed - consolidated into lupo_edges.
+-- Actor-to-actor relationships are stored in lupo_edges with left_object_type='actor'
+-- and right_object_type='actor'. Use edge_type='supports' for the same semantics.
+-- All code references updated to use lupo_edges.
 
 CREATE TABLE lupo_actor_traits (
   actor_trait_id bigint NOT NULL,
@@ -368,114 +346,16 @@ CREATE INDEX lupo_actor_handshakes_idx_actor_id ON lupo_actor_handshakes (actor_
 CREATE INDEX lupo_actor_handshakes_idx_is_deleted ON lupo_actor_handshakes (is_deleted);
 CREATE INDEX lupo_actor_handshakes_idx_utc_timestamp ON lupo_actor_handshakes (`utc_timestamp`);
 
--- Bayesian Decision Tracking tables (v4.0.86)
--- Scope: every decision/edge/influence is scoped by channel_id and project_id (required).
-CREATE TABLE lupo_decisions (
-  decision_id bigint NOT NULL,
-  actor_id bigint NOT NULL,
-  channel_id bigint NOT NULL,
-  project_id bigint NOT NULL,
-  session_id bigint NOT NULL,
-  root_decision_id bigint DEFAULT NULL,
-  parent_decision_id bigint DEFAULT NULL,
-  depth int NOT NULL DEFAULT 0,
-  decision_type varchar(50) NOT NULL,
-  decision_status varchar(32) NOT NULL,
-  decision_key varchar(255) DEFAULT NULL,
-  probability decimal(4,3) DEFAULT NULL,
-  probability_lower decimal(4,3) DEFAULT NULL,
-  probability_upper decimal(4,3) DEFAULT NULL,
-  probability_model varchar(64) DEFAULT NULL,
-  state_snapshot_id bigint DEFAULT NULL,
-  federation_node_id bigint NOT NULL DEFAULT 1,
-  origin_decision_id bigint DEFAULT NULL,
-  created_ymdhis bigint NOT NULL,
-  created_by_actor_id bigint NOT NULL,
-  updated_ymdhis bigint DEFAULT NULL,
-  abandoned_ymdhis bigint DEFAULT NULL,
-  pruned_ymdhis bigint DEFAULT NULL,
-  is_deleted tinyint NOT NULL DEFAULT 0,
-  deleted_ymdhis bigint DEFAULT NULL,
-  PRIMARY KEY (decision_id)
-);
-
-CREATE INDEX lupo_decisions_idx_actor_time ON lupo_decisions (actor_id, created_ymdhis);
-CREATE INDEX lupo_decisions_idx_session_time ON lupo_decisions (session_id, created_ymdhis);
-CREATE INDEX lupo_decisions_idx_root_depth ON lupo_decisions (root_decision_id, depth);
-CREATE INDEX lupo_decisions_idx_parent ON lupo_decisions (parent_decision_id);
-CREATE INDEX lupo_decisions_idx_status ON lupo_decisions (decision_status);
-CREATE INDEX lupo_decisions_idx_probability ON lupo_decisions (probability);
-CREATE INDEX lupo_decisions_idx_federation ON lupo_decisions (federation_node_id);
-CREATE INDEX lupo_decisions_idx_channel_time ON lupo_decisions (channel_id, created_ymdhis);
-CREATE INDEX lupo_decisions_idx_project_time ON lupo_decisions (project_id, created_ymdhis);
-CREATE INDEX lupo_decisions_idx_channel_project_time ON lupo_decisions (channel_id, project_id, created_ymdhis);
-
-CREATE TABLE lupo_decision_edges (
-  source_decision_id bigint NOT NULL,
-  target_decision_id bigint NOT NULL,
-  edge_type varchar(50) NOT NULL,
-  channel_id bigint NOT NULL,
-  project_id bigint NOT NULL,
-  probability decimal(4,3) DEFAULT NULL,
-  session_id bigint DEFAULT NULL,
-  federation_node_id bigint NOT NULL DEFAULT 1,
-  created_ymdhis bigint NOT NULL,
-  created_by_actor_id bigint NOT NULL,
-  is_deleted tinyint NOT NULL DEFAULT 0,
-  deleted_ymdhis bigint DEFAULT NULL,
-  PRIMARY KEY (source_decision_id, target_decision_id, edge_type)
-);
-
-CREATE INDEX lupo_decision_edges_idx_target ON lupo_decision_edges (target_decision_id);
-CREATE INDEX lupo_decision_edges_idx_probability ON lupo_decision_edges (probability);
-CREATE INDEX lupo_decision_edges_idx_session ON lupo_decision_edges (session_id);
-CREATE INDEX lupo_decision_edges_idx_channel ON lupo_decision_edges (channel_id);
-CREATE INDEX lupo_decision_edges_idx_project ON lupo_decision_edges (project_id);
-
-CREATE TABLE lupo_decision_evidence (
-  decision_evidence_id bigint NOT NULL,
-  decision_id bigint NOT NULL,
-  channel_id bigint NOT NULL,
-  project_id bigint DEFAULT 0,
-  evidence_type varchar(64) NOT NULL,
-  evidence_source varchar(255) NOT NULL,
-  evidence_value text,
-  likelihood decimal(10,6) DEFAULT NULL,
-  confidence decimal(10,6) DEFAULT NULL,
-  federation_node_id bigint NOT NULL DEFAULT 1,
-  status varchar(32) NOT NULL DEFAULT 'active',
-  created_ymdhis bigint NOT NULL DEFAULT 0,
-  updated_ymdhis bigint NOT NULL,
-  is_deleted tinyint NOT NULL DEFAULT 0,
-  deleted_ymdhis bigint DEFAULT NULL,
-  PRIMARY KEY (decision_evidence_id)
-);
-
-CREATE INDEX lupo_decision_evidence_idx_decision ON lupo_decision_evidence (decision_id);
-CREATE INDEX lupo_decision_evidence_idx_channel ON lupo_decision_evidence (channel_id);
-CREATE INDEX lupo_decision_evidence_idx_status ON lupo_decision_evidence (status);
-CREATE INDEX lupo_decision_evidence_idx_is_deleted ON lupo_decision_evidence (is_deleted);
-
-CREATE TABLE lupo_decision_influences (
-  decision_id bigint NOT NULL,
-  influencing_decision_id bigint NOT NULL,
-  influence_type varchar(50) NOT NULL,
-  channel_id bigint NOT NULL,
-  project_id bigint NOT NULL,
-  weight decimal(4,3) DEFAULT NULL,
-  session_id bigint DEFAULT NULL,
-  federation_node_id bigint NOT NULL DEFAULT 1,
-  created_ymdhis bigint NOT NULL,
-  created_by_actor_id bigint NOT NULL,
-  is_deleted tinyint NOT NULL DEFAULT 0,
-  deleted_ymdhis bigint DEFAULT NULL,
-  PRIMARY KEY (decision_id, influencing_decision_id, influence_type)
-);
-
-CREATE INDEX lupo_decision_influences_idx_influencing ON lupo_decision_influences (influencing_decision_id);
-CREATE INDEX lupo_decision_influences_idx_weight ON lupo_decision_influences (weight);
-CREATE INDEX lupo_decision_influences_idx_channel ON lupo_decision_influences (channel_id);
-CREATE INDEX lupo_decision_influences_idx_project ON lupo_decision_influences (project_id);
+-- ============================================================================
+-- DEPRECATED 4.0.87: Bayesian Decision Tracking tables removed.
+-- Decision history is now represented through channels, threads, and artifacts.
+-- ROSE interprets decision context from conversation history.
+-- See lupo-docs/doctrine/DECISION_MODEL.md for the canonical model.
+-- BayesianDecisionService.php, decisions-api.php, and related tests removed.
+-- Tables: lupo_decisions, lupo_decision_edges, lupo_decision_evidence,
+--         lupo_decision_influences
+-- Removed from install in 4.0.87. No runtime code references these tables.
+-- ============================================================================
 
 -- Consolidated metadata table replacing lupo_actor_meta, lupo_actor_properties, lupo_agent_properties
 -- 4.0.86: LUPOPEDIA HEADERS — added channel_id, parent_metadata_id, class_name for channel-scoped and hierarchical metadata
@@ -1273,25 +1153,6 @@ CREATE INDEX lupo_auth_users_idx_is_deleted ON lupo_auth_users (is_deleted);
 CREATE INDEX lupo_auth_users_idx_created_ymdhis ON lupo_auth_users (created_ymdhis);
 CREATE INDEX lupo_auth_users_idx_updated_ymdhis ON lupo_auth_users (updated_ymdhis);
 -- RESERVED ID DOCTRINE: auth_user_id is NOT AUTO_INCREMENT; application must supply explicit ID.
-
-CREATE TABLE lupo_calibration_impacts (
-  calibration_impact_id bigint NOT NULL,
-  calibration_id bigint NOT NULL,
-  impact_type varchar(64) NOT NULL,
-  impact_measurement decimal(5,4) NOT NULL,
-  measurement_method varchar(100) NOT NULL,
-  before_metrics_json json DEFAULT NULL,
-  after_metrics_json json DEFAULT NULL,
-  observation_period_hours int DEFAULT '24',
-  measured_ymdhis bigint NOT NULL,
-  impact_version varchar(20) DEFAULT '3.0.0',
-  PRIMARY KEY (calibration_impact_id)
-);
-
-CREATE INDEX lupo_calibration_impacts_idx_calibration_impact ON lupo_calibration_impacts (calibration_id, impact_type);
-CREATE INDEX lupo_calibration_impacts_idx_impact_measurement ON lupo_calibration_impacts (impact_measurement);
-CREATE INDEX lupo_calibration_impacts_idx_measurement_time ON lupo_calibration_impacts (measured_ymdhis);
-
 CREATE TABLE lupo_channels (
   channel_id bigint NOT NULL,
   federation_node_id bigint NOT NULL,
@@ -1309,7 +1170,6 @@ CREATE TABLE lupo_channels (
   channel_config text DEFAULT NULL,
   status_flag tinyint NOT NULL DEFAULT '1',
   end_ymdhis bigint DEFAULT NULL,
-  duration_seconds int DEFAULT NULL,
   created_ymdhis bigint NOT NULL DEFAULT 0,
   updated_ymdhis bigint NOT NULL,
   is_deleted tinyint NOT NULL DEFAULT '0',
@@ -1495,70 +1355,7 @@ CREATE TABLE lupo_channel_state (
 );
 
 CREATE INDEX lupo_channel_state_idx_channel_id ON lupo_channel_state (channel_id);
-
-CREATE TABLE lupo_cip_analytics (
-  cip_analytics_id bigint NOT NULL,
-  event_id bigint NOT NULL,
-  defensiveness_index decimal(5,4) NOT NULL DEFAULT '0.0000',
-  integration_velocity decimal(5,4) NOT NULL DEFAULT '0.0000',
-  architectural_impact_score decimal(5,4) NOT NULL DEFAULT '0.0000',
-  doctrine_propagation_depth tinyint NOT NULL DEFAULT '0',
-  critique_source_weight decimal(5,4) NOT NULL DEFAULT '0.5000',
-  subsystem_impact_json json DEFAULT NULL,
-  trend_analysis_json json DEFAULT NULL,
-  calculated_ymdhis bigint NOT NULL,
-  recalculated_ymdhis bigint DEFAULT NULL,
-  analytics_version varchar(20) DEFAULT '3.0.0',
-  PRIMARY KEY (cip_analytics_id)
-);
-
-CREATE UNIQUE INDEX lupo_cip_analytics_uk_event_analytics ON lupo_cip_analytics (event_id);
-CREATE INDEX lupo_cip_analytics_idx_defensiveness_index ON lupo_cip_analytics (defensiveness_index);
-CREATE INDEX lupo_cip_analytics_idx_integration_velocity ON lupo_cip_analytics (integration_velocity);
-CREATE INDEX lupo_cip_analytics_idx_architectural_impact ON lupo_cip_analytics (architectural_impact_score);
-CREATE INDEX lupo_cip_analytics_idx_calculated_time ON lupo_cip_analytics (calculated_ymdhis);
-
-CREATE TABLE lupo_cip_propagation_tracking (
-  cip_propagation_tracking_id bigint NOT NULL,
-  cip_event_id bigint NOT NULL,
-  propagation_level tinyint NOT NULL,
-  affected_subsystem varchar(100) NOT NULL,
-  propagation_type varchar(64) NOT NULL,
-  change_description text NOT NULL,
-  propagation_strength decimal(5,4) NOT NULL DEFAULT '1.0000',
-  completion_status varchar(64) DEFAULT 'pending',
-  dependencies_json json DEFAULT NULL,
-  started_ymdhis bigint DEFAULT NULL,
-  completed_ymdhis bigint DEFAULT NULL,
-  propagation_version varchar(20) DEFAULT '3.0.0',
-  PRIMARY KEY (cip_propagation_tracking_id)
-);
-
-CREATE INDEX lupo_cip_propagation_tracking_idx_event_level ON lupo_cip_propagation_tracking (cip_event_id, propagation_level);
-CREATE INDEX lupo_cip_propagation_tracking_idx_subsystem ON lupo_cip_propagation_tracking (affected_subsystem);
-CREATE INDEX lupo_cip_propagation_tracking_idx_completion_status ON lupo_cip_propagation_tracking (completion_status);
-CREATE INDEX lupo_cip_propagation_tracking_idx_propagation_strength ON lupo_cip_propagation_tracking (propagation_strength);
-
-CREATE TABLE lupo_cip_trends (
-  cip_trend_id bigint NOT NULL,
-  trend_period varchar(64) NOT NULL,
-  period_start_ymdhis bigint NOT NULL,
-  period_end_ymdhis bigint NOT NULL,
-  avg_defensiveness_index decimal(5,4) NOT NULL DEFAULT '0.0000',
-  avg_integration_velocity decimal(5,4) NOT NULL DEFAULT '0.0000',
-  avg_architectural_impact decimal(5,4) NOT NULL DEFAULT '0.0000',
-  total_events int NOT NULL DEFAULT '0',
-  high_impact_events int NOT NULL DEFAULT '0',
-  doctrine_updates_triggered int NOT NULL DEFAULT '0',
-  trend_metadata_json json DEFAULT NULL,
-  calculated_ymdhis bigint NOT NULL,
-  PRIMARY KEY (cip_trend_id)
-);
-
-CREATE UNIQUE INDEX lupo_cip_trends_uk_period_trend ON lupo_cip_trends (trend_period, period_start_ymdhis);
-CREATE INDEX lupo_cip_trends_idx_period_range ON lupo_cip_trends (period_start_ymdhis, period_end_ymdhis);
-CREATE INDEX lupo_cip_trends_idx_high_impact ON lupo_cip_trends (high_impact_events);
-
+ 
 CREATE TABLE lupo_collections (
   collection_id bigint NOT NULL,
   federation_node_id bigint NOT NULL,
@@ -1786,26 +1583,9 @@ CREATE INDEX lupo_reference_objects_idx_object_slug ON lupo_reference_objects (o
 CREATE INDEX lupo_reference_objects_idx_type_slug ON lupo_reference_objects (object_type, object_slug);
 CREATE INDEX lupo_reference_objects_idx_is_deleted ON lupo_reference_objects (is_deleted);
 
-CREATE TABLE lupo_reference_cited_by (
-  reference_cited_by_id bigint NOT NULL,
-  reference_object_id bigint NOT NULL,
-  content_id bigint NOT NULL,
-  section_anchor_slug varchar(255) DEFAULT NULL,
-  section_order int NOT NULL DEFAULT 0,
-  reference_type varchar(50) NOT NULL,
-  raw_reference text,
-  meta_json json DEFAULT NULL,
-  is_deleted tinyint NOT NULL DEFAULT 0,
-  deleted_ymdhis bigint DEFAULT NULL,
-  created_ymdhis bigint NOT NULL DEFAULT 0,
-  updated_ymdhis bigint NOT NULL DEFAULT 0,
-  PRIMARY KEY (reference_cited_by_id)
-);
-CREATE INDEX lupo_reference_cited_by_idx_content_id ON lupo_reference_cited_by (content_id);
-CREATE INDEX lupo_reference_cited_by_idx_section_anchor ON lupo_reference_cited_by (section_anchor_slug);
-CREATE INDEX lupo_reference_cited_by_idx_reference_type ON lupo_reference_cited_by (reference_type);
-CREATE INDEX lupo_reference_cited_by_idx_reference_object ON lupo_reference_cited_by (reference_object_id);
-CREATE INDEX lupo_reference_cited_by_idx_is_deleted ON lupo_reference_cited_by (is_deleted);
+-- DEPRECATED 4.0.87: lupo_reference_cited_by removed - consolidated into lupo_edges.
+-- Citation relationships are stored in lupo_edges with edge_type='cites' or 'cited_by'.
+-- Use left_object_type='content', right_object_type='reference_object' for the same semantics.
 
 CREATE TABLE lupo_search_index (
   search_index_id bigint NOT NULL,
@@ -2397,31 +2177,6 @@ CREATE TABLE lupo_emotional_frameworks (
   PRIMARY KEY (framework_name)
 );
 
-
-CREATE TABLE lupo_emotional_geometry_calibrations (
-  emotional_geometry_calibration_id bigint NOT NULL,
-  cip_analytics_id bigint NOT NULL,
-  calibration_target varchar(64) NOT NULL,
-  target_identifier varchar(255) NOT NULL,
-  baseline_before_json json DEFAULT NULL,
-  baseline_after_json json NOT NULL,
-  mood_framework varchar(32) NOT NULL DEFAULT 'western_analytical',
-  tension_vectors_detected json DEFAULT NULL,
-  calibration_reason text NOT NULL,
-  calibration_algorithm varchar(100) DEFAULT 'cip_pattern_analysis',
-  confidence_score decimal(5,4) NOT NULL DEFAULT '0.5000',
-  validation_status varchar(64) DEFAULT 'pending',
-  applied_ymdhis bigint DEFAULT NULL,
-  created_ymdhis bigint NOT NULL DEFAULT 0,
-  calibration_version varchar(20) DEFAULT '3.0.0',
-  PRIMARY KEY (emotional_geometry_calibration_id)
-);
-
-CREATE INDEX lupo_emotional_geometry_calibrations_idx_analytics_ref ON lupo_emotional_geometry_calibrations (cip_analytics_id);
-CREATE INDEX lupo_emotional_geometry_calibrations_idx_target ON lupo_emotional_geometry_calibrations (calibration_target, target_identifier(100));
-CREATE INDEX lupo_emotional_geometry_calibrations_idx_validation_status ON lupo_emotional_geometry_calibrations (validation_status);
-CREATE INDEX lupo_emotional_geometry_calibrations_idx_confidence ON lupo_emotional_geometry_calibrations (confidence_score);
-
 -- Old event log table removed in v4.0.86 - consolidated into lupo_unified_log
 
 CREATE TABLE lupo_event_metadata (
@@ -2767,28 +2522,6 @@ CREATE INDEX lupo_modules_idx_namespace ON lupo_modules (namespace);
 CREATE INDEX lupo_modules_idx_status ON lupo_modules (is_active, is_deleted);
 CREATE INDEX lupo_modules_idx_system ON lupo_modules (is_system);
 CREATE INDEX lupo_modules_idx_installed ON lupo_modules (installed_ymdhis);
-
-
-CREATE TABLE lupo_multi_agent_critique_sync (
-  multi_agent_critique_sync_id bigint NOT NULL,
-  cip_event_id bigint NOT NULL,
-  agent_id varchar(100) NOT NULL,
-  sync_role varchar(64) NOT NULL,
-  sync_status varchar(64) DEFAULT 'pending',
-  agent_perspective_json json DEFAULT NULL,
-  consensus_contribution decimal(5,4) DEFAULT '0.0000',
-  conflict_indicators_json json DEFAULT NULL,
-  resolution_strategy varchar(255) DEFAULT NULL,
-  sync_started_ymdhis bigint DEFAULT NULL,
-  sync_completed_ymdhis bigint DEFAULT NULL,
-  sync_version varchar(20) DEFAULT '3.0.0',
-  PRIMARY KEY (multi_agent_critique_sync_id)
-);
-
-CREATE INDEX lupo_multi_agent_critique_sync_idx_event_agent ON lupo_multi_agent_critique_sync (cip_event_id, agent_id);
-CREATE INDEX lupo_multi_agent_critique_sync_idx_sync_status ON lupo_multi_agent_critique_sync (sync_status);
-CREATE INDEX lupo_multi_agent_critique_sync_idx_sync_role ON lupo_multi_agent_critique_sync (sync_role);
-CREATE INDEX lupo_multi_agent_critique_sync_idx_consensus_contribution ON lupo_multi_agent_critique_sync (consensus_contribution);
 
 CREATE TABLE lupo_notifications (
   notification_id bigint NOT NULL,
@@ -3563,7 +3296,7 @@ ON DUPLICATE KEY UPDATE name = VALUES(name), metadata = VALUES(metadata), update
 INSERT INTO lupo_channels (
     channel_id, federation_node_id, created_by_actor_id, default_actor_id, department_id, 
     channel_key, channel_slug, channel_type, language, channel_name, description, 
-    website_link, metadata_json, status_flag, end_ymdhis, duration_seconds, 
+  website_link, metadata_json, status_flag, end_ymdhis, 
     created_ymdhis, updated_ymdhis, is_deleted, deleted_ymdhis, 
     aal_metadata_json, fleet_composition_json, awareness_version, channel_number, 
     parent_channel_id, is_kernel, boot_sequence_order
@@ -3572,7 +3305,7 @@ INSERT INTO lupo_channels (
     'lupopedia-development', 'lupopedia-development', 'chat_room', 'en', 'Lupopedia Development', 
     'Main development channel for Lupopedia system development, architecture, and coordination.', 
     NULL, '{"purpose": "development", "system": true, "auto_created": true}', 1, 
-    NULL, NULL, 20260221000000, 20260221000000, 0, NULL, 
+    NULL, 20260221000000, 20260221000000, 0, NULL, 
     NULL, NULL, '3.0.0', 42, NULL, 0, 2
 );
 

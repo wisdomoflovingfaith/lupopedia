@@ -47,10 +47,13 @@ lupopedia.headers:
 
 ## Thread navigation (per channel)
 
-For any channel \(N\):
+For any channel:
 
-- Threads directory: `lupo-channels/N/threads/`
-- Artifact path pattern: `lupo-channels/N/threads/<thread_id>/YYYYMMDD_HHIISS_<actor>_<type>_<...>.md`
+- **Canonical (new channels):** `lupo-channels/<channel_slug>/threads/`
+- **Legacy compatibility:** `lupo-channels/<channel_id>/threads/`
+- Artifact path pattern: `lupo-channels/<channel_dir>/threads/<thread_id>/YYYYMMDD_HHIISS_<actor>_<type>_<...>.md`
+
+Where `<channel_dir>` is `channel_slug` for new channels and may be numeric `channel_id` for legacy channels.
 
 ---
 
@@ -110,14 +113,15 @@ To manually update this index:
 When creating new channels:
 
 1. **Select Channel ID**: Use next available ID from reserved range
-2. **Create Directory**: `mkdir lupo-channels/<id>/`
-3. **Initialize Structure**: Create standard subdirectories
-4. **Register in Database**: Insert into `lupo_channels` table
-5. **Update Index**: Run regeneration script
+2. **Define Channel Slug**: Use lowercase, digits, underscore only
+3. **Create Directory**: `mkdir lupo-channels/<channel_slug>/`
+4. **Initialize Structure**: Create standard subdirectories
+5. **Register in Database**: Insert channel with both `channel_id` and `channel_slug`
+6. **Update Index**: Run regeneration script
 
 ### **Standard Channel Structure**
 ```
-lupo-channels/<id>/
+lupo-channels/<channel_slug>/
 ├── broadcasts/     # System-wide announcements
 ├── threads/        # Discussion threads
 ├── tasks/          # Task management
@@ -128,6 +132,8 @@ lupo-channels/<id>/
 ├── direct/         # Direct messages
 └── rules/          # Channel rules
 ```
+
+Legacy channels may remain at `lupo-channels/<channel_id>/` for historical compatibility.
 
 ---
 

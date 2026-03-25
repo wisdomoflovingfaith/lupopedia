@@ -9,21 +9,28 @@ lupopedia.headers:
   artifact_type: table_documentation
   artifact_kind: database_schema
   purpose: Complete documentation for lupo_decisions table - Bayesian decision tracking
+  status: DEPRECATED
+  deprecated_in_version: '4.0.87'
+  deprecated_reason: >-
+    Bayesian decision tracking removed. Decision history is now represented
+    through channels, threads, and artifacts. See lupo-docs/doctrine/DECISION_MODEL.md.
   tags:
   - table_documentation
   - decisions
   - bayesian
-  - analytics
-  - 4.0.80
+  - deprecated
+  - 4.0.87
   created_ymdhis: 20260317213000
-  when_updated: '20260324174654'
+  when_updated: '20260325000000'
 lupopedia:
   footer:
-    last_verified: '20260324174654'
+    last_verified: '20260325000000'
     last_verified_by: cursor
     last_verified_by_actor_id: 102
     orchestrator: cursor:root
 ---
+
+> **DEPRECATED (4.0.87):** This table has been removed. Decision history is now represented through channels, threads, and artifacts. ROSE interprets decision context from conversation history. See [DECISION_MODEL.md](../../doctrine/DECISION_MODEL.md).
 
 # lupo_decisions - Bayesian Decision Tracking
 

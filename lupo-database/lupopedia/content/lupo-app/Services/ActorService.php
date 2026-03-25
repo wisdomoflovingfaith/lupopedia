@@ -235,7 +235,7 @@ class ActorService
      * Get list of actors the given user is permitted to act as (for web actor selector).
      * Root user (auth_user_id 10000): all non-deleted actors.
      * Others: only the user's own actor plus actors where the user is a supporting actor
-     * (lupo_actor_edges with source_actor_id = user's actor_id, target_actor_id = actor, edge_type = 'supports').
+     * (lupo_edges with left_object_type='actor', left_object_id = user's actor_id, right_object_type='actor', right_object_id = actor, edge_type = 'supports').
      *
      * @param int  $authUserId auth_user_id of the logged-in user
      * @param bool $isAdmin    unused; root user (10000) determines "act as anyone"
@@ -248,7 +248,7 @@ class ActorService
             return array();
         }
         $t = $this->db->quoteIdentifier($this->prefix . 'actors');
-        $edgesT = $this->db->quoteIdentifier($this->prefix . 'actor_edges');
+        $edgesT = $this->db->quoteIdentifier($this->prefix . 'edges');
         $userActorId = 0;
         $userRow = $this->db->fetchRow(
             "SELECT actor_id, actor_name, name, actor_type FROM {$t} WHERE actor_source_type = 'lupo_auth_users' AND actor_source_id = :aid AND (is_deleted = 0 OR is_deleted IS NULL) LIMIT 1",
@@ -289,7 +289,7 @@ class ActorService
             );
             $supported = $this->db->fetchAll(
                 "SELECT a.actor_id, a.actor_name, a.name, a.actor_type FROM {$t} a
-                 INNER JOIN {$edgesT} e ON e.target_actor_id = a.actor_id AND e.source_actor_id = :uid AND e.edge_type = 'supports' AND (e.is_deleted = 0 OR e.is_deleted IS NULL)
+                 INNER JOIN {$edgesT} e ON e.right_object_type = 'actor' AND e.right_object_id = a.actor_id AND e.left_object_type = 'actor' AND e.left_object_id = :uid AND e.edge_type = 'supports' AND (e.is_deleted = 0 OR e.is_deleted IS NULL)
                  WHERE (a.is_deleted = 0 OR a.is_deleted IS NULL)
                  ORDER BY a.actor_id ASC",
                 array('uid' => $userActorId)

@@ -21,8 +21,11 @@ $csrf_token = isset($chat_data['csrf_token']) ? $chat_data['csrf_token'] : '';
     <?php endif; ?>
 
     <p class="admin-section-description">
-        Authenticated chat identity uses effective actor resolution from active actor + saved preferences (agent, department, actor).
+        Authenticated chat identity is actor-first. The server resolves the posting actor from session state, allowed actor pairings, and optional actor or department preferences.
     </p>
+    <div style="margin-bottom: 1rem; padding: 0.85rem 1rem; background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 6px; color: #334155;">
+        <strong>Resolution model:</strong> auth user authenticates the human, actor supplies runtime identity, department narrows fallback context, and agent preference is advisory behavior metadata only. Client-side code no longer converts an agent preference into actor identity.
+    </div>
 
     <form method="post" action="<?= htmlspecialchars($base . '/admin.php?section=channel-chat') ?>" style="margin-bottom: 1rem;">
         <input type="hidden" name="csrf_token" value="<?= htmlspecialchars($csrf_token) ?>">
@@ -41,9 +44,9 @@ $csrf_token = isset($chat_data['csrf_token']) ? $chat_data['csrf_token'] : '';
                 </select>
             </label>
             <label>
-                <span class="admin-hint">Preferred Agent Actor</span><br>
+                <span class="admin-hint">Preferred Agent Context</span><br>
                 <select id="pref_agent_id" name="preferred_agent_id" class="admin-input">
-                    <option value="0">Any agent</option>
+                    <option value="0">No agent preference</option>
                     <?php foreach ($actors as $a): ?>
                         <?php
                         $aid = isset($a['actor_id']) ? (int) $a['actor_id'] : 0;
@@ -81,7 +84,8 @@ $csrf_token = isset($chat_data['csrf_token']) ? $chat_data['csrf_token'] : '';
             <span class="admin-hint">Current effective actor: <strong id="effective_actor_label"><?= (int) $effective_actor_id ?></strong></span>
         </div>
         <div class="admin-hint" style="margin-top: 6px;"><?= htmlspecialchars($effective_reason) ?></div>
-        <div class="admin-hint" id="acting_context_label" style="margin-top: 6px;">Acting context not resolved yet.</div>
+        <div class="admin-hint" style="margin-top: 6px;">Preferred actor override changes posting identity. Department and agent preference remain server-side resolution inputs.</div>
+        <div class="admin-hint" id="acting_context_label" style="margin-top: 6px;">Posting actor is resolved on the server.</div>
     </form>
 
     <div style="display: grid; grid-template-columns: 240px 1fr; gap: 12px;">
@@ -137,7 +141,7 @@ $csrf_token = isset($chat_data['csrf_token']) ? $chat_data['csrf_token'] : '';
             label.textContent = 'Acting context: no channel selected.';
             return;
         }
-        label.textContent = 'Acting in channel ' + channelText + ' as actor ' + String(actorId || 0) + '.';
+        label.textContent = 'Acting in channel ' + channelText + ' as actor ' + String(actorId || 0) + '. Agent preference remains advisory.';
     }
 
     function getSelectedChannelId() {
@@ -145,41 +149,11 @@ $csrf_token = isset($chat_data['csrf_token']) ? $chat_data['csrf_token'] : '';
         return isNaN(v) ? 0 : v;
     }
 
-    function resolveActorFromSelections() {
+    function resolveExplicitActorSelection() {
         var preferredActorId = parseInt(byId('pref_actor_id').value || '0', 10);
-        var preferredAgentId = parseInt(byId('pref_agent_id').value || '0', 10);
-        var preferredDeptId = parseInt(byId('pref_department_id').value || '0', 10);
-        var i, a, isAgent;
 
         if (preferredActorId > 0) {
             return preferredActorId;
-        }
-
-        if (preferredAgentId > 0) {
-            return preferredAgentId;
-        }
-
-        if (preferredDeptId > 0) {
-            for (i = 0; i < actors.length; i++) {
-                a = actors[i];
-                if (parseInt(a.department_id || '0', 10) !== preferredDeptId) {
-                    continue;
-                }
-                isAgent = !!a.is_agent || a.actor_type === 'agent' || a.actor_type === 'ide_agent';
-                if (isAgent) {
-                    return parseInt(a.actor_id, 10);
-                }
-            }
-            for (i = 0; i < actors.length; i++) {
-                a = actors[i];
-                if (parseInt(a.department_id || '0', 10) === preferredDeptId) {
-                    return parseInt(a.actor_id, 10);
-                }
-            }
-        }
-
-        if (actors.length > 0) {
-            return parseInt(actors[0].actor_id, 10);
         }
         return 0;
     }
@@ -259,12 +233,13 @@ $csrf_token = isset($chat_data['csrf_token']) ? $chat_data['csrf_token'] : '';
         var channelId = getSelectedChannelId();
         var bodyEl = byId('chat_body');
         var body = (bodyEl.value || '').trim();
+        var explicitActorId = resolveExplicitActorSelection();
+        var selectedActorId = explicitActorId > 0 ? explicitActorId : parseInt(byId('effective_actor_label').textContent || '0', 10);
         if (channelId <= 0 || body === '') {
             setStatus('Choose channel and enter message.');
             return;
         }
-        var actorId = resolveActorFromSelections();
-        switchActiveActor(actorId).then(function () {
+        (explicitActorId > 0 ? switchActiveActor(explicitActorId) : Promise.resolve()).then(function () {
             return fetch(apiBase + '/' + channelId + '/messages', {
                 method: 'POST',
                 credentials: 'same-origin',
@@ -282,7 +257,7 @@ $csrf_token = isset($chat_data['csrf_token']) ? $chat_data['csrf_token'] : '';
                 throw new Error(data && data.error ? data.error.message : 'Message send failed.');
             }
             bodyEl.value = '';
-            setStatus('Message sent as actor ' + actorId + ' in channel ' + channelId + '.');
+            setStatus('Message sent as actor ' + selectedActorId + ' in channel ' + channelId + '.');
             loadMessages(true);
         }).catch(function (err) {
             setStatus('Send error: ' + err.message);
@@ -294,6 +269,10 @@ $csrf_token = isset($chat_data['csrf_token']) ? $chat_data['csrf_token'] : '';
     byId('chat_channel_id').addEventListener('change', function () {
         updateActingContext(parseInt(byId('effective_actor_label').textContent || '0', 10));
         loadMessages(true);
+    });
+    byId('pref_actor_id').addEventListener('change', function () {
+        var explicitActorId = resolveExplicitActorSelection();
+        updateActingContext(explicitActorId > 0 ? explicitActorId : parseInt(byId('effective_actor_label').textContent || '0', 10));
     });
 
     updateActingContext(parseInt(byId('effective_actor_label').textContent || '0', 10));

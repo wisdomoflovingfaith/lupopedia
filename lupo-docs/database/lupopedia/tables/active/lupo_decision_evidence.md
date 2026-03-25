@@ -8,6 +8,11 @@ lupopedia.headers:
   faucet_name: cascade
   artifact_type: table_documentation
   artifact_kind: database_schema
+  status: DEPRECATED
+  deprecated_in_version: '4.0.87'
+  deprecated_reason: >-
+    Bayesian decision tracking removed. Decision history is now represented
+    through channels, threads, and artifacts. See lupo-docs/doctrine/DECISION_MODEL.md.
   purpose: Complete documentation for lupo_decision_evidence table - decision evidence
     tracking
   tags:
@@ -25,6 +30,8 @@ lupopedia:
     last_verified_by_actor_id: 102
     orchestrator: cursor:root
 ---
+
+> **DEPRECATED (4.0.87):** This table has been removed. Decision history is now represented through channels, threads, and artifacts. ROSE interprets decision context from conversation history. See [DECISION_MODEL.md](../../doctrine/DECISION_MODEL.md).
 
 # lupo_decision_evidence - Decision Evidence Tracking
 

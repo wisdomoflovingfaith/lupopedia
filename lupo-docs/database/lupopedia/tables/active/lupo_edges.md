@@ -3,24 +3,25 @@ lupopedia.headers:
   lupopedia.schema: database_table
   file_path_from_root: lupo-docs/database/lupopedia/tables/active/lupo_edges.md
   web_path: '[lupo_edges](http://www.lupopedia.com/database/lupopedia/tables/active/lupo_edges)'
-  last_modified_utc: '20260324174926'
+  last_modified_utc: '20260325200000'
   channel_id: 42
   actor_id: 26
   actor_name: thoth
   delegation_chain: thoth:knowledge
   artifact_type: table_documentation
   artifact_kind: table
-  purpose: Complete documentation for lupo_edges table - relationship and edge storage
-    system
+  purpose: "Complete documentation for lupo_edges - SINGLE CANONICAL EDGE TABLE (4.0.87 consolidation)"
+  system_version: "4.0.87"
   tags:
   - database
   - table
   - edges
-  - 4.0.84
-  when_updated: '20260324174926'
+  - 4.0.87
+  - canonical
+  - consolidated
+  when_updated: '20260325200000'
 lupopedia.edges:
-  comment: Snapshot of edges for lupo_edges table doc at 4.0.84 (grounded by repo
-    search; non-exhaustive).
+  comment: Updated 4.0.87 — lupo_edges is now the single canonical edge store after consolidation of lupo_actor_edges and lupo_reference_cited_by.
   meta: php_hits=15 python_hits=3
   outbound_edges:
   - to: database.table.lupo_edges
@@ -32,13 +33,22 @@ lupopedia.edges:
   - to: lupo-database/lupopedia/toon/lupo_edges.toon
     type: schema_reference
     weight: 1.0
+  - to: lupo-docs/doctrine/EDGE_MODEL_DOCTRINE.md
+    type: references
+    weight: 1.0
+  - to: lupo-docs/database/lupopedia/tables/deprecated/lupo_actor_edges.md
+    type: supersedes
+    weight: 1.0
+  - to: lupo-docs/database/lupopedia/tables/deprecated/lupo_reference_cited_by.md
+    type: supersedes
+    weight: 1.0
 lupopedia.footer:
-  last_verified: '20260324174926'
+  last_verified: '20260325200000'
   last_verified_by: cursor
   orchestrator: wolfie
   next_action:
   - Maintain schema consistency with install SQL and TOON files
-  - Update documentation when schema changes occur
+  - Update edge type registry in lupo_edge_types seed when new types are introduced
   last_verified_by_actor_id: 102
 ---
 # file: lupo_edges ? web_path: http://www.lupopedia.com/database/lupopedia/tables/active/lupo_edges
@@ -368,12 +378,114 @@ Standard FLARE edge types with weight ranges:
 
 ---
 
+## � **Canonical Status (4.0.87)**
+
+`lupo_edges` is the **single canonical edge table** for all relationship data in Lupopedia. As of 4.0.87, all fragmented edge tables have been consolidated here.
+
+> See [EDGE_MODEL_DOCTRINE.md](../../../doctrine/EDGE_MODEL_DOCTRINE.md) for governance rules.
+
+---
+
+## 🏷️ **Supported Object Types**
+
+| `left_object_type` / `right_object_type` | Maps to Table | Notes |
+|---|---|---|
+| `actor` | `lupo_actors.actor_id` | Any system actor (human or AI) |
+| `content` | `lupo_contents.content_id` | Wiki/doc content |
+| `channel` | `lupo_channels.channel_id` | Communication channel |
+| `artifact` | channel file artifacts | Thread artifacts by filename |
+| `collection` | `lupo_collections.collection_id` | Content collections |
+| `reference_object` | `lupo_reference_objects.reference_object_id` | Citation targets |
+| `department` | `lupo_departments.department_id` | Departments |
+
+---
+
+## 🔗 **Canonical Edge Types**
+
+| `edge_type` | Direction | Meaning | Formerly stored in |
+|---|---|---|---|
+| `supports` | actor → actor | Actor A delegates to / endorses Actor B | `lupo_actor_edges` (edge_type=supports) |
+| `cites` | content → reference_object | Content cites a reference | `lupo_reference_cited_by` |
+| `cited_by` | reference_object → content | Reference is cited by content | `lupo_reference_cited_by` (inverse) |
+| `references` | any → any | General documentation link | FLARE protocol |
+| `implements` | any → any | Implementation relationship | FLARE protocol |
+| `depends_on` | any → any | Dependency relationship | FLARE protocol |
+| `supersedes` | any → any | Version replacement | FLARE protocol |
+| `related_to` | any → any | Loose semantic association | FLARE protocol |
+| `channel_parent` | channel → channel | Channel hierarchy | Structural backfill |
+| `thread_member` | actor → channel | Actor membership in channel thread | Channel system |
+
+**Adding new edge types:** Register in `lupo_edge_types` (slug + label + is_bidirectional). Do not invent ad-hoc string values without a registry entry.
+
+---
+
+## 🔍 **Consolidated Query Examples**
+
+### Actor-to-actor edges (replaces `lupo_actor_edges`)
+```sql
+-- All actors that actor 5 supports
+SELECT right_object_id AS target_actor_id
+FROM lupo_edges
+WHERE left_object_type = 'actor'
+  AND left_object_id = 5
+  AND right_object_type = 'actor'
+  AND edge_type = 'supports'
+  AND is_deleted = 0;
+
+-- Everyone who supports actor 5 (reverse)
+SELECT left_object_id AS supporting_actor_id
+FROM lupo_edges
+WHERE right_object_type = 'actor'
+  AND right_object_id = 5
+  AND left_object_type = 'actor'
+  AND edge_type = 'supports'
+  AND is_deleted = 0;
+```
+
+### Citation edges (replaces `lupo_reference_cited_by`)
+```sql
+-- All references cited by content 42
+SELECT right_object_id AS reference_object_id, properties
+FROM lupo_edges
+WHERE left_object_type = 'content'
+  AND left_object_id = 42
+  AND right_object_type = 'reference_object'
+  AND edge_type = 'cites'
+  AND is_deleted = 0;
+
+-- All content that cites reference 7
+SELECT left_object_id AS content_id
+FROM lupo_edges
+WHERE right_object_type = 'reference_object'
+  AND right_object_id = 7
+  AND left_object_type = 'content'
+  AND edge_type = 'cites'
+  AND is_deleted = 0;
+```
+
+### Domain-scoped actor graph
+```sql
+SELECT left_object_id, edge_type, right_object_id, weight_score
+FROM lupo_edges
+WHERE left_object_type = 'actor'
+  AND right_object_type = 'actor'
+  AND domain_id = :domain_id
+  AND is_deleted = 0
+ORDER BY weight_score DESC;
+```
+
+---
+
 ## 🔄 **Migration from Legacy Tables**
 
 This table replaces multiple legacy relationship tables:
-- **lupo_edge_types** - Edge type definitions
-- **lupo_relationships** - Basic relationships
-- **lupo_entity_edges** - Entity-specific edges
+- **`lupo_actor_edges`** — Removed 4.0.87. Use `lupo_edges` with `left_object_type='actor'`, `right_object_type='actor'`.
+- **`lupo_reference_cited_by`** — Removed 4.0.87. Use `lupo_edges` with `edge_type='cites'`.
+- **`lupo_entity_edges`** — Already absent; never reached production.
+- **`lupo_gov_event_actor_edges`** — Already absent; never reached production.
+- **`lupo_gov_event_references`** — Already absent; never reached production.
+- **`lupo_edge_types`** — Kept as type registry (slug + label). Distinct from this table.
+- **`lupo_relationships`** - Basic relationships
 - **Content relationship tables** - Various content link tables
 
 ### **Migration Benefits**

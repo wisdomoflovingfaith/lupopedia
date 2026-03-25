@@ -136,8 +136,6 @@ This document lists every column ending in `_id` across the entire **TOON Schema
 | `banned_by_actor_id` | lupo_banned_actors | |
 | `bans_log_id` | lupo_bans_log | |
 | `boot_id` | lupo_channel_boot_detail, lupo_channel_boot_log | |
-| `calibration_id` | lupo_calibration_impacts | |
-| `calibration_impact_id` | lupo_calibration_impacts | |
 | `campaign_var_id` | lupo_analytics_campaign_vars | |
 | `category_id` | lupo_semantic_categories | |
 | `certificate_id` | lupo_labs_declarations, lupo_labs_violations | |
@@ -145,10 +143,6 @@ This document lists every column ending in `_id` across the entire **TOON Schema
 | `channel_log_id` | lupo_channel_logs | |
 | `channel_state_id` | lupo_channel_state | |
 | `chunk_id` | lupo_document_embeddings | |
-| `cip_analytics_id` | lupo_cip_analytics, lupo_emotional_geometry_calibrations | |
-| `cip_event_id` | lupo_cip_propagation_tracking, lupo_doctrine_refinements, lupo_multi_agent_critique_sync | |
-| `cip_propagation_tracking_id` | lupo_cip_propagation_tracking | |
-| `cip_trend_id` | lupo_cip_trends | |
 | `client_id` | lupo_auth_providers | |
 | `collection_id` | lupo_actor_collections, lupo_collection_tab_paths, lupo_collection_tabs, lupo_collections | |
 | `collection_tab_id` | lupo_collection_tab_map, lupo_collection_tab_paths, lupo_collection_tabs | |

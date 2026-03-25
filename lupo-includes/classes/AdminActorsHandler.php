@@ -30,7 +30,11 @@ class AdminActorsHandler
         // Page header
         $html .= '<div style="margin-bottom: 30px;">';
         $html .= '<h2 style="margin: 0 0 10px 0; font-size: 1.5rem; color: #1e293b;">Actors</h2>';
-        $html .= '<p style="margin: 0; color: #64748b;">View all actors (humans and AI agents) with their session activity.</p>';
+        $html .= '<p style="margin: 0; color: #64748b;">Actors are operational identities. Auth users authenticate humans, agents provide behavior, and departments attach to actors.</p>';
+        $html .= '</div>';
+
+        $html .= '<div style="margin-bottom: 20px; padding: 16px 18px; background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; color: #334155;">';
+        $html .= '<strong>Actor-centric pairing:</strong> this screen shows the runtime actor layer first. Where available, the paired auth user is resolved from <code>lupo_actor_auth_users</code>, with legacy actor source fields used only as fallback display context.';
         $html .= '</div>';
         
         // Filters
@@ -88,9 +92,11 @@ class AdminActorsHandler
             $html .= '<thead>';
             $html .= '<tr style="background: #f8fafc; border-bottom: 2px solid #e2e8f0;">';
             $html .= '<th style="padding: 12px; text-align: left; font-weight: 600; color: #475569;">ID</th>';
-            $html .= '<th style="padding: 12px; text-align: left; font-weight: 600; color: #475569;">Name</th>';
-            $html .= '<th style="padding: 12px; text-align: left; font-weight: 600; color: #475569;">Type</th>';
-            $html .= '<th style="padding: 12px; text-align: left; font-weight: 600; color: #475569;">Email</th>';
+            $html .= '<th style="padding: 12px; text-align: left; font-weight: 600; color: #475569;">Actor</th>';
+            $html .= '<th style="padding: 12px; text-align: left; font-weight: 600; color: #475569;">Identity Layer</th>';
+            $html .= '<th style="padding: 12px; text-align: left; font-weight: 600; color: #475569;">Source</th>';
+            $html .= '<th style="padding: 12px; text-align: left; font-weight: 600; color: #475569;">Department</th>';
+            $html .= '<th style="padding: 12px; text-align: left; font-weight: 600; color: #475569;">Paired Auth User</th>';
             $html .= '<th style="padding: 12px; text-align: center; font-weight: 600; color: #475569;">Status</th>';
             $html .= '<th style="padding: 12px; text-align: left; font-weight: 600; color: #475569;">Last Session</th>';
             $html .= '<th style="padding: 12px; text-align: left; font-weight: 600; color: #475569;">Last Activity</th>';
@@ -105,6 +111,18 @@ class AdminActorsHandler
                 $is_ai = $actor['actor_id'] < 1000;
                 $is_active = $actor['is_active'] == 1;
                 $has_session = !empty($actor['last_session_start']);
+                $actor_type = isset($actor['actor_type']) ? (string) $actor['actor_type'] : '';
+                $actor_source_type = isset($actor['actor_source_type']) ? (string) $actor['actor_source_type'] : '';
+                $is_agent_actor = !empty($actor['is_agent']) || $actor_type === 'agent' || $actor_type === 'ide_agent';
+                $layer_label = 'System actor';
+                $layer_style = 'background: #e2e8f0; color: #334155;';
+                if ($is_agent_actor) {
+                    $layer_label = 'Agent-capable actor';
+                    $layer_style = 'background: #dbeafe; color: #1d4ed8;';
+                } elseif ($actor_source_type === 'user' || $actor_source_type === ($prefix . 'auth_users') || !$is_ai) {
+                    $layer_label = 'Human-linked actor';
+                    $layer_style = 'background: #dcfce7; color: #166534;';
+                }
                 
                 $html .= '<tr style="border-bottom: 1px solid #f1f5f9;">';
                 
@@ -115,28 +133,52 @@ class AdminActorsHandler
                 $html .= '</code>';
                 $html .= '</td>';
                 
-                // Name
+                // Actor
                 $html .= '<td style="padding: 12px;">';
                 $html .= '<div style="font-weight: 500; color: #1e293b;">' . htmlspecialchars($actor['name'] ?: '(No name)') . '</div>';
-                if (!empty($actor['username'])) {
-                    $html .= '<div style="font-size: 0.75rem; color: #64748b; margin-top: 2px;">@' . htmlspecialchars($actor['username']) . '</div>';
-                } elseif (!empty($actor['slug'])) {
+                if (!empty($actor['slug'])) {
                     $html .= '<div style="font-size: 0.75rem; color: #64748b; margin-top: 2px;">' . htmlspecialchars($actor['slug']) . '</div>';
                 }
                 $html .= '</td>';
                 
-                // Type
+                // Identity Layer
                 $html .= '<td style="padding: 12px;">';
-                if ($is_ai) {
-                    $html .= '<span style="display: inline-block; padding: 3px 10px; background: #dbeafe; color: #1e40af; border-radius: 12px; font-size: 0.75rem; font-weight: 500;">🤖 AI Agent</span>';
-                } else {
-                    $html .= '<span style="display: inline-block; padding: 3px 10px; background: #dcfce7; color: #166534; border-radius: 12px; font-size: 0.75rem; font-weight: 500;">👤 Human</span>';
+                $html .= '<span style="display: inline-block; padding: 3px 10px; border-radius: 12px; font-size: 0.75rem; font-weight: 500; ' . $layer_style . '">' . htmlspecialchars($layer_label) . '</span>';
+                if ($actor_type !== '') {
+                    $html .= '<div style="font-size: 0.75rem; color: #64748b; margin-top: 4px;">type: ' . htmlspecialchars($actor_type) . '</div>';
                 }
                 $html .= '</td>';
                 
-                // Email
+                // Source
                 $html .= '<td style="padding: 12px; color: #64748b;">';
-                $html .= htmlspecialchars($actor['email'] ?: '—');
+                if ($actor_source_type !== '') {
+                    $html .= '<div>' . htmlspecialchars($actor_source_type) . '</div>';
+                    if (isset($actor['actor_source_id']) && (int) $actor['actor_source_id'] > 0) {
+                        $html .= '<div style="font-size: 0.75rem; margin-top: 2px;">source id: ' . htmlspecialchars($actor['actor_source_id']) . '</div>';
+                    }
+                } else {
+                    $html .= '—';
+                }
+                $html .= '</td>';
+
+                // Department
+                $html .= '<td style="padding: 12px; color: #64748b;">';
+                $html .= !empty($actor['department_id']) ? htmlspecialchars($actor['department_id']) : '—';
+                $html .= '</td>';
+
+                // Paired auth user
+                $html .= '<td style="padding: 12px; color: #64748b;">';
+                if (!empty($actor['username'])) {
+                    $html .= '<div>@' . htmlspecialchars($actor['username']) . '</div>';
+                    if (!empty($actor['email'])) {
+                        $html .= '<div style="font-size: 0.75rem; margin-top: 2px;">' . htmlspecialchars($actor['email']) . '</div>';
+                    }
+                    if (!empty($actor['auth_user_id'])) {
+                        $html .= '<div style="font-size: 0.75rem; margin-top: 2px;">auth_user_id: ' . htmlspecialchars($actor['auth_user_id']) . '</div>';
+                    }
+                } else {
+                    $html .= '—';
+                }
                 $html .= '</td>';
                 
                 // Status
@@ -196,6 +238,8 @@ class AdminActorsHandler
     {
         $where_clauses = array('a.is_deleted = 0');
         $params = array();
+        $auth_users = $db->quoteIdentifier($prefix . 'auth_users');
+        $actor_auth_users = $db->quoteIdentifier($prefix . 'actor_auth_users');
         
         // Type filter
         if ($filter_type === 'human') {
@@ -217,17 +261,36 @@ class AdminActorsHandler
                     a.actor_id,
                     a.name,
                     a.slug,
+                    a.actor_name,
                     a.actor_type,
                     a.is_agent,
+                    a.department_id,
+                    a.actor_source_type,
+                    a.actor_source_id,
                     a.is_active,
                     a.created_ymdhis,
                     a.updated_ymdhis,
+                    au.auth_user_id,
                     au.username,
                     au.email,
                     s.created_ymdhis as last_session_start,
                     s.last_seen_ymdhis as last_activity
                 FROM {$prefix}actors a
-                LEFT JOIN {$prefix}auth_users au ON a.actor_id = au.auth_user_id
+                LEFT JOIN {$auth_users} au ON au.auth_user_id = COALESCE(
+                    (
+                        SELECT aau.auth_user_id
+                        FROM {$actor_auth_users} aau
+                        WHERE aau.actor_id = a.actor_id
+                          AND aau.status = 'active'
+                          AND (aau.is_deleted = 0 OR aau.is_deleted IS NULL)
+                        ORDER BY aau.is_primary DESC, aau.routing_priority ASC, aau.actor_auth_user_id ASC
+                        LIMIT 1
+                    ),
+                    CASE
+                        WHEN a.actor_source_type = 'user' OR a.actor_source_type = '{$prefix}auth_users' THEN a.actor_source_id
+                        ELSE NULL
+                    END
+                ) AND (au.is_deleted = 0 OR au.is_deleted IS NULL)
                 LEFT JOIN (
                     SELECT 
                         actor_id,
@@ -249,11 +312,16 @@ class AdminActorsHandler
                         a.actor_id,
                         a.name,
                         a.slug,
+                        a.actor_name,
                         a.actor_type,
                         a.is_agent,
+                        a.department_id,
+                        a.actor_source_type,
+                        a.actor_source_id,
                         a.is_active,
                         a.created_ymdhis,
                         a.updated_ymdhis,
+                        au.auth_user_id,
                         au.username,
                         au.email,
                         (SELECT created_ymdhis 
@@ -267,7 +335,21 @@ class AdminActorsHandler
                          ORDER BY created_ymdhis DESC 
                          LIMIT 1) as last_activity
                     FROM {$prefix}actors a
-                    LEFT JOIN {$prefix}auth_users au ON a.actor_id = au.auth_user_id
+                    LEFT JOIN {$auth_users} au ON au.auth_user_id = COALESCE(
+                        (
+                            SELECT aau.auth_user_id
+                            FROM {$actor_auth_users} aau
+                            WHERE aau.actor_id = a.actor_id
+                              AND aau.status = 'active'
+                              AND (aau.is_deleted = 0 OR aau.is_deleted IS NULL)
+                            ORDER BY aau.is_primary DESC, aau.routing_priority ASC, aau.actor_auth_user_id ASC
+                            LIMIT 1
+                        ),
+                        CASE
+                            WHEN a.actor_source_type = 'user' OR a.actor_source_type = '{$prefix}auth_users' THEN a.actor_source_id
+                            ELSE NULL
+                        END
+                    ) AND (au.is_deleted = 0 OR au.is_deleted IS NULL)
                     WHERE {$where_sql}
                     ORDER BY a.actor_id ASC
                     LIMIT 500";

@@ -3,11 +3,16 @@ lupopedia.headers:
   lupopedia.schema: database_table
   file_path_from_root: lupo-docs/database/lupopedia/tables/active/lupo_decision_influences.md
   web_path: '[web_path](http://www.lupopedia.com/database/lupopedia/tables/active/lupo_decision_influences)'
-  last_modified_utc: '20260316'
+  last_modified_utc: '20260325'
   channel_id: 42
   actor_id: 102
   artifact_type: table_documentation
   artifact_kind: table
+  status: DEPRECATED
+  deprecated_in_version: '4.0.87'
+  deprecated_reason: >-
+    Bayesian decision tracking removed. Decision history is now represented
+    through channels, threads, and artifacts. See lupo-docs/doctrine/DECISION_MODEL.md.
   purpose: "Documentation for lupo_decision_influences table \u2014 Bayesian Decision\
     \ Tracking influences; required channel_id and project_id (4.0.77)"
   tags:
@@ -41,6 +46,8 @@ lupopedia.footer:
   last_verified_by_actor_id: 102
 ---
 # file: lupo_decision_influences — session: L-LUPO-ROOT-CURSOR — delegation: cursor:root
+
+> **DEPRECATED (4.0.87):** This table has been removed. Decision history is now represented through channels, threads, and artifacts. ROSE interprets decision context from conversation history. See [DECISION_MODEL.md](../../doctrine/DECISION_MODEL.md).
 
 # lupo_decision_influences
 

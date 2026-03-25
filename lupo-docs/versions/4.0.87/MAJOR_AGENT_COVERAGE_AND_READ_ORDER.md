@@ -1,4 +1,4 @@
----
+﻿---
 lupopedia.headers:
   when_updated: '20260324200640'
   lupopedia.schema: documentation
@@ -32,7 +32,7 @@ lupopedia.edges:
   - to: lupo-channels/58/threads/5801/20260324_184800_cursor_primary_persona_agent_alignment.md
     type: references
     weight: 0.95
-  - to: lupo-channels/64/threads/6401/20260324_185000_cursor_edge_blockers_major_agent_review.md
+  - to: lupo-channels/edge_generation_governance/threads/6401/20260324_185000_cursor_edge_blockers_major_agent_review.md
     type: references
     weight: 0.95
   semantic_tags:
