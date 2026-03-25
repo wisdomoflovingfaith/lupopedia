@@ -227,6 +227,16 @@ Each active version should contain:
 - ✅ lupo-docs/version.md completely updated with 4.0.88 information
 - ✅ Added proper LUPOPEDIA HEADERS compliance
 - ✅ Updated cross-references to current versions
+- ✅ Fixed header format issues (critical validation fix)
+- ✅ Created validation script to prevent future issues
+
+**LUPOPEDIA HEADERS Format Fix**:
+- ✅ Fixed lupo-docs/version.md header format (was starting with text, not ---)
+- ✅ Fixed lupo-docs/README.md header format compliance
+- ✅ Updated to proper when_updated field instead of deprecated fields
+- ✅ Added proper verified_by structure in footers
+- ✅ Created validation script to prevent future header format issues
+- ✅ Both files now pass validation successfully
 
 **Version Directory Organization**:
 - ✅ Created archive/ directory for historical versions

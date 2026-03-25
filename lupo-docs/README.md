@@ -1,21 +1,19 @@
 ---
 lupopedia.headers:
-  lupopedia.version: "4.0.88"
+  when_updated: "20260325210000"
   lupopedia.schema: "documentation"
   file_path_from_root: "lupo-docs/README.md"
-  web_path: "http://www.lupopedia.com/docs"
+  web_path: "http://www.lupopedia.com/lupopedia/lupo-docs/README.md"
   last_modified_utc: "20260325210000"
-  system_version: "4.0.88"
   channel_id: 42
-  thread_id: 1035
   actor_id: 26
+  actor_name: "cascade"
   delegation_chain: "26:1"
   artifact_type: "documentation"
   artifact_kind: "index"
   purpose: "Documentation index and navigation; required reading order for doctrine and lupopedia.init"
-  mood_rgb: "9933FF"
-  traits: ["thoth_documentation", "index", "navigation", "4.0.88"]
   tags: ["documentation", "index", "doctrine", "lupopedia_headers", "4.0.88"]
+  namespace: "documentation"
 lupopedia.edges:
   outbound_edges:
     - { to: "lupo-docs/INIT_README.md", type: "references", weight: 1.0 }
@@ -25,13 +23,21 @@ lupopedia.edges:
     - { to: "lupo-docs/version.md", type: "references", weight: 0.8 }
 lupopedia.footer:
   last_verified: "20260325210000"
-  last_verified_by: "cascade"
+  verified_by:
+    identity_type: "actor"
+    actor_id: 26
+    agent_name_identity: "THOTH"
+    department_id_delta: 0
+  verified_via:
+    type: "faucet"
+    faucet_slug: "cascade"
+  orchestrator: "26:1"
   next_action:
     - "Keep required reading links and init doctrine paths current"
     - "Add new doctrine to prerequisite list when created"
     - "Validate LUPOPEDIA HEADERS on new docs under lupo-docs/"
 ---
-# file: Documentation Index — delegation: 26:1 — web_path: http://www.lupopedia.com/docs
+# file: Documentation Index — delegation: 26:1 — web_path: http://www.lupopedia.com/lupopedia/lupo-docs/README.md
 
 ## Current Development: Version 4.0.88
 
