@@ -1,14 +1,20 @@
 ---
 lupopedia.headers:
   lupopedia.schema: database_table
-  file_path_from_root: lupo-docs/database/lupopedia/tables/active/lupo_artifact_chunks.md
-  web_path: '[lupo_artifact_chunks](http://www.lupopedia.com/database/lupopedia/tables/active/lupo_artifact_chunks)'
-  last_modified_utc: '20260317'
-  channel_id: 42
-  actor_id: 102
-  actor_name: cursor
-  delegation_chain: cursor:root
-  artifact_type: table_documentation
+  version_when_written: "4.0.87"
+  file_path_from_root: lupo-docs/database/lupopedia/tables/deprecated/lupo_artifact_chunks
+  web_path: http://www.lupopedia.com/database/lupopedia/tables/deprecated/lupo_artifact_chunks
+  last_modified_utc: "20260325_103500"
+  channel_id: null
+  thread_id: null
+  actor_id: 105
+  actor_name: windsurf
+  artifact_type: deprecation_notice
+  artifact_kind: table_deprecation
+  purpose: Deprecation notice for lupo_artifact_chunks table - replaced by channel-based file storage
+  references:
+    - lupo-docs/database/lupopedia/tables/deprecated/lupo_artifacts.md
+    - lupo-channels/semantic-edges/README.md
   artifact_kind: table
   namespace: content
   purpose: JetBrains domain table documentation for lupo_artifact_chunks

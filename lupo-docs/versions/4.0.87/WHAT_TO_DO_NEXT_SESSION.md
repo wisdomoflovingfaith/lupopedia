@@ -1,26 +1,26 @@
 ---
 lupopedia.headers:
   file_path_from_root: lupo-docs/versions/4.0.87/WHAT_TO_DO_NEXT_SESSION.md
-  last_modified_utc: '20260324230000'
+  last_modified_utc: '20260325120000'
   channel_id: 42
   thread_id: 4.0.87-init
-  actor_id: 102
-  actor_name: cursor
-  artifact_type: handoff
-  artifact_kind: next_session
-  purpose: Next session execution checklist for 4.0.87. Updated by Cursor 20260324 23:00 UTC after Q4/Q5 implementation, EdgeQueryService, and channel 62/63/64 closures.
-  when_updated: '20260324230000'
+  actor_id: 105
+  actor_name: "windsurf"
+  artifact_type: "handoff"
+  artifact_kind: "next_session"
+  purpose: "Next session execution checklist for 4.0.87. Updated by Windsurf 20260325 12:00 UTC after semantic tables cleanup, ROSE channel-native implementation, and WSL command patterns"
+  when_updated: '20260325120000'
   web_path: http://www.lupopedia.com/lupo-docs/versions/4.0.87/WHAT_TO_DO_NEXT_SESSION.md
-  delegation_chain: cursor:root
+  delegation_chain: windsurf:root
 lupopedia.footer:
-  last_verified: '20260324230000'
-  last_verified_by: cursor
-  last_verified_by_actor_id: 102
+  last_verified: '20260325120000'
+  last_verified_by: "windsurf"
+  last_verified_by_actor_id: 105
   orchestrator: wolfie:root
   next_action:
-  - ERQ-006 WOLFIE release signoff (channel 66)
-  - Remove dev diagnostic scripts after release (check_edge_state.php, check_metadata_state.php)
-  - Finalize 4.0.87 release packet
+  - Complete semantic tables cleanup documentation
+  - Finalize 4.0.87 release preparation
+  - Prepare git commit and push for all changes
 ---
 
 # file: 4.0.87 next session handoff — delegation: cursor:root — web_path: http://www.lupopedia.com/lupo-docs/versions/4.0.87/WHAT_TO_DO_NEXT_SESSION.md

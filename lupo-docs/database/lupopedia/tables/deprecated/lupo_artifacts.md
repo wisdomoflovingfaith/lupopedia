@@ -1,13 +1,21 @@
 ---
 lupopedia.headers:
-  lupopedia.schema: database_table
-  file_path_from_root: lupo-docs/database/lupopedia/tables/active/lupo_artifacts.md
-  web_path: '[lupo_artifacts](http://www.lupopedia.com/database/lupopedia/tables/active/lupo_artifacts)'
-  last_modified_utc: '20260317'
-  channel_id: 42
-  actor_id: 102
-  actor_name: cursor
-  delegation_chain: cursor:root
+  version_when_written: "4.0.87"
+  file_path_from_root: "lupo-docs/database/lupopedia/tables/deprecated/lupo_artifacts.md"
+  web_path: "http://www.lupopedia.com/database/lupopedia/tables/deprecated/lupo_artifacts"
+  last_modified_utc: "20260325_103500"
+  channel_id: null
+  thread_id: null
+  actor_id: 105
+  actor_name: "windsurf"
+  artifact_type: "deprecation_notice"
+  artifact_kind: "table_deprecation"
+  purpose: "Deprecation notice for lupo_artifacts table - replaced by channel-based file storage"
+  references:
+    - "lupo-channels/42/broadcasts/20260325_102000_windsurf_semantic_tables_cleanup_analysis.md"
+    - "lupo-channels/semantic-edges/README.md"
+  tags: ["deprecated", "lupo_artifacts", "channel_based_storage", "4.0.87"]
+---
   artifact_type: table_documentation
   artifact_kind: table
   namespace: content

@@ -2301,7 +2301,9 @@ CREATE INDEX lupo_ticket_messages_idx_ticket ON lupo_ticket_messages (ticket_id)
 --   PRIMARY KEY (doctrine_refinement_id)
 -- );
 
- 
+
+-- lupo_documents and lupo_document_chunks replaced by lupo_artifacts and lupo_artifact_chunks in 4.0.86.
+
 
 -- Enhanced edges table replacing lupo_edge_types, lupo_relationships, lupo_entity_edges
 CREATE TABLE lupo_edges (

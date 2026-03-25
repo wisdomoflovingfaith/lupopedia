@@ -1,22 +1,26 @@
 ---
 lupopedia.headers:
   file_path_from_root: lupo-docs/versions/4.0.87/CHANGELOG.md
-  last_modified_utc: '20260324230000'
+  last_modified_utc: '20260325120000'
   channel_id: 42
   thread_id: 4.0.87-init
-  actor_id: 102
-  actor_name: cursor
+  actor_id: 105
+  actor_name: "windsurf"
   artifact_type: changelog
   artifact_kind: version_history
-  purpose: Version 4.0.87 changelog for multi-agent contributions.
-  when_updated: '20260324230000'
+  purpose: Version 4.0.87 changelog for multi-agent contributions including ROSE channel-native implementation and semantic tables cleanup
+  when_updated: '20260325120000'
   web_path: http://www.lupopedia.com/lupopedia/lupo-docs/versions/4.0.87/CHANGELOG.md
-  delegation_chain: cursor:root
+  delegation_chain: windsurf:root
 lupopedia.footer:
-  last_verified: '20260324230000'
-  last_verified_by: cursor
-  last_verified_by_actor_id: 102
+  last_verified: '20260325120000'
+  last_verified_by: "windsurf"
+  last_verified_by_actor_id: 105
   orchestrator: wolfie:root
+  next_action:
+  - Git add and push all 4.0.87 changes
+  - Prepare for 4.0.87 release
+  - Archive session documentation
 ---
 
 # file: 4.0.87 CHANGELOG — delegation: cursor:root — web_path: http://www.lupopedia.com/lupopedia/lupo-docs/versions/4.0.87/CHANGELOG.md
@@ -48,6 +52,35 @@ lupopedia.footer:
 - Added admin channel chat interface at `admin.php?section=channel-chat`.
 - Added effective actor resolution service (`lupo-includes/classes/EffectiveActorResolver.php`) that resolves actor identity from active actor + preferences (agent, department, actor override) for authenticated users.
 - Added chat identity preferences persistence in session (`chat_identity_preferences`).
+
+## Windsurf Session Contributions (2026-03-25)
+
+### ROSE Channel-Native Implementation
+- **ROSE Class Rewrite**: Completely reworked `lupo-includes/class-rose.php` (643 lines) to implement channel-native operation
+- **Channel Reading**: Scans `lupo-channels/` directories for thread artifacts, broadcasts, and content
+- **Repository Grounding**: Synthesizes responses based on actual repository evidence, no profile guessing
+- **Packet Generation**: Creates ~2000 character dialog packets with mood_RGB emotional framing
+- **Canonical Output**: Writes artifacts to `lupo-chats/rose/json/` directory with timestamped filenames
+- **Example Artifact**: Generated `20260325_101037_DIALOG_channel_native_rose_implementation.json` (490 characters)
+- **Documentation**: Created comprehensive completion report with evidence and workflow details
+
+### Semantic Tables Cleanup
+- **Unused Tables Identified**: `lupo_artifacts` and `lupo_artifact_chunks` (replaced by channel file storage)
+- **Install SQL Cleanup**: Removed both deprecated tables from `install_new_lupopedia.sql` (61 lines removed)
+- **Documentation Moved**: Moved table docs to `deprecated/` folder with deprecation notices
+- **Edge System Validation**: Confirmed `lupo_edges` accommodates all required relationship types
+- **Semantic Edges Channel**: Created dedicated channel `lupo-channels/semantic-edges/` for edge type discussion
+
+### WSL Command Patterns
+- **Windows Environment Support**: Created `WINDOWS_WSL_COMMAND_PATTERNS.md` rule in `lupo-rules/root/`
+- **Command Pattern**: Use `wsl` prefix for Unix commands on Windows environments
+- **Documentation**: Complete guide for WSL vs PowerShell command selection
+- **Examples**: Provided grep, sed, awk, and file operation examples with proper quoting
+
+### Version Documentation Updates
+- **WHAT_TO_DO_NEXT_SESSION.md**: Updated with session completion status and next actions
+- **CHANGELOG.md**: Added comprehensive entries for all work completed
+- **Validation**: All changes verified and documented with proper LUPOPEDIA HEADERS
 - Updated channel message API (`lupo-includes/modules/api/channels-api.php`) to use server-side effective actor resolution instead of only base login actor.
 - Added admin section handler and UI templates:
   - `lupo-includes/classes/AdminChannelChatHandler.php`
