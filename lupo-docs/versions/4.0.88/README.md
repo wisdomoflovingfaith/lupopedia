@@ -1,37 +1,48 @@
----
+﻿---
 lupopedia.headers:
   lupopedia.schema: "version_documentation"
   file_path_from_root: "lupo-docs/versions/4.0.88/README.md"
   web_path: "http://www.lupopedia.com/lupopedia/lupo-docs/versions/4.0.88/README.md"
-  last_modified_utc: "20260325205227"
-  when_updated: "20260325205227"
+  last_modified_utc: "20260327"
+  when_updated: "20260327"
   channel_id: 42
-  thread_id: "4.0.88-init"
-  actor_id: 1
-  delegation_chain: "1:root"
+  thread_id: "2007"
+  actor_id: 102
+  actor_name: "cursor"
+  delegation_chain: "cursor:root"
   artifact_type: "version_readme"
-  artifact_kind: "version_overview"
-  purpose: "Version 4.0.88 overview and development initialization"
-  mood_rgb: "00FF00"
-  traits: ["wolfie_orchestration", "version_init", "development_planning"]
-  tags: ["4.0.88", "version", "development", "wolfie"]
-  lupo_agent: "cascade"
+  artifact_kind: "version_checkpoint"
+  purpose: "Version 4.0.88 checkpoint index grounded in Channel 42 Thread 2007 organization and corruption remediation chain"
+  tags: ["4.0.88", "thread_2007", "checkpoint", "organization", "corruption_remediation"]
+  namespace: "documentation"
 
 lupopedia.edges:
   outbound_edges:
-    - { to: "lupo-docs/versions/4.0.87/CHANGELOG.md", type: "succeeds", weight: 1.0 }
-    - { to: "TASK_REGISTRY.md", type: "includes", weight: 1.0 }
-    - { to: "PLAN.md", type: "references", weight: 1.0 }
-    - { to: "TODO.md", type: "references", weight: 1.0 }
+    - { to: "lupo-channels/42/threads/2007/THREAD_INDEX.md", type: "references", weight: 1.0, reason: "Canonical thread ledger for 4.0.88 organization/corruption work" }
+    - { to: "lupo-channels/42/threads/2007/20260327_233000_wolfie_lupopedia_organization_4_0_88_integration_and_corruption_assessment.md", type: "references", weight: 1.0 }
+    - { to: "lupo-channels/42/threads/2007/20260327_220000_thoth_semantic_truth_validation_regeneration_source.md", type: "references", weight: 1.0 }
+    - { to: "lupo-channels/42/threads/2007/20260327_230000_thoth_database_instance_reconciliation_report.md", type: "references", weight: 1.0 }
+    - { to: "lupo-channels/42/threads/2007/20260327_235500_hephaestus_phase2_execution_started_and_completed.md", type: "references", weight: 1.0 }
+    - { to: "lupo-channels/42/threads/2007/20260327_235900_thoth_post_phase2_semantic_validation.md", type: "references", weight: 1.0 }
+    - { to: "THREAD_2007_WORK_SUMMARY.md", type: "includes", weight: 1.0 }
+    - { to: "CHANNELS_CONTEXTS_AND_COORDINATION.md", type: "includes", weight: 1.0 }
+    - { to: "MYSQL_TOON_JSON_TABLE_DOCS_AUTHORITY_MAP.md", type: "includes", weight: 1.0 }
+    - { to: "CORRUPTION_INCIDENT_AND_REMEDIATION_STATUS.md", type: "includes", weight: 1.0 }
+    - { to: "HOW_LUPOPEDIA_WORKS_4_0_88.md", type: "includes", weight: 1.0 }
+    - { to: "GIT_CHECKPOINT_PLAN.md", type: "includes", weight: 1.0 }
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "lupo-docs/doctrine/LUPOPEDIA_HEADERS/README.md", type: "depends_on", weight: 1.0 }
-    - { to: "lupo-docs/doctrine/LUPOPEDIA_HEADERS/VALIDATORS_AND_TOOLING.md", type: "depends_on", weight: 1.0 }
-    - { to: "README.md", type: "aligns_with", weight: 0.95 }
-    - { to: "AGENTS.md", type: "aligns_with", weight: 0.95 }
-    - { to: "ONBOARDING.md", type: "aligns_with", weight: 0.95 }
+    - { to: "WHAT_TO_DO_NEXT.md", type: "references", weight: 1.0 }
+    - { to: "DOCUMENTATION_ORGANIZATION_PASS_REPORT.md", type: "references", weight: 1.0 }
+    - { to: "DOCUMENTATION_ORGANIZATION_GAP_REPORT.md", type: "references", weight: 1.0 }
+    - { to: "ORGANIZATION.md", type: "aligns_with", weight: 0.9 }
+    - { to: "lupo-docs/ORGANIZATION.md", type: "aligns_with", weight: 0.9 }
+    - { to: "lupo-database/lupopedia/mysql/install/install_new_lupopedia.sql", type: "schema_authority", weight: 1.0 }
+    - { to: "lupo-database/lupopedia/toon/", type: "references", weight: 1.0 }
+    - { to: "lupo-database/lupopedia/json/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/database/lupopedia/tables/active/", type: "references", weight: 1.0 }
 
 lupopedia.footer:
-  last_verified: "20260325205227"
+  last_verified: "20260327"
   verified_by:
     identity_type: "actor"
     actor_id: 102
@@ -40,120 +51,127 @@ lupopedia.footer:
   verified_via:
     type: "faucet"
     faucet_slug: "cursor"
-  next_action: "Begin 4.0.88 development planning and task execution"
+  orchestrator: "wolfie:root"
+  next_action:
+    - "Use this README as the 4.0.88 checkpoint index and read order"
+      - "Use release checkpoint summary as handoff baseline for next 4.0.x iteration"
 ---
 
-# file: Version 4.0.88 README - delegation: cursor:root - web_path: [http://www.lupopedia.com/lupopedia/lupo-docs/versions/4.0.88/README.md](http://www.lupopedia.com/lupopedia/lupo-docs/versions/4.0.88/README.md)
+# Version 4.0.88 Checkpoint README
 
-# Version 4.0.88
+## Status
 
-**Status**: Development Initiated  
-**Release Date**: TBD  
-**Previous Version**: 4.0.87 (Released 2026-03-25)  
+Version 4.0.88 is a completed documentation and normalization checkpoint.
 
----
+- Completed: organization clarification, canonical coordination setup, source validation, DB reconciliation, Phase 1/2 execution, Stage 1/2 completion, Stage 3 Track A/B/C/D execution.
+- Validated: active table docs pass Stage 3 final gates (121/121) for header, schema, encoding, structure, and edge baseline.
+- Checkpoint state: READY for truthful 4.0.88 git checkpoint push.
 
-## Overview
+This folder is now the release-checkpoint surface for preserving final 4.0.88 thread truth.
 
-Version 4.0.88 begins the next development cycle following the successful 4.0.87 release which completed major identity model clarification and edge consolidation work.
+## Recovered 2026-03-27 Execution Truth
 
----
+Evidence-grounded work completed on 2026-03-27 includes:
+1. organization pass plus gap report integration into canonical Thread 2007.
+2. ATHENA-raised validation blocker escalation and corruption assessment framing.
+3. THOTH source-truth validation and DB instance reconciliation.
+4. false-alarm resolution for `verify_db_against_toons.py` instrumentation behavior.
+5. Phase 1 precondition chain completion:
+   - DB validation, git history audit, tooling status, and completion report.
+6. Phase 2 controlled regeneration execution with manifest and completion metrics.
+7. THOTH post-Phase 2 conditional semantic validation with required follow-up obligations.
 
-## 4.0.87 Release Summary
+Date boundary:
+1. Stage 3 closure (Track C and Track D final pass) is a 2026-03-28 event and remains recorded as such.
+2. This section preserves what was actually completed on 2026-03-27 so checkpoint readers do not collapse dates.
 
-**Major Achievements**:
-- ✅ WS3: Identity Model Clarification (5-layer model implemented)
-- ✅ WS2: Edge Model Consolidation (single canonical edge table)
-- ✅ WS1: Decision System Cleanup (broken services removed)
-- ✅ ERQ-006: Release signoff complete
+## What 4.0.88 Clarified
 
-**System State**: Stable and production-ready with enhanced security and clarity.
+1. Thread 2007 is the canonical coordination surface for organization plus corruption remediation in Channel 42.
+2. Lupopedia uses a hybrid model: MySQL runtime authority plus file-visible coordination/documentation surfaces.
+3. Install SQL is schema authority; TOON and JSON are derived exports; table docs are human-readable semantic/reference surfaces.
+4. JSON exports are practically critical for current tooling and validation chain.
+5. `lupo-context` exists as an intended higher-level organizational layer, but remains incomplete in current repository reality.
 
----
+## What 4.0.88 Repaired
 
-## 4.0.88 Development Focus
+1. False DB alarm was resolved: `verify_db_against_toons.py` had a mock schema function and extension/path mismatch.
+2. Regeneration pipeline produced controlled outputs for a subset under manifest scope lock.
+3. Header validation and schema alignment gates passed for regenerated subset.
+4. Stage 1 replaced placeholder edges in regenerated set with confidence-scored edges.
+5. Stage 2 completed metadata restoration audit with synthetic provenance retained where historical recovery was unavailable.
+6. Stage 3 Track C normalized residual drift in active table docs (regeneration + archive actions).
+7. Stage 3 Track D validated all active table docs with 100 percent pass in all required gate categories.
 
-**Primary Objectives**:
-- Complete WS6: Test Suite Update (pending from 4.0.87)
-- Address any post-release issues discovered
-- Implement new features and improvements
-- Continue system optimization and documentation
+## What 4.0.88 Discovered and Resolved
 
-**Expected Timeline**: 2-3 weeks development cycle
+1. Corruption scope in active table docs was larger than initial subset and required staged remediation.
+2. TOON/JSON exports do not carry full historical metadata and edge semantics; separate restoration/reconstruction phases are mandatory.
+3. Stage 3 Track A/B measured current residual drift snapshot:
+   - total 183
+   - valid 9
+   - corrupted 165
+   - outdated 1
+   - orphaned 8
+4. Stage 3 Track C deterministic resolution summary:
+   - total entries processed 183
+   - regenerated from TOON JSON 112
+   - archived as orphaned 62
+   - valid kept 9
+   - duplicate 0
 
-## Thread Outcomes (2026-03-25)
+## What 4.0.88 Validated
 
-- LUPOPEDIA_HEADERS doctrine updated to structured verifier metadata: `verified_by` and `verified_via`.
-- THOTH semantic truth-check authority formalized for stale artifact revalidation.
-- Compatibility policy clarified: `version_when_written` warns in 4.0.88, reject enforcement starts in 4.0.89.
-- Subdirectory web path doctrine enforced (`/lupopedia/`) with clickable `# file` web_path identity lines.
-- Root governance docs (`README.md`, `AGENTS.md`, `ONBOARDING.md`) aligned with channel-first execution and current metadata format.
+1. THOTH semantic source validation (install SQL + TOON/JSON schema truth).
+2. THOTH DB instance reconciliation (156 TOON JSON and 156 live DB tables; false alarm resolved).
+3. HEPHAESTUS Phase 1 and Phase 2 execution chain.
+4. THOTH post-Phase 2 conditional acceptance with explicit follow-up requirements.
+5. Final Stage 3 validation report with pass status across all required gates:
+   - `lupo-channels/42/threads/2007/20260328_014500_thoth_stage3_validation_report.md`
 
----
+## Read Order (Humans and IDE Agents)
 
-## Development Structure
+1. `README.md` (this file)
+2. `THREAD_2007_WORK_SUMMARY.md`
+3. `CORRUPTION_INCIDENT_AND_REMEDIATION_STATUS.md`
+4. `MYSQL_TOON_JSON_TABLE_DOCS_AUTHORITY_MAP.md`
+5. `CHANNELS_CONTEXTS_AND_COORDINATION.md`
+6. `HOW_LUPOPEDIA_WORKS_4_0_88.md`
+7. `GIT_CHECKPOINT_PLAN.md`
+8. `RELEASE_CHECKPOINT_SUMMARY.md`
+9. `TODAY_20260327_AUDIT_AND_CHANGELOG_RECOVERY_REPORT.md`
+10. `CHANGELOG.md`
+11. `WHAT_TO_DO_NEXT.md`
+12. `DOCUMENTATION_ORGANIZATION_PASS_REPORT.md`
+13. `DOCUMENTATION_ORGANIZATION_GAP_REPORT.md`
 
-### Planning Documents
-- `PLAN.md` - Development roadmap and task planning
-- `TASK_REGISTRY.md` - Task tracking and assignment registry
-- `TODO.md` - Pending items and bug fixes
+## Key Thread 2007 Artifacts
 
-### Documentation
-- `CHANGELOG.md` - Version changes and updates (created as development progresses)
-- `DOCTRINE.md` - Version-specific doctrine and constraints
-- Technical documentation in appropriate subdirectories
+1. Canonical integration/corruption artifact:
+   - `lupo-channels/42/threads/2007/20260327_233000_wolfie_lupopedia_organization_4_0_88_integration_and_corruption_assessment.md`
+2. Source-truth validation:
+   - `lupo-channels/42/threads/2007/20260327_220000_thoth_semantic_truth_validation_regeneration_source.md`
+3. DB reconciliation report:
+   - `lupo-channels/42/threads/2007/20260327_230000_thoth_database_instance_reconciliation_report.md`
+4. Phase 2 execution summary:
+   - `lupo-channels/42/threads/2007/20260327_235500_hephaestus_phase2_execution_started_and_completed.md`
+5. Post-Phase 2 semantic validation:
+   - `lupo-channels/42/threads/2007/20260327_235900_thoth_post_phase2_semantic_validation.md`
+6. Stage 3 Track A/B execution:
+   - `lupo-channels/42/threads/2007/20260328_003500_hephaestus_thoth_stage3_track_a_b_execution_report.md`
 
-### Channel Artifacts
-Development work will be tracked through channel artifacts:
-- Channel 42: Protocol Development
-- Channel 66: Production Questions
-- Specialized channels for specific workstreams
+## Root and Doctrine Anchors
 
----
+- `README.md`
+- `ORGANIZATION.md`
+- `lupo-docs/ORGANIZATION.md`
+- `lupo-docs/doctrine/LUPOPEDIA_HEADERS/README.md`
 
-## Getting Started
+## Current Closure Boundary
 
-1. Review `TASK_REGISTRY.md` for current task assignments
-2. Check `PLAN.md` for development roadmap
-3. Consult `TODO.md` for immediate action items
-4. Follow channel-based coordination for workstreams
+Stage 3 closure is complete for 4.0.88 checkpoint scope.
 
----
+Current non-blocking follow-up boundary is:
 
-## Version Governance
-
-**Orchestrator**: WOLFIE (actor_id 1)
-**Primary Channels**: 42 (Development), 66 (Production)
-**Documentation Standards**: LUPOPEDIA HEADERS required
-**Coordination Model**: Multi-agent with channel-based workstreams
-
----
-
-## Dependencies
-
-**Builds Upon**: 4.0.87 (stable production release)
-**Database Compatibility**: MySQL 8.0+, MariaDB 10.5+, PostgreSQL
-**PHP Compatibility**: 5.6 through 8.3+
-**System Requirements**: No changes from 4.0.87
-
----
-
-## Quality Assurance
-
-**Test Suite**: WS6 implementation planned
-**Documentation**: Continuous updates required
-**Code Review**: Channel-based review process
-**Security**: Ongoing validation and enhancement
-
----
-
-## Contact and Coordination
-
-**Development Coordination**: Channel 42
-**Production Issues**: Channel 66
-**Documentation Questions**: THOTH (actor_id 26)
-**Technical Issues**: HEPHAESTUS (actor_id 14)
-
----
-
-**Version 4.0.88 development initiated. Ready for task assignment and execution.**
+- optional semantic edge enrichment beyond baseline placeholder compliance
+- broader channel/context maturation from organization gap report

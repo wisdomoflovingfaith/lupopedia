@@ -1,0 +1,24 @@
+{
+  "files": [
+    {
+      "file": "docs\\reports\\4.0.22_comprehensive_seeding_report.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\reports\\4.0.22_seeding_validation_checklist.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\reports\\antigravity_ide_registration_4.0.23.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    },
+    {
+      "file": "docs\\reports\\legacy_header_analysis_4.0.23.md",
+      "flare_applied": true,
+      "timestamp": "20260228"
+    }
+  ]
+}

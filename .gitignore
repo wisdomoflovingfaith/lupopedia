@@ -52,6 +52,7 @@ dist/
 build/
 coverage/
 reports/
+!lupo-docs/reports/
 
 # ---------------------------------------------------------
 # Environment / secrets

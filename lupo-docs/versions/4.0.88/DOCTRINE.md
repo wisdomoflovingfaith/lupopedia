@@ -28,6 +28,15 @@ lupopedia.edges:
     - { to: "lupo-docs/doctrine/LUPOPEDIA_HEADERS/VALIDATORS_AND_TOOLING.md", type: "depends_on", weight: 1.0 }
 
 lupopedia.footer:
+  approved_for_version: "4.1.0"
+  approved_for_version_utc: "20260327103238"
+  approved_for_version_by: "Cursor IDE Agent (Lead Orchestration)"
+  approved_for_version_by_actor_id: 102
+  approval_status: "approved"
+  approval_target_version: "4.1.0"
+  approval_status_utc: "20260327103238"
+  approval_status_by: "Cursor IDE Agent (Lead Orchestration)"
+  approval_status_by_actor_id: 102
   last_verified: "20260325205227"
   verified_by:
     identity_type: "actor"
@@ -57,6 +66,19 @@ lupopedia.footer:
 - Require subdirectory web_path canonical form (`/lupopedia/`) in header metadata.
 - Treat THOTH as primary semantic truth-check authority for stale artifact verification workflows.
 - Apply compatibility policy: `version_when_written` warn-only in 4.0.88, reject from 4.0.89.
+
+## 4.0.88 Structural Alignment Addendum (2026-03-27)
+
+- Departments remain the primary identity execution layer.
+- Context is secondary, underdeveloped, and currently partially absorbed by root department operations.
+- Channels are communication surfaces only, not canonical documentation or schema authority.
+- Hybrid storage model is explicit: MySQL is authoritative for structured runtime and edge truth; filesystem remains communication/documentation/fallback visibility.
+- `lupo_edges` is authoritative; file `lupopedia.edges` blocks are declarations/snapshots for import workflows.
+- TOON files under `lupo-database/lupopedia/toon/` are the primary schema inspection surface for agents; JSON under `lupo-database/lupopedia/json/` is secondary.
+- Schema guessing is prohibited; agents must use TOON plus table docs.
+- Channel-first workflow requires ambiguity capture in `questions/` and execution instructions in `prompts/`.
+- Raw IDE prompts are prohibited for governed execution paths.
+- Install root is dynamic: runtime derives the public path from the project root folder basename rather than assuming a fixed `/lupopedia` deployment path.
 
 ## 1. NON-NEGOTIABLE CONSTRAINTS
 
@@ -94,6 +116,7 @@ lupopedia.footer:
 - No reintroduction of fragmented edge tables
 - Polymorphic edge types must be preserved
 - Edge type registry must be maintained
+- File edge blocks are declaration/snapshot metadata, not parallel authority
 
 ---
 
@@ -126,6 +149,54 @@ lupopedia.footer:
 - Cross-references must be accurate and current
 - Version information must be consistent
 - Documentation must be clear and concise
+- Table docs under `lupo-docs/database/lupopedia/tables/` must include table purpose, column definitions, relationships, usage examples, and edge interaction explanation
+- Channel artifact naming and metadata must pass deterministic validation
+
+### 2.3 Schema Discipline (4.0.88)
+
+- Agents must not guess table names, columns, or relationships.
+- Agents must use TOON exports for schema inspection before implementation.
+- Large SQL scanning as a guessing strategy is prohibited when TOON/table docs are available.
+
+### 2.4 Channel-First Questions/Prompts Discipline (4.0.88)
+
+- For unclear requests, create questions artifacts first under `lupo-channels/{channel_id}/threads/{thread_id}/questions/`.
+- Questions files use `YYYYMMDD_HHMMSS_ACTOR_question_TITLE.md` and include full headers + `lupopedia.edges`.
+- Final execution instructions are written under `.../prompts/` using `YYYYMMDD_HHMMSS_ACTOR_prompt_TITLE.md`.
+- Only prompt artifacts from `prompts/` are executable in governed workflows.
+- WOLFIE + LILITH refinement is the standard review path for high-impact ambiguous work.
+
+### 2.4.a Channel Refactor Safety Model (4.0.88)
+
+- The channel refactor is a phased migration, not a repo-wide rewrite.
+- Existing numeric channels and channel-wide prompt surfaces remain legacy-compatible until migrated in bounded batches.
+- The 4.0.88 target profile is `lupo-channels/{federation_node_id}_{channel_key}/threads/{project_slug}/questions|prompts/`.
+- A dedicated governance pilot channel must exist to centralize filesystem design, header doctrine, edge reconciliation, and interface enforcement.
+- Every migration batch must include edge-risk review before any move or rename operation.
+- If incoming references cannot be proven and updated safely, the batch remains pending.
+
+### 2.5 CLI Documentation Surface (4.0.88)
+
+Document-only command surface for channel-first workflows:
+
+- `lupo channel list`
+- `lupo channel open {id}`
+- `lupo thread list`
+- `lupo thread open {id}`
+- `lupo message send`
+- `lupo message reply`
+- `lupo prompts list`
+- `lupo prompts open {id}`
+- `lupo actors list`
+
+### 2.6 Approval-State Tracking (4.0.88)
+
+- 4.0.88 establishes explicit footer-based artifact classification for 4.1.0 carryover.
+- Canonical classification fields are `approval_status` and `approval_target_version`.
+- Allowed `approval_status` values are only `approved`, `pending`, and `rejected`.
+- `approved_for_version` remains a compatible convenience field for already-approved carryover artifacts, but index classification should use the explicit status model.
+- 4.1.0 artifact indexes must be updated from explicit footer state, not reviewer intuition.
+- If an artifact still uses only legacy approval fields, that is a normalization gap and must be tracked explicitly.
 
 ---
 
@@ -158,6 +229,8 @@ lupopedia.footer:
 - Decision rationale must be clearly stated
 - Alternatives considered must be documented
 - Impact assessment must be included
+- Channel refactor governance for 4.0.88 is centralized in `lupo-channels/1_channel_refactor_governance/`
+- The active pilot thread is `channel_refactor_4_0_88`
 
 ### 3.3 Validation Ownership and Faucet Model
 
@@ -275,6 +348,17 @@ lupopedia.footer:
 - Test suite for code compliance
 - Security scanning for vulnerabilities
 - Performance monitoring for impact
+- Channel artifact validation via `lupo-scripts/validate_channel_artifacts.py`
+
+Validation gap note:
+
+- Current validator confirms naming/header/web_path constraints but does not yet fully enforce questions-before-prompts workflow semantics.
+- This gap must be tracked in follow-up tasks rather than patched blindly in unrelated implementation streams.
+
+### 7.3 Context Handling Rule (4.0.88)
+
+- If `lupo-context/` does not exist, document intended structure and rollout direction; do not create empty directories blindly.
+- Context improvements may span multiple versions and must remain subordinate to department authority.
 
 **Manual Review**:
 - Code review for compliance
