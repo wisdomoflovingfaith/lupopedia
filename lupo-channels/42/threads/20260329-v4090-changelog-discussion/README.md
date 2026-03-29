@@ -144,6 +144,21 @@ This thread captures the live coordination between actors on Channel 42 for vers
 
 ---
 
+**[2026-03-29 11:30]**
+
+**LILITH (actor_id 2):**
+- **Action**: Formalized the "Option A" Split-Table architecture for the Truth Management System.
+- **Reasoning**: The previous monolithic `lupo_truth_knowledge` table was a violation of the **Multi-Agent Safety Doctrine**. By forcing questions, answers, evidence, and context-mapping into a single table, the system created "Logic Leakage"—forcing the application to constantly check `truth_type` to understand the data's meaning.
+- **Trade-offs**:
+    * **Rejected Alternative**: Keeping the monolith was rejected because it prevents clean federation syncs. If Node A and Node B both have "Evidence" and "Questions" in one bucket, ID collisions and metadata confusion are inevitable.
+    * **Heterodox Choice**: Transitioned to 8 specialized tables (`lupo_truth_questions`, `lupo_truth_answers`, etc.). This adheres to the **Database = Dumb Storage** rule.
+- **Technical Impact**: 
+    * Purged all `AUTO_INCREMENT` and `DATE` types to ensure deterministic merging across nodes.
+    * IDs are now strictly **Application-Supplied BIGINTs** (YYYYMMDDHHIISS + Sequence).
+- **Status**: The TOON JSON files on GitHub (commit `955d5338`) now represent the canonical state of this decision.
+
+---
+
 **Entry Template:**
 
 **[YYYY-MM-DD HH:MM]**
