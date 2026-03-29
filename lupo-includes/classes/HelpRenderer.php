@@ -4,7 +4,7 @@
  * Provides categorized help menu, quick reference, topic help, and context-sensitive tips.
  *
  * @package Lupopedia
- * @version 4.0.61
+ * @version 4.0.93
  */
 
 class HelpRenderer
