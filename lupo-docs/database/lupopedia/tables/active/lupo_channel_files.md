@@ -1,75 +1,76 @@
 ---
 lupopedia.headers:
-  lupopedia.schema: documentation
-  file_path_from_root: lupo-docs/database/lupopedia/tables/active/lupo_channel_files.md
-  channel_id: 1
-  actor_id: 103
-  last_modified_utc: '20260312'
-  artifact_type: table_documentation
-  purpose: Registry for files associated with communication channels
-  mood_rgb: 4169E1
-  traits:
-  - canonical
-  - files
-  - channels
-  - v4.0.70
+  when_updated: "20260328013000"
+  file_path_from_root: "lupo-docs/database/lupopedia/tables/active/lupo_channel_files.md"
+  last_modified_utc: "20260328013000"
+  channel_id: 42
+  actor_id: 23
+  actor_name: "hephaestus"
+  delegation_chain: "wolfie:hephaestus"
+  artifact_type: "documentation"
+  artifact_kind: "table"
+  namespace: "channels"
+  purpose: "Normalized table documentation for lupo_channel_files from TOON JSON"
   tags:
   - database
-  - files
-  - channels
-  - association
-  lupo_agent: antigravity
-  when_updated: '20260324174654'
+  - table
+  - normalized
+  - 4.0.88
 lupopedia.edges:
+  comment: "static placeholder edges for stage3 normalization"
   outbound_edges:
-  - to: lupo-database/lupopedia/toon/lupo_channel_files.toon
-    type: references
+  - to: "lupo-database/lupopedia/json/lupo_channel_files.json"
+    type: "references"
     weight: 1.0
-  - to: lupo-docs/database/lupopedia/tables/active/lupo_channels.md
-    type: references
-    weight: 1.0
+    reason: "authoritative TOON JSON source"
 lupopedia.footer:
-  last_verified: '20260312000000'
-  last_verified_by: cursor
-  last_verified_by_actor_id: 102
-  orchestrator: cursor:root
+  last_verified: "20260328013000"
+  last_verified_by: "hephaestus"
+  last_verified_by_actor_id: 23
+  generated: true
+  provenance: "stage3_track_c_normalization"
 ---
+# file: lupo_channel_files.md
 
-# Table Overview: lupo_channel_files
+# lupo_channel_files
 
-- **Purpose**: Tracks files that are explicitly associated with or pinned to a channel. This maintains visibility of shared resources within specific communication contexts.
-- **Category**: Storage / Channel Management
-- **Status**: Active
-- **Version Introduced**: 4.0.0
+## Purpose
+Canonical table documentation normalized from TOON JSON for `lupo_channel_files`.
 
-## Column Documentation
+## Schema
 
-| Column Name | Type | Nullable | Default | Description |
-| :--- | :--- | :--- | :--- | :--- |
-| `file_id` | BIGINT | No | - | Primary Key. Numeric identifier. |
-| `channel_id` | BIGINT | No | - | The channel this file belongs to. |
-| `file_type` | VARCHAR(50) | No | - | Logic type (e.g., 'attachment', 'shared_asset'). |
-| `file_name` | VARCHAR(255) | No | - | Name of the file. |
-| `file_path` | VARCHAR(500) | No | - | Filesystem or network path to the resource. |
-| `file_hash` | VARCHAR(64) | No | - | SHA-256 or similar hash for integrity verification. |
-| `file_size` | BIGINT | No | - | Size in bytes. |
-| `mime_type` | VARCHAR(100) | Yes | - | MIME type. |
-| `upload_ymdhis` | BIGINT | No | - | Time the file was uploaded. |
-| `created_ymdhis` | BIGINT | No | 0 | Internal creation tracking. |
-| `updated_ymdhis` | BIGINT | No | - | Internal update tracking. |
-| `is_deleted` | TINYINT | No | 0 | Soft delete flag. |
-| `deleted_ymdhis` | BIGINT | Yes | - | Soft delete timestamp. |
-| `migrated_from_directory` | VARCHAR(255) | Yes | - | Audit trail for legacy migration source. |
+### Primary Key
+(none)
 
-## Relationships
+### Columns
 
-### Outbound References
-- `lupo_channels.channel_id`: Associated channel.
+| Column | Type Definition |
+|---|---|
+| `file_id` | `bigint NOT NULL` |
+| `channel_id` | `bigint NOT NULL` |
+| `file_type` | `varchar(50) NOT NULL` |
+| `file_name` | `varchar(255) NOT NULL` |
+| `file_path` | `varchar(500) NOT NULL` |
+| `file_hash` | `varchar(64) NOT NULL` |
+| `file_size` | `bigint NOT NULL` |
+| `mime_type` | `varchar(100)` |
+| `upload_ymdhis` | `bigint NOT NULL` |
+| `created_ymdhis` | `bigint NOT NULL DEFAULT 0` |
+| `updated_ymdhis` | `bigint NOT NULL` |
+| `is_deleted` | `tinyint NOT NULL DEFAULT 0` |
+| `deleted_ymdhis` | `bigint` |
+| `migrated_from_directory` | `varchar(255)` |
 
-## Usage Notes
+### Indexes
 
-- **Integrity**: The `file_hash` is used by background custodial agents (Anubis) to verify the file still exists and matches the registered metadata.
-- **Migration**: The `migrated_from_directory` field is used during the Crafty Syntax upgrade to track files scavenged from legacy directories.
+| Index | Columns | Unique |
+|---|---|---|
+| `lupo_channel_files_idx_channel_id` | `channel_id` | no |
+| `lupo_channel_files_idx_file_hash` | `file_hash` | no |
+| `lupo_channel_files_idx_is_deleted` | `is_deleted` | no |
+| `lupo_channel_files_idx_upload_ymdhis` | `upload_ymdhis` | no |
 
----
-*Created by Antigravity (Actor 103) as part of the Database Documentation Program.*
+## Doctrine
+- Source of truth: `lupo-database/lupopedia/json/` TOON exports
+- Regeneration mode: Stage 3 deterministic normalization
+- Edge mode: placeholder baseline

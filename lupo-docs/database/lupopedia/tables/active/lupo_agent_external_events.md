@@ -1,63 +1,64 @@
 ---
 lupopedia.headers:
-  lupopedia.schema: database_table
-  file_path_from_root: lupo-docs/database/lupopedia/tables/active/lupo_agent_external_events.md
-  channel_id: 1
-  actor_id: 102
-  last_modified_utc: '20260312'
-  artifact_type: table_documentation
-  purpose: External events ingested for agents (source_system, event_type, payload)
-  mood_rgb: 4169E1
-  traits:
-  - canonical
-  - agent
-  - cursor_domain
-  - v4.0.70
+  when_updated: "20260328013000"
+  file_path_from_root: "lupo-docs/database/lupopedia/tables/active/lupo_agent_external_events.md"
+  last_modified_utc: "20260328013000"
+  channel_id: 42
+  actor_id: 23
+  actor_name: "hephaestus"
+  delegation_chain: "wolfie:hephaestus"
+  artifact_type: "documentation"
+  artifact_kind: "table"
+  namespace: "core"
+  purpose: "Normalized table documentation for lupo_agent_external_events from TOON JSON"
   tags:
   - database
-  - agents
-  - events
-  lupo_agent: cursor
-  when_updated: '20260324174654'
+  - table
+  - normalized
+  - 4.0.88
 lupopedia.edges:
+  comment: "static placeholder edges for stage3 normalization"
   outbound_edges:
-  - to: lupo-database/lupopedia/toon/lupo_agent_external_events.toon.json
-    type: schema_reference
+  - to: "lupo-database/lupopedia/json/lupo_agent_external_events.json"
+    type: "references"
     weight: 1.0
+    reason: "authoritative TOON JSON source"
 lupopedia.footer:
-  last_verified: '20260312000000'
-  last_verified_by: cursor
-  last_verified_by_actor_id: 102
-  orchestrator: cursor:root
+  last_verified: "20260328013000"
+  last_verified_by: "hephaestus"
+  last_verified_by_actor_id: 23
+  generated: true
+  provenance: "stage3_track_c_normalization"
 ---
+# file: lupo_agent_external_events.md
 
-# Table: lupo_agent_external_events
+# lupo_agent_external_events
 
-## Table Overview
+## Purpose
+Canonical table documentation normalized from TOON JSON for `lupo_agent_external_events`.
 
-- **Purpose:** Log of external events ingested for agents: agent_name, source_system, event_type, event_payload_json, created_ymdhis. No direct agent_id FK; agent identified by name.
-- **Category:** Agent / Events
-- **Status:** Active
-- **Version introduced:** 4.0.0
+## Schema
 
-## Column Documentation
+### Primary Key
+(none)
 
-| Column | Type | Nullable | Default | Description |
-|--------|------|----------|---------|-------------|
-| external_event_id | bigint | No | — | Primary key. |
-| agent_name | varchar(255) | No | — | Agent name. |
-| source_system | varchar(255) | No | — | Source system identifier. |
-| event_type | varchar(50) | No | — | Event type. |
-| event_payload_json | json | Yes | — | Event payload. |
-| created_ymdhis | bigint | No | 0 | Event timestamp. |
+### Columns
 
-## Relationships
+| Column | Type Definition |
+|---|---|
+| `external_event_id` | `bigint NOT NULL` |
+| `agent_name` | `varchar(255) NOT NULL` |
+| `source_system` | `varchar(255) NOT NULL` |
+| `event_type` | `varchar(50) NOT NULL` |
+| `event_payload_json` | `json` |
+| `created_ymdhis` | `bigint NOT NULL DEFAULT 0` |
 
-- **Logical references:** agent_name may resolve to lupo_agents.agent_name or agent_key (application-level).
-- **Inbound:** Event ingestion pipeline.
-- **Join patterns:** No indexes in TOON; consider adding index on (agent_name, created_ymdhis) or event_type if needed.
+### Indexes
 
-## Usage Notes
+| Index | Columns | Unique |
+|---|---|---|
 
-- **Indexes:** None in current TOON.
-- **Timestamps:** BIGINT YYYYMMDDHHIISS UTC.
+## Doctrine
+- Source of truth: `lupo-database/lupopedia/json/` TOON exports
+- Regeneration mode: Stage 3 deterministic normalization
+- Edge mode: placeholder baseline

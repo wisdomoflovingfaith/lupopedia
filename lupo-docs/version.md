@@ -12,11 +12,11 @@ lupopedia.headers:
   artifact_type: "documentation"
   artifact_kind: "version_history"
   purpose: "Version history and upgrade notes for Lupopedia"
-  tags: ["version", "changelog", "upgrade", "4.0.88"]
+  tags: ["version", "changelog", "upgrade", "4.0.89"]
   namespace: "documentation"
 lupopedia.edges:
   outbound_edges:
-    - { to: "lupo-docs/versions/4.0.88/README.md", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/versions/4.0.89/README.md", type: "references", weight: 1.0 }
     - { to: "lupo-docs/versions/4.0.87/CHANGELOG.md", type: "references", weight: 1.0 }
     - { to: "lupo-docs/versions/", type: "references", weight: 0.9 }
 lupopedia.footer:
@@ -36,9 +36,17 @@ lupopedia.footer:
 
 # Lupopedia version history
 
-Current version: **4.0.88**  
-Date: 2026-03-25  
+Current version: **4.0.89**  
+Date: 2026-03-28  
 Status: Development In Progress
+
+## Summary of changes (4.0.89)
+
+**Development Focus**: Context model implementation and rollover preparation
+- **Context model**: Implemented lupo-context minimal operational model with doctrine and prototype
+- **Rollover preparation**: Version 4.0.89 initialization with planning structure
+- **Documentation carryover**: Crafty Syntax backlog and feature parity work preserved
+- **Channel coordination**: Enhanced channel-based coordination with context integration
 
 ## Summary of changes (4.0.88)
 

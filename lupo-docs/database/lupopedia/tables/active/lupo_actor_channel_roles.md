@@ -1,174 +1,82 @@
 ---
 lupopedia.headers:
-  lupopedia.schema: database_table
-  file_path_from_root: lupo-docs/database/lupopedia/tables/active/lupo_actor_channel_roles.md
-  web_path: '[lupo_actor_channel_roles](http://www.lupopedia.com/database/lupopedia/tables/active/lupo_actor_channel_roles)'
-  last_modified_utc: '20260317'
+  when_updated: "20260328013000"
+  file_path_from_root: "lupo-docs/database/lupopedia/tables/active/lupo_actor_channel_roles.md"
+  last_modified_utc: "20260328013000"
   channel_id: 42
-  actor_id: 102
-  actor_name: cursor
-  delegation_chain: cursor:root
-  artifact_type: table_documentation
-  artifact_kind: table
-  namespace: core
-  purpose: Documentation file with LUPOPEDIA HEADERS applied
+  actor_id: 23
+  actor_name: "hephaestus"
+  delegation_chain: "wolfie:hephaestus"
+  artifact_type: "documentation"
+  artifact_kind: "table"
+  namespace: "core"
+  purpose: "Normalized table documentation for lupo_actor_channel_roles from TOON JSON"
   tags:
   - database
   - table
-  - core
-  when_updated: '20260324174654'
+  - normalized
+  - 4.0.88
 lupopedia.edges:
-  comment: Snapshot of edges for lupo_actor_channel_roles table doc at 4.0.79 (grounded
-    by repo search; non-exhaustive).
-  meta: php_hits=15 python_hits=3
+  comment: "static placeholder edges for stage3 normalization"
   outbound_edges:
-  - to: database.table.lupo_actor_channel_roles
-    type: DEFINES_SCHEMA_FOR
+  - to: "lupo-database/lupopedia/json/lupo_actor_channel_roles.json"
+    type: "references"
     weight: 1.0
-  - to: lupo-database/lupopedia/mysql/install/install_new_lupopedia.sql
-    type: schema_reference
-    weight: 1.0
-  - to: debug_captain.php
-    type: USED_IN_PHP
-    weight: 0.6
-  - to: install.php
-    type: USED_IN_PHP
-    weight: 0.6
-  - to: install_wizard_classes.php
-    type: USED_IN_PHP
-    weight: 0.6
-  - to: livehelp_js.php
-    type: USED_IN_PHP
-    weight: 0.6
-  - to: lupo-database/lupopedia/content/lupo-app/Services/TriggerReplacements/EnforceProtocolCompletionService.php
-    type: USED_IN_PHP
-    weight: 0.6
-  - to: lupo-database/lupopedia/content/lupo-app/auth/AuthManager.php
-    type: USED_IN_PHP
-    weight: 0.6
-  - to: lupo-database/lupopedia/content/lupo-app/auth/AuthRoleResolver.php
-    type: USED_IN_PHP
-    weight: 0.6
-  - to: lupo-includes/classes/AgentAwarenessLayer.php
-    type: USED_IN_PHP
-    weight: 0.9
-  - to: lupo-includes/functions/reserved-id-helpers.php
-    type: USED_IN_PHP
-    weight: 0.9
-  - to: lupo-includes/modules/channels/channels-controller.php
-    type: USED_IN_PHP
-    weight: 0.9
-  - to: lupo-includes/modules/channels/operator-accept-visitor-api.php
-    type: USED_IN_PHP
-    weight: 0.9
-  - to: lupo-includes/modules/crafty_syntax/choosedepartment.php
-    type: USED_IN_PHP
-    weight: 0.9
-  - to: lupo-includes/modules/crafty_syntax/livehelp-js.php
-    type: USED_IN_PHP
-    weight: 0.9
-  - to: lupo-includes/modules/crafty_syntax/visitor-image.php
-    type: USED_IN_PHP
-    weight: 0.9
-  - to: lupo-scripts/audit_schema_doctrine.php
-    type: USED_IN_PHP
-    weight: 0.7
-  - to: analyze_unused_tables.py
-    type: USED_IN_PYTHON
-    weight: 0.5
-  - to: lupo-scripts/audit_schema_doctrine.py
-    type: USED_IN_PYTHON
-    weight: 0.5
-  - to: lupo-scripts/wolfie_orms.py
-    type: USED_IN_PYTHON
-    weight: 0.5
+    reason: "authoritative TOON JSON source"
 lupopedia.footer:
-  last_verified: '20260317000000'
-  last_verified_by: cursor
-  last_verified_by_actor_id: 102
-  orchestrator: cursor:root
+  last_verified: "20260328013000"
+  last_verified_by: "hephaestus"
+  last_verified_by_actor_id: 23
+  generated: true
+  provenance: "stage3_track_c_normalization"
 ---
-# file: lupo_actor_channel_roles ? web_path: http://www.lupopedia.com/database/lupopedia/tables/active/lupo_actor_channel_roles
-lupopedia.headers:
-  lupopedia.version: "4.0.73"
-  lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\database\lupopedia\tables\lupo_actor_channel_roles.md"
-  file_hash: "6c706084f3320046359b8f70c961d42cd8ba48acd97ce293ee264e7486b7ec8f"
-  last_updated_utc: "20260228155738"
-  system_version: "4.0.51"
-  channel_id: 1
-  actor_id: 1002
-  delegation_chain: "1002:10000"
-  artifact_type: "documentation"
-  artifact_kind: "documentation"
-  purpose: "Documentation file with LUPOPEDIA HEADERS applied"
-  namespace: "core"
-  mood_rgb: "4169E1"
-  traits: ["flare", "indexed", "v4.0.51"]
-  tags: ["documentation", "flare_applied"]
-  lupo_agent: "windsurf"
+# file: lupo_actor_channel_roles.md
 
-lupopedia.edges:
-  outbound_edges:
-    - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
+# lupo_actor_channel_roles
 
-lupopedia.footer:
-  last_verified: "20260228155738"
-  last_verified_by: "windsurf"
+## Purpose
+Canonical table documentation normalized from TOON JSON for `lupo_actor_channel_roles`.
 
+## Schema
 
-# 🎟️ Table: lupo_actor_channel_roles
+### Primary Key
+(none)
 
-**Purpose:** Manages channel-scoped authorization, roles, and permissions for actors.  
-**Type:** Authorization Table  
-**Status:** ✅ Production Ready  
-**Volume:** Medium-High (one or more roles per active channel participant)
+### Columns
 
+| Column | Type Definition |
+|---|---|
+| `actor_channel_role_id` | `bigint NOT NULL` |
+| `actor_id` | `bigint NOT NULL` |
+| `actor_name` | `varchar(64)` |
+| `channel_id` | `bigint NOT NULL` |
+| `role_key` | `varchar(64) NOT NULL` |
+| `created_ymdhis` | `bigint NOT NULL DEFAULT 0` |
+| `updated_ymdhis` | `bigint NOT NULL` |
+| `is_deleted` | `tinyint NOT NULL DEFAULT 0` |
+| `deleted_ymdhis` | `bigint` |
+| `handshake_metadata_json` | `json` |
+| `awareness_snapshot_json` | `json` |
+| `protocol_completion_status` | `varchar(64) DEFAULT 'pending'` |
+| `protocol_version` | `varchar(20) DEFAULT '3.0.0'` |
+| `join_sequence_step` | `tinyint DEFAULT 0` |
+| `handshake_completed_ymdhis` | `bigint` |
+| `awareness_completed_ymdhis` | `bigint` |
+| `cjp_completed_ymdhis` | `bigint` |
 
-## 🗃️ **Schema Reference**
+### Indexes
 
-### **Primary Key**
-- **`actor_channel_role_id`** (BIGINT) - Unique role assignment identifier.
+| Index | Columns | Unique |
+|---|---|---|
+| `lupo_actor_channel_roles_idx_actor_id` | `actor_id` | no |
+| `lupo_actor_channel_roles_idx_actor_name` | `actor_name` | no |
+| `lupo_actor_channel_roles_idx_channel_id` | `channel_id` | no |
+| `lupo_actor_channel_roles_idx_join_sequence_step` | `join_sequence_step` | no |
+| `lupo_actor_channel_roles_idx_protocol_completion_status` | `protocol_completion_status` | no |
+| `lupo_actor_channel_roles_idx_protocol_version` | `protocol_version` | no |
+| `lupo_actor_channel_roles_idx_role_key` | `role_key` | no |
 
-### **Core Identity Fields**
-| Field | Type | Description | Notes |
-|-------|------|-------------|-------|
-| `actor_id` | BIGINT | The actor receiving the role | |
-| `channel_id` | BIGINT | The channel the role applies to | |
-| `role_key` | VARCHAR(64) | Normalized role name | e.g., 'captain', 'administrator' |
-
-### **Extended Governance**
-| Field | Type | Description | Notes |
-|-------|------|-------------|-------|
-| `handshake_metadata_json` | JSON | Security handshake data | Required for AI agent joins |
-| `awareness_snapshot_json`| JSON | Latest state of actor awareness | Per-channel focus data |
-| `protocol_completion_status`| VARCHAR(64) | Status of role-boarding | e.g., 'verified' |
-
-
-## 🚀 **Usage Patterns**
-
-### **Permission Check**
-Verifying if an actor has administrative authority on a channel.
-
-```sql
-SELECT role_key 
-FROM lupo_actor_channel_roles 
-WHERE actor_id = 1006 
-  AND channel_id = 42 
-  AND role_key IN ('captain', 'administrator')
-  AND is_deleted = 0;
-```
-
-### **Channel Staff List**
-Retrieving all human and agent "staff" for a specific channel.
-
-```sql
-SELECT a.name, r.role_key, a.actor_type
-FROM lupo_actor_channel_roles r
-JOIN lupo_actors a ON r.actor_id = a.actor_id
-WHERE r.channel_id = 42 AND r.is_deleted = 0;
-```
-
-
-*This documentation is part of the v4.0.48 Unified Authorization framework.*
+## Doctrine
+- Source of truth: `lupo-database/lupopedia/json/` TOON exports
+- Regeneration mode: Stage 3 deterministic normalization
+- Edge mode: placeholder baseline

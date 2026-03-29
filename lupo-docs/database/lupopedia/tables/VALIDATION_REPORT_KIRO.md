@@ -1,4 +1,4 @@
----
+﻿---
 lupopedia.init:
   file_identity: VALIDATION_REPORT_KIRO.md
   artifact_type: validation-report
@@ -113,8 +113,7 @@ lupopedia.edges:
   - coordination
   - kiro
   - database
-lupopedia.footer:
-  last_verified: '20260314000000'
+lupopedia.footer:`n  approved_for_release: "4.1.0"`n  approval_status: "approved"`n  approved_by_actor_id: 1`n  approved_utc: 20260326192115`n  last_verified: '20260314000000'
   last_verified_by: cursor
   orchestrator: kiro
   next_action:
@@ -124,7 +123,7 @@ lupopedia.footer:
   - Update coordination documents with KIRO findings
   last_verified_by_actor_id: 102
 ---
-# KIRO Validation Report — Multi-Agent Database Documentation (Canonical)
+# KIRO Validation Report â€” Multi-Agent Database Documentation (Canonical)
 
 **Validator:** KIRO (actor_id 100 per registry), schema coordinator  
 **Date:** 2026-03-14  
@@ -216,25 +215,25 @@ This report replaces the Cursor-authored `VALIDATION_REPORT.md` (v4.0.71) with K
 
 **Recommendation**: Treat `active/<table>.md` as canonical when present; flat can remain as historical copy; do not delete (Rule 4).
 
-- **lupo_modules_departments**: Doc in both tables/ and deprecated/ — clarify which is current; registry notes "Uncertain: duplicate doc".
+- **lupo_modules_departments**: Doc in both tables/ and deprecated/ â€” clarify which is current; registry notes "Uncertain: duplicate doc".
 
 ## 6. Orphan Documentation
 
-- **Docs that are not table docs**: README.md, TABLE_INDEX.md, MIGRATION_MAPPING_REFERENCE.md, CURSOR_KIRO_HANDOFF.md, CHANNEL_SYSTEM_TLDR.md, SESSION_MANAGEMENT_SYSTEM.md, actors.md, actors_old.md, channels.md, departments.md, federation_nodes.md, sessions.md — some are overviews or aliases (e.g. actors → lupo_actors). Not orphaned; they are intentional index/overview files.
+- **Docs that are not table docs**: README.md, TABLE_INDEX.md, MIGRATION_MAPPING_REFERENCE.md, CURSOR_KIRO_HANDOFF.md, CHANNEL_SYSTEM_TLDR.md, SESSION_MANAGEMENT_SYSTEM.md, actors.md, actors_old.md, channels.md, departments.md, federation_nodes.md, sessions.md â€” some are overviews or aliases (e.g. actors â†’ lupo_actors). Not orphaned; they are intentional index/overview files.
 
 - **Table-named doc with no TOON**: e.g. lupo_actor_properties (referenced in mapping but no TOON). Flagged in registry as Uncertain.
 
 ## 7. Removed Tables Handled Under deprecated/
 
-- **lupo_anubis_deletion_log** — In deprecated/; TOON exists (lupo_anubis_deletion_log.toon). Status: verify if table still in install or removed.
-- **lupo_anubis_orphaned** — In deprecated/; TOON exists. Same verification needed.
-- **lupo_registry_import** — In deprecated/; TOON exists. Plan lists as metadata; duplicate doc.
-- **lupo_reference_cited_by** — In deprecated/; TOON exists. JetBrains domain; verify if deprecated or active.
-- **lupo_operators** — Documented as DROPPED (operator_to_roles_migration); no TOON. Removed.
+- **lupo_anubis_deletion_log** â€” In deprecated/; TOON exists (lupo_anubis_deletion_log.toon). Status: verify if table still in install or removed.
+- **lupo_anubis_orphaned** â€” In deprecated/; TOON exists. Same verification needed.
+- **lupo_registry_import** â€” In deprecated/; TOON exists. Plan lists as metadata; duplicate doc.
+- **lupo_reference_cited_by** â€” In deprecated/; TOON exists. JetBrains domain; verify if deprecated or active.
+- **lupo_operators** â€” Documented as DROPPED (operator_to_roles_migration); no TOON. Removed.
 
 ## 8. Migration Tables Handled Under migrations/
 
-- **livehelp_autoinvite** — Doc in `migrations/livehelp_autoinvite.md`. Other livehelp_* migration docs live in flat `tables/` (e.g. livehelp_*_migration.md). Per livehelp_migrations_readme, migration docs were relocated to `tables/`; migrations/ contains one example.
+- **livehelp_autoinvite** â€” Doc in `migrations/livehelp_autoinvite.md`. Other livehelp_* migration docs live in flat `tables/` (e.g. livehelp_*_migration.md). Per livehelp_migrations_readme, migration docs were relocated to `tables/`; migrations/ contains one example.
 
 **Recommendation**: Consider moving all livehelp_* and *_migration docs under `tables/migrations/` for consistency (Windsurf ownership; no change by Cursor).
 

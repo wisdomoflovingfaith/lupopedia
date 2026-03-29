@@ -1,0 +1,440 @@
+﻿{
+    "totals":  {
+                   "matched_files":  67,
+                   "matched_lines":  156
+               },
+    "categories":  [
+                       {
+                           "Name":  "database_table_doc",
+                           "Count":  9
+                       },
+                       {
+                           "Name":  "doctrine_reference",
+                           "Count":  5
+                       },
+                       {
+                           "Name":  "other",
+                           "Count":  17
+                       },
+                       {
+                           "Name":  "report",
+                           "Count":  7
+                       },
+                       {
+                           "Name":  "script_tooling",
+                           "Count":  1
+                       },
+                       {
+                           "Name":  "thread_artifact",
+                           "Count":  11
+                       },
+                       {
+                           "Name":  "version_doc",
+                           "Count":  17
+                       }
+                   ],
+    "files":  [
+                  {
+                      "Path":  "lupo-channels/1_channel_refactor_governance/README.md",
+                      "Category":  "other",
+                      "LineNumber":  24,
+                      "Line":  "last_verified: \"20260327110206\""
+                  },
+                  {
+                      "Path":  "lupo-channels/1_channel_refactor_governance/THREAD_INDEX.md",
+                      "Category":  "other",
+                      "LineNumber":  20,
+                      "Line":  "last_verified: \"20260327110206\""
+                  },
+                  {
+                      "Path":  "lupo-channels/1_channel_refactor_governance/threads/channel_refactor_4_0_88/20260327_110206_cursor_channel_refactor_audit_report.md",
+                      "Category":  "thread_artifact",
+                      "LineNumber":  26,
+                      "Line":  "last_verified: \"20260327110206\""
+                  },
+                  {
+                      "Path":  "lupo-channels/1_channel_refactor_governance/threads/channel_refactor_4_0_88/20260327_110206_cursor_channel_refactor_governance_charter.md",
+                      "Category":  "thread_artifact",
+                      "LineNumber":  24,
+                      "Line":  "last_verified: \"20260327110206\""
+                  },
+                  {
+                      "Path":  "lupo-channels/1_channel_refactor_governance/threads/channel_refactor_4_0_88/prompts/README.md",
+                      "Category":  "thread_artifact",
+                      "LineNumber":  21,
+                      "Line":  "last_verified: \"20260327110206\""
+                  },
+                  {
+                      "Path":  "lupo-channels/1_channel_refactor_governance/threads/channel_refactor_4_0_88/questions/README.md",
+                      "Category":  "thread_artifact",
+                      "LineNumber":  21,
+                      "Line":  "last_verified: \"20260327110206\""
+                  },
+                  {
+                      "Path":  "lupo-channels/42/threads/2007/20260327_220000_thoth_semantic_truth_validation_regeneration_source.md",
+                      "Category":  "thread_artifact",
+                      "LineNumber":  52,
+                      "Line":  "last_verified: \u002720260327220000\u0027"
+                  },
+                  {
+                      "Path":  "lupo-channels/42/threads/2007/20260327_223000_wolfie_final_execution_directive_approved.md",
+                      "Category":  "thread_artifact",
+                      "LineNumber":  49,
+                      "Line":  "last_verified: \u002720260327223000\u0027"
+                  },
+                  {
+                      "Path":  "lupo-channels/42/threads/2007/20260327_230000_thoth_database_instance_reconciliation_report.md",
+                      "Category":  "thread_artifact",
+                      "LineNumber":  56,
+                      "Line":  "last_verified: \u002720260327230000\u0027"
+                  },
+                  {
+                      "Path":  "lupo-channels/42/threads/2007/20260327_233000_wolfie_lupopedia_organization_4_0_88_integration_and_corruption_assessment.md",
+                      "Category":  "thread_artifact",
+                      "LineNumber":  23,
+                      "Line":  "last_verified: \u002720260327233000\u0027"
+                  },
+                  {
+                      "Path":  "lupo-channels/42/threads/2007/20260327_234500_wolfie_phase_2_authorization_directive.md",
+                      "Category":  "thread_artifact",
+                      "LineNumber":  35,
+                      "Line":  "last_verified: \u002720260327234500\u0027"
+                  },
+                  {
+                      "Path":  "lupo-channels/42/threads/2007/20260327_235500_hephaestus_phase2_execution_started_and_completed.md",
+                      "Category":  "thread_artifact",
+                      "LineNumber":  39,
+                      "Line":  "last_verified: \u002720260327235500\u0027"
+                  },
+                  {
+                      "Path":  "lupo-channels/42/threads/2007/20260327_235900_thoth_post_phase2_semantic_validation.md",
+                      "Category":  "thread_artifact",
+                      "LineNumber":  38,
+                      "Line":  "last_verified: \u002720260327235900\u0027"
+                  },
+                  {
+                      "Path":  "lupo-docs/archived/non_schema_tables_20260327/DEPRECATION_MANIFEST.md",
+                      "Category":  "other",
+                      "LineNumber":  22,
+                      "Line":  "last_verified: \"20260327\""
+                  },
+                  {
+                      "Path":  "lupo-docs/database/lupopedia/tables/active/lupo_actor_capabilities.md",
+                      "Category":  "database_table_doc",
+                      "LineNumber":  49,
+                      "Line":  "last_verified: \"20260327234500\""
+                  },
+                  {
+                      "Path":  "lupo-docs/database/lupopedia/tables/active/lupo_actor_channels.md",
+                      "Category":  "database_table_doc",
+                      "LineNumber":  98,
+                      "Line":  "last_verified: \"20260327234500\""
+                  },
+                  {
+                      "Path":  "lupo-docs/database/lupopedia/tables/active/lupo_actor_departments.md",
+                      "Category":  "database_table_doc",
+                      "LineNumber":  66,
+                      "Line":  "last_verified: \"20260327234500\""
+                  },
+                  {
+                      "Path":  "lupo-docs/database/lupopedia/tables/active/lupo_actor_traits.md",
+                      "Category":  "database_table_doc",
+                      "LineNumber":  49,
+                      "Line":  "last_verified: \"20260327234500\""
+                  },
+                  {
+                      "Path":  "lupo-docs/database/lupopedia/tables/active/lupo_auth_users.md",
+                      "Category":  "database_table_doc",
+                      "LineNumber":  132,
+                      "Line":  "last_verified: \"20260327234500\""
+                  },
+                  {
+                      "Path":  "lupo-docs/database/lupopedia/tables/active/lupo_channels.md",
+                      "Category":  "database_table_doc",
+                      "LineNumber":  154,
+                      "Line":  "last_verified: \"20260327234500\""
+                  },
+                  {
+                      "Path":  "lupo-docs/database/lupopedia/tables/active/lupo_dialog_messages.md",
+                      "Category":  "database_table_doc",
+                      "LineNumber":  155,
+                      "Line":  "last_verified: \"20260327234500\""
+                  },
+                  {
+                      "Path":  "lupo-docs/database/lupopedia/tables/active/lupo_dialog_threads.md",
+                      "Category":  "database_table_doc",
+                      "LineNumber":  74,
+                      "Line":  "last_verified: \"20260327234500\""
+                  },
+                  {
+                      "Path":  "lupo-docs/database/lupopedia/tables/active/lupo_search_index.md",
+                      "Category":  "database_table_doc",
+                      "LineNumber":  49,
+                      "Line":  "last_verified: \"20260327234500\""
+                  },
+                  {
+                      "Path":  "lupo-docs/doctrine/LUPOPEDIA_HEADERS/DEPRECATION_FLARE_FLIP_FLP.md",
+                      "Category":  "doctrine_reference",
+                      "LineNumber":  20,
+                      "Line":  "last_verified: \"20260327121457\""
+                  },
+                  {
+                      "Path":  "lupo-docs/doctrine/LUPOPEDIA_HEADERS/LUPOPEDIA_HEADERS_MIGRATION.md",
+                      "Category":  "doctrine_reference",
+                      "LineNumber":  19,
+                      "Line":  "last_verified: \"20260327121457\""
+                  },
+                  {
+                      "Path":  "lupo-docs/doctrine/LUPOPEDIA_HEADERS/LUPOPEDIA_HEADERS_PLAN.md",
+                      "Category":  "doctrine_reference",
+                      "LineNumber":  19,
+                      "Line":  "last_verified: \"20260327121457\""
+                  },
+                  {
+                      "Path":  "lupo-docs/doctrine/LUPOPEDIA_HEADERS/OPTIONAL_BLOCKS.md",
+                      "Category":  "doctrine_reference",
+                      "LineNumber":  18,
+                      "Line":  "last_verified: \"20260327121457\""
+                  },
+                  {
+                      "Path":  "lupo-docs/doctrine/LUPOPEDIA_HEADERS/VERSIONING_MODEL.md",
+                      "Category":  "doctrine_reference",
+                      "LineNumber":  19,
+                      "Line":  "last_verified: \"20260327121457\""
+                  },
+                  {
+                      "Path":  "lupo-docs/ORGANIZATION.md",
+                      "Category":  "other",
+                      "LineNumber":  18,
+                      "Line":  "last_verified: \"20260327122537\""
+                  },
+                  {
+                      "Path":  "lupo-docs/reports/CORRUPTION_MANIFEST.md",
+                      "Category":  "report",
+                      "LineNumber":  22,
+                      "Line":  "last_verified: \"20260327\""
+                  },
+                  {
+                      "Path":  "lupo-docs/reports/Phase1_Completion_Report_20260327.md",
+                      "Category":  "report",
+                      "LineNumber":  25,
+                      "Line":  "last_verified: \"20260327\""
+                  },
+                  {
+                      "Path":  "lupo-docs/reports/Phase1_DB_Validation_20260327.md",
+                      "Category":  "report",
+                      "LineNumber":  22,
+                      "Line":  "last_verified: \"20260327\""
+                  },
+                  {
+                      "Path":  "lupo-docs/reports/Phase1_Git_History_Audit_20260327.md",
+                      "Category":  "report",
+                      "LineNumber":  22,
+                      "Line":  "last_verified: \"20260327\""
+                  },
+                  {
+                      "Path":  "lupo-docs/reports/Phase1_Tooling_Status_20260327.md",
+                      "Category":  "report",
+                      "LineNumber":  66,
+                      "Line":  "last_modified_utc: \"20260327130000\""
+                  },
+                  {
+                      "Path":  "lupo-docs/reports/Phase2_Completion_Report_20260327.md",
+                      "Category":  "report",
+                      "LineNumber":  12,
+                      "Line":  "last_verified: \"20260327234500\""
+                  },
+                  {
+                      "Path":  "lupo-docs/reports/PHASE2_REGENERATION_MANIFEST_20260327.md",
+                      "Category":  "report",
+                      "LineNumber":  12,
+                      "Line":  "last_verified: \"20260327234500\""
+                  },
+                  {
+                      "Path":  "lupo-docs/versions/4.0.88/CHANGELOG.md",
+                      "Category":  "version_doc",
+                      "LineNumber":  34,
+                      "Line":  "last_verified: \"20260327\""
+                  },
+                  {
+                      "Path":  "lupo-docs/versions/4.0.88/CHANNEL_REFACTOR_PRD.md",
+                      "Category":  "version_doc",
+                      "LineNumber":  36,
+                      "Line":  "last_verified: \"20260327110206\""
+                  },
+                  {
+                      "Path":  "lupo-docs/versions/4.0.88/CHANNELS_CONTEXTS_AND_COORDINATION.md",
+                      "Category":  "version_doc",
+                      "LineNumber":  28,
+                      "Line":  "last_verified: \"20260327\""
+                  },
+                  {
+                      "Path":  "lupo-docs/versions/4.0.88/CORRUPTION_INCIDENT_AND_REMEDIATION_STATUS.md",
+                      "Category":  "version_doc",
+                      "LineNumber":  28,
+                      "Line":  "last_verified: \"20260327\""
+                  },
+                  {
+                      "Path":  "lupo-docs/versions/4.0.88/DOCUMENTATION_CONSOLIDATION_IMPLEMENTATION_REPORT_20260327.md",
+                      "Category":  "version_doc",
+                      "LineNumber":  31,
+                      "Line":  "last_verified: \"20260327\""
+                  },
+                  {
+                      "Path":  "lupo-docs/versions/4.0.88/DOCUMENTATION_ORGANIZATION_GAP_REPORT.md",
+                      "Category":  "version_doc",
+                      "LineNumber":  18,
+                      "Line":  "last_verified: \"20260327122537\""
+                  },
+                  {
+                      "Path":  "lupo-docs/versions/4.0.88/DOCUMENTATION_ORGANIZATION_PASS_REPORT.md",
+                      "Category":  "version_doc",
+                      "LineNumber":  18,
+                      "Line":  "last_verified: \"20260327122537\""
+                  },
+                  {
+                      "Path":  "lupo-docs/versions/4.0.88/GIT_CHECKPOINT_PLAN.md",
+                      "Category":  "version_doc",
+                      "LineNumber":  28,
+                      "Line":  "last_verified: \"20260327\""
+                  },
+                  {
+                      "Path":  "lupo-docs/versions/4.0.88/HOW_LUPOPEDIA_WORKS_4_0_88.md",
+                      "Category":  "version_doc",
+                      "LineNumber":  30,
+                      "Line":  "last_verified: \"20260327\""
+                  },
+                  {
+                      "Path":  "lupo-docs/versions/4.0.88/MYSQL_TOON_JSON_TABLE_DOCS_AUTHORITY_MAP.md",
+                      "Category":  "version_doc",
+                      "LineNumber":  28,
+                      "Line":  "last_verified: \"20260327\""
+                  },
+                  {
+                      "Path":  "lupo-docs/versions/4.0.88/PLAN.md",
+                      "Category":  "version_doc",
+                      "LineNumber":  7,
+                      "Line":  "last_modified_utc: \"20260327\""
+                  },
+                  {
+                      "Path":  "lupo-docs/versions/4.0.88/prd/04_lupopedia_js_foundation.md",
+                      "Category":  "version_doc",
+                      "LineNumber":  45,
+                      "Line":  "last_verified: \"20260327\""
+                  },
+                  {
+                      "Path":  "lupo-docs/versions/4.0.88/prd/README.md",
+                      "Category":  "version_doc",
+                      "LineNumber":  7,
+                      "Line":  "last_modified_utc: \"20260327\""
+                  },
+                  {
+                      "Path":  "lupo-docs/versions/4.0.88/README.md",
+                      "Category":  "version_doc",
+                      "LineNumber":  45,
+                      "Line":  "last_verified: \"20260327\""
+                  },
+                  {
+                      "Path":  "lupo-docs/versions/4.0.88/THREAD_2007_WORK_SUMMARY.md",
+                      "Category":  "version_doc",
+                      "LineNumber":  28,
+                      "Line":  "last_verified: \"20260327\""
+                  },
+                  {
+                      "Path":  "lupo-docs/versions/4.0.88/TODO.md",
+                      "Category":  "version_doc",
+                      "LineNumber":  7,
+                      "Line":  "last_modified_utc: \"20260327\""
+                  },
+                  {
+                      "Path":  "lupo-docs/versions/4.0.88/WHAT_TO_DO_NEXT.md",
+                      "Category":  "version_doc",
+                      "LineNumber":  30,
+                      "Line":  "last_verified: \"20260327\""
+                  },
+                  {
+                      "Path":  "lupo-docs/versions/4.1.0/APPROVED_ARTIFACTS_INDEX.md",
+                      "Category":  "other",
+                      "LineNumber":  5,
+                      "Line":  "last_modified_utc: \"20260327\""
+                  },
+                  {
+                      "Path":  "lupo-docs/versions/4.1.0/PENDING_ARTIFACTS_INDEX.md",
+                      "Category":  "other",
+                      "LineNumber":  5,
+                      "Line":  "last_modified_utc: \"20260327\""
+                  },
+                  {
+                      "Path":  "lupo-docs/versions/4.1.0/plan.md",
+                      "Category":  "other",
+                      "LineNumber":  5,
+                      "Line":  "last_modified_utc: \"20260327\""
+                  },
+                  {
+                      "Path":  "lupo-docs/versions/4.1.0/prd/architecture/lupopedia_js_navigation_tracking_architecture.md",
+                      "Category":  "other",
+                      "LineNumber":  35,
+                      "Line":  "last_verified: \"20260327\""
+                  },
+                  {
+                      "Path":  "lupo-docs/versions/4.1.0/prd/product_overview.md",
+                      "Category":  "other",
+                      "LineNumber":  5,
+                      "Line":  "last_modified_utc: \"20260327\""
+                  },
+                  {
+                      "Path":  "lupo-docs/versions/4.1.0/prd/README.md",
+                      "Category":  "other",
+                      "LineNumber":  5,
+                      "Line":  "last_modified_utc: \"20260327\""
+                  },
+                  {
+                      "Path":  "lupo-docs/versions/4.1.0/prd/requirements/lupopedia_js_navigation_tracking_requirements.md",
+                      "Category":  "other",
+                      "LineNumber":  30,
+                      "Line":  "last_verified: \"20260327\""
+                  },
+                  {
+                      "Path":  "lupo-docs/versions/4.1.0/REJECTED_ARTIFACTS_INDEX.md",
+                      "Category":  "other",
+                      "LineNumber":  5,
+                      "Line":  "last_modified_utc: \"20260327\""
+                  },
+                  {
+                      "Path":  "lupo-docs/versions/4.1.0/todo.md",
+                      "Category":  "other",
+                      "LineNumber":  5,
+                      "Line":  "last_modified_utc: \"20260327\""
+                  },
+                  {
+                      "Path":  "lupo-scripts/generate_table_docs_from_toons.py",
+                      "Category":  "script_tooling",
+                      "LineNumber":  439,
+                      "Line":  "rep.append(\u0027  when_updated: \"20260327234500\"\u0027)"
+                  },
+                  {
+                      "Path":  "ORGANIZATION.md",
+                      "Category":  "other",
+                      "LineNumber":  18,
+                      "Line":  "last_verified: \"20260327122537\""
+                  },
+                  {
+                      "Path":  "plan.md",
+                      "Category":  "other",
+                      "LineNumber":  27,
+                      "Line":  "last_verified: \"20260327\""
+                  },
+                  {
+                      "Path":  "README.md",
+                      "Category":  "other",
+                      "LineNumber":  80,
+                      "Line":  "last_verified: \u002720260327\u0027"
+                  },
+                  {
+                      "Path":  "TODO.md",
+                      "Category":  "other",
+                      "LineNumber":  27,
+                      "Line":  "last_verified: \"20260327\""
+                  }
+              ]
+}

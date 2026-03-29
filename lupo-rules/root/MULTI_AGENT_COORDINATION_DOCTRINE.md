@@ -11,6 +11,11 @@ lupopedia.headers:
   artifact_kind: "multi_agent_coordination"
   purpose: "Defines deterministic coordination rules for multi-agent execution in Lupopedia using context-based orchestration with rules, skills, and personas"
   tags: ["multi-agent", "coordination", "doctrine", "orchestration", "context-based", "skills", "personas"]
+lupopedia.footer:
+  approved_for_version: "4.1.0"
+  approved_for_version_utc: "20260327103238"
+  approved_for_version_by: "Cursor IDE Agent (Lead Orchestration)"
+  approved_for_version_by_actor_id: 102
 ---
 
 # MULTI_AGENT_COORDINATION_DOCTRINE
@@ -57,16 +62,33 @@ These rules apply to ALL agents regardless of persona.
 - **Rule ID: COM001** – Active channel coordination MUST use artifacts under `lupo-channels/{channel_id}/` per **CHANNEL_ARTIFACT_ROUTING_DOCTRINE**; `lupo-docs/status/` is archival only 
 - **Rule ID: COM002** – Artifacts MUST include `lupopedia.headers` with channel_id
 - **Rule ID: COM003** – Agents MUST NOT communicate via private channels
+- **Rule ID: COM004** – `lupo-channels/` is communication-only scope (discussion, coordination, reasoning, planning); canonical doctrine/docs authority stays in `lupo-docs/`
+- **Rule ID: COM005** – Channel artifact filenames MUST follow deterministic UTC form `YYYYMMDD_HHMMSS_ACTOR_purpose_TITLE.md` with hour 00-23
+- **Rule ID: COM006** – All channel artifacts MUST include complete LUPOPEDIA headers and `lupopedia.edges` declaration/snapshot metadata
+- **Rule ID: COM007** – No raw IDE prompts for governed work; executable instructions must come from thread `prompts/` artifacts
+- **Rule ID: COM008** – Ambiguous work MUST first produce `questions/` artifacts before execution prompt finalization
 
 ### 3.3 Task Rules
 - **Rule ID: TSK001** – **Root `TODO.md`** (repository root) is the ONLY source of truth for **multi-agent task assignment** — who owns what, prompt-queue execution, channel-42 coordination, release gates. **`lupo-docs/versions/{version}/TODO.md`** is **version-scoped backlog** (Top 50, Bayesian, etc.); it MUST link to root `TODO.md` for any item that is actively being executed by named actors (no duplicate owner rows for the same work).
 - **Rule ID: TSK002** – Tasks MUST have single owner
 - **Rule ID: TSK003** – Task status MUST be updated in the file that owns the task: **root `TODO.md`** for coordination execution; **version `TODO.md`** for version backlog items until promoted to coordination
 
+### 3.7 Questions/Prompts execution rules
+- **Rule ID: QP001** – Questions artifacts location: `lupo-channels/{channel_id}/threads/{thread_id}/questions/` with filename `YYYYMMDD_HHMMSS_ACTOR_question_TITLE.md`
+- **Rule ID: QP002** – Prompts artifacts location: `lupo-channels/{channel_id}/threads/{thread_id}/prompts/` with filename `YYYYMMDD_HHMMSS_ACTOR_prompt_TITLE.md`
+- **Rule ID: QP003** – Prompt artifacts MUST reference source thread/question artifacts through headers/edges
+- **Rule ID: QP004** – WOLFIE + LILITH refinement path is standard for high-impact or ambiguous execution scopes
+
 ### 3.4 Data Rules
 - **Rule ID: DAT001** – Agents MUST NOT create foreign keys
 - **Rule ID: DAT002** – All timestamps MUST be BIGINT in YYYYMMDDHHIISS format
 - **Rule ID: DAT003** – Agents MUST use registry allocation for IDs
+- **Rule ID: DAT004** – Agents MUST NOT guess schema; use TOON exports and table docs before schema-dependent implementation
+- **Rule ID: DAT005** – Edge authority is `lupo_edges` in DB; file `lupopedia.edges` blocks are declaration-only until synchronized
+
+### 3.6 Identity scope rules
+- **Rule ID: ID004** – Departments remain primary execution scope; context is secondary and must not override department authority
+- **Rule ID: ID005** – Context structures must be documented under department scope and formalized incrementally without replacing identity layers
 
 ### 3.5 Artifact substance (channel threads)
 - **Rule ID: ATER001** – Agents MUST NOT publish thread artifacts under `lupo-channels/{channel_id}/threads/` that are **metadata-only** (YAML/frontmatter with empty or trivial body). For **`artifact_kind: review`**, substantive body after frontmatter MUST be **≥500** characters with **≥3** `##` headings (API + router). For **`artifact_kind: help_response`** (or `message_type: help_response`), body after frontmatter MUST be **≥200** characters, include at least one **`#`** title line, and **≥3** `##` sections. **HERMES** and ingestion tooling MUST treat non-compliant artifacts as **invalid** (do not route to prompts until fixed). Validation: `Lupo_Channel_Artifact_Validator::validateThreadPostBody`, `ChannelArtifactValidator::validateThreadArtifact($path)`, `python lupo-scripts/validate_channel_artifacts.py --mode enforce`.
@@ -375,6 +397,21 @@ lupo-channels/{channel_id}/
 └── content/            # Shared content
 ```
 
+Forward profile (documented 4.0.88 target shape):
+
+```
+lupo-channels/{federation_node_id}_{channel_key}/
+├── threads/
+│   └── {project_slug}/
+│       ├── questions/
+│       ├── prompts/
+│       └── [artifacts]
+├── broadcasts/
+└── content/
+```
+
+Current numeric channel folder layout remains supported during transition.
+
 ### 8.3 Message Routing
 
 | Type | Destination | File Location | Database Reference |
@@ -387,16 +424,16 @@ lupo-channels/{channel_id}/
 
 All coordination artifacts MUST follow this format:
 
-`YYYYMMDD_HHIISS_{actor}_{type}_{purpose}.md` 
+`YYYYMMDD_HHMMSS_ACTOR_purpose_TITLE.md`
 
 Example: `20260317_143000_wolfie_release_announcement.md` 
 
 Components:
 - `YYYYMMDD`: Date
-- `HHIISS`: Time (24-hour UTC)
-- `actor`: Actor name/slug
-- `type`: Message type (directive, review, audit, status, etc.)
-- `purpose`: Brief hyphenated-description
+- `HHMMSS`: Time (24-hour UTC), hour MUST be `00` to `23`
+- `ACTOR`: Actor name/slug token
+- `purpose`: Brief purpose token
+- `TITLE`: Deterministic title token
 
 ### 8.5 Database ↔ Filesystem Relationship
 

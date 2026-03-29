@@ -1,172 +1,79 @@
 ---
 lupopedia.headers:
-  lupopedia.schema: database_table
-  file_path_from_root: lupo-docs/database/lupopedia/tables/active/lupo_comments.md
-  web_path: '[lupo_comments](http://www.lupopedia.com/database/lupopedia/tables/active/lupo_comments)'
-  last_modified_utc: '20260317'
+  when_updated: "20260328013000"
+  file_path_from_root: "lupo-docs/database/lupopedia/tables/active/lupo_comments.md"
+  last_modified_utc: "20260328013000"
   channel_id: 42
-  actor_id: 102
-  actor_name: cursor
-  delegation_chain: cursor:root
-  artifact_type: table_documentation
-  artifact_kind: table
-  namespace: content
-  purpose: Comments on artifacts, documents, and content with faucet traceability
+  actor_id: 23
+  actor_name: "hephaestus"
+  delegation_chain: "wolfie:hephaestus"
+  artifact_type: "documentation"
+  artifact_kind: "table"
+  namespace: "core"
+  purpose: "Normalized table documentation for lupo_comments from TOON JSON"
   tags:
   - database
   - table
-  - content
-  when_updated: '20260324174654'
+  - normalized
+  - 4.0.88
 lupopedia.edges:
-  comment: Snapshot of edges for lupo_comments table doc at 4.0.79 (grounded by repo
-    search; non-exhaustive).
-  meta: php_hits=0 python_hits=1
+  comment: "static placeholder edges for stage3 normalization"
   outbound_edges:
-  - to: database.table.lupo_comments
-    type: DEFINES_SCHEMA_FOR
+  - to: "lupo-database/lupopedia/json/lupo_comments.json"
+    type: "references"
     weight: 1.0
-  - to: lupo-database/lupopedia/mysql/install/install_new_lupopedia.sql
-    type: schema_reference
-    weight: 1.0
-  - to: lupo-scripts/antigravity_refactor.py
-    type: USED_IN_PYTHON
-    weight: 0.5
-  - to: (no_php_refs_found)
-    type: USED_IN_PHP
-    weight: 0.0
+    reason: "authoritative TOON JSON source"
 lupopedia.footer:
-  last_verified: '20260317000000'
-  last_verified_by: cursor
-  last_verified_by_actor_id: 102
-  orchestrator: cursor:root
+  last_verified: "20260328013000"
+  last_verified_by: "hephaestus"
+  last_verified_by_actor_id: 23
+  generated: true
+  provenance: "stage3_track_c_normalization"
 ---
-# file: lupo_comments ? web_path: http://www.lupopedia.com/database/lupopedia/tables/active/lupo_comments
-# file: lupo_comments — web_path: http://www.lupopedia.com/database/lupopedia/tables/active/lupo_comments
+# file: lupo_comments.md
 
-# lupo_comments (v4.0.73)
+# lupo_comments
 
 ## Purpose
-
-Stores comments on artifacts, documents, and content within Lupopedia. Supports threaded comments with parent-child relationships and faucet traceability for tracking which execution surface created each comment.
+Canonical table documentation normalized from TOON JSON for `lupo_comments`.
 
 ## Schema
 
-| Column | Type | Description | Notes |
-|--------|------|-------------|-------|
-| comment_id | BIGINT AUTO_INCREMENT | Primary key | Auto-incrementing unique identifier |
-| target_type | VARCHAR(64) | Type of target being commented on | e.g., 'artifact', 'document', 'content', 'collection' |
-| target_id | BIGINT | ID of the target being commented on | References the target table's primary key |
-| channel_id | BIGINT | Channel where the comment was made | Defaults to 42 (development channel) |
-| actor_id | BIGINT | Actor who made the comment | Foreign key to lupo_actors |
-| faucet_id | BIGINT | Faucet that created the comment | Optional, for faucet traceability |
-| comment_text | TEXT | The comment content | Required field |
-| comment_type | VARCHAR(64) | Type of comment | Defaults to 'comment' |
-| parent_comment_id | BIGINT | Parent comment for threading | NULL for top-level comments |
-| created_ymdhis | BIGINT | Creation timestamp | Format: YYYYMMDDHHIISS UTC |
-| updated_ymdhis | BIGINT | Last update timestamp | Format: YYYYMMDDHHIISS UTC |
-| is_deleted | TINYINT | Soft delete flag | 0 = active, 1 = deleted |
-| deleted_ymdhis | BIGINT | Deletion timestamp | NULL if not deleted |
-| metadata_json | JSON | Additional metadata | Optional field for extra data |
+### Primary Key
+(none)
 
-## Indexes
+### Columns
 
-- `PRIMARY KEY (comment_id)` - Primary key
-- `idx_target (target_type, target_id)` - For querying comments by target
-- `idx_channel_id (channel_id)` - For channel-specific queries
-- `idx_actor_id (actor_id)` - For actor-specific queries
-- `idx_faucet_id (faucet_id)` - For faucet traceability queries
-- `idx_parent_comment_id (parent_comment_id)` - For threaded comments
-- `idx_created_ymdhis (created_ymdhis)` - For chronological ordering
-- `idx_is_deleted (is_deleted)` - For filtering active comments
+| Column | Type Definition |
+|---|---|
+| `comment_id` | `bigint NOT NULL auto_increment` |
+| `target_type` | `varchar(64) NOT NULL` |
+| `target_id` | `bigint NOT NULL` |
+| `channel_id` | `bigint NOT NULL DEFAULT 42` |
+| `actor_id` | `bigint NOT NULL` |
+| `faucet_id` | `bigint` |
+| `comment_text` | `text NOT NULL` |
+| `comment_type` | `varchar(64) NOT NULL DEFAULT 'comment'` |
+| `parent_comment_id` | `bigint` |
+| `created_ymdhis` | `bigint NOT NULL` |
+| `updated_ymdhis` | `bigint NOT NULL` |
+| `is_deleted` | `tinyint NOT NULL DEFAULT 0` |
+| `deleted_ymdhis` | `bigint` |
+| `metadata_json` | `json` |
 
-## Usage Examples
+### Indexes
 
-### Basic Comment Insert
+| Index | Columns | Unique |
+|---|---|---|
+| `lupo_comments_idx_actor_id` | `actor_id` | no |
+| `lupo_comments_idx_channel_id` | `channel_id` | no |
+| `lupo_comments_idx_created_ymdhis` | `created_ymdhis` | no |
+| `lupo_comments_idx_faucet_id` | `faucet_id` | no |
+| `lupo_comments_idx_is_deleted` | `is_deleted` | no |
+| `lupo_comments_idx_parent_comment_id` | `parent_comment_id` | no |
+| `lupo_comments_idx_target` | `target_type`, `target_id` | no |
 
-```sql
-INSERT INTO lupo_comments (
-  target_type,
-  target_id,
-  channel_id,
-  actor_id,
-  faucet_id,
-  comment_text,
-  comment_type,
-  created_ymdhis,
-  updated_ymdhis
-) VALUES (
-  'artifact',
-  123,
-  42,
-  1,
-  101,
-  'This is a great implementation!',
-  'comment',
-  20260313143000,
-  20260313143000
-);
-```
-
-### Threaded Comment
-
-```sql
-INSERT INTO lupo_comments (
-  target_type,
-  target_id,
-  channel_id,
-  actor_id,
-  faucet_id,
-  comment_text,
-  comment_type,
-  parent_comment_id,
-  created_ymdhis,
-  updated_ymdhis
-) VALUES (
-  'artifact',
-  123,
-  42,
-  1000,
-  101,
-  'I agree with the above comment.',
-  'comment',
-  456,  -- parent_comment_id
-  20260313143100,
-  20260313143100
-);
-```
-
-### Query Comments for Target
-
-```sql
-SELECT 
-  c.comment_id,
-  c.comment_text,
-  c.created_ymdhis,
-  a.actor_name,
-  f.faucet_name
-FROM lupo_comments c
-JOIN lupo_actors a ON c.actor_id = a.actor_id
-LEFT JOIN lupo_faucets f ON c.faucet_id = f.faucet_id
-WHERE c.target_type = 'artifact'
-  AND c.target_id = 123
-  AND c.is_deleted = 0
-ORDER BY c.created_ymdhis ASC;
-```
-
-## Doctrine Compliance
-
-- **No foreign keys**: References are logical, not enforced by database
-- **No triggers**: All logic handled in application code
-- **Soft deletes**: Uses `is_deleted` flag instead of DELETE operations
-- **Timestamps**: All timestamps in `YYYYMMDDHHIISS` UTC format
-- **Faucet traceability**: Optional `faucet_id` field for tracking execution surfaces
-
-## Related Tables
-
-- `lupo_actors` - For actor information
-- `lupo_faucets` - For faucet information (if implemented)
-- `lupo_channels` - For channel context
-
-## Version History
-
-- **4.0.73**: Initial implementation with faucet traceability support
+## Doctrine
+- Source of truth: `lupo-database/lupopedia/json/` TOON exports
+- Regeneration mode: Stage 3 deterministic normalization
+- Edge mode: placeholder baseline

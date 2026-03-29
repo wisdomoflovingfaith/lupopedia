@@ -40,12 +40,23 @@ Usage:
     python lupo-scripts/generate_headers_from_db.py --file-path path/from/root.md
     python lupo-scripts/generate_headers_from_db.py --content-id 123456789
     python lupo-scripts/generate_headers_from_db.py --dry-run --file-path path/from/root.md
+    python lupo-scripts/generate_headers_from_db.py --use-mock-db --file-path path/from/root.md   # offline stub
+
+Default: **live MySQL** (database-first). Resolves `lupo_contents`, then rebuilds YAML via
+`lib/header_db_sync.build_yaml_data_from_db` (canonical DB→YAML: metadata + `lupo_edges` +
+`revision_history`). That function is the **paired inverse** of `sync_header_artifact_to_db`
+in the **same** module; `import_content.py` only **imports** that sync function — it does not
+redefine it. If no row exists and the file is on disk, `import_content.py` is invoked
+automatically so upsert + sync run before regeneration.
+
+Schema note: `lupo_edges` has **`semantic_weight`**, **`weight_score`**, **`flare_reason`**
+— not SQL columns named `weight` or `reason` (those are YAML-only; see
+`LUPOPEDIA_HEADERS_DOCTRINE.md` database-first section).
 
 Requirements:
 - At least one of --file-path or --content-id is required
-- If both provided and resolve to different DB records, fail loudly
-- Use explicit SQL, no ORM, no vendor-specific features
-- Output deterministic YAML with canonical block order
+- If both provided, they must refer to the same row
+- Explicit SQL + pymysql; output YAML with stable block order from DB snapshot
 """
 
 import argparse
@@ -57,6 +68,11 @@ import yaml
 from pathlib import Path
 from typing import Dict, List, Optional, Any, Tuple
 from datetime import datetime
+
+_SCRIPTS_DIR = Path(__file__).resolve().parent
+_REPO_ROOT = _SCRIPTS_DIR.parent
+if str(_SCRIPTS_DIR) not in sys.path:
+    sys.path.insert(0, str(_SCRIPTS_DIR))
 
 # ============================================================================
 # TIMESTAMP VALIDATION & STALENESS WARNINGS
@@ -356,12 +372,30 @@ def enforce_timestamp_semantics(
 # DATABASE CONNECTION
 # ============================================================================
 
-# Database connection (simplified for this implementation)
-def get_db_connection():
-    """Get database connection using environment or config."""
-    # This would connect to actual database in production
-    # For now, return a mock connection that reads from TOON files
-    return MockDBConnection()
+def get_pymysql_connection():
+    """Live MySQL connection (DictCursor)."""
+    import pymysql
+    from pymysql.cursors import DictCursor
+    from db_config import get_connection_params
+
+    p = get_connection_params()
+    return pymysql.connect(
+        host=p["host"],
+        user=p["user"],
+        password=p["password"],
+        database=p["database"],
+        port=int(p.get("port") or 3306),
+        charset="utf8mb4",
+        cursorclass=DictCursor,
+        autocommit=False,
+    )
+
+
+def get_db_connection(use_mock: bool):
+    """Get database connection: mock (legacy) or live MySQL."""
+    if use_mock:
+        return MockDBConnection()
+    return get_pymysql_connection()
 
 class MockDBConnection:
     """Mock database connection that reads from TOON files."""
@@ -404,15 +438,16 @@ class MockDBConnection:
         """Fetch metadata rows for an entity."""
         # In production, this would query lupo_metadata table
         # For mock, return basic metadata structure
+        current_timestamp = datetime.now().strftime('%Y%m%d%H%M%S')
         return [
             {
                 'metadata_id': 1,
                 'entity_type': entity_type,
                 'entity_id': entity_id or 'default',
-                'property_key': 'version_when_written',
-                'property_value': '4.0.84',
+                'property_key': 'when_updated',
+                'property_value': current_timestamp,
                 'class_name': 'lupopedia_header',
-                'created_ymdhis': datetime.now().strftime('%Y%m%d%H%M%S')
+                'created_ymdhis': current_timestamp
             },
             {
                 'metadata_id': 2,
@@ -421,7 +456,16 @@ class MockDBConnection:
                 'property_key': 'file_path_from_root',
                 'property_value': f'mock/path/{entity_id or "default"}.md',
                 'class_name': 'lupopedia_header',
-                'created_ymdhis': datetime.now().strftime('%Y%m%d%H%M%S')
+                'created_ymdhis': current_timestamp
+            },
+            {
+                'metadata_id': 3,
+                'entity_type': entity_type,
+                'entity_id': entity_id or 'default',
+                'property_key': 'last_modified_utc',
+                'property_value': current_timestamp,
+                'class_name': 'lupopedia_header',
+                'created_ymdhis': current_timestamp
             }
         ]
 
@@ -449,8 +493,84 @@ def parse_args():
         action='store_true',
         help='Print reconstructed YAML and summary without writing file'
     )
-    
+
+    parser.add_argument(
+        '--use-mock-db',
+        action='store_true',
+        help='Use legacy mock resolver (no MySQL). Default: live database (database-first regeneration).'
+    )
+
     return parser.parse_args()
+
+
+def _repo_relative_path(file_arg: str) -> str:
+    """Normalize to repo-relative POSIX path for lupo_contents.file_path_from_root."""
+    p = Path(file_arg)
+    if p.is_absolute():
+        try:
+            rel = p.resolve().relative_to(_REPO_ROOT.resolve())
+            return rel.as_posix()
+        except ValueError:
+            return p.as_posix()
+    return p.as_posix().lstrip("./")
+
+
+def resolve_artifact_mysql(conn, args, table_prefix: str) -> Dict[str, Any]:
+    """Load lupo_contents row by --content-id and/or --file-path (live DB)."""
+    from import_content import _safe_sql_identifier
+
+    contents_table = _safe_sql_identifier(table_prefix + "contents")
+    with conn.cursor() as cur:
+        row = None
+        if args.content_id:
+            cur.execute(
+                "SELECT * FROM `%s` WHERE content_id=%%s AND is_deleted=0 LIMIT 1" % contents_table,
+                (int(args.content_id),),
+            )
+            row = cur.fetchone()
+            if not row:
+                print("ERROR: No content for content_id=%s" % args.content_id, file=sys.stderr)
+                sys.exit(1)
+            if args.file_path:
+                rel = _repo_relative_path(args.file_path)
+                if str(row.get("file_path_from_root") or "") != rel:
+                    print(
+                        "ERROR: content_id %s is bound to file_path_from_root=%r, not %r"
+                        % (args.content_id, row.get("file_path_from_root"), rel),
+                        file=sys.stderr,
+                    )
+                    sys.exit(1)
+        elif args.file_path:
+            rel = _repo_relative_path(args.file_path)
+            cur.execute(
+                "SELECT * FROM `%s` WHERE file_path_from_root=%%s AND is_deleted=0 LIMIT 1"
+                % contents_table,
+                (rel,),
+            )
+            row = cur.fetchone()
+            disk_path = Path(args.file_path)
+            if not disk_path.is_absolute():
+                disk_path = _REPO_ROOT / rel
+            if not row and disk_path.is_file():
+                if _attempt_import_missing_file(str(disk_path)):
+                    cur.execute(
+                        "SELECT * FROM `%s` WHERE file_path_from_root=%%s AND is_deleted=0 LIMIT 1"
+                        % contents_table,
+                        (rel,),
+                    )
+                    row = cur.fetchone()
+            if not row:
+                print(
+                    "ERROR: No DB row for file_path_from_root=%r (import failed or file missing)."
+                    % (rel,),
+                    file=sys.stderr,
+                )
+                sys.exit(1)
+        else:
+            print("ERROR: At least one of --file-path or --content-id is required", file=sys.stderr)
+            sys.exit(1)
+
+    return row
 
 
 def _attempt_import_missing_file(file_path: str) -> bool:
@@ -486,7 +606,7 @@ def _attempt_import_missing_file(file_path: str) -> bool:
 
 def resolve_artifact(args) -> Dict:
     """Resolve artifact from database using file_path or content_id."""
-    db = get_db_connection()
+    db = get_db_connection(True)
     
     if args.file_path:
         synthesized_content = False
@@ -556,7 +676,7 @@ def build_block_tree(metadata_rows: List[Dict]) -> Dict[str, Dict]:
         property_value = row['property_value']
 
         # Map plain keys to lupopedia.headers by default.
-        # Example: version_when_written -> lupopedia.headers.version_when_written
+        # Example: when_updated -> lupopedia.headers.when_updated
         if '.' not in property_key:
             block_name = 'lupopedia.headers'
             field_name = property_key
@@ -605,28 +725,43 @@ def normalize_legacy_blocks(blocks: Dict[str, Dict]) -> Dict[str, Dict]:
     
     return normalized
 
-def build_headers_block(blocks: Dict[str, Dict]) -> Dict[str, Any]:
+def build_headers_block(blocks: Dict[str, Dict], content: Dict[str, Any]) -> Dict[str, Any]:
     """Build canonical lupopedia.headers block."""
     headers = {}
-    
-    # Required fields with precedence
-    if 'version_when_written' in blocks.get('lupopedia.headers', {}):
-        headers['version_when_written'] = blocks['lupopedia.headers']['version_when_written']
-    
-    if 'file_path_from_root' in blocks.get('lupopedia.headers', {}):
-        headers['file_path_from_root'] = blocks['lupopedia.headers']['file_path_from_root']
-    
-    # Optional fields from database
-    for field in ['lupopedia.schema', 'web_path', 'title', 'delegation_chain', 
-                   'artifact_type', 'artifact_kind', 'purpose', 'tags', 'namespace',
-                   'channel_id', 'actor_id', 'last_modified_utc']:
-        if field in blocks.get('lupopedia.headers', {}):
-            headers[field] = blocks['lupopedia.headers'][field]
-    
-    # content_id if present
-    if 'content_id' in blocks.get('lupopedia.headers', {}):
-        headers['content_id'] = blocks['lupopedia.headers']['content_id']
-    
+    header_source = dict(blocks.get('lupopedia.headers', {}))
+
+    file_path_from_root = header_source.get('file_path_from_root') or content.get('file_path_from_root')
+    if file_path_from_root:
+        headers['file_path_from_root'] = file_path_from_root
+
+    when_updated = (
+        header_source.get('when_updated')
+        or header_source.get('last_modified_utc')
+        or content.get('updated_ymdhis')
+        or content.get('created_ymdhis')
+        or datetime.now().strftime('%Y%m%d%H%M%S')
+    )
+    headers['when_updated'] = when_updated
+    headers['last_modified_utc'] = header_source.get('last_modified_utc') or when_updated
+
+    if 'web_path' in header_source:
+        headers['web_path'] = header_source['web_path']
+    elif file_path_from_root:
+        headers['web_path'] = f'http://www.lupopedia.com/lupopedia/{file_path_from_root}'
+
+    for field in [
+        'lupopedia.schema', 'title', 'delegation_chain', 'artifact_type',
+        'artifact_kind', 'purpose', 'tags', 'namespace', 'channel_id',
+        'actor_id', 'actor_name', 'agent_name_identity'
+    ]:
+        if field in header_source:
+            headers[field] = header_source[field]
+
+    if 'content_id' in header_source:
+        headers['content_id'] = header_source['content_id']
+    elif 'content_id' in content:
+        headers['content_id'] = content['content_id']
+
     return headers
 
 def build_footer_block(blocks: Dict[str, Dict]) -> Dict[str, Any]:
@@ -763,68 +898,125 @@ def write_output_file(file_path: Path, front_matter_dict: Dict[str, Any], conten
 def main():
     """Main entry point."""
     args = parse_args()
-    
-    # Resolve artifact from database
+
+    if not args.use_mock_db:
+        try:
+            from lib.header_db_sync import build_yaml_data_from_db
+            from import_content import _load_table_prefix_from_config
+
+            prefix = _load_table_prefix_from_config()
+            conn = get_pymysql_connection()
+            try:
+                content_row = resolve_artifact_mysql(conn, args, prefix)
+                with conn.cursor() as cur:
+                    front_matter_dict = build_yaml_data_from_db(cur, prefix, content_row)
+
+                fp = content_row.get("file_path_from_root")
+                if args.file_path:
+                    output_path = Path(args.file_path)
+                    if not output_path.is_absolute():
+                        output_path = _REPO_ROOT / output_path
+                else:
+                    if not fp:
+                        print("ERROR: content row missing file_path_from_root", file=sys.stderr)
+                        sys.exit(1)
+                    output_path = _REPO_ROOT / str(fp)
+
+                existing_fm = {}
+                if output_path.is_file():
+                    split = _split_existing_markdown(
+                        output_path.read_text(encoding="utf-8", errors="replace")
+                    )
+                    existing_fm = split.get("front_matter") or {}
+
+                enforce_timestamp_semantics(existing_fm, front_matter_dict)
+                emit_staleness_warnings(front_matter_dict)
+
+                headers_block = front_matter_dict.get("lupopedia.headers", {})
+
+                if args.dry_run:
+                    print("=== DRY RUN - DATABASE-FIRST YAML ===")
+                    print(
+                        yaml.safe_dump(
+                            front_matter_dict,
+                            default_flow_style=False,
+                            sort_keys=False,
+                            allow_unicode=False,
+                        )
+                    )
+                    print("\n=== IDENTITY LINE ===")
+                    print(generate_identity_line(headers_block, content_row))
+                    print("\n=== SUMMARY ===")
+                    print("File path: %s" % (content_row.get("file_path_from_root", "N/A"),))
+                    print("Content ID: %s" % (content_row.get("content_id", "N/A"),))
+                    return
+
+                write_output_file(output_path, front_matter_dict, content_row)
+            finally:
+                conn.close()
+        except SystemExit:
+            raise
+        except Exception as e:
+            print("ERROR: %s" % (e,), file=sys.stderr)
+            import traceback
+
+            traceback.print_exc()
+            sys.exit(1)
+        return
+
+    # Legacy mock resolver (no MySQL)
+    db = get_db_connection(True)
     artifact = resolve_artifact(args)
-    content = artifact['content']
-    metadata = artifact['metadata']
-    
-    # Build block structure
+    content = artifact["content"]
+    metadata = artifact["metadata"]
+
     blocks = build_block_tree(metadata)
-    
-    # Normalize legacy block names
     blocks = normalize_legacy_blocks(blocks)
-    
-    # Build canonical blocks in order
+
     ordered_blocks = {}
     canonical_order = [
-        'lupopedia.init',
-        'lupopedia.routing', 
-        'lupopedia.actor_references',
-        'lupopedia.conditional',
-        'lupopedia.headers',
-        'lupopedia.metadata',
-        'lupopedia.session',
-        'lupopedia.edges',
-        'lupopedia.engagement',
-        'lupopedia.footer',
-        'lupopedia.see',
-        'lupopedia.next_actions'
+        "lupopedia.init",
+        "lupopedia.routing",
+        "lupopedia.actor_references",
+        "lupopedia.conditional",
+        "lupopedia.headers",
+        "lupopedia.metadata",
+        "lupopedia.session",
+        "lupopedia.edges",
+        "lupopedia.engagement",
+        "lupopedia.footer",
+        "lupopedia.see",
+        "lupopedia.next_actions",
     ]
-    
+
     for block_name in canonical_order:
         if block_name in blocks:
             ordered_blocks[block_name] = blocks[block_name]
-    
-    # Build specific blocks
-    headers_block = build_headers_block(ordered_blocks)
-    footer_block = build_footer_block(ordered_blocks)
-    metadata_block = build_metadata_block(ordered_blocks)
-    
-    # Generate YAML front matter
+
+    headers_block = build_headers_block(ordered_blocks, content)
+    ordered_blocks["lupopedia.headers"] = headers_block
+
     front_matter_dict = {}
-    
-    # Add blocks in canonical order
     for block_name in canonical_order:
         if block_name in ordered_blocks and ordered_blocks[block_name]:
             front_matter_dict[block_name] = ordered_blocks[block_name]
-    
-    # Convert to YAML for preview
-    front_matter = yaml.safe_dump(front_matter_dict, default_flow_style=False, sort_keys=False, allow_unicode=False)
-    
+
+    front_matter = yaml.safe_dump(
+        front_matter_dict, default_flow_style=False, sort_keys=False, allow_unicode=False
+    )
+
     if args.dry_run:
-        print("=== DRY RUN - RECONSTRUCTED YAML ===")
+        print("=== DRY RUN - RECONSTRUCTED YAML (mock DB) ===")
         print(front_matter)
         print("\n=== IDENTITY LINE ===")
         print(generate_identity_line(headers_block, content))
         print("\n=== SUMMARY ===")
-        print(f"File path: {content.get('file_path_from_root', 'N/A')}")
-        print(f"Content ID: {content.get('content_id', 'N/A')}")
-        print(f"Header blocks found: {list(ordered_blocks.keys())}")
+        print("File path: %s" % (content.get("file_path_from_root", "N/A"),))
+        print("Content ID: %s" % (content.get("content_id", "N/A"),))
+        print("Header blocks found: %s" % (list(ordered_blocks.keys()),))
         return
-    
-    # Write output file
-    output_path = Path(args.file_path) if args.file_path else Path(content['file_path_from_root'])
+
+    output_path = Path(args.file_path) if args.file_path else Path(content["file_path_from_root"])
     write_output_file(output_path, front_matter_dict, content)
 
 if __name__ == '__main__':

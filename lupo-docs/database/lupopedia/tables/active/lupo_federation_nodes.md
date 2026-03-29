@@ -1,113 +1,83 @@
 ---
 lupopedia.headers:
-  lupopedia.schema: database_table
-  file_path_from_root: lupo-docs/database/lupopedia/tables/active/lupo_federation_nodes.md
-  web_path: '[lupo_federation_nodes](http://www.lupopedia.com/database/lupopedia/tables/active/lupo_federation_nodes)'
-  last_modified_utc: '20260317'
+  when_updated: "20260328013000"
+  file_path_from_root: "lupo-docs/database/lupopedia/tables/active/lupo_federation_nodes.md"
+  last_modified_utc: "20260328013000"
   channel_id: 42
-  actor_id: 102
-  actor_name: cursor
-  delegation_chain: cursor:root
-  artifact_type: table_documentation
-  artifact_kind: table
-  namespace: federation
-  purpose: Federation node registry; base URL, trust level, status, cached counts,
-    and node metadata for multi-node Lupopedia
+  actor_id: 23
+  actor_name: "hephaestus"
+  delegation_chain: "wolfie:hephaestus"
+  artifact_type: "documentation"
+  artifact_kind: "table"
+  namespace: "federation"
+  purpose: "Normalized table documentation for lupo_federation_nodes from TOON JSON"
   tags:
   - database
   - table
-  - federation
-  when_updated: '20260324174654'
+  - normalized
+  - 4.0.88
 lupopedia.edges:
-  comment: Snapshot of edges for lupo_federation_nodes table doc at 4.0.79 (grounded
-    by repo search; non-exhaustive).
-  meta: php_hits=2 python_hits=4
+  comment: "static placeholder edges for stage3 normalization"
   outbound_edges:
-  - to: database.table.lupo_federation_nodes
-    type: DEFINES_SCHEMA_FOR
+  - to: "lupo-database/lupopedia/json/lupo_federation_nodes.json"
+    type: "references"
     weight: 1.0
-  - to: lupo-database/lupopedia/mysql/install/install_new_lupopedia.sql
-    type: schema_reference
-    weight: 1.0
-  - to: lupo-bin/initialize_system.php
-    type: USED_IN_PHP
-    weight: 0.6
-  - to: lupo-includes/theme/theme-loader.php
-    type: USED_IN_PHP
-    weight: 0.9
-  - to: analyze_unused_tables.py
-    type: USED_IN_PYTHON
-    weight: 0.5
-  - to: lupo-scripts/wolfie_orms.py
-    type: USED_IN_PYTHON
-    weight: 0.5
-  - to: lupo-tools/flare_apply.py
-    type: USED_IN_PYTHON
-    weight: 0.5
-  - to: lupo-tools/merge_batch_into_seed.py
-    type: USED_IN_PYTHON
-    weight: 0.5
+    reason: "authoritative TOON JSON source"
 lupopedia.footer:
-  last_verified: '20260317000000'
-  last_verified_by: cursor
-  last_verified_by_actor_id: 102
-  orchestrator: cursor:root
+  last_verified: "20260328013000"
+  last_verified_by: "hephaestus"
+  last_verified_by_actor_id: 23
+  generated: true
+  provenance: "stage3_track_c_normalization"
 ---
-# file: lupo_federation_nodes ? web_path: http://www.lupopedia.com/database/lupopedia/tables/active/lupo_federation_nodes
-# Table: lupo_federation_nodes
+# file: lupo_federation_nodes.md
 
-## Table Overview
+# lupo_federation_nodes
 
-- **Purpose:** Central registry for federation nodes. Each row is one node: federation_node_id (PK), node_type (e.g. local), node_base_url, default_department_id, node_name, node_description, allows_foreign_traits, node_contact, meta_json, cached counts (content_count, atom_count, hashtag_count, actor_count), last_sync_ymdhis, trust_level, status, soft delete, timestamps, and active_theme_slug. Used for multi-node connectivity, trust, and sync.
-- **Category:** Federation / Network
-- **Status:** Active (in install_new_lupopedia.sql)
-- **Version introduced:** 4.0.x
+## Purpose
+Canonical table documentation normalized from TOON JSON for `lupo_federation_nodes`.
 
-## Where This Table Is Used
+## Schema
 
-- **Channel and content partitioning:** Channels, collections, departments, and content reference federation_node_id; routing and queries scope by node.
-- **Trust and sync:** trust_level and last_sync_ymdhis support federated sync and trust policies; node_base_url is used for outbound requests to the node.
-- **Default department:** default_department_id assigns a default department for content originating from this node.
-- **Cached counts:** content_count, atom_count, hashtag_count, actor_count are denormalized counts for display or sync decisions.
+### Primary Key
+(none)
 
-## Column Documentation
+### Columns
 
-| Column | Type | Nullable | Default | Description |
-|--------|------|----------|---------|-------------|
-| federation_node_id | bigint | No | — | Primary key. |
-| node_type | varchar(32) | No | 'local' | Node type (e.g. local). |
-| node_base_url | varchar(500) | No | — | Base URL of the node. |
-| default_department_id | bigint | Yes | NULL | Default department for this node. |
-| node_name | varchar(255) | Yes | NULL | Display name. |
-| node_description | text | Yes | NULL | Description. |
-| allows_foreign_traits | tinyint | No | 1 | Allow foreign traits flag. |
-| node_contact | varchar(255) | Yes | NULL | Contact for node admin. |
-| meta_json | json | Yes | NULL | Node metadata (JSON). |
-| content_count | bigint | No | 0 | Cached content count. |
-| atom_count | bigint | No | 0 | Cached atom count. |
-| hashtag_count | bigint | No | 0 | Cached hashtag count. |
-| actor_count | bigint | No | 0 | Cached actor count. |
-| last_sync_ymdhis | bigint | No | 0 | Last sync timestamp (BIGINT UTC). |
-| trust_level | tinyint | No | 0 | Trust level. |
-| status | tinyint | No | 1 | Status. |
-| is_deleted | tinyint | No | 0 | Soft delete flag. |
-| deleted_ymdhis | bigint | No | 0 | Soft delete timestamp. |
-| created_ymdhis | bigint | No | 0 | Creation timestamp (BIGINT UTC). |
-| updated_ymdhis | bigint | No | 0 | Last update timestamp (BIGINT UTC). |
-| active_theme_slug | varchar(64) | Yes | 'default' | Active theme slug. |
+| Column | Type Definition |
+|---|---|
+| `federation_node_id` | `bigint NOT NULL` |
+| `node_type` | `varchar(32) NOT NULL DEFAULT 'local'` |
+| `node_base_url` | `varchar(500) NOT NULL` |
+| `default_department_id` | `bigint` |
+| `node_name` | `varchar(255)` |
+| `node_description` | `text` |
+| `allows_foreign_traits` | `tinyint NOT NULL DEFAULT 1` |
+| `node_contact` | `varchar(255)` |
+| `meta_json` | `json` |
+| `content_count` | `bigint NOT NULL DEFAULT 0` |
+| `atom_count` | `bigint NOT NULL DEFAULT 0` |
+| `hashtag_count` | `bigint NOT NULL DEFAULT 0` |
+| `actor_count` | `bigint NOT NULL DEFAULT 0` |
+| `last_sync_ymdhis` | `bigint NOT NULL DEFAULT 0` |
+| `trust_level` | `tinyint NOT NULL DEFAULT 0` |
+| `status` | `tinyint NOT NULL DEFAULT 1` |
+| `is_deleted` | `tinyint NOT NULL DEFAULT 0` |
+| `deleted_ymdhis` | `bigint NOT NULL DEFAULT 0` |
+| `created_ymdhis` | `bigint NOT NULL DEFAULT 0` |
+| `updated_ymdhis` | `bigint NOT NULL DEFAULT 0` |
+| `active_theme_slug` | `varchar(64) DEFAULT 'default'` |
 
-## Indexes
+### Indexes
 
-- **PRIMARY KEY:** federation_node_id
-- **INDEX:** lupo_federation_nodes_idx_node_base_url (node_base_url), lupo_federation_nodes_idx_status (status), lupo_federation_nodes_idx_trust_level (trust_level), lupo_federation_nodes_idx_is_deleted (is_deleted)
+| Index | Columns | Unique |
+|---|---|---|
+| `lupo_federation_nodes_idx_is_deleted` | `is_deleted` | no |
+| `lupo_federation_nodes_idx_node_base_url` | `node_base_url` | no |
+| `lupo_federation_nodes_idx_status` | `status` | no |
+| `lupo_federation_nodes_idx_trust_level` | `trust_level` | no |
 
-## Relationships
-
-- **Logical references (no DB FKs):** default_department_id → lupo_departments. lupo_channels, lupo_collections, lupo_departments, lupo_registry, and other tables reference federation_node_id to scope data per node.
-
-## Doctrine notes
-
-- No database foreign keys; referential integrity enforced in application code.
-- All timestamps BIGINT UTC YYYYMMDDHHIISS.
-- Reserved-ID doctrine may apply: federation_node_id is often application-supplied (e.g. 1 = local).
-- Soft delete: filter `is_deleted = 0` unless querying deleted rows.
+## Doctrine
+- Source of truth: `lupo-database/lupopedia/json/` TOON exports
+- Regeneration mode: Stage 3 deterministic normalization
+- Edge mode: placeholder baseline

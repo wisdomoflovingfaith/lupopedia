@@ -1,4 +1,4 @@
-# LUPOPEDIA HEADERS (replaces FLARE)
+﻿# LUPOPEDIA HEADERS (replaces FLARE)
 ---
 lupopedia.headers:
   lupopedia.version: "4.0.73"
@@ -24,8 +24,7 @@ lupopedia.edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
     - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
-lupopedia.footer:
-  last_verified: "20260228155738"
+lupopedia.footer:`n  approved_for_release: "4.1.0"`n  approval_status: "approved"`n  approved_by_actor_id: 1`n  approved_utc: 20260326192115`n  last_verified: "20260228155738"
   last_verified_by: "windsurf"
 ---
 
@@ -51,8 +50,7 @@ lupopedia.headers:
   tags: ["docs", "database", "lupopedia", "tables", "livehelp_modules_dep_migrationmd"]
   lupo_agent: "windsurf"
 
-lupopedia.footer:
-  last_verified: "20260228"
+lupopedia.footer:`n  approved_for_release: "4.1.0"`n  approval_status: "approved"`n  approved_by_actor_id: 1`n  approved_utc: 20260326192115`n  last_verified: "20260228"
   last_verified_by: "windsurf"
 ---
 
@@ -63,7 +61,7 @@ lupopedia.headers: {
   system_version: "4.0.50"
   channel_id: 42,
   mood_rgb: "8B4513",
-  purpose: "Migration doctrine for livehelp_modules_dep → lupo_modules_departments",
+  purpose: "Migration doctrine for livehelp_modules_dep â†’ lupo_modules_departments",
   last_modified_utc: "20260224",
   delegation_chain: "1001:10000",
   actor_id: 1001,
@@ -265,3 +263,4 @@ Code
 livehelp_modules_dep -> DROPPED (no import)
 New table lupo_modules_departments handles module visibility.
 All modules enabled by default; admins may disable them later.
+

@@ -16,18 +16,35 @@
 
 """
 Database Schema Verification Against TOON Specifications
-Compares current MySQL schema with TOON specifications in lupo-database/lupopedia/toon/
-Generates drift report and migration suggestions
+Compares current MySQL schema with TOON specifications in lupo-database/lupopedia/json/
+Generates drift report and migration suggestions.
+
+DB config: reads from lupopedia-config.php via db_config.py (same as generate_toon_files.py).
+TOON source: lupo-database/lupopedia/json/*.json (JSON format, authoritative).
 """
 
 import os
 import json
 import re
+import sys
 from datetime import datetime
 
+try:
+    import pymysql
+    from pymysql.cursors import DictCursor
+except ImportError:
+    pymysql = None
+    DictCursor = None
+
+try:
+    sys.path.insert(0, os.path.dirname(__file__))
+    from db_config import get_connection_params
+except ImportError:
+    get_connection_params = None
+
 # Configuration
-TOONS_DIR = "lupo-database/lupopedia/toon"
-OUTPUT_FILE = "docs/specs/DB_SCHEMA_DRIFT_4.0.24.md"
+TOONS_DIR = "lupo-database/lupopedia/json"
+OUTPUT_FILE = "lupo-docs/reports/DB_SCHEMA_DRIFT_4.0.24.md"
 DB_NAME = "lupopedia"
 
 def parse_toon_file(filepath):
@@ -43,7 +60,7 @@ def parse_toon_file(filepath):
     
     # Extract table name from filename
     filename = os.path.basename(filepath)
-    table_name = filename.replace('.toon.json', '')
+    table_name = filename.replace('.json', '').replace('.toon', '')
     
     # Extract columns from TOON structure
     columns = []
@@ -147,41 +164,58 @@ def parse_toon_file(filepath):
     }
 
 def get_current_db_schema():
-    """Get current database schema (mock implementation)"""
-    # This would connect to actual database in production
-    # For now, return a mock schema based on known tables
-    return {
-        'lupo_actors': {
-            'columns': [
-                {'name': 'actor_id', 'type': 'bigint', 'comment': 'Actor unique identifier'},
-                {'name': 'actor_type', 'type': 'varchar(50)', 'comment': 'Actor type'},
-                {'name': 'slug', 'type': 'varchar(100)', 'comment': 'URL-friendly slug'},
-                {'name': 'name', 'type': 'varchar(255)', 'comment': 'Display name'},
-                {'name': 'created_ymdhis', 'type': 'bigint', 'comment': 'Creation timestamp'},
-                {'name': 'updated_ymdhis', 'type': 'bigint', 'comment': 'Update timestamp'},
-                {'name': 'is_active', 'type': 'tinyint(1)', 'comment': 'Active status'},
-                {'name': 'is_deleted', 'type': 'tinyint(1)', 'comment': 'Soft delete flag'},
-                {'name': 'deleted_ymdhis', 'type': 'bigint', 'comment': 'Deletion timestamp'},
-                {'name': 'metadata', 'type': 'json', 'comment': 'Additional metadata'}
-            ],
-            'primary_key': 'actor_id'
-        },
-        'lupo_channels': {
-            'columns': [
-                {'name': 'channel_id', 'type': 'bigint', 'comment': 'Channel unique identifier'},
-                {'name': 'channel_key', 'type': 'varchar(50)', 'comment': 'Channel key'},
-                {'name': 'channel_name', 'type': 'varchar(255)', 'comment': 'Channel name'},
-                {'name': 'description', 'type': 'text', 'comment': 'Channel description'},
-                {'name': 'created_ymdhis', 'type': 'bigint', 'comment': 'Creation timestamp'},
-                {'name': 'updated_ymdhis', 'type': 'bigint', 'comment': 'Update timestamp'},
-                {'name': 'is_active', 'type': 'tinyint(1)', 'comment': 'Active status'},
-                {'name': 'is_deleted', 'type': 'tinyint(1)', 'comment': 'Soft delete flag'},
-                {'name': 'deleted_ymdhis', 'type': 'bigint', 'comment': 'Deletion timestamp'}
-            ],
-            'primary_key': 'channel_id'
-        }
-        # Add more tables as needed...
-    }
+    """Get current database schema by querying the live MySQL instance.
+
+    Uses db_config.py -> lupopedia-config.php for connection parameters.
+    Returns dict of table_name -> {columns: [...], primary_key: str|None}.
+    """
+    if pymysql is None or get_connection_params is None:
+        print("ERROR: pymysql or db_config not available. Install pymysql and ensure db_config.py is in lupo-scripts/.", file=sys.stderr)
+        return {}
+
+    try:
+        params = get_connection_params()
+        params['charset'] = 'utf8mb4'
+        conn = pymysql.connect(cursorclass=DictCursor, **params)
+    except Exception as e:
+        print(f"ERROR: Database connection failed: {e}", file=sys.stderr)
+        return {}
+
+    schema = {}
+    try:
+        with conn.cursor() as cursor:
+            cursor.execute('SHOW TABLES')
+            rows = cursor.fetchall()
+            tables = [list(r.values())[0] for r in rows] if rows else []
+            print(f"Live DB: {len(tables)} tables found in '{params.get('database', '?')}'")
+
+            for table_name in tables:
+                safe = table_name.replace('`', '``')
+                cursor.execute(f'SHOW FULL COLUMNS FROM `{safe}`')
+                col_rows = cursor.fetchall()
+                columns = []
+                for r in col_rows:
+                    columns.append({
+                        'name': r['Field'],
+                        'type': r['Type'],
+                        'comment': r.get('Comment') or ''
+                    })
+
+                # Get primary key
+                cursor.execute(
+                    "SELECT COLUMN_NAME FROM information_schema.KEY_COLUMN_USAGE "
+                    "WHERE TABLE_SCHEMA = %s AND TABLE_NAME = %s AND CONSTRAINT_NAME = 'PRIMARY' "
+                    "ORDER BY ORDINAL_POSITION LIMIT 1",
+                    (params.get('database', 'lupopedia'), table_name)
+                )
+                pk_row = cursor.fetchone()
+                primary_key = pk_row['COLUMN_NAME'] if pk_row else None
+
+                schema[table_name] = {'columns': columns, 'primary_key': primary_key}
+    finally:
+        conn.close()
+
+    return schema
 
 def compare_schemas(toon_schema, db_schema):
     """Compare TOON schema with database schema"""
@@ -351,7 +385,7 @@ def main():
     toon_schema = []
     if os.path.exists(TOONS_DIR):
         for filename in os.listdir(TOONS_DIR):
-            if filename.endswith('.toon.json'):
+            if filename.endswith('.json'):
                 filepath = os.path.join(TOONS_DIR, filename)
                 table_info = parse_toon_file(filepath)
                 if table_info:

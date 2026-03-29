@@ -1,9 +1,10 @@
 ---
 lupopedia.headers:
+  namespace: "core"
   lupopedia.schema: database_table
-  file_path_from_root: lupo-docs/database/lupopedia/tables/active/lupo_dialog_messages.md
+  file_path_from_root: "lupo-docs/database/lupopedia/tables/active/lupo_dialog_messages.md"
   web_path: '[lupo_dialog_messages](http://www.lupopedia.com/database/lupopedia/tables/active/lupo_dialog_messages)'
-  last_modified_utc: '20260320'
+  last_modified_utc: "20260327234500"
   channel_id: 42
   actor_id: 26
   actor_name: thoth
@@ -17,89 +18,141 @@ lupopedia.headers:
   - table
   - content
   - 4.0.84
-  when_updated: '20260324174654'
+  when_updated: "20260327234500"
 lupopedia.edges:
-  comment: Snapshot of edges for lupo_dialog_messages table doc at 4.0.79 (grounded
+  comment: "Snapshot stage1 confidence-scored edges (git=1.0, code-scan=0.7, db=0.5)."
     by repo search; non-exhaustive).
   meta: php_hits=23 python_hits=7
   outbound_edges:
   - to: database.table.lupo_dialog_messages
     type: DEFINES_SCHEMA_FOR
     weight: 1.0
+    confidence: 1.0
+    source: "git-restored"
   - to: lupo-database/lupopedia/mysql/install/install_new_lupopedia.sql
     type: schema_reference
     weight: 1.0
+    confidence: 1.0
+    source: "git-restored"
   - to: lupo-database/lupopedia/toon/lupo_dialog_messages.toon
     type: schema_reference
     weight: 1.0
+    confidence: 1.0
+    source: "git-restored"
   - to: admin.php
     type: USED_IN_PHP
     weight: 0.6
+    confidence: 0.7
+    source: "code-scan"
   - to: check_db_state.php
     type: USED_IN_PHP
     weight: 0.6
+    confidence: 0.7
+    source: "code-scan"
   - to: lupo-api/v1/dialog/health.php
     type: USED_IN_PHP
     weight: 0.6
+    confidence: 0.7
+    source: "code-scan"
   - to: lupo-api/v1/dialog/metrics.php
     type: USED_IN_PHP
     weight: 0.6
+    confidence: 0.7
+    source: "code-scan"
   - to: lupo-database/lupopedia/content/lupo-app/Services/AnubisUnknownRecipientService.php
     type: USED_IN_PHP
     weight: 0.6
+    confidence: 0.7
+    source: "code-scan"
   - to: lupo-database/lupopedia/content/lupo-app/Services/TriggerReplacements/DialogMessagesDeleteService.php
     type: USED_IN_PHP
     weight: 0.6
+    confidence: 0.7
+    source: "code-scan"
   - to: lupo-database/lupopedia/content/lupo-app/Services/TriggerReplacements/DialogMessagesInsertService.php
     type: USED_IN_PHP
     weight: 0.6
+    confidence: 0.7
+    source: "code-scan"
   - to: lupo-includes/Dialog/Database/DialogDatabase.php
     type: USED_IN_PHP
     weight: 0.9
+    confidence: 0.7
+    source: "code-scan"
   - to: lupo-includes/DialogChannelMigration/MessageBuilder.php
     type: USED_IN_PHP
     weight: 0.9
+    confidence: 0.7
+    source: "code-scan"
   - to: lupo-includes/DialogChannelMigration/MigrationOrchestrator.php
     type: USED_IN_PHP
     weight: 0.9
+    confidence: 0.7
+    source: "code-scan"
   - to: lupo-includes/DialogChannelMigration/ValidationTool.php
     type: USED_IN_PHP
     weight: 0.9
+    confidence: 0.7
+    source: "code-scan"
   - to: lupo-includes/class-dialog-manager.php
     type: USED_IN_PHP
     weight: 0.9
+    confidence: 0.7
+    source: "code-scan"
   - to: lupo-includes/classes/ANUBIS_Resolver.php
     type: USED_IN_PHP
     weight: 0.9
+    confidence: 0.7
+    source: "code-scan"
   - to: lupo-includes/classes/ChannelService.php
     type: USED_IN_PHP
     weight: 0.9
+    confidence: 0.7
+    source: "code-scan"
   - to: lupo-includes/modules/channels/ChannelsController.php
     type: USED_IN_PHP
     weight: 0.9
+    confidence: 0.7
+    source: "code-scan"
   - to: analyze_unused_tables.py
     type: USED_IN_PYTHON
     weight: 0.5
+    confidence: 0.7
+    source: "code-scan"
   - to: lupo-scripts/audit_schema_doctrine.py
     type: USED_IN_PYTHON
     weight: 0.5
+    confidence: 0.7
+    source: "code-scan"
   - to: lupo-scripts/check_doc_schema_consistency.py
     type: USED_IN_PYTHON
     weight: 0.5
+    confidence: 0.7
+    source: "code-scan"
   - to: lupo-scripts/fetch_doctrines.py
     type: USED_IN_PYTHON
     weight: 0.5
+    confidence: 0.7
+    source: "code-scan"
   - to: lupo-scripts/import_channels_and_artifacts.py
     type: USED_IN_PYTHON
     weight: 0.5
+    confidence: 0.7
+    source: "code-scan"
   - to: lupo-scripts/rebuild_schema_from_toons.py
     type: USED_IN_PYTHON
     weight: 0.5
+    confidence: 0.7
+    source: "code-scan"
   - to: lupo-tools/anubis_orphan_scanner.py
     type: USED_IN_PYTHON
     weight: 0.5
+    confidence: 0.7
+    source: "code-scan"
 lupopedia.footer:
-  last_verified: '20260320000000'
+  provenance: "phase2_git_header_recovered_body_regenerated"
+  generated: true
+  last_verified: "20260327234500"
   last_verified_by: cursor
   orchestrator: wolfie
   next_action:
@@ -107,90 +160,59 @@ lupopedia.footer:
   - Update documentation when schema changes occur
   last_verified_by_actor_id: 102
 ---
-# file: lupo_dialog_messages ? web_path: http://www.lupopedia.com/database/lupopedia/tables/active/lupo_dialog_messages
-# Table: lupo_dialog_messages
+# file: lupo_dialog_messages.md
 
-Purpose: Stores messages for dialog threads and channel conversations.
-Type: database_table
-Status: production_ready
-Volume: high
+# lupo_dialog_messages
 
-## 1. Overview
-- Key responsibilities: message storage and retrieval.
-- System role: primary chat payload store.
-- Importance: core of live help and thread history.
+## Purpose
+Canonical table documentation regenerated from TOON JSON for `lupo_dialog_messages`.
 
-## 2. Schema
+## Schema
 
-### Fields
-| Column | Type | Notes |
-|---|---|---|
-| dialog_message_id | bigint NOT NULL | Primary key |
-| message_id | bigint NOT NULL DEFAULT 0 | Message identifier |
-| dialog_thread_id | bigint DEFAULT NULL | Thread reference |
-| channel_id | bigint DEFAULT NULL | Channel reference |
-| from_actor_id | bigint DEFAULT NULL | Sender |
-| source_faucet_slug | varchar(100) DEFAULT NULL | Source faucet identifier |
-| source_faucet_instance_id | varchar(100) DEFAULT NULL | Source faucet instance |
-| to_actor_id | bigint DEFAULT NULL | Recipient |
-| read_by_actor_id | bigint NOT NULL DEFAULT 0 | Read tracking actor |
-| read_by_actor_utc | bigint NOT NULL DEFAULT 0 | Read timestamp |
-| message_text | varchar(1000) NOT NULL | Message content |
-| message_type | varchar(64) NOT NULL DEFAULT 'text' | Message type |
-| metadata_json | json DEFAULT NULL | Metadata JSON |
-| mood_rgb | char(6) DEFAULT NULL | Mood color |
-| mood_framework | varchar(32) NOT NULL DEFAULT 'western_analytical' | Mood framework |
-| created_ymdhis | bigint NOT NULL DEFAULT 0 | Created timestamp |
-| updated_ymdhis | bigint NOT NULL | Updated timestamp |
-| is_deleted | tinyint NOT NULL DEFAULT '0' | Soft delete flag |
-| deleted_ymdhis | bigint DEFAULT NULL | Soft delete timestamp |
-| message_body | mediumtext | Extended message body |
+### Primary Key
+(none)
+
+### Columns
+
+| Column | Type Definition |
+|---|---|
+| `dialog_message_id` | `bigint NOT NULL` |
+| `message_id` | `bigint NOT NULL DEFAULT 0` |
+| `dialog_thread_id` | `bigint` |
+| `channel_id` | `bigint` |
+| `from_actor_id` | `bigint` |
+| `source_faucet_slug` | `varchar(100)` |
+| `source_faucet_instance_id` | `varchar(100)` |
+| `to_actor_id` | `bigint` |
+| `read_by_actor_id` | `bigint NOT NULL DEFAULT 0` |
+| `read_by_actor_utc` | `bigint NOT NULL DEFAULT 0` |
+| `message_text` | `varchar(1000) NOT NULL` |
+| `message_type` | `varchar(64) NOT NULL DEFAULT 'text'` |
+| `metadata_json` | `json` |
+| `mood_rgb` | `char(6)` |
+| `mood_framework` | `varchar(32) NOT NULL DEFAULT 'western_analytical'` |
+| `created_ymdhis` | `bigint NOT NULL DEFAULT 0` |
+| `updated_ymdhis` | `bigint NOT NULL` |
+| `is_deleted` | `tinyint NOT NULL DEFAULT 0` |
+| `deleted_ymdhis` | `bigint` |
+| `message_body` | `mediumtext` |
 
 ### Indexes
-| Index Name | Columns | Type |
+
+| Index | Columns | Unique |
 |---|---|---|
-| PRIMARY | dialog_message_id | PRIMARY KEY |
-| lupo_dialog_messages_idx_channel | channel_id | BTREE |
-| lupo_dialog_messages_idx_created | created_ymdhis | BTREE |
-| lupo_dialog_messages_idx_updated | updated_ymdhis | BTREE |
-| lupo_dialog_messages_idx_deleted | is_deleted | BTREE |
-| lupo_dialog_messages_idx_message_type | message_type | BTREE |
-| lupo_dialog_messages_idx_dialog_thread_id | dialog_thread_id | BTREE |
-| lupo_dialog_messages_idx_to_actor_id | to_actor_id | BTREE |
-| lupo_dialog_messages_idx_read_by_actor | read_by_actor_id | BTREE |
-| lupo_dialog_messages_idx_read_utc | read_by_actor_utc | BTREE |
-| lupo_dialog_messages_idx_faucet | source_faucet_slug, source_faucet_instance_id | BTREE |
+| `lupo_dialog_messages_idx_channel` | `channel_id` | no |
+| `lupo_dialog_messages_idx_created` | `created_ymdhis` | no |
+| `lupo_dialog_messages_idx_deleted` | `is_deleted` | no |
+| `lupo_dialog_messages_idx_dialog_thread_id` | `dialog_thread_id` | no |
+| `lupo_dialog_messages_idx_faucet` | `source_faucet_slug`, `source_faucet_instance_id` | no |
+| `lupo_dialog_messages_idx_message_type` | `message_type` | no |
+| `lupo_dialog_messages_idx_read_by_actor` | `read_by_actor_id` | no |
+| `lupo_dialog_messages_idx_read_utc` | `read_by_actor_utc` | no |
+| `lupo_dialog_messages_idx_to_actor_id` | `to_actor_id` | no |
+| `lupo_dialog_messages_idx_updated` | `updated_ymdhis` | no |
 
-## 3. Relationships and Dependencies
-- Primary relationships: dialog_thread_id, channel_id, actor ids.
-- Referencing tables: channel views and search index.
-- Integration points: chat UI, moderation, exports.
-
-## 4. Usage Patterns
-Common Queries:
-```sql
-SELECT * FROM lupo_dialog_messages WHERE dialog_thread_id = :thread_id AND is_deleted = 0 ORDER BY created_ymdhis ASC LIMIT 200;
-SELECT * FROM lupo_dialog_messages WHERE channel_id = :channel_id AND created_ymdhis > :since ORDER BY created_ymdhis ASC;
-UPDATE lupo_dialog_messages SET updated_ymdhis = :ts WHERE dialog_message_id = :id;
-```
-Best Practices: use keyset pagination on created_ymdhis for large threads.
-Anti-Patterns: OFFSET pagination on large datasets.
-
-## 5. Performance Considerations
-- High-volume operations: continuous inserts in active chats.
-- Optimization tips: add composite index on (dialog_thread_id, created_ymdhis).
-- Scaling considerations: archive old messages using is_deleted.
-
-## 6. Data Integrity
-- Constraints: thread_id and channel_id required.
-- Validation rules: enforce message_type values.
-- Soft delete: archive and retain for audit.
-
-## 7. Common Issues and Solutions
-- Slow thread loads: add composite index and use keyset pagination.
-- Message drift: ensure created_ymdhis monotonic.
-- Duplicate sends: enforce idempotency at application layer.
-
-## 8. Future Enhancements
-- Add message_hash for deduplication.
-- Add indexed summary fields for moderation.
+## Doctrine
+- Source of truth: `lupo-database/lupopedia/json/` TOON exports
+- Regeneration mode: Phase 2 deterministic rebuild
+- Edge mode: placeholder only

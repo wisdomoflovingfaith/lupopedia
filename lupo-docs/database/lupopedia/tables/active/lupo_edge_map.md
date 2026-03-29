@@ -1,51 +1,71 @@
-# LUPOPEDIA HEADERS (replaces FLARE)
 ---
 lupopedia.headers:
-  lupopedia.version: "4.0.73"
-  lupopedia.schema: "documentation"
+  when_updated: "20260328013000"
   file_path_from_root: "lupo-docs/database/lupopedia/tables/active/lupo_edge_map.md"
-  last_modified_utc: "20260312"
-  system_version: "4.0.71"
-  actor_id: 1004
-  lupo_agent: "antigravity"
-  artifact_type: "table_documentation"
-  purpose: "Mapping of semantic edges between objects/contents"
+  last_modified_utc: "20260328013000"
+  channel_id: 42
+  actor_id: 23
+  actor_name: "hephaestus"
+  delegation_chain: "wolfie:hephaestus"
+  artifact_type: "documentation"
+  artifact_kind: "table"
   namespace: "core"
-  tags: ["database", "table", "semantic_navbar"]
+  purpose: "Normalized table documentation for lupo_edge_map from TOON JSON"
+  tags:
+  - database
+  - table
+  - normalized
+  - 4.0.88
+lupopedia.edges:
+  comment: "static placeholder edges for stage3 normalization"
+  outbound_edges:
+  - to: "lupo-database/lupopedia/json/lupo_edge_map.json"
+    type: "references"
+    weight: 1.0
+    reason: "authoritative TOON JSON source"
+lupopedia.footer:
+  last_verified: "20260328013000"
+  last_verified_by: "hephaestus"
+  last_verified_by_actor_id: 23
+  generated: true
+  provenance: "stage3_track_c_normalization"
 ---
+# file: lupo_edge_map.md
 
-# Table: lupo_edge_map
+# lupo_edge_map
 
-## 1. Overview
-The `lupo_edge_map` table defines relationships (edges) between different entities in the Lupopedia semantic graph. It allows for the expression of complex associations such as "cites", "refutes", "explains", or "is a prerequisite for".
+## Purpose
+Canonical table documentation normalized from TOON JSON for `lupo_edge_map`.
 
-## 2. Schema Reference
+## Schema
 
-| Column | Type | Notes |
+### Primary Key
+(none)
+
+### Columns
+
+| Column | Type Definition |
+|---|---|
+| `edge_map_id` | `bigint NOT NULL auto_increment` |
+| `edge_id` | `bigint NOT NULL` |
+| `edge_type_id` | `bigint NOT NULL` |
+| `source_type` | `varchar(64) NOT NULL` |
+| `source_id` | `bigint NOT NULL` |
+| `target_type` | `varchar(64) NOT NULL` |
+| `target_id` | `bigint NOT NULL` |
+| `created_ymdhis` | `bigint NOT NULL DEFAULT 0` |
+| `is_deleted` | `tinyint NOT NULL DEFAULT 0` |
+
+### Indexes
+
+| Index | Columns | Unique |
 |---|---|---|
-| edge_map_id | bigint NOT NULL | Primary Key, Auto-increment |
-| edge_id | bigint NOT NULL | Reference to the logical edge entry |
-| edge_type_id | bigint NOT NULL | Reference to `lupo_edge_types.edge_type_id` |
-| source_type | varchar(64) NOT NULL | Type of the source object (e.g., 'content', 'actor') |
-| source_id | bigint NOT NULL | ID of the source object |
-| target_type | varchar(64) NOT NULL | Type of the target object |
-| target_id | bigint NOT NULL | ID of the target object |
-| created_ymdhis | bigint NOT NULL | BIGINT UTC timestamp (YYYYMMDDHHIISS) |
-| is_deleted | tinyint NOT NULL | Soft delete flag |
+| `lupo_edge_map_idx_edge` | `edge_id` | no |
+| `lupo_edge_map_idx_source` | `source_type`, `source_id` | no |
+| `lupo_edge_map_idx_target` | `target_type`, `target_id` | no |
+| `lupo_edge_map_idx_type` | `edge_type_id` | no |
 
-## 3. Indexes and Performance
-- `PRIMARY KEY (edge_map_id)`
-- `CREATE INDEX lupo_edge_map_idx_edge ON lupo_edge_map (edge_id)`
-- `CREATE INDEX lupo_edge_map_idx_type ON lupo_edge_map (edge_type_id)`
-- `CREATE INDEX lupo_edge_map_idx_source ON lupo_edge_map (source_type, source_id)`
-- `CREATE INDEX lupo_edge_map_idx_target ON lupo_edge_map (target_type, target_id)`
-
-## 4. Usage Patterns
-Used by the Semantic Navbar Backend API to retrieve related content/objects for the current page.
-
-```sql
-SELECT m.*, t.label as edge_label 
-FROM lupo_edge_map m 
-JOIN lupo_edge_types t ON m.edge_type_id = t.edge_type_id
-WHERE m.source_type = 'content' AND m.source_id = :content_id AND m.is_deleted = 0;
-```
+## Doctrine
+- Source of truth: `lupo-database/lupopedia/json/` TOON exports
+- Regeneration mode: Stage 3 deterministic normalization
+- Edge mode: placeholder baseline

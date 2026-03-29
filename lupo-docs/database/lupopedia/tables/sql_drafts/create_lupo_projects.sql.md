@@ -1,4 +1,4 @@
----
+﻿---
 lupopedia.init:
   file_identity: create_lupo_projects.sql.md
   artifact_type: sql_draft
@@ -150,8 +150,7 @@ lupopedia.edges:
   - project_registry_sql
   - database_implementation
   - schema_draft
-lupopedia.footer:
-  last_verified: '20260315000000'
+lupopedia.footer:`n  approved_for_release: "4.1.0"`n  approval_status: "approved"`n  approved_by_actor_id: 1`n  approved_utc: 20260326192115`n  last_verified: '20260315000000'
   last_verified_by: cursor
   orchestrator: cursor
   next_action:
@@ -160,7 +159,7 @@ lupopedia.footer:
   - Test indexes and uniqueness constraints
   last_verified_by_actor_id: 102
 ---
-# file: Draft SQL for lupo_projects Table — session: L-LUPO-PROJECT-SQL-DRAFT — delegation: cursor:root (faucet: cursor) — web_path: http://www.lupopedia.com/database/sql_drafts/create_lupo_projects
+# file: Draft SQL for lupo_projects Table â€” session: L-LUPO-PROJECT-SQL-DRAFT â€” delegation: cursor:root (faucet: cursor) â€” web_path: http://www.lupopedia.com/database/sql_drafts/create_lupo_projects
 
 # Draft SQL for lupo_projects Table
 
@@ -171,7 +170,7 @@ lupopedia.footer:
 
 ---
 
-## DRAFT ONLY — NOT YET APPROVED FOR PRODUCTION INSTALL SQL
+## DRAFT ONLY â€” NOT YET APPROVED FOR PRODUCTION INSTALL SQL
 
 This SQL draft is part of the Project Registry design package.  
 Do not add to production install SQL until the complete design package is approved.
@@ -389,7 +388,7 @@ UNIQUE KEY uk_project_slug_node (project_slug, federation_node_id)
 
 ## Database Doctrine Compliance
 
-### ✅ Follows Lupopedia Database Doctrine
+### âœ… Follows Lupopedia Database Doctrine
 
 **No Foreign Keys:**
 - All relationships managed in application code
@@ -466,3 +465,4 @@ CREATE TABLE lupo_actor_projects (
 **SQL Draft Status:** Complete and ready for review  
 **Next Steps:** Design package approval before production implementation  
 **Implementation Guard:** DRAFT ONLY - not yet approved for production install SQL
+

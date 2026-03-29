@@ -1,4 +1,4 @@
-# LUPOPEDIA HEADERS (replaces FLARE)
+﻿# LUPOPEDIA HEADERS (replaces FLARE)
 ---
 lupopedia.headers:
   lupopedia.version: "4.0.73"
@@ -24,8 +24,7 @@ lupopedia.edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
     - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
-lupopedia.footer:
-  last_verified: "20260228155738"
+lupopedia.footer:`n  approved_for_release: "4.1.0"`n  approval_status: "approved"`n  approved_by_actor_id: 1`n  approved_utc: 20260326192115`n  last_verified: "20260228155738"
   last_verified_by: "windsurf"
 ---
 
@@ -51,8 +50,7 @@ lupopedia.headers:
   tags: ["docs", "database", "lupopedia", "tables", "livehelp_users_migrationmd"]
   lupo_agent: "windsurf"
 
-lupopedia.footer:
-  last_verified: "20260228"
+lupopedia.footer:`n  approved_for_release: "4.1.0"`n  approval_status: "approved"`n  approved_by_actor_id: 1`n  approved_utc: 20260326192115`n  last_verified: "20260228"
   last_verified_by: "windsurf"
 ---
 
@@ -63,7 +61,7 @@ lupopedia.headers: {
   system_version: "4.0.50"
   channel_id: 42,
   mood_rgb: "8B4513",
-  purpose: "Migration doctrine for livehelp_users → lupo_auth_users/lupo_actors table mapping",
+  purpose: "Migration doctrine for livehelp_users â†’ lupo_auth_users/lupo_actors table mapping",
   last_modified_utc: "20260224",
   delegation_chain: "1001:10000",
   actor_id: 1001,
@@ -135,10 +133,10 @@ session state
 
 Lupopedia replaces this with a real identity system:
 
-- **lupo_auth_users** — authentication and credentials (username, display_name, email, password_hash, auth_provider, provider_id, last_login_ymdhis). On import, **auth_user_id = 10000 + livehelp_users.user_id** so that human IDs stay in the reserved range (actor_id 0–9999 = lupo-agents/system only; humans ≥ 10000).
-- **lupo_actors** — unified identity layer (one row per human/agent/service; actor_id = auth_user_id for imported users, so imported human actor_id ≥ 10000).
-- **lupo_actor_properties** — presence, device, and behavioral metadata.
-- **Permissions** — there is no lupo_operators table. Operator/staff permissions use the **3-level role system**: (1) **lupo_actor_channel_roles** (channel-scoped: captain, administrator, monitor); (2) **lupo_department_roles** (department-scoped); (3) system (department_id = 0 = global admin). Resolution order: channel → department → system. The install wizard assigns captain on personal channels and on channel_id = 1 (Administration) for Crafty admins (livehelp_users.isadmin = 'Y'). See lupo-docs/audits/OPERATOR_TO_ROLE_BASED_SWEEP_REPORT.md and lupo-docs/database/lupopedia/tables/active/lupo_actor_channel_roles.md.
+- **lupo_auth_users** â€” authentication and credentials (username, display_name, email, password_hash, auth_provider, provider_id, last_login_ymdhis). On import, **auth_user_id = 10000 + livehelp_users.user_id** so that human IDs stay in the reserved range (actor_id 0â€“9999 = lupo-agents/system only; humans â‰¥ 10000).
+- **lupo_actors** â€” unified identity layer (one row per human/agent/service; actor_id = auth_user_id for imported users, so imported human actor_id â‰¥ 10000).
+- **lupo_actor_properties** â€” presence, device, and behavioral metadata.
+- **Permissions** â€” there is no lupo_operators table. Operator/staff permissions use the **3-level role system**: (1) **lupo_actor_channel_roles** (channel-scoped: captain, administrator, monitor); (2) **lupo_department_roles** (department-scoped); (3) system (department_id = 0 = global admin). Resolution order: channel â†’ department â†’ system. The install wizard assigns captain on personal channels and on channel_id = 1 (Administration) for Crafty admins (livehelp_users.isadmin = 'Y'). See lupo-docs/audits/OPERATOR_TO_ROLE_BASED_SWEEP_REPORT.md and lupo-docs/database/lupopedia/tables/active/lupo_actor_channel_roles.md.
 
 Only meaningful identity data is imported. The legacy table is dropped after migration.
 
@@ -407,3 +405,4 @@ Code
 livehelp_users -> IMPORTED -> DROPPED
 Operators and visitors imported into lupo_auth_users.
 Session and routing data discarded.
+

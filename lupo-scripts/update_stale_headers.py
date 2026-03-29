@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
 Update stale LUPOPEDIA headers in doctrine files.
-Updates last_verified, last_modified_utc, and version_when_written to current state.
+Updates last_verified, when_updated, and last_modified_utc to current state.
 Designed for batch updating files with timestamps < 20260301.
 """
 
@@ -10,7 +10,6 @@ import re
 from datetime import datetime
 
 # Configuration
-CURRENT_VERSION = "4.0.88"
 CURRENT_TIMESTAMP = "20260325"
 CURRENT_TIMESTAMP_FULL = "20260325150000"  # YYYYMMDDHHIISS
 CURSOR_ACTOR_ID = "102"
@@ -22,7 +21,7 @@ BASE_PATH = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DOCTRINE_PATH = os.path.join(BASE_PATH, "lupo-docs", "doctrine")
 
 def update_headers_in_file(filepath):
-    """Update all timestamp and version fields in a file's headers."""
+    """Update timestamp and verification fields in a file's headers."""
     try:
         with open(filepath, 'r', encoding='utf-8') as f:
             content = f.read()
@@ -34,6 +33,9 @@ def update_headers_in_file(filepath):
     
     # Update various timestamp patterns in YAML headers
     patterns = [
+        # when_updated and last_modified_utc in canonical headers
+        (r'when_updated:\s*"20260[01]\d[0-3]\d\d*"', f'when_updated: "{CURRENT_TIMESTAMP_FULL}"'),
+        (r'last_modified_utc:\s*"20260[01]\d[0-3]\d\d*"', f'last_modified_utc: "{CURRENT_TIMESTAMP_FULL}"'),
         # last_verified: "YYYYMMDD..." or variations
         (r'last_verified:\s*"20260[01]\d[0-3]\d\d*"', f'last_verified: "{CURRENT_TIMESTAMP_FULL}"'),
         # last_verified_utc variations
@@ -45,16 +47,7 @@ def update_headers_in_file(filepath):
         # Last_verified, File_last_modified_utc (case variations)
         (r'Last_verified:\s*"20260[01]\d[0-3]\d\d*"', f'Last_verified: "{CURRENT_TIMESTAMP_FULL}"'),
         (r'File_last_modified_utc:\s*"20260[01]\d[0-3]\d\d*"', f'File_last_modified_utc: "{CURRENT_TIMESTAMP_FULL}"'),
-        
-        # version_when_written to current version
-        (r'version_when_written:\s*"4\.0\.[0-9]+"', f'version_when_written: "{CURRENT_VERSION}"'),
-        
-        # last_modified_system_version
-        (r'last_modified_system_version:\s*"4\.0\.[0-9]+"', f'last_modified_system_version: "{CURRENT_VERSION}"'),
-        
-        # system_version for antiquated blocks
-        (r'system_version:\s*"4\.0\.[0-9]+"', f'system_version: "{CURRENT_VERSION}"'),
-        
+
         # last_verified_by to cursor
         (r'last_verified_by:\s*"[^"]*"(?=\s|$)', f'last_verified_by: "{CURSOR_ACTOR_NAME}"'),
         
@@ -123,7 +116,6 @@ def main():
     
     print("=" * 70)
     print(f"\nSummary: Updated {updated_count}/{len(stale_files)} files")
-    print(f"Current version: {CURRENT_VERSION}")
     print(f"Current timestamp: {CURRENT_TIMESTAMP_FULL}")
     print(f"Updated by: {CURSOR_ACTOR_NAME} (actor_id: {CURSOR_ACTOR_ID})")
 

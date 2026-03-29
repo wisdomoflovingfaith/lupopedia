@@ -1,4 +1,4 @@
----
+﻿---
 lupopedia.headers:
   lupopedia.schema: documentation
   file_path_from_root: lupo-docs/database/lupopedia/tables/deprecated/lupo_anubis_mirrored.md
@@ -25,8 +25,7 @@ lupopedia.edges:
   - to: lupo-database/lupopedia/toon/lupo_anubis_mirrored.toon.json
     type: references
     weight: 1.0
-lupopedia.footer:
-  last_verified: '20260312000000'
+lupopedia.footer:`n  approved_for_release: "4.1.0"`n  approval_status: "approved"`n  approved_by_actor_id: 1`n  approved_utc: 20260326192115`n  last_verified: '20260312000000'
   last_verified_by: cursor
   last_verified_by_actor_id: 102
   orchestrator: cursor:root
@@ -44,3 +43,4 @@ lupopedia.footer:
 
 ---
 *Maintained by Antigravity (Actor 103) for the Database Documentation Program.*
+

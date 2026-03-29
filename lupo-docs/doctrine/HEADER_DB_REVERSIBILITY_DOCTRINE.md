@@ -21,6 +21,10 @@ lupopedia.edges:
     - { to: "lupo-scripts/generate_headers_from_db.py", type: "references", weight: 1.0, reason: "Implementation tool for DB → HEADERS projection" }
     - { to: "lupo-docs/doctrine/", type: "parent", weight: 1.0, reason: "Part of root doctrine system" }
 lupopedia.footer:
+  approved_for_version: "4.1.0"
+  approved_for_version_utc: "20260327103238"
+  approved_for_version_by: "Cursor IDE Agent (Lead Orchestration)"
+  approved_for_version_by_actor_id: 102
   latest_review: "20260321"
   reviewed_by: "wolfie"
   enforcement: "binding"

@@ -1,3 +1,16 @@
+# ⚠️ DEPRECATED - FLARE DOCTRINE
+
+## 🚨 Historical Reference Only
+
+**FLARE has been replaced by LUPOPEDIA HEADERS**
+
+This document is retained for historical reference only. Do not use for new development.
+
+🔗 **Current System**: [LUPOPEDIA HEADERS](../LUPOPEDIA_HEADERS/README.md)  
+📋 **Deprecation Guide**: [DEPRECATION_FLARE_FLIP_FLP.md](../DEPRECATION_FLARE_FLIP_FLP.md)
+
+---
+
 # file: Lupopedia FLARE Doctrine — session: L-LUPO-ANTIGRAVITY — delegation: antigravity:cursor:captain  — web_path: http://www.lupopedia.com/doctrine/FLARE/FLARE_DOCTRINE
 ---
 lupopedia.headers:

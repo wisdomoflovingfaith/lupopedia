@@ -1,4 +1,4 @@
----
+﻿---
 lupopedia.headers:
   lupopedia.schema: documentation
   file_path_from_root: lupo-docs/database/lupopedia/tables/lupopedia_actors_collections_organization_reference.md
@@ -66,8 +66,7 @@ lupopedia.edges:
   - to: lupo-docs/ACTOR_FORENSIC_LOGGING_AND_COLLECTIONS_INTELLIGENCE_PLAN.md
     type: references
     weight: 0.9
-lupopedia.footer:
-  last_verified: '20260315000000'
+lupopedia.footer:`n  approved_for_release: "4.1.0"`n  approval_status: "approved"`n  approved_by_actor_id: 1`n  approved_utc: 20260326192115`n  last_verified: '20260315000000'
   last_verified_by: cursor
   orchestrator: cursor
   next_action:
@@ -560,3 +559,4 @@ The seeded `doctrine` collection and related semantic navigation work should use
 - `lupo-docs/doctrine/SESSION_DOCTRINE.md`
 - `lupo-docs/ACTOR_REGISTRATION_CHECKLIST.md`
 - `lupo-docs/ACTOR_FORENSIC_LOGGING_AND_COLLECTIONS_INTELLIGENCE_PLAN.md`
+

@@ -14,6 +14,8 @@ lupopedia.headers:
   references:
     - "lupo-rules/root/MULTI_AGENT_COORDINATION_DOCTRINE.md"
     - "lupo-docs/doctrine/ROSE_PACKET_MAPPING.md"
+    - "lupo-docs/doctrine/MOOD_RGB_DOCTRINE.md"
+    - "lupo-docs/doctrine/COUNTING_IN_LIGHT.md"
     - "lupo-docs/versions/4.0.86/PLAN.md"
     - "lupo-docs/versions/4.0.86/WHAT_TO_DO_NEXT_SESSION.md"
   tags: ["rose", "doctrine", "translation", "context", "dialogue", "channel_42", "thread_1001"]
@@ -56,6 +58,33 @@ ROSE capabilities are:
 - persona_translation
 - cultural_context
 - narrative_exploration
+
+## 4a. Mood Metadata For ROSE Output
+
+ROSE is the persona most likely to emit longer interpretive messages after reading many channel threads.
+
+For ROSE output:
+
+- `mood_RGB` is the canonical machine-readable mood/light vector.
+- `mood_label` is the human-readable companion phrase.
+- `mood_label` does not replace `mood_RGB` and does not become a source of truth.
+
+Usage rule:
+
+- `mood_label` is strongly preferred for long-form ROSE commentary, insight messages, translation notes, and actor comments intended for human review.
+- `mood_label` is recommended, but not universally required, for shorter ROSE packets while runtime contracts remain mixed.
+
+Examples:
+
+- `mood_RGB: "666666"` + `mood_label: "neutral coordination"`
+- `mood_RGB: "FF4400"` + `mood_label: "critical review"`
+- `mood_RGB: "3399CC"` + `mood_label: "understanding insight"`
+
+Interpretation rule:
+
+- ROSE preserves meaning and emotional framing.
+- ROSE does not invent canonical actor mood state independently of the system of record.
+- Where current packet surfaces do not yet transport `mood_label`, ROSE should treat it as a doctrine-level companion for commentary artifacts and future packet enrichment rather than a justification for hidden schema mutation.
 
 ## 5. Canonical Constraints
 

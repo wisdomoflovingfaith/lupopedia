@@ -1,63 +1,77 @@
 ---
 lupopedia.headers:
-  lupopedia.schema: documentation
-  file_path_from_root: lupo-docs/database/lupopedia/tables/active/lupo_truth_answers.md
-  last_modified_utc: '20260312'
-  channel_id: 1
-  actor_id: 103
-  delegation_chain: 103:10000
-  artifact_type: documentation
-  artifact_kind: database_table
-  purpose: JetBrains domain table documentation for lupo_truth_answers
-  lupo_agent: jetbrains
-  when_updated: '20260324174654'
-lupopedia:
-  footer:
-    last_verified: '20260324174654'
-    last_verified_by: cursor
-    last_verified_by_actor_id: 102
-    orchestrator: cursor:root
+  when_updated: "20260328013000"
+  file_path_from_root: "lupo-docs/database/lupopedia/tables/active/lupo_truth_answers.md"
+  last_modified_utc: "20260328013000"
+  channel_id: 42
+  actor_id: 23
+  actor_name: "hephaestus"
+  delegation_chain: "wolfie:hephaestus"
+  artifact_type: "documentation"
+  artifact_kind: "table"
+  namespace: "core"
+  purpose: "Normalized table documentation for lupo_truth_answers from TOON JSON"
+  tags:
+  - database
+  - table
+  - normalized
+  - 4.0.88
+lupopedia.edges:
+  comment: "static placeholder edges for stage3 normalization"
+  outbound_edges:
+  - to: "lupo-database/lupopedia/json/lupo_truth_answers.json"
+    type: "references"
+    weight: 1.0
+    reason: "authoritative TOON JSON source"
+lupopedia.footer:
+  last_verified: "20260328013000"
+  last_verified_by: "hephaestus"
+  last_verified_by_actor_id: 23
+  generated: true
+  provenance: "stage3_track_c_normalization"
 ---
+# file: lupo_truth_answers.md
 
-# Table: lupo_truth_answers
+# lupo_truth_answers
 
-## Table Overview
-- purpose: Answer records linked to truth-question entities.
-- category: active
-- status: active (present in current TOON and install schema)
-- version introduced: not explicitly documented in TOON/install comments
-- version deprecated: not applicable
-- removal notes: not applicable
-- migration references: MIGRATION_MAPPING_REFERENCE.md, livehelp_qa_migration.md
+## Purpose
+Canonical table documentation normalized from TOON JSON for `lupo_truth_answers`.
 
-## Column Documentation
-| Column | Type | Nullability | Default | Description |
-|---|---|---|---|---|
-| truth_answer_id | bigint auto_increment | NOT NULL | none/unspecified | TOON-defined field; canonical semantic description not specified in TOON. |
-| truth_question_id | bigint | NOT NULL | none/unspecified | TOON-defined field; canonical semantic description not specified in TOON. |
-| actor_id | bigint | NOT NULL | none/unspecified | TOON-defined field; canonical semantic description not specified in TOON. |
-| answer_text | text | Nullable/unspecified | none/unspecified | TOON-defined field; canonical semantic description not specified in TOON. |
-| confidence | decimal(5,2) | Nullable/unspecified | 0.00 | TOON-defined field; canonical semantic description not specified in TOON. |
-| evidence_count | int | Nullable/unspecified | 0 | TOON-defined field; canonical semantic description not specified in TOON. |
-| source_count | int | Nullable/unspecified | 0 | TOON-defined field; canonical semantic description not specified in TOON. |
-| status | varchar(64) | Nullable/unspecified | ''active | TOON-defined field; canonical semantic description not specified in TOON. |
-| created_ymdhis | bigint | NOT NULL | 0 | TOON-defined field; canonical semantic description not specified in TOON. |
-| updated_ymdhis | bigint | NOT NULL | none/unspecified | TOON-defined field; canonical semantic description not specified in TOON. |
-| is_deleted | tinyint | NOT NULL | 0 | TOON-defined field; canonical semantic description not specified in TOON. |
-| deleted_ymdhis | bigint | Nullable/unspecified | none/unspecified | TOON-defined field; canonical semantic description not specified in TOON. |
-| evidence_score | decimal(5,2) | Nullable/unspecified | 0.00 | TOON-defined field; canonical semantic description not specified in TOON. |
-| contradiction_flag | tinyint | Nullable/unspecified | 0 | TOON-defined field; canonical semantic description not specified in TOON. |
-| likes_count | bigint | Nullable/unspecified | 0 | TOON-defined field; canonical semantic description not specified in TOON. |
+## Schema
 
-## Relationships
-- foreign keys: none (database doctrine forbids foreign keys)
-- inbound references: no canonical inbound reference list found in TOON
-- outbound references: No foreign keys or explicit relationships in TOON (`relationships: []`).
-- join patterns: Join by `truth_question_id` and `actor_id` with `lupo_truth_knowledge`/`lupo_actors`.
+### Primary Key
+(none)
 
-## Usage Notes
-- migration notes: TOON and install schema are aligned for this table name.
-- compatibility notes: current schema uses BIGINT timestamp doctrine and soft-delete patterns where present.
-- warnings: avoid assuming implicit constraints; use doctrine that logic is application-side.
-- future considerations: if additional relationships are introduced, document via TOON updates first.
-- historical changes if updating existing docs: existing flat documentation was retained; this file is the category-structured canonical doc for this domain pass.
+### Columns
+
+| Column | Type Definition |
+|---|---|
+| `truth_answer_id` | `bigint NOT NULL auto_increment` |
+| `truth_question_id` | `bigint NOT NULL` |
+| `actor_id` | `bigint NOT NULL` |
+| `answer_text` | `text` |
+| `confidence` | `decimal(5,2) DEFAULT 0.00` |
+| `evidence_count` | `int DEFAULT 0` |
+| `source_count` | `int DEFAULT 0` |
+| `status` | `varchar(64) DEFAULT 'active'` |
+| `created_ymdhis` | `bigint NOT NULL DEFAULT 0` |
+| `updated_ymdhis` | `bigint NOT NULL` |
+| `is_deleted` | `tinyint NOT NULL DEFAULT 0` |
+| `deleted_ymdhis` | `bigint` |
+| `evidence_score` | `decimal(5,2) DEFAULT 0.00` |
+| `contradiction_flag` | `tinyint DEFAULT 0` |
+| `likes_count` | `bigint DEFAULT 0` |
+
+### Indexes
+
+| Index | Columns | Unique |
+|---|---|---|
+| `lupo_truth_answers_idx_actor` | `actor_id` | no |
+| `lupo_truth_answers_idx_created` | `created_ymdhis` | no |
+| `lupo_truth_answers_idx_question` | `truth_question_id` | no |
+| `lupo_truth_answers_idx_status` | `status` | no |
+
+## Doctrine
+- Source of truth: `lupo-database/lupopedia/json/` TOON exports
+- Regeneration mode: Stage 3 deterministic normalization
+- Edge mode: placeholder baseline

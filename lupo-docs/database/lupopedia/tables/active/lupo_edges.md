@@ -1,525 +1,102 @@
 ---
 lupopedia.headers:
-  lupopedia.schema: database_table
-  file_path_from_root: lupo-docs/database/lupopedia/tables/active/lupo_edges.md
-  web_path: '[lupo_edges](http://www.lupopedia.com/database/lupopedia/tables/active/lupo_edges)'
-  last_modified_utc: '20260325200000'
+  when_updated: "20260328013000"
+  file_path_from_root: "lupo-docs/database/lupopedia/tables/active/lupo_edges.md"
+  last_modified_utc: "20260328013000"
   channel_id: 42
-  actor_id: 26
-  actor_name: thoth
-  delegation_chain: thoth:knowledge
-  artifact_type: table_documentation
-  artifact_kind: table
-  purpose: "Complete documentation for lupo_edges - SINGLE CANONICAL EDGE TABLE (4.0.87 consolidation)"
-  system_version: "4.0.87"
+  actor_id: 23
+  actor_name: "hephaestus"
+  delegation_chain: "wolfie:hephaestus"
+  artifact_type: "documentation"
+  artifact_kind: "table"
+  namespace: "core"
+  purpose: "Normalized table documentation for lupo_edges from TOON JSON"
   tags:
   - database
   - table
-  - edges
-  - 4.0.87
-  - canonical
-  - consolidated
-  when_updated: '20260325200000'
+  - normalized
+  - 4.0.88
 lupopedia.edges:
-  comment: Updated 4.0.87 — lupo_edges is now the single canonical edge store after consolidation of lupo_actor_edges and lupo_reference_cited_by.
-  meta: php_hits=15 python_hits=3
+  comment: "static placeholder edges for stage3 normalization"
   outbound_edges:
-  - to: database.table.lupo_edges
-    type: DEFINES_SCHEMA_FOR
+  - to: "lupo-database/lupopedia/json/lupo_edges.json"
+    type: "references"
     weight: 1.0
-  - to: lupo-database/lupopedia/mysql/install/install_new_lupopedia.sql
-    type: schema_reference
-    weight: 1.0
-  - to: lupo-database/lupopedia/toon/lupo_edges.toon
-    type: schema_reference
-    weight: 1.0
-  - to: lupo-docs/doctrine/EDGE_MODEL_DOCTRINE.md
-    type: references
-    weight: 1.0
-  - to: lupo-docs/database/lupopedia/tables/deprecated/lupo_actor_edges.md
-    type: supersedes
-    weight: 1.0
-  - to: lupo-docs/database/lupopedia/tables/deprecated/lupo_reference_cited_by.md
-    type: supersedes
-    weight: 1.0
+    reason: "authoritative TOON JSON source"
 lupopedia.footer:
-  last_verified: '20260325200000'
-  last_verified_by: cursor
-  orchestrator: wolfie
-  next_action:
-  - Maintain schema consistency with install SQL and TOON files
-  - Update edge type registry in lupo_edge_types seed when new types are introduced
-  last_verified_by_actor_id: 102
+  last_verified: "20260328013000"
+  last_verified_by: "hephaestus"
+  last_verified_by_actor_id: 23
+  generated: true
+  provenance: "stage3_track_c_normalization"
 ---
-# file: lupo_edges ? web_path: http://www.lupopedia.com/database/lupopedia/tables/active/lupo_edges
-# Table: lupo_edges
+# file: lupo_edges.md
 
-Purpose: Stores relationships and edges between system objects.
-Type: database_table
-Status: production_ready
-Volume: high
+# lupo_edges
 
-## 1. Overview
-- Key responsibilities: relationship storage and retrieval.
-- System role: unified relationship graph.
-- Importance: core of content linking and navigation.
+## Purpose
+Canonical table documentation normalized from TOON JSON for `lupo_edges`.
 
-## 2. Schema
+## Schema
 
-### Fields
-| Column | Type | Description |
-|---|---|---|
-| edge_id | bigint NOT NULL | Primary key |
-| left_object_type | varchar(50) NOT NULL | Type of left object |
-| left_object_id | bigint NOT NULL | ID of left object |
-| right_object_type | varchar(50) NOT NULL | Type of right object |
-| right_object_id | bigint NOT NULL | ID of right object |
-| edge_type | varchar(100) NOT NULL | Type of relationship |
-| edge_category | varchar(100) | Category of edge for grouping |
-| edge_description | text | Description of relationship |
-| channel_id | bigint | Channel where relationship exists |
-| channel_key | varchar(64) | Channel key for routing |
-| domain_id | bigint NOT NULL DEFAULT 1 | Domain/federation node |
-| weight_score | int NOT NULL DEFAULT 0 | Legacy weight score |
-| sort_num | int NOT NULL DEFAULT 0 | Sort order |
-| actor_id | bigint | Actor who created the relationship |
-| is_deleted | tinyint NOT NULL DEFAULT '0' | Soft delete flag |
-| deleted_ymdhis | bigint NOT NULL DEFAULT '0' | Soft delete timestamp |
-| created_ymdhis | bigint NOT NULL DEFAULT '0' | Creation timestamp |
-| updated_ymdhis | bigint NOT NULL | Update timestamp |
-| semantic_weight | decimal(5,2) DEFAULT '0.00' | Semantic weight for analysis |
-| relationship_type | varchar(64) DEFAULT 'semantic' | Type of relationship |
-| bidirectional | tinyint NOT NULL DEFAULT '0' | Bidirectional relationship flag |
-| context_scope | varchar(100) | Context scope for relationship |
-| properties | json | Additional edge properties |
-| flare_weight | decimal(3,2) DEFAULT '0.5' | FLARE edge weight (0.5-1.0) |
-| flare_reason | varchar(255) | Reason for edge existence |
-| flare_db_source | varchar(50) | Database source table |
-| flare_auto_generated | tinyint DEFAULT '0' | Generated by automation |
-| flare_verified | tinyint DEFAULT '0' | Path verified to exist |
-| flare_discovered_via | varchar(50) | Discovery method |
+### Primary Key
+(none)
+
+### Columns
+
+| Column | Type Definition |
+|---|---|
+| `edge_id` | `bigint NOT NULL` |
+| `left_object_type` | `varchar(50) NOT NULL` |
+| `left_object_id` | `bigint NOT NULL` |
+| `right_object_type` | `varchar(50) NOT NULL` |
+| `right_object_id` | `bigint NOT NULL` |
+| `edge_type` | `varchar(100) NOT NULL` |
+| `edge_category` | `varchar(100)` |
+| `edge_description` | `text` |
+| `channel_id` | `bigint` |
+| `channel_key` | `varchar(64)` |
+| `domain_id` | `bigint NOT NULL DEFAULT 1` |
+| `weight_score` | `int NOT NULL DEFAULT 0` |
+| `sort_num` | `int NOT NULL DEFAULT 0` |
+| `actor_id` | `bigint` |
+| `is_deleted` | `tinyint NOT NULL DEFAULT 0` |
+| `deleted_ymdhis` | `bigint NOT NULL DEFAULT 0` |
+| `created_ymdhis` | `bigint NOT NULL DEFAULT 0` |
+| `updated_ymdhis` | `bigint NOT NULL DEFAULT 0` |
+| `semantic_weight` | `decimal(5,2) DEFAULT 0.00` |
+| `relationship_type` | `varchar(64) DEFAULT 'semantic'` |
+| `bidirectional` | `tinyint NOT NULL DEFAULT 0` |
+| `context_scope` | `varchar(100)` |
+| `properties` | `json` |
+| `flare_weight` | `decimal(3,2) DEFAULT 0.50 COMMENT 'FLARE edge weight (0.5-1.0)'` |
+| `flare_reason` | `varchar(255) COMMENT 'Reason for edge existence'` |
+| `flare_db_source` | `varchar(50) COMMENT 'Database source table'` |
+| `flare_auto_generated` | `tinyint DEFAULT 0 COMMENT 'Generated by automation'` |
+| `flare_verified` | `tinyint DEFAULT 0 COMMENT 'Path verified to exist'` |
+| `flare_discovered_via` | `varchar(50) COMMENT 'Discovery method'` |
 
 ### Indexes
-| Index Name | Columns | Type |
+
+| Index | Columns | Unique |
 |---|---|---|
-| PRIMARY | edge_id | PRIMARY KEY |
-| lupo_edges_idx_left | left_object_type, left_object_id | BTREE |
-| lupo_edges_idx_right | right_object_type, right_object_id | BTREE |
-| lupo_edges_idx_edge_type | edge_type | BTREE |
-| lupo_edges_idx_edge_category | edge_category | BTREE |
-| lupo_edges_idx_actor | actor_id | BTREE |
-| lupo_edges_idx_domain | domain_id | BTREE |
-| lupo_edges_idx_is_deleted | is_deleted | BTREE |
-| lupo_edges_idx_semantic_weight | semantic_weight | BTREE |
-| lupo_edges_idx_relationship_type | relationship_type | BTREE |
-| lupo_edges_idx_channel_semantic | channel_id, relationship_type, semantic_weight | BTREE |
-| lupo_edges_idx_created | created_ymdhis | BTREE |
-| lupo_edges_idx_updated | updated_ymdhis | BTREE |
-| lupo_edges_idx_flare_weight | flare_weight, edge_type | BTREE |
-| lupo_edges_idx_flare_discovered | flare_discovered_via, flare_auto_generated | BTREE |
-| lupo_edges_idx_flare_files | left_object_type, left_object_id, edge_type, right_object_type, right_object_id | BTREE |
-
-## 3. Usage Patterns
-Common Queries:
-```sql
-SELECT * FROM lupo_edges WHERE left_object_type = 'content' AND left_object_id = :id AND is_deleted = 0;
-SELECT * FROM lupo_edges WHERE edge_type = 'references' AND is_deleted = 0 ORDER BY weight_score DESC;
-SELECT * FROM lupo_edges WHERE channel_id = :channel_id AND is_deleted = 0;
-```
-Best Practices: Use composite indexes for object type + ID lookups.
-Anti-Patterns: Full table scans without proper indexes.
-
-## 4. Performance Considerations
-- High-volume operations: edge creation during content updates.
-- Optimization tips: Use appropriate indexes for query patterns.
-- Scaling considerations: Archive old edges using is_deleted.
-
-## 5. Data Integrity
-- Constraints: left_object_type and right_object_type required.
-- Validation rules: enforce edge_type values.
-- Soft delete: archive and retain for audit.
-
-## 6. Common Issues and Solutions
-- Slow relationship queries: add composite indexes.
-- Edge drift: ensure created_ymdhis monotonic.
-- Duplicate edges: enforce uniqueness at application layer.
-
-## 7. Future Enhancements
-- Add edge_hash for deduplication.
-- Add indexed summary fields for analytics.
-- **Automation Support:** Edge discovery and validation
-- **Bidirectional Support:** Two-way relationship management
-- **Cross-Entity:** Relationships between any object types
-- **Metadata Storage:** Rich relationship properties and context
-
----
-
-## 🗃️ **Schema Reference**
-
-### **Primary Key**
-- **`edge_id`** (BIGINT) - YYYYMMDDHHMMSS UTC timestamp, unique identifier
-
-### **Core Relationship Fields**
-| Field | Type | Description | Notes |
-|-------|------|-------------|-------|
-| `left_object_type` | VARCHAR(50) NOT NULL | Type of left object | content, actor, channel, etc. |
-| `left_object_id` | BIGINT NOT NULL | ID of left object | References object primary key |
-| `right_object_type` | VARCHAR(50) NOT NULL | Type of right object | content, actor, channel, etc. |
-| `right_object_id` | BIGINT NOT NULL | ID of right object | References object primary key |
-| `edge_type` | VARCHAR(100) NOT NULL | Type of relationship | references, implements, etc. |
-
-### **Relationship Properties**
-| Field | Type | Default | Description |
-|-------|------|---------|-------------|
-| `edge_category` | VARCHAR(100) | NULL | Category for grouping (e.g. `code`, `documentation`, `schema`, `runtime`). When syncing from LUPOPEDIA HEADERS grouped **outbound_edges**, the group key is stored here; export groups by this column to rehydrate grouped YAML. |
-| `edge_description` | TEXT | NULL | Relationship purpose | Optional |
-| `relationship_type` | VARCHAR(64) | 'semantic' | Type of relationship |
-| `bidirectional` | TINYINT | 0 | Bidirectional flag |
-| `context_scope` | VARCHAR(100) | Context scope | Optional |
-
-### **Weight & Scoring Fields**
-| Field | Type | Default | Description |
-|-------|------|---------|-------------|
-| `weight_score` | INT | 0 | Legacy weight score |
-| `semantic_weight` | DECIMAL(5,2) | 0.00 | Semantic weight for analysis |
-| `sort_num` | INT | 0 | Sort order |
-
-### **FLARE Protocol Fields (Added 2026-02-27)**
-| Field | Type | Default | Description |
-|-------|------|---------|-------------|
-| `flare_weight` | DECIMAL(3,2) | 0.50 | FLARE edge weight (0.5-1.0) |
-| `flare_reason` | VARCHAR(255) | Reason for edge existence | Optional |
-| `flare_db_source` | VARCHAR(50) | Database source table | Optional |
-| `flare_auto_generated` | TINYINT | 0 | Generated by automation |
-| `flare_verified` | TINYINT | 0 | Path verified to exist |
-| `flare_discovered_via` | VARCHAR(50) | Discovery method | Optional |
-
-### **Context Fields**
-| Field | Type | Default | Description |
-|-------|------|---------|-------------|
-| `channel_id` | BIGINT | Channel where relationship exists | Optional |
-| `channel_key` | VARCHAR(64) | Channel key for routing | Optional |
-| `domain_id` | BIGINT | 1 | Domain/federation node |
-| `actor_id` | BIGINT | Actor who created relationship | Optional |
-
-### **Metadata & Properties**
-| Field | Type | Description | Notes |
-|-------|------|-------------|-------|
-| `properties` | JSON | Additional edge properties | Flexible metadata |
-
-### **Timestamp & Status Fields**
-| Field | Type | Default | Description |
-|-------|------|---------|-------------|
-| `created_ymdhis` | BIGINT | 0 | YYYYMMDDHHIISS UTC creation |
-| `updated_ymdhis` | BIGINT | YYYYMMDDHHIISS UTC update | Auto-updated |
-| `is_deleted` | TINYINT | 0 | Soft delete flag |
-| `deleted_ymdhis` | BIGINT | 0 | YYYYMMDDHHIISS UTC delete |
-
----
-
-## 🔗 **Relationships & Dependencies**
-
-### **Referenced Objects**
-The table can reference any object type in the system:
-- **content:** lupo_contents.content_id
-- **actor:** lupo_actors.actor_id
-- **channel:** lupo_channels.channel_id
-- **artifact:** lupo_artifacts.artifact_id
-- **collection:** lupo_collections.collection_id
-- **department:** lupo_departments.department_id
-
-### **Context Relationships**
-- **Channel:** `channel_id` → `lupo_channels.channel_id`
-- **Domain:** `domain_id` → `lupo_federation_nodes.federation_node_id`
-- **Actor:** `actor_id` → `lupo_actors.actor_id`
-
----
-
-## 📊 **Indexes & Performance**
-
-### **Primary Indexes**
-- **PRIMARY:** `edge_id` (unique)
-
-### **FLARE-Specific Indexes (Added 2026-02-27)**
-- **FLARE Files:** `idx_lupo_edges_flare_files` (left_object_type, left_object_id, edge_type, right_object_type, right_object_id)
-- **FLARE Weight:** `idx_lupo_edges_flare_weight` (flare_weight, edge_type)
-- **FLARE Discovered:** `idx_lupo_edges_flare_discovered` (flare_discovered_via, flare_auto_generated)
-
-### **Performance Indexes**
-- **Left Object:** `lupo_edges_idx_left` (left_object_type, left_object_id)
-- **Right Object:** `lupo_edges_idx_right` (right_object_type, right_object_id)
-- **Edge Type:** `lupo_edges_idx_edge_type` (edge_type)
-- **Actor:** `lupo_edges_idx_actor` (actor_id)
-- **Channel Semantic:** `lupo_edges_idx_channel_semantic` (channel_id, relationship_type, semantic_weight)
-- **Domain:** `lupo_edges_idx_domain` (domain_id)
-- **Semantic Weight:** `lupo_edges_idx_semantic_weight` (semantic_weight)
-- **Created:** `lupo_edges_idx_created` (created_ymdhis)
-- **Updated:** `lupo_edges_idx_updated` (updated_ymdhis)
-- **Deleted:** `lupo_edges_idx_is_deleted` (is_deleted)
-
----
-
-## 🚀 **Usage Patterns**
-
-### **Common Queries**
-
-#### **Basic Edge Retrieval**
-```sql
-SELECT edge_id, left_object_type, left_object_id, edge_type, right_object_type, right_object_id
-FROM lupo_edges 
-WHERE is_deleted = 0
-ORDER BY created_ymdhis DESC;
-```
-
-#### **FLARE Edges for Content**
-```sql
-SELECT edge_id, edge_type, flare_weight, flare_reason, flare_discovered_via
-FROM lupo_edges 
-WHERE left_object_type = 'content' 
-  AND left_object_id = :content_id 
-  AND is_deleted = 0
-ORDER BY flare_weight DESC;
-```
-
-#### **Bidirectional Relationships**
-```sql
-SELECT edge_id, left_object_type, left_object_id, right_object_type, right_object_id
-FROM lupo_edges 
-WHERE (left_object_type = :type1 AND left_object_id = :id1 AND right_object_type = :type2 AND right_object_id = :id2)
-   OR (left_object_type = :type2 AND left_object_id = :id2 AND right_object_type = :type1 AND right_object_id = :id1)
-  AND is_deleted = 0;
-```
-
-#### **Edges by Type**
-```sql
-SELECT edge_type, COUNT(*) as count, AVG(flare_weight) as avg_weight
-FROM lupo_edges 
-WHERE is_deleted = 0
-GROUP BY edge_type
-ORDER BY count DESC;
-```
-
-#### **Automated Edges**
-```sql
-SELECT edge_id, edge_type, flare_discovered_via, flare_verified
-FROM lupo_edges 
-WHERE flare_auto_generated = 1 
-  AND is_deleted = 0
-ORDER BY created_ymdhis DESC;
-```
-
-#### **High-Weight Relationships**
-```sql
-SELECT left_object_type, left_object_id, edge_type, right_object_type, right_object_id, flare_weight
-FROM lupo_edges 
-WHERE flare_weight >= 0.9 
-  AND is_deleted = 0
-ORDER BY flare_weight DESC, edge_type;
-```
-
----
-
-## ⚡ **Performance Considerations**
-
-### **High-Volume Operations**
-- **INSERT:** Edge creation (high frequency for automation)
-- **UPDATE:** Weight and metadata updates (moderate frequency)
-- **SELECT:** Edge lookup (very high frequency)
-- **DELETE:** Soft deletes (low frequency)
-
-### **Optimization Tips**
-1. **Use is_deleted = 0** in all queries to filter deleted edges
-2. **Index object pairs** for efficient relationship lookups
-3. **Use FLARE indexes** for FLARE-specific queries
-4. **Consider partitioning** by object_type for large datasets
-5. **Cache frequent queries** for popular relationships
-
----
-
-## 📋 **Data Integrity**
-
-### **Constraints**
-- **Required Fields:** edge_id, left_object_type, left_object_id, right_object_type, right_object_id, edge_type
-- **Default Values:** Sensible defaults for optional fields
-- **Soft Delete:** is_deleted flag for safe deletion
-
-### **Validation Rules**
-- **Timestamp Format:** YYYYMMDDHHIISS UTC
-- **FLARE Weight Range:** 0.5 to 1.0 for FLARE edges
-- **Object Types:** Valid object type values
-- **JSON Validation:** Valid JSON structure for properties
-
----
-
-## 🔥 **FLARE Protocol Integration**
-
-### **FLARE Edge Types**
-Standard FLARE edge types with weight ranges:
-- **references** (0.5-1.0) - General documentation links
-- **implements** (0.8-1.0) - Implementation relationships
-- **schema_reference** (1.0) - Database schema references
-- **depends_on** (0.8-1.0) - Dependency relationships
-- **supersedes** (0.9-1.0) - Version relationships
-- **example_of** (0.6-0.8) - Example documentation
-- **related_to** (0.5-0.7) - Loose associations
-
-### **Discovery Methods**
-- **content_analysis** - Analyzing markdown content
-- **toon_schema** - Database schema analysis
-- **db_scan** - Database relationship scanning
-- **semantic_search** - Vector similarity search
-- **manual** - Manually created edges
-
-### **Automation Workflow**
-1. **Discovery:** Automated edge discovery tools
-2. **Validation:** Path verification and existence checking
-3. **Storage:** Store with FLARE metadata
-4. **Maintenance:** Periodic validation and cleanup
-
----
-
-## � **Canonical Status (4.0.87)**
-
-`lupo_edges` is the **single canonical edge table** for all relationship data in Lupopedia. As of 4.0.87, all fragmented edge tables have been consolidated here.
-
-> See [EDGE_MODEL_DOCTRINE.md](../../../doctrine/EDGE_MODEL_DOCTRINE.md) for governance rules.
-
----
-
-## 🏷️ **Supported Object Types**
-
-| `left_object_type` / `right_object_type` | Maps to Table | Notes |
-|---|---|---|
-| `actor` | `lupo_actors.actor_id` | Any system actor (human or AI) |
-| `content` | `lupo_contents.content_id` | Wiki/doc content |
-| `channel` | `lupo_channels.channel_id` | Communication channel |
-| `artifact` | channel file artifacts | Thread artifacts by filename |
-| `collection` | `lupo_collections.collection_id` | Content collections |
-| `reference_object` | `lupo_reference_objects.reference_object_id` | Citation targets |
-| `department` | `lupo_departments.department_id` | Departments |
-
----
-
-## 🔗 **Canonical Edge Types**
-
-| `edge_type` | Direction | Meaning | Formerly stored in |
-|---|---|---|---|
-| `supports` | actor → actor | Actor A delegates to / endorses Actor B | `lupo_actor_edges` (edge_type=supports) |
-| `cites` | content → reference_object | Content cites a reference | `lupo_reference_cited_by` |
-| `cited_by` | reference_object → content | Reference is cited by content | `lupo_reference_cited_by` (inverse) |
-| `references` | any → any | General documentation link | FLARE protocol |
-| `implements` | any → any | Implementation relationship | FLARE protocol |
-| `depends_on` | any → any | Dependency relationship | FLARE protocol |
-| `supersedes` | any → any | Version replacement | FLARE protocol |
-| `related_to` | any → any | Loose semantic association | FLARE protocol |
-| `channel_parent` | channel → channel | Channel hierarchy | Structural backfill |
-| `thread_member` | actor → channel | Actor membership in channel thread | Channel system |
-
-**Adding new edge types:** Register in `lupo_edge_types` (slug + label + is_bidirectional). Do not invent ad-hoc string values without a registry entry.
-
----
-
-## 🔍 **Consolidated Query Examples**
-
-### Actor-to-actor edges (replaces `lupo_actor_edges`)
-```sql
--- All actors that actor 5 supports
-SELECT right_object_id AS target_actor_id
-FROM lupo_edges
-WHERE left_object_type = 'actor'
-  AND left_object_id = 5
-  AND right_object_type = 'actor'
-  AND edge_type = 'supports'
-  AND is_deleted = 0;
-
--- Everyone who supports actor 5 (reverse)
-SELECT left_object_id AS supporting_actor_id
-FROM lupo_edges
-WHERE right_object_type = 'actor'
-  AND right_object_id = 5
-  AND left_object_type = 'actor'
-  AND edge_type = 'supports'
-  AND is_deleted = 0;
-```
-
-### Citation edges (replaces `lupo_reference_cited_by`)
-```sql
--- All references cited by content 42
-SELECT right_object_id AS reference_object_id, properties
-FROM lupo_edges
-WHERE left_object_type = 'content'
-  AND left_object_id = 42
-  AND right_object_type = 'reference_object'
-  AND edge_type = 'cites'
-  AND is_deleted = 0;
-
--- All content that cites reference 7
-SELECT left_object_id AS content_id
-FROM lupo_edges
-WHERE right_object_type = 'reference_object'
-  AND right_object_id = 7
-  AND left_object_type = 'content'
-  AND edge_type = 'cites'
-  AND is_deleted = 0;
-```
-
-### Domain-scoped actor graph
-```sql
-SELECT left_object_id, edge_type, right_object_id, weight_score
-FROM lupo_edges
-WHERE left_object_type = 'actor'
-  AND right_object_type = 'actor'
-  AND domain_id = :domain_id
-  AND is_deleted = 0
-ORDER BY weight_score DESC;
-```
-
----
-
-## 🔄 **Migration from Legacy Tables**
-
-This table replaces multiple legacy relationship tables:
-- **`lupo_actor_edges`** — Removed 4.0.87. Use `lupo_edges` with `left_object_type='actor'`, `right_object_type='actor'`.
-- **`lupo_reference_cited_by`** — Removed 4.0.87. Use `lupo_edges` with `edge_type='cites'`.
-- **`lupo_entity_edges`** — Already absent; never reached production.
-- **`lupo_gov_event_actor_edges`** — Already absent; never reached production.
-- **`lupo_gov_event_references`** — Already absent; never reached production.
-- **`lupo_edge_types`** — Kept as type registry (slug + label). Distinct from this table.
-- **`lupo_relationships`** - Basic relationships
-- **Content relationship tables** - Various content link tables
-
-### **Migration Benefits**
-- **Unified Storage:** Single source of truth
-- **Enhanced Metadata:** Rich relationship properties
-- **FLARE Support:** Built-in FLARE protocol support
-- **Performance:** Optimized indexes for all query patterns
-- **Scalability:** Designed for high-volume relationship storage
-
----
-
-## 🚨 **Common Issues & Solutions**
-
-### **Performance Issues**
-- **Large Graphs:** Use appropriate indexes for query patterns
-- **Complex Queries:** Break down complex relationship traversals
-- **Metadata Size:** Keep properties JSON reasonable
-
-### **Data Consistency**
-- **Orphaned Edges:** Validate object references exist
-- **Duplicate Edges**: Prevent duplicate relationships
-- **Weight Consistency**: Ensure weight ranges are appropriate
-
----
-
-## 🔮 **Future Enhancements**
-
-### **Planned Improvements**
-- **Graph Algorithms:** Built-in graph traversal algorithms
-- **Advanced Analytics:** Relationship analytics and insights
-- **Real-time Updates:** Live relationship updates
-- **Cross-Federation:** Multi-node relationship synchronization
-
----
-
-*This table documentation is part of the FLARE relationship automation initiative. For the complete database context, see the lupopedia database README and the 4.0.47 development thread.*
-
+| `lupo_edges_idx_actor` | `actor_id` | no |
+| `lupo_edges_idx_channel_semantic` | `channel_id`, `relationship_type`, `semantic_weight` | no |
+| `lupo_edges_idx_created` | `created_ymdhis` | no |
+| `lupo_edges_idx_domain` | `domain_id` | no |
+| `lupo_edges_idx_edge_category` | `edge_category` | no |
+| `lupo_edges_idx_edge_type` | `edge_type` | no |
+| `lupo_edges_idx_flare_discovered` | `flare_discovered_via`, `flare_auto_generated` | no |
+| `lupo_edges_idx_flare_files` | `left_object_type`, `left_object_id`, `edge_type`, `right_object_type`, `right_object_id` | no |
+| `lupo_edges_idx_flare_weight` | `flare_weight`, `edge_type` | no |
+| `lupo_edges_idx_is_deleted` | `is_deleted` | no |
+| `lupo_edges_idx_left` | `left_object_type`, `left_object_id` | no |
+| `lupo_edges_idx_relationship_type` | `relationship_type` | no |
+| `lupo_edges_idx_right` | `right_object_type`, `right_object_id` | no |
+| `lupo_edges_idx_semantic_weight` | `semantic_weight` | no |
+| `lupo_edges_idx_updated` | `updated_ymdhis` | no |
+
+## Doctrine
+- Source of truth: `lupo-database/lupopedia/json/` TOON exports
+- Regeneration mode: Stage 3 deterministic normalization
+- Edge mode: placeholder baseline

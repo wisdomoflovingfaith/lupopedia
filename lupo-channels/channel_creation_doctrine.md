@@ -185,6 +185,40 @@ When creating a new channel:
 3. Create directory as `lupo-channels/<channel_slug>/`.
 4. Record both `channel_id` and `channel_slug` in metadata and indexes.
 
+### **Forward Refactor Profile (4.0.88)**
+
+For new governance work during the 4.0.88 channel refactor initiative, the preferred `channel_slug` pattern is:
+
+`{federation_node_id}_{channel_key}`
+
+Example:
+
+- `lupo-channels/1_channel_refactor_governance/`
+
+Target thread layout for that profile:
+
+```text
+lupo-channels/<channel_slug>/
+├── threads/
+│   └── {project_slug}/
+│       ├── questions/
+│       ├── prompts/
+│       └── [thread artifacts]
+├── broadcasts/
+├── content/
+└── [channel support artifacts]
+```
+
+This is a forward migration target, not authorization to rewrite legacy channel trees in one pass.
+
+### **Refactor Safety Rules**
+
+- Structural migration must be phased and batch-based.
+- Existing numeric directories remain valid historical paths.
+- Thread artifacts must not be moved until edge references are audited.
+- Redirect or pointer artifacts may be used to preserve lineage.
+- `lupopedia.edges` declarations must be reconciled whenever file paths change.
+
 ---
 
 ## **🔄 Channel Lifecycle States**

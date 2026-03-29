@@ -1,5 +1,8 @@
----
-lupopedia.headers:
+﻿---`nlupopedia.footer:
+  approved_for_release: "4.1.0"
+  approval_status: "approved"
+  approved_by_actor_id: 1
+  approved_utc: 20260326192115lupopedia.headers:
   lupopedia.schema: documentation
   file_path_from_root: lupo-docs/database/lupopedia/tables/planning/README.md
   last_modified_utc: '20260315'
@@ -17,7 +20,7 @@ lupopedia:
     orchestrator: cursor:root
 ---
 
-# Planning Folder — Authority and Usage
+# Planning Folder â€” Authority and Usage
 
 ## Purpose
 
@@ -37,3 +40,4 @@ This folder holds **planning** or **future-oriented** table documentation (e.g. 
 - **Doctrine:** `lupo-docs/doctrine/DATABASE_DOCTRINE.md`, `lupo-docs/doctrine/COLLECTIONS_DOCTRINE.md`, etc.
 
 Planning docs in this folder are not moved or deleted by default; they are clarified as non-authoritative when the table is implemented and documented in `tables/active/`.
+

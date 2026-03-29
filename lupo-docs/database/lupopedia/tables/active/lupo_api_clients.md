@@ -1,73 +1,73 @@
 ---
 lupopedia.headers:
-  lupopedia.schema: database_table
-  file_path_from_root: lupo-docs/database/lupopedia/tables/active/lupo_api_clients.md
-  channel_id: 1
-  actor_id: 102
-  last_modified_utc: '20260312'
-  artifact_type: table_documentation
-  purpose: API client credentials (client_key, client_secret) per actor
-  mood_rgb: 4169E1
-  traits:
-  - canonical
-  - api
-  - auth
-  - cursor_domain
-  - v4.0.70
+  when_updated: "20260328013000"
+  file_path_from_root: "lupo-docs/database/lupopedia/tables/active/lupo_api_clients.md"
+  last_modified_utc: "20260328013000"
+  channel_id: 42
+  actor_id: 23
+  actor_name: "hephaestus"
+  delegation_chain: "wolfie:hephaestus"
+  artifact_type: "documentation"
+  artifact_kind: "table"
+  namespace: "integration"
+  purpose: "Normalized table documentation for lupo_api_clients from TOON JSON"
   tags:
   - database
-  - api
-  - clients
-  - credentials
-  lupo_agent: cursor
-  when_updated: '20260324174654'
+  - table
+  - normalized
+  - 4.0.88
 lupopedia.edges:
+  comment: "static placeholder edges for stage3 normalization"
   outbound_edges:
-  - to: lupo-database/lupopedia/toon/lupo_api_clients.toon.json
-    type: schema_reference
+  - to: "lupo-database/lupopedia/json/lupo_api_clients.json"
+    type: "references"
     weight: 1.0
-  - to: lupo-docs/database/lupopedia/tables/active/lupo_actors.md
-    type: references
-    weight: 0.8
+    reason: "authoritative TOON JSON source"
 lupopedia.footer:
-  last_verified: '20260312000000'
-  last_verified_by: cursor
-  last_verified_by_actor_id: 102
-  orchestrator: cursor:root
+  last_verified: "20260328013000"
+  last_verified_by: "hephaestus"
+  last_verified_by_actor_id: 23
+  generated: true
+  provenance: "stage3_track_c_normalization"
 ---
+# file: lupo_api_clients.md
 
-# Table: lupo_api_clients
+# lupo_api_clients
 
-## Table Overview
+## Purpose
+Canonical table documentation normalized from TOON JSON for `lupo_api_clients`.
 
-- **Purpose:** OAuth-style API client credentials: client_key, client_secret, scopes, and expiry. One row per client application per actor.
-- **Category:** API / Authentication / Credentials
-- **Status:** Active
-- **Version introduced:** 4.0.0
+## Schema
 
-## Column Documentation
+### Primary Key
+(none)
 
-| Column | Type | Nullable | Default | Description |
-|--------|------|----------|---------|-------------|
-| api_client_id | bigint | No | — | Primary key. |
-| actor_id | bigint | No | 0 | Owning actor. |
-| client_key | varchar(255) | No | — | Unique client identifier. |
-| client_secret | varchar(255) | No | — | Client secret. |
-| client_name | varchar(150) | No | — | Display name. |
-| client_description | text | Yes | — | Description. |
-| scopes | text | Yes | — | Allowed scopes. |
-| is_active | tinyint | No | 1 | Active flag. |
-| created_ymdhis | bigint | No | 0 | Creation timestamp. |
-| updated_ymdhis | bigint | No | — | Last update. |
-| expires_ymdhis | bigint | Yes | — | Expiry timestamp. |
+### Columns
 
-## Relationships
+| Column | Type Definition |
+|---|---|
+| `api_client_id` | `bigint NOT NULL` |
+| `actor_id` | `bigint NOT NULL DEFAULT 0` |
+| `client_key` | `varchar(255) NOT NULL` |
+| `client_secret` | `varchar(255) NOT NULL` |
+| `client_name` | `varchar(150) NOT NULL` |
+| `client_description` | `text` |
+| `scopes` | `text` |
+| `is_active` | `tinyint NOT NULL DEFAULT 1` |
+| `created_ymdhis` | `bigint NOT NULL DEFAULT 0` |
+| `updated_ymdhis` | `bigint NOT NULL` |
+| `expires_ymdhis` | `bigint` |
 
-- **Logical references:** actor_id → lupo_actors.actor_id.
-- **Inbound:** API client auth and token issuance.
-- **Join patterns:** By client_key (unique), actor_id, is_active, expires_ymdhis.
+### Indexes
 
-## Usage Notes
+| Index | Columns | Unique |
+|---|---|---|
+| `lupo_api_clients_idx_active` | `is_active` | no |
+| `lupo_api_clients_idx_actor` | `actor_id` | no |
+| `lupo_api_clients_idx_expires` | `expires_ymdhis` | no |
+| `lupo_api_clients_uq_client_key` | `client_key` | yes |
 
-- **Indexes:** is_active, actor_id, expires_ymdhis; unique on client_key.
-- **Timestamps:** BIGINT YYYYMMDDHHIISS UTC.
+## Doctrine
+- Source of truth: `lupo-database/lupopedia/json/` TOON exports
+- Regeneration mode: Stage 3 deterministic normalization
+- Edge mode: placeholder baseline

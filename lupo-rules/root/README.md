@@ -1,96 +1,401 @@
 ---
 lupopedia.init:
   orchestrator_actor: "any"
-  rule_set_version: "4.0.74+"
+  rule_set_version: "4.0.89+"
   applies_to: ["audit", "code-gen", "db-sync", "migration", "header-sync"]
   enforcement: strict
 
 lupopedia.metadata:
-  comment: "Snapshot of metadata for this file or entity at artifact creation."
+  comment: "Comprehensive index of all root rules and doctrines for Lupopedia development"
 
 lupopedia.headers:
   actor_id: 1
   actor_name: "wolfie"
   delegation_chain: "wolfie:root"
-  lupopedia.version: "4.0.74"
-  lupopedia.schema: "index"
+  lupopedia.schema: index
   file_path_from_root: "lupo-rules/root/README.md"
-  web_path: "[web_path](http://www.lupopedia.com/rules/root)"
-  last_modified_utc: "20260313"
-  system_version: "4.0.74"
-  artifact_type: "index"
+  web_path: "http://www.lupopedia.com/lupopedia/lupo-rules/root/README.md"
+  federation_node_id: 0
+  last_modified_utc: "20260327220000"
+  artifact_type: "rules_index"
   artifact_kind: "root_rules"
-  purpose: "Index of root rule .md files (all IDE agents and code-writing agents follow these); derived from .cursor/rules/*.mdc; attached to actor_id 1 in lupo_metadata"
-  tags: ["root", "rules", "doctrine", "actor_1"]
+  purpose: "Complete index and explanation of all root rules, doctrines, and development constraints for Lupopedia"
+  tags: ["root", "rules", "doctrine", "constraints", "development"]
 
 lupopedia.footer:
-  version: "4.0.74"
-  last_verified: "20260313"
+  last_verified: "20260327220000"
   last_verified_by: "wolfie"
-  orchestrator: "cursor"
+  orchestrator: "wolfie:root"
   next_action:
-    - "Sync rule content to lupo_orchestrator_rules when table is available"
+    - "Propagate rule updates to all IDE agents via propagate_agent_rules.php"
+    - "Ensure all new development follows these rules"
 ---
-# file: Root rules index — session: L-LUPO-WOLFIE — delegation: wolfie:root — web_path: http://www.lupopedia.com/rules/root
+# file: Root Rules Index — session: L-LUPO-WOLFIE — delegation: wolfie:root — web_path: [http://www.lupopedia.com/lupo-rules/root/](http://www.lupopedia.com/lupo-rules/root/)
 
-# Root Rules (lupo-rules/root)
+# 📋 Lupopedia Root Rules & Doctrines
 
-## 🧱 Constitutional Root Rules (PRIMARY)
+**Complete guide to all development rules, constraints, and doctrines for Lupopedia**
 
-**[LUPOPEDIA_CONSTITUTIONAL_ROOT_RULES.md](LUPOPEDIA_CONSTITUTIONAL_ROOT_RULES.md)** - The single source of absolute, non-negotiable constitutional rules for all IDE agents, external actors, generators, and automated subsystems.
+---
 
-**This constitutional document supersedes all fragmented root rules below.**
+## ⚠️ **IMPORTANT: Binding Philosophy**
 
-**[TIMESTAMP_DOCTRINE.md](TIMESTAMP_DOCTRINE.md)** - Canonical UTC timestamp generation, filename validation, artifact invalidation, and cross-agent enforcement doctrine. Validators must reject invalid filename hours above 23.
+### **[INDEPENDENT_CODERS_MANIFESTO.md](INDEPENDENT_CODERS_MANIFESTO.md)**
+**Status:** 🎯 ETERNAL - Core Philosophy  
+**Scope:** All development decisions and architectural choices  
+**Enforcement:** Absolute - This is WHY we build this way
 
-**[CONVERGENCE_DOCTRINE.md](CONVERGENCE_DOCTRINE.md)** - Forced convergence to a single canonical system state; actor identity permanence; no variant actors; banned entities remain addressable by `actor_id` (status is state, not identity).
+**Key Principles:**
+- **No dependencies** - Everything needed is in the repo
+- **No frameworks** - Raw PHP, raw SQL, you know every line
+- **Universal deployment** - FTP works everywhere
+- **PHP 5.6+ compatibility** - Works on any server
+- **Your code, your rules** - No vendor lock-in
 
-**[LUPOPEDIA_HEADERS_VERSION_BASELINE_REWRITE_RULE.md](LUPOPEDIA_HEADERS_VERSION_BASELINE_REWRITE_RULE.md)** — When editing headed Markdown: if `version_when_written` is below **4.0.84** or deprecated header version keys remain, **rewrite `lupopedia.headers`** in the same save. Procedural checklist: **[directives.md](../../directives.md)** § *LUPOPEDIA HEADERS baseline rewrite*; format: **[lupo-docs/doctrine/LUPOPEDIA_HEADERS/LUPOPEDIA_HEADERS_FORMAT.md](../../lupo-docs/doctrine/LUPOPEDIA_HEADERS/LUPOPEDIA_HEADERS_FORMAT.md)** §2.0.
+**This manifesto explains WHY these rules exist. Read it first.**
 
-## Legacy Fragmented Rules (Superseded)
+---
 
-The following fragmented rule files are preserved for reference but are superseded by the constitutional document above:
+### **[DATABASE_DOCTRINE.md](DATABASE_DOCTRINE.md)**
+**Status:** 🔒 LOCKED - Binding Authority  
+**Scope:** All database work, all tables, all queries  
+**Enforcement:** Strict - No exceptions, no "modern approaches"
 
-| Slug | Rule .md | Source .mdc | Status |
-|------|----------|-------------|--------|
-| php-5-6-compatibility | [php-5-6-compatibility.md](php-5-6-compatibility.md) | .cursor/rules/php-5-6-compatibility.mdc | ❌ Superseded |
-| no-laravel-no-middleware | [no-laravel-no-middleware.md](no-laravel-no-middleware.md) | .cursor/rules/no-laravel-no-middleware.mdc | ❌ Superseded |
-| pdo-db-database-access-doctrine | [pdo-db-database-access-doctrine.md](pdo-db-database-access-doctrine.md) | .cursor/rules/pdo-db-database-access-doctrine.mdc | ❌ Superseded |
-| migration-doctrine | [migration-doctrine.md](migration-doctrine.md) | .cursor/rules/migration-doctrine.mdc | ❌ Superseded |
-| database-logic-prohibition-doctrine | [database-logic-prohibition-doctrine.md](database-logic-prohibition-doctrine.md) | .cursor/rules/database-logic-prohibition-doctrine.mdc | ❌ Superseded |
-| flip-doctrine (→ LUPOPEDIA HEADERS) | [flip-doctrine.md](flip-doctrine.md) | .cursor/rules/flip-doctrine.mdc — redirects to LUPOPEDIA HEADERS doctrine | ❌ Superseded |
-| toon-source-of-truth | [toon-source-of-truth.md](toon-source-of-truth.md) | .cursor/rules/toon-source-of-truth.mdc | ❌ Superseded |
-| reserved-id-doctrine | [reserved-id-doctrine.md](reserved-id-doctrine.md) | .cursor/rules/reserved-id-doctrine.mdc | ❌ Superseded |
-| versioning-doctrine-single-source | [versioning-doctrine-single-source.md](versioning-doctrine-single-source.md) | .cursor/rules/versioning-doctrine-single-source.mdc | ❌ Superseded |
-| pk-reference-naming-doctrine | [pk-reference-naming-doctrine.md](pk-reference-naming-doctrine.md) | .cursor/rules/pk-reference-naming-doctrine.mdc | ❌ Superseded |
-| required-tables-future-features-doctrine | [required-tables-future-features-doctrine.md](required-tables-future-features-doctrine.md) | .cursor/rules/required-tables-future-features-doctrine.mdc | ❌ Superseded |
-| single-install-no-4.0-upgrade-doctrine | [single-install-no-4.0-upgrade-doctrine.md](single-install-no-4.0-upgrade-doctrine.md) | .cursor/rules/single-install-no-4.0-upgrade-doctrine.mdc | ❌ Superseded |
-| task-planning-doctrine | [task-planning-doctrine.md](task-planning-doctrine.md) | .cursor/rules/task-planning-doctrine.mdc | ❌ Superseded |
-| safe-database-operations-doctrine | [safe-database-operations-doctrine.md](safe-database-operations-doctrine.md) | .cursor/rules/safe-database-operations-doctrine.mdc | ❌ Superseded |
-| channels-federation-offline-session-doctrine | [channels-federation-offline-session-doctrine.md](channels-federation-offline-session-doctrine.md) | .cursor/rules/channels-federation-offline-session-doctrine.mdc | ❌ Superseded |
-| database-offline-fallback-import-doctrine | [database-offline-fallback-import-doctrine.md](database-offline-fallback-import-doctrine.md) | .cursor/rules/database-offline-fallback-import-doctrine.mdc | ❌ Superseded |
-| ide-agent-identity-actor-pairing-doctrine | [ide-agent-identity-actor-pairing-doctrine.md](ide-agent-identity-actor-pairing-doctrine.md) | .cursor/rules/ide-agent-identity-actor-pairing-doctrine.mdc | ❌ Superseded |
+**Key Requirements:**
+- **No database-generated IDs** - Application-layer only
+- **Cross-platform SQL** - MySQL AND PostgreSQL compatibility
+- **Timestamp format** - BIGINT UTC YYYYMMDDHHIISS
+- **PK naming** - `[table]_id` format, never just `id`
+- **Production pattern** - Catch-and-retry with exponential backoff
 
-## Seed (actor_id 1)
+---
 
-**Updated seed needed:** The constitutional document requires a new seed entry to replace the 18 fragmented rule entries.
+## 🧱 Constitutional Rules (Primary Authority)
 
-Current seed: `seed_actor_1_cursor_rules_4.0.68.sql` (18 fragmented entries)
+### **[LUPOPEDIA_CONSTITUTIONAL_ROOT_RULES.md](LUPOPEDIA_CONSTITUTIONAL_ROOT_RULES.md)**
+**Status:** ✅ ACTIVE - Absolute Authority  
+**Scope:** All development, all agents, all systems  
+**Enforcement:** Strict - Overrides all other rules
 
-**Required new seed:** `seed_actor_1_constitutional_rules_4.0.76.sql` (single constitutional entry)
+**Key Requirements:**
+- **Database Doctrine:** No foreign keys, triggers, stored procedures, or auto-increment
+- **Time Format:** All timestamps as BIGINT UTC in YYYYMMDDHHIISS format
+- **Primary Keys:** Must be named `[tablename_singular]_id` (e.g., `actor_id`)
+- **ID Generation:** Application-layer only, deterministic allocation
 
-## Syncing to IDE Agents
+---
 
-The constitutional rules must be propagated to all IDE agent environments (.cursor, .idea, .kiro, .windsurf, .cascade) via the rule transformer. For canonical agent identity and propagation targets, see [lupo-docs/doctrine/AGENT_REGISTRY.md](../../lupo-docs/doctrine/AGENT_REGISTRY.md).
+## 🚫 Development Constraints (Critical)
 
+### **[PHP_VERSION_COMPATIBILITY.md](PHP_VERSION_COMPATIBILITY.md)**
+**Purpose:** Ensure PHP 5.6+ compatibility for shared hosting  
+**Forbidden:** PHP 7+ features (`??`, `<=>`, type hints, anonymous classes)  
+**Required:** Polyfills for `random_bytes()`, `random_int()`
+
+### **[NO_COMPOSER_DOCTRINE.md](NO_COMPOSER_DOCTRINE.md)**
+**Forbidden:** Composer, `vendor/` directory, `composer.json`  
+**Permitted Libraries:** Self-contained libraries in `lupo-includes/` are allowed, but subject to the rules in **[EXTERNAL_LIBRARIES_DOCTRINE.md](EXTERNAL_LIBRARIES_DOCTRINE.md)**
+
+### **[NO_FRAMEWORK_DOCTRINE.md](NO_FRAMEWORK_DOCTRINE.md)**
+**Forbidden:** Laravel, Symfony, CodeIgniter frameworks  
+**Forbidden:** Blade templates (`@extends`, `@section`, `{{ }}`)  
+**Required:** Pure PHP with manual includes
+
+### **[SHARED_HOSTING_DOCTRINE.md](SHARED_HOSTING_DOCTRINE.md)**
+**Requirements:** Must work in subdirectories, no shell commands, 64MB memory limit  
+**Path Handling:** Use `LUPOPEDIA_PUBLIC_PATH` constant for all URLs  
+**Forbidden:** `shell_exec()`, `system()`, root directory writes
+
+### **[EXTERNAL_LIBRARIES_DOCTRINE.md](EXTERNAL_LIBRARIES_DOCTRINE.md)**
+**Permitted:** Self-contained libraries in `lupo-includes/{library-name}/`  
+**Examples:** PHPMailer (approved), TCPDF, SimplePie  
+**Required:** Manual inclusion with `require_once`
+
+---
+
+## 🤝 Multi-Agent Coordination
+
+### **[MULTI_AGENT_COORDINATION_DOCTRINE.md](MULTI_AGENT_COORDINATION_DOCTRINE.md)**
+**Purpose:** Deterministic coordination for all agents  
+**Scope:** 108+ registered agents, 11 primary personas  
+**Key Rules:**
+- Agent registration required for all operations
+- Channel-based communication in `lupo-channels/42/`
+- Single task ownership in root `TODO.md`
+- UTC filename format: `YYYYMMDD_HHMMSS_ACTOR_purpose_TITLE.md`
+
+### **[CHANNEL_ARTIFACT_ROUTING_DOCTRINE.md](CHANNEL_ARTIFACT_ROUTING_DOCTRINE.md)**
+**Communication:** All coordination via channel artifacts  
+**Structure:** `lupo-channels/{channel_id}/{type}/{filename}.md`  
+**Types:** `broadcasts/`, `threads/`, `direct/`, `rules/`, `tasks/`, `content/`
+
+---
+
+## 📊 Database & Data Rules
+
+### **[CONVERGENCE_DOCTRINE.md](CONVERGENCE_DOCTRINE.md)**
+**Principle:** Single canonical system state  
+**Rules:** No variant actors, banned entities remain addressable, actor identity permanence
+
+### **[TIMESTAMP_DOCTRINE.md](TIMESTAMP_DOCTRINE.md)**
+**Format:** UTC BIGINT in YYYYMMDDHHIISS format  
+**Validation:** Hours must be 00-23, filenames must be deterministic  
+**Enforcement:** Invalid timestamps rejected
+
+### **[TIMESTAMP_FORMAT_ENFORCEMENT.md](TIMESTAMP_FORMAT_ENFORCEMENT.md)**
+**⚠️ CRITICAL:** Lupopedia does NOT use Unix time  
+**Format:** BIGINT UTC YYYYMMDDHHIISS (NOT time())  
+**Enforcement:** Strict - Pre-commit hooks reject time() calls  
+**Requirements:** Mandatory header comments in all timestamp-handling files
+
+### **[CONFIGURATION_DOCTRINE.md](CONFIGURATION_DOCTRINE.md)**
+**Purpose:** Configuration file location and security  
+**Search Order:** Above web root → above installation → in installation  
+**Security:** Config file must NOT be web-accessible  
+**Generation:** `python lupo-scripts/generate_toon_files.py`
+
+### **[TOON_SOURCE_OF_TRUTH.md](TOON_SOURCE_OF_TRUTH.md)**
+**Authority:** TOON files are read-only database reflections  
+**Source:** Database is authoritative, files are secondary  
+**Generation:** `python lupo-scripts/generate_toon_files.py`
+
+### **[SAFE_DATABASE_OPERATIONS_DOCTRINE.md](SAFE_DATABASE_OPERATIONS_DOCTRINE.md)**
+**Access:** Use PDO_DB wrapper only, no direct PDO  
+**Transactions:** Proper begin/commit/rollback patterns  
+**Safety:** Parameter binding to prevent injection
+
+### **[DATABASE_NEUTRAL_SQL_DOCTRINE.md](DATABASE_NEUTRAL_SQL_DOCTRINE.md)**
+**Purpose:** All SQL must work on both MySQL and PostgreSQL  
+**Forbidden:** `UNSIGNED`, `DATETIME`, `AUTO_INCREMENT`, MySQL-specific syntax  
+**Required:** `BIGINT` timestamps, application-layer IDs, `DatabaseFactory` class
+
+### **[DATABASE_DOCTRINE.md](DATABASE_DOCTRINE.md)**
+**Purpose:** Canonical database rules for Lupopedia  
+**Scope:** Naming conventions, ID generation, timestamps, forbidden features  
+**Authority:** WOLFIE (actor_id 1) - LOCKED and binding  
+**Key Rules:** `[table]_id` naming, timestamp-based IDs, no database logic
+
+---
+
+## 🏗️ Architecture & Validation
+
+### **[LUPOPEDIA_HEADERS_DOCTRINE.md](LUPOPEDIA_HEADERS_DOCTRINE.md)** (single source of truth)
+**Purpose:** The **only** binding LUPOPEDIA HEADERS doctrine — all header fields, taxonomy, validation, and DB projection  
+**Scope:** Schema taxonomy, artifact types, federation nodes, validation rules, **`lupo_contents` / `lupo_metadata` / `lupo_edges` / `revision_history` mapping** (import + regenerate)  
+**Authority:** WOLFIE (actor_id 1) - LOCKED and binding  
+**Key Rules:** Header field definitions, canonical schema values, `content_id` / DB-first workflow, validation requirements  
+**Alias:** [`lupo-docs/doctrine/LUPOPEDIA_HEADERS/LUPOPEDIA_HEADERS_DOCTRINE.md`](../../lupo-docs/doctrine/LUPOPEDIA_HEADERS/LUPOPEDIA_HEADERS_DOCTRINE.md) — bookmark path only; must not diverge  
+**Companion (format / tooling):** [`lupo-docs/doctrine/LUPOPEDIA_HEADERS/README.md`](../../lupo-docs/doctrine/LUPOPEDIA_HEADERS/README.md)
+
+### **[RULE_FILES_HEADER_REQUIREMENT.md](RULE_FILES_HEADER_REQUIREMENT.md)**
+**Purpose:** Meta-rule requiring headers on ALL rule files  
+**Requirement:** ALL files in `lupo-rules/root/` MUST have complete LUPOPEDIA headers  
+**Enforcement:** Automated validation with immediate rejection for non-compliance automatically  
+**Validation:** Structured header format required
+
+### **[FOOTER_VERSION_MANAGEMENT_RULE.md](FOOTER_VERSION_MANAGEMENT_RULE.md)**
+**Purpose:** Guidelines for managing version information in footer  
+**Problem:** Version field creates maintenance churn  
+**Solution:** Use `when_created` for file creation, `version` only for releases headers (v4.0.84+)  
+**Validation:** Automated via `validate_headers.py` script  
+**Enforcement:** Files without headers are rejected automatically  
+**Validation:** Structured header format required
+
+### **[FILE_BOUNDARY_VALIDATION_RULE.md](FILE_BOUNDARY_VALIDATION_RULE.md)**
+**Validation:** All files must pass boundary validation  
+**Checks:** Header completeness, timestamp validity, content requirements  
+**Enforcement:** Invalid files rejected
+
+---
+
+## 🔄 Migration & Versioning
+
+### **[MIGRATION_DOCTRINE.md](MIGRATION_DOCTRINE.md)**
+**Process:** Single upgrade path: Crafty Syntax 3.7.5 → Lupopedia 4.0.x  
+**No Upgrades:** No Lupopedia → Lupopedia upgrades until 4.1.0  
+**Schema:** All schema in single install file
+
+### **[VERSIONING_DOCTRINE_SINGLE_SOURCE.md](VERSIONING_DOCTRINE_SINGLE_SOURCE.md)**
+**Authority:** Single source of version truth  
+**Location:** `lupo-docs/versions/{version}/`  
+**Process:** Version-driven development, thread consolidation
+
+### **[SINGLE_INSTALL_NO_4.0_UPGRADE_DOCTRINE.md](SINGLE_INSTALL_NO_4.0_UPGRADE_DOCTRINE.md)**
+**Rule:** No in-place upgrades between 4.0.x versions  
+**Migration:** Fresh install required for major version changes
+
+---
+
+## 📋 Task Planning & Execution
+
+### **[TASK_PLANNING_DOCTRINE.md](TASK_PLANNING_DOCTRINE.md)**
+**TODO.md:** Root TODO.md is single source of task truth  
+**Ownership:** Each task has single owner  
+**Status:** Updated in owning file only
+
+---
+
+## 🔧 Technical Implementation
+
+### **[PDO_DB_DATABASE_ACCESS_DOCTRINE.md](PDO_DB_DATABASE_ACCESS_DOCTRINE.md)**
+**Database Access:** Use PDO_DB wrapper class only  
+**Forbidden:** Direct PDO, mysqli, new PDO()  
+ **Required:** `DatabaseFactory::getConnection()`
+
+### **[RESERVED_ID_DOCTRINE.md](RESERVED_ID_DOCTRINE.md)**
+**Reserved Ranges:** System IDs, human actor IDs (1000+), agent IDs  
+**Allocation:** Registry-based deterministic allocation  
+**Constraints:** No auto-increment, no UUID
+
+### **[PK_REFERENCE_NAMING_DOCTRINE.md](PK_REFERENCE_NAMING_DOCTRINE.md)**
+**Foreign Key Fields:** Must reference `[table]_id`  
+**Naming Convention:** Consistent singular table name + `_id`  
+**Examples:** `actor_id`, `session_id`, `channel_id`
+
+---
+
+## 🚨 Security & Validation
+
+### **[LUPOPEDIA_UPGRADE_POLICY.md](lupopedia_upgrade_policy.md)** ⚠️ CRITICAL
+**Rule**: 🚫 NO Lupopedia 4.0.x → 4.0.x upgrades until 4.1.0  
+**Approved Paths**: Fresh installs OR Crafty Syntax 3.7.5 → 4.0.x  
+**Migration Policy**: One-time changes via `lupo-tmp/run_*.php` only  
+**Install SQL**: ALL changes must be in `install_new_lupopedia.sql`
+
+### **[DATABASE_SECURITY_POLICY.md](database_security_policy.md)** ⚠️ CRITICAL
+**Rule**: 🚫 COMMAND LINE MYSQL ACCESS IS FORBIDDEN  
+**Reason**: Prevents AI agent database corruption  
+**Approved Methods**:
+- New installs: `/install.php` (PHP-based with validation)
+- Migrations: `/lupo-tmp/run_*.php` (admin access required)
+- Debug: `/lupo-tests/debug_*.php` (read-only diagnostics)
+**File Organization**:
+- `lupo-tmp/` - One-time migration scripts
+- `lupo-tests/` - Debug and validation tools
+- `lupo-scripts/` - Reusable utilities
+
+### **[LILITH_NONINTERFERENCE_DOCTRINE.md](LILITH_NONINTERFERENCE_DOCTRINE.md)**
+**Role:** LILITH as non-interfering critic/reviewer  
+**Scope:** Review only, no execution interference  
+**Artifact Types:** Review, gap analysis, audit reports
+
+### **[VALIDATION_RULES/](validation_rules/)**
+**Rules:** Input validation, output validation, boundary checks  
+**Implementation:** PHP 5.6+ compatible validation functions  
+**Security:** XSS prevention, SQL injection prevention
+
+---
+
+## 🗂️ Organization & Structure
+
+### **[IDE_AGENT_IDENTITY_ACTOR_PAIRING_DOCTRINE.md](IDE_AGENT_IDENTITY_ACTOR_PAIRING_DOCTRINE.md)**
+**Pairing:** IDE faucets paired with system actors  
+**Examples:** Cursor (102) ↔ WOLFIE (1), Windsurf (101) ↔ HERMES (15)  
+**Registry:** Actor registry defines all pairings
+
+### **[SYSTEM_RULES/](system_rules/)**
+**Scope:** System-level rules and constraints  
+**Implementation:** Core system behaviors  
+**Enforcement:** System-level validation
+
+---
+
+## 📚 Documentation & Headers
+
+### **LUPOPEDIA Headers Format**
+**Required Fields:** `lupopedia.headers`, `lupopedia.footer`, `lupopedia.edges`  
+**Version:** 4.0.84+ format required  
+**Validation:** Automated header validation
+
+---
+
+## 🔄 Subdirectories (Specialized Rules)
+
+### **Actor Rules: [actor_rules/](actor_rules/)**
+**Scope:** Actor-specific rules and constraints  
+**Implementation:** Individual actor behavior rules
+
+### **Execution Rules: [execution_rules/](execution_rules/)**
+**Scope:** Task execution patterns and procedures  
+**Implementation:** How agents execute work
+
+### **Facet Rules: [facet_rules/](facet_rules/)**
+**Scope:** Multi-faceted development rules  
+**Implementation:** Cross-cutting concerns
+
+---
+
+## 📋 Quick Reference Checklist
+
+### Before Writing Code:
+- [ ] PHP 5.6+ compatible (no PHP 7+ features)
+- [ ] No Composer dependencies
+- [ ] No framework code (Laravel, Symfony)
+- [ ] Use `lupo-includes/` for external libraries
+- [ ] Follow database doctrine (no FK, no triggers)
+- [ ] Use UTC timestamps in YYYYMMDDHHIISS format
+
+### Before Creating Database Changes:
+- [ ] No foreign keys
+- [ ] No auto-increment
+- [ ] Primary key named `[table]_id`
+- [ ] Use BIGINT for IDs
+- [ ] Application-layer ID generation
+
+### Before Creating Artifacts:
+- [ ] Complete LUPOPEDIA headers
+- [ ] Valid UTC timestamp (hour 00-23)
+- [ ] Proper filename format
+- [ ] Channel-based communication
+
+### Before Adding External Libraries:
+- [ ] Place in `lupo-includes/{library-name}/`
+- [ ] No Composer files
+- [ ] Manual inclusion only
+- [ ] PHP 5.6+ compatible
+
+---
+
+## 🚀 Enforcement
+
+### Automated Checks:
 ```bash
-php lupo-scripts/propagate_agent_rules.php
+# PHP version compatibility
+php -l filename.php
+
+# Check for Composer violations
+find . -name "composer.json" -o -name "vendor" -type d
+
+# Check for framework violations
+grep -r "@extends\|@section\|{{ " --include="*.php"
+
+# Validate headers
+python lupo-scripts/validate_headers.py
 ```
 
-Run this after editing the constitutional document so that agents correctly generate their `.json`/`.xml`/`.mdc` environments.
+### Manual Review:
+- LEXA: Security and boundary enforcement
+- ANUBIS: Data integrity and orphan resolution
+- SESHAT: Content review and validation
+- LILITH: Audit and gap analysis
 
-## Migration Path
+---
 
-1. **Immediate:** Use constitutional document for all new agent work
-2. **Phase-out:** Gradually remove fragmented rules from agent configurations
-3. **Cleanup:** Archive fragmented rules after constitutional adoption is verified
+## 📚 Further Reading
+
+### Required Documentation:
+1. **[AGENTS.md](../AGENTS.md)** - Agent identities and IDE faucet mapping
+2. **[ONBOARDING.md](../ONBOARDING.md)** - Development quick-start
+3. **[lupo-docs/doctrine/](../lupo-docs/doctrine/)** - Complete doctrine collection
+4. **[lupo-channels/](../lupo-channels/)** - Channel-based communication
+
+### Version-Specific:
+- **[lupo-docs/versions/](../lupo-docs/versions/)** - All version documentation
+- **[TODO.md](../TODO.md)** - Current task tracking
+- **[PLAN.md](../PLAN.md)** - Current iteration plan
+
+---
+
+**Last Updated:** 2026-03-27  
+**Maintained by:** WOLFIE (actor_id 1)  
+**Enforcement:** Strict - All development must comply

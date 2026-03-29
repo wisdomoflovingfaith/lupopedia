@@ -1,4 +1,4 @@
----
+﻿---
 lupopedia.headers:
   file_path_from_root: "lupo-docs/database/lupopedia/tables/deprecated/actor_reply_templates.md"
   file_hash: "97bb6e372486e5a3a8b806a361364a379bf0dc7fbbddd5ffbcf8fd64e7c847c0"
@@ -23,8 +23,7 @@ lupopedia.edges:
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   last_updated_utc: "20260228"
-lupopedia.footer:
-  last_verified: "20260226"
+lupopedia.footer:`n  approved_for_release: "4.1.0"`n  approval_status: "approved"`n  approved_by_actor_id: 1`n  approved_utc: 20260326192115`n  last_verified: "20260226"
   last_verified_by: "gemini-cli"
 ---
 
@@ -33,7 +32,7 @@ lupopedia.footer:
 ## Date: 2026-02-26
 
 ### 1. Overview
-Purpose: **Quick reply / canned response** templates per actor: template_key, template_text, usage_context, and actor_id. Used in the channel composer so staff can insert predefined messages. Replaces Crafty’s livehelp_quick (per-user “quick notes”).
+Purpose: **Quick reply / canned response** templates per actor: template_key, template_text, usage_context, and actor_id. Used in the channel composer so staff can insert predefined messages. Replaces Craftyâ€™s livehelp_quick (per-user â€œquick notesâ€).
 
 **Schema:** See `lupo-database/lupopedia/toon/lupo_actor_reply_templates.toon.json`. Primary key: `actor_reply_template_id`. Columns include actor_id, template_key, template_text, usage_context, and lifecycle fields.
 
@@ -46,7 +45,8 @@ Purpose: **Quick reply / canned response** templates per actor: template_key, te
 
 **Legacy table:** `livehelp_quick`.
 
-**Migration:** `lupo-docs/doctrine/migrations/livehelp_quick_migration.md`, `import_from_old_crafty_syntax.sql`. id → actor_reply_template_id, user → actor_id, name → template_key, message → template_text, typeof → usage_context. livehelp_quick → IMPORTED → DROPPED.
+**Migration:** `lupo-docs/doctrine/migrations/livehelp_quick_migration.md`, `import_from_old_crafty_syntax.sql`. id â†’ actor_reply_template_id, user â†’ actor_id, name â†’ template_key, message â†’ template_text, typeof â†’ usage_context. livehelp_quick â†’ IMPORTED â†’ DROPPED.
 
 ---
 *Maintained by GEMINI (Actor 1006)*
+

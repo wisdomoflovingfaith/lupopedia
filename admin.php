@@ -32,6 +32,9 @@ if (!function_exists('lupo_get_csrf_token')) {
     require_once LUPOPEDIA_PATH . '/lupo-includes/functions/security.php';
 }
 
+// Load AuthSessionManager for actor management
+require_once LUPOPEDIA_PATH . '/lupo-includes/classes/AuthSessionManager.php';
+
 // Require login only; if not admin, show graceful error inside layout (nav still visible)
 $authService = isset($GLOBALS['lupo_auth_service']) ? $GLOBALS['lupo_auth_service'] : null;
 if ($authService) {
@@ -88,10 +91,11 @@ $admin_active_key = 'Dashboard';
 // Actor selector: list of actors user can act as, and current active actor (Trae IDE doc: Web Authentication and Actor Selection)
 $admin_actor_list = array();
 $admin_active_actor_id = 0;
-if ($isUserLoggedIn && isset($GLOBALS['lupo_actor_service']) && isset($GLOBALS['lupo_auth_service'])) {
-    $actorService = $GLOBALS['lupo_actor_service'];
-    $admin_actor_list = $actorService->getActorsUserCanActAs($user['auth_user_id'], $isAdmin);
-    $admin_active_actor_id = $GLOBALS['lupo_auth_service']->getActiveActorId();
+if ($isUserLoggedIn) {
+    // Use AuthSessionManager for actor management
+    $sessionManager = new AuthSessionManager();
+    $admin_actor_list = $sessionManager->getActorsUserCanActAs($user['auth_user_id'], $isAdmin);
+    $admin_active_actor_id = $sessionManager->getActiveActorId();
     if ($admin_active_actor_id <= 0 && !empty($user['actor_id'])) {
         $admin_active_actor_id = (int) $user['actor_id'];
     }

@@ -46,7 +46,7 @@
 -- ======================================================================
 -- MIGRATION: Convert livehelp_autoinvite to crafty_auto_invite 
 -- DROPPED: livehelp_autoinvite 
--- See: docs/doctrine/migrations/livehelp_autoinvite_migration.md
+-- See: lupo-docs/doctrine/migrations/livehelp_autoinvite_migration.md
 
 ALTER TABLE livehelp_autoinvite
     ENGINE=InnoDB,
@@ -1384,6 +1384,7 @@ INSERT INTO `lupo_dialog_threads` (
     `federation_node_id`,
     `channel_id`,
     `created_by_actor_id`,
+    `owner_actor_id`,
     `summary_text`,
     `metadata_json`,
     `created_ymdhis`,
@@ -1397,6 +1398,7 @@ SELECT
         CONCAT('Transcript ', `recno`)
     ),
     COALESCE(`endtime`, `starttime`),
+    1,
     1,
     1,
     1,

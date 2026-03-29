@@ -825,7 +825,7 @@ class InstallWizardMainAdmin
             $log[] = InstallWizardLogger::logEntry('error', 'Could not hash main admin password.');
             return false;
         }
-        $username = InstallWizardNormalize::usernameToSlug($email);
+        $username = $email; // Use actual email as username, not slug
         if (strlen($username) > 30) {
             $username = substr($username, 0, 30);
         }
@@ -983,6 +983,7 @@ class InstallWizardNormalize
             $email = trim((string) (isset($u['email']) ? $u['email'] : ''));
             $slug = self::usernameToSlug($username);
             $proposedEmail = (self::isValidEmail($email)) ? $email : $slug;
+            $proposedUsername = (self::isValidEmail($email)) ? $email : $slug; // Use email as username if valid
             $out[] = array(
                 'user_id' => (int) $u['user_id'],
                 'username' => $username,
@@ -990,7 +991,7 @@ class InstallWizardNormalize
                 'displayname' => trim((string) (isset($u['displayname']) ? $u['displayname'] : '')),
                 'isoperator' => true,
                 'proposed_email' => $proposedEmail,
-                'proposed_username' => $slug,
+                'proposed_username' => $proposedUsername,
             );
         }
         return $out;

@@ -54,7 +54,7 @@ STRING_FIELDS = (
     "artifact_kind",
 )
 
-NUMERIC_FIELDS = ("channel_id", "thread_id", "actor_id")
+NUMERIC_FIELDS = ("channel_id", "actor_id")
 
 
 def parse_front_matter_header(text: str) -> Dict[str, Any]:
@@ -157,9 +157,10 @@ def validate_header(
     actor_lookup: Optional[Dict[int, str]] = None,
 ) -> Dict[str, Any]:
     errors = []
+    warnings = []
 
     if not isinstance(header, dict) or not header:
-        return {"valid": False, "errors": ["Malformed header: expected non-empty mapping."]}
+        return {"valid": False, "errors": ["Malformed header: expected non-empty mapping."], "warnings": []}
 
     for field in REQUIRED_FIELDS:
         if field not in header:
@@ -185,6 +186,12 @@ def validate_header(
             if not _is_numeric_id(header.get(field)):
                 errors.append("ID field must be numeric: %s" % field)
 
+    if "thread_id" in header and not _is_empty_string(header.get("thread_id")):
+        if not _is_valid_thread_id(header.get("thread_id")):
+            errors.append(
+                "thread_id must be numeric or match slug pattern ^[a-z0-9][a-z0-9-]*$ (binding doctrine / PHP parity)"
+            )
+
     if "version_when_written" in header:
         errors.append("Deprecated header field present: version_when_written (use when_updated)")
 
@@ -199,7 +206,16 @@ def validate_header(
             if expected is not None and expected.strip() != header.get("actor_name").strip():
                 errors.append("actor_id does not match actor_name.")
 
-    return {"valid": len(errors) == 0, "errors": errors}
+    if "content_id" not in header or header.get("content_id") is None or _is_empty_string(header.get("content_id")):
+        warnings.append(
+            "Missing content_id: artifact not linked to lupo_contents. "
+            "Run: python lupo-scripts/import_content.py <file.md> "
+            "then regenerate from DB with lupo-scripts/generate_headers_from_db.py."
+        )
+    elif not _is_numeric_id(header.get("content_id")):
+        warnings.append("content_id must be numeric when present.")
+
+    return {"valid": len(errors) == 0, "errors": errors, "warnings": warnings}
 
 
 def _is_empty_string(value: Any) -> bool:
@@ -228,6 +244,16 @@ def _is_numeric_id(value: Any) -> bool:
     return False
 
 
+def _is_valid_thread_id(value: Any) -> bool:
+    """Match PHP HeaderDbSync: numeric thread id or slug ^[a-z0-9][a-z0-9-]*$."""
+    if _is_numeric_id(value):
+        return True
+    if isinstance(value, str):
+        s = value.strip()
+        return re.match(r"^[a-z0-9][a-z0-9-]*$", s) is not None
+    return False
+
+
 def _is_valid_relative_path(path: str) -> bool:
     p = str(path).strip()
     if p == "":
@@ -242,4 +268,5 @@ def _is_valid_relative_path(path: str) -> bool:
         return False
     if "//" in p:
         return False
-    return re.match(r"^[A-Za-z0-9_./]+$", p) is not None
+    # Hyphens are common in repo dirs (lupo-rules, lupo-docs, …); align with real paths.
+    return re.match(r"^[A-Za-z0-9_.\-/]+$", p) is not None

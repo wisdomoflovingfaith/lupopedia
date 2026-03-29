@@ -23,17 +23,22 @@ lupopedia.edges:
     - { to: "AGENTS.md", type: "aligns", weight: 0.9 }
 
 lupopedia.footer:
+  approved_for_version: "4.1.0"
+  approved_for_version_utc: "20260327103238"
+  approved_for_version_by: "Cursor IDE Agent (Lead Orchestration)"
+  approved_for_version_by_actor_id: 102
   last_verified: "20260325213000"
   last_verified_by: "cursor"
   last_verified_by_actor_id: 102
   orchestrator: "wolfie:root"
----
 
 # file: IDENTITY_LAYERS_DOCTRINE — delegation: 12:1 — web_path: http://www.lupopedia.com/doctrine/IDENTITY_LAYERS
 
-# Identity Layers Doctrine (v4.0.87)
+# Identity Layers Doctrine (v4.0.88 clarification)
 
 This doctrine defines the canonical 4.0.87 identity separation to eliminate layer confusion and prevent privilege ambiguity. The model has five layers: Auth User, Actor, Department, Agent, and Faucet.
+
+4.0.88 clarification: departments are primary identity execution scope; context is secondary and currently underdeveloped.
 
 ---
 
@@ -68,6 +73,14 @@ This doctrine defines the canonical 4.0.87 identity separation to eliminate laye
 - Actor-scoped execution context that governs operational surface.
 - Defines authority domain, default pairing context, and policy grouping.
 - Department context is part of effective actor resolution.
+
+### 2.3.a Department vs Context (4.0.88)
+
+- Departments are the primary operational layer.
+- Context is a secondary layer that represents task scope, runtime focus, and situational execution state.
+- Context must live under departments and must not replace department authority boundaries.
+- Current reality in 4.0.88: context remains underdefined and root department operations are temporarily absorbing context responsibilities.
+- Required direction: context must be formalized in future versions while departments remain primary.
 
 ### 2.4 Agent (`lupo_agents`)
 
@@ -141,6 +154,8 @@ Notes:
 - Use `actor_id` as the operational join key in relationships.
 - Treat `lupo_agents` as configuration metadata and `lupo_agent_faucets` as interface surfaces.
 - Enforce department-aware actor context in admin and channel operations.
+- Do not use context labels as an authority override for department scope.
+- Treat `lupo-context/` as an evolving structure that inherits and refines department-scoped execution, not a replacement identity layer.
 
 ---
 

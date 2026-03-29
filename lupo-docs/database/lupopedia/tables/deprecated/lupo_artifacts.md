@@ -1,4 +1,4 @@
----
+﻿---
 lupopedia.headers:
   version_when_written: "4.0.87"
   file_path_from_root: "lupo-docs/database/lupopedia/tables/deprecated/lupo_artifacts.md"
@@ -48,8 +48,7 @@ lupopedia.edges:
   - to: lupo-scripts/wolfie_orms.py
     type: USED_IN_PYTHON
     weight: 0.5
-lupopedia.footer:
-  last_verified: '20260317000000'
+lupopedia.footer:`n  approved_for_release: "4.1.0"`n  approval_status: "approved"`n  approved_by_actor_id: 1`n  approved_utc: 20260326192115`n  last_verified: '20260317000000'
   last_verified_by: cursor
   last_verified_by_actor_id: 102
   orchestrator: cursor:root
@@ -96,3 +95,4 @@ lupopedia.footer:
 - warnings: avoid assuming implicit constraints; use doctrine that logic is application-side.
 - future considerations: if additional relationships are introduced, document via TOON updates first.
 - historical changes if updating existing docs: existing flat documentation was retained; this file is the category-structured canonical doc for this domain pass.
+

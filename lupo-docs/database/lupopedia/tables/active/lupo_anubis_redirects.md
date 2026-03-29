@@ -1,60 +1,65 @@
 ---
 lupopedia.headers:
-  lupopedia.schema: documentation
-  file_path_from_root: lupo-docs/database/lupopedia/tables/active/lupo_anubis_redirects.md
-  channel_id: 1
-  actor_id: 103
-  last_modified_utc: '20260312'
-  artifact_type: table_documentation
-  purpose: Registry for record-level redirects following reconciliation
-  mood_rgb: 4169E1
-  traits:
-  - canonical
-  - anubis
-  - integrity
-  - v4.0.70
+  when_updated: "20260328013000"
+  file_path_from_root: "lupo-docs/database/lupopedia/tables/active/lupo_anubis_redirects.md"
+  last_modified_utc: "20260328013000"
+  channel_id: 42
+  actor_id: 23
+  actor_name: "hephaestus"
+  delegation_chain: "wolfie:hephaestus"
+  artifact_type: "documentation"
+  artifact_kind: "table"
+  namespace: "core"
+  purpose: "Normalized table documentation for lupo_anubis_redirects from TOON JSON"
   tags:
   - database
-  - anubis
-  - redirects
-  - reconciliation
-  lupo_agent: antigravity
-  when_updated: '20260324174654'
+  - table
+  - normalized
+  - 4.0.88
 lupopedia.edges:
+  comment: "static placeholder edges for stage3 normalization"
   outbound_edges:
-  - to: lupo-database/lupopedia/toon/lupo_anubis_redirects.toon
-    type: references
+  - to: "lupo-database/lupopedia/json/lupo_anubis_redirects.json"
+    type: "references"
     weight: 1.0
+    reason: "authoritative TOON JSON source"
 lupopedia.footer:
-  last_verified: '20260312000000'
-  last_verified_by: cursor
-  last_verified_by_actor_id: 102
-  orchestrator: cursor:root
+  last_verified: "20260328013000"
+  last_verified_by: "hephaestus"
+  last_verified_by_actor_id: 23
+  generated: true
+  provenance: "stage3_track_c_normalization"
 ---
+# file: lupo_anubis_redirects.md
 
-# Table Overview: lupo_anubis_redirects
+# lupo_anubis_redirects
 
-- **Purpose**: Maps old IDs to new IDs following record consolidation or duplication resolution by ANUBIS. This ensures that legacy links or external references do not break when records are merged.
-- **Category**: Integrity / Reconciliation
-- **Status**: Active
-- **Version Introduced**: 4.0.0
+## Purpose
+Canonical table documentation normalized from TOON JSON for `lupo_anubis_redirects`.
 
-## Column Documentation
+## Schema
 
-| Column Name | Type | Nullable | Default | Description |
-| :--- | :--- | :--- | :--- | :--- |
-| `anubis_redirect_id` | BIGINT | No | - | Primary Key. |
-| `table_name` | VARCHAR(255) | No | - | The table where the ID migration occurred. |
-| `old_id` | BIGINT | No | - | The former/obsolete ID. |
-| `new_id` | BIGINT | No | - | The current/canonical ID. |
-| `created_ymdhis` | BIGINT | No | - | Creation timestamp. |
-| `updated_ymdhis` | BIGINT | No | - | Update timestamp. |
-| `agent` | VARCHAR(255) | No | - | The agent that authorized the redirect. |
+### Primary Key
+(none)
 
-## Usage Notes
+### Columns
 
-- **Application Logic**: Low-level DB wrappers or services check this table when a requested ID is not found in the target table.
-- **Maintenance**: Redirects should be permanent to avoid link rot within the semantic graph.
+| Column | Type Definition |
+|---|---|
+| `anubis_redirect_id` | `bigint NOT NULL` |
+| `table_name` | `varchar(255) NOT NULL` |
+| `old_id` | `bigint NOT NULL` |
+| `new_id` | `bigint NOT NULL` |
+| `created_ymdhis` | `bigint NOT NULL` |
+| `updated_ymdhis` | `bigint NOT NULL` |
+| `agent` | `varchar(255) NOT NULL` |
 
----
-*Created by Antigravity (Actor 103) as part of the Database Documentation Program.*
+### Indexes
+
+| Index | Columns | Unique |
+|---|---|---|
+
+## Doctrine
+- Source of truth: `lupo-database/lupopedia/json/` TOON exports
+- Regeneration mode: Stage 3 deterministic normalization
+- Edge mode: placeholder baseline

@@ -1,72 +1,69 @@
 ---
 lupopedia.headers:
-  lupopedia.schema: documentation
-  file_path_from_root: lupo-docs/database/lupopedia/tables/active/lupo_federation_category_map.md
-  channel_id: 1
-  actor_id: 103
-  last_modified_utc: '20260312'
-  artifact_type: table_documentation
-  purpose: Many-to-many relationship between nodes and categories
-  mood_rgb: 4169E1
-  traits:
-  - canonical
-  - federation
-  - v4.0.70
+  when_updated: "20260328013000"
+  file_path_from_root: "lupo-docs/database/lupopedia/tables/active/lupo_federation_category_map.md"
+  last_modified_utc: "20260328013000"
+  channel_id: 42
+  actor_id: 23
+  actor_name: "hephaestus"
+  delegation_chain: "wolfie:hephaestus"
+  artifact_type: "documentation"
+  artifact_kind: "table"
+  namespace: "federation"
+  purpose: "Normalized table documentation for lupo_federation_category_map from TOON JSON"
   tags:
   - database
-  - federation
-  - mapping
-  - categories
-  lupo_agent: antigravity
-  when_updated: '20260324174654'
+  - table
+  - normalized
+  - 4.0.88
 lupopedia.edges:
+  comment: "static placeholder edges for stage3 normalization"
   outbound_edges:
-  - to: lupo-database/lupopedia/toon/lupo_federation_category_map.toon
-    type: references
+  - to: "lupo-database/lupopedia/json/lupo_federation_category_map.json"
+    type: "references"
     weight: 1.0
-  - to: lupo-docs/database/lupopedia/tables/active/lupo_federation_nodes.md
-    type: references
-    weight: 1.0
-  - to: lupo-docs/database/lupopedia/tables/active/lupo_federation_categories.md
-    type: references
-    weight: 1.0
+    reason: "authoritative TOON JSON source"
 lupopedia.footer:
-  last_verified: '20260312000000'
-  last_verified_by: cursor
-  last_verified_by_actor_id: 102
-  orchestrator: cursor:root
+  last_verified: "20260328013000"
+  last_verified_by: "hephaestus"
+  last_verified_by_actor_id: 23
+  generated: true
+  provenance: "stage3_track_c_normalization"
 ---
+# file: lupo_federation_category_map.md
 
-# Table Overview: lupo_federation_category_map
+# lupo_federation_category_map
 
-- **Purpose**: A mapping table that implements the many-to-many relationship between Federation Nodes and Federation Categories.
-- **Category**: Federation / Network
-- **Status**: Active
-- **Version Introduced**: 4.0.0
+## Purpose
+Canonical table documentation normalized from TOON JSON for `lupo_federation_category_map`.
 
-## Column Documentation
+## Schema
 
-| Column Name | Type | Nullable | Default | Description |
-| :--- | :--- | :--- | :--- | :--- |
-| `federation_category_map_id` | BIGINT | No | - | Primary Key. Numeric identifier for the mapping. |
-| `federation_node_id` | BIGINT | No | - | Reference to the registered node. |
-| `federation_category_id` | BIGINT | No | - | Reference to the category. |
-| `meta_json` | JSON | Yes | - | Extended mapping metadata. |
-| `is_deleted` | TINYINT | No | 0 | Soft delete flag (1=deleted). |
-| `deleted_ymdhis` | BIGINT | No | 0 | Soft delete timestamp (YYYYMMDDHHIISS). |
-| `created_ymdhis` | BIGINT | No | 0 | Creation timestamp. |
-| `updated_ymdhis` | BIGINT | No | 0 | Last update timestamp. |
+### Primary Key
+(none)
 
-## Relationships
+### Columns
 
-### Outbound References
-- `lupo_federation_nodes.federation_node_id`: Target node.
-- `lupo_federation_categories.federation_category_id`: Target category.
+| Column | Type Definition |
+|---|---|
+| `federation_category_map_id` | `bigint NOT NULL` |
+| `federation_node_id` | `bigint NOT NULL` |
+| `federation_category_id` | `bigint NOT NULL` |
+| `meta_json` | `json` |
+| `is_deleted` | `tinyint NOT NULL DEFAULT 0` |
+| `deleted_ymdhis` | `bigint NOT NULL DEFAULT 0` |
+| `created_ymdhis` | `bigint NOT NULL DEFAULT 0` |
+| `updated_ymdhis` | `bigint NOT NULL DEFAULT 0` |
 
-## Usage Notes
+### Indexes
 
-- **Querying**: To find all nodes in a specific category, join `lupo_federation_nodes` with this table on `federation_node_id`.
-- **Soft Deletes**: Always filter for `is_deleted = 0` when retrieving active mappings.
+| Index | Columns | Unique |
+|---|---|---|
+| `lupo_federation_category_map_idx_category` | `federation_category_id` | no |
+| `lupo_federation_category_map_idx_is_deleted` | `is_deleted` | no |
+| `lupo_federation_category_map_idx_node` | `federation_node_id` | no |
 
----
-*Created by Antigravity (Actor 103) as part of the Database Documentation Program.*
+## Doctrine
+- Source of truth: `lupo-database/lupopedia/json/` TOON exports
+- Regeneration mode: Stage 3 deterministic normalization
+- Edge mode: placeholder baseline

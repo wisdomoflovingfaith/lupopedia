@@ -1,87 +1,87 @@
 ---
 lupopedia.headers:
-  lupopedia.schema: database_table
-  file_path_from_root: lupo-docs/database/lupopedia/tables/active/lupo_agent_context_snapshots.md
-  channel_id: 1
-  actor_id: 102
-  last_modified_utc: '20260312'
-  artifact_type: table_documentation
-  purpose: Serialized agent context per session/actor (full/delta, retention)
-  mood_rgb: 4169E1
-  traits:
-  - canonical
-  - agent
-  - session
-  - cursor_domain
-  - v4.0.70
+  when_updated: "20260328013000"
+  file_path_from_root: "lupo-docs/database/lupopedia/tables/active/lupo_agent_context_snapshots.md"
+  last_modified_utc: "20260328013000"
+  channel_id: 42
+  actor_id: 23
+  actor_name: "hephaestus"
+  delegation_chain: "wolfie:hephaestus"
+  artifact_type: "documentation"
+  artifact_kind: "table"
+  namespace: "core"
+  purpose: "Normalized table documentation for lupo_agent_context_snapshots from TOON JSON"
   tags:
   - database
-  - agents
-  - context
-  - snapshots
-  lupo_agent: cursor
-  when_updated: '20260324174654'
+  - table
+  - normalized
+  - 4.0.88
 lupopedia.edges:
+  comment: "static placeholder edges for stage3 normalization"
   outbound_edges:
-  - to: lupo-database/lupopedia/toon/lupo_agent_context_snapshots.toon.json
-    type: schema_reference
+  - to: "lupo-database/lupopedia/json/lupo_agent_context_snapshots.json"
+    type: "references"
     weight: 1.0
-  - to: lupo-docs/database/lupopedia/tables/active/lupo_sessions.md
-    type: references
-    weight: 0.8
-  - to: lupo-docs/database/lupopedia/tables/active/lupo_agent_tool_calls.md
-    type: references
-    weight: 0.6
+    reason: "authoritative TOON JSON source"
 lupopedia.footer:
-  last_verified: '20260312000000'
-  last_verified_by: cursor
-  last_verified_by_actor_id: 102
-  orchestrator: cursor:root
+  last_verified: "20260328013000"
+  last_verified_by: "hephaestus"
+  last_verified_by_actor_id: 23
+  generated: true
+  provenance: "stage3_track_c_normalization"
 ---
+# file: lupo_agent_context_snapshots.md
 
-# Table: lupo_agent_context_snapshots
+# lupo_agent_context_snapshots
 
-## Table Overview
+## Purpose
+Canonical table documentation normalized from TOON JSON for `lupo_agent_context_snapshots`.
 
-- **Purpose:** Stores agent context snapshots per session and actor: context_data (text), context_summary, context_metadata (JSON), optional compression and token counts, parent_snapshot_id, related_tool_call_id, conversation_turn, retention_policy, expires_ymdhis.
-- **Category:** Agent / Session
-- **Status:** Active
-- **Version introduced:** 4.0.0
+## Schema
 
-## Column Documentation
+### Primary Key
+(none)
 
-| Column | Type | Nullable | Default | Description |
-|--------|------|----------|---------|-------------|
-| agent_context_snapshot_id | bigint | No | — | Primary key. |
-| session_id | varchar(100) | No | — | Session (logical → lupo_sessions). |
-| actor_id | bigint | No | — | Actor. |
-| parent_snapshot_id | bigint | Yes | — | Parent snapshot for delta chains. |
-| snapshot_type | varchar(64) | No | 'full' | full or delta. |
-| snapshot_purpose | varchar(50) | Yes | — | Purpose code. |
-| context_data | text | No | — | Serialized context. |
-| context_summary | text | Yes | — | Summary. |
-| context_metadata | json | Yes | — | Metadata. |
-| token_count | int | Yes | — | Token count. |
-| character_count | int | Yes | — | Character count. |
-| compressed_size | int | Yes | — | Compressed size. |
-| compression_ratio | float | Yes | — | Ratio. |
-| compression_method | varchar(64) | Yes | 'gzip' | Method. |
-| serialization_time_ms | int | Yes | — | Serialization time. |
-| compression_time_ms | int | Yes | — | Compression time. |
-| related_tool_call_id | bigint | Yes | — | Related tool call. |
-| conversation_turn | int | Yes | — | Turn number. |
-| created_ymdhis | bigint | No | 0 | Creation. |
-| expires_ymdhis | bigint | Yes | — | Expiry. |
-| is_corrupt | tinyint | Yes | 0 | Corrupt flag. |
-| retention_policy | varchar(64) | Yes | 'temporary' | Retention policy. |
+### Columns
 
-## Relationships
+| Column | Type Definition |
+|---|---|
+| `agent_context_snapshot_id` | `bigint NOT NULL` |
+| `session_id` | `varchar(100) NOT NULL` |
+| `actor_id` | `bigint NOT NULL` |
+| `parent_snapshot_id` | `bigint` |
+| `snapshot_type` | `varchar(64) NOT NULL DEFAULT 'full'` |
+| `snapshot_purpose` | `varchar(50)` |
+| `context_data` | `text NOT NULL` |
+| `context_summary` | `text` |
+| `context_metadata` | `json` |
+| `token_count` | `int` |
+| `character_count` | `int` |
+| `compressed_size` | `int` |
+| `compression_ratio` | `float` |
+| `compression_method` | `varchar(64) DEFAULT 'gzip'` |
+| `serialization_time_ms` | `int` |
+| `compression_time_ms` | `int` |
+| `related_tool_call_id` | `bigint` |
+| `conversation_turn` | `int` |
+| `created_ymdhis` | `bigint NOT NULL DEFAULT 0` |
+| `expires_ymdhis` | `bigint` |
+| `is_corrupt` | `tinyint DEFAULT 0` |
+| `retention_policy` | `varchar(64) DEFAULT 'temporary'` |
 
-- **Logical references:** session_id → lupo_sessions; actor_id → lupo_actors; parent_snapshot_id → same table; related_tool_call_id → lupo_agent_tool_calls.
-- **Inbound:** Agent context persistence and restore.
-- **Join patterns:** By created_ymdhis, parent_snapshot_id, related_tool_call_id, (retention_policy, expires_ymdhis), (session_id, actor_id), (session_id, conversation_turn), (snapshot_type, snapshot_purpose).
+### Indexes
 
-## Usage Notes
+| Index | Columns | Unique |
+|---|---|---|
+| `lupo_agent_context_snapshots_idx_created` | `created_ymdhis` | no |
+| `lupo_agent_context_snapshots_idx_parent` | `parent_snapshot_id` | no |
+| `lupo_agent_context_snapshots_idx_related_tool` | `related_tool_call_id` | no |
+| `lupo_agent_context_snapshots_idx_retention` | `retention_policy`, `expires_ymdhis` | no |
+| `lupo_agent_context_snapshots_idx_session_agent` | `session_id`, `actor_id` | no |
+| `lupo_agent_context_snapshots_idx_turn` | `session_id`, `conversation_turn` | no |
+| `lupo_agent_context_snapshots_idx_type_purpose` | `snapshot_type`, `snapshot_purpose` | no |
 
-- **Indexes:** created_ymdhis, parent_snapshot_id, related_tool_call_id, (retention_policy, expires_ymdhis), (session_id, actor_id), (session_id, conversation_turn), (snapshot_type, snapshot_purpose).
-- **Timestamps:** BIGINT YYYYMMDDHHIISS UTC.
+## Doctrine
+- Source of truth: `lupo-database/lupopedia/json/` TOON exports
+- Regeneration mode: Stage 3 deterministic normalization
+- Edge mode: placeholder baseline

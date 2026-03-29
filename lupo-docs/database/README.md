@@ -1,103 +1,47 @@
-# LUPOPEDIA HEADERS (replaces FLARE)
 ---
 lupopedia.headers:
-  lupopedia.version: "4.0.73"
+  lupopedia.version: "4.0.89"
   lupopedia.schema: "documentation"
   file_path_from_root: "lupo-docs/database/README.md"
-  file_hash: "de4c2790be612578a75098624d5cb1cb68cf336dbe81ed2864b6171580f7716f"
-  last_updated_utc: "20260228155738"
-  system_version: "4.0.51"
-  channel_id: 1
-  actor_id: 1002
-  delegation_chain: "1002:10000"
+  web_path: "http://www.lupopedia.com/lupopedia/lupo-docs/database/README.md"
+  last_modified_utc: "20260328120000"
+  system_version: "4.0.89"
+  channel_id: 42
+  thread_id: "4.0.89-database-docs"
+  actor_id: 23
+  actor_name: "thoth"
+  delegation_chain: "wolfie:thoth"
   artifact_type: "documentation"
-  artifact_kind: "documentation"
-  purpose: "Documentation file with LUPOPEDIA HEADERS applied"
-  mood_rgb: "4169E1"
-  traits: ["flare", "indexed", "v4.0.51"]
-  tags: ["documentation", "flare_applied"]
-  lupo_agent: "windsurf"
+  artifact_kind: "database_documentation"
+  purpose: "Database authority and documentation with LUPOPEDIA HEADERS"
+  tags: ["4.0.89", "database", "documentation", "authority"]
+  namespace: "documentation"
 
 lupopedia.edges:
   outbound_edges:
-    - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/versions/4.0.89/README.md", type: "references", weight: 0.9, reason: "Current version overview" }
+    - { to: "lupo-database/lupopedia/mysql/install/install_new_lupopedia.sql", type: "schema_authority", weight: 1.0, reason: "Canonical schema source" }
+    - { to: "lupo-database/lupopedia/toon/", type: "references", weight: 0.9, reason: "TOON exports for validation" }
+    - { to: "lupo-database/lupopedia/json/", type: "references", weight: 0.9, reason: "JSON exports for tooling" }
+    - { to: "lupo-docs/database/lupopedia/tables/active/", type: "references", weight: 0.8, reason: "Canonical table documentation" }
+    - { to: "lupo-docs/doctrine/LUPOPEDIA_HEADERS/README.md", type: "references", weight: 0.9, reason: "Metadata and validation system" }
 
 lupopedia.footer:
-  last_verified: "20260228155738"
-  last_verified_by: "windsurf"
+  last_verified: "20260328120000"
+  verified_by:
+    identity_type: "actor"
+    actor_id: 23
+    agent_name_identity: "THOTH"
+    department_id_delta: 0
+  verified_via:
+    type: "faucet"
+    faucet_slug: "windsurf"
+  orchestrator: "wolfie:thoth"
+  next_action:
+    - "Maintain database documentation as schema evolves"
+    - "Update table docs as TOON exports change"
+    - "Keep authority chain clear and current"
 ---
-
-# LUPOPEDIA HEADERS (replaces FLARE)
-
----
-lupopedia.headers:
-  lupopedia.version: "4.0.73"
-  lupopedia.schema: "documentation"
-  lupopedia.edges: []
-  file_path_from_root: "lupo-docs\database\README.md"
-  file_hash: "0233f7aff0b4acef9c0c00037ded1a41d38ee5ce94bdc8293bfd215bef25aa3a"
-  file_path_from_root: "lupo-docs\database\README.md"
-  file_hash: "88dd20b3599a011bcade17a34b0aa1217c433e6cb431f6aa433df161bff6d4bb"
-  last_updated_utc: "20260228"
-  system_version: "4.0.50"
-  channel_id: 1
-  actor_id: 1002
-  delegation_chain: null
-  artifact_type: "guide"
-  artifact_kind: "documentation"
-  purpose: "🗄️ Lupopedia Database Documentation"
-  mood_rgb: "4169E1"
-  traits: ["flare", "indexed", "v4.0.50"]
-  tags: ["docs", "database", "readmemd"]
-  lupo_agent: "windsurf"
-
-  needs_review: ["delegation_chain"]
-  system_version: "4.0.50"
-  last_updated_utc: "20260228"
-lupopedia.footer:
-  last_verified: "20260228"
-  last_verified_by: "windsurf"
----
-
-# 🗄️ Lupopedia Database Documentation
-
-**Version:** 4.0.47  
-**Status:** ✅ Active Development  
-**Purpose:** Centralized database table documentation and FLARE relationship mapping
-
----
-
-## 📁 **Database Documentation Structure**
-
-This directory contains comprehensive documentation for all Lupopedia database tables, organized by database name.
-
-```
-lupo-docs/database/
-├── lupopedia/
-│   ├── tables/
-│   │   ├── lupo_actors.md
-│   │   ├── lupo_channels.md
-│   │   ├── lupo_dialog_messages.md
-│   │   ├── lupo_edges.md
-│   │   ├── lupo_sessions.md
-│   │   └── ... (all 210+ tables)
-│   └── README.md
-├── lupopedia_worms/
-│   ├── tables/
-│   │   └── ... (worms database tables)
-│   └── README.md
-└── README.md (this file)
-```
-
----
-
-## 🎯 **Database Overview**
-
-### **Lupopedia Database**
-- **Table Count:** Run `python lupo-scripts/generate_toon_files.py` and use the TOON file count — do not hardcode (see TABLE_COUNT_DOCTRINE).
-- **Purpose:** Main application database
-- **Status:** Production-ready
 - **Documentation:** Complete coverage planned
 
 ### **Lupopedia_Worms Database**

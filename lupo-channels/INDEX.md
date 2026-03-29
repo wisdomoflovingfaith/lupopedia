@@ -33,6 +33,7 @@ lupopedia.headers:
 | 0 | System Kernel | operational | wolfie | Core system operations and kernel coordination |
 | 42 | Protocol Development | active | wolfie | Multi-agent coordination, protocol development, system evolution |
 | 51 | Doctrine Council | operational | wolfie | Constitutional doctrine and governance decisions |
+| 65 | Channel Refactor Governance | active | cursor | Filesystem/channel refactor audit, phased migration, and edge-safe governance pilot |
 | 666 | ANUBIS Quarantine | operational | anubis | Orphan resolution and banned actor containment |
 
 ---
@@ -68,6 +69,16 @@ lupopedia.headers:
 - **Purpose**: Constitutional governance and doctrine decisions
 - **Access**: Doctrine council members
 - **Content**: Policy decisions, constitutional amendments, governance records
+
+### **Channel 65: Channel Refactor Governance**
+- **Path**: `lupo-channels/1_channel_refactor_governance/`
+- **Purpose**: Filesystem/channel refactor audit, phased migration planning, and edge-safe governance
+- **Access**: Documentation, orchestration, implementation, and validation actors
+- **Content**:
+  - governance charters
+  - audit reports
+  - `questions/` and `prompts/` pilot guidance
+  - edge reconciliation planning
 
 ### **Channel 666: ANUBIS Quarantine**
 - **Path**: `lupo-channels/666/`
@@ -131,6 +142,15 @@ lupo-channels/
 ├── 51/                      # Doctrine Council (legacy numeric path)
 │   ├── THREAD_INDEX.md
 │   └── threads/
+├── 1_channel_refactor_governance/  # 4.0.88 pilot governance channel
+│   ├── THREAD_INDEX.md
+│   ├── threads/
+│   │   └── channel_refactor_4_0_88/
+│   │       ├── questions/
+│   │       ├── prompts/
+│   │       └── [artifacts]
+│   ├── broadcasts/
+│   └── content/
 ├── <channel_slug>/          # New channel directory format (canonical)
 └── 666/                     # ANUBIS Quarantine (legacy numeric path)
     ├── THREAD_INDEX.md

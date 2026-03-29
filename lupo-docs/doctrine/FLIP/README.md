@@ -1,80 +1,79 @@
-# LUPOPEDIA HEADERS (replaces FLARE)
----
-lupopedia.headers:
-  lupopedia.version: "4.0.73"
-  lupopedia.schema: "documentation"
-  file_path_from_root: "lupo-docs/doctrine/FLIP/README.md"
-  file_hash: "21683315f73111d7c3a991d78555f531948b32180902028a6c4cfbf8df5af8ac"
-  last_updated_utc: "20260228155738"
-  system_version: "4.0.51"
-  channel_id: 1
-  actor_id: 1002
-  delegation_chain: "1002:10000"
-  artifact_type: "documentation"
-  artifact_kind: "documentation"
-  purpose: "Documentation file with LUPOPEDIA HEADERS applied"
-  mood_rgb: "4169E1"
-  traits: ["flare", "indexed", "v4.0.51"]
-  tags: ["documentation", "flare_applied"]
-  lupo_agent: "windsurf"
+# ⚠️ FLIP/FLP - DEPRECATED SYSTEMS
 
-lupopedia.edges:
-  outbound_edges:
-    - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
+## 🚨 Deprecation Notice
 
-lupopedia.footer:
-  last_verified: "20260228155738"
-  last_verified_by: "windsurf"
----
+**FLIP and FLP have been replaced by LUPOPEDIA HEADERS**
 
-# LUPOPEDIA HEADERS (replaces FLARE)
+This folder is retained for **historical reference only**. No new work should target this folder.
 
-**Deprecation (4.0.71):** FLIP and FLP are **deprecated** and **replaced** by **LUPOPEDIA HEADERS**. Use [lupo-docs/doctrine/LUPOPEDIA_HEADERS/](../LUPOPEDIA_HEADERS/README.md) and [DEPRECATION_FLARE_FLIP_FLP.md](../LUPOPEDIA_HEADERS/DEPRECATION_FLARE_FLIP_FLP.md) for current behavior. This folder is retained for historical reference.
+## 🔗 Current Canonical System
 
----
-lupopedia.headers:
-  lupopedia.version: "4.0.73"
-  lupopedia.schema: "documentation"
-  lupopedia.edges: []
-  file_path_from_root: "lupo-docs\doctrine\FLIP\README.md"
-  file_hash: "3e95fcac4ff8aa2d7ededc12d215ad85cf3c9e3e4f936520a071e6de21dc613b"
-  file_path_from_root: "lupo-docs\doctrine\FLIP\README.md"
-  file_hash: "5a5217428cda2c433b032a4dd774dcb66c041054da874ad2fe99da678f6953b2"
-  last_updated_utc: "20260228"
-  system_version: "4.0.50"
-  channel_id: 1
-  actor_id: 1002
-  delegation_chain: null
-  artifact_type: "guide"
-  artifact_kind: "documentation"
-  purpose: "Documentation for README.md"
-  mood_rgb: "4169E1"
-  traits: ["flare", "indexed", "v4.0.50"]
-  tags: ["docs", "doctrine", "flip", "readmemd"]
-  lupo_agent: "windsurf"
+- **LUPOPEDIA HEADERS**: [lupo-docs/doctrine/LUPOPEDIA_HEADERS/README.md](../LUPOPEDIA_HEADERS/README.md)
+- **Deprecation Guide**: [DEPRECATION_FLARE_FLIP_FLP.md](../DEPRECATION_FLARE_FLIP_FLP.md)
 
-  needs_review: ["delegation_chain"]
-  system_version: "4.0.50"
-  last_updated_utc: "20260228"
-lupopedia.footer:
-  last_verified: "20260228"
-  last_verified_by: "windsurf"
-    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use lupopedia.headers"]
----
+## 📋 Migration Status
+
+- ✅ **Completed**: LUPOPEDIA HEADERS is the canonical metadata system
+- ✅ **Completed**: All new documents use LUPOPEDIA HEADERS
+- 🔄 **In Progress**: Repository-wide cleanup of FLIP/FLP references
+- ⏳ **Pending**: Full reference sweep before deletion
+
+## ⚠️ Important Notes
+
+### Do Not Use For New Work
+- All new documentation must use LUPOPEDIA HEADERS
+- FLIP/FLP headers are no longer maintained
+- Tooling should target LUPOPEDIA HEADERS
+
+### Reference Only
+- These files are kept for historical context
+- May contain useful architectural decisions
+- Should not be copied or extended
+
+### Deletion Timeline
+This folder will be deleted only after:
+1. Complete repository sweep confirms no path dependencies
+2. All tooling references converted to LUPOPEDIA HEADERS
+3. Migration audit confirms successful transition
 
 ---
-# FLIP Header (alias: Wolfie Header, CROP Header, FLIPPING Header)
-wolfie.headers: explicit architecture with structured clarity for every file.
-file_path_from_root: lupo-docs/doctrine/FLIP/README.md
-file.last_modified_system_version: "4.0.16"
-file.last_modified_utc: "00000000000000"
-# channel_id unresolved — requires lupo_contents lookup by application.
-X-Lupo-Channel: 42   # ANUBIS adoption channel (Auto-Fixed)
-X-Lupo-Actor-ID: 2035
-X-Lupo-Actor-Identity: "Lupopedia Audit Tool (Auto-Fixed)"
-X-Lupo-File-Path: lupo-docs/doctrine/FLIP/README.md
+
+## 📚 Historical Context
+
+### FLIP — File-Level Inference Protocol
+FLIP was the original structured header system for Lupopedia documents. It provided:
+- File identity inference from headers
+- Structured metadata for documentation
+- Cross-reference capabilities
+
+### FLP — Federated Likeness Protocol
+FLP was a governance layer built on top of Lupopedia channels:
+- Councils as channels
+- Emotional geometry and aggregation
+- Application-level governance logic
+
+### LUPOPEDIA HEADERS Improvements
+LUPOPEDIA HEADERS improves upon both systems with:
+- More comprehensive metadata schema
+- Better integration with channel-based coordination
+- Enhanced audit trail capabilities
+- Standardized edge relationships
+- Unified approach replacing both FLIP and FLP
+
 ---
+
+**Status**: ❌ DEPRECATED  
+**Replacement**: ✅ LUPOPEDIA HEADERS  
+**Action Required**: Use LUPOPEDIA HEADERS for all new work
+
+---
+
+# Legacy Content (Historical Reference Only)
+
+The following content is preserved for historical context only. Do not use for new development.
+
+---
+
 # lupo-docs/doctrine/FLIP/
 
 **Status:** Permanent. Documentation only. No schema, no SQL, no implementation unless explicitly instructed.

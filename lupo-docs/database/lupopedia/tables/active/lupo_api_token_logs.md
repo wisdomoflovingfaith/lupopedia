@@ -1,73 +1,74 @@
 ---
 lupopedia.headers:
-  lupopedia.schema: database_table
-  file_path_from_root: lupo-docs/database/lupopedia/tables/active/lupo_api_token_logs.md
-  channel_id: 1
-  actor_id: 102
-  last_modified_utc: '20260312'
-  artifact_type: table_documentation
-  purpose: Per-request audit log for API token usage
-  mood_rgb: 4169E1
-  traits:
-  - canonical
-  - api
-  - audit
-  - cursor_domain
-  - v4.0.70
+  when_updated: "20260328013000"
+  file_path_from_root: "lupo-docs/database/lupopedia/tables/active/lupo_api_token_logs.md"
+  last_modified_utc: "20260328013000"
+  channel_id: 42
+  actor_id: 23
+  actor_name: "hephaestus"
+  delegation_chain: "wolfie:hephaestus"
+  artifact_type: "documentation"
+  artifact_kind: "table"
+  namespace: "integration"
+  purpose: "Normalized table documentation for lupo_api_token_logs from TOON JSON"
   tags:
   - database
-  - api
-  - token_logs
-  - audit
-  lupo_agent: cursor
-  when_updated: '20260324174654'
+  - table
+  - normalized
+  - 4.0.88
 lupopedia.edges:
+  comment: "static placeholder edges for stage3 normalization"
   outbound_edges:
-  - to: lupo-database/lupopedia/toon/lupo_api_token_logs.toon.json
-    type: schema_reference
+  - to: "lupo-database/lupopedia/json/lupo_api_token_logs.json"
+    type: "references"
     weight: 1.0
-  - to: lupo-docs/database/lupopedia/tables/active/lupo_api_tokens.md
-    type: references
-    weight: 0.9
+    reason: "authoritative TOON JSON source"
 lupopedia.footer:
-  last_verified: '20260312000000'
-  last_verified_by: cursor
-  last_verified_by_actor_id: 102
-  orchestrator: cursor:root
+  last_verified: "20260328013000"
+  last_verified_by: "hephaestus"
+  last_verified_by_actor_id: 23
+  generated: true
+  provenance: "stage3_track_c_normalization"
 ---
+# file: lupo_api_token_logs.md
 
-# Table: lupo_api_token_logs
+# lupo_api_token_logs
 
-## Table Overview
+## Purpose
+Canonical table documentation normalized from TOON JSON for `lupo_api_token_logs`.
 
-- **Purpose:** Audit log of API requests authenticated by token: endpoint, method, IP, user agent, status code, and request time. Used for security and usage analytics.
-- **Category:** API / Audit / Security
-- **Status:** Active
-- **Version introduced:** 4.0.0
+## Schema
 
-## Column Documentation
+### Primary Key
+(none)
 
-| Column | Type | Nullable | Default | Description |
-|--------|------|----------|---------|-------------|
-| api_token_log_id | bigint | No | — | Primary key. |
-| domain_id | bigint | No | 1 | Domain context. |
-| api_token_id | bigint | No | — | Token used (logical → lupo_api_tokens). |
-| actor_id | bigint | No | 0 | Actor at request time. |
-| endpoint | varchar(255) | No | — | Requested endpoint. |
-| http_method | varchar(10) | No | — | HTTP method. |
-| ip_address | varchar(45) | Yes | — | Client IP. |
-| user_agent | varchar(255) | Yes | — | User-Agent. |
-| status_code | int | No | — | HTTP status. |
-| request_ymdhis | bigint | No | — | Request timestamp. |
-| duration_ms | int | Yes | — | Request duration in ms. |
+### Columns
 
-## Relationships
+| Column | Type Definition |
+|---|---|
+| `api_token_log_id` | `bigint NOT NULL` |
+| `domain_id` | `bigint NOT NULL DEFAULT 1` |
+| `api_token_id` | `bigint NOT NULL` |
+| `actor_id` | `bigint NOT NULL DEFAULT 0` |
+| `endpoint` | `varchar(255) NOT NULL` |
+| `http_method` | `varchar(10) NOT NULL` |
+| `ip_address` | `varchar(45)` |
+| `user_agent` | `varchar(255)` |
+| `status_code` | `int NOT NULL` |
+| `request_ymdhis` | `bigint NOT NULL` |
+| `duration_ms` | `int` |
 
-- **Logical references:** api_token_id → lupo_api_tokens.api_token_id; actor_id → lupo_actors.
-- **Inbound:** API middleware writes a row per token-authenticated request.
-- **Join patterns:** By actor_id, (domain_id, request_ymdhis), endpoint, status_code, api_token_id.
+### Indexes
 
-## Usage Notes
+| Index | Columns | Unique |
+|---|---|---|
+| `lupo_api_token_logs_idx_actor` | `actor_id` | no |
+| `lupo_api_token_logs_idx_domain_time` | `domain_id`, `request_ymdhis` | no |
+| `lupo_api_token_logs_idx_endpoint` | `endpoint` | no |
+| `lupo_api_token_logs_idx_status` | `status_code` | no |
+| `lupo_api_token_logs_idx_token` | `api_token_id` | no |
 
-- **Indexes:** actor_id, (domain_id, request_ymdhis), endpoint, status_code, api_token_id.
-- **Timestamps:** request_ymdhis is BIGINT YYYYMMDDHHIISS UTC.
+## Doctrine
+- Source of truth: `lupo-database/lupopedia/json/` TOON exports
+- Regeneration mode: Stage 3 deterministic normalization
+- Edge mode: placeholder baseline

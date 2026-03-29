@@ -15,10 +15,23 @@
     "`created_ymdhis` bigint NOT NULL DEFAULT 0",
     "`is_processed` tinyint NOT NULL DEFAULT 0",
     "`is_deleted` tinyint NOT NULL DEFAULT 0",
-    "`deleted_ymdhis` bigint"
+    "`deleted_ymdhis` bigint",
+    "`country_code` char(2)",
+    "`city` varchar(100)",
+    "`latitude` decimal(10,8)",
+    "`longitude` decimal(11,8)",
+    "`geolocation_source` varchar(50)"
   ],
   "data": [],
   "indexes": [
+    {
+      "index_name": "idx_country",
+      "columns": [
+        "country_code"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
     {
       "index_name": "lupo_visits_idx_actor",
       "columns": [

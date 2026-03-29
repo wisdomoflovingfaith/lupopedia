@@ -1,4 +1,4 @@
-# LUPOPEDIA HEADERS (replaces FLARE) — see http://www.lupopedia.com/FLARE
+﻿# LUPOPEDIA HEADERS (replaces FLARE) â€” see http://www.lupopedia.com/FLARE
 ---
 lupopedia.headers:
   lupopedia.version: "4.0.73"
@@ -27,8 +27,7 @@ lupopedia.edges:
     - { to: "lupo-database/lupopedia/toon/lupo_channel_boot_lifecycle.toon.json", type: "integration_reference", weight: 0.8 }
   semantic_tags: ["session_management", "agent_isolation", "database_sync"]
 
-lupopedia.footer:
-  version: "4.0.53"
+lupopedia.footer:`n  approved_for_release: "4.1.0"`n  approval_status: "approved"`n  approved_by_actor_id: 1`n  approved_utc: 20260326192115`n  version: "4.0.53"
   last_verified: "20260301"
   last_verified_by: "windsurf"
 ---
@@ -123,7 +122,7 @@ Run from repo root: `php bin/session_manager.php <command> [args]`.
   php bin/session_manager.php sync [--all] [--actor=1002]
   ```
   - `--all`: Sync for all agents (admin only).
-  - Output: "✅ Sessions synced: 5 updated, 2 inserted."
+  - Output: "âœ… Sessions synced: 5 updated, 2 inserted."
 
 - **active**: List active sessions.
   ```
@@ -136,7 +135,7 @@ Run from repo root: `php bin/session_manager.php <command> [args]`.
   php bin/session_manager.php cleanup [--dry-run]
   ```
   - `--dry-run`: Simulate without deletes.
-  - Logs: "🧹 Cleaned 3 expired sessions."
+  - Logs: "ðŸ§¹ Cleaned 3 expired sessions."
 
 - **stats**: Session metrics.
   ```
@@ -148,7 +147,7 @@ Run from repo root: `php bin/session_manager.php <command> [args]`.
   ```
   php bin/session_manager.php validate abc123-uuid
   ```
-  - Output: "✅ Valid: Active, Last Seen: 20260301090000" or "❌ Invalid: Expired."
+  - Output: "âœ… Valid: Active, Last Seen: 20260301090000" or "âŒ Invalid: Expired."
 
 All commands log to `lupo_channel_logs` (channel_id=0, actor_id=current).
 
@@ -229,4 +228,5 @@ Results: JSON-like output with reason codes; logged for audit.
 **Document Created**: 20260301  
 **Lead Agent**: Windsurf (1002)  
 **Version**: 4.0.53  
-**Status**: ✅ SESSION MANAGEMENT SYSTEM DOCUMENTATION WITH DEFAULT TEMPLATES
+**Status**: âœ… SESSION MANAGEMENT SYSTEM DOCUMENTATION WITH DEFAULT TEMPLATES
+

@@ -16,6 +16,7 @@ lupopedia.headers:
 
 lupopedia.edges:
   outbound_edges:
+    - { to: "lupo-docs/doctrine/COUNTING_IN_LIGHT.md", type: "complements", weight: 1.0, reason: "Counting-in-Light doctrine explains the axis model and naming confusion behind mood_rgb." }
     - { to: "dialog.yaml", type: "formalizes", weight: 1.0, reason: "dialog.yaml defines mood_RGB as a six-hex semantic field and names the historical axes." }
     - { to: "lupo-api/dialog/send-message.php", type: "formalizes", weight: 1.0, reason: "API input validation and default handling define current runtime constraints." }
     - { to: "lupo-api/v1/dialog/metrics.php", type: "formalizes", weight: 0.9, reason: "Metrics endpoint aggregates mood values as operational telemetry." }
@@ -26,6 +27,7 @@ lupopedia.edges:
     - { to: "lupo-channels/42/threads/1045/20260321_193000_wolfie_phase_2_gate_pass.md", type: "evidence", weight: 0.9, reason: "00FF00 is used for gate-pass and approval states." }
     - { to: "lupo-channels/42/threads/1036/20260321_150000_athena_canonical_actor_architecture_and_repair_plan.md", type: "evidence", weight: 0.85, reason: "666666 is used for neutral architectural analysis." }
     - { to: "lupo-docs/channels/doctrine/MOOD_RGB_DOCTRINE.md", type: "supersedes_in_root_doctrine", weight: 0.8, reason: "Older channel-doctrine material provides lineage but is not the current canonical root doctrine surface." }
+    - { to: "lupo-docs/channels/appendix/appendix/COUNTING_IN_LIGHT.md", type: "references_lineage_copy", weight: 0.6, reason: "Appendix copy remains as mirrored lineage material, not the canonical doctrine home." }
 
 lupopedia.footer:
   last_verified: "20260322_170424"
@@ -40,6 +42,8 @@ lupopedia.footer:
 
 `mood_rgb` is a six-hex-digit semantic state vector. It is stored in RGB-shaped encoding, but in Lupopedia 4.0.85 it is **not canonicalized as a visual color system**. It is a compact signaling field used by dialog tooling, routing helpers, audits, directives, and artifact headers.
 
+The field name is historically confusing. `mood_rgb` looks like a display color, and UI layers may render it as one, but its primary repository meaning is a three-axis encoded mood/light vector derived from the Counting-in-Light model.
+
 This doctrine is based on current repository behavior, not on aspirational emotional-geometry prose alone.
 
 This doctrine now defines `mood_rgb` as a **hybrid system** with two explicit layers:
@@ -52,8 +56,15 @@ This doctrine now defines `mood_rgb` as a **hybrid system** with two explicit la
 - Storage form: `RRGGBB`
 - Allowed characters: six hex digits, no leading `#`
 - Runtime default: `666666`
+- Canonical runtime/storage field name: `mood_rgb`
 - Primary meaning: encode semantic posture across three channels that can be consumed by humans, validators, and routing helpers
 - Current repository status: formalized as a hybrid model with authoritative canonical tokens and non-authoritative continuous routing influence
+
+Related naming note:
+
+- `mood_rgb` remains the canonical field name for compatibility with current storage, APIs, and artifacts even though the name resembles a plain UI color.
+- `mood_RGB` is a historical/header-style spelling used in some YAML dialog surfaces. It refers to the same semantic field.
+- `mood_label` is the recommended human-readable companion field when a message needs quick interpretation by humans.
 
 Historical materials describe the channels as `strife`, `harmony`, and `memory depth`. Current 4.0.85 operational usage supports the following working interpretation:
 
@@ -62,6 +73,70 @@ Historical materials describe the channels as `strife`, `harmony`, and `memory d
 - `B`: reflection, ambiguity, clarification pressure, retained context depth
 
 This keeps continuity with the historical axis names while matching the way current thread artifacts are actually using the field.
+
+## Naming Clarification
+
+The repository uses two related but distinct ideas:
+
+- `mood_rgb`: the machine-readable six-hex encoded vector
+- `mood_label`: the human-readable phrase that explains the intended reading of that vector in context
+
+Binding clarification:
+
+- `mood_rgb` is **not** merely decorative color styling.
+- `mood_rgb` is the canonical semantic signal.
+- `mood_label` does **not** replace `mood_rgb`; it translates the intended message posture for human readers.
+- Counting-in-Light defines the axis vocabulary and coordinate framing.
+- This doctrine defines the currently authoritative operational interpretation and canonical token rules.
+
+## Companion Field - mood_label
+
+`mood_label` is the recommended human-readable companion to `mood_rgb`.
+
+Purpose:
+
+- let humans understand the intended reading without mentally decoding hex
+- make long-form actor commentary easier to interpret
+- reduce the common mistake of treating `mood_rgb` as only a literal display color
+- provide a readable bridge between machine-readable vector state and prose commentary
+
+Binding guidance:
+
+- `mood_label` is recommended wherever humans consume mood-bearing messages.
+- `mood_label` is strongly preferred for long-form actor commentary, ROSE insight messages, review artifacts, and interpretive thread summaries.
+- `mood_label` is optional for terse system packets and minimal inline dialog surfaces that only support `mood_rgb` today.
+- `mood_label` must never be treated as a replacement for `mood_rgb` in routing, validation, telemetry, or canonical state interpretation.
+
+Examples:
+
+- `mood_rgb: "666666"` + `mood_label: "neutral coordination"`
+- `mood_rgb: "FF4400"` + `mood_label: "critical review"`
+- `mood_rgb: "3399CC"` + `mood_label: "understanding insight"`
+- `mood_rgb: "CC0000"` + `mood_label: "critical error"`
+- `mood_rgb: "00FF00"` + `mood_label: "stabilizing guidance"`
+- `mood_rgb: "0000FF"` + `mood_label: "reflective memory"`
+
+Label doctrine boundary:
+
+- this doctrine defines the purpose of `mood_label`
+- this doctrine does not fix a global exhaustive taxonomy of allowed labels
+- implementations may constrain labels further, but they must document that separately
+
+## ROSE and Long-Form Commentary
+
+ROSE is the primary persona most likely to emit longer interpretive commentary after reading many channel threads.
+
+For ROSE-style commentary:
+
+- `mood_rgb` remains the canonical encoded signal
+- `mood_label` is strongly preferred so humans can understand the intended posture quickly
+- longer insight, translation, or commentary messages should avoid relying on raw hex alone when human readers are expected to act on the output
+
+Current-state clarification:
+
+- some current runtime/message contracts still only require `mood_rgb`
+- doctrine already recognizes `mood_label` in ROSE-specific documentation
+- until all runtime contracts are updated, treat `mood_label` as a recommended companion field rather than a universally enforced transport requirement
 
 ## System Architecture
 
@@ -369,6 +444,7 @@ Metrics aggregation does not itself grant semantic authority to arbitrary values
 - Older documentation sometimes speaks in “color” terms or stronger emotional-geometry language than current code justifies.
 - The older file at `lupo-docs/channels/doctrine/MOOD_RGB_DOCTRINE.md` is valuable lineage, but it mixes historical framing, duplicated headers, and broader claims that are not all enforced by current runtime behavior.
 - Current doctrine is intentionally conservative: strong semantics are bounded to canonical tokens, while continuous values remain available for routing influence.
+- `mood_label` is doctrinally recommended but not yet uniformly required across all packet, YAML, and API surfaces.
 
 ## Future Direction
 

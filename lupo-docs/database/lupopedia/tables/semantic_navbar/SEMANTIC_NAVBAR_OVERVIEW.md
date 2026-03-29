@@ -1,4 +1,4 @@
----
+﻿---
 lupopedia.init:
   document_type: documentation
   system_version: 4.0.71
@@ -19,15 +19,14 @@ lupopedia.headers:
   - database
   - 4.0.71
   when_updated: '20260324174654'
-lupopedia.footer:
-  last_verified: '20260312000000'
+lupopedia.footer:`n  approved_for_release: "4.1.0"`n  approval_status: "approved"`n  approved_by_actor_id: 1`n  approved_utc: 20260326192115`n  last_verified: '20260312000000'
   last_verified_by: cursor
   last_verified_by_actor_id: 102
   orchestrator: cursor:root
 ---
-# file: Semantic Navbar Overview — web_path: http://www.lupopedia.com/database/lupopedia/tables/semantic_navbar
+# file: Semantic Navbar Overview â€” web_path: http://www.lupopedia.com/database/lupopedia/tables/semantic_navbar
 
-# Semantic Navbar — Overview
+# Semantic Navbar â€” Overview
 
 The Lupopedia **semantic floating navigation bar** provides previous pages, references, contexts (collections), edges, hashtags, folders, Q/A, and next pages. This document describes what the navbar does, how each feature maps to DB tables, how the JS block retrieves data, and how pages are resolved.
 
@@ -46,18 +45,18 @@ The Lupopedia **semantic floating navigation bar** provides previous pages, refe
 
 ---
 
-## 2. Feature → Table Mapping
+## 2. Feature â†’ Table Mapping
 
 | Navbar feature   | Primary tables | Supporting / junction |
 |------------------|----------------|------------------------|
-| Previous Pages   | lupo_paths, lupo_visits | — |
+| Previous Pages   | lupo_paths, lupo_visits | â€” |
 | References       | lupo_references | lupo_reference_links |
 | Contexts         | lupo_collections, lupo_collection_tabs | lupo_collection_tab_map, lupo_collection_tab_paths |
 | Edges            | lupo_edges | lupo_edge_type_definitions |
 | Hashtags         | lupo_hashtags | lupo_hashtag_map; lupo_contents.hashtags (JSON) |
 | Folders          | lupo_folders | lupo_folder_map |
-| Q/A              | lupo_truth_knowledge, lupo_truth_answers | — |
-| Next Pages       | lupo_paths, lupo_edges | — |
+| Q/A              | lupo_truth_knowledge, lupo_truth_answers | â€” |
+| Next Pages       | lupo_paths, lupo_edges | â€” |
 
 ---
 
@@ -86,24 +85,24 @@ The Lupopedia **semantic floating navigation bar** provides previous pages, refe
 
 ## 4. Page Resolution
 
-- **Internal pages:** Identified by content_id (lupo_contents.content_id) or by slug. Backend resolves slug → content_id (or artifact_id) and uses that for all table lookups.
-- **External sites (e.g. mywebsite.com/page.htm):** If the navbar is embedded on an external site, the JS must pass a **resolved Lupopedia entity** (e.g. content_id or a stable URL that the API can resolve). The API may use federation_node_id + path or a mapping table to resolve external URL → content_id. All table lookups then use that content_id/entity.
+- **Internal pages:** Identified by content_id (lupo_contents.content_id) or by slug. Backend resolves slug â†’ content_id (or artifact_id) and uses that for all table lookups.
+- **External sites (e.g. mywebsite.com/page.htm):** If the navbar is embedded on an external site, the JS must pass a **resolved Lupopedia entity** (e.g. content_id or a stable URL that the API can resolve). The API may use federation_node_id + path or a mapping table to resolve external URL â†’ content_id. All table lookups then use that content_id/entity.
 
 ---
 
 ## 5. Data Flow (high level)
 
 ```
-[Browser] → Navbar JS → HTTP GET /api/semantic_navbar?content_id=X
-                              ↓
-[Server]  → Resolve content_id → Query lupo_paths, lupo_references, lupo_reference_links,
+[Browser] â†’ Navbar JS â†’ HTTP GET /api/semantic_navbar?content_id=X
+                              â†“
+[Server]  â†’ Resolve content_id â†’ Query lupo_paths, lupo_references, lupo_reference_links,
              lupo_collections, lupo_collection_tabs, lupo_collection_tab_map,
              lupo_collection_tab_paths, lupo_edges, lupo_hashtags, lupo_hashtag_map,
              lupo_folders, lupo_folder_map, lupo_truth_knowledge, lupo_truth_answers
-                              ↓
-[Server]  → Return JSON { previous, references, contexts, edges, hashtags, folders, qa, next }
-                              ↓
-[Browser] → Render floating bar sections
+                              â†“
+[Server]  â†’ Return JSON { previous, references, contexts, edges, hashtags, folders, qa, next }
+                              â†“
+[Browser] â†’ Render floating bar sections
 ```
 
 ---
@@ -114,3 +113,4 @@ The Lupopedia **semantic floating navigation bar** provides previous pages, refe
 - **New tables (4.0.71):** See in this directory: lupo_references.md, lupo_reference_links.md, lupo_hashtags.md, lupo_hashtag_map.md, lupo_folders.md, lupo_folder_map.md.
 
 See also: **SEMANTIC_NAVBAR_TABLE_AUDIT_REPORT.md** and **lupo-docs/frontend/semantic_navbar.md** (API endpoints, SQL usage, data flow diagram, external-site behavior).
+

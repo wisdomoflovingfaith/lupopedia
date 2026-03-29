@@ -1,117 +1,69 @@
 ---
 lupopedia.headers:
-  lupopedia.schema: database_table
-  file_path_from_root: lupo-docs/database/lupopedia/tables/active/lupo_actor_actions.md
-  web_path: '[lupo_actor_actions](http://www.lupopedia.com/database/lupopedia/tables/active/lupo_actor_actions)'
-  last_modified_utc: '20260317'
+  when_updated: "20260328013000"
+  file_path_from_root: "lupo-docs/database/lupopedia/tables/active/lupo_actor_actions.md"
+  last_modified_utc: "20260328013000"
   channel_id: 42
-  actor_id: 102
-  actor_name: cursor
-  delegation_chain: cursor:root
-  artifact_type: table_documentation
-  artifact_kind: table
-  namespace: core
-  purpose: Documentation file with LUPOPEDIA HEADERS applied
+  actor_id: 23
+  actor_name: "hephaestus"
+  delegation_chain: "wolfie:hephaestus"
+  artifact_type: "documentation"
+  artifact_kind: "table"
+  namespace: "core"
+  purpose: "Normalized table documentation for lupo_actor_actions from TOON JSON"
   tags:
   - database
   - table
-  - core
-  when_updated: '20260324174654'
+  - normalized
+  - 4.0.88
 lupopedia.edges:
-  comment: Snapshot of edges for lupo_actor_actions table doc at 4.0.79 (grounded
-    by repo search; non-exhaustive).
-  meta: php_hits=2 python_hits=1
+  comment: "static placeholder edges for stage3 normalization"
   outbound_edges:
-  - to: database.table.lupo_actor_actions
-    type: DEFINES_SCHEMA_FOR
+  - to: "lupo-database/lupopedia/json/lupo_actor_actions.json"
+    type: "references"
     weight: 1.0
-  - to: lupo-database/lupopedia/mysql/install/install_new_lupopedia.sql
-    type: schema_reference
-    weight: 1.0
-  - to: lupo-scripts/verify_architecture_files.php
-    type: USED_IN_PHP
-    weight: 0.7
-  - to: lupo-scripts/verify_grounded_architecture.php
-    type: USED_IN_PHP
-    weight: 0.7
-  - to: lupo-scripts/wolfie_orms.py
-    type: USED_IN_PYTHON
-    weight: 0.5
+    reason: "authoritative TOON JSON source"
 lupopedia.footer:
-  last_verified: '20260317000000'
-  last_verified_by: cursor
-  last_verified_by_actor_id: 102
-  orchestrator: cursor:root
+  last_verified: "20260328013000"
+  last_verified_by: "hephaestus"
+  last_verified_by_actor_id: 23
+  generated: true
+  provenance: "stage3_track_c_normalization"
 ---
-# file: lupo_actor_actions ? web_path: http://www.lupopedia.com/database/lupopedia/tables/active/lupo_actor_actions
-# Table: lupo_actor_actions
+# file: lupo_actor_actions.md
 
-Purpose: Auto-generated documentation for lupo_actor_actions from TOON schema.
-Type: database_table
-Status: production_ready
-Volume: unknown
+# lupo_actor_actions
 
-## 1. Overview
-- Key responsibilities: schema reference, storage, and lookup for this table.
-- System role: persists data for the Lupopedia database subsystem.
-- Importance: enables data integrity and downstream features tied to this table.
+## Purpose
+Canonical table documentation normalized from TOON JSON for `lupo_actor_actions`.
 
-## 2. Schema Reference
-Primary Key: actor_action_id
-Field Categories: see full field list below.
+## Schema
 
-### All Fields
-| Column | Type | Notes |
+### Primary Key
+(none)
+
+### Columns
+
+| Column | Type Definition |
+|---|---|
+| `actor_action_id` | `bigint NOT NULL` |
+| `actor_id` | `bigint NOT NULL` |
+| `action_type` | `varchar(64) NOT NULL` |
+| `entity_type` | `varchar(64)` |
+| `entity_id` | `bigint` |
+| `description` | `text` |
+| `metadata_json` | `json` |
+| `created_ymdhis` | `bigint NOT NULL DEFAULT 0` |
+
+### Indexes
+
+| Index | Columns | Unique |
 |---|---|---|
-| actor_action_id | bigint NOT NULL | from TOON |
-| actor_id | bigint NOT NULL | from TOON |
-| action_type | varchar(64) NOT NULL | from TOON |
-| entity_type | varchar(64) | from TOON |
-| entity_id | bigint | from TOON |
-| description | text | from TOON |
-| metadata_json | json | from TOON |
-| created_ymdhis | bigint NOT NULL DEFAULT 0 | from TOON |
+| `lupo_actor_actions_idx_action_type` | `action_type` | no |
+| `lupo_actor_actions_idx_actor` | `actor_id` | no |
+| `lupo_actor_actions_idx_entity` | `entity_type`, `entity_id` | no |
 
-## 3. Relationships and Dependencies
-- Primary relationships: not specified in TOON relationships array.
-- Referencing tables: unknown (use edge suggester tool).
-- Integration points: see outbound edges in FLARE footer.
-
-## 4. Indexes and Performance
-Primary Indexes:
-- actor_action_id
-Performance Indexes:
-- lupo_actor_actions_idx_action_type
-- lupo_actor_actions_idx_actor
-- lupo_actor_actions_idx_entity
-Index Strategy: derived from TOON index definitions.
-
-## 5. Usage Patterns
-Common Queries:
-```sql
-SELECT * FROM lupo_actor_actions WHERE actor_action_id = :id;
-SELECT COUNT(*) AS total FROM lupo_actor_actions WHERE is_deleted = 0;
-SELECT * FROM lupo_actor_actions ORDER BY actor_action_id DESC LIMIT 25;
-UPDATE lupo_actor_actions SET updated_ymdhis = :ts WHERE actor_action_id = :id;
-```
-Best Practices: always filter soft deletes where applicable.
-Anti-Patterns: avoid full table scans on large datasets.
-
-## 6. Performance Considerations
-- High-volume operations: dependent on feature usage.
-- Optimization tips: rely on existing indexes; add new indexes only with TOON updates.
-- Scaling considerations: paginate reads and batch writes.
-
-## 7. Data Integrity
-- Constraints: see NOT NULL and DEFAULT values in TOON fields.
-- Validation rules: enforced at application layer.
-- Soft delete: use is_deleted/deleted_ymdhis if present.
-
-## 8. Common Issues and Solutions
-- Performance issues: add missing indexes via schema update.
-- Data consistency: ensure foreign key relationships are enforced in application logic.
-- Troubleshooting: compare against TOON schema for mismatches.
-
-## 9. Future Enhancements
-- Enrich relationships with discovered edges.
-- Add usage-specific examples once feature usage is known.
+## Doctrine
+- Source of truth: `lupo-database/lupopedia/json/` TOON exports
+- Regeneration mode: Stage 3 deterministic normalization
+- Edge mode: placeholder baseline

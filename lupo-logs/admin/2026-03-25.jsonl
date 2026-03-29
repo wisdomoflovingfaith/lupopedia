@@ -1,0 +1,10 @@
+{"type":"session","timestamp":"2026-03-25T21:12:48+00:00","actor_id":10000,"session_age":10,"ip":"::1"}
+{"type":"permission_check","timestamp":"2026-03-25T21:12:48+00:00","actor_id":10000,"roles":["admin"],"resource":"admin","allowed":true}
+{"type":"session","timestamp":"2026-03-25T21:14:29+00:00","actor_id":10000,"session_age":111,"ip":"::1"}
+{"type":"permission_check","timestamp":"2026-03-25T21:14:29+00:00","actor_id":10000,"roles":["admin"],"resource":"admin","allowed":true}
+{"type":"session","timestamp":"2026-03-25T21:14:46+00:00","actor_id":10000,"session_age":128,"ip":"::1"}
+{"type":"permission_check","timestamp":"2026-03-25T21:14:46+00:00","actor_id":10000,"roles":["admin"],"resource":"admin","allowed":true}
+{"type":"session","timestamp":"2026-03-25T21:14:48+00:00","actor_id":10000,"session_age":130,"ip":"::1"}
+{"type":"permission_check","timestamp":"2026-03-25T21:14:48+00:00","actor_id":10000,"roles":["admin"],"resource":"admin","allowed":true}
+{"type":"session","timestamp":"2026-03-25T21:17:12+00:00","actor_id":10000,"session_age":274,"ip":"::1"}
+{"type":"permission_check","timestamp":"2026-03-25T21:17:12+00:00","actor_id":10000,"roles":["admin"],"resource":"admin","allowed":true}

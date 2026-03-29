@@ -1,145 +1,147 @@
 ---
 lupopedia.headers:
   lupopedia.schema: database_table
-  file_path_from_root: lupo-docs/database/lupopedia/tables/active/lupo_dialog_threads.md
+  file_path_from_root: "lupo-docs/database/lupopedia/tables/active/lupo_dialog_threads.md"
   web_path: http://www.lupopedia.com/database/lupopedia/tables/active/lupo_dialog_threads
-  last_modified_utc: '20260324200110'
+  last_modified_utc: "20260327234500"
   channel_id: 42
   actor_id: 1
   actor_name: wolfie
   delegation_chain: wolfie:root
   artifact_type: table_documentation
   artifact_kind: table
-  namespace: channels
+  namespace: "core"
   purpose: Dialog thread management; tracks conversation threads, message organization,
     and dialog lifecycle
   tags:
   - database
   - table
   - channels
-  when_updated: '20260324200110'
+  when_updated: "20260327234500"
 lupopedia.edges:
-  comment: Snapshot of edges for lupo_dialog_threads table doc at 4.0.79 (grounded
+  comment: "Snapshot stage1 confidence-scored edges (git=1.0, code-scan=0.7, db=0.5)."
     by repo search; non-exhaustive).
   meta: php_hits=9 python_hits=5
   outbound_edges:
   - to: database.table.lupo_dialog_threads
     type: DEFINES_SCHEMA_FOR
     weight: 1.0
+    confidence: 1.0
+    source: "git-restored"
   - to: lupo-database/lupopedia/mysql/install/install_new_lupopedia.sql
     type: schema_reference
     weight: 1.0
+    confidence: 1.0
+    source: "git-restored"
   - to: check_db_state.php
     type: USED_IN_PHP
     weight: 0.6
+    confidence: 0.7
+    source: "code-scan"
   - to: lupo-api/v1/dialog/health.php
     type: USED_IN_PHP
     weight: 0.6
+    confidence: 0.7
+    source: "code-scan"
   - to: lupo-api/v1/dialog/metrics.php
     type: USED_IN_PHP
     weight: 0.6
+    confidence: 0.7
+    source: "code-scan"
   - to: lupo-database/lupopedia/content/lupo-app/Services/TriggerReplacements/DialogMessagesInsertService.php
     type: USED_IN_PHP
     weight: 0.6
+    confidence: 0.7
+    source: "code-scan"
   - to: lupo-includes/Dialog/Database/DialogDatabase.php
     type: USED_IN_PHP
     weight: 0.9
+    confidence: 0.7
+    source: "code-scan"
   - to: lupo-includes/modules/channels/ChannelsController.php
     type: USED_IN_PHP
     weight: 0.9
+    confidence: 0.7
+    source: "code-scan"
   - to: lupo-tools/anubis_orphan_scanner.py
     type: USED_IN_PYTHON
     weight: 0.5
+    confidence: 0.7
+    source: "code-scan"
 lupopedia.footer:
-  last_verified: '20260324200110'
+  provenance: "phase2_git_header_recovered_body_regenerated"
+  generated: true
+  last_verified: "20260327234500"
   last_verified_by: cursor
   last_verified_by_actor_id: 102
   orchestrator: cursor:root
 ---
-# file: lupo_dialog_threads ? web_path: http://www.lupopedia.com/database/lupopedia/tables/active/lupo_dialog_threads
-# Table: lupo_dialog_threads
+# file: lupo_dialog_threads.md
 
-Purpose: Stores conversation thread metadata for channel dialogs.
-Type: database_table
-Status: production_ready
-Volume: medium
+# lupo_dialog_threads
 
-## 1. Overview
-- Key responsibilities: thread identity, status, and routing metadata.
-- System role: anchors dialog messages to a thread entity.
-- Importance: enables chat history, moderation, and escalation.
+## Purpose
+Canonical table documentation regenerated from TOON JSON for `lupo_dialog_threads`.
 
-> **Deprecation Notice (4.0.87 — Track 5 Edge Graph Activation):** The `thread_lineage` text column is DEPRECATED for graph queries. As of 4.0.87, all thread continuation, fork, and citation relationships must be stored in `lupo_edges` using edge types: `thread_continuation`, `thread_spawned_from`, `thread_references`, `thread_crosses_channel`. The column is retained for legacy read compatibility until migration is validated. **Do not write new lineage data here; write to `lupo_edges` instead.** See [ATHENA_STRATEGY_20260324_120000 Track 3b](../../../lupo-actors/athena/docs/ATHENA_STRATEGY_20260324_120000_edge_graph_channel_thread_recommendations.md) for migration approach.
+## Schema
 
-## 2. Schema Reference
-Primary Key: dialog_thread_id
-Field Categories: identity, routing, status, styling, lifecycle.
+### Primary Key
+(none)
 
-### All Fields
-| Column | Type | Notes |
+### Columns
+
+| Column | Type Definition |
+|---|---|
+| `dialog_thread_id` | `bigint NOT NULL` |
+| `title` | `varchar(255) NOT NULL` |
+| `last_message_ymdhis` | `bigint` |
+| `federation_node_id` | `bigint NOT NULL DEFAULT 1` |
+| `channel_id` | `bigint` |
+| `project_slug` | `varchar(100)` |
+| `task_name` | `varchar(255)` |
+| `created_by_actor_id` | `bigint NOT NULL` |
+| `summary_text` | `text` |
+| `bg_color` | `char(6) NOT NULL DEFAULT 'FFFFFF'` |
+| `text_color` | `char(6) NOT NULL DEFAULT '000000'` |
+| `alt_text_color` | `char(6) NOT NULL DEFAULT '666666'` |
+| `status` | `varchar(64) NOT NULL DEFAULT 'Open'` |
+| `artifacts` | `json` |
+| `metadata_json` | `json` |
+| `thread_lineage` | `text` |
+| `created_ymdhis` | `bigint NOT NULL DEFAULT 0` |
+| `updated_ymdhis` | `bigint NOT NULL` |
+| `is_deleted` | `tinyint NOT NULL DEFAULT 0` |
+| `deleted_ymdhis` | `bigint` |
+| `escalated_to_operator_id` | `bigint` |
+| `escalation_reason` | `varchar(255)` |
+| `escalation_timestamp` | `bigint` |
+| `visibility_status` | `varchar(32) NOT NULL DEFAULT 'active'` |
+| `owner_actor_id` | `bigint NOT NULL` |
+| `assigned_actor_id` | `bigint` |
+| `thread_type` | `varchar(32) NOT NULL DEFAULT 'discussion'` |
+| `thread_priority` | `varchar(32) NOT NULL DEFAULT 'normal'` |
+
+### Indexes
+
+| Index | Columns | Unique |
 |---|---|---|
-| dialog_thread_id | bigint NOT NULL | Primary key. |
-| title | varchar(255) NOT NULL | Thread title. |
-| last_message_ymdhis | bigint | Last message time. |
-| federation_node_id | bigint NOT NULL DEFAULT 1 | Federation scope. |
-| channel_id | bigint | Channel id. |
-| project_slug | varchar(100) | Project slug. |
-| task_name | varchar(255) | Task name. |
-| created_by_actor_id | bigint NOT NULL | Creator actor. |
-| summary_text | text | Summary. |
-| bg_color | char(6) NOT NULL DEFAULT 'FFFFFF' | UI color. |
-| text_color | char(6) NOT NULL DEFAULT '000000' | UI color. |
-| alt_text_color | char(6) NOT NULL DEFAULT '666666' | UI color. |
-| status | varchar(64) NOT NULL DEFAULT 'Open' | Status. |
-| artifacts | json | Attached artifacts list. |
-| metadata_json | json | Extra metadata. |
-| created_ymdhis | bigint NOT NULL DEFAULT 0 | Created timestamp. |
-| updated_ymdhis | bigint NOT NULL | Updated timestamp. |
-| is_deleted | tinyint NOT NULL DEFAULT 0 | Soft delete flag. |
-| deleted_ymdhis | bigint | Soft delete timestamp. |
-| escalated_to_operator_id | bigint | Escalation actor. |
-| escalation_reason | varchar(255) | Escalation reason. |
-| escalation_timestamp | bigint | Escalation time. |
+| `lupo_dialog_threads_idx_assigned_actor_id` | `assigned_actor_id` | no |
+| `lupo_dialog_threads_idx_channel` | `channel_id` | no |
+| `lupo_dialog_threads_idx_created` | `created_ymdhis` | no |
+| `lupo_dialog_threads_idx_created_by_actor` | `created_by_actor_id` | no |
+| `lupo_dialog_threads_idx_deleted` | `is_deleted` | no |
+| `lupo_dialog_threads_idx_last_message` | `last_message_ymdhis` | no |
+| `lupo_dialog_threads_idx_node` | `federation_node_id` | no |
+| `lupo_dialog_threads_idx_owner_actor_id` | `owner_actor_id` | no |
+| `lupo_dialog_threads_idx_project` | `project_slug` | no |
+| `lupo_dialog_threads_idx_status` | `status` | no |
+| `lupo_dialog_threads_idx_task` | `task_name` | no |
+| `lupo_dialog_threads_idx_thread_priority` | `thread_priority` | no |
+| `lupo_dialog_threads_idx_thread_type` | `thread_type` | no |
+| `lupo_dialog_threads_idx_updated` | `updated_ymdhis` | no |
+| `lupo_dialog_threads_idx_visibility_status` | `visibility_status` | no |
 
-## 3. Relationships and Dependencies
-- Primary relationships: channel_id, created_by_actor_id.
-- Referencing tables: lupo_dialog_messages, channel views.
-- Integration points: chat monitoring and escalation.
-
-## 4. Indexes and Performance
-Primary Indexes:
-- dialog_thread_id
-Performance Indexes:
-- lupo_dialog_threads_idx_channel
-- lupo_dialog_threads_idx_last_message
-- lupo_dialog_threads_idx_status
-Index Strategy: optimize by channel, status, and last activity.
-
-## 5. Usage Patterns
-Common Queries:
-```sql
-SELECT * FROM lupo_dialog_threads WHERE channel_id = :channel AND is_deleted = 0 ORDER BY last_message_ymdhis DESC LIMIT 50;
-SELECT * FROM lupo_dialog_threads WHERE status = 'Open' AND is_deleted = 0 ORDER BY created_ymdhis DESC;
-UPDATE lupo_dialog_threads SET updated_ymdhis = :ts WHERE dialog_thread_id = :id;
-```
-Best Practices: update last_message_ymdhis on new messages.
-Anti-Patterns: full scans without channel_id filters.
-
-## 6. Performance Considerations
-- High-volume operations: frequent updates to last_message_ymdhis.
-- Optimization tips: add composite index on (channel_id, status, last_message_ymdhis).
-- Scaling considerations: archive old threads using is_deleted and deleted_ymdhis.
-
-## 7. Data Integrity
-- Constraints: title required, created_by_actor_id required.
-- Validation rules: enforce status values.
-- Soft delete: maintain audit trail.
-
-## 8. Common Issues and Solutions
-- Slow listings: use last_message_ymdhis and channel index.
-- Escalation drift: keep escalation fields synced with operator actions.
-- Missing summaries: update summary_text via background summarization.
-
-## 9. Future Enhancements
-- Add message_count cache for faster thread list rendering.
-- Add last_message_id for precise pagination.
+## Doctrine
+- Source of truth: `lupo-database/lupopedia/json/` TOON exports
+- Regeneration mode: Phase 2 deterministic rebuild
+- Edge mode: placeholder only

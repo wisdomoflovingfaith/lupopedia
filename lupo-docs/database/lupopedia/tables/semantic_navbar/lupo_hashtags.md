@@ -1,4 +1,4 @@
----
+﻿---
 lupopedia.headers:
   lupopedia.schema: database_table
   file_path_from_root: lupo-docs/database/lupopedia/tables/semantic_navbar/lupo_hashtags.md
@@ -13,8 +13,7 @@ lupopedia.headers:
   - hashtags
   - 4.0.71
   when_updated: '20260324174654'
-lupopedia.footer:
-  last_verified: '20260312000000'
+lupopedia.footer:`n  approved_for_release: "4.1.0"`n  approval_status: "approved"`n  approved_by_actor_id: 1`n  approved_utc: 20260326192115`n  last_verified: '20260312000000'
   last_verified_by: cursor
   last_verified_by_actor_id: 102
   orchestrator: cursor:root
@@ -36,3 +35,4 @@ WHERE m.object_type = 'content' AND m.object_id = :content_id AND h.is_deleted =
 ```
 
 **Navbar use:** API queries lupo_hashtag_map by object_type/object_id, joins lupo_hashtags, returns tag list for the Hashtags section.
+

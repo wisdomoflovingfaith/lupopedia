@@ -1,4 +1,4 @@
----
+﻿---
 lupopedia.headers:
   lupopedia.schema: database_table
   file_path_from_root: lupo-docs/database/lupopedia/tables/VALIDATION_REPORT.md
@@ -20,14 +20,13 @@ lupopedia.headers:
   - coordination
   lupo_agent: cursor
   when_updated: '20260324174654'
-lupopedia.footer:
-  last_verified: '20260312000000'
+lupopedia.footer:`n  approved_for_release: "4.1.0"`n  approval_status: "approved"`n  approved_by_actor_id: 1`n  approved_utc: 20260326192115`n  last_verified: '20260312000000'
   last_verified_by: cursor
   last_verified_by_actor_id: 102
   orchestrator: cursor:root
 ---
 
-# Validation Report — Multi-Agent Database Documentation
+# Validation Report â€” Multi-Agent Database Documentation
 
 **Validator:** Cursor IDE (actor_id 102), acting as KIRO schema coordinator.  
 **Date:** 20260312  
@@ -71,30 +70,30 @@ lupopedia.footer:
 ## 4. Duplicate documentation
 
 - **Same table in flat and active/:** lupo_auth_users, lupo_sessions, lupo_agents, lupo_api_*, lupo_session_*, lupo_agent_*, lupo_banned_actors, lupo_bans_log, lupo_capability_usage, lupo_collections, lupo_contents, lupo_departments, lupo_federation_*, lupo_help_*, lupo_anubis_*, lupo_artifact_*, lupo_collection_*, lupo_crafty_syntax_auto_invite, lupo_department_*, lupo_truth_*, lupo_uploads, lupo_registry_open, lupo_modules. **Recommendation:** Treat `active/<table>.md` as canonical when present; flat can remain as historical copy; do not delete (Rule 4).
-- **lupo_modules_departments:** Doc in both tables/ and deprecated/ — clarify which is current; registry notes "Uncertain: duplicate doc".
+- **lupo_modules_departments:** Doc in both tables/ and deprecated/ â€” clarify which is current; registry notes "Uncertain: duplicate doc".
 
 ---
 
 ## 5. Orphan documentation
 
-- **Docs that are not table docs:** README.md, TABLE_INDEX.md, MIGRATION_MAPPING_REFERENCE.md, CURSOR_KIRO_HANDOFF.md, CHANNEL_SYSTEM_TLDR.md, SESSION_MANAGEMENT_SYSTEM.md, actors.md, actors_old.md, channels.md, departments.md, federation_nodes.md, sessions.md — some are overviews or aliases (e.g. actors → lupo_actors). Not orphaned; they are intentional index/overview files.
+- **Docs that are not table docs:** README.md, TABLE_INDEX.md, MIGRATION_MAPPING_REFERENCE.md, CURSOR_KIRO_HANDOFF.md, CHANNEL_SYSTEM_TLDR.md, SESSION_MANAGEMENT_SYSTEM.md, actors.md, actors_old.md, channels.md, departments.md, federation_nodes.md, sessions.md â€” some are overviews or aliases (e.g. actors â†’ lupo_actors). Not orphaned; they are intentional index/overview files.
 - **Table-named doc with no TOON:** e.g. lupo_actor_properties (referenced in mapping but no TOON). Flagged in registry as Uncertain.
 
 ---
 
 ## 6. Removed tables handled under deprecated/
 
-- **lupo_anubis_deletion_log** — In deprecated/; TOON exists (lupo_anubis_deletion_log.toon.json). Status: verify if table still in install or removed.
-- **lupo_anubis_orphaned** — In deprecated/; TOON exists. Same verification needed.
-- **lupo_registry_import** — In deprecated/; TOON exists. Plan lists as metadata; duplicate doc.
-- **lupo_reference_cited_by** — In deprecated/; TOON exists. JetBrains domain; verify if deprecated or active.
-- **lupo_operators** — Documented as DROPPED (operator_to_roles_migration); no TOON. Removed.
+- **lupo_anubis_deletion_log** â€” In deprecated/; TOON exists (lupo_anubis_deletion_log.toon.json). Status: verify if table still in install or removed.
+- **lupo_anubis_orphaned** â€” In deprecated/; TOON exists. Same verification needed.
+- **lupo_registry_import** â€” In deprecated/; TOON exists. Plan lists as metadata; duplicate doc.
+- **lupo_reference_cited_by** â€” In deprecated/; TOON exists. JetBrains domain; verify if deprecated or active.
+- **lupo_operators** â€” Documented as DROPPED (operator_to_roles_migration); no TOON. Removed.
 
 ---
 
 ## 7. Migration tables handled under migrations/
 
-- **livehelp_autoinvite** — Doc in `migrations/livehelp_autoinvite.md`. Other livehelp_* migration docs live in flat `tables/` (e.g. livehelp_*_migration.md). Per livehelp_migrations_readme, migration docs were relocated to `tables/`; migrations/ contains one example. **Recommendation:** Consider moving all livehelp_* and *_migration docs under `tables/migrations/` for consistency (Windsurf ownership; no change by Cursor).
+- **livehelp_autoinvite** â€” Doc in `migrations/livehelp_autoinvite.md`. Other livehelp_* migration docs live in flat `tables/` (e.g. livehelp_*_migration.md). Per livehelp_migrations_readme, migration docs were relocated to `tables/`; migrations/ contains one example. **Recommendation:** Consider moving all livehelp_* and *_migration docs under `tables/migrations/` for consistency (Windsurf ownership; no change by Cursor).
 
 ---
 
@@ -134,3 +133,4 @@ lupopedia.footer:
 | JetBrains | Collections, departments, contents, help, artifacts, tasks, etc. | active/ and tables/ |
 | Antigravity | Federation, Anubis, uploads, channel files | active/ and tables/ |
 | Windsurf | livehelp_* migration docs | tables/*_migration.md, migrations/livehelp_autoinvite.md |
+

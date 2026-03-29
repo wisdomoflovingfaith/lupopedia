@@ -1,99 +1,87 @@
 ---
 lupopedia.headers:
-  lupopedia.schema: database_table
-  file_path_from_root: lupo-docs/database/lupopedia/tables/active/lupo_agent_faucets.md
-  web_path: '[lupo_agent_faucets](http://www.lupopedia.com/database/lupopedia/tables/active/lupo_agent_faucets)'
-  last_modified_utc: '20260317'
+  when_updated: "20260328013000"
+  file_path_from_root: "lupo-docs/database/lupopedia/tables/active/lupo_agent_faucets.md"
+  last_modified_utc: "20260328013000"
   channel_id: 42
-  actor_id: 102
-  actor_name: cursor
-  delegation_chain: cursor:root
-  artifact_type: table_documentation
-  artifact_kind: table
-  namespace: core
-  purpose: 'Per-actor faucets (IDE/surface): slug, model, prompts, style'
+  actor_id: 23
+  actor_name: "hephaestus"
+  delegation_chain: "wolfie:hephaestus"
+  artifact_type: "documentation"
+  artifact_kind: "table"
+  namespace: "core"
+  purpose: "Normalized table documentation for lupo_agent_faucets from TOON JSON"
   tags:
   - database
   - table
-  - core
-  when_updated: '20260324174654'
+  - normalized
+  - 4.0.88
 lupopedia.edges:
-  comment: Snapshot of edges for lupo_agent_faucets table doc at 4.0.79 (grounded
-    by repo search; non-exhaustive).
-  meta: php_hits=3 python_hits=2
+  comment: "static placeholder edges for stage3 normalization"
   outbound_edges:
-  - to: database.table.lupo_agent_faucets
-    type: DEFINES_SCHEMA_FOR
+  - to: "lupo-database/lupopedia/json/lupo_agent_faucets.json"
+    type: "references"
     weight: 1.0
-  - to: lupo-database/lupopedia/mysql/install/install_new_lupopedia.sql
-    type: schema_reference
-    weight: 1.0
-  - to: lupo-bin/faucet_integrity_audit.php
-    type: USED_IN_PHP
-    weight: 0.6
-  - to: lupo-bin/faucet_loader.php
-    type: USED_IN_PHP
-    weight: 0.6
-  - to: lupo-bin/validate_faucets.php
-    type: USED_IN_PHP
-    weight: 0.6
-  - to: analyze_unused_tables.py
-    type: USED_IN_PYTHON
-    weight: 0.5
-  - to: lupo-scripts/wolfie_orms.py
-    type: USED_IN_PYTHON
-    weight: 0.5
+    reason: "authoritative TOON JSON source"
 lupopedia.footer:
-  last_verified: '20260317000000'
-  last_verified_by: cursor
-  last_verified_by_actor_id: 102
-  orchestrator: cursor:root
+  last_verified: "20260328013000"
+  last_verified_by: "hephaestus"
+  last_verified_by_actor_id: 23
+  generated: true
+  provenance: "stage3_track_c_normalization"
 ---
-# file: lupo_agent_faucets ? web_path: http://www.lupopedia.com/database/lupopedia/tables/active/lupo_agent_faucets
-# Table: lupo_agent_faucets
+# file: lupo_agent_faucets.md
 
-## Table Overview
+# lupo_agent_faucets
 
-- **Purpose:** Faucets (execution surfaces, e.g. IDE agents) per actor: name, slug, description, model_name, provider, temperature, system_prompt, capabilities_json, is_default, domain_id. One actor can have multiple faucets (e.g. Cursor, Windsurf).
-- **Category:** Agent / Identity
-- **Status:** Active
-- **Version introduced:** 4.0.0
+## Purpose
+Canonical table documentation normalized from TOON JSON for `lupo_agent_faucets`.
 
-## Column Documentation
+## Schema
 
-| Column | Type | Nullable | Default | Description |
-|--------|------|----------|---------|-------------|
-| agent_faucet_id | bigint | No | — | Primary key. |
-| actor_id | bigint | No | — | Owning actor (logical → lupo_actors). |
-| name | varchar(100) | No | — | Faucet name. |
-| alias_name | varchar(100) | Yes | — | Alias. |
-| slug | varchar(100) | No | — | URL-friendly slug. |
-| description | text | Yes | — | Description. |
-| style_preset | varchar(100) | Yes | — | Style preset. |
-| model_name | varchar(100) | Yes | — | Model name. |
-| provider | varchar(50) | Yes | — | Provider. |
-| temperature | float | Yes | — | Temperature. |
-| top_p | float | Yes | — | Top_p. |
-| max_tokens | int | Yes | — | Max tokens. |
-| presence_penalty | float | Yes | — | Presence penalty. |
-| frequency_penalty | float | Yes | — | Frequency penalty. |
-| system_prompt | text | Yes | — | System prompt. |
-| safety_json | json | Yes | — | Safety config. |
-| response_format | varchar(50) | Yes | — | Response format. |
-| capabilities_json | text | Yes | — | Capabilities JSON. |
-| is_default | tinyint | No | 0 | Default faucet flag. |
-| domain_id | bigint | No | 1 | Domain. |
-| created_ymdhis | bigint | No | 0 | Creation. |
-| updated_ymdhis | bigint | No | — | Last update. |
-| deleted_ymdhis | bigint | Yes | — | Soft-delete timestamp. |
+### Primary Key
+(none)
 
-## Relationships
+### Columns
 
-- **Logical references:** actor_id → lupo_actors.agent_faucet_id referenced by lupo_agent_faucet_credentials.faucet_id, lupo_agent_tool_calls.faucet_id.
-- **Inbound:** Faucet resolution, LUPOPEDIA HEADERS agent_name_identity, IDE agent registry.
-- **Join patterns:** By actor_id, is_default, domain_id, slug.
+| Column | Type Definition |
+|---|---|
+| `agent_faucet_id` | `bigint NOT NULL` |
+| `actor_id` | `bigint NOT NULL` |
+| `name` | `varchar(100) NOT NULL` |
+| `alias_name` | `varchar(100)` |
+| `slug` | `varchar(100) NOT NULL` |
+| `faucet_class` | `varchar(32)` |
+| `description` | `text` |
+| `style_preset` | `varchar(100)` |
+| `model_name` | `varchar(100)` |
+| `provider` | `varchar(50)` |
+| `temperature` | `float` |
+| `top_p` | `float` |
+| `max_tokens` | `int` |
+| `presence_penalty` | `float` |
+| `frequency_penalty` | `float` |
+| `system_prompt` | `text` |
+| `safety_json` | `json` |
+| `response_format` | `varchar(50)` |
+| `capabilities_json` | `text` |
+| `is_default` | `tinyint NOT NULL DEFAULT 0` |
+| `domain_id` | `bigint NOT NULL DEFAULT 1` |
+| `created_ymdhis` | `bigint NOT NULL DEFAULT 0` |
+| `updated_ymdhis` | `bigint NOT NULL` |
+| `deleted_ymdhis` | `bigint` |
 
-## Usage Notes
+### Indexes
 
-- **Indexes:** actor_id, is_default, domain_id, slug.
-- **Timestamps:** BIGINT YYYYMMDDHHIISS UTC.
+| Index | Columns | Unique |
+|---|---|---|
+| `lupo_agent_faucets_idx_agent` | `actor_id` | no |
+| `lupo_agent_faucets_idx_default` | `is_default` | no |
+| `lupo_agent_faucets_idx_domain` | `domain_id` | no |
+| `lupo_agent_faucets_idx_faucet_class` | `faucet_class` | no |
+| `lupo_agent_faucets_idx_slug` | `slug` | no |
+
+## Doctrine
+- Source of truth: `lupo-database/lupopedia/json/` TOON exports
+- Regeneration mode: Stage 3 deterministic normalization
+- Edge mode: placeholder baseline

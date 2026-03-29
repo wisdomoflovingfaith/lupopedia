@@ -1,6 +1,8 @@
 # Lupo-Actors
 
-Centralized hub for actor-specific resources. Each subdirectory is named by actor slug (e.g. `wolfie`, `zencoder`) or ID. **Canonical repository directories** at repo root use the **`lupo-` prefix** (e.g. `lupo-actors`, `lupo-docs`, `lupo-database`, `lupo-bin`, `lupo-scripts`, `lupo-tests`, `lupo-rules`).
+Centralized hub for actor-specific resources. Each subdirectory is named by actor slug (e.g. `wolfie`, `zencoder`) or ID. **Canonical Lupopedia-owned directories** at repo root use the **`lupo-` prefix** (e.g. `lupo-actors`, `lupo-docs`, `lupo-database`, `lupo-bin`, `lupo-scripts`, `lupo-tests`, `lupo-rules`).
+
+Exception: package-manager dependency folders such as `node_modules/` (root) and `lupo-tools/vsx-extension/node_modules/` are external npm-managed caches, not Lupopedia-owned canonical directories. They keep standard npm naming and must not be renamed to a `lupo-` variant.
 
 **Full documentation:** lupo-docs/actors.md
 

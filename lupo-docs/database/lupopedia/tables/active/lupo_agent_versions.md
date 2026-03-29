@@ -1,73 +1,74 @@
 ---
 lupopedia.headers:
-  lupopedia.schema: database_table
-  file_path_from_root: lupo-docs/database/lupopedia/tables/active/lupo_agent_versions.md
-  channel_id: 1
-  actor_id: 102
-  last_modified_utc: '20260312'
-  artifact_type: table_documentation
-  purpose: Version history per agent (semver, version_label, previous_version_id)
-  mood_rgb: 4169E1
-  traits:
-  - canonical
-  - agent
-  - cursor_domain
-  - v4.0.70
+  when_updated: "20260328013000"
+  file_path_from_root: "lupo-docs/database/lupopedia/tables/active/lupo_agent_versions.md"
+  last_modified_utc: "20260328013000"
+  channel_id: 42
+  actor_id: 23
+  actor_name: "hephaestus"
+  delegation_chain: "wolfie:hephaestus"
+  artifact_type: "documentation"
+  artifact_kind: "table"
+  namespace: "core"
+  purpose: "Normalized table documentation for lupo_agent_versions from TOON JSON"
   tags:
   - database
-  - agents
-  - versions
-  lupo_agent: cursor
-  when_updated: '20260324174654'
+  - table
+  - normalized
+  - 4.0.88
 lupopedia.edges:
+  comment: "static placeholder edges for stage3 normalization"
   outbound_edges:
-  - to: lupo-database/lupopedia/toon/lupo_agent_versions.toon.json
-    type: schema_reference
+  - to: "lupo-database/lupopedia/json/lupo_agent_versions.json"
+    type: "references"
     weight: 1.0
-  - to: lupo-docs/database/lupopedia/tables/active/lupo_agents.md
-    type: references
-    weight: 0.9
+    reason: "authoritative TOON JSON source"
 lupopedia.footer:
-  last_verified: '20260312000000'
-  last_verified_by: cursor
-  last_verified_by_actor_id: 102
-  orchestrator: cursor:root
+  last_verified: "20260328013000"
+  last_verified_by: "hephaestus"
+  last_verified_by_actor_id: 23
+  generated: true
+  provenance: "stage3_track_c_normalization"
 ---
+# file: lupo_agent_versions.md
 
-# Table: lupo_agent_versions
+# lupo_agent_versions
 
-## Table Overview
+## Purpose
+Canonical table documentation normalized from TOON JSON for `lupo_agent_versions`.
 
-- **Purpose:** Version history for agents: agent_id, version_label, semver_major/minor/patch, version_notes, version_hash, previous_version_id. Soft-delete supported.
-- **Category:** Agent
-- **Status:** Active
-- **Version introduced:** 4.0.0
+## Schema
 
-## Column Documentation
+### Primary Key
+(none)
 
-| Column | Type | Nullable | Default | Description |
-|--------|------|----------|---------|-------------|
-| agent_version_id | bigint | No | — | Primary key. |
-| agent_id | bigint | No | — | Agent (logical → lupo_agents.agent_id). |
-| version_label | varchar(64) | No | — | Version label string. |
-| semver_major | int | Yes | 0 | Major version. |
-| semver_minor | int | Yes | 0 | Minor version. |
-| semver_patch | int | Yes | 0 | Patch version. |
-| version_notes | text | Yes | — | Release notes. |
-| version_hash | varchar(128) | Yes | — | Content hash. |
-| previous_version_id | bigint | Yes | — | Previous version (same table). |
-| created_ymdhis | bigint | No | 0 | Creation. |
-| updated_ymdhis | bigint | No | — | Last update. |
-| is_deleted | smallint | No | 0 | Soft-delete flag. |
-| deleted_ymdhis | bigint | Yes | — | Soft-delete timestamp. |
+### Columns
 
-## Relationships
+| Column | Type Definition |
+|---|---|
+| `agent_version_id` | `bigint NOT NULL` |
+| `agent_id` | `bigint NOT NULL` |
+| `version_label` | `varchar(64) NOT NULL` |
+| `semver_major` | `int DEFAULT 0` |
+| `semver_minor` | `int DEFAULT 0` |
+| `semver_patch` | `int DEFAULT 0` |
+| `version_notes` | `text` |
+| `version_hash` | `varchar(128)` |
+| `previous_version_id` | `bigint` |
+| `created_ymdhis` | `bigint NOT NULL DEFAULT 0` |
+| `updated_ymdhis` | `bigint NOT NULL` |
+| `is_deleted` | `smallint NOT NULL DEFAULT 0` |
+| `deleted_ymdhis` | `bigint` |
 
-- **Logical references:** agent_id → lupo_agents.agent_id; previous_version_id → lupo_agent_versions.agent_version_id.
-- **Inbound:** Agent versioning and rollback.
-- **Join patterns:** By agent_id, (semver_major, semver_minor, semver_patch), version_label.
+### Indexes
 
-## Usage Notes
+| Index | Columns | Unique |
+|---|---|---|
+| `lupo_agent_versions_agent_id` | `agent_id` | no |
+| `lupo_agent_versions_semver_major` | `semver_major`, `semver_minor`, `semver_patch` | no |
+| `lupo_agent_versions_version_label` | `version_label` | no |
 
-- **Indexes:** agent_id, (semver_major, semver_minor, semver_patch), version_label.
-- **Timestamps:** BIGINT YYYYMMDDHHIISS UTC.
+## Doctrine
+- Source of truth: `lupo-database/lupopedia/json/` TOON exports
+- Regeneration mode: Stage 3 deterministic normalization
+- Edge mode: placeholder baseline

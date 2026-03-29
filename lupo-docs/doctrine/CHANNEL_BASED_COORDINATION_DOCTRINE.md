@@ -15,6 +15,11 @@ lupopedia.headers:
   artifact_kind: "coordination_doctrine"
   purpose: "Comprehensive doctrine for channel-based multi-agent coordination replacing status-based artifact model"
   tags: ["doctrine", "channel_coordination", "multi_agent", "architecture", "wolfie_research"]
+lupopedia.footer:
+  approved_for_version: "4.1.0"
+  approved_for_version_utc: "20260327103238"
+  approved_for_version_by: "Cursor IDE Agent (Lead Orchestration)"
+  approved_for_version_by_actor_id: 102
 ---
 
 # CHANNEL-BASED COORDINATION DOCTRINE
@@ -35,6 +40,19 @@ This doctrine establishes channel-based coordination as the authoritative method
 
 All coordination MUST flow through the established channel system, not through arbitrary status directories.
 
+4.0.88 scope clarification:
+
+- `lupo-channels/` is communication-only scope (discussion, coordination, reasoning, planning).
+- `lupo-channels/` is not canonical doctrine/documentation authority, not final context storage, and not schema/edge authority.
+- Canonical documentation lives in `lupo-docs/`; structural authority lives in database and canonical schema sources.
+
+4.0.88 execution workflow clarification (mandatory):
+
+- No raw IDE prompts are allowed.
+- Work begins in channel threads with ambiguity capture in `questions/`.
+- Refinement occurs in discussion artifacts (standard reviewers: WOLFIE + LILITH for orchestration/critical review).
+- Execution instructions are finalized in `prompts/` artifacts only.
+
 ## Channel Architecture Overview
 
 ### Primary Coordination Channel
@@ -54,6 +72,28 @@ lupo-channels/{channel_id}/
 ├── tasks/              # Task tracking and TODO artifacts
 └── content/            # Shared content and resources
 ```
+
+4.0.88 forward structure profile (documentation target; not forced migration in this step):
+
+```
+lupo-channels/{federation_node_id}_{channel_key}/
+├── threads/
+│   └── {project_slug}/
+│       ├── questions/
+│       ├── prompts/
+│       └── [artifacts]
+├── broadcasts/
+├── content/
+└── [channel support artifacts]
+```
+
+Legacy channel-id folder layout remains valid during transition.
+
+Install-path clarification from runtime:
+
+- The install folder name is dynamic and comes from `basename(__DIR__)`, not from a fixed `/lupopedia` assumption.
+- The project root folder is the web-served install root for the application files.
+- `lupopedia-config.php` is expected outside that web root when possible, with runtime lookup handled relative to the install root and parent path(s).
 
 ### Directory Purposes
 
@@ -90,21 +130,34 @@ lupo-channels/{channel_id}/
 
 ### Standard Format
 
-`YYYYMMDD_HHIISS_{actor}_{type}_{purpose}.md`
+`YYYYMMDD_HHMMSS_ACTOR_purpose_TITLE.md`
 
 ### Components
 
 - **YYYYMMDD**: Date (20260317)
-- **HHIISS**: Time in 24-hour UTC (143000)
-- **actor**: Actor name/slug (wolfie, hermes, anubis)
-- **type**: Message category (directive, status, review, alert)
-- **purpose**: Brief description (release_announcement, security_scan)
+- **HHMMSS**: Time in 24-hour UTC (00-23 hour range)
+- **ACTOR**: Actor slug token (lowercase in current implementation)
+- **purpose**: Purpose token
+- **TITLE**: Additional deterministic title token
+
+Notes:
+
+- Timestamp generation must be deterministic and UTC.
+- Hour values above 23 are invalid.
 
 ### Examples
 
 - `20260317_143000_wolfie_directive_channel_coordination_update.md`
 - `20260317_150000_hermes_status_implementation_complete.md`
 - `20260317_160000_anubis_alert_orphan_detected.md`
+
+Questions artifact naming:
+
+- `YYYYMMDD_HHMMSS_ACTOR_question_TITLE.md`
+
+Prompts artifact naming:
+
+- `YYYYMMDD_HHMMSS_ACTOR_prompt_TITLE.md`
 
 ## Database Integration
 
@@ -143,7 +196,43 @@ lupopedia.headers:
   message_type: "directive"
 ```
 
+Additional 4.0.88 metadata requirements (no exceptions):
+
+- Full LUPOPEDIA headers are mandatory.
+- `lupopedia.edges` block is mandatory; include snapshot/declaration comment where applicable.
+- Metadata must be complete enough for deterministic import and validation.
+
 ## Coordination Workflows
+
+### Questions → Refinement → Prompts Workflow (mandatory)
+
+1. Human or actor request enters a channel thread.
+2. Unknowns and ambiguity are captured under `threads/{thread_id}/questions/`.
+3. Discussion and refinement occur in thread artifacts; WOLFIE + LILITH review path is standard for high-impact work.
+4. Final execution instructions are written under `threads/{thread_id}/prompts/`.
+5. IDE execution consumes prompt artifacts from `prompts/` only.
+
+Rules:
+
+- `questions/` files require full LUPOPEDIA headers and `lupopedia.edges`.
+- `prompts/` files require full LUPOPEDIA headers, `lupopedia.edges`, and references to originating thread/question artifacts.
+- Work with unresolved ambiguity must not skip directly to `prompts/`.
+
+### Phased Channel Refactor and Edge Protection (4.0.88)
+
+1. Audit current channel trees before changing paths.
+2. Identify artifacts with `lupopedia.edges` that point into affected channel paths.
+3. Record move candidates and legacy exceptions in migration batches.
+4. Migrate only one bounded batch at a time.
+5. Update outgoing file edges and traceable incoming references when files move.
+6. If reconciliation cannot be completed safely, create explicit follow-up tasks instead of guessing.
+
+Rules:
+
+- Do not mass-move entire channels in one pass.
+- Do not silently drop edge declarations.
+- Do not invent replacement paths without evidence.
+- Use redirect or pointer artifacts where needed to preserve lineage.
 
 ### Standard Workflow
 
@@ -184,6 +273,27 @@ For security incidents or critical failures:
 - Include proper metadata in all artifacts
 - Check channel membership before acting
 - Validate routing before sending messages
+
+### Interface Enforcement (4.0.88)
+
+#### LLM / IDE surfaces
+
+- Must start in channel and thread context.
+- Must use `questions/` before `prompts/` when ambiguity exists.
+- Must not treat raw chat text as executable prompt authority.
+- Must write governed artifacts into channel filesystem locations, not ad-hoc repo paths.
+
+#### CLI surfaces
+
+- Must expose channel and thread navigation explicitly.
+- Must distinguish discussion artifacts from prompt artifacts.
+- Must not bypass channel structure by writing execution instructions into unrelated folders.
+
+#### Web surfaces
+
+- Must map channel and thread views onto the same filesystem-backed coordination model.
+- Must preserve actor/channel/thread attribution when rendering or ingesting artifacts.
+- Must not collapse discussion, questions, and prompts into a single undifferentiated write surface.
 
 ### WOLFIE (Orchestrator)
 
@@ -262,6 +372,11 @@ Regular compliance checks MUST verify:
 
 ## Enforcement
 
+### No Raw Prompt Rule
+
+- Direct ad-hoc IDE prompts without channel thread artifacts are non-compliant for governed work.
+- Executable instructions must be traceable to `prompts/` artifacts.
+
 ### Violation Types
 
 - **Structural Violations**: Using status-based coordination
@@ -276,6 +391,20 @@ Regular compliance checks MUST verify:
 3. **Agent Training** - Update agent configurations
 4. **System Validation** - Verify compliance
 5. **Documentation Update** - Record corrective actions
+
+## CLI Direction (documentation-only in 4.0.88)
+
+Documented command surface (doctrine direction, not full implementation in this task):
+
+- `lupo channel list`
+- `lupo channel open {id}`
+- `lupo thread list`
+- `lupo thread open {id}`
+- `lupo message send`
+- `lupo message reply`
+- `lupo prompts list`
+- `lupo prompts open {id}`
+- `lupo actors list`
 
 ## Future Enhancements
 

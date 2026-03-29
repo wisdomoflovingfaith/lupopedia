@@ -43,6 +43,10 @@ lupopedia.rules:
     version: "1.0"
     status: "active"
 lupopedia.footer:
+  approved_for_version: "4.1.0"
+  approved_for_version_utc: "20260327103238"
+  approved_for_version_by: "Cursor IDE Agent (Lead Orchestration)"
+  approved_for_version_by_actor_id: 102
   version: "4.0.74"
   last_verified: "20260313"
   last_verified_by: "wolfie"

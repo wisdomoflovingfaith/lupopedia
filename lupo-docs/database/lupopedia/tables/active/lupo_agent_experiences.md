@@ -1,68 +1,68 @@
 ---
 lupopedia.headers:
-  lupopedia.schema: database_table
-  file_path_from_root: lupo-docs/database/lupopedia/tables/active/lupo_agent_experiences.md
-  channel_id: 1
-  actor_id: 102
-  last_modified_utc: '20260312'
-  artifact_type: table_documentation
-  purpose: "Agent\u2013star links (emotional/experience model): link_id, star_id,\
-    \ intensity, context"
-  mood_rgb: 4169E1
-  traits:
-  - canonical
-  - agent
-  - cursor_domain
-  - v4.0.70
+  when_updated: "20260328013000"
+  file_path_from_root: "lupo-docs/database/lupopedia/tables/active/lupo_agent_experiences.md"
+  last_modified_utc: "20260328013000"
+  channel_id: 42
+  actor_id: 23
+  actor_name: "hephaestus"
+  delegation_chain: "wolfie:hephaestus"
+  artifact_type: "documentation"
+  artifact_kind: "table"
+  namespace: "core"
+  purpose: "Normalized table documentation for lupo_agent_experiences from TOON JSON"
   tags:
   - database
-  - agents
-  - experiences
-  lupo_agent: cursor
-  when_updated: '20260324174654'
+  - table
+  - normalized
+  - 4.0.88
 lupopedia.edges:
+  comment: "static placeholder edges for stage3 normalization"
   outbound_edges:
-  - to: lupo-database/lupopedia/toon/lupo_agent_experiences.toon.json
-    type: schema_reference
+  - to: "lupo-database/lupopedia/json/lupo_agent_experiences.json"
+    type: "references"
     weight: 1.0
-  - to: lupo-docs/database/lupopedia/tables/active/lupo_agents.md
-    type: references
-    weight: 0.8
+    reason: "authoritative TOON JSON source"
 lupopedia.footer:
-  last_verified: '20260312000000'
-  last_verified_by: cursor
-  last_verified_by_actor_id: 102
-  orchestrator: cursor:root
+  last_verified: "20260328013000"
+  last_verified_by: "hephaestus"
+  last_verified_by_actor_id: 23
+  generated: true
+  provenance: "stage3_track_c_normalization"
 ---
+# file: lupo_agent_experiences.md
 
-# Table: lupo_agent_experiences
+# lupo_agent_experiences
 
-## Table Overview
+## Purpose
+Canonical table documentation normalized from TOON JSON for `lupo_agent_experiences`.
 
-- **Purpose:** Links agents to "stars" (emotional/experience model): link_id (PK), agent_id, star_id, intensity, context_id, observed_ymdhis, expressed_as_rgb. Used for agent experience/emotional state tracking.
-- **Category:** Agent
-- **Status:** Active
-- **Version introduced:** 4.0.0
+## Schema
 
-## Column Documentation
+### Primary Key
+(none)
 
-| Column | Type | Nullable | Default | Description |
-|--------|------|----------|---------|-------------|
-| link_id | char(26) | No | — | Primary key (e.g. ULID). |
-| agent_id | bigint | No | — | Agent (logical → lupo_agents). |
-| star_id | char(26) | No | — | Star identifier. |
-| intensity | decimal(3,2) | Yes | — | Intensity value. |
-| context_id | bigint | Yes | — | Context reference. |
-| observed_ymdhis | bigint | Yes | — | Observation timestamp. |
-| expressed_as_rgb | char(6) | Yes | — | RGB color code. |
+### Columns
 
-## Relationships
+| Column | Type Definition |
+|---|---|
+| `link_id` | `char(26) NOT NULL` |
+| `agent_id` | `bigint NOT NULL` |
+| `star_id` | `char(26) NOT NULL` |
+| `intensity` | `decimal(3,2)` |
+| `context_id` | `bigint` |
+| `observed_ymdhis` | `bigint` |
+| `expressed_as_rgb` | `char(6)` |
 
-- **Logical references:** agent_id → lupo_agents.agent_id; star_id and context_id reference other domain tables (emotional/context).
-- **Inbound:** Experience/emotional subsystem writes links.
-- **Join patterns:** By agent_id, context_id, star_id.
+### Indexes
 
-## Usage Notes
+| Index | Columns | Unique |
+|---|---|---|
+| `lupo_agent_experiences_idx_agent` | `agent_id` | no |
+| `lupo_agent_experiences_idx_context` | `context_id` | no |
+| `lupo_agent_experiences_idx_star` | `star_id` | no |
 
-- **Indexes:** agent_id, context_id, star_id.
-- **Primary key:** link_id is char(26), not bigint; per TOON.
+## Doctrine
+- Source of truth: `lupo-database/lupopedia/json/` TOON exports
+- Regeneration mode: Stage 3 deterministic normalization
+- Edge mode: placeholder baseline

@@ -1,4 +1,4 @@
-# LUPOPEDIA HEADERS (replaces FLARE)
+﻿# LUPOPEDIA HEADERS (replaces FLARE)
 ---
 lupopedia.headers:
   lupopedia.version: "4.0.73"
@@ -24,8 +24,7 @@ lupopedia.edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
     - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
-lupopedia.footer:
-  last_verified: "20260228155738"
+lupopedia.footer:`n  approved_for_release: "4.1.0"`n  approval_status: "approved"`n  approved_by_actor_id: 1`n  approved_utc: 20260326192115`n  last_verified: "20260228155738"
   last_verified_by: "windsurf"
 ---
 
@@ -51,8 +50,7 @@ lupopedia.headers:
   tags: ["docs", "database", "lupopedia", "tables", "migration_mapping_referencemd"]
   lupo_agent: "windsurf"
 
-lupopedia.footer:
-  last_verified: "20260228"
+lupopedia.footer:`n  approved_for_release: "4.1.0"`n  approval_status: "approved"`n  approved_by_actor_id: 1`n  approved_utc: 20260326192115`n  last_verified: "20260228"
   last_verified_by: "windsurf"
 ---
 
@@ -96,7 +94,7 @@ These database tables should never be used in the new Lupopedia system. They exi
 # Migration Mapping Reference
 
 **Source of truth:** Every file in `lupo-docs/database/lupopedia/tables/`.  
-This document is a concise index of legacy → Lupopedia table/behavior mappings. Use it together with `lupo-docs/notes_from_legacy_craftysyntax.md` (behavior) and the individual migration `.md` files (authoritative).
+This document is a concise index of legacy â†’ Lupopedia table/behavior mappings. Use it together with `lupo-docs/notes_from_legacy_craftysyntax.md` (behavior) and the individual migration `.md` files (authoritative).
 
 > [!NOTE]
 > For historical context on the evolution from Crafty Syntax to Lupopedia and the rationale behind legacy deprecation, see the Full Project History.
@@ -109,7 +107,7 @@ This document is a concise index of legacy → Lupopedia table/behavior mappings
 |--------|-----|--------|
 | livehelp_users | lupo_auth_users | Identity/credentials (username, display_name, email, password_hash, auth_provider, provider_id, last_login_ymdhis). Operators imported first, then visitors. |
 | livehelp_users | lupo_actors, lupo_actor_properties | Related: presence, device, behavioral metadata in actor_properties. **Operator permissions** are not a table; they use the **3-level role system**: channel roles (lupo_actor_channel_roles: captain, administrator, monitor), department roles (lupo_department_roles), system (department_id = 0). See lupo-docs/database/lupopedia/tables/active/lupo_actor_channel_roles.md and OPERATOR_TO_ROLE_BASED_SWEEP_REPORT. |
-| livehelp_operator_departments | lupo_actor_departments | recno→actor_department_id, user_id→actor_id, department→department_id, extra→title. |
+| livehelp_operator_departments | lupo_actor_departments | recnoâ†’actor_department_id, user_idâ†’actor_id, departmentâ†’department_id, extraâ†’title. |
 
 ---
 
@@ -118,11 +116,11 @@ This document is a concise index of legacy → Lupopedia table/behavior mappings
 | Legacy | New | Notes |
 |--------|-----|--------|
 | livehelp_messages | **DROPPED** | Ephemeral buffer only. No import. Durable data from livehelp_transcripts. |
-| livehelp_transcripts | lupo_dialog_threads, lupo_dialog_messages | One thread per transcript; one message per thread containing full transcript text. recno→dialog_thread_id/dialog_message_id, transcript→message content, starttime/endtime→created_ymdhis/updated_ymdhis. |
+| livehelp_transcripts | lupo_dialog_threads, lupo_dialog_messages | One thread per transcript; one message per thread containing full transcript text. recnoâ†’dialog_thread_id/dialog_message_id, transcriptâ†’message content, starttime/endtimeâ†’created_ymdhis/updated_ymdhis. |
 | livehelp_operator_channels | **DROPPED** | Functionality replaced by lupo_channels, lupo_channel_membership / lupo_actor_channels, lupo_dialog_threads, lupo_actor_presence, metadata_json for UI colors. |
 | livehelp_channels | **DROPPED** | Operator workspace concept; replaced by UI + lupo_dialog_threads, lupo_channels (real channels). |
 
-**Channel interface:** Use **lupo_dialog_threads** (threads, bg_color in metadata/thread), **lupo_dialog_messages** (messages, created_ymdhis, from_actor_id, to_actor_id, message_text), **lupo_channels**, **lupo_actor_channels** (actor–channel membership), **lupo_actors**, **lupo_actor_channel_roles** (channel-scoped roles: captain, administrator, monitor; replaces legacy operator assignment).
+**Channel interface:** Use **lupo_dialog_threads** (threads, bg_color in metadata/thread), **lupo_dialog_messages** (messages, created_ymdhis, from_actor_id, to_actor_id, message_text), **lupo_channels**, **lupo_actor_channels** (actorâ€“channel membership), **lupo_actors**, **lupo_actor_channel_roles** (channel-scoped roles: captain, administrator, monitor; replaces legacy operator assignment).
 
 ---
 
@@ -130,7 +128,7 @@ This document is a concise index of legacy → Lupopedia table/behavior mappings
 
 | Legacy | New | Notes |
 |--------|-----|--------|
-| livehelp_quick | lupo_actor_reply_templates | id→actor_reply_template_id, user→actor_id, name→template_key, message→template_text, typeof→usage_context. |
+| livehelp_quick | lupo_actor_reply_templates | idâ†’actor_reply_template_id, userâ†’actor_id, nameâ†’template_key, messageâ†’template_text, typeofâ†’usage_context. |
 
 ---
 
@@ -138,8 +136,8 @@ This document is a concise index of legacy → Lupopedia table/behavior mappings
 
 | Legacy | New | Notes |
 |--------|-----|--------|
-| livehelp_layerinvites | lupo_crafty_syntax_layer_invites | name→layer_name, imagename→image_name, imagemap→image_map, department→department_name, user→user_id. Compatibility table. |
-| livehelp_autoinvite | lupo_crafty_syntax_auto_invite | idnum→crafty_syntax_auto_invite_id, isactive→is_active, department→department_id, message, page→page_url, referer→referrer_url, typeof→invite_type, etc. |
+| livehelp_layerinvites | lupo_crafty_syntax_layer_invites | nameâ†’layer_name, imagenameâ†’image_name, imagemapâ†’image_map, departmentâ†’department_name, userâ†’user_id. Compatibility table. |
+| livehelp_autoinvite | lupo_crafty_syntax_auto_invite | idnumâ†’crafty_syntax_auto_invite_id, isactiveâ†’is_active, departmentâ†’department_id, message, pageâ†’page_url, refererâ†’referrer_url, typeofâ†’invite_type, etc. |
 
 ---
 
@@ -158,7 +156,7 @@ This document is a concise index of legacy → Lupopedia table/behavior mappings
 |--------|-----|--------|
 | livehelp_sessions | **DROPPED** | Replaced by lupo_sessions (deterministic, actor-aware). No import. |
 | **{prefix}sessions** | **MERGED & DROPPED** | Logic merged into {prefix}sessions; table removed from install. Single session table is {prefix}sessions. See one_time_sessions_to_sessions.sql. |
-| **{prefix}actor_roles** | **DROPPED** | Replaced by **3-level role system**: (1) **lupo_actor_channel_roles** (channel-scoped: captain, administrator, monitor); (2) **lupo_department_roles** (department-scoped); (3) system (department_id = 0 = global admin). Resolution: channel → department → system. See drop_lupo_actor_roles.sql and lupo-docs/audits/OPERATOR_TO_ROLE_BASED_SWEEP_REPORT.md. |
+| **{prefix}actor_roles** | **DROPPED** | Replaced by **3-level role system**: (1) **lupo_actor_channel_roles** (channel-scoped: captain, administrator, monitor); (2) **lupo_department_roles** (department-scoped); (3) system (department_id = 0 = global admin). Resolution: channel â†’ department â†’ system. See drop_lupo_actor_roles.sql and lupo-docs/audits/OPERATOR_TO_ROLE_BASED_SWEEP_REPORT.md. |
 | livehelp_identity_daily | **DROPPED** | No import. |
 | livehelp_identity_monthly | **DROPPED** (no import) | Anonymous users are not in lupo_actors; they exist in lupo_sessions only. No anonymous actor rows or range. |
 | livehelp_operator_channels (presence/colors) | lupo_actor_presence, metadata_json | Operator presence and UI colors; see livehelp_operator_channels_migration.md. |
@@ -170,7 +168,7 @@ This document is a concise index of legacy → Lupopedia table/behavior mappings
 | Legacy | New | Notes |
 |--------|-----|--------|
 | livehelp_questions | lupo_crafty_syntax_chat_questions | Pre-chat intake form config. |
-| livehelp_leavemessage | lupo_crafty_syntax_leave_message | Offline “leave a message” submissions. |
+| livehelp_leavemessage | lupo_crafty_syntax_leave_message | Offline â€œleave a messageâ€ submissions. |
 | livehelp_leads | lupo_crm_leads | Lead capture. |
 | livehelp_emails | lupo_crm_lead_messages | Broadcast emails; lead_id=1 (broadcast lead). |
 | livehelp_operator_history | lupo_audit_log | entity_type='actor', entity_id=opid, event_type=action, payload_json for session. |
@@ -204,13 +202,13 @@ This document is a concise index of legacy → Lupopedia table/behavior mappings
 
 ## Channel interface checklist (doctrine + legacy notes)
 
-- **Messages:** lupo_dialog_messages (created_ymdhis, from_actor_id, to_actor_id, message_text, dialog_thread_id, channel_id). Order by created_ymdhis ASC. Interleave all threads (legacy §1).
+- **Messages:** lupo_dialog_messages (created_ymdhis, from_actor_id, to_actor_id, message_text, dialog_thread_id, channel_id). Order by created_ymdhis ASC. Interleave all threads (legacy Â§1).
 - **Thread colors:** lupo_dialog_threads.bg_color (legacy channelcolor from operator_channels; doctrine: thread-level metadata).
-- **Tabs:** One per thread (lupo_dialog_threads) for this channel; selecting tab = composer target only (legacy §5).
-- **Quick notes:** lupo_actor_reply_templates (template_key, template_text, usage_context, actor_id). Use in composer (legacy §10).
-- **Typing:** Ephemeral (file cache or equivalent); clear all on send (legacy §3).
+- **Tabs:** One per thread (lupo_dialog_threads) for this channel; selecting tab = composer target only (legacy Â§5).
+- **Quick notes:** lupo_actor_reply_templates (template_key, template_text, usage_context, actor_id). Use in composer (legacy Â§10).
+- **Typing:** Ephemeral (file cache or equivalent); clear all on send (legacy Â§3).
 - **Presence:** lupo_actor_presence / lupo_actor_properties where defined; lastaction/isonline/status from legacy map to new presence or session (livehelp_users_migration, operator_channels_migration).
-- **Invites:** lupo_crafty_syntax_layer_invites, lupo_crafty_syntax_auto_invite for layer and auto-invite (legacy §8).
+- **Invites:** lupo_crafty_syntax_layer_invites, lupo_crafty_syntax_auto_invite for layer and auto-invite (legacy Â§8).
 - **Operators/visitors list:** lupo_actors, lupo_actor_channel_roles (who has which role on this channel), lupo_actor_channels (who is on this channel).
 - **Paths:** All internal paths use LUPOPEDIA_PUBLIC_PATH; never hardcode folder names.
 
@@ -225,3 +223,4 @@ This document is a concise index of legacy → Lupopedia table/behavior mappings
 ---
 
 *Generated from /docs/database/lupopedia/tables/*.md. For full field mappings and rationale, read the corresponding migration file.*
+

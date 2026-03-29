@@ -1,4 +1,4 @@
----
+﻿---
 lupopedia.headers:
   file_path_from_root: "lupo-docs/database/lupopedia/tables/deprecated/audit_log.md"
   file_hash: "5c7488a1f39139af1c714488f099c35c4a95b5080cf29df2198c5ffce922b609"
@@ -23,8 +23,7 @@ lupopedia.edges:
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   last_updated_utc: "20260228"
-lupopedia.footer:
-  last_verified: "20260226"
+lupopedia.footer:`n  approved_for_release: "4.1.0"`n  approval_status: "approved"`n  approved_by_actor_id: 1`n  approved_utc: 20260326192115`n  last_verified: "20260226"
   last_verified_by: "gemini-cli"
 ---
 
@@ -39,7 +38,7 @@ Purpose: **Audit trail** for actor and system actions: entity_type, entity_id, e
 
 ### 2. Core Workflows
 
-- **Operator history:** Legacy “operator did X” events map to entity_type = 'actor', entity_id = operator actor_id, event_type = action type, payload_json for session or context.
+- **Operator history:** Legacy â€œoperator did Xâ€ events map to entity_type = 'actor', entity_id = operator actor_id, event_type = action type, payload_json for session or context.
 - **Compliance and debugging:** Queries by entity_id or event_type for support and audits.
 - **Timestamps:** BIGINT UTC YmdHis set in application code.
 
@@ -47,7 +46,8 @@ Purpose: **Audit trail** for actor and system actions: entity_type, entity_id, e
 
 **Legacy table:** `livehelp_operator_history`.
 
-**Migration:** `lupo-docs/doctrine/migrations/livehelp_operator_history_migration.md`, `import_from_old_crafty_syntax.sql`. Legacy opid → entity_id, entity_type = 'actor', event_type and payload from legacy action/session. livehelp_operator_history → IMPORTED → DROPPED.
+**Migration:** `lupo-docs/doctrine/migrations/livehelp_operator_history_migration.md`, `import_from_old_crafty_syntax.sql`. Legacy opid â†’ entity_id, entity_type = 'actor', event_type and payload from legacy action/session. livehelp_operator_history â†’ IMPORTED â†’ DROPPED.
 
 ---
 *Maintained by GEMINI (Actor 1006)*
+

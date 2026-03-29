@@ -1,127 +1,79 @@
 ---
 lupopedia.headers:
-  lupopedia.schema: database_table
-  file_path_from_root: lupo-docs/database/lupopedia/tables/active/lupo_visits.md
-  web_path: '[lupo_visits](http://www.lupopedia.com/database/lupopedia/tables/active/lupo_visits)'
-  last_modified_utc: '20260317'
+  when_updated: "20260328013000"
+  file_path_from_root: "lupo-docs/database/lupopedia/tables/active/lupo_visits.md"
+  last_modified_utc: "20260328013000"
   channel_id: 42
-  actor_id: 102
-  actor_name: cursor
-  delegation_chain: cursor:root
-  artifact_type: table_documentation
-  artifact_kind: table
-  namespace: analytics
-  purpose: Visit and session analytics; traffic and referrer tracking
+  actor_id: 23
+  actor_name: "hephaestus"
+  delegation_chain: "wolfie:hephaestus"
+  artifact_type: "documentation"
+  artifact_kind: "table"
+  namespace: "core"
+  purpose: "Normalized table documentation for lupo_visits from TOON JSON"
   tags:
   - database
   - table
-  - analytics
-  when_updated: '20260324174654'
+  - normalized
+  - 4.0.88
 lupopedia.edges:
-  comment: Snapshot of edges for lupo_visits table doc at 4.0.79 (grounded by repo
-    search; non-exhaustive).
-  meta: php_hits=3 python_hits=2
+  comment: "static placeholder edges for stage3 normalization"
   outbound_edges:
-  - to: database.table.lupo_visits
-    type: DEFINES_SCHEMA_FOR
+  - to: "lupo-database/lupopedia/json/lupo_visits.json"
+    type: "references"
     weight: 1.0
-  - to: lupo-database/lupopedia/mysql/install/install_new_lupopedia.sql
-    type: schema_reference
-    weight: 1.0
-  - to: admin.php
-    type: USED_IN_PHP
-    weight: 0.6
-  - to: check_db_state.php
-    type: USED_IN_PHP
-    weight: 0.6
-  - to: lupo-scripts/audit_schema_doctrine.php
-    type: USED_IN_PHP
-    weight: 0.7
-  - to: analyze_unused_tables.py
-    type: USED_IN_PYTHON
-    weight: 0.5
-  - to: lupo-scripts/audit_schema_doctrine.py
-    type: USED_IN_PYTHON
-    weight: 0.5
+    reason: "authoritative TOON JSON source"
 lupopedia.footer:
-  last_verified: '20260317000000'
-  last_verified_by: cursor
-  last_verified_by_actor_id: 102
-  orchestrator: cursor:root
+  last_verified: "20260328013000"
+  last_verified_by: "hephaestus"
+  last_verified_by_actor_id: 23
+  generated: true
+  provenance: "stage3_track_c_normalization"
 ---
-# file: lupo_visits ? web_path: http://www.lupopedia.com/database/lupopedia/tables/active/lupo_visits
-# Table: lupo_visits
+# file: lupo_visits.md
 
-Purpose: Auto-generated documentation for lupo_visits from TOON schema.
-Type: database_table
-Status: production_ready
-Volume: unknown
+# lupo_visits
 
-## 1. Overview
-- Key responsibilities: schema reference, storage, and lookup for this table.
-- System role: persists data for the Lupopedia database subsystem.
-- Importance: enables data integrity and downstream features tied to this table.
+## Purpose
+Canonical table documentation normalized from TOON JSON for `lupo_visits`.
 
-## 2. Schema Reference
-Primary Key: visit_id
-Field Categories: see full field list below.
+## Schema
 
-### All Fields
-| Column | Type | Notes |
+### Primary Key
+(none)
+
+### Columns
+
+| Column | Type Definition |
+|---|---|
+| `visit_id` | `bigint NOT NULL auto_increment` |
+| `session_id` | `bigint` |
+| `actor_id` | `bigint` |
+| `instance_id` | `bigint` |
+| `path_url` | `text` |
+| `entercontentid` | `bigint` |
+| `exitcontentid` | `bigint` |
+| `enter_table` | `varchar(255)` |
+| `exit_table` | `varchar(255)` |
+| `transition_type` | `varchar(64)` |
+| `transition_metadata` | `text` |
+| `created_ymdhis` | `bigint NOT NULL DEFAULT 0` |
+| `is_processed` | `tinyint NOT NULL DEFAULT 0` |
+| `is_deleted` | `tinyint NOT NULL DEFAULT 0` |
+| `deleted_ymdhis` | `bigint` |
+
+### Indexes
+
+| Index | Columns | Unique |
 |---|---|---|
-| visit_id | bigint NOT NULL auto_increment | from TOON |
-| content_id | bigint NOT NULL DEFAULT 0 | from TOON |
-| actor_id | bigint NOT NULL DEFAULT 0 | from TOON |
-| page_url | varchar(500) NOT NULL | from TOON |
-| page_domain | varchar(255) NOT NULL | from TOON |
-| page_path | varchar(500) NOT NULL | from TOON |
-| date_ymd | int NOT NULL | from TOON |
-| visits | int NOT NULL DEFAULT 0 | from TOON |
-| depth | int NOT NULL DEFAULT 0 | from TOON |
-| metadata_json | json | from TOON |
-| created_ymdhis | bigint NOT NULL DEFAULT 0 | from TOON |
-| updated_ymdhis | bigint NOT NULL DEFAULT 0 | from TOON |
+| `lupo_visits_idx_actor` | `actor_id` | no |
+| `lupo_visits_idx_created` | `created_ymdhis` | no |
+| `lupo_visits_idx_enter_exit` | `entercontentid`, `exitcontentid` | no |
+| `lupo_visits_idx_is_deleted` | `is_deleted` | no |
+| `lupo_visits_idx_is_processed` | `is_processed` | no |
+| `lupo_visits_idx_session` | `session_id` | no |
 
-## 3. Relationships and Dependencies
-- Primary relationships: not specified in TOON relationships array.
-- Referencing tables: unknown (use edge suggester tool).
-- Integration points: see outbound edges in FLARE footer.
-
-## 4. Indexes and Performance
-Primary Indexes:
-- visit_id
-Performance Indexes:
-- lupo_visits_content_id
-- lupo_visits_date_ymd
-- lupo_visits_page_domain
-Index Strategy: derived from TOON index definitions.
-
-## 5. Usage Patterns
-Common Queries:
-```sql
-SELECT * FROM lupo_visits WHERE visit_id = :id;
-SELECT COUNT(*) AS total FROM lupo_visits WHERE is_deleted = 0;
-SELECT * FROM lupo_visits ORDER BY visit_id DESC LIMIT 25;
-UPDATE lupo_visits SET updated_ymdhis = :ts WHERE visit_id = :id;
-```
-Best Practices: always filter soft deletes where applicable.
-Anti-Patterns: avoid full table scans on large datasets.
-
-## 6. Performance Considerations
-- High-volume operations: dependent on feature usage.
-- Optimization tips: rely on existing indexes; add new indexes only with TOON updates.
-- Scaling considerations: paginate reads and batch writes.
-
-## 7. Data Integrity
-- Constraints: see NOT NULL and DEFAULT values in TOON fields.
-- Validation rules: enforced at application layer.
-- Soft delete: use is_deleted/deleted_ymdhis if present.
-
-## 8. Common Issues and Solutions
-- Performance issues: add missing indexes via schema update.
-- Data consistency: ensure foreign key relationships are enforced in application logic.
-- Troubleshooting: compare against TOON schema for mismatches.
-
-## 9. Future Enhancements
-- Enrich relationships with discovered edges.
-- Add usage-specific examples once feature usage is known.
+## Doctrine
+- Source of truth: `lupo-database/lupopedia/json/` TOON exports
+- Regeneration mode: Stage 3 deterministic normalization
+- Edge mode: placeholder baseline

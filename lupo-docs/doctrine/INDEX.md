@@ -1,92 +1,37 @@
-# LUPOPEDIA HEADERS (replaces FLARE)
 ---
 lupopedia.headers:
-  lupopedia.version: "4.0.73"
-  lupopedia.schema: "documentation"
+  lupopedia.schema: "doctrine"
   file_path_from_root: "lupo-docs/doctrine/INDEX.md"
-  file_hash: "b50570a731b3260bf6404c1bb67b0f1b5456ee177d0f863dd717ffded3b6f26f"
-  last_updated_utc: "20260228155738"
-  system_version: "4.0.51"
-  channel_id: 1
-  actor_id: 1002
-  delegation_chain: "1002:10000"
-  artifact_type: "documentation"
-  artifact_kind: "documentation"
-  purpose: "Documentation file with LUPOPEDIA HEADERS applied"
-  mood_rgb: "4169E1"
-  traits: ["flare", "indexed", "v4.0.51"]
-  tags: ["documentation", "flare_applied"]
-  lupo_agent: "windsurf"
+  web_path: "http://www.lupopedia.com/lupopedia/doctrine/INDEX.md"
+  last_modified_utc: "20260326"
+  channel_id: 42
+  actor_id: 1
+  actor_name: "WOLFIE"
+  faucet_name: "cursor"
+  delegation_chain: "wolfie:root"
+  # Execution context (optional, for audit)
+  executed_by_agent: "wolfie-primary"
+  executed_through_faucet: "cursor"
+  effective_department: 0
+  artifact_type: "doctrine"
+  artifact_kind: "index"
+  purpose: "Central index for Lupopedia engineering and architectural doctrines"
+  tags: ["doctrine", "index", "architecture", "4.0.88"]
 
 lupopedia.edges:
   outbound_edges:
-    - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/LUPOPEDIA_DOCTRINE.md", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/IDENTITY_MODEL_QUICKSTART_4.0.88.md", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/CHANNEL_BASED_COORDINATION_DOCTRINE.md", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/MULTI_AGENT_COORDINATION_DOCTRINE.md", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/channels/appendix/HISTORY.md", type: "references", weight: 0.8 }
 
 lupopedia.footer:
-  last_verified: "20260228155738"
-  last_verified_by: "windsurf"
----
-
-# LUPOPEDIA HEADERS (replaces FLARE)
-
----
-lupopedia.headers:
-  lupopedia.version: "4.0.73"
-  lupopedia.schema: "documentation"
-  lupopedia.edges: []
-  file_path_from_root: "lupo-docs\doctrine\INDEX.md"
-  file_hash: "c22e123318d7a67c50a6c2294d8ebfa3496963b9cb1efbb75f4e38c7272185af"
-  last_updated_utc: "20260228"
-  system_version: "4.0.50"
-  channel_id: 1
-  actor_id: 1002
-  delegation_chain: "1002:10000"
-  artifact_type: "guide"
-  artifact_kind: "documentation"
-  purpose: "Documentation for INDEX.md"
-  mood_rgb: "4169E1"
-  traits: ["flare", "indexed", "v4.0.50"]
-  tags: ["docs", "doctrine", "indexmd"]
-  lupo_agent: "windsurf"
-
-lupopedia.footer:
-  last_verified: "20260228"
-  last_verified_by: "windsurf"
----
-
----
-lupopedia.headers: {
-  file_path_from_root: "lupo-docs/doctrine/INDEX.md",
-  file_hash: "042bfc20d863726ffc65e17d1330dfe132aae733ec1a04081cd4262c687d46c0"
-  system_version: "4.0.50"
-  channel_id: 42,
-  actor_id: 1003,
-  last_modified_utc: "20260227",
-  delegation_chain: "10000:1003",
-  artifact_type: "documentation",
-  purpose: "Central index for Lupopedia engineering and architectural doctrines",
-  mood_rgb: "00FF00",
-  traits: ["canonical", "documentation", "index", "v4.0.48", "history-update"],
-  tags: ["doctrine", "index", "architecture", "v4.0.48", "history-update"],
-  lupo_agent: "antigravity"
-}
-lupopedia.edges: {
-  file_path_from_root: "lupo-docs\doctrine\INDEX.md"
-  outbound_edges: [
-    { to: "lupo-docs/channels/appendix/HISTORY.md", type: "references", weight: 1.0 },
-    { to: "lupo-docs/doctrine/LUPOPEDIA_DOCTRINE.md", type: "references", weight: 1.0 },
-    { to: "lupo-docs/doctrine/FLARE/FLARE_DOCTRINE.md", type: "references", weight: 1.0 }
-  ],
-  semantic_tags: ["doctrine_index", "engineering_standards"]
-}
-  last_updated_utc: "20260228"
-  system_version: "4.0.50"
-  last_updated_utc: "20260228"
-lupopedia.footer: {
-  last_verified_utc: "20260227",
-  last_verified_by: "antigravity"
-}
+  last_verified: "20260326"
+  last_verified_by_actor_id: 1
+  last_verified_by_actor_name: "WOLFIE"
+  last_verified_through_faucet: "cursor"
+  orchestrator: "wolfie:root"
 ---
 
 # Lupopedia Doctrine Index
@@ -94,28 +39,69 @@ lupopedia.footer: {
 ## Purpose
 Governs Semantic OS operations via non-negotiable architectural boundaries and engineering standards. All development must align with these rules to ensure multi-agent safety and long-term portability.
 
-## Core Doctrines
+## Core Doctrines (4.0.88)
 
-1.  **[Lupopedia Master Doctrine](LUPOPEDIA_DOCTRINE.md)** — The foundational rules of the system.
-2.  **[FLARE Protocol Doctrine](FLARE/FLARE_DOCTRINE.md)** — File-level metadata and relationship standards.
-3.  **[Database Philosophy](../channels/architecture/DATABASE_PHILOSOPHY.md)** — Why we use no foreign keys, triggers, or stored procedures.
-4.  **[Identity Authority](IDENTITY_AUTHORITY_DOCTRINE.md)** — Universal actor model and registry hierarchy.
-5.  **[Table Ceiling Protocol](CASCADE_TABLE_CEILING_PROTOCOL.md)** — Governance of the 199-table limit.
+### 🏛️ **Foundational System**
+1. **[Lupopedia Master Doctrine](LUPOPEDIA_DOCTRINE.md)** — The foundational rules of the system
+2. **[Multi-Agent Coordination Doctrine](MULTI_AGENT_COORDINATION_DOCTRINE.md)** — 11 Primary Coordination Personas and agent ecosystem
+3. **[Channel-Based Coordination Doctrine](CHANNEL_BASED_COORDINATION_DOCTRINE.md)** — Channel-based artifact management (replaces status-based coordination)
+
+### 🆔 **Identity & Actor Model**
+4. **[Identity Model Quickstart](IDENTITY_MODEL_QUICKSTART_4.0.88.md)** — Canonical guide to identity layers (Login Identity, Actor, Department, Agent, Faucet)
+5. **[Actor Agent Login Identity Model](ACTOR_AGENT_AUTH_USER_MODEL.md)** — Detailed identity layer separation and session binding
+6. **[Effective Actor Resolution](EFFECTIVE_ACTOR_RESOLUTION.md)** — Runtime actor selection and resolution paths
+7. **[Identity Authority Doctrine](IDENTITY_AUTHORITY_DOCTRINE.md)** — Universal actor model and registry hierarchy
+
+### 🗄️ **Database & Schema**
+8. **[Database Doctrine](DATABASE_DOCTRINE.md)** — Core database principles and constraints
+9. **[Table Ceiling Protocol](CASCADE_TABLE_CEILING_PROTOCOL.md)** — Governance of the 199-table limit
+10. **[Schema and TOON Alignment](SCHEMA_AND_TOON_ALIGNMENT_CONTEXT.md)** — Database schema synchronization
+
+### 🚰 **Execution & Faucets**
+11. **[IDE Agent Continuity Protocol](IDE_AGENT_CONTINUITY_PROTOCOL.md)** — Cross-IDE agent coordination
+12. **[Faucet Traceability Doctrine](FAUCET_TRACEABILITY_DOCTRINE.md)** — Execution surface attribution
+13. **[Actor Facet Separation Doctrine](ACTOR_FACET_SEPARATION_DOCTRINE.md)** — Actor identity boundaries
+
+### 🛡️ **Security & Governance**
+14. **[LEXA Gateway Integration](LEXA_GATEWAY_INTEGRATION.md)** — Security enforcement integration
+15. **[Authorization Doctrine](AUTHORIZATION_DOCTRINE.md)** — Permission and access control
+16. **[Ethical State Markers Doctrine](ETHICAL_STATE_MARKERS_DOCTRINE.md)** — Ethical framework for operations
+
+### 📋 **Development Standards**
+17. **[Development Workflow Doctrine](DEVELOPMENT_WORKFLOW_DOCTRINE.md)** — Engineering processes and standards
+18. **[Versioning Doctrine](VERSIONING_DOCTRINE.md)** — Version management and compatibility
+19. **[Doctrine File Structure](DOCTRINE_FILE_STRUCTURE.md)** — Documentation organization standards
+
+## Legacy Systems (Deprecated)
+
+### ⚠️ **FLARE/FLIP - Deprecated**
+- **FLARE**: File-level metadata system → **Replaced by LUPOPEDIA HEADERS**
+- **FLIP**: File-Level Inference Protocol → **Replaced by LUPOPEDIA HEADERS**
+- **FLP**: Federated Likeness Protocol → **Replaced by channel-based coordination**
+
+🔗 **Current System**: [LUPOPEDIA_HEADERS](LUPOPEDIA_HEADERS/README.md) (format, tooling)  
+🔒 **Binding doctrine (single file):** [`lupo-rules/root/LUPOPEDIA_HEADERS_DOCTRINE.md`](../../lupo-rules/root/LUPOPEDIA_HEADERS_DOCTRINE.md) — field matrix + DB mapping; [`LUPOPEDIA_HEADERS/LUPOPEDIA_HEADERS_DOCTRINE.md`](LUPOPEDIA_HEADERS/LUPOPEDIA_HEADERS_DOCTRINE.md) is a stable alias only.
+📎 **Taxonomy quick reference:** [LUPOPEDIA_HEADERS/TAXONOMY_REFERENCE.md](LUPOPEDIA_HEADERS/TAXONOMY_REFERENCE.md) (schema + cross-field table; binding text stays in root file).
+📋 **Deprecation Guide**: [DEPRECATION_FLARE_FLIP_FLP.md](LUPOPEDIA_HEADERS/DEPRECATION_FLARE_FLIP_FLP.md)
 
 ## Context & History
 
 > [!TIP]
 > To understand the "why" behind these strict doctrines, review the project's evolution from a 2002 open-source live help system to a modern Semantic OS.
 
-*   **[Full Project History](../channels/appendix/HISTORY.md)** — From Crafty Syntax to Lupopedia.
-*   **[Founder's Note](../channels/appendix/appendix/FOUNDERS_NOTE.md)** — The personal narrative behind the architecture.
+*   **[Full Project History](../channels/appendix/HISTORY.md)** — From Crafty Syntax to Lupopedia
+*   **[Founder's Note](../channels/appendix/appendix/FOUNDERS_NOTE.md)** — The personal narrative behind the architecture
 
 ## Navigation Layers
-1. **Identity**: Actors, semantics, membership
-2. **Channels**: Types, routing, groupings
-3. **Routing**: Message flow logic
-4. **Emotional**: Metadata structures
-5. **Kernel**: System behavior
+
+1. **Identity**: Login Identity → Actor → Department → Agent → Faucet
+2. **Coordination**: Multi-agent personas and channel-based workflows
+3. **Channels**: Message routing, broadcasts, threads, direct messages
+4. **Database**: Schema constraints, TOON synchronization, table limits
+5. **Security**: Authorization, boundaries, ethical frameworks
+6. **Development**: Workflow, versioning, documentation standards
 
 ---
-*Last updated: 2026-02-27 (v4.0.48)*
+
+*Last updated: 2026-03-26 (v4.0.88)*  
+*Maintained by: WOLFIE (actor_id 1) through cursor faucet*

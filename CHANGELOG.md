@@ -1,8 +1,8 @@
 ﻿---
 lupopedia.headers:
   file_path_from_root: "CHANGELOG.md"
-  last_modified_utc: "20260324"
-  when_updated: "20260324"
+  last_modified_utc: "20260328120000"
+  when_updated: "20260328120000"
   channel_id: 42
   thread_id: 1047
   actor_id: 1
@@ -13,10 +13,14 @@ lupopedia.headers:
   delegation_chain: "wolfie:root"
   web_path: "http://www.lupopedia.com/lupopedia/CHANGELOG.md"
 lupopedia.footer:
-  last_verified: "20260324"
+  version: "4.0.89"
+  last_verified: "20260328120000"
   last_verified_by: "wolfie"
   last_verified_by_actor_id: 1
   orchestrator: "wolfie:root"
+  next_action:
+    - "Propagate rule updates to all IDE agents via propagate_agent_rules.php"
+    - "Ensure all new development follows these rules"
 ---
 
 # CHANGELOG
@@ -26,24 +30,35 @@ lupopedia.footer:
 **As of version 4.0.85, Lupopedia uses a distributed changelog model:**
 
 ### 🔹 For Changes AFTER Version 4.0.85 (Current & Future)
+
 All changes for version **4.0.85 and above** are documented in version-specific directories:
-- **Current version documentation**: [`lupo-docs/versions/<version>/CHANGELOG.md`](lupo-docs/versions/4.0.87/CHANGELOG.md)
+- **Current version documentation**: [`lupo-docs/versions/<version>/CHANGELOG.md`](lupo-docs/versions/4.0.89/CHANGELOG.md)
 - **All structured metadata** (task registry, doctrine, contradictions, database changes): Located within each version directory
 - **Example**: Version 4.0.87 changes are in [`lupo-docs/versions/4.0.87/`](lupo-docs/versions/4.0.87/)
 
 ### 🔹 For Changes BEFORE Version 4.0.85 (Historical)
+
 All changes prior to version **4.0.85** are archived in:
 - **Historical archive**: [`CHANGELOG_ARCHIVE.md`](CHANGELOG_ARCHIVE.md)
-- Contains complete version history from v0.0 through v4.0.84
-- This file is now read-only; all new changes follow the version-directory model
+- **Contains complete version history from v0.0 through v4.0.84**
+- **This file is now read-only; all new changes follow the version-directory model**
 
 ### 📖 How to Read This Document
 
-1. **For the latest changes** → Check `lupo-docs/versions/4.0.87/CHANGELOG.md` (current version)
+1. **For the latest changes** → Check `lupo-docs/versions/4.0.89/CHANGELOG.md` (current version)
 2. **For historical context** → Consult `CHANGELOG_ARCHIVE.md` (all versions before 4.0.85)
 3. **For complete version details** → Browse the version-specific directory containing: PLAN.md, TODO.md, TASK_REGISTRY.md, CONTRADICTIONS.md, DOCTRINE.md
 
----
+### 🚀 Enforcement
+
+**IMPORTANT:** Each version from 4.0.85+ has its own changelog in its version directory. The root CHANGELOG.md serves as:
+- **Historical index and transition marker** between versions
+- **Navigation aid** to find current and recent changes
+- **Should NOT contain detailed implementation changes** for specific versions
+
+### Authority Statement
+
+For 4.0.85+, version-folder documentation is authoritative. Root-level summaries must not duplicate or override version-folder records.
 
 ## Version 4.0.85+
 
@@ -64,11 +79,68 @@ See lupo-docs/versions/4.0.85/ for structured changes.
 ### How to read changes
 - Start at `lupo-docs/versions/<version>/` for the version you are reviewing.
 - Read category-specific documents (for example: task registry state, contradictions, database/doc updates, doctrine updates, research artifacts).
-- Use this root `CHANGELOG.md` as a historical index and transition marker, not as the complete source of 4.0.85+ implementation detail.
 
-### Authority statement
-- For 4.0.85+, version-folder documentation is authoritative.
-- Root-level summaries must not duplicate or override version-folder records.
+## Version 4.0.89
+
+### Windows WSL Command Patterns & Header Validation Fixes
+
+**Date:** 2026-03-28  
+**Actor:** WOLFIE (actor_id 1)  
+**Channel:** 42  
+
+#### Summary
+Added Windows-specific command pattern enforcement and fixed Python validator for Windows BOM and line ending issues.
+
+#### Key Changes
+
+1. **WINDOWS_WSL_COMMAND_PATTERNS.md Rule**
+   - Updated existing rule from 4.0.87 to 4.0.89
+   - Changed actor from windsurf (105) to wolfie (1)
+   - Added complete LUPOPEDIA headers with all required fields
+   - Enhanced with Windows-specific command patterns
+   - Added cross-platform compatibility guidance
+
+2. **RULE_FILES_HEADER_REQUIREMENT.md Enhancement**
+   - Added Windows-specific command pattern guidance
+   - Updated with WSL prefix requirements for Unix commands
+   - Added PowerShell alternatives for Windows operations
+   - Enhanced with cross-platform compatibility recommendations
+
+3. **LUPOPEDIA_HEADERS_REQUIREMENT_RULE.md Fix**
+   - Fixed missing LUPOPEDIA headers
+   - Added complete `lupopedia.headers`, `lupopedia.footer`, and `lupopedia.edges` blocks
+   - Updated timestamps to current UTC time
+   - Properly formatted as YAML front matter for Markdown files
+
+4. **Python Validator Enhancement**
+   - Fixed `validate_lupopedia_headers_universal.py` for Windows BOM and line ending issues
+   - Added `encoding='utf-8-sig'` to automatically strip UTF-8 BOM
+   - Added line ending normalization with `.replace('\r\n', '\n')`
+   - Improved debug output for better issue identification
+   - Enhanced first line detection to handle empty lines properly
+
+#### Technical Details
+
+- **BOM Handling**: Files with UTF-8 BOM now read correctly
+- **Line Ending Normalization**: Windows `\r\n` converted to Unix `\n`
+- **Cross-Platform Compatibility**: Scripts work on Windows, Linux, and macOS
+- **Validation Accuracy**: First line detection now works correctly for files starting with `---`
+
+#### Impact
+
+- **Windows Compliance**: All agents now follow proper WSL command patterns
+- **Header Validation**: Markdown files validate correctly regardless of encoding
+- **Cross-Platform Development**: Python scripts work consistently across platforms
+- **Documentation Updates**: All rule files have complete LUPOPEDIA headers
+
+#### Files Modified
+
+- `lupo-rules/root/WINDOWS_WSL_COMMAND_PATTERNS.md` - Updated to v4.0.89
+- `lupo-rules/root/RULE_FILES_HEADER_REQUIREMENT.md` - Enhanced with Windows guidance
+- `lupo-rules/root/LUPOPEDIA_HEADERS_REQUIREMENT_RULE.md` - Fixed headers
+- `lupo-scripts/validate_lupopedia_headers_universal.py` - Fixed for Windows BOM/line endings
+
+---
 
 ## [4.0.87] - 20260324
 

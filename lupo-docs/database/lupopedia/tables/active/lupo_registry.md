@@ -1,124 +1,78 @@
 ---
 lupopedia.headers:
-  lupopedia.schema: database_table
-  file_path_from_root: lupo-docs/database/lupopedia/tables/active/lupo_registry.md
-  web_path: '[lupo_registry](http://www.lupopedia.com/database/lupopedia/tables/active/lupo_registry)'
-  last_modified_utc: '20260317'
+  when_updated: "20260328013000"
+  file_path_from_root: "lupo-docs/database/lupopedia/tables/active/lupo_registry.md"
+  last_modified_utc: "20260328013000"
   channel_id: 42
-  actor_id: 102
-  actor_name: cursor
-  delegation_chain: cursor:root
-  artifact_type: table_documentation
-  artifact_kind: table
-  namespace: core
-  purpose: Unified registry for entity indexing and ID reservation across federation
-    nodes; entity_type, entity_index_id, optional metadata
+  actor_id: 23
+  actor_name: "hephaestus"
+  delegation_chain: "wolfie:hephaestus"
+  artifact_type: "documentation"
+  artifact_kind: "table"
+  namespace: "core"
+  purpose: "Normalized table documentation for lupo_registry from TOON JSON"
   tags:
   - database
   - table
-  - core
-  when_updated: '20260324174654'
+  - normalized
+  - 4.0.88
 lupopedia.edges:
-  comment: Snapshot of edges for lupo_registry table doc at 4.0.79 (grounded by repo
-    search; non-exhaustive).
-  meta: php_hits=4 python_hits=7
+  comment: "static placeholder edges for stage3 normalization"
   outbound_edges:
-  - to: database.table.lupo_registry
-    type: DEFINES_SCHEMA_FOR
+  - to: "lupo-database/lupopedia/json/lupo_registry.json"
+    type: "references"
     weight: 1.0
-  - to: lupo-database/lupopedia/mysql/install/install_new_lupopedia.sql
-    type: schema_reference
-    weight: 1.0
-  - to: install_wizard_classes.php
-    type: USED_IN_PHP
-    weight: 0.6
-  - to: lupo-includes/classes/AdminRegistryHandler.php
-    type: USED_IN_PHP
-    weight: 0.9
-  - to: lupo-includes/classes/AgentService.php
-    type: USED_IN_PHP
-    weight: 0.9
-  - to: lupo-scripts/audit_schema_doctrine.php
-    type: USED_IN_PHP
-    weight: 0.7
-  - to: analyze_unused_tables.py
-    type: USED_IN_PYTHON
-    weight: 0.5
-  - to: lupo-scripts/actor_agent_doctrine.py
-    type: USED_IN_PYTHON
-    weight: 0.5
-  - to: lupo-scripts/audit_schema_doctrine.py
-    type: USED_IN_PYTHON
-    weight: 0.5
-  - to: lupo-scripts/generate_seed_from_toons.py
-    type: USED_IN_PYTHON
-    weight: 0.5
-  - to: lupo-scripts/generate_toon_files.py
-    type: USED_IN_PYTHON
-    weight: 0.5
-  - to: lupo-scripts/rebuild_schema_from_toons.py
-    type: USED_IN_PYTHON
-    weight: 0.5
-  - to: lupo-tools/md_flip_ingest.py
-    type: USED_IN_PYTHON
-    weight: 0.5
+    reason: "authoritative TOON JSON source"
 lupopedia.footer:
-  last_verified: '20260317000000'
-  last_verified_by: cursor
-  last_verified_by_actor_id: 102
-  orchestrator: cursor:root
+  last_verified: "20260328013000"
+  last_verified_by: "hephaestus"
+  last_verified_by_actor_id: 23
+  generated: true
+  provenance: "stage3_track_c_normalization"
 ---
-# file: lupo_registry ? web_path: http://www.lupopedia.com/database/lupopedia/tables/active/lupo_registry
-# Table: lupo_registry
+# file: lupo_registry.md
 
-## Table Overview
+# lupo_registry
 
-- **Purpose:** Unified registry for entity indexing and ID reservation across federation nodes. Each row records an entity_type (e.g. actor, channel), entity_index_id and entity_index for allocation or lookup, federation_node_id, reserved_ymdhis, and optional metadata/entity_key/entity_name/entity_table. Used to avoid ID collisions and to track reserved IDs per node and type.
-- **Category:** Core System / Registry
-- **Status:** Active (in install_new_lupopedia.sql)
-- **Version introduced:** 4.0.x
+## Purpose
+Canonical table documentation normalized from TOON JSON for `lupo_registry`.
 
-## Where This Table Is Used
+## Schema
 
-- **ID reservation and allocation:** Application allocates or reserves IDs for registry-backed tables (e.g. actors, channels) by consulting or inserting rows keyed by entity_type and federation_node_id; entity_index_id and entity_index support next-ID or range semantics.
-- **Federation scoping:** federation_node_id scopes registry entries per node; unique constraint on (entity_type, entity_index_id, federation_node_id) prevents duplicate reservations per node.
-- **Entity metadata:** entity_key, entity_name, entity_table, metadata, metadata_json store optional context for the registered entity; is_kernel and is_active support system vs user entities.
+### Primary Key
+(none)
 
-## Column Documentation
+### Columns
 
-| Column | Type | Nullable | Default | Description |
-|--------|------|----------|---------|-------------|
-| registry_id | bigint | No | — | Primary key. |
-| entity_type | varchar(50) | No | — | Entity type (e.g. actor, channel). |
-| entity_index_id | bigint | No | 0 | Entity index identifier. |
-| entity_index | bigint | No | 0 | Entity index value. |
-| federation_node_id | bigint | No | 0 | Federation node. |
-| reserved_ymdhis | bigint | No | 0 | Reservation timestamp (BIGINT UTC). |
-| metadata | text | Yes | NULL | Legacy metadata. |
-| entity_key | varchar(255) | Yes | NULL | Optional entity key. |
-| entity_name | varchar(255) | Yes | NULL | Optional entity name. |
-| entity_table | varchar(255) | Yes | NULL | Optional table name. |
-| created_ymdhis | bigint | No | 0 | Creation timestamp (BIGINT UTC). |
-| updated_ymdhis | bigint | No | 0 | Last update timestamp (BIGINT UTC). |
-| is_deleted | tinyint | No | 0 | Soft delete flag. |
-| deleted_ymdhis | bigint | Yes | NULL | Soft delete timestamp. |
-| is_active | tinyint | No | 1 | Active flag. |
-| is_kernel | tinyint | No | 0 | Kernel/system entity flag. |
-| metadata_json | text | Yes | NULL | JSON metadata. |
+| Column | Type Definition |
+|---|---|
+| `registry_id` | `bigint NOT NULL auto_increment` |
+| `entity_type` | `varchar(50) NOT NULL` |
+| `entity_index_id` | `bigint NOT NULL DEFAULT 0` |
+| `entity_index` | `bigint NOT NULL DEFAULT 0` |
+| `federation_node_id` | `bigint NOT NULL DEFAULT 0` |
+| `reserved_ymdhis` | `bigint NOT NULL DEFAULT 0` |
+| `metadata` | `text` |
+| `entity_key` | `varchar(255)` |
+| `entity_name` | `varchar(255)` |
+| `entity_table` | `varchar(255)` |
+| `created_ymdhis` | `bigint NOT NULL DEFAULT 0` |
+| `updated_ymdhis` | `bigint NOT NULL DEFAULT 0` |
+| `is_deleted` | `tinyint NOT NULL DEFAULT 0` |
+| `deleted_ymdhis` | `bigint` |
+| `is_active` | `tinyint NOT NULL DEFAULT 1` |
+| `is_kernel` | `tinyint NOT NULL DEFAULT 0` |
+| `metadata_json` | `text` |
 
-## Indexes
+### Indexes
 
-- **PRIMARY KEY:** registry_id
-- **UNIQUE:** idx_registry_unique (entity_type, entity_index_id, federation_node_id)
-- **INDEX:** idx_registry_entity_type (entity_type), idx_registry_federation_node (federation_node_id)
+| Index | Columns | Unique |
+|---|---|---|
+| `idx_registry_entity_type` | `entity_type` | no |
+| `idx_registry_federation_node` | `federation_node_id` | no |
+| `idx_registry_unique` | `entity_type`, `entity_index_id`, `federation_node_id` | yes |
 
-## Relationships
-
-- **Logical references (no DB FKs):** federation_node_id → lupo_federation_nodes. Application uses this table to allocate or reserve IDs for lupo_actors, lupo_channels, and other registry-backed entities.
-
-## Doctrine notes
-
-- No database foreign keys; referential integrity enforced in application code.
-- All timestamps BIGINT UTC YYYYMMDDHHIISS.
-- Reserved-ID doctrine: application supplies explicit IDs for registry-backed tables; this table supports allocation and collision avoidance.
-- Soft delete: filter `is_deleted = 0` unless querying deleted rows.
+## Doctrine
+- Source of truth: `lupo-database/lupopedia/json/` TOON exports
+- Regeneration mode: Stage 3 deterministic normalization
+- Edge mode: placeholder baseline

@@ -24,6 +24,10 @@ lupopedia.edges:
     - { to: lupo-docs/database/lupopedia/tables/deprecated/lupo_reference_cited_by.md, type: supersedes, weight: 1.0 }
 
 lupopedia.footer:
+  approved_for_version: "4.1.0"
+  approved_for_version_utc: "20260327103238"
+  approved_for_version_by: "Cursor IDE Agent (Lead Orchestration)"
+  approved_for_version_by_actor_id: 102
   last_verified: '20260325200000'
   last_verified_by: cursor
   orchestrator: wolfie:1
@@ -45,6 +49,12 @@ lupopedia.footer:
 ## 1. Single Table Rule
 
 **There is one edge table: `lupo_edges`.**
+
+4.0.88 authority clarification:
+
+- `lupo_edges` in the database is the authoritative edge truth.
+- `lupopedia.edges` in files is declaration/snapshot metadata only.
+- File edge declarations must be imported/synchronized into `lupo_edges`; files do not create a parallel truth system.
 
 As of 4.0.87, all relationship data lives in `lupo_edges`. No other table may be created to store edges, links, or relationships between system objects without an explicit WOLFIE directive. The following tables were removed and must not be recreated:
 
@@ -179,3 +189,9 @@ Do **not** store data in `properties` that will be used in SQL `WHERE` clauses â
 - [lupo_reference_cited_by (deprecated)](../database/lupopedia/tables/deprecated/lupo_reference_cited_by.md)
 - [DECISION_MODEL.md](DECISION_MODEL.md) â€” decisions live in channels, not edge tables
 - [install_new_lupopedia.sql](../../lupo-database/lupopedia/mysql/install/install_new_lupopedia.sql)
+
+## 10. File Declarations and DB Authority
+
+- File-level `lupopedia.edges` blocks are useful for visibility, review, and import workflows.
+- Runtime queries, joins, and authoritative relationship decisions must read from `lupo_edges`.
+- If file declarations and DB rows diverge, resolve by re-import and reconciliation; do not let both persist as conflicting authorities.

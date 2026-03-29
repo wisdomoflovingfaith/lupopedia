@@ -1,4 +1,4 @@
----
+﻿---
 lupopedia.init:
   file_identity: PROJECT_REGISTRY_SCHEMA_DESIGN.md
   artifact_type: schema_design
@@ -154,8 +154,7 @@ lupopedia.edges:
   - project_registry_schema
   - database_design
   - table_architecture
-lupopedia.footer:
-  last_verified: '20260315000000'
+lupopedia.footer:`n  approved_for_release: "4.1.0"`n  approval_status: "approved"`n  approved_by_actor_id: 1`n  approved_utc: 20260326192115`n  last_verified: '20260315000000'
   last_verified_by: cursor
   orchestrator: cursor
   next_action:
@@ -164,7 +163,7 @@ lupopedia.footer:
   - Review index strategy for performance optimization
   last_verified_by_actor_id: 102
 ---
-# file: Project Registry Schema Design — session: L-LUPO-PROJECT-SCHEMA-DESIGN — delegation: cursor:root (faucet: cursor) — web_path: http://www.lupopedia.com/database/PROJECT_REGISTRY_SCHEMA_DESIGN
+# file: Project Registry Schema Design â€” session: L-LUPO-PROJECT-SCHEMA-DESIGN â€” delegation: cursor:root (faucet: cursor) â€” web_path: http://www.lupopedia.com/database/PROJECT_REGISTRY_SCHEMA_DESIGN
 
 # Project Registry Schema Design
 
@@ -547,3 +546,4 @@ CREATE TABLE lupo_actor_projects (
 **Schema Design Status:** Complete and ready for SQL implementation  
 **Next Steps:** Create draft SQL artifact based on this design  
 **Implementation Guard:** No production schema changes until design package approved
+

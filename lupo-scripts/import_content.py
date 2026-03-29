@@ -17,19 +17,24 @@
 """
 import_content.py
 
-Imports a LUPOPEDIA Markdown artifact into lupo_contents.
+Imports a LUPOPEDIA Markdown artifact into lupo_contents (database-first workflow).
 
 Behavior:
-  - Reads full file
-  - Extracts YAML front matter (first --- block) and body (everything after)
-  - Uses yaml.safe_load to parse lupopedia.headers
+  - Reads full file; parses YAML front matter and body
   - Generates deterministic BIGINT content_id using:
-      sha256(file_path_from_root + "\n" + body_content)
-    and int(digest[:16], 16) mapped into signed BIGINT range.
-  - Upserts into MySQL (no ORM, explicit columns)
-  - Updates lupopedia.headers.content_id in-memory and writes the file back to disk
+      sha256(file_path_from_root + "\\n" + body_content)
+    mapped into signed BIGINT range (stable across re-imports for same path+body)
+  - Upserts lupo_contents (explicit columns, DictCursor + pymysql)
+  - Syncs canonical header state via lib.header_db_sync:
+      lupo_metadata (class_name=lupopedia_header_sync),
+      lupo_edges (edge_category=lupopedia_header, from lupopedia.edges.outbound_edges),
+      lupo_contents.revision_history when lupopedia.history is present
+  - Optional --write-back: writes lupopedia.headers.content_id into the file (default: DB only, like import_content.php)
 
-No randomness, no hidden state, no DB-side logic. Timestamps are generated in Python.
+Legacy slug / stale PK: if no row exists for the deterministic content_id but a row matches
+file_path_from_root or slug, remaps content_id on that row (plus metadata/edges entity_id) then syncs headers.
+
+Timestamps are generated in Python. No DB triggers or FKs.
 """
 
 from __future__ import annotations
@@ -41,9 +46,10 @@ import re
 import sys
 from datetime import datetime, timezone
 from pathlib import Path
-from typing import Any, Dict, List, Tuple
+from typing import Any, Dict, List, Optional, Tuple
 
 from lib.header_validation import validate_header
+from lib.header_db_sync import sync_header_artifact_to_db
 
 try:
     import yaml
@@ -139,6 +145,16 @@ def _signed_bigint_fit(value: int) -> int:
     return value % (max_bigint + 1)
 
 
+def _norm_path_repo(p: str) -> str:
+    """
+    Match HeaderDbSync::normPath: forward slashes, collapse //, strip, no leading /.
+    """
+    s = str(p).strip().replace("\\", "/")
+    while "//" in s:
+        s = s.replace("//", "/")
+    return s.lstrip("/")
+
+
 def _slugify_content_path(file_path_from_root: str) -> str:
     """
     Deterministic slug from file_path_from_root (repo-relative path).
@@ -166,10 +182,12 @@ def _parse_markdown_front_matter(text: str) -> Tuple[Dict[str, Any], str, str]:
     """
     Returns: (yaml_data, yaml_text_preserved, body_content)
 
-    - Assumes the file starts with a line exactly '---' (ignoring surrounding whitespace).
-    - Uses the first two standalone '---' lines as YAML delimiters.
+    - Matches HeaderDbSync::parseYamlFrontMatter (PHP): CRLF/CR -> LF, then split on \\n.
+    - First line (trimmed) must be '---'; first closing '---' ends YAML (trimmed line match).
+    - Body is joined with \\n only (parity with PHP import_content.php / content_id hash).
     """
-    lines = text.splitlines(keepends=True)
+    norm = text.replace("\r\n", "\n").replace("\r", "\n")
+    lines = norm.split("\n")
     if not lines:
         raise ValueError("File is empty")
 
@@ -186,10 +204,10 @@ def _parse_markdown_front_matter(text: str) -> Tuple[Dict[str, Any], str, str]:
         raise ValueError("Missing closing '---' YAML delimiter")
     if close_idx <= 1:
         yaml_text = ""
-        body_text = "".join(lines[close_idx + 1 :])
+        body_text = "\n".join(lines[close_idx + 1 :])
     else:
-        yaml_text = "".join(lines[1:close_idx])
-        body_text = "".join(lines[close_idx + 1 :])
+        yaml_text = "\n".join(lines[1:close_idx])
+        body_text = "\n".join(lines[close_idx + 1 :])
 
     yaml_data = yaml.safe_load(yaml_text)
     if yaml_data is None:
@@ -275,11 +293,27 @@ def _extract_required_header_fields(headers: Dict[str, Any]) -> Dict[str, Any]:
     return out
 
 
-def _compute_deterministic_content_id(file_path_from_root: str, body_content: str) -> int:
-    hash_input = file_path_from_root + "\n" + body_content
-    digest = hashlib.sha256(hash_input.encode("utf-8")).hexdigest()
-    raw = int(digest[:16], 16)
-    return _signed_bigint_fit(raw)
+
+
+import random
+
+def calculate_content_id(file_path, body, db=None, retry_count=0, max_retries=3):
+    """Generate timestamp-based content_id with random 4-digit suffix. Retry on collision if db provided."""
+    now = datetime.now(timezone.utc)
+    timestamp_part = now.strftime("%Y%m%d%H%M%S")
+    random_part = random.randint(1, 9999)
+    content_id = int(timestamp_part + f"{random_part:04d}")
+    # If DB provided, check for collision
+    if db and retry_count < max_retries:
+        cursor = db.cursor()
+        cursor.execute(
+            "SELECT content_id FROM lupo_contents WHERE content_id = %s",
+            (content_id,)
+        )
+        if cursor.fetchone():
+            # Collision! Retry with new random
+            return calculate_content_id(file_path, body, db, retry_count + 1)
+    return content_id
 
 
 def _load_lupo_contents_column_order() -> List[str]:
@@ -339,6 +373,98 @@ def _build_update_sql_and_params(
     sql = f"UPDATE {table_name} SET {set_clause} WHERE {pk_column}=%s"
     params = tuple(values_by_column[c] for c in update_columns) + (values_by_column[pk_column],)
     return sql, params
+
+
+def _find_legacy_content_id(
+    cursor: Any,
+    contents_table: str,
+    file_path_from_root: str,
+    slug: str,
+) -> Optional[int]:
+    """
+    Resolve a pre-deterministic-ID row: prefer file_path_from_root, then slug (path must match if multiple slug rows).
+    Returns content_id (int) or None.
+    """
+    tbl = _safe_sql_identifier(contents_table)
+    fp = _norm_path_repo(file_path_from_root)
+    cursor.execute(
+        f"SELECT content_id, file_path_from_root FROM `{tbl}` WHERE file_path_from_root=%s AND is_deleted=0 LIMIT 1",
+        (fp,),
+    )
+    row = cursor.fetchone()
+    if row:
+        return int(row["content_id"])
+
+    cursor.execute(
+        f"SELECT content_id, file_path_from_root FROM `{tbl}` WHERE slug=%s AND is_deleted=0",
+        (slug,),
+    )
+    rows = cursor.fetchall()
+    if not rows:
+        return None
+    for r in rows:
+        db_path = r.get("file_path_from_root")
+        if db_path is not None and _norm_path_repo(str(db_path)) == fp:
+            return int(r["content_id"])
+    if len(rows) == 1:
+        return int(rows[0]["content_id"])
+    return None
+
+
+def _remap_stale_content_pk(
+    cursor: Any,
+    table_prefix: str,
+    contents_table: str,
+    column_order: List[str],
+    values: Dict[str, Any],
+    new_cid: int,
+    file_path_from_root: str,
+    slug: str,
+) -> Tuple[bool, Optional[int]]:
+    """
+    If a legacy row exists under another content_id for the same path/slug, move PK to new_cid and
+    repoint lupo_metadata / lupo_edges rows, then UPDATE the full contents row.
+
+    Returns (did_remap, old_cid_or_none).
+    """
+    old_cid = _find_legacy_content_id(cursor, contents_table, file_path_from_root, slug)
+    if old_cid is None:
+        return False, None
+    if int(old_cid) == int(new_cid):
+        return False, None
+
+    tbl = _safe_sql_identifier(contents_table)
+    cursor.execute(f"SELECT * FROM `{tbl}` WHERE content_id=%s LIMIT 1", (int(old_cid),))
+    old_row = cursor.fetchone()
+    if not old_row:
+        return False, None
+
+    merged = dict(values)
+    merged["content_id"] = int(new_cid)
+    for preserve in ("created_ymdhis", "view_count", "version_number"):
+        if preserve in old_row and old_row[preserve] is not None:
+            merged[preserve] = old_row[preserve]
+
+    meta_tbl = _safe_sql_identifier(table_prefix + "metadata")
+    cursor.execute(
+        f"UPDATE `{meta_tbl}` SET entity_id=%s WHERE entity_type=%s AND entity_id=%s",
+        (int(new_cid), "content", int(old_cid)),
+    )
+    edges_tbl = _safe_sql_identifier(table_prefix + "edges")
+    cursor.execute(
+        f"UPDATE `{edges_tbl}` SET left_object_id=%s WHERE left_object_type=%s AND left_object_id=%s",
+        (int(new_cid), "content", int(old_cid)),
+    )
+    cursor.execute(
+        f"UPDATE `{edges_tbl}` SET right_object_id=%s WHERE right_object_type=%s AND right_object_id=%s",
+        (int(new_cid), "content", int(old_cid)),
+    )
+
+    set_clause = ", ".join(f"`{_safe_sql_identifier(c)}`=%s" for c in column_order)
+    sql = f"UPDATE `{tbl}` SET {set_clause} WHERE `content_id`=%s"
+    params = tuple(merged[c] for c in column_order) + (int(old_cid),)
+    cursor.execute(sql, params)
+    return True, int(old_cid)
 
 
 def _build_values_for_lupo_contents(
@@ -565,6 +691,11 @@ def main() -> int:
     parser = argparse.ArgumentParser(description="Import a LUPOPEDIA markdown file into lupo_contents.")
     parser.add_argument("path", help="Path to LUPOPEDIA Markdown file")
     parser.add_argument("--dry-run", action="store_true", help="Compute content_id and validate, but do not write DB or disk")
+    parser.add_argument(
+        "--write-back",
+        action="store_true",
+        help="After a successful DB import, write lupopedia.headers.content_id into the markdown file (one-time migration / header sync)",
+    )
     args = parser.parse_args()
 
     md_path = Path(args.path)
@@ -581,11 +712,36 @@ def main() -> int:
         validation = validate_header(headers)
         if not validation.get("valid"):
             raise ValueError(__import__("json").dumps(validation))
+        for w in validation.get("warnings") or []:
+            print("WARNING: %s" % (w,), file=sys.stderr)
         header_fields = _extract_required_header_fields(headers)
+        header_fields["file_path_from_root"] = _norm_path_repo(header_fields["file_path_from_root"])
         # Include last_modified_utc in header_fields if present (for file_last_modified_utc).
         if headers.get("last_modified_utc") is not None:
             header_fields["last_modified_utc"] = headers.get("last_modified_utc")
-        content_id = _compute_deterministic_content_id(header_fields["file_path_from_root"], body_content)
+        # Use DB connection for collision check if available
+        db = None
+        try:
+            import pymysql
+            conn_params = _load_connection_params()
+            db = pymysql.connect(
+                host=conn_params["host"],
+                user=conn_params["user"],
+                password=conn_params["password"],
+                database=conn_params["database"],
+                port=int(conn_params["port"]),
+                charset=conn_params.get("charset") or "utf8mb4",
+                cursorclass=pymysql.cursors.DictCursor,
+                autocommit=False,
+            )
+        except Exception:
+            db = None
+        content_id = calculate_content_id(header_fields["file_path_from_root"], body_content, db)
+        if db:
+            try:
+                db.close()
+            except Exception:
+                pass
 
         # Optional improvement: log mismatch between stored and deterministic content_id.
         if "content_id" in headers and headers.get("content_id") is not None:
@@ -632,7 +788,7 @@ def main() -> int:
         database=conn_params["database"],
         port=int(conn_params["port"]),
         charset=conn_params.get("charset") or "utf8mb4",
-        cursorclass=pymysql.cursors.Cursor,
+        cursorclass=pymysql.cursors.DictCursor,
         autocommit=False,
     )
 
@@ -642,12 +798,14 @@ def main() -> int:
         # 1) SELECT by content_id
         # 2) UPDATE if exists
         # 3) INSERT if not
+        operation = "UNKNOWN"
         with conn.cursor() as cursor:
             select_sql = f"SELECT {pk_column} FROM {_safe_sql_identifier(table_name)} WHERE {pk_column}=%s"
             cursor.execute(select_sql, (int(content_id),))
             exists = cursor.fetchone() is not None
 
             if exists:
+                operation = "UPDATE"
                 # Update all deterministic file-derived columns that may change,
                 # not only body/content.
                 update_columns = [
@@ -676,8 +834,26 @@ def main() -> int:
                 )
                 cursor.execute(update_sql, update_params)
             else:
-                insert_sql, params = _build_insert_sql_and_params(table_name, column_order, values)
-                cursor.execute(insert_sql, params)
+                remapped, old_cid = _remap_stale_content_pk(
+                    cursor,
+                    table_prefix,
+                    table_name,
+                    column_order,
+                    values,
+                    int(content_id),
+                    header_fields["file_path_from_root"],
+                    values["slug"],
+                )
+                if remapped:
+                    operation = "RECONCILE_PK_UPDATE (old content_id=%s)" % (old_cid,)
+                else:
+                    operation = "INSERT"
+                    insert_sql, params = _build_insert_sql_and_params(table_name, column_order, values)
+                    cursor.execute(insert_sql, params)
+
+            sync_header_artifact_to_db(
+                cursor, table_prefix, yaml_data, int(content_id), _now_ymdhis()
+            )
 
         conn.commit()
     except Exception as e:
@@ -697,20 +873,49 @@ def main() -> int:
         except Exception:
             pass
 
-    # Update YAML and write file back to disk.
-    _set_content_id_in_yaml(yaml_data, int(content_id))  # keep in-memory consistent
-    updated_yaml_text = _update_lupopedia_headers_content_id_in_yaml_text(yaml_text, int(content_id))
-    if not updated_yaml_text.endswith("\n") and not updated_yaml_text.endswith("\r\n"):
-        updated_yaml_text += newline
-    updated_text = "---" + newline + updated_yaml_text + "---" + newline + body_content
-    try:
-        md_path.write_text(updated_text, encoding="utf-8", errors="replace")
-    except Exception as e:
-        print(f"ERROR: file rewrite failed after DB commit: {e}", file=sys.stderr)
-        return 5
+    if args.write_back:
+        # Update YAML and write file back to disk (one-time migration or explicit header sync).
+        _set_content_id_in_yaml(yaml_data, int(content_id))  # keep in-memory consistent
+        updated_yaml_text = _update_lupopedia_headers_content_id_in_yaml_text(yaml_text, int(content_id))
+        if not updated_yaml_text.endswith("\n") and not updated_yaml_text.endswith("\r\n"):
+            updated_yaml_text += newline
+        updated_text = "---" + newline + updated_yaml_text + "---" + newline + body_content
+        try:
+            md_path.write_text(updated_text, encoding="utf-8", errors="replace")
+        except Exception as e:
+            print(f"ERROR: file rewrite failed after DB commit: {e}", file=sys.stderr)
+            return 5
+    else:
+        print("File: unchanged (use --write-back to set content_id in markdown)", file=sys.stderr)
 
     print(f"Imported: {md_path}")
     print(f"content_id: {content_id}")
+    print(f"Operation: {operation}")
+
+    # Post-insert verification: re-query lupo_contents for this content_id
+    try:
+        conn_params = _load_connection_params()
+        import pymysql
+        conn = pymysql.connect(
+            host=conn_params["host"],
+            user=conn_params["user"],
+            password=conn_params["password"],
+            database=conn_params["database"],
+            port=int(conn_params["port"]),
+            charset=conn_params.get("charset") or "utf8mb4",
+            cursorclass=pymysql.cursors.DictCursor,
+            autocommit=True,
+        )
+        with conn.cursor() as cursor:
+            cursor.execute(f"SELECT content_id, file_path_from_root, slug, channel_id, actor_id, is_deleted FROM lupo_contents WHERE content_id = %s", (int(content_id),))
+            row = cursor.fetchone()
+            if row:
+                print(f"[DEBUG] Verified in lupo_contents: {row}")
+            else:
+                print(f"[DEBUG] NOT FOUND in lupo_contents: content_id={content_id}")
+        conn.close()
+    except Exception as e:
+        print(f"[DEBUG] Verification query failed: {e}", file=sys.stderr)
     return 0
 
 

@@ -147,6 +147,20 @@ Date boundary:
 
 ## Key Thread 2007 Artifacts
 
+### Organization & Coordination
+- `THREAD_2007_WORK_SUMMARY.md` - Complete thread ledger
+- `lupo-channels/42/threads/2007/THREAD_INDEX.md` - Thread artifact index
+
+### Configuration & Setup
+- `lupo-docs/doctrine/CONFIGURATION_DOCTRINE.md` - Configuration file location and security
+
+### Database & Schema
+- `MYSQL_TOON_JSON_TABLE_DOCS_AUTHORITY_MAP.md` - Schema authority mapping
+- `lupo-database/lupopedia/mysql/install/install_new_lupopedia.sql` - Install SQL
+- `lupo-database/lupopedia/toon/` - TOON files
+- `lupo-database/lupopedia/json/` - JSON exports
+- `lupo-docs/database/lupopedia/tables/active/` - Table documentation
+
 1. Canonical integration/corruption artifact:
    - `lupo-channels/42/threads/2007/20260327_233000_wolfie_lupopedia_organization_4_0_88_integration_and_corruption_assessment.md`
 2. Source-truth validation:

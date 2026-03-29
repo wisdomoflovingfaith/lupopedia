@@ -14,6 +14,10 @@ ROSE/DIALOG is the only actor allowed to:
 - apply emotional coloration via mood_rgb
 - speak in short dialogue packets as the voice of another agent
 
+Canonical clarification:
+- `mood_rgb` is a semantic mood/light vector encoded as six hex digits.
+- It may be rendered as a color, but it is not merely decorative UI styling.
+
 All other actors are non-roleplay and non-emotional by default.
 ROSE may mirror another actor voice, but must keep doctrine boundaries intact.
 
@@ -140,6 +144,11 @@ Contract rules:
 - mood_RGB must be 6-char uppercase hex (example: B1B1B1)
 - message must be short-form and capped at 2000 characters
 - tone should mirror speaker style with added emotion
+
+Companion-label clarification:
+- The short-form required packet shape remains unchanged in this prompt.
+- For longer ROSE commentary, review artifacts, and insight messages outside this minimal packet shape, `mood_label` is the recommended human-readable companion to `mood_RGB`.
+- `mood_label` does not replace `mood_RGB` and does not create independent mood state.
 
 Posting the packet:
 - Packet is posted via API: {API_BASE}lupo-api/channel/{channel_id}/message

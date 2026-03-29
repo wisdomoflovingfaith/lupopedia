@@ -1,55 +1,65 @@
 ---
 lupopedia.headers:
-  lupopedia.schema: documentation
-  file_path_from_root: lupo-docs/database/lupopedia/tables/active/lupo_registry_open.md
-  channel_id: 1
-  actor_id: 103
-  last_modified_utc: '20260312'
-  artifact_type: table_documentation
-  purpose: Registry for entities explicitly opened or unlocked for reconciliation
-  mood_rgb: 4169E1
-  traits:
-  - canonical
-  - registry
-  - v4.0.70
+  when_updated: "20260328013000"
+  file_path_from_root: "lupo-docs/database/lupopedia/tables/active/lupo_registry_open.md"
+  last_modified_utc: "20260328013000"
+  channel_id: 42
+  actor_id: 23
+  actor_name: "hephaestus"
+  delegation_chain: "wolfie:hephaestus"
+  artifact_type: "documentation"
+  artifact_kind: "table"
+  namespace: "core"
+  purpose: "Normalized table documentation for lupo_registry_open from TOON JSON"
   tags:
   - database
-  - registry
-  - open_status
-  lupo_agent: antigravity
-  when_updated: '20260324174654'
+  - table
+  - normalized
+  - 4.0.88
 lupopedia.edges:
+  comment: "static placeholder edges for stage3 normalization"
   outbound_edges:
-  - to: lupo-database/lupopedia/toon/lupo_registry_open.toon
-    type: references
+  - to: "lupo-database/lupopedia/json/lupo_registry_open.json"
+    type: "references"
     weight: 1.0
+    reason: "authoritative TOON JSON source"
 lupopedia.footer:
-  last_verified: '20260312000000'
-  last_verified_by: cursor
-  last_verified_by_actor_id: 102
-  orchestrator: cursor:root
+  last_verified: "20260328013000"
+  last_verified_by: "hephaestus"
+  last_verified_by_actor_id: 23
+  generated: true
+  provenance: "stage3_track_c_normalization"
 ---
+# file: lupo_registry_open.md
 
-# Table Overview: lupo_registry_open
+# lupo_registry_open
 
-- **Purpose**: Tracks entities that have been "opened" for editing, reconciliation, or external synchronization. This acts as a logical lock or status indicator for the Registry Service to prevent concurrent conflicting modifications during complex multi-agent workflows.
-- **Category**: Registry / Synchronization
-- **Status**: Active
-- **Version Introduced**: 4.0.0
+## Purpose
+Canonical table documentation normalized from TOON JSON for `lupo_registry_open`.
 
-## Column Documentation
+## Schema
 
-| Column Name | Type | Nullable | Default | Description |
-| :--- | :--- | :--- | :--- | :--- |
-| `unregistry_id` | BIGINT | No | - | Primary Key. |
-| `entity_type` | VARCHAR(50) | No | - | Type of entity (e.g., 'actor', 'channel', 'content'). |
-| `entity_index_id` | BIGINT | No | - | The ID of the specific entity. |
-| `reason` | VARCHAR(255) | Yes | - | Reason for opening the registry record. |
-| `created_ymdhis` | BIGINT | No | 0 | Timestamp of the operation. |
+### Primary Key
+(none)
 
-## Usage Notes
+### Columns
 
-- **Lifecycle**: Records are typically transient but may persist during long-running re-indexing or federation tasks.
+| Column | Type Definition |
+|---|---|
+| `unregistry_id` | `bigint NOT NULL auto_increment` |
+| `entity_type` | `varchar(50) NOT NULL` |
+| `entity_index_id` | `bigint NOT NULL` |
+| `reason` | `varchar(255)` |
+| `created_ymdhis` | `bigint NOT NULL DEFAULT 0` |
 
----
-*Created by Antigravity (Actor 103) as part of the Database Documentation Program.*
+### Indexes
+
+| Index | Columns | Unique |
+|---|---|---|
+| `idx_registry_open_entity_type` | `entity_type` | no |
+| `idx_registry_open_unique` | `entity_type`, `entity_index_id` | yes |
+
+## Doctrine
+- Source of truth: `lupo-database/lupopedia/json/` TOON exports
+- Regeneration mode: Stage 3 deterministic normalization
+- Edge mode: placeholder baseline

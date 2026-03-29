@@ -16,6 +16,15 @@ lupopedia.headers:
 
 `lupo-channels/{channel_id}/prompts/` holds **actionable prompts** written by **HERMES** (actor_id **15**) only. Each file is a structured handoff to a **target actor** to execute work; it is **not** a substitute for that actor’s own channel artifacts after execution.
 
+## Legacy Compatibility During 4.0.88 Refactor
+
+This channel-wide prompts directory is a **legacy-compatible execution surface**.
+
+- It remains valid for existing 4.0.80 to 4.0.88 HERMES handoff artifacts.
+- The forward target structure moves prompt artifacts under `threads/{project_slug}/prompts/`.
+- No existing prompt files should be moved out of `lupo-channels/42/prompts/` without a dedicated migration batch and edge reconciliation audit.
+- New governance work for the refactor is piloted under `lupo-channels/1_channel_refactor_governance/threads/channel_refactor_4_0_88/prompts/`.
+
 ## Naming (canonical)
 
 ```

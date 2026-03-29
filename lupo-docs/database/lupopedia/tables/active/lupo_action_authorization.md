@@ -1,83 +1,69 @@
 ---
 lupopedia.headers:
-  lupopedia.schema: database_table
-  file_path_from_root: lupo-docs/database/lupopedia/tables/active/lupo_action_authorization.md
-  web_path: '[lupo_action_authorization](http://www.lupopedia.com/database/lupopedia/tables/active/lupo_action_authorization)'
-  last_modified_utc: '20260317'
+  when_updated: "20260328013000"
+  file_path_from_root: "lupo-docs/database/lupopedia/tables/active/lupo_action_authorization.md"
+  last_modified_utc: "20260328013000"
   channel_id: 42
-  actor_id: 102
-  actor_name: cursor
-  delegation_chain: cursor:root
-  artifact_type: table_documentation
-  artifact_kind: table
-  namespace: core
-  purpose: Authorization rules for action keys, mapping required trait keys and/or
-    required role keys for channel-scoped actions.
+  actor_id: 23
+  actor_name: "hephaestus"
+  delegation_chain: "wolfie:hephaestus"
+  artifact_type: "documentation"
+  artifact_kind: "table"
+  namespace: "core"
+  purpose: "Normalized table documentation for lupo_action_authorization from TOON JSON"
   tags:
   - database
   - table
-  - core
-  when_updated: '20260324174654'
+  - normalized
+  - 4.0.88
 lupopedia.edges:
-  comment: Snapshot of edges for lupo_action_authorization table doc at 4.0.79 (grounded
-    by repo search; non-exhaustive).
-  meta: php_hits=1 python_hits=1
+  comment: "static placeholder edges for stage3 normalization"
   outbound_edges:
-  - to: database.table.lupo_action_authorization
-    type: DEFINES_SCHEMA_FOR
+  - to: "lupo-database/lupopedia/json/lupo_action_authorization.json"
+    type: "references"
     weight: 1.0
-  - to: lupo-database/lupopedia/mysql/install/install_new_lupopedia.sql
-    type: schema_reference
-    weight: 1.0
-  - to: lupo-includes/classes/TraitEnforcer.php
-    type: USED_IN_PHP
-    weight: 0.9
-  - to: lupo-scripts/check_doc_schema_consistency.py
-    type: USED_IN_PYTHON
-    weight: 0.5
+    reason: "authoritative TOON JSON source"
 lupopedia.footer:
-  last_verified: '20260317000000'
-  last_verified_by: cursor
-  last_verified_by_actor_id: 102
-  orchestrator: cursor:root
+  last_verified: "20260328013000"
+  last_verified_by: "hephaestus"
+  last_verified_by_actor_id: 23
+  generated: true
+  provenance: "stage3_track_c_normalization"
 ---
-# file: lupo_action_authorization ? web_path: http://www.lupopedia.com/database/lupopedia/tables/active/lupo_action_authorization
-# Table: lupo_action_authorization
+# file: lupo_action_authorization.md
 
-## Table Overview
+# lupo_action_authorization
 
-- **Purpose:** Authorization rules for action keys, mapping required trait keys and/or required role keys for channel-scoped actions.
-- **Status:** Active (in install_new_lupopedia.sql)
-- **Primary key:** `action_authorization_id`
+## Purpose
+Canonical table documentation normalized from TOON JSON for `lupo_action_authorization`.
 
-## Where This Table Is Used
+## Schema
 
-- This section is grounded by `USED_IN_PHP` / `USED_IN_PYTHON` edges in the header (populated by repo search).
+### Primary Key
+(none)
 
-## Column Documentation
+### Columns
 
-| Column | Type | Nullable | Default | Description |
-|--------|------|----------|---------|-------------|
-| action_authorization_id | bigint | No | ? | Primary key. |
-| action_key | varchar(100) | No | ? |  |
-| description | text | No | ? |  |
-| required_trait_keys | text | Yes | NULL |  |
-| required_capabilities | text | Yes | NULL |  |
-| required_role_keys | text | Yes | NULL |  |
-| requires_all_conditions | tinyint | No | 0 |  |
-| created_ymdhis | bigint | No | 0 |  |
-| created_by_actor_id | bigint | No | ? |  |
+| Column | Type Definition |
+|---|---|
+| `action_authorization_id` | `bigint NOT NULL` |
+| `action_key` | `varchar(100) NOT NULL` |
+| `description` | `text NOT NULL` |
+| `required_trait_keys` | `text` |
+| `required_capabilities` | `text` |
+| `required_role_keys` | `text` |
+| `requires_all_conditions` | `tinyint NOT NULL DEFAULT 0` |
+| `created_ymdhis` | `bigint NOT NULL DEFAULT 0` |
+| `created_by_actor_id` | `bigint NOT NULL` |
 
-## Indexes
+### Indexes
 
-- **PRIMARY KEY:** action_authorization_id
-- **INDEX:** lupo_action_authorization_idx_action (action_key)
+| Index | Columns | Unique |
+|---|---|---|
+| `lupo_action_authorization_idx_action` | `action_key` | no |
+| `lupo_action_authorization_unique_action_key` | `action_key` | yes |
 
-## Relationships
-
-- **Logical references only (no DB FKs):** Identify referencing columns by name and usage in code; enforce integrity in application code.
-
-## Doctrine notes
-
-- No foreign keys, triggers, procedures, views, or computed columns. All logic in PHP.
-- All timestamps are BIGINT UTC YYYYMMDDHHIISS and are written by application code.
+## Doctrine
+- Source of truth: `lupo-database/lupopedia/json/` TOON exports
+- Regeneration mode: Stage 3 deterministic normalization
+- Edge mode: placeholder baseline

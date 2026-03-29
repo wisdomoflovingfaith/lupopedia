@@ -19,11 +19,25 @@ if (!defined('LUPOPEDIA_CONFIG_LOADED')) {
 $db = isset($GLOBALS['mydatabase']) ? $GLOBALS['mydatabase'] : null;
 $table_prefix = defined('LUPO_TABLE_PREFIX') ? LUPO_TABLE_PREFIX : 'lupo_';
 
+function qa_format_ymdhis_to_date($ymdhis)
+{
+    $raw = preg_replace('/[^0-9]/', '', (string) $ymdhis);
+    if (strlen($raw) < 8) {
+        return 'Unknown date';
+    }
+    $yyyymmdd = substr($raw, 0, 8);
+    $ts = strtotime(substr($yyyymmdd, 0, 4) . '-' . substr($yyyymmdd, 4, 2) . '-' . substr($yyyymmdd, 6, 2));
+    if ($ts === false) {
+        return 'Unknown date';
+    }
+    return date('F j, Y', $ts);
+}
+
 // Get recent questions
 $recent_questions = array();
 if ($db) {
     try {
-        $stmt = $db->prepare("SELECT * FROM {$table_prefix}truth_questions ORDER BY created_ymdhis DESC LIMIT 10");
+        $stmt = $db->prepare("SELECT * FROM {$table_prefix}questions WHERE is_deleted = 0 ORDER BY created_ymdhis DESC, question_id DESC LIMIT 10");
         $stmt->execute();
         $recent_questions = $stmt->fetchAll(PDO::FETCH_ASSOC);
     } catch (Exception $e) {
@@ -55,7 +69,7 @@ if ($db) {
                         <div class="qa-question-item">
                             <h3><a href="<?php echo LUPOPEDIA_PUBLIC_PATH; ?>/qa/<?php echo htmlspecialchars($question['slug']); ?>"><?php echo htmlspecialchars($question['question_text']); ?></a></h3>
                             <p class="qa-question-meta">
-                                Asked on <?php echo date('F j, Y', strtotime($question['created_ymdhis'])); ?>
+                                Asked on <?php echo qa_format_ymdhis_to_date(isset($question['created_ymdhis']) ? $question['created_ymdhis'] : ''); ?>
                                 <?php if (!empty($question['category'])): ?>
                                     in <?php echo htmlspecialchars($question['category']); ?>
                                 <?php endif; ?>

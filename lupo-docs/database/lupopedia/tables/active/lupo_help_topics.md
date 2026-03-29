@@ -1,84 +1,78 @@
 ---
 lupopedia.headers:
-  lupopedia.schema: database_table
-  file_path_from_root: lupo-docs/database/lupopedia/tables/active/lupo_help_topics.md
-  web_path: '[lupo_help_topics](http://www.lupopedia.com/database/lupopedia/tables/active/lupo_help_topics)'
-  last_modified_utc: '20260317'
+  when_updated: "20260328013000"
+  file_path_from_root: "lupo-docs/database/lupopedia/tables/active/lupo_help_topics.md"
+  last_modified_utc: "20260328013000"
   channel_id: 42
-  actor_id: 1
-  actor_name: wolfie
-  delegation_chain: wolfie:root
-  artifact_type: table_documentation
-  artifact_kind: table
-  namespace: content
-  purpose: Help topic management; organizes help content, categories, and support
-    documentation
+  actor_id: 23
+  actor_name: "hephaestus"
+  delegation_chain: "wolfie:hephaestus"
+  artifact_type: "documentation"
+  artifact_kind: "table"
+  namespace: "core"
+  purpose: "Normalized table documentation for lupo_help_topics from TOON JSON"
   tags:
   - database
   - table
-  - content
-  when_updated: '20260324174654'
+  - normalized
+  - 4.0.88
 lupopedia.edges:
-  comment: Snapshot of edges for lupo_help_topics table doc at 4.0.79 (grounded by
-    repo search; non-exhaustive).
-  meta: php_hits=1 python_hits=1
+  comment: "static placeholder edges for stage3 normalization"
   outbound_edges:
-  - to: database.table.lupo_help_topics
-    type: DEFINES_SCHEMA_FOR
+  - to: "lupo-database/lupopedia/json/lupo_help_topics.json"
+    type: "references"
     weight: 1.0
-  - to: lupo-database/lupopedia/mysql/install/install_new_lupopedia.sql
-    type: schema_reference
-    weight: 1.0
-  - to: lupo-scripts/setup_help_list_modules.php
-    type: USED_IN_PHP
-    weight: 0.7
+    reason: "authoritative TOON JSON source"
 lupopedia.footer:
-  last_verified: '20260317000000'
-  last_verified_by: cursor
-  last_verified_by_actor_id: 102
-  orchestrator: cursor:root
+  last_verified: "20260328013000"
+  last_verified_by: "hephaestus"
+  last_verified_by_actor_id: 23
+  generated: true
+  provenance: "stage3_track_c_normalization"
 ---
-# file: lupo_help_topics — session: L-LUPO-ROOT-WOLFIE — delegation: wolfie:root — web_path: http://www.lupopedia.com/database/lupopedia/tables/active/lupo_help_topics
+# file: lupo_help_topics.md
 
-# file: lupo_help_topics ? web_path: http://www.lupopedia.com/database/lupopedia/tables/active/lupo_help_topics
-# Table: lupo_help_topics
+# lupo_help_topics
 
-## Table Overview
-- purpose: Help topic records for support/knowledge navigation.
-- category: active
-- status: active (present in current TOON and install schema)
-- version introduced: not explicitly documented in TOON/install comments
-- version deprecated: not applicable
-- removal notes: not applicable
-- migration references: none found in migration docs scanned
+## Purpose
+Canonical table documentation normalized from TOON JSON for `lupo_help_topics`.
 
-## Column Documentation
-| Column | Type | Nullability | Default | Description |
-|---|---|---|---|---|
-| help_topic_id | bigint | NOT NULL | none/unspecified | TOON-defined field; canonical semantic description not specified in TOON. |
-| slug | varchar(255) | NOT NULL | none/unspecified | TOON-defined field; canonical semantic description not specified in TOON. |
-| title | varchar(255) | NOT NULL | none/unspecified | TOON-defined field; canonical semantic description not specified in TOON. |
-| content_html | text | Nullable/unspecified | none/unspecified | TOON-defined field; canonical semantic description not specified in TOON. |
-| content_markdown | text | Nullable/unspecified | none/unspecified | TOON-defined field; canonical semantic description not specified in TOON. |
-| category | varchar(100) | Nullable/unspecified | none/unspecified | TOON-defined field; canonical semantic description not specified in TOON. |
-| parent_slug | varchar(255) | Nullable/unspecified | none/unspecified | TOON-defined field; canonical semantic description not specified in TOON. |
-| view_count | bigint | Nullable/unspecified | 0 | TOON-defined field; canonical semantic description not specified in TOON. |
-| helpful_count | bigint | Nullable/unspecified | 0 | TOON-defined field; canonical semantic description not specified in TOON. |
-| not_helpful_count | bigint | Nullable/unspecified | 0 | TOON-defined field; canonical semantic description not specified in TOON. |
-| created_ymdhis | bigint | NOT NULL | 0 | TOON-defined field; canonical semantic description not specified in TOON. |
-| updated_ymdhis | bigint | NOT NULL | none/unspecified | TOON-defined field; canonical semantic description not specified in TOON. |
-| author_actor_id | bigint | Nullable/unspecified | none/unspecified | TOON-defined field; canonical semantic description not specified in TOON. |
-| is_deleted | tinyint | NOT NULL | 0 | TOON-defined field; canonical semantic description not specified in TOON. |
+## Schema
 
-## Relationships
-- foreign keys: none (database doctrine forbids foreign keys)
-- inbound references: no canonical inbound reference list found in TOON
-- outbound references: No foreign keys or explicit relationships in TOON (`relationships: []`).
-- join patterns: Join by `slug`/`parent_slug` for topic nesting.
+### Primary Key
+(none)
 
-## Usage Notes
-- migration notes: TOON and install schema are aligned for this table name.
-- compatibility notes: current schema uses BIGINT timestamp doctrine and soft-delete patterns where present.
-- warnings: avoid assuming implicit constraints; use doctrine that logic is application-side.
-- future considerations: if additional relationships are introduced, document via TOON updates first.
-- historical changes if updating existing docs: existing flat documentation was retained; this file is the category-structured canonical doc for this domain pass.
+### Columns
+
+| Column | Type Definition |
+|---|---|
+| `help_topic_id` | `bigint NOT NULL` |
+| `slug` | `varchar(255) NOT NULL` |
+| `title` | `varchar(255) NOT NULL` |
+| `content_html` | `text` |
+| `content_markdown` | `text` |
+| `category` | `varchar(100)` |
+| `parent_slug` | `varchar(255)` |
+| `view_count` | `bigint DEFAULT 0` |
+| `helpful_count` | `bigint DEFAULT 0` |
+| `not_helpful_count` | `bigint DEFAULT 0` |
+| `created_ymdhis` | `bigint NOT NULL DEFAULT 0` |
+| `updated_ymdhis` | `bigint NOT NULL` |
+| `author_actor_id` | `bigint` |
+| `is_deleted` | `tinyint NOT NULL DEFAULT 0` |
+
+### Indexes
+
+| Index | Columns | Unique |
+|---|---|---|
+| `lupo_help_topics_idx_author` | `author_actor_id` | no |
+| `lupo_help_topics_idx_category` | `category` | no |
+| `lupo_help_topics_idx_created` | `created_ymdhis` | no |
+| `lupo_help_topics_idx_parent` | `parent_slug` | no |
+| `lupo_help_topics_idx_slug` | `slug` | no |
+| `lupo_help_topics_slug` | `slug` | yes |
+
+## Doctrine
+- Source of truth: `lupo-database/lupopedia/json/` TOON exports
+- Regeneration mode: Stage 3 deterministic normalization
+- Edge mode: placeholder baseline

@@ -1,68 +1,65 @@
 ---
 lupopedia.headers:
-  lupopedia.schema: database_table
-  file_path_from_root: lupo-docs/database/lupopedia/tables/active/lupo_agent_faucet_credentials.md
-  channel_id: 1
-  actor_id: 102
-  last_modified_utc: '20260312'
-  artifact_type: table_documentation
-  purpose: API keys and provider credentials per faucet
-  mood_rgb: 4169E1
-  traits:
-  - canonical
-  - agent
-  - credentials
-  - cursor_domain
-  - v4.0.70
+  when_updated: "20260328013000"
+  file_path_from_root: "lupo-docs/database/lupopedia/tables/active/lupo_agent_faucet_credentials.md"
+  last_modified_utc: "20260328013000"
+  channel_id: 42
+  actor_id: 23
+  actor_name: "hephaestus"
+  delegation_chain: "wolfie:hephaestus"
+  artifact_type: "documentation"
+  artifact_kind: "table"
+  namespace: "core"
+  purpose: "Normalized table documentation for lupo_agent_faucet_credentials from TOON JSON"
   tags:
   - database
-  - agents
-  - faucets
-  - credentials
-  lupo_agent: cursor
-  when_updated: '20260324174654'
+  - table
+  - normalized
+  - 4.0.88
 lupopedia.edges:
+  comment: "static placeholder edges for stage3 normalization"
   outbound_edges:
-  - to: lupo-database/lupopedia/toon/lupo_agent_faucet_credentials.toon.json
-    type: schema_reference
+  - to: "lupo-database/lupopedia/json/lupo_agent_faucet_credentials.json"
+    type: "references"
     weight: 1.0
-  - to: lupo-docs/database/lupopedia/tables/active/lupo_agent_faucets.md
-    type: references
-    weight: 0.9
+    reason: "authoritative TOON JSON source"
 lupopedia.footer:
-  last_verified: '20260312000000'
-  last_verified_by: cursor
-  last_verified_by_actor_id: 102
-  orchestrator: cursor:root
+  last_verified: "20260328013000"
+  last_verified_by: "hephaestus"
+  last_verified_by_actor_id: 23
+  generated: true
+  provenance: "stage3_track_c_normalization"
 ---
+# file: lupo_agent_faucet_credentials.md
 
-# Table: lupo_agent_faucet_credentials
+# lupo_agent_faucet_credentials
 
-## Table Overview
+## Purpose
+Canonical table documentation normalized from TOON JSON for `lupo_agent_faucet_credentials`.
 
-- **Purpose:** Stores provider-specific credentials (e.g. API keys) per faucet: faucet_id, provider, api_key (varbinary). Used for LLM/API calls under that faucet.
-- **Category:** Agent / Credentials
-- **Status:** Active
-- **Version introduced:** 4.0.0
+## Schema
 
-## Column Documentation
+### Primary Key
+(none)
 
-| Column | Type | Nullable | Default | Description |
-|--------|------|----------|---------|-------------|
-| agent_faucet_credential_id | int | No | — | Primary key. |
-| faucet_id | bigint | No | — | Faucet (logical → lupo_agent_faucets.agent_faucet_id). |
-| provider | varchar(64) | No | — | Provider name. |
-| api_key | varbinary(512) | No | — | Encrypted or hashed API key. |
-| created_ymdhis | bigint | No | 0 | Creation. |
-| updated_ymdhis | bigint | No | — | Last update. |
+### Columns
 
-## Relationships
+| Column | Type Definition |
+|---|---|
+| `agent_faucet_credential_id` | `int NOT NULL` |
+| `faucet_id` | `bigint NOT NULL` |
+| `provider` | `varchar(64) NOT NULL` |
+| `api_key` | `varbinary(512) NOT NULL` |
+| `created_ymdhis` | `bigint NOT NULL DEFAULT 0` |
+| `updated_ymdhis` | `bigint NOT NULL` |
 
-- **Logical references:** faucet_id → lupo_agent_faucets.agent_faucet_id.
-- **Inbound:** Agent runtime reads credentials when invoking provider APIs.
-- **Join patterns:** By faucet_id.
+### Indexes
 
-## Usage Notes
+| Index | Columns | Unique |
+|---|---|---|
+| `lupo_agent_faucet_credentials_idx_faucet` | `faucet_id` | no |
 
-- **Index:** faucet_id. Store api_key securely (encrypt at rest if required).
-- **Timestamps:** BIGINT YYYYMMDDHHIISS UTC.
+## Doctrine
+- Source of truth: `lupo-database/lupopedia/json/` TOON exports
+- Regeneration mode: Stage 3 deterministic normalization
+- Edge mode: placeholder baseline

@@ -1,87 +1,73 @@
 ---
 lupopedia.headers:
-  lupopedia.schema: database_table
-  file_path_from_root: lupo-docs/database/lupopedia/tables/active/lupo_context_edges.md
-  web_path: http://www.lupopedia.com/database/lupopedia/tables/active/lupo_context_edges
-  last_modified_utc: '20260324194000'
+  when_updated: "20260328013000"
+  file_path_from_root: "lupo-docs/database/lupopedia/tables/active/lupo_context_edges.md"
+  last_modified_utc: "20260328013000"
   channel_id: 42
-  actor_id: 102
-  actor_name: cursor
-  delegation_chain: cursor:root
-  artifact_type: table_documentation
-  artifact_kind: table
-  purpose: Documentation for lupo_context_edges - AI-scoped cognitive context edges only. NOT for general entity relationships. Enhanced per Track 5 edge activation.
+  actor_id: 23
+  actor_name: "hephaestus"
+  delegation_chain: "wolfie:hephaestus"
+  artifact_type: "documentation"
+  artifact_kind: "table"
+  namespace: "core"
+  purpose: "Normalized table documentation for lupo_context_edges from TOON JSON"
   tags:
   - database
   - table
-  - context
-  - edges
-  - ai_scope
-  - 4.0.87
-  when_updated: '20260324194000'
+  - normalized
+  - 4.0.88
+lupopedia.edges:
+  comment: "static placeholder edges for stage3 normalization"
+  outbound_edges:
+  - to: "lupo-database/lupopedia/json/lupo_context_edges.json"
+    type: "references"
+    weight: 1.0
+    reason: "authoritative TOON JSON source"
 lupopedia.footer:
-  last_verified: '20260324194000'
-  last_verified_by: cursor
-  orchestrator: cursor:root
-  last_verified_by_actor_id: 102
+  last_verified: "20260328013000"
+  last_verified_by: "hephaestus"
+  last_verified_by_actor_id: 23
+  generated: true
+  provenance: "stage3_track_c_normalization"
 ---
-# Table: lupo_context_edges
+# file: lupo_context_edges.md
 
-Purpose: Stores AI/agent cognitive context links.
-Status: active
+# lupo_context_edges
 
-## CRITICAL SCOPE CLARIFICATION (2026-03-24, Track 5 Update)
+## Purpose
+Canonical table documentation normalized from TOON JSON for `lupo_context_edges`.
 
-**⚠️ IMPORTANT**: `lupo_context_edges` is scoped ONLY to AI/agent cognitive context. It must NOT be used for channel-to-channel or thread-to-thread relationships.
+## Schema
 
-### What belongs in `lupo_context_edges`
-- ✅ References within an agent's reasoning chain
-- ✅ Context window boundary markers
-- ✅ Inference dependency edges between agent steps
-- ✅ Agent cognitive state links
-- ✅ LLM request/response trace relationships
-- ✅ Reasoning chain checkpoints
+### Primary Key
+(none)
 
-### What does NOT belong in `lupo_context_edges`
-- ❌ Channel-to-channel relationships (use `lupo_edges` instead)
-- ❌ Thread-to-thread relationships (use `lupo_edges` instead)
-- ❌ Thread-to-channel relationships (use `lupo_edges` instead)
-- ❌ General entity connections (use `lupo_edges` instead)
+### Columns
 
-**See Also**: [lupo_edges.md](lupo_edges.md) — Canonical general-purpose edge table for ALL inter-entity relationships
-
-## 1. Overview
-- **Scope:** `lupo_context_edges` stores ONLY AI/agent cognitive context links — references within an agent's reasoning chain, context window boundary markers, and inference dependency edges.
-- **System Role:** Specialized graph for agent reasoning and context management.
-- **Mandate:** It is NOT for general channel-to-channel or thread-to-thread relationships. Use `lupo_edges` for all inter-entity relationship storage.
-
-## 2. Schema
-
-### Fields
-| Column | Type | Description |
-|---|---|---|
-| edge_id | bigint NOT NULL | Primary key |
-| source_type | varchar(64) NOT NULL | Type of source object |
-| source_id | bigint NOT NULL | ID of source object |
-| target_type | varchar(64) NOT NULL | Type of target object |
-| target_id | bigint NOT NULL | ID of target object |
-| edge_type | varchar(64) NOT NULL | Type of reasoning/context link |
-| metadata_json | text | Additional context metadata (JSON) |
-| created_ymdhis | bigint NOT NULL | Creation timestamp |
-| updated_ymdhis | bigint NOT NULL | Update timestamp |
-| is_deleted | tinyint DEFAULT 0 | Soft delete flag |
-| deleted_ymdhis | bigint DEFAULT 0 | Soft delete timestamp |
+| Column | Type Definition |
+|---|---|
+| `edge_id` | `bigint NOT NULL` |
+| `source_type` | `varchar(64) NOT NULL` |
+| `source_id` | `bigint NOT NULL` |
+| `target_type` | `varchar(64) NOT NULL` |
+| `target_id` | `bigint NOT NULL` |
+| `edge_type` | `varchar(64) NOT NULL` |
+| `metadata_json` | `text` |
+| `created_ymdhis` | `bigint NOT NULL` |
+| `updated_ymdhis` | `bigint NOT NULL` |
+| `is_deleted` | `tinyint DEFAULT 0` |
+| `deleted_ymdhis` | `bigint DEFAULT 0` |
 
 ### Indexes
-- `idx_source` (source_type, source_id)
-- `idx_target` (target_type, target_id)
-- `idx_type` (edge_type)
-- `idx_created` (created_ymdhis)
 
-## 3. Usage Patterns
-Used by the Agent subsystem to track how pieces of information were retrieved or used in an inference step.
+| Index | Columns | Unique |
+|---|---|---|
+| `idx_created` | `created_ymdhis` | no |
+| `idx_source` | `source_type`, `source_id` | no |
+| `idx_target` | `target_type`, `target_id` | no |
+| `idx_type` | `edge_type` | no |
 
-## 4. Doctrine Compliance
-- **No Foreign Keys:** Explicitly prohibited.
-- **Timestamps:** Uses BIGINT (YYYYMMDDHHIISS UTC).
-- **Soft Deletes:** Implemented via `is_deleted` and `deleted_ymdhis`.
+## Doctrine
+- Source of truth: `lupo-database/lupopedia/json/` TOON exports
+- Regeneration mode: Stage 3 deterministic normalization
+- Edge mode: placeholder baseline

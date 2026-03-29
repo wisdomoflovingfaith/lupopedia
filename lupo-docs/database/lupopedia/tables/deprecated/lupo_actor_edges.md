@@ -1,4 +1,4 @@
-# LUPOPEDIA HEADERS (replaces FLARE)
+﻿# LUPOPEDIA HEADERS (replaces FLARE)
 ---
 lupopedia.headers:
   lupopedia.version: "4.0.87"
@@ -24,12 +24,11 @@ lupopedia.edges:
     - { to: "lupo-docs/database/lupopedia/tables/active/lupo_edges.md", type: "superseded_by", weight: 1.0 }
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
 
-lupopedia.footer:
-  last_verified: "20260325000000"
+lupopedia.footer:`n  approved_for_release: "4.1.0"`n  approval_status: "approved"`n  approved_by_actor_id: 1`n  approved_utc: 20260326192115`n  last_verified: "20260325000000"
   last_verified_by: "cursor"
 ---
 
-> **DEPRECATED in 4.0.87** — `lupo_actor_edges` was removed and consolidated into `lupo_edges`.
+> **DEPRECATED in 4.0.87** â€” `lupo_actor_edges` was removed and consolidated into `lupo_edges`.
 > Actor-to-actor relationships are now stored in `lupo_edges` with `left_object_type='actor'`
 > and `right_object_type='actor'`. The `edge_type='supports'` semantics are preserved.
 
@@ -60,8 +59,7 @@ lupopedia.headers:
   needs_review: ["delegation_chain"]
   system_version: "4.0.50"
   last_updated_utc: "20260228"
-lupopedia.footer:
-  last_verified: "20260228"
+lupopedia.footer:`n  approved_for_release: "4.1.0"`n  approval_status: "approved"`n  approved_by_actor_id: 1`n  approved_utc: 20260326192115`n  last_verified: "20260228"
   last_verified_by: "windsurf"
     deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use lupopedia.headers"]
 ---
@@ -92,16 +90,16 @@ flip.footer: {
 }
 ---
 
-# 🕸️ Table: lupo_actor_edges
+# ðŸ•¸ï¸ Table: lupo_actor_edges
 
 **Purpose:** Stores the directional relationships and connections between actors in a graph-like structure.  
 **Type:** Relationship Graph Table  
-**Status:** ✅ Production Ready  
+**Status:** âœ… Production Ready  
 **Volume:** High (multiple edges per actor)
 
 ---
 
-## 🎯 **Overview**
+## ðŸŽ¯ **Overview**
 
 The `lupo_actor_edges` table implements a semantic graph for actors. While `lupo_actors` stores the nodes, this table stores the edges (connections). This allows the system to map complex social, technical, and hierarchical networks, such as "Actor A supervises Actor B" or "Actor C frequently collaborates with Actor D".
 
@@ -113,7 +111,7 @@ The `lupo_actor_edges` table implements a semantic graph for actors. While `lupo
 
 ---
 
-## 🗃️ **Schema Reference**
+## ðŸ—ƒï¸ **Schema Reference**
 
 ### **Primary Key**
 - **`actor_edge_id`** (BIGINT) - Unique graph edge identifier.
@@ -134,15 +132,15 @@ The `lupo_actor_edges` table implements a semantic graph for actors. While `lupo
 
 ---
 
-## 🔗 **Relationships & Dependencies**
+## ðŸ”— **Relationships & Dependencies**
 
 ### **Primary Relationships**
-- **Nodes:** Both `source_actor_id` and `target_actor_id` → `lupo_actors.actor_id`.
+- **Nodes:** Both `source_actor_id` and `target_actor_id` â†’ `lupo_actors.actor_id`.
 - **Rules:** Validated against `lupo_actor_relationship_rules` to ensure the relationship type is allowed for the given actor types.
 
 ---
 
-## 🚀 **Usage Patterns**
+## ðŸš€ **Usage Patterns**
 
 ### **Finding Collaborators**
 Retrieving all actors with a strong collaboration edge from a specific actor.
@@ -169,7 +167,7 @@ WHERE e.edge_type = 'supervises' AND e.is_deleted = 0;
 
 ---
 
-## 🛡️ **Security & Privacy**
+## ðŸ›¡ï¸ **Security & Privacy**
 
 - **Privacy Thresholds:** Some edge types (e.g., 'friend_of') are restricted by default in public-facing actor profiles (`www/` directory).
 - **IP Context:** Relationship creation is logged with the initiating IP address for fraud/spam detection in the social graph.
@@ -178,3 +176,4 @@ WHERE e.edge_type = 'supervises' AND e.is_deleted = 0;
 ---
 
 *This documentation is part of the v4.0.48 Semantic Relationship framework.*
+

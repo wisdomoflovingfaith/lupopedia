@@ -837,7 +837,7 @@ function lupo_route_slug($slug)
         else {
             $qa_question_view = LUPOPEDIA_ABSPATH . '/lupo-includes/modules/qa/views/question.php';
 
-            // Look up truth question by slug
+            // Look up question by slug
             $db = isset($GLOBALS['mydatabase']) ? $GLOBALS['mydatabase'] : null;
             if (!$db) {
                 $page_body = '<h1>Error</h1><p>Database not available</p>';
@@ -849,7 +849,7 @@ function lupo_route_slug($slug)
             }
 
             $table_prefix = defined('LUPO_TABLE_PREFIX') ? LUPO_TABLE_PREFIX : 'lupo_';
-            $stmt = $db->prepare("SELECT * FROM {$table_prefix}truth_questions WHERE slug = :slug LIMIT 1");
+            $stmt = $db->prepare("SELECT * FROM {$table_prefix}questions WHERE slug = :slug AND is_deleted = 0 LIMIT 1");
             $stmt->execute(array(':slug' => $qa_slug));
             $question = $stmt->fetch(PDO::FETCH_ASSOC);
 
@@ -868,6 +868,12 @@ function lupo_route_slug($slug)
             } else {
                 $collection_id = isset($question['default_collection_id']) ? $question['default_collection_id'] : null;
             }
+
+            // Load answers for this question (newest first)
+            $answers = array();
+            $answer_stmt = $db->prepare("SELECT * FROM {$table_prefix}answers WHERE question_id = :question_id AND is_deleted = 0 ORDER BY created_ymdhis DESC, answer_id DESC");
+            $answer_stmt->execute(array(':question_id' => $question['question_id']));
+            $answers = $answer_stmt->fetchAll(PDO::FETCH_ASSOC);
 
             // Set variables for view
             $slug = $qa_slug;

@@ -1,4 +1,4 @@
----
+﻿---
 lupopedia.headers:
   lupopedia.schema: database_table
   file_path_from_root: lupo-docs/database/lupopedia/tables/semantic_navbar/lupo_folders.md
@@ -14,8 +14,7 @@ lupopedia.headers:
   - folders
   - 4.0.71
   when_updated: '20260324174654'
-lupopedia.footer:
-  last_verified: '20260312000000'
+lupopedia.footer:`n  approved_for_release: "4.1.0"`n  approval_status: "approved"`n  approved_by_actor_id: 1`n  approved_utc: 20260326192115`n  last_verified: '20260312000000'
   last_verified_by: cursor
   last_verified_by_actor_id: 102
   orchestrator: cursor:root
@@ -26,7 +25,7 @@ lupopedia.footer:
 
 **Columns:** folder_id (PK), name, slug, parent_folder_id, actor_id, channel_id, sort_order, created_ymdhis, updated_ymdhis, is_deleted, deleted_ymdhis.
 
-**Relationships:** parent_folder_id → lupo_folders (self); lupo_folder_map links folder_id to objects. No DB FKs.
+**Relationships:** parent_folder_id â†’ lupo_folders (self); lupo_folder_map links folder_id to objects. No DB FKs.
 
 **Example query (navbar):** Folders containing a content page:
 ```sql
@@ -38,3 +37,4 @@ ORDER BY f.sort_order, f.name;
 ```
 
 **Navbar use:** API queries lupo_folder_map by object_type/object_id, joins lupo_folders, returns folder list for the Folders section.
+

@@ -1,3 +1,23 @@
+---
+lupopedia.headers:
+	lupopedia.schema: "documentation"
+	file_path_from_root: "lupo-docs/database/lupopedia/tables/VALIDATION_REPORT_JUNIE.md"
+	last_modified_utc: "20260326"
+	system_version: "4.1.0"
+	artifact_type: "documentation_report"
+	artifact_kind: "validation_report"
+	purpose: "Validation report for table documentation coverage and freshness"
+lupopedia.edges:
+	outbound_edges:
+		- { to: "lupo-docs/database/lupopedia/tables/active/", type: "references", weight: 1.0 }
+		- { to: "lupo-scripts/validate_table_docs.py", type: "generated_by", weight: 0.9 }
+lupopedia.footer:
+	approved_for_release: "4.1.0"
+	approval_status: "approved"
+	approved_by_actor_id: 1
+	approved_utc: 20260326192115
+---
+
 # Documentation Validation Report
 
 - Generated on: 2026-03-24 17:48:17 UTC

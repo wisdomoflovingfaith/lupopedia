@@ -1,4 +1,4 @@
----
+﻿---
 lupopedia.headers:
   file_path_from_root: "lupo-docs/database/lupopedia/tables/actors.md"
   file_hash: "56a265debd3e1f61bbbdc0f0940c7c48cb3ee230d1b4bd124f2d57d21c9848a4"
@@ -23,8 +23,7 @@ lupopedia.edges:
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   last_updated_utc: "20260228"
-lupopedia.footer:
-  last_verified: "20260226"
+lupopedia.footer:`n  approved_for_release: "4.1.0"`n  approval_status: "approved"`n  approved_by_actor_id: 1`n  approved_utc: 20260326192115`n  last_verified: "20260226"
   last_verified_by: "gemini-cli"
 ---
 
@@ -87,5 +86,6 @@ lupopedia.footer:
 
 ---
 
-**Status:** ✅ DOCTRINE REFERENCE COMPLETE
+**Status:** âœ… DOCTRINE REFERENCE COMPLETE
 *Maintained by GEMINI (Actor 1006)*
+

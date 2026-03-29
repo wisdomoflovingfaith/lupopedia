@@ -1,68 +1,65 @@
 ---
 lupopedia.headers:
-  lupopedia.schema: documentation
-  file_path_from_root: lupo-docs/database/lupopedia/tables/active/lupo_anubis_events.md
-  channel_id: 1
-  actor_id: 103
-  last_modified_utc: '20260312'
-  artifact_type: table_documentation
-  purpose: Operational system event log for ANUBIS
-  mood_rgb: 4169E1
-  traits:
-  - canonical
-  - anubis
-  - ops
-  - v4.0.70
+  when_updated: "20260328013000"
+  file_path_from_root: "lupo-docs/database/lupopedia/tables/active/lupo_anubis_events.md"
+  last_modified_utc: "20260328013000"
+  channel_id: 42
+  actor_id: 23
+  actor_name: "hephaestus"
+  delegation_chain: "wolfie:hephaestus"
+  artifact_type: "documentation"
+  artifact_kind: "table"
+  namespace: "core"
+  purpose: "Normalized table documentation for lupo_anubis_events from TOON JSON"
   tags:
   - database
-  - anubis
-  - events
-  - ops
-  lupo_agent: antigravity
-  when_updated: '20260324174654'
+  - table
+  - normalized
+  - 4.0.88
 lupopedia.edges:
+  comment: "static placeholder edges for stage3 normalization"
   outbound_edges:
-  - to: lupo-database/lupopedia/toon/lupo_anubis_events.toon
-    type: references
+  - to: "lupo-database/lupopedia/json/lupo_anubis_events.json"
+    type: "references"
     weight: 1.0
-  - to: lupo-docs/database/lupopedia/tables/active/lupo_anubis_log.md
-    type: part_of
-    weight: 1.0
+    reason: "authoritative TOON JSON source"
 lupopedia.footer:
-  last_verified: '20260312000000'
-  last_verified_by: cursor
-  last_verified_by_actor_id: 102
-  orchestrator: cursor:root
+  last_verified: "20260328013000"
+  last_verified_by: "hephaestus"
+  last_verified_by_actor_id: 23
+  generated: true
+  provenance: "stage3_track_c_normalization"
 ---
+# file: lupo_anubis_events.md
 
-# Table Overview: lupo_anubis_events
+# lupo_anubis_events
 
-- **Purpose**: Tracks high-level operational events and lifecycle milestones for the ANUBIS system, such as scan starts, strategy changes, or mass-normalization completions.
-- **Category**: Operations / Monitoring
-- **Status**: Active
-- **Version Introduced**: 4.0.0
+## Purpose
+Canonical table documentation normalized from TOON JSON for `lupo_anubis_events`.
 
-## Column Documentation
+## Schema
 
-| Column Name | Type | Nullable | Default | Description |
-| :--- | :--- | :--- | :--- | :--- |
-| `anubis_event_id` | BIGINT | No | - | Primary Key. Numeric identifier. |
-| `event_type` | VARCHAR(64) | No | - | Operational event type (e.g., 'CORE_SCAN_START', 'RECOVERY_SUITE_INIT'). |
-| `table_name` | VARCHAR(255) | No | - | Target table or scope of the operational event. |
-| `row_id` | BIGINT | No | - | Specific row associated if applicable. |
-| `created_ymdhis` | BIGINT | No | - | Creation timestamp. |
-| `agent` | VARCHAR(255) | No | - | Logical identifier of the agent script or instance. |
-| `details_json` | TEXT | No | - | Detailed outcome, diagnostics, or configuration parameters. |
+### Primary Key
+(none)
 
-## Relationships
+### Columns
 
-### Inbound References
-- `lupo_anubis_log.anubis_event_id`: Granular audit logs may link back to these operational events.
+| Column | Type Definition |
+|---|---|
+| `anubis_event_id` | `bigint NOT NULL` |
+| `event_type` | `varchar(64) NOT NULL` |
+| `table_name` | `varchar(255) NOT NULL` |
+| `row_id` | `bigint NOT NULL` |
+| `created_ymdhis` | `bigint NOT NULL` |
+| `agent` | `varchar(255) NOT NULL` |
+| `details_json` | `text NOT NULL` |
 
-## Usage Notes
+### Indexes
 
-- **Auditing**: This table is intended for system administrators to monitor ANUBIS health and background task progress.
-- **Storage**: Unlike the granular `anubis_log`, this table is low-volume and stores macro-level events.
+| Index | Columns | Unique |
+|---|---|---|
 
----
-*Created by Antigravity (Actor 103) as part of the Database Documentation Program.*
+## Doctrine
+- Source of truth: `lupo-database/lupopedia/json/` TOON exports
+- Regeneration mode: Stage 3 deterministic normalization
+- Edge mode: placeholder baseline

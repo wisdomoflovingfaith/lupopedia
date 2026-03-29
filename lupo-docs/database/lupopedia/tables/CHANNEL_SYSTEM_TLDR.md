@@ -1,4 +1,4 @@
-# Lupopedia Channel System TL;DR
+﻿# Lupopedia Channel System TL;DR
 
 ## Overview
 The Lupopedia channel system is a comprehensive framework for managing communication, governance, and content federation across multiple channels. It uses FLARE headers for metadata and integrates with the federation node system. Focus: System Channel 0 (federation node management) under root actor_id 0.
@@ -17,14 +17,14 @@ The Lupopedia channel system is a comprehensive framework for managing communica
 **Root Boot Agent Checklist (v4.0.52)**:
 - Verify all tables exist as `lupo-database/lupopedia/toon/*.toon.json` (e.g., `lupo_channels.toon.json`).
 - Structure validation: Fields, types (e.g., BIGINT timestamps), indexes, no FKs/triggers per TOON schema.
-- Version lock: Align to 4.0.52—no additions beyond declared schema.
+- Version lock: Align to 4.0.52â€”no additions beyond declared schema.
 - If missing: Generate TOONs via codex-ide or windsurf.
 
 ## FLARE Headers
 
 ### Header Structure
 ```yaml
-# LUPOPEDIA HEADERS (replaces FLARE) — see http://www.lupopedia.com/FLARE
+# LUPOPEDIA HEADERS (replaces FLARE) â€” see http://www.lupopedia.com/FLARE
 ---
 lupopedia.headers:
   lupopedia.version: "4.0.73"
@@ -57,8 +57,7 @@ lupopedia.edges:
     - { to: "lupo-database/lupopedia/toon/lupo_channel_boot_lifecycle.toon.json", type: "schema_reference", weight: 1.0 }
     - { to: "lupo-docs/doctrine/FLARE/FLARE_DOCTRINE.md", type: "references", weight: 1.0 }
 
-lupopedia.footer:
-  last_verified: "20260301"
+lupopedia.footer:`n  approved_for_release: "4.1.0"`n  approval_status: "approved"`n  approved_by_actor_id: 1`n  approved_utc: 20260326192115`n  last_verified: "20260301"
   last_verified_by: "windsurf"
 ---
 ```
@@ -79,12 +78,12 @@ lupopedia.footer:
 ### Table Relationships
 ```
 lupo_channels (channel_id=0)
-    ├── lupo_channel_content (channel_id=0) - Federation content
-    ├── lupo_channel_state (channel_id=0) - State tracking
-    ├── lupo_channel_logs (channel_id=0) - Event logging
-    ├── lupo_channel_files (channel_id=0) - File management
-    ├── lupo_channel_escalations (channel_id=0) - Governance
-    └── lupo_channel_boot_lifecycle (channel_id=0) - Boot management
+    â”œâ”€â”€ lupo_channel_content (channel_id=0) - Federation content
+    â”œâ”€â”€ lupo_channel_state (channel_id=0) - State tracking
+    â”œâ”€â”€ lupo_channel_logs (channel_id=0) - Event logging
+    â”œâ”€â”€ lupo_channel_files (channel_id=0) - File management
+    â”œâ”€â”€ lupo_channel_escalations (channel_id=0) - Governance
+    â””â”€â”€ lupo_channel_boot_lifecycle (channel_id=0) - Boot management
 ```
 
 ### Key Field Patterns
@@ -190,4 +189,5 @@ VALUES
 **TL;DR Created**: 20260301  
 **Lead Agent**: Windsurf (1002)  
 **Version**: 4.0.52  
-**Status**: ✅ CHANNEL SYSTEM QUICK REFERENCE (Channel 0 Focus)
+**Status**: âœ… CHANNEL SYSTEM QUICK REFERENCE (Channel 0 Focus)
+

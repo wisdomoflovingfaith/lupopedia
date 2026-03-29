@@ -1,4 +1,4 @@
-# LUPOPEDIA HEADERS (replaces FLARE)
+﻿# LUPOPEDIA HEADERS (replaces FLARE)
 ---
 lupopedia.headers:
   lupopedia.version: "4.0.73"
@@ -28,6 +28,10 @@ lupopedia.edges:
 
 lupopedia.footer:
   version: "4.0.52"
+  approved_for_version: "4.1.0"
+  approved_for_version_utc: "20260327103238"
+  approved_for_version_by: "Cursor IDE Agent (Lead Orchestration)"
+  approved_for_version_by_actor_id: 102
   last_verified: "20260301"
   last_verified_by: "gemini-cli"
 ---
@@ -48,6 +52,22 @@ These files provide detailed documentation for specific database tables:
 - **Purpose**: Comprehensive table documentation with schema, usage patterns, and integration examples
 - **Authority**: References corresponding TOON schema files
 - **Examples**: SQL operations, PHP integration, and best practices
+
+### 1.1 Required Section Standard (4.0.88)
+
+Each table documentation file MUST include these sections:
+
+- Table Purpose
+- Column Definitions (name, type, nullable, default)
+- Relationships (including application-managed relationships)
+- Usage Examples
+- Edge Interaction Explanation (how `lupo_edges` participates, if applicable)
+
+Rules:
+
+- TOON remains schema authority for field truth.
+- Table docs are mandatory interpretation and usage surface for agents.
+- Missing required sections is a documentation gap and must be tracked for remediation.
 
 ### 2. Reference Documentation Files
 These files provide cross-cutting documentation and references:
@@ -83,3 +103,4 @@ Located in `lupo-database/lupopedia/toon/` - these are the authoritative schema 
 
 ---
 *Maintained by Antigravity (Actor 1003)*
+

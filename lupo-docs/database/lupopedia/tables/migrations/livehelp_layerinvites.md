@@ -1,4 +1,4 @@
-# LUPOPEDIA HEADERS (replaces FLARE)
+﻿# LUPOPEDIA HEADERS (replaces FLARE)
 ---
 lupopedia.headers:
   lupopedia.version: "4.0.73"
@@ -24,8 +24,7 @@ lupopedia.edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
     - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
-lupopedia.footer:
-  last_verified: "20260228155738"
+lupopedia.footer:`n  approved_for_release: "4.1.0"`n  approval_status: "approved"`n  approved_by_actor_id: 1`n  approved_utc: 20260326192115`n  last_verified: "20260228155738"
   last_verified_by: "windsurf"
 ---
 
@@ -68,8 +67,7 @@ lupopedia.headers:
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   last_updated_utc: "20260228"
-lupopedia.footer:
-  outbound_edges:
+lupopedia.footer:`n  approved_for_release: "4.1.0"`n  approval_status: "approved"`n  approved_by_actor_id: 1`n  approved_utc: 20260326192115`n  outbound_edges:
     - { to: "lupo-database/lupopedia/toon/livehelp_layerinvites.toon.json", type: "schema_reference", weight: 1.0, reason: "TOON schema definition", db_source: "livehelp_layerinvites" }
     - { to: "lupo-docs/FLARE_HEADERS_COMPLETE_REFERENCE.md", type: "references", weight: 0.9, reason: "FLARE header reference" }
     - { to: "lupo-docs/doctrine/FLARE/FLARE_DOCTRINE.md", type: "references", weight: 0.9, reason: "FLARE doctrine" }
@@ -150,3 +148,4 @@ Anti-Patterns: avoid full table scans on large datasets.
 ## 9. Future Enhancements
 - Enrich relationships with discovered edges.
 - Add usage-specific examples once feature usage is known.
+

@@ -61,10 +61,17 @@ dialog_specification:
       (optional) UTC timestamp in YYYYMMDDHHIISS format.
     
     mood_RGB: |
-      (optional) A color representing emotional tone using the Counting-in-Light system.
+      (optional) A six-hex semantic mood/light vector using the Counting-in-Light system.
+      Historical naming makes it look like plain display color, but its primary role is semantic metadata.
       Format: RRGGBB (six hex digits, no leading #)
       Stored as char(6) in database (e.g., "FF0000" not "#FF0000")
       The # symbol is only added for display purposes, not storage
+
+    mood_label: |
+      (recommended companion field, not part of the minimal required dialog block today)
+      Human-readable interpretation of mood_RGB for longer actor commentary or ROSE-style insight messages.
+      Example: "critical review", "neutral coordination", "understanding insight"
+      This label complements mood_RGB and does not replace the encoded vector.
     
     message: |
       (required) Plain text, no line breaks, ≤ 272 characters.
@@ -73,12 +80,12 @@ dialog_specification:
 
   counting_in_light_mood_system:
     description: |
-      The mood_RGB field uses a color derived from the Counting-in-Light emotional coordinate system.
+      The mood_RGB field uses a semantic vector encoded in RGB-shaped hex from the Counting-in-Light emotional coordinate system.
       Each axis is an integer 0–255:
       - R (Red): Strife / Chaos / Conflict Intensity
       - G (Green): Harmony / Attachment / Cohesion Intensity
       - B (Blue): Memory Depth / Persistence Weight
-      Combined as a standard hex color: #RRGGBB
+      Combined as RRGGBB for storage and transmission. UI may render it as a color, but doctrine treats it primarily as semantic metadata.
     
     examples:
       critical_urgent: "#FF0000"
@@ -88,6 +95,12 @@ dialog_specification:
     
     purpose: |
       This system allows agents to communicate tone, urgency, and emotional context.
+
+  recommended_companion_fields:
+    mood_label: |
+      Use mood_label when human readers need a fast interpretation of mood_RGB.
+      Strongly preferred for long-form actor comments, ROSE insight messages, and interpretive summaries.
+      Optional for terse dialog blocks that only need the encoded vector.
 
   rules:
     mandatory_usage:

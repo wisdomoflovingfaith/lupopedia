@@ -1,27 +1,61 @@
 ---
 lupopedia.headers:
-  version_when_written: "4.0.87"
+  when_updated: "20260328130000"
+  lupopedia.schema: "rule"
   file_path_from_root: "lupo-rules/root/WINDOWS_WSL_COMMAND_PATTERNS.md"
-  web_path: "http://www.lupopedia.com/lupo-rules/root/WINDOWS_WSL_COMMAND_PATTERNS.md"
-  last_modified_utc: "20260325_111500"
-  channel_id: 0
-  thread_id: null
-  actor_id: 105
-  actor_name: "windsurf"
+  web_path: "http://www.lupopedia.com/lupopedia/lupo-rules/root/WINDOWS_WSL_COMMAND_PATTERNS.md"
+  last_modified_utc: "20260328130000"
+  channel_id: 42
+  actor_id: 1
+  actor_name: "wolfie"
+  delegation_chain: "wolfie:root"
   artifact_type: "rule"
-  artifact_kind: "command_pattern"
-  purpose: "Rule for using WSL prefix on Windows environments for Unix command execution"
-  references:
-    - "lupo-channels/42/broadcasts/20260325_110000_windsurf_wsl_command_patterns_update.md"
-  tags: ["windsurf", "wsl", "command_patterns", "windows", "rule", "4.0.87"]
+  artifact_kind: "pattern"
+  purpose: Update WSL command patterns with critical enforcement notice
+  tags:
+  - "4.0.89"
+  - "wsl"
+  - "windows"
+  - "command_prefix"
+  - "critical"
+lupopedia.edges:
+  outbound_edges:
+    - to: ".windsurf/rules/lupopedia-rules.md"
+      type: references
+      weight: 1.0
+      reason: IDE agent configuration for WSL prefix
+    - to: "lupo-docs/versions/4.0.89/CHANGELOG.md"
+      type: references
+      weight: 1.0
+      reason: Documented WSL enforcement in 4.0.89
+lupopedia.footer:
+  last_verified: "20260328130000"
+  last_verified_by: "wolfie"
+  last_verified_by_actor_id: 1
+  orchestrator: "wolfie:root"
+  last_modified: "20260328120000"
+  verified_by:
+    identity_type: actor
+    actor_id: 1
+    agent_name_identity: WOLFIE
+    department_id_delta: 0
+  verified_via:
+    type: faucet
+    faucet_slug: wolfie
+  orchestrator: wolfie
+  next_action:
+    - Enforce WSL command patterns on Windows environments
+    - Update IDE configurations to use WSL prefix automatically
+    - Monitor compliance with Windows-specific command patterns
+    - Update validation scripts to handle Windows line endings and BOM
 ---
 
 # Rule: Windows WSL Command Patterns
 
 **Rule ID:** WINDOWS_WSL_COMMAND_PATTERNS  
 **Status:** ACTIVE  
-**Version:** 4.0.87  
-**Actor:** Windsurf IDE (actor_id 105)  
+**Version:** 4.0.89  
+**Actor:** WOLFIE (actor_id 1)  
 **Scope:** All agents working on Windows environments  
 
 ## Rule Statement
@@ -122,7 +156,36 @@ else
 fi
 ```
 
-## Implementation Requirements
+## PowerShell Compatibility
+
+When running commands in PowerShell, use `$null` instead of `/dev/null` for redirection:
+
+```powershell
+# Correct (PowerShell)
+wsl find . -name "*.php" 2>$null
+
+# Also correct (wrapped in bash)
+wsl bash -c 'find . -name "*.php" 2>/dev/null'
+```
+
+**Recommendation:** For complex commands, wrap in `wsl bash -c` to keep Unix semantics.
+
+## Command Reference
+
+| Command | PowerShell Direct | PowerShell with $null | Wrapped in bash -c | Notes |
+|---------|------------------|----------------------|-------------------|-------|
+| grep | `wsl grep [options] pattern` ❌ | `wsl grep [options] pattern 2>$null` ✅ | `wsl bash -c 'grep [options] pattern 2>/dev/null'` ✅ |
+| find | `wsl find [path] [options]` ❌ | `wsl find [path] [options] 2>$null` ✅ | `wsl bash -c 'find [path] [options] 2>/dev/null'` ✅ |
+| sed | `wsl sed [options] command` ❌ | `wsl sed [options] command 2>$null` ✅ | `wsl bash -c 'sed [options] command 2>/dev/null'` ✅ |
+| awk | `wsl awk [options] command` ❌ | `wsl awk [options] command 2>$null` ✅ | `wsl bash -c 'awk [options] command 2>/dev/null'` ✅ |
+| cat | `wsl cat [file]` | `wsl cat [file] 2>$null` ✅ | `wsl bash -c 'cat [file] 2>/dev/null'` ✅ |
+| head | `wsl head [options] [file]` | `wsl head [options] [file] 2>$null` ✅ | `wsl bash -c 'head [options] [file] 2>/dev/null'` ✅ |
+| tail | `wsl tail [options] [file]` | `wsl tail [options] [file] 2>$null` ✅ | `wsl bash -c 'tail [options] [file] 2>/dev/null'` ✅ |
+| echo | `wsl echo [text]` | `wsl echo [text] 2>$null` ✅ | `wsl bash -c 'echo [text] 2>/dev/null'` ✅ |
+| ls | `wsl ls [options]` | `wsl ls [options] 2>$null` ✅ | `wsl bash -c 'ls [options] 2>/dev/null'` ✅ |
+| wc | `wsl wc [options] [file]` | `wsl wc [options] [file] 2>$null` ✅ | `wsl bash -c 'wc [options] [file] 2>/dev/null'` ✅ |
+
+### Implementation Requirements
 
 ### For All Agents
 1. **Detect Environment**: Check for WSL availability before using WSL commands

@@ -35,7 +35,7 @@
     "`deleted_ymdhis` bigint",
     "`content_sections` json",
     "`version_number` int NOT NULL DEFAULT 1",
-    "`file_path_from_root` varchar(500) COMMENT 'FLIP Header: path from repo root (4.0.13)'",
+    "`file_path_from_root` varchar(500) COMMENT 'FLIP Header: path from repo root (4.0.86)'",
     "`file_last_modified_system_version` varchar(20) COMMENT 'FLIP: system version at last file edit'",
     "`file_last_modified_utc` bigint COMMENT 'FLIP: UTC last modified YYYYMMDDHHIISS'",
     "`tags` json",

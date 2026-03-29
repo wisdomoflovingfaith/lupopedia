@@ -1,72 +1,74 @@
 ---
 lupopedia.headers:
-  lupopedia.schema: database_table
-  file_path_from_root: lupo-docs/database/lupopedia/tables/active/lupo_api_rate_limits.md
-  channel_id: 1
-  actor_id: 102
-  last_modified_utc: '20260312'
-  artifact_type: table_documentation
-  purpose: API rate-limit counters per window, token, actor, IP, endpoint
-  mood_rgb: 4169E1
-  traits:
-  - canonical
-  - api
-  - security
-  - cursor_domain
-  - v4.0.70
+  when_updated: "20260328013000"
+  file_path_from_root: "lupo-docs/database/lupopedia/tables/active/lupo_api_rate_limits.md"
+  last_modified_utc: "20260328013000"
+  channel_id: 42
+  actor_id: 23
+  actor_name: "hephaestus"
+  delegation_chain: "wolfie:hephaestus"
+  artifact_type: "documentation"
+  artifact_kind: "table"
+  namespace: "integration"
+  purpose: "Normalized table documentation for lupo_api_rate_limits from TOON JSON"
   tags:
   - database
-  - api
-  - rate_limits
-  lupo_agent: cursor
-  when_updated: '20260324174654'
+  - table
+  - normalized
+  - 4.0.88
 lupopedia.edges:
+  comment: "static placeholder edges for stage3 normalization"
   outbound_edges:
-  - to: lupo-database/lupopedia/toon/lupo_api_rate_limits.toon.json
-    type: schema_reference
+  - to: "lupo-database/lupopedia/json/lupo_api_rate_limits.json"
+    type: "references"
     weight: 1.0
-  - to: lupo-docs/database/lupopedia/tables/active/lupo_api_tokens.md
-    type: references
-    weight: 0.8
+    reason: "authoritative TOON JSON source"
 lupopedia.footer:
-  last_verified: '20260312000000'
-  last_verified_by: cursor
-  last_verified_by_actor_id: 102
-  orchestrator: cursor:root
+  last_verified: "20260328013000"
+  last_verified_by: "hephaestus"
+  last_verified_by_actor_id: 23
+  generated: true
+  provenance: "stage3_track_c_normalization"
 ---
+# file: lupo_api_rate_limits.md
 
-# Table: lupo_api_rate_limits
+# lupo_api_rate_limits
 
-## Table Overview
+## Purpose
+Canonical table documentation normalized from TOON JSON for `lupo_api_rate_limits`.
 
-- **Purpose:** Tracks API request counts per time window for rate limiting. Can be keyed by domain, api_token_id, actor_id, ip_address, and/or endpoint.
-- **Category:** API / Security / Access control
-- **Status:** Active
-- **Version introduced:** 4.0.0
+## Schema
 
-## Column Documentation
+### Primary Key
+(none)
 
-| Column | Type | Nullable | Default | Description |
-|--------|------|----------|---------|-------------|
-| api_rate_limit_id | bigint | No | — | Primary key. |
-| domain_id | bigint | No | 1 | Domain context. |
-| api_token_id | bigint | No | 0 | Token (logical → lupo_api_tokens). |
-| actor_id | bigint | No | 0 | Actor (logical → lupo_actors). |
-| ip_address | varchar(45) | Yes | — | Client IP. |
-| endpoint | varchar(255) | Yes | — | API endpoint pattern. |
-| window_ymdhis | bigint | No | — | Window start timestamp. |
-| request_count | int | No | 0 | Request count in window. |
-| limit_value | int | No | 0 | Limit for window. |
-| created_ymdhis | bigint | No | 0 | Row creation. |
-| updated_ymdhis | bigint | No | — | Last update. |
+### Columns
 
-## Relationships
+| Column | Type Definition |
+|---|---|
+| `api_rate_limit_id` | `bigint NOT NULL` |
+| `domain_id` | `bigint NOT NULL DEFAULT 1` |
+| `api_token_id` | `bigint NOT NULL DEFAULT 0` |
+| `actor_id` | `bigint NOT NULL DEFAULT 0` |
+| `ip_address` | `varchar(45)` |
+| `endpoint` | `varchar(255)` |
+| `window_ymdhis` | `bigint NOT NULL` |
+| `request_count` | `int NOT NULL DEFAULT 0` |
+| `limit_value` | `int NOT NULL DEFAULT 0` |
+| `created_ymdhis` | `bigint NOT NULL DEFAULT 0` |
+| `updated_ymdhis` | `bigint NOT NULL` |
 
-- **Logical references:** api_token_id → lupo_api_tokens; actor_id → lupo_actors; domain_id → domain/federation.
-- **Inbound:** API rate-limiting middleware reads/updates this table.
-- **Join patterns:** By (actor_id, window_ymdhis), (domain_id, window_ymdhis), endpoint, (ip_address, window_ymdhis), (api_token_id, window_ymdhis).
+### Indexes
 
-## Usage Notes
+| Index | Columns | Unique |
+|---|---|---|
+| `lupo_api_rate_limits_idx_actor_window` | `actor_id`, `window_ymdhis` | no |
+| `lupo_api_rate_limits_idx_domain_window` | `domain_id`, `window_ymdhis` | no |
+| `lupo_api_rate_limits_idx_endpoint` | `endpoint` | no |
+| `lupo_api_rate_limits_idx_ip_window` | `ip_address`, `window_ymdhis` | no |
+| `lupo_api_rate_limits_idx_token_window` | `api_token_id`, `window_ymdhis` | no |
 
-- **Indexes:** (actor_id, window_ymdhis), (domain_id, window_ymdhis), endpoint, (ip_address, window_ymdhis), (api_token_id, window_ymdhis).
-- **Timestamps:** BIGINT YYYYMMDDHHIISS UTC.
+## Doctrine
+- Source of truth: `lupo-database/lupopedia/json/` TOON exports
+- Regeneration mode: Stage 3 deterministic normalization
+- Edge mode: placeholder baseline

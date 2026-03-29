@@ -1,113 +1,72 @@
 ---
 lupopedia.headers:
-  lupopedia.schema: database_table
-  file_path_from_root: lupo-docs/database/lupopedia/tables/active/lupo_departments.md
-  web_path: http://www.lupopedia.com/database/lupopedia/tables/active/lupo_departments
-  last_modified_utc: '20260324'
+  when_updated: "20260328013000"
+  file_path_from_root: "lupo-docs/database/lupopedia/tables/active/lupo_departments.md"
+  last_modified_utc: "20260328013000"
   channel_id: 42
-  actor_id: 108
-  actor_name: junie
-  faucet_name: jetbrains
-  delegation_chain: junie:root
-  artifact_type: table_documentation
-  artifact_kind: table
-  namespace: governance
-  purpose: 'Department organization: grouping Actors and Users for orchestration (v4.0.86)'
+  actor_id: 23
+  actor_name: "hephaestus"
+  delegation_chain: "wolfie:hephaestus"
+  artifact_type: "documentation"
+  artifact_kind: "table"
+  namespace: "core"
+  purpose: "Normalized table documentation for lupo_departments from TOON JSON"
   tags:
   - database
   - table
-  - governance
-  - identity
-  - v4.0.86
-  when_updated: '20260324174654'
+  - normalized
+  - 4.0.88
 lupopedia.edges:
-  comment: Snapshot of edges for lupo_departments table doc at 4.0.79 (grounded by
-    repo search; non-exhaustive).
-  meta: php_hits=8 python_hits=1
+  comment: "static placeholder edges for stage3 normalization"
   outbound_edges:
-  - to: database.table.lupo_departments
-    type: DEFINES_SCHEMA_FOR
+  - to: "lupo-database/lupopedia/json/lupo_departments.json"
+    type: "references"
     weight: 1.0
-  - to: lupo-database/lupopedia/mysql/install/install_new_lupopedia.sql
-    type: schema_reference
-    weight: 1.0
-  - to: check_db_state.php
-    type: USED_IN_PHP
-    weight: 0.6
-  - to: install.php
-    type: USED_IN_PHP
-    weight: 0.6
-  - to: livehelp_js.php
-    type: USED_IN_PHP
-    weight: 0.6
-  - to: lupo-database/lupopedia/content/lupo-app/Services/CraftySyntax/LegacyIsFlushDetection.php
-    type: USED_IN_PHP
-    weight: 0.6
-  - to: lupo-database/lupopedia/content/lupo-app/Services/CraftySyntax/WorldGraphHelper.php
-    type: USED_IN_PHP
-    weight: 0.6
-  - to: lupo-includes/classes/AdminDepartmentsHandler.php
-    type: USED_IN_PHP
-    weight: 0.9
-  - to: lupo-includes/modules/crafty_syntax/choosedepartment.php
-    type: USED_IN_PHP
-    weight: 0.9
-  - to: lupo-includes/modules/crafty_syntax/livehelp.php
-    type: USED_IN_PHP
-    weight: 0.9
-  - to: analyze_unused_tables.py
-    type: USED_IN_PYTHON
-    weight: 0.5
+    reason: "authoritative TOON JSON source"
 lupopedia.footer:
-  last_verified: '20260324000000'
-  last_verified_by: cursor
-  last_verified_by_actor_id: 102
-  orchestrator: cursor:root
+  last_verified: "20260328013000"
+  last_verified_by: "hephaestus"
+  last_verified_by_actor_id: 23
+  generated: true
+  provenance: "stage3_track_c_normalization"
 ---
-# file: lupo_departments — delegation: junie:root — web_path: http://www.lupopedia.com/database/lupopedia/tables/active/lupo_departments
-# Table: lupo_departments
+# file: lupo_departments.md
 
-## Table Overview
+# lupo_departments
 
-- **Purpose:** Departments are the organizational units that group **Actors** and **Users**. In the **Unified Identity Model (v4.0.86)**, they define the context for orchestration (e.g., "Root", "Dev", "QA"). They organize channels, actors, and permissions per federation node.
-- **Category:** Governance / Identity
-- **Status:** Active
-- **Version introduced:** 4.0.0
+## Purpose
+Canonical table documentation normalized from TOON JSON for `lupo_departments`.
 
-## Where This Table Is Used
+## Schema
 
-- **Channel organization:** lupo_channels.department_id and lupo_channel_departments link channels to departments; routing and UI group by department.
-- **Operator assignment:** default_actor_id and lupo_department_roles assign actors to departments; used for workload and permission context.
-- **Federation scoping:** federation_node_id scopes departments per node; multi-node deployments have separate department sets.
-- **Collections and content:** lupo_collections and related tables can scope by department_id for department-specific content and tabs.
+### Primary Key
+(none)
 
-## Column Documentation
+### Columns
 
-| Column | Type | Nullable | Default | Description |
-|--------|------|----------|---------|-------------|
-| department_id | bigint | No | — | Primary key. |
-| federation_node_id | bigint | No | — | Federation node this department belongs to. |
-| name | varchar(64) | No | — | Department name. |
-| description | text | Yes | NULL | Description. |
-| department_type | varchar(32) | No | 'general' | Type (e.g. general). |
-| default_actor_id | bigint | No | 1 | Default actor for the department. |
-| settings_json | json | Yes | NULL | Optional JSON settings. |
-| created_ymdhis | bigint | No | 0 | Creation timestamp (BIGINT UTC). |
-| updated_ymdhis | bigint | No | — | Last update timestamp (BIGINT UTC). |
-| is_deleted | tinyint | No | 0 | Soft delete flag. |
-| deleted_ymdhis | bigint | Yes | NULL | Soft delete timestamp. |
+| Column | Type Definition |
+|---|---|
+| `department_id` | `bigint NOT NULL` |
+| `federation_node_id` | `bigint NOT NULL` |
+| `name` | `varchar(64) NOT NULL` |
+| `description` | `text` |
+| `department_type` | `varchar(32) NOT NULL DEFAULT 'general'` |
+| `default_actor_id` | `bigint NOT NULL DEFAULT 1` |
+| `settings_json` | `json` |
+| `created_ymdhis` | `bigint NOT NULL DEFAULT 0` |
+| `updated_ymdhis` | `bigint NOT NULL` |
+| `is_deleted` | `tinyint NOT NULL DEFAULT 0` |
+| `deleted_ymdhis` | `bigint` |
 
-## Indexes
+### Indexes
 
-- **PRIMARY KEY:** department_id
-- **INDEX:** lupo_departments_idx_name (name), lupo_departments_idx_type (department_type), lupo_departments_idx_federation_node (federation_node_id)
+| Index | Columns | Unique |
+|---|---|---|
+| `lupo_departments_idx_federation_node` | `federation_node_id` | no |
+| `lupo_departments_idx_name` | `name` | no |
+| `lupo_departments_idx_type` | `department_type` | no |
 
-## Relationships
-
-- **Logical references (no DB FKs):** federation_node_id → lupo_federation_nodes; default_actor_id → lupo_actors. lupo_channel_departments links channels to departments (many-to-many); lupo_department_roles links actors to departments; lupo_channels.department_id and lupo_collections.department_id reference this table.
-
-## Doctrine notes
-
-- No database foreign keys; referential integrity enforced in application code.
-- All timestamps BIGINT UTC YYYYMMDDHHIISS.
-- Soft delete: filter `is_deleted = 0` unless querying deleted rows.
+## Doctrine
+- Source of truth: `lupo-database/lupopedia/json/` TOON exports
+- Regeneration mode: Stage 3 deterministic normalization
+- Edge mode: placeholder baseline

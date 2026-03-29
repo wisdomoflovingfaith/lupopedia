@@ -1,4 +1,4 @@
----
+﻿---
 lupopedia.headers:
   lupopedia.schema: documentation
   file_path_from_root: lupo-docs/database/lupopedia/tables/planning/table_lupo_kapu_restoration_paths.toon.md
@@ -45,8 +45,7 @@ lupopedia.engagement:
   views: 0
   like_count: 0
   share_count: 0
-lupopedia.footer:
-  last_verified: '20260313000000'
+lupopedia.footer:`n  approved_for_release: "4.1.0"`n  approval_status: "approved"`n  approved_by_actor_id: 1`n  approved_utc: 20260326192115`n  last_verified: '20260313000000'
   last_verified_by: cursor
   orchestrator: antigravity
   next_action:
@@ -58,7 +57,7 @@ lupopedia.footer:
 # Planned Table: `lupo_kapu_restoration_paths`
 
 ## Status
-PLANNING — not yet implemented.
+PLANNING â€” not yet implemented.
 
 ## Source
 Defined in: `lupo-database/lupopedia/mysql/install/future_features_lupopedia.sql`
@@ -98,3 +97,4 @@ Explain the intended function of the table based on its structure and naming.
 ## Notes
 - This table is not yet installed in the production schema.
 - It represents a future Lupopedia capability.
+

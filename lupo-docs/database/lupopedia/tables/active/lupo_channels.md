@@ -1,174 +1,227 @@
 ---
 lupopedia.headers:
   lupopedia.schema: database_table
-  file_path_from_root: lupo-docs/database/lupopedia/tables/active/lupo_channels.md
+  file_path_from_root: "lupo-docs/database/lupopedia/tables/active/lupo_channels.md"
   web_path: '[lupo_channels](http://www.lupopedia.com/database/lupopedia/tables/active/lupo_channels)'
-  last_modified_utc: '20260325105744'
+  last_modified_utc: "20260327234500"
   channel_id: 42
   actor_id: 102
   actor_name: cursor
   delegation_chain: cursor:root
   artifact_type: table_documentation
   artifact_kind: table
-  namespace: channels
+  namespace: "channels"
   purpose: Documentation for lupo_channels table - communication channel management
     and routing
   tags:
   - database
   - table
   - channels
-  when_updated: '20260325105744'
+  when_updated: "20260327234500"
 lupopedia.edges:
-  comment: Snapshot of edges for lupo_channels table doc at 4.0.79 (grounded by repo
+  comment: "Snapshot stage1 confidence-scored edges (git=1.0, code-scan=0.7, db=0.5)."
     search; non-exhaustive).
   meta: php_hits=17 python_hits=8
   outbound_edges:
   - to: database.table.lupo_channels
     type: DEFINES_SCHEMA_FOR
     weight: 1.0
+    confidence: 1.0
+    source: "git-restored"
   - to: lupo-database/lupopedia/mysql/install/install_new_lupopedia.sql
     type: schema_reference
     weight: 1.0
+    confidence: 1.0
+    source: "git-restored"
   - to: install.php
     type: USED_IN_PHP
     weight: 0.6
+    confidence: 0.7
+    source: "code-scan"
   - to: lupo-bin/channel_startup_lifecycle.php
     type: USED_IN_PHP
     weight: 0.6
+    confidence: 0.7
+    source: "code-scan"
   - to: lupo-bin/initialize_system.php
     type: USED_IN_PHP
     weight: 0.6
+    confidence: 0.7
+    source: "code-scan"
   - to: lupo-database/lupopedia/channels/channel_id/1/admin/dashboard.php
     type: USED_IN_PHP
     weight: 0.6
+    confidence: 0.7
+    source: "code-scan"
   - to: lupo-database/lupopedia/content/lupo-app/Services/AnubisUnknownRecipientService.php
     type: USED_IN_PHP
     weight: 0.6
+    confidence: 0.7
+    source: "code-scan"
   - to: lupo-includes/classes/AgentAwarenessLayer.php
     type: USED_IN_PHP
     weight: 0.9
+    confidence: 0.7
+    source: "code-scan"
   - to: lupo-includes/functions/reserved-id-helpers.php
     type: USED_IN_PHP
     weight: 0.9
+    confidence: 0.7
+    source: "code-scan"
   - to: lupo-includes/modules/api/channels-api.php
     type: USED_IN_PHP
     weight: 0.9
+    confidence: 0.7
+    source: "code-scan"
   - to: lupo-includes/modules/channels/ChannelsController.php
     type: USED_IN_PHP
     weight: 0.9
+    confidence: 0.7
+    source: "code-scan"
   - to: lupo-includes/modules/channels/channels-controller.php
     type: USED_IN_PHP
     weight: 0.9
+    confidence: 0.7
+    source: "code-scan"
   - to: lupo-includes/modules/crafty_syntax/choosedepartment.php
     type: USED_IN_PHP
     weight: 0.9
+    confidence: 0.7
+    source: "code-scan"
   - to: lupo-includes/modules/crafty_syntax/livehelp-js.php
     type: USED_IN_PHP
     weight: 0.9
+    confidence: 0.7
+    source: "code-scan"
   - to: lupo-includes/modules/crafty_syntax/visitor-image.php
     type: USED_IN_PHP
     weight: 0.9
+    confidence: 0.7
+    source: "code-scan"
   - to: lupo-scripts/audit_schema_doctrine.php
     type: USED_IN_PHP
     weight: 0.7
+    confidence: 0.7
+    source: "code-scan"
   - to: lupo-scripts/init_channels.php
     type: USED_IN_PHP
     weight: 0.7
+    confidence: 0.7
+    source: "code-scan"
   - to: analyze_unused_tables.py
     type: USED_IN_PYTHON
     weight: 0.5
+    confidence: 0.7
+    source: "code-scan"
   - to: lupo-scripts/audit_schema_doctrine.py
     type: USED_IN_PYTHON
     weight: 0.5
+    confidence: 0.7
+    source: "code-scan"
   - to: lupo-scripts/export_channel_snapshots.py
     type: USED_IN_PYTHON
     weight: 0.5
+    confidence: 0.7
+    source: "code-scan"
   - to: lupo-scripts/migrate_filesystem_to_db.py
     type: USED_IN_PYTHON
     weight: 0.5
+    confidence: 0.7
+    source: "code-scan"
   - to: lupo-scripts/rebuild_lupo_contents.py
     type: USED_IN_PYTHON
     weight: 0.5
+    confidence: 0.7
+    source: "code-scan"
   - to: lupo-scripts/rebuild_schema_from_toons.py
     type: USED_IN_PYTHON
     weight: 0.5
+    confidence: 0.7
+    source: "code-scan"
   - to: lupo-scripts/verify_db_against_toons.py
     type: USED_IN_PYTHON
     weight: 0.5
+    confidence: 0.7
+    source: "code-scan"
   - to: lupo-scripts/wolfie_orms.py
     type: USED_IN_PYTHON
     weight: 0.5
+    confidence: 0.7
+    source: "code-scan"
 lupopedia.footer:
-  last_verified: '20260325105744'
+  provenance: "phase2_git_header_recovered_body_regenerated"
+  generated: true
+  last_verified: "20260327234500"
   last_verified_by: cursor
   last_verified_by_actor_id: 102
   orchestrator: cursor:root
 ---
-# file: lupo_channels ? web_path: http://www.lupopedia.com/database/lupopedia/tables/active/lupo_channels
-# Table: lupo_channels
+# file: lupo_channels.md
 
-## Table Overview
+# lupo_channels
 
-- **Purpose:** Central routing and management for all communication channels in Lupopedia. Stores channel identity (channel_id, channel_key, channel_slug), type, language, display name, and links to federation node, creator actor, default actor, department, and optional parent channel. Supports hierarchical channels, kernel/system channels, awareness versioning, and JSON metadata (AAL, fleet composition).
-- **Category:** Core System / Channels
-- **Status:** Active (in install_new_lupopedia.sql)
-- **Version introduced:** 4.0.x
+## Purpose
+Canonical table documentation regenerated from TOON JSON for `lupo_channels`.
 
-## Where This Table Is Used
+## Schema
 
-- **Channel orchestration:** Modules and routing logic resolve channels by channel_id or (channel_key, federation_node_id). All dialog and content routing is scoped to a channel; this table is the authority for channel existence and metadata.
-- **Federation node partitioning:** Each channel belongs to a federation_node_id; channel_key is unique per node. Multi-node deployments use this for distribution and local-first routing.
-- **Content routing:** Content and help tree can be scoped by channel_id; lupo_contents and related tables reference channel_id for channel-specific content.
-- **Department relationships:** department_id links to lupo_departments for operator assignment and department-based channel grouping; lupo_channel_departments extends many-to-many where needed.
-- **Actor/channel association:** created_by_actor_id and default_actor_id reference lupo_actors; lupo_actor_channels links actors to channels for membership and participation.
-- **Kernel and boot:** is_kernel and boot_sequence_order support system/kernel channels and ordered startup; channel boot lifecycle and detail tables reference channel_id.
+### Primary Key
+(none)
 
-## Column Documentation
+### Columns
 
-| Column | Type | Nullable | Default | Description |
-|--------|------|----------|---------|-------------|
-| channel_id | bigint | No | — | Primary key. Reserved-ID doctrine: application supplies explicit ID (e.g. timestamp-based or from registry). |
-| federation_node_id | bigint | No | — | Federation node this channel belongs to. Logical reference to lupo_federation_nodes. |
-| created_by_actor_id | bigint | No | — | Actor who created the channel. Logical reference to lupo_actors. |
-| default_actor_id | bigint | No | 1 | Default actor for the channel. Logical reference to lupo_actors. |
-| department_id | bigint | No | 1 | Department assignment. Logical reference to lupo_departments. |
-| channel_key | varchar(64) | No | — | Unique channel identifier; unique per (channel_key, federation_node_id). |
-| channel_slug | varchar(32) | No | 'channel_key' | URL-friendly slug. |
-| channel_type | varchar(32) | No | 'chat_room' | Type of channel (e.g. chat_room, dialog, system). |
-| language | varchar(16) | No | 'en' | Channel language. |
-| channel_name | varchar(255) | No | — | Display name. |
-| description | text | Yes | — | Channel description. |
-| website_link | varchar(512) | Yes | — | Related website link. |
-| metadata_json | text | Yes | — | Legacy metadata (deprecated in favor of JSON columns where used). |
-| status_flag | tinyint | No | 1 | Channel status. |
-| end_ymdhis | bigint | Yes | — | Channel end timestamp (BIGINT UTC YYYYMMDDHHIISS). |
-| created_ymdhis | bigint | No | 0 | Creation timestamp (BIGINT UTC). |
-| updated_ymdhis | bigint | No | — | Last update timestamp (BIGINT UTC). |
-| is_deleted | tinyint | No | 0 | Soft delete flag. |
-| deleted_ymdhis | bigint | Yes | — | Soft delete timestamp. |
-| aal_metadata_json | json | Yes | — | Actor Action Language metadata. |
-| fleet_composition_json | json | Yes | — | Fleet composition and agent assignments. |
-| awareness_version | varchar(20) | Yes | '3.0.0' | Awareness system version. |
-| channel_number | int | Yes | — | Numeric channel identifier. |
-| parent_channel_id | bigint | Yes | — | Parent channel for hierarchy. Self-reference to lupo_channels. |
-| project_id | bigint | Yes | — | Optional project scope. Logical reference to lupo_projects. |
-| is_kernel | tinyint | No | 0 | Kernel/system channel flag. |
-| boot_sequence_order | int | Yes | — | Boot sequence order for kernel channels. |
+| Column | Type Definition |
+|---|---|
+| `channel_id` | `bigint NOT NULL` |
+| `federation_node_id` | `bigint NOT NULL` |
+| `created_by_actor_id` | `bigint NOT NULL` |
+| `default_actor_id` | `bigint NOT NULL DEFAULT 1` |
+| `department_id` | `bigint NOT NULL DEFAULT 1` |
+| `channel_key` | `varchar(64) NOT NULL` |
+| `channel_slug` | `varchar(32) NOT NULL DEFAULT 'channel_key'` |
+| `channel_type` | `varchar(32) NOT NULL DEFAULT 'chat_room'` |
+| `language` | `varchar(16) NOT NULL DEFAULT 'en'` |
+| `channel_name` | `varchar(255) NOT NULL` |
+| `description` | `text` |
+| `website_link` | `varchar(512)` |
+| `metadata_json` | `text` |
+| `channel_config` | `text` |
+| `status_flag` | `tinyint NOT NULL DEFAULT 1` |
+| `end_ymdhis` | `bigint` |
+| `created_ymdhis` | `bigint NOT NULL DEFAULT 0` |
+| `updated_ymdhis` | `bigint NOT NULL` |
+| `is_deleted` | `tinyint NOT NULL DEFAULT 0` |
+| `deleted_ymdhis` | `bigint` |
+| `aal_metadata_json` | `json` |
+| `fleet_composition_json` | `json` |
+| `awareness_version` | `varchar(20) DEFAULT '3.0.0'` |
+| `channel_number` | `int` |
+| `parent_channel_id` | `bigint` |
+| `project_id` | `bigint` |
+| `is_kernel` | `tinyint NOT NULL DEFAULT 0` |
+| `boot_sequence_order` | `int` |
+| `visibility_status` | `varchar(32) NOT NULL DEFAULT 'active'` |
+| `owner_actor_id` | `bigint NOT NULL DEFAULT 1` |
+| `access_level` | `varchar(32) NOT NULL DEFAULT 'public'` |
+| `last_activity_ymdhis` | `bigint NOT NULL DEFAULT 0` |
 
-## Indexes
+### Indexes
 
-- **PRIMARY KEY:** channel_id
-- **UNIQUE:** lupo_channels_unq_channel_key_per_node (channel_key, federation_node_id)
-- **INDEX:** lupo_channels_idx_domain (federation_node_id), lupo_channels_idx_channel_key (channel_key), lupo_channels_idx_status (status_flag), lupo_channels_idx_dates (end_ymdhis), lupo_channels_idx_awareness_version (awareness_version), lupo_channels_idx_project_id (project_id)
+| Index | Columns | Unique |
+|---|---|---|
+| `lupo_channels_idx_access_level` | `access_level` | no |
+| `lupo_channels_idx_awareness_version` | `awareness_version` | no |
+| `lupo_channels_idx_channel_key` | `channel_key` | no |
+| `lupo_channels_idx_dates` | `end_ymdhis` | no |
+| `lupo_channels_idx_domain` | `federation_node_id` | no |
+| `lupo_channels_idx_last_activity` | `last_activity_ymdhis` | no |
+| `lupo_channels_idx_owner_actor_id` | `owner_actor_id` | no |
+| `lupo_channels_idx_project_id` | `project_id` | no |
+| `lupo_channels_idx_status` | `status_flag` | no |
+| `lupo_channels_idx_visibility_status` | `visibility_status` | no |
+| `lupo_channels_unq_channel_key_per_node` | `channel_key`, `federation_node_id` | yes |
 
-## Relationships
-
-- **Logical references (no DB FKs):** federation_node_id → lupo_federation_nodes; created_by_actor_id, default_actor_id → lupo_actors; department_id → lupo_departments; parent_channel_id → lupo_channels; project_id → lupo_projects.
-- **Tables that reference lupo_channels:** lupo_dialog_messages, lupo_contents, lupo_actor_channels, lupo_channel_departments, lupo_channel_boot_detail, lupo_channel_boot_lifecycle, and related channel-scoped tables use channel_id as the join key.
-
-## Doctrine Notes
-
-- **No foreign keys.** All referential integrity in application code.
-- **Timestamps:** BIGINT YYYYMMDDHHIISS UTC; set in PHP with `gmdate('YmdHis')`.
-- **Soft delete:** Filter by `is_deleted = 0` unless querying deleted channels.
-- **Reserved ID:** channel_id is not AUTO_INCREMENT; application must supply explicit ID per reserved-ID doctrine.
+## Doctrine
+- Source of truth: `lupo-database/lupopedia/json/` TOON exports
+- Regeneration mode: Phase 2 deterministic rebuild
+- Edge mode: placeholder only

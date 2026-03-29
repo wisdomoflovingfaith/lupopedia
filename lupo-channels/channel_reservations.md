@@ -67,6 +67,17 @@ This registry documents all reserved channel IDs, their intended purposes, activ
 | **100-999** | 🟡 RESERVED | Project-Specific | VARIABLE | Project requirements | Ongoing |
 | **1000+** | 🟡 RESERVED | External Instances | VARIABLE | Federation needs | Ongoing |
 
+#### **Channel 65 - Channel Refactor Governance (Active)**
+- **Current Status**: 🟢 ACTIVE
+- **Filesystem Directory**: `lupo-channels/1_channel_refactor_governance/`
+- **Intended Purpose**: Channel filesystem refactor governance, questions/prompts separation, and edge-safe migration planning
+- **Priority**: HIGH
+- **Activation Date**: 2026-03-27
+- **Notes**:
+  - pilot channel for the `{federation_node_id}_{channel_key}` naming profile
+  - active thread root uses project slug `channel_refactor_4_0_88`
+  - no mass migration is authorized from this activation alone
+
 ---
 
 ## **🔢 Detailed Reservation Information**

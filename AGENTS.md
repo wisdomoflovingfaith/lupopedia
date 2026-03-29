@@ -32,6 +32,10 @@ lupopedia.headers:
   when_updated: '20260325204807'
 lupopedia.edges:
   outbound_edges:
+  - to: lupo-docs/doctrine/IDENTITY_MODEL_QUICKSTART_4.0.88.md
+    type: references
+    weight: 1.0
+    reason: Identity model quickstart guide
   - to: lupo-rules/root/MULTI_AGENT_COORDINATION_DOCTRINE.md
     type: references
     weight: 1.0
@@ -287,6 +291,7 @@ Fresh install runs (A) then (B). Upgrade from Crafty runs (A), (B), then (C). Ne
 - `lupo-database/lupopedia/toon/` — `*.toon.json` files: generated from live DB, never hand-edited. These define the canonical column/type reference. (Canonical TOON location per project structure.)
 - `lupo-legacy/craftysyntax/` — Original Crafty Syntax 3.7.5 codebase. **Read-only reference.** Never execute, modify, or depend on it.
 - `lupo-scripts/` — Python and shell utilities for schema generation, validation, migration. All Python must live here.
+- `node_modules/` and `lupo-tools/vsx-extension/node_modules/` — npm-managed dependency caches for local tooling/extension builds. These are external package-manager directories and intentionally do not use the `lupo-` prefix.
 - `config/global_atoms.yaml` — System-wide atom definitions including `GLOBAL_CURRENT_LUPOPEDIA_VERSION`
 - `lupo-channels/registry.json` — Channel registry
 

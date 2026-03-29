@@ -1,64 +1,68 @@
 ---
 lupopedia.headers:
-  lupopedia.schema: documentation
-  file_path_from_root: lupo-docs/database/lupopedia/tables/active/lupo_anubis_recovery_attempts.md
-  channel_id: 1
-  actor_id: 103
-  last_modified_utc: '20260312'
-  artifact_type: table_documentation
-  purpose: Tracking varied strategies for file recovery
-  mood_rgb: 4169E1
-  traits:
-  - canonical
-  - anubis
-  - recovery
-  - v4.0.70
+  when_updated: "20260328013000"
+  file_path_from_root: "lupo-docs/database/lupopedia/tables/active/lupo_anubis_recovery_attempts.md"
+  last_modified_utc: "20260328013000"
+  channel_id: 42
+  actor_id: 23
+  actor_name: "hephaestus"
+  delegation_chain: "wolfie:hephaestus"
+  artifact_type: "documentation"
+  artifact_kind: "table"
+  namespace: "core"
+  purpose: "Normalized table documentation for lupo_anubis_recovery_attempts from TOON JSON"
   tags:
   - database
-  - anubis
-  - recovery
-  - strategies
-  lupo_agent: antigravity
-  when_updated: '20260324174654'
+  - table
+  - normalized
+  - 4.0.88
 lupopedia.edges:
+  comment: "static placeholder edges for stage3 normalization"
   outbound_edges:
-  - to: lupo-database/lupopedia/toon/lupo_anubis_recovery_attempts.toon
-    type: references
+  - to: "lupo-database/lupopedia/json/lupo_anubis_recovery_attempts.json"
+    type: "references"
     weight: 1.0
-  - to: lupo-docs/database/lupopedia/tables/active/lupo_anubis_queue.md
-    type: references
-    weight: 1.0
+    reason: "authoritative TOON JSON source"
 lupopedia.footer:
-  last_verified: '20260312000000'
-  last_verified_by: cursor
-  last_verified_by_actor_id: 102
-  orchestrator: cursor:root
+  last_verified: "20260328013000"
+  last_verified_by: "hephaestus"
+  last_verified_by_actor_id: 23
+  generated: true
+  provenance: "stage3_track_c_normalization"
 ---
+# file: lupo_anubis_recovery_attempts.md
 
-# Table Overview: lupo_anubis_recovery_attempts
+# lupo_anubis_recovery_attempts
 
-- **Purpose**: Tracks specific programmatic strategies used by ANUBIS to recover or repair files. It allows the system to cycle through different models or templates without repeating failed tactics.
-- **Category**: Import / Reconciliation
-- **Status**: Active
-- **Version Introduced**: 4.0.0
+## Purpose
+Canonical table documentation normalized from TOON JSON for `lupo_anubis_recovery_attempts`.
 
-## Column Documentation
+## Schema
 
-| Column Name | Type | Nullable | Default | Description |
-| :--- | :--- | :--- | :--- | :--- |
-| `attempt_id` | BIGINT | No | - | Primary Key. |
-| `queue_id` | BIGINT | No | - | Associated `lupo_anubis_queue` item. |
-| `attempt_number` | TINYINT | No | - | Sequence number of the attempt. |
-| `attempt_utc` | BIGINT | No | - | Time of attempt. |
-| `strategy` | VARCHAR(64) | Yes | - | Strategy used (e.g., 'TEMPLATE_GENERATION', 'ACTOR_INFERENCE'). |
-| `success` | TINYINT | Yes | 0 | Flag (1=success). |
-| `generated_header` | TEXT | Yes | - | The header block generated during this attempt. |
-| `error_details` | TEXT | Yes | - | JSON error feedback if the attempt failed. |
-| `recovered_file_path` | VARCHAR(512) | Yes | - | Path where the successfully recovered file was saved. |
+### Primary Key
+(none)
 
-## Usage Notes
+### Columns
 
-- **Strategic Diversification**: ANUBIS iterates through strategies defined in `AnubisRecoveryFactory` until success is achieved or the max retry limit is hit.
+| Column | Type Definition |
+|---|---|
+| `attempt_id` | `bigint NOT NULL auto_increment` |
+| `queue_id` | `bigint NOT NULL` |
+| `attempt_number` | `tinyint NOT NULL` |
+| `attempt_utc` | `bigint NOT NULL` |
+| `strategy` | `varchar(64)` |
+| `success` | `tinyint DEFAULT 0` |
+| `generated_header` | `text` |
+| `error_details` | `text` |
+| `recovered_file_path` | `varchar(512)` |
 
----
-*Created by Antigravity (Actor 103) as part of the Database Documentation Program.*
+### Indexes
+
+| Index | Columns | Unique |
+|---|---|---|
+| `lupo_anubis_recovery_attempts_idx_queue_attempt` | `queue_id`, `attempt_number` | no |
+
+## Doctrine
+- Source of truth: `lupo-database/lupopedia/json/` TOON exports
+- Regeneration mode: Stage 3 deterministic normalization
+- Edge mode: placeholder baseline

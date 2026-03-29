@@ -42,6 +42,29 @@ $authService = isset($GLOBALS['lupo_auth_service']) ? $GLOBALS['lupo_auth_servic
 $current_auth_user = $authService ? $authService->getCurrentUser() : current_user();
 $isUserLoggedIn = ($current_auth_user !== false);
 
+// Get current actor information
+$current_actor = null;
+$current_actor_name = 'Unknown';
+if ($isUserLoggedIn) {
+    // Try to get actor from session or AuthSessionManager
+    if (class_exists('AuthSessionManager')) {
+        $sessionManager = new AuthSessionManager();
+        $actor_id = $sessionManager->getActiveActorId();
+        if ($actor_id > 0) {
+            // Get actor details from database
+            $db = isset($GLOBALS['mydatabase']) ? $GLOBALS['mydatabase'] : null;
+            if ($db) {
+                $prefix = defined('LUPO_TABLE_PREFIX') ? LUPO_TABLE_PREFIX : 'lupo_';
+                $actor = $db->fetchRow("SELECT actor_name, name FROM {$prefix}actors WHERE actor_id = :actor_id AND is_active = 1 AND is_deleted = 0", ['actor_id' => $actor_id]);
+                if ($actor) {
+                    $current_actor = $actor;
+                    $current_actor_name = $actor['name'] ?: $actor['actor_name'];
+                }
+            }
+        }
+    }
+}
+
 // Initialize variables with defaults if not set
 if (!isset($currentUserId)) {
     $currentUserId = $isUserLoggedIn ? (int)$current_auth_user['auth_user_id'] : 0;
@@ -168,6 +191,23 @@ $avatarTimestamp = file_exists(str_replace(LUPOPEDIA_PUBLIC_PATH, LUPOPEDIA_PATH
                         <a href="<?= LUPOPEDIA_PUBLIC_PATH ?>/my-profile" class="dropdown-item">
                             <span class="dropdown-icon">👤</span>
                             My Profile
+                            <?php if ($current_actor): ?>
+                                <span style="color: #666; font-size: 0.85em; margin-left: 8px;">acting as: <strong><?= htmlspecialchars($current_actor_name) ?></strong></span>
+                                <?php
+                                // Check if user has multiple actors they can switch between
+                                if (class_exists('AuthSessionManager')) {
+                                    $sessionManager = new AuthSessionManager();
+                                    $auth_user_id = $isUserLoggedIn ? (int)$current_auth_user['auth_user_id'] : 0;
+                                    $available_actors = $sessionManager->getActorsUserCanActAs($auth_user_id, false);
+                                    $user_can_switch_actors = count($available_actors) > 1;
+                                    if ($user_can_switch_actors):
+                                ?>
+                                    <a href="<?= LUPOPEDIA_PUBLIC_PATH ?>/select-actor.php?redirect=<?= urlencode(isset($_SERVER['REQUEST_URI']) ? $_SERVER['REQUEST_URI'] : '') ?>" style="color: #4299e1; text-decoration: none; font-size: 0.8em; margin-left: 4px;">change</a>
+                                <?php 
+                                    endif;
+                                }
+                                ?>
+                            <?php endif; ?>
                         </a>
                         <a href="<?= LUPOPEDIA_PUBLIC_PATH ?>/my-history.php" class="dropdown-item">
                             <span class="dropdown-icon">📜</span>

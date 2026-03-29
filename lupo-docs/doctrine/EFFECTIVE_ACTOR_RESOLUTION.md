@@ -17,6 +17,7 @@ lupopedia.headers:
   tags: ["effective_actor", "actor_resolution", "channel_chat", "session", "4.0.87"]
 lupopedia.edges:
   outbound_edges:
+    - { to: "lupo-docs/doctrine/IDENTITY_MODEL_QUICKSTART_4.0.88.md", type: "references", weight: 1.0 }
     - { to: "lupo-includes/classes/EffectiveActorResolver.php", type: "implemented_by", weight: 1.0 }
     - { to: "lupo-includes/modules/api/channels-api.php", type: "enforced_by", weight: 1.0 }
     - { to: "switch-actor.php", type: "related_runtime_surface", weight: 0.9 }

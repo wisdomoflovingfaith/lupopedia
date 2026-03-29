@@ -141,8 +141,9 @@ class PDO_DB
 
         try {
             $this->pdo = new PDO($dsn, $user, $pass, $this->options);
-            $this->pdo->exec("SET NAMES 'utf8'");
-            $this->pdo->exec("SET CHARACTER SET 'utf8'");
+            // Must match DSN charset=utf8mb4 and utf8mb4_* table collations (avoid utf8mb3 vs utf8mb4 mix).
+            $this->pdo->exec("SET NAMES 'utf8mb4'");
+            $this->pdo->exec("SET CHARACTER SET 'utf8mb4'");
         } catch (PDOException $e) {
             $this->lastError = $e->getMessage();
             throw $e;

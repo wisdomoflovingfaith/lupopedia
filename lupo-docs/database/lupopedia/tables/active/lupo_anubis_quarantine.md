@@ -1,74 +1,73 @@
 ---
 lupopedia.headers:
-  lupopedia.schema: documentation
-  file_path_from_root: lupo-docs/database/lupopedia/tables/active/lupo_anubis_quarantine.md
-  channel_id: 1
-  actor_id: 103
-  last_modified_utc: '20260312'
-  artifact_type: table_documentation
-  purpose: Storage and metadata for quarantined files
-  mood_rgb: 4169E1
-  traits:
-  - canonical
-  - anubis
-  - quarantine
-  - v4.0.70
+  when_updated: "20260328013000"
+  file_path_from_root: "lupo-docs/database/lupopedia/tables/active/lupo_anubis_quarantine.md"
+  last_modified_utc: "20260328013000"
+  channel_id: 42
+  actor_id: 23
+  actor_name: "hephaestus"
+  delegation_chain: "wolfie:hephaestus"
+  artifact_type: "documentation"
+  artifact_kind: "table"
+  namespace: "core"
+  purpose: "Normalized table documentation for lupo_anubis_quarantine from TOON JSON"
   tags:
   - database
-  - anubis
-  - quarantine
-  - remediation
-  lupo_agent: antigravity
-  when_updated: '20260324174654'
+  - table
+  - normalized
+  - 4.0.88
 lupopedia.edges:
+  comment: "static placeholder edges for stage3 normalization"
   outbound_edges:
-  - to: lupo-database/lupopedia/toon/lupo_anubis_quarantine.toon
-    type: references
+  - to: "lupo-database/lupopedia/json/lupo_anubis_quarantine.json"
+    type: "references"
     weight: 1.0
-  - to: lupo-docs/database/lupopedia/tables/active/lupo_anubis_queue.md
-    type: references
-    weight: 1.0
+    reason: "authoritative TOON JSON source"
 lupopedia.footer:
-  last_verified: '20260312000000'
-  last_verified_by: cursor
-  last_verified_by_actor_id: 102
-  orchestrator: cursor:root
+  last_verified: "20260328013000"
+  last_verified_by: "hephaestus"
+  last_verified_by_actor_id: 23
+  generated: true
+  provenance: "stage3_track_c_normalization"
 ---
+# file: lupo_anubis_quarantine.md
 
-# Table Overview: lupo_anubis_quarantine
+# lupo_anubis_quarantine
 
-- **Purpose**: Acts as a safety deposit for files that ANUBIS cannot reconcile or that contain severe compliance violations. It holds the file content and metadata until a human (or senior agent) reviews and resolves the status.
-- **Category**: Remediation / Security
-- **Status**: Active
-- **Version Introduced**: 4.0.0
+## Purpose
+Canonical table documentation normalized from TOON JSON for `lupo_anubis_quarantine`.
 
-## Column Documentation
+## Schema
 
-| Column Name | Type | Nullable | Default | Description |
-| :--- | :--- | :--- | :--- | :--- |
-| `quarantine_id` | BIGINT | No | - | Primary Key. |
-| `queue_id` | BIGINT | No | - | Reference to the `lupo_anubis_queue` item. |
-| `file_path` | VARCHAR(512) | No | - | Original path where the file was found. |
-| `file_hash` | VARCHAR(64) | Yes | - | Hash of the quarantined content. |
-| `file_content` | LONGTEXT | Yes | - | Direct storage of the non-compliant content. |
-| `quarantine_path` | VARCHAR(512) | No | - | Path to the file in the dedicated quarantine directory. |
-| `reason` | VARCHAR(255) | No | - | Logical reason for quarantine (e.g., 'INVALID_SIGNATURE'). |
-| `quarantined_utc` | BIGINT | No | - | Timestamp of quarantine. |
-| `expires_utc` | BIGINT | Yes | - | Optional expiration for auto-deletion of logs. |
-| `reviewed_by_actor_id` | BIGINT | Yes | - | The admin actor who reviewed the item. |
-| `reviewed_utc` | BIGINT | Yes | - | Review timestamp. |
-| `resolution` | VARCHAR(64) | Yes | - | The outcome of review (e.g., 'RESTORED', 'DISCARDED'). |
-| `is_deleted` | TINYINT | Yes | 0 | Soft delete flag. |
+### Primary Key
+(none)
 
-## Relationships
+### Columns
 
-### Outbound References
-- `lupo_anubis_queue.queue_id`: Origin queue item.
-- `lupo_actors.actor_id`: Identified by `reviewed_by_actor_id`.
+| Column | Type Definition |
+|---|---|
+| `quarantine_id` | `bigint NOT NULL auto_increment` |
+| `queue_id` | `bigint NOT NULL` |
+| `file_path` | `varchar(512) NOT NULL` |
+| `file_hash` | `varchar(64)` |
+| `file_content` | `longtext` |
+| `quarantine_path` | `varchar(512) NOT NULL` |
+| `reason` | `varchar(255) NOT NULL` |
+| `quarantined_utc` | `bigint NOT NULL` |
+| `expires_utc` | `bigint` |
+| `reviewed_by_actor_id` | `bigint` |
+| `reviewed_utc` | `bigint` |
+| `resolution` | `varchar(64)` |
+| `is_deleted` | `tinyint DEFAULT 0` |
 
-## Usage Notes
+### Indexes
 
-- **Governance**: Quarantined files are isolated from the rest of the Lupopedia system and cannot be indexed until restored.
+| Index | Columns | Unique |
+|---|---|---|
+| `lupo_anubis_quarantine_idx_expires` | `expires_utc` | no |
+| `lupo_anubis_quarantine_idx_queue` | `queue_id` | no |
 
----
-*Created by Antigravity (Actor 103) as part of the Database Documentation Program.*
+## Doctrine
+- Source of truth: `lupo-database/lupopedia/json/` TOON exports
+- Regeneration mode: Stage 3 deterministic normalization
+- Edge mode: placeholder baseline

@@ -1,37 +1,56 @@
 ---
 lupopedia.headers:
-  when_updated: "20260325204149"
-  lupopedia.schema: "doctrine"
-  file_path_from_root: "lupo-docs/doctrine/LUPOPEDIA_HEADERS/README.md"
-  web_path: "http://www.lupopedia.com/lupopedia/lupo-docs/doctrine/LUPOPEDIA_HEADERS/README.md"
-  last_modified_utc: "20260325204149"
-  channel_id: 42
   actor_id: 102
-  actor_name: "cursor"
-  delegation_chain: "cursor:root"
-  artifact_type: "doctrine"
-  artifact_kind: "index"
-  purpose: "Canonical doctrine index for LUPOPEDIA HEADERS and footer verification model"
-  tags: ["headers", "doctrine", "validation", "footer", "utc"]
-  namespace: "governance"
+  actor_name: cursor
+  artifact_kind: documentation
+  artifact_type: doctrine
+  channel_id: 42
+  delegation_chain: cursor:root
+  federation_node_id: 0
+  file_path_from_root: lupo-docs/doctrine/LUPOPEDIA_HEADERS/README.md
+  last_modified_utc: '20260328163401'
+  lupopedia.schema: doctrine
+  purpose: Canonical doctrine index for LUPOPEDIA HEADERS and footer verification
+    model
+  tags:
+  - headers
+  - doctrine
+  - validation
+  - footer
+  - utc
+  thread_id: headers-readme-index
+  web_path: http://www.lupopedia.com/lupopedia/lupo-docs/doctrine/LUPOPEDIA_HEADERS/README.md
+  when_updated: '20260328240000'
+  title: Lupo docs doctrine lupopediaheaders readme
+  content_id: 6398844981624656451
 lupopedia.footer:
-  last_verified: "20260325204149"
-  verified_by:
-    identity_type: "actor"
-    actor_id: 102
-    agent_name_identity: "Cursor IDE Agent (Lead Orchestration)"
-    department_id_delta: 0
-  verified_via:
-    type: "faucet"
-    faucet_slug: "cursor"
-  orchestrator: "cursor:root"
+  last_verified: 20260328240000
   next_action:
-    - "Continue migration from version_when_written to when_updated"
-    - "Enforce stale footer revalidation policy for artifacts below 20260301000000"
+  - Continue migration from version_when_written to when_updated
+  - Enforce stale footer revalidation policy for artifacts below 20260301000000
+  orchestrator: cursor:root
+  verified_by:
+    actor_id: 102
+    agent_name_identity: Cursor IDE Agent (Lead Orchestration)
+    department_id_delta: 0
+    identity_type: actor
+  verified_via:
+    faucet_slug: cursor
+    type: faucet
 ---
-# file: LUPOPEDIA HEADERS README - delegation: cursor:root - web_path: [http://www.lupopedia.com/lupopedia/lupo-docs/doctrine/LUPOPEDIA_HEADERS/README.md](http://www.lupopedia.com/lupopedia/lupo-docs/doctrine/LUPOPEDIA_HEADERS/README.md)
+# file: Lupo docs doctrine lupopediaheaders readme — delegation: cursor:root — web_path: http://www.lupopedia.com/lupopedia/lupo-docs/doctrine/LUPOPEDIA_HEADERS/README.md
 
 # LUPOPEDIA HEADERS
+
+## Single source of truth (binding doctrine)
+
+**One file only:** **[`lupo-rules/root/LUPOPEDIA_HEADERS_DOCTRINE.md`](../../../lupo-rules/root/LUPOPEDIA_HEADERS_DOCTRINE.md)** — required header keys, `lupopedia.schema` / `artifact_type` / `artifact_kind` taxonomies, federation rules, validation expectations, **database-first mapping** (`lupo_contents`, `lupo_metadata`, `lupo_edges`, `revision_history`), and **`lupo-database/lupopedia/json/*.json`** / install SQL authority.
+
+**Same folder, different role:** [`LUPOPEDIA_HEADERS_DOCTRINE.md`](LUPOPEDIA_HEADERS_DOCTRINE.md) in this directory is a **stable URL alias** (pointer + short reminder). It does **not** duplicate the binding text; edit the **root** file only.
+
+**This directory** otherwise holds **format**, **block order**, **footer semantics**, **validators**, and **tooling** (`LUPOPEDIA_HEADERS_FORMAT.md`, `TAXONOMY_REFERENCE.md`, `VALIDATORS_AND_TOOLING.md`, `OPTIONAL_BLOCKS.md`, etc.) — companion material, not a second copy of the field matrix.
+
+**Required keys in the file (summary):** `lupopedia.schema`, `file_path_from_root`, `web_path`, `federation_node_id`, `when_updated`, `last_modified_utc`, `channel_id`, `thread_id`, `actor_id`, `actor_name`, `delegation_chain`, `artifact_type`, `artifact_kind`, `purpose`, `tags` — full matrix and meanings only in the **root** doctrine; quick cross-field table in **`TAXONOMY_REFERENCE.md`**.
 
 LUPOPEDIA metadata now uses a two-part freshness model:
 
@@ -150,8 +169,10 @@ Files under `lupo-docs/database/lupopedia/tables/active/*.md` are a mapping surf
 ## Canonical references
 
 - `LUPOPEDIA_HEADERS_FORMAT.md`
+- `TAXONOMY_REFERENCE.md`
 - `VALIDATORS_AND_TOOLING.md`
 - `VERIFICATION_GUIDE.md`
 - `LUPOPEDIA_HEADERS_MIGRATION.md`
 - `EDGE_MODEL_DOCTRINE.md`
+- `lupo-docs/doctrine/RELEASE_ARTIFACT_APPROVAL_GOVERNANCE_DOCTRINE.md`
 - `lupo-rules/root/`

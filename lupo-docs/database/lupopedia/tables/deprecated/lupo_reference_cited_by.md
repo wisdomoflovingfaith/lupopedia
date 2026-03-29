@@ -1,4 +1,4 @@
----
+﻿---
 lupopedia.headers:
   lupopedia.version: "4.0.87"
   lupopedia.schema: "documentation"
@@ -11,7 +11,7 @@ lupopedia.headers:
   delegation_chain: "26:1"
   artifact_type: "documentation"
   artifact_kind: "table_documentation"
-  purpose: "DEPRECATED 4.0.87 — lupo_reference_cited_by removed, consolidated into lupo_edges"
+  purpose: "DEPRECATED 4.0.87 â€” lupo_reference_cited_by removed, consolidated into lupo_edges"
   mood_rgb: "808080"
   traits: ["deprecated", "v4.0.87", "edge_consolidation"]
   tags: ["documentation", "deprecated", "edge_consolidation"]
@@ -22,15 +22,14 @@ lupopedia.edges:
     - { to: "lupo-docs/database/lupopedia/tables/active/lupo_edges.md", type: "superseded_by", weight: 1.0 }
     - { to: "lupo-docs/doctrine/EDGE_MODEL_DOCTRINE.md", type: "references", weight: 1.0 }
 
-lupopedia.footer:
-  last_verified: "20260325200000"
+lupopedia.footer:`n  approved_for_release: "4.1.0"`n  approval_status: "approved"`n  approved_by_actor_id: 1`n  approved_utc: 20260326192115`n  last_verified: "20260325200000"
   last_verified_by: "cursor"
   orchestrator: "wolfie:1"
 ---
 
 # Table: lupo_reference_cited_by (DEPRECATED)
 
-> **DEPRECATED in 4.0.87** — Table removed and consolidated into [`lupo_edges`](../active/lupo_edges.md).
+> **DEPRECATED in 4.0.87** â€” Table removed and consolidated into [`lupo_edges`](../active/lupo_edges.md).
 
 **Deprecated in:** 4.0.87
 **Superseded by:** [lupo_edges.md](../active/lupo_edges.md)
@@ -127,8 +126,7 @@ lupopedia.headers:
 # Use the FLARE Edge Suggester Tool to automatically discover and suggest edges:
 # python lupo-scripts/flare_edge_suggester.py --file <path> --include-db --format yaml
 
-lupopedia.footer:
-  outbound_edges:
+lupopedia.footer:`n  approved_for_release: "4.1.0"`n  approval_status: "approved"`n  approved_by_actor_id: 1`n  approved_utc: 20260326192115`n  outbound_edges:
     - { to: "lupo-database/lupopedia/toon/lupo_reference_cited_by.toon.json", type: "schema_reference", weight: 1.0, reason: "TOON schema definition", db_source: "lupo_reference_cited_by" }
     - { to: "lupo-docs/FLARE_HEADERS_COMPLETE_REFERENCE.md", type: "references", weight: 0.9, reason: "FLARE header reference" }
     - { to: "lupo-docs/doctrine/FLARE/FLARE_DOCTRINE.md", type: "references", weight: 0.9, reason: "FLARE doctrine" }
@@ -218,3 +216,4 @@ Anti-Patterns: avoid full table scans on large datasets.
 ## 9. Future Enhancements
 - Enrich relationships with discovered edges.
 - Add usage-specific examples once feature usage is known.
+

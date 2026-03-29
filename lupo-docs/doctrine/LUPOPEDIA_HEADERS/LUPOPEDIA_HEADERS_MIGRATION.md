@@ -1,75 +1,101 @@
 ---
 lupopedia.headers:
-  version_when_written: "4.0.84"
+  when_updated: "20260327121457"
   lupopedia.schema: "doctrine"
   file_path_from_root: "lupo-docs/doctrine/LUPOPEDIA_HEADERS/LUPOPEDIA_HEADERS_MIGRATION.md"
   web_path: "http://www.lupopedia.com/lupopedia/lupo-docs/doctrine/LUPOPEDIA_HEADERS/LUPOPEDIA_HEADERS_MIGRATION.md"
-  title: "LUPOPEDIA HEADERS Migration"
+  last_modified_utc: "20260327121457"
+  channel_id: 42
+  actor_id: 102
+  actor_name: "cursor"
   delegation_chain: "cursor:root"
   artifact_type: "doctrine"
   artifact_kind: "reference"
-lupopedia.session:
-  session_id: "L-LUPO-ROOT-CURSOR"
-  session_name: "L-LUPO-ROOT-CURSOR"
-  actor_id: 1003
-  actor_name: "cursor"
-  channel_id: 42
-  channel_name: "Lupopedia Development (general)"
-  federation_node_id: 1
-  context_source: "default"
-  department_id: 0
-  thread_id: 0
-  agent_name: "cursor"
-  actor_type: "agent"
-  actor_nature: "ide"
-  human_actor_name: "root"
-  paired_actor_id: 10000
+  title: "LUPOPEDIA HEADERS Migration"
+  purpose: "Compatibility and migration policy from FLARE-era and legacy LUPOPEDIA header variants to the timestamp freshness model"
+  tags: ["headers", "migration", "compatibility", "validation"]
+  namespace: "governance"
+lupopedia.footer:
+  last_verified: "20260327121457"
+  verified_by:
+    identity_type: "actor"
+    actor_id: 102
+    agent_name_identity: "Cursor IDE Agent (Lead Orchestration)"
+    department_id_delta: 0
+  verified_via:
+    type: "faucet"
+    faucet_slug: "cursor"
+  orchestrator: "cursor:root"
+  next_action:
+    - "Continue migrating legacy version_when_written artifacts during normal edits"
+    - "Keep validator and generator behavior synchronized to the 4.0.88 compatibility window"
 ---
-# file: LUPOPEDIA HEADERS Migration — session: L-LUPO-ROOT-CURSOR — delegation: cursor:root — web_path: [http://www.lupopedia.com/lupopedia/lupo-docs/doctrine/LUPOPEDIA_HEADERS/LUPOPEDIA_HEADERS_MIGRATION.md](http://www.lupopedia.com/lupopedia/lupo-docs/doctrine/LUPOPEDIA_HEADERS/LUPOPEDIA_HEADERS_MIGRATION.md)
+# file: LUPOPEDIA HEADERS Migration — delegation: cursor:root — web_path: [http://www.lupopedia.com/lupopedia/lupo-docs/doctrine/LUPOPEDIA_HEADERS/LUPOPEDIA_HEADERS_MIGRATION.md](http://www.lupopedia.com/lupopedia/lupo-docs/doctrine/LUPOPEDIA_HEADERS/LUPOPEDIA_HEADERS_MIGRATION.md)
 
-# LUPOPEDIA HEADERS — Incremental migration from FLARE
+# LUPOPEDIA HEADERS - Incremental Migration
 
-**Version:** 4.0.68+
+**Version window:** 4.0.88 compatibility, 4.0.89 enforcement
 
 ---
 
 ## 1. Principle
 
-Migration from FLARE-headed artifacts to LUPOPEDIA HEADERS is **incremental**, not an instant cutover.
+Migration to LUPOPEDIA HEADERS remains incremental, not an instant cutover.
 
-- **Existing FLARE-headed** Markdown and channel artifacts remain valid.
-- **Validators** MUST accept both legacy FLARE format and 4.0.68+ LUPOPEDIA-backed artifacts during transition.
-- **New or modified** artifacts from 4.0.68 onward SHOULD use LUPOPEDIA HEADERS rules and storage in `lupo_metadata`.
-
----
-
-## 2. Storage migration path
-
-1. **Parse** existing FLARE YAML headers (from files or legacy content).
-2. **Normalize** into the row-based model: root row → block rows → property rows → repeating-structure rows (edges, mappings, actions).
-3. **Insert** into `lupo_metadata` with `channel_id`, `parent_metadata_id`, and `class_name` set appropriately.
-4. **Optionally** rewrite the file to the LUPOPEDIA format: first line `---`, then YAML blocks, then `---`, then identity line `# file: ...`, then body.
+- Existing FLARE-headed Markdown and channel artifacts remain valid until touched.
+- Existing LUPOPEDIA artifacts that still carry `version_when_written` are compatibility artifacts.
+- New or modified artifacts must write `when_updated` and `last_modified_utc` in `lupopedia.headers`.
 
 ---
 
-## 3. Validator behavior
+## 2. Version-field migration rule
 
-- **Legacy FLARE:** Accept files that start with `---` and YAML then identity line, or identity line then `---` and YAML, per existing FLARE doctrine.
-- **LUPOPEDIA 4.0.68+:** Enforce first line `---`, then YAML in canonical block order, then `---`, then identity line `# file: ...`, then body.
-- **Block order:** When validating or exporting, enforce canonical order: lupopedia.init → lupopedia.conditional → lupopedia.headers → lupopedia.session → lupopedia.edges → lupopedia.footer → lupopedia.see → lupopedia.close (or legacy lupopedia.init, flare.*, lupopedia.see, lupopedia.close). Session fields (session_id, session_name, etc.) belong in lupopedia.session.
-- **Channel resolution:** Support loading headers by `channel_id` as well as by `entity_type` + `entity_id`. Optional **channel_name** (human-readable) and **thread_name** (when thread-scoped) may be stored as properties for display; resolution remains by channel_id (and thread_id when applicable).
+Compatibility mapping for legacy artifacts:
 
----
+| Legacy field | Canonical replacement | 4.0.88 behavior | 4.0.89 behavior |
+|-------------|-----------------------|-----------------|-----------------|
+| `version_when_written` | `when_updated` | Read for compatibility, warn, do not emit | Reject in `lupopedia.headers` |
+| `system_version` | none | Warn, remove during rewrite | Reject |
+| `lupopedia.version` | none | Warn, remove during rewrite | Reject |
+| `last_verified_system_version` | none | Warn, remove during rewrite | Reject |
 
-## 4. Tooling expectations
-
-- **Export:** Build canonical YAML header block from `lupo_metadata` rows (root → blocks → properties → edges/mappings/actions).
-- **Import:** Parse FLARE/LUPOPEDIA YAML into the same row structure and persist to `lupo_metadata`.
-- **Lookup:** Resolve headers by entity and/or channel; do not assume entity-only resolution.
+If a legacy artifact lacks `when_updated`, tooling may derive it from existing timestamp fields or artifact creation metadata during rewrite.
 
 ---
 
-## 5. Caveats
+## 3. Storage migration path
 
-- Do not claim that all repo files are migrated to LUPOPEDIA HEADERS at 4.0.68 release; document current state accurately.
-- Rendered YAML in files is an export artifact; the canonical source of truth for LUPOPEDIA-backed headers is `lupo_metadata`.
+1. Parse existing FLARE or LUPOPEDIA YAML headers.
+2. Normalize into the row-based model: root row -> block rows -> property rows -> repeating child rows.
+3. Preserve legacy fields in compatibility reads only when needed for interpretation.
+4. Write canonical output using `when_updated`, `file_path_from_root`, and `last_modified_utc`.
+5. Optionally rewrite the file so the first line is `---`, followed by YAML blocks, then `---`, then the identity line and body.
+
+---
+
+## 4. Validator behavior
+
+- Legacy FLARE remains accepted during migration.
+- LUPOPEDIA artifacts must use canonical block order when rewritten.
+- Validators in 4.0.88 warn on `version_when_written` but do not reject it.
+- Validators in 4.0.89 reject `version_when_written` inside `lupopedia.headers`.
+- Session fields remain part of `lupopedia.session`, not `lupopedia.headers`.
+- Channel resolution must support `channel_id` as well as `entity_type` + `entity_id`.
+
+---
+
+## 5. Tooling expectations
+
+- Exporters must build canonical YAML from `lupo_metadata` rows.
+- Exporters must not emit `version_when_written`.
+- Importers may read `version_when_written` during the 4.0.88 compatibility window.
+- Rewriters must emit `when_updated` and `last_modified_utc` on rewritten artifacts.
+- Lookup behavior remains entity-aware and channel-aware.
+
+---
+
+## 6. Caveats
+
+- Do not claim the entire repository is already migrated.
+- Rendered YAML in files is an export artifact; `lupo_metadata` remains canonical.
+- Historical files may still contain deprecated fields until they are touched, but doctrine and tooling must not present those fields as the current write model.

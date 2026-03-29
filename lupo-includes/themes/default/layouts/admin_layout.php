@@ -183,16 +183,22 @@ $base = defined('LUPOPEDIA_PUBLIC_PATH') ? rtrim(LUPOPEDIA_PUBLIC_PATH, '/') : '
             <a class="nav-link" href="<?= LUPOPEDIA_PUBLIC_PATH ?>/search.php">Content</a>
             <a class="nav-link active" href="<?= LUPOPEDIA_PUBLIC_PATH ?>/admin.php">Admin</a>
             <?php if ($isUserLoggedIn && !empty($admin_actor_list)): ?>
-                <form method="post" action="<?= LUPOPEDIA_PUBLIC_PATH ?>/switch-actor.php" class="admin-actor-selector-form" style="display: inline-flex; align-items: center; margin: 0 0 0 1rem;">
-                    <input type="hidden" name="csrf_token" value="<?= htmlspecialchars(function_exists('lupo_get_csrf_token') ? lupo_get_csrf_token() : '') ?>">
-                    <input type="hidden" name="redirect" value="<?= htmlspecialchars(isset($_SERVER['REQUEST_URI']) ? $_SERVER['REQUEST_URI'] : $base . '/admin.php') ?>">
-                    <label for="admin-actor-select" style="color: #a0aec0; font-size: 0.875rem; margin-right: 6px;">Act as:</label>
-                    <select name="actor_id" id="admin-actor-select" onchange="this.form.submit()" style="padding: 6px 8px; border-radius: 4px; border: 1px solid #4a5568; background: #2d3748; color: #e2e8f0; font-size: 0.9rem;">
-                        <?php foreach ($admin_actor_list as $a): ?>
-                            <option value="<?= (int) $a['actor_id'] ?>"<?= ((int) $a['actor_id'] === $admin_active_actor_id) ? ' selected="selected"' : '' ?>><?= htmlspecialchars(isset($a['name']) && $a['name'] !== '' ? $a['name'] : $a['actor_name']) ?> (<?= (int) $a['actor_id'] ?>)</option>
-                        <?php endforeach; ?>
-                    </select>
-                </form>
+                <?php
+                // Find current actor info
+                $current_actor = null;
+                foreach ($admin_actor_list as $a) {
+                    if ((int) $a['actor_id'] === $admin_active_actor_id) {
+                        $current_actor = $a;
+                        break;
+                    }
+                }
+                ?>
+                <div style="display: inline-flex; align-items: center; margin: 0 0 0 1rem; color: #a0aec0; font-size: 0.875rem;">
+                    <span>Acting as: <strong><?= htmlspecialchars($current_actor ? ($current_actor['name'] ?: $current_actor['actor_name']) : 'Unknown') ?></strong></span>
+                    <?php if (count($admin_actor_list) > 1): ?>
+                        <a href="<?= LUPOPEDIA_PUBLIC_PATH ?>/select-actor.php?redirect=<?= urlencode(isset($_SERVER['REQUEST_URI']) ? $_SERVER['REQUEST_URI'] : $base . '/admin.php') ?>" style="margin-left: 8px; color: #4299e1; text-decoration: none; font-size: 0.8rem;">change</a>
+                    <?php endif; ?>
+                </div>
             <?php endif; ?>
             <?php if ($isUserLoggedIn): ?>
                 <a class="nav-link" href="<?= LUPOPEDIA_PUBLIC_PATH ?>/my-profile" style="margin-left: auto;">My Profile</a>

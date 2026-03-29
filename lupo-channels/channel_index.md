@@ -42,6 +42,7 @@ lupopedia.headers:
 - `lupo-channels/88/` — Research / Experiments
 - `lupo-channels/420/` — Adversarial / attack threads
 - `lupo-channels/666/` — Quarantine
+- `lupo-channels/1_channel_refactor_governance/` — Channel refactor governance pilot (4.0.88)
 
 ---
 
@@ -124,16 +125,18 @@ When creating new channels:
 lupo-channels/<channel_slug>/
 ├── broadcasts/     # System-wide announcements
 ├── threads/        # Discussion threads
-├── tasks/          # Task management
-│   ├── active/     # Active tasks
-│   ├── completed/  # Completed tasks
-│   └── pending/    # Pending tasks
+│   └── <project_slug>/
+│       ├── questions/   # Ambiguity capture before execution
+│       ├── prompts/     # Final execution artifacts only
+│       └── *.md
 ├── content/        # Shared resources
 ├── direct/         # Direct messages
 └── rules/          # Channel rules
 ```
 
 Legacy channels may remain at `lupo-channels/<channel_id>/` for historical compatibility.
+
+During 4.0.88 refactor work, current channel-wide `prompts/` directories remain legacy-compatible until per-thread prompt migration is performed in controlled batches.
 
 ---
 

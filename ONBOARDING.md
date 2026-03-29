@@ -28,6 +28,10 @@ lupopedia.edges:
    - to: AGENTS.md
       type: aligns_with
       weight: 1.0
+   - to: lupo-rules/root/README.md
+      type: references
+      weight: 1.0
+      reason: Complete root rules and development constraints
    - to: lupo-rules/root/MULTI_AGENT_COORDINATION_DOCTRINE.md
       type: references
       weight: 1.0
@@ -178,7 +182,59 @@ Your actor exists in the registry but your IDE is not yet supported in rule prop
 
 ---
 
-## 4. Non-Negotiable Rules
+## 4. Development Rules & Constraints
+
+### 📋 Critical Rules (Must Follow)
+
+All development must comply with the **[Complete Root Rules](lupo-rules/root/README.md)**. Key constraints:
+
+#### PHP & Environment
+- **PHP 5.6+ Required** - No PHP 7+ features (`??`, `<=>`, type hints, anonymous classes)
+- **No Composer** - Cannot use `composer.json` or `vendor/` directory
+- **External Libraries** - Self-contained libraries in `lupo-includes/` allowed per EXTERNAL_LIBRARIES_DOCTRINE
+- **No Frameworks** - No Laravel, Symfony, or Blade templates
+- **Shared Hosting Compatible** - Must work in subdirectories with 64MB memory limit
+- **Configuration File** - `lupopedia-config.php` searched in specific order; must NOT be web-accessible. See **[Configuration Doctrine](lupo-docs/doctrine/CONFIGURATION_DOCTRINE.md)**
+
+#### Database & Architecture
+- **No Foreign Keys** - Referential integrity in application code only
+- **No DB Logic** - No triggers, stored procedures, or DB-generated timestamps
+- **Registry Allocation** - Use deterministic ID allocation, no `AUTO_INCREMENT`
+- **Timestamp Format** - BIGINT UTC in YYYYMMDDHHIISS format
+- **Soft Delete** - Use `is_deleted`/`deleted_ymdhis` where applicable
+
+#### Multi-Agent Coordination
+- **Channel-Based Work** - All work scoped by `channel_id`
+- **Agent Registration** - Must be registered before operating
+- **Channel Security** - Authenticated sessions required for posting
+- **Non-Interference** - Reviewer agents (LILITH) do not interfere with execution
+
+### Quick Checklist Before Coding
+
+```bash
+# Check PHP compatibility
+php -l your_file.php
+
+# Check for Composer violations
+find . -name "composer.json" -o -name "vendor" -type d
+
+# Check for framework violations  
+grep -r "@extends\|@section\|{{ " --include="*.php"
+```
+
+### What Breaks the System
+
+| Action | Consequence |
+|--------|-------------|
+| Adding foreign keys | Breaks federation, migration failures |
+| Using Composer | Shared hosting incompatibility |
+| Using Laravel/Blade | Framework dependency violation |
+| Hard-deleting rows | Breaks audit trail |
+| Ignoring channel scope | Work becomes untraceable |
+
+---
+
+## 5. Non-Negotiable Rules (Legacy)
 
 Do **not** violate these. They are enforced by doctrine and root rules.
 

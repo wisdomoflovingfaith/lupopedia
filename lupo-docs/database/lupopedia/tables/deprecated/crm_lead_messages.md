@@ -1,4 +1,4 @@
----
+﻿---
 lupopedia.headers:
   file_path_from_root: "lupo-docs/database/lupopedia/tables/deprecated/crm_lead_messages.md"
   file_hash: "e94e4811d163d251a9fac5b118975f70959b5a5386eec3fce7aa980509abe0ef"
@@ -23,8 +23,7 @@ lupopedia.edges:
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   last_updated_utc: "20260228"
-lupopedia.footer:
-  last_verified: "20260226"
+lupopedia.footer:`n  approved_for_release: "4.1.0"`n  approval_status: "approved"`n  approved_by_actor_id: 1`n  approved_utc: 20260326192115`n  last_verified: "20260226"
   last_verified_by: "gemini-cli"
 ---
 
@@ -33,7 +32,7 @@ lupopedia.footer:
 ## Date: 2026-02-26
 
 ### 1. Overview
-Purpose: **Messages associated with leads**: e.g. emails sent to a lead, or other contact history. Links to lupo_crm_leads via lead_id. lead_id = 1 is used for “broadcast” emails (legacy livehelp_emails behavior).
+Purpose: **Messages associated with leads**: e.g. emails sent to a lead, or other contact history. Links to lupo_crm_leads via lead_id. lead_id = 1 is used for â€œbroadcastâ€ emails (legacy livehelp_emails behavior).
 
 **Schema:** See `lupo-database/lupopedia/toon/lupo_crm_lead_messages.toon.json`. Primary key and columns as in TOON; references to lead_id are application-managed (no FK per doctrine).
 
@@ -46,7 +45,8 @@ Purpose: **Messages associated with leads**: e.g. emails sent to a lead, or othe
 
 **Legacy table:** `livehelp_emails`.
 
-**Migration:** `lupo-docs/doctrine/migrations/livehelp_emails_migration.md`, `import_from_old_crafty_syntax.sql`. livehelp_emails rows map to lupo_crm_lead_messages; broadcast lead_id = 1. Legacy table → IMPORTED → DROPPED.
+**Migration:** `lupo-docs/doctrine/migrations/livehelp_emails_migration.md`, `import_from_old_crafty_syntax.sql`. livehelp_emails rows map to lupo_crm_lead_messages; broadcast lead_id = 1. Legacy table â†’ IMPORTED â†’ DROPPED.
 
 ---
 *Maintained by GEMINI (Actor 1006)*
+

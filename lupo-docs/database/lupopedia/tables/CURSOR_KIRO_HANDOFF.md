@@ -1,4 +1,4 @@
----
+﻿---
 lupopedia.headers:
   lupopedia.schema: documentation
   file_path_from_root: lupo-docs/database/lupopedia/tables/CURSOR_KIRO_HANDOFF.md
@@ -22,14 +22,13 @@ lupopedia.headers:
   - auth
   lupo_agent: cursor
   when_updated: '20260324174654'
-lupopedia.footer:
-  last_verified: '20260312000000'
+lupopedia.footer:`n  approved_for_release: "4.1.0"`n  approval_status: "approved"`n  approved_by_actor_id: 1`n  approved_utc: 20260326192115`n  last_verified: '20260312000000'
   last_verified_by: cursor
   last_verified_by_actor_id: 102
   orchestrator: cursor:root
 ---
 
-# Cursor → KIRO Handoff Note
+# Cursor â†’ KIRO Handoff Note
 
 **From:** Cursor IDE (actor_id 102)  
 **To:** KIRO (actor_id 100)  
@@ -83,31 +82,31 @@ Cursor documented the following tables under **user, authentication, session, id
 
 Per MULTI_AGENT_DATABASE_DOCUMENTATION_PLAN.md, the following are **Core Governance** and assigned to KIRO. Cursor did not create or modify docs for them.
 
-- **lupo_auth_audit_log** — Auth-related but listed under KIRO Core Governance. Cursor defers; please confirm ownership and whether it should be cross-referenced from auth docs.
-- **lupo_audit_log** — KIRO.
-- **lupo_permissions** — KIRO. Cursor’s `lupo_capability_usage` is usage/telemetry; capability *definitions* and permission policy may belong with lupo_permissions (KIRO). See overlap item below.
-- **lupo_governance_overrides**, **lupo_doctrine_evolution_audit**, **lupo_hotfix_registry** — KIRO.
+- **lupo_auth_audit_log** â€” Auth-related but listed under KIRO Core Governance. Cursor defers; please confirm ownership and whether it should be cross-referenced from auth docs.
+- **lupo_audit_log** â€” KIRO.
+- **lupo_permissions** â€” KIRO. Cursorâ€™s `lupo_capability_usage` is usage/telemetry; capability *definitions* and permission policy may belong with lupo_permissions (KIRO). See overlap item below.
+- **lupo_governance_overrides**, **lupo_doctrine_evolution_audit**, **lupo_hotfix_registry** â€” KIRO.
 
 ---
 
 ## 3. Overlap / boundary questions for KIRO
 
 ### 3.1 lupo_auth_audit_log (governance vs authentication)
-- **Question:** Plan assigns it to KIRO (Core Governance). It is clearly auth-related (login/audit). Should Cursor’s auth/session docs reference it, or is it governance-only with no cross-link from auth?
-- **Suggestion:** If KIRO documents it, add an outbound edge from `lupo_auth_users.md` or a shared “Auth and audit” index to `lupo_auth_audit_log` for discoverability.
+- **Question:** Plan assigns it to KIRO (Core Governance). It is clearly auth-related (login/audit). Should Cursorâ€™s auth/session docs reference it, or is it governance-only with no cross-link from auth?
+- **Suggestion:** If KIRO documents it, add an outbound edge from `lupo_auth_users.md` or a shared â€œAuth and auditâ€ index to `lupo_auth_audit_log` for discoverability.
 
 ### 3.2 lupo_bans_log (security audit vs access control)
-- **Question:** Cursor documented it as security-layer audit (who got banned, URI, scope). If you consider it part of governance/audit rather than “auth/ACL,” we can reassign or add a note that KIRO owns governance interpretation.
-- **Current:** Cursor left a short “Uncertainty” note in `lupo_bans_log.md` that KIRO may claim ownership.
+- **Question:** Cursor documented it as security-layer audit (who got banned, URI, scope). If you consider it part of governance/audit rather than â€œauth/ACL,â€ we can reassign or add a note that KIRO owns governance interpretation.
+- **Current:** Cursor left a short â€œUncertaintyâ€ note in `lupo_bans_log.md` that KIRO may claim ownership.
 
 ### 3.3 lupo_capability_usage vs lupo_permissions
 - **Question:** Cursor documented `lupo_capability_usage` as per-actor capability *usage* (counts, success rate, latency). Permission *definitions* and policy are likely in `lupo_permissions` (KIRO). Please confirm:
-  - That `lupo_permissions` is the authority for “what capabilities exist” and “who is allowed what.”
+  - That `lupo_permissions` is the authority for â€œwhat capabilities existâ€ and â€œwho is allowed what.â€
   - That `lupo_capability_usage` remains under Cursor as usage/telemetry only.
-- **Suggestion:** In KIRO’s `lupo_permissions` doc, add an outbound edge to `lupo_capability_usage` for “usage telemetry” so the boundary is clear.
+- **Suggestion:** In KIROâ€™s `lupo_permissions` doc, add an outbound edge to `lupo_capability_usage` for â€œusage telemetryâ€ so the boundary is clear.
 
 ### 3.4 lupo_agents Kapu fields (governance vs agent identity)
-- **Question:** `lupo_agents` has Kapu-related columns (kapu_active, kapu_until, kapu_reason, kapu_consent_given, kapu_appeal_pending). Cursor documented them as “agent identity/config” but they may be governance policy. Please confirm whether governance docs should own the *semantics* of these fields, with Cursor only documenting the column list and storage.
+- **Question:** `lupo_agents` has Kapu-related columns (kapu_active, kapu_until, kapu_reason, kapu_consent_given, kapu_appeal_pending). Cursor documented them as â€œagent identity/configâ€ but they may be governance policy. Please confirm whether governance docs should own the *semantics* of these fields, with Cursor only documenting the column list and storage.
 
 ### 3.5 lupo_bans_log.bans_log_id auto_increment
 - **Note:** TOON shows `bans_log_id bigint NOT NULL auto_increment`. Project doctrine prefers no AUTO_INCREMENT for registry-backed tables. This table is audit log, not registry; Cursor left as-is and did not change schema. Flag for schema/doctrine review if you want strict consistency.
@@ -118,10 +117,10 @@ Per MULTI_AGENT_DATABASE_DOCUMENTATION_PLAN.md, the following are **Core Governa
 
 Cursor did **not** create documentation for these because there is no TOON in `lupo-database/lupopedia/toon/` and Cursor only documents tables supported by project files (TOONs + project MD).
 
-- **lupo_users** — Listed in Cursor’s plan as “User profiles”; no TOON found. May be deprecated or never created.
-- **lupo_user_profiles** — Same.
-- **lupo_user_sessions** — Same.
-- **lupo_capabilities** — Plan listed “lupo_capabilities” under Access control; no TOON. Only `lupo_capability_usage` exists. Please confirm if lupo_capabilities exists elsewhere or is deprecated.
+- **lupo_users** â€” Listed in Cursorâ€™s plan as â€œUser profilesâ€; no TOON found. May be deprecated or never created.
+- **lupo_user_profiles** â€” Same.
+- **lupo_user_sessions** â€” Same.
+- **lupo_capabilities** â€” Plan listed â€œlupo_capabilitiesâ€ under Access control; no TOON. Only `lupo_capability_usage` exists. Please confirm if lupo_capabilities exists elsewhere or is deprecated.
 
 If any of these exist in install SQL or elsewhere, KIRO can assign and document.
 
@@ -139,3 +138,4 @@ If any of these exist in install SQL or elsewhere, KIRO can assign and document.
 | lupo_users, lupo_user_profiles, lupo_user_sessions, lupo_capabilities | Confirm presence/deprecation; assign if needed. |
 
 Cursor has not modified any file outside its assigned domain and has not touched any livehelp_* or migration tables (Windsurf ownership).
+

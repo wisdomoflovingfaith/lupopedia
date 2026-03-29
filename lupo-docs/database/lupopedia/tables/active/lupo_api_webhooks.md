@@ -1,73 +1,76 @@
 ---
 lupopedia.headers:
-  lupopedia.schema: database_table
-  file_path_from_root: lupo-docs/database/lupopedia/tables/active/lupo_api_webhooks.md
-  channel_id: 1
-  actor_id: 102
-  last_modified_utc: '20260312'
-  artifact_type: table_documentation
-  purpose: Webhook subscriptions (endpoint URL, secret, event types) per actor/module
-  mood_rgb: 4169E1
-  traits:
-  - canonical
-  - api
-  - cursor_domain
-  - v4.0.70
+  when_updated: "20260328013000"
+  file_path_from_root: "lupo-docs/database/lupopedia/tables/active/lupo_api_webhooks.md"
+  last_modified_utc: "20260328013000"
+  channel_id: 42
+  actor_id: 23
+  actor_name: "hephaestus"
+  delegation_chain: "wolfie:hephaestus"
+  artifact_type: "documentation"
+  artifact_kind: "table"
+  namespace: "integration"
+  purpose: "Normalized table documentation for lupo_api_webhooks from TOON JSON"
   tags:
   - database
-  - api
-  - webhooks
-  lupo_agent: cursor
-  when_updated: '20260324174654'
+  - table
+  - normalized
+  - 4.0.88
 lupopedia.edges:
+  comment: "static placeholder edges for stage3 normalization"
   outbound_edges:
-  - to: lupo-database/lupopedia/toon/lupo_api_webhooks.toon.json
-    type: schema_reference
+  - to: "lupo-database/lupopedia/json/lupo_api_webhooks.json"
+    type: "references"
     weight: 1.0
-  - to: lupo-docs/database/lupopedia/tables/active/lupo_actors.md
-    type: references
-    weight: 0.8
+    reason: "authoritative TOON JSON source"
 lupopedia.footer:
-  last_verified: '20260312000000'
-  last_verified_by: cursor
-  last_verified_by_actor_id: 102
-  orchestrator: cursor:root
+  last_verified: "20260328013000"
+  last_verified_by: "hephaestus"
+  last_verified_by_actor_id: 23
+  generated: true
+  provenance: "stage3_track_c_normalization"
 ---
+# file: lupo_api_webhooks.md
 
-# Table: lupo_api_webhooks
+# lupo_api_webhooks
 
-## Table Overview
+## Purpose
+Canonical table documentation normalized from TOON JSON for `lupo_api_webhooks`.
 
-- **Purpose:** Outbound webhook configuration: endpoint URL, secret key, event types, retry policy, and optional expiry. Scoped by actor and module.
-- **Category:** API / Webhooks
-- **Status:** Active
-- **Version introduced:** 4.0.0
+## Schema
 
-## Column Documentation
+### Primary Key
+(none)
 
-| Column | Type | Nullable | Default | Description |
-|--------|------|----------|---------|-------------|
-| api_webhook_id | bigint | No | — | Primary key. |
-| domain_id | bigint | No | 1 | Domain context. |
-| actor_id | bigint | No | 0 | Owning actor. |
-| module_id | bigint | No | 0 | Module context. |
-| endpoint_url | varchar(500) | No | — | Webhook URL. |
-| secret_key | varchar(255) | No | — | Secret for signing payloads. |
-| event_types | text | No | — | Comma-separated or JSON event types. |
-| is_active | tinyint | No | 1 | Active flag. |
-| max_retries | int | No | 5 | Max delivery retries. |
-| created_ymdhis | bigint | No | 0 | Creation timestamp. |
-| updated_ymdhis | bigint | No | — | Last update. |
-| expires_ymdhis | bigint | Yes | — | Optional expiry. |
-| notes | text | Yes | — | Optional notes. |
+### Columns
 
-## Relationships
+| Column | Type Definition |
+|---|---|
+| `api_webhook_id` | `bigint NOT NULL` |
+| `domain_id` | `bigint NOT NULL DEFAULT 1` |
+| `actor_id` | `bigint NOT NULL DEFAULT 0` |
+| `module_id` | `bigint NOT NULL DEFAULT 0` |
+| `endpoint_url` | `varchar(500) NOT NULL` |
+| `secret_key` | `varchar(255) NOT NULL` |
+| `event_types` | `text NOT NULL` |
+| `is_active` | `tinyint NOT NULL DEFAULT 1` |
+| `max_retries` | `int NOT NULL DEFAULT 5` |
+| `created_ymdhis` | `bigint NOT NULL DEFAULT 0` |
+| `updated_ymdhis` | `bigint NOT NULL` |
+| `expires_ymdhis` | `bigint` |
+| `notes` | `text` |
 
-- **Logical references:** actor_id → lupo_actors; module_id → module registry.
-- **Inbound:** Webhook delivery service reads this table.
-- **Join patterns:** By is_active, actor_id, domain_id, expires_ymdhis, module_id.
+### Indexes
 
-## Usage Notes
+| Index | Columns | Unique |
+|---|---|---|
+| `lupo_api_webhooks_idx_active` | `is_active` | no |
+| `lupo_api_webhooks_idx_actor` | `actor_id` | no |
+| `lupo_api_webhooks_idx_domain` | `domain_id` | no |
+| `lupo_api_webhooks_idx_expires` | `expires_ymdhis` | no |
+| `lupo_api_webhooks_idx_module` | `module_id` | no |
 
-- **Indexes:** is_active, actor_id, domain_id, expires_ymdhis, module_id.
-- **Timestamps:** BIGINT YYYYMMDDHHIISS UTC.
+## Doctrine
+- Source of truth: `lupo-database/lupopedia/json/` TOON exports
+- Regeneration mode: Stage 3 deterministic normalization
+- Edge mode: placeholder baseline

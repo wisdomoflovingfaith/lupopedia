@@ -1,4 +1,4 @@
----
+﻿---
 lupopedia.headers:
   file_path_from_root: "lupo-docs/database/lupopedia/tables/deprecated/crm_leads.md"
   file_hash: "fcb926e9d9d2628ad7573d3b21a071649695e62d7759fe31a23e983eb315804f"
@@ -23,8 +23,7 @@ lupopedia.edges:
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   last_updated_utc: "20260228"
-lupopedia.footer:
-  last_verified: "20260226"
+lupopedia.footer:`n  approved_for_release: "4.1.0"`n  approval_status: "approved"`n  approved_by_actor_id: 1`n  approved_utc: 20260326192115`n  last_verified: "20260226"
   last_verified_by: "gemini-cli"
 ---
 
@@ -33,20 +32,21 @@ lupopedia.footer:
 ## Date: 2026-02-26
 
 ### 1. Overview
-Purpose: **Lead capture**: contact/lead records for CRM (e.g. pre-chat, leave-message, or marketing). Structure is defined in the TOON; typically includes identity/contact fields and lifecycle. Lead_id = 1 is often used as “broadcast” lead for bulk emails in lupo_crm_lead_messages.
+Purpose: **Lead capture**: contact/lead records for CRM (e.g. pre-chat, leave-message, or marketing). Structure is defined in the TOON; typically includes identity/contact fields and lifecycle. Lead_id = 1 is often used as â€œbroadcastâ€ lead for bulk emails in lupo_crm_lead_messages.
 
 **Schema:** See `lupo-database/lupopedia/toon/lupo_crm_leads.toon.json`. Primary key: `lead_id` (or as in TOON). All column names and types must match the TOON.
 
 ### 2. Core Workflows
 
 - **Forms and capture:** Pre-chat, leave-message, and other flows create or update lead rows. Messages sent to leads are in lupo_crm_lead_messages.
-- **Broadcast:** lead_id = 1 is the conventional “broadcast” lead for legacy compatibility with livehelp_emails (broadcast emails).
+- **Broadcast:** lead_id = 1 is the conventional â€œbroadcastâ€ lead for legacy compatibility with livehelp_emails (broadcast emails).
 
 ### 3. Mapping from Crafty Syntax
 
 **Legacy table:** `livehelp_leads`.
 
-**Migration:** `lupo-docs/doctrine/migrations/livehelp_leads_migration.md`, `import_from_old_crafty_syntax.sql`. Field mapping and ID preservation as defined in the migration doc and import SQL. livehelp_leads → IMPORTED → DROPPED.
+**Migration:** `lupo-docs/doctrine/migrations/livehelp_leads_migration.md`, `import_from_old_crafty_syntax.sql`. Field mapping and ID preservation as defined in the migration doc and import SQL. livehelp_leads â†’ IMPORTED â†’ DROPPED.
 
 ---
 *Maintained by GEMINI (Actor 1006)*
+

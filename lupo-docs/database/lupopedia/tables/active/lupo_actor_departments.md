@@ -1,136 +1,109 @@
 ---
 lupopedia.headers:
-  lupopedia.schema: database_table
-  file_path_from_root: lupo-docs/database/lupopedia/tables/active/lupo_actor_departments.md
-  web_path: '[lupo_actor_departments](http://www.lupopedia.com/database/lupopedia/tables/active/lupo_actor_departments)'
-  last_modified_utc: '20260317'
+  when_updated: "20260327234500"
+  file_path_from_root: "lupo-docs/database/lupopedia/tables/active/lupo_actor_departments.md"
+  last_modified_utc: "20260327234500"
   channel_id: 42
-  actor_id: 102
-  actor_name: cursor
-  delegation_chain: cursor:root
-  artifact_type: table_documentation
-  artifact_kind: table
-  namespace: core
-  purpose: Documentation file with LUPOPEDIA HEADERS applied
+  actor_id: 23
+  actor_name: "hephaestus"
+  delegation_chain: "wolfie:hephaestus"
+  artifact_type: "documentation"
+  artifact_kind: "table"
+  namespace: "core"
+  purpose: "Regenerated table documentation for lupo_actor_departments from TOON JSON"
   tags:
   - database
   - table
-  - core
-  when_updated: '20260324174654'
+  - regenerated
+  - 4.0.88
 lupopedia.edges:
-  comment: Snapshot of edges for lupo_actor_departments table doc at 4.0.79 (grounded
-    by repo search; non-exhaustive).
-  meta: php_hits=3 python_hits=3
+  comment: "Snapshot stage1 confidence-scored edges (git=1.0, code-scan=0.7, db=0.5)."
+  meta: git_hits=8 code_scan_hits=6 db_hits=0
   outbound_edges:
-  - to: database.table.lupo_actor_departments
-    type: DEFINES_SCHEMA_FOR
+  - to: "database.table.lupo_actor_departments"
+    type: "DEFINES_SCHEMA_FOR"
     weight: 1.0
-  - to: lupo-database/lupopedia/mysql/install/install_new_lupopedia.sql
-    type: schema_reference
+    confidence: 1.0
+    source: "git-restored"
+    reason: "historical edge restored from clean doc history"
+  - to: "lupo-database/lupopedia/mysql/install/install_new_lupopedia.sql"
+    type: "schema_reference"
     weight: 1.0
-  - to: check_db_state.php
-    type: USED_IN_PHP
-    weight: 0.6
-  - to: lupo-database/lupopedia/content/lupo-app/Services/SavedCollectionsService.php
-    type: USED_IN_PHP
-    weight: 0.6
-  - to: lupo-database/lupopedia/content/lupo-app/auth/AuthRoleResolver.php
-    type: USED_IN_PHP
-    weight: 0.6
-  - to: analyze_unused_tables.py
-    type: USED_IN_PYTHON
-    weight: 0.5
-  - to: lupo-scripts/rebuild_schema_from_toons.py
-    type: USED_IN_PYTHON
-    weight: 0.5
-  - to: lupo-scripts/wolfie_orms.py
-    type: USED_IN_PYTHON
-    weight: 0.5
+    confidence: 1.0
+    source: "git-restored"
+    reason: "canonical install schema reference"
+  - to: "lupo-database/lupopedia/content/lupo-app/Services/SavedCollectionsService.php"
+    type: "USED_IN_PHP"
+    weight: 0.7
+    confidence: 0.7
+    source: "code-scan"
+    reason: "direct table usage in operational service"
+  - to: "lupo-database/lupopedia/content/lupo-app/auth/AuthRoleResolver.php"
+    type: "USED_IN_PHP"
+    weight: 0.7
+    confidence: 0.7
+    source: "code-scan"
+    reason: "department resolution logic references table"
+  - to: "lupo-scripts/rebuild_schema_from_toons.py"
+    type: "USED_IN_PYTHON"
+    weight: 0.7
+    confidence: 0.7
+    source: "code-scan"
+    reason: "schema rebuild script includes table"
+  - to: "lupo-scripts/wolfie_orms.py"
+    type: "USED_IN_PYTHON"
+    weight: 0.7
+    confidence: 0.7
+    source: "code-scan"
+    reason: "ORM query helper references table"
+  - to: "lupo-database/lupopedia/json/lupo_actor_departments.json"
+    type: "references"
+    weight: 1.0
+    confidence: 1.0
+    source: "schema-source"
+    reason: "authoritative TOON JSON source"
 lupopedia.footer:
-  last_verified: '20260317000000'
-  last_verified_by: cursor
-  last_verified_by_actor_id: 102
-  orchestrator: cursor:root
+  last_verified: "20260327234500"
+  last_verified_by: "hephaestus"
+  last_verified_by_actor_id: 23
+  generated: true
+  provenance: "phase2_synthetic_header_no_git_recovery"
+  generated_at_iso: "2026-03-27T23:45:00Z"
 ---
-# file: lupo_actor_departments ? web_path: http://www.lupopedia.com/database/lupopedia/tables/active/lupo_actor_departments
-lupopedia.headers:
-  \1"4.0.79"
-  lupopedia.schema: "documentation"
-  file_path_from_root: ".\docs\database\lupopedia\tables\lupo_actor_departments.md"
-  file_hash: "5cb216663aafbcc24d5a682301dd4d48d8ae8971e3949a4bc6e13c36aadbd0ec"
-  last_updated_utc: "20260228155738"
-  \1"4.0.79"
-  channel_id: 1
-  actor_id: 1002
-  delegation_chain: "1002:10000"
-  artifact_type: "documentation"
-  artifact_kind: "documentation"
-  purpose: "Documentation file with LUPOPEDIA HEADERS applied"
-  namespace: "core"
-  mood_rgb: "4169E1"
-  traits: ["flare", "indexed", "v4.0.51"]
-  tags: ["documentation", "flare_applied"]
-  lupo_agent: "windsurf"
+# file: lupo_actor_departments.md
 
-lupopedia.edges:
-  outbound_edges:
-    - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
+# lupo_actor_departments
 
-lupopedia.footer:
-  last_verified: "20260228155738"
-  last_verified_by: "windsurf"
+## Purpose
+Canonical table documentation regenerated from TOON JSON for `lupo_actor_departments`.
 
+## Schema
 
-# 🏢 Table: lupo_actor_departments
+### Primary Key
+(none)
 
-**Purpose:** Maps actors to specific organizational departments for routing, reporting, and authorization context.  
-**Type:** Organizational Mapping Table  
-**Status:** ✅ Production Ready  
-**Volume:** Medium (one or more departments per actor)
+### Columns
 
+| Column | Type Definition |
+|---|---|
+| `actor_department_id` | `bigint NOT NULL` |
+| `actor_id` | `bigint NOT NULL` |
+| `department_id` | `bigint NOT NULL` |
+| `role_key` | `varchar(64)` |
+| `title` | `varchar(64)` |
+| `created_ymdhis` | `bigint NOT NULL DEFAULT 0` |
+| `updated_ymdhis` | `bigint NOT NULL` |
+| `is_deleted` | `tinyint NOT NULL DEFAULT 0` |
+| `deleted_ymdhis` | `bigint` |
 
-## 🗃️ **Schema Reference**
+### Indexes
 
-### **Primary Key**
-- **`actor_department_id`** (BIGINT) - Unique assignment identifier.
+| Index | Columns | Unique |
+|---|---|---|
+| `lupo_actor_departments_idx_actor` | `actor_id` | no |
+| `lupo_actor_departments_idx_department` | `department_id` | no |
 
-### **Core Mapping Fields**
-| Field | Type | Description | Notes |
-|-------|------|-------------|-------|
-| `actor_id` | BIGINT | The actor being assigned | |
-| `department_id` | BIGINT | The organizational unit | |
-| `title` | VARCHAR(255) | Department-specific role title | e.g., 'Chief Architect' |
-
-### **Metadata & Status**
-| Field | Type | Default | Description |
-|-------|------|---------|-------------|
-| `is_primary` | TINYINT | 1 | Flag for the actor's main department |
-| `created_ymdhis` | BIGINT | 0 | YYYYMMDDHHIISS of assignment |
-| `is_deleted` | TINYINT | 0 | Soft-delete mapping |
-
-
-## 🚀 **Usage Patterns**
-
-### **Retrieving Department Staff**
-Finding all active agents and humans in the "Security" department.
-
-```sql
-SELECT a.name, ad.title, a.actor_type
-FROM lupo_actor_departments ad
-JOIN lupo_actors a ON ad.actor_id = a.actor_id
-JOIN lupo_departments d ON ad.department_id = d.department_id
-WHERE d.department_name = 'Security' AND ad.is_deleted = 0;
-```
-
-### **Primary Department Resolution**
-Determining an actor's "Home Department" for task attribution.
-
-```sql
-SELECT department_id, title 
-FROM lupo_actor_departments 
-WHERE actor_id = :actor_id AND is_primary = 1 AND is_deleted = 0;
-```
-
-
-*This documentation is part of the v4.0.48 Organizational Identity framework.*
+## Doctrine
+- Source of truth: `lupo-database/lupopedia/json/` TOON exports
+- Regeneration mode: Phase 2 deterministic rebuild
+- Edge mode: placeholder only

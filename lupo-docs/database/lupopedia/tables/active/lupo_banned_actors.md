@@ -1,90 +1,73 @@
 ---
 lupopedia.headers:
-  lupopedia.schema: database_table
-  file_path_from_root: lupo-docs/database/lupopedia/tables/active/lupo_banned_actors.md
-  web_path: '[lupo_banned_actors](http://www.lupopedia.com/database/lupopedia/tables/active/lupo_banned_actors)'
-  last_modified_utc: '20260317'
+  when_updated: "20260328013000"
+  file_path_from_root: "lupo-docs/database/lupopedia/tables/active/lupo_banned_actors.md"
+  last_modified_utc: "20260328013000"
   channel_id: 42
-  actor_id: 102
-  actor_name: cursor
-  delegation_chain: cursor:root
-  artifact_type: table_documentation
-  artifact_kind: table
-  namespace: core
-  purpose: 'Ban list: actors and optionally IPs, with reason and ban metadata'
+  actor_id: 23
+  actor_name: "hephaestus"
+  delegation_chain: "wolfie:hephaestus"
+  artifact_type: "documentation"
+  artifact_kind: "table"
+  namespace: "core"
+  purpose: "Normalized table documentation for lupo_banned_actors from TOON JSON"
   tags:
   - database
   - table
-  - core
-  when_updated: '20260324174654'
+  - normalized
+  - 4.0.88
 lupopedia.edges:
-  comment: Snapshot of edges for lupo_banned_actors table doc at 4.0.79 (grounded
-    by repo search; non-exhaustive).
-  meta: php_hits=3 python_hits=3
+  comment: "static placeholder edges for stage3 normalization"
   outbound_edges:
-  - to: database.table.lupo_banned_actors
-    type: DEFINES_SCHEMA_FOR
+  - to: "lupo-database/lupopedia/json/lupo_banned_actors.json"
+    type: "references"
     weight: 1.0
-  - to: lupo-database/lupopedia/mysql/install/install_new_lupopedia.sql
-    type: schema_reference
-    weight: 1.0
-  - to: install_wizard_classes.php
-    type: USED_IN_PHP
-    weight: 0.6
-  - to: lupo-includes/classes/ANUBIS_Resolver.php
-    type: USED_IN_PHP
-    weight: 0.9
-  - to: lupo-includes/functions/ban_gate.php
-    type: USED_IN_PHP
-    weight: 0.9
-  - to: analyze_unused_tables.py
-    type: USED_IN_PYTHON
-    weight: 0.5
-  - to: lupo-scripts/rebuild_schema_from_toons.py
-    type: USED_IN_PYTHON
-    weight: 0.5
-  - to: lupo-tools/anubis_orphan_scanner.py
-    type: USED_IN_PYTHON
-    weight: 0.5
+    reason: "authoritative TOON JSON source"
 lupopedia.footer:
-  last_verified: '20260317000000'
-  last_verified_by: cursor
-  last_verified_by_actor_id: 102
-  orchestrator: cursor:root
+  last_verified: "20260328013000"
+  last_verified_by: "hephaestus"
+  last_verified_by_actor_id: 23
+  generated: true
+  provenance: "stage3_track_c_normalization"
 ---
-# file: lupo_banned_actors ? web_path: http://www.lupopedia.com/database/lupopedia/tables/active/lupo_banned_actors
-# Table: lupo_banned_actors
+# file: lupo_banned_actors.md
 
-## Table Overview
+# lupo_banned_actors
 
-- **Purpose:** Access-control ban list: banned actor_id, optional IP, reason, ban timestamp, and banning actor. Used to enforce bans at login and request time.
-- **Category:** Access control / Security
-- **Status:** Active
-- **Version introduced:** 4.0.0
+## Purpose
+Canonical table documentation normalized from TOON JSON for `lupo_banned_actors`.
 
-## Column Documentation
+## Schema
 
-| Column | Type | Nullable | Default | Description |
-|--------|------|----------|---------|-------------|
-| banned_actor_id | bigint | No | — | Primary key. |
-| actor_id | bigint | No | — | Banned actor (logical → lupo_actors.actor_id). |
-| ip_address | varchar(45) | Yes | — | Optional IP ban. |
-| reason | varchar(500) | No | — | Ban reason. |
-| banned_ymdhis | bigint | No | — | When ban took effect. |
-| banned_by_actor_id | bigint | Yes | — | Actor who applied ban. |
-| created_ymdhis | bigint | No | 0 | Row creation. |
-| updated_ymdhis | bigint | No | — | Last update. |
-| is_deleted | tinyint | No | 0 | Soft-delete (unban). |
-| deleted_ymdhis | bigint | Yes | — | Soft-delete timestamp. |
+### Primary Key
+(none)
 
-## Relationships
+### Columns
 
-- **Logical references:** actor_id, banned_by_actor_id → lupo_actors.actor_id.
-- **Inbound:** Auth and ACL checks query this table; lupo_bans_log may record ban events.
-- **Join patterns:** By actor_id, ip_address, is_deleted.
+| Column | Type Definition |
+|---|---|
+| `banned_actor_id` | `bigint NOT NULL` |
+| `actor_id` | `bigint NOT NULL` |
+| `actor_name` | `varchar(64)` |
+| `ip_address` | `varchar(45)` |
+| `reason` | `varchar(500) NOT NULL` |
+| `banned_ymdhis` | `bigint NOT NULL` |
+| `banned_by_actor_id` | `bigint` |
+| `created_ymdhis` | `bigint NOT NULL DEFAULT 0` |
+| `updated_ymdhis` | `bigint NOT NULL` |
+| `is_deleted` | `tinyint NOT NULL DEFAULT 0` |
+| `deleted_ymdhis` | `bigint` |
 
-## Usage Notes
+### Indexes
 
-- **Indexes:** actor_id, ip_address, is_deleted.
-- **Timestamps:** BIGINT YYYYMMDDHHIISS UTC.
-- **Queries:** Filter `is_deleted = 0` for active bans.
+| Index | Columns | Unique |
+|---|---|---|
+| `lupo_banned_actors_idx_actor_id` | `actor_id` | no |
+| `lupo_banned_actors_idx_actor_name` | `actor_name` | no |
+| `lupo_banned_actors_idx_ip_address` | `ip_address` | no |
+| `lupo_banned_actors_idx_is_deleted` | `is_deleted` | no |
+
+## Doctrine
+- Source of truth: `lupo-database/lupopedia/json/` TOON exports
+- Regeneration mode: Stage 3 deterministic normalization
+- Edge mode: placeholder baseline

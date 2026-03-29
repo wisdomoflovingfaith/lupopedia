@@ -1,78 +1,76 @@
 ---
 lupopedia.headers:
-  lupopedia.schema: database_table
-  file_path_from_root: lupo-docs/database/lupopedia/tables/active/lupo_actor_auth_users.md
-  web_path: http://www.lupopedia.com/database/lupopedia/tables/active/lupo_actor_auth_users
-  last_modified_utc: '20260324'
+  when_updated: "20260328013000"
+  file_path_from_root: "lupo-docs/database/lupopedia/tables/active/lupo_actor_auth_users.md"
+  last_modified_utc: "20260328013000"
   channel_id: 42
-  actor_id: 108
-  actor_name: junie
-  faucet_name: jetbrains
-  delegation_chain: junie:root
-  artifact_type: table_documentation
-  artifact_kind: table
-  namespace: core
-  purpose: Mapping table linking Actors to Human Auth Users (v4.0.86)
+  actor_id: 23
+  actor_name: "hephaestus"
+  delegation_chain: "wolfie:hephaestus"
+  artifact_type: "documentation"
+  artifact_kind: "table"
+  namespace: "auth"
+  purpose: "Normalized table documentation for lupo_actor_auth_users from TOON JSON"
   tags:
   - database
   - table
-  - core
-  - identity
-  - v4.0.86
-  when_updated: '20260324174654'
+  - normalized
+  - 4.0.88
 lupopedia.edges:
+  comment: "static placeholder edges for stage3 normalization"
   outbound_edges:
-  - to: database.table.lupo_actor_auth_users
-    type: DEFINES_SCHEMA_FOR
+  - to: "lupo-database/lupopedia/json/lupo_actor_auth_users.json"
+    type: "references"
     weight: 1.0
-  - to: lupo-database/lupopedia/mysql/install/install_new_lupopedia.sql
-    type: schema_reference
-    weight: 1.0
+    reason: "authoritative TOON JSON source"
 lupopedia.footer:
-  last_verified: '20260324000000'
-  last_verified_by: cursor
-  last_verified_by_actor_id: 102
-  orchestrator: cursor:root
+  last_verified: "20260328013000"
+  last_verified_by: "hephaestus"
+  last_verified_by_actor_id: 23
+  generated: true
+  provenance: "stage3_track_c_normalization"
 ---
-# file: lupo_actor_auth_users — delegation: junie:root — web_path: http://www.lupopedia.com/database/lupopedia/tables/active/lupo_actor_auth_users
-# Table: lupo_actor_auth_users
+# file: lupo_actor_auth_users.md
 
-## Table Overview
+# lupo_actor_auth_users
 
-- **Purpose:** Core mapping table for the **Unified Identity Model**. It links an `actor_id` (operational identity) to one or more `auth_user_id` (human credentials). This supports multi-human orchestration of a single actor and identifies the 'primary' human responsible for an actor's actions.
-- **Category:** Identity / Auth
-- **Status:** Active
-- **Version introduced:** 4.0.80
+## Purpose
+Canonical table documentation normalized from TOON JSON for `lupo_actor_auth_users`.
 
-## Column Documentation
+## Schema
 
-| Column | Type | Nullable | Default | Description |
-|--------|------|----------|---------|-------------|
-| actor_auth_user_id | bigint | No | — | Primary Key. |
-| actor_id | bigint | No | — | Operational Actor ID (Join key to lupo_actors). |
-| auth_user_id | bigint | No | — | Human Auth User ID (Join key to lupo_auth_users). |
-| relationship_role | varchar(64) | No | 'supporting_human' | Role (e.g., owner, orchestrator, observer). |
-| is_primary | tinyint | No | 0 | Flag for the primary human owner. |
-| routing_priority | smallint | No | 100 | Priority for notification routing. |
-| status | varchar(32) | No | 'active' | Membership status. |
-| metadata_json | json | Yes | — | Role-specific metadata. |
-| created_ymdhis | bigint | No | 0 | Creation timestamp (BIGINT UTC). |
-| updated_ymdhis | bigint | No | — | Last update timestamp (BIGINT UTC). |
-| is_deleted | tinyint | No | 0 | Soft delete flag. |
-| deleted_ymdhis | bigint | Yes | 0 | Soft delete timestamp. |
+### Primary Key
+(none)
 
-## Indexes
+### Columns
 
-- **PRIMARY KEY:** actor_auth_user_id
-- **UNIQUE:** lupo_actor_auth_users_unq_actor_user_role (actor_id, auth_user_id, relationship_role)
-- **INDEX:** lupo_actor_auth_users_idx_actor_role_primary_lookup, lupo_actor_auth_users_idx_auth_user_status
+| Column | Type Definition |
+|---|---|
+| `actor_auth_user_id` | `bigint NOT NULL` |
+| `actor_id` | `bigint NOT NULL` |
+| `auth_user_id` | `bigint NOT NULL` |
+| `relationship_role` | `varchar(64) NOT NULL DEFAULT 'supporting_human'` |
+| `is_primary` | `tinyint NOT NULL DEFAULT 0` |
+| `routing_priority` | `smallint NOT NULL DEFAULT 100` |
+| `status` | `varchar(32) NOT NULL DEFAULT 'active'` |
+| `metadata_json` | `json` |
+| `created_ymdhis` | `bigint NOT NULL DEFAULT 0` |
+| `updated_ymdhis` | `bigint NOT NULL` |
+| `is_deleted` | `tinyint NOT NULL DEFAULT 0` |
+| `deleted_ymdhis` | `bigint DEFAULT 0` |
 
-## Relationships
+### Indexes
 
-- **Logical references:** actor_id → lupo_actors.actor_id; auth_user_id → lupo_auth_users.auth_user_id.
+| Index | Columns | Unique |
+|---|---|---|
+| `lupo_actor_auth_users_idx_actor_role_primary_lookup` | `actor_id`, `relationship_role`, `status`, `is_deleted`, `is_primary`, `routing_priority`, `auth_user_id` | no |
+| `lupo_actor_auth_users_idx_actor_routing` | `actor_id`, `status`, `is_deleted`, `relationship_role`, `is_primary`, `routing_priority`, `auth_user_id` | no |
+| `lupo_actor_auth_users_idx_actor_status_primary_priority` | `actor_id`, `status`, `is_primary`, `routing_priority` | no |
+| `lupo_actor_auth_users_idx_auth_user_status` | `auth_user_id`, `status` | no |
+| `lupo_actor_auth_users_idx_status` | `status` | no |
+| `lupo_actor_auth_users_unq_actor_user_role` | `actor_id`, `auth_user_id`, `relationship_role` | yes |
 
-## Doctrine Notes
-
-- **No foreign keys.**
-- **BIGINT Timestamps.**
-- **Identity Pairing:** This table is the authoritative source for resolving which human is "acting as" a specific actor in a given context.
+## Doctrine
+- Source of truth: `lupo-database/lupopedia/json/` TOON exports
+- Regeneration mode: Stage 3 deterministic normalization
+- Edge mode: placeholder baseline

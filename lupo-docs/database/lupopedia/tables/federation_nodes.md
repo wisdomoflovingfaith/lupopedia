@@ -1,4 +1,4 @@
----
+﻿---
 lupopedia.headers:
   file_path_from_root: "lupo-docs/database/lupopedia/tables/federation_nodes.md"
   file_hash: "746c0fe3aca3b512da278c493bd2ff47d6cc7c493fca689de5827cf1a56bf651"
@@ -23,8 +23,7 @@ lupopedia.edges:
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   last_updated_utc: "20260228"
-lupopedia.footer:
-  last_verified: "20260226"
+lupopedia.footer:`n  approved_for_release: "4.1.0"`n  approval_status: "approved"`n  approved_by_actor_id: 1`n  approved_utc: 20260326192115`n  last_verified: "20260226"
   last_verified_by: "gemini-cli"
 ---
 
@@ -33,20 +32,21 @@ lupopedia.footer:
 ## Date: 2026-02-26
 
 ### 1. Overview
-Purpose: **Multi-site / federation registry**: each row represents a node (e.g. a website or instance) in a federation. Used for multi-site routing and discovery. Legacy livehelp_websites was the “websites” list in Crafty; it maps here.
+Purpose: **Multi-site / federation registry**: each row represents a node (e.g. a website or instance) in a federation. Used for multi-site routing and discovery. Legacy livehelp_websites was the â€œwebsitesâ€ list in Crafty; it maps here.
 
 **Schema:** See `lupo-database/lupopedia/toon/lupo_federation_nodes.toon.json`. Primary key and columns as in TOON (e.g. federation_node_id, name, base_url, settings). No foreign keys; references are application-managed.
 
 ### 2. Core Workflows
 
 - **Federation and routing:** Channels or departments may be scoped to a federation_node_id. Cross-node references use this table for resolution.
-- **Legacy websites:** Crafty’s website list becomes federation nodes so existing multi-site config is preserved.
+- **Legacy websites:** Craftyâ€™s website list becomes federation nodes so existing multi-site config is preserved.
 
 ### 3. Mapping from Crafty Syntax
 
 **Legacy table:** `livehelp_websites`.
 
-**Migration:** `lupo-docs/doctrine/migrations/livehelp_websites_migration.md`, `import_from_old_crafty_syntax.sql`. Legacy fields map into lupo_federation_nodes columns and/or metadata as defined in the migration. livehelp_websites → IMPORTED → DROPPED.
+**Migration:** `lupo-docs/doctrine/migrations/livehelp_websites_migration.md`, `import_from_old_crafty_syntax.sql`. Legacy fields map into lupo_federation_nodes columns and/or metadata as defined in the migration. livehelp_websites â†’ IMPORTED â†’ DROPPED.
 
 ---
 *Maintained by GEMINI (Actor 1006)*
+

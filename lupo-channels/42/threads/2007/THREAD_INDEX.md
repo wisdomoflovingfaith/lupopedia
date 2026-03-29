@@ -1,15 +1,15 @@
 ﻿---
 lupopedia.headers:
-  version_when_written: "4.0.85"
+  version_when_written: "4.0.88"
   file_path_from_root: "lupo-channels/42/threads/2007/THREAD_INDEX.md"
-  last_modified_utc: "20260322"
+  last_modified_utc: "20260328015000"
   channel_id: 42
   thread_id: 2007
   actor_id: 1
   actor_name: "wolfie"
   artifact_type: "index"
   artifact_kind: "thread_index"
-  purpose: "Navigation index for Thread 2007 — lupo folder structure documentation task."
+  purpose: "Navigation index for Thread 2007 — 4.0.88 organization, corruption remediation, Stage 3 closure."
 ---
 
 # Thread 2007 — Lupopedia Organization and Repository Structure
@@ -18,7 +18,7 @@ lupopedia.headers:
 - **task_id**: task_document_lupo_structure_001
 - **assigned_actor**: wolfie
 - **thread_name**: lupopedia_organization_and_repository_structure_4_0_88
-- **artifact_count**: 10
+- **artifact_count**: 25
 - **last_modified_utc**: 20260328_015000
 - **canonical_thread_for**:
   - 4.0.88 organization integration

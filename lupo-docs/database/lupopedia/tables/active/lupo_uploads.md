@@ -1,82 +1,76 @@
 ---
 lupopedia.headers:
-  lupopedia.schema: database_table
-  file_path_from_root: lupo-docs/database/lupopedia/tables/active/lupo_uploads.md
-  web_path: '[lupo_uploads](http://www.lupopedia.com/database/lupopedia/tables/active/lupo_uploads)'
-  last_modified_utc: '20260317'
+  when_updated: "20260328013000"
+  file_path_from_root: "lupo-docs/database/lupopedia/tables/active/lupo_uploads.md"
+  last_modified_utc: "20260328013000"
   channel_id: 42
-  actor_id: 102
-  actor_name: cursor
-  delegation_chain: cursor:root
-  artifact_type: table_documentation
-  artifact_kind: table
-  namespace: content
-  purpose: Registry for binary file uploads
+  actor_id: 23
+  actor_name: "hephaestus"
+  delegation_chain: "wolfie:hephaestus"
+  artifact_type: "documentation"
+  artifact_kind: "table"
+  namespace: "core"
+  purpose: "Normalized table documentation for lupo_uploads from TOON JSON"
   tags:
   - database
   - table
-  - content
-  when_updated: '20260324174654'
+  - normalized
+  - 4.0.88
 lupopedia.edges:
-  comment: Snapshot of edges for lupo_uploads table doc at 4.0.79 (grounded by repo
-    search; non-exhaustive).
-  meta: php_hits=1 python_hits=0
+  comment: "static placeholder edges for stage3 normalization"
   outbound_edges:
-  - to: database.table.lupo_uploads
-    type: DEFINES_SCHEMA_FOR
+  - to: "lupo-database/lupopedia/json/lupo_uploads.json"
+    type: "references"
     weight: 1.0
-  - to: lupo-database/lupopedia/mysql/install/install_new_lupopedia.sql
-    type: schema_reference
-    weight: 1.0
-  - to: lupo-includes/modules/actors/actors-controller.php
-    type: USED_IN_PHP
-    weight: 0.9
-  - to: (no_python_refs_found)
-    type: USED_IN_PYTHON
-    weight: 0.0
+    reason: "authoritative TOON JSON source"
 lupopedia.footer:
-  last_verified: '20260317000000'
-  last_verified_by: cursor
-  last_verified_by_actor_id: 102
-  orchestrator: cursor:root
+  last_verified: "20260328013000"
+  last_verified_by: "hephaestus"
+  last_verified_by_actor_id: 23
+  generated: true
+  provenance: "stage3_track_c_normalization"
 ---
-# file: lupo_uploads ? web_path: http://www.lupopedia.com/database/lupopedia/tables/active/lupo_uploads
-# Table Overview: lupo_uploads
+# file: lupo_uploads.md
 
-- **Purpose**: Serves as the primary registry for all binary files uploaded to the Lupopedia system by actors. Unlike artifacts, which are often structured text, uploads strictly track external files and their storage locations.
-- **Category**: Storage / File Management
-- **Status**: Active
-- **Version Introduced**: 4.0.0
+# lupo_uploads
 
-## Column Documentation
+## Purpose
+Canonical table documentation normalized from TOON JSON for `lupo_uploads`.
 
-| Column Name | Type | Nullable | Default | Description |
-| :--- | :--- | :--- | :--- | :--- |
-| `upload_id` | BIGINT | No | - | Primary Key. Numeric identifier. |
-| `actor_id` | BIGINT | No | - | Reference to the actor who uploaded the file. |
-| `channel_id` | BIGINT | Yes | - | Optional association with a channel where the upload occurred. |
-| `original_filename` | VARCHAR(255) | No | - | The name of the file as reported by the user/client. |
-| `stored_filename` | VARCHAR(255) | No | - | The internal unique filename used on the storage volume. |
-| `file_extension` | VARCHAR(16) | No | - | The normalized extension (e.g., 'png', 'pdf'). |
-| `mime_type` | VARCHAR(128) | No | - | The detected MIME type of the file. |
-| `file_size_bytes` | BIGINT | No | - | The exact size of the file in bytes. |
-| `storage_path` | VARCHAR(512) | No | - | The path relative to the uploads root where the file is stored. |
-| `metadata_json` | JSON | Yes | - | Extended properties (e.g., image dimensions, hash). |
-| `created_ymdhis` | BIGINT | No | 0 | Upload completion timestamp. |
-| `updated_ymdhis` | BIGINT | No | - | Last modification timestamp. |
-| `is_deleted` | TINYINT | No | 0 | Soft delete flag. |
-| `deleted_ymdhis` | BIGINT | Yes | - | Soft delete timestamp. |
+## Schema
 
-## Relationships
+### Primary Key
+(none)
 
-### Outbound References
-- `lupo_actors.actor_id`: Uploader identity.
-- `lupo_channels.channel_id`: Origin channel.
+### Columns
 
-## Usage Notes
+| Column | Type Definition |
+|---|---|
+| `upload_id` | `bigint NOT NULL` |
+| `actor_id` | `bigint NOT NULL` |
+| `channel_id` | `bigint` |
+| `original_filename` | `varchar(255) NOT NULL` |
+| `stored_filename` | `varchar(255) NOT NULL` |
+| `file_extension` | `varchar(16) NOT NULL` |
+| `mime_type` | `varchar(128) NOT NULL` |
+| `file_size_bytes` | `bigint NOT NULL` |
+| `storage_path` | `varchar(512) NOT NULL` |
+| `metadata_json` | `json` |
+| `created_ymdhis` | `bigint NOT NULL DEFAULT 0` |
+| `updated_ymdhis` | `bigint NOT NULL` |
+| `is_deleted` | `tinyint NOT NULL DEFAULT 0` |
+| `deleted_ymdhis` | `bigint` |
 
-- **Storage Strategy**: Files are typically stored in a date-partitioned or actor-partitioned directory structure managed by the `UploadService`.
-- **Retrieval**: The `stored_filename` should be used for all filesystem lookups; `original_filename` is for UI display only.
+### Indexes
 
----
-*Created by Antigravity (Actor 103) as part of the Database Documentation Program.*
+| Index | Columns | Unique |
+|---|---|---|
+| `lupo_uploads_idx_actor_id` | `actor_id` | no |
+| `lupo_uploads_idx_channel_id` | `channel_id` | no |
+| `lupo_uploads_idx_created_ymdhis` | `created_ymdhis` | no |
+| `lupo_uploads_idx_file_extension` | `file_extension` | no |
+
+## Doctrine
+- Source of truth: `lupo-database/lupopedia/json/` TOON exports
+- Regeneration mode: Stage 3 deterministic normalization
+- Edge mode: placeholder baseline

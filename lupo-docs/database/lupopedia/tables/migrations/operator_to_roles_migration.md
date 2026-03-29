@@ -1,4 +1,4 @@
-# LUPOPEDIA HEADERS (replaces FLARE)
+﻿# LUPOPEDIA HEADERS (replaces FLARE)
 ---
 lupopedia.headers:
   lupopedia.version: "4.0.73"
@@ -24,8 +24,7 @@ lupopedia.edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
     - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
-lupopedia.footer:
-  last_verified: "20260228155738"
+lupopedia.footer:`n  approved_for_release: "4.1.0"`n  approval_status: "approved"`n  approved_by_actor_id: 1`n  approved_utc: 20260326192115`n  last_verified: "20260228155738"
   last_verified_by: "windsurf"
 ---
 
@@ -51,8 +50,7 @@ lupopedia.headers:
   tags: ["docs", "database", "lupopedia", "tables", "operator_to_roles_migrationmd"]
   lupo_agent: "windsurf"
 
-lupopedia.footer:
-  last_verified: "20260228"
+lupopedia.footer:`n  approved_for_release: "4.1.0"`n  approval_status: "approved"`n  approved_by_actor_id: 1`n  approved_utc: 20260326192115`n  last_verified: "20260228"
   last_verified_by: "windsurf"
 ---
 
@@ -79,7 +77,7 @@ X-Lupo-File-Path: lupo-docs/doctrine/migrations/operator_to_roles_migration.md
 These database tables should never be used in the new Lupopedia system. They exist just for reference on what the old Crafty Syntax system's database tables contained and how they map to the new tables. All legacy tables will not exist in version 4.1.1+ of Lupopedia.
 
 
-# Migration Note: lupo_operators Removed — 3-Level Role System
+# Migration Note: lupo_operators Removed â€” 3-Level Role System
 
 **Status:** Completed (lupo_operators and lupo_operators_* tables removed.)  
 **Replacement:** 3-level permission model using lupo_actor_channel_roles, lupo_department_roles, and system (department_id = 0).
@@ -90,20 +88,20 @@ These database tables should never be used in the new Lupopedia system. They exi
 
 Lupopedia originally had **lupo_operators** (and related operator_* tables) for "operator" identity and permissions. These were removed. Permissions are now entirely **role-based** across three layers:
 
-1. **Channel roles** — **lupo_actor_channel_roles**  
+1. **Channel roles** â€” **lupo_actor_channel_roles**  
    - One row per (actor_id, channel_id, role_key).  
    - **role_key** values: `captain`, `administrator`, `monitor`.  
    - Determines who can manage a channel, view it, or monitor it.
 
-2. **Department roles** — **lupo_department_roles**  
+2. **Department roles** â€” **lupo_department_roles**  
    - Department-scoped roles (e.g. department admin, member).  
    - Applied when the actor is acting in a department context.
 
-3. **System roles** — **department_id = 0**  
+3. **System roles** â€” **department_id = 0**  
    - Global/system admin.  
    - Reserved; not user-selectable. Used for system-wide administration.
 
-**Resolution order:** channel → department → system. Code checks channel roles first, then department roles, then system.
+**Resolution order:** channel â†’ department â†’ system. Code checks channel roles first, then department roles, then system.
 
 ---
 
@@ -112,16 +110,16 @@ Lupopedia originally had **lupo_operators** (and related operator_* tables) for 
 | Old (removed)              | New (current)                                                                 |
 |----------------------------|-------------------------------------------------------------------------------|
 | lupo_operators             | No table. Identity in **lupo_actors**; credentials in **lupo_auth_users**.  |
-| Operator “is staff” flag   | **lupo_actor_channel_roles** (role_key = captain | administrator | monitor).   |
-| Operator–channel assignment| **lupo_actor_channel_roles** (actor_id, channel_id, role_key).               |
-| Operator–department       | **lupo_actor_departments** (actor_id, department_id); department roles in **lupo_department_roles**. |
+| Operator â€œis staffâ€ flag   | **lupo_actor_channel_roles** (role_key = captain | administrator | monitor).   |
+| Operatorâ€“channel assignment| **lupo_actor_channel_roles** (actor_id, channel_id, role_key).               |
+| Operatorâ€“department       | **lupo_actor_departments** (actor_id, department_id); department roles in **lupo_department_roles**. |
 | Crafty isadmin = 'Y'       | Install wizard inserts **lupo_actor_channel_roles** (actor_id, channel_id=1, role_key='captain'). |
 
 ---
 
 ## 3. Import and Wizard Behavior
 
-- **import_from_old_crafty_syntax.sql** does **not** insert into lupo_operators (table does not exist). It imports livehelp_users → lupo_auth_users and (operators only) → lupo_actors; livehelp_operator_departments → lupo_actor_departments.
+- **import_from_old_crafty_syntax.sql** does **not** insert into lupo_operators (table does not exist). It imports livehelp_users â†’ lupo_auth_users and (operators only) â†’ lupo_actors; livehelp_operator_departments â†’ lupo_actor_departments.
 - **Install wizard** (install_wizard_classes.php): After import, **createOperatorChannels** creates a personal channel per imported Crafty operator and inserts **lupo_actor_channel_roles** with role_key = 'captain'. For each livehelp_users row with isadmin = 'Y', the wizard inserts **lupo_actor_channel_roles** (actor_id, channel_id=1, role_key='captain') so they have admin channel access.
 - **lupo_channel_roles** (role_type) still exists in schema; some code paths use **lupo_actor_channel_roles** (role_key) for permission checks. See lupo-docs/ACTOR_CHANNEL_ROLES_VS_CHANNEL_ROLES_ANALYSIS.md and lupo-database/migrations_legacy/migration_operator_to_actor_channel_roles.sql for existing-DB migration.
 
@@ -129,7 +127,8 @@ Lupopedia originally had **lupo_operators** (and related operator_* tables) for 
 
 ## 4. References
 
-- **lupo-docs/audits/OPERATOR_TO_ROLE_BASED_SWEEP_REPORT.md** — What was changed when lupo_operators was removed.
-- **lupo-docs/database/lupopedia/tables/active/lupo_actor_channel_roles.md** — Use of lupo_actor_channel_roles and role keys.
-- **lupo-docs/doctrine/migrations/livehelp_users_migration.md** — livehelp_users → lupo_auth_users / lupo_actors; notes that operator permissions use the 3-level role system.
-- **lupo-database/migrations_legacy/migration_operator_to_actor_channel_roles.sql** — One-time migration from lupo_channel_roles to lupo_actor_channel_roles for existing installs (not run by wizard).
+- **lupo-docs/audits/OPERATOR_TO_ROLE_BASED_SWEEP_REPORT.md** â€” What was changed when lupo_operators was removed.
+- **lupo-docs/database/lupopedia/tables/active/lupo_actor_channel_roles.md** â€” Use of lupo_actor_channel_roles and role keys.
+- **lupo-docs/doctrine/migrations/livehelp_users_migration.md** â€” livehelp_users â†’ lupo_auth_users / lupo_actors; notes that operator permissions use the 3-level role system.
+- **lupo-database/migrations_legacy/migration_operator_to_actor_channel_roles.sql** â€” One-time migration from lupo_channel_roles to lupo_actor_channel_roles for existing installs (not run by wizard).
+

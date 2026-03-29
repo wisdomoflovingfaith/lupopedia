@@ -1,4 +1,4 @@
----
+﻿---
 lupopedia.headers:
   lupopedia.schema: database_table
   file_path_from_root: lupo-docs/database/lupopedia/tables/semantic_navbar/lupo_references.md
@@ -14,8 +14,7 @@ lupopedia.headers:
   - references
   - 4.0.71
   when_updated: '20260324174654'
-lupopedia.footer:
-  last_verified: '20260312000000'
+lupopedia.footer:`n  approved_for_release: "4.1.0"`n  approval_status: "approved"`n  approved_by_actor_id: 1`n  approved_utc: 20260326192115`n  last_verified: '20260312000000'
   last_verified_by: cursor
   last_verified_by_actor_id: 102
   orchestrator: cursor:root
@@ -38,3 +37,4 @@ ORDER BY rl.sort_order, r.created_ymdhis;
 ```
 
 **Navbar use:** API resolves current page to content_id (or entity), then queries lupo_reference_links + lupo_references by object_type/object_id and returns list for the References section.
+

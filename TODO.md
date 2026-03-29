@@ -1,63 +1,76 @@
 ---
 lupopedia.headers:
-  version_when_written: "4.0.85"
+  lupopedia.schema: documentation
+  version_when_written: "4.0.88"
   file_path_from_root: "TODO.md"
-  last_modified_utc: "20260322"
+  web_path: "http://www.lupopedia.com/lupopedia/TODO.md"
+  last_modified_utc: "20260327"
   channel_id: 42
-  thread_id: 1047
+  thread_id: "4.0.x-root-alignment"
   actor_id: 1
   actor_name: "wolfie"
+  delegation_chain: "wolfie:root"
   artifact_type: "task_list"
-  artifact_kind: "derived_todo_view"
-  purpose: "Root derived TODO surface under controlled synchronization v9."
+  artifact_kind: "high_level_todo"
+  purpose: "Root high-level TODO aligned to version-driven iterative development."
 
 lupopedia.edges:
   outbound_edges:
-    - { to: "lupo-docs/versions/4.0.85/TASK_REGISTRY.md", type: "derived_from" }
-    - { to: "lupo-docs/versions/4.0.85/CONTRADICTIONS.md", type: "references" }
+    - { to: "lupo-docs/versions/4.0.88/TODO.md", type: "references" }
+    - { to: "lupo-docs/versions/4.0.88/PLAN.md", type: "references" }
+    - { to: "lupo-docs/versions/4.1.0/todo.md", type: "references" }
+    - { to: "lupo-docs/versions/4.1.0/plan.md", type: "references" }
+    - { to: "README.md", type: "aligns_with" }
+    - { to: "plan.md", type: "aligns_with" }
+
+lupopedia.footer:
+  last_verified: "20260327"
+  verified_by:
+    identity_type: "actor"
+    actor_id: 102
+    agent_name_identity: "Cursor IDE Agent (Lead Orchestration)"
+    department_id_delta: 0
+  verified_via:
+    type: "faucet"
+    faucet_slug: "cursor"
+  orchestrator: "wolfie:root"
+  next_action:
+    - "Keep this file high level only"
+    - "Route detailed execution into version-scoped TODO files"
 ---
 
 # Root TODO
 
-- This file is a root coordination pointer only.
-- For 4.0.85+, authoritative task/change state is version-scoped under `lupo-docs/versions/<version>/`.
+This file is a high-level coordination summary only.
 
-## [4.0.87] - 20260324
+Detailed execution lives in:
 
-### 4.0.87 COMPLETED WORK (PHASE 2 ROLLOUT)
-- [x] Registered Junie (Actor 108) as a canonical agent.
-- [x] Implemented LUPOPEDIA HEADERS Triad Model and verification guide.
-- [x] Activated Edge Graph (Tracks 1-3) for channels and threads.
-- [x] Unified all settings in root `lupopedia-config.php`.
-- [x] Implemented Admin Chat UI with Effective Actor resolution.
-- [x] Audited 169 tables and populated 22+ agents in `lupo-agents/`.
+- `lupo-docs/versions/4.0.88/TODO.md`
+- `lupo-docs/versions/4.1.0/todo.md`
 
-### 4.0.87 NEXT ACTIONS
-- [ ] Initialize atoms and version propagation service.
-- [ ] Reconcile channel documentation (Channels 1-57).
-- [ ] Implement `EdgeQueryService` (Track 4 of ATHENA_STRATEGY).
-- [ ] Validate 22-agent full documentation compliance.
-- [ ] Hardening of `admin.php` LLM chatbot call path.
+## Immediate: 4.0.x Iterations
 
-## Version 4.0.85+ Read Path
-1. Open `lupo-docs/versions/<version>/TODO.md` for version-scoped backlog intent.
-2. Open `lupo-docs/versions/<version>/TASK_REGISTRY.md` for authoritative task/question lifecycle state.
-3. Open `lupo-docs/versions/<version>/CONTRADICTIONS.md` for diagnostic contradiction tracking.
-4. Review additional category artifacts in the same version folder (database, doctrine, structural, organization, research).
+- [ ] Stabilize the system across iterative 4.0.x releases.
+- [ ] Refine channel structure and migration batches.
+- [ ] Implement missing feature surfaces required for reviewer closure.
+- [ ] Address Softaculous feedback in each review loop.
 
-## Authority Notes
-- Do not use root TODO as a full change log for 4.0.85+.
-- Do not duplicate version-folder detail in root TODO.
-- Root TODO should only direct readers to the active version folder surfaces.
-- 4.0.85 final state is install ready and system compliant; remaining work is version-scoped and non-blocking unless explicitly stated in TASK_REGISTRY.
+## Medium-Term
 
-## 4.0.85 Close Declaration
+- [ ] Complete the channel refactor.
+- [ ] Implement the `lupopedia_js.php` navigation and tracking system.
+- [ ] Build the CLI workflow surface.
+- [ ] Build validator and reporting tooling.
 
-- INSTALL READY
-- SYSTEM COMPLIANT
-- Authoritative details: `lupo-docs/versions/4.0.85/`
+## Long-Term: 4.1.0 Milestone
 
-## Execution Order
-1. Validate through LILITH output.
-2. Record violations in version-scoped CONTRADICTIONS.md.
-3. Execute and close work through version-scoped TASK_REGISTRY only.
+- [ ] Reach production readiness after approved 4.0.x baseline.
+- [ ] Complete full deployment hardening.
+- [ ] Complete federation integration work that belongs in the post-approval milestone.
+- [ ] Enter 4.1.0 only after Softaculous approval of a 4.0.x baseline.
+
+## Root TODO Rules
+
+- Keep this file high level.
+- Do not duplicate version-scoped execution tasks here.
+- Use versioned TODO files for detailed sequencing and evidence-driven closure.

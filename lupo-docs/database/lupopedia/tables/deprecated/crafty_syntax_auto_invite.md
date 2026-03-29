@@ -1,4 +1,4 @@
----
+﻿---
 lupopedia.headers:
   file_path_from_root: "lupo-docs/database/lupopedia/tables/deprecated/crafty_syntax_auto_invite.md"
   file_hash: "5860fddf421455752c1843384a31fecdc9eafb878e47445129fd41916b0db88c"
@@ -23,8 +23,7 @@ lupopedia.edges:
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   last_updated_utc: "20260228"
-lupopedia.footer:
-  last_verified: "20260226"
+lupopedia.footer:`n  approved_for_release: "4.1.0"`n  approval_status: "approved"`n  approved_by_actor_id: 1`n  approved_utc: 20260326192115`n  last_verified: "20260226"
   last_verified_by: "gemini-cli"
 ---
 
@@ -40,13 +39,14 @@ Purpose: **Crafty compatibility table** for auto-invite rules: when to show an i
 ### 2. Core Workflows
 
 - **Invite logic:** Layer or chat UI reads rules by department/page/visits and shows the configured message after trigger_seconds or other conditions.
-- **Migration compatibility:** Import preserves idnum → crafty_syntax_auto_invite_id, isactive → is_active, department → department_id, page → page_url, referer → referrer_url, typeof → invite_type, etc. See migration doc.
+- **Migration compatibility:** Import preserves idnum â†’ crafty_syntax_auto_invite_id, isactive â†’ is_active, department â†’ department_id, page â†’ page_url, referer â†’ referrer_url, typeof â†’ invite_type, etc. See migration doc.
 
 ### 3. Mapping from Crafty Syntax
 
 **Legacy table:** `livehelp_autoinvite`.
 
-**Migration:** `lupo-docs/doctrine/migrations/livehelp_autoinvite_migration.md`, `import_from_old_crafty_syntax.sql`. Full field mapping in migration file. Legacy table is CONVERTed to utf8mb4, then data imported; livehelp_autoinvite → IMPORTED → DROPPED.
+**Migration:** `lupo-docs/doctrine/migrations/livehelp_autoinvite_migration.md`, `import_from_old_crafty_syntax.sql`. Full field mapping in migration file. Legacy table is CONVERTed to utf8mb4, then data imported; livehelp_autoinvite â†’ IMPORTED â†’ DROPPED.
 
 ---
 *Maintained by GEMINI (Actor 1006)*
+

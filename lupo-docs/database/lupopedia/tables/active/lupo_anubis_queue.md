@@ -1,84 +1,80 @@
 ---
 lupopedia.headers:
-  lupopedia.schema: documentation
-  file_path_from_root: lupo-docs/database/lupopedia/tables/active/lupo_anubis_queue.md
-  channel_id: 1
-  actor_id: 103
-  last_modified_utc: '20260312'
-  artifact_type: table_documentation
-  purpose: Work queue for files needing custodial processing
-  mood_rgb: 4169E1
-  traits:
-  - canonical
-  - anubis
-  - queue
-  - v4.0.70
+  when_updated: "20260328013000"
+  file_path_from_root: "lupo-docs/database/lupopedia/tables/active/lupo_anubis_queue.md"
+  last_modified_utc: "20260328013000"
+  channel_id: 42
+  actor_id: 23
+  actor_name: "hephaestus"
+  delegation_chain: "wolfie:hephaestus"
+  artifact_type: "documentation"
+  artifact_kind: "table"
+  namespace: "core"
+  purpose: "Normalized table documentation for lupo_anubis_queue from TOON JSON"
   tags:
   - database
-  - anubis
-  - queue
-  - workload
-  lupo_agent: antigravity
-  when_updated: '20260324174654'
+  - table
+  - normalized
+  - 4.0.88
 lupopedia.edges:
+  comment: "static placeholder edges for stage3 normalization"
   outbound_edges:
-  - to: lupo-database/lupopedia/toon/lupo_anubis_queue.toon
-    type: references
+  - to: "lupo-database/lupopedia/json/lupo_anubis_queue.json"
+    type: "references"
     weight: 1.0
-  - to: lupo-docs/database/lupopedia/tables/active/lupo_anubis_processing_log.md
-    type: references
-    weight: 1.0
+    reason: "authoritative TOON JSON source"
 lupopedia.footer:
-  last_verified: '20260312000000'
-  last_verified_by: cursor
-  last_verified_by_actor_id: 102
-  orchestrator: cursor:root
+  last_verified: "20260328013000"
+  last_verified_by: "hephaestus"
+  last_verified_by_actor_id: 23
+  generated: true
+  provenance: "stage3_track_c_normalization"
 ---
+# file: lupo_anubis_queue.md
 
-# Table Overview: lupo_anubis_queue
+# lupo_anubis_queue
 
-- **Purpose**: The primary task queue for the ANUBIS custodial system. It manages the ingestion and processing pipeline for files detected with missing headers, malformed metadata, or other compliance issues.
-- **Category**: Import / Reconciliation
-- **Status**: Active
-- **Version Introduced**: 4.0.0
+## Purpose
+Canonical table documentation normalized from TOON JSON for `lupo_anubis_queue`.
 
-## Column Documentation
+## Schema
 
-| Column Name | Type | Nullable | Default | Description |
-| :--- | :--- | :--- | :--- | :--- |
-| `queue_id` | BIGINT | No | - | Primary Key. Numeric identifier. |
-| `file_path` | VARCHAR(512) | No | - | Absolute-style path from root of the file being processed. |
-| `file_hash` | VARCHAR(64) | Yes | - | Content hash for change detection. |
-| `file_content` | LONGTEXT | Yes | - | Snapshot of file content for off-filesystem processing. |
-| `detected_utc` | BIGINT | No | - | Timestamp of detection (YYYYMMDDHHIISS). |
-| `priority` | TINYINT | Yes | 5 | Task priority (1=highest, 10=lowest). |
-| `status` | VARCHAR(32) | Yes | 'pending' | Current state (pending, processing, recovered, failed, quarantined). |
-| `detection_method` | VARCHAR(64) | Yes | - | How the issue was found (e.g., 'missing_header'). |
-| `header_snapshot` | TEXT | Yes | - | Snapshot of partial or malformed headers. |
-| `error_message` | TEXT | Yes | - | Last error reported during processing. |
-| `attempts` | TINYINT | Yes | 0 | Number of retry attempts. |
-| `last_attempt_utc` | BIGINT | Yes | - | Timestamp of last attempt. |
-| `assigned_to_actor_id` | BIGINT | Yes | - | Reference to the ANUBIS instance/agent worker. |
-| `filesystem_copy_exists` | TINYINT | Yes | 1 | Flag indicating if the file still exists on disk. |
-| `filesystem_backup_path` | VARCHAR(512) | Yes | - | Path to a backup of the file before modification. |
-| `created_utc` | BIGINT | No | - | Queue entry creation time. |
-| `updated_utc` | BIGINT | No | - | Last modification time. |
-| `is_deleted` | TINYINT | Yes | 0 | Soft delete flag. |
+### Primary Key
+(none)
 
-## Relationships
+### Columns
 
-### Outbound References
-- `lupo_actors.actor_id`: Identified by `assigned_to_actor_id`.
+| Column | Type Definition |
+|---|---|
+| `queue_id` | `bigint NOT NULL auto_increment` |
+| `file_path` | `varchar(512) NOT NULL` |
+| `file_hash` | `varchar(64)` |
+| `file_content` | `longtext` |
+| `detected_utc` | `bigint NOT NULL` |
+| `priority` | `tinyint DEFAULT 5` |
+| `status` | `varchar(32) DEFAULT 'pending'` |
+| `detection_method` | `varchar(64)` |
+| `header_snapshot` | `text` |
+| `error_message` | `text` |
+| `attempts` | `tinyint DEFAULT 0` |
+| `last_attempt_utc` | `bigint` |
+| `assigned_to_actor_id` | `bigint` |
+| `filesystem_copy_exists` | `tinyint DEFAULT 1` |
+| `filesystem_backup_path` | `varchar(512)` |
+| `created_utc` | `bigint NOT NULL` |
+| `updated_utc` | `bigint NOT NULL` |
+| `is_deleted` | `tinyint DEFAULT 0` |
 
-### Inbound References
-- `lupo_anubis_processing_log.queue_id`: Tracks detailed actions taken.
-- `lupo_anubis_quarantine.queue_id`: Links to quarantined file data.
-- `lupo_anubis_recovery_attempts.queue_id`: Tracks specific recovery strategies tried.
+### Indexes
 
-## Usage Notes
+| Index | Columns | Unique |
+|---|---|---|
+| `lupo_anubis_queue_idx_detected` | `detected_utc` | no |
+| `lupo_anubis_queue_idx_file_path` | `file_path` | no |
+| `lupo_anubis_queue_idx_status_priority` | `status`, `priority` | no |
+| `lupo_anubis_queue_uniq_file_hash` | `file_hash` | yes |
 
-- **Doctrine Discrepancy**: Although TOON may list `auto_increment`, Lupopedia doctrine requires explicit ID generation in PHP.
-- **Backups**: ANUBIS should always populate `filesystem_backup_path` before attempting a destructive modification (e.g., header injection).
-
----
-*Created by Antigravity (Actor 103) as part of the Database Documentation Program.*
+## Doctrine
+- Source of truth: `lupo-database/lupopedia/json/` TOON exports
+- Regeneration mode: Stage 3 deterministic normalization
+- Edge mode: placeholder baseline

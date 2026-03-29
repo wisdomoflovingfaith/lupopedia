@@ -1,12 +1,13 @@
 ---
 lupopedia.headers:
-  version_when_written: "4.0.84"
+  when_updated: "20260327121457"
   lupopedia.schema: "doctrine"
   file_path_from_root: "lupo-docs/doctrine/LUPOPEDIA_HEADERS/OPTIONAL_BLOCKS.md"
   web_path: "http://www.lupopedia.com/lupopedia/lupo-docs/doctrine/LUPOPEDIA_HEADERS/OPTIONAL_BLOCKS.md"
-  last_modified_utc: "20260325203002"
+  last_modified_utc: "20260327121457"
   channel_id: 42
-  actor_id: 1003
+  actor_id: 102
+  actor_name: "cursor"
   delegation_chain: "cursor:root"
   artifact_type: "doctrine"
   artifact_kind: "reference"
@@ -14,7 +15,7 @@ lupopedia.headers:
   purpose: "Reference for optional LUPOPEDIA HEADERS blocks, including routing, lists, metadata snapshots, next actions, actor references, footer, engagement, and edges."
   tags: ["lupopedia_headers", "routing", "lists", "optional"]
 lupopedia.footer:
-  last_verified: "20260325203002"
+  last_verified: "20260327121457"
   verified_by:
     identity_type: "actor"
     actor_id: 102
@@ -23,7 +24,7 @@ lupopedia.footer:
   verified_via:
     type: "faucet"
     faucet_slug: "cursor"
-  orchestrator: "cursor"
+  orchestrator: "cursor:root"
   next_action:
     - "Validate optional block definitions against LUPOPEDIA_HEADERS_FORMAT.md"
     - "Keep canonical vs legacy optional block semantics explicit across doctrine files"
@@ -105,6 +106,8 @@ New files should prefer the canonical approval/workflow structure documented in 
 | thread_id | mixed | Discussion thread ID | `"DEVELOPMENT_CYCLE_4_0_55"` |
 | read_by | array | Actors who have acknowledged the message | `[1006, 10000]` |
 | routing_path | array | Logical or physical directories traversed | `["lupo-channels/42/threads/"]` |
+
+**Not the same as `lupopedia.headers.thread_id`:** The required **`thread_id`** in **`lupopedia.headers`** (binding doctrine — lowercase, hyphens) identifies the artifact’s coordination thread in the repo. Optional **routing** `thread_id` above is legacy / workflow context. See [`LUPOPEDIA_HEADERS_FORMAT.md`](./LUPOPEDIA_HEADERS_FORMAT.md) required-field table.
 
 **Placement:** Follow the canonical YAML block order from `LUPOPEDIA_HEADERS_FORMAT.md`. Do not add local placement rules here.
 

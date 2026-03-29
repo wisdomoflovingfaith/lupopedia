@@ -1,69 +1,69 @@
 ---
 lupopedia.headers:
-  lupopedia.schema: documentation
-  file_path_from_root: lupo-docs/database/lupopedia/tables/active/lupo_federation_categories.md
-  channel_id: 1
-  actor_id: 103
-  last_modified_utc: '20260312'
-  artifact_type: table_documentation
-  purpose: Federation node categorization system
-  mood_rgb: 4169E1
-  traits:
-  - canonical
-  - federation
-  - v4.0.70
+  when_updated: "20260328013000"
+  file_path_from_root: "lupo-docs/database/lupopedia/tables/active/lupo_federation_categories.md"
+  last_modified_utc: "20260328013000"
+  channel_id: 42
+  actor_id: 23
+  actor_name: "hephaestus"
+  delegation_chain: "wolfie:hephaestus"
+  artifact_type: "documentation"
+  artifact_kind: "table"
+  namespace: "federation"
+  purpose: "Normalized table documentation for lupo_federation_categories from TOON JSON"
   tags:
   - database
-  - federation
-  - categories
-  lupo_agent: antigravity
-  when_updated: '20260324174654'
+  - table
+  - normalized
+  - 4.0.88
 lupopedia.edges:
+  comment: "static placeholder edges for stage3 normalization"
   outbound_edges:
-  - to: lupo-database/lupopedia/toon/lupo_federation_categories.toon
-    type: references
+  - to: "lupo-database/lupopedia/json/lupo_federation_categories.json"
+    type: "references"
     weight: 1.0
-  - to: lupo-docs/database/lupopedia/tables/active/lupo_federation_category_map.md
-    type: references
-    weight: 0.9
+    reason: "authoritative TOON JSON source"
 lupopedia.footer:
-  last_verified: '20260312000000'
-  last_verified_by: cursor
-  last_verified_by_actor_id: 102
-  orchestrator: cursor:root
+  last_verified: "20260328013000"
+  last_verified_by: "hephaestus"
+  last_verified_by_actor_id: 23
+  generated: true
+  provenance: "stage3_track_c_normalization"
 ---
+# file: lupo_federation_categories.md
 
-# Table Overview: lupo_federation_categories
+# lupo_federation_categories
 
-- **Purpose**: Defines logical groupings/categories for federation nodes. Allows for filtering and organized discovery of nodes based on their content type, domain, or organizational affiliation.
-- **Category**: Federation / Network
-- **Status**: Active
-- **Version Introduced**: 4.0.0
+## Purpose
+Canonical table documentation normalized from TOON JSON for `lupo_federation_categories`.
 
-## Column Documentation
+## Schema
 
-| Column Name | Type | Nullable | Default | Description |
-| :--- | :--- | :--- | :--- | :--- |
-| `federation_category_id` | BIGINT | No | - | Primary Key. Numeric identifier for the category. |
-| `category_name` | VARCHAR(255) | No | - | Human-readable name of the category (e.g., 'Public Knowledge', 'Partner Nodes'). |
-| `category_slug` | VARCHAR(255) | No | - | URL-friendly unique slug for the category. |
-| `category_description` | TEXT | Yes | - | Detailed description of what this category represents. |
-| `meta_json` | JSON | Yes | - | Extended category metadata. |
-| `is_deleted` | TINYINT | No | 0 | Soft delete flag (1=deleted). |
-| `deleted_ymdhis` | BIGINT | No | 0 | Soft delete timestamp (YYYYMMDDHHIISS). |
-| `created_ymdhis` | BIGINT | No | 0 | Creation timestamp. |
-| `updated_ymdhis` | BIGINT | No | 0 | Last update timestamp. |
+### Primary Key
+(none)
 
-## Relationships
+### Columns
 
-### Inbound References
-- `lupo_federation_category_map.federation_category_id`: Links nodes to these categories.
+| Column | Type Definition |
+|---|---|
+| `federation_category_id` | `bigint NOT NULL` |
+| `category_name` | `varchar(255) NOT NULL` |
+| `category_slug` | `varchar(255) NOT NULL` |
+| `category_description` | `text` |
+| `meta_json` | `json` |
+| `is_deleted` | `tinyint NOT NULL DEFAULT 0` |
+| `deleted_ymdhis` | `bigint NOT NULL DEFAULT 0` |
+| `created_ymdhis` | `bigint NOT NULL DEFAULT 0` |
+| `updated_ymdhis` | `bigint NOT NULL DEFAULT 0` |
 
-## Usage Notes
+### Indexes
 
-- **Slug Generation**: Slugs should be lowercase, using hyphens instead of spaces.
-- **Organization**: Categories are system-wide and used to organize the Federation Directory UI.
-- **Warnings**: Deleting a category does not delete the nodes associated with it, but it will orphan the mappings in `lupo_federation_category_map` (which should also be soft-deleted).
+| Index | Columns | Unique |
+|---|---|---|
+| `lupo_federation_categories_idx_category_slug` | `category_slug` | no |
+| `lupo_federation_categories_idx_is_deleted` | `is_deleted` | no |
 
----
-*Created by Antigravity (Actor 103) as part of the Database Documentation Program.*
+## Doctrine
+- Source of truth: `lupo-database/lupopedia/json/` TOON exports
+- Regeneration mode: Stage 3 deterministic normalization
+- Edge mode: placeholder baseline

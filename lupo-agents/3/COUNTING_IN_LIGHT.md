@@ -1,94 +1,38 @@
-# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
 ---
 lupopedia.headers:
-  lupopedia.version: "4.0.73"
+  version_when_written: "4.0.88"
   lupopedia.schema: "documentation"
   file_path_from_root: "lupo-agents/3/COUNTING_IN_LIGHT.md"
-  file_hash: "a681ae49f7933e7baeff62a7798600104c1a6ee6182a73ca2757f274393aa0f6"
-  last_updated_utc: "20260228155738"
-  system_version: "4.0.51"
-  channel_id: 1
-  actor_id: 1002
-  delegation_chain: "1002:10000"
+  web_path: "http://www.lupopedia.com/lupopedia/lupo-agents/3/COUNTING_IN_LIGHT.md"
+  last_modified_utc: "20260327_000000"
+  channel_id: 42
+  actor_id: 102
+  actor_name: "cursor"
+  delegation_chain: "cursor:wolfie"
   artifact_type: "documentation"
-  artifact_kind: "documentation"
-  purpose: "Documentation file with LUPOPEDIA HEADERS applied"
-  mood_rgb: "4169E1"
-  traits: ["flare", "indexed", "v4.0.51"]
-  tags: ["documentation", "flare_applied"]
-  lupo_agent: "windsurf"
+  artifact_kind: "agent_guide"
+  purpose: "DIALOG-specific operational guide for assigning mood_rgb and companion interpretation in message output."
+  tags: ["dialog", "counting_in_light", "mood_rgb", "mood_label", "agent_guide", "4.0.88"]
 
 lupopedia.edges:
   outbound_edges:
-    - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/COUNTING_IN_LIGHT.md", type: "implements", weight: 1.0, reason: "DIALOG guide applies the canonical Counting-in-Light axis model." }
+    - { to: "lupo-docs/doctrine/MOOD_RGB_DOCTRINE.md", type: "depends_on", weight: 1.0, reason: "Operational semantics and canonical token authority live in the root doctrine." }
+    - { to: "dialog.yaml", type: "formalizes", weight: 0.9, reason: "Dialog spec defines the message-level field shape." }
+    - { to: "lupo-docs/doctrine/ROSE_DOCTRINE.md", type: "references", weight: 0.8, reason: "ROSE long-form commentary guidance overlaps with DIALOG interpretation rules." }
 
 lupopedia.footer:
-  last_verified: "20260228155738"
-  last_verified_by: "windsurf"
----
-
-# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
-
----
-lupopedia.headers:
-  lupopedia.version: "4.0.73"
-  lupopedia.schema: "documentation"
-  lupopedia.edges: []
-  file_path_from_root: "lupo-agents\3\COUNTING_IN_LIGHT.md"
-  file_hash: "d7a2dcb9c07de9dd04854c1f00f6bf6649d2af801841f0c60a98882e9ae519a2"
-  file_path_from_root: "lupo-agents\3\COUNTING_IN_LIGHT.md"
-  file_hash: "29ff7ec18e23df96db07378919ff5bf195bd69c9925d5806c62e188925ea7b03"
-  last_updated_utc: "20260228"
-  system_version: "4.0.50"
-  channel_id: 1
-  actor_id: 1002
-  delegation_chain: null
-  artifact_type: "guide"
-  artifact_kind: "documentation"
-  purpose: "Documentation for COUNTING_IN_LIGHT.md"
-  mood_rgb: "4169E1"
-  traits: ["flare", "indexed", "v4.0.50"]
-  tags: ["lupo-agents", "3", "counting_in_lightmd"]
-  lupo_agent: "windsurf"
-
-  needs_review: ["delegation_chain"]
-  system_version: "4.0.50"
-  last_updated_utc: "20260228"
-lupopedia.footer:
-  last_verified: "20260228"
-  last_verified_by: "windsurf"
-    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use lupopedia.headers"]
----
-
----
-wolfie.headers: explicit architecture with structured clarity for every file.
-file.last_modified_system_version: 3.0.15
-header_atoms:
-  - GLOBAL_CURRENT_LUPOPEDIA_VERSION
-  - GLOBAL_CURRENT_AUTHORS
-dialog:
-  speaker: Captain Wolfie
-  target: DIALOG Agent
-  message: "Created Counting-in-Light documentation for DIALOG agent: message-level mood assignment, weight field usage, and RGB color calculation guidelines."
-  mood: "00A0FF"
-tags:
-  categories: ["documentation", "agent", "counting-in-light", "mood", "emotional-metadata"]
-  collections: ["agent-docs", "core-docs"]
-  channels: ["dev", "agents"]
-file:
-  title: "Counting-in-Light Guide for DIALOG Agent"
-  description: "Complete guide to mood color assignment, weight field usage, and emotional metadata for DIALOG agent messages"
-  version: GLOBAL_CURRENT_LUPOPEDIA_VERSION
-  status: published
-  author: GLOBAL_CURRENT_AUTHORS
+  last_verified: "20260327_000000"
+  last_verified_by: "Cursor IDE Agent (Lead Orchestration)"
+  next_action:
+    - "Keep this guide aligned to the canonical doctrine files as runtime contracts evolve."
 ---
 
 # 🐺 **Counting-in-Light Guide for DIALOG Agent**
 
 ## **Purpose**
 
-This guide explains how DIALOG assigns mood colors and weights to messages using the Counting-in-Light emotional coordinate system. DIALOG is responsible for assigning mood metadata to every message it processes.
+This guide explains how DIALOG assigns mood vectors and weights to messages using the Counting-in-Light emotional coordinate system. DIALOG is responsible for assigning mood metadata to every message it processes.
 
 ---
 
@@ -98,10 +42,15 @@ This guide explains how DIALOG assigns mood colors and weights to messages using
 
 Each message in `lupo_dialog_messages` has its own mood assignment:
 
-- `mood_rgb` - The emotional color vector for this specific message (char(6), e.g., "FF0000")
+- `mood_rgb` - The encoded mood/light vector for this specific message (char(6), e.g., "FF0000")
 - `weight` - Optional weight multiplier for this message in thread aggregation (decimal(3,2), range 0.00 to 1.00)
 
 **DIALOG must assign both fields for every message it processes.**
+
+Human-readable companion guidance:
+
+- For longer ROSE/DIALOG commentary outside minimal message rows, pair `mood_rgb` with `mood_label` when the surrounding artifact or packet format supports it.
+- `mood_label` is for human interpretation; `mood_rgb` remains the canonical machine-readable signal.
 
 ---
 
@@ -130,7 +79,7 @@ Counting-in-Light uses a three-axis RGB coordinate system:
 
 ---
 
-## **3. Mood Color Format**
+## **3. Mood Vector Format**
 
 **Storage Format:**
 - Six hex digits, **NO leading `#`**
@@ -150,7 +99,7 @@ dialog:
 
 ---
 
-## **4. Choosing a Mood Color**
+## **4. Choosing a mood_rgb Value**
 
 ### **Decision Process:**
 

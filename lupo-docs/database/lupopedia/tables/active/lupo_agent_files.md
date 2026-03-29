@@ -1,74 +1,77 @@
 ---
 lupopedia.headers:
-  lupopedia.schema: database_table
-  file_path_from_root: lupo-docs/database/lupopedia/tables/active/lupo_agent_files.md
-  channel_id: 1
-  actor_id: 102
-  last_modified_utc: '20260312'
-  artifact_type: table_documentation
-  purpose: File metadata per agent (path, hash, size, mime, upload time)
-  mood_rgb: 4169E1
-  traits:
-  - canonical
-  - agent
-  - cursor_domain
-  - v4.0.70
+  when_updated: "20260328013000"
+  file_path_from_root: "lupo-docs/database/lupopedia/tables/active/lupo_agent_files.md"
+  last_modified_utc: "20260328013000"
+  channel_id: 42
+  actor_id: 23
+  actor_name: "hephaestus"
+  delegation_chain: "wolfie:hephaestus"
+  artifact_type: "documentation"
+  artifact_kind: "table"
+  namespace: "core"
+  purpose: "Normalized table documentation for lupo_agent_files from TOON JSON"
   tags:
   - database
-  - agents
-  - files
-  lupo_agent: cursor
-  when_updated: '20260324174654'
+  - table
+  - normalized
+  - 4.0.88
 lupopedia.edges:
+  comment: "static placeholder edges for stage3 normalization"
   outbound_edges:
-  - to: lupo-database/lupopedia/toon/lupo_agent_files.toon.json
-    type: schema_reference
+  - to: "lupo-database/lupopedia/json/lupo_agent_files.json"
+    type: "references"
     weight: 1.0
-  - to: lupo-docs/database/lupopedia/tables/active/lupo_agents.md
-    type: references
-    weight: 0.9
+    reason: "authoritative TOON JSON source"
 lupopedia.footer:
-  last_verified: '20260312000000'
-  last_verified_by: cursor
-  last_verified_by_actor_id: 102
-  orchestrator: cursor:root
+  last_verified: "20260328013000"
+  last_verified_by: "hephaestus"
+  last_verified_by_actor_id: 23
+  generated: true
+  provenance: "stage3_track_c_normalization"
 ---
+# file: lupo_agent_files.md
 
-# Table: lupo_agent_files
+# lupo_agent_files
 
-## Table Overview
+## Purpose
+Canonical table documentation normalized from TOON JSON for `lupo_agent_files`.
 
-- **Purpose:** File registry per agent: file_type, file_name, file_path, file_hash, file_size, mime_type, upload_ymdhis, and optional migrated_from_directory. Soft-delete supported.
-- **Category:** Agent / Files
-- **Status:** Active
-- **Version introduced:** 4.0.0
+## Schema
 
-## Column Documentation
+### Primary Key
+(none)
 
-| Column | Type | Nullable | Default | Description |
-|--------|------|----------|---------|-------------|
-| file_id | bigint | No | — | Primary key. |
-| agent_id | bigint | No | — | Agent (logical → lupo_agents.agent_id). |
-| file_type | varchar(50) | No | — | File type code. |
-| file_name | varchar(255) | No | — | File name. |
-| file_path | varchar(500) | No | — | Path. |
-| file_hash | varchar(64) | No | — | Content hash. |
-| file_size | bigint | No | — | Size in bytes. |
-| mime_type | varchar(100) | Yes | — | MIME type. |
-| upload_ymdhis | bigint | No | — | Upload timestamp. |
-| created_ymdhis | bigint | No | 0 | Row creation. |
-| updated_ymdhis | bigint | No | — | Last update. |
-| is_deleted | tinyint | No | 0 | Soft-delete flag. |
-| deleted_ymdhis | bigint | Yes | — | Soft-delete timestamp. |
-| migrated_from_directory | varchar(255) | Yes | — | Migration source. |
+### Columns
 
-## Relationships
+| Column | Type Definition |
+|---|---|
+| `file_id` | `bigint NOT NULL` |
+| `agent_id` | `bigint NOT NULL` |
+| `file_type` | `varchar(50) NOT NULL` |
+| `file_name` | `varchar(255) NOT NULL` |
+| `file_path` | `varchar(500) NOT NULL` |
+| `file_hash` | `varchar(64) NOT NULL` |
+| `file_size` | `bigint NOT NULL` |
+| `mime_type` | `varchar(100)` |
+| `upload_ymdhis` | `bigint NOT NULL` |
+| `created_ymdhis` | `bigint NOT NULL DEFAULT 0` |
+| `updated_ymdhis` | `bigint NOT NULL` |
+| `is_deleted` | `tinyint NOT NULL DEFAULT 0` |
+| `deleted_ymdhis` | `bigint` |
+| `migrated_from_directory` | `varchar(255)` |
 
-- **Logical references:** agent_id → lupo_agents.agent_id.
-- **Inbound:** Agent file upload and migration.
-- **Join patterns:** By agent_id, file_hash, file_type, is_deleted, upload_ymdhis.
+### Indexes
 
-## Usage Notes
+| Index | Columns | Unique |
+|---|---|---|
+| `lupo_agent_files_idx_agent_id` | `agent_id` | no |
+| `lupo_agent_files_idx_file_hash` | `file_hash` | no |
+| `lupo_agent_files_idx_file_type` | `file_type` | no |
+| `lupo_agent_files_idx_is_deleted` | `is_deleted` | no |
+| `lupo_agent_files_idx_upload_ymdhis` | `upload_ymdhis` | no |
 
-- **Indexes:** agent_id, file_hash, file_type, is_deleted, upload_ymdhis.
-- **Timestamps:** BIGINT YYYYMMDDHHIISS UTC.
+## Doctrine
+- Source of truth: `lupo-database/lupopedia/json/` TOON exports
+- Regeneration mode: Stage 3 deterministic normalization
+- Edge mode: placeholder baseline

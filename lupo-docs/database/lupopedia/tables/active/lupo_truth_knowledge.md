@@ -1,121 +1,125 @@
 ---
 lupopedia.headers:
-  lupopedia.schema: database_table
-  file_path_from_root: lupo-docs/database/lupopedia/tables/active/lupo_truth_knowledge.md
-  web_path: '[lupo_truth_knowledge](http://www.lupopedia.com/database/lupopedia/tables/active/lupo_truth_knowledge)'
-  last_modified_utc: '20260317'
+  when_updated: "20260328013000"
+  file_path_from_root: "lupo-docs/database/lupopedia/tables/active/lupo_truth_knowledge.md"
+  last_modified_utc: "20260328013000"
   channel_id: 42
-  actor_id: 1
-  actor_name: wolfie
-  delegation_chain: wolfie:root
-  artifact_type: table_documentation
-  artifact_kind: table
-  namespace: truth
-  purpose: Knowledge base and truth management; stores verified facts, knowledge entities,
-    and semantic relationships
+  actor_id: 23
+  actor_name: "hephaestus"
+  delegation_chain: "wolfie:hephaestus"
+  artifact_type: "documentation"
+  artifact_kind: "table"
+  namespace: "core"
+  purpose: "Normalized table documentation for lupo_truth_knowledge from TOON JSON"
   tags:
   - database
   - table
-  - truth
-  when_updated: '20260324174654'
+  - normalized
+  - 4.0.88
 lupopedia.edges:
-  comment: Snapshot of edges for lupo_truth_knowledge table doc at 4.0.79 (grounded
-    by repo search; non-exhaustive).
-  meta: php_hits=1 python_hits=1
+  comment: "static placeholder edges for stage3 normalization"
   outbound_edges:
-  - to: database.table.lupo_truth_knowledge
-    type: DEFINES_SCHEMA_FOR
+  - to: "lupo-database/lupopedia/json/lupo_truth_knowledge.json"
+    type: "references"
     weight: 1.0
-  - to: lupo-database/lupopedia/mysql/install/install_new_lupopedia.sql
-    type: schema_reference
-    weight: 1.0
-  - to: lupo-includes/modules/truth/truth-model.php
-    type: USED_IN_PHP
-    weight: 0.9
+    reason: "authoritative TOON JSON source"
 lupopedia.footer:
-  last_verified: '20260317000000'
-  last_verified_by: cursor
-  last_verified_by_actor_id: 102
-  orchestrator: cursor:root
+  last_verified: "20260328013000"
+  last_verified_by: "hephaestus"
+  last_verified_by_actor_id: 23
+  generated: true
+  provenance: "stage3_track_c_normalization"
 ---
-# file: lupo_truth_knowledge — session: L-LUPO-ROOT-WOLFIE — delegation: wolfie:root — web_path: http://www.lupopedia.com/database/lupopedia/tables/active/lupo_truth_knowledge
+# file: lupo_truth_knowledge.md
 
-# file: lupo_truth_knowledge ? web_path: http://www.lupopedia.com/database/lupopedia/tables/active/lupo_truth_knowledge
-# Table: lupo_truth_knowledge
+# lupo_truth_knowledge
 
-## Table Overview
-- purpose: Knowledge graph truth entities (questions, answers, evidence, sources, relations).
-- category: active
-- status: active (present in current TOON and install schema)
-- version introduced: not explicitly documented in TOON/install comments
-- version deprecated: not applicable
-- removal notes: not applicable
-- migration references: none found in migration docs scanned
+## Purpose
+Canonical table documentation normalized from TOON JSON for `lupo_truth_knowledge`.
 
-## Column Documentation
-| Column | Type | Nullability | Default | Description |
-|---|---|---|---|---|
-| truth_id | bigint | NOT NULL | none/unspecified | TOON-defined field; canonical semantic description not specified in TOON. |
-| truth_type | varchar(32) | NOT NULL | none/unspecified | TOON-defined field; canonical semantic description not specified in TOON. |
-| parent_id | bigint | Nullable/unspecified | none/unspecified | TOON-defined field; canonical semantic description not specified in TOON. |
-| question_id | bigint | Nullable/unspecified | none/unspecified | TOON-defined field; canonical semantic description not specified in TOON. |
-| answer_id | bigint | Nullable/unspecified | none/unspecified | TOON-defined field; canonical semantic description not specified in TOON. |
-| evidence_id | bigint | Nullable/unspecified | none/unspecified | TOON-defined field; canonical semantic description not specified in TOON. |
-| source_id | bigint | Nullable/unspecified | none/unspecified | TOON-defined field; canonical semantic description not specified in TOON. |
-| topic_id | bigint | Nullable/unspecified | none/unspecified | TOON-defined field; canonical semantic description not specified in TOON. |
-| relation_id | bigint | Nullable/unspecified | none/unspecified | TOON-defined field; canonical semantic description not specified in TOON. |
-| actor_id | bigint | NOT NULL | 0 | TOON-defined field; canonical semantic description not specified in TOON. |
-| object_type | varchar(50) | Nullable/unspecified | none/unspecified | TOON-defined field; canonical semantic description not specified in TOON. |
-| object_id | bigint | Nullable/unspecified | none/unspecified | TOON-defined field; canonical semantic description not specified in TOON. |
-| left_object_type | varchar(50) | Nullable/unspecified | none/unspecified | TOON-defined field; canonical semantic description not specified in TOON. |
-| left_object_id | bigint | Nullable/unspecified | none/unspecified | TOON-defined field; canonical semantic description not specified in TOON. |
-| right_object_type | varchar(50) | Nullable/unspecified | none/unspecified | TOON-defined field; canonical semantic description not specified in TOON. |
-| right_object_id | bigint | Nullable/unspecified | none/unspecified | TOON-defined field; canonical semantic description not specified in TOON. |
-| slug | varchar(255) | Nullable/unspecified | none/unspecified | TOON-defined field; canonical semantic description not specified in TOON. |
-| title | varchar(255) | Nullable/unspecified | none/unspecified | TOON-defined field; canonical semantic description not specified in TOON. |
-| text_content | text | Nullable/unspecified | none/unspecified | TOON-defined field; canonical semantic description not specified in TOON. |
-| question_text | text | Nullable/unspecified | none/unspecified | TOON-defined field; canonical semantic description not specified in TOON. |
-| answer_text | text | Nullable/unspecified | none/unspecified | TOON-defined field; canonical semantic description not specified in TOON. |
-| evidence_text | text | Nullable/unspecified | none/unspecified | TOON-defined field; canonical semantic description not specified in TOON. |
-| source_url | text | Nullable/unspecified | none/unspecified | TOON-defined field; canonical semantic description not specified in TOON. |
-| source_title | varchar(255) DEFAULT | Nullable/unspecified | none/unspecified | TOON-defined field; canonical semantic description not specified in TOON. |
-| qtype | varchar(50) | Nullable/unspecified | ''unknown | TOON-defined field; canonical semantic description not specified in TOON. |
-| status | varchar(64) | Nullable/unspecified | ''active | TOON-defined field; canonical semantic description not specified in TOON. |
-| evidence_type | varchar(50) DEFAULT | Nullable/unspecified | none/unspecified | TOON-defined field; canonical semantic description not specified in TOON. |
-| source_type | varchar(50) DEFAULT | Nullable/unspecified | none/unspecified | TOON-defined field; canonical semantic description not specified in TOON. |
-| relation_type | varchar(50) DEFAULT | Nullable/unspecified | none/unspecified | TOON-defined field; canonical semantic description not specified in TOON. |
-| format | varchar(64) | Nullable/unspecified | ''text | TOON-defined field; canonical semantic description not specified in TOON. |
-| format_override | varchar(50) | Nullable/unspecified | none/unspecified | TOON-defined field; canonical semantic description not specified in TOON. |
-| confidence_score | decimal(5,2) | Nullable/unspecified | 0.00 | TOON-defined field; canonical semantic description not specified in TOON. |
-| evidence_score | decimal(5,2) | Nullable/unspecified | 0.00 | TOON-defined field; canonical semantic description not specified in TOON. |
-| weight_score | decimal(5,2) | Nullable/unspecified | 0.00 | TOON-defined field; canonical semantic description not specified in TOON. |
-| reliability_score | decimal(5,2) | Nullable/unspecified | 0.00 | TOON-defined field; canonical semantic description not specified in TOON. |
-| importance_score | decimal(5,2) | Nullable/unspecified | 0.00 | TOON-defined field; canonical semantic description not specified in TOON. |
-| sort_num | int | Nullable/unspecified | 0 | TOON-defined field; canonical semantic description not specified in TOON. |
-| view_count | bigint | Nullable/unspecified | 0 | TOON-defined field; canonical semantic description not specified in TOON. |
-| likes_count | bigint | Nullable/unspecified | 0 | TOON-defined field; canonical semantic description not specified in TOON. |
-| shares_count | bigint | Nullable/unspecified | 0 | TOON-defined field; canonical semantic description not specified in TOON. |
-| answer_count | bigint | Nullable/unspecified | 0 | TOON-defined field; canonical semantic description not specified in TOON. |
-| contradiction_flag | tinyint | Nullable/unspecified | 0 | TOON-defined field; canonical semantic description not specified in TOON. |
-| is_featured | tinyint | Nullable/unspecified | 0 | TOON-defined field; canonical semantic description not specified in TOON. |
-| is_verified | tinyint | Nullable/unspecified | 0 | TOON-defined field; canonical semantic description not specified in TOON. |
-| last_activity_ymdhis | bigint | Nullable/unspecified | none/unspecified | TOON-defined field; canonical semantic description not specified in TOON. |
-| default_collection_id | bigint | Nullable/unspecified | 0 | TOON-defined field; canonical semantic description not specified in TOON. |
-| created_ymdhis | bigint | NOT NULL | 0 | TOON-defined field; canonical semantic description not specified in TOON. |
-| updated_ymdhis | bigint | NOT NULL | none/unspecified | TOON-defined field; canonical semantic description not specified in TOON. |
-| is_deleted | tinyint | NOT NULL | 0 | TOON-defined field; canonical semantic description not specified in TOON. |
-| deleted_ymdhis | bigint | Nullable/unspecified | none/unspecified | TOON-defined field; canonical semantic description not specified in TOON. |
-| truth_question_parent_id | bigint | Nullable/unspecified | none/unspecified | TOON-defined field; canonical semantic description not specified in TOON. |
+## Schema
 
-## Relationships
-- foreign keys: none (database doctrine forbids foreign keys)
-- inbound references: no canonical inbound reference list found in TOON
-- outbound references: No foreign keys or explicit relationships in TOON (`relationships: []`).
-- join patterns: Self-joins by `parent_id`; joins to `lupo_truth_answers` via question/answer id paths.
+### Primary Key
+(none)
 
-## Usage Notes
-- migration notes: TOON and install schema are aligned for this table name.
-- compatibility notes: current schema uses BIGINT timestamp doctrine and soft-delete patterns where present.
-- warnings: avoid assuming implicit constraints; use doctrine that logic is application-side.
-- future considerations: if additional relationships are introduced, document via TOON updates first.
-- historical changes if updating existing docs: existing flat documentation was retained; this file is the category-structured canonical doc for this domain pass.
+### Columns
+
+| Column | Type Definition |
+|---|---|
+| `truth_id` | `bigint NOT NULL` |
+| `truth_type` | `varchar(32) NOT NULL` |
+| `parent_id` | `bigint` |
+| `question_id` | `bigint` |
+| `answer_id` | `bigint` |
+| `evidence_id` | `bigint` |
+| `source_id` | `bigint` |
+| `topic_id` | `bigint` |
+| `relation_id` | `bigint` |
+| `actor_id` | `bigint NOT NULL DEFAULT 0` |
+| `object_type` | `varchar(50)` |
+| `object_id` | `bigint` |
+| `left_object_type` | `varchar(50)` |
+| `left_object_id` | `bigint` |
+| `right_object_type` | `varchar(50)` |
+| `right_object_id` | `bigint` |
+| `slug` | `varchar(255)` |
+| `title` | `varchar(255)` |
+| `text_content` | `text` |
+| `question_text` | `text` |
+| `answer_text` | `text` |
+| `evidence_text` | `text` |
+| `source_url` | `text` |
+| `source_title` | `varchar(255) DEFAULT ''` |
+| `qtype` | `varchar(50) DEFAULT 'unknown'` |
+| `status` | `varchar(64) DEFAULT 'active'` |
+| `evidence_type` | `varchar(50) DEFAULT ''` |
+| `source_type` | `varchar(50) DEFAULT ''` |
+| `relation_type` | `varchar(50) DEFAULT ''` |
+| `format` | `varchar(64) DEFAULT 'text'` |
+| `format_override` | `varchar(50)` |
+| `confidence_score` | `decimal(5,2) DEFAULT 0.00` |
+| `evidence_score` | `decimal(5,2) DEFAULT 0.00` |
+| `weight_score` | `decimal(5,2) DEFAULT 0.00` |
+| `reliability_score` | `decimal(5,2) DEFAULT 0.00` |
+| `importance_score` | `decimal(5,2) DEFAULT 0.00` |
+| `sort_num` | `int DEFAULT 0` |
+| `view_count` | `bigint DEFAULT 0` |
+| `likes_count` | `bigint DEFAULT 0` |
+| `shares_count` | `bigint DEFAULT 0` |
+| `answer_count` | `bigint DEFAULT 0` |
+| `contradiction_flag` | `tinyint DEFAULT 0` |
+| `is_featured` | `tinyint DEFAULT 0` |
+| `is_verified` | `tinyint DEFAULT 0` |
+| `last_activity_ymdhis` | `bigint` |
+| `default_collection_id` | `bigint DEFAULT 0` |
+| `created_ymdhis` | `bigint NOT NULL DEFAULT 0` |
+| `updated_ymdhis` | `bigint NOT NULL` |
+| `is_deleted` | `tinyint NOT NULL DEFAULT 0` |
+| `deleted_ymdhis` | `bigint` |
+| `truth_question_parent_id` | `bigint` |
+
+### Indexes
+
+| Index | Columns | Unique |
+|---|---|---|
+| `lupo_truth_knowledge_idx_actor` | `actor_id` | no |
+| `lupo_truth_knowledge_idx_answer` | `answer_id` | no |
+| `lupo_truth_knowledge_idx_created_ymdhis` | `created_ymdhis`, `is_deleted` | no |
+| `lupo_truth_knowledge_idx_evidence` | `evidence_id` | no |
+| `lupo_truth_knowledge_idx_is_deleted` | `is_deleted` | no |
+| `lupo_truth_knowledge_idx_left_object` | `left_object_type`, `left_object_id` | no |
+| `lupo_truth_knowledge_idx_object` | `object_type`, `object_id` | no |
+| `lupo_truth_knowledge_idx_parent` | `parent_id` | no |
+| `lupo_truth_knowledge_idx_question` | `question_id` | no |
+| `lupo_truth_knowledge_idx_right_object` | `right_object_type`, `right_object_id` | no |
+| `lupo_truth_knowledge_idx_source` | `source_id` | no |
+| `lupo_truth_knowledge_idx_status` | `status` | no |
+| `lupo_truth_knowledge_idx_topic` | `topic_id` | no |
+| `lupo_truth_knowledge_idx_type` | `truth_type` | no |
+| `lupo_truth_knowledge_idx_updated_ymdhis` | `updated_ymdhis` | no |
+| `lupo_truth_knowledge_uk_type_slug` | `truth_type`, `slug` | yes |
+
+## Doctrine
+- Source of truth: `lupo-database/lupopedia/json/` TOON exports
+- Regeneration mode: Stage 3 deterministic normalization
+- Edge mode: placeholder baseline

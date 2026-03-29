@@ -1,10 +1,11 @@
 ﻿---
+
 lupopedia.headers:
   lupopedia.version: "4.0.88"
   lupopedia.schema: "changelog"
   file_path_from_root: "lupo-docs/versions/4.0.88/CHANGELOG.md"
   web_path: "http://www.lupopedia.com/lupopedia/lupo-docs/versions/4.0.88/CHANGELOG.md"
-  last_modified_utc: "20260327"
+  last_modified_utc: "20260327220000"
   system_version: "4.0.88"
   channel_id: 42
   thread_id: "2007"
@@ -29,9 +30,11 @@ lupopedia.edges:
     - { to: "lupo-channels/42/threads/2007/20260327_235500_hephaestus_phase2_execution_started_and_completed.md", type: "records", weight: 1.0 }
     - { to: "lupo-channels/42/threads/2007/20260327_235900_thoth_post_phase2_semantic_validation.md", type: "records", weight: 1.0 }
     - { to: "lupo-channels/42/threads/2007/20260328_003500_hephaestus_thoth_stage3_track_a_b_execution_report.md", type: "records", weight: 1.0 }
+    - { to: "lupo-channels/42/broadcasts/20260327_215700_wolfie_laravel_composer_audit_complete.md", type: "records", weight: 0.95 }
+    - { to: "lupo-channels/42/broadcasts/20260327_210500_wolfie_external_libraries_doctrine_clarified.md", type: "records", weight: 0.95 }
 
 lupopedia.footer:
-  last_verified: "20260327"
+  last_verified: "20260327220000"
   verified_by:
     identity_type: "actor"
     actor_id: 102
@@ -51,6 +54,56 @@ Status: in-progress checkpoint
 Previous version: 4.0.87
 
 ## Chronological Change Record
+
+### 2026-03-27 - PHP 5.6+ Compatibility & Doctrine Enforcement
+
+Completed:
+1. **PHP Version Compatibility Doctrine** - Created comprehensive PHP 5.6+ compatibility rules
+   - Forbidden: PHP 7+ features (`??`, `<=>`, type hints, anonymous classes)
+   - Required: Polyfills for `random_bytes()`, `random_int()`
+   - Location: `lupo-rules/root/PHP_VERSION_COMPATIBILITY.md`
+
+2. **No Composer Doctrine** - Updated to clarify relationship with external libraries
+   - Forbidden: Composer, `vendor/` directory, `composer.json`
+   - Permitted: Self-contained libraries in `lupo-includes/` per EXTERNAL_LIBRARIES_DOCTRINE
+   - Location: `lupo-rules/root/NO_COMPOSER_DOCTRINE.md`
+
+3. **No Framework Doctrine** - Created doctrine forbidding Laravel/Symfony frameworks
+   - Forbidden: Laravel, Symfony, CodeIgniter frameworks
+   - Forbidden: Blade templates (`@extends`, `@section`, `{{ }}`)
+   - Location: `lupo-rules/root/NO_FRAMEWORK_DOCTRINE.md`
+
+4. **Shared Hosting Doctrine** - Created shared hosting compatibility requirements
+   - Must work in subdirectories, no shell commands, 64MB memory limit
+   - Use `LUPOPEDIA_PUBLIC_PATH` constant for all URLs
+   - Location: `lupo-rules/root/SHARED_HOSTING_DOCTRINE.md`
+
+5. **External Libraries Doctrine** - Created doctrine permitting self-contained libraries
+   - Permitted: Self-contained libraries in `lupo-includes/{library-name}/`
+   - Examples: PHPMailer (approved), TCPDF, SimplePie
+   - Location: `lupo-rules/root/EXTERNAL_LIBRARIES_DOCTRINE.md`
+
+6. **Laravel/Composer Violation Audit** - Comprehensive audit completed
+   - Found 2 Laravel Blade template files requiring conversion
+   - Created violation report: `lupo-docs/versions/4.0.89/COMPOSER_VIOLATIONS.md`
+   - Broadcast: `lupo-channels/42/broadcasts/20260327_215700_wolfie_laravel_composer_audit_complete.md`
+
+7. **Root Rules Documentation Overhaul** - Complete rewrite of rules documentation
+   - Root Rules README: Comprehensive index of all 29+ rules
+   - Main README: Added development rules section and quick checklist
+   - ONBOARDING: Added comprehensive development constraints section
+   - Rules Summary: `lupo-docs/status/LUPOPEDIA_RULES_COMPREHENSIVE_SUMMARY.md`
+
+8. **PHPMailer Integration & Compliance**
+   - Verified PHPMailer as self-contained and compliant
+   - Created EmailService wrapper for production use
+   - Created PHP 5.6 polyfills for compatibility
+
+Validated:
+1. All code must follow PHP 5.6+ compatibility
+2. No Composer or framework dependencies allowed
+3. External libraries must be self-contained in `lupo-includes/`
+4. Shared hosting compatibility is mandatory
 
 ### 2026-03-27 - Organization pass and canonical thread integration
 

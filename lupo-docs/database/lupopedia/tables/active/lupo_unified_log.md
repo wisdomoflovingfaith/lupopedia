@@ -1,93 +1,78 @@
 ---
 lupopedia.headers:
-  lupopedia.schema: database_table
-  file_path_from_root: lupo-docs/database/lupopedia/tables/active/lupo_unified_log.md
-  web_path: '[lupo_unified_log](http://www.lupopedia.com/database/lupopedia/tables/active/lupo_unified_log)'
-  last_modified_utc: '20260317'
+  when_updated: "20260328013000"
+  file_path_from_root: "lupo-docs/database/lupopedia/tables/active/lupo_unified_log.md"
+  last_modified_utc: "20260328013000"
   channel_id: 42
-  actor_id: 102
-  actor_name: cursor
-  delegation_chain: cursor:root
-  artifact_type: table_documentation
-  artifact_kind: table
-  namespace: analytics
-  purpose: Unified logging table for system events and audit-relevant records across
-    subsystems.
+  actor_id: 23
+  actor_name: "hephaestus"
+  delegation_chain: "wolfie:hephaestus"
+  artifact_type: "documentation"
+  artifact_kind: "table"
+  namespace: "core"
+  purpose: "Normalized table documentation for lupo_unified_log from TOON JSON"
   tags:
   - database
   - table
-  - analytics
-  when_updated: '20260324174654'
+  - normalized
+  - 4.0.88
 lupopedia.edges:
-  comment: Snapshot of edges for lupo_unified_log table doc at 4.0.79 (grounded by
-    repo search; non-exhaustive).
-  meta: php_hits=0 python_hits=0
+  comment: "static placeholder edges for stage3 normalization"
   outbound_edges:
-  - to: database.table.lupo_unified_log
-    type: DEFINES_SCHEMA_FOR
+  - to: "lupo-database/lupopedia/json/lupo_unified_log.json"
+    type: "references"
     weight: 1.0
-  - to: lupo-database/lupopedia/mysql/install/install_new_lupopedia.sql
-    type: schema_reference
-    weight: 1.0
-  - to: (no_php_refs_found)
-    type: USED_IN_PHP
-    weight: 0.0
-  - to: (no_python_refs_found)
-    type: USED_IN_PYTHON
-    weight: 0.0
+    reason: "authoritative TOON JSON source"
 lupopedia.footer:
-  last_verified: '20260317000000'
-  last_verified_by: cursor
-  last_verified_by_actor_id: 102
-  orchestrator: cursor:root
+  last_verified: "20260328013000"
+  last_verified_by: "hephaestus"
+  last_verified_by_actor_id: 23
+  generated: true
+  provenance: "stage3_track_c_normalization"
 ---
-# file: lupo_unified_log ? web_path: http://www.lupopedia.com/database/lupopedia/tables/active/lupo_unified_log
-# Table: lupo_unified_log
+# file: lupo_unified_log.md
 
-## Table Overview
+# lupo_unified_log
 
-- **Purpose:** Unified logging table for system events and audit-relevant records across subsystems.
-- **Status:** Active (in install_new_lupopedia.sql)
-- **Primary key:** `log_id`
+## Purpose
+Canonical table documentation normalized from TOON JSON for `lupo_unified_log`.
 
-## Where This Table Is Used
+## Schema
 
-- This section is grounded by `USED_IN_PHP` / `USED_IN_PYTHON` edges in the header (populated by repo search).
+### Primary Key
+(none)
 
-## Column Documentation
+### Columns
 
-| Column | Type | Nullable | Default | Description |
-|--------|------|----------|---------|-------------|
-| log_id | bigint | No | ? | Primary key. |
-| log_type | varchar(64) | No | ? |  |
-| log_level | varchar(32) | No | 'info' |  |
-| log_message | text | No | ? |  |
-| log_context | json | No | ? |  |
-| actor_id | bigint | Yes | NULL |  |
-| channel_id | bigint | Yes | NULL |  |
-| session_id | varchar(128) | Yes | NULL |  |
-| ip_address | varchar(45) | Yes | NULL |  |
-| user_agent | text | No | ? |  |
-| created_ymdhis | bigint | No | ? |  |
+| Column | Type Definition |
+|---|---|
+| `log_id` | `bigint NOT NULL auto_increment` |
+| `log_type` | `varchar(64) NOT NULL` |
+| `log_level` | `varchar(32) NOT NULL DEFAULT 'info'` |
+| `log_message` | `text NOT NULL` |
+| `log_context` | `json` |
+| `actor_id` | `bigint` |
+| `channel_id` | `bigint` |
+| `session_id` | `varchar(128)` |
+| `ip_address` | `varchar(45)` |
+| `user_agent` | `text` |
+| `created_ymdhis` | `bigint NOT NULL` |
 
-## Indexes
+### Indexes
 
-- **PRIMARY KEY:** log_id
-- **INDEX:** lupo_unified_log_idx_actor_id (actor_id)
-- **INDEX:** lupo_unified_log_idx_channel_id (channel_id)
-- **INDEX:** lupo_unified_log_idx_created_ymdhis (created_ymdhis)
-- **INDEX:** lupo_unified_log_idx_log_level (log_level)
-- **INDEX:** lupo_unified_log_idx_log_type (log_type)
-- **INDEX:** lupo_unified_log_idx_session_id (session_id)
-- **INDEX:** lupo_unified_log_idx_actor_log (actor_id, log_type)
-- **INDEX:** lupo_unified_log_idx_channel_log (channel_id, log_type)
-- **INDEX:** lupo_unified_log_idx_log_type_created (log_type, created_ymdhis)
+| Index | Columns | Unique |
+|---|---|---|
+| `lupo_unified_log_idx_actor_id` | `actor_id` | no |
+| `lupo_unified_log_idx_actor_log` | `actor_id`, `log_type` | no |
+| `lupo_unified_log_idx_channel_id` | `channel_id` | no |
+| `lupo_unified_log_idx_channel_log` | `channel_id`, `log_type` | no |
+| `lupo_unified_log_idx_created_ymdhis` | `created_ymdhis` | no |
+| `lupo_unified_log_idx_log_level` | `log_level` | no |
+| `lupo_unified_log_idx_log_type` | `log_type` | no |
+| `lupo_unified_log_idx_log_type_created` | `log_type`, `created_ymdhis` | no |
+| `lupo_unified_log_idx_session_id` | `session_id` | no |
 
-## Relationships
-
-- **Logical references only (no DB FKs):** Identify referencing columns by name and usage in code; enforce integrity in application code.
-
-## Doctrine notes
-
-- No foreign keys, triggers, procedures, views, or computed columns. All logic in PHP.
-- All timestamps are BIGINT UTC YYYYMMDDHHIISS and are written by application code.
+## Doctrine
+- Source of truth: `lupo-database/lupopedia/json/` TOON exports
+- Regeneration mode: Stage 3 deterministic normalization
+- Edge mode: placeholder baseline

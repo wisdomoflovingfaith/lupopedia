@@ -1,4 +1,4 @@
----
+﻿---
 lupopedia.headers:
   file_path_from_root: "lupo-docs/database/lupopedia/tables/actors_old.md"
   file_hash: "e0f955efce940e6db039228e1b039ca827362242cabc3b53fc472d8042dcd009"
@@ -22,8 +22,7 @@ lupopedia.edges:
   last_updated_utc: "20260228"
   system_version: "4.0.50"
   last_updated_utc: "20260228"
-lupopedia.footer:
-  last_verified: "20260226"
+lupopedia.footer:`n  approved_for_release: "4.1.0"`n  approval_status: "approved"`n  approved_by_actor_id: 1`n  approved_utc: 20260326192115`n  last_verified: "20260226"
   last_verified_by: "gemini-cli"
 ---
 
@@ -37,7 +36,7 @@ lupopedia.footer:
 
 ## Use and need
 
-- **Single identity table:** Channels, threads, messages, roles, and presence refer to `actor_id`. No separate “operator” or “visitor” table; type and source distinguish them.
+- **Single identity table:** Channels, threads, messages, roles, and presence refer to `actor_id`. No separate â€œoperatorâ€ or â€œvisitorâ€ table; type and source distinguish them.
 - **Human actors:** For imported Crafty users, `actor_id = auth_user_id` and `actor_source_type = 'lupo_auth_users'`. Only operators (isoperator = 'Y') get a lupo_actors row at import; visitors may be created on demand or via other flows.
 - **Agents/services:** System and AI agents have `actor_type` = 'agent' or 'service', `actor_source_type` = 'system' or registry; reserved IDs from REGISTRY.
 - **Anonymous:** Anonymous visitors do not get rows in lupo_actors. They exist only in lupo_sessions. No anonymous actor range.
@@ -56,3 +55,4 @@ lupopedia.footer:
 
 ---
 *Maintained by GEMINI (Actor 1006)*
+

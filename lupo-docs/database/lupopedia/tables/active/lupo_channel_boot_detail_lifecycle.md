@@ -1,83 +1,72 @@
 ---
 lupopedia.headers:
-  file_path_from_root: lupo-docs/database/lupopedia/tables/active/lupo_channel_boot_detail_lifecycle.md
+  when_updated: "20260328013000"
+  file_path_from_root: "lupo-docs/database/lupopedia/tables/active/lupo_channel_boot_detail_lifecycle.md"
+  last_modified_utc: "20260328013000"
   channel_id: 42
-  actor_id: 1003
-  last_modified_utc: '20260303'
-  artifact_type: table_documentation
-  purpose: "Channel boot detail lifecycle \u2014 per-channel boot phase details (content\
-    \ load, duration, status)"
-  traits:
-  - database
-  - table
-  - channel
-  - cursor
+  actor_id: 23
+  actor_name: "hephaestus"
+  delegation_chain: "wolfie:hephaestus"
+  artifact_type: "documentation"
+  artifact_kind: "table"
+  namespace: "channels"
+  purpose: "Normalized table documentation for lupo_channel_boot_detail_lifecycle from TOON JSON"
   tags:
   - database
   - table
-  - lupo_channel_boot_detail_lifecycle
-  - channel
-  - boot
-  lupo_agent: cursor
-  when_updated: '20260324174654'
+  - normalized
+  - 4.0.88
 lupopedia.edges:
+  comment: "static placeholder edges for stage3 normalization"
   outbound_edges:
-  - to: lupo-database/lupopedia/toon/lupo_channel_boot_detail_lifecycle.toon.json
-    type: schema_reference
+  - to: "lupo-database/lupopedia/json/lupo_channel_boot_detail_lifecycle.json"
+    type: "references"
     weight: 1.0
-  - to: lupo-docs/database/lupopedia/tables/lupo_channel_boot_log.md
-    type: references
-    weight: 0.9
-  - to: lupo-docs/database/lupopedia/tables/lupo_channels.md
-    type: references
-    weight: 0.8
-  semantic_tags:
-  - channel
-  - boot
-  - lifecycle
+    reason: "authoritative TOON JSON source"
 lupopedia.footer:
-  last_verified_utc: '20260303'
-  last_verified_by: cursor
-  last_verified: '20260324174654'
-  last_verified_by_actor_id: 102
-  orchestrator: cursor:root
+  last_verified: "20260328013000"
+  last_verified_by: "hephaestus"
+  last_verified_by_actor_id: 23
+  generated: true
+  provenance: "stage3_track_c_normalization"
 ---
+# file: lupo_channel_boot_detail_lifecycle.md
 
-# Database Documentation: lupo_channel_boot_detail_lifecycle
+# lupo_channel_boot_detail_lifecycle
 
-**Version:** 4.0.56  
-**Date:** 2026-03-03
+## Purpose
+Canonical table documentation normalized from TOON JSON for `lupo_channel_boot_detail_lifecycle`.
 
-## 1. Overview
+## Schema
 
-The `lupo_channel_boot_detail_lifecycle` table stores fine-grained lifecycle steps for a channel boot (e.g. content loading). Each row is one detail phase: start/end time, status (e.g. started, completed), content items loaded vs total, duration, and optional error message. Links to a parent lifecycle via `lifecycle_id` and to a channel via `channel_id`.
+### Primary Key
+(none)
 
-**Doctrine:** No foreign keys or triggers; application-level linkage to channel boot log and `lupo_channels`.
+### Columns
 
-## 2. Schema (from TOON)
+| Column | Type Definition |
+|---|---|
+| `detail_lifecycle_id` | `bigint NOT NULL auto_increment` |
+| `lifecycle_id` | `bigint NOT NULL` |
+| `channel_id` | `bigint NOT NULL` |
+| `detail_start_time` | `bigint NOT NULL` |
+| `detail_end_time` | `bigint` |
+| `detail_status` | `varchar(64) NOT NULL DEFAULT 'started'` |
+| `content_items_loaded` | `int NOT NULL DEFAULT 0` |
+| `total_content_items` | `int NOT NULL DEFAULT 0` |
+| `detail_duration_ms` | `int` |
+| `error_message` | `text` |
+| `created_ymdhis` | `bigint NOT NULL DEFAULT 0` |
 
-| Column | Type | Description |
-|--------|------|-------------|
-| `detail_lifecycle_id` | bigint NOT NULL | Primary key (auto_increment). |
-| `lifecycle_id` | bigint NOT NULL | Parent boot lifecycle id. |
-| `channel_id` | bigint NOT NULL | Channel being booted. |
-| `detail_start_time` | bigint NOT NULL | When this detail phase started. |
-| `detail_end_time` | bigint | When it ended (null if in progress). |
-| `detail_status` | varchar(64) NOT NULL | e.g. started, completed (default started). |
-| `content_items_loaded` | int NOT NULL | Count of content items loaded (default 0). |
-| `total_content_items` | int NOT NULL | Total expected (default 0). |
-| `detail_duration_ms` | int | Duration in milliseconds. |
-| `error_message` | text | Error if phase failed. |
-| `created_ymdhis` | bigint NOT NULL | Record creation (YmdHis, default 0). |
+### Indexes
 
-## 3. Indexes
+| Index | Columns | Unique |
+|---|---|---|
+| `lupo_channel_boot_detail_lifecycle_fk_detail_lifecycle` | `lifecycle_id` | no |
+| `lupo_channel_boot_detail_lifecycle_idx_channel` | `channel_id` | no |
+| `lupo_channel_boot_detail_lifecycle_idx_status_time` | `detail_status`, `detail_start_time` | no |
 
-- (none in TOON)
-
-## 4. Primary key
-
-- `detail_lifecycle_id`
-
----
-
-*Documentation for TOON: lupo_channel_boot_detail_lifecycle.toon.json. Maintained by Cursor (1003).*
+## Doctrine
+- Source of truth: `lupo-database/lupopedia/json/` TOON exports
+- Regeneration mode: Stage 3 deterministic normalization
+- Edge mode: placeholder baseline

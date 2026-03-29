@@ -76,6 +76,23 @@ function ensure_dir($dir)
     }
 }
 
+/**
+ * Inject timestamp format notice into generated rule files
+ */
+function inject_timestamp_notice($content, $language = 'php')
+{
+    $notice_php = "/**\n * TIMESTAMP NOTICE: Lupopedia uses BIGINT UTC YYYYMMDDHHIISS format.\n * Do NOT use time() or integer arithmetic on timestamps.\n * Use gmdate('YmdHis') for current time.\n * Use DateTime::createFromFormat('YmdHis', \$ts) for manipulation.\n */\n\n";
+    
+    $notice_python = "# TIMESTAMP NOTICE: Lupopedia uses BIGINT UTC YYYYMMDDHHIISS format.\n# Do NOT use time.time() or integer arithmetic on timestamps.\n# Use datetime.utcnow().strftime('%Y%m%d%H%M%S') for current time.\n# Use datetime.strptime(ts, '%Y%m%d%H%M%S') for manipulation.\n\n";
+    
+    if ($language === 'php') {
+        return $notice_php . $content;
+    } elseif ($language === 'python') {
+        return $notice_python . $content;
+    }
+    return $content;
+}
+
 function extract_front_matter_and_body($content)
 {
     $frontMatter = '';

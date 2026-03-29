@@ -1,86 +1,93 @@
 ---
 lupopedia.headers:
-  lupopedia.schema: database_table
-  file_path_from_root: lupo-docs/database/lupopedia/tables/active/lupo_agent_tool_calls.md
-  channel_id: 1
-  actor_id: 102
-  last_modified_utc: '20260312'
-  artifact_type: table_documentation
-  purpose: 'Tool-call log per agent/faucet: tool_name, input/output, tokens, cost,
-    status'
-  mood_rgb: 4169E1
-  traits:
-  - canonical
-  - agent
-  - cursor_domain
-  - v4.0.70
+  when_updated: "20260328013000"
+  file_path_from_root: "lupo-docs/database/lupopedia/tables/active/lupo_agent_tool_calls.md"
+  last_modified_utc: "20260328013000"
+  channel_id: 42
+  actor_id: 23
+  actor_name: "hephaestus"
+  delegation_chain: "wolfie:hephaestus"
+  artifact_type: "documentation"
+  artifact_kind: "table"
+  namespace: "core"
+  purpose: "Normalized table documentation for lupo_agent_tool_calls from TOON JSON"
   tags:
   - database
-  - agents
-  - tool_calls
-  lupo_agent: cursor
-  when_updated: '20260324174654'
+  - table
+  - normalized
+  - 4.0.88
 lupopedia.edges:
+  comment: "static placeholder edges for stage3 normalization"
   outbound_edges:
-  - to: lupo-database/lupopedia/toon/lupo_agent_tool_calls.toon.json
-    type: schema_reference
+  - to: "lupo-database/lupopedia/json/lupo_agent_tool_calls.json"
+    type: "references"
     weight: 1.0
-  - to: lupo-docs/database/lupopedia/tables/active/lupo_agents.md
-    type: references
-    weight: 0.9
-  - to: lupo-docs/database/lupopedia/tables/active/lupo_agent_faucets.md
-    type: references
-    weight: 0.7
+    reason: "authoritative TOON JSON source"
 lupopedia.footer:
-  last_verified: '20260312000000'
-  last_verified_by: cursor
-  last_verified_by_actor_id: 102
-  orchestrator: cursor:root
+  last_verified: "20260328013000"
+  last_verified_by: "hephaestus"
+  last_verified_by_actor_id: 23
+  generated: true
+  provenance: "stage3_track_c_normalization"
 ---
+# file: lupo_agent_tool_calls.md
 
-# Table: lupo_agent_tool_calls
+# lupo_agent_tool_calls
 
-## Table Overview
+## Purpose
+Canonical table documentation normalized from TOON JSON for `lupo_agent_tool_calls`.
 
-- **Purpose:** Audit and metrics for agent tool calls: agent_id, faucet_id, domain_id, tool_name, action_type, input_json, output_json, provider, model_name, token counts, cost_usd, latency_ms, status, error_message, parent_call_id, thread_id, message_id, created_ymdhis, completed_ymdhis.
-- **Category:** Agent / Audit
-- **Status:** Active
-- **Version introduced:** 4.0.0
+## Schema
 
-## Column Documentation
+### Primary Key
+(none)
 
-| Column | Type | Nullable | Default | Description |
-|--------|------|----------|---------|-------------|
-| agent_tool_call_id | bigint | No | — | Primary key. |
-| agent_id | bigint | No | — | Agent (logical → lupo_agents). |
-| faucet_id | bigint | Yes | — | Faucet (logical → lupo_agent_faucets.agent_faucet_id). |
-| domain_id | bigint | No | — | Domain. |
-| tool_name | varchar(150) | No | — | Tool name. |
-| action_type | varchar(100) | Yes | — | Action type. |
-| input_json | text | Yes | — | Input payload. |
-| output_json | text | Yes | — | Output payload. |
-| provider | varchar(50) | Yes | — | Provider. |
-| model_name | varchar(150) | Yes | — | Model name. |
-| tokens_prompt | int | Yes | 0 | Prompt tokens. |
-| tokens_completion | int | Yes | 0 | Completion tokens. |
-| tokens_total | int | Yes | 0 | Total tokens. |
-| cost_usd | decimal(10,6) | Yes | 0 | Cost in USD. |
-| latency_ms | int | Yes | 0 | Latency in ms. |
-| status | varchar(50) | Yes | 'success' | Status. |
-| error_message | text | Yes | — | Error message if failed. |
-| parent_call_id | bigint | Yes | — | Parent tool call. |
-| thread_id | bigint | Yes | — | Thread reference. |
-| message_id | bigint | Yes | — | Message reference. |
-| created_ymdhis | bigint | No | 0 | Creation. |
-| completed_ymdhis | bigint | Yes | — | Completion timestamp. |
+### Columns
 
-## Relationships
+| Column | Type Definition |
+|---|---|
+| `agent_tool_call_id` | `bigint NOT NULL` |
+| `agent_id` | `bigint NOT NULL` |
+| `faucet_id` | `bigint` |
+| `domain_id` | `bigint NOT NULL` |
+| `tool_name` | `varchar(150) NOT NULL` |
+| `action_type` | `varchar(100)` |
+| `input_json` | `text` |
+| `output_json` | `text` |
+| `provider` | `varchar(50)` |
+| `model_name` | `varchar(150)` |
+| `tokens_prompt` | `int DEFAULT 0` |
+| `tokens_completion` | `int DEFAULT 0` |
+| `tokens_total` | `int DEFAULT 0` |
+| `cost_usd` | `decimal(10,6) DEFAULT 0.000000` |
+| `latency_ms` | `int DEFAULT 0` |
+| `status` | `varchar(50) DEFAULT 'success'` |
+| `error_message` | `text` |
+| `parent_call_id` | `bigint` |
+| `thread_id` | `bigint` |
+| `message_id` | `bigint` |
+| `created_ymdhis` | `bigint NOT NULL DEFAULT 0` |
+| `updated_ymdhis` | `bigint NOT NULL DEFAULT 0` |
+| `is_deleted` | `tinyint NOT NULL DEFAULT 0` |
+| `deleted_ymdhis` | `bigint` |
+| `archived_ymdhis` | `bigint DEFAULT 0` |
+| `completed_ymdhis` | `bigint` |
 
-- **Logical references:** agent_id → lupo_agents; faucet_id → lupo_agent_faucets; parent_call_id → same table.
-- **Inbound:** Agent runtime logs tool calls; context snapshots may reference via related_tool_call_id.
-- **Join patterns:** By agent_id, domain_id, faucet_id, message_id, model_name, parent_call_id, provider, thread_id.
+### Indexes
 
-## Usage Notes
+| Index | Columns | Unique |
+|---|---|---|
+| `lupo_agent_tool_calls_idx_agent` | `agent_id` | no |
+| `lupo_agent_tool_calls_idx_agent_created` | `agent_id`, `created_ymdhis` | no |
+| `lupo_agent_tool_calls_idx_domain` | `domain_id` | no |
+| `lupo_agent_tool_calls_idx_faucet` | `faucet_id` | no |
+| `lupo_agent_tool_calls_idx_message` | `message_id` | no |
+| `lupo_agent_tool_calls_idx_model` | `model_name` | no |
+| `lupo_agent_tool_calls_idx_parent` | `parent_call_id` | no |
+| `lupo_agent_tool_calls_idx_provider` | `provider` | no |
+| `lupo_agent_tool_calls_idx_thread` | `thread_id` | no |
 
-- **Indexes:** agent_id, domain_id, faucet_id, message_id, model_name, parent_call_id, provider, thread_id.
-- **Timestamps:** BIGINT YYYYMMDDHHIISS UTC.
+## Doctrine
+- Source of truth: `lupo-database/lupopedia/json/` TOON exports
+- Regeneration mode: Stage 3 deterministic normalization
+- Edge mode: placeholder baseline

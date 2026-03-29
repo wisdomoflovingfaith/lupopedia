@@ -1,4 +1,4 @@
----
+﻿---
 lupopedia.init:
   file_identity: KIRO_HANDOFF_RESPONSE.md
   artifact_type: handoff-response
@@ -115,8 +115,7 @@ lupopedia.edges:
   - kiro
   - cursor
   - coordination
-lupopedia.footer:
-  last_verified: '20260314000000'
+lupopedia.footer:`n  approved_for_release: "4.1.0"`n  approval_status: "approved"`n  approved_by_actor_id: 1`n  approved_utc: 20260326192115`n  last_verified: '20260314000000'
   last_verified_by: cursor
   orchestrator: kiro
   next_action:

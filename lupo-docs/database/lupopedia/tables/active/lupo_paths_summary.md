@@ -1,45 +1,65 @@
-# LUPOPEDIA HEADERS (replaces FLARE)
 ---
 lupopedia.headers:
-  lupopedia.version: "4.0.73"
-  lupopedia.schema: "documentation"
+  when_updated: "20260328013000"
   file_path_from_root: "lupo-docs/database/lupopedia/tables/active/lupo_paths_summary.md"
-  last_modified_utc: "20260312"
-  system_version: "4.0.71"
-  actor_id: 1004
-  lupo_agent: "antigravity"
-  artifact_type: "table_documentation"
-  purpose: "Summary metrics for visitor paths and usage frequency"
+  last_modified_utc: "20260328013000"
+  channel_id: 42
+  actor_id: 23
+  actor_name: "hephaestus"
+  delegation_chain: "wolfie:hephaestus"
+  artifact_type: "documentation"
+  artifact_kind: "table"
   namespace: "core"
-  tags: ["database", "table", "analytics", "semantic_navbar"]
+  purpose: "Normalized table documentation for lupo_paths_summary from TOON JSON"
+  tags:
+  - database
+  - table
+  - normalized
+  - 4.0.88
+lupopedia.edges:
+  comment: "static placeholder edges for stage3 normalization"
+  outbound_edges:
+  - to: "lupo-database/lupopedia/json/lupo_paths_summary.json"
+    type: "references"
+    weight: 1.0
+    reason: "authoritative TOON JSON source"
+lupopedia.footer:
+  last_verified: "20260328013000"
+  last_verified_by: "hephaestus"
+  last_verified_by_actor_id: 23
+  generated: true
+  provenance: "stage3_track_c_normalization"
 ---
+# file: lupo_paths_summary.md
 
-# Table: lupo_paths_summary
+# lupo_paths_summary
 
-## 1. Overview
-The `lupo_paths_summary` table stores aggregated metrics for visitor paths from the `lupo_paths` table. This allows for quick identification of "previous pages" or popular paths for navigation without scanning the full paths log.
+## Purpose
+Canonical table documentation normalized from TOON JSON for `lupo_paths_summary`.
 
-## 2. Schema Reference
+## Schema
 
-| Column | Type | Notes |
+### Primary Key
+(none)
+
+### Columns
+
+| Column | Type Definition |
+|---|---|
+| `summary_id` | `bigint NOT NULL auto_increment` |
+| `path_id` | `bigint NOT NULL` |
+| `total_count` | `bigint NOT NULL DEFAULT 0` |
+| `last_used_ymdhis` | `bigint NOT NULL DEFAULT 0` |
+| `created_ymdhis` | `bigint NOT NULL DEFAULT 0` |
+| `updated_ymdhis` | `bigint NOT NULL DEFAULT 0` |
+
+### Indexes
+
+| Index | Columns | Unique |
 |---|---|---|
-| summary_id | bigint NOT NULL | Primary Key, Auto-increment |
-| path_id | bigint NOT NULL | Reference to `lupo_paths.path_id` |
-| total_count | bigint NOT NULL | Total number of times this path was traversed |
-| last_used_ymdhis | bigint NOT NULL | Last traversal timestamp (YYYYMMDDHHIISS) |
-| created_ymdhis | bigint NOT NULL | Creation timestamp (YYYYMMDDHHIISS) |
-| updated_ymdhis | bigint NOT NULL | Update timestamp (YYYYMMDDHHIISS) |
+| `lupo_paths_summary_idx_path` | `path_id` | no |
 
-## 3. Indexes and Performance
-- `PRIMARY KEY (summary_id)`
-- `CREATE INDEX lupo_paths_summary_idx_path ON lupo_paths_summary (path_id)`
-
-## 4. Usage Patterns
-Used by the Semantic Navbar to list frequently visited or recent paths for the current user/context.
-
-```sql
-SELECT s.*, p.path_url 
-FROM lupo_paths_summary s 
-JOIN lupo_paths p ON s.path_id = p.path_id
-ORDER BY s.last_used_ymdhis DESC LIMIT 10;
-```
+## Doctrine
+- Source of truth: `lupo-database/lupopedia/json/` TOON exports
+- Regeneration mode: Stage 3 deterministic normalization
+- Edge mode: placeholder baseline

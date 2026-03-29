@@ -498,21 +498,6 @@ class FilesystemMigrator:
 
             new_dir = new_full_path.parent
             if not new_dir.exists() and not self.dry_run:
-                new_dir.mkdir(parents=True, exist_ok=True)
-
-            if not self.dry_run and not new_full_path.exists():
-                shutil.copy2(file_path, new_full_path)
-
-            if not self.dry_run:
-                self.insert_channel_file_record(
-                    channel_id, file_type, file_name, new_relative_path,
-                    hash_str, file_size, dir_name
-                )
-
-            files_migrated += 1
-            self.stats['files_migrated'] += 1
-            self.stats['bytes_processed'] += file_size
-
         return files_migrated
 
     def insert_channel_file_record(self, channel_id: int, file_type: str, file_name: str,
@@ -544,6 +529,38 @@ class FilesystemMigrator:
                 file_size, mime_type, now, now, now, f'channels/{original_dir}'
             ))
             self.db.commit()
+            return cursor.lastrowid
+
+    def update_file_header_with_content_id(self, file_path: str, content_id: int):
+        """Update file header with content_id after database insertion"""
+        try:
+            with open(file_path, 'r', encoding='utf-8') as f:
+                content = f.read()
+            
+            # Check if content_id already exists
+            if 'content_id:' in content:
+                # Replace existing content_id
+                content = re.sub(r'content_id:\s*\d+', f'content_id: {content_id}', content)
+            else:
+                # Add content_id after file_path_from_root or at start of headers block
+                content = re.sub(
+                    r'(file_path_from_root:[^\n]+)',
+                    r'\1\n  content_id: {}'.format(content_id),
+                    content
+                )
+            
+            # If that didn't work, add after lupopedia.headers
+            if 'content_id:' not in content:
+                content = re.sub(
+                    r'(lupopedia\.headers:[^\n]+)',
+                    r'\1\n  content_id: {}'.format(content_id),
+                    content
+                )
+            
+            with open(file_path, 'w', encoding='utf-8') as f:
+                f.write(content)
+        except Exception as e:
+            print(f"Error updating file {file_path}: {e}")
 
     @staticmethod
     def get_mime_type(file_name: str) -> str:

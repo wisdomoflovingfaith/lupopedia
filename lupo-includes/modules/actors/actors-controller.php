@@ -189,6 +189,56 @@ function actors_handle_my_profile_save()
     $uploads_table = $table_prefix . 'uploads';
     $now = gmdate('YmdHis');
 
+
+    // --- 2FA Management ---
+    if (isset($_POST['2fa_action'])) {
+        $action = $_POST['2fa_action'];
+        if ($action === 'start') {
+            // Generate code, store in session, send email
+            $code = str_pad(strval(mt_rand(100000, 999999)), 6, '0', STR_PAD_LEFT);
+            $_SESSION['2fa_code'] = $code;
+            $_SESSION['2fa_pending'] = 1;
+            $_SESSION['2fa_code_time'] = time();
+            // Send code to user email
+            require_once($app_root . '/lupo-includes/PHPMailer/PHPMailer.php');
+            require_once($app_root . '/lupo-includes/PHPMailer/SMTP.php');
+            $mail = new \PHPMailer\PHPMailer\PHPMailer();
+            $mail->isSMTP();
+            $mail->Host = 'localhost'; // TODO: Set real SMTP host
+            $mail->Port = 25; // TODO: Set real SMTP port
+            $mail->setFrom('no-reply@lupopedia.local', 'Lupopedia');
+            $mail->addAddress($current_email);
+            $mail->Subject = 'Your Lupopedia 2FA Verification Code';
+            $mail->Body = "Your verification code is: $code\n\nIf you did not request this, ignore this email.";
+            if (!$mail->send()) {
+                $_SESSION['profile_error'] = 'Failed to send verification email. Contact support.';
+            } else {
+                $_SESSION['profile_error'] = 'Verification code sent to your email.';
+            }
+            header('Location: ' . $base . '/my-profile');
+            exit;
+        } elseif ($action === 'verify') {
+            $input_code = isset($_POST['2fa_code']) ? trim($_POST['2fa_code']) : '';
+            $valid = isset($_SESSION['2fa_code']) && $input_code === $_SESSION['2fa_code'] && (time() - $_SESSION['2fa_code_time'] < 600);
+            if ($valid) {
+                // Enable 2FA for actor
+                $db->update($actors_table, array('two_factor_enabled' => 1, 'updated_ymdhis' => $now), 'actor_id = :actor_id', array('actor_id' => $actor_id));
+                unset($_SESSION['2fa_code'], $_SESSION['2fa_pending'], $_SESSION['2fa_code_time']);
+                $_SESSION['profile_error'] = 'Two-factor authentication enabled.';
+            } else {
+                $_SESSION['profile_error'] = 'Invalid or expired code.';
+            }
+            header('Location: ' . $base . '/my-profile');
+            exit;
+        } elseif ($action === 'disable') {
+            $db->update($actors_table, array('two_factor_enabled' => 0, 'updated_ymdhis' => $now), 'actor_id = :actor_id', array('actor_id' => $actor_id));
+            unset($_SESSION['2fa_code'], $_SESSION['2fa_pending'], $_SESSION['2fa_code_time']);
+            $_SESSION['profile_error'] = 'Two-factor authentication disabled.';
+            header('Location: ' . $base . '/my-profile');
+            exit;
+        }
+    }
+
     $actor_name = isset($_POST['actor_name']) ? trim((string) $_POST['actor_name']) : '';
     if ($actor_name !== '') {
         $db->update($actors_table, array('name' => $actor_name, 'updated_ymdhis' => $now), 'actor_id = :actor_id', array('actor_id' => $actor_id));

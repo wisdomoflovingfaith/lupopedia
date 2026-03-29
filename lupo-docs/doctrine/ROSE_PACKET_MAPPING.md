@@ -43,12 +43,14 @@ lupopedia.headers:
 | created_utc | lupo_dialog_messages | created_ymdhis | Format BIGINT YYYYMMDDHHIISS to YYYYMMDD_HHMMSS in application layer only. | YES |
 | created_ymdhis | lupo_dialog_messages | created_ymdhis | Pass-through BIGINT (trace field). | YES |
 | mood_RGB | lupo_actor_moods | mood_r, mood_g, mood_b | Resolve latest actor mood by actor_id/timestamp, then encode R,G,B as 6-char uppercase hex. | YES |
-| mood_label | lupo_actor_moods | mood_r, mood_g, mood_b, mood_framework | Derived via Mood Label Rules from canonical mood tuple; no DB write-back. | YES |
+| mood_label | lupo_actor_moods | mood_r, mood_g, mood_b, mood_framework | Derived human-readable companion label from the canonical mood tuple and message posture; no DB write-back. | YES |
 | mood_framework | lupo_actor_moods + lupo_emotional_frameworks | lupo_actor_moods.mood_framework; lupo_emotional_frameworks.framework_name | Use actor mood framework; validate membership in frameworks table in application layer. | YES |
 | message | lupo_dialog_messages | message_body (fallback message_text) | Use message_body when present, else message_text, without semantic transformation. | YES |
 
 Notes:
-- This table includes all ROSE packet fields currently used in runtime packet construction (`speaker`, `channel_id`, `thread_id`, `created_utc`, `mood_RGB`, `message`) plus enforced doctrine fields (`mood_label`, `mood_framework`, `created_ymdhis`) required for deterministic interpretation and traceability.
+- This table includes all ROSE packet fields currently used in runtime packet construction (`speaker`, `channel_id`, `thread_id`, `created_utc`, `mood_RGB`, `message`) plus doctrine companion/trace fields (`mood_label`, `mood_framework`, `created_ymdhis`) required for deterministic interpretation and traceability.
+- `mood_label` is the human-readable companion to `mood_RGB`, especially useful for longer ROSE insight/comment messages.
+- Some currently deployed short-form packet emitters may still omit `mood_label`; that omission does not change the canonical role of `mood_RGB` as the machine-readable signal.
 - No packet field is a write source for DB state.
 
 ---

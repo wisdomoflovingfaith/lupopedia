@@ -83,6 +83,46 @@ if (!isset($timezone_offset_options[$current_timezone])) {
         </div>
     <?php endif; ?>
 
+    <!-- Current Actor Display -->
+    <?php
+    // Get current actor information using AuthSessionManager (which has cleanup logic)
+    $current_actor_name = 'Unknown';
+    $user_can_switch_actors = false;
+    if (class_exists('AuthSessionManager')) {
+        $sessionManager = new AuthSessionManager();
+        $current_actor_id = $sessionManager->getActiveActorId();
+        if ($current_actor_id > 0) {
+            // Use AuthSessionManager's getActorForAuthUser method which has cleanup logic
+            $actor = $sessionManager->getActorForAuthUser($_SESSION['auth_user_id']);
+            if ($actor) {
+                $current_actor_name = $actor['name'] ?: $actor['actor_name'];
+                
+                // Check if user has multiple actors they can switch between
+                $available_actors = $sessionManager->getActorsUserCanActAs($_SESSION['auth_user_id'], false);
+                $user_can_switch_actors = count($available_actors) > 1;
+            }
+        }
+    }
+    ?>
+    
+    <div class="my-profile-section" aria-label="Current Actor">
+        <h2 class="my-profile-section-title">Current Actor</h2>
+        <div class="my-profile-field">
+            <label>Acting As</label>
+            <div style="display: flex; align-items: center; gap: 10px; margin-top: 5px;">
+                <strong style="font-size: 1.1em; color: #2c5282;"><?= htmlspecialchars($current_actor_name) ?></strong>
+                <?php if ($user_can_switch_actors): ?>
+                    <a href="<?= $base ?>/select-actor.php?redirect=<?= urlencode(isset($_SERVER['REQUEST_URI']) ? $_SERVER['REQUEST_URI'] : $base . '/my-profile') ?>" 
+                       style="color: #4299e1; text-decoration: none; font-size: 0.9em; padding: 4px 8px; border: 1px solid #4299e1; border-radius: 4px; transition: background-color 0.2s;"
+                       onmouseover="this.style.backgroundColor='#e6f3ff'; this.style.textDecoration='none'"
+                       onmouseout="this.style.backgroundColor='transparent'; this.style.textDecoration='none'">
+                        change
+                    </a>
+                <?php endif; ?>
+            </div>
+        </div>
+    </div>
+
     <div class="my-profile-section" aria-label="Identity Information">
         <h2 class="my-profile-section-title">Identity Information</h2>
         <div class="my-profile-field">
@@ -107,6 +147,40 @@ if (!isset($timezone_offset_options[$current_timezone])) {
             <label for="actor_name">Display name</label>
             <input type="text" id="actor_name" name="actor_name" value="<?= $actor_name ?>"
                    maxlength="255" class="my-profile-input" required>
+        </section>
+
+        <section class="my-profile-section" aria-label="Two-Factor Authentication">
+            <h2 class="my-profile-section-title">Two-Factor Authentication (2FA)</h2>
+            <?php
+            $two_factor_enabled = isset($actor['two_factor_enabled']) ? (int)$actor['two_factor_enabled'] : 0;
+            $two_factor_status = $two_factor_enabled ? 'Enabled' : 'Disabled';
+            ?>
+            <div class="my-profile-field">
+                <label>2FA Status</label>
+                <span style="font-weight:bold; color:<?= $two_factor_enabled ? '#38a169' : '#e53e3e' ?>;">
+                    <?= $two_factor_status ?>
+                </span>
+            </div>
+            <?php if (!$two_factor_enabled): ?>
+                <?php if (empty($_SESSION['2fa_pending'])): ?>
+                    <form action="<?= htmlspecialchars($base) ?>/my-profile/save" method="post" style="margin-top:1em;">
+                        <input type="hidden" name="2fa_action" value="start">
+                        <button type="submit" class="my-profile-submit">Enable 2FA</button>
+                    </form>
+                <?php else: ?>
+                    <form action="<?= htmlspecialchars($base) ?>/my-profile/save" method="post" style="margin-top:1em;">
+                        <input type="hidden" name="2fa_action" value="verify">
+                        <label for="2fa_code">Enter the code sent to your email:</label>
+                        <input type="text" id="2fa_code" name="2fa_code" maxlength="8" class="my-profile-input" required>
+                        <button type="submit" class="my-profile-submit">Verify & Enable</button>
+                    </form>
+                <?php endif; ?>
+            <?php else: ?>
+                <form action="<?= htmlspecialchars($base) ?>/my-profile/save" method="post" style="margin-top:1em;">
+                    <input type="hidden" name="2fa_action" value="disable">
+                    <button type="submit" class="my-profile-submit" style="background:#e53e3e; color:#fff;">Disable 2FA</button>
+                </form>
+            <?php endif; ?>
         </section>
 
         <section class="my-profile-section" aria-label="Avatar">

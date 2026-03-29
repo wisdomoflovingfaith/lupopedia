@@ -1,110 +1,90 @@
 ---
 lupopedia.headers:
-  lupopedia.schema: database_table
-  file_path_from_root: lupo-docs/database/lupopedia/tables/active/lupo_modules.md
-  web_path: '[lupo_modules](http://www.lupopedia.com/database/lupopedia/tables/active/lupo_modules)'
-  last_modified_utc: '20260317'
+  when_updated: "20260328013000"
+  file_path_from_root: "lupo-docs/database/lupopedia/tables/active/lupo_modules.md"
+  last_modified_utc: "20260328013000"
   channel_id: 42
-  actor_id: 102
-  actor_name: cursor
-  delegation_chain: cursor:root
-  artifact_type: table_documentation
-  artifact_kind: table
-  namespace: core
-  purpose: Module registry and configuration; plugin/module key, namespace, version,
-    paths, config_json, and federation node scoping
+  actor_id: 23
+  actor_name: "hephaestus"
+  delegation_chain: "wolfie:hephaestus"
+  artifact_type: "documentation"
+  artifact_kind: "table"
+  namespace: "core"
+  purpose: "Normalized table documentation for lupo_modules from TOON JSON"
   tags:
   - database
   - table
-  - core
-  when_updated: '20260324174654'
+  - normalized
+  - 4.0.88
 lupopedia.edges:
-  comment: Snapshot of edges for lupo_modules table doc at 4.0.79 (grounded by repo
-    search; non-exhaustive).
-  meta: php_hits=2 python_hits=1
+  comment: "static placeholder edges for stage3 normalization"
   outbound_edges:
-  - to: database.table.lupo_modules
-    type: DEFINES_SCHEMA_FOR
+  - to: "lupo-database/lupopedia/json/lupo_modules.json"
+    type: "references"
     weight: 1.0
-  - to: lupo-database/lupopedia/mysql/install/install_new_lupopedia.sql
-    type: schema_reference
-    weight: 1.0
-  - to: debug_captain.php
-    type: USED_IN_PHP
-    weight: 0.6
-  - to: lupo-includes/modules/crafty_syntax/visitor-chat-stream.php
-    type: USED_IN_PHP
-    weight: 0.9
-  - to: analyze_unused_tables.py
-    type: USED_IN_PYTHON
-    weight: 0.5
+    reason: "authoritative TOON JSON source"
 lupopedia.footer:
-  last_verified: '20260317000000'
-  last_verified_by: cursor
-  last_verified_by_actor_id: 102
-  orchestrator: cursor:root
+  last_verified: "20260328013000"
+  last_verified_by: "hephaestus"
+  last_verified_by_actor_id: 23
+  generated: true
+  provenance: "stage3_track_c_normalization"
 ---
-# file: lupo_modules ? web_path: http://www.lupopedia.com/database/lupopedia/tables/active/lupo_modules
-# Table: lupo_modules
+# file: lupo_modules.md
 
-## Table Overview
+# lupo_modules
 
-- **Purpose:** Module registry and configuration for Lupopedia plugins/modules. Each row defines a module by module_key (unique), module_name, namespace, version, version_code, minimum_core_version, optional user_path/admin_path/api_path, route_params, description, dependencies, conflicts, config_json (required), and federation_node_id. is_system and is_active control loading; installed_ymdhis and settings support lifecycle and per-instance settings.
-- **Category:** Core System / Modules
-- **Status:** Active (in install_new_lupopedia.sql)
-- **Version introduced:** 4.0.x
+## Purpose
+Canonical table documentation normalized from TOON JSON for `lupo_modules`.
 
-## Where This Table Is Used
+## Schema
 
-- **Module loading and routing:** Module loader and routing resolve modules by module_key; user_path, admin_path, api_path and route_params drive URL routing and entry points.
-- **Dependency and conflict resolution:** dependencies and conflicts text fields support declarative dependency checks before activation.
-- **Federation scoping:** federation_node_id scopes modules per node for multi-node deployments.
-- **Configuration:** config_json and settings store module configuration; is_active and is_deleted control visibility and lifecycle.
+### Primary Key
+(none)
 
-## Column Documentation
+### Columns
 
-| Column | Type | Nullable | Default | Description |
-|--------|------|----------|---------|-------------|
-| module_id | bigint | No | — | Primary key. |
-| module_key | varchar(100) | No | — | Unique module identifier. |
-| module_name | varchar(150) | No | — | Display name. |
-| namespace | varchar(100) | No | — | Module namespace. |
-| version | varchar(50) | No | — | Version string. |
-| version_code | int | No | — | Numeric version. |
-| minimum_core_version | varchar(50) | No | — | Minimum core version required. |
-| user_path | varchar(255) | Yes | NULL | User-facing path. |
-| admin_path | varchar(255) | Yes | NULL | Admin path. |
-| api_path | varchar(255) | Yes | NULL | API path. |
-| route_params | text | Yes | NULL | Route parameters. |
-| description | text | Yes | NULL | Description. |
-| author | varchar(100) | Yes | NULL | Author. |
-| website | varchar(255) | Yes | NULL | Website. |
-| icon | varchar(100) | Yes | 'puzzle-piece' | Icon identifier. |
-| dependencies | text | Yes | NULL | Dependency list. |
-| conflicts | text | Yes | NULL | Conflict list. |
-| config_json | text | No | — | Module configuration (JSON). |
-| is_system | tinyint | No | 0 | System module flag. |
-| is_active | tinyint | No | 0 | Active flag. |
-| federation_node_id | bigint | No | 1 | Federation node. |
-| settings | text | Yes | NULL | Instance settings. |
-| installed_ymdhis | bigint | Yes | NULL | Install timestamp (BIGINT UTC). |
-| created_ymdhis | bigint | No | 0 | Creation timestamp (BIGINT UTC). |
-| updated_ymdhis | bigint | Yes | NULL | Last update timestamp (BIGINT UTC). |
-| is_deleted | tinyint | No | 0 | Soft delete flag. |
-| deleted_ymdhis | bigint | Yes | NULL | Soft delete timestamp. |
+| Column | Type Definition |
+|---|---|
+| `module_id` | `bigint NOT NULL` |
+| `module_key` | `varchar(100) NOT NULL` |
+| `module_name` | `varchar(150) NOT NULL` |
+| `namespace` | `varchar(100) NOT NULL` |
+| `version` | `varchar(50) NOT NULL` |
+| `version_code` | `int NOT NULL` |
+| `minimum_core_version` | `varchar(50) NOT NULL` |
+| `user_path` | `varchar(255)` |
+| `admin_path` | `varchar(255)` |
+| `api_path` | `varchar(255)` |
+| `route_params` | `text` |
+| `description` | `text` |
+| `author` | `varchar(100)` |
+| `website` | `varchar(255)` |
+| `icon` | `varchar(100) DEFAULT 'puzzle-piece'` |
+| `dependencies` | `text` |
+| `conflicts` | `text` |
+| `config_json` | `text NOT NULL` |
+| `is_system` | `tinyint NOT NULL DEFAULT 0` |
+| `is_active` | `tinyint NOT NULL DEFAULT 0` |
+| `federation_node_id` | `bigint NOT NULL DEFAULT 1` |
+| `settings` | `text` |
+| `installed_ymdhis` | `bigint` |
+| `created_ymdhis` | `bigint NOT NULL DEFAULT 0` |
+| `updated_ymdhis` | `bigint` |
+| `is_deleted` | `tinyint NOT NULL DEFAULT 0` |
+| `deleted_ymdhis` | `bigint` |
 
-## Indexes
+### Indexes
 
-- **PRIMARY KEY:** module_id
-- **UNIQUE:** lupo_modules_uq_module_key (module_key)
-- **INDEX:** lupo_modules_idx_namespace (namespace), lupo_modules_idx_status (is_active, is_deleted), lupo_modules_idx_system (is_system), lupo_modules_idx_installed (installed_ymdhis)
+| Index | Columns | Unique |
+|---|---|---|
+| `lupo_modules_idx_installed` | `installed_ymdhis` | no |
+| `lupo_modules_idx_namespace` | `namespace` | no |
+| `lupo_modules_idx_status` | `is_active`, `is_deleted` | no |
+| `lupo_modules_idx_system` | `is_system` | no |
+| `lupo_modules_uq_module_key` | `module_key` | yes |
 
-## Relationships
-
-- **Logical references (no DB FKs):** federation_node_id → lupo_federation_nodes. Module loader and routing code reference this table; no DB foreign keys.
-
-## Doctrine notes
-
-- No database foreign keys; referential integrity enforced in application code.
-- All timestamps BIGINT UTC YYYYMMDDHHIISS.
-- Soft delete: filter `is_deleted = 0` unless querying deleted rows.
+## Doctrine
+- Source of truth: `lupo-database/lupopedia/json/` TOON exports
+- Regeneration mode: Stage 3 deterministic normalization
+- Edge mode: placeholder baseline

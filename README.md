@@ -1,21 +1,21 @@
 ---
 lupopedia.headers:
-  when_updated: '20260325204641'
+  when_updated: '20260328120000'
   lupopedia.schema: documentation
   file_path_from_root: README.md
   web_path: http://www.lupopedia.com/lupopedia/README.md
-  last_modified_utc: '20260325204641'
+  last_modified_utc: '20260328120000'
   channel_id: 42
-  thread_id: 4.0.88-init
-  actor_id: 102
-  actor_name: cursor
-  delegation_chain: cursor:root
+  thread_id: 4.0.89-init
+  actor_id: 1
+  actor_name: wolfie
+  delegation_chain: wolfie:root
   artifact_type: project_documentation
   artifact_kind: readme
-  purpose: Root overview for Lupopedia 4.0.88 planning state, canonical doctrine surfaces, and release continuity.
+  purpose: Root overview for Lupopedia system architecture, version-driven execution, and iterative release planning.
   tags:
   - readme
-  - 4.0.88
+  - 4.0.89
   - architecture
   - doctrine
   - workflow
@@ -25,14 +25,18 @@ lupopedia.init:
     reason: Operational quick-start
   - path: AGENTS.md
     reason: Canonical actor, identity-layer, and coordination rules
+  - path: lupo-rules/root/README.md
+    reason: Complete root rules and development constraints
   - path: lupo-docs/doctrine/LUPOPEDIA_HEADERS/README.md
     reason: Header/footer validation doctrine
   - path: lupo-docs/doctrine/IDENTITY_LAYERS_DOCTRINE.md
     reason: Canonical five-layer identity model
-  - path: lupo-docs/versions/4.0.87/CHANGELOG.md
-    reason: Final 4.0.87 release history and authorization state
-  - path: lupo-docs/versions/4.0.88/TASK_REGISTRY.md
-    reason: Active carryover work for the next version line
+  - path: lupo-docs/versions/4.0.89/README.md
+    reason: Current active version overview and thread-consolidated scope
+  - path: lupo-docs/versions/4.0.89/PLAN.md
+    reason: Current detailed iteration plan
+  - path: lupo-docs/versions/4.1.0/prd/README.md
+    reason: Post-approval milestone definition and release gate model
   - path: lupo-channels/channel_index.md
     reason: Canonical channel map and path policy
   - path: lupo-channels/channel_creation_doctrine.md
@@ -42,7 +46,7 @@ lupopedia.init:
   - path: ORGANIZATION.md
     reason: Canonical root folder map and repository write guidance
 lupopedia.edges:
-  comment: Snapshot of root documentation references for 4.0.88 planning and release continuity.
+  comment: Snapshot of root documentation references for version-driven execution and release continuity.
   outbound_edges:
   - to: AGENTS.md
     type: aligns_with
@@ -50,16 +54,29 @@ lupopedia.edges:
   - to: lupo-docs/doctrine/IDENTITY_LAYERS_DOCTRINE.md
     type: aligns_with
     weight: 1.0
+  - to: lupo-rules/root/README.md
+    type: references
+    weight: 1.0
+    reason: Complete root rules and development constraints
   - to: ONBOARDING.md
     type: references
     weight: 0.95
-  - to: lupo-docs/versions/4.0.87/CHANGELOG.md
+  - to: lupo-docs/versions/4.0.89/README.md
     type: references
     weight: 1.0
-  - to: lupo-docs/versions/4.0.87/PLAN.md
+    reason: Current active version overview and thread-consolidated scope
+  - to: lupo-docs/versions/4.0.89/PLAN.md
     type: references
-    weight: 0.9
-  - to: lupo-docs/versions/4.0.88/TASK_REGISTRY.md
+    weight: 1.0
+    reason: Current detailed iteration plan
+  - to: lupo-docs/versions/4.0.89/TODO.md
+    type: references
+    weight: 1.0
+    reason: Current task tracking and execution plan
+  - to: lupo-docs/versions/4.1.0/plan.md
+    type: references
+    weight: 0.95
+  - to: lupo-docs/versions/4.1.0/prd/README.md
     type: references
     weight: 1.0
   - to: ORGANIZATION.md
@@ -69,148 +86,225 @@ lupopedia.edges:
     type: references
     weight: 0.8
 lupopedia.footer:
-  last_verified: '20260325204641'
+  last_verified: '20260328120000'
   verified_by:
     identity_type: actor
-    actor_id: 102
-    agent_name_identity: Cursor IDE Agent (Lead Orchestration)
+    actor_id: 1
+    agent_name_identity: WOLFIE
     department_id_delta: 0
   verified_via:
     type: faucet
-    faucet_slug: cursor
+    faucet_slug: windsurf
   orchestrator: wolfie:root
   next_action:
-  - Keep README aligned with AGENTS.md and IDENTITY_LAYERS_DOCTRINE.md
-  - Treat 4.0.87 as release-authorized history and 4.0.88 as active planning scope
+  - Keep README aligned with current 4.0.89 version and documentation clarity improvements
+  - Maintain clear navigation paths to current version documentation
   - Revalidate root links and doctrine edges each version rollover
 ---
-# file: Lupopedia README 4.0.88 - delegation: cursor:root - web_path: [http://www.lupopedia.com/lupopedia/README.md](http://www.lupopedia.com/lupopedia/README.md)
+# file: Lupopedia README - delegation: cursor:root - web_path: [http://www.lupopedia.com/lupopedia/README.md](http://www.lupopedia.com/lupopedia/README.md)
 
-# Lupopedia Semantic OS (v4.0.88)
+# Lupopedia Semantic OS
 
-Lupopedia is a doctrine-driven semantic operating system built on Crafty Syntax 3.7.5 foundations, with explicit actor orchestration, channel/thread workflows, and verifiable artifact metadata.
+Lupopedia is a semantic AI operating system built on Crafty Syntax 3.7.5 foundations. It combines a hybrid MySQL plus filesystem architecture, multi-agent coordination, actor-based identity, and doctrine-driven documentation to evolve the original live-help system into a broader semantic runtime.
 
-## Current Version Status
+## What Lupopedia Is
 
-- Active planning line: `4.0.88`
-- Last authorized release line: `4.0.87`
-- Scope lock remains: no Lupopedia-to-Lupopedia upgrade path in 4.0.x
-- Supported operational paths:
-  - fresh install
-  - Crafty Syntax 3.7.5 import/upgrade flow
+At a high level, Lupopedia is:
 
-## Core System Model
+- a semantic AI operating system
+- a hybrid MySQL plus filesystem system
+- a multi-agent coordination environment
+- a Crafty Syntax 3.7.5 continuation and upgrade path
 
-- Actors orchestrate; faucets execute.
-- Operational identity is resolved around `actor_id`.
-- Departments define execution context and authority scope.
-- Channels and threads are the primary coordination surfaces.
-- Edges are the relationship graph authority for cross-artifact and cross-entity linkage.
+Core system characteristics:
 
-## Identity Model
+- MySQL is the runtime authority for structured data, identities, edges, and operational state.
+- The filesystem is used for documentation, coordination artifacts, channels, threads, prompts, and reports.
+- Actors orchestrate work; faucets are execution surfaces.
+- Channels and threads are the primary coordination model.
 
-Lupopedia uses the same five-layer identity model documented in `AGENTS.md` and `lupo-docs/doctrine/IDENTITY_LAYERS_DOCTRINE.md`:
+## How the Project Is Organized
 
-1. Auth User (`lupo_auth_users`)
-2. Actor (`lupo_actors`)
-3. Department (`lupo_actor_departments`, `lupo_departments`)
-4. Agent (`lupo_agents`)
-5. Faucet (`lupo_agent_faucets`)
+The repository is organized around domain folders such as `lupo-docs/`, `lupo-database/`, `lupo-includes/`, `lupo-tests/`, `lupo-channels/`, and other `lupo-*` surfaces.
 
-Binding rules remain:
-- write identity resolves server-side to actor context
-- department context participates in effective actor resolution
-- agent configuration does not override actor attribution
-- faucet surface does not imply elevated authority
+For a full evidence-based structure map of all root `lupo-*` directories and authority boundaries, use:
 
-## Metadata and Validation Model
+- `ORGANIZATION.md`
+- `lupo-docs/ORGANIZATION.md`
+- `lupo-docs/versions/4.0.88/DOCUMENTATION_ORGANIZATION_PASS_REPORT.md`
+- `lupo-docs/versions/4.0.88/DOCUMENTATION_ORGANIZATION_GAP_REPORT.md`
 
-- Artifact update timestamp: `lupopedia.headers.when_updated` (UTC `YYYYMMDDHHIISS`)
-- Trust/verification timestamp: `lupopedia.footer.last_verified`
-- Required verifier fields: `verified_by.identity_type`, `verified_by.actor_id`, `verified_via.type`, `verified_via.faucet_slug`
-- Recommended verifier clarity fields: `verified_by.agent_name_identity`, `verified_by.department_id_delta`
-- Revalidation cutoff for trust-sensitive artifacts: `2026-03-01 00:00:00 UTC`
+For planning and progress, the most important rule is:
 
-## Release Continuity
+- `lupo-docs/versions/` is the source of truth for versioned execution, planning, and release state.
 
-- `4.0.87` is release-authorized and production-ready.
-- `4.0.88` is the active carryover/planning line.
-- Open work from 4.0.87 task closeout has been migrated into `lupo-docs/versions/4.0.88/TASK_REGISTRY.md`.
+Root files are intentionally high level:
 
-## Active Documentation Surfaces
+- `README.md` explains the project and version model.
+- `plan.md` explains the high-level strategy.
+- `TODO.md` lists high-level work categories.
 
-- Final 4.0.87 release history: `lupo-docs/versions/4.0.87/CHANGELOG.md`
-- Final 4.0.87 execution plan snapshot: `lupo-docs/versions/4.0.87/PLAN.md`
-- Active 4.0.88 carryover queue: `lupo-docs/versions/4.0.88/TASK_REGISTRY.md`
-- Canonical actor and coordination guide: `AGENTS.md`
-- Canonical identity doctrine: `lupo-docs/doctrine/IDENTITY_LAYERS_DOCTRINE.md`
+Detailed execution belongs in version folders such as:
 
-## Channel Documentation Pack (Mandatory)
+- `lupo-docs/versions/4.0.88/`
+- `lupo-docs/versions/4.1.0/`
 
-All actors and agents must know channel mechanics and thread-scoped execution.
+Organization references:
 
-- `lupo-channels/channel_index.md`
-- `lupo-channels/channel_creation_doctrine.md`
-- `lupo-channels/42/THREAD_INDEX.md`
-- `AGENTS.md`
+- `ORGANIZATION.md`
+- `lupo-docs/ORGANIZATION.md`
 
-Operational requirement:
+Database/file-based authority references:
 
-1. Select channel context first.
-2. Execute work inside a thread in that channel.
-3. Persist status/report artifacts in that thread path.
+- `lupo-database/lupopedia/mysql/install/install_new_lupopedia.sql` — canonical DDL
+- `lupo-database/lupopedia/json/` — generated per-table column mirrors (e.g. `lupo_contents.json`) used by import tooling; do not hand-edit
+- `lupo-database/lupopedia/toon/` — optional TOON export in some workflows; same “generated mirror” role as `json/` when present
+- `lupo-docs/database/lupopedia/tables/active/` — human-readable table documentation
+- `lupo-channels/`
+- `lupo-database/sessions/`
 
-## Repository Write Policy
+## Configuration File Location
 
-Write new work into the correct `lupo-*` surface, not the repository root.
+Lupopedia follows the traditional open-source auto-installer pattern used by WordPress, phpBB, and similar applications.
 
-- Tests belong in `lupo-tests/`.
-- Status, summary, and report artifacts belong in `lupo-channels/<channel_id>/threads/<thread_id>/`.
-- Runtime/data artifacts belong in their domain folders (`lupo-logs/`, `lupo-tmp/`, `lupo-cache/`, `lupo-sessions/`, `lupo-archive/`, etc.).
-- Root is reserved for stable entry/docs surfaces only (for example: `README.md`, `CHANGELOG.md`, `CHANGELOG_ARCHIVE.md`, `plan.md`, `report.md`, `TODO.md`, and required runtime entry files).
+The configuration file `lupopedia-config.php` is searched for in this order:
 
-If an artifact belongs to channel context and no thread exists yet, create one under the target channel and store the artifact there.
+1. **One level above web document root** (most secure)
+   - Example: `/home/user/lupopedia-config.php` when web root is `/home/user/public_html/` 
 
-## Channel and Thread Context Model
+2. **One level above the Lupopedia installation directory**
+   - Example: `/home/user/lupopedia-config.php` when Lupopedia is at `/home/user/public_html/lupopedia/` 
 
-Lupopedia context is channel-first, then thread-scoped:
+3. **In the Lupopedia installation directory itself** (fallback)
+   - Example: `/home/user/public_html/lupopedia/lupopedia-config.php` 
 
-1. A channel defines the coordination domain.
-2. A thread defines the specific workstream within that channel.
-3. Artifacts are persisted under that thread directory.
+### For Auto-Installers (Softaculous, etc.)
 
-Canonical path pattern:
+When creating a package for auto-installers:
+- Place `lupopedia-config.php` **one level above installation directory**
+- Use the constant `LUPOPEDIA_CONFIG_PATH` if you need to override the search order
+- Ensure the configuration file is NOT web-accessible
 
-`lupo-channels/<channel_id>/threads/<thread_id>/<artifact>.md`
+For complete details, see **[Configuration Doctrine](lupo-docs/doctrine/CONFIGURATION_DOCTRINE.md)**.
 
-Canonical references:
+## Development Rules & Constraints
 
-- Channel index: `lupo-channels/channel_index.md`
-- Channel 42 thread index: `lupo-channels/42/THREAD_INDEX.md`
-- Root folder map and write guidance: `ORGANIZATION.md`
+All development in Lupopedia must follow the root rules and doctrines:
 
-## Required Root Reading
+### 📋 Essential Rules (Must Read)
 
-1. `ONBOARDING.md`
-2. `AGENTS.md`
+**[Complete Root Rules](lupo-rules/root/README.md)** - All development constraints and requirements
+
+**[LUPOPEDIA Headers Doctrine — single source of truth](lupo-rules/root/LUPOPEDIA_HEADERS_DOCTRINE.md)** — the **only** binding file for YAML header taxonomy, validation rules, and **database-first mapping** (`lupo_contents`, `lupo_metadata`, `lupo_edges`, `revision_history`). Format, block order, and tooling index: [`lupo-docs/doctrine/LUPOPEDIA_HEADERS/README.md`](lupo-docs/doctrine/LUPOPEDIA_HEADERS/README.md). Stable alias path (pointer only): [`lupo-docs/doctrine/LUPOPEDIA_HEADERS/LUPOPEDIA_HEADERS_DOCTRINE.md`](lupo-docs/doctrine/LUPOPEDIA_HEADERS/LUPOPEDIA_HEADERS_DOCTRINE.md).
+
+Key constraints:
+- **PHP 5.6+ Compatibility** - No PHP 7+ features, shared hosting ready
+- **No Composer** - Self-contained libraries in `lupo-includes/` allowed per EXTERNAL_LIBRARIES_DOCTRINE
+- **No Frameworks** - No Laravel, Symfony, or Blade templates
+- **Database Doctrine** - No foreign keys, triggers, or auto-increment
+- **Multi-Agent Coordination** - Channel-based communication in `lupo-channels/42/`
+
+### Quick Checklist
+
+Before writing code:
+- [ ] PHP 5.6+ compatible (no `??`, `<=>`, type hints)
+- [ ] No Composer dependencies
+- [ ] No framework code (Laravel, Symfony)
+- [ ] Use `lupo-includes/` for external libraries
+- [ ] Follow database doctrine (no FK, no triggers)
+- [ ] Use UTC timestamps in YYYYMMDDHHIISS format
+
+## Version Model
+
+Lupopedia is currently operating in an iterative 4.0.x cycle.
+
+Release flow:
+
+1. 4.0.88 -> Softaculous review -> feedback.
+2. 4.0.89 -> Softaculous review -> feedback.
+3. 4.0.90 -> Softaculous review -> feedback.
+4. Additional 4.0.x iterations continue until the baseline is approved.
+5. 4.1.0 begins after an approved 4.0.x baseline exists.
+
+Important rules:
+
+- 4.1.0 is not immediate.
+- 4.0.x is iterative refinement.
+- The system is evolving across multiple 4.0.x iterations.
+
+## Current Focus
+
+The project is currently focused on:
+
+- working in 4.0.88 as the active iteration
+- building toward an approved 4.0.x baseline
+- preparing the foundation required for 4.1.0
+
+Current detailed execution surfaces:
+
+- `lupo-docs/versions/4.0.88/README.md`
+- `lupo-docs/versions/4.0.88/PLAN.md`
+- `lupo-docs/versions/4.0.88/TODO.md`
+
+Post-approval milestone surfaces:
+
+- `lupo-docs/versions/4.1.0/plan.md`
+- `lupo-docs/versions/4.1.0/todo.md`
+- `lupo-docs/versions/4.1.0/prd/README.md`
+
+## Key Systems Being Built
+
+The main systems currently being defined, stabilized, or prepared are:
+
+- channel system
+- questions and prompts workflow
+- approval footer and index system
+- federation model
+- `lupopedia_js.php` navigation and tracking system
+- channel refactor and migration model
+
+## Channel-First Workflow
+
+The current workflow model is:
+
+1. Channel.
+2. Questions.
+3. Discussion.
+4. Prompts.
+5. Execution.
+
+This model is documented in more detail in the version-scoped files and doctrine surfaces. Root docs only summarize it.
+
+## Architecture Summary
+
+Lupopedia uses a hybrid architecture:
+
+- database-first runtime authority for content, identities, edges, tracking, and operational tables
+- filesystem-first coordination and documentation surfaces for channels, threads, prompts, and reports
+- edge integrity rules to keep document references and graph references coherent during structural changes
+- federation-aware design that tolerates partial node 0 completeness during current deployment stages
+
+## Where to Read Next
+
+For developers and IDE agents, read in this order:
+
+1. `AGENTS.md`
+2. `ONBOARDING.md`
 3. `lupo-docs/doctrine/LUPOPEDIA_HEADERS/README.md`
 4. `lupo-docs/doctrine/IDENTITY_LAYERS_DOCTRINE.md`
-5. `lupo-docs/versions/4.0.87/CHANGELOG.md`
-6. `lupo-docs/versions/4.0.88/TASK_REGISTRY.md`
-7. `ORGANIZATION.md`
+5. `ORGANIZATION.md`
+6. `lupo-docs/versions/4.0.89/README.md`
+7. `lupo-docs/versions/4.0.89/PLAN.md`
+8. `lupo-docs/versions/4.0.89/TODO.md`
+9. `lupo-docs/IMPLEMENTATION_GETTING_STARTED.md` (when created)
+10. `lupo-docs/versions/4.1.0/prd/README.md`
+11. `lupo-docs/versions/4.0.88/DOCUMENTATION_ORGANIZATION_PASS_REPORT.md`
+12. `lupo-docs/versions/4.0.88/DOCUMENTATION_ORGANIZATION_GAP_REPORT.md`
 
-## 4.0.87 Closeout Summary
+## Root File Policy
 
-- WS1 complete.
-- WS2 complete.
-- WS3 complete through Phase E.
-- ERQ-006 complete; release authorized by WOLFIE.
-- Remaining non-blocking items were migrated forward to 4.0.88.
+Root files must stay aligned with version folders but must not duplicate version detail.
 
-## 4.0.88 Initial Carryover Scope
-
-- Atoms/version propagation validation
-- Channel docs alignment follow-through
-- Admin LLM interface evidence/finalization
-- Script metadata full-coverage sweep
-- Track 3a migration monitoring after future dataset changes
+- Root files explain direction.
+- Version files define execution.
+- If a contradiction appears, the version-scoped files under `lupo-docs/versions/` are the authoritative planning surfaces.

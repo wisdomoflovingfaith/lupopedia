@@ -2,26 +2,37 @@
 /**
  * Admin Registry Handler
  * 
- * Displays and manages registry entries from lupo_registry table.
- * Users can view and add registry entries but cannot delete or modify existing ones.
+ * DEPRECATED: Registry tables removed in favor of timestamp-based ID generation.
+ * This class is retained for backward compatibility but should be removed.
+ * 
+ * Use IdGenerator::generate() for new timestamp-based IDs.
  * 
  * @package Lupopedia
- * @version 4.0.46
+ * @version 4.0.89
+ * @deprecated 4.0.89 - Use timestamp-based ID generation instead
  */
 
 class AdminRegistryHandler
 {
     /**
-     * Render the registry admin section
+     * Render registry admin section (DEPRECATED)
      * 
      * @param PDO_DB $db Database connection
      * @param string $prefix Table prefix
      * @param string $base Base URL path
      * @return string HTML output
+     * @deprecated Use IdGenerator::generate() instead of registry
      */
     public static function render($db, $prefix, $base)
     {
         $html = '';
+        
+        // DEPRECATED: Registry functionality removed
+        // Use IdGenerator::generate() for timestamp-based IDs
+        $html .= '<div class="alert alert-warning">';
+        $html .= '<strong>WARNING:</strong> Registry system is deprecated. ';
+        $html .= 'Use IdGenerator::generate() for timestamp-based IDs.';
+        $html .= '</div>';
         
         // Handle form submission for adding new registry entry
         $add_success = false;

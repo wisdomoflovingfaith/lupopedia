@@ -3,20 +3,21 @@ lupopedia.init:
   document_type: "doctrine"
 
 lupopedia.headers:
-  version_when_written: "4.0.84"
+  when_updated: "20260327121457"
   lupopedia.schema: "doctrine"
   file_path_from_root: "lupo-docs/doctrine/LUPOPEDIA_HEADERS/DEPRECATION_FLARE_FLIP_FLP.md"
   web_path: "http://www.lupopedia.com/lupopedia/lupo-docs/doctrine/LUPOPEDIA_HEADERS/DEPRECATION_FLARE_FLIP_FLP.md"
-  last_modified_utc: "20260325203002"
+  last_modified_utc: "20260327121457"
   channel_id: 42
-  actor_id: 1003
+  actor_id: 102
+  actor_name: "cursor"
   artifact_type: "doctrine"
   artifact_kind: "reference"
   purpose: "Deprecation notice: FLARE, FLIP, FLP are deprecated and replaced by LUPOPEDIA HEADERS."
   tags: ["deprecation", "flare", "flip", "flp", "lupopedia_headers"]
 
 lupopedia.footer:
-  last_verified: "20260325203002"
+  last_verified: "20260327121457"
   verified_by:
     identity_type: "actor"
     actor_id: 102
@@ -25,7 +26,7 @@ lupopedia.footer:
   verified_via:
     type: "faucet"
     faucet_slug: "cursor"
-  orchestrator: "cursor"
+  orchestrator: "cursor:root"
   next_action:
     - "Do not add new references to FLARE/FLIP/FLP in new docs"
     - "Point legacy doc readers to LUPOPEDIA_HEADERS and OPTIONAL_BLOCKS"

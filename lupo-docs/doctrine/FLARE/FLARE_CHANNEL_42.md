@@ -1,3 +1,16 @@
+# ⚠️ DEPRECATED - FLARE CHANNEL 42
+
+## 🚨 Historical Reference Only
+
+**FLARE has been replaced by LUPOPEDIA HEADERS**
+
+This document is retained for historical reference only. Do not use for new development.
+
+🔗 **Current System**: [LUPOPEDIA HEADERS](../LUPOPEDIA_HEADERS/README.md)  
+📋 **Deprecation Guide**: [DEPRECATION_FLARE_FLIP_FLP.md](../DEPRECATION_FLARE_FLIP_FLP.md)
+
+---
+
 # LUPOPEDIA HEADERS (replaces FLARE)
 ---
 lupopedia.headers:

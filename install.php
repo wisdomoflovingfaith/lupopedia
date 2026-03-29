@@ -395,8 +395,16 @@ if ($step === 'credentials') {
                         }
                     }
                     // 4.0.74 seeds: lupo_projects registry (idempotent)
-                    $seed_4_0_74 = array('seed_projects.sql');
+                    $seed_4_0_74 = array('seed_projects.sql', 'seed_qa_lupopedia_4.0.88.sql');
                     foreach ($seed_4_0_74 as $seedFile) {
+                        $path = $mysqlDir . DIRECTORY_SEPARATOR . 'seed' . DIRECTORY_SEPARATOR . $seedFile;
+                        if (is_file($path)) {
+                            InstallWizardSqlRunner::runSqlFile($pdo, $path, $bootstrapLog, $table_prefix);
+                        }
+                    }
+                    // 4.0.89 seeds: Primary Coordination Personas (critical for fresh install)
+                    $seed_4_0_89 = array('seed_primary_coordination_personas_4.0.89.sql');
+                    foreach ($seed_4_0_89 as $seedFile) {
                         $path = $mysqlDir . DIRECTORY_SEPARATOR . 'seed' . DIRECTORY_SEPARATOR . $seedFile;
                         if (is_file($path)) {
                             InstallWizardSqlRunner::runSqlFile($pdo, $path, $bootstrapLog, $table_prefix);
@@ -623,8 +631,16 @@ if ($step === 'run') {
                             InstallWizardSqlRunner::runSqlFile($pdo, $path, $log, $table_prefix);
                         }
                     }
-                    $seed_4_0_74 = array('seed_projects.sql');
+                    $seed_4_0_74 = array('seed_projects.sql', 'seed_qa_lupopedia_4.0.88.sql');
                     foreach ($seed_4_0_74 as $seedFile) {
+                        $path = $mysqlDir . DIRECTORY_SEPARATOR . 'seed' . DIRECTORY_SEPARATOR . $seedFile;
+                        if (is_file($path)) {
+                            InstallWizardSqlRunner::runSqlFile($pdo, $path, $log, $table_prefix);
+                        }
+                    }
+                    // 4.0.89 seeds: Primary Coordination Personas (critical for fresh install)
+                    $seed_4_0_89 = array('seed_primary_coordination_personas_4.0.89.sql');
+                    foreach ($seed_4_0_89 as $seedFile) {
                         $path = $mysqlDir . DIRECTORY_SEPARATOR . 'seed' . DIRECTORY_SEPARATOR . $seedFile;
                         if (is_file($path)) {
                             InstallWizardSqlRunner::runSqlFile($pdo, $path, $log, $table_prefix);
@@ -670,8 +686,16 @@ if ($step === 'run') {
                     }
                 }
                 // 4.0.74 seeds (new install): lupo_projects registry (idempotent)
-                $seed_4_0_74 = array('seed_projects.sql');
+                $seed_4_0_74 = array('seed_projects.sql', 'seed_qa_lupopedia_4.0.88.sql');
                 foreach ($seed_4_0_74 as $seedFile) {
+                    $path = $mysqlDir . DIRECTORY_SEPARATOR . 'seed' . DIRECTORY_SEPARATOR . $seedFile;
+                    if (is_file($path)) {
+                        InstallWizardSqlRunner::runSqlFile($pdo, $path, $log, $table_prefix);
+                    }
+                }
+                // 4.0.89 seeds: Primary Coordination Personas (critical for fresh install)
+                $seed_4_0_89 = array('seed_primary_coordination_personas_4.0.89.sql');
+                foreach ($seed_4_0_89 as $seedFile) {
                     $path = $mysqlDir . DIRECTORY_SEPARATOR . 'seed' . DIRECTORY_SEPARATOR . $seedFile;
                     if (is_file($path)) {
                         InstallWizardSqlRunner::runSqlFile($pdo, $path, $log, $table_prefix);
@@ -781,8 +805,16 @@ if ($step === 'run') {
                 }
             }
             // 4.0.74 seeds: lupo_projects registry (idempotent; run after 4.0.69)
-            $seed_4_0_74 = array('seed_projects.sql');
+            $seed_4_0_74 = array('seed_projects.sql', 'seed_qa_lupopedia_4.0.88.sql');
             foreach ($seed_4_0_74 as $seedFile) {
+                $path = $mysqlDir . DIRECTORY_SEPARATOR . 'seed' . DIRECTORY_SEPARATOR . $seedFile;
+                if (is_file($path)) {
+                    InstallWizardSqlRunner::runSqlFile($pdo, $path, $log, $table_prefix);
+                }
+            }
+            // 4.1.0 seeds: Consolidated seed data for all installations
+            $seed_4_1_0 = array('seed_4.1.0.sql');
+            foreach ($seed_4_1_0 as $seedFile) {
                 $path = $mysqlDir . DIRECTORY_SEPARATOR . 'seed' . DIRECTORY_SEPARATOR . $seedFile;
                 if (is_file($path)) {
                     InstallWizardSqlRunner::runSqlFile($pdo, $path, $log, $table_prefix);

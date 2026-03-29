@@ -1,105 +1,37 @@
-# LUPOPEDIA HEADERS (replaces FLARE)
 ---
 lupopedia.headers:
-  lupopedia.version: "4.0.73"
+  version_when_written: "4.0.88"
   lupopedia.schema: "documentation"
   file_path_from_root: "lupo-docs/channels/appendix/appendix/COUNTING_IN_LIGHT.md"
-  file_hash: "bb62dd9e3531f5598867a46a19aa3a5410bfd74b8a870ee5c885c0b1e57fc088"
-  last_updated_utc: "20260228155738"
-  system_version: "4.0.51"
-  channel_id: 1
-  actor_id: 1002
-  delegation_chain: "1002:10000"
+  web_path: "http://www.lupopedia.com/lupopedia/lupo-docs/channels/appendix/appendix/COUNTING_IN_LIGHT.md"
+  last_modified_utc: "20260327_000000"
+  channel_id: 42
+  actor_id: 102
+  actor_name: "cursor"
+  delegation_chain: "cursor:wolfie"
   artifact_type: "documentation"
-  artifact_kind: "documentation"
-  purpose: "Documentation file with LUPOPEDIA HEADERS applied"
-  mood_rgb: "4169E1"
-  traits: ["flare", "indexed", "v4.0.51"]
-  tags: ["documentation", "flare_applied"]
-  lupo_agent: "windsurf"
+  artifact_kind: "appendix_mirror"
+  purpose: "Appendix mirror of the Counting-in-Light doctrine for historical context and secondary discoverability."
+  tags: ["counting_in_light", "appendix", "lineage", "mood_rgb", "4.0.88"]
 
 lupopedia.edges:
   outbound_edges:
-    - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/doctrine/COUNTING_IN_LIGHT.md", type: "mirrors", weight: 1.0, reason: "Doctrine path is the canonical home." }
+    - { to: "lupo-docs/doctrine/MOOD_RGB_DOCTRINE.md", type: "complements", weight: 1.0, reason: "MOOD_RGB doctrine defines current operational semantics." }
+    - { to: "lupo-docs/doctrine/ROSE_DOCTRINE.md", type: "references", weight: 0.8, reason: "ROSE commentary uses this interpretation model." }
 
 lupopedia.footer:
-  last_verified: "20260228155738"
-  last_verified_by: "windsurf"
----
-
-# LUPOPEDIA HEADERS (replaces FLARE)
-
----
-lupopedia.headers:
-  lupopedia.version: "4.0.73"
-  lupopedia.schema: "documentation"
-  lupopedia.edges: []
-  file_path_from_root: "lupo-docs\channels\appendix\appendix\COUNTING_IN_LIGHT.md"
-  file_hash: "a2dc961c72a37b4bd22bf46711ed281670cd18e77a2b0abbac53f5b47fd8ff7a"
-  file_path_from_root: "lupo-docs\channels\appendix\appendix\COUNTING_IN_LIGHT.md"
-  file_hash: "fe57add7647979b8c79e0b79c0260f58b2bef9308358d02060e7c766a29b0de9"
-  last_updated_utc: "20260228"
-  system_version: "4.0.50"
-  channel_id: 1
-  actor_id: 1002
-  delegation_chain: null
-  artifact_type: "guide"
-  artifact_kind: "documentation"
-  purpose: "Documentation for COUNTING_IN_LIGHT.md"
-  mood_rgb: "4169E1"
-  traits: ["flare", "indexed", "v4.0.50"]
-  tags: ["docs", "channels", "appendix", "counting_in_lightmd"]
-  lupo_agent: "windsurf"
-
-  needs_review: ["delegation_chain"]
-  system_version: "4.0.50"
-  last_updated_utc: "20260228"
-lupopedia.footer:
-  last_verified: "20260228"
-  last_verified_by: "windsurf"
-    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use lupopedia.headers"]
----
-
----
-architect: Captain Wolfie
-wolfie.headers: explicit architecture with structured clarity for every file.
-file.last_modified_system_version: 3.0.15
-header_atoms:
-  - GLOBAL_CURRENT_LUPOPEDIA_VERSION
-  - GLOBAL_CURRENT_AUTHORS
-dialog:
-  speaker: Captain Wolfie
-  target: DIALOG Agent
-  mood_RGB: "00A0FF"
-  message: "Updated Counting-in-Light Doctrine: Clarified that dialogs are by individual messages (not thread-level), and documented thread-level mood aggregation from message-level moods."
-tags:
-  categories: ["documentation", "doctrine", "agents", "communication", "emotional-metadata"]
-  collections: ["core-docs", "doctrine"]
-  channels: ["dev", "public"]
-in_this_file_we_have:
-  - Counting-in-Light Doctrine
-  - Doctrine Boundaries
-  - Three Axes: R (Strife/Chaos), G (Harmony/Cohesion), B (Memory/Persistence)
-  - Format and Color Examples
-  - Choosing Mood Colors
-  - Doctrine for Agents
-  - Message-Level Mood Assignment (individual messages, not thread-level)
-  - Thread-Level Mood Aggregation
-  - Integration with Inline Dialog
-  - Future Extensions
-file:
-  title: "Counting-in-Light Doctrine"
-  description: "The emotional coordinate system of Lupopedia: RGB-based mood encoding for dialog messages, agent communication, and UI indicators. Message-level mood assignment for thread aggregation."
-  version: GLOBAL_CURRENT_LUPOPEDIA_VERSION
-  status: published
-  author: GLOBAL_CURRENT_AUTHORS
+  last_verified: "20260327_000000"
+  last_verified_by: "Cursor IDE Agent (Lead Orchestration)"
+  next_action:
+    - "Prefer lupo-docs/doctrine/COUNTING_IN_LIGHT.md as the primary canonical reference."
+    - "Retain this appendix copy for lineage and additional discoverability."
 ---
 
 # 🐺 **Counting‑in‑Light Doctrine**  
 ### *The Emotional Coordinate System of Lupopedia*
 
-Counting‑in‑Light is the emotional color system used across Lupopedia to encode tone, urgency, and emotional context into dialog messages, agent communication, and UI indicators. It maps emotional states onto a three‑axis RGB coordinate system.
+Counting‑in‑Light is the emotional coordinate system used across Lupopedia to encode tone, urgency, and emotional context into dialog messages, agent communication, and UI indicators. It maps message posture onto a three-axis vector stored in RGB-shaped hex.
 
 ---
 
@@ -108,6 +40,25 @@ Counting‑in‑Light is the emotional color system used across Lupopedia to enc
 Most conversations are one human talking to one AI.  
 Agent classification and routing only matter when multiple agents are active.  
 If only one agent is present, HERMES bypasses routing and delivers the message normally.
+
+---
+
+## **Status and Scope**
+
+This appendix explains the historical and conceptual axis model.
+
+Canonical doctrine home now lives in `lupo-docs/doctrine/COUNTING_IN_LIGHT.md`.
+
+Canonical current-runtime interpretation still lives in `lupo-docs/doctrine/MOOD_RGB_DOCTRINE.md`.
+
+Use this file for:
+
+- Counting-in-Light axis vocabulary
+- why the encoded value looks like RGB
+- doctrine boundaries around what is and is not defined
+- human explanation of how message mood metadata should be read
+
+Do **not** use this file by itself to infer binding runtime token authority. Use the doctrine copy for the canonical Counting-in-Light explanation and the root MOOD_RGB doctrine for current operational semantics.
 
 ---
 
@@ -184,17 +135,23 @@ High B = "this matters beyond the moment."
 ---
 
 ## **3. Format**
-Colors are stored as **six hex digits** (no leading `#`):
+The vector is stored as **six hex digits** (no leading `#`):
 
 ```
 RRGGBB
 ```
 
 **Database Storage:**
-- The database stores mood colors as `char(6)` without the leading `#` hashtag
+- The database stores the encoded mood/light vector as `char(6)` without the leading `#` hashtag
 - Example: `666666` (not `#666666`)
 - The `dialog_messages` table uses `mood_rgb char(6)` for storage
 - UI or agents may prepend `#` when displaying, but storage is always without `#`
+
+**Naming Clarification:**
+
+- The stored value looks like a color because it uses `RRGGBB`.
+- Its primary meaning is semantic metadata, not decoration.
+- The canonical field name remains `mood_rgb` for compatibility, even though that name invites visual-color misunderstandings.
 
 Examples:
 
@@ -204,7 +161,21 @@ Examples:
 - `666666` → neutral  
 - `888888` → balanced, slightly reflective  
 
-**Important:** Always store and transmit mood colors as six hex digits without the `#` symbol. The `#` is only added for display purposes.
+**Important:** Always store and transmit the vector as six hex digits without the `#` symbol. The `#` is only added for display purposes.
+
+## **3.1 Why The Name Is Confusing**
+
+`mood_rgb` reads like ordinary display color.
+
+That is incomplete and often misleading.
+
+In Lupopedia, the field is primarily:
+
+- a three-axis encoded mood/light vector
+- a semantic signal for message interpretation
+- a compact machine-readable field that can also be rendered visually
+
+So the system may use color-shaped storage, but the doctrine meaning is not "just pick a pretty color."
 
 ---
 
@@ -249,7 +220,7 @@ Green with a touch of blue.
 ---
 
 ## **5. Doctrine for Agents**
-When choosing a mood color:
+When choosing a `mood_rgb` value:
 
 - reflect the emotional tone of the message  
 - avoid extremes unless necessary  
@@ -258,7 +229,34 @@ When choosing a mood color:
 - use blue for deep insights or long‑term significance  
 - use green for reassurance, stability, or positive alignment  
 
-Agents should not overuse high‑intensity colors.
+Agents should not overuse high-intensity values.
+
+## **5.1 Human-Readable Companion: mood_label**
+
+`mood_label` is the recommended human-readable companion to `mood_rgb`.
+
+Purpose:
+
+- explain the intended reading of the encoded vector in plain language
+- help humans interpret longer comments without decoding hex mentally
+- reduce the common mistake of treating `mood_rgb` as only display styling
+
+Examples:
+
+- `mood_rgb: "666666"` + `mood_label: "neutral coordination"`
+- `mood_rgb: "FF4400"` + `mood_label: "critical review"`
+- `mood_rgb: "3399CC"` + `mood_label: "understanding insight"`
+- `mood_rgb: "CC0000"` + `mood_label: "critical error"`
+- `mood_rgb: "00FF00"` + `mood_label: "stabilizing guidance"`
+- `mood_rgb: "0000FF"` + `mood_label: "reflective memory"`
+
+Usage guidance:
+
+- recommended whenever humans are expected to read and interpret the message
+- strongly preferred for ROSE insight/comment messages and other long-form actor commentary
+- optional in minimal packet or inline-dialog surfaces that only carry `mood_rgb` today
+
+`mood_label` complements `mood_rgb`; it does not replace it.
 
 ---
 
@@ -297,6 +295,22 @@ Thread mood is calculated from individual message moods using:
 
 Implementations MAY apply weighting during aggregation, but weighting is not stored in the message schema and is not part of the mood tensor.
 
+## **8.1 ROSE and Long-Form Actor Commentary**
+
+ROSE reads many channel threads and may emit insight/comment messages as actors.
+
+For those messages:
+
+- `mood_rgb` provides the encoded semantic vector
+- `mood_label` provides the fast human-readable reading
+
+This pairing is especially important for longer interpretive messages, where the hex alone is too opaque for fast human review.
+
+Current-state note:
+
+- some live message surfaces still only require `mood_rgb`
+- doctrine nevertheless recommends `mood_label` as the companion field for ROSE-style commentary and similar long-form actor output
+
 ---
 
 ## **9. Future Extensions**
@@ -310,14 +324,16 @@ Planned expansions:
 
 ## **Final Note**
 
-The doctrine defines the axes and the abstract tensor structure. All conversion formulas, blending rules, and emotional mappings are implementation choices and must not be treated as canonical.
+This appendix defines the axes and the abstract tensor structure. All conversion formulas, blending rules, and emotional mappings are implementation choices and must not be treated as canonical unless the root doctrine says otherwise.
 
 ---
 
 ## **10. Related Documentation**
 
 - **Reflective Emotional Geometry Doctrine:** `lupo-docs/doctrine/REFLECTIVE_EMOTIONAL_GEOMETRY_DOCTRINE.md` - Mathematical foundation for emotional metadata system
+- **COUNTING_IN_LIGHT Doctrine:** `lupo-docs/doctrine/COUNTING_IN_LIGHT.md` - Canonical doctrine-level axis explanation
 - **MOOD RGB Doctrine:** `lupo-docs/doctrine/MOOD_RGB_DOCTRINE.md` - Mood color usage across agents
+- **ROSE Doctrine:** `lupo-docs/doctrine/ROSE_DOCTRINE.md` - ROSE role boundaries and commentary responsibilities
 - **DIALOG Agent Guide:** `lupo-agents/3/COUNTING_IN_LIGHT.md` - DIALOG-specific mood assignment guide
 
 ---
