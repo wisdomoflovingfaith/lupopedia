@@ -144,29 +144,10 @@ function truth_get_evidence($answer_id) {
  * @param int $evidence_id Evidence ID
  * @return array Array of source rows
  */
+// Option A: No sources table in split schema. Stub for future extension.
 function truth_get_sources($evidence_id) {
-    global $table_prefix;
-    
-    if (empty($GLOBALS['mydatabase'])) {
-        return [];
-    }
-    
-    $db = $GLOBALS['mydatabase'];
-    
-    $sql = "SELECT * FROM {$table_prefix}truth_knowledge
-            WHERE truth_type = 'source'
-              AND answer_id = ?
-              AND is_deleted = 0
-            ORDER BY reliability_score DESC, created_ymdhis DESC";
-    
-    try {
-        $stmt = $db->prepare($sql);
-        $stmt->execute([$evidence_id]);
-        return $stmt->fetchAll(PDO::FETCH_ASSOC);
-    } catch (PDOException $e) {
-        error_log('TRUTH get sources error: ' . $e->getMessage());
-        return [];
-    }
+    // No sources table in Option A split schema. Return empty array.
+    return [];
 }
 
 /**
@@ -175,30 +156,10 @@ function truth_get_sources($evidence_id) {
  * @param string $slug Topic slug
  * @return array|null Topic row or null if not found
  */
+// Option A: No topic table in split schema. Stub for future extension.
 function truth_get_topic_by_slug($slug) {
-    global $table_prefix;
-    
-    if (empty($GLOBALS['mydatabase'])) {
-        return null;
-    }
-    
-    $db = $GLOBALS['mydatabase'];
-    
-    $sql = "SELECT * FROM {$table_prefix}truth_knowledge
-            WHERE truth_type = 'topic'
-              AND slug = ?
-              AND is_deleted = 0
-            LIMIT 1";
-    
-    try {
-        $stmt = $db->prepare($sql);
-        $stmt->execute([$slug]);
-        $result = $stmt->fetch(PDO::FETCH_ASSOC);
-        return $result ?: null;
-    } catch (PDOException $e) {
-        error_log('TRUTH get topic error: ' . $e->getMessage());
-        return null;
-    }
+    // No topic table in Option A split schema. Return null.
+    return null;
 }
 
 /**
@@ -210,21 +171,16 @@ function truth_get_topic_by_slug($slug) {
  */
 function truth_get_questions_by_type($qtype, $limit = 50) {
     global $table_prefix;
-    
     if (empty($GLOBALS['mydatabase'])) {
         return [];
     }
-    
     $db = $GLOBALS['mydatabase'];
-    
-    $sql = "SELECT * FROM {$table_prefix}truth_knowledge
-            WHERE truth_type = 'question'
-              AND qtype = ?
-              AND status = 'active'
+    $sql = "SELECT * FROM {$table_prefix}truth_questions
+            WHERE question_status = 'open'
               AND is_deleted = 0
+              AND target_object_type = ?
             ORDER BY is_featured DESC, answer_count DESC, created_ymdhis DESC
             LIMIT ?";
-    
     try {
         $stmt = $db->prepare($sql);
         $stmt->execute([$qtype, $limit]);
@@ -289,31 +245,19 @@ function truth_get_answers_with_evidence($question_id) {
  */
 function truth_get_questions_for_slug($slug) {
     global $table_prefix;
-    
     if (empty($GLOBALS['mydatabase']) || empty($slug)) {
         return [];
     }
-    
     $db = $GLOBALS['mydatabase'];
-    
-    // Find questions that reference content with this slug
-    // Uses lupo_truth_knowledge with truth_type='question' to link questions to content via object_type='content' and object_id
-    // This is a simple lookup - no inference logic
-    $sql = "SELECT DISTINCT tk.*
-            FROM {$table_prefix}truth_knowledge tk
-              LEFT JOIN {$table_prefix}contents c ON c.content_id = tk.object_id
-              WHERE tk.truth_type = 'question'
-              AND tk.object_type = 'content'
-              AND (c.slug = ? OR tk.slug LIKE ?)
-              AND tk.status = 'active'
-              AND tk.is_deleted = 0
-            ORDER BY tk.is_featured DESC, tk.answer_count DESC
+    $sql = "SELECT tq.* FROM {$table_prefix}truth_questions tq
+            JOIN {$table_prefix}contents c ON tq.target_object_type = 'content' AND tq.target_object_id = c.content_id
+            WHERE c.slug = ?
+              AND tq.is_deleted = 0
+            ORDER BY tq.is_featured DESC, tq.answer_count DESC
             LIMIT 20";
-    
     try {
-        $slug_pattern = '%' . $slug . '%';
         $stmt = $db->prepare($sql);
-        $stmt->execute([$slug, $slug_pattern]);
+        $stmt->execute([$slug]);
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     } catch (PDOException $e) {
         error_log('TRUTH get questions for slug error: ' . $e->getMessage());
@@ -331,32 +275,20 @@ function truth_get_questions_for_slug($slug) {
  */
 function truth_get_answers_for_slug($slug) {
     global $table_prefix;
-    
     if (empty($GLOBALS['mydatabase']) || empty($slug)) {
         return [];
     }
-    
     $db = $GLOBALS['mydatabase'];
-    
-    // Find answers for questions related to this slug
-    // Uses lupo_truth_knowledge with truth_type='answer' to link answers to questions via question_id
-    $sql = "SELECT DISTINCT ta.*
-            FROM {$table_prefix}truth_knowledge ta
-            LEFT JOIN {$table_prefix}truth_knowledge tq ON tq.question_id = ta.question_id
-              WHERE ta.truth_type = 'answer'
-              AND tq.truth_type = 'question'
-              AND tq.object_type = 'content'
-              AND (tq.object_id = ? OR tq.slug LIKE ?)
-              AND tq.status = 'active'
-              AND tq.is_deleted = 0
+    $sql = "SELECT ta.* FROM {$table_prefix}truth_answers ta
+            JOIN {$table_prefix}truth_questions tq ON ta.truth_question_id = tq.truth_question_id
+            JOIN {$table_prefix}contents c ON tq.target_object_type = 'content' AND tq.target_object_id = c.content_id
+            WHERE c.slug = ?
               AND ta.is_deleted = 0
-            ORDER BY ta.confidence_score DESC, ta.evidence_score DESC
+            ORDER BY ta.confidence_score DESC, ta.created_ymdhis DESC
             LIMIT 50";
-    
     try {
-        $slug_pattern = '%' . $slug . '%';
         $stmt = $db->prepare($sql);
-        $stmt->execute([$slug, $slug_pattern]);
+        $stmt->execute([$slug]);
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     } catch (PDOException $e) {
         error_log('TRUTH get answers for slug error: ' . $e->getMessage());
@@ -374,47 +306,22 @@ function truth_get_answers_for_slug($slug) {
  */
 function truth_get_evidence_for_slug($slug) {
     global $table_prefix;
-    
     if (empty($GLOBALS['mydatabase']) || empty($slug)) {
         return [];
     }
-    $sql = "SELECT DISTINCT te.*
-            FROM {$table_prefix}truth_knowledge te
-            LEFT JOIN {$table_prefix}truth_knowledge ta ON ta.answer_id = te.answer_id
-            LEFT JOIN {$table_prefix}truth_knowledge tq ON tq.question_id = ta.question_id
-              WHERE te.truth_type = 'evidence'
-              AND ta.truth_type = 'answer'
-              AND tq.truth_type = 'question'
-              AND tq.object_type = 'content'
-              AND (tq.object_id = ? OR tq.slug LIKE ?)
-              AND tq.status = 'active'
-              AND tq.is_deleted = 0
-              AND ta.is_deleted = 0
+    $db = $GLOBALS['mydatabase'];
+    $sql = "SELECT te.* FROM {$table_prefix}truth_evidence te
+            JOIN {$table_prefix}truth_answers ta ON te.truth_answer_id = ta.truth_answer_id
+            JOIN {$table_prefix}truth_questions tq ON ta.truth_question_id = tq.truth_question_id
+            JOIN {$table_prefix}contents c ON tq.target_object_type = 'content' AND tq.target_object_id = c.content_id
+            WHERE c.slug = ?
               AND te.is_deleted = 0
-            ORDER BY te.weight_score DESC
+            ORDER BY te.weight_score DESC, te.created_ymdhis DESC
             LIMIT 20";
-    
     try {
-        $slug_pattern = '%' . $slug . '%';
         $stmt = $db->prepare($sql);
-        $stmt->execute([$slug, $slug_pattern]);
-        $evidence_list = $stmt->fetchAll(PDO::FETCH_ASSOC);
-        
-        // Phase 2: Return placeholder structure (no scoring logic)
-        $evidence_placeholders = [];
-        foreach ($evidence_list as $evidence) {
-            $evidence_placeholders[] = [
-                'source' => 'content:' . $slug,
-                'type' => $evidence['evidence_type'] ?? 'reference',
-                'weight' => null, // Phase 3+
-                'summary' => null, // Phase 3+
-                'evidence_id' => $evidence['truth_evidence_id'] ?? null,
-                'evidence_text' => $evidence['evidence_text'] ?? '',
-                'created_ymdhis' => $evidence['created_ymdhis'] ?? null
-            ];
-        }
-        
-        return $evidence_placeholders;
+        $stmt->execute([$slug]);
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
     } catch (PDOException $e) {
         error_log('TRUTH get evidence for slug error: ' . $e->getMessage());
         return [];

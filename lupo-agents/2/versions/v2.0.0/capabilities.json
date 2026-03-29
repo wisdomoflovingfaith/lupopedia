@@ -1,0 +1,9 @@
+{
+  "capabilities": [
+    "adversarial_review",
+    "quality_assurance",
+    "contradiction_detection"
+  ],
+  "when_updated_utc": "20260324184000",
+  "last_verified_utc": "20260324184000"
+}

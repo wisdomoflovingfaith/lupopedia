@@ -409,3 +409,54 @@ This constitutional document supersedes all fragmented root rules:
 - And all other fragmented root rules
 
 **These constitutional rules are the single source of truth.**
+
+---
+
+### Release & Migration Doctrine (ABSOLUTE until 4.1.0)
+
+1. **NO database migrations** - All changes require fresh install
+2. **NO upgrade paths** - No Lupopedia -> Lupopedia upgrades until 4.1.0
+3. **NO ALTER TABLE statements** - Only CREATE TABLE in install_new_lupopedia.sql
+4. **NO data preservation** - Existing data is never migrated between versions
+5. **ONLY fresh installs** - Each new version starts from empty database
+6. **Crafty Syntax ONLY import** - The ONLY allowed data import is from Crafty Syntax 3.7.5 tables
+7. **NO migration planning** - Do not waste time on upgrade scripts, data mapping, or version transitions
+8. **DELETE and RECREATE** - When schema changes, database is wiped and reinstalled
+9. **Focus on clean schema** - All effort goes into correct CREATE statements, not ALTER statements
+10. **4.1.0 is the FIRST upgrade** - Before 4.1.0, there are NO production upgrades
+
+### Rationale
+
+Until 4.1.0, Lupopedia is in **active development with breaking schema changes**.
+- Every database change requires fresh install
+- Development environment only (no production data at risk)
+- Crafty Syntax is the ONLY source of importable data
+- Migration complexity is deferred to 4.1.0 release
+
+### What This Means For Agents
+
+- **NEVER** write ALTER TABLE statements
+- **NEVER** plan data migration strategies  
+- **NEVER** worry about preserving existing Lupopedia data
+- **ALWAYS** assume fresh install from install.sql
+- **ALWAYS** focus on correct CREATE TABLE definitions
+- **ONLY** consider Crafty Syntax 3.7.5 → Lupopedia 4.0.x import
+
+### Violation Severity
+
+**CRITICAL** - Any agent proposing migration logic, ALTER TABLE, or upgrade paths is in violation.
+
+---
+
+## Multi-Agent Safety Doctrine (Addendum)
+
+1. **NO agent may propose forbidden constructs**:
+  - foreign keys, triggers, stored procedures
+  - DATETIME, TIMESTAMP, vendor SQL
+  - auto-increment, implicit cascades
+  - ORM magic, lazy inserts
+  - nondeterministic behavior
+  - hard deletes, non-conforming PK names
+  - **ALTER TABLE statements** (NEW - until 4.1.0)
+  - **migration scripts** (NEW - until 4.1.0)
+  - **upgrade path logic** (NEW - until 4.1.0)

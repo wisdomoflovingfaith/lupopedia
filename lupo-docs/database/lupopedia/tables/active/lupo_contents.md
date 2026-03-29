@@ -98,6 +98,8 @@ Canonical table documentation normalized from TOON JSON for `lupo_contents`.
 | `share_users` | `json COMMENT 'Consolidated from lupo_content_shares'` |
 | `tag_relationships` | `json COMMENT 'Consolidated from lupo_content_tag_relationships'` |
 | `like_count` | `bigint NOT NULL DEFAULT 0 COMMENT 'FLARE-aligned engagement cache'` |
+| `tags` | `json` | **[DEPRECATED]** Use `lupo_hashtags`/`lupo_hashtag_map` for all new tag relationships. This column is retained for legacy compatibility only. |
+| `hashtags` | `json` | **[DEPRECATED]** Use `lupo_hashtags`/`lupo_hashtag_map` for all new hashtag relationships. This column is retained for legacy compatibility only. |
 | `share_count` | `bigint NOT NULL DEFAULT 0 COMMENT 'FLARE-aligned engagement cache'` |
 | `comment_count` | `bigint NOT NULL DEFAULT 0 COMMENT 'FLARE-aligned engagement cache'` |
 

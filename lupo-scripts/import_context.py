@@ -458,74 +458,55 @@ class ContextImporter:
     # ========================================================================
     
     def import_question(self, file_path: str, headers: Dict, body: str, parent_context_id: Optional[int] = None) -> Optional[int]:
-        """Import a question into lupo_truth_knowledge."""
+        """Import a question into lupo_truth_questions (Option A)."""
         # Generate stable ID
-        truth_id = generate_content_id(file_path, 'question')
-        
+        question_id = generate_content_id(file_path, 'question')
         # Generate slug with context prefix
         context_code = headers.get('context_code', '')
         if not context_code and parent_context_id:
-            # Look up context code from context_map
             for ctx_path, ctx_id in self.context_map.items():
                 if ctx_id == parent_context_id:
                     context_code = Path(ctx_path).parent.name
                     break
-        
         question_slug = headers.get('slug', Path(file_path).stem)
         slug = generate_slug(context_code, question_slug) if context_code else question_slug
-        
-        # Prepare data
+        # Prepare data for Option A split table
         data = {
-            'truth_id': truth_id,
-            'truth_type': 'question',
-            'question_text': headers.get('question_text', ''),
-            'text_content': body,
+            'truth_question_id': question_id,
+            'qtype': headers.get('qtype', ''),
             'slug': slug,
-            'title': headers.get('title', question_slug),
+            'question_text': headers.get('question_text', ''),
+            'target_object_type': headers.get('target_object_type', 'context'),
+            'target_object_id': parent_context_id,
             'actor_id': headers.get('actor_id', 0),
-            'status': 'active' if headers.get('canonical_status') == 'final' else 'draft',
-            'is_verified': 1 if headers.get('lupopedia', {}).get('footer', {}).get('verified_by') else 0,
+            'question_status': 'open' if headers.get('canonical_status') == 'final' else 'draft',
+            'is_featured': 1 if headers.get('is_featured', False) else 0,
+            'answer_count': 0,
             'created_ymdhis': parse_timestamp(headers.get('when_updated', get_current_timestamp())),
             'updated_ymdhis': self.get_current_timestamp_int(),
+            'is_deleted': 0,
             'metadata_json': json.dumps(headers)
         }
-        
         if self.dry_run:
-            self.log_info(f"[DRY RUN] Would import question: {file_path} (ID: {truth_id})")
-            return truth_id
-        
+            self.log_info(f"[DRY RUN] Would import question: {file_path} (ID: {question_id})")
+            return question_id
         try:
             cursor = self.db.cursor()
             cursor.execute("""
-                INSERT INTO lupo_truth_knowledge 
-                (truth_id, truth_type, question_text, text_content, slug, title,
-                 actor_id, status, is_verified, created_ymdhis, updated_ymdhis, metadata_json)
-                VALUES (%(truth_id)s, %(truth_type)s, %(question_text)s, %(text_content)s,
-                        %(slug)s, %(title)s, %(actor_id)s, %(status)s, %(is_verified)s,
-                        %(created_ymdhis)s, %(updated_ymdhis)s, %(metadata_json)s)
+                INSERT INTO lupo_truth_questions
+                (truth_question_id, qtype, slug, question_text, target_object_type, target_object_id, actor_id, question_status, is_featured, answer_count, created_ymdhis, updated_ymdhis, is_deleted, metadata_json)
+                VALUES (%(truth_question_id)s, %(qtype)s, %(slug)s, %(question_text)s, %(target_object_type)s, %(target_object_id)s, %(actor_id)s, %(question_status)s, %(is_featured)s, %(answer_count)s, %(created_ymdhis)s, %(updated_ymdhis)s, %(is_deleted)s, %(metadata_json)s)
                 ON DUPLICATE KEY UPDATE
                     question_text = VALUES(question_text),
-                    text_content = VALUES(text_content),
                     updated_ymdhis = VALUES(updated_ymdhis),
-                    status = VALUES(status),
-                    is_verified = VALUES(is_verified),
+                    question_status = VALUES(question_status),
+                    is_featured = VALUES(is_featured),
+                    answer_count = VALUES(answer_count),
                     metadata_json = VALUES(metadata_json)
             """, data)
             self.db.commit()
-            
-            # Create edge to parent context
-            if parent_context_id:
-                self.create_edge(
-                    left_type='context',
-                    left_id=parent_context_id,
-                    right_type='truth_knowledge',
-                    right_id=truth_id,
-                    edge_type='contains_question',
-                    reason=f"Question from {file_path}"
-                )
-            
-            self.log_success(f"Imported question: {file_path} (ID: {truth_id})")
-            return truth_id
+            self.log_success(f"Imported question: {file_path} (ID: {question_id})")
+            return question_id
         except Exception as e:
             self.log_error(f"Failed to import question {file_path}: {e}")
             return None
@@ -535,94 +516,43 @@ class ContextImporter:
     # ========================================================================
     
     def import_answer(self, file_path: str, headers: Dict, body: str, question_id: Optional[int] = None) -> Optional[int]:
-        """Import an answer into lupo_truth_answers and lupo_truth_knowledge."""
+        """Import an answer into lupo_truth_answers (Option A)."""
         # Generate stable ID
-        truth_id = generate_content_id(file_path, 'answer')
-        
-        # Prepare truth knowledge data
-        truth_data = {
-            'truth_id': truth_id,
-            'truth_type': 'answer',
-            'answer_text': body,
-            'question_id': question_id,
-            'text_content': body,
-            'title': headers.get('title', Path(file_path).stem),
-            'actor_id': headers.get('actor_id', 0),
-            'confidence_score': headers.get('confidence', 0.9),
-            'status': 'active' if headers.get('canonical_status') == 'final' else 'draft',
-            'is_verified': 1 if headers.get('lupopedia', {}).get('footer', {}).get('verified_by') else 0,
-            'created_ymdhis': parse_timestamp(headers.get('when_updated', get_current_timestamp())),
-            'updated_ymdhis': self.get_current_timestamp_int(),
-            'metadata_json': json.dumps(headers)
-        }
-        
-        # Prepare answer data
+        answer_id = generate_content_id(file_path, 'truth_answer')
+        # Prepare answer data for Option A split table
         answer_data = {
-            'truth_answer_id': generate_content_id(file_path, 'truth_answer'),
+            'truth_answer_id': answer_id,
             'truth_question_id': question_id,
             'actor_id': headers.get('actor_id', 0),
             'answer_text': body,
-            'confidence': headers.get('confidence', 0.9),
+            'confidence_score': headers.get('confidence', 0.9),
             'status': 'active' if headers.get('canonical_status') == 'final' else 'draft',
             'created_ymdhis': parse_timestamp(headers.get('when_updated', get_current_timestamp())),
             'updated_ymdhis': self.get_current_timestamp_int(),
-            'evidence_score': headers.get('evidence_score', 0.0)
+            'evidence_score': headers.get('evidence_score', 0.0),
+            'is_deleted': 0,
+            'metadata_json': json.dumps(headers)
         }
-        
         if self.dry_run:
-            self.log_info(f"[DRY RUN] Would import answer: {file_path} (ID: {truth_id})")
-            return truth_id
-        
+            self.log_info(f"[DRY RUN] Would import answer: {file_path} (ID: {answer_id})")
+            return answer_id
         try:
             cursor = self.db.cursor()
-            
-            # Insert into truth_knowledge
             cursor.execute("""
-                INSERT INTO lupo_truth_knowledge 
-                (truth_id, truth_type, answer_text, question_id, text_content, title,
-                 actor_id, confidence_score, status, is_verified, created_ymdhis, updated_ymdhis, metadata_json)
-                VALUES (%(truth_id)s, %(truth_type)s, %(answer_text)s, %(question_id)s, %(text_content)s,
-                        %(title)s, %(actor_id)s, %(confidence_score)s, %(status)s, %(is_verified)s,
-                        %(created_ymdhis)s, %(updated_ymdhis)s, %(metadata_json)s)
+                INSERT INTO lupo_truth_answers
+                (truth_answer_id, truth_question_id, actor_id, answer_text, confidence_score, status, created_ymdhis, updated_ymdhis, evidence_score, is_deleted, metadata_json)
+                VALUES (%(truth_answer_id)s, %(truth_question_id)s, %(actor_id)s, %(answer_text)s, %(confidence_score)s, %(status)s, %(created_ymdhis)s, %(updated_ymdhis)s, %(evidence_score)s, %(is_deleted)s, %(metadata_json)s)
                 ON DUPLICATE KEY UPDATE
                     answer_text = VALUES(answer_text),
                     confidence_score = VALUES(confidence_score),
                     updated_ymdhis = VALUES(updated_ymdhis),
                     status = VALUES(status),
-                    is_verified = VALUES(is_verified),
+                    evidence_score = VALUES(evidence_score),
                     metadata_json = VALUES(metadata_json)
-            """, truth_data)
-            
-            # Insert into truth_answers
-            cursor.execute("""
-                INSERT INTO lupo_truth_answers 
-                (truth_answer_id, truth_question_id, actor_id, answer_text, confidence,
-                 status, created_ymdhis, updated_ymdhis, evidence_score)
-                VALUES (%(truth_answer_id)s, %(truth_question_id)s, %(actor_id)s, %(answer_text)s,
-                        %(confidence)s, %(status)s, %(created_ymdhis)s, %(updated_ymdhis)s, %(evidence_score)s)
-                ON DUPLICATE KEY UPDATE
-                    answer_text = VALUES(answer_text),
-                    confidence = VALUES(confidence),
-                    updated_ymdhis = VALUES(updated_ymdhis),
-                    status = VALUES(status),
-                    evidence_score = VALUES(evidence_score)
             """, answer_data)
-            
             self.db.commit()
-            
-            # Create edge to question
-            if question_id:
-                self.create_edge(
-                    left_type='truth_knowledge',
-                    left_id=question_id,
-                    right_type='truth_knowledge',
-                    right_id=truth_id,
-                    edge_type='has_answer',
-                    reason=f"Answer from {file_path}"
-                )
-            
-            self.log_success(f"Imported answer: {file_path} (ID: {truth_id})")
-            return truth_id
+            self.log_success(f"Imported answer: {file_path} (ID: {answer_id})")
+            return answer_id
         except Exception as e:
             self.log_error(f"Failed to import answer {file_path}: {e}")
             return None

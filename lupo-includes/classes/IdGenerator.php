@@ -13,52 +13,55 @@
  * @version 4.0.89
  */
 
+/**
+ * Lupopedia Deterministic ID Generator (Signed-Safe)
+ * Actor: HEPHAESTUS (102)
+ * Doctrine: Postgres Compatibility, No UNSIGNED required.
+ */
 class IdGenerator
 {
-    /**
-     * Last timestamp used for ID generation
-     * @var string
-     */
-    private static $last_timestamp = '';
-    
-    /**
-     * Sequence number for the current timestamp
-     * @var int
-     */
+    private const EPOCH = 1704067200000; // Custom epoch (ms)
+    private static $lastTimestamp = -1;
     private static $sequence = 0;
-    
+
     /**
-     * Generate a timestamp-based ID
-     * 
-     * This method just generates IDs. Collision detection and retry
-     * is handled by DatabaseFactory::insertWithRetry() to avoid
-     * TOCTOU race conditions.
-     * 
-     * @return string Generated ID
+     * Generate a 63-bit signed-safe unique ID (Snowflake-inspired)
+     * [0 (1 bit)] [Timestamp (41 bits)] [Node (10 bits)] [Sequence (11 bits)]
+     * @param int $nodeId
+     * @return string
      */
-    /**
-     * Generate timestamp + 4-digit random content_id (optionally check DB for collision)
-     * @param PDO_DB|null $db Optional DB connection for collision check
-     * @param int $retryCount
-     * @param int $maxRetries
-     * @return int
-     */
-    public static function generate($db = null, $retryCount = 0, $maxRetries = 3)
+    public static function generate($nodeId = 0)
     {
-        $timestamp = gmdate('YmdHis');
-        $random = random_int(1, 9999);
-        $contentId = (int)($timestamp . str_pad($random, 4, '0', STR_PAD_LEFT));
-        // If DB provided, check for collision
-        if ($db && $retryCount < $maxRetries) {
-            $row = $db->fetchRow('SELECT content_id FROM lupo_contents WHERE content_id = :cid', array('cid' => $contentId));
-            if ($row) {
-                // Collision! Retry
-                return self::generate($db, $retryCount + 1, $maxRetries);
+        $timestamp = self::timeGen();
+        if ($timestamp === self::$lastTimestamp) {
+            self::$sequence = (self::$sequence + 1) & 2047; // 11 bits
+            if (self::$sequence === 0) {
+                // Sequence overflow, wait for next ms
+                do {
+                    $timestamp = self::timeGen();
+                } while ($timestamp <= self::$lastTimestamp);
             }
+        } else {
+            self::$sequence = 0;
         }
-        return $contentId;
+        self::$lastTimestamp = $timestamp;
+
+        // 63-bit Forge: [0][41][10][11]
+        $id = (($timestamp - self::EPOCH) << 21)
+            | (($nodeId & 0x3FF) << 11)
+            | (self::$sequence & 0x7FF);
+
+        // Ensure positive signed 64-bit integer (63 bits)
+        $id = $id & 0x7FFFFFFFFFFFFFFF;
+        return (string) $id;
     }
-    
+
+    private static function timeGen()
+    {
+        // Return current time in ms
+        return (int) (microtime(true) * 1000);
+    }
+}
     /**
      * Generate ID without sequence reset (for performance)
      * 

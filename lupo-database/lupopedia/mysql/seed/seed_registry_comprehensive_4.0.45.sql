@@ -130,3 +130,4 @@ VALUES
 -- ============================================================================
 -- END OF COMPREHENSIVE REGISTRY SEEDING
 -- ============================================================================
+-- OBSOLETE: This file is deprecated and intentionally left blank. Registry tables are removed in 4.0.86+. Do not use.

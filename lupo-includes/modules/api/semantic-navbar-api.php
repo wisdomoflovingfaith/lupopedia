@@ -74,27 +74,17 @@ switch ($navbar_api_type) {
         break;
 
     case 'hashtags':
-        // Retrieve hashtags from mapping table or JSON field
+        // Retrieve hashtags from canonical mapping table only (Option A compliant)
         $rows = $db->fetchAll("SELECT h.* FROM {$prefix}hashtags h
                                JOIN {$prefix}hashtag_map m ON h.hashtag_id = m.hashtag_id
                                WHERE m.object_type = 'content' AND m.object_id = :id AND m.is_deleted = 0",
                                array('id' => $content_id));
-        
-        if (empty($rows) && !empty($content['hashtags'])) {
-            $json = json_decode($content['hashtags'], true);
-            if (is_array($json)) {
-                foreach ($json as $tag) {
-                    $response_data[] = ['label' => $tag];
-                }
-            }
-        } else {
-            foreach ($rows as $row) {
-                $response_data[] = [
-                    'hashtag_id' => $row['hashtag_id'],
-                    'label' => $row['label'],
-                    'slug' => $row['tag_slug']
-                ];
-            }
+        foreach ($rows as $row) {
+            $response_data[] = [
+                'hashtag_id' => $row['hashtag_id'],
+                'label' => $row['label'],
+                'slug' => $row['tag_slug']
+            ];
         }
         break;
 
@@ -114,18 +104,12 @@ switch ($navbar_api_type) {
         break;
 
     case 'qa':
-        // Retrieve questions from lupo_question_map
+        // Retrieve questions from canonical mapping table only (Option A compliant)
         $rows = $db->fetchAll("SELECT q.*, a.answer_text FROM {$prefix}questions q
                                JOIN {$prefix}question_map m ON q.question_id = m.question_id
                                LEFT JOIN {$prefix}answers a ON q.question_id = a.question_id AND a.is_deleted = 0
                                WHERE m.object_type = 'content' AND m.object_id = :id AND m.is_deleted = 0",
                                array('id' => $content_id));
-        
-        if (empty($rows) && !empty($content['question_mappings'])) {
-             // Fallback to truth_knowledge if mapping table empty?
-             // For now, check if truth_knowledge has anything for this content_id if such mapping exists
-        }
-
         foreach ($rows as $row) {
             $response_data[] = [
                 'question_id' => $row['question_id'],

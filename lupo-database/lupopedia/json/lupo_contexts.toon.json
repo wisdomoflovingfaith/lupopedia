@@ -1,0 +1,12 @@
+{
+  "table": "lupo_contexts",
+  "fields": [
+    { "name": "context_id", "type": "BIGINT", "primary": true, "description": "Application-generated deterministic ID" },
+    { "name": "source_message_id", "type": "BIGINT", "description": "Pointer to lupo_dialog_messages" },
+    { "name": "context_type", "type": "VARCHAR(20)", "description": "truth, logic, audit, summary" },
+    { "name": "content_raw", "type": "TEXT", "description": "The elevated truth" },
+    { "name": "metadata_json", "type": "JSON", "description": "Elevation source, Faucet ID, Actor lineage" },
+    { "name": "created_ymdhis", "type": "BIGINT", "description": "YYYYMMDDHHIISS" }
+  ],
+  "doctrine": "No foreign keys, no auto-increment, all IDs and timestamps generated in application layer."
+}

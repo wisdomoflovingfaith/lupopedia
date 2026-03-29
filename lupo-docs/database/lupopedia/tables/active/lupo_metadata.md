@@ -84,6 +84,8 @@ Canonical table documentation normalized from TOON JSON for `lupo_metadata`.
 | `lupo_metadata_unique_entity_domain_property` | `entity_type`, `entity_id`, `domain_id`, `property_key` | yes |
 
 ## Doctrine
-- Source of truth: `lupo-database/lupopedia/json/` TOON exports
-- Regeneration mode: Stage 3 deterministic normalization
-- Edge mode: placeholder baseline
+Source of truth: `lupo-database/lupopedia/json/` TOON exports
+Regeneration mode: Stage 3 deterministic normalization
+Edge mode: placeholder baseline
+
+**Note:** Tag and hashtag relationships are now managed via the canonical `lupo_hashtags` and `lupo_hashtag_map` tables. Do not use lupo_metadata for tag/hashtag storage; see the semantic_navbar documentation for details.

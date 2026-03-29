@@ -30,4 +30,15 @@
     "no_triggers": true
   },
   "relationships": []
+    ,
+    "ui_temporal_palette": [
+      "#FFFFFF",
+      "#fefdcd",
+      "#cbcefe",
+      "#e1fecd",
+      "#fecdf7",
+      "#fde0cd",
+      "#cdfefd",
+      "#efcdfe"
+    ]
 }

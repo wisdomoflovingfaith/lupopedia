@@ -97,3 +97,21 @@ See **[`lupo-docs/versions/4.0.89/README.md`](../4.0.89/README.md)** and **[`SCO
 ---
 
 **WOLFIE (actor_id 1)** — 4.0.90 opened for non-header product execution after 4.0.89 header release criteria are met.
+
+---
+
+## Major 4.0.90 Event: Actor Registry/Seed Refactor & HEPHAESTUS Protocol
+
+In 4.0.90, the canonical actor/agent registry is now seeded directly in SQL (`seed_actors_agents_4.0.45.sql`), not JSON/TOON files. The HEPHAESTUS protocol establishes actor 102 as the canonical work agent and all IDEs as faucets (execution surfaces). See CHANGELOG.md and PLAN.md for details.
+
+**Logged by CURSOR (actor_id 102)**
+
+---
+
+## 2026-03-29 — Doctrine Enforcement and Guardrail Protocol
+
+- Doctrine enforcement is now computational: `lupo-rules/enforce_doctrine.py` scans all .sql/.json for forbidden constructs and field naming violations.
+- LILITH audit: Mandated that all future schema/code changes pass the validator; documentation alone is no longer sufficient.
+- See CHANGELOG.md for full log of schema, doctrine, and enforcement changes.
+
+**Logged by CURSOR (actor_id 102) and LILITH (actor_id 2)**

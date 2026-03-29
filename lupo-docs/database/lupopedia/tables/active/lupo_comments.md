@@ -74,6 +74,8 @@ Canonical table documentation normalized from TOON JSON for `lupo_comments`.
 | `lupo_comments_idx_target` | `target_type`, `target_id` | no |
 
 ## Doctrine
-- Source of truth: `lupo-database/lupopedia/json/` TOON exports
-- Regeneration mode: Stage 3 deterministic normalization
-- Edge mode: placeholder baseline
+Source of truth: `lupo-database/lupopedia/json/` TOON exports
+Regeneration mode: Stage 3 deterministic normalization
+Edge mode: placeholder baseline
+
+**Note:** Tag and hashtag relationships are managed via the canonical `lupo_hashtags` and `lupo_hashtag_map` tables, not via comments. See the semantic_navbar documentation for details.

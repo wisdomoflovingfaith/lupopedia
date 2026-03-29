@@ -6,7 +6,7 @@
  * version-related constants and helper functions.
  * 
  * @package Lupopedia
- * @version 4.0.87
+ * @version 4.0.90
  * 
  * @note VERSION DOCTRINE: This file now loads version from GLOBAL_CURRENT_LUPOPEDIA_VERSION
  *       atom in config/global_atoms.yaml (Phase 2 implementation). Constants are defined
@@ -108,7 +108,7 @@ if (!defined('LUPOPEDIA_VERSION_NUM')) {
  * @var int
  */
 if (!defined('LUPOPEDIA_VERSION_DATE')) {
-    define('LUPOPEDIA_VERSION_DATE', 20260325000000);
+    define('LUPOPEDIA_VERSION_DATE', 20260328000000);
 }
 
 /**

@@ -130,3 +130,4 @@ VALUES
 (9500001, 'flip_version', 1, 1, 1, @now, 'v1.0', 'FLIP v1.0', 'lupo_flip_versions', @now, @now, 0, 1, 0, '{"flip_version":"1.0","format":"yaml","purpose":"original_flip_spec"}'),
 (9500002, 'flip_version', 2, 2, 1, @now, 'v2.0', 'FLIP v2.0', 'lupo_flip_versions', @now, @now, 0, 1, 0, '{"flip_version":"2.0","format":"yaml","purpose":"enhanced_flip_spec"}'),
 (9500003, 'flip_version', 3, 3, 1, @now, 'v3.0', 'FLIP v3.0', 'lupo_flip_versions', @now, @now, 0, 1, 0, '{"flip_version":"3.0","format":"yaml","purpose":"current_flip_spec"}');
+-- OBSOLETE: This file is deprecated and intentionally left blank. Registry tables are removed in 4.0.86+. Do not use.

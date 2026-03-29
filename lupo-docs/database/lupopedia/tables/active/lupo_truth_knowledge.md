@@ -1,4 +1,33 @@
 ---
+lupopedia.schema: table_documentation
+file_path_from_root: "lupo-docs/database/lupopedia/tables/active/lupo_truth_knowledge.md"
+web_path: "http://www.lupopedia.com/lupopedia/lupo-docs/database/lupopedia/tables/active/lupo_truth_knowledge.md"
+last_modified_utc: "20260329080000"
+actor_id: 2
+actor_name: "lilith"
+purpose: "DEPRECATED: See lupo_truth_questions, lupo_truth_answers, lupo_truth_evidence, lupo_truth_context_map, lupo_truth_followers."
+tags:
+  - "database"
+  - "schema"
+  - "truth_system"
+  - "deprecated"
+  - "lilith_audited"
+---
+
+# DEPRECATED: lupo_truth_knowledge
+
+> **This table is deprecated.**
+>
+> Please see the new split truth schema:
+> - lupo_truth_questions
+> - lupo_truth_answers
+> - lupo_truth_evidence
+> - lupo_truth_context_map
+> - lupo_truth_followers
+
+All new truth data is stored in the new tables. This file is retained for migration reference only.
+
+---
 lupopedia.headers:
   when_updated: "20260328013000"
   file_path_from_root: "lupo-docs/database/lupopedia/tables/active/lupo_truth_knowledge.md"

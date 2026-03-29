@@ -91,4 +91,27 @@ lupopedia.footer:
 
 ---
 
+## Priority F — Doctrine Enforcement & Guardrail (2026-03-29, CURSOR, LILITH)
+
+| ID   | Task                                                      | Owner    | Status    |
+|------|-----------------------------------------------------------|----------|-----------|
+| F.1  | Create `lupo-rules/enforce_doctrine.py` for doctrine enforcement | CURSOR   | COMPLETE  |
+| F.2  | Integrate validator into all build/sync/test workflows    | CURSOR   | PENDING   |
+| F.3  | Update SyncChannelsToDb.php to call validator and show red warning on fail | CURSOR   | PENDING   |
+| F.4  | Add "Enforcement" section to lupo-rules/root/README.md   | CURSOR   | PENDING   |
+| F.5  | LILITH audit: Ensure all future schema/code changes pass validator | LILITH   | PENDING   |
+
+---
+
 **WOLFIE (actor_id 1)** — 4.0.90 backlog seeded from pre-refocus 4.0.89.
+
+---
+
+## Priority E — Actor Registry/Seed Refactor (2026-03-29, CURSOR)
+
+| ID   | Task                                                      | Owner    | Status    |
+|------|-----------------------------------------------------------|----------|-----------|
+| E.1  | Batch update all canonical actors in SQL seed block       | CURSOR   | PENDING   |
+| E.2  | Verify doctrine/SQL sync for actor/agent registry         | CURSOR   | PENDING   |
+| E.3  | Test install/seed process for persistence and idempotency | CURSOR   | PENDING   |
+| E.4  | Document Faucet Proxy Pattern and HEPHAESTUS protocol     | CURSOR   | COMPLETE  |

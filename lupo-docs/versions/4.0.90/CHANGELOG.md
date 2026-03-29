@@ -47,3 +47,26 @@ lupopedia.footer:
 ---
 
 **WOLFIE (actor_id 1)**
+
+---
+
+## 2026-03-29 — Schema, Doctrine, and Actor Registry Refactor (HEPHAESTUS Protocol)
+
+- Refactored canonical actor/agent registry to be seeded directly in SQL (`seed_actors_agents_4.0.45.sql`), not JSON/TOON files.
+- Added explicit, doctrine-compliant INSERTs for HEPHAESTUS (actor_id 102) and LILITH (actor_id 2) with canonical_identity JSON.
+- Updated install/seed logic to ensure all critical actors are persistent and doctrine-aligned.
+- Codified the "Faucet Proxy Pattern" and made HEPHAESTUS the canonical work agent; all IDEs are now faucets (execution surfaces).
+- Updated MULTI_AGENT_COORDINATION_DOCTRINE.md and created HEPHAESTUS_DOCTRINE.md to reflect new identity protocol.
+- Registry and JSON outputs updated for reference, but SQL is now the only authoritative source for actor identity.
+- All changes logged without overwriting or duplicating prior actor entries.
+
+## 2026-03-29 — Context/Edge Schema, Doctrine Enforcement, and Guardrail Protocol (CURSOR, LILITH)
+
+- Refactored `lupo_contexts` and `lupo_edges` schema in install SQL to match doctrine and PRD (no foreign keys, no auto-increment, all IDs/timestamps application-driven, field names/types per PRD).
+- Added doctrine comments and PRD references to canonical install SQL for context/edge tables.
+- Created `lupo-rules/enforce_doctrine.py` — a hard-stop validator script that scans all .sql/.json for forbidden constructs (FOREIGN KEY, AUTO_INCREMENT, TIMESTAMP, etc.) and enforces field naming rules.
+- LILITH audit: Mandated computational enforcement of doctrine, not just documentation; validator is now required for all future codegen and sync.
+- Updated backlog and plan to include doctrine enforcement and validator integration as critical path.
+- No prior actor entries overwritten or duplicated; all changes logged as CURSOR (actor_id 102) and LILITH (actor_id 2) per audit.
+
+**CURSOR (actor_id 102)**

@@ -3,7 +3,7 @@
 -- Indexes are created by install; omitted here so this file is safe to run after install without duplicate-key errors.
 
 CREATE TABLE IF NOT EXISTS lupo_anubis_queue (
-  queue_id bigint NOT NULL AUTO_INCREMENT,
+  queue_id bigint NOT NULL,
   file_path varchar(512) NOT NULL,
   file_hash varchar(64) DEFAULT NULL,
   file_content longtext,
@@ -25,7 +25,7 @@ CREATE TABLE IF NOT EXISTS lupo_anubis_queue (
 );
 
 CREATE TABLE IF NOT EXISTS lupo_anubis_processing_log (
-  log_id bigint NOT NULL AUTO_INCREMENT,
+  log_id bigint NOT NULL,
   queue_id bigint NOT NULL,
   file_path varchar(512) NOT NULL,
   action varchar(64) NOT NULL,
@@ -36,7 +36,7 @@ CREATE TABLE IF NOT EXISTS lupo_anubis_processing_log (
 );
 
 CREATE TABLE IF NOT EXISTS lupo_anubis_recovery_attempts (
-  attempt_id bigint NOT NULL AUTO_INCREMENT,
+  attempt_id bigint NOT NULL,
   queue_id bigint NOT NULL,
   attempt_number tinyint NOT NULL,
   attempt_utc bigint NOT NULL,
@@ -49,7 +49,7 @@ CREATE TABLE IF NOT EXISTS lupo_anubis_recovery_attempts (
 );
 
 CREATE TABLE IF NOT EXISTS lupo_anubis_quarantine (
-  quarantine_id bigint NOT NULL AUTO_INCREMENT,
+  quarantine_id bigint NOT NULL,
   queue_id bigint NOT NULL,
   file_path varchar(512) NOT NULL,
   file_hash varchar(64) DEFAULT NULL,

@@ -371,9 +371,6 @@ if ($step === 'credentials') {
                     if (!$install_ok) {
                         throw new RuntimeException('Critical schema install failed (install_new_lupopedia.sql). Stop and fix SQL errors before continuing.');
                     }
-                    InstallWizardSqlRunner::runSqlFile($pdo, $mysqlDir . DIRECTORY_SEPARATOR . 'seed' . DIRECTORY_SEPARATOR . 'seed_registry_comprehensive_4.0.45.sql', $bootstrapLog, $table_prefix);
-                    InstallWizardSqlRunner::runSqlFile($pdo, $mysqlDir . DIRECTORY_SEPARATOR . 'seed' . DIRECTORY_SEPARATOR . 'seed_registry_additional_csv_entities_4.0.45.sql', $bootstrapLog, $table_prefix);
-                    InstallWizardSqlRunner::runSqlFile($pdo, $mysqlDir . DIRECTORY_SEPARATOR . 'seed' . DIRECTORY_SEPARATOR . 'seed_registry_open_4.0.45.sql', $bootstrapLog, $table_prefix);
                     $seed_actors_ok = InstallWizardSqlRunner::runSqlFile($pdo, $mysqlDir . DIRECTORY_SEPARATOR . 'seed' . DIRECTORY_SEPARATOR . 'seed_actors_agents_4.0.45.sql', $bootstrapLog, $table_prefix);
                     if (!$seed_actors_ok) {
                         throw new RuntimeException('Critical actor seed failed (seed_actors_agents_4.0.45.sql). Stop and fix SQL errors before continuing.');
@@ -610,9 +607,6 @@ if ($step === 'run') {
                     if (!$install_ok) {
                         throw new RuntimeException('Critical schema install failed (install_new_lupopedia.sql). Stop and fix SQL errors before continuing.');
                     }
-                    InstallWizardSqlRunner::runSqlFile($pdo, $mysqlDir . DIRECTORY_SEPARATOR . 'seed' . DIRECTORY_SEPARATOR . 'seed_registry_comprehensive_4.0.45.sql', $log, $table_prefix);
-                    InstallWizardSqlRunner::runSqlFile($pdo, $mysqlDir . DIRECTORY_SEPARATOR . 'seed' . DIRECTORY_SEPARATOR . 'seed_registry_additional_csv_entities_4.0.45.sql', $log, $table_prefix);
-                    InstallWizardSqlRunner::runSqlFile($pdo, $mysqlDir . DIRECTORY_SEPARATOR . 'seed' . DIRECTORY_SEPARATOR . 'seed_registry_open_4.0.45.sql', $log, $table_prefix);
                     $seed_actors_ok = InstallWizardSqlRunner::runSqlFile($pdo, $mysqlDir . DIRECTORY_SEPARATOR . 'seed' . DIRECTORY_SEPARATOR . 'seed_actors_agents_4.0.45.sql', $log, $table_prefix);
                     if (!$seed_actors_ok) {
                         throw new RuntimeException('Critical actor seed failed (seed_actors_agents_4.0.45.sql). Stop and fix SQL errors before continuing.');
@@ -660,9 +654,6 @@ if ($step === 'run') {
                 if (!$install_ok) {
                     throw new RuntimeException('Critical schema install failed (install_new_lupopedia.sql). Stop and fix SQL errors before continuing.');
                 }
-                InstallWizardSqlRunner::runSqlFile($pdo, $mysqlDir . DIRECTORY_SEPARATOR . 'seed' . DIRECTORY_SEPARATOR . 'seed_registry_comprehensive_4.0.45.sql', $log, $table_prefix);
-                InstallWizardSqlRunner::runSqlFile($pdo, $mysqlDir . DIRECTORY_SEPARATOR . 'seed' . DIRECTORY_SEPARATOR . 'seed_registry_additional_csv_entities_4.0.45.sql', $log, $table_prefix);
-                InstallWizardSqlRunner::runSqlFile($pdo, $mysqlDir . DIRECTORY_SEPARATOR . 'seed' . DIRECTORY_SEPARATOR . 'seed_registry_open_4.0.45.sql', $log, $table_prefix);
                 $seed_actors_ok = InstallWizardSqlRunner::runSqlFile($pdo, $mysqlDir . DIRECTORY_SEPARATOR . 'seed' . DIRECTORY_SEPARATOR . 'seed_actors_agents_4.0.45.sql', $log, $table_prefix);
                 if (!$seed_actors_ok) {
                     throw new RuntimeException('Critical actor seed failed (seed_actors_agents_4.0.45.sql). Stop and fix SQL errors before continuing.');

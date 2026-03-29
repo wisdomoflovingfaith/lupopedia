@@ -1,0 +1,10 @@
+{
+  "table": "lupo_context_edges",
+  "fields": [
+    { "name": "edge_id", "type": "BIGINT", "primary": true, "description": "Application-generated" },
+    { "name": "from_context_id", "type": "BIGINT", "description": "Source context" },
+    { "name": "to_artifact_id", "type": "BIGINT", "description": "Points to File, Actor, or Thread" },
+    { "name": "edge_type", "type": "VARCHAR(50)", "description": "defines, implements, refutes" }
+  ],
+  "doctrine": "No foreign keys, no auto-increment, all IDs generated in application layer."
+}

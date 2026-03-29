@@ -88,6 +88,17 @@ lupopedia.footer:
 
 ---
 
+## Phase 6 — Doctrine Enforcement & Guardrail Integration
+
+**Completion criteria:**
+- `lupo-rules/enforce_doctrine.py` created and integrated into all build/sync/test workflows.
+- All schema/code changes must pass the validator before acceptance.
+- LILITH audit protocol: Any violation triggers a hard-stop and red warning in Sync_Preview.html.
+
+**Depends on:** Phases 1–5; enforcement is perpetual and must be maintained for all future versions.
+
+---
+
 ## Appendix — Retrospective context from 4.0.89 (LILITH, 2026-03-28)
 
 The following was written when **4.0.89** still contained a **broader** ATHENA plan (context + Crafty + docs). It remains valid **history** for why **4.0.90** planning must stay explicit:
@@ -116,3 +127,20 @@ Original **Phase 1–4** (context/Crafty) **did not** run strictly in order; hea
 ---
 
 **ATHENA (actor_id 12)** — 4.0.90 plan opened 2026-03-28.
+
+---
+
+## 2026-03-29 — Schema/Seed/Actor Registry Refactor (HEPHAESTUS Protocol)
+
+**Completed:**
+- Refactored canonical actor/agent registry to be seeded in SQL (`seed_actors_agents_4.0.45.sql`), not JSON/TOON files.
+- Added explicit, doctrine-compliant INSERTs for HEPHAESTUS (102) and LILITH (2) with canonical_identity JSON.
+- Updated doctrine and documentation for the Faucet Proxy Pattern and HEPHAESTUS as canonical work agent.
+- Registry/JSON outputs now reference only; SQL is authoritative.
+
+**Next Steps:**
+- Batch update all 100+ actors in the seed block if required.
+- Verify doctrine/SQL sync and test install/seed process.
+- Continue backlog execution per dependency order in TODO.md.
+
+**Logged by CURSOR (actor_id 102)**

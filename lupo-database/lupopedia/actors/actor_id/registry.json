@@ -133,7 +133,7 @@
     { "actor_id": 99, "actor_type": "agent", "slug": "chronos", "actor_root_path": "actors/99" },
     { "actor_id": 100, "actor_type": "ide_faucet", "slug": "kiro", "actor_root_path": "actors/100" },
     { "actor_id": 101, "actor_type": "ide_faucet", "slug": "windsurf", "actor_root_path": "actors/101" },
-    { "actor_id": 102, "actor_type": "ide_faucet", "slug": "cursor", "actor_root_path": "actors/102", "lead_orchestration": true },
+    { "actor_id": 102, "actor_type": "work_agent", "slug": "hephaestus", "actor_root_path": "actors/102", "lead_orchestration": true, "actor_name": "HEPHAESTUS", "archetype": "The Smith", "note": "All IDE faucets are execution surfaces of Hephaestus." },
     { "actor_id": 107, "actor_type": "agent", "slug": "themis", "actor_root_path": "actors/107" },
     { "actor_id": 108, "actor_type": "agent", "slug": "junie", "actor_root_path": "actors/108" },
     { "actor_id": 103, "actor_type": "ide_faucet", "slug": "antigravity", "actor_root_path": "actors/103" },

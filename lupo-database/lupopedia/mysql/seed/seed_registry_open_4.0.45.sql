@@ -146,3 +146,4 @@ WHERE n <= 9999;
 -- ============================================================================
 -- END OF REGISTRY OPEN SEEDING
 -- ============================================================================
+-- OBSOLETE: This file is deprecated and intentionally left blank. Registry tables are removed in 4.0.86+. Do not use.
