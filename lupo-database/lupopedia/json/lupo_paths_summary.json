@@ -1,7 +1,7 @@
 {
   "table_name": "lupo_paths_summary",
   "fields": [
-    "`summary_id` bigint NOT NULL auto_increment",
+    "`summary_id` bigint NOT NULL",
     "`path_id` bigint NOT NULL",
     "`total_count` bigint NOT NULL DEFAULT 0",
     "`last_used_ymdhis` bigint NOT NULL DEFAULT 0",

@@ -26,13 +26,13 @@
     "`identity_provider_config` json",
     "`paired_actor_id` bigint NOT NULL DEFAULT 0",
     "`is_agent` tinyint NOT NULL DEFAULT 0",
+    "`auth_user_id` bigint",
+    "`actor_tier` tinyint DEFAULT 3",
     "`actor_root_path` varchar(512) DEFAULT 'actors/{actor_id}'",
     "`workspace_path` varchar(255)",
     "`php_namespace` varchar(120)",
     "`who_json_sync_status` varchar(64) DEFAULT 'pending'",
-    "`last_sync_ymdhis` bigint DEFAULT 0",
-    "`auth_user_id` bigint",
-    "`actor_tier` tinyint DEFAULT 3"
+    "`last_sync_ymdhis` bigint DEFAULT 0"
   ],
   "data": [
     {
@@ -61,13 +61,13 @@
       "identity_provider_config": null,
       "paired_actor_id": 10000,
       "is_agent": 0,
+      "auth_user_id": null,
+      "actor_tier": 3,
       "actor_root_path": "actors/{actor_id}",
       "workspace_path": null,
       "php_namespace": null,
       "who_json_sync_status": "pending",
-      "last_sync_ymdhis": 0,
-      "auth_user_id": null,
-      "actor_tier": 3
+      "last_sync_ymdhis": 0
     }
   ],
   "indexes": [

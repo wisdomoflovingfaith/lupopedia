@@ -1,7 +1,7 @@
 {
   "table_name": "lupo_unified_log",
   "fields": [
-    "`log_id` bigint NOT NULL auto_increment",
+    "`log_id` bigint NOT NULL",
     "`log_type` varchar(64) NOT NULL",
     "`log_level` varchar(32) NOT NULL DEFAULT 'info'",
     "`log_message` text NOT NULL",

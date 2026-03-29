@@ -1,7 +1,7 @@
 {
   "table_name": "lupo_crafty_user_mapping",
   "fields": [
-    "`crafty_user_mapping_id` bigint NOT NULL auto_increment",
+    "`crafty_user_mapping_id` bigint NOT NULL",
     "`lupo_user_id` bigint",
     "`crafty_operator_id` int",
     "`mapping_type` varchar(50) NOT NULL DEFAULT 'manual'",

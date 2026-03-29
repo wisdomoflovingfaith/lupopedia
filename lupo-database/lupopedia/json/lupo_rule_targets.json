@@ -1,7 +1,7 @@
 {
   "table_name": "lupo_rule_targets",
   "fields": [
-    "`rule_target_id` bigint NOT NULL auto_increment",
+    "`rule_target_id` bigint NOT NULL",
     "`rule_id` bigint NOT NULL",
     "`target_table` varchar(255) NOT NULL",
     "`target_id` bigint NOT NULL",

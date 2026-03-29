@@ -1,7 +1,7 @@
 {
   "table_name": "lupo_channel_content",
   "fields": [
-    "`channel_content_id` bigint NOT NULL auto_increment",
+    "`channel_content_id` bigint NOT NULL",
     "`channel_id` bigint NOT NULL",
     "`federation_node_id` bigint NOT NULL",
     "`file_path` varchar(500) NOT NULL",

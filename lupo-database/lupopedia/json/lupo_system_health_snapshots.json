@@ -1,7 +1,7 @@
 {
   "table_name": "lupo_system_health_snapshots",
   "fields": [
-    "`snapshot_id` bigint NOT NULL auto_increment",
+    "`snapshot_id` bigint NOT NULL",
     "`snapshot_type` varchar(64) NOT NULL",
     "`actor_id` bigint NOT NULL",
     "`table_count` bigint",

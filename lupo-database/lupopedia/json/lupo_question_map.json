@@ -1,7 +1,7 @@
 {
   "table_name": "lupo_question_map",
   "fields": [
-    "`question_map_id` bigint NOT NULL auto_increment",
+    "`question_map_id` bigint NOT NULL",
     "`question_id` bigint NOT NULL",
     "`object_type` varchar(64) NOT NULL",
     "`object_id` bigint NOT NULL",

@@ -1,0 +1,80 @@
+{
+  "table_name": "lupo_votes",
+  "fields": [
+    "`vote_id` bigint NOT NULL",
+    "`object_type` varchar(64) NOT NULL",
+    "`object_id` bigint NOT NULL",
+    "`actor_id` bigint NOT NULL",
+    "`vote_value` tinyint NOT NULL",
+    "`vote_weight` float DEFAULT 1",
+    "`created_ymdhis` bigint NOT NULL",
+    "`updated_ymdhis` bigint NOT NULL",
+    "`is_deleted` tinyint NOT NULL DEFAULT 0",
+    "`deleted_ymdhis` bigint"
+  ],
+  "data": [],
+  "indexes": [
+    {
+      "index_name": "idx_vote_actor",
+      "columns": [
+        "actor_id"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_vote_created",
+      "columns": [
+        "created_ymdhis"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_vote_is_deleted",
+      "columns": [
+        "is_deleted"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_vote_object",
+      "columns": [
+        "object_type",
+        "object_id"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_vote_value",
+      "columns": [
+        "vote_value"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "uq_vote_object_actor",
+      "columns": [
+        "object_type",
+        "object_id",
+        "actor_id"
+      ],
+      "is_unique": true,
+      "index_type": "BTREE"
+    }
+  ],
+  "primary_key": {
+    "column_name": "vote_id",
+    "expected_name": "vote_id",
+    "is_correct": true,
+    "needs_rename": false
+  },
+  "doctrine_metadata": {
+    "no_foreign_keys": true,
+    "no_triggers": true
+  },
+  "relationships": []
+}

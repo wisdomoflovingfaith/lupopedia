@@ -1,7 +1,7 @@
 {
   "table_name": "lupo_visits",
   "fields": [
-    "`visit_id` bigint NOT NULL auto_increment",
+    "`visit_id` bigint NOT NULL",
     "`session_id` bigint",
     "`actor_id` bigint",
     "`instance_id` bigint",

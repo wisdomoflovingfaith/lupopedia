@@ -1,13 +1,11 @@
 {
-  "table_name": "lupo_context_cards",
+  "table_name": "lupo_referers_daily",
   "fields": [
-    "`context_card_id` bigint NOT NULL",
-    "`context_id` bigint NOT NULL",
-    "`card_title` varchar(255) NOT NULL",
-    "`instruction_text` varchar(280) NOT NULL",
-    "`card_type` varchar(50) DEFAULT 'instruction'",
-    "`display_order` int DEFAULT 0",
-    "`metadata` json",
+    "`referers_daily_id` bigint NOT NULL",
+    "`actor_id` bigint",
+    "`referer_domain` varchar(255)",
+    "`visit_ymd` bigint NOT NULL",
+    "`visit_count` int DEFAULT 0",
     "`created_ymdhis` bigint NOT NULL",
     "`updated_ymdhis` bigint NOT NULL",
     "`is_deleted` tinyint NOT NULL DEFAULT 0",
@@ -16,33 +14,37 @@
   "data": [],
   "indexes": [
     {
-      "index_name": "idx_card_type",
+      "index_name": "idx_actor_date",
       "columns": [
-        "card_type"
+        "actor_id",
+        "visit_ymd"
       ],
       "is_unique": false,
       "index_type": "BTREE"
     },
     {
-      "index_name": "idx_context_id",
+      "index_name": "idx_referer_date",
       "columns": [
-        "context_id"
+        "referer_domain",
+        "visit_ymd"
       ],
       "is_unique": false,
       "index_type": "BTREE"
     },
     {
-      "index_name": "idx_display_order",
+      "index_name": "unique_daily_referer",
       "columns": [
-        "display_order"
+        "actor_id",
+        "referer_domain",
+        "visit_ymd"
       ],
-      "is_unique": false,
+      "is_unique": true,
       "index_type": "BTREE"
     }
   ],
   "primary_key": {
-    "column_name": "context_card_id",
-    "expected_name": "context_card_id",
+    "column_name": "referers_daily_id",
+    "expected_name": "referers_daily_id",
     "is_correct": true,
     "needs_rename": false
   },

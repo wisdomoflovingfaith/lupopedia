@@ -1,7 +1,7 @@
 {
   "table_name": "lupo_crafty_syntax_leave_message",
   "fields": [
-    "`crafty_syntax_leave_message_id` bigint NOT NULL auto_increment",
+    "`crafty_syntax_leave_message_id` bigint NOT NULL",
     "`department_id` bigint NOT NULL DEFAULT 0",
     "`email` varchar(255) NOT NULL DEFAULT ''",
     "`phone` varchar(45)",

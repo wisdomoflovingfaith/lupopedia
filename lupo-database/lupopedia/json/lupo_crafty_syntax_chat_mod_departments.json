@@ -1,7 +1,7 @@
 {
   "table_name": "lupo_crafty_syntax_chat_mod_departments",
   "fields": [
-    "`crafty_syntax_chat_mod_department_id` bigint NOT NULL auto_increment",
+    "`crafty_syntax_chat_mod_department_id` bigint NOT NULL",
     "`department_id` bigint NOT NULL DEFAULT 0",
     "`module_id` bigint NOT NULL DEFAULT 0",
     "`sort_order` int NOT NULL DEFAULT 0",

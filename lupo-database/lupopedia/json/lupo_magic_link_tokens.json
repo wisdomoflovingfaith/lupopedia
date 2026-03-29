@@ -1,7 +1,7 @@
 {
   "table_name": "lupo_magic_link_tokens",
   "fields": [
-    "`magic_link_token_id` bigint NOT NULL auto_increment",
+    "`magic_link_token_id` bigint NOT NULL",
     "`email` varchar(255) NOT NULL",
     "`token` char(64) NOT NULL",
     "`expires_ymdhis` bigint NOT NULL",

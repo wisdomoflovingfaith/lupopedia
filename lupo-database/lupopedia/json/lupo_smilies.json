@@ -1,0 +1,44 @@
+{
+  "table_name": "lupo_smilies",
+  "fields": [
+    "`smilie_id` bigint NOT NULL",
+    "`emoji_code_point` varchar(50) NOT NULL",
+    "`emoji_character` varchar(10) NOT NULL",
+    "`html_entity` varchar(50) NOT NULL",
+    "`shortcode` varchar(50) NOT NULL",
+    "`category` varchar(50)",
+    "`display_order` int DEFAULT 0",
+    "`is_active` tinyint NOT NULL DEFAULT 1",
+    "`created_ymdhis` bigint NOT NULL"
+  ],
+  "data": [],
+  "indexes": [
+    {
+      "index_name": "idx_category",
+      "columns": [
+        "category"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_shortcode",
+      "columns": [
+        "shortcode"
+      ],
+      "is_unique": true,
+      "index_type": "BTREE"
+    }
+  ],
+  "primary_key": {
+    "column_name": "smilie_id",
+    "expected_name": "smilie_id",
+    "is_correct": true,
+    "needs_rename": false
+  },
+  "doctrine_metadata": {
+    "no_foreign_keys": true,
+    "no_triggers": true
+  },
+  "relationships": []
+}

@@ -1,7 +1,7 @@
 {
   "table_name": "lupo_crafty_syntax_auto_invite",
   "fields": [
-    "`crafty_syntax_auto_invite_id` bigint NOT NULL auto_increment",
+    "`crafty_syntax_auto_invite_id` bigint NOT NULL",
     "`is_offline` tinyint NOT NULL DEFAULT 0",
     "`is_active` tinyint NOT NULL DEFAULT 0",
     "`department_id` bigint NOT NULL DEFAULT 0",

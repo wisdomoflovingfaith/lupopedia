@@ -1,11 +1,11 @@
 {
   "table_name": "lupo_contexts",
   "fields": [
-    "`context_id` int NOT NULL",
+    "`context_id` bigint NOT NULL",
     "`context_code` varchar(16) NOT NULL",
     "`context_name` varchar(255) NOT NULL",
     "`context_description` text",
-    "`parent_context_id` int",
+    "`parent_context_id` bigint",
     "`is_system` tinyint NOT NULL DEFAULT 0",
     "`is_fiction` tinyint NOT NULL DEFAULT 0",
     "`is_installation_local` tinyint NOT NULL DEFAULT 0",

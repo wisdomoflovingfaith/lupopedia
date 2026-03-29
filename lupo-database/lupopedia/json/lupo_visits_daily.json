@@ -1,0 +1,48 @@
+{
+  "table_name": "lupo_visits_daily",
+  "fields": [
+    "`visits_daily_id` bigint NOT NULL",
+    "`actor_id` bigint",
+    "`visit_ymd` bigint NOT NULL",
+    "`total_visits` int DEFAULT 0",
+    "`unique_sessions` int DEFAULT 0",
+    "`avg_duration_seconds` int DEFAULT 0",
+    "`bounce_count` int DEFAULT 0",
+    "`created_ymdhis` bigint NOT NULL",
+    "`updated_ymdhis` bigint NOT NULL",
+    "`is_deleted` tinyint NOT NULL DEFAULT 0",
+    "`deleted_ymdhis` bigint"
+  ],
+  "data": [],
+  "indexes": [
+    {
+      "index_name": "idx_actor_date",
+      "columns": [
+        "actor_id",
+        "visit_ymd"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "unique_daily_actor",
+      "columns": [
+        "actor_id",
+        "visit_ymd"
+      ],
+      "is_unique": true,
+      "index_type": "BTREE"
+    }
+  ],
+  "primary_key": {
+    "column_name": "visits_daily_id",
+    "expected_name": "visits_daily_id",
+    "is_correct": true,
+    "needs_rename": false
+  },
+  "doctrine_metadata": {
+    "no_foreign_keys": true,
+    "no_triggers": true
+  },
+  "relationships": []
+}

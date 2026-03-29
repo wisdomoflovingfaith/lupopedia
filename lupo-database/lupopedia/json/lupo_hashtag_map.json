@@ -1,7 +1,7 @@
 {
   "table_name": "lupo_hashtag_map",
   "fields": [
-    "`hashtag_map_id` bigint NOT NULL auto_increment",
+    "`hashtag_map_id` bigint NOT NULL",
     "`hashtag_id` bigint NOT NULL",
     "`object_type` varchar(64) NOT NULL",
     "`object_id` bigint NOT NULL",

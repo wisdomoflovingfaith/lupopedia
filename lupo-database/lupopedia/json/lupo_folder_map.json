@@ -1,7 +1,7 @@
 {
   "table_name": "lupo_folder_map",
   "fields": [
-    "`folder_map_id` bigint NOT NULL auto_increment",
+    "`folder_map_id` bigint NOT NULL",
     "`folder_id` bigint NOT NULL",
     "`object_type` varchar(64) NOT NULL",
     "`object_id` bigint NOT NULL",

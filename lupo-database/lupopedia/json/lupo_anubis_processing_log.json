@@ -1,7 +1,7 @@
 {
   "table_name": "lupo_anubis_processing_log",
   "fields": [
-    "`log_id` bigint NOT NULL auto_increment",
+    "`log_id` bigint NOT NULL",
     "`queue_id` bigint NOT NULL",
     "`file_path` varchar(512) NOT NULL",
     "`action` varchar(64) NOT NULL",

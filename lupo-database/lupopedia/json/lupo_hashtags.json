@@ -1,7 +1,7 @@
 {
   "table_name": "lupo_hashtags",
   "fields": [
-    "`hashtag_id` bigint NOT NULL auto_increment",
+    "`hashtag_id` bigint NOT NULL",
     "`tag_slug` varchar(128) NOT NULL",
     "`label` varchar(255)",
     "`use_count` bigint NOT NULL DEFAULT 0",

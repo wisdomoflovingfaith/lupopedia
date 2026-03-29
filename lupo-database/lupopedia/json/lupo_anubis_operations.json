@@ -1,7 +1,7 @@
 {
   "table_name": "lupo_anubis_operations",
   "fields": [
-    "`operation_id` bigint NOT NULL auto_increment",
+    "`operation_id` bigint NOT NULL",
     "`operation_type` varchar(64) NOT NULL",
     "`target_type` varchar(64) NOT NULL",
     "`target_id` bigint NOT NULL",

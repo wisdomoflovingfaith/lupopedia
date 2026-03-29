@@ -1,7 +1,7 @@
 {
   "table_name": "lupo_edge_types",
   "fields": [
-    "`edge_type_id` bigint NOT NULL auto_increment",
+    "`edge_type_id` bigint NOT NULL",
     "`slug` varchar(64) NOT NULL",
     "`label` varchar(128) NOT NULL",
     "`description` text",

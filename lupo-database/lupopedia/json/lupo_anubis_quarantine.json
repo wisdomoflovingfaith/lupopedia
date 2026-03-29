@@ -1,7 +1,7 @@
 {
   "table_name": "lupo_anubis_quarantine",
   "fields": [
-    "`quarantine_id` bigint NOT NULL auto_increment",
+    "`quarantine_id` bigint NOT NULL",
     "`queue_id` bigint NOT NULL",
     "`file_path` varchar(512) NOT NULL",
     "`file_hash` varchar(64)",

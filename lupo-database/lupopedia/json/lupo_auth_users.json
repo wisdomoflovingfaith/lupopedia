@@ -19,8 +19,7 @@
     "`two_factor_enabled` tinyint NOT NULL DEFAULT 0",
     "`two_factor_backup_codes` text",
     "`timezone_offset` decimal(4,2) DEFAULT 0.00",
-    "`timezone_name` varchar(100) DEFAULT 'UTC'",
-    "`department_id` bigint NOT NULL DEFAULT 0"
+    "`timezone_name` varchar(100) DEFAULT 'UTC'"
   ],
   "data": [],
   "indexes": [
@@ -28,14 +27,6 @@
       "index_name": "lupo_auth_users_idx_created_ymdhis",
       "columns": [
         "created_ymdhis"
-      ],
-      "is_unique": false,
-      "index_type": "BTREE"
-    },
-    {
-      "index_name": "lupo_auth_users_idx_department",
-      "columns": [
-        "department_id"
       ],
       "is_unique": false,
       "index_type": "BTREE"

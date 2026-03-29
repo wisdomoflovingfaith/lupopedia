@@ -1,7 +1,7 @@
 {
   "table_name": "lupo_reference_map",
   "fields": [
-    "`reference_map_id` bigint NOT NULL auto_increment",
+    "`reference_map_id` bigint NOT NULL",
     "`reference_id` bigint NOT NULL",
     "`target_type` varchar(64) NOT NULL",
     "`target_id` bigint NOT NULL",

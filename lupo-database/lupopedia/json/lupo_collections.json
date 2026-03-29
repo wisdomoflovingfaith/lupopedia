@@ -1,7 +1,7 @@
 {
   "table_name": "lupo_collections",
   "fields": [
-    "`collection_id` bigint NOT NULL auto_increment",
+    "`collection_id` bigint NOT NULL",
     "`federation_node_id` bigint NOT NULL",
     "`actor_id` bigint",
     "`department_id` bigint",

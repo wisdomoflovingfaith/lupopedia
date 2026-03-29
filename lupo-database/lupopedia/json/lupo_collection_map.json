@@ -1,7 +1,7 @@
 {
   "table_name": "lupo_collection_map",
   "fields": [
-    "`collection_map_id` bigint NOT NULL auto_increment",
+    "`collection_map_id` bigint NOT NULL",
     "`collection_id` bigint NOT NULL",
     "`object_type` varchar(64) NOT NULL",
     "`object_id` bigint NOT NULL",

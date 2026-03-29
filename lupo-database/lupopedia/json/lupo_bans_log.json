@@ -1,7 +1,7 @@
 {
   "table_name": "lupo_bans_log",
   "fields": [
-    "`bans_log_id` bigint NOT NULL auto_increment",
+    "`bans_log_id` bigint NOT NULL",
     "`actor_id` bigint NOT NULL",
     "`uri` varchar(1024) NOT NULL DEFAULT ''",
     "`resolved_uri` varchar(1024) NOT NULL DEFAULT ''",

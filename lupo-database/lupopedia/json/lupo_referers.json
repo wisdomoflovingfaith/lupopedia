@@ -1,7 +1,7 @@
 {
   "table_name": "lupo_referers",
   "fields": [
-    "`referer_id` bigint NOT NULL auto_increment",
+    "`referer_id` bigint NOT NULL",
     "`content_id` bigint NOT NULL",
     "`actor_id` bigint NOT NULL",
     "`referer_url` varchar(2000)",

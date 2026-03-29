@@ -1,7 +1,7 @@
 {
   "table_name": "lupo_edge_map",
   "fields": [
-    "`edge_map_id` bigint NOT NULL auto_increment",
+    "`edge_map_id` bigint NOT NULL",
     "`edge_id` bigint NOT NULL",
     "`edge_type_id` bigint NOT NULL",
     "`source_type` varchar(64) NOT NULL",

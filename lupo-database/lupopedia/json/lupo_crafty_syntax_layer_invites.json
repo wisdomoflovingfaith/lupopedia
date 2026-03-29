@@ -1,7 +1,7 @@
 {
   "table_name": "lupo_crafty_syntax_layer_invites",
   "fields": [
-    "`crafty_syntax_layer_invite_id` bigint NOT NULL auto_increment",
+    "`crafty_syntax_layer_invite_id` bigint NOT NULL",
     "`layer_name` varchar(100) NOT NULL DEFAULT ''",
     "`image_name` varchar(255) NOT NULL DEFAULT ''",
     "`image_map` text",

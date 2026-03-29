@@ -1,7 +1,7 @@
 {
   "table_name": "lupo_comments",
   "fields": [
-    "`comment_id` bigint NOT NULL auto_increment",
+    "`comment_id` bigint NOT NULL",
     "`target_type` varchar(64) NOT NULL",
     "`target_id` bigint NOT NULL",
     "`channel_id` bigint NOT NULL DEFAULT 42",

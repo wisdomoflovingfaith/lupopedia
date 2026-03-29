@@ -1,7 +1,7 @@
 {
   "table_name": "lupo_auth_rate_limits",
   "fields": [
-    "`auth_rate_limit_id` bigint NOT NULL auto_increment",
+    "`auth_rate_limit_id` bigint NOT NULL",
     "`identifier` varchar(255) NOT NULL",
     "`attempt_type` varchar(50)",
     "`attempted_ymdhis` bigint NOT NULL"

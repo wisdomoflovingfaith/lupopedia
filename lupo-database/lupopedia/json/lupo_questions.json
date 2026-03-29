@@ -1,7 +1,7 @@
 {
   "table_name": "lupo_questions",
   "fields": [
-    "`question_id` bigint NOT NULL auto_increment",
+    "`question_id` bigint NOT NULL",
     "`slug` varchar(128) NOT NULL",
     "`question_text` text NOT NULL",
     "`actor_id` bigint",

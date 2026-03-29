@@ -1,7 +1,7 @@
 {
   "table_name": "lupo_two_factor_audit",
   "fields": [
-    "`two_factor_audit_id` bigint NOT NULL auto_increment",
+    "`two_factor_audit_id` bigint NOT NULL",
     "`auth_user_id` bigint NOT NULL",
     "`action` varchar(50) NOT NULL",
     "`ip_address` varchar(45)",

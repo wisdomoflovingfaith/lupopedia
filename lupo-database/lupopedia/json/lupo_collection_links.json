@@ -1,7 +1,7 @@
 {
   "table_name": "lupo_collection_links",
   "fields": [
-    "`collection_link_id` bigint NOT NULL auto_increment",
+    "`collection_link_id` bigint NOT NULL",
     "`collection_id` bigint NOT NULL",
     "`link_url` varchar(2000) NOT NULL",
     "`link_label` varchar(255)",

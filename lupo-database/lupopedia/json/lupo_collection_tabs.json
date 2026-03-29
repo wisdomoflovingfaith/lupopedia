@@ -1,7 +1,7 @@
 {
   "table_name": "lupo_collection_tabs",
   "fields": [
-    "`collection_tab_id` bigint NOT NULL auto_increment",
+    "`collection_tab_id` bigint NOT NULL",
     "`collection_tab_parent_id` bigint",
     "`collection_id` bigint NOT NULL",
     "`federations_node_id` bigint NOT NULL",

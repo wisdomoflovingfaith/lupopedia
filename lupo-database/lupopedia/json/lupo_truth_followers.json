@@ -1,0 +1,60 @@
+{
+  "table_name": "lupo_truth_followers",
+  "fields": [
+    "`truth_follower_id` bigint NOT NULL",
+    "`truth_question_id` bigint NOT NULL",
+    "`actor_id` bigint NOT NULL",
+    "`notification_enabled` tinyint NOT NULL DEFAULT 1",
+    "`created_ymdhis` bigint NOT NULL",
+    "`updated_ymdhis` bigint NOT NULL",
+    "`is_deleted` tinyint NOT NULL DEFAULT 0",
+    "`deleted_ymdhis` bigint"
+  ],
+  "data": [],
+  "indexes": [
+    {
+      "index_name": "lupo_truth_followers_idx_actor",
+      "columns": [
+        "actor_id"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_truth_followers_idx_deleted",
+      "columns": [
+        "is_deleted"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_truth_followers_idx_question",
+      "columns": [
+        "truth_question_id"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_truth_followers_unq_question_actor",
+      "columns": [
+        "truth_question_id",
+        "actor_id"
+      ],
+      "is_unique": true,
+      "index_type": "BTREE"
+    }
+  ],
+  "primary_key": {
+    "column_name": "truth_follower_id",
+    "expected_name": "truth_follower_id",
+    "is_correct": true,
+    "needs_rename": false
+  },
+  "doctrine_metadata": {
+    "no_foreign_keys": true,
+    "no_triggers": true
+  },
+  "relationships": []
+}

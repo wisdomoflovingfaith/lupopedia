@@ -1,7 +1,7 @@
 {
   "table_name": "lupo_orchestrator_rules",
   "fields": [
-    "`rule_id` bigint NOT NULL auto_increment",
+    "`rule_id` bigint NOT NULL",
     "`rule_slug` varchar(128) NOT NULL",
     "`orchestrator_actor` varchar(64) NOT NULL",
     "`rule_set_version` varchar(32) NOT NULL",

@@ -1,7 +1,7 @@
 {
   "table_name": "lupo_channel_boot_detail_lifecycle",
   "fields": [
-    "`detail_lifecycle_id` bigint NOT NULL auto_increment",
+    "`detail_lifecycle_id` bigint NOT NULL",
     "`lifecycle_id` bigint NOT NULL",
     "`channel_id` bigint NOT NULL",
     "`detail_start_time` bigint NOT NULL",

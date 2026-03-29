@@ -1,7 +1,7 @@
 {
   "table_name": "lupo_anubis_recovery_attempts",
   "fields": [
-    "`attempt_id` bigint NOT NULL auto_increment",
+    "`attempt_id` bigint NOT NULL",
     "`queue_id` bigint NOT NULL",
     "`attempt_number` tinyint NOT NULL",
     "`attempt_utc` bigint NOT NULL",

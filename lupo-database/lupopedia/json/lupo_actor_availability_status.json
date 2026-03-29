@@ -1,0 +1,69 @@
+{
+  "table_name": "lupo_actor_availability_status",
+  "fields": [
+    "`availability_id` bigint NOT NULL",
+    "`actor_id` bigint NOT NULL",
+    "`channel_id` bigint NOT NULL",
+    "`status` varchar(32) NOT NULL DEFAULT 'offline'",
+    "`last_activity_ymdhis` bigint NOT NULL",
+    "`created_ymdhis` bigint NOT NULL DEFAULT 0",
+    "`updated_ymdhis` bigint NOT NULL",
+    "`is_deleted` tinyint NOT NULL DEFAULT 0",
+    "`deleted_ymdhis` bigint"
+  ],
+  "data": [],
+  "indexes": [
+    {
+      "index_name": "lupo_actor_availability_status_idx_channel",
+      "columns": [
+        "channel_id"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_actor_availability_status_idx_is_deleted",
+      "columns": [
+        "is_deleted"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_actor_availability_status_idx_last_activity",
+      "columns": [
+        "last_activity_ymdhis"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_actor_availability_status_idx_status",
+      "columns": [
+        "status"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_actor_availability_status_unique_actor_channel",
+      "columns": [
+        "actor_id",
+        "channel_id"
+      ],
+      "is_unique": true,
+      "index_type": "BTREE"
+    }
+  ],
+  "primary_key": {
+    "column_name": "availability_id",
+    "expected_name": "availability_id",
+    "is_correct": true,
+    "needs_rename": false
+  },
+  "doctrine_metadata": {
+    "no_foreign_keys": true,
+    "no_triggers": true
+  },
+  "relationships": []
+}

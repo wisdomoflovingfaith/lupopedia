@@ -1,7 +1,7 @@
 {
   "table_name": "lupo_reference_links",
   "fields": [
-    "`reference_link_id` bigint NOT NULL auto_increment",
+    "`reference_link_id` bigint NOT NULL",
     "`reference_id` bigint NOT NULL",
     "`object_type` varchar(64) NOT NULL",
     "`object_id` bigint NOT NULL",

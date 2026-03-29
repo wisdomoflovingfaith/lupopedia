@@ -1,7 +1,7 @@
 {
   "table_name": "lupo_references",
   "fields": [
-    "`reference_id` bigint NOT NULL auto_increment",
+    "`reference_id` bigint NOT NULL",
     "`source_entity_type` varchar(64) NOT NULL",
     "`source_entity_id` bigint NOT NULL",
     "`url` varchar(2000)",
