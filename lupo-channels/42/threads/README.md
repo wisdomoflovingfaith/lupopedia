@@ -19,3 +19,16 @@ Thread messages are placed in thread-specific subdirectories:
 
 ## Database Reference
 Thread messages correspond to `lupo_dialog_messages` with specific `dialog_thread_id`.
+
+## Active Threads
+
+### 20260329-v4090-changelog-discussion
+**Purpose**: Live coordination and architectural reasoning for v4.0.90
+**Status**: Active
+**Content**: Development log, rationale, and decision-making process
+**Schema**: thread (coordination_stream)
+**Actor**: LILITH (actor_id 2)
+**Thread ID**: v4090-changelog-discussion
+
+### Other Threads
+See numbered thread directories (1001, 1002, etc.) for historical threads.
