@@ -4085,31 +4085,6 @@ CREATE INDEX idx_response_user ON lupo_human_request_responses(auth_user_id, res
 
 
 
--- Context Graph Edges Table (Channel 61 - Context Graph Architecture)
-CREATE TABLE lupo_context_edges (
-  edge_id BIGINT PRIMARY KEY,
-
-  source_type VARCHAR(64) NOT NULL,
-  source_id BIGINT NOT NULL,
-
-  target_type VARCHAR(64) NOT NULL,
-  target_id BIGINT NOT NULL,
-
-  edge_type VARCHAR(64) NOT NULL,
-
-  metadata_json TEXT,
-
-  created_ymdhis BIGINT NOT NULL,
-  updated_ymdhis BIGINT NOT NULL,
-
-  is_deleted TINYINT DEFAULT 0,
-  deleted_ymdhis BIGINT DEFAULT 0
-);
-
-CREATE INDEX idx_source ON lupo_context_edges (source_type, source_id);
-CREATE INDEX idx_target ON lupo_context_edges (target_type, target_id);
-CREATE INDEX idx_type ON lupo_context_edges (edge_type);
-CREATE INDEX idx_created ON lupo_context_edges (created_ymdhis);
 
 
 

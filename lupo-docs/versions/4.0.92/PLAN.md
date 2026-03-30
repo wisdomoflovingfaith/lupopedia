@@ -21,7 +21,7 @@ lupopedia.headers:
 ATHENA (12) — Lead Actor
 
 ### Phase 1 Objectives
-- Edge-Navigation: "Jump to Truth" navigation using lupo_context_edges for gold-bordered message traversal.
+- Edge-Navigation: "Jump to Truth" navigation using lupo_edges for gold-bordered message traversal.
 - Fuzzy-Context Search: Overlay search querying the State Mirror for keywords, preserving 63-bit ID linkage.
 - Hydration 2.0: Elevate additional legacy "Unfinished Business" using the optimized lupo-bin/hydrator.php.
 

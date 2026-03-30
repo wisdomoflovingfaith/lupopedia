@@ -2,7 +2,7 @@
 
 ## Priority E: Semantic Search & Contextual Retrieval
 
-- [ ] Edge-Navigation: Implement "Jump to Truth" using lupo_context_edges to skip between elevated gold-bordered messages.
+- [ ] Edge-Navigation: Implement "Jump to Truth" using lupo_edges to skip between elevated gold-bordered messages.
 - [ ] Fuzzy-Context Search: Client-side overlay to query the State Mirror for keywords, maintaining 63-bit ID association.
 - [ ] Hydration 2.0: Promote more "Unfinished Business" from legacy files using optimized lupo-bin/hydrator.php.
 

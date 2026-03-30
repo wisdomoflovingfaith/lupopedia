@@ -33,7 +33,7 @@ class SyncChannelsToDb {
         $channelsFile = $this->jsonDir . '/lupo_dialog_threads.json';
         $messagesFile = $this->jsonDir . '/lupo_dialog_messages.json';
         $contextsFile = $this->jsonDir . '/lupo_contexts.json';
-        $edgesFile = $this->jsonDir . '/lupo_context_edges.json';
+        $edgesFile = $this->jsonDir . '/lupo_edges.json';
         if (!file_exists($channelsFile) || !file_exists($messagesFile)) {
             echo "Missing required JSON files.\n";
             exit(1);
@@ -49,7 +49,7 @@ class SyncChannelsToDb {
         $this->syncChannels($channels);
         $this->syncMessages($messages);
         if ($contexts) $this->syncContexts($contexts);
-        if ($edges) $this->syncContextEdges($edges);
+        if ($edges) $this->syncEdges($edges);
         $this->report();
     }
 
@@ -116,22 +116,22 @@ class SyncChannelsToDb {
         }
     }
 
-    // New: Sync lupo_context_edges (doctrine-compliant, no FK, no auto-increment)
-    private function syncContextEdges($edges) {
+    // Sync lupo_edges (polymorphic edge system - replaces lupo_context_edges)
+    private function syncEdges($edges) {
         $nodeId = 1; // TODO: fetch from config or headers if needed
         foreach ($edges as $edge) {
             if (empty($edge['edge_id'])) $edge['edge_id'] = $this->generateId($nodeId);
             if (empty($edge['created_ymdhis'])) $edge['created_ymdhis'] = $this->nowYmdhis();
-            $exists = $this->db->fetchOne("SELECT COUNT(*) FROM ".LUPO_TABLE_PREFIX."context_edges WHERE edge_id = :id", ['id' => $edge['edge_id']]);
+            $exists = $this->db->fetchOne("SELECT COUNT(*) FROM ".LUPO_TABLE_PREFIX."edges WHERE edge_id = :id", ['id' => $edge['edge_id']]);
             if ($exists) {
-                $this->log[] = "Context edge {$edge['edge_id']} exists. Skipping.";
+                $this->log[] = "Edge {$edge['edge_id']} exists. Skipping.";
                 continue;
             }
             if ($this->dryRun) {
-                $this->log[] = "[DRY RUN] Would insert context edge {$edge['edge_id']} (from_context_id {$edge['from_context_id']})";
+                $this->log[] = "[DRY RUN] Would insert edge {$edge['edge_id']} ({$edge['left_object_type']} {$edge['left_object_id']} → {$edge['right_object_type']} {$edge['right_object_id']})";
             } else {
-                $this->db->insert(LUPO_TABLE_PREFIX.'context_edges', $edge);
-                $this->log[] = "Inserted context edge {$edge['edge_id']} (from_context_id {$edge['from_context_id']})";
+                $this->db->insert(LUPO_TABLE_PREFIX.'edges', $edge);
+                $this->log[] = "Inserted edge {$edge['edge_id']} ({$edge['left_object_type']} {$edge['left_object_id']} → {$edge['right_object_type']} {$edge['right_object_id']})";
             }
         }
     }
