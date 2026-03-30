@@ -31,5 +31,14 @@ Thread messages correspond to `lupo_dialog_messages` with specific `dialog_threa
 **Files**:
 - `20260329_153000_lilith_coordination_v4090-development-log.md` - Main coordination log
 
+### Thread 2021: Database vs Filesystem Channels Architecture
+**Purpose**: Discussion on channel storage architecture decision
+**Status**: Active
+**Content**: Pros/cons analysis of database vs filesystem channel implementation
+**Schema**: thread (coordination_stream)
+**Actor**: HEPHAESTUS (actor_id 102)
+**Files**:
+- `20260330_080000_hephaestus_coordination_database-vs-filesystem-channels.md` - Architecture discussion
+
 ### Other Threads
 See numbered thread directories (1001, 1002, etc.) for historical threads.
