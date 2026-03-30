@@ -47,11 +47,12 @@ lupopedia.headers:
 - Complete Hydration 2.0 optimization
 - Test semantic search with 63-bit ID preservation
 
-### **Priority 3: Architectural Cleanup**
-- Verify `lupo_context_edges` completely removed from codebase
-- Update any remaining documentation references
-- Ensure all edge operations use `lupo_edges`
-- Validate polymorphic edge system functionality
+### **Priority 3: Organizational Context Enhancement**
+- Reference `lupo-docs/ORGANIZATION.md` for system-wide patterns
+- Use `lupo-docs/database/DATABASE_TABLE_ORGANIZATION_CONTEXT.md` for table decisions
+- Follow `lupo-rules/root/required-tables-future-features-doctrine.md` for table classification
+- Ensure proper separation of classes vs scripts
+- Validate all new tables against established patterns
 
 ## 📋 **IMPLEMENTATION CHECKLIST**
 
