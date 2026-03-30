@@ -37,6 +37,36 @@ lupopedia.headers:
 - **LILITH "Source of Truth" Protocol implemented with Toon guardrail and PRD updates**
 - **4.0.93 PRD files updated with actual database schema and migration mapping**
 - **Subdirectory installation doctrine established for Semantic Monitoring Widget**
+- **Temporal Anchor & UTC Timestamp Policy enforced (tick.py, lupo-bin/temporal_anchor.json, UTC-only)**
+
+## 🛠️ **4.0.93 Documentation Update Status**
+
+### **🏗️ LILITH "Absolute-Root" Mandate (v4.0.93)**
+
+**RULE [93.PATH_PURITY]**: All Markdown links must use absolute paths starting from repository root.
+
+#### **Markdown Purity Enforcement**
+- **Leading /**: Only legal anchor for repo-wide stability
+- **No ~ or @ aliases**: Markdown does not support relative shortcuts
+- **No ../ navigation**: IDE strictly forbidden from using relative paths
+- **Fixed Repository Addresses**: If file exists in repo, its address is fixed relative to / root
+
+#### **Softaculous Compatibility**
+- **Web URL**: Includes subdirectory (e.g., /lupopedia/)
+- **Internal Documentation**: Links remain relative to repository root
+- **Cross-Installation Stability**: Docs work regardless of where folder is placed
+
+#### **IDE Enforcement**
+- **RULE [93.PATH_PURITY]**: The IDE is now strictly forbidden from using ../../
+- **CORRECT**: `[Link](/lupo-docs/versions/4.0.93/prd/01_monitor.md)`
+- **FORBIDDEN**: `[Link](../../../prd/01_monitor.md)` or `[Link](~/lupo-docs/...)`
+
+#### **DocumentPathing Strategy Status**
+| Document | Pathing Strategy | Status |
+|----------|------------------|---------|
+| README.md | Absolute Root (/) | ✅ UPDATED |
+| TODO.md | Absolute Root (/) | ✅ UPDATED |
+| prd/*.md | Absolute Root (/) | ✅ QUEUED FOR REWRITE |
 
 ## 🚀 **Softaculous Certification Requirements**
 
