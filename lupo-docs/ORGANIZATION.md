@@ -178,38 +178,60 @@ Documentation about channel/session systems appears in:
 
 ### **Channel-to-Context Lifecycle**
 
-**Discussion Phase (Channels)**:
-- Operational artifacts live in `lupo-channels/`
-- Actors coordinate, discuss implementation approaches, debate options
-- Headers include: `channel_id`, `thread_id` (required), `context_id` (null)
-- Purpose: Temporary coordination and knowledge development
+**Hybrid-Mirror Architecture (Option B+)**:
+- **Truth Layer**: Live state in database (`lupo_channels`, `lupo_dialog_threads`, `lupo_dialog_messages`)
+- **Memory Layer**: Archival mirrors in filesystem (`lupo-channels/42/threads/`, `broadcasts/`, `content/`)
+- **Mirror Process**: DB → FS export when threads close/canonize; FS → DB only during legacy import
 
-**Finalization Phase (Contexts)**:
-- Finalized knowledge moves to `lupo_contexts` database table
+**Discussion Phase (Database-First)**:
+- Live coordination occurs in database tables
+- Web interface reads **only** from database
+- Real-time chat, concurrency, search all database-driven
+- Headers include: `channel_id`, `thread_id` (required), `context_id` (null during discussion)
+
+**Finalization Phase (Context Promotion)**:
 - Artifacts gain `context_id` reference for permanent knowledge base
 - Headers retain `channel_id` and `thread_id` for provenance
-- Purpose: Permanent knowledge storage with Q&A support
+- Thread closure triggers export to filesystem for archival
+- Git lineage reads **only** from filesystem mirrors
 
 **Database Architecture**:
 ```
-lupo_channels (discussion) → lupo_contexts (finalized knowledge)
+Live System (Database) → Cold Archive (Filesystem)
         ↓                           ↓
-   channel_artifacts ← context_artifacts
+   lupo_channels              lupo-channels/42/threads/
+   lupo_dialog_threads       lupo-channels/42/broadcasts/
+   lupo_dialog_messages      lupo-channels/42/content/
         ↓                           ↓
    lupo_edges (polymorphic relationships)
 ```
 
+**Boundary Definitions**:
+- **Web UI**: Reads **only** from database tables
+- **Git Lineage**: Reads **only** from filesystem mirrors  
+- **Doctrine**: Lives in both database and filesystem (mirrored)
+- **Legacy Filesystem**: Marked as "pre-canonical" - no longer source of truth
+
 **Context Features**:
-- **Questions**: `lupo_context_questions` table
-- **Answers**: `lupo_context_answers` table
-- **Navigation**: `lupo_edges` with semantic relationships
-- **Cleanup**: Channels can be deleted, knowledge preserved via `context_id`
+- **Context Storage**: `lupo_contexts` table (main knowledge storage)
+- **Context Cards**: `lupo_context_cards` table (context metadata)
+- **Context Mapping**: `lupo_contexts_map` table (context relationships)
+- **Truth Context**: `lupo_truth_context_map` table (truth relationships)
+- **Questions/Answers**: Implemented via `lupo_edges` with `edge_type = 'context_question_answer'`
+- **Navigation**: Semantic search through context relationships via `lupo_edges`
 
-Operational file artifacts themselves live outside `lupo-docs`:
+**Import Status**:
+- **Current State**: Filesystem contains coordination work not yet imported to database
+- **Migration Required**: Execute `SyncChannelsToDb.php --commit` after new install
+- **Pre-Canonical**: All existing filesystem artifacts marked as legacy pending import
+- **Future State**: Database-first with filesystem mirrors for archival
 
-- `lupo-channels/` - Active coordination discussions
-- `lupo-database/sessions/` - Session management
-- `lupo-sessions/` - Session storage
+**Channel Cleanup**:
+Channels can be deleted after discussion finalization:
+- **Artifacts**: Preserved via `context_id` reference in database
+- **Knowledge**: Maintained in `lupo_contexts` table
+- **Provenance**: Retained through filesystem mirrors and edge relationships
+- **Archive**: Complete history available in filesystem for Git lineage
 
 ## 7. What Belongs at Root vs `lupo-docs/`
 

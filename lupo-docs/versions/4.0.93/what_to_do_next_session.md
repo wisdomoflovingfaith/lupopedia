@@ -54,6 +54,13 @@ lupopedia.headers:
 - Ensure proper separation of classes vs scripts
 - Validate all new tables against established patterns
 
+### **Priority 4: Database-First Migration (Pre-Canonical Cleanup)**
+- Execute new install to establish clean database state
+- Run `php lupo-scripts/SyncChannelsToDb.php --commit` to import existing coordination work
+- Verify all filesystem work properly imported to database
+- Mark filesystem as "pre-canonical" archival mirrors only
+- Test web interface reading only from database tables
+
 ## 📋 **IMPLEMENTATION CHECKLIST**
 
 ### **Channel Import (4.0.91 completion)**:

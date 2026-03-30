@@ -88,9 +88,17 @@ Finalized contexts support:
 - `lupo_edge_type_definitions` - Edge metadata
 
 ### **Coordination & Communication**
-- `lupo_dialog_threads` - Thread management
-- `lupo_dialog_messages` - Message storage
-- `lupo_channel_content` - Channel content
+- `lupo_channels` - Channel definitions (live coordination)
+- `lupo_dialog_threads` - Thread management (live coordination)
+- `lupo_dialog_messages` - Message storage (live coordination)
+- `lupo_channel_content` - Channel content (live coordination)
+
+**Hybrid-Mirror Architecture**:
+- **Live System**: Database tables above for real-time coordination
+- **Archive System**: Filesystem mirrors (`lupo-channels/42/threads/`, `broadcasts/`, `content/`)
+- **Web UI**: Reads **only** from database tables
+- **Git Lineage**: Reads **only** from filesystem mirrors
+- **Import Status**: Filesystem marked as "pre-canonical" pending database import
 
 ### **Audit & Logging**
 - `lupo_logs` - System logging
