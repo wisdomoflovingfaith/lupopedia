@@ -31,6 +31,25 @@ lupopedia.headers:
 - Should use polymorphic `lupo_edges` system
 - Fixed: Updated all references to use `lupo_edges`
 
+### **✅ 4.0.93 COMPLETED CORRECTIONS**
+
+**LILITH "Source of Truth" Protocol**:
+- Implemented strict Toon file protection with RULE [93.PROTECT_TOONS]
+- Updated all 4.0.93 PRD files with actual database schema from Toon JSONs
+- Established subdirectory installation doctrine for Semantic Monitoring Widget
+- Documented forbidden constructs (AUTO_INCREMENT, TIMESTAMP, FOREIGN KEYS, TRIGGERS, UNSIGNED)
+
+**PRD Schema Alignment**:
+- `02_data_model.md`: Updated with actual `lupo_contexts`, `lupo_truth_questions`, `lupo_truth_answers`, `lupo_votes` schema
+- `04_lupopedia_js_foundation.md`: Updated with `livehelp_visitors → lupo_visitors` mapping and live typing refraction
+- `01_semantic_monitoring_widget.md`: Updated with `lupo_edges` schema and subdirectory installation doctrine
+
+**Critical Architectural Constraints**:
+- Subdirectory-only installation for auto-installer compatibility
+- Database-first architecture with filesystem archival mirrors
+- JavaScript includes must be subdirectory-aware
+- The Eye monitors parent site, not Lupopedia directory
+
 ## 🎯 **NEXT SESSION PRIORITIES**
 
 ### **Priority 1: Complete 4.0.91 Channel Import Work**
@@ -102,8 +121,22 @@ lupopedia.headers:
 | 4.0.90 | ✅ Complete | N/A |
 | 4.0.91 | Channel Import | ❌ **IMPLEMENT** |
 | 4.0.92 | Semantic Search | ❌ **IMPLEMENT** |
-| 4.0.93 | Coordination Cleanup | ✅ **READY** |
+| 4.0.93 | LILITH Audit & PRD Updates | ✅ **COMPLETED** |
+
+## 🚨 **4.0.93 ACHIEVEMENTS**
+
+### **Critical Architectural Corrections**
+- ✅ **LILITH "Source of Truth" Protocol**: Strict hierarchy for schema evolution
+- ✅ **Toon File Protection**: RULE [93.PROTECT_TOONS] prevents IDE corruption
+- ✅ **PRD Schema Alignment**: All PRDs reference actual database structures
+- ✅ **Subdirectory Doctrine**: Critical constraint for auto-installer compatibility
+
+### **Documentation Alignment**
+- ✅ **PLAN.md**: Updated with LILITH protocol and subdirectory requirements
+- ✅ **TODO.md**: Marked completed LILITH protocol tasks
+- ✅ **PRD Files**: Updated with real database schema and constraints
+- ✅ **Session Planning**: Documented completed corrections and next priorities
 
 ---
 
-**Session Focus**: Complete the missing implementation work from 4.0.91-4.0.92 while maintaining architectural integrity using the proper `lupo_edges` polymorphic system.
+**Session Focus**: Complete the missing implementation work from 4.0.91-4.0.92 while maintaining architectural integrity using the proper `lupo_edges` polymorphic system and LILITH's "Source of Truth" protocol.

@@ -14,6 +14,9 @@
 - [x] LUPOPEDIA_HEADERS updated with context_id field and channel-to-context lifecycle
 - [x] Database table organization context created
 - [x] Channel architecture discussion thread created with WOLFIE synthesis (Option B+)
+- [x] **LILITH "Source of Truth" Protocol implemented with Toon guardrail**
+- [x] **4.0.93 PRD files updated with actual database schema and migration mapping**
+- [x] **Subdirectory installation doctrine established for Semantic Monitoring Widget**
 
 ## 🚨 **CRITICAL: Softaculous Certification & Crafty Parity (4.0.93)**
 
@@ -36,6 +39,7 @@
 - [ ] Live Typing Preview: Integrate into High-Density Scroller to maintain 60fps while streaming real-time keystroke refractions
 - [ ] Visitor Tracking: Implement expected Softaculous hooks for visitor monitoring
 - [ ] Contextual Installation: Ensure /install.php seeds Context Registry and Semantic Edges required for 4.0.93 "Brain"
+- [ ] **Subdirectory Installation**: Ensure Lupopedia works in any subdirectory (not web root) - PRD updated
 
 ### **5. Data Migration Completion**
 - [ ] Execute new install to establish clean database state
@@ -44,10 +48,16 @@
 - [ ] Test web interface reading only from database tables
 
 ### **🚨 RULE [93.PROTECT_TOONS]: The "Toon" Guardrail**
-- [ ] **FORBIDDEN**: IDE writing to `lupo-database/lupopedia/json/*.json` files
-- [ ] **REQUIRED**: All schema evolution in `lupopedia/mysql/seed/` and `install_new_lupopedia.sql`
-- [ ] **VERIFICATION**: Run `generate_toon_files.py` after any schema changes
-- [ ] **ENFORCEMENT**: LILITH audit compliance for all Toon file protection
+- [x] **FORBIDDEN**: IDE writing to `lupo-database/lupopedia/json/*.json` files
+- [x] **REQUIRED**: All schema evolution in `lupopedia/mysql/seed/` and `install_new_lupopedia.sql`
+- [x] **VERIFICATION**: Run `generate_toon_files.py` after any schema changes
+- [x] **ENFORCEMENT**: LILITH audit compliance for all Toon file protection
+
+### **🚨 LILITH "Source of Truth" Protocol (COMPLETED)**
+- [x] **02_data_model.md**: Updated with actual database schema (`lupo_contexts`, `lupo_truth_questions`, `lupo_truth_answers`, `lupo_votes`)
+- [x] **04_lupopedia_js_foundation.md**: Updated with `livehelp_visitors → lupo_visitors` mapping and live typing refraction
+- [x] **01_semantic_monitoring_widget.md**: Updated with `lupo_edges` schema and subdirectory installation doctrine
+- [x] **Forbidden Constructs**: Documented no AUTO_INCREMENT, TIMESTAMP, FOREIGN KEYS, TRIGGERS, UNSIGNED in 4.0.93 doctrine
 
 ## Deferred/Blocked (see DEFERRED.md)
 - [ ] enforce_doctrine.py: Run on all seed files deferred (Python/encoding issue)

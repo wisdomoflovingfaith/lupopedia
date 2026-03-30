@@ -34,6 +34,9 @@ lupopedia.headers:
 - LUPOPEDIA_HEADERS updated with context_id field and channel-to-context lifecycle
 - Database table organization context created
 - Channel architecture discussion thread created with WOLFIE synthesis (Option B+)
+- **LILITH "Source of Truth" Protocol implemented with Toon guardrail and PRD updates**
+- **4.0.93 PRD files updated with actual database schema and migration mapping**
+- **Subdirectory installation doctrine established for Semantic Monitoring Widget**
 
 ## 🚀 **Softaculous Certification Requirements**
 
@@ -56,6 +59,27 @@ lupopedia.headers:
 - **Live Typing Preview**: Integrate into High-Density Scroller (60fps keystroke refractions)
 - **Visitor Tracking**: Implement expected Softaculous hooks for visitor monitoring
 - **Contextual Installation**: Seed Context Registry and Semantic Edges for 4.0.93 "Brain"
+- **Subdirectory Installation**: Ensure Lupopedia works in any subdirectory (not web root)
+
+## 🚨 **LILITH "Source of Truth" Protocol Implementation**
+
+### **Toon File Protection**
+- **RULE [93.PROTECT_TOONS]**: IDE strictly forbidden from writing to `lupo-database/lupopedia/json/*.json`
+- **Installation DNA**: All schema evolution must be in `lupopedia/mysql/seed/` and `install_new_lupopedia.sql`
+- **Verification**: Run `generate_toon_files.py` after any schema changes
+- **Enforcement**: LILITH audit compliance for all Toon file protection
+
+### **PRD Schema Alignment**
+- **02_data_model.md**: Updated with actual `lupo_contexts`, `lupo_truth_questions`, `lupo_truth_answers`, `lupo_votes` schema
+- **04_lupopedia_js_foundation.md**: Updated with `livehelp_visitors → lupo_visitors` mapping and live typing refraction
+- **01_semantic_monitoring_widget.md**: Updated with `lupo_edges` schema and subdirectory installation doctrine
+- **Forbidden Constructs**: No AUTO_INCREMENT, TIMESTAMP, FOREIGN KEYS, TRIGGERS, UNSIGNED in 4.0.93 doctrine
+
+### **Subdirectory Installation Doctrine**
+- **Critical Constraint**: Lupopedia MUST always be installed in a subdirectory of the host site
+- **Auto-installer Compatibility**: Softaculous, Installatron, Fantastico do not allow web root replacement
+- **The Eye Architecture**: Semantic Monitoring Widget monitors parent site, not Lupopedia directory
+- **Path Resolution**: All JavaScript includes must be subdirectory-aware
 
 ## 🏗️ **Data Migration Completion**
 - Execute new install to establish clean database state
