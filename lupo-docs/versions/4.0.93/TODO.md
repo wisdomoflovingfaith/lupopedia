@@ -43,6 +43,12 @@
 - [ ] Verify all filesystem work properly imported to database
 - [ ] Test web interface reading only from database tables
 
+### **🚨 RULE [93.PROTECT_TOONS]: The "Toon" Guardrail**
+- [ ] **FORBIDDEN**: IDE writing to `lupo-database/lupopedia/json/*.json` files
+- [ ] **REQUIRED**: All schema evolution in `lupopedia/mysql/seed/` and `install_new_lupopedia.sql`
+- [ ] **VERIFICATION**: Run `generate_toon_files.py` after any schema changes
+- [ ] **ENFORCEMENT**: LILITH audit compliance for all Toon file protection
+
 ## Deferred/Blocked (see DEFERRED.md)
 - [ ] enforce_doctrine.py: Run on all seed files deferred (Python/encoding issue)
 - [ ] Hydrator: Channel 42 elevation output requires review
