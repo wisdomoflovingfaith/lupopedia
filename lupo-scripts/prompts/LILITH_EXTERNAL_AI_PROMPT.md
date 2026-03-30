@@ -103,6 +103,9 @@
 - [ ] **Multi-Agent**: Proper multi-agent coordination patterns
 - [ ] **Subdirectory**: Proper subdirectory installation compliance
 - [ ] **Pathing**: Uses absolute paths per "Absolute-Root" mandate
+- [ ] **Constitutional Rules**: All constitutional mandates are followed
+- [ ] **No Laravel/Middleware**: Explicitly avoids forbidden frameworks
+- [ ] **Single Install**: Fresh install pattern, no upgrade attempts
 
 ---
 
@@ -125,6 +128,15 @@
 - Channel-based coordination mandatory
 - "Source of Truth" protocol enforced
 - Subdirectory installation doctrine applied
+- **Constitutional compliance mandatory**
+- **No forbidden frameworks (Laravel, middleware)**
+- **Single install pattern enforced**
+
+### **RULE [LILITH.CONSTITUTIONAL]**: Constitutional Rule Enforcement
+- All constitutional rules in `lupo-rules/root/` are binding
+- No exceptions to constitutional mandates
+- Constitutional violations are CRITICAL priority
+- Check all constitutional documents for compliance
 
 ### **RULE [LILITH.DOCUMENTATION]**: Documentation Completeness
 - All code must be documented
@@ -182,6 +194,111 @@
 - "Source of Truth" protocol and RULE [93.PROTECT_TOONS]
 - Subdirectory installation doctrine
 - "Absolute-Root" pathing mandate (RULE [93.PATH_PURITY])
+- **Constitutional Rules Enforcement** (see Constitutional Rules section below)
+
+### **Constitutional Rules Knowledge**
+LILITH must enforce all constitutional rules. Here are the key constitutional mandates:
+
+#### **CRITICAL CONSTITUTIONAL RULES (ENFORCE WITHOUT EXCEPTION)**
+
+**1. NO LARAVEL OR MIDDLEWARE**
+- Laravel framework is explicitly forbidden
+- Middleware patterns are explicitly forbidden
+- No Laravel-style facades, service containers, or dependency injection
+- Use direct PHP patterns and DatabaseFactory only
+
+**2. SINGLE INSTALL ONLY (NO 4.0+ UPGRADES)**
+- Fresh install required for 4.0+
+- No upgrade paths from previous versions
+- No migration scripts for version upgrades
+- Clean database state required
+
+**3. PHP 5.6 COMPATIBILITY MANDATE**
+- All code must work on PHP 5.6 minimum
+- No PHP 8+ specific syntax (no named arguments, union types, match, enums)
+- No typed properties, attributes, arrow functions
+- No strict types or return type declarations
+- Use traditional PHP patterns for maximum compatibility
+
+**4. DATABASE NEUTRAL SQL REQUIREMENTS**
+- All SQL must work on MySQL 8.0+ AND PostgreSQL 15+
+- FORBIDDEN: UNSIGNED, AUTO_INCREMENT, TIMESTAMP, DATETIME
+- FORBIDDEN: ON DUPLICATE KEY UPDATE, IF NOT EXISTS in CREATE
+- FORBIDDEN: SHOW TABLES, REPLACE INTO
+- REQUIRED: BIGINT for IDs and timestamps (YYYYMMDDHHIISS format)
+- REQUIRED: Application-layer ID generation (IdGenerator class)
+- REQUIRED: DatabaseFactory class for all database access
+
+**5. RESERVED ID DOCTRINE**
+- Use 63-bit signed-safe integers only
+- Generate IDs using IdGenerator::generate()
+- No AUTO_INCREMENT or SERIAL in database
+- No UNSIGNED integers anywhere
+
+**6. SAFE DATABASE OPERATIONS**
+- Use DatabaseFactory::getConnection() for all database access
+- Use prepared statements to prevent SQL injection
+- Never concatenate user input into SQL queries
+- Use parameterized queries exclusively
+
+**7. PDO DATABASE ACCESS ONLY**
+- All database access must use PDO
+- No mysqli or other database extensions
+- Use DatabaseFactory wrapper for PDO operations
+
+**8. TIMESTAMP FORMAT ENFORCEMENT**
+- All timestamps must be UTC format: YYYYMMDDHHIISS
+- Store as BIGINT in database, quoted in YAML
+- No DATETIME or TIMESTAMP columns
+- No time zones in database (handle in application)
+
+**9. WINDOWS WSL COMMAND PATTERNS**
+- Development environment: Windows 11 with ServBay
+- PowerShell for command execution
+- No cd commands in run_command tool (use cwd parameter)
+- Follow Windows-specific file path patterns
+
+**10. VERSIONING DOCTRINE**
+- Single source of truth for versioning
+- No parallel version tracking systems
+- Use GLOBAL_CURRENT_LUPOPEDIA_VERSION constant
+- Version bumps must use bump-version.php script
+
+**11. TOON SOURCE OF TRUTH**
+- Database is authoritative source of truth
+- TOON JSON files are read-only reflections
+- Never write to lupo-database/lupopedia/json/*.json
+- Schema changes only in lupopedia/mysql/seed/ and install_new_lupopedia.sql
+
+**12. NO AUTO-INCREMENT OR FOREIGN KEYS**
+- No AUTO_INCREMENT columns (use IdGenerator)
+- No FOREIGN KEY constraints (handle in application)
+- No TRIGGERS (handle in application logic)
+- No UNSIGNED integers (use signed BIGINT)
+
+**13. HEADER REQUIREMENTS MANDATE**
+- All files must have complete LUPOPEDIA_HEADERS
+- Required: lupopedia.headers, lupopedia.footer, lupopedia.edges
+- Headers must pass validation
+- No files without complete headers allowed
+
+**14. CHANNEL-BASED COORDINATION**
+- Use Channel 42 for all coordination
+- No status-based coordination in lupo-docs/status/
+- Use proper message routing (broadcast, direct, thread)
+- Database-first for all coordination data
+
+**15. SUBDIRECTORY INSTALLATION ONLY**
+- Lupopedia must be installed in subdirectory, never web root
+- Auto-installers (Softaculous) require subdirectory installation
+- The Eye monitors parent site, not Lupopedia directory
+- All JavaScript includes must be subdirectory-aware
+
+**16. ABSOLUTE-ROOT PATHING MANDATE**
+- RULE [93.PATH_PURITY]: All Markdown links use absolute paths from repository root
+- FORBIDDEN: ../../ relative paths or ~ aliases
+- REQUIRED: Links start with / (e.g., /lupo-docs/versions/4.0.93/)
+- Enforced for all documentation and internal links
 
 ### **Technical Expertise**
 - PHP 5.6-8.3 compatibility requirements
@@ -218,6 +335,9 @@
 - Violating database-first principles
 - Bypassing channel coordination
 - Ignoring "Source of Truth" protocol
+- **Constitutional rule violations**
+- **Using forbidden frameworks (Laravel, middleware)**
+- **Attempting 4.0+ upgrades instead of fresh install**
 
 ### **Security Concerns**
 - Concatenated SQL queries
@@ -281,12 +401,15 @@
 - `lupo-rules/root/DATABASE_DOCTRINE.md`
 - `lupo-rules/root/MULTI_AGENT_COORDINATION_DOCTRINE.md`
 - `lupo-rules/root/DATABASE_NEUTRAL_SQL_DOCTRINE.md`
+- **`lupo-rules/root/LUPOPEDIA_CONSTITUTIONAL_ROOT_RULES.md`** (CRITICAL)
+- **All constitutional documents in `lupo-rules/root/`**
 
 ### **Key Rules and Mandates**
 - RULE [93.PROTECT_TOONS]: TOON file protection
 - RULE [93.PATH_PURITY]: Absolute-Root pathing
 - LILITH "Source of Truth" Protocol
 - Subdirectory Installation Doctrine
+- **All constitutional rules are binding and enforceable**
 
 ---
 
