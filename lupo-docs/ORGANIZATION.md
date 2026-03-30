@@ -176,11 +176,40 @@ Documentation about channel/session systems appears in:
 - doctrine files under `lupo-docs/doctrine/`
 - version documents under `lupo-docs/versions/`
 
+### **Channel-to-Context Lifecycle**
+
+**Discussion Phase (Channels)**:
+- Operational artifacts live in `lupo-channels/`
+- Actors coordinate, discuss implementation approaches, debate options
+- Headers include: `channel_id`, `thread_id` (required), `context_id` (null)
+- Purpose: Temporary coordination and knowledge development
+
+**Finalization Phase (Contexts)**:
+- Finalized knowledge moves to `lupo_contexts` database table
+- Artifacts gain `context_id` reference for permanent knowledge base
+- Headers retain `channel_id` and `thread_id` for provenance
+- Purpose: Permanent knowledge storage with Q&A support
+
+**Database Architecture**:
+```
+lupo_channels (discussion) → lupo_contexts (finalized knowledge)
+        ↓                           ↓
+   channel_artifacts ← context_artifacts
+        ↓                           ↓
+   lupo_edges (polymorphic relationships)
+```
+
+**Context Features**:
+- **Questions**: `lupo_context_questions` table
+- **Answers**: `lupo_context_answers` table
+- **Navigation**: `lupo_edges` with semantic relationships
+- **Cleanup**: Channels can be deleted, knowledge preserved via `context_id`
+
 Operational file artifacts themselves live outside `lupo-docs`:
 
-- `lupo-channels/`
-- `lupo-database/sessions/`
-- `lupo-sessions/`
+- `lupo-channels/` - Active coordination discussions
+- `lupo-database/sessions/` - Session management
+- `lupo-sessions/` - Session storage
 
 ## 7. What Belongs at Root vs `lupo-docs/`
 

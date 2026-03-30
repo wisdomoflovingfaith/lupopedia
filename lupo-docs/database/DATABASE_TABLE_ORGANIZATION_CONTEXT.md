@@ -73,10 +73,14 @@ lupo-docs/database/
 - `lupo_auth_users` - Human authentication
 - `lupo_sessions` - Session management
 
-### **Content & Storage**
-- `lupo_contexts` - Context management
-- `lupo_content` - General content storage
-- `lupo_channels` - Channel coordination
+### **Context Questions & Answers**
+Finalized contexts support:
+- **Context Storage**: `lupo_contexts` table (main knowledge storage)
+- **Context Cards**: `lupo_context_cards` table (context metadata)
+- **Context Mapping**: `lupo_contexts_map` table (context relationships)
+- **Truth Context**: `lupo_truth_context_map` table (truth relationships)
+- **Questions/Answers**: Can be implemented using `lupo_edges` with `edge_type = 'context_question_answer'`
+- **Navigation**: Semantic search through context relationships via `lupo_edges`
 
 ### **Relations & Edges**
 - `lupo_edges` - **Master polymorphic edge table**

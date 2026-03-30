@@ -216,6 +216,7 @@ lupopedia.footer:
 | `when_updated` | ✅ | YYYYMMDDHHIISS | `"20260328140000"` |
 | `channel_id` | ✅ | integer | `42` |
 | `thread_id` | ✅ | lowercase, hyphens | `"headers-doctrine"` |
+| `context_id` | ⚠️ | integer (BIGINT) | Optional context reference when artifact is linked to a finalized knowledge context. Assigned when the artifact is promoted from channel discussion to context. |
 | `actor_id` | ✅ | integer | `1` |
 | `actor_name` | ✅ | lowercase, underscores | `"wolfie"` |
 | `delegation_chain` | ✅ | actor:role | `"wolfie:root"` |
@@ -224,6 +225,46 @@ lupopedia.footer:
 | `purpose` | ✅ | descriptive text | `"Purpose of document"` |
 | `tags` | ✅ | array of strings | `["tag1", "tag2"]` |
 | `content_id` | ⚠️ | integer (BIGINT) | Assigned when the file is **imported** into `lupo_contents`; validators **warn** if missing. Not a hand-edited field for normal authoring. |
+
+---
+
+## 🔄 **Channel-to-Context Lifecycle**
+
+### **Discussion Phase (Channels)**
+Artifacts originate in channels for coordination and discussion:
+- **`channel_id`**: Required - identifies the coordination channel
+- **`thread_id`**: Required - identifies the discussion thread  
+- **`context_id`**: Optional - null during discussion phase
+- **Purpose**: Actors discuss implementation approaches, debate options, coordinate work
+
+### **Finalization Phase (Contexts)**
+When channel discussions result in finalized knowledge:
+- **`context_id`**: Assigned - references the finalized knowledge context
+- **`channel_id`**: May be retained for provenance
+- **`thread_id`**: May be retained for discussion history
+- **Purpose**: Artifact becomes part of permanent knowledge base
+
+### **Database Relationship**
+```
+lupo_channels (discussion) → lupo_contexts (finalized knowledge)
+        ↓                           ↓
+   channel_artifacts ← context_artifacts
+        ↓                           ↓
+   lupo_edges (polymorphic relationships)
+```
+
+### **Context Questions & Answers**
+Finalized contexts support:
+- **Questions**: `lupo_context_questions` table
+- **Answers**: `lupo_context_answers` table  
+- **Edges**: `lupo_edges` with `edge_type = 'context_question_answer'`
+- **Navigation**: Semantic search through context relationships
+
+### **Channel Cleanup**
+Channels can be deleted after discussion finalization:
+- **Artifacts**: Preserved via `context_id` reference
+- **Knowledge**: Maintained in `lupo_contexts` table
+- **Provenance**: Retained through edge relationships
 
 ---
 
