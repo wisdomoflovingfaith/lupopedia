@@ -51,4 +51,5 @@
 ### Fixed
 - PRD duplication and drift between actors eliminated
 - All namespace PRDs cross-referenced and up to date
-last_modified_utc: "20260330190000"
+- [2026-03-31] Manual fresh install test completed successfully. All tables dropped and new installation performed via web installer, resulting in clean database state. Confirmed installer works correctly with consolidated seed file.
+last_modified_utc: "20260331000000"
