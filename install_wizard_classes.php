@@ -370,6 +370,23 @@ class InstallWizardSqlRunner
 {
 
     /**
+     * Apply table prefix to SQL: {{prefix}} is always replaced (default lupo_); if prefix is not lupo_, also replace literal lupo_.
+     *
+     * @param string $sql
+     * @param string|null $table_prefix
+     * @return string
+     */
+    public static function applyTablePrefixToSql($sql, $table_prefix = null)
+    {
+        $tp = ($table_prefix !== null && $table_prefix !== '') ? $table_prefix : 'lupo_';
+        $sql = str_replace('{{prefix}}', $tp, $sql);
+        if ($tp !== 'lupo_') {
+            $sql = str_replace('lupo_', $tp, $sql);
+        }
+        return $sql;
+    }
+
+    /**
      * Split SQL into statements by semicolon, respecting single-quoted strings so that
      * semicolons inside COMMENT = '...;...' or other string literals do not break the split.
      * Escaped single quote '' is supported. PHP 5.3 compatible.
@@ -423,12 +440,12 @@ class InstallWizardSqlRunner
     }
 
     /**
-     * Run a SQL file. Optional $table_prefix: when set and not 'lupo_', replaces literal "lupo_" with prefix in SQL (so install/seed/import create tables with chosen prefix).
+     * Run a SQL file. Replaces {{prefix}} with $table_prefix (default lupo_). When prefix is not lupo_, also replaces literal lupo_ (legacy seed files).
      *
      * @param PDO $pdo
      * @param string $path Full path to .sql file
      * @param array $log Log array (by reference)
-     * @param string|null $table_prefix Table prefix (e.g. 'lupo_' or 'myprefix_'). If null or 'lupo_', no substitution.
+     * @param string|null $table_prefix Table prefix including trailing underscore (e.g. 'lupo_'). Null defaults to lupo_; {{prefix}} in SQL is always replaced.
      * @return bool
      */
     public static function runSqlFile($pdo, $path, &$log, $table_prefix = null)
@@ -447,9 +464,7 @@ class InstallWizardSqlRunner
         // Only strip lines that are entirely comment (whitespace + -- + rest). Do not strip -- in middle of line (can be inside string or identifier).
         $sql = preg_replace('/^\s*--[^\n]*\n/m', "\n", $sql);
         $sql = preg_replace('/\/\*.*?\*\//s', '', $sql);
-        if ($table_prefix !== null && $table_prefix !== '' && $table_prefix !== 'lupo_') {
-            $sql = str_replace('lupo_', $table_prefix, $sql);
-        }
+        $sql = InstallWizardSqlRunner::applyTablePrefixToSql($sql, $table_prefix);
         $statements = InstallWizardSqlRunner::splitSqlStatements($sql);
         if (stripos($sql, 'registry') !== false && stripos($sql, 'INSERT') !== false) {
             $ids = InstallWizardRegistryValidator::extractRegistryIdsFromSql($sql);

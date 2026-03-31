@@ -1,43 +1,70 @@
 ---
 lupopedia.headers:
-  when_updated: "20260325210000"
-  lupopedia.schema: "documentation"
-  file_path_from_root: "lupo-docs/README.md"
-  web_path: "http://www.lupopedia.com/lupopedia/lupo-docs/README.md"
-  last_modified_utc: "20260325210000"
+  header_format_version: 2
+  when_updated: '20260330'
+  lupopedia.schema: documentation
+  file_path_from_root: lupo-docs/README.md
+  web_path: http://www.lupopedia.com/lupopedia/lupo-docs/README.md
+  last_modified_utc: '20260330'
   channel_id: 42
-  actor_id: 26
-  actor_name: "cascade"
-  delegation_chain: "26:1"
-  artifact_type: "documentation"
-  artifact_kind: "index"
-  purpose: "Documentation index and navigation; required reading order for doctrine and lupopedia.init"
-  tags: ["documentation", "index", "doctrine", "lupopedia_headers", "4.0.88"]
-  namespace: "documentation"
+  actor_id: 102
+  actor_name: cursor
+  delegation_chain: cursor:root
+  artifact_type: documentation
+  artifact_kind: index
+  purpose: Documentation index and navigation; required reading order for doctrine and lupopedia.init
+  tags: ["documentation", "index", "doctrine", "lupopedia_headers", "4.0.93"]
 lupopedia.edges:
   outbound_edges:
     - { to: "lupo-docs/INIT_README.md", type: "references", weight: 1.0 }
     - { to: "lupo-docs/doctrine/LUPOPEDIA_HEADERS/README.md", type: "references", weight: 1.0 }
     - { to: "lupo-docs/doctrine/init/LUPO_INITIALIZATION_DOCTRINE.md", type: "references", weight: 0.9 }
-    - { to: "lupo-docs/versions/4.0.88/README.md", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/versions/4.0.93/README.md", type: "references", weight: 1.0 }
     - { to: "lupo-docs/version.md", type: "references", weight: 0.8 }
 lupopedia.footer:
-  last_verified: "20260325210000"
+  last_verified: '20260330'
   verified_by:
-    identity_type: "actor"
-    actor_id: 26
-    agent_name_identity: "THOTH"
+    identity_type: actor
+    actor_id: 102
+    agent_name_identity: Cursor IDE Agent
     department_id_delta: 0
   verified_via:
-    type: "faucet"
-    faucet_slug: "cascade"
-  orchestrator: "26:1"
+    type: faucet
+    faucet_slug: cursor
+  orchestrator: cursor:root
   next_action:
-    - "Keep required reading links and init doctrine paths current"
-    - "Add new doctrine to prerequisite list when created"
-    - "Validate LUPOPEDIA HEADERS on new docs under lupo-docs/"
+    - Keep required reading links and init doctrine paths current
+    - Add new doctrine to prerequisite list when created
+    - Validate LUPOPEDIA HEADERS on new docs under lupo-docs/
+    - Ensure footer validation and staleness policy are referenced and enforced
 ---
-# file: Documentation Index — delegation: 26:1 — web_path: http://www.lupopedia.com/lupopedia/lupo-docs/README.md
+# file: Documentation Index — delegation: cursor:root — web_path: http://www.lupopedia.com/lupopedia/lupo-docs/README.md
+
+## Footer Validation and Staleness Policy
+
+All Lupopedia documentation must include a canonical `lupopedia.footer` block. Footer validation rules require:
+- `last_verified` (UTC, 14 digits)
+- `verified_by` (object with at minimum: `identity_type`, `actor_id`)
+- `verified_via` (object with at minimum: `type`, `faucet_slug`)
+
+Artifacts with `last_verified` earlier than `20260301000000` UTC are considered stale and must be semantically revalidated before updating the footer. See [doctrine/LUPOPEDIA_HEADERS/README.md](doctrine/LUPOPEDIA_HEADERS/README.md) for canonical rules and validator details.
+
+## Subdirectory-Only Installation & Monitoring Widget (Critical)
+
+**Lupopedia must always be installed in a subdirectory of your site (never at the web root).**
+
+**Monitoring and Analytics:**
+- Lupopedia provides a dynamic JavaScript endpoint (`lupopedia_js.php`) that must be embedded in your host site’s pages (outside the Lupopedia directory).
+- Example usage:
+  ```html
+  <script src="/your-subdirectory/lupopedia_js.php"></script>
+  ```
+- The system must NOT assume the folder is named `lupopedia`—the installer will detect and store the correct subdirectory.
+- All monitoring, visitor tracking, and content interaction features depend on this script being present on the host site.
+
+**Never install Lupopedia at the web root.** All paths, cookies, and monitoring logic assume a subdirectory context.
+
+See also: [Semantic Monitoring Widget PRD](versions/4.0.93/prd/semantic_monitoring_widget.md)
 
 ## Current Development: Version 4.0.88
 

@@ -14,8 +14,9 @@ try:
 except ImportError:
     yaml = None  # type: ignore
 
-# Staleness cutoff for 4.0.89 doctrine
-CUTOFF = 20260328140000  # 2026-03-28 14:00:00 UTC
+# Canonical staleness cutoff (YYYYMMDD)
+CUTOFF_DAY = 20260301  # 2026-03-01
+CUTOFF_14 = int(f"{CUTOFF_DAY}000000")
 
 # Core required keys under lupopedia.headers (LUPOPEDIA_HEADERS_DOCTRINE.md — Required Header Sections / fields table)
 REQUIRED_HEADER_KEYS = (
@@ -477,13 +478,22 @@ def validate_history(history_block, file_path):
     return True
 
 def check_staleness(file_path, content):
-    """Check if file is stale and warn but don't fail"""
-    match = re.search(r'last_verified:\s*"?(\d+)"?', content)
+    """Check if file is stale and warn but don't fail. Accepts 8 or 14 digits."""
+    match = re.search(r'last_verified:\s*"?(\d{8,14})"?', content)
     if match:
-        last_verified = int(match.group(1))
-        if last_verified < CUTOFF:
-            print(f"[WARN]  {file_path}: Stale header (last_verified < {CUTOFF})")
+        lv = match.group(1)
+        if len(lv) == 8:
+            lv_cmp = int(lv + "000000")
+        elif len(lv) == 14:
+            lv_cmp = int(lv)
+        else:
+            print(f"[WARN]  {file_path}: last_verified has invalid length: {lv}")
+            return True
+        if lv_cmp < CUTOFF_14:
+            print(f"[WARN]  {file_path}: Stale header (last_verified < {CUTOFF_DAY})")
             print(f"   Run regenerate_headers_for_stale_files.py to update")
+        if len(lv) == 14:
+            print(f"[WARN]  {file_path}: last_verified is 14 digits, should be normalized to 8 digits (YYYYMMDD)")
     return True  # Don't fail validation, just warn
 
 def validate_federation_node_id(file_path, fed_node):

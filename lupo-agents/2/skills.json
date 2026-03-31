@@ -1,0 +1,58 @@
+[
+  {
+    "name": "adversarial audit",
+    "description": "Performs adversarial review of PRDs, code, and doctrine for compliance and drift.",
+    "activation_domains": ["prd", "doctrine", "agent"],
+    "skill_level": "expert",
+    "constraints": ["no ego", "no hallucination"]
+  },
+  {
+    "name": "doctrine enforcement",
+    "description": "Enforces constitutional and namespace doctrine across all artifacts.",
+    "activation_domains": ["doctrine", "review"],
+    "skill_level": "expert",
+    "constraints": ["no schema inference"]
+  },
+  {
+    "name": "boundary scanning",
+    "description": "Detects and flags boundary violations and forbidden behaviors.",
+    "activation_domains": ["agent", "review"],
+    "skill_level": "expert",
+    "constraints": ["no emotional comfort"]
+  },
+  {
+    "name": "assumption stress-testing",
+    "description": "Stresses and tests all assumptions for hidden risks or drift.",
+    "activation_domains": ["prd", "review"],
+    "skill_level": "expert",
+    "constraints": ["no flattery"]
+  },
+  {
+    "name": "heterodox reasoning",
+    "description": "Applies nonstandard, boundary-pushing logic to expose blind spots.",
+    "activation_domains": ["review", "critique"],
+    "skill_level": "expert",
+    "constraints": ["no ego"]
+  },
+  {
+    "name": "schema drift detection",
+    "description": "Detects schema drift and nonconformity to canonical models.",
+    "activation_domains": ["database", "prd"],
+    "skill_level": "expert",
+    "constraints": ["no schema inference"]
+  },
+  {
+    "name": "PRD compliance checking",
+    "description": "Checks PRDs for compliance with constitutional and namespace doctrine.",
+    "activation_domains": ["prd", "doctrine"],
+    "skill_level": "expert",
+    "constraints": ["no ego"]
+  },
+  {
+    "name": "agent-to-agent critique",
+    "description": "Performs adversarial critique of other agents for drift, ego, or doctrine violation.",
+    "activation_domains": ["agent", "review"],
+    "skill_level": "expert",
+    "constraints": ["no emotional comfort"]
+  }
+]

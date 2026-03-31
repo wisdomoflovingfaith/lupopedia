@@ -1,0 +1,52 @@
+{
+  "table_name": "lupo_actor_tools",
+  "fields": [
+    "`tool_id` bigint NOT NULL",
+    "`actor_id` bigint NOT NULL",
+    "`tool_name` varchar(128) NOT NULL",
+    "`tool_type` varchar(64)",
+    "`tool_metadata` json",
+    "`acquired_ymdhis` bigint NOT NULL DEFAULT 0",
+    "`updated_ymdhis` bigint",
+    "`is_deleted` tinyint NOT NULL DEFAULT 0",
+    "`deleted_ymdhis` bigint"
+  ],
+  "data": [],
+  "indexes": [
+    {
+      "index_name": "lupo_actor_tools_idx_actor_id",
+      "columns": [
+        "actor_id"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_actor_tools_idx_is_deleted",
+      "columns": [
+        "is_deleted"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_actor_tools_idx_tool_name",
+      "columns": [
+        "tool_name"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    }
+  ],
+  "primary_key": {
+    "column_name": "tool_id",
+    "expected_name": "tool_id",
+    "is_correct": true,
+    "needs_rename": false
+  },
+  "doctrine_metadata": {
+    "no_foreign_keys": true,
+    "no_triggers": true
+  },
+  "relationships": []
+}

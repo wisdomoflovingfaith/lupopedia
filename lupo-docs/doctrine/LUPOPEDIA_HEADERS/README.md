@@ -24,7 +24,7 @@ lupopedia.headers:
   title: Lupo docs doctrine lupopediaheaders readme
   content_id: 6398844981624656451
 lupopedia.footer:
-  last_verified: 20260328240000
+  last_verified: 20260328
   next_action:
   - Continue migration from version_when_written to when_updated
   - Enforce stale footer revalidation policy for artifacts below 20260301000000
@@ -57,6 +57,29 @@ LUPOPEDIA metadata now uses a two-part freshness model:
 - `lupopedia.headers.when_updated` is the canonical artifact update timestamp in UTC `YYYYMMDDHHIISS`.
 - `lupopedia.footer.last_verified` + verifier identity fields are the trust and validation timestamp.
 
+
+## Footer Validation Requirements (Canonical)
+
+Every Lupopedia artifact that includes a `lupopedia.footer` block must comply with the following validation rules:
+
+- **Required fields:**
+  - `last_verified` (UTC timestamp, format: YYYYMMDDHHIISS)
+  - `verified_by` (object with at minimum: `identity_type`, `actor_id`)
+  - `verified_via` (object with at minimum: `type`, `faucet_slug`)
+- **Recommended fields:**
+  - `verified_by.agent_name_identity` (human-readable label)
+  - `verified_by.department_id_delta` (default 0)
+- **Staleness cutoff:**
+  - If `last_verified` is earlier than `20260301000000` UTC, the artifact is considered stale and must be semantically revalidated before updating the footer.
+  - Footer refresh without semantic review is invalid for stale artifacts.
+- **Semantic truth check:**
+  - For stale artifacts, a semantic review must confirm that all statements match repository reality. Authority for this review is THOTH (actor_id 26).
+- **Canonical validator behavior:**
+  - All required fields must be present and correctly formatted.
+  - Legacy flat verifier fields are deprecated and not valid for new artifacts.
+  - See also: [VALIDATORS_AND_TOOLING.md](VALIDATORS_AND_TOOLING.md) for implementation details.
+
+---
 ## Required direction
 
 - Stop writing `version_when_written` in headers.
@@ -176,3 +199,70 @@ Files under `lupo-docs/database/lupopedia/tables/active/*.md` are a mapping surf
 - `EDGE_MODEL_DOCTRINE.md`
 - `lupo-docs/doctrine/RELEASE_ARTIFACT_APPROVAL_GOVERNANCE_DOCTRINE.md`
 - `lupo-rules/root/`
+
+## Footer Timestamp Format (Canonical Rule)
+
+**Effective immediately (4.0.93):**
+
+- `lupopedia.footer.last_verified` MUST use **YYYYMMDD** (UTC, 8 digits only)
+- No hours, minutes, or seconds (no HHMMSS)
+- No timezone suffix
+- Always UTC
+- Always 8 digits (validator: ^\d{8}$)
+- Never use the 14-digit YYYYMMDDHHMMSS format in the footer
+- Header timestamps (`when_updated`, `last_modified_utc`) remain full 14-digit UTC timestamps
+- Only the footer uses the simplified 8-digit format
+
+**Validator Rule:**
+- If `last_verified` is not exactly 8 digits, the validator must warn
+- If it is 14 digits, the validator must warn and suggest truncation to day format
+
+**Reasoning:**
+- Footer verification is a daily trust marker, not a precise event timestamp
+- Human readability improves
+- Staleness detection still works
+- IDE behavior becomes deterministic
+- Prevents mixing formats across the repo
+
+**Why This Works With Existing Doctrine:**
+- `when_updated` → canonical artifact update timestamp (14 digits)
+- `last_verified` → trust/validation timestamp (8 digits)
+- These are different concepts; this separation is clean, logical, and easy for both humans and tools.
+
+**How This Prevents Future Inconsistency:**
+- Footer = 8 digits
+- Header = 14 digits
+- The IDE and validators will never confuse them again.
+
+**Implementation Note:**
+- Any tool (including tick.py or IDE footer writers) must use the current UTC day (YYYYMMDD) for `lupopedia.footer.last_verified`.
+
+## Footer Timestamp Normalization (DE Instruction)
+
+- When reading `lupopedia.footer.last_verified`, accept either format:
+  - `YYYYMMDD` (8 digits)
+  - `YYYYMMDDHHMMSS` (14 digits, legacy)
+- When writing or updating `last_verified`, always write only the first 8 digits of the current UTC date:
+  - `YYYYMMDD`
+- When performing staleness checks:
+  - If the value is 14 digits, use the full 14-digit timestamp for comparison
+  - If the value is 8 digits, treat it as `YYYYMMDD000000` for comparison
+- When regenerating or rewriting a footer, normalize any 14-digit value to its first 8 digits (e.g., `20260328240000` → `20260328`)
+- Never write a 14-digit timestamp into the footer. Always write 8 digits. Always read both formats.
+
+**Example:**
+- Legacy: `last_verified: 20260328240000` → Normalize to `last_verified: 20260328`
+- Legacy: `last_verified: 20260201091530` → Normalize to `last_verified: 20260201`
+
+**Rationale:**
+- Ensures legacy files still work correctly
+- Prevents future format drift
+- Makes IDE and validator behavior deterministic
+
+## Staleness Cutoff (Validation Policy)
+
+- A document is considered **stale** if:
+  - `lupopedia.footer.last_verified` is missing, **or**
+  - `last_verified` (in either 8- or 14-digit format) is before `20260301` (March 1, 2026)
+- Stale documents **must** be semantically revalidated before updating the footer.
+- This cutoff applies regardless of whether the date is 8 digits (YYYYMMDD) or 14 digits (YYYYMMDDHHMMSS).

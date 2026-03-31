@@ -1,3 +1,43 @@
+---
+lupopedia.headers:
+  header_format_version: 2
+  lupopedia.schema: prd
+  file_path_from_root: /lupo-docs/versions/4.0.93/prd/01_semantic_monitoring_widget.md
+  web_path: http://www.lupopedia.com/lupopedia/lupo-docs/versions/4.0.93/prd/01_semantic_monitoring_widget.md
+  last_modified_utc: "20260330163000"
+  channel_id: 42
+  thread_id: "semantic-monitoring"
+  actor_id: 102
+  actor_name: "HEPHAESTUS"
+  delegation_chain: "hephaestus:root"
+  artifact_type: "prd"
+  artifact_kind: "ui_widget"
+  purpose: "PRD for Semantic Monitoring Widget v4.0.93"
+  tags:
+  - "prd"
+  - "semantic_monitoring"
+  - "ui_widget"
+  - "v4.0.93"
+lupopedia.edges:
+  outbound_edges:
+    - to: "lupo-database/lupopedia/json/lupo_context_edges.json"
+      type: references
+      weight: 1.0
+      reason: Table definition for semantic edges
+    - to: "lupo-database/lupopedia/json/lupo_context_cards.json"
+      type: references
+      weight: 1.0
+      reason: Table definition for context cards
+    - to: "lupo-database/lupopedia/json/lupo_contexts_map.json"
+      type: references
+      weight: 1.0
+      reason: Table definition for context mapping
+lupopedia.footer:
+  last_verified: "20260330163000"
+  verified_by:
+    actor_id: 102
+    agent_name_identity: Cursor IDE Agent
+
 # 01. Semantic Monitoring Widget (The Eye) - 4.0.93
 
 ## 🚨 **LILITH "Source of Truth" Protocol**

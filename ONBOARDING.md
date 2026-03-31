@@ -394,3 +394,16 @@ To add a **new IDE agent target** to the rules propagation system (e.g. for an a
 | Understand logging and continuity | [lupo-docs/doctrine/IDE_AGENT_CONTINUITY_PROTOCOL.md](lupo-docs/doctrine/IDE_AGENT_CONTINUITY_PROTOCOL.md) |
 | Understand philosophy and design | [EXECUTIVE_SUMMARY.md](EXECUTIVE_SUMMARY.md) |
 | Implementation and install | [README.md](README.md), [AGENTS.md](AGENTS.md) |
+
+---
+
+## 11. PRD Policy: Canonical Location, Referencing, and Anti-Duplication
+
+- **All canonical Product Requirements Documents (PRDs) must be created and maintained ONLY in `lupo-docs/prd/`.**
+- **Do not create new PRDs in versioned or legacy folders.**
+- When updating or referencing system-level requirements, always use `lupo-docs/prd/00_root_constitutional_system_requirements.md` as the constitutional anchor.
+- If you find a PRD in a versioned or legacy folder, archive it and update its header with `status: legacy` and `superseded_by: lupo-docs/prd/00_root_constitutional_system_requirements.md`.
+- Before creating a new PRD, check `lupo-docs/prd/` for existing documents to avoid duplication.
+- All contributors must follow this policy to prevent fragmentation and ensure a single source of truth for requirements.
+
+---

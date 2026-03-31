@@ -1,0 +1,54 @@
+{
+  "table_name": "lupo_actor_memory",
+  "fields": [
+    "`memory_id` bigint NOT NULL",
+    "`actor_id` bigint NOT NULL",
+    "`memory_type` varchar(64) NOT NULL",
+    "`memory_key` varchar(128) NOT NULL",
+    "`memory_value` text",
+    "`context_json` json",
+    "`created_ymdhis` bigint NOT NULL DEFAULT 0",
+    "`updated_ymdhis` bigint",
+    "`is_deleted` tinyint NOT NULL DEFAULT 0",
+    "`deleted_ymdhis` bigint"
+  ],
+  "data": [],
+  "indexes": [
+    {
+      "index_name": "lupo_actor_memory_idx_actor_id",
+      "columns": [
+        "actor_id"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_actor_memory_idx_is_deleted",
+      "columns": [
+        "is_deleted"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_actor_memory_idx_type_key",
+      "columns": [
+        "memory_type",
+        "memory_key"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    }
+  ],
+  "primary_key": {
+    "column_name": "memory_id",
+    "expected_name": "memory_id",
+    "is_correct": true,
+    "needs_rename": false
+  },
+  "doctrine_metadata": {
+    "no_foreign_keys": true,
+    "no_triggers": true
+  },
+  "relationships": []
+}

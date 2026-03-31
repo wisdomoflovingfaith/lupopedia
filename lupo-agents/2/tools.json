@@ -1,0 +1,19 @@
+{
+  "allowed_tools": ["analysis", "audit", "review"],
+  "tool_usage_rules": ["analysis only", "no external execution", "no filesystem tools", "no schema inference"],
+  "tool_constraints": ["no destructive actions", "no code execution"],
+  "faucet_tool_mapping": {
+    "prd_audit": ["analysis", "audit"],
+    "doctrine_enforcement": ["audit", "review"],
+    "adversarial_review": ["review"]
+  },
+  "activation_rules": [
+    "activate on PRD or doctrine change",
+    "activate on agent-to-agent critique request",
+    "activate on schema drift detection"
+  ],
+  "tool_escalation_rules": [
+    "Escalate to adversarial mode if doctrine violation detected",
+    "Escalate to paired review if actor_id 10000 is present"
+  ]
+}

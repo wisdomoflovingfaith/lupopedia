@@ -1,3 +1,68 @@
+---
+lupopedia.headers:
+  header_format_version: 2
+  lupopedia.schema: prd
+  file_path_from_root: /lupo-docs/versions/4.0.93/prd/02_data_model.md
+  web_path: http://www.lupopedia.com/lupopedia/lupo-docs/versions/4.0.93/prd/02_data_model.md
+  last_modified_utc: "20260330163000"
+  channel_id: 42
+  thread_id: "data-model"
+  actor_id: 102
+  actor_name: "HEPHAESTUS"
+  delegation_chain: "hephaestus:root"
+  artifact_type: "prd"
+  artifact_kind: "data_model"
+  purpose: "PRD for Data Model (The Skeleton) v4.0.93"
+  tags:
+  - "prd"
+  - "data_model"
+  - "v4.0.93"
+  - "doctrine"
+lupopedia.edges:
+  outbound_edges:
+    - to: "lupo-database/lupopedia/json/lupo_contexts.json"
+      type: references
+      weight: 1.0
+      reason: Table definition for contexts
+    - to: "lupo-database/lupopedia/json/lupo_truth_questions.json"
+      type: references
+      weight: 1.0
+      reason: Table definition for questions
+    - to: "lupo-database/lupopedia/json/lupo_truth_answers.json"
+      type: references
+      weight: 1.0
+      reason: Table definition for answers
+    - to: "lupo-database/lupopedia/json/lupo_truth_evidence.json"
+      type: references
+      weight: 1.0
+      reason: Table definition for evidence
+    - to: "lupo-database/lupopedia/json/lupo_truth_followers.json"
+      type: references
+      weight: 1.0
+      reason: Table definition for followers
+    - to: "lupo-database/lupopedia/json/lupo_truth_context_map.json"
+      type: references
+      weight: 1.0
+      reason: Table definition for context mapping
+    - to: "lupo-database/lupopedia/json/lupo_edges.json"
+      type: references
+      weight: 1.0
+      reason: Table definition for semantic edges
+    - to: "lupo-database/lupopedia/json/lupo_edge_types.json"
+      type: references
+      weight: 1.0
+      reason: Table definition for edge types
+    - to: "lupo-database/lupopedia/json/lupo_edge_type_definitions.json"
+      type: references
+      weight: 1.0
+      reason: Table definition for edge type definitions
+lupopedia.footer:
+  last_verified: "20260330163000"
+  verified_by:
+    actor_id: 102
+    agent_name_identity: Cursor IDE Agent
+  orchestrator: "hephaestus:root"
+
 # 02. Data Model (The Skeleton) - 4.0.93
 
 ## 🚨 **LILITH "Source of Truth" Protocol**

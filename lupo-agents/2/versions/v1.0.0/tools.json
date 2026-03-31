@@ -1,0 +1,5 @@
+{
+  "allowed_tools": ["analysis", "audit", "review"],
+  "tool_usage_rules": ["analysis only", "no external execution", "no filesystem tools", "no schema inference"],
+  "tool_constraints": ["no destructive actions", "no code execution"]
+}

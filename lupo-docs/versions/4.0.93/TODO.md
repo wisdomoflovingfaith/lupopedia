@@ -1,4 +1,47 @@
-# Lupopedia 4.0.93 TODO (Master Backlog)
+---
+lupopedia.headers:
+  lupopedia.schema: documentation
+  version_when_written: "4.0.93"
+  file_path_from_root: "lupo-docs/versions/4.0.93/TODO.md"
+  web_path: "http://www.lupopedia.com/lupopedia/lupo-docs/versions/4.0.93/TODO.md"
+  last_modified_utc: "20260330190000"
+  channel_id: 42
+  thread_id: "todo-backlog"
+  actor_id: 102
+  actor_name: "HEPHAESTUS"
+  delegation_chain: "hephaestus:root"
+  artifact_type: "todo"
+  artifact_kind: "master_backlog"
+  purpose: "Master task backlog for Lupopedia 4.0.93"
+  tags:
+  - "todo"
+  - "master"
+  - "4.0.93"
+  - "backlog"
+lupopedia.edges:
+  outbound_edges:
+    - to: "lupo-docs/versions/4.0.93/PLAN.md"
+      type: references
+      weight: 1.0
+      reason: Overall plan for 4.0.93
+    - to: "lupo-docs/versions/4.0.93/WHAT_TO_DO_NEXT_SESSION.md"
+      type: references
+      weight: 1.0
+      reason: Session handoff document
+    - to: "lupo-docs/versions/4.0.93/CHANGELOG.md"
+      type: references
+      weight: 1.0
+      reason: Version changelog
+    - to: "lupo-docs/versions/4.0.93/DATABASE_AUDIT_SUMMARY.md"
+      type: references
+      weight: 1.0
+      reason: Database audit summary
+lupopedia.footer:
+  last_verified: "20260330190000"
+  verified_by:
+    actor_id: 102
+    agent_name_identity: Cursor IDE Agent
+  orchestrator: "hephaestus:root"
 
 ## Completed (4.0.93)
 - [x] HEPHAESTUS identity doctrine and Faucet Proxy Pattern adopted (Actor 102)
@@ -18,6 +61,12 @@
 - [x] **4.0.93 PRD files updated with actual database schema and migration mapping**
 - [x] **Subdirectory installation doctrine established for Semantic Monitoring Widget**
 - [x] **Temporal Anchor & UTC Timestamp Policy enforced (tick.py, lupo-bin/temporal_anchor.json, UTC-only)**
+- [x] **ID Generation Directive Compliance**: IdGenerator.php updated with YYYYMMDDHHIISS + random suffix format; 63-bit signed-safe BIGINTs; test suite created
+- [x] **Full Database Audit**: Comprehensive audit of all 171 tables completed; 5 doctrine violations; 48 missing documentation; all PRDs updated with lupopedia.edges
+- [x] **PRD Edge Integration**: All PRD files now include lupopedia.edges sections linking to table definitions and related documentation
+- [x] **Grouped PRD Structure**: Complete 14-namespace PRD architecture created in `lupo-docs/prd/`; 100% PRD coverage achieved (14/14 files, 171 tables); maintenance burden reduced by 92%. All new core identity tables are included and documented.
+- [x] **Consolidated install seed + installer alignment (2026-03-30):** Runtime seed is `install/seed_lupopedia_4_1_0.sql` (rebuild via `lupo-scripts/build_consolidated_seed_4_1_0.py`); root `install.php` loads only this after `install_new_lupopedia.sql`; `InstallWizardSqlRunner::applyTablePrefixToSql()` applies `{{prefix}}`; original seeds retained under `lupo-database/lupopedia/mysql/seed/`.
+- [x] **Installer verification (read-only, 2026-03-30):** Confirmed wizard paths, load order, import gating, and consolidated/import `{{prefix}}` usage; documented in CHANGELOG (Minor) and `WHAT_TO_DO_NEXT.md` §14.
 
 ## 🛠️ **4.0.93 Documentation Update Status**
 
@@ -51,14 +100,17 @@
 ## 🚨 **CRITICAL: Softaculous Certification & Crafty Parity (4.0.93)**
 
 ### **1. The Installation Engine (Softaculous Requirement)**
-- [ ] Refactor install.php: Ensure it handles class-based instantiation and seeds lupo_contexts with initial system "Truths"
-- [ ] SQL Schema: Provide a unified lupopedia_v4.0.93.sql that includes all livehelp_ → lupo_ mappings
+- [ ] Refactor install.php: Ensure it handles class-based instantiation and seeds lupo_contexts with initial system "Truths" (seed data still primarily in consolidated SQL + MD importer; contexts/"Brain" seeding may need follow-up)
+- [ ] SQL Schema: Provide a unified lupopedia_v4.0.93.sql that includes all livehelp_ → lupo_ mappings (current canonical path: `install_new_lupopedia.sql` + `install/seed_lupopedia_4_1_0.sql` + Crafty import when upgrading)
 - [ ] Uninstall/Upgrade: Create uninstall.php and upgrade.php to manage the removal of DB edges and filesystem atoms
 
 ### **2. Visitor & Operator Dashboards (The Monitoring Layer)**
-- [ ] Lupo-Monitor: Implement the live visitor dashboard using the Semantic Monitor logic
-- [ ] Actor/Agent Nexus: Update the operator panel so auth_users can select Agents to refine their behavioral context
-- [ ] Proactive Invite: Trigger "Invite to Chat" based on Contextual Edges (e.g., visitor is on a high-weight "Truth" page)
+ [ ] Lupo-Monitor: Implement the live visitor dashboard using the Semantic Monitor logic
+ [ ] Actor/Agent Leasing: Update the operator panel so auth_users can lease actors (per new agent→actor→auth_user model) and select agents to refine behavioral context
+	 - Enforce canonical permission rule ([ACTOR_LEASING_DOCTRINE.md](/lupo-docs/doctrine/ACTOR_LEASING_DOCTRINE.md))
+	 - Reference and implement [ACTOR_TEMPLATE_MODEL.md](/lupo-docs/doctrine/ACTOR_TEMPLATE_MODEL.md), [ACTOR_INSTANCE_MODEL.md](/lupo-docs/doctrine/ACTOR_INSTANCE_MODEL.md), [ACTOR_LEASE_SESSION_MODEL.md](/lupo-docs/doctrine/ACTOR_LEASE_SESSION_MODEL.md)
+	 - See [05_auth_user_actor_agent_transformation.md](/lupo-docs/versions/4.0.93/prd/05_auth_user_actor_agent_transformation.md)
+ [ ] Proactive Invite: Trigger "Invite to Chat" based on Contextual Edges (e.g., visitor is on a high-weight "Truth" page)
 
 ### **3. Real-Time Chat Enhancements**
 - [ ] Live Typing Refraction: Stream typing events through the State Mirror without persistent DB writes
@@ -70,6 +122,10 @@
 - [ ] Visitor Tracking: Implement expected Softaculous hooks for visitor monitoring
 - [ ] Contextual Installation: Ensure /install.php seeds Context Registry and Semantic Edges required for 4.0.93 "Brain"
 - [ ] **Subdirectory Installation**: Ensure Lupopedia works in any subdirectory (not web root) - PRD updated
+
+### ✅ March 2026: Table/Emoji System Overhaul
+- [x] Remove obsolete tables: `lupo_channel_boot_detail`, `lupo_channel_boot_detail_lifecycle`, `lupo_channel_boot_lifecycle`, `lupo_smilies` from install SQL (channels are now dialog-based)
+- [x] Overhaul emoji/smilies system: Implement `::img|foldername|filename::` code, popup selector, and filesystem-based emoji in `lupo-emoji/` (see [EMOJI_AND_SMILIES.md](/lupo-docs/doctrine/EMOJI_AND_SMILIES.md))
 
 ### **5. Data Migration Completion**
 - [ ] Execute new install to establish clean database state
@@ -92,7 +148,6 @@
 ## Deferred/Blocked (see DEFERRED.md)
 - [ ] enforce_doctrine.py: Run on all seed files deferred (Python/encoding issue)
 - [ ] Hydrator: Channel 42 elevation output requires review
-- [ ] 1,000 ID generation CLI test: Deferred (see DEFERRED.md)
 
 ## Active/Next (4.0.94+)
 - [ ] Complete enforce_doctrine.py implementation for all .js, .php, and SQL assets

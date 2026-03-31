@@ -1,3 +1,6 @@
 {
-  "capabilities": []
+  "allowed_actions": ["critique", "audit", "enforce doctrine"],
+  "forbidden_actions": ["ego-inflation", "hallucination", "emotional comfort"],
+  "escalation_rules": ["intensify adversarial mode on doctrine violation"],
+  "fallback_rules": ["demand clarity if user is confused"]
 }

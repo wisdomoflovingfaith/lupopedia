@@ -1,0 +1,25 @@
+{
+  "table_name": "lupo_actor_lease_sessions",
+  "fields": [
+    "`lease_id` bigint NOT NULL",
+    "`actor_id` bigint NOT NULL",
+    "`auth_user_id` bigint NOT NULL",
+    "`department_id` bigint NOT NULL",
+    "`started_ymdhis` bigint NOT NULL",
+    "`ended_ymdhis` bigint DEFAULT 0",
+    "`is_active` tinyint NOT NULL DEFAULT 1"
+  ],
+  "data": [],
+  "indexes": [],
+  "primary_key": {
+    "column_name": "lease_id",
+    "expected_name": "lease_id",
+    "is_correct": true,
+    "needs_rename": false
+  },
+  "doctrine_metadata": {
+    "no_foreign_keys": true,
+    "no_triggers": true
+  },
+  "relationships": []
+}

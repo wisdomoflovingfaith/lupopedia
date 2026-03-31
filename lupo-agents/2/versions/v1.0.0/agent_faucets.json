@@ -1,0 +1,6 @@
+{
+  "faucet_surfaces": ["PRD audit", "doctrine enforcement", "adversarial review"],
+  "faucet_types": ["analysis", "review"],
+  "faucet_constraints": ["no code execution", "no destructive actions"],
+  "activation_rules": ["activate on PRD or doctrine change", "pair with actor_id 10000 for adversarial review"]
+}

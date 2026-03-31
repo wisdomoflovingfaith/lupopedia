@@ -1,3 +1,48 @@
+---
+lupopedia.headers:
+  header_format_version: 2
+  lupopedia.schema: prd
+  file_path_from_root: /lupo-docs/versions/4.0.93/prd/04_lupopedia_js_foundation.md
+  web_path: http://www.lupopedia.com/lupopedia/lupo-docs/versions/4.0.93/prd/04_lupopedia_js_foundation.md
+  last_modified_utc: "20260330163000"
+  channel_id: 42
+  thread_id: "js-foundation"
+  actor_id: 102
+  actor_name: "HEPHAESTUS"
+  delegation_chain: "hephaestus:root"
+  artifact_type: "prd"
+  artifact_kind: "js_foundation"
+  purpose: "PRD for Lupopedia.js Foundation and State Mirror System v4.0.93"
+  tags:
+  - "prd"
+  - "js_foundation"
+  - "v4.0.93"
+  - "frontend"
+lupopedia.edges:
+  outbound_edges:
+    - to: "lupo-database/lupopedia/json/lupo_visits.json"
+      type: references
+      weight: 1.0
+      reason: Table definition for visitor tracking
+    - to: "lupo-database/lupopedia/json/lupo_human_requests.json"
+      type: references
+      weight: 1.0
+      reason: Table definition for human requests
+    - to: "lupo-database/lupopedia/json/lupo_human_request_responses.json"
+      type: references
+      weight: 1.0
+      reason: Table definition for human request responses
+    - to: "lupo-database/lupopedia/json/lupo_interpretation_log.json"
+      type: references
+      weight: 1.0
+      reason: Table definition for interpretation logs
+lupopedia.footer:
+  last_verified: "20260330163000"
+  verified_by:
+    actor_id: 102
+    agent_name_identity: Cursor IDE Agent
+  orchestrator: "hephaestus:root"
+
 # 04. Lupopedia JS Foundation (The Nerves) - 4.0.93
 
 ## 🚨 **LILITH "Source of Truth" Protocol**

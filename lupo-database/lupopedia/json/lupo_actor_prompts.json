@@ -1,0 +1,53 @@
+{
+  "table_name": "lupo_actor_prompts",
+  "fields": [
+    "`prompt_id` bigint NOT NULL",
+    "`actor_id` bigint NOT NULL",
+    "`prompt_key` varchar(128) NOT NULL",
+    "`prompt_text` text NOT NULL",
+    "`prompt_type` varchar(64)",
+    "`context_json` json",
+    "`created_ymdhis` bigint NOT NULL DEFAULT 0",
+    "`updated_ymdhis` bigint",
+    "`is_deleted` tinyint NOT NULL DEFAULT 0",
+    "`deleted_ymdhis` bigint"
+  ],
+  "data": [],
+  "indexes": [
+    {
+      "index_name": "lupo_actor_prompts_idx_actor_id",
+      "columns": [
+        "actor_id"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_actor_prompts_idx_is_deleted",
+      "columns": [
+        "is_deleted"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_actor_prompts_idx_prompt_key",
+      "columns": [
+        "prompt_key"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    }
+  ],
+  "primary_key": {
+    "column_name": "prompt_id",
+    "expected_name": "prompt_id",
+    "is_correct": true,
+    "needs_rename": false
+  },
+  "doctrine_metadata": {
+    "no_foreign_keys": true,
+    "no_triggers": true
+  },
+  "relationships": []
+}

@@ -114,130 +114,80 @@ This document defines the canonical database rules for Lupopedia. These rules ar
 
 ---
 
-## 3. ID Generation and Insert Strategy
+## 3. ID Generation - Application Layer Only
 
-**Production-ready approach: Generate ID, catch duplicate key, exponential backoff retry.**
+**ALL primary keys MUST be generated in the application layer using IdGenerator::generate()**
 
 ### ID Format
 ```
-YYYYMMDDHHIISS + 4-digit sequence
+YYYYMMDDHHIISS + 4-digit random suffix
 ```
 
 ### Examples
-- `202603281200000001` (1st record at 2026-03-28 12:00:00)
-- `202603281200000002` (2nd record that second)
-- `202603281200009999` (9,999th record that second)
+- `202603301022000001` (Random suffix 0001 at 2026-03-30 10:22:00)
+- `202603301022008452` (Random suffix 8452 at 2026-03-30 10:22:00)
 
-### The Problem: TOCTOU Race Condition
+### Requirements
+- ✅ **63-bit signed-safe BIGINT** (18 digits max)
+- ✅ **Generated BEFORE the INSERT**
+- ✅ **Passed into INSERT as parameter**
+- ✅ **Never retrieved from database**
+- ✅ **Never computed using SQL**
 
-```php
-// ❌ WRONG (race condition)
-if (!idExists($id)) {
-    insert($id);  // Two processes could both get here
-}
+### Forbidden Database Patterns
+```sql
+-- ❌ NEVER use these
+AUTO_INCREMENT
+SERIAL
+UNSIGNED
+SELECT MAX(id)
+triggers
+stored procedures
+any DB-side ID logic
 ```
 
-**Two processes check, both see no ID, both insert same ID. Collision.**
-
-### The Solution: Catch-and-Retry on Duplicate Key
-
-```php
-class DatabaseFactory
-{
-    /**
-     * Insert with automatic retry on duplicate key
-     */
-    public static function insertWithRetry($table, $data, $max_retries = 5)
-    {
-        $attempt = 0;
-        $backoff_ms = 50; // Start at 50ms
-        
-        while ($attempt < $max_retries) {
-            try {
-                return self::getConnection()->insert($table, $data);
-            } catch (DuplicateKeyException $e) {
-                $attempt++;
-                if ($attempt >= $max_retries) {
-                    throw new Exception("Failed to insert after $max_retries attempts");
-                }
-                
-                // Exponential backoff with jitter
-                $sleep_ms = $backoff_ms + rand(0, $backoff_ms);
-                usleep($sleep_ms * 1000);
-                $backoff_ms *= 2; // Double next backoff
-            }
-        }
-    }
-}
-```
-
-### ID Generator (Simplified)
-
-The ID generator just makes IDs. It doesn't check existence.
-
-```php
-class IdGenerator
-{
-    private static $last_timestamp = '';
-    private static $sequence = 0;
-    
-    public static function generate()
-    {
-        $timestamp = gmdate('YmdHis');
-        
-        if ($timestamp !== self::$last_timestamp) {
-            self::$last_timestamp = $timestamp;
-            self::$sequence = 0;
-        }
-        
-        self::$sequence++;
-        
-        if (self::$sequence > 9999) {
-            // Wait 10ms and retry (not 7 seconds!)
-            usleep(10000);
-            return self::generate();
-        }
-        
-        return $timestamp . str_pad(self::$sequence, 4, '0', STR_PAD_LEFT);
-    }
-}
-```
-
-### Usage Pattern
-
+### Correct PHP Implementation
 ```php
 // In your service/repository
-$id = IdGenerator::generate();
+$actor_id = IdGenerator::generate();
 
-DatabaseFactory::insertWithRetry('lupo_actors', [
-    'actor_id' => $id,
+$db = DatabaseFactory::getConnection();
+$db->insert('lupo_actors', [
+    'actor_id' => $actor_id,
     'actor_name' => $name,
     'created_ymdhis' => gmdate('YmdHis'),
     'updated_ymdhis' => gmdate('YmdHis'),
 ]);
+
+// Use the same $actor_id for related rows
+$db->insert('lupo_agent_capabilities', [
+    'capability_id' => IdGenerator::generate(),
+    'actor_id' => $actor_id,  // Same ID from above
+    'capability' => 'orchestration',
+]);
 ```
 
-**No race condition.** The database catches the duplicate key, and the retry loop handles it.
+### ID Generator Class
+```php
+class IdGenerator
+{
+    public static function generate()
+    {
+        $timestamp = gmdate('YmdHis');
+        $suffix = mt_rand(0, 9999);
+        
+        return $timestamp . str_pad($suffix, 4, '0', STR_PAD_LEFT);
+    }
+}
+```
 
-### Backoff Strategy
+### Collision Handling
+With random suffix (0-9999), collision probability is extremely low:
+- 1 record: 0.01% chance
+- 100 records: 1% chance  
+- 1000 records: 10% chance
 
-| Attempt | Backoff Range | Max Wait |
-|---------|---------------|----------|
-| 1 | 50-100ms | 100ms |
-| 2 | 100-200ms | 200ms |
-| 3 | 200-400ms | 400ms |
-| 4 | 400-800ms | 800ms |
-| 5 | 800-1600ms | 1.6s |
-
-**Total worst case:** ~3 seconds (but only under extreme contention).
-
-### Why This Works
-
-- ✅ **No race condition** (catch-and-retry, not check-then-insert)
-- ✅ **User experience protected** (backoff starts small)
-- ✅ **Handles high concurrency gracefully**
-- ✅ **Works on both MySQL and PostgreSQL**
-- ✅ **Production-ready** (proven pattern)
+If collision occurs, the database UNIQUE constraint will reject the INSERT. Handle this at the application layer if needed.
 
 ---
 

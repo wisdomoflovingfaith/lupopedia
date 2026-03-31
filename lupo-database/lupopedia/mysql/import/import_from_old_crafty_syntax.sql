@@ -55,9 +55,9 @@ ALTER TABLE livehelp_autoinvite
 ALTER TABLE livehelp_autoinvite
   COMMENT = 'DEPRECATED: Only retained for migration. If something fails and you need to re-run the conversion, this table may be referenced. This table is NOT part of Lupopedia/Crafty Syntax as of version 3.0.0 and should be deleted after successful migration.';
 
-TRUNCATE lupo_crafty_syntax_auto_invite;
+TRUNCATE {{prefix}}crafty_syntax_auto_invite;
 
-INSERT INTO lupo_crafty_syntax_auto_invite (
+INSERT INTO {{prefix}}crafty_syntax_auto_invite (
     crafty_syntax_auto_invite_id,
     is_offline,
     is_active,
@@ -127,7 +127,7 @@ ALTER TABLE livehelp_config
 ALTER TABLE livehelp_config
   COMMENT = 'DEPRECATED: Only retained for migration. If something fails and you need to re-run the conversion. This table is NOT part of Lupopedia/Crafty Syntax as of version 3.0.0 and should be deleted after successful migration.';
 
-UPDATE lupo_modules m
+UPDATE {{prefix}}modules m
 SET m.config_json = (
     SELECT JSON_OBJECT(
         'version', c.version,
@@ -201,9 +201,9 @@ ALTER TABLE livehelp_departments
   COMMENT = 'DEPRECATED: Only retained for migration. If something fails and you need to re-run the conversion, this table may be referenced. This table is NOT part of Lupopedia/Crafty Syntax as of version 3.0.0 and should be deleted after successful migration.';
 
 
-TRUNCATE lupo_departments;
+TRUNCATE {{prefix}}departments;
 
-INSERT INTO lupo_departments (
+INSERT INTO {{prefix}}departments (
     department_id,
     federation_node_id,
     name,
@@ -231,17 +231,17 @@ SELECT
 FROM livehelp_departments;
 
 -- System department (department_id = 0): reserved, must exist. Overwrite if livehelp_departments had recno=0.
-INSERT INTO lupo_departments (department_id, federation_node_id, name, description, department_type, default_actor_id, settings_json, created_ymdhis, updated_ymdhis, is_deleted, deleted_ymdhis)
+INSERT INTO {{prefix}}departments (department_id, federation_node_id, name, description, department_type, default_actor_id, settings_json, created_ymdhis, updated_ymdhis, is_deleted, deleted_ymdhis)
 VALUES (0, 1, 'System', 'System Department (Reserved)', 'system', 0, NULL, CAST(DATE_FORMAT(UTC_TIMESTAMP(), '%Y%m%d%H%i%S') AS SIGNED), CAST(DATE_FORMAT(UTC_TIMESTAMP(), '%Y%m%d%H%i%S') AS SIGNED), 0, NULL)
 ON DUPLICATE KEY UPDATE name = 'System', description = 'System Department (Reserved)', department_type = 'system', default_actor_id = 0, updated_ymdhis = CAST(DATE_FORMAT(UTC_TIMESTAMP(), '%Y%m%d%H%i%S') AS SIGNED);
 
 -- Default department (department_id = 1): for channels when livehelp_departments is empty or has no recno=1.
-INSERT IGNORE INTO lupo_departments (department_id, federation_node_id, name, description, department_type, default_actor_id, settings_json, created_ymdhis, updated_ymdhis, is_deleted, deleted_ymdhis)
+INSERT IGNORE INTO {{prefix}}departments (department_id, federation_node_id, name, description, department_type, default_actor_id, settings_json, created_ymdhis, updated_ymdhis, is_deleted, deleted_ymdhis)
 VALUES (1, 1, 'General', 'Default department for channels', 'general', 0, NULL, CAST(DATE_FORMAT(UTC_TIMESTAMP(), '%Y%m%d%H%i%S') AS SIGNED), CAST(DATE_FORMAT(UTC_TIMESTAMP(), '%Y%m%d%H%i%S') AS SIGNED), 0, NULL);
 
-TRUNCATE lupo_department_metadata;
+TRUNCATE {{prefix}}department_metadata;
 
-INSERT INTO lupo_department_metadata (
+INSERT INTO {{prefix}}department_metadata (
     department_id,
     metadata_json,
     created_ymdhis,
@@ -296,7 +296,7 @@ FROM livehelp_departments;
 
 
 -- ======================================================================
--- livehelp_emailque               → NOT migrated in this script (target lupo_crm_lead_message_sends out of scope)
+-- livehelp_emailque               → NOT migrated in this script (target {{prefix}}crm_lead_message_sends out of scope)
 -- DROPPED: livehelp_emailque 
 -- See: docs/doctrine/migrations/livehelp_emailque_migration.md
 ALTER TABLE livehelp_emailque
@@ -306,7 +306,7 @@ ALTER TABLE livehelp_emailque
   COMMENT = 'DEPRECATED: Only retained for migration. If something fails and you need to re-run the conversion, this table may be referenced. This table is NOT part of Lupopedia/Crafty Syntax as of version 3.0.0 and should be deleted after successful migration.';
 
 -- ======================================================================
--- livehelp_emails               → lupo_crm_lead_messages
+-- livehelp_emails               → {{prefix}}crm_lead_messages
 -- DROPPED: livehelp_emails 
 -- See: docs/doctrine/migrations/livehelp_emails_migration.md
 ALTER TABLE livehelp_emails
@@ -315,9 +315,9 @@ ALTER TABLE livehelp_emails
 ALTER TABLE livehelp_emails
   COMMENT = 'DEPRECATED: Only retained for migration. If something fails and you need to re-run the conversion, this table may be referenced. This table is NOT part of Lupopedia/Crafty Syntax as of version 3.0.0 and should be deleted after successful migration.';
 
-TRUNCATE lupo_crm_lead_messages;
+TRUNCATE {{prefix}}crm_lead_messages;
 
-INSERT INTO lupo_crm_lead_messages (
+INSERT INTO {{prefix}}crm_lead_messages (
     crm_lead_message_id,
     lead_id,
     from_email,
@@ -362,8 +362,8 @@ ALTER TABLE livehelp_identity_monthly
 ALTER TABLE livehelp_identity_monthly
   COMMENT = 'DEPRECATED: Only retained for migration. If something fails and you need to re-run the conversion, this table may be referenced. This table is NOT part of Lupopedia/Crafty Syntax as of version 3.0.0 and should be deleted after successful migration.';
 
--- Anonymous users are NOT inserted into lupo_actors. Only authenticated users (lupo_auth_users),
--- agents, and system users have rows in lupo_actors. Anonymous visitors exist in lupo_sessions only.
+-- Anonymous users are NOT inserted into {{prefix}}actors. Only authenticated users ({{prefix}}auth_users),
+-- agents, and system users have rows in {{prefix}}actors. Anonymous visitors exist in {{prefix}}sessions only.
 -- livehelp_identity_monthly / livehelp_identity_daily are converted and deprecated above; no import.
 
 
@@ -395,9 +395,9 @@ ALTER TABLE livehelp_layerinvites
 ALTER TABLE livehelp_layerinvites
   COMMENT = 'DEPRECATED: Only retained for migration. If something fails and you need to re-run the conversion, this table may be referenced. This table is NOT part of Lupopedia/Crafty Syntax as of version 3.0.0 and should be deleted after successful migration.';
 
-TRUNCATE lupo_crafty_syntax_layer_invites;
+TRUNCATE {{prefix}}crafty_syntax_layer_invites;
 
-INSERT INTO lupo_crafty_syntax_layer_invites (
+INSERT INTO {{prefix}}crafty_syntax_layer_invites (
     layer_name,
     image_name,
     image_map,
@@ -427,7 +427,7 @@ SELECT
 FROM livehelp_layerinvites;
 
 -- ======================================================================
--- livehelp_leads              →  lupo_crm_leads
+-- livehelp_leads              →  {{prefix}}crm_leads
 -- See: /docs/doctrine/migrations/livehelp_leads_migration.md
 
 ALTER TABLE livehelp_leads
@@ -436,8 +436,8 @@ ALTER TABLE livehelp_leads
 ALTER TABLE livehelp_leads
   COMMENT = 'DEPRECATED: Only retained for migration. If something fails and you need to re-run the conversion, this table may be referenced. This table is NOT part of Lupopedia/Crafty Syntax as of version 3.0.0 and should be deleted after successful migration.';
 
-TRUNCATE lupo_crm_leads;
-INSERT INTO  lupo_crm_leads
+TRUNCATE {{prefix}}crm_leads;
+INSERT INTO  {{prefix}}crm_leads
  (
     crm_lead_id,
     email,
@@ -481,8 +481,8 @@ ALTER TABLE livehelp_leavemessage
 ALTER TABLE livehelp_leavemessage
   COMMENT = 'DEPRECATED: Only retained for migration. If something fails and you need to re-run the conversion, this table may be referenced. This table is NOT part of Lupopedia/Crafty Syntax as of version 3.0.0 and should be deleted after successful migration.';
 
-TRUNCATE lupo_crafty_syntax_leave_message;
-INSERT INTO lupo_crafty_syntax_leave_message (
+TRUNCATE {{prefix}}crafty_syntax_leave_message;
+INSERT INTO {{prefix}}crafty_syntax_leave_message (
     crafty_syntax_leave_message_id,
     department_id,
     email,
@@ -577,8 +577,8 @@ ALTER TABLE livehelp_operator_departments
 ALTER TABLE livehelp_operator_departments
   COMMENT = 'DEPRECATED: Only retained for migration. If something fails and you need to re-run the conversion, this table may be referenced. This table is NOT part of Lupopedia/Crafty Syntax as of version 3.0.0 and should be deleted after successful migration.';
 
-TRUNCATE lupo_actor_departments;
-INSERT INTO lupo_actor_departments (
+TRUNCATE {{prefix}}actor_departments;
+INSERT INTO {{prefix}}actor_departments (
     actor_department_id,
     actor_id,
     department_id,
@@ -609,8 +609,8 @@ ALTER TABLE livehelp_operator_history
 ALTER TABLE livehelp_operator_history
   COMMENT = 'DEPRECATED: Only retained for migration. If something fails and you need to re-run the conversion, this table may be referenced. This table is NOT part of Lupopedia/Crafty Syntax as of version 3.0.0 and should be deleted after successful migration.';
 
-TRUNCATE lupo_audit_log;
-INSERT INTO lupo_audit_log (
+TRUNCATE {{prefix}}audit_log;
+INSERT INTO {{prefix}}audit_log (
     audit_log_id,
     channel_id,
     entity_type,
@@ -631,7 +631,7 @@ SELECT
     (10000 + opid) AS entity_id,
     action AS event_type,
     CASE 
-        WHEN transcriptid > 0 THEN 'lupo_dialog_threads'
+        WHEN transcriptid > 0 THEN '{{prefix}}dialog_threads'
         ELSE NULL
     END AS table_name,
     CASE 
@@ -657,9 +657,9 @@ ALTER TABLE livehelp_qa
 ALTER TABLE livehelp_qa
   COMMENT = 'DEPRECATED: Only retained for migration. If something fails and you need to re-run the conversion, this table may be referenced. This table is NOT part of Lupopedia/Crafty Syntax as of version 3.0.0 and should be deleted after successful migration.';
 
-TRUNCATE lupo_truth_knowledge;
+TRUNCATE {{prefix}}truth_knowledge;
 
-INSERT INTO lupo_truth_knowledge (
+INSERT INTO {{prefix}}truth_knowledge (
     truth_id,
     truth_type,
     parent_id,
@@ -792,9 +792,9 @@ ON DUPLICATE KEY UPDATE
 
 
 
-TRUNCATE lupo_truth_answers;
+TRUNCATE {{prefix}}truth_answers;
 
-INSERT INTO lupo_truth_answers (
+INSERT INTO {{prefix}}truth_answers (
     truth_question_id,
     actor_id,
     answer_text,
@@ -831,7 +831,7 @@ ON DUPLICATE KEY UPDATE
     updated_ymdhis = VALUES(updated_ymdhis);
 
 
-INSERT INTO lupo_collections (
+INSERT INTO {{prefix}}collections (
     collection_id,
     federation_node_id,
     actor_id,
@@ -878,7 +878,7 @@ ON DUPLICATE KEY UPDATE
     deleted_ymdhis = VALUES(deleted_ymdhis);
 
 
-INSERT INTO lupo_collection_tabs (
+INSERT INTO {{prefix}}collection_tabs (
     collection_tab_parent_id,
     collection_id,
     federations_node_id,
@@ -928,7 +928,7 @@ ON DUPLICATE KEY UPDATE
 
 
 
-INSERT INTO lupo_collection_tabs (
+INSERT INTO {{prefix}}collection_tabs (
     collection_tab_parent_id,
     collection_id,
     federations_node_id,
@@ -966,7 +966,7 @@ SELECT
 FROM livehelp_qa child
 JOIN livehelp_qa parent
     ON parent.recno = child.parent
-JOIN lupo_collection_tabs parent_tab
+JOIN {{prefix}}collection_tabs parent_tab
     ON parent_tab.slug = LOWER(REPLACE(parent.question, ' ', '-'))
 WHERE child.typeof = 'folder' AND child.parent != 0
 ON DUPLICATE KEY UPDATE
@@ -982,7 +982,7 @@ ON DUPLICATE KEY UPDATE
     deleted_ymdhis = VALUES(deleted_ymdhis);
 
 -- ======================================================================
--- livehelp_questions -> lupo_crafty_syntax_chat_questions
+-- livehelp_questions -> {{prefix}}crafty_syntax_chat_questions
 -- See: /docs/doctrine/migrations/livehelp_questions_migration.md
 ALTER TABLE livehelp_questions
     ENGINE=InnoDB,
@@ -990,8 +990,8 @@ ALTER TABLE livehelp_questions
 ALTER TABLE livehelp_questions
   COMMENT = 'DEPRECATED: Only retained for migration. If something fails and you need to re-run the conversion, this table may be referenced. This table is NOT part of Lupopedia/Crafty Syntax as of version 3.0.0 and should be deleted after successful migration.';
 
-TRUNCATE lupo_crafty_syntax_chat_questions;
-INSERT INTO lupo_crafty_syntax_chat_questions (
+TRUNCATE {{prefix}}crafty_syntax_chat_questions;
+INSERT INTO {{prefix}}crafty_syntax_chat_questions (
     crafty_syntax_chat_question_id,
     department_id,
     sort_order,
@@ -1024,15 +1024,15 @@ FROM livehelp_questions;
 
  
 -- ======================================================================
--- livehelp_quick -> lupo_actor_reply_templates
+-- livehelp_quick -> {{prefix}}actor_reply_templates
 -- See: /docs/doctrine/migrations/livehelp_quick_migration.md
 ALTER TABLE livehelp_quick
     ENGINE=InnoDB,
     CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 ALTER TABLE livehelp_quick
   COMMENT = 'DEPRECATED: Only retained for migration. If something fails and you need to re-run the conversion, this table may be referenced. This table is NOT part of Lupopedia/Crafty Syntax as of version 3.0.0 and should be deleted after successful migration.';
-TRUNCATE lupo_actor_reply_templates;
-INSERT INTO lupo_actor_reply_templates (
+TRUNCATE {{prefix}}actor_reply_templates;
+INSERT INTO {{prefix}}actor_reply_templates (
     actor_reply_template_id,
     actor_id,
     template_key,
@@ -1078,7 +1078,7 @@ ALTER TABLE livehelp_sessions
  
  
 -- ======================================================================
--- livehelp_referers_daily               → lupo_referers
+-- livehelp_referers_daily               → {{prefix}}referers
  -- See: /docs/doctrine/migrations/livehelp_referers_daily_migration.md
  
 ALTER TABLE livehelp_referers_daily
@@ -1096,8 +1096,8 @@ ALTER TABLE livehelp_referers_daily
   COMMENT = 'DEPRECATED: Only retained for migration. If something fails and you need to re-run the conversion, this table may be referenced. This table is NOT part of Lupopedia/Crafty Syntax as of version 3.0.0 and should be deleted after successful migration.';
 
 
-TRUNCATE lupo_referers;
-INSERT INTO lupo_referers (
+TRUNCATE {{prefix}}referers;
+INSERT INTO {{prefix}}referers (
     content_id,
     actor_id,
     referer_url,
@@ -1130,7 +1130,7 @@ SELECT
 FROM livehelp_referers_daily r;
 
 
-INSERT INTO lupo_referers (
+INSERT INTO {{prefix}}referers (
     content_id,
     actor_id,
     referer_url,
@@ -1179,33 +1179,33 @@ FROM livehelp_referers_monthly r;
 
 
 -- ======================================================================
--- livehelp_visit_track / livehelp_visits_daily / livehelp_visits_monthly  → lupo_visits (4.0.68 raw-events schema)
--- livehelp_paths_firsts / livehelp_paths_monthly                         → lupo_paths (4.0.68 aggregated flows)
--- lupo_visits: session_id, actor_id, path_url, entercontentid, created_ymdhis, is_processed. Legacy daily/monthly imported as synthetic rows (is_processed=1).
--- lupo_paths: entercontentid, exitcontentid, year_num, month_num, day_num, count_num, transition_type.
+-- livehelp_visit_track / livehelp_visits_daily / livehelp_visits_monthly  → {{prefix}}visits (4.0.68 raw-events schema)
+-- livehelp_paths_firsts / livehelp_paths_monthly                         → {{prefix}}paths (4.0.68 aggregated flows)
+-- {{prefix}}visits: session_id, actor_id, path_url, entercontentid, created_ymdhis, is_processed. Legacy daily/monthly imported as synthetic rows (is_processed=1).
+-- {{prefix}}paths: entercontentid, exitcontentid, year_num, month_num, day_num, count_num, transition_type.
 -- ======================================================================
 
 ALTER TABLE livehelp_visit_track
     ENGINE=InnoDB,
     CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 ALTER TABLE livehelp_visit_track
-  COMMENT = 'DEPRECATED: Ephemeral session tracking. Not imported into lupo_visits. Safe to delete after migration.';
+  COMMENT = 'DEPRECATED: Ephemeral session tracking. Not imported into {{prefix}}visits. Safe to delete after migration.';
 
 ALTER TABLE livehelp_visits_daily
     ENGINE=InnoDB,
     CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 ALTER TABLE livehelp_visits_daily
-  COMMENT = 'DEPRECATED: Imported into lupo_visits (synthetic rows). Safe to delete after migration.';
+  COMMENT = 'DEPRECATED: Imported into {{prefix}}visits (synthetic rows). Safe to delete after migration.';
 
 ALTER TABLE livehelp_visits_monthly
     ENGINE=InnoDB,
     CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 ALTER TABLE livehelp_visits_monthly
-  COMMENT = 'DEPRECATED: Imported into lupo_visits (synthetic rows). Safe to delete after migration.';
+  COMMENT = 'DEPRECATED: Imported into {{prefix}}visits (synthetic rows). Safe to delete after migration.';
 
-TRUNCATE lupo_visits;
+TRUNCATE {{prefix}}visits;
 -- Synthetic visits from daily: one row per (livehelp_id, dateof), path_url=pageurl, entercontentid=livehelp_id, created_ymdhis=dateof+noon, is_processed=1.
-INSERT INTO lupo_visits (
+INSERT INTO {{prefix}}visits (
     session_id,
     actor_id,
     instance_id,
@@ -1241,7 +1241,7 @@ SELECT
     NULL AS deleted_ymdhis
 FROM livehelp_visits_daily r;
 
-INSERT INTO lupo_visits (
+INSERT INTO {{prefix}}visits (
     session_id,
     actor_id,
     instance_id,
@@ -1278,25 +1278,25 @@ SELECT
 FROM livehelp_visits_monthly r;
 
 -- ======================================================================
--- livehelp_paths_firsts / livehelp_paths_monthly  → lupo_paths (4.0.68 aggregated flows)
+-- livehelp_paths_firsts / livehelp_paths_monthly  → {{prefix}}paths (4.0.68 aggregated flows)
 -- entercontentid=visit_recno, exitcontentid=exit_recno, year_num/month_num/day_num from dateof (int 8=YYYYMMDD or 6=YYYYMM), count_num=visits.
 -- ======================================================================
 ALTER TABLE livehelp_paths_firsts
     ENGINE=InnoDB,
     CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 ALTER TABLE livehelp_paths_firsts
-  COMMENT = 'DEPRECATED: Imported into lupo_paths. Safe to delete after migration.';
+  COMMENT = 'DEPRECATED: Imported into {{prefix}}paths. Safe to delete after migration.';
 
 ALTER TABLE livehelp_paths_monthly
     ENGINE=InnoDB,
     CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 ALTER TABLE livehelp_paths_monthly
-  COMMENT = 'DEPRECATED: Imported into lupo_paths. Safe to delete after migration.';
+  COMMENT = 'DEPRECATED: Imported into {{prefix}}paths. Safe to delete after migration.';
 
-TRUNCATE lupo_paths;
+TRUNCATE {{prefix}}paths;
 
 -- paths_firsts: dateof is YYYYMMDD (8 digits). If 6 digits (YYYYMM), day_num=1.
-INSERT INTO lupo_paths (
+INSERT INTO {{prefix}}paths (
     entercontentid,
     exitcontentid,
     enter_table,
@@ -1330,7 +1330,7 @@ SELECT
 FROM livehelp_paths_firsts p;
 
 -- paths_monthly: dateof may be YYYYMM (6 digits). year_num=FLOOR(dateof/100), month_num=dateof%100, day_num=1.
-INSERT INTO lupo_paths (
+INSERT INTO {{prefix}}paths (
     entercontentid,
     exitcontentid,
     enter_table,
@@ -1365,7 +1365,7 @@ FROM livehelp_paths_monthly p;
 
  
 -- ======================================================================
--- livehelp_transcripts               → lupo_dialog_threads & lupo_dialog_messages
+-- livehelp_transcripts               → {{prefix}}dialog_threads & {{prefix}}dialog_messages
  -- See: /docs/doctrine/migrations/livehelp_transcripts_migration.md
 
 ALTER TABLE livehelp_transcripts
@@ -1376,8 +1376,8 @@ ALTER TABLE livehelp_transcripts
 
 -- Dialog thread title: who + recno when who present; else first snippet of transcript (stripped); else safe fallback.
 -- last_message_ymdhis: endtime (last message time) when present, else starttime, else NULL.
-TRUNCATE lupo_dialog_threads;
-INSERT INTO `lupo_dialog_threads` (
+TRUNCATE {{prefix}}dialog_threads;
+INSERT INTO `{{prefix}}dialog_threads` (
     `dialog_thread_id`,
     `title`,
     `last_message_ymdhis`,
@@ -1408,8 +1408,8 @@ SELECT
     `endtime`
 FROM `livehelp_transcripts`;
 
-TRUNCATE lupo_dialog_messages;
-INSERT INTO `lupo_dialog_messages` (
+TRUNCATE {{prefix}}dialog_messages;
+INSERT INTO `{{prefix}}dialog_messages` (
     `dialog_message_id`,
     `dialog_thread_id`,
     `channel_id`,
@@ -1446,7 +1446,7 @@ FROM `livehelp_transcripts`;
  
 
 -- ======================================================================
--- livehelp_websites               → lupo_federation_nodes
+-- livehelp_websites               → {{prefix}}federation_nodes
  -- See: /docs/doctrine/migrations/livehelp_websites_migration.md
 
 ALTER TABLE livehelp_websites
@@ -1456,9 +1456,9 @@ ALTER TABLE livehelp_websites
   COMMENT = 'DEPRECATED: Only retained for migration. If something fails and you need to re-run the conversion, this table may be referenced. This table is NOT part of Lupopedia/Crafty Syntax as of version 3.0.0 and should be deleted after successful migration.';
 
 -- NODE 0 IS LUPOPEDIA.COM - DO NOT DELETE
-DELETE FROM lupo_federation_nodes WHERE federation_node_id!=0;
+DELETE FROM {{prefix}}federation_nodes WHERE federation_node_id!=0;
 
-INSERT INTO `lupo_federation_nodes` (
+INSERT INTO `{{prefix}}federation_nodes` (
     `federation_node_id`,
     `node_name`,
     `node_base_url`,
@@ -1483,7 +1483,7 @@ FROM `livehelp_websites`;
 
 
 -- ======================================================================
--- livehelp_users               → lupo_auth_users
+-- livehelp_users               → {{prefix}}auth_users
  -- See: /docs/doctrine/migrations/livehelp_users_migration.md
 ALTER TABLE livehelp_users
     ENGINE=InnoDB,
@@ -1491,11 +1491,11 @@ ALTER TABLE livehelp_users
 ALTER TABLE livehelp_users
   COMMENT = 'DEPRECATED: Only retained for migration. If something fails and you need to re-run the conversion, this table may be referenced. This table is NOT part of Lupopedia/Crafty Syntax as of version 3.0.0 and should be deleted after successful migration.';
 
--- RESERVED ID DOCTRINE: lupo_auth_users.auth_user_id is NOT AUTO_INCREMENT; must supply explicit ID.
+-- RESERVED ID DOCTRINE: {{prefix}}auth_users.auth_user_id is NOT AUTO_INCREMENT; must supply explicit ID.
 -- ACTOR ID RANGE: actor_id 0-9999 = system/AI agents only (seed). Human actors must use actor_id >= 10000.
 -- Import remaps Crafty user_id into human range: auth_user_id = 10000 + u.user_id (so actor_id = auth_user_id is >= 10000).
--- Intentional: first INSERT = Crafty operators (isoperator = 'Y'); second INSERT = all remaining users. Result: ALL Crafty users become lupo_auth_users.
-INSERT INTO lupo_auth_users (
+-- Intentional: first INSERT = Crafty operators (isoperator = 'Y'); second INSERT = all remaining users. Result: ALL Crafty users become {{prefix}}auth_users.
+INSERT INTO {{prefix}}auth_users (
     auth_user_id,
     username,
     display_name,
@@ -1535,11 +1535,11 @@ SELECT
 FROM livehelp_users u
 WHERE u.isoperator = 'Y'
 AND NOT EXISTS (
-    SELECT 1 FROM lupo_auth_users x WHERE x.auth_user_id = (10000 + u.user_id)
+    SELECT 1 FROM {{prefix}}auth_users x WHERE x.auth_user_id = (10000 + u.user_id)
 );
 
 
-INSERT INTO lupo_auth_users (
+INSERT INTO {{prefix}}auth_users (
     auth_user_id,
     username,
     display_name,
@@ -1578,17 +1578,17 @@ SELECT
     NULL
 FROM livehelp_users u
 WHERE NOT EXISTS (
-    SELECT 1 FROM lupo_auth_users x WHERE x.auth_user_id = (10000 + u.user_id)
+    SELECT 1 FROM {{prefix}}auth_users x WHERE x.auth_user_id = (10000 + u.user_id)
 );
 
 -- ======================================================================
--- Phase 1: Create lupo_actors for each imported Crafty operator (actor_type: 'user').
--- Lupopedia has no lupo_operators table; permissions use lupo_actor_channel_roles.
+-- Phase 1: Create {{prefix}}actors for each imported Crafty operator (actor_type: 'user').
+-- Lupopedia has no {{prefix}}operators table; permissions use {{prefix}}actor_channel_roles.
 -- The wizard assigns roles after import. actor_id = auth_user_id for imported humans.
 -- auth_user_id was set to (10000 + livehelp_users.user_id) above, so actor_id >= 10000 (human range).
 -- ======================================================================
 
-INSERT INTO lupo_actors (
+INSERT INTO {{prefix}}actors (
     actor_name,
     actor_id,
     actor_type,
@@ -1618,57 +1618,57 @@ SELECT
     0,
     NULL,
     au.auth_user_id,
-    'lupo_auth_users',
+    '{{prefix}}auth_users',
     NULL,
     'none',
     NULL,
     NULL
-FROM lupo_auth_users au
+FROM {{prefix}}auth_users au
 INNER JOIN livehelp_users u ON u.username = au.username
 WHERE u.isoperator = 'Y'
 AND NOT EXISTS (
-    SELECT 1 FROM lupo_actors a2
+    SELECT 1 FROM {{prefix}}actors a2
     WHERE a2.actor_id = au.auth_user_id
-    AND a2.actor_source_type = 'lupo_auth_users'
+    AND a2.actor_source_type = '{{prefix}}auth_users'
 );
 
--- Department mapping: rewire lupo_actor_departments.actor_id to match lupo_actors.actor_id (actor_id = auth_user_id).
-UPDATE lupo_actor_departments ad
+-- Department mapping: rewire {{prefix}}actor_departments.actor_id to match {{prefix}}actors.actor_id (actor_id = auth_user_id).
+UPDATE {{prefix}}actor_departments ad
 INNER JOIN livehelp_operator_departments od ON ad.actor_department_id = od.recno
 INNER JOIN livehelp_users u ON u.user_id = od.user_id
-INNER JOIN lupo_auth_users au ON au.username = u.username
-INNER JOIN lupo_actors a ON a.actor_source_id = au.auth_user_id AND a.actor_source_type = 'lupo_auth_users'
+INNER JOIN {{prefix}}auth_users au ON au.username = u.username
+INNER JOIN {{prefix}}actors a ON a.actor_source_id = au.auth_user_id AND a.actor_source_type = '{{prefix}}auth_users'
 SET ad.actor_id = a.actor_id;
 
 -- Global admins: assign each Crafty admin (isadmin='Y') to department 0.
--- lupo_actor_departments: actor membership in system department
--- lupo_department_roles: role_key='administrator' (admin for ALL departments)
-INSERT INTO lupo_actor_departments (actor_department_id, actor_id, department_id, title, created_ymdhis, updated_ymdhis, is_deleted, deleted_ymdhis)
+-- {{prefix}}actor_departments: actor membership in system department
+-- {{prefix}}department_roles: role_key='administrator' (admin for ALL departments)
+INSERT INTO {{prefix}}actor_departments (actor_department_id, actor_id, department_id, title, created_ymdhis, updated_ymdhis, is_deleted, deleted_ymdhis)
 SELECT base + rn, actor_id, 0, 'System Administrator', ts, ts, 0, NULL
 FROM (
     SELECT a.actor_id, @arn := @arn + 1 AS rn
     FROM livehelp_users u
-    INNER JOIN lupo_auth_users au ON au.username = u.username
-    INNER JOIN lupo_actors a ON a.actor_source_id = au.auth_user_id AND a.actor_source_type = 'lupo_auth_users'
+    INNER JOIN {{prefix}}auth_users au ON au.username = u.username
+    INNER JOIN {{prefix}}actors a ON a.actor_source_id = au.auth_user_id AND a.actor_source_type = '{{prefix}}auth_users'
     CROSS JOIN (SELECT @arn := 0) v
     WHERE UPPER(TRIM(COALESCE(u.isadmin, ''))) = 'Y'
-      AND NOT EXISTS (SELECT 1 FROM lupo_actor_departments ad2 WHERE ad2.actor_id = a.actor_id AND ad2.department_id = 0 AND (ad2.is_deleted = 0 OR ad2.is_deleted IS NULL))
+      AND NOT EXISTS (SELECT 1 FROM {{prefix}}actor_departments ad2 WHERE ad2.actor_id = a.actor_id AND ad2.department_id = 0 AND (ad2.is_deleted = 0 OR ad2.is_deleted IS NULL))
     ORDER BY a.actor_id
 ) t
-CROSS JOIN (SELECT COALESCE(MAX(actor_department_id), 0) AS base FROM lupo_actor_departments) m
+CROSS JOIN (SELECT COALESCE(MAX(actor_department_id), 0) AS base FROM {{prefix}}actor_departments) m
 CROSS JOIN (SELECT CAST(DATE_FORMAT(UTC_TIMESTAMP(), '%Y%m%d%H%i%S') AS SIGNED) AS ts) ts;
 
-INSERT INTO lupo_department_roles (department_role_id, actor_id, department_id, role_key, created_ymdhis, updated_ymdhis, is_deleted, deleted_ymdhis)
+INSERT INTO {{prefix}}department_roles (department_role_id, actor_id, department_id, role_key, created_ymdhis, updated_ymdhis, is_deleted, deleted_ymdhis)
 SELECT base + rn, actor_id, 0, 'administrator', ts, ts, 0, NULL
 FROM (
     SELECT a.actor_id, @drn := @drn + 1 AS rn
     FROM livehelp_users u
-    INNER JOIN lupo_auth_users au ON au.username = u.username
-    INNER JOIN lupo_actors a ON a.actor_source_id = au.auth_user_id AND a.actor_source_type = 'lupo_auth_users'
+    INNER JOIN {{prefix}}auth_users au ON au.username = u.username
+    INNER JOIN {{prefix}}actors a ON a.actor_source_id = au.auth_user_id AND a.actor_source_type = '{{prefix}}auth_users'
     CROSS JOIN (SELECT @drn := 0) v
     WHERE UPPER(TRIM(COALESCE(u.isadmin, ''))) = 'Y'
-      AND NOT EXISTS (SELECT 1 FROM lupo_department_roles dr2 WHERE dr2.actor_id = a.actor_id AND dr2.department_id = 0 AND dr2.role_key = 'administrator' AND (dr2.is_deleted = 0 OR dr2.is_deleted IS NULL))
+      AND NOT EXISTS (SELECT 1 FROM {{prefix}}department_roles dr2 WHERE dr2.actor_id = a.actor_id AND dr2.department_id = 0 AND dr2.role_key = 'administrator' AND (dr2.is_deleted = 0 OR dr2.is_deleted IS NULL))
     ORDER BY a.actor_id
 ) t
-CROSS JOIN (SELECT COALESCE(MAX(department_role_id), 0) AS base FROM lupo_department_roles) m
+CROSS JOIN (SELECT COALESCE(MAX(department_role_id), 0) AS base FROM {{prefix}}department_roles) m
 CROSS JOIN (SELECT CAST(DATE_FORMAT(UTC_TIMESTAMP(), '%Y%m%d%H%i%S') AS SIGNED) AS ts) ts;

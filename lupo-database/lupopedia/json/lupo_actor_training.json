@@ -1,0 +1,53 @@
+{
+  "table_name": "lupo_actor_training",
+  "fields": [
+    "`training_id` bigint NOT NULL",
+    "`actor_id` bigint NOT NULL",
+    "`training_type` varchar(64) NOT NULL",
+    "`training_data` text",
+    "`training_metadata` json",
+    "`started_ymdhis` bigint NOT NULL DEFAULT 0",
+    "`completed_ymdhis` bigint",
+    "`updated_ymdhis` bigint",
+    "`is_deleted` tinyint NOT NULL DEFAULT 0",
+    "`deleted_ymdhis` bigint"
+  ],
+  "data": [],
+  "indexes": [
+    {
+      "index_name": "lupo_actor_training_idx_actor_id",
+      "columns": [
+        "actor_id"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_actor_training_idx_is_deleted",
+      "columns": [
+        "is_deleted"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_actor_training_idx_training_type",
+      "columns": [
+        "training_type"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    }
+  ],
+  "primary_key": {
+    "column_name": "training_id",
+    "expected_name": "training_id",
+    "is_correct": true,
+    "needs_rename": false
+  },
+  "doctrine_metadata": {
+    "no_foreign_keys": true,
+    "no_triggers": true
+  },
+  "relationships": []
+}

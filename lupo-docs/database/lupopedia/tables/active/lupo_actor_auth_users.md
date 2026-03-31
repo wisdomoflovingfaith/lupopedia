@@ -1,4 +1,13 @@
 ---
+# DEPRECATED: lupo_actor_auth_users
+
+This table is deprecated as of Lupopedia 4.0.93+ and replaced by lupo_actor_lease_sessions.
+
+- No new mappings should be created here.
+- All new identity flows use agent→actor→auth_user leasing.
+- See ACTOR_LEASING_DOCTRINE.md for details.
+
+---
 lupopedia.headers:
   when_updated: "20260328013000"
   file_path_from_root: "lupo-docs/database/lupopedia/tables/active/lupo_actor_auth_users.md"

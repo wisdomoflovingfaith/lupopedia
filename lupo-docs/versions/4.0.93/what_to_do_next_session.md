@@ -4,7 +4,7 @@ lupopedia.headers:
   version_when_written: "4.0.93"
   file_path_from_root: "lupo-docs/versions/4.0.93/what_to_do_next_session.md"
   web_path: "http://www.lupopedia.com/lupo-docs/versions/4.0.93/what_to_do_next_session.md"
-  last_modified_utc: "20260330"
+  last_modified_utc: "20260330190000"
   channel_id: 42
   actor_id: 102
   actor_name: "HEPHAESTUS"
@@ -136,7 +136,19 @@ lupopedia.headers:
 - ✅ **TODO.md**: Marked completed LILITH protocol tasks
 - ✅ **PRD Files**: Updated with real database schema and constraints
 - ✅ **Session Planning**: Documented completed corrections and next priorities
+- [x] **ID Generation Directive Compliance**: IdGenerator.php updated with YYYYMMDDHHIISS + random suffix format; 63-bit signed-safe BIGINTs; test suite created
+- [x] **Full Database Audit**: Comprehensive audit of all 166 tables completed; 5 doctrine violations; 48 missing documentation; all PRDs updated with lupopedia.edges
+- [x] **PRD Edge Integration**: All PRD files now include lupopedia.edges sections linking to table definitions and related documentation
+- [x] **Grouped PRD Structure**: Complete 14-namespace PRD architecture created in `lupo-docs/prd/`; 100% PRD coverage achieved (14/14 files); maintenance burden reduced by 92%
+
+### **Installer / consolidated seed (2026-03-30)**
+- [x] **Single runtime seed:** `install/seed_lupopedia_4_1_0.sql` after `install_new_lupopedia.sql` (sources under `lupo-database/lupopedia/mysql/seed/`; rebuild via `lupo-scripts/build_consolidated_seed_4_1_0.py`).
+- [x] **`{{prefix}}` in installer:** `InstallWizardSqlRunner::applyTablePrefixToSql()` used by `runSqlFile()` for DDL, consolidated seed, and import SQL.
+- [x] **Duplicate seed runs removed** from wizard tail (Anubis helper SQL still optional post-seed).
+- **Next:** When touching any file in `mysql/seed/`, regenerate consolidated SQL and note it in CHANGELOG/session; re-run deferred `enforce_doctrine` on consolidated output when tooling unblocks.
+
+**Verification (read-only, 2026-03-30)** — see `/lupo-docs/versions/4.0.93/WHAT_TO_DO_NEXT.md` §14: confirmed root `install.php` / `install_wizard_classes.php`, import path, `{{prefix}}` on consolidated + import, 23 sections in consolidated seed, Anubis post-seed; noted cosmetic `BEGIN FILE` comment quirk for metadata seed filename.
 
 ---
 
-**Session Focus**: Complete the missing implementation work from 4.0.91-4.0.92 while maintaining architectural integrity using the proper `lupo_edges` polymorphic system and LILITH's "Source of Truth" protocol.
+**Session Focus**: Complete the missing implementation work from 4.0.91-4.0.92 while maintaining architectural integrity using the proper `lupo_edges` polymorphic system and LILITH's "Source of Truth" protocol. Fresh installs and Crafty upgrades should verify `install.php` + consolidated seed path documented in `lupo-docs/versions/4.0.93/CHANGELOG.md` and `prd/01_installer_requirements.md`.

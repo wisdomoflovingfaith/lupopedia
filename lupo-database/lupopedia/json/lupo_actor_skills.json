@@ -1,0 +1,52 @@
+{
+  "table_name": "lupo_actor_skills",
+  "fields": [
+    "`skill_id` bigint NOT NULL",
+    "`actor_id` bigint NOT NULL",
+    "`skill_name` varchar(128) NOT NULL",
+    "`skill_level` varchar(32)",
+    "`skill_metadata` json",
+    "`acquired_ymdhis` bigint NOT NULL DEFAULT 0",
+    "`updated_ymdhis` bigint",
+    "`is_deleted` tinyint NOT NULL DEFAULT 0",
+    "`deleted_ymdhis` bigint"
+  ],
+  "data": [],
+  "indexes": [
+    {
+      "index_name": "lupo_actor_skills_idx_actor_id",
+      "columns": [
+        "actor_id"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_actor_skills_idx_is_deleted",
+      "columns": [
+        "is_deleted"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_actor_skills_idx_skill_name",
+      "columns": [
+        "skill_name"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    }
+  ],
+  "primary_key": {
+    "column_name": "skill_id",
+    "expected_name": "skill_id",
+    "is_correct": true,
+    "needs_rename": false
+  },
+  "doctrine_metadata": {
+    "no_foreign_keys": true,
+    "no_triggers": true
+  },
+  "relationships": []
+}

@@ -1,80 +1,33 @@
 ---
-lupopedia.headers:
-  lupopedia.schema: "doctrine"
-  file_path_from_root: "lupo-docs/doctrine/ACTOR_AGENT_AUTH_USER_MODEL.md"
-  web_path: "http://www.lupopedia.com/lupopedia/doctrine/ACTOR_AGENT_AUTH_USER_MODEL.md"
-  last_modified_utc: "20260326"
-  channel_id: 42
-  actor_id: 1
-  actor_name: "WOLFIE"
-  faucet_name: "cursor"
-  delegation_chain: "wolfie:root"
-  # Execution context (optional, for audit)
-  executed_by_agent: "wolfie-primary"
-  executed_through_faucet: "cursor"
-  effective_department: 0
-  artifact_type: "doctrine"
-  artifact_kind: "identity"
-  purpose: "Actor-centric model for login identity, actor, agent, department, faucet, and session pairing in the web/admin interface."
-  tags: ["identity", "login_identity", "actor", "agent", "department", "faucet"]
-lupopedia.edges:
-  outbound_edges:
-    - { to: "lupo-docs/doctrine/IDENTITY_MODEL_QUICKSTART_4.0.88.md", type: "references", weight: 1.0 }
-    - { to: "lupo-docs/doctrine/EFFECTIVE_ACTOR_RESOLUTION.md", type: "references", weight: 1.0 }
-    - { to: "lupo-docs/database/lupopedia/tables/active/lupo_actor_auth_users.md", type: "references", weight: 1.0 }
-lupopedia.footer:
-  last_verified: "20260326"
-  last_verified_by_actor_id: 1
-  last_verified_by_actor_name: "WOLFIE"
-  last_verified_through_faucet: "cursor"
-  orchestrator: "wolfie:root"
+# 🚨 LILITH ARCHITECTURE UPDATE: AGENT → ACTOR → AUTH USER (LEASING, PERMISSION-GATED)
+
+## Identity Stack (Canonical)
+- **Agents**: Autonomous AI entities, not tied to actors or users. Can run tasks, workflows, and background jobs. Have their own context, capabilities, and experiences.
+- **Actors**: Hybrid shells instantiated from agents, department-scoped, and shaped by human usage. Not humans or agents, but operational personas.
+- **Auth Users**: Temporary controllers of actors. Lease actors to perform actions, but do not own them.
+
+## Permission Rule
+An auth_user may lease or control an actor only if:
+- `auth_user_id == actor.created_by_auth_user_id`
+- `auth_user.department_id == 0`
+- `auth_user.department_id == actor.department_id`
+
+## Database Requirements
+- lupo_actor_instances: Add `created_by_auth_user_id BIGINT`, `department_id BIGINT`
+- lupo_actor_lease_sessions: Must include `auth_user_id`, `actor_id`, `department_id`
+
+## Doctrine Compliance
+- No AUTO_INCREMENT, no FOREIGN KEYS, no UNSIGNED
+- All IDs via IdGenerator::generate(), all timestamps BIGINT YYYYMMDDHHIISS
+- PDO only, DatabaseFactory only
+
+## Implementation Directive for IDE Agents
+- Agents are autonomous AI entities
+- Actors are hybrid shells derived from agents
+- Auth Users temporarily lease actors
+- Permission rule above is canonical
+
 ---
-# Actor Agent Login Identity Model
-
-## Objective
-
-This doctrine defines how identity layers must be presented and reasoned about in Lupopedia web and admin surfaces.
-
-The required separation is:
-
-- `login_identity` = human login and account security
-- `actor` = operational identity used for permissions, channel participation, authorship, and posting
-- `agent` = behavior and model configuration attached to actor execution, but not a replacement for actor identity
-- `department` = actor-scoped routing and fallback context
-- `faucet` = execution surface only
-- `session` = runtime binding tuple that records the active context
-
-## Canonical Storage Layers
-
-### Login identity
-
-- Human login account lives in `lupo_auth_users`
-- Passwords, email, display name, and account activation belong here
-- Admin profile editing operates on this layer
-
-### Actor
-
-- Runtime identity lives in `lupo_actors`
-- Channel membership, channel roles, session actor, authorship, and posting all use `actor_id`
-- Departments attach to actors, not to agents
-
-### Actor to auth user pairing
-
-- The authoritative actor to human pairing layer is `lupo_actor_auth_users`
-- This table supports many-to-many assignment and deterministic ordering using `is_primary` and `routing_priority`
-- Legacy `lupo_actors.actor_source_type` and `actor_source_id` may still exist as fallback metadata, but they are not the long-term pairing authority
-
-### Agent
-
-- Agent behavior configuration lives in `lupo_agents`
-- This layer stores model, provider, prompts, safety, and related runtime configuration
-- Agent state explains how an actor behaves; it does not replace the actor as the acting identity
-
-### Faucet
-
-- Faucet execution state lives in `lupo_agent_faucets` and session/runtime metadata
-- Faucet identifies the execution surface such as Cursor, Windsurf, or another IDE surface
-- Faucet is never an actor substitute
 
 ## Web And Admin Presentation Rules
 

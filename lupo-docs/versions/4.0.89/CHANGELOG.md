@@ -5,8 +5,8 @@ lupopedia.headers:
   content_id: 217050541066347226
   web_path: "http://www.lupopedia.com/lupopedia/lupo-docs/versions/4.0.89/CHANGELOG.md"
   federation_node_id: 0
-  last_modified_utc: "20260329235907"
-  when_updated: "20260329235907"
+  last_modified_utc: "20260330155600"
+  when_updated: "20260330155600"
   channel_id: 42
   thread_id: "changelog"
   actor_id: 1
@@ -50,7 +50,7 @@ lupopedia.edges:
       weight: 1.0
       reason: IDE session handoff after release verification (2026-03-29)
 lupopedia.footer:
-  last_verified: "20260329235907"
+  last_verified: "20260330155600"
   last_verified_by: "wolfie"
   last_verified_by_actor_id: 1
   orchestrator: "wolfie:root"
@@ -278,11 +278,12 @@ Complete header taxonomy with 16 schema values, validation rules, and federation
 ### New Features
 
 #### PK Key Generation System
-- **IdGenerator Class**: Created `lupo-includes/classes/IdGenerator.php` with 4-digit sequence
-- **Production-Ready Pattern**: Catch-and-retry with exponential backoff (50ms to 1.6s)
-- **TOCTOU Race Condition Fix**: Eliminated check-then-insert pattern
-- **User Experience Protection**: Backoff starts small to prevent request freezing
-- **Migration Script**: Created `lupo-tmp/fix_registry_auto_increment.sql` for existing installations
+- **IdGenerator Class**: Created `lupo-includes/classes/IdGenerator.php` with 4-digit random suffix
+- **IDE Directive Compliance**: Updated to use YYYYMMDDHHIISS + random suffix format
+- **63-bit Signed-Safe BIGINTs**: All IDs fit in 63-bit signed integer range
+- **Application-Layer Only**: No AUTO_INCREMENT, sequences, or database-side ID generation
+- **Test Suite Created**: `id_generation_compliance_test.php` verifies 63-bit safety and format
+- **Usage Example**: `id_generation_usage_example.php` demonstrates proper implementation
 
 #### LUPOPEDIA Headers Doctrine
 - **LUPOPEDIA_HEADERS_DOCTRINE.md**: Created comprehensive documentation of all header fields

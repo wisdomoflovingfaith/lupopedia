@@ -1,4 +1,23 @@
 ---
+# 🚨 LILITH ARCHITECTURE UPDATE: AGENT → ACTOR → AUTH USER (LEASING, PERMISSION-GATED)
+
+## Quickstart: New Identity Model (4.0.93+)
+- Agents are autonomous AI entities (not tied to actors or users)
+- Actors are hybrid shells instantiated from agents, department-scoped
+- Auth users lease actors temporarily, subject to permission rule
+- Permission rule: Only creator, root, or department-matched users may lease an actor
+- All operational actions are session-leased and auditable
+
+## Onboarding Flow
+1. Agent (template) is defined
+2. Actor instance is created from agent
+3. Department assigns actor to pool
+4. Auth user requests lease; permission rule is checked
+5. Lease session is created if permitted
+6. Lease session controls operational identity, permissions, and audit
+7. Lease ends; actor becomes available for next user
+
+---
 lupopedia.headers:
   lupopedia.schema: quickstart_guide
   file_path_from_root: "lupo-docs/doctrine/IDENTITY_MODEL_QUICKSTART_4.0.88.md"
