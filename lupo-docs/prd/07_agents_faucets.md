@@ -283,6 +283,214 @@ $heartbeatService = new AgentHeartbeatService();
 $heartbeatId = $heartbeatService->record($agentId, $status, $metrics);
 ```
 
+## Doctrine & Authority Rules
+
+### Strict Separation of Agents vs Actors
+
+**DOCTRINE**: Agents and actors are strictly separated except for one controlled bridge.
+
+**File-defined agent → creates one actor record → actor executes on behalf of agent**
+
+- Agent definitions live in `lupo-agents/{agent_id}/` (immutable source of truth)
+- Agent registration creates exactly one record in `lupo_actors` table
+- Actor executes all actions on behalf of the agent
+- No actor fields exist in agent schema
+
+**FORBIDDEN**: 
+- Agents do not contain ethics, kapu, pono, pilau, or behavioral governance fields
+- Those belong exclusively to `lupo_actors` table
+- No cross-contamination between agent and actor schemas
+
+### Mandatory metadata_json Schema
+
+**DOCTRINE**: Every agent must have metadata_json, even if empty.
+
+**Required JSON Schema**:
+```json
+{
+  "profile_image": {
+    "type": "string",
+    "required": false,
+    "maxLength": 512
+  },
+  "avatar_style": {
+    "type": "string", 
+    "required": false,
+    "enum": ["mythic", "modern", "minimal", "retro", "cyber"]
+  },
+  "color_theme": {
+    "type": "string",
+    "required": false,
+    "pattern": "^#[0-9A-Fa-f]{6}$"
+  },
+  "ui_preferences": {
+    "type": "object",
+    "required": false,
+    "properties": {
+      "compact_mode": {"type": "boolean"},
+      "show_tool_tips": {"type": "boolean"}
+    }
+  },
+  "display_name": {
+    "type": "string",
+    "required": false,
+    "maxLength": 255
+  },
+  "tagline": {
+    "type": "string", 
+    "required": false,
+    "maxLength": 500
+  }
+}
+```
+
+**Validation Rules**:
+- All metadata_json must validate against this schema
+- Invalid metadata prevents agent registration
+- Default empty object must have all null values
+
+### Canonical Timestamp Authority
+
+**DOCTRINE**: All timestamps in this namespace must be sourced exclusively from canonical UTC authority.
+
+**Required Sources**:
+- `/CURRENT_UTC` (root-level timestamp file)
+- `lupo-bin/temporal_anchor.json` (structured temporal data)
+
+**FORBIDDEN**:
+- No system time (`NOW()`, `time()`, `date()`)
+- No IDE inference from file timestamps
+- No timezone offsets or local time
+- No ISO8601 or Unix epoch formats
+
+**Format Standard**:
+- All timestamps: `YYYYMMDDHHMMSS` (14-digit UTC)
+- Example: `20260331120000`
+
+### File vs Database Authority
+
+**DOCTRINE**: File-based definitions are authoritative; database is runtime reflection.
+
+**Rules**:
+- **File → DB is authoritative**: Agent files in `lupo-agents/` define the agent
+- **DB → File is forbidden**: Database never modifies agent definition files
+- **IDE → File allowed**: IDE can modify agent files through agent workspace
+- **IDE → DB forbidden**: IDE cannot directly modify agent database records
+
+**Sync Process**:
+- File changes trigger actor record updates
+- Database changes never trigger file changes
+- Conflict resolution: File wins, DB syncs to file
+
+### Agent State Machine Authority
+
+**DOCTRINE**: Agent state transitions are strictly controlled.
+
+**Allowed Transitions**:
+```
+inactive → active
+active → busy
+busy → active
+active → inactive
+active → error
+error → active
+inactive → deleted (soft)
+```
+
+**Forbidden Transitions**:
+- Direct inactive → busy (must go through active)
+- Direct error → inactive (must resolve first)
+- Any transition without proper authority
+
+**Authority Matrix**:
+| Who can change state | Agent Self | Actor Owner | System Admin | IDE Faucet |
+|-------------------|------------|------------|-------------|------------|
+| From inactive | ✅ | ❌ | ✅ | ❌ |
+| From active | ✅ | ❌ | ✅ | ❌ |
+| From busy | ❌ | ❌ | ✅ | ❌ |
+| From error | ❌ | ✅ | ✅ | ❌ |
+
+### Tool Call Retention Policy
+
+**DOCTRINE**: Tool call history must be managed to prevent table bloat.
+
+**Retention Rules**:
+- Keep last 1000 tool calls per agent
+- Archive calls older than 30 days
+- Delete archived calls after 90 days
+- Never delete tool calls from active agents
+
+**Pruning Schedule**:
+- Daily: Archive calls > 30 days
+- Weekly: Delete archived > 90 days
+- Manual: Immediate prune on demand
+
+### Agent Versioning Doctrine
+
+**DOCTRINE**: Agent versions track file-based definitions, not runtime state.
+
+**Version Rules**:
+- `version` field = current file-based version
+- File versions in `lupo-agents/{agent_id}/versions/`
+- Database version tracks runtime compatibility
+- Version mismatch triggers sync request to IDE
+
+**Upgrade Process**:
+1. New version files created in agent directory
+2. Version bump in agent.json
+3. IDE notified of available upgrade
+4. Actor updates runtime version after file sync
+
+### Agent File Structure Doctrine
+
+**DOCTRINE**: Agent directory structure is strictly controlled.
+
+**Required Files**:
+```
+lupo-agents/{agent_id}/
+├── agent.json           # Core agent metadata (REQUIRED)
+├── capabilities.json    # Agent capabilities (REQUIRED)
+├── properties.json     # Agent properties (REQUIRED)
+├── system_prompt.txt   # Agent's system prompt (REQUIRED)
+└── versions/           # Historical versions (OPTIONAL)
+```
+
+**Optional Files**:
+```
+├── soul.txt            # Agent soul/philosophy (OPTIONAL)
+├── memory.json          # Agent memory template (OPTIONAL)
+├── tools.json           # Agent tool definitions (OPTIONAL)
+└── runtime_state.json   # Runtime state cache (OPTIONAL)
+```
+
+**File Rules**:
+- All files must be valid JSON or UTF-8 text
+- No binary files except approved assets
+- File names must match exactly (case-sensitive)
+- IDE can create/modify only through agent workspace
+- Agents cannot modify their own files (security)
+
+### Faucet Security Doctrine
+
+**DOCTRINE**: Faucet credentials must be protected and managed.
+
+**Credential Rules**:
+- All faucet credentials stored encrypted at rest
+- API keys rotated every 90 days
+- Credentials scoped to specific agent only
+- No plaintext credentials in repository
+
+**Access Control**:
+- Faucets authenticate via agent-scoped tokens
+- Session timeout: 1 hour maximum
+- Failed authentication attempts logged
+- IP restrictions for admin faucets
+
+**Encryption Requirements**:
+- AES-256 encryption for stored credentials
+- Public key for agent verification
+- Hashed passwords with salt
+
 ## File-Based Agent Definitions (Source of Truth)
 
 **IMPORTANT**: While the database tracks runtime state, agent definitions are file-based in `lupo-agents/{agent_id}/`:
