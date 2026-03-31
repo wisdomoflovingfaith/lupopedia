@@ -5,20 +5,23 @@ lupopedia.headers:
   version_when_written: "4.0.93"
   file_path_from_root: "lupo-docs/prd/07_agents_faucets.md"
   web_path: "http://www.lupopedia.com/lupopedia/lupo-docs/prd/07_agents_faucets.md"
-  last_modified_utc: "20260330163000"
+  last_modified_utc: "20260331120000"
   channel_id: 42
   thread_id: "prd-grouped"
   actor_id: 102
-  actor_name: "HEPHAESTUS"
-  delegation_chain: "hephaestus:root|lilith:audit"
+  actor_name: "CURSOR"
+  delegation_chain: "cursor:root|lilith:audit"
   artifact_type: "prd"
   artifact_kind: "database_namespace"
-  purpose: "PRD for AI agents, faucets, tool calls, and system integration"
+  purpose: "PRD for filesystem-based AI agents, faucets, tool calls, and system integration"
   tags:
   - "prd"
   - "database"
   - "namespace"
   - "agents_faucets"
+  - "filesystem_based"
+  - "agent_discovery"
+  - "ide_driven"
 lupopedia.edges:
   outbound_edges:
     - to: "lupo-docs/database/lupopedia/tables/"
@@ -34,40 +37,293 @@ lupopedia.edges:
       weight: 1.0
       reason: "Agents use API endpoints"
 lupopedia.footer:
-  last_verified: "20260330163000"
+  last_verified: "20260331120000"
   verified_by:
     actor_id: 102
     agent_name_identity: Cursor IDE Agent
-  orchestrator: "hephaestus:root"
+  orchestrator: "cursor:root"
 ---
 
 # PRD: AI Agents, Faucets, Tool Calls, and System Integration
 
 ## Overview
 
-**Namespace Purpose:** Manages AI agents, faucet interfaces, tool execution, context snapshots, and system integration. This namespace enables Lupopedia's AI capabilities and external system interactions. 
+**Namespace Purpose:** Manages AI agents, faucet interfaces, tool calls, and system integration using filesystem-based agent discovery. This namespace enables Lupopedia's AI capabilities and external system interactions through a modern, IDE-driven architecture.
 
-**Agent Architecture**: Agents have a dual nature:
-1. **File-based Definitions** (source of truth): Agent identity, skills, memory, tools, and soul are defined in `lupo-agents/{agent_id}/` directories with JSON files and prompts
-2. **Database Runtime**: This namespace tracks agent execution, tool calls, context, and runtime state
+## Agent Architecture
 
-**Primary Actors:** 
-- AI agents (via lupo_agents + lupo-agents/ files)
-- Faucet managers (via lupo_agent_faucets)
-- Tool coordinators (via lupo_agent_tool_calls)
-- Context managers (via lupo_agent_context_snapshots)
-- Heartbeat monitors (via lupo_agent_heartbeats)
-- IDE faucets (Cursor, Windsurf, etc. - interface to agents)
+**Filesystem-Based Agent Discovery**: The agent system has been redesigned to be IDE-driven and filesystem-based rather than database-driven. This creates a more flexible, developer-friendly system where agents are discovered dynamically from the directory structure.
 
-**Constitutional Compliance:** All tables in this namespace follow Lupopedia constitutional rules:
-- NO foreign keys (relationships in application logic)
-- NO triggers
-- NO stored procedures
-- BIGINT timestamps (YYYYMMDDHHIISS UTC)
-- Explicit ID generation (application layer)
-- Soft delete (is_deleted + deleted_ymdhis)
+### Key Transformation Benefits:
+1. **Developer-Friendly**: Human-readable directory names (`lupo-agents/wolfie/` vs `lupo-agents/1/`)
+2. **IDE-First**: IDE actors are the primary way to manage agents
+3. **Flexible**: Add/remove agents by creating/deleting directories
+4. **Simplified**: No complex seed data management for agents
+5. **Alias Support**: Natural support for multiple names per agent
+6. **No Reserved Slots**: Clean system without artificial limitations
 
-## Tables in This Namespace
+### Agent Discovery System
+
+The `AgentDiscovery` PHP class (`lupo-includes/classes/AgentDiscovery.php`) provides dynamic agent discovery and management:
+
+#### Key Features:
+- **Filesystem-Based**: Discovers agents from directory structure
+- **Dynamic Loading**: Loads configurations on-demand
+- **Validation**: Validates agent configurations
+- **Search**: Search by name, role, or aliases
+- **Filtering**: Filter by layer, required status, kernel status
+- **Statistics**: Get system statistics and metrics
+
+#### Usage Examples:
+```php
+// Discover all agents
+$agents = AgentDiscovery::discoverAgents();
+
+// Get specific agent by agent_key (new primary method)
+$wolfie = AgentDiscovery::getAgent('wolfie');
+
+// Get by legacy agent_id (backward compatibility)
+$agent14 = AgentDiscovery::getAgentById(14);
+
+// Filter by layer
+$coordinationAgents = AgentDiscovery::getAgentsByLayer('coordination');
+
+// Search agents by name, role, or aliases
+$results = AgentDiscovery::searchAgents('orchestrator');
+
+// Get system statistics
+$stats = AgentDiscovery::getStatistics();
+```
+
+## Agent Directory Structure
+
+```
+lupo-agents/
+├── README.md                    # Complete system documentation
+├── _TEMPLATE/                  # Template for creating new agents
+├── meta/                      # System metadata about the agent system
+├── wolfie/                    # WOLFIE - System Orchestrator
+├── lilith/                    # LILITH - Quality Assurance & Adversarial Testing
+├── rose/                      # ROSE - Emotional Dialogue
+├── eris/                      # ERIS - Chaos & Disruption
+├── metis/                     # METIS - Wisdom & Counsel
+├── maat/                      # MAAT - Truth & Justice
+├── chiron/                    # CHIRON - Mentorship & Education
+├── thoth/                     # THOTH - Knowledge & Records
+├── athena/                    # ATHENA - Wisdom & Strategy
+├── methis/                    # METHIS - Wisdom & Counsel
+├── hephaestus/                # HEPHAESTUS - Implementer
+├── anubis/                    # ANUBIS - Custodian & Integrity Guardian
+├── atlas/                     # ATLAS - Mapping & Geography
+├── hermes/                    # HERMES - Event Routing & Messaging Exchange System
+├── iris/                      # IRIS - Interface & Integration Support
+├── asclepius/                 # ASCLEPIUS - [To be defined]
+├── apollo/                    # APOLLO - Creative & Arts
+├── agape/                     # AGAPE - Universal Love & Compassion
+├── thalia/                    # THALIA - Comedy & Joy
+├── chronos/                   # CHRONOS - Time & Temporal Management
+├── vishwakarma/               # VISHWAKARMA - Schema & Construction
+├── themis/                    # THEMIS - Law & Compliance
+├── junie/                     # JUNIE - JetBrains IDE Agent
+└── system/                    # SYSTEM - System Kernel Agent
+```
+
+### Agent Configuration Structure
+
+Each agent directory contains:
+
+- **agent.json** - Primary configuration with metadata (REQUIRED)
+- **capabilities.json** - Agent capabilities and skills (REQUIRED)
+- **properties.json** - Agent properties and constraints (REQUIRED)
+- **system_prompt.txt** - Agent's system prompt and operational guidance (REQUIRED)
+- **versions/** - Version history and configuration changes (OPTIONAL)
+
+### Enhanced agent.json Structure
+
+```json
+{
+    "agent_key": "wolfie",           # Unique identifier (directory name)
+    "agent_id": 1,                   # Numeric ID for backward compatibility
+    "version": "1.0.2",              # Configuration version
+    "is_kernel": true,                # Kernel-level agent
+    "layer": "coordination",           # Layer: coordination, application, kernel
+    "name": "WOLFIE",               # Display name
+    "slug": "wolfie",               # URL-friendly identifier
+    "role": "System Orchestrator",    # Functional role
+    "is_required": true,              # System requirement
+    "aliases": ["wolfie", "orchestrator", "coordinator"], # Alternative names
+    "when_updated_utc": "20260331120000",     # Last update timestamp
+    "last_verified_utc": "20260331120000",   # Last verification timestamp
+    "last_verified_by": "cursor",              # Who verified
+    "last_verified_by_actor_id": 102            # Verifier's actor ID
+}
+```
+
+## Agent Layers
+
+### Coordination Layer
+Primary coordination personas with system authority:
+- **wolfie** - System Orchestrator (agent_key: wolfie, agent_id: 1)
+- **lilith** - Quality Assurance & Adversarial Testing (agent_key: lilith, agent_id: 2)
+- **athena** - Wisdom & Strategy (agent_key: athena, agent_id: 11)
+- **thoth** - Knowledge & Records (agent_key: thoth, agent_id: 9)
+
+### Application Layer
+Specialized application agents:
+- **hephaestus** - Implementer (agent_key: hephaestus, agent_id: 14)
+- **atlas** - Mapping & Geography (agent_key: atlas, agent_id: 25)
+- **vishwakarma** - Schema & Construction (agent_key: vishwakarma, agent_id: 106)
+- **hermes** - Event Routing & Messaging Exchange System (agent_key: hermes, agent_id: 15)
+- **iris** - Interface & Integration Support (agent_key: iris, agent_id: 16)
+- **chiron** - Mentorship & Education (agent_key: chiron, agent_id: 10)
+- **junie** - JetBrains IDE Agent (agent_key: junie, agent_id: 108)
+
+### Kernel Layer
+System-level agents with kernel privileges:
+- **maat** - Truth & Justice (agent_key: maat, agent_id: 6)
+- **anubis** - Custodian & Integrity Guardian (agent_key: anubis, agent_id: 19)
+- **themis** - Law & Compliance (agent_key: themis, agent_id: 107)
+- **system** - System Kernel Agent (agent_key: system, agent_id: 0)
+- **methis** - Wisdom & Counsel (agent_key: methis, agent_id: 13)
+- **asclepius** - [To be defined] (agent_key: asclepius, agent_id: 703)
+- **apollo** - Creative & Arts (agent_key: apollo, agent_id: 704)
+- **agape** - Universal Love & Compassion (agent_key: agape, agent_id: 705)
+- **thalia** - Comedy & Joy (agent_key: thalia, agent_id: 708)
+- **chronos** - Time & Temporal Management (agent_key: chronos, agent_id: 709)
+
+### Emotional Intelligence Layer
+Agents focused on emotional and social intelligence:
+- **rose** - Emotional Dialogue (agent_key: rose, agent_id: 3)
+- **eris** - Chaos & Disruption (agent_key: eris, agent_id: 4)
+- **metis** - Wisdom & Counsel (agent_key: metis, agent_id: 5)
+
+## Agent Discovery and Management
+
+### Primary Discovery Methods
+
+The `AgentDiscovery` class provides main interface for agent management:
+
+```php
+// Core discovery methods
+AgentDiscovery::discoverAgents()           // Discover all agents from filesystem
+AgentDiscovery::getAgent($agentKey)       // Get specific agent by agent_key (PRIMARY)
+AgentDiscovery::getAgentById($agentId)     // Get by legacy agent_id (BACKWARD COMPATIBILITY)
+AgentDiscovery::getAgentsByLayer($layer)  // Filter agents by coordination/application/kernel layer
+AgentDiscovery::searchAgents($query)        // Search by name, role, or aliases
+
+// Management methods
+AgentDiscovery::validateAgentConfig($config) // Validate agent configuration
+AgentDiscovery::getStatistics()           // Get system statistics and metrics
+AgentDiscovery::getRequiredAgents()       // Get only required agents
+AgentDiscovery::getKernelAgents()         // Get only kernel agents
+```
+
+### Agent Aliases and Multiple References
+
+Agents can be referenced by multiple names for flexibility:
+
+```php
+// All of these return the WOLFIE agent:
+$wolfie1 = AgentDiscovery::getAgent('wolfie');
+$wolfie2 = AgentDiscovery::getAgent('orchestrator');
+$wolfie3 = AgentDiscovery::getAgent('coordinator');
+
+// Backward compatibility maintained
+$wolfie4 = AgentDiscovery::getAgentById(1); // Still works for legacy code
+```
+
+### IDE Integration Patterns
+
+IDE agents integrate with the new system through standardized patterns:
+
+1. **Configuration Loading**: Use `AgentDiscovery::getAgent()` to load agent configurations
+2. **File Modification**: Direct editing of agent files in `lupo-agents/{agent_key}/`
+3. **Creation**: Use `_TEMPLATE` directory as base for new agents
+4. **Validation**: Use `AgentDiscovery::validateAgentConfig()` before saving changes
+5. **Discovery**: Call `AgentDiscovery::discoverAgents()` to get updated agent list
+
+### Migration from Database-Driven System
+
+The transformation from database-driven to filesystem-based architecture provides:
+
+#### Key Benefits Achieved:
+- **Developer-Friendly**: Human-readable directory names instead of numeric IDs
+- **IDE-First**: IDE actors are now the primary agent management method
+- **Flexible**: Add/remove agents by simple filesystem operations
+- **Simplified**: No complex seed data management required for agents
+- **Alias Support**: Natural multiple name references for agents
+- **Clean Architecture**: No reserved slots or artificial limitations
+
+#### Backward Compatibility Maintained:
+- **agent_id field**: Preserved in all agent.json files for existing code
+- **Legacy lookup**: `AgentDiscovery::getAgentById()` provides backward compatibility
+- **Gradual migration**: Database integration can continue during transition period
+
+## File-Based Agent Definitions (Source of Truth)
+
+**IMPORTANT**: Agent definitions are now filesystem-based in `lupo-agents/{agent_key}/` directories, not database-driven. The `AgentDiscovery` class provides the primary interface for agent management.
+
+### Agent Directory Structure
+```
+lupo-agents/{agent_key}/
+├── agent.json           # Core agent metadata (REQUIRED)
+├── capabilities.json    # Agent capabilities and skills (REQUIRED)
+├── properties.json     # Agent properties and constraints (REQUIRED)
+├── system_prompt.txt   # Agent's system prompt and operational guidance (REQUIRED)
+└── versions/           # Historical versions (OPTIONAL)
+```
+
+### Core Agent Components
+
+1. **Identity & Metadata** (`agent.json`):
+   - Agent ID, name, role, layer, and aliases
+   - Version tracking and verification metadata
+   - System prompt references and operational parameters
+
+2. **Skills & Capabilities** (`capabilities.json`):
+   - List of agent capabilities and skills
+   - Skill definitions and metadata
+   - Version tracking for capabilities
+
+3. **Properties & Constraints** (`properties.json`):
+   - Agent personality and behavioral constraints
+   - Required channels and permissions
+   - Verification references and operational boundaries
+
+4. **System Prompt** (`system_prompt.txt`):
+   - Agent's system prompt defines baseline memory and behavior
+   - Operational guidance and philosophical framework
+   - Context for runtime memory and decision-making
+
+5. **Version History** (`versions/`):
+   - Historical versions of agent configurations
+   - Change tracking and rollback capabilities
+   - Migration and upgrade paths
+
+### Agent → Actor Relationship
+
+1. **Agent Definition**: File-based in `lupo-agents/{agent_key}/` (immutable source of truth)
+2. **Actor Instance**: Database record in `lupo_actors` table (runtime instance)
+3. **Actor Capabilities**: Database in `lupo_actor_skills`, `lupo_actor_tools`, etc.
+4. **IDE Integration**: Faucets (Cursor, Windsurf, etc.) interface with agents
+
+### File vs Database Authority
+
+**DOCTRINE**: File-based definitions are authoritative; database is runtime reflection.
+
+**Rules**:
+- **File → DB is authoritative**: Agent files in `lupo-agents/` define the agent
+- **DB → File is forbidden**: Database never modifies agent definition files
+- **IDE → File allowed**: IDE can modify agent files through agent workspace
+- **IDE → DB forbidden**: IDE cannot directly modify agent database records
+- **Conflict resolution**: File wins, DB syncs to file
+
+### Sync Process
+
+- **File changes trigger actor record updates**: When agent files change, corresponding database records are updated
+- **Database changes never trigger file changes**: Database runtime changes don't modify source definitions
+- **Conflict resolution**: File-based definitions always take precedence over database state
+- **Automatic discovery**: `AgentDiscovery::discoverAgents()` automatically detects filesystem changes
 
 | Table | Purpose | Primary Key | Key Application Relationships |
 |-------|---------|-------------|------------------------------|
@@ -1054,6 +1310,113 @@ lupo-agents/{agent_id}/
 - Maintain backward compatibility with existing geographic systems
 
 ---
+
+## Agent Discovery Class
+
+### File Location
+`lupo-includes/classes/AgentDiscovery.php`
+
+### Core Purpose
+The `AgentDiscovery` class provides filesystem-based agent discovery and management, replacing the previous database-driven approach.
+
+### Key Methods
+
+#### Discovery Methods
+```php
+AgentDiscovery::discoverAgents()           // Discover all agents from filesystem
+AgentDiscovery::getAgent($agentKey)       // Get specific agent by agent_key (PRIMARY)
+AgentDiscovery::getAgentById($agentId)     // Get by legacy agent_id (BACKWARD COMPATIBILITY)
+AgentDiscovery::getAgentsByLayer($layer)  // Filter agents by coordination/application/kernel layer
+AgentDiscovery::searchAgents($query)        // Search by name, role, or aliases
+```
+
+#### Management Methods
+```php
+AgentDiscovery::validateAgentConfig($config) // Validate agent configuration
+AgentDiscovery::getStatistics()           // Get system statistics and metrics
+AgentDiscovery::getRequiredAgents()       // Get only required agents
+AgentDiscovery::getKernelAgents()         // Get only kernel agents
+```
+
+#### File Loading
+The class automatically loads:
+- `agent.json` - Primary configuration with metadata
+- `capabilities.json` - Agent capabilities and skills
+- `properties.json` - Agent properties and constraints
+- `system_prompt.txt` - Agent's system prompt and operational guidance
+
+#### Validation Features
+- Schema validation for agent configurations
+- Cross-field consistency checks
+- Required field validation
+- Agent key format validation
+
+#### Statistics and Metrics
+The class provides comprehensive system statistics:
+- Total agent count
+- Required vs optional agent breakdown
+- Kernel vs application layer distribution
+- Agents with aliases count
+- Layer distribution statistics
+
+### Integration Guidelines
+
+Use the `AgentDiscovery` class as the primary interface for all agent operations:
+
+```php
+// Recommended usage pattern
+$agentDiscovery = new AgentDiscovery();
+
+// Load all agents
+$allAgents = $agentDiscovery->discoverAgents();
+
+// Get specific agent
+$wolfie = $agentDiscovery->getAgent('wolfie');
+
+// Search for agents
+$orchestrators = $agentDiscovery->searchAgents('orchestrator');
+
+// Get layer-specific agents
+$coordinationAgents = $agentDiscovery->getAgentsByLayer('coordination');
+```
+
+## Constitutional Rules for Agent Files
+
+- **TOON PROTECTION**: Agent files are read-only reflections of definitions
+- **FILE AUTHORITY**: Agent definitions come from files, not database inference
+- **IDE AUTHORITY**: IDE actors can modify agent files through agent workspace
+- **NO DATABASE INFERENCE**: Never infer agent structure from database
+- **FILE FIRST**: Agent definitions come from files, not database
+- **RUNTIME ONLY**: Database stores only execution state and metrics
+
+### File Structure Doctrine
+
+**DOCTRINE**: Agent directory structure is strictly controlled.
+
+#### Required Files
+```
+lupo-agents/{agent_key}/
+├── agent.json           # Core agent metadata (REQUIRED)
+├── capabilities.json    # Agent capabilities and skills (REQUIRED)
+├── properties.json     # Agent properties and constraints (REQUIRED)
+├── system_prompt.txt   # Agent's system prompt and operational guidance (REQUIRED)
+└── versions/           # Historical versions (OPTIONAL)
+```
+
+#### Optional Files
+```
+├── soul.txt            # Agent soul/philosophy (OPTIONAL)
+├── memory.json          # Agent memory template (OPTIONAL)
+├── tools.json           # Agent tool definitions (OPTIONAL)
+└── runtime_state.json   # Runtime state cache (OPTIONAL)
+```
+
+#### File Rules
+- All files must be valid JSON or UTF-8 text
+- No binary files except approved assets
+- File names must match exactly (case-sensitive)
+- IDE can create/modify only through agent workspace
+- Agents cannot modify their own files (security)
 
 ## Constitutional Rules for Agent Files
 
