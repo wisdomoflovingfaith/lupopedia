@@ -49,8 +49,55 @@
 - [2026-03-30] Manual verification: All runtime SQL and the consolidated seed file have been checked for {{prefix}} compliance. Per-file seeds under mysql/seed/ still use lupo_ until rebuilt, but are not used at runtime.
 - [2026-03-31] **Agent Metadata Updates**: Added `metadata_json` field to `lupo_agents` table for UI, avatar, and configuration metadata. Removed actor-only fields (pono_score, pilau_score, kapakai_score, kapu_active, kapu_until, kapu_reason, kapu_consent_given, kapu_appeal_pending) from agent schema. Updated PRD and README to document metadata usage.
 - [2026-03-31] Manual fresh install test completed successfully. All tables dropped and new installation performed via web installer, resulting in clean database state. Confirmed installer works correctly with consolidated seed file.
-last_modified_utc: "20260331093000"
+- last_modified_utc: "20260331120000"
 
 ### Fixed
 - PRD duplication and drift between actors eliminated
 - All namespace PRDs cross-referenced and up to date
+
+### [2026-03-31] Enhanced Primary Coordination Personas
+
+**LEXA (actor_id 15) - Security Enforcement & Guardian**
+- Updated role to 'Security Enforcement & Guardian'
+- Added aliases: security_guardian, enforcer
+- Enhanced capabilities.json with 10 security-focused capabilities
+- Updated system_prompt.txt with comprehensive security guidance
+- Enhanced properties.json with security posture and coordination approach
+- Version bumped to 1.0.2
+
+**ATHENA (actor_id 11) - Wisdom & Strategy**
+- Updated role to 'Wisdom & Strategy'
+- Updated layer to 'coordination' (primary coordination layer)
+- Added aliases: wisdom, strategy
+- Enhanced capabilities.json with 10 wisdom-focused capabilities
+- Updated system_prompt.txt with comprehensive strategic guidance
+- Enhanced properties.json with wisdom synthesis philosophy
+- Version bumped to 1.0.2
+
+**THOTH (actor_id 8) - Knowledge & Records**
+- Created complete agent configuration as Knowledge & Records persona
+- Added aliases: knowledge, records, scribe
+- Enhanced capabilities.json with 10 knowledge-focused capabilities
+- Updated system_prompt.txt with comprehensive knowledge management guidance
+- Enhanced properties.json with knowledge management philosophy
+- Version bumped to 1.0.2
+
+**ANUBIS (actor_id 19) - Custodian & Integrity Guardian**
+- Added comprehensive PRD section in 07_agents_faucets.md
+- Enhanced agent.json with aliases and verification metadata
+- Expanded capabilities.json with 12 custodial capabilities
+- Updated system_prompt.txt with comprehensive 67-line custodial guidance
+- Enhanced properties.json with custodial philosophy and coordination approach
+- Fixed lupo_anubis_events table schema (row_id → old_id + new_id)
+- Updated all ANUBIS JSON schema files to match database (later reverted as auto-generated)
+- Version bumped to 1.0.2
+
+**Database Schema Updates**
+- Fixed ANUBIS events table to use old_id and new_id fields
+- Updated install_new_lupopedia.sql with proper schema alignment
+- Maintained database neutrality doctrine compliance
+
+### Fixed
+- JSON Schema File Management Error: Corrected workflow for database schema updates
+- Updated SQL schema instead of manually editing auto-generated JSON files
+- Confirmed proper database-first approach for schema changes
