@@ -25,6 +25,10 @@ SET @now = 20260225000000;
 INSERT INTO {{prefix}}registry (registry_id, entity_type, entity_index_id, entity_index, federation_node_id, reserved_ymdhis, entity_key, entity_name, entity_table, created_ymdhis, updated_ymdhis, is_deleted, is_active, is_kernel, metadata_json)
 VALUES (9000000, 'actor', 0, 0, 1, @now, 'system', 'System', '{{prefix}}actors', @now, @now, 0, 1, 1, '{"actor_type":"system","purpose":"kernel_operations"}');
 
+-- THOTH (Knowledge & Records)
+INSERT INTO {{prefix}}registry (registry_id, entity_type, entity_index_id, federation_node_id, reserved_ymdhis, entity_key, entity_name, entity_table, created_ymdhis, updated_ymdhis, is_deleted, is_active, is_kernel, metadata_json)
+VALUES (9000008, 'agent', 0, 1, 1, 'thoth', @now, 'THOTH', '{{prefix}}agents', @now, 0, 1, 1, 0, 1, 0, '{"actor_type":"agent","agent_id":8,"purpose":"knowledge_management","full_access":true}');
+
 -- Core AI Agents (1-99)
 INSERT INTO {{prefix}}registry (registry_id, entity_type, entity_index_id, entity_index, federation_node_id, reserved_ymdhis, entity_key, entity_name, entity_table, created_ymdhis, updated_ymdhis, is_deleted, is_active, is_kernel, metadata_json)
 VALUES 
@@ -282,157 +286,8 @@ VALUES
 -- <<< END FILE: seed_registry_additional_csv_entities_4.0.45.sql
 
 -- >>> BEGIN FILE: seed_registry_open_4.0.45.sql
-
--- ============================================================================
--- REGISTRY OPEN (GAPS) SEEDING FOR LUPOPEDIA 4.0.45
--- ============================================================================
--- Purpose: Populate {{prefix}}registry_open with available IDs (gaps between reserved)
--- Run after: seed_registry_comprehensive_4.0.45.sql
--- ============================================================================
-
-SET @now = 20260225000000;
-
--- ============================================================================
--- ACTOR ID GAPS
--- Reserved: 0, 1-5 (core agents), 100-111 (IDE agents)
--- Available: 6-99, 112-999 (available for system/IDE agents)
--- Human Actor ID Doctrine: human actors must have actor_id >= 1000 (HumanActorIdDoctrine.md).
--- ============================================================================
-
--- Gaps 6-99 (94 IDs)
-INSERT INTO {{prefix}}registry_open (entity_type, entity_index_id, reason, created_ymdhis)
-SELECT 'actor', n, 'available_for_system_agents', @now
-FROM (
-  SELECT 6 + a.N + b.N * 10 AS n
-  FROM 
-    (SELECT 0 AS N UNION SELECT 1 UNION SELECT 2 UNION SELECT 3 UNION SELECT 4 UNION SELECT 5 UNION SELECT 6 UNION SELECT 7 UNION SELECT 8 UNION SELECT 9) a,
-    (SELECT 0 AS N UNION SELECT 1 UNION SELECT 2 UNION SELECT 3 UNION SELECT 4 UNION SELECT 5 UNION SELECT 6 UNION SELECT 7 UNION SELECT 8 UNION SELECT 9) b
-) numbers
-WHERE n <= 99;
-
--- Gaps 112-999 (888 IDs for system/IDE agents)
-INSERT INTO {{prefix}}registry_open (entity_type, entity_index_id, reason, created_ymdhis)
-SELECT 'actor', n, 'available_for_system_agents', @now
-FROM (
-  SELECT 112 + a.N + b.N * 10 + c.N * 100 AS n
-  FROM 
-    (SELECT 0 AS N UNION SELECT 1 UNION SELECT 2 UNION SELECT 3 UNION SELECT 4 UNION SELECT 5 UNION SELECT 6 UNION SELECT 7 UNION SELECT 8 UNION SELECT 9) a,
-    (SELECT 0 AS N UNION SELECT 1 UNION SELECT 2 UNION SELECT 3 UNION SELECT 4 UNION SELECT 5 UNION SELECT 6 UNION SELECT 7 UNION SELECT 8 UNION SELECT 9) b,
-    (SELECT 0 AS N UNION SELECT 1 UNION SELECT 2 UNION SELECT 3 UNION SELECT 4 UNION SELECT 5 UNION SELECT 6 UNION SELECT 7 UNION SELECT 8 UNION SELECT 9) c
-) numbers
-WHERE n <= 999;
-
--- Gaps 1001-9999 (available for human users)
-INSERT INTO {{prefix}}registry_open (entity_type, entity_index_id, reason, created_ymdhis)
-SELECT 'actor', n, 'available_for_human_users', @now
-FROM (
-  SELECT 1001 + a.N + b.N * 10 + c.N * 100 + d.N * 1000 AS n
-  FROM 
-    (SELECT 0 AS N UNION SELECT 1 UNION SELECT 2 UNION SELECT 3 UNION SELECT 4 UNION SELECT 5 UNION SELECT 6 UNION SELECT 7 UNION SELECT 8 UNION SELECT 9) a,
-    (SELECT 0 AS N UNION SELECT 1 UNION SELECT 2 UNION SELECT 3 UNION SELECT 4 UNION SELECT 5 UNION SELECT 6 UNION SELECT 7 UNION SELECT 8 UNION SELECT 9) b,
-    (SELECT 0 AS N UNION SELECT 1 UNION SELECT 2 UNION SELECT 3 UNION SELECT 4 UNION SELECT 5 UNION SELECT 6 UNION SELECT 7 UNION SELECT 8 UNION SELECT 9) c,
-    (SELECT 0 AS N UNION SELECT 1 UNION SELECT 2 UNION SELECT 3 UNION SELECT 4 UNION SELECT 5 UNION SELECT 6 UNION SELECT 7 UNION SELECT 8 UNION SELECT 9) d
-) numbers
-WHERE n <= 9999;
-
--- ============================================================================
--- CHANNEL ID GAPS
--- Reserved: 0, 1, 42, 51
--- Available: 2-41, 43-50, 52-999
--- ============================================================================
-
--- Gaps 2-41 (40 IDs)
-INSERT INTO {{prefix}}registry_open (entity_type, entity_index_id, reason, created_ymdhis)
-SELECT 'channel', n, 'available_for_channels', @now
-FROM (
-  SELECT 2 + a.N + b.N * 10 AS n
-  FROM 
-    (SELECT 0 AS N UNION SELECT 1 UNION SELECT 2 UNION SELECT 3 UNION SELECT 4 UNION SELECT 5 UNION SELECT 6 UNION SELECT 7 UNION SELECT 8 UNION SELECT 9) a,
-    (SELECT 0 AS N UNION SELECT 1 UNION SELECT 2 UNION SELECT 3) b
-) numbers
-WHERE n <= 41;
-
--- Gaps 43-50 (8 IDs)
-INSERT INTO {{prefix}}registry_open (entity_type, entity_index_id, reason, created_ymdhis)
-VALUES
-('channel', 43, 'available_for_channels', @now),
-('channel', 44, 'available_for_channels', @now),
-('channel', 45, 'available_for_channels', @now),
-('channel', 46, 'available_for_channels', @now),
-('channel', 47, 'available_for_channels', @now),
-('channel', 48, 'available_for_channels', @now),
-('channel', 49, 'available_for_channels', @now),
-('channel', 50, 'available_for_channels', @now);
-
--- Gaps 52-999 (948 IDs)
-INSERT INTO {{prefix}}registry_open (entity_type, entity_index_id, reason, created_ymdhis)
-SELECT 'channel', n, 'available_for_channels', @now
-FROM (
-  SELECT 52 + a.N + b.N * 10 + c.N * 100 AS n
-  FROM 
-    (SELECT 0 AS N UNION SELECT 1 UNION SELECT 2 UNION SELECT 3 UNION SELECT 4 UNION SELECT 5 UNION SELECT 6 UNION SELECT 7 UNION SELECT 8 UNION SELECT 9) a,
-    (SELECT 0 AS N UNION SELECT 1 UNION SELECT 2 UNION SELECT 3 UNION SELECT 4 UNION SELECT 5 UNION SELECT 6 UNION SELECT 7 UNION SELECT 8 UNION SELECT 9) b,
-    (SELECT 0 AS N UNION SELECT 1 UNION SELECT 2 UNION SELECT 3 UNION SELECT 4 UNION SELECT 5 UNION SELECT 6 UNION SELECT 7 UNION SELECT 8 UNION SELECT 9) c
-) numbers
-WHERE n <= 999;
-
--- ============================================================================
--- AGENT ID GAPS
--- Reserved: 0, 1-5
--- Available: 6-999
--- ============================================================================
-
-INSERT INTO {{prefix}}registry_open (entity_type, entity_index_id, reason, created_ymdhis)
-SELECT 'agent', n, 'available_for_agents', @now
-FROM (
-  SELECT 6 + a.N + b.N * 10 + c.N * 100 AS n
-  FROM 
-    (SELECT 0 AS N UNION SELECT 1 UNION SELECT 2 UNION SELECT 3 UNION SELECT 4 UNION SELECT 5 UNION SELECT 6 UNION SELECT 7 UNION SELECT 8 UNION SELECT 9) a,
-    (SELECT 0 AS N UNION SELECT 1 UNION SELECT 2 UNION SELECT 3 UNION SELECT 4 UNION SELECT 5 UNION SELECT 6 UNION SELECT 7 UNION SELECT 8 UNION SELECT 9) b,
-    (SELECT 0 AS N UNION SELECT 1 UNION SELECT 2 UNION SELECT 3 UNION SELECT 4 UNION SELECT 5 UNION SELECT 6 UNION SELECT 7 UNION SELECT 8 UNION SELECT 9) c
-) numbers
-WHERE n <= 999;
-
--- ============================================================================
--- DEPARTMENT ID GAPS
--- Reserved: 0, 1
--- Available: 2-999
--- ============================================================================
-
-INSERT INTO {{prefix}}registry_open (entity_type, entity_index_id, reason, created_ymdhis)
-SELECT 'department', n, 'available_for_departments', @now
-FROM (
-  SELECT 2 + a.N + b.N * 10 + c.N * 100 AS n
-  FROM 
-    (SELECT 0 AS N UNION SELECT 1 UNION SELECT 2 UNION SELECT 3 UNION SELECT 4 UNION SELECT 5 UNION SELECT 6 UNION SELECT 7 UNION SELECT 8 UNION SELECT 9) a,
-    (SELECT 0 AS N UNION SELECT 1 UNION SELECT 2 UNION SELECT 3 UNION SELECT 4 UNION SELECT 5 UNION SELECT 6 UNION SELECT 7 UNION SELECT 8 UNION SELECT 9) b,
-    (SELECT 0 AS N UNION SELECT 1 UNION SELECT 2 UNION SELECT 3 UNION SELECT 4 UNION SELECT 5 UNION SELECT 6 UNION SELECT 7 UNION SELECT 8 UNION SELECT 9) c
-) numbers
-WHERE n <= 999;
-
--- ============================================================================
--- THREAD ID GAPS
--- Reserved: 0
--- Available: 1-9999
--- ============================================================================
-
-INSERT INTO {{prefix}}registry_open (entity_type, entity_index_id, reason, created_ymdhis)
-SELECT 'thread', n, 'available_for_threads', @now
-FROM (
-  SELECT 1 + a.N + b.N * 10 + c.N * 100 + d.N * 1000 AS n
-  FROM 
-    (SELECT 0 AS N UNION SELECT 1 UNION SELECT 2 UNION SELECT 3 UNION SELECT 4 UNION SELECT 5 UNION SELECT 6 UNION SELECT 7 UNION SELECT 8 UNION SELECT 9) a,
-    (SELECT 0 AS N UNION SELECT 1 UNION SELECT 2 UNION SELECT 3 UNION SELECT 4 UNION SELECT 5 UNION SELECT 6 UNION SELECT 7 UNION SELECT 8 UNION SELECT 9) b,
-    (SELECT 0 AS N UNION SELECT 1 UNION SELECT 2 UNION SELECT 3 UNION SELECT 4 UNION SELECT 5 UNION SELECT 6 UNION SELECT 7 UNION SELECT 8 UNION SELECT 9) c,
-    (SELECT 0 AS N UNION SELECT 1 UNION SELECT 2 UNION SELECT 3 UNION SELECT 4 UNION SELECT 5 UNION SELECT 6 UNION SELECT 7 UNION SELECT 8 UNION SELECT 9) d
-) numbers
-WHERE n <= 9999;
-
--- ============================================================================
--- END OF REGISTRY OPEN SEEDING
--- ============================================================================
--- OBSOLETE: This file is deprecated and intentionally left blank. Registry tables are removed in 4.0.86+. Do not use.
-
+-- OBSOLETE (4.0.93+ deterministic IDs): registry_open allocation removed.
+-- This section is intentionally left as a no-op in consolidated runtime seed.
 -- <<< END FILE: seed_registry_open_4.0.45.sql
 
 -- >>> BEGIN FILE: seed_actors_agents_4.0.45.sql
@@ -924,6 +779,7 @@ ON DUPLICATE KEY UPDATE
 -- Federation Nodes
 INSERT INTO {{prefix}}federation_nodes (
     federation_node_id,
+    node_base_url,
     node_name,
     node_type,
     description,
@@ -932,6 +788,7 @@ INSERT INTO {{prefix}}federation_nodes (
     is_deleted
 ) VALUES (
     1,
+    'http://www.lupopedia.com',
     'core',
     'primary',
     'Primary federation node for core system operations',
@@ -965,8 +822,8 @@ INSERT INTO {{prefix}}departments (
 
 -- Map system actors (1-14) to department 0 (root) using actor_departments table
 INSERT INTO {{prefix}}actor_departments (actor_department_id, actor_id, department_id, role_key, title, created_ymdhis, updated_ymdhis, is_deleted)
-SELECT 
-    (SELECT COALESCE(MAX(actor_department_id), 0) + 1 + ROW_NUMBER() OVER (ORDER BY actor_id) FROM {{prefix}}actor_departments) as actor_department_id,
+SELECT
+    (8000000 + actor_id) as actor_department_id,
     actor_id,
     0 as department_id,
     'system' as role_key,
@@ -981,7 +838,7 @@ WHERE actor_id BETWEEN 1 AND 14;
 INSERT INTO {{prefix}}auth_user_departments (
     auth_user_department_id, auth_user_id, department_id, is_primary, role_key, title, created_ymdhis, updated_ymdhis, is_deleted
 ) VALUES (
-    (SELECT COALESCE(MAX(auth_user_department_id), 0) + 1 FROM {{prefix}}auth_user_departments),
+    8101000,
     1000,
     0,
     1,  -- is_primary
@@ -996,8 +853,8 @@ INSERT INTO {{prefix}}auth_user_departments (
 INSERT INTO {{prefix}}auth_user_departments (
     auth_user_department_id, auth_user_id, department_id, is_primary, role_key, title, created_ymdhis, updated_ymdhis, is_deleted
 )
-SELECT 
-    (SELECT COALESCE(MAX(aud2.auth_user_department_id), 0) + ROW_NUMBER() OVER (ORDER BY au.auth_user_id) FROM {{prefix}}auth_user_departments aud2) as auth_user_department_id,
+SELECT
+    (8100000 + au.auth_user_id) as auth_user_department_id,
     au.auth_user_id,
     0 as department_id,
     1 as is_primary,
@@ -1007,30 +864,28 @@ SELECT
     20260328120000 as updated_ymdhis,
     0 as is_deleted
 FROM {{prefix}}auth_users au
-WHERE au.auth_user_id NOT IN (
-    SELECT aud.auth_user_id FROM {{prefix}}auth_user_departments aud WHERE aud.is_deleted = 0
-)
-AND au.is_active = 1
+WHERE au.is_active = 1
 AND au.is_deleted = 0;
 
 -- Primary Coordination Personas (System Actors 1-14)
 -- These are the 11 primary coordination personas plus 3 system actors
-INSERT INTO {{prefix}}actors (actor_id, actor_name, name, actor_type, created_ymdhis, updated_ymdhis, is_active, is_deleted, can_login, is_agent, actor_source_id, actor_source_type, is_deleted) VALUES
-(1, 'wolfie', 'Captain WOLFIE', 'system', 20260328120000, 20260328120000, 1, 0, 1, 1, 0, 'system', 0),
-(2, 'lexa', 'LEXA', 'system', 20260328120000, 20260328120000, 1, 0, 1, 1, 0, 'system', 0),
-(3, 'anubis', 'ANUBIS', 'system', 20260328120000, 20260328120000, 1, 0, 1, 1, 0, 'system', 0),
-(4, 'heimdall', 'HEIMDALL', 'system', 20260328120000, 20260328120000, 1, 0, 1, 1, 0, 'system', 0),
-(5, 'seshat', 'SESHAT', 'system', 20260328120000, 20260328120000, 1, 0, 1, 1, 0, 'system', 0),
-(6, 'athena', 'ATHENA', 'system', 20260328120000, 20260328120000, 1, 0, 1, 1, 0, 'system', 0),
-(7, 'maat', 'MAAT', 'system', 20260328120000, 20260328120000, 1, 0, 1, 1, 0, 'system', 0),
-(8, 'themis', 'THEMIS', 'system', 20260328120000, 20260328120000, 1, 0, 1, 1, 0, 'system', 0),
-(9, 'thoth', 'THOTH', 'system', 20260328120000, 20260328120000, 1, 0, 1, 1, 0, 'system', 0),
-(10, 'janus', 'JANUS', 'system', 20260328120000, 20260328120000, 1, 0, 1, 1, 0, 'system', 0),
-(11, 'rose', 'ROSE', 'system', 20260328120000, 20260328120000, 1, 0, 1, 1, 0, 'system', 0),
-(12, 'hermes', 'HERMES', 'system', 20260328120000, 20260328120000, 1, 0, 1, 1, 0, 'system', 0),
-(13, 'iris', 'IRIS', 'system', 20260328120000, 20260328120000, 1, 0, 1, 1, 0, 'system', 0),
-(14, 'asclepius', 'ASCLEPIUS', 'system', 20260328120000, 20260328120000, 1, 0, 1, 1, 0, 'system', 0)
+INSERT INTO {{prefix}}actors (actor_id, actor_name, slug, name, actor_type, created_ymdhis, updated_ymdhis, is_active, is_deleted, can_login, is_agent, actor_source_id, actor_source_type) VALUES
+(1, 'wolfie', 'wolfie', 'Captain WOLFIE', 'system', 20260328120000, 20260328120000, 1, 0, 1, 1, 0, 'system'),
+(2, 'lexa', 'lexa', 'LEXA', 'system', 20260328120000, 20260328120000, 1, 0, 1, 1, 0, 'system'),
+(3, 'anubis', 'anubis', 'ANUBIS', 'system', 20260328120000, 20260328120000, 1, 0, 1, 1, 0, 'system'),
+(4, 'heimdall', 'heimdall', 'HEIMDALL', 'system', 20260328120000, 20260328120000, 1, 0, 1, 1, 0, 'system'),
+(5, 'seshat', 'seshat', 'SESHAT', 'system', 20260328120000, 20260328120000, 1, 0, 1, 1, 0, 'system'),
+(6, 'athena', 'athena', 'ATHENA', 'system', 20260328120000, 20260328120000, 1, 0, 1, 1, 0, 'system'),
+(7, 'maat', 'maat', 'MAAT', 'system', 20260328120000, 20260328120000, 1, 0, 1, 1, 0, 'system'),
+(8, 'themis', 'themis', 'THEMIS', 'system', 20260328120000, 20260328120000, 1, 0, 1, 1, 0, 'system'),
+(9, 'thoth', 'thoth', 'THOTH', 'system', 20260328120000, 20260328120000, 1, 0, 1, 1, 0, 'system'),
+(10, 'janus', 'janus', 'JANUS', 'system', 20260328120000, 20260328120000, 1, 0, 1, 1, 0, 'system'),
+(11, 'rose', 'rose', 'ROSE', 'system', 20260328120000, 20260328120000, 1, 0, 1, 1, 0, 'system'),
+(12, 'hermes', 'hermes', 'HERMES', 'system', 20260328120000, 20260328120000, 1, 0, 1, 1, 0, 'system'),
+(13, 'iris', 'iris', 'IRIS', 'system', 20260328120000, 20260328120000, 1, 0, 1, 1, 0, 'system'),
+(14, 'asclepius', 'asclepius', 'ASCLEPIUS', 'system', 20260328120000, 20260328120000, 1, 0, 1, 1, 0, 'system')
 ON DUPLICATE KEY UPDATE 
+    slug = VALUES(slug),
     name = VALUES(name),
     actor_type = VALUES(actor_type),
     updated_ymdhis = VALUES(updated_ymdhis),
@@ -1073,8 +928,8 @@ INSERT INTO {{prefix}}departments (
 
 -- Map system actors (1-14) to department 0 (root) using actor_departments table
 INSERT INTO {{prefix}}actor_departments (actor_department_id, actor_id, department_id, role_key, title, created_ymdhis, updated_ymdhis, is_deleted)
-SELECT 
-    (SELECT COALESCE(MAX(actor_department_id), 0) + 1 + ROW_NUMBER() OVER (ORDER BY actor_id) FROM {{prefix}}actor_departments) as actor_department_id,
+SELECT
+    (8200000 + actor_id) as actor_department_id,
     actor_id,
     0 as department_id,
     'system' as role_key,
@@ -1089,7 +944,7 @@ WHERE actor_id BETWEEN 1 AND 14;
 INSERT INTO {{prefix}}auth_user_departments (
     auth_user_department_id, auth_user_id, department_id, is_primary, role_key, title, created_ymdhis, updated_ymdhis, is_deleted
 ) VALUES (
-    (SELECT COALESCE(MAX(auth_user_department_id), 0) + 1 FROM {{prefix}}auth_user_departments),
+    8201000,
     1000,
     0,
     1,  -- is_primary
@@ -1104,8 +959,8 @@ INSERT INTO {{prefix}}auth_user_departments (
 INSERT INTO {{prefix}}auth_user_departments (
     auth_user_department_id, auth_user_id, department_id, is_primary, role_key, title, created_ymdhis, updated_ymdhis, is_deleted
 )
-SELECT 
-    (SELECT COALESCE(MAX(aud2.auth_user_department_id), 0) + ROW_NUMBER() OVER (ORDER BY au.auth_user_id) FROM {{prefix}}auth_user_departments aud2) as auth_user_department_id,
+SELECT
+    (8200000 + au.auth_user_id) as auth_user_department_id,
     au.auth_user_id,
     0 as department_id,
     1 as is_primary,
@@ -1115,10 +970,7 @@ SELECT
     20260328120000 as updated_ymdhis,
     0 as is_deleted
 FROM {{prefix}}auth_users au
-WHERE au.auth_user_id NOT IN (
-    SELECT aud.auth_user_id FROM {{prefix}}auth_user_departments aud WHERE aud.is_deleted = 0
-)
-AND au.is_active = 1
+WHERE au.is_active = 1
 AND au.is_deleted = 0;
 
 -- <<< END FILE: seed_departments.sql
@@ -1483,6 +1335,7 @@ SET @now = 20260313150000;
 
 -- Wolfie's comment on CHANGELOG.md (orchestrator comment)
 INSERT INTO {{prefix}}comments (
+  comment_id,
   target_type,
   target_id,
   channel_id,
@@ -1493,6 +1346,7 @@ INSERT INTO {{prefix}}comments (
   created_ymdhis,
   updated_ymdhis
 ) VALUES (
+  7300001,
   'document',
   1,  -- Assuming CHANGELOG.md has content_id 1
   42,
@@ -1506,6 +1360,7 @@ INSERT INTO {{prefix}}comments (
 
 -- Wolfie's reply to his own comment (threaded)
 INSERT INTO {{prefix}}comments (
+  comment_id,
   target_type,
   target_id,
   channel_id,
@@ -1517,6 +1372,7 @@ INSERT INTO {{prefix}}comments (
   created_ymdhis,
   updated_ymdhis
 ) VALUES (
+  7300002,
   'document',
   1,
   42,
@@ -1524,13 +1380,14 @@ INSERT INTO {{prefix}}comments (
   101,
   'Looking forward to seeing the comments system integrated across all artifacts.',
   'comment',
-  1,  -- parent_comment_id
+  7300001,  -- parent_comment_id
   @now + 1,
   @now + 1
 );
 
 -- Root user's comment on TODO.md
 INSERT INTO {{prefix}}comments (
+  comment_id,
   target_type,
   target_id,
   channel_id,
@@ -1541,6 +1398,7 @@ INSERT INTO {{prefix}}comments (
   created_ymdhis,
   updated_ymdhis
 ) VALUES (
+  7300003,
   'document',
   2,  -- Assuming TODO.md has content_id 2
   42,
@@ -1554,6 +1412,7 @@ INSERT INTO {{prefix}}comments (
 
 -- LILITH's comment on TRAITS_DOCTRINE.md
 INSERT INTO {{prefix}}comments (
+  comment_id,
   target_type,
   target_id,
   channel_id,
@@ -1564,6 +1423,7 @@ INSERT INTO {{prefix}}comments (
   created_ymdhis,
   updated_ymdhis
 ) VALUES (
+  7300004,
   'document',
   3,  -- Assuming TRAITS_DOCTRINE.md has content_id 3
   42,
@@ -1577,6 +1437,7 @@ INSERT INTO {{prefix}}comments (
 
 -- ROSE's comment on AUTHORIZATION_DOCTRINE.md
 INSERT INTO {{prefix}}comments (
+  comment_id,
   target_type,
   target_id,
   channel_id,
@@ -1587,6 +1448,7 @@ INSERT INTO {{prefix}}comments (
   created_ymdhis,
   updated_ymdhis
 ) VALUES (
+  7300005,
   'document',
   4,  -- Assuming AUTHORIZATION_DOCTRINE.md has content_id 4
   42,
@@ -1924,6 +1786,7 @@ SET @qa_now = 20260325223000;
 
 -- Question row: slug = lupopedia
 INSERT INTO {{prefix}}questions (
+  question_id,
   slug,
   question_text,
   actor_id,
@@ -1932,6 +1795,7 @@ INSERT INTO {{prefix}}questions (
   is_deleted
 )
 SELECT
+  7400001,
   'lupopedia',
   'What is Lupopedia?',
   1,
@@ -1944,6 +1808,7 @@ WHERE NOT EXISTS (
 
 -- Answer row sourced from README summary
 INSERT INTO {{prefix}}answers (
+  answer_id,
   question_id,
   answer_text,
   actor_id,
@@ -1952,6 +1817,7 @@ INSERT INTO {{prefix}}answers (
   is_deleted
 )
 SELECT
+  (7500000 + q.question_id),
   q.question_id,
   'Lupopedia is a doctrine-driven semantic operating system built on Crafty Syntax 3.7.5 foundations, with explicit actor orchestration, channel and thread workflows, and verifiable artifact metadata.',
   1,
