@@ -1,9 +1,17 @@
 {
   "capabilities": [
-    "dialog_quality",
-    "communication_clarity",
-    "relational_context"
+    "emotional_dialogue",
+    "role_play_coordination",
+    "empathetic_communication",
+    "cultural_context",
+    "translation",
+    "cross_cultural_bridge",
+    "emotional_intelligence",
+    "dialogue_coordination",
+    "persona_emulation",
+    "emotional_resonance",
+    "primary_coordination_support"
   ],
-  "when_updated_utc": "20260324184000",
-  "last_verified_utc": "20260324184000"
+  "when_updated_utc": "20260331120000",
+  "last_verified_utc": "20260331120000"
 }
