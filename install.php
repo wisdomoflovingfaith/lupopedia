@@ -23,7 +23,7 @@
  *     { from: "README.md", type: "references", weight: 1.0, hashtag: "#installation" },
  *     { from: "docs/doctrine/migrations/MIGRATION_MAPPING_REFERENCE.md", type: "implements", weight: 1.0, hashtag: "#migration" },
  *     { from: "lupo-database/lupopedia/mysql/install/install_new_lupopedia.sql", type: "executes", weight: 1.0, hashtag: "#schema" },
- *     { from: "lupo-database/lupopedia/mysql/seed/", type: "executes", weight: 1.0, hashtag: "#seed" },
+ *     { from: "install/seed_lupopedia_4_1_0.sql", type: "executes", weight: 1.0, hashtag: "#seed" },
  *     { from: "lupo-database/lupopedia/mysql/import/import_from_old_crafty_syntax.sql", type: "executes", weight: 1.0, hashtag: "#import" },
  *     { from: "lupo-database/lupopedia/mysql/import/old_crafty_syntax_3_7_5_start.sql", type: "detects", weight: 0.9, hashtag: "#legacy" },
  *     { from: "lupo-install/index.php", type: "includes", weight: 0.9, hashtag: "#ui" },
@@ -33,7 +33,7 @@
  *     { to: "lupopedia-config.php", type: "generates", weight: 1.0, hashtag: "#config" },
  *     { to: "lupo-includes/version.php", type: "requires", weight: 1.0, hashtag: "#version" },
  *     { to: "lupo-database/lupopedia/mysql/install/install_new_lupopedia.sql", type: "executes", weight: 1.0, hashtag: "#schema" },
- *     { to: "lupo-database/lupopedia/mysql/seed/", type: "executes", weight: 1.0, hashtag: "#seed" },
+ *     { to: "install/seed_lupopedia_4_1_0.sql", type: "executes", weight: 1.0, hashtag: "#seed" },
  *     { to: "lupo-database/lupopedia/mysql/import/import_from_old_crafty_syntax.sql", type: "executes", weight: 1.0, hashtag: "#import" },
  *     { to: "lupo-database/lupopedia/mysql/import/old_crafty_syntax_3_7_5_start.sql", type: "detects", weight: 0.9, hashtag: "#legacy" },
  *     { to: "lupo-app/Services/CraftyMigrationService.php", type: "uses", weight: 0.8, hashtag: "#migration" },
@@ -688,14 +688,8 @@ if ($step === 'run') {
             // Keep no-op here intentionally to avoid touching removed tables during install.
             // 4.0.20: Ensure Stoned Wolfie (AI + human) banned test identities exist after import/seed.
             InstallWizardBannedIdentities::ensureStonedWolfieBannedIdentities($pdo, $log, $table_prefix);
-            // ANUBIS queue tables and primacy updates (seeds; kept in seed/ so they are not removed).
-            $anubis_seeds = array('anubis_queue_tables_4.0.53.sql', '20260301_anubis_database_primacy_updates.sql');
-            foreach ($anubis_seeds as $seedFile) {
-                $path = $mysqlDir . DIRECTORY_SEPARATOR . 'seed' . DIRECTORY_SEPARATOR . $seedFile;
-                if (is_file($path)) {
-                    InstallWizardSqlRunner::runSqlFile($pdo, $path, $log, $table_prefix);
-                }
-            }
+            // 4.0.93+: single-seed runtime doctrine.
+            // ANUBIS schema/tables are canonical in install_new_lupopedia.sql.
 
             // Activations Block
             require_once LUPOPEDIA_PATH . '/lupo-includes/functions/ai_activation.php';
@@ -1535,7 +1529,7 @@ if ($baseUrl === '') {
                 <p>You selected New install. The wizard will:</p>
                 <ol>
                     <li>Run <code>lupo-database/lupopedia/mysql/install/install_new_lupopedia.sql</code></li>
-                    <li>Run consolidated seed <code>install/seed_lupopedia_4_1_0.sql</code> (replaces per-file seeds; originals remain under <code>lupo-database/lupopedia/mysql/seed/</code>)</li>
+                    <li>Run consolidated seed <code>install/seed_lupopedia_4_1_0.sql</code> (single runtime seed)</li>
                     <li>Create reserved system channels (0, 1, 42, 51)</li>
                     <li>Write <code>lupopedia-config.php</code></li>
                     <li>Redirect to login</li>
