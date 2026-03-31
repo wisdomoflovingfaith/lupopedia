@@ -965,9 +965,10 @@ CREATE TABLE {{prefix}}anubis_events (
   anubis_event_id bigint NOT NULL,
   event_type varchar(64) NOT NULL,
   table_name varchar(255) NOT NULL,
-  row_id bigint NOT NULL,
+  old_id bigint NOT NULL,
+  new_id bigint NOT NULL,
   created_ymdhis bigint NOT NULL,
-  agent varchar(255) NOT NULL,
+  operator_actor_id bigint NOT NULL,
   details_json text NOT NULL,
   PRIMARY KEY (anubis_event_id)
 );
