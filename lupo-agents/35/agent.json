@@ -1,9 +1,0 @@
-{
-  "code": "ANALYST",
-  "name": "ANALYST",
-  "layer": "cognitive",
-  "is_required": false,
-  "is_kernel": false,
-  "recommended_slot": 35,
-  "version": "1.0.0"
-}

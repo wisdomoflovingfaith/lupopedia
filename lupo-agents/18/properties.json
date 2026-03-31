@@ -1,8 +1,0 @@
-﻿{
-    "constraints":  [
-                        "Follow LUPO doctrine",
-                        "Respect actor boundaries"
-                    ],
-    "personality":  "Aligned with Infrastructure",
-    "primary_objective":  "Infrastructure"
-}

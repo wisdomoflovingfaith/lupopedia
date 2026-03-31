@@ -6,6 +6,7 @@
     "`node_base_url` varchar(500) NOT NULL",
     "`default_department_id` bigint",
     "`node_name` varchar(255)",
+    "`description` text",
     "`node_description` text",
     "`allows_foreign_traits` tinyint NOT NULL DEFAULT 1",
     "`node_contact` varchar(255)",

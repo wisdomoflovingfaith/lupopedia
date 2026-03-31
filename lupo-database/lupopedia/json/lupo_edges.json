@@ -114,6 +114,14 @@
       "index_type": "BTREE"
     },
     {
+      "index_name": "lupo_edges_idx_from_context",
+      "columns": [
+        "left_object_id"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
       "index_name": "lupo_edges_idx_is_deleted",
       "columns": [
         "is_deleted"
@@ -151,6 +159,22 @@
       "index_name": "lupo_edges_idx_semantic_weight",
       "columns": [
         "semantic_weight"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_edges_idx_to_artifact",
+      "columns": [
+        "right_object_id"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_edges_idx_type",
+      "columns": [
+        "edge_type"
       ],
       "is_unique": false,
       "index_type": "BTREE"

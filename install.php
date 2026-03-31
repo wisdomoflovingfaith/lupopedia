@@ -684,8 +684,8 @@ if ($step === 'run') {
             // Import MD files from channels/0/broadcasts/ (for both new install and upgrade)
             InstallWizardMdImporter::importAllMdFiles($pdo, $log, $table_prefix);
 
-            // Populate registry_open with free IDs (gaps) for channels and actors, cap so table stays small.
-            InstallWizardUnregistry::seedUnregistryFromGaps($pdo, $log, InstallWizardUnregistry::DEFAULT_MAX_CAP);
+            // 4.0.93+: registry_open allocation removed (deterministic explicit IDs doctrine).
+            // Keep no-op here intentionally to avoid touching removed tables during install.
             // 4.0.20: Ensure Stoned Wolfie (AI + human) banned test identities exist after import/seed.
             InstallWizardBannedIdentities::ensureStonedWolfieBannedIdentities($pdo, $log, $table_prefix);
             // ANUBIS queue tables and primacy updates (seeds; kept in seed/ so they are not removed).

@@ -1,5 +1,6 @@
-﻿{
-    "capabilities":  [
-                         "truth_\u0026_justice"
-                     ]
+{
+  "allowed_actions": [],
+  "forbidden_actions": [],
+  "escalation_rules": [],
+  "fallback_rules": []
 }

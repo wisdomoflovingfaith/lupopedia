@@ -1,26 +1,18 @@
 {
   "table_name": "lupo_contexts_map",
   "fields": [
-    "`contexts_map_id` bigint NOT NULL",
+    "`context_map_id` bigint NOT NULL",
     "`context_id` bigint NOT NULL",
-    "`item_type` varchar(50) NOT NULL",
+    "`item_type` varchar(64) NOT NULL",
     "`item_slug` varchar(255) NOT NULL",
-    "`description` text",
-    "`is_deleted` tinyint NOT NULL DEFAULT 0",
-    "`deleted_ymdhis` bigint NOT NULL DEFAULT 0",
+    "`item_id` bigint",
     "`created_ymdhis` bigint NOT NULL DEFAULT 0",
-    "`updated_ymdhis` bigint NOT NULL DEFAULT 0"
+    "`updated_ymdhis` bigint NOT NULL DEFAULT 0",
+    "`is_deleted` tinyint NOT NULL DEFAULT 0",
+    "`deleted_ymdhis` bigint DEFAULT 0"
   ],
   "data": [],
   "indexes": [
-    {
-      "index_name": "lupo_contexts_map_idx_context_id",
-      "columns": [
-        "context_id"
-      ],
-      "is_unique": false,
-      "index_type": "BTREE"
-    },
     {
       "index_name": "lupo_contexts_map_idx_context_item",
       "columns": [
@@ -46,19 +38,11 @@
       ],
       "is_unique": false,
       "index_type": "BTREE"
-    },
-    {
-      "index_name": "lupo_contexts_map_idx_item_type",
-      "columns": [
-        "item_type"
-      ],
-      "is_unique": false,
-      "index_type": "BTREE"
     }
   ],
   "primary_key": {
-    "column_name": "contexts_map_id",
-    "expected_name": "contexts_map_id",
+    "column_name": "context_map_id",
+    "expected_name": "context_map_id",
     "is_correct": true,
     "needs_rename": false
   },

@@ -1,9 +1,0 @@
-{
-  "code": "LINKANALYZER",
-  "name": "LINKANALYZER",
-  "layer": "data",
-  "is_required": false,
-  "is_kernel": false,
-  "recommended_slot": 90,
-  "version": "1.0.0"
-}

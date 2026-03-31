@@ -1,8 +1,0 @@
-﻿{
-    "constraints":  [
-                        "Follow LUPO doctrine",
-                        "Respect actor boundaries"
-                    ],
-    "personality":  "Aligned with Build / Automation",
-    "primary_objective":  "Build / Automation"
-}

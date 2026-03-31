@@ -2,36 +2,45 @@
   "table_name": "lupo_contexts",
   "fields": [
     "`context_id` bigint NOT NULL",
-    "`context_code` varchar(16) NOT NULL",
-    "`context_name` varchar(255) NOT NULL",
-    "`context_description` text",
-    "`parent_context_id` bigint",
-    "`is_system` tinyint NOT NULL DEFAULT 0",
-    "`is_fiction` tinyint NOT NULL DEFAULT 0",
-    "`is_installation_local` tinyint NOT NULL DEFAULT 0",
-    "`sort_order` int NOT NULL DEFAULT 0",
-    "`created_ymdhis` bigint NOT NULL DEFAULT 0",
-    "`updated_ymdhis` bigint NOT NULL",
-    "`weight_score` decimal(5,2) NOT NULL DEFAULT 0.00",
-    "`is_active` tinyint NOT NULL DEFAULT 1",
-    "`metadata_json` json"
+    "`source_message_id` bigint",
+    "`context_type` varchar(20)",
+    "`content_raw` text NOT NULL",
+    "`metadata_json` json",
+    "`created_ymdhis` bigint NOT NULL",
+    "`updated_ymdhis` bigint NOT NULL"
   ],
   "data": [],
   "indexes": [
     {
-      "index_name": "lupo_contexts_idx_parent_context",
+      "index_name": "lupo_contexts_idx_created",
       "columns": [
-        "parent_context_id"
+        "created_ymdhis"
       ],
       "is_unique": false,
       "index_type": "BTREE"
     },
     {
-      "index_name": "lupo_contexts_uq_context_code",
+      "index_name": "lupo_contexts_idx_source_message",
       "columns": [
-        "context_code"
+        "source_message_id"
       ],
-      "is_unique": true,
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_contexts_idx_type",
+      "columns": [
+        "context_type"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_contexts_idx_updated",
+      "columns": [
+        "updated_ymdhis"
+      ],
+      "is_unique": false,
       "index_type": "BTREE"
     }
   ],

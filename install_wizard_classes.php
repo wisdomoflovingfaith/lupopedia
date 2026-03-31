@@ -404,6 +404,12 @@ class InstallWizardSqlRunner
         while ($i < $len) {
             $c = $sql[$i];
             if ($inSingle) {
+                // Handle backslash escapes inside single-quoted strings (e.g. \')
+                if ($c === "\\" && $i + 1 < $len) {
+                    $current .= $c . $sql[$i + 1];
+                    $i += 2;
+                    continue;
+                }
                 if ($c === "'" && $i + 1 < $len && $sql[$i + 1] === "'") {
                     $current .= "''";
                     $i += 2;
@@ -678,7 +684,11 @@ require_once ABSPATH . LUPO_INCLUDES_DIR . \'/bootstrap.php\';
 
     /**
      * Enqueue background command for post-install tasks (Doctrine #8: System Commands Queue).
-     * Allocates PK from lupo_registry_open, inserts command with explicit column list.
+     *
+     * NOTE (4.0.93+): Registry-open based PK allocation was removed in favor of
+     * deterministic IDs. This method now uses a simple MAX(command_id)+1 pattern
+     * on {{prefix}}system_commands when available, and degrades gracefully when
+     * the table is missing.
      *
      * @param array $db_vars Database connection info
      * @param array $log Log array (by reference)
@@ -695,17 +705,24 @@ require_once ABSPATH . LUPO_INCLUDES_DIR . \'/bootstrap.php\';
                 array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION)
             );
 
-            $registry_open_table = $table_prefix . 'registry_open';
             $commands_table = $table_prefix . 'system_commands';
             $now = (int) gmdate('YmdHis');
 
-            // Allocate PK from registry_open (Doctrine #6)
-            $stmt = $pdo->prepare("INSERT INTO `{$registry_open_table}` (entity_type, entity_index_id, created_ymdhis) VALUES (?, ?, ?)");
-            $stmt->execute(array('system_command', 0, $now));
-            $command_id = $pdo->lastInsertId();
+            // Determine next command_id deterministically (no registry_open)
+            $command_id = 1;
+            try {
+                $stmtMax = $pdo->query("SELECT COALESCE(MAX(command_id), 0) AS mx FROM `{$commands_table}`");
+                $rowMax = $stmtMax ? $stmtMax->fetch(PDO::FETCH_ASSOC) : null;
+                $maxId = $rowMax && isset($rowMax['mx']) ? (int) $rowMax['mx'] : 0;
+                $command_id = $maxId + 1;
+            } catch (PDOException $e) {
+                // If the table is missing or unreadable, skip enqueue silently.
+                $log[] = InstallWizardLogger::logEntry('skip', 'Could not inspect system_commands for next command_id; skipping background enqueue.');
+                return;
+            }
 
             if (!$command_id || $command_id == 0) {
-                $log[] = InstallWizardLogger::logEntry('skip', 'Could not allocate command_id from registry_open');
+                $log[] = InstallWizardLogger::logEntry('skip', 'Could not allocate deterministic command_id from system_commands');
                 return;
             }
 
@@ -1541,8 +1558,8 @@ class InstallWizardChannels
 }
 
 /**
- * Populate lupo_registry_open with free IDs (gaps) in [0, max] for channels and actors
- * so allocation (findpuka) can reuse them FIFO. Caps the range so the table does not grow huge.
+ * 4.0.93+ deterministic IDs: registry_open lifecycle is retired.
+ * Keep this class as a compatibility no-op for older call sites.
  */
 class InstallWizardUnregistry
 {
@@ -1551,105 +1568,14 @@ class InstallWizardUnregistry
     const DEFAULT_MAX_CAP = 500;
 
     /**
-     * Seed registry_open with all free IDs from 0 to min(MAX(id), maxCap) for channels and actors.
-     * If MAX(id) &gt; maxCap, only gaps in [0, maxCap] are added (keeps table size bounded).
-     *
      * @param PDO $pdo
      * @param array $log
-     * @param int $maxCap Upper bound for the range to consider (default 500). Use to avoid huge unregistry.
+     * @param int $maxCap
      */
     public static function seedUnregistryFromGaps($pdo, &$log, $maxCap = 500)
     {
-        $prefix = defined('LUPO_TABLE_PREFIX') ? LUPO_TABLE_PREFIX : 'lupo_';
-        $ch = $prefix . 'channels';
-        $actors_t = $prefix . 'actors';
-        $unreg = $prefix . 'registry_open';
-        $federationNodeId = 1;
-        $now = (int) gmdate('YmdHis');
-        $maxCap = (int) $maxCap;
-        if ($maxCap < 1) {
-            $log[] = InstallWizardLogger::logEntry('skip', 'Unregistry seed skipped (max cap &lt; 1).');
-            return;
-        }
-        try {
-            $ins = $pdo->prepare(
-                "INSERT IGNORE INTO " . $unreg . " (entity_type, entity_index, federation_node_id, created_utc, metadata_json) VALUES (?, ?, ?, ?, NULL)"
-            );
-        } catch (PDOException $e) {
-            $log[] = InstallWizardLogger::logEntry('error', 'Unregistry seed failed (table missing?): ' . $e->getMessage());
-            return;
-        }
-
-        $totalCh = 0;
-        $totalAct = 0;
-
-        // Channels: free IDs in [0, min(MAX(channel_id), maxCap)]
-        try {
-            $stmt = $pdo->query("SELECT COALESCE(MAX(channel_id), 0) AS mx FROM " . $ch);
-            $row = $stmt ? $stmt->fetch(PDO::FETCH_ASSOC) : null;
-            $maxCh = $row && isset($row['mx']) ? (int) $row['mx'] : 0;
-            $effectiveMaxCh = $maxCh > $maxCap ? $maxCap : $maxCh;
-            if ($maxCh > $maxCap) {
-                $log[] = InstallWizardLogger::logEntry('ok', 'Unregistry: channel max id ' . $maxCh . ' capped at ' . $maxCap . ' to keep table small.');
-            }
-            $stmt2 = $pdo->query("SELECT channel_id FROM " . $ch . " WHERE channel_id >= 0 AND channel_id <= " . (int) $effectiveMaxCh);
-            $usedCh = array();
-            if ($stmt2) {
-                while (($id = $stmt2->fetchColumn()) !== false) {
-                    $usedCh[(int) $id] = true;
-                }
-            }
-            for ($i = 0; $i <= $effectiveMaxCh; $i++) {
-                if (isset($usedCh[$i])) {
-                    continue;
-                }
-                try {
-                    $ins->execute(array('channel', $i, $federationNodeId, $now));
-                    if ($ins->rowCount() > 0) {
-                        $totalCh++;
-                    }
-                } catch (PDOException $e) {
-                    // duplicate or other; skip
-                }
-            }
-        } catch (PDOException $e) {
-            $log[] = InstallWizardLogger::logEntry('error', 'Unregistry channel seed failed: ' . $e->getMessage());
-        }
-
-        // Actors: free IDs in [0, min(MAX(actor_id), maxCap)]
-        try {
-            $stmt = $pdo->query("SELECT COALESCE(MAX(actor_id), 0) AS mx FROM " . $actors_t);
-            $row = $stmt ? $stmt->fetch(PDO::FETCH_ASSOC) : null;
-            $maxAct = $row && isset($row['mx']) ? (int) $row['mx'] : 0;
-            $effectiveMaxAct = $maxAct > $maxCap ? $maxCap : $maxAct;
-            if ($maxAct > $maxCap) {
-                $log[] = InstallWizardLogger::logEntry('ok', 'Unregistry: actor max id ' . $maxAct . ' capped at ' . $maxCap . ' to keep table small.');
-            }
-            $stmt2 = $pdo->query("SELECT actor_id FROM " . $actors_t . " WHERE actor_id >= 0 AND actor_id <= " . (int) $effectiveMaxAct);
-            $usedAct = array();
-            if ($stmt2) {
-                while (($id = $stmt2->fetchColumn()) !== false) {
-                    $usedAct[(int) $id] = true;
-                }
-            }
-            for ($i = 0; $i <= $effectiveMaxAct; $i++) {
-                if (isset($usedAct[$i])) {
-                    continue;
-                }
-                try {
-                    $ins->execute(array('actor', $i, $federationNodeId, $now));
-                    if ($ins->rowCount() > 0) {
-                        $totalAct++;
-                    }
-                } catch (PDOException $e) {
-                    // duplicate or other; skip
-                }
-            }
-        } catch (PDOException $e) {
-            $log[] = InstallWizardLogger::logEntry('error', 'Unregistry actor seed failed: ' . $e->getMessage());
-        }
-
-        $log[] = InstallWizardLogger::logEntry('ok', 'Unregistry seeded: ' . $totalCh . ' channel IDs, ' . $totalAct . ' actor IDs (free list in [0, cap ' . $maxCap . ']).');
+        $log[] = InstallWizardLogger::logEntry('skip', 'InstallWizardUnregistry no-op: registry_open allocator retired (deterministic IDs).');
+        return;
     }
 }
 

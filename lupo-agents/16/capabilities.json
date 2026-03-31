@@ -1,9 +1,0 @@
-{
-  "capabilities": [
-    "integration_support",
-    "interface_coordination",
-    "workflow_handoff"
-  ],
-  "when_updated_utc": "20260324184000",
-  "last_verified_utc": "20260324184000"
-}

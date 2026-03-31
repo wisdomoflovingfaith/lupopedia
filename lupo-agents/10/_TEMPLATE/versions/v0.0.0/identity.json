@@ -1,0 +1,22 @@
+{
+  "agent_id": 0,
+  "agent_name": "TEMPLATE_AGENT",
+  "agent_code": "TEMPLATE",
+  "department": 0,
+  "is_kernel": false,
+  "is_required": false,
+  "version": "0.0.0",
+  "provenance": "",
+  "creator_actor_id": 0,
+  "creation_ymdhis": "",
+  "agent_class": "",
+  "classification_json": {},
+  "layer": "",
+  "recommended_slot": "",
+  "lineage": [],
+  "capabilities": [],
+  "status": "inactive",
+  "actor_version": "",
+  "agent_signature": "",
+  "agent_hash": ""
+}

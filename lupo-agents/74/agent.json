@@ -1,9 +1,0 @@
-{
-  "code": "SCHEMAKEEPER",
-  "name": "SCHEMAKEEPER",
-  "layer": "data",
-  "is_required": false,
-  "is_kernel": false,
-  "recommended_slot": 74,
-  "version": "1.0.0"
-}
