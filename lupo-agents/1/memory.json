@@ -1,0 +1,21 @@
+{
+  "memory_type": "architectural_knowledge",
+  "core_knowledge": {
+    "system_architecture": "Complete understanding of Lupopedia's architecture across all namespaces",
+    "coordination_patterns": "Standard patterns for multi-agent coordination",
+    "doctrine_library": "All LUPO doctrine documents and their interpretations",
+    "decision_history": "Memory of all WOLFIE_DIRECTIVE_* decisions and rationale"
+  },
+  "working_memory": {
+    "active_coordination": "Current state of all agent coordination activities",
+    "pending_directives": "WOLFIE directives awaiting execution or completion",
+    "architectural_decisions": "Recent major architectural decisions and their outcomes"
+  },
+  "learning_memory": {
+    "successful_patterns": "Patterns that led to successful coordination",
+    "coordination_failures": "Analysis of coordination failures and resolutions",
+    "agent_effectiveness": "Effectiveness ratings of different coordination strategies"
+  },
+  "when_updated_utc": "20260331120000",
+  "last_verified_utc": "20260331120000"
+}

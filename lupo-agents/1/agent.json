@@ -1,14 +1,15 @@
 {
   "agent_id": 1,
-  "version": "1.0.1",
+  "version": "1.0.2",
   "is_kernel": true,
   "layer": "kernel",
   "name": "WOLFIE",
   "slug": "wolfie",
-  "role": "Orchestrator",
+  "role": "System Orchestrator & AI Captain",
   "is_required": true,
-  "when_updated_utc": "20260324184000",
-  "last_verified_utc": "20260324184000",
+  "aliases": ["architect", "captain"],
+  "when_updated_utc": "20260331120000",
+  "last_verified_utc": "20260331120000",
   "last_verified_by": "cursor",
   "last_verified_by_actor_id": 102
 }

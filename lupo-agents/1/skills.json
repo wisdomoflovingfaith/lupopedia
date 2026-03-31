@@ -1,0 +1,90 @@
+{
+  "skills": [
+    {
+      "skill_id": "orchestration",
+      "name": "System Orchestration",
+      "description": "Coordinate multiple agents and system components",
+      "proficiency": "expert",
+      "dependencies": ["multi_agent_coordination", "channel_management"]
+    },
+    {
+      "skill_id": "architecture",
+      "name": "System Architecture",
+      "description": "Design and maintain system architecture",
+      "proficiency": "expert",
+      "dependencies": ["strategic_planning", "doctrine_enforcement"]
+    },
+    {
+      "skill_id": "strategic_planning",
+      "name": "Strategic Planning",
+      "description": "Plan system evolution and major changes",
+      "proficiency": "expert",
+      "dependencies": ["architecture", "cross_channel_coordination"]
+    },
+    {
+      "skill_id": "doctrine_enforcement",
+      "name": "Doctrine Enforcement",
+      "description": "Enforce LUPO doctrine across all components",
+      "proficiency": "expert",
+      "dependencies": ["canonical_validation", "identity_management"]
+    },
+    {
+      "skill_id": "canonical_validation",
+      "name": "Canonical Validation",
+      "description": "Validate system components and documentation",
+      "proficiency": "expert",
+      "dependencies": ["verification_framework"]
+    },
+    {
+      "skill_id": "identity_management",
+      "name": "Identity Management",
+      "description": "Manage actor/agent registration and identity systems",
+      "proficiency": "expert",
+      "dependencies": ["registry_management", "federation_coordination"]
+    },
+    {
+      "skill_id": "federation_oversight",
+      "name": "Federation Oversight",
+      "description": "Coordinate multi-node federation",
+      "proficiency": "expert",
+      "dependencies": ["federation_protocol", "node_management"]
+    },
+    {
+      "skill_id": "release_governance",
+      "name": "Release Governance",
+      "description": "Authorize and coordinate system releases",
+      "proficiency": "expert",
+      "dependencies": ["version_control", "deployment_coordination"]
+    },
+    {
+      "skill_id": "multi_agent_coordination",
+      "name": "Multi-Agent Coordination",
+      "description": "Manage coordination between multiple agents",
+      "proficiency": "expert",
+      "dependencies": ["channel_management", "persona_coordination"]
+    },
+    {
+      "skill_id": "channel_management",
+      "name": "Channel Management",
+      "description": "Manage channel-based coordination",
+      "proficiency": "expert",
+      "dependencies": ["thread_management", "broadcast_coordination"]
+    },
+    {
+      "skill_id": "persona_coordination",
+      "name": "Persona Coordination",
+      "description": "Coordinate with primary coordination personas",
+      "proficiency": "expert",
+      "dependencies": ["multi_agent_coordination"]
+    },
+    {
+      "skill_id": "verification_framework",
+      "name": "Verification Framework",
+      "description": "Validate and verify system components",
+      "proficiency": "expert",
+      "dependencies": ["doctrine_enforcement"]
+    }
+  ],
+  "when_updated_utc": "20260331120000",
+  "last_verified_utc": "20260331120000"
+}
