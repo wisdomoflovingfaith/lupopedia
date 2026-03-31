@@ -1,5 +1,17 @@
 ﻿{
-    "capabilities":  [
-                         "diagnostics"
-                     ]
+    "capabilities": [
+        "strategic_planning",
+        "wisdom_synthesis",
+        "knowledge_integration",
+        "decision_support",
+        "strategic_analysis",
+        "coordination_strategy",
+        "policy_development",
+        "long_term_vision",
+        "wisdom_application",
+        "strategic_guidance",
+        "cross_persona_coordination"
+    ],
+    "when_updated_utc": "20260331120000",
+    "last_verified_utc": "20260331120000"
 }
