@@ -50,6 +50,10 @@ lupopedia.edges:
    - to: lupo-channels/42/THREAD_INDEX.md
       type: references
       weight: 0.95
+    - to: lupo-docs/prd/15_temporal_system.md
+      type: references
+      weight: 1.0
+      reason: Canonical UTC Authority and temporal system doctrine
 lupopedia.footer:
    last_verified: '20260325205005'
    verified_by:
@@ -96,6 +100,7 @@ Lupopedia is a **semantic operating system** with:
 - **Channel-scoped work** — Tasks, dialogs, and artifacts are scoped by `channel_id`; channels are the primary coordination unit.
 - **Documentation as architecture** — Doctrine, table docs, and canonical references are implementation-critical; they are read before changing schema or behavior.
 - **Multi-agent collaboration** — Multiple IDE agents (and humans) work in the same repo; continuity, logging, and handoff are built into the model.
+- **Canonical UTC Authority** — All timestamps come from lupo-bin/tick.py. See [Temporal System PRD](lupo-docs/prd/15_temporal_system.md). Never infer dates or use local time.
 
 ### Multi-agent coordination (4.0.80+ — binding)
 

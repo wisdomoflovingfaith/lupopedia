@@ -44,6 +44,8 @@ lupopedia.init:
       reason: Channel semantics and creation/routing doctrine
     - path: lupo-channels/42/THREAD_INDEX.md
       reason: Canonical example of thread-scoped channel execution
+    - path: lupo-docs/prd/15_temporal_system.md
+      reason: Canonical UTC Authority and temporal system doctrine
     - path: ORGANIZATION.md
       reason: Canonical root folder map and repository write guidance
 lupopedia.edges:
