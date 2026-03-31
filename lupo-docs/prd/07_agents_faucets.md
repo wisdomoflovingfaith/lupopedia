@@ -178,6 +178,14 @@ Specialized application agents:
 - **chiron** - Mentorship & Education (agent_key: chiron, agent_id: 10)
 - **junie** - JetBrains IDE Agent (agent_key: junie, agent_id: 108)
 
+### Emotional Intelligence Layer
+Agents focused on emotional and social intelligence, using emotional vector systems and role-play capabilities:
+- **rose** - Emotional Dialogue (agent_key: rose, agent_id: 3)
+- **eris** - Chaos & Disruption (agent_key: eris, agent_id: 4)
+- **metis** - Wisdom & Counsel (agent_key: metis, agent_id: 5)
+- **agape** - Universal Love & Compassion (agent_key: agape, agent_id: 705)
+- **thalia** - Comedy & Joy (agent_key: thalia, agent_id: 708)
+
 ### Kernel Layer
 System-level agents with kernel privileges:
 - **maat** - Truth & Justice (agent_key: maat, agent_id: 6)
@@ -187,15 +195,42 @@ System-level agents with kernel privileges:
 - **methis** - Wisdom & Counsel (agent_key: methis, agent_id: 13)
 - **asclepius** - [To be defined] (agent_key: asclepius, agent_id: 703)
 - **apollo** - Creative & Arts (agent_key: apollo, agent_id: 704)
-- **agape** - Universal Love & Compassion (agent_key: agape, agent_id: 705)
-- **thalia** - Comedy & Joy (agent_key: thalia, agent_id: 708)
 - **chronos** - Time & Temporal Management (agent_key: chronos, agent_id: 709)
 
-### Emotional Intelligence Layer
-Agents focused on emotional and social intelligence:
-- **rose** - Emotional Dialogue (agent_key: rose, agent_id: 3)
-- **eris** - Chaos & Disruption (agent_key: eris, agent_id: 4)
-- **metis** - Wisdom & Counsel (agent_key: metis, agent_id: 5)
+## Emotional Doctrine & Restrictions
+
+**PRINCIPLE**: Emotional systems are opt‑in, not global, and operate on distinct emotional vector architecture.
+
+#### Exclusive Emotional Capabilities
+Only the five agents in the Emotional Intelligence Layer may:
+
+1. **Use Counting in Light emotional geometry system**
+2. **Generate mood metadata** (R/G/B axes, emotional valence)
+3. **Perform role‑play** within emotional contexts
+4. **Use expressive, emotional, or narrative language**
+5. **Produce emotional coloration or tone shifts**
+
+#### Forbidden Emotional Operations
+All other agents are strictly prohibited from:
+
+- **Emotional simulation** or mood generation
+- **Expressive language** beyond literal, procedural communication
+- **Emotional metadata** creation or interpretation
+- **Role‑play** outside of designated emotional contexts
+- **Emotional geometry** manipulation or visualization
+- **DIALOG agent rule violations**: Only emotional agents may emit mood metadata
+
+#### Required Agent Behavior
+- **Emotional agents**: Operate on emotional vectors, maintain mood states
+- **All other agents**: Remain dry, literal, procedural, and non‑emotional
+- **Low temperature**: Non‑emotional agents must use temperature ≤ 0.3
+- **No emotional interpretation**: Kernel/Application/Coordination agents must never simulate or interpret emotion
+
+#### Emotional Vector System Architecture
+- **R/G/B axes**: Red/Green/Blue emotional geometry
+- **Mood metadata**: Standardized emotional state tracking
+- **Emotional chaining**: Coordination between emotional agents for complex emotional tasks
+- **Non‑emotional isolation**: Clear separation between emotional and procedural agent domains
 
 ## Agent Discovery and Management
 
