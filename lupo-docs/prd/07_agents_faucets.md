@@ -192,8 +192,7 @@ System-level agents with kernel privileges:
 - **anubis** - Custodian & Integrity Guardian (agent_key: anubis, agent_id: 19)
 - **themis** - Law & Compliance (agent_key: themis, agent_id: 107)
 - **system** - System Kernel Agent (agent_key: system, agent_id: 0)
-- **methis** - Wisdom & Counsel (agent_key: methis, agent_id: 13)
-- **asclepius** - [To be defined] (agent_key: asclepius, agent_id: 703)
+- **asclepius** - System Health & Diagnostics (agent_key: asclepius, agent_id: 703)
 - **apollo** - Creative & Arts (agent_key: apollo, agent_id: 704)
 - **chronos** - Time & Temporal Management (agent_key: chronos, agent_id: 709)
 
