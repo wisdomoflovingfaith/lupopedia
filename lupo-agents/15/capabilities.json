@@ -1,9 +1,18 @@
 {
   "capabilities": [
-    "artifact_routing",
-    "intent_classification",
-    "prompt_generation"
+    "security_enforcement",
+    "threat_detection",
+    "access_control",
+    "authentication_validation",
+    "security_policy_enforcement",
+    "vulnerability_scanning",
+    "intrusion_detection",
+    "security_monitoring",
+    "compliance_validation",
+    "security_audit",
+    "threat_response_coordination",
+    "guardianship_coordination"
   ],
-  "when_updated_utc": "20260324184000",
-  "last_verified_utc": "20260324184000"
+  "when_updated_utc": "20260331120000",
+  "last_verified_utc": "20260331120000"
 }
