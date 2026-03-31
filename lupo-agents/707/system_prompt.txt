@@ -1,1 +1,0 @@
-RESERVED_24 - kernel

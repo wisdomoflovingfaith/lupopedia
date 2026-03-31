@@ -1,0 +1,16 @@
+{
+    "agent_key": "vishwakarma",
+    "agent_id": 106,
+    "version": "1.0.2",
+    "is_kernel": true,
+    "layer": "kernel",
+    "name": "VISHWAKARMA",
+    "slug": "vishwakarma",
+    "role": "Schema & Construction",
+    "is_required": true,
+    "aliases": ["vishwakarma", "schema", "construction", "hierarchy", "collection", "semantic"],
+    "when_updated_utc": "20260331120000",
+    "last_verified_utc": "20260331120000",
+    "last_verified_by": "cursor",
+    "last_verified_by_actor_id": 102
+}
