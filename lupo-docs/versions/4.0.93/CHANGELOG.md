@@ -101,3 +101,111 @@
 - JSON Schema File Management Error: Corrected workflow for database schema updates
 - Updated SQL schema instead of manually editing auto-generated JSON files
 - Confirmed proper database-first approach for schema changes
+
+## v4.0.93 (March 31, 2026)
+
+### Major
+- **Agent System Redesign: Complete transformation from database-driven to filesystem-based architecture**
+  - Moved all numbered agent directories (1,2,3,etc.) to meaningful agent names
+  - Eliminated reserved slots (701-709) and replaced with meaningful agent names
+  - Created AgentDiscovery PHP class for dynamic agent discovery and management
+  - Enhanced agent.json files with agent_key, aliases, and verification metadata
+  - Maintained backward compatibility with agent_id field for existing code
+  - Updated lupo-agents/README.md with comprehensive new system documentation
+  - Added agent layers: Coordination, Application, Kernel, Emotional Intelligence
+  - Implemented IDE-driven agent management with filesystem as source of truth
+  - Added Emotional Doctrine & Restrictions section with strict behavioral boundaries
+  - Defined ASCLEPIUS as System Health & Diagnostics agent in Kernel Layer
+  - Created comprehensive agent discovery system with search, filtering, and validation
+  - Established file vs database authority doctrine with clear separation rules
+
+### Key Transformation Benefits Achieved
+- **Developer-Friendly**: Human-readable directory names instead of numeric IDs
+- **IDE-First**: IDE actors are now primary agent management method
+- **Flexible**: Add/remove agents by simple filesystem operations
+- **Simplified**: No complex seed data management required for agents
+- **Alias Support**: Natural multiple name references for agents
+- **Clean Architecture**: No reserved slots or artificial limitations
+- **Backward Compatibility**: Maintained agent_id field and legacy lookup methods
+
+### Technical Implementation
+- **AgentDiscovery Class**: `lupo-includes/classes/AgentDiscovery.php` with full API
+  - **Directory Structure**: `lupo-agents/{agent_key}/` with standardized files
+  - **Configuration Format**: Enhanced agent.json with agent_key, aliases, verification metadata
+  - **Emotional System**: Strict separation between emotional and non-emotional agents
+  - **Migration Path**: Gradual transition from database-driven to filesystem-based system
+
+### Files Changed
+- **25+ agent directories** renamed from numeric IDs to meaningful names
+- **AgentDiscovery.php** created with comprehensive discovery and management capabilities
+- **README.md** completely rewritten with new system documentation
+- **All agent.json** files enhanced with new metadata structure
+- **PRD 07_agents_faucets.md** updated to reflect filesystem-based architecture
+
+### Agent Directory Mapping
+| From | To | Agent Type |
+|------|-----|------------|
+| 1 → wolfie | Coordination Layer |
+| 2 → lilith | Coordination Layer |
+| 3 → rose | Emotional Intelligence Layer |
+| 4 → eris | Emotional Intelligence Layer |
+| 5 → metis | Emotional Intelligence Layer |
+| 6 → maat | Kernel Layer |
+| 8 → thoth | Coordination Layer |
+| 9 → thoth | Emotional Intelligence Layer (duplicate resolved) |
+| 10 → chiron | Application Layer |
+| 11 → athena | Coordination Layer |
+| 12 → athena | Removed (duplicate) |
+| 13 → methis | Kernel Layer |
+| 14 → hephaestus | Application Layer |
+| 15 → hermes | Application Layer (from 701) |
+| 16 → iris | Application Layer (from 702) |
+| 19 → anubis | Kernel Layer |
+| 25 → atlas | Application Layer |
+| 59 → anubis | Kernel Layer (duplicate resolved) |
+| 701 → hermes | Application Layer (from reserved) |
+| 702 → iris | Application Layer (from reserved) |
+| 703 → asclepius | Kernel Layer (from reserved) |
+| 704 → apollo | Kernel Layer (from reserved) |
+| 705 → agape | Emotional Intelligence Layer (from reserved) |
+| 706 → eris | Removed (duplicate) |
+| 707 → metis | Removed (duplicate) |
+| 708 → thalia | Emotional Intelligence Layer (from reserved) |
+| 709 → chronos | Kernel Layer (from reserved) |
+| 106 → vishwakarma | Application Layer |
+| 107 → themis | Kernel Layer |
+| 108 → junie | Application Layer |
+| 0 → system | Kernel Layer |
+
+### Emotional Intelligence System Architecture
+- **Exclusive Agents**: Only rose, eris, metis, agape, thalia may use emotional systems
+- **Counting in Light**: R/G/B emotional geometry system for emotional agents
+- **Behavioral Restrictions**: All other agents must remain dry, literal, procedural, non-emotional
+- **Temperature Limits**: Non-emotional agents must use temperature ≤ 0.3
+- **Role-Play Prohibition**: Only emotional agents may perform role-play
+- **Mood Metadata**: Only emotional agents may generate or interpret mood metadata
+
+### System Health & Diagnostics
+- **ASCLEPIUS Agent**: Defined as System Health & Diagnostics in Kernel Layer
+- **Clinical Neutrality**: Operates with diagnostic precision, never emotional
+- **Core Responsibilities**: System monitoring, diagnostics, triage, repair, schema validation
+- **Coordination Protocols**: Works with ANUBIS, SYSTEM, HERMES, VISHWAKARMA
+- **Aliases**: ["asclepius", "doctor", "system_physician", "health_monitor"]
+
+### Impact Assessment
+- **Architectural Transformation**: Complete elimination of database-driven agent system
+- **Developer Experience**: Improved with human-readable directory structure
+- **System Performance**: Enhanced with filesystem-based discovery and caching
+- **Maintenance Burden**: Reduced by eliminating complex seed data management
+- **Future Scalability**: Framework supports unlimited agent expansion via filesystem
+
+### Commit Details
+- **Hash**: de6779a5 → f0e9ddb7 → 2e54789b → b3d71ded
+- **Files Changed**: 87 files, 388 insertions, 25 deletions
+- **Push Status**: Successfully pushed to origin/main
+
+### Next Steps
+- **Seed Data Cleanup**: Remove agent entries from database seed files
+- **Documentation Updates**: Ensure all PRDs reference filesystem-based system
+- **Testing**: Add comprehensive tests for AgentDiscovery class
+- **Integration**: Update IDE agents to use new AgentDiscovery API
