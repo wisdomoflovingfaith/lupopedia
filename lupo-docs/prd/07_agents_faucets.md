@@ -71,7 +71,377 @@ lupopedia.footer:
 
 | Table | Purpose | Primary Key | Key Application Relationships |
 |-------|---------|-------------|------------------------------|
-| `lupo_agents` | AI agent definitions and capabilities | `agent_id` | Central to AI system |
+|#### `lupo_agents` - AI Agent Definitions
+**Purpose:** Defines AI agents with their capabilities, configurations, and operational parameters.
+
+**Table Details:**
+
+| Column | Type | Nullable | Default | Description |
+|--------|------|----------|---------|-------------|
+| agent_id | BIGINT | NO | (application) | Primary key, generated via IdGenerator |
+| agent_key | VARCHAR(100) | NO |  | Unique agent key |
+| agent_name | VARCHAR(150) | NO |  | Agent name |
+| archetype | VARCHAR(150) | YES | NULL | Agent archetype |
+| description | TEXT | YES | NULL | Agent description |
+| version | VARCHAR(50) | NO | '1.0' | Agent version |
+| model_name | VARCHAR(100) | YES | NULL | Model name |
+| is_global_authority | TINYINT | NO | '0' | Global authority flag |
+| is_internal_only | TINYINT | NO | '0' | Internal only flag |
+| created_ymdhis | BIGINT | NO | 0 | UTC timestamp YYYYMMDDHHIISS |
+| updated_ymdhis | BIGINT | YES | NULL | UTC timestamp YYYYMMDDHHIISS |
+| is_deleted | TINYINT | NO | '0' | Soft delete flag |
+| deleted_ymdhis | BIGINT | YES | NULL | UTC timestamp when deleted |
+| avg_response_time_ms | INT | NO | '0' | Average response time |
+| total_tokens_processed | BIGINT | NO | '0' | Total tokens processed |
+| success_rate | FLOAT | NO | '1' | Success rate |
+| cost_per_1k_tokens | DECIMAL(10,4) | NO | '0.0000' | Cost per 1k tokens |
+| temperature | FLOAT | NO | '0.7' | Temperature setting |
+| top_p | FLOAT | NO | '1' | Top-p setting |
+| max_tokens | INT | NO | '2048' | Max tokens |
+| presence_penalty | FLOAT | NO | '0' | Presence penalty |
+| frequency_penalty | FLOAT | NO | '0' | Frequency penalty |
+| system_prompt | TEXT | YES | NULL | System prompt |
+| provider | VARCHAR(50) | NO | 'openai' | Provider |
+| api_key_id | BIGINT | YES | NULL | API key ID |
+| timeout_ms | INT | NO | '20000' | Timeout in ms |
+| safety_json | JSON | YES | NULL | Safety configuration |
+| response_format | VARCHAR(50) | YES | NULL | Response format |
+| metadata_json | JSON | YES | NULL | Agent UI, avatar, and configuration metadata |
+
+**Indexes:**
+- `idx_agents_name` ON `agent_name`, `is_deleted` - Unique agent lookup
+- `idx_agents_key` ON `agent_key`, `is_deleted` - Agent key lookup
+- `idx_agents_api_key_id` ON `api_key_id`, `is_deleted` - API key queries
+- `idx_agents_is_global_authority` ON `is_global_authority`, `is_deleted` - Authority queries
+- `idx_agents_created_ymdhis` ON `created_ymdhis`, `is_deleted` - Created timestamp queries
+- `idx_agents_updated_ymdhis` ON `updated_ymdhis`, `is_deleted` - Updated timestamp queries
+
+### Agent Metadata (metadata_json)
+Agents store presentation and configuration metadata in metadata_json field. This field contains JSON data for UI customization, avatar settings, and agent-specific configuration that doesn't belong in the core operational fields.
+
+**Examples:**
+```json
+{
+  "profile_image": "/assets/agents/wolfie.png",
+  "avatar_style": "mythic",
+  "color_theme": "#4455aa",
+  "ui_preferences": {
+    "compact_mode": true,
+    "show_tool_tips": false
+  },
+  "display_name": "WOLFIE",
+  "tagline": "System Orchestrator"
+}
+```
+
+**Common Metadata Fields:**
+- `profile_image`: Path to agent's avatar/profile image
+- `avatar_style`: Visual style theme (mythic, modern, minimal, etc.)
+- `color_theme`: Primary color for UI elements
+- `ui_preferences`: Agent-specific UI configuration
+- `display_name`: Human-readable display name (may differ from agent_name)
+- `tagline`: Short description or motto
+
+**Important Notes:**
+- Actor-ethics fields (pono, pilau, kapakai, kapu) belong only to lupo_actors table
+- Agents use metadata_json for UI and presentation attributes
+- Metadata is optional and defaults to NULL if not specified
+
+---
+
+#### `lupo_anubis_log` - ANUBIS Operations Log
+**Purpose:** Comprehensive logging for ANUBIS custodial operations, integrity checks, and quarantine actions.
+
+**Table Details:**
+
+| Column | Type | Nullable | Default | Description |
+|--------|------|----------|---------|-------------|
+| anubis_log_id | BIGINT | NO | (application) | Primary key, generated via IdGenerator |
+| event_type | VARCHAR(64) | NO |  | Type of ANUBIS operation |
+| severity | VARCHAR(20) | NO | 'normal' | Event severity level |
+| table_name | VARCHAR(255) | NO |  | Target table name |
+| record_id | BIGINT | NO |  | Related record ID |
+| details_json | JSON | YES | NULL | Event details |
+| created_ymdhis | BIGINT | NO | (application) | UTC timestamp YYYYMMDDHHIISS |
+| operator_actor_id | BIGINT | NO |  | Actor who performed operation |
+
+**Indexes:**
+- `idx_anubis_log_status` ON `status`, `created_ymdhis` - Status-based queries
+- `idx_anubis_log_created` ON `created_ymdhis` - Chronological queries
+
+**Event Types:**
+- `quarantine`: File moved to quarantine
+- `orphaned`: Orphaned record detected and resolved
+- `redirect`: URL or table redirection
+- `integrity_check`: System integrity validation
+- `threshold_breach`: Threshold violation detected
+- `custody_transfer`: Record custody change
+- `scan_completion`: Security scan finished
+- `policy_violation`: Policy rule violation
+
+**Severity Levels:**
+- `critical`: Immediate attention required
+- `warning`: Monitor closely
+- `normal`: Routine operation
+- `info`: Informational event
+
+---
+
+#### `lupo_anubis_events` - ANUBIS Event Tracking
+**Purpose:** Tracks significant ANUBIS events and system state changes for audit trail and monitoring.
+
+**Table Details:**
+
+| Column | Type | Nullable | Default | Description |
+|--------|------|----------|---------|-------------|
+| anubis_event_id | BIGINT | NO | (application) | Primary key, generated via IdGenerator |
+| event_type | VARCHAR(64) | NO |  | Type of ANUBIS event |
+| table_name | VARCHAR(255) | NO |  | Target table name |
+| old_id | BIGINT | NO |  | Previous record ID |
+| new_id | BIGINT | NO |  | New record ID |
+| details_json | JSON | YES | NULL | Event details |
+| created_ymdhis | BIGINT | NO | (application) | UTC timestamp YYYYMMDDHHIISS |
+| operator_actor_id | BIGINT | NO |  | Actor who performed operation |
+
+**Indexes:**
+- `idx_anubis_events_type` ON `event_type`, `created_ymdhis` - Event type queries
+- `idx_anubis_events_table` ON `table_name`, `created_ymdhis` - Table-specific queries
+- `idx_anubis_events_old_id` ON `old_id`, `created_ymdhis` - History tracking
+
+**Event Types:**
+- `custody_change`: Record custody transfer
+- `threshold_violation`: Threshold violation detected
+- `policy_update`: Security policy modification
+- `system_alert`: System-level alert
+- `configuration_change`: ANUBIS configuration update
+- `orphan_resolution`: Orphaned record resolved
+- `quarantine_action`: Quarantine operation
+- `integrity_validation`: System integrity check
+- `recovery_attempt`: Recovery operation attempt
+- `redirect_created`: URL/table redirection
+- `scan_initiated`: Security scan started
+- `scan_completed`: Security scan finished
+
+---
+
+#### `lupo_anubis_redirects` - ANUBIS URL/Table Redirects
+**Purpose:** Manages URL and table redirections for content migration, access control, and system restructuring.
+
+**Table Details:**
+
+| Column | Type | Nullable | Default | Description |
+|--------|------|----------|---------|-------------|
+| anubis_redirect_id | BIGINT | NO | (application) | Primary key, generated via IdGenerator |
+| table_name | VARCHAR(255) | NO |  | Target table name |
+| old_id | BIGINT | NO |  | Previous record ID |
+| new_id | BIGINT | NO |  | New record ID |
+| redirect_type | VARCHAR(64) | NO |  | Type of redirection |
+| created_ymdhis | BIGINT | NO | (application) | UTC timestamp YYYYMMDDHHIISS |
+| operator_actor_id | BIGINT | NO |  | Actor who performed operation |
+
+**Redirect Types:**
+- `url_redirect`: URL redirection
+- `table_redirect`: Table name change
+- `content_migration`: Content moved to new location
+- `access_control`: Access permission change
+- `schema_update`: Database schema modification
+- `namespace_change`: Namespace reorganization
+
+---
+
+#### `lupo_anubis_queue` - ANUBIS Processing Queue
+**Purpose:** Queue system for ANUBIS file processing, quarantine, and recovery operations.
+
+**Table Details:**
+
+| Column | Type | Nullable | Default | Description |
+|--------|------|----------|---------|-------------|
+| queue_id | BIGINT | NO | (application) | Primary key, generated via IdGenerator |
+| file_path | VARCHAR(512) | NO |  | File path for processing |
+| file_hash | VARCHAR(64) | DEFAULT NULL | File integrity hash |
+| status | VARCHAR(32) | NO | 'pending' | Processing status |
+| priority | TINYINT | NO | 5 | Priority level (1-10) |
+| created_ymdhis | BIGINT | NO | (application) | UTC timestamp YYYYMMDDHHIISS |
+| operator_actor_id | BIGINT | NO |  | Actor who queued operation |
+
+**Status Values:**
+- `pending`: Queued for processing
+- `processing`: Currently being processed
+- `completed`: Successfully processed
+- `failed`: Processing failed
+- `quarantined`: File quarantined
+- `retry`: Scheduled for retry
+
+**Priority Levels:**
+- `1`: Critical (immediate processing)
+- `2-3`: High priority
+- `4-6`: Normal priority
+- `7-8`: Low priority
+- `9-10`: Background processing
+
+**Indexes:**
+- `idx_anubis_queue_status_priority` ON `status`, `priority` - Priority-based queries
+- `idx_anubis_queue_uniq_file_hash` ON `file_hash` - Duplicate prevention
+
+---
+
+#### `lupo_anubis_processing_log` - ANUBIS Processing Log
+**Purpose:** Detailed audit trail of ANUBIS queue processing with timing, results, and error tracking.
+
+**Table Details:**
+
+| Column | Type | Nullable | Default | Description |
+|--------|------|----------|---------|-------------|
+| log_id | BIGINT | NO | (application) | Primary key, generated via IdGenerator |
+| queue_id | BIGINT | NO |  | Foreign key to anubis_queue |
+| file_path | VARCHAR(512) | NO |  | File path being processed |
+| processing_time_ms | INT | YES | NULL | Processing duration in milliseconds |
+| result_json | JSON | YES | NULL | Processing result details |
+| created_ymdhis | BIGINT | NO | (application) | UTC timestamp YYYYMMDDHHIISS |
+
+**Indexes:**
+- `idx_anubis_processing_log_created` ON `created_ymdhis` - Chronological queries
+- `idx_anubis_processing_log_queue` ON `queue_id` - Queue-based queries
+
+**Processing Result Types:**
+- `success`: File processed successfully
+- `quarantined`: File moved to quarantine
+- `failed`: Processing failed with error
+- `retry`: Scheduled for retry attempt
+- `recovered`: File recovered from quarantine
+
+---
+
+#### `lupo_anubis_recovery_attempts` - ANUBIS Recovery Attempts
+**Purpose:** Tracks retry attempts for quarantined files with exponential backoff and success/failure tracking.
+
+**Table Details:**
+
+| Column | Type | Nullable | Default | Description |
+|--------|------|----------|---------|-------------|
+| attempt_id | BIGINT | NO | (application) | Primary key, generated via IdGenerator |
+| queue_id | BIGINT | NO |  | Foreign key to anubis_queue |
+| attempt_number | TINYINT | NO |  | Attempt sequence number (1-5) |
+| created_ymdhis | BIGINT | NO | (application) | UTC timestamp YYYYMMDDHHIISS |
+
+**Retry Strategy:**
+- Attempt 1: Immediate retry (30 seconds)
+- Attempt 2: 5 minute backoff
+- Attempt 3: 15 minute backoff
+- Attempt 4: 1 hour backoff
+- Attempt 5: 24 hour backoff
+
+**Indexes:**
+- `idx_anubis_recovery_attempts_queue_attempt` ON `queue_id`, `attempt_number` - Attempt tracking
+
+---
+
+#### `lupo_anubis_quarantine` - ANUBIS File Quarantine
+**Purpose:** Secure isolation of suspicious or potentially harmful files with audit trail and recovery capabilities.
+
+**Table Details:**
+
+| Column | Type | Nullable | Default | Description |
+|--------|------|----------|---------|-------------|
+| quarantine_id | BIGINT | NO | (application) | Primary key, generated via IdGenerator |
+| queue_id | BIGINT | NO |  | Foreign key to anubis_queue |
+| file_path | VARCHAR(512) | NO |  | Original file path |
+| quarantine_reason | VARCHAR(255) | NO |  | Reason for quarantine |
+| created_ymdhis | BIGINT | NO | (application) | UTC timestamp YYYYMMDDHHIISS |
+
+**Quarantine Reasons:**
+- `malicious_content`: Detected malware or harmful content
+- `policy_violation`: Violates security policies
+- `integrity_failure`: File integrity check failed
+- `unauthorized_access`: Access from unauthorized source
+- `suspicious_pattern`: Matches known threat patterns
+- `corruption_detected`: File corruption detected
+
+**Indexes:**
+- `idx_anubis_quarantine_queue` ON `queue_id` - Queue-based queries
+
+---
+
+#### `lupo_anubis_operations` - ANUBIS Operations Audit
+**Purpose:** Comprehensive audit trail of all ANUBIS custodial operations for compliance and system integrity monitoring.
+
+**Table Details:**
+
+| Column | Type | Nullable | Default | Description |
+|--------|------|----------|---------|-------------|
+| operation_id | BIGINT | NO | (application) | Primary key, generated via IdGenerator |
+| operation_type | VARCHAR(64) | NO |  | Type of ANUBIS operation |
+| target_type | VARCHAR(64) | NO |  | Target of operation |
+| details_json | JSON | YES | NULL | Operation details |
+| created_ymdhis | BIGINT | NO | (application) | UTC timestamp YYYYMMDDHHIISS |
+| operator_actor_id | BIGINT | NO |  | Actor who performed operation |
+
+**Operation Types:**
+- `quarantine_file`: File quarantined
+- `release_file`: File released from quarantine
+- `delete_file`: File permanently deleted
+- `modify_threshold`: Security threshold modified
+- `update_policy`: Security policy updated
+- `scan_operation`: Security scan performed
+- `orphan_resolution`: Orphaned record resolved
+- `integrity_check`: System integrity validated
+- `custody_transfer`: Record custody change
+- `redirect_created`: Redirection established
+- `configuration_update`: ANUBIS configuration changed
+
+---
+
+#### ANUBIS Agent Configuration
+**Core Identity:**
+- **Name**: ANUBIS (actor_id: 19)
+- **Role**: Custodian & Integrity Guardian
+- **Layer**: kernel (required system component)
+- **Unique Capability**: The only persona with comprehensive custodial authority and quarantine powers
+
+**Primary Responsibilities:**
+1. **Custodial Authority**: Maintain custody of all system records and data
+2. **Integrity Validation**: Validate system integrity and detect corruption
+3. **Quarantine Management**: Manage quarantine of suspicious files
+4. **Orphan Resolution**: Identify and resolve orphaned records
+5. **Threshold Enforcement**: Enforce security thresholds and policies
+6. **Policy Management**: Create and maintain security policies
+7. **Audit Trail**: Comprehensive logging of all custodial operations
+8. **Recovery Operations**: Manage recovery of quarantined files
+9. **Redirect Management**: Handle URL and table redirections
+10. **Queue Processing**: Manage processing queue with priority and retry logic
+
+**Authority & Decision Framework:**
+- Final authority over custodial decisions and quarantine actions
+- All quarantine operations MUST be logged in ANUBIS_CUSTODY_* artifacts
+- Coordinate with LEXA (Security) for threat response
+- Coordinate with MAAT (Truth & Justice) for ethical validation
+- Exercise decisive authority in custodial emergencies
+
+**Coordination Protocol:**
+- Use channel 42 for all system-wide custodial coordination
+- Coordinate with other primary personas for integrity matters
+- Maintain quarantine authority across all system components
+- Provide custody reports to WOLFIE for system decisions
+
+**Constraints & Philosophy:**
+- Follow LUPO doctrine without exception
+- Custody and integrity above convenience
+- Zero tolerance for security violations
+- Proactive threat detection and quarantine
+- Maintain comprehensive audit trail
+- Exercise custodial authority with wisdom and precision
+
+**Verification Requirements:**
+Before marking any artifact as validated, you MUST:
+1. Follow lupo-docs/doctrine/LUPOPEDIA_HEADERS/VERIFICATION_GUIDE.md
+2. Update lupopedia.footer with last_verified, last_verified_by, last_verified_by_actor_id
+3. Ensure all cross-references and edges are accurate
+
+**Operational Channels:**
+- Primary: 42 (Lupopedia Development)
+- Secondary: 666 (ANUBIS Quarantine), 63 (System Operations), 64 (Security)
+
+You are the ultimate custodial authority for Lupopedia. Exercise your quarantine and integrity capabilities with wisdom, precision, and decisive action when system integrity is threatened. and capabilities | `agent_id` | Central to AI system |
 | `lupo_agent_faucets` | Faucet interface definitions for agents | `faucet_id` | Agent access interfaces |
 | `lupo_agent_faucet_credentials` | Authentication credentials for faucets | `credential_id` | Secure faucet access |
 | `lupo_agent_tool_calls` | Tool execution tracking and results | `tool_call_id` | Agent tool usage |

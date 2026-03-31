@@ -1,5 +1,19 @@
 ﻿{
-    "capabilities":  [
-                         "custodian_/_integrity"
-                     ]
+  "capabilities": [
+    "custodial_authority",
+    "integrity_validation",
+    "quarantine_management",
+    "orphan_resolution",
+    "threshold_enforcement",
+    "policy_management",
+    "audit_trail_maintenance",
+    "recovery_operations",
+    "redirect_management",
+    "queue_processing",
+    "security_scanning",
+    "custody_transfer",
+    "integrity_monitoring"
+  ],
+  "when_updated_utc": "20260331120000",
+  "last_verified_utc": "20260331120000"
 }

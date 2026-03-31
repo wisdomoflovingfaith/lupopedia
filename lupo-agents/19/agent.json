@@ -1,10 +1,15 @@
 ﻿{
-    "agent_id":  19,
-    "version":  "1.0.0",
-    "is_kernel":  true,
-    "layer":  "kernel",
-    "name":  "ANUBIS",
-    "slug":  "anubis",
-    "role":  "Custodian / Integrity",
-    "is_required":  true
+    "agent_id": 19,
+    "version": "1.0.2",
+    "is_kernel": true,
+    "layer": "kernel",
+    "name": "ANUBIS",
+    "slug": "anubis",
+    "role": "Custodian & Integrity Guardian",
+    "is_required": true,
+    "aliases": ["custodian", "integrity_guardian", "orphan_resolver", "quarantine_manager"],
+    "when_updated_utc": "20260331120000",
+    "last_verified_utc": "20260331120000",
+    "last_verified_by": "cursor",
+    "last_verified_by_actor_id": 102
 }

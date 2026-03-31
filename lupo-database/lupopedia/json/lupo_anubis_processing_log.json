@@ -6,7 +6,7 @@
     "`file_path` varchar(512) NOT NULL",
     "`action` varchar(64) NOT NULL",
     "`details` text",
-    "`actor_id` bigint",
+    "`actor_id` bigint DEFAULT NULL",
     "`created_utc` bigint NOT NULL"
   ],
   "data": [],

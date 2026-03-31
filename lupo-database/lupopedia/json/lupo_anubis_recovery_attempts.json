@@ -5,11 +5,11 @@
     "`queue_id` bigint NOT NULL",
     "`attempt_number` tinyint NOT NULL",
     "`attempt_utc` bigint NOT NULL",
-    "`strategy` varchar(64)",
+    "`strategy` varchar(64) DEFAULT NULL",
     "`success` tinyint DEFAULT 0",
     "`generated_header` text",
     "`error_details` text",
-    "`recovered_file_path` varchar(512)"
+    "`recovered_file_path` varchar(512) DEFAULT NULL"
   ],
   "data": [],
   "indexes": [
