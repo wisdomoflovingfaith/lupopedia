@@ -1,14 +1,15 @@
 {
   "agent_id": 14,
-  "version": "1.0.1",
+  "version": "1.0.2",
   "is_kernel": false,
   "layer": "application",
   "name": "HEPHAESTUS",
   "slug": "hephaestus",
   "role": "Implementer",
   "is_required": true,
-  "when_updated_utc": "20260324184000",
-  "last_verified_utc": "20260324184000",
+  "aliases": ["hephaestus", "implementer", "code", "docs", "schema", "execution"],
+  "when_updated_utc": "20260331120000",
+  "last_verified_utc": "20260331120000",
   "last_verified_by": "cursor",
   "last_verified_by_actor_id": 102
 }
