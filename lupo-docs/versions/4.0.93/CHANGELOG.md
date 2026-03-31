@@ -47,9 +47,10 @@
 - **Post-seed Anubis SQL:** Optional `anubis_queue_tables_4.0.53.sql` and `20260301_anubis_database_primacy_updates.sql` remain separate runs after the consolidated seed (not embedded in the 23-file merge).
 - **Installer verification (read-only, 2026-03-30):** Confirmed load order (DDL → `install/seed_lupopedia_4_1_0.sql` → `import_from_old_crafty_syntax.sql` on Crafty upgrade only), `applyTablePrefixToSql()` inside `runSqlFile()`, no per-file loops for the 23 canonical seeds, consolidated SQL has no `lupo_` table tokens (only `{{prefix}}`), import SQL uses `{{prefix}}`, UTF-8 without BOM. **Canonical paths:** wizard is root `install.php` + `install_wizard_classes.php` (not under `install/`); `InstallWizardSqlRunner` lives in `install_wizard_classes.php` (no separate `.php` file). **Note:** Per-file sources under `mysql/seed/` still use literal `lupo_` until regenerated; builder global replace can mangle one `-- BEGIN FILE:` comment line for `seed_lupo_metadata_changelog_headers_4.0.68.sql` (cosmetic only).
 - [2026-03-30] Manual verification: All runtime SQL and the consolidated seed file have been checked for {{prefix}} compliance. Per-file seeds under mysql/seed/ still use lupo_ until rebuilt, but are not used at runtime.
+- [2026-03-31] **Agent Metadata Updates**: Added `metadata_json` field to `lupo_agents` table for UI, avatar, and configuration metadata. Removed actor-only fields (pono_score, pilau_score, kapakai_score, kapu_active, kapu_until, kapu_reason, kapu_consent_given, kapu_appeal_pending) from agent schema. Updated PRD and README to document metadata usage.
+- [2026-03-31] Manual fresh install test completed successfully. All tables dropped and new installation performed via web installer, resulting in clean database state. Confirmed installer works correctly with consolidated seed file.
+last_modified_utc: "20260331093000"
 
 ### Fixed
 - PRD duplication and drift between actors eliminated
 - All namespace PRDs cross-referenced and up to date
-- [2026-03-31] Manual fresh install test completed successfully. All tables dropped and new installation performed via web installer, resulting in clean database state. Confirmed installer works correctly with consolidated seed file.
-last_modified_utc: "20260331000000"

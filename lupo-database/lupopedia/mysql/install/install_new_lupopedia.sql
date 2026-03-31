@@ -1,4 +1,4 @@
-﻿-- Install schema for Lupopedia 4.0.x. Single upgrade path: Crafty Syntax 3.7.5 -> Lupopedia 4.0.x only.
+-- Install schema for Lupopedia 4.0.x. Single upgrade path: Crafty Syntax 3.7.5 -> Lupopedia 4.0.x only.
 -- No Lupopedia->Lupopedia upgrade until 4.1.0. All schema for 4.0.x is in this file.
 -- No Crafty Syntax logic, no migration, no DROP TABLE.
 SET @now = 20260224000000;
@@ -48,6 +48,30 @@ CREATE INDEX {{prefix}}actors_idx_workspace_path ON {{prefix}}actors (workspace_
 CREATE INDEX {{prefix}}actors_idx_php_namespace ON {{prefix}}actors (php_namespace);
 -- RESERVED ID DOCTRINE: actor_id is NOT ; application must supply explicit ID.
 -- ACTOR PRIMARY KEY DOCTRINE: actor_name is canonical; use ActorService::getActorByName / resolveActor.
+
+CREATE TABLE {{prefix}}registry (
+  registry_id bigint NOT NULL,
+  entity_type varchar(64) NOT NULL,
+  entity_index_id bigint NOT NULL,
+  entity_index bigint NOT NULL,
+  federation_node_id bigint DEFAULT 1,
+  reserved_ymdhis bigint NOT NULL DEFAULT 0,
+  entity_key varchar(255) NOT NULL,
+  entity_name varchar(255) DEFAULT NULL,
+  entity_table varchar(255) DEFAULT NULL,
+  created_ymdhis bigint NOT NULL DEFAULT 0,
+  updated_ymdhis bigint NOT NULL DEFAULT 0,
+  is_deleted tinyint NOT NULL DEFAULT '0',
+  is_active tinyint NOT NULL DEFAULT '1',
+  is_kernel tinyint NOT NULL DEFAULT '0',
+  metadata_json text,
+  PRIMARY KEY (registry_id)
+);
+CREATE INDEX {{prefix}}registry_idx_entity_type ON {{prefix}}registry (entity_type);
+CREATE INDEX {{prefix}}registry_idx_entity_index ON {{prefix}}registry (entity_index);
+CREATE INDEX {{prefix}}registry_idx_entity_index_id ON {{prefix}}registry (entity_index_id);
+CREATE INDEX {{prefix}}registry_idx_entity_key ON {{prefix}}registry (entity_key);
+CREATE INDEX {{prefix}}registry_idx_entity_type_deleted ON {{prefix}}registry (entity_type, is_deleted);
 
 CREATE TABLE {{prefix}}banned_actors (
   banned_actor_id bigint NOT NULL,
@@ -193,7 +217,7 @@ CREATE INDEX {{prefix}}actor_channels_idx_deleted ON {{prefix}}actor_channels (i
     PRIMARY KEY (lease_id)
   );
 
-  CREATE TABLE {{prefix}}department_actor_pools (
+CREATE TABLE {{prefix}}department_actor_pools (
     pool_id bigint NOT NULL,
     department_id bigint NOT NULL,
     actor_id bigint NOT NULL,
@@ -202,6 +226,7 @@ CREATE INDEX {{prefix}}actor_channels_idx_deleted ON {{prefix}}actor_channels (i
     PRIMARY KEY (pool_id)
   );
 
+CREATE TABLE {{prefix}}actor_auth_users (
   actor_auth_user_id bigint NOT NULL,
   actor_id bigint NOT NULL,
   auth_user_id bigint NOT NULL,
@@ -297,6 +322,25 @@ CREATE INDEX {{prefix}}actor_collections_idx_collection ON {{prefix}}actor_colle
 CREATE INDEX {{prefix}}actor_collections_idx_access_level ON {{prefix}}actor_collections (access_level);
 CREATE INDEX {{prefix}}actor_collections_idx_created_ymdhis ON {{prefix}}actor_collections (created_ymdhis);
 CREATE INDEX {{prefix}}actor_collections_idx_is_deleted ON {{prefix}}actor_collections (is_deleted);
+
+CREATE TABLE {{prefix}}actor_traits (
+  actor_trait_id bigint NOT NULL,
+  actor_id bigint NOT NULL,
+  trait_key varchar(128) NOT NULL,
+  trait_value varchar(255) DEFAULT NULL,
+  federation_node_id bigint DEFAULT 1,
+  created_by_actor_id bigint DEFAULT NULL,
+  created_ymdhis bigint NOT NULL DEFAULT 0,
+  updated_ymdhis bigint NOT NULL DEFAULT 0,
+  is_deleted tinyint NOT NULL DEFAULT '0',
+  deleted_ymdhis bigint DEFAULT NULL,
+  metadata text,
+  PRIMARY KEY (actor_trait_id)
+);
+CREATE INDEX {{prefix}}actor_traits_idx_actor ON {{prefix}}actor_traits (actor_id);
+CREATE INDEX {{prefix}}actor_traits_idx_trait_key ON {{prefix}}actor_traits (trait_key);
+CREATE INDEX {{prefix}}actor_traits_idx_federation ON {{prefix}}actor_traits (federation_node_id);
+CREATE INDEX {{prefix}}actor_traits_idx_deleted ON {{prefix}}actor_traits (is_deleted);
 CREATE INDEX {{prefix}}actor_collections_idx_identity_signature ON {{prefix}}actor_collections (identity_signature);
 CREATE INDEX {{prefix}}actor_collections_idx_trust_level ON {{prefix}}actor_collections (trust_level);
 
@@ -566,14 +610,7 @@ CREATE TABLE {{prefix}}agents (
   timeout_ms int DEFAULT '20000',
   safety_json json DEFAULT NULL,
   response_format varchar(50) DEFAULT NULL,
-  pono_score decimal(3,2) DEFAULT '1.00',
-  pilau_score decimal(3,2) DEFAULT '0.00',
-  kapakai_score decimal(3,2) DEFAULT '0.50',
-  kapu_active tinyint DEFAULT '0',
-  kapu_until bigint DEFAULT NULL,
-  kapu_reason varchar(500) DEFAULT NULL,
-  kapu_consent_given tinyint DEFAULT '0',
-  kapu_appeal_pending tinyint DEFAULT '0',
+  metadata_json json DEFAULT NULL,
   PRIMARY KEY (agent_id)
 );
 
@@ -1935,12 +1972,25 @@ CREATE TABLE {{prefix}}edges (
 );
 
 -- Indexes for {{prefix}}edges
-CREATE INDEX {{prefix}}edges_idx_from_context ON {{prefix}}edges (from_context_id);
-CREATE INDEX {{prefix}}edges_idx_to_artifact ON {{prefix}}edges (to_artifact_id);
+CREATE INDEX {{prefix}}edges_idx_from_context ON {{prefix}}edges (left_object_id);
+CREATE INDEX {{prefix}}edges_idx_to_artifact ON {{prefix}}edges (right_object_id);
 CREATE INDEX {{prefix}}edges_idx_type ON {{prefix}}edges (edge_type);
 CREATE INDEX {{prefix}}edges_idx_actor ON {{prefix}}edges (actor_id);
 CREATE INDEX {{prefix}}edges_idx_created ON {{prefix}}edges (created_ymdhis);
 CREATE INDEX {{prefix}}edges_idx_updated ON {{prefix}}edges (updated_ymdhis);
+
+CREATE TABLE {{prefix}}contexts_map (
+  context_map_id bigint NOT NULL,
+  context_id bigint NOT NULL,
+  item_type varchar(64) NOT NULL,
+  item_slug varchar(255) NOT NULL,
+  item_id bigint DEFAULT NULL,
+  created_ymdhis bigint NOT NULL DEFAULT 0,
+  updated_ymdhis bigint NOT NULL DEFAULT 0,
+  is_deleted tinyint NOT NULL DEFAULT '0',
+  deleted_ymdhis bigint DEFAULT 0,
+  PRIMARY KEY (context_map_id)
+);
 CREATE INDEX {{prefix}}contexts_map_idx_item_slug ON {{prefix}}contexts_map (item_slug);
 CREATE INDEX {{prefix}}contexts_map_idx_context_item ON {{prefix}}contexts_map (context_id, item_type, item_slug);
 CREATE INDEX {{prefix}}contexts_map_idx_is_deleted ON {{prefix}}contexts_map (is_deleted);
@@ -2365,6 +2415,7 @@ CREATE TABLE {{prefix}}federation_nodes (
   node_base_url varchar(500) NOT NULL,
   default_department_id bigint DEFAULT NULL,
   node_name varchar(255) DEFAULT NULL,
+  description text,
   node_description text,
   allows_foreign_traits tinyint NOT NULL DEFAULT 1,
   node_contact varchar(255) DEFAULT NULL,

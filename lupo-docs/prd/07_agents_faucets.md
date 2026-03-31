@@ -93,25 +93,77 @@ lupopedia.footer:
 | Column | Type | Nullable | Default | Description |
 |--------|------|----------|---------|-------------|
 | agent_id | BIGINT | NO | (application) | Primary key, generated via IdGenerator |
-| agent_name | VARCHAR(255) | NO |  | Unique agent name |
-| agent_type | VARCHAR(32) | NO | 'ai' | Type: ai, human, system |
-| status | VARCHAR(32) | NO | 'inactive' | Status: active, inactive, busy, error |
-| capabilities_json | JSON | NO |  | Agent capabilities definition |
-| configuration_json | JSON | YES | NULL | Agent configuration |
-| created_by_actor_id | BIGINT | NO |  | Foreign reference to lupo_actors |
-| created_ymdhis | BIGINT | NO | (application) | UTC timestamp YYYYMMDDHHIISS |
-| updated_ymdhis | BIGINT | NO | (application) | UTC timestamp YYYYMMDDHHIISS |
-| last_heartbeat_ymdhis | BIGINT | YES | NULL | Last heartbeat timestamp |
-| is_deleted | TINYINT | NO | 0 | Soft delete flag |
+| agent_key | VARCHAR(100) | NO |  | Unique agent key |
+| agent_name | VARCHAR(150) | NO |  | Agent name |
+| archetype | VARCHAR(150) | YES | NULL | Agent archetype |
+| description | TEXT | YES | NULL | Agent description |
+| version | VARCHAR(50) | NO | '1.0' | Agent version |
+| model_name | VARCHAR(100) | YES | NULL | Model name |
+| is_global_authority | TINYINT | NO | '0' | Global authority flag |
+| is_internal_only | TINYINT | NO | '0' | Internal only flag |
+| created_ymdhis | BIGINT | NO | 0 | UTC timestamp YYYYMMDDHHIISS |
+| updated_ymdhis | BIGINT | YES | NULL | UTC timestamp YYYYMMDDHHIISS |
+| is_deleted | TINYINT | NO | '0' | Soft delete flag |
 | deleted_ymdhis | BIGINT | YES | NULL | UTC timestamp when deleted |
+| avg_response_time_ms | INT | NO | '0' | Average response time |
+| total_tokens_processed | BIGINT | NO | '0' | Total tokens processed |
+| success_rate | FLOAT | NO | '1' | Success rate |
+| cost_per_1k_tokens | DECIMAL(10,4) | NO | '0.0000' | Cost per 1k tokens |
+| temperature | FLOAT | NO | '0.7' | Temperature setting |
+| top_p | FLOAT | NO | '1' | Top-p setting |
+| max_tokens | INT | NO | '2048' | Max tokens |
+| presence_penalty | FLOAT | NO | '0' | Presence penalty |
+| frequency_penalty | FLOAT | NO | '0' | Frequency penalty |
+| system_prompt | TEXT | YES | NULL | System prompt |
+| provider | VARCHAR(50) | NO | 'openai' | Provider |
+| api_key_id | BIGINT | YES | NULL | API key ID |
+| timeout_ms | INT | NO | '20000' | Timeout in ms |
+| safety_json | JSON | YES | NULL | Safety configuration |
+| response_format | VARCHAR(50) | YES | NULL | Response format |
+| metadata_json | JSON | YES | NULL | Agent UI, avatar, and configuration metadata |
 
 **Indexes:**
 
 | Index Name | Columns | Purpose |
 |------------|---------|---------|
 | idx_agents_name | agent_name, is_deleted | Unique agent lookup |
-| idx_agents_type | agent_type, status, is_deleted | Type-based queries |
-| idx_agents_status | status, last_heartbeat_ymdhis, is_deleted | Active agent monitoring |
+| idx_agents_key | agent_key, is_deleted | Agent key lookup |
+| idx_agents_api_key_id | api_key_id, is_deleted | API key queries |
+| idx_agents_is_global_authority | is_global_authority, is_deleted | Authority queries |
+| idx_agents_created_ymdhis | created_ymdhis, is_deleted | Created timestamp queries |
+| idx_agents_updated_ymdhis | updated_ymdhis, is_deleted | Updated timestamp queries |
+
+### Agent Metadata (metadata_json)
+
+Agents store presentation and configuration metadata in metadata_json field. This field contains JSON data for UI customization, avatar settings, and agent-specific configuration that doesn't belong in the core operational fields.
+
+**Examples:**
+```json
+{
+  "profile_image": "/assets/agents/wolfie.png",
+  "avatar_style": "mythic",
+  "color_theme": "#4455aa",
+  "ui_preferences": {
+    "compact_mode": true,
+    "show_tool_tips": false
+  },
+  "display_name": "WOLFIE",
+  "tagline": "System Orchestrator"
+}
+```
+
+**Common Metadata Fields:**
+- `profile_image`: Path to agent's avatar/profile image
+- `avatar_style`: Visual style theme (mythic, modern, minimal, etc.)
+- `color_theme`: Primary color for UI elements
+- `ui_preferences`: Agent-specific UI configuration
+- `display_name`: Human-readable display name (may differ from agent_name)
+- `tagline`: Short description or motto
+
+**Important Notes:**
+- Actor-ethics fields (pono, pilau, kapakai, kapu) belong only to lupo_actors table
+- Agents use metadata_json for UI and presentation attributes
+- Metadata is optional and defaults to NULL if not specified
 
 ### `lupo_agent_faucets`
 

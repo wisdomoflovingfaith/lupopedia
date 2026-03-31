@@ -134,6 +134,10 @@ This file is updated by:
 - If the anchor file is missing, the IDE must request a tick before writing headers.
 - Never use local time, offsets, or invented dates.
 
+## Agent Metadata
+
+All agent-specific UI, avatar, and configuration attributes are stored in `metadata_json` inside `lupo_agents`. Actor-ethics fields (pono, pilau, kapakai, kapu) belong only to `lupo_actors`.
+
 ## Subdirectory-Only Installation & Monitoring Widget (Critical)
 
 **Lupopedia must always be installed in a subdirectory of your site (never at the web root).**
