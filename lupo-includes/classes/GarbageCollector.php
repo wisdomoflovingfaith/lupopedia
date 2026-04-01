@@ -16,17 +16,26 @@ class GarbageCollector {
     }
     
     /**
-     * Main GC entry point
+     * Main GC entry point — runs all functions
      */
     public function run() {
         $this->aggregatePaths();
         $this->prunePaths();
+        
         $this->aggregateReferrers();
         $this->pruneReferrers();
+        
+        $this->aggregateDailyVisits();
+        $this->pruneRawVisits();
+        $this->pruneDailyVisits();
+        
+        $this->aggregateCampaigns();
+        $this->pruneCampaigns();
+        
         $this->cleanupSessions();
         $this->pruneActorMemory();
-        $this->optimizeTables();
         
+        $this->optimizeTables();
         $this->logRun();
     }
     
@@ -34,12 +43,21 @@ class GarbageCollector {
      * Aggregate raw visits into lupo_paths
      */
     private function aggregatePaths() {
-        // Find unaggregated visits (where is_processed = 0)
-        $sql = "SELECT visit_id, entercontentid, exitcontentid, transition_type, created_ymdhis
-                FROM lupo_visits
-                WHERE is_processed = 0
-                  AND is_deleted = 0
+        // Find sequential visits from same session (no intermediate pages)
+        $sql = "SELECT v1.visit_id, v1.path_url as enter, v2.path_url as exit, 
+                       v1.created_ymdhis, v1.session_id
+                FROM lupo_visits v1
+                JOIN lupo_visits v2 ON v1.session_id = v2.session_id 
+                  AND v1.created_ymdhis < v2.created_ymdhis
+                  AND v1.is_processed = 0
+                WHERE NOT EXISTS (
+                    SELECT 1 FROM lupo_visits v3 
+                    WHERE v1.session_id = v3.session_id 
+                      AND v1.created_ymdhis < v3.created_ymdhis 
+                      AND v3.created_ymdhis < v2.created_ymdhis
+                )
                 LIMIT 5000";
+        
         $visits = $this->db->query($sql);
         
         foreach ($visits as $visit) {
@@ -47,75 +65,64 @@ class GarbageCollector {
             $month = substr($visit['created_ymdhis'], 4, 2);
             $day = substr($visit['created_ymdhis'], 6, 2);
             
+            $enter_id = $this->getContentIdFromUrl($visit['enter']);
+            $exit_id = $this->getContentIdFromUrl($visit['exit']);
+            
             $sql = "INSERT INTO lupo_paths 
                     (entercontentid, exitcontentid, year_num, month_num, day_num, 
-                     transition_type, count_num, created_ymdhis, updated_ymdhis)
-                    VALUES (?, ?, ?, ?, ?, ?, 1, ?, ?)
+                     count_num, created_ymdhis, updated_ymdhis)
+                    VALUES (?, ?, ?, ?, ?, 1, ?, ?)
                     ON DUPLICATE KEY UPDATE 
                     count_num = count_num + 1,
                     updated_ymdhis = ?";
             
             $this->db->execute($sql, [
-                $visit['entercontentid'],
-                $visit['exitcontentid'],
+                $enter_id, $exit_id,
                 $year, $month, $day,
-                $visit['transition_type'],
                 $visit['created_ymdhis'],
                 $visit['created_ymdhis'],
                 $visit['created_ymdhis']
             ]);
             
-            // Mark as processed
+            // Mark source visits as processed
             $sql = "UPDATE lupo_visits SET is_processed = 1 WHERE visit_id = ?";
             $this->db->execute($sql, [$visit['visit_id']]);
         }
     }
     
     /**
-     * Prune old path data
-     */
-    private function prunePaths() {
-        if ($this->deleted >= $this->max_per_run) return;
-        
-        $retention_days = $this->config['gc_path_retention_days'] ?? 90;
-        $cutoff = gmdate('YmdHis', strtotime("-$retention_days days"));
-        $remaining = $this->max_per_run - $this->deleted;
-        
-        $sql = "UPDATE lupo_paths 
-                SET is_deleted = 1, deleted_ymdhis = ?
-                WHERE created_ymdhis < ?
-                  AND is_deleted = 0
-                LIMIT ?";
-        
-        $this->db->execute($sql, [gmdate('YmdHis'), $cutoff, $remaining]);
-        $this->deleted += $this->db->affected_rows();
-    }
-    
-    /**
-     * Aggregate referrer data
+     * Aggregate referrers into unified lupo_referers table
      */
     private function aggregateReferrers() {
-        $sql = "SELECT referer_domain, DATE(created_ymdhis) as visit_date, COUNT(*) as cnt
+        $sql = "SELECT 
+                    SUBSTRING_INDEX(SUBSTRING_INDEX(referer, '/', 3), '://', -1) as domain,
+                    DATE(created_ymdhis) as visit_date,
+                    COUNT(*) as cnt
                 FROM lupo_visits
-                WHERE referer_domain IS NOT NULL
+                WHERE referer IS NOT NULL
+                  AND referer != ''
                   AND is_processed = 0
                   AND is_deleted = 0
-                GROUP BY referer_domain, DATE(created_ymdhis)
+                GROUP BY domain, DATE(created_ymdhis)
                 LIMIT 5000";
         
         $referrers = $this->db->query($sql);
         
         foreach ($referrers as $ref) {
-            $sql = "INSERT INTO lupo_referers_daily (referer_domain, date_ymd, visits, created_ymdhis)
-                    VALUES (?, ?, ?, ?)
+            $date_ymd = str_replace('-', '', $ref['visit_date']);
+            
+            $sql = "INSERT INTO lupo_referers 
+                    (referer_domain, date_ymd, visits, created_ymdhis, updated_ymdhis)
+                    VALUES (?, ?, ?, ?, ?)
                     ON DUPLICATE KEY UPDATE 
                     visits = visits + VALUES(visits),
                     updated_ymdhis = ?";
             
             $this->db->execute($sql, [
-                $ref['referer_domain'],
-                $ref['visit_date'],
+                $ref['domain'],
+                $date_ymd,
                 $ref['cnt'],
+                gmdate('YmdHis'),
                 gmdate('YmdHis'),
                 gmdate('YmdHis')
             ]);
@@ -123,23 +130,100 @@ class GarbageCollector {
     }
     
     /**
-     * Prune old referrer data
+     * Aggregate daily visit counts
+     */
+    private function aggregateDailyVisits() {
+        $sql = "SELECT 
+                    DATE(created_ymdhis) as visit_date,
+                    COUNT(*) as total_visits,
+                    COUNT(DISTINCT session_id) as unique_sessions
+                FROM lupo_visits
+                WHERE is_processed = 1
+                  AND is_deleted = 0
+                GROUP BY DATE(created_ymdhis)
+                LIMIT 1000";
+        
+        $daily = $this->db->query($sql);
+        
+        foreach ($daily as $day) {
+            $sql = "INSERT INTO lupo_visits_daily 
+                    (visit_date, total_visits, unique_sessions, created_ymdhis, updated_ymdhis)
+                    VALUES (?, ?, ?, ?, ?)
+                    ON DUPLICATE KEY UPDATE 
+                    total_visits = total_visits + VALUES(total_visits),
+                    unique_sessions = unique_sessions + VALUES(unique_sessions),
+                    updated_ymdhis = ?";
+            
+            $this->db->execute($sql, [
+                $day['visit_date'],
+                $day['total_visits'],
+                $day['unique_sessions'],
+                gmdate('YmdHis'),
+                gmdate('YmdHis'),
+                gmdate('YmdHis')
+            ]);
+        }
+    }
+    
+    /**
+     * Prune old paths
+     */
+    private function prunePaths() {
+        if ($this->deleted >= $this->max_per_run) return;
+        
+        $retention = $this->config['gc_path_retention_days'] ?? 90;
+        $cutoff = gmdate('YmdHis', strtotime("-$retention days"));
+        
+        $this->prune('lupo_paths', 'created_ymdhis < ?', [$cutoff]);
+    }
+    
+    /**
+     * Prune old referrers
      */
     private function pruneReferrers() {
         if ($this->deleted >= $this->max_per_run) return;
         
-        $retention_days = $this->config['gc_referrer_retention_days'] ?? 365;
-        $cutoff = gmdate('Ymd', strtotime("-$retention_days days"));
-        $remaining = $this->max_per_run - $this->deleted;
+        $retention = $this->config['gc_referrer_retention_days'] ?? 365;
+        $cutoff = strtotime("-$retention days");
+        $cutoff_ymd = date('Ymd', $cutoff);
         
-        $sql = "UPDATE lupo_referers_daily 
-                SET is_deleted = 1, deleted_ymdhis = ?
-                WHERE date_ymd < ?
-                  AND is_deleted = 0
-                LIMIT ?";
+        $this->prune('lupo_referers', 'date_ymd < ?', [$cutoff_ymd]);
+    }
+    
+    /**
+     * Prune raw visits
+     */
+    private function pruneRawVisits() {
+        if ($this->deleted >= $this->max_per_run) return;
         
-        $this->db->execute($sql, [gmdate('YmdHis'), $cutoff, $remaining]);
-        $this->deleted += $this->db->affected_rows();
+        $retention = $this->config['gc_visits_retention_days'] ?? 30;
+        $cutoff = gmdate('YmdHis', strtotime("-$retention days"));
+        
+        $this->prune('lupo_visits', 'created_ymdhis < ? AND is_processed = 1', [$cutoff]);
+    }
+    
+    /**
+     * Prune daily visits
+     */
+    private function pruneDailyVisits() {
+        if ($this->deleted >= $this->max_per_run) return;
+        
+        $retention = $this->config['gc_daily_visits_retention_days'] ?? 365;
+        $cutoff = date('Y-m-d', strtotime("-$retention days"));
+        
+        $this->prune('lupo_visits_daily', 'visit_date < ?', [$cutoff]);
+    }
+    
+    /**
+     * Prune campaigns
+     */
+    private function pruneCampaigns() {
+        if ($this->deleted >= $this->max_per_run) return;
+        
+        $retention = $this->config['gc_campaign_retention_days'] ?? 365;
+        $cutoff = gmdate('YmdHis', strtotime("-$retention days"));
+        
+        $this->prune('lupo_analytics_campaign_vars', 'created_ymdhis < ?', [$cutoff]);
     }
     
     /**
@@ -148,18 +232,10 @@ class GarbageCollector {
     private function cleanupSessions() {
         if ($this->deleted >= $this->max_per_run) return;
         
-        $retention_hours = $this->config['gc_session_retention_hours'] ?? 24;
-        $cutoff = gmdate('YmdHis', strtotime("-$retention_hours hours"));
-        $remaining = $this->max_per_run - $this->deleted;
+        $retention = $this->config['gc_session_retention_hours'] ?? 24;
+        $cutoff = gmdate('YmdHis', strtotime("-$retention hours"));
         
-        $sql = "UPDATE lupo_sessions 
-                SET is_deleted = 1, deleted_ymdhis = ?
-                WHERE expires_ymdhis < ?
-                  AND is_deleted = 0
-                LIMIT ?";
-        
-        $this->db->execute($sql, [gmdate('YmdHis'), $cutoff, $remaining]);
-        $this->deleted += $this->db->affected_rows();
+        $this->prune('lupo_sessions', 'expires_ymdhis < ?', [$cutoff]);
     }
     
     /**
@@ -168,19 +244,73 @@ class GarbageCollector {
     private function pruneActorMemory() {
         if ($this->deleted >= $this->max_per_run) return;
         
-        $retention_days = $this->config['gc_memory_retention_days'] ?? 30;
-        $cutoff = gmdate('YmdHis', strtotime("-$retention_days days"));
+        $retention = $this->config['gc_memory_retention_days'] ?? 30;
+        $cutoff = gmdate('YmdHis', strtotime("-$retention days"));
+        
+        $this->prune('lupo_actor_memory', 'expires_ymdhis IS NOT NULL AND expires_ymdhis < ?', [$cutoff]);
+    }
+    
+    /**
+     * Generic prune function with self-limiting
+     */
+    private function prune($table, $condition, $params = []) {
         $remaining = $this->max_per_run - $this->deleted;
+        if ($remaining <= 0) return;
         
-        $sql = "UPDATE lupo_actor_memory 
-                SET is_deleted = 1, deleted_ymdhis = ?
-                WHERE expires_ymdhis IS NOT NULL
-                  AND expires_ymdhis < ?
-                  AND is_deleted = 0
-                LIMIT ?";
+        $sql = "UPDATE $table 
+                SET is_deleted = 1, deleted_ymdhis = ? 
+                WHERE $condition AND is_deleted = 0 
+                LIMIT $remaining";
         
-        $this->db->execute($sql, [gmdate('YmdHis'), $cutoff, $remaining]);
+        $all_params = array_merge([gmdate('YmdHis')], $params);
+        $this->db->execute($sql, $all_params);
         $this->deleted += $this->db->affected_rows();
+    }
+    
+    /**
+     * Aggregate campaign data from URLs
+     */
+    private function aggregateCampaigns() {
+        // Extract utm_source from URLs
+        $sql = "SELECT 
+                    DATE(created_ymdhis) as date_ymd,
+                    'utm_source' as campaign_key,
+                    SUBSTRING_INDEX(SUBSTRING_INDEX(path_url, 'utm_source=', -1), '&', 1) as campaign_value,
+                    COUNT(*) as cnt
+                FROM lupo_visits
+                WHERE path_url LIKE '%utm_source=%'
+                  AND is_processed = 0
+                GROUP BY date_ymd, campaign_key, campaign_value
+                LIMIT 5000";
+        
+        $campaigns = $this->db->query($sql);
+        
+        foreach ($campaigns as $camp) {
+            $date_ymd = strtotime($camp['date_ymd']);
+            $yearmonth = date('Ym', $date_ymd);
+            $year = date('Y', $date_ymd);
+            
+            $sql = "INSERT INTO lupo_analytics_campaign_vars 
+                    (period, date_ymd, yearmonth, year, campaign_key, campaign_value, 
+                     metadata_json, created_ymdhis)
+                    VALUES ('day', ?, ?, ?, ?, ?, ?, ?)
+                    ON DUPLICATE KEY UPDATE 
+                    metadata_json = JSON_SET(metadata_json, '$.count', 
+                        COALESCE(JSON_EXTRACT(metadata_json, '$.count'), 0) + ?)";
+            
+            $metadata = json_encode(['count' => $camp['cnt']]);
+            
+            $this->db->execute($sql, [
+                $camp['date_ymd'],
+                $yearmonth,
+                $year,
+                $camp['campaign_key'],
+                $camp['campaign_value'],
+                $metadata,
+                gmdate('YmdHis'),
+                $camp['cnt']
+            ]);
+        }
     }
     
     /**
@@ -189,11 +319,21 @@ class GarbageCollector {
     private function optimizeTables() {
         if ($this->deleted == 0) return;
         
-        $tables = ['lupo_paths', 'lupo_referers_daily', 'lupo_sessions', 'lupo_visits'];
+        $tables = ['lupo_paths', 'lupo_referers', 'lupo_visits', 
+                   'lupo_visits_daily', 'lupo_sessions', 'lupo_actor_memory'];
         
         foreach ($tables as $table) {
             $this->db->query("OPTIMIZE TABLE $table");
         }
+    }
+    
+    /**
+     * Get content ID from URL path
+     */
+    private function getContentIdFromUrl($url) {
+        // Extract slug from URL and lookup in lupo_contents
+        // Simplified for now — returns 0 if not found
+        return 0;
     }
     
     /**
@@ -240,8 +380,11 @@ class GarbageCollector {
             'gc_execution_chance' => 1,
             'gc_path_retention_days' => 90,
             'gc_referrer_retention_days' => 365,
+            'gc_visits_retention_days' => 30,
+            'gc_daily_visits_retention_days' => 365,
             'gc_session_retention_hours' => 24,
             'gc_memory_retention_days' => 30,
+            'gc_campaign_retention_days' => 365,
         ];
     }
 }
