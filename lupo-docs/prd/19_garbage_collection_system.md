@@ -184,26 +184,36 @@ CREATE TABLE lupo_visits (
 - Mark as processed after aggregation
 - Prune raw visits older than retention period (30 days)
 
-### 4. `lupo_visits_daily` — Daily Visit Aggregates
+### 4. `lupo_visits_daily` — Daily Visit Aggregates (Per Content)
 
 ```sql
 CREATE TABLE lupo_visits_daily (
   visits_daily_id bigint NOT NULL,
-  actor_id bigint,
-  visit_date date NOT NULL,
-  total_visits int DEFAULT 0,
-  unique_sessions int DEFAULT 0,
-  avg_duration_seconds int DEFAULT 0,
-  bounce_count int DEFAULT 0,
+  content_id bigint,                              -- Which page/content was visited
+  path_url varchar(500),                          -- Fallback if content_id not available
+  visit_date date NOT NULL,                       -- YYYY-MM-DD
+  total_visits int DEFAULT 0,                     -- Total visits to this page
+  unique_sessions int DEFAULT 0,                  -- Unique sessions that visited
+  unique_visitors int DEFAULT 0,                  -- Unique visitors (actors)
+  avg_duration_seconds int DEFAULT 0,             -- Average time on page
+  bounce_count int DEFAULT 0,                     -- Exits where this was the only page
+  entry_count int DEFAULT 0,                      -- Times this was the entry page
+  exit_count int DEFAULT 0,                       -- Times this was the exit page
   created_ymdhis bigint NOT NULL,
   updated_ymdhis bigint NOT NULL,
   is_deleted tinyint NOT NULL DEFAULT 0,
-  deleted_ymdhis bigint
+  deleted_ymdhis bigint,
+  PRIMARY KEY (visits_daily_id),
+  UNIQUE KEY idx_content_date (content_id, visit_date),
+  KEY idx_path_date (path_url(100), visit_date),
+  KEY idx_date (visit_date)
 );
 ```
 
 **GC Operations:**
-- Aggregate from `lupo_visits` after raw visits are processed
+- Aggregate from `lupo_visits` grouped by content and date
+- Track per-page metrics: visits, bounces, entries, exits
+- Calculate unique sessions and visitors per content
 - Prune rows older than retention period (365 days)
 
 ### 5. `lupo_analytics_campaign_vars` — Campaign Tracking
@@ -367,7 +377,7 @@ LIMIT 10000;
 
 ### 5. Daily Visit Aggregation (`aggregate_daily_visits`)
 
-**Purpose:** Aggregate raw visits into `lupo_visits_daily`.
+**Purpose:** Aggregate raw visits into `lupo_visits_daily` per content.
 
 **Source:** `lupo_visits` 
 
@@ -375,25 +385,39 @@ LIMIT 10000;
 
 **Logic:**
 ```sql
--- Aggregate by day
+-- Aggregate by content and date
 SELECT 
-    DATE(created_ymdhis) as visit_date,
+    COALESCE(v.content_id, 0) as content_id,
+    v.path_url,
+    DATE(v.created_ymdhis) as visit_date,
     COUNT(*) as total_visits,
-    COUNT(DISTINCT session_id) as unique_sessions
-FROM lupo_visits
-WHERE is_processed = 1
-  AND is_deleted = 0
-GROUP BY DATE(created_ymdhis)
+    COUNT(DISTINCT v.session_id) as unique_sessions,
+    COUNT(DISTINCT v.actor_id) as unique_visitors,
+    AVG(v.duration_seconds) as avg_duration_seconds,
+    SUM(CASE WHEN v.is_bounce = 1 THEN 1 ELSE 0 END) as bounce_count,
+    SUM(CASE WHEN v.is_entry_page = 1 THEN 1 ELSE 0 END) as entry_count,
+    SUM(CASE WHEN v.is_exit_page = 1 THEN 1 ELSE 0 END) as exit_count
+FROM lupo_visits v
+WHERE v.is_processed = 1
+  AND v.is_deleted = 0
+GROUP BY COALESCE(v.content_id, 0), v.path_url, DATE(v.created_ymdhis)
 LIMIT 1000;
 
 -- Insert/update daily table
 INSERT INTO lupo_visits_daily 
-    (visit_date, total_visits, unique_sessions, created_ymdhis, updated_ymdhis)
-VALUES (?, ?, ?, ?, ?)
+    (content_id, path_url, visit_date, total_visits, unique_sessions, 
+     unique_visitors, avg_duration_seconds, bounce_count, entry_count, exit_count,
+     created_ymdhis, updated_ymdhis)
+VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
 ON DUPLICATE KEY UPDATE 
     total_visits = total_visits + VALUES(total_visits),
     unique_sessions = unique_sessions + VALUES(unique_sessions),
-    updated_ymdhis = ?;
+    unique_visitors = unique_visitors + VALUES(unique_visitors),
+    avg_duration_seconds = VALUES(avg_duration_seconds),
+    bounce_count = bounce_count + VALUES(bounce_count),
+    entry_count = entry_count + VALUES(entry_count),
+    exit_count = exit_count + VALUES(exit_count),
+    updated_ymdhis = VALUES(updated_ymdhis);
 ```
 
 ### 6. Campaign Aggregation (`aggregate_campaigns`)

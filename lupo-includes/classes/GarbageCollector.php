@@ -130,35 +130,55 @@ class GarbageCollector {
     }
     
     /**
-     * Aggregate daily visit counts
+     * Aggregate daily visit counts per content
      */
     private function aggregateDailyVisits() {
         $sql = "SELECT 
-                    DATE(created_ymdhis) as visit_date,
+                    COALESCE(v.content_id, 0) as content_id,
+                    v.path_url,
+                    DATE(v.created_ymdhis) as visit_date,
                     COUNT(*) as total_visits,
-                    COUNT(DISTINCT session_id) as unique_sessions
-                FROM lupo_visits
-                WHERE is_processed = 1
-                  AND is_deleted = 0
-                GROUP BY DATE(created_ymdhis)
+                    COUNT(DISTINCT v.session_id) as unique_sessions,
+                    COUNT(DISTINCT v.actor_id) as unique_visitors,
+                    AVG(v.duration_seconds) as avg_duration_seconds,
+                    SUM(CASE WHEN v.is_bounce = 1 THEN 1 ELSE 0 END) as bounce_count,
+                    SUM(CASE WHEN v.is_entry_page = 1 THEN 1 ELSE 0 END) as entry_count,
+                    SUM(CASE WHEN v.is_exit_page = 1 THEN 1 ELSE 0 END) as exit_count
+                FROM lupo_visits v
+                WHERE v.is_processed = 1
+                  AND v.is_deleted = 0
+                GROUP BY COALESCE(v.content_id, 0), v.path_url, DATE(v.created_ymdhis)
                 LIMIT 1000";
         
         $daily = $this->db->query($sql);
         
         foreach ($daily as $day) {
             $sql = "INSERT INTO lupo_visits_daily 
-                    (visit_date, total_visits, unique_sessions, created_ymdhis, updated_ymdhis)
-                    VALUES (?, ?, ?, ?, ?)
+                    (content_id, path_url, visit_date, total_visits, unique_sessions, 
+                     unique_visitors, avg_duration_seconds, bounce_count, entry_count, exit_count,
+                     created_ymdhis, updated_ymdhis)
+                    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
                     ON DUPLICATE KEY UPDATE 
                     total_visits = total_visits + VALUES(total_visits),
                     unique_sessions = unique_sessions + VALUES(unique_sessions),
-                    updated_ymdhis = ?";
+                    unique_visitors = unique_visitors + VALUES(unique_visitors),
+                    avg_duration_seconds = VALUES(avg_duration_seconds),
+                    bounce_count = bounce_count + VALUES(bounce_count),
+                    entry_count = entry_count + VALUES(entry_count),
+                    exit_count = exit_count + VALUES(exit_count),
+                    updated_ymdhis = VALUES(updated_ymdhis)";
             
             $this->db->execute($sql, [
+                $day['content_id'],
+                $day['path_url'],
                 $day['visit_date'],
                 $day['total_visits'],
                 $day['unique_sessions'],
-                gmdate('YmdHis'),
+                $day['unique_visitors'],
+                $day['avg_duration_seconds'],
+                $day['bounce_count'],
+                $day['entry_count'],
+                $day['exit_count'],
                 gmdate('YmdHis'),
                 gmdate('YmdHis')
             ]);
