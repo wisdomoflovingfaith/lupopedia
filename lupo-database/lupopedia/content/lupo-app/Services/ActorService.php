@@ -34,6 +34,23 @@ class ActorService
     /** @var array|null actor_name => actor data from registry.json */
     private static $registryCache = null;
 
+    /**
+     * Build actor directory relative path.
+     * 18-digit deterministic IDs use lupo-actors/YYYY/MM/actor_id.
+     * Legacy IDs use lupo-actors/actor_id.
+     *
+     * @param string $actorsDir
+     * @param string $actorIdStr
+     * @return string
+     */
+    protected function buildActorIdDirectory($actorsDir, $actorIdStr)
+    {
+        if (preg_match('/^[0-9]{18}$/', $actorIdStr)) {
+            return $actorsDir . '/' . substr($actorIdStr, 0, 4) . '/' . substr($actorIdStr, 4, 2) . '/' . $actorIdStr;
+        }
+        return $actorsDir . '/' . $actorIdStr;
+    }
+
     public function __construct($db)
     {
         $this->db = $db;
@@ -344,9 +361,14 @@ class ActorService
             $who_file = rtrim($app_root, '/\\') . DIRECTORY_SEPARATOR . $lupo_actors_dir . DIRECTORY_SEPARATOR . $actor_name . DIRECTORY_SEPARATOR . 'WHO.json';
         }
 
-        // Fallback to legacy ID-based if name-based not found
+        // Fallback to deterministic ID-sharded path, then legacy ID path.
         if ($who_file === '' || !file_exists($who_file)) {
-            $who_file = rtrim($app_root, '/\\') . DIRECTORY_SEPARATOR . $lupo_actors_dir . DIRECTORY_SEPARATOR . $actor_id . DIRECTORY_SEPARATOR . 'WHO.json';
+            $actor_id_str = (string) $actor_id;
+            $id_dir = $this->buildActorIdDirectory($lupo_actors_dir, $actor_id_str);
+            $who_file = rtrim($app_root, '/\\') . DIRECTORY_SEPARATOR . str_replace('/', DIRECTORY_SEPARATOR, $id_dir) . DIRECTORY_SEPARATOR . 'WHO.json';
+            if (!file_exists($who_file)) {
+                $who_file = rtrim($app_root, '/\\') . DIRECTORY_SEPARATOR . $lupo_actors_dir . DIRECTORY_SEPARATOR . $actor_id_str . DIRECTORY_SEPARATOR . 'WHO.json';
+            }
         }
 
         if ($who_file !== '' && file_exists($who_file)) {
@@ -541,8 +563,22 @@ class ActorService
         $emailLocal = strpos($emailNormalized, '@') !== false ? substr($emailNormalized, 0, strpos($emailNormalized, '@')) : $emailNormalized;
         $name = $displayName !== '' ? $displayName : $emailLocal;
         try {
-            $actor_id = function_exists('lupo_findpuka') ? lupo_findpuka($this->db, $this->prefix . 'actors', 'actor_id', 1, null) : null;
-            if ($actor_id === null) {
+            // 4.0.93+: deterministic actor IDs use YmdHis + 4-digit hash suffix.
+            $actor_id = false;
+            $t = $this->db->quoteIdentifier($this->prefix . 'actors');
+            for ($attempt = 0; $attempt < 10; $attempt++) {
+                $candidate = class_exists('\\IdGenerator') ? \IdGenerator::generate() : (gmdate('YmdHis') . str_pad((string) mt_rand(0, 9999), 4, '0', STR_PAD_LEFT));
+                $exists = $this->db->fetchRow(
+                    "SELECT 1 FROM {$t} WHERE actor_id = :actor_id LIMIT 1",
+                    array('actor_id' => $candidate)
+                );
+                if (!$exists) {
+                    $actor_id = $candidate;
+                    break;
+                }
+                usleep(5000);
+            }
+            if ($actor_id === false) {
                 return false;
             }
             $ok = $this->db->insert($this->prefix . 'actors', array(
@@ -558,6 +594,18 @@ class ActorService
                 'actor_source_id' => $authUserId,
                 'actor_source_type' => 'user',
             ));
+            if ($ok !== false) {
+                // Provision filesystem workspace under lupo-actors/YYYY/MM/actor_id.
+                $app_root = defined('LUPOPEDIA_PATH') ? LUPOPEDIA_PATH : (defined('ABSPATH') ? ABSPATH : '');
+                $actors_dir = defined('LUPO_ACTORS_DIR') ? LUPO_ACTORS_DIR : 'lupo-actors';
+                if ($app_root !== '') {
+                    $rel = $this->buildActorIdDirectory($actors_dir, (string) $actor_id);
+                    $abs = rtrim($app_root, '/\\') . DIRECTORY_SEPARATOR . str_replace('/', DIRECTORY_SEPARATOR, $rel);
+                    if (!is_dir($abs)) {
+                        @mkdir($abs, 0755, true);
+                    }
+                }
+            }
             return $ok !== false ? $actor_id : false;
         } catch (\Exception $e) {
             if (defined('LUPOPEDIA_DEBUG') && LUPOPEDIA_DEBUG) {

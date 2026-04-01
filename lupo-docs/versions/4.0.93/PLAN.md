@@ -4,7 +4,7 @@ lupopedia.headers:
   version_when_written: "4.0.93"
   file_path_from_root: "lupo-docs/versions/4.0.93/PLAN.md"
   web_path: "http://www.lupopedia.com/lupo-docs/versions/4.0.93/PLAN.md"
-  last_modified_utc: "20260330190000"
+  last_modified_utc: "20260331150000"
   channel_id: 42
   actor_id: 102
   actor_name: "HEPHAESTUS"
@@ -42,7 +42,7 @@ All plans, PRDs, and implementation must reference and comply with these changes
 - **File-Based Agent Doctrine**: Agent configuration, skills, memory, and capabilities are now file-based and versioned. Registry schema updated for file-based agent doctrine.
 - **LUPOPEDIA_HEADERS Enforcement**: All documentation and code files must include a YAML LUPOPEDIA_HEADERS block with outbound_edges and last_modified_utc. Validators and onboarding docs updated.
 - **Cross-Thread Coordination Protocol**: All contributors must read the latest file contents before editing, use outbound_edges to track canonical relationships, and avoid overwriting concurrent edits. See AGENTS.md and MULTI_AGENT_COORDINATION_DOCTRINE.md for details.
-- **SQL/Installer Migration**: Install path and consolidated seed use `{{prefix}}` via `InstallWizardSqlRunner::applyTablePrefixToSql()` (root `install.php` + `install_wizard_classes.php`). Legacy per-file seeds under `mysql/seed/` remain for reference; canonical runtime seed is `install/seed_lupopedia_4_1_0.sql` (regenerate via `lupo-scripts/build_consolidated_seed_4_1_0.py` when those sources change). Remaining SQL outside that path may still need manual review—see CRITICAL_CONSTITUTIONAL_FIXES.md.
+- **SQL/Installer Migration**: Install path and consolidated seed use `{{prefix}}` via `InstallWizardSqlRunner::applyTablePrefixToSql()` (root `install.php` + `install_wizard_classes.php`). Runtime installer no longer executes extra per-file seed SQL; canonical runtime seed remains `install/seed_lupopedia_4_1_0.sql` (+ Crafty import only on upgrade).
 
 **Action Required:**
 - Review remaining SQL, installer-adjacent scripts, and agent files for compliance with new doctrines (not only the consolidated seed).
@@ -74,6 +74,8 @@ All plans, PRDs, and implementation must reference and comply with these changes
 - **Grouped PRD Structure**: Complete 14-namespace PRD architecture created in `lupo-docs/prd/`; 100% PRD coverage achieved (14/14 files); maintenance burden reduced by 92%. All new core identity tables are included and documented.
 - **Consolidated install seed (2026-03-30):** Single `install/seed_lupopedia_4_1_0.sql` after `install_new_lupopedia.sql`; per-file seeds preserved under `mysql/seed/`; Anubis helper seeds still run separately post-install.
 - **Installer verification (2026-03-30):** Read-only pass aligned docs with actual paths (root `install.php` / `install_wizard_classes.php`; import at `lupo-database/lupopedia/mysql/import/import_from_old_crafty_syntax.sql`). Runtime install path declared **ready** for full install; see `/lupo-docs/versions/4.0.93/WHAT_TO_DO_NEXT.md` §14.
+- **Installer runtime seed cleanup (2026-03-31):** Removed remaining per-file post-seed execution from `install.php`; runtime path is now strictly schema + consolidated runtime seed (+ import on Crafty upgrade).
+- **Deterministic runtime actor IDs + actor workspace sharding (2026-03-31):** Actor creation paths use YmdHis+4 IDs and `lupo-actors/YYYY/MM/actor_id` directory resolution/provisioning, with legacy flat path fallback for compatibility.
 
 ## 🛠️ **4.0.93 Documentation Update Status**
 

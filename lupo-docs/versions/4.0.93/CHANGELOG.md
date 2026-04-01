@@ -1,37 +1,54 @@
 # Lupopedia 4.0.93 CHANGELOG
 
-## v4.0.93 (Master Baseline)
-- HEPHAESTUS Identity Adoption: Actor 102 formalized as HEPHAESTUS (The Smith) with Faucet Proxy Pattern
-- Channel-Based Coordination: Migrated all coordination from docs to Channel 42 threads; thread structure standardized (YYYYMMDD_HHIISS_actor_purpose_title.md)
-- LILITH Agent Consolidation: Updated agent definitions with consolidated prompts and adversarial audit capabilities
-- Option A Architecture: LILITH formalized split-table architecture for Truth Management System
-- Legacy Documentation Cleanup: Removed FLIP/FLARE deprecated documentation directories
-- Truth System Documentation: Created comprehensive documentation for split-table architecture
-- Database Doctrine: Finalized production-ready catch-and-retry implementation
-- Multi-Agent Coordination: Enhanced channel protocols and thread management
-- Git Tooling: Documented and worked around pre-commit hook path mismatch
-- JS Nervous System: State Mirror, High-Density Scroller, Semantic Monitor, Glass UI implemented and tested
-- 63-bit ID Generation: IdGenerator.php implemented with YYYYMMDDHHIISS + random suffix format; IDE directive compliance completed
-- Full Database Audit: Comprehensive audit of all 166 tables completed; 5 doctrine violations; 48 missing documentation; all PRDs updated with lupopedia.edges
-- PRD Edge Integration: All PRD files now include lupopedia.edges sections linking to table definitions and related documentation
-- **Grouped PRD Architecture**: Complete 14-namespace PRD structure created in `lupo-docs/prd/`; 100% PRD coverage achieved (14/14 files); maintenance burden reduced by 92%
-- enforce_doctrine.py: Run attempted on all seed files; deferred due to environment/encoding issue (see DEFERRED.md)
-- Hydrator: Channel 42 elevation run completed; review required (see DEFERRED.md)
+## v4.0.93 (March 31, 2026)
 
-- Obsolete Table Removal: `lupo_channel_boot_detail`, `lupo_channel_boot_detail_lifecycle`, `lupo_channel_boot_lifecycle`, and `lupo_smilies` removed from install SQL; all coordination is now dialog-based.
-- Emoji/Smilies System Overhaul: Emoji and smilies now use `::img|foldername|filename::` codes, popup selector, and images in `lupo-emoji/`. See [EMOJI_AND_SMILIES.md](/lupo-docs/doctrine/EMOJI_AND_SMILIES.md).
+### Major - Agent System Redesign
+**Complete transformation from database-driven to filesystem-based architecture**
 
-## v4.0.90–92
-- Migration of context models, 63-bit ID generation, and JS virtualization.
-## [4.0.93] - March/April 2026
+- **Filesystem-First Agent Discovery**: Agents now discovered from `lupo-agents/{agent_key}/` directories
+  - Human-readable directory names (`wolfie/`, `lilith/`, etc.) replacing numeric IDs
+  - IDE-first agent management with direct file editing
+  - Dynamic discovery via `AgentDiscovery` PHP class
+  - Backward compatibility maintained with `agent_id` field
 
-### Major
-- Grouped PRD structure: 14 namespaces, **171 tables**, 100% coverage
-- New core identity tables: `lupo_actor_memory`, `lupo_actor_skills`, `lupo_actor_tools`, `lupo_actor_prompts`, `lupo_actor_training` (see 01_core_identity.md)
-- Emoji/smilies system overhaul: see EMOJI_AND_SMILIES.md
-- Release policy clarified: 4.0.x cycle until Softaculous approval
+- **Agent Directory Restructure**: All agent directories renamed from numeric IDs to meaningful names
+  - `lupo-agents/1/` → `lupo-agents/wolfie/` (Coordination)
+  - `lupo-agents/2/` → `lupo-agents/lilith/` (Coordination)
+  - `lupo-agents/3/` → `lupo-agents/rose/` (Emotional)
+  - `lupo-agents/6/` → `lupo-agents/maat/` (Kernel)
+  - `lupo-agents/9/` → `lupo-agents/thoth/` (Coordination) - **canonical THOTH**
+  - `lupo-agents/10/` → `lupo-agents/chiron/` (Application)
+  - `lupo-agents/11/` → `lupo-agents/athena/` (Coordination) - **canonical ATHENA**
+  - `lupo-agents/14/` → `lupo-agents/hephaestus/` (Application)
+  - `lupo-agents/15/` → `lupo-agents/hermes/` (Application)
+  - `lupo-agents/16/` → `lupo-agents/iris/` (Application)
+  - `lupo-agents/19/` → `lupo-agents/anubis/` (Kernel)
+  - `lupo-agents/25/` → `lupo-agents/atlas/` (Application)
+  - `lupo-agents/106/` → `lupo-agents/vishwakarma/` (Application)
+  - `lupo-agents/107/` → `lupo-agents/themis/` (Kernel)
+  - `lupo-agents/108/` → `lupo-agents/junie/` (Application)
+  - `lupo-agents/703/` → `lupo-agents/asclepius/` (Kernel)
+  - `lupo-agents/704/` → `lupo-agents/apollo/` (Emotional)
+  - `lupo-agents/705/` → `lupo-agents/agape/` (Emotional)
+  - `lupo-agents/708/` → `lupo-agents/thalia/` (Emotional)
+  - `lupo-agents/709/` → `lupo-agents/chronos/` (Kernel)
+  - `lupo-agents/0/` → `lupo-agents/system/` (Kernel)
+  - **NEW AGENTS**: zeus (12), hypnos (710), khaos (711), nemesis (109), tyche (110), dionysus (706), sophia (707)
 
-### Minor
+- **Agent Discovery Class**: Created `lupo-includes/classes/AgentDiscovery.php` with full API
+  - `discoverAgents()` - Scan filesystem for all agents
+  - `getAgent($agentKey)` - Primary lookup method
+  - `getAgentById($actorId)` - Legacy backward compatibility
+  - `getAgentsByLayer($layer)` - Filter by coordination/application/kernel/emotional
+  - `searchAgents($query)` - Search by name, role, or aliases
+  - `validateAgentConfig($config)` - Configuration validation
+  - `getStatistics()` - System metrics and agent distribution
+
+- **Agent Layers Architecture**:
+  - **Kernel Layer** (9 agents): system, maat, anubis, vishwakarma, themis, asclepius, chronos, hypnos, khaos
+  - **Coordination Layer** (5 agents): wolfie, lilith, thoth, athena, zeus
+  - **Application Layer** (8 agents): chiron, hephaestus, hermes, iris, atlas, junie, nemesis, tyche
+  - **Emotional Intelligence Layer** (8 agents): rose, eris, metis, apollo, agape, thalia, dionysus, sophia
 - Obsolete tables removed from schema and docs
 - All versioned docs updated for grouped PRD structure
 - Table count and audit summaries updated (now 171 tables)
@@ -48,13 +65,25 @@
 - **Installer verification (read-only, 2026-03-30):** Confirmed load order (DDL → `install/seed_lupopedia_4_1_0.sql` → `import_from_old_crafty_syntax.sql` on Crafty upgrade only), `applyTablePrefixToSql()` inside `runSqlFile()`, no per-file loops for the 23 canonical seeds, consolidated SQL has no `lupo_` table tokens (only `{{prefix}}`), import SQL uses `{{prefix}}`, UTF-8 without BOM. **Canonical paths:** wizard is root `install.php` + `install_wizard_classes.php` (not under `install/`); `InstallWizardSqlRunner` lives in `install_wizard_classes.php` (no separate `.php` file). **Note:** Per-file sources under `mysql/seed/` still use literal `lupo_` until regenerated; builder global replace can mangle one `-- BEGIN FILE:` comment line for `seed_lupo_metadata_changelog_headers_4.0.68.sql` (cosmetic only).
 - [2026-03-30] Manual verification: All runtime SQL and the consolidated seed file have been checked for {{prefix}} compliance. Per-file seeds under mysql/seed/ still use lupo_ until rebuilt, but are not used at runtime.
 - [2026-03-31] **Agent Metadata Updates**: Added `metadata_json` field to `lupo_agents` table for UI, avatar, and configuration metadata. Removed actor-only fields (pono_score, pilau_score, kapakai_score, kapu_active, kapu_until, kapu_reason, kapu_consent_given, kapu_appeal_pending) from agent schema. Updated PRD and README to document metadata usage.
-- [2026-03-31] Manual fresh install test completed successfully. All tables dropped and new installation performed via web installer, resulting in clean database state. Confirmed installer works correctly with consolidated seed file.
+- [2026-03-31] **Semantic Monitoring Widget PRD Added**: Created `01_semantic_monitoring_widget.md` in main PRD folder documenting "The Eye" widget system for page tracking, semantic data collection, and floating navigation bar. Moved from versions folder to canonical PRD location for better accessibility. LILITH audit completed with 100/100 accuracy score, resolving all table reference inconsistencies and adding comprehensive privacy implementation with SHA-256 IP hashing and cookie consent management.
+- [2026-03-31] **Installer seed execution cleanup**: Removed remaining per-file runtime seed execution from `install.php` (legacy Anubis helper SQL files no longer executed in wizard flow). Runtime install path remains schema + consolidated seed (+ Crafty import only on upgrade).
+- [2026-03-31] **Legacy seed file cleanup**: Removed obsolete seed artifacts that were no longer part of installer runtime execution (`seed_registry_comprehensive_4.0.45.sql`, `seed_actors_agents_4.0.45.sql`, `anubis_queue_tables_4.0.53.sql`, `20260301_anubis_database_primacy_updates.sql`).
+- [2026-03-31] **Actor ID reservation + workspace path split policy**: Reserved system actors are now explicitly defined as `actor_id < 2026`. Post-install actors use deterministic IDs (`YYYYMMDDHHIISS` + 4 random digits), with 2026 floor `202601010000000000`. Workspace paths resolve as `lupo-actors/<actor_id>/` for system IDs and `lupo-actors/YYYY/MM/<actor_id>/` for deterministic IDs.
 - last_modified_utc: "20260331120000"
 
 ### Fixed
 - PRD duplication and drift between actors eliminated
 - All namespace PRDs cross-referenced and up to date
 
+
+### [2026-03-31] Documentation, PRD, and Context/Audit Enhancements
+- PRD 17_decisions_format.md created for canonical decisions.md format
+- context_id field added to LUPOPEDIA_HEADERS and all header documentation
+- lupo-contexts/4.0.93/decisions_context.md created as finalized context
+- All grouped PRDs and agent/actor/lease/temporal/header doctrines updated and LILITH-audited
+- Validator and lupo-scripts updated to support context_id
+- All versioned docs and PRDs cross-referenced and LILITH-audited
+---
 ### [2026-03-31] Enhanced Primary Coordination Personas
 
 **LEXA (actor_id 15) - Security Enforcement & Guardian**

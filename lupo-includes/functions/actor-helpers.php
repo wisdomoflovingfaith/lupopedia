@@ -52,9 +52,17 @@ function lupo_get_actor($actor_id)
         $who_file = rtrim($app_root, '/\\') . DIRECTORY_SEPARATOR . $lupo_actors_dir . DIRECTORY_SEPARATOR . $actor_name . DIRECTORY_SEPARATOR . 'WHO.json';
     }
 
-    // Fallback to legacy ID-based if name-based not found
+    // Fallback to deterministic ID-sharded path, then legacy ID path.
     if ($who_file === '' || !file_exists($who_file)) {
-        $who_file = rtrim($app_root, '/\\') . DIRECTORY_SEPARATOR . $lupo_actors_dir . DIRECTORY_SEPARATOR . $actor_id . DIRECTORY_SEPARATOR . 'WHO.json';
+        $actor_id_str = (string) $actor_id;
+        if (preg_match('/^[0-9]{18}$/', $actor_id_str)) {
+            $who_file = rtrim($app_root, '/\\') . DIRECTORY_SEPARATOR . $lupo_actors_dir . DIRECTORY_SEPARATOR . substr($actor_id_str, 0, 4) . DIRECTORY_SEPARATOR . substr($actor_id_str, 4, 2) . DIRECTORY_SEPARATOR . $actor_id_str . DIRECTORY_SEPARATOR . 'WHO.json';
+        } else {
+            $who_file = rtrim($app_root, '/\\') . DIRECTORY_SEPARATOR . $lupo_actors_dir . DIRECTORY_SEPARATOR . $actor_id_str . DIRECTORY_SEPARATOR . 'WHO.json';
+        }
+        if (!file_exists($who_file)) {
+            $who_file = rtrim($app_root, '/\\') . DIRECTORY_SEPARATOR . $lupo_actors_dir . DIRECTORY_SEPARATOR . $actor_id_str . DIRECTORY_SEPARATOR . 'WHO.json';
+        }
     }
 
     if ($who_file !== '' && file_exists($who_file)) {

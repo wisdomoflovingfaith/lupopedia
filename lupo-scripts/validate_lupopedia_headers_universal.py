@@ -35,6 +35,7 @@ REQUIRED_HEADER_KEYS = (
     "artifact_kind",
     "purpose",
     "tags",
+    "context_id",  # Now required for finalized artifacts
 )
 
 # thread_id: lowercase, hyphens (and digits); e.g. headers-doctrine, 4.0.89-planning
@@ -183,7 +184,7 @@ def _header_value_present(val):
 
 
 def validate_required_header_fields(hdr, file_path):
-    """Ensure doctrine-required keys exist under lupopedia.headers."""
+    """Ensure doctrine-required keys exist under lupopedia.headers, including context_id."""
     if not isinstance(hdr, dict):
         print("[ERROR] %s: lupopedia.headers must be a mapping" % (file_path,))
         return False
@@ -195,7 +196,51 @@ def validate_required_header_fields(hdr, file_path):
     if isinstance(tags, list) and len(tags) == 0:
         print("[ERROR] %s: tags must be a non-empty list" % (file_path,))
         return False
+    # Validate context_id format: must be 18-digit int (YYYYMMDDHHIISS + 4 random)
+    context_id = hdr.get("context_id")
+    if context_id is not None:
+        try:
+            context_id_str = str(context_id)
+            if not (context_id_str.isdigit() and len(context_id_str) == 18):
+                print(f"[ERROR] {file_path}: context_id must be 18 digits (YYYYMMDDHHIISS + 4 random), got {context_id_str}")
+                return False
+        except Exception:
+            print(f"[ERROR] {file_path}: context_id must be a numeric string")
+            return False
+        # Existence check (strict mode): check lupo_contexts table in DB
+        try:
+            import pymysql
+            from lib.db_connection import get_connection_params, get_connection
+            conn = get_connection()
+            with conn.cursor() as cur:
+                cur.execute("SELECT COUNT(*) FROM lupo_contexts WHERE context_id = %s", (context_id_str,))
+                row = cur.fetchone()
+                if not row or row[0] == 0:
+                    print(f"[ERROR] {file_path}: context_id {context_id_str} not found in lupo_contexts table")
+                    return False
+        except Exception as e:
+            print(f"[WARN] {file_path}: Could not check context_id existence in DB: {e}")
     return True
+
+# Deterministic context_id generation: YYYYMMDDHHIISS + 4 random digits, check DB for collision
+import random
+def generate_context_id():
+    from datetime import datetime, timezone
+    import pymysql
+    from db_config import get_connection_params
+    now = datetime.now(timezone.utc)
+    prefix = now.strftime("%Y%m%d%H%M%S")
+    conn_params = get_connection_params()
+    conn = pymysql.connect(**conn_params)
+    for _ in range(5):
+        rand4 = f"{random.randint(0, 9999):04d}"
+        context_id = prefix + rand4
+        with conn.cursor() as cur:
+            cur.execute("SELECT COUNT(*) FROM lupo_contexts WHERE context_id = %s", (context_id,))
+            row = cur.fetchone()
+            if not row or row[0] == 0:
+                return context_id
+    raise RuntimeError("Failed to generate unique context_id after 5 attempts")
 
 
 def validate_thread_id_format(thread_id, file_path):
@@ -227,11 +272,14 @@ def validate_ymdhis_pair(when_updated, last_modified_utc, file_path):
     return True
 
 
-def check_db_sync_universal(file_path, header_data):
+def check_db_sync_universal(file_path, header_data, check_db_flag=False):
     """
     Warn if file declares outbound_edges or lupopedia.history but DB has no matching rows.
     Optionally warn if content_id row's file_path_from_root differs from header.
+    Only run DB checks if check_db_flag is True.
     """
+    if not check_db_flag:
+        return
     if not isinstance(header_data, dict):
         print("[WARN] %s: --check-db skipped: could not use parsed header" % (file_path,))
         return
@@ -251,13 +299,12 @@ def check_db_sync_universal(file_path, header_data):
 
     try:
         import pymysql
-        from pymysql.cursors import DictCursor
     except ImportError:
         print("[WARN] %s: --check-db skipped: pymysql not installed" % (file_path,))
         return
 
     try:
-        from db_config import get_connection_params
+        from lib.db_connection import get_connection_params, get_connection
         from import_content import _load_table_prefix_from_config, _safe_sql_identifier
     except Exception as e:
         print("[WARN] %s: --check-db skipped: config import failed (%s)" % (file_path, e))
@@ -271,19 +318,9 @@ def check_db_sync_universal(file_path, header_data):
     prefix = _load_table_prefix_from_config()
     edges_table = _safe_sql_identifier(prefix + "edges")
     contents_table = _safe_sql_identifier(prefix + "contents")
-    p = get_connection_params()
     conn = None
     try:
-        conn = pymysql.connect(
-            host=p["host"],
-            user=p["user"],
-            password=p["password"],
-            database=p["database"],
-            port=int(p.get("port") or 3306),
-            charset="utf8mb4",
-            cursorclass=DictCursor,
-            autocommit=False,
-        )
+        conn = get_connection()
         with conn.cursor() as cur:
             cur.execute(
                 "SELECT file_path_from_root, revision_history FROM `%s` WHERE content_id=%%s AND is_deleted=0 LIMIT 1"
@@ -726,6 +763,6 @@ if __name__ == "__main__":
 
     ok, parsed = validate_yaml_file(file_path, content)
     if ok and args.check_db and parsed is not None:
-        check_db_sync_universal(file_path, parsed)
+        check_db_sync_universal(file_path, parsed, check_db_flag=True)
 
     sys.exit(0 if ok else 1)

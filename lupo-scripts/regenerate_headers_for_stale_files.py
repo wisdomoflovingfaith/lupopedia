@@ -141,20 +141,69 @@ def regenerate_headers(file_path):
         if in_header and ':' in line:
             key, value = line.split(':', 1)
             headers[key.strip()] = value.strip()
-    
+
     # Update required fields
     current_ts = get_current_timestamp()
-    
+
+    # --- Context ID logic ---
+    context_id = headers.get('context_id')
+    def is_finalized_artifact(headers):
+        # Heuristic: treat decisions.md, context, or PRD as finalized
+        fpr = headers.get('file_path_from_root', '').lower()
+        return (
+            'decisions.md' in fpr or
+            headers.get('artifact_kind', '').lower() in ('decisions', 'context', 'specification', 'prd')
+        )
+
+    def generate_context_id():
+        import random
+        from lib.db_connection import get_connection
+        for _ in range(5):
+            base = current_ts
+            rand = f"{random.randint(0, 9999):04d}"
+            cid = f"{base}{rand}"
+            # Check DB for uniqueness
+            try:
+                conn = get_connection()
+                with conn.cursor() as cur:
+                    cur.execute("SELECT COUNT(*) FROM lupo_contexts WHERE context_id=%s", (cid,))
+                    row = cur.fetchone()
+                conn.close()
+                if row and (row[0] == 0 or row.get('COUNT(*)', 0) == 0):
+                    return cid
+            except Exception as e:
+                print(f"[WARN] Could not check context_id uniqueness: {e}")
+                return cid  # fallback: just use it
+        raise Exception("Failed to generate unique context_id after 5 attempts")
+
+    # If context_id missing and finalized, generate and insert
+    if not context_id and is_finalized_artifact(headers):
+        context_id = generate_context_id()
+        # Insert into lupo_contexts if not present
+        try:
+            from lib.db_connection import get_connection
+            conn = get_connection()
+            with conn.cursor() as cur:
+                cur.execute("INSERT IGNORE INTO lupo_contexts (context_id, context_type, content_raw, metadata_json, created_ymdhis, updated_ymdhis) VALUES (%s, %s, %s, %s, %s, %s)",
+                    (context_id, headers.get('artifact_kind', 'decisions'), '', '{}', current_ts, current_ts))
+            conn.commit()
+            conn.close()
+            print(f"[INFO] Inserted new context_id {context_id} into lupo_contexts")
+        except Exception as e:
+            print(f"[WARN] Could not insert context_id into lupo_contexts: {e}")
+
     # Update header fields
     new_headers = headers.copy()
     new_headers['last_modified_utc'] = f'"{current_ts}"'
     new_headers['when_updated'] = f'"{current_ts}"'
     new_headers['last_verified'] = f'"{current_ts}"'
-    
+    if context_id:
+        new_headers['context_id'] = context_id
+
     # Add verified_via if not present
     if 'verified_via' not in headers:
         new_headers['verified_via'] = 'type: "faucet"\n  faucet_slug: "cascade"'  # Default to Cascade
-    
+
     # Rebuild header section
     new_lines = []
     in_header = False
@@ -163,27 +212,35 @@ def regenerate_headers(file_path):
             in_header = not in_header
             new_lines.append(line)
             continue
-        
+
         if in_header:
             # Update modified fields
             updated = False
-            for key in ['last_modified_utc', 'when_updated', 'last_verified']:
+            for key in ['last_modified_utc', 'when_updated', 'last_verified', 'context_id']:
                 if key in line:
                     new_lines.append(f"{key}: {new_headers[key]}")
                     updated = True
-                    in_header = False
                     break
             if not updated:
                 new_lines.append(line)
         else:
             new_lines.append(line)
-    
+
+    # If context_id was missing, add it before the first non-header line
+    if context_id and 'context_id' not in headers:
+        # Insert after last header field
+        for i, line in enumerate(new_lines):
+            if line.strip() == '---':
+                # Insert context_id after this line
+                new_lines.insert(i+1, f"context_id: {context_id}")
+                break
+
     # Write updated content
     new_content = '\n'.join(new_lines)
-    
+
     with open(file_path, 'w', encoding='utf-8-sig') as f:
         f.write(new_content)
-    
+
     # Add history event for regeneration
     event_data = {
         'event_type': 'update',
@@ -196,7 +253,7 @@ def regenerate_headers(file_path):
         'affected_files': [file_path]
     }
     append_history_event(file_path, event_data)
-    
+
     print(f"✅ {file_path}: headers regenerated")
     return True
 

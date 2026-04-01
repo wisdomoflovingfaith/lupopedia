@@ -4,7 +4,7 @@ lupopedia.headers:
   version_when_written: "4.0.93"
   file_path_from_root: "lupo-docs/versions/4.0.93/what_to_do_next_session.md"
   web_path: "http://www.lupopedia.com/lupo-docs/versions/4.0.93/what_to_do_next_session.md"
-  last_modified_utc: "20260330190000"
+  last_modified_utc: "20260331150000"
   channel_id: 42
   actor_id: 102
   actor_name: "HEPHAESTUS"
@@ -146,6 +146,12 @@ lupopedia.headers:
 - [x] **`{{prefix}}` in installer:** `InstallWizardSqlRunner::applyTablePrefixToSql()` used by `runSqlFile()` for DDL, consolidated seed, and import SQL.
 - [x] **Duplicate seed runs removed** from wizard tail (Anubis helper SQL still optional post-seed).
 - **Next:** When touching any file in `mysql/seed/`, regenerate consolidated SQL and note it in CHANGELOG/session; re-run deferred `enforce_doctrine` on consolidated output when tooling unblocks.
+
+### **Installer / actor runtime follow-up (2026-03-31)**
+- [x] Removed remaining per-file seed execution from installer runtime path (legacy Anubis helper seed SQL no longer executed by `install.php`).
+- [x] Deleted obsolete seed files that were no longer used in runtime installer flow.
+- [x] Updated runtime actor creation paths to deterministic IDs (`YmdHis + 4`) and sharded workspace resolution/provisioning under `lupo-actors/YYYY/MM/actor_id`.
+- [x] Kept backward-compatible fallback resolution for legacy flat actor directories.
 
 **Verification (read-only, 2026-03-30)** — see `/lupo-docs/versions/4.0.93/WHAT_TO_DO_NEXT.md` §14: confirmed root `install.php` / `install_wizard_classes.php`, import path, `{{prefix}}` on consolidated + import, 23 sections in consolidated seed, Anubis post-seed; noted cosmetic `BEGIN FILE` comment quirk for metadata seed filename.
 

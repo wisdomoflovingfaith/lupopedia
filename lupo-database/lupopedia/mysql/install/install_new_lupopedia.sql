@@ -3481,8 +3481,8 @@ CREATE INDEX {{prefix}}world_registry_idx_is_active ON {{prefix}}world_registry 
 -- FINAL IDE & AI ACTOR INTEGRATION (Lupopedia 4.0.86)
 -- ============================================================
 -- CSV-driven unregistry allocation - FINAL ACTOR IDs:
--- Cursor IDE: 2031, Kiro IDE: 2032, Zed IDE: 2033, VS Code IDE: 2034
--- Antigravity IDE: 2035, Microsoft Copilot: 2036, DeepSeek LEXA: 2037, DeepSeek LILITH: 2038
+-- Cursor IDE: 211, Kiro IDE: 212, Zed IDE: 213, VS Code IDE: 214
+-- Antigravity IDE: 215, Microsoft Copilot: 216, DeepSeek LEXA: 217, DeepSeek LILITH: 218
 -- ============================================================
 
 -- Registry entries for all IDE & AI actors
@@ -3492,14 +3492,14 @@ CREATE INDEX {{prefix}}world_registry_idx_is_active ON {{prefix}}world_registry 
 INSERT IGNORE INTO {{prefix}}actors (actor_id, actor_type, slug, name, created_ymdhis, updated_ymdhis, is_active, is_deleted, deleted_ymdhis, actor_source_id, actor_source_type, metadata, adversarial_role, adversarial_oversight_actor_id, avatar_hash) 
 VALUES 
 (102, 'work_agent', 'hephaestus', 'HEPHAESTUS (The Smith)', @now, @now, 1, 0, NULL, 102, 'work_agent', '{"purpose":"Work Agent","archetype":"Hephaestus","faucet_context":"Cursor/VSCode/Windsurf","note":"Manifestation of the Smith; all IDE faucets are tools of Hephaestus."}', 'none', NULL, NULL),
-(2031, 'system_tool', 'cursor-ide', 'Cursor IDE', @now, @now, 1, 0, NULL, 2031, 'system_tool', '{"purpose":"IDE_integration","capabilities":["code_generation","file_editing","project_management","git_integration"],"version":"1.0.0","client_id":"cursor","provider":"cursor","integration_ready":true}', 'none', NULL, NULL),
-(2032, 'system_tool', 'kiro-ide', 'Kiro IDE', @now, @now, 1, 0, NULL, 2032, 'system_tool', '{"purpose":"IDE_integration","capabilities":["code_generation","file_editing","project_management","git_integration"],"version":"1.0.0","client_id":"kiro","provider":"kiro","integration_ready":true}', 'none', NULL, NULL),
-(2033, 'system_tool', 'zed-ide', 'Zed IDE', @now, @now, 1, 0, NULL, 2033, 'system_tool', '{"purpose":"IDE_integration","capabilities":["code_generation","file_editing","project_management","git_integration"],"version":"1.0.0","client_id":"zed","provider":"zed","integration_ready":true}', 'none', NULL, NULL),
-(2034, 'system_tool', 'vscode-ide', 'VS Code IDE', @now, @now, 1, 0, NULL, 2034, 'system_tool', '{"purpose":"IDE_integration","capabilities":["code_generation","file_editing","project_management","git_integration"],"version":"1.0.0","client_id":"vscode","provider":"microsoft","integration_ready":true}', 'none', NULL, NULL),
-(2035, 'system_tool', 'antigravity-ide', 'Antigravity IDE', @now, @now, 1, 0, NULL, 2035, 'system_tool', '{"purpose":"VSX_extension_development","capabilities":["project_management","file_editing","semantic_navigation","open_vsx_integration"],"version":"1.0.0","client_id":"antigravity","integration_ready":true}', 'none', NULL, NULL),
-(2036, 'external_ai', 'microsoft-copilot', 'Microsoft Copilot', @now, @now, 1, 0, NULL, 2036, 'external_ai', '{"purpose":"AI_assistant","capabilities":["code_generation","debugging","documentation","file_editing","git_integration"],"version":"1.0.0","client_id":"copilot","provider":"microsoft","integration_ready":true}', 'none', NULL, NULL),
-(2037, 'external_ai', 'deepseek-lexa', 'DeepSeek LEXA', @now, @now, 1, 0, NULL, 2037, 'external_ai', '{"purpose":"AI_assistant","capabilities":["code_generation","debugging","documentation","file_editing","git_integration"],"version":"1.0.0","client_id":"deepseek_lexa","provider":"deepseek","integration_ready":true}', 'none', NULL, NULL),
-(2038, 'external_ai', 'deepseek-lilith', 'DeepSeek LILITH', @now, @now, 1, 0, NULL, 2038, 'external_ai', '{"purpose":"AI_assistant","capabilities":["code_generation","debugging","documentation","file_editing","git_integration"],"version":"1.0.0","client_id":"deepseek_lilith","provider":"deepseek","integration_ready":true}', 'none', NULL, NULL)
+(211, 'system_tool', 'cursor-ide', 'Cursor IDE', @now, @now, 1, 0, NULL, 211, 'system_tool', '{"purpose":"IDE_integration","capabilities":["code_generation","file_editing","project_management","git_integration"],"version":"1.0.0","client_id":"cursor","provider":"cursor","integration_ready":true}', 'none', NULL, NULL),
+(212, 'system_tool', 'kiro-ide', 'Kiro IDE', @now, @now, 1, 0, NULL, 212, 'system_tool', '{"purpose":"IDE_integration","capabilities":["code_generation","file_editing","project_management","git_integration"],"version":"1.0.0","client_id":"kiro","provider":"kiro","integration_ready":true}', 'none', NULL, NULL),
+(213, 'system_tool', 'zed-ide', 'Zed IDE', @now, @now, 1, 0, NULL, 213, 'system_tool', '{"purpose":"IDE_integration","capabilities":["code_generation","file_editing","project_management","git_integration"],"version":"1.0.0","client_id":"zed","provider":"zed","integration_ready":true}', 'none', NULL, NULL),
+(214, 'system_tool', 'vscode-ide', 'VS Code IDE', @now, @now, 1, 0, NULL, 214, 'system_tool', '{"purpose":"IDE_integration","capabilities":["code_generation","file_editing","project_management","git_integration"],"version":"1.0.0","client_id":"vscode","provider":"microsoft","integration_ready":true}', 'none', NULL, NULL),
+(215, 'system_tool', 'antigravity-ide', 'Antigravity IDE', @now, @now, 1, 0, NULL, 215, 'system_tool', '{"purpose":"VSX_extension_development","capabilities":["project_management","file_editing","semantic_navigation","open_vsx_integration"],"version":"1.0.0","client_id":"antigravity","integration_ready":true}', 'none', NULL, NULL),
+(216, 'external_ai', 'microsoft-copilot', 'Microsoft Copilot', @now, @now, 1, 0, NULL, 216, 'external_ai', '{"purpose":"AI_assistant","capabilities":["code_generation","debugging","documentation","file_editing","git_integration"],"version":"1.0.0","client_id":"copilot","provider":"microsoft","integration_ready":true}', 'none', NULL, NULL),
+(217, 'external_ai', 'deepseek-lexa', 'DeepSeek LEXA', @now, @now, 1, 0, NULL, 217, 'external_ai', '{"purpose":"AI_assistant","capabilities":["code_generation","debugging","documentation","file_editing","git_integration"],"version":"1.0.0","client_id":"deepseek_lexa","provider":"deepseek","integration_ready":true}', 'none', NULL, NULL),
+(218, 'external_ai', 'deepseek-lilith', 'DeepSeek LILITH', @now, @now, 1, 0, NULL, 218, 'external_ai', '{"purpose":"AI_assistant","capabilities":["code_generation","debugging","documentation","file_editing","git_integration"],"version":"1.0.0","client_id":"deepseek_lilith","provider":"deepseek","integration_ready":true}', 'none', NULL, NULL)
 ON DUPLICATE KEY UPDATE name = VALUES(name), metadata = VALUES(metadata), updated_ymdhis = @now, is_active = 1, is_deleted = 0;
 
 -- Channel 42: Lupopedia Development (system channel)
@@ -3557,20 +3557,20 @@ ON DUPLICATE KEY UPDATE
 -- Department 0 membership for all IDE & AI actors
 INSERT IGNORE INTO {{prefix}}actor_departments (actor_department_id, actor_id, department_id, role_key, created_ymdhis, updated_ymdhis, is_deleted, deleted_ymdhis) 
 VALUES 
-(12031, 2031, 0, 'member', @now, @now, 0, NULL),
-(12032, 2032, 0, 'member', @now, @now, 0, NULL),
-(12033, 2033, 0, 'member', @now, @now, 0, NULL),
-(12034, 2034, 0, 'member', @now, @now, 0, NULL),
-(12035, 2035, 0, 'member', @now, @now, 0, NULL),
-(12036, 2036, 0, 'member', @now, @now, 0, NULL),
-(12037, 2037, 0, 'member', @now, @now, 0, NULL),
-(12038, 2038, 0, 'member', @now, @now, 0, NULL)
+(12031, 211, 0, 'member', @now, @now, 0, NULL),
+(12032, 212, 0, 'member', @now, @now, 0, NULL),
+(12033, 213, 0, 'member', @now, @now, 0, NULL),
+(12034, 214, 0, 'member', @now, @now, 0, NULL),
+(12035, 215, 0, 'member', @now, @now, 0, NULL),
+(12036, 216, 0, 'member', @now, @now, 0, NULL),
+(12037, 217, 0, 'member', @now, @now, 0, NULL),
+(12038, 218, 0, 'member', @now, @now, 0, NULL)
 ON DUPLICATE KEY UPDATE role_key = VALUES(role_key), updated_ymdhis = @now, is_deleted = 0;
 
 -- ============================================================
 -- WARP IDE ACTOR INTEGRATION (Lupopedia 4.0.86)
 -- ============================================================
--- Warp IDE: actor_id 2039, system_tool, federation_node_id 0 (local node)
+-- Warp IDE: actor_id 219, system_tool, federation_node_id 0 (local node)
 -- paired_actor_id = 10000 (human operator)
 -- ============================================================
 
@@ -3581,23 +3581,23 @@ ON DUPLICATE KEY UPDATE role_key = VALUES(role_key), updated_ymdhis = @now, is_d
 
 -- Actor record for Warp IDE (with paired_actor_id)
 INSERT IGNORE INTO {{prefix}}actors (actor_id, actor_type, slug, name, created_ymdhis, updated_ymdhis, is_active, is_deleted, deleted_ymdhis, actor_source_id, actor_source_type, metadata, adversarial_role, adversarial_oversight_actor_id, avatar_hash, paired_actor_id)
-VALUES (2039, 'system_tool', 'warp-ide', 'Warp IDE', @now, @now, 1, 0, NULL, 2039, 'system_tool', '{"purpose":"IDE_integration","capabilities":["code_generation","file_editing","project_management","git_integration","terminal_integration"],"version":"1.0.0","client_id":"warp","provider":"warp","integration_ready":true,"paired_actor_id":10000}', 'none', NULL, NULL, 10000)
+VALUES (219, 'system_tool', 'warp-ide', 'Warp IDE', @now, @now, 1, 0, NULL, 219, 'system_tool', '{"purpose":"IDE_integration","capabilities":["code_generation","file_editing","project_management","git_integration","terminal_integration"],"version":"1.0.0","client_id":"warp","provider":"warp","integration_ready":true,"paired_actor_id":10000}', 'none', NULL, NULL, 10000)
 ON DUPLICATE KEY UPDATE name = VALUES(name), metadata = VALUES(metadata), paired_actor_id = VALUES(paired_actor_id), updated_ymdhis = @now, is_active = 1, is_deleted = 0;
 
 -- Channel 42 membership for Warp IDE
 INSERT INTO {{prefix}}actor_channels (actor_channel_id, actor_id, channel_id, created_by_actor_id, status, start_date, channel_color, last_read_ymdhis, muted_until_ymdhis, preferences_json, dialog_output_file, created_ymdhis, updated_ymdhis, is_deleted, deleted_ymdhis)
-VALUES (12039, 2039, 42, 1000, 'A', 20260221000000, 'F7FAFF', NULL, NULL, '{"purpose":"IDE_integration","capabilities":["code_generation","file_editing","project_management","terminal_integration"],"paired_actor_id":10000}', NULL, @now, @now, 0, NULL)
+VALUES (12039, 219, 42, 1000, 'A', 20260221000000, 'F7FAFF', NULL, NULL, '{"purpose":"IDE_integration","capabilities":["code_generation","file_editing","project_management","terminal_integration"],"paired_actor_id":10000}', NULL, @now, @now, 0, NULL)
 ON DUPLICATE KEY UPDATE actor_id = VALUES(actor_id), channel_id = VALUES(channel_id), updated_ymdhis = @now, is_deleted = 0;
 
 -- Department 0 membership for Warp IDE
 INSERT IGNORE INTO {{prefix}}actor_departments (actor_department_id, actor_id, department_id, role_key, created_ymdhis, updated_ymdhis, is_deleted, deleted_ymdhis)
-VALUES (12039, 2039, 0, 'member', @now, @now, 0, NULL)
+VALUES (12039, 219, 0, 'member', @now, @now, 0, NULL)
 ON DUPLICATE KEY UPDATE role_key = VALUES(role_key), updated_ymdhis = @now, is_deleted = 0;
 
 -- ============================================================
 -- WINDSURF IDE ACTOR INTEGRATION (Lupopedia 4.0.86)
 -- ============================================================
--- Windsurf IDE: actor_id 2040 (reassigned from conflicting actor_id 2 = CAPTAIN)
+-- Windsurf IDE: actor_id 220 (reassigned from conflicting actor_id 2 = CAPTAIN)
 -- paired_actor_id = 10000 (human operator), federation_node_id 0 (local node)
 -- ============================================================
 
@@ -3608,30 +3608,30 @@ ON DUPLICATE KEY UPDATE role_key = VALUES(role_key), updated_ymdhis = @now, is_d
 
 -- Actor record for Windsurf IDE (with paired_actor_id)
 INSERT IGNORE INTO {{prefix}}actors (actor_id, actor_type, slug, name, created_ymdhis, updated_ymdhis, is_active, is_deleted, deleted_ymdhis, actor_source_id, actor_source_type, metadata, adversarial_role, adversarial_oversight_actor_id, avatar_hash, paired_actor_id)
-VALUES (2040, 'system_tool', 'windsurf-ide', 'Windsurf IDE', @now, @now, 1, 0, NULL, 2040, 'system_tool', '{"purpose":"IDE_integration","capabilities":["code_generation","file_editing","project_management","git_integration","vsx_extension_development"],"version":"1.0.0","client_id":"windsurf","provider":"windsurf","integration_ready":true,"paired_actor_id":10000,"note":"Reassigned from actor_id 2 to avoid CAPTAIN conflict"}', 'none', NULL, NULL, 10000)
+VALUES (220, 'system_tool', 'windsurf-ide', 'Windsurf IDE', @now, @now, 1, 0, NULL, 220, 'system_tool', '{"purpose":"IDE_integration","capabilities":["code_generation","file_editing","project_management","git_integration","vsx_extension_development"],"version":"1.0.0","client_id":"windsurf","provider":"windsurf","integration_ready":true,"paired_actor_id":10000,"note":"Reassigned from actor_id 2 to avoid CAPTAIN conflict"}', 'none', NULL, NULL, 10000)
 ON DUPLICATE KEY UPDATE name = VALUES(name), metadata = VALUES(metadata), paired_actor_id = VALUES(paired_actor_id), updated_ymdhis = @now, is_active = 1, is_deleted = 0;
 
 -- Channel 42 membership for Windsurf IDE
 INSERT INTO {{prefix}}actor_channels (actor_channel_id, actor_id, channel_id, created_by_actor_id, status, start_date, channel_color, last_read_ymdhis, muted_until_ymdhis, preferences_json, dialog_output_file, created_ymdhis, updated_ymdhis, is_deleted, deleted_ymdhis)
-VALUES (12040, 2040, 42, 1000, 'A', 20260221000000, 'F7FAFF', NULL, NULL, '{"purpose":"IDE_integration","capabilities":["code_generation","file_editing","project_management","vsx_extension_development"],"paired_actor_id":10000}', NULL, @now, @now, 0, NULL)
+VALUES (12040, 220, 42, 1000, 'A', 20260221000000, 'F7FAFF', NULL, NULL, '{"purpose":"IDE_integration","capabilities":["code_generation","file_editing","project_management","vsx_extension_development"],"paired_actor_id":10000}', NULL, @now, @now, 0, NULL)
 ON DUPLICATE KEY UPDATE actor_id = VALUES(actor_id), channel_id = VALUES(channel_id), updated_ymdhis = @now, is_deleted = 0;
 
 -- Department 0 membership for Windsurf IDE
 INSERT IGNORE INTO {{prefix}}actor_departments (actor_department_id, actor_id, department_id, role_key, created_ymdhis, updated_ymdhis, is_deleted, deleted_ymdhis)
-VALUES (12040, 2040, 0, 'member', @now, @now, 0, NULL)
+VALUES (12040, 220, 0, 'member', @now, @now, 0, NULL)
 ON DUPLICATE KEY UPDATE role_key = VALUES(role_key), updated_ymdhis = @now, is_deleted = 0;
 
 -- ============================================================
 -- PAIRED ACTOR + FEDERATION NODE FIXES (Lupopedia 4.0.86)
 -- ============================================================
--- Fix paired_actor_id for Copilot (2036) and LILITH (2038)
+-- Fix paired_actor_id for Copilot (216) and LILITH (218)
 -- Fix federation_node_id: Copilot/LILITH = 1 (remote), others local = 0
 -- ============================================================
 
 -- paired_actor_id: Copilot â†’ 0 (human operator)
-UPDATE {{prefix}}actors SET paired_actor_id = 0, updated_ymdhis = COALESCE(@now, updated_ymdhis) WHERE actor_id = 2036;
+UPDATE {{prefix}}actors SET paired_actor_id = 0, updated_ymdhis = COALESCE(@now, updated_ymdhis) WHERE actor_id = 216;
 -- paired_actor_id: LILITH â†’ 0 (human operator)
-UPDATE {{prefix}}actors SET paired_actor_id = 0, updated_ymdhis = COALESCE(@now, updated_ymdhis) WHERE actor_id = 2038;
+UPDATE {{prefix}}actors SET paired_actor_id = 0, updated_ymdhis = COALESCE(@now, updated_ymdhis) WHERE actor_id = 218;
 
 -- ============================================================
 -- FLIP v2: use {{prefix}}artifacts with entity_type = 'flip_artifact'

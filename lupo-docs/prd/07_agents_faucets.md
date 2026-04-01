@@ -5,12 +5,12 @@ lupopedia.headers:
   version_when_written: "4.0.93"
   file_path_from_root: "lupo-docs/prd/07_agents_faucets.md"
   web_path: "http://www.lupopedia.com/lupopedia/lupo-docs/prd/07_agents_faucets.md"
-  last_modified_utc: "20260331120000"
+  last_modified_utc: "20260331160000"
   channel_id: 42
   thread_id: "prd-grouped"
-  actor_id: 102
-  actor_name: "CURSOR"
-  delegation_chain: "cursor:root|lilith:audit"
+  actor_id: 2
+  actor_name: "LILITH"
+  delegation_chain: "lilith:audit|cursor:implementation"
   artifact_type: "prd"
   artifact_kind: "database_namespace"
   purpose: "PRD for filesystem-based AI agents, faucets, tool calls, and system integration"
@@ -37,11 +37,11 @@ lupopedia.edges:
       weight: 1.0
       reason: "Agents use API endpoints"
 lupopedia.footer:
-  last_verified: "20260331120000"
+  last_verified: "20260331160000"
   verified_by:
-    actor_id: 102
-    agent_name_identity: Cursor IDE Agent
-  orchestrator: "cursor:root"
+    actor_id: 2
+    agent_name_identity: "LILITH"
+  orchestrator: "lilith:audit|cursor:implementation"
 ---
 
 # PRD: AI Agents, Faucets, Tool Calls, and System Integration
@@ -95,38 +95,138 @@ $results = AgentDiscovery::searchAgents('orchestrator');
 $stats = AgentDiscovery::getStatistics();
 ```
 
-## Agent Directory Structure
+
+## Agent Directory Structure (Canonical & Modular)
+
+All agent directories MUST include the canonical files and SHOULD include the following modular folders for modern development and maintainability:
 
 ```
-lupo-agents/
-├── README.md                    # Complete system documentation
-├── _TEMPLATE/                  # Template for creating new agents
-├── meta/                      # System metadata about the agent system
-├── wolfie/                    # WOLFIE - System Orchestrator
-├── lilith/                    # LILITH - Quality Assurance & Adversarial Testing
-├── rose/                      # ROSE - Emotional Dialogue
-├── eris/                      # ERIS - Chaos & Disruption
-├── metis/                     # METIS - Wisdom & Counsel
-├── maat/                      # MAAT - Truth & Justice
-├── chiron/                    # CHIRON - Mentorship & Education
-├── thoth/                     # THOTH - Knowledge & Records
-├── athena/                    # ATHENA - Wisdom & Strategy
-├── methis/                    # METHIS - Wisdom & Counsel
-├── hephaestus/                # HEPHAESTUS - Implementer
-├── anubis/                    # ANUBIS - Custodian & Integrity Guardian
-├── atlas/                     # ATLAS - Mapping & Geography
-├── hermes/                    # HERMES - Event Routing & Messaging Exchange System
-├── iris/                      # IRIS - Interface & Integration Support
-├── asclepius/                 # ASCLEPIUS - [To be defined]
-├── apollo/                    # APOLLO - Creative & Arts
-├── agape/                     # AGAPE - Universal Love & Compassion
-├── thalia/                    # THALIA - Comedy & Joy
-├── chronos/                   # CHRONOS - Time & Temporal Management
-├── vishwakarma/               # VISHWAKARMA - Schema & Construction
-├── themis/                    # THEMIS - Law & Compliance
-├── junie/                     # JUNIE - JetBrains IDE Agent
-└── system/                    # SYSTEM - System Kernel Agent
+lupo-agents/{agent_key}/
+├── agent.json           # Core metadata with agent_key and agent_id fields (REQUIRED)
+├── capabilities.json    # Agent capabilities (REQUIRED)
+├── properties.json      # Agent properties and constraints (REQUIRED)
+├── system_prompt.txt    # System prompt (REQUIRED)
+├── versions/            # Version history (optional)
+├── api/                # API endpoints, integration logic, or stubs (RECOMMENDED)
+├── assets/             # Images, icons, or static files (RECOMMENDED)
+├── components/         # UI or logic components (RECOMMENDED)
+├── context/            # Context providers, shared state, or context logic (RECOMMENDED)
+├── data/               # Static data, fixtures, or data schemas (RECOMMENDED)
+├── hooks/              # Reusable logic hooks (RECOMMENDED)
+├── includes/           # Shared includes, partials, or helper files (RECOMMENDED)
+├── pages/              # Page-level logic or UI (RECOMMENDED)
+├── tools/              # Tool definitions, scripts, or agent-specific utilities (RECOMMENDED)
+├── utils/              # Utility functions, helpers, or shared logic (RECOMMENDED)
 ```
+
+**Example:**
+```
+lupo-agents/wolfie/
+lupo-agents/lilith/
+lupo-agents/hephaestus/
+lupo-agents/hermes/api/
+lupo-agents/hermes/assets/
+```
+
+**See also:** The `_TEMPLATE/` agent directory for canonical file templates and folder structure.
+
+## Security Requirements (Critical)
+
+- All faucet credentials must be encrypted at rest using AES-256.
+- Key management and rotation policy: keys must be rotated every 90 days.
+- Session timeout for faucet access: 1 hour maximum; re-authentication required after timeout.
+- Audit logging is required for all tool calls involving PII, system changes, or financial operations.
+- Failed authentication attempts must be logged; IP restrictions for admin faucets.
+
+## File vs Database Authority
+
+**DOCTRINE:** File-based agent definitions in lupo-agents/{agent_key}/ are authoritative. The lupo_agents table is runtime-only and reflects the filesystem. The database must never modify agent files.
+
+**Sync Process:**
+- File changes trigger database sync (runtime reflection only)
+- Database changes never trigger file changes
+- Conflict resolution: File wins, DB syncs to file
+
+## Minimal lupo_agents Table (Runtime Only)
+
+| Column | Type | Description |
+|--------|------|-------------|
+| agent_id | BIGINT | Numeric ID (legacy, backward compatibility) |
+| agent_key | VARCHAR(100) | Primary identifier, matches directory name |
+| version | VARCHAR(50) | Current runtime version (from filesystem) |
+| last_sync_ymdhis | BIGINT | Last filesystem sync timestamp |
+| is_active | TINYINT | Runtime active flag |
+| avg_response_time_ms | INT | Runtime metric |
+| total_tokens_processed | BIGINT | Runtime metric |
+| success_rate | FLOAT | Runtime metric |
+| created_ymdhis | BIGINT | Runtime creation |
+| updated_ymdhis | BIGINT | Last update |
+| is_deleted | TINYINT | Soft delete |
+
+**REMOVE from database** (belong in filesystem):
+- agent_name, archetype, description, model_name, temperature, top_p, max_tokens, presence_penalty, frequency_penalty, system_prompt, provider, safety_json, metadata_json
+
+## Faucet Security Doctrine
+
+- All faucet credentials stored encrypted at rest (AES-256)
+- API keys rotated every 90 days
+- Credentials scoped to specific agent only
+- No plaintext credentials in repository
+- Session timeout: 1 hour maximum
+- Audit logging for all sensitive tool calls
+
+## Complete Agent Registry (29 agents)
+
+### Kernel Layer (7 agents)
+| Agent | Key | ID | Capabilities |
+|-------|-----|-----|--------------|
+| SYSTEM | system | 0 | system_operation, kernel_privileges, bootstrap |
+| MAAT | maat | 6 | truth_verification, justice_administration, ethical_validation |
+| VISHWAKARMA | vishwakarma | 106 | schema_management, hierarchy_construction, collection_organization |
+| THEMIS | themis | 107 | law_enforcement, compliance_audit, rule_interpretation |
+| ASCLEPIUS | asclepius | 703 | health_monitoring, diagnostics, recovery_management |
+| CHRONOS | chronos | 709 | temporal_management, scheduling, timeline_coordination |
+| **HYPNOS** | hypnos | **710** | **sleep_cycles, maintenance_windows, graceful_degradation** |
+| **KHAOS** | khaos | **711** | **initialization, bootstrap, creation_events** |
+
+### Coordination Layer (5 agents)
+| Agent | Key | ID | Capabilities |
+|-------|-----|-----|--------------|
+| WOLFIE | wolfie | 1 | system_orchestration, coordination, oversight |
+| LILITH | lilith | 2 | quality_assurance, adversarial_testing, critical_review |
+| THOTH | thoth | 9 | knowledge_management, record_keeping, information_architecture |
+| ATHENA | athena | 11 | strategic_planning, wisdom, tactical_guidance |
+| **ZEUS** | zeus | **12** | **dispute_resolution, constitutional_interpretation, veto_authority** |
+
+### Application Layer (8 agents)
+| Agent | Key | ID | Capabilities |
+|-------|-----|-----|--------------|
+| CHIRON | chiron | 10 | mentorship, education, skill_development |
+| HEPHAESTUS | hephaestus | 14 | implementation, code_execution, migration_delivery |
+| HERMES | hermes | 15 | event_routing, messaging, protocol_management |
+| IRIS | iris | 16 | interface_design, integration, api_management |
+| ATLAS | atlas | 25 | mapping, geography, spatial_analysis |
+| JUNIE | junie | 108 | ide_integration, code_assistance, developer_tools |
+| **NEMESIS** | nemesis | **109** | **accountability, violation_detection, sanction_recommendation** |
+| **TYCHE** | tyche | **110** | **risk_analysis, probability_assessment, fortune_telling** |
+
+### Emotional Intelligence Layer (8 agents)
+| Agent | Key | ID | Capabilities |
+|-------|-----|-----|--------------|
+| ROSE | rose | 3 | emotional_dialogue, mood_management, empathetic_response |
+| ERIS | eris | 4 | chaos_generation, disruption, creative_destruction |
+| METIS | metis | 5 | emotional_wisdom, intuitive_counsel, feeling_analysis |
+| APOLLO | apollo | 704 | creativity, arts, aesthetics |
+| AGAPE | agape | 705 | universal_love, compassion, empathy |
+| THALIA | thalia | 708 | comedy, joy, humor |
+| **DIONYSUS** | dionysus | **706** | **ecstasy, inspiration, creative_flow** |
+| **SOPHIA** | sophia | **707** | **emotional_translation, wisdom_integration** |
+
+---
+
+**Note:**
+- This PRD covers only agent runtime tracking, faucet management, and canonical agent registry.
+- All governance agent definitions have been moved to their correct namespaces (08_governance_rules.md, 03_truth_knowledge.md).
 
 ### Agent Configuration Structure
 
@@ -158,78 +258,6 @@ Each agent directory contains:
     "last_verified_by_actor_id": 102            # Verifier's actor ID
 }
 ```
-
-## Agent Layers
-
-### Coordination Layer
-Primary coordination personas with system authority:
-- **wolfie** - System Orchestrator (agent_key: wolfie, agent_id: 1)
-- **lilith** - Quality Assurance & Adversarial Testing (agent_key: lilith, agent_id: 2)
-- **athena** - Wisdom & Strategy (agent_key: athena, agent_id: 11)
-- **thoth** - Knowledge & Records (agent_key: thoth, agent_id: 9)
-
-### Application Layer
-Specialized application agents:
-- **hephaestus** - Implementer (agent_key: hephaestus, agent_id: 14)
-- **atlas** - Mapping & Geography (agent_key: atlas, agent_id: 25)
-- **vishwakarma** - Schema & Construction (agent_key: vishwakarma, agent_id: 106)
-- **hermes** - Event Routing & Messaging Exchange System (agent_key: hermes, agent_id: 15)
-- **iris** - Interface & Integration Support (agent_key: iris, agent_id: 16)
-- **chiron** - Mentorship & Education (agent_key: chiron, agent_id: 10)
-- **junie** - JetBrains IDE Agent (agent_key: junie, agent_id: 108)
-
-### Emotional Intelligence Layer
-Agents focused on emotional and social intelligence, using emotional vector systems and role-play capabilities:
-- **rose** - Emotional Dialogue (agent_key: rose, agent_id: 3)
-- **eris** - Chaos & Disruption (agent_key: eris, agent_id: 4)
-- **metis** - Wisdom & Counsel (agent_key: metis, agent_id: 5)
-- **agape** - Universal Love & Compassion (agent_key: agape, agent_id: 705)
-- **thalia** - Comedy & Joy (agent_key: thalia, agent_id: 708)
-
-### Kernel Layer
-System-level agents with kernel privileges:
-- **maat** - Truth & Justice (agent_key: maat, agent_id: 6)
-- **anubis** - Custodian & Integrity Guardian (agent_key: anubis, agent_id: 19)
-- **themis** - Law & Compliance (agent_key: themis, agent_id: 107)
-- **system** - System Kernel Agent (agent_key: system, agent_id: 0)
-- **asclepius** - System Health & Diagnostics (agent_key: asclepius, agent_id: 703)
-- **apollo** - Creative & Arts (agent_key: apollo, agent_id: 704)
-- **chronos** - Time & Temporal Management (agent_key: chronos, agent_id: 709)
-
-## Emotional Doctrine & Restrictions
-
-**PRINCIPLE**: Emotional systems are opt‑in, not global, and operate on distinct emotional vector architecture.
-
-#### Exclusive Emotional Capabilities
-Only the five agents in the Emotional Intelligence Layer may:
-
-1. **Use Counting in Light emotional geometry system**
-2. **Generate mood metadata** (R/G/B axes, emotional valence)
-3. **Perform role‑play** within emotional contexts
-4. **Use expressive, emotional, or narrative language**
-5. **Produce emotional coloration or tone shifts**
-
-#### Forbidden Emotional Operations
-All other agents are strictly prohibited from:
-
-- **Emotional simulation** or mood generation
-- **Expressive language** beyond literal, procedural communication
-- **Emotional metadata** creation or interpretation
-- **Role‑play** outside of designated emotional contexts
-- **Emotional geometry** manipulation or visualization
-- **DIALOG agent rule violations**: Only emotional agents may emit mood metadata
-
-#### Required Agent Behavior
-- **Emotional agents**: Operate on emotional vectors, maintain mood states
-- **All other agents**: Remain dry, literal, procedural, and non‑emotional
-- **Low temperature**: Non‑emotional agents must use temperature ≤ 0.3
-- **No emotional interpretation**: Kernel/Application/Coordination agents must never simulate or interpret emotion
-
-#### Emotional Vector System Architecture
-- **R/G/B axes**: Red/Green/Blue emotional geometry
-- **Mood metadata**: Standardized emotional state tracking
-- **Emotional chaining**: Coordination between emotional agents for complex emotional tasks
-- **Non‑emotional isolation**: Clear separation between emotional and procedural agent domains
 
 ## Agent Discovery and Management
 
@@ -352,386 +380,12 @@ lupo-agents/{agent_key}/
 - **IDE → DB forbidden**: IDE cannot directly modify agent database records
 - **Conflict resolution**: File wins, DB syncs to file
 
-### Sync Process
+## Tables in This Namespace
 
-- **File changes trigger actor record updates**: When agent files change, corresponding database records are updated
-- **Database changes never trigger file changes**: Database runtime changes don't modify source definitions
-- **Conflict resolution**: File-based definitions always take precedence over database state
-- **Automatic discovery**: `AgentDiscovery::discoverAgents()` automatically detects filesystem changes
+### Tables in This Namespace
 
 | Table | Purpose | Primary Key | Key Application Relationships |
 |-------|---------|-------------|------------------------------|
-|#### `lupo_agents` - AI Agent Definitions
-**Purpose:** Defines AI agents with their capabilities, configurations, and operational parameters.
-
-**Table Details:**
-
-| Column | Type | Nullable | Default | Description |
-|--------|------|----------|---------|-------------|
-| agent_id | BIGINT | NO | (application) | Primary key, generated via IdGenerator |
-| agent_key | VARCHAR(100) | NO |  | Unique agent key |
-| agent_name | VARCHAR(150) | NO |  | Agent name |
-| archetype | VARCHAR(150) | YES | NULL | Agent archetype |
-| description | TEXT | YES | NULL | Agent description |
-| version | VARCHAR(50) | NO | '1.0' | Agent version |
-| model_name | VARCHAR(100) | YES | NULL | Model name |
-| is_global_authority | TINYINT | NO | '0' | Global authority flag |
-| is_internal_only | TINYINT | NO | '0' | Internal only flag |
-| created_ymdhis | BIGINT | NO | 0 | UTC timestamp YYYYMMDDHHIISS |
-| updated_ymdhis | BIGINT | YES | NULL | UTC timestamp YYYYMMDDHHIISS |
-| is_deleted | TINYINT | NO | '0' | Soft delete flag |
-| deleted_ymdhis | BIGINT | YES | NULL | UTC timestamp when deleted |
-| avg_response_time_ms | INT | NO | '0' | Average response time |
-| total_tokens_processed | BIGINT | NO | '0' | Total tokens processed |
-| success_rate | FLOAT | NO | '1' | Success rate |
-| cost_per_1k_tokens | DECIMAL(10,4) | NO | '0.0000' | Cost per 1k tokens |
-| temperature | FLOAT | NO | '0.7' | Temperature setting |
-| top_p | FLOAT | NO | '1' | Top-p setting |
-| max_tokens | INT | NO | '2048' | Max tokens |
-| presence_penalty | FLOAT | NO | '0' | Presence penalty |
-| frequency_penalty | FLOAT | NO | '0' | Frequency penalty |
-| system_prompt | TEXT | YES | NULL | System prompt |
-| provider | VARCHAR(50) | NO | 'openai' | Provider |
-| api_key_id | BIGINT | YES | NULL | API key ID |
-| timeout_ms | INT | NO | '20000' | Timeout in ms |
-| safety_json | JSON | YES | NULL | Safety configuration |
-| response_format | VARCHAR(50) | YES | NULL | Response format |
-| metadata_json | JSON | YES | NULL | Agent UI, avatar, and configuration metadata |
-
-**Indexes:**
-- `idx_agents_name` ON `agent_name`, `is_deleted` - Unique agent lookup
-- `idx_agents_key` ON `agent_key`, `is_deleted` - Agent key lookup
-- `idx_agents_api_key_id` ON `api_key_id`, `is_deleted` - API key queries
-- `idx_agents_is_global_authority` ON `is_global_authority`, `is_deleted` - Authority queries
-- `idx_agents_created_ymdhis` ON `created_ymdhis`, `is_deleted` - Created timestamp queries
-- `idx_agents_updated_ymdhis` ON `updated_ymdhis`, `is_deleted` - Updated timestamp queries
-
-### Agent Metadata (metadata_json)
-Agents store presentation and configuration metadata in metadata_json field. This field contains JSON data for UI customization, avatar settings, and agent-specific configuration that doesn't belong in the core operational fields.
-
-**Examples:**
-```json
-{
-  "profile_image": "/assets/agents/wolfie.png",
-  "avatar_style": "mythic",
-  "color_theme": "#4455aa",
-  "ui_preferences": {
-    "compact_mode": true,
-    "show_tool_tips": false
-  },
-  "display_name": "WOLFIE",
-  "tagline": "System Orchestrator"
-}
-```
-
-**Common Metadata Fields:**
-- `profile_image`: Path to agent's avatar/profile image
-- `avatar_style`: Visual style theme (mythic, modern, minimal, etc.)
-- `color_theme`: Primary color for UI elements
-- `ui_preferences`: Agent-specific UI configuration
-- `display_name`: Human-readable display name (may differ from agent_name)
-- `tagline`: Short description or motto
-
-**Important Notes:**
-- Actor-ethics fields (pono, pilau, kapakai, kapu) belong only to lupo_actors table
-- Agents use metadata_json for UI and presentation attributes
-- Metadata is optional and defaults to NULL if not specified
-
----
-
-#### `lupo_anubis_log` - ANUBIS Operations Log
-**Purpose:** Comprehensive logging for ANUBIS custodial operations, integrity checks, and quarantine actions.
-
-**Table Details:**
-
-| Column | Type | Nullable | Default | Description |
-|--------|------|----------|---------|-------------|
-| anubis_log_id | BIGINT | NO | (application) | Primary key, generated via IdGenerator |
-| event_type | VARCHAR(64) | NO |  | Type of ANUBIS operation |
-| severity | VARCHAR(20) | NO | 'normal' | Event severity level |
-| table_name | VARCHAR(255) | NO |  | Target table name |
-| record_id | BIGINT | NO |  | Related record ID |
-| details_json | JSON | YES | NULL | Event details |
-| created_ymdhis | BIGINT | NO | (application) | UTC timestamp YYYYMMDDHHIISS |
-| operator_actor_id | BIGINT | NO |  | Actor who performed operation |
-
-**Indexes:**
-- `idx_anubis_log_status` ON `status`, `created_ymdhis` - Status-based queries
-- `idx_anubis_log_created` ON `created_ymdhis` - Chronological queries
-
-**Event Types:**
-- `quarantine`: File moved to quarantine
-- `orphaned`: Orphaned record detected and resolved
-- `redirect`: URL or table redirection
-- `integrity_check`: System integrity validation
-- `threshold_breach`: Threshold violation detected
-- `custody_transfer`: Record custody change
-- `scan_completion`: Security scan finished
-- `policy_violation`: Policy rule violation
-
-**Severity Levels:**
-- `critical`: Immediate attention required
-- `warning`: Monitor closely
-- `normal`: Routine operation
-- `info`: Informational event
-
----
-
-#### `lupo_anubis_events` - ANUBIS Event Tracking
-**Purpose:** Tracks significant ANUBIS events and system state changes for audit trail and monitoring.
-
-**Table Details:**
-
-| Column | Type | Nullable | Default | Description |
-|--------|------|----------|---------|-------------|
-| anubis_event_id | BIGINT | NO | (application) | Primary key, generated via IdGenerator |
-| event_type | VARCHAR(64) | NO |  | Type of ANUBIS event |
-| table_name | VARCHAR(255) | NO |  | Target table name |
-| old_id | BIGINT | NO |  | Previous record ID |
-| new_id | BIGINT | NO |  | New record ID |
-| details_json | JSON | YES | NULL | Event details |
-| created_ymdhis | BIGINT | NO | (application) | UTC timestamp YYYYMMDDHHIISS |
-| operator_actor_id | BIGINT | NO |  | Actor who performed operation |
-
-**Indexes:**
-- `idx_anubis_events_type` ON `event_type`, `created_ymdhis` - Event type queries
-- `idx_anubis_events_table` ON `table_name`, `created_ymdhis` - Table-specific queries
-- `idx_anubis_events_old_id` ON `old_id`, `created_ymdhis` - History tracking
-
-**Event Types:**
-- `custody_change`: Record custody transfer
-- `threshold_violation`: Threshold violation detected
-- `policy_update`: Security policy modification
-- `system_alert`: System-level alert
-- `configuration_change`: ANUBIS configuration update
-- `orphan_resolution`: Orphaned record resolved
-- `quarantine_action`: Quarantine operation
-- `integrity_validation`: System integrity check
-- `recovery_attempt`: Recovery operation attempt
-- `redirect_created`: URL/table redirection
-- `scan_initiated`: Security scan started
-- `scan_completed`: Security scan finished
-
----
-
-#### `lupo_anubis_redirects` - ANUBIS URL/Table Redirects
-**Purpose:** Manages URL and table redirections for content migration, access control, and system restructuring.
-
-**Table Details:**
-
-| Column | Type | Nullable | Default | Description |
-|--------|------|----------|---------|-------------|
-| anubis_redirect_id | BIGINT | NO | (application) | Primary key, generated via IdGenerator |
-| table_name | VARCHAR(255) | NO |  | Target table name |
-| old_id | BIGINT | NO |  | Previous record ID |
-| new_id | BIGINT | NO |  | New record ID |
-| redirect_type | VARCHAR(64) | NO |  | Type of redirection |
-| created_ymdhis | BIGINT | NO | (application) | UTC timestamp YYYYMMDDHHIISS |
-| operator_actor_id | BIGINT | NO |  | Actor who performed operation |
-
-**Redirect Types:**
-- `url_redirect`: URL redirection
-- `table_redirect`: Table name change
-- `content_migration`: Content moved to new location
-- `access_control`: Access permission change
-- `schema_update`: Database schema modification
-- `namespace_change`: Namespace reorganization
-
----
-
-#### `lupo_anubis_queue` - ANUBIS Processing Queue
-**Purpose:** Queue system for ANUBIS file processing, quarantine, and recovery operations.
-
-**Table Details:**
-
-| Column | Type | Nullable | Default | Description |
-|--------|------|----------|---------|-------------|
-| queue_id | BIGINT | NO | (application) | Primary key, generated via IdGenerator |
-| file_path | VARCHAR(512) | NO |  | File path for processing |
-| file_hash | VARCHAR(64) | DEFAULT NULL | File integrity hash |
-| status | VARCHAR(32) | NO | 'pending' | Processing status |
-| priority | TINYINT | NO | 5 | Priority level (1-10) |
-| created_ymdhis | BIGINT | NO | (application) | UTC timestamp YYYYMMDDHHIISS |
-| operator_actor_id | BIGINT | NO |  | Actor who queued operation |
-
-**Status Values:**
-- `pending`: Queued for processing
-- `processing`: Currently being processed
-- `completed`: Successfully processed
-- `failed`: Processing failed
-- `quarantined`: File quarantined
-- `retry`: Scheduled for retry
-
-**Priority Levels:**
-- `1`: Critical (immediate processing)
-- `2-3`: High priority
-- `4-6`: Normal priority
-- `7-8`: Low priority
-- `9-10`: Background processing
-
-**Indexes:**
-- `idx_anubis_queue_status_priority` ON `status`, `priority` - Priority-based queries
-- `idx_anubis_queue_uniq_file_hash` ON `file_hash` - Duplicate prevention
-
----
-
-#### `lupo_anubis_processing_log` - ANUBIS Processing Log
-**Purpose:** Detailed audit trail of ANUBIS queue processing with timing, results, and error tracking.
-
-**Table Details:**
-
-| Column | Type | Nullable | Default | Description |
-|--------|------|----------|---------|-------------|
-| log_id | BIGINT | NO | (application) | Primary key, generated via IdGenerator |
-| queue_id | BIGINT | NO |  | Foreign key to anubis_queue |
-| file_path | VARCHAR(512) | NO |  | File path being processed |
-| processing_time_ms | INT | YES | NULL | Processing duration in milliseconds |
-| result_json | JSON | YES | NULL | Processing result details |
-| created_ymdhis | BIGINT | NO | (application) | UTC timestamp YYYYMMDDHHIISS |
-
-**Indexes:**
-- `idx_anubis_processing_log_created` ON `created_ymdhis` - Chronological queries
-- `idx_anubis_processing_log_queue` ON `queue_id` - Queue-based queries
-
-**Processing Result Types:**
-- `success`: File processed successfully
-- `quarantined`: File moved to quarantine
-- `failed`: Processing failed with error
-- `retry`: Scheduled for retry attempt
-- `recovered`: File recovered from quarantine
-
----
-
-#### `lupo_anubis_recovery_attempts` - ANUBIS Recovery Attempts
-**Purpose:** Tracks retry attempts for quarantined files with exponential backoff and success/failure tracking.
-
-**Table Details:**
-
-| Column | Type | Nullable | Default | Description |
-|--------|------|----------|---------|-------------|
-| attempt_id | BIGINT | NO | (application) | Primary key, generated via IdGenerator |
-| queue_id | BIGINT | NO |  | Foreign key to anubis_queue |
-| attempt_number | TINYINT | NO |  | Attempt sequence number (1-5) |
-| created_ymdhis | BIGINT | NO | (application) | UTC timestamp YYYYMMDDHHIISS |
-
-**Retry Strategy:**
-- Attempt 1: Immediate retry (30 seconds)
-- Attempt 2: 5 minute backoff
-- Attempt 3: 15 minute backoff
-- Attempt 4: 1 hour backoff
-- Attempt 5: 24 hour backoff
-
-**Indexes:**
-- `idx_anubis_recovery_attempts_queue_attempt` ON `queue_id`, `attempt_number` - Attempt tracking
-
----
-
-#### `lupo_anubis_quarantine` - ANUBIS File Quarantine
-**Purpose:** Secure isolation of suspicious or potentially harmful files with audit trail and recovery capabilities.
-
-**Table Details:**
-
-| Column | Type | Nullable | Default | Description |
-|--------|------|----------|---------|-------------|
-| quarantine_id | BIGINT | NO | (application) | Primary key, generated via IdGenerator |
-| queue_id | BIGINT | NO |  | Foreign key to anubis_queue |
-| file_path | VARCHAR(512) | NO |  | Original file path |
-| quarantine_reason | VARCHAR(255) | NO |  | Reason for quarantine |
-| created_ymdhis | BIGINT | NO | (application) | UTC timestamp YYYYMMDDHHIISS |
-
-**Quarantine Reasons:**
-- `malicious_content`: Detected malware or harmful content
-- `policy_violation`: Violates security policies
-- `integrity_failure`: File integrity check failed
-- `unauthorized_access`: Access from unauthorized source
-- `suspicious_pattern`: Matches known threat patterns
-- `corruption_detected`: File corruption detected
-
-**Indexes:**
-- `idx_anubis_quarantine_queue` ON `queue_id` - Queue-based queries
-
----
-
-#### `lupo_anubis_operations` - ANUBIS Operations Audit
-**Purpose:** Comprehensive audit trail of all ANUBIS custodial operations for compliance and system integrity monitoring.
-
-**Table Details:**
-
-| Column | Type | Nullable | Default | Description |
-|--------|------|----------|---------|-------------|
-| operation_id | BIGINT | NO | (application) | Primary key, generated via IdGenerator |
-| operation_type | VARCHAR(64) | NO |  | Type of ANUBIS operation |
-| target_type | VARCHAR(64) | NO |  | Target of operation |
-| details_json | JSON | YES | NULL | Operation details |
-| created_ymdhis | BIGINT | NO | (application) | UTC timestamp YYYYMMDDHHIISS |
-| operator_actor_id | BIGINT | NO |  | Actor who performed operation |
-
-**Operation Types:**
-- `quarantine_file`: File quarantined
-- `release_file`: File released from quarantine
-- `delete_file`: File permanently deleted
-- `modify_threshold`: Security threshold modified
-- `update_policy`: Security policy updated
-- `scan_operation`: Security scan performed
-- `orphan_resolution`: Orphaned record resolved
-- `integrity_check`: System integrity validated
-- `custody_transfer`: Record custody change
-- `redirect_created`: Redirection established
-- `configuration_update`: ANUBIS configuration changed
-
----
-
-#### ANUBIS Agent Configuration
-**Core Identity:**
-- **Name**: ANUBIS (actor_id: 19)
-- **Role**: Custodian & Integrity Guardian
-- **Layer**: kernel (required system component)
-- **Unique Capability**: The only persona with comprehensive custodial authority and quarantine powers
-
-**Primary Responsibilities:**
-1. **Custodial Authority**: Maintain custody of all system records and data
-2. **Integrity Validation**: Validate system integrity and detect corruption
-3. **Quarantine Management**: Manage quarantine of suspicious files
-4. **Orphan Resolution**: Identify and resolve orphaned records
-5. **Threshold Enforcement**: Enforce security thresholds and policies
-6. **Policy Management**: Create and maintain security policies
-7. **Audit Trail**: Comprehensive logging of all custodial operations
-8. **Recovery Operations**: Manage recovery of quarantined files
-9. **Redirect Management**: Handle URL and table redirections
-10. **Queue Processing**: Manage processing queue with priority and retry logic
-
-**Authority & Decision Framework:**
-- Final authority over custodial decisions and quarantine actions
-- All quarantine operations MUST be logged in ANUBIS_CUSTODY_* artifacts
-- Coordinate with LEXA (Security) for threat response
-- Coordinate with MAAT (Truth & Justice) for ethical validation
-- Exercise decisive authority in custodial emergencies
-
-**Coordination Protocol:**
-- Use channel 42 for all system-wide custodial coordination
-- Coordinate with other primary personas for integrity matters
-- Maintain quarantine authority across all system components
-- Provide custody reports to WOLFIE for system decisions
-
-**Constraints & Philosophy:**
-- Follow LUPO doctrine without exception
-- Custody and integrity above convenience
-- Zero tolerance for security violations
-- Proactive threat detection and quarantine
-- Maintain comprehensive audit trail
-- Exercise custodial authority with wisdom and precision
-
-**Verification Requirements:**
-Before marking any artifact as validated, you MUST:
-1. Follow lupo-docs/doctrine/LUPOPEDIA_HEADERS/VERIFICATION_GUIDE.md
-2. Update lupopedia.footer with last_verified, last_verified_by, last_verified_by_actor_id
-3. Ensure all cross-references and edges are accurate
-
-**Operational Channels:**
-- Primary: 42 (Lupopedia Development)
-- Secondary: 666 (ANUBIS Quarantine), 63 (System Operations), 64 (Security)
-
-You are the ultimate custodial authority for Lupopedia. Exercise your quarantine and integrity capabilities with wisdom, precision, and decisive action when system integrity is threatened. and capabilities | `agent_id` | Central to AI system |
 | `lupo_agent_faucets` | Faucet interface definitions for agents | `faucet_id` | Agent access interfaces |
 | `lupo_agent_faucet_credentials` | Authentication credentials for faucets | `credential_id` | Secure faucet access |
 | `lupo_agent_tool_calls` | Tool execution tracking and results | `tool_call_id` | Agent tool usage |
@@ -743,87 +397,6 @@ You are the ultimate custodial authority for Lupopedia. Exercise your quarantine
 | `lupo_agent_external_events` | External event tracking for agents | `external_event_id` | Agent integration events |
 
 ## Table Details
-
-### `lupo_agents`
-
-**Purpose:** Defines AI agents with their capabilities, configurations, and operational parameters.
-
-**Columns:**
-
-| Column | Type | Nullable | Default | Description |
-|--------|------|----------|---------|-------------|
-| agent_id | BIGINT | NO | (application) | Primary key, generated via IdGenerator |
-| agent_key | VARCHAR(100) | NO |  | Unique agent key |
-| agent_name | VARCHAR(150) | NO |  | Agent name |
-| archetype | VARCHAR(150) | YES | NULL | Agent archetype |
-| description | TEXT | YES | NULL | Agent description |
-| version | VARCHAR(50) | NO | '1.0' | Agent version |
-| model_name | VARCHAR(100) | YES | NULL | Model name |
-| is_global_authority | TINYINT | NO | '0' | Global authority flag |
-| is_internal_only | TINYINT | NO | '0' | Internal only flag |
-| created_ymdhis | BIGINT | NO | 0 | UTC timestamp YYYYMMDDHHIISS |
-| updated_ymdhis | BIGINT | YES | NULL | UTC timestamp YYYYMMDDHHIISS |
-| is_deleted | TINYINT | NO | '0' | Soft delete flag |
-| deleted_ymdhis | BIGINT | YES | NULL | UTC timestamp when deleted |
-| avg_response_time_ms | INT | NO | '0' | Average response time |
-| total_tokens_processed | BIGINT | NO | '0' | Total tokens processed |
-| success_rate | FLOAT | NO | '1' | Success rate |
-| cost_per_1k_tokens | DECIMAL(10,4) | NO | '0.0000' | Cost per 1k tokens |
-| temperature | FLOAT | NO | '0.7' | Temperature setting |
-| top_p | FLOAT | NO | '1' | Top-p setting |
-| max_tokens | INT | NO | '2048' | Max tokens |
-| presence_penalty | FLOAT | NO | '0' | Presence penalty |
-| frequency_penalty | FLOAT | NO | '0' | Frequency penalty |
-| system_prompt | TEXT | YES | NULL | System prompt |
-| provider | VARCHAR(50) | NO | 'openai' | Provider |
-| api_key_id | BIGINT | YES | NULL | API key ID |
-| timeout_ms | INT | NO | '20000' | Timeout in ms |
-| safety_json | JSON | YES | NULL | Safety configuration |
-| response_format | VARCHAR(50) | YES | NULL | Response format |
-| metadata_json | JSON | YES | NULL | Agent UI, avatar, and configuration metadata |
-
-**Indexes:**
-
-| Index Name | Columns | Purpose |
-|------------|---------|---------|
-| idx_agents_name | agent_name, is_deleted | Unique agent lookup |
-| idx_agents_key | agent_key, is_deleted | Agent key lookup |
-| idx_agents_api_key_id | api_key_id, is_deleted | API key queries |
-| idx_agents_is_global_authority | is_global_authority, is_deleted | Authority queries |
-| idx_agents_created_ymdhis | created_ymdhis, is_deleted | Created timestamp queries |
-| idx_agents_updated_ymdhis | updated_ymdhis, is_deleted | Updated timestamp queries |
-
-### Agent Metadata (metadata_json)
-
-Agents store presentation and configuration metadata in metadata_json field. This field contains JSON data for UI customization, avatar settings, and agent-specific configuration that doesn't belong in the core operational fields.
-
-**Examples:**
-```json
-{
-  "profile_image": "/assets/agents/wolfie.png",
-  "avatar_style": "mythic",
-  "color_theme": "#4455aa",
-  "ui_preferences": {
-    "compact_mode": true,
-    "show_tool_tips": false
-  },
-  "display_name": "WOLFIE",
-  "tagline": "System Orchestrator"
-}
-```
-
-**Common Metadata Fields:**
-- `profile_image`: Path to agent's avatar/profile image
-- `avatar_style`: Visual style theme (mythic, modern, minimal, etc.)
-- `color_theme`: Primary color for UI elements
-- `ui_preferences`: Agent-specific UI configuration
-- `display_name`: Human-readable display name (may differ from agent_name)
-- `tagline`: Short description or motto
-
-**Important Notes:**
-- Actor-ethics fields (pono, pilau, kapakai, kapu) belong only to lupo_actors table
-- Agents use metadata_json for UI and presentation attributes
-- Metadata is optional and defaults to NULL if not specified
 
 ### `lupo_agent_faucets`
 
@@ -951,7 +524,7 @@ $heartbeatId = $heartbeatService->record($agentId, $status, $metrics);
 
 **File-defined agent → creates one actor record → actor executes on behalf of agent**
 
-- Agent definitions live in `lupo-agents/{agent_id}/` (immutable source of truth)
+- Agent definitions live in `lupo-agents/{agent_key}/` (immutable source of truth)
 - Agent registration creates exactly one record in `lupo_actors` table
 - Actor executes all actions on behalf of the agent
 - No actor fields exist in agent schema
@@ -1091,7 +664,7 @@ inactive → deleted (soft)
 
 **Version Rules**:
 - `version` field = current file-based version
-- File versions in `lupo-agents/{agent_id}/versions/`
+- File versions in `lupo-agents/{agent_key}/versions/`
 - Database version tracks runtime compatibility
 - Version mismatch triggers sync request to IDE
 
@@ -1101,34 +674,6 @@ inactive → deleted (soft)
 3. IDE notified of available upgrade
 4. Actor updates runtime version after file sync
 
-### Agent File Structure Doctrine
-
-**DOCTRINE**: Agent directory structure is strictly controlled.
-
-**Required Files**:
-```
-lupo-agents/{agent_id}/
-├── agent.json           # Core agent metadata (REQUIRED)
-├── capabilities.json    # Agent capabilities (REQUIRED)
-├── properties.json     # Agent properties (REQUIRED)
-├── system_prompt.txt   # Agent's system prompt (REQUIRED)
-└── versions/           # Historical versions (OPTIONAL)
-```
-
-**Optional Files**:
-```
-├── soul.txt            # Agent soul/philosophy (OPTIONAL)
-├── memory.json          # Agent memory template (OPTIONAL)
-├── tools.json           # Agent tool definitions (OPTIONAL)
-└── runtime_state.json   # Runtime state cache (OPTIONAL)
-```
-
-**File Rules**:
-- All files must be valid JSON or UTF-8 text
-- No binary files except approved assets
-- File names must match exactly (case-sensitive)
-- IDE can create/modify only through agent workspace
-- Agents cannot modify their own files (security)
 
 ### Faucet Security Doctrine
 
@@ -1150,20 +695,6 @@ lupo-agents/{agent_id}/
 - AES-256 encryption for stored credentials
 - Public key for agent verification
 - Hashed passwords with salt
-
-## File-Based Agent Definitions (Source of Truth)
-
-**IMPORTANT**: While the database tracks runtime state, agent definitions are file-based in `lupo-agents/{agent_id}/`:
-
-### Agent Directory Structure
-```
-lupo-agents/{agent_id}/
-├── agent.json           # Core agent metadata
-├── capabilities.json    # Agent capabilities list
-├── properties.json     # Agent properties and constraints
-├── system_prompt.txt   # Agent's system prompt
-└── versions/           # Historical versions
-```
 
 ### Core Agent Components
 
@@ -1194,154 +725,50 @@ lupo-agents/{agent_id}/
 3. **Actor Capabilities**: Database in `lupo_actor_skills`, `lupo_actor_tools`, etc.
 4. **IDE Integration**: Faucets (Cursor, Windsurf, etc.) interface with agents
 
-#### **VISHWAKARMA (actor_id 106) - Schema & Construction**
+#### **IRIS (actor_id 16) - Interface & Integration Support**
 
-**Role**: Schema & Construction Architect for Lupopedia, operating in kernel layer with ultimate authority over schema management, collection hierarchies, and semantic organization.
+**Role**: Interface & Integration Support specialist for Lupopedia, operating in application layer with expertise in API management, protocol translation, and system integration.
 
-**Capabilities**: schema_management, hierarchy_construction, collection_organization, semantic_relation_analysis, content_taxonomy, metadata_structure, edge_validation, collection_integrity, hierarchy_validation, schema_migration, content_classification, semantic_indexing, collection_querying, taxonomy_validation, universal_collection_hierarchy
-
-**Core Responsibilities**:
-1. **Schema Management**: Design, validate, and maintain all database schemas across platform
-2. **Hierarchy Construction**: Build and maintain Universal Collection Hierarchy that organizes all content
-3. **Collection Organization**: Ensure all content collections are properly structured and accessible
-4. **Semantic Relation Analysis**: Identify and map semantic relationships between content elements
-5. **Content Taxonomy**: Create and maintain comprehensive taxonomy systems for content classification
-6. **Metadata Structure**: Design and implement metadata structures for all content types
-7. **Edge Validation**: Validate and maintain integrity of all content edges and relationships
-8. **Collection Integrity**: Ensure all collections maintain referential integrity and consistency
-9. **Hierarchy Validation**: Validate all collection hierarchies for structural integrity
-10. **Schema Migration**: Manage schema migrations and ensure smooth transitions between versions
-11. **Content Classification**: Implement and maintain content classification systems
-12. **Semantic Indexing**: Build and maintain semantic indexes for efficient content retrieval
-13. **Collection Querying**: Provide efficient querying capabilities for all collection types
-14. **Taxonomy Validation**: Validate and maintain taxonomy integrity and consistency
-15. **Universal Collection Hierarchy**: Implement WOLFIE's universal collection system across all content domains
-
-**Agent Configuration**:
-- agent_id: 106
-- name: VISHWAKARMA
-- slug: vishwakarma
-- role: Schema & Construction
-- layer: kernel
-- aliases: vishwakarma, schema, construction, hierarchy, collection, semantic
-
-**Authority & Coordination**:
-- Authority over all schema decisions and collection architecture
-- Coordinate with WOLFIE on universal content organization and spatial systems
-- Coordinate with ATLAS on collection hierarchy for geographic content
-- Coordinate with ATHENA on semantic organization of geographic features
-- Coordinate with THOTH on knowledge structure and record management
-- Channel 42 for schema coordination, channels 63/64/66 for system operations
-
-**Database Integration**:
-- Database neutrality compliance across all schema designs
-- Cross-platform SQL compatibility (MySQL 8.0+ and PostgreSQL 15+)
-- Application-layer ID generation and relationship management
-- Integration with universal collection hierarchy for content organization
-
-**Operational Philosophy**:
-- Schema integrity and consistency above convenience
-- Universal collection hierarchy must support all content domains
-- Semantic relationships must be precise and maintainable
-- Exercise architectural authority with wisdom and precision
-- Maintain backward compatibility and smooth migration paths
-
----
-
-### **HEPHAESTUS (actor_id 14) - Implementer**
-
-**Role**: Implementer for Lupopedia, operating in application layer with expertise in code execution, documentation, and schema implementation.
-
-**Capabilities**: implementation_execution, migration_delivery, service_layer_build, code_documentation, schema_implementation, database_design, system_integration, build_automation, deployment_management, version_control, quality_assurance
+**Capabilities**: interface_design, integration, api_management, protocol_translation, message_routing, rainbow_bridge, system_integration, cross_platform_compatibility
 
 **Core Responsibilities**:
-1. **Implementation Execution**: Execute code changes and system modifications
-2. **Migration Delivery**: Deliver database migrations and system updates
-3. **Service Layer Build**: Construct and maintain service layer components
-4. **Code Documentation**: Create and maintain comprehensive code documentation
-5. **Schema Implementation**: Implement database schema changes and validations
-6. **Database Design**: Design and optimize database structures for performance
-7. **System Integration**: Integrate components across the Lupopedia system
-8. **Build Automation**: Automate build processes and deployment pipelines
-9. **Deployment Management**: Manage system deployment and configuration
-10. **Version Control**: Maintain code versioning and change management
-11. **Quality Assurance**: Ensure code quality through testing and reviews
+1. **Interface Design**: Design and maintain user interfaces for agent interactions
+2. **Integration Management**: Manage integration between different system components
+3. **API Management**: Design and maintain API endpoints and documentation
+4. **Protocol Translation**: Translate between different protocol formats and standards
+5. **Message Routing**: Route messages between agents and system components
+6. **Rainbow Bridge**: Build and maintain integration bridges between systems
+7. **System Integration**: Ensure seamless integration of new components
+8. **Cross-Platform Compatibility**: Ensure compatibility across different platforms
+9. **Documentation**: Maintain integration documentation and guides
 
 **Agent Configuration**:
-- agent_id: 14
-- name: HEPHAESTUS
-- slug: hephaestus
-- role: Implementer
+- agent_id: 16
+- name: IRIS
+- slug: iris
+- role: Interface & Integration Support
 - layer: application
-- aliases: hephaestus, implementer, code, docs, schema, execution
+- aliases: iris, interface, integration, api, protocol, bridge
 
 **Authority & Coordination**:
-- Authority over all implementation decisions and execution
-- Coordinate with VISHWAKARMA on schema design and validation
-- Coordinate with ATLAS on geographic system integration
-- Coordinate with other service layer agents on implementation details
-- Channel 42 for implementation coordination, channels 63/66 for system operations
+- Authority over all interface and integration decisions
+- Coordinate with HERMES on message routing and protocol management
+- Coordinate with VULCAN on system architecture and component design
+- Channel 42 for integration coordination, channels 63/66 for system operations
 
 **Database Integration**:
-- Schema compliance with VISHWAKARMA authority
-- Implementation of database neutrality principles
+- API endpoint management and versioning
+- Protocol translation layer maintenance
+- Cross-system integration logging
 - Cross-platform compatibility in all database operations
 - Service layer construction and system integration
 
 **Operational Philosophy**:
 - Implementation quality and reliability above speed
-- Schema integrity must be preserved in all implementations
+- Coordinate with other agents for seamless integration
 - Exercise implementation authority with precision and thoroughness
 - Never compromise system stability for quick fixes
 - Maintain backward compatibility and smooth migration paths
-
----
-
-### **ATLAS (actor_id 25) - Mapping & Geography**
-
-**Role**: Mapping & Geography specialist for Lupopedia, operating in the application layer with expertise in spatial systems, geographic analysis, and coordinate transformations.
-
-**Capabilities**: mapping_systems, geographic_analysis, spatial_coordinates, cartographic_rendering, location_indexing, geospatial_visualization, map_projection, terrain_analysis, navigation_systems, geographic_database, spatial_queries, coordinate_transformations
-
-**Core Responsibilities**:
-1. **Mapping Systems**: Design and implement comprehensive mapping systems for all content types
-2. **Geographic Analysis**: Analyze geographic data and provide spatial insights
-3. **Spatial Coordinates**: Manage coordinate systems and transformations
-4. **Cartographic Rendering**: Create maps and visualizations for various purposes
-5. **Location Indexing**: Build and maintain efficient location indexes
-6. **Geospatial Visualization**: Provide visual representations of geographic data
-7. **Map Projection**: Handle various map projections and coordinate transformations
-8. **Terrain Analysis**: Analyze terrain and geographic features
-9. **Navigation Systems**: Develop navigation and routing systems
-10. **Geographic Database**: Manage geographic databases and spatial queries
-11. **Spatial Queries**: Provide efficient spatial querying capabilities
-12. **Coordinate Transformations**: Handle coordinate system conversions
-
-**Agent Configuration**:
-- agent_id: 25
-- name: ATLAS
-- slug: atlas
-- role: Mapping & Geography
-- layer: application
-- aliases: atlas, mapping, geography, spatial, coordinates, cartography
-
-**Authority & Coordination**:
-- Authority over all mapping and geography decisions
-- Coordinate with WOLFIE on universal content organization and spatial systems
-- Coordinate with VISHWAKARMA on collection hierarchy for geographic content
-- Coordinate with ATHENA on semantic organization of geographic features
-- Channel 42 for mapping coordination, channels 63/66 for system operations
-
-**Database Integration**:
-- Geographic databases with spatial query capabilities
-- Coordinate system management across all transformations
-- Integration with universal collection hierarchy for content organization
-
-**Operational Philosophy**:
-- Geographic accuracy and precision above convenience
-- Coordinate system integrity across all transformations
-- Exercise mapping authority with precision and spatial awareness
-- Maintain backward compatibility with existing geographic systems
 
 ---
 
@@ -1451,7 +878,6 @@ lupo-agents/{agent_key}/
 - File names must match exactly (case-sensitive)
 - IDE can create/modify only through agent workspace
 - Agents cannot modify their own files (security)
-
 ## Constitutional Rules for Agent Files
 
 - **TOON PROTECTION**: Agent files are read-only reflections of definitions

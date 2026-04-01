@@ -65,3 +65,9 @@ See **`/lupo-docs/versions/4.0.93/WHAT_TO_DO_NEXT.md` §14** for the full checkl
 
 ## 15. Final Status & Next Steps (2026-03-30)
 The consolidated seed and installer work is now complete. All 23 seed files have been consolidated into `install/seed_lupopedia_4_1_0.sql`, the installer has been updated to use only this file, and documentation has been updated across all relevant files. The system is ready for installation testing.
+
+## 16. Runtime Follow-up (2026-03-31)
+- Installer no longer executes leftover per-file post-seed SQL; runtime install remains schema + consolidated seed (+ Crafty import only on upgrade).
+- Runtime actor creation now uses deterministic `YYYYMMDDHHIISS` + 4-digit IDs for newly created actors.
+- Actor filesystem layout now supports `lupo-actors/YYYY/MM/actor_id` (legacy flat actor directory fallback retained for compatibility).
+- Canonical details are tracked in `/lupo-docs/versions/4.0.93/WHAT_TO_DO_NEXT.md` §16.

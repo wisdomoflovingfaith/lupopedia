@@ -88,7 +88,11 @@ if ($session && $session['actor_id'] > 0) {
 
 if (!$actor) {
     // Create new actor for visitor
-    $actor_id = time() * 1000 + rand(0, 999);
+    if (class_exists('IdGenerator')) {
+        $actor_id = IdGenerator::generate();
+    } else {
+        $actor_id = gmdate('YmdHis') . str_pad((string) mt_rand(0, 9999), 4, '0', STR_PAD_LEFT);
+    }
     $stmt = $db->prepare("INSERT INTO {$prefix}actors (actor_id, actor_type, slug, name, created_ymdhis, updated_ymdhis) VALUES (:actor_id, :actor_type, :slug, :name, :created, :updated)");
     $stmt->execute(array(
         ':actor_id' => $actor_id,

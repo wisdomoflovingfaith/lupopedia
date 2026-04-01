@@ -4,11 +4,11 @@ lupopedia.headers:
   lupopedia.schema: prd
   file_path_from_root: lupo-docs/prd/PRD_AGENT_DEFINITION_MODEL.md
   web_path: http://www.lupopedia.com/lupopedia/lupo-docs/prd/PRD_AGENT_DEFINITION_MODEL.md
-  last_modified_utc: "20260330"
+  last_modified_utc: "20260331153000"
   channel_id: 42
-  actor_id: 102
-  agent_name_identity: Cursor IDE Agent
-  delegation_chain: cursor:root
+  actor_id: 2
+  agent_name_identity: "LILITH"
+  delegation_chain: "lilith:audit|cursor:implementation"
   artifact_type: prd
   artifact_kind: agent_definition
   purpose: Canonical PRD for agent definition, structure, and doctrine in Lupopedia
@@ -33,11 +33,11 @@ lupopedia.edges:
       weight: 1.0
       reason: Constitutional anchor
 lupopedia.footer:
-  last_verified: "20260330"
+  last_verified: "20260331153000"
   verified_by:
-    actor_id: 102
-    agent_name_identity: Cursor IDE Agent
-  orchestrator: cursor:root
+    actor_id: 2
+    agent_name_identity: "LILITH"
+  orchestrator: "lilith:audit|cursor:implementation"
 ---
 
 # PRD: Canonical Agent Definition Model
@@ -48,7 +48,7 @@ An agent is a fully defined, doctrine-aligned, versioned, and constitutional ent
 ## Canonical Agent Directory Structure
 ```
 lupo-agents/
-  <agent_id>/
+  {agent_key}/
     identity.json
     soul.txt
     system_prompt.txt
@@ -149,44 +149,8 @@ lupo-agents/
 ## Compliance
 - All agent files must be ASCII, no symlinks, no schema inference, no framework patterns.
 - All fields and files are required unless doctrine explicitly allows omission.
-
-## 🔥 Doctrine and Compliance Addenda (2026-03-30)
-
-### 1. Required Fields: agent_class and classification_json
-- `identity.json` MUST include:
-  - `agent_class` (system-enforced identity)
-  - `classification_json` (self-declared identity)
-
-### 2. lupo_agent_registry Schema Integration
-- `identity.json` MUST contain all fields required by the canonical lupo_agent_registry schema:
-  - agent_id
-  - code
-  - name
-  - layer
-  - is_kernel
-  - is_required
-  - recommended_slot
-  - version
-  - lineage
-  - capabilities
-  - status
-
-### 3. Required: runtime_state.json
-- Every agent MUST have `runtime_state.json` with at minimum:
-  - last_activated
-  - last_paired_user
-  - last_faucet_used
-  - last_tool_call
-  - last_error
-  - health
-  - mood
-  - uptime
-
-### 4. ASCII Safety, No Symlinks, No BOM
 - All agent files and directories MUST be ASCII-only, lowercase, no spaces, no BOM, no Unicode, and no symlinks.
 - No Unicode filenames or uppercase directories allowed.
-
-### 5. agent_faucets.json or Faucet Rules Section
 - Each agent MUST define faucet surfaces, types, constraints, and activation rules in either:
   - `agent_faucets.json` (preferred)
   - or a dedicated faucet rules section in `tools.json` (if not using a separate file)
@@ -205,21 +169,31 @@ lupo-agents/
   - agent_signature
   - agent_hash
 
-### 9. Required Directory Naming Rules
+### 9. Filesystem vs Database Separation
+
+**DOCTRINE**: Clear separation of concerns between filesystem definitions and database runtime tracking.
+
+**Filesystem (Source of Truth)**:
+- Agent definitions in `lupo-agents/{agent_key}/` directories
+- All configuration files (identity.json, skills.json, etc.)
+- Version history in `versions/` subdirectories
+- **Immutable**: Runtime state never stored in filesystem
+
+**Database (Runtime Reflection)**:
+- `lupo_agents` table: Minimal runtime metrics only
+- `lupo_actor_*` tables: Actor capabilities, memory, skills, tools
+- `lupo_agent_*` tables: Tool calls, faucets, heartbeats
+- **Mutable**: Runtime state tracked in database
+
+**Key Principle**: Filesystem defines WHAT an agent IS; database tracks HOW an agent RUNS.
+
+### 10. Required Directory Naming Rules
 - Agent directories MUST:
   - Be ASCII-safe
-  - Use numeric agent_id as directory name
+  - Use agent_key as directory name
   - Have no symlinks
   - Be all lowercase
   - Contain no spaces or Unicode
-
-### 10. Required File Naming Rules
-- All agent files MUST:
-  - Be ASCII
-  - Lowercase
-  - No spaces
-  - No BOM
-  - No Unicode
 
 ---
 This PRD is the constitutional anchor for all agent definitions in Lupopedia.

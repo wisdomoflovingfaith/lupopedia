@@ -180,8 +180,11 @@ class AuthSessionManager
         $slug = trim($slug, '-');
         $slug = substr($slug, 0, 255); // Ensure it fits in varchar(255)
         
-        // Get next actor_id
-        $actor_id = $this->getNextActorId();
+        // Generate deterministic actor_id (YYYYMMDDHHIISS + 4 random) with collision checks.
+        $actor_id = $this->generateDeterministicActorId();
+        if ($actor_id === false) {
+            return false;
+        }
         
         // Insert the actor using PDO_DB insert method
         $this->db->insert(
@@ -303,17 +306,51 @@ class AuthSessionManager
     }
 
     /**
-     * Get next actor_id from registry
+     * Generate deterministic actor_id with collision retries.
+     *
+     * Format: YYYYMMDDHHIISS + 4 random digits.
+     * Ensures generated IDs are from 2026 onward by validating the year prefix.
+     *
+     * @return string|false
      */
-    private function getNextActorId()
+    private function generateDeterministicActorId()
     {
-        // Get the current max actor_id and increment by 1
-        $sql = "SELECT COALESCE(MAX(actor_id), 0) + 1 as next_id 
-                FROM {$this->table_prefix}actors 
-                WHERE is_deleted = 0";
-        $result = $this->db->fetchOne($sql, []);
-        
-        return (int)$result;
+        $table = $this->table_prefix . 'actors';
+        $max_attempts = 25;
+        $attempt = 0;
+
+        while ($attempt < $max_attempts) {
+            if (class_exists('IdGenerator')) {
+                $candidate = IdGenerator::generate();
+            } else {
+                $candidate = gmdate('YmdHis') . str_pad((string) mt_rand(0, 9999), 4, '0', STR_PAD_LEFT);
+            }
+
+            if (!is_string($candidate) || !preg_match('/^[0-9]{18}$/', $candidate)) {
+                $attempt++;
+                usleep(5000);
+                continue;
+            }
+
+            if (substr($candidate, 0, 4) < '2026') {
+                $attempt++;
+                usleep(5000);
+                continue;
+            }
+
+            $exists = $this->db->fetchOne(
+                "SELECT 1 FROM {$table} WHERE actor_id = :actor_id LIMIT 1",
+                array('actor_id' => $candidate)
+            );
+            if (!$exists) {
+                return $candidate;
+            }
+
+            $attempt++;
+            usleep(5000);
+        }
+
+        return false;
     }
 
     /**

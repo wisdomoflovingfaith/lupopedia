@@ -4,7 +4,7 @@ lupopedia.headers:
   version_when_written: "4.0.93"
   file_path_from_root: "lupo-docs/versions/4.0.93/TODO.md"
   web_path: "http://www.lupopedia.com/lupopedia/lupo-docs/versions/4.0.93/TODO.md"
-  last_modified_utc: "20260330190000"
+  last_modified_utc: "20260331150000"
   channel_id: 42
   thread_id: "todo-backlog"
   actor_id: 102
@@ -37,13 +37,18 @@ lupopedia.edges:
       weight: 1.0
       reason: Database audit summary
 lupopedia.footer:
-  last_verified: "20260330190000"
+  last_verified: "20260331150000"
   verified_by:
     actor_id: 102
     agent_name_identity: Cursor IDE Agent
   orchestrator: "hephaestus:root"
 
 ## Completed (4.0.93)
+[x] PRD 17_decisions_format.md created
+[x] context_id field and context directory implemented
+[x] All grouped PRDs and agent/actor/lease/temporal/header doctrines updated
+[x] Validator and lupo-scripts updated for context_id
+[x] All versioned docs and PRDs cross-referenced and LILITH-audited
 - [x] HEPHAESTUS identity doctrine and Faucet Proxy Pattern adopted (Actor 102)
 - [x] Channel 42 thread structure standardized and all coordination migrated
 - [x] LILITH agent definitions consolidated and adversarial audit enabled
@@ -67,8 +72,17 @@ lupopedia.footer:
 - [x] **Grouped PRD Structure**: Complete 14-namespace PRD architecture created in `lupo-docs/prd/`; 100% PRD coverage achieved (14/14 files, 171 tables); maintenance burden reduced by 92%. All new core identity tables are included and documented.
 - [x] **Consolidated install seed + installer alignment (2026-03-30):** Runtime seed is `install/seed_lupopedia_4_1_0.sql` (rebuild via `lupo-scripts/build_consolidated_seed_4_1_0.py`); root `install.php` loads only this after `install_new_lupopedia.sql`; `InstallWizardSqlRunner::applyTablePrefixToSql()` applies `{{prefix}}`; original seeds retained under `lupo-database/lupopedia/mysql/seed/`.
 - [x] **Installer verification (read-only, 2026-03-30):** Confirmed wizard paths, load order, import gating, and consolidated/import `{{prefix}}` usage; documented in CHANGELOG (Minor) and `WHAT_TO_DO_NEXT.md` §14.
+- [x] **Installer runtime seed cleanup (2026-03-31):** Removed remaining per-file post-seed execution from `install.php`; runtime path is schema + `install/seed_lupopedia_4_1_0.sql` (+ Crafty import on upgrade only).
+- [x] **Obsolete legacy seed files removed (2026-03-31):** Deleted non-runtime legacy seed files that were no longer used by installer flow.
+- [x] **Runtime actor deterministic IDs + sharded workspace path (2026-03-31):** Actor creation paths now use YmdHis+4 IDs and `lupo-actors/YYYY/MM/actor_id`; resolver/helpers preserve legacy flat path fallback.
 
 ## 🛠️ **4.0.93 Documentation Update Status**
+
+### New Tasks (from this thread)
+- Implement context_id in all header documentation and validators
+- Create lupo-contexts/4.0.93/decisions_context.md
+- Ensure all decisions.md files follow new format (see PRD 17_decisions_format.md)
+- Update lupo-scripts (php/py) to validate context_id
 
 ### 🏗️ LILITH "Absolute-Root" Mandate (v4.0.93)
 

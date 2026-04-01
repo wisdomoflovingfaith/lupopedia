@@ -5,12 +5,12 @@ lupopedia.headers:
   version_when_written: "4.0.93"
   file_path_from_root: "lupo-docs/prd/01_core_identity.md"
   web_path: "http://www.lupopedia.com/lupopedia/lupo-docs/prd/01_core_identity.md"
-  last_modified_utc: "20260330163000"
+  last_modified_utc: "20260331173500"
   channel_id: 42
   thread_id: "prd-grouped"
-  actor_id: 102
-  actor_name: "HEPHAESTUS"
-  delegation_chain: "hephaestus:root|lilith:audit"
+  actor_id: 2
+  actor_name: "LILITH"
+  delegation_chain: "lilith:audit|hephaestus:implementation"
   artifact_type: "prd"
   artifact_kind: "database_namespace"
   purpose: "PRD for core identity database tables"
@@ -38,11 +38,11 @@ lupopedia.edges:
       weight: 1.0
       reason: "Root constitutional system requirements"
 lupopedia.footer:
-  last_verified: "20260330163000"
+  last_verified: "20260331140000"
   verified_by:
-    actor_id: 102
-    agent_name_identity: Cursor IDE Agent
-  orchestrator: "hephaestus:root"
+    actor_id: 2
+    agent_name_identity: LILITH QA Agent
+  orchestrator: "lilith:audit"
 ---
 
 # PRD: Core Identity Database Tables
@@ -97,8 +97,6 @@ lupopedia.footer:
 
 ## Table Details
 
-## Table Details
-
 ### `lupo_actor_memory`
 
 **Purpose:** Stores memory items for each actor, supporting episodic, semantic, and contextual memory types.
@@ -113,6 +111,9 @@ lupopedia.footer:
 | memory_key | VARCHAR(128) | NO |  | Unique key for memory item |
 | memory_value | TEXT | YES | NULL | Memory content |
 | context_json | JSON | YES | NULL | Additional context for memory |
+| parent_memory_id | BIGINT | YES | NULL | Parent memory for lineage tracking |
+| root_memory_id | BIGINT | YES | NULL | Root memory for lineage tracking |
+| depth | TINYINT | NO | 0 | Depth in memory hierarchy |
 | created_ymdhis | BIGINT | NO | (application) | UTC timestamp |
 | updated_ymdhis | BIGINT | YES | NULL | UTC timestamp |
 | is_deleted | TINYINT | NO | 0 | Soft delete flag |
@@ -138,6 +139,8 @@ lupopedia.footer:
 | actor_id | BIGINT | NO |  | Reference to lupo_actors |
 | skill_name | VARCHAR(128) | NO |  | Name of the skill |
 | skill_level | VARCHAR(32) | YES | NULL | Proficiency or level |
+| skill_version | VARCHAR(32) | NO | '1.0.0' | Version of skill definition |
+| previous_skill_id | BIGINT | YES | NULL | Previous skill version for lineage |
 | skill_metadata | JSON | YES | NULL | Additional skill metadata |
 | acquired_ymdhis | BIGINT | NO | (application) | UTC timestamp |
 | updated_ymdhis | BIGINT | YES | NULL | UTC timestamp |
@@ -164,6 +167,9 @@ lupopedia.footer:
 | actor_id | BIGINT | NO |  | Reference to lupo_actors |
 | tool_name | VARCHAR(128) | NO |  | Name of the tool |
 | tool_type | VARCHAR(64) | YES | NULL | Type/category of tool |
+| input_schema_json | JSON | YES | NULL | JSON schema for tool input |
+| output_schema_json | JSON | YES | NULL | JSON schema for tool output |
+| execution_timeout_ms | INT | NO | 30000 | Tool execution timeout in milliseconds |
 | tool_metadata | JSON | YES | NULL | Additional tool metadata |
 | acquired_ymdhis | BIGINT | NO | (application) | UTC timestamp |
 | updated_ymdhis | BIGINT | YES | NULL | UTC timestamp |
@@ -191,6 +197,10 @@ lupopedia.footer:
 | prompt_key | VARCHAR(128) | NO |  | Unique key for prompt |
 | prompt_text | TEXT | NO |  | Prompt content |
 | prompt_type | VARCHAR(64) | YES | NULL | Type/category of prompt |
+| prompt_version | VARCHAR(32) | NO | '1.0.0' | Version of prompt template |
+| inherits_from_prompt_id | BIGINT | YES | NULL | Parent prompt for inheritance |
+| is_active | TINYINT | NO | 1 | Whether prompt is active |
+| is_default | TINYINT | NO | 0 | Whether this is default prompt |
 | context_json | JSON | YES | NULL | Additional context |
 | created_ymdhis | BIGINT | NO | (application) | UTC timestamp |
 | updated_ymdhis | BIGINT | YES | NULL | UTC timestamp |
@@ -218,6 +228,9 @@ lupopedia.footer:
 | training_type | VARCHAR(64) | NO |  | Type of training event |
 | training_data | TEXT | YES | NULL | Training content/data |
 | training_metadata | JSON | YES | NULL | Additional metadata |
+| resulted_in_memory_id | BIGINT | YES | NULL | Memory created by this training |
+| resulted_in_skill_id | BIGINT | YES | NULL | Skill created/updated by this training |
+| resulted_in_tool_id | BIGINT | YES | NULL | Tool created/updated by this training |
 | started_ymdhis | BIGINT | NO | (application) | UTC timestamp |
 | completed_ymdhis | BIGINT | YES | NULL | UTC timestamp |
 | updated_ymdhis | BIGINT | YES | NULL | UTC timestamp |
@@ -242,7 +255,7 @@ lupopedia.footer:
 |--------|------|----------|---------|-------------|
 | auth_user_id | BIGINT | NO | (application) | Primary key, generated via IdGenerator |
 | email | VARCHAR(255) | NO |  | User email address (unique) |
-| password_hash | VARCHAR(255) | NO |  | Bcrypt hash of user password |
+| password_hash | VARCHAR(255) | NO |  | Bcrypt hash (cost factor 12) of user password |
 | created_ymdhis | BIGINT | NO | (application) | UTC timestamp YYYYMMDDHHIISS |
 | updated_ymdhis | BIGINT | NO | (application) | UTC timestamp YYYYMMDDHHIISS |
 | last_login_ymdhis | BIGINT | YES | NULL | UTC timestamp of last login |
@@ -296,6 +309,15 @@ lupopedia.footer:
 | idx_actors_type | actor_type, is_active | Filter by type and status |
 | idx_actors_deleted | is_deleted, created_ymdhis | Filter soft-deleted rows |
 
+**Actor ID and Workspace Path Rules (v4.0.93):**
+
+- Reserved system range: all `actor_id < 2026` are reserved for install-time/system actors.
+- Deterministic runtime range: actors created after install must use deterministic IDs in `YYYYMMDDHHIISS + 4 random digits` format.
+- Lowest deterministic ID for year 2026 is `202601010000000000` (2026-01-01 00:00:00 UTC + `0000` suffix).
+- Workspace path resolution rule:
+  - if `actor_id < 2026`: `lupo-actors/<actor_id>/`
+  - otherwise (deterministic IDs): `lupo-actors/YYYY/MM/<actor_id>/`
+
 ### `lupo_actor_auth_users`
 
 **Purpose:** Many-to-many relationship between system actors and authentication users, enabling single user to have multiple actor personas.
@@ -339,7 +361,7 @@ lupopedia.footer:
 | created_ymdhis | BIGINT | NO | (application) | UTC timestamp YYYYMMDDHHIISS |
 | updated_ymdhis | BIGINT | NO | (application) | UTC timestamp YYYYMMDDHHIISS |
 | expires_ymdhis | BIGINT | NO | (application) | UTC timestamp when session expires |
-| ip_address | VARCHAR(45) | YES | NULL | Client IP address |
+| ip_address | VARCHAR(45) | YES | NULL | Client IP address **(Privacy Note: For GDPR compliance, consider storing hashed IP addresses in main table with raw IPs only in segregated audit logs)** |
 | user_agent | TEXT | YES | NULL | Client user agent string |
 | is_deleted | TINYINT | NO | 0 | Soft delete flag |
 | deleted_ymdhis | BIGINT | YES | NULL | UTC timestamp when deleted |
@@ -359,6 +381,8 @@ lupopedia.footer:
 | 01_core_identity | This → 02_channels_discussions | Actor attribution | actor_id columns |
 | 01_core_identity | This → 07_agents_faucets | Agent identity | agent_id columns |
 | 01_core_identity | This → 06_content_management | Content ownership | created_by_actor_id columns |
+| 01_core_identity | This → 03_truth_knowledge | Question/answer attribution | actor_id columns |
+| 01_core_identity | This → 08_governance_rules | Permission checks | actor_id columns |
 
 ## State Transitions
 

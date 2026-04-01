@@ -39,11 +39,11 @@ lupopedia.edges:
       weight: 1.0
       reason: "Constitutional temporal requirements"
 lupopedia.footer:
-  last_verified: "20260331093000"
+  last_verified: "20260331180000"
   verified_by:
-    actor_id: 102
-    agent_name_identity: Cursor IDE Agent
-  orchestrator: "hephaestus:root"
+    agent_id: 2
+    agent_name_identity: "LILITH"
+  orchestrator: "lilith:audit"
 ---
 
 # PRD: Temporal System - Canonical UTC Authority
@@ -58,6 +58,51 @@ lupopedia.footer:
 **Constitutional Compliance:** All temporal operations must follow the UTC Doctrine defined in the Root Constitutional System Requirements.
 
 ## Canonical UTC Authority Doctrine
+## Constitutional Compliance
+
+This PRD enforces the following constitutional rules:
+
+| Doctrine | Rule | Implementation |
+|----------|------|----------------|
+| Database Doctrine #4 | NO DATETIME/TIMESTAMP types | All timestamps stored as BIGINT |
+| Time & Planning Doctrine #2 | All time comparisons use BIGINT UTC | Comparisons use 14-digit integers |
+| Time & Planning Doctrine #4 | NO human-friendly time parsing | No DATE_FORMAT, FROM_UNIXTIME, etc. |
+| Multi-Agent Safety Doctrine #2 | All agents use BIGINT timestamps | tick.py is the ONLY timestamp source |
+
+**Violation:** Any component generating timestamps independently is in violation of constitutional doctrine.
+
+## Database Integration
+
+All database tables across all namespaces MUST use:
+- **Column type**: `BIGINT` (never DATETIME, never TIMESTAMP)
+- **Format**: `YYYYMMDDHHMMSS` (14-digit UTC)
+- **Generation**: From tick.py output, never database functions like `NOW()`, `CURRENT_TIMESTAMP`, or `UNIX_TIMESTAMP()`
+
+**Affected tables include but are not limited to:**
+- `lupo_actors.created_ymdhis`, `updated_ymdhis`, `deleted_ymdhis`
+- `lupo_auth_users.created_ymdhis`, `updated_ymdhis`, `last_login_ymdhis`
+- `lupo_sessions.created_ymdhis`, `updated_ymdhis`, `expires_ymdhis`
+- `lupo_actor_memory.created_ymdhis`, `updated_ymdhis`
+- `lupo_agent_heartbeats.created_ymdhis`, `updated_ymdhis`
+- All timestamp columns in all 166+ tables
+
+**See also:** Database Doctrine #4 in `lupo-rules/root/LUPOPEDIA_CONSTITUTIONAL_ROOT_RULES.md`
+
+## tick.py Execution Strategy (Optional)
+
+- **On-demand**: Called whenever a timestamp is needed
+- **Caching**: Values can be cached for up to 1 second
+- **Cron**: Optional cron job can update `/CURRENT_UTC` every second for availability
+- **Fallback**: If `/CURRENT_UTC` is stale (> 2 seconds), call tick.py directly
+
+## Affected Tables (from 01_core_identity.md)
+
+All tables with timestamp columns MUST use tick.py-sourced values:
+- `lupo_actors.created_ymdhis`, `updated_ymdhis`, `deleted_ymdhis`
+- `lupo_auth_users.created_ymdhis`, `updated_ymdhis`, `last_login_ymdhis`
+- `lupo_sessions.created_ymdhis`, `updated_ymdhis`, `expires_ymdhis`
+- `lupo_actor_memory.created_ymdhis`, `updated_ymdhis`
+- And all other timestamp columns across all tables
 
 ### Rule 1: Single Source of Truth
 Lupopedia does not use system-local time.

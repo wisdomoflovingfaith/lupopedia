@@ -521,3 +521,15 @@ IDE must always read before writing to avoid destructive merges
 - Multiple actors have updated documentation related to this work
 - Always read latest version before editing to avoid overwriting concurrent changes
 - Use outbound_edges to track relationships between documents
+
+## 16. Runtime seed + deterministic actor follow-up (2026-03-31)
+
+**Completed**
+- Installer runtime flow no longer executes remaining per-file post-seed SQL; runtime sequence is schema → `install/seed_lupopedia_4_1_0.sql` (and Crafty import only for upgrade).
+- Legacy non-runtime seed files removed from `lupo-database/lupopedia/mysql/seed/` where they were no longer used by installer execution path.
+- Runtime actor creation paths updated to deterministic IDs (`YYYYMMDDHHIISS` + 4 digits) via `IdGenerator` for newly created actors.
+- Actor workspace resolution/provisioning now supports sharded path `lupo-actors/YYYY/MM/actor_id` with legacy flat path fallback for compatibility.
+
+**Notes**
+- Reserved install/seed actors keep explicit reserved IDs; deterministic format applies to runtime-created actors.
+- Before removing additional seed/source files, re-check other actor threads and helper tooling references to avoid coordination drift.

@@ -9,11 +9,14 @@
 class Resolver
 {
     /**
-     * Resolve actor workspace path: lupo-actors/{actor_id}/. Returns realpath or null if invalid.
+     * Resolve actor workspace path.
+     *
+     * Legacy path: lupo-actors/{actor_id}/
+     * Deterministic-ID path: lupo-actors/YYYY/MM/{actor_id}/ when actor_id is 18-digit YmdHis+hash.
      *
      * @param string $base_path LUPOPEDIA_ABSPATH
      * @param string $actors_dir LUPO_ACTORS_DIR
-     * @param int    $actor_id
+     * @param int|string $actor_id
      * @return string|null Real path or null if not under base
      */
     public static function actorPath($base_path, $actors_dir, $actor_id)
@@ -23,19 +26,34 @@ class Resolver
         if ($root_real === false) {
             return null;
         }
-        $safe_id = (string) (int) $actor_id;
-        if ($safe_id !== (string) $actor_id) {
+        $id_str = (string) $actor_id;
+        if ($id_str === '' || !preg_match('/^[0-9]+$/', $id_str)) {
             return null;
         }
-        $candidate = $root_real . DIRECTORY_SEPARATOR . $safe_id;
-        $resolved = @realpath($candidate);
-        if ($resolved === false) {
-            $resolved = $candidate;
+
+        $candidates = array();
+
+        // Deterministic actor ID layout: lupo-actors/YYYY/MM/actor_id
+        if (preg_match('/^[0-9]{18}$/', $id_str)) {
+            $yyyy = substr($id_str, 0, 4);
+            $mm = substr($id_str, 4, 2);
+            $candidates[] = $root_real . DIRECTORY_SEPARATOR . $yyyy . DIRECTORY_SEPARATOR . $mm . DIRECTORY_SEPARATOR . $id_str;
         }
-        if (strpos($resolved, $root_real) !== 0) {
-            return null;
+
+        // Legacy fallback: lupo-actors/actor_id
+        $candidates[] = $root_real . DIRECTORY_SEPARATOR . $id_str;
+
+        foreach ($candidates as $candidate) {
+            $resolved = @realpath($candidate);
+            if ($resolved === false) {
+                $resolved = $candidate;
+            }
+            if (strpos($resolved, $root_real) === 0) {
+                return $resolved;
+            }
         }
-        return $resolved;
+
+        return null;
     }
 
     /**
