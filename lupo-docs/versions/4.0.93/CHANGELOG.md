@@ -2,6 +2,18 @@
 
 ## v4.0.93 (March 31, 2026)
 
+### Added / Updated — WOLFIE Doctrine (2026-04-01)
+
+- **WOLFIE Doctrine** — `lupo-rules/root/WOLFIE_DOCTRINE.md` created as root-level constitutional rule protecting proven code from framework bloat
+- **Five Pillars** — Fallback Over Dependency, Survival Without You, Dependency is Debt, Cascade Fallback, Single Source of Truth
+- **Binding Rules** — W-01 through W-05 established as constitutional requirements for all agents
+- **Root README** — Updated to prominently display WOLFIE Doctrine as first thing to read
+- **Constitutional Requirements** — Section 14 added to incorporate doctrine as constitutional requirement
+- **Framework Prohibition** — Constitutional rules against adopting frameworks without justification
+- **Modernization Prohibition** — Rules against "modernizing" proven 1999-era code without understanding why it works
+
+**Rationale**: Code built in Notepad in 2002 that outran its author for 11 years is not "legacy" - it's proven architecture that deserves constitutional protection.
+
 ### Added / Updated — Channel chat display (2026-03-31, Cursor + LILITH audit + CASCADE documentation thread)
 
 - **PRD** — `lupo-docs/prd/18_channel_chat_display.md` updated: canonical message API is `api/lupo-channels/{id}/messages` (`channels-api.php`); `LUPOPEDIA_PUBLIC_PATH` for URLs; `format=buffer` / `format=image` documented; ES3 legacy notes; example SQL corrected vs TOON (`lupo_actors.name` / `actor_name`, no `display_name`).

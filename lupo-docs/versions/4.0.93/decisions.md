@@ -511,6 +511,41 @@ As part of 3-actor simultaneous work session, Cursor implemented the channel cha
 
 ---
 
+## D-29: WOLFIE Doctrine - Constitutional Rules Against Framework Bloat
+
+### Type
+**Doctrine**
+
+### Status
+**Accepted**
+
+### Author
+**WOLFIE** (actor_id 1)
+
+### Date
+2026-04-01
+
+### Context
+IDE agents see 25-year-old code and assume it needs "modernization" with frameworks, dependencies, and complexity. They don't understand that the code was built with a philosophy that made it outlast its author by 11 years.
+
+### Decision
+- Created `lupo-rules/root/WOLFIE_DOCTRINE.md` as root-level constitutional rule
+- Established Five Pillars: Fallback Over Dependency, Survival Without You, Dependency is Debt, Cascade Fallback, Single Source of Truth
+- Binding Rules W-01 through W-05 for all agents
+- Updated root README.md to prominently display doctrine
+- Incorporated doctrine into constitutional requirements PRD
+
+### Consequences
+- All agents must read WOLFIE Doctrine before suggesting changes
+- Framework bloat and forced modernization prohibited
+- Proven 1999-era code constitutionally protected
+- Dependencies require justification and fallback paths
+
+### Comments
+*2026-04-01 WOLFIE*: The code that outran its author for 11 years is now constitutionally protected. If you can write it in Notepad, you don't need a framework.
+
+---
+
 ## DG-01: Actor ID Conflict Resolution (MAAT vs HEIMDALL)
 
 ### Type
@@ -1130,6 +1165,7 @@ Always read latest file contents before editing. Use outbound_edges and header m
 | A-C08 | ANUBIS Events Table Schema Fix | ANUBIS | 2026-03-31 |
 | A-C09 | Channel chat: channels-api formats, channel.php, chat-display JS/CSS, PRD 18, routing, digit assets | CURSOR | 2026-03-31 |
 | A-C10 | Channel chat implementation documentation with LUPOPEDIA headers | CASCADE | 2026-03-31 |
+| A-C11 | WOLFIE Doctrine creation - constitutional rules against framework bloat | WOLFIE | 2026-04-01 |
 
 ---
 
@@ -1172,6 +1208,13 @@ Always read latest file contents before editing. Use outbound_edges and header m
 - Linked implementation to PRD 18_channel_chat_display.md, channels-api.php, and channel.php
 - Ensured compliance with Lupopedia documentation standards
 
+### 2026-04-01: WOLFIE
+- Created WOLFIE Doctrine as root-level constitutional rule
+- Established Five Pillars of WOLFIE Engineering
+- Created binding rules W-01 through W-05 for all agents
+- Updated root README.md and constitutional requirements PRD
+- Protected 1999-era code from framework bloat and forced modernization
+
 ---
 
 ## Key Lessons Learned
@@ -1183,6 +1226,7 @@ Always read latest file contents before editing. Use outbound_edges and header m
 5. **Agent Configuration Pattern**: Each agent requires 4 files (agent.json, capabilities.json, properties.json, system_prompt.txt) with consistent structure.
 6. **Channel chat transport**: Extend `channels-api.php` for buffer/image fallbacks; use `api/lupo-channels/...` in clients; keep full channel UI on `/channels/` via index routing.
 7. **Multi-Actor Coordination**: When multiple actors work simultaneously, each should document their contributions with proper attribution and headers to maintain traceability.
+8. **WOLFIE Doctrine**: Code that outran its author for 11 years is not "legacy" - it's proven architecture. Protect it from framework bloat.
 
 **Next Review**: 2026-04-07
 **Canonical Reference**: This file is the single source of truth for decisions and action items for Lupopedia 4.0.93.

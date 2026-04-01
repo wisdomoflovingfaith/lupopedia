@@ -47,6 +47,14 @@ lupopedia.headers:
 - **[x] Digit GIF assets** — Operator placed production digit images under `lupo-ui/images/` (replacing placeholders).
 - **[x] Implementation Documentation** — `lupo-docs/implementations/channel-chat.md` created with LUPOPEDIA headers, API paths, routing, fallback chain, and browser support documented.
 
+## WOLFIE Doctrine (2026-04-01)
+
+- **[x] WOLFIE Doctrine Created** — `lupo-rules/root/WOLFIE_DOCTRINE.md` established as root-level constitutional rule
+- **[x] Five Pillars Established** — Fallback Over Dependency, Survival Without You, Dependency is Debt, Cascade Fallback, Single Source of Truth
+- **[x] Binding Rules W-01 through W-05** — Constitutional rules against framework bloat and forced modernization
+- **[x] Root README Updated** — Prominent display of WOLFIE Doctrine as first thing to read
+- **[x] Constitutional Requirements Updated** — Section 14 added to incorporate doctrine as constitutional requirement
+
 ## 🚨 **PRIMARY OBJECTIVE: Softaculous Certification & Crafty Parity**
 
 - **[ ]** Complete remaining 7 PRD namespaces (01_core_identity through 07_agents_faucets)

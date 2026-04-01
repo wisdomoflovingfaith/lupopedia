@@ -86,6 +86,7 @@ lupopedia.footer:
 - [x] **Obsolete legacy seed files removed (2026-03-31):** Deleted non-runtime legacy seed files that were no longer used by installer flow.
 - [x] **Runtime actor deterministic IDs + sharded workspace path (2026-03-31):** Actor creation paths now use YmdHis+4 IDs and `lupo-actors/YYYY/MM/actor_id`; resolver/helpers preserve legacy flat path fallback.
 - [x] **Channel chat (2026-03-31, Cursor + Cascade thread):** PRD 18 aligned; `channels-api.php` extended (`format=buffer|image`, `thread_id`, `dialog_thread_id`, digit redirect); `channel.php` + `channel-chat/` routes; `chat-display.js` / `chat-display-legacy.js` / `chat-display.css`; `channels/{id}/thread/{id}` slug; operator-supplied digit GIFs in `lupo-ui/images/`; implementation documentation created with LUPOPEDIA headers.
+- [x] **WOLFIE Doctrine (2026-04-01):** Constitutional doctrine created as root-level rule; Five Pillars established; binding rules W-01 through W-05 against framework bloat; root README updated; constitutional requirements PRD updated; 1999-era code protected from forced modernization.
 
 ## 🛠️ **4.0.93 Documentation Update Status**
 
