@@ -55,6 +55,23 @@ lupopedia.headers:
 - **[x] Root README Updated** — Prominent display of WOLFIE Doctrine as first thing to read
 - **[x] Constitutional Requirements Updated** — Section 14 added to incorporate doctrine as constitutional requirement
 
+## Multi-Agent Orchestration Doctrine (2026-04-01)
+
+- **[x] Multi-Agent Orchestration Doctrine Created** — `lupo-docs/doctrine/MULTI_AGENT_ORCHESTRATION_DOCTRINE.md` established
+- **[x] Cascade Workflow Documented** — Cursor writes, Windsurf docs, Kiro verifies pattern
+- **[x] Meta-Agent Loop Established** — LILITH refines prompts for internal swarm
+- **[x] Scale Documented** — 10+ IDEs, 50+ agents, dependency-based coordination
+- **[x] Dogfooding Principle** — System building itself using its own coordination architecture
+
+## Actor-Agent Distinction Doctrine (2026-04-01)
+
+- **[x] Actor-Agent Distinction Doctrine Created** — `lupo-docs/doctrine/ACTOR_AGENT_DISTINCTION.md` established
+- **[x] Core Identity PRD Updated** — Added "Agents vs Actors: The Two-Layer Identity Model" section
+- **[x] Actors PRD Updated** — Added workspace structure and learning process documentation
+- **[x] Agents Faucets PRD Updated** — Added "Agent → Actor Relationship" section
+- **[x] WOLFIE Doctrine Updated** — Added Section 9 with Rule W-06: Agents Do Not Learn, Actors Do
+- **[x] All PRDs Clarified** — Agents are immutable templates, actors are learning instances
+
 ## 🚨 **PRIMARY OBJECTIVE: Softaculous Certification & Crafty Parity**
 
 - **[ ]** Complete remaining 7 PRD namespaces (01_core_identity through 07_agents_faucets)

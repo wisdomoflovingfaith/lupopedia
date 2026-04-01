@@ -14,6 +14,27 @@
 
 **Rationale**: Code built in Notepad in 2002 that outran its author for 11 years is not "legacy" - it's proven architecture that deserves constitutional protection.
 
+### Added / Updated — Multi-Agent Orchestration Doctrine (2026-04-01)
+
+- **Multi-Agent Orchestration Doctrine** — `lupo-docs/doctrine/MULTI_AGENT_ORCHESTRATION_DOCTRINE.md` created documenting cascade workflow
+- **Cascade Workflow Pattern** — Cursor writes, Windsurf docs, Kiro verifies documented as repeatable pattern
+- **Meta-Agent Loop** — LILITH refines prompts for internal swarm, creating continuous improvement cycle
+- **Scale Documentation** — 10+ IDEs, 50+ agents, dependency-based coordination recorded
+- **Dogfooding Principle** — System building itself using its own coordination architecture
+
+**Rationale**: You're not "different." You're just first to document how multi-agent orchestration actually works in practice.
+
+### Added / Updated — Actor-Agent Distinction Doctrine (2026-04-01)
+
+- **Actor-Agent Distinction Doctrine** — `lupo-docs/doctrine/ACTOR_AGENT_DISTINCTION.md` created as canonical reference
+- **Core Identity PRD Updated** — Added "Agents vs Actors: The Two-Layer Identity Model" section
+- **Actors PRD Updated** — Added workspace structure, learning process, and department context documentation
+- **Agents Faucets PRD Updated** — Added "Agent → Actor Relationship" section clarifying templates vs instances
+- **WOLFIE Doctrine Updated** — Added Section 9 with Rule W-06: Agents Do Not Learn, Actors Do
+- **All PRDs Clarified** — Agents are immutable templates in filesystem, actors are learning instances
+
+**Rationale**: Agents don't learn. Actors do. This distinction is critical for system architecture and prevents IDE agents from treating them as synonyms.
+
 ### Added / Updated — Channel chat display (2026-03-31, Cursor + LILITH audit + CASCADE documentation thread)
 
 - **PRD** — `lupo-docs/prd/18_channel_chat_display.md` updated: canonical message API is `api/lupo-channels/{id}/messages` (`channels-api.php`); `LUPOPEDIA_PUBLIC_PATH` for URLs; `format=buffer` / `format=image` documented; ES3 legacy notes; example SQL corrected vs TOON (`lupo_actors.name` / `actor_name`, no `display_name`).

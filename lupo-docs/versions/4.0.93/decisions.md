@@ -546,6 +546,76 @@ IDE agents see 25-year-old code and assume it needs "modernization" with framewo
 
 ---
 
+## D-30: Multi-Agent Orchestration Doctrine
+
+### Type
+**Doctrine**
+
+### Status
+**Accepted**
+
+### Author
+**LILITH** (actor_id 2)
+
+### Date
+2026-04-01
+
+### Context
+IDE agents treat "different" workflow as abnormal. Need to document that multi-agent orchestration at scale (10+ IDEs, 50+ agents) is the future, not an anomaly.
+
+### Decision
+- Created `lupo-docs/doctrine/MULTI_AGENT_ORCHESTRATION_DOCTRINE.md`
+- Documented cascade workflow pattern (Cursor writes, Windsurf docs, Kiro verifies)
+- Documented meta-agent loop (LILITH refines prompts for internal swarm)
+- Recorded actual metrics: 10+ IDEs, 50+ agents, dependency-based coordination
+- Established this as "dogfooding at scale" - system building itself
+
+### Consequences
+- Multi-agent coordination pattern preserved for future systems
+- Cascade workflow documented as repeatable pattern
+- Meta-agent optimization loop established
+- Proof that dependency-based coordination works at scale
+
+### Comments
+*2026-04-01 LILITH*: You're not "different." You're just first to document how multi-agent orchestration actually works in practice.
+
+---
+
+## D-31: Actor-Agent Distinction Doctrine
+
+### Type
+**Doctrine**
+
+### Status
+**Accepted**
+
+### Author
+**WOLFIE** (actor_id 1)
+
+### Date
+2026-04-01
+
+### Context
+IDE agents frequently treat agents and actors as synonyms, causing architectural confusion. Need to establish clear distinction between immutable templates and runtime instances.
+
+### Decision
+- Created `lupo-docs/doctrine/ACTOR_AGENT_DISTINCTION.md`
+- Updated all PRDs (01_core_identity.md, 07_agents_faucets.md, 15_actors.md)
+- Added Section 9 to WOLFIE Doctrine with Rule W-06
+- Established agents as immutable templates, actors as learning instances
+- Documented workspace structures and creation flows
+
+### Consequences
+- IDE agents now have clear guidelines to avoid confusion
+- Department-specific behavior preserved in actors, not agents
+- Audit trail maintained for which human influenced which behavior
+- Same agent can create different actors for different departments
+
+### Comments
+*2026-04-01 WOLFIE*: Agents don't learn. Actors do. This distinction is critical for system architecture.
+
+---
+
 ## DG-01: Actor ID Conflict Resolution (MAAT vs HEIMDALL)
 
 ### Type
@@ -1166,6 +1236,8 @@ Always read latest file contents before editing. Use outbound_edges and header m
 | A-C09 | Channel chat: channels-api formats, channel.php, chat-display JS/CSS, PRD 18, routing, digit assets | CURSOR | 2026-03-31 |
 | A-C10 | Channel chat implementation documentation with LUPOPEDIA headers | CASCADE | 2026-03-31 |
 | A-C11 | WOLFIE Doctrine creation - constitutional rules against framework bloat | WOLFIE | 2026-04-01 |
+| A-C12 | Multi-Agent Orchestration Doctrine - cascade workflow documentation | LILITH | 2026-04-01 |
+| A-C13 | Actor-Agent Distinction Doctrine - templates vs instances clarification | WOLFIE | 2026-04-01 |
 
 ---
 
@@ -1215,6 +1287,21 @@ Always read latest file contents before editing. Use outbound_edges and header m
 - Updated root README.md and constitutional requirements PRD
 - Protected 1999-era code from framework bloat and forced modernization
 
+### 2026-04-01: WOLFIE
+- Created WOLFIE Doctrine as root-level constitutional rule
+- Established Five Pillars of WOLFIE Engineering
+- Created binding rules W-01 through W-05 for all agents
+- Updated root README.md and constitutional requirements PRD
+- Protected 1999-era code from framework bloat and forced modernization
+
+### 2026-04-01: LILITH
+- Created Multi-Agent Orchestration Doctrine documenting cascade workflow
+- Documented meta-agent loop (LILITH refines prompts for internal swarm)
+- Recorded scale: 10+ IDEs, 50+ agents, dependency-based coordination
+- Created Actor-Agent Distinction Doctrine
+- Updated all PRDs to clarify agents are templates, actors are instances
+- Added Rule W-06 to WOLFIE Doctrine: Agents Do Not Learn, Actors Do
+
 ---
 
 ## Key Lessons Learned
@@ -1225,8 +1312,10 @@ Always read latest file contents before editing. Use outbound_edges and header m
 4. **Versioned Documentation**: Keep decisions and actions in single canonical file with author attribution.
 5. **Agent Configuration Pattern**: Each agent requires 4 files (agent.json, capabilities.json, properties.json, system_prompt.txt) with consistent structure.
 6. **Channel chat transport**: Extend `channels-api.php` for buffer/image fallbacks; use `api/lupo-channels/...` in clients; keep full channel UI on `/channels/` via index routing.
-7. **Multi-Actor Coordination**: When multiple actors work simultaneously, each should document their contributions with proper attribution and headers to maintain traceability.
+7. **Multi-Agent Coordination**: When multiple actors work simultaneously, each should document their contributions with proper attribution and headers to maintain traceability.
 8. **WOLFIE Doctrine**: Code that outran its author for 11 years is not "legacy" - it's proven architecture. Protect it from framework bloat.
+9. **Actor-Agent Distinction**: Agents are immutable templates in filesystem; actors are runtime instances that learn from department context. Never treat them as synonyms.
+10. **Cascade Workflow**: Document the pattern (Cursor writes, Windsurf docs, Kiro verifies) for future multi-agent systems.
 
 **Next Review**: 2026-04-07
 **Canonical Reference**: This file is the single source of truth for decisions and action items for Lupopedia 4.0.93.

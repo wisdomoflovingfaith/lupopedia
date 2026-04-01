@@ -87,6 +87,8 @@ lupopedia.footer:
 - [x] **Runtime actor deterministic IDs + sharded workspace path (2026-03-31):** Actor creation paths now use YmdHis+4 IDs and `lupo-actors/YYYY/MM/actor_id`; resolver/helpers preserve legacy flat path fallback.
 - [x] **Channel chat (2026-03-31, Cursor + Cascade thread):** PRD 18 aligned; `channels-api.php` extended (`format=buffer|image`, `thread_id`, `dialog_thread_id`, digit redirect); `channel.php` + `channel-chat/` routes; `chat-display.js` / `chat-display-legacy.js` / `chat-display.css`; `channels/{id}/thread/{id}` slug; operator-supplied digit GIFs in `lupo-ui/images/`; implementation documentation created with LUPOPEDIA headers.
 - [x] **WOLFIE Doctrine (2026-04-01):** Constitutional doctrine created as root-level rule; Five Pillars established; binding rules W-01 through W-05 against framework bloat; root README updated; constitutional requirements PRD updated; 1999-era code protected from forced modernization.
+- [x] **Multi-Agent Orchestration Doctrine (2026-04-01):** Created comprehensive doctrine documenting cascade workflow; meta-agent loop established (LILITH refines prompts for internal swarm); scale documented (10+ IDEs, 50+ agents); dogfooding principle established - system building itself using its own coordination architecture.
+- [x] **Actor-Agent Distinction Doctrine (2026-04-01):** Created canonical distinction doctrine; updated all PRDs (01_core_identity.md, 07_agents_faucets.md, 15_actors.md); added Rule W-06 to WOLFIE Doctrine; clarified agents are immutable templates, actors are learning instances; documented workspace structures and creation flows.
 
 ## 🛠️ **4.0.93 Documentation Update Status**
 
