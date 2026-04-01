@@ -1,10 +1,14 @@
 <?php
 /**
- * Channels REST API — RESTful message send/receive for VSX extension.
+ * Channels REST API — RESTful message send/receive (VSX extension and channel UI).
  *
- * Routes handled (set via $channels_api_channel_id and $channels_api_action):
- *   GET  api/channels/{id}/messages?since=
- *   POST api/channels/{id}/messages
+ * Routes handled (module-loader sets $channels_api_channel_id):
+ *   GET  api/lupo-channels/{id}/messages?since=&format=json|buffer|image
+ *   POST api/lupo-channels/{id}/messages
+ *
+ * Query (GET): since, thread_id (optional), limit, offset.
+ *   format=json (default), format=buffer (text/plain JSON), format=image (302 to digit GIF).
+ *   Image: whatplace= or position= hundreds|tens|ones; image_metric=time|count.
  *
  * @package Lupopedia
  * @since   4.0.27
@@ -108,6 +112,19 @@ if ($method === 'GET') {
         exit;
     }
 
+    $format = isset($_GET['format']) ? strtolower(trim((string) $_GET['format'])) : 'json';
+    if ($format !== 'json' && $format !== 'buffer' && $format !== 'image') {
+        http_response_code(400);
+        echo json_encode(array(
+            'success' => false,
+            'error' => array(
+                'code' => 'INVALID_FORMAT',
+                'message' => 'format must be json, buffer, or image.',
+            ),
+        ));
+        exit;
+    }
+
     $since = isset($_GET['since']) ? trim($_GET['since']) : '';
     $limit = isset($_GET['limit']) ? min(200, max(1, (int) $_GET['limit'])) : 50;
     $offset = isset($_GET['offset']) ? max(0, (int) $_GET['offset']) : 0;
@@ -115,19 +132,29 @@ if ($method === 'GET') {
     $t_msg = $table_prefix . 'dialog_messages';
     $t_act = $table_prefix . 'actors';
 
-    $params = ['channel_id' => $channel_id];
+    $params = array('channel_id' => $channel_id);
     $sinceClause = '';
     if ($since !== '' && preg_match('/^\d{14}$/', $since)) {
         $sinceClause = ' AND m.created_ymdhis > :since';
         $params['since'] = (int) $since;
     }
 
-    $sql = "SELECT m.dialog_message_id AS message_id, m.from_actor_id AS actor_id, "
+    $threadClause = '';
+    $thread_id_q = isset($_GET['thread_id']) ? (int) $_GET['thread_id'] : 0;
+    if ($thread_id_q < 0) {
+        $thread_id_q = 0;
+    }
+    if ($thread_id_q > 0) {
+        $threadClause = ' AND m.dialog_thread_id = :thread_id';
+        $params['thread_id'] = $thread_id_q;
+    }
+
+    $sql = "SELECT m.dialog_message_id AS message_id, m.dialog_thread_id AS dialog_thread_id, m.from_actor_id AS actor_id, "
          . "a.name AS actor_name, a.actor_type, m.channel_id, "
          . "m.message_text AS body, m.created_ymdhis AS created_at "
          . "FROM {$t_msg} m "
          . "LEFT JOIN {$t_act} a ON a.actor_id = m.from_actor_id "
-         . "WHERE m.channel_id = :channel_id{$sinceClause} "
+         . "WHERE m.channel_id = :channel_id AND m.is_deleted = 0{$sinceClause}{$threadClause} "
          . "ORDER BY m.created_ymdhis ASC "
          . "LIMIT {$limit} OFFSET {$offset}";
 
@@ -137,25 +164,90 @@ if ($method === 'GET') {
         $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
         $messages = array_map(function ($r) {
-            return [
-                'message_id'  => isset($r['message_id']) ? (int) $r['message_id'] : null,
-                'actor_id'    => (int) $r['actor_id'],
-                'actor_name'  => $r['actor_name'],
-                'actor_type'  => $r['actor_type'],
-                'channel_id'  => (int) $r['channel_id'],
-                'body'        => $r['body'],
-                'created_at'  => $r['created_at'],
-            ];
+            $tid = isset($r['dialog_thread_id']) ? $r['dialog_thread_id'] : null;
+            return array(
+                'message_id'         => isset($r['message_id']) ? (int) $r['message_id'] : null,
+                'dialog_thread_id' => ($tid === null || $tid === '') ? null : (int) $tid,
+                'actor_id'         => (int) $r['actor_id'],
+                'actor_name'       => $r['actor_name'],
+                'actor_type'       => $r['actor_type'],
+                'channel_id'       => (int) $r['channel_id'],
+                'body'             => $r['body'],
+                'created_at'       => $r['created_at'],
+            );
         }, $rows);
 
-        echo json_encode([
+        if ($format === 'image') {
+            $whatplace = isset($_GET['whatplace']) ? strtolower(trim((string) $_GET['whatplace'])) : '';
+            if ($whatplace === '' && isset($_GET['position'])) {
+                $whatplace = strtolower(trim((string) $_GET['position']));
+            }
+            if ($whatplace !== 'hundreds' && $whatplace !== 'tens' && $whatplace !== 'ones') {
+                http_response_code(400);
+                echo json_encode(array(
+                    'success' => false,
+                    'error' => array(
+                        'code' => 'INVALID_WHATPLACE',
+                        'message' => 'format=image requires whatplace= or position=hundreds|tens|ones',
+                    ),
+                ));
+                exit;
+            }
+            $imageMetric = isset($_GET['image_metric']) ? strtolower(trim((string) $_GET['image_metric'])) : 'time';
+            $n = 0;
+            $rowCount = count($rows);
+            if ($imageMetric === 'count') {
+                $n = $rowCount % 1000;
+            } elseif ($rowCount > 0) {
+                $last = $rows[$rowCount - 1];
+                $created = isset($last['created_at']) ? (int) $last['created_at'] : 0;
+                $n = $created % 1000;
+            }
+            $h = (int) floor($n / 100);
+            $t = (int) floor(($n - $h * 100) / 10);
+            $o = $n - $h * 100 - $t * 10;
+            $digit = 0;
+            if ($whatplace === 'hundreds') {
+                $digit = $h;
+            } elseif ($whatplace === 'tens') {
+                $digit = $t;
+            } else {
+                $digit = $o;
+            }
+            if ($digit < 0) {
+                $digit = 0;
+            }
+            if ($digit > 9) {
+                $digit = 9;
+            }
+            // Redirect so the browser's final img.src ends with digitN.gif (legacy parsers).
+            if (function_exists('header_remove')) {
+                header_remove('Content-Type');
+            }
+            $pub = defined('LUPOPEDIA_PUBLIC_PATH') ? (string) LUPOPEDIA_PUBLIC_PATH : '';
+            $pub = rtrim($pub, '/');
+            $loc = ($pub === '' ? '' : $pub) . '/lupo-ui/images/digit' . $digit . '.gif';
+            header('Location: ' . $loc, true, 302);
+            header('Cache-Control: no-store, no-cache, must-revalidate');
+            exit;
+        }
+
+        $payload = array(
             'success'    => true,
             'channel_id' => $channel_id,
             'messages'   => $messages,
             'total'      => count($messages),
             'limit'      => $limit,
             'offset'     => $offset,
-        ]);
+        );
+
+        if ($format === 'buffer') {
+            header('Content-Type: text/plain; charset=utf-8', true);
+            echo json_encode($payload);
+            exit;
+        }
+
+        echo json_encode($payload);
     } catch (Exception $e) {
         http_response_code(500);
         echo json_encode(['success' => false, 'error' => ['code' => 'QUERY_ERROR', 'message' => $e->getMessage()]]);

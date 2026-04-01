@@ -742,6 +742,20 @@ function lupo_route_slug($slug)
         ));
     }
 
+    // CHANNELS ROUTE: /channels/{channel_id}/thread/{thread_id} — same UI with pre-selected thread
+    if (preg_match('#^channels/(\d+)/thread/(\d+)/?$#', $slug, $matches)) {
+        $channel_id = (int) $matches[1];
+        $thread_id = (int) $matches[2];
+        $app_root = defined('LUPOPEDIA_PATH') ? LUPOPEDIA_PATH : LUPOPEDIA_ABSPATH;
+        $channels_controller_path = rtrim($app_root, '/\\') . DIRECTORY_SEPARATOR . 'lupo-includes' . DIRECTORY_SEPARATOR . 'modules' . DIRECTORY_SEPARATOR . 'channels' . DIRECTORY_SEPARATOR . 'channels-controller.php';
+        if (file_exists($channels_controller_path)) {
+            require_once $channels_controller_path;
+            if (function_exists('channels_handle_show')) {
+                return channels_handle_show($channel_id, $thread_id);
+            }
+        }
+    }
+
     // CHANNELS ROUTE: /lupo-channels/{channel_id}/stream — iframe message stream (legacy livehelp pattern)
     if (preg_match('#^channels/(\d+)/stream/?$#', $slug, $matches)) {
         $channel_id = (int) $matches[1];

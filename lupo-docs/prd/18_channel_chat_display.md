@@ -2,10 +2,10 @@
 lupopedia.headers:
   header_format_version: 2
   lupopedia.schema: prd
-  when_updated: "20260331220000"
+  when_updated: "20260331233000"
   file_path_from_root: "lupo-docs/prd/18_channel_chat_display.md"
   web_path: "http://www.lupopedia.com/lupopedia/lupo-docs/prd/18_channel_chat_display.md"
-  last_modified_utc: "20260331220000"
+  last_modified_utc: "20260331233000"
   federation_node_id: 0
   channel_id: 42
   thread_id: "prd-chat-display"
@@ -37,7 +37,7 @@ lupopedia.edges:
       weight: 0.8
       reason: "Agent identification"
 lupopedia.footer:
-  last_verified: "20260331220000"
+  last_verified: "20260331233000"
   verified_by:
     identity_type: "agent"
     actor_id: 2
@@ -48,10 +48,10 @@ lupopedia.footer:
     faucet_slug: "none"
   orchestrator: "lilith:audit"
   next_action:
-    - "Implement chat display component in lupo-ui/js/chat-display.js"
-    - "Create PHP endpoint for message fetching"
-    - "Add actor color configuration in actor preferences"
-    - "Test with multiple actors in channel 42"
+    - "Wire channel UI to channels-api (JSON) and optional chat-display-legacy.js fallbacks"
+    - "Implement chat-display.js (modern) when product scope needs a standalone widget"
+    - "Add actor color configuration in actor preferences (metadata_json)"
+    - "Test with multiple actors in channel 42; verify format=buffer and format=image redirects"
 ---
 
 # PRD: Channel Chat Display
@@ -73,6 +73,8 @@ lupopedia.footer:
 - BIGINT timestamps (YYYYMMDDHHIISS UTC)
 - Explicit ID generation (application layer)
 - Soft delete (is_deleted + deleted_ymdhis)
+
+**Canonical API (do not duplicate):** Message list and post for channel chat are implemented in `lupo-includes/modules/api/channels-api.php`, routed as **`{LUPOPEDIA_PUBLIC_PATH}/api/lupo-channels/{channel_id}/messages`**. Extend this endpoint for transport variants (`format=buffer`, `format=image`); do not add a parallel `lupo-api/chat/messages.php` unless it is a documented thin wrapper. Pretty channel pages: **`/channels/{id}/`** and **`/channels/{id}/thread/{thread_id}/`** (see `.htaccess` and `lupo_route_slug` in `module-loader.php`).
 
 ---
 
@@ -98,22 +100,19 @@ The legacy Crafty Syntax chat system (circa 2003-2007) used:
 ### Component Structure
 
 ```
-lupo-ui/js/chat-display.js
-├── ChatDisplay          # Main chat display controller
-├── MessageRenderer      # Renders individual messages
-├── MessageFetcher       # Polls or WebSocket for new messages
-├── TypingIndicator      # Shows who is typing
-└── ActorColorService    # Manages actor color mappings
+lupo-ui/js/chat-display.js          # Modern UI controller (product-specific; ES2015+ allowed if not loaded on legacy path)
+lupo-ui/js/chat-display-legacy.js   # ES3-safe XHR/ActiveX/image fingerprint helpers (legacy transport tiers)
+lupo-includes/modules/api/channels-api.php
+├── GET  api/lupo-channels/{id}/messages?since=YYYYMMDDHHIISS&format=json|buffer|image
+├── POST api/lupo-channels/{id}/messages  (JSON body: body, message_type, routing_type, thread_id, …)
+└── format=image: requires whatplace=hundreds|tens|ones; HTTP 302 to /lupo-ui/images/digitN.gif (fingerprint = latest row created_ymdhis % 1000, 0 if no rows)
 ```
 
-### PHP Endpoint
+**URL construction:** PHP must pass **`LUPOPEDIA_PUBLIC_PATH`** into the page (or a `data-*` attribute); never hardcode `/lupopedia/` or a guessed subdirectory in JS.
 
-```
-lupo-api/chat/messages.php
-├── GET /messages?channel_id=X&since=YYYYMMDDHHIISS
-├── POST /messages (send new message)
-└── GET /typing (get current typing status)
-```
+**Related legacy transport (reference):** `livehelp_js.php` (XHR/ActiveX detection pattern), root `image.php` (digit GIF protocol for visitor session), `lupo-ui/images/digit0.gif`–`digit9.gif` (static tiles used after `format=image` redirect).
+
+**Operator / livehelp polling (separate):** `api/channel/messages` → `channel-messages-api.php` remains the older channel poll surface; new chat display work should prefer **`api/lupo-channels/.../messages`** unless integrating that legacy path.
 
 ---
 
@@ -246,67 +245,47 @@ Reply to A (HEPHAESTUS)
 
 ### Polling Strategy (Default)
 
-For shared hosting compatibility, use polling with XMLHttpRequest fallback:
+For shared hosting compatibility, use polling against **`channels-api`** with **`LUPOPEDIA_PUBLIC_PATH`**. Example request:
+
+`GET {LUPOPEDIA_PUBLIC_PATH}/api/lupo-channels/{channelId}/messages?since={14_digit_ymdhis}&format=json`
+
+Response shape (JSON): `success`, `channel_id`, `messages[]` with `message_id`, `actor_id`, `actor_name`, `body`, **`created_at`** (BIGINT YmdHis), etc.
+
+**Legacy / ES3 transport (implemented stub):** Use **`lupo-ui/js/chat-display-legacy.js`** for XMLHttpRequest + ActiveX + optional **image fingerprint** (`format=image` + `whatplace=…`; server responds with **302** to `lupo-ui/images/digitN.gif` so `img.src` can be parsed). For hidden iframe reads, **`format=buffer`** returns the same JSON as **text/plain**. Do **not** use optional chaining, `const`, arrow functions, or `class` in that file.
 
 ```javascript
-class MessageFetcher {
-    constructor(channelId) {
-        this.channelId = channelId;
-        this.lastTimestamp = 0;
-        this.pollInterval = 2000; // 2 seconds
+// Illustrative ES3-style poll (new code should call helpers from chat-display-legacy.js where possible)
+function pollChannelMessages(publicPath, channelId, since, onMessages) {
+    var base = publicPath || "";
+    if (base.slice(-1) === "/") { base = base.substring(0, base.length - 1); }
+    var url = base + "/api/lupo-channels/" + channelId + "/messages?since=" + encodeURIComponent(since || "") + "&format=json";
+    var xhr = window.XMLHttpRequest ? new XMLHttpRequest() : null;
+    if (!xhr && window.ActiveXObject) {
+        try { xhr = new ActiveXObject("Msxml2.XMLHTTP"); } catch (e1) {
+            try { xhr = new ActiveXObject("Microsoft.XMLHTTP"); } catch (e2) { xhr = null; }
+        }
     }
-    
-    start() {
-        this.timer = setInterval(() => this.fetch(), this.pollInterval);
-    }
-    
-    fetch() {
-        const url = `${LUPOPEDIA_SUBDIRECTORY}api/chat/messages.php?channel=${this.channelId}&since=${this.lastTimestamp}`;
-        
-        // Use sendRequest from xmlhttp.js (battle-tested 20-year pattern)
-        sendRequest({
-            method: 'GET',
-            url: url,
-            onSuccess: (responseText) => {
-                try {
-                    const data = JSON.parse(responseText);
-                    if (data.messages && data.messages.length > 0) {
-                        this.lastTimestamp = data.messages[data.messages.length - 1].timestamp;
-                        this.onMessage(data.messages);
-                    }
-                } catch(e) {
-                    console.error('Failed to parse messages', e);
-                }
-            },
-            fallback: () => {
-                // Fallback to XMLHttpRequest if fetch not available
-                this.fallbackXHR(url);
+    if (!xhr) { return; }
+    xhr.open("GET", url, true);
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState !== 4 || xhr.status !== 200) { return; }
+        try {
+            var data = JSON.parse(xhr.responseText);
+            var list = data.messages || [];
+            if (list.length > 0) {
+                var last = list[list.length - 1];
+                var ts = last.created_at != null ? String(last.created_at) : since;
+                onMessages(list, ts);
+            } else {
+                onMessages([], since);
             }
-        });
-    }
-    
-    fallbackXHR(url) {
-        const xhr = new XMLHttpRequest();
-        xhr.open('GET', url, true);
-        xhr.onreadystatechange = () => {
-            if (xhr.readyState === 4 && xhr.status === 200) {
-                try {
-                    const data = JSON.parse(xhr.responseText);
-                    if (data.messages && data.messages.length > 0) {
-                        this.lastTimestamp = data.messages[data.messages.length - 1].timestamp;
-                        this.onMessage(data.messages);
-                    }
-                } catch(e) {
-                    console.error('Failed to parse messages', e);
-                }
-            }
-        };
-        xhr.send();
-    }
+        } catch (err) { }
+    };
+    xhr.send(null);
 }
 ```
 
-**Note:** The `sendRequest()` function from `xmlhttp.js` (Crafty Syntax legacy) is used here. It automatically detects `fetch()` support and falls back to XMLHttpRequest, ensuring compatibility with all browsers including IE and ancient mobile devices. This matches the 20-year battle-tested pattern that still works everywhere.
+**Modern browsers:** A separate `chat-display.js` may use `fetch`, `class`, and richer UI; keep that bundle off the legacy-only code path if IE-era support is required.
 
 ### WebSocket Strategy (Optional)
 
@@ -360,57 +339,9 @@ class WebSocketMessageFetcher extends MessageFetcher {
 
 ## Message Posting Endpoint
 
-```php
-// lupo-api/chat/messages.php - POST handler
-case 'POST':
-    // CSRF validation
-    if (!verify_csrf_token($_POST['csrf_token'] ?? '')) {
-        http_response_code(403);
-        echo json_encode(['error' => 'Invalid CSRF token']);
-        break;
-    }
-    
-    // Rate limiting
-    if (!check_rate_limit($_SERVER['REMOTE_ADDR'], 'chat_post', 30, 60)) {
-        http_response_code(429);
-        echo json_encode(['error' => 'Rate limit exceeded']);
-        break;
-    }
-    
-    // Validate input
-    $channel_id = intval($_POST['channel_id'] ?? 0);
-    $message_text = trim($_POST['message'] ?? '');
-    if ($channel_id <= 0 || empty($message_text)) {
-        http_response_code(400);
-        echo json_encode(['error' => 'Invalid input']);
-        break;
-    }
-    
-    // Check channel membership
-    if (!is_member_of_channel($actor_id, $channel_id)) {
-        http_response_code(403);
-        echo json_encode(['error' => 'Not a member of this channel']);
-        break;
-    }
-    
-    // Insert message
-    $message_id = IdGenerator::generate();
-    $sql = replace_prefix("INSERT INTO {{prefix}}dialog_messages 
-        (dialog_message_id, channel_id, from_actor_id, message_text, created_ymdhis, updated_ymdhis) 
-        VALUES (?, ?, ?, ?, ?, ?)");
-    
-    execute($sql, [
-        $message_id,
-        $channel_id,
-        $actor_id,
-        $message_text,
-        get_current_utc(),
-        get_current_utc()
-    ]);
-    
-    echo json_encode(['success' => true, 'message_id' => $message_id]);
-    break;
-```
+Posting is implemented in **`channels-api.php`** (POST, JSON body). The server resolves **`actor_id`** from the authenticated session / `EffectiveActorResolver` — **never** trust a client-supplied actor id. Request body includes at least **`body`** (message text); optional **`routing_type`** (`broadcast`, `thread`, `direct`), **`thread_id`**, **`message_type`**, **`meta`**, etc. Enforce channel membership and role rules as already coded in the API.
+
+Future **rate limiting** and **CSRF** for browser POSTs should be added in or behind this same endpoint (or middleware invoked from it), not a duplicate `lupo-api/chat/messages.php`, unless that file is explicitly documented as a wrapper.
 
 ---
 
@@ -482,6 +413,10 @@ class TypingIndicator {
 
 ### Query for Messages
 
+**Implemented read path today:** `channels-api.php` selects from `lupo_dialog_messages` + `lupo_actors` (`a.name AS actor_name`), filters **`m.is_deleted = 0`**, optional `since` on `created_ymdhis`.
+
+**Richer display query (illustrative — verify against TOON before use):** Column names below match `lupo-database/lupopedia/toon/lupo_dialog_messages.toon`, `lupo_actors.toon`, `lupo_actor_moods.toon` (`timestamp_utc`, `mood_r`/`mood_g`/`mood_b`). There is **no** `display_name` on `lupo_actors`; use **`name`** or **`actor_name`** per UI need.
+
 ```sql
 SELECT 
     dm.dialog_message_id,
@@ -491,17 +426,17 @@ SELECT
     dm.mood_rgb,
     a.actor_id,
     a.actor_name,
-    a.display_name,
-    a.metadata_json as metadata_json,
-    am.mood_r as mood_red,
-    am.mood_g as mood_green,
-    am.mood_b as mood_blue
+    a.name,
+    a.metadata_json,
+    am.mood_r AS mood_red,
+    am.mood_g AS mood_green,
+    am.mood_b AS mood_blue
 FROM lupo_dialog_messages dm
 JOIN lupo_actors a ON a.actor_id = dm.from_actor_id
 LEFT JOIN lupo_actor_moods am ON am.actor_id = a.actor_id 
     AND am.timestamp_utc = (
-        SELECT MAX(timestamp_utc) FROM lupo_actor_moods 
-        WHERE actor_id = a.actor_id AND timestamp_utc <= dm.created_ymdhis
+        SELECT MAX(am2.timestamp_utc) FROM lupo_actor_moods am2
+        WHERE am2.actor_id = a.actor_id AND am2.timestamp_utc <= dm.created_ymdhis
     )
 WHERE dm.channel_id = ?
     AND dm.is_deleted = 0
@@ -753,41 +688,14 @@ renderMessage(message) {
 
 ### CSRF Protection
 
-```javascript
-// In message posting
-async sendMessage(channelId, messageText) {
-    const csrfToken = document.querySelector('meta[name="csrf-token"]').content;
-    
-    sendRequest({
-        method: 'POST',
-        url: `${LUPOPEDIA_SUBDIRECTORY}api/chat/messages.php`,
-        body: {
-            channel_id: channelId,
-            message: messageText,
-            csrf_token: csrfToken
-        },
-        onSuccess: (response) => {
-            // Handle success
-        }
-    });
-}
-```
+When browser POST is added for **`channels-api`**, use session-backed CSRF and send token via header or JSON field. Build POST URL as **`{LUPOPEDIA_PUBLIC_PATH}/api/lupo-channels/{channelId}/messages`** with **`Content-Type: application/json`** and body **`{"body":"..."}`** (plus routing fields as needed).
 
 ### Rate Limiting
 
-PHP endpoints MUST implement rate limiting using existing rate limiting functions:
-
-```php
-// In messages.php endpoint
-if (!check_rate_limit($_SERVER['REMOTE_ADDR'], 'chat_post', 30, 60)) {
-    http_response_code(429);
-    echo json_encode(['error' => 'Rate limit exceeded. Please wait.']);
-    exit;
-}
-```
+Rate limiting SHOULD be enforced in **`channels-api.php`** (or shared guard) for POST, e.g. `check_rate_limit($_SERVER['REMOTE_ADDR'], 'channel_api_post', 30, 60)` when that helper exists.
 
 ---
 
-**Status**: DRAFT  
+**Status**: DRAFT (LILITH audit: aligned with `channels-api.php`, `format=buffer` / `format=image`, `.htaccess` channel rules, `chat-display-legacy.js`)  
 **Constitutional Adherence**: FULL  
-**Next Review**: After implementation
+**Next Review**: After channel UI wires to canonical API end-to-end

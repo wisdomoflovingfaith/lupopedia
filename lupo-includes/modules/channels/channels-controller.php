@@ -13,11 +13,13 @@ if (!defined('LUPOPEDIA_CONFIG_LOADED')) {
 
 /**
  * Handle GET /channels/{channel_id}/ — show channel 3-panel interface (captain/administrator/monitor).
+ * Optional $initial_thread_id matches pretty URL /channels/{id}/thread/{thread_id} (module-loader).
  *
  * @param int $channel_id Channel ID
+ * @param int|null $initial_thread_id Pre-selected dialog_thread_id (positive int), or null to use $_GET['thread']
  * @return string HTML from render_main_layout
  */
-function channels_handle_show($channel_id) {
+function channels_handle_show($channel_id, $initial_thread_id = null) {
     $channel_id = (int) $channel_id;
     $app_root = defined('LUPOPEDIA_PATH') ? LUPOPEDIA_PATH : LUPOPEDIA_ABSPATH;
     $table_prefix = defined('LUPO_TABLE_PREFIX') ? LUPO_TABLE_PREFIX : 'lupo_';
@@ -297,7 +299,11 @@ function channels_handle_show($channel_id) {
     }
 
     // Selected thread for composer (tab); legacy channelsplit = channel__userid → we use dialog_thread_id
-    $selected_thread_id = isset($_GET['thread']) ? (int) $_GET['thread'] : (!empty($threads) ? (int) $threads[0]['dialog_thread_id'] : 0);
+    if ($initial_thread_id !== null && (int) $initial_thread_id > 0) {
+        $selected_thread_id = (int) $initial_thread_id;
+    } else {
+        $selected_thread_id = isset($_GET['thread']) ? (int) $_GET['thread'] : (!empty($threads) ? (int) $threads[0]['dialog_thread_id'] : 0);
+    }
 
     // Current actor display name for composer typing
     $current_actor_name = 'Staff';
