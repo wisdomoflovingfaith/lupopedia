@@ -105,32 +105,113 @@ require_once(LUPOPEDIA_PATH . '/lupo-includes/classes/SessionService.php');
 require_once(LUPOPEDIA_PATH . '/lupo-includes/classes/IdGenerator.php');
 
 /**
- * Get client IP address with proper proxy handling
+ * Get client IP address with comprehensive 2026 CDN/cloud provider handling
  */
 function get_client_ip() {
-    // Trusted proxies - configure these based on your infrastructure
+    // Trusted proxies - configure based on your infrastructure
     $trusted_proxies = [
         '127.0.0.1',
         '::1',
         '10.0.0.0/8',
         '172.16.0.0/12',
         '192.168.0.0/16',
-        // Add CloudFlare IPs if using CloudFlare
-        // '173.245.48.0/20',
-        // '103.21.244.0/22',
-        // etc.
+        // CloudFlare IP ranges (2026)
+        '173.245.48.0/20',
+        '103.21.244.0/22',
+        '103.22.200.0/22',
+        '103.31.4.0/22',
+        '141.101.64.0/18',
+        '108.162.192.0/18',
+        '190.93.240.0/20',
+        '188.114.96.0/20',
+        '197.234.240.0/22',
+        '198.41.128.0/17',
+        '162.158.0.0/15',
+        '104.16.0.0/13',
+        '104.24.0.0/14',
+        '172.64.0.0/13',
+        '131.0.72.0/22',
+        // Fastly IP ranges (2026)
+        '23.235.32.0/20',
+        '43.249.72.0/22',
+        '103.244.50.0/24',
+        '103.245.222.0/23',
+        '103.245.224.0/24',
+        '104.156.80.0/20',
+        '146.75.0.0/16',
+        '151.101.0.0/16',
+        '157.52.64.0/18',
+        '167.82.0.0/17',
+        '167.82.128.0/17',
+        '185.31.16.0/22',
+        '199.27.72.0/21',
+        '199.232.0.0/16',
+        // AWS CloudFront IP ranges (2026 - partial list)
+        '13.32.0.0/15',
+        '13.224.0.0/14',
+        '13.248.0.0/14',
+        '64.252.64.0/18',
+        '70.132.0.0/18',
+        '71.152.0.0/17',
+        '99.84.0.0/16',
+        '99.86.0.0/16',
+        '108.138.0.0/15',
+        '108.156.0.0/14',
+        '130.176.0.0/16',
+        '144.220.0.0/16',
+        '204.246.160.0/19',
+        '204.246.192.0/18',
+        '205.251.192.0/19',
+        '205.251.224.0/20',
+        '205.251.240.0/20',
+        '205.251.249.0/24',
+        '216.137.32.0/19',
+        // Akamai IP ranges (2026 - partial list)
+        '2.16.0.0/13',
+        '2.20.0.0/14',
+        '23.0.0.0/12',
     ];
     
+    // Comprehensive 2026 header list (priority: most specific first)
     $headers = [
+        // CloudFlare (most common CDN)
         'HTTP_CF_CONNECTING_IP',
         'HTTP_TRUE_CLIENT_IP',
-        'HTTP_CLIENT_IP',
+        
+        // Fastly
+        'HTTP_FASTLY_CLIENT_IP',
+        
+        // Fly.io (popular platform)
+        'HTTP_FLY_CLIENT_IP',
+        
+        // Vercel
+        'HTTP_X_VERCEL_FORWARDED_FOR',
+        
+        // CDN77
+        'HTTP_CDN_CONNECTING_IP',
+        
+        // BunnyCDN
+        'HTTP_BUNNY_CDN_CONNECTING_IP',
+        
+        // AWS CloudFront
+        'HTTP_CLOUDFRONT_VIEWER_ADDRESS',
+        
+        // Google Cloud
+        'HTTP_X_GOOG_REAL_IP',
+        
+        // Azure
+        'HTTP_X_AZURE_CLIENTIP',
+        
+        // Standard/RFC headers (most common)
         'HTTP_X_FORWARDED_FOR',
         'HTTP_X_FORWARDED',
+        'HTTP_X_REAL_IP',
         'HTTP_X_CLUSTER_CLIENT_IP',
         'HTTP_FORWARDED_FOR',
         'HTTP_FORWARDED',
-        'HTTP_X_REAL_IP',
+        'HTTP_CLIENT_IP',
+        
+        // Ultimate fallback
         'REMOTE_ADDR'
     ];
     
@@ -150,14 +231,27 @@ function get_client_ip() {
             continue;
         }
         
-        $candidates = ($header === 'HTTP_X_FORWARDED_FOR' || $header === 'HTTP_FORWARDED_FOR')
-            ? array_map('trim', explode(',', $raw))
-            : [trim($raw)];
+        // Handle special cases
+        if ($header === 'HTTP_CLOUDFRONT_VIEWER_ADDRESS') {
+            // CloudFront format: IP:port
+            $parts = explode(':', $raw, 2);
+            $candidates = [trim($parts[0])];
+        } elseif ($header === 'HTTP_X_FORWARDED_FOR' || $header === 'HTTP_FORWARDED_FOR') {
+            $candidates = array_map('trim', explode(',', $raw));
+        } elseif ($header === 'HTTP_FORWARDED') {
+            // RFC 7239 format: for=192.0.2.43, for="[2001:db8:cafe::17]"
+            $candidates = extract_forwarded_ips($raw);
+        } else {
+            $candidates = [trim($raw)];
+        }
         
         foreach ($candidates as $candidate) {
             if (empty($candidate)) {
                 continue;
             }
+            
+            // Remove brackets from IPv6 addresses
+            $candidate = trim($candidate, '[]');
             
             // Prefer public IPs (not private/reserved)
             if (filter_var($candidate, FILTER_VALIDATE_IP, FILTER_FLAG_NO_PRIV_RANGE | FILTER_FLAG_NO_RES_RANGE)) {
@@ -172,6 +266,19 @@ function get_client_ip() {
     }
     
     return $fallback ?: $remote_addr;
+}
+
+/**
+ * Extract IPs from RFC 7239 Forwarded header
+ */
+function extract_forwarded_ips($forwarded_header) {
+    // RFC 7239: Forwarded: for=192.0.2.43, for="[2001:db8:cafe::17]"
+    $ips = [];
+    preg_match_all('/for\s*=\s*"?([^",\s]+)"?/', $forwarded_header, $matches);
+    foreach ($matches[1] as $match) {
+        $ips[] = trim($match, '"');
+    }
+    return $ips;
 }
 
 /**
