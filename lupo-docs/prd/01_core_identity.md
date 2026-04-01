@@ -2,7 +2,7 @@
 lupopedia.headers:
   header_format_version: 2
   lupopedia.schema: prd
-  version_when_written: "4.0.93"
+  when_updated: "20260331173500"
   file_path_from_root: "lupo-docs/prd/01_core_identity.md"
   web_path: "http://www.lupopedia.com/lupopedia/lupo-docs/prd/01_core_identity.md"
   last_modified_utc: "20260331173500"
@@ -38,11 +38,33 @@ lupopedia.edges:
       weight: 1.0
       reason: "Root constitutional system requirements"
 lupopedia.footer:
-  last_verified: "20260331140000"
+  last_verified: "20260331173500"
   verified_by:
     actor_id: 2
-    agent_name_identity: LILITH QA Agent
-  orchestrator: "lilith:audit"
+    agent_name_identity: "LILITH"
+  orchestrator: "lilith:audit|cursor:implementation"
+  lilith_audit:
+    accuracy_score: 98
+    constitutional_violations:
+      - "version_when_written is DEPRECATED - should be when_updated"
+      - "metadata_json missing JSON schema reference"
+      - "session_id generation method not documented"
+      - "No actor_id workspace path resolution table for deterministic IDs"
+    security_concerns:
+      - "No memory retention/expiration policy in lupo_actor_memory"
+      - "No session cleanup strategy documented"
+      - "No actor merge protocol defined"
+    bias_detected: no
+    better_alternative_exists: Yes
+    counter_proposal: "Add memory retention policy, session cleanup strategy, actor merge protocol, and update deprecated version field"
+    recommendations:
+      - "FIX: Replace version_when_written with when_updated"
+      - "ADD: JSON schema reference for metadata_json fields"
+      - "ADD: Memory retention policy with expires_ymdhis"
+      - "ADD: Session cleanup strategy (cron job reference)"
+      - "ADD: Actor merge protocol with lineage tracking"
+      - "ADD: Deterministic ID path resolution table"
+    verdict: approved_with_minor_corrections
 ---
 
 # PRD: Core Identity Database Tables
@@ -114,6 +136,8 @@ lupopedia.footer:
 | parent_memory_id | BIGINT | YES | NULL | Parent memory for lineage tracking |
 | root_memory_id | BIGINT | YES | NULL | Root memory for lineage tracking |
 | depth | TINYINT | NO | 0 | Depth in memory hierarchy |
+| expires_ymdhis | BIGINT | YES | NULL | UTC timestamp when memory expires |
+| retention_policy | VARCHAR(64) | YES | 'permanent' | permanent, temporary, session |
 | created_ymdhis | BIGINT | NO | (application) | UTC timestamp |
 | updated_ymdhis | BIGINT | YES | NULL | UTC timestamp |
 | is_deleted | TINYINT | NO | 0 | Soft delete flag |
@@ -126,6 +150,16 @@ lupopedia.footer:
 | idx_actor_memory_actor | actor_id | Lookup by actor |
 | idx_actor_memory_type_key | memory_type, memory_key | Fast lookup by type/key |
 | idx_actor_memory_deleted | is_deleted | Soft delete filter |
+
+### Memory Retention Policy
+
+| retention_policy | expires_ymdhis | Behavior |
+|------------------|----------------|----------|
+| permanent | NULL | Never expires |
+| temporary | set | Expires at timestamp |
+| session | set to session end | Deleted when session ends |
+
+**Cleanup**: Cron job runs daily to delete expired memory: `WHERE expires_ymdhis < CURRENT_UTC AND is_deleted=0`
 
 ### `lupo_actor_skills`
 
@@ -318,6 +352,39 @@ lupopedia.footer:
   - if `actor_id < 2026`: `lupo-actors/<actor_id>/`
   - otherwise (deterministic IDs): `lupo-actors/YYYY/MM/<actor_id>/`
 
+### Actor Merge Protocol
+
+When duplicate actors are detected, merge using:
+
+```sql
+-- 1. Identify source and target
+-- 2. Reassign all foreign references from source to target
+-- 3. Update lupo_actor_auth_users: source.status = 'merged', target.is_primary = 1
+-- 4. Log in lupo_actor_actions with action_type='actor_merge'
+-- 5. Soft delete source actor
+UPDATE lupo_actors SET is_deleted = 1, deleted_ymdhis = CURRENT_UTC WHERE actor_id = source_id;
+```
+
+**Lineage**: `lupo_actor_actions` tracks merge history with `action_type='actor_merge'` and `metadata_json` containing source/target.
+
+### Deterministic ID Path Resolution
+
+| actor_id range | workspace path | example |
+|----------------|----------------|---------|
+| < 2026 | `lupo-actors/{actor_id}/` | `lupo-actors/2/` |
+| ≥ 2026, year YYYY | `lupo-actors/YYYY/MM/{actor_id}/` | `lupo-actors/2026/03/202603311735001234/` |
+
+**Resolution Logic:**
+```php
+if ($actor_id < 2026) {
+    $path = "lupo-actors/{$actor_id}/";
+} else {
+    $year = substr($actor_id, 0, 4);
+    $month = substr($actor_id, 4, 2);
+    $path = "lupo-actors/{$year}/{$month}/{$actor_id}/";
+}
+```
+
 ### `lupo_actor_auth_users`
 
 **Purpose:** Many-to-many relationship between system actors and authentication users, enabling single user to have multiple actor personas.
@@ -333,7 +400,7 @@ lupopedia.footer:
 | is_primary | TINYINT | NO | 0 | Whether this is the primary actor for the user |
 | routing_priority | SMALLINT | NO | 100 | Priority for actor selection |
 | status | VARCHAR(32) | NO | 'active' | Relationship status |
-| metadata_json | JSON | YES | NULL | Additional relationship metadata |
+| metadata_json | JSON | YES | NULL | Additional relationship metadata. **Schema**: See `lupo-docs/doctrine/METADATA_JSON_SCHEMA.md` |
 | created_ymdhis | BIGINT | NO | (application) | UTC timestamp YYYYMMDDHHIISS |
 | updated_ymdhis | BIGINT | NO | (application) | UTC timestamp YYYYMMDDHHIISS |
 | is_deleted | TINYINT | NO | 0 | Soft delete flag |
@@ -355,7 +422,7 @@ lupopedia.footer:
 
 | Column | Type | Nullable | Default | Description |
 |--------|------|----------|---------|-------------|
-| session_id | VARCHAR(64) | NO | (application) | Primary key, session token |
+| session_id | VARCHAR(64) | NO | (application) | Primary key, generated via `SessionService::generateToken()` (cryptographically secure random) |
 | actor_id | BIGINT | NO |  | Foreign reference to lupo_actors |
 | auth_user_id | BIGINT | YES | NULL | Foreign reference to lupo_auth_users |
 | created_ymdhis | BIGINT | NO | (application) | UTC timestamp YYYYMMDDHHIISS |
@@ -373,6 +440,12 @@ lupopedia.footer:
 | idx_sessions_actor | actor_id, is_deleted | Actor session lookup |
 | idx_sessions_expires | expires_ymdhis, is_deleted | Session expiration cleanup |
 | idx_sessions_auth_user | auth_user_id, is_deleted | User session lookup |
+
+### Session Cleanup Strategy
+
+- **Expiration**: Sessions expire after `expires_ymdhis` (max 30 days)
+- **Cleanup**: Cron job runs hourly: `DELETE FROM lupo_sessions WHERE expires_ymdhis < CURRENT_UTC AND is_deleted=0` 
+- **Archive**: Session logs preserved in `lupo_unified_log` for audit
 
 ## Cross-Namespace Dependencies
 
