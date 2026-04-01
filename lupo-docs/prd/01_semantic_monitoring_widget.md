@@ -131,46 +131,268 @@ The widget is implemented in `lupo-ui/js/lupo.js` with three main components:
    - Dynamic viewport management
    - Semantic data injection and monitoring
 
-## Floating Navigation Bar (Core Feature)
+## Floating Navigation Bar (The Eye Command Center)
 
-The Eye provides a floating navigation bar (independent of the visual eyes) that gives users quick access to:
+The Eye provides a floating navigation bar at the bottom-right corner of the screen. Each icon provides a dropdown menu with contextual information about the current page.
 
-- **Like** — upvote content
-- **Share** — share to collection or external
-- **Comment** — add discussion
-- **Ask Question** — create a question in the truth system
-- **View Collections** — see what collections this page belongs to
-- **View Questions** — see questions asked about this page
+### Bar Layout
 
-### Bar Implementation
-
-```javascript
-// Floating navigation bar (always visible)
-const NavBar = {
-    render: function() {
-        return `
-            <div id="eye-nav-bar" style="position: fixed; bottom: 20px; right: 20px; z-index: 9999;">
-                <div class="eye-nav-button" onclick="EyeAPI.like()">👍</div>
-                <div class="eye-nav-button" onclick="EyeAPI.share()">📤</div>
-                <div class="eye-nav-button" onclick="EyeAPI.comment()">💬</div>
-                <div class="eye-nav-button" onclick="EyeAPI.askQuestion()">❓</div>
-                <div class="eye-nav-button" onclick="EyeAPI.showCollections()">📁</div>
-            </div>
-        `;
-    }
-};
 ```
+┌─────────────────────────────────────────────────────────────────────────────────────────────────────────┐
+│  ←  │  📄  │  📁  │  🏷️  │  📤  │  🔗  │  📂  │  📁  │  →  │  💬  │  ❓  │  🔗  │  👁️  │  ●  │
+│  12 │  8  │  3  │  7  │  5  │  4  │  2  │  6  │  14 │  9  │  2  │  11 │  ●  │
+└─────────────────────────────────────────────────────────────────────────────────────────────────────────┘
+```
+
+### Function Details
+
+#### 1. ← Most Common Previous Pages
+- **Source:** `lupo_paths` where `exitcontentid` = current page
+- **Display:** List of pages users visited immediately before this page
+- **Order:** By `count_num` descending
+- **Badge:** Total number of distinct previous pages
+
+```sql
+SELECT entercontentid, COUNT(*) as frequency
+FROM lupo_paths
+WHERE exitcontentid = ?
+GROUP BY entercontentid
+ORDER BY frequency DESC
+LIMIT 10;
+```
+
+#### 2. 📄 Other Credible Pages Referencing This Page
+- **Source:** `lupo_edges` where `right_object_id` = current page AND `edge_type` = 'references' AND `semantic_weight` > threshold
+- **Display:** List of pages that reference this page (credibility weighted)
+- **Order:** By `semantic_weight` descending
+- **Badge:** Total number of referencing pages
+
+#### 3. 📁 Contexts This Page Belongs To
+- **Source:** `lupo_contexts_map` where `item_type` = 'content' AND `item_id` = current page
+- **Display:** List of contexts (with descriptions)
+- **Badge:** Number of contexts
+
+#### 4. 🏷️ Tags/Hashtags/Traits
+- **Source:** 
+  - `lupo_hashtag_map` for hashtags
+  - `lupo_actor_traits` for traits
+  - `lupo_metadata` for tags
+- **Display:** Tag cloud or list
+- **Badge:** Total tag count
+
+#### 5. 📤 Shares This Page
+- **Source:** `lupo_actor_actions` with `action_type` = 'share' AND `entity_type` = 'content' AND `entity_id` = current page
+- **Display:** List of who shared (or aggregated count)
+- **Badge:** Total share count
+
+#### 6. 🔗 Links to This Page (Inbound)
+- **Source:** `lupo_edges` where `right_object_id` = current page AND `edge_type` = 'links_to'
+- **Display:** List of pages linking here
+- **Badge:** Inbound link count
+
+#### 7. 📂 Namespaces/Classes
+- **Source:** `lupo_metadata` with `class_name` for this content
+- **Display:** Namespace hierarchy or class list
+- **Badge:** Number of classifications
+
+#### 8. 📁 Folders This Page Is In
+- **Source:** `lupo_folder_map` where `object_type` = 'content' AND `object_id` = current page
+- **Display:** Folder path hierarchy
+- **Badge:** Number of folders
+
+#### 9. → Most Common Next Pages
+- **Source:** `lupo_paths` where `entercontentid` = current page
+- **Display:** List of pages users navigate to after this page
+- **Order:** By `count_num` descending
+- **Badge:** Total number of distinct next pages
+
+#### 10. 💬 Comments/Discussion
+- **Source:** `lupo_comments` where `target_type` = 'content' AND `target_id` = current page
+- **Display:** Comment thread preview
+- **Badge:** Comment count
+- **Action:** Click to expand comments or open discussion panel
+
+#### 11. ❓ Questions Asked/Answered
+- **Source:** 
+  - `lupo_truth_questions` where `target_object_type` = 'content' AND `target_object_id` = current page
+  - `lupo_truth_answers` for answers
+- **Display:** List of questions and answers about this page
+- **Badge:** Question count
+- **Action:** Click to ask a new question
+
+#### 12. 🔗 Edges This Page Has
+- **Source:** `lupo_edges` where `left_object_id` = current page OR `right_object_id` = current page
+- **Display:** All semantic edges (grouped by edge_type)
+- **Badge:** Total edge count
+
+#### 13. 👁️ Live Help / Ask an Actor
+- **Source:** Chat system
+- **Display:** Status indicator (online/offline)
+- **Action:** Open chat window to ask a live actor about this page
+- **Badge:** Online status dot
 
 ### API Endpoints
 
-| Action | Endpoint | Method |
-|--------|----------|--------|
-| Like | /api/engagement/like | POST |
-| Share | /api/engagement/share | POST |
-| Comment | /api/engagement/comment | POST |
-| Ask Question | /api/truth/question | POST |
-| Get Collections | /api/collections/for-page | GET |
-| Get Questions | /api/truth/questions-for-page | GET |
+| Icon | Endpoint | Method | Response |
+|------|----------|--------|----------|
+| ← | `/api/page/previous-pages` | GET | `{pages: [{id, title, frequency}]}` |
+| 📄 | `/api/page/referencing-pages` | GET | `{pages: [{id, title, weight}]}` |
+| 📁 | `/api/page/contexts` | GET | `{contexts: [{id, name, description}]}` |
+| 🏷️ | `/api/page/tags` | GET | `{tags: [{name, count}]}` |
+| 📤 | `/api/page/shares` | GET | `{count, shares: [{actor, date}]}` |
+| 🔗 | `/api/page/inbound-links` | GET | `{count, links: [{id, title}]}` |
+| 📂 | `/api/page/namespaces` | GET | `{namespaces: [{name, class}]}` |
+| 📁 | `/api/page/folders` | GET | `{folders: [{path}]}` |
+| → | `/api/page/next-pages` | GET | `{pages: [{id, title, frequency}]}` |
+| 💬 | `/api/page/comments` | GET | `{count, comments: [...]}` |
+| ❓ | `/api/page/questions` | GET | `{count, questions: [...]}` |
+| 🔗 | `/api/page/edges` | GET | `{count, edges: [...]}` |
+| 👁️ | `/api/chat/status` | GET | `{online: bool, actor_id}` |
+
+### JavaScript Implementation
+
+```javascript
+// lupo-ui/js/eye-nav-bar.js
+class EyeNavBar {
+    constructor(pageId) {
+        this.pageId = pageId;
+        this.icons = [
+            { id: 'prev-pages', icon: '←', endpoint: '/api/page/previous-pages' },
+            { id: 'ref-pages', icon: '📄', endpoint: '/api/page/referencing-pages' },
+            { id: 'contexts', icon: '📁', endpoint: '/api/page/contexts' },
+            { id: 'tags', icon: '🏷️', endpoint: '/api/page/tags' },
+            { id: 'shares', icon: '📤', endpoint: '/api/page/shares' },
+            { id: 'inbound', icon: '🔗', endpoint: '/api/page/inbound-links' },
+            { id: 'namespaces', icon: '📂', endpoint: '/api/page/namespaces' },
+            { id: 'folders', icon: '📁', endpoint: '/api/page/folders' },
+            { id: 'next-pages', icon: '→', endpoint: '/api/page/next-pages' },
+            { id: 'comments', icon: '💬', endpoint: '/api/page/comments' },
+            { id: 'questions', icon: '❓', endpoint: '/api/page/questions' },
+            { id: 'edges', icon: '🔗', endpoint: '/api/page/edges' },
+            { id: 'livehelp', icon: '👁️', endpoint: '/api/chat/status' }
+        ];
+        this.loadBadges();
+    }
+    
+    async loadBadges() {
+        for (const icon of this.icons) {
+            const response = await fetch(`${icon.endpoint}?page_id=${this.pageId}`);
+            const data = await response.json();
+            this.updateBadge(icon.id, data.count);
+        }
+    }
+    
+    render() {
+        return `
+            <div id="eye-nav-bar" class="eye-nav-bar">
+                ${this.icons.map(icon => `
+                    <div class="eye-nav-icon" data-icon="${icon.id}" onclick="EyeNavBar.showDropdown('${icon.id}')">
+                        ${icon.icon}
+                        <span class="eye-nav-badge" id="badge-${icon.id}">0</span>
+                    </div>
+                `).join('')}
+            </div>
+            <div id="eye-dropdown" class="eye-dropdown" style="display:none;"></div>
+        `;
+    }
+    
+    static async showDropdown(iconId) {
+        const dropdown = document.getElementById('eye-dropdown');
+        const data = await fetch(`/api/page/${iconId}?page_id=${this.pageId}`);
+        const content = await data.json();
+        
+        dropdown.innerHTML = this.formatDropdown(iconId, content);
+        dropdown.style.display = 'block';
+    }
+}
+```
+
+### CSS Styling
+
+```css
+.eye-nav-bar {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: rgba(0,0,0,0.8);
+    border-radius: 40px;
+    padding: 8px 16px;
+    display: flex;
+    gap: 12px;
+    z-index: 10000;
+    backdrop-filter: blur(8px);
+    font-family: system-ui, -apple-system, sans-serif;
+}
+
+.eye-nav-icon {
+    position: relative;
+    cursor: pointer;
+    font-size: 20px;
+    padding: 8px;
+    border-radius: 50%;
+    transition: background 0.2s;
+    color: white;
+}
+
+.eye-nav-icon:hover {
+    background: rgba(255,255,255,0.2);
+}
+
+.eye-nav-badge {
+    position: absolute;
+    top: -4px;
+    right: -4px;
+    background: #ff4444;
+    color: white;
+    font-size: 10px;
+    font-weight: bold;
+    padding: 2px 5px;
+    border-radius: 10px;
+    min-width: 16px;
+    text-align: center;
+}
+
+.eye-dropdown {
+    position: fixed;
+    bottom: 80px;
+    right: 20px;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+    padding: 12px;
+    min-width: 250px;
+    max-width: 400px;
+    max-height: 400px;
+    overflow-y: auto;
+    z-index: 10001;
+}
+```
+
+### Visual Effect Integration
+
+The floating eyes (optional) can be positioned separately. The navigation bar remains functional even if the eyes are disabled.
+
+```javascript
+// When visual effect is enabled, position eyes above the nav bar
+if (window.EYE_VISUAL_ENABLED) {
+    // Your existing eye code
+    // Position eyes so they don't overlap with the nav bar
+    const navBarHeight = 60;
+    whereToY = window.innerHeight - 370 - navBarHeight;
+}
+```
+
+### Summary
+
+| Component | Status |
+|-----------|--------|
+| 13-button navigation bar | ✅ Core functionality |
+| Each button shows count badge | ✅ From database queries |
+| Dropdown shows detailed list | ✅ API endpoints needed |
+| Visual eyes optional | ✅ Your 1999 code preserved |
+| Live help button | ✅ Opens chat with actor |
+
+**The Eye is not just monitoring. It's a full context panel for any page.**
 
 ## Database Tables Required
 
