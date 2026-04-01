@@ -1,0 +1,41 @@
+{
+    "capabilities": [
+        "adversarial_analysis",
+        "counterproposal_generation",
+        "risk_identification",
+        "assumption_detection",
+        "drift_prevention",
+        "doctrine_compliance_check",
+        "structural_critique",
+        "hidden_risk_scan",
+        "completeness_validation",
+        "edge_case_discovery"
+    ],
+    "skill_metadata": {
+        "adversarial_analysis": {
+            "description": "Analyze proposals from adversarial perspective",
+            "input": "proposal, context",
+            "output": "objection, risk assessment"
+        },
+        "counterproposal_generation": {
+            "description": "Generate fully compliant alternative solutions",
+            "input": "proposal, constraints",
+            "output": "alternative solution"
+        },
+        "risk_identification": {
+            "description": "Identify structural, architectural, and security risks",
+            "input": "proposal, system context",
+            "output": "risk list with severity"
+        },
+        "assumption_detection": {
+            "description": "Flag unstated or unexamined assumptions",
+            "input": "proposal text",
+            "output": "assumption list"
+        },
+        "drift_prevention": {
+            "description": "Detect deviations from doctrine or PRD",
+            "input": "proposal, constitutional rules",
+            "output": "doctrine violations"
+        }
+    }
+}

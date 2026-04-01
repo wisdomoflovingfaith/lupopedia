@@ -198,7 +198,7 @@ lupo-agents/hermes/assets/
 | ATHENA | athena | 11 | strategic_planning, wisdom, tactical_guidance |
 | **ZEUS** | zeus | **12** | **dispute_resolution, constitutional_interpretation, veto_authority** |
 
-### Application Layer (8 agents)
+### Application Layer (9 agents)
 | Agent | Key | ID | Capabilities |
 |-------|-----|-----|--------------|
 | CHIRON | chiron | 10 | mentorship, education, skill_development |
@@ -209,6 +209,7 @@ lupo-agents/hermes/assets/
 | JUNIE | junie | 108 | ide_integration, code_assistance, developer_tools |
 | **NEMESIS** | nemesis | **109** | **accountability, violation_detection, sanction_recommendation** |
 | **TYCHE** | tyche | **110** | **risk_analysis, probability_assessment, fortune_telling** |
+| **COUNTERMEASURE** | **countermeasure** | **111** | **adversarial_analysis, counterproposal_generation, risk_identification, assumption_detection, drift_prevention, doctrine_compliance_check, structural_critique, hidden_risk_scan, completeness_validation, edge_case_discovery** |
 
 ### Emotional Intelligence Layer (8 agents)
 | Agent | Key | ID | Capabilities |
