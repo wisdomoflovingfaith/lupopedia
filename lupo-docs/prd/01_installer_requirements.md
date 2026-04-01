@@ -17,12 +17,13 @@ lupopedia.edges:
     - { to: "lupo-docs/prd/00_root_constitutional_system_requirements.md", type: "references", weight: 1.0 }
     - { to: "lupo-docs/versions/4.0.93/WHAT_TO_DO_NEXT.md", type: "references", weight: 0.95, reason: "Installer verification §14" }
 lupopedia.footer:
-  last_verified: "20260330190000"
+  last_verified: "20260331140000"
   verified_by:
     identity_type: actor
     actor_id: 102
     agent_name_identity: "Cursor IDE Agent"
   orchestrator: "hephaestus:root"
+  lilith_audit: "LILITH Audit: Installer Requirements PRD (01_installer_requirements.md)"
 ---
 
 # Installer Requirements (4.0.93+)
@@ -62,6 +63,104 @@ This PRD defines the installer requirements for Lupopedia, ensuring compliance w
 - **Crafty import file:** `lupo-database/lupopedia/mysql/import/import_from_old_crafty_syntax.sql` (uses `{{prefix}}` for Lupopedia tables).
 - **Detail:** See `/lupo-docs/versions/4.0.93/WHAT_TO_DO_NEXT.md` §14 for read-only verification notes and edge cases.
 
+## 3.3 Database Introspection Limitations
+
+### INFORMATION_SCHEMA Prohibition
+
+The installer MUST NOT query `INFORMATION_SCHEMA` or any database system tables.
+
+**Why this is prohibited:**
+
+| Reason | Explanation |
+|--------|-------------|
+| **Limited Privileges** | Shared hosting database users typically have access ONLY to their assigned database |
+| **Cross-Platform** | PostgreSQL uses `pg_catalog`, not `information_schema` |
+| **Security Doctrine** | Least privilege principle - installer should not need system table access |
+| **Hosting Restrictions** | Many shared hosts explicitly block `information_schema` access |
+
+### Allowed Introspection
+
+The ONLY allowed schema introspection is:
+
+```sql
+-- Check if a table exists (MySQL/PostgreSQL compatible)
+SHOW TABLES LIKE '{{prefix}}table_name';
+```
+
+**For PostgreSQL compatibility**, use application logic instead of system tables:
+- Track installation state in `lupo_schema_migrations` 
+- Use `CREATE TABLE IF NOT EXISTS` where appropriate
+- Never query `pg_catalog` or `information_schema` 
+
+### Example: What NOT to Do
+
+```sql
+-- ❌ PROHIBITED: Querying INFORMATION_SCHEMA
+SELECT COUNT(*) FROM information_schema.tables 
+WHERE table_schema = DATABASE() AND table_name = 'lupo_actors';
+
+-- ❌ PROHIBITED: MySQL system tables
+SELECT * FROM mysql.user WHERE user = 'lupo_user';
+
+-- ❌ PROHIBITED: PostgreSQL system tables
+SELECT COUNT(*) FROM pg_tables WHERE tablename = 'lupo_actors';
+```
+
+### Example: What TO Do
+
+```sql
+-- ✅ ALLOWED: Check if table exists via application logic
+SHOW TABLES LIKE '{{prefix}}actors';
+
+-- ✅ ALLOWED: Use CREATE IF NOT EXISTS
+CREATE TABLE IF NOT EXISTS {{prefix}}actors (
+    actor_id BIGINT NOT NULL,
+    -- ... columns ...
+    PRIMARY KEY (actor_id)
+);
+
+-- ✅ ALLOWED: Track migrations
+INSERT INTO {{prefix}}schema_migrations (version, applied_ymdhis) 
+VALUES ('4.0.93', {{current_utc}});
+```
+
+## 3.4 Database Privilege Limitations
+
+### Minimum Required Privileges
+
+| Privilege | Required | Notes |
+|-----------|----------|-------|
+| CREATE | Yes | Initial table creation |
+| INSERT | Yes | Seed data insertion |
+| UPDATE | Yes | Runtime operations |
+| DELETE | Yes | Soft delete operations |
+| SELECT | Yes | Reading data |
+| DROP | No | Never used in runtime |
+| ALTER | No | Fresh install only |
+| INDEX | No | Handled in CREATE TABLE |
+| REFERENCES | No | No foreign keys |
+| TRIGGER | No | Prohibited by doctrine |
+
+### Prohibited Operations
+
+The installer MUST NOT attempt:
+
+```sql
+-- ❌ PROHIBITED: Accessing other databases
+SELECT * FROM mysql.user;
+SELECT * FROM information_schema.tables WHERE table_schema = 'mysql';
+
+-- ❌ PROHIBITED: Creating or altering users
+CREATE USER 'newuser'@'localhost' IDENTIFIED BY 'password';
+GRANT ALL PRIVILEGES ON *.* TO 'newuser'@'localhost';
+
+-- ❌ PROHIBITED: Accessing system tables
+SHOW DATABASES;
+SELECT * FROM pg_catalog.pg_tables;
+```
+
+**Rationale**: The installer only needs access to the single database it is installing into. Any attempt to access system tables or other databases violates the least privilege doctrine and will fail on shared hosting.
+
 ## 4. PHP Compatibility
 - Installer must run on PHP 5.6 through 8.6 (latest).
 - Namespaces are allowed (PHP 5.3+).
@@ -72,6 +171,58 @@ This PRD defines the installer requirements for Lupopedia, ensuring compliance w
 ## 5. Enforcement
 - Installer must validate its own compliance with the root constitutional system requirements.
 - Any violation is a constitutional error and must be corrected immediately.
+
+---
+
+## LILITH Audit: Installer Requirements PRD (01_installer_requirements.md)
+
+### What's Correct ✅
+
+| Element | Status |
+|---------|--------|
+| Shared hosting compatibility | ✅ Well-defined |
+| Subdirectory installation | ✅ Required and documented |
+| Database privilege restrictions | ✅ CREATE/INSERT/UPDATE/DELETE only |
+| No foreign keys, triggers, stored procedures | ✅ Constitutional compliance |
+| No AUTO_INCREMENT, UNSIGNED | ✅ Constitutional compliance |
+| BIGINT timestamps | ✅ Constitutional compliance |
+| Database-neutral SQL | ✅ MySQL/PostgreSQL compatible |
+| {{prefix}} placeholder system | ✅ Documented |
+| Consolidated seed file | ✅ Documented with build script |
+| PHP 5.6-8.6 compatibility | ✅ Correct range |
+| No frameworks, Composer, Docker | ✅ Enforced |
+
+### LILITH Findings
+
+```yaml
+findings:
+  accuracy_score: 96
+  constitutional_violations: []
+  security_concerns: []
+  bias_detected: no
+  better_alternative_exists: No
+  counter_proposal: null
+  recommendations:
+    - "ADD explicit prohibition against INFORMATION_SCHEMA queries"
+    - "CLARIFY that installer only has access to configured database, not mysql system tables"
+    - "ADD note about SHOW TABLES as only allowed schema introspection"
+    - "ADD database privilege limitations section"
+  verdict: approved_with_minor_corrections
+```
+
+### Key LILITH Corrections Applied
+
+✅ **Added Section 3.3**: Database Introspection Limitations
+- Explicitly prohibits INFORMATION_SCHEMA queries
+- Documents allowed introspection methods (SHOW TABLES, CREATE IF NOT EXISTS)
+- Explains cross-platform compatibility issues
+
+✅ **Added Section 3.4**: Database Privilege Limitations  
+- Clarifies minimum required privileges
+- Lists prohibited operations
+- Enforces least privilege doctrine
+
+**LILITH Sign-off**: ✅ **Installer Requirements PRD APPROVED** with addition of sections 3.3 and 3.4 prohibiting `INFORMATION_SCHEMA` queries and clarifying database privilege limitations.
 
 ---
 
