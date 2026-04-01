@@ -104,6 +104,100 @@ require_once(LUPOPEDIA_PATH . '/lupo-includes/classes/AuthService.php');
 require_once(LUPOPEDIA_PATH . '/lupo-includes/classes/SessionService.php');
 require_once(LUPOPEDIA_PATH . '/lupo-includes/classes/IdGenerator.php');
 
+/**
+ * Get client IP address with proper proxy handling
+ */
+function get_client_ip() {
+    // Trusted proxies - configure these based on your infrastructure
+    $trusted_proxies = [
+        '127.0.0.1',
+        '::1',
+        '10.0.0.0/8',
+        '172.16.0.0/12',
+        '192.168.0.0/16',
+        // Add CloudFlare IPs if using CloudFlare
+        // '173.245.48.0/20',
+        // '103.21.244.0/22',
+        // etc.
+    ];
+    
+    $headers = [
+        'HTTP_CF_CONNECTING_IP',
+        'HTTP_TRUE_CLIENT_IP',
+        'HTTP_CLIENT_IP',
+        'HTTP_X_FORWARDED_FOR',
+        'HTTP_X_FORWARDED',
+        'HTTP_X_CLUSTER_CLIENT_IP',
+        'HTTP_FORWARDED_FOR',
+        'HTTP_FORWARDED',
+        'HTTP_X_REAL_IP',
+        'REMOTE_ADDR'
+    ];
+    
+    $remote_addr = $_SERVER['REMOTE_ADDR'] ?? '';
+    $is_trusted = is_ip_in_trusted_ranges($remote_addr, $trusted_proxies);
+    $fallback = '';
+    
+    foreach ($headers as $header) {
+        if (empty($_SERVER[$header])) {
+            continue;
+        }
+        
+        $raw = $_SERVER[$header];
+        
+        // Only trust forwarded headers if from a trusted proxy
+        if (!$is_trusted && $header !== 'REMOTE_ADDR') {
+            continue;
+        }
+        
+        $candidates = ($header === 'HTTP_X_FORWARDED_FOR' || $header === 'HTTP_FORWARDED_FOR')
+            ? array_map('trim', explode(',', $raw))
+            : [trim($raw)];
+        
+        foreach ($candidates as $candidate) {
+            if (empty($candidate)) {
+                continue;
+            }
+            
+            // Prefer public IPs (not private/reserved)
+            if (filter_var($candidate, FILTER_VALIDATE_IP, FILTER_FLAG_NO_PRIV_RANGE | FILTER_FLAG_NO_RES_RANGE)) {
+                return $candidate;
+            }
+            
+            // Fallback to any valid IP
+            if ($fallback === '' && filter_var($candidate, FILTER_VALIDATE_IP)) {
+                $fallback = $candidate;
+            }
+        }
+    }
+    
+    return $fallback ?: $remote_addr;
+}
+
+/**
+ * Check if IP is in trusted CIDR ranges
+ */
+function is_ip_in_trusted_ranges($ip, $ranges) {
+    if (empty($ip)) return false;
+    
+    foreach ($ranges as $range) {
+        if (strpos($range, '/') === false) {
+            if ($ip === $range) return true;
+            continue;
+        }
+        
+        list($subnet, $mask) = explode('/', $range);
+        $ip_long = ip2long($ip);
+        $subnet_long = ip2long($subnet);
+        $mask_long = ~((1 << (32 - (int)$mask)) - 1);
+        
+        if (($ip_long & $mask_long) == ($subnet_long & $mask_long)) {
+            return true;
+        }
+    }
+    return false;
+}
+
 // CSRF protection for state-changing endpoints
 $csrf_protected_actions = ['track', 'consent', 'config'];
 
@@ -281,7 +375,7 @@ switch ($action) {
         }
         
         // Rate limiting
-        if (!check_rate_limit($_SERVER['REMOTE_ADDR'], $action)) {
+        if (!check_rate_limit(get_client_ip(), $action)) {
             http_response_code(429);
             echo json_encode(['error' => 'Rate limit exceeded', 'retry_after' => $rate_limits[$action]['window'] ?? 60]);
             exit;
@@ -396,61 +490,5 @@ switch ($action) {
         
     default:
         http_response_code(400);
-        echo json_encode(['error' => 'Unknown action']);
-}
-
-// Helper functions (would normally be in other includes)
-function verify_csrf_token($token) {
-    // Simple CSRF verification - in production, use proper token validation
-    return isset($_SESSION['csrf_token']) && hash_equals($_SESSION['csrf_token'], $token ?? '');
-}
-
-function check_rate_limit($ip, $action, $limit = 100, $window = 60) {
-    // Simple rate limiting - in production, use proper database tracking
-    $key = "rate_limit_{$ip}_{$action}";
-    if (!isset($_SESSION[$key])) {
-        $_SESSION[$key] = ['count' => 0, 'start' => time()];
-    }
-    
-    $current = $_SESSION[$key];
-    if (time() - $current['start'] > $window) {
-        $_SESSION[$key] = ['count' => 0, 'start' => time()];
-        return true;
-    }
-    
-    if ($current['count'] >= $limit) {
-        return false;
-    }
-    
-    $_SESSION[$key]['count']++;
-    return true;
-}
-
-function execute($sql, $params = []) {
-    // Simple database execution - in production, use DatabaseFactory
-    try {
-        // This would normally use DatabaseFactory::getConnection()
-        // For now, just return empty array to avoid errors
-        return [];
-    } catch (Exception $e) {
-        error_log("Database error: " . $e->getMessage());
-        return [];
-    }
-}
-
-function query($sql, $params = []) {
-    // Simple database query - in production, use DatabaseFactory
-    try {
-        // This would normally use DatabaseFactory::getConnection()
-        // For now, just return empty array to avoid errors
-        return [];
-    } catch (Exception $e) {
-        error_log("Database error: " . $e->getMessage());
-        return [];
-    }
-}
-
-function get_current_utc() {
-    // Generate UTC timestamp in YYYYMMDDHHIISS format
-    return gmdate('YmdHis');
+        echo json_encode(['error' => 'Unknown action: ' . htmlspecialchars($action)]);
 }
