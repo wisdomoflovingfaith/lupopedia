@@ -433,7 +433,7 @@ images/
 ## 12. File Naming Conventions
 
 ### 12.1 PHP Files
-- Classes: `class-[classname].php` (lowercase with hyphens)
+- Classes: `classes/[classname].php` (lowercase with hyphens)
 - Functions: `[module]-functions.php`
 - Controllers: `[name]-controller.php`
 - Configuration: `[name]-config.php`

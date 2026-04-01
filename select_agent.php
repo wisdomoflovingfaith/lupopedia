@@ -19,7 +19,7 @@ if (!isset($_SESSION['pending_auth_user_id'])) {
 }
 
 // Load required classes
-require_once __DIR__ . '/lupo-includes/class-DatabaseFactory.php';
+require_once __DIR__ . '/lupo-includes/classes/DatabaseFactory.php';
 require_once __DIR__ . '/lupo-includes/classes/AuthSessionManager.php';
 
 $sessionManager = new AuthSessionManager();

@@ -97,6 +97,14 @@ The following sub‑folders are critical for understanding project organization 
 | `lupo-rules/root/` | Contains the highest-authority, non-negotiable constitutional rules and doctrines governing the codebase. |
 | `lupo-research/federation_nodes/` | Formal ingestion structure for external federation research, guarded by strict RAG (read-only) boundaries. |
 | `lupo-skills/lupopedia-headers/` | Contains the agent skills logic required to parse, update, and write LUPOPEDIA headers. |
+| `lupo-includes/classes/` | Active PHP OOP class implementations. Consolidated structural storage. |
+| `lupo-includes/modules/` | Procedural execution logic spanning all core functionalities. |
+| `lupo-includes/functions/` | Legacy functional handlers retaining core Crafty stability. |
+| `lupo-includes/security/` | Cryptographic processing, password hashing, system security logic. |
+| `lupo-includes/semantic/` | Core graph parsing and semantic mapping layer. |
+| `lupo-includes/templates/` | Standard template scaffolding structures. |
+| `lupo-includes/themes/` | UI Themes definitions. |
+| `lupo-includes/ui/` | Active frontend HTML component renderers. |
 
 ## Documentation Sub‑folders
 

@@ -315,8 +315,8 @@ function truth_render_error($code, $message) {
 }
 
 // Load ConnectionsService for semantic context
-if (file_exists(LUPOPEDIA_ABSPATH . '/lupo-includes/class-ConnectionsService.php')) {
-    require_once LUPOPEDIA_ABSPATH . '/lupo-includes/class-ConnectionsService.php';
+if (file_exists(LUPOPEDIA_ABSPATH . '/lupo-includes/classes/ConnectionsService.php')) {
+    require_once LUPOPEDIA_ABSPATH . '/lupo-includes/classes/ConnectionsService.php';
 }
 
 // Load content renderer for render_main_layout

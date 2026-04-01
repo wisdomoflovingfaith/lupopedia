@@ -93,7 +93,7 @@ wsl grep -c "CREATE TABLE" "lupo-database/lupopedia/mysql/install/install_new_lu
 wsl grep -A 5 -B 2 "lupo_artifacts" "lupo-database/lupopedia/mysql/install/install_new_lupopedia.sql"
 
 # Case-insensitive search
-wsl grep -i "rose" "lupo-includes/class-rose.php"
+wsl grep -i "rose" "lupo-includes/classes/rose.php"
 ```
 
 #### File Operations

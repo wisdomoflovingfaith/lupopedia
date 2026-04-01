@@ -52,7 +52,7 @@ if (!is_file($config)) {
     exit(1);
 }
 require_once $config;
-require_once $base . DIRECTORY_SEPARATOR . 'lupo-includes' . DIRECTORY_SEPARATOR . 'class-pdo_db.php';
+require_once $base . DIRECTORY_SEPARATOR . 'lupo-includes' . DIRECTORY_SEPARATOR . 'classes/pdo_db.php';
 require_once $base . DIRECTORY_SEPARATOR . 'install_wizard_classes.php';
 require_once $base . DIRECTORY_SEPARATOR . 'lupo-includes' . DIRECTORY_SEPARATOR . 'functions' . DIRECTORY_SEPARATOR . 'schema_migrations.php';
 

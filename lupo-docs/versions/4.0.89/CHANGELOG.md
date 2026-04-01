@@ -152,7 +152,7 @@ PHP equivalents of the Python database-first header pipeline: **`import_content.
 |------|--------|
 | **CRLF → LF** | **`HeaderDbSync::parseYamlFrontMatter`** normalized newlines in the wrong order (`\r` before `\r\n`), which **doubled** line breaks on Windows CRLF files and shifted the closing `---` — PHP `content_id` did not match Python. **Fix:** `\r\n` → `\n`, then lone `\r` → `\n` (same order as Python). |
 | **Python body/path parity** | **`import_content.py`** — front matter split uses LF-normalized `\n` lines (not `splitlines(keepends=True)` on raw CRLF); **`file_path_from_root`** normalized with **`_norm_path_repo()`** to match **`HeaderDbSync::normPath`**. |
-| **PDO charset** | **`class-pdo_db.php`** — **`SET NAMES 'utf8mb4'`** (was **`utf8`** / utf8mb3), matching DSN and **`utf8mb4_*`** column collations so PHP import no longer hits mixed-collation errors. |
+| **PDO charset** | **`classes/pdo_db.php`** — **`SET NAMES 'utf8mb4'`** (was **`utf8`** / utf8mb3), matching DSN and **`utf8mb4_*`** column collations so PHP import no longer hits mixed-collation errors. |
 
 **Deterministic `content_id` (after fixes):** `python import_content.py … --dry-run` and `php import_content.php … --dry-run` report the **same** value (e.g. **`7089464568349913253`** for `LUPOPEDIA_HEADERS_DOCTRINE.md`).  
 

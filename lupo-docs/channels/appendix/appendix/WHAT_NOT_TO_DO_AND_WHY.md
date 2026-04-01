@@ -165,7 +165,7 @@ This file exists so futureâ€‘me (and future agents) never repeat past chaos
 **Mistake:** Used `mysql_query()`, `mysql_fetch_row()`, `mysql_num_rows()` in refactored code.  
 **Result:** SQL injection vulnerabilities, deprecated functions, and non-portable code.  
 **Why Not To Do It:** Legacy MySQL functions are deprecated and insecure.  
-**Lesson:** *Always use PDO prepared statements via `class-pdo_db.php`. Replace `fetchRow()` with `fetch()`, `numrows()` with `rowCount()`.*
+**Lesson:** *Always use PDO prepared statements via `classes/pdo_db.php`. Replace `fetchRow()` with `fetch()`, `numrows()` with `rowCount()`.*
 
 ---
 

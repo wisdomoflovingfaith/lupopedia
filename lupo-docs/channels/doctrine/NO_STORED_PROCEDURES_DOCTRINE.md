@@ -329,7 +329,7 @@ END;
 
 ```php
 // âœ… CORRECT: Logic in application code (visible, version-controlled)
-// File: lupo-includes/class-agent-stats.php
+// File: lupo-includes/classes/agent-stats.php
 class AgentStats {
     public function updateStats($agentId) {
         // All logic is visible here
@@ -382,7 +382,7 @@ END;
 
 ```php
 // âœ… CORRECT: Application code works on all database engines
-// File: lupo-includes/class-federationsync.php
+// File: lupo-includes/classes/federationsync.php
 class FederationSync {
     public function syncAgentData($nodeId, $db) {
         // Works on MySQL, PostgreSQL, SQLite, MariaDB
@@ -523,7 +523,7 @@ $db->update('agents', [
 
 ```php
 <?php
-// File: lupo-includes/class-agent-calculator.php
+// File: lupo-includes/classes/agent-calculator.php
 class AgentCalculator {
     private $db;
     

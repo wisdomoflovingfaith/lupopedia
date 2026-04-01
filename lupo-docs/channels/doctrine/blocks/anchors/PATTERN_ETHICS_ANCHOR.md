@@ -313,7 +313,7 @@ Internal logging for WOLFMIND operations and debugging.
 
 ## **5. PHP Class Implementation**
 
-WOLFMIND is implemented as `class-wolfmind.php` in `lupo-includes/`.
+WOLFMIND is implemented as `classes/wolfmind.php` in `lupo-includes/`.
 
 ### **5.1 Core Methods**
 

@@ -176,7 +176,7 @@ Response: CHRONOS (agent_id: 23, agent_key: 'chronos')
 - Archetype: kernel
 - Purpose: UTC timestamp handling, temporal coordination
 - Status: Core agent (v3.0.2 required)
-- Class: lupo-includes/class-chronos.php
+- Class: lupo-includes/classes/chronos.php
 ...
 ```
 

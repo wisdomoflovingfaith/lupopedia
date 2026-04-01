@@ -25,7 +25,7 @@
  *   outbound_edges: [
  *     { to: "docs/versions/4.0.39/PRIORITY_FILES.md", type: "processes", weight: 0.9, hashtag: "#priority" },
  *     { to: "docs/status/kiro_header_completion_4_0_39.md", type: "reports_to", weight: 0.8, hashtag: "#status" },
- *     { to: "lupo-includes/class-pdo_db.php", type: "depends_on", weight: 0.7, hashtag: "#database" }
+ *     { to: "lupo-includes/classes/pdo_db.php", type: "depends_on", weight: 0.7, hashtag: "#database" }
  *   ],
  *   referenced_by_actors: [1001, 19, 10000],
  *   references: { by_files: ["docs/doctrine/ANUBIS_FALLBACK_DOCTRINE.md"], by_actors: [1001, 19, 10000] },

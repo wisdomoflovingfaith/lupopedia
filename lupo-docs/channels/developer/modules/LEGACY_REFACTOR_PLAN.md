@@ -222,11 +222,11 @@ Cursor must follow:
 ### **4.4 Class Files**
 
 **Source:** `lupo-legacy/craftysyntax/class/*.php`  
-**Destination:** `lupopedia/lupo-includes/class-*.php`
+**Destination:** `lupopedia/lupo-includes/classes/*.php`
 
 **Examples:**
-- `class/operator.php` â†’ `lupo-includes/class-operator.php`
-- `class/sessionmanager.php` â†’ `lupo-includes/class-session-manager.php`
+- `class/operator.php` â†’ `lupo-includes/classes/operator.php`
+- `class/sessionmanager.php` â†’ `lupo-includes/classes/session-manager.php`
 
 ### **4.5 Function Libraries**
 
@@ -359,7 +359,7 @@ $link = mysqli_connect($host, $user, $pass, $dbname);
 
 **Refactored:**
 ```php
-require_once __DIR__ . '/../../lupo-includes/class-pdo_db.php';
+require_once __DIR__ . '/../../lupo-includes/classes/pdo_db.php';
 $db = new PDO_DB($host, $user, $pass, $dbname);
 ```
 
@@ -434,8 +434,8 @@ lupopedia/
 â”‚           â”œâ”€â”€ data-functions.php
 â”‚           â””â”€â”€ ...
 â”œâ”€â”€ lupo-includes/
-â”‚   â”œâ”€â”€ class-operator.php
-â”‚   â”œâ”€â”€ class-session-manager.php
+â”‚   â”œâ”€â”€ classes/operator.php
+â”‚   â”œâ”€â”€ classes/session-manager.php
 â”‚   â””â”€â”€ ...
 â””â”€â”€ lupo-content/
     â””â”€â”€ craftysyntax/
@@ -473,7 +473,7 @@ require_once __DIR__ . '/../../lupo-includes/crafty-functions.php';
 
 **Process:**
 1. Read legacy class file
-2. Convert to `lupo-includes/class-*.php` format
+2. Convert to `lupo-includes/classes/*.php` format
 3. Convert mysqli to PDO_DB
 4. Preserve all methods and logic
 5. Test class functionality

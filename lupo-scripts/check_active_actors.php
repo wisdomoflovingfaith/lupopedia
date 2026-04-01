@@ -40,8 +40,8 @@ lupopedia.footer:
  */
 
 require_once __DIR__ . '/../lupopedia-config.php';
-require_once LUPOPEDIA_PATH . '/lupo-includes/class-pdo_db.php';
-require_once LUPOPEDIA_PATH . '/lupo-includes/class-DatabaseFactory.php';
+require_once LUPOPEDIA_PATH . '/lupo-includes/classes/pdo_db.php';
+require_once LUPOPEDIA_PATH . '/lupo-includes/classes/DatabaseFactory.php';
 
 $db = DatabaseFactory::getConnection();
 $prefix = defined('LUPO_TABLE_PREFIX') ? LUPO_TABLE_PREFIX : 'lupo_';

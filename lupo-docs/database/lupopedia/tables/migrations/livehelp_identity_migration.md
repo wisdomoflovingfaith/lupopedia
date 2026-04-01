@@ -118,7 +118,7 @@ These tables attempted to guess whether a visitor was the same person using:
 
 cookieid
 
-IP class-C matching
+IP classes/C matching
 
 user agent hashing
 
@@ -172,7 +172,7 @@ user agent heuristics
 
 re-cookie logic
 
-class-C blocks
+classes/C blocks
 
 hostname lookups
 

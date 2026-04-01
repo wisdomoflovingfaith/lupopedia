@@ -19,7 +19,7 @@
  *   - No heavy logic yet
  */
 
-require_once __DIR__ . '/class-timestamp_ymdhis.php';
+require_once __DIR__ . '/classes/timestamp_ymdhis.php';
 
 class CHRONOS
 {

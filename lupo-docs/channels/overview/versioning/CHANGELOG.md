@@ -6978,8 +6978,8 @@ Following the formal .kiro spec in `.kiro/specs/history-reconciliation/`:
 ### Files Changed
 - `config/global_atoms.yaml` - Version updated to 3.0.46
 - `lupo-includes/version.php` - Version docblock and fallback updated to 3.0.46
-- `lupo-includes/class-dialog-manager.php` - Fixed table/field name mappings
-- `lupo-includes/class-iris.php` - Enhanced for multi-provider support, fixed table names
+- `lupo-includes/classes/dialog-manager.php` - Fixed table/field name mappings
+- `lupo-includes/classes/iris.php` - Enhanced for multi-provider support, fixed table names
 - `lupopedia-config.php` - Added LLM provider configuration
 - `lupo-docs/doctrine/TEMPORAL_BRIDGE.md` - Created with Channels vs Bridges clarification
 - `lupo-docs/doctrine/CONTEXT_BRIDGE.md` - Created with Channels vs Bridges clarification

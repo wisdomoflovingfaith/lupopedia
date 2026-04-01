@@ -16,7 +16,7 @@ if (!defined('LUPO_TABLE_PREFIX')) {
 }
 
 if (!class_exists('timestamp_ymdhis')) {
-    $path = dirname(__DIR__, 3) . DIRECTORY_SEPARATOR . 'lupo-includes' . DIRECTORY_SEPARATOR . 'class-timestamp_ymdhis.php';
+    $path = dirname(__DIR__, 3) . DIRECTORY_SEPARATOR . 'lupo-includes' . DIRECTORY_SEPARATOR . 'classes/timestamp_ymdhis.php';
     if (is_file($path)) {
         require_once $path;
     }

@@ -20,8 +20,8 @@ lupopedia.edges:
     - { to: "dialog.yaml", type: "formalizes", weight: 1.0, reason: "dialog.yaml defines mood_RGB as a six-hex semantic field and names the historical axes." }
     - { to: "lupo-api/dialog/send-message.php", type: "formalizes", weight: 1.0, reason: "API input validation and default handling define current runtime constraints." }
     - { to: "lupo-api/v1/dialog/metrics.php", type: "formalizes", weight: 0.9, reason: "Metrics endpoint aggregates mood values as operational telemetry." }
-    - { to: "lupo-includes/class-caduceus.php", type: "formalizes", weight: 1.0, reason: "CADUCEUS derives routing currents from R, G, and B channels." }
-    - { to: "lupo-includes/class-hermes.php", type: "formalizes", weight: 1.0, reason: "HERMES consumes CADUCEUS currents when no explicit destination exists." }
+    - { to: "lupo-includes/classes/caduceus.php", type: "formalizes", weight: 1.0, reason: "CADUCEUS derives routing currents from R, G, and B channels." }
+    - { to: "lupo-includes/classes/hermes.php", type: "formalizes", weight: 1.0, reason: "HERMES consumes CADUCEUS currents when no explicit destination exists." }
     - { to: "lupo-channels/42/threads/1037/20260321_160000_lilith_versioning_doctrine_gap_analysis.md", type: "evidence", weight: 0.9, reason: "B1B1B1 is used in live ambiguity/gap-analysis work." }
     - { to: "lupo-channels/42/threads/1045/20260321_185000_wolfie_system_correction_directive.md", type: "evidence", weight: 0.9, reason: "FF0000 is used in mandatory correction directives." }
     - { to: "lupo-channels/42/threads/1045/20260321_193000_wolfie_phase_2_gate_pass.md", type: "evidence", weight: 0.9, reason: "00FF00 is used for gate-pass and approval states." }

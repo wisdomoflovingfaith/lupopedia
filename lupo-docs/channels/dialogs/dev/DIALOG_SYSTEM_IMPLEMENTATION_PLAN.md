@@ -93,11 +93,11 @@ file:
 
 ### ✅ What EXISTS
 1. **Core Classes** (all in `lupo-includes/`)
-   - `class-dialog-manager.php` - Central dispatcher (COMPLETE)
-   - `class-hermes.php` - Routing layer (COMPLETE)
-   - `class-caduceus.php` - Mood signal helper (COMPLETE)
-   - `class-iris.php` - LLM gateway (COMPLETE)
-   - `class-wolfmind.php` - Memory subsystem (assumed exists)
+   - `classes/dialog-manager.php` - Central dispatcher (COMPLETE)
+   - `classes/hermes.php` - Routing layer (COMPLETE)
+   - `classes/caduceus.php` - Mood signal helper (COMPLETE)
+   - `classes/iris.php` - LLM gateway (COMPLETE)
+   - `classes/wolfmind.php` - Memory subsystem (assumed exists)
 
 2. **Database Tables** (from TOON files)
    - `lupo_dialog_messages` - Message storage
@@ -116,7 +116,7 @@ file:
 
 1. **Database Connection Layer**
    - Classes reference `$this->db` but no PDO wrapper exists
-   - Need `class-pdo-db.php` or similar
+   - Need `classes/pdo-db.php` or similar
 
 2. **Entry Point / API**
    - No public-facing endpoint to send messages
@@ -147,7 +147,7 @@ file:
 **Goal:** Get database connection working
 
 **Tasks:**
-1. Create `lupo-includes/class-pdo-db.php`
+1. Create `lupo-includes/classes/pdo-db.php`
    - PDO wrapper with `insert()`, `fetchRow()`, `query()` methods
    - Connection management
    - Error handling
@@ -217,7 +217,7 @@ file:
 **Goal:** Get DIALOG agent outputting YAML inline dialog
 
 **Tasks:**
-1. Create `lupo-includes/class-dialog-agent.php`
+1. Create `lupo-includes/classes/dialog-agent.php`
    - Special handler for DIALOG agent
    - Parses YAML inline dialog output
    - Validates format
@@ -268,7 +268,7 @@ file:
 
 **Tasks:**
 1. Verify WOLFMIND implementation
-   - Check `class-wolfmind.php` exists
+   - Check `classes/wolfmind.php` exists
    - Verify `storeMemoryEvent()` method
    - Verify database table exists
 

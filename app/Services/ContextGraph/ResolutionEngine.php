@@ -29,7 +29,7 @@ if (!class_exists('EdgeService')) {
 }
 
 if (!class_exists('DatabaseFactory')) {
-    require_once dirname(dirname(dirname(__DIR__))) . DIRECTORY_SEPARATOR . 'lupo-includes' . DIRECTORY_SEPARATOR . 'class-DatabaseFactory.php';
+    require_once dirname(dirname(dirname(__DIR__))) . DIRECTORY_SEPARATOR . 'lupo-includes' . DIRECTORY_SEPARATOR . 'classes/DatabaseFactory.php';
 }
 
 class ResolutionEngine

@@ -19,8 +19,8 @@ require_once __DIR__ . '/content-model.php';
 require_once __DIR__ . '/renderers/content-renderer.php';
 
 // Load ConnectionsService for semantic context
-if (file_exists(LUPOPEDIA_ABSPATH . '/lupo-includes/class-ConnectionsService.php')) {
-    require_once LUPOPEDIA_ABSPATH . '/lupo-includes/class-ConnectionsService.php';
+if (file_exists(LUPOPEDIA_ABSPATH . '/lupo-includes/classes/ConnectionsService.php')) {
+    require_once LUPOPEDIA_ABSPATH . '/lupo-includes/classes/ConnectionsService.php';
 }
 
 /**

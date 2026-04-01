@@ -12,7 +12,7 @@ if (session_status() === PHP_SESSION_NONE) {
 }
 
 // Load required classes
-require_once __DIR__ . '/lupo-includes/class-DatabaseFactory.php';
+require_once __DIR__ . '/lupo-includes/classes/DatabaseFactory.php';
 require_once __DIR__ . '/lupo-includes/classes/AuthSessionManager.php';
 
 echo "<h1>Department-Based Access Control Test</h1>\n";

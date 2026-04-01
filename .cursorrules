@@ -318,7 +318,7 @@ All new logic must be in **classes**. Legacy helper functions must be migrated i
 - **Incremental conversion:** Convert one helper at a time. Keep the old helper as a wrapper that calls the new class method; remove the wrapper only after testing. Do not "clean up" or "modernize" behavior by default.
 - **No modern PHP in classes:** No strict types, return types, scalar type hints, nullable/union types, attributes, arrow functions, enums, typed properties. Classes are simple, procedural-friendly containers.
 
-**Cursor must refuse** new global helpers and new files under `functions/`. Propose class-based alternatives that preserve references and scope unless the user explicitly instructs optimization.
+**Cursor must refuse** new global helpers and new files under `functions/`. Propose classes/based alternatives that preserve references and scope unless the user explicitly instructs optimization.
 
 ---
 

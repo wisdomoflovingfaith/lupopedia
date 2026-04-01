@@ -15,11 +15,11 @@
  *   - NOT a subsystem
  *   - NOT a database table
  *   - It is a tiny helper located in:
- *         lupo-includes/class-caduceus.php
+ *         lupo-includes/classes/caduceus.php
  *   - It converts mood_rgb → routing currents
  */
 
-require_once __DIR__ . '/class-caduceus.php';
+require_once __DIR__ . '/classes/caduceus.php';
 
 class HERMES
 {

@@ -94,7 +94,7 @@ lupopedia.edges:
     weight: 0.9
     confidence: 0.7
     source: "code-scan"
-  - to: lupo-includes/class-dialog-manager.php
+  - to: lupo-includes/classes/dialog-manager.php
     type: USED_IN_PHP
     weight: 0.9
     confidence: 0.7

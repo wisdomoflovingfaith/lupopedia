@@ -364,7 +364,7 @@ This is why your system feels like a team of AI engineers working together.
    - Generates toon file updates
    - Verifies slot assignments
 
-2. **Cascade** (active tab: `class-agent-registry.php`):
+2. **Cascade** (active tab: `classes/agent-registry.php`):
    - Updates PHP code to match new slot ranges
    - Refactors agent loading logic
 

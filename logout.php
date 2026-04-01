@@ -31,7 +31,7 @@ if (session_status() === PHP_SESSION_NONE) {
 }
 
 // Load required classes
-require_once __DIR__ . '/lupo-includes/class-DatabaseFactory.php';
+require_once __DIR__ . '/lupo-includes/classes/DatabaseFactory.php';
 require_once __DIR__ . '/lupo-includes/classes/AuthService.php';
 
 $authService = new AuthService();

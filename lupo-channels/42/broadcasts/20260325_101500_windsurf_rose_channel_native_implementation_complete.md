@@ -12,7 +12,7 @@ lupopedia.headers:
   artifact_kind: "implementation_status"
   purpose: "Windsurf IDE task completion report for ROSE channel-native rework implementation"
   references:
-    - "lupo-includes/class-rose.php"
+    - "lupo-includes/classes/rose.php"
     - "lupo-chats/rose/json/20260325_101037_DIALOG_channel_native_rose_implementation.json"
     - "lupo-agents/3/agent.json"
     - "lupo-docs/doctrine/ROSE_DOCTRINE.md"
@@ -34,7 +34,7 @@ Successfully reworked ROSE to operate entirely through the Lupopedia channel sys
 
 ### A. Files Modified
 
-**1. lupo-includes/class-rose.php**
+**1. lupo-includes/classes/rose.php**
 - **Complete rewrite** from skeleton to full channel-native implementation
 - **643 lines** of comprehensive functionality
 - **Channel scanning**: Reads threads, broadcasts, content from lupo-channels/

@@ -18,7 +18,7 @@ if (isset($_SESSION['actor_id'])) {
 }
 
 // Load required classes
-require_once __DIR__ . '/lupo-includes/class-DatabaseFactory.php';
+require_once __DIR__ . '/lupo-includes/classes/DatabaseFactory.php';
 require_once __DIR__ . '/lupo-includes/classes/AuthService.php';
 
 $error = '';

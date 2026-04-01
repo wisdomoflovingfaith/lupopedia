@@ -11,7 +11,7 @@
 
 // Load configuration and dependencies
 require_once __DIR__ . '/../../lupopedia-config.php';
-require_once LUPO_INCLUDES_DIR . '/class-pdo_db.php';
+require_once LUPO_INCLUDES_DIR . '/classes/pdo_db.php';
 require_once __DIR__ . '/ActorMoodService.php';
 require_once __DIR__ . '/PackMoodCoherenceService.php';
 

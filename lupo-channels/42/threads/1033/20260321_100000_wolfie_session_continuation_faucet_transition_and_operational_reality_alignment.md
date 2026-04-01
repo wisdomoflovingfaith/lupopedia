@@ -163,7 +163,7 @@ The system is maturing toward:
 
 Prior WOLFIE analysis indicated version-scoped docs should include:
 - `lupo-docs/versions/4.0.84/PLAN.md` — granular 4.0.84-specific execution plan
-- `lupo-docs/versions/4.0.84/OVERVIEW_ORGANIZATION.md` — schema/class-level breakdowns
+- `lupo-docs/versions/4.0.84/OVERVIEW_ORGANIZATION.md` — schema/classes/level breakdowns
 
 **Action required:** Create version directory structure with proper docs. This is not blocking current work but should be scheduled.
 

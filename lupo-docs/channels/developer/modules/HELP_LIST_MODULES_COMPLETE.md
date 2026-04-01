@@ -230,7 +230,7 @@ Both modules follow Lupopedia doctrine:
 ## Module Architecture
 
 Both modules follow the existing Lupopedia module pattern:
-- Function-based (not class-based)
+- Function-based (not classes/based)
 - Models in separate files with function-based access
 - Controllers handle routing
 - Views use PHP templates with ob_start/ob_get_clean

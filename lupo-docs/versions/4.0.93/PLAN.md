@@ -211,7 +211,7 @@ All planning, PRDs, and implementation must reference and comply with these docs
 - Lupopedia will remain in the 4.0.x cycle until Softaculous approves a 4.0.x release. No 4.1.0 release or upgrade path will be created until that approval is granted. All grouped PRD and schema work is forward-compatible.
 
 ### **1. The Installation Engine**
-- **install.php Refactor**: Handle class-based instantiation and seed lupo_contexts with initial system "Truths" (partially addressed: consolidated seed + `{{prefix}}` path; see `install/seed_lupopedia_4_1_0.sql` and CHANGELOG)
+- **install.php Refactor**: Handle classes/based instantiation and seed lupo_contexts with initial system "Truths" (partially addressed: consolidated seed + `{{prefix}}` path; see `install/seed_lupopedia_4_1_0.sql` and CHANGELOG)
 - **Unified SQL Schema**: Provide lupopedia_v4.0.93.sql with all livehelp_ → lupo_ mappings (install remains `install_new_lupopedia.sql` + consolidated seed; naming aligned in docs)
 - **Management Scripts**: Create uninstall.php and upgrade.php for DB edges and filesystem atoms
 

@@ -560,11 +560,11 @@ Lupopedia uses a **hybrid architecture** that balances simplicity with organizat
 - These files must remain procedural and must NOT be converted to OOP
 
 **OOP Layer (Subsystems):**
-- Database classes (e.g., `class-pdo_db.php`)
+- Database classes (e.g., `classes/pdo_db.php`)
 - Module classes (inside `/lupo-includes/modules/`)
-- Agent classes (e.g., `class-thoth.php`, `class-hermes.php`)
+- Agent classes (e.g., `classes/thoth.php`, `classes/hermes.php`)
 - UI controller classes (inside `/lupo-includes/ui/`)
-- Semantic engine classes (e.g., `class-semanticextration.php`)
+- Semantic engine classes (e.g., `classes/semanticextration.php`)
 - These subsystems **may use OOP classes** and OOP is **encouraged** for organization
 
 **What is FORBIDDEN:**
@@ -575,7 +575,7 @@ Lupopedia uses a **hybrid architecture** that balances simplicity with organizat
 - âŒ Converting loader files to OOP
 
 **What is ALLOWED:**
-- âœ… OOP classes in subsystem files (`class-*.php`)
+- âœ… OOP classes in subsystem files (`classes/*.php`)
 - âœ… Simple `require_once` includes (no autoloading)
 - âœ… Procedural functions alongside OOP classes
 - âœ… Hybrid approach: procedural loaders call OOP subsystem classes
@@ -591,11 +591,11 @@ lupopedia-loader.php          â† Procedural (must stay procedural)
   â””â”€â”€ ui/ui-loader.php        â† Procedural (loads OOP UI controllers)
 
 lupo-includes/
-  â”œâ”€â”€ class-pdo_db.php        â† OOP class (allowed and encouraged)
-  â”œâ”€â”€ class-thoth.php         â† OOP class (allowed and encouraged)
+  â”œâ”€â”€ classes/pdo_db.php        â† OOP class (allowed and encouraged)
+  â”œâ”€â”€ classes/thoth.php         â† OOP class (allowed and encouraged)
   â””â”€â”€ modules/
       â””â”€â”€ crafty_syntax/
-          â””â”€â”€ class-crafty.php â† OOP class (allowed and encouraged)
+          â””â”€â”€ classes/crafty.php â† OOP class (allowed and encouraged)
 ```
 
 This hybrid approach provides:

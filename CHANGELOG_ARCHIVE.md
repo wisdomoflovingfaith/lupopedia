@@ -9952,7 +9952,7 @@ CREATE TABLE lupo_registry (
 - `app/Services/System/SystemHealthService.php` - Line 100
 - `app/Http/Controllers/SystemHealthController.php` - Line 95
 - `lupo-includes/classes/LABSValidator.php` - Line 574
-- `lupo-includes/class-iris.php` - Line 89
+- `lupo-includes/classes/iris.php` - Line 89
 
 **Python Scripts** (6 files):
 - `lupo-scripts/generate_seed_from_toons.py` - 8 locations
@@ -9991,7 +9991,7 @@ CREATE TABLE lupo_registry (
 - **install.php**: Updated comments for registry_open population
 - **app/Services/System/SystemHealthService.php**: Updated health check table name
 - **app/Http/Controllers/SystemHealthController.php**: Updated health check response key
-- **lupo-includes/class-iris.php**: Updated doctrinal comments for agent configuration
+- **lupo-includes/classes/iris.php**: Updated doctrinal comments for agent configuration
 - **lupo-includes/classes/LABSValidator.php**: Updated doctrinal comments for agent availability
 
 #### Python Application Code Fixed (2 files)
@@ -11442,10 +11442,10 @@ There are **no Lupopedia ? Lupopedia upgrades** in the 4.0.x series.
 - **lupo_registry (install + migrations):** Column **entity_id** renamed to **entity_index**; **dedicated_index_id** dropped (redundant). Unused columns **code**, **name**, **layer**, **agent_registry_parent_id**, **is_required**, **classification_json**, **agent_class**, **can_use_humor**, **can_use_emotion** removed from install. Canonical identity is **entity_type** + **entity_index**; **entity_table** names the table that owns the reserved index; **entity_key** used for lookup by string (e.g. `UTC_TIMEKEEPER`).
 - **lupo_registry_open:** Table added (install + **migration_add_registry_open.sql**) with **entity_type**, **entity_index**, **federation_node_id** (default 1), **created_utc**, **metadata_json** (reference snapshot when index was freed). **migration_REGISTRY_entity_index_drop_dedicated_index.sql** renames entity_id ? entity_index, drops dedicated_index_id, adds metadata_json to unregistry. **migration_REGISTRY_drop_unused_columns.sql** drops the nine unused registry columns on existing DBs.
 - **seed_lupopedia.sql:** All REGISTRY INSERTs use only the kept columns (no code, name, layer, etc.); VALUES trimmed to match.
-- **PHP:** **lupo-includes/class-iris.php** — `loadAgentConfig()` selects **entity_index**, **entity_table**, **entity_key**, **entity_name**, **is_active**, **is_kernel**; fallback prompts use entity_key or entity_name instead of code/name. **lupo-includes/classes/LABSValidator.php** — UTC_TIMEKEEPER check selects **entity_index**, **entity_table**, **is_active** and filters by **entity_key = 'UTC_TIMEKEEPER'** only.
+- **PHP:** **lupo-includes/classes/iris.php** — `loadAgentConfig()` selects **entity_index**, **entity_table**, **entity_key**, **entity_name**, **is_active**, **is_kernel**; fallback prompts use entity_key or entity_name instead of code/name. **lupo-includes/classes/LABSValidator.php** — UTC_TIMEKEEPER check selects **entity_index**, **entity_table**, **is_active** and filters by **entity_key = 'UTC_TIMEKEEPER'** only.
 - **Docs:** **lupo-docs/channels/doctrine/ACTOR_AGENT_DOCTRINE.md** and **lupo-docs/doctrine/REGISTRY_DOCTRINE.md** updated to describe entity_index, entity_table, entity_key as canonical; removed columns noted.
 
-**Files modified (4.0.9):** `config/global_atoms.yaml`, `lupo-docs/doctrine/VERSIONING_DOCTRINE.md`, `lupo-includes/version.php`, `lupo-includes/functions/load_atoms.php`, `install.php`, `install_wizard_classes.php`, `lupo-database/migrations/install_new_lupopedia.sql`, `lupo-database/migrations/seed_lupopedia.sql`, `lupo-database/migrations/migration_add_registry_open.sql`, `lupo-database/migrations/migration_REGISTRY_entity_index_drop_dedicated_index.sql`, `lupo-database/migrations/migration_REGISTRY_drop_unused_columns.sql` (new), `lupo-includes/class-iris.php`, `lupo-includes/classes/LABSValidator.php`, `lupo-docs/channels/doctrine/ACTOR_AGENT_DOCTRINE.md`, `lupo-docs/doctrine/REGISTRY_DOCTRINE.md`, `lupo-docs/doctrine/IMPORT_FROM_CRAFTY_TROUBLESHOOTING.md` (new), `lupo-docs/doctrine/DOCTRINE_TABLES_TRANSITION_NOTE.md` (new), `CHANGELOG.md`.
+**Files modified (4.0.9):** `config/global_atoms.yaml`, `lupo-docs/doctrine/VERSIONING_DOCTRINE.md`, `lupo-includes/version.php`, `lupo-includes/functions/load_atoms.php`, `install.php`, `install_wizard_classes.php`, `lupo-database/migrations/install_new_lupopedia.sql`, `lupo-database/migrations/seed_lupopedia.sql`, `lupo-database/migrations/migration_add_registry_open.sql`, `lupo-database/migrations/migration_REGISTRY_entity_index_drop_dedicated_index.sql`, `lupo-database/migrations/migration_REGISTRY_drop_unused_columns.sql` (new), `lupo-includes/classes/iris.php`, `lupo-includes/classes/LABSValidator.php`, `lupo-docs/channels/doctrine/ACTOR_AGENT_DOCTRINE.md`, `lupo-docs/doctrine/REGISTRY_DOCTRINE.md`, `lupo-docs/doctrine/IMPORT_FROM_CRAFTY_TROUBLESHOOTING.md` (new), `lupo-docs/doctrine/DOCTRINE_TABLES_TRANSITION_NOTE.md` (new), `CHANGELOG.md`.
 
 ---
 
@@ -11463,7 +11463,7 @@ This patch removes all use of the deprecated table **lupo_agent_registry**. All 
 
 ### 2. Runtime — Agent Config and Lookups Use Unified Registry
 
-- **lupo-includes/class-iris.php:** `loadAgentConfig()` now loads agent metadata from **lupo_registry** with `entity_type = 'agent'` and `entity_id = :agent_id`. Uses table prefix; agent properties still loaded from **lupo_agent_properties** by `actor_id` (same as entity_id for agents). PHP 5.3: `??` replaced with `isset() ? :` in property merge.
+- **lupo-includes/classes/iris.php:** `loadAgentConfig()` now loads agent metadata from **lupo_registry** with `entity_type = 'agent'` and `entity_id = :agent_id`. Uses table prefix; agent properties still loaded from **lupo_agent_properties** by `actor_id` (same as entity_id for agents). PHP 5.3: `??` replaced with `isset() ? :` in property merge.
 - **lupo-includes/classes/LABSValidator.php:** `check_utc_timekeeper_available()` now queries **lupo_registry** with `entity_type = 'agent'` and `(code = 'UTC_TIMEKEEPER' OR entity_key = 'UTC_TIMEKEEPER')` and `is_active = 1`; uses configurable table prefix.
 
 ### 3. System Health — Unified Registry Check
@@ -11515,7 +11515,7 @@ This patch removes all use of the deprecated table **lupo_agent_registry**. All 
 - **install_wizard_classes.php — writeConfig():** Generated lupopedia-config.php now uses `$options['table_prefix']` (validated `[a-z0-9_]+`) when present; otherwise `'lupo_'`. So the written config’s `LUPO_TABLE_PREFIX` matches the prefix used for the created tables.
 - **install.php — config step:** `table_prefix` from session is added to `$options` when calling `writeConfig()`, so the final config file reflects the prefix chosen at credentials.
 
-**Files modified (4.0.8):** `lupo-database/migrations/install_new_lupopedia.sql`, `lupo-includes/class-iris.php`, `lupo-includes/classes/LABSValidator.php`, `app/Services/System/SystemHealthService.php`, `app/Http/Controllers/SystemHealthController.php`, `lupo-docs/doctrine/REGISTRY_DOCTRINE.md` (new), `install_wizard_classes.php`, `install.php`, `config/global_atoms.yaml`, `lupo-docs/doctrine/VERSIONING_DOCTRINE.md`, `.cursor/rules/required-tables-future-features-doctrine.mdc`, `.cursorrules`, `lupo-includes/models/GroundedAgentModel.php`, `lupo-includes/theme/theme-loader.php`, `app/Services/System/LupopediaMigrationController.php`, `lupo-scripts/run_labs_handshake.php`, `lupo-scripts/migrate_user_mappings.php`, `lupo-docs/audits/DYNAMIC_TABLE_PREFIX_AUDIT.md` (new).
+**Files modified (4.0.8):** `lupo-database/migrations/install_new_lupopedia.sql`, `lupo-includes/classes/iris.php`, `lupo-includes/classes/LABSValidator.php`, `app/Services/System/SystemHealthService.php`, `app/Http/Controllers/SystemHealthController.php`, `lupo-docs/doctrine/REGISTRY_DOCTRINE.md` (new), `install_wizard_classes.php`, `install.php`, `config/global_atoms.yaml`, `lupo-docs/doctrine/VERSIONING_DOCTRINE.md`, `.cursor/rules/required-tables-future-features-doctrine.mdc`, `.cursorrules`, `lupo-includes/models/GroundedAgentModel.php`, `lupo-includes/theme/theme-loader.php`, `app/Services/System/LupopediaMigrationController.php`, `lupo-scripts/run_labs_handshake.php`, `lupo-scripts/migrate_user_mappings.php`, `lupo-docs/audits/DYNAMIC_TABLE_PREFIX_AUDIT.md` (new).
 
 **Versioning Note:**  
 Lupopedia 4.0.x is a development/stabilization series.  

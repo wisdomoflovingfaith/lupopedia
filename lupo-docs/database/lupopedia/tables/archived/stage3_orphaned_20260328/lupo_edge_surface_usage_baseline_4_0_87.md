@@ -93,7 +93,7 @@ This baseline covers the requested tables:
 ### lupo_search_index
 
 - No active runtime read/write callsite found for prefixed table name lupo_search_index during this pass.
-- Note: lupo-includes/class-SearchIndexer.php references a non-prefixed table name search_index (legacy/parallel surface).
+- Note: lupo-includes/classes/SearchIndexer.php references a non-prefixed table name search_index (legacy/parallel surface).
 
 ### lupo_memory_rollups
 

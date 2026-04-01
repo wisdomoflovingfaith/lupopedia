@@ -312,7 +312,7 @@ else {
 
 ### What Your PDO_DB Class Does
 
-Your `class-pdo_db.php` is a **thin abstraction layer** that:
+Your `classes/pdo_db.php` is a **thin abstraction layer** that:
 
 1. **Hides PDO complexity** - Simple methods, no fetch modes
 2. **Handles errors internally** - Returns safe values, doesn't crash

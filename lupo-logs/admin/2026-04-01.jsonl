@@ -1,0 +1,2 @@
+{"type":"session","timestamp":"2026-04-01T22:22:15+00:00","actor_id":10000,"session_age":3,"ip":"::1"}
+{"type":"permission_check","timestamp":"2026-04-01T22:22:15+00:00","actor_id":10000,"roles":["admin"],"resource":"admin","allowed":true}

@@ -100,7 +100,7 @@ try {
     $db = DatabaseFactory::getConnection();
 
     // Initialize DialogManager
-    require_once LUPO_INCLUDES_DIR . '/class-dialog-manager.php';
+    require_once LUPO_INCLUDES_DIR . '/classes/dialog-manager.php';
     $dialogManager = new DialogManager($db);
 
     // Handle the message

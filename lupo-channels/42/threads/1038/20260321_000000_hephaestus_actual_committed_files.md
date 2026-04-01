@@ -239,8 +239,8 @@ lupo-includes/
 
 | Dependency | Location | Used By |
 |------------|----------|---------|
-| `class-pdo_db.php` | `lupo-includes/` | HumanRequestService (via global $db) |
-| `class-SessionManager.php` | `lupo-includes/` | Available for auth fix |
+| `classes/pdo_db.php` | `lupo-includes/` | HumanRequestService (via global $db) |
+| `classes/SessionManager.php` | `lupo-includes/` | Available for auth fix |
 
 ### ❌ Dependencies Missing
 

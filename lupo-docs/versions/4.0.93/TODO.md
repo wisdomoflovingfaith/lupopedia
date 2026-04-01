@@ -117,6 +117,9 @@ lupopedia.footer:
 - [x] Update project structure PRD with `federation_nodes/`
 - [x] Create `.cursorrules` injection boundary strategy (`compile_agent_rules.py`)
 - [x] Implement thread lifecycle automation and bootstrap scripts (`archive_stale_threads.py`, `bootstrap_thread_manifests.py`)
+- [x] Defoliate 13 dead `lupo-includes/` directories into `lupo-archive/`.
+- [x] Run Conflict Resolution Protocol and consolidate 31 loose PHP classes.
+- [x] Inject LILITH Notepad Justification into `WOLFIE_DOCTRINE.md`.
 - [ ] Implement context_id in all header documentation and validators
 - [ ] Create lupo-contexts/4.0.93/decisions_context.md
 - [ ] Ensure all decisions.md files follow new format (see PRD 17_decisions_format.md)
@@ -152,7 +155,7 @@ lupopedia.footer:
 ## 🚨 **CRITICAL: Softaculous Certification & Crafty Parity (4.0.93)**
 
 ### **1. The Installation Engine (Softaculous Requirement)**
-- [ ] Refactor install.php: Ensure it handles class-based instantiation and seeds lupo_contexts with initial system "Truths" (seed data still primarily in consolidated SQL + MD importer; contexts/"Brain" seeding may need follow-up)
+- [ ] Refactor install.php: Ensure it handles classes/based instantiation and seeds lupo_contexts with initial system "Truths" (seed data still primarily in consolidated SQL + MD importer; contexts/"Brain" seeding may need follow-up)
 - [ ] SQL Schema: Provide a unified lupopedia_v4.0.93.sql that includes all livehelp_ → lupo_ mappings (current canonical path: `install_new_lupopedia.sql` + `install/seed_lupopedia_4_1_0.sql` + Crafty import when upgrading)
 - [ ] Uninstall/Upgrade: Create uninstall.php and upgrade.php to manage the removal of DB edges and filesystem atoms
 

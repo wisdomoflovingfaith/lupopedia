@@ -26,8 +26,8 @@ $bootstrap = LUPOPEDIA_PATH . '/lupo-includes/bootstrap.php';
 if (!file_exists($bootstrap)) {
     // Try to find config manually if bootstrap fails (standalone mode)
     require_once LUPOPEDIA_PATH . '/lupopedia-config.php';
-    require_once LUPOPEDIA_PATH . '/lupo-includes/class-pdo_db.php';
-    require_once LUPOPEDIA_PATH . '/lupo-includes/class-DatabaseFactory.php';
+    require_once LUPOPEDIA_PATH . '/lupo-includes/classes/pdo_db.php';
+    require_once LUPOPEDIA_PATH . '/lupo-includes/classes/DatabaseFactory.php';
 } else {
     require_once $bootstrap;
 }

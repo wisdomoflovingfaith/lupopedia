@@ -84,7 +84,7 @@ lupopedia.footer:
 ## 5. Table count limit
 
 1. **Count:** `SELECT COUNT(*) FROM information_schema.tables WHERE table_schema = :db`.
-2. **DDL model:** All DDL through `class-DatabaseFactory::executeDDL($cmd)` → enforce count < 199.
+2. **DDL model:** All DDL through `classes/DatabaseFactory::executeDDL($cmd)` → enforce count < 199.
 3. **Tool:** `python lupo-scripts/validate_schema_limits.py`.
 4. **Gap:** No DDL intercept today.
 
@@ -124,7 +124,7 @@ LILITH should test:
 ## 8. Implementation sequence
 
 1. **Services:** `app/Services/ChannelLimitService.php`, `ActorLimitService.php`, `SchemaLimitService.php`, `RepoLimitService.php` (or consolidated split per repo conventions).
-2. **Wiring:** `channels-api.php` guard calls; `ActorService` actor cap guard; `class-DatabaseFactory.php` DDL guard.
+2. **Wiring:** `channels-api.php` guard calls; `ActorService` actor cap guard; `classes/DatabaseFactory.php` DDL guard.
 3. **Scripts:** `lupo-scripts/validate_repo_file_count.py`, `lupo-scripts/validate_table_limit.py`.
 4. **Tests:** `lupo-tests/unit/limit_*_test.php`.
 5. **Docs:** Update doctrine; reference in CHANGELOG / TODO / PLAN.

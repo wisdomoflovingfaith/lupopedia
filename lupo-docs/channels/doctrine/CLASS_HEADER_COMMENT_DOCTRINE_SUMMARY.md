@@ -157,7 +157,7 @@ All AI-generated PHP classes MUST include this structure at the top:
 
 ## Example: Updated PDO_DB Class
 
-The `lupo-includes/class-pdo_db.php` file has been updated with a complete comment block:
+The `lupo-includes/classes/pdo_db.php` file has been updated with a complete comment block:
 
 **Header:**
 ```php
@@ -273,7 +273,7 @@ Before submitting a class file:
    - Mandatory rules for AI agents
    - Examples and validation checklist
 
-2. ✅ **Updated:** `lupo-includes/class-pdo_db.php`
+2. ✅ **Updated:** `lupo-includes/classes/pdo_db.php`
    - Added comprehensive comment block
    - Follows new doctrine format
    - Serves as reference example

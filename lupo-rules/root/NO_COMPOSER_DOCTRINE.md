@@ -92,8 +92,8 @@ spl_autoload_register(function ($class) {
 
 ```php
 // For core classes
-require_once __DIR__ . '/class-DatabaseFactory.php';
-require_once __DIR__ . '/class-pdo_db.php';
+require_once __DIR__ . '/classes/DatabaseFactory.php';
+require_once __DIR__ . '/classes/pdo_db.php';
 
 // For custom classes
 require_once __DIR__ . '/classes/AuthService.php';
@@ -105,8 +105,8 @@ require_once __DIR__ . '/classes/AuthSessionManager.php';
 ```
 lupo-includes/
 ├── autoload.php          # Custom autoloader
-├── class-DatabaseFactory.php
-├── class-pdo_db.php
+├── classes/DatabaseFactory.php
+├── classes/pdo_db.php
 ├── classes/              # All custom classes
 │   ├── AuthService.php
 │   ├── AuthSessionManager.php

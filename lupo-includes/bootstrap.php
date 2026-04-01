@@ -49,8 +49,8 @@ if (function_exists('error_reporting')) {
 
 
 // Include the database factory and PDO_DB wrapper (Doctrine: all DB access via DatabaseFactory + PDO_DB)
-require_once(__DIR__ . DIRECTORY_SEPARATOR . 'class-pdo_db.php');
-require_once(__DIR__ . DIRECTORY_SEPARATOR . 'class-DatabaseFactory.php');
+require_once(__DIR__ . DIRECTORY_SEPARATOR . 'classes' . DIRECTORY_SEPARATOR . 'pdo_db.php');
+require_once(__DIR__ . DIRECTORY_SEPARATOR . 'classes' . DIRECTORY_SEPARATOR . 'DatabaseFactory.php');
 
 try {
     $mydatabase = DatabaseFactory::getConnection();
@@ -149,7 +149,7 @@ if (file_exists($reserved_id_helpers)) {
     require_once $reserved_id_helpers;
 }
 
-$session_manager_class = __DIR__ . DIRECTORY_SEPARATOR . 'class-SessionManager.php';
+$session_manager_class = __DIR__ . DIRECTORY_SEPARATOR . 'classes/SessionManager.php';
 if (file_exists($session_manager_class)) {
     require_once $session_manager_class;
 }

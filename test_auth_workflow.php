@@ -7,7 +7,7 @@
 require_once __DIR__ . '/lupo-config.php';
 
 // Load required classes
-require_once __DIR__ . '/lupo-includes/class-DatabaseFactory.php';
+require_once __DIR__ . '/lupo-includes/classes/DatabaseFactory.php';
 require_once __DIR__ . '/lupo-includes/classes/AuthSessionManager.php';
 
 echo "<h1>Auth User to Actor Mapping - Test Results</h1>\n";

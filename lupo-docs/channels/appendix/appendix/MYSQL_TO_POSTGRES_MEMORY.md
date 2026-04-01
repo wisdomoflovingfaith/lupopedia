@@ -395,7 +395,7 @@ After migration, WOLFMIND must:
 - **Gracefully degrade** when vector unavailable
 - **Maintain PHP compatibility** (PDO works with both)
 
-The `class-wolfmind.php` implementation must remain compatible with both database systems.
+The `classes/wolfmind.php` implementation must remain compatible with both database systems.
 
 ---
 

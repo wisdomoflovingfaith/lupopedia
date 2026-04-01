@@ -19,7 +19,7 @@ if (!isset($_SESSION['auth_user_id'])) {
 }
 
 // Load required classes
-require_once LUPOPEDIA_PATH . '/lupo-includes/class-DatabaseFactory.php';
+require_once LUPOPEDIA_PATH . '/lupo-includes/classes/DatabaseFactory.php';
 require_once LUPOPEDIA_PATH . '/lupo-includes/classes/AuthSessionManager.php';
 
 $sessionManager = new AuthSessionManager();

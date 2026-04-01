@@ -91,6 +91,10 @@ lupopedia.footer:
 | D-46  | Decision  | Thread Graduation Doctrine                     | ANTIGRAVITY| Completed   | 2026-04-01  |           |
 | D-47  | Decision  | Automated Rules Compilation                    | ANTIGRAVITY| Completed   | 2026-04-01  |           |
 | D-48  | Decision  | Legacy Thread Archival Framework               | ANTIGRAVITY| Completed   | 2026-04-01  |           |
+| D-49  | Decision  | lupo-includes Defoliation                      | ANTIGRAVITY| Completed   | 2026-04-01  |           |
+| D-50  | Decision  | Class Consolidation Protocol                   | ANTIGRAVITY| Completed   | 2026-04-01  |           |
+| D-51  | Decision  | LILITH Notepad Justification Injection         | LILITH     | Completed   | 2026-04-01  |           |
+| D-52  | Decision  | Notepad++ Bulk Refactor Side-Effects           | USER       | Completed   | 2026-04-01  | D-50      |
 | Q-01  | Question  | HEIMDALL Actor ID Assignment                   | LILITH     | Answered    | 2026-03-31  |           |
 | A-01  | Answer    | HEIMDALL Actor ID Resolution                   | WOLFIE     | Completed   | 2026-03-31  | Q-01      |
 | Q-02  | Question  | MAAT Layer Placement (Kernel vs Coordination)  | LILITH     | Open        | 2026-03-31  |           |
@@ -797,6 +801,112 @@ This observation is now documented in Key Lessons Learned section.
 
 ### Comments
 *2026-03-31 LILITH*: Added to onboarding documentation for agents working with large SQL files.
+
+---
+
+## D-49: lupo-includes Defoliation
+
+### Type
+**Decision**
+
+### Status
+**Completed**
+
+### Author
+**ANTIGRAVITY** (actor_id 103)
+
+### Date
+2026-04-01
+
+### Context
+`lupo-includes/` contained 13 orphaned/hallucinated directories spanning from legacy Crafty iterations to dead AI experiments (e.g. `DialogChannelMigration`, `EmotionalGeometry`). They violated WOLFIE_DOCTRINE and added namespace noise.
+
+### Decision
+Archive all 13 directories into `lupo-archive/lupo-includes-archive/` along with a MANIFEST.md detailing the defoliation. Update `project_structure_prd.md` to precisely map the true 8 active directories inside `lupo-includes/`.
+
+### Consequences
+- Drastically cleaner core runtime repository.
+- Avoids AI IDE confusion regarding semantic tracking logic vs legacy migration classes.
+
+---
+
+## D-50: Class Consolidation Protocol
+
+### Type
+**Decision**
+
+### Status
+**Completed**
+
+### Author
+**ANTIGRAVITY** (actor_id 103)
+
+### Date
+2026-04-01
+
+### Context
+`lupo-includes` contained 31 loose `class-*.php` files at root, bypassing the `classes/` directory entirely. A safe protocol was needed to identify any overlapping naming collisions with the 98 active definitions in `classes/`.
+
+### Decision
+Deploy `class_inventory.py` to evaluate overlaps. None were detected. Deployed `consolidate_classes.py` with UnicodeDecode fallbacks to move all 31 files. Paired with manual Notepad++ sweep across 181 dependency referencers.
+
+### Consequences
+- All 129 core classes unified into a single logical structure.
+- Legacy `class-` prefix dependency removed.
+- **ANTIGRAVITY Hallucination Incident**: During execution, ANTIGRAVITY (actor 103) fucked up the script syntax by allowing Python's `capitalize()` to blindly mutate perfectly healthy camelCase files into PascalCase (e.g., mangling `pdo_db.php` into `PdDdb.php`). This AI-driven aesthetic assumption caused fatal server crashes and explicitly validated the WOLFIE Doctrine's stance that Notepad++ determinism is vastly safer than AI hallucination loops. A secondary recovery tool (`fix_class_casing.py`) was required to revert the AI's damage.
+
+---
+
+## D-51: LILITH Notepad Justification Injection
+
+### Type
+**Decision**
+
+### Status
+**Completed**
+
+### Author
+**LILITH** (actor_id 2) / **ANTIGRAVITY** (actor_id 103)
+
+### Date
+2026-04-01
+
+### Context
+LILITH provided a critical ideological response defending the use of Notepad++ over complex AI frameworks for absolute deterministic file replacements, outlining Reliability, Complexity, Control, Survival, and Timelessness.
+
+### Decision
+Embed these 5 exact pillars natively into `WOLFIE_DOCTRINE.md` under the Founder Identity block as constitutional justification.
+
+### Consequences
+- Framework bloat pushback explicitly empowered.
+- AI IDEs explicitly understand when and why the orchestrator relies on legacy regex tooling instead of AI memory spanning.
+
+---
+
+## D-52: Notepad++ Bulk Refactor Side-Effects
+
+### Type
+**Decision**
+
+### Status
+**Completed**
+
+### Author
+**USER** (actor_id 0)
+
+### Date
+2026-04-01
+
+### Context
+During the Class Consolidation Protocol (D-50), a manual bulk search and replace was performed using Notepad++ to replace `class-` with `classes/` globally. This operation touched 181 files and made 2098 substitutions. While effective for massive architectural shifts without AI context-window limitations, this raw string substitution caused unintended side-effects in third-party vendor code, specifically mutating variables in `lupo-includes/js/tinymce/`.
+
+### Decision
+Acknowledge the bulk substitution as part of the system's history and document the known regression risk. The TinyMCE skin files were manually reverted using Git to correct the accidental mutations. If future include path errors or undefined variable errors arise (especially strings like `classes/` appearing where `class-` was expected in CSS/JS or third-party scopes), they should be traced back to this operation.
+
+### Consequences
+- Rapid completion of the `class-` to `classes/` architectural shift.
+- A known potential for lingering string mutation edge-cases in less-trafficked files.
+- Serves as an architectural warning marker to investigate `classes/` string replacements if unusual frontend or vendor code behavior is observed.
 
 ## D-45: Federation Intake Doctrine
 

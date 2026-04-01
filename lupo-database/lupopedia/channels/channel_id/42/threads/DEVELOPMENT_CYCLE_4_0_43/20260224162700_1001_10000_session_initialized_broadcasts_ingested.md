@@ -115,7 +115,7 @@ All mandatory engineering doctrines and system status updates have been loaded i
 - ✅ Timestamp Standard (BIGINT YYYYMMDDHHMMSS UTC only)
 - ✅ Soft Delete (is_deleted + deleted_ymdhis mandatory)
 - ✅ Database Access (PDO wrapper + DatabaseFactory only)
-- ✅ OOP Enforcement (no global helpers, class-based logic)
+- ✅ OOP Enforcement (no global helpers, classes/based logic)
 - ✅ Cross-DB Compatibility (MySQL/PostgreSQL/MariaDB neutral SQL)
 - ✅ Windows WSL (use wsl command for Unix tooling)
 - ✅ Forbidden DB Features (no foreign keys, triggers, procedures, views)

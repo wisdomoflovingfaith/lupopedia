@@ -140,7 +140,7 @@ var_dump(lupo_table('lupo_actors'));     // Should output: lupopedia.lupo_actors
 
 ### Step 2.1: Update PDO_DB Class
 
-**File**: `lupo-includes/class-pdo_db.php`
+**File**: `lupo-includes/classes/pdo_db.php`
 
 **Status**: ✅ Already supports schema-qualified names via `quoteIdentifier()`
 
@@ -252,7 +252,7 @@ JOIN lupo_sessions
 
 ### Step 6.1: Update Search Indexer
 
-**File**: `lupo-includes/class-SearchIndexer.php`
+**File**: `lupo-includes/classes/SearchIndexer.php`
 
 **Action**: Update table references
 

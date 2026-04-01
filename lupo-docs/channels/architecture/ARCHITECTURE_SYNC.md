@@ -146,7 +146,7 @@ Cursor must treat Lupopedia as a **Web-Organized Linked Federated Intelligent Ec
 
 ### **1.1 HERMES — Routing Layer**
 
-**File:** `lupo-includes/class-hermes.php`
+**File:** `lupo-includes/classes/hermes.php`
 
 **Purpose:**
 - Central message router for Lupopedia
@@ -156,9 +156,9 @@ Cursor must treat Lupopedia as a **Web-Organized Linked Federated Intelligent Ec
 - Returns next `agent_id` for message routing
 
 **Dependencies:**
-- `class-caduceus.php` (mood signal computation)
-- `class-wolfmind.php` (memory integration)
-- `class-iris.php` (LLM gateway)
+- `classes/caduceus.php` (mood signal computation)
+- `classes/wolfmind.php` (memory integration)
+- `classes/iris.php` (LLM gateway)
 
 **Key Methods:**
 - `route($messagePacket)` — Main routing logic
@@ -175,7 +175,7 @@ Cursor must treat Lupopedia as a **Web-Organized Linked Federated Intelligent Ec
 
 ### **1.2 CADUCEUS — Emotional Balancer for Channels**
 
-**File:** `lupo-includes/class-caduceus.php`
+**File:** `lupo-includes/classes/caduceus.php`
 
 **Purpose:**
 - **NOT a router**
@@ -233,7 +233,7 @@ right_current = (R + B) / (G + B + R + B)
 
 ### **1.3 IRIS — External AI Gateway (LLM Faucet)**
 
-**File:** `lupo-includes/class-iris.php`
+**File:** `lupo-includes/classes/iris.php`
 
 **Purpose:**
 - Loads agent system prompts from `agent_properties` table
@@ -267,7 +267,7 @@ right_current = (R + B) / (G + B + R + B)
 
 ### **1.4 DialogManager — Central Dispatcher**
 
-**File:** `lupo-includes/class-dialog-manager.php`
+**File:** `lupo-includes/classes/dialog-manager.php`
 
 **Purpose:**
 - Inserts incoming message into `dialog_messages` table
@@ -278,10 +278,10 @@ right_current = (R + B) / (G + B + R + B)
 - Returns final response packet
 
 **Dependencies:**
-- `class-hermes.php` (routing)
-- `class-caduceus.php` (mood signals)
-- `class-wolfmind.php` (memory)
-- `class-iris.php` (LLM gateway)
+- `classes/hermes.php` (routing)
+- `classes/caduceus.php` (mood signals)
+- `classes/wolfmind.php` (memory)
+- `classes/iris.php` (LLM gateway)
 
 **Key Methods:**
 - `process($messagePacket)` — Main dispatch flow
@@ -310,7 +310,7 @@ right_current = (R + B) / (G + B + R + B)
 
 ### **1.5 THOTH — Ontological Truth Engine (Skeleton)**
 
-**File:** `lupo-includes/class-thoth.php`
+**File:** `lupo-includes/classes/thoth.php`
 
 **Purpose:**
 - Loads question from `questions` table
@@ -344,7 +344,7 @@ right_current = (R + B) / (G + B + R + B)
 
 ### **2.1 WOLFMIND — Memory Subsystem**
 
-**File:** `lupo-includes/class-wolfmind.php`
+**File:** `lupo-includes/classes/wolfmind.php`
 
 **Purpose:**
 - Stores memory events in `memory_events` table
@@ -646,7 +646,7 @@ Lupopedia uses a custom timestamp format that Cursor must treat as **canonical a
 
 **Cursor must use the unified timestamp class:**
 
-**File:** `lupo-includes/class-timestamp_ymdhis.php`
+**File:** `lupo-includes/classes/timestamp_ymdhis.php`
 
 **This class provides:**
 - `now()` — Get current UTC timestamp
@@ -1015,7 +1015,7 @@ Human sees: all messages in the channel
 
 ## **🟩 13. ROSE (Rosetta Stone Translator)**
 
-**File:** `lupo-includes/class-rose.php`
+**File:** `lupo-includes/classes/rose.php`
 
 **Purpose:**
 - ROSE is the **ONLY expressive agent** in Lupopedia
@@ -1045,13 +1045,13 @@ Human sees: all messages in the channel
 - Cursor must **NOT** turn ROSE into an LLM agent
 - Cursor must **NOT** add thinking or reasoning to ROSE
 - ROSE is a translator, not a conversational agent
-- ROSE uses `class-rose.php` exclusively
+- ROSE uses `classes/rose.php` exclusively
 
 ---
 
 ## **🟩 14. CHRONOS (Temporal Coordination Engine)**
 
-**File:** `lupo-includes/class-chronos.php`
+**File:** `lupo-includes/classes/chronos.php`
 
 **Purpose:**
 - CHRONOS is **kernel**

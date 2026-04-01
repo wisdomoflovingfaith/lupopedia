@@ -134,7 +134,7 @@ Those responsibilities belong to HERMES. CADUCEUS exists to provide an emotional
 
 ## **2. Terminology**
 
-- **CADUCEUS** â€” The emotional balancer for channels (`class-caduceus.php`). Computes channel mood by reading and blending the emotional states of polar agents.  
+- **CADUCEUS** â€” The emotional balancer for channels (`classes/caduceus.php`). Computes channel mood by reading and blending the emotional states of polar agents.  
 - **Countingâ€‘inâ€‘Light** â€” The emotional coordinate system using RGB values (R=Strife, G=Harmony, B=Memory).  
 - **Mood RGB** â€” A sixâ€‘digit hex string (RRGGBB) encoding emotional metadata.  
 - **Emotional Current** â€” A normalized float (0.0â€“1.0) representing channel emotional state, computed by CADUCEUS from polar agent moods.  

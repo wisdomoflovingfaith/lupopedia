@@ -21,8 +21,8 @@ lupopedia.edges:
   outbound_edges:
     - { to: "lupo-docs/doctrine/MOOD_RGB_DOCTRINE.md", type: "updates", weight: 1.0, reason: "Publishes the hybrid model, precedence rule, and behavioral contract." }
     - { to: "lupo-channels/42/threads/2015/20260322_165703_lilith_mood_rgb_doctrine_validation_audit.md", type: "addresses", weight: 1.0, reason: "Directly resolves the structural failures identified in the LILITH audit." }
-    - { to: "lupo-includes/class-caduceus.php", type: "aligns_with", weight: 0.95, reason: "Defines CADUCEUS as vector-only routing influence, not semantic authority." }
-    - { to: "lupo-includes/class-hermes.php", type: "aligns_with", weight: 0.95, reason: "Defines HERMES routing usage as numeric influence only unless a canonical token carries authority." }
+    - { to: "lupo-includes/classes/caduceus.php", type: "aligns_with", weight: 0.95, reason: "Defines CADUCEUS as vector-only routing influence, not semantic authority." }
+    - { to: "lupo-includes/classes/hermes.php", type: "aligns_with", weight: 0.95, reason: "Defines HERMES routing usage as numeric influence only unless a canonical token carries authority." }
 
 lupopedia.footer:
   last_verified: "20260322_170424"

@@ -321,7 +321,7 @@ anubis replaces the need for FK constraints entirely.
 
 anubis is implemented as:
 
-- **PHP Class:** `lupo-includes/class-anubis.php`
+- **PHP Class:** `lupo-includes/classes/anubis.php`
 - **Database Tables:**
   - `anubis_orphaned` - Tracks orphaned references
   - `anubis_redirects` - Maintains semantic redirects for memory redirection

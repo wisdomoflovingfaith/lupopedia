@@ -65,7 +65,7 @@ lupopedia.edges:
       type: implements
       weight: 1.0
       reason: "Enforces section 3.2 — all primary keys generated via IdGenerator::generate()"
-    - to: "lupo-includes/class-DatabaseFactory.php"
+    - to: "lupo-includes/classes/DatabaseFactory.php"
       type: implements
       weight: 1.0
       reason: "Enforces section 3 — all DB access must go through DatabaseFactory::getConnection()"

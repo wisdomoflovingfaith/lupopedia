@@ -92,7 +92,7 @@ file:
 ## Current Status
 
 ### ✅ Phase 1: Database Layer - COMPLETE
-- PDO_DB class exists (`lupo-includes/class-pdo_db.php`)
+- PDO_DB class exists (`lupo-includes/classes/pdo_db.php`)
 - Database connection established in `bootstrap.php`
 - `getPdo()` method available
 - **Action Required:** Fix DialogManager table/field names
@@ -147,7 +147,7 @@ file:
 - [ ] Test LLM response
 
 ### Phase 4: DIALOG Agent Special Handling
-- [ ] Create `class-dialog-agent.php`
+- [ ] Create `classes/dialog-agent.php`
 - [ ] Implement YAML parser
 - [ ] Update DialogManager for DIALOG agent
 - [ ] Test YAML output

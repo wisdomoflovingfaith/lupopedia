@@ -4,16 +4,16 @@
  * All DB access must use DatabaseFactory::getConnection() or lupo_get_db().
  * Returns PDO_DB wrapper only. Direct PDO, mysqli, and new PDO_DB() are forbidden.
  *
- * FILE: lupo-includes/class-DatabaseFactory.php
+ * FILE: lupo-includes/classes/DatabaseFactory.php
  * TYPE: php
  */
 
 if (!defined('LUPOPEDIA_CONFIG_LOADED')) {
-    die("Config not loaded. class-DatabaseFactory.php cannot be called directly.");
+    die("Config not loaded. classes/DatabaseFactory.php cannot be called directly.");
 }
 
 if (!class_exists('PDO_DB')) {
-    require_once __DIR__ . DIRECTORY_SEPARATOR . 'class-pdo_db.php';
+    require_once __DIR__ . DIRECTORY_SEPARATOR . 'classes/pdo_db.php';
 }
 
 class DatabaseFactory {

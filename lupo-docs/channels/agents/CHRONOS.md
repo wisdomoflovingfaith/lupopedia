@@ -148,8 +148,8 @@ CHRONOS provides time awareness, UTC timestamp handling, and temporal coordinati
 
 ## Class Location
 
-**File:** `lupo-includes/class-chronos.php`  
-**Dependencies:** `lupo-includes/class-timestamp_ymdhis.php`
+**File:** `lupo-includes/classes/chronos.php`  
+**Dependencies:** `lupo-includes/classes/timestamp_ymdhis.php`
 
 ## Usage Examples
 

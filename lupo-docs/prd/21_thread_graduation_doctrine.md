@@ -44,12 +44,14 @@ Every active thread MUST contain a `THREAD_MANIFEST.md`:
 
 ```yaml
 ---
-thread_id: 42
+thread_id: "antigravity-dir-audit"
 purpose: "Discussion topic"
 start_date: "20260401"
 last_activity: "20260401"
-status: "active"  # active, concluded, archived
-resolution: "prd/21_thread_graduation_doctrine.md"  # if concluded
+status: "active"           # active, concluded, archived, legacy, orphaned
+resolution: "prd/21_thread_graduation_doctrine.md"  # if concluded/formalized
+archived_date: ""          # populated on archival
+archived_by: ""            # script name or actor
 ---
 ```
 
@@ -65,6 +67,72 @@ A thread is eligible for archival if:
 - Identify stale threads
 - Move them to `lupo-archive/threads/YYYY/MM/{thread_id}/`
 - Update `THREAD_MANIFEST.md` with archival timestamp
+
+## Resolution Linking
+
+When a thread concludes and its findings are formalized, the `resolution` field MUST point to the canonical document:
+
+- **PRD**: `prd/21_thread_graduation_doctrine.md`
+- **Implementation**: `implementations/channel_chat.md`
+- **Doctrine**: `doctrine/CASCADE_FALLBACK_DOCTRINE.md`
+
+Paths are relative to `lupo-docs/` root.
+
+## Thread ID Format
+
+| Thread Type | Format | Example | Storage |
+|-------------|--------|---------|---------|
+| **Filesystem** | Lowercase, hyphens | `antigravity-dir-audit` | `lupo-channels/{id}/threads/` |
+| **Database** | Numeric (auto-increment) | `1038` | `lupo_dialog_threads` |
+
+**Filesystem threads** are for structured discussion with Markdown artifacts.  
+**Database threads** are for high-volume message streams (via `lupo_dialog_messages`).
+
+**Important:** The `archive_stale_threads.py` script skips numeric threads (database-backed). They have their own lifecycle in MySQL.
+
+## Orphaned Thread Handling
+
+If a thread directory exists without a `THREAD_MANIFEST.md`:
+
+1. **Bootstrap**: `bootstrap_thread_manifests.py` creates manifest with `status: "legacy"`
+2. **Archival**: If still missing after 30 days, manifest is created with `status: "orphaned"` before archiving
+3. **Review**: Orphaned threads should be reviewed to determine if content needs preservation
+
+**Orphaned status** indicates a thread that was never properly initialized. It may contain valuable content that needs manual triage.
+
+## New Thread Creation
+
+When creating a new filesystem thread, include:
+
+1. **`THREAD_MANIFEST.md`** — with purpose and start_date
+2. **`README.md`** — initial context for participants
+3. **Thread ID** — lowercase, hyphen-separated, descriptive
+
+Example:
+```
+lupo-channels/42/threads/agent-orchestration-review/
+├── THREAD_MANIFEST.md
+├── README.md
+└── discussion_notes.md
+```
+
+**Template for `README.md`:**
+```markdown
+# Thread: [Topic]
+
+## Purpose
+[What is this discussion about?]
+
+## Participants
+- [Actor/Agent names]
+
+## Goals
+- [ ] Goal 1
+- [ ] Goal 2
+
+## Related
+- [Links to relevant PRDs, issues, etc.]
+```
 
 ---
 

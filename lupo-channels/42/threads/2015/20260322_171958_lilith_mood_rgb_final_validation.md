@@ -20,9 +20,9 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "lupo-docs/doctrine/MOOD_RGB_DOCTRINE.md", type: "audits", weight: 1.0, reason: "Final compliance validation of the canonical hybrid doctrine." }
-    - { to: "lupo-includes/class-caduceus.php", type: "audits", weight: 1.0, reason: "Confirms continuous values remain numeric routing input only." }
-    - { to: "lupo-includes/class-hermes.php", type: "audits", weight: 1.0, reason: "Confirms routing bias consumes CADUCEUS currents without inventing semantic authority." }
-    - { to: "lupo-includes/class-dialog-manager.php", type: "audits", weight: 0.95, reason: "Confirms runtime defaults and positive response token are bounded by doctrine." }
+    - { to: "lupo-includes/classes/caduceus.php", type: "audits", weight: 1.0, reason: "Confirms continuous values remain numeric routing input only." }
+    - { to: "lupo-includes/classes/hermes.php", type: "audits", weight: 1.0, reason: "Confirms routing bias consumes CADUCEUS currents without inventing semantic authority." }
+    - { to: "lupo-includes/classes/dialog-manager.php", type: "audits", weight: 0.95, reason: "Confirms runtime defaults and positive response token are bounded by doctrine." }
     - { to: "lupo-api/dialog/send-message.php", type: "audits", weight: 0.95, reason: "Confirms input acceptance remains syntax-level while doctrine bounds semantics." }
     - { to: "lupo-api/v1/dialog/metrics.php", type: "audits", weight: 0.85, reason: "Confirms telemetry aggregation does not itself create semantic authority." }
     - { to: "lupo-channels/42/threads/2015/20260322_165703_lilith_mood_rgb_doctrine_validation_audit.md", type: "supersedes_in_validation_state", weight: 1.0, reason: "Final validation closes the prior non-compliant audit after ATHENA structural correction." }

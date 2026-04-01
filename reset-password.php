@@ -20,7 +20,7 @@ if (empty($token)) {
     $error = 'Invalid or missing reset token.';
 } else {
     // Load required classes
-    require_once LUPOPEDIA_PATH . '/lupo-includes/class-DatabaseFactory.php';
+    require_once LUPOPEDIA_PATH . '/lupo-includes/classes/DatabaseFactory.php';
     
     $db = DatabaseFactory::getConnection();
     $prefix = defined('LUPO_TABLE_PREFIX') ? LUPO_TABLE_PREFIX : 'lupo_';

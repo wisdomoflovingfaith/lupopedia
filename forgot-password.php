@@ -24,7 +24,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $error = 'Please enter a valid email address.';
     } else {
         // Load required classes
-        require_once LUPOPEDIA_PATH . '/lupo-includes/class-DatabaseFactory.php';
+        require_once LUPOPEDIA_PATH . '/lupo-includes/classes/DatabaseFactory.php';
         
         $db = DatabaseFactory::getConnection();
         $prefix = defined('LUPO_TABLE_PREFIX') ? LUPO_TABLE_PREFIX : 'lupo_';

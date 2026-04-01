@@ -256,7 +256,7 @@ Stores mirrored snapshots used for lineage and recovery.
 
 ## **5. PHP Class Implementation**
 
-anubis is implemented as `class-anubis.php` in `lupo-includes/`.
+anubis is implemented as `classes/anubis.php` in `lupo-includes/`.
 
 ### **5.1 Core Methods**
 

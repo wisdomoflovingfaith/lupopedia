@@ -32,7 +32,7 @@ Successfully completed all version 4.0.87 objectives including ROSE channel-nati
 ## Session Achievements
 
 ### ✅ 1. ROSE Channel-Native Implementation
-- **Complete Rewrite**: `lupo-includes/class-rose.php` (643 lines)
+- **Complete Rewrite**: `lupo-includes/classes/rose.php` (643 lines)
 - **Channel Reading**: Scans `lupo-channels/` for actual artifacts
 - **Repository Grounding**: Responses based on real evidence, no profile guessing
 - **Packet Generation**: ~2000 character dialog packets with mood_RGB framing
@@ -84,7 +84,7 @@ Successfully completed all version 4.0.87 objectives including ROSE channel-nati
 
 ### New Files (18)
 1. **ROSE Implementation**
-   - `lupo-includes/class-rose.php` (complete rewrite)
+   - `lupo-includes/classes/rose.php` (complete rewrite)
    - `test_rose_channel_native.php` (test script)
    - `simple_rose_test.php` (test script)
    - `lupo-chats/rose/json/20260325_101037_DIALOG_channel_native_rose_implementation.json`

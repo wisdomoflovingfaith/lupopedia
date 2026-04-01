@@ -38,7 +38,7 @@ lupopedia.headers:
 - Declarative intention is clear: one thread per task scope, explicit routing, new file naming includes thread_id.
 - Aligns with `MULTI_AGENT_COORDINATION_DOCTRINE` rule COM001 (channel artifacts required) and ATER001 (substantive artifact body required).
 - Good integration with existing channel doc model: `CHANNEL_BASED_COORDINATION_DOCTRINE` has threading topology and artifact routing, so the idea of dedicated per-task threads is conceptually consistent.
-- Legislature includes both stream naming and class-range allocation (task/review/impl/decision). This may reduce ambiguous shared thread use.
+- Legislature includes both stream naming and classes/range allocation (task/review/impl/decision). This may reduce ambiguous shared thread use.
 
 ---
 

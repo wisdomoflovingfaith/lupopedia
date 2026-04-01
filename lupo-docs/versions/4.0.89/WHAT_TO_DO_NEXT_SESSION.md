@@ -70,7 +70,7 @@ This file is the **session handoff for the headers / import / release-gate track
 4. **Code / scripts** (if you touch imports or parity):
    - `lupo-scripts/import_content.py` — **`--write-back`**; legacy reconciliation **`_remap_stale_content_pk`** / **`_find_legacy_content_id`**; default does **not** rewrite markdown.
    - `lupo-scripts/import_content.php` — docblock no longer claims Python always write-backs.
-   - Prior session parity (unchanged unless regressing): `HeaderDbSync.php` CRLF order, `class-pdo_db.php` **`SET NAMES utf8mb4`**, `import_content.py` **`_norm_path_repo`**, `lib/header_validation.py` path / **`thread_id`** rules.
+   - Prior session parity (unchanged unless regressing): `HeaderDbSync.php` CRLF order, `classes/pdo_db.php` **`SET NAMES utf8mb4`**, `import_content.py` **`_norm_path_repo`**, `lib/header_validation.py` path / **`thread_id`** rules.
 
 ---
 

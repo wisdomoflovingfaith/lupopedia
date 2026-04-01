@@ -54,7 +54,7 @@ if (!is_file($config)) {
     exit(1);
 }
 require_once $config;
-require_once $base . DIRECTORY_SEPARATOR . 'lupo-includes' . DIRECTORY_SEPARATOR . 'class-pdo_db.php';
+require_once $base . DIRECTORY_SEPARATOR . 'lupo-includes' . DIRECTORY_SEPARATOR . 'classes/pdo_db.php';
 
 $table_prefix = defined('LUPO_TABLE_PREFIX') ? LUPO_TABLE_PREFIX : 'lupo_';
 $dsn = (defined('DB_TYPE') ? DB_TYPE : 'mysql') . ":host=" . (defined('DB_HOST') ? DB_HOST : 'localhost') . ";dbname=" . (defined('DB_NAME') ? DB_NAME : '') . ";charset=utf8mb4";

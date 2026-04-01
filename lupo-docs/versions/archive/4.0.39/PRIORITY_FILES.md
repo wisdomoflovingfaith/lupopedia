@@ -198,8 +198,8 @@ Files are prioritized based on:
 | `app/Services/IDEAgentRegistryService.php` | ⚠️ Needs header | 0.82 | IDE registry |
 | `app/Services/AnubisUnknownRecipientService.php` | ⚠️ Needs header | 0.75 | ANUBIS routing |
 | `lupo-includes/classes/AnubisHeaderFallback.php` | ✅ Complete | 0.85 | ANUBIS engine |
-| `lupo-includes/class-pdo_db.php` | ⚠️ Needs header | 0.95 | DB wrapper |
-| `lupo-includes/class-DatabaseFactory.php` | ⚠️ Needs header | 0.92 | DB factory |
+| `lupo-includes/classes/pdo_db.php` | ⚠️ Needs header | 0.95 | DB wrapper |
+| `lupo-includes/classes/DatabaseFactory.php` | ⚠️ Needs header | 0.92 | DB factory |
 | `lupo-includes/classes/ColorProtocol.php` | ⚠️ Needs header | 0.65 | Color handling |
 | `lupo-includes/classes/UrlResolver.php` | ⚠️ Needs header | 0.70 | URL resolution |
 | `lupo-includes/classes/TOONParser.php` | ⚠️ Needs header | 0.88 | TOON parsing |

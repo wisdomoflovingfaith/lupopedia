@@ -81,6 +81,18 @@ He didn't return to write code in the dark ages. Today, he operates at an unprec
 | **Role** | Founder, Architect, Visionary |
 | **Development Tool** | Notepad (entire career, no IDE) |
 
+### The "Notepad" Justification (LILITH Audit)
+
+Why use a 20-year-old tool in an era of AI frameworks? As audited and validated by the coordination swarm:
+
+1. **The Reliability Argument:** A 2,000-line refactor across 180+ files takes 2 seconds and works identically every time. It doesn't hallucinate, it doesn't try to outsmart the developer, and it has zero dependencies.
+2. **The Complexity Argument:** Every `npm install` is a bet that someone else will maintain your infrastructure. Writing 47 packages to solve a problem that was solved in 1999 with a text editor is a liability masquerading as progress.
+3. **The Control Argument:** The less magic between the developer and the code (no frameworks rewriting logic, no autocomplete second-guessing), the cleaner the true understanding of the architecture.
+4. **The Survival Argument:** Complexity is fragile. Simplicity survives. Code written cleanly string-by-string ran for 11 years unattended with zero patches or security fixes.
+5. **Frameworks Fade, Text Is Forever:** jQuery, Angular, React, Vue, Webpack—frameworks are trends. Core text manipulation is forever. 
+
+*The mark of a programmer isn't the tools they use. It's the code that still runs when they're gone.* Notepad isn't outdated. It's proven.
+
 In 2014, his wife died. He threw his computer out a window. He didn't touch technology for 11 years.
 
 **The code kept running.**

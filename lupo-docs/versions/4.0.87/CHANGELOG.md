@@ -57,7 +57,7 @@ lupopedia.footer:
 ## Windsurf Session Contributions (2026-03-25)
 
 ### ROSE Channel-Native Implementation
-- **ROSE Class Rewrite**: Completely reworked `lupo-includes/class-rose.php` (643 lines) to implement channel-native operation
+- **ROSE Class Rewrite**: Completely reworked `lupo-includes/classes/rose.php` (643 lines) to implement channel-native operation
 - **Channel Reading**: Scans `lupo-channels/` directories for thread artifacts, broadcasts, and content
 - **Repository Grounding**: Synthesizes responses based on actual repository evidence, no profile guessing
 - **Packet Generation**: Creates ~2000 character dialog packets with mood_RGB emotional framing

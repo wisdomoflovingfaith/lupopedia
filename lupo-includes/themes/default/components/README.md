@@ -288,7 +288,7 @@ include LUPO_UI_PATH . '/components/semantic_map.php';
 
 **Related Files:**
 - Layout: `/lupo-includes/themes/default/layouts/main_layout.php`
-- ConnectionsService: `/lupo-includes/class-ConnectionsService.php`
+- ConnectionsService: `/lupo-includes/classes/ConnectionsService.php`
 - CSS: Included in component (inline styles)
 - JavaScript: Panel toggle function defined in component
 

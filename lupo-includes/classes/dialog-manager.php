@@ -14,12 +14,12 @@
  * This is the beating heart of the OS.
  */
 
-require_once __DIR__ . '/class-hermes.php';
-require_once __DIR__ . '/class-caduceus.php';
-require_once __DIR__ . '/class-wolfmind.php';
-require_once __DIR__ . '/class-iris.php';
-require_once __DIR__ . '/class-hermes.php';
-require_once __DIR__ . '/class-wolfmind.php';
+require_once __DIR__ . '/classes/hermes.php';
+require_once __DIR__ . '/classes/caduceus.php';
+require_once __DIR__ . '/classes/wolfmind.php';
+require_once __DIR__ . '/classes/iris.php';
+require_once __DIR__ . '/classes/hermes.php';
+require_once __DIR__ . '/classes/wolfmind.php';
 
 class DialogManager
 {

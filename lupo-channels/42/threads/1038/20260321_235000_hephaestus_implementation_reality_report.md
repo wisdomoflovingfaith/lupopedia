@@ -221,8 +221,8 @@ lupo-tests/integration/
 
 | Dependency | Location | Status |
 |-------------|----------|---------|
-| Database class | lupo-includes/class-pdo_db.php | ✅ EXISTS |
-| Session Manager | lupo-includes/class-SessionManager.php | ✅ EXISTS |
+| Database class | lupo-includes/classes/pdo_db.php | ✅ EXISTS |
+| Session Manager | lupo-includes/classes/SessionManager.php | ✅ EXISTS |
 
 ---
 

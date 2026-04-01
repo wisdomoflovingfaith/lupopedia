@@ -16,7 +16,7 @@ if (!defined('LUPOPEDIA_PATH')) {
 }
 
 // Include ROSE class
-require_once(LUPOPEDIA_PATH . '/lupo-includes/class-rose.php');
+require_once(LUPOPEDIA_PATH . '/lupo-includes/classes/rose.php');
 
 // Mock database class for testing
 class MockDB

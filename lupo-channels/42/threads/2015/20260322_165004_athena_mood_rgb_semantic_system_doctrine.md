@@ -23,8 +23,8 @@ lupopedia.edges:
     - { to: "dialog.yaml", type: "reads", weight: 1.0, reason: "Dialog format and historical axis labels were taken from dialog.yaml." }
     - { to: "lupo-api/dialog/send-message.php", type: "reads", weight: 1.0, reason: "Runtime validation/default behavior verified here." }
     - { to: "lupo-api/v1/dialog/metrics.php", type: "reads", weight: 0.95, reason: "Operational telemetry usage verified here." }
-    - { to: "lupo-includes/class-caduceus.php", type: "reads", weight: 1.0, reason: "Routing-current calculation verified here." }
-    - { to: "lupo-includes/class-hermes.php", type: "reads", weight: 1.0, reason: "Routing bias consumption verified here." }
+    - { to: "lupo-includes/classes/caduceus.php", type: "reads", weight: 1.0, reason: "Routing-current calculation verified here." }
+    - { to: "lupo-includes/classes/hermes.php", type: "reads", weight: 1.0, reason: "Routing bias consumption verified here." }
     - { to: "lupo-channels/42/threads/1037/20260321_160000_lilith_versioning_doctrine_gap_analysis.md", type: "evidence", weight: 0.9, reason: "B1B1B1 ambiguity-state usage validated here." }
     - { to: "lupo-channels/42/threads/1045/20260321_185000_wolfie_system_correction_directive.md", type: "evidence", weight: 0.9, reason: "FF0000 blocking/correction usage validated here." }
     - { to: "lupo-channels/42/threads/1045/20260321_193000_wolfie_phase_2_gate_pass.md", type: "evidence", weight: 0.9, reason: "00FF00 pass/approval usage validated here." }

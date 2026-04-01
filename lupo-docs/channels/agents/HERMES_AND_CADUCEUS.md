@@ -103,7 +103,7 @@ Agent classification and routing only matter when multiple agents are active and
 ### **HERMES**
 
 **Identity:**
-- **Class Name:** `HERMES` (PHP class in `lupo-includes/class-hermes.php`)
+- **Class Name:** `HERMES` (PHP class in `lupo-includes/classes/hermes.php`)
 - **What It Is NOT:** NOT an agent, NOT a subsystem, NOT a database table
 - **What It IS:** Pure routing infrastructure layer
 - **Created By:** Eric Robin Gerdes ("Wolfie") as part of Lupopedia 3.0.0
@@ -119,7 +119,7 @@ Agent classification and routing only matter when multiple agents are active and
 ### **CADUCEUS**
 
 **Identity:**
-- **Class Name:** `Caduceus` (PHP class in `lupo-includes/class-caduceus.php`)
+- **Class Name:** `Caduceus` (PHP class in `lupo-includes/classes/caduceus.php`)
 - **What It Is NOT:** NOT a router, NOT a routing subsystem, NOT an agent, NOT a database table
 - **What It IS:** Emotional balancer for channels
 - **Created By:** Eric Robin Gerdes ("Wolfie") as part of Lupopedia 3.0.0
@@ -303,7 +303,7 @@ However, these bindings are **NOT universal**. Nodes **MAY** rebind left/right p
 ### **HERMES Location**
 
 **Files:**
-- **Implementation:** `lupo-includes/class-hermes.php`
+- **Implementation:** `lupo-includes/classes/hermes.php`
 - **RFC Specification:** `lupo-docs/protocols/HERMES_ROUTING_RFC.md`
 - **Architecture Documentation:** `lupo-docs/core/ARCHITECTURE_SYNC.md` (Section 1.1)
 
@@ -322,7 +322,7 @@ However, these bindings are **NOT universal**. Nodes **MAY** rebind left/right p
 ### **CADUCEUS Location**
 
 **Files:**
-- **Implementation:** `lupo-includes/class-caduceus.php`
+- **Implementation:** `lupo-includes/classes/caduceus.php`
 - **RFC Specification:** `lupo-docs/protocols/CADUCEUS_ROUTING_RFC.md` (v3.0.1)
 - **Architecture Documentation:** `lupo-docs/core/ARCHITECTURE_SYNC.md` (Section 1.2)
 - **Doctrine:** `lupo-docs/appendix/COUNTING_IN_LIGHT.md`

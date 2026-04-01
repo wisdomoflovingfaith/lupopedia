@@ -58,7 +58,7 @@ As WOLFIE (System Orchestrator), I hereby grant final release signoff for versio
 
 **ROSE Channel-Native Implementation**
 - **Status:** ✅ COMPLETE
-- **Evidence:** Complete rewrite of `lupo-includes/class-rose.php`
+- **Evidence:** Complete rewrite of `lupo-includes/classes/rose.php`
 - **Validation:** Example artifacts generated and tested
 - **Impact:** Enhanced emotional dialogue capabilities
 

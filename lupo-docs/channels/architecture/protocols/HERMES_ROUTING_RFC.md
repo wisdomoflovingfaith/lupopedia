@@ -137,8 +137,8 @@ This RFC defines the canonical routing protocol, agent pool selection, tiebreake
 
 ## **2. Terminology**
 
-- **HERMES** â€” The routing layer class (`class-hermes.php`).  
-- **CADUCEUS** â€” The mood signal helper class (`class-caduceus.php`).  
+- **HERMES** â€” The routing layer class (`classes/hermes.php`).  
+- **CADUCEUS** â€” The mood signal helper class (`classes/caduceus.php`).  
 - **Message Packet** â€” A structured array containing routing metadata.  
 - **Routing Current** â€” A float value (0.0â€“1.0) indicating analytical (`left`) or creative (`right`) bias.  
 - **Agent Pool** â€” A collection of agents available for routing within a specific category.  

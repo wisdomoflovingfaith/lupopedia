@@ -20,9 +20,9 @@ lupopedia.headers:
 lupopedia.edges:
   outbound_edges:
     - { to: "lupo-docs/doctrine/MOOD_RGB_DOCTRINE.md", type: "audits", weight: 1.0, reason: "Primary doctrine under review." }
-    - { to: "lupo-includes/class-caduceus.php", type: "audits", weight: 1.0, reason: "Runtime routing consumes mood_rgb numerically." }
-    - { to: "lupo-includes/class-hermes.php", type: "audits", weight: 1.0, reason: "Routing decisions depend on CADUCEUS currents." }
-    - { to: "lupo-includes/class-dialog-manager.php", type: "audits", weight: 0.95, reason: "Runtime emits default positive token 88FF88 without doctrinal action rules." }
+    - { to: "lupo-includes/classes/caduceus.php", type: "audits", weight: 1.0, reason: "Runtime routing consumes mood_rgb numerically." }
+    - { to: "lupo-includes/classes/hermes.php", type: "audits", weight: 1.0, reason: "Routing decisions depend on CADUCEUS currents." }
+    - { to: "lupo-includes/classes/dialog-manager.php", type: "audits", weight: 0.95, reason: "Runtime emits default positive token 88FF88 without doctrinal action rules." }
     - { to: "lupo-api/dialog/send-message.php", type: "audits", weight: 0.95, reason: "API accepts any valid six-hex mood_rgb value." }
     - { to: "lupo-api/v1/dialog/metrics.php", type: "audits", weight: 0.85, reason: "Metrics aggregate mood_rgb as telemetry but do not resolve semantics." }
     - { to: "lupo-channels/42/threads/2015/20260322_165004_athena_mood_rgb_semantic_system_doctrine.md", type: "audits", weight: 0.9, reason: "Audits the thread record describing the doctrine as canonical and evidence-based." }

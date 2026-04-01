@@ -29,6 +29,9 @@
 - **`app/` Restored**: Permanently restored `lupo-app/` back to canonical `app/` to prevent AI hallucination loops.
 - **Loose File Sanitization**: Surgically reviewed 19 loose files sitting at the root. Migrated constitutional scopes to `lupo-docs/implementations/` and `lupo-docs/doctrine/`. Migrated scripts to `lupo-scripts/`, configuration logic to `lupo-rules/` and `lupo-config/`. Stale testing/JSON debris packed into `lupo-archive/`. Preserved `CHANGELOG_ARCHIVE.md` and `CURRENT_UTC` as protected temporal anchors.
 - **`.gitignore`**: Fixed end-of-file encoding corruption block (`l u p o...`) and comprehensively added dynamic directories (`lupo-tmp/`, `lupo-cache/`, `lupo-sessions/`).
+- **`lupo-includes` Defoliation**: Identified and archived 13 AI-hallucinated dead directories out of the includes folder to `lupo-archive/lupo-includes-archive/`.
+- **Class Consolidation Protocol**: Executed Python scripts (`class_inventory.py` & `consolidate_classes.py`) to flawlessly relocate 31 loose `class-*.php` items into the formal `classes/` structure without conflicts, pairing with surgical Notepad++ updates across 181 files.
+- **WOLFIE Doctrine Upgrade**: Cemented LILITH's 5 pillar "Notepad vs Frameworks" philosophical audit immediately into the WOLFIE_DOCTRINE.
 
 ---
 
