@@ -24,6 +24,9 @@
             "version": "1.0.0",
             "date": "20260331220000",
             "changes": "Initial creation",
+            "changelog": "versions/v1.0.0/changelog.md",
+            "decisions": "versions/v1.0.0/decisions.md",
+            "observations": "versions/v1.0.0/observations.md",
             "verified_by": "lilith",
             "verified_by_actor_id": 2
         }
