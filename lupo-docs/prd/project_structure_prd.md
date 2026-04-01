@@ -18,7 +18,6 @@ This document describes the top‑level organization of the Lupopedia codebase. 
 | `lupo-admin_sections/` | Directory | Sub‑sections of admin functionality (e.g., user management). |
 | `lupo-agents/` | Directory | Configuration for AI agents (one folder per agent). |
 | `lupo-api/` | Directory | REST API entry points and related helpers. |
-| `lupo-app/` | Directory | Application‑level entry scripts and bootstrap files. |
 | `lupo-archive/` | Directory | Archived legacy code and historical artifacts (read‑only). |
 | `lupo-backups/` | Directory | Database and file backups created by maintenance scripts. |
 | `lupo-bin/` | Directory | Executable CLI utilities (e.g., version bump, migration helpers). |
@@ -59,10 +58,11 @@ This document describes the top‑level organization of the Lupopedia codebase. 
 | `config.php`, `install.php`, `index.php`, etc. | Files | Core entry points that live at the repository root. |
 | `node_modules/` | Directory | NPM dependency cache; not part of the core application. |
 | `vendor/` (if present) | Directory | Composer packages – currently unused per project doctrine. |
+| `.venv/` | Directory | Python virtual environment for executing administrative scripts. |
 
 ## Legacy / Irrelevant Folders
 The repository may contain leftover directories that are no longer required:
-- `.cascade/`, `.cursor/`, `.lexa/`, `.lilith/`, `.windsurf/` – hidden IDE‑agent workspaces; keep only if they contain active artifacts, otherwise delete.
+- `.cascade/`, `.cursor/`, `.idea/`, `.kiro/`, `.lexa/`, `.lilith/`, `.qodo/`, `.vscode/`, `.windsurf/` – hidden IDE‑agent workspaces; keep only if they contain active artifacts, otherwise delete.
 - `lupo-archive/` – holds historic code; can be archived off‑site if no longer needed.
 - Any empty `lupo-` prefixed directories without code or documentation should be reviewed before removal.
 
@@ -72,17 +72,19 @@ The repository may contain leftover directories that are no longer required:
 3. **Run the Prefix Normalization Audit** (see `lupo-docs/prd/prefix_normalization_audit_prd.md`) periodically to ensure documentation references match actual directory names.
 4. **Clean up hidden IDE workspaces** (`.cascade`, `.cursor`, etc.) after a sprint to avoid clutter.
 
-### STRICT EXCEPTION: `node_modules/`
+### STRICT EXCEPTIONS: `node_modules/` and `app/`
 > [!WARNING]
 > The `node_modules/` directory must **NEVER** be renamed or prefixed (e.g., `lupo-node_modules/`). External tooling, NPM workflows, and agents explicitly rely on the exact literal `node_modules` string. Changing this will immediately shatter dependencies and break semantic and TOON JSON compilation relying on standard JavaScript toolchains. Do not modify.
+> 
+> The `app/` directory must **NEVER** be prefixed as `lupo-app/`. It prevents standard composer autoloader mapping and breaks PSR-4 namespace resolution used by system foundational services.
 
 ---
 *Generated on 2026‑04‑01 by Antigravity (cursor IDE agent).*
 ## Important Sub‑folders
 
-The following sub‑folders within `lupo-docs/` are critical for understanding project organization and should be referenced in documentation:
+The following sub‑folders are critical for understanding project organization and should be referenced in documentation:
 
-| Sub‑folder | Description |
+| Directory Path | Description |
 |------------|-------------|
 | `lupo-docs/versions/` | Contains version‑specific documentation, release notes, and work summaries (e.g., `4.0.93/KIRO_WORK_SUMMARY.md`). |
 | `lupo-docs/database/lupopedia/tables/` | Holds documentation of database table schemas, TOON JSON files, and migration guidance. |
@@ -92,6 +94,9 @@ The following sub‑folders within `lupo-docs/` are critical for understanding p
 | `lupo-docs/channels/` | Detailed documentation on specific channel rules, histories, and conventions. |
 | `lupo-docs/implementations/` | Technical documentation and execution notes for specific feature implementations. |
 | `lupo-docs/api/` | Authoritative API specs and endpoint documentation for integrations. |
+| `lupo-rules/root/` | Contains the highest-authority, non-negotiable constitutional rules and doctrines governing the codebase. |
+| `lupo-research/federation_nodes/` | Formal ingestion structure for external federation research, guarded by strict RAG (read-only) boundaries. |
+| `lupo-skills/lupopedia-headers/` | Contains the agent skills logic required to parse, update, and write LUPOPEDIA headers. |
 
 ## Documentation Sub‑folders
 

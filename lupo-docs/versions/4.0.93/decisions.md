@@ -87,6 +87,10 @@ lupopedia.footer:
 | D-42  | Decision  | Project Structure Excep. (node_modules, app)   | WOLFIE     | Accepted    | 2026-04-01  | D-39      |
 | D-43  | Decision  | Prompt Migration to Actor Workspaces           | ANTIGRAVITY| Completed   | 2026-04-01  |           |
 | D-44  | Decision  | Root Directory Sanitization (Batches 6-7)      | ANTIGRAVITY| Completed   | 2026-04-01  |           |
+| D-45  | Decision  | Federation Intake Doctrine                     | ANTIGRAVITY| Completed   | 2026-04-01  |           |
+| D-46  | Decision  | Thread Graduation Doctrine                     | ANTIGRAVITY| Completed   | 2026-04-01  |           |
+| D-47  | Decision  | Automated Rules Compilation                    | ANTIGRAVITY| Completed   | 2026-04-01  |           |
+| D-48  | Decision  | Legacy Thread Archival Framework               | ANTIGRAVITY| Completed   | 2026-04-01  |           |
 | Q-01  | Question  | HEIMDALL Actor ID Assignment                   | LILITH     | Answered    | 2026-03-31  |           |
 | A-01  | Answer    | HEIMDALL Actor ID Resolution                   | WOLFIE     | Completed   | 2026-03-31  | Q-01      |
 | Q-02  | Question  | MAAT Layer Placement (Kernel vs Coordination)  | LILITH     | Open        | 2026-03-31  |           |
@@ -793,6 +797,106 @@ This observation is now documented in Key Lessons Learned section.
 
 ### Comments
 *2026-03-31 LILITH*: Added to onboarding documentation for agents working with large SQL files.
+
+## D-45: Federation Intake Doctrine
+
+### Type
+**Decision**
+
+### Status
+**Completed**
+
+### Author
+**ANTIGRAVITY** (actor_id 103) - IDE Agent
+
+### Date
+2026-04-01
+
+### Context
+Needed a structured approach to safely integrate external knowledge frameworks (e.g., Doom Emacs) during research without hallucinated code absorption.
+
+### Decision
+Created `20_federation_intake_doctrine.md` to define strict RAG-only boundaries inside `.cursorrules`. Required `MANIFEST.md` generation for all external nodes under `lupo-research/federation_nodes/`.
+
+### Consequences
+Protects system architecture from hallucinated external implementations while supporting rigorous structural research.
+
+---
+
+## D-46: Thread Graduation Doctrine
+
+### Type
+**Decision**
+
+### Status
+**Completed**
+
+### Author
+**ANTIGRAVITY** (actor_id 103) - IDE Agent
+
+### Date
+2026-04-01
+
+### Context
+`lupo-channels/` grew to 70+ legacy threads lacking a formal lifecycle or sunset strategy, muddying up active context.
+
+### Decision
+Created `21_thread_graduation_doctrine.md`. Defined Active -> Concluded -> Formalized -> Archived statuses with forced migration protocols.
+
+### Consequences
+Reduces context window overload and enforces documentation formulation before a thread is officially sunset.
+
+---
+
+## D-47: Automated Rules Compilation
+
+### Type
+**Decision**
+
+### Status
+**Completed**
+
+### Author
+**ANTIGRAVITY** (actor_id 103) - IDE Agent
+
+### Date
+2026-04-01
+
+### Context
+Manual `.cursorrules` modifications were frequently overriding IDE-specific instructions when architectural rules needed sweeping changes.
+
+### Decision
+Created `compile_agent_rules.py` leveraging safe `# === GENERATED RULES START ===` injection boundaries.
+
+### Consequences
+System dynamically compiles architectural doctrine into the user workspace without destructive overrides to local developer preferences.
+
+---
+
+## D-48: Legacy Thread Archival Framework
+
+### Type
+**Decision**
+
+### Status
+**Completed**
+
+### Author
+**ANTIGRAVITY** (actor_id 103) - IDE Agent
+
+### Date
+2026-04-01
+
+### Context
+With the introduction of the Thread Graduation Doctrine, existing documentation metadata was severely fragmented or completely lacking.
+
+### Decision
+Created `archive_stale_threads.py` (30-day inactivity TTL check) and `bootstrap_thread_manifests.py` to computationally resolve missing retro-metadata across all physical threads.
+
+### Consequences
+Automatic continuous cleanup of deprecated operational discussion contexts.
+
+---
 
 ## D-40: Founder Context & WOLFIE Doctrine
 

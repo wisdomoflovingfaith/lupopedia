@@ -296,13 +296,19 @@ All planning, PRDs, and implementation must reference and comply with these docs
 - **[x] .gitignore updated** — Added `lupo-database/lupopedia/csv/` to prevent CSV data exports from being committed
 - **[x] project_structure_prd.md updated** — Added "Important Sub-folders" section documenting versions/, database/lupopedia/tables/, prd/, doctrine/, and knowledge/
 
-## Root Architecture Sanitization & PRD Backfill (2026-04-01, Antigravity thread)
+## Root Architecture Sanitization & Documentation PRD Backfill (2026-04-01, Antigravity thread)
 
 - **[x] WOLFIE Doctrine Output** — Re-aligned founder context logic (parallel IDE orchestration + Notepad++ fallback).
+- **[x] Documentation Governance & Federation Intake** — Created `20_federation_intake_doctrine.md` establishing `MANIFEST.md` generation and `.cursorrules` RAG boundaries for `lupo-research/federation_nodes/`.
+- **[x] Thread Graduation Lifecycle** — Created `21_thread_graduation_doctrine.md` formalizing Active -> Formalized -> Archived lifecycles for project threads.
+- **[x] Automation Scripts Deployed** — Created `archive_stale_threads.py`, `compile_agent_rules.py`, `generate_master_index.py`, and `bootstrap_thread_manifests.py` to enforce documentation hygiene computationally.
 - **[x] New PRDs** — ASCLEPIUS metrics (23) and CLI Interface (24) established.
 - **[x] TOON/YAML Baseline** — Explicit AI token optimization rationale appended.
 - **[x] Structure Exceptions** — Declared `node_modules` and `app` off-limits to prefixing.
 - **[x] Root Defrag Execution** — Dismantled `lupo-prompts/`. Purged root artifacts into `lupo-archive` and `lupo-docs`, safeguarding `CHANGELOG_ARCHIVE` and `CURRENT_UTC`. Corrected EOF corruption array in `.gitignore`.
+- **[x] Deprecated filesystem-based status directory** — Cleaned out `lupo-docs/status/`.
+- **[x] Archived 135 historical files** — Safely moved old execution reports to `lupo-archive/lupo-docs-status-archive/`.
+- **[x] Established channel/thread system as canonical coordination mechanism** — Formally completed the transition from file-based coordination.
 
 ## Next Steps (4.0.94+)
 - Complete enforce_doctrine.py implementation for all .js, .php, and SQL assets

@@ -1,10 +1,23 @@
 # Lupopedia 4.0.93 CHANGELOG
 
-## v4.0.93 (April 1, 2026) — Root Architecture Sanitization & PRD Backfill (Antigravity thread)
+## [2026-04-01] Deprecated lupo-docs/status/ Directory
+
+- **Archived**: 135 historical IDE handoff files moved to `lupo-archive/lupo-docs-status-archive/`
+- **Rationale**: With the introduction of `lupo_channels`, `lupo_dialog_threads`, and `lupo_dialog_messages`, static status files are no longer needed for active development.
+- **Future coordination**: All agent handoffs and implementation reports should use Channel 42 threads or formal channel documentation.## v4.0.93 (April 1, 2026) — Root Architecture Sanitization & PRD Backfill (Antigravity thread)
 
 ### Constitutional & Identity Updates
 - **WOLFIE Doctrine Update (`lupo-rules/root/WOLFIE_DOCTRINE.md`)**: Realigned Founder identity context to accurately document High Performance Computing background, solo-developer survival discipline, and modern orchestration workflow (managing parallel AI IDEs while leveraging Notepad++ for complex search/replace bypasses).
 - **TOON Doctrine Update (`lupo-docs/doctrine/TOON_DOCTRINE.md`)**: Documented the strategic necessity of TOON (YAML) over JSON specifically for optimizing AI token payloads.
+
+### Documentation Governance & Automation
+- **Federation Intake Doctrine**: Created `20_federation_intake_doctrine.md` establishing explicit read-only RAG bounds inside `.cursorrules`. Bootstrapped the structure for integration research in `lupo-research/federation_nodes/`.
+- **Thread Graduation Doctrine**: Established `21_thread_graduation_doctrine.md` detailing the formal closure cycle of threads (Active -> Concluded -> Formalized -> Archived). 
+- **Automation Pipeline System**: Integrated four new powerful orchestration scripts:
+  - `compile_agent_rules.py`: Synthesizes structural doctrine into `.cursorrules` via safe injection boundaries protecting manual contexts.
+  - `archive_stale_threads.py`: Migrates inactive threads older than 30 days dynamically.
+  - `bootstrap_thread_manifests.py`: Computationally derives legacy creation timestamps mapping to proper `THREAD_MANIFEST.md` generation.
+  - `generate_master_index.py`: Outputs comprehensive cross-linked `LUPOPEDIA_MASTER_INDEX.md` reference matrix.
 
 ### Missing PRD Backfilling
 - **`23_health_check_asclepius_prd.md`**: New PRD defining the ASCLEPIUS agent (1009) orchestration role for system metrics and CLI health checks.

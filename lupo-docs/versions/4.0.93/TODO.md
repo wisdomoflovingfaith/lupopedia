@@ -110,10 +110,17 @@ lupopedia.footer:
 ## 🛠️ **4.0.93 Documentation Update Status**
 
 ### New Tasks (from this thread)
-- Implement context_id in all header documentation and validators
-- Create lupo-contexts/4.0.93/decisions_context.md
-- Ensure all decisions.md files follow new format (see PRD 17_decisions_format.md)
-- Update lupo-scripts (php/py) to validate context_id
+- [x] Archive lupo-docs/status/ directory
+- [x] Port any unique architectural content from archived files to canonical PRDs
+- [x] Created `20_federation_intake_doctrine.md`
+- [x] Created `21_thread_graduation_doctrine.md`
+- [x] Update project structure PRD with `federation_nodes/`
+- [x] Create `.cursorrules` injection boundary strategy (`compile_agent_rules.py`)
+- [x] Implement thread lifecycle automation and bootstrap scripts (`archive_stale_threads.py`, `bootstrap_thread_manifests.py`)
+- [ ] Implement context_id in all header documentation and validators
+- [ ] Create lupo-contexts/4.0.93/decisions_context.md
+- [ ] Ensure all decisions.md files follow new format (see PRD 17_decisions_format.md)
+- [ ] Update lupo-scripts (php/py) to validate context_id
 
 ### 🏗️ LILITH "Absolute-Root" Mandate (v4.0.93)
 
