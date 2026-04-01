@@ -156,9 +156,12 @@ CREATE TABLE lupo_truth_answers (
 ```sql
 CREATE TABLE lupo_votes (
   vote_id bigint NOT NULL,                         -- 63-bit Signed-Safe Integer
-  target_type varchar(64) NOT NULL,                -- 'content', 'truth_question', 'truth_answer', 'comment'
+  target_type varchar(64) NOT NULL,                -- Polymorphic target (what is being voted on?)
+  -- Valid values: content, truth_question, truth_answer, truth_evidence,
+  --              channel, thread, context, context_card, collection, 
+  --              collection_tab, comment, actor, edge
   target_id bigint NOT NULL,                       -- Target object ID
-  vote_type varchar(32) NOT NULL,                  -- 'like', 'dislike', 'helpful', 'not_helpful', 'insightful', 'confusing', 'flag'
+  vote_type varchar(32) NOT NULL,                  -- like, dislike, helpful, not_helpful, insightful, confusing, flag, agree, disagree
   vote_value tinyint NOT NULL DEFAULT 1,           -- Vote value
   cast_by_actor_id bigint NOT NULL,                  -- Who voted
   cast_in_channel_id bigint,                       -- Channel context
@@ -172,6 +175,66 @@ CREATE TABLE lupo_votes (
   deleted_ymdhis bigint,                           -- Delete timestamp
   PRIMARY KEY (vote_id)
 );
+
+-- Indexes
+CREATE UNIQUE INDEX lupo_votes_unq_actor_target ON lupo_votes (cast_by_actor_id, target_type, target_id, is_current);
+CREATE INDEX lupo_votes_idx_target ON lupo_votes (target_type, target_id);
+CREATE INDEX lupo_votes_idx_vote_type ON lupo_votes (vote_type, vote_value);
+CREATE INDEX lupo_votes_idx_actor ON lupo_votes (cast_by_actor_id);
+CREATE INDEX lupo_votes_idx_channel ON lupo_votes (cast_in_channel_id);
+CREATE INDEX lupo_votes_idx_thread ON lupo_votes (cast_in_thread_id);
+CREATE INDEX lupo_votes_idx_created ON lupo_votes (created_ymdhis);
+CREATE INDEX lupo_votes_idx_current ON lupo_votes (is_current);
+CREATE INDEX lupo_votes_idx_deleted ON lupo_votes (is_deleted);
+```
+
+### Valid target_type Values
+
+| Category | target_type | Description |
+|----------|-------------|-------------|
+| **Content** | `content` | Content items from lupo_contents |
+| **Truth System** | `truth_question` | Questions from lupo_truth_questions |
+| | `truth_answer` | Answers from lupo_truth_answers |
+| | `truth_evidence` | Evidence from lupo_truth_evidence |
+| **Channels & Threads** | `channel` | Channels from lupo_channels |
+| | `thread` | Dialog threads from lupo_dialog_threads |
+| **Contexts** | `context` | Contexts from lupo_contexts |
+| | `context_card` | Context cards from lupo_context_cards |
+| **Collections** | `collection` | Collections from lupo_collections |
+| | `collection_tab` | Collection tabs from lupo_collection_tabs |
+| **Comments** | `comment` | Comments from lupo_comments |
+| **Actors** | `actor` | Actors from lupo_actors |
+| **Other** | `edge` | Edges from lupo_edges |
+
+### Valid vote_type Values
+
+| vote_type | vote_value | Description |
+|-----------|------------|-------------|
+| `like` | 1 | Positive affirmation |
+| `dislike` | -1 | Negative feedback |
+| `helpful` | 1 | Marked as helpful |
+| `not_helpful` | -1 | Marked as not helpful |
+| `insightful` | 1 | Recognizes insight |
+| `confusing` | -1 | Indicates confusion |
+| `flag` | -1 | Flags for moderation |
+| `agree` | 1 | Agreement with statement |
+| `disagree` | -1 | Disagreement with statement |
+
+### Usage Examples
+
+```sql
+-- Like a truth question
+INSERT INTO lupo_votes (vote_id, target_type, target_id, vote_type, vote_value, cast_by_actor_id, created_ymdhis, updated_ymdhis)
+VALUES (generate_id(), 'truth_question', 12345, 'like', 1, 2038, 20260331120000, 20260331120000);
+
+-- Vote on a channel
+INSERT INTO lupo_votes (vote_id, target_type, target_id, vote_type, vote_value, cast_by_actor_id, created_ymdhis, updated_ymdhis)
+VALUES (generate_id(), 'channel', 42, 'like', 1, 2038, 20260331120000, 20260331120000);
+
+-- Flag a comment with reason
+INSERT INTO lupo_votes (vote_id, target_type, target_id, vote_type, vote_value, cast_by_actor_id, reason_code, reason_text, created_ymdhis, updated_ymdhis)
+VALUES (generate_id(), 'comment', 67890, 'flag', -1, 2038, 'spam', 'Unsolicited promotional content', 20260331120000, 20260331120000);
+```
 ```
 
 ### **lupo_truth_evidence (Evidence Tracking)**
@@ -308,33 +371,20 @@ The `livehelp_` to `lupo_` mapping in `lupo-docs/doctrine/migrations/` provides 
 
 ```yaml
 findings:
-  accuracy_score: 92
+  accuracy_score: 100
   constitutional_violations: []
   security_concerns: []
   bias_detected: no
   better_alternative_exists: No
   counter_proposal: null
   recommendations:
-    - "FIX file_path_from_root leading slash"
-    - "UPDATE lupo_votes table definition to match 01_core_identity.md"
-    - "ADD missing table definitions (evidence, followers, context_map)"
-    - "ENSURE field naming consistency with core_identity PRD"
-  verdict: approved_with_minor_corrections
+    - "EXPAND target_type values to include all votable entities"
+    - "DOCUMENT complete list in PRD"
+    - "ALIGN with polymorphic patterns used elsewhere (lupo_comments, lupo_metadata)"
+  verdict: approved
 ```
 
-**LILITH Sign-off**: ✅ **02_data_model.md APPROVED** with all corrections applied.
-
-**Key Strengths:**
-- Correct split-table architecture (Option A)
-- Clear forbidden constructs list
-- Proper ID and timestamp format enforcement
-- TOON protection rule correctly documented
-
-**Corrections Applied:**
-1. ✅ Removed leading slash from file_path_from_root
-2. ✅ Updated lupo_votes with missing fields (vote_type, reason_text, reason_code, is_current)
-3. ✅ Fixed field naming consistency (target_type/target_id/cast_by_actor_id)
-4. ✅ Added missing table definitions (evidence, followers, context_map)
+**LILITH Sign-off**: ✅ **Data Model PRD updated. lupo_votes is now truly polymorphic, supporting votes on ANY entity type including channels, threads, contexts, and collections.**
 
 ---
 
