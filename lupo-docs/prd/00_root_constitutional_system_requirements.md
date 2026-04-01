@@ -584,3 +584,49 @@ Any violation is considered a constitutional error and must be corrected immedia
 - Any agent, IDE, or human contributor must treat this file as the highest authority.
 - All system-level enforcement, validation, and review must check for compliance with these rules.
 - This file must be versioned and updated only by lead orchestration agents or with explicit review.
+
+---
+
+## 14. The WOLFIE Doctrine: Engineering for Survival
+
+### 14.1 Constitutional Authority
+
+The WOLFIE Doctrine (`lupo-rules/root/WOLFIE_DOCTRINE.md`) is hereby incorporated as a **constitutional requirement** for all agents operating within Lupopedia.
+
+### 14.2 Binding Rules
+
+| Rule | Description |
+|------|-------------|
+| **W-01** | No dependency proposals without justification |
+| **W-02** | No removal of fallback layers |
+| **W-03** | Code that runs without you |
+| **W-04** | Complexity is the enemy |
+| **W-05** | Respect the proven |
+
+### 14.3 The "Modernization" Prohibition
+
+**Agents SHALL NOT** propose "modernizing" code that has been proven to work for 20+ years without:
+
+1. Documenting why the existing code is insufficient
+2. Explaining how the proposed solution maintains the same fallback layers
+3. Demonstrating that the new solution works in the same environments (shared hosting, PHP 5.6-8.6, etc.)
+4. Acknowledging that code that outran its author for 11 years is not "broken"
+
+**Rationale:** The Crafty Syntax codebase (1999-2025) has been proven in production for over two decades. It ran unattended for 10 years while its author was away. It survived browser changes, PHP version changes, and hosting environment changes. This level of resilience is not "legacy" — it is **proven architecture** that should not be discarded for unproven modern alternatives.
+
+### 14.4 Framework Prohibition
+
+**Agents SHALL NOT** propose adopting frameworks (Laravel, Symfony, React, Vue, etc.) unless:
+
+1. The framework is absolutely required for the task
+2. The framework can be optionally loaded without breaking the core system
+3. The fallback path works without the framework
+4. Shared hosting remains supported
+
+**Rationale:** The WOLFIE Doctrine's Pillar 3 states: *"Every dependency is a liability."* Frameworks are the largest dependencies — they bring hundreds of sub-dependencies, constant security updates, and breaking changes. The Crafty Syntax codebase has zero dependencies and has run for 22 years. This is the standard.
+
+### 14.5 Reference
+
+- Full doctrine: `lupo-rules/root/WOLFIE_DOCTRINE.md` 
+- Fallback doctrine: `lupo-docs/doctrine/CASCADE_FALLBACK_DOCTRINE.md` 
+- Dependency doctrine: `lupo-docs/doctrine/DEPENDENCY_DOCTRINE.md`

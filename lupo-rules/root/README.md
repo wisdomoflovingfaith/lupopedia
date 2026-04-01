@@ -70,6 +70,33 @@ lupopedia.footer:
 
 ---
 
+## 🐺 The WOLFIE Doctrine (READ THIS FIRST)
+
+### **[WOLFIE_DOCTRINE.md](WOLFIE_DOCTRINE.md)**
+**Status:** ⚡ CONSTITUTIONAL - Binding on ALL Agents  
+**Scope:** All development decisions, especially regarding "modernization"  
+**Enforcement:** Absolute - Overrides any framework/modernization suggestions
+
+**Key Philosophy:**
+- **Fallback Over Dependency** - Build ladders, not single paths
+- **Survival Without You** - Code must run unattended for years
+- **Dependency is Debt** - Every external package is a liability
+- **The Cascade Fallback** - Start with what works everywhere
+- **Single Source of Truth** - Complexity is the enemy
+
+**Binding Rules:**
+- **W-01:** No dependency proposals without justification
+- **W-02:** No removal of fallback layers
+- **W-03:** Code must run without you
+- **W-04:** Complexity is the enemy
+- **W-05:** Respect the proven (don't assume 25-year-old code needs "modernization")
+
+**Before you suggest ANY change, especially to code written 20+ years ago, READ THIS DOCTRINE.**
+
+The code you're looking at outran its author for 11 years. That's not luck - that's architecture.
+
+---
+
 ## 🧱 Constitutional Rules (Primary Authority)
 
 ### **[LUPOPEDIA_CONSTITUTIONAL_ROOT_RULES.md](LUPOPEDIA_CONSTITUTIONAL_ROOT_RULES.md)**

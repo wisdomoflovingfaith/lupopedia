@@ -1,0 +1,212 @@
+---
+lupopedia.headers:
+  header_format_version: 2
+  lupopedia.schema: rule
+  when_updated: "20260401000000"
+  file_path_from_root: "lupo-rules/root/WOLFIE_DOCTRINE.md"
+  web_path: "http://www.lupopedia.com/lupopedia/lupo-rules/root/WOLFIE_DOCTRINE.md"
+  last_modified_utc: "20260401000000"
+  federation_node_id: 0
+  channel_id: 42
+  thread_id: "wolfie-doctrine"
+  actor_id: 1
+  actor_name: "WOLFIE"
+  delegation_chain: "wolfie:root"
+  artifact_type: "rule"
+  artifact_kind: "doctrine"
+  purpose: "The engineering philosophy that built code which outlasted its author - binding on all agents"
+  tags:
+  - "doctrine"
+  - "philosophy"
+  - "wolfie"
+  - "resilience"
+  - "fallback"
+  - "constitutional"
+lupopedia.edges:
+  outbound_edges:
+    - to: "lupo-docs/doctrine/CASCADE_FALLBACK_DOCTRINE.md"
+      type: references
+      weight: 1.0
+      reason: "Technical implementation of fallback layers"
+    - to: "lupo-docs/doctrine/TIMESTAMP_DOCTRINE.md"
+      type: references
+      weight: 1.0
+      reason: "Why integer timestamps beat timezone-per-column"
+    - to: "lupo-docs/doctrine/DATABASE_NEUTRALITY_DOCTRINE.md"
+      type: references
+      weight: 1.0
+      reason: "Why we don't lock into one database"
+    - to: "lupo-rules/root/LUPOPEDIA_CONSTITUTIONAL_ROOT_RULES.md"
+      type: references
+      weight: 1.0
+      reason: "Root constitutional rules this doctrine supports"
+lupopedia.footer:
+  last_verified: "20260401000000"
+  verified_by:
+    identity_type: "actor"
+    actor_id: 1
+    agent_name_identity: "WOLFIE"
+  orchestrator: "wolfie:root"
+  next_action:
+    - "Read this before suggesting frameworks or dependencies"
+    - "Understand fallback philosophy before suggesting modern replacements"
+    - "Remember: Notepad-built code outran its author for 11 years"
+---
+
+# The WOLFIE Doctrine: Engineering for Survival
+
+## Section 1: Who You're Working With (Read This First)
+
+Before you suggest "modernizing" anything, understand who you're dealing with.
+
+**Eric Robin Gerdes (Captain WOLFIE)** built real-time chat in **2002** — three years before AJAX had a name, seven years before WebSockets, eleven years before React. He built it in **Notepad**. No frameworks. No dependencies. Just PHP, JavaScript, and a cascade fallback philosophy that kept **1.2 million installations** running for **22 years**.
+
+In 2014, his wife died. He threw his computer out a window. He didn't touch technology for 11 years.
+
+**The code kept running.**
+
+When he came back in 2025, it was still installed alongside WordPress on auto-installers. Still working. Still serving customers.
+
+That's not luck. That's **architecture**.
+
+---
+
+## Section 2: The Five Pillars of WOLFIE Engineering
+
+### Pillar 1: Fallback Over Dependency
+
+| Modern Approach | WOLFIE Approach |
+|-----------------|-----------------|
+| "If this breaks, update it." | "If this breaks, fall back to something that works." |
+
+**The Crafty Syntax Proof:**
+Crafty Syntax had a three-layer ladder: XMLHttpRequest → buffer flush → image reading. When browsers broke XMLHttpRequest, it switched to image reading. No patch. No upgrade. No outage. Just… kept working.
+
+**The Rule:** Never assume the modern path will exist tomorrow. Build a ladder. Every layer works. The oldest layer is the most reliable.
+
+### Pillar 2: Survival Without You
+
+| Modern Approach | WOLFIE Approach |
+|-----------------|-----------------|
+| "I will maintain this forever." | "What if I'm not here tomorrow?" |
+
+**The Crafty Syntax Proof:**
+The Sales Syntax fork ran for **10 years** while its architect was gone. It didn't need updates. It didn't need patches. It didn't need a "community" to maintain it. It just… ran.
+
+**The Rule:** Write code that can survive your absence. Assume you'll be hit by a bus. Assume you'll disappear for a decade. Build for that.
+
+### Pillar 3: Dependency is Debt
+
+| Modern Approach | WOLFIE Approach |
+|-----------------|-----------------|
+| "I used 47 npm packages to make this work!" | "47 things that can break." |
+
+**The Crafty Syntax Proof:**
+Crafty Syntax had **zero dependencies**. It ran on shared hosting with whatever PHP version happened to be installed. It worked on PHP 3. It works on PHP 8.6. No package manager required. No "npm install" required. No "breaking changes" from someone else's code.
+
+**The Rule:** Every dependency is a liability. If you can write it yourself, do it. If you can't write it yourself, ask why you need it.
+
+### Pillar 4: The Cascade Fallback
+
+| Modern Approach | WOLFIE Approach |
+|-----------------|-----------------|
+| "What's the best way?" | "What's the path that always works?" |
+
+**The Crafty Syntax Proof:**
+Start with what works everywhere. Layer improvements on top. If the better path fails, fall back to the one that always works. The oldest fallback (image reading) saved the system when XMLHttpRequest broke.
+
+**The Rule:** Start with what works everywhere. Layer improvements on top. Never remove the foundation.
+
+### Pillar 5: Single Source of Truth, Not Fifty
+
+| Modern Approach | WOLFIE Approach |
+|-----------------|-----------------|
+| "How many timezone columns do I need?" | "What time is it?" |
+
+**The Crafty Syntax Proof:**
+Pick one timezone. Store it as a 14-digit integer (`YYYYMMDDHHIISS`). Never think about timezones again. Works on every database. Sorts correctly. Human-readable. No conversion scripts needed.
+
+**The Rule:** Complexity is the enemy. If you can do it with one integer, do it with one integer. If you need fifty columns to handle a concept, maybe the concept is wrong.
+
+---
+
+## Section 3: What This Means for Agents (Binding Rules)
+
+### Rule W-01: No Dependency Proposals Without Justification
+
+**Agents SHALL NOT** propose adding external dependencies (npm, Composer, frameworks, etc.) without:
+
+1. Explaining why the dependency cannot be implemented in-house
+2. Documenting the fallback path if the dependency fails
+3. Acknowledging the added liability (security, maintenance, breakage)
+
+**Violation:** Any agent that suggests `npm install` without meeting these conditions is in violation.
+
+### Rule W-02: No Removal of Fallback Layers
+
+**Agents SHALL NOT** propose removing existing fallback layers unless they propose an **equal or better** replacement that works in the same environments.
+
+**Violation:** Any agent that suggests removing image-based fallback without a working replacement is in violation.
+
+### Rule W-03: Code That Runs Without You
+
+**Agents SHALL NOT** propose changes that assume continuous maintenance. Code should be written to run unattended for years.
+
+**Violation:** Any agent that suggests a change requiring regular updates, cron jobs, or external monitoring without justification is in violation.
+
+### Rule W-04: Complexity is the Enemy
+
+**Agents SHALL NOT** propose adding complexity without demonstrating it's necessary. The simplest solution that works everywhere is preferred.
+
+**Violation:** Any agent that suggests a complex solution when a simpler one exists is in violation.
+
+### Rule W-05: Respect the Proven
+
+**Agents SHALL NOT** assume that code written 25 years ago is "outdated" or needs "modernization" without first understanding why it still works.
+
+**Violation:** Any agent that dismisses legacy code without analyzing its resilience is in violation.
+
+---
+
+## Section 4: The Test - Before You Suggest Anything
+
+Before you suggest any change, ask yourself:
+
+| Question | If You Cannot Answer, Do Not Suggest |
+|----------|--------------------------------------|
+| **Does this add a dependency?** | Explain why it's worth the liability. |
+| **Does this remove a fallback?** | Explain what replaces it. |
+| **Does this assume I'll be here to maintain it?** | Explain why that's safe. |
+| **Does this add complexity?** | Explain why it's necessary. |
+| **Does this assume the modern path always works?** | Explain the fallback. |
+
+---
+
+## Section 5: The Bottom Line
+
+The code you're looking at outran its author for 11 years.
+
+When you suggest replacing it with something that needs 47 dependencies and constant maintenance, you're not "modernizing." You're trading **proven resilience** for **unknown liability**.
+
+**WOLFIE doesn't need your frameworks.**
+
+**WOLFIE needs you to understand why the old stuff still works.**
+
+---
+
+## Section 6: Constitutional Authority
+
+This doctrine is binding on all agents operating within Lupopedia. It is a **root-level constitutional rule** and supersedes any suggestions that violate its principles.
+
+| Authority | Reference |
+|-----------|-----------|
+| Root Constitution | `lupo-rules/root/LUPOPEDIA_CONSTITUTIONAL_ROOT_RULES.md` |
+| This Doctrine | `lupo-rules/root/WOLFIE_DOCTRINE.md` |
+| Fallback Doctrine | `lupo-docs/doctrine/CASCADE_FALLBACK_DOCTRINE.md` |
+
+---
+
+**WOLFIE's Law:** *If you can write it in Notepad, you don't need a framework. If you need a framework, maybe you're solving the wrong problem.*
+
+**Last verified:** 2026-04-01
+**Next review:** Never. This doesn't change.
