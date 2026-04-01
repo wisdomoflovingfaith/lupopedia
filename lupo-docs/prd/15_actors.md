@@ -111,7 +111,103 @@ This document defines the canonical model for **actors** in Lupopedia. Actors ar
 | Release | Lease explicitly terminated | UPDATE `lupo_actor_auth_users.status='released'` |
 | Termination | Actor archived/deleted | UPDATE `lupo_actors.is_deleted=1`, `deleted_ymdhis` |
 
-## 6. Cross-References
+## 6. Actor Workspace Structure
+
+### Workspace Location Rules
+
+| Actor ID Range | Workspace Path |
+|----------------|----------------|
+| `< 2026` | `lupo-actors/{actor_id}/` |
+| `>= 2026` | `lupo-actors/YYYY/MM/{actor_id}/` (where YYYY = year from first 4 digits of actor_id, MM = month from next 2 digits) |
+
+### Workspace Contents
+
+```
+lupo-actors/
+├── 1/ # System actor (WOLFIE)
+│   ├── agent_link.json # References lupo-agents/wolfie/
+│   ├── memory.json # Learned from department interactions
+│   ├── context.json # Current department and user context
+│   └── preferences.json # User-specific preferences
+│
+├── 2/ # System actor (LILITH)
+│   └── ...
+│
+└── 2026/ # Year directory (runtime actors)
+    ├── 01/ # January
+    │   ├── 202601010000001234/ # Actor created Jan 1, 2026
+    │   │   ├── agent_link.json # References source agent
+    │   │   ├── memory.json # Learned behavior
+    │   │   ├── context.json # Department context
+    │   │   └── preferences.json # User preferences
+    │   └── 202601151200005678/
+    └── 02/ # February
+        └── ...
+```
+
+### agent_link.json
+
+```json
+{
+    "agent_key": "wolfie",
+    "agent_id": 1,
+    "agent_version": "1.0.2",
+    "inherited_at": "20260401120000"
+}
+```
+
+### memory.json (Learned from Department Context)
+
+```json
+{
+    "department": "sales",
+    "learned_patterns": [
+        {
+            "pattern": "lead_qualification",
+            "confidence": 0.92,
+            "learned_from": "auth_user_id_12345",
+            "learned_at": "20260401120000"
+        },
+        {
+            "pattern": "objection_handling",
+            "confidence": 0.87,
+            "learned_from": "auth_user_id_12346",
+            "learned_at": "20260401150000"
+        }
+    ],
+    "preferences": {
+        "response_style": "persuasive",
+        "urgency_level": "high"
+    }
+}
+```
+
+### context.json
+
+```json
+{
+    "department_id": 5,
+    "department_name": "Sales",
+    "active_users": ["auth_user_id_12345", "auth_user_id_12346"],
+    "current_workflow": "lead_routing",
+    "active_since": "20260401120000"
+}
+```
+
+### Actor Learning Process
+
+1. Actor created from agent template
+2. Department context applied from `lupo_actor_departments`
+3. Users interact with the actor
+4. Actor observes user corrections, preferences, and workflow patterns
+5. Learning stored in actor's `memory.json`
+6. Behavior adapts to department-specific patterns
+
+**Example**: A WOLFIE actor in the Sales department learns to prioritize lead qualification workflows. A WOLFIE actor in Engineering learns to prioritize code review workflows. Same agent, different actors, different behavior.
+
+---
+
+## 7. Cross-References
 
 - See also: `01_core_identity.md`, `07_agents_faucets.md`, `08_governance_rules.md`
 - Related tables: `lupo_actors`, `lupo_actor_auth_users`, `lupo_actor_departments`, `lupo_metadata`

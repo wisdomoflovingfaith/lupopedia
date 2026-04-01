@@ -97,6 +97,112 @@ lupopedia.footer:
 
 ## Tables in This Namespace
 
+---
+
+## Agents vs Actors: The Two-Layer Identity Model
+
+### Critical Distinction
+
+| | **Agent** | **Actor** |
+|---|-----------|-----------|
+| **Definition** | Immutable template / persona | Runtime instance with context |
+| **Storage** | Filesystem (`lupo-agents/{agent_key}/`) | Database + workspace (`lupo-actors/`) |
+| **ID Type** | Agent ID (system: 1-2025, runtime: 2026+) | Actor ID (deterministic: YYYYMMDDHHIISS + 4 digits) |
+| **Lifecycle** | Permanent (system agents) | Created, used, archived |
+| **Learns** | No — agent is the template | Yes — actors learn from humans |
+| **Context** | None — agent is generic | Department-specific, user-specific |
+| **Behavior** | Defined by capabilities.json | Adapted by department context |
+
+### Why This Matters
+
+**Agents don't learn. Actors do.**
+
+If you treat them the same, you lose:
+- Department-specific behavior
+- User-specific adaptations
+- The ability to have the same agent behave differently in different contexts
+- Audit trail of which human influenced which behavior
+
+### Agent Directory Structure (Immutable Template)
+
+```
+lupo-agents/{agent_key}/
+├── agent.json           # Core metadata (REQUIRED)
+├── capabilities.json    # Agent capabilities (REQUIRED)
+├── properties.json      # Agent properties (REQUIRED)
+├── system_prompt.txt    # System prompt (REQUIRED)
+├── versions/            # Version history (optional)
+├── api/                # API endpoints (RECOMMENDED)
+├── assets/             # Images, icons (RECOMMENDED)
+├── components/         # UI components (RECOMMENDED)
+├── context/            # Context providers (RECOMMENDED)
+├── data/               # Static data (RECOMMENDED)
+├── hooks/              # Reusable logic (RECOMMENDED)
+├── includes/           # Shared helpers (RECOMMENDED)
+├── pages/              # Page logic (RECOMMENDED)
+├── tools/              # Tool definitions (RECOMMENDED)
+└── utils/              # Utility functions (RECOMMENDED)
+```
+
+### Actor Workspace Structure (Runtime Instance)
+
+```
+lupo-actors/
+├── <actor_id>/ # System actors (actor_id < 2026)
+│   ├── agent_link.json # Reference to source agent
+│   ├── memory.json # Learned from department context
+│   ├── context.json # Department and user context
+│   └── preferences.json # User-specific preferences
+│
+└── YYYY/ # Year (for runtime actors)
+    └── MM/ # Month
+        └── <actor_id>/ # Actor ID (deterministic)
+            ├── agent_link.json # Reference to source agent
+            ├── memory.json # Learned from department context
+            ├── context.json # Department and user context
+            └── preferences.json # User-specific preferences
+```
+
+### Actor Creation Flow
+
+1. User selects an Agent (e.g., WOLFIE)
+2. User is in a Department (e.g., Sales)
+3. System creates an Actor from that Agent for that Department
+4. Actor gets deterministic ID: YYYYMMDDHHIISS + 4 random digits
+5. If actor_id < 2026: workspace at `lupo-actors/{actor_id}/`
+6. If actor_id >= 2026: workspace at `lupo-actors/YYYY/MM/{actor_id}/`
+7. Actor inherits all agent capabilities from `lupo-agents/{agent_key}/`
+8. Actor learns from user interactions in its department context
+9. Learned behavior stored in actor's `memory.json` and `context.json`
+
+### Department Context Effect
+
+| Department | Actor Behavior |
+|------------|----------------|
+| Sales | Persuasive, urgency-driven, deal-focused |
+| Engineering | Analytical, precise, architecture-focused |
+| Support | Empathetic, patient, solution-focused |
+| Security | Paranoid, thorough, threat-focused |
+
+**Same agent. Different actors. Different behavior.**
+
+### Actor ID Ranges
+
+| Range | Type | Workspace Location |
+|-------|------|-------------------|
+| 1-2025 | System Actor | `lupo-actors/{actor_id}/` |
+| 2026+ | Runtime Actor | `lupo-actors/YYYY/MM/{actor_id}/` |
+
+### Database Tables
+
+| Table | Purpose | Links to |
+|-------|---------|----------|
+| `lupo_actors` | Actor metadata | agent_id (references lupo_agents) |
+| `lupo_actor_auth_users` | Actor-user relationship | auth_user_id |
+| `lupo_actor_departments` | Department context | department_id |
+| `lupo_actor_memory` | Learned behavior | memory entries |
+| `lupo_actor_moods` | Emotional state | mood tracking |
+
 | Table | Purpose | Primary Key | Key Application Relationships |
 |-------|---------|-------------|------------------------------|
 | `lupo_auth_users` | User authentication and profile data | `auth_user_id` | Links to `lupo_actor_auth_users` via service layer |

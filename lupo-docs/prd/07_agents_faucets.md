@@ -381,6 +381,56 @@ lupo-agents/{agent_key}/
 - **IDE → DB forbidden**: IDE cannot directly modify agent database records
 - **Conflict resolution**: File wins, DB syncs to file
 
+### Agent → Actor Relationship (The Two-Layer Model)
+
+**This is critical: Agents are templates. Actors are runtime instances.**
+
+| | **Agent** | **Actor** |
+|---|-----------|-----------|
+| **Purpose** | Immutable template | Runtime instance with context |
+| **Storage** | `lupo-agents/{agent_key}/` | `lupo-actors/YYYY/MM/{actor_id}/` |
+| **Changes** | Version-controlled | Dynamic (learns) |
+| **Capabilities** | Defined in capabilities.json | Inherited + overridden |
+| **Learning** | Never learns | Learns from department context |
+| **Department** | None | Always has department |
+| **User** | None | Linked to auth_users via lupo_actor_auth_users |
+
+#### Actor Creation Flow
+```
+Agent (immutable template)
+│
+├── Actor created for Sales Department
+│ ├── Workspace: lupo-actors/2026/04/{actor_id}/
+│ ├── Inherits agent capabilities
+│ ├── Learns sales workflows
+│ └── Adapts to sales user preferences
+│
+└── Actor created for Engineering Department
+    ├── Workspace: lupo-actors/2026/04/{actor_id}/
+    ├── Inherits agent capabilities
+    ├── Learns engineering workflows
+    └── Adapts to engineering user preferences
+```
+
+#### Why This Separation Matters
+
+1. **Agents remain pure** — version-controlled, auditable, stable
+2. **Actors can learn** — adapt to department context without contaminating the template
+3. **Same agent, different behavior** — Sales-WOLFIE acts differently than Dev-WOLFIE
+4. **Audit trail** — which human influenced which behavior is tracked in actor memory
+5. **Department context is not metadata** — it's behavior-determining
+
+#### Actor Workspace
+```
+lupo-actors/YYYY/MM/{actor_id}/
+├── agent_link.json # References source agent
+├── memory.json # Learned from department interactions
+├── context.json # Current department and user context
+└── preferences.json # User-specific preferences
+```
+
+**Note:** System actors (actor_id < 2026) have workspace at `lupo-actors/{actor_id}/` for backward compatibility.
+
 ## Tables in This Namespace
 
 ### Tables in This Namespace

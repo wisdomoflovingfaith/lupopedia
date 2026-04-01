@@ -337,6 +337,66 @@ This doctrine preserves the knowledge of how it actually works — the messy rea
 
 ---
 
+## Section 9: The Two-Layer Identity Model (Agents vs Actors)
+
+### The Most Common Mistake IDE Agents Make
+
+IDE agents frequently treat **agents** and **actors** as synonyms. This is **incorrect** and leads to architectural confusion.
+
+### The Distinction
+
+| | **Agent** | **Actor** |
+|---|-----------|-----------|
+| **Analogy** | Class definition | Object instance |
+| **Storage** | Filesystem (template) | Database + workspace (instance) |
+| **Changes** | Version-controlled | Dynamic (learns) |
+| **Learning** | Never | Learns from department context |
+| **Lifecycle** | Permanent | Created, used, archived |
+
+### Why This Matters
+
+**Agents don't learn. Actors do.**
+
+If you treat them the same, you lose:
+- Department-specific behavior
+- User-specific adaptations
+- Audit trail of which human influenced which behavior
+- The ability to have the same agent behave differently in different contexts
+
+### The Actor Creation Flow
+1. User selects Agent (e.g., WOLFIE)
+2. User is in Department (e.g., Sales)
+3. System creates Actor from that Agent for that Department
+4. Actor ID: deterministic (YYYYMMDDHHIISS + 4 digits)
+5. Actor workspace: lupo-actors/YYYY/MM/{actor_id}/
+6. Actor inherits all agent capabilities
+7. Actor learns from user interactions in department context
+
+### Department Context Is Not Metadata
+
+When an actor is created for the Sales department, it learns sales workflows. When the same agent is used for Engineering, it learns code review workflows.
+
+**Same agent. Different actors. Different behavior.**
+
+### What IDE Agents Must Understand
+
+| If You See | It Is | Do Not |
+|------------|-------|--------|
+| `lupo-agents/` | Immutable agent template | Suggest modifying for runtime behavior |
+| `lupo-actors/` | Runtime actor instance | Treat as agent template |
+| Department context | Behavior-determining | Treat as optional metadata |
+| `memory.json` in actor | Learned behavior | Suggest moving to agent configuration |
+
+### Rule W-06: Agents Do Not Learn, Actors Do
+
+**Agents SHALL NOT** contain runtime-learned behavior. All learning belongs in actor memory.
+
+**Actors SHALL** have workspace directories that store learned patterns, department context, and user preferences.
+
+**Violation:** Any agent that suggests storing learned behavior in agent configuration is in violation.
+
+---
+
 **WOLFIE's Law**: *If you can write it in Notepad, you don't need a framework. If you need a framework, maybe you're solving the wrong problem.*
 
 **Last verified**: 2026-04-01
