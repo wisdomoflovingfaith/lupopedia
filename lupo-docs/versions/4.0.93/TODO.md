@@ -4,7 +4,7 @@ lupopedia.headers:
   version_when_written: "4.0.93"
   file_path_from_root: "lupo-docs/versions/4.0.93/TODO.md"
   web_path: "http://www.lupopedia.com/lupopedia/lupo-docs/versions/4.0.93/TODO.md"
-  last_modified_utc: "20260331150000"
+  last_modified_utc: "20260331235900"
   channel_id: 42
   thread_id: "todo-backlog"
   actor_id: 102
@@ -37,7 +37,7 @@ lupopedia.edges:
       weight: 1.0
       reason: Database audit summary
 lupopedia.footer:
-  last_verified: "20260331150000"
+  last_verified: "20260331235900"
   verified_by:
     actor_id: 102
     agent_name_identity: Cursor IDE Agent
@@ -85,6 +85,7 @@ lupopedia.footer:
 - [x] **Installer runtime seed cleanup (2026-03-31):** Removed remaining per-file post-seed execution from `install.php`; runtime path is schema + `install/seed_lupopedia_4_1_0.sql` (+ Crafty import on upgrade only).
 - [x] **Obsolete legacy seed files removed (2026-03-31):** Deleted non-runtime legacy seed files that were no longer used by installer flow.
 - [x] **Runtime actor deterministic IDs + sharded workspace path (2026-03-31):** Actor creation paths now use YmdHis+4 IDs and `lupo-actors/YYYY/MM/actor_id`; resolver/helpers preserve legacy flat path fallback.
+- [x] **Channel chat (2026-03-31, Cursor + Cascade thread):** PRD 18 aligned; `channels-api.php` extended (`format=buffer|image`, `thread_id`, `dialog_thread_id`, digit redirect); `channel.php` + `channel-chat/` routes; `chat-display.js` / `chat-display-legacy.js` / `chat-display.css`; `channels/{id}/thread/{id}` slug; operator-supplied digit GIFs in `lupo-ui/images/`; implementation documentation created with LUPOPEDIA headers.
 
 ## 🛠️ **4.0.93 Documentation Update Status**
 
@@ -137,6 +138,7 @@ lupopedia.footer:
  [ ] Proactive Invite: Trigger "Invite to Chat" based on Contextual Edges (e.g., visitor is on a high-weight "Truth" page)
 
 ### **3. Real-Time Chat Enhancements**
+- [x] **Minimal channel message UI + API fallbacks (2026-03-31):** Standalone `channel.php` / `channel-chat/` using `api/lupo-channels/.../messages` with `format=buffer` / `format=image` (see CHANGELOG). Implementation documented in `lupo-docs/implementations/channel-chat.md`. Does not replace full `/channels/` cockpit.
 - [ ] Live Typing Refraction: Stream typing events through the State Mirror without persistent DB writes
 - [ ] Quick Responses: Store canned replies as "Low-Weight Contexts" in the lupo_contexts table for instant retrieval
 - [ ] Sound & Visual Alerts: Integrate legacy /sounds/ triggers into the lupo.js event-bus
@@ -174,6 +176,7 @@ lupopedia.footer:
 - [ ] Hydrator: Channel 42 elevation output requires review
 
 ## Active/Next (4.0.94+)
+- [ ] Optional: integrate main `channels-controller` message panel with `api/lupo-channels` + shared chat-display patterns where product wants parity
 - [ ] Complete enforce_doctrine.py implementation for all .js, .php, and SQL assets
 - [ ] Optimize JS "Glass" reflection for mobile viewports
 - [ ] Transition remaining "Unfinished Business" items from 4.0.87 into Gold Contexts

@@ -4,7 +4,7 @@ lupopedia.headers:
   version_when_written: "4.0.93"
   file_path_from_root: "lupo-docs/versions/4.0.93/PLAN.md"
   web_path: "http://www.lupopedia.com/lupo-docs/versions/4.0.93/PLAN.md"
-  last_modified_utc: "20260331150000"
+  last_modified_utc: "20260331235900"
   channel_id: 42
   actor_id: 102
   actor_name: "HEPHAESTUS"
@@ -38,12 +38,21 @@ lupopedia.headers:
 - **[x] LILITH Audit: Installer Requirements PRD** - Updated to reflect Core Identity PRD changes
 - **[x] LILITH Audit: Core Identity PRD (Final Review)** - Verified all corrections properly implemented
 
+## Channel chat (2026-03-31, Cursor + Cascade thread)
+
+- **[x] PRD `lupo-docs/prd/18_channel_chat_display.md`** — Aligned with canonical `api/lupo-channels/{id}/messages` (`channels-api.php`), `LUPOPEDIA_PUBLIC_PATH`, legacy/buffer/image transport notes, TOON-safe example SQL.
+- **[x] `channels-api.php` GET** — `format=buffer`, `format=image` (302 to `lupo-ui/images/digitN.gif`), `thread_id` filter, `dialog_thread_id` on rows, `is_deleted = 0`, `whatplace` / `position`, `image_metric=time|count`.
+- **[x] Standalone UI** — `channel.php`, `lupo-ui/js/chat-display.js` (ES3-safe), `chat-display-legacy.js`, `lupo-ui/css/chat-display.css`; `.htaccess` `channel-chat/` and explicit `channel.php`; **`/channels/`** still routes to **index** (full cockpit preserved).
+- **[x] Routing** — `channels/{id}/thread/{id}` slug → `channels_handle_show` with optional thread id (`module-loader.php` + `channels-controller.php`).
+- **[x] Digit GIF assets** — Operator placed production digit images under `lupo-ui/images/` (replacing placeholders).
+- **[x] Implementation Documentation** — `lupo-docs/implementations/channel-chat.md` created with LUPOPEDIA headers, API paths, routing, fallback chain, and browser support documented.
+
 ## 🚨 **PRIMARY OBJECTIVE: Softaculous Certification & Crafty Parity**
 
 - **[ ]** Complete remaining 7 PRD namespaces (01_core_identity through 07_agents_faucets)
 - **[ ]** Achieve 100% feature parity with Crafty Syntax 3.7.5
 - **[ ]** Complete Softaculous certification requirements documentation
-- **[ ]** Finalize installation and upgrade testinghe 4.0.93 "Brain" semantic architecture.
+- **[ ]** Finalize installation and upgrade testing for the 4.0.93 "Brain" semantic architecture.
 
 
 - **Emoji/Smilies System Overhaul**: Emoji and smilies are now handled via `::img|foldername|filename::` code format, with a popup selector and images stored in `lupo-emoji/`. See [EMOJI_AND_SMILIES.md](/lupo-docs/doctrine/EMOJI_AND_SMILIES.md) for full documentation.

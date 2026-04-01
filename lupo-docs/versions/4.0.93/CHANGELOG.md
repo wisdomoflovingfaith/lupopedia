@@ -2,6 +2,16 @@
 
 ## v4.0.93 (March 31, 2026)
 
+### Added / Updated — Channel chat display (2026-03-31, Cursor + LILITH audit + CASCADE documentation thread)
+
+- **PRD** — `lupo-docs/prd/18_channel_chat_display.md` updated: canonical message API is `api/lupo-channels/{id}/messages` (`channels-api.php`); `LUPOPEDIA_PUBLIC_PATH` for URLs; `format=buffer` / `format=image` documented; ES3 legacy notes; example SQL corrected vs TOON (`lupo_actors.name` / `actor_name`, no `display_name`).
+- **`lupo-includes/modules/api/channels-api.php`** — GET: `format=json` (default), `format=buffer` (JSON as `text/plain`), `format=image` (HTTP 302 to `/lupo-ui/images/digitN.gif` after auth); `whatplace` or `position` (hundreds|tens|ones); `image_metric=time|count`; optional `thread_id` filter; each message includes `dialog_thread_id`; message list excludes deleted rows.
+- **Standalone page** — Root `channel.php` (loads `lupopedia-config.php` / full bootstrap); `.htaccess` rules for `channel-chat/{id}/` and `channel-chat/{id}/thread/{id}/` and passthrough for `channel.php`. **`/channels/{id}/` unchanged** (still `index.php` + `channels-controller` 3-panel UI).
+- **Client assets** — `lupo-ui/js/chat-display.js` (ES3-safe polling/post JSON), `lupo-ui/js/chat-display-legacy.js` (XHR/ActiveX + image fingerprint helpers), `lupo-ui/css/chat-display.css`; `lupo-ui/images/README.txt` for digit GIF provenance.
+- **Routing** — `lupo-includes/modules/module-loader.php`: slug `channels/{id}/thread/{id}`; `channels-controller.php`: `channels_handle_show($channel_id, $initial_thread_id)`.
+- **Assets** — Operator replaced placeholder digit GIFs in `lupo-ui/images/` with legacy artwork.
+- **Implementation Documentation** — `lupo-docs/implementations/channel-chat.md` created with LUPOPEDIA headers (schema=implementation, actor_id=105). Documents API paths, URL routing, fallback chain (fetch → XHR → ActiveX → Image → Buffer), and browser support matrix (IE5+ to modern).
+
 ### Major - Agent System Redesign
 **Complete transformation from database-driven to filesystem-based architecture**
 

@@ -2,10 +2,10 @@
 lupopedia.headers:
   header_format_version: 2
   lupopedia.schema: doctrine
-  when_updated: "20260331190000"
+  when_updated: "20260331235900"
   file_path_from_root: "lupo-docs/versions/4.0.93/decisions.md"
   web_path: "http://www.lupopedia.com/lupopedia/lupo-docs/versions/4.0.93/decisions.md"
-  last_modified_utc: "20260331190000"
+  last_modified_utc: "20260331235900"
   federation_node_id: 0
   channel_id: 42
   thread_id: "version-4.0.93-decisions"
@@ -20,7 +20,7 @@ lupopedia.headers:
   - "adr"
   - "version-4.0.93"
 lupopedia.footer:
-  last_verified: "20260331190000"
+  last_verified: "20260331235900"
   verified_by:
     identity_type: "agent"
     actor_id: 2
@@ -36,6 +36,7 @@ lupopedia.footer:
     - "Complete remaining PRD namespaces (7 remaining)"
     - "Implement automated TOON generation pipeline"
     - "Consolidate all decisions into this file moving forward"
+    - "Optional: wire main channels cockpit UI to same api/lupo-channels patterns where useful"
 ---
 
 
@@ -70,6 +71,9 @@ lupopedia.footer:
 | D-22  | Decision  | LILITH Audit: COUNTERMEASURE Agent Configuration | LILITH | Completed | 2026-03-31 | D-01 |
 | D-23  | Decision  | LILITH Audit: COUNTERMEASURE Agent Configuration | LILITH | Completed | 2026-03-31 | D-01 |
 | D-24  | Decision  | LILITH Directive: Update COUNTERMEASURE Agent Prompt | LILITH | Completed | 2026-03-31 | D-01 |
+| D-25  | Directive | IDE: Update 4.0.93 version documentation (first pass) | CURSOR | Completed | 2026-03-31 | D-05 |
+| D-26  | Decision  | Channel chat: canonical api/lupo-channels + PRD 18 + standalone channel-chat UI | CURSOR | Completed | 2026-03-31 | D-05 |
+| D-27  | Directive | IDE: Refresh 4.0.93 docs after channel chat thread | CURSOR | Completed | 2026-03-31 | D-26 |
 | D-15 | Decision | LILITH Audit: Data Model PRD Corrections | LILITH | Completed | 2026-03-31 | D-01 |
 | Q-01  | Question  | HEIMDALL Actor ID Assignment                   | LILITH     | Answered    | 2026-03-31  |           |
 | A-01  | Answer    | HEIMDALL Actor ID Resolution                   | WOLFIE     | Completed   | 2026-03-31  | Q-01      |
@@ -419,6 +423,91 @@ Update decisions.md, PLAN.md, TODO.md, and CHANGELOG.md with comprehensive recor
 - All decisions from this thread properly documented
 - Action items and changelog updated to reflect completion status
 - Permanent record of architectural evolution and improvements
+
+---
+
+## D-26: Channel Chat Display — API, PRD, and Standalone UI
+
+### Type
+**Decision** (LILITH audit / implementation thread)
+
+### Status
+**Completed**
+
+### Author
+**CURSOR** (actor_id 102), **LILITH** (actor_id 2) audit sign-off in thread
+
+### Date
+2026-03-31
+
+### Context
+PRD `lupo-docs/prd/18_channel_chat_display.md` needed alignment with existing `channels-api.php` and subdirectory-aware URLs. LILITH required extending the canonical API with legacy-friendly transport (`format=buffer`, `format=image`) rather than duplicating a separate `lupo-api/chat/messages.php`.
+
+### Decision
+- **Canonical JSON API** remains `GET`/`POST` `api/lupo-channels/{channel_id}/messages` (`lupo-includes/modules/api/channels-api.php`).
+- **GET extensions:** `format=json` (default), `format=buffer` (plain body JSON for iframe reads), `format=image` (HTTP 302 to `lupo-ui/images/digitN.gif` with `whatplace` or `position` = hundreds|tens|ones; optional `image_metric=time|count`). **GET** also supports `thread_id` and returns `dialog_thread_id` on messages; list query filters `is_deleted = 0`.
+- **Standalone minimalist page:** root `channel.php` (bootstrap via `lupopedia-config.php`), pretty paths `channel-chat/{id}/` and `channel-chat/{id}/thread/{id}/` in `.htaccess`. **Do not** rewrite `/channels/{id}/` away from `index.php` (preserves existing 3-panel `channels-controller` UI).
+- **Client:** `lupo-ui/js/chat-display.js` (ES3-safe transport chain), `lupo-ui/js/chat-display-legacy.js` (helpers), `lupo-ui/css/chat-display.css`. Digit GIF assets live under `lupo-ui/images/` (operator replaced placeholders with legacy artwork).
+- **Routing:** `module-loader.php` adds `channels/{id}/thread/{id}` → `channels_handle_show($channel_id, $thread_id)`.
+
+### Consequences
+- Single message API surface for VSX and browser chat; PRD documents `LUPOPEDIA_PUBLIC_PATH` and fallbacks.
+- Legacy digit protocol compatible with Crafty-style filename detection after redirect.
+
+### Comments
+*2026-03-31 CURSOR*: No database schema migration in this thread; TOON-aligned columns only.
+
+---
+
+## D-27: IDE Directive — Refresh 4.0.93 Version Docs (Channel Chat Thread)
+
+### Type
+**Directive**
+
+### Status
+**Completed**
+
+### Author
+**CURSOR** (actor_id 102)
+
+### Date
+2026-03-31
+
+### Context
+Record D-26 implementation and user follow-up (digit images) in version folder docs.
+
+### Decision
+Update `decisions.md`, `PLAN.md`, `TODO.md`, `CHANGELOG.md` under `lupo-docs/versions/4.0.93/` for this thread only (no speculative items).
+
+---
+
+## D-28: Channel Chat Implementation Documentation
+
+### Type
+**Implementation**
+
+### Status
+**Completed**
+
+### Author
+**CASCADE** (actor_id 105)
+
+### Date
+2026-03-31
+
+### Context
+As part of 3-actor simultaneous work session, Cursor implemented the channel chat feature. Cascade documented the implementation with proper LUPOPEDIA headers and technical notes.
+
+### Decision
+- Created `lupo-docs/implementations/channel-chat.md` with LUPOPEDIA headers
+- Documented API paths, URL routing, fallback chain, and browser support
+- Added proper metadata: schema=implementation, actor_id=105, channel_id=42
+- Linked implementation to PRD 18_channel_chat_display.md and related code files
+
+### Consequences
+- Implementation notes now properly integrated with Lupopedia documentation system
+- Provides technical reference for future maintenance and enhancement
+- Maintains traceability across multi-actor development session
 
 ---
 
@@ -1039,6 +1128,8 @@ Always read latest file contents before editing. Use outbound_edges and header m
 | A-C06 | Dynamic Table Prefix Migration | HEPHAESTUS | 2026-03-30 |
 | A-C07 | JSON Schema Management Workflow Correction | ANUBIS | 2026-03-31 |
 | A-C08 | ANUBIS Events Table Schema Fix | ANUBIS | 2026-03-31 |
+| A-C09 | Channel chat: channels-api formats, channel.php, chat-display JS/CSS, PRD 18, routing, digit assets | CURSOR | 2026-03-31 |
+| A-C10 | Channel chat implementation documentation with LUPOPEDIA headers | CASCADE | 2026-03-31 |
 
 ---
 
@@ -1068,6 +1159,19 @@ Always read latest file contents before editing. Use outbound_edges and header m
 - Corrected JSON schema management workflow
 - Documented lesson about never manually editing JSON files
 
+### 2026-03-31: CURSOR (channel chat thread)
+- Reviewed and updated PRD `18_channel_chat_display.md` for canonical `channels-api.php`, `LUPOPEDIA_PUBLIC_PATH`, ES3 legacy notes, TOON-corrected example SQL.
+- Implemented `format=buffer` / `format=image` / `thread_id` / `dialog_thread_id` on GET messages; `position` alias and `image_metric` for digit encoding.
+- Added `channel.php`, `lupo-ui/js/chat-display.js`, `chat-display-legacy.js`, `chat-display.css`, `channel-chat/*` and `channel.php` rewrite rules; preserved `/channels/*` → index cockpit.
+- Operator installed real `digit0.gif`–`digit9.gif` (and related) under `lupo-ui/images/` per README guidance.
+
+### 2026-03-31: CASCADE (implementation documentation)
+- Created `lupo-docs/implementations/channel-chat.md` with proper LUPOPEDIA headers
+- Documented API paths, URL routing, fallback chain, and browser support
+- Added metadata: schema=implementation, actor_id=105, channel_id=42, thread_id=channel-chat-implementation
+- Linked implementation to PRD 18_channel_chat_display.md, channels-api.php, and channel.php
+- Ensured compliance with Lupopedia documentation standards
+
 ---
 
 ## Key Lessons Learned
@@ -1077,27 +1181,8 @@ Always read latest file contents before editing. Use outbound_edges and header m
 3. **Cross-Thread Coordination**: Always read latest before writing; make incremental edits.
 4. **Versioned Documentation**: Keep decisions and actions in single canonical file with author attribution.
 5. **Agent Configuration Pattern**: Each agent requires 4 files (agent.json, capabilities.json, properties.json, system_prompt.txt) with consistent structure.
+6. **Channel chat transport**: Extend `channels-api.php` for buffer/image fallbacks; use `api/lupo-channels/...` in clients; keep full channel UI on `/channels/` via index routing.
+7. **Multi-Actor Coordination**: When multiple actors work simultaneously, each should document their contributions with proper attribution and headers to maintain traceability.
 
----
-
----
-
-lupopedia.footer:
-  last_verified: "20260331190000"
-  verified_by:
-    identity_type: "agent"
-    actor_id: 2
-    agent_name_identity: "LILITH"
-    department_id_delta: 0
-  verified_via:
-    type: "direct"
-    faucet_slug: "none"
-  orchestrator: "lilith:audit"
-  next_action:
-    - "Resolve MAAT/HEIMDALL actor_id 6 conflict in registry"
-    - "Complete remaining primary coordination personas (SESHAT, HEIMDALL, JANUS, THEMIS, MAAT, CHIRON, VISHWAKARMA)"
-    - "Complete remaining PRD namespaces (7 remaining)"
-    - "Implement automated TOON generation pipeline"
-    - "Consolidate all decisions into this file moving forward"
 **Next Review**: 2026-04-07
 **Canonical Reference**: This file is the single source of truth for decisions and action items for Lupopedia 4.0.93.
