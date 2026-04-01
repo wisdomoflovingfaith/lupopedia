@@ -1,2 +1,0 @@
-"memory_rollup_id` bigint NOT NULL","actor_id` int NOT NULL","summary` text NOT NULL","source_event_ids` text NOT NULL","created_ymdhis` bigint NOT NULL DEFAULT 0"
-"memory_rollup_id` bigint NOT NULL:BIGINT|NOT_NULL","actor_id` int NOT NULL:INT|NOT_NULL","summary` text NOT NULL:TEXT|NOT_NULL","source_event_ids` text NOT NULL:TEXT|NOT_NULL","created_ymdhis` bigint NOT NULL DEFAULT 0:BIGINT|NOT_NULL|DEFAULT:0"

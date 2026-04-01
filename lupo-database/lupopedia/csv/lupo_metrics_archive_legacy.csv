@@ -1,2 +1,0 @@
-"metric_id` int NOT NULL","metric_key` varchar(255) NOT NULL","metric_value` varchar(255)","recorded_at` bigint"
-"metric_id` int NOT NULL:INT|NOT_NULL","metric_key` varchar(255) NOT NULL:VARCHAR(255)|NOT_NULL","metric_value` varchar(255):VARCHAR(255)|NULL","recorded_at` bigint:BIGINT|NULL"

@@ -1,2 +1,0 @@
-"alias_id` int NOT NULL","slug` varchar(255) NOT NULL","alias` varchar(255) NOT NULL","alias_type` varchar(50) DEFAULT 'semantic'","created_at` bigint"
-"alias_id` int NOT NULL:INT|NOT_NULL","slug` varchar(255) NOT NULL:VARCHAR(255)|NOT_NULL","alias` varchar(255) NOT NULL:VARCHAR(255)|NOT_NULL","alias_type` varchar(50) DEFAULT 'semantic':VARCHAR(50)|NULL|DEFAULT:'semantic'","created_at` bigint:BIGINT|NULL"

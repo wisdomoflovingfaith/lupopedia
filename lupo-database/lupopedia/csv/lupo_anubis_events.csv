@@ -1,2 +1,0 @@
-"anubis_event_id` bigint NOT NULL","event_type` varchar(64) NOT NULL","table_name` varchar(255) NOT NULL","row_id` bigint NOT NULL","timestamp_utc` bigint NOT NULL","agent` varchar(255) NOT NULL","details_json` text NOT NULL"
-"anubis_event_id` bigint NOT NULL:BIGINT|NOT_NULL","event_type` varchar(64) NOT NULL:VARCHAR(64)|NOT_NULL","table_name` varchar(255) NOT NULL:VARCHAR(255)|NOT_NULL","row_id` bigint NOT NULL:BIGINT|NOT_NULL","timestamp_utc` bigint NOT NULL:BIGINT|NOT_NULL","agent` varchar(255) NOT NULL:VARCHAR(255)|NOT_NULL","details_json` text NOT NULL:TEXT|NOT_NULL"

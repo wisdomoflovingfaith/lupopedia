@@ -1,5 +1,0 @@
-"translation_id` bigint NOT NULL","source_framework` varchar(32) NOT NULL","source_state` text NOT NULL","target_framework` varchar(32) NOT NULL","target_state` text NOT NULL","loss_score` decimal(3,2) NOT NULL","created_ymdhis` bigint NOT NULL DEFAULT 0","last_used_ymdhis` bigint NOT NULL"
-"translation_id` bigint NOT NULL:BIGINT|NOT_NULL","source_framework` varchar(32) NOT NULL:VARCHAR(32)|NOT_NULL","source_state` text NOT NULL:TEXT|NOT_NULL","target_framework` varchar(32) NOT NULL:VARCHAR(32)|NOT_NULL","target_state` text NOT NULL:TEXT|NOT_NULL","loss_score` decimal(3,2) NOT NULL:UNKNOWN|NOT_NULL","created_ymdhis` bigint NOT NULL DEFAULT 0:BIGINT|NOT_NULL|DEFAULT:0","last_used_ymdhis` bigint NOT NULL:BIGINT|NOT_NULL"
-1,lilith_protocol,critical_joy,maat_protocol,agreeing_trust,0.70,20260220000000,20260220000000
-2,lilith_protocol,critical_fear,maat_protocol,agreeing_calm,0.60,20260220000000,20260220000000
-3,maat_protocol,agreeing_trust,lilith_protocol,critical_trust,0.40,20260220000000,20260220000000

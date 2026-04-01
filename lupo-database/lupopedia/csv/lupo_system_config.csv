@@ -1,2 +1,0 @@
-"system_config_id` bigint NOT NULL","config_key` varchar(255) NOT NULL","config_value` text NOT NULL","actor_id` bigint NOT NULL DEFAULT 0","created_ymdhis` bigint NOT NULL DEFAULT 0","updated_ymdhis` bigint NOT NULL"
-"system_config_id` bigint NOT NULL:BIGINT|NOT_NULL","config_key` varchar(255) NOT NULL:VARCHAR(255)|NOT_NULL","config_value` text NOT NULL:TEXT|NOT_NULL","actor_id` bigint NOT NULL DEFAULT 0:BIGINT|NOT_NULL|DEFAULT:0","created_ymdhis` bigint NOT NULL DEFAULT 0:BIGINT|NOT_NULL|DEFAULT:0","updated_ymdhis` bigint NOT NULL:BIGINT|NOT_NULL"

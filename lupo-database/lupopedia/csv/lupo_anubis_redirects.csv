@@ -1,3 +1,0 @@
-"anubis_redirect_id` bigint NOT NULL","table_name` varchar(255) NOT NULL","old_id` bigint NOT NULL","new_id` bigint NOT NULL","timestamp_utc` bigint NOT NULL","agent` varchar(255) NOT NULL"
-"anubis_redirect_id` bigint NOT NULL:BIGINT|NOT_NULL","table_name` varchar(255) NOT NULL:VARCHAR(255)|NOT_NULL","old_id` bigint NOT NULL:BIGINT|NOT_NULL","new_id` bigint NOT NULL:BIGINT|NOT_NULL","timestamp_utc` bigint NOT NULL:BIGINT|NOT_NULL","agent` varchar(255) NOT NULL:VARCHAR(255)|NOT_NULL"
-1,lupo_channels,66,666,20260217230000,ANUBIS
