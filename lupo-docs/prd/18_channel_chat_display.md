@@ -246,7 +246,7 @@ Reply to A (HEPHAESTUS)
 
 ### Polling Strategy (Default)
 
-For shared hosting compatibility, use polling:
+For shared hosting compatibility, use polling with XMLHttpRequest fallback:
 
 ```javascript
 class MessageFetcher {
@@ -260,20 +260,85 @@ class MessageFetcher {
         this.timer = setInterval(() => this.fetch(), this.pollInterval);
     }
     
-    async fetch() {
+    fetch() {
         const url = `${LUPOPEDIA_SUBDIRECTORY}api/chat/messages.php?channel=${this.channelId}&since=${this.lastTimestamp}`;
-        const response = await fetch(url, { credentials: 'same-origin' });
-        const data = await response.json();
         
-        if (data.messages.length > 0) {
-            this.lastTimestamp = data.messages[data.messages.length - 1].timestamp;
-            this.renderMessages(data.messages);
-        }
+        // Use sendRequest from xmlhttp.js (battle-tested 20-year pattern)
+        sendRequest({
+            method: 'GET',
+            url: url,
+            onSuccess: (responseText) => {
+                try {
+                    const data = JSON.parse(responseText);
+                    if (data.messages && data.messages.length > 0) {
+                        this.lastTimestamp = data.messages[data.messages.length - 1].timestamp;
+                        this.onMessage(data.messages);
+                    }
+                } catch(e) {
+                    console.error('Failed to parse messages', e);
+                }
+            },
+            fallback: () => {
+                // Fallback to XMLHttpRequest if fetch not available
+                this.fallbackXHR(url);
+            }
+        });
+    }
+    
+    fallbackXHR(url) {
+        const xhr = new XMLHttpRequest();
+        xhr.open('GET', url, true);
+        xhr.onreadystatechange = () => {
+            if (xhr.readyState === 4 && xhr.status === 200) {
+                try {
+                    const data = JSON.parse(xhr.responseText);
+                    if (data.messages && data.messages.length > 0) {
+                        this.lastTimestamp = data.messages[data.messages.length - 1].timestamp;
+                        this.onMessage(data.messages);
+                    }
+                } catch(e) {
+                    console.error('Failed to parse messages', e);
+                }
+            }
+        };
+        xhr.send();
     }
 }
 ```
 
+**Note:** The `sendRequest()` function from `xmlhttp.js` (Crafty Syntax legacy) is used here. It automatically detects `fetch()` support and falls back to XMLHttpRequest, ensuring compatibility with all browsers including IE and ancient mobile devices. This matches the 20-year battle-tested pattern that still works everywhere.
+
 ### WebSocket Strategy (Optional)
+
+**Note:** WebSocket requires server configuration (Apache mod_proxy_wstunnel, Nginx, or dedicated WebSocket server). For shared hosting environments where WebSocket is not available, the polling strategy above is the default and recommended approach.
+
+**If WebSocket is enabled, fallback to polling if connection fails:**
+
+```javascript
+class AdaptiveMessageFetcher extends MessageFetcher {
+    constructor(channelId) {
+        super(channelId);
+        this.useWebSocket = false;
+        this.ws = null;
+    }
+    
+    start() {
+        if (window.WebSocket && this.wsSupported()) {
+            this.connectWebSocket();
+        }
+        if (!this.useWebSocket) {
+            super.start(); // fallback to polling
+        }
+    }
+    
+    wsSupported() {
+        // Check if WebSocket is supported AND server likely supports it
+        return window.WebSocket && 
+               window.location.protocol !== 'file:' &&
+               !window.location.hostname.includes('sharedhost');
+    }
+}
+```
 
 For real-time installations:
 
@@ -289,6 +354,62 @@ class WebSocketMessageFetcher extends MessageFetcher {
         };
     }
 }
+```
+
+---
+
+## Message Posting Endpoint
+
+```php
+// lupo-api/chat/messages.php - POST handler
+case 'POST':
+    // CSRF validation
+    if (!verify_csrf_token($_POST['csrf_token'] ?? '')) {
+        http_response_code(403);
+        echo json_encode(['error' => 'Invalid CSRF token']);
+        break;
+    }
+    
+    // Rate limiting
+    if (!check_rate_limit($_SERVER['REMOTE_ADDR'], 'chat_post', 30, 60)) {
+        http_response_code(429);
+        echo json_encode(['error' => 'Rate limit exceeded']);
+        break;
+    }
+    
+    // Validate input
+    $channel_id = intval($_POST['channel_id'] ?? 0);
+    $message_text = trim($_POST['message'] ?? '');
+    if ($channel_id <= 0 || empty($message_text)) {
+        http_response_code(400);
+        echo json_encode(['error' => 'Invalid input']);
+        break;
+    }
+    
+    // Check channel membership
+    if (!is_member_of_channel($actor_id, $channel_id)) {
+        http_response_code(403);
+        echo json_encode(['error' => 'Not a member of this channel']);
+        break;
+    }
+    
+    // Insert message
+    $message_id = IdGenerator::generate();
+    $sql = replace_prefix("INSERT INTO {{prefix}}dialog_messages 
+        (dialog_message_id, channel_id, from_actor_id, message_text, created_ymdhis, updated_ymdhis) 
+        VALUES (?, ?, ?, ?, ?, ?)");
+    
+    execute($sql, [
+        $message_id,
+        $channel_id,
+        $actor_id,
+        $message_text,
+        get_current_utc(),
+        get_current_utc()
+    ]);
+    
+    echo json_encode(['success' => true, 'message_id' => $message_id]);
+    break;
 ```
 
 ---
@@ -371,8 +492,7 @@ SELECT
     a.actor_id,
     a.actor_name,
     a.display_name,
-    a.metadata_json->>'$.chat_color_theme' as color_theme,
-    a.metadata_json->>'$.chat_text_color' as text_color,
+    a.metadata_json as metadata_json,
     am.mood_r as mood_red,
     am.mood_g as mood_green,
     am.mood_b as mood_blue
@@ -389,6 +509,8 @@ WHERE dm.channel_id = ?
 ORDER BY dm.created_ymdhis ASC
 LIMIT 100
 ```
+
+**Database Doctrine Compliance:** JSON fields are stored as JSON but parsed in application layer. The SQL query returns the raw JSON; the application is responsible for extracting fields. This maintains database neutrality between MySQL and PostgreSQL.
 
 ---
 
@@ -614,6 +736,55 @@ $lupo_message = [
 - Rate limiting on message endpoints
 - Actor colors are per-session and not shared across users (privacy)
 - Message history respects channel permissions
+
+### XSS Prevention
+
+```javascript
+// In MessageRenderer
+renderMessage(message) {
+    // Sanitize message text with DOMPurify
+    const cleanText = DOMPurify.sanitize(message.message_text, {
+        ALLOWED_TAGS: ['b', 'i', 'em', 'strong', 'a', 'code', 'pre'],
+        ALLOWED_ATTR: ['href', 'target', 'rel']
+    });
+    // ...
+}
+```
+
+### CSRF Protection
+
+```javascript
+// In message posting
+async sendMessage(channelId, messageText) {
+    const csrfToken = document.querySelector('meta[name="csrf-token"]').content;
+    
+    sendRequest({
+        method: 'POST',
+        url: `${LUPOPEDIA_SUBDIRECTORY}api/chat/messages.php`,
+        body: {
+            channel_id: channelId,
+            message: messageText,
+            csrf_token: csrfToken
+        },
+        onSuccess: (response) => {
+            // Handle success
+        }
+    });
+}
+```
+
+### Rate Limiting
+
+PHP endpoints MUST implement rate limiting using existing rate limiting functions:
+
+```php
+// In messages.php endpoint
+if (!check_rate_limit($_SERVER['REMOTE_ADDR'], 'chat_post', 30, 60)) {
+    http_response_code(429);
+    echo json_encode(['error' => 'Rate limit exceeded. Please wait.']);
+    exit;
+}
+```
 
 ---
 
