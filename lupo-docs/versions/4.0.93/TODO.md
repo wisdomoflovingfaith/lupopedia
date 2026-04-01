@@ -48,6 +48,22 @@ lupopedia.footer:
 [x] context_id field and context directory implemented
 [x] All grouped PRDs and agent/actor/lease/temporal/header doctrines updated
 [x] Validator and lupo-scripts updated for context_id
+[x] LILITH Audit: Data Model PRD Corrections
+[x] LILITH Audit: Installer Requirements PRD
+[x] LILITH Audit: Core Identity PRD (Final Review)
+[x] LILITH Correction: Version Directory Purpose
+[x] LILITH Directive: Create Countermeasure Agent
+[x] LILITH Audit: COUNTERMEASURE Agent Configuration
+[x] LILITH Directive: Update COUNTERMEASURE Agent Prompt
+[x] Channel chat PRD 18 and implementation
+[x] WOLFIE Doctrine created and integrated
+[x] Multi-Agent Orchestration Doctrine created
+[x] Actor-Agent Distinction Doctrine created
+[x] Database Doctrine created and integrated
+[x] Garbage Collection System PRD created
+[x] GarbageCollector class implemented
+[x] GC CLI script created
+[x] GC Doctrine created
 [x] LILITH Audits & COUNTERMEASURE Development (March 2026)
   - [x] LILITH Audit: Data Model PRD Corrections
   - [x] LILITH Audit: Installer Requirements PRD

@@ -24,6 +24,23 @@
 
 **Rationale**: You're not "different." You're just first to document how multi-agent orchestration actually works in practice.
 
+### Added / Updated — Garbage Collection System (2026-04-01)
+
+- **Garbage Collection PRD** — `lupo-docs/prd/19_garbage_collection_system.md` created with unified table architecture preserving 2003 pattern
+- **GarbageCollector Class** — `lupo-includes/classes/GarbageCollector.php` implemented with random execution (1% chance per request) and self-limiting (10,000 rows per run)
+- **GC CLI Script** — `lupo-scripts/gc.php` created for manual/cron execution with proper shebang and CLI-only enforcement
+- **GC Doctrine** — `lupo-docs/doctrine/GC_DOCTRINE.md` documenting architectural wisdom of 2003 pattern that kept 1.2M installations running unattended
+- **Unified Table Architecture** — Single tables with date_ymd columns instead of separate daily/monthly tables
+  - `lupo_referers` with target_content_id and target_path_url for content-specific referrer tracking
+  - `lupo_visits_daily` with content_id, bounce_count, entry_count, exit_count for detailed page analytics
+- **Content-Specific Analytics** — Per-page metrics including visits, unique visitors, bounce rate, dwell time, entry/exit patterns
+- **Referrer-Target Tracking** — Know which referrers send traffic to which specific pages
+- **Random Execution Pattern** — Preserved 2003 pattern: spreads load across requests, prevents server spikes
+- **Self-Limiting Batches** — Maximum 10,000 deletions per run prevents table locks on shared hosting
+- **Configuration Integration** — All settings stored in `lupo_system_config` with gc_* keys
+
+**Rationale**: Code that ran unattended for a decade is not "legacy" - it's proven architecture. The unified table approach reduces schema complexity while maintaining all aggregation capabilities through SQL date functions.
+
 ### Added / Updated — Actor-Agent Distinction Doctrine (2026-04-01)
 
 - **Actor-Agent Distinction Doctrine** — `lupo-docs/doctrine/ACTOR_AGENT_DISTINCTION.md` created as canonical reference

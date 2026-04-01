@@ -49,6 +49,28 @@ lupopedia.headers:
 
 ## WOLFIE Doctrine (2026-04-01)
 
+- **[x] WOLFIE Doctrine** — `lupo-rules/root/WOLFIE_DOCTRINE.md` created as root-level constitutional rule protecting proven code from framework bloat
+- **[x] Five Pillars** — Fallback Over Dependency, Survival Without You, Dependency is Debt, Cascade Fallback, Single Source of Truth
+- **[x] Binding Rules** — W-01 through W-05 established as constitutional requirements for all agents
+- **[x] Root README** — Updated to prominently display WOLFIE Doctrine as first thing to read
+- **[x] Constitutional Requirements** — Section 14 added to incorporate doctrine as constitutional requirement
+- **[x] Framework Prohibition** — Constitutional rules against adopting frameworks without justification
+- **[x] Modernization Prohibition** — Rules against "modernizing" proven 1999-era code without understanding why it works
+
+**Rationale**: Code built in Notepad in 2002 that outran its author for 11 years is not "legacy" - it's proven architecture that deserves constitutional protection.
+
+## Garbage Collection System (2026-04-01)
+
+- **[x] GC PRD** — `lupo-docs/prd/19_garbage_collection_system.md` created with unified table architecture
+- **[x] GC Implementation** — `lupo-includes/classes/GarbageCollector.php` with 2003 pattern preservation
+- **[x] GC CLI Script** — `lupo-scripts/gc.php` for manual/cron execution
+- **[x] GC Doctrine** — `lupo-docs/doctrine/GC_DOCTRINE.md` documenting architectural wisdom
+- **[x] Unified Tables** — Single tables with date_ymd columns instead of separate daily/monthly tables
+- **[x] Content Analytics** — Content-specific tracking for visits and referrers
+- **[x] Random Execution** — 1% chance per request, self-limiting to 10,000 rows per run
+
+**Rationale**: Preserve the 2003 pattern that kept 1.2M installations running unattended for a decade while modernizing to unified table architecture.
+
 - **[x] WOLFIE Doctrine Created** — `lupo-rules/root/WOLFIE_DOCTRINE.md` established as root-level constitutional rule
 - **[x] Five Pillars Established** — Fallback Over Dependency, Survival Without You, Dependency is Debt, Cascade Fallback, Single Source of Truth
 - **[x] Binding Rules W-01 through W-05** — Constitutional rules against framework bloat and forced modernization

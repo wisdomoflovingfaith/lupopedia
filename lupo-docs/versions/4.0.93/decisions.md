@@ -2,16 +2,16 @@
 lupopedia.headers:
   header_format_version: 2
   lupopedia.schema: doctrine
-  when_updated: "20260331235900"
+  when_updated: "20260401020000"
   file_path_from_root: "lupo-docs/versions/4.0.93/decisions.md"
   web_path: "http://www.lupopedia.com/lupopedia/lupo-docs/versions/4.0.93/decisions.md"
-  last_modified_utc: "20260331235900"
+  last_modified_utc: "20260401020000"
   federation_node_id: 0
   channel_id: 42
   thread_id: "version-4.0.93-decisions"
-  actor_id: 2
-  actor_name: "LILITH"
-  delegation_chain: "lilith:audit"
+  actor_id: 1
+  actor_name: "WOLFIE"
+  delegation_chain: "wolfie:root"
   artifact_type: "doctrine"
   artifact_kind: "decisions"
   purpose: "Architecture and design decisions for Lupopedia 4.0.93"
@@ -20,16 +20,12 @@ lupopedia.headers:
   - "adr"
   - "version-4.0.93"
 lupopedia.footer:
-  last_verified: "20260331235900"
+  last_verified: "20260401020000"
   verified_by:
-    identity_type: "agent"
-    actor_id: 2
-    agent_name_identity: "LILITH"
-    department_id_delta: 0
-  verified_via:
-    type: "direct"
-    faucet_slug: "none"
-  orchestrator: "lilith:audit"
+    identity_type: "actor"
+    actor_id: 1
+    agent_name_identity: "WOLFIE"
+  orchestrator: "wolfie:root"
   next_action:
     - "Resolve MAAT/HEIMDALL actor_id 6 conflict in registry"
     - "Complete remaining primary coordination personas (SESHAT, HEIMDALL, JANUS, THEMIS, MAAT, CHIRON, VISHWAKARMA)"
@@ -37,8 +33,8 @@ lupopedia.footer:
     - "Implement automated TOON generation pipeline"
     - "Consolidate all decisions into this file moving forward"
     - "Optional: wire main channels cockpit UI to same api/lupo-channels patterns where useful"
+    - "Integrate GarbageCollector class into image.php or lupo_ajax.php for random execution"
 ---
-
 
 # Lupopedia 4.0.93 - Decisions & Action Items
 
@@ -74,7 +70,11 @@ lupopedia.footer:
 | D-25  | Directive | IDE: Update 4.0.93 version documentation (first pass) | CURSOR | Completed | 2026-03-31 | D-05 |
 | D-26  | Decision  | Channel chat: canonical api/lupo-channels + PRD 18 + standalone channel-chat UI | CURSOR | Completed | 2026-03-31 | D-05 |
 | D-27  | Directive | IDE: Refresh 4.0.93 docs after channel chat thread | CURSOR | Completed | 2026-03-31 | D-26 |
-| D-15 | Decision | LILITH Audit: Data Model PRD Corrections | LILITH | Completed | 2026-03-31 | D-01 |
+| D-28  | Decision  | WOLFIE Doctrine: Constitutional Protection of Proven Code | WOLFIE | Accepted | 2026-04-01 | D-08 |
+| D-29  | Decision  | Multi-Agent Orchestration Doctrine | WOLFIE | Accepted | 2026-04-01 | D-28 |
+| D-30  | Decision  | Actor-Agent Distinction Doctrine | WOLFIE | Accepted | 2026-04-01 | D-29 |
+| D-31  | Decision  | Database Doctrine: Canonical Database Rules | WOLFIE | Accepted | 2026-04-01 | D-08 |
+| D-32  | Decision  | Garbage Collection System with Unified Table Architecture | WOLFIE | Completed | 2026-04-01 | D-31 |
 | Q-01  | Question  | HEIMDALL Actor ID Assignment                   | LILITH     | Answered    | 2026-03-31  |           |
 | A-01  | Answer    | HEIMDALL Actor ID Resolution                   | WOLFIE     | Completed   | 2026-03-31  | Q-01      |
 | Q-02  | Question  | MAAT Layer Placement (Kernel vs Coordination)  | LILITH     | Open        | 2026-03-31  |           |
@@ -1301,6 +1301,45 @@ Always read latest file contents before editing. Use outbound_edges and header m
 - Created Actor-Agent Distinction Doctrine
 - Updated all PRDs to clarify agents are templates, actors are instances
 - Added Rule W-06 to WOLFIE Doctrine: Agents Do Not Learn, Actors Do
+
+---
+
+## D-32: Garbage Collection System with Unified Table Architecture
+
+### Type
+**Decision**
+
+### Status
+**Completed**
+
+### Author
+**WOLFIE** (actor_id 1) - System Architect
+
+### Date
+2026-04-01
+
+### Context
+Lupopedia needs a modern garbage collection system that preserves the 2003 `gc.php` pattern while supporting unified table architecture with content-specific analytics.
+
+### Decision
+- Created `lupo-docs/prd/19_garbage_collection_system.md` with unified table approach
+- Implemented `lupo-includes/classes/GarbageCollector.php` with random execution pattern
+- Created `lupo-scripts/gc.php` for CLI/cron execution
+- Created `lupo-docs/doctrine/GC_DOCTRINE.md` documenting 2003 pattern wisdom
+- Used single tables with date_ymd columns instead of separate daily/monthly tables
+- Added content-specific tracking for visits and referrers
+- Preserved 1% random execution and self-limiting (10,000 rows per run)
+
+### Consequences
+- Unified table architecture reduces schema complexity while maintaining all aggregation capabilities
+- Content-specific analytics enable detailed page performance tracking
+- Random execution spreads load across requests, preventing server spikes
+- Self-limiting prevents table locks on shared hosting
+- Preserves proven 2003 pattern that kept 1.2M installations running for 10 years unattended
+
+### Comments
+*2026-04-01 WOLFIE*: If it ran unattended for a decade, it's not legacy. It's proven.
+*2026-04-01 LILITH*: Unified tables with date_ymd pattern is elegant and scalable.
 
 ---
 
