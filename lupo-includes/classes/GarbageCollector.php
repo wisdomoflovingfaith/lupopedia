@@ -91,14 +91,15 @@ class GarbageCollector {
     }
     
     /**
-     * Aggregate referrers into unified lupo_referers table with target tracking
+     * Aggregate referrers into unified lupo_referers table
+     * Tracks both referrer source AND target content
      */
     private function aggregateReferrers() {
         $sql = "SELECT 
                     SUBSTRING_INDEX(SUBSTRING_INDEX(v.referer, '/', 3), '://', -1) as domain,
-                    v.referer as full_url,
-                    COALESCE(v.content_id, 0) as target_content_id,
-                    v.path_url as target_path_url,
+                    v.referer as referer_url,
+                    v.path_url as target_path,
+                    v.content_id as target_content_id,
                     DATE(v.created_ymdhis) as visit_date,
                     COUNT(*) as cnt
                 FROM lupo_visits v
@@ -106,7 +107,7 @@ class GarbageCollector {
                   AND v.referer != ''
                   AND v.is_processed = 0
                   AND v.is_deleted = 0
-                GROUP BY domain, full_url, COALESCE(v.content_id, 0), v.path_url, DATE(v.created_ymdhis)
+                GROUP BY domain, v.referer, v.path_url, v.content_id, DATE(v.created_ymdhis)
                 LIMIT 5000";
         
         $referrers = $this->db->query($sql);
@@ -114,8 +115,15 @@ class GarbageCollector {
         foreach ($referrers as $ref) {
             $date_ymd = str_replace('-', '', $ref['visit_date']);
             
+            // Try to get content_id if not already present
+            $content_id = $ref['target_content_id'];
+            if (!$content_id) {
+                $content_id = $this->getContentIdFromUrl($ref['target_path']);
+            }
+            
             $sql = "INSERT INTO lupo_referers 
-                    (referer_domain, referer_url, target_content_id, target_path_url, date_ymd, visits, created_ymdhis, updated_ymdhis)
+                    (referer_domain, referer_url, target_content_id, target_path_url, 
+                     date_ymd, visits, created_ymdhis, updated_ymdhis)
                     VALUES (?, ?, ?, ?, ?, ?, ?, ?)
                     ON DUPLICATE KEY UPDATE 
                     visits = visits + VALUES(visits),
@@ -123,9 +131,9 @@ class GarbageCollector {
             
             $this->db->execute($sql, [
                 $ref['domain'],
-                $ref['full_url'],
-                $ref['target_content_id'],
-                $ref['target_path_url'],
+                $ref['referer_url'],
+                $content_id,
+                $ref['target_path'],
                 $date_ymd,
                 $ref['cnt'],
                 gmdate('YmdHis'),
