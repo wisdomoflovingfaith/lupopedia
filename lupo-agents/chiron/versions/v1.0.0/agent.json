@@ -1,0 +1,10 @@
+﻿{
+    "agent_id":  10,
+    "version":  "1.0.0",
+    "is_kernel":  false,
+    "layer":  "application",
+    "name":  "CHIRON",
+    "slug":  "chiron",
+    "role":  "Mentorship",
+    "is_required":  false
+}

@@ -1,0 +1,13 @@
+{
+    "capabilities": [
+        "standard_operations",
+        "baseline_compliance"
+    ],
+    "skill_metadata": {
+        "standard_operations": {
+            "description": "Execute standard layer duties",
+            "input": "context",
+            "output": "action"
+        }
+    }
+}

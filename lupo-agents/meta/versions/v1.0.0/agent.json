@@ -1,0 +1,12 @@
+{
+    "agent_key": "meta",
+    "agent_id": 998,
+    "version": "1.0.0",
+    "is_kernel": false,
+    "layer": "application",
+    "name": "META",
+    "slug": "meta",
+    "role": "Meta operations",
+    "description": "Standardized application agent for meta.",
+    "when_updated_utc": "20260401000000"
+}

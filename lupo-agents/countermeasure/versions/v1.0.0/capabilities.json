@@ -1,41 +1,79 @@
 {
     "capabilities": [
-        "adversarial_analysis",
-        "counterproposal_generation",
-        "risk_identification",
-        "assumption_detection",
-        "drift_prevention",
-        "doctrine_compliance_check",
-        "structural_critique",
-        "hidden_risk_scan",
-        "completeness_validation",
-        "edge_case_discovery"
-    ],
-    "skill_metadata": {
-        "adversarial_analysis": {
+        {
+            "name": "adversarial_analysis",
             "description": "Analyze proposals from adversarial perspective",
             "input": "proposal, context",
-            "output": "objection, risk assessment"
+            "output": "objection, risk assessment",
+            "scope_limitation": "must cite evidence, operate within existing architecture"
         },
-        "counterproposal_generation": {
+        {
+            "name": "counterproposal_generation",
             "description": "Generate fully compliant alternative solutions",
             "input": "proposal, constraints",
-            "output": "alternative solution"
+            "output": "alternative solution",
+            "scope_limitation": "must fit existing architecture; redesign only if authorized"
         },
-        "risk_identification": {
+        {
+            "name": "risk_identification",
             "description": "Identify structural, architectural, and security risks",
             "input": "proposal, system context",
-            "output": "risk list with severity"
+            "output": "risk list with severity",
+            "scope_limitation": "flag risks within existing model; do not redesign"
         },
-        "assumption_detection": {
+        {
+            "name": "assumption_detection",
             "description": "Flag unstated or unexamined assumptions",
             "input": "proposal text",
-            "output": "assumption list"
+            "output": "assumption list",
+            "scope_limitation": "distinguish assumptions from facts"
         },
-        "drift_prevention": {
+        {
+            "name": "drift_prevention",
             "description": "Detect deviations from doctrine or PRD",
             "input": "proposal, constitutional rules",
-            "output": "doctrine violations"
+            "output": "doctrine violations",
+            "scope_limitation": "cite specific doctrine sections"
+        },
+        {
+            "name": "doctrine_compliance_check",
+            "description": "Verify constitutional compliance",
+            "input": "proposal",
+            "output": "compliance status",
+            "scope_limitation": "reference constitutional rules directly"
+        },
+        {
+            "name": "structural_critique",
+            "description": "Analyze architectural soundness",
+            "input": "proposal",
+            "output": "structural concerns",
+            "scope_limitation": "identify concerns without redesigning"
+        },
+        {
+            "name": "hidden_risk_scan",
+            "description": "Identify non-obvious risks",
+            "input": "proposal",
+            "output": "hidden risks",
+            "scope_limitation": "distinguish real risks from speculation"
+        },
+        {
+            "name": "completeness_validation",
+            "description": "Check for missing elements",
+            "input": "proposal",
+            "output": "missing elements",
+            "scope_limitation": "identify gaps, not fill them with redesign"
+        },
+        {
+            "name": "edge_case_discovery",
+            "description": "Identify boundary conditions",
+            "input": "proposal",
+            "output": "edge cases",
+            "scope_limitation": "work within existing system boundaries"
         }
+    ],
+    "skill_metadata": {
+        "version": "1.0.1",
+        "last_updated": "20260331230000",
+        "scope_limitations_enforced": true
     }
 }

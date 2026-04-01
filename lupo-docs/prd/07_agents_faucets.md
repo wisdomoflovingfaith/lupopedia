@@ -175,19 +175,19 @@ lupo-agents/hermes/assets/
 - Session timeout: 1 hour maximum
 - Audit logging for all sensitive tool calls
 
-## Complete Agent Registry (29 agents)
+## Complete Agent Registry (33 agents)
 
-### Kernel Layer (7 agents)
+### Kernel Layer (8 agents)
 | Agent | Key | ID | Capabilities |
 |-------|-----|-----|--------------|
 | SYSTEM | system | 0 | system_operation, kernel_privileges, bootstrap |
 | MAAT | maat | 6 | truth_verification, justice_administration, ethical_validation |
+| ANUBIS | anubis | 19 | custodial_authority, quarantine_management, integrity_validation |
 | VISHWAKARMA | vishwakarma | 106 | schema_management, hierarchy_construction, collection_organization |
 | THEMIS | themis | 107 | law_enforcement, compliance_audit, rule_interpretation |
 | ASCLEPIUS | asclepius | 703 | health_monitoring, diagnostics, recovery_management |
 | CHRONOS | chronos | 709 | temporal_management, scheduling, timeline_coordination |
-| **HYPNOS** | hypnos | **710** | **sleep_cycles, maintenance_windows, graceful_degradation** |
-| **KHAOS** | khaos | **711** | **initialization, bootstrap, creation_events** |
+| HYPNOS | hypnos | 710 | sleep_cycles, maintenance_windows, graceful_degradation |
 
 ### Coordination Layer (5 agents)
 | Agent | Key | ID | Capabilities |
@@ -196,9 +196,9 @@ lupo-agents/hermes/assets/
 | LILITH | lilith | 2 | quality_assurance, adversarial_testing, critical_review |
 | THOTH | thoth | 9 | knowledge_management, record_keeping, information_architecture |
 | ATHENA | athena | 11 | strategic_planning, wisdom, tactical_guidance |
-| **ZEUS** | zeus | **12** | **dispute_resolution, constitutional_interpretation, veto_authority** |
+| ZEUS | zeus | 12 | dispute_resolution, constitutional_interpretation, veto_authority |
 
-### Application Layer (9 agents)
+### Application Layer (11 agents)
 | Agent | Key | ID | Capabilities |
 |-------|-----|-----|--------------|
 | CHIRON | chiron | 10 | mentorship, education, skill_development |
@@ -206,12 +206,14 @@ lupo-agents/hermes/assets/
 | HERMES | hermes | 15 | event_routing, messaging, protocol_management |
 | IRIS | iris | 16 | interface_design, integration, api_management |
 | ATLAS | atlas | 25 | mapping, geography, spatial_analysis |
-| JUNIE | junie | 108 | ide_integration, code_assistance, developer_tools |
-| **NEMESIS** | nemesis | **109** | **accountability, violation_detection, sanction_recommendation** |
-| **TYCHE** | tyche | **110** | **risk_analysis, probability_assessment, fortune_telling** |
-| **COUNTERMEASURE** | **countermeasure** | **111** | **adversarial_analysis, counterproposal_generation, risk_identification, assumption_detection, drift_prevention, doctrine_compliance_check, structural_critique, hidden_risk_scan, completeness_validation, edge_case_discovery** |
+| HEIMDALL | heimdall | 108 | threat_monitoring, vulnerability_detection, security_response |
+| NEMESIS | nemesis | 109 | accountability, violation_detection, sanction_recommendation |
+| TYCHE | tyche | 110 | risk_analysis, probability_assessment, fortune_telling |
+| COUNTERMEASURE | countermeasure | 111 | adversarial_analysis, risk_identification, assumption_detection |
+| JUNIE | junie | 112 | ide_integration, code_assistance, developer_tools |
+| META | meta | 998 | meta_analysis, layer_introspection |
 
-### Emotional Intelligence Layer (8 agents)
+### Emotional Intelligence Layer (9 agents)
 | Agent | Key | ID | Capabilities |
 |-------|-----|-----|--------------|
 | ROSE | rose | 3 | emotional_dialogue, mood_management, empathetic_response |
@@ -219,9 +221,11 @@ lupo-agents/hermes/assets/
 | METIS | metis | 5 | emotional_wisdom, intuitive_counsel, feeling_analysis |
 | APOLLO | apollo | 704 | creativity, arts, aesthetics |
 | AGAPE | agape | 705 | universal_love, compassion, empathy |
+| DIONYSUS | dionysus | 706 | ecstasy, inspiration, creative_flow |
+| SOPHIA | sophia | 707 | emotional_translation, wisdom_integration |
 | THALIA | thalia | 708 | comedy, joy, humor |
-| **DIONYSUS** | dionysus | **706** | **ecstasy, inspiration, creative_flow** |
-| **SOPHIA** | sophia | **707** | **emotional_translation, wisdom_integration** |
+| KHAOS | khaos | 711 | initialization, bootstrap, creation_events |
+| METHIS | methis | 999 | legacy_emotional_stub |
 
 ---
 

@@ -1,15 +1,12 @@
-﻿{
+{
+    "agent_key": "athena",
     "agent_id": 11,
-    "version": "1.0.2",
+    "version": "1.0.0",
     "is_kernel": false,
     "layer": "coordination",
     "name": "ATHENA",
     "slug": "athena",
-    "role": "Wisdom & Strategy",
-    "is_required": true,
-    "aliases": ["wisdom", "strategy"],
-    "when_updated_utc": "20260331120000",
-    "last_verified_utc": "20260331120000",
-    "last_verified_by": "cursor",
-    "last_verified_by_actor_id": 102
+    "role": "Strategic planning and wisdom",
+    "description": "Standardized coordination agent for athena.",
+    "when_updated_utc": "20260401000000"
 }

@@ -1,0 +1,31 @@
+{
+    "capabilities": [
+        "threat_monitoring",
+        "vulnerability_detection",
+        "security_response",
+        "access_control_audit",
+        "intrusion_detection",
+        "security_incident_response",
+        "threat_intelligence",
+        "security_policy_enforcement",
+        "risk_assessment",
+        "security_alerting"
+    ],
+    "skill_metadata": {
+        "threat_monitoring": {
+            "description": "Monitor system for security threats",
+            "input": "system_logs, traffic_patterns",
+            "output": "threat_alerts, risk_levels"
+        },
+        "vulnerability_detection": {
+            "description": "Identify security vulnerabilities",
+            "input": "codebase, configuration",
+            "output": "vulnerability_report"
+        },
+        "security_response": {
+            "description": "Coordinate security incident response",
+            "input": "incident_details",
+            "output": "response_plan, actions_taken"
+        }
+    }
+}

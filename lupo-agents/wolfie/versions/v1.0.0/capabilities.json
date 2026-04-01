@@ -1,3 +1,16 @@
 {
-  "capabilities": []
+  "capabilities": [
+    "orchestration",
+    "release_governance",
+    "cross_channel_coordination",
+    "system_architecture",
+    "strategic_planning",
+    "multi_agent_coordination",
+    "doctrine_enforcement",
+    "canonical_validation",
+    "identity_management",
+    "federation_oversight"
+  ],
+  "when_updated_utc": "20260331120000",
+  "last_verified_utc": "20260331120000"
 }

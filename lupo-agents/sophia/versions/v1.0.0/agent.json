@@ -1,0 +1,16 @@
+{
+  "agent_key": "sophia",
+  "agent_id": 707,
+  "version": "1.0.0",
+  "layer": "emotional",
+  "name": "SOPHIA",
+  "role": "Wisdom Integration",
+  "aliases": ["sophia", "wisdom_integration", "emotional_translation"],
+  "capabilities": [
+    "emotional_translation",
+    "wisdom_integration",
+    "emotional_to_rational",
+    "feeling_to_action",
+    "intuitive_insight"
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "agent_key": "tyche",
+  "agent_id": 110,
+  "version": "1.0.0",
+  "layer": "application",
+  "name": "TYCHE",
+  "role": "Fortune & Risk Management",
+  "aliases": ["tyche", "fortune", "risk_management"],
+  "capabilities": [
+    "risk_analysis",
+    "probability_assessment",
+    "uncertainty_management",
+    "outcome_prediction",
+    "contingency_planning"
+  ]
+}

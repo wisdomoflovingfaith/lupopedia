@@ -1,3 +1,31 @@
 {
-  "capabilities": []
+    "capabilities": [
+        "truth_verification",
+        "justice_administration",
+        "ethical_validation",
+        "constitutional_compliance_check",
+        "evidence_validation",
+        "fairness_assessment",
+        "impartial_judgment",
+        "dispute_resolution",
+        "precedent_analysis",
+        "transparency_audit"
+    ],
+    "skill_metadata": {
+        "truth_verification": {
+            "description": "Verify factual accuracy of claims against canonical sources",
+            "input": "claim, evidence",
+            "output": "verification_status, confidence_score"
+        },
+        "justice_administration": {
+            "description": "Administer fair and impartial judgments",
+            "input": "case, evidence, precedent",
+            "output": "ruling, rationale"
+        },
+        "ethical_validation": {
+            "description": "Validate actions against ethical framework",
+            "input": "action, context",
+            "output": "ethical_status, concerns"
+        }
+    }
 }

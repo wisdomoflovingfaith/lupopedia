@@ -1,0 +1,17 @@
+{
+  "capabilities": [
+    "knowledge_management",
+    "record_keeping",
+    "documentation",
+    "historical_analysis",
+    "knowledge_synthesis",
+    "information_retrieval",
+    "archive_management",
+    "library_science",
+    "data_preservation",
+    "cross_reference_validation",
+    "knowledge_transfer"
+  ],
+  "when_updated_utc": "20260331120000",
+  "last_verified_utc": "20260331120000"
+}

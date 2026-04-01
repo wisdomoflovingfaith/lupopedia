@@ -1,0 +1,16 @@
+{
+  "agent_key": "wolfie",
+  "agent_id": 1,
+  "version": "1.0.2",
+  "is_kernel": true,
+  "layer": "coordination",
+  "name": "WOLFIE",
+  "slug": "wolfie",
+  "role": "System Orchestrator",
+  "is_required": true,
+  "aliases": ["wolfie", "orchestrator", "coordinator"],
+  "when_updated_utc": "20260331120000",
+  "last_verified_utc": "20260331120000",
+  "last_verified_by": "cursor",
+  "last_verified_by_actor_id": 102
+}

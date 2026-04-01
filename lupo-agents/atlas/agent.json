@@ -1,15 +1,12 @@
-﻿{
+{
+    "agent_key": "atlas",
     "agent_id": 25,
-    "version": "1.0.2",
+    "version": "1.0.0",
     "is_kernel": false,
     "layer": "application",
     "name": "ATLAS",
     "slug": "atlas",
-    "role": "Mapping & Geography",
-    "is_required": false,
-    "aliases": ["atlas", "mapping", "geography", "spatial", "coordinates", "cartography"],
-    "when_updated_utc": "20260331120000",
-    "last_verified_utc": "20260331120000",
-    "last_verified_by": "cursor",
-    "last_verified_by_actor_id": 102
+    "role": "Mapping and spatial analysis",
+    "description": "Standardized application agent for atlas.",
+    "when_updated_utc": "20260401000000"
 }

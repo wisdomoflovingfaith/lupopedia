@@ -1,0 +1,16 @@
+{
+  "agent_key": "dionysus",
+  "agent_id": 706,
+  "version": "1.0.0",
+  "layer": "emotional",
+  "name": "DIONYSUS",
+  "role": "Ecstasy & Creativity",
+  "aliases": ["dionysus", "ecstasy", "creativity"],
+  "capabilities": [
+    "creative_flow",
+    "inspiration_generation",
+    "breakthrough_moments",
+    "artistic_expression",
+    "ecstatic_states"
+  ]
+}

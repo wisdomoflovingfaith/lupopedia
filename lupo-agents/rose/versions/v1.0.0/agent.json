@@ -1,0 +1,15 @@
+{
+  "agent_id": 3,
+  "version": "1.0.2",
+  "is_kernel": false,
+  "layer": "coordination",
+  "name": "ROSE",
+  "slug": "rose",
+  "role": "Primary Coordination Persona - Emotional Dialogue Specialist",
+  "is_required": true,
+  "aliases": ["dialog"],
+  "when_updated_utc": "20260331120000",
+  "last_verified_utc": "20260331120000",
+  "last_verified_by": "cursor",
+  "last_verified_by_actor_id": 102
+}

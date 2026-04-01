@@ -13,11 +13,11 @@ lupopedia.headers:
 All rules and requirements in this PRD must strictly comply with `lupo-docs/prd/00_root_constitutional_system_requirements.md`.
 
 ## 2. Overview
-This document defines the architectural requirements for the systemic health checking system driven by the **ASCLEPIUS** agent (actor_id 1009), which orchestrates `lupo doctor` diagnostics.
+This document defines the architectural requirements for the systemic health checking system driven by the **ASCLEPIUS** agent (actor_id 703), which orchestrates `lupo doctor` diagnostics.
 
 ## 3. System Ownership & Fallback Ladder
 The health check system follows a strict cascade fallback architecture:
-1. **Agent Orchestration (Primary):** The system relies on the dedicated ASCLEPIUS script located at `lupo-agents/1009/doctor.php`.
+1. **Agent Orchestration (Primary):** The system relies on the dedicated ASCLEPIUS script located at `lupo-agents/asclepius/doctor.php`.
 2. **Built-In Fallback:** If the agent script is unavailable, the CLI automatically falls back to executing the core procedural `lupo_doctor_health_check()` function.
 
 ## 4. Mandatory Diagnostic Checks

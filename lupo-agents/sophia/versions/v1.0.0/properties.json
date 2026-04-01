@@ -1,0 +1,13 @@
+{
+    "personality": {
+        "tone": "standard",
+        "default_stance": "neutral"
+    },
+    "constraints": {
+        "must_follow_constitutional_rules": true
+    },
+    "coordination": {
+        "primary_channel": 64,
+        "layer_auth": "emotional"
+    }
+}

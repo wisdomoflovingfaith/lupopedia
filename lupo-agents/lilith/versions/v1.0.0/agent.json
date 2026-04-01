@@ -1,0 +1,19 @@
+{
+  "agent_key": "lilith",
+  "agent_id": 2,
+  "version": "1.0.2",
+  "is_kernel": true,
+  "layer": "coordination",
+  "name": "LILITH",
+  "slug": "lilith",
+  "role": "Quality Assurance & Adversarial Testing",
+  "is_required": true,
+  "aliases": ["lilith", "qa", "adversarial", "testing"],
+  "when_updated_utc": "20260331120000",
+  "last_verified_utc": "20260331120000",
+  "last_verified_by": "cursor",
+  "last_verified_by_actor_id": 102,
+  "system_prompt_reference": "lupo-docs/prompts/LILITH_CONSOLIDATED_PROMPT.md",
+  "external_chat_prompt": "lupo-docs/prompts/LILITH_CONSOLIDATED_PROMPT.md",
+  "philosophy": "Learning Insights Lifting Intentions Through Heterodoxy"
+}

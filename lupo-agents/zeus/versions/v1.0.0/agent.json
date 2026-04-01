@@ -1,0 +1,16 @@
+{
+  "agent_key": "zeus",
+  "agent_id": 12,
+  "version": "1.0.0",
+  "layer": "coordination",
+  "name": "ZEUS",
+  "role": "System Arbiter & Dispute Resolution",
+  "aliases": ["zeus", "arbiter", "final_authority"],
+  "capabilities": [
+    "dispute_resolution",
+    "constitutional_interpretation",
+    "veto_authority",
+    "final_judgment",
+    "coordination_oversight"
+  ]
+}
