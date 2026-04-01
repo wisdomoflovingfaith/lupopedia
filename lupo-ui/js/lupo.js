@@ -1,286 +1,224 @@
-/**
- * Lupopedia v4.0.91 State Mirror
- * Actor: ATHENA (12)
- * Doctrine: Dumb UI / Reactive Refraction
- */
+// lupo-ui/js/lupo.js - Modern The Eye widget
 
-const LupoState = {
-    // The "Mirror" - only holds what is currently visible in the DOM
-    activeContexts: new Map(),
-
-    // Refraction Engine: Calculates UI state from DB Truth
-    refract: function(message) {
-        const actorId = BigInt(message.actor_id);
-        const temporalIndex = Number(actorId % 7n); // 7-color rotation
+class LupoTheEye {
+    constructor() {
+        this.baseUrl = window.LUPOPEDIA_SUBDIRECTORY || '/';
+        this.sessionId = this.getCookie('lupo_session');
+        this.consent = this.getCookie('lupo_consent') === '1';
+        this.csrfToken = document.querySelector('meta[name="csrf-token"]')?.content;
         
-        return {
-            color: this.getTemporalColor(temporalIndex),
-            isElevated: message.status === 'GOLD',
-            timestamp: this.formatLupoTime(message.created_at)
+        this.init();
+    }
+    
+    getCookie(name) {
+        const value = `; ${document.cookie}`;
+        const parts = value.split(`; ${name}=`);
+        if (parts.length === 2) return parts.pop().split(';').shift();
+        return null;
+    }
+    
+    async apiCall(action, data = {}, method = 'POST') {
+        const url = `${this.baseUrl}lupopedia_ajax.php?action=${action}`;
+        const options = {
+            method,
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRF-Token': this.csrfToken
+            },
+            credentials: 'include'
         };
-    },
-
-    getTemporalColor: function(index) {
-        const palette = ['#ffffff', '#fefdcd', '#cbcefe', '#e1fecd', '#fecdf7', '#fde0cd', '#cdfefd'];
-        return palette[index] || '#ffffff';
-    },
-
-    formatLupoTime: function(ymdhis) {
-        // Expects ymdhis as string: YYYYMMDDHHIISS
-        if (!ymdhis || ymdhis.length !== 14) return '';
-        return ymdhis.slice(0,4)+'-'+ymdhis.slice(4,6)+'-'+ymdhis.slice(6,8)+' '+ymdhis.slice(8,10)+':'+ymdhis.slice(10,12)+':'+ymdhis.slice(12,14);
+        
+        if (method === 'POST' && data) {
+            options.body = JSON.stringify(data);
+        } else if (method === 'GET' && data) {
+            const params = new URLSearchParams(data);
+            return fetch(`${url}&${params}`, options);
+        }
+        
+        const response = await fetch(url, options);
+        return response.json();
     }
-};
-
-// No localStorage, IndexedDB, or mutation methods. LupoState is a pure reflector.
-
-/**
- * Lupopedia v4.0.91 Semantic Monitor
- * Actor: ATHENA (12)
- * Purpose: Link UI Refractions to Context Edges.
- */
-
-const SemanticMonitor = {
-    lastAudit: Date.now(),
-
-    audit: function(contextId) {
-        // 1. Verify 63-bit Positive Integrity
-        if (BigInt(contextId) < 0n) {
-            this.triggerAlert("Signed-Bit Violation Detected!");
-            return false;
-        }
-
-        // 2. Map the Edge (Link to Truth)
-        const edge = LupoState.activeContexts.get(contextId);
-        if (edge && edge.status === 'GOLD') {
-            this.updateStatusBar(`Connection to Truth: ${contextId} (Verified)`);
-        }
-    },
-
-    triggerAlert: function(msg) {
-        console.error(`[LILITH DOCTRINE BREACH]: ${msg}`);
-        document.body.classList.add('doctrine-fail');
-    },
-
-    updateStatusBar: function(msg) {
-        let bar = document.getElementById('semantic-status-bar');
-        if (!bar) {
-            bar = document.createElement('div');
-            bar.id = 'semantic-status-bar';
-            bar.style.position = 'fixed';
-            bar.style.bottom = '0';
-            bar.style.left = '0';
-            bar.style.width = '100%';
-            bar.style.background = '#e1fecd';
-            bar.style.color = '#222';
-            bar.style.fontSize = '14px';
-            bar.style.padding = '4px 12px';
-            bar.style.zIndex = '9999';
-            document.body.appendChild(bar);
-        }
-        bar.textContent = msg;
-    }
-};
-
-// Monitor runs in requestIdleCallback to avoid paint-cycle tax
-window.requestIdleCallback && requestIdleCallback(() => {
-    for (const contextId of LupoState.activeContexts.keys()) {
-        SemanticMonitor.audit(contextId);
-    }
-});
-
-/**
- * Lupopedia v4.0.91 High-Density Scroller
- * Actor: ATHENA (12)
- * Purpose: 60fps Virtualization for Glass Bubbles.
- */
-
-const HighDensityScroller = {
-    viewportHeight: window.innerHeight,
-    rowHeight: 64, // Standard high-density bubble height
-
-    render: function(scrollTop) {
-        const startIndex = Math.floor(scrollTop / this.rowHeight);
-        const endIndex = startIndex + Math.ceil(this.viewportHeight / this.rowHeight);
-
-        // Clear and Re-Refract the Viewport
-        this.clearViewport();
-        for (let i = startIndex; i <= endIndex; i++) {
-            const data = LupoState.getTruthByIndex(i);
-            if (data) {
-                const bubble = LupoState.refract(data);
-                this.injectBubble(bubble, i * this.rowHeight);
-                SemanticMonitor.audit(data.context_id); // Monitor as we move
-            }
-        }
-    },
-
-    clearViewport: function() {
-        let container = document.getElementById('lupo-bubble-container');
-        if (container) container.innerHTML = '';
-    },
-
-    injectBubble: function(bubble, top) {
-        let container = document.getElementById('lupo-bubble-container');
-        if (!container) {
-            container = document.createElement('div');
-            container.id = 'lupo-bubble-container';
-            container.style.position = 'relative';
-            container.style.width = '100%';
-            container.style.height = '100%';
-            document.body.appendChild(container);
-        }
-        const div = document.createElement('div');
-        div.className = 'lupo-bubble' + (bubble.isElevated ? ' context-elevated' : '');
-        div.style.background = bubble.color;
-        div.style.position = 'absolute';
-        div.style.left = '0';
-        div.style.right = '0';
-        div.style.top = top + 'px';
-        div.style.height = this.rowHeight + 'px';
-        div.style.lineHeight = this.rowHeight + 'px';
-        div.style.margin = '0 0 2px 0';
-        div.textContent = `ID: ${bubble.timestamp} | Elevation: ${bubble.isElevated ? 'Gold' : 'Normal'}`;
-        container.appendChild(div);
-    }
-};
-
-// Helper for virtualization: get data by index (to be implemented by integration layer)
-LupoState.getTruthByIndex = function(index) {
-    // Placeholder: Should be replaced with actual data source logic
-    if (!window.LUPO_MOCK_DATA) return null;
-    return window.LUPO_MOCK_DATA[index] || null;
-};
-
-// Attach scroll event for virtualization
-window.addEventListener('scroll', function() {
-    HighDensityScroller.render(window.scrollY || window.pageYOffset);
-});
-
-// Initial render
-window.addEventListener('DOMContentLoaded', function() {
-    HighDensityScroller.render(window.scrollY || window.pageYOffset);
-});
-
-/**
- * Lupopedia v4.0.92 Semantic Search
- * Actor: ATHENA (12)
- * Doctrine: Edge-Weighted Retrieval
- */
-
-const SemanticSearch = {
-    // Traverse the State Mirror for keywords
-    query: function(term) {
-        const results = [];
-        LupoState.activeContexts.forEach((data, id) => {
-            if (data.text && data.text.includes(term)) {
-                // Weighting: Truth (2) > Discussion (1)
-                const weight = data.status === 'GOLD' ? 2 : 1;
-                results.push({ id, weight });
-            }
+    
+    async trackPage() {
+        if (!this.consent) return;
+        
+        await this.apiCall('track', {
+            page_url: window.location.href,
+            referrer: document.referrer,
+            title: document.title
         });
-        return results.sort((a, b) => b.weight - a.weight);
-    },
-
-    // Calculate scroll position for a 63-bit ID
-    jumpToId: function(targetId) {
-        const index = LupoState.getIndexById(targetId);
-        if (index !== -1) {
-            const top = index * HighDensityScroller.rowHeight;
-            window.scrollTo({ top, behavior: 'smooth' });
-            SemanticMonitor.audit(targetId); // Re-verify on landing
+    }
+    
+    async loadGoldContexts() {
+        const data = await this.apiCall('gold', {}, 'GET');
+        if (data.success && data.contexts.length > 0) {
+            this.renderGoldIndicator(data.contexts);
         }
     }
-};
-
-// Helper for SemanticSearch: get index by ID (to be implemented by integration layer)
-LupoState.getIndexById = function(targetId) {
-    if (!window.LUPO_MOCK_DATA) return -1;
-    for (let i = 0; i < window.LUPO_MOCK_DATA.length; i++) {
-        if (window.LUPO_MOCK_DATA[i].context_id === targetId) return i;
-    }
-    return -1;
-};
-
-/**
- * Lupopedia v4.0.92 Search UI
- * Actor: ATHENA (12)
- * Purpose: Semi-transparent legacy modal.
- */
-
-const SearchUI = {
-    visible: false,
-
-    toggle: function() {
-        this.visible = !this.visible;
-        const modal = document.getElementById('lupo-search-modal');
-        if (modal) {
-            modal.style.display = this.visible ? 'block' : 'none';
-            if (this.visible) document.getElementById('lupo-search-input').focus();
+    
+    async loadContextEdges(pageId) {
+        const data = await this.apiCall('context', { page_id: pageId }, 'GET');
+        if (data.success && data.edges.length > 0) {
+            this.renderContextGraph(data.edges);
         }
-    },
-
-    handleInput: function(term) {
-        const results = SemanticSearch.query(term).map(r => {
-            // Add preview text for display
-            const data = LupoState.activeContexts.get(r.id);
-            return {
-                ...r,
-                preview: data && data.text ? data.text.slice(0, 48) : ''
-            };
+    }
+    
+    renderGoldIndicator(contexts) {
+        const goldElement = document.getElementById('lupo-gold-indicator');
+        if (goldElement) {
+            goldElement.innerHTML = `✨ ${contexts.length} GOLD contexts`;
+            goldElement.style.display = 'block';
+        }
+    }
+    
+    async renderContextGraph(edges) {
+        // Only load D3 if we have edges and D3 not loaded
+        if (edges.length === 0) return;
+        
+        // Dynamic import of D3 (only when needed)
+        if (typeof d3 === 'undefined') {
+            await this.loadD3();
+        }
+        
+        // Render graph using D3
+        this.createGraph(edges);
+    }
+    
+    loadD3() {
+        return new Promise((resolve, reject) => {
+            const script = document.createElement('script');
+            script.src = this.baseUrl + 'assets/js/d3.v7.min.js';
+            script.onload = resolve;
+            script.onerror = reject;
+            document.head.appendChild(script);
         });
-        this.renderResults(results);
-    },
-
-    renderResults: function(results) {
-        const list = document.getElementById('lupo-results-list');
-        if (!list) return;
-        list.innerHTML = results.map(r => `
-            <li onclick="SemanticSearch.jumpToId('${r.id}')" class="${r.weight > 1 ? 'gold-result' : ''}">
-                <span style='color:${r.weight > 1 ? '#FFD700' : '#888'};'>&#9679;</span> [${r.id}] - ${r.preview}...
-            </li>
-        `).join('');
     }
-};
-
-// Modal HTML/CSS injection (legacy glass style)
-window.addEventListener('DOMContentLoaded', function() {
-    if (!document.getElementById('lupo-search-modal')) {
-        const modal = document.createElement('div');
-        modal.id = 'lupo-search-modal';
-        modal.style.display = 'none';
-        modal.style.position = 'fixed';
-        modal.style.top = '10%';
-        modal.style.left = '50%';
-        modal.style.transform = 'translateX(-50%)';
-        modal.style.width = '480px';
-        modal.style.background = 'rgba(255,255,255,0.92)';
-        modal.style.border = '2px solid #cbcefe';
-        modal.style.borderRadius = '16px';
-        modal.style.boxShadow = '0 8px 32px rgba(0,0,0,0.18)';
-        modal.style.zIndex = '10001';
-        modal.style.padding = '24px 24px 12px 24px';
-        modal.innerHTML = `
-            <input id='lupo-search-input' type='text' placeholder='Search context...' style='width:100%;font-size:18px;padding:8px 12px;margin-bottom:12px;border-radius:8px;border:1px solid #ccc;'>
-            <ul id='lupo-results-list' style='list-style:none;padding:0;margin:0;max-height:320px;overflow-y:auto;'></ul>
-            <div style='text-align:right;margin-top:8px;'><button onclick='SearchUI.toggle()'>Close</button></div>
+    
+    createGraph(edges) {
+        // D3 graph rendering logic here
+        console.log('Rendering graph with', edges.length, 'edges');
+        
+        // Safety check for graph size
+        const maxNodes = window.LUPO_MAX_GRAPH_NODES || 200;
+        const maxEdges = window.LUPO_MAX_GRAPH_EDGES || 500;
+        
+        if (edges.length > maxEdges) {
+            console.warn(`Graph too large: ${edges.length} edges (max: ${maxEdges})`);
+            this.renderTableView(edges);
+            return;
+        }
+        
+        // Create SVG container if it doesn't exist
+        let svg = d3.select('#lupo-context-graph');
+        if (svg.empty()) {
+            svg = d3.select('body').append('svg')
+                .attr('id', 'lupo-context-graph')
+                .attr('width', 800)
+                .attr('height', 600);
+        }
+        
+        // Clear previous content
+        svg.selectAll('*').remove();
+        
+        // Create force simulation
+        const simulation = d3.forceSimulation(edges)
+            .force('link', d3.forceLink().id(d => d.edge_id))
+            .force('charge', d3.forceManyBody().strength(-300))
+            .force('center', d3.forceCenter(400, 300));
+        
+        // Create links
+        const link = svg.append('g')
+            .selectAll('line')
+            .data(edges)
+            .enter()
+            .append('line')
+            .attr('stroke', '#999')
+            .attr('stroke-width', d => Math.max(1, d.semantic_weight * 5))
+            .attr('stroke-opacity', 0.6);
+        
+        // Create nodes
+        const node = svg.append('g')
+            .selectAll('circle')
+            .data(edges)
+            .enter()
+            .append('circle')
+            .attr('r', 8)
+            .attr('fill', d => {
+                const weight = d.weight_score || d.semantic_weight || 0;
+                return weight >= (window.LUPO_GOLD_CONTEXT_WEIGHT_MIN || 0.8) ? '#FFD700' : '#4169E1';
+            })
+            .call(simulation.drag);
+        
+        // Update positions on tick
+        simulation.on('tick', () => {
+            link
+                .attr('x1', d => d.source.x)
+                .attr('y1', d => d.source.y)
+                .attr('x2', d => d.target.x)
+                .attr('y2', d => d.target.y);
+            
+            node
+                .attr('cx', d => d.x)
+                .attr('cy', d => d.y);
+        });
+    }
+    
+    renderTableView(edges) {
+        // Fallback table view for large graphs
+        const table = document.getElementById('lupo-context-table') || this.createTable();
+        table.style.display = 'block';
+        
+        const tbody = table.querySelector('tbody');
+        tbody.innerHTML = '';
+        
+        edges.forEach(edge => {
+            const row = tbody.insertRow();
+            row.insertCell(0).textContent = edge.edge_type || 'context';
+            row.insertCell(1).textContent = edge.semantic_weight || 0;
+            row.insertCell(2).textContent = edge.weight_score || 0;
+        });
+    }
+    
+    createTable() {
+        const table = document.createElement('table');
+        table.id = 'lupo-context-table';
+        table.style.cssText = `
+            display: none;
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
         `;
-        document.body.appendChild(modal);
-        document.getElementById('lupo-search-input').addEventListener('input', function(e) {
-            SearchUI.handleInput(e.target.value);
-        });
+        
+        table.innerHTML = `
+            <thead>
+                <tr>
+                    <th>Edge Type</th>
+                    <th>Semantic Weight</th>
+                    <th>Weight Score</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        `;
+        
+        document.body.appendChild(table);
+        return table;
     }
-});
-
-// Gold result CSS
-const style = document.createElement('style');
-style.innerHTML = `.gold-result { font-weight:bold; background:rgba(255,215,0,0.08); }`;
-document.head.appendChild(style);
-
-// Ctrl+F interception
-window.addEventListener('keydown', function(e) {
-    if ((e.ctrlKey || e.metaKey) && e.key === 'f') {
-        e.preventDefault();
-        SearchUI.toggle();
+    
+    init() {
+        // Track page view
+        this.trackPage();
+        
+        // Load gold contexts
+        this.loadGoldContexts();
+        
+        // Start heartbeat
+        setInterval(() => {
+            this.apiCall('heartbeat', {}, 'POST');
+        }, 30000);
     }
+}
+
+// Initialize on page load
+document.addEventListener('DOMContentLoaded', () => {
+    window.LupoTheEye = new LupoTheEye();
 });
