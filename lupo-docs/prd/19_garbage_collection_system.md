@@ -147,22 +147,30 @@ CREATE TABLE lupo_paths (
 ```sql
 CREATE TABLE lupo_referers (
   referer_id bigint NOT NULL,
-  referer_domain varchar(255),
-  referer_url varchar(2000),
+  referer_domain varchar(255),               -- Domain of referrer (e.g., google.com)
+  referer_url varchar(2000),                 -- Full referrer URL
+  target_content_id bigint,                 -- Which page/content was visited (FK to lupo_contents)
+  target_path_url varchar(500),              -- Fallback path if content_id unknown
   date_ymd int NOT NULL,                    -- YYYYMMDD
-  visits int NOT NULL DEFAULT 0,
+  visits int NOT NULL DEFAULT 0,            -- Number of visits from this referrer to this page
   created_ymdhis bigint NOT NULL,
   updated_ymdhis bigint NOT NULL,
   is_deleted tinyint NOT NULL DEFAULT 0,
-  deleted_ymdhis bigint
+  deleted_ymdhis bigint,
+  PRIMARY KEY (referer_id),
+  UNIQUE KEY lupo_referers_unq (referer_domain, target_content_id, date_ymd),
+  KEY lupo_referers_idx_target (target_content_id),
+  KEY lupo_referers_idx_date (date_ymd),
+  KEY lupo_referers_idx_domain (referer_domain)
 );
 ```
 
 **GC Operations:**
-- Aggregate raw referrers from `lupo_visits` 
+- Aggregate raw referrers from `lupo_visits` with target content tracking
 - Update existing rows (increment `visits`)
 - Prune rows older than retention period
 - **No separate monthly table** — queries can group by month: `SELECT YEAR(date_ymd), MONTH(date_ymd), SUM(visits)` 
+- **Content-specific referrer tracking** — know which pages get traffic from which referrers 
 
 ### 3. `lupo_visits` — Raw Visits
 
@@ -332,7 +340,7 @@ LIMIT 10000;
 
 ### 3. Referrer Aggregation (`aggregate_referrers`)
 
-**Purpose:** Aggregate raw referrer data into unified `lupo_referers` table.
+**Purpose:** Aggregate raw referrer data into unified `lupo_referers` table with target tracking.
 
 **Source:** `lupo_visits.referer` 
 
@@ -340,21 +348,26 @@ LIMIT 10000;
 
 **Logic:**
 ```sql
--- Extract domain from referer URL
+-- Extract domain and target from referrer URLs
 SELECT 
     SUBSTRING_INDEX(SUBSTRING_INDEX(referer, '/', 3), '://', -1) as domain,
-    DATE(created_ymdhis) as visit_date,
+    referer as full_url,
+    COALESCE(v.content_id, 0) as target_content_id,
+    v.path_url as target_path_url,
+    DATE(v.created_ymdhis) as visit_date,
     COUNT(*) as cnt
-FROM lupo_visits
-WHERE referer IS NOT NULL
-  AND is_processed = 0
-  AND is_deleted = 0
-GROUP BY domain, DATE(created_ymdhis)
+FROM lupo_visits v
+WHERE v.referer IS NOT NULL
+  AND v.referer != ''
+  AND v.is_processed = 0
+  AND v.is_deleted = 0
+GROUP BY domain, full_url, COALESCE(v.content_id, 0), v.path_url, DATE(v.created_ymdhis)
 LIMIT 5000;
 
 -- Update unified table
-INSERT INTO lupo_referers (referer_domain, date_ymd, visits, created_ymdhis, updated_ymdhis)
-VALUES (?, ?, ?, ?, ?)
+INSERT INTO lupo_referers 
+    (referer_domain, referer_url, target_content_id, target_path_url, date_ymd, visits, created_ymdhis, updated_ymdhis)
+VALUES (?, ?, ?, ?, ?, ?, ?, ?)
 ON DUPLICATE KEY UPDATE 
     visits = visits + VALUES(visits),
     updated_ymdhis = ?;

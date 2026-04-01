@@ -91,19 +91,22 @@ class GarbageCollector {
     }
     
     /**
-     * Aggregate referrers into unified lupo_referers table
+     * Aggregate referrers into unified lupo_referers table with target tracking
      */
     private function aggregateReferrers() {
         $sql = "SELECT 
-                    SUBSTRING_INDEX(SUBSTRING_INDEX(referer, '/', 3), '://', -1) as domain,
-                    DATE(created_ymdhis) as visit_date,
+                    SUBSTRING_INDEX(SUBSTRING_INDEX(v.referer, '/', 3), '://', -1) as domain,
+                    v.referer as full_url,
+                    COALESCE(v.content_id, 0) as target_content_id,
+                    v.path_url as target_path_url,
+                    DATE(v.created_ymdhis) as visit_date,
                     COUNT(*) as cnt
-                FROM lupo_visits
-                WHERE referer IS NOT NULL
-                  AND referer != ''
-                  AND is_processed = 0
-                  AND is_deleted = 0
-                GROUP BY domain, DATE(created_ymdhis)
+                FROM lupo_visits v
+                WHERE v.referer IS NOT NULL
+                  AND v.referer != ''
+                  AND v.is_processed = 0
+                  AND v.is_deleted = 0
+                GROUP BY domain, full_url, COALESCE(v.content_id, 0), v.path_url, DATE(v.created_ymdhis)
                 LIMIT 5000";
         
         $referrers = $this->db->query($sql);
@@ -112,14 +115,17 @@ class GarbageCollector {
             $date_ymd = str_replace('-', '', $ref['visit_date']);
             
             $sql = "INSERT INTO lupo_referers 
-                    (referer_domain, date_ymd, visits, created_ymdhis, updated_ymdhis)
-                    VALUES (?, ?, ?, ?, ?)
+                    (referer_domain, referer_url, target_content_id, target_path_url, date_ymd, visits, created_ymdhis, updated_ymdhis)
+                    VALUES (?, ?, ?, ?, ?, ?, ?, ?)
                     ON DUPLICATE KEY UPDATE 
                     visits = visits + VALUES(visits),
                     updated_ymdhis = ?";
             
             $this->db->execute($sql, [
                 $ref['domain'],
+                $ref['full_url'],
+                $ref['target_content_id'],
+                $ref['target_path_url'],
                 $date_ymd,
                 $ref['cnt'],
                 gmdate('YmdHis'),
