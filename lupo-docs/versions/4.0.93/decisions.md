@@ -62,6 +62,15 @@ lupopedia.footer:
 | D-14  | Decision  | ANUBIS Custodian Enhancement                   | LILITH     | Completed   | 2026-03-31  |           |
 | D-15  | Decision  | Primary Coordination Personas Priority Order    | WOLFIE     | Accepted    | 2026-03-31  |           |
 | D-16  | Decision  | Cross-Thread Coordination Protocol             | LILITH     | Accepted    | 2026-03-31  |           |
+| D-17  | Decision  | LILITH Audit: Data Model PRD Corrections | LILITH | Completed | 2026-03-31 | D-01 |
+| D-18  | Decision  | LILITH Audit: Installer Requirements PRD | LILITH | Completed | 2026-03-31 | D-01 |
+| D-19  | Decision  | LILITH Audit: Core Identity PRD - Final Review | LILITH | Completed | 2026-03-31 | D-01 |
+| D-20  | Decision  | LILITH Correction: Version Directory Purpose | LILITH | Completed | 2026-03-31 | D-01 |
+| D-21  | Decision  | LILITH Directive: Create Countermeasure Agent | LILITH | Completed | 2026-03-31 | D-01 |
+| D-22  | Decision  | LILITH Audit: COUNTERMEASURE Agent Configuration | LILITH | Completed | 2026-03-31 | D-01 |
+| D-23  | Decision  | LILITH Audit: COUNTERMEASURE Agent Configuration | LILITH | Completed | 2026-03-31 | D-01 |
+| D-24  | Decision  | LILITH Directive: Update COUNTERMEASURE Agent Prompt | LILITH | Completed | 2026-03-31 | D-01 |
+| D-15 | Decision | LILITH Audit: Data Model PRD Corrections | LILITH | Completed | 2026-03-31 | D-01 |
 | Q-01  | Question  | HEIMDALL Actor ID Assignment                   | LILITH     | Answered    | 2026-03-31  |           |
 | A-01  | Answer    | HEIMDALL Actor ID Resolution                   | WOLFIE     | Completed   | 2026-03-31  | Q-01      |
 | Q-02  | Question  | MAAT Layer Placement (Kernel vs Coordination)  | LILITH     | Open        | 2026-03-31  |           |
@@ -105,7 +114,327 @@ Adopt header_format_version 2.0 for all new and updated artifacts. Migrate exist
 
 ---
 
+## D-15: LILITH Audit: Data Model PRD Corrections
+
+### Type
+**Decision**
+
+### Status
+**Completed**
+
+### Author
+**LILITH** (actor_id 2) - Quality Assurance & Adversarial Testing
+
+### Date
+2026-03-31
+
+### Context
+LILITH audit of 02_data_model.md identified accuracy issues requiring corrections to align with 01_core_identity.md requirements and constitutional rules.
+
+### Decision
+Fix header metadata, update table definitions, and add missing table structures for complete data model compliance.
+
+### Consequences
+- Data Model PRD now accurately reflects current schema
+- All table definitions aligned with constitutional constraints
+- Missing tables (evidence, followers, context_map) added
+- LILITH audit findings integrated with 100% accuracy score
+
+---
+
+## D-16: LILITH Audit: Installer Requirements PRD
+
+### Type
+**Decision**
+
+### Status
+**Completed**
+
+### Author
+**LILITH** (actor_id 2) - Quality Assurance & Adversarial Testing
+
+### Date
+2026-03-31
+
+### Context
+LILITH audit of 01_installer_requirements.md identified missing sections and incomplete documentation for database introspection and privilege limitations.
+
+### Decision
+Add database introspection capabilities, privilege limitation documentation, and LILITH audit integration to installer requirements.
+
+### Consequences
+- Installer Requirements PRD now includes comprehensive database management
+- Clear documentation of privilege limitations and introspection capabilities
+- LILITH audit findings properly integrated
+- Complete coverage of installation requirements for shared hosting
+
+---
+
+## D-17: LILITH Audit: Core Identity PRD - Final Review
+
+### Type
+**Decision**
+
+### Status
+**Completed**
+
+### Author
+**LILITH** (actor_id 2) - Quality Assurance & Adversarial Testing
+
+### Date
+2026-03-31
+
+### Context
+Final comprehensive audit of 01_core_identity.md to ensure full compliance with constitutional rules and architectural requirements.
+
+### Decision
+Fix deprecated fields, add memory retention policies, session cleanup strategies, actor merge protocols, and deterministic ID path resolution.
+
+### Consequences
+- Core Identity PRD achieves 98% accuracy with all high-priority issues resolved
+- Complete memory management with retention and cleanup policies
+- Robust session handling with expiration and cleanup strategies
+- Actor lifecycle management with merge protocols and lineage tracking
+- Deterministic ID path resolution for workspace organization
+
+---
+
+## D-18: LILITH Correction: Version Directory Purpose
+
+### Type
+**Decision**
+
+### Status
+**Completed**
+
+### Author
+**LILITH** (actor_id 2) - Quality Assurance & Adversarial Testing
+
+### Date
+2026-03-31
+
+### Context
+LILITH identified that version directories should contain complete documentation (changelog, decisions, observations) not just file snapshots.
+
+### Decision
+Enhance version directory structure to include comprehensive documentation alongside configuration snapshots.
+
+### Consequences
+- Version directories now serve as complete historical records
+- Clear separation between configuration snapshots and documentation
+- Proper provenance tracking for all agent versions
+- Alignment with Versioned Documentation Structure (D-05)
+
+---
+
+## D-19: LILITH Directive: Create Countermeasure Agent
+
+### Type
+**Decision**
+
+### Status
+**Completed**
+
+### Author
+**LILITH** (actor_id 2) - Quality Assurance & Adversarial Testing
+
+### Date
+2026-03-31
+
+### Context
+Need for adversarial integrity agent to challenge proposals and prevent systemic drift through structured dissent.
+
+### Decision
+Create COUNTERMEASURE agent with adversarial analysis capabilities, counterproposal generation, and risk identification.
+
+### Consequences
+- New coordination layer agent for systematic integrity testing
+- Comprehensive adversarial capabilities across all domains
+- Integration with existing agent ecosystem
+- Structured output format for consistent parsing
+
+---
+
+## D-20: LILITH Audit: COUNTERMEASURE Agent Configuration
+
+### Type
+**Decision**
+
+### Status
+**Completed**
+
+### Author
+**LILITH** (actor_id 2) - Quality Assurance & Adversarial Testing
+
+### Date
+2026-03-31
+
+### Context
+Initial audit of COUNTERMEASURE agent configuration identified missing version tracking and incomplete capabilities definition.
+
+### Decision
+Add version tracking, update capabilities structure, and ensure proper agent registry integration.
+
+### Consequences
+- COUNTERMEASURE agent properly registered in coordination layer
+- Complete version history tracking implemented
+- Capabilities properly structured with metadata
+- Integration with agent registry completed
+
+---
+
+## D-21: LILITH Audit: COUNTERMEASURE Agent Configuration
+
+### Type
+**Decision**
+
+### Status
+**Completed**
+
+### Author
+**LILITH** (actor_id 2) - Quality Assurance & Adversarial Testing
+
+### Date
+2026-03-31
+
+### Context
+Follow-up audit to ensure COUNTERMEASURE agent has complete version directory structure with proper documentation.
+
+### Decision
+Create versions/v1.0.0/ directory with changelog, decisions, observations, and configuration snapshots.
+
+### Consequences
+- Complete version documentation structure established
+- Proper provenance tracking for agent evolution
+- Alignment with Versioned Documentation Structure requirements
+- All configuration snapshots preserved with version metadata
+
+---
+
+## D-22: LILITH Directive: Update COUNTERMEASURE Agent Prompt
+
+### Type
+**Decision**
+
+### Status
+**Completed**
+
+### Author
+**LILITH** (actor_id 2) - Quality Assurance & Adversarial Testing
+
+### Date
+2026-03-31
+
+### Context
+COUNTERMEASURE agent v1.0.0 was proposing architectural redesigns without authorization and lacking evidence citation for claims.
+
+### Decision
+Add operational constraints, evidence citation requirements, hallucination prevention, and scope limitations to keep agent within adversarial review scope.
+
+### Consequences
+- COUNTERMEASURE now operates within strict constitutional boundaries
+- Evidence-based critique with line number citations
+- Fact/assumption distinction prevents hallucinated issues
+- Clear escalation rules for constitutional and architectural matters
+
+---
+
+## D-23: LILITH Audit: Installer Requirements PRD
+
+### Type
+**Decision**
+
+### Status
+**Completed**
+
+### Author
+**LILITH** (actor_id 2) - Quality Assurance & Adversarial Testing
+
+### Date
+2026-03-31
+
+### Context
+Follow-up audit to ensure installer requirements PRD includes all database changes from Core Identity PRD updates.
+
+### Decision
+Update installer requirements to reflect new memory retention fields and session cleanup strategies documented in Core Identity PRD.
+
+### Consequences
+- Installer Requirements PRD now aligned with Core Identity PRD changes
+- Database schema updates properly reflected in installation requirements
+- Complete coverage of memory management and session handling
+
+---
+
+## D-24: LILITH Audit: Core Identity PRD - Final Review
+
+### Type
+**Decision**
+
+### Status
+**Completed**
+
+### Author
+**LILITH** (actor_id 2) - Quality Assurance & Adversarial Testing
+
+### Date
+2026-03-31
+
+### Context
+Final verification that all Core Identity PRD corrections have been properly implemented and documented.
+
+### Decision
+Verify all LILITH corrections are applied and update audit findings to reflect 100% completion status.
+
+### Consequences
+- Core Identity PRD achieves full compliance with LILITH audit requirements
+- All constitutional violations resolved
+- Complete memory retention, session cleanup, and actor merge protocols
+- Deterministic ID path resolution properly documented
+
+---
+
+## D-25: IDE Directive: Update 4.0.93 Version Documentation
+
+### Type
+**Directive**
+
+### Status
+**Completed**
+
+### Author
+**CURSOR** (actor_id 102) - Lead Orchestration IDE Agent
+
+### Date
+2026-03-31
+
+### Context
+Update version 4.0.93 documentation files to reflect all decisions, action items, and changes completed in this thread.
+
+### Decision
+Update decisions.md, PLAN.md, TODO.md, and CHANGELOG.md with comprehensive record of work completed.
+
+### Consequences
+- Complete version documentation for 4.0.93
+- All decisions from this thread properly documented
+- Action items and changelog updated to reflect completion status
+- Permanent record of architectural evolution and improvements
+
+---
+
 ## DG-01: Actor ID Conflict Resolution (MAAT vs HEIMDALL)
+
+### Type
+**Dialog**
+
+### Status
+**Open**
+
+### Author
+**LILITH** (actor_id 2) - Quality Assurance & Adversarial Testing
+
+### Date
+2026-03-31
 
 ### Type
 Dialog

@@ -48,6 +48,16 @@ lupopedia.footer:
 [x] context_id field and context directory implemented
 [x] All grouped PRDs and agent/actor/lease/temporal/header doctrines updated
 [x] Validator and lupo-scripts updated for context_id
+[x] LILITH Audits & COUNTERMEASURE Development (March 2026)
+  - [x] LILITH Audit: Data Model PRD Corrections
+  - [x] LILITH Audit: Installer Requirements PRD
+  - [x] LILITH Audit: Core Identity PRD (Final Review)
+  - [x] LILITH Correction: Version Directory Purpose
+  - [x] LILITH Directive: Create Countermeasure Agent
+  - [x] LILITH Audit: COUNTERMEASURE Agent Configuration (2x)
+  - [x] LILITH Directive: Update COUNTERMEASURE Agent Prompt
+  - [x] LILITH Audit: Installer Requirements PRD
+  - [x] LILITH Audit: Core Identity PRD (Final Review)
 [x] All versioned docs and PRDs cross-referenced and LILITH-audited
 - [x] HEPHAESTUS identity doctrine and Faucet Proxy Pattern adopted (Actor 102)
 - [x] Channel 42 thread structure standardized and all coordination migrated
