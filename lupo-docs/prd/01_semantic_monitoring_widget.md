@@ -522,6 +522,432 @@ define('EYE_VISUAL_EFFECT_ENABLED', false);
 
 When disabled, only the core floating navigation bar remains.
 
+## Collections System — Two-Tier Architecture
+
+### Overview
+
+The Eye provides a comprehensive collections system with two tiers:
+
+1. **Personal Collections** (Light Blue) — User's saved collections and collections the current page belongs to
+2. **Emergent & Shared Collections** (Light Green) — Collections discovered from user behavior and collections shared by others
+
+### Visual Layout
+
+```
+┌─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┐
+│  Collections 1  │  WHO 2  │  WHAT 2  │  WHERE 2  │  WHEN 1  │  WHY 1  │  HOW 1  │  DO 2  │  Books  │  Bible-books  │
+│  (Light Blue)   │(Light Green)│(Light Green)│(Light Green)│(Light Green)│(Light Green)│(Light Green)│(Light Green)│(Light Green)│
+└─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┘
+```
+
+### Tier 1: Light Blue — Personal Collections
+
+These appear at the top of the floating navigation bar and represent:
+
+| Type | Source | Description |
+|------|--------|-------------|
+| **User's Saved Collections** | `lupo_collection_map` (user_id) | Collections the current user has saved/bookmarked |
+| **Page's Collections** | `lupo_collection_map` (object_id = current page) | Collections that contain this page |
+
+**Data Sources:**
+- `lupo_collections` — collection metadata
+- `lupo_collection_map` — mapping between collections and content
+- `lupo_actor_collections` — user's saved collections
+
+**SQL Example:**
+```sql
+-- User's saved collections
+SELECT c.collection_id, c.name, c.color, c.slug
+FROM lupo_collections c
+JOIN lupo_actor_collections ac ON ac.collection_id = c.collection_id
+WHERE ac.actor_id = ?
+  AND ac.is_deleted = 0
+ORDER BY ac.sort_order;
+
+-- Collections containing current page
+SELECT c.collection_id, c.name, c.color, c.slug
+FROM lupo_collections c
+JOIN lupo_collection_map cm ON cm.collection_id = c.collection_id
+WHERE cm.object_type = 'content'
+  AND cm.object_id = ?
+  AND cm.is_deleted = 0;
+```
+
+### Tier 2: Light Green — Emergent & Shared Collections
+
+These appear as dropdown menus and represent collections discovered from:
+
+| Type | Source | Description |
+|------|--------|-------------|
+| **Emergent (WHO)** | Session analysis | People who viewed this page also viewed these collections |
+| **Emergent (WHAT)** | Content co-occurrence | Pages frequently visited together |
+| **Emergent (WHERE)** | Geographic/contextual | Location-based collections |
+| **Emergent (WHEN)** | Temporal | Time-based groupings (e.g., "Recently Updated") |
+| **Emergent (WHY)** | Intent | Purpose-based groupings (e.g., "Research", "Reference") |
+| **Emergent (HOW)** | Interaction type | How people engaged (e.g., "Shared", "Commented") |
+| **Emergent (DO)** | Action-based | What people did (e.g., "Asked Questions", "Liked") |
+| **Shared Collections** | `lupo_collections` (public) | Collections shared by other users |
+
+### Emergent Collection Discovery
+
+Collections are discovered through session analysis (inspired by your 2003 `gc.php` pattern):
+
+```sql
+-- Find pages frequently visited together
+SELECT 
+    c1.name as collection_candidate,
+    COUNT(*) as co_occurrence
+FROM lupo_visits v1
+JOIN lupo_visits v2 ON v1.session_id = v2.session_id 
+  AND v1.created_ymdhis < v2.created_ymdhis
+JOIN lupo_contents c1 ON c1.content_id = v1.content_id
+JOIN lupo_contents c2 ON c2.content_id = v2.content_id
+WHERE v1.content_id = ?  -- Current page
+GROUP BY c1.name
+HAVING co_occurrence > 5
+ORDER BY co_occurrence DESC
+LIMIT 10;
+```
+
+**Emergent Collection Types:**
+
+| Dropdown | Query Logic | Example |
+|----------|-------------|---------|
+| **WHO** | Users with similar reading patterns also viewed... | "People who read this also saved these collections" |
+| **WHAT** | Pages frequently visited together | "Physics Core: relativity, gravity, blackholes" |
+| **WHERE** | Geographic or contextual grouping | "US Politics", "European History" |
+| **WHEN** | Temporal groupings | "Last Week's Updates", "March 2026" |
+| **WHY** | Intent-based (inferred from behavior) | "Research", "Quick Reference", "Deep Dive" |
+| **HOW** | Interaction patterns | "Most Shared", "Most Commented", "Most Liked" |
+| **DO** | Action-based | "Questions Asked About This", "Discussions Started" |
+
+### Shared Collections (User-Curated)
+
+Users can create and share collections:
+
+```sql
+-- Public collections shared by others
+SELECT c.collection_id, c.name, c.description, a.actor_name as created_by
+FROM lupo_collections c
+JOIN lupo_actors a ON a.actor_id = c.actor_id
+WHERE c.is_public = 1
+  AND c.is_deleted = 0
+ORDER BY c.created_ymdhis DESC
+LIMIT 20;
+```
+
+### Collection JSON Structure
+
+Each collection is a JSON array of links:
+
+```json
+{
+    "collection_id": 12345,
+    "name": "Physics Core",
+    "description": "Essential physics concepts",
+    "color": "#4caf50",
+    "items": [
+        {
+            "content_id": 67890,
+            "title": "Theory of Relativity",
+            "url": "/docs/relativity",
+            "added_by": "system",  // 'system' for emergent, actor_id for user
+            "added_at": "20260401120000"
+        },
+        {
+            "content_id": 67891,
+            "title": "Gravity Explained",
+            "url": "/docs/gravity",
+            "added_by": "system",
+            "added_at": "20260401120000"
+        }
+    ],
+    "metadata": {
+        "co_occurrence": 85,  // For emergent collections
+        "source": "session_analysis",
+        "last_updated": "20260401120000"
+    }
+}
+```
+
+### Collection Lifecycle
+
+```
+Raw Visits (lupo_visits)
+        │
+        ▼
+Co-occurrence Analysis (GC)
+        │
+        ▼
+Emergent Collections (discovered)
+        │
+        ├── User saves → Personal Collection (Light Blue)
+        │
+        └── User shares → Shared Collection (Light Green)
+```
+
+### API Endpoints
+
+| Endpoint | Method | Purpose |
+|----------|--------|---------|
+| `/api/collections/user` | GET | Get user's saved collections |
+| `/api/collections/page` | GET | Get collections containing this page |
+| `/api/collections/emergent/who` | GET | Get WHO emergent collections |
+| `/api/collections/emergent/what` | GET | Get WHAT emergent collections |
+| `/api/collections/emergent/where` | GET | Get WHERE emergent collections |
+| `/api/collections/emergent/when` | GET | Get WHEN emergent collections |
+| `/api/collections/emergent/why` | GET | Get WHY emergent collections |
+| `/api/collections/emergent/how` | GET | Get HOW emergent collections |
+| `/api/collections/emergent/do` | GET | Get DO emergent collections |
+| `/api/collections/shared` | GET | Get collections shared by others |
+| `/api/collections/save` | POST | Save a collection to user's library |
+| `/api/collections/share` | POST | Share a collection |
+| `/api/collections/create` | POST | Create a new collection |
+
+### JavaScript Implementation
+
+```javascript
+// lupo-ui/js/eye-collections.js
+class EyeCollections {
+    constructor(pageId) {
+        this.pageId = pageId;
+        this.personalCollections = [];
+        this.emergentCollections = {
+            who: [], what: [], where: [], when: [], why: [], how: [], do: []
+        };
+        this.sharedCollections = [];
+        this.loadAll();
+    }
+    
+    async loadAll() {
+        await Promise.all([
+            this.loadPersonal(),
+            this.loadEmergent(),
+            this.loadShared()
+        ]);
+        this.render();
+    }
+    
+    async loadPersonal() {
+        const userCollections = await fetch(`/api/collections/user`);
+        const pageCollections = await fetch(`/api/collections/page?page_id=${this.pageId}`);
+        this.personalCollections = [
+            ...(await userCollections.json()),
+            ...(await pageCollections.json())
+        ];
+    }
+    
+    async loadEmergent() {
+        const types = ['who', 'what', 'where', 'when', 'why', 'how', 'do'];
+        for (const type of types) {
+            const response = await fetch(`/api/collections/emergent/${type}?page_id=${this.pageId}`);
+            this.emergentCollections[type] = await response.json();
+        }
+    }
+    
+    async loadShared() {
+        const response = await fetch(`/api/collections/shared`);
+        this.sharedCollections = await response.json();
+    }
+    
+    render() {
+        // Render light blue section (personal collections)
+        const lightBlueHtml = this.personalCollections.map(c => `
+            <div class="collection-dropdown light-blue" data-collection-id="${c.id}">
+                ${c.name} ${c.count > 0 ? `<span class="badge">${c.count}</span>` : ''}
+                <div class="dropdown-content">${this.renderCollectionItems(c)}</div>
+            </div>
+        `).join('');
+        
+        // Render light green sections (emergent + shared)
+        const lightGreenHtml = `
+            ${this.renderEmergentSection('WHO', this.emergentCollections.who)}
+            ${this.renderEmergentSection('WHAT', this.emergentCollections.what)}
+            ${this.renderEmergentSection('WHERE', this.emergentCollections.where)}
+            ${this.renderEmergentSection('WHEN', this.emergentCollections.when)}
+            ${this.renderEmergentSection('WHY', this.emergentCollections.why)}
+            ${this.renderEmergentSection('HOW', this.emergentCollections.how)}
+            ${this.renderEmergentSection('DO', this.emergentCollections.do)}
+            ${this.renderSharedSection()}
+        `;
+        
+        // Combine into top navigation bar
+        document.getElementById('eye-top-nav').innerHTML = lightBlueHtml + lightGreenHtml;
+    }
+    
+    renderEmergentSection(title, collections) {
+        if (!collections.length) return '';
+        return `
+            <div class="collection-dropdown light-green">
+                ${title} ${collections.length > 0 ? `<span class="badge">${collections.length}</span>` : ''}
+                <div class="dropdown-content">
+                    ${collections.map(c => `
+                        <div class="collection-item">
+                            <a href="${c.url}">${c.name}</a>
+                            <span class="co-occurrence">${c.co_occurrence}%</span>
+                        </div>
+                    `).join('')}
+                </div>
+            </div>
+        `;
+    }
+    
+    renderSharedSection() {
+        if (!this.sharedCollections.length) return '';
+        return `
+            <div class="collection-dropdown light-green">
+                Books ${this.sharedCollections.length > 0 ? `<span class="badge">${this.sharedCollections.length}</span>` : ''}
+                <div class="dropdown-content">
+                    ${this.sharedCollections.map(c => `
+                        <div class="collection-item">
+                            <a href="${c.url}">${c.name}</a>
+                            <span class="author">by ${c.created_by}</span>
+                        </div>
+                    `).join('')}
+                </div>
+            </div>
+        `;
+    }
+}
+```
+
+### CSS Styling for Top Navigation
+
+```css
+.eye-top-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: rgba(0,0,0,0.9);
+    padding: 8px 16px;
+    display: flex;
+    gap: 8px;
+    overflow-x: auto;
+    z-index: 10002;
+    font-family: system-ui, -apple-system, sans-serif;
+    backdrop-filter: blur(8px);
+}
+
+.collection-dropdown {
+    position: relative;
+    display: inline-block;
+    padding: 8px 16px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+    white-space: nowrap;
+}
+
+.collection-dropdown.light-blue {
+    background: #e3f2fd;
+    color: #1976d2;
+}
+
+.collection-dropdown.light-green {
+    background: #e8f5e9;
+    color: #2e7d32;
+}
+
+.collection-dropdown .badge {
+    background: rgba(0,0,0,0.2);
+    border-radius: 12px;
+    padding: 0 6px;
+    margin-left: 6px;
+    font-size: 11px;
+}
+
+.collection-dropdown .dropdown-content {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: white;
+    min-width: 250px;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+    border-radius: 8px;
+    padding: 8px 0;
+    z-index: 10003;
+    white-space: normal;
+}
+
+.collection-dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.collection-item {
+    padding: 8px 16px;
+    border-bottom: 1px solid #eee;
+}
+
+.collection-item a {
+    text-decoration: none;
+    color: #333;
+    display: block;
+}
+
+.collection-item .co-occurrence {
+    font-size: 11px;
+    color: #666;
+    margin-left: 8px;
+}
+
+.collection-item .author {
+    font-size: 11px;
+    color: #999;
+    display: block;
+}
+```
+
+### GC Integration
+
+Emergent collections are discovered by the GC system during analysis:
+
+```php
+// In GarbageCollector::discoverEmergentCollections()
+private function discoverEmergentCollections() {
+    // Find pages that co-occur frequently
+    $sql = "SELECT 
+                v1.content_id as source,
+                v2.content_id as target,
+                COUNT(*) as co_occurrence
+            FROM lupo_visits v1
+            JOIN lupo_visits v2 ON v1.session_id = v2.session_id 
+              AND v1.created_ymdhis < v2.created_ymdhis
+            WHERE v1.content_id != v2.content_id
+            GROUP BY v1.content_id, v2.content_id
+            HAVING co_occurrence > 5
+            ORDER BY co_occurrence DESC
+            LIMIT 1000";
+    
+    $co_occurrences = $this->db->query($sql);
+    
+    // Create or update emergent collections
+    foreach ($co_occurrences as $co) {
+        // Group by source content to create collections
+        $this->createOrUpdateEmergentCollection($co['source'], $co['target'], $co['co_occurrence']);
+    }
+}
+```
+
+### Summary of Collections Features
+
+| Feature | Color | Source | Persistence |
+|---------|-------|--------|-------------|
+| User's Saved Collections | Light Blue | `lupo_actor_collections` | User-specific |
+| Page's Collections | Light Blue | `lupo_collection_map` | Global |
+| WHO Emergent | Light Green | Session analysis | Dynamic (GC) |
+| WHAT Emergent | Light Green | Co-occurrence | Dynamic (GC) |
+| WHERE Emergent | Light Green | Geographic | Dynamic (GC) |
+| WHEN Emergent | Light Green | Temporal | Dynamic (GC) |
+| WHY Emergent | Light Green | Intent inference | Dynamic (GC) |
+| HOW Emergent | Light Green | Interaction patterns | Dynamic (GC) |
+| DO Emergent | Light Green | Action patterns | Dynamic (GC) |
+| Shared Collections | Light Green | User-created | Persistent |
+
+**The Eye learns from behavior and presents it as collections.**
+
 ## Technical Implementation
 
 ### JavaScript Architecture
