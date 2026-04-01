@@ -5,7 +5,7 @@ lupopedia.headers:
   version_when_written: "4.0.93"
   file_path_from_root: "lupo-docs/prd/02_channels_discussions.md"
   web_path: "http://www.lupopedia.com/lupopedia/lupo-docs/prd/02_channels_discussions.md"
-  last_modified_utc: "20260330163000"
+  last_modified_utc: "20260401000000"
   channel_id: 42
   thread_id: "prd-grouped"
   actor_id: 102
@@ -37,8 +37,12 @@ lupopedia.edges:
       type: references
       weight: 1.0
       reason: "Root constitutional system requirements"
+    - to: "lupo-docs/versions/4.0.93/KIRO_WORK_SUMMARY.md"
+      type: references
+      weight: 1.0
+      reason: "Kiro's substantial contributions to 4.0.93"
 lupopedia.footer:
-  last_verified: "20260330163000"
+  last_verified: "20260401"
   verified_by:
     actor_id: 102
     agent_name_identity: Cursor IDE Agent
