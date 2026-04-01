@@ -1,5 +1,69 @@
 # Lupopedia 4.0.93 CHANGELOG
 
+## v4.0.93 (April 1, 2026) — Root Architecture Sanitization & PRD Backfill (Antigravity thread)
+
+### Constitutional & Identity Updates
+- **WOLFIE Doctrine Update (`lupo-rules/root/WOLFIE_DOCTRINE.md`)**: Realigned Founder identity context to accurately document High Performance Computing background, solo-developer survival discipline, and modern orchestration workflow (managing parallel AI IDEs while leveraging Notepad++ for complex search/replace bypasses).
+- **TOON Doctrine Update (`lupo-docs/doctrine/TOON_DOCTRINE.md`)**: Documented the strategic necessity of TOON (YAML) over JSON specifically for optimizing AI token payloads.
+
+### Missing PRD Backfilling
+- **`23_health_check_asclepius_prd.md`**: New PRD defining the ASCLEPIUS agent (1009) orchestration role for system metrics and CLI health checks.
+- **`24_cli_interface_prd.md`**: New PRD defining the standardized execution surfaces and required identity context for CLI scripts.
+
+### Root Architecture Defragmentation (Batches 6 & 7)
+- **Directory Exceptions (`lupo-docs/prd/project_structure_prd.md`)**: Established `node_modules/` and `app/` as STRICT EXCEPTIONS totally prohibiting `lupo-` prefixing to protect external toolchains and PSR-4 native namespace resolutions.
+- **`lupo-prompts/` Decommissioned**: Eliminated the decoupled prompts root folder. Migrated historical directives directly into native actor workspaces (`lupo-actors/{agent}/prompts/`).
+- **`app/` Restored**: Permanently restored `lupo-app/` back to canonical `app/` to prevent AI hallucination loops.
+- **Loose File Sanitization**: Surgically reviewed 19 loose files sitting at the root. Migrated constitutional scopes to `lupo-docs/implementations/` and `lupo-docs/doctrine/`. Migrated scripts to `lupo-scripts/`, configuration logic to `lupo-rules/` and `lupo-config/`. Stale testing/JSON debris packed into `lupo-archive/`. Preserved `CHANGELOG_ARCHIVE.md` and `CURRENT_UTC` as protected temporal anchors.
+- **`.gitignore`**: Fixed end-of-file encoding corruption block (`l u p o...`) and comprehensively added dynamic directories (`lupo-tmp/`, `lupo-cache/`, `lupo-sessions/`).
+
+---
+
+## v4.0.93 (April 1, 2026) — PRD Overhaul + Constitutional Hardening (Kiro thread)
+
+### Constitutional PRD — Complete Rewrite
+
+- **`lupo-docs/prd/00_root_constitutional_system_requirements.md`** — Fixed broken YAML front matter (entire document body was trapped inside the YAML block). Corrected `lupopedia.schema` from invalid `prd` to `doctrine`. Added all missing required header fields: `federation_node_id`, `when_updated`, `thread_id`, `actor_name`. Expanded `lupopedia.edges` from 4 to 14 entries covering all referenced doctrines, implementation classes, and test files. Fixed footer to current `verified_by`/`verified_via` object shape. Added implementation guidance to every major rule section pointing to the enforcing class, script, or test file.
+- **Section 9.9 expanded** — Full "Schema Inference Prohibition" with explicit "JSON files are NOT a file database" clarification. Lupopedia uses MySQL. The JSON files in `lupo-database/lupopedia/json/` are schema reference documents only. Added required workflow: read table doc → read TOON JSON → write SQL. Added table documentation directory map.
+- **Section 9.18 added** — Missing Table Protocol (RULE 93.MISSING_TABLE_PROTOCOL). When a needed table is absent from `install_new_lupopedia.sql`: create SQL proposal file with `{{prefix}}` placeholders, review, apply to install SQL, regenerate TOONs. No migration needed — fresh install only.
+- **Section 9.19 added** — No Direct CLI Database Execution (RULE 93.NO_CLI_DB_EXEC). Explicit forbidden patterns (`mysql -u root -p < file.sql`, `psql -U postgres < migration.sql`, etc.), reasons why each bypass is dangerous (bypasses prefix system, bypasses IdGenerator, no audit trail), correct PHP migration pattern using `DatabaseFactory` and `IdGenerator`.
+- **Section 9.20 added** — Proven Code Preservation Doctrine (RULE 93.PROVEN_CODE). Four-question test before touching existing code. Deprecation table distinguishing actively broken APIs from merely unfashionable ones. The 1999 eye animation (`dynlayer.js` + GIF sprites) named as a canonical protected example. Forbidden agent behaviors listed. Fallback ladder principle documented.
+
+### Semantic Monitoring Widget PRD — Complete Rewrite
+
+- **`lupo-docs/prd/01_semantic_monitoring_widget.md`** — Rewritten with verified column names from TOON JSON and table docs. "Missing Tables — Action Required" section at top. All SQL examples use `DatabaseFactory::getConnection()` and `LUPO_TABLE_PREFIX`. Corrected `lupo_contexts_map` to use `item_slug` (not `item_id`). Noted `lupo_truth_knowledge` deprecation — use `lupo_truth_questions` + `lupo_truth_answers`. 28 outbound edges covering every table the widget touches. Implementation checklist. Collections queries corrected (`lupo_collections` has no `is_public` column — use `published_ymdhis IS NOT NULL`).
+
+### TOON Generator — Schema-Only Output
+
+- **`lupo-scripts/generate_toon_files.py`** — Stripped to schema-only output. Removed all data-fetching functions (`fetch_all_rows`, `fetch_pk_zero_row`, `fetch_canonical_data`, `fetch_active_agents`, `row_to_data_dict`, `json_serializable`). Removed `actor_agent_doctrine` import. Removed `"data"` key from JSON payload entirely. Removed broken CSV subprocess that was trying to invoke `admin.php` via shell. Removed `SKIP_DB` env var. Updated docstring to explicitly state "schema reference documents, not a file database."
+
+### CSV Export — New Separate Tool
+
+- **`lupo-scripts/export_table_data_csv.py`** — New standalone debugging tool. `EXCLUDED_TABLES` frozenset covers auth_users, sessions, API tokens, faucet credentials, OAuth providers, audit logs, CRM leads, chat transcripts, and bans. Additional keyword filter skips tables with `secret`, `password`, `credential`, `token`, `salt`, or `hash` in the name. Output to `lupo-database/lupopedia/csv/` (now gitignored). CLI flags: `--tables`, `--limit` (default 500), `--output-dir`. Loud warnings on every run.
+
+### Database Schema
+
+- **`lupo-database/lupopedia/mysql/install/install_new_lupopedia.sql`** — Added `lupo_folders` `CREATE TABLE` block (was genuinely missing). Confirmed `lupo_paths`, `lupo_references`, `lupo_reference_links`, `lupo_hashtags`, `lupo_hashtag_map`, `lupo_folder_map` were already present in the file (in a different section than initially searched).
+- **`lupo-database/lupopedia/mysql/migrations/add_semantic_navbar_tables_20260401.sql`** — Created as SQL proposal file per section 9.18 protocol. Documents all 7 semantic navbar tables with `{{prefix}}` placeholders and constitutional-compliant DDL.
+
+### Table Documentation
+
+- **`lupo-docs/database/lupopedia/tables/active/lupo_paths.md`** — Created missing table doc for `lupo_paths`. Verified columns from TOON JSON. Correct PHP query patterns for prev/next page navigation using `DatabaseFactory` and `LUPO_TABLE_PREFIX`.
+
+### Root README — Mandatory Reading + Decisions Documentation
+
+- **`README.md`** — Added "MANDATORY READING — Start Here" section immediately after title. Explicit: "This is not optional. It is constitutional law." Added "Decisions, Q&A, and Implementation Reasoning" section explaining decisions.md format (D-xx, Q-xx/A-xx, DG-xx, W-xx, O-xx), channel/context scoping, and instruction to check decisions.md before implementing anything non-trivial. Reordered `lupopedia.init.required_reading` with constitutional PRD first ("MANDATORY FIRST READ"). Added `decisions.md` and WOLFIE Doctrine to required reading. Reordered "Where to Read Next" list. Rewrote "Development Rules" section. Updated "PRD Policy" section. Updated header timestamps and footer.
+
+### .gitignore
+
+- Added `lupo-database/lupopedia/csv/` to prevent CSV data exports from being committed.
+
+### Project Structure PRD Enhancement
+
+- **`lupo-docs/prd/project_structure_prd.md`** — Added "Important Sub-folders" section documenting critical internal documentation directories like `versions/`, `database/lupopedia/tables/`, `doctrine/`, and `knowledge/` to clearly define project documentation hierarchy.
+
+---
+
 ## v4.0.93 (March 31, 2026)
 
 ### Added / Updated — WOLFIE Doctrine (2026-04-01)

@@ -59,7 +59,27 @@ lupopedia.footer:
 
 Before you suggest "modernizing" anything, understand who you're dealing with.
 
-**Eric Robin Gerdes (Captain WOLFIE)** built real-time chat in **2002** — three years before AJAX had a name, seven years before WebSockets, eleven years before React. He built it in **Notepad**. No frameworks. No dependencies. Just PHP, JavaScript, and a cascade fallback philosophy that kept **1.2 million installations** running for **22 years**.
+**Eric Robin Gerdes (Captain WOLFIE)** is a computer scientist who understands the absolute fundamentals of computing. Writing code in Notepad wasn't a gap in knowledge—it was the discipline of someone who mastered the core machine. 
+
+During the summers of 1997 and 1998, while studying for his B.S. in Computer Science, he worked at high-performance computing centers, managing multiple nodes simultaneously on supercomputers. In 1999, he took an internship writing a government CRM in Perl and was hired before he even finished his senior year. He wrote his own Object-Oriented classes entirely from scratch without AI, possessing a foundational understanding that many modern developers lack.
+
+He built Crafty Syntax's real-time chat in **2002** — three years before AJAX had a name, seven years before WebSockets, eleven years before React. While contemporary platforms like WordPress were built and maintained by large teams, **he built and secured Crafty Syntax entirely alone**. He personally managed every security issue, designed every cascade fallback layer, and wrote every line of code without IDEs or dependencies. He was one of the most advanced programmers operating in the space from 1999 to 2014, engineering a system that kept **1.2 million installations** running for **22 years**.
+
+### The Return: AI Orchestration vs. AI Reliance
+
+After an 11-year hiatus from technology, Wolfie returned to find that the fundamental concepts of computer science hadn't changed—but the community of programmers had become heavily reliant on AI, losing its foundational edge. 
+
+He didn't return to write code in the dark ages. Today, he operates at an unprecedented scale, **orchestrating multiple AI IDE tools simultaneously in parallel**. However, he still wields **Notepad++** as a surgical tool—because modern IDE agents continually struggle with complex, multi-file search-and-replaces and nuanced code traversal in Windows. He uses cutting-edge AI not as a crutch to compensate for a lack of knowledge, but as an orchestration swarm to amplify a foundational mastery that artificial intelligence simply cannot replicate.
+
+### [TECHNICAL FACT] Founder Identity and Role
+
+| Attribute | Value |
+|--------|-------|
+| **Legal Name** | Eric Robin Gerdes |
+| **Actor ID** | 1 |
+| **Alias** | Captain WOLFIE, Wolfie |
+| **Role** | Founder, Architect, Visionary |
+| **Development Tool** | Notepad (entire career, no IDE) |
 
 In 2014, his wife died. He threw his computer out a window. He didn't touch technology for 11 years.
 
@@ -127,6 +147,20 @@ Start with what works everywhere. Layer improvements on top. If the better path 
 Pick one timezone. Store it as a 14-digit integer (`YYYYMMDDHHIISS`). Never think about timezones again. Works on every database. Sorts correctly. Human-readable. No conversion scripts needed.
 
 **The Rule:** Complexity is the enemy. If you can do it with one integer, do it with one integer. If you need fifty columns to handle a concept, maybe the concept is wrong.
+
+### Pillar 6: Security Without Frameworks
+
+| Modern Approach | WOLFIE Approach |
+|-----------------|-----------------|
+| "Use an ORM and a middleware security library." | "Input is dirty. Sandbox it. Filter it." |
+
+**The Crafty Syntax Proof:**
+Security wasn't outsourced to a framework; it was an architectural habit.
+- `$UNTRUSTED` array: all input must be explicitly sandboxed.
+- `filter_sql()` and `filter_html()` applied directly before queries.
+- Admin IP verification and include allowlists.
+
+**The Rule:** Built in Notepad. No linters. No autocomplete. Just vigilance. Don't hide behind abstractions—understand the data you are processing and sanitize it yourself.
 
 ---
 

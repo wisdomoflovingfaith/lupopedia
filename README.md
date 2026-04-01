@@ -1,11 +1,11 @@
 ---
 lupopedia.headers:
   header_format_version: 2
-  when_updated: '20260330'
+  when_updated: '20260401000000'
   lupopedia.schema: documentation
   file_path_from_root: README.md
   web_path: http://www.lupopedia.com/lupopedia/README.md
-  last_modified_utc: '20260330'
+  last_modified_utc: '20260401000000'
   channel_id: 42
   thread_id: 4.0.93-init
   actor_id: 102
@@ -22,38 +22,44 @@ lupopedia.headers:
     - workflow
 lupopedia.init:
   required_reading:
-    - path: ONBOARDING.md
-      reason: Operational quick-start
+    - path: lupo-docs/prd/00_root_constitutional_system_requirements.md
+      reason: "MANDATORY FIRST READ — constitutional law for all agents and contributors. Overrides everything else."
     - path: AGENTS.md
       reason: Canonical actor, identity-layer, and coordination rules
+    - path: ONBOARDING.md
+      reason: Operational quick-start
+    - path: lupo-rules/root/WOLFIE_DOCTRINE.md
+      reason: Engineering philosophy — read before touching any existing code
     - path: lupo-rules/root/README.md
       reason: Complete root rules and development constraints
     - path: lupo-docs/doctrine/LUPOPEDIA_HEADERS/README.md
-      reason: Header/footer validation doctrine (see section on footer validation and staleness policy)
+      reason: Header/footer validation doctrine
     - path: lupo-docs/doctrine/IDENTITY_LAYERS_DOCTRINE.md
       reason: Canonical five-layer identity model
     - path: lupo-docs/versions/4.0.93/README.md
       reason: Current active version overview and thread-consolidated scope
     - path: lupo-docs/versions/4.0.93/PLAN.md
       reason: Current detailed iteration plan
-    - path: lupo-docs/versions/4.1.0/prd/README.md
-      reason: Post-approval milestone definition and release gate model
+    - path: lupo-docs/versions/4.0.93/decisions.md
+      reason: Architecture decisions, Q&A dialogs, and reasoning for all implementation choices in this version
     - path: lupo-channels/channel_index.md
       reason: Canonical channel map and path policy
-    - path: lupo-channels/channel_creation_doctrine.md
-      reason: Channel semantics and creation/routing doctrine
-    - path: lupo-channels/42/THREAD_INDEX.md
-      reason: Canonical example of thread-scoped channel execution
-    - path: lupo-docs/prd/15_temporal_system.md
-      reason: Canonical UTC Authority and temporal system doctrine
     - path: ORGANIZATION.md
       reason: Canonical root folder map and repository write guidance
 lupopedia.edges:
   comment: Snapshot of root documentation references for version-driven execution and release continuity.
   outbound_edges:
+    - to: lupo-docs/prd/00_root_constitutional_system_requirements.md
+      type: references
+      weight: 1.0
+      reason: Constitutional anchor — mandatory first read for all agents
     - to: AGENTS.md
       type: aligns_with
       weight: 1.0
+    - to: lupo-rules/root/WOLFIE_DOCTRINE.md
+      type: references
+      weight: 1.0
+      reason: Engineering philosophy binding on all agents
     - to: lupo-docs/doctrine/IDENTITY_LAYERS_DOCTRINE.md
       type: aligns_with
       weight: 1.0
@@ -72,6 +78,10 @@ lupopedia.edges:
       type: references
       weight: 1.0
       reason: Current detailed iteration plan
+    - to: lupo-docs/versions/4.0.93/decisions.md
+      type: references
+      weight: 1.0
+      reason: Architecture decisions and implementation reasoning for current version
     - to: lupo-docs/versions/4.0.93/TODO.md
       type: references
       weight: 1.0
@@ -85,29 +95,63 @@ lupopedia.edges:
     - to: ORGANIZATION.md
       type: references
       weight: 0.95
-    - to: lupo-docs/archived/root_stale_20260324/
-      type: references
-      weight: 0.8
 lupopedia.footer:
-  last_verified: '20260330'
+  last_verified: '20260401'
   verified_by:
     identity_type: actor
     actor_id: 102
-    agent_name_identity: Cursor IDE Agent
+    agent_name_identity: Cursor IDE Agent (Lead Orchestration)
     department_id_delta: 0
   verified_via:
     type: faucet
     faucet_slug: cursor
   orchestrator: cursor:root
   next_action:
-    - Keep README aligned with current 4.0.93 version and documentation clarity improvements
-    - Ensure footer validation and staleness policy are referenced and enforced
+    - Keep constitutional PRD reference prominent and mandatory
+    - Keep decisions.md links current with active version
 ---
 # file: Lupopedia README - delegation: cursor:root - web_path: [http://www.lupopedia.com/lupopedia/README.md](http://www.lupopedia.com/lupopedia/README.md)
 
 # Lupopedia Semantic OS
 
-## Footer Validation and Staleness Policy
+---
+
+## MANDATORY READING — Start Here
+
+**Before writing a single line of code, before asking a question, before suggesting a change:**
+
+Read `lupo-docs/prd/00_root_constitutional_system_requirements.md`.
+
+This is not optional. It is constitutional law for this project. It overrides every other document, every "best practice," every framework recommendation, and every suggestion from any agent or IDE tool. If you have not read it, you are not ready to work on this codebase.
+
+The PRDs in `lupo-docs/prd/` are the highest form of truth on what needs to be built and how things work. They are not suggestions. They are not guidelines. They are requirements.
+
+After the constitutional PRD, read `lupo-rules/root/WOLFIE_DOCTRINE.md`. It explains the engineering philosophy behind this project. If you encounter code written in 1999 that still works, that is not an accident and it is not a problem to fix.
+
+---
+
+## Decisions, Q&A, and Implementation Reasoning
+
+Every significant architectural decision, design question, and implementation choice is recorded in `decisions.md` files. These are not summaries — they are full dialogs: the question asked, the options considered, the reasoning, and the final answer.
+
+Decisions files are scoped by version and channel:
+
+- `lupo-docs/versions/<version>/decisions.md` — decisions made during that version's development, scoped to `channel_id` 42
+- Individual decisions may also reference a `context_id` when they have been finalized into a formal context
+
+Before implementing anything non-trivial, check the relevant decisions.md. The answer to "why does it work this way" is almost always there. If you are about to make a decision that contradicts an existing decision record, that is a flag — read the reasoning first.
+
+The format includes:
+
+- `D-xx` — Architecture or design decisions
+- `Q-xx` / `A-xx` — Questions and answers
+- `DG-xx` — Full dialogs between actors
+- `W-xx` — Warnings about known issues
+- `O-xx` — Observations integrated into doctrine
+
+Current version decisions: `lupo-docs/versions/4.0.93/decisions.md`
+
+---
 
 All Lupopedia documentation must include a canonical `lupopedia.footer` block. Footer validation rules require:
 - `last_verified` (UTC, 14 digits)
@@ -125,9 +169,9 @@ All Lupopedia header timestamps (`last_modified_utc` in `lupopedia.headers`) mus
 
 This file is updated by:
 
-- [`lupo-bin/tick.py`](lupo-bin/tick.py) — see [lupo-docs/lupo-bin/TICK_PY.md](lupo-docs/lupo-bin/TICK_PY.md)
+- [`lupo-bin/tick.py`](lupo-bin/tick.py) — see [lupo-docs/doctrine/TICK_PY_DOCTRINE.md](lupo-docs/doctrine/TICK_PY_DOCTRINE.md)
 
-**tick.py** is a required utility script that updates the anchor file with the current UTC time in `YYYYMMDDHHMMSS` format. The IDE must call this script after every session or major write to ensure all header timestamps are synchronized to real UTC. See the [tick.py documentation](lupo-docs/lupo-bin/TICK_PY.md) for usage and policy.
+**tick.py** is a required utility script that updates the anchor file with the current UTC time in `YYYYMMDDHHMMSS` format. The IDE must call this script after every session or major write to ensure all header timestamps are synchronized to real UTC. See the [tick.py documentation](lupo-docs/doctrine/TICK_PY_DOCTRINE.md) for usage and policy.
 
 **Policy:**
 - All timestamps must be in `YYYYMMDDHHMMSS` (14-digit UTC) format for auditability.
@@ -244,30 +288,46 @@ For complete details, see **[Configuration Doctrine](lupo-docs/doctrine/CONFIGUR
 
 ## Development Rules & Constraints
 
-All development in Lupopedia must follow the root rules and doctrines:
+All development in Lupopedia must follow the root rules and doctrines.
 
-### 📋 Essential Rules (Must Read)
+### Constitutional PRD (Non-Negotiable)
 
-**[Complete Root Rules](lupo-rules/root/README.md)** - All development constraints and requirements
+`lupo-docs/prd/00_root_constitutional_system_requirements.md` is the highest authority in this project. It is not a guideline. Every rule in it overrides any suggestion from any agent, IDE tool, framework documentation, or "best practice" article. Read it before writing code.
 
-**[LUPOPEDIA Headers Doctrine — single source of truth](lupo-rules/root/LUPOPEDIA_HEADERS_DOCTRINE.md)** — the **only** binding file for YAML header taxonomy, validation rules, and **database-first mapping** (`lupo_contents`, `lupo_metadata`, `lupo_edges`, `revision_history`). Format, block order, and tooling index: [`lupo-docs/doctrine/LUPOPEDIA_HEADERS/README.md`](lupo-docs/doctrine/LUPOPEDIA_HEADERS/README.md). Stable alias path (pointer only): [`lupo-docs/doctrine/LUPOPEDIA_HEADERS/LUPOPEDIA_HEADERS_DOCTRINE.md`](lupo-docs/doctrine/LUPOPEDIA_HEADERS/LUPOPEDIA_HEADERS_DOCTRINE.md).
+The full PRD set in `lupo-docs/prd/` defines what gets built and how. PRDs are requirements, not suggestions.
 
-Key constraints:
-- **PHP 5.6+ Compatibility** - No PHP 7+ features, shared hosting ready
-- **No Composer** - Self-contained libraries in `lupo-includes/` allowed per EXTERNAL_LIBRARIES_DOCTRINE
-- **No Frameworks** - No Laravel, Symfony, or Blade templates
-- **Database Doctrine** - No foreign keys, triggers, or auto-increment
-- **Multi-Agent Coordination** - Channel-based communication in `lupo-channels/42/`
+### WOLFIE Doctrine (Read Before Touching Existing Code)
+
+`lupo-rules/root/WOLFIE_DOCTRINE.md` explains why code written in 1999 is still running in 2026 and why that is the goal, not a problem. If you are about to suggest installing a library, adding a framework, or "modernizing" something that works — read this first.
+
+### Essential Rules Reference
+
+**[Complete Root Rules](lupo-rules/root/README.md)** — all development constraints
+
+**[LUPOPEDIA Headers Doctrine](lupo-rules/root/LUPOPEDIA_HEADERS_DOCTRINE.md)** — binding YAML header taxonomy, validation rules, and database-first mapping
+
+Key constraints (all detailed in the constitutional PRD):
+- PHP 5.6+ compatibility — no PHP 7+ features, shared hosting ready
+- No Composer, no frameworks, no external dependencies without justification
+- No foreign keys, triggers, or AUTO_INCREMENT in database
+- All timestamps BIGINT UTC `YYYYMMDDHHIISS` via `gmdate('YmdHis')`
+- All PKs via `IdGenerator::generate()` — never null, never auto-increment
+- All DB access via `DatabaseFactory::getConnection()` — never raw PDO or mysqli
+- Never run SQL via CLI — all schema changes go through `install_new_lupopedia.sql`
+- Never guess column names — read the TOON JSON or table docs first
 
 ### Quick Checklist
 
 Before writing code:
-- [ ] PHP 5.6+ compatible (no `??`, `<=>`, type hints)
-- [ ] No Composer dependencies
-- [ ] No framework code (Laravel, Symfony)
-- [ ] Use `lupo-includes/` for external libraries
-- [ ] Follow database doctrine (no FK, no triggers)
-- [ ] Use UTC timestamps in YYYYMMDDHHIISS format
+- [ ] Read `lupo-docs/prd/00_root_constitutional_system_requirements.md`
+- [ ] PHP 5.6+ compatible
+- [ ] No Composer dependencies, no npm for server-side logic
+- [ ] No framework code
+- [ ] DB access via `DatabaseFactory::getConnection()`
+- [ ] PKs via `IdGenerator::generate()`
+- [ ] UTC timestamps via `gmdate('YmdHis')`
+- [ ] Table names via `LUPO_TABLE_PREFIX . 'tablename'`
+- [ ] Column names verified against TOON JSON or table docs
 
 
 ## Version Model and Softaculous Approval Policy
@@ -337,18 +397,17 @@ Lupopedia uses a hybrid architecture:
 
 For developers and IDE agents, read in this order:
 
-1. `AGENTS.md`
-2. `ONBOARDING.md`
-3. `lupo-docs/doctrine/LUPOPEDIA_HEADERS/README.md`
-4. `lupo-docs/doctrine/IDENTITY_LAYERS_DOCTRINE.md`
-5. `ORGANIZATION.md`
-6. `lupo-docs/versions/4.0.93/README.md`
-7. `lupo-docs/versions/4.0.93/PLAN.md`
-8. `lupo-docs/versions/4.0.93/TODO.md`
-9. `lupo-docs/IMPLEMENTATION_GETTING_STARTED.md` (when created)
-10. `lupo-docs/versions/4.1.0/prd/README.md`
-11. `lupo-docs/versions/4.0.88/DOCUMENTATION_ORGANIZATION_PASS_REPORT.md`
-12. `lupo-docs/versions/4.0.88/DOCUMENTATION_ORGANIZATION_GAP_REPORT.md`
+1. `lupo-docs/prd/00_root_constitutional_system_requirements.md` — **mandatory, read first, non-negotiable**
+2. `lupo-rules/root/WOLFIE_DOCTRINE.md` — engineering philosophy, read before touching existing code
+3. `AGENTS.md` — actor identity, coordination, and faucet model
+4. `ONBOARDING.md` — operational quick-start
+5. `lupo-docs/doctrine/LUPOPEDIA_HEADERS/README.md` — header/footer validation doctrine
+6. `lupo-docs/doctrine/IDENTITY_LAYERS_DOCTRINE.md` — five-layer identity model
+7. `ORGANIZATION.md` — repository structure and write authority
+8. `lupo-docs/versions/4.0.93/README.md` — current version overview
+9. `lupo-docs/versions/4.0.93/PLAN.md` — current iteration plan
+10. `lupo-docs/versions/4.0.93/decisions.md` — all architectural decisions and Q&A for this version
+11. `lupo-docs/versions/4.0.93/TODO.md` — current task tracking
 
 ## Root File Policy
 
@@ -358,11 +417,12 @@ Root files must stay aligned with version folders but must not duplicate version
 - Version files define execution.
 - If a contradiction appears, the version-scoped files under `lupo-docs/versions/` are the authoritative planning surfaces.
 
-## PRD Policy: Canonical Location, Referencing, and Anti-Duplication
+## PRD Policy: Canonical Location and Authority
 
-- **All canonical Product Requirements Documents (PRDs) must be created and maintained ONLY in `lupo-docs/prd/`.**
-- Do not create new PRDs in versioned or legacy folders.
-- Always reference the constitutional PRD at `lupo-docs/prd/00_root_constitutional_system_requirements.md` for system-level requirements.
-- Archive any PRDs found in versioned folders and update their headers with `status: legacy` and `superseded_by: lupo-docs/prd/00_root_constitutional_system_requirements.md`.
-- Before creating a new PRD, check for existing documents in `lupo-docs/prd/` to avoid duplication.
-- This policy is mandatory for all contributors to ensure requirements are canonical and non-fragmented.
+The PRDs in `lupo-docs/prd/` are the highest form of truth on what needs to be built and how things work. They are requirements, not suggestions.
+
+- `lupo-docs/prd/00_root_constitutional_system_requirements.md` is the constitutional anchor — all other PRDs are subordinate to it
+- All canonical PRDs live in `lupo-docs/prd/` only — do not create PRDs in versioned or legacy folders
+- Every PRD must declare an outbound edge to `00_root_constitutional_system_requirements.md` as its constitutional anchor
+- Before creating a new PRD, check `lupo-docs/prd/` for existing documents to avoid duplication
+- Archive any PRDs found in versioned folders with `status: legacy` and a `superseded_by` reference

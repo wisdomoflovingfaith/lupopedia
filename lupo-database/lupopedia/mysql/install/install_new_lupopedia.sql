@@ -3216,6 +3216,28 @@ CREATE INDEX {{prefix}}hashtag_map_idx_is_deleted ON {{prefix}}hashtag_map (is_d
 
 
 
+-- lupo_folders: folder entities for folder-based grouping in the semantic navbar.
+-- Hierarchy via parent_folder_id (self-referential, no DB FK).
+CREATE TABLE {{prefix}}folders (
+  folder_id bigint NOT NULL,
+  name varchar(255) NOT NULL,
+  slug varchar(128) NOT NULL,
+  parent_folder_id bigint DEFAULT NULL,
+  actor_id bigint DEFAULT NULL,
+  channel_id bigint DEFAULT NULL,
+  sort_order int NOT NULL DEFAULT 0,
+  created_ymdhis bigint NOT NULL DEFAULT 0,
+  updated_ymdhis bigint NOT NULL DEFAULT 0,
+  is_deleted tinyint NOT NULL DEFAULT 0,
+  deleted_ymdhis bigint NOT NULL DEFAULT 0,
+  PRIMARY KEY (folder_id)
+);
+CREATE INDEX {{prefix}}folders_idx_parent ON {{prefix}}folders (parent_folder_id);
+CREATE INDEX {{prefix}}folders_idx_actor ON {{prefix}}folders (actor_id);
+CREATE INDEX {{prefix}}folders_idx_channel ON {{prefix}}folders (channel_id);
+CREATE INDEX {{prefix}}folders_idx_slug ON {{prefix}}folders (slug);
+CREATE INDEX {{prefix}}folders_idx_is_deleted ON {{prefix}}folders (is_deleted);
+
 -- Canonical: Folders to Object Map (semantic navbar, 4.0.71+)
 CREATE TABLE {{prefix}}folder_map (
   folder_map_id bigint NOT NULL,

@@ -105,6 +105,7 @@ lupopedia.footer:
 - [x] **WOLFIE Doctrine (2026-04-01):** Constitutional doctrine created as root-level rule; Five Pillars established; binding rules W-01 through W-05 against framework bloat; root README updated; constitutional requirements PRD updated; 1999-era code protected from forced modernization.
 - [x] **Multi-Agent Orchestration Doctrine (2026-04-01):** Created comprehensive doctrine documenting cascade workflow; meta-agent loop established (LILITH refines prompts for internal swarm); scale documented (10+ IDEs, 50+ agents); dogfooding principle established - system building itself using its own coordination architecture.
 - [x] **Actor-Agent Distinction Doctrine (2026-04-01):** Created canonical distinction doctrine; updated all PRDs (01_core_identity.md, 07_agents_faucets.md, 15_actors.md); added Rule W-06 to WOLFIE Doctrine; clarified agents are immutable templates, actors are learning instances; documented workspace structures and creation flows.
+- [x] **Root Sanitization & PRD Backfill (2026-04-01, Antigravity thread):** WOLFIE Doctrine updated with accurate HPC/Notepad++ logic. Created ASCLEPIUS health check and CLI Interface PRDs. Formally exempted `node_modules` and `app` from prefix rules. Dismantled `lupo-prompts/` to localized actor workspaces. Executed Batches 6 & 7 to migrate 19 loose root files into pristine constitutional mappings (`lupo-rules/`, `lupo-config/`, etc.) and fixed corrupted `.gitignore`.
 
 ## 🛠️ **4.0.93 Documentation Update Status**
 
@@ -202,5 +203,33 @@ lupopedia.footer:
 - [ ] Enhance channel coordination automation and thread indexing
 - [ ] Permanent fix for Git hook path issue
 - [ ] Automate TOON file updates from schema changes
+- [ ] Implement systematic agent version management
+- [ ] Improve context linking and multi-agent workflows
+
+## Completed (2026-04-01, Kiro thread — PRD overhaul + constitutional hardening)
+- [x] 00_root_constitutional_system_requirements.md — fixed broken YAML, corrected schema token, added missing header fields, expanded edges, fixed footer, added implementation guidance per rule
+- [x] Section 9.9 — expanded schema inference prohibition with "JSON files are NOT a file database" clarification and full workflow
+- [x] Section 9.18 — Missing Table Protocol (RULE 93.MISSING_TABLE_PROTOCOL) added
+- [x] Section 9.19 — No Direct CLI Database Execution (RULE 93.NO_CLI_DB_EXEC) added (renumbered from 9.18)
+- [x] Section 9.20 — Proven Code Preservation Doctrine (RULE 93.PROVEN_CODE) added; eye animation as canonical named example
+- [x] 01_semantic_monitoring_widget.md — rewritten with verified column names, Missing Tables section, corrected queries, 28 edges, implementation checklist
+- [x] generate_toon_files.py — stripped to schema-only output; removed data key, data-fetching functions, broken CSV subprocess
+- [x] export_table_data_csv.py — created as separate debugging tool with sensitive table exclusions
+- [x] .gitignore — added lupo-database/lupopedia/csv/
+- [x] install_new_lupopedia.sql — added lupo_folders; confirmed other 6 semantic navbar tables already present
+- [x] lupo-docs/database/lupopedia/tables/active/lupo_paths.md — created missing table doc
+- [x] README.md — mandatory reading section, decisions.md documentation, reordered reading list, development rules rewritten
+- [x] decisions.md — summary table completed (D-16 through D-38), new decision entries D-33 through D-38 added
+- [x] project_structure_prd.md — updated with important sub-folders table for `lupo-docs` structure
+
+## Active/Next (4.0.94+)
+- [ ] Regenerate TOON files: `python lupo-scripts/generate_toon_files.py`
+- [ ] Continue PRD improvement pass for remaining PRDs in `lupo-docs/prd/`
+- [ ] Optional: integrate main `channels-controller` message panel with `api/lupo-channels` + shared chat-display patterns
+- [ ] Complete enforce_doctrine.py implementation for all .js, .php, and SQL assets
+- [ ] Optimize JS "Glass" reflection for mobile viewports
+- [ ] Transition remaining "Unfinished Business" items from 4.0.87 into Gold Contexts
+- [ ] Enhance channel coordination automation and thread indexing
+- [ ] Permanent fix for Git hook path issue
 - [ ] Implement systematic agent version management
 - [ ] Improve context linking and multi-agent workflows

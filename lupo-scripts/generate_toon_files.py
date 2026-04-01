@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 # lupopedia.headers:
-#   when_updated: "20260324175617"
+#   when_updated: "20260401000000"
 #   file_path_from_root: "lupo-scripts/generate_toon_files.py"
-#   last_modified_utc: "20260324175617"
+#   last_modified_utc: "20260401000000"
 #   channel_id: 42
 #   actor_id: 102
 #   actor_name: "cursor"
@@ -10,42 +10,34 @@
 #   artifact_type: "tooling"
 #   artifact_kind: "script"
 # lupopedia.footer:
-#   last_verified: "20260324175617"
+#   last_verified: "20260401"
 #   last_verified_by: "cursor"
 #   last_verified_by_actor_id: 102
 
 """
-TOON Generator (schema + canonical data from live DB).
+TOON Generator — schema-only export from live DB.
 
-Generates TOON representations of the database for all tables using live MySQL
-schema introspection (SHOW TABLES / SHOW FULL COLUMNS / SHOW INDEX) and optionally
-canonical rows:
+Generates TOON representations of the database schema for all tables using live MySQL
+schema introspection (SHOW TABLES / SHOW FULL COLUMNS / SHOW INDEX).
 
-- PK=0 row: for any table with a primary key, include the row where pk = 0 if it exists.
-- lupo_registry: all rows from DB + active agents as actors (doctrine; no inactive agents).
+Output contains STRUCTURE ONLY — no row data is written to any output file.
+The JSON files are schema reference documents for agents and tooling, not a file database.
+Lupopedia uses MySQL as its database. These files exist so column names, types, and
+indexes can be read without parsing large SQL files or guessing.
 
-Actor/agent doctrine: active agents (lupo_agent_registry WHERE is_active=1) are included in
-lupo_registry TOON data as entity_type='actor', entity_table='lupo_agent_registry'.
+For debugging data export, use the separate lupo-scripts/export_table_data_csv.py script,
+which excludes sensitive tables and requires explicit opt-in.
 
 Output:
-  - lupo-database/lupopedia/json/<table_name>.json  (JSON format)
-  - lupo-database/lupopedia/toon/<table_name>.toon  (TOON format: YAML)
-
-TOONs are the canonical representation of database structure; see docs/TOON_REFERENCE.md.
-
-Current table count: The number of TOON files written by this script is the canonical
-"current table count" for documentation. Do not hardcode table counts in docs; run this
-script and use the printed count (or count the .toon files in the output directory).
+  - lupo-database/lupopedia/json/<table_name>.json  (JSON format, schema only)
+  - lupo-database/lupopedia/toon/<table_name>.toon  (TOON format: YAML, schema only)
 
 DB config: read from lupopedia-config.php (project root). See scripts/db_config.py.
-If SKIP_DB=1, canonical data is skipped and "data" arrays are empty.
 """
 
 import json
 import os
 import sys
-from datetime import date, datetime
-from decimal import Decimal
 from pathlib import Path
 from typing import Any, Dict, List, Optional, Tuple
 
@@ -62,32 +54,6 @@ except ImportError:
     yaml = None
 
 from db_config import get_connection_params
-from actor_agent_doctrine import (
-    AGENT_REGISTRY_TABLE,
-    REGISTRY_TABLE,
-    build_registry_row_from_agent as doctrine_build_registry_row,
-)
-
-STRING_TYPES = {
-    "char", "varchar", "text", "tinytext", "mediumtext", "longtext", "enum", "set",
-}
-
-
-def _quote_default(value: Any, data_type: str) -> str:
-    if value is None:
-        return ""
-    if isinstance(value, bytes):
-        try:
-            value = value.decode("utf-8")
-        except UnicodeDecodeError:
-            value = value.hex()
-    if isinstance(value, str) and value.upper() == "CURRENT_TIMESTAMP":
-        return " DEFAULT CURRENT_TIMESTAMP"
-    if data_type in STRING_TYPES:
-        escaped = str(value).replace("\\", "\\\\").replace("'", "''")
-        return f" DEFAULT '{escaped}'"
-    return f" DEFAULT {value}"
-
 
 def fetch_tables(cursor) -> List[str]:
     cursor.execute("SHOW TABLES")
@@ -118,9 +84,15 @@ def fetch_columns_and_names(cursor, table_name: str) -> Tuple[List[str], List[st
         parts = ["`{}`".format(name), col_type]
         if not is_nullable:
             parts.append("NOT NULL")
-        default_clause = _quote_default(default, col_type.split("(")[0].lower())
-        if default_clause:
-            parts.append(default_clause.strip())
+        if default is not None:
+            dt = col_type.split("(")[0].lower()
+            if isinstance(default, str) and default.upper() == "CURRENT_TIMESTAMP":
+                parts.append("DEFAULT CURRENT_TIMESTAMP")
+            elif dt in {"char", "varchar", "text", "tinytext", "mediumtext", "longtext", "enum", "set"}:
+                escaped = str(default).replace("\\", "\\\\").replace("'", "''")
+                parts.append("DEFAULT '{}'".format(escaped))
+            else:
+                parts.append("DEFAULT {}".format(default))
         if extra:
             parts.append(extra)
         if comment:
@@ -192,98 +164,6 @@ def build_primary_key(column_name: Optional[str]) -> Optional[Dict[str, Any]]:
     }
 
 
-def json_serializable(val: Any) -> Any:
-    """Convert a DB value to a JSON-serializable value."""
-    if val is None:
-        return None
-    if isinstance(val, (bool, int, float, str)):
-        return val
-    if isinstance(val, (datetime, date)):
-        return val.isoformat()
-    if isinstance(val, Decimal):
-        return int(val) if val == val.to_integral_value() else float(val)
-    if isinstance(val, bytes):
-        return val.hex()
-    return str(val)
-
-
-def row_to_data_dict(row: Dict[str, Any], column_names: List[str]) -> Dict[str, Any]:
-    """Build a dict with keys in column order, values JSON-serializable.
-    Row keys may differ in case; match case-insensitively.
-    """
-    if not row:
-        return {c: None for c in column_names}
-    row_lower = {str(k).lower(): v for k, v in row.items()}
-    return {c: json_serializable(row_lower.get(c.lower())) for c in column_names}
-
-
-def fetch_pk_zero_row(cursor, table_name: str, pk_column: str) -> Optional[Dict[str, Any]]:
-    cursor.execute("SELECT * FROM `{}` WHERE `{}` = 0".format(
-        table_name.replace("`", "``"), pk_column.replace("`", "``")))
-    return cursor.fetchone()
-
-
-def fetch_all_rows(cursor, table_name: str) -> List[Dict[str, Any]]:
-    cursor.execute("SELECT * FROM `{}`".format(table_name.replace("`", "``")))
-    return cursor.fetchall()
-
-
-def fetch_active_agents(cursor) -> List[Dict[str, Any]]:
-    """Fetch lupo_agent_registry WHERE is_active = 1 (doctrine: active agents become actors)."""
-    try:
-        cursor.execute(
-            "SELECT * FROM `{}` WHERE `is_active` = 1 ORDER BY `agent_registry_id`".format(AGENT_REGISTRY_TABLE)
-        )
-        return cursor.fetchall()
-    except Exception:
-        return []
-
-
-def fetch_canonical_data(
-    cursor,
-    table_name: str,
-    column_names: List[str],
-    pk_column: Optional[str],
-    skip_db: bool,
-) -> List[Dict[str, Any]]:
-    """Return list of canonical row dicts for the TOON 'data' array.
-    - If SKIP_DB: return [].
-    - If lupo_registry: return all rows + active agents as actors (doctrine; no inactive agents).
-    - Else if table has PK: return [row where pk=0] if exists.
-    - Else: return [].
-    """
-    if skip_db:
-        return []
-
-    data = []
-    if table_name == REGISTRY_TABLE:
-        rows = fetch_all_rows(cursor, table_name)
-        existing_keys = set()
-        for row in rows:
-            data.append(row_to_data_dict(row, column_names))
-            rl = {str(k).lower(): v for k, v in (row or {}).items()}
-            existing_keys.add((rl.get("entity_type"), rl.get("entity_id")))
-        # Doctrine: active agents become actors in unified registry (no inactive agents).
-        active_agents = fetch_active_agents(cursor)
-        for agent_row in active_agents:
-            rl = {str(k).lower(): v for k, v in (agent_row or {}).items()}
-            aid = rl.get("agent_registry_id")
-            if aid is None or ("actor", aid) in existing_keys:
-                continue
-            by_col = doctrine_build_registry_row(agent_row)
-            if by_col is not None:
-                row_dict = {c: json_serializable(by_col.get(c)) for c in column_names}
-                data.append(row_dict)
-                existing_keys.add(("actor", aid))
-        return data
-
-    if pk_column:
-        row = fetch_pk_zero_row(cursor, table_name, pk_column)
-        if row is not None:
-            data.append(row_to_data_dict(row, column_names))
-    return data
-
-
 def write_toon(
     json_dir: Path,
     toon_dir: Path,
@@ -326,7 +206,6 @@ def main() -> int:
     project_root = base.parent
     json_dir = project_root / "lupo-database" / "lupopedia" / "json"
     toon_dir = project_root / "lupo-database" / "lupopedia" / "toon"
-    skip_db = os.getenv("SKIP_DB", "").lower() in ("1", "true", "yes")
 
     if pymysql is None or DictCursor is None:
         print("pymysql is required. Install with: pip install pymysql", file=sys.stderr)
@@ -338,7 +217,6 @@ def main() -> int:
         conn = pymysql.connect(cursorclass=DictCursor, **params)
     except Exception as e:
         print("Database connection failed:", e, file=sys.stderr)
-        print("Set SKIP_DB=1 only skips canonical data; schema still requires a connection.", file=sys.stderr)
         return 1
 
     try:
@@ -351,17 +229,16 @@ def main() -> int:
             return 1
 
         for table_name in sorted(tables):
-            fields, column_names = fetch_columns_and_names(cursor, table_name)
+            fields, _column_names = fetch_columns_and_names(cursor, table_name)
             indexes = fetch_indexes(cursor, table_name)
             pk_name = fetch_primary_key(cursor, table_name)
             primary_key = build_primary_key(pk_name)
 
-            data = fetch_canonical_data(cursor, table_name, column_names, pk_name, skip_db)
-
+            # Schema only — no row data written to output files.
+            # For data export use lupo-scripts/export_table_data_csv.py (separate tool).
             payload = {
                 "table_name": table_name,
                 "fields": fields,
-                "data": data,
                 "indexes": indexes,
             }
             if primary_key:
@@ -375,36 +252,8 @@ def main() -> int:
 
             write_toon(json_dir, toon_dir, table_name, payload)
 
-        print("Wrote {} TOONs to {} (JSON) and {} (.toon)".format(
+        print("Wrote {} TOONs (schema only) to {} (JSON) and {} (.toon)".format(
             len(tables), json_dir, toon_dir))
-        
-        # Automatically trigger CSV export after TOON generation
-        print("Triggering CSV export...")
-        try:
-            import subprocess
-            
-            # Get the project root directory
-            project_root = Path(__file__).parent.parent
-            admin_script = project_root / "admin.php"
-            
-            if admin_script.exists():
-                # Call the CSV export via PHP
-                result = subprocess.run([
-                    "php", str(admin_script), "section=csv-export"
-                ], capture_output=True, text=True, cwd=str(project_root))
-                
-                if result.returncode == 0:
-                    print("CSV export completed successfully")
-                    print("TOON generation complete. CSV export complete.")
-                else:
-                    print(f"CSV export failed: {result.stderr}")
-            else:
-                print("admin.php not found, skipping CSV export")
-                
-        except Exception as e:
-            print(f"Error triggering CSV export: {e}")
-            print("TOON generation complete. CSV export failed.")
-        
         return 0
     finally:
         if conn:

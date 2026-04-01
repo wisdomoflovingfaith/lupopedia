@@ -279,3 +279,38 @@ All planning, PRDs, and implementation must reference and comply with these docs
 - Automate TOON file updates from schema changes
 - Implement systematic agent version management
 - Improve context linking and multi-agent workflows
+
+## PRD Overhaul + Constitutional Hardening (2026-04-01, Kiro thread)
+
+- **[x] 00_root_constitutional_system_requirements.md rewritten** — Fixed broken YAML structure (entire body was trapped inside front matter), corrected `lupopedia.schema` from invalid `prd` to `doctrine`, added all missing required header fields, expanded edges from 4 to 14, fixed footer to current verifier shape, added implementation guidance to every rule section
+- **[x] Section 9.9 expanded** — Full schema inference prohibition with explicit "JSON files are NOT a file database" clarification, required workflow (read table doc → read TOON JSON → write SQL), table documentation directory map
+- **[x] Section 9.18 added** — Missing Table Protocol (RULE 93.MISSING_TABLE_PROTOCOL): SQL proposal file → review → apply to install SQL → regenerate TOONs. No migration needed.
+- **[x] Section 9.19 added** — No Direct CLI Database Execution (RULE 93.NO_CLI_DB_EXEC): explicit forbidden patterns (`mysql -u root -p < file.sql` etc.), reasons why each bypass is dangerous, correct PHP migration pattern
+- **[x] Section 9.20 added** — Proven Code Preservation Doctrine (RULE 93.PROVEN_CODE): four-question test before touching existing code, deprecation table, eye animation as canonical named example, fallback ladder principle
+- **[x] 01_semantic_monitoring_widget.md rewritten** — Verified column names from TOON docs, Missing Tables section, all SQL using `DatabaseFactory` + `LUPO_TABLE_PREFIX`, `lupo_contexts_map` `item_slug` correction, `lupo_truth_knowledge` deprecation noted, 28 outbound edges, implementation checklist
+- **[x] generate_toon_files.py stripped to schema-only** — Removed all data-fetching functions, removed `"data"` key from output, removed broken CSV subprocess, updated docstring
+- **[x] export_table_data_csv.py created** — Separate debugging tool with `EXCLUDED_TABLES` frozenset (auth, sessions, tokens, CRM, transcripts), keyword filter, gitignored output directory, CLI flags
+- **[x] install_new_lupopedia.sql updated** — Added `lupo_folders` (genuinely missing); confirmed `lupo_paths`, `lupo_references`, `lupo_reference_links`, `lupo_hashtags`, `lupo_hashtag_map`, `lupo_folder_map` were already present further down in the file
+- **[x] lupo_paths table doc created** — `lupo-docs/database/lupopedia/tables/active/lupo_paths.md` with verified columns from TOON JSON and correct PHP query patterns
+- **[x] README.md overhauled** — "MANDATORY READING" section at top, decisions.md documentation section, reordered required_reading with constitutional PRD first, WOLFIE Doctrine added, "Where to Read Next" reordered, Development Rules section rewritten, PRD Policy clarified
+- **[x] .gitignore updated** — Added `lupo-database/lupopedia/csv/` to prevent CSV data exports from being committed
+- **[x] project_structure_prd.md updated** — Added "Important Sub-folders" section documenting versions/, database/lupopedia/tables/, prd/, doctrine/, and knowledge/
+
+## Root Architecture Sanitization & PRD Backfill (2026-04-01, Antigravity thread)
+
+- **[x] WOLFIE Doctrine Output** — Re-aligned founder context logic (parallel IDE orchestration + Notepad++ fallback).
+- **[x] New PRDs** — ASCLEPIUS metrics (23) and CLI Interface (24) established.
+- **[x] TOON/YAML Baseline** — Explicit AI token optimization rationale appended.
+- **[x] Structure Exceptions** — Declared `node_modules` and `app` off-limits to prefixing.
+- **[x] Root Defrag Execution** — Dismantled `lupo-prompts/`. Purged root artifacts into `lupo-archive` and `lupo-docs`, safeguarding `CHANGELOG_ARCHIVE` and `CURRENT_UTC`. Corrected EOF corruption array in `.gitignore`.
+
+## Next Steps (4.0.94+)
+- Complete enforce_doctrine.py implementation for all .js, .php, and SQL assets
+- Optimize JS "Glass" reflection for mobile viewports
+- Transition remaining "Unfinished Business" items from 4.0.87 into Gold Contexts
+- Enhance channel coordination automation and thread indexing
+- Permanent fix for Git hook path issue
+- Regenerate TOON files after install SQL updates: `python lupo-scripts/generate_toon_files.py`
+- Continue PRD improvement pass for remaining PRDs in `lupo-docs/prd/`
+- Implement systematic agent version management
+- Improve context linking and multi-agent workflows

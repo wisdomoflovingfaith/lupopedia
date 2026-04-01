@@ -59,6 +59,43 @@ lupopedia.footer:
 | D-14  | Decision  | ANUBIS Custodian Enhancement                   | LILITH     | Completed   | 2026-03-31  |           |
 | D-15  | Decision  | Primary Coordination Personas Priority Order    | WOLFIE     | Accepted    | 2026-03-31  |           |
 | D-16  | Decision  | Cross-Thread Coordination Protocol             | LILITH     | Accepted    | 2026-03-31  |           |
+| D-17  | Decision  | LILITH Audit: Data Model PRD Corrections       | LILITH     | Completed   | 2026-03-31  | D-01      |
+| D-18  | Decision  | LILITH Audit: Installer Requirements PRD       | LILITH     | Completed   | 2026-03-31  | D-01      |
+| D-19  | Decision  | LILITH Audit: Core Identity PRD - Final Review | LILITH     | Completed   | 2026-03-31  | D-01      |
+| D-20  | Decision  | LILITH Correction: Version Directory Purpose   | LILITH     | Completed   | 2026-03-31  | D-01      |
+| D-21  | Decision  | LILITH Directive: Create Countermeasure Agent  | LILITH     | Completed   | 2026-03-31  | D-01      |
+| D-22  | Decision  | LILITH Audit: COUNTERMEASURE Agent Config      | LILITH     | Completed   | 2026-03-31  | D-01      |
+| D-23  | Decision  | LILITH Audit: COUNTERMEASURE Agent Config (2)  | LILITH     | Completed   | 2026-03-31  | D-01      |
+| D-24  | Decision  | LILITH Directive: Update COUNTERMEASURE Prompt | LILITH     | Completed   | 2026-03-31  | D-01      |
+| D-25  | Directive | IDE: Update 4.0.93 version documentation      | CURSOR     | Completed   | 2026-03-31  | D-05      |
+| D-26  | Decision  | Channel chat: canonical API + PRD 18 + UI      | CURSOR     | Completed   | 2026-03-31  | D-05      |
+| D-27  | Directive | IDE: Refresh 4.0.93 docs after channel chat    | CURSOR     | Completed   | 2026-03-31  | D-26      |
+| D-28  | Decision  | WOLFIE Doctrine: Constitutional Protection     | WOLFIE     | Accepted    | 2026-04-01  | D-08      |
+| D-29  | Decision  | Multi-Agent Orchestration Doctrine             | WOLFIE     | Accepted    | 2026-04-01  | D-28      |
+| D-30  | Decision  | Actor-Agent Distinction Doctrine               | WOLFIE     | Accepted    | 2026-04-01  | D-29      |
+| D-31  | Decision  | Database Doctrine: Canonical Database Rules    | WOLFIE     | Accepted    | 2026-04-01  | D-08      |
+| D-32  | Decision  | Garbage Collection System                      | WOLFIE     | Completed   | 2026-04-01  | D-31      |
+| D-33  | Decision  | PRD Improvement: 00_root + 01_semantic_widget  | CURSOR     | Completed   | 2026-04-01  | D-08      |
+| D-34  | Decision  | TOON Generator: Schema-Only Output             | CURSOR     | Completed   | 2026-04-01  | D-10      |
+| D-35  | Decision  | CSV Export: Separate Tool + Sensitive Exclusions | CURSOR   | Completed   | 2026-04-01  | D-34      |
+| D-36  | Decision  | Missing Table Protocol + install SQL Updates   | CURSOR     | Completed   | 2026-04-01  | D-31      |
+| D-37  | Decision  | Proven Code Preservation Doctrine (9.20)       | CURSOR     | Accepted    | 2026-04-01  | D-28      |
+| D-38  | Directive | README: Mandatory Reading + Decisions Docs     | CURSOR     | Completed   | 2026-04-01  | D-05      |
+| D-39  | Decision  | Project Structure PRD: Important Sub-folders   | CURSOR     | Completed   | 2026-04-01  |           |
+| D-40  | Decision  | Founder Context & WOLFIE Doctrine              | WOLFIE     | Accepted    | 2026-04-01  | D-29      |
+| D-41  | Decision  | TOON YAML AI Optimization                      | WOLFIE     | Accepted    | 2026-04-01  | D-34      |
+| D-42  | Decision  | Project Structure Excep. (node_modules, app)   | WOLFIE     | Accepted    | 2026-04-01  | D-39      |
+| D-43  | Decision  | Prompt Migration to Actor Workspaces           | ANTIGRAVITY| Completed   | 2026-04-01  |           |
+| D-44  | Decision  | Root Directory Sanitization (Batches 6-7)      | ANTIGRAVITY| Completed   | 2026-04-01  |           |
+| Q-01  | Question  | HEIMDALL Actor ID Assignment                   | LILITH     | Answered    | 2026-03-31  |           |
+| A-01  | Answer    | HEIMDALL Actor ID Resolution                   | WOLFIE     | Completed   | 2026-03-31  | Q-01      |
+| Q-02  | Question  | MAAT Layer Placement (Kernel vs Coordination)  | LILITH     | Open        | 2026-03-31  |           |
+| Q-03  | Question  | Semantic Monitoring Widget Integration Pattern | LILITH     | Open        | 2026-03-31  |           |
+| DG-01 | Dialog    | Actor ID Conflict Resolution                   | LILITH     | Open        | 2026-03-31  |           |
+| DG-02 | Dialog    | MAAT vs HEIMDALL actor_id 6                    | WOLFIE     | In Progress | 2026-03-31  |           |
+| W-01  | Warning   | Large SQL File Processing                      | HEPHAESTUS | Acknowledged| 2026-03-30  |           |
+| O-01  | Observation | AI IDE Token Limits                          | HEPHAESTUS | Integrated  | 2026-03-30  |           |
+| D-16  | Decision  | Cross-Thread Coordination Protocol             | LILITH     | Accepted    | 2026-03-31  |           |
 | D-17  | Decision  | LILITH Audit: Data Model PRD Corrections | LILITH | Completed | 2026-03-31 | D-01 |
 | D-18  | Decision  | LILITH Audit: Installer Requirements PRD | LILITH | Completed | 2026-03-31 | D-01 |
 | D-19  | Decision  | LILITH Audit: Core Identity PRD - Final Review | LILITH | Completed | 2026-03-31 | D-01 |
@@ -757,6 +794,114 @@ This observation is now documented in Key Lessons Learned section.
 ### Comments
 *2026-03-31 LILITH*: Added to onboarding documentation for agents working with large SQL files.
 
+## D-40: Founder Context & WOLFIE Doctrine
+
+### Type
+**Decision**
+
+### Status
+**Accepted**
+
+### Author
+**WOLFIE** (actor_id 1)
+
+### Date
+2026-04-01
+
+### Context
+WOLFIE_DOCTRINE lacked critical historical context (1997-1998 HPC supercomputer experience, Perl CRM authoring, solo-survivalist code philosophy) which caused IDE agents to miscalculate technical literacy. Additionally, the daily operational workflow requires parallel orchestration across multiple IDEs supplemented by direct Notepad++ bypasses for complex search/replaces where LLMs struggle.
+
+### Decision
+Integrate HPC/Perl history and true technical depth. Enshrine multi-IDE and Notepad++ usage into the operational doctrine so AI actors coordinate alongside human fallbacks rather than overriding them.
+
+---
+
+## D-41: TOON YAML AI Optimization
+
+### Type
+**Decision**
+
+### Status
+**Accepted**
+
+### Author
+**WOLFIE** (actor_id 1)
+
+### Date
+2026-04-01
+
+### Context
+Toon files use `.json` historically but `TOON_DOCTRINE.md` needed grounding. Native JSON requires exorbitant AI context token consumption due to heavy quotes and structural bloat.
+
+### Decision
+Officially document TOON formatting preference as YAML-based inside the doctrine explicitly because it significantly optimizes AI context payloads, reserving token limits for business logic.
+
+---
+
+## D-42: Project Structure Exceptions (node_modules, app)
+
+### Type
+**Decision**
+
+### Status
+**Accepted**
+
+### Author
+**WOLFIE** (actor_id 1)
+
+### Date
+2026-04-01
+
+### Context
+Applying the `lupo-` prefix to ecosystem-standard names breaks external toolchains. `node_modules` breaking shatters JS semantic builds; `lupo-app` shatters PHP PSR-4 `App\` namespace resolution, causing chronic AI hallucination.
+
+### Decision
+Create a STRICT EXCEPTION alert block in `project_structure_prd.md` formally prohibiting the `lupo-` prefixing of `node_modules` and `app/`. `lupo-app/` permanently renamed back to `app/`.
+
+---
+
+## D-43: Prompt Migration to Actor Workspaces
+
+### Type
+**Decision**
+
+### Status
+**Completed**
+
+### Author
+**ANTIGRAVITY** (actor_id 103)
+
+### Date
+2026-04-01
+
+### Context
+`lupo-prompts/` at the root violated identity isolation. Under canonical identity doctrine, operationally learned data and thread constraints belong localized to the Actors executing them.
+
+### Decision
+Dismantled `lupo-prompts/`. Migrated all active directories directly into their respective actor spaces (`lupo-actors/{agent}/prompts/`).
+
+---
+
+## D-44: Root Directory Sanitization (Batches 6-7)
+
+### Type
+**Decision**
+
+### Status
+**Completed**
+
+### Author
+**ANTIGRAVITY** (actor_id 103)
+
+### Date
+2026-04-01
+
+### Context
+Project root contained 19 loose files, dead WordPress-style artifacts (`assets`, `install`, `examples`), and outdated maps, creating structural noise.
+
+### Decision
+Surgically moved implementation guides to `lupo-docs/implementations/`, mapped doctrines to `lupo-docs/doctrine/`, relocated infrastructure files to `lupo-rules/` and `lupo-config/`, and shifted dead output to `lupo-archive/`. Constitutionally protected `CURRENT_UTC` (temporal anchor) and `CHANGELOG_ARCHIVE.md` (legacy ledger) were explicitly excluded and preserved at root.
+
 ---
 
 ## D-02: Department-Scoped Actor Model
@@ -1358,3 +1503,230 @@ Lupopedia needs a modern garbage collection system that preserves the 2003 `gc.p
 
 **Next Review**: 2026-04-07
 **Canonical Reference**: This file is the single source of truth for decisions and action items for Lupopedia 4.0.93.
+
+---
+
+## D-33: PRD Improvement — 00_root_constitutional_system_requirements + 01_semantic_monitoring_widget
+
+### Type
+Decision
+
+### Status
+Completed
+
+### Author
+CURSOR (actor_id 102) — Lead Orchestration IDE Agent
+
+### Date
+2026-04-01
+
+### Context
+Both PRDs had structural problems: the constitutional PRD had a broken YAML front matter (entire body trapped inside the YAML block), wrong `lupopedia.schema` value (`prd` is not a valid taxonomy token), missing required header fields, thin edges, and no implementation guidance per rule. The semantic monitoring widget PRD referenced non-existent tables, used wrong column names (e.g. `item_id` instead of `item_slug` in `lupo_contexts_map`), referenced deprecated `lupo_truth_knowledge` instead of `lupo_truth_questions`, and had no constitutional anchor edge.
+
+### Decision
+- Rewrote `lupo-docs/prd/00_root_constitutional_system_requirements.md` completely: fixed YAML structure, corrected `lupopedia.schema` to `doctrine`, added all missing required header fields (`federation_node_id`, `when_updated`, `thread_id`, `actor_name`), expanded edges from 4 to 14 covering all referenced doctrines and implementation files, fixed footer to current verifier shape, added implementation guidance to every major rule section.
+- Rewrote `lupo-docs/prd/01_semantic_monitoring_widget.md` with verified column names from TOON JSON/table docs, a "Missing Tables" section, all SQL examples using `DatabaseFactory` + `LUPO_TABLE_PREFIX`, corrected `lupo_contexts_map` to use `item_slug`, noted `lupo_truth_knowledge` deprecation, added implementation checklist.
+- Added 28 outbound edges to the widget PRD covering every table it touches.
+
+### Consequences
+- Constitutional PRD is now structurally valid YAML and passes header validation
+- Widget PRD SQL examples use only confirmed column names — no guessing
+- Both PRDs have constitutional anchor edges
+
+### Comments
+*2026-04-01 CURSOR*: The `lupo_contexts_map` `item_slug` vs `item_id` correction is important — the wrong column would silently return no rows.
+
+---
+
+## D-34: TOON Generator — Schema-Only Output
+
+### Type
+Decision
+
+### Status
+Completed
+
+### Author
+CURSOR (actor_id 102)
+
+### Date
+2026-04-01
+
+### Context
+`generate_toon_files.py` was writing row data (`"data"` key) into every JSON output file, and had a broken CSV subprocess that tried to invoke `admin.php` via shell. This caused two problems: (1) agents reading the JSON files were treating them as a file database rather than schema reference documents, and (2) the CSV trigger was non-functional and violated the no-CLI-execution doctrine.
+
+### Decision
+- Stripped all data-fetching functions from `generate_toon_files.py` (`fetch_all_rows`, `fetch_pk_zero_row`, `fetch_canonical_data`, `fetch_active_agents`, `row_to_data_dict`, `json_serializable`, `actor_agent_doctrine` import).
+- Removed the `"data"` key entirely from the JSON payload — output is now schema-only: `table_name`, `fields`, `indexes`, `primary_key`, `doctrine_metadata`, `relationships`.
+- Removed the broken CSV subprocess call.
+- Removed `SKIP_DB` env var (no longer relevant).
+- Updated docstring to explicitly state "schema reference documents, not a file database."
+
+### Consequences
+- JSON files are unambiguously schema-only — no agent can mistake them for a data store
+- Script is simpler and faster
+- No more broken subprocess side effect on every run
+
+### Comments
+*2026-04-01 CURSOR*: The "JSON files = file database" misconception was causing agents to query them as data sources. Removing the data key eliminates the ambiguity entirely.
+
+---
+
+## D-35: CSV Export — Separate Tool with Sensitive Table Exclusions
+
+### Type
+Decision
+
+### Status
+Completed
+
+### Author
+CURSOR (actor_id 102)
+
+### Date
+2026-04-01
+
+### Context
+Data export for debugging was previously either non-existent or triggered via the broken subprocess in `generate_toon_files.py`. A separate, controlled tool was needed that explicitly excludes sensitive tables.
+
+### Decision
+- Created `lupo-scripts/export_table_data_csv.py` as a standalone debugging tool.
+- `EXCLUDED_TABLES` frozenset covers: `lupo_auth_users`, `lupo_auth_providers`, `lupo_auth_audit_log`, `lupo_api_tokens`, `lupo_api_token_logs`, `lupo_api_clients`, `lupo_agent_faucet_credentials`, `lupo_sessions`, `lupo_banned_actors`, `lupo_bans_log`, `lupo_audit_log`, `lupo_unified_log`, `lupo_crm_leads`, `lupo_crm_lead_messages`, `lupo_crafty_syntax_leave_message`, `lupo_crafty_syntax_chat_questions`.
+- Additional keyword filter skips any table whose name contains `secret`, `password`, `credential`, `token`, `salt`, or `hash`.
+- Output goes to `lupo-database/lupopedia/csv/` which is now gitignored.
+- CLI flags: `--tables`, `--limit` (default 500), `--output-dir`.
+- Loud warnings printed on every run that output must not be committed.
+
+### Consequences
+- Debugging data export is possible but controlled
+- Sensitive tables cannot be accidentally exported
+- Output directory is gitignored — data files cannot be committed
+
+---
+
+## D-36: Missing Table Protocol + install_new_lupopedia.sql Updates
+
+### Type
+Decision
+
+### Status
+Completed
+
+### Author
+CURSOR (actor_id 102)
+
+### Date
+2026-04-01
+
+### Context
+Seven tables needed by the semantic monitoring widget existed in the live database (confirmed via TOON JSONs) but were absent from `install_new_lupopedia.sql`: `lupo_paths`, `lupo_references`, `lupo_reference_links`, `lupo_hashtags`, `lupo_hashtag_map`, `lupo_folders`, `lupo_folder_map`. Additionally, there was no documented protocol for what to do when a needed table is missing.
+
+### Decision
+- Added section 9.18 (Missing Table Protocol, RULE 93.MISSING_TABLE_PROTOCOL) to the constitutional PRD defining the correct procedure: create a SQL proposal file with `{{prefix}}` placeholders, review it, apply to `install_new_lupopedia.sql`, regenerate TOONs. No migration needed — fresh install only.
+- Created `lupo-database/lupopedia/mysql/migrations/add_semantic_navbar_tables_20260401.sql` as the proposal file.
+- Applied all 7 `CREATE TABLE` blocks directly to `install_new_lupopedia.sql` in the semantic navbar section (after `lupo_referers_daily`, before `lupo_anubis_log`). `lupo_folders` was the only one genuinely absent — the others were already present further down in the file.
+- Created `lupo-docs/database/lupopedia/tables/active/lupo_paths.md` as the missing table doc.
+
+### Consequences
+- `install_new_lupopedia.sql` now includes all 7 semantic navbar tables
+- Protocol is documented so future agents know the correct procedure
+- No CLI execution was used — all changes went through the install SQL
+
+### Comments
+*2026-04-01 CURSOR*: The initial search for these tables came up empty because they were in a different section of the install SQL than expected. `lupo_folders` was the only genuinely missing one.
+
+---
+
+## D-37: Proven Code Preservation Doctrine (Section 9.20)
+
+### Type
+Decision
+
+### Status
+Accepted
+
+### Author
+CURSOR (actor_id 102), ratified by WOLFIE
+
+### Date
+2026-04-01
+
+### Context
+A recurring failure pattern: agents encounter working code written in 1999 and propose replacing it with frameworks, npm packages, or "modern" equivalents. The specific trigger was an agent attempting to replace the 1999 eye animation (`dynlayer.js` + GIF sprites, zero dependencies, works in every browser) with a React component and npm dependencies. The WOLFIE Doctrine covered the philosophy but lacked a concrete, actionable rule in the constitutional PRD.
+
+### Decision
+- Added section 9.20 (Proven Code Preservation Doctrine, RULE 93.PROVEN_CODE) to `lupo-docs/prd/00_root_constitutional_system_requirements.md`.
+- The rule includes: a four-question core test before touching existing code, a deprecation table distinguishing actively broken APIs from merely unfashionable ones, the eye animation as a named canonical example, a list of forbidden agent behaviors (proposing npm/composer installs, framework suggestions, rewriting working JS as "modern ES6+"), and the fallback ladder principle.
+- Updated the WOLFIE_DOCTRINE edge in the constitutional PRD header to reference section 9.20.
+- Added to the enforcement table.
+
+### Consequences
+- Working 1999-era code is now constitutionally protected by name
+- Agents have a concrete checklist (4 questions) before proposing any change to existing code
+- The distinction between "actively broken" and "merely old" is now documented
+
+### Comments
+*2026-04-01 WOLFIE*: The eye animation that works in Netscape 4 and Chrome 2026 without a single dependency is exactly the kind of code this doctrine protects.
+*2026-04-01 CURSOR*: The deprecation table is the key addition — it gives agents a framework for distinguishing framesets (actually broken) from XMLHttpRequest (deprecated but functional).
+
+---
+
+## D-38: README — Mandatory Reading + Decisions Documentation
+
+### Type
+Directive
+
+### Status
+Completed
+
+### Author
+CURSOR (actor_id 102)
+
+### Date
+2026-04-01
+
+### Context
+The root README did not make it clear that reading `00_root_constitutional_system_requirements.md` is mandatory, that PRDs are the highest form of truth, or that `decisions.md` files exist and explain the reasoning behind implementation choices. Agents were starting work without reading the constitutional PRD.
+
+### Decision
+- Added "MANDATORY READING — Start Here" section at the top of the README body, immediately after the title. Explicit language: "This is not optional. It is constitutional law."
+- Added "Decisions, Q&A, and Implementation Reasoning" section explaining the decisions.md format (D-xx, Q-xx/A-xx, DG-xx, W-xx, O-xx), channel/context scoping, and the instruction to check decisions.md before implementing anything non-trivial.
+- Reordered `lupopedia.init.required_reading` to put the constitutional PRD first with "MANDATORY FIRST READ" reason.
+- Added `decisions.md` to `required_reading` and `lupopedia.edges`.
+- Added WOLFIE_DOCTRINE to `required_reading`.
+- Reordered "Where to Read Next" list with constitutional PRD at #1, WOLFIE Doctrine at #2, decisions.md at #10.
+- Rewrote "Development Rules" section to lead with constitutional PRD and WOLFIE Doctrine.
+- Updated "PRD Policy" section to state PRDs are requirements, not suggestions.
+- Updated header timestamps and footer.
+
+### Consequences
+- No agent can claim they didn't know the constitutional PRD was mandatory
+- decisions.md is now discoverable from the root README
+- The reading order is explicit and prioritized correctly
+
+---
+
+## D-39: Project Structure PRD Enhancement (Important Sub-folders)
+
+### Type
+Decision
+
+### Status
+Completed
+
+### Author
+CURSOR (actor_id 102)
+
+### Date
+2026-04-01
+
+### Context
+User requested to document the important sub-directories within `lupo-docs/` in the `project_structure_prd.md` before proceeding with other PRD reviews.
+
+### Decision
+- Added an "Important Sub-folders" section to `lupo-docs/prd/project_structure_prd.md`.
+- Documented key directories such as `versions/`, `database/lupopedia/tables/`, `prd/`, `doctrine/`, and `knowledge/` to ensure agents and human users understand where different layers of documentation reside.
+
+### Consequences
+- Clarifies the structure of the `lupo-docs/` directory.
+- Connects related documentation paths for agents relying on LUPOPEDIA edges and project structure PRDs.
