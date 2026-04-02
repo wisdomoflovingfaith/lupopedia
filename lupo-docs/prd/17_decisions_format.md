@@ -15,7 +15,7 @@ lupopedia.headers:
   delegation_chain: "lilith:audit"
   artifact_type: "prd"
   artifact_kind: "specification"
-  purpose: "Canonical format specification for decisions.md files in version directories"
+  purpose: "Canonical format specification for decision thread files in decisions/ folders"
   tags:
   - "prd"
   - "decisions"
@@ -28,18 +28,14 @@ lupopedia.edges:
       type: references
       weight: 1.0
       reason: "Constitutional anchor"
-    - to: "lupo-docs/versions/4.0.93/decisions.md"
+    - to: "lupo-docs/versions/4.0.93/decisions/"
       type: references
       weight: 1.0
-      reason: "Example implementation of this format"
+      reason: "Example implementation of this format (folder with threaded decision files)"
     - to: "lupo-docs/doctrine/LUPOPEDIA_HEADERS/README.md"
       type: references
       weight: 1.0
       reason: "Header format with channel_id/thread_id/context_id"
-    - to: "lupo-contexts/4.0.93/decisions_context.md"
-      type: references
-      weight: 0.9
-      reason: "Finalized context for version decisions"
 lupopedia.footer:
   last_verified: "20260331190000"
   verified_by:
@@ -52,17 +48,15 @@ lupopedia.footer:
     faucet_slug: "none"
   orchestrator: "lilith:audit"
   next_action:
-    - "Create lupo-contexts/4.0.93/decisions_context.md"
     - "Update LUPOPEDIA_HEADERS documentation with context_id"
-    - "Ensure all decisions.md files follow this format"
+    - "Ensure all decision thread files follow this format"
 ---
 
-# PRD: decisions.md Format Specification
+# PRD: Decision Thread Format Specification
 
 ## Overview
 
-
-This PRD defines the canonical format for documenting architectural decisions, questions, answers, and action items for a given Lupopedia version. **As of version 4.0.93+, the canonical and only supported format is the folder-based threaded decisions system. The legacy single-file `decisions.md` approach is deprecated and must not be used for new work.**
+This PRD defines the canonical format for documenting architectural decisions, questions, answers, and action items for a given Lupopedia version. **As of version 4.0.93+, the canonical and only supported format is the folder-based threaded decisions system. The legacy single-file `decisions.md` approach is deprecated in favor of a folder-based threaded system. and must not be used for new work.**
 
 ## Canonical Decisions Folder System (Required)
 
@@ -172,8 +166,8 @@ lupopedia.headers:
   header_format_version: 2
   lupopedia.schema: doctrine
   when_updated: "20260331190000"
-  file_path_from_root: "lupo-docs/versions/4.0.93/decisions.md"
-  web_path: "http://www.lupopedia.com/lupopedia/lupo-docs/versions/4.0.93/decisions.md"
+  file_path_from_root: "lupo-docs/versions/4.0.93/decisions/20260402_120000_DECISION_completed_header_format.md"
+  web_path: "http://www.lupopedia.com/lupopedia/lupo-docs/versions/4.0.93/decisions/20260402_120000_DECISION_completed_header_format.md"
   last_modified_utc: "20260331190000"
   federation_node_id: 0
   channel_id: 42
@@ -374,7 +368,7 @@ Every decisions.md file MUST include a footer with next actions:
 ---
 
 **Next Review**: YYYY-MM-DD
-**Canonical Reference**: This file is the single source of truth for decisions and action items for Lupopedia [version].
+**Canonical Reference**: This decisions/ folder is the single source of truth for decision threads and action items for Lupopedia [version].
 ```
 
 ## Validation Rules
@@ -392,7 +386,7 @@ Validators MUST enforce:
 
 ## Example Implementation
 
-See `lupo-docs/versions/4.0.93/decisions.md` for a complete example.
+See `lupo-docs/versions/4.0.93/decisions/` for a complete example.
 
 ---
 
