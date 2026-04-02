@@ -22,7 +22,7 @@ This directory marks the **4.0.93 release** in the archive tree. It does not dup
 ## Git
 
 - Tag: **`v4.0.93`**
-- Immediately after this tag, the repository bumps **`lupo-config/global_atoms.yaml`** → `GLOBAL_CURRENT_LUPOPEDIA_VERSION` **4.0.94** and uses `lupo-docs/versions/4.0.94/` for active planning.
+- **`lupo-config/global_atoms.yaml`** → `GLOBAL_CURRENT_LUPOPEDIA_VERSION` **4.0.94** on `main` after the tag; active planning lives in `lupo-docs/versions/4.0.94/`.
 
 ## What was frozen (summary)
 

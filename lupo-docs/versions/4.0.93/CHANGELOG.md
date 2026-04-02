@@ -4,7 +4,7 @@
 - **Version documentation layout**: `decisions/`, `questions/`, `answers/`, `comments/` under `lupo-docs/versions/4.0.93/` each carry `THREAD_INDEX.md`; thread files use `YYYYMMDD_HHIISS_TYPE_title.md` (UTC). `AUDITION_*` decision filenames normalized to `DIALOG_*` per valid TYPE list; `20260402_165500_DIALOG_prd_naming_correction.md` avoids timestamp collision with `20260402_170000_DECISION_prd31_rejection.md`.
 - **PRD 30** moved to `lupo-docs/versions/4.0.94/prd/30_prd_development_guide.md` for rewrite; **PRD 31** redesign stub at `lupo-docs/versions/4.0.94/prd/31_context_system.md`.
 - **Current working version folder**: `lupo-docs/versions/4.0.94/` (PLAN, TODO, CHANGELOG, edges, four thread folders, `prd/`).
-- **Release pointer**: `lupo-archive/versions/4.0.93/README.md` documents the tagged snapshot. The commit immediately after tag `v4.0.93` bumps `GLOBAL_CURRENT_LUPOPEDIA_VERSION` to **4.0.94** for ongoing development.
+- **Release pointer**: `lupo-archive/versions/4.0.93/README.md` documents the tagged snapshot. On `main` after tag `v4.0.93`, `GLOBAL_CURRENT_LUPOPEDIA_VERSION` is **4.0.94** for ongoing development.
 
 # [2026-04-02] Channel Directory Restructure
 

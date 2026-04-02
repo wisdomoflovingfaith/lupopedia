@@ -113,4 +113,4 @@ YYYYMMDD_HHIISS_TYPE_title.md
 
 ## Tag
 
-Git tag: **`v4.0.93`** marks this freeze. The next commit on the main line bumps `lupo-config/global_atoms.yaml` and `lupo-includes/version.php` to **4.0.94** so the working tree matches `lupo-docs/versions/4.0.94/`.
+Git tag: **`v4.0.93`** marks this freeze. Ongoing development uses **`4.0.94`** in `lupo-config/global_atoms.yaml` and `lupo-docs/versions/4.0.94/`.
