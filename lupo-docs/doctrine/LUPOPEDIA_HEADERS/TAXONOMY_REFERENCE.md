@@ -69,11 +69,11 @@ Full descriptions and examples: root doctrine **“lupopedia.schema Taxonomy”*
 
 ## Cross-field rules (`lupopedia.schema` → `artifact_type` / `artifact_kind`)
 
-Validators enforce **allowed combinations** (same rules as `lupo-scripts/validate_lupopedia_headers_universal.py`):
+Validators enforce **allowed combinations** (per PRD 16 and PRD 26):
 
 | `lupopedia.schema` | `artifact_type` (one of) | `artifact_kind` (one of) |
 |--------------------|----------------------------|---------------------------|
-| doctrine | doctrine | database, documentation, rule |
+| doctrine | doctrine | constitutional, reference, decisions |
 | rule | rule | rule |
 | philosophy | manifesto | philosophy |
 | plan | plan | plan |
@@ -90,6 +90,30 @@ Validators enforce **allowed combinations** (same rules as `lupo-scripts/validat
 | thread | thread | coordination |
 | broadcast | broadcast | coordination |
 | **alias** | **documentation** | **documentation** |
+
+### Additional `artifact_type` values (from PRD 16)
+
+| `artifact_type` | Description | Required Fields |
+|-----------------|-------------|-----------------|
+| prd | Product Requirements Document | prd_id, prd_slug, title, status |
+| implementation | Implementation documentation | parent_prd, status, version |
+| doctrine | Constitutional or doctrinal document | None (minimal) |
+| discussion | Discussion thread or message | channel_id, thread_id |
+| changelog | Version-specific change log | None |
+| documentation | General documentation | None |
+| architecture | System architecture specification | TBD |
+| specification | Technical specification | TBD |
+
+### Conditional Required Fields
+
+| `artifact_type` | `artifact_kind` | Additional Required Fields |
+|-----------------|-----------------|---------------------------|
+| prd | any | prd_id, prd_slug, title, status |
+| implementation | README | parent_prd, status |
+| implementation | documentation | parent_prd, status, version |
+| discussion | thread | channel_id, thread_id |
+| discussion | message | channel_id, thread_id |
+| All others | any | No additional required fields |
 
 ---
 

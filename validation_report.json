@@ -1,0 +1,35 @@
+{
+  "timestamp": "2026-04-02T02:15:09.384281",
+  "errors": [
+    "Error checking 02_data_model.md: while scanning an alias\n  in \"<unicode string>\", line 74, column 1:\n    **Toon Files (Read-Only Senses)* ... \n    ^\nexpected alphabetic or numeric character, but found '*'\n  in \"<unicode string>\", line 74, column 2:\n    **Toon Files (Read-Only Senses)** ... \n     ^",
+    "Error checking 04_lupopedia_js_foundation.md: while scanning an alias\n  in \"<unicode string>\", line 53, column 1:\n    **Toon Files (Read-Only Senses)* ... \n    ^\nexpected alphabetic or numeric character, but found '*'\n  in \"<unicode string>\", line 53, column 2:\n    **Toon Files (Read-Only Senses)** ... \n     ^",
+    "18_channel_chat_display: Missing required file authors.md",
+    "18_channel_chat_display: Missing required file edges.md",
+    "18_channel_chat_display: Missing required directory discussions",
+    "18_channel_chat_display: Missing required field 'parent_prd' for implementation/documentation",
+    "18_channel_chat_display: Missing required field 'status' for implementation/documentation",
+    "18_channel_chat_display: Missing required field 'version' for implementation/documentation",
+    "18_channel_chat_display: Implementation files must have parent_prd",
+    "25_departments_systems: Missing required field 'parent_prd' for implementation/documentation",
+    "25_departments_systems: Missing required field 'status' for implementation/documentation",
+    "25_departments_systems: Missing required field 'version' for implementation/documentation",
+    "25_departments_systems: Implementation files must have parent_prd",
+    "26_five_layer_documentation_architecture: Missing required field 'parent_prd' for implementation/documentation",
+    "26_five_layer_documentation_architecture: Missing required field 'status' for implementation/documentation",
+    "26_five_layer_documentation_architecture: Missing required field 'version' for implementation/documentation",
+    "26_five_layer_documentation_architecture: Implementation files must have parent_prd",
+    "29_project_structure: Missing required file authors.md",
+    "29_project_structure: Missing required file edges.md",
+    "29_project_structure: Missing required directory discussions",
+    "29_project_structure: Missing required field 'parent_prd' for implementation/documentation",
+    "29_project_structure: Missing required field 'status' for implementation/documentation",
+    "29_project_structure: Missing required field 'version' for implementation/documentation",
+    "29_project_structure: Implementation files must have parent_prd"
+  ],
+  "warnings": [],
+  "summary": {
+    "total_errors": 24,
+    "total_warnings": 0,
+    "passed": false
+  }
+}

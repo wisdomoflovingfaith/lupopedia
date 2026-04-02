@@ -19,6 +19,8 @@ CUTOFF_DAY = 20260301  # 2026-03-01
 CUTOFF_14 = int(f"{CUTOFF_DAY}000000")
 
 # Core required keys under lupopedia.headers (LUPOPEDIA_HEADERS_DOCTRINE.md — Required Header Sections / fields table)
+# Only truly universal fields required for ALL files
+# Type-specific fields are validated in validate_required_fields_by_type()
 REQUIRED_HEADER_KEYS = (
     "lupopedia.schema",
     "file_path_from_root",
@@ -26,16 +28,14 @@ REQUIRED_HEADER_KEYS = (
     "federation_node_id",
     "last_modified_utc",
     "when_updated",
-    "channel_id",
-    "thread_id",
-    "actor_id",
-    "actor_name",
+    # "channel_id", # Only required for discussions
+    # "thread_id",  # Only required for discussions
+    # "context_id",  # Only required for finalized contexts
     "delegation_chain",
     "artifact_type",
     "artifact_kind",
     "purpose",
     "tags",
-    "context_id",  # Now required for finalized artifacts
 )
 
 # thread_id: lowercase, hyphens (and digits); e.g. headers-doctrine, 4.0.89-planning
@@ -68,7 +68,7 @@ def validate_schema(schema, file_path):
 DEPENDENCY_MAP = {
     'doctrine': {
         'artifact_type': ['doctrine'],
-        'artifact_kind': ['database', 'documentation', 'rule']
+        'artifact_kind': ['database', 'documentation', 'rule', 'constitutional', 'reference', 'decisions']
     },
     'rule': {
         'artifact_type': ['rule'],
@@ -183,11 +183,126 @@ def _header_value_present(val):
     return True
 
 
+def validate_required_fields_by_type(hdr, file_path):
+    """Validate required fields based on artifact_type and artifact_kind."""
+    artifact_type = hdr.get('artifact_type')
+    artifact_kind = hdr.get('artifact_kind')
+    
+    # PRD files
+    if artifact_type == 'prd':
+        required = ['prd_id', 'prd_slug', 'title', 'status']
+        for field in required:
+            if field not in hdr or not _header_value_present(hdr.get(field)):
+                print(f"[ERROR] {file_path}: PRD missing required field '{field}'")
+                return False
+        # Validate prd_id is numeric
+        if 'prd_id' in hdr and not str(hdr['prd_id']).isdigit():
+            print(f"[ERROR] {file_path}: prd_id must be numeric, got '{hdr['prd_id']}'")
+            return False
+        # Validate prd_slug format
+        if 'prd_slug' in hdr:
+            prd_slug = str(hdr['prd_slug'])
+            if not re.match(r'^[a-z][a-z0-9_]*$', prd_slug):
+                print(f"[ERROR] {file_path}: prd_slug '{prd_slug}' must be lowercase with underscores")
+                return False
+        # Validate status values
+        valid_statuses = ['draft', 'review', 'approved', 'implemented', 'deprecated']
+        if 'status' in hdr and hdr['status'] not in valid_statuses:
+            print(f"[ERROR] {file_path}: Invalid PRD status '{hdr['status']}'. Must be one of: {valid_statuses}")
+            return False
+    
+    # Discussion files
+    elif artifact_type == 'discussion':
+        required = ['channel_id', 'thread_id']
+        for field in required:
+            if field not in hdr or not _header_value_present(hdr.get(field)):
+                print(f"[ERROR] {file_path}: Discussion missing required field '{field}'")
+                return False
+        # Validate channel_id is numeric
+        if 'channel_id' in hdr and not str(hdr['channel_id']).isdigit():
+            print(f"[ERROR] {file_path}: channel_id must be numeric, got '{hdr['channel_id']}'")
+            return False
+        # Validate context_id if present (optional for discussions)
+        context_id = hdr.get('context_id')
+        if context_id is not None:
+            context_id_str = str(context_id)
+            if not (context_id_str.isdigit() and len(context_id_str) == 18):
+                print(f"[ERROR] {file_path}: context_id must be 18 digits (YYYYMMDDHHIISS + 4 random), got {context_id_str}")
+                return False
+    
+    # Implementation files
+    elif artifact_type == 'implementation':
+        required = ['parent_prd', 'status', 'version']
+        for field in required:
+            if field not in hdr or not _header_value_present(hdr.get(field)):
+                print(f"[ERROR] {file_path}: Implementation missing required field '{field}'")
+                return False
+        # Validate status values
+        valid_statuses = ['not_started', 'in_progress', 'complete', 'blocked', 'deprecated']
+        if 'status' in hdr and hdr['status'] not in valid_statuses:
+            print(f"[ERROR] {file_path}: Invalid implementation status '{hdr['status']}'. Must be one of: {valid_statuses}")
+            return False
+        # Validate parent_prd points to existing PRD (warning only during transition)
+        parent_prd = hdr.get('parent_prd')
+        if parent_prd:
+            # Try to find matching PRD file
+            import glob
+            repo_root = _find_lupopedia_repo_root(file_path)
+            prd_pattern = os.path.join(repo_root, 'lupo-docs', 'prd', f"{parent_prd}*.md")
+            matching_files = glob.glob(prd_pattern)
+            if not matching_files:
+                print(f"[WARN] {file_path}: parent_prd '{parent_prd}' may not exist in lupo-docs/prd/")
+    
+    # Doctrine files — no additional requirements beyond base
+    elif artifact_type == 'doctrine':
+        pass  # Minimal requirements
+    
+    return True
+
+
+def validate_author_fields(hdr, file_path):
+    """Validate author fields - accept both legacy and new formats during transition."""
+    # Check for new author structure
+    if 'author' in hdr:
+        author = hdr['author']
+        if not isinstance(author, dict):
+            print("[ERROR] %s: author must be a mapping with type, id, and name" % (file_path,))
+            return False
+        if 'type' not in author or not _header_value_present(author.get('type')):
+            print("[ERROR] %s: missing author.type" % (file_path,))
+            return False
+        if 'id' not in author or not _header_value_present(author.get('id')):
+            print("[ERROR] %s: missing author.id" % (file_path,))
+            return False
+        # name is optional in author structure
+        return True
+    
+    # Check for legacy format during transition
+    elif 'actor_id' in hdr and 'actor_name' in hdr:
+        print("[WARN] %s: actor_id/actor_name deprecated, use author.type/author.id instead" % (file_path,))
+        return True
+    
+    # Neither format present
+    else:
+        print("[ERROR] %s: missing author attribution (use author.type/author.id or legacy actor_id/actor_name)" % (file_path,))
+        return False
+
+
 def validate_required_header_fields(hdr, file_path):
     """Ensure doctrine-required keys exist under lupopedia.headers, including context_id."""
     if not isinstance(hdr, dict):
         print("[ERROR] %s: lupopedia.headers must be a mapping" % (file_path,))
         return False
+    
+    # Validate author fields (new or legacy format)
+    if not validate_author_fields(hdr, file_path):
+        return False
+    
+    # Validate type-specific fields
+    if not validate_required_fields_by_type(hdr, file_path):
+        return False
+    
+    # Validate universal fields
     for key in REQUIRED_HEADER_KEYS:
         if key not in hdr or not _header_value_present(hdr.get(key)):
             print("[ERROR] %s: missing or empty required header field %r" % (file_path, key))
@@ -196,30 +311,6 @@ def validate_required_header_fields(hdr, file_path):
     if isinstance(tags, list) and len(tags) == 0:
         print("[ERROR] %s: tags must be a non-empty list" % (file_path,))
         return False
-    # Validate context_id format: must be 18-digit int (YYYYMMDDHHIISS + 4 random)
-    context_id = hdr.get("context_id")
-    if context_id is not None:
-        try:
-            context_id_str = str(context_id)
-            if not (context_id_str.isdigit() and len(context_id_str) == 18):
-                print(f"[ERROR] {file_path}: context_id must be 18 digits (YYYYMMDDHHIISS + 4 random), got {context_id_str}")
-                return False
-        except Exception:
-            print(f"[ERROR] {file_path}: context_id must be a numeric string")
-            return False
-        # Existence check (strict mode): check lupo_contexts table in DB
-        try:
-            import pymysql
-            from lib.db_connection import get_connection_params, get_connection
-            conn = get_connection()
-            with conn.cursor() as cur:
-                cur.execute("SELECT COUNT(*) FROM lupo_contexts WHERE context_id = %s", (context_id_str,))
-                row = cur.fetchone()
-                if not row or row[0] == 0:
-                    print(f"[ERROR] {file_path}: context_id {context_id_str} not found in lupo_contexts table")
-                    return False
-        except Exception as e:
-            print(f"[WARN] {file_path}: Could not check context_id existence in DB: {e}")
     return True
 
 # Deterministic context_id generation: YYYYMMDDHHIISS + 4 random digits, check DB for collision

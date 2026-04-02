@@ -65,20 +65,44 @@ This PRD defines the canonical format for `decisions.md` files stored in version
 
 ## Location
 
+### Primary Location (Database-Backed)
 ```
 lupo-docs/versions/
 └── <version>/
-    └── decisions.md
+    └── decisions.md          # Single consolidated file (legacy approach)
 ```
 
-Example:
+### Alternative Location (Filesystem Threads)
 ```
-lupo-docs/versions/4.0.93/
-├── decisions.md          # This file
-├── CHANGELOG.md
-├── PLAN.md
-└── TODO.md
+lupo-docs/versions/
+└── <version>/
+    └── decisions/              # Directory containing individual thread files
+        ├── THREAD_INDEX.md     # Index of all decision threads
+        └── *.md               # Individual decision thread files
 ```
+
+### Thread File Naming Conventions
+
+#### Filesystem Threads (IDE Development)
+- **Format**: `YYYYMMDD_HHIISS_TYPE_STATUS_TITLE.md`
+- **Example**: `20260402_120000_DECISION_completed_header_validator_update.md`
+- **Used for**: IDE agent development, local documentation work
+- **Location**: `lupo-docs/versions/<version>/decisions/`
+
+#### Database Threads (Web Application)
+- **Format**: Numeric auto-increment ID (e.g., 1038)
+- **Example**: Thread ID 1038 in `lupo_dialog_threads` table
+- **Used for**: Web-based discussions, chat interfaces
+- **Storage**: Database table with metadata
+
+### Migration Strategy
+
+When transitioning from consolidated `decisions.md` to individual thread files:
+
+1. **Parse decision entries** from consolidated file
+2. **Create individual files** using filesystem naming convention
+3. **Update THREAD_INDEX.md** to reference all threads
+4. **Preserve original** as `old_decisions.md` for reference
 
 ## Header Requirements
 

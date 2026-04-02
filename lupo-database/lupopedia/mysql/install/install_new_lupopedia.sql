@@ -1935,66 +1935,8 @@ CREATE INDEX {{prefix}}crafty_syntax_auto_invite_idx_status ON {{prefix}}crafty_
 
 
 
--- DOCTRINE: Context Registry Table (see lupo-docs/versions/4.0.90/PRD_CONTEXT_MODEL.md)
--- All IDs and timestamps are generated in PHP (see Lupo_Id_Generator.php). No auto-increment, no foreign keys.
-CREATE TABLE {{prefix}}contexts (
-  context_id bigint NOT NULL, -- Application-generated deterministic ID
-  source_message_id bigint DEFAULT NULL, -- Pointer to {{prefix}}dialog_messages
-  context_type varchar(20) DEFAULT NULL, -- (truth, logic, audit, summary)
-  content_raw text NOT NULL, -- The elevated truth
-  metadata_json json DEFAULT NULL, -- Elevation source, Faucet ID, Actor lineage
-  created_ymdhis bigint NOT NULL, -- YYYYMMDDHHIISS
-  updated_ymdhis bigint NOT NULL, -- YYYYMMDDHHIISS
-  PRIMARY KEY (context_id)
-);
-
--- Indexes for {{prefix}}contexts
-CREATE INDEX {{prefix}}contexts_idx_source_message ON {{prefix}}contexts (source_message_id);
-CREATE INDEX {{prefix}}contexts_idx_type ON {{prefix}}contexts (context_type);
-CREATE INDEX {{prefix}}contexts_idx_created ON {{prefix}}contexts (created_ymdhis);
-CREATE INDEX {{prefix}}contexts_idx_updated ON {{prefix}}contexts (updated_ymdhis);
-
--- Context cards for AI instructions
-
-
--- DOCTRINE: Context Edges Table (see lupo-docs/versions/4.0.90/PRD_CONTEXT_MODEL.md)
--- All IDs and timestamps are generated in PHP (see Lupo_Id_Generator.php). No auto-increment, no foreign keys.
-CREATE TABLE {{prefix}}edges (
-  edge_id bigint NOT NULL, -- Application-generated deterministic ID
-  from_context_id bigint NOT NULL, -- Source context ({{prefix}}contexts.context_id)
-  to_artifact_id bigint NOT NULL, -- Target (context, file, actor, or thread)
-  edge_type varchar(50) NOT NULL, -- (defines, implements, refutes, etc.)
-  edge_description text,
-  actor_id bigint DEFAULT NULL, -- Who created the edge
-  created_ymdhis bigint NOT NULL, -- YYYYMMDDHHIISS
-  updated_ymdhis bigint NOT NULL, -- YYYYMMDDHHIISS
-  properties json DEFAULT NULL, -- Additional edge metadata
-  PRIMARY KEY (edge_id)
-);
-
--- Indexes for {{prefix}}edges
-CREATE INDEX {{prefix}}edges_idx_from_context ON {{prefix}}edges (left_object_id);
-CREATE INDEX {{prefix}}edges_idx_to_artifact ON {{prefix}}edges (right_object_id);
-CREATE INDEX {{prefix}}edges_idx_type ON {{prefix}}edges (edge_type);
-CREATE INDEX {{prefix}}edges_idx_actor ON {{prefix}}edges (actor_id);
-CREATE INDEX {{prefix}}edges_idx_created ON {{prefix}}edges (created_ymdhis);
-CREATE INDEX {{prefix}}edges_idx_updated ON {{prefix}}edges (updated_ymdhis);
-
-CREATE TABLE {{prefix}}contexts_map (
-  context_map_id bigint NOT NULL,
-  context_id bigint NOT NULL,
-  item_type varchar(64) NOT NULL,
-  item_slug varchar(255) NOT NULL,
-  item_id bigint DEFAULT NULL,
-  created_ymdhis bigint NOT NULL DEFAULT 0,
-  updated_ymdhis bigint NOT NULL DEFAULT 0,
-  is_deleted tinyint NOT NULL DEFAULT '0',
-  deleted_ymdhis bigint DEFAULT 0,
-  PRIMARY KEY (context_map_id)
-);
-CREATE INDEX {{prefix}}contexts_map_idx_item_slug ON {{prefix}}contexts_map (item_slug);
-CREATE INDEX {{prefix}}contexts_map_idx_context_item ON {{prefix}}contexts_map (context_id, item_type, item_slug);
-CREATE INDEX {{prefix}}contexts_map_idx_is_deleted ON {{prefix}}contexts_map (is_deleted);
+-- Context system removed - context relationships now handled by edges table (see line 408)
+-- See decision: 20260402_210000_DECISION_prd31_rejection_parallel_classification.md
 
 CREATE TABLE {{prefix}}crm_leads (
   crm_lead_id bigint NOT NULL,
@@ -2480,7 +2422,6 @@ CREATE TABLE {{prefix}}federation_discovery (
   import_hashtags tinyint NOT NULL DEFAULT 0,
   import_questions tinyint NOT NULL DEFAULT 0,
   import_atoms tinyint NOT NULL DEFAULT 0,
-  import_contexts tinyint NOT NULL DEFAULT 0,
   import_collections tinyint NOT NULL DEFAULT 0,
   created_ymdhis bigint NOT NULL DEFAULT 0,
   updated_ymdhis bigint NOT NULL,
@@ -2895,15 +2836,6 @@ CREATE INDEX {{prefix}}system_health_snapshots_idx_created ON {{prefix}}system_h
 CREATE INDEX {{prefix}}system_health_snapshots_idx_type ON {{prefix}}system_health_snapshots (snapshot_type);
 CREATE INDEX {{prefix}}system_health_snapshots_idx_is_deleted ON {{prefix}}system_health_snapshots (is_deleted);
 
-CREATE TABLE {{prefix}}hotfix_registry (
-  hotfix_id bigint NOT NULL,
-  hotfix_version varchar(20) NOT NULL,
-  applied_ymdhis bigint NOT NULL,
-  applied_by_actor_id bigint DEFAULT NULL,
-  description text,
-  metadata_json json DEFAULT NULL,
-  PRIMARY KEY (hotfix_id)
-);
 
 -- Old logging tables removed in v4.0.86 - consolidated into {{prefix}}unified_log
 

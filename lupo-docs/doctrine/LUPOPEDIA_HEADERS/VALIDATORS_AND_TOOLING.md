@@ -41,8 +41,16 @@ lupopedia.footer:
 
 ## Required validator behavior
 
-- Validate **all binding required** `lupopedia.headers` keys (see root doctrine): `lupopedia.schema`, `file_path_from_root`, `web_path`, `federation_node_id`, `when_updated`, `last_modified_utc`, `channel_id`, `thread_id` (pattern `^[a-z0-9][a-z0-9-]*$`), `actor_id`, `actor_name`, `delegation_chain`, `artifact_type`, `artifact_kind`, `purpose`, `tags` (non-empty list). **`content_id`** remains optional (warn if missing).
+- Validate **all binding required** `lupopedia.headers` keys (see root doctrine): `lupopedia.schema`, `file_path_from_root`, `web_path`, `federation_node_id`, `when_updated`, `last_modified_utc`, `delegation_chain`, `artifact_type`, `artifact_kind`, `purpose`, `tags` (non-empty list).
+- Validate **author attribution**: Accept new structured `author.type`/`author.id` format OR legacy `actor_id`/`actor_name` (with deprecation warning until 2026-07-02).
+- Validate **conditional fields** based on `artifact_type`/`artifact_kind`:
+  - PRD files require: `prd_id`, `prd_slug`, `title`, `status`
+  - Implementation files require: `parent_prd`, `status` (and `version` for documentation kind)
+  - Discussion files require: `channel_id`, `thread_id`
+  - Doctrine files have no additional required fields
 - Validate `lupopedia.headers.when_updated` and `last_modified_utc` as required UTC `YYYYMMDDHHIISS` (14-digit strings).
+- Validate `thread_id` pattern `^[a-z0-9][a-z0-9-]*$` when present.
+- Validate cross-field dependencies between `lupopedia.schema`, `artifact_type`, and `artifact_kind` (see TAXONOMY_REFERENCE.md).
 - Treat `version_when_written` as deprecated compatibility data in 4.0.88 and reject it in 4.0.89.
 - Validate `lupopedia.headers.web_path` uses the install-subdirectory prefix: `http://www.lupopedia.com/lupopedia/`.
 - Validate `lupopedia.footer.last_verified`, `verified_by.*`, and `verified_via.*` when footer exists.

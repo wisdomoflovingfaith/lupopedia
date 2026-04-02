@@ -46,6 +46,8 @@ lupopedia.footer:
 
 **One file only:** **[`lupo-rules/root/LUPOPEDIA_HEADERS_DOCTRINE.md`](../../../lupo-rules/root/LUPOPEDIA_HEADERS_DOCTRINE.md)** — required header keys, `lupopedia.schema` / `artifact_type` / `artifact_kind` taxonomies, federation rules, validation expectations, **database-first mapping** (`lupo_contents`, `lupo_metadata`, `lupo_edges`, `revision_history`), and **`lupo-database/lupopedia/json/*.json`** / install SQL authority.
 
+**Canonical specification:** **[`lupo-docs/prd/16_lupopedia_headers.md`](../../../prd/16_lupopedia_headers.md)** — defines header field requirements, author/verifier distinction, and artifact type/kind taxonomy.
+
 **Same folder, different role:** [`LUPOPEDIA_HEADERS_DOCTRINE.md`](LUPOPEDIA_HEADERS_DOCTRINE.md) in this directory is a **stable URL alias** (pointer + short reminder). It does **not** duplicate the binding text; edit the **root** file only.
 
 **This directory** otherwise holds **format**, **block order**, **footer semantics**, **validators**, and **tooling** (`LUPOPEDIA_HEADERS_FORMAT.md`, `TAXONOMY_REFERENCE.md`, `VALIDATORS_AND_TOOLING.md`, `OPTIONAL_BLOCKS.md`, etc.) — companion material, not a second copy of the field matrix.

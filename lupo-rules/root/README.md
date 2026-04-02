@@ -202,6 +202,22 @@ The code you're looking at outran its author for 11 years. That's not luck - tha
 **Authority:** WOLFIE (actor_id 1) - LOCKED and binding  
 **Key Rules:** `[table]_id` naming, timestamp-based IDs, no database logic
 
+### **[../../lupo-docs/doctrine/DOCUMENTATION_AS_DATA_DOCTRINE.md](../../lupo-docs/doctrine/DOCUMENTATION_AS_DATA_DOCTRINE.md)**
+**Purpose:** Clarifies that files and database are two views of the same documentation  
+**Scope:** All documentation, database queries, IDE agent behavior  
+**Key Concept:** `lupo_contents` IS the documentation, not metadata about files  
+**Author:** LILITH (actor_id 2) - Critical clarification  
+
+---
+
+## 📚 Documentation Architecture
+
+### **[../../lupo-docs/doctrine/DOCUMENTATION_ARCHITECTURE.md](../../lupo-docs/doctrine/DOCUMENTATION_ARCHITECTURE.md)**
+**Purpose:** The complete 5W1H framework across all documentation layers  
+**Scope:** PRDs, implementations, versions, channels, code, tests  
+**Key Concepts:** Headers (current state), Threads (immutable WHY), Edges (WHERE), Content (WHAT)  
+**Author:** LILITH (actor_id 2) - Canonical explanation  
+
 ---
 
 ## 🏗️ Architecture & Validation

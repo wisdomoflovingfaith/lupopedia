@@ -417,6 +417,185 @@ Root files must stay aligned with version folders but must not duplicate version
 - Version files define execution.
 - If a contradiction appears, the version-scoped files under `lupo-docs/versions/` are the authoritative planning surfaces.
 
+## Documentation System Architecture
+
+Lupopedia uses a **dual-track documentation system** that separates requirements from implementation while maintaining complete traceability.
+
+### The Five-Layer Documentation Architecture
+
+Lupopedia uses a **five-layer documentation system** that preserves complete knowledge provenance:
+
+| Layer | Question | Location | Purpose |
+|-------|----------|----------|---------|
+| **WHAT** | What to build? | `lupo-docs/prd/` | Requirements |
+| **HOW** | How to build? | `lupo-docs/implementations/` | Technical execution |
+| **WHY** | Why these decisions? | `discussions/` threads | Rationale & trade-offs |
+| **WHO** | Who built it? | `authors.md` | Human provenance |
+| **WHERE** | Where does it connect? | `edges.md` | System-wide mapping |
+
+#### **Layer 1: PRDs (WHAT)**
+- **Location**: `lupo-docs/prd/`
+- **Purpose**: Defines requirements, specifications, and system design
+- **Content**: Business requirements, technical specifications, user stories
+- **Naming**: `{number}_{name}.md` (e.g., `25_departments_system.md`)
+
+#### **Layer 2: Implementations (HOW)**
+- **Location**: `lupo-docs/implementations/`
+- **Structure**: Parallel folders matching PRD numbers
+- **Naming**: `{number}_{name}/` (e.g., `25_departments_systems/`)
+- **Standard Files**:
+  - `README.md` - Implementation overview and status with emoji badges (🟢 Complete, 🟡 In Progress, 🔴 Not Started)
+  - `changelog.md` - Evolution of the implementation over time
+  - `{feature}.md` - Specific implementation details
+  - `versions/` - Historical snapshots (e.g., `v1.0.0/`)
+  - `tests/` - Test files and coverage documentation
+
+#### **Layer 3: Discussions (WHY)**
+- **Every implementation folder contains `discussions/` folder**
+- **Purpose**: Documents the reasoning behind design decisions as threads
+- **Key Concept**: The WHY layer is not a single file. It is a structured conversation composed of timestamped, actor-attributed messages grouped into threads. This mirrors the Lupopedia channel architecture and ensures that decision-making is preserved as a living dialog rather than a static summary.
+- **Structure**: 
+  - `THREAD_INDEX.md` - Index of all discussion threads
+  - `{thread_name}/` folders for each topic
+  - `YYYYMMDD_HHIISS_ACTOR_PURPOSE_TITLE.md` files for each message
+- **Format**: Matches channel/thread architecture for consistency
+- **Benefits**: 
+  - Threads can be linked to actual channel threads
+  - Each decision has its own traceable conversation
+  - Database-friendly structure for future dialog system
+  - Machine-navigable: Agents can reconstruct decision timelines, identify responsible actors, and trace the evolution of architectural reasoning
+
+### Discussion Folder Anatomy
+
+```
+discussions/
+    THREAD_INDEX.md
+    thread_name/
+        YYYYMMDD_HHIISS_ACTOR_PURPOSE_TITLE.md
+        YYYYMMDD_HHIISS_ACTOR_PURPOSE_TITLE.md
+```
+
+#### **Layer 4: Authors (WHO)**
+- **Every implementation folder contains `authors.md`**
+- **Purpose**: Tracks human and agent provenance
+- **Content**:
+  - Primary authors and contributors
+  - Agent attribution (which AI wrote/reviewed what)
+  - Accountability and decision makers
+  - Review chain and contacts
+- **Importance**: Systems outlive their creators, but decisions don't
+
+#### **Layer 5: Edges (WHERE)**
+- **Every implementation folder contains `edges.md`**
+- **Purpose**: Maps system-wide relationships and dependencies
+- **Content**:
+  - Database edges (tables, columns, relationships)
+  - Code edges (classes, controllers, services)
+  - Documentation edges (PRD links, related implementations)
+  - UI edges (templates, JavaScript, CSS)
+  - External edges (APIs, third-party libraries)
+- **Benefit**: Creates a machine-navigable graph of the entire system
+
+### Why Five Layers?
+
+Each layer answers a different epistemic question:
+
+| Layer | Question | Meaning |
+|-------|----------|---------|
+| **WHAT** | Requirements | What must exist? |
+| **HOW** | Implementation | How does it work? |
+| **WHY** | Rationale | Why was it built this way? |
+| **WHO** | Provenance | Who made these decisions? |
+| **WHERE** | Graph | Where does it connect? |
+
+### Traceability and Cross-Linking
+
+- **PRD headers** link to implementation folders via `lupopedia.edges`
+- **Implementation headers** link back to parent PRD via `parent_prd` field
+- **Bidirectional navigation** between requirements and implementation
+
+### Dialog System Parity
+
+The WHY layer uses the same channel/thread/message structure as the Lupopedia dialog system. This ensures conceptual parity across the entire platform and allows future agents to ingest, analyze, and extend decision threads using the same mechanisms used for conversational reasoning.
+
+### Version Control
+
+- **PRDs**: Versioned in `lupo-docs/versions/` (e.g., `4.0.93/`)
+- **Implementations**: Versioned in `versions/` subdirectories (e.g., `v1.0.0/`)
+- **Snapshots**: Preserve implementation state at major milestones
+
+### Template and Consistency
+
+- Use `_template/` folder for new implementations
+- Follow `lowercase_with_underscores` naming for files
+- Include all standard files and proper headers
+- Add status badges for progress tracking
+- **Reference**: PRD 26 defines the complete five-layer architecture
+
+## Validation & Enforcement
+
+### Required Schemas
+
+| File | Required Fields | Validation |
+|------|----------------|------------|
+| PRD front-matter | `id`, `slug`, `title`, `status` | CI check |
+| Implementation README | `id`, `parent_prd`, `status`, `version`, `last_reviewed_utc` | CI check |
+| `authors.md` | Table with 7 required columns | CI check |
+| `edges.md` | 5 required sections with bullet format | CI check |
+| `THREAD_INDEX.md` | Table with 5 required columns | CI check |
+
+### Validation Contract
+
+All implementation folders MUST pass `lupo-scripts/validate_implementation.py` before merge.
+
+**Required Files**: `authors.md`, `edges.md`, `discussions/THREAD_INDEX.md` must exist  
+**Schema Compliance**: Required front-matter fields present and correctly formatted  
+**Link Validation**: `parent_prd` points to existing PRD file  
+**Status Accuracy**: Implementation status matches actual completion
+
+**CI Enforcement**: Any commit that adds/modifies an implementation folder MUST pass validation or be rejected.
+
+### Transition Policy for Legacy Implementations
+
+For implementations predating this architecture (before 2026-04-02):
+
+1. Mark with `doc_compliance: partial` in README front-matter
+2. Create minimal `authors.md` with at least `actor_id: 0`, `role: "unknown"` 
+3. Create stub `edges.md` with "PENDING" sections
+4. Create placeholder `discussions/THREAD_INDEX.md` with status "legacy"
+5. Gradual migration to full compliance during normal maintenance
+
+### Documentation Architecture Versioning
+
+`doc_arch_version: 1` — Increment when schemas change. All implementations must declare their compliance version.
+
+### Edge Conflict Resolution
+
+- **Primary source**: Implementation-level `edges.md` is authoritative for that feature
+- **Derived graphs**: Cross-feature graphs are generated by tooling, not manually edited
+- **Conflicts**: When two implementations claim the same edge, escalate to `discussions/` for resolution
+
+### Example Flow
+
+```
+PRD (25_departments_system.md) - WHAT to build
+    ↓ defines requirements
+Implementation (25_departments_systems/) - HOW to build it
+    ├── README.md (status & overview)
+    ├── discussions/ (WHY we made these decisions)
+    │   ├── THREAD_INDEX.md
+    │   ├── database_schema/
+    │   │   └── 20260402_120000_cursor_design_database_schema.md
+    │   └── foreign_key_policy/
+    │       └── 20260402_121500_lilith_constitutional_violation.md
+    ├── authors.md (WHO built it & reviewed it)
+    ├── edges.md (WHERE it connects in the system)
+    ├── access_control.md (technical details)
+    └── versions/v1.0.0/ (snapshot)
+```
+
+This five-layer system ensures that as requirements evolve, the implementation documentation stays synchronized, decision-making process is preserved as threaded conversations, provenance is tracked, and system relationships are mapped - creating a **complete knowledge operating system** that is both human-readable and machine-navigable for all agents.
+
 ## PRD Policy: Canonical Location and Authority
 
 The PRDs in `lupo-docs/prd/` are the highest form of truth on what needs to be built and how things work. They are requirements, not suggestions.

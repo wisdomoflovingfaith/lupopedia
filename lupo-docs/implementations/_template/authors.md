@@ -1,0 +1,75 @@
+---
+lupopedia.headers:
+  header_format_version: 2
+  lupopedia.schema: implementation
+  when_updated: "20260402000000"
+  file_path_from_root: "lupo-docs/implementations/_template/authors.md"
+  web_path: "http://www.lupopedia.com/lupopedia/lupo-docs/implementations/_template/authors.md"
+  federation_node_id: 0
+  channel_id: 42
+  thread_id: "implementation-template-authors"
+  actor_id: 102
+  actor_name: "cursor"
+  delegation_chain: "cursor:root"
+  artifact_type: "implementation"
+  artifact_kind: "authors"
+  purpose: "Template for tracking authors and contributors"
+  tags:
+  - "implementation"
+  - "template"
+  - "authors"
+  - "who"
+---
+
+# Authors & Contributors
+
+| actor_id | actor_type | role | scope | first_contribution_utc | last_contribution_utc |
+|----------|------------|------|-------|------------------------|----------------------|
+| [id|key] | [actor|agent|system|user] | [role] | [scope] | [YYYYMMDDHHIISS] | [YYYYMMDDHHIISS] |
+
+**Identifier Types:**
+- **actor_id**: Numeric identifier (e.g., 1, 2, 102)
+- **agent_key**: String identifier (e.g., wolfie, lilith, cursor)
+- Use whichever is the primary identifier for the actor
+
+**Actor Types:**
+- `actor` - Hybrid human/agent (used in web interface)
+- `agent` - AI agents (general purpose)
+- `system` - Kernel agents (WOLFIE, LILITH, ANUBIS, etc.)
+- `user` - Auth users (just you until v4.1.0)
+
+## Agent Attribution
+
+| Agent | Role | Period | Contributions |
+|-------|------|--------|---------------|
+| [agent_name] | [author/reviewer/proposer] | [YYYY-MM to YYYY-MM] | [Specific contributions] |
+| [agent_name] | [author/reviewer/proposer] | [YYYY-MM to YYYY-MM] | [Specific contributions] |
+
+## Contribution Map
+
+### PRD Authors
+- **[PRD Number]**: [Actor ID] - [Role]
+
+### Implementation Contributors
+- **[Implementation Folder]**: [Actor ID] - [Role]
+
+## Accountability & Lineage
+
+### Decision Makers
+- **Architecture Decisions**: [Actor ID]
+- **Technical Decisions**: [Actor ID]
+- **Security Decisions**: [Actor ID]
+
+### Review Chain
+1. **Initial Draft**: [Actor ID]
+2. **Technical Review**: [Actor ID]
+3. **Security Review**: [Actor ID]
+4. **Final Approval**: [Actor ID]
+
+## Contact & Context
+- **Primary Contact**: [Actor ID]
+- **Domain Expert**: [Actor ID]
+- **Backup Contact**: [Actor ID]
+
+---
+*This file tracks the human and agent provenance of all decisions and implementations.*

@@ -51,6 +51,39 @@ lupopedia.footer:
 
 # PRD: Channels, Threads, and Discussions Database Tables
 
+## Thread Identification Systems
+
+### Database Threads (Web Application)
+- **Format**: Numeric auto-increment IDs
+- **Example**: Thread ID 1038 in `lupo_dialog_threads` table
+- **Purpose**: High-volume message streams, web-based discussions
+- **Storage**: MySQL database with full metadata
+- **Access**: Via `lupo-channels/{id}/threads/{thread_id}/` URLs
+
+### Filesystem Threads (IDE Development)
+- **Format**: `YYYYMMDD_HHIISS_TYPE_STATUS_TITLE.md`
+- **Example**: `20260402_120000_DECISION_completed_validator_update.md`
+- **Purpose**: Structured documentation, decision tracking, PRD development
+- **Storage**: Individual markdown files in directories
+- **Access**: Direct file system access for IDE agents
+
+### Thread Manifest
+
+Every filesystem thread MUST contain a `THREAD_MANIFEST.md`:
+
+```yaml
+---
+thread_id: "descriptive-thread-name"
+purpose: "Discussion topic"
+start_date: "2026-04-02"
+last_activity: "2026-04-02"
+status: "active"  # active, concluded, formalized, archived
+resolution: "path/to/resolution.md"  # if concluded/formalized
+archived_date: ""  # populated on archival
+archived_by: ""  # script name or actor
+---
+```
+
 ## Overview
 
 **Namespace Purpose:** Manages the core discussion system including channels, threads, messages, and content organization. This namespace enables structured conversations, content moderation, and discussion threading.

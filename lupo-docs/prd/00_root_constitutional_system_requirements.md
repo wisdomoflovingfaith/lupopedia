@@ -1,18 +1,23 @@
 ---
 lupopedia.headers:
+  header_format_version: 2
   lupopedia.schema: doctrine
-  file_path_from_root: "lupo-docs/prd/00_root_constitutional_system_requirements.md"
-  web_path: "http://www.lupopedia.com/lupopedia/lupo-docs/prd/00_root_constitutional_system_requirements.md"
-  federation_node_id: 0
   when_updated: "20260401180000"
+  file_path_from_root: "/lupo-docs/prd/00_root_constitutional_system_requirements.md"
+  web_path: "http://www.lupopedia.com/lupopedia/lupo-docs/prd/00_root_constitutional_system_requirements.md"
   last_modified_utc: "20260401180000"
+  federation_node_id: 0
   channel_id: 42
   thread_id: "constitutional-root-requirements"
-  actor_id: 102
-  actor_name: "cursor"
-  delegation_chain: "cursor:root"
+  prd_id: 0
+  prd_slug: root_constitutional_system_requirements
   artifact_type: doctrine
   artifact_kind: constitutional
+  author:
+    type: "actor"
+    id: 102
+    name: "CURSOR"
+  delegation_chain: "cursor:root"
   purpose: "Non-negotiable system-wide constitutional rules for Lupopedia. Overrides all other PRDs and doctrines."
   tags:
     - root
@@ -37,6 +42,10 @@ lupopedia.edges:
       type: references
       weight: 1.0
       reason: "Database neutrality rules mandated in section 3.6"
+    - to: "lupo-rules/root/pk-reference-naming-doctrine.md"
+      type: references
+      weight: 1.0
+      reason: "Primary key naming convention mandated in section 9.7"
     - to: "lupo-rules/root/php-5-6-compatibility.md"
       type: references
       weight: 1.0
@@ -415,9 +424,21 @@ No hardcoded filesystem paths. All paths must be derived from `LUPOPEDIA_PATH` o
 
 All primary keys MUST be bare `BIGINT` (no display width), generated via `IdGenerator::generate()`, in `YYYYMMDDHHIISS` + 4-digit sequence format. All reference fields must also be `BIGINT`.
 
-Forbidden: `VARCHAR` PKs, composite PKs, `AUTO_INCREMENT`, UUID, `BIGINT(18)` with display width.
+**Naming Convention (RULE 93.PK_NAMING):**
+- Primary keys MUST be named `<singular_table_name>_id`
+- NEVER create a primary key named `id`
+- Reference keys MUST use the exact same column name as the primary key they reference
+- Examples: `actor_id`, `dialog_message_id`, `session_id`, `content_id`
+
+**Applies to:** Database tables AND file-based identifiers (PRDs, implementations, etc.)
+
+Forbidden: `VARCHAR` PKs, composite PKs, `AUTO_INCREMENT`, UUID, `BIGINT(18)` with display width, generic `id` column.
 
 **Test:** `lupo-tests/unit/id_generation_compliance_test.php`
+
+**Reference:** See `lupo-rules/root/pk-reference-naming-doctrine.md` for complete specification.
+
+**See also:** PRD 16 (Lupopedia File Headers) — header fields MUST follow same naming convention (`prd_id`, `content_id`, not `id`).
 
 ---
 
@@ -761,6 +782,8 @@ All files in `lupo-rules/root/` are binding constitutional law and override all 
 ---
 
 ## 11. Refinements
+
+*Sections 12-13 reserved for future expansion.*
 
 - All doctrine and PRD files must reference this file as the constitutional anchor using an outbound edge.
 - All new PRDs must be reviewed for compliance with these requirements.

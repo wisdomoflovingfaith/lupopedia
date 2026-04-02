@@ -4,7 +4,7 @@ lupopedia.headers:
   version_when_written: "4.0.93"
   file_path_from_root: "lupo-docs/versions/4.0.93/PLAN.md"
   web_path: "http://www.lupopedia.com/lupo-docs/versions/4.0.93/PLAN.md"
-  last_modified_utc: "20260401180000"
+  when_updated: "20260402230000"
   channel_id: 42
   actor_id: 102
   actor_name: "HEPHAESTUS"
@@ -17,6 +17,27 @@ lupopedia.headers:
 
 # Lupopedia 4.0.93 PLAN
 
+
+## Documentation Architecture & 5W1H Framework (2026-04-02, LILITH thread)
+
+- **[x] PRD 26 Five-Layer Architecture** - Created and approved with COUNTERMEASURE review
+- **[x] PRD 26 Final Corrections** - Fixed constitutional violations (deterministic IDs, numeric identifiers, tooling requirements)
+- **[x] PRD 16 Header Updates** - Added author/verifier distinction, conditional field requirements
+- **[x] Universal Validator Enhancement** - Added author field support, deprecation warnings
+- **[x] DOCUMENTATION_ARCHITECTURE Doctrine** - Created comprehensive 5W1H framework guide
+- **[x] Version edges.md** - Created relationship mapping for version documentation
+- **[x] PRD 30 Development Guide** - Created with 5W1H thinking pattern
+- **[x] PRD 31 Context System** - Created then rejected (parallel classification conflict)
+- **[x] Database Schema Cleanup** - Removed contexts, contexts_map, hotfix_registry tables
+
+## PRD 30 Development Guide & Decision Documentation (2026-04-02, Cursor thread)
+
+- **[x] PRD 30 Development Guide Corrections** - Fixed naming conventions, removed embedded WHERE instructions, clarified decision contexts without overriding other PRDs
+- **[x] Decision Documentation Framework** - Established clear distinction between PRD-scoped decisions (implementations/{id}_{slug}/decisions/) and version-scoped decisions (versions/{version}/decisions/)
+- **[x] Context System Attempt** - Created PRD 31 for context system framework
+- **[x] COUNTERMEASURE Review** - LILITH correctly identified parallel classification system conflict
+- **[x] PRD 31 Rejection** - Rejected parallel classification system, maintained architectural simplicity
+- **[x] Database Cleanup** - Removed contexts, contexts_map, and hotfix_registry tables from install schema
 
 ## PRD consistency & constitutional anchors (2026-04-01, Cursor thread)
 
@@ -101,6 +122,26 @@ lupopedia.headers:
 - **[x] Agents Faucets PRD Updated** — Added "Agent → Actor Relationship" section
 - **[x] WOLFIE Doctrine Updated** — Added Section 9 with Rule W-06: Agents Do Not Learn, Actors Do
 - **[x] All PRDs Clarified** — Agents are immutable templates, actors are learning instances
+
+## Universal Header Validator Enhancement (2026-04-02)
+
+- **[x] Universal Validator Author Field Update** — Removed deprecated `actor_name` from `REQUIRED_HEADER_KEYS`, added support for new `author.type`/`author.id` structure with legacy transition support
+- **[x] Universal Validator Conditional Requirements** — Added `validate_required_fields_by_type()` function, updated `REQUIRED_HEADER_KEYS` to only universal fields, implemented type-specific validation
+- **[x] Universal Validator Cross-Field Rules** — Updated DEPENDENCY_MAP to include `constitutional` artifact_kinds, added validation for type/kind combinations
+
+## PRD 16 Enhancement (2026-04-02)
+
+- **[x] PRD 16 Artifact Type Taxonomy** — Added comprehensive artifact type table with 8 types (prd, implementation, doctrine, discussion, changelog, documentation, architecture, specification)
+- **[x] PRD 16 Artifact Kind Taxonomy** — Added detailed kind definitions for each artifact type with required fields
+- **[x] PRD 16 Cross-Field Validation Rules** — Added allowed combinations table and conditional required fields
+- **[x] PRD 26 Reference** — Added outbound edge to PRD 26 for five-layer architecture alignment
+
+## LUPOPEDIA_HEADERS Documentation Update (2026-04-02)
+
+- **[x] TAXONOMY_REFERENCE.md Updated** — Added new artifact type/kind combinations, conditional required fields table
+- **[x] LUPOPEDIA_HEADERS_FORMAT.md Updated** — Updated required fields table with conditional requirements, added author structure documentation
+- **[x] README.md Updated** — Added reference to PRD 16 as canonical specification
+- **[x] VALIDATORS_AND_TOOLING.md Updated** — Updated validator behavior to reflect new validation rules
 
 ## 🚨 **PRIMARY OBJECTIVE: Softaculous Certification & Crafty Parity**
 

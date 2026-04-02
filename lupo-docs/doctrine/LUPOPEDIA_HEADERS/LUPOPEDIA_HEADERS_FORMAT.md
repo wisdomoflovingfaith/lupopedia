@@ -142,21 +142,39 @@ Binding matrix: **[`lupo-rules/root/LUPOPEDIA_HEADERS_DOCTRINE.md`](../../../lup
 
 | Field | Type | Required | Description |
 |--------|------|----------|-------------|
+| `header_format_version` | Integer | Yes | Current version of header schema (2) |
 | `lupopedia.schema` | String | Yes | Canonical schema token (see taxonomy reference and root doctrine) |
-| `file_path_from_root` | String | Yes | **Primary filesystem locator** — repo-relative path (required in the file; stored as metadata in DB, not a “presentation-only” optional key) |
+| `file_path_from_root` | String | Yes | **Primary filesystem locator** — repo-relative path (required in the file; stored as metadata in DB, not a "presentation-only" optional key) |
 | `web_path` | String | Yes | Public or canonical URL; rules depend on `federation_node_id` |
 | `federation_node_id` | Integer | Yes | `0` = core, `1` = current install, `2+` = external research |
 | `when_updated` | String (quoted) | Yes | UTC `YYYYMMDDHHIISS` — logical content update time |
 | `last_modified_utc` | String (quoted) | Yes | UTC `YYYYMMDDHHIISS` — last file write / regeneration |
-| `channel_id` | Integer | Yes | Channel ID (e.g. `42`) |
-| `thread_id` | String | Yes | **Lowercase, hyphens** (and digits); e.g. `headers-format-spec`. Not the same as optional `lupopedia.routing` legacy `thread_id` (see [OPTIONAL_BLOCKS.md](./OPTIONAL_BLOCKS.md)) |
-| `actor_id` | Integer | Yes | Actor ID from registry |
-| `actor_name` | String | Yes | Human-readable actor name |
+| `channel_id` | Integer | Conditional | Required for discussions only |
+| `thread_id` | String | Conditional | Required for discussions only |
+| `author.type` | String | Yes | `actor`, `agent`, `system`, `user` |
+| `author.id` | Integer | Yes | Numeric ID from registry |
+| `author.name` | String | No | Display name (resolved from registry if omitted) |
 | `delegation_chain` | String | Yes | e.g. `wolfie:root` |
 | `artifact_type` | String | Yes | Must pair with `lupopedia.schema` per cross-field rules (see **TAXONOMY_REFERENCE.md**) |
 | `artifact_kind` | String | Yes | Same |
 | `purpose` | String | Yes | One-line purpose |
 | `tags` | List | Yes | Non-empty list of strings |
+
+#### Type-Specific Required Fields
+
+| `artifact_type` | `artifact_kind` | Additional Required Fields |
+|-----------------|-----------------|---------------------------|
+| prd | any | prd_id, prd_slug, title, status |
+| implementation | README | parent_prd, status |
+| implementation | documentation | parent_prd, status, version |
+| discussion | thread | channel_id, thread_id |
+| discussion | message | channel_id, thread_id |
+| All others | any | No additional required fields |
+
+#### Legacy Format (deprecated until 2026-07-02)
+
+- `actor_id` (integer) - Use `author.id` instead
+- `actor_name` (string) - Use `author.name` instead
 
 ### Optional / linkage fields
 

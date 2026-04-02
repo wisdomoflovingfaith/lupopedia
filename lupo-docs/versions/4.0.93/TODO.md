@@ -4,7 +4,7 @@ lupopedia.headers:
   version_when_written: "4.0.93"
   file_path_from_root: "lupo-docs/versions/4.0.93/TODO.md"
   web_path: "http://www.lupopedia.com/lupopedia/lupo-docs/versions/4.0.93/TODO.md"
-  last_modified_utc: "20260401180000"
+  when_updated: "20260402230000"
   channel_id: 42
   thread_id: "todo-backlog"
   actor_id: 102
@@ -37,13 +37,26 @@ lupopedia.edges:
       weight: 1.0
       reason: Database audit summary
 lupopedia.footer:
-  last_verified: "20260401180000"
+  last_verified: "20260402230000"
   verified_by:
     actor_id: 102
     agent_name_identity: Cursor IDE Agent
   orchestrator: "hephaestus:root"
 
 ## Completed (4.0.93)
+[x] **PRD 26 Final Corrections (2026-04-02):** Fixed constitutional violations identified by COUNTERMEASURE - implemented deterministic ID generation, numeric-only identifiers, tooling requirements for parent_edges_ref, added version compatibility mapping
+[x] **Documentation Architecture & 5W1H Framework (2026-04-02):** Created comprehensive documentation architecture doctrine, established 5W1H framework as universal thinking pattern, created version edges.md for relationship mapping
+[x] **PRD 26 Five-Layer Architecture (2026-04-02):** Created and approved PRD defining five-layer documentation architecture (WHAT, HOW, WHY, WHO, WHERE), corrected header/footer per LILITH audit
+[x] **PRD 16 Header Updates (2026-04-02):** Added author/verifier distinction, deprecated actor_name, implemented conditional field requirements per artifact type
+[x] **Universal Validator Enhancement (2026-04-02):** Added author field support with legacy compatibility, implemented conditional validation rules
+[x] **DOCUMENTATION_ARCHITECTURE Doctrine (2026-04-02):** Created canonical guide explaining 5W1H across all documentation types, headers, edges, content, and threads
+[x] **Version edges.md Creation (2026-04-02):** Created relationship mapping file for version 4.0.93 documentation components
+[x] **PRD 30 Development Guide & Decision Documentation (2026-04-02):** Fixed naming conventions, removed embedded WHERE instructions, clarified decision contexts without overriding other PRDs
+[x] **Decision Documentation Framework (2026-04-02):** Established clear distinction between PRD-scoped decisions (implementations/{id}_{slug}/decisions/) and version-scoped decisions (versions/{version}/decisions/)
+[x] **Context System Attempt (2026-04-02):** Created PRD 31 for context system framework
+[x] **COUNTERMEASURE Review (2026-04-02):** LILITH correctly identified parallel classification system conflict
+[x] **PRD 31 Rejection (2026-04-02):** Rejected parallel classification system, maintained architectural simplicity
+[x] **Database Cleanup (2026-04-02):** Removed contexts, contexts_map, and hotfix_registry tables from install schema
 [x] **PRD alignment + constitutional edges (2026-04-01, Cursor thread):** `00_root` updated (schema JSON, agent_key, §5.5–5.6, §9.9/9.16/9.18); `PRD_AGENT_DEFINITION_MODEL.md` deprecated for layout; `07` reserved-ID clarification; `01_core_identity` / `15_actors` actor ID text; `08_actors` superseded; `05_auth` canonical `lupo_actor_auth_users`; installer `BIGINT` wording; PRD header paths fixed; `19`/`18` json edges; **all** `lupo-docs/prd/*.md` have constitutional anchor edge except `00_root`; version `decisions`/`PLAN`/`TODO`/`CHANGELOG` updated.
 [x] PRD 17_decisions_format.md created
 [x] context_id field and context directory implemented
@@ -107,6 +120,9 @@ lupopedia.footer:
 - [x] **Multi-Agent Orchestration Doctrine (2026-04-01):** Created comprehensive doctrine documenting cascade workflow; meta-agent loop established (LILITH refines prompts for internal swarm); scale documented (10+ IDEs, 50+ agents); dogfooding principle established - system building itself using its own coordination architecture.
 - [x] **Actor-Agent Distinction Doctrine (2026-04-01):** Created canonical distinction doctrine; updated all PRDs (01_core_identity.md, 07_agents_faucets.md, 15_actors.md); added Rule W-06 to WOLFIE Doctrine; clarified agents are immutable templates, actors are learning instances; documented workspace structures and creation flows.
 - [x] **Root Sanitization & PRD Backfill (2026-04-01, Antigravity thread):** WOLFIE Doctrine updated with accurate HPC/Notepad++ logic. Created ASCLEPIUS health check and CLI Interface PRDs. Formally exempted `node_modules` and `app` from prefix rules. Dismantled `lupo-prompts/` to localized actor workspaces. Executed Batches 6 & 7 to migrate 19 loose root files into pristine constitutional mappings (`lupo-rules/`, `lupo-config/`, etc.) and fixed corrupted `.gitignore`.
+- [x] **Universal Header Validator Enhancement (2026-04-02):** Updated `validate_lupopedia_headers_universal.py` to support new author structure and conditional field requirements
+- [x] **PRD 16 Artifact Type and Kind Taxonomy (2026-04-02):** Added comprehensive taxonomy definitions with 8 artifact types and conditional required fields
+- [x] **LUPOPEDIA_HEADERS Documentation Update (2026-04-02):** Updated all documentation to align with PRD 16 and validator changes
 
 ## 🛠️ **4.0.93 Documentation Update Status**
 
