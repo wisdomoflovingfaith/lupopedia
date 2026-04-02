@@ -4,7 +4,7 @@ lupopedia.headers:
   version_when_written: "4.0.93"
   file_path_from_root: "lupo-docs/versions/4.0.93/TODO.md"
   web_path: "http://www.lupopedia.com/lupopedia/lupo-docs/versions/4.0.93/TODO.md"
-  when_updated: "20260402180000"
+  when_updated: "20260403120000"
   channel_id: 42
   thread_id: "todo-backlog"
   actor_id: 102
@@ -12,12 +12,12 @@ lupopedia.headers:
   delegation_chain: "hephaestus:root"
   artifact_type: "todo"
   artifact_kind: "master_backlog"
-  purpose: "Master task backlog for Lupopedia 4.0.93"
+  purpose: "Frozen record of 4.0.93 completed work only; open backlog lives in 4.0.94/TODO.md"
   tags:
   - "todo"
   - "master"
   - "4.0.93"
-  - "backlog"
+  - "frozen"
 lupopedia.edges:
   outbound_edges:
     - to: "lupo-docs/versions/4.0.93/PLAN.md"
@@ -45,7 +45,7 @@ lupopedia.edges:
       weight: 1.0
       reason: Database audit summary
 lupopedia.footer:
-  last_verified: "20260402180000"
+  last_verified: "20260403120000"
   verified_by:
     actor_id: 102
     agent_name_identity: Cursor IDE Agent
@@ -63,13 +63,11 @@ lupopedia.footer:
 - [x] `edges.md` updated for frozen core PRDs and 4.0.94 working PRDs
 
 ## Carried to 4.0.94 (see `lupo-docs/versions/4.0.94/TODO.md`)
-- [ ] Migrate lupo-channels to new federation_node_id/channel_key/thread_key/ structure
-- [ ] Update .cursorrules with new channel structure
-- [ ] Implement edge-based Q&A in web UI
-- [ ] Add `lupopedia.edges` validation for Q&A links
-- [ ] Create migration script for old decisions.md files
-- [ ] Archive old lupo-channels (rename to lupo-channels_before_4_0_93)
-- [ ] Update all documentation to reference new channel paths
+
+All open tasks from this file were merged into **`lupo-docs/versions/4.0.94/TODO.md`** (deduplicated) on 2026-04-03. See **Open Work → 4.0.94 Only** below.
+
+## Historical completions (4.0.93 era)
+
 [x] **PRD 26 Final Corrections (2026-04-02):** Fixed constitutional violations identified by COUNTERMEASURE - implemented deterministic ID generation, numeric-only identifiers, tooling requirements for parent_edges_ref, added version compatibility mapping
 [x] **Documentation Architecture & 5W1H Framework (2026-04-02):** Created comprehensive documentation architecture doctrine, established 5W1H framework as universal thinking pattern, created version edges.md for relationship mapping
 [x] **PRD 26 Five-Layer Architecture (2026-04-02):** Created and approved PRD defining five-layer documentation architecture (WHAT, HOW, WHY, WHO, WHERE), corrected header/footer per LILITH audit
@@ -150,9 +148,7 @@ lupopedia.footer:
 - [x] **PRD 16 Artifact Type and Kind Taxonomy (2026-04-02):** Added comprehensive taxonomy definitions with 8 artifact types and conditional required fields
 - [x] **LUPOPEDIA_HEADERS Documentation Update (2026-04-02):** Updated all documentation to align with PRD 16 and validator changes
 
-## 🛠️ **4.0.93 Documentation Update Status**
-
-### New Tasks (from this thread)
+### New Tasks (from documentation thread, 2026-04)
 - [x] Archive lupo-docs/status/ directory
 - [x] Port any unique architectural content from archived files to canonical PRDs
 - [x] Created `20_federation_intake_doctrine.md`
@@ -163,126 +159,45 @@ lupopedia.footer:
 - [x] Defoliate 13 dead `lupo-includes/` directories into `lupo-archive/`.
 - [x] Run Conflict Resolution Protocol and consolidate 31 loose PHP classes.
 - [x] Inject LILITH Notepad Justification into `WOLFIE_DOCTRINE.md`.
-- [ ] Implement context_id in all header documentation and validators
-- [ ] Create lupo-contexts/4.0.93/decisions_context.md
-- [ ] Ensure all decisions.md files follow new format (see PRD 17_decisions_format.md)
-- [ ] Update lupo-scripts (php/py) to validate context_id
 
-### 🏗️ LILITH "Absolute-Root" Mandate (v4.0.93)
+### LILITH "Absolute-Root" Mandate (v4.0.93) — reference
 
 **RULE [93.PATH_PURITY]**: All Markdown links must use absolute paths starting from repository root.
 
-#### **Markdown Purity Enforcement**
+**Markdown Purity Enforcement**
 - **Leading /**: Only legal anchor for repo-wide stability
 - **No ~ or @ aliases**: Markdown does not support relative shortcuts
 - **No ../ navigation**: IDE strictly forbidden from using relative paths
 - **Fixed Repository Addresses**: If file exists in repo, its address is fixed relative to / root
 
-#### **Softaculous Compatibility**
+**Softaculous Compatibility**
 - **Web URL**: Includes subdirectory (e.g., /lupopedia/)
 - **Internal Documentation**: Links remain relative to repository root
 - **Cross-Installation Stability**: Docs work regardless of where folder is placed
 
-#### **IDE Enforcement**
+**IDE Enforcement**
 - **RULE [93.PATH_PURITY]**: The IDE is now strictly forbidden from using ../../
 - **CORRECT**: `[Link](/lupo-docs/versions/4.0.93/prd/01_monitor.md)`
 - **FORBIDDEN**: `[Link](../../../prd/01_monitor.md)` or `[Link](~/lupo-docs/...)`
 
-#### **DocumentPathing Strategy Status**
 | Document | Pathing Strategy | Status |
 |----------|------------------|---------|
-| README.md | Absolute Root (/) | ✅ UPDATED |
-| TODO.md | Absolute Root (/) | ✅ UPDATED |
-| prd/*.md | Absolute Root (/) | ✅ QUEUED FOR REWRITE |
+| README.md | Absolute Root (/) | UPDATED |
+| TODO.md | Absolute Root (/) | UPDATED |
+| prd/*.md | Absolute Root (/) | QUEUED FOR REWRITE (see 4.0.94) |
 
-## 🚨 **CRITICAL: Softaculous Certification & Crafty Parity (4.0.93)**
+### Additional completed items (certification thread, chat, toons, Kiro thread)
 
-### **1. The Installation Engine (Softaculous Requirement)**
-- [ ] Refactor install.php: Ensure it handles classes/based instantiation and seeds lupo_contexts with initial system "Truths" (seed data still primarily in consolidated SQL + MD importer; contexts/"Brain" seeding may need follow-up)
-- [ ] SQL Schema: Provide a unified lupopedia_v4.0.93.sql that includes all livehelp_ → lupo_ mappings (current canonical path: `install_new_lupopedia.sql` + `install/seed_lupopedia_4_1_0.sql` + Crafty import when upgrading)
-- [ ] Uninstall/Upgrade: Create uninstall.php and upgrade.php to manage the removal of DB edges and filesystem atoms
-
-### **2. Visitor & Operator Dashboards (The Monitoring Layer)**
- [ ] Lupo-Monitor: Implement the live visitor dashboard using the Semantic Monitor logic
- [ ] Actor/Agent Leasing: Update the operator panel so auth_users can lease actors (per new agent→actor→auth_user model) and select agents to refine behavioral context
-	 - Enforce canonical permission rule ([ACTOR_LEASING_DOCTRINE.md](/lupo-docs/doctrine/ACTOR_LEASING_DOCTRINE.md))
-	 - Reference and implement [ACTOR_TEMPLATE_MODEL.md](/lupo-docs/doctrine/ACTOR_TEMPLATE_MODEL.md), [ACTOR_INSTANCE_MODEL.md](/lupo-docs/doctrine/ACTOR_INSTANCE_MODEL.md), [ACTOR_LEASE_SESSION_MODEL.md](/lupo-docs/doctrine/ACTOR_LEASE_SESSION_MODEL.md)
-	 - See [05_auth_user_actor_agent_transformation.md](/lupo-docs/versions/4.0.93/prd/05_auth_user_actor_agent_transformation.md)
- [ ] Proactive Invite: Trigger "Invite to Chat" based on Contextual Edges (e.g., visitor is on a high-weight "Truth" page)
-
-### **3. Real-Time Chat Enhancements**
 - [x] **Minimal channel message UI + API fallbacks (2026-03-31):** Standalone `channel.php` / `channel-chat/` using `api/lupo-channels/.../messages` with `format=buffer` / `format=image` (see CHANGELOG). Implementation documented in `lupo-docs/implementations/channel-chat.md`. Does not replace full `/channels/` cockpit.
-- [ ] Live Typing Refraction: Stream typing events through the State Mirror without persistent DB writes
-- [ ] Quick Responses: Store canned replies as "Low-Weight Contexts" in the lupo_contexts table for instant retrieval
-- [ ] Sound & Visual Alerts: Integrate legacy /sounds/ triggers into the lupo.js event-bus
+- [x] **March 2026: Table/Emoji System Overhaul** — Remove obsolete channel boot/smilies tables from install SQL; emoji via `::img|foldername|filename::` and `lupo-emoji/` (see EMOJI_AND_SMILIES doctrine).
+- [x] **RULE [93.PROTECT_TOONS]:** Toon guardrail enforced (schema in install SQL; `generate_toon_files.py` after changes).
+- [x] **LILITH "Source of Truth" Protocol (PRD data model / JS foundation / semantic widget PRDs updated).**
+- [x] **Kiro thread (2026-04-01):** 00_root YAML and §9.9/9.18/9.19/9.20; semantic monitoring widget rewrite; `generate_toon_files.py` schema-only; `export_table_data_csv.py`; `.gitignore` csv; `lupo_paths` table doc; root README/decisions/project structure PRD updates.
 
-### **4. The "Glass" UI Requirement**
-- [ ] Live Typing Preview: Integrate into High-Density Scroller to maintain 60fps while streaming real-time keystroke refractions
-- [ ] Visitor Tracking: Implement expected Softaculous hooks for visitor monitoring
-- [ ] Contextual Installation: Ensure /install.php seeds Context Registry and Semantic Edges required for 4.0.93 "Brain"
-- [ ] **Subdirectory Installation**: Ensure Lupopedia works in any subdirectory (not web root) - PRD updated
+## Open Work → 4.0.94 Only
 
-### ✅ March 2026: Table/Emoji System Overhaul
-- [x] Remove obsolete tables: `lupo_channel_boot_detail`, `lupo_channel_boot_detail_lifecycle`, `lupo_channel_boot_lifecycle`, `lupo_smilies` from install SQL (channels are now dialog-based)
-- [x] Overhaul emoji/smilies system: Implement `::img|foldername|filename::` code, popup selector, and filesystem-based emoji in `lupo-emoji/` (see [EMOJI_AND_SMILIES.md](/lupo-docs/doctrine/EMOJI_AND_SMILIES.md))
+All active development tasks, checkboxes, and backlog items have been moved to:
 
-### **5. Data Migration Completion**
-- [ ] Execute new install to establish clean database state
-- [ ] Run `php lupo-scripts/SyncChannelsToDb.php --commit` to import existing coordination work
-- [ ] Verify all filesystem work properly imported to database
-- [ ] Test web interface reading only from database tables
+**`lupo-docs/versions/4.0.94/TODO.md`**
 
-### **🚨 RULE [93.PROTECT_TOONS]: The "Toon" Guardrail**
-- [x] **FORBIDDEN**: IDE writing to `lupo-database/lupopedia/json/*.json` files
-- [x] **REQUIRED**: All schema evolution in `lupopedia/mysql/seed/` and `install_new_lupopedia.sql`
-- [x] **VERIFICATION**: Run `generate_toon_files.py` after any schema changes
-- [x] **ENFORCEMENT**: LILITH audit compliance for all Toon file protection
-
-### **🚨 LILITH "Source of Truth" Protocol (COMPLETED)**
-- [x] **02_data_model.md**: Updated with actual database schema (`lupo_contexts`, `lupo_truth_questions`, `lupo_truth_answers`, `lupo_votes`)
-- [x] **04_lupopedia_js_foundation.md**: Updated with `livehelp_visitors → lupo_visitors` mapping and live typing refraction
-- [x] **01_semantic_monitoring_widget.md**: Updated with `lupo_edges` schema and subdirectory installation doctrine
-- [x] **Forbidden Constructs**: Documented no AUTO_INCREMENT, TIMESTAMP, FOREIGN KEYS, TRIGGERS, UNSIGNED in 4.0.93 doctrine
-
-## Deferred/Blocked (see DEFERRED.md)
-- [ ] enforce_doctrine.py: Run on all seed files deferred (Python/encoding issue)
-- [ ] Hydrator: Channel 42 elevation output requires review
-
-## Active/Next (4.0.94+)
-- [ ] Optional: integrate main `channels-controller` message panel with `api/lupo-channels` + shared chat-display patterns where product wants parity
-- [ ] Complete enforce_doctrine.py implementation for all .js, .php, and SQL assets
-- [ ] Optimize JS "Glass" reflection for mobile viewports
-- [ ] Transition remaining "Unfinished Business" items from 4.0.87 into Gold Contexts
-- [ ] Enhance channel coordination automation and thread indexing
-- [ ] Permanent fix for Git hook path issue
-- [ ] Automate TOON file updates from schema changes
-- [ ] Implement systematic agent version management
-- [ ] Improve context linking and multi-agent workflows
-
-## Completed (2026-04-01, Kiro thread — PRD overhaul + constitutional hardening)
-- [x] 00_root_constitutional_system_requirements.md — fixed broken YAML, corrected schema token, added missing header fields, expanded edges, fixed footer, added implementation guidance per rule
-- [x] Section 9.9 — expanded schema inference prohibition with "JSON files are NOT a file database" clarification and full workflow
-- [x] Section 9.18 — Missing Table Protocol (RULE 93.MISSING_TABLE_PROTOCOL) added
-- [x] Section 9.19 — No Direct CLI Database Execution (RULE 93.NO_CLI_DB_EXEC) added (renumbered from 9.18)
-- [x] Section 9.20 — Proven Code Preservation Doctrine (RULE 93.PROVEN_CODE) added; eye animation as canonical named example
-- [x] 01_semantic_monitoring_widget.md — rewritten with verified column names, Missing Tables section, corrected queries, 28 edges, implementation checklist
-- [x] generate_toon_files.py — stripped to schema-only output; removed data key, data-fetching functions, broken CSV subprocess
-- [x] export_table_data_csv.py — created as separate debugging tool with sensitive table exclusions
-- [x] .gitignore — added lupo-database/lupopedia/csv/
-- [x] install_new_lupopedia.sql — added lupo_folders; confirmed other 6 semantic navbar tables already present
-- [x] lupo-docs/database/lupopedia/tables/active/lupo_paths.md — created missing table doc
-- [x] README.md — mandatory reading section, decisions.md documentation, reordered reading list, development rules rewritten
-- [x] decisions.md — summary table completed (D-16 through D-38), new decision entries D-33 through D-38 added
-- [x] project_structure_prd.md — updated with important sub-folders table for `lupo-docs` structure
-
-## Active/Next (4.0.94+)
-- [ ] Regenerate TOON files: `python lupo-scripts/generate_toon_files.py`
-- [ ] Continue PRD improvement pass for remaining PRDs in `lupo-docs/prd/`
-- [ ] Optional: integrate main `channels-controller` message panel with `api/lupo-channels` + shared chat-display patterns
-- [ ] Complete enforce_doctrine.py implementation for all .js, .php, and SQL assets
-- [ ] Optimize JS "Glass" reflection for mobile viewports
-- [ ] Transition remaining "Unfinished Business" items from 4.0.87 into Gold Contexts
-- [ ] Enhance channel coordination automation and thread indexing
-- [ ] Permanent fix for Git hook path issue
-- [ ] Implement systematic agent version management
-- [ ] Improve context linking and multi-agent workflows
+This file (`4.0.93/TODO.md`) exists only as a frozen record of what was completed or carried forward during the 4.0.93 freeze. **No new checkboxes or tasks belong here.**

@@ -2,10 +2,10 @@
 lupopedia.headers:
   header_format_version: 2
   lupopedia.schema: documentation
-  when_updated: "20260401173500"
+  when_updated: "20260403193000"
   file_path_from_root: "lupo-docs/prd/29_project_structure.md"
   web_path: "http://www.lupopedia.com/lupopedia/lupo-docs/prd/29_project_structure.md"
-  last_modified_utc: "20260401180000"
+  last_modified_utc: "20260403193000"
   federation_node_id: 0
   channel_id: 42
   thread_id: "prd-project-structure"
@@ -30,12 +30,50 @@ lupopedia.edges:
       type: references
       weight: 1.0
       reason: "Constitutional anchor"
+    - to: "lupo-docs/prd/02_channels_discussions.md"
+      type: references
+      weight: 0.95
+      reason: "Channel and thread semantics (complements directory map in this PRD)"
+    - to: "lupo-docs/prd/17_decisions_format.md"
+      type: references
+      weight: 1.0
+      reason: "Thread filename patterns (authoritative per-folder decisions/questions/answers/comments)"
+    - to: "lupo-channels/0/organization/prd_29_project_organization/decisions/THREAD_INDEX.md"
+      type: references
+      weight: 0.9
+      reason: "Live coordination thread for PRD 29 project organization"
 ---
 
 # Project Structure
 
 ## Purpose
 This document describes the top‑level organization of the Lupopedia codebase. All functional components are placed under directories prefixed with `lupo-` to provide a clear namespace and to satisfy the **Prefix Normalization Doctrine**.
+
+## Channel filesystem strategy (4.0.93+)
+
+Coordination files on disk use two **roles**: legacy archive vs active tree. **Do not** treat the archive as a migration queue for the whole history.
+
+| Old channel system | New channel system |
+|--------------------|-------------------|
+| `lupo-channels_before_4_0_93/` — **archive**, read-only, historically inconsistent | `lupo-channels/{federation_node_id}/{channel_key}/{thread_key}/` — **active** layout |
+| **Do not** migrate content wholesale from old → new | **Create fresh** channels and threads for active PRD discussions (PRDs 29, 30, 31, organization, documentation system) |
+| **Historical reference only** (cite paths; cherry-pick rare threads if needed) | **Active development and coordination only** |
+
+### Archive cherry-pick policy
+
+Only **`lupo-channels_before_4_0_93/42/`** (channel **42**) is eligible for cherry-picking into new threads.
+
+**Eligibility:** Files with timestamps **newer than `20260325`** (i.e., **March 26, 2026** or later).
+
+All other pre–4.0.93 channel content is **archive reference only** — do not migrate.
+
+**PRD 29 (this document) — coordination thread:** Ongoing discussion of **how the docs system and repo are organized** lives in:
+
+`lupo-channels/0/organization/prd_29_project_organization/`
+
+Use that thread’s `decisions/`, `questions/`, `answers/`, and `comments/` folders per `lupo-docs/prd/02_channels_discussions.md` and `lupo-docs/prd/17_decisions_format.md`. **Per-thread filenames** (`TYPE` / `STATUS` only in `decisions/`, `HHIISS`, optional `YYYYMMDDHHIISS` prefix) are specified in **PRD 17**, section **“Thread filename pattern (authoritative)”** — not duplicated here. **PRD 30** and **PRD 31** working copies should get their own fresh threads under `lupo-channels/` when work is active—do not rely on the pre–4.0.93 tree for new work.
+
+**`AGENTS.md` vs the thread tree:** `AGENTS.md` lives at the **repository root** (IDE/agent coordination and mandatory channel literacy). It is **not** part of `lupo-channels/{federation_node_id}/{channel_key}/{thread_key}/` and no PRD defines an `AGENTS.md` inside each thread. Thread folders may use an optional **`README.md`**, per-folder **`THREAD_INDEX.md`**, and typed files under **`decisions/`**, **`questions/`**, **`answers/`**, **`comments/`** as specified in PRD 02 and PRD 17. When older work (e.g. V487-002) lists `AGENTS.md` alongside `lupo-channels/channel_index.md`, read that as **root + channel index**, not as “every thread carries AGENTS.”
 
 ## Directory Overview
 | Directory | Type | Primary Purpose |
@@ -49,7 +87,8 @@ This document describes the top‑level organization of the Lupopedia codebase. 
 | `lupo-backups/` | Directory | Database and file backups created by maintenance scripts. |
 | `lupo-bin/` | Directory | Executable CLI utilities (e.g., version bump, migration helpers). |
 | `lupo-cache/` | Directory | Runtime cache files (generated, can be cleared). |
-| `lupo-channels/` | Directory | Channel registry and thread‑scoped artifacts for multi‑agent coordination. |
+| `lupo-channels/` | Directory | Active channel tree for multi‑agent coordination (layout per channel doctrine; includes `decisions/`, `questions/`, `answers/`, `comments/` under threads where used). |
+| `lupo-channels_before_4_0_93/` | Directory | **Read-only archive** of the pre–4.0.93 channel filesystem (legacy numeric and mixed layouts). **Archive cherry-pick policy** (channel 42, timestamps newer than `20260325`) is defined **above** in this PRD. Prefer **new** channels/threads for ongoing work. See also `lupo-docs/prd/02_channels_discussions.md`. |
 | `lupo-chats/` | Directory | Chat transcript storage used by the UI. |
 | `lupo-collections/` | Directory | Semantic collections and aggregated data sets. |
 | `lupo-config/` | Directory | Global configuration files (e.g., `global_atoms.yaml`). |

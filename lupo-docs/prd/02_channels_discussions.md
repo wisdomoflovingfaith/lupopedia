@@ -2,33 +2,38 @@
 lupopedia.headers:
   header_format_version: 2
   lupopedia.schema: prd
-  version_when_written: "4.0.93"
+  when_updated: "20260403193000"
   file_path_from_root: "lupo-docs/prd/02_channels_discussions.md"
   web_path: "http://www.lupopedia.com/lupopedia/lupo-docs/prd/02_channels_discussions.md"
-  last_modified_utc: "20260401000000"
+  last_modified_utc: "20260403193000"
+  federation_node_id: 0
   channel_id: 42
-  thread_id: "prd-grouped"
+  thread_id: "prd-channels-structure"
   actor_id: 102
-  actor_name: "HEPHAESTUS"
-  delegation_chain: "hephaestus:root|lilith:audit"
+  actor_name: "CURSOR"
+  delegation_chain: "cursor:root"
   artifact_type: "prd"
-  artifact_kind: "database_namespace"
-  purpose: "PRD for channels, threads, and discussions database tables"
+  artifact_kind: "specification"
+  purpose: "Defines database schema and filesystem organization for channels, threads, and discussions"
   tags:
-  - "prd"
-  - "database"
-  - "namespace"
-  - "channels_discussions"
+    - "prd"
+    - "channels"
+    - "discussions"
+    - "database"
 lupopedia.edges:
   outbound_edges:
     - to: "lupo-docs/prd/00_root_constitutional_system_requirements.md"
       type: references
       weight: 1.0
       reason: "Constitutional anchor"
-    - to: "lupo-docs/database/lupopedia/tables/"
+    - to: "lupo-docs/prd/17_decisions_format.md"
       type: references
       weight: 1.0
-      reason: "Detailed table documentation"
+      reason: "Decision format specification"
+    - to: "lupo-docs/versions/4.0.93/KIRO_WORK_SUMMARY.md"
+      type: references
+      weight: 1.0
+      reason: "Discussions can reference truth items"
     - to: "lupo-docs/prd/01_core_identity.md"
       type: references
       weight: 1.0
@@ -51,6 +56,54 @@ lupopedia.footer:
 
 # PRD: Channels, Threads, and Discussions Database Tables
 
+## Channel Directory Structure (4.0.93+)
+
+Channels are organized on disk by federation node and human-readable keys:
+
+```
+lupo-channels/
+└── {federation_node_id}/
+    └── {channel_key}/
+        └── {thread_key}/
+            ├── decisions/
+            │   └── YYYYMMDD_HHIISS_DECISION_title.md
+            ├── questions/
+            │   └── YYYYMMDD_HHIISS_QUESTION_title.md
+            ├── answers/
+            │   └── YYYYMMDD_HHIISS_ANSWER_title.md
+            └── comments/
+                └── YYYYMMDD_HHIISS_COMMENT_title.md
+```
+
+**Example:**
+```
+lupo-channels/
+└── 0/
+    └── development/
+        └── header-format-discussion/
+            ├── decisions/
+            │   └── 20260402_120000_DECISION_adopt_version_2.md
+            ├── questions/
+            │   └── 20260402_100000_QUESTION_should_we_use_context_id.md
+            ├── answers/
+            │   └── 20260402_110000_ANSWER_yes_use_context_id.md
+            └── comments/
+                └── 20260402_115000_COMMENT_great_solution.md
+```
+
+### Channel Index
+
+`lupo-channels/channel_index.md` maps channel keys to metadata:
+
+```markdown
+| federation_node_id | channel_key | channel_name | purpose |
+|--------------------|-------------|--------------|---------|
+| 0 | development | Protocol Development | Core development discussions |
+| 0 | security | Security | Security and compliance |
+| 0 | governance | Governance | Rules and policies |
+| 0 | architecture | Architecture | System design |
+```
+
 ## Thread Identification Systems
 
 ### Database Threads (Web Application)
@@ -61,28 +114,48 @@ lupopedia.footer:
 - **Access**: Via `lupo-channels/{id}/threads/{thread_id}/` URLs
 
 ### Filesystem Threads (IDE Development)
-- **Format**: `YYYYMMDD_HHIISS_TYPE_STATUS_TITLE.md`
-- **Example**: `20260402_120000_DECISION_completed_validator_update.md`
+- **Format**: `YYYYMMDD_HHIISS_TYPE_TITLE.md` (see **[PRD 17 — Thread filename pattern (authoritative)](17_decisions_format.md#thread-filename-pattern-authoritative)** for per-folder rules: `STATUS` in filenames applies only under `decisions/`, not under `questions/`, `answers/`, or `comments/`.)
+- **Example**: `20260402_120000_DECISION_APPROVED_header_format.md` (decisions/); `20260402_130000_QUESTION_header_format.md` (questions/)
 - **Purpose**: Structured documentation, decision tracking, PRD development
 - **Storage**: Individual markdown files in directories
 - **Access**: Direct file system access for IDE agents
 
 ### Thread Manifest
 
-Every filesystem thread MUST contain a `THREAD_MANIFEST.md`:
+Every thread directory MUST contain a `THREAD_MANIFEST.md`:
 
 ```yaml
 ---
-thread_id: "descriptive-thread-name"
-purpose: "Discussion topic"
+thread_key: "header-format-discussion"
+channel_key: "development"
+federation_node_id: 0
+purpose: "Discussion about header format version 2"
 start_date: "2026-04-02"
 last_activity: "2026-04-02"
 status: "active"  # active, concluded, formalized, archived
-resolution: "path/to/resolution.md"  # if concluded/formalized
+resolution: ""  # path to resolution document if concluded/formalized
 archived_date: ""  # populated on archival
 archived_by: ""  # script name or actor
 ---
 ```
+
+### Standard Subfolders
+
+Each thread directory should contain standard subfolders for organization:
+
+```
+{thread_key}/
+├── decisions/
+│   └── YYYYMMDD_HHIISS_DECISION_title.md
+├── questions/
+│   └── YYYYMMDD_HHIISS_QUESTION_title.md
+├── answers/
+│   └── YYYYMMDD_HHIISS_ANSWER_title.md
+└── comments/
+    └── YYYYMMDD_HHIISS_COMMENT_title.md
+```
+
+Each subfolder contains its own `THREAD_INDEX.md` for tracking contents.
 
 ## Overview
 
@@ -107,7 +180,7 @@ archived_by: ""  # script name or actor
 | Table | Purpose | Primary Key | Key Application Relationships |
 |-------|---------|-------------|------------------------------|
 | `lupo_channels` | Channel definitions and metadata | `channel_id` | Central to all discussion operations |
-| `lupo_dialog_threads` | Discussion threads within channels | `thread_id` | Links to `lupo_channels` |
+| `lupo_dialog_threads` | Discussion threads within channels | `thread_id` | Links to `lupo_channels` | Supports human-readable thread_key for channel paths |
 | `lupo_dialog_messages` | Individual messages in threads | `message_id` | Links to `lupo_dialog_threads` |
 | `lupo_dialog_channels` | Channel-specific dialog configuration | `dialog_channel_id` | Links to `lupo_channels` |
 | `lupo_channel_content` | Content associated with channels | `channel_content_id` | Links to `lupo_channels` |
@@ -117,7 +190,53 @@ archived_by: ""  # script name or actor
 | `lupo_channel_escalation_rules` | Rules for channel escalations | `rule_id` | Links to `lupo_channel_escalations` |
 | `lupo_channel_files` | File attachments for channels | `channel_file_id` | Links to `lupo_channels` |
 
-## Table Details
+### 3. Update `lupo_channels` Table Schema
+
+Add missing columns:
+
+| Column | Type | Description |
+|--------|------|-------------|
+| `federation_node_id` | BIGINT | Federation node this channel belongs to (0=core) |
+| `channel_key` | VARCHAR(64) | Human-readable channel identifier (e.g., 'development') |
+
+**Updated CREATE TABLE:**
+
+```sql
+CREATE TABLE lupo_channels (
+  channel_id bigint NOT NULL,
+  federation_node_id bigint NOT NULL DEFAULT 0,
+  channel_key varchar(64) NOT NULL,
+  channel_name varchar(255) NOT NULL,
+  display_name varchar(255),
+  description text,
+  channel_type varchar(32) NOT NULL DEFAULT 'public',
+  access_level varchar(32) NOT NULL DEFAULT 'open',
+  created_by_actor_id bigint NOT NULL,
+  created_ymdhis bigint NOT NULL,
+  updated_ymdhis bigint NOT NULL,
+  last_activity_ymdhis bigint,
+  is_active tinyint NOT NULL DEFAULT 1,
+  is_deleted tinyint NOT NULL DEFAULT 0,
+  deleted_ymdhis bigint,
+  PRIMARY KEY (channel_id),
+  UNIQUE KEY idx_channels_node_key (federation_node_id, channel_key)
+);
+```
+
+### lupo_dialog_threads
+**Purpose**: Discussion threads within channels
+**Primary Key**: `thread_id`
+**Key Fields**:
+- `thread_id` (bigint) - Auto-generated unique identifier
+- `thread_key` (varchar(255)) - Human-readable key for channel paths (e.g., "header-format-discussion")
+- `title` (varchar(255)) - Thread title
+- `channel_id` (bigint) - Links to `lupo_channels`
+- `federation_node_id` (bigint) - Federation node scoping
+
+**Key Application Relationships**:
+- Links to `lupo_channels` via `channel_id`
+- Supports human-readable channel paths: `lupo-channels/{federation_node_id}/{channel_key}/{thread_key}/`
+- `thread_key` is auto-populated from title on creation (spaces → hyphens, lowercase)
 
 ### `lupo_channels`
 

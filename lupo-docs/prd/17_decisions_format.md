@@ -2,10 +2,10 @@
 lupopedia.headers:
   header_format_version: 2
   lupopedia.schema: prd
-  when_updated: "20260331190000"
+  when_updated: "20260403180000"
   file_path_from_root: "lupo-docs/prd/17_decisions_format.md"
   web_path: "http://www.lupopedia.com/lupopedia/lupo-docs/prd/17_decisions_format.md"
-  last_modified_utc: "20260331190000"
+  last_modified_utc: "20260403180000"
   federation_node_id: 0
   channel_id: 42
   thread_id: "prd-decisions-format"
@@ -29,6 +29,10 @@ lupopedia.edges:
       type: references
       weight: 1.0
       reason: "Constitutional anchor"
+    - to: "lupo-docs/prd/29_project_structure.md"
+      type: references
+      weight: 0.95
+      reason: "Channel coordination threads use same decisions/questions/answers/comments layout"
     - to: "lupo-docs/versions/4.0.93/decisions/"
       type: references
       weight: 1.0
@@ -38,7 +42,7 @@ lupopedia.edges:
       weight: 1.0
       reason: "Header format with channel_id/thread_id/context_id"
 lupopedia.footer:
-  last_verified: "20260331190000"
+  last_verified: "20260403180000"
   verified_by:
     identity_type: "agent"
     actor_id: 2
@@ -59,6 +63,48 @@ lupopedia.footer:
 
 
 This PRD defines the canonical format for documenting architectural decisions, questions, answers, and action items for a given Lupopedia version.
+
+---
+
+## Thread filename pattern (authoritative)
+
+This section is the **single source of truth** for thread artifact filenames under `decisions/`, `questions/`, `answers/`, and `comments/` (for version folders, channel threads, implementations, agents, and any other context using the multi-folder layout in this PRD).
+
+### Pattern by directory
+
+| Directory | Pattern | Example |
+|-----------|---------|---------|
+| `decisions/` | `YYYYMMDD_HHIISS_TYPE_STATUS_TITLE.md` | `20260403_143000_DECISION_APPROVED_channel_42_cherry_pick_policy.md` |
+| `questions/` | `YYYYMMDD_HHIISS_TYPE_TITLE.md` | `20260403_143000_QUESTION_should_we_keep_AGENTS_files.md` |
+| `answers/` | `YYYYMMDD_HHIISS_TYPE_TITLE.md` | `20260403_150000_ANSWER_AGENTS_files_deprecated.md` |
+| `comments/` | `YYYYMMDD_HHIISS_TYPE_TITLE.md` | `20260403_120000_COMMENT_channel_42_archive_cherry_pick_review.md` |
+
+Rules:
+
+- **`STATUS`** appears **only** under `decisions/` (between `TYPE` and `TITLE`), e.g. `APPROVED`, `PENDING`, `REJECTED`, `SUPERSEDED`. **`questions/`**, **`answers/`**, and **`comments/`** do **not** use a `_STATUS_` segment.
+- **`TITLE`**: lowercase segments separated by underscores; no spaces; describes the topic.
+
+### Timestamp prefix (UTC)
+
+- **Preferred (new files):** `YYYYMMDD_HHIISS_` — underscore between the date and the time.
+- **Also valid:** `YYYYMMDDHHIISS_` — fourteen digits with no separator between date and time (same instant; may appear in existing artifacts). Example: `20260403120000_COMMENT_channel_42_archive_cherry_pick_review.md`.
+
+### `HHIISS` (time of day)
+
+Two-digit hour (`00`–`23`), two-digit minute, two-digit second. No colons. Example: `143000` = 14:30:00 UTC.
+
+### `TYPE` tokens
+
+| Routine use | Folder |
+|-------------|--------|
+| `DECISION` | `decisions/` (with `STATUS` in the filename) |
+| `QUESTION` | `questions/` |
+| `ANSWER` | `answers/` |
+| `COMMENT` | `comments/` |
+
+Use **sparingly** when clearer than the four above: **`PROPOSAL`**, **`CLARIFICATION`**, **`RESOLUTION`** — typically under `decisions/` and using the same `…_TYPE_STATUS_TITLE.md` shape as other decision-class files.
+
+**Reference:** [PRD 02 — Channels & Discussions](02_channels_discussions.md) (filesystem thread overview); [PRD 29 — Project structure](29_project_structure.md) (channel coordination threads).
 
 ---
 ## LILITH Analysis: Separating Decisions, Questions, Answers, Comments
@@ -126,7 +172,7 @@ For any context (version, implementation, channel, agent), the following subfold
 <context>/
 ├── decisions/
 │   ├── THREAD_INDEX.md
-│   └── YYYYMMDD_HHIISS_DECISION_title.md
+│   └── YYYYMMDD_HHIISS_TYPE_STATUS_TITLE.md
 ├── questions/
 │   ├── THREAD_INDEX.md
 │   └── YYYYMMDD_HHIISS_QUESTION_title.md
@@ -140,7 +186,7 @@ For any context (version, implementation, channel, agent), the following subfold
 
 - Each folder contains only its type (decisions, questions, answers, comments).
 - Each folder must have its own `THREAD_INDEX.md` listing all threads.
-- All thread files must use the naming convention: `YYYYMMDD_HHIISS_TYPE_title.md` (UTC timestamp, type, lowercase/underscored title).
+- All thread files must follow **[Thread filename pattern (authoritative)](#thread-filename-pattern-authoritative)** (UTC prefix, `TYPE`, optional `STATUS` only in `decisions/`, lowercase/underscored `TITLE`).
 - All thread files must include a LUPOPEDIA HEADERS block.
 - No new monolithic `decisions.md` files may be created; all new content must use this folder structure.
 
@@ -189,9 +235,8 @@ Every `decisions/` folder must contain a `THREAD_INDEX.md` file. This file lists
 
 
 ### Thread File Naming Convention
-- Format: `YYYYMMDD_HHIISS_TYPE_title.md`
-  - Example: `20260402_120000_DECISION_header_validator_update.md`
-- Each file documents a single decision, question, answer, dialog, or action item thread.
+- **Canonical rules:** See **[Thread filename pattern (authoritative)](#thread-filename-pattern-authoritative)** above (patterns differ for `decisions/` vs `questions/`, `answers/`, `comments/`).
+- Each file documents a single decision, question, answer, comment, or related thread.
 - All files must use UTC timestamps and lowercase, underscore-separated titles.
 
 ### Migration and Legacy Files
@@ -228,10 +273,10 @@ is deprecated and must not be used for new work. Only the folder-based system is
 ### Thread File Naming Conventions
 
 #### Filesystem Threads (IDE Development)
-- **Format**: `YYYYMMDD_HHIISS_TYPE_STATUS_TITLE.md`
-- **Example**: `20260402_120000_DECISION_completed_header_validator_update.md`
+- **Format**: See **[Thread filename pattern (authoritative)](#thread-filename-pattern-authoritative)** (`decisions/` uses `TYPE_STATUS_TITLE`; other folders use `TYPE_TITLE` only).
+- **Example (decisions/)**: `20260402_120000_DECISION_APPROVED_header_validator_update.md`
 - **Used for**: IDE agent development, local documentation work
-- **Location**: `lupo-docs/versions/<version>/decisions/`
+- **Location**: `lupo-docs/versions/<version>/decisions/` (and parallel folders under channels, implementations, etc.)
 
 #### Database Threads (Web Application)
 - **Format**: Numeric auto-increment ID (e.g., 1038)
@@ -495,7 +540,7 @@ Every decisions.md file MUST include a footer with next actions:
 Validators MUST enforce:
 
 1. **Header completeness** - All required header fields present
-2. **Filename convention** - All thread files use `YYYYMMDD_HHIISS_TYPE_title.md`
+2. **Filename convention** - All thread files follow **[Thread filename pattern (authoritative)](#thread-filename-pattern-authoritative)** (including `STATUS` only under `decisions/`)
 3. **THREAD_INDEX.md** - Present and up to date in each folder
 4. **Status values** - Status values match allowed set for type (in header)
 5. **Date format** - Dates are YYYY-MM-DD

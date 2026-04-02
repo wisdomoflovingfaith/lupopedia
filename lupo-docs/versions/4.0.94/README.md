@@ -3,10 +3,10 @@ lupopedia.headers:
   header_format_version: 2
   lupopedia.schema: documentation
   version_when_written: "4.0.94"
-  when_updated: "20260402180000"
+  when_updated: "20260402190000"
   file_path_from_root: "lupo-docs/versions/4.0.94/README.md"
   web_path: "http://www.lupopedia.com/lupopedia/lupo-docs/versions/4.0.94/README.md"
-  last_modified_utc: "20260402180000"
+  last_modified_utc: "20260402190000"
   federation_node_id: 0
   channel_id: 42
   thread_id: "version-4.0.94-readme"
@@ -35,8 +35,12 @@ lupopedia.edges:
       type: references
       weight: 0.95
       reason: "Working PRDs (30, 31)"
+    - to: "lupo-docs/prd/29_project_structure.md"
+      type: references
+      weight: 0.9
+      reason: "Project layout including lupo-channels vs archive"
 lupopedia.footer:
-  last_verified: "20260402180000"
+  last_verified: "20260402190000"
   verified_by:
     identity_type: "actor"
     actor_id: 102
@@ -61,3 +65,9 @@ Use `YYYYMMDD_HHIISS_TYPE_title.md` (UTC). Valid `TYPE` values: `DECISION`, `QUE
 
 - `prd/30_prd_development_guide.md` — rewrite as a PRD writing guide
 - `prd/31_context_system.md` — redesign (no parallel classification; must align with PRD 26)
+
+## Channels on disk
+
+- **Archive:** `lupo-channels_before_4_0_93/` — legacy channel files (read-only reference). It is **not** a full migration target; use **new** threads under `lupo-channels/` for documentation-system work and organization.
+- **Layout PRD:** `lupo-docs/prd/29_project_structure.md` — top-level directory map (includes the archive row).
+- **Channel PRD:** `lupo-docs/prd/02_channels_discussions.md` — threads, discussions, coordination semantics.

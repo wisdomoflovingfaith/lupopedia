@@ -4,7 +4,7 @@ lupopedia.headers:
   version_when_written: "4.0.94"
   file_path_from_root: "lupo-docs/versions/4.0.94/PLAN.md"
   web_path: "http://www.lupopedia.com/lupopedia/lupo-docs/versions/4.0.94/PLAN.md"
-  when_updated: "20260402180000"
+  when_updated: "20260403180000"
   channel_id: 42
   actor_id: 102
   actor_name: "CURSOR"
@@ -20,20 +20,25 @@ lupopedia.headers:
 
 ## Dependency order (no time estimates)
 
-### Phase A — Channel and coordination filesystem
+### Phase A — Channel infrastructure (4.0.94)
 
-- [ ] Migrate `lupo-channels/` to `lupo-channels/{federation_node_id}/{channel_key}/{thread_key}/`
-- [ ] Update `.cursorrules` (or successor rule bundles) to describe the new channel paths
-- [ ] Archive or rename legacy channel tree when migration is done (`lupo-channels_before_4_0_93` or equivalent)
-- [ ] Update cross-documentation links that still assume numeric-only channel directories
+**Do not migrate** from **`lupo-channels_before_4_0_93/`**. That directory is a **read-only archive**. Wholesale “migrate old → new” is out of scope and contradicts PRD 29 (see **`lupo-docs/prd/29_project_structure.md`** — channel filesystem strategy).
 
-**Completion criteria:** New tree in use; index/manifest docs accurate; no broken canonical links in `lupo-docs/` for channel paths.
+**Instead — establish fresh channels for active work:**
+
+- Create **new** channel threads for active PRD and documentation work (PRD **29**, **30**, **31**, **organization**, documentation system). Use the pattern **`lupo-channels/{federation_node_id}/{channel_key}/{thread_key}/`** with `decisions/`, `questions/`, `answers/`, `comments/` as needed. Ground behavior in **`lupo-docs/prd/02_channels_discussions.md`**.
+- **Cherry-pick only** from **channel 42** in the legacy tree for files **newer than 2026-03-25** (per audit). **Archive reference only** for all other pre–4.0.93 channel content—do not replay the whole old structure into the new layout.
+- [ ] Align active **`lupo-channels/`** tree and **`lupo-channels/channel_index.md`** with the canonical layout for **new** work (including threads already started, e.g. **`lupo-channels/0/organization/prd_29_project_organization/`**).
+- [ ] Update **`.cursorrules`** (and successor rule bundles) so the active path convention and archive folder name are explicit.
+- [ ] Update cross-documentation links that still assume **only** numeric legacy channel directories.
+
+**Completion criteria:** No task is framed as “migrate the full legacy tree”; authors use the archive as **historical reference**, create **fresh** threads under the new pattern; optional cherry-picks only **per PRD 29 archive policy** (channel 42, timestamps newer than `20260325`); docs, `channel_index.md`, and rules agree; no broken canonical links in `lupo-docs/` for channel paths.
 
 ### Phase B — Edge-based Q&A (product + docs)
 
 - [ ] Implement edge-based Q&A in the web UI where appropriate
 - [ ] Add or extend validation so `lupopedia.edges` Q&A link types (`has_answer`, `answers`, etc.) are checked in CI or scripts
-- [ ] Migration path for any monolithic `decisions.md` leftovers
+- [ ] Conversion path for any monolithic `decisions.md` leftovers (not channel-tree migration)
 
 **Completion criteria:** UI or API can navigate Q&A via edges; validators document expected edge types.
 

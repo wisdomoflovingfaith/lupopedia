@@ -2,10 +2,10 @@
 lupopedia.headers:
   header_format_version: 2
   lupopedia.schema: documentation
-  when_updated: "20260402120000"
+  when_updated: "20260403120000"
   file_path_from_root: "lupo-channels/channel_index.md"
   web_path: "http://www.lupopedia.com/lupopedia/lupo-channels/channel_index.md"
-  last_modified_utc: "20260402120000"
+  last_modified_utc: "20260403120000"
   federation_node_id: 0
   channel_id: 0
   thread_id: "channel-index"
@@ -30,7 +30,7 @@ lupopedia.edges:
       weight: 1.0
       reason: "Decision format specification"
 lupopedia.footer:
-  last_verified: "20260402"
+  last_verified: "20260403"
   verified_by:
     identity_type: "actor"
     actor_id: 102
@@ -53,6 +53,7 @@ lupopedia.footer:
 | 0 | security | Security | Security and compliance |
 | 0 | governance | Governance | Rules and policies |
 | 0 | architecture | Architecture | System design |
+| 0 | organization | Organization | Repo layout, docs system structure, PRD 29 coordination |
 
 ## Channel Structure (4.0.93+)
 

@@ -234,23 +234,27 @@ def main() -> int:
             pk_name = fetch_primary_key(cursor, table_name)
             primary_key = build_primary_key(pk_name)
 
-            # Schema only — no row data written to output files.
-            # For data export use lupo-scripts/export_table_data_csv.py (separate tool).
-            payload = {
-                "table_name": table_name,
-                "fields": fields,
-                "indexes": indexes,
-            }
-            if primary_key:
-                payload["primary_key"] = primary_key
-            if table_name.startswith("lupo_"):
-                payload["doctrine_metadata"] = {
-                    "no_foreign_keys": True,
-                    "no_triggers": True,
-                }
-            payload["relationships"] = []
 
-            write_toon(json_dir, toon_dir, table_name, payload)
+                # Add required metadata fields for all generated JSON files
+                payload = {
+                    "_comment": "THIS FILE IS AUTO-GENERATED. DO NOT EDIT MANUALLY.",
+                    "_purpose": "Schema reference only — column names, types, indexes. Contains NO data.",
+                    "_source": "Generated from live database by generate_toon_files.py",
+                    "_read_only": True,
+                    "table_name": table_name,
+                    "fields": fields,
+                    "indexes": indexes,
+                }
+                if primary_key:
+                    payload["primary_key"] = primary_key
+                if table_name.startswith("lupo_"):
+                    payload["doctrine_metadata"] = {
+                        "no_foreign_keys": True,
+                        "no_triggers": True,
+                    }
+                payload["relationships"] = []
+
+                write_toon(json_dir, toon_dir, table_name, payload)
 
         print("Wrote {} TOONs (schema only) to {} (JSON) and {} (.toon)".format(
             len(tables), json_dir, toon_dir))

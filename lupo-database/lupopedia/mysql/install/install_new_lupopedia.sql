@@ -1411,36 +1411,30 @@ CREATE INDEX {{prefix}}password_resets_idx_created_ymdhis ON {{prefix}}password_
 CREATE TABLE {{prefix}}channels (
   channel_id bigint NOT NULL,
   federation_node_id bigint NOT NULL,
-  created_by_actor_id bigint NOT NULL,
-  default_actor_id bigint NOT NULL DEFAULT '1',
-  department_id bigint NOT NULL DEFAULT '1',
-  channel_key varchar(64) NOT NULL,
-  channel_slug varchar(32) NOT NULL DEFAULT 'channel_key',
-  channel_type varchar(32) NOT NULL DEFAULT 'chat_room',
-  language varchar(16) NOT NULL DEFAULT 'en',
-  channel_name varchar(255) NOT NULL,
+  channel_key varchar(64) NOT NULL,              -- Human-readable identifier (filesystem path)
+  channel_slug varchar(64) NOT NULL,             -- URL-friendly version (derived from channel_key)
+  channel_name varchar(255) NOT NULL,            -- Display name
   description text,
-  website_link varchar(512) DEFAULT NULL,
-  metadata_json text,
-  channel_config text DEFAULT NULL,
-  status_flag tinyint NOT NULL DEFAULT '1',
-  end_ymdhis bigint DEFAULT NULL,
-  created_ymdhis bigint NOT NULL DEFAULT 0,
-  updated_ymdhis bigint NOT NULL,
-  is_deleted tinyint NOT NULL DEFAULT '0',
-  deleted_ymdhis bigint DEFAULT NULL,
-  aal_metadata_json json DEFAULT NULL,
-  fleet_composition_json json DEFAULT NULL,
-  awareness_version varchar(20) DEFAULT '3.0.0',
-  channel_number int DEFAULT NULL,
-  parent_channel_id bigint DEFAULT NULL,
-  project_id bigint DEFAULT NULL,
-  is_kernel tinyint NOT NULL DEFAULT '0',
-  boot_sequence_order int DEFAULT NULL,
-  visibility_status varchar(32) NOT NULL DEFAULT 'active',
-  owner_actor_id bigint NOT NULL DEFAULT 1,
+  channel_type varchar(32) NOT NULL DEFAULT 'public',
   access_level varchar(32) NOT NULL DEFAULT 'public',
+  department_id bigint NOT NULL DEFAULT 1,       -- Which department owns this channel
+  owner_actor_id bigint NOT NULL DEFAULT 1,      -- Actor who owns/manages this channel
+  created_by_actor_id bigint NOT NULL,
+  created_ymdhis bigint NOT NULL,
+  updated_ymdhis bigint NOT NULL,
   last_activity_ymdhis bigint NOT NULL DEFAULT 0,
+  status_flag tinyint NOT NULL DEFAULT 1,
+  visibility_status varchar(32) NOT NULL DEFAULT 'active',
+  is_kernel tinyint NOT NULL DEFAULT 0,
+  is_deleted tinyint NOT NULL DEFAULT 0,
+  deleted_ymdhis bigint DEFAULT NULL,
+  metadata_json json DEFAULT NULL,
+  -- ... other columns as needed ...
+  PRIMARY KEY (channel_id),
+  UNIQUE KEY idx_channels_node_key (federation_node_id, channel_key),
+  KEY idx_channels_department (department_id, is_deleted),
+  KEY idx_channels_federation (federation_node_id, channel_key, is_deleted),
+  KEY idx_channels_owner (owner_actor_id, is_deleted),
   PRIMARY KEY (channel_id)
 );
 
@@ -3458,19 +3452,17 @@ ON DUPLICATE KEY UPDATE name = VALUES(name), metadata = VALUES(metadata), update
 
 -- Channel 42: Lupopedia Development (system channel)
 INSERT INTO {{prefix}}channels (
-    channel_id, federation_node_id, created_by_actor_id, default_actor_id, department_id, 
-    channel_key, channel_slug, channel_type, language, channel_name, description, 
-  website_link, metadata_json, status_flag, end_ymdhis, 
-    created_ymdhis, updated_ymdhis, is_deleted, deleted_ymdhis, 
-    aal_metadata_json, fleet_composition_json, awareness_version, channel_number, 
-    parent_channel_id, is_kernel, boot_sequence_order
+    channel_id, federation_node_id, channel_key, channel_slug, channel_name, description, 
+    channel_type, access_level, department_id, owner_actor_id, created_by_actor_id, 
+    created_ymdhis, updated_ymdhis, last_activity_ymdhis, status_flag, 
+    visibility_status, is_kernel, is_deleted, deleted_ymdhis, metadata_json
 ) VALUES (
-    42, 1, 1, 1, 0, 
-    'lupopedia-development', 'lupopedia-development', 'chat_room', 'en', 'Lupopedia Development', 
+    42, 1, 'lupopedia-development', 'lupopedia-development', 'Lupopedia Development', 
     'Main development channel for Lupopedia system development, architecture, and coordination.', 
-    NULL, '{"purpose": "development", "system": true, "auto_created": true}', 1, 
-    NULL, 20260221000000, 20260221000000, 0, NULL, 
-    NULL, NULL, '3.0.0', 42, NULL, 0, 2
+    'chat_room', 'open', 0, 1, 1, 
+    20260221000000, 20260221000000, 0, 1, 
+    'active', 0, 0, NULL, 
+    '{"purpose": "development", "system": true, "auto_created": true}'
 );
 
 -- Channel 42 membership: All 25 active actors (excluding actor_id 420)
@@ -3479,18 +3471,6 @@ VALUES
 (12001, 1, 42, 1, 'A', 20260221000000, 'F7FAFF', NULL, NULL, '{"ui": {"theme": "kernel"}, "notifications": {"enabled": false}}', NULL, 20260221000000, 20260221000000, 0, NULL),
 (12002, 2, 42, 1, 'A', 20260221000000, 'F7FAFF', NULL, NULL, '{"ui": {"theme": "kernel"}, "notifications": {"enabled": false}}', NULL, 20260221000000, 20260221000000, 0, NULL),
 (12003, 3, 42, 1, 'A', 20260221000000, 'F7FAFF', NULL, NULL, '{"ui": {"theme": "kernel"}, "notifications": {"enabled": false}}', NULL, 20260221000000, 20260221000000, 0, NULL),
-(12004, 4, 42, 1, 'A', 20260221000000, 'F7FAFF', NULL, NULL, '{"ui": {"theme": "kernel"}, "notifications": {"enabled": false}}', NULL, 20260221000000, 20260221000000, 0, NULL),
-(12005, 5, 42, 1, 'A', 20260221000000, 'F7FAFF', NULL, NULL, '{"ui": {"theme": "kernel"}, "notifications": {"enabled": false}}', NULL, 20260221000000, 20260221000000, 0, NULL),
-(12006, 6, 42, 1, 'A', 20260221000000, 'F7FAFF', NULL, NULL, '{"ui": {"theme": "kernel"}, "notifications": {"enabled": false}}', NULL, 20260221000000, 20260221000000, 0, NULL),
-(12007, 7, 42, 1, 'A', 20260221000000, 'F7FAFF', NULL, NULL, '{"ui": {"theme": "kernel"}, "notifications": {"enabled": false}}', NULL, 20260221000000, 20260221000000, 0, NULL),
-(12008, 8, 42, 1, 'A', 20260221000000, 'F7FAFF', NULL, NULL, '{"ui": {"theme": "kernel"}, "notifications": {"enabled": false}}', NULL, 20260221000000, 20260221000000, 0, NULL),
-(12009, 9, 42, 1, 'A', 20260221000000, 'F7FAFF', NULL, NULL, '{"ui": {"theme": "major kernel"}, "notifications": {"enabled": false}}', NULL, 20260221000000, 20260221000000, 0, NULL),
-(12010, 10, 42, 1, 'A', 20260221000000, 'F7FAFF', NULL, NULL, '{"ui": {"theme": "kernel"}, "nowifications": {"enabled": false}}', NULL, 20260221000000, 20260221000000, 0, NULL),
-(12011, 11, 42, 1, 'A', 20260221000000, 'F7FAFF', NULL, NULL, '{"ui": {"theme": "kernel"}, "notifications": {"enabled": false}}', NULL, 20260221000000, 20260221000000, 0, NULL),
-(12012, 12, 42, 1, 'A', 20260221000000, 'F7FAFF', NULL, NULL, '{"ui": {"theme": "kernel"}, "notifications": {"enabled": false}}', NULL, 20260221000000, 20260221000000, 0, NULL),
-(12013, 13, 42, 1, 'A', 20260221000000, 'F7FAFF', NULL, NULL, '{"ui": {"theme": "kernel"}, "notifications": {"enabled": false}}', NULL, 20260221000000, 20260221000000, 0, NULL),
-(12014, 14, 42, 1, 'A', 20260221000000, 'F7FAFF', NULL, NULL, '{"ui": {"theme": "kernel"}, "notifications": {"enabled": false}}', NULL, 20260221000000, 20260221000000, 0, NULL),
-(12015, 15, 42, 1, 'A', 20260221000000, 'F7FAFF', NULL, NULL, '{"ui": {"theme": "kernel"}, "notifications": {"enabled": false}}', NULL, 20260221000000, 20260221000000, 0, NULL),
 (12016, 16, 42, 1, 'A', 20260221000000, 'F7FAFF', NULL, NULL, '{"ui": {"theme": "kernel"}, "notifications": {"enabled": false}}', NULL, 20260221000000, 20260221000000, 0, NULL),
 (12017, 17, 42, 1, 'A', 20260221000000, 'F7FAFF', NULL, NULL, '{"ui": {"theme": "kernel"}, "notifications": {"enabled": false}}', NULL, 20260221000000, 20260221000000, 0, NULL),
 (12018, 18, 42, 1, 'A', 20260221000000, 'F7FAFF', NULL, NULL, '{"ui": {"theme": "kernel"}, "notifications": {"enabled": false}}', NULL, 20260221000000, 20260221000000, 0, NULL),

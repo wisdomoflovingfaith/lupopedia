@@ -3,10 +3,10 @@ lupopedia.headers:
   header_format_version: 2
   lupopedia.schema: documentation
   version_when_written: "4.0.93"
-  when_updated: "20260402180000"
+  when_updated: "20260403193000"
   file_path_from_root: "lupo-docs/versions/4.0.93/README.md"
   web_path: "http://www.lupopedia.com/lupopedia/lupo-docs/versions/4.0.93/README.md"
-  last_modified_utc: "20260402180000"
+  last_modified_utc: "20260403193000"
   federation_node_id: 0
   channel_id: 42
   thread_id: "version-4.0.93-readme"
@@ -89,7 +89,9 @@ PRDs **30** and **31** are **not** frozen here; working copies live under `lupo-
 
 ## Thread file naming (canonical)
 
-Pattern:
+**Authoritative specification:** [PRD 17 — Thread filename pattern (authoritative)](../../prd/17_decisions_format.md#thread-filename-pattern-authoritative) (per-folder patterns, `STATUS` only in `decisions/`, `TYPE` tokens, `HHIISS`, optional `YYYYMMDDHHIISS` prefix).
+
+Summary (same release):
 
 ```text
 YYYYMMDD_HHIISS_TYPE_title.md
@@ -104,7 +106,7 @@ YYYYMMDD_HHIISS_TYPE_title.md
 
 **Examples**
 
-- `decisions/20260402_120000_DECISION_channel_directory_structure.md`
+- `decisions/20260402_120000_DECISION_APPROVED_channel_directory_structure.md`
 - `questions/20260402_130000_QUESTION_how_to_migrate_channels.md`
 - `answers/20260402_140000_ANSWER_migrate_channels_archive.md`
 - `comments/20260402_150000_COMMENT_great_solution.md`
