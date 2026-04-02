@@ -2,7 +2,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.89"
   lupopedia.schema: documentation
-  file_path_from_root: "DEPARTMENT_ACCESS_CONTROL_IMPLEMENTATION.md"
+  file_path_from_root: "lupo-docs/implementations/DEPARTMENT_ACCESS_CONTROL_IMPLEMENTATION.md"
   web_path: "http://www.lupopedia.com/DEPARTMENT_ACCESS_CONTROL_IMPLEMENTATION.md"
   last_modified_utc: "20260328130000"
   when_updated: "20260328130000"

@@ -2,7 +2,7 @@
 lupopedia.headers:
   lupopedia.version: "4.0.89"
   lupopedia.schema: documentation
-  file_path_from_root: "IDE_PROTECTION_PLAN.md"
+  file_path_from_root: "lupo-docs/implementations/IDE_PROTECTION_PLAN.md"
   web_path: "http://www.lupopedia.com/IDE_PROTECTION_PLAN.md"
   last_modified_utc: "20260328130000"
   when_updated: "20260328130000"
