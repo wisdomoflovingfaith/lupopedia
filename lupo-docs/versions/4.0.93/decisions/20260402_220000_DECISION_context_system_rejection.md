@@ -24,7 +24,7 @@ lupopedia.headers:
   - "architecture"
 lupopedia.edges:
   outbound_edges:
-    - to: "/lupo-docs/prd/31_context_system.md"
+    - to: "/lupo-docs/versions/4.0.94/prd/31_context_system.md"
       type: rejects
       weight: 1.0
       reason: "PRD 31 created parallel classification system"
@@ -60,7 +60,7 @@ lupopedia.footer:
 Rejection of PRD 31 "Context System Framework" due to creation of parallel classification system that conflicts with existing architecture.
 
 ## WHERE
-- **PRD 31**: `lupo-docs/prd/31_context_system.md` (now archived)
+- **PRD 31**: `lupo-docs/versions/4.0.94/prd/31_context_system.md` (rejected spec; retained only as a redesign workspace for 4.0.94+)
 - **Conflict Point**: PRD 26's five-layer architecture
 - **Alternative**: Use existing `tags` system and `edges.md`
 
@@ -85,7 +85,7 @@ Reason: A parallel classification system will fragment the documentation archite
 
 ## HOW
 ### Implementation Steps
-1. **Archive PRD 31**: Moved to `lupo-archive/prd/31_context_system.md`
+1. **Relocate PRD 31 workspace**: Canonical working path `lupo-docs/versions/4.0.94/prd/31_context_system.md` (rejected content must be redesigned; no parallel classification in production docs)
 2. **Remove Context System**: Deleted `lupo-contexts/` directory structure
 3. **Database Cleanup**: Removed `contexts` and `contexts_map` tables
 4. **Maintain Simplicity**: Continue using `tags` in headers
@@ -106,7 +106,7 @@ Reason: A parallel classification system will fragment the documentation archite
 - ✅ Reinforced PRD 26 authority
 
 ### Files Affected
-- `lupo-docs/prd/31_context_system.md` → Archived
+- `lupo-docs/versions/4.0.94/prd/31_context_system.md` → Redesign stub / future PRD workspace
 - `lupo-contexts/` → Deleted
 - `install_new_lupopedia.sql` → Tables removed
 - `lupo-docs/doctrine/CONTEXT_TAXONOMY.md` → Deleted

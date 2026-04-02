@@ -93,7 +93,7 @@ Add context taxonomy to existing WHERE layer:
 
 ```yaml
 ## Documentation Edges
-- PRD: 31_context_system.md
+- PRD: `lupo-docs/versions/4.0.94/prd/31_context_system.md`
   contexts: [decisions, decisions.prd]
 ```
 
@@ -119,7 +119,7 @@ lupo-docs/doctrine/CONTEXT_TAXONOMY.md
 ## Implementation
 
 1. **Removed `lupo-contexts/` directory** - Deleted entire folder structure
-2. **Archived PRD 31** - Moved to `lupo-archive/prd/31_context_system.md`
+2. **PRD 31 workspace** - Working copy under `lupo-docs/versions/4.0.94/prd/31_context_system.md` for redesign only
 3. **Removed CONTEXT_TAXONOMY.md** - Deleted doctrine file
 4. **Database Cleanup**:
    - Removed `{{prefix}}contexts` table from install_new_lupopedia.sql

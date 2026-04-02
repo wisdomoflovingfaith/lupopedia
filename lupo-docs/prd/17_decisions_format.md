@@ -16,6 +16,7 @@ lupopedia.headers:
   artifact_type: "prd"
   artifact_kind: "specification"
   purpose: "Canonical format specification for decision thread files in decisions/ folders"
+  status: "approved"
   tags:
   - "prd"
   - "decisions"

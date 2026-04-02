@@ -1,0 +1,9 @@
+# [2026-04-02] Scaffold 4.0.94 version directory
+
+- Added working version folder `lupo-docs/versions/4.0.94/` with `PLAN.md`, `TODO.md`, `CHANGELOG.md`, `edges.md`, `decisions/`, `questions/`, `answers/`, `comments/`, and `prd/`.
+- PRD 30 working copy: `prd/30_prd_development_guide.md` (moved from `lupo-docs/prd/`).
+- PRD 31 stub: `prd/31_context_system.md` for redesign after 4.0.93 rejection of parallel classification.
+
+# Lupopedia 4.0.94 CHANGELOG
+
+Further entries go below this line as work completes.

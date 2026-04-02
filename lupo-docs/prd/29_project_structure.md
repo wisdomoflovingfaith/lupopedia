@@ -19,6 +19,7 @@ lupopedia.headers:
   artifact_type: "documentation"
   artifact_kind: "structure"
   purpose: "Top-level codebase directory map and conventions"
+  status: "approved"
   tags:
   - "documentation"
   - "project_structure"

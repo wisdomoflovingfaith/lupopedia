@@ -1,3 +1,43 @@
+# [2026-04-02] Release 4.0.93 frozen (LILITH finalization)
+
+- **Frozen core PRDs** in `lupo-docs/prd/`: `00`, `16`, `17`, `26`, `27`, `28`, `29` — each header includes `status: "approved"`.
+- **Version documentation layout**: `decisions/`, `questions/`, `answers/`, `comments/` under `lupo-docs/versions/4.0.93/` each carry `THREAD_INDEX.md`; thread files use `YYYYMMDD_HHIISS_TYPE_title.md` (UTC). `AUDITION_*` decision filenames normalized to `DIALOG_*` per valid TYPE list; `20260402_165500_DIALOG_prd_naming_correction.md` avoids timestamp collision with `20260402_170000_DECISION_prd31_rejection.md`.
+- **PRD 30** moved to `lupo-docs/versions/4.0.94/prd/30_prd_development_guide.md` for rewrite; **PRD 31** redesign stub at `lupo-docs/versions/4.0.94/prd/31_context_system.md`.
+- **Current working version folder**: `lupo-docs/versions/4.0.94/` (PLAN, TODO, CHANGELOG, edges, four thread folders, `prd/`).
+- **Release pointer**: `lupo-archive/versions/4.0.93/README.md` documents the tagged snapshot. The commit immediately after tag `v4.0.93` bumps `GLOBAL_CURRENT_LUPOPEDIA_VERSION` to **4.0.94** for ongoing development.
+
+# [2026-04-02] Channel Directory Restructure
+
+- **BREAKING**: New channel structure: `lupo-channels/{federation_node_id}/{channel_key}/{thread_key}/`
+- **Added**: Standard subfolders per thread: `decisions/`, `questions/`, `answers/`, `comments/`
+- **Deprecated**: Old numeric channel directories
+- **Migration**: Old channels archived to `lupo-channels_before_4_0_93`
+
+# [2026-04-02] Decisions System Overhaul
+
+- **Changed**: Monolithic `decisions.md` replaced with `decisions/` folder
+- **Added**: Separate folders for `questions/`, `answers/`, `comments/`
+- **Added**: Threaded timestamped files: `YYYYMMDD_HHIISS_TYPE_title.md`
+- **Added**: `THREAD_INDEX.md` required in every decisions folder
+
+# [2026-04-02] Q&A Linking via `lupopedia.edges`
+
+- **Added**: Edge types `has_answer`, `answers`, `related_question`, `clarifies`, `supersedes`
+- **Deprecated**: Manual `Parent ID` cross-references
+- **Changed**: Q&A relationships now stored in database via `lupo_edges`
+
+# [2026-04-02] PRD Approvals
+
+- **PRD 26** — Five-Layer Documentation Architecture (approved)
+- **PRD 16** — Header updates (approved)
+- **PRD 30** — Development Guide (rejected, needs rewrite)
+- **PRD 31** — Context System (rejected)
+
+# [2026-04-02] Validator Enhancements
+
+- **Added**: Conditional field requirements based on `artifact_type`
+- **Added**: Author field support (legacy `actor_id` deprecated)
+- **Added**: Deprecation warnings for legacy formats
 # Lupopedia 4.0.93 CHANGELOG
 
 ## [2026-04-02] PRD 26 Final Corrections & Constitutional Compliance
@@ -97,7 +137,7 @@
 
 ## [2026-04-02] PRD 30 Development Guide & Context System Cleanup
 
-### PRD 30 Development Guide Corrections (`lupo-docs/prd/30_prd_development_guide.md`)
+### PRD 30 Development Guide Corrections (`lupo-docs/versions/4.0.94/prd/30_prd_development_guide.md` — working copy; was under `lupo-docs/prd/` until 4.0.93 freeze)
 - **Naming Convention Fix** - Corrected decision file naming from `D-XX_` to `YYYYMMDD_HHIISS_TYPE_TITLE.md` format
 - **Embedded WHERE Removal** - Removed embedded filesystem instructions, now properly references PRD 26 for structure
 - **Decision Context Clarification** - Added clear distinction between PRD-scoped decisions and version-scoped decisions

@@ -1,4 +1,4 @@
-﻿---
+---
 lupopedia.headers:
   file_path_from_root: "CHANGELOG.md"
   last_modified_utc: "20260328120000"
@@ -32,7 +32,7 @@ lupopedia.footer:
 ### 🔹 For Changes AFTER Version 4.0.85 (Current & Future)
 
 All changes for version **4.0.85 and above** are documented in version-specific directories:
-- **Current version documentation**: [`lupo-docs/versions/<version>/CHANGELOG.md`](lupo-docs/versions/4.0.89/CHANGELOG.md)
+- **Current version documentation**: [`lupo-docs/versions/<version>/CHANGELOG.md`](lupo-docs/versions/4.0.93/CHANGELOG.md)
 - **All structured metadata** (task registry, doctrine, contradictions, database changes): Located within each version directory
 - **Example**: Version 4.0.87 changes are in [`lupo-docs/versions/4.0.87/`](lupo-docs/versions/4.0.87/)
 
@@ -45,7 +45,7 @@ All changes prior to version **4.0.85** are archived in:
 
 ### 📖 How to Read This Document
 
-1. **For the latest changes** → Check `lupo-docs/versions/4.0.89/CHANGELOG.md` (current version)
+1. **For the latest changes** → Check `lupo-docs/versions/4.0.93/CHANGELOG.md` (current version at tag v4.0.93; 4.0.94 follows next commit)
 2. **For historical context** → Consult `CHANGELOG_ARCHIVE.md` (all versions before 4.0.85)
 3. **For complete version details** → Browse the version-specific directory containing: PLAN.md, TODO.md, TASK_REGISTRY.md, CONTRADICTIONS.md, DOCTRINE.md
 

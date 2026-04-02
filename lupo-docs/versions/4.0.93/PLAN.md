@@ -4,7 +4,7 @@ lupopedia.headers:
   version_when_written: "4.0.93"
   file_path_from_root: "lupo-docs/versions/4.0.93/PLAN.md"
   web_path: "http://www.lupopedia.com/lupo-docs/versions/4.0.93/PLAN.md"
-  when_updated: "20260402230000"
+  when_updated: "20260402180000"
   channel_id: 42
   actor_id: 102
   actor_name: "HEPHAESTUS"
@@ -47,12 +47,23 @@ lupopedia.headers:
 - **[x]** Add explicit `lupopedia.edges` constitutional anchor to every file in `lupo-docs/prd/` except `00_root_constitutional_system_requirements.md` (39 files); anchor listed first where multiple edges exist.
 - **[x]** Update `lupo-docs/versions/4.0.93/` `decisions.md`, `PLAN.md`, `TODO.md`, `CHANGELOG.md` for this documentation thread.
 
-## 🆕 Major Changes (March 2026, updated April)
 
-- **Grouped PRD Architecture**: Complete 14-namespace PRD structure created in `lupo-docs/prd/`, replacing per-table PRD approach; 100% coverage achieved (14/14 files)
-- **Identity Model Coverage**: All core identity tables fully documented in namespace 01_core_identity.md, including the five new tables: `lupo_actor_memory`, `lupo_actor_skills`, `lupo_actor_tools`, `lupo_actor_prompts`, and `lupo_actor_training` (added in 4.0.93).
-- **Crafty Integration Preserved**: Namespace 13_crafty_integration.md remains ACTIVE for Crafty Syntax 3.7.5 compatibility.
-- **Maintenance Optimization**: PRD maintenance burden reduced by 92% (from 171 to 14 files).
+### Completed
+- [x] PRD 26 — Five-Layer Documentation Architecture
+- [x] PRD 16 — Header updates (author/verifier distinction)
+- [x] Validator enhancements (conditional field requirements)
+- [x] Channel directory restructure design
+- [x] Decisions folder separation design
+- [x] Edge-based Q&A linking specification
+
+### Deferred to 4.0.94 (see `lupo-docs/versions/4.0.94/PLAN.md`)
+- [ ] Migrate existing channels to new directory structure
+- [ ] Implement edge-based Q&A in web interface
+- [ ] PRD 30 rewrite (as writing guide; working copy under `versions/4.0.94/prd/`)
+- [ ] PRD 31 context system redesign
+- [ ] PRD 27 — Verification Authority (if created)
+- [ ] Softaculous certification preparation
+- [ ] COUNTERMEASURE agent refinement, ASCLEPIUS monitor, Eye widget UI polish, actor onboarding web flow, emergent collections (per LILITH handoff)
 
 ## 🆕 **LILITH Audits & COUNTERMEASURE Development (March 2026)**
 

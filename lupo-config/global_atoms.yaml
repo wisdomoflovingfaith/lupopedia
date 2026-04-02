@@ -15,8 +15,8 @@ file.channel: schema
 # - Cursor MUST NOT generate or modify this file unless explicitly instructed
 
 version: "4.0.93"
-last_updated: "20260329"
-# VERSION 4.0.93
+last_updated: "20260402"
+# VERSION 4.0.93 (tag v4.0.93 — next commit bumps to 4.0.94)
 
 # Global Version Atoms
 GLOBAL_CURRENT_LUPOPEDIA_VERSION: "4.0.93"

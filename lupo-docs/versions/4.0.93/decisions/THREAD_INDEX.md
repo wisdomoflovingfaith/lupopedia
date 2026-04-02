@@ -50,13 +50,24 @@ lupopedia.footer:
 | D-60 | Implementation | PRD 16 Enhancement: Artifact Type and Kind Taxonomy | CURSOR | Completed | 2026-04-02 | [D-60-prd16-enhancement](D-60_prd16_enhancement.md) |
 | D-61 | Implementation | LUPOPEDIA_HEADERS Documentation Update | CURSOR | Completed | 2026-04-02 | [D-61-documentation-update](D-61_documentation_update.md) |
 | D-62 | Directive | Update 4.0.93 Version Documentation (Current Thread) | CURSOR | Completed | 2026-04-02 | [D-62-version-docs](D-62_version_docs.md) |
-| D-63 | Audit | PRD Development Guide — Naming Convention Correction | LILITH | Completed | 2026-04-02 | [20260402_170000_AUDITION_prd_naming_correction](20260402_170000_AUDITION_prd_naming_correction.md) |
-| D-64 | Audit | PRD Development Guide — Structure Correction | LILITH | Completed | 2026-04-02 | [20260402_180000_AUDITION_prd_guide_structure_correction](20260402_180000_AUDITION_prd_guide_structure_correction.md) |
-| D-65 | Audit | PRD Development Guide — Final Clarification of Decision Contexts | LILITH | Completed | 2026-04-02 | [20260402_190000_AUDITION_prd_guide_final_clarification](20260402_190000_AUDITION_prd_guide_final_clarification.md) |
+| D-63 | Dialog | PRD Development Guide — Naming Convention Correction | LILITH | Completed | 2026-04-02 | [20260402_165500_DIALOG_prd_naming_correction](20260402_165500_DIALOG_prd_naming_correction.md) |
+| D-64 | Dialog | PRD Development Guide — Structure Correction | LILITH | Completed | 2026-04-02 | [20260402_180000_DIALOG_prd_guide_structure_correction](20260402_180000_DIALOG_prd_guide_structure_correction.md) |
+| D-65 | Dialog | PRD Development Guide — Final Clarification of Decision Contexts | LILITH | Completed | 2026-04-02 | [20260402_190000_DIALOG_prd_guide_final_clarification](20260402_190000_DIALOG_prd_guide_final_clarification.md) |
 | D-66 | Decision | Context System Implementation for Decision Documentation | CURSOR | Completed | 2026-04-02 | [20260402_200000_DECISION_context_system_implementation](20260402_200000_DECISION_context_system_implementation.md) |
 | D-67 | Decision | PRD 31 Rejection - Parallel Classification System Conflict | LILITH | Completed | 2026-04-02 | [20260402_210000_DECISION_prd31_rejection_parallel_classification](20260402_210000_DECISION_prd31_rejection_parallel_classification.md) |
 
 ## Recent Activity
+
+# Major Architectural Decisions (2026-04-02)
+
+| Timestamp        | File Name                                         | Type      | Summary                                 |
+|------------------|--------------------------------------------------|-----------|-----------------------------------------|
+| 20260402_120000  | 20260402_120000_DECISION_channel_directory_structure.md | DECISION  | Channel directory restructure           |
+| 20260402_130000  | 20260402_130000_DECISION_decisions_folder_separation.md | DECISION  | Decisions folder separation             |
+| 20260402_140000  | 20260402_140000_DECISION_edge_based_qa_linking.md      | DECISION  | Edge-based Q&A linking                  |
+| 20260402_150000  | 20260402_150000_DECISION_prd26_approval.md             | DECISION  | PRD 26 approval                         |
+| 20260402_160000  | 20260402_160000_DECISION_prd30_rejection.md            | DECISION  | PRD 30 rejection                        |
+| 20260402_170000  | 20260402_170000_DECISION_prd31_rejection.md            | DECISION  | PRD 31 rejection                        |
 
 ### 2026-04-02
 - **LILITH Audits**: Universal Header Validator (96% accuracy) and PRD 16 (88% accuracy)

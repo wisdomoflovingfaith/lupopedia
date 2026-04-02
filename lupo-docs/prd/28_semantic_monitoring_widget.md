@@ -18,6 +18,7 @@ lupopedia.headers:
   artifact_type: doctrine
   artifact_kind: ui_widget
   purpose: "PRD for Semantic Monitoring Widget (The Eye) — JavaScript page tracking, semantic data collection, and floating navigation bar with optional visual effect"
+  status: "approved"
   tags:
     - prd
     - semantic_monitoring

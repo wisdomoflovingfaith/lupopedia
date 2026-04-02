@@ -19,6 +19,7 @@ lupopedia.headers:
     name: "CURSOR"
   delegation_chain: "cursor:root"
   purpose: "Non-negotiable system-wide constitutional rules for Lupopedia. Overrides all other PRDs and doctrines."
+  status: "approved"
   tags:
     - root
     - constitutional

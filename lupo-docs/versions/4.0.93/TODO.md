@@ -4,7 +4,7 @@ lupopedia.headers:
   version_when_written: "4.0.93"
   file_path_from_root: "lupo-docs/versions/4.0.93/TODO.md"
   web_path: "http://www.lupopedia.com/lupopedia/lupo-docs/versions/4.0.93/TODO.md"
-  when_updated: "20260402230000"
+  when_updated: "20260402180000"
   channel_id: 42
   thread_id: "todo-backlog"
   actor_id: 102
@@ -28,22 +28,48 @@ lupopedia.edges:
       type: references
       weight: 1.0
       reason: Session handoff document
+    - to: "lupo-docs/versions/4.0.93/README.md"
+      type: references
+      weight: 1.0
+      reason: Frozen version readme and naming convention
     - to: "lupo-docs/versions/4.0.93/CHANGELOG.md"
       type: references
       weight: 1.0
       reason: Version changelog
+    - to: "lupo-docs/versions/4.0.94/TODO.md"
+      type: references
+      weight: 1.0
+      reason: Active backlog after freeze
     - to: "lupo-docs/versions/4.0.93/DATABASE_AUDIT_SUMMARY.md"
       type: references
       weight: 1.0
       reason: Database audit summary
 lupopedia.footer:
-  last_verified: "20260402230000"
+  last_verified: "20260402180000"
   verified_by:
     actor_id: 102
     agent_name_identity: Cursor IDE Agent
   orchestrator: "hephaestus:root"
 
 ## Completed (4.0.93)
+[//]: # (LILITH Directive: TODO update for 4.0.93, 2026-04-02)
+
+## 4.0.93 freeze (completed 2026-04-02)
+- [x] `lupo-docs/versions/4.0.93/decisions/THREAD_INDEX.md` (existing)
+- [x] `lupo-docs/versions/4.0.93/questions/THREAD_INDEX.md`
+- [x] `lupo-docs/versions/4.0.93/answers/THREAD_INDEX.md`
+- [x] `lupo-docs/versions/4.0.93/comments/THREAD_INDEX.md`
+- [x] `README.md` in version folder (freeze + naming convention)
+- [x] `edges.md` updated for frozen core PRDs and 4.0.94 working PRDs
+
+## Carried to 4.0.94 (see `lupo-docs/versions/4.0.94/TODO.md`)
+- [ ] Migrate lupo-channels to new federation_node_id/channel_key/thread_key/ structure
+- [ ] Update .cursorrules with new channel structure
+- [ ] Implement edge-based Q&A in web UI
+- [ ] Add `lupopedia.edges` validation for Q&A links
+- [ ] Create migration script for old decisions.md files
+- [ ] Archive old lupo-channels (rename to lupo-channels_before_4_0_93)
+- [ ] Update all documentation to reference new channel paths
 [x] **PRD 26 Final Corrections (2026-04-02):** Fixed constitutional violations identified by COUNTERMEASURE - implemented deterministic ID generation, numeric-only identifiers, tooling requirements for parent_edges_ref, added version compatibility mapping
 [x] **Documentation Architecture & 5W1H Framework (2026-04-02):** Created comprehensive documentation architecture doctrine, established 5W1H framework as universal thinking pattern, created version edges.md for relationship mapping
 [x] **PRD 26 Five-Layer Architecture (2026-04-02):** Created and approved PRD defining five-layer documentation architecture (WHAT, HOW, WHY, WHO, WHERE), corrected header/footer per LILITH audit

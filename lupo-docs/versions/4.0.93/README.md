@@ -1,0 +1,116 @@
+---
+lupopedia.headers:
+  header_format_version: 2
+  lupopedia.schema: documentation
+  version_when_written: "4.0.93"
+  when_updated: "20260402180000"
+  file_path_from_root: "lupo-docs/versions/4.0.93/README.md"
+  web_path: "http://www.lupopedia.com/lupopedia/lupo-docs/versions/4.0.93/README.md"
+  last_modified_utc: "20260402180000"
+  federation_node_id: 0
+  channel_id: 42
+  thread_id: "version-4.0.93-readme"
+  author:
+    type: "actor"
+    id: 102
+    name: "CURSOR"
+  delegation_chain: "cursor:root"
+  artifact_type: "documentation"
+  artifact_kind: "version_readme"
+  purpose: "Frozen 4.0.93 version documentation index and thread naming rules"
+  status: "approved"
+  tags:
+  - "version"
+  - "4.0.93"
+  - "frozen"
+lupopedia.edges:
+  outbound_edges:
+    - to: "lupo-docs/versions/4.0.93/PLAN.md"
+      type: references
+      weight: 1.0
+      reason: "Version plan"
+    - to: "lupo-docs/versions/4.0.93/TODO.md"
+      type: references
+      weight: 1.0
+      reason: "Backlog (remaining items carried to 4.0.94)"
+    - to: "lupo-docs/versions/4.0.93/CHANGELOG.md"
+      type: references
+      weight: 1.0
+      reason: "Release notes"
+    - to: "lupo-docs/versions/4.0.93/edges.md"
+      type: references
+      weight: 1.0
+      reason: "Documentation relationships"
+    - to: "lupo-docs/versions/4.0.94/README.md"
+      type: references
+      weight: 0.9
+      reason: "Next working version folder"
+lupopedia.footer:
+  last_verified: "20260402180000"
+  verified_by:
+    identity_type: "actor"
+    actor_id: 102
+    agent_name_identity: "Cursor IDE Agent"
+  orchestrator: "cursor:root"
+---
+
+# file: lupo-docs/versions/4.0.93/README.md — delegation: cursor:root — web_path: http://www.lupopedia.com/lupopedia/lupo-docs/versions/4.0.93/README.md
+
+# Lupopedia 4.0.93 (frozen)
+
+This directory is the **frozen documentation snapshot** for release **4.0.93**. Active planning and backlog live in **`lupo-docs/versions/4.0.94/`**.
+
+## Contents
+
+| Path | Role |
+|------|------|
+| `PLAN.md` | What was planned and completed for this release |
+| `TODO.md` | Completed freeze checklist; open work is listed under “Carried to 4.0.94” |
+| `CHANGELOG.md` | Per-version change history |
+| `edges.md` | Edges between PRDs, doctrine, validators, and this version |
+| `decisions/` | Formal decisions, dialogs, directives (`THREAD_INDEX.md` + timestamped files) |
+| `questions/` | Open questions (`THREAD_INDEX.md` + timestamped files) |
+| `answers/` | Answers (`THREAD_INDEX.md` + timestamped files) |
+| `comments/` | Short notes (`THREAD_INDEX.md` + timestamped files) |
+
+## Frozen core PRDs (`lupo-docs/prd/`)
+
+Approved for 4.0.93 (`status: "approved"` in each header):
+
+- `00_root_constitutional_system_requirements.md`
+- `16_lupopedia_headers.md`
+- `17_decisions_format.md`
+- `26_five_layer_documentation_architecture.md`
+- `27_installer_requirements.md`
+- `28_semantic_monitoring_widget.md`
+- `29_project_structure.md`
+
+PRDs **30** and **31** are **not** frozen here; working copies live under `lupo-docs/versions/4.0.94/prd/`.
+
+## Thread file naming (canonical)
+
+Pattern:
+
+```text
+YYYYMMDD_HHIISS_TYPE_title.md
+```
+
+| Part | Meaning |
+|------|---------|
+| `YYYYMMDD` | UTC date |
+| `HHIISS` | UTC time (24h); hours `00`–`23` only |
+| `TYPE` | One of: `DECISION`, `QUESTION`, `ANSWER`, `COMMENT`, `DIALOG`, `DIRECTIVE` |
+| `title` | Lowercase words separated by underscores |
+
+**Examples**
+
+- `decisions/20260402_120000_DECISION_channel_directory_structure.md`
+- `questions/20260402_130000_QUESTION_how_to_migrate_channels.md`
+- `answers/20260402_140000_ANSWER_migrate_channels_archive.md`
+- `comments/20260402_150000_COMMENT_great_solution.md`
+
+`DIALOG` and `DIRECTIVE` files live under `decisions/` (same as other decision-class threads).
+
+## Tag
+
+Git tag: **`v4.0.93`** marks this freeze. The next commit on the main line bumps `lupo-config/global_atoms.yaml` and `lupo-includes/version.php` to **4.0.94** so the working tree matches `lupo-docs/versions/4.0.94/`.

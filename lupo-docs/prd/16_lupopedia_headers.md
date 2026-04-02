@@ -20,6 +20,7 @@ lupopedia.headers:
   artifact_type: "prd"
   artifact_kind: "specification"
   purpose: "Canonical specification for Lupopedia file headers, verification, and metadata propagation"
+  status: "approved"
   tags:
   - "prd"
   - "lupopedia_headers"

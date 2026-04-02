@@ -3,8 +3,8 @@ lupopedia.headers:
   header_format_version: 2
   lupopedia.schema: doctrine
   when_updated: "20260402180000"
-  file_path_from_root: "lupo-docs/versions/4.0.93/decisions/20260402_180000_AUDITION_prd_guide_structure_correction.md"
-  web_path: "http://www.lupopedia.com/lupopedia/lupo-docs/versions/4.0.93/decisions/20260402_180000_AUDITION_prd_guide_structure_correction.md"
+  file_path_from_root: "lupo-docs/versions/4.0.93/decisions/20260402_180000_DIALOG_prd_guide_structure_correction.md"
+  web_path: "http://www.lupopedia.com/lupopedia/lupo-docs/versions/4.0.93/decisions/20260402_180000_DIALOG_prd_guide_structure_correction.md"
   last_modified_utc: "20260402180000"
   federation_node_id: 0
   channel_id: 42

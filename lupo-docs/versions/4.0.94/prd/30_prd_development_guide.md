@@ -2,17 +2,18 @@
 lupopedia.headers:
   header_format_version: 2
   lupopedia.schema: prd
-  when_updated: "20260402020000"
-  file_path_from_root: "lupo-docs/prd/30_prd_development_guide.md"
-  web_path: "http://www.lupopedia.com/lupopedia/lupo-docs/prd/30_prd_development_guide.md"
-  last_modified_utc: "20260402020000"
+  when_updated: "20260402160000"
+  version_when_written: "4.0.94"
+  file_path_from_root: "lupo-docs/versions/4.0.94/prd/30_prd_development_guide.md"
+  web_path: "http://www.lupopedia.com/lupopedia/lupo-docs/versions/4.0.94/prd/30_prd_development_guide.md"
+  last_modified_utc: "20260402160000"
   federation_node_id: 0
   channel_id: 42
   thread_id: "prd-development-guide"
   prd_id: 30
   prd_slug: prd_development_guide
   title: "PRD Development Guide: 5W1H Framework with Embedded Timestamp"
-  status: "approved"
+  status: "rejected"
   author:
     type: "actor"
     id: 102
@@ -55,6 +56,8 @@ lupopedia.footer:
 ---
 
 # PRD 30: PRD Development Guide: 5W1H Framework with Embedded Timestamp
+
+**Working copy (4.0.94):** This file lives under `lupo-docs/versions/4.0.94/prd/` while it is rewritten as a PRD writing guide. Header `status` is `rejected` for 4.0.93 freeze purposes; treat content as draft input for 4.0.94, not as approved canon.
 
 ## Overview
 

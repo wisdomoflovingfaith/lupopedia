@@ -3,8 +3,8 @@ lupopedia.headers:
   header_format_version: 2
   lupopedia.schema: doctrine
   when_updated: "20260402170000"
-  file_path_from_root: "lupo-docs/versions/4.0.93/decisions/20260402_170000_AUDITION_prd_naming_correction.md"
-  web_path: "http://www.lupopedia.com/lupopedia/lupo-docs/versions/4.0.93/decisions/20260402_170000_AUDITION_prd_naming_correction.md"
+  file_path_from_root: "lupo-docs/versions/4.0.93/decisions/20260402_165500_DIALOG_prd_naming_correction.md"
+  web_path: "http://www.lupopedia.com/lupopedia/lupo-docs/versions/4.0.93/decisions/20260402_165500_DIALOG_prd_naming_correction.md"
   last_modified_utc: "20260402170000"
   federation_node_id: 0
   channel_id: 42
@@ -71,7 +71,7 @@ LILITH audit of newly created PRD development guide documents identified complia
 
 ### 1. File Renamed
 - **From**: `lupo-docs/prd/PRD_DEVELOPMENT_GUIDE.md`
-- **To**: `lupo-docs/prd/30_prd_development_guide.md`
+- **To**: `lupo-docs/versions/4.0.94/prd/30_prd_development_guide.md`
 - **Reason**: Conforms to PRD numbering convention
 
 ### 2. Header Fields Added

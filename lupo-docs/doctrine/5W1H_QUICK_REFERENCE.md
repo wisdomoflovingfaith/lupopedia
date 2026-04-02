@@ -23,7 +23,7 @@ lupopedia.headers:
   - "framework"
 lupopedia.edges:
   outbound_edges:
-    - to: "lupo-docs/prd/30_prd_development_guide.md"
+    - to: "lupo-docs/versions/4.0.94/prd/30_prd_development_guide.md"
       type: references
       weight: 1.0
       reason: "Full guide"

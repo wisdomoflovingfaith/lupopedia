@@ -76,7 +76,7 @@ lupopedia.footer:
 ### Scope 1: PRD (What to Build)
 
 ```
-lupo-docs/prd/31_context_system.md
+lupo-docs/versions/4.0.94/prd/31_context_system.md
 ```
 
 **Header (Current State):**

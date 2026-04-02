@@ -19,6 +19,7 @@ lupopedia.headers:
   artifact_type: "prd"
   artifact_kind: "installer"
   purpose: "Defines the installer requirements and constraints for Lupopedia, referencing the root constitutional system requirements."
+  status: "approved"
   tags: ["installer", "constitutional", "system_requirements"]
 lupopedia.edges:
   outbound_edges:
