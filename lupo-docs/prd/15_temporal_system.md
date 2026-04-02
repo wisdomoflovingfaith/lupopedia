@@ -22,6 +22,10 @@ lupopedia.headers:
   - "timestamp"
 lupopedia.edges:
   outbound_edges:
+    - to: "lupo-docs/prd/00_root_constitutional_system_requirements.md"
+      type: references
+      weight: 1.0
+      reason: "Constitutional anchor"
     - to: "lupo-bin/tick.py"
       type: implements
       weight: 1.0
@@ -34,10 +38,6 @@ lupopedia.edges:
       type: references
       weight: 1.0
       reason: "Root-level UTC timestamp file"
-    - to: "lupo-docs/prd/00_root_constitutional_system_requirements.md"
-      type: references
-      weight: 1.0
-      reason: "Constitutional temporal requirements"
 lupopedia.footer:
   last_verified: "20260331180000"
   verified_by:

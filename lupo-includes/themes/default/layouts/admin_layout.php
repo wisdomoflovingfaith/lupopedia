@@ -31,6 +31,7 @@ if (!isset($isUserLoggedIn)) {
 }
 $admin_actor_list = isset($admin_actor_list) && is_array($admin_actor_list) ? $admin_actor_list : array();
 $admin_active_actor_id = isset($admin_active_actor_id) ? (int) $admin_active_actor_id : 0;
+$admin_active_actor_display = isset($admin_active_actor_display) ? $admin_active_actor_display : '';
 if (!defined('LUPO_UI_PATH')) {
     define('LUPO_UI_PATH', LUPOPEDIA_PATH . '/lupo-includes/themes/default');
 }
@@ -192,9 +193,17 @@ $base = defined('LUPOPEDIA_PUBLIC_PATH') ? rtrim(LUPOPEDIA_PUBLIC_PATH, '/') : '
                         break;
                     }
                 }
+                $acting_as_label = 'Unknown';
+                if ($current_actor) {
+                    $acting_as_label = (isset($current_actor['name']) && $current_actor['name'] !== '')
+                        ? $current_actor['name']
+                        : (isset($current_actor['actor_name']) ? $current_actor['actor_name'] : 'Unknown');
+                } elseif ($admin_active_actor_display !== '') {
+                    $acting_as_label = $admin_active_actor_display;
+                }
                 ?>
                 <div style="display: inline-flex; align-items: center; margin: 0 0 0 1rem; color: #a0aec0; font-size: 0.875rem;">
-                    <span>Acting as: <strong><?= htmlspecialchars($current_actor ? ($current_actor['name'] ?: $current_actor['actor_name']) : 'Unknown') ?></strong></span>
+                    <span>Acting as: <strong><?= htmlspecialchars($acting_as_label) ?></strong></span>
                     <?php if (count($admin_actor_list) > 1): ?>
                         <a href="<?= LUPOPEDIA_PUBLIC_PATH ?>/select-actor.php?redirect=<?= urlencode(isset($_SERVER['REQUEST_URI']) ? $_SERVER['REQUEST_URI'] : $base . '/admin.php') ?>" style="margin-left: 8px; color: #4299e1; text-decoration: none; font-size: 0.8rem;">change</a>
                     <?php endif; ?>

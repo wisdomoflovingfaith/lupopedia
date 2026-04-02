@@ -1,5 +1,8 @@
 # -*- coding: utf-8 -*-
-"""One-off builder: concat mysql/seed files into install/seed_lupopedia_4_1_0.sql"""
+"""Concat mysql/seed files into install/seed_lupopedia_4_1_0.sql (full stack).
+
+install.php prefers this file when it exists; otherwise it uses mysql/seed/seed_4.1.0.sql only.
+"""
 from __future__ import print_function
 import os
 

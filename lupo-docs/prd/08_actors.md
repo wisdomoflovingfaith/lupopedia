@@ -7,7 +7,7 @@ lupopedia.headers:
   artifact_kind: specification
   purpose: Actor identity, inheritance, and personalization model
   traits:
-    - canonical
+    - superseded
     - actors
     - agent-extension
     - department-scope
@@ -20,7 +20,16 @@ lupopedia.headers:
     - personalization
     - modularity
   web_path: http://www.lupopedia.com/lupo-docs/prd/08_actors.md
+lupopedia.edges:
+  outbound_edges:
+    - to: "lupo-docs/prd/00_root_constitutional_system_requirements.md"
+      type: references
+      weight: 1.0
+      reason: "Constitutional anchor"
 ---
+
+> **SUPERSEDED:** Canonical actor PRD is [`15_actors.md`](15_actors.md). This file is retained for historical reference only.
+
 # PRD: Actor Identity, Inheritance, and Personalization
 
 ## Overview

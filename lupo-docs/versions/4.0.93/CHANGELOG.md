@@ -1,5 +1,36 @@
 # Lupopedia 4.0.93 CHANGELOG
 
+## [2026-04-01] PRD consistency pass + constitutional anchor edges (Cursor thread)
+
+### Constitutional PRD (`lupo-docs/prd/00_root_constitutional_system_requirements.md`)
+- **§6** — Renamed to schema reference JSON protection (**RULE 93.PROTECT_SCHEMA_JSON**); canonical DDL + `generate_toon_files.py` → `lupo-database/lupopedia/json/`; legacy `.toon.json` deprecated for new work.
+- **§5.1, §5.5, §5.6** — Agents under `lupo-agents/{agent_key}/`; reserved agent ID ranges and filesystem discovery; actor ID semantics and workspace path rules.
+- **§9.9** — Database-first doctrine block prepended; “schema reference JSON” wording aligned with §6.
+- **§9.16** — File-based agent doctrine: `{agent_key}`, `agent.json`, `AgentDiscovery` primary vs legacy ID lookup.
+- **§9.18** — Wording: schema JSON regeneration (not ambiguous “TOON” only).
+
+### Other PRD updates (same pass)
+- **`PRD_AGENT_DEFINITION_MODEL.md`** — Marked deprecated; canonical layout is **`01_core_identity.md`** (`agent.json`, `capabilities.json`, `properties.json`, `system_prompt.txt`).
+- **`07_agents_faucets.md`** — Replaced “no reserved slots” with reserved numeric IDs vs `{agent_key}` directory discovery; constitutional edge added.
+- **`01_core_identity.md`**, **`15_actors.md`** — Actor/agent ID table and cross-refs to constitutional §5.6.
+- **`08_actors.md`** — Superseded banner; trait `superseded`; constitutional edge added.
+- **`05_auth_user_actor_agent_transformation.md`** — Canonical lease on **`lupo_actor_auth_users`**; YAML edges repaired; auxiliary `lupo_actor_instances` / `lupo_actor_lease_sessions` down-weighted; closing `---` delimiter fixed.
+- **`01_installer_requirements.md`** — Timestamps: bare **`BIGINT`** UTC (no `BIGINT(14)` display width); paths under `lupo-docs/prd/`.
+- **Header paths** — `file_path_from_root` / `web_path` corrected from `lupo-docs/versions/4.0.93/prd/` to `lupo-docs/prd/` where files live in grouped PRD dir (`02_data_model`, `03_goals`, `04_lupopedia_js`, `05_auth`, etc.).
+- **`19_garbage_collection_system.md`** — Outbound edges use `lupo_paths.json`, `lupo_referers_daily.json`.
+- **`18_channel_chat_display.md`** — Illustrative column references use `lupo-database/lupopedia/json/*.json`.
+- **`02_data_model.md`**, **`04_lupopedia_js_foundation.md`** — Rule label **93.PROTECT_SCHEMA_JSON** (formerly PROTECT_TOONS) with pointers to constitutional §6 / §9.9.
+- **`README.md` (prd)** — Constitutional edge first in edge list; migration “FROM” path clarified.
+
+### Constitutional anchor edges (metadata)
+- Every markdown file under **`lupo-docs/prd/`** except **`00_root_constitutional_system_requirements.md`** now includes `lupopedia.edges` → `to: "lupo-docs/prd/00_root_constitutional_system_requirements.md"` (**39** files). Files that previously lacked YAML edges received them (`WHAT_TO_DO_NEXT.md`, `22_web_navigation_architecture.md`, `21_semantic_navbar.md`, `project_structure_prd.md`, `08_actors.md`, `23_health_check_asclepius_prd.md`, `24_actor_onboarding_flow.md`, `24_cli_interface_prd.md`, `21_thread_graduation_doctrine.md`, etc.). Where multiple edges existed, the constitutional anchor was moved to **first** position.
+
+### Version documentation (`lupo-docs/versions/4.0.93/`)
+- **`decisions.md`** — D-53, D-54, D-55, O-02 added to summary table; full sections appended; header/footer timestamps updated.
+- **`PLAN.md`**, **`TODO.md`**, **`CHANGELOG.md`** — This entry and completed checklist lines for the same scope.
+
+---
+
 ## [2026-04-01] Deprecated lupo-docs/status/ Directory
 
 - **Archived**: 135 historical IDE handoff files moved to `lupo-archive/lupo-docs-status-archive/`

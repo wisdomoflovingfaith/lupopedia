@@ -1,8 +1,8 @@
 ---
 lupopedia.headers:
   lupopedia.schema: prd
-  file_path_from_root: "lupo-docs/versions/4.0.93/prd/01_installer_requirements.md"
-  web_path: "http://www.lupopedia.com/lupopedia/lupo-docs/versions/4.0.93/prd/01_installer_requirements.md"
+  file_path_from_root: "lupo-docs/prd/01_installer_requirements.md"
+  web_path: "http://www.lupopedia.com/lupopedia/lupo-docs/prd/01_installer_requirements.md"
   last_modified_utc: "20260330190000"
   channel_id: 42
   actor_id: 102
@@ -14,7 +14,7 @@ lupopedia.headers:
   tags: ["installer", "constitutional", "system_requirements"]
 lupopedia.edges:
   outbound_edges:
-    - { to: "lupo-docs/prd/00_root_constitutional_system_requirements.md", type: "references", weight: 1.0 }
+    - { to: "lupo-docs/prd/00_root_constitutional_system_requirements.md", type: "references", weight: 1.0, reason: "Constitutional anchor" }
     - { to: "lupo-docs/versions/4.0.93/WHAT_TO_DO_NEXT.md", type: "references", weight: 0.95, reason: "Installer verification §14" }
 lupopedia.footer:
   last_verified: "20260331140000"
@@ -49,7 +49,7 @@ This PRD defines the installer requirements for Lupopedia, ensuring compliance w
 - Must not create foreign keys, triggers, functions, or procedures.
 - Must not use AUTO_INCREMENT or UNSIGNED.
 - All primary keys must be generated using `IdGenerator::generate()`.
-- All timestamps must be BIGINT(14) UTC.
+- All timestamps must be `BIGINT` UTC `YYYYMMDDHHIISS` (no display width on integer types; see `00_root_constitutional_system_requirements.md` §3.5 and §9.7).
 - Must use database-neutral SQL compatible with MySQL 8.0+ and PostgreSQL 15+.
 
 ### 3.1 Schema and seed files (4.0.93+)

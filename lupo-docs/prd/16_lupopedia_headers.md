@@ -22,6 +22,10 @@ lupopedia.headers:
   - "verification"
 lupopedia.edges:
   outbound_edges:
+    - to: "lupo-docs/prd/00_root_constitutional_system_requirements.md"
+      type: references
+      weight: 1.0
+      reason: "Constitutional anchor"
     - to: "lupo-docs/doctrine/LUPOPEDIA_HEADERS/README.md"
       type: references
       weight: 1.0

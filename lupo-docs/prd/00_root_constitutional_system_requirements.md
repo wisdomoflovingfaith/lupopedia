@@ -4,8 +4,8 @@ lupopedia.headers:
   file_path_from_root: "lupo-docs/prd/00_root_constitutional_system_requirements.md"
   web_path: "http://www.lupopedia.com/lupopedia/lupo-docs/prd/00_root_constitutional_system_requirements.md"
   federation_node_id: 0
-  when_updated: "20260401000000"
-  last_modified_utc: "20260401000000"
+  when_updated: "20260401180000"
+  last_modified_utc: "20260401180000"
   channel_id: 42
   thread_id: "constitutional-root-requirements"
   actor_id: 102
@@ -72,7 +72,7 @@ lupopedia.edges:
     - to: "lupo-agents/"
       type: references
       weight: 1.0
-      reason: "Agent definition model dependency — section 6.1 file-based agent doctrine"
+      reason: "Agent definition model dependency — sections 5.1, 6.1, and 9.16 file-based agent doctrine"
     - to: "lupo-tests/unit/id_generation_compliance_test.php"
       type: references
       weight: 0.9
@@ -84,11 +84,11 @@ lupopedia.edges:
     - to: "lupo-database/lupopedia/json/"
       type: references
       weight: 1.0
-      reason: "TOON JSON files — authoritative column/type reference per section 9.9"
+      reason: "Schema reference JSON — authoritative column/type reference per sections 6 and 9.9"
     - to: "lupo-docs/database/lupopedia/tables/active/"
       type: references
       weight: 1.0
-      reason: "Table documentation generated from TOON exports — required reading before any SQL per section 9.9"
+      reason: "Table documentation — required reading before any SQL per section 9.9"
     - to: "lupo-docs/database/lupopedia/tables/semantic_navbar/"
       type: references
       weight: 0.9
@@ -96,9 +96,9 @@ lupopedia.edges:
     - to: "lupo-scripts/generate_toon_files.py"
       type: references
       weight: 0.9
-      reason: "Script that generates TOON JSON files from live database"
+      reason: "Script that generates schema reference JSON under lupo-database/lupopedia/json/ from the live database"
 lupopedia.footer:
-  last_verified: "20260401"
+  last_verified: "20260401180000"
   verified_by:
     identity_type: actor
     actor_id: 102
@@ -276,7 +276,7 @@ Forbidden:
 
 ### 5.1 Agents
 
-Agents are autonomous AI entities defined exclusively by files in `lupo-agents/<agent_id>/`. The database stores only runtime state — never definition content.
+Agents are autonomous AI entities defined exclusively by files in `lupo-agents/{agent_key}/` (human-readable slug, e.g. `wolfie`, `lilith`). The database stores only runtime state — never definition content.
 
 ### 5.2 Actors
 
@@ -298,22 +298,38 @@ An auth_user may use an actor only if:
 
 See `lupo-docs/doctrine/IDENTITY_LAYERS_DOCTRINE.md` for the full five-layer model.
 
+### 5.5 Reserved agent IDs and filesystem discovery
+
+- **System agents:** Numeric `agent_id` values **1–2025** are reserved for core system agents (WOLFIE, LILITH, IDE faucets, etc.). Resolve authoritative IDs from `lupo-database/lupopedia/actors/actor_id/registry.json` and seed data — do not invent ad hoc IDs in that range.
+- **Filesystem discovery:** Definitions live under `lupo-agents/{agent_key}/`. Discovery is by directory name (`AgentDiscovery::getAgent($agent_key)` as primary; `getAgentById($agent_id)` for legacy).
+- **No empty placeholder folders:** The tree does not use meaningless numeric-only directories; an agent exists only when its `{agent_key}` directory and required files exist.
+
+### 5.6 Actor ID semantics
+
+- **Reserved system actors:** Low `actor_id` values are fixed at install for orchestration, faucets, and registry-backed identities. Resolve from `registry.json`, seed, and `IDENTITY_LAYERS_DOCTRINE.md` (human-backed actors typically use `actor_id` ≥ 1000).
+- **New runtime allocations:** When issuing a new primary key via `IdGenerator::generate()`, expect `YYYYMMDDHHIISS` + 4-digit sequence (per section 9.7); numeric values are not “random” — they are deterministic from the generator.
+- **Workspace paths:**
+  - **System / reserved layout:** `actor_id` &lt; 2026 → `lupo-actors/{actor_id}/`
+  - **Runtime layout:** `actor_id` ≥ 2026 → `lupo-actors/YYYY/MM/{actor_id}/` (YYYY/MM derived from the timestamp prefix in the ID where applicable)
+
 ---
 
-## 6. TOON File Protection (RULE 93.PROTECT_TOONS)
+## 6. Schema reference JSON protection (RULE 93.PROTECT_SCHEMA_JSON)
 
-- Database is the source of truth
-- TOON JSON files (`lupo-database/lupopedia/toon/*.toon.json`) are read-only reflections
-- No system may write to TOON files
-- No schema inference from TOON files
+This rule was formerly titled “TOON File Protection.” **Canonical DDL** is the database of record.
 
-**Implementation:** TOON files are generated only by `lupo-scripts/generate_toon_files.py`. No application code may write to `lupo-database/lupopedia/toon/`.
+- **Source of truth:** `lupo-database/lupopedia/mysql/install/install_new_lupopedia.sql`
+- **Regeneration:** `python lupo-scripts/generate_toon_files.py` produces **schema-only** JSON under `lupo-database/lupopedia/json/` (one `<table_name>.json` per table; **no row data**)
+- **Purpose:** Those JSON files are **read-only schema reference documents** for tooling and AI agents
+- **Legacy `.toon.json` paths:** Deprecated for new work; do not hand-maintain parallel TOON trees. Use `lupo-database/lupopedia/json/<table>.json` and `lupo-docs/database/lupopedia/tables/active/<table>.md`
+
+No application code may write to `lupo-database/lupopedia/json/` except through the approved generation workflow.
 
 ---
 
-## 6.1 Agent File Protection (RULE 93.PROTECT_AGENTS)
+## 6.1 Agent file protection (RULE 93.PROTECT_AGENTS)
 
-- Agent definitions are file-based in `lupo-agents/{agent_id}/` (source of truth)
+- Agent definitions are file-based in `lupo-agents/{agent_key}/` (source of truth); numeric `agent_id` is carried in `agent.json` (or equivalent) for backward compatibility
 - Database stores only runtime state and metrics
 - No system may write to agent definition files
 - Agent capabilities come from files, not database
@@ -418,7 +434,14 @@ All queries must filter `WHERE is_deleted = 0` by default. Never use hard `DELET
 
 ---
 
-### 9.9 Schema Inference Prohibition (RULE 93.NO_SCHEMA_INFERENCE)
+### 9.9 Schema inference prohibition and database-first doctrine (RULE 93.NO_SCHEMA_INFERENCE)
+
+#### Database-first doctrine (canonical)
+
+- **Source of truth:** `lupo-database/lupopedia/mysql/install/install_new_lupopedia.sql`
+- **Regeneration:** `python lupo-scripts/generate_toon_files.py` produces schema-only JSON in `lupo-database/lupopedia/json/`
+- **Purpose:** Those JSON files are **schema reference documents** for AI agents and tooling (read-only; **no data rows**)
+- **Legacy `.toon.json`:** Deprecated; use `lupo-database/lupopedia/json/<table_name>.json` and table markdown docs (see also section 6)
 
 **Agents and IDE tools MUST NEVER guess, infer, or assume column names, table names, or table structure.**
 
@@ -436,12 +459,12 @@ This is a hard constitutional rule. Guessing schema produces broken SQL, wrong c
 
 #### Critical misconception — JSON files are NOT a file database
 
-The TOON JSON files in `lupo-database/lupopedia/json/` are **schema reference documents**, not a file-based database. Lupopedia uses **MySQL** as its database. The JSON files exist solely so agents and tools can read column names, types, and indexes without parsing large SQL files or guessing. They must never be used as a data source, queried as if they were records, or treated as the system of record for any data.
+The schema reference JSON files in `lupo-database/lupopedia/json/` are **not** a file-based database. Lupopedia uses a real DBMS (MySQL / MariaDB / PostgreSQL per hosting). The JSON files exist so agents and tools can read column names, types, and indexes without parsing large SQL files or guessing. They must never be used as a data source, queried as if they were records, or treated as the system of record for any data.
 
 #### Required sources — always consult before writing any SQL or table reference:
 
 1. **Table documentation** — `lupo-docs/database/lupopedia/tables/active/<table_name>.md` — human-readable docs with column lists, types, indexes, and example queries. **Read this first.**
-2. **TOON JSON files** — `lupo-database/lupopedia/json/<table_name>.json` — machine-readable schema generated from the live database by `lupo-scripts/generate_toon_files.py`. Contains fields, indexes, and primary key. **Contains no row data — structure only.**
+2. **Schema reference JSON** — `lupo-database/lupopedia/json/<table_name>.json` — machine-readable schema generated from the live database by `lupo-scripts/generate_toon_files.py`. Contains fields, indexes, and primary key. **Contains no row data — structure only.**
 3. **Install SQL** — `lupo-database/lupopedia/mysql/install/install_new_lupopedia.sql` — canonical DDL. Use for authoritative CREATE TABLE definitions when needed, but the table docs and JSON files are faster for column lookups.
 
 #### Table documentation locations:
@@ -458,7 +481,7 @@ The TOON JSON files in `lupo-database/lupopedia/json/` are **schema reference do
 4. Write SQL using only confirmed column names from those sources
 5. Never substitute a guessed column name even if it "seems obvious"
 
-**Rationale:** The table prefix is dynamic (`LUPO_TABLE_PREFIX`), primary keys are deterministic BIGINTs, and column names are project-specific and do not follow generic conventions. A single wrong column name silently returns no rows or corrupts data with no error message. The TOON files and table docs exist precisely to eliminate this risk.
+**Rationale:** The table prefix is dynamic (`LUPO_TABLE_PREFIX`), primary keys are deterministic BIGINTs, and column names are project-specific and do not follow generic conventions. A single wrong column name silently returns no rows or corrupts data with no error message. The schema JSON files and table docs exist precisely to eliminate this risk.
 
 ---
 
@@ -518,9 +541,12 @@ All project directories MUST use the fixed prefix `lupo-`. Lowercase ASCII only.
 
 ---
 
-### 9.16 File-Based Agent Doctrine (RULE 93.FILE_BASED_AGENT_DOCTRINE)
+### 9.16 File-based agent doctrine (RULE 93.FILE_BASED_AGENT_DOCTRINE) (updated)
 
-Agents MUST be defined exclusively by files in `lupo-agents/<agent_id>/`.
+- **Location:** `lupo-agents/{agent_key}/` (human-readable slug, e.g. `wolfie`, `lilith`)
+- **Agent ID:** Stored in `agent.json` (and related files) for backward compatibility with numeric `agent_id`
+- **Resolution:** `AgentDiscovery::getAgent($agent_key)` is the primary lookup; `getAgentById($agent_id)` is legacy
+- **Rationale:** Human-readable directories eliminate numeric-ID path confusion (see also sections 5.1, 5.5, and 6.1)
 
 Database stores only: `status`, `version`, `file_hash`, `file_signature`, `last_activated`, `last_error`, `uptime`, `health`, `mood`, `activation_state`, `pairing_state`.
 
@@ -557,11 +583,11 @@ No definition fields may exist in this table.
 
 When a table needed for a feature does not exist in `install_new_lupopedia.sql`, the correct procedure is:
 
-1. **Verify the table is truly missing** — check `lupo-database/lupopedia/json/<table>.json` and `install_new_lupopedia.sql`. If a TOON JSON exists, the table is in the live DB but missing from the install script.
+1. **Verify the table is truly missing** — check `lupo-database/lupopedia/json/<table>.json` and `install_new_lupopedia.sql`. If a schema JSON file exists, the table is in the live DB but missing from the install script.
 2. **Create a SQL proposal file** at `lupo-database/lupopedia/mysql/migrations/add_<table_name>_YYYYMMDD.sql` containing the `CREATE TABLE` and `CREATE INDEX` statements using `{{prefix}}` placeholders.
 3. **The SQL file is reviewed and applied** by updating `install_new_lupopedia.sql` directly — adding the `CREATE TABLE` block in the appropriate section.
 4. **No data migration is needed** — there is no Lupopedia-to-Lupopedia upgrade path. All schema changes take effect on fresh install via `install_new_lupopedia.sql`.
-5. **Update the TOON** — after the install SQL is updated, regenerate TOON files via `lupo-scripts/generate_toon_files.py` and create a table doc in `lupo-docs/database/lupopedia/tables/active/<table_name>.md`.
+5. **Regenerate schema JSON** — after the install SQL is updated, run `lupo-scripts/generate_toon_files.py` and create a table doc in `lupo-docs/database/lupopedia/tables/active/<table_name>.md`.
 
 **Forbidden:**
 - Creating tables via CLI (`mysql -u root -p < file.sql`) — see section 9.18

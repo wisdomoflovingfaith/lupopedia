@@ -143,10 +143,6 @@ lupopedia.edges:
       type: references
       weight: 1.0
       reason: "Widget implementation and JavaScript architecture"
-    - to: "lupo-docs/versions/4.0.93/prd/01_semantic_monitoring_widget.md"
-      type: superseded_by
-      weight: 0.8
-      reason: "This file supersedes the 4.0.93 version"
     - to: "lupo-docs/database/lupopedia/tables/active/lupo_paths.md"
       type: references
       weight: 1.0

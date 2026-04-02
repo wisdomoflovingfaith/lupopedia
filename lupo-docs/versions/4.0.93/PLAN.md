@@ -4,7 +4,7 @@ lupopedia.headers:
   version_when_written: "4.0.93"
   file_path_from_root: "lupo-docs/versions/4.0.93/PLAN.md"
   web_path: "http://www.lupopedia.com/lupo-docs/versions/4.0.93/PLAN.md"
-  last_modified_utc: "20260331235900"
+  last_modified_utc: "20260401180000"
   channel_id: 42
   actor_id: 102
   actor_name: "HEPHAESTUS"
@@ -17,6 +17,14 @@ lupopedia.headers:
 
 # Lupopedia 4.0.93 PLAN
 
+
+## PRD consistency & constitutional anchors (2026-04-01, Cursor thread)
+
+- **[x]** Review `lupo-docs/prd/` for cross-file conflicts (TOON/json paths, agent directory naming, actor PRD duplication, lease table authority) — documented in thread; remediated in PRDs and `00_root_constitutional_system_requirements.md`.
+- **[x]** Align constitutional PRD: schema reference JSON (`lupo-database/lupopedia/json/`), **93.PROTECT_SCHEMA_JSON**, §5.5–5.6, §6, §9.9, §9.16, §9.18; `lupo-agents/{agent_key}/`; deprecate `PRD_AGENT_DEFINITION_MODEL.md` on-disk layout in favor of `01_core_identity.md`.
+- **[x]** Mark `08_actors.md` superseded by `15_actors.md`; clarify `05_auth_user_actor_agent_transformation.md` canonical lease on `lupo_actor_auth_users`; fix PRD header paths under `lupo-docs/prd/`.
+- **[x]** Add explicit `lupopedia.edges` constitutional anchor to every file in `lupo-docs/prd/` except `00_root_constitutional_system_requirements.md` (39 files); anchor listed first where multiple edges exist.
+- **[x]** Update `lupo-docs/versions/4.0.93/` `decisions.md`, `PLAN.md`, `TODO.md`, `CHANGELOG.md` for this documentation thread.
 
 ## 🆕 Major Changes (March 2026, updated April)
 

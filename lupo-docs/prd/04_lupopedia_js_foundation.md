@@ -2,8 +2,8 @@
 lupopedia.headers:
   header_format_version: 2
   lupopedia.schema: prd
-  file_path_from_root: /lupo-docs/versions/4.0.93/prd/04_lupopedia_js_foundation.md
-  web_path: http://www.lupopedia.com/lupopedia/lupo-docs/versions/4.0.93/prd/04_lupopedia_js_foundation.md
+  file_path_from_root: "lupo-docs/prd/04_lupopedia_js_foundation.md"
+  web_path: "http://www.lupopedia.com/lupopedia/lupo-docs/prd/04_lupopedia_js_foundation.md"
   last_modified_utc: "20260330163000"
   channel_id: 42
   thread_id: "js-foundation"
@@ -20,6 +20,10 @@ lupopedia.headers:
   - "frontend"
 lupopedia.edges:
   outbound_edges:
+    - to: "lupo-docs/prd/00_root_constitutional_system_requirements.md"
+      type: references
+      weight: 1.0
+      reason: "Constitutional anchor"
     - to: "lupo-database/lupopedia/json/lupo_visits.json"
       type: references
       weight: 1.0
@@ -222,6 +226,6 @@ The `livehelp_` to `lupo_` mapping provides:
 
 ---
 
-**RULE [93.PROTECT_TOONS]**: JS event logic must reference actual database schema from Toon JSONs, not assumed structures. All schema evolution must be verified with `generate_toon_files.py`.
+**RULE [93.PROTECT_SCHEMA_JSON]** (formerly PROTECT_TOONS): JS event logic must reference actual database schema from `lupo-database/lupopedia/json/*.json`, not assumed structures. All schema evolution must be verified with `generate_toon_files.py`. See `00_root_constitutional_system_requirements.md` §6 and §9.9.
 
 **LILITH Verdict**: The "Nerves" must connect to the real "Senses" (database schema) not imagined structures.

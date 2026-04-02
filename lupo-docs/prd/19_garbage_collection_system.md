@@ -25,6 +25,10 @@ lupopedia.headers:
   - "unified-tables"
 lupopedia.edges:
   outbound_edges:
+    - to: "lupo-docs/prd/00_root_constitutional_system_requirements.md"
+      type: references
+      weight: 1.0
+      reason: "Constitutional anchor"
     - to: "lupo-docs/prd/11_analytics_tracking.md"
       type: references
       weight: 1.0
@@ -33,14 +37,14 @@ lupopedia.edges:
       type: implements
       weight: 1.0
       reason: "Legacy GC pattern reference"
-    - to: "lupo-database/lupopedia/toon/lupo_paths.toon"
+    - to: "lupo-database/lupopedia/json/lupo_paths.json"
       type: references
       weight: 1.0
-      reason: "Paths table schema (unified)"
-    - to: "lupo-database/lupopedia/toon/lupo_referers_daily.toon"
+      reason: "Paths table schema reference (unified)"
+    - to: "lupo-database/lupopedia/json/lupo_referers_daily.json"
       type: references
       weight: 1.0
-      reason: "Referrers table schema (unified)"
+      reason: "Referrers daily table schema reference (unified)"
 lupopedia.footer:
   last_verified: "20260401000000"
   verified_by:

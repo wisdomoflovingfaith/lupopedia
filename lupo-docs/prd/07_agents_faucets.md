@@ -5,7 +5,7 @@ lupopedia.headers:
   version_when_written: "4.0.93"
   file_path_from_root: "lupo-docs/prd/07_agents_faucets.md"
   web_path: "http://www.lupopedia.com/lupopedia/lupo-docs/prd/07_agents_faucets.md"
-  last_modified_utc: "20260331160000"
+  last_modified_utc: "20260401180000"
   channel_id: 42
   thread_id: "prd-grouped"
   actor_id: 2
@@ -24,6 +24,10 @@ lupopedia.headers:
   - "ide_driven"
 lupopedia.edges:
   outbound_edges:
+    - to: "lupo-docs/prd/00_root_constitutional_system_requirements.md"
+      type: references
+      weight: 1.0
+      reason: "Constitutional anchor"
     - to: "lupo-docs/database/lupopedia/tables/"
       type: references
       weight: 1.0
@@ -37,7 +41,7 @@ lupopedia.edges:
       weight: 1.0
       reason: "Agents use API endpoints"
 lupopedia.footer:
-  last_verified: "20260331160000"
+  last_verified: "20260401180000"
   verified_by:
     actor_id: 2
     agent_name_identity: "LILITH"
@@ -60,7 +64,7 @@ lupopedia.footer:
 3. **Flexible**: Add/remove agents by creating/deleting directories
 4. **Simplified**: No complex seed data management for agents
 5. **Alias Support**: Natural support for multiple names per agent
-6. **No Reserved Slots**: Clean system without artificial limitations
+6. **Reserved numeric IDs vs. filesystem keys:** Numeric `agent_id` values **1–2025** are reserved for core system agents (resolve from `registry.json` and seed). **Filesystem** discovery uses `lupo-agents/{agent_key}/` — there are no empty numeric placeholder folders; an agent exists only when that directory exists. See `00_root_constitutional_system_requirements.md` §5.5.
 
 ### Agent Discovery System
 

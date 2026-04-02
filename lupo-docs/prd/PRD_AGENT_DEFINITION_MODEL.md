@@ -4,7 +4,7 @@ lupopedia.headers:
   lupopedia.schema: prd
   file_path_from_root: lupo-docs/prd/PRD_AGENT_DEFINITION_MODEL.md
   web_path: http://www.lupopedia.com/lupopedia/lupo-docs/prd/PRD_AGENT_DEFINITION_MODEL.md
-  last_modified_utc: "20260331153000"
+  last_modified_utc: "20260401180000"
   channel_id: 42
   actor_id: 2
   agent_name_identity: "LILITH"
@@ -20,6 +20,10 @@ lupopedia.headers:
     - structure
 lupopedia.edges:
   outbound_edges:
+    - to: "lupo-docs/prd/00_root_constitutional_system_requirements.md"
+      type: references
+      weight: 1.0
+      reason: "Constitutional anchor"
     - to: lupo-agents/
       type: references
       weight: 1.0
@@ -28,10 +32,6 @@ lupopedia.edges:
       type: references
       weight: 1.0
       reason: Identity model doctrine
-    - to: lupo-docs/prd/00_root_constitutional_system_requirements.md
-      type: references
-      weight: 1.0
-      reason: Constitutional anchor
 lupopedia.footer:
   last_verified: "20260331153000"
   verified_by:
@@ -40,7 +40,9 @@ lupopedia.footer:
   orchestrator: "lilith:audit|cursor:implementation"
 ---
 
-# PRD: Canonical Agent Definition Model
+> **DEPRECATED (2026-04-01):** On-disk **canonical** agent layout is defined in [`01_core_identity.md`](01_core_identity.md): `agent.json`, `capabilities.json`, `properties.json`, `system_prompt.txt` under `lupo-agents/{agent_key}/`. This file remains **non-canonical** reference for optional concepts (`soul.txt`, `memory.json`, `boundaries.json`, `activation/`, `identity.json` vs `agent.json`) until any unique material is merged into `01_core_identity.md`. For constitutional rules see [`00_root_constitutional_system_requirements.md`](00_root_constitutional_system_requirements.md) §5.1, §5.5, §6.1, §9.16.
+
+# PRD: Agent Definition Model (deprecated file layout)
 
 ## What is an Agent in Lupopedia?
 An agent is a fully defined, doctrine-aligned, versioned, and constitutional entity with identity, temperament, skills, tools, memory, boundaries, activation logic, and runtime state. Every agent must be self-describing, auditable, and compliant with all Lupopedia doctrines.

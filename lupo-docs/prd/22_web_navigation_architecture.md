@@ -1,3 +1,17 @@
+---
+lupopedia.headers:
+  lupopedia.schema: prd
+  file_path_from_root: "lupo-docs/prd/22_web_navigation_architecture.md"
+  artifact_kind: specification
+  purpose: "Collections and tabs driving global and channel web navigation"
+lupopedia.edges:
+  outbound_edges:
+    - to: "lupo-docs/prd/00_root_constitutional_system_requirements.md"
+      type: references
+      weight: 1.0
+      reason: "Constitutional anchor"
+---
+
 # Web Navigation Architecture (4.0.69)
 
 This spec describes how **collections and tabs** drive global and channel-specific web navigation: dropdown menus, sidebars, and tab-based resource views. Implementation is backend/data-layer; frontend templates consume the data.

@@ -461,20 +461,23 @@ class AuthSessionManager
     {
         // Get user's departments
         $user_departments = $this->getUserDepartments($auth_user_id);
-        
-        if (empty($user_departments)) {
-            // User has no departments, return empty
-            return [];
-        }
-        
-        // Check if user is in department 0 (root)
+
         $is_root_user = false;
-        $department_ids = [];
+        $department_ids = array();
         foreach ($user_departments as $dept) {
             $department_ids[] = $dept['department_id'];
-            if ($dept['department_id'] == 0) {
+            if ((int) $dept['department_id'] === 0) {
                 $is_root_user = true;
             }
+        }
+
+        // Global admin (e.g. module owner) without auth_user_departments rows still needs the root actor list.
+        if (!$is_root_user && $isAdmin) {
+            $is_root_user = true;
+        }
+
+        if (empty($user_departments) && !$is_root_user) {
+            return array();
         }
         
         // If user is in department 0 (root), they can see all actors
@@ -588,5 +591,17 @@ class AuthSessionManager
                 ORDER BY aud.is_primary DESC, d.name";
         
         return $this->db->fetchAll($sql, ['auth_user_id' => $auth_user_id]);
+    }
+
+    /**
+     * Release all active leases for a user (set status = 'released', is_primary = 0)
+     */
+    public function releaseAllLeasesForUser($auth_user_id)
+    {
+        $now = gmdate('YmdHis');
+        $sql = "UPDATE {$this->table_prefix}actor_auth_users
+                SET status = 'released', is_primary = 0, updated_ymdhis = :now
+                WHERE auth_user_id = :auth_user_id AND status = 'active' AND is_deleted = 0";
+        $this->db->query($sql, array('now' => $now, 'auth_user_id' => $auth_user_id));
     }
 }

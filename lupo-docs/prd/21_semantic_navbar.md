@@ -17,6 +17,13 @@ lupopedia.headers:
   purpose: "JS semantic floating navbar: API endpoints, SQL usage, data flow, icon→table mapping, external-site behavior."
   tags: ["semantic_navbar", "frontend", "api", "4.0.71"]
 
+lupopedia.edges:
+  outbound_edges:
+    - to: "lupo-docs/prd/00_root_constitutional_system_requirements.md"
+      type: references
+      weight: 1.0
+      reason: "Constitutional anchor"
+
 lupopedia.footer:
   version: "4.0.71"
   last_verified: "20260312"

@@ -5,7 +5,7 @@ lupopedia.headers:
   when_updated: "20260331173500"
   file_path_from_root: "lupo-docs/prd/01_core_identity.md"
   web_path: "http://www.lupopedia.com/lupopedia/lupo-docs/prd/01_core_identity.md"
-  last_modified_utc: "20260331173500"
+  last_modified_utc: "20260401180000"
   channel_id: 42
   thread_id: "prd-grouped"
   actor_id: 2
@@ -21,6 +21,10 @@ lupopedia.headers:
   - "core_identity"
 lupopedia.edges:
   outbound_edges:
+    - to: "lupo-docs/prd/00_root_constitutional_system_requirements.md"
+      type: references
+      weight: 1.0
+      reason: "Constitutional anchor"
     - to: "lupo-docs/database/lupopedia/tables/"
       type: references
       weight: 1.0
@@ -33,10 +37,6 @@ lupopedia.edges:
       type: references
       weight: 1.0
       reason: "Agents depend on identity system"
-    - to: "lupo-docs/versions/4.0.93/prd/00_root_constitutional_system_requirements.md"
-      type: references
-      weight: 1.0
-      reason: "Root constitutional system requirements"
 lupopedia.footer:
   last_verified: "20260331173500"
   verified_by:
@@ -107,7 +107,7 @@ lupopedia.footer:
 |---|-----------|-----------|
 | **Definition** | Immutable template / persona | Runtime instance with context |
 | **Storage** | Filesystem (`lupo-agents/{agent_key}/`) | Database + workspace (`lupo-actors/`) |
-| **ID Type** | Agent ID (system: 1-2025, runtime: 2026+) | Actor ID (deterministic: YYYYMMDDHHIISS + 4 digits) |
+| **ID Type** | Agent ID (1–2025 reserved for system agents per registry; see `00_root` §5.5) | Actor ID: registry-reserved low IDs + human actors (typically ≥ 1000); new generated IDs use `YYYYMMDDHHIISS` + 4-digit sequence (`IdGenerator`); see `00_root` §5.6 |
 | **Lifecycle** | Permanent (system agents) | Created, used, archived |
 | **Learns** | No — agent is the template | Yes — actors learn from humans |
 | **Context** | None — agent is generic | Department-specific, user-specific |

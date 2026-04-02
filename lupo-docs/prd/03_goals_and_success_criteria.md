@@ -2,8 +2,8 @@
 lupopedia.headers:
   header_format_version: 2
   lupopedia.schema: prd
-  file_path_from_root: /lupo-docs/versions/4.0.93/prd/03_goals_and_success_criteria.md
-  web_path: http://www.lupopedia.com/lupopedia/lupo-docs/versions/4.0.93/prd/03_goals_and_success_criteria.md
+  file_path_from_root: "lupo-docs/prd/03_goals_and_success_criteria.md"
+  web_path: "http://www.lupopedia.com/lupopedia/lupo-docs/prd/03_goals_and_success_criteria.md"
   last_modified_utc: "20260330163000"
   channel_id: 42
   thread_id: "goals-success-criteria"
@@ -21,6 +21,10 @@ lupopedia.headers:
   - "doctrine"
 lupopedia.edges:
   outbound_edges:
+    - to: "lupo-docs/prd/00_root_constitutional_system_requirements.md"
+      type: references
+      weight: 1.0
+      reason: "Constitutional anchor"
     - to: "lupo-docs/versions/4.0.93/PLAN.md"
       type: references
       weight: 1.0
@@ -29,10 +33,6 @@ lupopedia.edges:
       type: references
       weight: 1.0
       reason: Task tracking for 4.0.93
-    - to: "lupo-docs/prd/00_root_constitutional_system_requirements.md"
-      type: references
-      weight: 1.0
-      reason: Root constitutional system requirements
 lupopedia.footer:
   last_verified: "20260330163000"
   verified_by:

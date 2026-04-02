@@ -148,9 +148,8 @@ class AuthService
         if (session_status() === PHP_SESSION_NONE) {
             session_start();
         }
-        
+        // Mark session as expired in database
         if (isset($_SESSION['actor_id'])) {
-            // Mark session as expired in database using PDO_DB update method
             $this->db->update(
                 "{$this->table_prefix}sessions",
                 [
@@ -161,7 +160,12 @@ class AuthService
                 ['session_id' => session_id()]
             );
         }
-        
+        // Release all active leases for this user
+        if (isset($_SESSION['auth_user_id'])) {
+            require_once __DIR__ . '/AuthSessionManager.php';
+            $leaseManager = new AuthSessionManager();
+            $leaseManager->releaseAllLeasesForUser($_SESSION['auth_user_id']);
+        }
         session_destroy();
         return true;
     }

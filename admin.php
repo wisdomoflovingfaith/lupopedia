@@ -101,6 +101,37 @@ if ($isUserLoggedIn) {
     }
 }
 
+// Display name for "Acting as" — human actors (e.g. captain, is_agent=0) are not in getActorsUserCanActAs() list
+$admin_active_actor_display = '';
+if ($isUserLoggedIn && $admin_active_actor_id > 0) {
+    foreach ($admin_actor_list as $row) {
+        if ((int) $row['actor_id'] === $admin_active_actor_id) {
+            if (isset($row['name']) && $row['name'] !== '') {
+                $admin_active_actor_display = $row['name'];
+            } elseif (isset($row['actor_name'])) {
+                $admin_active_actor_display = $row['actor_name'];
+            }
+            break;
+        }
+    }
+    if ($admin_active_actor_display === '') {
+        require_once LUPOPEDIA_PATH . '/lupo-includes/classes/DatabaseFactory.php';
+        $db_ad = DatabaseFactory::getConnection();
+        $tp = defined('LUPO_TABLE_PREFIX') ? LUPO_TABLE_PREFIX : 'lupo_';
+        $arow = $db_ad->fetchRow(
+            "SELECT name, actor_name FROM {$tp}actors WHERE actor_id = :aid AND (is_deleted = 0 OR is_deleted IS NULL) LIMIT 1",
+            array('aid' => $admin_active_actor_id)
+        );
+        if ($arow) {
+            if (isset($arow['name']) && $arow['name'] !== '') {
+                $admin_active_actor_display = $arow['name'];
+            } elseif (isset($arow['actor_name'])) {
+                $admin_active_actor_display = $arow['actor_name'];
+            }
+        }
+    }
+}
+
 // Admin menu: grouped sections matching legacy Crafty nav (legacy/craftysyntax/navigation.php), rewritten for Lupopedia.
 // All sections and items are present as placeholders; content will be implemented per section.
 $admin_menu_sections = array(

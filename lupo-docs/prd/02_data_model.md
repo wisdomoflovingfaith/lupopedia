@@ -2,8 +2,8 @@
 lupopedia.headers:
   header_format_version: 2
   lupopedia.schema: prd
-  file_path_from_root: "lupo-docs/versions/4.0.93/prd/02_data_model.md"
-  web_path: http://www.lupopedia.com/lupopedia/lupo-docs/versions/4.0.93/prd/02_data_model.md
+  file_path_from_root: "lupo-docs/prd/02_data_model.md"
+  web_path: "http://www.lupopedia.com/lupopedia/lupo-docs/prd/02_data_model.md"
   last_modified_utc: "20260330163000"
   channel_id: 42
   thread_id: "data-model"
@@ -20,6 +20,10 @@ lupopedia.headers:
   - "doctrine"
 lupopedia.edges:
   outbound_edges:
+    - to: "lupo-docs/prd/00_root_constitutional_system_requirements.md"
+      type: references
+      weight: 1.0
+      reason: "Constitutional anchor"
     - to: "lupo-database/lupopedia/json/lupo_contexts.json"
       type: references
       weight: 1.0
@@ -388,6 +392,6 @@ findings:
 
 ---
 
-**RULE [93.PROTECT_TOONS]**: The IDE is strictly forbidden from writing to `lupo-database/lupopedia/json/*.json`. Any schema evolution must be drafted in `lupopedia/mysql/seed/` and verified by running `generate_toon_files.py`.
+**RULE [93.PROTECT_SCHEMA_JSON]** (formerly PROTECT_TOONS): The IDE is strictly forbidden from writing to `lupo-database/lupopedia/json/*.json`. Any schema evolution must be drafted in `lupo-database/lupopedia/mysql/` (install/seed) and verified by running `generate_toon_files.py`. See `00_root_constitutional_system_requirements.md` §6.
 
 **LILITH Verdict**: The "Architect" must look at the "Senses" (JSON) but only write to the "DNA" (Install Scripts).

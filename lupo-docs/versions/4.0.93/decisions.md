@@ -2,10 +2,10 @@
 lupopedia.headers:
   header_format_version: 2
   lupopedia.schema: doctrine
-  when_updated: "20260401020000"
+  when_updated: "20260401180000"
   file_path_from_root: "lupo-docs/versions/4.0.93/decisions.md"
   web_path: "http://www.lupopedia.com/lupopedia/lupo-docs/versions/4.0.93/decisions.md"
-  last_modified_utc: "20260401020000"
+  last_modified_utc: "20260401180000"
   federation_node_id: 0
   channel_id: 42
   thread_id: "version-4.0.93-decisions"
@@ -20,7 +20,7 @@ lupopedia.headers:
   - "adr"
   - "version-4.0.93"
 lupopedia.footer:
-  last_verified: "20260401020000"
+  last_verified: "20260401180000"
   verified_by:
     identity_type: "actor"
     actor_id: 1
@@ -34,6 +34,7 @@ lupopedia.footer:
     - "Consolidate all decisions into this file moving forward"
     - "Optional: wire main channels cockpit UI to same api/lupo-channels patterns where useful"
     - "Integrate GarbageCollector class into image.php or lupo_ajax.php for random execution"
+    - "When adding new files under lupo-docs/prd/, include lupopedia.edges anchor to 00_root_constitutional_system_requirements.md"
 ---
 
 # Lupopedia 4.0.93 - Decisions & Action Items
@@ -95,6 +96,10 @@ lupopedia.footer:
 | D-50  | Decision  | Class Consolidation Protocol                   | ANTIGRAVITY| Completed   | 2026-04-01  |           |
 | D-51  | Decision  | LILITH Notepad Justification Injection         | LILITH     | Completed   | 2026-04-01  |           |
 | D-52  | Decision  | Notepad++ Bulk Refactor Side-Effects           | USER       | Completed   | 2026-04-01  | D-50      |
+| D-53  | Decision  | PRD / constitutional alignment (schema JSON, agent_key, actor semantics, lease table) | CURSOR | Completed | 2026-04-01 | D-08 |
+| D-54  | Directive | IDE: constitutional anchor edge on every lupo-docs/prd/*.md (except 00_root) | CURSOR | Completed | 2026-04-01 | D-05 |
+| D-55  | Directive | IDE: Update 4.0.93 version docs (this thread)  | CURSOR     | Completed   | 2026-04-01  | D-05      |
+| O-02  | Observation | Cross-PRD conflict review before remediation (TOON vs json path, agent_id vs agent_key, duplicate actor PRDs) | CURSOR | Integrated | 2026-04-01 | |
 | Q-01  | Question  | HEIMDALL Actor ID Assignment                   | LILITH     | Answered    | 2026-03-31  |           |
 | A-01  | Answer    | HEIMDALL Actor ID Resolution                   | WOLFIE     | Completed   | 2026-03-31  | Q-01      |
 | Q-02  | Question  | MAAT Layer Placement (Kernel vs Coordination)  | LILITH     | Open        | 2026-03-31  |           |
@@ -1944,3 +1949,86 @@ User requested to document the important sub-directories within `lupo-docs/` in 
 ### Consequences
 - Clarifies the structure of the `lupo-docs/` directory.
 - Connects related documentation paths for agents relying on LUPOPEDIA edges and project structure PRDs.
+
+---
+
+## D-53: PRD / Constitutional Documentation Alignment
+
+### Type
+Decision
+
+### Status
+Completed
+
+### Author
+CURSOR (actor_id 102)
+
+### Date
+2026-04-01
+
+### Context
+A read-only review of all files in `lupo-docs/prd/` found internal inconsistencies: constitutional §6 vs §9.9 TOON path wording, `lupo-agents/<agent_id>/` vs `{agent_key}`, two competing agent file layouts (`PRD_AGENT_DEFINITION_MODEL.md` vs `01_core_identity.md`), ambiguous “no reserved slots” in `07_agents_faucets.md`, actor ID wording vs registry, overlapping `08_actors.md` / `15_actors.md`, and `05_auth_user_actor_agent_transformation.md` lease wording vs `lupo_actor_auth_users`. Remediation was applied in-repo (see CHANGELOG 2026-04-01 PRD consistency pass).
+
+### Decision
+- Align `00_root_constitutional_system_requirements.md` with schema reference JSON under `lupo-database/lupopedia/json/`, rule **93.PROTECT_SCHEMA_JSON**, sections **5.5–5.6** (reserved agent IDs, actor ID semantics), updated **§6**, **§9.9**, **§9.16**, **§9.18**; deprecate hand-maintained `.toon.json` trees for new work.
+- Canonical on-disk agent layout: **`01_core_identity.md`** (`agent.json`, `capabilities.json`, `properties.json`, `system_prompt.txt`); **`PRD_AGENT_DEFINITION_MODEL.md`** marked deprecated for layout.
+- **`15_actors.md`** is the canonical actor PRD; **`08_actors.md`** superseded.
+- **`05_auth_user_actor_agent_transformation.md`**: canonical lease storage on **`lupo_actor_auth_users`**; fixed corrupted YAML edges; auxiliary tables noted.
+- **`01_installer_requirements.md`**: timestamps as bare `BIGINT` (no display width); paths under `lupo-docs/prd/`.
+- Correct **`file_path_from_root` / `web_path`** where they pointed at `lupo-docs/versions/4.0.93/prd/` for files living in `lupo-docs/prd/`.
+- **`19_garbage_collection_system.md`** edges: `lupo_paths.json`, `lupo_referers_daily.json`; **`18_channel_chat_display.md`** examples reference `json/` schema files.
+
+### Consequences
+- Single story for schema references, agent directories, actor IDs, leasing, and installer wording.
+- Future PR edits should extend these files rather than reintroducing deprecated layouts.
+
+---
+
+## D-54: Constitutional anchor edge on every grouped PRD file
+
+### Type
+Directive
+
+### Status
+Completed
+
+### Author
+CURSOR (actor_id 102)
+
+### Date
+2026-04-01
+
+### Context
+Doctrine requires new PRDs to declare an outbound edge to the root constitutional PRD. Many files under `lupo-docs/prd/` lacked that YAML edge or used stale paths.
+
+### Decision
+- Add explicit `lupopedia.edges` outbound entry: `to: "lupo-docs/prd/00_root_constitutional_system_requirements.md"`, `type: references`, `weight: 1.0`, `reason: "Constitutional anchor"` to **every** markdown file in `lupo-docs/prd/` **except** `00_root_constitutional_system_requirements.md` (39 files). Where `lupopedia.edges` was missing, add the block (e.g. `WHAT_TO_DO_NEXT.md`, `22_web_navigation_architecture.md`, `21_semantic_navbar.md`, `project_structure_prd.md`, `08_actors.md`, PRDs 23–24, `21_thread_graduation_doctrine.md`).
+- Reorder edges so the constitutional anchor is **first** where multiple edges exist.
+
+### Consequences
+- Validators and humans can rely on consistent constitutional linkage from all PRDs.
+
+---
+
+## D-55: Update 4.0.93 version documentation (this thread)
+
+### Type
+Directive
+
+### Status
+Completed
+
+### Author
+CURSOR (actor_id 102)
+
+### Date
+2026-04-01
+
+### Context
+User requested `lupo-docs/versions/4.0.93/` `decisions.md`, `PLAN.md`, `TODO.md`, and `CHANGELOG.md` be updated to record the PRD alignment work and constitutional-edge sweep from this thread.
+
+### Decision
+- Record D-53–D-55, O-02, and CHANGELOG entries; refresh PLAN/TODO completed items for the same scope.
+
+### Consequences
+- Version folder reflects documentation-only work without implying runtime code changes in this thread.

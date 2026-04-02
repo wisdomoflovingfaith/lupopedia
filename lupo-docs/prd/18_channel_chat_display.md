@@ -24,6 +24,10 @@ lupopedia.headers:
   - "real-time"
 lupopedia.edges:
   outbound_edges:
+    - to: "lupo-docs/prd/00_root_constitutional_system_requirements.md"
+      type: references
+      weight: 1.0
+      reason: "Constitutional anchor"
     - to: "lupo-docs/prd/01_core_identity.md"
       type: references
       weight: 1.0
@@ -415,7 +419,7 @@ class TypingIndicator {
 
 **Implemented read path today:** `channels-api.php` selects from `lupo_dialog_messages` + `lupo_actors` (`a.name AS actor_name`), filters **`m.is_deleted = 0`**, optional `since` on `created_ymdhis`.
 
-**Richer display query (illustrative — verify against TOON before use):** Column names below match `lupo-database/lupopedia/toon/lupo_dialog_messages.toon`, `lupo_actors.toon`, `lupo_actor_moods.toon` (`timestamp_utc`, `mood_r`/`mood_g`/`mood_b`). There is **no** `display_name` on `lupo_actors`; use **`name`** or **`actor_name`** per UI need.
+**Richer display query (illustrative — verify against schema reference JSON before use):** Column names below match `lupo-database/lupopedia/json/lupo_dialog_messages.json`, `lupo_actors.json`, `lupo_actor_moods.json` (`timestamp_utc`, `mood_r`/`mood_g`/`mood_b`). There is **no** `display_name` on `lupo_actors`; use **`name`** or **`actor_name`** per UI need.
 
 ```sql
 SELECT 

@@ -21,6 +21,10 @@ lupopedia.headers:
   - "4.1.0"
 lupopedia.edges:
   outbound_edges:
+    - to: "lupo-docs/prd/00_root_constitutional_system_requirements.md"
+      type: references
+      weight: 1.0
+      reason: "Constitutional anchor"
     - to: "lupo-docs/prd/01_core_identity.md"
       type: references
       weight: 1.0
@@ -33,10 +37,6 @@ lupopedia.edges:
       type: references
       weight: 1.0
       reason: "Database audit results"
-    - to: "lupo-docs/versions/4.0.93/prd/00_root_constitutional_system_requirements.md"
-      type: references
-      weight: 1.0
-      reason: "Root constitutional system requirements"
 lupopedia.footer:
   last_verified: "20260330163000"
   verified_by:
@@ -98,8 +98,8 @@ lupo-docs/prd/
 - **DO NOT**: Remove or modify without updating import scripts
 
 ### Migration Path
-- **FROM**: `lupo-docs/versions/4.0.93/prd/` (per-table PRDs)
-- **TO**: `lupo-docs/prd/` (grouped namespace PRDs)
+- **FROM**: `lupo-docs/versions/4.0.93/prd/` (historical per-table PRD copies, if present)
+- **TO**: `lupo-docs/prd/` (canonical grouped namespace PRDs and constitutional anchor)
 - **STATUS**: Complete and ready for 4.1.0
 
 ## 🔗 Cross-Namespace Dependencies

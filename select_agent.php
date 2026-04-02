@@ -13,8 +13,9 @@ if (session_status() === PHP_SESSION_NONE) {
 }
 
 // Check if user is pending agent selection
+$baseUrl = defined('LUPOPEDIA_PUBLIC_PATH') ? LUPOPEDIA_PUBLIC_PATH : '';
 if (!isset($_SESSION['pending_auth_user_id'])) {
-    header('Location: /lupopedia/login.php');
+    header('Location: ' . $baseUrl . '/login.php');
     exit;
 }
 
@@ -22,33 +23,45 @@ if (!isset($_SESSION['pending_auth_user_id'])) {
 require_once __DIR__ . '/lupo-includes/classes/DatabaseFactory.php';
 require_once __DIR__ . '/lupo-includes/classes/AuthSessionManager.php';
 
+$db = DatabaseFactory::getConnection();
+$table_prefix = defined('LUPO_TABLE_PREFIX') ? LUPO_TABLE_PREFIX : 'lupo_';
 $sessionManager = new AuthSessionManager();
-$auth_user_id = $_SESSION['pending_auth_user_id'];
-$agents = $sessionManager->getActorsUserCanActAs($auth_user_id);
+$auth_user_id = (int) $_SESSION['pending_auth_user_id'];
 
-// Handle form submission
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['agent_id'])) {
-    $agent_id = intval($_POST['agent_id']);
-    $auth_user_id = $_SESSION['pending_auth_user_id'];
-    $username = $_SESSION['pending_username'];
-    
-    $actor_id = $sessionManager->createActorFromAgent($auth_user_id, $agent_id, $username);
-    
-    if ($actor_id) {
-        // Get actor name for session
-        $db = DatabaseFactory::getConnection();
-        $actor = $db->fetchRow("SELECT actor_name FROM lupo_actors WHERE actor_id = :actor_id", ['actor_id' => $actor_id]);
-        
-        $sessionManager->createSession($actor_id, $actor['actor_name']);
-        
-        // Clear pending session data
-        unset($_SESSION['pending_auth_user_id']);
-        unset($_SESSION['pending_username']);
-        
-        header('Location: /lupopedia/admin.php');
-        exit;
+$permRow = $db->fetchRow(
+    "SELECT 1 AS ok FROM {$table_prefix}permissions WHERE user_id = :uid AND permission = 'owner' AND target_type = 'module' AND (is_deleted = 0 OR is_deleted IS NULL) LIMIT 1",
+    array('uid' => $auth_user_id)
+);
+$isAdminForAgentList = !empty($permRow);
+
+$agents = $sessionManager->getActorsUserCanActAs($auth_user_id, $isAdminForAgentList);
+
+// Handle form submission: pick an existing agent actor (seed personas), not lupo_agents.agent_id
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['actor_id'])) {
+    $selected_actor_id = (int) $_POST['actor_id'];
+    $allowed = $sessionManager->getActorsUserCanActAs($auth_user_id, $isAdminForAgentList);
+    $allowed_ids = array();
+    foreach ($allowed as $row) {
+        if (isset($row['actor_id'])) {
+            $allowed_ids[] = (int) $row['actor_id'];
+        }
+    }
+
+    if (!in_array($selected_actor_id, $allowed_ids, true)) {
+        $error = 'That identity is not available. Please choose another.';
     } else {
-        $error = "Failed to create actor from selected agent. Please try again.";
+        $actor = $db->fetchRow(
+            "SELECT actor_name FROM {$table_prefix}actors WHERE actor_id = :actor_id AND is_deleted = 0 AND is_active = 1 LIMIT 1",
+            array('actor_id' => $selected_actor_id)
+        );
+        if ($actor && isset($actor['actor_name'])) {
+            $sessionManager->createSession($selected_actor_id, $actor['actor_name']);
+            unset($_SESSION['pending_auth_user_id']);
+            unset($_SESSION['pending_username']);
+            header('Location: ' . $baseUrl . '/admin.php');
+            exit;
+        }
+        $error = 'Failed to start session for the selected identity. Please try again.';
     }
 }
 
@@ -177,12 +190,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['agent_id'])) {
             </div>
         <?php else: ?>
             <form method="POST" id="agent-form">
-                <input type="hidden" name="agent_id" id="selected_agent_id">
+                <input type="hidden" name="actor_id" id="selected_actor_id">
                 
                 <?php foreach ($agents as $agent): ?>
-                <div class="agent-card" data-agent-id="<?php echo $agent['agent_id']; ?>" onclick="selectAgent(<?php echo $agent['agent_id']; ?>)">
-                    <div class="agent-name"><?php echo htmlspecialchars($agent['agent_name']); ?></div>
-                    <div class="agent-description"><?php echo htmlspecialchars($agent['description'] ?? 'No description available'); ?></div>
+                <?php
+                    $aid = isset($agent['actor_id']) ? (int) $agent['actor_id'] : 0;
+                    $aname = isset($agent['actor_name']) ? $agent['actor_name'] : '';
+                    $disp = isset($agent['name']) ? $agent['name'] : $aname;
+                    $sub = isset($agent['actor_type']) ? $agent['actor_type'] : '';
+                ?>
+                <div class="agent-card" data-actor-id="<?php echo $aid; ?>" onclick="selectAgent(<?php echo $aid; ?>)">
+                    <div class="agent-name"><?php echo htmlspecialchars($disp); ?></div>
+                    <div class="agent-description"><?php echo htmlspecialchars($sub !== '' ? $sub : 'Agent identity'); ?></div>
                 </div>
                 <?php endforeach; ?>
                 
@@ -194,15 +213,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['agent_id'])) {
     <script>
         let selectedId = null;
         
-        function selectAgent(agentId) {
-            selectedId = agentId;
-            document.getElementById('selected_agent_id').value = agentId;
+        function selectAgent(actorId) {
+            selectedId = actorId;
+            document.getElementById('selected_actor_id').value = actorId;
             document.getElementById('submit-btn').disabled = false;
             
             // Highlight selected card
             document.querySelectorAll('.agent-card').forEach(card => {
                 card.classList.remove('selected');
-                if (card.dataset.agentId == agentId) {
+                if (parseInt(card.dataset.actorId, 10) == actorId) {
                     card.classList.add('selected');
                 }
             });
@@ -223,10 +242,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['agent_id'])) {
             
             if (e.key === 'ArrowDown' && currentIndex < cards.length - 1) {
                 e.preventDefault();
-                selectAgent(cards[currentIndex + 1].dataset.agentId);
+                selectAgent(parseInt(cards[currentIndex + 1].dataset.actorId, 10));
             } else if (e.key === 'ArrowUp' && currentIndex > 0) {
                 e.preventDefault();
-                selectAgent(cards[currentIndex - 1].dataset.agentId);
+                selectAgent(parseInt(cards[currentIndex - 1].dataset.actorId, 10));
             } else if (e.key === 'Enter' && selectedId) {
                 e.preventDefault();
                 document.getElementById('agent-form').submit();

@@ -2,9 +2,9 @@
 lupopedia.headers:
   header_format_version: 2
   lupopedia.schema: prd
-  file_path_from_root: /lupo-docs/versions/4.0.93/prd/05_auth_user_actor_agent_transformation.md
-  web_path: http://www.lupopedia.com/lupopedia/lupo-docs/versions/4.0.93/prd/05_auth_user_actor_agent_transformation.md
-  last_modified_utc: "20260330163000"
+  file_path_from_root: "lupo-docs/prd/05_auth_user_actor_agent_transformation.md"
+  web_path: "http://www.lupopedia.com/lupopedia/lupo-docs/prd/05_auth_user_actor_agent_transformation.md"
+  last_modified_utc: "20260401180000"
   channel_id: 42
   thread_id: "auth-user-actor-transformation"
   actor_id: 102
@@ -21,6 +21,10 @@ lupopedia.headers:
   - "v4.0.93"
 lupopedia.edges:
   outbound_edges:
+    - to: "lupo-docs/prd/00_root_constitutional_system_requirements.md"
+      type: references
+      weight: 1.0
+      reason: "Constitutional anchor"
     - to: "lupo-database/lupopedia/json/lupo_auth_users.json"
       type: references
       weight: 1.0
@@ -29,38 +33,30 @@ lupopedia.edges:
       type: references
       weight: 1.0
       reason: Table definition for actors
+    - to: "lupo-database/lupopedia/json/lupo_actor_auth_users.json"
+      type: references
+      weight: 1.0
+      reason: Canonical auth_user to actor lease and relationship table
+    - to: "lupo-docs/prd/15_actors.md"
+      type: references
+      weight: 1.0
+      reason: Canonical actor PRD including lease mechanics on lupo_actor_auth_users
     - to: "lupo-database/lupopedia/json/lupo_actor_instances.json"
       type: references
-      weight: 1.0
-      reason: Table definition for actor instances
-    - to: "lupo-database/lupopedia/json/lupo_actor_templates.json"
-      type: references
-      weight: 1.0
-      reason: Table definition for actor templates
+      weight: 0.5
+      reason: Auxiliary table; not the canonical lease store
     - to: "lupo-database/lupopedia/json/lupo_actor_lease_sessions.json"
       type: references
-      weight: 1.0
-      reason: Table definition for lease sessions
-    - to: "lupo-docs/prd/00_root_constitutional_system_requirements.md"
-      type: references
-      weight: 1.0
-      reason: Root constitutional system requirements
-        actor_id: 102
-        actor_name: cursor
-        event_date: '20260330'
-        description: Initial PRD for agent→actor→auth_user transformation, leasing, and permission rules
-        faucet_slug: cursor
-    - event_type: update
-        actor_id: 102
-        actor_name: cursor
-        event_date: '20260330'
-        description: Added canonical lupopedia.headers, removed header_format_version, and added revision history per doctrine
-        faucet_slug: cursor
+      weight: 0.5
+      reason: Auxiliary/historical lease session table; prefer lupo_actor_auth_users for new logic
 lupopedia.footer:
-    last_verified: '20260330'
-    verified_by:
-        actor_id: 102
-        agent_name_identity: Cursor IDE Agent
+  last_verified: '20260401180000'
+  verified_by:
+    actor_id: 102
+    agent_name_identity: Cursor IDE Agent
+---
+
+> **Lease storage (canonical):** Auth user ↔ actor leasing is implemented in **`lupo_actor_auth_users`** (see [`15_actors.md`](15_actors.md)). The **Database Requirements** section below may reference `lupo_actor_instances` / `lupo_actor_lease_sessions` as **transitional or auxiliary** ideas — default new work to **`lupo_actor_auth_users`** unless a written migration plan says otherwise.
 
 ## Core Doctrine
 
@@ -73,9 +69,9 @@ An auth_user may lease or control an actor only if one of the following is true:
 If none of these conditions are met, the actor is not leasable by that user.
 
 ## Database Requirements
-- **lupo_actor_instances**: Add `created_by_auth_user_id BIGINT` and `department_id BIGINT`.
-- **lupo_actor_lease_sessions**: Must include `auth_user_id`, `actor_id`, and `department_id` (copied from actor at lease time).
-- All IDs via IdGenerator::generate(), all timestamps BIGINT YYYYMMDDHHIISS, no AUTO_INCREMENT, no FOREIGN KEYS, no UNSIGNED.
+- **Canonical lease table:** **`lupo_actor_auth_users`** — status, exclusivity, and audit for auth_user↔actor binding (see `15_actors.md`).
+- **lupo_actor_instances** / **lupo_actor_lease_sessions:** If present, treat as **auxiliary**; do not duplicate lease truth that belongs in `lupo_actor_auth_users` without an explicit migration design.
+- All IDs via IdGenerator::generate() (or explicit registry IDs where required), all timestamps BIGINT UTC `YYYYMMDDHHIISS` (no display width on integer types), no AUTO_INCREMENT, no FOREIGN KEYS, no UNSIGNED.
 
 ## Leasing Logic (PHP 5.6+)
 ```php

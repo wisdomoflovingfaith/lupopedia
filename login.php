@@ -13,7 +13,7 @@ if (session_status() === PHP_SESSION_NONE) {
 
 // If already logged in, redirect to admin
 if (isset($_SESSION['actor_id'])) {
-    header('Location: /lupopedia/admin.php');
+    header('Location: ' . LUPOPEDIA_PUBLIC_PATH . '/admin.php');
     exit;
 }
 
@@ -29,21 +29,28 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $username = $_POST['username'] ?? '';
     $password = $_POST['password'] ?? '';
     $redirect = $_GET['redirect'] ?? null;
-    
+    // If referer contains 'install', always redirect to admin.php after login
+    $forceAdminRedirect = false;
+    if (!empty($_SERVER['HTTP_REFERER']) && stripos($_SERVER['HTTP_REFERER'], 'install') !== false) {
+        $forceAdminRedirect = true;
+    }
     if (empty($username) || empty($password)) {
         $error = 'Please enter both username and password.';
     } else {
         $authService = new AuthService();
         $result = $authService->handleLogin($username, $password, $redirect);
-        
         if (isset($result['error'])) {
             $error = $result['error'];
         } elseif (isset($result['needs_agent_selection'])) {
             // Redirect to agent selection page
-            header('Location: /lupopedia/select_agent.php');
+            header('Location: ' . LUPOPEDIA_PUBLIC_PATH . '/select_agent.php');
             exit;
         } elseif (isset($result['redirect'])) {
-            header('Location: ' . $result['redirect']);
+            if ($forceAdminRedirect) {
+                header('Location: ' . LUPOPEDIA_PUBLIC_PATH . '/admin.php');
+            } else {
+                header('Location: ' . $result['redirect']);
+            }
             exit;
         }
     }

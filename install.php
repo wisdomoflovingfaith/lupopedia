@@ -23,7 +23,7 @@
  *     { from: "README.md", type: "references", weight: 1.0, hashtag: "#installation" },
  *     { from: "docs/doctrine/migrations/MIGRATION_MAPPING_REFERENCE.md", type: "implements", weight: 1.0, hashtag: "#migration" },
  *     { from: "lupo-database/lupopedia/mysql/install/install_new_lupopedia.sql", type: "executes", weight: 1.0, hashtag: "#schema" },
- *     { from: "install/seed_lupopedia_4_1_0.sql", type: "executes", weight: 1.0, hashtag: "#seed" },
+ *     { from: "install/seed_lupopedia_4_1_0.sql (optional) or mysql/seed/seed_4.1.0.sql", type: "executes", weight: 1.0, hashtag: "#seed" },
  *     { from: "lupo-database/lupopedia/mysql/import/import_from_old_crafty_syntax.sql", type: "executes", weight: 1.0, hashtag: "#import" },
  *     { from: "lupo-database/lupopedia/mysql/import/old_crafty_syntax_3_7_5_start.sql", type: "detects", weight: 0.9, hashtag: "#legacy" },
  *     { from: "lupo-install/index.php", type: "includes", weight: 0.9, hashtag: "#ui" },
@@ -33,7 +33,7 @@
  *     { to: "lupopedia-config.php", type: "generates", weight: 1.0, hashtag: "#config" },
  *     { to: "lupo-includes/version.php", type: "requires", weight: 1.0, hashtag: "#version" },
  *     { to: "lupo-database/lupopedia/mysql/install/install_new_lupopedia.sql", type: "executes", weight: 1.0, hashtag: "#schema" },
- *     { to: "install/seed_lupopedia_4_1_0.sql", type: "executes", weight: 1.0, hashtag: "#seed" },
+ *     { to: "LUPO_CONSOLIDATED_SEED_FILE (merged or seed_4.1.0.sql)", type: "executes", weight: 1.0, hashtag: "#seed" },
  *     { to: "lupo-database/lupopedia/mysql/import/import_from_old_crafty_syntax.sql", type: "executes", weight: 1.0, hashtag: "#import" },
  *     { to: "lupo-database/lupopedia/mysql/import/old_crafty_syntax_3_7_5_start.sql", type: "detects", weight: 0.9, hashtag: "#legacy" },
  *     { to: "lupo-app/Services/CraftyMigrationService.php", type: "uses", weight: 0.8, hashtag: "#migration" },
@@ -66,7 +66,7 @@
  * Fallback philosophy: degrade gracefully; do not block unless absolutely required. No GD requirement (image.php uses raw output).
  *
  * A. Detect: livehelp_* tables exist → upgrade; else → new install.
- * B. New install: install_new_lupopedia.sql (includes all required tables, e.g. lupo_bans_log for Ban at Gate audit), then install/seed_lupopedia_4_1_0.sql (consolidated seed).
+ * B. New install: install_new_lupopedia.sql (DDL), then consolidated seed: install/seed_lupopedia_4_1_0.sql if built, else mysql/seed/seed_4.1.0.sql.
  * C. Upgrade: Identity Normalization (required) → validate all emails unique → update livehelp_users
  *    → then install → seed → import → drop → config. Normalization runs before any Lupopedia SQL:
  *    Crafty uses username/password; Lupopedia uses email/password with unique email. Operators get
@@ -78,7 +78,7 @@
  * E. Upgrade run step: import → personal channels and captain roles → drop → config (install/seed/reserved already done at credentials).
  * F. New install run step: install → seed → reserved channels → config.
  * G. Upgrade SQL order: create_reserved_system_channels (at credentials) → normalize → import → personal channels/roles → drop.
- * H. Write lupopedia-config.php. Redirect to login.
+ * H. Write lupopedia-config.php. Redirect to login.php.
  *
  * @package Lupopedia
  * @see docs/doctrine/migrations/ Installation SQL Rule
@@ -106,8 +106,15 @@ if (!defined('LUPO_MYSQL_DIR')) {
 if (!is_dir(LUPO_MYSQL_DIR)) {
     die('MySQL installer directory not found at LUPO_MYSQL_DIR: ' . LUPO_MYSQL_DIR);
 }
+// Consolidated seed: prefer merged file from lupo-scripts/build_consolidated_seed_4_1_0.py when present;
+// otherwise use tracked mysql/seed/seed_4.1.0.sql (subset — run the builder for full registry + seed stack).
 if (!defined('LUPO_CONSOLIDATED_SEED_FILE')) {
-    define('LUPO_CONSOLIDATED_SEED_FILE', LUPOPEDIA_PATH . DIRECTORY_SEPARATOR . 'install' . DIRECTORY_SEPARATOR . 'seed_lupopedia_4_1_0.sql');
+    $lupo_merged_seed = LUPOPEDIA_PATH . DIRECTORY_SEPARATOR . 'install' . DIRECTORY_SEPARATOR . 'seed_lupopedia_4_1_0.sql';
+    $lupo_seed_410 = LUPO_MYSQL_DIR . DIRECTORY_SEPARATOR . 'seed' . DIRECTORY_SEPARATOR . 'seed_4.1.0.sql';
+    $lupo_consolidated = (is_file($lupo_merged_seed) && is_readable($lupo_merged_seed))
+        ? $lupo_merged_seed
+        : $lupo_seed_410;
+    define('LUPO_CONSOLIDATED_SEED_FILE', $lupo_consolidated);
 }
 
 // Version for wizard UI. Canonical source is GLOBAL_CURRENT_LUPOPEDIA_VERSION in atoms.
@@ -256,7 +263,7 @@ if ($configPath !== null && is_file($configPath) && !$forceReinstall) {
     require_once $configPath;
     if (defined('LUPOPEDIA_CONFIG_LOADED') && LUPOPEDIA_CONFIG_LOADED) {
         $base = rtrim(dirname(isset($_SERVER['SCRIPT_NAME']) ? $_SERVER['SCRIPT_NAME'] : ''), '/');
-        header('Location: ' . ($base === '' ? '/login' : $base . '/login'));
+        header('Location: ' . ($base === '' ? '/login.php' : $base . '/login.php'));
         exit;
     }
 }
@@ -363,6 +370,9 @@ if ($step === 'credentials') {
             }
             $_SESSION['lupo_install_livehelp_tables'] = $livehelp_tables;
             $base = (dirname(isset($_SERVER['SCRIPT_NAME']) ? $_SERVER['SCRIPT_NAME'] : '') ?: '.');
+            // Only exit after a redirect. If upgrade bootstrap (install/seed/reserved) fails, show credentials
+            // again with $errors instead of a blank page (previously unconditional exit swallowed output).
+            $credentials_redirect = false;
             if ($_SESSION['lupo_install_type'] === 'upgrade') {
                 // Constitutional: reserved system channels (0, 1, 42, 51) must exist before normalization.
                 // Run install + seed + reserved channels immediately after detect upgrade, then go to normalize.
@@ -385,11 +395,12 @@ if ($step === 'credentials') {
                     }
                     $seed_ok = InstallWizardSqlRunner::runSqlFile($pdo, LUPO_CONSOLIDATED_SEED_FILE, $bootstrapLog, $table_prefix);
                     if (!$seed_ok) {
-                        throw new RuntimeException('Critical seed failed (seed_lupopedia_4_1_0.sql). Stop and fix SQL errors before continuing.');
+                        throw new RuntimeException('Critical seed failed (seed_4.1.0.sql). Stop and fix SQL errors before continuing.');
                     }
                     InstallWizardChannels::createReservedSystemChannels($pdo, $bootstrapLog);
                     $_SESSION['lupo_bootstrap_log'] = $bootstrapLog;
                     header('Location: ' . $base . '/install.php?step=bootstrap');
+                    $credentials_redirect = true;
                 } catch (RuntimeException $e) {
                     $errors[] = $e->getMessage();
                     $bootstrapLog[] = InstallWizardLogger::logEntry('error', $e->getMessage());
@@ -397,8 +408,11 @@ if ($step === 'credentials') {
                 }
             } else {
                 header('Location: ' . $base . '/install.php?step=confirm');
+                $credentials_redirect = true;
             }
-            exit;
+            if ($credentials_redirect) {
+                exit;
+            }
         } catch (RuntimeException $e) {
             if (empty($errors)) {
                 $errors[] = InstallWizardLogger::safeErrorMessage('validation');
@@ -592,7 +606,7 @@ if ($step === 'run') {
                     }
                     $seed_ok = InstallWizardSqlRunner::runSqlFile($pdo, LUPO_CONSOLIDATED_SEED_FILE, $log, $table_prefix);
                     if (!$seed_ok) {
-                        throw new RuntimeException('Critical seed failed (seed_lupopedia_4_1_0.sql). Stop and fix SQL errors before continuing.');
+                        throw new RuntimeException('Critical seed failed (seed_4.1.0.sql). Stop and fix SQL errors before continuing.');
                     }
                     InstallWizardChannels::createReservedSystemChannels($pdo, $log);
                 } elseif (!empty($_SESSION['lupo_bootstrap_log'])) {
@@ -613,7 +627,7 @@ if ($step === 'run') {
                 }
                 $seed_ok = InstallWizardSqlRunner::runSqlFile($pdo, LUPO_CONSOLIDATED_SEED_FILE, $log, $table_prefix);
                 if (!$seed_ok) {
-                    throw new RuntimeException('Critical seed failed (seed_lupopedia_4_1_0.sql). Stop and fix SQL errors before continuing.');
+                    throw new RuntimeException('Critical seed failed (seed_4.1.0.sql). Stop and fix SQL errors before continuing.');
                 }
                 InstallWizardDepartments::ensureSystemDepartment($pdo, $log);
                 InstallWizardChannels::createReservedSystemChannels($pdo, $log);
@@ -893,8 +907,8 @@ if ($step === 'complete') {
         $complete_log = array(array('ok', 'Installation completed.'));
     }
     $complete_config_log = isset($_SESSION['lupo_config_log']) ? $_SESSION['lupo_config_log'] : array();
-    $loginUrl = rtrim(dirname(isset($_SERVER['SCRIPT_NAME']) ? $_SERVER['SCRIPT_NAME'] : ''), '/');
-    $loginUrl = ($loginUrl === '' ? '' : $loginUrl . '/') . 'login';
+    // Relative to install folder (same as $baseUrl . …); avoids duplicating SCRIPT_NAME in the href.
+    $loginUrl = 'login.php';
 }
 
 // ----- Output HTML
@@ -1514,7 +1528,7 @@ if ($baseUrl === '') {
                         <li>Skip dropping legacy <code>livehelp_*</code> tables (option unchecked at credentials)</li>
                     <?php endif; ?>
                     <li>Write <code>lupopedia-config.php</code></li>
-                    <li>Redirect to login</li>
+                    <li>Redirect to login.php</li>
                 </ol>
                 <p style="font-size:0.9rem; color:#666;"><strong>Doctrine:</strong> Crafty Syntax users are migrated into the
                     Lupopedia actor system. Actor IDs 0–9999 are reserved for system and AI agents. Human actors begin at ID
@@ -1529,10 +1543,10 @@ if ($baseUrl === '') {
                 <p>You selected New install. The wizard will:</p>
                 <ol>
                     <li>Run <code>lupo-database/lupopedia/mysql/install/install_new_lupopedia.sql</code></li>
-                    <li>Run consolidated seed <code>install/seed_lupopedia_4_1_0.sql</code> (single runtime seed)</li>
+                    <li>Run consolidated seed (<code>install/seed_lupopedia_4_1_0.sql</code> if present, else <code>mysql/seed/seed_4.1.0.sql</code>)</li>
                     <li>Create reserved system channels (0, 1, 42, 51)</li>
                     <li>Write <code>lupopedia-config.php</code></li>
-                    <li>Redirect to login</li>
+                    <li>Redirect to login.php</li>
                 </ol>
             <?php endif; ?>
             <form method="post" action="<?php echo htmlspecialchars($baseUrl . 'install.php?step=confirm'); ?>"

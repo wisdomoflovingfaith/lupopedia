@@ -845,6 +845,8 @@ class InstallWizardMainAdmin
         $ad_t = $prefix . 'actor_departments';
         $perm_t = $prefix . 'permissions';
         $mod_t = $prefix . 'modules';
+        $aud_t = $prefix . 'auth_user_departments';
+        $aau_t = $prefix . 'actor_auth_users';
 
         $email = trim($email);
         $password = is_string($password) ? $password : '';
@@ -887,13 +889,31 @@ class InstallWizardMainAdmin
             $name = $display_name;
             $actor_name = 'captain';
             if ($actorExists) {
-                $upA = $pdo->prepare('UPDATE `' . str_replace('`', '``', $actors_t) . '` SET actor_name = ?, slug = ?, name = ?, actor_source_id = ?, actor_source_type = ?, updated_ymdhis = ? WHERE actor_id = ?');
-                $upA->execute(array($actor_name, $slug, $name, $auth_id, 'user', $now, $actor_id));
+                $upA = $pdo->prepare('UPDATE `' . str_replace('`', '``', $actors_t) . '` SET actor_name = ?, slug = ?, name = ?, actor_source_id = ?, actor_source_type = ?, auth_user_id = ?, updated_ymdhis = ? WHERE actor_id = ?');
+                $upA->execute(array($actor_name, $slug, $name, $auth_id, 'user', $auth_id, $now, $actor_id));
                 $log[] = InstallWizardLogger::logEntry('ok', 'Updated main admin actor (actor_id ' . $actor_id . ').');
             } else {
-                $insA = $pdo->prepare('INSERT INTO `' . str_replace('`', '``', $actors_t) . '` (actor_name, actor_id, actor_type, slug, name, created_ymdhis, updated_ymdhis, is_active, is_deleted, deleted_ymdhis, actor_source_id, actor_source_type) VALUES (?, ?, ?, ?, ?, ?, ?, 1, 0, NULL, ?, ?)');
-                $insA->execute(array($actor_name, $actor_id, 'user', $slug, $name, $now, $now, $auth_id, 'user'));
+                $insA = $pdo->prepare('INSERT INTO `' . str_replace('`', '``', $actors_t) . '` (actor_name, actor_id, actor_type, slug, name, created_ymdhis, updated_ymdhis, is_active, is_deleted, deleted_ymdhis, actor_source_id, actor_source_type, auth_user_id) VALUES (?, ?, ?, ?, ?, ?, ?, 1, 0, NULL, ?, ?, ?)');
+                $insA->execute(array($actor_name, $actor_id, 'user', $slug, $name, $now, $now, $auth_id, 'user', $auth_id));
                 $log[] = InstallWizardLogger::logEntry('ok', 'Created main admin actor (actor_id ' . $actor_id . ').');
+            }
+
+            $checkAud = $pdo->prepare('SELECT 1 FROM `' . str_replace('`', '``', $aud_t) . '` WHERE auth_user_id = ? AND department_id = 0 AND (is_deleted = 0 OR is_deleted IS NULL) LIMIT 1');
+            $checkAud->execute(array($auth_id));
+            if (!$checkAud->fetchColumn()) {
+                $nextAudId = (int) $pdo->query('SELECT COALESCE(MAX(auth_user_department_id), 0) + 1 FROM `' . str_replace('`', '``', $aud_t) . '`')->fetchColumn();
+                $insAud = $pdo->prepare('INSERT INTO `' . str_replace('`', '``', $aud_t) . '` (auth_user_department_id, auth_user_id, department_id, is_primary, role_key, title, created_ymdhis, updated_ymdhis, is_deleted) VALUES (?, ?, 0, 1, ?, ?, ?, ?, 0)');
+                $insAud->execute(array($nextAudId, $auth_id, 'administrator', 'Main Administrator', $now, $now));
+                $log[] = InstallWizardLogger::logEntry('ok', 'Linked main admin auth user to System department (0).');
+            }
+
+            $checkAau = $pdo->prepare('SELECT 1 FROM `' . str_replace('`', '``', $aau_t) . '` WHERE actor_id = ? AND auth_user_id = ? AND relationship_role = ? AND (is_deleted = 0 OR is_deleted IS NULL) LIMIT 1');
+            $checkAau->execute(array($actor_id, $auth_id, 'supporting_human'));
+            if (!$checkAau->fetchColumn()) {
+                $nextAauId = (int) $pdo->query('SELECT COALESCE(MAX(actor_auth_user_id), 0) + 1 FROM `' . str_replace('`', '``', $aau_t) . '`')->fetchColumn();
+                $insAau = $pdo->prepare('INSERT INTO `' . str_replace('`', '``', $aau_t) . '` (actor_auth_user_id, actor_id, auth_user_id, relationship_role, is_primary, routing_priority, status, created_ymdhis, updated_ymdhis, is_deleted) VALUES (?, ?, ?, ?, 1, 100, ?, ?, ?, 0)');
+                $insAau->execute(array($nextAauId, $actor_id, $auth_id, 'supporting_human', 'active', $now, $now));
+                $log[] = InstallWizardLogger::logEntry('ok', 'Linked main admin actor to auth user (actor_auth_users).');
             }
 
             $channels = array(0, 1, 42, 51);

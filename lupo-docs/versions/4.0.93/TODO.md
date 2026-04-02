@@ -4,7 +4,7 @@ lupopedia.headers:
   version_when_written: "4.0.93"
   file_path_from_root: "lupo-docs/versions/4.0.93/TODO.md"
   web_path: "http://www.lupopedia.com/lupopedia/lupo-docs/versions/4.0.93/TODO.md"
-  last_modified_utc: "20260331235900"
+  last_modified_utc: "20260401180000"
   channel_id: 42
   thread_id: "todo-backlog"
   actor_id: 102
@@ -37,13 +37,14 @@ lupopedia.edges:
       weight: 1.0
       reason: Database audit summary
 lupopedia.footer:
-  last_verified: "20260331235900"
+  last_verified: "20260401180000"
   verified_by:
     actor_id: 102
     agent_name_identity: Cursor IDE Agent
   orchestrator: "hephaestus:root"
 
 ## Completed (4.0.93)
+[x] **PRD alignment + constitutional edges (2026-04-01, Cursor thread):** `00_root` updated (schema JSON, agent_key, §5.5–5.6, §9.9/9.16/9.18); `PRD_AGENT_DEFINITION_MODEL.md` deprecated for layout; `07` reserved-ID clarification; `01_core_identity` / `15_actors` actor ID text; `08_actors` superseded; `05_auth` canonical `lupo_actor_auth_users`; installer `BIGINT` wording; PRD header paths fixed; `19`/`18` json edges; **all** `lupo-docs/prd/*.md` have constitutional anchor edge except `00_root`; version `decisions`/`PLAN`/`TODO`/`CHANGELOG` updated.
 [x] PRD 17_decisions_format.md created
 [x] context_id field and context directory implemented
 [x] All grouped PRDs and agent/actor/lease/temporal/header doctrines updated

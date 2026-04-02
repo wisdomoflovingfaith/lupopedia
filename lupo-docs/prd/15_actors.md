@@ -5,7 +5,7 @@ lupopedia.headers:
   version_when_written: "4.0.93"
   file_path_from_root: "lupo-docs/prd/15_actors.md"
   web_path: "http://www.lupopedia.com/lupopedia/lupo-docs/prd/15_actors.md"
-  last_modified_utc: "20260331180000"
+  last_modified_utc: "20260401180000"
   channel_id: 42
   thread_id: "prd-actors"
   actor_id: 2
@@ -23,6 +23,10 @@ lupopedia.headers:
   - "personalization"
 lupopedia.edges:
   outbound_edges:
+    - to: "lupo-docs/prd/00_root_constitutional_system_requirements.md"
+      type: references
+      weight: 1.0
+      reason: "Constitutional anchor"
     - to: "lupo-docs/prd/01_core_identity.md"
       type: references
       weight: 1.0
@@ -36,7 +40,7 @@ lupopedia.edges:
       weight: 0.8
       reason: "Department permissions"
 lupopedia.footer:
-  last_verified: "20260331180000"
+  last_verified: "20260401180000"
   verified_by:
     agent_id: 2
     agent_name_identity: "LILITH"
@@ -48,6 +52,8 @@ lupopedia.footer:
 ## Overview
 
 This document defines the canonical model for **actors** in Lupopedia. Actors are department- and persona-specific extensions of agents, providing a personalized, scoped execution and orchestration identity for each user and department context.
+
+**Actor ID semantics:** Reserved registry-backed actors, human-backed ranges, and `IdGenerator` allocation are defined in [`00_root_constitutional_system_requirements.md`](00_root_constitutional_system_requirements.md) §5.6 (workspace path rules below align with that section).
 
 **Constitutional Compliance:** All tables referenced in this PRD follow Lupopedia constitutional rules:
 - NO foreign keys (relationships in application logic)
@@ -209,7 +215,8 @@ lupo-actors/
 
 ## 7. Cross-References
 
-- See also: `01_core_identity.md`, `07_agents_faucets.md`, `08_governance_rules.md`
+- See also: `01_core_identity.md`, `05_auth_user_actor_agent_transformation.md` (permission model; canonical lease table documented here), `07_agents_faucets.md`, `08_governance_rules.md`
+- Superseded: `08_actors.md` (historical stub; use this file)
 - Related tables: `lupo_actors`, `lupo_actor_auth_users`, `lupo_actor_departments`, `lupo_metadata`
 
 ---

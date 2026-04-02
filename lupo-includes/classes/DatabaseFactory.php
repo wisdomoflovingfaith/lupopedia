@@ -13,7 +13,8 @@ if (!defined('LUPOPEDIA_CONFIG_LOADED')) {
 }
 
 if (!class_exists('PDO_DB')) {
-    require_once __DIR__ . DIRECTORY_SEPARATOR . 'classes/pdo_db.php';
+    // This file lives in lupo-includes/classes/; PDO_DB is in the same directory.
+    require_once __DIR__ . DIRECTORY_SEPARATOR . 'pdo_db.php';
 }
 
 class DatabaseFactory {

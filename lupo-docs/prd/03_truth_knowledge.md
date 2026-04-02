@@ -21,6 +21,10 @@ lupopedia.headers:
   - "truth_knowledge"
 lupopedia.edges:
   outbound_edges:
+    - to: "lupo-docs/prd/00_root_constitutional_system_requirements.md"
+      type: references
+      weight: 1.0
+      reason: "Constitutional anchor"
     - to: "lupo-docs/database/lupopedia/tables/"
       type: references
       weight: 1.0
@@ -33,10 +37,6 @@ lupopedia.edges:
       type: references
       weight: 1.0
       reason: "Truth discussed in channels"
-    - to: "lupo-docs/versions/4.0.93/prd/00_root_constitutional_system_requirements.md"
-      type: references
-      weight: 1.0
-      reason: "Root constitutional system requirements"
 lupopedia.footer:
   last_verified: "20260330163000"
   verified_by:

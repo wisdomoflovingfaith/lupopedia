@@ -5,11 +5,18 @@ lupopedia.headers:
   version_when_written: "4.0.93"
   purpose: "PRD defining the ASCLEPIUS System Health Check capabilities and bounds"
   tags: ["prd", "doctor", "health", "asclepius"]
+lupopedia.edges:
+  outbound_edges:
+    - to: "lupo-docs/prd/00_root_constitutional_system_requirements.md"
+      type: references
+      weight: 1.0
+      reason: "Constitutional anchor"
 ---
 
 # PRD 23: ASCLEPIUS Health Check System
 
 ## 1. Constitutional Anchor
+
 All rules and requirements in this PRD must strictly comply with `lupo-docs/prd/00_root_constitutional_system_requirements.md`.
 
 ## 2. Overview
@@ -24,7 +31,7 @@ The health check system follows a strict cascade fallback architecture:
 Regardless of whether ASCLEPIUS or the built-in function executes the test, the health check process **MUST** validate the following core pillars of system integrity:
 
 - **Database Connectivity:** Verify the primary MySQL/MariaDB connection via `DatabaseFactory::getConnection()`.
-- **Registry Availability:** Ensure `{LUPO_DATABASE_DIR}/lupopedia/actors/registry.json` is present and readable for identity mapping.
+- **Registry Availability:** Ensure `{LUPO_DATABASE_DIR}/lupopedia/actors/actor_id/registry.json` is present and readable for identity mapping.
 - **Session File Integrity:** Verify read/write access to `{LUPO_DATABASE_DIR}/session.md` (which maps CLI state).
 - **Identity Context Drift:** Validate the Context Kernel (`ContextKernel::validate()`) to detect split-brain conflicts and actor-pairing desyncs between DB state and local files.
 - **Actor Consistency (Optional/Flagged):** With an explicit flag (e.g., `--check-actors`), validate workspace paths and PHP namespaces against the `lupo_actors` table.

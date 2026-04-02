@@ -3,6 +3,14 @@ lupopedia.headers:
   file_path_from_root: lupo-docs/prd/project_structure_prd.md
   file.last_modified_utc: '20260401_090945'
   file.last_modified_system_version: '4.0.84'
+  lupopedia.schema: documentation
+  purpose: "Top-level codebase directory map and conventions"
+lupopedia.edges:
+  outbound_edges:
+    - to: "lupo-docs/prd/00_root_constitutional_system_requirements.md"
+      type: references
+      weight: 1.0
+      reason: "Constitutional anchor"
 ---
 
 # Project Structure PRD
