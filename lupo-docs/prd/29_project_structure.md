@@ -3,7 +3,7 @@ lupopedia.headers:
   header_format_version: 2
   lupopedia.schema: documentation
   when_updated: "20260401173500"
-  file_path_from_root: /lupo-docs/prd/29_project_structure.md
+  file_path_from_root: "lupo-docs/prd/29_project_structure.md"
   web_path: "http://www.lupopedia.com/lupopedia/lupo-docs/prd/29_project_structure.md"
   last_modified_utc: "20260401180000"
   federation_node_id: 0
@@ -121,7 +121,7 @@ The repository may contain leftover directories that are no longer required:
 ## Maintenance Guidelines
 1. **When adding new top‑level components**, always use the `lupo-` prefix.
 2. **Update this PRD** whenever a new `lupo-` directory is introduced or an existing one is removed.
-3. **Run the Prefix Normalization Audit** (see `lupo-docs/prd/prefix_normalization_audit_prd.md`) periodically to ensure documentation references match actual directory names.
+3. **Run the Prefix Normalization Audit** periodically to ensure documentation references match actual directory names.
 4. **Clean up hidden IDE workspaces** (`.cascade`, `.cursor`, etc.) after a sprint to avoid clutter.
 
 ### STRICT EXCEPTIONS: `node_modules/` and `app/`
