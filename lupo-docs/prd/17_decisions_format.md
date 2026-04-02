@@ -56,7 +56,118 @@ lupopedia.footer:
 
 ## Overview
 
-This PRD defines the canonical format for documenting architectural decisions, questions, answers, and action items for a given Lupopedia version. **As of version 4.0.93+, the canonical and only supported format is the folder-based threaded decisions system. The legacy single-file `decisions.md` approach is deprecated in favor of a folder-based threaded system. and must not be used for new work.**
+
+This PRD defines the canonical format for documenting architectural decisions, questions, answers, and action items for a given Lupopedia version.
+
+---
+## LILITH Analysis: Separating Decisions, Questions, Answers, Comments
+
+**As of April 2026, the canonical and only supported format is the multi-folder threaded system.**
+
+---
+## LILITH Analysis: Using `lupopedia.edges` to Link Questions to Answers
+
+**Canonical Q&A and Relationship Linking: Use `lupopedia.edges`**
+
+All relationships between questions, answers, decisions, and comments **must** be expressed using the `lupopedia.edges` YAML block in each file. Do not use manual cross-reference fields or custom YAML keys for linking.
+
+### How to Link
+
+- In a question file, add an outbound edge to its answer(s):
+
+```yaml
+lupopedia.edges:
+  outbound_edges:
+    - to: "../answers/20260402_130000_ANSWER_header_format.md"
+      type: "has_answer"
+      weight: 1.0
+      reason: "This question was answered by LILITH"
+```
+
+- In the answer file, add an outbound edge back to the question:
+
+```yaml
+lupopedia.edges:
+  outbound_edges:
+    - to: "../questions/20260402_120000_QUESTION_header_format.md"
+      type: "answers"
+      weight: 1.0
+      reason: "This answers the question about header format"
+```
+
+### Canonical Edge Types for Q&A
+| Edge Type | Direction | Meaning |
+|-----------|-----------|---------|
+| `has_answer` | Question → Answer | This question has this answer |
+| `answers` | Answer → Question | This answers that question |
+| `related_question` | Question → Question | Related/similar question |
+| `clarifies` | Answer → Answer | This answer clarifies another |
+| `supersedes` | Answer → Answer | This answer replaces an older one |
+
+### Benefits
+| Aspect | Manual Link | `lupopedia.edges` |
+|--------|-------------|-------------------|
+| **Queryable** | No | Yes (via `lupo_edges` table) |
+| **Bidirectional** | Manual | Automatic (import both directions) |
+| **Validation** | None | Validator can check both exist |
+| **Weight/confidence** | No | Yes (`weight`, `semantic_weight`) |
+| **Reason tracking** | No | Yes (`reason`, `flare_reason`) |
+| **Agent discoverable** | Grep files | Query database |
+
+### LILITH Sign-off
+Using `lupopedia.edges` is the canonical solution for all Q&A and related relationships. No new syntax is required. Validators and agents must use these edges for linking, querying, and UI integration.
+
+### Canonical Multi-Folder Structure (Required)
+
+For any context (version, implementation, channel, agent), the following subfolders must be used:
+
+```
+<context>/
+├── decisions/
+│   ├── THREAD_INDEX.md
+│   └── YYYYMMDD_HHIISS_DECISION_title.md
+├── questions/
+│   ├── THREAD_INDEX.md
+│   └── YYYYMMDD_HHIISS_QUESTION_title.md
+├── answers/
+│   ├── THREAD_INDEX.md
+│   └── YYYYMMDD_HHIISS_ANSWER_title.md
+└── comments/
+  ├── THREAD_INDEX.md
+  └── YYYYMMDD_HHIISS_COMMENT_title.md
+```
+
+- Each folder contains only its type (decisions, questions, answers, comments).
+- Each folder must have its own `THREAD_INDEX.md` listing all threads.
+- All thread files must use the naming convention: `YYYYMMDD_HHIISS_TYPE_title.md` (UTC timestamp, type, lowercase/underscored title).
+- All thread files must include a LUPOPEDIA HEADERS block.
+- No new monolithic `decisions.md` files may be created; all new content must use this folder structure.
+
+#### Where This Applies
+| Location | Would Have |
+|----------|------------|
+| `lupo-docs/versions/{version}/` | `decisions/`, `questions/`, `answers/`, `comments/` |
+| `lupo-docs/implementations/{id}_{slug}/` | `decisions/`, `questions/`, `answers/`, `comments/` |
+| `lupo-channels/{id}/` | `decisions/`, `questions/`, `answers/`, `comments/` |
+| `lupo-agents/{agent_key}/` | `decisions/`, `questions/`, `answers/`, `comments/` |
+
+#### Benefits
+| Aspect | Current | Proposed |
+|--------|---------|----------|
+| **Discoverability** | Scan filenames for TYPE | Look in the right folder |
+| **Querying** | Parse TYPE from filename | Filter by folder path |
+| **Validation** | Check TYPE matches content | Folder implies type |
+| **Agent routing** | Read file to know type | Know type from location |
+| **UI integration** | Complex filtering | Simple folder-based views |
+
+#### Migration Path
+1. Create the new folder structure for each context.
+2. Move existing files to their respective folders by type.
+3. Add/refresh `THREAD_INDEX.md` in each folder.
+4. Update cross-references (e.g., a question links to its answer in `../answers/`).
+5. Gradually migrate old content; all new content must use the new structure.
+
+**LILITH Sign-off:** ✅ Separate folders for decisions, questions, answers, and comments is a cleaner architecture. Implement for new content, migrate old content gradually. Update this PRD to document the structure.
 
 ## Canonical Decisions Folder System (Required)
 
@@ -75,9 +186,10 @@ lupo-docs/versions/
 ### THREAD_INDEX.md (Required)
 Every `decisions/` folder must contain a `THREAD_INDEX.md` file. This file lists all decision threads, their status, and links to each thread file. It serves as the authoritative index for the folder.
 
+
 ### Thread File Naming Convention
-- Format: `YYYYMMDD_HHIISS_TYPE_STATUS_TITLE.md`
-  - Example: `20260402_120000_DECISION_completed_header_validator_update.md`
+- Format: `YYYYMMDD_HHIISS_TYPE_title.md`
+  - Example: `20260402_120000_DECISION_header_validator_update.md`
 - Each file documents a single decision, question, answer, dialog, or action item thread.
 - All files must use UTC timestamps and lowercase, underscore-separated titles.
 
@@ -135,9 +247,10 @@ When transitioning from consolidated `decisions.md` to individual thread files:
 3. **Update THREAD_INDEX.md** to reference all threads
 4. **Preserve original** as `old_decisions.md` for reference
 
+
 ## Header Requirements
 
-Every `decisions.md` file MUST include a LUPOPEDIA HEADERS block with:
+Every decision thread file MUST include a LUPOPEDIA HEADERS block with:
 
 | Field | Required | Description |
 |-------|----------|-------------|
@@ -166,8 +279,8 @@ lupopedia.headers:
   header_format_version: 2
   lupopedia.schema: doctrine
   when_updated: "20260331190000"
-  file_path_from_root: "lupo-docs/versions/4.0.93/decisions/20260402_120000_DECISION_completed_header_format.md"
-  web_path: "http://www.lupopedia.com/lupopedia/lupo-docs/versions/4.0.93/decisions/20260402_120000_DECISION_completed_header_format.md"
+  file_path_from_root: "lupo-docs/versions/4.0.93/decisions/20260402_120000_DECISION_header_format.md"
+  web_path: "http://www.lupopedia.com/lupopedia/lupo-docs/versions/4.0.93/decisions/20260402_120000_DECISION_header_format.md"
   last_modified_utc: "20260331190000"
   federation_node_id: 0
   channel_id: 42
@@ -178,6 +291,7 @@ lupopedia.headers:
   delegation_chain: "lilith:audit"
   artifact_type: "doctrine"
   artifact_kind: "decisions"
+  status: "completed"
   purpose: "Architecture and design decisions for Lupopedia 4.0.93"
   tags:
   - "decisions"
@@ -185,18 +299,19 @@ lupopedia.headers:
   - "version-4.0.93"
 ```
 
-## Decision Log Summary
 
-The file MUST begin with a summary table listing all entries:
+## THREAD_INDEX.md (Folder Index)
+
+Each folder (`decisions/`, `questions/`, `answers/`, `comments/`) MUST contain a `THREAD_INDEX.md` file listing all thread files, their status, author, and relevant metadata. This replaces the old summary table from monolithic files.
+
+Example:
 
 ```markdown
-## Decision Log Summary
+# Decisions Index
 
-| ID | Type | Title | Author | Status | Date |
-|----|------|-------|--------|--------|------|
-| D-01 | Decision | ... | ... | ... | ... |
-| Q-01 | Question | ... | ... | Open | ... |
-| A-01 | Answer | ... | ... | Completed | ... |
+| Filename | Title | Author | Status | Date |
+|----------|-------|--------|--------|------|
+| 20260402_120000_DECISION_header_format.md | Header Format Decision | LILITH | completed | 2026-04-02 |
 ```
 
 ## Entry Types
@@ -214,63 +329,65 @@ The file MUST begin with a summary table listing all entries:
 | Observation | O-xx | Lesson learned | Noted, Integrated |
 | Comment | (inline) | Brief note | N/A (attached to parent) |
 
+
 ### Entry Format
 
-Each entry MUST follow this structure:
+Each thread file should follow this structure:
 
 ```markdown
-## [ID]: [Title]
+# [Title]
 
-### Type
+## Type
 [Type from taxonomy]
 
-### Status
+## Status
 [Status appropriate to type]
 
-### Parent ID (for Answer type only)
-[ID of parent Question]
-
-### Author
+## Author
 [Name] (actor_id [ID]) - [Role]
 
-### Date
+## Date
 YYYY-MM-DD
 
-### Context
+## Context
 [What led to this entry?]
 
-### Question (for Question type)
+## Question (for Question type)
 [What needs to be answered?]
 
-### Options (for Question type)
+## Options (for Question type)
 | Option | Description | Pros | Cons |
 |--------|-------------|-----|------|
 | A | ... | ... | ... |
 
-### Answer (for Answer type)
+## Answer (for Answer type)
 [The response to the question]
 
-### Rationale (for Answer type)
+## Rationale (for Answer type)
 [Why this answer was chosen]
 
-### Decision (for Decision type)
+## Decision (for Decision type)
 [What was decided?]
 
-### Consequences (for Decision type)
+## Consequences (for Decision type)
 [What changed?]
 
-### Content (for Dialog/Warning/Observation)
+## Content (for Dialog/Warning/Observation)
 [Relevant details]
 
-### Resolution (for Dialog/Warning)
+## Resolution (for Dialog/Warning)
 [How was this resolved?]
 
-### Implementation Notes (for Answer/Action)
+## Implementation Notes (for Answer/Action)
 [How to implement]
 
-### Comments
+## Comments
 *YYYY-MM-DD [Author]*: [Comment text]
+
+## Parent ID (optional, for Answer type only)
+[ID of parent Question, if used. **Note:** Use `lupopedia.edges` for canonical linking; Parent ID is for backward compatibility.]
 ```
+
 
 ## Channel vs Thread vs Context
 
@@ -287,11 +404,11 @@ YYYY-MM-DD
 ```
 1. Discussion begins in Channel (channel_id)
    └── Specific thread (thread_id)
-       └── Decisions documented in decisions.md (channel_id, thread_id)
+       └── Decisions documented in decision thread files (channel_id, thread_id)
 
 2. Decision matures
    └── Context created in lupo-contexts/ (context_id assigned)
-       └── decisions.md header updated with context_id
+       └── decision thread file header updated with context_id
            └── Context becomes source of truth for finalized knowledge
 ```
 
@@ -371,22 +488,25 @@ Every decisions.md file MUST include a footer with next actions:
 **Canonical Reference**: This decisions/ folder is the single source of truth for decision threads and action items for Lupopedia [version].
 ```
 
+
 ## Validation Rules
 
 Validators MUST enforce:
 
 1. **Header completeness** - All required header fields present
-2. **ID uniqueness** - No duplicate IDs across entries
-3. **ID format** - IDs follow prefix-number pattern (D-01, Q-01, etc.)
-4. **Parent linkage** - Answer entries have valid Parent ID
-5. **Status values** - Status values match allowed set for type
-6. **Date format** - Dates are YYYY-MM-DD
-7. **Thread linkage** - thread_id matches discussion thread
-8. **Context linkage** - If context_id present, context file must exist
+2. **Filename convention** - All thread files use `YYYYMMDD_HHIISS_TYPE_title.md`
+3. **THREAD_INDEX.md** - Present and up to date in each folder
+4. **Status values** - Status values match allowed set for type (in header)
+5. **Date format** - Dates are YYYY-MM-DD
+6. **Thread linkage** - thread_id matches discussion thread
+7. **Context linkage** - If context_id present, context file must exist
+8. **Edge validation** - All Q&A and related links use `lupopedia.edges` (see PRD 16 for canonical edge format)
+
 
 ## Example Implementation
 
 See `lupo-docs/versions/4.0.93/decisions/` for a complete example.
+See [PRD 16](16_lupopedia_headers.md) for canonical `lupopedia.edges` usage and schema.
 
 ---
 

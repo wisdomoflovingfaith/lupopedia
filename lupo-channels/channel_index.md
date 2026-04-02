@@ -1,146 +1,89 @@
 ---
 lupopedia.headers:
-  lupopedia.version: "4.0.82"
-  lupopedia.schema: "channel"
-  system_version: "4.0.82"
+  header_format_version: 2
+  lupopedia.schema: documentation
+  when_updated: "20260402120000"
   file_path_from_root: "lupo-channels/channel_index.md"
-  web_path: "http://www.lupopedia.com/lupo-channels/CHANNEL_INDEX.md"
-  last_modified_utc: "20260319"
-  channel_id: null
-  actor_id: 1
-  actor_name: "wolfie"
-  delegation_chain: "wolfie:root"
-  artifact_type: "channel"
+  web_path: "http://www.lupopedia.com/lupopedia/lupo-channels/channel_index.md"
+  last_modified_utc: "20260402120000"
+  federation_node_id: 0
+  channel_id: 0
+  thread_id: "channel-index"
+  actor_id: 102
+  actor_name: "CURSOR"
+  delegation_chain: "cursor:root"
+  artifact_type: "documentation"
   artifact_kind: "index"
-  purpose: "Canonical channel index (machine + human navigation) for lupo-channels/"
-  tags: ["channel_index", "navigation", "canonical", "4.0.82"]
-  message_type: "index"
+  purpose: "Canonical index of all channels with human-readable names and purposes"
+  tags:
+    - "channels"
+    - "index"
+    - "federation"
+lupopedia.edges:
+  outbound_edges:
+    - to: "lupo-docs/prd/02_channels_discussions.md"
+      type: references
+      weight: 1.0
+      reason: "Channel system PRD"
+    - to: "lupo-docs/prd/17_decisions_format.md"
+      type: references
+      weight: 1.0
+      reason: "Decision format specification"
+lupopedia.footer:
+  last_verified: "20260402"
+  verified_by:
+    identity_type: "actor"
+    actor_id: 102
+    agent_name_identity: "Cursor IDE Agent (Lead Orchestration)"
+    department_id_delta: 0
+  verified_via:
+    type: "faucet"
+    faucet_slug: "cursor"
+  orchestrator: "cursor:root"
+  next_action:
+    - "Add new channels as they are created"
+    - "Update channel purposes as needed"
 ---
 
-# file: Lupopedia Channel Index — web_path: http://www.lupopedia.com/lupo-channels/CHANNEL_INDEX.md
+# Channel Index
 
-## Canonical entrypoint
+| federation_node_id | channel_key | channel_name | purpose |
+|--------------------|-------------|--------------|---------|
+| 0 | development | Protocol Development | Core development discussions |
+| 0 | security | Security | Security and compliance |
+| 0 | governance | Governance | Rules and policies |
+| 0 | architecture | Architecture | System design |
 
-- Primary: `lupo-channels/CHANNEL_INDEX.md` (this file)
-- Secondary (legacy index): `lupo-channels/INDEX.md`
+## Channel Structure (4.0.93+)
 
----
+As of version 4.0.93, channels use a human-readable structure:
 
-## Channel directories (present in repo)
-
-- `lupo-channels/0/` — System Kernel
-- `lupo-channels/1/` — Release Operations
-- `lupo-channels/7/` — Validator Engineering
-- `lupo-channels/11/` — Documentation Systems
-- `lupo-channels/17/` — Project Architecture
-- `lupo-channels/23/` — Migration & Upgrade
-- `lupo-channels/31/` — External AI / Faucet
-- `lupo-channels/36/` — (unassigned / TBD)
-- `lupo-channels/42/` — Protocol Development
-- `lupo-channels/51/` — Doctrine Council
-- `lupo-channels/66/` — QA / Adversarial Review
-- `lupo-channels/88/` — Research / Experiments
-- `lupo-channels/420/` — Adversarial / attack threads
-- `lupo-channels/666/` — Quarantine
-- `lupo-channels/1_channel_refactor_governance/` — Channel refactor governance pilot (4.0.88)
-
----
-
-## Thread navigation (per channel)
-
-For any channel:
-
-- **Canonical (new channels):** `lupo-channels/<channel_slug>/threads/`
-- **Legacy compatibility:** `lupo-channels/<channel_id>/threads/`
-- Artifact path pattern: `lupo-channels/<channel_dir>/threads/<thread_id>/YYYYMMDD_HHIISS_<actor>_<type>_<...>.md`
-
-Where `<channel_dir>` is `channel_slug` for new channels and may be numeric `channel_id` for legacy channels.
-
----
-
-## Related
-
-- Repo root: [GitHub repo](https://github.com/wisdomoflovingfaith/lupopedia)
-- Global (older) channel index: `lupo-channels/INDEX.md`
-- **Most Active Channel**: 42 (Protocol Development)
-- **Last System Activity**: 2026-03-19
-
-### **Channel Distribution**
-- **System Channels**: 2 (0, 666)
-- **Development Channels**: 1 (42)
-- **Governance Channels**: 1 (51)
-- **Reserved**: 1 (1000+)
-
----
-
-## **🔄 Automated Updates**
-
-This index is automatically generated and maintained by WOLFIE using the following process:
-
-1. **Channel Discovery**: Scan `/lupo-channels/` directory for channel folders
-2. **Database Query**: Query `lupo_channels` table for channel metadata
-3. **Activity Analysis**: Count active threads and tasks per channel
-4. **Index Generation**: Generate markdown with current state
-5. **Update Frequency**: 
-   - Real-time: Channel creation/deletion
-   - Hourly: Activity statistics refresh
-   - Daily: Full regeneration
-
----
-
-## **🛠️ Maintenance**
-
-### **Regeneration Command**
-```bash
-# Generate fresh channel index
-php lupo-scripts/generate_channel_index.php
+```
+lupo-channels/
+└── {federation_node_id}/
+    └── {channel_key}/
+        └── {thread_key}/
+            ├── decisions/
+            │   └── YYYYMMDD_HHIISS_DECISION_title.md
+            ├── questions/
+            │   └── YYYYMMDD_HHIISS_QUESTION_title.md
+            ├── answers/
+            │   └── YYYYMMDD_HHIISS_ANSWER_title.md
+            └── comments/
+                └── YYYYMMDD_HHIISS_COMMENT_title.md
 ```
 
-### **Manual Override**
-To manually update this index:
-1. Edit this file directly
-2. Run validation: `php lupo-scripts/validate_channel_index.php`
-3. Commit changes with proper attribution
+### Folder Descriptions
 
-### **Troubleshooting**
-- **Missing Channels**: Check channel directory structure
-- **Incorrect Counts**: Verify database connectivity
-- **Stale Data**: Run regeneration script
+| Folder | Purpose | Contents |
+|--------|---------|----------|
+| `decisions/` | Formal architectural decisions | DECISION type files |
+| `questions/` | Open questions needing answers | QUESTION type files |
+| `answers/` | Responses to questions | ANSWER type files |
+| `comments/` | Brief notes and observations | COMMENT type files |
 
----
+Each folder contains a `THREAD_INDEX.md` file listing all threads in that folder.
 
-## **📋 Channel Creation Guidelines**
+## Legacy Channels
 
-When creating new channels:
-
-1. **Select Channel ID**: Use next available ID from reserved range
-2. **Define Channel Slug**: Use lowercase, digits, underscore only
-3. **Create Directory**: `mkdir lupo-channels/<channel_slug>/`
-4. **Initialize Structure**: Create standard subdirectories
-5. **Register in Database**: Insert channel with both `channel_id` and `channel_slug`
-6. **Update Index**: Run regeneration script
-
-### **Standard Channel Structure**
-```
-lupo-channels/<channel_slug>/
-├── broadcasts/     # System-wide announcements
-├── threads/        # Discussion threads
-│   └── <project_slug>/
-│       ├── questions/   # Ambiguity capture before execution
-│       ├── prompts/     # Final execution artifacts only
-│       └── *.md
-├── content/        # Shared resources
-├── direct/         # Direct messages
-└── rules/          # Channel rules
-```
-
-Legacy channels may remain at `lupo-channels/<channel_id>/` for historical compatibility.
-
-During 4.0.88 refactor work, current channel-wide `prompts/` directories remain legacy-compatible until per-thread prompt migration is performed in controlled batches.
-
----
-
-**Index Version**: 1.0  
-**Last Updated**: 2026-03-19 15:00:00 UTC  
-**Next Update**: 2026-03-19 16:00:00 UTC  
-**Maintained by**: WOLFIE (Agent 1)
+Old numeric channels are archived in `lupo-channels_before_4_0_93/` for historical reference. New work should use the human-readable structure above.
