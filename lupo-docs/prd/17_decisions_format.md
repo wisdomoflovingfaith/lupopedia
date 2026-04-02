@@ -61,25 +61,62 @@ lupopedia.footer:
 
 ## Overview
 
-This PRD defines the canonical format for `decisions.md` files stored in version directories (`lupo-docs/versions/<version>/decisions.md`). These files serve as the single source of truth for architectural decisions, questions, answers, and action items for a given Lupopedia version.
+
+This PRD defines the canonical format for documenting architectural decisions, questions, answers, and action items for a given Lupopedia version. **As of version 4.0.93+, the canonical and only supported format is the folder-based threaded decisions system. The legacy single-file `decisions.md` approach is deprecated and must not be used for new work.**
+
+## Canonical Decisions Folder System (Required)
+
+All decisions for a version **must** be stored in a `decisions/` folder under the version directory:
+
+```
+lupo-docs/versions/
+└── <version>/
+  └── decisions/
+    ├── THREAD_INDEX.md     # Required: index of all decision threads
+    └── YYYYMMDD_HHIISS_TYPE_STATUS_TITLE.md  # Individual thread files
+```
+
+**Monolithic `decisions.md` files are forbidden for new versions.**
+
+### THREAD_INDEX.md (Required)
+Every `decisions/` folder must contain a `THREAD_INDEX.md` file. This file lists all decision threads, their status, and links to each thread file. It serves as the authoritative index for the folder.
+
+### Thread File Naming Convention
+- Format: `YYYYMMDD_HHIISS_TYPE_STATUS_TITLE.md`
+  - Example: `20260402_120000_DECISION_completed_header_validator_update.md`
+- Each file documents a single decision, question, answer, dialog, or action item thread.
+- All files must use UTC timestamps and lowercase, underscore-separated titles.
+
+### Migration and Legacy Files
+- If migrating from a legacy `decisions.md`, parse each entry into its own thread file and update `THREAD_INDEX.md` accordingly.
+- The old file may be preserved as `old_decisions.md` for reference, but must not be updated.
+
+### Validation Rules (Folder System)
+1. `decisions/` folder must exist for every version.
+2. `THREAD_INDEX.md` must be present and up to date.
+3. All thread files must follow the naming convention and include LUPOPEDIA HEADERS.
+4. No new `decisions.md` files may be created; all new decisions must be threads.
+
+### Rationale
+This system enables:
+- Threaded, timestamped, and atomic decision records
+- Parallel work by multiple agents
+- Channel/thread provenance and auditability
+- Elimination of merge conflicts and monolithic file bottlenecks
+
+**Reference:** See [README.md](../README.md), [LUPOPEDIA_HEADERS/README.md](../doctrine/LUPOPEDIA_HEADERS/README.md), and [LILITH directive 20260331] for constitutional requirements.
 
 ## Location
 
-### Primary Location (Database-Backed)
-```
-lupo-docs/versions/
-└── <version>/
-    └── decisions.md          # Single consolidated file (legacy approach)
-```
 
-### Alternative Location (Filesystem Threads)
+### Legacy Location (Deprecated)
+The old single-file format:
 ```
 lupo-docs/versions/
 └── <version>/
-    └── decisions/              # Directory containing individual thread files
-        ├── THREAD_INDEX.md     # Index of all decision threads
-        └── *.md               # Individual decision thread files
+  └── decisions.md
 ```
+is deprecated and must not be used for new work. Only the folder-based system is canonical.
 
 ### Thread File Naming Conventions
 

@@ -77,6 +77,32 @@ This document describes the top‑level organization of the Lupopedia codebase. 
 | `lupo-uploads/` | Directory | User‑uploaded files stored by the application. |
 | `lupo-views/` | Directory | View templates (PHP/HTML) for rendering pages. |
 
+## Canonical Decisions Directory Structure (Required)
+
+All architectural and governance decisions for each version **must** be stored in a `decisions/` folder under the version directory. The legacy single-file `decisions.md` is deprecated and must not be used for new work.
+
+**Required structure:**
+```
+lupo-docs/versions/
+└── <version>/
+  └── decisions/
+    ├── THREAD_INDEX.md     # Required: index of all decision threads
+    └── YYYYMMDD_HHIISS_TYPE_STATUS_TITLE.md  # Individual thread files
+```
+
+- `decisions/` is always a folder, never a file.
+- `THREAD_INDEX.md` is required in every `decisions/` folder and must list all threads.
+- Each thread file must use the naming convention: `YYYYMMDD_HHIISS_TYPE_STATUS_TITLE.md` (UTC timestamp, type, status, lowercase/underscored title).
+- All thread files must include a LUPOPEDIA HEADERS block.
+- No new `decisions.md` files may be created; all new decisions must be threads in the folder.
+
+**Rationale:**
+- Enables parallel, atomic, and auditable decision records
+- Prevents merge conflicts and monolithic file bottlenecks
+- Satisfies constitutional requirements for provenance and channel/thread linkage
+
+**References:** See [lupo-docs/prd/17_decisions_format.md](17_decisions_format.md), [README.md](../README.md), and [LUPOPEDIA_HEADERS/README.md](../doctrine/LUPOPEDIA_HEADERS/README.md).
+
 ## Non‑Prefixed Items
 | Item | Type | Note |
 |------|------|------|

@@ -25,23 +25,23 @@ lupopedia.init:
     - path: lupo-docs/prd/00_root_constitutional_system_requirements.md
       reason: "MANDATORY FIRST READ — constitutional law for all agents and contributors. Overrides everything else."
     - path: AGENTS.md
-      reason: Canonical actor, identity-layer, and coordination rules
+      reason: "Canonical actor, identity-layer, and coordination rules"
     - path: ONBOARDING.md
-      reason: Operational quick-start
+      reason: "Operational quick-start"
     - path: lupo-rules/root/WOLFIE_DOCTRINE.md
-      reason: Engineering philosophy — read before touching any existing code
+      reason: "Engineering philosophy — read before touching any existing code"
     - path: lupo-rules/root/README.md
-      reason: Complete root rules and development constraints
+      reason: "Complete root rules and development constraints"
     - path: lupo-docs/doctrine/LUPOPEDIA_HEADERS/README.md
-      reason: Header/footer validation doctrine
+      reason: "Header/footer validation doctrine"
     - path: lupo-docs/doctrine/IDENTITY_LAYERS_DOCTRINE.md
-      reason: Canonical five-layer identity model
+      reason: "Canonical five-layer identity model"
     - path: lupo-docs/versions/4.0.93/README.md
-      reason: Current active version overview and thread-consolidated scope
+      reason: "Current active version overview and thread-consolidated scope"
     - path: lupo-docs/versions/4.0.93/PLAN.md
-      reason: Current detailed iteration plan
-    - path: lupo-docs/versions/4.0.93/decisions.md
-      reason: Architecture decisions, Q&A dialogs, and reasoning for all implementation choices in this version
+      reason: "Current detailed iteration plan"
+    - path: lupo-docs/versions/4.0.93/decisions/
+      reason: "Architecture decisions and implementation reasoning for current version (folder with threaded decision files)"
     - path: lupo-channels/channel_index.md
       reason: Canonical channel map and path policy
     - path: ORGANIZATION.md
@@ -78,7 +78,7 @@ lupopedia.edges:
       type: references
       weight: 1.0
       reason: Current detailed iteration plan
-    - to: lupo-docs/versions/4.0.93/decisions.md
+    - to: lupo-docs/versions/4.0.93/decisions/
       type: references
       weight: 1.0
       reason: Architecture decisions and implementation reasoning for current version
@@ -108,7 +108,7 @@ lupopedia.footer:
   orchestrator: cursor:root
   next_action:
     - Keep constitutional PRD reference prominent and mandatory
-    - Keep decisions.md links current with active version
+ 
 ---
 # file: Lupopedia README - delegation: cursor:root - web_path: [http://www.lupopedia.com/lupopedia/README.md](http://www.lupopedia.com/lupopedia/README.md)
 
@@ -132,24 +132,18 @@ After the constitutional PRD, read `lupo-rules/root/WOLFIE_DOCTRINE.md`. It expl
 
 ## Decisions, Q&A, and Implementation Reasoning
 
-Every significant architectural decision, design question, and implementation choice is recorded in `decisions.md` files. These are not summaries — they are full dialogs: the question asked, the options considered, the reasoning, and the final answer.
+Every significant architectural decision, design question, and implementation choice is recorded in `decisions/` folders. These are not summaries — they are full threaded dialogs: questions asked, options considered, reasoning, and final answer.
 
-Decisions files are scoped by version and channel:
+Decisions folders can exist anywhere, scoped by context:
 
-- `lupo-docs/versions/<version>/decisions.md` — decisions made during that version's development, scoped to `channel_id` 42
-- Individual decisions may also reference a `context_id` when they have been finalized into a formal context
+- `lupo-docs/versions/<version>/decisions/` — version-scoped decisions
+- `lupo-docs/implementations/{id}_{slug}/decisions/` — PRD-scoped decisions
+- `lupo-agents/{agent_key}/decisions/` — agent-scoped decisions
+- `lupo-channels/{id}/threads/{thread}/decisions/` — discussion-scoped decisions
 
-Before implementing anything non-trivial, check the relevant decisions.md. The answer to "why does it work this way" is almost always there. If you are about to make a decision that contradicts an existing decision record, that is a flag — read the reasoning first.
+Before implementing anything non-trivial, check the relevant decisions/ folder. The answer to "why does it work this way" is almost always there. If you are about to make a decision that contradicts an existing decision record, that is a flag — read the reasoning first.
 
-The format includes:
-
-- `D-xx` — Architecture or design decisions
-- `Q-xx` / `A-xx` — Questions and answers
-- `DG-xx` — Full dialogs between actors
-- `W-xx` — Warnings about known issues
-- `O-xx` — Observations integrated into doctrine
-
-Current version decisions: `lupo-docs/versions/4.0.93/decisions.md`
+ 
 
 ---
 
@@ -406,7 +400,7 @@ For developers and IDE agents, read in this order:
 7. `ORGANIZATION.md` — repository structure and write authority
 8. `lupo-docs/versions/4.0.93/README.md` — current version overview
 9. `lupo-docs/versions/4.0.93/PLAN.md` — current iteration plan
-10. `lupo-docs/versions/4.0.93/decisions.md` — all architectural decisions and Q&A for this version
+10. `lupo-docs/versions/4.0.93/decisions/` — all architectural decisions and Q&A for this version
 11. `lupo-docs/versions/4.0.93/TODO.md` — current task tracking
 
 ## Root File Policy
@@ -450,14 +444,14 @@ Lupopedia uses a **five-layer documentation system** that preserves complete kno
   - `versions/` - Historical snapshots (e.g., `v1.0.0/`)
   - `tests/` - Test files and coverage documentation
 
-#### **Layer 3: Discussions (WHY)**
-- **Every implementation folder contains `discussions/` folder**
-- **Purpose**: Documents the reasoning behind design decisions as threads
-- **Key Concept**: The WHY layer is not a single file. It is a structured conversation composed of timestamped, actor-attributed messages grouped into threads. This mirrors the Lupopedia channel architecture and ensures that decision-making is preserved as a living dialog rather than a static summary.
+#### **Layer 3: Decisions (WHY)**
+- **Every implementation folder contains `decisions/` folder**
+- **Purpose**: Documents the reasoning behind design decisions as structured decision records
+- **Key Concept**: The WHY layer is not a single file. It is a structured conversation composed of timestamped, actor-attributed messages grouped into decision threads. This mirrors the Lupopedia channel architecture and ensures that decision-making is preserved as a living dialog rather than a static summary.
 - **Structure**: 
-  - `THREAD_INDEX.md` - Index of all discussion threads
-  - `{thread_name}/` folders for each topic
-  - `YYYYMMDD_HHIISS_ACTOR_PURPOSE_TITLE.md` files for each message
+  - `DECISION_INDEX.md` - Index of all decision threads
+  - `{decision_name}/` folders for each topic
+  - `YYYYMMDD_HHIISS_DECISION_purpose_TITLE.md` files for each decision record
 - **Format**: Matches channel/thread architecture for consistency
 - **Benefits**: 
   - Threads can be linked to actual channel threads
@@ -465,14 +459,14 @@ Lupopedia uses a **five-layer documentation system** that preserves complete kno
   - Database-friendly structure for future dialog system
   - Machine-navigable: Agents can reconstruct decision timelines, identify responsible actors, and trace the evolution of architectural reasoning
 
-### Discussion Folder Anatomy
+### Decision Folder Anatomy
 
 ```
-discussions/
+decisions/
     THREAD_INDEX.md
-    thread_name/
-        YYYYMMDD_HHIISS_ACTOR_PURPOSE_TITLE.md
-        YYYYMMDD_HHIISS_ACTOR_PURPOSE_TITLE.md
+    decision_name/
+        YYYYMMDD_HHIISS_DECISION_purpose_TITLE.md
+        YYYYMMDD_HHIISS_DECISION_purpose_TITLE.md
 ```
 
 #### **Layer 4: Authors (WHO)**
@@ -530,6 +524,7 @@ The WHY layer uses the same channel/thread/message structure as the Lupopedia di
 - Follow `lowercase_with_underscores` naming for files
 - Include all standard files and proper headers
 - Add status badges for progress tracking
+- **Decision Template**: Use `_template/decisions/YYYYMMDD_HHIISS_DECISION_purpose_TITLE.md` for all decision records
 - **Reference**: PRD 26 defines the complete five-layer architecture
 
 ## Validation & Enforcement
@@ -542,13 +537,13 @@ The WHY layer uses the same channel/thread/message structure as the Lupopedia di
 | Implementation README | `id`, `parent_prd`, `status`, `version`, `last_reviewed_utc` | CI check |
 | `authors.md` | Table with 7 required columns | CI check |
 | `edges.md` | 5 required sections with bullet format | CI check |
-| `THREAD_INDEX.md` | Table with 5 required columns | CI check |
+| `DECISION_INDEX.md` | Table with 5 required columns | CI check |
 
 ### Validation Contract
 
 All implementation folders MUST pass `lupo-scripts/validate_implementation.py` before merge.
 
-**Required Files**: `authors.md`, `edges.md`, `discussions/THREAD_INDEX.md` must exist  
+**Required Files**: `authors.md`, `edges.md`, `decisions/DECISION_INDEX.md` must exist  
 **Schema Compliance**: Required front-matter fields present and correctly formatted  
 **Link Validation**: `parent_prd` points to existing PRD file  
 **Status Accuracy**: Implementation status matches actual completion

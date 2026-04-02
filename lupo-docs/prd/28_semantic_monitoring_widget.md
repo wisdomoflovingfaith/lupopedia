@@ -557,6 +557,26 @@ All endpoints receive `page_id` (content_id) as a query parameter. All PHP handl
 
 ---
 
+
+## IP Address Detection (RULE 93.IP_DETECTION)
+
+**NEVER use `$_SERVER['REMOTE_ADDR']` alone.** This will almost always return the proxy/VPN/CDN IP, not the user's real IP.
+
+**REQUIRED:** Use the `get_ipaddress()` function that checks headers in priority order:
+
+1. CloudFlare headers (`HTTP_CF_CONNECTING_IP`, `HTTP_TRUE_CLIENT_IP`)
+2. Standard proxy headers (`HTTP_X_FORWARDED_FOR`, `HTTP_X_REAL_IP`)
+3. RFC 7239 headers (`HTTP_FORWARDED_FOR`, `HTTP_FORWARDED`)
+4. Fallback to `REMOTE_ADDR` only if nothing else is available
+
+**Why this matters:**
+- Users behind VPNs
+- Users behind CDNs (CloudFlare, Fastly)
+- Users behind corporate proxies
+- Users behind load balancers
+
+**Violation:** Any code that uses `$_SERVER['REMOTE_ADDR']` without checking forwarded headers is constitutionally non-compliant.
+
 ## Implementation Checklist
 
 Before writing any PHP for this widget:

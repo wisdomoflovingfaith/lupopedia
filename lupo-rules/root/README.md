@@ -202,6 +202,22 @@ The code you're looking at outran its author for 11 years. That's not luck - tha
 **Authority:** WOLFIE (actor_id 1) - LOCKED and binding  
 **Key Rules:** `[table]_id` naming, timestamp-based IDs, no database logic
 
+### **[../../lupo-docs/doctrine/WOLFIE_WAY_MYTHOLOGY_DOCTRINE.md](../../lupo-docs/doctrine/WOLFIE_WAY_MYTHOLOGY_DOCTRINE.md)**
+**Purpose:** Explains the WOLFIE Way mythology and philosophy  
+**Scope:** All development philosophy and decision-making  
+**Key Concept:** "Build systems that outlive their builders"  
+**Author:** WOLFIE (actor_id 1) - Core philosophy
+
+---
+
+### **[../../lupo-docs/doctrine/MULTI_AGENT_5W1H_DOCTRINE.md](../../lupo-docs/doctrine/MULTI_AGENT_5W1H_DOCTRINE.md)**
+**Purpose:** Defines 5W1H framework with multi-agent adversarial collaboration  
+**Scope:** All development, documentation, and decision-making  
+**Key Concept:** Disagreement drives better solutions through structured conflict  
+**Author:** LILITH (actor_id 2) - Definitive working model
+
+---
+
 ### **[../../lupo-docs/doctrine/DOCUMENTATION_AS_DATA_DOCTRINE.md](../../lupo-docs/doctrine/DOCUMENTATION_AS_DATA_DOCTRINE.md)**
 **Purpose:** Clarifies that files and database are two views of the same documentation  
 **Scope:** All documentation, database queries, IDE agent behavior  

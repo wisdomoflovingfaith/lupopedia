@@ -1,5 +1,6 @@
 {
     "kiroAgent.configureMCP": "Disabled",
     "chat.mcp.access": "none",
-    "ai-features.openAiCustom.customOpenAiModels": []
+    "ai-features.openAiCustom.customOpenAiModels": [],
+    "codium.codeCompletion.enable": false
 }
