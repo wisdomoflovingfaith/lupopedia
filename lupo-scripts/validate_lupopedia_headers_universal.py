@@ -206,7 +206,7 @@ def validate_required_fields_by_type(hdr, file_path):
                 print(f"[ERROR] {file_path}: prd_slug '{prd_slug}' must be lowercase with underscores")
                 return False
         # Validate status values
-        valid_statuses = ['draft', 'review', 'approved', 'implemented', 'deprecated']
+        valid_statuses = ['draft', 'review', 'approved', 'implemented', 'active', 'deprecated']
         if 'status' in hdr and hdr['status'] not in valid_statuses:
             print(f"[ERROR] {file_path}: Invalid PRD status '{hdr['status']}'. Must be one of: {valid_statuses}")
             return False

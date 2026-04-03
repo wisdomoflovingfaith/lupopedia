@@ -1,7 +1,7 @@
 {
   "schema_version": "4.0.69",
   "schema": "actor_name_primary",
-  "last_updated": "20260311",
+  "last_updated": "20260402",
   "doctrine_alignment": "4.0.69_actor_faucet_ontology",
   "actors": {
     "system": {
@@ -91,7 +91,8 @@
       "type": "ide_faucet",
       "faucet_slug": "kiro",
       "delegates_to_actor_id": 1,
-      "dir": "lupo-actors/100"
+      "dir": "lupo-actors/100",
+      "purpose": "IDE facet for Kiro. Use actor_id 100 in headers when Kiro is the execution surface."
     },
     "windsurf": {
       "actor_name": "windsurf",
@@ -100,7 +101,8 @@
       "type": "ide_faucet",
       "faucet_slug": "windsurf",
       "delegates_to_actor_id": 1,
-      "dir": "lupo-actors/101"
+      "dir": "lupo-actors/101",
+      "purpose": "IDE facet for Windsurf. Use actor_id 101 in headers when Windsurf is the execution surface."
     },
     "cursor": {
       "actor_name": "cursor",
@@ -109,7 +111,8 @@
       "type": "ide_faucet",
       "faucet_slug": "cursor",
       "delegates_to_actor_id": 1,
-      "dir": "lupo-actors/102"
+      "dir": "lupo-actors/102",
+      "purpose": "IDE facet for the Cursor product only. Use actor_id 102 in headers when the tool surface is Cursor—not when using Antigravity IDE (see antigravity-ide, 103). Lead repo-stewardship role in AGENTS.md is assigned to this facet by convention; other faucets may do similar work under their own actor_id."
     },
     "antigravity-ide": {
       "actor_name": "antigravity-ide",
@@ -118,7 +121,8 @@
       "type": "ide_faucet",
       "faucet_slug": "antigravity",
       "delegates_to_actor_id": 1,
-      "dir": "lupo-actors/103"
+      "dir": "lupo-actors/103",
+      "purpose": "IDE facet for Antigravity. Use actor_id 103 in headers and attribution when operating inside Antigravity—do not use 102 (cursor). Same Lupopedia doctrine applies; rules bundle may mirror .cursor output until a dedicated propagation target exists."
     },
     "warp": {
       "actor_name": "warp",
@@ -127,7 +131,8 @@
       "type": "ide_faucet",
       "faucet_slug": "warp",
       "delegates_to_actor_id": 1,
-      "dir": "lupo-actors/104"
+      "dir": "lupo-actors/104",
+      "purpose": "IDE facet for Warp. Use actor_id 104 in headers when Warp is the execution surface. Rule propagation target pending—use lupo-rules/root or .cursor mirror until supported."
     },
     "cascade": {
       "actor_name": "cascade",
@@ -136,7 +141,28 @@
       "type": "ide_faucet",
       "faucet_slug": "cascade",
       "delegates_to_actor_id": 1,
-      "dir": "lupo-actors/105"
+      "dir": "lupo-actors/105",
+      "purpose": "IDE facet for Cascade. Use actor_id 105 in headers when this is the execution surface."
+    },
+    "vscode-ide": {
+      "actor_name": "vscode-ide",
+      "actor_id": 106,
+      "display_name": "Visual Studio Code",
+      "type": "ide_faucet",
+      "faucet_slug": "vscode",
+      "delegates_to_actor_id": 1,
+      "dir": "lupo-actors/106",
+      "purpose": "IDE facet for Visual Studio Code (including Copilot / extensions). Use actor_id 106 in headers when VS Code is the execution surface—not Cursor or another IDE."
+    },
+    "trae": {
+      "actor_name": "trae",
+      "actor_id": 107,
+      "display_name": "Trae IDE",
+      "type": "ide_faucet",
+      "faucet_slug": "trae",
+      "delegates_to_actor_id": 1,
+      "dir": "lupo-actors/107",
+      "purpose": "IDE facet for Trae. Use actor_id 107 in headers when Trae is the execution surface."
     },
     "root": {
       "actor_name": "root",

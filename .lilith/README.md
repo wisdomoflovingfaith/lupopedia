@@ -6,7 +6,7 @@ lupopedia.headers:
   lupopedia.version: "4.0.79"
   lupopedia.schema: "lilith_guide"
   file_path_from_root: ".lilith/README.md"
-  last_modified_utc: "20260317"
+  last_modified_utc: "20260402"
   system_version: "4.0.79"
   artifact_type: "guide"
   artifact_kind: "documentation"

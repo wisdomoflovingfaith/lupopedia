@@ -2,25 +2,27 @@
 lupopedia.headers:
   header_format_version: 2
   lupopedia.schema: prd
-  when_updated: "20260331190000"
-  file_path_from_root: "/lupo-docs/prd/16_lupopedia_headers.md"
+  when_updated: "20260403023656"
+  file_path_from_root: "lupo-docs/prd/16_lupopedia_headers.md"
   web_path: "http://www.lupopedia.com/lupopedia/lupo-docs/prd/16_lupopedia_headers.md"
-  last_modified_utc: "20260331190000"
+  last_modified_utc: "20260403023656"
   federation_node_id: 0
   channel_id: 42
   thread_id: "prd-lupopedia-headers"
   prd_id: 16
   prd_slug: lupopedia_headers
-  content_id: 16
+  title: "Lupopedia File Headers and Verification"
   author:
-    type: "agent"
+    type: "actor"
     id: 2
     name: "LILITH"
+  actor_id: 2
+  actor_name: "LILITH"
   delegation_chain: "lilith:audit"
   artifact_type: "prd"
   artifact_kind: "specification"
   purpose: "Canonical specification for Lupopedia file headers, verification, and metadata propagation"
-  status: "approved"
+  status: "active"
   tags:
   - "prd"
   - "lupopedia_headers"
@@ -28,43 +30,46 @@ lupopedia.headers:
   - "verification"
 lupopedia.edges:
   outbound_edges:
-    - to: "/lupo-docs/prd/root_constitutional_system_requirements.md"
+    - to: "lupo-docs/prd/00_root_constitutional_system_requirements.md"
       type: references
       weight: 1.0
       reason: "Constitutional anchor"
-    - to: "/lupo-docs/prd/26_five_layer_documentation_architecture.md"
+    - to: "lupo-docs/prd/26_five_layer_documentation_architecture.md"
       type: references
       weight: 1.0
       reason: "Five-layer documentation architecture"
-    - to: "/lupo-docs/doctrine/LUPOPEDIA_HEADERS/README.md"
+    - to: "lupo-docs/doctrine/LUPOPEDIA_HEADERS/README.md"
       type: references
       weight: 1.0
       reason: "Canonical doctrine for Lupopedia headers"
-    - to: "/lupo-docs/doctrine/LUPOPEDIA_HEADERS/LUPOPEDIA_HEADERS_DOCTRINE.md"
+    - to: "lupo-docs/doctrine/LUPOPEDIA_HEADERS/LUPOPEDIA_HEADERS_DOCTRINE.md"
       type: references
       weight: 1.0
       reason: "Header format and validation rules"
-    - to: "/lupo-docs/doctrine/LUPOPEDIA_HEADERS/VALIDATORS_AND_TOOLING.md"
+    - to: "lupo-docs/doctrine/LUPOPEDIA_HEADERS/VALIDATORS_AND_TOOLING.md"
       type: references
       weight: 0.9
       reason: "Header validation and tooling"
-    - to: "/lupo-docs/doctrine/LUPOPEDIA_HEADERS/VERSIONING_MODEL.md"
+    - to: "lupo-docs/doctrine/LUPOPEDIA_HEADERS/VERSIONING_MODEL.md"
       type: references
       weight: 0.8
       reason: "Header versioning model"
-    - to: "/lupo-scripts/validate_lupopedia_headers_universal.py"
+    - to: "lupo-scripts/validate_lupopedia_headers_universal.py"
       type: implements
       weight: 1.0
-      reason: "Python validator for Lupopedia headers, including context_id logic"
-    - to: "/lupo-scripts/regenerate_headers_for_stale_files.py"
+      reason: "Python validator (artifact types, author, optional content_id / context_id, --check-db)"
+    - to: "lupo-scripts/import_content.py"
       type: implements
       weight: 1.0
-      reason: "Regeneration script for headers, now with context_id support"
-  
+      reason: "Import into lupo_contents; metadata and lupopedia_header edges sync"
+    - to: "lupo-scripts/lib/header_db_sync.py"
+      type: implements
+      weight: 1.0
+      reason: "Persists headers to lupo_metadata and lupo_edges"
 lupopedia.footer:
-  last_verified: "20260331190000"
+  last_verified: "20260403023341"
   verified_by:
-    type: "agent"
+    type: "actor"
     id: 2
     name: "LILITH"
     department_id_delta: 0
@@ -73,7 +78,7 @@ lupopedia.footer:
     faucet_slug: "none"
   orchestrator: "lilith:audit"
   next_action:
-    - "Verify all header fields match doctrine"
+    - "Keep aligned with import_content.py and header_db_sync behavior"
     - "Ensure verification authority (THOTH) is documented"
     - "Update stale artifacts with correct header format"
 ---
@@ -82,7 +87,7 @@ lupopedia.footer:
 
 ## Overview
 
-This PRD defines the canonical requirements, structure, and verification process for Lupopedia file headers. All files in the Lupopedia system must include a YAML-formatted `lupopedia.headers` block, which encodes file identity, version, schema, and verification metadata. Verification is performed by agents, not actors, and the `verified_by` field must reference the verifying agent.
+This PRD defines the canonical requirements, structure, and verification process for Lupopedia file headers. All files in the Lupopedia system must include a YAML-formatted `lupopedia.headers` block, which encodes file identity, version, schema, and verification metadata. Verification may be attributed to **actors** or **agents**; **`lupopedia.footer.verified_by`** records who performed verification (see Author vs Verifier and verification sections below).
 
 ## Constitutional Compliance
 
@@ -90,7 +95,7 @@ All header metadata and verification processes must comply with Lupopedia consti
 
 - **Verification authority**: Both actors and agents may perform verification
 - **Primary authority**: THOTH (actor_id 26) is canonical for stale artifacts (`last_verified < 20260301000000`)
-- **Identity tracking**: `verified_by.identity_type` distinguishes actor vs agent
+- **Identity tracking**: **`verified_by.type`** (preferred) or legacy **`verified_by.identity_type`** distinguishes actor vs agent
 - Header blocks must be present in all canonical files
 - Header fields must match format requirements in LUPOPEDIA_HEADERS_DOCTRINE
 - All verification actions are logged and auditable via `lupo_actor_actions`
@@ -136,7 +141,7 @@ Lupopedia distinguishes between **who created content** (author) and **who valid
 | Role | Field Location | Purpose | Required |
 |------|----------------|---------|----------|
 | **Author** | `lupopedia.headers.author` | Attribution of content creation | Yes |
-| **Verifier** | `lupoopedia.footer.verified_by` | Attribution of content validation | Yes (if footer present) |
+| **Verifier** | `lupopedia.footer.verified_by` | Attribution of content validation | Yes (if footer present) |
 
 ### Author Types
 
@@ -188,19 +193,19 @@ actor_name: "CURSOR"
 | `header_format_version` | integer | Yes | Current version of header schema (2) |
 | `lupopedia.schema` | string | Yes | PRD, documentation, code, etc. |
 | `when_updated` | string (quoted) | Yes | UTC YYYYMMDDHHIISS - logical content update time |
-| `file_path_from_root` | string | Yes | Canonical path from repo root (absolute, starts with /) |
-| `web_path` | string | Yes | Canonical web path with /lupopedia/ prefix |
+| `file_path_from_root` | string | Yes | **Repo-relative** path from repository root — **no** leading `/` (matches `import_content._norm_path_repo` and `lib/header_validation._is_valid_relative_path`) |
+| `web_path` | string | Yes | Canonical public URL; must include the `/lupopedia/` subdirectory for this install (see [LUPOPEDIA_HEADERS_FORMAT.md](../doctrine/LUPOPEDIA_HEADERS/LUPOPEDIA_HEADERS_FORMAT.md)); host is conventionally `www.lupopedia.com` in examples |
 | `last_modified_utc` | string (quoted) | Yes | UTC YYYYMMDDHHIISS - file write time |
 | `federation_node_id` | integer | Yes | 0=core, 1=current install, 2+=external |
 | `channel_id` | integer | Conditional | Required for discussions only |
 | `thread_id` | string | Conditional | Required for discussions only |
 | `prd_id` | integer | Conditional | Required for PRDs only |
 | `prd_slug` | string | Conditional | Required for PRDs only |
-| `title` | string | Conditional | Required for PRDs only |
-| `status` | string | Conditional | Required for PRDs and implementations |
+| `title` | string | Conditional | Required for PRDs only (enforced by **`validate_lupopedia_headers_universal.py`** for `artifact_type: prd`) |
+| `status` | string | Conditional | Required for PRDs and implementations — allowed values include **`draft`**, **`review`**, **`approved`**, **`implemented`**, **`active`** (ratified for operational use after audit), **`deprecated`** (see **`validate_lupopedia_headers_universal.py`**) |
 | `version` | string | Conditional | Required for implementation documentation |
 | `parent_prd` | string | Conditional | Required for implementations |
-| `content_id` | integer | Conditional | Required once imported (deterministic format) |
+| `content_id` | integer | No (authoring) | **Omit** for normal edits. Set by **`import_content.py`** after a successful upsert into **`lupo_contents`**, optionally written into the file with **`--write-back`**. **Never** set `content_id` equal to **`prd_id`** or other IDs. **`validate_lupopedia_headers_universal.py --check-db`** compares file vs DB when `content_id` is present. |
 | `author.type` | string | Yes | `actor`, `agent`, `system`, `user` |
 | `author.id` | integer | Yes | Numeric ID from registry |
 | `author.name` | string | No | Display name (resolved from registry if omitted) |
@@ -209,7 +214,7 @@ actor_name: "CURSOR"
 | `artifact_kind` | string | Yes | Kind per taxonomy (see above) |
 | `purpose` | string | Yes | One-line purpose |
 | `tags` | list | Yes | Non-empty list of strings |
-| `context_id` | integer | No | Optional for finalized contexts (18 digits) |
+| `context_id` | integer | No | Optional; if present, **18 digits** (validator). Prefer **`lupopedia.edges`** for graph relationships; **`context_id`** is legacy **`lupo-contexts/`** linkage only |
 
 **Legacy format (deprecated until 2026-07-02):**
 - `actor_id` (integer) - Use `author.id` instead
@@ -222,10 +227,68 @@ actor_name: "CURSOR"
 **Explicit ID Naming:** All ID fields use explicit prefixes to avoid ambiguity:
 - `prd_id`: PRD identifier (1-999)
 - `prd_slug`: URL-friendly PRD identifier
-- `content_id`: Database content_id (after import)
-- `actor_id`: Actor/agent identifier (from registry)
-- `dialog_message_id`: Message identifier (in threads)
+- `content_id`: **`lupo_contents.content_id`** — application-assigned BIGINT after import (**not** the same namespace as `prd_id`)
+- `actor_id`: Actor identifier (from registry); registry-backed “agents” are still **actors** for ID purposes
+- `dialog_message_id`: Message identifier (in **`lupo_dialog_messages`** and related thread tables)
 - Generic `id` is deprecated to prevent confusion
+
+### Legacy `actor_id` / `actor_name` alongside `author` (import path)
+
+**`lupo-scripts/lib/header_validation.validate_header`** (used by **`import_content.py`**) still requires **`actor_id`** and **`actor_name`** until that module is extended. For files that use structured **`author`**, also supply **`actor_id`** / **`actor_name`** mirroring **`author.id`** / **`author.name`** so import validation succeeds.
+
+## Header format versioning
+
+| Version | Meaning | Status |
+|--------|---------|--------|
+| **1** | Legacy flat **`actor_id`** / **`actor_name`** at top level of **`lupopedia.headers`** | Deprecated; migrate to v2 |
+| **2** | Structured **`author`** (and **`verified_by`** with **`type`** / **`id`**); **`header_format_version: 2`** in file | Current |
+
+Validators SHOULD accept v1 with warnings until the deprecation deadline. **`validate_lupopedia_headers_universal.py`** enforces **author** structure and type-specific fields (e.g. **`title`** for PRDs).
+
+## Database linkage: `content_id`, import, metadata, edges
+
+### `content_id` and `lupo_contents`
+
+- **Authoring:** Omit **`content_id`** from new markdown unless you are round-tripping from DB.
+- **Import:** **`python lupo-scripts/import_content.py <file.md>`** computes a **`content_id`** via **`calculate_content_id()`** (UTC timestamp + random suffix, optional collision retry against **`lupo_contents`** — implementation detail in script, not hand-authored). If the script’s top-of-file docstring disagrees, treat **`calculate_content_id`** as authoritative for this tree. Then **`lib/header_db_sync.sync_header_artifact_to_db`** runs after the **`lupo_contents`** upsert (with **`channel_id`** and **`actor_id`** from header fields).
+- **`--write-back`:** After a successful import, writes **`lupopedia.headers.content_id`** into the YAML (insert or replace line). Use this so **`--check-db`** on the universal validator can match file vs database.
+- **Namespace:** Never reuse **`prd_id`** or other semantic IDs as **`content_id`**.
+
+### Channel and thread on import
+
+- **`channel_id`:** Stored on **`lupo_contents.channel_id`** when present in the header.
+- **`thread_id`:** There is **no** dedicated **`thread_id`** column on **`lupo_contents`**. The full header mapping is persisted under **`lupo_metadata`** with **`class_name=lupopedia_header_sync`**, **`entity_type=content`**, **`entity_id=content_id`** — so **`thread_id`** (and other header keys) remain queryable as metadata properties, not as a first-class DDL column on the content row.
+- **Coordination messages:** **`lupo_dialog_messages`** (and related thread tables) hold **questions, answers, comments, and decision-class messages** in the **channel/thread** runtime; those are **not** the same rows as **`lupo_contents`**, but **`channel_id`** / **`thread_id`** in headers align the **document** artifact with the same coordination context.
+
+### `lupopedia.edges` vs `context_id`
+
+- **Preferred:** **`lupopedia.edges.outbound_edges`** with **`to:`** repo-relative paths (**no** leading `/`). After import, **`header_db_sync`** creates **`lupo_edges`** rows with **`edge_category=lupopedia_header`** linking the content entity to targets (resolved to **`content`** or **`file_path_ref`**).
+- **`context_id`:** Optional; validated as **18 digits** when present in **`validate_lupopedia_headers_universal.py`**. Treat as **legacy** linkage to **`lupo-contexts/`** where still used — **do not** use it instead of edges for cross-document references.
+
+## LILITH audit record
+
+### Path and ID hygiene (resolved)
+
+| Finding | Resolution |
+|--------|------------|
+| Leading `/` on **`file_path_from_root`** | **Fixed:** repo-relative only |
+| **`content_id` colliding with `prd_id` semantics** | **Fixed:** no manual **`content_id`** in the example header; separate namespaces documented |
+| **`web_path`** host | **Documented:** examples use **`http://www.lupopedia.com/lupopedia/...`**; subdirectory is mandatory |
+| **`lupopedia.edges.to`** leading slashes | **Fixed:** repo-relative targets |
+| **`author.type`** for LILITH | **`author.type: actor`** (**`actor_id` 2** in registry) |
+| Missing **`header_format_version`** narrative | **Added:** versioning table above |
+| **`context_id`** vs edges | **Documented:** prefer **`lupopedia.edges`**; **`context_id`** legacy only |
+
+### Final review (2026-04-03 UTC)
+
+| Field | Value |
+|-------|--------|
+| **Verdict** | **APPROVED** — ready for operational use; **`lupopedia.headers.status`** set to **`active`** |
+| **Accuracy (reported)** | 99/100 |
+| **Constitutional violations** | None reported |
+| **Remaining debt** | **`lib/header_validation.validate_header`** still requires legacy **`actor_id`** / **`actor_name`** (mirror **`author`** until validator accepts **`author`** alone); optional docstring fix on **`import_content.py`** |
+
+This PRD is the canonical specification for Lupopedia headers; follow **`next_action`** in the header footer for maintenance tasks.
 
 ## Artifact Type Taxonomy
 
@@ -347,7 +410,7 @@ The following fields are deprecated and must not be used in new artifacts:
 ```yaml
 lupopedia.footer:
   verified_by:
-    type: "agent"           # actor | agent | system | user
+    type: "actor"           # actor | agent | system | user — use actor for registry actors (e.g. LILITH actor_id 2)
     id: 2                   # numeric ID from registry
     name: "LILITH"          # display name (resolved from registry if omitted)
 ```
@@ -364,13 +427,19 @@ verified_by:
 
 ## Cross-References
 
+- See [LUPOPEDIA_HEADERS_FORMAT.md](../doctrine/LUPOPEDIA_HEADERS/LUPOPEDIA_HEADERS_FORMAT.md) for **`file_path_from_root`**, **`web_path`**, **`content_id`**, and edges vs **`context_id`**
 - See [LUPOPEDIA_HEADERS_DOCTRINE.md](../doctrine/LUPOPEDIA_HEADERS/LUPOPEDIA_HEADERS_DOCTRINE.md) for canonical header requirements
 - See [VALIDATORS_AND_TOOLING.md](../doctrine/LUPOPEDIA_HEADERS/VALIDATORS_AND_TOOLING.md) for validation tools
 - See [VERSIONING_MODEL.md](../doctrine/LUPOPEDIA_HEADERS/VERSIONING_MODEL.md) for versioning rules
 - See [PRD 26: Five-Layer Documentation Architecture](26_five_layer_documentation_architecture.md) for actor identifier types and documentation standards
+- **`lupo-scripts/validate_lupopedia_headers_universal.py`** — type-specific rules, optional **`content_id`** / **`context_id`**, **`--check-db`**
+- **`lupo-scripts/import_content.py`** — **`lupo_contents`** upsert; optional **`--write-back`** for **`content_id`**
+- **`lupo-scripts/lib/header_db_sync.py`** — **`lupo_metadata`** + **`lupo_edges`** sync
 
 ---
 
-**Status**: APPROVED
-**Constitutional Adherence**: FULL
-**Next Review**: After next doctrine update
+**Status**: ACTIVE (LILITH final audit 2026-04-03 UTC; `lupopedia.headers.status: active`)
+
+**Constitutional adherence**: FULL
+
+**Next review**: When **`import_content.py`**, **`header_db_sync`**, or validators change materially; or when legacy **`actor_id`** / **`actor_name`** import path is retired (see deprecation deadline in this PRD).

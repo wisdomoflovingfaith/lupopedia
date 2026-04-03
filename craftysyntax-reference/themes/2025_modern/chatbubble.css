@@ -1,0 +1,112 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+  font-size: 15px;
+  background-color: #f5f7fa;
+  color: #1f2933;
+}
+
+a {
+  color: #1d8fe1;
+}
+
+a:focus,
+a:hover {
+  color: #1069a9;
+}
+
+#navigation span,
+#navigation span a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 36px;
+  padding: 0 16px;
+  border-radius: 999px;
+  font-weight: 600;
+  text-decoration: none;
+  color: #334155;
+}
+
+#navigation span.ontab,
+#navigation span.ontab a {
+  background: linear-gradient(135deg, rgba(29, 143, 225, 0.18), rgba(51, 182, 255, 0.18));
+  color: #0f4c81;
+}
+
+.chat-button {
+  font-family: inherit;
+  font-size: 0.95rem;
+  border-radius: 999px;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.chat-button--primary {
+  background: linear-gradient(135deg, #1d8fe1, #33b6ff);
+  color: #ffffff;
+  box-shadow: 0 10px 18px rgba(29, 143, 225, 0.25);
+}
+
+.chat-button--primary:hover {
+  transform: translateY(-1px);
+}
+
+.chat-button--ghost {
+  background: transparent;
+  border: 1px solid rgba(16, 105, 169, 0.35);
+  color: #1069a9;
+}
+
+.chat-button--ghost:hover {
+  background: rgba(29, 143, 225, 0.08);
+}
+
+input,
+select,
+textarea {
+  font-family: inherit;
+  font-size: 0.95rem;
+  border-radius: 10px;
+  border: 1px solid #d0d7e3;
+  padding: 8px 12px;
+  background-color: #ffffff;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+textarea {
+  resize: vertical;
+  min-height: 72px;
+}
+
+.operator,
+.operatorName,
+.guest,
+.guestName {
+  font-family: inherit;
+}
+
+.operatorName,
+.guestName {
+  font-weight: 700;
+}
+
+.chat-form__smiles-link img {
+  vertical-align: middle;
+}
+
+.chat-form__badge {
+  border-radius: 999px;
+  padding: 2px 10px;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+table {
+  font-size: 0.95rem;
+}
+

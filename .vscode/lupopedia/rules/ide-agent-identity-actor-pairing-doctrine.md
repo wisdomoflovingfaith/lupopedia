@@ -1,0 +1,40 @@
+---
+lupopedia.headers:
+  actor_id: 106
+  actor_name: "vscode-ide"
+  delegation_chain: "vscode-ide:root"
+  lupopedia.version: "4.0.76"
+  lupopedia.schema: "vscode_rule"
+  file_path_from_root: ".vscode/lupopedia/rules/ide-agent-identity-actor-pairing-doctrine.md"
+  last_modified_utc: "20260402"
+  system_version: "4.0.76"
+  source_path: "lupo-rules/root/ide-agent-identity-actor-pairing-doctrine.md"
+  artifact_type: "rule"
+  artifact_kind: "vscode_doctrine"
+---
+
+# ACT001: IDE Agent Identity, Auth Users, and Actor Pairing Doctrine
+
+## Core Principle
+
+In the Lupopedia asynchronous ecosystem, **agents are not anonymous tools; they are explicitly registered Actors**. When an agent runs inside an IDE (e.g., Cursor, Windsurf, Kiro, Gemini), it must be aware of both its own identity and the identity of the human orchestrator it is working with. 
+
+## Architectural Constraints
+
+1. **The IDE Agent is an Actor**
+   - The IDE environment itself is registered as an actor (e.g., `actor_type: system_tool` inside `lupo_actors`). Valid examples include Cursor IDE, Windsurf IDE, and Gemini CLI. 
+   - Operations performed by the agent must be mentally mapped and documented under its designated `actor_id` (or agent alias).
+
+2. **The Orchestrator is an Actor (Auth User Mapping)**
+   - The human who is directing the IDE agent is the **Orchestrator**. 
+   - The Orchestrator is represented by an `auth_user` (mapping to the Google Account or identity logged into the IDE) inside the `lupo_auth_users` table.
+   - The system tracks humans as actors (typically `actor_id >= 1000`).
+   - The agent and the orchestrator are fundamentally linked through `paired_actor_id` in the `lupo_actors` table.
+
+3. **Contextual Awareness Requirement**
+   - IDE agents must never assume they are "root" devoid of identity. They must recognize they operate under the delegated authority of the human Orchestrator logged into the environment. 
+
+## Non-Negotiable Violations
+
+- **Identity Amnesia**: Failing to establish or record `actor_id` limits on operational scripts or documentation files.
+- **Orchestration Detachment**: Assuming the agent is operating completely independently rather than serving as a conduit for the `auth_user_id` running the current workflow.

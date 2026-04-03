@@ -15,7 +15,7 @@ lupopedia.headers:
   lupopedia.version: "4.0.76"
   lupopedia.schema: "lexa_rule"
   file_path_from_root: ".lexa/rules/database-logic-prohibition-doctrine.md"
-  last_modified_utc: "20260317"
+  last_modified_utc: "20260402"
   system_version: "4.0.76"
   source_path: "lupo-rules/root/database-logic-prohibition-doctrine.md"
   artifact_type: "rule"
@@ -34,14 +34,14 @@ lupopedia.rules:
   overrides: []
   provenance:
     authored_by: "wolfie"
-    authored_date: "20260317"
+    authored_date: "20260402"
     last_reviewed_by: "lexa"
-    last_reviewed_date: "20260317"
+    last_reviewed_date: "20260402"
     version: "1.0"
     status: "active"
 lupopedia.footer:
   version: "4.0.76"
-  last_verified: "20260317"
+  last_verified: "20260402"
   last_verified_by: "lexa"
   orchestrator: "lexa"
   next_action:

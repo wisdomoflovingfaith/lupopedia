@@ -64,6 +64,11 @@ lupopedia.headers:
 
 **Type:** integer (BIGINT)
 **Required for authoring:** No — do not hand-assign for normal edits.
+
+**After successful import:** `python lupo-scripts/import_content.py <path.md>` upserts **`lupo_contents`**, then **`lib/header_db_sync.sync_header_artifact_to_db`** writes header/footer keys into **`lupo_metadata`** (`class_name=lupopedia_header_sync`) and **`lupopedia.edges`** into **`lupo_edges`**. Use **`--write-back`** to insert or refresh **`lupopedia.headers.content_id`** in the markdown file from the computed row. **Never** hand-assign `content_id` to match **`prd_id`**, **`actor_id`**, or other IDs — they are different namespaces.
+
+**Edges vs `context_id`:** Cross-artifact relationships should use **`lupopedia.edges`** (repo-relative `to:` paths, no leading slash). Optional **`context_id`** (18-digit form where used) remains for legacy **`lupo-contexts/`** linkage only; it does not replace the edge graph.
+
 ---
 lupopedia.headers:
   when_updated: "20260328240000"
@@ -236,6 +241,8 @@ There are **no** SQL columns literally named `weight` or `reason`. See **[`TAXON
 - **`lupopedia.footer.next_action`** is the **short summary** (1–3 items). If both blocks exist, the footer list **must** be derived from `lupopedia.next_actions` and must not introduce new actions.
 
 ## Complete Example
+
+**Path shapes:** `file_path_from_root` may use the **legacy numeric** tree (`lupo-channels/42/...`) for DB-aligned artifacts, or the **active human-readable** tree (`lupo-channels/0/organization/prd_29_project_organization/...`) for documentation threads — see **`lupo-docs/prd/29_project_structure.md`**.
 
 ```yaml
 ---

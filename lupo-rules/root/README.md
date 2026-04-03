@@ -16,14 +16,14 @@ lupopedia.headers:
   file_path_from_root: "lupo-rules/root/README.md"
   web_path: "http://www.lupopedia.com/lupopedia/lupo-rules/root/README.md"
   federation_node_id: 0
-  last_modified_utc: "20260327220000"
+  last_modified_utc: "20260402224949"
   artifact_type: "rules_index"
   artifact_kind: "root_rules"
   purpose: "Complete index and explanation of all root rules, doctrines, and development constraints for Lupopedia"
   tags: ["root", "rules", "doctrine", "constraints", "development"]
 
 lupopedia.footer:
-  last_verified: "20260327220000"
+  last_verified: "20260402224949"
   last_verified_by: "wolfie"
   orchestrator: "wolfie:root"
   next_action:
@@ -147,14 +147,15 @@ The code you're looking at outran its author for 11 years. That's not luck - tha
 **Scope:** 108+ registered agents, 11 primary personas  
 **Key Rules:**
 - Agent registration required for all operations
-- Channel-based communication in `lupo-channels/42/`
+- Channel-based communication on disk: **active** layout `lupo-channels/{federation_node_id}/{channel_key}/{thread_key}/` (see `lupo-docs/prd/29_project_structure.md`); legacy numeric `lupo-channels/{channel_id}/threads/...` for DB/API-mirrored artifacts; archive-only `lupo-channels_before_4_0_93/`
 - Single task ownership in root `TODO.md`
 - UTC filename format: `YYYYMMDD_HHMMSS_ACTOR_purpose_TITLE.md`
 
 ### **[CHANNEL_ARTIFACT_ROUTING_DOCTRINE.md](CHANNEL_ARTIFACT_ROUTING_DOCTRINE.md)**
 **Communication:** All coordination via channel artifacts  
-**Structure:** `lupo-channels/{channel_id}/{type}/{filename}.md`  
-**Types:** `broadcasts/`, `threads/`, `direct/`, `rules/`, `tasks/`, `content/`
+**Structure (API-mirrored / numeric):** `lupo-channels/{channel_id}/{type}/...` — see doctrine for `threads/{dialog_thread_id}/`  
+**Documentation threads (4.0.94+):** `lupo-channels/{federation_node_id}/{channel_key}/{thread_key}/` with `decisions/`, `questions/`, `answers/`, `comments/` per PRD 17  
+**Types (numeric tree):** `broadcasts/`, `threads/`, `direct/`, `rules/`, `tasks/`, `content/`
 
 ---
 
@@ -168,6 +169,12 @@ The code you're looking at outran its author for 11 years. That's not luck - tha
 **Format:** UTC BIGINT in YYYYMMDDHHIISS format  
 **Validation:** Hours must be 00-23, filenames must be deterministic  
 **Enforcement:** Invalid timestamps rejected
+
+### **[UTC_TEMPORAL_ANCHOR_DOCTRINE.md](UTC_TEMPORAL_ANCHOR_DOCTRINE.md)**
+**Status:** CONSTITUTIONAL — binding with PRD 00 §3.5a  
+**Scope:** All IDE agents and humans writing `lupopedia.headers` / footer timestamps or new thread filename UTC prefixes  
+**Rule:** **No guessed “current UTC”** from LLM context. Run `python lupo-bin/tick.py`; reuse `python lupo-bin/echo_anchor_utc.py` in the same batch.  
+**Detail:** [lupo-docs/doctrine/TICK_PY_DOCTRINE.md](../../lupo-docs/doctrine/TICK_PY_DOCTRINE.md)
 
 ### **[TIMESTAMP_FORMAT_ENFORCEMENT.md](TIMESTAMP_FORMAT_ENFORCEMENT.md)**
 **⚠️ CRITICAL:** Lupopedia does NOT use Unix time  

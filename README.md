@@ -1,13 +1,13 @@
 ---
 lupopedia.headers:
   header_format_version: 2
-  when_updated: '20260401000000'
+  when_updated: '20260402224629'
   lupopedia.schema: documentation
   file_path_from_root: README.md
   web_path: http://www.lupopedia.com/lupopedia/README.md
-  last_modified_utc: '20260401000000'
+  last_modified_utc: '20260402224629'
   channel_id: 42
-  thread_id: 4.0.93-init
+  thread_id: readme-4-0-94
   actor_id: 102
   actor_name: cursor
   delegation_chain: cursor:root
@@ -16,7 +16,7 @@ lupopedia.headers:
   purpose: Root overview for Lupopedia system architecture, version-driven execution, and iterative release planning.
   tags:
     - readme
-    - 4.0.93
+    - 4.0.94
     - architecture
     - doctrine
     - workflow
@@ -36,16 +36,18 @@ lupopedia.init:
       reason: "Header/footer validation doctrine"
     - path: lupo-docs/doctrine/IDENTITY_LAYERS_DOCTRINE.md
       reason: "Canonical five-layer identity model"
-    - path: lupo-docs/versions/4.0.93/README.md
-      reason: "Current active version overview and thread-consolidated scope"
-    - path: lupo-docs/versions/4.0.93/PLAN.md
+    - path: lupo-docs/versions/4.0.94/README.md
+      reason: "Current working version overview (4.0.93 is frozen snapshot only)"
+    - path: lupo-docs/versions/4.0.94/PLAN.md
       reason: "Current detailed iteration plan"
-    - path: lupo-docs/versions/4.0.93/decisions/
+    - path: lupo-docs/versions/4.0.94/decisions/
       reason: "Architecture decisions and implementation reasoning for current version (folder with threaded decision files)"
     - path: lupo-channels/channel_index.md
       reason: Canonical channel map and path policy
     - path: ORGANIZATION.md
       reason: Canonical root folder map and repository write guidance
+    - path: lupo-docs/doctrine/TICK_PY_DOCTRINE.md
+      reason: Mandatory real UTC for headers — run tick.py; never guess timestamps
 lupopedia.edges:
   comment: Snapshot of root documentation references for version-driven execution and release continuity.
   outbound_edges:
@@ -70,19 +72,19 @@ lupopedia.edges:
     - to: ONBOARDING.md
       type: references
       weight: 0.95
-    - to: lupo-docs/versions/4.0.93/README.md
+    - to: lupo-docs/versions/4.0.94/README.md
       type: references
       weight: 1.0
-      reason: Current active version overview and thread-consolidated scope
-    - to: lupo-docs/versions/4.0.93/PLAN.md
+      reason: Current working version overview (4.0.93 frozen snapshot only)
+    - to: lupo-docs/versions/4.0.94/PLAN.md
       type: references
       weight: 1.0
       reason: Current detailed iteration plan
-    - to: lupo-docs/versions/4.0.93/decisions/
+    - to: lupo-docs/versions/4.0.94/decisions/
       type: references
       weight: 1.0
       reason: Architecture decisions and implementation reasoning for current version
-    - to: lupo-docs/versions/4.0.93/TODO.md
+    - to: lupo-docs/versions/4.0.94/TODO.md
       type: references
       weight: 1.0
       reason: Current task tracking and execution plan
@@ -95,8 +97,16 @@ lupopedia.edges:
     - to: ORGANIZATION.md
       type: references
       weight: 0.95
+    - to: lupo-docs/prd/02_channels_discussions.md
+      type: references
+      weight: 0.95
+      reason: Channel threads, THREAD_MANIFEST.md, decisions/questions/answers/comments layout
+    - to: lupo-docs/doctrine/TICK_PY_DOCTRINE.md
+      type: references
+      weight: 1.0
+      reason: Temporal anchor and tick.py workflow for all header timestamps
 lupopedia.footer:
-  last_verified: '20260401'
+  last_verified: '20260402224629'
   verified_by:
     identity_type: actor
     actor_id: 102
@@ -139,7 +149,27 @@ Decisions folders can exist anywhere, scoped by context:
 - `lupo-docs/versions/<version>/decisions/` — version-scoped decisions
 - `lupo-docs/implementations/{id}_{slug}/decisions/` — PRD-scoped decisions
 - `lupo-agents/{agent_key}/decisions/` — agent-scoped decisions
-- `lupo-channels/{id}/threads/{thread}/decisions/` — discussion-scoped decisions
+- `lupo-channels/{federation_node_id}/{channel_key}/{thread_key}/decisions/` — discussion-scoped decisions (active layout; see `lupo-channels/channel_index.md`, `lupo-docs/prd/29_project_structure.md`)
+- `lupo-channels/{channel_id}/threads/{thread_id}/` — legacy/API-mirrored thread dirs (numeric `channel_id` / `dialog_thread_id`; see `lupo-rules/root/CHANNEL_ARTIFACT_ROUTING_DOCTRINE.md`)
+
+### Thread manifest
+
+Every thread directory under the active channel layout (`lupo-channels/{federation_node_id}/{channel_key}/{thread_key}/`) **must** contain `THREAD_MANIFEST.md` with YAML frontmatter:
+
+```yaml
+thread_key: "mood_rgb_system"
+channel_key: "semantic"
+federation_node_id: 0
+purpose: "Explain Mood RGB system"
+start_date: "2026-04-04"
+last_activity: "2026-04-04"
+status: "active"  # active, concluded, formalized, archived
+resolution: ""  # path to resolution document if concluded/formalized
+archived_date: ""  # populated on archival
+archived_by: ""   # script name or actor
+```
+
+Typed subfolders (`decisions/`, `questions/`, `answers/`, `comments/`), filename patterns, and thread lifecycle (formalization, archival) are specified in [lupo-docs/prd/02_channels_discussions.md](lupo-docs/prd/02_channels_discussions.md) and [lupo-docs/prd/21_thread_graduation_doctrine.md](lupo-docs/prd/21_thread_graduation_doctrine.md).
 
 Before implementing anything non-trivial, check the relevant decisions/ folder. The answer to "why does it work this way" is almost always there. If you are about to make a decision that contradicts an existing decision record, that is a flag — read the reasoning first.
 
@@ -156,21 +186,31 @@ Artifacts with `last_verified` earlier than `20260301000000` UTC are considered 
 
 ## Temporal Anchor & UTC Timestamp Policy (4.0.93+)
 
-All Lupopedia header timestamps (`last_modified_utc` in `lupopedia.headers`) must be synchronized to real UTC, never local time or a timezone. The IDE and all header writers must reference the canonical anchor file:
+**IDE agents and humans must not invent, round, or “pick” header timestamps.** Guessed values (e.g. aligning to a nice clock, reusing an old date, or typing `20260404…` without running the anchor) are **invalid** for canonical artifacts.
 
-- `lupo-bin/temporal_anchor.json`
+### Mandatory workflow
 
+1. **Before** you write or update `last_modified_utc`, `when_updated`, `last_verified`, or thread filename UTC prefixes, run:
+   ```bash
+   python lupo-bin/tick.py
+   ```
+   That updates `lupo-bin/temporal_anchor.json` and root `CURRENT_UTC` from **real system UTC** (same source as [TIMESTAMP doctrine](lupo-docs/doctrine/TIMESTAMP_DOCTRINE.md)).
 
-This file is updated by:
+2. Copy the printed `current_utc` value (14-digit `YYYYMMDDHHMMSS`) into YAML header/footer fields for **every file you touch in that batch**.
 
-- [`lupo-bin/tick.py`](lupo-bin/tick.py) — see [lupo-docs/doctrine/TICK_PY_DOCTRINE.md](lupo-docs/doctrine/TICK_PY_DOCTRINE.md)
+3. For additional files **in the same session** without advancing the clock again, reuse the same value:
+   ```bash
+   python lupo-bin/echo_anchor_utc.py
+   ```
+   (Reads the anchor only; does not update it. If the file is missing, run `tick.py` first.)
 
-**tick.py** is a required utility script that updates the anchor file with the current UTC time in `YYYYMMDDHHMMSS` format. The IDE must call this script after every session or major write to ensure all header timestamps are synchronized to real UTC. See the [tick.py documentation](lupo-docs/doctrine/TICK_PY_DOCTRINE.md) for usage and policy.
+4. **Thread / decision filenames** use `YYYYMMDD_HHIISS` — take the first **8** digits and last **6** digits of `current_utc` with an underscore between date and time (e.g. `20260402_224629`).
+
+**Canonical files:** [lupo-docs/doctrine/TICK_PY_DOCTRINE.md](lupo-docs/doctrine/TICK_PY_DOCTRINE.md), `lupo-bin/temporal_anchor.json`, `lupo-bin/tick.py`, `lupo-bin/echo_anchor_utc.py`.
 
 **Policy:**
-- All timestamps must be in `YYYYMMDDHHMMSS` (14-digit UTC) format for auditability.
-- If the anchor file is missing, the IDE must request a tick before writing headers.
-- Never use local time, offsets, or invented dates.
+- All BIGINT header/footer timestamps are **14-digit UTC** from the anchor after `tick.py`, not local time and not synthetic.
+- If you cannot run `tick.py` safely, **do not** write new timestamped artifacts; record work in a non-canonical scratch path or hand off to an environment where Python can run.
 
 ## Agent Metadata
 
@@ -196,7 +236,7 @@ All agent-specific UI, avatar, and configuration attributes are stored in `metad
 
 **Never install Lupopedia at the web root.** All paths, cookies, and monitoring logic assume a subdirectory context.
 
-See also: [Semantic Monitoring Widget PRD](lupo-docs/versions/4.0.93/prd/semantic_monitoring_widget.md)
+See also: [Semantic Monitoring Widget PRD](lupo-docs/prd/28_semantic_monitoring_widget.md)
 
 Lupopedia is a semantic AI operating system built on Crafty Syntax 3.7.5 foundations. It combines a hybrid MySQL plus filesystem architecture, multi-agent coordination, actor-based identity, and doctrine-driven documentation to evolve the original live-help system into a broader semantic runtime.
 
@@ -432,10 +472,10 @@ For developers and IDE agents, read in this order:
 5. `lupo-docs/doctrine/LUPOPEDIA_HEADERS/README.md` — header/footer validation doctrine
 6. `lupo-docs/doctrine/IDENTITY_LAYERS_DOCTRINE.md` — five-layer identity model
 7. `ORGANIZATION.md` — repository structure and write authority
-8. `lupo-docs/versions/4.0.93/README.md` — current version overview
-9. `lupo-docs/versions/4.0.93/PLAN.md` — current iteration plan
-10. `lupo-docs/versions/4.0.93/decisions/` — all architectural decisions and Q&A for this version
-11. `lupo-docs/versions/4.0.93/TODO.md` — current task tracking
+8. `lupo-docs/versions/4.0.94/README.md` — current working version overview (4.0.93 is frozen)
+9. `lupo-docs/versions/4.0.94/PLAN.md` — current iteration plan
+10. `lupo-docs/versions/4.0.94/decisions/` — architectural decisions and Q&A for this version
+11. `lupo-docs/versions/4.0.94/TODO.md` — current task tracking
 
 ## Root File Policy
 
@@ -548,7 +588,7 @@ The WHY layer uses the same channel/thread/message structure as the Lupopedia di
 
 ### Version Control
 
-- **PRDs**: Versioned in `lupo-docs/versions/` (e.g., `4.0.93/`)
+- **PRDs**: Working copies under `lupo-docs/versions/<version>/prd/` (e.g. **4.0.94**); canonical grouped PRDs under `lupo-docs/prd/`; frozen snapshots (e.g. **4.0.93**) remain for reference
 - **Implementations**: Versioned in `versions/` subdirectories (e.g., `v1.0.0/`)
 - **Snapshots**: Preserve implementation state at major milestones
 

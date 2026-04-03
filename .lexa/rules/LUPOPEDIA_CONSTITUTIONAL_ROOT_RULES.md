@@ -15,7 +15,7 @@ lupopedia.headers:
   lupopedia.version: "4.0.76"
   lupopedia.schema: "lexa_rule"
   file_path_from_root: ".lexa/rules/LUPOPEDIA_CONSTITUTIONAL_ROOT_RULES.md"
-  last_modified_utc: "20260317"
+  last_modified_utc: "20260402"
   system_version: "4.0.76"
   source_path: "lupo-rules/root/LUPOPEDIA_CONSTITUTIONAL_ROOT_RULES.md"
   artifact_type: "rule"
@@ -34,14 +34,14 @@ lupopedia.rules:
   overrides: []
   provenance:
     authored_by: "wolfie"
-    authored_date: "20260317"
+    authored_date: "20260402"
     last_reviewed_by: "lexa"
-    last_reviewed_date: "20260317"
+    last_reviewed_date: "20260402"
     version: "1.0"
     status: "active"
 lupopedia.footer:
   version: "4.0.76"
-  last_verified: "20260317"
+  last_verified: "20260402"
   last_verified_by: "lexa"
   orchestrator: "lexa"
   next_action:
@@ -157,7 +157,15 @@ Always use prepared statements with named placeholders.
 - No locale conversions.  
 - No human‑friendly date parsing.
 
-### 2.4 No human‑friendly time parsing by agents
+### 2.4 Artifact filename timestamps use real UTC only
+- Filename timestamps must be generated from real UTC system time only.
+- Filename format is `YYYYMMDD_HHIISS`.
+- `HH` must be `00-23`, `II` must be `00-59`, and `SS` must be `00-59`.
+- No local timezone math.
+- No offset arithmetic.
+- No guessed or synthetic timestamps.
+
+### 2.5 No human-friendly time parsing by agents
 - Agents must not interpret "yesterday", "next week", "3 months ago".  
 - Only explicit BIGINT UTC values.
 
@@ -241,6 +249,12 @@ Always use prepared statements with named placeholders.
 ### 5.4 Canonical artifacts must be deterministic
 - No agent may rewrite canonical docs without explicit intent.
 
+### 5.5 Invalid timestamped artifacts are not canonical
+- Any artifact filename containing an invalid timestamp is invalid.
+- Invalid timestamped artifacts must be blocked from write when validation exists in-path.
+- When discovered later, invalid timestamped artifacts must be flagged for explicit correction.
+- Validators must never silently normalize invalid timestamps.
+
 ---
 
 ## 🧠 6. Multi‑Agent Safety Doctrine
@@ -266,12 +280,18 @@ Forbidden:
 - Always UTC  
 - Always deterministic
 
-### 6.3 All agents must use explicit relationships
+### 6.3 All agents must use valid UTC filename timestamps
+- Timestamped artifact filenames must use `YYYYMMDD_HHIISS`.
+- Validators must reject filename timestamps with `HH > 23`.
+- Validators must reject filename timestamps with `II > 59` or `SS > 59`.
+- If real UTC cannot be obtained safely, the agent must not generate the filename.
+
+### 6.4 All agents must use explicit relationships
 - No assumptions  
 - No implicit joins  
 - No ORM‑inferred relations
 
-### 6.4 All agents must respect lineage
+### 6.5 All agents must respect lineage
 - No rewriting history  
 - No collapsing branches  
 - No silent pruning
@@ -388,4 +408,55 @@ This constitutional document supersedes all fragmented root rules:
 - And all other fragmented root rules
 
 **These constitutional rules are the single source of truth.**
+
+---
+
+### Release & Migration Doctrine (ABSOLUTE until 4.1.0)
+
+1. **NO database migrations** - All changes require fresh install
+2. **NO upgrade paths** - No Lupopedia -> Lupopedia upgrades until 4.1.0
+3. **NO ALTER TABLE statements** - Only CREATE TABLE in install_new_lupopedia.sql
+4. **NO data preservation** - Existing data is never migrated between versions
+5. **ONLY fresh installs** - Each new version starts from empty database
+6. **Crafty Syntax ONLY import** - The ONLY allowed data import is from Crafty Syntax 3.7.5 tables
+7. **NO migration planning** - Do not waste time on upgrade scripts, data mapping, or version transitions
+8. **DELETE and RECREATE** - When schema changes, database is wiped and reinstalled
+9. **Focus on clean schema** - All effort goes into correct CREATE statements, not ALTER statements
+10. **4.1.0 is the FIRST upgrade** - Before 4.1.0, there are NO production upgrades
+
+### Rationale
+
+Until 4.1.0, Lupopedia is in **active development with breaking schema changes**.
+- Every database change requires fresh install
+- Development environment only (no production data at risk)
+- Crafty Syntax is the ONLY source of importable data
+- Migration complexity is deferred to 4.1.0 release
+
+### What This Means For Agents
+
+- **NEVER** write ALTER TABLE statements
+- **NEVER** plan data migration strategies  
+- **NEVER** worry about preserving existing Lupopedia data
+- **ALWAYS** assume fresh install from install.sql
+- **ALWAYS** focus on correct CREATE TABLE definitions
+- **ONLY** consider Crafty Syntax 3.7.5 → Lupopedia 4.0.x import
+
+### Violation Severity
+
+**CRITICAL** - Any agent proposing migration logic, ALTER TABLE, or upgrade paths is in violation.
+
+---
+
+## Multi-Agent Safety Doctrine (Addendum)
+
+1. **NO agent may propose forbidden constructs**:
+  - foreign keys, triggers, stored procedures
+  - DATETIME, TIMESTAMP, vendor SQL
+  - auto-increment, implicit cascades
+  - ORM magic, lazy inserts
+  - nondeterministic behavior
+  - hard deletes, non-conforming PK names
+  - **ALTER TABLE statements** (NEW - until 4.1.0)
+  - **migration scripts** (NEW - until 4.1.0)
+  - **upgrade path logic** (NEW - until 4.1.0)
 

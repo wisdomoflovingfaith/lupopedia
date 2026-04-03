@@ -1,0 +1,201 @@
+---
+lupopedia.headers:
+  header_format_version: 2
+  lupopedia.schema: documentation
+  when_updated: "20260402000000"
+  file_path_from_root: "lupo-docs/CHANNEL_VS_DOCS_QUICK_REFERENCE.md"
+  web_path: "http://www.lupopedia.com/lupopedia/lupo-docs/CHANNEL_VS_DOCS_QUICK_REFERENCE.md"
+  federation_node_id: 0
+  channel_id: 42
+  thread_id: "channel-docs-quick-reference"
+  actor_id: 102
+  actor_name: "CURSOR"
+  delegation_chain: "cursor:root"
+  artifact_type: "documentation"
+  artifact_kind: "reference"
+  purpose: "Quick reference card for channel vs lupo-docs usage patterns"
+  tags:
+    - "documentation"
+    - "reference"
+    - "channels"
+    - "usage_patterns"
+    - "quick_reference"
+lupopedia.edges:
+  outbound_edges:
+    - to: "lupo-docs/prd/30_channel_usage_patterns.md"
+      type: references
+      weight: 1.0
+      reason: "Channel usage patterns PRD"
+    - to: "lupo-docs/prd/31_implementation_folder_guidelines.md"
+      type: references
+      weight: 1.0
+      reason: "Implementation guidelines PRD"
+    - to: "lupo-channels/channel_index.md"
+      type: references
+      weight: 0.9
+      reason: "Channel index"
+---
+
+# 📋 Channel vs lupo-docs Quick Reference
+
+## 🎯 Core Principle
+**Channels are for coordination, lupo-docs are for documentation.**
+
+---
+
+## ✅ USE CHANNELS FOR
+
+| Content Type | Purpose | Format | Example |
+|--------------|---------|--------|---------|
+| **Status Reports** | Progress updates | `STATUS_REPORT_YYYYMMDD_HHMMSS.md` | "Implementation X is 50% complete" |
+| **Progress Updates** | Milestone achievements | `PROGRESS_UPDATE_YYYYMMDD_HHMMSS.md` | "Completed authentication module" |
+| **Critical Coordination** | Urgent cross-agent coordination | `CRITICAL_COORDINATION_YYYYMMDD_HHMMSS.md` | "HALT: Database schema conflict" |
+| **Agent Handoffs** | Transfer work between agents | `AGENT_HANDOFF_YYYYMMDD_HHMMSS.md` | "HERMES to WOLFIE: Decision required" |
+
+### Channel Message Structure
+```markdown
+# STATUS_REPORT_20260402_160000
+
+## Summary
+- Completed: Feature X implementation
+- In Progress: Testing phase
+- Blocked: Waiting for database schema decision
+
+## Changes Since Last Report
+- Added authentication module
+- Fixed 3 critical bugs
+
+## Next Steps
+- Complete testing by tomorrow
+```
+
+---
+
+## ❌ USE lupo-docs FOR
+
+| Content Type | Location | Reason |
+|--------------|----------|--------|
+| **Doctrine documents** | `lupo-docs/doctrine/` | Permanent policy documentation |
+| **Module specifications** | `lupo-docs/prd/` | Technical specifications |
+| **Implementation details** | `lupo-docs/implementations/` | Technical implementation docs |
+| **Reference materials** | `lupo-docs/` | Permanent reference information |
+| **Technical documentation** | `lupo-docs/` | Technical guides and manuals |
+
+---
+
+## 🔄 Complete Workflow
+
+```
+PRD Creation
+    ↓
+Implementation Folder Scaffolding
+    ↓
+Questions (clarification → design → critical)
+    ↓
+Decisions (with question references)
+    ↓
+Status Reports → Channel
+    ↓
+Final Documentation → lupo-docs
+```
+
+---
+
+## 📁 Implementation Folder Structure
+
+```
+lupo-docs/implementations/{prd_id}_{slug}/
+├── questions/
+│   ├── critical/       # HALT implementation
+│   ├── optimization/   # Better approaches found
+│   └── clarification/  # Minor ambiguities
+├── answers/            # Human responses
+├── decisions/          # Implementation decisions
+├── comments/           # Ongoing dialogue
+└── README.md          # With Related Artifacts section
+```
+
+---
+
+## 🛠️ Useful Scripts
+
+### Scaffold New Implementation
+```bash
+python lupo-scripts/scaffold_implementation.py --prd 30 --title "channel_usage_patterns"
+```
+
+### Create Implementation Question
+```bash
+python lupo-scripts/create_implementation_question.py \
+  --implementation 30_channel_usage_patterns \
+  --level critical \
+  --title "authentication_approach"
+```
+
+### Validate Implementation Structure
+```bash
+python lupo-scripts/validate_implementation_questions.py 30_channel_usage_patterns
+```
+
+---
+
+## 📋 Channel Directory
+
+| Channel Key | Purpose | Expected Content |
+|-------------|---------|------------------|
+| **development** | Core development coordination | Implementation status, technical coordination |
+| **security** | Security and compliance | Security findings, compliance status |
+| **governance** | Rules and policies | Policy updates, governance decisions |
+| **architecture** | System design | Architectural decisions, design reviews |
+| **organization** | Repo and docs organization | Structural changes, documentation updates |
+| **semantic** | Semantic and knowledge systems | Knowledge graph updates, semantic engine status |
+
+---
+
+## ⚡ Quick Decision Tree
+
+```
+Need to document something permanent?
+├─ Yes → Use lupo-docs
+│   ├─ Is it a specification? → lupo-docs/prd/
+│   ├─ Is it implementation details? → lupo-docs/implementations/
+│   └─ Is it policy/doctrine? → lupo-docs/doctrine/
+└─ No → Use channels
+    ├─ Is it urgent/critical? → CRITICAL_COORDINATION
+    ├─ Is it progress update? → STATUS_REPORT
+    └─ Is it handoff? → AGENT_HANDOFF
+```
+
+---
+
+## 🔍 Common Mistakes to Avoid
+
+❌ **Putting doctrine in channels** → Use `lupo-docs/doctrine/`  
+❌ **Implementation details in channels** → Use `lupo-docs/implementations/`  
+❌ **Permanent reference in channels** → Use appropriate `lupo-docs/` folder  
+❌ **Forgetting to link answers to questions** → Always use `lupo-docs.edges`  
+❌ **Not updating implementation README** → Keep Related Artifacts current  
+
+---
+
+## 📚 Related Documents
+
+- **PRD 30**: [Channel Usage Patterns](./prd/30_channel_usage_patterns.md)
+- **PRD 31**: [Implementation Folder Guidelines](./prd/31_implementation_folder_guidelines.md)
+- **Channel Index**: [Active Channels](../lupo-channels/channel_index.md)
+- **Implementation Guide**: [Implementation Questions Framework](./implementations/IMPLEMENTATION_QUESTIONS_GUIDE.md)
+
+---
+
+## 🎯 Remember
+
+- **Channels** = Temporary coordination, real-time updates
+- **lupo-docs** = Permanent documentation, reference material
+- **Always link** related artifacts using `lupo-docs.edges`
+- **Follow the workflow** from PRD → Implementation → Status → Documentation
+
+---
+
+*Last Updated: 2026-04-02*  
+*Version: 1.0*  
+*Related PRDs: 30, 31*

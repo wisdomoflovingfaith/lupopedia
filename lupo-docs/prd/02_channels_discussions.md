@@ -111,9 +111,10 @@ lupo-channels/
 - **Example**: Thread ID 1038 in `lupo_dialog_threads` table
 - **Purpose**: High-volume message streams, web-based discussions
 - **Storage**: MySQL database with full metadata
-- **Access**: Via `lupo-channels/{id}/threads/{thread_id}/` URLs
+- **Access / filesystem mirror (numeric):** `lupo-channels/{channel_id}/threads/{dialog_thread_id}/` — must match `lupo_channels` / `lupo_dialog_threads` IDs for API-validated posts (see `CHANNEL_ARTIFACT_ROUTING_DOCTRINE.md`).
 
 ### Filesystem Threads (IDE Development)
+- **On-disk layout (active — preferred for new markdown threads):** `lupo-channels/{federation_node_id}/{channel_key}/{thread_key}/` with typed subfolders per PRD 17. See **`lupo-docs/prd/29_project_structure.md`**, **`lupo-channels/channel_index.md`**.
 - **Format**: `YYYYMMDD_HHIISS_TYPE_TITLE.md` (see **[PRD 17 — Thread filename pattern (authoritative)](17_decisions_format.md#thread-filename-pattern-authoritative)** for per-folder rules: `STATUS` in filenames applies only under `decisions/`, not under `questions/`, `answers/`, or `comments/`.)
 - **Example**: `20260402_120000_DECISION_APPROVED_header_format.md` (decisions/); `20260402_130000_QUESTION_header_format.md` (questions/)
 - **Purpose**: Structured documentation, decision tracking, PRD development

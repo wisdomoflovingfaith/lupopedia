@@ -5,7 +5,7 @@ lupopedia.headers:
   version_when_written: "4.0.93"
   file_path_from_root: "lupo-docs/prd/11_analytics_tracking.md"
   web_path: "http://www.lupopedia.com/lupopedia/lupo-docs/prd/11_analytics_tracking.md"
-  last_modified_utc: "20260330163000"
+  last_modified_utc: "20260403010357"
   channel_id: 42
   thread_id: "prd-grouped"
   actor_id: 102
@@ -37,8 +37,16 @@ lupopedia.edges:
       type: references
       weight: 1.0
       reason: "Analytics inform system performance"
+    - to: "lupo-docs/prd/33_softaculous_certification_4_1_0_gate.md"
+      type: references
+      weight: 0.95
+      reason: "4.1.0 gate — Crafty parity for paths, visits, identity"
+    - to: "craftysyntax-reference/"
+      type: references
+      weight: 1.0
+      reason: "Reference Crafty tree — data.php, data_paths.php, image.php, functions.php, gc.php"
 lupopedia.footer:
-  last_verified: "20260330163000"
+  last_verified: "20260403010357"
   verified_by:
     actor_id: 102
     agent_name_identity: Cursor IDE Agent
@@ -65,6 +73,42 @@ lupopedia.footer:
 - BIGINT timestamps (YYYYMMDDHHIISS UTC)
 - Explicit ID generation (application layer)
 - Soft delete (is_deleted + deleted_ymdhis)
+
+**Implementers:** **PRD 33** §4.1 — read **`lupo-docs/database/lupopedia/tables/migrations/`** + **`install_new_lupopedia.sql`** before any SQL/code; **no guessed column names**. Crafty **`'Y'`/`'N'`** toggles for tracking map to Lupopedia **`TINYINT`** (**`1`**/**`0`**) per **PRD 33** §4.2.
+
+## Crafty Syntax 3.7.5 reference (`craftysyntax-reference/`)
+
+In-repo reference PHP (repository root **`craftysyntax-reference/`**) defines the **behavioral baseline** for analytics parity (see **PRD 33** §3).
+
+### Operator **data** UI (`data.php`)
+
+| Crafty `tab` | File | Role |
+|-------------|------|------|
+| 3 | `data_visits.php` | Visit aggregates — **Top Urls** / **Domain Tree**, `livehelp_visits_monthly`, department filter. |
+| 4 | `data_paths.php` | Path funnels — **All Visit Paths** / **First Visit Paths**, `livehelp_paths_monthly`, `livehelp_paths_firsts`, drill-down via `visit_recno` / `exit_recno`. Requires `CSLH_Config['tracking']=='Y'`. |
+| 2 | `data_referers.php` | Referrer reports. |
+
+### Ingestion
+
+- **`image.php`** (and related **`what=`** commands) writes **per-page** rows to **`livehelp_visit_track`** (`sessionid`, `location`, `page`/`pageid`, `title`, `whendone`, `referrer`), keyed by **`identity['SESSIONID']`** from **`functions.php` `identity()`**.
+- Embeds (**`livehelp_js.php`**) drive polling/requests that keep **`SESSIONID`** stable per browser.
+
+### Identity and IP (maps to Lupopedia session/visit rows)
+
+- **`get_ipaddress()`** — Proxy/CDN header chain, public-IP preference, comma-separated **X-Forwarded-For** handling.
+- **`detectID()`** — Session id from untrusted input, GET, POST, cookie; optional class-C **`matchip`** check; optional **cookieless** lookup `WHERE identity=… AND cookied='N'`.
+- **`get_identitystring()`** — Class-C IP + session **cookie name**; not the unique token. **Two browsers on one machine** → **two SESSIONIDs** (separate cookies or explicit ids); **IDENTITY** alone may collide.
+
+**Import mapping:** Crafty **`livehelp_*`** tables align to **`lupo_*`** per **`lupo-docs/doctrine/migrations/livehelp_migrations_readme.md`** and per-table files under **`lupo-docs/database/lupopedia/tables/migrations/`** (names differ; semantics above must hold post-import).
+
+### Rollup and housekeeping (`gc.php` + `archivefootsteps`)
+
+Raw page hits live in **`livehelp_visit_track`** until **session end** or **age threshold**. **`craftysyntax-reference/gc.php`** (included from **`image.php`**) runs **probabilistic** jobs that:
+
+- Call **`archivefootsteps(sessionid)`** in **`functions.php`**: walk ordered **`visit_track`** rows, update **`livehelp_visits_daily` / `livehelp_visits_monthly`** via **`archivepage()`** (hierarchical URL tree), increment **`livehelp_paths_monthly`** and **`livehelp_paths_firsts`** for transitions between **`livehelp_visits_monthly.recno`** nodes (plus END), then **delete** that session’s **`visit_track`** rows.
+- On **visitor idle** (~5 min), also **`archivepage`** **`camefrom`** into **referrers** daily/monthly when **`reftracking`** is on, then **`archiveuser()`** (which may **`archiveidentity`** / **`archivekeywords`** when configured).
+
+Lupopedia must provide **equivalent rollup** into **`lupo_*`** structures documented in **`livehelp_visit_track_migration.md`**, **`livehelp_paths_firsts_migration.md`**, **`livehelp_paths_monthly.md`**, **`livehelp_visits_daily.md`**, **`livehelp_visits_monthly.md`**, **`livehelp_referers_daily_migration.md`**, etc., with **§7.5** of **PRD 33** as the release gate for parity.
 
 ## Tables in This Namespace
 

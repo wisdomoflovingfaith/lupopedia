@@ -1,8 +1,8 @@
 ---
 lupopedia.headers:
-  when_updated: "20260328013000"
+  when_updated: "20260403000000"
   file_path_from_root: "lupo-docs/database/lupopedia/tables/active/lupo_agents.md"
-  last_modified_utc: "20260328013000"
+  last_modified_utc: "20260403000000"
   channel_id: 42
   actor_id: 23
   actor_name: "hephaestus"
@@ -24,7 +24,7 @@ lupopedia.edges:
     weight: 1.0
     reason: "authoritative TOON JSON source"
 lupopedia.footer:
-  last_verified: "20260328013000"
+  last_verified: "20260403000000"
   last_verified_by: "hephaestus"
   last_verified_by_actor_id: 23
   generated: true
@@ -40,7 +40,10 @@ Canonical table documentation normalized from TOON JSON for `lupo_agents`.
 ## Schema
 
 ### Primary Key
-(none)
+
+| Column | Notes |
+|--------|--------|
+| `agent_id` | `bigint NOT NULL` — application-assigned id (no auto-increment) |
 
 ### Columns
 
@@ -74,14 +77,7 @@ Canonical table documentation normalized from TOON JSON for `lupo_agents`.
 | `timeout_ms` | `int DEFAULT 20000` |
 | `safety_json` | `json` |
 | `response_format` | `varchar(50)` |
-| `pono_score` | `decimal(3,2) DEFAULT 1.00` |
-| `pilau_score` | `decimal(3,2) DEFAULT 0.00` |
-| `kapakai_score` | `decimal(3,2) DEFAULT 0.50` |
-| `kapu_active` | `tinyint DEFAULT 0` |
-| `kapu_until` | `bigint` |
-| `kapu_reason` | `varchar(500)` |
-| `kapu_consent_given` | `tinyint DEFAULT 0` |
-| `kapu_appeal_pending` | `tinyint DEFAULT 0` |
+| `metadata_json` | `json` — UI / avatar / extra agent config (replaces removed actor-style score/kapu columns) |
 
 ### Indexes
 
@@ -95,6 +91,6 @@ Canonical table documentation normalized from TOON JSON for `lupo_agents`.
 | `lupo_agents_unique_agent_key` | `agent_key` | yes |
 
 ## Doctrine
-- Source of truth: `lupo-database/lupopedia/json/` TOON exports
-- Regeneration mode: Stage 3 deterministic normalization
-- Edge mode: placeholder baseline
+- Canonical DDL: `lupo-database/lupopedia/mysql/install/install_new_lupopedia.sql` (`{{prefix}}agents`)
+- JSON/TOON under `lupo-database/lupopedia/json/` and `toon/` should match install; regenerate via `lupo-scripts/generate_toon_from_sql.py` when install changes
+- Removed from schema (never shipped on actors; dropped from agents): `pono_score`, `pilau_score`, `kapakai_score`, `kapu_*` — use `metadata_json` or actor-level fields if needed later

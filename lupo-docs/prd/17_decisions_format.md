@@ -195,7 +195,7 @@ For any context (version, implementation, channel, agent), the following subfold
 |----------|------------|
 | `lupo-docs/versions/{version}/` | `decisions/`, `questions/`, `answers/`, `comments/` |
 | `lupo-docs/implementations/{id}_{slug}/` | `decisions/`, `questions/`, `answers/`, `comments/` |
-| `lupo-channels/{id}/` | `decisions/`, `questions/`, `answers/`, `comments/` |
+| `lupo-channels/{federation_node_id}/{channel_key}/{thread_key}/` | `decisions/`, `questions/`, `answers/`, `comments/` (see PRD 29; legacy numeric `lupo-channels/{channel_id}/` trees may still host older threads) |
 | `lupo-agents/{agent_key}/` | `decisions/`, `questions/`, `answers/`, `comments/` |
 
 #### Benefits

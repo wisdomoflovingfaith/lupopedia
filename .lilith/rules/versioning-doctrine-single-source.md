@@ -6,7 +6,7 @@ lupopedia.headers:
   lupopedia.version: "4.0.79"
   lupopedia.schema: "lilith_rule"
   file_path_from_root: ".lilith/rules/versioning-doctrine-single-source.md"
-  last_modified_utc: "20260317"
+  last_modified_utc: "20260402"
   system_version: "4.0.79"
   source_path: "lupo-rules/root/versioning-doctrine-single-source.md"
   artifact_type: "rule"

@@ -29,14 +29,7 @@
     "`timeout_ms` int DEFAULT 20000",
     "`safety_json` json",
     "`response_format` varchar(50)",
-    "`pono_score` decimal(3,2) DEFAULT 1.00",
-    "`pilau_score` decimal(3,2) DEFAULT 0.00",
-    "`kapakai_score` decimal(3,2) DEFAULT 0.50",
-    "`kapu_active` tinyint DEFAULT 0",
-    "`kapu_until` bigint",
-    "`kapu_reason` varchar(500)",
-    "`kapu_consent_given` tinyint DEFAULT 0",
-    "`kapu_appeal_pending` tinyint DEFAULT 0"
+    "`metadata_json` json"
   ],
   "data": [
     {
@@ -68,14 +61,7 @@
       "timeout_ms": 20000,
       "safety_json": null,
       "response_format": null,
-      "pono_score": 1,
-      "pilau_score": 0,
-      "kapakai_score": 0.5,
-      "kapu_active": 0,
-      "kapu_until": null,
-      "kapu_reason": null,
-      "kapu_consent_given": 0,
-      "kapu_appeal_pending": 0
+      "metadata_json": null
     }
   ],
   "indexes": [

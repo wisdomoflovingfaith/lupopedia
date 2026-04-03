@@ -17,7 +17,7 @@ lupopedia.headers:
 
 This checklist is the **canonical** process for registering a new IDE agent or web terminal agent as a Lupopedia actor. It is derived from the actual data model (TOON files, install SQL, seed files) and from the repository's **actor registry** and **lupo-database** fallback behavior. Do not participate as an unnamed or unregistered agent.
 
-**Source of truth for schema:** `lupo-database/lupopedia/mysql/install/install_new_lupopedia.sql` (table `lupo_actors`) and TOON files in `lupo-database/lupopedia/toon/`. **Tooling registry:** `lupo-database/lupopedia/actors/actor_id/registry.json`. For canonical identity resolution and propagation support context, see [lupo-docs/doctrine/AGENT_REGISTRY.md](doctrine/AGENT_REGISTRY.md).
+**Source of truth for schema:** `lupo-database/lupopedia/mysql/install/install_new_lupopedia.sql` (table `lupo_actors`) and TOON files in `lupo-database/lupopedia/toon/`. **Actor registry (lupo_actors):** `lupo-database/lupopedia/actors/registry.json`. **lupo_agents id map:** `lupo-database/lupopedia/actors/actor_id/registry.json` (`agents` object). For resolution and propagation context, see [lupo-docs/doctrine/AGENT_REGISTRY.md](doctrine/AGENT_REGISTRY.md).
 
 ---
 
@@ -27,9 +27,9 @@ Some agents may appear multiple times in historical filesystem paths or legacy r
 
 The **canonical identity** of an actor is the entry in:
 
-`lupo-database/lupopedia/actors/actor_id/registry.json`
+`lupo-database/lupopedia/actors/registry.json`
 
-with the matching `slug`.
+with the matching `slug` (and `lupo-database/lupopedia/actors/actor_id/registry.json` only for **lupo_agents** numeric `agent_id` by slug).
 
 **Example:**
 
@@ -49,7 +49,7 @@ Check which case applies **before** doing full registration:
 
 | State | What to do |
 |-------|------------|
-| **A — Agent already exists in registry** | Do **not** register again. Verify your `actor_id` and slug in [registry.json](../lupo-database/lupopedia/actors/actor_id/registry.json). Run rules propagation for your target (e.g. `php lupo-scripts/propagate_agent_rules.php --target=cascade`). Proceed with integration and contribution only. Example: Cascade (actor_id 105) is already registered; it needs only propagation and validation, not a new actor. |
+| **A — Agent already exists in registry** | Do **not** register again. Verify your `actor_id` and slug in [actors/registry.json](../lupo-database/lupopedia/actors/registry.json). Run rules propagation for your target (e.g. `php lupo-scripts/propagate_agent_rules.php --target=cascade`). Proceed with integration and contribution only. Example: Cascade (actor_id 105) is already registered; it needs only propagation and validation, not a new actor. |
 | **B — Agent does not exist** | Follow this full checklist: registry entry, DB or fallback persistence, then rules propagation support if your IDE is not yet a supported target. |
 | **C — Agent exists but not fully integrated** | No new actor. Complete: rules propagation target (see [Extending rules propagation](#extending-rules-propagation)), validation test (e.g. `lupo-tests/unit/<agent>_rules_enforcement.php`), and any agent-specific config or docs. |
 
@@ -140,11 +140,12 @@ This prevents naming collisions across agents.
 
 ## 5. Step 1: Add entry to the actor registry (required)
 
-The **actor registry** is the file used by tooling and docs to resolve actor IDs and slugs. It is under version control and can be updated when the live database is not available (fallback).
+The **actor registry** is the file used by tooling and docs to resolve **lupo_actors** IDs and slugs. It is under version control and can be updated when the live database is not available (fallback).
 
-- **Path:** `lupo-database/lupopedia/actors/actor_id/registry.json`
-- **Format:** JSON with a top-level `schema_version` (e.g. `"4.0.69"`) and an `actors` array. Each entry: `id` (integer), `type` (string), `slug` (string), `dir` (e.g. `"actors/102"`). Optional: `lead_orchestration` (boolean).
-- **Action:** Add one object for your actor, e.g. `{ "id": 106, "type": "ide_faucet", "slug": "my-ide", "dir": "actors/106" }`. Ensure `id` and `slug` do not conflict with existing entries. Commit the file.
+- **Path:** `lupo-database/lupopedia/actors/registry.json`
+- **Format:** JSON with top-level `actors` object; each key is an actor short name; each value includes at least `actor_id`, `actor_name`, `slug` / `faucet_slug`, `type`, `dir`, and optional `delegates_to_actor_id`, `lead_orchestration`, etc. Match existing entries’ shape.
+- **Action:** Add or update one actor entry. Ensure `actor_id` and slug fields do not conflict with existing entries. Commit the file.
+- **lupo_agents numeric ids (optional):** If you add a matching `lupo-agents/<slug>/` pack, add `"<slug>": <agent_id>` to the `agents` map in `lupo-database/lupopedia/actors/actor_id/registry.json` using an unused **agent_id**.
 
 This step is **always** required so that tooling and other agents can resolve your identity. The registry is the durable fallback when DB is not reachable.
 
@@ -182,7 +183,7 @@ This generates rule files for your IDE in the appropriate agent folder (e.g. `.c
 
 When the **live database is not available** (e.g. offline IDE, no TCP connection to MySQL/PostgreSQL), Lupopedia allows **fallback** persistence so that registration and work can still be tracked and later rehydrated.
 
-- **Registry (Step 1):** Always update `registry.json` in `lupo-database/lupopedia/actors/actor_id/`. This is the minimal fallback and is required.
+- **Registry (Step 1):** Always update `lupo-database/lupopedia/actors/registry.json` for **actors**. For **lupo_agents** slug→id, update the `agents` map in `lupo-database/lupopedia/actors/actor_id/registry.json` when applicable.
 - **CSV fallback (optional):** Under `lupo-database/lupopedia/csv/` there is `lupo_actors.csv`. Its structure should align with the TOON / install schema so that rows can be re-ingested into `lupo_actors` when the DB is back. If you add a row for your actor here, use the same column semantics as the table (actor_id, actor_type, slug, name, created_ymdhis, updated_ymdhis, is_active, is_deleted, etc.). Do not invent columns. Document that the row is a fallback and should be merged into the live DB when possible.
 - **Authority:** Install SQL and TOON remain the source of truth for schema. Fallback files do **not** override schema authority; they are a durable local representation for later sync.
 
@@ -192,7 +193,7 @@ When the **live database is not available** (e.g. offline IDE, no TCP connection
 
 Before participating as the new agent:
 
-1. **Registry:** Your `id` and `slug` appear in `lupo-database/lupopedia/actors/actor_id/registry.json` and do not duplicate an existing entry.
+1. **Registry:** Your `actor_id` and slug appear in `lupo-database/lupopedia/actors/registry.json` and do not duplicate an existing entry (and `lupo_agents` map updated in `actor_id/registry.json` if you added a pack).
 2. **Database (if available):** A row exists in `lupo_actors` with your `actor_id` (and optionally `actor_name`/`slug`) and matches the registry.
 3. **Uniqueness:** No other actor has the same `actor_id` or `slug` in the registry or in the DB.
 4. **Root rules:** You have read and will follow the root rules in `lupo-rules/root/`.
@@ -226,7 +227,7 @@ Anonymous or unregistered participation is not acceptable in the Lupopedia multi
 
 | Step | What | Where | When |
 |------|------|--------|------|
-| 1 | Add registry entry | `lupo-database/lupopedia/actors/actor_id/registry.json` | Always (required) |
+| 1 | Add registry entry | `lupo-database/lupopedia/actors/registry.json` (+ optional `agents` map in `actor_id/registry.json`) | Always (required) |
 | 2 | Persist in DB | `lupo_actors` via seed or documented INSERT | When DB available (canonical) |
 | 3 | Fallback | Same registry; optionally `lupo-database/lupopedia/csv/lupo_actors.csv` | When DB unavailable |
 | 4 | Validate | Registry + optional DB check + root rules read | Before first contribution |

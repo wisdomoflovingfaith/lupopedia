@@ -41,6 +41,7 @@ lupopedia.footer:
  *   php lupo-scripts/propagate_agent_rules.php --target=cursor
  *   php lupo-scripts/propagate_agent_rules.php --target=kiro
  *   php lupo-scripts/propagate_agent_rules.php --target=cascade
+ *   php lupo-scripts/propagate_agent_rules.php --target=vscode
  */
 
 $repoRoot = dirname(__DIR__);
@@ -51,6 +52,7 @@ $ideaDir = $repoRoot . DIRECTORY_SEPARATOR . '.idea';
 $kiroDir = $repoRoot . DIRECTORY_SEPARATOR . '.kiro';
 $windsurfDir = $repoRoot . DIRECTORY_SEPARATOR . '.windsurf';
 $cascadeDir = $repoRoot . DIRECTORY_SEPARATOR . '.cascade';
+$vscodeDir = $repoRoot . DIRECTORY_SEPARATOR . '.vscode' . DIRECTORY_SEPARATOR . 'lupopedia';
 $lilithDir = $repoRoot . DIRECTORY_SEPARATOR . '.lilith';
 $lexaDir = $repoRoot . DIRECTORY_SEPARATOR . '.lexa';
 
@@ -63,9 +65,9 @@ foreach ($argv as $arg) {
 if ($target === 'jetbrains') {
     $target = 'idea';
 }
-$validTargets = array('all', 'cascade', 'cursor', 'idea', 'jetbrains', 'kiro', 'windsurf', 'lilith', 'lexa');
+$validTargets = array('all', 'cascade', 'cursor', 'idea', 'jetbrains', 'kiro', 'windsurf', 'vscode', 'lilith', 'lexa');
 if (!in_array($target, $validTargets, true)) {
-    fwrite(STDERR, "Unsupported target '$target'. Valid targets: all, cascade, cursor, idea, jetbrains, kiro, windsurf, lilith, lexa\n");
+    fwrite(STDERR, "Unsupported target '$target'. Valid targets: all, cascade, cursor, idea, jetbrains, kiro, windsurf, vscode, lilith, lexa\n");
     exit(1);
 }
 
@@ -303,6 +305,88 @@ function write_kiro_outputs($kiroDir, $rules)
     $readme .= "See [lupo-rules/root/README.md](../lupo-rules/root/README.md) for canonical rule documentation.\n";
     
     file_put_contents($kiroDir . DIRECTORY_SEPARATOR . 'README.md', $readme);
+}
+
+/**
+ * VS Code facet (actor_id 106): rules under .vscode/lupopedia/ (does not replace user settings.json).
+ */
+function write_vscode_outputs($vscodeDir, $rules)
+{
+    ensure_dir($vscodeDir);
+    $vscodeRulesDir = $vscodeDir . DIRECTORY_SEPARATOR . 'rules';
+    ensure_dir($vscodeRulesDir);
+
+    $vscodeJson = array('rules' => array());
+    foreach ($rules as $rule) {
+        $vscodeJson['rules'][] = array(
+            'id' => $rule['id'],
+            'text' => $rule['text'],
+            'enforcement' => $rule['enforcement'],
+            'scope' => $rule['scope'],
+            'source_path' => $rule['source_path'],
+            'slug' => $rule['slug'],
+            'category' => $rule['category'],
+            'status' => $rule['status']
+        );
+
+        $body = str_replace('../../../', '../../', $rule['body']);
+        $lines = explode("\n", trim($body));
+        $filtered = array();
+        $skipIdentity = true;
+        foreach ($lines as $line) {
+            if ($skipIdentity && preg_match('/^#\s*file:\s*/', $line)) {
+                $skipIdentity = false;
+                continue;
+            }
+            $filtered[] = $line;
+        }
+        $finalBody = implode("\n", $filtered);
+
+        $mdc = "---\n";
+        $mdc .= "lupopedia.headers:\n";
+        $mdc .= "  actor_id: 106\n";
+        $mdc .= "  actor_name: \"vscode-ide\"\n";
+        $mdc .= "  delegation_chain: \"vscode-ide:root\"\n";
+        $mdc .= "  lupopedia.version: \"4.0.76\"\n";
+        $mdc .= "  lupopedia.schema: \"vscode_rule\"\n";
+        $mdc .= "  file_path_from_root: \".vscode/lupopedia/rules/" . $rule['slug'] . ".md\"\n";
+        $mdc .= "  last_modified_utc: \"" . date('Ymd') . "\"\n";
+        $mdc .= "  system_version: \"4.0.76\"\n";
+        $mdc .= "  source_path: \"lupo-rules/root/" . $rule['slug'] . ".md\"\n";
+        $mdc .= "  artifact_type: \"rule\"\n";
+        $mdc .= "  artifact_kind: \"vscode_doctrine\"\n";
+        $mdc .= "---\n\n";
+        $mdc .= $finalBody . "\n";
+
+        file_put_contents($vscodeRulesDir . DIRECTORY_SEPARATOR . $rule['slug'] . '.md', $mdc);
+    }
+    file_put_contents(
+        $vscodeDir . DIRECTORY_SEPARATOR . 'lupopedia_rules.json',
+        json_encode($vscodeJson, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES)
+    );
+
+    $readme = "---\n";
+    $readme .= "lupopedia.headers:\n";
+    $readme .= "  actor_id: 106\n";
+    $readme .= "  actor_name: \"vscode-ide\"\n";
+    $readme .= "  delegation_chain: \"vscode-ide:root\"\n";
+    $readme .= "  lupopedia.version: \"4.0.76\"\n";
+    $readme .= "  lupopedia.schema: \"vscode_guide\"\n";
+    $readme .= "  file_path_from_root: \".vscode/lupopedia/README.md\"\n";
+    $readme .= "  last_modified_utc: \"" . date('Ymd') . "\"\n";
+    $readme .= "  system_version: \"4.0.76\"\n";
+    $readme .= "  artifact_type: \"guide\"\n";
+    $readme .= "  artifact_kind: \"documentation\"\n";
+    $readme .= "  purpose: \"VS Code facet — Lupopedia rules derived from lupo-rules/root\"\n";
+    $readme .= "---\n\n";
+    $readme .= "# VS Code (Lupopedia rules)\n\n";
+    $readme .= "This folder is generated under `.vscode/lupopedia/` so your root `settings.json` is untouched.\n\n";
+    $readme .= "## Propagation\n\n";
+    $readme .= "Run: `php lupo-scripts/propagate_agent_rules.php --target=vscode`\n\n";
+    $readme .= "## Source\n\n";
+    $readme .= "Canonical rules: `lupo-rules/root/`. Facet identity: actor_id **106** (`vscode-ide`).\n";
+
+    file_put_contents($vscodeDir . DIRECTORY_SEPARATOR . 'README.md', $readme);
 }
 
 function write_windsurf_outputs($windsurfDir, $rules)
@@ -787,6 +871,9 @@ if ($target === 'all' || $target === 'idea') {
 }
 if ($target === 'all' || $target === 'windsurf') {
     write_windsurf_outputs($windsurfDir, $rules);
+}
+if ($target === 'all' || $target === 'vscode') {
+    write_vscode_outputs($vscodeDir, $rules);
 }
 if ($target === 'all' || $target === 'cascade') {
     write_cascade_outputs($cascadeDir, $rules);

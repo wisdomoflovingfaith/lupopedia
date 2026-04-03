@@ -1,48 +1,102 @@
 ---
 lupopedia.headers:
+  header_format_version: 2
   lupopedia.schema: documentation
-  file_path_from_root: lupo-docs/lupo-bin/TICK_PY.md
-  last_modified_utc: '20260330'
-  purpose: Documentation for lupo-bin/tick.py temporal anchor updater
-  traits:
+  file_path_from_root: lupo-docs/doctrine/TICK_PY_DOCTRINE.md
+  web_path: http://www.lupopedia.com/lupopedia/lupo-docs/doctrine/TICK_PY_DOCTRINE.md
+  last_modified_utc: '20260402224949'
+  channel_id: 42
+  actor_id: 102
+  actor_name: cursor
+  delegation_chain: cursor:root
+  artifact_type: doctrine
+  artifact_kind: temporal
+  purpose: Mandatory tick.py and temporal_anchor.json workflow; forbid guessed header timestamps
+  tags:
     - tick
     - temporal_anchor
-    - doctrine
-    - 4.0.93
     - utc
+    - headers
+lupopedia.edges:
+  outbound_edges:
+    - to: lupo-rules/root/UTC_TEMPORAL_ANCHOR_DOCTRINE.md
+      type: references
+      weight: 1.0
+      reason: Root binding; PRD 00 section 3.5a
+    - to: lupo-bin/tick.py
+      type: references
+      weight: 1.0
+    - to: lupo-bin/echo_anchor_utc.py
+      type: references
+      weight: 1.0
+    - to: lupo-bin/temporal_anchor.json
+      type: references
+      weight: 1.0
+    - to: lupo-docs/doctrine/TIMESTAMP_DOCTRINE.md
+      type: references
+      weight: 1.0
+    - to: README.md
+      type: references
+      weight: 0.95
+      reason: Temporal anchor policy summary
+lupopedia.footer:
+  last_verified: '20260402224949'
+  verified_by:
+    identity_type: actor
+    actor_id: 102
+  verified_via:
+    type: faucet
+    faucet_slug: cursor
+  orchestrator: cursor:root
 ---
-# lupo-bin/tick.py — Temporal Anchor Updater
+
+# TICK_PY and temporal anchor (mandatory)
 
 ## Purpose
 
-Ensures all Lupopedia header timestamps are synchronized to real UTC by updating `lupo-bin/temporal_anchor.json` with the current UTC time in `YYYYMMDDHHMMSS` format. This prevents future-dating and guarantees auditability.
+All **`last_modified_utc`**, **`when_updated`**, **`last_verified`**, and **UTC-based filename prefixes** for canonical artifacts must come from **real system UTC**, not from model guesses, “nice” round times, or copied dates from other files.
 
-## Usage
+The **only** supported way to refresh the canonical clock for the repo is:
 
-Run after every session or major write:
-
-```sh
-python3 lupo-bin/tick.py
+```bash
+python lupo-bin/tick.py
 ```
 
-- Updates `lupo-bin/temporal_anchor.json` with the current UTC.
-- No arguments required. Always uses UTC (never local time, never a timezone).
-- The IDE and all header writers must reference this anchor for `last_modified_utc`.
+That writes:
 
-## Output
+- `lupo-bin/temporal_anchor.json` — JSON with **`current_utc`** (`YYYYMMDDHHMMSS`, 14 digits, UTC)
+- `CURRENT_UTC` (repository root) — same value as a single line
 
-Example `lupo-bin/temporal_anchor.json`:
+## After tick: reuse without re-clocking
 
-```json
-{
-  "current_utc": "20260330090000",
-  "last_session_end": "20260330084500",
-  "system_year": "2026",
-  "format_standard": "YYYYMMDDHHMMSS"
-}
+For multiple files in one editing batch, reuse the same **`current_utc`**:
+
+```bash
+python lupo-bin/echo_anchor_utc.py
 ```
 
-## Policy
-- All timestamps must be in UTC, never local time or with timezone offsets.
-- If the anchor file is missing, the IDE must request a tick before writing headers.
-- This is a required step for all compliant deployments.
+Prints **`current_utc`** from the anchor **without** updating it. Exit code **1** if the anchor is missing (run `tick.py` first).
+
+## What agents must not do
+
+- Do **not** type timestamps from training-data “current date” or chat context.
+- Do **not** reuse another file’s `last_modified_utc` unless it matches the **current** anchor after a **fresh** `tick.py` in this session (stale reuse is wrong).
+- Do **not** use local wall-clock strings or offsets in YAML header BIGINT fields.
+
+## Filename timestamps (PRD 17)
+
+From `current_utc` = `YYYYMMDDHHMMSS`:
+
+- Preferred thread prefix: `YYYYMMDD_HHIISS_` → e.g. `20260402_224629_` (underscore between date and time).
+
+## If Python is unavailable
+
+Do not fabricate timestamps. Complete work without new timestamped canonical filenames, or run `tick.py` from another shell on the same machine and commit the updated anchor with the artifacts.
+
+## References
+
+- [TIMESTAMP_DOCTRINE.md](TIMESTAMP_DOCTRINE.md)
+- [README.md](../../README.md) — Temporal Anchor section
+- [LUPOPEDIA_HEADERS/README.md](LUPOPEDIA_HEADERS/README.md)
+
+This output complies with Lupopedia Constitutional Root Rules.

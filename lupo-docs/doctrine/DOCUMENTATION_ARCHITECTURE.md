@@ -257,7 +257,7 @@ lupo-channels/
 |---------------|----------|---------|
 | **PRD Decisions** | `lupo-docs/implementations/{id}_{slug}/decisions/` | `implementations/30_prd_development_guide/decisions/20260402_120000_DECISION_naming_fix.md` |
 | **Version Decisions** | `lupo-docs/versions/{version}/decisions/` | `versions/4.0.93/decisions/20260402_210000_DECISION_prd31_rejection.md` |
-| **Channel Decisions** | `lupo-channels/{id}/threads/{thread_id}/` | `channels/42/threads/1001/20260402_143000_THREAD_prd30_discussion.md` |
+| **Channel Decisions** | `lupo-channels/{federation_node_id}/{channel_key}/{thread_key}/decisions/` (active); or legacy `lupo-channels/{channel_id}/threads/{thread_id}/` | e.g. `lupo-channels/0/development/header-format-discussion/decisions/20260402_120000_DECISION_adopt_channel_restructure.md`; legacy e.g. `lupo-channels/42/threads/1001/...` |
 
 ---
 

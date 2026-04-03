@@ -166,6 +166,10 @@ Always use prepared statements with named placeholders.
 - No offset arithmetic.
 - No guessed or synthetic timestamps.
 
+### 2.4a Markdown headers and IDE-written UTC fields (temporal anchor)
+- **`lupopedia.headers`** (`last_modified_utc`, `when_updated`) and **`lupopedia.footer`** (`last_verified`), and new canonical thread filename UTC prefixes, MUST use **real system UTC** via **`python lupo-bin/tick.py`** (and **`python lupo-bin/echo_anchor_utc.py`** to reuse the same batch value)—not LLM-inferred “current time” or copied unrelated timestamps.
+- **Binding:** [UTC_TEMPORAL_ANCHOR_DOCTRINE.md](UTC_TEMPORAL_ANCHOR_DOCTRINE.md), [PRD 00 §3.5a](../../lupo-docs/prd/00_root_constitutional_system_requirements.md), [TICK_PY_DOCTRINE.md](../../lupo-docs/doctrine/TICK_PY_DOCTRINE.md).
+
 ### 2.5 No human-friendly time parsing by agents
 - Agents must not interpret "yesterday", "next week", "3 months ago".  
 - Only explicit BIGINT UTC values.

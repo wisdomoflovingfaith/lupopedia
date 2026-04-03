@@ -4,7 +4,7 @@ lupopedia.init:
   artifact_type: "windsurf_rule"
   artifact_kind: "doctrine"
   namespace: "windsurf"
-  system_version: "4.0.75"
+  system_version: "4.0.76"
   orchestrator_actor: "windsurf"
   delegation_chain: "windsurf:captain"
 
@@ -12,11 +12,11 @@ lupopedia.headers:
   actor_id: 101
   actor_name: "windsurf"
   delegation_chain: "windsurf:captain"
-  lupopedia.version: "4.0.75"
+  lupopedia.version: "4.0.76"
   lupopedia.schema: "windsurf_rule"
   file_path_from_root: ".windsurf/rules/channels-federation-offline-session-doctrine.md"
-  last_modified_utc: "20260315"
-  system_version: "4.0.75"
+  last_modified_utc: "20260402"
+  system_version: "4.0.76"
   source_path: "lupo-rules/root/channels-federation-offline-session-doctrine.md"
   artifact_type: "rule"
   artifact_kind: "windsurf_doctrine"
@@ -34,14 +34,14 @@ lupopedia.rules:
   overrides: []
   provenance:
     authored_by: "wolfie"
-    authored_date: "20260315"
+    authored_date: "20260402"
     last_reviewed_by: "windsurf"
-    last_reviewed_date: "20260315"
+    last_reviewed_date: "20260402"
     version: "1.0"
     status: "active"
 lupopedia.footer:
-  version: "4.0.75"
-  last_verified: "20260315"
+  version: "4.0.76"
+  last_verified: "20260402"
   last_verified_by: "windsurf"
   orchestrator: "windsurf"
   next_action:

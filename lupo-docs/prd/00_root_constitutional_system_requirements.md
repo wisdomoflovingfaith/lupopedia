@@ -2,10 +2,10 @@
 lupopedia.headers:
   header_format_version: 2
   lupopedia.schema: doctrine
-  when_updated: "20260401180000"
-  file_path_from_root: "/lupo-docs/prd/00_root_constitutional_system_requirements.md"
+  when_updated: "20260402224949"
+  file_path_from_root: "lupo-docs/prd/00_root_constitutional_system_requirements.md"
   web_path: "http://www.lupopedia.com/lupopedia/lupo-docs/prd/00_root_constitutional_system_requirements.md"
-  last_modified_utc: "20260401180000"
+  last_modified_utc: "20260402224949"
   federation_node_id: 0
   channel_id: 42
   thread_id: "constitutional-root-requirements"
@@ -103,12 +103,20 @@ lupopedia.edges:
       type: references
       weight: 0.9
       reason: "Semantic navbar table docs — folders, hashtags, references per section 9.9"
+    - to: "lupo-rules/root/UTC_TEMPORAL_ANCHOR_DOCTRINE.md"
+      type: references
+      weight: 1.0
+      reason: "Real system UTC for markdown headers and filenames — section 3.5a"
+    - to: "lupo-bin/tick.py"
+      type: references
+      weight: 1.0
+      reason: "Temporal anchor updater for IDE/header timestamps"
     - to: "lupo-scripts/generate_toon_files.py"
       type: references
       weight: 0.9
       reason: "Script that generates schema reference JSON under lupo-database/lupopedia/json/ from the live database"
 lupopedia.footer:
-  last_verified: "20260401180000"
+  last_verified: "20260402224949"
   verified_by:
     identity_type: actor
     actor_id: 102
@@ -234,6 +242,23 @@ These are forbidden because shared hosting often blocks them, they break portabi
 All timestamps must be `BIGINT` in `YYYYMMDDHHIISS` UTC format. No `DATETIME`, `TIMESTAMP`, or timezone fields allowed.
 
 **Implementation:** Use `gmdate('YmdHis')` in PHP. Never use `time()`, `date()`, or database-generated timestamps. Never add seconds directly to the integer value — use the `timestamp_ymdhis` helper class for arithmetic.
+
+### 3.5a Real system UTC for documentation headers and IDE-written filenames
+
+**Binding:** Values written into **`lupopedia.headers`** (`last_modified_utc`, `when_updated`), **`lupopedia.footer`** (`last_verified`), and **UTC date/time prefixes** on new canonical thread artifacts (per [PRD 17](17_decisions_format.md) and [TIMESTAMP doctrine](../doctrine/TIMESTAMP_DOCTRINE.md)) MUST be taken from **real system UTC**, not from:
+
+- inferred “today” or “current time” inside an LLM or chat session,
+- training-data cutoffs or model guesses,
+- unrelated files’ timestamps copied for convenience.
+
+**Mechanism (repository):**
+
+1. Run **`python lupo-bin/tick.py`** before a batch of such writes. It sets **`lupo-bin/temporal_anchor.json`** field **`current_utc`** (14-digit `YYYYMMDDHHMMSS` UTC) and root **`CURRENT_UTC`**.
+2. For more files in the **same** batch without advancing the clock, run **`python lupo-bin/echo_anchor_utc.py`** and reuse that value.
+
+**Root rule:** [lupo-rules/root/UTC_TEMPORAL_ANCHOR_DOCTRINE.md](../../lupo-rules/root/UTC_TEMPORAL_ANCHOR_DOCTRINE.md). **Expanded workflow:** [TICK_PY_DOCTRINE.md](../doctrine/TICK_PY_DOCTRINE.md).
+
+**Rationale:** Language models are not clocks; pretending they “know” UTC breaks auditability and multi-agent handoff. The OS clock (via `tick.py`) is the only approved source for those artifact fields.
 
 ### 3.6 Database Neutral SQL
 

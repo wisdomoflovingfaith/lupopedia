@@ -53,8 +53,8 @@ Example:
 ## Link to Channel Threads
 
 These implementation discussions are linked to channel threads:
-- Primary channel: 42 (Protocol Development)
-- Related threads: [View in Channel 42](../../../lupo-channels/42/threads/)
+- Primary channel: 42 (Protocol Development) — legacy numeric tree; see **`lupo-channels/channel_index.md`** and **`lupo-docs/prd/29_project_structure.md`** for the active path layout.
+- Related threads: [Channel 42 threads (archive)](../../../lupo-channels_before_4_0_93/42/threads/) · [Full pre–4.0.93 archive tree](../../../lupo-channels_before_4_0_93/)
 
 ---
 *This index tracks all discussion threads for the departments system implementation.*

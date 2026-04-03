@@ -3,7 +3,7 @@ lupopedia.headers:
   lupopedia.schema: documentation
   file_path_from_root: AGENTS.md
   web_path: http://www.lupopedia.com/lupopedia/AGENTS.md
-  last_modified_utc: '20260325204807'
+  last_modified_utc: '20260404183000'
   channel_id: 42
   actor_id: 102
   actor_name: cursor
@@ -29,7 +29,7 @@ lupopedia.headers:
   - multi_agent
   agent_name_identity: Cursor IDE Agent (Lead Orchestration)
   lupo_agent: cursor
-  when_updated: '20260325204807'
+  when_updated: '20260402224629'
 lupopedia.edges:
   outbound_edges:
   - to: lupo-docs/doctrine/IDENTITY_MODEL_QUICKSTART_4.0.88.md
@@ -49,9 +49,22 @@ lupopedia.edges:
   - to: lupo-docs/doctrine/LUPOPEDIA_HEADERS/README.md
     type: references
     weight: 1.0
+  - to: lupo-database/lupopedia/actors/registry.json
+    type: references
+    weight: 1.0
+    reason: Canonical lupo_actors (facet actor_id)
   - to: lupo-database/lupopedia/actors/actor_id/registry.json
     type: references
     weight: 0.9
+    reason: lupo_agents id map
+  - to: lupo-docs/doctrine/IDENTITY_LAYERS_DOCTRINE.md
+    type: references
+    weight: 1.0
+    reason: Canonical actor vs agent vs facet; registry authority (§3)
+  - to: lupo-docs/doctrine/TICK_PY_DOCTRINE.md
+    type: references
+    weight: 1.0
+    reason: Run tick.py before header timestamps; never guess UTC
   - to: lupo-docs/status/LILITH_FLAME_FAUCET_REPORT.md
     type: references
     weight: 0.8
@@ -68,6 +81,22 @@ lupopedia.edges:
   - to: report.md
     type: references
     weight: 0.85
+  - to: lupo-docs/prd/02_channels_discussions.md
+    type: references
+    weight: 1.0
+    reason: Channel and filesystem thread semantics
+  - to: lupo-docs/prd/17_decisions_format.md
+    type: references
+    weight: 1.0
+    reason: Thread filename patterns and multi-folder layout
+  - to: lupo-docs/prd/21_thread_graduation_doctrine.md
+    type: references
+    weight: 0.95
+    reason: THREAD_MANIFEST and thread lifecycle
+  - to: lupo-docs/prd/29_project_structure.md
+    type: references
+    weight: 1.0
+    reason: Active vs archive channel filesystem strategy
   semantic_tags:
   - agents
   - cursor
@@ -80,7 +109,7 @@ lupopedia.see:
   - - AGENTS.md
     - http://www.lupopedia.com/lupopedia/AGENTS.md
 lupopedia.footer:
-  last_verified: '20260325204807'
+  last_verified: '20260404183000'
   verified_by:
     identity_type: actor
     actor_id: 102
@@ -94,14 +123,33 @@ lupopedia.footer:
   - Keep agent identity and faucet links current with registry
   - Validate LUPOPEDIA HEADERS and next_action when updating this guide
   - Point new IDE agents to MULTI_AGENT_COORDINATION_DOCTRINE and ONBOARDING.md
+  - Before writing last_modified_utc or last_verified run python lupo-bin/tick.py then echo_anchor_utc.py for batch edits
 ---
 # file: AGENTS — delegation: junie:root — web_path: [http://www.lupopedia.com/lupopedia/AGENTS.md](http://www.lupopedia.com/lupopedia/AGENTS.md)
 
 # AGENTS.md
 
+## Actor vs Agent (summary)
+
+- **`lupo-agents/`** — AI **configuration** only (`lupo_agents` metadata). Not the operational join for permissions or channel posts.
+- **`lupo-actors/{actor_id}/`** — Resources for **`actor_id`** from [actors/registry.json](lupo-database/lupopedia/actors/registry.json) (and optional hub README per facet).
+- **IDE facets** — Execution surfaces with a **registered facet `actor_id`**. **Cursor** = **102**; **Antigravity IDE** = **103** (`antigravity-ide`)—use the id for the tool you are actually running, not a generic “IDE” placeholder. Not primary personas. Resolve **`auth_user_id`** from session/seed/DB; **root** user is **`0`** per PRD 01—do not hardcode human ids as universal canon.
+
+**Full model (single source of truth):** [Identity Layers Doctrine §3](lupo-docs/doctrine/IDENTITY_LAYERS_DOCTRINE.md#3-actor-agent-faucet-directory-rules-canonical).
+
+## UTC timestamps for headers (mandatory)
+
+**Do not guess** `last_modified_utc`, `when_updated`, `last_verified`, or thread filename UTC prefixes.
+
+1. Run `python lupo-bin/tick.py` once per editing batch (real system UTC).
+2. Paste the printed **`current_utc`** (14 digits) into every header/footer you change.
+3. Same batch, no second tick: `python lupo-bin/echo_anchor_utc.py`.
+
+Full policy: **[TICK_PY_DOCTRINE.md](lupo-docs/doctrine/TICK_PY_DOCTRINE.md)** and [README.md](README.md) (Temporal Anchor).
+
 This file provides guidance for **IDE faucet agents** and contributors. **Canonical multi-agent coordination** is defined in **[MULTI_AGENT_COORDINATION_DOCTRINE](lupo-rules/root/MULTI_AGENT_COORDINATION_DOCTRINE.md)** (binding for v4.0.80+). This guide summarizes how that model maps to daily repo work.
 
-**Canonical identity, propagation targets, and IDE roles** remain in [lupo-docs/doctrine/AGENT_REGISTRY.md](lupo-docs/doctrine/AGENT_REGISTRY.md). Resolve `actor_id` and slugs from [lupo-database/lupopedia/actors/actor_id/registry.json](lupo-database/lupopedia/actors/actor_id/registry.json).
+**Canonical identity, propagation targets, and IDE roles** remain in [lupo-docs/doctrine/AGENT_REGISTRY.md](lupo-docs/doctrine/AGENT_REGISTRY.md). Resolve **`actor_id`** and faucet slugs from [lupo-database/lupopedia/actors/registry.json](lupo-database/lupopedia/actors/registry.json). The **`agents`** map in [actor_id/registry.json](lupo-database/lupopedia/actors/actor_id/registry.json) is for **`lupo_agents`** numeric ids (e.g. `cursor` → 102, `antigravity-ide` → 103, `vscode-ide` → 113, `trae` → 114)—not a substitute for the actor registry.
 
 **New IDE or web terminal agent?** Register via the **[Actor Registration Checklist](lupo-docs/ACTOR_REGISTRATION_CHECKLIST.md)**. Do not contribute as an anonymous or unregistered agent.
 
@@ -114,13 +162,17 @@ Required references:
 - `README.md`
 - `lupo-channels/channel_index.md`
 - `lupo-channels/channel_creation_doctrine.md`
-- `lupo-channels/42/THREAD_INDEX.md`
+- `lupo-docs/prd/29_project_structure.md` (active vs archive channel paths)
+- `lupo-docs/prd/02_channels_discussions.md` (channels, thread manifest)
+- `lupo-docs/prd/17_decisions_format.md` (thread filenames and `decisions/` / `questions/` / `answers/` / `comments/`)
+- `lupo-docs/prd/21_thread_graduation_doctrine.md` (`THREAD_MANIFEST.md`, lifecycle)
 
 Required behavior:
 
-1. Select target channel before execution.
+1. Select target channel before execution (see **`lupo-channels/channel_index.md`**).
 2. Use an existing thread in that channel, or create one if missing.
-3. Write status/report/workstream artifacts into `lupo-channels/<channel_id>/threads/<thread_id>/`.
+   - **New thread (filesystem, active layout):** create **`lupo-channels/{federation_node_id}/{channel_key}/{new_thread_key}/`** with **`THREAD_MANIFEST.md`** (required fields per **`lupo-docs/prd/21_thread_graduation_doctrine.md`**) and, for PRD-17-style coordination, **`decisions/`**, **`questions/`**, **`answers/`**, **`comments/`** — each folder that you use must include **`THREAD_INDEX.md`**. Authoritative structure and filenames: **`lupo-docs/prd/02_channels_discussions.md`**, **`lupo-docs/prd/17_decisions_format.md`**.
+3. Write status/report/workstream artifacts into **`lupo-channels/{federation_node_id}/{channel_key}/{thread_key}/`** (and typed subfolders per PRD 17). Legacy numeric paths under `lupo-channels/{channel_id}/threads/{thread_id}/` remain for API-mirrored work; pre–4.0.93 trees live in **`lupo-channels_before_4_0_93/`** (read-only archive).
 4. Do not place channel-scoped work artifacts in repository root.
 
 ## Primary Coordination Personas (eleven)
@@ -163,21 +215,26 @@ Resolve all `actor_id` values from the registry; the table above is illustrative
 
 IDE surfaces are **human interfaces** into the repo. They **do not** replace WOLFIE or the other ten coordination personas. Per doctrine, faucets route work through primary personas and channel context.
 
-| actor_id | slug        | Notes                    |
-|----------|-------------|--------------------------|
-| 102      | cursor      | Lead orchestration faucet |
-| 101      | windsurf    | IDE faucet               |
-| 100      | kiro        | IDE faucet               |
-| 105      | cascade     | IDE faucet               |
-| 104      | warp        | IDE faucet               |
-| 106      | zencoder    | IDE faucet               |
-| 103      | antigravity | IDE faucet               |
+**Shared IDE system prompt (single place to edit vetoes for all IDE packs):** `lupo-agents/_shared/ide_facet_base_system_prompt.txt` — facet packs (`cursor`, `antigravity-ide`, `kiro`, `windsurf`, `warp`, `cascade`, `vscode-ide`, `trae`) are **thin wrappers** that point at this file. See `lupo-agents/_shared/README.md`.
 
-**Cursor** (102) consolidates root docs (`README.md`, `CHANGELOG.md`, `plan.md`, `report.md`) and cross-agent continuity; **WOLFIE** (1) remains system orchestrator in the eleven-persona model.
+| actor_id | slug             | agent_id (lupo_agents) | Notes |
+|----------|------------------|------------------------|-------|
+| 100      | kiro             | 100                    | Kiro IDE; `--target=kiro` |
+| 101      | windsurf         | 101                    | Windsurf; `--target=windsurf` |
+| 102      | cursor           | 102                    | **Cursor IDE**; lead orchestration stewardship **by convention** in this doc; `--target=cursor` |
+| 103      | antigravity-ide  | 103                    | Antigravity IDE—use **103** in Antigravity (not 102); propagation target pending |
+| 104      | warp             | 104                    | Warp; propagation target pending |
+| 105      | cascade          | 105                    | Cascade; `--target=cascade` |
+| 106      | vscode-ide       | 113                    | **VS Code** (stock); `--target=vscode` → `.vscode/lupopedia/rules/` |
+| 107      | trae             | 114                    | Trae IDE; propagation target pending |
 
-## Lead Orchestration (Cursor, actor_id 102)
+**Cursor** (102) is the default assignee in docs for consolidating root files (`README.md`, `CHANGELOG.md`, `plan.md`, `report.md`) and cross-agent continuity when work is done **from Cursor**. The same stewardship work done **from Antigravity IDE** must be attributed as **103** (`antigravity-ide`). **VS Code** (stock, not Cursor) → **106** (`vscode-ide`); **Trae** → **107** (`trae`); match **Kiro**, **Windsurf**, **Warp**, and **Cascade** to their rows above. **WOLFIE** (1) remains system orchestrator in the eleven-persona model.
 
-Cursor is the **lead orchestration IDE agent** for Lupopedia. This role exists to maintain repository continuity when multiple agents contribute concurrently.
+## Lead orchestration (docs default: Cursor facet, actor_id 102)
+
+**Attribution rule:** Match the **facet** to the **IDE**. Cursor → **102**. Antigravity IDE → **103** (`lupo-agents/antigravity-ide/`). VS Code → **106** (`lupo-agents/vscode-ide/`). Do not call Antigravity or VS Code work “cursor.”
+
+The **Cursor** facet is the **named** lead orchestration surface in this guide for historical and tooling reasons (`--target=cursor`, `.cursor/rules`). That does **not** make **102** the correct `actor_id` on other IDE products.
 
 ### Documentation stewardship
 
@@ -208,7 +265,7 @@ This role **does not grant exclusive authority**. Other agents may propose chang
 
 ## What This Project Is
 
-Lupopedia is the continuation of Crafty Syntax Live Help 3.7.5 — a PHP live-chat system rebuilt as a "Semantic OS." **Actors** are the orchestration identities; they coordinate through **faucets**, **sessions**, **channels**, **rules**, and **traits**. **Faucets** are execution surfaces (IDE surfaces such as Cursor, Windsurf, Warp are faucets, not actors). It adds a unified actor model, semantic content graph, and doctrine-driven architecture on top of the original live-chat features. The only supported upgrade path is Crafty Syntax 3.7.5 → Lupopedia 4.0.x. There are zero external installations; the sole instance is the developer's local environment on Windows/ServBay.
+Lupopedia is the continuation of Crafty Syntax Live Help 3.7.5 — a PHP live-chat system rebuilt as a "Semantic OS." **Actors** are the orchestration identities; they coordinate through **faucets**, **sessions**, **channels**, **rules**, and **traits**. **Faucets** are execution surfaces (IDEs such as Cursor, Windsurf, Warp) registered as **facet** identities with **`actor_id`** in the registry—not primary personas, but used for attribution. It adds a unified actor model, semantic content graph, and doctrine-driven architecture on top of the original live-chat features. The only supported upgrade path is Crafty Syntax 3.7.5 → Lupopedia 4.0.x. There are zero external installations; the sole instance is the developer's local environment on Windows/ServBay.
 
 ## Development Environment
 
@@ -337,8 +394,8 @@ Version lives in `config/global_atoms.yaml` as `GLOBAL_CURRENT_LUPOPEDIA_VERSION
 
 ### Actor Model
 - **Actors orchestrate; faucets execute.** `actor_id` is the universal identity key. There is no `user_id` in relationships.
-- Actor IDs 0–999 are reserved for non-human (orchestration) actors; human actors start at 1000 (**Root user auth_user_id is 0**). IDE surfaces (Cursor, Windsurf, Warp, etc.) are **faucets** — human interfaces with registry `actor_id` for identity; they are **not** among the eleven Primary Coordination Personas.
-- **Actor and agent IDs are defined in the project’s actor registry** (e.g. `lupo-database/lupopedia/actors/` or `lupo-database/lupopedia/actors/actor_id/registry.json`). Tooling and docs must resolve IDs from the registry; do not maintain inline ID lists as canonical. LUPOPEDIA HEADERS may include optional **agent_name_identity** (e.g. “Cursor IDE Agent”) for human-readable identification—see [LUPOPEDIA HEADERS doctrine](lupo-docs/doctrine/LUPOPEDIA_HEADERS/README.md) and AGENT_IDENTITY_REGISTRY.
+- Actor ID bands and reserved ranges: see [Identity Layers Doctrine](lupo-docs/doctrine/IDENTITY_LAYERS_DOCTRINE.md) (sections 5–6) and **`registry.json`** (**authoritative**). **Root user `auth_user_id` is 0** (PRD 01). Human actors typically **1000+**. IDE surfaces are **faucets** with registered **facet `actor_id`**; they are **not** among the eleven Primary Coordination Personas.
+- **Actor IDs** are defined in **`lupo-database/lupopedia/actors/registry.json`**. **`lupo_agents`** numeric ids by slug live in the **`agents`** map inside `lupo-database/lupopedia/actors/actor_id/registry.json`. Tooling and docs must resolve from those sources; do not maintain inline ID lists as canonical. LUPOPEDIA HEADERS may include optional **agent_name_identity** (e.g. “Cursor IDE Agent”) for human-readable identification—see [LUPOPEDIA HEADERS doctrine](lupo-docs/doctrine/LUPOPEDIA_HEADERS/README.md) and AGENT_IDENTITY_REGISTRY.
 - Tables: `lupo_actors` (unified), `lupo_auth_users` (human login metadata), `lupo_agents` (AI agent metadata).
 - Lilith (actor 2) has a **flame header expert** faucet (slug `lilith-flame`) in `lupo_agent_faucets` for channel 42; see [LUPOPEDIA HEADERS doctrine](lupo-docs/doctrine/LUPOPEDIA_HEADERS/README.md) and LILITH_FLAME_FAUCET_REPORT.
 
@@ -377,9 +434,10 @@ Reference: `lupo-docs/doctrine/IDENTITY_LAYERS_DOCTRINE.md`.
 
 ### Agent Identity Registry
 
-Actor and agent IDs are defined in the **canonical registry**:
+**Canonical registries:**
 
-- `lupo-database/lupopedia/actors/actor_id/registry.json`
+- **lupo_actors** (facet identity): `lupo-database/lupopedia/actors/registry.json`
+- **`lupo_agents` id map** (`agents` object): `lupo-database/lupopedia/actors/actor_id/registry.json`
 
 LUPOPEDIA HEADERS may include `agent_name_identity` for human-readable display (in the `lupopedia.headers` block):
 
@@ -388,6 +446,8 @@ lupopedia.headers:
   actor_id: 102
   agent_name_identity: "Cursor IDE Agent"
 ```
+
+Use **`actor_id: 103`** when the tool surface is **Antigravity IDE** (`antigravity-ide`), not 102.
 
 See [LUPOPEDIA HEADERS doctrine](lupo-docs/doctrine/LUPOPEDIA_HEADERS/README.md) and AGENT_IDENTITY_REGISTRY for complete documentation. Headers are stored in `lupo_metadata` and can also be written to the file as YAML.
 
@@ -424,10 +484,11 @@ See [LUPOPEDIA HEADERS doctrine](lupo-docs/doctrine/LUPOPEDIA_HEADERS/README.md)
 
 In `lupo_route_slug()`: AUTH → web-path resolution (doctrine/qa/docs/flp prefixes) → content by slug → channel/edge/QA routes → HELP → LIST → truth redirects → crafty_syntax → content fallback.
 
-## Lead Orchestration and registry
+## Lead orchestration and registry
 
-- **Lead orchestration IDE faucet:** **Cursor** (actor_id **102**). Root doc consolidation and IACP-style continuity; see doctrine §7.2 for IDE ↔ primary persona flow.
+- **Docs default for lead stewardship:** **Cursor** facet (actor_id **102**) — root doc consolidation and IACP-style continuity when work is done **from Cursor**; see doctrine §7.2 for IDE ↔ primary persona flow.
+- **Antigravity IDE:** facet **103** (`antigravity-ide`); same doctrine, correct **`actor_id`** in headers—do not use 102 on that surface.
 - **Orchestrator persona:** **WOLFIE** (actor_id **1**) — delegates and validates per eleven-persona doctrine.
-- **Registry:** [lupo-database/lupopedia/actors/actor_id/registry.json](lupo-database/lupopedia/actors/actor_id/registry.json). Cursor (102) is marked `lead_orchestration: true` for IDE lead role only—not as an eleventh+ “primary persona” duplicate; the eleven personas are listed above.
+- **Registries:** [actors/registry.json](lupo-database/lupopedia/actors/registry.json) for **lupo_actors**; [actor_id/registry.json](lupo-database/lupopedia/actors/actor_id/registry.json) **`agents`** map for **lupo_agents** ids. This guide names Cursor (102) as the conventional lead IDE in prose; that is **not** permission to mis-attribute other IDEs as 102.
 
-Commit prefixes: `cursor:`, `wolfie:`, `windsurf:`, `kiro:`, etc. See `CONTRIBUTING.md`. **Task authority:** **[MULTI_AGENT](lupo-rules/root/MULTI_AGENT_COORDINATION_DOCTRINE.md) §9** — **root [`TODO.md`](TODO.md)** = multi-agent coordination + HERMES prompt queue; **`lupo-docs/versions/<version>/TODO.md`** = version product backlog (Top 50, etc.). Channel **42** default workspace.
+Commit prefixes: `cursor:`, `antigravity-ide:` (or `antigravity:`), `wolfie:`, `windsurf:`, `kiro:`, etc. See `CONTRIBUTING.md`. **Task authority:** **[MULTI_AGENT](lupo-rules/root/MULTI_AGENT_COORDINATION_DOCTRINE.md) §9** — **root [`TODO.md`](TODO.md)** = multi-agent coordination + HERMES prompt queue; **`lupo-docs/versions/<version>/TODO.md`** = version product backlog (Top 50, etc.). Channel **42** default workspace.

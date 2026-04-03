@@ -15,7 +15,7 @@ lupopedia.headers:
   lupopedia.version: "4.0.76"
   lupopedia.schema: "lexa_rule"
   file_path_from_root: ".lexa/rules/flip-doctrine.md"
-  last_modified_utc: "20260317"
+  last_modified_utc: "20260402"
   system_version: "4.0.76"
   source_path: "lupo-rules/root/flip-doctrine.md"
   artifact_type: "rule"
@@ -34,14 +34,14 @@ lupopedia.rules:
   overrides: []
   provenance:
     authored_by: "wolfie"
-    authored_date: "20260317"
+    authored_date: "20260402"
     last_reviewed_by: "lexa"
-    last_reviewed_date: "20260317"
+    last_reviewed_date: "20260402"
     version: "1.0"
     status: "active"
 lupopedia.footer:
   version: "4.0.76"
-  last_verified: "20260317"
+  last_verified: "20260402"
   last_verified_by: "lexa"
   orchestrator: "lexa"
   next_action:
@@ -56,7 +56,7 @@ lupopedia.footer:
 
 ## What to read
 
-- **Canonical doctrine:** [lupo-docs/doctrine/LUPOPEDIA_HEADERS/README.md](../../lupo-docs/doctrine/LUPOPEDIA_HEADERS/README.md) — Overview, storage in `lupo_metadata`, schema.
+- **Canonical doctrine:** lupo-docs/doctrine/LUPOPEDIA_HEADERS/README.md — Overview, storage in `lupo_metadata`, schema.
 - **Format and file structure:** [LUPOPEDIA_HEADERS_FORMAT.md](../../lupo-docs/doctrine/LUPOPEDIA_HEADERS/LUPOPEDIA_HEADERS_FORMAT.md) — Markdown file structure, required fields, database and channel resolution.
 - **Plan and block order:** [LUPOPEDIA_HEADERS_PLAN.md](../../lupo-docs/doctrine/LUPOPEDIA_HEADERS/LUPOPEDIA_HEADERS_PLAN.md) — Authoritative plan, block order, channel support.
 - **Validators and tooling:** [VALIDATORS_AND_TOOLING.md](../../lupo-docs/doctrine/LUPOPEDIA_HEADERS/VALIDATORS_AND_TOOLING.md) — How headers work with the database (read/write via `lupo_metadata`) and how headers can be written to the file (export/import).

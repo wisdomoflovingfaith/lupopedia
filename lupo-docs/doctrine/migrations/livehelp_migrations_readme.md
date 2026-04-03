@@ -81,13 +81,27 @@ flip.footer: {
 
 # Legacy Migration Documentation Relocation
 
-All legacy Crafty Syntax migration files have been relocated to **lupo-docs/database/lupopedia/tables/** for reference purposes. 
+## Mandatory for implementers (IDE agents and humans)
 
-This move emphasizes that these tables are deprecated and should not be used in the new Lupopedia system. They serve only to document mappings to new `lupo_` tables. Legacy tables will be removed in v4.1.1+. For details, refer to the files in the new location.
+**Do not guess** table names, column names, or types when writing Lupopedia code, SQL, importers, or rollups.
+
+1. Open the **per-table** file under **`lupo-docs/database/lupopedia/tables/migrations/`** for every legacy table you touch (e.g. **`livehelp_users_migration.md`**, **`livehelp_visit_track_migration.md`**). That file states how **`livehelp_*`** maps to **`lupo_*`** and which columns exist.
+2. Confirm the **current** Lupopedia DDL in **`lupo-database/lupopedia/mysql/install/install_new_lupopedia.sql`** (and seed if needed). **TOON/JSON** exports are **not** a substitute for reading install SQL when defining queries or migrations.
+3. Use this readme and **`lupo-docs/doctrine/migrations/`** for cross references and narrative; use **`lupo-docs/database/lupopedia/tables/MIGRATION_MAPPING_REFERENCE.md`** for wide mappings when applicable.
+
+**Crafty config flags** in PHP reference code often use **`'Y'`** / **`'N'`** strings. In Lupopedia, equivalent toggles are typically **`TINYINT`**: **`1`** = enabled (was **`'Y'`**), **`0`** = disabled (anything else). Compare as integers in application code unless a documented shim says otherwise.
+
+Failure mode to avoid: assuming a column exists because it “sounds right,” because a TOON snippet was partial, or because Crafty used a name—**read the mapping file and install SQL first** (see **PRD 33** §4.1).
+
+---
+
+All legacy Crafty Syntax migration files have been relocated to **`lupo-docs/database/lupopedia/tables/migrations/`** for reference purposes (per-table `*_migration.md` and related `.md` files).
+
+This move emphasizes that legacy **`livehelp_*`** tables are not the runtime target; they document how data and semantics map into **`lupo_*`**. Legacy table names appear in **reference** PHP under **`craftysyntax-reference/`** and in import paths only. For the file list, see **Moved Files Reference** below.
 
 ## Moved Files Reference
 
-The following files have been relocated to the database table documentation directory:
+The following files have been relocated to the database table documentation directory (**`lupo-docs/database/lupopedia/tables/migrations/`**):
 
 1.  **MIGRATION_MAPPING_REFERENCE.md**
 2.  **livehelp_autoinvite_migration.md**

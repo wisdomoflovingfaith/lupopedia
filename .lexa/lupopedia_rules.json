@@ -1,6 +1,18 @@
 {
     "rules": [
         {
+            "id": "CONVERGENCE001",
+            "text": "All agents must converge to the same canonical system state; actor identity is permanent; state is mutable; always return canonical actors by actor_id even if banned; never create variant actors.",
+            "enforcement": "error",
+            "scope": [
+                "all_agents"
+            ],
+            "source_path": "lupo-rules/root/CONVERGENCE_DOCTRINE.md",
+            "slug": "CONVERGENCE_DOCTRINE",
+            "category": "constitutional",
+            "status": "proposed_for_ratification"
+        },
+        {
             "id": "CONSTITUTION001",
             "text": "Lupopedia Constitutional Root Rules - absolute, non-negotiable doctrine",
             "enforcement": "error",
@@ -10,6 +22,18 @@
             "source_path": "lupo-rules/root/LUPOPEDIA_CONSTITUTIONAL_ROOT_RULES.md",
             "slug": "LUPOPEDIA_CONSTITUTIONAL_ROOT_RULES",
             "category": "constitutional",
+            "status": "active"
+        },
+        {
+            "id": "TIME001",
+            "text": "Artifact timestamps and filename timestamps must be generated from real UTC system time only.",
+            "enforcement": "error",
+            "scope": [
+                "all_agents"
+            ],
+            "source_path": "lupo-rules/root/TIMESTAMP_DOCTRINE.md",
+            "slug": "TIMESTAMP_DOCTRINE",
+            "category": "timestamp",
             "status": "active"
         },
         {

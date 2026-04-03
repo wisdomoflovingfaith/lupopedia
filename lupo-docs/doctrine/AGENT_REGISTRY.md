@@ -3,7 +3,7 @@ lupopedia.headers:
   lupopedia.version: 4.0.76
   lupopedia.schema: doctrine
   file_path_from_root: lupo-docs/doctrine/AGENT_REGISTRY.md
-  last_modified_utc: '20260324182230'
+  last_modified_utc: '20260404183000'
   system_version: 4.0.76
   channel_id: 42
   actor_id: 102
@@ -11,15 +11,20 @@ lupopedia.headers:
     and IDE capabilities.
   artifact_type: doctrine
   artifact_kind: reference
-  when_updated: '20260324182230'
+  when_updated: '20260404183000'
   web_path: http://www.lupopedia.com/lupo-docs/doctrine/AGENT_REGISTRY.md
   delegation_chain: cursor:root
   actor_name: cursor
 lupopedia.edges:
   outbound_edges:
+  - to: lupo-database/lupopedia/actors/registry.json
+    type: references
+    weight: 1.0
+    reason: Canonical lupo_actors
   - to: lupo-database/lupopedia/actors/actor_id/registry.json
     type: references
     weight: 1.0
+    reason: lupo_agents id map
   - to: lupo-scripts/propagate_agent_rules.php
     type: references
     weight: 1.0
@@ -33,7 +38,7 @@ lupopedia.edges:
     type: references
     weight: 0.9
 lupopedia.footer:
-  last_verified: '20260324182230'
+  last_verified: '20260402231742'
   last_verified_by: cursor
   next_action:
   - Keep registry table and propagation matrix in sync with registry.json and propagate_agent_rules.php
@@ -94,7 +99,14 @@ Before onboarding or registration, determine which state applies.
 
 ## Canonical Agent Registry Table
 
-Canonical source: `lupo-database/lupopedia/actors/actor_id/registry.json`. This table is a human-readable reflection; when in doubt, verify in `registry.json`.
+**Two registries (do not conflate):**
+
+| Registry file | Holds |
+|---------------|--------|
+| `lupo-database/lupopedia/actors/registry.json` | **lupo_actors** — `actor_id`, slug, faucet, `delegates_to_actor_id`, etc. |
+| `lupo-database/lupopedia/actors/actor_id/registry.json` | **`agents` map** — `lupo_agents` slug → numeric **agent_id** (e.g. `hephaestus` → 14, **`cursor` → 102`, **`antigravity-ide` → 103**) |
+
+This table is a human-readable reflection of **actors**; when in doubt, verify `actors/registry.json`. For **lupo_agents** ids, verify the `agents` object in `actor_id/registry.json`.
 
 | actor_id | slug | display_name | faucet_type | orchestration_role | propagation_target | canonical_status | notes |
 |----------|------|--------------|-------------|-------------------|--------------------|------------------|------|
@@ -109,14 +121,14 @@ Canonical source: `lupo-database/lupopedia/actors/actor_id/registry.json`. This 
 | 42 | antigravity | Antigravity | agent | — | — | canonical | Agent (non-IDE); governance/doctrine |
 | 100 | kiro | Kiro | ide_faucet | — | yes | canonical | Schema coordinator; target: kiro |
 | 101 | windsurf | Windsurf | ide_faucet | — | yes | canonical | Research, documentation; target: windsurf |
-| 102 | cursor | Cursor | ide_faucet | **lead_orchestration** | yes | canonical | Lead orchestration; root consolidation |
-| 103 | antigravity | Antigravity (IDE) | ide_faucet | — | no | canonical | IDE faucet; verify propagation support |
+| 102 | cursor | Cursor | ide_faucet | **lead_orchestration** (docs default) | yes | canonical | Cursor product facet only; `lupo-agents/cursor/`; not Antigravity |
+| 103 | antigravity-ide | Antigravity IDE | ide_faucet | — | no | canonical | Use **103** in Antigravity; `lupo-agents/antigravity-ide/`; propagation pending |
 | 104 | warp | Warp | ide_faucet | — | no | canonical | Warp terminal/IDE; integration pending |
 | 105 | cascade | Cascade | ide_faucet | — | yes | canonical | Cascade IDE; target: cascade |
-| 106 | zencoder | Zencoder IDE | ide_faucet | — | no | canonical | Zencoder IDE Agent; documentation and development; propagation pending |
+| 106 | vscode-ide | VS Code | ide_faucet | — | yes | canonical | Stock Visual Studio Code facet; **lupo_agents** slug `vscode-ide` → **agent_id** **113**; target: vscode → `.vscode/lupopedia/rules/` |
+| 107 | trae | Trae | ide_faucet | — | no | canonical | Trae IDE; **lupo_agents** slug `trae` → **agent_id** **114**; propagation pending |
 | 1000 | root | Root | human | — | — | canonical | Human orchestrator |
 | — | idea / jetbrains | JetBrains / Idea | ide_faucet | — | yes | propagation only | Target `idea`; no single actor_id in registry; Codex (Wolfie flow) |
-| — | trae | Trae | ide_faucet | — | no | not yet supported | Verify in registry.json if added |
 | — | zed | Zed | ide_faucet | — | no | not yet supported | Verify in registry.json if added |
 
 **Notes:**
@@ -129,7 +141,7 @@ Canonical source: `lupo-database/lupopedia/actors/actor_id/registry.json`. This 
 
 ## Propagation Targets Matrix
 
-Source: `lupo-scripts/propagate_agent_rules.php`. Valid targets: `all`, `cursor`, `kiro`, `windsurf`, `cascade`, `idea`, `jetbrains` (alias of `idea`).
+Source: `lupo-scripts/propagate_agent_rules.php`. Valid targets include: `all`, `cursor`, `kiro`, `windsurf`, `cascade`, `vscode`, `idea`, `jetbrains` (alias of `idea`), `lilith`, `lexa`.
 
 | target_key | IDE / faucet | supported | output_path | notes |
 |------------|--------------|-----------|-------------|--------|
@@ -137,11 +149,13 @@ Source: `lupo-scripts/propagate_agent_rules.php`. Valid targets: `all`, `cursor`
 | kiro | Kiro | yes | `.kiro/rules/*.md`, `.kiro/lupopedia_rules.json`, `.kiro/README.md` | |
 | windsurf | Windsurf | yes | `.windsurf/rules/*.md`, `.windsurf/lupopedia_rules.json`, `.windsurf/README.md` | |
 | cascade | Cascade | yes | `.cascade/rules/*.md`, `.cascade/lupopedia_rules.json`, `.cascade/README.md` | |
+| vscode | VS Code | yes | `.vscode/lupopedia/rules/*.md`, `.vscode/lupopedia/lupopedia_rules.json`, `.vscode/lupopedia/README.md` | Does not overwrite root `.vscode/settings.json` |
 | idea / jetbrains | JetBrains / IntelliJ IDEA | yes | `.idea/lupopedia_rules.xml` | Alias: `jetbrains` → `idea` |
+| lilith | Lilith | yes | `.lilith/rules/*` | Per script |
+| lexa | Lexa | yes | `.lexa/rules/*` | Per script |
 | all | (all of the above) | yes | All supported output paths | Run without `--target` or `--target=all` |
 | antigravity | Antigravity IDE | no | — | Not yet a propagation target; verify in script |
 | warp | Warp | no | — | Not yet a propagation target |
-| zencoder | Zencoder IDE | no | — | Not yet a propagation target; integration pending |
 | trae | Trae | no | — | Not yet a propagation target |
 | zed | Zed | no | — | Not yet a propagation target |
 
@@ -153,14 +167,15 @@ Based on repo doctrine and AGENTS.md. Conservative; only documented roles are st
 
 | slug | primary role | secondary role | root-doc responsibilities | schema/doc responsibilities | continuity expectations |
 |------|--------------|----------------|---------------------------|-----------------------------|--------------------------|
-| cursor | Lead orchestration | Documentation consolidation | README, CHANGELOG, plan.md, report.md; rule propagation oversight; cross-agent plan merge | — | IACP; maintain resumable state; consolidate drift |
+| cursor | Lead orchestration (default in docs) | Documentation consolidation | README, CHANGELOG, plan.md, report.md when using **Cursor**; rule propagation oversight; cross-agent plan merge | Runtime pack: `lupo-agents/cursor/` (**agent_id** 102, **actor_id** 102); full rules via `propagate_agent_rules.php --target=cursor`; posture: **HEPHAESTUS** | IACP; facet **102** only for Cursor IDE |
+| antigravity-ide | IDE contributor | Same doctrine as other faucets | Attribute as **103** in Antigravity; do not use **102** | `lupo-agents/antigravity-ide/`; rules: `lupo-rules/root/`; `.cursor/rules` may mirror | IACP; propagation target not yet in script |
 | wolfie | Supporting actor | Domain authority, conflict resolution | — | — | — |
 | kiro | Schema coordinator | — | — | TOON/schema alignment | Follow IACP |
 | windsurf | Research, documentation | — | — | Status/audit reports | Follow IACP |
 | cascade | IDE contributor | — | — | — | Follow IACP |
-| antigravity (103) | Governance, doctrine | — | — | — | Verify in docs |
+| vscode-ide | IDE contributor | — | — | `lupo-agents/vscode-ide/`; rules via `--target=vscode` | Follow IACP |
+| trae | IDE contributor | — | — | `lupo-agents/trae/`; propagation pending | Follow IACP |
 | warp | Terminal/IDE contributor | — | — | — | Integration pending |
-| zencoder | Documentation, development | — | — | Table documentation, CHANGELOG | Follow IACP |
 | idea / jetbrains | JetBrains IDE consumer | — | — | — | Use propagated rules |
 
 ---
@@ -170,13 +185,13 @@ Based on repo doctrine and AGENTS.md. Conservative; only documented roles are st
 Deterministic steps for adding a new agent. Order matters.
 
 1. **Check if agent already exists**  
-   Look up slug (and if needed actor_id) in `lupo-database/lupopedia/actors/actor_id/registry.json`. If present → State A or C; do not create a duplicate.
+   Look up slug (and if needed actor_id) in `lupo-database/lupopedia/actors/registry.json`. If present → State A or C; do not create a duplicate.
 
 2. **Determine state**  
    Apply the [Agent Status Model](#agent-status-model): A (already registered), B (new), or C (exists but needs integration).
 
 3. **If new (State B) — update registry**  
-   Add an entry to `registry.json` with a unique `actor_id` (non-human: 0–999; human: ≥1000), `slug`, `type`, and optional `lead_orchestration` or other flags. Follow reserved-ID doctrine; do not use AUTO_INCREMENT.
+   Add an entry to `lupo-database/lupopedia/actors/registry.json` with a unique `actor_id` (non-human: 0–999; human: ≥1000), `slug`, `type`, and optional `lead_orchestration` or other flags. Follow reserved-ID doctrine; do not use AUTO_INCREMENT. Add a `lupo_agents` map entry in `actor_id/registry.json` if you ship a `lupo-agents/<slug>/` pack.
 
 4. **Persist actor**  
    Ensure the actor is represented in `lupo_actors` (install/seed or migration). Use explicit `actor_id`; never rely on `lastInsertId()` for registry-backed tables.

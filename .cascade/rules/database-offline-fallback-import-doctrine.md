@@ -15,7 +15,7 @@ lupopedia.headers:
   lupopedia.version: "4.0.76"
   lupopedia.schema: "cascade_rule"
   file_path_from_root: ".cascade/rules/database-offline-fallback-import-doctrine.md"
-  last_modified_utc: "20260315"
+  last_modified_utc: "20260402"
   system_version: "4.0.76"
   source_path: "lupo-rules/root/database-offline-fallback-import-doctrine.md"
   artifact_type: "rule"
@@ -34,14 +34,14 @@ lupopedia.rules:
   overrides: []
   provenance:
     authored_by: "wolfie"
-    authored_date: "20260315"
+    authored_date: "20260402"
     last_reviewed_by: "cascade"
-    last_reviewed_date: "20260315"
+    last_reviewed_date: "20260402"
     version: "1.0"
     status: "active"
 lupopedia.footer:
   version: "4.0.76"
-  last_verified: "20260315"
+  last_verified: "20260402"
   last_verified_by: "cascade"
   orchestrator: "cascade"
   next_action:

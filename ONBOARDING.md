@@ -1,74 +1,80 @@
 ---
 lupopedia.headers:
-   when_updated: '20260325205005'
-   lupopedia.schema: documentation
-   file_path_from_root: ONBOARDING.md
-   web_path: http://www.lupopedia.com/lupopedia/ONBOARDING.md
-   last_modified_utc: '20260325205005'
-   channel_id: 42
-   actor_id: 102
-   actor_name: cursor
-   delegation_chain: cursor:root
-   artifact_type: onboarding_guide
-   artifact_kind: operational_entry
-   purpose: Operational quick-start for agents and contributors with canonical actor, channel, and doctrine alignment.
-   tags:
-   - onboarding
-   - agents
-   - actors
-   - channels
-   - doctrine
-   - quickstart
+  header_format_version: 2
+  when_updated: '20260402224629'
+  lupopedia.schema: documentation
+  file_path_from_root: ONBOARDING.md
+  web_path: http://www.lupopedia.com/lupopedia/ONBOARDING.md
+  last_modified_utc: '20260402224629'
+  channel_id: 42
+  actor_id: 102
+  actor_name: cursor
+  delegation_chain: cursor:root
+  artifact_type: onboarding_guide
+  artifact_kind: operational_entry
+  purpose: Operational quick-start; pointers to canonical identity doctrine (§3)
+  tags:
+    - onboarding
+    - agents
+    - actors
+    - channels
+    - doctrine
+    - quickstart
 lupopedia.edges:
-   comment: Snapshot of canonical onboarding dependencies for actor/channel/doctrine execution.
-   outbound_edges:
-   - to: README.md
+  comment: Snapshot of canonical onboarding dependencies for actor/channel/doctrine execution.
+  outbound_edges:
+    - to: README.md
       type: references
       weight: 1.0
-   - to: AGENTS.md
+    - to: AGENTS.md
       type: aligns_with
       weight: 1.0
-   - to: lupo-rules/root/README.md
+    - to: lupo-docs/doctrine/IDENTITY_LAYERS_DOCTRINE.md
+      type: references
+      weight: 1.0
+      reason: Canonical actor/agent/facet §3 — summaries here must not contradict
+    - to: lupo-rules/root/README.md
       type: references
       weight: 1.0
       reason: Complete root rules and development constraints
-   - to: lupo-rules/root/MULTI_AGENT_COORDINATION_DOCTRINE.md
+    - to: lupo-rules/root/MULTI_AGENT_COORDINATION_DOCTRINE.md
       type: references
       weight: 1.0
-   - to: lupo-docs/doctrine/LUPOPEDIA_HEADERS/README.md
+    - to: lupo-docs/doctrine/LUPOPEDIA_HEADERS/README.md
       type: references
       weight: 1.0
-   - to: lupo-docs/doctrine/IDENTITY_LAYERS_DOCTRINE.md
-      type: references
-      weight: 1.0
-   - to: lupo-channels/channel_index.md
+    - to: lupo-channels/channel_index.md
       type: references
       weight: 0.95
-   - to: lupo-channels/channel_creation_doctrine.md
+    - to: lupo-channels/channel_creation_doctrine.md
       type: references
       weight: 0.95
-   - to: lupo-channels/42/THREAD_INDEX.md
+    - to: lupo-channels/42/THREAD_INDEX.md
       type: references
       weight: 0.95
     - to: lupo-docs/prd/15_temporal_system.md
       type: references
       weight: 1.0
       reason: Canonical UTC Authority and temporal system doctrine
+    - to: lupo-docs/doctrine/TICK_PY_DOCTRINE.md
+      type: references
+      weight: 1.0
+      reason: Run tick.py before header timestamps; echo_anchor_utc.py for batch
 lupopedia.footer:
-   last_verified: '20260325205005'
-   verified_by:
-      identity_type: actor
-      actor_id: 102
-      agent_name_identity: Cursor IDE Agent (Lead Orchestration)
-      department_id_delta: 0
-   verified_via:
-      type: faucet
-      faucet_slug: cursor
-   orchestrator: cursor:root
-   next_action:
-   - Keep onboarding synchronized with AGENTS.md and channel doctrine updates
-   - Revalidate task-authority wording whenever MULTI_AGENT doctrine changes
-   - Ensure required-reading links resolve for new agents
+  last_verified: '20260402224629'
+  verified_by:
+    identity_type: actor
+    actor_id: 102
+    agent_name_identity: Cursor IDE Agent (Lead Orchestration)
+    department_id_delta: 0
+  verified_via:
+    type: faucet
+    faucet_slug: cursor
+  orchestrator: cursor:root
+  next_action:
+    - Keep onboarding synchronized with AGENTS.md and channel doctrine updates
+    - Revalidate task-authority wording whenever MULTI_AGENT doctrine changes
+    - Ensure required-reading links resolve for new agents
 ---
 # file: ONBOARDING - delegation: cursor:root - web_path: [http://www.lupopedia.com/lupopedia/ONBOARDING.md](http://www.lupopedia.com/lupopedia/ONBOARDING.md)
 
@@ -76,6 +82,14 @@ lupopedia.footer:
 
 **Operational entry point for new agents and contributors.**  
 Read this first to know what to do when you enter the repo.
+
+## Actor vs Agent (summary)
+
+- **`lupo-agents/`** — AI **configuration** only; not operational identity for permissions, channels, or audit joins.
+- **`lupo-actors/{actor_id}/`** — Operational resources; **`actor_id`** is defined in **`lupo-database/lupopedia/actors/actor_id/registry.json`**.
+- **IDE facets** (Cursor, Windsurf, …) use a **registered facet `actor_id`** for attribution (e.g. **102** for Cursor). They are **not** primary coordination personas; they **are** registered identities for lineage when operating as that facet.
+
+**Canonical source (do not restate in long form):** [Identity Layers Doctrine §3](lupo-docs/doctrine/IDENTITY_LAYERS_DOCTRINE.md#3-actor-agent-faucet-directory-rules-canonical).
 
 ---
 
@@ -100,7 +114,7 @@ Lupopedia is a **semantic operating system** with:
 - **Channel-scoped work** — Tasks, dialogs, and artifacts are scoped by `channel_id`; channels are the primary coordination unit.
 - **Documentation as architecture** — Doctrine, table docs, and canonical references are implementation-critical; they are read before changing schema or behavior.
 - **Multi-agent collaboration** — Multiple IDE agents (and humans) work in the same repo; continuity, logging, and handoff are built into the model.
-- **Canonical UTC Authority** — All timestamps come from lupo-bin/tick.py. See [Temporal System PRD](lupo-docs/prd/15_temporal_system.md). Never infer dates or use local time.
+- **Canonical UTC Authority** — Run `python lupo-bin/tick.py` before writing `last_modified_utc` / `last_verified`; reuse `python lupo-bin/echo_anchor_utc.py` in the same batch. See [TICK_PY_DOCTRINE.md](lupo-docs/doctrine/TICK_PY_DOCTRINE.md) and [Temporal System PRD](lupo-docs/prd/15_temporal_system.md). Never guess timestamps or use chat “current time.”
 
 ### Multi-agent coordination (4.0.80+ — binding)
 
@@ -137,6 +151,8 @@ Read **[lupo-rules/root/MULTI_AGENT_COORDINATION_DOCTRINE.md](lupo-rules/root/MU
 | [lupo-docs/doctrine/DATABASE_DOCTRINE.md](lupo-docs/doctrine/DATABASE_DOCTRINE.md) | Core database rules (no FKs, no DB logic, timestamps, registry, soft deletes) |
 | [lupo-docs/ACTOR_REGISTRATION_CHECKLIST.md](lupo-docs/ACTOR_REGISTRATION_CHECKLIST.md) | If you need to register as an actor (new IDE or external agent) |
 | [lupo-docs/doctrine/AGENT_REGISTRY.md](lupo-docs/doctrine/AGENT_REGISTRY.md) | Canonical human-readable reference for actor identity, propagation support, and IDE roles |
+| [lupo-docs/doctrine/IDENTITY_LAYERS_DOCTRINE.md](lupo-docs/doctrine/IDENTITY_LAYERS_DOCTRINE.md) | Actor vs agent vs facet; registry authority; directories (**§3**) |
+| [lupo-docs/doctrine/TICK_PY_DOCTRINE.md](lupo-docs/doctrine/TICK_PY_DOCTRINE.md) | Real UTC for headers (`tick.py`, `echo_anchor_utc.py`) — mandatory before edits |
 | [EXECUTIVE_SUMMARY.md](EXECUTIVE_SUMMARY.md) | Philosophy and architecture (why the system is designed this way) |
 
 ---

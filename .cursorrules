@@ -2,11 +2,11 @@
 
 lupopedia.headers:
   header_format_version: 2
-  when_updated: "20260402"
+  when_updated: "20260404120000"
   lupopedia.schema: "cursor_rules"
   file_path_from_root: ".cursorrules"
   web_path: "http://www.lupopedia.com/.cursorrules"
-  last_modified_utc: "20260402"
+  last_modified_utc: "20260404120000"
   federation_node_id: 0
   author:
     type: "actor"
@@ -19,7 +19,7 @@ lupopedia.headers:
   tags: ["cursor", "rules", "doctrine", "manifest"]
 
 lupopedia.footer:
-  last_verified: "20260402"
+  last_verified: "20260404120000"
   verified_by:
     identity_type: "actor"
     id: 1
@@ -434,3 +434,31 @@ paths:
     allowed_operations: ["read"]
     forbidden_operations: ["write", "modify", "delete", "create"]
 ```
+
+---
+
+## 30. Channel filesystem paths (4.0.94+ — MANDATORY)
+
+**On-disk coordination** uses two notions: **active** trees for new work, and a **read-only archive** of pre–4.0.93 layouts.
+
+### Active layout (new work — preferred for threaded docs)
+
+- **Pattern:** `lupo-channels/{federation_node_id}/{channel_key}/{thread_key}/`
+- **Segments:** `federation_node_id` (e.g. `0`), `channel_key` (lowercase slug, e.g. `organization`, `development`), `thread_key` (e.g. `prd_29_project_organization`, `header-format-discussion`).
+- **Thread folders:** Under each thread, use `decisions/`, `questions/`, `answers/`, `comments/` (each with `THREAD_INDEX.md`) per **`lupo-docs/prd/17_decisions_format.md`** and **`lupo-docs/prd/02_channels_discussions.md`**.
+- **Index:** Register channels in **`lupo-channels/channel_index.md`**.
+
+### Legacy numeric tree (still valid for DB/API-mirrored artifacts)
+
+- **Pattern:** `lupo-channels/{channel_id}/threads/{thread_id}/` where `channel_id` and `thread_id` match **`lupo_channels.channel_id`** and **`lupo_dialog_threads.dialog_thread_id`** for router/API-backed thread posts and validators (see **`lupo-rules/root/CHANNEL_ARTIFACT_ROUTING_DOCTRINE.md`**).
+- **Do not** treat numeric paths as the only on-disk shape; documentation coordination should use the **active layout** above unless you are working inside a legacy or API-mirrored thread.
+
+### Archive (read-only)
+
+- **`lupo-channels_before_4_0_93/`** — Historical numeric/mixed channel dirs. **Do not** bulk-migrate into the active tree. Cherry-pick policy for channel **42** only, files newer than `20260325`, per **`lupo-docs/prd/29_project_structure.md`**.
+
+### REST vs filesystem
+
+- HTTP APIs may still use **`api/lupo-channels/{id}/...`** with a **numeric** `channel_id` from the database. That **`{id}` is not** the same thing as the three-segment **filesystem** path (`federation_node_id` / `channel_key` / `thread_key`). When writing docs or rules, name both explicitly if both apply.
+
+**Cursor must refuse** proposals that assume **only** `lupo-channels/<digits>/` for **new** multi-agent markdown threads without checking **`channel_index.md`** and PRD **29**.

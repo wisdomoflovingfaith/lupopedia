@@ -31,7 +31,7 @@ Rule spec + detection logic:
   - actor_id exists in registry and matches actor_name slug
   - actor_id != 0 for identity-bearing artifacts
   - actor_name is not a forbidden variant identity
-  - actor_name is not an IDE faucet name (cursor, windsurf, kiro, warp, zencoder, antigravity, cascade)
+  - actor_name is not an IDE faucet slug (cursor, windsurf, kiro, warp, cascade, vscode-ide, trae, antigravity-ide)
   - if actor_id == 2 then actor_name must be 'lilith' (no hiding/replacement)
 
 Example violations (reported as ERROR codes):
@@ -68,8 +68,9 @@ IDE_FAUCETS: Set[str] = frozenset(
         "kiro",
         "cascade",
         "warp",
-        "zencoder",
-        "antigravity",
+        "vscode-ide",
+        "trae",
+        "antigravity-ide",
     }
 )
 

@@ -39,7 +39,7 @@ Channel threads are for active discussion. When discussion concludes, threads mu
 
 | Phase | Location | Action | Time Limit |
 |-------|----------|--------|------------|
-| **Active** | `lupo-channels/{id}/threads/{thread_id}/` | Discussion occurs | Ongoing |
+| **Active** | `lupo-channels/{federation_node_id}/{channel_key}/{thread_key}/` (PRD 17 markdown threads) and/or legacy `lupo-channels/{channel_id}/threads/{thread_id}/` (API-mirrored) | Discussion occurs | Ongoing |
 | **Concluded** | Same location | Create `RESOLUTION.md` | At discussion end |
 | **Formalized** | `lupo-docs/prd/` or `lupo-docs/implementations/` | Port canonical content | When findings are definitive |
 | **Archived** | `lupo-archive/threads/YYYY/MM/{thread_id}/` | Move entire thread | After 30 days inactivity |
@@ -88,7 +88,7 @@ Paths are relative to `lupo-docs/` root.
 
 | Thread Type | Format | Example | Storage |
 |-------------|--------|---------|---------|
-| **Filesystem** | Lowercase, hyphens | `antigravity-dir-audit` | `lupo-channels/{id}/threads/` |
+| **Filesystem** | Lowercase, hyphens | `antigravity-dir-audit` | `lupo-channels/{federation_node_id}/{channel_key}/{thread_key}/` (preferred) or legacy `lupo-channels/{channel_id}/threads/{thread_id}/` |
 | **Database** | Numeric (auto-increment) | `1038` | `lupo_dialog_threads` |
 
 **Filesystem threads** are for structured discussion with Markdown artifacts.  
@@ -114,12 +114,22 @@ When creating a new filesystem thread, include:
 2. **`README.md`** — initial context for participants
 3. **Thread ID** — lowercase, hyphen-separated, descriptive
 
-Example:
+Example (legacy numeric mirror):
 ```
 lupo-channels/42/threads/agent-orchestration-review/
 ├── THREAD_MANIFEST.md
 ├── README.md
 └── discussion_notes.md
+```
+
+Example (active human-readable thread — PRD 17 folders):
+```
+lupo-channels/0/organization/prd_29_project_organization/
+├── README.md
+├── decisions/
+├── questions/
+├── answers/
+└── comments/
 ```
 
 **Template for `README.md`:**

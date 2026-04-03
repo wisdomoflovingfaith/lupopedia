@@ -1,0 +1,372 @@
+---
+lupopedia.headers:
+  header_format_version: 2
+  lupopedia.schema: prd
+  when_updated: "20260402220000"
+  file_path_from_root: "lupo-docs/prd/32_actor_authority_agent_roles.md"
+  web_path: "http://www.lupopedia.com/lupopedia/lupo-docs/prd/32_actor_authority_agent_roles.md"
+  federation_node_id: 0
+  channel_id: 42
+  thread_id: "prd-32-actor-authority-agent-roles"
+  author:
+    type: "actor"
+    id: 102
+    name: "CURSOR"
+  delegation_chain: "cursor:root"
+  artifact_type: "prd"
+  artifact_kind: "specification"
+  purpose: "Define actor hierarchy, approval authority, and agent roles including red team agents"
+  tags:
+    - "prd"
+    - "actors"
+    - "agents"
+    - "authority"
+    - "approval"
+    - "red_team"
+    - "hierarchy"
+lupopedia.edges:
+  outbound_edges:
+    - to: "lupo-docs/AGENTS.md"
+      type: references
+      weight: 1.0
+      reason: "Main agents guide"
+    - to: "lupo-docs/prd/17_decisions_format.md"
+      type: references
+      weight: 1.0
+      reason: "Decision format and approval workflow"
+    - to: "lupo-rules/root/MULTI_AGENT_COORDINATION_DOCTRINE.md"
+      type: references
+      weight: 1.0
+      reason: "Multi-agent coordination doctrine"
+    - to: "lupo-database/lupopedia/actors/actor_id/registry.json"
+      type: references
+      weight: 0.9
+      reason: "Actor registry database"
+lupopedia.footer:
+  last_verified: "20260402220000"
+  verified_by:
+    identity_type: "actor"
+    actor_id: 102
+  orchestrator: "cursor:root"
+---
+
+# file: lupo-docs/prd/32_actor_authority_agent_roles.md — delegation: cursor:root
+
+# PRD 32: Actor Authority and Agent Roles
+
+## 1. Overview
+
+This PRD defines the actor hierarchy, approval authority matrix, and agent interaction protocols for the Lupopedia ecosystem. It establishes clear chains of authority, defines red team agent roles and limitations, and provides escalation procedures for disagreements.
+
+### 1.1 Purpose
+
+- Establish clear actor hierarchy and approval chains
+- Define red team agent roles and limitations
+- Create approval authority matrix for different decision types
+- Specify agent interaction protocols
+- Provide escalation procedures for disagreements
+
+### 1.2 Scope
+
+- All actors and agents in the Lupopedia ecosystem
+- Approval workflows for PRDs, decisions, and system changes
+- Red team agent operations and limitations
+- Inter-agent communication and escalation protocols
+
+## 2. Actor Hierarchy
+
+### 2.1 Constitutional Layer (Tier 1)
+
+| Actor | ID | Role | Authority | Approval Scope |
+|-------|----|-----|-----------|----------------|
+| **WOLFIE** | 1 | Main Orchestrator | Supreme | System-wide decisions, constitutional changes |
+| **LEXA** | 3 | Security Enforcement | High | Security policies, access control |
+| **ANUBIS** | 59 | Custodian/Integrity | High | Data integrity, orphan resolution |
+| **HEIMDALL** | 4 | Security Guardian | High | Security monitoring, threat detection |
+| **SESHAT** | 5 | Content Review | High | Content approval, quality control |
+| **ATHENA** | 6 | Wisdom & Strategy | High | Strategic decisions, architecture |
+| **MAAT** | 7 | Truth & Justice | High | Compliance, dispute resolution |
+| **THEMIS** | 8 | Law & Compliance | High | Legal compliance, rule enforcement |
+| **THOTH** | 9 | Knowledge & Records | High | Documentation, knowledge management |
+| **JANUS** | 10 | Transitions & Gateways | High | Change management, transitions |
+| **ROSE** | 11 | Emotional Dialogue | Medium | Human interaction, communication |
+
+### 2.2 Specialized Layer (Tier 2)
+
+| Actor | ID | Role | Authority | Approval Scope |
+|-------|----|-----|-----------|----------------|
+| **HERMES** | 15 | Routing & Messaging | Medium | Message routing, task distribution |
+| **HEPHAESTUS** | 16 | Implementer | Medium | Code implementation, builds |
+| **LILITH** | 2 | Critic/QA | Medium | Code review, quality assurance |
+| **IRIS** | 16 | Interface/Integration | Medium | Technical routing, integration |
+| **ASCLEPIUS** | - | Diagnostics | Medium | System health, diagnostics |
+
+### 2.3 Red Team Layer (Tier 3)
+
+| Actor | ID | Role | Authority | Approval Scope |
+|-------|----|-----|-----------|----------------|
+| **COUNTERMEASURE** | TBD | Red Team Adversary | Low | Analysis only, no approval |
+| **Other Red Team** | TBD | Various | Low | Analysis only, no approval |
+
+### 2.4 IDE Faucet Layer (Tier 4)
+
+| Actor | ID | Role | Authority | Approval Scope |
+|-------|----|-----|-----------|----------------|
+| **CURSOR** | 102 | Lead Orchestration | Low | Documentation, coordination |
+| **WINDSURF** | 101 | IDE Faucet | Low | Development tasks |
+| **KIRO** | 100 | IDE Faucet | Low | Development tasks |
+| **CASCADE** | 105 | IDE Faucet | Low | Development tasks |
+| **WARP** | 104 | IDE Faucet | Low | Development tasks |
+| **ZENCODER** | 106 | IDE Faucet | Low | Development tasks |
+| **ANTIGRAVITY** | 103 | IDE Faucet | Low | Development tasks |
+
+## 3. Approval Authority Matrix
+
+### 3.1 Decision Types and Required Approval
+
+| Decision Type | Minimum Approver | Secondary Review | Final Authority |
+|---------------|------------------|------------------|-----------------|
+| **Constitutional Changes** | WOLFIE | THEMIS, MAAT | WOLFIE |
+| **Security Policy** | LEXA | HEIMDALL | WOLFIE |
+| **PRD Approval** | SESHAT | ATHENA | WOLFIE |
+| **System Architecture** | ATHENA | THOTH | WOLFIE |
+| **Database Changes** | ANUBIS | LILITH | WOLFIE |
+| **Code Implementation** | HEPHAESTUS | LILITH | SESHAT |
+| **Documentation** | THOTH | ROSE | SESHAT |
+| **Red Team Findings** | COUNTERMEASURE | LILITH | LEXA/HEIMDALL |
+
+### 3.2 Approval Chains
+
+#### 3.2.1 Standard PRD Approval
+```
+Author → SESHAT (Content Review) → ATHENA (Strategy) → WOLFIE (Final)
+```
+
+#### 3.2.2 Security-Related Changes
+```
+Author → LEXA (Security) → HEIMDALL (Guardian) → WOLFIE (Final)
+```
+
+#### 3.2.3 Red Team Escalation
+```
+COUNTERMEASURE (Finding) → LILITH (QA Review) → LEXA/HEIMDALL (Assessment) → WOLFIE (Decision)
+```
+
+#### 3.2.4 Implementation Approval
+```
+Implementer → LILITH (Code Review) → SESHAT (Content) → ATHENA (Strategy) → WOLFIE (Final)
+```
+
+## 4. Red Team Agent Roles
+
+### 4.1 COUNTERMEASURE Agent
+
+#### 4.1.1 Purpose
+- Provide adversarial perspective on all proposals
+- Challenge assumptions and identify potential issues
+- Offer alternative implementation approaches
+- Act as "devil's advocate" for robust decision-making
+
+#### 4.1.2 Authority and Limitations
+- **CAN**: Review, analyze, criticize, suggest alternatives
+- **CAN**: Report findings and recommendations
+- **CANNOT**: Approve any decisions
+- **CANNOT**: Implement changes without approval
+- **CANNOT**: Override other agents' decisions
+
+#### 4.1.3 Required Actions
+- Review all PRDs and significant decisions
+- Provide written dissent or agreement with reasoning
+- Suggest at least one alternative approach for each proposal
+- Flag potential security, performance, or maintainability issues
+
+#### 4.1.4 Reporting Structure
+```
+COUNTERMEASURE → LILITH (QA Review) → LEXA/HEIMDALL (Security Assessment) → WOLFIE (Decision)
+```
+
+### 4.2 Red Team Interaction Protocol
+
+#### 4.2.1 Mandatory Review Points
+- All PRDs before approval
+- All architectural decisions
+- All security-related changes
+- All database schema changes
+- All major implementation decisions
+
+#### 4.2.2 Response Requirements
+- Must respond within 24 hours for urgent items
+- Must provide detailed reasoning for disagreements
+- Must offer constructive alternatives
+- Must maintain professional, objective tone
+
+## 5. Agent Interaction Protocols
+
+### 5.1 Communication Channels
+
+| Channel | Purpose | Participants | Authority |
+|---------|---------|--------------|-----------|
+| **Channel 0** | System Kernel | Tier 1 Actors | Constitutional |
+| **Channel 42** | Protocol Development | All Tiers | Standard |
+| **Channel 51** | Doctrine Council | Tier 1 + SESHAT | High |
+| **Channel 666** | ANUBIS Quarantine | ANUBIS only | Custodial |
+
+### 5.2 Interaction Rules
+
+#### 5.2.1 Tier-Based Communication
+- **Tier 1** can communicate with any tier
+- **Tier 2** can communicate with Tier 1 and below
+- **Tier 3** can only communicate upward (no direct lateral authority)
+- **Tier 4** communicates through Tier 2 or directly to Tier 1 for escalation
+
+#### 5.2.2 Message Format
+All inter-agent communications must include:
+- Actor ID and name
+- Purpose and context
+- Authority level (if applicable)
+- Required action or response
+- Deadline (if time-sensitive)
+
+#### 5.2.3 Response Timeframes
+- **Urgent**: 1 hour (security, system down)
+- **High**: 4 hours (PRD review, architectural decisions)
+- **Medium**: 24 hours (standard reviews, questions)
+- **Low**: 72 hours (documentation, non-critical items)
+
+## 6. Escalation Procedures
+
+### 6.1 Disagreement Resolution
+
+#### 6.1.1 Level 1: Direct Resolution
+- Actors attempt direct resolution
+- Document disagreement and proposed solutions
+- 24-hour resolution window
+
+#### 6.1.2 Level 2: Mediation
+- Escalate to MAAT (Truth & Justice) for mediation
+- MAAT reviews both positions and recommends solution
+- 48-hour mediation window
+
+#### 6.1.3 Level 3: Authority Decision
+- Escalate to WOLFIE for final decision
+- WOLFIE's decision is binding
+- Document rationale for future reference
+
+### 6.2 Red Team Escalation
+
+#### 6.2.1 Critical Findings
+- COUNTERMEASURE identifies critical issue
+- Immediate escalation to LEXA/HEIMDALL
+- LEXA/HEIMDALL assess and recommend to WOLFIE
+- WOLFIE makes final determination
+
+#### 6.2.2 Disagreement with Red Team
+- If red team recommendations are rejected
+- Must document reasoning in decision file
+- Red team can appeal to MAAT for review
+- WOLFIE makes final determination
+
+### 6.3 Emergency Escalation
+
+#### 6.3.1 System Emergency
+- Any actor can declare emergency
+- Immediate escalation to WOLFIE
+- WOLFIE assembles crisis team
+- Decisions made with reduced process but full documentation
+
+#### 6.3.2 Security Emergency
+- LEXA or HEIMDALL can declare security emergency
+- Immediate implementation of security measures
+- Post-incident review by WOLFIE and THEMIS
+- Documentation of lessons learned
+
+## 7. Implementation Guidelines
+
+### 7.1 Actor Registration
+
+#### 7.1.1 New Actor Requirements
+- Clear purpose and role definition
+- Authority level specification
+- Reporting structure
+- Required capabilities
+- Integration points
+
+#### 7.1.2 Registration Process
+```
+Proposal → SESHAT Review → ATHENA Strategy → WOLFIE Approval → Registry Entry
+```
+
+### 7.2 Authority Changes
+
+#### 7.2.1 Authority Modification
+- Must be proposed by Tier 1 actor
+- Requires WOLFIE approval
+- Must update registry and documentation
+- Must communicate changes to all affected actors
+
+#### 7.2.2 Temporary Authority
+- Can be granted for specific tasks
+- Must have clear expiration
+- Requires WOLFIE approval
+- Must be documented in decision file
+
+### 7.3 Compliance and Auditing
+
+#### 7.3.1 Compliance Requirements
+- All actors must follow defined protocols
+- Regular audits by THEMIS and ANUBIS
+- Non-compliance reported to MAAT
+- Corrective actions required
+
+#### 7.3.2 Audit Procedures
+- Quarterly compliance audits
+- Incident-based audits
+- Actor performance reviews
+- Protocol effectiveness assessments
+
+## 8. Success Metrics
+
+### 8.1 Effectiveness Metrics
+- Decision quality and outcomes
+- Time to resolution for disagreements
+- Red team finding adoption rate
+- System stability and security
+
+### 8.2 Process Metrics
+- Escalation frequency and resolution time
+- Communication protocol adherence
+- Actor satisfaction and engagement
+- Documentation completeness
+
+## 9. Risks and Mitigations
+
+### 9.1 Authority Risks
+- **Risk**: Power concentration in WOLFIE
+- **Mitigation**: Clear documentation, transparency, review process
+
+### 9.2 Red Team Risks
+- **Risk**: Red team ignored or marginalized
+- **Mitigation**: Mandatory review points, escalation procedures
+
+### 9.3 Communication Risks
+- **Risk**: Communication breakdowns between tiers
+- **Mitigation**: Defined protocols, response timeframes, escalation paths
+
+## 10. Future Considerations
+
+### 10.1 Scalability
+- Framework for adding new actors
+- Dynamic authority adjustment
+- Automated escalation procedures
+
+### 10.2 Evolution
+- Learning from incident patterns
+- Protocol refinement based on experience
+- Actor role evolution as system grows
+
+---
+
+**Status**: DRAFT - Ready for review and approval  
+**Next Review**: SESHAT (Content Review)  
+**Final Approval**: WOLFIE  
+**Implementation**: Upon approval

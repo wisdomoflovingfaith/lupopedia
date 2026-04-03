@@ -173,7 +173,9 @@ Kapakai is the ethical liminal zone.
 
 3. System Implementation
 3.1 Schema Fields
-Each agent and operator receives:
+**Storage note (4.0.93+):** These markers are **not** columns on `lupo_agents` in `install_new_lupopedia.sql`. They were removed from the agents table (never adopted on `lupo_actors`); any future persistence must use an explicit doctrine-approved table/column set or structured `metadata_json` — do not reintroduce silent duplicate score columns on `lupo_agents` without an APPROVED decision.
+
+When stored in SQL, the intended shape for an entity that carries ethical markers is conceptually:
 
 Code
 pono_score    DECIMAL(3,2) DEFAULT 1.0

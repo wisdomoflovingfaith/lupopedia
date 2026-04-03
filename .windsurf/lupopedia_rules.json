@@ -1,6 +1,42 @@
 {
     "rules": [
         {
+            "id": "CONVERGENCE001",
+            "text": "All agents must converge to the same canonical system state; actor identity is permanent; state is mutable; always return canonical actors by actor_id even if banned; never create variant actors.",
+            "enforcement": "error",
+            "scope": [
+                "all_agents"
+            ],
+            "source_path": "lupo-rules/root/CONVERGENCE_DOCTRINE.md",
+            "slug": "CONVERGENCE_DOCTRINE",
+            "category": "constitutional",
+            "status": "proposed_for_ratification"
+        },
+        {
+            "id": "CONSTITUTION001",
+            "text": "Lupopedia Constitutional Root Rules - absolute, non-negotiable doctrine",
+            "enforcement": "error",
+            "scope": [
+                "all_agents"
+            ],
+            "source_path": "lupo-rules/root/LUPOPEDIA_CONSTITUTIONAL_ROOT_RULES.md",
+            "slug": "LUPOPEDIA_CONSTITUTIONAL_ROOT_RULES",
+            "category": "constitutional",
+            "status": "active"
+        },
+        {
+            "id": "TIME001",
+            "text": "Artifact timestamps and filename timestamps must be generated from real UTC system time only.",
+            "enforcement": "error",
+            "scope": [
+                "all_agents"
+            ],
+            "source_path": "lupo-rules/root/TIMESTAMP_DOCTRINE.md",
+            "slug": "TIMESTAMP_DOCTRINE",
+            "category": "timestamp",
+            "status": "active"
+        },
+        {
             "id": "CTX001",
             "text": "All systemic operations and tracking operate through specific Channels and Federation Nodes. Offline interactions or non-database IDE contexts must fallback to embedding session metadata securely within L-LUPO-* file headers.",
             "enforcement": "error",
@@ -58,6 +94,18 @@
             "source_path": "lupo-rules/root/ide-agent-identity-actor-pairing-doctrine.md",
             "slug": "ide-agent-identity-actor-pairing-doctrine",
             "category": "identity",
+            "status": "active"
+        },
+        {
+            "id": "LIL001",
+            "text": "Lilith operates as a non-interfering reviewer. Lilith must not modify other agents' work without explicit review context; must not block or delay other agents' operations; outputs must be clearly attributable; presence must not alter permissions for other agents.",
+            "enforcement": "error",
+            "scope": [
+                "all_agents"
+            ],
+            "source_path": "lupo-rules/root/lilith-noninterference-doctrine.md",
+            "slug": "lilith-noninterference-doctrine",
+            "category": "agent_behavior",
             "status": "active"
         },
         {
@@ -142,6 +190,18 @@
             "source_path": "lupo-rules/root/reserved-id-doctrine.md",
             "slug": "reserved-id-doctrine",
             "category": "schema",
+            "status": "active"
+        },
+        {
+            "id": "DB009",
+            "text": "All database migrations and schema-changing operations MUST be executed through validated, logged wrappers \u2013 never directly via command-line MySQL.",
+            "enforcement": "error",
+            "scope": [
+                "all_agents"
+            ],
+            "source_path": "lupo-rules/root/safe-database-operations-doctrine.md",
+            "slug": "safe-database-operations-doctrine",
+            "category": "database",
             "status": "active"
         },
         {

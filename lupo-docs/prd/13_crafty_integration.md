@@ -5,7 +5,7 @@ lupopedia.headers:
   version_when_written: "4.0.93"
   file_path_from_root: "lupo-docs/prd/13_crafty_integration.md"
   web_path: "http://www.lupopedia.com/lupopedia/lupo-docs/prd/13_crafty_integration.md"
-  last_modified_utc: "20260330163000"
+  last_modified_utc: "20260403010357"
   channel_id: 42
   thread_id: "prd-grouped"
   actor_id: 102
@@ -27,10 +27,18 @@ lupopedia.edges:
       type: references
       weight: 1.0
       reason: "Constitutional anchor"
-    - to: "lupo-docs/database/lupopedia/tables/"
+    - to: "lupo-docs/database/lupopedia/tables/migrations/"
       type: references
       weight: 1.0
-      reason: "Detailed table documentation"
+      reason: "livehelp_* → lupo_* per-table mapping — mandatory before code"
+    - to: "lupo-docs/database/lupopedia/tables/"
+      type: references
+      weight: 0.85
+      reason: "Table documentation hub; pair with migrations/ for mappings"
+    - to: "lupo-docs/prd/33_softaculous_certification_4_1_0_gate.md"
+      type: references
+      weight: 0.9
+      reason: "§4.1 no schema guessing; §4.2 Y/N → tinyint"
     - to: "lupo-docs/prd/01_core_identity.md"
       type: references
       weight: 1.0
@@ -40,7 +48,7 @@ lupopedia.edges:
       weight: 1.0
       reason: "Crafty chat imports to Lupopedia discussions"
 lupopedia.footer:
-  last_verified: "20260330163000"
+  last_verified: "20260403010357"
   verified_by:
     actor_id: 102
     agent_name_identity: Cursor IDE Agent
@@ -65,6 +73,8 @@ lupopedia.footer:
 - BIGINT timestamps (YYYYMMDDHHIISS UTC)
 - Explicit ID generation (application layer)
 - Soft delete (is_deleted + deleted_ymdhis)
+
+**Implementer obligation:** Before using any table listed below in code or SQL, read the matching **`livehelp_*_migration.md`** under **`lupo-docs/database/lupopedia/tables/migrations/`** and confirm columns in **`install_new_lupopedia.sql`**. **PRD 33** §4.1 forbids guessing names from TOON/JSON or Crafty memory alone.
 
 ## Tables in This Namespace
 

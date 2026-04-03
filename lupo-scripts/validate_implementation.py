@@ -163,7 +163,7 @@ class ImplementationValidator:
                         if artifact_type == 'prd':
                             status = headers.get('status')
                             if status:
-                                valid_prd_statuses = ['draft', 'review', 'approved', 'implemented', 'deprecated']
+                                valid_prd_statuses = ['draft', 'review', 'approved', 'implemented', 'active', 'deprecated']
                                 self.validate_status_values(status, valid_prd_statuses, 'PRD', prd_file.name)
                         
                         # Check for duplicates only

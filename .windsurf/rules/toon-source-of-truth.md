@@ -4,7 +4,7 @@ lupopedia.init:
   artifact_type: "windsurf_rule"
   artifact_kind: "doctrine"
   namespace: "windsurf"
-  system_version: "4.0.75"
+  system_version: "4.0.76"
   orchestrator_actor: "windsurf"
   delegation_chain: "windsurf:captain"
 
@@ -12,11 +12,11 @@ lupopedia.headers:
   actor_id: 101
   actor_name: "windsurf"
   delegation_chain: "windsurf:captain"
-  lupopedia.version: "4.0.75"
+  lupopedia.version: "4.0.76"
   lupopedia.schema: "windsurf_rule"
   file_path_from_root: ".windsurf/rules/toon-source-of-truth.md"
-  last_modified_utc: "20260315"
-  system_version: "4.0.75"
+  last_modified_utc: "20260402"
+  system_version: "4.0.76"
   source_path: "lupo-rules/root/toon-source-of-truth.md"
   artifact_type: "rule"
   artifact_kind: "windsurf_doctrine"
@@ -34,14 +34,14 @@ lupopedia.rules:
   overrides: []
   provenance:
     authored_by: "wolfie"
-    authored_date: "20260315"
+    authored_date: "20260402"
     last_reviewed_by: "windsurf"
-    last_reviewed_date: "20260315"
+    last_reviewed_date: "20260402"
     version: "1.0"
     status: "active"
 lupopedia.footer:
-  version: "4.0.75"
-  last_verified: "20260315"
+  version: "4.0.76"
+  last_verified: "20260402"
   last_verified_by: "windsurf"
   orchestrator: "windsurf"
   next_action:
@@ -54,12 +54,20 @@ lupopedia.footer:
 
 Cursor MUST treat **install_new_lupopedia.sql** and **seed_lupopedia.sql** as the single source of truth for all table and column definitions. TOON files are regenerated from this canonical schema.
 
+4.0.88 enforcement extension:
+
+- No schema guessing is allowed.
+- Agents must inspect TOON exports first, then confirm with table docs.
+- JSON exports are secondary; TOON is the primary schema inspection surface for agent work.
+
 ## Canonical schema source (4.0.15+)
 
 - **lupo-database/migrations/install_new_lupopedia.sql** — Full table definitions (CREATE TABLE).
 - **lupo-database/migrations/seed_lupopedia.sql** — Seeded tables and row structure.
 - **TOON files:** `lupo-docs/toons/` — Regenerated from install SQL via `lupo-scripts/generate_toon_from_sql.py`. One file per table: `<table_name>.toon.json`.
 - **Every** table name, column name, column type, index, and key MUST match the canonical schema. TOONs reflect the install SQL; they are not independently authoritative until regenerated.
+- Runtime TOON export path in current architecture: `lupo-database/lupopedia/toon/`.
+- Secondary JSON export path: `lupo-database/lupopedia/json/`.
 
 ## Rules
 
@@ -84,6 +92,11 @@ Cursor MUST treat **install_new_lupopedia.sql** and **seed_lupopedia.sql** as th
 - Cursor must **NOT** use it in code.
 - Cursor must **refactor the code** to remove references to it (or use an alternative that exists in the TOONs).
 
+### 5. Table docs are mandatory companion surface
+
+- Before implementing schema-dependent changes, agents must review table docs under `lupo-docs/database/lupopedia/tables/`.
+- If TOON and table docs diverge, escalate and reconcile; do not guess or infer silently.
+
 ## Verification
 
 - Confirm **all** schema usage in code matches TOON definitions exactly.
@@ -91,6 +104,7 @@ Cursor MUST treat **install_new_lupopedia.sql** and **seed_lupopedia.sql** as th
   - TOON schema
   - install SQL (e.g. `lupo-database/migrations/install_new_lupopedia.sql`)
   - actual code usage
+- Include table documentation mismatch findings when present.
 
 ## TOON generation (4.0.15+)
 
