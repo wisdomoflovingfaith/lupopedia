@@ -1,50 +1,45 @@
 ---
-
 lupopedia.headers:
+  header_format_version: 2
   lupopedia.schema: doctrine
-  file_path_from_root: lupo-docs/doctrine/CONFIGURATION_DOCTRINE.md
-  web_path: http://www.lupopedia.com/lupo-docs/doctrine/CONFIGURATION_DOCTRINE.md
-  last_modified_utc: 20260327220000
-  system_version: 4.0.89
+  file_path_from_root: "lupo-docs/doctrine/CONFIGURATION_DOCTRINE.md"
+  web_path: "http://www.lupopedia.com/lupopedia/lupo-docs/doctrine/CONFIGURATION_DOCTRINE.md"
+  last_modified_utc: "20260403113047"
+  when_updated: "20260403113047"
+  federation_node_id: 0
   channel_id: 42
-  actor_id: 1
-  actor_name: wolfie
-  delegation_chain: wolfie:root
-  artifact_type: doctrine
-  artifact_kind: configuration
-  purpose: Configuration file location and security for auto-installer compatibility
+  thread_id: "doctrine-header-repair"
+  actor_id: 102
+  actor_name: "cursor"
+  delegation_chain: "cursor:root"
+  artifact_type: "doctrine"
+  artifact_kind: "reference"
+  purpose: "CONFIGURATION DOCTRINE"
+  status: active
   tags:
-  - configuration
-  - auto-installer
-  - security
-  - shared-hosting
+    - "doctrine"
+    - "header_repair"
 lupopedia.edges:
   outbound_edges:
-    - to: lupo-rules/root/README.md
-      type: documents
-      weight: 1.0
-      reason: Configuration rules indexed in root rules
-    - to: lupo-includes/bootstrap.php
+    - to: "lupo-docs/prd/00_root_constitutional_system_requirements.md"
       type: implements
       weight: 1.0
-      reason: Bootstrap implements configuration search algorithm
+      reason: "Doctrine PRD lineage; constitutional audit 20260403"
+
 lupopedia.footer:
-  version: 4.0.89
-  last_verified: 20260327220000
+  last_verified: "20260403113047"
   verified_by:
     identity_type: actor
-    actor_id: 1
-    agent_name_identity: WOLFIE
-    department_id_delta: 0
+    actor_id: 2
+    name: "lilith"
   verified_via:
-    type: faucet
-    faucet_slug: wolfie
-  orchestrator: wolfie
+    type: "audit"
+    script: "fix_doctrine_headers"
   next_action:
-    - Verify bootstrap.php implements exact search order
-    - Test configuration search in different environments
-    - Update installation documentation with new guidance
+    - "Run: python lupo-scripts/apply_doctrine_prd_lineage.py --apply"
 ---
+
+# file: CONFIGURATION_DOCTRINE — delegation: cursor:root
 
 # Configuration Doctrine
 

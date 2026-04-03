@@ -1,39 +1,51 @@
 ---
-lupopedia.init:
-  document_type: "doctrine"
-  system_version: "4.0.71"
-
 lupopedia.headers:
-  lupopedia.version: "4.0.73"
-  lupopedia.schema: "doctrine"
+  header_format_version: 2
+  lupopedia.schema: doctrine
   file_path_from_root: "lupo-docs/doctrine/SESSION_MODEL.md"
-  web_path: "http://www.lupopedia.com/doctrine/SESSION_MODEL"
-  system_version: "4.0.71"
-  last_modified_utc: "20260312"
+  web_path: "http://www.lupopedia.com/lupopedia/lupo-docs/doctrine/SESSION_MODEL.md"
+  last_modified_utc: "20260403113047"
+  when_updated: "20260403113047"
+  federation_node_id: 0
   channel_id: 42
-  actor_id: 1003
+  thread_id: "doctrine-header-repair"
+  actor_id: 102
   actor_name: "cursor"
   delegation_chain: "cursor:root"
   artifact_type: "doctrine"
-  artifact_kind: "session_model"
-  purpose: "DB-backed session authority (Model A); browser stores only session_id; identity and CSRF from lupo_sessions."
-  tags: ["session", "model_a", "lupo_sessions", "doctrine", "4.0.71"]
-
+  artifact_kind: "reference"
+  purpose: "SESSION MODEL"
+  status: active
+  tags:
+    - "doctrine"
+    - "header_repair"
 lupopedia.edges:
   outbound_edges:
-    - { to: "lupo-docs/database/lupopedia/tables/active/lupo_sessions.md", type: "references", weight: 1.0 }
-    - { to: "lupo-docs/doctrine/SESSION_RECONCILIATION_DOCTRINE.md", type: "references", weight: 1.0 }
-    - { to: "lupo-database/lupopedia/content/lupo-app/auth/Session.php", type: "references", weight: 0.9 }
+    - to: "lupo-docs/prd/00_root_constitutional_system_requirements.md"
+      type: implements
+      weight: 1.0
+      reason: "Doctrine PRD lineage; constitutional audit 20260403"
+
+    - to: "lupo-docs/prd/32_actor_authority_agent_roles.md"
+      type: implements
+      weight: 1.0
+      reason: "Doctrine PRD lineage; orphan batch 20260403 (manual category map)"
 
 lupopedia.footer:
-  version: "4.0.71"
-  last_verified: "20260312"
-  last_verified_by: "cursor"
+  last_verified: "20260403113047"
+  verified_by:
+    identity_type: actor
+    actor_id: 2
+    name: "lilith"
+  verified_via:
+    type: "audit"
+    script: "fix_doctrine_headers"
   next_action:
-    - "Review Session class and lupo_sessions table doc for alignment"
-    - "Validate session rotation and CSRF paths in bootstrap"
-    - "Audit any remaining $_SESSION usage for Model A compliance"
+    - "Run: python lupo-scripts/apply_doctrine_prd_lineage.py --apply"
 ---
+
+# file: SESSION_MODEL — delegation: cursor:root
+
 # file: Session Model (Model A) — session: L-LUPO-ROOT-CURSOR — delegation: cursor:root — web_path: http://www.lupopedia.com/doctrine/SESSION_MODEL
 
 # Session Model (Model A — DB-Backed Sessions)

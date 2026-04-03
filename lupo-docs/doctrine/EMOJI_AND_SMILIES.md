@@ -3,7 +3,32 @@ lupopedia.headers:
   file_path_from_root: lupo-docs/doctrine/EMOJI_AND_SMILIES.md
   file.last_modified_system_version: 4.0.x
   file.last_modified_utc: '20260330'
-  purpose: Documentation for the new emoji/smilies system in Lupopedia
+  purpose: Documentation for the new emoji/smilies system in Lupopedia.
+
+lupopedia.edges:
+  outbound_edges:
+    - to: "lupo-docs/prd/00_root_constitutional_system_requirements.md"
+      type: implements
+      weight: 1.0
+      reason: "Doctrine PRD lineage; constitutional audit 20260403"
+
+    - to: "lupo-docs/prd/33_softaculous_certification_4_1_0_gate.md"
+      type: implements
+      weight: 1.0
+      reason: "Doctrine PRD lineage; orphan batch 20260403 (manual category map)"
+
+lupopedia.footer:
+  last_verified: "20260403113047"
+  verified_by:
+    identity_type: actor
+    actor_id: 2
+    name: "lilith"
+  verified_via:
+    type: "audit"
+    script: "fix_doctrine_headers"
+  next_action:
+    - "Run: python lupo-scripts/apply_doctrine_prd_lineage.py --apply"
+
 ---
 
 # Emoji and Smilies System (Lupopedia 4.0.x)

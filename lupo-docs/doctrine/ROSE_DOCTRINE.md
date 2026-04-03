@@ -19,6 +19,31 @@ lupopedia.headers:
     - "lupo-docs/versions/4.0.86/PLAN.md"
     - "lupo-docs/versions/4.0.86/WHAT_TO_DO_NEXT_SESSION.md"
   tags: ["rose", "doctrine", "translation", "context", "dialogue", "channel_42", "thread_1001"]
+
+lupopedia.edges:
+  outbound_edges:
+    - to: "lupo-docs/prd/00_root_constitutional_system_requirements.md"
+      type: implements
+      weight: 1.0
+      reason: "Doctrine PRD lineage; constitutional audit 20260403"
+
+    - to: "lupo-docs/prd/18_channel_chat_display.md"
+      type: implements
+      weight: 1.0
+      reason: "Doctrine PRD lineage; orphan batch 20260403 (manual category map)"
+
+lupopedia.footer:
+  last_verified: "20260403113047"
+  verified_by:
+    identity_type: actor
+    actor_id: 2
+    name: "lilith"
+  verified_via:
+    type: "audit"
+    script: "fix_doctrine_headers"
+  next_action:
+    - "Run: python lupo-scripts/apply_doctrine_prd_lineage.py --apply"
+
 ---
 
 # ROSE Doctrine

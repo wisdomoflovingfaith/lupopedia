@@ -15,6 +15,13 @@ lupopedia.headers:
   purpose: "Authoritative implementation plan for LUPOPEDIA HEADERS single-write timestamp doctrine"
   tags: ["headers", "doctrine", "plan", "migration", "validation"]
   namespace: "governance"
+lupopedia.edges:
+  outbound_edges:
+    - to: "lupo-docs/prd/16_lupopedia_headers.md"
+      type: implements
+      weight: 1.0
+      reason: "Doctrine PRD lineage; constitutional audit 20260403"
+
 lupopedia.footer:
   last_verified: "20260327121457"
   verified_by:

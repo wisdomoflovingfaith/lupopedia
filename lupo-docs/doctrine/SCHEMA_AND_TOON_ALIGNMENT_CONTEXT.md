@@ -1,4 +1,3 @@
-# LUPOPEDIA HEADERS (replaces FLARE)
 ---
 lupopedia.headers:
   lupopedia.version: "4.0.73"
@@ -23,6 +22,11 @@ lupopedia.edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
     - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
+    - to: "lupo-docs/prd/33_softaculous_certification_4_1_0_gate.md"
+      type: implements
+      weight: 1.0
+      reason: "Doctrine PRD lineage; constitutional audit 20260403"
+
 lupopedia.footer:
   last_verified: "20260228155738"
   last_verified_by: "cursor"
@@ -34,7 +38,9 @@ lupopedia.footer:
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  lupopedia.edges: []
+  
+
+lupopedia.edges: []
   file_path_from_root: "lupo-docs\doctrine\SCHEMA_AND_TOON_ALIGNMENT_CONTEXT.md"
   file_hash: "329848452d3f7ed8b38069c547bea0b07ce0d2c37c4e2dcb376eed98669bd518"
   file_path_from_root: "lupo-docs\doctrine\SCHEMA_AND_TOON_ALIGNMENT_CONTEXT.md"
@@ -63,7 +69,7 @@ lupopedia.footer:
 
 ---
 # FLIP Header (alias: Wolfie Header, CROP Header, FLIPPING Header)
-wolfie.headers: explicit architecture with structured clarity for every file.
+lupopedia.headers: explicit architecture with structured clarity for every file.
 file_path_from_root: lupo-docs/doctrine/SCHEMA_AND_TOON_ALIGNMENT_CONTEXT.md
 file.last_modified_system_version: "4.0.88"
 file.last_modified_utc: "20260218000000"

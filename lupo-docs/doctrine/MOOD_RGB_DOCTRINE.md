@@ -30,6 +30,11 @@ lupopedia.edges:
     - { to: "lupo-includes/classes/hermes.php", type: "formalizes", weight: 1.0, reason: "HERMES consumes CADUCEUS currents when no explicit destination exists." }
     - { to: "lupo-docs/channels/doctrine/MOOD_RGB_DOCTRINE.md", type: "supersedes_in_root_doctrine", weight: 0.8, reason: "Older channel-doctrine copy is lineage only." }
 
+    - to: "lupo-docs/prd/28_semantic_monitoring_widget.md"
+      type: implements
+      weight: 1.0
+      reason: "Doctrine PRD lineage; constitutional audit 20260403"
+
 lupopedia.footer:
   last_verified: "20260404190000"
   last_verified_by: "athena"

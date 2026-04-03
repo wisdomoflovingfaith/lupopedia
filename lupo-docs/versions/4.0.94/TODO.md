@@ -4,7 +4,7 @@ lupopedia.headers:
   version_when_written: "4.0.94"
   file_path_from_root: "lupo-docs/versions/4.0.94/TODO.md"
   web_path: "http://www.lupopedia.com/lupopedia/lupo-docs/versions/4.0.94/TODO.md"
-  when_updated: "20260403025155"
+  when_updated: "20260403140552"
   channel_id: 42
   thread_id: "todo-backlog-4.0.94"
   actor_id: 102
@@ -39,9 +39,21 @@ lupopedia.footer:
 
 Merged from **`lupo-docs/versions/4.0.93/TODO.md`** on 2026-04-03 (deduplicated). Single active backlog for this version.
 
+## High priority — version ghosts (manual)
+
+- [ ] Review **34** files with **critical** findings in **`lupo-docs/implementations/29_project_structure/status/version_ghosts_report.json`** (policy: **`answers/20260403_140554_ANSWER_version_ghost_cleanup_manual_review.md`**).
+- [ ] Fix phantom legacy paths and ambiguous **3.0.x** prose **per file** (no repo-wide blind rewrite).
+
+## Completed (this documentation pass — UTC `20260403140552`)
+
+- [x] **`audit_doctrine_prd_edges.py`** — **189** doctrine files with PRD lineage edges (**0** missing) at run time.
+- [x] **`find_version_ghosts.py`** + **`version_ghosts_report.json`** — critical set enumerated (**34** files).
+- [x] **Mobile / workflow docs** — `MOBILE_SEPARATION_DOCTRINE.md`, `WOLFIE_WORKFLOW_DOCTRINE.md`, **PRD 35** draft, **PRD 33** mobile checklist (where edited), **AGENTS.md** / **LESSONS** updates.
+- [x] **Version folder sync** — `CHANGELOG` / `PLAN` Phase **G** / `TODO` / `edges` / `README` / decision **20260403_140552** / Q **140553** / A **140554**.
+
 ## Next session (handoff)
 
-Prioritized intent for the next working session (detail: **`WHAT_TO_WORK_ON_NEXT_SESSION.md`** — **UTC `20260403025155`**):
+Prioritized intent for the next working session (detail: **`WHAT_TO_WORK_ON_NEXT_SESSION.md`** — refresh stamp when that file next changes):
 
 - [ ] **Admin web interface** — operator flows after reproducible install.
 - [ ] **Fresh install + Crafty Syntax 3.7.5 import** — baseline before Crafty parity and **Eye** work.

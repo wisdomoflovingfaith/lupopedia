@@ -1,4 +1,3 @@
-# LUPOPEDIA HEADERS (replaces FLARE)
 ---
 lupopedia.headers:
   lupopedia.version: "4.0.73"
@@ -23,6 +22,11 @@ lupopedia.edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
     - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
+    - to: "lupo-docs/prd/16_lupopedia_headers.md"
+      type: implements
+      weight: 1.0
+      reason: "Doctrine PRD lineage; constitutional audit 20260403"
+
 lupopedia.footer:
   last_verified: "20260228155738"
   last_verified_by: "windsurf"
@@ -34,7 +38,9 @@ lupopedia.footer:
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  lupopedia.edges: []
+  
+
+lupopedia.edges: []
   file_path_from_root: "lupo-docs\doctrine\X_LUPO_FORWARDED_HEADER_DOCTRINE.md"
   file_hash: "d90555d30284d38c39e7118cdd21fe8af7e38cb5ba1d65df202c44c5094d1603"
   file_path_from_root: "lupo-docs\doctrine\X_LUPO_FORWARDED_HEADER_DOCTRINE.md"
@@ -62,7 +68,7 @@ lupopedia.footer:
 ---
 
 ---
-wolfie.headers:
+lupopedia.headers:
   file_path_from_root: "lupo-docs/doctrine/X_LUPO_FORWARDED_HEADER_DOCTRINE.md"
   system_version: "4.0.31"
   channel_id: 42
@@ -137,7 +143,7 @@ All files created or modified in Lupopedia version 4.0.32 and later MUST include
 ### YAML Files (Markdown, Config, etc.)
 
 ```yaml
-wolfie.headers:
+lupopedia.headers:
   x_lupo_forwarded: "computer_agent_id:supporting_human_id"
 ```
 
@@ -264,7 +270,7 @@ wolfie.headers:
 
 ```yaml
 ---
-wolfie.headers:
+lupopedia.headers:
   file_path_from_root: "lupo-docs/example.md"
   system_version: "4.0.32"
   x_lupo_forwarded: "1001:10000"

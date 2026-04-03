@@ -1,3 +1,46 @@
+---
+lupopedia.headers:
+  header_format_version: 2
+  lupopedia.schema: doctrine
+  file_path_from_root: "lupo-docs/doctrine/ACTOR_REQUIREMENTS.md"
+  web_path: "http://www.lupopedia.com/lupopedia/lupo-docs/doctrine/ACTOR_REQUIREMENTS.md"
+  last_modified_utc: "20260403113047"
+  when_updated: "20260403113047"
+  federation_node_id: 0
+  channel_id: 42
+  thread_id: "doctrine-header-repair"
+  actor_id: 102
+  actor_name: "cursor"
+  delegation_chain: "cursor:root"
+  artifact_type: "doctrine"
+  artifact_kind: "reference"
+  purpose: "ACTOR REQUIREMENTS"
+  status: active
+  tags:
+    - "doctrine"
+    - "header_repair"
+lupopedia.edges:
+  outbound_edges:
+    - to: "lupo-docs/prd/32_actor_authority_agent_roles.md"
+      type: implements
+      weight: 1.0
+      reason: "Doctrine PRD lineage; constitutional audit 20260403"
+
+lupopedia.footer:
+  last_verified: "20260403113047"
+  verified_by:
+    identity_type: actor
+    actor_id: 2
+    name: "lilith"
+  verified_via:
+    type: "audit"
+    script: "fix_doctrine_headers"
+  next_action:
+    - "Run: python lupo-scripts/apply_doctrine_prd_lineage.py --apply"
+---
+
+# file: ACTOR_REQUIREMENTS — delegation: cursor:root
+
 # Actor Requirements — Doctrine Enforcement
 
 Actors can declare **machine-readable system requirements** that the platform uses to enforce architectural constraints (e.g. database doctrine, ethical rules). These are not prompts; they are doctrine rules that affect code generation, schema design, and service behavior.

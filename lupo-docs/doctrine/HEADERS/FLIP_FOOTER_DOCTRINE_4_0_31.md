@@ -1,4 +1,3 @@
-# LUPOPEDIA HEADERS (replaces FLARE)
 ---
 lupopedia.headers:
   lupopedia.version: "4.0.73"
@@ -23,6 +22,11 @@ lupopedia.edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
     - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
+    - to: "lupo-docs/prd/16_lupopedia_headers.md"
+      type: implements
+      weight: 1.0
+      reason: "Doctrine PRD lineage; constitutional audit 20260403"
+
 lupopedia.footer:
   last_verified: "20260228155738"
   last_verified_by: "windsurf"
@@ -34,7 +38,9 @@ lupopedia.footer:
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  lupopedia.edges: []
+  
+
+lupopedia.edges: []
   file_path_from_root: "lupo-docs\doctrine\HEADERS\FLIP_FOOTER_DOCTRINE_4_0_31.md"
   file_hash: "762caf8adab638cc43d83793031c199133f6f0005da3b31ae13d46515e238ee5"
   file_path_from_root: "lupo-docs\doctrine\HEADERS\FLIP_FOOTER_DOCTRINE_4_0_31.md"
@@ -63,7 +69,7 @@ lupopedia.footer:
 
 ---
 # FLIP Header (alias: Wolfie Header, CROP Header)
-wolfie.headers: explicit architecture with structured clarity for every file.
+lupopedia.headers: explicit architecture with structured clarity for every file.
 file_path_from_root: "lupo-docs/doctrine/HEADERS/FLIP_FOOTER_DOCTRINE_4_0_31.md"
 file.last_modified_system_version: "4.0.31"
 file.last_modified_utc: "20260223144700"

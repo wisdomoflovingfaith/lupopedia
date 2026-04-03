@@ -1,4 +1,3 @@
-# LUPOPEDIA HEADERS (replaces FLARE)
 ---
 lupopedia.headers:
   lupopedia.schema: "documentation"
@@ -22,6 +21,11 @@ lupopedia.edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
     - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
+    - to: "lupo-docs/prd/00_root_constitutional_system_requirements.md"
+      type: implements
+      weight: 1.0
+      reason: "Doctrine PRD lineage; constitutional audit 20260403"
+
 lupopedia.footer:
   last_verified: "20260228155738"
   last_verified_by: "windsurf"
@@ -33,7 +37,9 @@ lupopedia.footer:
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  lupopedia.edges: []
+  
+
+lupopedia.edges: []
   file_path_from_root: "lupo-docs\LUPOPEDIA_MASTER_DOCTRINE_OF_AI_CORRECTIONS_v1.0.md"
   file_hash: "94be4932ec3825409246a120e52f5754b19de253f32b68c3c775353ff56aea96"
   file_path_from_root: "lupo-docs\LUPOPEDIA_MASTER_DOCTRINE_OF_AI_CORRECTIONS_v1.0.md"

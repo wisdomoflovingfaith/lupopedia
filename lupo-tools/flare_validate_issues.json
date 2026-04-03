@@ -10683,7 +10683,7 @@
     {
       "path": "lupo-docs\\doctrine\\ANUBIS\\ANUBIS_CANONICAL.md",
       "errors": [
-        "Path mismatch: docs/doctrine/ANUBIS/ANUBIS_CANONICAL.md != lupo-docs/doctrine/ANUBIS/ANUBIS_CANONICAL.md"
+        "Path mismatch: docs/doctrine/ANUBIS/ANUBIS_CANONICAL.md != lupo-agents/anubis/doctrine/ANUBIS_CANONICAL.md"
       ],
       "warnings": [
         "Missing mandated FLARE comment: first comment line should reference FLARE (e.g. '# FLARE Header ...' or 'see http://www.lupopedia.com/FLARE')"

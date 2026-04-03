@@ -1,11 +1,48 @@
-# FILEOPT v4.0.52 ANUBIS Consolidation - Canonical File
+---
+lupopedia.headers:
+  header_format_version: 2
+  lupopedia.schema: doctrine
+  file_path_from_root: "lupo-agents/anubis/doctrine/ANUBIS_CANONICAL.md"
+  web_path: "http://www.lupopedia.com/lupopedia/lupo-agents/anubis/doctrine/ANUBIS_CANONICAL.md"
+  last_modified_utc: "20260403113047"
+  when_updated: "20260403113047"
+  federation_node_id: 0
+  channel_id: 42
+  thread_id: "doctrine-header-repair"
+  actor_id: 102
+  actor_name: "cursor"
+  delegation_chain: "cursor:root"
+  artifact_type: "doctrine"
+  artifact_kind: "reference"
+  purpose: "ANUBIS CANONICAL"
+  status: active
+  tags:
+    - "doctrine"
+    - "header_repair"
+lupopedia.edges:
+  outbound_edges: []
+
+lupopedia.footer:
+  last_verified: "20260403113047"
+  verified_by:
+    identity_type: actor
+    actor_id: 2
+    name: "lilith"
+  verified_via:
+    type: "audit"
+    script: "fix_doctrine_headers"
+  next_action:
+    - "Run: python lupo-scripts/apply_doctrine_prd_lineage.py --apply"
+---
+
+# file: ANUBIS_CANONICAL — delegation: cursor:root
 
 ---
 # FLARE Header
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "doctrine"
-  file_path_from_root: "lupo-docs/doctrine/ANUBIS/ANUBIS_CANONICAL.md"
+  file_path_from_root: "lupo-agents/anubis/doctrine/ANUBIS_CANONICAL.md"
   file_hash: "to_be_generated"
   last_modified_utc: "20260228"
   system_version: "4.0.52"

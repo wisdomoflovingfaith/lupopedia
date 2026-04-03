@@ -102,7 +102,7 @@ They tracked:
 Across:
 
 - **25 years**
-- **144,000+ installations**
+- **1,000,000+** lifetime installations (cumulative) and on the order of **~144,000** active/reporting-era nodes (planning figures — `lupo-docs/doctrine/SILENT_HARVEST_DOCTRINE.md`)
 - **millions of real human interactions**
 
 This wasn't analytics.

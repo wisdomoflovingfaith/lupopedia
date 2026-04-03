@@ -15,6 +15,13 @@ lupopedia.headers:
   artifact_kind: "federation"
   purpose: "Clarify federation_node_id vs channel_id vs domain_id across edges, channels, contents, and session files to prevent drift."
   tags: ["federation", "channel", "domain", "scoping", "4.0.69"]
+lupopedia.edges:
+  outbound_edges:
+    - to: "lupo-docs/prd/00_root_constitutional_system_requirements.md"
+      type: implements
+      weight: 1.0
+      reason: "Doctrine PRD lineage; constitutional audit 20260403"
+
 lupopedia.footer:
   last_verified: "20260311"
   last_verified_by: "cursor"

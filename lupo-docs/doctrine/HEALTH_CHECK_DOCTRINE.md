@@ -11,6 +11,31 @@ lupopedia.headers:
   purpose: "Reference for lupo doctor (lupo_doctor_health_check) and related health checks"
   traits: ["doctor", "health", "cli", "v4.0.62"]
   tags: ["doctor", "health", "cli", "reference"]
+
+lupopedia.edges:
+  outbound_edges:
+    - to: "lupo-docs/prd/00_root_constitutional_system_requirements.md"
+      type: implements
+      weight: 1.0
+      reason: "Doctrine PRD lineage; constitutional audit 20260403"
+
+    - to: "lupo-docs/prd/33_softaculous_certification_4_1_0_gate.md"
+      type: implements
+      weight: 1.0
+      reason: "Doctrine PRD lineage; orphan batch 20260403 (manual category map)"
+
+lupopedia.footer:
+  last_verified: "20260403113047"
+  verified_by:
+    identity_type: actor
+    actor_id: 2
+    name: "lilith"
+  verified_via:
+    type: "audit"
+    script: "fix_doctrine_headers"
+  next_action:
+    - "Run: python lupo-scripts/apply_doctrine_prd_lineage.py --apply"
+
 ---
 
 # DOCTOR health check — full reference

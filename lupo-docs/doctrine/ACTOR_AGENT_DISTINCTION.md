@@ -35,6 +35,11 @@ lupopedia.edges:
       type: references
       weight: 1.0
       reason: "Actor specification"
+    - to: "lupo-docs/prd/32_actor_authority_agent_roles.md"
+      type: implements
+      weight: 1.0
+      reason: "Doctrine PRD lineage; constitutional audit 20260403"
+
 lupopedia.footer:
   last_verified: "20260401010000"
   verified_by:

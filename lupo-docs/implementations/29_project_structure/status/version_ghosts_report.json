@@ -1,0 +1,588 @@
+{
+  "scanned_roots": [
+    "lupo-docs/doctrine",
+    "lupo-docs/prd"
+  ],
+  "exclude_substrings": [
+    "lupo-docs/versions/3.0.x/",
+    "/versions/archive/"
+  ],
+  "files_with_findings": 68,
+  "files_with_critical_findings": 34,
+  "results": [
+    {
+      "path": "lupo-docs/doctrine/4.0.17_DIAGNOSTICS_AND_COMPATIBILITY.md",
+      "findings": [
+        "null_delegation_chain"
+      ],
+      "critical_findings": []
+    },
+    {
+      "path": "lupo-docs/doctrine/4.0.21_COMPLETION_PLAN.md",
+      "findings": [
+        "null_delegation_chain",
+        "phantom_legacy_path_slash_docs_or_similar"
+      ],
+      "critical_findings": [
+        "phantom_legacy_path_slash_docs_or_similar"
+      ]
+    },
+    {
+      "path": "lupo-docs/doctrine/ACTOR_AGENT_AUTH_USER_MODEL.md",
+      "findings": [
+        "phantom_legacy_path_slash_docs_or_similar"
+      ],
+      "critical_findings": [
+        "phantom_legacy_path_slash_docs_or_similar"
+      ]
+    },
+    {
+      "path": "lupo-docs/doctrine/AGENT_420_RETIREMENT.md",
+      "findings": [
+        "null_delegation_chain"
+      ],
+      "critical_findings": []
+    },
+    {
+      "path": "lupo-docs/doctrine/AGENT_BOUNDARIES_COMPACT.md",
+      "findings": [
+        "three_zero_semver_reference",
+        "null_delegation_chain",
+        "phantom_legacy_path_slash_docs_or_similar"
+      ],
+      "critical_findings": [
+        "three_zero_semver_reference",
+        "phantom_legacy_path_slash_docs_or_similar"
+      ]
+    },
+    {
+      "path": "lupo-docs/doctrine/AGENT_REGISTRY_DOCTRINE.md",
+      "findings": [
+        "null_delegation_chain"
+      ],
+      "critical_findings": []
+    },
+    {
+      "path": "lupo-docs/doctrine/AI_AGENT_BOOT_NOTES.md",
+      "findings": [
+        "null_delegation_chain",
+        "phantom_legacy_path_slash_docs_or_similar"
+      ],
+      "critical_findings": [
+        "phantom_legacy_path_slash_docs_or_similar"
+      ]
+    },
+    {
+      "path": "lupo-docs/doctrine/AI_CORRECTIONS_DOCTRINE.md",
+      "findings": [
+        "null_delegation_chain"
+      ],
+      "critical_findings": []
+    },
+    {
+      "path": "lupo-docs/doctrine/ANUBIS_FALLBACK_DOCTRINE.md",
+      "findings": [
+        "null_delegation_chain",
+        "phantom_legacy_path_slash_docs_or_similar"
+      ],
+      "critical_findings": [
+        "phantom_legacy_path_slash_docs_or_similar"
+      ]
+    },
+    {
+      "path": "lupo-docs/doctrine/ANUBIS_ORPHAN_RULES.md",
+      "findings": [
+        "null_delegation_chain",
+        "phantom_legacy_path_slash_docs_or_similar"
+      ],
+      "critical_findings": [
+        "phantom_legacy_path_slash_docs_or_similar"
+      ]
+    },
+    {
+      "path": "lupo-docs/doctrine/BAN_REASONS.md",
+      "findings": [
+        "null_delegation_chain",
+        "phantom_legacy_path_slash_docs_or_similar"
+      ],
+      "critical_findings": [
+        "phantom_legacy_path_slash_docs_or_similar"
+      ]
+    },
+    {
+      "path": "lupo-docs/doctrine/CASCADE_TABLE_CEILING_PROTOCOL.md",
+      "findings": [
+        "null_delegation_chain"
+      ],
+      "critical_findings": []
+    },
+    {
+      "path": "lupo-docs/doctrine/channels/filesystem_padding_layer.md",
+      "findings": [
+        "null_delegation_chain",
+        "phantom_legacy_path_slash_docs_or_similar"
+      ],
+      "critical_findings": [
+        "phantom_legacy_path_slash_docs_or_similar"
+      ]
+    },
+    {
+      "path": "lupo-docs/doctrine/channels.md",
+      "findings": [
+        "null_delegation_chain"
+      ],
+      "critical_findings": []
+    },
+    {
+      "path": "lupo-docs/doctrine/CLASS_CONVERSION_DOCTRINE.md",
+      "findings": [
+        "three_zero_semver_reference",
+        "null_delegation_chain"
+      ],
+      "critical_findings": [
+        "three_zero_semver_reference"
+      ]
+    },
+    {
+      "path": "lupo-docs/doctrine/COMPATIBILITY_MATRIX.md",
+      "findings": [
+        "three_zero_semver_reference",
+        "null_delegation_chain"
+      ],
+      "critical_findings": [
+        "three_zero_semver_reference"
+      ]
+    },
+    {
+      "path": "lupo-docs/doctrine/CONSOLIDATION_VALIDATION_REQUIREMENTS.md",
+      "findings": [
+        "null_delegation_chain"
+      ],
+      "critical_findings": []
+    },
+    {
+      "path": "lupo-docs/doctrine/CRAFTY_SYNTAX_IMPORT_IMPLEMENTATION_CHECKLIST.md",
+      "findings": [
+        "null_delegation_chain",
+        "phantom_legacy_path_slash_docs_or_similar"
+      ],
+      "critical_findings": [
+        "phantom_legacy_path_slash_docs_or_similar"
+      ]
+    },
+    {
+      "path": "lupo-docs/doctrine/CRAFTY_SYNTAX_INTEGRATION_PLAN.md",
+      "findings": [
+        "null_delegation_chain"
+      ],
+      "critical_findings": []
+    },
+    {
+      "path": "lupo-docs/doctrine/CRAFTY_SYNTAX_MIGRATION_PROJECT_BRIEF.md",
+      "findings": [
+        "null_delegation_chain",
+        "phantom_legacy_path_slash_docs_or_similar"
+      ],
+      "critical_findings": [
+        "phantom_legacy_path_slash_docs_or_similar"
+      ]
+    },
+    {
+      "path": "lupo-docs/doctrine/CRAFTY_SYNTAX_STATE_BASED_IMPLEMENTATION_PLAN.md",
+      "findings": [
+        "null_delegation_chain"
+      ],
+      "critical_findings": []
+    },
+    {
+      "path": "lupo-docs/doctrine/database/README.md",
+      "findings": [
+        "null_delegation_chain"
+      ],
+      "critical_findings": []
+    },
+    {
+      "path": "lupo-docs/doctrine/DEVELOPMENT_WORKFLOW_DOCTRINE.md",
+      "findings": [
+        "three_zero_semver_reference",
+        "null_delegation_chain"
+      ],
+      "critical_findings": [
+        "three_zero_semver_reference"
+      ]
+    },
+    {
+      "path": "lupo-docs/doctrine/DOCTRINE_FILE_STRUCTURE.md",
+      "findings": [
+        "null_delegation_chain"
+      ],
+      "critical_findings": []
+    },
+    {
+      "path": "lupo-docs/doctrine/DOCTRINE_TABLES_TRANSITION_NOTE.md",
+      "findings": [
+        "null_delegation_chain"
+      ],
+      "critical_findings": []
+    },
+    {
+      "path": "lupo-docs/doctrine/EDGE_MODEL_DOCTRINE.md",
+      "findings": [
+        "phantom_legacy_path_slash_docs_or_similar"
+      ],
+      "critical_findings": [
+        "phantom_legacy_path_slash_docs_or_similar"
+      ]
+    },
+    {
+      "path": "lupo-docs/doctrine/ETHICAL_STATE_MARKERS_DOCTRINE.md",
+      "findings": [
+        "null_delegation_chain",
+        "phantom_legacy_path_slash_docs_or_similar"
+      ],
+      "critical_findings": [
+        "phantom_legacy_path_slash_docs_or_similar"
+      ]
+    },
+    {
+      "path": "lupo-docs/doctrine/FILESYSTEM_MIGRATION_GUIDE.md",
+      "findings": [
+        "three_zero_semver_reference",
+        "phantom_legacy_path_slash_docs_or_similar"
+      ],
+      "critical_findings": [
+        "three_zero_semver_reference",
+        "phantom_legacy_path_slash_docs_or_similar"
+      ]
+    },
+    {
+      "path": "lupo-docs/doctrine/HEADERS/FLIP_FOOTER_DOCTRINE_4_0_31.md",
+      "findings": [
+        "null_delegation_chain"
+      ],
+      "critical_findings": []
+    },
+    {
+      "path": "lupo-docs/doctrine/HEADERS/LUPO_HEADER_EXPANSION_4_0_30.md",
+      "findings": [
+        "null_delegation_chain"
+      ],
+      "critical_findings": []
+    },
+    {
+      "path": "lupo-docs/doctrine/HYBRID_ACTOR/HYBRID_ACTOR_2_0.md",
+      "findings": [
+        "null_delegation_chain"
+      ],
+      "critical_findings": []
+    },
+    {
+      "path": "lupo-docs/doctrine/HYBRID_ACTOR_DOCTRINE_4.0.29.md",
+      "findings": [
+        "null_delegation_chain",
+        "phantom_legacy_path_slash_docs_or_similar"
+      ],
+      "critical_findings": [
+        "phantom_legacy_path_slash_docs_or_similar"
+      ]
+    },
+    {
+      "path": "lupo-docs/doctrine/IDE_TASK_PRIORITY_DOCTRINE.md",
+      "findings": [
+        "null_delegation_chain"
+      ],
+      "critical_findings": []
+    },
+    {
+      "path": "lupo-docs/doctrine/IDENTITY_AUTHORITY_DOCTRINE.md",
+      "findings": [
+        "null_delegation_chain"
+      ],
+      "critical_findings": []
+    },
+    {
+      "path": "lupo-docs/doctrine/IMPORT_FROM_CRAFTY_TROUBLESHOOTING.md",
+      "findings": [
+        "null_delegation_chain"
+      ],
+      "critical_findings": []
+    },
+    {
+      "path": "lupo-docs/doctrine/INDEX.md",
+      "findings": [
+        "phantom_legacy_path_slash_docs_or_similar"
+      ],
+      "critical_findings": [
+        "phantom_legacy_path_slash_docs_or_similar"
+      ]
+    },
+    {
+      "path": "lupo-docs/doctrine/init/LUPO_INITIALIZATION_DOCTRINE.md",
+      "findings": [
+        "phantom_legacy_path_slash_docs_or_similar"
+      ],
+      "critical_findings": [
+        "phantom_legacy_path_slash_docs_or_similar"
+      ]
+    },
+    {
+      "path": "lupo-docs/doctrine/INSTALLATION_PATH_DOCTRINE.md",
+      "findings": [
+        "null_delegation_chain",
+        "phantom_legacy_path_slash_docs_or_similar"
+      ],
+      "critical_findings": [
+        "phantom_legacy_path_slash_docs_or_similar"
+      ]
+    },
+    {
+      "path": "lupo-docs/doctrine/LEXA_GATEWAY_INTEGRATION.md",
+      "findings": [
+        "three_zero_semver_reference",
+        "null_delegation_chain",
+        "phantom_legacy_path_slash_docs_or_similar"
+      ],
+      "critical_findings": [
+        "three_zero_semver_reference",
+        "phantom_legacy_path_slash_docs_or_similar"
+      ]
+    },
+    {
+      "path": "lupo-docs/doctrine/LUPOPEDIA_CANONICAL_DOCTRINE.md",
+      "findings": [
+        "null_delegation_chain",
+        "phantom_legacy_path_slash_docs_or_similar"
+      ],
+      "critical_findings": [
+        "phantom_legacy_path_slash_docs_or_similar"
+      ]
+    },
+    {
+      "path": "lupo-docs/doctrine/LUPOPEDIA_DOCTRINE.md",
+      "findings": [
+        "three_zero_semver_reference",
+        "null_delegation_chain"
+      ],
+      "critical_findings": [
+        "three_zero_semver_reference"
+      ]
+    },
+    {
+      "path": "lupo-docs/doctrine/LUPOPEDIA_DOCTRINE_v1.1.md",
+      "findings": [
+        "null_delegation_chain"
+      ],
+      "critical_findings": []
+    },
+    {
+      "path": "lupo-docs/doctrine/MASTER_DOCTRINE.md",
+      "findings": [
+        "null_delegation_chain"
+      ],
+      "critical_findings": []
+    },
+    {
+      "path": "lupo-docs/doctrine/MESSAGE_ATTRIBUTION.md",
+      "findings": [
+        "null_delegation_chain",
+        "phantom_legacy_path_slash_docs_or_similar"
+      ],
+      "critical_findings": [
+        "phantom_legacy_path_slash_docs_or_similar"
+      ]
+    },
+    {
+      "path": "lupo-docs/doctrine/MIGRATION_DOCTRINE.md",
+      "findings": [
+        "null_delegation_chain",
+        "phantom_legacy_path_slash_docs_or_similar"
+      ],
+      "critical_findings": [
+        "phantom_legacy_path_slash_docs_or_similar"
+      ]
+    },
+    {
+      "path": "lupo-docs/doctrine/MigrationAtlas.md",
+      "findings": [
+        "null_delegation_chain",
+        "phantom_legacy_path_slash_docs_or_similar"
+      ],
+      "critical_findings": [
+        "phantom_legacy_path_slash_docs_or_similar"
+      ]
+    },
+    {
+      "path": "lupo-docs/doctrine/migrations/crafty_syntax_ancestral_intent.md",
+      "findings": [
+        "null_delegation_chain"
+      ],
+      "critical_findings": []
+    },
+    {
+      "path": "lupo-docs/doctrine/migrations/generated/README.md",
+      "findings": [
+        "null_delegation_chain"
+      ],
+      "critical_findings": []
+    },
+    {
+      "path": "lupo-docs/doctrine/MINIMAL_HOSTING_REQUIREMENTS.md",
+      "findings": [
+        "three_zero_semver_reference",
+        "null_delegation_chain"
+      ],
+      "critical_findings": [
+        "three_zero_semver_reference"
+      ]
+    },
+    {
+      "path": "lupo-docs/doctrine/PHP_COMPATIBILITY_AND_MINIMAL_HOSTING_DOCTRINE.md",
+      "findings": [
+        "three_zero_semver_reference",
+        "null_delegation_chain"
+      ],
+      "critical_findings": [
+        "three_zero_semver_reference"
+      ]
+    },
+    {
+      "path": "lupo-docs/doctrine/PROJECT_REGISTRY_WORKFLOW.md",
+      "findings": [
+        "phantom_legacy_path_slash_docs_or_similar"
+      ],
+      "critical_findings": [
+        "phantom_legacy_path_slash_docs_or_similar"
+      ]
+    },
+    {
+      "path": "lupo-docs/doctrine/REGISTRY_DOCTRINE.md",
+      "findings": [
+        "null_delegation_chain"
+      ],
+      "critical_findings": []
+    },
+    {
+      "path": "lupo-docs/doctrine/RELATION_REGISTRY.md",
+      "findings": [
+        "null_delegation_chain"
+      ],
+      "critical_findings": []
+    },
+    {
+      "path": "lupo-docs/doctrine/report_dbdoc_threads_messages.md",
+      "findings": [
+        "null_delegation_chain"
+      ],
+      "critical_findings": []
+    },
+    {
+      "path": "lupo-docs/doctrine/SCHEMA_AND_TOON_ALIGNMENT_CONTEXT.md",
+      "findings": [
+        "null_delegation_chain"
+      ],
+      "critical_findings": []
+    },
+    {
+      "path": "lupo-docs/doctrine/SCHEMA_CANONICAL_SOURCES.md",
+      "findings": [
+        "phantom_legacy_path_slash_docs_or_similar"
+      ],
+      "critical_findings": [
+        "phantom_legacy_path_slash_docs_or_similar"
+      ]
+    },
+    {
+      "path": "lupo-docs/doctrine/SECURITY/SEMANTIC_SECURITY_4_0_30.md",
+      "findings": [
+        "null_delegation_chain"
+      ],
+      "critical_findings": []
+    },
+    {
+      "path": "lupo-docs/doctrine/SEMANTIC_SECURITY_CHECKLIST_4_0_30.md",
+      "findings": [
+        "null_delegation_chain"
+      ],
+      "critical_findings": []
+    },
+    {
+      "path": "lupo-docs/doctrine/SUPPORTING_ACTOR_DOCTRINE.md",
+      "findings": [
+        "null_delegation_chain"
+      ],
+      "critical_findings": []
+    },
+    {
+      "path": "lupo-docs/doctrine/TABLE_CEILING_DEFENSE_PLAN.md",
+      "findings": [
+        "null_delegation_chain"
+      ],
+      "critical_findings": []
+    },
+    {
+      "path": "lupo-docs/doctrine/TABLE_CONSOLIDATION_PLAN.md",
+      "findings": [
+        "null_delegation_chain"
+      ],
+      "critical_findings": []
+    },
+    {
+      "path": "lupo-docs/doctrine/TABLE_COUNT_DOCTRINE.md",
+      "findings": [
+        "phantom_legacy_path_slash_docs_or_similar"
+      ],
+      "critical_findings": [
+        "phantom_legacy_path_slash_docs_or_similar"
+      ]
+    },
+    {
+      "path": "lupo-docs/doctrine/THREAD_DIALOG_SYSTEM.md",
+      "findings": [
+        "null_delegation_chain"
+      ],
+      "critical_findings": []
+    },
+    {
+      "path": "lupo-docs/doctrine/VERSION_DOCTRINE.md",
+      "findings": [
+        "three_zero_semver_reference",
+        "null_delegation_chain"
+      ],
+      "critical_findings": [
+        "three_zero_semver_reference"
+      ]
+    },
+    {
+      "path": "lupo-docs/doctrine/VERSIONING_DOCTRINE.md",
+      "findings": [
+        "three_zero_semver_reference"
+      ],
+      "critical_findings": [
+        "three_zero_semver_reference"
+      ]
+    },
+    {
+      "path": "lupo-docs/doctrine/WOLFIE_HEADERS.md",
+      "findings": [
+        "null_delegation_chain"
+      ],
+      "critical_findings": []
+    },
+    {
+      "path": "lupo-docs/doctrine/X_LUPO_FORWARDED_HEADER_DOCTRINE.md",
+      "findings": [
+        "null_delegation_chain"
+      ],
+      "critical_findings": []
+    },
+    {
+      "path": "lupo-docs/prd/18_channel_chat_display.md",
+      "findings": [
+        "phantom_legacy_path_slash_docs_or_similar"
+      ],
+      "critical_findings": [
+        "phantom_legacy_path_slash_docs_or_similar"
+      ]
+    }
+  ]
+}

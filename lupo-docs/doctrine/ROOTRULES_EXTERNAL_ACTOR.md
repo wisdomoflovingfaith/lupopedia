@@ -1,50 +1,45 @@
 ---
-lupopedia.init:
-  required_reading:
-    - path: "lupo-docs/projects/PROJECTS.md"
-      reason: "Project definition and context"
-    - path: "lupo-docs/projects/PROJECTS_API.md"
-      reason: "External actor API and capabilities"
-  required_context:
-    - "External actors are non-IDE agents (e.g. API clients); they must follow this subset of doctrine."
-
-lupopedia.metadata:
-  comment: "Subset of root doctrine that external actors must follow."
-  title: "Root Rules — External Actor"
-  description: "Database, directory, and actor identity rules for external actors."
-
 lupopedia.headers:
-  lupopedia.version: "4.0.76"
-  lupopedia.schema: "doctrine"
+  header_format_version: 2
+  lupopedia.schema: doctrine
   file_path_from_root: "lupo-docs/doctrine/ROOTRULES_EXTERNAL_ACTOR.md"
-  last_modified_utc: "20260315"
-  system_version: "4.0.76"
+  web_path: "http://www.lupopedia.com/lupopedia/lupo-docs/doctrine/ROOTRULES_EXTERNAL_ACTOR.md"
+  last_modified_utc: "20260403113047"
+  when_updated: "20260403113047"
+  federation_node_id: 0
   channel_id: 42
-  actor_id: 102
-  purpose: "Doctrine subset for external actors: database, paths, identity."
-  artifact_type: "doctrine"
-  artifact_kind: "reference"
-  tags: ["external_actor", "root_rules", "database", "identity"]
-
-lupopedia.session:
-  session_id: "L-LUPO-ROOT-CURSOR"
+  thread_id: "doctrine-header-repair"
   actor_id: 102
   actor_name: "cursor"
-  channel_id: 42
-  federation_node_id: 1
-
+  delegation_chain: "cursor:root"
+  artifact_type: "doctrine"
+  artifact_kind: "reference"
+  purpose: "ROOTRULES EXTERNAL ACTOR"
+  status: active
+  tags:
+    - "doctrine"
+    - "header_repair"
 lupopedia.edges:
   outbound_edges:
-    - { to: "lupo-docs/doctrine/DATABASE_DOCTRINE.md", type: "references", weight: 0.95 }
-    - { to: "lupo-docs/projects/PROJECTS_API.md", type: "references", weight: 1.0 }
+    - to: "lupo-docs/prd/00_root_constitutional_system_requirements.md"
+      type: implements
+      weight: 1.0
+      reason: "Doctrine PRD lineage; constitutional audit 20260403"
 
 lupopedia.footer:
-  version: "4.0.76"
-  last_verified: "20260315"
-  last_verified_by: "cursor"
+  last_verified: "20260403113047"
+  verified_by:
+    identity_type: actor
+    actor_id: 2
+    name: "lilith"
+  verified_via:
+    type: "audit"
+    script: "fix_doctrine_headers"
   next_action:
-    - "Keep aligned with DATABASE_DOCTRINE and PROJECTS_API when root rules change"
+    - "Run: python lupo-scripts/apply_doctrine_prd_lineage.py --apply"
 ---
+
+# file: ROOTRULES_EXTERNAL_ACTOR — delegation: cursor:root
 
 # Root Rules — External Actor
 

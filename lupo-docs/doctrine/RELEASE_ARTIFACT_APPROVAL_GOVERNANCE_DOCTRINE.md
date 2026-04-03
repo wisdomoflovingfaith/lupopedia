@@ -20,6 +20,11 @@ lupopedia.edges:
     - { to: "lupo-docs/versions/4.1.0/prd/README.md", type: "references", weight: 0.9 }
     - { to: "lupo-docs/doctrine/LUPOPEDIA_HEADERS/README.md", type: "extends", weight: 0.9 }
 
+    - to: "lupo-docs/prd/00_root_constitutional_system_requirements.md"
+      type: implements
+      weight: 1.0
+      reason: "Doctrine PRD lineage; constitutional audit 20260403"
+
 lupopedia.footer:
   version: "4.1.0"
   last_verified: "20260326"

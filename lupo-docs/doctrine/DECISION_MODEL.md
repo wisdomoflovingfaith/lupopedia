@@ -37,6 +37,11 @@ lupopedia.edges:
       type: references
       weight: 0.85
 
+    - to: "lupo-docs/prd/31_implementation_folder_guidelines.md"
+      type: implements
+      weight: 1.0
+      reason: "Doctrine PRD lineage; constitutional audit 20260403"
+
 lupopedia.footer:
   last_verified: '20260325000000'
   last_verified_by: cursor

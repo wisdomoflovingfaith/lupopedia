@@ -15,6 +15,13 @@ lupopedia.headers:
   artifact_kind: "semantic"
   purpose: "Canonical list of allowed edge_type, relationship_type, and valid left/right object pairs for lupo_edges and lupo_actor_edges."
   tags: ["edges", "semantic", "vocabulary", "lupo_edges", "4.0.69"]
+lupopedia.edges:
+  outbound_edges:
+    - to: "lupo-docs/prd/00_root_constitutional_system_requirements.md"
+      type: implements
+      weight: 1.0
+      reason: "Doctrine PRD lineage; constitutional audit 20260403"
+
 lupopedia.footer:
   last_verified: "20260311"
   last_verified_by: "cursor"

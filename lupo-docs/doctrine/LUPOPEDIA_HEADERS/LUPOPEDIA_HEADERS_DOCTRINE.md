@@ -93,6 +93,11 @@ lupopedia.edges:
       type: references
       weight: 0.8
       reason: Batch stale refresh — prefer DB-first regenerate when imported
+    - to: "lupo-docs/prd/16_lupopedia_headers.md"
+      type: implements
+      weight: 1.0
+      reason: "Doctrine PRD lineage; constitutional audit 20260403"
+
 lupopedia.footer:
   last_verified: "20260328203000"
   verified_by:

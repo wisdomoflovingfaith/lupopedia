@@ -38,6 +38,11 @@ lupopedia.edges:
       type: references
       weight: 0.8
       reason: Channel-based coordination
+    - to: "lupo-docs/prd/26_five_layer_documentation_architecture.md"
+      type: implements
+      weight: 1.0
+      reason: "Doctrine PRD lineage; constitutional audit 20260403"
+
 lupopedia.footer:
   last_verified: "20260402220000"
   verified_by:

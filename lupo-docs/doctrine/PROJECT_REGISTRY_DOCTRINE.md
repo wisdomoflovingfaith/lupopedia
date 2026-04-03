@@ -1,84 +1,46 @@
 ---
-lupopedia.init:
-  file_identity: "PROJECT_REGISTRY_DOCTRINE.md"
-  artifact_type: "doctrine"
-  artifact_kind: "registry_design"
-  namespace: "projects"
-  domain: "doctrine"
-  system_version: "4.0.76"
-  design_actor: "cursor"
-  design_faucet: "cursor"
-  orchestrator_actor: "wolfie"
-
-lupopedia.metadata:
-  comment: "Snapshot of metadata for this file or entity at artifact creation."
-  title:
-    - { schema_ref: "lupo_metadata", entity_type: "file", meta_type: "property", property_value: "Project Registry Doctrine - Canonical Design for Project Identity and Allocation", channel_id: 42, class_name: "lupo_metadata", created_ymdhis: 20260315230000, updated_ymdhis: 20260315230000 }
-  description:
-    - { schema_ref: "lupo_metadata", entity_type: "file", meta_type: "property", property_value: "Canonical doctrine for Project Registry in Lupopedia. Defines deterministic identity, allocation patterns, lifecycle, governance, and persistence model for Projects as first-class semantic entities.", channel_id: 42, class_name: "lupo_metadata", created_ymdhis: 20260315230000, updated_ymdhis: 20260315230000 }
-  keywords:
-    - { schema_ref: "lupo_metadata", entity_type: "file", meta_type: "property", property_value: "project_registry, doctrine, identity, allocation, deterministic, lupopedia, 4.0.76", channel_id: 42, class_name: "lupo_metadata", created_ymdhis: 20260315230000, updated_ymdhis: 20260315230000 }
-  author:
-    - { schema_ref: "lupo_metadata", entity_type: "file", meta_type: "property", property_value: "cursor", channel_id: 42, class_name: "lupo_metadata", created_ymdhis: 20260315230000, updated_ymdhis: 20260315230000 }
-  orchestrator:
-    - { schema_ref: "lupo_metadata", entity_type: "file", meta_type: "property", property_value: "wolfie", channel_id: 42, class_name: "lupo_metadata", created_ymdhis: 20260315230000, updated_ymdhis: 20260315230000 }
-
-lupopedia.comments:
-  - { comment_id: 1, channel_id: 42, actor_id: 102, actor_name: "cursor", faucet_id: 102, faucet_name: "cursor", comment_text: "Project Registry Doctrine created - establishes deterministic identity and allocation patterns for Projects as first-class semantic entities.", comment_type: "doctrine", created_ymdhis: 20260315231000, updated_ymdhis: 20260315231000 }
-  - { comment_id: 2, channel_id: 42, actor_id: 102, actor_name: "cursor", faucet_id: 102, faucet_name: "cursor", comment_text: "Design aligns with existing actor/channel registry patterns and reserved-ID doctrine.", comment_type: "alignment", created_ymdhis: 20260315231500, updated_ymdhis: 20260315231500 }
-  - { comment_id: 3, channel_id: 42, actor_id: 102, actor_name: "cursor", faucet_id: 102, faucet_name: "cursor", comment_text: "Registry-first identity with application-assigned IDs ensures deterministic behavior across federation nodes.", comment_type: "determinism", created_ymdhis: 20260315232000, updated_ymdhis: 20260315232000 }
-
 lupopedia.headers:
-  lupopedia.version: "4.0.76"
-  lupopedia.schema: "doctrine"
+  header_format_version: 2
+  lupopedia.schema: doctrine
   file_path_from_root: "lupo-docs/doctrine/PROJECT_REGISTRY_DOCTRINE.md"
-  web_path: "http://www.lupopedia.com/doctrine/PROJECT_REGISTRY_DOCTRINE"
-  last_modified_utc: "20260315"
-  system_version: "4.0.76"
+  web_path: "http://www.lupopedia.com/lupopedia/lupo-docs/doctrine/PROJECT_REGISTRY_DOCTRINE.md"
+  last_modified_utc: "20260403113047"
+  when_updated: "20260403113047"
+  federation_node_id: 0
   channel_id: 42
+  thread_id: "doctrine-header-repair"
   actor_id: 102
   actor_name: "cursor"
-  faucet_name: "cursor"
   delegation_chain: "cursor:root"
   artifact_type: "doctrine"
-  artifact_kind: "registry_design"
-  purpose: "Canonical doctrine for Project Registry - deterministic identity, allocation, lifecycle, and governance"
-  mood_rgb: "8B4513"
-  traits: ["canonical", "registry", "deterministic", "identity", "4.0.76"]
-  tags: ["project_registry", "doctrine", "identity", "allocation", "deterministic", "lupopedia"]
-
-lupopedia.session:
-  session_id: "L-LUPO-PROJECT-REGISTRY-DESIGN"
-  session_name: "L-LUPO-PROJECT-REGISTRY-DESIGN"
-  actor_id: 102
-  actor_name: "cursor"
-  faucet_name: "cursor"
-  channel_id: 42
-  channel_name: "Lupopedia Development (general)"
-  federation_node_id: 1
-  paired_actor_id: 1000
-
+  artifact_kind: "reference"
+  purpose: "PROJECT REGISTRY DOCTRINE"
+  status: active
+  tags:
+    - "doctrine"
+    - "header_repair"
 lupopedia.edges:
-  comment: "Snapshot of relationships for Project Registry Doctrine."
   outbound_edges:
-    - { to: "lupo-docs/projects/PROJECTS.md", type: "informs", weight: 1.0 }
-    - { to: "lupo-docs/database/lupopedia/tables/PROJECT_REGISTRY_SCHEMA_DESIGN.md", type: "informs", weight: 0.95 }
-    - { to: "lupo-docs/doctrine/PROJECT_REGISTRY_WORKFLOW.md", type: "complements", weight: 0.9 }
-    - { to: "lupo-docs/doctrine/DATABASE_DOCTRINE.md", type: "extends", weight: 0.9 }
-    - { to: "lupo-docs/doctrine/AGENT_REGISTRY.md", type: "aligns_with", weight: 0.85 }
-    - { to: "lupo-docs/ACTOR_REGISTRATION_CHECKLIST.md", type: "informs", weight: 0.8 }
-  semantic_tags: ["project_registry_doctrine", "deterministic_identity", "allocation_patterns"]
+    - to: "lupo-docs/prd/29_project_structure.md"
+      type: implements
+      weight: 1.0
+      reason: "Doctrine PRD lineage; constitutional audit 20260403"
 
 lupopedia.footer:
-  version: "4.0.76"
-  last_verified: "20260315"
-  last_verified_by: "cursor"
-  orchestrator: "cursor"
+  last_verified: "20260403113047"
+  verified_by:
+    identity_type: actor
+    actor_id: 2
+    name: "lilith"
+  verified_via:
+    type: "audit"
+    script: "fix_doctrine_headers"
   next_action:
-    - "Implement schema design based on this doctrine"
-    - "Create workflow documentation for project lifecycle"
-    - "Update existing documentation to reference project registry"
+    - "Run: python lupo-scripts/apply_doctrine_prd_lineage.py --apply"
 ---
+
+# file: PROJECT_REGISTRY_DOCTRINE — delegation: cursor:root
+
 # file: Project Registry Doctrine — session: L-LUPO-PROJECT-REGISTRY-DESIGN — delegation: cursor:root (faucet: cursor) — web_path: http://www.lupopedia.com/doctrine/PROJECT_REGISTRY_DOCTRINE
 
 # Project Registry Doctrine

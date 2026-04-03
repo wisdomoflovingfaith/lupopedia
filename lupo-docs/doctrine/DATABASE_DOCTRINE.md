@@ -21,6 +21,13 @@ lupopedia.edges:
     - { from: "lupo-docs/database/lupopedia/tables/migrations/livehelp_qa_migration.md", type: "documents" }
   note: "Also referenced by other migration docs (doctrine/database/README.md targets), channel broadcasts, and status/audit reports. Grep: DATABASE_DOCTRINE.md"
 
+lupopedia.edges:
+  outbound_edges:
+    - to: "lupo-docs/prd/00_root_constitutional_system_requirements.md"
+      type: implements
+      weight: 1.0
+      reason: "Doctrine PRD lineage; constitutional audit 20260403"
+
 lupopedia.footer:
   last_verified: "20260315"
   last_verified_by: "cursor"

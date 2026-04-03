@@ -1,39 +1,50 @@
 ---
-lupopedia.init:
-  orchestrator_actor: "any"
-  rule_set_version: "4.0.82+"
-  applies_to: ["audit", "code-gen", "migration", "header-sync", "validators", "all_agents"]
-  enforcement: strict
-
-lupopedia.metadata:
-  comment: "DUAL_CONTEXT_IDENTITY_DOCTRINE — WHOAMI (execution context) + WHOAREYOU (canonical identity) interpretation contract"
-
 lupopedia.headers:
-  actor_id: 1
-  actor_name: "wolfie"
-  delegation_chain: "wolfie:root"
-  lupopedia.version: "4.0.82"
-  lupopedia.schema: "doctrine"
+  header_format_version: 2
+  lupopedia.schema: doctrine
   file_path_from_root: "lupo-docs/doctrine/DUAL_CONTEXT_IDENTITY_DOCTRINE.md"
-  web_path: "http://www.lupopedia.com/lupo-docs/doctrine/DUAL_CONTEXT_IDENTITY_DOCTRINE"
-  last_modified_utc: "20260319"
-  system_version: "4.0.82"
-  rule_name: "DUAL CONTEXT / IDENTITY"
-  rule_type: "interpretation_contract"
+  web_path: "http://www.lupopedia.com/lupopedia/lupo-docs/doctrine/DUAL_CONTEXT_IDENTITY_DOCTRINE.md"
+  last_modified_utc: "20260403113047"
+  when_updated: "20260403113047"
+  federation_node_id: 0
+  channel_id: 42
+  thread_id: "doctrine-header-repair"
+  actor_id: 102
+  actor_name: "cursor"
+  delegation_chain: "cursor:root"
   artifact_type: "doctrine"
-  artifact_kind: "dual_context_identity"
-  purpose: "Define WHOAMI + WHOAREYOU as required interpretation layers and specify separation of execution context vs canonical identity"
-  tags: ["whoami", "whoareyou", "identity", "context", "interpretation_contract", "doctrine", "dual_layer"]
+  artifact_kind: "reference"
+  purpose: "DUAL CONTEXT IDENTITY DOCTRINE"
+  status: active
+  tags:
+    - "doctrine"
+    - "header_repair"
+lupopedia.edges:
+  outbound_edges:
+    - to: "lupo-docs/prd/32_actor_authority_agent_roles.md"
+      type: implements
+      weight: 1.0
+      reason: "Doctrine PRD lineage; constitutional audit 20260403"
+
+    - to: "lupo-docs/prd/26_five_layer_documentation_architecture.md"
+      type: implements
+      weight: 1.0
+      reason: "Doctrine PRD lineage; orphan batch 20260403 (manual category map)"
 
 lupopedia.footer:
-  version: "4.0.82"
-  last_verified: "20260319"
-  last_verified_by: "wolfie"
-  orchestrator: "wolfie"
+  last_verified: "20260403113047"
+  verified_by:
+    identity_type: actor
+    actor_id: 2
+    name: "lilith"
+  verified_via:
+    type: "audit"
+    script: "fix_doctrine_headers"
   next_action:
-    - "Assign validators (HEPHAESTUS) and propagation (HERMES)"
-    - "Update existing validators to check layer compliance"
+    - "Run: python lupo-scripts/apply_doctrine_prd_lineage.py --apply"
 ---
+
+# file: DUAL_CONTEXT_IDENTITY_DOCTRINE — delegation: cursor:root
 
 # file: DUAL CONTEXT / IDENTITY DOCTRINE — WHOAMI + WHOAREYOU — session: L-LUPO-WOLFIE — delegation: wolfie:root — web_path: http://www.lupopedia.com/lupo-docs/doctrine/DUAL_CONTEXT_IDENTITY_DOCTRINE
 

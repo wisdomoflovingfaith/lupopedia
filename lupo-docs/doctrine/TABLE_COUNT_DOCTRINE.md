@@ -1,32 +1,51 @@
 ---
-lupopedia.init:
-  required_reading:
-    - path: "lupo-database/lupopedia/mysql/install/install_new_lupopedia.sql"
-      reason: "Canonical schema; table count is derived from this file"
-    - path: "lupo-docs/TOON_REFERENCE.md"
-      reason: "TOONs are derived from install SQL or live DB"
-  required_context:
-    - "Install SQL is the schema authority. Table count is advisory only (Captain directive 4.0.74)."
-
 lupopedia.headers:
-  lupopedia.version: "4.0.77"
-  lupopedia.schema: "doctrine"
+  header_format_version: 2
+  lupopedia.schema: doctrine
   file_path_from_root: "lupo-docs/doctrine/TABLE_COUNT_DOCTRINE.md"
-  last_modified_utc: "20260316"
-  system_version: "4.0.77"
+  web_path: "http://www.lupopedia.com/lupopedia/lupo-docs/doctrine/TABLE_COUNT_DOCTRINE.md"
+  last_modified_utc: "20260403113047"
+  when_updated: "20260403113047"
+  federation_node_id: 0
   channel_id: 42
+  thread_id: "doctrine-header-repair"
   actor_id: 102
+  actor_name: "cursor"
+  delegation_chain: "cursor:root"
   artifact_type: "doctrine"
   artifact_kind: "reference"
-  purpose: "Canonical table count reference and advisory ceiling doctrine."
+  purpose: "TABLE COUNT DOCTRINE"
+  status: active
+  tags:
+    - "doctrine"
+    - "header_repair"
+lupopedia.edges:
+  outbound_edges:
+    - to: "lupo-docs/prd/00_root_constitutional_system_requirements.md"
+      type: implements
+      weight: 1.0
+      reason: "Doctrine PRD lineage; constitutional audit 20260403"
+
+    - to: "lupo-docs/prd/11_analytics_tracking.md"
+      type: implements
+      weight: 1.0
+      reason: "Doctrine PRD lineage; orphan batch 20260403 (manual category map)"
 
 lupopedia.footer:
-  version: "4.0.77"
-  last_verified: "20260316"
-  last_verified_by: "cursor"
+  last_verified: "20260403113047"
+  verified_by:
+    identity_type: actor
+    actor_id: 2
+    name: "lilith"
+  verified_via:
+    type: "audit"
+    script: "fix_doctrine_headers"
   next_action:
-    - "When adding tables, update install SQL first; regenerate TOONs; update this doc if count reference changes."
+    - "Run: python lupo-scripts/apply_doctrine_prd_lineage.py --apply"
 ---
+
+# file: TABLE_COUNT_DOCTRINE — delegation: cursor:root
+
 # file: TABLE_COUNT_DOCTRINE — canonical table count and ceiling
 
 # Table Count Doctrine (4.0.77)

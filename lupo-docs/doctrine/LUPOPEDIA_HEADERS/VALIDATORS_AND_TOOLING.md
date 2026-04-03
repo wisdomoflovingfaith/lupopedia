@@ -21,6 +21,13 @@ lupopedia.headers:
   when_updated: '20260328240000'
   title: Lupo docs doctrine lupopediaheaders validatorsandtooling
   content_id: 1082067641908298713
+lupopedia.edges:
+  outbound_edges:
+    - to: "lupo-docs/prd/16_lupopedia_headers.md"
+      type: implements
+      weight: 1.0
+      reason: "Doctrine PRD lineage; constitutional audit 20260403"
+
 lupopedia.footer:
   last_verified: 20260328240000
   next_action:

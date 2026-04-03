@@ -1,4 +1,3 @@
-# LUPOPEDIA HEADERS (replaces FLARE)
 ---
 lupopedia.headers:
   lupopedia.version: "4.0.73"
@@ -23,6 +22,11 @@ lupopedia.edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
     - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
+    - to: "lupo-docs/prd/32_actor_authority_agent_roles.md"
+      type: implements
+      weight: 1.0
+      reason: "Doctrine PRD lineage; constitutional audit 20260403"
+
 lupopedia.footer:
   last_verified: "20260228155738"
   last_verified_by: "windsurf"
@@ -34,7 +38,9 @@ lupopedia.footer:
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  lupopedia.edges: []
+  
+
+lupopedia.edges: []
   file_path_from_root: "lupo-docs\doctrine\SUPPORTING_ACTOR_DOCTRINE.md"
   file_hash: "2feda6562cee1a281e2e331ac5d6f1ca188e391ba43bb9451ff46bd97291ef74"
   file_path_from_root: "lupo-docs\doctrine\SUPPORTING_ACTOR_DOCTRINE.md"
@@ -61,7 +67,7 @@ lupopedia.footer:
 ---
 
 ---
-wolfie.headers: {
+lupopedia.headers: {
   file_path_from_root: "lupo-docs/doctrine/SUPPORTING_ACTOR_DOCTRINE.md",
   system_version: "4.0.38",
   channel_id: 42,

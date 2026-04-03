@@ -1,8 +1,7 @@
-# LUPOPEDIA HEADERS (replaces FLARE)
 ---
 lupopedia.headers:
   lupopedia.schema: "documentation"
-  file_path_from_root: "lupo-docs/hierarchy.md"
+  file_path_from_root: "lupo-docs/doctrine/HIERARCHY_DOCTRINE.md"
   version_when_written: "4.0.84"
   last_modified_utc: "20260301"
   channel_id: 42
@@ -20,6 +19,29 @@ lupopedia.edges:
   outbound_edges:
     - { to: "lupo-docs/doctrine/FLARE/FLARE_DOCTRINE.md", type: "implements", weight: 1.0 }
     - { to: "lupopedia-config.php", type: "defines_constant", weight: 0.9 }
+
+    - to: "lupo-docs/prd/26_five_layer_documentation_architecture.md"
+      type: implements
+      weight: 1.0
+      reason: "Doctrine PRD lineage; orphan batch 20260403 (manual category map)"
+
+    - to: "lupo-docs/prd/00_root_constitutional_system_requirements.md"
+      type: implements
+      weight: 1.0
+      reason: "Doctrine PRD lineage; constitutional audit 20260403"
+
+lupopedia.footer:
+  last_verified: "20260403113047"
+  verified_by:
+    identity_type: actor
+    actor_id: 2
+    name: "lilith"
+  verified_via:
+    type: "audit"
+    script: "fix_doctrine_headers"
+  next_action:
+    - "Run: python lupo-scripts/apply_doctrine_prd_lineage.py --apply"
+
 ---
 
 # Lupopedia Content Overwrite Hierarchy

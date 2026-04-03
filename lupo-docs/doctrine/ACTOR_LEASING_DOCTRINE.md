@@ -17,6 +17,11 @@ lupopedia.edges:
     - { to: "ACTOR_TEMPLATE_MODEL.md", type: "references", weight: 1.0 }
     - { to: "ACTOR_INSTANCE_MODEL.md", type: "references", weight: 1.0 }
     - { to: "ACTOR_LEASE_SESSION_MODEL.md", type: "references", weight: 1.0 }
+    - to: "lupo-docs/prd/32_actor_authority_agent_roles.md"
+      type: implements
+      weight: 1.0
+      reason: "Doctrine PRD lineage; constitutional audit 20260403"
+
 lupopedia.footer:
   last_verified: "20260330"
   last_verified_by: "cursor"

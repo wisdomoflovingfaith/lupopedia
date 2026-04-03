@@ -2,7 +2,7 @@
 lupopedia.headers:
   header_format_version: 2
   lupopedia.schema: documentation
-  when_updated: "20260403022300"
+  when_updated: "20260403124239"
   file_path_from_root: "lupo-docs/implementations/README.md"
   web_path: "http://www.lupopedia.com/lupopedia/lupo-docs/implementations/README.md"
   federation_node_id: 0
@@ -24,6 +24,7 @@ Workspaces for **PRD-driven** implementation tracking. Scaffold from **`_templat
 
 | Folder | PRD | Notes |
 |--------|-----|--------|
+| **34_federation_node_semantic_network** | [PRD 34](../prd/34_federation_node_semantic_network.md) | Draft — federation trust, discovery, actor ratings; **no runtime work until PRD approved** |
 | **33_softaculous_certification_4_1_0_gate** | [PRD 33](../prd/33_softaculous_certification_4_1_0_gate.md) | Softaculous / 4.1.0 gate; **`status/`** holds LILITH audit import |
 | 30_channel_usage_patterns | PRD 30 | |
 | 31_implementation_folder_guidelines | PRD 31 | |

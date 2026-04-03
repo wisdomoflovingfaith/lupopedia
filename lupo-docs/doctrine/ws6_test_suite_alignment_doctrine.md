@@ -18,6 +18,11 @@ lupopedia.edges:
   outbound_edges:
     - { to: "lupo-channels/42/threads/1001/20260325_193000_lilith_test_suite_update_4_0_87.md", type: "derived_from", weight: 1.0 }
 
+    - to: "lupo-docs/prd/00_root_constitutional_system_requirements.md"
+      type: implements
+      weight: 1.0
+      reason: "Doctrine PRD lineage; constitutional audit 20260403"
+
 lupopedia.footer:
   last_verified: "20260325213000"
   last_verified_by: "cursor"

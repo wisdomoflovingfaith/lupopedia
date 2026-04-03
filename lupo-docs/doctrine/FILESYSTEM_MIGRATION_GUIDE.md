@@ -19,6 +19,11 @@ lupopedia.edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
     - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
+    - to: "lupo-docs/prd/29_project_structure.md"
+      type: implements
+      weight: 1.0
+      reason: "Doctrine PRD lineage; constitutional audit 20260403"
+
 lupopedia.footer:
   last_verified: "20260312"
   last_verified_by: "cursor"
@@ -28,7 +33,7 @@ lupopedia.footer:
 
 ```yaml
 # FLIP Header (alias: Wolfie Header, CROP Header, FLIPPING Header)
-wolfie.headers: explicit architecture with structured clarity for every file.
+lupopedia.headers: explicit architecture with structured clarity for every file.
 file_path_from_root: lupo-docs/doctrine/FILESYSTEM_MIGRATION_GUIDE.md
 file.last_modified_system_version: "4.0.88"
 file.last_modified_utc: "20260218000000"

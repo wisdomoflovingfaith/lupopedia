@@ -21,6 +21,11 @@ lupopedia.edges:
     - { to: "lupo-database/migrations/20260310_faucet_class.sql", type: "implements", weight: 0.8 }
     - { to: "lupo-database/lupopedia/mysql/install/install_new_lupopedia.sql", type: "implements", weight: 0.8 }
     - { to: "lupo-docs/doctrine/FAUCET_TRACEABILITY_DOCTRINE.md", type: "references", weight: 0.9 }
+    - to: "lupo-docs/prd/32_actor_authority_agent_roles.md"
+      type: implements
+      weight: 1.0
+      reason: "Doctrine PRD lineage; constitutional audit 20260403"
+
 lupopedia.footer:
   last_verified: "20260310"
   last_verified_by: "wolfie"

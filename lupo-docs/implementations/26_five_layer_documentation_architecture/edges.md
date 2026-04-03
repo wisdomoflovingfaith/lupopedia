@@ -2,7 +2,7 @@
 lupopedia.headers:
   header_format_version: 2
   lupopedia.schema: implementation
-  when_updated: "20260402000000"
+  when_updated: "20260403110451"
   file_path_from_root: "lupo-docs/implementations/26_five_layer_documentation_architecture/edges.md"
   web_path: "http://www.lupopedia.com/lupopedia/lupo-docs/implementations/26_five_layer_documentation_architecture/edges.md"
   federation_node_id: 0
@@ -105,6 +105,19 @@ lupopedia.headers:
 ### Potential Conflicts
 - **Legacy Implementations**: Medium risk - 90-day migration window
 - **Schema Changes**: Low risk - Versioned with doc_arch_version
+
+## Outbound Edges — Doctrine (documents)
+
+Doctrine files tied to PRD 26 (five-layer documentation). Full list: [`../29_project_structure/status/doctrine_prd_lineage.json`](../29_project_structure/status/doctrine_prd_lineage.json) (`by_prd["26"]`).
+
+| Target | Type | Weight | Reason |
+|--------|------|--------|--------|
+| [`../../doctrine/5W1H_QUICK_REFERENCE.md`](../../doctrine/5W1H_QUICK_REFERENCE.md) | documents | 1.0 | 5W1H quick reference |
+| [`../../doctrine/DOCUMENTATION_ARCHITECTURE.md`](../../doctrine/DOCUMENTATION_ARCHITECTURE.md) | documents | 1.0 | Documentation architecture |
+| [`../../doctrine/DOCUMENTATION_AS_DATA_DOCTRINE.md`](../../doctrine/DOCUMENTATION_AS_DATA_DOCTRINE.md) | documents | 1.0 | Documentation as data |
+| [`../../doctrine/JSON_SCHEMA_REFERENCE_DOCTRINE.md`](../../doctrine/JSON_SCHEMA_REFERENCE_DOCTRINE.md) | documents | 1.0 | JSON schema reference |
+| [`../../doctrine/TOON_DOCTRINE.md`](../../doctrine/TOON_DOCTRINE.md) | documents | 1.0 | TOON doctrine |
+| [`../../doctrine/ws7_documentation_reconciliation_doctrine.md`](../../doctrine/ws7_documentation_reconciliation_doctrine.md) | documents | 1.0 | WS7 documentation reconciliation |
 
 ---
 *This file maps all relationships and dependencies for the five-layer documentation architecture implementation.*

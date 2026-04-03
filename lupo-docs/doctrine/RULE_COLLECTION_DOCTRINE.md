@@ -19,6 +19,13 @@ lupopedia.headers:
   purpose: "Foundation for all rule sets including TOON files under strict-mode"
   tags: ["wolfie", "rule_collection", "strict_mode", "toon_files", "governance"]
   message_type: "doctrine"
+lupopedia.edges:
+  outbound_edges:
+    - to: "lupo-docs/prd/00_root_constitutional_system_requirements.md"
+      type: implements
+      weight: 1.0
+      reason: "Doctrine PRD lineage; constitutional audit 20260403"
+
 lupopedia.footer:
   version: "4.0.82"
   last_verified: "20260319"

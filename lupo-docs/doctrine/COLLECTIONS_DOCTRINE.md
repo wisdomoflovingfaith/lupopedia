@@ -1,14 +1,50 @@
-# Collections Doctrine (4.0.69)
+---
+lupopedia.headers:
+  header_format_version: 2
+  lupopedia.schema: doctrine
+  file_path_from_root: "lupo-docs/doctrine/COLLECTIONS_DOCTRINE.md"
+  web_path: "http://www.lupopedia.com/lupopedia/lupo-docs/doctrine/COLLECTIONS_DOCTRINE.md"
+  last_modified_utc: "20260403113047"
+  when_updated: "20260403113047"
+  federation_node_id: 0
+  channel_id: 42
+  thread_id: "doctrine-header-repair"
+  actor_id: 102
+  actor_name: "cursor"
+  delegation_chain: "cursor:root"
+  artifact_type: "doctrine"
+  artifact_kind: "reference"
+  purpose: "COLLECTIONS DOCTRINE"
+  status: active
+  tags:
+    - "doctrine"
+    - "header_repair"
+lupopedia.edges:
+  outbound_edges:
+    - to: "lupo-docs/prd/00_root_constitutional_system_requirements.md"
+      type: implements
+      weight: 1.0
+      reason: "Doctrine PRD lineage; constitutional audit 20260403"
 
-Collections are **channel-scoped resource bundles** that group artifacts, internal content, external URLs, and navigation paths for use in Web UI (menus, sidebars, tabbed views). This doctrine defines the Collection → Tab → Entry model and its relation to channels, federation, and navigation.
+    - to: "lupo-docs/prd/26_five_layer_documentation_architecture.md"
+      type: implements
+      weight: 1.0
+      reason: "Doctrine PRD lineage; orphan batch 20260403 (manual category map)"
 
-**Critical distinction:** Collections drive navigation, tabs, URLs, and breadcrumbs through `lupo_collection_tab_paths` but **do not define filesystem directory layout**. File paths are determined by directory doctrine and `file_path_from_root`, not by collection slugs.
+lupopedia.footer:
+  last_verified: "20260403113047"
+  verified_by:
+    identity_type: actor
+    actor_id: 2
+    name: "lilith"
+  verified_via:
+    type: "audit"
+    script: "fix_doctrine_headers"
+  next_action:
+    - "Run: python lupo-scripts/apply_doctrine_prd_lineage.py --apply"
+---
 
-|--------|--------|
-| **Collection** | A resource bundle: a top-level container with optional channel scope and navigation flags. Stored in `lupo_collections`. |
-| **Tab** | A named, grouped view within a collection (e.g. "Specs", "Code", "Links"). Stored in `lupo_collection_tabs`. |
-| **Collection entry** | A single item in a tab: artifact, content, URL, or path. Stored in `lupo_collection_tab_map` with `item_type` and `item_id` (or equivalent for URL/path). |
-| **Actor access** | Which actors can see or manage a collection. Stored in `lupo_actor_collections` (access_level). |
+# file: COLLECTIONS_DOCTRINE — delegation: cursor:root
 
 ---
 

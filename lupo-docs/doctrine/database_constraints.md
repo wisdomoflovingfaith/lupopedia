@@ -19,6 +19,11 @@ lupopedia.edges:
     - { to: "lupo-docs/doctrine/DATABASE_DOCTRINE.md", type: "references", weight: 1.0 }
     - { to: "lupo-docs/doctrine/APPROVED_ARTIFACTS_INDEX.md", type: "references", weight: 1.0 }
 
+    - to: "lupo-docs/prd/00_root_constitutional_system_requirements.md"
+      type: implements
+      weight: 1.0
+      reason: "Doctrine PRD lineage; constitutional audit 20260403"
+
 lupopedia.footer:
   last_verified: "20260326"
   last_verified_by_actor_id: 26

@@ -2,10 +2,10 @@
 lupopedia.headers:
   header_format_version: 2
   lupopedia.schema: documentation
-  when_updated: "20260403025155"
+  when_updated: "20260403140552"
   file_path_from_root: "lupo-docs/versions/4.0.94/edges.md"
   web_path: "http://www.lupopedia.com/lupopedia/lupo-docs/versions/4.0.94/edges.md"
-  last_modified_utc: "20260403025155"
+  last_modified_utc: "20260403140552"
   federation_node_id: 0
   channel_id: 42
   thread_id: "version-4.0.94-edges"
@@ -78,8 +78,36 @@ lupopedia.edges:
       type: references
       weight: 1.0
       reason: "APPROVED PRD 33 documentation + 4.0.94 sync"
+    - to: "lupo-docs/versions/4.0.94/decisions/20260403_140552_DECISION_APPROVED_doctrine_audit_mobile_separation_docs.md"
+      type: references
+      weight: 1.0
+      reason: "APPROVED doctrine audit + mobile/workflow documentation (Cursor + LILITH thread)"
+    - to: "lupo-docs/doctrine/MOBILE_SEPARATION_DOCTRINE.md"
+      type: references
+      weight: 1.0
+      reason: "Two-UI, admin exception, Eye split"
+    - to: "lupo-docs/doctrine/WOLFIE_WORKFLOW_DOCTRINE.md"
+      type: references
+      weight: 1.0
+      reason: "Mobile-first consumer; desktop-first admin"
+    - to: "lupo-docs/prd/35_mobile_native_app_separation.md"
+      type: references
+      weight: 0.95
+      reason: "Draft PRD — native operator app"
+    - to: "lupo-docs/implementations/29_project_structure/status/version_ghosts_report.json"
+      type: references
+      weight: 1.0
+      reason: "Scanner output — critical ghost backlog"
+    - to: "lupo-scripts/audit_doctrine_prd_edges.py"
+      type: references
+      weight: 0.95
+      reason: "PRD lineage edge audit"
+    - to: "lupo-scripts/find_version_ghosts.py"
+      type: references
+      weight: 0.95
+      reason: "Version ghost scanner"
 lupopedia.footer:
-  last_verified: "20260403022543"
+  last_verified: "20260403140552"
   verified_by:
     identity_type: "actor"
     actor_id: 102
@@ -90,6 +118,13 @@ lupopedia.footer:
 
 ## Documentation edges
 
+- **Decision (this version):** [decisions/20260403_140552_DECISION_APPROVED_doctrine_audit_mobile_separation_docs.md](decisions/20260403_140552_DECISION_APPROVED_doctrine_audit_mobile_separation_docs.md) — APPROVED doctrine audit + mobile/workflow docs (5W1H).
+- **Question / Answer:** [questions/20260403_140553_QUESTION_version_ghost_cleanup_policy.md](questions/20260403_140553_QUESTION_version_ghost_cleanup_policy.md) → [answers/20260403_140554_ANSWER_version_ghost_cleanup_manual_review.md](answers/20260403_140554_ANSWER_version_ghost_cleanup_manual_review.md) — ghost cleanup policy (manual per file).
+- **Comment:** [comments/20260403_140555_COMMENT_cursor_doctrine_audit_version_sync.md](comments/20260403_140555_COMMENT_cursor_doctrine_audit_version_sync.md) — receipt for this version-folder sync pass.
+- **Status:** [lupo-docs/implementations/29_project_structure/status/version_ghosts_report.json](../../implementations/29_project_structure/status/version_ghosts_report.json) — **34** critical files at report generation (scanner: `find_version_ghosts.py`).
+- **Doctrine:** [lupo-docs/doctrine/MOBILE_SEPARATION_DOCTRINE.md](../../doctrine/MOBILE_SEPARATION_DOCTRINE.md) — desktop vs mobile UI split.
+- **Doctrine:** [lupo-docs/doctrine/WOLFIE_WORKFLOW_DOCTRINE.md](../../doctrine/WOLFIE_WORKFLOW_DOCTRINE.md) — build order for consumer vs admin.
+- **PRD:** [lupo-docs/prd/35_mobile_native_app_separation.md](../../prd/35_mobile_native_app_separation.md) — draft — native operator app (complements mobile web).
 - **PRD:** [lupo-docs/prd/17_decisions_format.md](../../prd/17_decisions_format.md) — thread filename pattern (authoritative).
 - **PRD:** [lupo-docs/prd/29_project_structure.md](../../prd/29_project_structure.md) — channel filesystem vs archive.
 - **PRD:** [lupo-docs/prd/02_channels_discussions.md](../../prd/02_channels_discussions.md) — channel coordination semantics.
@@ -165,5 +200,7 @@ lupopedia.footer:
 | `questions/20260403_022544_…` | `answers/20260403_022545_…` | PRD §12 traceability Q&A |
 | `decisions/20260403_025155_…` | PRD 31, `WHAT_TO_WORK_ON_NEXT_SESSION.md` | LILITH final audit + handoff |
 | `questions/20260403_025156_…` | `answers/20260403_025157_…` | PRD 31 CHANGELOG scope Q&A |
+| `decisions/20260403_140552_…` | `MOBILE_SEPARATION_DOCTRINE.md`, `WOLFIE_WORKFLOW_DOCTRINE.md`, PRD 35, PRD 33 (where linked) | Doctrine audit + mobile/workflow APPROVED |
+| `questions/20260403_140553_…` | `answers/20260403_140554_…`, `version_ghosts_report.json` | Ghost cleanup policy Q&A |
 
 Update this file whenever a new thread file or PRD section creates a durable cross-link.

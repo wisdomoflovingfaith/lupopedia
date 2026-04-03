@@ -31,6 +31,11 @@ lupopedia.edges:
       type: references
       weight: 1.0
       reason: "Constitutional anchor"
+    - to: "lupo-docs/prd/26_five_layer_documentation_architecture.md"
+      type: implements
+      weight: 1.0
+      reason: "Doctrine PRD lineage; constitutional audit 20260403"
+
 lupopedia.footer:
   last_verified: "20260402020000"
   verified_by:

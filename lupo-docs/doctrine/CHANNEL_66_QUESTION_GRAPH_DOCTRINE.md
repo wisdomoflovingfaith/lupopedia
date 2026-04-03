@@ -19,6 +19,11 @@ lupopedia.edges:
     - { to: "lupo-channels/66/THREAD_INDEX.md", type: "governs", weight: 1.0, reason: "Channel 66 is defined and governed by this doctrine" }
     - { to: "lupo-docs/doctrine/", type: "parent", weight: 1.0, reason: "Part of root doctrine system" }
     - { to: "plan.md", type: "references", weight: 0.95, reason: "plan.md references Channel 66 as active core system" }
+    - to: "lupo-docs/prd/30_channel_usage_patterns.md"
+      type: implements
+      weight: 1.0
+      reason: "Doctrine PRD lineage; constitutional audit 20260403"
+
 lupopedia.footer:
   latest_review: "20260321"
   reviewed_by: "wolfie"

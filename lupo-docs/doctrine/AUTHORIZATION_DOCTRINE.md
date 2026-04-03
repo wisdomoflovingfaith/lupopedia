@@ -11,6 +11,13 @@ lupopedia.headers:
   artifact_type: "doctrine"
   artifact_kind: "authorization"
   purpose: "Pre-action authorization: required traits/roles per action; TraitEnforcer; no DB triggers."
+lupopedia.edges:
+  outbound_edges:
+    - to: "lupo-docs/prd/32_actor_authority_agent_roles.md"
+      type: implements
+      weight: 1.0
+      reason: "Doctrine PRD lineage; constitutional audit 20260403"
+
 lupopedia.footer:
   last_verified: "20260313"
   last_verified_by: "windsurf"

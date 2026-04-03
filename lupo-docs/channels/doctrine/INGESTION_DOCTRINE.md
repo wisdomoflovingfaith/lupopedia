@@ -222,8 +222,7 @@ installation:
 - every public-facing URL,
 - and every semantic placement implied by the original system.
 
-This dataset covers more than 144,000 historical installations and
-provides a complete, lossless map of Crafty Syntax's global footprint.
+This dataset reflects a **large historical footprint** (often stated as **1,000,000+** lifetime installs and **~144,000** active/reporting-era nodes — confirm in `lupo-docs/doctrine/SILENT_HARVEST_DOCTRINE.md` before external use) and, for a **given imported database**, provides a **high-fidelity** map of that install’s Crafty-era footprint.
 
 Because of this:
 

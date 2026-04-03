@@ -20,6 +20,11 @@ lupopedia.edges:
     - { to: "lupo-database/lupopedia/mysql/install/install_new_lupopedia.sql", type: "references", weight: 0.95, reason: "Schema authority for DB side of round-trip" }
     - { to: "lupo-scripts/generate_headers_from_db.py", type: "references", weight: 1.0, reason: "Implementation tool for DB → HEADERS projection" }
     - { to: "lupo-docs/doctrine/", type: "parent", weight: 1.0, reason: "Part of root doctrine system" }
+    - to: "lupo-docs/prd/00_root_constitutional_system_requirements.md"
+      type: implements
+      weight: 1.0
+      reason: "Doctrine PRD lineage; constitutional audit 20260403"
+
 lupopedia.footer:
   approved_for_version: "4.1.0"
   approved_for_version_utc: "20260327103238"

@@ -31,6 +31,11 @@ lupopedia.edges:
       type: references
       weight: 1.0
       reason: Root rules index
+    - to: "lupo-docs/prd/00_root_constitutional_system_requirements.md"
+      type: implements
+      weight: 1.0
+      reason: "Doctrine PRD lineage; constitutional audit 20260403"
+
 lupopedia.footer:
   version: "4.0.89"
   last_verified: "20260328130000"

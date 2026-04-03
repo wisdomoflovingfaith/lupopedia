@@ -21,6 +21,11 @@ lupopedia.edges:
     - { to: "lupo-rules/root/", type: "defines", weight: 1.0, reason: "Defines canonical rule system for all facets" }
     - { to: "lupo-docs/doctrine/MULTI_AGENT_COORDINATION_DOCTRINE.md", type: "references", weight: 0.9, reason: "References multi-agent coordination principles" }
     - { to: "AGENTS.md", type: "references", weight: 0.8, reason: "References agent registry and coordination" }
+    - to: "lupo-docs/prd/32_actor_authority_agent_roles.md"
+      type: implements
+      weight: 1.0
+      reason: "Actor and facet authority; PRD 32 lineage (manual orphan batch 20260403)"
+
   semantic_tags: ["actor_facet_separation", "doctrine", "system_architecture"]
 
 lupopedia.see:

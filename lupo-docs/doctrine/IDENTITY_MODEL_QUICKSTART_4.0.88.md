@@ -1,23 +1,46 @@
 ---
-# 🚨 LILITH ARCHITECTURE UPDATE: AGENT → ACTOR → AUTH USER (LEASING, PERMISSION-GATED)
+lupopedia.headers:
+  header_format_version: 2
+  lupopedia.schema: doctrine
+  file_path_from_root: "lupo-docs/doctrine/IDENTITY_MODEL_QUICKSTART_4.0.88.md"
+  web_path: "http://www.lupopedia.com/lupopedia/lupo-docs/doctrine/IDENTITY_MODEL_QUICKSTART_4.0.88.md"
+  last_modified_utc: "20260403113047"
+  when_updated: "20260403113047"
+  federation_node_id: 0
+  channel_id: 42
+  thread_id: "doctrine-header-repair"
+  actor_id: 102
+  actor_name: "cursor"
+  delegation_chain: "cursor:root"
+  artifact_type: "doctrine"
+  artifact_kind: "reference"
+  purpose: "IDENTITY MODEL QUICKSTART 4.0.88"
+  status: active
+  tags:
+    - "doctrine"
+    - "header_repair"
+lupopedia.edges:
+  outbound_edges:
+    - to: "lupo-docs/prd/32_actor_authority_agent_roles.md"
+      type: implements
+      weight: 1.0
+      reason: "Doctrine PRD lineage; constitutional audit 20260403"
 
-## Quickstart: New Identity Model (4.0.93+)
-- Agents are autonomous AI entities (not tied to actors or users)
-- Actors are hybrid shells instantiated from agents, department-scoped
-- Auth users lease actors temporarily, subject to permission rule
-- Permission rule: Only creator, root, or department-matched users may lease an actor
-- All operational actions are session-leased and auditable
-
-## Onboarding Flow
-1. Agent (template) is defined
-2. Actor instance is created from agent
-3. Department assigns actor to pool
-4. Auth user requests lease; permission rule is checked
-5. Lease session is created if permitted
-6. Lease session controls operational identity, permissions, and audit
-7. Lease ends; actor becomes available for next user
-
+lupopedia.footer:
+  last_verified: "20260403113047"
+  verified_by:
+    identity_type: actor
+    actor_id: 2
+    name: "lilith"
+  verified_via:
+    type: "audit"
+    script: "fix_doctrine_headers"
+  next_action:
+    - "Run: python lupo-scripts/apply_doctrine_prd_lineage.py --apply"
 ---
+
+# file: IDENTITY_MODEL_QUICKSTART_4.0.88 — delegation: cursor:root
+
 lupopedia.headers:
   lupopedia.schema: quickstart_guide
   file_path_from_root: "lupo-docs/doctrine/IDENTITY_MODEL_QUICKSTART_4.0.88.md"
@@ -46,6 +69,13 @@ lupopedia.edges:
     - { to: "lupo-docs/database/lupopedia/tables/active/lupo_actors.md", type: "references", weight: 0.9 }
     - { to: "lupo-docs/database/lupopedia/tables/active/lupo_actor_channel_roles.md", type: "references", weight: 0.9 }
     - { to: "lupo-docs/database/lupopedia/tables/active/lupo_departments.md", type: "references", weight: 0.9 }
+
+lupopedia.edges:
+  outbound_edges:
+    - to: "lupo-docs/prd/32_actor_authority_agent_roles.md"
+      type: implements
+      weight: 1.0
+      reason: "Doctrine PRD lineage; constitutional audit 20260403"
 
 lupopedia.footer:
   version: "4.0.88"

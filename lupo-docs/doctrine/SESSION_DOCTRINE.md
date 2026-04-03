@@ -1,4 +1,3 @@
-# file: Lupopedia Session Doctrine — session: L-LUPO-ANTIGRAVITY — delegation: antigravity:cursor:captain  — web_path: http://www.lupopedia.com/docs/doctrine/SESSION_DOCTRINE
 ---
 lupopedia.headers:
   lupopedia.version: "4.0.73"
@@ -24,6 +23,11 @@ lupopedia.edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
     - { to: "lupo-docs/lupopedia_whoami_readme.md", type: "references", weight: 0.9 }
     - { to: "lupo-docs/doctrine/", type: "references", weight: 0.8 }
+
+    - to: "lupo-docs/prd/00_root_constitutional_system_requirements.md"
+      type: implements
+      weight: 1.0
+      reason: "Doctrine PRD lineage; constitutional audit 20260403"
 
 lupopedia.footer:
   version: "4.0.64"

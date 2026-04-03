@@ -1,74 +1,3 @@
-| Field | Type | Required | Description |
-|--------|------|----------|-------------|
-| `lupopedia.schema` | String | Yes | Canonical schema token (see taxonomy reference and root doctrine) |
-| `file_path_from_root` | String | Yes | **Primary filesystem locator** — repo-relative path (required in the file; stored as metadata in DB, not a “presentation-only” optional key) |
-| `web_path` | String | Yes | Public or canonical URL; rules depend on `federation_node_id` |
-| `federation_node_id` | Integer | Yes | `0` = core, `1` = current install, `2+` = external research |
-| `when_updated` | String (quoted) | Yes | UTC `YYYYMMDDHHIISS` — logical content update time |
-| `last_modified_utc` | String (quoted) | Yes | UTC `YYYYMMDDHHIISS` — last file write / regeneration |
-| `channel_id` | Integer | Yes | Channel ID (e.g. `42`). Indicates the discussion channel where the artifact was coordinated. |
-| `thread_id` | String | Yes | **Lowercase, hyphens** (and digits); e.g. `headers-format-spec`. Identifies the specific discussion thread. Not the same as optional `lupopedia.routing` legacy `thread_id` (see [OPTIONAL_BLOCKS.md](./OPTIONAL_BLOCKS.md)) |
-| `context_id` | Integer | Optional | Context ID in `lupo-contexts/` for finalized knowledge. Used to link the artifact to its canonical context. |
-| `actor_id` | Integer | Yes | Actor ID from registry |
-| `actor_name` | String | Yes | Human-readable actor name |
-| `delegation_chain` | String | Yes | e.g. `wolfie:root` |
-| `artifact_type` | String | Yes | Must pair with `lupopedia.schema` per cross-field rules (see **TAXONOMY_REFERENCE.md**) |
-| `artifact_kind` | String | Yes | Same |
-| `purpose` | String | Yes | One-line purpose |
-| `tags` | List | Yes | Non-empty list of strings |
-### Optional / linkage fields
-
-#### `context_id` (optional — context linkage)
-
-**Type:** integer (BIGINT)
-**Required for authoring:** No
-**When to use:** When an artifact has been finalized and moved to a formal context in `lupo-contexts/`.
-
-**Semantics:**
-- Links an artifact to its finalized context in `lupo-contexts/`
-- Complements `channel_id` and `thread_id` (discussion location)
-- Once assigned, the context becomes the source of truth for finalized knowledge
-
-**Lifecycle:**
-1. **Discussion phase**: `channel_id` and `thread_id` present
-2. **Finalization**: `context_id` added, linking to formal context file
-3. **Both can coexist**: Discussion thread remains for historical reference
-
-```yaml
-# During discussion
-lupopedia.headers:
-  channel_id: 42
-  thread_id: "version-4.0.93-decisions"
-  # context_id not present
-
-# After finalization
-lupopedia.headers:
-  channel_id: 42
-  thread_id: "version-4.0.93-decisions"
-  context_id: 1001
-```
-
-### Channel vs Thread vs Context
-
-| Field | Purpose | Required | Example |
-|-------|---------|----------|---------|
-| `channel_id` | Discussion channel location | Yes | 42 |
-| `thread_id` | Specific discussion thread | Yes | "version-4.0.93-decisions" |
-| `context_id` | Finalized context location | No | 1001 |
-
-**Relationship:**
-- `channel_id` + `thread_id` = where discussion happened
-- `context_id` = where finalized knowledge lives
-- Both can be present (discussion history + finalized truth)
-#### `content_id` (optional — database linkage, not “presentation”)
-
-**Type:** integer (BIGINT)
-**Required for authoring:** No — do not hand-assign for normal edits.
-
-**After successful import:** `python lupo-scripts/import_content.py <path.md>` upserts **`lupo_contents`**, then **`lib/header_db_sync.sync_header_artifact_to_db`** writes header/footer keys into **`lupo_metadata`** (`class_name=lupopedia_header_sync`) and **`lupopedia.edges`** into **`lupo_edges`**. Use **`--write-back`** to insert or refresh **`lupopedia.headers.content_id`** in the markdown file from the computed row. **Never** hand-assign `content_id` to match **`prd_id`**, **`actor_id`**, or other IDs — they are different namespaces.
-
-**Edges vs `context_id`:** Cross-artifact relationships should use **`lupopedia.edges`** (repo-relative `to:` paths, no leading slash). Optional **`context_id`** (18-digit form where used) remains for legacy **`lupo-contexts/`** linkage only; it does not replace the edge graph.
-
 ---
 lupopedia.headers:
   when_updated: "20260328240000"
@@ -109,6 +38,11 @@ lupopedia.edges:
       type: references
       weight: 1.0
       reason: PHP validator implementation
+    - to: "lupo-docs/prd/16_lupopedia_headers.md"
+      type: implements
+      weight: 1.0
+      reason: "Doctrine PRD lineage; constitutional audit 20260403"
+
 lupopedia.footer:
   last_verified: "20260328240000"
   verified_by:

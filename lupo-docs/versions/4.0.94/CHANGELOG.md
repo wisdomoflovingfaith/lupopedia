@@ -1,3 +1,26 @@
+# [2026-04-03] Doctrine audit tooling, version ghosts, mobile / workflow doctrines (Cursor + LILITH thread)
+
+- **WHO / WHERE / WHEN:** Cursor (`actor_id` **102**), LILITH audit framing (`actor_id` **2**), orchestrator WOLFIE (`actor_id` **1**); **`lupo-docs/doctrine/`**, **`lupo-docs/prd/`**, **`AGENTS.md`**, **`lupo-docs/LESSONS_LEARNED_FROM_THE_WILD_WEST.md`**, **`lupo-docs/versions/4.0.94/`**; documentation batch UTC **`20260403140552`** (real UTC via `python lupo-bin/tick.py`).
+- **WHAT (thread-verified only):**
+  - **`python lupo-scripts/audit_doctrine_prd_edges.py`** — **189** files under `lupo-docs/doctrine/` with **`lupopedia.edges`** including PRD lineage (**0** missing).
+  - **`lupo-docs/implementations/29_project_structure/status/version_ghosts_report.json`** — **34** files with **critical** ghost findings (scanner: **`lupo-scripts/find_version_ghosts.py`**).
+  - **Repository scripts (existence only — no verified batch counts in this thread):** `audit_doctrine_prd_edges.py`, `find_version_ghosts.py`, `fix_doctrine_headers.py`, `apply_doctrine_prd_lineage.py`, `convert_wolfie_to_lupo.py` under **`lupo-scripts/`**.
+  - **Documentation written or materially updated in this thread:** **`MOBILE_SEPARATION_DOCTRINE.md`** (Two-UI, admin desktop-first exception, Eye / PRD 28 split); **`WOLFIE_WORKFLOW_DOCTRINE.md`** (consumer mobile-first / admin desktop-first); **`lupo-docs/prd/35_mobile_native_app_separation.md`** (draft); **`lupo-docs/prd/33_softaculous_certification_4_1_0_gate.md`** (§7.4 mobile checklist + edges, where edited in-repo); **`AGENTS.md`** (mobile, Two-UI, workflow, Eye, hand-coding policy); **`lupo-docs/LESSONS_LEARNED_FROM_THE_WILD_WEST.md`** (hand-coding doctrine, UI-framework note).
+  - **Version folder:** **`CHANGELOG.md`** (this entry); **`PLAN.md`** Phase **G**; **`TODO.md`** (ghost backlog + completed coordination lines); **`edges.md`**; **`README.md`** stamps; **`decisions/20260403_140552_DECISION_APPROVED_doctrine_audit_mobile_separation_docs.md`**; **`questions/20260403_140553_QUESTION_version_ghost_cleanup_policy.md`**; **`answers/20260403_140554_ANSWER_version_ghost_cleanup_manual_review.md`**; **`THREAD_INDEX.md`** updates in **`decisions/`** / **`questions/`** / **`answers/`**.
+- **WHY:** Record PRD-lineage completeness and ghost backlog without inventing remediation counts; lock mobile / workflow guidance for IDE agents.
+- **WHY NOT in this entry:** No claim that **PRD 34** was created here (draft may exist elsewhere); no claim for **Stoned Wolfie** archive paths or **SILENT_HARVEST** / **TWO_LAYER_SECURITY** / **REVERSE_ENGINEERING** / **ADVERSARIAL_TEST_IDENTITY** file creation dates unless a thread diff proves it — cite those only in their own file headers.
+- **Artifacts:** `decisions/20260403_140552_DECISION_APPROVED_doctrine_audit_mobile_separation_docs.md`, `questions/20260403_140553_QUESTION_version_ghost_cleanup_policy.md`, `answers/20260403_140554_ANSWER_version_ghost_cleanup_manual_review.md`, `comments/20260403_140555_COMMENT_cursor_doctrine_audit_version_sync.md`.
+
+# [2026-04-03] DynAPI doctrine — approved in-tree library + IDE guidance (Cursor thread)
+
+- **WHO / WHERE / WHEN:** Cursor (`actor_id` **102**); **`lupo-docs/doctrine/DYNAPI_DOCTRINE.md`**; file header **`last_modified_utc` / `when_updated` → `20260403031423`** (real UTC via `python lupo-bin/tick.py`); **`lupopedia.footer.last_verified` → `20260402`** (LILITH audit date, 8-digit form per universal validator).
+- **WHAT (this thread only — verified):**
+  - **New doctrine** — **`DYNAPI_DOCTRINE.md`**: DynAPI (Dan Steinman / Bob Clary) as **approved in-tree** DHTML helper; **IDE** must-not / must-do; compact API reference; **WOLFIE Eyes** traceability via **`lupo-docs/prd/28_semantic_monitoring_widget.md`**, **`lupo-includes/js/crafty_syntax_eyes.js`**, canonical **`lupo-includes/js/dynlayer.js`**; **`lupopedia.edges`** include **PRD 33** (Softaculous / gate — §8 in-tree libraries), PRD 28 path, and code paths aligned to files that exist in-repo.
+  - **Tooling:** `python lupo-scripts/validate_lupopedia_headers_universal.py lupo-docs/doctrine/DYNAPI_DOCTRINE.md` — exit **0** (optional INFO: no `content_id`).
+- **WHY:** Single canonical doc so IDE agents stop “replace DynAPI” churn; matches **PRD 33** approved-library posture and **DynAPI** usage already loaded from **`lupo-includes/ui/ui-loader.php`**.
+- **WHY NOT in this entry:** No **PRD 16/26/30/31** text edits, **`validate_implementation.py`** / validator logic changes, **PK** constitutional edits, **install SQL**, **`decisions/`** / **`questions/`** / **`edges.md`** / **`PLAN.md`** / **`TODO.md`** updates in this thread — **not** claimed here.
+- **Artifacts:** `lupo-docs/doctrine/DYNAPI_DOCTRINE.md` only.
+
 # [2026-04-03] PRD 31 — LILITH final audit merged + 4.0.94 version sync (Cursor thread)
 
 - **WHO / WHERE / WHEN:** Cursor (`actor_id` **102**); **`lupo-docs/prd/31_implementation_folder_guidelines.md`**, **`lupo-docs/versions/4.0.94/`**; PRD 31 doc stamps UTC **`20260403024822`**; version-folder sync UTC **`20260403025155`** (thread filenames **`20260403_025155`** … **`20260403_025158`**).

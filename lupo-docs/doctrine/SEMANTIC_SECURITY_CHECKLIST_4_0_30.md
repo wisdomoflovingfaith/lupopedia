@@ -1,4 +1,3 @@
-# LUPOPEDIA HEADERS (replaces FLARE)
 ---
 lupopedia.headers:
   lupopedia.version: "4.0.73"
@@ -23,6 +22,11 @@ lupopedia.edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
     - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
+    - to: "lupo-docs/prd/00_root_constitutional_system_requirements.md"
+      type: implements
+      weight: 1.0
+      reason: "Doctrine PRD lineage; constitutional audit 20260403"
+
 lupopedia.footer:
   last_verified: "20260228155738"
   last_verified_by: "windsurf"
@@ -34,7 +38,9 @@ lupopedia.footer:
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  lupopedia.edges: []
+  
+
+lupopedia.edges: []
   file_path_from_root: "lupo-docs\doctrine\SEMANTIC_SECURITY_CHECKLIST_4_0_30.md"
   file_hash: "adc63878ac6e64e907e1b56c5de65ef4965933cca6793263588cf4392b75a9ac"
   file_path_from_root: "lupo-docs\doctrine\SEMANTIC_SECURITY_CHECKLIST_4_0_30.md"
@@ -63,7 +69,7 @@ lupopedia.footer:
 
 ---
 # FLIP Header (alias: Wolfie Header, CROP Header)
-wolfie.headers: explicit architecture with structured clarity for every file.
+lupopedia.headers: explicit architecture with structured clarity for every file.
 file_path_from_root: lupo-docs/doctrine/SEMANTIC_SECURITY_CHECKLIST_4_0_30.md
 file.last_modified_system_version: "4.0.31"
 file.last_modified_utc: "20260222215200"
@@ -136,6 +142,8 @@ This checklist provides comprehensive validation procedures for the semantic sec
 - [x] Data seeding completed
 
 ## Actor 420 Bypass Prevention Validation
+
+**Naming note:** Checklist items below refer to **validator pattern names** and reserved **test identity** keys (e.g. `stoned_wolfie` in code), not a product persona. See `lupo-docs/doctrine/ADVERSARIAL_TEST_IDENTITY_DOCTRINE.md`.
 
 ### **Pattern Detection**
 - [x] stoned_wolfie pattern detected and blocked

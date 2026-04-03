@@ -10,6 +10,13 @@ lupopedia.headers:
   artifact_kind: "documentation"
   purpose: "Implementation planning must use dependency ordering, not time estimates."
 
+lupopedia.edges:
+  outbound_edges:
+    - to: "lupo-docs/prd/00_root_constitutional_system_requirements.md"
+      type: implements
+      weight: 1.0
+      reason: "Doctrine PRD lineage; constitutional audit 20260403"
+
 lupopedia.footer:
   version: "4.0.75"
   last_verified: "20260315"

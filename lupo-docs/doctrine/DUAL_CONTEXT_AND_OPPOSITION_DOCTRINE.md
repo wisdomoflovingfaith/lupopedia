@@ -18,6 +18,13 @@ lupopedia.headers:
   artifact_kind: "interpretation_extension"
   purpose: "Define three-part interpretation model with identity, context, and opposition fields"
   tags: ["wolfie", "doctrine", "interpretation", "whoareyou", "whoami", "whoopposesyou", "adversarial_lens"]
+lupopedia.edges:
+  outbound_edges:
+    - to: "lupo-docs/prd/00_root_constitutional_system_requirements.md"
+      type: implements
+      weight: 1.0
+      reason: "Doctrine PRD lineage; constitutional audit 20260403"
+
 lupopedia.footer:
   version: "4.0.82"
   last_verified: "20260319"

@@ -8,6 +8,13 @@ lupopedia.headers:
   channel_id: 42
   actor_id: 102
   purpose: "Full specification for safe database migration execution; validation, logging, and wrapper requirements."
+lupopedia.edges:
+  outbound_edges:
+    - to: "lupo-docs/prd/33_softaculous_certification_4_1_0_gate.md"
+      type: implements
+      weight: 1.0
+      reason: "Doctrine PRD lineage; constitutional audit 20260403"
+
 lupopedia.footer:
   version: "4.0.75"
   last_verified: "20260315"

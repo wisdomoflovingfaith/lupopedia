@@ -1,265 +1,108 @@
-# FLARE Header (aliases: Wolfie, FLIP, FLP, FLPH, CROP)
-
 ---
 lupopedia.headers:
-  lupopedia.schema: "documentation"
-  lupopedia.edges: []
-  file_path_from_root: "DIRECTORY_STRUCTURE_DOCTRINE.md"
-  version_when_written: "4.0.84"
-  file_hash: "82356a827edfa5e2ce4b07c4e2b05c7aaeb7e8c4a370987cbf772bd22291bcb0"
-  file_path_from_root: "DIRECTORY_STRUCTURE_DOCTRINE.md"
-  file_hash: "d1ca77df3033aa8140004b9f84eeafdcb08a22fc9c7261911dd50b31c26d1bcf"
-  last_updated_utc: "20260228"
-  channel_id: 1
-  actor_id: 1002
-  delegation_chain: null
-  artifact_type: "guide"
-  artifact_kind: "documentation"
-  purpose: "Documentation for DIRECTORY_STRUCTURE_DOCTRINE.md"
-  mood_rgb: "4169E1"
-  traits: ["flare", "indexed", "v4.0.50"]
-  tags: ["directory_structure_doctrinemd"]
-  lupo_agent: "windsurf"
-
-  needs_review: ["delegation_chain"]
-  last_updated_utc: "20260228"
+  header_format_version: 2
+  lupopedia.schema: doctrine
+  file_path_from_root: "lupo-docs/doctrine/DIRECTORY_STRUCTURE_DOCTRINE.md"
+  web_path: "http://www.lupopedia.com/lupopedia/lupo-docs/doctrine/DIRECTORY_STRUCTURE_DOCTRINE.md"
+  last_modified_utc: "20260403114427"
+  when_updated: "20260403114427"
+  version_when_written: "4.0.94"
+  federation_node_id: 0
+  channel_id: 42
+  thread_id: "doctrine-directory-structure"
+  actor_id: 102
+  actor_name: "cursor"
+  delegation_chain: "cursor:root"
+  artifact_type: doctrine
+  artifact_kind: directory_structure
+  purpose: "Canonical 4.0.x directory and repo layout doctrine; aligns with PRD 29 and displaces obsolete 3.0.x descriptions"
+  status: active
+  traits:
+    - canonical
+    - v4.0.94
+    - project_structure
+  tags:
+    - doctrine
+    - directories
+    - lupo_prefix
+lupopedia.edges:
+  outbound_edges:
+    - to: "lupo-docs/prd/29_project_structure.md"
+      type: implements
+      weight: 1.0
+      reason: "Authoritative directory table and channel filesystem strategy"
+    - to: "lupo-docs/prd/26_five_layer_documentation_architecture.md"
+      type: references
+      weight: 0.95
+      reason: "Documentation layers (doctrine, PRD, implementations)"
+    - to: "lupo-docs/prd/31_implementation_folder_guidelines.md"
+      type: references
+      weight: 0.9
+      reason: "Implementation folder lifecycle and edges"
+    - to: "lupo-docs/versions/3.0.x/doctrine/DIRECTORY_STRUCTURE_DOCTRINE.md"
+      type: references
+      weight: 0.5
+      reason: "Archived 3.0.x snapshot for historical comparison only"
 lupopedia.footer:
-  last_verified: "20260228"
-  last_verified_by: "windsurf"
-    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use lupopedia.headers"]
+  last_verified: "20260403114427"
+  verified_by:
+    identity_type: actor
+    actor_id: 2
+    name: "lilith"
+  verified_via:
+    type: audit
+    script: "find_version_ghosts / DIRECTORY_STRUCTURE exorcism"
+  next_action:
+    - "Re-run python lupo-scripts/find_version_ghosts.py --require-zero after other doctrine cleanups"
 ---
 
----
-wolfie.headers: explicit architecture with structured clarity for every file.
-file.last_modified_system_version: 3.0.0
-file.channel: doctrine
----
+# file: DIRECTORY_STRUCTURE_DOCTRINE — delegation: cursor:root — web_path: http://www.lupopedia.com/lupopedia/lupo-docs/doctrine/DIRECTORY_STRUCTURE_DOCTRINE.md
 
-# DIRECTORY_STRUCTURE_DOCTRINE.md
-Lupopedia Directory Structure Doctrine (Post-Realignment)
-System Version: 3.0.0
-file.channel: doctrine
+# Directory structure doctrine (4.0.x)
 
-Purpose
-This doctrine defines the canonical directory structure of the Lupopedia OS following the structural realignment in commit 40eecfc.
-It explains the intent behind each directory, the philosophy guiding its organization, and the rules for future contributors when adding, moving, or removing files.
+## Purpose
 
-The directory tree is not a filesystem -- it is a semantic map of the OS.
+This doctrine states **where things live** in the Lupopedia 4.0.x repository. It must agree with **[PRD 29](../prd/29_project_structure.md)** (authoritative directory table). If this file and PRD 29 disagree, **PRD 29 wins** until this doctrine is updated.
 
-1. Foundational Principles
-1.1 Stewardship over Storage
-Directories exist to preserve meaning, not to store files.
-Every directory must reflect a conceptual boundary in the system.
+**System version:** 4.0.x (see `GLOBAL_CURRENT_LUPOPEDIA_VERSION` in `lupo-config/global_atoms.yaml`). Do not describe the tree as "3.0.x".
 
-1.2 Doctrine Before Implementation
-The structure is shaped by:
+## Core rules
 
-- emotional geometry
-- schema federation
-- pattern ethics
-- kapakai awareness
-- legacy preservation
-- Crafty Syntax integration
+1. **Prefix discipline:** Functional top-level directories use the `lupo-` prefix (see PRD 29).
+2. **Documentation lives under `lupo-docs/`**, not a legacy top-level **docs** directory at repository root (without the `lupo-` prefix).
+3. **Schema and seeds** live under `lupo-database/` (install SQL, seed, TOON exports per doctrine). There is no parallel "199-table" story in a fictional database directory tree outside this repo layout.
+4. **Channels on disk:** Active work uses `lupo-channels/{federation_node_id}/{channel_key}/{thread_key}/`. Pre–4.0.93 layouts are archived under `lupo-channels_before_4_0_93/` (read-only). Channels were **not** removed in 4.0.x; they were **relocated and formalized** (PRD 29, PRD 02, PRD 17).
+5. **Headers:** Use **LUPOPEDIA HEADERS** (`lupopedia.headers` / `lupopedia.footer` / `lupopedia.edges`) only. Do not introduce new `wolfie.headers` blocks.
 
-Implementation follows doctrine, not the other way around.
+## High-level map (summary)
 
-1.3 No Dead Directories
-A directory with no living purpose must be removed.
-A directory with a purpose must be documented.
+| Area | Role |
+|------|------|
+| `lupo-docs/` | PRDs, doctrine, implementations, database table docs, versioned docs |
+| `lupo-docs/prd/` | Product requirements (**what**) |
+| `lupo-docs/doctrine/` | Constitutional and system doctrine (**why / policy**) |
+| `lupo-docs/implementations/` | Implementation traces, edges, status (**how**, PRD 31) |
+| `lupo-channels/` | Active coordination threads (per PRD 29 channel strategy) |
+| `lupo-agents/` | Agent configuration (e.g. per-agent `agent.json`, prompts) |
+| `lupo-actors/` | Per-actor resources (not a substitute for `lupo-docs/doctrine/`) |
+| `lupo-includes/` | PHP runtime, modules, themes (no Composer in core) |
+| `lupo-scripts/` | Python/shell tooling (schema, validators, ghost scans) |
+| `lupo-database/` | Install SQL, seed, CSV/TOON exports |
+| `lupo-bin/` | CLI utilities (e.g. version bump, temporal anchor) |
 
-1.4 Emotional Metadata Is First-Class
-Directories that store emotional geometry, mood registries, or kapu events are treated with the same importance as schema or doctrine.
+The full sortable table of **`lupo-*` roots** is maintained in **PRD 29**; do not duplicate it here unless this doctrine is updated in the same commit as PRD 29.
 
-2. Top-Level Directory Overview
-2.1 /docs/ -- The System's Memory
-Contains all doctrine, developer guidance, schema descriptions, and TOON metadata.
+## Historical note (3.0.x)
 
-Subdirectories:
+Older narrative that referenced a non-`lupo` docs tree, claimed channels were removed from the filesystem, or described a third-generation (pre-4.0) layout is obsolete. A **read-only snapshot** of the pre-exorcism file is kept at:
 
-/docs/channels/doctrine/
-The heart of the system's philosophy.
-Contains:
+`lupo-docs/versions/3.0.x/doctrine/DIRECTORY_STRUCTURE_DOCTRINE.md`
 
-- emotional geometry
-- prohibitions
-- pattern ethics
-- schema federation
-- UTC timekeeper
-- Wolfmind doctrine
-- anchors and origin stories
+Use it only for archaeology, not for current layout decisions.
 
-Rule:
-Every doctrine file must include a Wolfie header and a clear statement of intent.
+## Verification
 
-/docs/channels/overview/
-High-level conceptual maps:
+- Run: `python lupo-scripts/find_version_ghosts.py --require-zero` (after doctrine passes are applied).
+- Structural audits: `python lupo-scripts/generate_directory_tree.py` when required by versioning doctrine.
 
-- philosophy
-- versioning doctrine
-- structural realignment
-- migration summaries
-
-Rule:
-Overview files describe why the system is shaped this way.
-
-/docs/channels/developer/
-Guidance for contributors:
-
-- code update plans
-- metadata recommendations
-- developer ethics
-- onboarding notes
-
-Rule:
-Developer docs must teach, not merely instruct.
-
-/docs/channels/schema/
-The canonical description of the database schema.
-
-Rule:
-Schema docs must match the active schema lineage and the 199-table doctrine.
-
-/docs/toons/
-The emotional and semantic OS.
-
-Contains:
-
-- emotional constellations
-- emotional frameworks
-- emotional stars
-- emotional translations
-- mood registry
-- kapu events
-- truth questions and answers
-- agent experiences
-
-Rule:
-TOON files represent living emotional structures.
-They must never be treated as static assets.
-
-3. /database/ -- The System's Body
-3.1 /database/migrations/
-Contains the active migration lineage.
-
-After realignment:
-
-- legacy migrations removed
-- abandoned schema paths removed
-- Crafty Syntax -> Lupopedia path preserved
-- 199-table doctrine enforced
-
-Rule:
-Every migration must reflect the current doctrine.
-No foreign keys.
-No stored procedures.
-No triggers.
-Timestamps must be BIGINT(14) YYYYMMDDHHIISS.
-
-3.2 /database/toon_data/
-Contains database-aligned TOON data:
-
-- lupo_contents
-- lupo_dialog_messages
-- lupo_channel_state
-- lupo_operators
-
-Rule:
-Database TOON data must mirror the schema and emotional geometry.
-
-3.3 /database/install/
-Installer seeds, mapping files, and schema generators.
-
-Rule:
-Installer must be a guided conversation, not a static script.
-
-4. /channels/ -- Removed in Realignment
-The legacy channel system was removed entirely.
-
-Directories such as:
-
-- lupo-channels/system/
-- lupo-channels/dev-main-thread/
-- lupo-channels/test_awareness_channel/
-- lupo-channels/GOV-PROGRAMMERS-001/
-
-...were deprecated and removed.
-
-Rule:
-Channels are now conceptual, not filesystem-based.
-
-Routing and identity are handled through doctrine and emotional geometry, not directory trees.
-
-5. /lupopedia/ -- The Mirror
-Contains the mirrored copy of:
-
-- schema
-- migrations
-- doctrine
-- TOON data
-- mapping files
-
-Rule:
-The mirror must always reflect the canonical root.
-No drift allowed.
-
-6. /scripts/ -- System Tools
-Contains:
-
-- ORM helpers
-- migration utilities
-- schema alignment tools
-
-Rule:
-Scripts must never modify doctrine.
-Scripts operate on data, not philosophy.
-
-7. Root Files
-README.md
-Must reflect the current ontology.
-
-complete_schema.txt
-Must reflect the active schema after each migration cycle.
-
-plan_for_crafty_syntax.md
-The canonical 7-cycle migration plan.
-
-STRUCTURAL_REALIGNMENT.md
-The record of commit 40eecfc.
-
-8. Rules for Future Contributors
-8.1 No new directories without doctrine
-Every new directory must include:
-
-- a Wolfie header
-- a statement of purpose
-- its relationship to emotional geometry
-
-8.2 No resurrection of legacy structures
-Removed directories must not return unless explicitly justified in doctrine.
-
-8.3 Emotional metadata is mandatory
-Any new subsystem must define:
-
-- its emotional footprint
-- its kapakai boundaries
-- its stewardship responsibilities
-
-8.4 Doctrine and Path Authority
-
-**Collections do not override directory structure.** Collection slugs may appear similar to directory names (e.g., "core-docs"), but this is convention only. File locations are determined by:
-
-1. **Directory doctrine** - This document defines canonical directory structure
-2. **Path constants** - `file_path_from_root` in headers specifies exact file location
-3. **Filesystem reality** - Actual file system layout, not derived from collection membership
-
-**Namespace does not override directory structure.** Namespace values classify artifacts for policy but do not determine where files live on disk.
-If filesystem and doctrine disagree, doctrine wins.
-
-9. Summary
-The directory structure is now:
-
-- doctrine-aligned
-- emotionally grounded
-- schema-consistent
-- free of legacy ghosts
-- ready for Crafty Syntax integration
+This output complies with Lupopedia Constitutional Root Rules.

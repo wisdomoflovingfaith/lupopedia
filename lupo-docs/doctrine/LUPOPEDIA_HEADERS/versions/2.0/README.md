@@ -19,6 +19,26 @@ lupopedia.headers:
   - "headers"
   - "version-2.0"
   - "doctrine"
+
+lupopedia.edges:
+  outbound_edges:
+    - to: "lupo-docs/prd/16_lupopedia_headers.md"
+      type: implements
+      weight: 1.0
+      reason: "Doctrine PRD lineage; constitutional audit 20260403"
+
+lupopedia.footer:
+  last_verified: "20260403113047"
+  verified_by:
+    identity_type: actor
+    actor_id: 2
+    name: "lilith"
+  verified_via:
+    type: "audit"
+    script: "fix_doctrine_headers"
+  next_action:
+    - "Run: python lupo-scripts/apply_doctrine_prd_lineage.py --apply"
+
 ---
 
 # LUPOPEDIA HEADERS - Version 2.0

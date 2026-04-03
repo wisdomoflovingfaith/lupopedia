@@ -1,4 +1,3 @@
-# LUPOPEDIA HEADERS (replaces FLARE)
 ---
 lupopedia.headers:
   lupopedia.version: "4.0.73"
@@ -23,6 +22,11 @@ lupopedia.edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
     - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
+    - to: "lupo-docs/prd/32_actor_authority_agent_roles.md"
+      type: implements
+      weight: 1.0
+      reason: "Doctrine PRD lineage; constitutional audit 20260403"
+
 lupopedia.footer:
   last_verified: "20260228155738"
   last_verified_by: "windsurf"
@@ -34,7 +38,9 @@ lupopedia.footer:
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  lupopedia.edges: []
+  
+
+lupopedia.edges: []
   file_path_from_root: "lupo-docs\doctrine\AGENT_REGISTRY_DOCTRINE.md"
   file_hash: "b229f9b21d4c90faf053a370e40a16eb1c928837c3396588e345c57b3e39b141"
   file_path_from_root: "lupo-docs\doctrine\AGENT_REGISTRY_DOCTRINE.md"
@@ -62,7 +68,7 @@ lupopedia.footer:
 ---
 
 ---
-wolfie.headers:
+lupopedia.headers:
   file_path_from_root: "lupo-docs/doctrine/AGENT_REGISTRY_DOCTRINE.md"
   system_version: "4.0.33"
   channel_id: 42
@@ -224,7 +230,7 @@ All agent metadata comes from this registry. Files reference agents, they do not
 ### Correct Format
 
 ```yaml
-wolfie.headers:
+lupopedia.headers:
   file_path_from_root: "path/to/file.md"
   system_version: "4.0.33"
   channel_id: 42

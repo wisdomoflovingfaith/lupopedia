@@ -22,6 +22,11 @@ lupopedia.edges:
     - { to: "lupo-includes/modules/api/channels-api.php", type: "enforced_by", weight: 1.0 }
     - { to: "switch-actor.php", type: "related_runtime_surface", weight: 0.9 }
     - { to: "lupo-database/lupopedia/content/lupo-app/Services/ActorService.php", type: "related_runtime_surface", weight: 0.9 }
+    - to: "lupo-docs/prd/32_actor_authority_agent_roles.md"
+      type: implements
+      weight: 1.0
+      reason: "Doctrine PRD lineage; constitutional audit 20260403"
+
 lupopedia.footer:
   last_verified: "20260325_160500"
   last_verified_by: "cursor"

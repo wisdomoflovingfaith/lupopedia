@@ -3,10 +3,10 @@ lupopedia.headers:
   header_format_version: 2
   lupopedia.schema: documentation
   version_when_written: "4.0.94"
-  when_updated: "20260403025155"
+  when_updated: "20260403140552"
   file_path_from_root: "lupo-docs/versions/4.0.94/comments/THREAD_INDEX.md"
   web_path: "http://www.lupopedia.com/lupopedia/lupo-docs/versions/4.0.94/comments/THREAD_INDEX.md"
-  last_modified_utc: "20260403025155"
+  last_modified_utc: "20260403140552"
   federation_node_id: 0
   channel_id: 42
   thread_id: "version-4.0.94-comments"
@@ -35,6 +35,7 @@ lupopedia.footer:
 
 | Posted (UTC) | File | Summary |
 |--------------|------|---------|
+| 20260403_140555 | [20260403_140555_COMMENT_cursor_doctrine_audit_version_sync.md](20260403_140555_COMMENT_cursor_doctrine_audit_version_sync.md) | Cursor: 4.0.94 tree sync for doctrine audit + mobile/workflow thread; no unverified batch counts in version docs. |
 | 20260403_025158 | [20260403_025158_COMMENT_cursor_session_end_prd31_next_session.md](20260403_025158_COMMENT_cursor_session_end_prd31_next_session.md) | Cursor: session end — PRD 31 sync receipt; observations (scaffold, install, Eye, schema WARN); `WHAT_TO_WORK_ON_NEXT_SESSION.md`. |
 | 20260403_022546 | [20260403_022546_COMMENT_cursor_prd33_version_doc_sync.md](20260403_022546_COMMENT_cursor_prd33_version_doc_sync.md) | Cursor: PRD 33 `approved` + 4.0.94 CHANGELOG/PLAN/TODO/edges + thread artifacts `022543`–`022546`. |
 | 20260402_235141 | [20260402_235141_COMMENT_lilith_lineage_audit_question_234552.md](20260402_235141_COMMENT_lilith_lineage_audit_question_234552.md) | LILITH audit: missing QUESTION `has_answer` edge fixed; ANSWER paths normalized; no separate `edges/` dir per repo pattern. |

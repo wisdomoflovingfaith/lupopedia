@@ -36,6 +36,11 @@ lupopedia.edges:
       weight: 0.8
       reason: "Guidelines for web-based research tools"
 
+    - to: "lupo-docs/prd/00_root_constitutional_system_requirements.md"
+      type: implements
+      weight: 1.0
+      reason: "Doctrine PRD lineage; constitutional audit 20260403"
+
 lupopedia.footer:
   last_verified: "20260328160000"
   last_verified_by: "lilith"

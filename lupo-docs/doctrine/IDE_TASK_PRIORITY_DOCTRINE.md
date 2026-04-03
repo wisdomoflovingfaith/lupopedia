@@ -1,4 +1,3 @@
-# LUPOPEDIA HEADERS (replaces FLARE)
 ---
 lupopedia.headers:
   lupopedia.version: "4.0.73"
@@ -23,6 +22,11 @@ lupopedia.edges:
     - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
     - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
 
+    - to: "lupo-docs/prd/00_root_constitutional_system_requirements.md"
+      type: implements
+      weight: 1.0
+      reason: "Doctrine PRD lineage; constitutional audit 20260403"
+
 lupopedia.footer:
   last_verified: "20260228155738"
   last_verified_by: "windsurf"
@@ -34,7 +38,9 @@ lupopedia.footer:
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  lupopedia.edges: []
+  
+
+lupopedia.edges: []
   file_path_from_root: "lupo-docs\doctrine\IDE_TASK_PRIORITY_DOCTRINE.md"
   file_hash: "a6478daf3a758beb95e2ea174a657251388c27de231b3bae196f33c748f0619b"
   file_path_from_root: "lupo-docs\doctrine\IDE_TASK_PRIORITY_DOCTRINE.md"
@@ -62,7 +68,7 @@ lupopedia.footer:
 ---
 
 ---
-wolfie.headers:
+lupopedia.headers:
   file_path_from_root: "lupo-docs/doctrine/IDE_TASK_PRIORITY_DOCTRINE.md"
   system_version: "4.0.33"
   channel_id: 42

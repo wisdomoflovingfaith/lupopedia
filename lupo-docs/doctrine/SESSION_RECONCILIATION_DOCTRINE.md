@@ -15,6 +15,13 @@ lupopedia.headers:
   artifact_kind: "session_governance"
   purpose: "Source of truth and reconciliation rules between lupo_sessions and session MD files; when corrections are allowed and who logs them."
   tags: ["session", "reconciliation", "lupo_sessions", "session_files", "4.0.69"]
+lupopedia.edges:
+  outbound_edges:
+    - to: "lupo-docs/prd/00_root_constitutional_system_requirements.md"
+      type: implements
+      weight: 1.0
+      reason: "Doctrine PRD lineage; constitutional audit 20260403"
+
 lupopedia.footer:
   last_verified: "20260311"
   last_verified_by: "cursor"

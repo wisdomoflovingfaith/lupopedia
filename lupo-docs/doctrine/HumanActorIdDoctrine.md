@@ -18,6 +18,11 @@ lupopedia.edges:
   outbound_edges:
     - { to: "lupo-rules/root/reserved-id-doctrine.md", type: "references", weight: 1.0 }
     - { to: "lupo-database/lupopedia/mysql/seed/seed_registry_open_4.0.45.sql", type: "references", weight: 0.9 }
+    - to: "lupo-docs/prd/00_root_constitutional_system_requirements.md"
+      type: implements
+      weight: 1.0
+      reason: "Doctrine PRD lineage; constitutional audit 20260403"
+
 lupopedia.footer:
   last_verified: "20260310"
   last_verified_by: "cursor"

@@ -1,33 +1,45 @@
 ---
-# 🚨 LILITH ARCHITECTURE UPDATE: AGENT → ACTOR → AUTH USER (LEASING, PERMISSION-GATED)
+lupopedia.headers:
+  header_format_version: 2
+  lupopedia.schema: doctrine
+  file_path_from_root: "lupo-docs/doctrine/ACTOR_AGENT_AUTH_USER_MODEL.md"
+  web_path: "http://www.lupopedia.com/lupopedia/lupo-docs/doctrine/ACTOR_AGENT_AUTH_USER_MODEL.md"
+  last_modified_utc: "20260403113047"
+  when_updated: "20260403113047"
+  federation_node_id: 0
+  channel_id: 42
+  thread_id: "doctrine-header-repair"
+  actor_id: 102
+  actor_name: "cursor"
+  delegation_chain: "cursor:root"
+  artifact_type: "doctrine"
+  artifact_kind: "reference"
+  purpose: "ACTOR AGENT AUTH USER MODEL"
+  status: active
+  tags:
+    - "doctrine"
+    - "header_repair"
+lupopedia.edges:
+  outbound_edges:
+    - to: "lupo-docs/prd/32_actor_authority_agent_roles.md"
+      type: implements
+      weight: 1.0
+      reason: "Doctrine PRD lineage; constitutional audit 20260403"
 
-## Identity Stack (Canonical)
-- **Agents**: Autonomous AI entities, not tied to actors or users. Can run tasks, workflows, and background jobs. Have their own context, capabilities, and experiences.
-- **Actors**: Hybrid shells instantiated from agents, department-scoped, and shaped by human usage. Not humans or agents, but operational personas.
-- **Auth Users**: Temporary controllers of actors. Lease actors to perform actions, but do not own them.
-
-## Permission Rule
-An auth_user may lease or control an actor only if:
-- `auth_user_id == actor.created_by_auth_user_id`
-- `auth_user.department_id == 0`
-- `auth_user.department_id == actor.department_id`
-
-## Database Requirements
-- lupo_actor_instances: Add `created_by_auth_user_id BIGINT`, `department_id BIGINT`
-- lupo_actor_lease_sessions: Must include `auth_user_id`, `actor_id`, `department_id`
-
-## Doctrine Compliance
-- No AUTO_INCREMENT, no FOREIGN KEYS, no UNSIGNED
-- All IDs via IdGenerator::generate(), all timestamps BIGINT YYYYMMDDHHIISS
-- PDO only, DatabaseFactory only
-
-## Implementation Directive for IDE Agents
-- Agents are autonomous AI entities
-- Actors are hybrid shells derived from agents
-- Auth Users temporarily lease actors
-- Permission rule above is canonical
-
+lupopedia.footer:
+  last_verified: "20260403113047"
+  verified_by:
+    identity_type: actor
+    actor_id: 2
+    name: "lilith"
+  verified_via:
+    type: "audit"
+    script: "fix_doctrine_headers"
+  next_action:
+    - "Run: python lupo-scripts/apply_doctrine_prd_lineage.py --apply"
 ---
+
+# file: ACTOR_AGENT_AUTH_USER_MODEL — delegation: cursor:root
 
 ## Web And Admin Presentation Rules
 

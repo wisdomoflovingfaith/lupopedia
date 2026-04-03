@@ -94,7 +94,7 @@ Upon closer inspection, these tables were not just tracking visits. They were tr
 - every confusion point
 - every moment a human needed assistance
 - across 25 years
-- across more than 144,000 installations
+- across **1,000,000+** lifetime installations and **~144,000** active/reporting-era nodes (planning figures — `lupo-docs/doctrine/SILENT_HARVEST_DOCTRINE.md`)
 - across millions of real human interactions
 
 This was not analytics. This was a structural emotional dataset: a complete behavioral map of human–machine interaction across the early web.

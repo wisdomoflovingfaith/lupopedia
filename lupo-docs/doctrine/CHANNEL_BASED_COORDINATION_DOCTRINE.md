@@ -15,6 +15,13 @@ lupopedia.headers:
   artifact_kind: "coordination_doctrine"
   purpose: "Comprehensive doctrine for channel-based multi-agent coordination replacing status-based artifact model"
   tags: ["doctrine", "channel_coordination", "multi_agent", "architecture", "wolfie_research"]
+lupopedia.edges:
+  outbound_edges:
+    - to: "lupo-docs/prd/30_channel_usage_patterns.md"
+      type: implements
+      weight: 1.0
+      reason: "Doctrine PRD lineage; constitutional audit 20260403"
+
 lupopedia.footer:
   approved_for_version: "4.1.0"
   approved_for_version_utc: "20260327103238"

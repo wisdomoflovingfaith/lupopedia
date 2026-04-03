@@ -2,10 +2,10 @@
 lupopedia.headers:
   header_format_version: 2
   lupopedia.schema: prd
-  when_updated: "20260403022543"
+  when_updated: "20260403131918"
   file_path_from_root: "lupo-docs/prd/33_softaculous_certification_4_1_0_gate.md"
   web_path: "http://www.lupopedia.com/lupopedia/lupo-docs/prd/33_softaculous_certification_4_1_0_gate.md"
-  last_modified_utc: "20260403022543"
+  last_modified_utc: "20260403131918"
   federation_node_id: 0
   channel_id: 42
   thread_id: "prd-softaculous-4-1-0-gate"
@@ -161,8 +161,16 @@ lupopedia.edges:
       type: references
       weight: 0.95
       reason: "Implementation workspace — questions/decisions/status vs PRD §12"
+    - to: "lupo-docs/doctrine/MOBILE_SEPARATION_DOCTRINE.md"
+      type: references
+      weight: 1.0
+      reason: "No shared desktop/mobile layouts; mobile web vs native operator app (PRD 35)"
+    - to: "lupo-docs/prd/35_mobile_native_app_separation.md"
+      type: references
+      weight: 1.0
+      reason: "Mobile native app and separation; mobile visitor checklist §7.4"
 lupopedia.footer:
-  last_verified: "20260403022300"
+  last_verified: "20260403131918"
   verified_by:
     identity_type: "actor"
     actor_id: 102
@@ -505,6 +513,11 @@ The following **Crafty Syntax** capabilities must be **present or explicitly sup
 - [ ] **Multilingual operator + visitor UI** — Selectable locale (e.g. English → Spanish → German) with **stable message keys** and **correct charset** for responses; parity with Crafty **`craftysyntax-reference/lang/`** behavior. Full rules: **§7.9**.
 - [ ] **Emoji / image icons in chat** — Folder-based assets under **`lupo-emoji/{foldername}/`**, message token **`::img|foldername|imagefile::`**; full validation and rendering rules in **§7.8** (see also **PRD 18** for chat display).
 - [ ] **Improved visitor chat templates** (modern HTML/CSS) while preserving **embed contract** (§6).
+- [ ] **Mobile client chat** — Visitors using **mobile browsers** can initiate and participate in chat (**PRD 35**, **MOBILE_SEPARATION_DOCTRINE.md**):
+  - **Separate mobile pages** — not “responsive only” as the sole strategy.
+  - **Device detection** at entry → redirect to **`/mobile/...`** (under **`LUPOPEDIA_PUBLIC_PATH`**), e.g. **`mobile/chat.php`**-class routes.
+  - **Preserve** legacy Crafty mobile **client** chat behavior until **APPROVED** supersession.
+  - **Operator admin** is **not** required on mobile web; operators target **native app** per **PRD 35** (not webview-only admin as end state).
 - [ ] **Departments** — Setup, routing, templates, per-department language/options (see PRD **25** and legacy department helpers under **`CraftySyntax/`**).
 - [ ] **Operator / user admin** — Crafty-style **users** (operators), permissions, and admin refresh patterns (`LegacyAdminUsers*`, xmlhttp admin surfaces).
 - [ ] **Leads** — Lead tracking present in Crafty admin/data; **import + UI** parity or **APPROVED** replacement workflow.

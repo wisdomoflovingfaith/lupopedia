@@ -20,6 +20,13 @@ lupopedia.headers:
   - "gc"
   - "garbage-collection"
   - "retention"
+lupopedia.edges:
+  outbound_edges:
+    - to: "lupo-docs/prd/28_semantic_monitoring_widget.md"
+      type: implements
+      weight: 1.0
+      reason: "Doctrine PRD lineage; constitutional audit 20260403"
+
 lupopedia.footer:
   last_verified: "20260401000000"
   verified_by:

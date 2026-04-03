@@ -15,6 +15,13 @@ lupopedia.headers:
   purpose: "Canonical upgrade policy for Lupopedia 4.0.x — no Lupopedia→Lupopedia upgrade until 4.1.0"
   tags: ["upgrade", "policy", "4.0.x", "crafty_syntax", "install"]
 
+lupopedia.edges:
+  outbound_edges:
+    - to: "lupo-docs/prd/00_root_constitutional_system_requirements.md"
+      type: implements
+      weight: 1.0
+      reason: "Doctrine PRD lineage; constitutional audit 20260403"
+
 lupopedia.footer:
   version: "4.0.77"
   last_verified: "20260316"

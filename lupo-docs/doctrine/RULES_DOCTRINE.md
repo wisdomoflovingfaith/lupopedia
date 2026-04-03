@@ -19,6 +19,11 @@ lupopedia.edges:
     - { to: "lupo-database/migrations/20260310_create_rules_tables.sql", type: "implements", weight: 1.0 }
     - { to: "lupo-channels/42/content/federation_node_id/0/RULES.md", type: "references", weight: 0.9 }
 
+    - to: "lupo-docs/prd/00_root_constitutional_system_requirements.md"
+      type: implements
+      weight: 1.0
+      reason: "Doctrine PRD lineage; constitutional audit 20260403"
+
 lupopedia.footer:
   version: "4.0.68"
   last_verified: "20260310"

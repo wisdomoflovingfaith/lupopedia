@@ -1,14 +1,45 @@
 ---
-# FLARE Header
 lupopedia.headers:
-  lupopedia.schema: "documentation"
-  file_path_from_root: "lupo-docs/CLI.md"
-  version_when_written: "4.0.84"
-  last_modified_utc: "20260306"
-  purpose: "CLI reference for Lupopedia lupo commands"
-  traits: ["cli", "reference", "v4.0.62"]
-  tags: ["cli", "lupo", "help", "whoami", "context"]
+  header_format_version: 2
+  lupopedia.schema: doctrine
+  file_path_from_root: "lupo-docs/doctrine/CLI_DOCTRINE.md"
+  web_path: "http://www.lupopedia.com/lupopedia/lupo-docs/doctrine/CLI_DOCTRINE.md"
+  last_modified_utc: "20260403113047"
+  when_updated: "20260403113047"
+  federation_node_id: 0
+  channel_id: 42
+  thread_id: "doctrine-header-repair"
+  actor_id: 102
+  actor_name: "cursor"
+  delegation_chain: "cursor:root"
+  artifact_type: "doctrine"
+  artifact_kind: "reference"
+  purpose: "CLI DOCTRINE"
+  status: active
+  tags:
+    - "doctrine"
+    - "header_repair"
+lupopedia.edges:
+  outbound_edges:
+    - to: "lupo-docs/prd/00_root_constitutional_system_requirements.md"
+      type: implements
+      weight: 1.0
+      reason: "Doctrine PRD lineage; constitutional audit 20260403"
+
+lupopedia.footer:
+  last_verified: "20260403113047"
+  verified_by:
+    identity_type: actor
+    actor_id: 2
+    name: "lilith"
+  verified_via:
+    type: "audit"
+    script: "fix_doctrine_headers"
+  next_action:
+    - "Run: python lupo-scripts/apply_doctrine_prd_lineage.py --apply"
 ---
+
+# file: CLI_DOCTRINE — delegation: cursor:root
 
 # Lupopedia CLI reference
 

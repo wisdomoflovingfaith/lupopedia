@@ -14,6 +14,13 @@ lupopedia.headers:
   title: "LUPOPEDIA HEADERS Optional Blocks"
   purpose: "Reference for optional LUPOPEDIA HEADERS blocks, including routing, lists, metadata snapshots, next actions, actor references, footer, engagement, and edges."
   tags: ["lupopedia_headers", "routing", "lists", "optional"]
+lupopedia.edges:
+  outbound_edges:
+    - to: "lupo-docs/prd/16_lupopedia_headers.md"
+      type: implements
+      weight: 1.0
+      reason: "Doctrine PRD lineage; constitutional audit 20260403"
+
 lupopedia.footer:
   last_verified: "20260327121457"
   verified_by:

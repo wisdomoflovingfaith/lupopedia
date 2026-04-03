@@ -4,7 +4,7 @@ lupopedia.headers:
   version_when_written: "4.0.94"
   file_path_from_root: "lupo-docs/versions/4.0.94/PLAN.md"
   web_path: "http://www.lupopedia.com/lupopedia/lupo-docs/versions/4.0.94/PLAN.md"
-  when_updated: "20260403025155"
+  when_updated: "20260403140552"
   channel_id: 42
   actor_id: 102
   actor_name: "CURSOR"
@@ -98,6 +98,18 @@ Same table as [`README.md`](README.md) — **CANONICAL** under `lupo-docs/prd/` 
 - [ ] COUNTERMEASURE agent refinement
 
 **Completion criteria:** Each line item has an owning artifact (PRD, decision, or implementation doc) and a clear done definition in `TODO.md`.
+
+### Phase G — Doctrine audit + mobile / workflow UX (documentation — UTC `20260403140552`)
+
+**Evidence:** `CHANGELOG.md` entry **[2026-04-03] Doctrine audit tooling, version ghosts, mobile / workflow doctrines**; decision `decisions/20260403_140552_DECISION_APPROVED_doctrine_audit_mobile_separation_docs.md`.
+
+- [x] **PRD lineage audit** — `audit_doctrine_prd_edges.py` reports **189** `lupo-docs/doctrine/` files with PRD edges (**0** missing) at documentation pass time.
+- [x] **Version ghost scanner + report** — `find_version_ghosts.py` + `version_ghosts_report.json` (**34** files with **critical** findings — manual review backlog).
+- [x] **Mobile / workflow doctrines** — `MOBILE_SEPARATION_DOCTRINE.md`, `WOLFIE_WORKFLOW_DOCTRINE.md`; **PRD 35** draft; **PRD 33** §7.4 mobile items where merged; **AGENTS.md** + **LESSONS** alignment.
+- [ ] **Manual remediation** — file-by-file cleanup of **34** critical ghost rows (no batch policy — see `answers/20260403_140554_ANSWER_version_ghost_cleanup_manual_review.md`).
+- [ ] **PRD 34 / PRD 35 product execution** — deferred past pure documentation (track in `TODO.md`).
+
+**Completion criteria:** Ghost backlog owned in `TODO.md`; doctrines and PRD edges discoverable from `edges.md`; no undocumented claims for batch header repair counts without measured runs.
 
 ## References
 

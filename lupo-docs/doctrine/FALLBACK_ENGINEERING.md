@@ -30,6 +30,22 @@ lupopedia.edges:
     - { to: "lupo-docs/origin/WOLFIE_ORIGIN.md", type: "explains_why", weight: 1.0 }
     - { to: "lupo-docs/history/CRAFTY_SYNTAX_TO_LUPOPEDIA.md", type: "proven_by", weight: 0.95 }
     - { to: "lupo-scripts/fallback/", type: "implemented_in", weight: 0.9 }
+    - to: "lupo-docs/prd/00_root_constitutional_system_requirements.md"
+      type: implements
+      weight: 1.0
+      reason: "Doctrine PRD lineage; constitutional audit 20260403"
+
+lupopedia.footer:
+  last_verified: "20260403113047"
+  verified_by:
+    identity_type: actor
+    actor_id: 2
+    name: "lilith"
+  verified_via:
+    type: "audit"
+    script: "fix_doctrine_headers"
+  next_action:
+    - "Run: python lupo-scripts/apply_doctrine_prd_lineage.py --apply"
 
 ---
 # file: Fallback Engineering Doctrine – Never Assume, Always Adapt — session: L-LUPO-ROOT-THOTH — delegation: thoth:wolfie — web_path: http://www.lupopedia.com/doctrine/FALLBACK_ENGINEERING

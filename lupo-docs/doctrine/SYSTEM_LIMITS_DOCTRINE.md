@@ -21,6 +21,7 @@ lupopedia.edges:
     - { to: "lupo-channels/", type: "limits", weight: 1.0, reason: "Limits thread count per channel" }
     - { to: "lupo-database/lupopedia/actors/actor_id/registry.json", type: "limits", weight: 1.0, reason: "Limits actor registration count" }
     - { to: "lupo-scripts/", type: "limits", weight: 1.0, reason: "Limits repository file management" }
+    - { to: "lupo-docs/prd/00_root_constitutional_system_requirements.md", type: "implements", weight: 1.0, reason: "Doctrine PRD lineage; constitutional audit 20260403" }
   semantic_tags: ["system_limits", "doctrine", "governance"]
 
 lupopedia.see:

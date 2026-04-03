@@ -37,6 +37,11 @@ lupopedia.edges:
   - to: lupo-docs/ACTOR_REGISTRATION_CHECKLIST.md
     type: references
     weight: 0.9
+  - to: "lupo-docs/prd/32_actor_authority_agent_roles.md"
+    type: implements
+    weight: 1.0
+    reason: "Doctrine PRD lineage; constitutional audit 20260403"
+
 lupopedia.footer:
   last_verified: '20260402231742'
   last_verified_by: cursor

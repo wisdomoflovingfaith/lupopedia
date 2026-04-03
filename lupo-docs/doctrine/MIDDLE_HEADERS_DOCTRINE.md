@@ -18,6 +18,13 @@ lupopedia.headers:
   artifact_kind: "header_interpretation"
   purpose: "Define the middle interpretation header layer between system rules and content"
   tags: ["wolfie", "headers", "interpretation", "context", "identity", "three_layer"]
+lupopedia.edges:
+  outbound_edges:
+    - to: "lupo-docs/prd/16_lupopedia_headers.md"
+      type: implements
+      weight: 1.0
+      reason: "Doctrine PRD lineage; constitutional audit 20260403"
+
 lupopedia.footer:
   version: "4.0.82"
   last_verified: "20260319"

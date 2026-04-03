@@ -39,10 +39,19 @@ lupopedia.edges:
     type: created_by
     weight: 1.0
     reason: WOLFIE directive that created this doctrine
+  - to: "lupo-docs/prd/00_root_constitutional_system_requirements.md"
+    type: implements
+    weight: 1.0
+    reason: "Doctrine PRD lineage; constitutional audit 20260403"
+  - to: "lupo-docs/prd/26_five_layer_documentation_architecture.md"
+    type: implements
+    weight: 1.0
+    reason: "Doctrine PRD lineage; orphan batch 20260403 (manual category map)"
   semantic_tags:
   - lupo-context
   - context_model
   - 4.0.88
+
 lupopedia.footer:
   last_verified: '20260328103000'
   verified_by:

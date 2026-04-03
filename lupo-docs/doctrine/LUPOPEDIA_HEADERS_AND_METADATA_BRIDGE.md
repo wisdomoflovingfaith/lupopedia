@@ -29,6 +29,11 @@ lupopedia.edges:
     - { to: "lupo-docs/doctrine/LUPOPEDIA_HEADERS/README.md", type: "references", weight: 1.0 }
     - { to: "lupo-database/lupopedia/mysql/install/install_new_lupopedia.sql", type: "schema", weight: 0.9 }
 
+    - to: "lupo-docs/prd/16_lupopedia_headers.md"
+      type: implements
+      weight: 1.0
+      reason: "Doctrine PRD lineage; constitutional audit 20260403"
+
 lupopedia.footer:
   last_verified: "20260314"
   last_verified_by: "antigravity"

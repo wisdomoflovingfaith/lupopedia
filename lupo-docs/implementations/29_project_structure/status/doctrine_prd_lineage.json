@@ -1,0 +1,1663 @@
+{
+  "by_prd": {
+    "0": [
+      "lupo-docs/doctrine/4.0.17_DIAGNOSTICS_AND_COMPATIBILITY.md",
+      "lupo-docs/doctrine/4.0.21_COMPLETION_PLAN.md",
+      "lupo-docs/doctrine/AGENT_420_RETIREMENT.md",
+      "lupo-docs/doctrine/AGENT_BOUNDARIES_COMPACT.md",
+      "lupo-docs/doctrine/AI_AGENT_BOOT_NOTES.md",
+      "lupo-docs/doctrine/AI_CORRECTIONS_DOCTRINE.md",
+      "lupo-docs/doctrine/BAN_REASONS.md",
+      "lupo-docs/doctrine/BAYESIAN_DECISION_DOCTRINE.md",
+      "lupo-docs/doctrine/CLASS_CONVERSION_DOCTRINE.md",
+      "lupo-docs/doctrine/CLI_DOCTRINE.md",
+      "lupo-docs/doctrine/CLOUDFLARE_DOCTRINE.md",
+      "lupo-docs/doctrine/CLOUDFLARE_VS_FLARE.md",
+      "lupo-docs/doctrine/COLLECTIONS_DOCTRINE.md",
+      "lupo-docs/doctrine/COMMUNICATION_DOCTRINE.md",
+      "lupo-docs/doctrine/COMPATIBILITY_MATRIX.md",
+      "lupo-docs/doctrine/CONFIGURATION_DOCTRINE.md",
+      "lupo-docs/doctrine/CONSOLIDATION_VALIDATION_REQUIREMENTS.md",
+      "lupo-docs/doctrine/CONTEXT_MODEL_DOCTRINE.md",
+      "lupo-docs/doctrine/COUNTING_IN_LIGHT.md",
+      "lupo-docs/doctrine/CURRENT_UTC_REFERENCE.md",
+      "lupo-docs/doctrine/DATABASE_DOCTRINE.md",
+      "lupo-docs/doctrine/DEVELOPMENT_WORKFLOW_DOCTRINE.md",
+      "lupo-docs/doctrine/DOCTRINE_FILE_STRUCTURE.md",
+      "lupo-docs/doctrine/DOCTRINE_TABLES_TRANSITION_NOTE.md",
+      "lupo-docs/doctrine/DUAL_CONTEXT_AND_OPPOSITION_DOCTRINE.md",
+      "lupo-docs/doctrine/EDGE_MODEL_DOCTRINE.md",
+      "lupo-docs/doctrine/EDGE_TYPE_SEMANTICS_DOCTRINE.md",
+      "lupo-docs/doctrine/EDGE_VOCABULARY_DOCTRINE.md",
+      "lupo-docs/doctrine/EMOJI_AND_SMILIES.md",
+      "lupo-docs/doctrine/ETHICAL_STATE_MARKERS_DOCTRINE.md",
+      "lupo-docs/doctrine/FALLBACK_ENGINEERING.md",
+      "lupo-docs/doctrine/FEDERATION_NODE_TYPES_DOCTRINE.md",
+      "lupo-docs/doctrine/FEDERATION_SCOPING_DOCTRINE.md",
+      "lupo-docs/doctrine/FallbackDoctrine.md",
+      "lupo-docs/doctrine/HEADER_DB_REVERSIBILITY_DOCTRINE.md",
+      "lupo-docs/doctrine/HEALTH_CHECK_DOCTRINE.md",
+      "lupo-docs/doctrine/HELP_SYSTEM_DOCTRINE.md",
+      "lupo-docs/doctrine/HIERARCHY_DOCTRINE.md",
+      "lupo-docs/doctrine/HumanActorIdDoctrine.md",
+      "lupo-docs/doctrine/IDE_TASK_PRIORITY_DOCTRINE.md",
+      "lupo-docs/doctrine/LILITH_EXTERNAL_RESEARCH_DIRECTIVE.md",
+      "lupo-docs/doctrine/LUPOPEDIA_CANONICAL_DOCTRINE.md",
+      "lupo-docs/doctrine/LUPOPEDIA_DOCTRINE.md",
+      "lupo-docs/doctrine/LUPOPEDIA_DOCTRINE_v1.1.md",
+      "lupo-docs/doctrine/MASTER_DOCTRINE.md",
+      "lupo-docs/doctrine/MESSAGE_ATTRIBUTION.md",
+      "lupo-docs/doctrine/MIGRATION_DOCTRINE.md",
+      "lupo-docs/doctrine/MULTI_AGENT_ORCHESTRATION_DOCTRINE.md",
+      "lupo-docs/doctrine/MigrationAtlas.md",
+      "lupo-docs/doctrine/REGISTRY_DOCTRINE.md",
+      "lupo-docs/doctrine/RELATION_REGISTRY.md",
+      "lupo-docs/doctrine/RELEASE_ARTIFACT_APPROVAL_GOVERNANCE_DOCTRINE.md",
+      "lupo-docs/doctrine/ROOTRULES_EXTERNAL_ACTOR.md",
+      "lupo-docs/doctrine/ROOT_CONSTITUTIONAL_SYSTEM_REQUIREMENTS_DOCTRINE.md",
+      "lupo-docs/doctrine/ROSE_DOCTRINE.md",
+      "lupo-docs/doctrine/ROSE_PACKET_MAPPING.md",
+      "lupo-docs/doctrine/RULES_DOCTRINE.md",
+      "lupo-docs/doctrine/RULE_COLLECTION_DOCTRINE.md",
+      "lupo-docs/doctrine/RUNTIME_ORCHESTRATION_LOOP.md",
+      "lupo-docs/doctrine/SCHEMA_CANONICAL_SOURCES.md",
+      "lupo-docs/doctrine/SECURITY/SEMANTIC_SECURITY_4_0_30.md",
+      "lupo-docs/doctrine/SEMANTIC_SECURITY_CHECKLIST_4_0_30.md",
+      "lupo-docs/doctrine/SESSION_DOCTRINE.md",
+      "lupo-docs/doctrine/SESSION_MODEL.md",
+      "lupo-docs/doctrine/SESSION_RECONCILIATION_DOCTRINE.md",
+      "lupo-docs/doctrine/SKILLS_DOCTRINE.md",
+      "lupo-docs/doctrine/SMILIES_IMPLEMENTATION.md",
+      "lupo-docs/doctrine/SQL_EXECUTION_POLICY.md",
+      "lupo-docs/doctrine/SYSTEM_LIMITS_DOCTRINE.md",
+      "lupo-docs/doctrine/TABLE_COUNT_DOCTRINE.md",
+      "lupo-docs/doctrine/TASK_PLANNING_DOCTRINE.md",
+      "lupo-docs/doctrine/TICK_PY_DOCTRINE.md",
+      "lupo-docs/doctrine/TIMESTAMP_DOCTRINE.md",
+      "lupo-docs/doctrine/TRAITS_DOCTRINE.md",
+      "lupo-docs/doctrine/UPGRADE_POLICY_DOCTRINE.md",
+      "lupo-docs/doctrine/VERSIONING_DOCTRINE.md",
+      "lupo-docs/doctrine/VERSION_DOCTRINE.md",
+      "lupo-docs/doctrine/VERSION_POLICY_DOCTRINE.md",
+      "lupo-docs/doctrine/WOLFIE_WAY_MYTHOLOGY_DOCTRINE.md",
+      "lupo-docs/doctrine/database/README.md",
+      "lupo-docs/doctrine/database_constraints.md",
+      "lupo-docs/doctrine/init/LUPO_INITIALIZATION_DOCTRINE.md",
+      "lupo-docs/doctrine/migrations/crafty_syntax_ancestral_intent.md",
+      "lupo-docs/doctrine/migrations/generated/README.md",
+      "lupo-docs/doctrine/migrations/livehelp_migrations_readme.md",
+      "lupo-docs/doctrine/report_dbdoc_threads_messages.md",
+      "lupo-docs/doctrine/ws4_hidden_intelligence_doctrine.md",
+      "lupo-docs/doctrine/ws5_questionable_tables_doctrine.md",
+      "lupo-docs/doctrine/ws6_test_suite_alignment_doctrine.md"
+    ],
+    "13": [
+      "lupo-docs/doctrine/CRAFTY_SYNTAX_IMPORT_IMPLEMENTATION_CHECKLIST.md",
+      "lupo-docs/doctrine/CRAFTY_SYNTAX_INTEGRATION_PLAN.md",
+      "lupo-docs/doctrine/CRAFTY_SYNTAX_MIGRATION_PROJECT_BRIEF.md",
+      "lupo-docs/doctrine/CRAFTY_SYNTAX_STATE_BASED_IMPLEMENTATION_PLAN.md"
+    ],
+    "16": [
+      "lupo-docs/doctrine/HEADERS/FLIP_FOOTER_DOCTRINE_4_0_31.md",
+      "lupo-docs/doctrine/HEADERS/LUPO_HEADER_EXPANSION_4_0_30.md",
+      "lupo-docs/doctrine/HEADER_STRUCTURE_DOCTRINE.md",
+      "lupo-docs/doctrine/LUPOPEDIA_HEADERS/DEPRECATION_FLARE_FLIP_FLP.md",
+      "lupo-docs/doctrine/LUPOPEDIA_HEADERS/LUPOPEDIA_HEADERS_DOCTRINE.md",
+      "lupo-docs/doctrine/LUPOPEDIA_HEADERS/LUPOPEDIA_HEADERS_FORMAT.md",
+      "lupo-docs/doctrine/LUPOPEDIA_HEADERS/LUPOPEDIA_HEADERS_MIGRATION.md",
+      "lupo-docs/doctrine/LUPOPEDIA_HEADERS/LUPOPEDIA_HEADERS_PLAN.md",
+      "lupo-docs/doctrine/LUPOPEDIA_HEADERS/OPTIONAL_BLOCKS.md",
+      "lupo-docs/doctrine/LUPOPEDIA_HEADERS/README.md",
+      "lupo-docs/doctrine/LUPOPEDIA_HEADERS/TAXONOMY_REFERENCE.md",
+      "lupo-docs/doctrine/LUPOPEDIA_HEADERS/VALIDATORS_AND_TOOLING.md",
+      "lupo-docs/doctrine/LUPOPEDIA_HEADERS/VERIFICATION_GUIDE.md",
+      "lupo-docs/doctrine/LUPOPEDIA_HEADERS/VERSIONING_MODEL.md",
+      "lupo-docs/doctrine/LUPOPEDIA_HEADERS/versions/2.0/README.md",
+      "lupo-docs/doctrine/LUPOPEDIA_HEADERS/versions/2.0/changelog.md",
+      "lupo-docs/doctrine/LUPOPEDIA_HEADERS/versions/2.0/decisions.md",
+      "lupo-docs/doctrine/LUPOPEDIA_HEADERS/versions/2.0/observations.md",
+      "lupo-docs/doctrine/LUPOPEDIA_HEADERS/versions/2.0/todo.md",
+      "lupo-docs/doctrine/LUPOPEDIA_HEADERS_AND_METADATA_BRIDGE.md",
+      "lupo-docs/doctrine/MIDDLE_HEADERS_DOCTRINE.md",
+      "lupo-docs/doctrine/WOLFIE_HEADERS.md",
+      "lupo-docs/doctrine/X_LUPO_FORWARDED_HEADER_DOCTRINE.md",
+      "lupo-docs/doctrine/required_flare_headers.md"
+    ],
+    "26": [
+      "lupo-docs/doctrine/5W1H_QUICK_REFERENCE.md",
+      "lupo-docs/doctrine/DOCUMENTATION_ARCHITECTURE.md",
+      "lupo-docs/doctrine/DOCUMENTATION_AS_DATA_DOCTRINE.md",
+      "lupo-docs/doctrine/JSON_SCHEMA_REFERENCE_DOCTRINE.md",
+      "lupo-docs/doctrine/TOON_DOCTRINE.md",
+      "lupo-docs/doctrine/ws7_documentation_reconciliation_doctrine.md"
+    ],
+    "28": [
+      "lupo-docs/doctrine/DYNAPI_DOCTRINE.md",
+      "lupo-docs/doctrine/GC_DOCTRINE.md",
+      "lupo-docs/doctrine/MOOD_RGB_DOCTRINE.md",
+      "lupo-docs/doctrine/MULTI_AGENT_5W1H_DOCTRINE.md"
+    ],
+    "29": [
+      "lupo-docs/doctrine/APPROVED_ARTIFACTS_INDEX.md",
+      "lupo-docs/doctrine/DIRECTORY_STRUCTURE_DOCTRINE.md",
+      "lupo-docs/doctrine/FILESYSTEM_MIGRATION_GUIDE.md",
+      "lupo-docs/doctrine/FILESYSTEM_OBJECTS_AND_DATABASE_SNAPSHOTS.md",
+      "lupo-docs/doctrine/INDEX.md",
+      "lupo-docs/doctrine/PENDING_ARTIFACTS_INDEX.md",
+      "lupo-docs/doctrine/PROJECT_REGISTRY_DOCTRINE.md",
+      "lupo-docs/doctrine/PROJECT_REGISTRY_WORKFLOW.md",
+      "lupo-docs/doctrine/channels.md",
+      "lupo-docs/doctrine/channels/filesystem_padding_layer.md"
+    ],
+    "30": [
+      "lupo-docs/doctrine/CHANNEL_66_QUESTION_GRAPH_DOCTRINE.md",
+      "lupo-docs/doctrine/CHANNEL_BASED_COORDINATION_DOCTRINE.md",
+      "lupo-docs/doctrine/CHANNEL_MODEL_DOCTRINE.md",
+      "lupo-docs/doctrine/channels.md",
+      "lupo-docs/doctrine/channels/filesystem_padding_layer.md"
+    ],
+    "31": [
+      "lupo-docs/doctrine/DECISION_MODEL.md",
+      "lupo-docs/doctrine/IDE_AGENT_CONTINUITY_PROTOCOL.md",
+      "lupo-docs/doctrine/THREAD_DIALOG_SYSTEM.md"
+    ],
+    "32": [
+      "lupo-docs/doctrine/ACTOR_AGENT_AUTH_USER_MODEL.md",
+      "lupo-docs/doctrine/ACTOR_AGENT_DISTINCTION.md",
+      "lupo-docs/doctrine/ACTOR_FACET_SEPARATION_DOCTRINE.md",
+      "lupo-docs/doctrine/ACTOR_INSTANCE_MODEL.md",
+      "lupo-docs/doctrine/ACTOR_LEASE_SESSION_MODEL.md",
+      "lupo-docs/doctrine/ACTOR_LEASING_DOCTRINE.md",
+      "lupo-docs/doctrine/ACTOR_PRIMARY_KEY_DOCTRINE.md",
+      "lupo-docs/doctrine/ACTOR_REQUIREMENTS.md",
+      "lupo-docs/doctrine/ACTOR_STATE_DOCTRINE.md",
+      "lupo-docs/doctrine/ACTOR_TEMPLATE_MODEL.md",
+      "lupo-docs/doctrine/AGENT_REGISTRY.md",
+      "lupo-docs/doctrine/AGENT_REGISTRY_DOCTRINE.md",
+      "lupo-docs/doctrine/ANUBIS_FALLBACK_DOCTRINE.md",
+      "lupo-docs/doctrine/ANUBIS_ORPHAN_RULES.md",
+      "lupo-docs/doctrine/AUTHORIZATION_DOCTRINE.md",
+      "lupo-docs/doctrine/AUTH_DOCTRINE.md",
+      "lupo-docs/doctrine/AUTH_USERS_ACTORS_AGENTS_FAUCETS_DOCTRINE.md",
+      "lupo-docs/doctrine/ActorFaucetOntology.md",
+      "lupo-docs/doctrine/DUAL_CONTEXT_IDENTITY_DOCTRINE.md",
+      "lupo-docs/doctrine/EFFECTIVE_ACTOR_RESOLUTION.md",
+      "lupo-docs/doctrine/FAUCET_TRACEABILITY_DOCTRINE.md",
+      "lupo-docs/doctrine/HYBRID_ACTOR/HYBRID_ACTOR_2_0.md",
+      "lupo-docs/doctrine/HYBRID_ACTOR_DOCTRINE_4.0.29.md",
+      "lupo-docs/doctrine/IDENTITY_AUTHORITY_DOCTRINE.md",
+      "lupo-docs/doctrine/IDENTITY_LAYERS_DOCTRINE.md",
+      "lupo-docs/doctrine/IDENTITY_MODEL.md",
+      "lupo-docs/doctrine/IDENTITY_MODEL_QUICKSTART_4.0.88.md",
+      "lupo-docs/doctrine/SUPPORTING_ACTOR_DOCTRINE.md"
+    ],
+    "33": [
+      "lupo-docs/doctrine/CASCADE_TABLE_CEILING_PROTOCOL.md",
+      "lupo-docs/doctrine/IMPORT_FROM_CRAFTY_TROUBLESHOOTING.md",
+      "lupo-docs/doctrine/INSTALLATION_PATH_DOCTRINE.md",
+      "lupo-docs/doctrine/LEXA_GATEWAY_INTEGRATION.md",
+      "lupo-docs/doctrine/MINIMAL_HOSTING_REQUIREMENTS.md",
+      "lupo-docs/doctrine/PHP_COMPATIBILITY_AND_MINIMAL_HOSTING_DOCTRINE.md",
+      "lupo-docs/doctrine/SAFE_MIGRATION_DOCTRINE.md",
+      "lupo-docs/doctrine/SCHEMA_AND_TOON_ALIGNMENT_CONTEXT.md",
+      "lupo-docs/doctrine/TABLE_CEILING_DEFENSE_PLAN.md",
+      "lupo-docs/doctrine/TABLE_CONSOLIDATION_PLAN.md"
+    ]
+  },
+  "results": [
+    {
+      "path": "lupo-docs/doctrine/4.0.17_DIAGNOSTICS_AND_COMPATIBILITY.md",
+      "status": "ok",
+      "reason": "already_linked",
+      "prd_ids": [
+        0
+      ]
+    },
+    {
+      "path": "lupo-docs/doctrine/4.0.21_COMPLETION_PLAN.md",
+      "status": "ok",
+      "reason": "already_linked",
+      "prd_ids": [
+        0
+      ]
+    },
+    {
+      "path": "lupo-docs/doctrine/5W1H_QUICK_REFERENCE.md",
+      "status": "ok",
+      "reason": "already_linked",
+      "prd_ids": [
+        26
+      ]
+    },
+    {
+      "path": "lupo-docs/doctrine/ACTOR_AGENT_AUTH_USER_MODEL.md",
+      "status": "ok",
+      "reason": "already_linked",
+      "prd_ids": [
+        32
+      ]
+    },
+    {
+      "path": "lupo-docs/doctrine/ACTOR_AGENT_DISTINCTION.md",
+      "status": "ok",
+      "reason": "already_linked",
+      "prd_ids": [
+        32
+      ]
+    },
+    {
+      "path": "lupo-docs/doctrine/ACTOR_FACET_SEPARATION_DOCTRINE.md",
+      "status": "ok",
+      "reason": "already_linked",
+      "prd_ids": [
+        32
+      ]
+    },
+    {
+      "path": "lupo-docs/doctrine/ACTOR_INSTANCE_MODEL.md",
+      "status": "ok",
+      "reason": "already_linked",
+      "prd_ids": [
+        32
+      ]
+    },
+    {
+      "path": "lupo-docs/doctrine/ACTOR_LEASE_SESSION_MODEL.md",
+      "status": "ok",
+      "reason": "already_linked",
+      "prd_ids": [
+        32
+      ]
+    },
+    {
+      "path": "lupo-docs/doctrine/ACTOR_LEASING_DOCTRINE.md",
+      "status": "ok",
+      "reason": "already_linked",
+      "prd_ids": [
+        32
+      ]
+    },
+    {
+      "path": "lupo-docs/doctrine/ACTOR_PRIMARY_KEY_DOCTRINE.md",
+      "status": "ok",
+      "reason": "already_linked",
+      "prd_ids": [
+        32
+      ]
+    },
+    {
+      "path": "lupo-docs/doctrine/ACTOR_REQUIREMENTS.md",
+      "status": "ok",
+      "reason": "already_linked",
+      "prd_ids": [
+        32
+      ]
+    },
+    {
+      "path": "lupo-docs/doctrine/ACTOR_STATE_DOCTRINE.md",
+      "status": "ok",
+      "reason": "already_linked",
+      "prd_ids": [
+        32
+      ]
+    },
+    {
+      "path": "lupo-docs/doctrine/ACTOR_TEMPLATE_MODEL.md",
+      "status": "ok",
+      "reason": "already_linked",
+      "prd_ids": [
+        32
+      ]
+    },
+    {
+      "path": "lupo-docs/doctrine/ActorFaucetOntology.md",
+      "status": "ok",
+      "reason": "already_linked",
+      "prd_ids": [
+        32
+      ]
+    },
+    {
+      "path": "lupo-docs/doctrine/AGENT_420_RETIREMENT.md",
+      "status": "ok",
+      "reason": "already_linked",
+      "prd_ids": [
+        0
+      ]
+    },
+    {
+      "path": "lupo-docs/doctrine/AGENT_BOUNDARIES_COMPACT.md",
+      "status": "ok",
+      "reason": "already_linked",
+      "prd_ids": [
+        0
+      ]
+    },
+    {
+      "path": "lupo-docs/doctrine/AGENT_REGISTRY.md",
+      "status": "ok",
+      "reason": "already_linked",
+      "prd_ids": [
+        32
+      ]
+    },
+    {
+      "path": "lupo-docs/doctrine/AGENT_REGISTRY_DOCTRINE.md",
+      "status": "ok",
+      "reason": "already_linked",
+      "prd_ids": [
+        32
+      ]
+    },
+    {
+      "path": "lupo-docs/doctrine/AI_AGENT_BOOT_NOTES.md",
+      "status": "ok",
+      "reason": "already_linked",
+      "prd_ids": [
+        0
+      ]
+    },
+    {
+      "path": "lupo-docs/doctrine/AI_CORRECTIONS_DOCTRINE.md",
+      "status": "ok",
+      "reason": "already_linked",
+      "prd_ids": [
+        0
+      ]
+    },
+    {
+      "path": "lupo-docs/doctrine/ANUBIS_FALLBACK_DOCTRINE.md",
+      "status": "ok",
+      "reason": "already_linked",
+      "prd_ids": [
+        32
+      ]
+    },
+    {
+      "path": "lupo-docs/doctrine/ANUBIS_ORPHAN_RULES.md",
+      "status": "ok",
+      "reason": "already_linked",
+      "prd_ids": [
+        32
+      ]
+    },
+    {
+      "path": "lupo-docs/doctrine/APPROVED_ARTIFACTS_INDEX.md",
+      "status": "ok",
+      "reason": "already_linked",
+      "prd_ids": [
+        29
+      ]
+    },
+    {
+      "path": "lupo-docs/doctrine/AUTH_DOCTRINE.md",
+      "status": "ok",
+      "reason": "already_linked",
+      "prd_ids": [
+        32
+      ]
+    },
+    {
+      "path": "lupo-docs/doctrine/AUTH_USERS_ACTORS_AGENTS_FAUCETS_DOCTRINE.md",
+      "status": "ok",
+      "reason": "already_linked",
+      "prd_ids": [
+        32
+      ]
+    },
+    {
+      "path": "lupo-docs/doctrine/AUTHORIZATION_DOCTRINE.md",
+      "status": "ok",
+      "reason": "already_linked",
+      "prd_ids": [
+        32
+      ]
+    },
+    {
+      "path": "lupo-docs/doctrine/BAN_REASONS.md",
+      "status": "ok",
+      "reason": "already_linked",
+      "prd_ids": [
+        0
+      ]
+    },
+    {
+      "path": "lupo-docs/doctrine/BAYESIAN_DECISION_DOCTRINE.md",
+      "status": "ok",
+      "reason": "already_linked",
+      "prd_ids": [
+        0
+      ]
+    },
+    {
+      "path": "lupo-docs/doctrine/CASCADE_TABLE_CEILING_PROTOCOL.md",
+      "status": "ok",
+      "reason": "already_linked",
+      "prd_ids": [
+        33
+      ]
+    },
+    {
+      "path": "lupo-docs/doctrine/CHANNEL_66_QUESTION_GRAPH_DOCTRINE.md",
+      "status": "ok",
+      "reason": "already_linked",
+      "prd_ids": [
+        30
+      ]
+    },
+    {
+      "path": "lupo-docs/doctrine/CHANNEL_BASED_COORDINATION_DOCTRINE.md",
+      "status": "ok",
+      "reason": "already_linked",
+      "prd_ids": [
+        30
+      ]
+    },
+    {
+      "path": "lupo-docs/doctrine/CHANNEL_MODEL_DOCTRINE.md",
+      "status": "ok",
+      "reason": "already_linked",
+      "prd_ids": [
+        30
+      ]
+    },
+    {
+      "path": "lupo-docs/doctrine/channels/filesystem_padding_layer.md",
+      "status": "ok",
+      "reason": "already_linked",
+      "prd_ids": [
+        29,
+        30
+      ]
+    },
+    {
+      "path": "lupo-docs/doctrine/channels.md",
+      "status": "ok",
+      "reason": "already_linked",
+      "prd_ids": [
+        29,
+        30
+      ]
+    },
+    {
+      "path": "lupo-docs/doctrine/CLASS_CONVERSION_DOCTRINE.md",
+      "status": "ok",
+      "reason": "already_linked",
+      "prd_ids": [
+        0
+      ]
+    },
+    {
+      "path": "lupo-docs/doctrine/CLI_DOCTRINE.md",
+      "status": "ok",
+      "reason": "already_linked",
+      "prd_ids": [
+        0
+      ]
+    },
+    {
+      "path": "lupo-docs/doctrine/CLOUDFLARE_DOCTRINE.md",
+      "status": "ok",
+      "reason": "already_linked",
+      "prd_ids": [
+        0
+      ]
+    },
+    {
+      "path": "lupo-docs/doctrine/CLOUDFLARE_VS_FLARE.md",
+      "status": "ok",
+      "reason": "already_linked",
+      "prd_ids": [
+        0
+      ]
+    },
+    {
+      "path": "lupo-docs/doctrine/COLLECTIONS_DOCTRINE.md",
+      "status": "ok",
+      "reason": "already_linked",
+      "prd_ids": [
+        0
+      ]
+    },
+    {
+      "path": "lupo-docs/doctrine/COMMUNICATION_DOCTRINE.md",
+      "status": "ok",
+      "reason": "already_linked",
+      "prd_ids": [
+        0
+      ]
+    },
+    {
+      "path": "lupo-docs/doctrine/COMPATIBILITY_MATRIX.md",
+      "status": "ok",
+      "reason": "already_linked",
+      "prd_ids": [
+        0
+      ]
+    },
+    {
+      "path": "lupo-docs/doctrine/CONFIGURATION_DOCTRINE.md",
+      "status": "ok",
+      "reason": "already_linked",
+      "prd_ids": [
+        0
+      ]
+    },
+    {
+      "path": "lupo-docs/doctrine/CONSOLIDATION_VALIDATION_REQUIREMENTS.md",
+      "status": "ok",
+      "reason": "already_linked",
+      "prd_ids": [
+        0
+      ]
+    },
+    {
+      "path": "lupo-docs/doctrine/CONTEXT_MODEL_DOCTRINE.md",
+      "status": "ok",
+      "reason": "already_linked",
+      "prd_ids": [
+        0
+      ]
+    },
+    {
+      "path": "lupo-docs/doctrine/COUNTING_IN_LIGHT.md",
+      "status": "ok",
+      "reason": "already_linked",
+      "prd_ids": [
+        0
+      ]
+    },
+    {
+      "path": "lupo-docs/doctrine/CRAFTY_SYNTAX_IMPORT_IMPLEMENTATION_CHECKLIST.md",
+      "status": "ok",
+      "reason": "already_linked",
+      "prd_ids": [
+        13
+      ]
+    },
+    {
+      "path": "lupo-docs/doctrine/CRAFTY_SYNTAX_INTEGRATION_PLAN.md",
+      "status": "ok",
+      "reason": "already_linked",
+      "prd_ids": [
+        13
+      ]
+    },
+    {
+      "path": "lupo-docs/doctrine/CRAFTY_SYNTAX_MIGRATION_PROJECT_BRIEF.md",
+      "status": "ok",
+      "reason": "already_linked",
+      "prd_ids": [
+        13
+      ]
+    },
+    {
+      "path": "lupo-docs/doctrine/CRAFTY_SYNTAX_STATE_BASED_IMPLEMENTATION_PLAN.md",
+      "status": "ok",
+      "reason": "already_linked",
+      "prd_ids": [
+        13
+      ]
+    },
+    {
+      "path": "lupo-docs/doctrine/CURRENT_UTC_REFERENCE.md",
+      "status": "ok",
+      "reason": "already_linked",
+      "prd_ids": [
+        0
+      ]
+    },
+    {
+      "path": "lupo-docs/doctrine/database/README.md",
+      "status": "ok",
+      "reason": "already_linked",
+      "prd_ids": [
+        0
+      ]
+    },
+    {
+      "path": "lupo-docs/doctrine/database_constraints.md",
+      "status": "ok",
+      "reason": "already_linked",
+      "prd_ids": [
+        0
+      ]
+    },
+    {
+      "path": "lupo-docs/doctrine/DATABASE_DOCTRINE.md",
+      "status": "ok",
+      "reason": "already_linked",
+      "prd_ids": [
+        0
+      ]
+    },
+    {
+      "path": "lupo-docs/doctrine/DECISION_MODEL.md",
+      "status": "ok",
+      "reason": "already_linked",
+      "prd_ids": [
+        31
+      ]
+    },
+    {
+      "path": "lupo-docs/doctrine/DEVELOPMENT_WORKFLOW_DOCTRINE.md",
+      "status": "ok",
+      "reason": "already_linked",
+      "prd_ids": [
+        0
+      ]
+    },
+    {
+      "path": "lupo-docs/doctrine/DIRECTORY_STRUCTURE_DOCTRINE.md",
+      "status": "ok",
+      "reason": "already_linked",
+      "prd_ids": [
+        29
+      ]
+    },
+    {
+      "path": "lupo-docs/doctrine/DOCTRINE_FILE_STRUCTURE.md",
+      "status": "ok",
+      "reason": "already_linked",
+      "prd_ids": [
+        0
+      ]
+    },
+    {
+      "path": "lupo-docs/doctrine/DOCTRINE_TABLES_TRANSITION_NOTE.md",
+      "status": "ok",
+      "reason": "already_linked",
+      "prd_ids": [
+        0
+      ]
+    },
+    {
+      "path": "lupo-docs/doctrine/DOCUMENTATION_ARCHITECTURE.md",
+      "status": "ok",
+      "reason": "already_linked",
+      "prd_ids": [
+        26
+      ]
+    },
+    {
+      "path": "lupo-docs/doctrine/DOCUMENTATION_AS_DATA_DOCTRINE.md",
+      "status": "ok",
+      "reason": "already_linked",
+      "prd_ids": [
+        26
+      ]
+    },
+    {
+      "path": "lupo-docs/doctrine/DUAL_CONTEXT_AND_OPPOSITION_DOCTRINE.md",
+      "status": "ok",
+      "reason": "already_linked",
+      "prd_ids": [
+        0
+      ]
+    },
+    {
+      "path": "lupo-docs/doctrine/DUAL_CONTEXT_IDENTITY_DOCTRINE.md",
+      "status": "ok",
+      "reason": "already_linked",
+      "prd_ids": [
+        32
+      ]
+    },
+    {
+      "path": "lupo-docs/doctrine/DYNAPI_DOCTRINE.md",
+      "status": "ok",
+      "reason": "already_linked",
+      "prd_ids": [
+        28
+      ]
+    },
+    {
+      "path": "lupo-docs/doctrine/EDGE_MODEL_DOCTRINE.md",
+      "status": "ok",
+      "reason": "already_linked",
+      "prd_ids": [
+        0
+      ]
+    },
+    {
+      "path": "lupo-docs/doctrine/EDGE_TYPE_SEMANTICS_DOCTRINE.md",
+      "status": "ok",
+      "reason": "already_linked",
+      "prd_ids": [
+        0
+      ]
+    },
+    {
+      "path": "lupo-docs/doctrine/EDGE_VOCABULARY_DOCTRINE.md",
+      "status": "ok",
+      "reason": "already_linked",
+      "prd_ids": [
+        0
+      ]
+    },
+    {
+      "path": "lupo-docs/doctrine/EFFECTIVE_ACTOR_RESOLUTION.md",
+      "status": "ok",
+      "reason": "already_linked",
+      "prd_ids": [
+        32
+      ]
+    },
+    {
+      "path": "lupo-docs/doctrine/EMOJI_AND_SMILIES.md",
+      "status": "ok",
+      "reason": "already_linked",
+      "prd_ids": [
+        0
+      ]
+    },
+    {
+      "path": "lupo-docs/doctrine/ETHICAL_STATE_MARKERS_DOCTRINE.md",
+      "status": "ok",
+      "reason": "already_linked",
+      "prd_ids": [
+        0
+      ]
+    },
+    {
+      "path": "lupo-docs/doctrine/FALLBACK_ENGINEERING.md",
+      "status": "ok",
+      "reason": "already_linked",
+      "prd_ids": [
+        0
+      ]
+    },
+    {
+      "path": "lupo-docs/doctrine/FallbackDoctrine.md",
+      "status": "ok",
+      "reason": "already_linked",
+      "prd_ids": [
+        0
+      ]
+    },
+    {
+      "path": "lupo-docs/doctrine/FAUCET_TRACEABILITY_DOCTRINE.md",
+      "status": "ok",
+      "reason": "already_linked",
+      "prd_ids": [
+        32
+      ]
+    },
+    {
+      "path": "lupo-docs/doctrine/FEDERATION_NODE_TYPES_DOCTRINE.md",
+      "status": "ok",
+      "reason": "already_linked",
+      "prd_ids": [
+        0
+      ]
+    },
+    {
+      "path": "lupo-docs/doctrine/FEDERATION_SCOPING_DOCTRINE.md",
+      "status": "ok",
+      "reason": "already_linked",
+      "prd_ids": [
+        0
+      ]
+    },
+    {
+      "path": "lupo-docs/doctrine/FILESYSTEM_MIGRATION_GUIDE.md",
+      "status": "ok",
+      "reason": "already_linked",
+      "prd_ids": [
+        29
+      ]
+    },
+    {
+      "path": "lupo-docs/doctrine/FILESYSTEM_OBJECTS_AND_DATABASE_SNAPSHOTS.md",
+      "status": "ok",
+      "reason": "already_linked",
+      "prd_ids": [
+        29
+      ]
+    },
+    {
+      "path": "lupo-docs/doctrine/GC_DOCTRINE.md",
+      "status": "ok",
+      "reason": "already_linked",
+      "prd_ids": [
+        28
+      ]
+    },
+    {
+      "path": "lupo-docs/doctrine/HEADER_DB_REVERSIBILITY_DOCTRINE.md",
+      "status": "ok",
+      "reason": "already_linked",
+      "prd_ids": [
+        0
+      ]
+    },
+    {
+      "path": "lupo-docs/doctrine/HEADER_STRUCTURE_DOCTRINE.md",
+      "status": "ok",
+      "reason": "already_linked",
+      "prd_ids": [
+        16
+      ]
+    },
+    {
+      "path": "lupo-docs/doctrine/HEADERS/FLIP_FOOTER_DOCTRINE_4_0_31.md",
+      "status": "ok",
+      "reason": "already_linked",
+      "prd_ids": [
+        16
+      ]
+    },
+    {
+      "path": "lupo-docs/doctrine/HEADERS/LUPO_HEADER_EXPANSION_4_0_30.md",
+      "status": "ok",
+      "reason": "already_linked",
+      "prd_ids": [
+        16
+      ]
+    },
+    {
+      "path": "lupo-docs/doctrine/HEALTH_CHECK_DOCTRINE.md",
+      "status": "ok",
+      "reason": "already_linked",
+      "prd_ids": [
+        0
+      ]
+    },
+    {
+      "path": "lupo-docs/doctrine/HELP_SYSTEM_DOCTRINE.md",
+      "status": "ok",
+      "reason": "already_linked",
+      "prd_ids": [
+        0
+      ]
+    },
+    {
+      "path": "lupo-docs/doctrine/HIERARCHY_DOCTRINE.md",
+      "status": "updated",
+      "added_prd_ids": [
+        0
+      ],
+      "prd_ids": [
+        0
+      ]
+    },
+    {
+      "path": "lupo-docs/doctrine/HumanActorIdDoctrine.md",
+      "status": "ok",
+      "reason": "already_linked",
+      "prd_ids": [
+        0
+      ]
+    },
+    {
+      "path": "lupo-docs/doctrine/HYBRID_ACTOR/HYBRID_ACTOR_2_0.md",
+      "status": "ok",
+      "reason": "already_linked",
+      "prd_ids": [
+        32
+      ]
+    },
+    {
+      "path": "lupo-docs/doctrine/HYBRID_ACTOR_DOCTRINE_4.0.29.md",
+      "status": "ok",
+      "reason": "already_linked",
+      "prd_ids": [
+        32
+      ]
+    },
+    {
+      "path": "lupo-docs/doctrine/IDE_AGENT_CONTINUITY_PROTOCOL.md",
+      "status": "ok",
+      "reason": "already_linked",
+      "prd_ids": [
+        31
+      ]
+    },
+    {
+      "path": "lupo-docs/doctrine/IDE_TASK_PRIORITY_DOCTRINE.md",
+      "status": "ok",
+      "reason": "already_linked",
+      "prd_ids": [
+        0
+      ]
+    },
+    {
+      "path": "lupo-docs/doctrine/IDENTITY_AUTHORITY_DOCTRINE.md",
+      "status": "ok",
+      "reason": "already_linked",
+      "prd_ids": [
+        32
+      ]
+    },
+    {
+      "path": "lupo-docs/doctrine/IDENTITY_LAYERS_DOCTRINE.md",
+      "status": "ok",
+      "reason": "already_linked",
+      "prd_ids": [
+        32
+      ]
+    },
+    {
+      "path": "lupo-docs/doctrine/IDENTITY_MODEL.md",
+      "status": "ok",
+      "reason": "already_linked",
+      "prd_ids": [
+        32
+      ]
+    },
+    {
+      "path": "lupo-docs/doctrine/IDENTITY_MODEL_QUICKSTART_4.0.88.md",
+      "status": "ok",
+      "reason": "already_linked",
+      "prd_ids": [
+        32
+      ]
+    },
+    {
+      "path": "lupo-docs/doctrine/IMPORT_FROM_CRAFTY_TROUBLESHOOTING.md",
+      "status": "ok",
+      "reason": "already_linked",
+      "prd_ids": [
+        33
+      ]
+    },
+    {
+      "path": "lupo-docs/doctrine/INDEX.md",
+      "status": "ok",
+      "reason": "already_linked",
+      "prd_ids": [
+        29
+      ]
+    },
+    {
+      "path": "lupo-docs/doctrine/init/LUPO_INITIALIZATION_DOCTRINE.md",
+      "status": "ok",
+      "reason": "already_linked",
+      "prd_ids": [
+        0
+      ]
+    },
+    {
+      "path": "lupo-docs/doctrine/INSTALLATION_PATH_DOCTRINE.md",
+      "status": "ok",
+      "reason": "already_linked",
+      "prd_ids": [
+        33
+      ]
+    },
+    {
+      "path": "lupo-docs/doctrine/JSON_SCHEMA_REFERENCE_DOCTRINE.md",
+      "status": "ok",
+      "reason": "already_linked",
+      "prd_ids": [
+        26
+      ]
+    },
+    {
+      "path": "lupo-docs/doctrine/LEXA_GATEWAY_INTEGRATION.md",
+      "status": "ok",
+      "reason": "already_linked",
+      "prd_ids": [
+        33
+      ]
+    },
+    {
+      "path": "lupo-docs/doctrine/LILITH_EXTERNAL_RESEARCH_DIRECTIVE.md",
+      "status": "ok",
+      "reason": "already_linked",
+      "prd_ids": [
+        0
+      ]
+    },
+    {
+      "path": "lupo-docs/doctrine/LUPOPEDIA_CANONICAL_DOCTRINE.md",
+      "status": "ok",
+      "reason": "already_linked",
+      "prd_ids": [
+        0
+      ]
+    },
+    {
+      "path": "lupo-docs/doctrine/LUPOPEDIA_DOCTRINE.md",
+      "status": "ok",
+      "reason": "already_linked",
+      "prd_ids": [
+        0
+      ]
+    },
+    {
+      "path": "lupo-docs/doctrine/LUPOPEDIA_DOCTRINE_v1.1.md",
+      "status": "ok",
+      "reason": "already_linked",
+      "prd_ids": [
+        0
+      ]
+    },
+    {
+      "path": "lupo-docs/doctrine/LUPOPEDIA_HEADERS/DEPRECATION_FLARE_FLIP_FLP.md",
+      "status": "ok",
+      "reason": "already_linked",
+      "prd_ids": [
+        16
+      ]
+    },
+    {
+      "path": "lupo-docs/doctrine/LUPOPEDIA_HEADERS/LUPOPEDIA_HEADERS_DOCTRINE.md",
+      "status": "ok",
+      "reason": "already_linked",
+      "prd_ids": [
+        16
+      ]
+    },
+    {
+      "path": "lupo-docs/doctrine/LUPOPEDIA_HEADERS/LUPOPEDIA_HEADERS_FORMAT.md",
+      "status": "ok",
+      "reason": "already_linked",
+      "prd_ids": [
+        16
+      ]
+    },
+    {
+      "path": "lupo-docs/doctrine/LUPOPEDIA_HEADERS/LUPOPEDIA_HEADERS_MIGRATION.md",
+      "status": "ok",
+      "reason": "already_linked",
+      "prd_ids": [
+        16
+      ]
+    },
+    {
+      "path": "lupo-docs/doctrine/LUPOPEDIA_HEADERS/LUPOPEDIA_HEADERS_PLAN.md",
+      "status": "ok",
+      "reason": "already_linked",
+      "prd_ids": [
+        16
+      ]
+    },
+    {
+      "path": "lupo-docs/doctrine/LUPOPEDIA_HEADERS/OPTIONAL_BLOCKS.md",
+      "status": "ok",
+      "reason": "already_linked",
+      "prd_ids": [
+        16
+      ]
+    },
+    {
+      "path": "lupo-docs/doctrine/LUPOPEDIA_HEADERS/README.md",
+      "status": "ok",
+      "reason": "already_linked",
+      "prd_ids": [
+        16
+      ]
+    },
+    {
+      "path": "lupo-docs/doctrine/LUPOPEDIA_HEADERS/TAXONOMY_REFERENCE.md",
+      "status": "ok",
+      "reason": "already_linked",
+      "prd_ids": [
+        16
+      ]
+    },
+    {
+      "path": "lupo-docs/doctrine/LUPOPEDIA_HEADERS/VALIDATORS_AND_TOOLING.md",
+      "status": "ok",
+      "reason": "already_linked",
+      "prd_ids": [
+        16
+      ]
+    },
+    {
+      "path": "lupo-docs/doctrine/LUPOPEDIA_HEADERS/VERIFICATION_GUIDE.md",
+      "status": "ok",
+      "reason": "already_linked",
+      "prd_ids": [
+        16
+      ]
+    },
+    {
+      "path": "lupo-docs/doctrine/LUPOPEDIA_HEADERS/VERSIONING_MODEL.md",
+      "status": "ok",
+      "reason": "already_linked",
+      "prd_ids": [
+        16
+      ]
+    },
+    {
+      "path": "lupo-docs/doctrine/LUPOPEDIA_HEADERS/versions/2.0/changelog.md",
+      "status": "ok",
+      "reason": "already_linked",
+      "prd_ids": [
+        16
+      ]
+    },
+    {
+      "path": "lupo-docs/doctrine/LUPOPEDIA_HEADERS/versions/2.0/decisions.md",
+      "status": "ok",
+      "reason": "already_linked",
+      "prd_ids": [
+        16
+      ]
+    },
+    {
+      "path": "lupo-docs/doctrine/LUPOPEDIA_HEADERS/versions/2.0/observations.md",
+      "status": "ok",
+      "reason": "already_linked",
+      "prd_ids": [
+        16
+      ]
+    },
+    {
+      "path": "lupo-docs/doctrine/LUPOPEDIA_HEADERS/versions/2.0/README.md",
+      "status": "ok",
+      "reason": "already_linked",
+      "prd_ids": [
+        16
+      ]
+    },
+    {
+      "path": "lupo-docs/doctrine/LUPOPEDIA_HEADERS/versions/2.0/todo.md",
+      "status": "ok",
+      "reason": "already_linked",
+      "prd_ids": [
+        16
+      ]
+    },
+    {
+      "path": "lupo-docs/doctrine/LUPOPEDIA_HEADERS_AND_METADATA_BRIDGE.md",
+      "status": "ok",
+      "reason": "already_linked",
+      "prd_ids": [
+        16
+      ]
+    },
+    {
+      "path": "lupo-docs/doctrine/MASTER_DOCTRINE.md",
+      "status": "ok",
+      "reason": "already_linked",
+      "prd_ids": [
+        0
+      ]
+    },
+    {
+      "path": "lupo-docs/doctrine/MESSAGE_ATTRIBUTION.md",
+      "status": "ok",
+      "reason": "already_linked",
+      "prd_ids": [
+        0
+      ]
+    },
+    {
+      "path": "lupo-docs/doctrine/MIDDLE_HEADERS_DOCTRINE.md",
+      "status": "ok",
+      "reason": "already_linked",
+      "prd_ids": [
+        16
+      ]
+    },
+    {
+      "path": "lupo-docs/doctrine/MIGRATION_DOCTRINE.md",
+      "status": "ok",
+      "reason": "already_linked",
+      "prd_ids": [
+        0
+      ]
+    },
+    {
+      "path": "lupo-docs/doctrine/MigrationAtlas.md",
+      "status": "ok",
+      "reason": "already_linked",
+      "prd_ids": [
+        0
+      ]
+    },
+    {
+      "path": "lupo-docs/doctrine/migrations/crafty_syntax_ancestral_intent.md",
+      "status": "ok",
+      "reason": "already_linked",
+      "prd_ids": [
+        0
+      ]
+    },
+    {
+      "path": "lupo-docs/doctrine/migrations/generated/README.md",
+      "status": "ok",
+      "reason": "already_linked",
+      "prd_ids": [
+        0
+      ]
+    },
+    {
+      "path": "lupo-docs/doctrine/migrations/livehelp_migrations_readme.md",
+      "status": "ok",
+      "reason": "already_linked",
+      "prd_ids": [
+        0
+      ]
+    },
+    {
+      "path": "lupo-docs/doctrine/MINIMAL_HOSTING_REQUIREMENTS.md",
+      "status": "ok",
+      "reason": "already_linked",
+      "prd_ids": [
+        33
+      ]
+    },
+    {
+      "path": "lupo-docs/doctrine/MOOD_RGB_DOCTRINE.md",
+      "status": "ok",
+      "reason": "already_linked",
+      "prd_ids": [
+        28
+      ]
+    },
+    {
+      "path": "lupo-docs/doctrine/MULTI_AGENT_5W1H_DOCTRINE.md",
+      "status": "ok",
+      "reason": "already_linked",
+      "prd_ids": [
+        28
+      ]
+    },
+    {
+      "path": "lupo-docs/doctrine/MULTI_AGENT_ORCHESTRATION_DOCTRINE.md",
+      "status": "ok",
+      "reason": "already_linked",
+      "prd_ids": [
+        0
+      ]
+    },
+    {
+      "path": "lupo-docs/doctrine/PENDING_ARTIFACTS_INDEX.md",
+      "status": "ok",
+      "reason": "already_linked",
+      "prd_ids": [
+        29
+      ]
+    },
+    {
+      "path": "lupo-docs/doctrine/PHP_COMPATIBILITY_AND_MINIMAL_HOSTING_DOCTRINE.md",
+      "status": "ok",
+      "reason": "already_linked",
+      "prd_ids": [
+        33
+      ]
+    },
+    {
+      "path": "lupo-docs/doctrine/PROJECT_REGISTRY_DOCTRINE.md",
+      "status": "ok",
+      "reason": "already_linked",
+      "prd_ids": [
+        29
+      ]
+    },
+    {
+      "path": "lupo-docs/doctrine/PROJECT_REGISTRY_WORKFLOW.md",
+      "status": "ok",
+      "reason": "already_linked",
+      "prd_ids": [
+        29
+      ]
+    },
+    {
+      "path": "lupo-docs/doctrine/REGISTRY_DOCTRINE.md",
+      "status": "ok",
+      "reason": "already_linked",
+      "prd_ids": [
+        0
+      ]
+    },
+    {
+      "path": "lupo-docs/doctrine/RELATION_REGISTRY.md",
+      "status": "ok",
+      "reason": "already_linked",
+      "prd_ids": [
+        0
+      ]
+    },
+    {
+      "path": "lupo-docs/doctrine/RELEASE_ARTIFACT_APPROVAL_GOVERNANCE_DOCTRINE.md",
+      "status": "ok",
+      "reason": "already_linked",
+      "prd_ids": [
+        0
+      ]
+    },
+    {
+      "path": "lupo-docs/doctrine/report_dbdoc_threads_messages.md",
+      "status": "ok",
+      "reason": "already_linked",
+      "prd_ids": [
+        0
+      ]
+    },
+    {
+      "path": "lupo-docs/doctrine/required_flare_headers.md",
+      "status": "ok",
+      "reason": "already_linked",
+      "prd_ids": [
+        16
+      ]
+    },
+    {
+      "path": "lupo-docs/doctrine/ROOT_CONSTITUTIONAL_SYSTEM_REQUIREMENTS_DOCTRINE.md",
+      "status": "ok",
+      "reason": "already_linked",
+      "prd_ids": [
+        0
+      ]
+    },
+    {
+      "path": "lupo-docs/doctrine/ROOTRULES_EXTERNAL_ACTOR.md",
+      "status": "ok",
+      "reason": "already_linked",
+      "prd_ids": [
+        0
+      ]
+    },
+    {
+      "path": "lupo-docs/doctrine/ROSE_DOCTRINE.md",
+      "status": "ok",
+      "reason": "already_linked",
+      "prd_ids": [
+        0
+      ]
+    },
+    {
+      "path": "lupo-docs/doctrine/ROSE_PACKET_MAPPING.md",
+      "status": "ok",
+      "reason": "already_linked",
+      "prd_ids": [
+        0
+      ]
+    },
+    {
+      "path": "lupo-docs/doctrine/RULE_COLLECTION_DOCTRINE.md",
+      "status": "ok",
+      "reason": "already_linked",
+      "prd_ids": [
+        0
+      ]
+    },
+    {
+      "path": "lupo-docs/doctrine/RULES_DOCTRINE.md",
+      "status": "ok",
+      "reason": "already_linked",
+      "prd_ids": [
+        0
+      ]
+    },
+    {
+      "path": "lupo-docs/doctrine/RUNTIME_ORCHESTRATION_LOOP.md",
+      "status": "updated",
+      "added_prd_ids": [
+        0
+      ],
+      "prd_ids": [
+        0
+      ]
+    },
+    {
+      "path": "lupo-docs/doctrine/SAFE_MIGRATION_DOCTRINE.md",
+      "status": "ok",
+      "reason": "already_linked",
+      "prd_ids": [
+        33
+      ]
+    },
+    {
+      "path": "lupo-docs/doctrine/SCHEMA_AND_TOON_ALIGNMENT_CONTEXT.md",
+      "status": "ok",
+      "reason": "already_linked",
+      "prd_ids": [
+        33
+      ]
+    },
+    {
+      "path": "lupo-docs/doctrine/SCHEMA_CANONICAL_SOURCES.md",
+      "status": "ok",
+      "reason": "already_linked",
+      "prd_ids": [
+        0
+      ]
+    },
+    {
+      "path": "lupo-docs/doctrine/SECURITY/SEMANTIC_SECURITY_4_0_30.md",
+      "status": "ok",
+      "reason": "already_linked",
+      "prd_ids": [
+        0
+      ]
+    },
+    {
+      "path": "lupo-docs/doctrine/SEMANTIC_SECURITY_CHECKLIST_4_0_30.md",
+      "status": "ok",
+      "reason": "already_linked",
+      "prd_ids": [
+        0
+      ]
+    },
+    {
+      "path": "lupo-docs/doctrine/SESSION_DOCTRINE.md",
+      "status": "ok",
+      "reason": "already_linked",
+      "prd_ids": [
+        0
+      ]
+    },
+    {
+      "path": "lupo-docs/doctrine/SESSION_MODEL.md",
+      "status": "ok",
+      "reason": "already_linked",
+      "prd_ids": [
+        0
+      ]
+    },
+    {
+      "path": "lupo-docs/doctrine/SESSION_RECONCILIATION_DOCTRINE.md",
+      "status": "ok",
+      "reason": "already_linked",
+      "prd_ids": [
+        0
+      ]
+    },
+    {
+      "path": "lupo-docs/doctrine/SKILLS_DOCTRINE.md",
+      "status": "ok",
+      "reason": "already_linked",
+      "prd_ids": [
+        0
+      ]
+    },
+    {
+      "path": "lupo-docs/doctrine/SMILIES_IMPLEMENTATION.md",
+      "status": "ok",
+      "reason": "already_linked",
+      "prd_ids": [
+        0
+      ]
+    },
+    {
+      "path": "lupo-docs/doctrine/SQL_EXECUTION_POLICY.md",
+      "status": "ok",
+      "reason": "already_linked",
+      "prd_ids": [
+        0
+      ]
+    },
+    {
+      "path": "lupo-docs/doctrine/SUPPORTING_ACTOR_DOCTRINE.md",
+      "status": "ok",
+      "reason": "already_linked",
+      "prd_ids": [
+        32
+      ]
+    },
+    {
+      "path": "lupo-docs/doctrine/SYSTEM_LIMITS_DOCTRINE.md",
+      "status": "ok",
+      "reason": "already_linked",
+      "prd_ids": [
+        0
+      ]
+    },
+    {
+      "path": "lupo-docs/doctrine/TABLE_CEILING_DEFENSE_PLAN.md",
+      "status": "ok",
+      "reason": "already_linked",
+      "prd_ids": [
+        33
+      ]
+    },
+    {
+      "path": "lupo-docs/doctrine/TABLE_CONSOLIDATION_PLAN.md",
+      "status": "ok",
+      "reason": "already_linked",
+      "prd_ids": [
+        33
+      ]
+    },
+    {
+      "path": "lupo-docs/doctrine/TABLE_COUNT_DOCTRINE.md",
+      "status": "ok",
+      "reason": "already_linked",
+      "prd_ids": [
+        0
+      ]
+    },
+    {
+      "path": "lupo-docs/doctrine/TASK_PLANNING_DOCTRINE.md",
+      "status": "ok",
+      "reason": "already_linked",
+      "prd_ids": [
+        0
+      ]
+    },
+    {
+      "path": "lupo-docs/doctrine/THREAD_DIALOG_SYSTEM.md",
+      "status": "ok",
+      "reason": "already_linked",
+      "prd_ids": [
+        31
+      ]
+    },
+    {
+      "path": "lupo-docs/doctrine/TICK_PY_DOCTRINE.md",
+      "status": "ok",
+      "reason": "already_linked",
+      "prd_ids": [
+        0
+      ]
+    },
+    {
+      "path": "lupo-docs/doctrine/TIMESTAMP_DOCTRINE.md",
+      "status": "ok",
+      "reason": "already_linked",
+      "prd_ids": [
+        0
+      ]
+    },
+    {
+      "path": "lupo-docs/doctrine/TOON_DOCTRINE.md",
+      "status": "ok",
+      "reason": "already_linked",
+      "prd_ids": [
+        26
+      ]
+    },
+    {
+      "path": "lupo-docs/doctrine/TRAITS_DOCTRINE.md",
+      "status": "ok",
+      "reason": "already_linked",
+      "prd_ids": [
+        0
+      ]
+    },
+    {
+      "path": "lupo-docs/doctrine/UPGRADE_POLICY_DOCTRINE.md",
+      "status": "ok",
+      "reason": "already_linked",
+      "prd_ids": [
+        0
+      ]
+    },
+    {
+      "path": "lupo-docs/doctrine/VERSION_DOCTRINE.md",
+      "status": "ok",
+      "reason": "already_linked",
+      "prd_ids": [
+        0
+      ]
+    },
+    {
+      "path": "lupo-docs/doctrine/VERSION_POLICY_DOCTRINE.md",
+      "status": "ok",
+      "reason": "already_linked",
+      "prd_ids": [
+        0
+      ]
+    },
+    {
+      "path": "lupo-docs/doctrine/VERSIONING_DOCTRINE.md",
+      "status": "ok",
+      "reason": "already_linked",
+      "prd_ids": [
+        0
+      ]
+    },
+    {
+      "path": "lupo-docs/doctrine/WOLFIE_HEADERS.md",
+      "status": "ok",
+      "reason": "already_linked",
+      "prd_ids": [
+        16
+      ]
+    },
+    {
+      "path": "lupo-docs/doctrine/WOLFIE_WAY_MYTHOLOGY_DOCTRINE.md",
+      "status": "ok",
+      "reason": "already_linked",
+      "prd_ids": [
+        0
+      ]
+    },
+    {
+      "path": "lupo-docs/doctrine/ws4_hidden_intelligence_doctrine.md",
+      "status": "ok",
+      "reason": "already_linked",
+      "prd_ids": [
+        0
+      ]
+    },
+    {
+      "path": "lupo-docs/doctrine/ws5_questionable_tables_doctrine.md",
+      "status": "ok",
+      "reason": "already_linked",
+      "prd_ids": [
+        0
+      ]
+    },
+    {
+      "path": "lupo-docs/doctrine/ws6_test_suite_alignment_doctrine.md",
+      "status": "ok",
+      "reason": "already_linked",
+      "prd_ids": [
+        0
+      ]
+    },
+    {
+      "path": "lupo-docs/doctrine/ws7_documentation_reconciliation_doctrine.md",
+      "status": "ok",
+      "reason": "already_linked",
+      "prd_ids": [
+        26
+      ]
+    },
+    {
+      "path": "lupo-docs/doctrine/X_LUPO_FORWARDED_HEADER_DOCTRINE.md",
+      "status": "ok",
+      "reason": "already_linked",
+      "prd_ids": [
+        16
+      ]
+    }
+  ]
+}

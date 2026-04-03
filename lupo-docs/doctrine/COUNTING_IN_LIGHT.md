@@ -22,6 +22,11 @@ lupopedia.edges:
     - { to: "lupo-agents/3/COUNTING_IN_LIGHT.md", type: "guides", weight: 0.8, reason: "DIALOG agent guide uses this axis model operationally." }
     - { to: "lupo-docs/channels/appendix/appendix/COUNTING_IN_LIGHT.md", type: "supersedes_as_canonical_home", weight: 0.8, reason: "Appendix copy is retained as lineage/mirror, but doctrine path is canonical." }
 
+    - to: "lupo-docs/prd/00_root_constitutional_system_requirements.md"
+      type: implements
+      weight: 1.0
+      reason: "Doctrine PRD lineage; constitutional audit 20260403"
+
 lupopedia.footer:
   last_verified: "20260327_000000"
   last_verified_by: "Cursor IDE Agent (Lead Orchestration)"

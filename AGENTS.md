@@ -3,7 +3,7 @@ lupopedia.headers:
   lupopedia.schema: documentation
   file_path_from_root: AGENTS.md
   web_path: http://www.lupopedia.com/lupopedia/AGENTS.md
-  last_modified_utc: '20260404183000'
+  last_modified_utc: '20260403140117'
   channel_id: 42
   actor_id: 102
   actor_name: cursor
@@ -29,7 +29,7 @@ lupopedia.headers:
   - multi_agent
   agent_name_identity: Cursor IDE Agent (Lead Orchestration)
   lupo_agent: cursor
-  when_updated: '20260402224629'
+  when_updated: '20260403140117'
 lupopedia.edges:
   outbound_edges:
   - to: lupo-docs/doctrine/IDENTITY_MODEL_QUICKSTART_4.0.88.md
@@ -97,6 +97,34 @@ lupopedia.edges:
     type: references
     weight: 1.0
     reason: Active vs archive channel filesystem strategy
+  - to: lupo-docs/doctrine/REVERSE_ENGINEERING_DOCTRINE.md
+    type: references
+    weight: 1.0
+    reason: Study security packages without adopting runtime dependencies
+  - to: lupo-docs/doctrine/SILENT_HARVEST_DOCTRINE.md
+    type: references
+    weight: 0.95
+    reason: Path/visit analytics foundation; navigation compiler ethics
+  - to: lupo-docs/prd/34_federation_node_semantic_network.md
+    type: references
+    weight: 0.9
+    reason: Federation PRD; navigation compiler planned deliverable
+  - to: lupo-docs/doctrine/CRAFTY_NODE_REACTIVATION_STRATEGY.md
+    type: references
+    weight: 0.9
+    reason: Dormant Crafty to Lupopedia; opt-in federation order
+  - to: lupo-docs/LESSONS_LEARNED_FROM_THE_WILD_WEST.md
+    type: references
+    weight: 0.85
+    reason: WOLFIE lineage; chair-falling moment; hand-coded UI templates (integrate, do not generate)
+  - to: lupo-docs/doctrine/MOBILE_SEPARATION_DOCTRINE.md
+    type: references
+    weight: 1.0
+    reason: Two-UI Strategy — WOLFIE desktop hand-coded; AI-assisted simple mobile web; shared DB
+  - to: lupo-docs/doctrine/WOLFIE_WORKFLOW_DOCTRINE.md
+    type: references
+    weight: 1.0
+    reason: Consumer mobile-first then desktop; admin desktop-first; operator mobile native PRD 35
   semantic_tags:
   - agents
   - cursor
@@ -109,7 +137,7 @@ lupopedia.see:
   - - AGENTS.md
     - http://www.lupopedia.com/lupopedia/AGENTS.md
 lupopedia.footer:
-  last_verified: '20260404183000'
+  last_verified: '20260403140117'
   verified_by:
     identity_type: actor
     actor_id: 102
@@ -128,6 +156,107 @@ lupopedia.footer:
 # file: AGENTS — delegation: junie:root — web_path: [http://www.lupopedia.com/lupopedia/AGENTS.md](http://www.lupopedia.com/lupopedia/AGENTS.md)
 
 # AGENTS.md
+
+## Mobile separation (dual UI, shared content)
+
+Canonical doctrine: **[MOBILE_SEPARATION_DOCTRINE.md](lupo-docs/doctrine/MOBILE_SEPARATION_DOCTRINE.md)**.
+
+**Intent:** **one UI for desktop** and **one for mobile web** when **interaction or structure** differs—not only “book” pages. **Two-UI Strategy (default):** **WOLFIE** hand-codes **desktop** (DynAPI, liquid layers, mouse-linked widgets); **AI / IDE** may **generate or assist** **simple** **mobile web** UI for review and merge—see doctrine. **Content** (DB, messages) stays **single-source**; **templates and scripts** differ by route.
+
+### The rule
+
+- **Simple** pages (blog body, plain form, basic dashboard): limited **responsive CSS** may work **when DOM and interaction stay the same**.
+- **Interaction-rich** surfaces (mouse/hover, dense layers, choreographed scroll): **separate mobile routes** — detect at entry, **`/mobile/...`** under **`LUPOPEDIA_PUBLIC_PATH`**. **Different DOM and often different JS**; **same backend data**.
+
+### The test
+
+Ask: **Does behavior change without a mouse or on a small screen in a way CSS cannot honestly represent?**
+
+- If **yes** → **separate mobile page**.
+- If **no** → responsive CSS **might** suffice.
+
+### Examples (not exhaustive)
+
+- **Book spread** (one case among many): desktop spread + motion vs mobile scroll/sections.
+- **Liquid / layered JS**: desktop choreography vs mobile simplification.
+- **Cursor-following widget**: desktop only; mobile gets a different control model.
+
+## Two-UI Strategy: WOLFIE desktop, AI mobile
+
+Canonical detail: **[MOBILE_SEPARATION_DOCTRINE.md](lupo-docs/doctrine/MOBILE_SEPARATION_DOCTRINE.md)** (“The Two-UI Strategy”).
+
+| Surface | Who | IDE behavior |
+|---------|-----|----------------|
+| **Desktop** | WOLFIE — hand-coded | **Do not** generate or “improve” desktop UI without explicit ask. **Integrate** what WOLFIE ships. |
+| **Mobile web** | AI / IDE **with WOLFIE review** | **May** generate **simple**, touch-first HTML/CSS/JS; **no** mouse-only features; WOLFIE **approves** merges. |
+
+**Golden rule:** desktop is WOLFIE’s craft; mobile web is **utility**—generate simple surfaces **here**, not on desktop templates.
+
+## WOLFIE workflow: mobile-first, desktop-masterpiece
+
+Canonical doctrine: **[WOLFIE_WORKFLOW_DOCTRINE.md](lupo-docs/doctrine/WOLFIE_WORKFLOW_DOCTRINE.md)**.
+
+**Process (build order):**
+
+1. **AI / IDE** produces **mobile web** UI first — **functionality and data only**: simple HTML, basic CSS, working JS (forms, validation, API calls). **No** desktop-only art, **no** mouse-only features, **no** “make it beautiful” pass—**make it work**.
+2. **WOLFIE** takes that skeleton and builds the **desktop** masterpiece: liquid layouts, DynAPI, mouse-linked effects, layers—**same backend**, same field semantics.
+
+**Runtime (URLs, detection)** stays in **MOBILE_SEPARATION_DOCTRINE.md**; this section is **how** to ship features, not a substitute for routing rules.
+
+**When WOLFIE takes over desktop:** integrate WOLFIE’s hand output per **LESSONS** section 7; do not refactor desktop for “style” without permission.
+
+**Golden rule:** *mobile is the skeleton; desktop is the soul.* Build the skeleton first. Soul comes in Stage 2.
+
+**Exception — admin / operator:** **desktop-first** (WOLFIE). Do **not** apply mobile-first skeleton to **admin.php**, **live.php**-class consoles, analytics, or full config panels. Operators on phones → **native app** (**PRD 35**), not mobile web admin. Full table: **[WOLFIE_WORKFLOW_DOCTRINE.md](lupo-docs/doctrine/WOLFIE_WORKFLOW_DOCTRINE.md)** (“The admin exception”).
+
+## Workflow: admin vs consumer
+
+Canonical: **[WOLFIE_WORKFLOW_DOCTRINE.md](lupo-docs/doctrine/WOLFIE_WORKFLOW_DOCTRINE.md)**.
+
+### Consumer (visitor-facing)
+
+- **Order:** mobile-first → desktop masterpiece.
+- **Roles:** AI / IDE builds functional **mobile web** UI; WOLFIE crafts **desktop** art (DynAPI, layers, mouse-linked widgets).
+- **Examples:** visitor chat, public pages, Eye-class widgets, embeds.
+
+### Admin / operator (professional)
+
+- **Order:** **desktop-first** — WOLFIE hand-codes **admin** and **operator** shells (Notepad, vanilla JS, DynAPI where needed).
+- **Examples:** **`admin.php`** family, **`live.php`**-class operator console, multi-color chat chrome, settings, **data** / path / analytics viewers.
+- **Mobile:** operators use **native app** (**PRD 35**), **not** a full admin replicated as mobile web. No “responsive” full admin as the primary plan.
+
+### Golden rule
+
+**Consumer = mobile-first (then desktop art). Admin = desktop-first. Operator on phone = native app.** Do not apply the consumer pipeline to admin surfaces.
+
+## The Eye widget (desktop vs mobile)
+
+Canonical: **[MOBILE_SEPARATION_DOCTRINE.md](lupo-docs/doctrine/MOBILE_SEPARATION_DOCTRINE.md)** (“The Eye widget”) and **[PRD 28](lupo-docs/prd/28_semantic_monitoring_widget.md)**.
+
+| Surface | Presentation | Shared |
+|---------|--------------|--------|
+| **Desktop** | Mouse-following eye, z-layered sprites, DynAPI-style floating; full PRD 28 “art” path | Same monitoring **intent**, same **PDO_DB** / visit-path **semantics** |
+| **Mobile web** | Simple animated eye (no cursor track); touch-optimized bottom nav + collections bar | Same tracking **obligations**; **no** parallel incompatible tracker |
+
+**Separate:** DOM, animation stack, input (mouse vs touch). **Do not separate:** business rules, session truth, or table meanings.
+
+**Golden rule:** *The Eye sees the same obligations on every device. How it looks depends on the device—desktop art, mobile utility.*
+
+## UI development: hand-coding policy (desktop)
+
+WOLFIE’s rule: **[LESSONS LEARNED FROM THE WILD WEST](lupo-docs/LESSONS_LEARNED_FROM_THE_WILD_WEST.md)** section **7** (“I hand-code the templates”). That policy applies to **desktop** UI WOLFIE owns.
+
+1. **Do not** generate **desktop** UI code (HTML/CSS/JS) unless WOLFIE explicitly asks.
+2. **Do not** push frameworks (React, Vue, Angular, Svelte, etc.) or npm-based stacks for **desktop** surfaces.
+3. **Do not** “modernize,” refactor, or restyle **desktop** UI without **explicit** permission.
+4. **Accept** vanilla JS, hand-written CSS, DynAPI-era patterns, and **integrate** finished **desktop** files (paths, includes, PHP wiring, docs).
+5. **Prepare** to receive finished **desktop** assets and hook them to **PDO_DB**, routing, and Lupopedia headers as needed.
+
+**Mobile web** is **out of scope** for this veto: follow **Two-UI Strategy** above (simple, generated or assisted, reviewed).
+
+**Toolchain (WOLFIE, desktop):** plain editor (e.g. Notepad), DynAPI and custom layers, **no** package-manager dependency for that hand-coded surface.
+
+**Golden rule (desktop):** WOLFIE writes the **desktop** UI; the IDE **integrates** and **documents**. For **mobile web**, the IDE may **help build** simple UI under WOLFIE’s review—do not confuse the two surfaces.
 
 ## Actor vs Agent (summary)
 
@@ -377,6 +506,8 @@ Version lives in `config/global_atoms.yaml` as `GLOBAL_CURRENT_LUPOPEDIA_VERSION
 
 ## Critical Doctrines (Non-Negotiable)
 
+**Human context (why survivability matters):** [LESSONS_LEARNED_FROM_THE_WILD_WEST.md](lupo-docs/LESSONS_LEARNED_FROM_THE_WILD_WEST.md) — section **7. The chair-falling moment (2015–2026)** (WOLFIE). Technical rules below are not abstract; they encode long-horizon lessons.
+
 ### Database Rules
 - **No foreign keys, triggers, stored procedures, views, or computed columns.** The database is dumb storage; all logic is in PHP.
 - **Integer types only:** `BIGINT`, `INT`, `SMALLINT`, `TINYINT` — no parenthesized display widths (`BIGINT(14)` is forbidden in DDL), no `UNSIGNED`, no `BOOLEAN`.
@@ -470,8 +601,34 @@ See [LUPOPEDIA HEADERS doctrine](lupo-docs/doctrine/LUPOPEDIA_HEADERS/README.md)
 - Lowercase a–z, digits 0–9, underscore only. No uppercase, hyphens, spaces, or Unicode in new filenames.
 
 ### Banned Concepts
-- No `STONED WOLFIE`, Schrödinger-state metadata, quantum/cosmic metaphors, or experimental AI personas not in the canonical roster.
+- No `STONED WOLFIE`, Schrödinger-state metadata, quantum/cosmic metaphors, or experimental AI personas not in the canonical roster. Historical adversarial test naming and reserved keys: [ADVERSARIAL_TEST_IDENTITY_DOCTRINE.md](lupo-docs/doctrine/ADVERSARIAL_TEST_IDENTITY_DOCTRINE.md). Two-layer security (baseline checks, then adversarial self-test): [TWO_LAYER_SECURITY_DOCTRINE.md](lupo-docs/doctrine/TWO_LAYER_SECURITY_DOCTRINE.md). Adversarial self-testing methodology: [SELF_HACKING_DOCTRINE.md](lupo-docs/doctrine/SELF_HACKING_DOCTRINE.md).
 - No advertising, SEO, marketing, tracking, or monetization hooks.
+
+### Security testing dependencies (vs shipped runtime)
+- **Shipped runtime** remains dependency-free per PHP constraints above: no Composer `vendor/` in core paths, no npm stack wired into the live app.
+- **Security and test tooling** (OWASP ZAP, Burp, Python venvs for scan scripts, CI-only packages) are **allowed** on developer workstations, in CI, or in **test-only** directories — they are **not** runtime dependencies and must **not** be imported by `lupo-includes/` bootstrap or production entrypoints. Full boundary: [TWO_LAYER_SECURITY_DOCTRINE.md](lupo-docs/doctrine/TWO_LAYER_SECURITY_DOCTRINE.md) (section *Security testing dependencies vs runtime dependencies*).
+
+### Dependency policy for security packages (study, do not ship)
+- **You may** study any security library or framework: clone upstream, read source, run it in a scratch directory or test harness to learn behavior.
+- **You may not** add it as a **runtime** dependency of Lupopedia (no `composer require` / `npm install` into paths that ship with the app).
+- **Workflow:** identify need → read or clone (do not install into core) → understand the pattern → implement native code under `app/` or `lupo-includes/classes/` → document **`inspired_by`** (or equivalent) in LUPOPEDIA HEADERS → ship only your code.
+- **No exception** for “it is security-related”: if you need the behavior, **own the implementation**. Canonical doctrine: [REVERSE_ENGINEERING_DOCTRINE.md](lupo-docs/doctrine/REVERSE_ENGINEERING_DOCTRINE.md). Analysis vs pulling packages into prod: [TWO_LAYER_SECURITY_DOCTRINE.md](lupo-docs/doctrine/TWO_LAYER_SECURITY_DOCTRINE.md) (section *Dependency analysis vs dependency adoption*).
+
+### Reverse engineering with federation nodes (study tree vs ship tree)
+- **Canonical ingest path** for upstream clones and external research: `lupo-research/federation_nodes/{federation_node_id}/<package_key>/` with **`federation_node_id >= 2`**, plus a **`MANIFEST.md`** from `lupo-research/federation_nodes/_templates/MANIFEST_TEMPLATE.md`. See [PRD 29](lupo-docs/prd/29_project_structure.md) (`lupo-research/federation_nodes/`).
+- **Shipped implementation** stays under `app/` and `lupo-includes/` — never `require` federation research trees from bootstrap.
+- **Workflow:** clone or unpack into `lupo-research/federation_nodes/2/...` (or next free node per project rules) → document MANIFEST → study → implement native code → **`inspired_by`** edge from your class to that path. Full doctrine: [REVERSE_ENGINEERING_DOCTRINE.md](lupo-docs/doctrine/REVERSE_ENGINEERING_DOCTRINE.md) (section *Federation nodes as reverse engineering sandboxes*).
+
+### Federation nodes: current state (dual purpose)
+- **`federation_node_id: 0`** — Default scope for much **repository documentation** (headers on doctrines, guides).
+- **`federation_node_id: 1`** — Local / deployed instance context where the model distinguishes “this node.”
+- **`federation_node_id >= 2`** — **Two intents share the same numeric range**; you tell them apart by **folder + MANIFEST + purpose**, not by the integer alone:
+  - **Purpose A (active in 4.0.x):** **Research sandbox** — external upstream clones under `lupo-research/federation_nodes/{id}/`, documented in [REVERSE_ENGINEERING_DOCTRINE.md](lupo-docs/doctrine/REVERSE_ENGINEERING_DOCTRINE.md) (*Federation nodes as reverse engineering sandboxes* and *Federation nodes: dual purpose*).
+  - **Purpose B (planned):** **Semantic network peers** — other Lupopedia installs exchanging semantic data — **no PRD yet**; **defer** implementation until after **4.0.x** stabilizes. Do not build multi-install federation features without a written PRD.
+- **Crafty Syntax scale (planning narrative):** On the order of **1,000,000+ lifetime** installs and **~144,000** active/reporting-era nodes are **documented assumptions** for strategy — confirm before external comms; see **[SILENT_HARVEST_DOCTRINE.md](lupo-docs/doctrine/SILENT_HARVEST_DOCTRINE.md)** and **[PRD 34](lupo-docs/prd/34_federation_node_semantic_network.md)** (*The Silent Million*). **Focus:** one correct install, Crafty import path, and core behavior.
+
+### Path and visit analytics (silent harvest)
+- **Crafty import** can carry **aggregated** path and visit history into **`lupo_visits`**, **`lupo_paths`**, **`lupo_visits_daily`**, **`lupo_referers_daily`** (see install SQL). Use this **per-operator** foundation for navigation inference and future federation tooling — not as covert cross-site surveillance. Ethics, consent, and public claims: **[SILENT_HARVEST_DOCTRINE.md](lupo-docs/doctrine/SILENT_HARVEST_DOCTRINE.md)**. **Dormant → Lupopedia** reactivation (consent order): **[CRAFTY_NODE_REACTIVATION_STRATEGY.md](lupo-docs/doctrine/CRAFTY_NODE_REACTIVATION_STRATEGY.md)**. Planned **navigation compiler** and federation scope: **[PRD 34](lupo-docs/prd/34_federation_node_semantic_network.md)** (draft).
 
 ## Schema Source of Truth Hierarchy
 

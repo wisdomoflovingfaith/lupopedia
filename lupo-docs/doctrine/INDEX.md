@@ -26,6 +26,11 @@ lupopedia.edges:
     - { to: "lupo-docs/doctrine/MULTI_AGENT_COORDINATION_DOCTRINE.md", type: "references", weight: 1.0 }
     - { to: "lupo-docs/channels/appendix/HISTORY.md", type: "references", weight: 0.8 }
 
+    - to: "lupo-docs/prd/29_project_structure.md"
+      type: implements
+      weight: 1.0
+      reason: "Doctrine PRD lineage; constitutional audit 20260403"
+
 lupopedia.footer:
   last_verified: "20260326"
   last_verified_by_actor_id: 1

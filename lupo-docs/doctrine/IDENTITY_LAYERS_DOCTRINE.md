@@ -28,6 +28,11 @@ lupopedia.edges:
     - { to: "lupo-database/lupopedia/actors/actor_id/registry.json", type: "references", weight: 0.95, reason: "lupo_agents slug to agent_id map" }
     - { to: "lupo-docs/versions/4.0.94/comments/20260404_220000_COMMENT_cursor_actor_agent_model_update.md", type: "references", weight: 0.85, reason: "Cross-IDE comment superseded by §3 canonical text" }
 
+    - to: "lupo-docs/prd/32_actor_authority_agent_roles.md"
+      type: implements
+      weight: 1.0
+      reason: "Doctrine PRD lineage; constitutional audit 20260403"
+
 lupopedia.footer:
   approved_for_version: "4.1.0"
   approved_for_version_utc: "20260327103238"

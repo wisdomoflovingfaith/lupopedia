@@ -11,6 +11,13 @@ lupopedia.headers:
   artifact_kind: "reference"
   purpose: "Canonical list of required LUPOPEDIA HEADERS for validation (replaces FLARE)"
   tags: ["lupopedia_headers", "headers", "validation", "doctrine"]
+lupopedia.edges:
+  outbound_edges:
+    - to: "lupo-docs/prd/16_lupopedia_headers.md"
+      type: implements
+      weight: 1.0
+      reason: "Doctrine PRD lineage; constitutional audit 20260403"
+
 lupopedia.footer:
   version: "4.0.71"
   last_verified: "20260312"

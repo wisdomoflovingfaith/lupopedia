@@ -144,7 +144,7 @@ Crafty Syntax is not legacy code. It's the operational backbone.
 - The environment where emotional data is generated
 - Real conversations with real frustration, trust, and tension
 - Proven routing, session management, and workflow logic
-- 144,000+ installations generating behavioral data
+- **1,000,000+** lifetime installations (cumulative) and on the order of **~144,000** active/reporting-era nodes (planning figures — see `lupo-docs/doctrine/SILENT_HARVEST_DOCTRINE.md`) generating **per-site** behavioral data where tracking was enabled
 - The structural emotional dataset that EOS interprets
 
 ### What Lupopedia Provides:

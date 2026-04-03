@@ -11,6 +11,13 @@ lupopedia.headers:
   artifact_type: "doctrine"
   artifact_kind: "federation"
   purpose: "Federation node types and trait portability. Schema from lupo-install/TOON."
+lupopedia.edges:
+  outbound_edges:
+    - to: "lupo-docs/prd/00_root_constitutional_system_requirements.md"
+      type: implements
+      weight: 1.0
+      reason: "Doctrine PRD lineage; constitutional audit 20260403"
+
 lupopedia.footer:
   last_verified: "20260312"
   last_verified_by: "wolfie"

@@ -1,37 +1,46 @@
 ---
-lupopedia.init:
-  document_type: "doctrine"
-
 lupopedia.headers:
-  when_updated: "20260327121457"
-  lupopedia.schema: "doctrine"
+  header_format_version: 2
+  lupopedia.schema: doctrine
   file_path_from_root: "lupo-docs/doctrine/LUPOPEDIA_HEADERS/DEPRECATION_FLARE_FLIP_FLP.md"
   web_path: "http://www.lupopedia.com/lupopedia/lupo-docs/doctrine/LUPOPEDIA_HEADERS/DEPRECATION_FLARE_FLIP_FLP.md"
-  last_modified_utc: "20260327121457"
+  last_modified_utc: "20260403113047"
+  when_updated: "20260403113047"
+  federation_node_id: 0
   channel_id: 42
+  thread_id: "doctrine-header-repair"
   actor_id: 102
   actor_name: "cursor"
+  delegation_chain: "cursor:root"
   artifact_type: "doctrine"
   artifact_kind: "reference"
-  purpose: "Deprecation notice: FLARE, FLIP, FLP are deprecated and replaced by LUPOPEDIA HEADERS."
-  tags: ["deprecation", "flare", "flip", "flp", "lupopedia_headers"]
+  purpose: "DEPRECATION FLARE FLIP FLP"
+  status: active
+  tags:
+    - "doctrine"
+    - "header_repair"
+lupopedia.edges:
+  outbound_edges:
+    - to: "lupo-docs/prd/16_lupopedia_headers.md"
+      type: implements
+      weight: 1.0
+      reason: "Doctrine PRD lineage; constitutional audit 20260403"
 
 lupopedia.footer:
-  last_verified: "20260327121457"
+  last_verified: "20260403113047"
   verified_by:
-    identity_type: "actor"
-    actor_id: 102
-    agent_name_identity: "Cursor IDE Agent (Lead Orchestration)"
-    department_id_delta: 0
+    identity_type: actor
+    actor_id: 2
+    name: "lilith"
   verified_via:
-    type: "faucet"
-    faucet_slug: "cursor"
-  orchestrator: "cursor:root"
+    type: "audit"
+    script: "fix_doctrine_headers"
   next_action:
-    - "Do not add new references to FLARE/FLIP/FLP in new docs"
-    - "Point legacy doc readers to LUPOPEDIA_HEADERS and OPTIONAL_BLOCKS"
-    - "Keep deprecation table and mapping current"
+    - "Run: python lupo-scripts/apply_doctrine_prd_lineage.py --apply"
 ---
+
+# file: DEPRECATION_FLARE_FLIP_FLP — delegation: cursor:root
+
 # file: Deprecation — FLARE, FLIP, FLP — web_path: [http://www.lupopedia.com/lupopedia/lupo-docs/doctrine/LUPOPEDIA_HEADERS/DEPRECATION_FLARE_FLIP_FLP.md](http://www.lupopedia.com/lupopedia/lupo-docs/doctrine/LUPOPEDIA_HEADERS/DEPRECATION_FLARE_FLIP_FLP.md)
 
 # Deprecation: FLARE, FLIP, FLP — Use LUPOPEDIA HEADERS

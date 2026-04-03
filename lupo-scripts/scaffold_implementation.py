@@ -446,12 +446,12 @@ def main():
     # Update index
     update_implementations_index(base_path, impl_name, args.prd, args.title)
     
-    print(f"✅ Implementation folder scaffolded successfully:")
+    print("OK Implementation folder scaffolded successfully:")
     print(f"   Path: {impl_path}")
     print(f"   PRD: {args.prd}")
     print(f"   Title: {args.title}")
     print(f"   Slug: {prd_slug}")
-    print(f"\n📝 Next steps:")
+    print("\nNext steps:")
     print(f"1. Review the scaffolded structure")
     print(f"2. Update README.md with specific details")
     print(f"3. Begin implementation work")

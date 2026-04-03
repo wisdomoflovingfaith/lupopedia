@@ -19,6 +19,11 @@ lupopedia.edges:
     - { to: "lupo-docs/doctrine/RULES_DOCTRINE.md", type: "references", weight: 1.0 }
     - { to: "lupo-docs/doctrine/ActorFaucetOntology.md", type: "references", weight: 1.0 }
     - { to: "lupo-database/lupopedia/mysql/seed/seed_fallback_rule_4.0.69.sql", type: "implements", weight: 0.9 }
+    - to: "lupo-docs/prd/00_root_constitutional_system_requirements.md"
+      type: implements
+      weight: 1.0
+      reason: "Doctrine PRD lineage; constitutional audit 20260403"
+
 lupopedia.footer:
   last_verified: "20260310"
   last_verified_by: "cursor"

@@ -18,6 +18,13 @@ lupopedia.headers:
   artifact_kind: "actor_state"
   purpose: "Canonical doctrine establishing actor identity vs state separation - foundational system primitive"
   tags: ["wolfie", "doctrine", "actor_identity", "state_separation", "canonical", "foundational"]
+lupopedia.edges:
+  outbound_edges:
+    - to: "lupo-docs/prd/32_actor_authority_agent_roles.md"
+      type: implements
+      weight: 1.0
+      reason: "Doctrine PRD lineage; constitutional audit 20260403"
+
 lupopedia.footer:
   version: "4.0.82"
   last_verified: "20260319"

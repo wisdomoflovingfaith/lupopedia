@@ -16,6 +16,26 @@ lupopedia.headers:
     - "lupo-docs/doctrine/ROSE_DOCTRINE.md"
     - "lupo-docs/versions/4.0.86/WHAT_TO_DO_NEXT_SESSION.md"
   tags: ["identity", "system_law", "actor", "agent", "faucet", "session", "4.0.86"]
+
+lupopedia.edges:
+  outbound_edges:
+    - to: "lupo-docs/prd/32_actor_authority_agent_roles.md"
+      type: implements
+      weight: 1.0
+      reason: "Doctrine PRD lineage; constitutional audit 20260403"
+
+lupopedia.footer:
+  last_verified: "20260403113047"
+  verified_by:
+    identity_type: actor
+    actor_id: 2
+    name: "lilith"
+  verified_via:
+    type: "audit"
+    script: "fix_doctrine_headers"
+  next_action:
+    - "Run: python lupo-scripts/apply_doctrine_prd_lineage.py --apply"
+
 ---
 
 # Canonical Identity Model

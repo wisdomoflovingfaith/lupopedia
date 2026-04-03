@@ -3,10 +3,10 @@ lupopedia.headers:
   header_format_version: 2
   lupopedia.schema: documentation
   version_when_written: "4.0.94"
-  when_updated: "20260403025155"
+  when_updated: "20260403140552"
   file_path_from_root: "lupo-docs/versions/4.0.94/questions/THREAD_INDEX.md"
   web_path: "http://www.lupopedia.com/lupopedia/lupo-docs/versions/4.0.94/questions/THREAD_INDEX.md"
-  last_modified_utc: "20260403025155"
+  last_modified_utc: "20260403140552"
   federation_node_id: 0
   channel_id: 42
   thread_id: "version-4.0.94-questions"
@@ -41,6 +41,7 @@ lupopedia.footer:
 
 | Opened (UTC) | File | Summary | Status |
 |--------------|------|---------|--------|
+| 20260403_140553 | [20260403_140553_QUESTION_version_ghost_cleanup_policy.md](20260403_140553_QUESTION_version_ghost_cleanup_policy.md) | Policy for **34** critical version-ghost files (phantom paths, **3.0.x** prose)? | Resolved (see answers) |
 | 20260403_025156 | [20260403_025156_QUESTION_prd31_version_sync_changelog_scope.md](20260403_025156_QUESTION_prd31_version_sync_changelog_scope.md) | Must `CHANGELOG` list only thread-verified PRD 31 work (omit unrelated PRD/validator claims)? | Resolved (see answers) |
 | 20260403_022544 | [20260403_022544_QUESTION_prd33_traceability_location.md](20260403_022544_QUESTION_prd33_traceability_location.md) | Where must PRD 33 §12 traceability live after PRD header `approved`? | Resolved (see answers) |
 | 20260402_234552 | [20260402_234552_QUESTION_ide_facet_version_doc_scope.md](20260402_234552_QUESTION_ide_facet_version_doc_scope.md) | Should 4.0.94 record only thread-verified IDE facet work (omit unrelated template checklist)? | Resolved (see answers) |

@@ -1,4 +1,41 @@
-# LUPOPEDIA HEADERS (replaces FLARE)
+---
+lupopedia.headers:
+  header_format_version: 2
+  lupopedia.schema: doctrine
+  file_path_from_root: "lupo-agents/anubis/doctrine/LEGACY_FILE_GUARD.md"
+  web_path: "http://www.lupopedia.com/lupopedia/lupo-agents/anubis/doctrine/LEGACY_FILE_GUARD.md"
+  last_modified_utc: "20260403113047"
+  when_updated: "20260403113047"
+  federation_node_id: 0
+  channel_id: 42
+  thread_id: "doctrine-header-repair"
+  actor_id: 102
+  actor_name: "cursor"
+  delegation_chain: "cursor:root"
+  artifact_type: "doctrine"
+  artifact_kind: "reference"
+  purpose: "LEGACY FILE GUARD"
+  status: active
+  tags:
+    - "doctrine"
+    - "header_repair"
+lupopedia.edges:
+  outbound_edges: []
+
+lupopedia.footer:
+  last_verified: "20260403113047"
+  verified_by:
+    identity_type: actor
+    actor_id: 2
+    name: "lilith"
+  verified_via:
+    type: "audit"
+    script: "fix_doctrine_headers"
+  next_action:
+    - "Run: python lupo-scripts/apply_doctrine_prd_lineage.py --apply"
+---
+
+# file: LEGACY_FILE_GUARD — delegation: cursor:root
 
 ---
 lupopedia.init:
@@ -49,7 +86,7 @@ lupopedia.conditional:
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: "lupo-docs/doctrine/ANUBIS/LEGACY_FILE_GUARD.md"
+  file_path_from_root: "lupo-agents/anubis/doctrine/LEGACY_FILE_GUARD.md"
   file_hash: "5e339a3b0fbd49aa25152390ae667e7302fc6a589f7f031a819329dfcb1c4d52"
   last_updated_utc: "20260304"
   system_version: "4.0.56"
@@ -95,7 +132,7 @@ lupopedia.close:
 The **only authoritative ANUBIS doctrine file** is:
 
 ```
-lupo-docs/doctrine/ANUBIS/ANUBIS_CANONICAL.md
+lupo-agents/anubis/doctrine/ANUBIS_CANONICAL.md
 ```
 
 ## Legacy File Restrictions
@@ -121,7 +158,7 @@ The following file patterns are **PROHIBITED** from creation:
 ### Automated Guards
 - **CI Validation**: `bin/guard_anubis_structure.php` will fail builds on violations
 - **Reference Audit**: `lupo-tools/anubis_reference_audit.txt` tracks legacy references
-- **Hash Verification**: `lupo-docs/doctrine/ANUBIS/ANUBIS_CANONICAL.lock` prevents unauthorized changes
+- **Hash Verification**: `lupo-agents/anubis/doctrine/ANUBIS_CANONICAL.lock` prevents unauthorized changes
 
 ### Manual Review Process
 1. **Proposal**: Submit change proposal to Channel 42
@@ -146,7 +183,7 @@ The following file patterns are **PROHIBITED** from creation:
 ### Previous Consolidation
 - **Date**: 2026-02-28
 - **Files Archived**: 6 original files moved to `lupo-docs/archive/ANUBIS/pre_4.0.52/`
-- **Canonical Created**: `lupo-docs/doctrine/ANUBIS/ANUBIS_CANONICAL.md`
+- **Canonical Created**: `lupo-agents/anubis/doctrine/ANUBIS_CANONICAL.md`
 - **Lead Agent**: Windsurf (1002)
 
 ### Archive Access
@@ -164,7 +201,7 @@ The following file patterns are **PROHIBITED** from creation:
 ### Technical Issues
 - **Guard Failures**: Check `bin/guard_anubis_structure.php` output
 - **Reference Problems**: Review `lupo-tools/anubis_reference_audit.txt`
-- **Hash Mismatches**: Verify against `lupo-docs/doctrine/ANUBIS/ANUBIS_CANONICAL.lock`
+- **Hash Mismatches**: Verify against `lupo-agents/anubis/doctrine/ANUBIS_CANONICAL.lock`
 
 ---
 

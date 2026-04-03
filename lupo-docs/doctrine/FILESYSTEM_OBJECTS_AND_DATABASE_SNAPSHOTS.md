@@ -28,6 +28,11 @@ lupopedia.edges:
   outbound_edges:
     - { to: "lupo-docs/doctrine/LUPOPEDIA_HEADERS/README.md", type: "references", weight: 1.0 }
 
+    - to: "lupo-docs/prd/29_project_structure.md"
+      type: implements
+      weight: 1.0
+      reason: "Doctrine PRD lineage; constitutional audit 20260403"
+
 lupopedia.footer:
   last_verified: "20260314"
   last_verified_by: "antigravity"
