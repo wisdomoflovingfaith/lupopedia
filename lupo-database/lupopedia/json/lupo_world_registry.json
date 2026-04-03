@@ -14,7 +14,6 @@
     "`updated_ymdhis` bigint NOT NULL",
     "`is_active` tinyint NOT NULL DEFAULT 1"
   ],
-  "data": [],
   "indexes": [
     {
       "index_name": "lupo_world_registry_idx_created_ymdhis",

@@ -160,12 +160,6 @@ class AuthService
                 ['session_id' => session_id()]
             );
         }
-        // Release all active leases for this user
-        if (isset($_SESSION['auth_user_id'])) {
-            require_once __DIR__ . '/AuthSessionManager.php';
-            $leaseManager = new AuthSessionManager();
-            $leaseManager->releaseAllLeasesForUser($_SESSION['auth_user_id']);
-        }
         session_destroy();
         return true;
     }

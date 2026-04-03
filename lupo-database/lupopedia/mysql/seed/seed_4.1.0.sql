@@ -48,8 +48,10 @@ INSERT INTO lupo_departments (
     0
 );
 
--- Core + coordination actors. Registry: system=0, wolfie=1, lilith=2, anubis=19 (install.php Activations Block requires 0,1,2,19).
--- PK is actor_name; slug captain-wolfie matches lupo-database/lupopedia/actors/registry.json.
+-- Core + coordination actors. Registry: system=0, wolfie=1, lilith=2, anubis=19, countermeasure=111 (install.php Activations Block).
+-- Root department (0) hybrid operators (web act-as via lupo_actor_departments): captain=wolfie hybrid, lilith, countermeasure.
+-- PK is actor_name (wolfie/lilith immutable per convergence doctrine); display name/slug carry captain/Lilith labels.
+-- Other personas (lexa..asclepius) remain in lupo_actors but are not seeded into department 0 — add lupo_actor_departments rows when a department scope exists.
 INSERT INTO lupo_actors (
     actor_name,
     actor_id,
@@ -66,8 +68,8 @@ INSERT INTO lupo_actors (
     actor_source_type
 ) VALUES
 ('system', 0, 'system', 'system', 'System', 20260328120000, 20260328120000, 1, 0, 0, 0, 0, 'system'),
-('wolfie', 1, 'system', 'captain-wolfie', 'Captain WOLFIE', 20260328120000, 20260328120000, 1, 0, 1, 1, 0, 'system'),
-('lilith', 2, 'system', 'lilith', 'LILITH', 20260328120000, 20260328120000, 1, 0, 1, 1, 0, 'system'),
+('wolfie', 1, 'system', 'captain', 'Captain', 20260328120000, 20260328120000, 1, 0, 1, 1, 0, 'system'),
+('lilith', 2, 'system', 'lilith', 'Lilith', 20260328120000, 20260328120000, 1, 0, 1, 1, 0, 'system'),
 ('lexa', 3, 'system', 'lexa', 'LEXA', 20260328120000, 20260328120000, 1, 0, 1, 1, 0, 'system'),
 ('heimdall', 4, 'system', 'heimdall', 'HEIMDALL', 20260328120000, 20260328120000, 1, 0, 1, 1, 0, 'system'),
 ('seshat', 5, 'system', 'seshat', 'SESHAT', 20260328120000, 20260328120000, 1, 0, 1, 1, 0, 'system'),
@@ -80,7 +82,8 @@ INSERT INTO lupo_actors (
 ('hermes', 12, 'system', 'hermes', 'HERMES', 20260328120000, 20260328120000, 1, 0, 1, 1, 0, 'system'),
 ('iris', 13, 'system', 'iris', 'IRIS', 20260328120000, 20260328120000, 1, 0, 1, 1, 0, 'system'),
 ('asclepius', 14, 'system', 'asclepius', 'ASCLEPIUS', 20260328120000, 20260328120000, 1, 0, 1, 1, 0, 'system'),
-('anubis', 19, 'system', 'anubis', 'ANUBIS', 20260328120000, 20260328120000, 1, 0, 1, 1, 0, 'system')
+('anubis', 19, 'system', 'anubis', 'ANUBIS', 20260328120000, 20260328120000, 1, 0, 1, 1, 0, 'system'),
+('countermeasure', 111, 'system', 'countermeasure', 'COUNTERMEASURE', 20260328120000, 20260328120000, 1, 0, 1, 1, 0, 'system')
 ON DUPLICATE KEY UPDATE
     name = VALUES(name),
     actor_type = VALUES(actor_type),
@@ -89,24 +92,16 @@ ON DUPLICATE KEY UPDATE
     can_login = VALUES(can_login),
     is_agent = VALUES(is_agent);
 
--- Map seeded actors to department 0 (actor_department_id explicit; includes system 0 and ANUBIS 19)
+UPDATE lupo_actors SET adversarial_role = 'red_team', adversarial_oversight_actor_id = 2, updated_ymdhis = 20260328120000 WHERE actor_name = 'countermeasure' AND (is_deleted = 0 OR is_deleted IS NULL);
+
+-- Root department (0): system + three operator hybrids (captain/wolfie, lilith, countermeasure) + ANUBIS custodian.
+-- Web "act as" lists are scoped by lupo_actor_departments (see AuthSessionManager); multiple auth users share the same actor when their departments overlap.
 INSERT INTO lupo_actor_departments (actor_department_id, actor_id, department_id, role_key, title, created_ymdhis, updated_ymdhis, is_deleted) VALUES
-(1, 0, 0, 'system', 'System Actor', 20260328120000, 20260328120000, 0),
-(2, 1, 0, 'system', 'System Actor', 20260328120000, 20260328120000, 0),
-(3, 2, 0, 'system', 'System Actor', 20260328120000, 20260328120000, 0),
-(4, 3, 0, 'system', 'System Actor', 20260328120000, 20260328120000, 0),
-(5, 4, 0, 'system', 'System Actor', 20260328120000, 20260328120000, 0),
-(6, 5, 0, 'system', 'System Actor', 20260328120000, 20260328120000, 0),
-(7, 6, 0, 'system', 'System Actor', 20260328120000, 20260328120000, 0),
-(8, 7, 0, 'system', 'System Actor', 20260328120000, 20260328120000, 0),
-(9, 8, 0, 'system', 'System Actor', 20260328120000, 20260328120000, 0),
-(10, 9, 0, 'system', 'System Actor', 20260328120000, 20260328120000, 0),
-(11, 10, 0, 'system', 'System Actor', 20260328120000, 20260328120000, 0),
-(12, 11, 0, 'system', 'System Actor', 20260328120000, 20260328120000, 0),
-(13, 12, 0, 'system', 'System Actor', 20260328120000, 20260328120000, 0),
-(14, 13, 0, 'system', 'System Actor', 20260328120000, 20260328120000, 0),
-(15, 14, 0, 'system', 'System Actor', 20260328120000, 20260328120000, 0),
-(16, 19, 0, 'system', 'System Actor', 20260328120000, 20260328120000, 0);
+(1, 0, 0, 'system', 'System', 20260328120000, 20260328120000, 0),
+(2, 1, 0, 'hybrid', 'Captain (WOLFIE hybrid)', 20260328120000, 20260328120000, 0),
+(3, 2, 0, 'hybrid', 'Lilith (LILITH hybrid)', 20260328120000, 20260328120000, 0),
+(4, 111, 0, 'hybrid', 'COUNTERMEASURE hybrid', 20260328120000, 20260328120000, 0),
+(5, 19, 0, 'system', 'ANUBIS custodian', 20260328120000, 20260328120000, 0);
 
 -- Root operator mapping (auth_user_id 1000): SET then VALUES (avoids MySQL 1093 on INSERT...same-table subquery)
 SET @lupo_root_aud_id := (SELECT COALESCE(MAX(auth_user_department_id), 0) + 1 FROM lupo_auth_user_departments);

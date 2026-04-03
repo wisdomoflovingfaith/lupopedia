@@ -1,4 +1,8 @@
 {
+  "_comment": "THIS FILE IS AUTO-GENERATED. DO NOT EDIT MANUALLY.",
+  "_purpose": "Schema reference only — column names, types, indexes. Contains NO data.",
+  "_source": "Generated from live database by generate_toon_files.py",
+  "_read_only": true,
   "table_name": "lupo_analytics_campaign_vars",
   "fields": [
     "`campaign_var_id` bigint NOT NULL",
@@ -11,7 +15,6 @@
     "`metadata_json` json",
     "`created_ymdhis` bigint NOT NULL DEFAULT 0"
   ],
-  "data": [],
   "indexes": [],
   "primary_key": {
     "column_name": "campaign_var_id",

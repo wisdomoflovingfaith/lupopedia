@@ -2,10 +2,10 @@
 lupopedia.headers:
   header_format_version: 2
   lupopedia.schema: documentation
-  when_updated: "20260403140552"
+  when_updated: "20260403222041"
   file_path_from_root: "lupo-docs/versions/4.0.94/edges.md"
   web_path: "http://www.lupopedia.com/lupopedia/lupo-docs/versions/4.0.94/edges.md"
-  last_modified_utc: "20260403140552"
+  last_modified_utc: "20260403222041"
   federation_node_id: 0
   channel_id: 42
   thread_id: "version-4.0.94-edges"
@@ -106,8 +106,24 @@ lupopedia.edges:
       type: references
       weight: 0.95
       reason: "Version ghost scanner"
+    - to: "lupo-docs/versions/4.0.94/decisions/20260403_222041_DECISION_APPROVED_department_first_actor_model_prd_alignment.md"
+      type: references
+      weight: 1.0
+      reason: "APPROVED department-first docs + PRD alignment (LILITH)"
+    - to: "lupo-docs/versions/4.0.94/answers/20260403_222043_ANSWER_department_model_visitor_chat_docs_synthesis.md"
+      type: references
+      weight: 1.0
+      reason: "Synthesis ANSWER — implementation Q1–Q3 + doctrine"
+    - to: "lupo-docs/versions/4.0.94/questions/20260403_222042_QUESTION_federation_navigation_compiler.md"
+      type: references
+      weight: 0.95
+      reason: "OPEN — federation navigation compiler"
+    - to: "lupo-docs/doctrine/ACTOR_DEPARTMENT_AUTH_USER_DOCTRINE.md"
+      type: references
+      weight: 1.0
+      reason: "Canonical auth_user + department + actor joins"
 lupopedia.footer:
-  last_verified: "20260403140552"
+  last_verified: "20260403222041"
   verified_by:
     identity_type: "actor"
     actor_id: 102
@@ -185,6 +201,9 @@ lupopedia.footer:
 | From | To | Type |
 |------|-----|------|
 | This version | `4.0.93/README.md`, `4.0.93/edges.md` | baseline |
+| `decisions/20260403_222041_…` | `ACTOR_DEPARTMENT_AUTH_USER_DOCTRINE.md`, PRDs 02/05/07/13/15/18/25/32, `implementations/13/…/THREAD_INDEX.md` | references |
+| `answers/20260403_222043_…` | `implementations/13` Q1–Q3, `decisions/20260403_222041_…`, doctrine | answers / references |
+| `questions/20260403_222042_…` | `SILENT_HARVEST_DOCTRINE.md`, PRD 34 | references (OPEN) |
 | `decisions/20260404_200000_…` | PRD 17, PRD 29, Mood RGB thread, `MOOD_RGB_DOCTRINE.md` | references |
 | `decisions/20260402_210000_…` | PRD 30, PRD 31, Quick Reference, Framework Summary | framework implementation |
 | `decisions/20260402_220000_…` | PRD 32, Actor Authority Quick Reference | actor authority framework |

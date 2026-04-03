@@ -4,7 +4,7 @@ lupopedia.headers:
   version_when_written: "4.0.94"
   file_path_from_root: "lupo-docs/versions/4.0.94/PLAN.md"
   web_path: "http://www.lupopedia.com/lupopedia/lupo-docs/versions/4.0.94/PLAN.md"
-  when_updated: "20260403140552"
+  when_updated: "20260403222041"
   channel_id: 42
   actor_id: 102
   actor_name: "CURSOR"
@@ -110,6 +110,19 @@ Same table as [`README.md`](README.md) — **CANONICAL** under `lupo-docs/prd/` 
 - [ ] **PRD 34 / PRD 35 product execution** — deferred past pure documentation (track in `TODO.md`).
 
 **Completion criteria:** Ghost backlog owned in `TODO.md`; doctrines and PRD edges discoverable from `edges.md`; no undocumented claims for batch header repair counts without measured runs.
+
+### Phase H — Department-first actor model documentation + runtime follow-up (UTC `20260403222041`)
+
+**Evidence:** `CHANGELOG.md` entry **[2026-04-03] Department-first actor model — APPROVED decision + synthesis ANSWER**; decision `decisions/20260403_222041_DECISION_APPROVED_department_first_actor_model_prd_alignment.md`; answer `answers/20260403_222043_ANSWER_department_model_visitor_chat_docs_synthesis.md`; open question `questions/20260403_222042_QUESTION_federation_navigation_compiler.md`.
+
+- [x] **Canonical doctrine** — `lupo-docs/doctrine/ACTOR_DEPARTMENT_AUTH_USER_DOCTRINE.md` + `IDENTITY_LAYERS_DOCTRINE.md` cross-link; PRD prose/edges for **02**, **05**, **07**, **13**, **15**, **18**, **25**, **32**; implementation **13** visitor-chat Q3 answered (thread-verified in decision body).
+- [x] **Version-folder artifacts** — APPROVED decision, synthesis ANSWER (implementation Q1–Q3), OPEN federation navigation QUESTION.
+- [x] **Act-as list unification (code)** — already recorded in `CHANGELOG.md` **[2026-04-03] LILITH audit — PRD 15** (`ActorService` delegates `AuthSessionManager`; `lupo_edges` supports removed from `ActorService`) — not duplicated as new work here.
+- [ ] **Runtime audit** — visitor/chat POST paths resolve `actor_id` server-side per **PRD 05** / **PRD 18** + implementation Q2 note; align with `channels-api` behavior where applicable.
+- [ ] **Resolver / callers** — verify `EffectiveActorResolver` (and any remaining act-as helpers) stay consistent with department-first doctrine after the above audit.
+- [ ] **Federation navigation compiler** — product TBD; gated on **WOLFIE** decision (see open QUESTION `20260403_222042_…`).
+
+**Completion criteria:** Runtime audit either closed with evidence paths in `CHANGELOG` or explicitly queued with owning artifact; federation compiler remains OPEN until a separate APPROVED decision exists.
 
 ## References
 

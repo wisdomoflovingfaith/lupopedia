@@ -1,4 +1,8 @@
 {
+  "_comment": "THIS FILE IS AUTO-GENERATED. DO NOT EDIT MANUALLY.",
+  "_purpose": "Schema reference only — column names, types, indexes. Contains NO data.",
+  "_source": "Generated from live database by generate_toon_files.py",
+  "_read_only": true,
   "table_name": "lupo_anubis_redirects",
   "fields": [
     "`anubis_redirect_id` bigint NOT NULL",
@@ -9,7 +13,6 @@
     "`updated_ymdhis` bigint NOT NULL",
     "`agent` varchar(255) NOT NULL"
   ],
-  "data": [],
   "indexes": [],
   "primary_key": {
     "column_name": "anubis_redirect_id",

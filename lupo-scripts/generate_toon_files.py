@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 # lupopedia.headers:
-#   when_updated: "20260401000000"
+#   when_updated: "20260403193715"
 #   file_path_from_root: "lupo-scripts/generate_toon_files.py"
-#   last_modified_utc: "20260401000000"
+#   last_modified_utc: "20260403193715"
 #   channel_id: 42
 #   actor_id: 102
 #   actor_name: "cursor"
@@ -10,7 +10,7 @@
 #   artifact_type: "tooling"
 #   artifact_kind: "script"
 # lupopedia.footer:
-#   last_verified: "20260401"
+#   last_verified: "20260403193715"
 #   last_verified_by: "cursor"
 #   last_verified_by_actor_id: 102
 
@@ -32,7 +32,18 @@ Output:
   - lupo-database/lupopedia/json/<table_name>.json  (JSON format, schema only)
   - lupo-database/lupopedia/toon/<table_name>.toon  (TOON format: YAML, schema only)
 
-DB config: read from lupopedia-config.php (project root). See scripts/db_config.py.
+**Primary workflow:** open a **validated** MySQL connection (**ping**), require **at least 100**
+tables in the target database (**SHOW TABLES**), then delete **every regular file** under
+**json/** and **toon/** and write fresh exports. If pymysql is missing, the server is down,
+credentials fail, ping fails, or the table count is below the minimum, the script **exits
+without** clearing those directories.
+
+**Offline alternative:** ``generate_toon_from_sql.py`` builds ``*.toon.json`` from
+``install_new_lupopedia.sql`` (no DB) and prunes ``lupo_*`` exports that are not in that DDL;
+use when the database is unavailable or to diff repo schema vs install text.
+
+DB config: **lupopedia-config.php** resolved like **index.php** (three-path search + env overrides).
+See **lupo-scripts/db_config.py**.
 """
 
 import json
@@ -54,6 +65,10 @@ except ImportError:
     yaml = None
 
 from db_config import get_connection_params
+
+# Refuse to wipe json/ + toon/ unless the database looks like a full Lupopedia schema.
+MIN_TABLE_COUNT_FOR_EXPORT = 100
+
 
 def fetch_tables(cursor) -> List[str]:
     cursor.execute("SHOW TABLES")
@@ -192,13 +207,20 @@ def write_toon(
 
 
 def clear_toon_files(json_dir: Path, toon_dir: Path) -> None:
-    """Remove generated .json and .toon files from both output dirs."""
-    for dir_path in (json_dir, toon_dir):
+    """
+    Remove all regular files in json/ and toon/ before regenerating from the live DB.
+
+    Uses a full directory wipe (not per-extension globs) so ``*.toon.json`` is not matched
+    twice — e.g. ``lupo_x.toon.json`` matches both ``*.json`` and ``*.toon.json``, which
+    caused FileNotFoundError on the second unlink on Windows.
+    """
+    for dir_path in (json_dir.resolve(), toon_dir.resolve()):
         if not dir_path.is_dir():
             dir_path.mkdir(parents=True, exist_ok=True)
             continue
-        for path in list(dir_path.glob("*.json")) + list(dir_path.glob("*.toon")):
-            path.unlink()
+        for path in dir_path.iterdir():
+            if path.is_file():
+                path.unlink()
 
 
 def main() -> int:
@@ -211,22 +233,32 @@ def main() -> int:
         print("pymysql is required. Install with: pip install pymysql", file=sys.stderr)
         return 1
 
+    conn = None
     try:
         params = get_connection_params()
         params["charset"] = "utf8mb4"
         conn = pymysql.connect(cursorclass=DictCursor, **params)
+        conn.ping(reconnect=False)
     except Exception as e:
-        print("Database connection failed:", e, file=sys.stderr)
+        print("MySQL not available or database connection failed:", e, file=sys.stderr)
         return 1
 
     try:
         cursor = conn.cursor()
-        clear_toon_files(json_dir, toon_dir)
         tables = fetch_tables(cursor)
-
-        if not tables:
-            print("No tables returned from database.", file=sys.stderr)
+        n_tables = len(tables)
+        if n_tables < MIN_TABLE_COUNT_FOR_EXPORT:
+            print(
+                "Refusing to clear export directories: expected at least {} tables, found {}. "
+                "Fix the database connection or schema; json/ and toon/ were not modified.".format(
+                    MIN_TABLE_COUNT_FOR_EXPORT,
+                    n_tables,
+                ),
+                file=sys.stderr,
+            )
             return 1
+
+        clear_toon_files(json_dir, toon_dir)
 
         for table_name in sorted(tables):
             fields, _column_names = fetch_columns_and_names(cursor, table_name)
@@ -234,27 +266,26 @@ def main() -> int:
             pk_name = fetch_primary_key(cursor, table_name)
             primary_key = build_primary_key(pk_name)
 
-
-                # Add required metadata fields for all generated JSON files
-                payload = {
-                    "_comment": "THIS FILE IS AUTO-GENERATED. DO NOT EDIT MANUALLY.",
-                    "_purpose": "Schema reference only — column names, types, indexes. Contains NO data.",
-                    "_source": "Generated from live database by generate_toon_files.py",
-                    "_read_only": True,
-                    "table_name": table_name,
-                    "fields": fields,
-                    "indexes": indexes,
+            # Add required metadata fields for all generated JSON files
+            payload = {
+                "_comment": "THIS FILE IS AUTO-GENERATED. DO NOT EDIT MANUALLY.",
+                "_purpose": "Schema reference only — column names, types, indexes. Contains NO data.",
+                "_source": "Generated from live database by generate_toon_files.py",
+                "_read_only": True,
+                "table_name": table_name,
+                "fields": fields,
+                "indexes": indexes,
+            }
+            if primary_key:
+                payload["primary_key"] = primary_key
+            if table_name.startswith("lupo_"):
+                payload["doctrine_metadata"] = {
+                    "no_foreign_keys": True,
+                    "no_triggers": True,
                 }
-                if primary_key:
-                    payload["primary_key"] = primary_key
-                if table_name.startswith("lupo_"):
-                    payload["doctrine_metadata"] = {
-                        "no_foreign_keys": True,
-                        "no_triggers": True,
-                    }
-                payload["relationships"] = []
+            payload["relationships"] = []
 
-                write_toon(json_dir, toon_dir, table_name, payload)
+            write_toon(json_dir, toon_dir, table_name, payload)
 
         print("Wrote {} TOONs (schema only) to {} (JSON) and {} (.toon)".format(
             len(tables), json_dir, toon_dir))

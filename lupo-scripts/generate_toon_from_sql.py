@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 # lupopedia.headers:
-#   when_updated: "20260324175617"
+#   when_updated: "20260403193256"
 #   file_path_from_root: "lupo-scripts/generate_toon_from_sql.py"
-#   last_modified_utc: "20260324175617"
+#   last_modified_utc: "20260403193256"
 #   channel_id: 42
 #   actor_id: 102
 #   actor_name: "cursor"
@@ -10,15 +10,22 @@
 #   artifact_type: "tooling"
 #   artifact_kind: "script"
 # lupopedia.footer:
-#   last_verified: "20260324175617"
+#   last_verified: "20260403193256"
 #   last_verified_by: "cursor"
 #   last_verified_by_actor_id: 102
 
 """
-Generate TOON files from canonical schema (install_new_lupopedia.sql).
+Offline TOON export from **install SQL** (no database).
+
+**Preferred agent workflow** when a DB is available: run **generate_toon_files.py**, which
+empties **json/** and **toon/** and regenerates from **SHOW TABLES** / introspection.
+
+This script exists for CI, laptops without MySQL, or checking that **install_new_lupopedia.sql**
+matches what you expect — it writes **only** ``*.toon.json`` under **toon/** and then
+**prune_stale_table_exports** removes **lupo_*** ``.json`` / ``.toon`` / ``.toon.json`` that
+are not in that DDL (it does not empty **json/** entirely).
 
 Canonical schema source: lupo-database/lupopedia/mysql/install/install_new_lupopedia.sql
-TOON files are derived from this file; no live DB required.
 Output: lupo-database/lupopedia/toon/<table_name>.toon.json
 """
 
@@ -26,12 +33,48 @@ import json
 import re
 import sys
 from pathlib import Path
-from typing import Any, Dict, List, Optional, Tuple
+from typing import Any, Dict, List, Set
+
+TOON_JSON_SUFFIX = ".toon.json"
+
+
+def prune_stale_table_exports(
+    canonical_tables: Set[str],
+    json_dir: Path,
+    toon_dir: Path,
+) -> List[str]:
+    """
+    Delete lupo_* schema export files not present in canonical_tables.
+    Touches only: json/lupo_*.json, toon/lupo_*.toon.json, toon/lupo_*.toon
+    """
+    canonical = set(canonical_tables)
+    removed = []
+    if json_dir.is_dir():
+        for path in sorted(json_dir.glob("lupo_*.json")):
+            if path.stem not in canonical:
+                path.unlink()
+                removed.append(str(path))
+    if toon_dir.is_dir():
+        for path in sorted(toon_dir.glob("lupo_*.toon.json")):
+            name = path.name
+            if not name.endswith(TOON_JSON_SUFFIX):
+                continue
+            tname = name[: -len(TOON_JSON_SUFFIX)]
+            if tname not in canonical:
+                path.unlink()
+                removed.append(str(path))
+        for path in sorted(toon_dir.glob("lupo_*.toon")):
+            if path.stem not in canonical:
+                path.unlink()
+                removed.append(str(path))
+    return removed
 
 
 def parse_install_sql(sql_path: Path) -> Dict[str, Dict[str, Any]]:
     """Parse install_new_lupopedia.sql and return {table_name: {fields, primary_key, indexes}}."""
     text = sql_path.read_text(encoding="utf-8")
+    # Install DDL uses {{prefix}} placeholders; normalize to canonical lupo_ for TOON names.
+    text = text.replace("{{prefix}}", "lupo_")
     tables = {}
 
     # Find all CREATE TABLE blocks
@@ -141,6 +184,7 @@ def main() -> int:
     project_root = base.parent
     install_sql = project_root / "lupo-database" / "lupopedia" / "mysql" / "install" / "install_new_lupopedia.sql"
     output_dir = project_root / "lupo-database" / "lupopedia" / "toon"
+    json_dir = project_root / "lupo-database" / "lupopedia" / "json"
 
     if not install_sql.exists():
         print("install_new_lupopedia.sql not found:", install_sql, file=sys.stderr)
@@ -154,6 +198,12 @@ def main() -> int:
         payload = build_toon(table_name, meta)
         path = output_dir / (table_name + ".toon.json")
         path.write_text(json.dumps(payload, indent=2, ensure_ascii=False), encoding="utf-8")
+
+    removed = prune_stale_table_exports(set(tables.keys()), json_dir, output_dir)
+    if removed:
+        print("Removed {} stale export(s) not in install DDL.".format(len(removed)))
+        for p in removed:
+            print("  {}".format(p))
 
     print("Generated {} TOONs from {}".format(len(tables), install_sql))
     return 0

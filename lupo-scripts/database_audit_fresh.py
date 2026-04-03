@@ -349,13 +349,10 @@ def main():
     
     # Priority tables for PRDs
     priority_tables = [
-        'lupo_actor_instances',
-        'lupo_actor_templates', 
-        'lupo_actor_lease_sessions',
-        'lupo_department_actor_pools',
         'lupo_agents',
         'lupo_auth_users',
-        'lupo_actors'
+        'lupo_actors',
+        'lupo_actor_auth_users',
     ]
     
     with open(output_dir / "PRD_UPDATES_REQUIRED.md", 'w', encoding='utf-8') as f:

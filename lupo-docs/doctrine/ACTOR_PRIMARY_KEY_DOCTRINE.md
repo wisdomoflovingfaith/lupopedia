@@ -4,8 +4,8 @@ lupopedia.headers:
   lupopedia.schema: doctrine
   file_path_from_root: "lupo-docs/doctrine/ACTOR_PRIMARY_KEY_DOCTRINE.md"
   web_path: "http://www.lupopedia.com/lupopedia/lupo-docs/doctrine/ACTOR_PRIMARY_KEY_DOCTRINE.md"
-  last_modified_utc: "20260403113047"
-  when_updated: "20260403113047"
+  last_modified_utc: "20260403210921"
+  when_updated: "20260403210921"
   federation_node_id: 0
   channel_id: 42
   thread_id: "doctrine-header-repair"
@@ -27,7 +27,7 @@ lupopedia.edges:
       reason: "Doctrine PRD lineage; constitutional audit 20260403"
 
 lupopedia.footer:
-  last_verified: "20260403113047"
+  last_verified: "20260403210921"
   verified_by:
     identity_type: actor
     actor_id: 2
@@ -96,11 +96,11 @@ Example:
   "actors": {
     "cursor": {
       "actor_name": "cursor",
-      "actor_id": 1003,
+      "actor_id": 102,
       "display_name": "Cursor IDE Agent",
       "type": "agent",
       "slug": "cursor",
-      "dir": "lupo-actors/cursor"
+      "dir": "lupo-actors/102"
     }
   }
 }
@@ -108,15 +108,14 @@ Example:
 
 Legacy registry at `lupo-database/lupopedia/actors/actor_id/registry.json` remains for backward compatibility; new code should prefer the name-keyed registry.
 
-The `dir` field in each actor is **name-based** (e.g. `lupo-actors/system`, `lupo-actors/antigravity`). After running the directory migration script, numeric paths (e.g. `0/`, `42/`) are symlinks to the name-based dirs for backward compatibility.
+The `dir` field in **`registry.json`** is the **actor hub** path relative to the repo root. It MUST match [PRD 00 §5.6](../prd/00_root_constitutional_system_requirements.md#56-actor-id-semantics) and **`IDENTITY_LAYERS_DOCTRINE.md` §3.5**: **`lupo-actors/{actor_id}/`** for **`actor_id` &lt; 2026**, and **`lupo-actors/YYYY/MM/{actor_id}/`** for typical runtime allocations **`actor_id` ≥ 2026**. Slug-only hubs such as **`lupo-actors/countermeasure/`** are invalid for registry-backed actors when **`dir`** is numeric.
 
-## 3.1 Directory Structure (Name-Based)
+## 3.1 Directory structure (actor_id–keyed hub)
 
-- **Canonical paths:** `lupo-actors/{actor_name}/` (e.g. `lupo-actors/system/`, `lupo-actors/antigravity/`).
+- **Canonical hub paths:** Decimal **`actor_id`** (and date sharding when required). Examples: `lupo-actors/0/`, `lupo-actors/111/`, `lupo-actors/102/`.
+- **Legacy slug directories** (e.g. `lupo-actors/wolfie/`) may still exist on disk until migrated; **`SkillService`** and **`ActorService::getActorDir()`** should follow **`registry.json` `dir`** first.
 - **Standard subdirs:** `apps/`, `lupo-tools/`, `lupo-docs/`, `db-changes/`, `lupo-api/`, `needs/`, `lupo-prompts/`, `skills/`, `logs/`.
-- **Backward compatibility:** The migration script creates symlinks so that `lupo-actors/0/` → `lupo-actors/system/`, `lupo-actors/42/` → `lupo-actors/antigravity/`, etc. Legacy code that references numeric paths continues to work.
-- **Resolving path in code:** Use `ActorService::getActorDir($actor_name)` to get the relative dir (e.g. `lupo-actors/system`). Use `Resolver::actorPathByDir($base_path, $actor['dir'])` to resolve to a real path under the actors root for safe file access.
-- **Migration script:** Run `php lupo-database/lupopedia/mysql/migrations/20260306_actor_directory_migration.php` (optionally `--dry-run`) after the DB migration to rename numeric dirs to name-based and create symlinks. Log: `lupo-actors/directory_migration.log`.
+- **Resolving path in code:** Use `ActorService::getActorDir($actor_name)` to get the registry **`dir`** (e.g. `lupo-actors/111`). Use `Resolver::actorPathByDir($base_path, $actor['dir'])` where applicable for safe file access.
 
 ## 4. Code Patterns
 
@@ -126,7 +125,7 @@ All actor resolution should go through `App\Services\ActorService` when availabl
 
 - `getActorByName($actor_name)` — primary lookup
 - `getActorById($actor_id)` — secondary (backward compatibility)
-- `getActorDir($actor_name)` — returns registry `dir` (e.g. `lupo-actors/system`) or fallback `LUPO_ACTORS_DIR . '/' . $actor_name`
+- `getActorDir($actor_name)` — returns registry `dir` (e.g. `lupo-actors/0`, `lupo-actors/111`) or fallback `LUPO_ACTORS_DIR . '/' . $actor_name`
 - `resolveActor($identifier)` — accepts name, id, or slug
 - `getActorName($identifier)` — returns canonical `actor_name`
 - `validateDelegationChain($chain)` — validates colon-separated names (e.g. `lilith:cursor:captain`)
@@ -137,7 +136,7 @@ All actor resolution should go through `App\Services\ActorService` when availabl
 
 - `actor_id` (int)
 - `actor_name` (string)
-- `dir` (string) — relative path from registry (e.g. `lupo-actors/system`) for filesystem access
+- `dir` (string) — relative path from registry (e.g. `lupo-actors/0`) for filesystem access
 
 Resolves from `$_GET['actor_id']`, `$_GET['actor_name']`, or `$_GET['actor']` (slug). Use `Resolver::actorPathByDir($base_path, $actor['dir'])` for safe path resolution.
 

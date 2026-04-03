@@ -1,4 +1,8 @@
 {
+  "_comment": "THIS FILE IS AUTO-GENERATED. DO NOT EDIT MANUALLY.",
+  "_purpose": "Schema reference only — column names, types, indexes. Contains NO data.",
+  "_source": "Generated from live database by generate_toon_files.py",
+  "_read_only": true,
   "table_name": "lupo_bans_log",
   "fields": [
     "`bans_log_id` bigint NOT NULL",
@@ -10,7 +14,6 @@
     "`user_agent` varchar(500)",
     "`ip_address` varchar(45)"
   ],
-  "data": [],
   "indexes": [
     {
       "index_name": "lupo_bans_log_idx_actor_id",

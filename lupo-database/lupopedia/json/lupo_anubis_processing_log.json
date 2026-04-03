@@ -1,4 +1,8 @@
 {
+  "_comment": "THIS FILE IS AUTO-GENERATED. DO NOT EDIT MANUALLY.",
+  "_purpose": "Schema reference only — column names, types, indexes. Contains NO data.",
+  "_source": "Generated from live database by generate_toon_files.py",
+  "_read_only": true,
   "table_name": "lupo_anubis_processing_log",
   "fields": [
     "`log_id` bigint NOT NULL",
@@ -6,10 +10,9 @@
     "`file_path` varchar(512) NOT NULL",
     "`action` varchar(64) NOT NULL",
     "`details` text",
-    "`actor_id` bigint DEFAULT NULL",
+    "`actor_id` bigint",
     "`created_utc` bigint NOT NULL"
   ],
-  "data": [],
   "indexes": [
     {
       "index_name": "lupo_anubis_processing_log_idx_created",

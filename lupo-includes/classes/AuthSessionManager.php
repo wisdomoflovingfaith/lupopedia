@@ -102,20 +102,15 @@ class AuthSessionManager
     }
 
     /**
-     * Get available agents (not currently linked to an active session)
+     * Get agent templates available for creating a new actor (no session exclusivity).
      */
     public function getAvailableAgents()
     {
-        // Get agents that are not currently assigned to an active session
         $sql = "SELECT a.agent_id, a.agent_key, a.agent_name, a.description
                 FROM {$this->table_prefix}agents a
                 WHERE a.is_deleted = 0
-                AND a.agent_id NOT IN (
-                    SELECT s.actor_id FROM {$this->table_prefix}sessions s 
-                    WHERE s.is_active = 1 AND s.is_expired = 0 AND s.is_deleted = 0
-                )
                 ORDER BY a.agent_name ASC";
-        return $this->db->fetchAll($sql, []);
+        return $this->db->fetchAll($sql, array());
     }
 
     /**
@@ -415,63 +410,112 @@ class AuthSessionManager
     }
     
     /**
-     * Update active actor in session
+     * Update active actor in session (only if user is allowed to act as that actor).
      */
     public function updateActiveActor($actor_id)
     {
         if (session_status() === PHP_SESSION_NONE) {
             session_start();
         }
-        
-        // Get actor details
+
+        $auth_user_id = isset($_SESSION['auth_user_id']) ? (int) $_SESSION['auth_user_id'] : 0;
+        if ($auth_user_id <= 0 && isset($GLOBALS['lupo_auth_service']) && is_object($GLOBALS['lupo_auth_service'])) {
+            $cu = $GLOBALS['lupo_auth_service']->getCurrentUser();
+            if (is_array($cu) && isset($cu['auth_user_id'])) {
+                $auth_user_id = (int) $cu['auth_user_id'];
+            }
+        }
+        if ($auth_user_id <= 0) {
+            return false;
+        }
+
+        $isAdminFlag = false;
+        if (isset($_SESSION['is_admin'])) {
+            $isAdminFlag = (bool) $_SESSION['is_admin'];
+        }
+        if (!$isAdminFlag) {
+            $isAdminFlag = $this->authUserHasModuleOwnerPermission($auth_user_id);
+        }
+
+        $allowed = $this->getActorsUserCanActAs($auth_user_id, $isAdminFlag);
+        $ok = false;
+        foreach ($allowed as $row) {
+            if (isset($row['actor_id']) && (int) $row['actor_id'] === (int) $actor_id) {
+                $ok = true;
+                break;
+            }
+        }
+        if (!$ok) {
+            return false;
+        }
+
         $sql = "SELECT actor_name, actor_type FROM {$this->table_prefix}actors 
                 WHERE actor_id = :actor_id AND is_active = 1 AND is_deleted = 0";
-        $actor = $this->db->fetchRow($sql, ['actor_id' => $actor_id]);
-        
+        $actor = $this->db->fetchRow($sql, array('actor_id' => $actor_id));
+
         if ($actor) {
             $_SESSION['actor_id'] = $actor_id;
             $_SESSION['actor_name'] = $actor['actor_name'];
             $_SESSION['actor_type'] = $actor['actor_type'];
-            
-            // Update session record in database
+
             $session_id = session_id();
             $now = gmdate('YmdHis');
-            
-            // Update session using PDO_DB update method
+
             $this->db->update(
                 "{$this->table_prefix}sessions",
-                [
+                array(
                     'actor_id' => $actor_id,
                     'updated_ymdhis' => $now
-                ],
+                ),
                 'session_id = :session_id',
-                ['session_id' => $session_id]
+                array('session_id' => $session_id)
             );
-            
+
             return true;
         }
-        
+
         return false;
     }
     
     /**
-     * Get actors that user can act as (filtered by department using mapping tables)
+     * Get actors that user can act as (department scope; optional per-actor creator/root-only flag).
+     * Multiple users may use the same actor concurrently — no session exclusivity.
+     *
+     * Actors are resolved via lupo_actor_departments (not lupo_actors.auth_user_id alone).
+     * Includes human operators and agent personas in scope (is_agent filter removed).
+     *
+     * @param int         $auth_user_id
+     * @param bool        $isAdmin              global admin / elevated list (treated like root for scope)
+     * @param int|null    $department_id_filter optional: limit to this department_id (root: any dept;
+     *                                            non-root: must be one of the user’s departments). null = all allowed depts.
      */
-    public function getActorsUserCanActAs($auth_user_id, $isAdmin = false)
+    public function getActorsUserCanActAs($auth_user_id, $isAdmin = false, $department_id_filter = null)
     {
-        // Get user's departments
+        $auth_user_id = (int) $auth_user_id;
+        // Elevated operator convention (PRD 01 / seed): full active actor list without department join.
+        if ($auth_user_id === 10000) {
+            $actorCols = "a.actor_id, a.actor_name, a.name, a.actor_type, a.department_id, a.web_restrict_act_as_creator_or_root, a.actor_source_id, a.actor_source_type";
+            $sql = "SELECT DISTINCT {$actorCols}
+                FROM {$this->table_prefix}actors a
+                WHERE a.is_active = 1
+                AND (a.is_deleted = 0 OR a.is_deleted IS NULL)
+                ORDER BY a.actor_type, a.name";
+            $rows = $this->db->fetchAll($sql, array());
+            return $this->filterActorsForWebActAsRestriction($rows, $auth_user_id, true);
+        }
+
         $user_departments = $this->getUserDepartments($auth_user_id);
 
-        $is_root_user = false;
+        $in_root_department = false;
         $department_ids = array();
         foreach ($user_departments as $dept) {
-            $department_ids[] = $dept['department_id'];
+            $department_ids[] = (int) $dept['department_id'];
             if ((int) $dept['department_id'] === 0) {
-                $is_root_user = true;
+                $in_root_department = true;
             }
         }
 
-        // Global admin (e.g. module owner) without auth_user_departments rows still needs the root actor list.
+        $is_root_user = $in_root_department;
         if (!$is_root_user && $isAdmin) {
             $is_root_user = true;
         }
@@ -479,67 +523,121 @@ class AuthSessionManager
         if (empty($user_departments) && !$is_root_user) {
             return array();
         }
-        
-        // If user is in department 0 (root), they can see all actors
-        if ($is_root_user) {
-            $sql = "SELECT a.actor_id, a.actor_name, a.name, a.actor_type, a.department_id
-                    FROM {$this->table_prefix}actors a
-                    WHERE a.is_active = 1 
-                    AND a.is_deleted = 0
-                    AND a.is_agent = 1
-                    AND (
-                        a.actor_id NOT IN (
-                            SELECT DISTINCT s.actor_id 
-                            FROM {$this->table_prefix}sessions s
-                            WHERE s.session_id != :current_session
-                            AND s.actor_id IS NOT NULL
-                            AND s.created_ymdhis > :expiry_time
-                            AND (s.is_deleted = 0 OR s.is_deleted IS NULL)
-                        )
-                        OR a.actor_id = :current_actor
-                    )
-                    ORDER BY a.actor_type, a.name";
-            
-            $params = [
-                'current_session' => session_id() ?: '',
-                'current_actor' => $this->getActiveActorId(),
-                'expiry_time' => gmdate('YmdHis', strtotime('-24 hours'))
-            ];
-            
-            return $this->db->fetchAll($sql, $params);
+
+        $bypass_creator_restrict = $in_root_department || $isAdmin || $this->authUserHasModuleOwnerPermission($auth_user_id);
+
+        $actorCols = "a.actor_id, a.actor_name, a.name, a.actor_type, a.department_id, a.web_restrict_act_as_creator_or_root, a.actor_source_id, a.actor_source_type";
+
+        $filter_dept = null;
+        if ($department_id_filter !== null && $department_id_filter !== '') {
+            $filter_dept = (int) $department_id_filter;
         }
-        
-        // Normal user: only see actors in their departments
-        $dept_placeholders = str_repeat('?,', count($department_ids) - 1) . '?';
-        
-        $sql = "SELECT DISTINCT a.actor_id, a.actor_name, a.name, a.actor_type, a.department_id
-                FROM {$this->table_prefix}actors a
-                INNER JOIN {$this->table_prefix}actor_departments ad ON a.actor_id = ad.actor_id
-                WHERE a.is_active = 1 
-                AND a.is_deleted = 0
-                AND a.is_agent = 1
-                AND ad.department_id IN ({$dept_placeholders})
-                AND ad.is_deleted = 0
-                AND (
-                    a.actor_id NOT IN (
-                        SELECT DISTINCT s.actor_id 
-                        FROM {$this->table_prefix}sessions s
-                        WHERE s.session_id != :current_session
-                        AND s.actor_id IS NOT NULL
-                        AND s.created_ymdhis > :expiry_time
-                        AND (s.is_deleted = 0 OR s.is_deleted IS NULL)
-                    )
-                    OR a.actor_id = :current_actor
-                )
-                ORDER BY a.actor_type, a.name";
-        
-        $params = array_merge($department_ids, [
-            'current_session' => session_id() ?: '',
-            'current_actor' => $this->getActiveActorId(),
-            'expiry_time' => gmdate('YmdHis', strtotime('-24 hours'))
-        ]);
-        
-        return $this->db->fetchAll($sql, $params);
+
+        $adDeleted = '(ad.is_deleted = 0 OR ad.is_deleted IS NULL)';
+
+        if ($is_root_user) {
+            if ($filter_dept !== null) {
+                $sql = "SELECT DISTINCT {$actorCols}
+                    FROM {$this->table_prefix}actors a
+                    INNER JOIN {$this->table_prefix}actor_departments ad ON a.actor_id = ad.actor_id AND {$adDeleted}
+                    WHERE a.is_active = 1
+                    AND (a.is_deleted = 0 OR a.is_deleted IS NULL)
+                    AND ad.department_id = :did
+                    ORDER BY a.actor_type, a.name";
+                $rows = $this->db->fetchAll($sql, array('did' => $filter_dept));
+            } else {
+                $sql = "SELECT DISTINCT {$actorCols}
+                    FROM {$this->table_prefix}actors a
+                    INNER JOIN {$this->table_prefix}actor_departments ad ON a.actor_id = ad.actor_id AND {$adDeleted}
+                    WHERE a.is_active = 1
+                    AND (a.is_deleted = 0 OR a.is_deleted IS NULL)
+                    ORDER BY a.actor_type, a.name";
+                $rows = $this->db->fetchAll($sql, array());
+            }
+        } else {
+            if (empty($department_ids)) {
+                return array();
+            }
+            if ($filter_dept !== null) {
+                if (!in_array($filter_dept, $department_ids, true)) {
+                    return array();
+                }
+                $sql = "SELECT DISTINCT {$actorCols}
+                    FROM {$this->table_prefix}actors a
+                    INNER JOIN {$this->table_prefix}actor_departments ad ON a.actor_id = ad.actor_id AND {$adDeleted}
+                    WHERE a.is_active = 1
+                    AND (a.is_deleted = 0 OR a.is_deleted IS NULL)
+                    AND ad.department_id = :did
+                    ORDER BY a.actor_type, a.name";
+                $rows = $this->db->fetchAll($sql, array('did' => $filter_dept));
+            } else {
+                $dept_placeholders = str_repeat('?,', count($department_ids) - 1) . '?';
+                $sql = "SELECT DISTINCT {$actorCols}
+                    FROM {$this->table_prefix}actors a
+                    INNER JOIN {$this->table_prefix}actor_departments ad ON a.actor_id = ad.actor_id AND {$adDeleted}
+                    WHERE a.is_active = 1
+                    AND (a.is_deleted = 0 OR a.is_deleted IS NULL)
+                    AND ad.department_id IN ({$dept_placeholders})
+                    ORDER BY a.actor_type, a.name";
+                $rows = $this->db->fetchAll($sql, $department_ids);
+            }
+        }
+
+        return $this->filterActorsForWebActAsRestriction($rows, $auth_user_id, $bypass_creator_restrict);
+    }
+
+    /**
+     * When lupo_actors.web_restrict_act_as_creator_or_root = 1, only the creating auth user
+     * (actor_source_id + actor_source_type user/lupo_auth_users) or elevated operators may act as this actor.
+     */
+    private function filterActorsForWebActAsRestriction($rows, $auth_user_id, $bypass_creator_restrict)
+    {
+        $out = array();
+        foreach ($rows as $row) {
+            if ($this->authUserPassesWebActAsRestriction($row, $auth_user_id, $bypass_creator_restrict)) {
+                $out[] = $row;
+            }
+        }
+        return $out;
+    }
+
+    /**
+     * @param array $actorRow
+     * @param int   $auth_user_id
+     * @param bool  $bypass_creator_restrict root dept, admin flag, or module owner
+     */
+    private function authUserPassesWebActAsRestriction($actorRow, $auth_user_id, $bypass_creator_restrict)
+    {
+        $auth_user_id = (int) $auth_user_id;
+        $flag = isset($actorRow['web_restrict_act_as_creator_or_root']) ? (int) $actorRow['web_restrict_act_as_creator_or_root'] : 0;
+        if ($flag !== 1) {
+            return true;
+        }
+        if ($bypass_creator_restrict) {
+            return true;
+        }
+        $srcId = isset($actorRow['actor_source_id']) ? (int) $actorRow['actor_source_id'] : 0;
+        $srcType = isset($actorRow['actor_source_type']) ? (string) $actorRow['actor_source_type'] : '';
+        if ($srcId === $auth_user_id && ($srcType === 'user' || $srcType === 'lupo_auth_users')) {
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * Module owner permission (legacy permissions table) — treated like elevated for act-as restrictions.
+     */
+    private function authUserHasModuleOwnerPermission($auth_user_id)
+    {
+        $auth_user_id = (int) $auth_user_id;
+        if ($auth_user_id <= 0) {
+            return false;
+        }
+        $perm = $this->db->fetchRow(
+            "SELECT 1 AS ok FROM {$this->table_prefix}permissions WHERE user_id = :uid AND permission = 'owner' AND target_type = 'module' AND (is_deleted = 0 OR is_deleted IS NULL) LIMIT 1",
+            array('uid' => $auth_user_id)
+        );
+        return !empty($perm);
     }
 
     /**
@@ -594,14 +692,10 @@ class AuthSessionManager
     }
 
     /**
-     * Release all active leases for a user (set status = 'released', is_primary = 0)
+     * Legacy hook: previously cleared "leases" on logout. Actor↔auth mappings stay active; concurrent web use is allowed.
      */
     public function releaseAllLeasesForUser($auth_user_id)
     {
-        $now = gmdate('YmdHis');
-        $sql = "UPDATE {$this->table_prefix}actor_auth_users
-                SET status = 'released', is_primary = 0, updated_ymdhis = :now
-                WHERE auth_user_id = :auth_user_id AND status = 'active' AND is_deleted = 0";
-        $this->db->query($sql, array('now' => $now, 'auth_user_id' => $auth_user_id));
+        return;
     }
 }

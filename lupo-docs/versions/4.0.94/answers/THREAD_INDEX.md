@@ -3,10 +3,10 @@ lupopedia.headers:
   header_format_version: 2
   lupopedia.schema: documentation
   version_when_written: "4.0.94"
-  when_updated: "20260403140552"
+  when_updated: "20260403222041"
   file_path_from_root: "lupo-docs/versions/4.0.94/answers/THREAD_INDEX.md"
   web_path: "http://www.lupopedia.com/lupopedia/lupo-docs/versions/4.0.94/answers/THREAD_INDEX.md"
-  last_modified_utc: "20260403140552"
+  last_modified_utc: "20260403222041"
   federation_node_id: 0
   channel_id: 42
   thread_id: "version-4.0.94-answers"
@@ -28,7 +28,7 @@ lupopedia.edges:
       weight: 1.0
       reason: "Questions index"
 lupopedia.footer:
-  last_verified: "20260403140552"
+  last_verified: "20260403222041"
   verified_by:
     identity_type: "actor"
     actor_id: 102
@@ -41,6 +41,7 @@ lupopedia.footer:
 
 | Answered (UTC) | File | Question ref | Summary |
 |----------------|------|--------------|---------|
+| 20260403_222043 | [20260403_222043_ANSWER_department_model_visitor_chat_docs_synthesis.md](20260403_222043_ANSWER_department_model_visitor_chat_docs_synthesis.md) | Implementation **13** Q1–Q3 + decision **`222041`** | Department-first docs approved; links Crafty integration questions; runtime audit remains. |
 | 20260403_140554 | [20260403_140554_ANSWER_version_ghost_cleanup_manual_review.md](20260403_140554_ANSWER_version_ghost_cleanup_manual_review.md) | [20260403_140553_QUESTION_version_ghost_cleanup_policy.md](../questions/20260403_140553_QUESTION_version_ghost_cleanup_policy.md) | Manual review per file; no batch policy; WOLFIE prioritizes. |
 | 20260403_025157 | [20260403_025157_ANSWER_prd31_version_sync_changelog_scope.md](20260403_025157_ANSWER_prd31_version_sync_changelog_scope.md) | [20260403_025156_QUESTION_prd31_version_sync_changelog_scope.md](../questions/20260403_025156_QUESTION_prd31_version_sync_changelog_scope.md) | Yes — thread-verified scope only; no bulk PRD 16/26/30/validator claims without evidence. |
 | 20260403_022545 | [20260403_022545_ANSWER_prd33_traceability_location.md](20260403_022545_ANSWER_prd33_traceability_location.md) | [20260403_022544_QUESTION_prd33_traceability_location.md](../questions/20260403_022544_QUESTION_prd33_traceability_location.md) | Primary: `4.0.94/TODO.md` subsection; hub: `implementations/33_.../`; PRD remains normative. |

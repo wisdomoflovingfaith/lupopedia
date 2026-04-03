@@ -1,4 +1,8 @@
 {
+  "_comment": "THIS FILE IS AUTO-GENERATED. DO NOT EDIT MANUALLY.",
+  "_purpose": "Schema reference only — column names, types, indexes. Contains NO data.",
+  "_source": "Generated from live database by generate_toon_files.py",
+  "_read_only": true,
   "table_name": "lupo_federation_discovery",
   "fields": [
     "`federation_discovery_id` bigint NOT NULL",
@@ -17,12 +21,10 @@
     "`import_hashtags` tinyint NOT NULL DEFAULT 0",
     "`import_questions` tinyint NOT NULL DEFAULT 0",
     "`import_atoms` tinyint NOT NULL DEFAULT 0",
-    "`import_contexts` tinyint NOT NULL DEFAULT 0",
     "`import_collections` tinyint NOT NULL DEFAULT 0",
     "`created_ymdhis` bigint NOT NULL DEFAULT 0",
     "`updated_ymdhis` bigint NOT NULL"
   ],
-  "data": [],
   "indexes": [
     {
       "index_name": "lupo_federation_discovery_idx_domain",

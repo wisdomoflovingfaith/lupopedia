@@ -1,4 +1,8 @@
 {
+  "_comment": "THIS FILE IS AUTO-GENERATED. DO NOT EDIT MANUALLY.",
+  "_purpose": "Schema reference only — column names, types, indexes. Contains NO data.",
+  "_source": "Generated from live database by generate_toon_files.py",
+  "_read_only": true,
   "table_name": "lupo_agent_versions",
   "fields": [
     "`agent_version_id` bigint NOT NULL",
@@ -15,7 +19,6 @@
     "`is_deleted` smallint NOT NULL DEFAULT 0",
     "`deleted_ymdhis` bigint"
   ],
-  "data": [],
   "indexes": [
     {
       "index_name": "lupo_agent_versions_agent_id",

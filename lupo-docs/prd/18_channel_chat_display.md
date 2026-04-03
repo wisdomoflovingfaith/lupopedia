@@ -2,10 +2,10 @@
 lupopedia.headers:
   header_format_version: 2
   lupopedia.schema: prd
-  when_updated: "20260331233000"
+  when_updated: "20260403221024"
   file_path_from_root: "lupo-docs/prd/18_channel_chat_display.md"
   web_path: "http://www.lupopedia.com/lupopedia/lupo-docs/prd/18_channel_chat_display.md"
-  last_modified_utc: "20260331233000"
+  last_modified_utc: "20260403221024"
   federation_node_id: 0
   channel_id: 42
   thread_id: "prd-chat-display"
@@ -14,7 +14,7 @@ lupopedia.headers:
   delegation_chain: "lilith:audit"
   artifact_type: "prd"
   artifact_kind: "ui_component"
-  purpose: "PRD for Channel Chat Display - multi-panel chat interface with actor color coding"
+  purpose: "Channel chat UI; actor_id primary attribution; auth_user secondary; department-scoped shared personas"
   tags:
   - "prd"
   - "chat"
@@ -40,8 +40,28 @@ lupopedia.edges:
       type: references
       weight: 0.8
       reason: "Agent identification"
+    - to: "lupo-docs/prd/05_auth_user_actor_agent_transformation.md"
+      type: references
+      weight: 1.0
+      reason: "Visitor chat chain; act-as; auth_user vs actor_id"
+    - to: "lupo-docs/prd/15_actors.md"
+      type: references
+      weight: 1.0
+      reason: "Actors belong to departments; shared actor by many auth_users"
+    - to: "lupo-docs/prd/25_departments_system.md"
+      type: references
+      weight: 0.95
+      reason: "Department-scoped chat routing context"
+    - to: "lupo-docs/prd/13_crafty_integration.md"
+      type: references
+      weight: 0.9
+      reason: "Operator to actor import; legacy saidfrom mapping"
+    - to: "lupo-docs/doctrine/ACTOR_DEPARTMENT_AUTH_USER_DOCTRINE.md"
+      type: references
+      weight: 1.0
+      reason: "Canonical approved: attribution and join model"
 lupopedia.footer:
-  last_verified: "20260331233000"
+  last_verified: "20260403221024"
   verified_by:
     identity_type: "agent"
     actor_id: 2
@@ -64,6 +84,8 @@ lupopedia.footer:
 
 **Namespace Purpose:** Provides the primary chat interface for viewing channel conversations in Lupopedia. The display shows messages from all actors (humans and agents) in a channel, with each actor having a distinct visual identity through color-coded backgrounds and text. Messages are displayed in chronological order with threading support.
 
+**Canonical mental model (approved):** **[`ACTOR_DEPARTMENT_AUTH_USER_DOCTRINE.md`](../doctrine/ACTOR_DEPARTMENT_AUTH_USER_DOCTRINE.md)** — **`actor_id`** primary in the transcript; **`auth_user`** secondary; shared department-scoped actors. This PRD defines **UI behavior**; do not contradict the doctrine.
+
 **Primary Actors:**
 - Channel participants (viewing conversations)
 - System administrators (configuring display)
@@ -79,6 +101,13 @@ lupopedia.footer:
 - Soft delete (is_deleted + deleted_ymdhis)
 
 **Canonical API (do not duplicate):** Message list and post for channel chat are implemented in `lupo-includes/modules/api/channels-api.php`, routed as **`{LUPOPEDIA_PUBLIC_PATH}/api/lupo-channels/{channel_id}/messages`**. Extend this endpoint for transport variants (`format=buffer`, `format=image`); do not add a parallel `lupo-api/chat/messages.php` unless it is a documented thin wrapper. Pretty channel pages: **`/channels/{id}/`** and **`/channels/{id}/thread/{thread_id}/`** (see `.htaccess` and `lupo_route_slug` in `module-loader.php`).
+
+### Chat attribution: `actor_id` primary, `auth_user` secondary
+
+- **Stored and rendered identity:** Each message row carries **`from_actor_id`** (joined to **`lupo_actors`** for display name, colors, avatar). That is the **primary** attribution in the transcript.
+- **`auth_user` is not the bubble label:** The UI shows the **actor** the session is acting as. **`auth_user`** is login, accountability, and (for visitor-facing chat) **human fallback** in the chain defined in **[PRD 05](05_auth_user_actor_agent_transformation.md)** — not a substitute for **`actor_id`** in display or storage.
+- **Department-scoped shared persona:** **Multiple** **`auth_users`** who share a department may **act as the same `actor_id`**. The strip shows **one** actor identity (same colors / name) for that persona; it does **not** imply one human “owns” the actor — see **[PRD 15](15_actors.md)** and **[PRD 25](25_departments_system.md)**.
+- **Crafty parity:** Legacy **`saidfrom`** / operator ids map to **Lupopedia actors** on import; runtime remains **actor-first** — **[PRD 13](13_crafty_integration.md)**.
 
 ---
 
@@ -172,7 +201,9 @@ function getActorColor(actor_id) {
 }
 ```
 
-**User-Configurable Colors:**
+**User-Configurable Colors (per actor row):**
+
+Settings live on **`lupo_actors`** (e.g. **`metadata_json`**). **All** humans posting as that **`actor_id`** see the same actor styling unless the product adds explicit per-session overrides.
 
 Actors can set custom colors in their profile:
 
@@ -673,7 +704,7 @@ $lupo_message = [
 - All messages filtered for XSS (HTML sanitization)
 - CSRF tokens required for message posting
 - Rate limiting on message endpoints
-- Actor colors are per-session and not shared across users (privacy)
+- Default **chat styling** is **per `actor_id`** (`lupo_actors` / `metadata_json`); all sessions using that actor share the same defaults — do not substitute another user’s **`auth_user`** profile into the strip without explicit product rules (privacy)
 - Message history respects channel permissions
 
 ### XSS Prevention
@@ -700,6 +731,6 @@ Rate limiting SHOULD be enforced in **`channels-api.php`** (or shared guard) for
 
 ---
 
-**Status**: DRAFT (LILITH audit: aligned with `channels-api.php`, `format=buffer` / `format=image`, `.htaccess` channel rules, `chat-display-legacy.js`)  
+**Status**: DRAFT — **LILITH approved** (post department model): **`actor_id` / `from_actor_id`** primary attribution; **`auth_user`** not bubble label; shared department-scoped actor; aligned with **`ACTOR_DEPARTMENT_AUTH_USER_DOCTRINE.md`**, **PRD 05**, **PRD 15**; also aligned with `channels-api.php`, `format=buffer` / `format=image`, `.htaccess` channel rules, `chat-display-legacy.js`  
 **Constitutional Adherence**: FULL  
 **Next Review**: After channel UI wires to canonical API end-to-end

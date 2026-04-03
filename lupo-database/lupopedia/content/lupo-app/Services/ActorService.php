@@ -229,8 +229,8 @@ class ActorService
     }
 
     /**
-     * Get actor directory path (relative to project root). Name-based per ACTOR_PRIMARY_KEY_DOCTRINE.
-     * Returns registry dir (e.g. lupo-actors/system) or fallback lupo-actors/{actor_name}.
+     * Get actor directory path (relative to project root). Uses registry `dir` (actor_id path per PRD 00 §5.6).
+     * Returns registry dir (e.g. lupo-actors/0, lupo-actors/111) or fallback lupo-actors/{actor_name}.
      *
      * @param string $actor_name
      * @return string
@@ -249,14 +249,12 @@ class ActorService
     }
 
     /**
-     * Get list of actors the given user is permitted to act as (for web actor selector).
-     * Root user (auth_user_id 10000): all non-deleted actors.
-     * Others: only the user's own actor plus actors where the user is a supporting actor
-     * (lupo_edges with left_object_type='actor', left_object_id = user's actor_id, right_object_type='actor', right_object_id = actor, edge_type = 'supports').
+     * Get list of actors the given user is permitted to act as.
+     * Delegates to AuthSessionManager (department-scoped join per PRD 05 / PRD 15); same behavior as web selectors.
      *
      * @param int  $authUserId auth_user_id of the logged-in user
-     * @param bool $isAdmin    unused; root user (10000) determines "act as anyone"
-     * @return array List of arrays with keys actor_id, actor_name, name, actor_type
+     * @param bool $isAdmin    passed through; root-department scope / elevated list in AuthSessionManager
+     * @return array List of arrays with keys actor_id, actor_name, name, actor_type, ...
      */
     public function getActorsUserCanActAs($authUserId, $isAdmin = false)
     {
@@ -264,69 +262,23 @@ class ActorService
         if ($authUserId <= 0 || !$this->db) {
             return array();
         }
-        $t = $this->db->quoteIdentifier($this->prefix . 'actors');
-        $edgesT = $this->db->quoteIdentifier($this->prefix . 'edges');
-        $userActorId = 0;
-        $userRow = $this->db->fetchRow(
-            "SELECT actor_id, actor_name, name, actor_type FROM {$t} WHERE actor_source_type = 'lupo_auth_users' AND actor_source_id = :aid AND (is_deleted = 0 OR is_deleted IS NULL) LIMIT 1",
-            array('aid' => $authUserId)
-        );
-        if (!$userRow) {
-            $userRow = $this->db->fetchRow(
-                "SELECT actor_id, actor_name, name, actor_type FROM {$t} WHERE actor_source_type = 'user' AND actor_source_id = :aid AND (is_deleted = 0 OR is_deleted IS NULL) LIMIT 1",
-                array('aid' => $authUserId)
-            );
+        if (!defined('LUPOPEDIA_CONFIG_LOADED') || !LUPOPEDIA_CONFIG_LOADED) {
+            return array();
         }
-        if ($userRow) {
-            $userActorId = (int) $userRow['actor_id'];
+        if (!defined('LUPOPEDIA_PATH')) {
+            return array();
         }
-        $list = array();
-        // Root user (10000): can act as anyone
-        if ($authUserId === 10000) {
-            $rows = $this->db->fetchAll(
-                "SELECT actor_id, actor_name, name, actor_type FROM {$t} WHERE (is_deleted = 0 OR is_deleted IS NULL) ORDER BY actor_id ASC"
-            );
-            foreach ($rows as $r) {
-                $list[] = array(
-                    'actor_id' => (int) $r['actor_id'],
-                    'actor_name' => isset($r['actor_name']) ? $r['actor_name'] : (isset($r['name']) ? $r['name'] : ''),
-                    'name' => isset($r['name']) ? $r['name'] : (isset($r['actor_name']) ? $r['actor_name'] : ''),
-                    'actor_type' => isset($r['actor_type']) ? $r['actor_type'] : 'user',
-                );
-            }
-            return $list;
+        $path = rtrim(LUPOPEDIA_PATH, '/\\') . DIRECTORY_SEPARATOR . 'lupo-includes' . DIRECTORY_SEPARATOR . 'classes' . DIRECTORY_SEPARATOR . 'AuthSessionManager.php';
+        if (!is_file($path)) {
+            return array();
         }
-        // Non-root: own actor + actors where this user is supporting_actor (edge source = user, target = actor, type = supports)
-        if ($userActorId > 0) {
-            $list[] = array(
-                'actor_id' => $userActorId,
-                'actor_name' => isset($userRow['actor_name']) ? $userRow['actor_name'] : (isset($userRow['name']) ? $userRow['name'] : ''),
-                'name' => isset($userRow['name']) ? $userRow['name'] : (isset($userRow['actor_name']) ? $userRow['actor_name'] : ''),
-                'actor_type' => isset($userRow['actor_type']) ? $userRow['actor_type'] : 'user',
-            );
-            $supported = $this->db->fetchAll(
-                "SELECT a.actor_id, a.actor_name, a.name, a.actor_type FROM {$t} a
-                 INNER JOIN {$edgesT} e ON e.right_object_type = 'actor' AND e.right_object_id = a.actor_id AND e.left_object_type = 'actor' AND e.left_object_id = :uid AND e.edge_type = 'supports' AND (e.is_deleted = 0 OR e.is_deleted IS NULL)
-                 WHERE (a.is_deleted = 0 OR a.is_deleted IS NULL)
-                 ORDER BY a.actor_id ASC",
-                array('uid' => $userActorId)
-            );
-            $seen = array($userActorId => true);
-            foreach ($supported as $r) {
-                $aid = (int) $r['actor_id'];
-                if (isset($seen[$aid])) {
-                    continue;
-                }
-                $seen[$aid] = true;
-                $list[] = array(
-                    'actor_id' => $aid,
-                    'actor_name' => isset($r['actor_name']) ? $r['actor_name'] : (isset($r['name']) ? $r['name'] : ''),
-                    'name' => isset($r['name']) ? $r['name'] : (isset($r['actor_name']) ? $r['actor_name'] : ''),
-                    'actor_type' => isset($r['actor_type']) ? $r['actor_type'] : 'agent',
-                );
-            }
+        require_once $path;
+        if (!class_exists('AuthSessionManager')) {
+            return array();
         }
-        return $list;
+        $sessionManager = new \AuthSessionManager();
+        $rows = $sessionManager->getActorsUserCanActAs($authUserId, (bool) $isAdmin, null);
+        return is_array($rows) ? $rows : array();
     }
 
     /**

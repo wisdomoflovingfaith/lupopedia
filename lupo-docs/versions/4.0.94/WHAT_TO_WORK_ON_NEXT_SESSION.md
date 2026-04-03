@@ -4,8 +4,8 @@ lupopedia.headers:
   lupopedia.schema: documentation
   file_path_from_root: "lupo-docs/versions/4.0.94/WHAT_TO_WORK_ON_NEXT_SESSION.md"
   web_path: "http://www.lupopedia.com/lupopedia/lupo-docs/versions/4.0.94/WHAT_TO_WORK_ON_NEXT_SESSION.md"
-  when_updated: "20260403141231"
-  last_modified_utc: "20260403141231"
+  when_updated: "20260403222041"
+  last_modified_utc: "20260403222041"
   federation_node_id: 0
   channel_id: 42
   thread_id: "version-4-0-94-handoff"
@@ -17,7 +17,7 @@ lupopedia.headers:
   delegation_chain: "cursor:root"
   artifact_type: documentation
   artifact_kind: session_handoff
-  purpose: "Clear checklist after break — 34 ghost files, Two-UI / WOLFIE workflow, carried-forward product backlog"
+  purpose: "Handoff after department-first approval — 34 ghosts, runtime visitor/chat audit, federation QUESTION open, Two-UI / find_edges, product backlog"
   status: active
   tags:
     - "4.0.94"
@@ -58,8 +58,28 @@ lupopedia.edges:
       type: references
       weight: 0.9
       reason: "Scaffold / templates follow-up"
+    - to: "lupo-scripts/find_edges.py"
+      type: references
+      weight: 0.95
+      reason: "Suggest outbound_edges from markdown; dry-run by default"
+    - to: "lupo-docs/versions/4.0.94/decisions/20260403_222041_DECISION_APPROVED_department_first_actor_model_prd_alignment.md"
+      type: references
+      weight: 1.0
+      reason: "APPROVED department-first docs + PRD alignment (LILITH)"
+    - to: "lupo-docs/versions/4.0.94/answers/20260403_222043_ANSWER_department_model_visitor_chat_docs_synthesis.md"
+      type: references
+      weight: 1.0
+      reason: "Synthesis ANSWER — implementation Q1–Q3 + doctrine"
+    - to: "lupo-docs/versions/4.0.94/questions/20260403_222042_QUESTION_federation_navigation_compiler.md"
+      type: references
+      weight: 0.95
+      reason: "OPEN — federation navigation compiler product"
+    - to: "lupo-docs/doctrine/ACTOR_DEPARTMENT_AUTH_USER_DOCTRINE.md"
+      type: references
+      weight: 1.0
+      reason: "Canonical auth_user + department + actor joins"
 lupopedia.footer:
-  last_verified: "20260403141231"
+  last_verified: "20260403222041"
   verified_by:
     identity_type: actor
     actor_id: 102
@@ -70,9 +90,20 @@ lupopedia.footer:
 
 # WHAT TO WORK ON NEXT SESSION
 
-**Recorded (UTC):** `20260403141231` (real UTC from `python lupo-bin/tick.py` this handoff batch.)
+**Recorded (UTC):** `20260403222041` (real UTC from `python lupo-bin/tick.py` this edit batch.)
 
-## Session summary (2026-04-03)
+## Session summary (2026-04-03) — department-first approval batch
+
+| Field | Value |
+|-------|--------|
+| **Duration** | Multiple sessions (thread handoff) |
+| **Primary work** | **`ACTOR_DEPARTMENT_AUTH_USER_DOCTRINE.md`** + PRD alignment (**02**, **05**, **07**, **13**, **15**, **18**, **25**, **32**); implementation **13** visitor-chat Q3 answered; version artifacts **`222041`** decision, **`222043`** synthesis answer, **`222042`** open federation QUESTION |
+| **Code already aligned (earlier same-day CHANGELOG)** | **`ActorService::getActorsUserCanActAs`** delegates **`AuthSessionManager::getActorsUserCanActAs`**; edge-based **`lupo_edges` `supports`** removed from **`ActorService`** — see top **`CHANGELOG.md`** entry **[2026-04-03] LILITH audit — PRD 15** |
+| **Still open** | Runtime audit: visitor/chat POST paths resolve **`actor_id`** server-side (**implementation Q2** note). **34** critical version ghosts (unchanged queue). |
+
+---
+
+## Prior session summary (2026-04-03) — doctrine audit + mobile / workflow
 
 | Field | Value |
 |-------|--------|
@@ -83,6 +114,12 @@ lupopedia.footer:
 **Key insight (common practice vs WOLFIE way):** “Industry standard” **responsive CSS** (one DOM, `@media` tweaks) is **not** sufficient for WOLFIE-class layouts (book spreads, liquid scroll, mouse-following eyes, floating chrome). Doctrine now encodes **Two-UI**: **separate** mobile surfaces vs **hand-crafted** desktop surfaces, with **admin desktop-first** and **consumer mobile-first** where applicable — see **`MOBILE_SEPARATION_DOCTRINE.md`** and **`WOLFIE_WORKFLOW_DOCTRINE.md`**.
 
 **Honesty note:** Helpful batch scripts exist under **`lupo-scripts/`** (e.g. `fix_doctrine_headers.py`, `apply_doctrine_prd_lineage.py`, `find_version_ghosts.py`, `convert_wolfie_to_lupo.py`). **Do not** treat unlogged run counts as facts in the next session — re-run and capture output if you need numbers for CHANGELOG.
+
+---
+
+## When WOLFIE is back — `find_edges.py` (and everything else)
+
+**Intent:** On return, **debug and test** **`lupo-scripts/find_edges.py`** against real **`.md`** files (doctrine/PRD samples, then wider passes): dry-run suggestions, tune **`--confidence`** / **`--headers`**, and only use **`--apply --yes`** or **`--interactive`** when outputs look right — then run **`validate_lupopedia_headers_universal.py`** and **`audit_doctrine_prd_edges.py`** on touched files. This sits **alongside** Priority **1** (34 ghosts), install/admin/Eye backlog, and mobile/desktop work — not a replacement for them.
 
 ---
 
@@ -214,10 +251,13 @@ These were on the prior handoff and remain valid in **dependency order** (see **
 
 ## Suggested next-session workflow
 
-1. Triage **Priority 1** (34 files) — a few files per session with edits + re-run **`find_version_ghosts.py`** to shrink the critical set.
-2. Keep **install + admin** unblocked in parallel where dependencies allow (**Carried forward**).
-3. For **mobile**, pick **one** vertical slice (e.g. visitor chat **or** Eye mobile shell) and ship **working** before pixel-perfect.
-4. For **desktop**, reserve **WOLFIE** time for admin/live surfaces without forcing mobile paradigms.
+1. **Runtime audit** — visitor/chat POST paths and **`EffectiveActorResolver`** (or equivalent) vs **PRD 05** / **PRD 18** + **`channels-api`** (see **`answers/20260403_222043_ANSWER_department_model_visitor_chat_docs_synthesis.md`**).
+2. Triage **Priority 1** (34 files) — a few files per session with edits + re-run **`find_version_ghosts.py`** to shrink the critical set.
+3. **`find_edges.py`** — exercise on representative **`.md`** files (see section above); treat as **tooling QA**, not a substitute for manual edge judgment.
+4. Keep **install + admin** unblocked in parallel where dependencies allow (**Carried forward**).
+5. For **mobile**, pick **one** vertical slice (e.g. visitor chat **or** Eye mobile shell) and ship **working** before pixel-perfect.
+6. For **desktop**, reserve **WOLFIE** time for admin/live surfaces without forcing mobile paradigms.
+7. **Federation navigation compiler** — only after **WOLFIE** product decision; track **`questions/20260403_222042_QUESTION_federation_navigation_compiler.md`** (OPEN).
 
 ---
 
@@ -225,7 +265,7 @@ These were on the prior handoff and remain valid in **dependency order** (see **
 
 **Doctrines (verify paths exist in-tree):** `MOBILE_SEPARATION_DOCTRINE.md`, `WOLFIE_WORKFLOW_DOCTRINE.md`, `TWO_LAYER_SECURITY_DOCTRINE.md`, `REVERSE_ENGINEERING_DOCTRINE.md`, `SILENT_HARVEST_DOCTRINE.md`, `ADVERSARIAL_TEST_IDENTITY_DOCTRINE.md` — plus **`LESSONS_LEARNED_FROM_THE_WILD_WEST.md`** updates as recorded in **`CHANGELOG.md`**.
 
-**Scripts:** `audit_doctrine_prd_edges.py`, `find_version_ghosts.py`, `fix_doctrine_headers.py`, `apply_doctrine_prd_lineage.py`, `convert_wolfie_to_lupo.py` — under **`lupo-scripts/`**.
+**Scripts:** `audit_doctrine_prd_edges.py`, `find_version_ghosts.py`, `find_edges.py`, `fix_doctrine_headers.py`, `apply_doctrine_prd_lineage.py`, `convert_wolfie_to_lupo.py` — under **`lupo-scripts/`**.
 
 **Version docs:** Top of **`lupo-docs/versions/4.0.94/CHANGELOG.md`** for the latest **5W1H** session entries.
 
@@ -233,12 +273,12 @@ These were on the prior handoff and remain valid in **dependency order** (see **
 
 ## Break reminder
 
-Doctrine PRD-edge coverage is **complete** at last audit (**189**/189 with lineage). **34** ghost files remain **intentionally** open for **manual** review — that is the next clear queue.
+Department-first actor model documentation is **APPROVED** (`decisions/20260403_222041_…`). **34** ghost files remain **intentionally** open for **manual** review. Doctrine PRD-edge coverage was **complete** at last audit (**189**/189 with lineage).
 
 Rest is allowed. The repo keeps state.
 
 ---
 
-**Next read:** [`TODO.md`](TODO.md), [`PLAN.md`](PLAN.md), [`CHANGELOG.md`](CHANGELOG.md) (top entry), [`version_ghosts_report.json`](../../implementations/29_project_structure/status/version_ghosts_report.json).
+**Next read:** [`TODO.md`](TODO.md), [`PLAN.md`](PLAN.md) Phase **H**, [`CHANGELOG.md`](CHANGELOG.md) (top entry), [`decisions/20260403_222041_DECISION_APPROVED_department_first_actor_model_prd_alignment.md`](decisions/20260403_222041_DECISION_APPROVED_department_first_actor_model_prd_alignment.md), [`version_ghosts_report.json`](../../implementations/29_project_structure/status/version_ghosts_report.json).
 
 This output complies with Lupopedia Constitutional Root Rules.

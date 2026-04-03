@@ -1,4 +1,8 @@
 {
+  "_comment": "THIS FILE IS AUTO-GENERATED. DO NOT EDIT MANUALLY.",
+  "_purpose": "Schema reference only — column names, types, indexes. Contains NO data.",
+  "_source": "Generated from live database by generate_toon_files.py",
+  "_read_only": true,
   "table_name": "lupo_departments",
   "fields": [
     "`department_id` bigint NOT NULL",
@@ -12,21 +16,6 @@
     "`updated_ymdhis` bigint NOT NULL",
     "`is_deleted` tinyint NOT NULL DEFAULT 0",
     "`deleted_ymdhis` bigint"
-  ],
-  "data": [
-    {
-      "department_id": 0,
-      "federation_node_id": 1,
-      "name": "System",
-      "description": "System Department (Reserved)",
-      "department_type": "system",
-      "default_actor_id": 0,
-      "settings_json": null,
-      "created_ymdhis": 20260331084601,
-      "updated_ymdhis": 20260331084601,
-      "is_deleted": 0,
-      "deleted_ymdhis": null
-    }
   ],
   "indexes": [
     {

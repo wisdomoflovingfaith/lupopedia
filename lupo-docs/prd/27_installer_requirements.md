@@ -2,10 +2,10 @@
 lupopedia.headers:
   header_format_version: 2
   lupopedia.schema: prd
-  when_updated: "20260331190000"
+  when_updated: "20260403202128"
   file_path_from_root: "/lupo-docs/prd/27_installer_requirements.md"
   web_path: "http://www.lupopedia.com/lupopedia/lupo-docs/prd/27_installer_requirements.md"
-  last_modified_utc: "20260330190000"
+  last_modified_utc: "20260403202128"
   federation_node_id: 0
   channel_id: 42
   thread_id: "prd-installer-requirements"
@@ -26,7 +26,7 @@ lupopedia.edges:
     - { to: "lupo-docs/prd/00_root_constitutional_system_requirements.md", type: "references", weight: 1.0, reason: "Constitutional anchor" }
     - { to: "lupo-docs/versions/4.0.93/WHAT_TO_DO_NEXT.md", type: "references", weight: 0.95, reason: "Installer verification §14" }
 lupopedia.footer:
-  last_verified: "20260331140000"
+  last_verified: "20260403202128"
   verified_by:
     identity_type: actor
     actor_id: 102
@@ -62,9 +62,12 @@ This PRD defines the installer requirements for Lupopedia, ensuring compliance w
 - Must use database-neutral SQL compatible with MySQL 8.0+ and PostgreSQL 15+.
 
 ### 3.1 Schema and seed files (4.0.93+)
+
+**4.0.x install model (binding):** There is **no** Lupopedia→Lupopedia upgrade or migration chain. Any schema change is **merged into** `install_new_lupopedia.sql` (and seed/import SQL as needed). Getting a new schema means **dropping Lupopedia tables** and running a **fresh** wizard install—or fresh install plus **Crafty Syntax 3.7.5** tables and **`import_from_old_crafty_syntax.sql`**. **4.1.0** (see **PRD 33**) is when auto-installer–grade **Crafty→Lupopedia** and later **Lupopedia→Lupopedia** stories may apply; until then, treat every 4.0.x environment as **install from current DDL**, not `ALTER` in place.
+
 - **DDL:** `lupo-database/lupopedia/mysql/install/install_new_lupopedia.sql` uses `{{prefix}}` placeholders; the installer replaces them with `LUPO_TABLE_PREFIX` at runtime.
 - **Consolidated seed:** After DDL, the wizard runs `install/seed_lupopedia_4_1_0.sql` (single file). Source fragments remain in `lupo-database/lupopedia/mysql/seed/` for history and regeneration; rebuild with `lupo-scripts/build_consolidated_seed_4_1_0.py` when those sources change.
-- **Crafty upgrade:** When upgrading from Crafty Syntax 3.7.5, `import_from_old_crafty_syntax.sql` runs after schema + seed (doctrine: no Lupopedia→Lupopedia upgrade in 4.0.x).
+- **Crafty transition (only supported data path in 4.0.x besides empty DB):** When moving from **Crafty Syntax 3.7.5**, `import_from_old_crafty_syntax.sql` runs after schema + seed. This is **not** a Lupopedia→Lupopedia upgrade.
 - **Additional post-seed SQL:** Optional seeds (e.g. Anubis queue tables) may run after the consolidated seed; see root `install.php` and CHANGELOG for current list.
 
 ### 3.2 Implementation paths (verified 2026-03-30)

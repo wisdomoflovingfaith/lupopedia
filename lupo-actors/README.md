@@ -1,6 +1,6 @@
 # Lupo-Actors
 
-Centralized hub for actor-specific resources. Each subdirectory is named by actor slug (e.g. `wolfie`, `zencoder`) or ID. **Canonical Lupopedia-owned directories** at repo root use the **`lupo-` prefix** (e.g. `lupo-actors`, `lupo-docs`, `lupo-database`, `lupo-bin`, `lupo-scripts`, `lupo-tests`, `lupo-rules`).
+Centralized hub for actor-specific resources. **Canonical layout** (see [PRD 00 §5.6](../lupo-docs/prd/00_root_constitutional_system_requirements.md#56-actor-id-semantics)): **`actor_id` &lt; 2026** → **`lupo-actors/{actor_id}/`**; **`actor_id` ≥ 2026** (typical web/`IdGenerator` ids) → **`lupo-actors/YYYY/MM/{actor_id}/`**. Registry field **`dir`** in `lupo-database/lupopedia/actors/registry.json` is authoritative. Legacy slug-named folders (e.g. `wolfie/`, `cursor/`) may remain until migrated; do not add new slug-only hubs for registry actors (e.g. COUNTERMEASURE lives under **`lupo-actors/111/`**, not `countermeasure/`). **Canonical Lupopedia-owned directories** at repo root use the **`lupo-` prefix** (e.g. `lupo-actors`, `lupo-docs`, `lupo-database`, `lupo-bin`, `lupo-scripts`, `lupo-tests`, `lupo-rules`).
 
 Exception: package-manager dependency folders such as `node_modules/` (root) and `lupo-tools/vsx-extension/node_modules/` are external npm-managed caches, not Lupopedia-owned canonical directories. They keep standard npm naming and must not be renamed to a `lupo-` variant.
 

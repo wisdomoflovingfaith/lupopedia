@@ -2,10 +2,10 @@
 lupopedia.headers:
   header_format_version: 2
   lupopedia.schema: doctrine
-  when_updated: "20260402224949"
+  when_updated: "20260403202128"
   file_path_from_root: "lupo-docs/prd/00_root_constitutional_system_requirements.md"
   web_path: "http://www.lupopedia.com/lupopedia/lupo-docs/prd/00_root_constitutional_system_requirements.md"
-  last_modified_utc: "20260402224949"
+  last_modified_utc: "20260403202128"
   federation_node_id: 0
   channel_id: 42
   thread_id: "constitutional-root-requirements"
@@ -71,6 +71,14 @@ lupopedia.edges:
       type: references
       weight: 1.0
       reason: "Canonical DDL must comply with all section 3 database constitutional rules"
+    - to: "lupo-docs/doctrine/VERSIONING_DOCTRINE.md"
+      type: references
+      weight: 1.0
+      reason: "Single source of truth for version line; aligns with §1.0 no Lupopedia→Lupopedia until 4.1.0"
+    - to: "lupo-docs/prd/33_softaculous_certification_4_1_0_gate.md"
+      type: references
+      weight: 1.0
+      reason: "4.1.0 release gate — auto-installer and Crafty→Lupopedia hosting readiness"
     - to: "lupo-includes/classes/IdGenerator.php"
       type: implements
       weight: 1.0
@@ -116,7 +124,7 @@ lupopedia.edges:
       weight: 0.9
       reason: "Script that generates schema reference JSON under lupo-database/lupopedia/json/ from the live database"
 lupopedia.footer:
-  last_verified: "20260402224949"
+  last_verified: "20260403202128"
   verified_by:
     identity_type: actor
     actor_id: 102
@@ -146,10 +154,23 @@ These rules ensure:
 - Long-term maintainability
 - Installer reliability (Softaculous, Installatron, manual installs)
 - Subdirectory installation support
+- **4.0.x schema evolution by fresh install only** — no Lupopedia→Lupopedia upgrade until **4.1.0** (see **§1.0**)
 
 These rules override all other PRDs, doctrines, and implementation details.
 
 **All doctrine and PRD files must reference this file as their constitutional anchor using an outbound edge.**
+
+---
+
+## 1.0 Product lineage and database evolution (4.0.x; no Lupopedia→Lupopedia until 4.1.0)
+
+These rules are binding for all **4.0.x** releases unless explicitly revised for a future major line.
+
+1. **Version number:** Lupopedia **4.x** is the successor generation to **Crafty Syntax 3.7.5** in the same product family. The major **4** signals “next after Crafty **3.7.5**,” not a greenfield 1.0.
+2. **No Lupopedia→Lupopedia upgrade during 4.0.x:** There is **no** supported path that upgrades an **existing Lupopedia** database in place from one 4.0.x schema to another. There is **no** migration chain that preserves Lupopedia data across arbitrary 4.0.x patch releases. Breaking schema changes are expected; operators and developers **drop Lupopedia tables** and run a **fresh install** from current **`install_new_lupopedia.sql`** (+ seed).
+3. **Only supported data-bearing transition in 4.0.x:** **Crafty Syntax 3.7.5 → Lupopedia** (load legacy Crafty tables, install Lupopedia schema + seed, run **`import_from_old_crafty_syntax.sql`** as documented). No other upgrade story is required or authorized for 4.0.x.
+4. **How to change schema:** Add or alter **`CREATE TABLE`** / indexes in **`lupo-database/lupopedia/mysql/install/install_new_lupopedia.sql`** (and adjust seed/import SQL when needed). Optional **proposal** files under **`lupo-database/lupopedia/mysql/migrations/`** may document or stage DDL, but **canonical** schema for a new environment is always whatever **`install_new_lupopedia.sql`** contains after consolidation—see **§9.18**.
+5. **4.1.0 gate:** **Lupopedia→Lupopedia** upgrades, auto-installer-first distribution, and Softaculous-class acceptance are **4.1.0+** concerns, defined in **PRD 33** and **PRD 27**. **4.1.0** must not be released until those requirements are met; until then the project remains on **4.0.x** with **fresh install** only.
 
 ---
 

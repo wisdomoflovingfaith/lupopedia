@@ -1,4 +1,8 @@
 {
+  "_comment": "THIS FILE IS AUTO-GENERATED. DO NOT EDIT MANUALLY.",
+  "_purpose": "Schema reference only — column names, types, indexes. Contains NO data.",
+  "_source": "Generated from live database by generate_toon_files.py",
+  "_read_only": true,
   "table_name": "lupo_agent_dependencies",
   "fields": [
     "`agent_dependency_id` bigint NOT NULL",
@@ -10,7 +14,6 @@
     "`created_ymdhis` bigint NOT NULL DEFAULT 0",
     "`updated_ymdhis` bigint"
   ],
-  "data": [],
   "indexes": [
     {
       "index_name": "lupo_agent_dependencies_idx_agent_id",

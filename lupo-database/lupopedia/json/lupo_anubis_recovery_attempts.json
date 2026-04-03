@@ -1,17 +1,20 @@
 {
+  "_comment": "THIS FILE IS AUTO-GENERATED. DO NOT EDIT MANUALLY.",
+  "_purpose": "Schema reference only — column names, types, indexes. Contains NO data.",
+  "_source": "Generated from live database by generate_toon_files.py",
+  "_read_only": true,
   "table_name": "lupo_anubis_recovery_attempts",
   "fields": [
     "`attempt_id` bigint NOT NULL",
     "`queue_id` bigint NOT NULL",
     "`attempt_number` tinyint NOT NULL",
     "`attempt_utc` bigint NOT NULL",
-    "`strategy` varchar(64) DEFAULT NULL",
+    "`strategy` varchar(64)",
     "`success` tinyint DEFAULT 0",
     "`generated_header` text",
     "`error_details` text",
-    "`recovered_file_path` varchar(512) DEFAULT NULL"
+    "`recovered_file_path` varchar(512)"
   ],
-  "data": [],
   "indexes": [
     {
       "index_name": "lupo_anubis_recovery_attempts_idx_queue_attempt",

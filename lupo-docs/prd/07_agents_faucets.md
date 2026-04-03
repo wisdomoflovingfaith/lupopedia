@@ -5,7 +5,7 @@ lupopedia.headers:
   version_when_written: "4.0.93"
   file_path_from_root: "lupo-docs/prd/07_agents_faucets.md"
   web_path: "http://www.lupopedia.com/lupopedia/lupo-docs/prd/07_agents_faucets.md"
-  last_modified_utc: "20260401180000"
+  last_modified_utc: "20260403221200"
   channel_id: 42
   thread_id: "prd-grouped"
   actor_id: 2
@@ -13,7 +13,7 @@ lupopedia.headers:
   delegation_chain: "lilith:audit|cursor:implementation"
   artifact_type: "prd"
   artifact_kind: "database_namespace"
-  purpose: "PRD for filesystem-based AI agents, faucets, tool calls, and system integration"
+  purpose: "Filesystem agents/faucets; agent vs actor; aligns with ACTOR_DEPARTMENT_AUTH_USER_DOCTRINE"
   tags:
   - "prd"
   - "database"
@@ -40,8 +40,20 @@ lupopedia.edges:
       type: references
       weight: 1.0
       reason: "Agents use API endpoints"
+    - to: "lupo-docs/prd/05_auth_user_actor_agent_transformation.md"
+      type: references
+      weight: 1.0
+      reason: "Actor vs auth_user; department act-as; visitor chat chain"
+    - to: "lupo-docs/prd/15_actors.md"
+      type: references
+      weight: 1.0
+      reason: "Runtime actors belong to departments; not owned per user"
+    - to: "lupo-docs/doctrine/ACTOR_DEPARTMENT_AUTH_USER_DOCTRINE.md"
+      type: references
+      weight: 1.0
+      reason: "LILITH audit: canonical auth_user/department/actor joins; act-as eligibility"
 lupopedia.footer:
-  last_verified: "20260401180000"
+  last_verified: "20260403221200"
   verified_by:
     actor_id: 2
     agent_name_identity: "LILITH"
@@ -217,6 +229,8 @@ lupo-agents/hermes/assets/
 | JUNIE | junie | 112 | ide_integration, code_assistance, developer_tools |
 | META | meta | 998 | meta_analysis, layer_introspection |
 
+**Actor hub vs agent template (COUNTERMEASURE):** Agent configuration stays under **`lupo-agents/countermeasure/`** (`agent_key`). The **actor** hub on disk for **`actor_id` 111** is **`lupo-actors/111/`** (registry `dir`); see [PRD 00 §5.6](00_root_constitutional_system_requirements.md#56-actor-id-semantics) and [PRD 15](15_actors.md).
+
 ### Emotional Intelligence Layer (9 agents)
 | Agent | Key | ID | Capabilities |
 |-------|-----|-----|--------------|
@@ -378,6 +392,8 @@ lupo-agents/{agent_key}/
 3. **Actor Capabilities**: Database in `lupo_actor_skills`, `lupo_actor_tools`, etc.
 4. **IDE Integration**: Faucets (Cursor, Windsurf, etc.) interface with agents
 
+**Department model (cross-reference):** Runtime **actors** get **department membership** via **`lupo_actor_departments`**; humans get **`lupo_auth_user_departments`**; **who may act as which `actor_id`** is **department intersection** first (optional **`lupo_actor_auth_users`** for import/audit). Single-page diagram and rules: **[`ACTOR_DEPARTMENT_AUTH_USER_DOCTRINE.md`](../doctrine/ACTOR_DEPARTMENT_AUTH_USER_DOCTRINE.md)** (LILITH-approved, consistent with [PRD 05](05_auth_user_actor_agent_transformation.md) / [PRD 15](15_actors.md)).
+
 ### File vs Database Authority
 
 **DOCTRINE**: File-based definitions are authoritative; database is runtime reflection.
@@ -391,30 +407,32 @@ lupo-agents/{agent_key}/
 
 ### Agent → Actor Relationship (The Two-Layer Model)
 
-**This is critical: Agents are templates. Actors are runtime instances.**
+**This is critical: Agents are templates. Actors are runtime instances.** Eligibility for humans to **use** a given **`actor_id`** follows the **join-table model** in **[`ACTOR_DEPARTMENT_AUTH_USER_DOCTRINE.md`](../doctrine/ACTOR_DEPARTMENT_AUTH_USER_DOCTRINE.md)** — this PRD does not restate those joins; it defines **template (agent) → instance (actor)** lifecycle.
 
 | | **Agent** | **Actor** |
 |---|-----------|-----------|
 | **Purpose** | Immutable template | Runtime instance with context |
-| **Storage** | `lupo-agents/{agent_key}/` | `lupo-actors/YYYY/MM/{actor_id}/` |
+| **Storage** | `lupo-agents/{agent_key}/` | Hub: **`lupo-actors/{actor_id}/`** (registry `dir`; see [PRD 15](15_actors.md)) — dated subpaths are optional product layout, not a second identity |
 | **Changes** | Version-controlled | Dynamic (learns) |
 | **Capabilities** | Defined in capabilities.json | Inherited + overridden |
 | **Learning** | Never learns | Learns from department context |
-| **Department** | None | Always has department |
-| **User** | None | Linked to auth_users via lupo_actor_auth_users |
+| **Department** | None (template) | **Membership** in one or more departments via **`lupo_actor_departments`** — not “the actor’s one user” |
+| **User** | None | Optional **`lupo_actor_auth_users`** rows (import, primary operator, audit). **Eligibility** for humans to **use** the actor is **department intersection** — **many** **`auth_users`** may act as the **same** **`actor_id`** — [PRD 05](05_auth_user_actor_agent_transformation.md) |
 
 #### Actor Creation Flow
 ```
 Agent (immutable template)
 │
 ├── Actor created for Sales Department
-│ ├── Workspace: lupo-actors/2026/04/{actor_id}/
+│ ├── Workspace hub: lupo-actors/{actor_id}/
+│ ├── lupo_actor_departments: sales department (and others as needed)
 │ ├── Inherits agent capabilities
 │ ├── Learns sales workflows
 │ └── Adapts to sales user preferences
 │
 └── Actor created for Engineering Department
-    ├── Workspace: lupo-actors/2026/04/{actor_id}/
+    ├── Workspace hub: lupo-actors/{actor_id}/
+    ├── lupo_actor_departments: engineering department (and others as needed)
     ├── Inherits agent capabilities
     ├── Learns engineering workflows
     └── Adapts to engineering user preferences
@@ -430,14 +448,14 @@ Agent (immutable template)
 
 #### Actor Workspace
 ```
-lupo-actors/YYYY/MM/{actor_id}/
+lupo-actors/{actor_id}/   # canonical hub per registry / PRD 15
 ├── agent_link.json # References source agent
 ├── memory.json # Learned from department interactions
 ├── context.json # Current department and user context
-└── preferences.json # User-specific preferences
+└── preferences.json # Optional; prefer actor-scoped defaults — many users may share one actor
 ```
 
-**Note:** System actors (actor_id < 2026) have workspace at `lupo-actors/{actor_id}/` for backward compatibility.
+**Note:** Additional dated or nested folders under **`lupo-actors/`** are **organizational** only; they must not imply a different **`actor_id`** or private per-user ownership of the actor row.
 
 ## Tables in This Namespace
 

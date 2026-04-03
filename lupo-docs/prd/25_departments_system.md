@@ -2,7 +2,7 @@
 lupopedia.headers:
   header_format_version: 2
   lupopedia.schema: prd
-  when_updated: "20260401190000"
+  when_updated: "20260403221511"
   file_path_from_root: "lupo-docs/prd/25_departments_system.md"
   web_path: "http://www.lupopedia.com/lupopedia/lupo-docs/prd/25_departments_system.md"
   federation_node_id: 0
@@ -13,7 +13,7 @@ lupopedia.headers:
   delegation_chain: "cursor:root"
   artifact_type: "prd"
   artifact_kind: "system_requirements"
-  purpose: "Defines department-based access control and mapping system for Lupopedia"
+  purpose: "Department structure; lupo_actor_departments; Crafty import; visitor routing; aligns with doctrine"
   tags:
   - "prd"
   - "departments"
@@ -28,14 +28,32 @@ lupopedia.headers:
   parent_edges_ref: "lupo-docs/implementations/25_departments_systems/edges.md"
 lupopedia.edges:
   outbound_edges:
-    - to: "lupo-docs/implementations/25_departments_systems/"
+    - to: "lupo-docs/implementations/25_departments_system/"
       type: implements
       weight: 1.0
-      reason: "Implementation of this PRD"
+      reason: "Implementation workspace (questions, root hybrid seeding notes)"
+    - to: "lupo-docs/implementations/25_departments_systems/"
+      type: implements
+      weight: 0.85
+      reason: "Legacy implementation path name (plural); prefer 25_departments_system"
     - to: "lupo-docs/prd/00_root_constitutional_system_requirements.md"
       type: references
       weight: 1.0
       reason: "Constitutional anchor"
+    - to: "lupo-docs/prd/05_auth_user_actor_agent_transformation.md"
+      type: references
+      weight: 1.0
+      reason: "Visitor chat identity chain; department-scoped actor eligibility"
+    - to: "lupo-docs/doctrine/ACTOR_DEPARTMENT_AUTH_USER_DOCTRINE.md"
+      type: references
+      weight: 1.0
+      reason: "Canonical approved: auth_user and actor membership joins"
+lupopedia.footer:
+  last_verified: "20260403221511"
+  verified_by:
+    actor_id: 102
+    agent_name_identity: Cursor IDE Agent
+  orchestrator: "cursor:root"
 ---
 
 # PRD: Departments System
@@ -43,6 +61,28 @@ lupopedia.edges:
 ## Overview
 
 Lupopedia supports department-based access control through a mapping system that allows actors to be assigned to specific departments with defined permissions. This system provides granular access control while maintaining the flexibility of the agent-based architecture.
+
+**Canonical mental model (approved):** **[`ACTOR_DEPARTMENT_AUTH_USER_DOCTRINE.md`](../doctrine/ACTOR_DEPARTMENT_AUTH_USER_DOCTRINE.md)** — explains **`lupo_auth_user_departments`** and **`lupo_actor_departments`** together with visitor chat and act-as eligibility. This PRD defines **department structure and requirements**; do not contradict the doctrine.
+
+### Root department (0) — three seeded operator hybrids
+
+Fresh seed (**`lupo-database/lupopedia/mysql/seed/seed_4.1.0.sql`**) places these actors in **`lupo_actor_departments`** for **`department_id = 0`** with **`role_key = hybrid`** (plus **system** rows for actor **0** and **ANUBIS 19**):
+
+| Display / slug | `actor_name` (PK) | `actor_id` | Notes |
+|----------------|-------------------|------------|--------|
+| **Captain** / `captain` | `wolfie` | 1 | WOLFIE orchestrator hybrid; `actor_name` fixed per convergence doctrine |
+| **Lilith** / `lilith` | `lilith` | 2 | LILITH critic hybrid |
+| **COUNTERMEASURE** / `countermeasure` | `countermeasure` | 111 | Red-team hybrid; `adversarial_oversight_actor_id` = 2 (Lilith) |
+
+Other coordination personas (**lexa** … **asclepius**) remain in **`lupo_actors`** but are **not** assigned to department 0 in seed; assign them to departments via **`lupo_actor_departments`** when a product decision defines their scope.
+
+**Crafty Syntax import** (**`import_from_old_crafty_syntax.sql`**): after legacy operator→department rows are loaded, the import **re-inserts** the five root rows above (they are lost when **`lupo_actor_departments`** is truncated during import). For **each non-root department**, the import creates one **`human_agent`** row named from **`lupo_departments.name`**, **`actor_name` = `dept_{department_id}`**, **`actor_id` = 280000 + `department_id`**, **`actor_source_type` = `lupo_departments`**, **`metadata`** documents **`agent_model: wolfie`**, and links that actor to its department with **`role_key = hybrid`**. Root does not get a duplicate Wolfie-model row (captain/wolfie already covers department 0).
+
+### Visitor chat routing (actor-first, department-scoped)
+
+Visitor-facing chat should **attribute and route** work through **`actor_id`** in a **department** the visitor session is bound to (exact channel/session wiring is outside this PRD). **Which actors** may represent a department for chat follows **`lupo_actor_departments`** — actors **belong to departments**, not to a single human user (see **[PRD 15](15_actors.md)**). This is **not** the legacy-only model “human operator row = sole chat identity without **`actor_id`**.” The normative visitor chain (optional LLM, **`auth_user`** fallback) is **[PRD 05](05_auth_user_actor_agent_transformation.md)**.
+
+**LILITH audit (final, department model):** **Approved** — root **0** hybrids (**WOLFIE** 1, **LILITH** 2, **COUNTERMEASURE** 111), Crafty import behavior, and visitor **`actor_id` + department** routing match the canonical doctrine; no constitutional issues flagged.
 
 ## Requirements
 
@@ -81,22 +121,22 @@ Departments are organizational units that group related functionalities:
 | deleted_ymdhis | BIGINT | YES | NULL | UTC timestamp |
 
 #### `lupo_actor_departments`
-- Maps actors to departments with role-based permissions
 
-| Column | Type | Nullable | Default | Description |
-|--------|------|----------|---------|-------------|
-| mapping_id | BIGINT | NO | (application) | Primary key |
-| actor_id | BIGINT | NO |  | Reference to lupo_actors (application-managed) |
-| department_id | BIGINT | NO |  | Reference to lupo_departments (application-managed) |
-| role | VARCHAR(50) | NO |  | Role within department |
-| permissions | JSON | YES | NULL | Permission set (see Section 3 for schema) |
-| created_by_actor_id | BIGINT | YES | NULL | Reference to actor who created this record |
-| updated_by_actor_id | BIGINT | YES | NULL | Reference to actor who last updated this record |
-| is_active | TINYINT | NO | 1 | Mapping active flag |
-| created_ymdhis | BIGINT | NO | (application) | UTC timestamp |
-| updated_ymdhis | BIGINT | NO | (application) | UTC timestamp |
-| is_deleted | TINYINT | NO | 0 | Soft delete flag |
-| deleted_ymdhis | BIGINT | YES | NULL | UTC timestamp |
+Maps actors to departments. **Canonical columns** match `lupo-database/lupopedia/mysql/install/install_new_lupopedia.sql`.
+
+| Column | Type | Nullable | Description |
+|--------|------|----------|-------------|
+| actor_department_id | BIGINT | NO | Primary key (application-assigned) |
+| actor_id | BIGINT | NO | `lupo_actors.actor_id` |
+| department_id | BIGINT | NO | `lupo_departments.department_id` |
+| role_key | VARCHAR(64) | YES | e.g. `hybrid`, `system` |
+| title | VARCHAR(64) | YES | Optional display title |
+| created_ymdhis | BIGINT | NO | UTC |
+| updated_ymdhis | BIGINT | NO | UTC |
+| is_deleted | TINYINT | NO | Soft delete |
+| deleted_ymdhis | BIGINT | YES | Soft delete timestamp |
+
+**Note:** Older PRD drafts used `mapping_id` / `role` / JSON `permissions`; the live schema does not — use **`role_key`** and install SQL as source of truth.
 
 ### 3. Permission System
 
@@ -215,3 +255,7 @@ Existing actors without department assignments:
 - **Database Schema**: See `lupo-docs/implementations/25_departments_systems/mapping_tables.md`
 - **Access Control**: See `lupo-docs/implementations/25_departments_systems/access_control.md`
 - **IDE Protection**: See `lupo-docs/implementations/25_departments_systems/ide_protection_plan.md`
+
+---
+
+**Status**: **approved** (header `status`) — **LILITH final audit**: department structure, **`lupo_actor_departments`**, Crafty re-seed / **`dept_{id}`** actors, visitor chat routing, and **`ACTOR_DEPARTMENT_AUTH_USER_DOCTRINE.md`** cross-reference are aligned with the department-scoped actor model.

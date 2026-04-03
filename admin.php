@@ -101,7 +101,7 @@ if ($isUserLoggedIn) {
     }
 }
 
-// Display name for "Acting as" — human actors (e.g. captain, is_agent=0) are not in getActorsUserCanActAs() list
+// Display name for "Acting as" — fallback DB lookup if current actor is not in getActorsUserCanActAs() (e.g. legacy session)
 $admin_active_actor_display = '';
 if ($isUserLoggedIn && $admin_active_actor_id > 0) {
     foreach ($admin_actor_list as $row) {

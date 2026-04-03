@@ -1,4 +1,8 @@
 {
+  "_comment": "THIS FILE IS AUTO-GENERATED. DO NOT EDIT MANUALLY.",
+  "_purpose": "Schema reference only — column names, types, indexes. Contains NO data.",
+  "_source": "Generated from live database by generate_toon_files.py",
+  "_read_only": true,
   "table_name": "lupo_edges",
   "fields": [
     "`edge_id` bigint NOT NULL",
@@ -31,7 +35,6 @@
     "`flare_verified` tinyint DEFAULT 0 COMMENT 'Path verified to exist'",
     "`flare_discovered_via` varchar(50) COMMENT 'Discovery method'"
   ],
-  "data": [],
   "indexes": [
     {
       "index_name": "lupo_edges_idx_actor",
@@ -114,14 +117,6 @@
       "index_type": "BTREE"
     },
     {
-      "index_name": "lupo_edges_idx_from_context",
-      "columns": [
-        "left_object_id"
-      ],
-      "is_unique": false,
-      "index_type": "BTREE"
-    },
-    {
       "index_name": "lupo_edges_idx_is_deleted",
       "columns": [
         "is_deleted"
@@ -159,22 +154,6 @@
       "index_name": "lupo_edges_idx_semantic_weight",
       "columns": [
         "semantic_weight"
-      ],
-      "is_unique": false,
-      "index_type": "BTREE"
-    },
-    {
-      "index_name": "lupo_edges_idx_to_artifact",
-      "columns": [
-        "right_object_id"
-      ],
-      "is_unique": false,
-      "index_type": "BTREE"
-    },
-    {
-      "index_name": "lupo_edges_idx_type",
-      "columns": [
-        "edge_type"
       ],
       "is_unique": false,
       "index_type": "BTREE"

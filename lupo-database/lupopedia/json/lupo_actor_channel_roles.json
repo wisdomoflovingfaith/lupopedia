@@ -1,4 +1,8 @@
 {
+  "_comment": "THIS FILE IS AUTO-GENERATED. DO NOT EDIT MANUALLY.",
+  "_purpose": "Schema reference only — column names, types, indexes. Contains NO data.",
+  "_source": "Generated from live database by generate_toon_files.py",
+  "_read_only": true,
   "table_name": "lupo_actor_channel_roles",
   "fields": [
     "`actor_channel_role_id` bigint NOT NULL",
@@ -19,7 +23,6 @@
     "`awareness_completed_ymdhis` bigint",
     "`cjp_completed_ymdhis` bigint"
   ],
-  "data": [],
   "indexes": [
     {
       "index_name": "lupo_actor_channel_roles_idx_actor_id",

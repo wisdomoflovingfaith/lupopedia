@@ -4,7 +4,7 @@ lupopedia.headers:
   lupopedia.schema: "doctrine"
   file_path_from_root: "lupo-docs/doctrine/VERSIONING_DOCTRINE.md"
   web_path: "http://www.lupopedia.com/docs/versioning_doctrine"
-  last_modified_utc: "20260320"
+  last_modified_utc: "20260403202128"
   channel_id: 42
   actor_id: 1
   actor_name: "wolfie"
@@ -45,7 +45,7 @@ lupopedia.edges:
       reason: "Doctrine PRD lineage; constitutional audit 20260403"
 
 lupopedia.footer:
-  last_verified: "20260320"
+  last_verified: "20260403202128"
   last_verified_by: "wolfie"
   orchestrator: "wolfie"
   next_action:
@@ -56,7 +56,7 @@ lupopedia.footer:
 
 # Versioning Doctrine (Single Source of Truth)
 
-**Date:** 2026-03-20  
+**Date:** 2026-04-03 (UTC `last_modified_utc` refresh)  
 **Status:** Permanent. This document is the authoritative versioning doctrine for Lupopedia.  
 **Override:** All previous versioning assumptions are superseded by this doctrine.  
 **Version Model:** Single-field versioning using `version_when_written` only (4.0.84+)
@@ -102,18 +102,21 @@ This is the only correct "current version" number for the codebase. No other "cu
 
 ---
 
-## 3. 4.1.0 — Allowed only for future-release planning
+## 3. 4.1.0 — Future-release planning and release gate
 
-**4.1.0** may be referenced only in:
+**4.1.0** may be referenced in:
 
 - Required tables documentation
 - Future-release planning documents
 - Roadmap files
 - Hotfix registry for the upcoming public release
 - Any file that describes the **future** public release
+- **PRD 33** / **PRD 27** — explicit **auto-installer** (e.g. Softaculous-class) and **Crafty Syntax 3.7.5 → Lupopedia** hosting readiness
 
-**4.1.0 must not** be used as the current version.  
-**4.1.0 must not** be incremented to unless Eric explicitly instructs that the public release is being prepared for auto-installers.
+**4.1.0 must not** be used as the current shipping version line while work remains on **4.0.x**.  
+**4.1.0 must not** be tagged or treated as the active product milestone until **PRD 33** completion criteria are satisfied (vendor acceptance is **manual**, not automatic on tag).
+
+**4.0.x reminder:** There is **no** Lupopedia→Lupopedia upgrade during 4.0.x; schema lives in **`install_new_lupopedia.sql`** and environments **re-install** to pick up DDL changes (see **§7**).
 
 ---
 
@@ -167,27 +170,25 @@ Historical version numbers must **not** be "fixed," "normalized," or "updated."
 
 ---
 
-## 7. Upgrade path doctrine
+## 7. Upgrade path doctrine (4.0.x vs 4.1.0)
 
-There is **only one** upgrade path:
+**Product lineage:** Lupopedia **4.x** is the successor generation to **Crafty Syntax 3.7.5** in the same product line (major **4** = next after Crafty **3.7.5**, not a new “1.0” product).
 
-```
-Crafty Syntax 3.7.5 → Lupopedia 4.0.x
-```
+### 7.1 During 4.0.x (binding)
 
-Cursor must **never**:
+- **No Lupopedia → Lupopedia** upgrade: no migration chain that preserves Lupopedia data across 4.0.x schema iterations. **Schema** is changed only in **`lupo-database/lupopedia/mysql/install/install_new_lupopedia.sql`** (and seed / **`import_from_old_crafty_syntax.sql`** when import mapping changes). Operators and developers **drop Lupopedia tables** and run a **fresh** wizard install to apply DDL.
+- **Supported installs:**
+  1. **Empty database:** wizard runs **install** + **seed** only (no Crafty tables).
+  2. **Legacy data:** load **Crafty Syntax 3.7.5** tables, wizard **install** + **seed**, then **`import_from_old_crafty_syntax.sql`** — the **only** supported path that **imports** prior Crafty live-help data into Lupopedia on the 4.0.x line.
 
-- Generate a 4.0.x → 4.0.x upgrade
-- Generate a 4.0.x → 4.1.x upgrade
-- Generate a 3.x.x → 4.x.x upgrade (other than Crafty 3.7.5 → Lupopedia 4.0.x)
-- Generate any multi-step upgrade path
+Cursor must **never** (for 4.0.x work):
 
-Every install is:
+- Generate or require **4.0.x → 4.0.x** in-place schema upgrades
+- Treat **ALTER TABLE** chains as the way users move between patch releases
 
-1. Drop all tables  
-2. Load Crafty Syntax 3.7.5  
-3. Run the Lupopedia wizard  
-4. Arrive at 4.0.x
+### 7.2 4.1.0 and later
+
+**Lupopedia → Lupopedia** upgrades, migration scripts, and auto-installer–first distribution are **4.1.0+** concerns. **4.1.0** is **blocked** until **PRD 33** / **PRD 27** gates are met (hosting certification, Softaculous-class acceptance, documented **Crafty→Lupopedia** story). See root **README.md** and constitutional **PRD 00 §1.0**.
 
 ---
 

@@ -3,7 +3,7 @@ lupopedia.headers:
   lupopedia.schema: documentation
   file_path_from_root: AGENTS.md
   web_path: http://www.lupopedia.com/lupopedia/AGENTS.md
-  last_modified_utc: '20260403140117'
+  last_modified_utc: '20260403211538'
   channel_id: 42
   actor_id: 102
   actor_name: cursor
@@ -29,7 +29,7 @@ lupopedia.headers:
   - multi_agent
   agent_name_identity: Cursor IDE Agent (Lead Orchestration)
   lupo_agent: cursor
-  when_updated: '20260403140117'
+  when_updated: '20260403211538'
 lupopedia.edges:
   outbound_edges:
   - to: lupo-docs/doctrine/IDENTITY_MODEL_QUICKSTART_4.0.88.md
@@ -137,7 +137,7 @@ lupopedia.see:
   - - AGENTS.md
     - http://www.lupopedia.com/lupopedia/AGENTS.md
 lupopedia.footer:
-  last_verified: '20260403140117'
+  last_verified: '20260403211538'
   verified_by:
     identity_type: actor
     actor_id: 102
@@ -472,7 +472,7 @@ Fresh install runs (A) then (B). Upgrade from Crafty runs (A), (B), then (C). Ne
 - `lupo-includes/` — Core runtime: `class-pdo_db.php` (DB wrapper), `class-DatabaseFactory.php` (singleton connection), `modules/` (auth, content, truth, crafty_syntax, help, list, qa, channels, actors, operator), `classes/` (ColorProtocol, UrlResolver, TOONParser, DialogHistoryManager, etc.), `functions/` (legacy helpers — no new files here), `css/`, `js/`, `themes/`, `ui/`, `semantic/`, `lupo-agents/`, `rest-api/`
 - `lupo-bin/` — System binaries and CLI utilities (e.g., `bump-version.php`, `lupo.php`)
 - `lupo-agents/` — AI agent configuration files, one numbered folder per agent (`agent.json`, `capabilities.json`, `properties.json`, `system_prompt.txt`)
-- `lupo-actors/` — Actor-specific resources hub: per-actor dirs (0=system, 1=WOLFIE, …) with `apps/`, `lupo-tools/`, `lupo-docs/`, `db-changes/`, `lupo-api/`, `needs/`. Path from `LUPO_ACTORS_DIR` in config. See `lupo-docs/actors.md`.
+- `lupo-actors/` — Actor hub keyed by **`actor_id`** (see PRD 00 §5.6 and registry `dir`). Example numeric hubs: `0/`, `1/`, `2/`, `111/`, `102/`. Optional hub README per IDE facet. Path from `LUPO_ACTORS_DIR` in config. See `lupo-docs/actors.md` and [PRD 15](lupo-docs/prd/15_actors.md) (act-as / department model references PRD 05).
 - `lupo-database/` — Schema, migrations, seeds, CSV data, TOON schema backups
 - `lupo-database/lupopedia/toon/` — `*.toon.json` files: generated from live DB, never hand-edited. These define the canonical column/type reference. (Canonical TOON location per project structure.)
 - `lupo-legacy/craftysyntax/` — Original Crafty Syntax 3.7.5 codebase. **Read-only reference.** Never execute, modify, or depend on it.

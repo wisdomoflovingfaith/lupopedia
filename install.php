@@ -707,7 +707,7 @@ if ($step === 'run') {
 
             // Activations Block
             require_once LUPOPEDIA_PATH . '/lupo-includes/functions/ai_activation.php';
-            $core_actors = array(0, 1, 2, 19); // SYSTEM, CAPTAIN WOLFIE, LILITH, ANUBIS
+            $core_actors = array(0, 1, 2, 19, 111); // SYSTEM, CAPTAIN (wolfie), LILITH, ANUBIS, COUNTERMEASURE
             $log[] = InstallWizardLogger::logEntry('ok', '--- Activating CORE AI Agents ---');
             foreach ($core_actors as $actor_id) {
                 $actor_db = new PDO_DB($pdo); // Wrap PDO for our helper

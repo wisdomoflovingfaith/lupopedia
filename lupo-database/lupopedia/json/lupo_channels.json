@@ -1,4 +1,8 @@
 {
+  "_comment": "THIS FILE IS AUTO-GENERATED. DO NOT EDIT MANUALLY.",
+  "_purpose": "Schema reference only — column names, types, indexes. Contains NO data.",
+  "_source": "Generated from live database by generate_toon_files.py",
+  "_read_only": true,
   "table_name": "lupo_channels",
   "fields": [
     "`channel_id` bigint NOT NULL",
@@ -33,42 +37,6 @@
     "`owner_actor_id` bigint NOT NULL DEFAULT 1",
     "`access_level` varchar(32) NOT NULL DEFAULT 'public'",
     "`last_activity_ymdhis` bigint NOT NULL DEFAULT 0"
-  ],
-  "data": [
-    {
-      "channel_id": 0,
-      "federation_node_id": 1,
-      "created_by_actor_id": 0,
-      "default_actor_id": 0,
-      "department_id": 1,
-      "channel_key": "system",
-      "channel_slug": "system",
-      "channel_type": "system",
-      "language": "en",
-      "channel_name": "System Kernel Channel",
-      "description": "System channel (kernel/system operations).",
-      "website_link": null,
-      "metadata_json": null,
-      "channel_config": null,
-      "status_flag": 1,
-      "end_ymdhis": null,
-      "created_ymdhis": 20260331084506,
-      "updated_ymdhis": 20260331084506,
-      "is_deleted": 0,
-      "deleted_ymdhis": null,
-      "aal_metadata_json": null,
-      "fleet_composition_json": null,
-      "awareness_version": "3.0.0",
-      "channel_number": null,
-      "parent_channel_id": null,
-      "project_id": null,
-      "is_kernel": 1,
-      "boot_sequence_order": null,
-      "visibility_status": "active",
-      "owner_actor_id": 1,
-      "access_level": "public",
-      "last_activity_ymdhis": 0
-    }
   ],
   "indexes": [
     {

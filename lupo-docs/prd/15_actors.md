@@ -5,7 +5,7 @@ lupopedia.headers:
   version_when_written: "4.0.93"
   file_path_from_root: "lupo-docs/prd/15_actors.md"
   web_path: "http://www.lupopedia.com/lupopedia/lupo-docs/prd/15_actors.md"
-  last_modified_utc: "20260401180000"
+  last_modified_utc: "20260403221024"
   channel_id: 42
   thread_id: "prd-actors"
   actor_id: 2
@@ -13,7 +13,7 @@ lupopedia.headers:
   delegation_chain: "lilith:audit"
   artifact_type: "prd"
   artifact_kind: "specification"
-  purpose: "Actor identity, inheritance, and personalization model"
+  purpose: "Actor identity; actors belong to departments (not users); act-as; workspace; visitor chat support via PRD 05"
   tags:
   - "prd"
   - "actors"
@@ -39,8 +39,24 @@ lupopedia.edges:
       type: references
       weight: 0.8
       reason: "Department permissions"
+    - to: "lupo-docs/prd/05_auth_user_actor_agent_transformation.md"
+      type: references
+      weight: 1.0
+      reason: "Department-first act-as; auth_user ↔ actor bindings"
+    - to: "lupo-docs/doctrine/ACTOR_DEPARTMENT_AUTH_USER_DOCTRINE.md"
+      type: references
+      weight: 1.0
+      reason: "Canonical approved join model; actors belong to departments"
+    - to: "lupo-docs/prd/25_departments_system.md"
+      type: references
+      weight: 1.0
+      reason: "Root hybrids and lupo_actor_departments"
+    - to: "lupo-docs/prd/18_channel_chat_display.md"
+      type: references
+      weight: 0.95
+      reason: "LILITH-approved: lupo_actors drives chat strip; from_actor_id"
 lupopedia.footer:
-  last_verified: "20260401180000"
+  last_verified: "20260403221024"
   verified_by:
     agent_id: 2
     agent_name_identity: "LILITH"
@@ -51,7 +67,25 @@ lupopedia.footer:
 
 ## Overview
 
-This document defines the canonical model for **actors** in Lupopedia. Actors are department- and persona-specific extensions of agents, providing a personalized, scoped execution and orchestration identity for each user and department context.
+This document defines the canonical model for **actors** in Lupopedia. Actors are department- and persona-specific extensions of agents, providing scoped execution and orchestration identities. **Web act-as eligibility** is **department-first** (intersection of user departments and actor departments), not one-to-one user ownership — see §3 and [`05_auth_user_actor_agent_transformation.md`](05_auth_user_actor_agent_transformation.md).
+
+**Canonical mental model (approved):** **[`ACTOR_DEPARTMENT_AUTH_USER_DOCTRINE.md`](../doctrine/ACTOR_DEPARTMENT_AUTH_USER_DOCTRINE.md)** — same rules as this PRD; use it as the **single diagram + eligibility summary** for onboarding and audits.
+
+### Actors belong to departments — not to individual users (non-negotiable)
+
+- **Affiliation:** An actor’s place in the org model is **`lupo_actor_departments`** (which **departments** the actor may operate in). Actors are **not** “attached to” a single **`auth_user`** as the primary model (that pattern matches legacy **Crafty operator = one human** thinking).
+- **Users:** Humans belong to departments via **`lupo_auth_user_departments`**.
+- **Intersection:** A user may **act as** an actor when **their** departments and **the actor’s** departments **overlap** — see [`05_auth_user_actor_agent_transformation.md`](05_auth_user_actor_agent_transformation.md). **Many** users in the **same** department may use the **same** actor (e.g. a shared support line persona).
+- **Explicit bindings:** **`lupo_actor_auth_users`** records optional **auth_user ↔ actor** links (import, audit, primary operator); it does **not** mean the actor is **owned** exclusively by that user for department-scoped work.
+- **Visitor chat:** The end-user chat identity chain (**visitor → `actor_id` → human / LLM fallback**) is **primary in PRD 05**; this PRD supplies the **actor and department** semantics that PRD 05 depends on.
+
+### Channel transcript alignment (PRD 18)
+
+**LILITH audit:** The **chat strip** reflects **`lupo_actors`** for the effective **`actor_id`** (message **`from_actor_id`**). **`auth_user`** is for **login and accountability**, not the primary visible label. **Shared persona:** many humans acting as the **same** **`actor_id`** reuse the **same** display name and default styling rules (**deterministic color from `actor_id`**, optional **`metadata_json`** — **[PRD 18](18_channel_chat_display.md)**).
+
+### `actor_type` and policy vocabulary (conceptual)
+
+The **`lupo_actors.actor_type`** column is **`varchar(64)`** per install schema — there is **no** fixed enum in this PRD. Product language such as **human-backed**, **hybrid**, or **system** describes **policy** (who/what ultimately answers: human, shared persona, automation). Map those concepts to **`actor_type`**, **`actor_source_*`**, and config by **seed/registry/docs**, not by guessing strings. See [`lupo-database/lupopedia/json/lupo_actors.json`](../../lupo-database/lupopedia/json/lupo_actors.json) for the live column list.
 
 **Actor ID semantics:** Reserved registry-backed actors, human-backed ranges, and `IdGenerator` allocation are defined in [`00_root_constitutional_system_requirements.md`](00_root_constitutional_system_requirements.md) §5.6 (workspace path rules below align with that section).
 
@@ -87,56 +121,85 @@ This document defines the canonical model for **actors** in Lupopedia. Actors ar
 - Personalization stored in `lupo_metadata` with `entity_type='actor'` and property-specific keys.
 - The actor's resource tree is a superset of the agent's, with actor-specific overrides taking precedence.
 
-## 3. One-Auth_User-at-a-Time Lease Rule
+## 3. Web act-as eligibility (department-first, canonical 4.0.x)
 
-- Only one `auth_user` may extend (lease/control) a given actor at any time.
-- The lease is exclusive: no concurrent control or impersonation is permitted.
-- Lease state tracked in `lupo_actor_auth_users.status` ('active', 'leased', 'released').
+**Principle:** A human may select an **actor** in the web UI when the actor is **eligible by department membership**, not because the actor is “owned” by that user or linked only through `lupo_edges`.
 
-### Lease Enforcement Mechanism
+**Tables:**
 
-- **Storage**: `lupo_actor_auth_users` table with `status` field
-- **Exclusivity**: Application-layer check via `ActorLeaseService::acquire()` before granting lease
-- **Audit**: All lease acquisitions/releases logged in `lupo_actor_actions` with `action_type='lease_acquire'` / `'lease_release'`
-- **Expiration**: Leases expire after 30 days of inactivity; tracked via `lupo_actor_auth_users.updated_ymdhis`
-- **Enforcement**: `ActorLeaseService::acquire()` validates no active lease exists before granting
+| Table | Role |
+|-------|------|
+| `lupo_auth_user_departments` | Departments the **auth user** belongs to |
+| `lupo_actor_departments` | Departments the **actor** may operate in |
+| `lupo_actors` | Actor row; optional `web_restrict_act_as_creator_or_root` narrows who may act as that persona |
 
-## 4. Department-Based Personalization and Scoping
+**Eligibility (conceptual):**
 
-- Each actor is further personalized by the department context via `lupo_actor_departments`.
-- Department membership determines available features, permissions, and resource overrides.
-- Department context is immutable for the lifetime of the actor instance (enforced at application layer).
+1. Load the user’s `department_id` set from `lupo_auth_user_departments`.
+2. If the user is in **root department (`department_id = 0`)**, is **global admin** for this call, or is **module owner** (implementation detail), treat them like an **elevated** user for **scope** (see `AuthSessionManager::getActorsUserCanActAs`).
+3. List actors that have at least one **`lupo_actor_departments`** row whose `department_id` is in the user’s set (elevated users: all actors that appear in `lupo_actor_departments`, optionally filtered by department).
+4. Apply **`web_restrict_act_as_creator_or_root`**: when set on an actor, only the **creating** auth user (via `actor_source_id` / `actor_source_type`) or **elevated** operators may act as that actor (same rules in `AuthSessionManager`).
 
-## 5. Actor Lifecycle
+**Concurrent sessions:** Multiple auth users may use the **same** hybrid actor (e.g. root personas **1**, **2**, **111**) when they share a department — there is **no** exclusive per-session lease for web act-as in the 4.0.x install model. See [`05_auth_user_actor_agent_transformation.md`](05_auth_user_actor_agent_transformation.md).
 
-| Stage | Description | Table Actions |
-|-------|-------------|---------------|
-| Creation | Actor instantiated by auth_user selecting agent and department | INSERT into `lupo_actors`, `lupo_actor_departments` |
-| Personalization | Inherit agent resources, apply overrides | INSERT/UPDATE `lupo_metadata` |
-| Lease | Actor leased to creating auth_user | INSERT into `lupo_actor_auth_users` with `status='active'` |
-| Release | Lease explicitly terminated | UPDATE `lupo_actor_auth_users.status='released'` |
-| Termination | Actor archived/deleted | UPDATE `lupo_actors.is_deleted=1`, `deleted_ymdhis` |
+**Implementation (single source of truth for the list shape):**
 
-## 6. Actor Workspace Structure
+- **`AuthSessionManager::getActorsUserCanActAs($auth_user_id, $isAdmin, $department_id_filter)`** — used by `select-actor.php`, `admin.php`, topbar, profile, etc.
+- **`App\Services\ActorService::getActorsUserCanActAs`** — **delegates** to `AuthSessionManager` so internal resolvers (`EffectiveActorResolver`, `AdminChannelChatHandler`) match the UI.
 
-### Workspace Location Rules
+**Special case:** `auth_user_id === 10000` (elevated operator convention) receives all **active** actors without a department join, with creator restriction bypass — see `AuthSessionManager`.
 
-| Actor ID Range | Workspace Path |
+## 4. `lupo_actor_auth_users` (explicit bindings; not the primary gate)
+
+- Stores explicit **auth_user ↔ actor** relationships (status, primary flag, routing priority, audit).
+- Used for **operator mapping**, Crafty import, and **accountability** — **not** as the sole gate for “may I act as this hybrid?” in 4.0.x.
+- Full pairing doctrine: [`05_auth_user_actor_agent_transformation.md`](05_auth_user_actor_agent_transformation.md).
+
+## 5. Deprecated / historical (do not use for new act-as logic)
+
+| Topic | Status |
+|-------|--------|
+| **Exclusive one-user-at-a-time lease** for web act-as | **Superseded** — 4.0.x uses department intersection + optional creator flag; concurrent use of shared hybrids is allowed. |
+| **`lupo_edges` `supports` for act-as lists** | **Removed from `ActorService`** — was never aligned with PRD 05; do not rebuild act-as eligibility from edges. |
+| **ActorLeaseService exclusive acquire** as gate for web selector | **Do not require** for standard web act-as unless a future PRD reintroduces it explicitly. |
+
+## 6. Department-based personalization and scoping
+
+- Each actor may be further scoped by department context via `lupo_actor_departments` (`role_key`, `title`, etc., per install SQL).
+- Department membership drives **which** actors appear in the selector and **policy** boundaries (see [`25_departments_system.md`](25_departments_system.md) for root hybrids **1**, **2**, **111**).
+- Personalization data may live in `lupo_metadata` with `entity_type='actor'`.
+
+## 7. Actor lifecycle (updated)
+
+| Stage | Description | Table actions (typical) |
+|-------|-------------|-------------------------|
+| Creation | Actor row created; placed into departments | INSERT `lupo_actors`, INSERT `lupo_actor_departments` |
+| Personalization | Overrides / metadata | INSERT/UPDATE `lupo_metadata` |
+| Explicit binding | Operator or import links human to actor | INSERT/UPDATE `lupo_actor_auth_users` (optional) |
+| Termination | Soft delete | UPDATE `lupo_actors.is_deleted`, `deleted_ymdhis` |
+
+## 8. Actor workspace structure
+
+### Workspace location rules
+
+| Actor ID range | Workspace path |
 |----------------|----------------|
-| `< 2026` | `lupo-actors/{actor_id}/` |
-| `>= 2026` | `lupo-actors/YYYY/MM/{actor_id}/` (where YYYY = year from first 4 digits of actor_id, MM = month from next 2 digits) |
+| `actor_id < 2026` | `lupo-actors/{actor_id}/` |
+| `actor_id >= 2026` | `lupo-actors/YYYY/MM/{actor_id}/` when the id carries a UTC date prefix (see [`00_root_constitutional_system_requirements.md`](00_root_constitutional_system_requirements.md) §5.6) |
 
 ### Workspace Contents
 
 ```
 lupo-actors/
-├── 1/ # System actor (WOLFIE)
+├── 1/ # WOLFIE (captain hybrid, actor_id 1)
 │   ├── agent_link.json # References lupo-agents/wolfie/
 │   ├── memory.json # Learned from department interactions
 │   ├── context.json # Current department and user context
 │   └── preferences.json # User-specific preferences
 │
-├── 2/ # System actor (LILITH)
+├── 2/ # LILITH (actor_id 2)
+│   └── ...
+├── 111/ # COUNTERMEASURE (actor_id 111); agent template still under lupo-agents/countermeasure/
 │   └── ...
 │
 └── 2026/ # Year directory (runtime actors)
@@ -213,14 +276,14 @@ lupo-actors/
 
 ---
 
-## 7. Cross-References
+## 9. Cross-references
 
-- See also: `01_core_identity.md`, `05_auth_user_actor_agent_transformation.md` (permission model; canonical lease table documented here), `07_agents_faucets.md`, `08_governance_rules.md`
+- See also: `01_core_identity.md`, `05_auth_user_actor_agent_transformation.md`, `25_departments_system.md`, `07_agents_faucets.md`, `08_governance_rules.md`, `00_root_constitutional_system_requirements.md` §5.6
 - Superseded: `08_actors.md` (historical stub; use this file)
-- Related tables: `lupo_actors`, `lupo_actor_auth_users`, `lupo_actor_departments`, `lupo_metadata`
+- Related tables: `lupo_actors`, `lupo_actor_auth_users`, `lupo_actor_departments`, `lupo_auth_user_departments`, `lupo_metadata`
 
 ---
 
-**Status**: DRAFT  
-**Constitutional Adherence**: FULL  
-**Next Review**: After namespace renumbering
+**Status**: ACTIVE (4.0.x department-first act-as)  
+**Constitutional adherence**: FULL  
+**Implementation note:** `AuthSessionManager` + delegating `ActorService::getActorsUserCanActAs` — keep in sync with this PRD.

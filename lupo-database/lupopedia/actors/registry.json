@@ -15,21 +15,34 @@
     "wolfie": {
       "actor_name": "wolfie",
       "actor_id": 1,
-      "display_name": "Captain WOLFIE",
+      "display_name": "Captain",
       "type": "agent",
-      "slug": "captain-wolfie",
+      "slug": "captain",
       "dir": "lupo-actors/1",
       "archetype": "root_ai_agent",
-      "is_orchestrator": true
+      "is_orchestrator": true,
+      "root_department_hybrid": true,
+      "notes": "Root dept (0) hybrid operator; actor_name stays wolfie per convergence doctrine"
     },
     "lilith": {
       "actor_name": "lilith",
       "actor_id": 2,
-      "display_name": "LILITH",
+      "display_name": "Lilith",
       "type": "agent",
       "slug": "lilith",
       "dir": "lupo-actors/2",
-      "archetype": "critical_review"
+      "archetype": "critical_review",
+      "root_department_hybrid": true
+    },
+    "countermeasure": {
+      "actor_name": "countermeasure",
+      "actor_id": 111,
+      "display_name": "COUNTERMEASURE",
+      "type": "agent",
+      "slug": "countermeasure",
+      "dir": "lupo-actors/111",
+      "archetype": "red_team",
+      "root_department_hybrid": true
     },
     "rose": {
       "actor_name": "rose",

@@ -1,4 +1,8 @@
 {
+  "_comment": "THIS FILE IS AUTO-GENERATED. DO NOT EDIT MANUALLY.",
+  "_purpose": "Schema reference only — column names, types, indexes. Contains NO data.",
+  "_source": "Generated from live database by generate_toon_files.py",
+  "_read_only": true,
   "table_name": "lupo_reference_map",
   "fields": [
     "`reference_map_id` bigint NOT NULL",
@@ -8,7 +12,6 @@
     "`created_ymdhis` bigint NOT NULL DEFAULT 0",
     "`is_deleted` tinyint NOT NULL DEFAULT 0"
   ],
-  "data": [],
   "indexes": [
     {
       "index_name": "lupo_reference_map_idx_reference",

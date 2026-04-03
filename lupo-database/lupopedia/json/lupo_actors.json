@@ -1,4 +1,8 @@
 {
+  "_comment": "THIS FILE IS AUTO-GENERATED. DO NOT EDIT MANUALLY.",
+  "_purpose": "Schema reference only — column names, types, indexes. Contains NO data.",
+  "_source": "Generated from live database by generate_toon_files.py",
+  "_read_only": true,
   "table_name": "lupo_actors",
   "fields": [
     "`actor_name` varchar(64) NOT NULL",
@@ -22,6 +26,7 @@
     "`department_id` bigint",
     "`is_kernel` tinyint NOT NULL DEFAULT 0",
     "`can_login` tinyint NOT NULL DEFAULT 0",
+    "`web_restrict_act_as_creator_or_root` tinyint NOT NULL DEFAULT 0",
     "`metadata_json` json",
     "`identity_provider_config` json",
     "`paired_actor_id` bigint NOT NULL DEFAULT 0",
@@ -33,42 +38,6 @@
     "`php_namespace` varchar(120)",
     "`who_json_sync_status` varchar(64) DEFAULT 'pending'",
     "`last_sync_ymdhis` bigint DEFAULT 0"
-  ],
-  "data": [
-    {
-      "actor_name": "",
-      "actor_id": 102,
-      "actor_type": "agent",
-      "slug": "hephaestus",
-      "name": "HEPHAESTUS",
-      "created_ymdhis": 20260224000000,
-      "updated_ymdhis": 20260328120000,
-      "is_active": 1,
-      "is_deleted": 0,
-      "deleted_ymdhis": null,
-      "actor_source_id": 102,
-      "actor_source_type": "work_agent",
-      "metadata": "{\"purpose\":\"IDE_integration\",\"capabilities\":[\"code_generation\",\"file_editing\",\"project_management\",\"git_integration\",\"vsx_extension_development\"],\"version\":\"1.0.0\",\"client_id\":\"windsurf\",\"provider\":\"windsurf\",\"integration_ready\":true,\"paired_actor_id\":10000,\"note\":\"Reassigned from actor_id 2 to avoid CAPTAIN conflict\"}",
-      "actor_config": null,
-      "adversarial_role": "none",
-      "adversarial_oversight_actor_id": null,
-      "avatar_hash": null,
-      "primary_federation_node_id": 1,
-      "department_id": null,
-      "is_kernel": 0,
-      "can_login": 0,
-      "metadata_json": "{\"purpose\": \"code_docs_schema_execution\", \"agent_id\": 14, \"archetype\": \"implementer\"}",
-      "identity_provider_config": null,
-      "paired_actor_id": 10000,
-      "is_agent": 1,
-      "auth_user_id": null,
-      "actor_tier": 3,
-      "actor_root_path": "actors/{actor_id}",
-      "workspace_path": null,
-      "php_namespace": null,
-      "who_json_sync_status": "pending",
-      "last_sync_ymdhis": 0
-    }
   ],
   "indexes": [
     {

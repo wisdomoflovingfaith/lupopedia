@@ -25,6 +25,7 @@ CREATE TABLE {{prefix}}actors (
   department_id bigint DEFAULT NULL,
   is_kernel tinyint NOT NULL DEFAULT 0,
   can_login tinyint NOT NULL DEFAULT 0,
+  web_restrict_act_as_creator_or_root tinyint NOT NULL DEFAULT 0,
   metadata_json json DEFAULT NULL,
   identity_provider_config json DEFAULT NULL,
   paired_actor_id bigint NOT NULL DEFAULT 0,
@@ -181,51 +182,7 @@ CREATE INDEX {{prefix}}actor_channels_idx_created ON {{prefix}}actor_channels (c
 CREATE INDEX {{prefix}}actor_channels_idx_updated ON {{prefix}}actor_channels (updated_ymdhis);
 CREATE INDEX {{prefix}}actor_channels_idx_deleted ON {{prefix}}actor_channels (is_deleted);
 
- 
-  -- NEW IDENTITY MODEL: AGENT → ACTOR (INSTANCE) → AUTH USER (LEASED)
-  -- See ACTOR_LEASING_DOCTRINE.md for full doctrine and PRD.
-
-  CREATE TABLE {{prefix}}actor_templates (
-    template_id bigint NOT NULL,
-    agent_id bigint NOT NULL,
-    template_version varchar(64) NOT NULL,
-    created_ymdhis bigint NOT NULL DEFAULT 0,
-    is_deleted tinyint NOT NULL DEFAULT 0,
-    deleted_ymdhis bigint DEFAULT 0,
-    PRIMARY KEY (template_id)
-  );
-
-  CREATE TABLE {{prefix}}actor_instances (
-    actor_id bigint NOT NULL,
-    template_id bigint NOT NULL,
-    department_id bigint NOT NULL,
-    created_ymdhis bigint NOT NULL DEFAULT 0,
-    is_available tinyint NOT NULL DEFAULT 1,
-    is_deleted tinyint NOT NULL DEFAULT 0,
-    deleted_ymdhis bigint DEFAULT 0,
-    PRIMARY KEY (actor_id)
-  );
-
-  CREATE TABLE {{prefix}}actor_lease_sessions (
-    lease_id bigint NOT NULL,
-    actor_id bigint NOT NULL,
-    auth_user_id bigint NOT NULL,
-    department_id bigint NOT NULL,
-    started_ymdhis bigint NOT NULL,
-    ended_ymdhis bigint DEFAULT 0,
-    is_active tinyint NOT NULL DEFAULT 1,
-    PRIMARY KEY (lease_id)
-  );
-
-CREATE TABLE {{prefix}}department_actor_pools (
-    pool_id bigint NOT NULL,
-    department_id bigint NOT NULL,
-    actor_id bigint NOT NULL,
-    priority int NOT NULL DEFAULT 100,
-    is_enabled tinyint NOT NULL DEFAULT 1,
-    PRIMARY KEY (pool_id)
-  );
-
+-- Auth user ↔ actor pairing: lupo_actor_auth_users (no exclusive "lease" session table; concurrent web sessions allowed).
 CREATE TABLE {{prefix}}actor_auth_users (
   actor_auth_user_id bigint NOT NULL,
   actor_id bigint NOT NULL,
@@ -1411,30 +1368,36 @@ CREATE INDEX {{prefix}}password_resets_idx_created_ymdhis ON {{prefix}}password_
 CREATE TABLE {{prefix}}channels (
   channel_id bigint NOT NULL,
   federation_node_id bigint NOT NULL,
-  channel_key varchar(64) NOT NULL,              -- Human-readable identifier (filesystem path)
-  channel_slug varchar(64) NOT NULL,             -- URL-friendly version (derived from channel_key)
-  channel_name varchar(255) NOT NULL,            -- Display name
-  description text,
-  channel_type varchar(32) NOT NULL DEFAULT 'public',
-  access_level varchar(32) NOT NULL DEFAULT 'public',
-  department_id bigint NOT NULL DEFAULT 1,       -- Which department owns this channel
-  owner_actor_id bigint NOT NULL DEFAULT 1,      -- Actor who owns/manages this channel
   created_by_actor_id bigint NOT NULL,
-  created_ymdhis bigint NOT NULL,
-  updated_ymdhis bigint NOT NULL,
-  last_activity_ymdhis bigint NOT NULL DEFAULT 0,
+  default_actor_id bigint NOT NULL DEFAULT 1,
+  department_id bigint NOT NULL DEFAULT 1,
+  channel_key varchar(64) NOT NULL,
+  channel_slug varchar(32) NOT NULL DEFAULT 'channel_key',
+  channel_type varchar(32) NOT NULL DEFAULT 'chat_room',
+  language varchar(16) NOT NULL DEFAULT 'en',
+  channel_name varchar(255) NOT NULL,
+  description text,
+  website_link varchar(512) DEFAULT NULL,
+  metadata_json text,
+  channel_config text DEFAULT NULL,
   status_flag tinyint NOT NULL DEFAULT 1,
-  visibility_status varchar(32) NOT NULL DEFAULT 'active',
-  is_kernel tinyint NOT NULL DEFAULT 0,
+  end_ymdhis bigint DEFAULT NULL,
+  created_ymdhis bigint NOT NULL DEFAULT 0,
+  updated_ymdhis bigint NOT NULL,
   is_deleted tinyint NOT NULL DEFAULT 0,
   deleted_ymdhis bigint DEFAULT NULL,
-  metadata_json json DEFAULT NULL,
-  -- ... other columns as needed ...
-  PRIMARY KEY (channel_id),
-  UNIQUE KEY idx_channels_node_key (federation_node_id, channel_key),
-  KEY idx_channels_department (department_id, is_deleted),
-  KEY idx_channels_federation (federation_node_id, channel_key, is_deleted),
-  KEY idx_channels_owner (owner_actor_id, is_deleted),
+  aal_metadata_json json DEFAULT NULL,
+  fleet_composition_json json DEFAULT NULL,
+  awareness_version varchar(20) DEFAULT '3.0.0',
+  channel_number int DEFAULT NULL,
+  parent_channel_id bigint DEFAULT NULL,
+  project_id bigint DEFAULT NULL,
+  is_kernel tinyint NOT NULL DEFAULT 0,
+  boot_sequence_order int DEFAULT NULL,
+  visibility_status varchar(32) NOT NULL DEFAULT 'active',
+  owner_actor_id bigint NOT NULL DEFAULT 1,
+  access_level varchar(32) NOT NULL DEFAULT 'public',
+  last_activity_ymdhis bigint NOT NULL DEFAULT 0,
   PRIMARY KEY (channel_id)
 );
 

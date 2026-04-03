@@ -2,10 +2,10 @@
 lupopedia.headers:
   header_format_version: 2
   lupopedia.schema: prd
-  when_updated: "20260403131918"
+  when_updated: "20260403222833"
   file_path_from_root: "lupo-docs/prd/33_softaculous_certification_4_1_0_gate.md"
   web_path: "http://www.lupopedia.com/lupopedia/lupo-docs/prd/33_softaculous_certification_4_1_0_gate.md"
-  last_modified_utc: "20260403131918"
+  last_modified_utc: "20260403222833"
   federation_node_id: 0
   channel_id: 42
   thread_id: "prd-softaculous-4-1-0-gate"
@@ -43,6 +43,7 @@ lupopedia.headers:
     - admin_chat
     - typing_preview
     - lilith_audit_approved
+    - lilith_audit_final_20260403
 lupopedia.edges:
   outbound_edges:
     - to: "lupo-docs/prd/00_root_constitutional_system_requirements.md"
@@ -170,15 +171,15 @@ lupopedia.edges:
       weight: 1.0
       reason: "Mobile native app and separation; mobile visitor checklist §7.4"
 lupopedia.footer:
-  last_verified: "20260403131918"
+  last_verified: "20260403222833"
   verified_by:
     identity_type: "actor"
     actor_id: 102
   orchestrator: "cursor:root"
   next_action:
-    - "WOLFIE (actor_id 1) or product owner: optional sign-off — set lupopedia.headers status to approved when product-ready (header remains planning until then)"
-    - "LILITH (actor_id 2) audit recorded §13 — APPROVED (accuracy ~98/100); prior §5.1 / §7.8 / §10 / §12 findings closed"
-    - "Open implementation rows per §12 in lupo-docs/versions/4.0.94/TODO.md (or current version) before coding certification work"
+    - "PRD header status approved — gate text is authoritative; execute §7.4–§7.9 + §10 via lupo-docs/versions/4.0.94/TODO.md (§12)"
+    - "LILITH (actor_id 2) final audit §13 — APPROVED for code (100/100); §7.4 = Crafty parity roadmap; §10 = 4.1.0 gate; §12 traceability in TODO.md"
+    - "Implementers: pick §7.4 rows (e.g. mobile client chat, real visitor list, typing preview) after TODO.md rows exist; 34 doctrine ghosts are not blocking this track"
 ---
 
 # PRD 33: Softaculous certification and 4.1.0 release gate
@@ -197,10 +198,10 @@ Define **hosting-distribution readiness** (including **Softaculous-style** one-c
 
 | Line | Rule |
 |------|------|
-| **4.0.x** | Current product line: fresh install from Crafty Syntax 3.7.5 only; schema and features evolve without Softaculous/certification completion obligation. |
-| **4.1.0** | **First** line where this PRD’s checklist is **complete**, installer/distribution story is **explicit**, and certification artifacts (or hoster-equivalent evidence) exist. |
+| **4.0.x** | Current product line: **fresh install** from **`install_new_lupopedia.sql`** (+ seed). **Optional:** load **Crafty Syntax 3.7.5** tables and run **`import_from_old_crafty_syntax.sql`** for legacy data. **No** Lupopedia→Lupopedia upgrade; schema/features evolve without Softaculous/certification completion obligation. |
+| **4.1.0** | **First** line where this PRD’s checklist is **complete**, installer/distribution story is **explicit**, certification artifacts (or hoster-equivalent evidence) exist, and **Lupopedia→Lupopedia** / auto-installer expectations **may** apply per product owner release. |
 
-This PRD does **not** authorize Lupopedia→Lupopedia migrations before 4.1.0; it only states **what must be true** to call a release **4.1.0** from a **product and hosting** perspective.
+This PRD does **not** authorize **Lupopedia→Lupopedia** migrations **during 4.0.x**; it states **what must be true** to call a release **4.1.0** and to ship hosting-grade **Crafty→Lupopedia** (and later in-place) upgrade stories.
 
 ### 2.1 Softaculous / auto-installer acceptance (manual)
 
@@ -672,6 +673,23 @@ Exact Softaculous XML/checklists evolve by vendor; **completion** for this PRD m
 **Header `status`:** Set to **`approved`** in **`lupopedia.headers`** (2026-04-03 UTC) — this records **product documentation** approval of the gate text; **§7–§10 checklist execution** toward installer/hoster certification remains tracked in **`lupo-docs/versions/4.0.94/TODO.md`** per **§12**. LILITH’s prior verdict in this section remains **review documentation** for accuracy; orchestrator may add further ratification artifacts under **`implementations/33_.../decisions/`** if needed.
 
 **Implementation workspace:** **`lupo-docs/implementations/33_softaculous_certification_4_1_0_gate/`** — structured folder (from **`implementations/_template`**); LILITH audit import under **`status/`**; formal **`decisions/`** reserved for ratified **`DECISION_*`** files.
+
+### 13.1 LILITH final audit — ready for code (UTC `20260403222833`)
+
+| Field | Value |
+|-------|--------|
+| **Auditor** | LILITH (**actor_id 2**) |
+| **Accuracy** | **100/100** (final read on approved gate text) |
+| **Constitutional violations** | None |
+| **Security / privacy** | None additional beyond in-PRD requirements (mobile §7.4 aligns **PRD 35** / **MOBILE_SEPARATION_DOCTRINE.md**) |
+| **Verdict** | **APPROVED** — PRD **33** is the authoritative **4.1.0** release gate; **§7.4** checklist is the **Crafty parity implementation roadmap**; **§10** rows are the **tagging gate**; **§12** requires matching **`TODO.md`** lines before marking work complete |
+
+**Recommendations (closed in documentation):**
+
+- **§7.4** includes **mobile client chat** (separate mobile pages, device detection → **`/mobile/...`**, legacy Crafty mobile client parity; operator admin not required on mobile web — **PRD 35**).
+- **Before coding:** ensure **`lupo-docs/versions/4.0.94/TODO.md`** lists one traceable row per **§7.4** / **§7.5** / **§7.6** / **§7.7** / **§7.8** / **§7.9** item and each **§10** criterion, each with **PRD 33** reference, **§** pointer, **owner `actor_id`**, **`planned` / `in_progress` / `complete` / `blocked`**, and **evidence** (path + BIGINT UTC) on closure.
+
+**Prior §13 table (~98/100)** remains historical context for the first structured audit pass; **§13.1** records the **final** “ready for code” disposition after **§7.4** mobile item and **TODO.md** mapping discipline were confirmed.
 
 ---
 

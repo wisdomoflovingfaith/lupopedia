@@ -1,4 +1,8 @@
 {
+  "_comment": "THIS FILE IS AUTO-GENERATED. DO NOT EDIT MANUALLY.",
+  "_purpose": "Schema reference only — column names, types, indexes. Contains NO data.",
+  "_source": "Generated from live database by generate_toon_files.py",
+  "_read_only": true,
   "table_name": "lupo_dialog_threads",
   "fields": [
     "`dialog_thread_id` bigint NOT NULL",
@@ -30,7 +34,6 @@
     "`thread_type` varchar(32) NOT NULL DEFAULT 'discussion'",
     "`thread_priority` varchar(32) NOT NULL DEFAULT 'normal'"
   ],
-  "data": [],
   "indexes": [
     {
       "index_name": "lupo_dialog_threads_idx_assigned_actor_id",

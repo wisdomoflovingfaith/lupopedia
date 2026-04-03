@@ -1,4 +1,8 @@
 {
+  "_comment": "THIS FILE IS AUTO-GENERATED. DO NOT EDIT MANUALLY.",
+  "_purpose": "Schema reference only — column names, types, indexes. Contains NO data.",
+  "_source": "Generated from live database by generate_toon_files.py",
+  "_read_only": true,
   "table_name": "lupo_agent_context_snapshots",
   "fields": [
     "`agent_context_snapshot_id` bigint NOT NULL",
@@ -24,7 +28,6 @@
     "`is_corrupt` tinyint DEFAULT 0",
     "`retention_policy` varchar(64) DEFAULT 'temporary'"
   ],
-  "data": [],
   "indexes": [
     {
       "index_name": "lupo_agent_context_snapshots_idx_created",

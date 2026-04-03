@@ -1,11 +1,11 @@
 ---
 lupopedia.headers:
   header_format_version: 2
-  when_updated: '20260402224629'
+  when_updated: '20260403202903'
   lupopedia.schema: documentation
   file_path_from_root: README.md
   web_path: http://www.lupopedia.com/lupopedia/README.md
-  last_modified_utc: '20260402224629'
+  last_modified_utc: '20260403202903'
   channel_id: 42
   thread_id: readme-4-0-94
   actor_id: 102
@@ -24,6 +24,10 @@ lupopedia.init:
   required_reading:
     - path: lupo-docs/prd/00_root_constitutional_system_requirements.md
       reason: "MANDATORY FIRST READ — constitutional law for all agents and contributors. Overrides everything else."
+    - path: lupo-docs/prd/33_softaculous_certification_4_1_0_gate.md
+      reason: "4.1.0 / auto-installer gate; clarifies no Lupopedia→Lupopedia upgrades during 4.0.x"
+    - path: lupo-docs/prd/27_installer_requirements.md
+      reason: "Installer and 4.0.x fresh-install model (install SQL + mysql/seed/ + optional install/ merged seed + Crafty import)"
     - path: AGENTS.md
       reason: "Canonical actor, identity-layer, and coordination rules"
     - path: ONBOARDING.md
@@ -105,8 +109,20 @@ lupopedia.edges:
       type: references
       weight: 1.0
       reason: Temporal anchor and tick.py workflow for all header timestamps
+    - to: lupo-docs/prd/33_softaculous_certification_4_1_0_gate.md
+      type: references
+      weight: 1.0
+      reason: 4.1.0 release gate; no Lupopedia→Lupopedia migrations during 4.0.x
+    - to: lupo-docs/prd/27_installer_requirements.md
+      type: references
+      weight: 1.0
+      reason: Installer requirements; install SQL + seed pipeline (mysql/seed/, install/seed_lupopedia_4_1_0.sql) + Crafty import for 4.0.x
+    - to: lupo-docs/doctrine/VERSIONING_DOCTRINE.md
+      type: references
+      weight: 1.0
+      reason: Canonical versioning and upgrade-path doctrine
 lupopedia.footer:
-  last_verified: '20260402224629'
+  last_verified: '20260403202903'
   verified_by:
     identity_type: actor
     actor_id: 102
@@ -249,6 +265,24 @@ At a high level, Lupopedia is:
 - a multi-agent coordination environment
 - a Crafty Syntax 3.7.5 continuation and upgrade path
 
+### Why the product is **4.x** (not 1.x)
+
+Lupopedia is numbered **4.x** because it is the **next major generation** of the same product line as **Crafty Syntax 3.7.5** (live help / semantic OS continuity), not a unrelated “version 1” product.
+
+### Database and upgrades during **4.0.x** (non‑negotiable)
+
+Until **4.1.0** is released under the gates in **[PRD 33](lupo-docs/prd/33_softaculous_certification_4_1_0_gate.md)** and **[PRD 27](lupo-docs/prd/27_installer_requirements.md)**:
+
+- There is **no** supported **Lupopedia → Lupopedia** upgrade path and **no** migration chain that assumes preserving data across 4.0.x schema iterations.
+- **Database changes (DDL, required seed rows, or Crafty import mapping)** must stay in sync across **three** canonical SQL surfaces—do **not** update install DDL and forget seed or import:
+  1. **`lupo-database/lupopedia/mysql/install/install_new_lupopedia.sql`** — full schema (`CREATE TABLE`, indexes).
+  2. **Seed (single pipeline for all of 4.0.x — no per-patch seed files until 4.1.0):** Author new/changed rows under **`lupo-database/lupopedia/mysql/seed/`** (including **`seed_4.1.0.sql`** and any other fragments the repo uses). The **4.1.0** in the filename is the **product gate** name, not “only for 4.1.0 installs.” At **wizard runtime**, `install.php` prefers **`install/seed_lupopedia_4_1_0.sql`** when that file exists (full stack built by **`lupo-scripts/build_consolidated_seed_4_1_0.py`**); otherwise it runs **`lupo-database/lupopedia/mysql/seed/seed_4.1.0.sql`**. If you ship the merged **`install/`** file, **regenerate it after seed edits** so installs do not drift. Do **not** change DDL in **`install_new_lupopedia.sql`** without updating the seed side when defaults, registry rows, or required inserts change.
+  3. **`lupo-database/lupopedia/mysql/import/import_from_old_crafty_syntax.sql`** — when **Crafty Syntax 3.7.5 → Lupopedia** behavior must change.
+- Operators and developers **drop all Lupopedia tables** and run a **fresh install** (empty database), or **fresh install plus** legacy Crafty tables and the **Crafty → Lupopedia** import—**that** is the only supported data-bearing transition during 4.0.x.
+- **4.1.0** is not merely a higher patch number: it is blocked until **auto‑installer / Softaculous‑class** acceptance and a **documented, successful Crafty → Lupopedia** hosting story exist. Until then, all work stays on **4.0.x** with **fresh install** as the way to pick up schema changes.
+
+Canonical detail: **[Root constitutional PRD](lupo-docs/prd/00_root_constitutional_system_requirements.md)** (product lineage and §9.18 missing-table protocol), **`lupo-docs/doctrine/VERSIONING_DOCTRINE.md`**, and **`.cursor/rules/single-install-no-4.0-upgrade-doctrine.mdc`**.
+
 Core system characteristics:
 
 - MySQL is the runtime authority for structured data, identities, edges, and operational state.
@@ -291,6 +325,9 @@ Organization references:
 Database/file-based authority references:
 
 - `lupo-database/lupopedia/mysql/install/install_new_lupopedia.sql` — canonical DDL
+- `lupo-database/lupopedia/mysql/seed/` — seed **sources** (includes **`seed_4.1.0.sql`**; **one** seed pipeline for **all of 4.0.x**, no separate seed per patch until **4.1.0**)
+- `install/seed_lupopedia_4_1_0.sql` — **optional merged** seed the wizard **prefers** when present; rebuild with **`lupo-scripts/build_consolidated_seed_4_1_0.py`** after changing sources under **`mysql/seed/`**
+- `lupo-database/lupopedia/mysql/import/import_from_old_crafty_syntax.sql` — Crafty **3.7.5 → Lupopedia** import only
 - `lupo-database/lupopedia/json/` — generated per-table column mirrors (e.g. `lupo_contents.json`) used by import tooling; do not hand-edit
 - `lupo-database/lupopedia/toon/` — optional TOON export in some workflows; same “generated mirror” role as `json/` when present
 - `lupo-docs/database/lupopedia/tables/active/` — human-readable table documentation
@@ -323,10 +360,12 @@ Database/file-based authority references:
 
 ### Schema Authority Order
 
-1. **Live database** (MySQL/PostgreSQL) — SOURCE OF TRUTH
-2. **install_new_lupopedia.sql** — Canonical DDL
-3. **JSON schema files** — Read-only reference mirrors
-4. **Table documentation** — Human-readable (lupo-docs/database/lupopedia/tables/)
+1. **Live database** (MySQL/PostgreSQL) — SOURCE OF TRUTH after you have applied current install + seed (and import if used)
+2. **`lupo-database/lupopedia/mysql/install/install_new_lupopedia.sql`** — Canonical DDL
+3. **`lupo-database/lupopedia/mysql/seed/`** (and merged **`install/seed_lupopedia_4_1_0.sql`** when shipped) — Canonical seed for 4.0.x (one pipeline; keep aligned with DDL; regenerate merged file after edits when used)
+4. **`lupo-database/lupopedia/mysql/import/import_from_old_crafty_syntax.sql`** — Canonical Crafty import
+5. **JSON / TOON schema files** — Read-only reference mirrors (regenerate from DB after fresh install)
+6. **Table documentation** — Human-readable (`lupo-docs/database/lupopedia/tables/`)
 
 **If the JSON file and the database disagree, the database is correct. Regenerate the JSON files.**
 
@@ -381,13 +420,14 @@ Key constraints (all detailed in the constitutional PRD):
 - All timestamps BIGINT UTC `YYYYMMDDHHIISS` via `gmdate('YmdHis')`
 - All PKs via `IdGenerator::generate()` — never null, never auto-increment
 - All DB access via `DatabaseFactory::getConnection()` — never raw PDO or mysqli
-- Never run SQL via CLI — all schema changes go through `install_new_lupopedia.sql`
+- Never run SQL via CLI — **4.0.x** DDL goes into **`install_new_lupopedia.sql`**; **seed** changes go into **`lupo-database/lupopedia/mysql/seed/`** (and regenerate **`install/seed_lupopedia_4_1_0.sql`** when your tree ships that merged file); Crafty mapping into **`import_from_old_crafty_syntax.sql`**. Then **fresh install**. **No** Lupopedia→Lupopedia migrations until **4.1.0** (see **PRD 00 §1.0**, **PRD 33**)
 - Never guess column names — read the TOON JSON or table docs first
 
 ### Quick Checklist
 
 Before writing code:
 - [ ] Read `lupo-docs/prd/00_root_constitutional_system_requirements.md`
+- [ ] If you change the database: update **`install_new_lupopedia.sql`**, **`lupo-database/lupopedia/mysql/seed/`** (including **`seed_4.1.0.sql`**) when seed data or defaults change, run **`lupo-scripts/build_consolidated_seed_4_1_0.py`** if you ship **`install/seed_lupopedia_4_1_0.sql`**, and **`import_from_old_crafty_syntax.sql`** when Crafty import must change (do not touch only one of these)
 - [ ] PHP 5.6+ compatible
 - [ ] No Composer dependencies, no npm for server-side logic
 - [ ] No framework code
@@ -398,30 +438,29 @@ Before writing code:
 - [ ] Column names verified against TOON JSON or table docs
 
 
-## Version Model and Softaculous Approval Policy
+## Version model, 4.1.0 gate, and Softaculous / auto‑installer policy
 
-Lupopedia is released exclusively as a sequence of 4.0.x versions (e.g., 4.0.93, 4.0.94, ..., 4.0.222) until Softaculous formally approves a 4.0.x release for their auto-installer. The 4.1.0 milestone **cannot** be released or considered active until Softaculous has reviewed, provided feedback, and accepted a 4.0.x version into their system. This process requires sending the code to Softaculous, receiving their feedback, and making any required corrections. Only after Softaculous approval will the project transition to a 4.1.0 release cycle.
+Lupopedia ships as a sequence of **4.0.x** patch releases until hosting distribution requirements are met. **4.1.0** is **not** tagged or treated as an active product milestone until **PRD 33** completion criteria are satisfied—including **manual** review and acceptance by an auto‑installer vendor (e.g. **Softaculous**): the maintainer submits the package; the vendor decides when it appears in their catalog. That acceptance is part of what unlocks calling a line **4.1.0**, together with the **Crafty Syntax 3.7.5 → Lupopedia** installer story those PRDs describe.
 
-**There is no direct jump from any 4.0.x release to 4.1.0.** All development, bugfixes, and improvements will continue as 4.0.x releases until Softaculous acceptance is achieved. This ensures compatibility, review, and a stable upgrade path for all users.
+**This is separate from day‑to‑day 4.0.x development:** during **4.0.x**, there is still **no Lupopedia → Lupopedia** upgrade (see the box under **What Lupopedia Is** above). **4.1.0** is when **Lupopedia → Lupopedia** upgrades and a real migration story **may** be introduced—**not before**.
 
 **Summary:**
-- 4.0.x releases are iterative and ongoing until Softaculous approval.
-- 4.1.0 will only begin after a 4.0.x version is accepted by Softaculous.
-- All planning, documentation, and PRD must reflect this policy.
+- **4.0.x:** Fresh install from **`install_new_lupopedia.sql`** + seed (**`install/seed_lupopedia_4_1_0.sql`** if present, else **`mysql/seed/seed_4.1.0.sql`** — **one** seed pipeline for the whole 4.0.x line); optional **Crafty 3.7.5 → Lupopedia** via **`import_from_old_crafty_syntax.sql`**. No Lupopedia→Lupopedia migrations.
+- **4.1.0 gate:** Auto‑installer readiness, certification-style evidence, and the product/installer requirements in **PRD 33** / **PRD 27**—not a routine version bump.
+- All planning and PRDs must keep these distinctions explicit so implementers do not design migration chains for 4.0.x.
 
-## Current Focus
+## Current focus
 
 The project is currently focused on:
 
-- working in 4.0.88 as the active iteration
-- building toward an approved 4.0.x baseline
-- preparing the foundation required for 4.1.0
+- **4.0.x** patch iteration (see **`lupo-docs/versions/`** for the active version folder)
+- building toward **PRD 33** / hosting readiness for **4.1.0** (not a routine version bump)
 
-Current detailed execution surfaces:
+Current detailed execution surfaces (replace `<version>` with the folder you are tracking, e.g. **4.0.94**):
 
-- `lupo-docs/versions/4.0.88/README.md`
-- `lupo-docs/versions/4.0.88/PLAN.md`
-- `lupo-docs/versions/4.0.88/TODO.md`
+- `lupo-docs/versions/<version>/README.md`
+- `lupo-docs/versions/<version>/PLAN.md`
+- `lupo-docs/versions/<version>/TODO.md`
 
 Post-approval milestone surfaces:
 

@@ -3,10 +3,10 @@ lupopedia.headers:
   header_format_version: 2
   lupopedia.schema: documentation
   version_when_written: "4.0.93"
-  when_updated: "20260403020000"
+  when_updated: "20260403202128"
   file_path_from_root: "lupo-docs/prd/README.md"
   web_path: "http://www.lupopedia.com/lupopedia/lupo-docs/prd/README.md"
-  last_modified_utc: "20260403020000"
+  last_modified_utc: "20260403202128"
   channel_id: 42
   thread_id: "prd-grouped"
   actor_id: 102
@@ -43,7 +43,7 @@ lupopedia.edges:
       weight: 1.0
       reason: "4.1.0 / Softaculous gate — product readiness is not implied by this README"
 lupopedia.footer:
-  last_verified: "20260403020000"
+  last_verified: "20260403202128"
   verified_by:
     actor_id: 102
     agent_name_identity: Cursor IDE Agent
@@ -57,6 +57,8 @@ lupopedia.footer:
 This directory contains the **grouped PRD structure** for Lupopedia, replacing the per-table PRD approach with a more maintainable, holistic namespace-based organization.
 
 **Important:** This layout describes **documentation and architecture intent**. It does **not** mean the **product** is ready for a **4.1.0** or Softaculous listing. The running system remains on the **4.0.x** line until **PRD 33** completion criteria are met (Crafty Syntax live-help parity, hosting pack, evidence). **`admin.php`** and much of the operator experience still need **redesign**; most Crafty Syntax **end-user and operator features** are not yet fully replicated in Lupopedia.
+
+**Install and upgrades:** During **4.0.x** there is **no** Lupopedia→Lupopedia upgrade. Schema evolves in **`install_new_lupopedia.sql`**; developers and operators use **fresh install** (and optionally **Crafty 3.7.5 → Lupopedia** import only). **4.1.0** is gated on auto-installer / Softaculous-class acceptance and the full **Crafty→Lupopedia** hosting story (**PRD 33**, **PRD 27**, root **README.md**, constitutional **PRD 00 §1.0**).
 
 ## 📁 File Structure
 

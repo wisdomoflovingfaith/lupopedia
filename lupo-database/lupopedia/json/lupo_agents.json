@@ -1,4 +1,8 @@
 {
+  "_comment": "THIS FILE IS AUTO-GENERATED. DO NOT EDIT MANUALLY.",
+  "_purpose": "Schema reference only — column names, types, indexes. Contains NO data.",
+  "_source": "Generated from live database by generate_toon_files.py",
+  "_read_only": true,
   "table_name": "lupo_agents",
   "fields": [
     "`agent_id` bigint NOT NULL",
@@ -30,39 +34,6 @@
     "`safety_json` json",
     "`response_format` varchar(50)",
     "`metadata_json` json"
-  ],
-  "data": [
-    {
-      "agent_id": 0,
-      "agent_key": "system",
-      "agent_name": "System Agent",
-      "archetype": "System",
-      "description": "Core system agent for kernel operations",
-      "version": "1.0",
-      "model_name": null,
-      "is_global_authority": 1,
-      "is_internal_only": 1,
-      "created_ymdhis": 20260225000000,
-      "updated_ymdhis": 20260225000000,
-      "is_deleted": 0,
-      "deleted_ymdhis": null,
-      "avg_response_time_ms": 0,
-      "total_tokens_processed": 0,
-      "success_rate": 1.0,
-      "cost_per_1k_tokens": 0,
-      "temperature": 0.0,
-      "top_p": 1.0,
-      "max_tokens": 2048,
-      "presence_penalty": 0.0,
-      "frequency_penalty": 0.0,
-      "system_prompt": "You are the system agent. Handle kernel-level operations.",
-      "provider": "internal",
-      "api_key_id": null,
-      "timeout_ms": 20000,
-      "safety_json": null,
-      "response_format": null,
-      "metadata_json": null
-    }
   ],
   "indexes": [
     {

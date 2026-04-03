@@ -241,7 +241,11 @@ VALUES (1, 1, 'General', 'Default department for channels', 'general', 0, NULL, 
 
 TRUNCATE {{prefix}}department_metadata;
 
+-- department_metadata_id is application-assigned (no AUTO_INCREMENT).
+SET @lupo_department_metadata_seq := 0;
+
 INSERT INTO {{prefix}}department_metadata (
+    department_metadata_id,
     department_id,
     metadata_json,
     created_ymdhis,
@@ -251,6 +255,7 @@ INSERT INTO {{prefix}}department_metadata (
     deleted_ymdhis
 )
 SELECT
+    (@lupo_department_metadata_seq := @lupo_department_metadata_seq + 1) AS department_metadata_id,
     recno AS department_id,
 
     JSON_OBJECT(
@@ -398,6 +403,7 @@ ALTER TABLE livehelp_layerinvites
 TRUNCATE {{prefix}}crafty_syntax_layer_invites;
 
 INSERT INTO {{prefix}}crafty_syntax_layer_invites (
+    crafty_syntax_layer_invite_id,
     layer_name,
     image_name,
     image_map,
@@ -412,6 +418,7 @@ INSERT INTO {{prefix}}crafty_syntax_layer_invites (
     deleted_ymdhis
 )
 SELECT
+    layerid AS crafty_syntax_layer_invite_id,
     name AS layer_name,
     imagename AS image_name,
     imagemap AS image_map,
@@ -657,177 +664,120 @@ ALTER TABLE livehelp_qa
 ALTER TABLE livehelp_qa
   COMMENT = 'DEPRECATED: Only retained for migration. If something fails and you need to re-run the conversion, this table may be referenced. This table is NOT part of Lupopedia/Crafty Syntax as of version 3.0.0 and should be deleted after successful migration.';
 
-TRUNCATE {{prefix}}truth_knowledge;
+-- {{prefix}}truth_knowledge removed from install schema; questions live in {{prefix}}truth_questions.
+TRUNCATE {{prefix}}truth_answers;
+TRUNCATE {{prefix}}truth_questions;
 
-INSERT INTO {{prefix}}truth_knowledge (
-    truth_id,
-    truth_type,
-    parent_id,
-    question_id,
-    answer_id,
-    evidence_id,
-    source_id,
-    topic_id,
-    relation_id,
-    actor_id,
-    object_type,
-    object_id,
-    left_object_type,
-    left_object_id,
-    right_object_type,
-    right_object_id,
-    slug,
-    title,
-    text_content,
+INSERT INTO {{prefix}}truth_questions (
+    truth_question_id,
+    parent_question_id,
+    root_question_id,
+    depth,
+    target_object_type,
+    target_object_id,
     question_text,
-    answer_text,
-    evidence_text,
-    source_url,
-    source_title,
-    qtype,
-    status,
-    evidence_type,
-    source_type,
-    relation_type,
-    format,
-    format_override,
-    confidence_score,
-    evidence_score,
-    weight_score,
-    reliability_score,
-    importance_score,
-    sort_num,
-    view_count,
-    likes_count,
-    shares_count,
-    answer_count,
-    contradiction_flag,
+    question_summary,
+    asked_by_actor_id,
+    asked_in_channel_id,
+    asked_in_thread_id,
+    asked_in_session_id,
+    question_status,
+    is_answered,
     is_featured,
-    is_verified,
-    last_activity_ymdhis,
-    default_collection_id,
+    view_count,
+    answer_count,
+    follower_count,
     created_ymdhis,
     updated_ymdhis,
+    answered_ymdhis,
+    closed_ymdhis,
     is_deleted,
     deleted_ymdhis,
-    truth_question_parent_id
+    metadata_json
 )
 SELECT
-    recno,
-    'question',
-    NULLIF(parent, 0),
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    NULL,
-    NULL,
-    NULL,
-    NULL,
-    NULL,
-    NULL,
-    CONCAT('qa-', recno),
-    question,
-    NULL,
-    question,
-    NULL,
-    NULL,
-    NULL,
-    NULL,
-    'unknown',
-    'active',
-    NULL,
-    NULL,
-    NULL,
-    'text',
-    NULL,
-    0.00,
-    0.00,
-    0.00,
-    0.00,
-    0.00,
-    ordernum,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    NULL,
-    0,
-    20250101000000,
-    20250101000000,
-    0,
-    NULL,
-    NULL
+    recno AS truth_question_id,
+    NULLIF(parent, 0) AS parent_question_id,
+    NULL AS root_question_id,
+    0 AS depth,
+    'legacy_livehelp_qa' AS target_object_type,
+    recno AS target_object_id,
+    question AS question_text,
+    NULL AS question_summary,
+    0 AS asked_by_actor_id,
+    NULL AS asked_in_channel_id,
+    NULL AS asked_in_thread_id,
+    NULL AS asked_in_session_id,
+    'open' AS question_status,
+    0 AS is_answered,
+    0 AS is_featured,
+    0 AS view_count,
+    0 AS answer_count,
+    0 AS follower_count,
+    20250101000000 AS created_ymdhis,
+    20250101000000 AS updated_ymdhis,
+    NULL AS answered_ymdhis,
+    NULL AS closed_ymdhis,
+    0 AS is_deleted,
+    NULL AS deleted_ymdhis,
+    JSON_OBJECT('legacy_typeof', typeof, 'legacy_ordernum', ordernum) AS metadata_json
 FROM livehelp_qa
 WHERE typeof = 'question'
 ON DUPLICATE KEY UPDATE
-    truth_type = VALUES(truth_type),
-    parent_id = VALUES(parent_id),
-    question_id = VALUES(question_id),
-    answer_id = VALUES(answer_id),
-    evidence_id = VALUES(evidence_id),
-    source_id = VALUES(source_id),
-    topic_id = VALUES(topic_id),
-    relation_id = VALUES(relation_id),
-    actor_id = VALUES(actor_id),
-    object_type = VALUES(object_type),
-    object_id = VALUES(object_id),
-    left_object_type = VALUES(left_object_type),
-    left_object_id = VALUES(left_object_id),
-    right_object_type = VALUES(right_object_type),
-    right_object_id = VALUES(right_object_id),
-    slug = VALUES(slug),
-    title = VALUES(title),
-    text_content = VALUES(text_content),
-    truth_question_parent_id = VALUES(truth_question_parent_id),
-    sort_num = VALUES(sort_num),
     question_text = VALUES(question_text),
-    updated_ymdhis = VALUES(updated_ymdhis);
-
-
-
-TRUNCATE {{prefix}}truth_answers;
+    parent_question_id = VALUES(parent_question_id),
+    updated_ymdhis = VALUES(updated_ymdhis),
+    metadata_json = VALUES(metadata_json);
 
 INSERT INTO {{prefix}}truth_answers (
+    truth_answer_id,
     truth_question_id,
-    actor_id,
     answer_text,
-    confidence,
-    evidence_count,
-    source_count,
-    status,
+    answer_summary,
+    answered_by_actor_id,
+    answered_in_channel_id,
+    answered_in_thread_id,
+    answered_in_message_id,
+    is_accepted,
+    acceptance_votes,
+    rejection_votes,
+    confidence_score,
+    answer_status,
+    view_count,
+    helpful_count,
     created_ymdhis,
     updated_ymdhis,
+    accepted_ymdhis,
     is_deleted,
     deleted_ymdhis,
-    evidence_score,
-    contradiction_flag,
-    likes_count
+    metadata_json
 )
 SELECT
-    parent,
-    0,
-    question,
-    0.00,
-    0,
-    0,
-    'active',
-    20250101000000,
-    20250101000000,
-    0,
-    NULL,
-    0.00,
-    0,
-    0
+    recno AS truth_answer_id,
+    parent AS truth_question_id,
+    question AS answer_text,
+    NULL AS answer_summary,
+    0 AS answered_by_actor_id,
+    NULL AS answered_in_channel_id,
+    NULL AS answered_in_thread_id,
+    NULL AS answered_in_message_id,
+    0 AS is_accepted,
+    0 AS acceptance_votes,
+    0 AS rejection_votes,
+    0.50 AS confidence_score,
+    'active' AS answer_status,
+    0 AS view_count,
+    0 AS helpful_count,
+    20250101000000 AS created_ymdhis,
+    20250101000000 AS updated_ymdhis,
+    NULL AS accepted_ymdhis,
+    0 AS is_deleted,
+    NULL AS deleted_ymdhis,
+    NULL AS metadata_json
 FROM livehelp_qa
 WHERE typeof = 'answer'
 ON DUPLICATE KEY UPDATE
+    answer_text = VALUES(answer_text),
     updated_ymdhis = VALUES(updated_ymdhis);
 
 
@@ -879,6 +829,7 @@ ON DUPLICATE KEY UPDATE
 
 
 INSERT INTO {{prefix}}collection_tabs (
+    collection_tab_id,
     collection_tab_parent_id,
     collection_id,
     federations_node_id,
@@ -890,6 +841,8 @@ INSERT INTO {{prefix}}collection_tabs (
     color,
     description,
     is_hidden,
+    visibility_rule,
+    tab_type,
     created_ymdhis,
     updated_ymdhis,
     is_active,
@@ -897,6 +850,7 @@ INSERT INTO {{prefix}}collection_tabs (
     deleted_ymdhis
 )
 SELECT
+    (1000000 + recno) AS collection_tab_id,
     NULL AS collection_tab_parent_id,
     1 AS collection_id,
     1 AS federations_node_id,
@@ -908,6 +862,8 @@ SELECT
     '4caf50' AS color,
     NULL AS description,
     0 AS is_hidden,
+    NULL AS visibility_rule,
+    NULL AS tab_type,
     20250101000000 AS created_ymdhis,
     20250101000000 AS updated_ymdhis,
     1 AS is_active,
@@ -929,6 +885,7 @@ ON DUPLICATE KEY UPDATE
 
 
 INSERT INTO {{prefix}}collection_tabs (
+    collection_tab_id,
     collection_tab_parent_id,
     collection_id,
     federations_node_id,
@@ -940,6 +897,8 @@ INSERT INTO {{prefix}}collection_tabs (
     color,
     description,
     is_hidden,
+    visibility_rule,
+    tab_type,
     created_ymdhis,
     updated_ymdhis,
     is_active,
@@ -947,6 +906,7 @@ INSERT INTO {{prefix}}collection_tabs (
     deleted_ymdhis
 )
 SELECT
+    (1000000 + child.recno) AS collection_tab_id,
     parent_tab.collection_tab_id AS collection_tab_parent_id,
     1 AS collection_id,
     1 AS federations_node_id,
@@ -958,6 +918,8 @@ SELECT
     '4caf50' AS color,
     NULL AS description,
     0 AS is_hidden,
+    NULL AS visibility_rule,
+    NULL AS tab_type,
     20250101000000 AS created_ymdhis,
     20250101000000 AS updated_ymdhis,
     1 AS is_active,
@@ -1097,7 +1059,10 @@ ALTER TABLE livehelp_referers_daily
 
 
 TRUNCATE {{prefix}}referers;
+SET @lupo_import_referer_id := 0;
+
 INSERT INTO {{prefix}}referers (
+    referer_id,
     content_id,
     actor_id,
     referer_url,
@@ -1110,6 +1075,7 @@ INSERT INTO {{prefix}}referers (
     metadata_json
 )
 SELECT
+    (@lupo_import_referer_id := @lupo_import_referer_id + 1) AS referer_id,
     0 AS content_id,
     0 AS actor_id,
     NULL AS referer_url,
@@ -1131,6 +1097,7 @@ FROM livehelp_referers_daily r;
 
 
 INSERT INTO {{prefix}}referers (
+    referer_id,
     content_id,
     actor_id,
     referer_url,
@@ -1143,6 +1110,7 @@ INSERT INTO {{prefix}}referers (
     metadata_json
 )
 SELECT
+    (@lupo_import_referer_id := @lupo_import_referer_id + 1) AS referer_id,
     0 AS content_id,
     0 AS actor_id,
     r.pageurl AS referer_url,
@@ -1204,8 +1172,11 @@ ALTER TABLE livehelp_visits_monthly
   COMMENT = 'DEPRECATED: Imported into {{prefix}}visits (synthetic rows). Safe to delete after migration.';
 
 TRUNCATE {{prefix}}visits;
+SET @lupo_import_visit_id := 0;
+
 -- Synthetic visits from daily: one row per (livehelp_id, dateof), path_url=pageurl, entercontentid=livehelp_id, created_ymdhis=dateof+noon, is_processed=1.
 INSERT INTO {{prefix}}visits (
+    visit_id,
     session_id,
     actor_id,
     instance_id,
@@ -1220,6 +1191,7 @@ INSERT INTO {{prefix}}visits (
     deleted_ymdhis
 )
 SELECT
+    (@lupo_import_visit_id := @lupo_import_visit_id + 1) AS visit_id,
     0 AS session_id,
     COALESCE(r.livehelp_id, 0) AS actor_id,
     0 AS instance_id,
@@ -1242,6 +1214,7 @@ SELECT
 FROM livehelp_visits_daily r;
 
 INSERT INTO {{prefix}}visits (
+    visit_id,
     session_id,
     actor_id,
     instance_id,
@@ -1256,6 +1229,7 @@ INSERT INTO {{prefix}}visits (
     deleted_ymdhis
 )
 SELECT
+    (@lupo_import_visit_id := @lupo_import_visit_id + 1) AS visit_id,
     0 AS session_id,
     0 AS actor_id,
     0 AS instance_id,
@@ -1294,9 +1268,11 @@ ALTER TABLE livehelp_paths_monthly
   COMMENT = 'DEPRECATED: Imported into {{prefix}}paths. Safe to delete after migration.';
 
 TRUNCATE {{prefix}}paths;
+SET @lupo_import_path_id := 0;
 
 -- paths_firsts: dateof is YYYYMMDD (8 digits). If 6 digits (YYYYMM), day_num=1.
 INSERT INTO {{prefix}}paths (
+    path_id,
     entercontentid,
     exitcontentid,
     enter_table,
@@ -1313,6 +1289,7 @@ INSERT INTO {{prefix}}paths (
     deleted_ymdhis
 )
 SELECT
+    (@lupo_import_path_id := @lupo_import_path_id + 1) AS path_id,
     p.visit_recno AS entercontentid,
     p.exit_recno AS exitcontentid,
     'content' AS enter_table,
@@ -1331,6 +1308,7 @@ FROM livehelp_paths_firsts p;
 
 -- paths_monthly: dateof may be YYYYMM (6 digits). year_num=FLOOR(dateof/100), month_num=dateof%100, day_num=1.
 INSERT INTO {{prefix}}paths (
+    path_id,
     entercontentid,
     exitcontentid,
     enter_table,
@@ -1347,6 +1325,7 @@ INSERT INTO {{prefix}}paths (
     deleted_ymdhis
 )
 SELECT
+    (@lupo_import_path_id := @lupo_import_path_id + 1) AS path_id,
     p.visit_recno AS entercontentid,
     p.exit_recno AS exitcontentid,
     'content' AS enter_table,
@@ -1672,3 +1651,93 @@ FROM (
 ) t
 CROSS JOIN (SELECT COALESCE(MAX(department_role_id), 0) AS base FROM {{prefix}}department_roles) m
 CROSS JOIN (SELECT CAST(DATE_FORMAT(UTC_TIMESTAMP(), '%Y%m%d%H%i%S') AS SIGNED) AS ts) ts;
+
+-- ======================================================================
+-- Root department (0): restore core actor memberships after TRUNCATE/rebuild
+-- of {{prefix}}actor_departments from livehelp_operator_departments (seed rows are cleared).
+-- Three operator hybrids: captain (wolfie 1), lilith (2), countermeasure (111); system 0; ANUBIS 19.
+-- ======================================================================
+INSERT INTO {{prefix}}actor_departments (actor_department_id, actor_id, department_id, role_key, title, created_ymdhis, updated_ymdhis, is_deleted, deleted_ymdhis)
+SELECT m.base + x.seq, x.aid, 0, x.rk, x.ttl, t.ts, t.ts, 0, NULL
+FROM (
+    SELECT 1 AS seq, 0 AS aid, 'system' AS rk, 'System' AS ttl
+    UNION ALL SELECT 2, 1, 'hybrid', 'Captain (WOLFIE hybrid)'
+    UNION ALL SELECT 3, 2, 'hybrid', 'Lilith (LILITH hybrid)'
+    UNION ALL SELECT 4, 111, 'hybrid', 'COUNTERMEASURE hybrid'
+    UNION ALL SELECT 5, 19, 'system', 'ANUBIS custodian'
+) AS x
+CROSS JOIN (SELECT COALESCE(MAX(actor_department_id), 0) AS base FROM {{prefix}}actor_departments) AS m
+CROSS JOIN (SELECT CAST(DATE_FORMAT(UTC_TIMESTAMP(), '%Y%m%d%H%i%S') AS SIGNED) AS ts) AS t
+WHERE NOT EXISTS (
+    SELECT 1 FROM {{prefix}}actor_departments ad
+    WHERE ad.actor_id = x.aid AND ad.department_id = 0 AND (ad.is_deleted = 0 OR ad.is_deleted IS NULL)
+);
+
+-- ======================================================================
+-- Per non-root department: one Wolfie-model hybrid actor (named from department.name).
+-- actor_id band 280000 + department_id (import-only; avoids collision with Crafty operators 10000+).
+-- Root (0) uses seeded captain (wolfie); skip department_id 0.
+-- ======================================================================
+INSERT INTO {{prefix}}actors (
+    actor_name,
+    actor_id,
+    actor_type,
+    slug,
+    name,
+    created_ymdhis,
+    updated_ymdhis,
+    is_active,
+    is_deleted,
+    deleted_ymdhis,
+    actor_source_id,
+    actor_source_type,
+    metadata,
+    adversarial_role,
+    adversarial_oversight_actor_id,
+    avatar_hash,
+    can_login,
+    is_agent
+)
+SELECT
+    CONCAT('dept_', d.department_id),
+    (280000 + d.department_id),
+    'human_agent',
+    CONCAT('department-', d.department_id),
+    d.name,
+    CAST(DATE_FORMAT(UTC_TIMESTAMP(), '%Y%m%d%H%i%S') AS SIGNED),
+    CAST(DATE_FORMAT(UTC_TIMESTAMP(), '%Y%m%d%H%i%S') AS SIGNED),
+    1,
+    0,
+    NULL,
+    d.department_id,
+    'lupo_departments',
+    '{"agent_model":"wolfie","template_actor_id":1,"purpose":"department_hybrid_import"}',
+    'none',
+    NULL,
+    NULL,
+    1,
+    1
+FROM {{prefix}}departments d
+WHERE d.department_id <> 0
+AND (d.is_deleted = 0 OR d.is_deleted IS NULL)
+AND NOT EXISTS (
+    SELECT 1 FROM {{prefix}}actors a
+    WHERE a.actor_name = CONCAT('dept_', d.department_id)
+);
+
+INSERT INTO {{prefix}}actor_departments (actor_department_id, actor_id, department_id, role_key, title, created_ymdhis, updated_ymdhis, is_deleted, deleted_ymdhis)
+SELECT m.base + r.rn, r.actor_id, r.department_id, 'hybrid', CONCAT(r.dname, ' (Wolfie model hybrid)'), r.ts, r.ts, 0, NULL
+FROM (
+    SELECT a.actor_id, a.actor_source_id AS department_id, a.name AS dname,
+           ROW_NUMBER() OVER (ORDER BY a.actor_id) AS rn,
+           CAST(DATE_FORMAT(UTC_TIMESTAMP(), '%Y%m%d%H%i%S') AS SIGNED) AS ts
+    FROM {{prefix}}actors a
+    WHERE a.actor_source_type = 'lupo_departments'
+    AND a.actor_type = 'human_agent'
+    AND a.actor_name REGEXP '^dept_[0-9]+$'
+) AS r
+CROSS JOIN (SELECT COALESCE(MAX(actor_department_id), 0) AS base FROM {{prefix}}actor_departments) AS m
+WHERE NOT EXISTS (
+    SELECT 1 FROM {{prefix}}actor_departments ad2
+    WHERE ad2.actor_id = r.actor_id AND ad2.department_id = r.department_id AND (ad2.is_deleted = 0 OR ad2.is_deleted IS NULL)
+);

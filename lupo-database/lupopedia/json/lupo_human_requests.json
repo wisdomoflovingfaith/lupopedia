@@ -1,4 +1,8 @@
 {
+  "_comment": "THIS FILE IS AUTO-GENERATED. DO NOT EDIT MANUALLY.",
+  "_purpose": "Schema reference only — column names, types, indexes. Contains NO data.",
+  "_source": "Generated from live database by generate_toon_files.py",
+  "_read_only": true,
   "table_name": "lupo_human_requests",
   "fields": [
     "`request_id` bigint NOT NULL",
@@ -26,7 +30,6 @@
     "`is_deleted` tinyint DEFAULT 0",
     "`deleted_ymdhis` bigint DEFAULT 0"
   ],
-  "data": [],
   "indexes": [
     {
       "index_name": "idx_initiator_actor",

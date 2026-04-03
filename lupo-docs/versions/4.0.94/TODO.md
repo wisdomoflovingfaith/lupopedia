@@ -4,7 +4,7 @@ lupopedia.headers:
   version_when_written: "4.0.94"
   file_path_from_root: "lupo-docs/versions/4.0.94/TODO.md"
   web_path: "http://www.lupopedia.com/lupopedia/lupo-docs/versions/4.0.94/TODO.md"
-  when_updated: "20260403140552"
+  when_updated: "20260403222833"
   channel_id: 42
   thread_id: "todo-backlog-4.0.94"
   actor_id: 102
@@ -27,7 +27,7 @@ lupopedia.edges:
       weight: 0.9
       reason: "Frozen 4.0.93 completed record"
 lupopedia.footer:
-  last_verified: "20260403025155"
+  last_verified: "20260403222833"
   verified_by:
     actor_id: 102
   orchestrator: "cursor:root"
@@ -39,10 +39,22 @@ lupopedia.footer:
 
 Merged from **`lupo-docs/versions/4.0.93/TODO.md`** on 2026-04-03 (deduplicated). Single active backlog for this version.
 
+## High priority — department model runtime (after documentation approval)
+
+- [ ] **Visitor/chat POST audit** — all paths resolve **`actor_id`** server-side per **PRD 05** / **PRD 18** and match **`channels-api`** posture (see **`answers/20260403_222043_ANSWER_department_model_visitor_chat_docs_synthesis.md`**).
+- [ ] **`EffectiveActorResolver` / act-as callers** — verify department-first consistency after POST audit (no reintroduction of edge-only act-as for web selector).
+- [ ] **Federation navigation compiler** — OPEN **`lupo-docs/versions/4.0.94/questions/20260403_222042_QUESTION_federation_navigation_compiler.md`** until **WOLFIE** product decision.
+
 ## High priority — version ghosts (manual)
 
 - [ ] Review **34** files with **critical** findings in **`lupo-docs/implementations/29_project_structure/status/version_ghosts_report.json`** (policy: **`answers/20260403_140554_ANSWER_version_ghost_cleanup_manual_review.md`**).
 - [ ] Fix phantom legacy paths and ambiguous **3.0.x** prose **per file** (no repo-wide blind rewrite).
+
+## Completed (department-first documentation batch — UTC `20260403222041`)
+
+- [x] **`ACTOR_DEPARTMENT_AUTH_USER_DOCTRINE.md`** — canonical joins + eligibility (thread-verified in decision **`20260403_222041_…`**).
+- [x] **PRD alignment** — **02**, **05**, **07**, **13**, **15**, **18**, **25**, **32** + implementation **13** Q3 answered (same decision body).
+- [x] **Version artifacts** — decision **`20260403_222041_…`**, answer **`20260403_222043_…`**, open QUESTION **`20260403_222042_…`**; `CHANGELOG` / `PLAN` Phase **H** / `edges` / `WHAT_TO_WORK_ON_NEXT_SESSION` / `THREAD_INDEX` rows.
 
 ## Completed (this documentation pass — UTC `20260403140552`)
 
@@ -114,8 +126,97 @@ Open rewrite/promotion work maps to **PLAN** rows **C-1**, **C-2**, **C-3**. **D
 
 ### PRD 33 / Softaculous / 4.1.0 gate (traceability per PRD §12)
 
-- [x] **Gate PRD approved** — see checklist lines in **Installer / Softaculous** above; primary evidence **`decisions/20260403_022543_DECISION_APPROVED_prd33_softaculous_gate_documentation.md`**.
-- [ ] **Checklist rows** — add lines per **§7.x / §10** as work starts; each line: **§** ref, **owner `actor_id`**, **status**, **evidence** path + BIGINT UTC.
+- [x] **Gate PRD approved** — normative text **`lupo-docs/prd/33_softaculous_certification_4_1_0_gate.md`** (`status: approved`); evidence **`decisions/20260403_022543_DECISION_APPROVED_prd33_softaculous_gate_documentation.md`**; LILITH final **§13.1** UTC **`20260403222833`** (100/100, ready for code).
+- [x] **§12 backlog rows created** — subsections below (§7.4–§7.9 + §10); each line: **PRD 33**, **§** ref, **owner `actor_id`**, **`planned` / `in_progress` / `complete` / `blocked`**, **evidence** (on close: artifact path + BIGINT UTC).
+
+**Default owner:** **WOLFIE** (`actor_id` **1**) — reassign per task in channel decisions if HEPHAESTUS or another actor executes.
+
+#### PRD 33 §10 — 4.1.0 gate conditions (tagging bar)
+
+| Done | PRD § | Task (summary) | Owner `actor_id` | Status | Evidence (path + UTC when complete) |
+|------|--------|----------------|------------------|--------|--------------------------------------|
+| [ ] | §10.1 + §6 | Root scripts **`livehelp_js.php`**, **`lupopedia_js.php`** contract on clean install + Crafty import path | 1 | planned | |
+| [ ] | §10.2 + §7.1 | Unified operator chat — functional parity (multi-session, colors, transport chain) | 1 | planned | |
+| [ ] | §10.3 + §7.4–§7.9 | §7.4 all checked or **APPROVED** deferrals; §7.5–§7.9 same | 1 | planned | |
+| [ ] | §10.4 + §7.3 | **`admin.php`** demo-ready operator shell (or **APPROVED** deferral) | 1 | planned | |
+| [ ] | §10.5 + §5 | PHP **5.6** floor + current **8.x** smoke documented | 1 | planned | |
+| [ ] | §10.6 + §9 + §2.1 | Softaculous / hoster evidence artifact + vendor acceptance where claimed | 1 | planned | |
+| [ ] | §10.7 | Constitutional compliance audit (recommended: LILITH **actor_id 2**) on RC scope | 2 | planned | |
+
+#### PRD 33 §7.4 — visitor-facing Crafty parity (implementation roadmap)
+
+| Done | PRD § | Task (summary) | Owner `actor_id` | Status | Evidence |
+|------|--------|----------------|------------------|--------|----------|
+| [ ] | §7.4 | Visits reporting — **`data.php` tab 3** / **`data_visits.php`** parity | 1 | planned | |
+| [ ] | §7.4 | Path funnel — **`data.php` tab 4** / paths drill-down | 1 | planned | |
+| [ ] | §7.4 | Per-hit page stream — embed → tracker, session page sequences | 1 | planned | |
+| [ ] | §7.4 | Referrer + campaign context (PRD **11**) | 1 | planned | |
+| [ ] | §7.4 | Real visitor list (“who is on the site now”) | 1 | planned | |
+| [ ] | §7.4 | Real client IP — **`get_ipaddress()`** parity | 1 | planned | |
+| [ ] | §7.4 | Session / visitor identity fallbacks — **`identity()` / `detectID()`** chain | 1 | planned | |
+| [ ] | §7.4 | Real-time transport fallbacks — buffer / XHR / image legs | 1 | planned | |
+| [ ] | §7.4 + §7.6 | Proactive chat invites | 1 | planned | |
+| [ ] | §7.4 + §3.11 | Typing preview — floating layer + **PREVIEW** visibility modes | 1 | planned | |
+| [ ] | §7.4 | Chat transcripts + logging | 1 | planned | |
+| [ ] | §7.4 | Canned messages (operator / department scoped) | 1 | planned | |
+| [ ] | §7.4 + §7.9 | Multilingual operator + visitor UI | 1 | planned | |
+| [ ] | §7.4 + §7.8 | Emoji / **`::img|…::`** icons in chat | 1 | planned | |
+| [ ] | §7.4 | Improved visitor chat templates — preserve §6 embed contract | 1 | planned | |
+| [ ] | §7.4 | **Mobile client chat** — separate **`/mobile/...`** pages, device detection; **PRD 35** / **MOBILE_SEPARATION_DOCTRINE.md** | 1 | planned | |
+| [ ] | §7.4 | Departments — PRD **25** + Crafty routing/templates | 1 | planned | |
+| [ ] | §7.4 | Operator / user admin — Crafty-style users + permissions | 1 | planned | |
+| [ ] | §7.4 | Leads — import + UI parity or **APPROVED** replacement | 1 | planned | |
+| [ ] | §7.4 + §7.6 | Visitor-composed questions + Q/A | 1 | planned | |
+| [ ] | §7.4 | Campaign / attribution tracking (+ search-term fix or documented deprecation) | 1 | planned | |
+
+#### PRD 33 §7.5 — GC + rollups
+
+| Done | PRD § | Task | Owner | Status | Evidence |
+|------|--------|------|-------|--------|----------|
+| [ ] | §7.5 | Hitched probabilistic GC on hot endpoints | 1 | planned | |
+| [ ] | §7.5 | Rollup targets — **`lupo_*`** shapes per §3.9 + install SQL | 1 | planned | |
+| [ ] | §7.5 | Stale visit_track → aggregates + prune raw rows | 1 | planned | |
+| [ ] | §7.5 | Visitor idle session end + **`archive*`** equivalents on **`lupo_*`** | 1 | planned | |
+| [ ] | §7.5 | Operator stale presence + history rows | 1 | planned | |
+| [ ] | §7.5 | Table caps + recursive graph deletes | 1 | planned | |
+| [ ] | §7.5 | Abandoned chat timeout (~90s in **`status='chat'`**) | 1 | planned | |
+
+#### PRD 33 §7.6 — auto-invite + visitor questions
+
+| Done | PRD § | Task | Owner | Status | Evidence |
+|------|--------|------|-------|--------|----------|
+| [ ] | §7.6 | Auto-invite rules engine (image-class evaluation parity) | 1 | planned | |
+| [ ] | §7.6 | Visitor question UX after chat end + persistence mapping | 1 | planned | |
+
+#### PRD 33 §7.7 — modernization checklist
+
+| Done | PRD § | Task | Owner | Status | Evidence |
+|------|--------|------|-------|--------|----------|
+| [ ] | §7.7 | No framesets — iframe/div shells | 1 | planned | |
+| [ ] | §7.7 | PDO_DB + named placeholders on new/port work | 1 | planned | |
+| [ ] | §7.7 | **`$UNTRUSTED`** (or documented equivalent) + validation | 1 | planned | |
+| [ ] | §7.7 | Dynapi/dynlayer — **`lupo-includes/js/dynapi/`** parity | 1 | planned | |
+| [ ] | §7.7 | Fallbacks retained until superseded | 1 | planned | |
+| [ ] | §7.7 | §5.1 unknown shared-hosting environment posture | 1 | planned | |
+| [ ] | §7.7 | §5.2 admin security / extension warnings | 1 | planned | |
+| [ ] | §7.7 | §7.9 localization layer discovery + admin locale list | 1 | planned | |
+
+#### PRD 33 §7.8 — emoji / picker
+
+| Done | PRD § | Task | Owner | Status | Evidence |
+|------|--------|------|-------|--------|----------|
+| [ ] | §7.8 | Picker allow-list + validated **`::img|…::`** tokens only | 1 | planned | |
+| [ ] | §7.8 | Public emoji URLs — no directory listing beyond approved files | 1 | planned | |
+| [ ] | §7.8 | Write-time reject invalid tokens (no silent strip) | 1 | planned | |
+
+#### PRD 33 §7.9 — multilingual UI
+
+| Done | PRD § | Task | Owner | Status | Evidence |
+|------|--------|------|-------|--------|----------|
+| [ ] | §7.9 | Lookup API **key + locale → string** for gated UI | 1 | planned | |
+| [ ] | §7.9 | Charset / **Content-Type** / HTML declaration aligned (UTF-8 default) | 1 | planned | |
+| [ ] | §7.9 | **APPROVED** decision: filesystem vs DB (or hybrid) + seed strategy | 1 | planned | |
+| [ ] | §7.9 | Parity spot-check vs **`craftysyntax-reference/lang/`** | 1 | planned | |
 
 - [ ] **install.php:** classes-based instantiation and seeding story for system “Truths” / contexts (aligned with consolidated SQL + importers).
 - [ ] **Unified SQL artifact:** optional `lupopedia_v4.0.x.sql`-style bundle naming for distributors (canonical paths remain `install_new_lupopedia.sql` + `install/seed_lupopedia_4_1_0.sql` + Crafty import on upgrade).
@@ -125,8 +226,7 @@ Open rewrite/promotion work maps to **PLAN** rows **C-1**, **C-2**, **C-3**. **D
 - [ ] **Proactive invite** from contextual edges (high-weight Truth pages).
 - [ ] **Contextual installation:** seed context registry / semantic edges for “Brain” where product requires.
 - [ ] **Subdirectory installation** hardening (not web root) — verify end-to-end beyond PRD text.
-- [x] **PRD 33 gate text (documentation)** — **`lupopedia.headers.status: approved`**; **§12** maps to this **`TODO.md`** subsection; evidence: **`lupo-docs/versions/4.0.94/decisions/20260403_022543_DECISION_APPROVED_prd33_softaculous_gate_documentation.md`**; hub: **`lupo-docs/implementations/33_softaculous_certification_4_1_0_gate/`** — **PRD:** [lupo-docs/prd/33_softaculous_certification_4_1_0_gate.md](../../prd/33_softaculous_certification_4_1_0_gate.md).
-- [ ] **Softaculous certification execution** — **§7–§10** / installer / product checklist toward hoster certification (same **PRD** link); **not** closed by documentation approval alone.
+- [ ] **Softaculous certification execution (umbrella)** — Track completion via **§10** + **§7.4–§7.9** tables above; **not** closed by documentation approval alone. Hub: **`lupo-docs/implementations/33_softaculous_certification_4_1_0_gate/`**. **PRD:** [lupo-docs/prd/33_softaculous_certification_4_1_0_gate.md](../../prd/33_softaculous_certification_4_1_0_gate.md).
 
 ## Real-time chat / Glass UI
 

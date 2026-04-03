@@ -1,55 +1,49 @@
 ---
-# DEPRECATED: lupo_actor_auth_users
-
-This table is deprecated as of Lupopedia 4.0.93+ and replaced by lupo_actor_lease_sessions.
-
-- No new mappings should be created here.
-- All new identity flows use agent→actor→auth_user leasing.
-- See ACTOR_LEASING_DOCTRINE.md for details.
-
----
 lupopedia.headers:
-  when_updated: "20260328013000"
+  when_updated: "20260403192018"
   file_path_from_root: "lupo-docs/database/lupopedia/tables/active/lupo_actor_auth_users.md"
-  last_modified_utc: "20260328013000"
+  last_modified_utc: "20260403192018"
   channel_id: 42
-  actor_id: 23
-  actor_name: "hephaestus"
-  delegation_chain: "wolfie:hephaestus"
+  actor_id: 102
+  actor_name: "cursor"
+  delegation_chain: "cursor:root"
   artifact_type: "documentation"
   artifact_kind: "table"
   namespace: "auth"
-  purpose: "Normalized table documentation for lupo_actor_auth_users from TOON JSON"
+  purpose: "Auth user ↔ actor pairing; canonical install table (no separate exclusive lease-session table)"
   tags:
   - database
   - table
   - normalized
-  - 4.0.88
+  - 4.0.94
 lupopedia.edges:
-  comment: "static placeholder edges for stage3 normalization"
   outbound_edges:
-  - to: "lupo-database/lupopedia/json/lupo_actor_auth_users.json"
+  - to: "lupo-database/lupopedia/toon/lupo_actor_auth_users.toon.json"
     type: "references"
     weight: 1.0
-    reason: "authoritative TOON JSON source"
+    reason: "TOON schema from install_new_lupopedia.sql"
+  - to: "lupo-docs/prd/05_auth_user_actor_agent_transformation.md"
+    type: "references"
+    weight: 0.9
+    reason: "Auth user ↔ actor model"
 lupopedia.footer:
-  last_verified: "20260328013000"
-  last_verified_by: "hephaestus"
-  last_verified_by_actor_id: 23
-  generated: true
-  provenance: "stage3_track_c_normalization"
+  last_verified: "20260403192018"
+  last_verified_by: "cursor"
+  last_verified_by_actor_id: 102
 ---
-# file: lupo_actor_auth_users.md
+# file: lupo_actor_auth_users.md — web_path: (table doc)
 
 # lupo_actor_auth_users
 
 ## Purpose
-Canonical table documentation normalized from TOON JSON for `lupo_actor_auth_users`.
+
+Rows link **`lupo_auth_users`** to **`lupo_actors`** (relationship role, routing, soft delete). This is the canonical pairing table in install SQL. Web “act as” exclusivity is **not** enforced here; optional per-actor web limits use **`lupo_actors.web_restrict_act_as_creator_or_root`** in PHP.
 
 ## Schema
 
 ### Primary Key
-(none)
+
+`actor_auth_user_id` (BIGINT, application-assigned)
 
 ### Columns
 
@@ -80,6 +74,5 @@ Canonical table documentation normalized from TOON JSON for `lupo_actor_auth_use
 | `lupo_actor_auth_users_unq_actor_user_role` | `actor_id`, `auth_user_id`, `relationship_role` | yes |
 
 ## Doctrine
-- Source of truth: `lupo-database/lupopedia/json/` TOON exports
-- Regeneration mode: Stage 3 deterministic normalization
-- Edge mode: placeholder baseline
+
+- Schema source: **`lupo-database/lupopedia/mysql/install/install_new_lupopedia.sql`**; TOON: **`lupo-database/lupopedia/toon/lupo_actor_auth_users.toon.json`**.

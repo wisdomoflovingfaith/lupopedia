@@ -5,7 +5,7 @@ lupopedia.headers:
   system_version: "4.0.87"
   file_path_from_root: "lupo-docs/doctrine/IDENTITY_LAYERS_DOCTRINE.md"
   web_path: "http://www.lupopedia.com/doctrine/IDENTITY_LAYERS"
-  last_modified_utc: "20260402233135"
+  last_modified_utc: "20260403220410"
   channel_id: 42
   thread_id: 1006
   actor_id: 102
@@ -32,13 +32,17 @@ lupopedia.edges:
       type: implements
       weight: 1.0
       reason: "Doctrine PRD lineage; constitutional audit 20260403"
+    - to: "lupo-docs/doctrine/ACTOR_DEPARTMENT_AUTH_USER_DOCTRINE.md"
+      type: references
+      weight: 1.0
+      reason: "Join-table mental model: auth_user, department, actor; visitor chat vs Crafty"
 
 lupopedia.footer:
   approved_for_version: "4.1.0"
   approved_for_version_utc: "20260327103238"
   approved_for_version_by: "Cursor IDE Agent (Lead Orchestration)"
   approved_for_version_by_actor_id: 102
-  last_verified: "20260402233135"
+  last_verified: "20260403220410"
   last_verified_by: "cursor"
   last_verified_by_actor_id: 102
   orchestrator: "wolfie:root"
@@ -140,12 +144,16 @@ This doctrine defines the canonical 4.0.87 identity separation to eliminate laye
 ### 3.5 Directory structure
 
 - **`lupo-agents/`** — One directory per **agent_key** (filesystem discovery; see [PRD 07](../prd/07_agents_faucets.md)). Example: `lupo-agents/countermeasure/`. **IDE facets:** shared prompt body for all IDE packs lives in **`lupo-agents/_shared/ide_facet_base_system_prompt.txt`**; each `lupo-agents/<facet>/system_prompt.txt` is a thin wrapper (facet `actor_id`, propagation target).
-- **`lupo-actors/`** — One directory per **`actor_id`** that has on-disk resources; directory name = decimal string of **`actor_id`** (e.g. `lupo-actors/111/`). Layout: `apps/`, `lupo-tools/`, `lupo-docs/`, etc., per [AGENTS.md](../../AGENTS.md).
+- **`lupo-actors/`** — **Actor hub** paths are keyed by **`actor_id`**, not by slug. Authoritative layout is [PRD 00 §5.6](../prd/00_root_constitutional_system_requirements.md#56-actor-id-semantics):
+  - **`actor_id` &lt; 2026** (reserved / install / registry band): **`lupo-actors/{actor_id}/`** (decimal string, e.g. `lupo-actors/111/` for COUNTERMEASURE).
+  - **`actor_id` ≥ 2026** (typical web / `IdGenerator` allocations with a UTC timestamp prefix): **`lupo-actors/YYYY/MM/{actor_id}/`** where **YYYY** and **MM** are taken from the leading date portion of the id (see PRD 00).
+- **Do not** create **`lupo-actors/{slug}/`** for the actor hub when a numeric path exists or is required by registry **`dir`** — slug-named hubs are legacy drift (e.g. `lupo-actors/countermeasure/` was incorrect for **`actor_id` 111**).
+- Standard subdirs under the hub: `apps/`, `lupo-tools/`, `lupo-docs/`, etc., per [AGENTS.md](../../AGENTS.md).
 
 ### 3.6 New human / generated `actor_id` shape
 
-- Generated IDs follow **PRD 01** and application **`IdGenerator`** (typically **BIGINT** composed from **UTC** creation window + sequence). Implementation: `lupo-includes/classes/IdGenerator.php`.
-- **Example shape only** (not a live id): timestamp component + sequence might appear as one integer, e.g. `202604042200000001`; **on-disk** path is `lupo-actors/<that_actor_id>/` with **no underscores** in the directory name.
+- Generated IDs follow **PRD 01** and application **`IdGenerator`** (typically **BIGINT**: **UTC `YYYYMMDDHHIISS`** + **4-digit sequence** **0000–9999**). Implementation: `lupo-includes/classes/IdGenerator.php`.
+- **On-disk** for those runtime ids: **`lupo-actors/YYYY/MM/{actor_id}/`** per **§3.5** and PRD 00 §5.6 (not a flat single segment when **`actor_id` ≥ 2026**).
 
 ### 3.7 Facet `actor_id` allocation
 

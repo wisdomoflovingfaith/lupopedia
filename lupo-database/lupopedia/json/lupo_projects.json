@@ -1,4 +1,8 @@
 {
+  "_comment": "THIS FILE IS AUTO-GENERATED. DO NOT EDIT MANUALLY.",
+  "_purpose": "Schema reference only — column names, types, indexes. Contains NO data.",
+  "_source": "Generated from live database by generate_toon_files.py",
+  "_read_only": true,
   "table_name": "lupo_projects",
   "fields": [
     "`project_id` bigint NOT NULL",
@@ -22,31 +26,6 @@
     "`deleted_ymdhis` bigint DEFAULT 0",
     "`created_by_actor_id` bigint",
     "`updated_by_actor_id` bigint"
-  ],
-  "data": [
-    {
-      "project_id": 0,
-      "project_key": "lupopedia-core",
-      "project_slug": "lupopedia-core",
-      "project_name": "Lupopedia Core Development",
-      "federation_node_id": 1,
-      "default_channel_id": 42,
-      "orchestrator_id": 1,
-      "project_type": "standard",
-      "description": "Primary Lupopedia semantic OS instance; default development project.",
-      "github_repository": "https://github.com/wisdomoflovingfaith/lupopedia",
-      "status": "active",
-      "is_active": 1,
-      "is_deleted": 0,
-      "is_archived": 0,
-      "is_frozen": 0,
-      "metadata_json": null,
-      "created_ymdhis": 20260316000000,
-      "updated_ymdhis": 20260316000000,
-      "deleted_ymdhis": 0,
-      "created_by_actor_id": null,
-      "updated_by_actor_id": null
-    }
   ],
   "indexes": [
     {

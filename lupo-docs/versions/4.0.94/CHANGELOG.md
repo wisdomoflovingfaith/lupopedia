@@ -1,3 +1,62 @@
+# [2026-04-03] Department-first actor model — APPROVED decision + synthesis ANSWER; federation navigation QUESTION (Cursor + LILITH)
+
+- **WHO / WHERE / WHEN:** Cursor (`actor_id` **102**), LILITH audit (`actor_id` **2**); `lupo-docs/versions/4.0.94/decisions/`, `questions/`, `answers/`; UTC **`20260403222041`** (`python lupo-bin/tick.py` this batch).
+- **WHAT (thread-verified only):**
+  - **Decision:** `decisions/20260403_222041_DECISION_APPROVED_department_first_actor_model_prd_alignment.md` — APPROVED canonical department-first documentation + PRD alignment (see decision body for PRD list and **WHAT NOT claimed**).
+  - **Answer:** `answers/20260403_222043_ANSWER_department_model_visitor_chat_docs_synthesis.md` — links implementation visitor-chat Q1–Q3 to doctrine + PRDs; remaining runtime audit noted.
+  - **Question (OPEN):** `questions/20260403_222042_QUESTION_federation_navigation_compiler.md` — product options for navigation hints from aggregates; cites pre-existing **`SILENT_HARVEST_DOCTRINE.md`** (not created in this thread).
+- **WHY:** Version-folder audit trail for approved model and open federation product question.
+- **HOW:** New markdown under `4.0.94/`; `PLAN.md` Phase **H**, `TODO.md`, `edges.md`, `WHAT_TO_WORK_ON_NEXT_SESSION.md`, and `THREAD_INDEX.md` files updated in same batch.
+
+This output complies with Lupopedia Constitutional Root Rules.
+
+---
+
+# [2026-04-03] LILITH audit — PRD 15 department-first act-as; `ActorService` delegates to `AuthSessionManager` (Cursor)
+
+- **WHO / WHERE / WHEN:** Cursor (`actor_id` **102**); **`ActorService.php`**, **`AuthSessionManager.php`**, **`lupo-docs/prd/15_actors.md`**, **`lupo-docs/prd/25_departments_system.md`** (`lupo_actor_departments` columns), **`lupo-docs/prd/07_agents_faucets.md`**, **`lupo-docs/prd/32_actor_authority_agent_roles.md`**, **`AGENTS.md`**, **`lupo-docs/versions/4.0.94/CHANGELOG.md`**; UTC **`20260403211538`** (`python lupo-bin/tick.py`).
+- **WHAT:** **`App\Services\ActorService::getActorsUserCanActAs`** now **delegates** to **`AuthSessionManager::getActorsUserCanActAs`** (department-scoped join; same as web UI). Removed edge-based **`lupo_edges` `supports`** list from **`ActorService`**. **`AuthSessionManager`:** early path for **`auth_user_id === 10000`** (all active actors, bypass creator restriction) preserved. **PRD 15** rewritten: department-first eligibility, **`lupo_actor_auth_users`** as binding/audit not sole gate, deprecated exclusive lease + edge act-as. **PRD 25:** **`lupo_actor_departments`** table doc aligned to install (**`actor_department_id`**, **`role_key`**). **PRD 07 / 32 / AGENTS:** cross-links and act-as vs authority clarification.
+- **WHY:** LILITH audit — single implementation for act-as lists; docs match **PRD 05** / **PRD 25**.
+
+# [2026-04-03] `lupo-actors/` — COUNTERMEASURE hub at `111/` + registry/doctrine alignment (Cursor)
+
+- **WHO / WHERE / WHEN:** Cursor (`actor_id` **102**); **`lupo-actors/111/`** (moved from **`countermeasure/`**), **`lupo-database/lupopedia/actors/registry.json`**, **`lupo-docs/doctrine/IDENTITY_LAYERS_DOCTRINE.md`**, **`lupo-docs/doctrine/ACTOR_PRIMARY_KEY_DOCTRINE.md`**, **`lupo-actors/README.md`**, **`ActorService.php`** (docblock); UTC **`20260403210921`** (`python lupo-bin/tick.py`).
+- **WHAT:** Registry **`dir`** for COUNTERMEASURE → **`lupo-actors/111`** (PRD 00 §5.6: reserved **`actor_id` &lt; 2026** use **`lupo-actors/{actor_id}/`**). Docs clarify runtime **`actor_id` ≥ 2026** → **`lupo-actors/YYYY/MM/{actor_id}/`**; slug-only **`lupo-actors/countermeasure/`** removed as incorrect actor hub. **`lupo-agents/countermeasure/`** unchanged (agent_key namespace).
+- **WHY:** Actor filesystem hub is keyed by **`actor_id`**, not slug; matches **`SkillService`** numeric-dir probe and registry authority.
+
+# [2026-04-03] Live-DB TOON export — wipe `json/` + `toon/` then regen; fix double-unlink (Cursor)
+
+- **WHO / WHERE / WHEN:** Cursor (`actor_id` **102**); **`lupo-scripts/generate_toon_files.py`**, **`lupo-scripts/generate_toon_from_sql.py`**, **`lupo-docs/versions/4.0.94/CHANGELOG.md`**; UTC **`20260403193256`** (`python lupo-bin/tick.py`).
+- **WHAT:** **`clear_toon_files`** now deletes **all regular files** in **`lupo-database/lupopedia/json/`** and **`.../toon/`** before writing live-DB exports (primary workflow: schema mirrors the database, no orphans). Fixes **`FileNotFoundError`** on **`unlink`**: **`toon/*.toon.json`** matched both **`*.json`** and **`*.toon.json`**, so the same path was removed twice. Docstrings: **DB-first** vs **`generate_toon_from_sql.py`** (offline install-SQL + targeted **`lupo_*`** prune only).
+- **WHY:** Full directory wipe is simpler and matches “empty then regenerate”; selective globs were redundant and buggy on Windows.
+
+# [2026-04-03] `generate_toon_from_sql.py` — prune stale `lupo_*` json/toon exports (Cursor)
+
+- **WHO / WHERE / WHEN:** Cursor (`actor_id` **102**); **`lupo-scripts/generate_toon_from_sql.py`**, **`lupo-scripts/generate_toon_files.py`**; UTC **`20260403192553`** (`python lupo-bin/tick.py`).
+- **WHAT:** After regenerating `*.toon.json` from **`install_new_lupopedia.sql`**, **`prune_stale_table_exports`** deletes **`json/lupo_*.json`**, **`toon/lupo_*.toon.json`**, and **`toon/lupo_*.toon`** whose table name is not in the install DDL (prints removed paths). **`generate_toon_files.py`** — fixed **`IndentationError`** in the export loop; **`clear_toon_files`** (superseded below) had also added **`toon/*.toon.json`** to the glob list.
+- **WHY:** Dropped tables must not leave orphan schema files when using the **install-SQL** exporter.
+
+# [2026-04-03] Web act-as restriction + lease-session cleanup + TOON regen from install (Cursor)
+
+- **WHO / WHERE / WHEN:** Cursor (`actor_id` **102**); **`install_new_lupopedia.sql`**, **`ActorService.php`**, **`AuthSessionManager.php`**, **`AuthService.php`**, **`generate_toon_from_sql.py`**, **`database_audit_fresh.py`**, **`lupo-database/lupopedia/toon/`**, **`lupo-docs/prd/05_auth_user_actor_agent_transformation.md`**, **`lupo-docs/database/.../lupo_actor_auth_users.md`**, **`lupo-docs/versions/4.0.94/CHANGELOG.md`**; batch UTC **`20260403192018`** (real UTC via `python lupo-bin/tick.py`).
+- **WHAT (verified):**
+  - **Schema** — **`lupo_actors.web_restrict_act_as_creator_or_root`** (default **0**); install comment documents pairing on **`lupo_actor_auth_users`** without an exclusive lease-session table; removed unused **`lupo_actor_*`** auxiliary tables from install (templates / instances / lease_sessions / department_actor_pools) per prior thread.
+  - **PHP** — No “other session holds this actor” filtering; **`releaseAllLeasesForUser`** no-op; **`getActorsUserCanActAs`** / **`updateActiveActor`** enforce creator-or-bypass when the flag is **1**; **`ActorService`** own-actor list includes restriction metadata so end-filter is correct (duplicate pre-filter removed).
+  - **Tooling** — **`generate_toon_from_sql.py`** replaces **`{{prefix}}`** with **`lupo_`** before parsing so TOON generation is non-zero; **166** TOONs written under **`lupo-database/lupopedia/toon/`**.
+  - **Repo hygiene** — Removed stale **`lupo-database/lupopedia/json/`** exports for dropped tables; **`database_audit_fresh.py`** priority table list updated; PRD **05** + **`lupo_actor_auth_users`** table doc aligned with pairing + concurrent sessions.
+- **WHY:** Match product intent: configurable web act-as limits (creator or root-department bypass) without single-user exclusive leasing.
+- **Artifacts:** As listed in **WHERE**; deleted JSON: `lupo_actor_templates.json`, `lupo_actor_instances.json`, `lupo_actor_lease_sessions.json`, `lupo_department_actor_pools.json`.
+
+# [2026-04-03] `find_edges.py` — suggest `lupopedia.edges` from markdown (LILITH-approved concept; Cursor)
+
+- **WHO / WHERE / WHEN:** Cursor (`actor_id` **102**); **`lupo-scripts/find_edges.py`**; version doc touch UTC **`20260403143059`** (real UTC via `python lupo-bin/tick.py`).
+- **WHAT (verified):**
+  - **New script** — **`lupo-scripts/find_edges.py`**: scans markdown for links, PRD references, optional keyword hints, code/tree paths; optional **`--headers`** (`##` match across `lupo-docs/`); prints suggested **`outbound_edges`** with weight + reason; **does not write** by default.
+  - **Safety** — **`--apply`** merges into YAML only with **`--yes`** (batch) or **`--interactive`** (per-edge); otherwise exits **2**; writes **`*.bak_find_edges`** before overwrite; requires **PyYAML** for `--apply`.
+  - **Handoff** — **`WHAT_TO_WORK_ON_NEXT_SESSION.md`** updated: WOLFIE plans to **debug and exercise** this tool against **`.md`** files on return, among other backlog items.
+- **WHY:** Automate edge *discovery*; keep human confirmation for writes (per LILITH audit posture).
+- **Artifacts:** `lupo-scripts/find_edges.py`, `lupo-docs/versions/4.0.94/CHANGELOG.md` (this entry), `lupo-docs/versions/4.0.94/WHAT_TO_WORK_ON_NEXT_SESSION.md`.
+
 # [2026-04-03] Doctrine audit tooling, version ghosts, mobile / workflow doctrines (Cursor + LILITH thread)
 
 - **WHO / WHERE / WHEN:** Cursor (`actor_id` **102**), LILITH audit framing (`actor_id` **2**), orchestrator WOLFIE (`actor_id` **1**); **`lupo-docs/doctrine/`**, **`lupo-docs/prd/`**, **`AGENTS.md`**, **`lupo-docs/LESSONS_LEARNED_FROM_THE_WILD_WEST.md`**, **`lupo-docs/versions/4.0.94/`**; documentation batch UTC **`20260403140552`** (real UTC via `python lupo-bin/tick.py`).

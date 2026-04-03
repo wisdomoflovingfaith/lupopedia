@@ -2,7 +2,7 @@
 lupopedia.headers:
   header_format_version: 2
   lupopedia.schema: prd
-  when_updated: "20260402220000"
+  when_updated: "20260403221556"
   file_path_from_root: "lupo-docs/prd/32_actor_authority_agent_roles.md"
   web_path: "http://www.lupopedia.com/lupopedia/lupo-docs/prd/32_actor_authority_agent_roles.md"
   federation_node_id: 0
@@ -15,7 +15,7 @@ lupopedia.headers:
   delegation_chain: "cursor:root"
   artifact_type: "prd"
   artifact_kind: "specification"
-  purpose: "Define actor hierarchy, approval authority, and agent roles including red team agents"
+  purpose: "Governance approval tiers; not operational act-as (PRD 05/15/25 + ACTOR_DEPARTMENT_AUTH_USER_DOCTRINE)"
   tags:
     - "prd"
     - "actors"
@@ -42,8 +42,24 @@ lupopedia.edges:
       type: references
       weight: 0.9
       reason: "Actor registry database"
+    - to: "lupo-docs/prd/05_auth_user_actor_agent_transformation.md"
+      type: references
+      weight: 1.0
+      reason: "Department-first web act-as"
+    - to: "lupo-docs/prd/15_actors.md"
+      type: references
+      weight: 1.0
+      reason: "Act-as eligibility and deprecated edge-based lists"
+    - to: "lupo-docs/prd/25_departments_system.md"
+      type: references
+      weight: 1.0
+      reason: "Department membership drives operational actor scope"
+    - to: "lupo-docs/doctrine/ACTOR_DEPARTMENT_AUTH_USER_DOCTRINE.md"
+      type: references
+      weight: 1.0
+      reason: "Canonical approved: governance vs operational department scope"
 lupopedia.footer:
-  last_verified: "20260402220000"
+  last_verified: "20260403221556"
   verified_by:
     identity_type: "actor"
     actor_id: 102
@@ -57,6 +73,8 @@ lupopedia.footer:
 ## 1. Overview
 
 This PRD defines the actor hierarchy, approval authority matrix, and agent interaction protocols for the Lupopedia ecosystem. It establishes clear chains of authority, defines red team agent roles and limitations, and provides escalation procedures for disagreements.
+
+**Canonical mental model (approved):** **[`ACTOR_DEPARTMENT_AUTH_USER_DOCTRINE.md`](../doctrine/ACTOR_DEPARTMENT_AUTH_USER_DOCTRINE.md)** — **operational** “who may use which **`actor_id`** in which department” is **not** the same as **governance** tiers below; use the doctrine so **approval authority** is not confused with **department intersection** act-as.
 
 ### 1.1 Purpose
 
@@ -72,6 +90,18 @@ This PRD defines the actor hierarchy, approval authority matrix, and agent inter
 - Approval workflows for PRDs, decisions, and system changes
 - Red team agent operations and limitations
 - Inter-agent communication and escalation protocols
+
+### 1.3 Web act-as vs authority in this PRD
+
+**Separation of concerns:** This PRD describes **approval authority**, **escalation**, and **red-team** role limits. It does **not** define **which actors a logged-in human may select** in the web UI. That eligibility is **department-first** (`lupo_auth_user_departments` ∩ `lupo_actor_departments`, plus bypass rules): see **[PRD 05](05_auth_user_actor_agent_transformation.md)** and **[PRD 15](15_actors.md)**. Implementation: **`AuthSessionManager::getActorsUserCanActAs`**; **`App\Services\ActorService::getActorsUserCanActAs`** delegates there. Do **not** infer web act-as eligibility from **`lupo_edges`** or from the tier tables below alone.
+
+### 1.4 Operational scope vs approval authority (departments)
+
+- **Approval authority (Sections 2–6):** Describes **coordination personas** (WOLFIE, LEXA, …) and **who may approve** classes of decisions. That is **governance**, not “which actor row may post in department 7.”
+- **Operational / chat scope:** Which **actor identities** may be **used** in a **department** or **channel** is determined by **`lupo_actor_departments`**, **`lupo_auth_user_departments`**, and channel membership — **[PRD 25](25_departments_system.md)**, **[PRD 05](05_auth_user_actor_agent_transformation.md)**. **Many** humans may **operate** the **same** department-scoped **`actor_id`**; that does **not** create multiple tier-1 votes — the **thread** still shows one **`actor_id`** per message.
+- **Do not conflate** “WOLFIE approves the PRD” with “every user globally acts as WOLFIE”; act-as remains **intersection-scoped** unless an explicit bypass applies.
+
+**LILITH audit (final, department model):** **Approved** — this PRD correctly **does not** define web act-as (§1.3); **governance** tiers (§2+) are separate from **operational** department membership and shared **`actor_id`** use (§1.4). **Canonical doctrine** referenced in overview; **COUNTERMEASURE** correctly limited to analysis (no approval). Constitutional / security issues: **none** flagged in audit.
 
 ## 2. Actor Hierarchy
 
@@ -366,7 +396,7 @@ Proposal → SESHAT Review → ATHENA Strategy → WOLFIE Approval → Registry 
 
 ---
 
-**Status**: DRAFT - Ready for review and approval  
+**Status**: DRAFT — **LILITH final audit approved** (governance vs **department-scoped act-as**): §1.3/§1.4 separation, doctrine cross-reference, red team analysis-only, edges to **PRD 05**, **PRD 15**, **PRD 25**, **`ACTOR_DEPARTMENT_AUTH_USER_DOCTRINE.md`**. **This PRD answers** “who may **approve** what?” — **not** “which **`actor_id`** may I act as in chat?” (**PRD 05 / 15 / 25** + doctrine).  
 **Next Review**: SESHAT (Content Review)  
 **Final Approval**: WOLFIE  
 **Implementation**: Upon approval

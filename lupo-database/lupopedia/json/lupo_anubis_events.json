@@ -1,4 +1,8 @@
 {
+  "_comment": "THIS FILE IS AUTO-GENERATED. DO NOT EDIT MANUALLY.",
+  "_purpose": "Schema reference only — column names, types, indexes. Contains NO data.",
+  "_source": "Generated from live database by generate_toon_files.py",
+  "_read_only": true,
   "table_name": "lupo_anubis_events",
   "fields": [
     "`anubis_event_id` bigint NOT NULL",
@@ -7,10 +11,9 @@
     "`old_id` bigint NOT NULL",
     "`new_id` bigint NOT NULL",
     "`created_ymdhis` bigint NOT NULL",
-    "`agent` varchar(255) NOT NULL",
+    "`operator_actor_id` bigint NOT NULL",
     "`details_json` text NOT NULL"
   ],
-  "data": [],
   "indexes": [],
   "primary_key": {
     "column_name": "anubis_event_id",

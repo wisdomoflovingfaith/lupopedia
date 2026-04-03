@@ -1,4 +1,8 @@
 {
+  "_comment": "THIS FILE IS AUTO-GENERATED. DO NOT EDIT MANUALLY.",
+  "_purpose": "Schema reference only — column names, types, indexes. Contains NO data.",
+  "_source": "Generated from live database by generate_toon_files.py",
+  "_read_only": true,
   "table_name": "lupo_orchestrator_rules",
   "fields": [
     "`rule_id` bigint NOT NULL",
@@ -12,7 +16,6 @@
     "`is_active` tinyint NOT NULL DEFAULT 1",
     "`updated_ymdhis` bigint NOT NULL"
   ],
-  "data": [],
   "indexes": [
     {
       "index_name": "lupo_orchestrator_rules_idx_active",

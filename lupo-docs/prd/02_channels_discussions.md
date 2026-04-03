@@ -2,10 +2,10 @@
 lupopedia.headers:
   header_format_version: 2
   lupopedia.schema: prd
-  when_updated: "20260403193000"
+  when_updated: "20260403221336"
   file_path_from_root: "lupo-docs/prd/02_channels_discussions.md"
   web_path: "http://www.lupopedia.com/lupopedia/lupo-docs/prd/02_channels_discussions.md"
-  last_modified_utc: "20260403193000"
+  last_modified_utc: "20260403221336"
   federation_node_id: 0
   channel_id: 42
   thread_id: "prd-channels-structure"
@@ -14,7 +14,7 @@ lupopedia.headers:
   delegation_chain: "cursor:root"
   artifact_type: "prd"
   artifact_kind: "specification"
-  purpose: "Defines database schema and filesystem organization for channels, threads, and discussions"
+  purpose: "Channels/threads/messages schema and paths; actor-first attribution; aligns with ACTOR_DEPARTMENT_AUTH_USER_DOCTRINE"
   tags:
     - "prd"
     - "channels"
@@ -46,8 +46,24 @@ lupopedia.edges:
       type: references
       weight: 1.0
       reason: "Kiro's substantial contributions to 4.0.93"
+    - to: "lupo-docs/prd/05_auth_user_actor_agent_transformation.md"
+      type: references
+      weight: 1.0
+      reason: "actor_id vs auth_user; visitor chat; department act-as"
+    - to: "lupo-docs/prd/15_actors.md"
+      type: references
+      weight: 1.0
+      reason: "Actors belong to departments; shared actor identity"
+    - to: "lupo-docs/prd/18_channel_chat_display.md"
+      type: references
+      weight: 0.95
+      reason: "Chat UI attribution to actor_id"
+    - to: "lupo-docs/doctrine/ACTOR_DEPARTMENT_AUTH_USER_DOCTRINE.md"
+      type: references
+      weight: 1.0
+      reason: "LILITH audit: canonical joins; shared actor_id; department policy"
 lupopedia.footer:
-  last_verified: "20260401"
+  last_verified: "20260403221336"
   verified_by:
     actor_id: 102
     agent_name_identity: Cursor IDE Agent
@@ -349,7 +365,7 @@ CREATE TABLE lupo_channels (
 
 ## Security & Privacy
 
-All messages attributed to actors (actor_id)
+**Message attribution:** Rows reference **`actor_id`** (and API/runtime paths use **`from_actor_id`** where applicable per schema). The **canonical line identity** in a thread is the **actor**, not a bare **`auth_user_id`**. **Multiple** **`auth_users`** may post under the **same** **`actor_id`** when department policy allows — see **[PRD 05](05_auth_user_actor_agent_transformation.md)** and **[PRD 15](15_actors.md)**. **Join-table mental model (approved):** **[`ACTOR_DEPARTMENT_AUTH_USER_DOCTRINE.md`](../doctrine/ACTOR_DEPARTMENT_AUTH_USER_DOCTRINE.md)**. Channel-facing display rules: **[PRD 18](18_channel_chat_display.md)**.
 
 Soft delete preserves conversation history for compliance
 

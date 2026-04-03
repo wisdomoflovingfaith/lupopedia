@@ -1,0 +1,6 @@
+{"type":"session","timestamp":"2026-04-03T20:06:20+00:00","actor_id":10000,"session_age":0,"ip":"::1"}
+{"type":"permission_check","timestamp":"2026-04-03T20:06:20+00:00","actor_id":10000,"roles":["admin"],"resource":"admin","allowed":true}
+{"type":"session","timestamp":"2026-04-03T20:08:39+00:00","actor_id":10000,"session_age":139,"ip":"::1"}
+{"type":"permission_check","timestamp":"2026-04-03T20:08:39+00:00","actor_id":10000,"roles":["admin"],"resource":"admin","allowed":true}
+{"type":"session","timestamp":"2026-04-03T20:28:16+00:00","actor_id":10000,"session_age":1316,"ip":"::1"}
+{"type":"permission_check","timestamp":"2026-04-03T20:28:16+00:00","actor_id":10000,"roles":["admin"],"resource":"admin","allowed":true}
