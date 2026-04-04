@@ -10,6 +10,18 @@ if (!defined('LUPOPEDIA_CONFIG_LOADED')) {
     exit;
 }
 
+// Writable runtime dirs (FTP / auto-installer: empty folders may be missing; mirrors InstallWizardHtaccessWriter::ensureRuntimeDirectories)
+if (defined('LUPOPEDIA_ABSPATH') && LUPOPEDIA_ABSPATH !== '') {
+    $lupo_runtime_dirs = array('lupo-cache', 'lupo-logs', 'lupo-uploads', 'lupo-tmp');
+    $lupo_abs_base = rtrim(LUPOPEDIA_ABSPATH, "/\\");
+    foreach ($lupo_runtime_dirs as $lupo_rd) {
+        $lupo_rd_path = $lupo_abs_base . DIRECTORY_SEPARATOR . $lupo_rd;
+        if (!is_dir($lupo_rd_path)) {
+            @mkdir($lupo_rd_path, 0755, true);
+        }
+    }
+}
+
 // Load version information
 $version_path = __DIR__ . DIRECTORY_SEPARATOR . 'version.php';
 if (defined('LUPOPEDIA_DEBUG') && LUPOPEDIA_DEBUG) {

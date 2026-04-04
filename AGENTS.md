@@ -3,7 +3,7 @@ lupopedia.headers:
   lupopedia.schema: documentation
   file_path_from_root: AGENTS.md
   web_path: http://www.lupopedia.com/lupopedia/AGENTS.md
-  last_modified_utc: '20260403211538'
+  last_modified_utc: '20260404165054'
   channel_id: 42
   actor_id: 102
   actor_name: cursor
@@ -29,7 +29,7 @@ lupopedia.headers:
   - multi_agent
   agent_name_identity: Cursor IDE Agent (Lead Orchestration)
   lupo_agent: cursor
-  when_updated: '20260403211538'
+  when_updated: '20260404165054'
 lupopedia.edges:
   outbound_edges:
   - to: lupo-docs/doctrine/IDENTITY_MODEL_QUICKSTART_4.0.88.md
@@ -97,6 +97,18 @@ lupopedia.edges:
     type: references
     weight: 1.0
     reason: Active vs archive channel filesystem strategy
+  - to: lupo-docs/prd/31_implementation_folder_guidelines.md
+    type: references
+    weight: 1.0
+    reason: PRD-scoped lupo-docs/implementations trees; folder name = PRD file stem; decisions/questions/answers
+  - to: lupo-docs/implementations/README.md
+    type: references
+    weight: 0.95
+    reason: Implementations index and naming rule summary
+  - to: lupo-docs/implementations/33_softaculous_certification_4_1_0_gate/SOFTACULOUS_PACKAGE_BUILD.md
+    type: references
+    weight: 0.9
+    reason: Softaculous / FTP package; WordPress-style patterns; no dotfiles in zip
   - to: lupo-docs/doctrine/REVERSE_ENGINEERING_DOCTRINE.md
     type: references
     weight: 1.0
@@ -137,7 +149,7 @@ lupopedia.see:
   - - AGENTS.md
     - http://www.lupopedia.com/lupopedia/AGENTS.md
 lupopedia.footer:
-  last_verified: '20260403211538'
+  last_verified: '20260404165054'
   verified_by:
     identity_type: actor
     actor_id: 102
@@ -292,6 +304,9 @@ Required references:
 - `lupo-channels/channel_index.md`
 - `lupo-channels/channel_creation_doctrine.md`
 - `lupo-docs/prd/29_project_structure.md` (active vs archive channel paths)
+- `lupo-docs/prd/31_implementation_folder_guidelines.md` (PRD mirrors under `lupo-docs/implementations/{prd_file_stem}/`; scaffold; typed `questions/` / `answers/` / `decisions/`)
+- `lupo-docs/implementations/README.md` (implementations index; naming must match PRD basename)
+- `lupo-docs/prd/00_root_constitutional_system_requirements.md` (Section 5.8 — implementation mirroring)
 - `lupo-docs/prd/02_channels_discussions.md` (channels, thread manifest)
 - `lupo-docs/prd/17_decisions_format.md` (thread filenames and `decisions/` / `questions/` / `answers/` / `comments/`)
 - `lupo-docs/prd/21_thread_graduation_doctrine.md` (`THREAD_MANIFEST.md`, lifecycle)
@@ -303,6 +318,7 @@ Required behavior:
    - **New thread (filesystem, active layout):** create **`lupo-channels/{federation_node_id}/{channel_key}/{new_thread_key}/`** with **`THREAD_MANIFEST.md`** (required fields per **`lupo-docs/prd/21_thread_graduation_doctrine.md`**) and, for PRD-17-style coordination, **`decisions/`**, **`questions/`**, **`answers/`**, **`comments/`** — each folder that you use must include **`THREAD_INDEX.md`**. Authoritative structure and filenames: **`lupo-docs/prd/02_channels_discussions.md`**, **`lupo-docs/prd/17_decisions_format.md`**.
 3. Write status/report/workstream artifacts into **`lupo-channels/{federation_node_id}/{channel_key}/{thread_key}/`** (and typed subfolders per PRD 17). Legacy numeric paths under `lupo-channels/{channel_id}/threads/{thread_id}/` remain for API-mirrored work; pre–4.0.93 trees live in **`lupo-channels_before_4_0_93/`** (read-only archive).
 4. Do not place channel-scoped work artifacts in repository root.
+5. **PRD implementation mirrors (not channel threads):** For work tracked against a canonical **`lupo-docs/prd/{prd_file_stem}.md`**, use **`lupo-docs/implementations/{prd_file_stem}/`** — the folder name **must** equal the PRD filename **without** **`.md`** (no shorthand like `prd_36_rose`). Use **`status/`**, **`decisions/`**, **`questions/`**, **`answers/`**, **`comments/`** as in **PRD 31**; each folder in use needs **`THREAD_INDEX.md`**. Scaffold: **`python lupo-scripts/scaffold_implementation.py`** with **`--title`** chosen so **`<prd_id>_<title>`** matches **`prd_file_stem`**. Constitutional rule: **PRD 00** §5.8.
 
 ## Primary Coordination Personas (eleven)
 
@@ -402,6 +418,24 @@ Lupopedia is the continuation of Crafty Syntax Live Help 3.7.5 — a PHP live-ch
 - **Database:** MySQL 8.0+ / MariaDB 10.5+ / PostgreSQL (all SQL must work on all three)
 - **Web server:** Apache or Nginx with mod_rewrite, always installed in a subdirectory (never at web root)
 - **Local stack:** ServBay on Windows 11, PowerShell
+
+## WordPress reference for distribution packaging
+
+The **`lupo-archive/legacy/wordpress-reference/`** tree holds **WordPress source for study only** (**GPL**). **`lupo-archive/`** is **`.gitignore`d** — it is **not** part of a normal clone; place a checkout there locally when you need it. It is **excluded** from Softaculous-style archives (**`lupo-scripts/build_softaculous_package.sh`** excludes **`lupo-archive/`** and legacy root **`wordpress-reference/`** if present).
+
+**Why it exists:** WordPress is the reference deployment for **shared hosting and auto-installers**. Patterns worth understanding include dynamic **`.htaccess`** handling, **no hidden files in the zip**, **installer-created directories**, path constants, and graceful behavior across Apache / Nginx / IIS.
+
+**Illustrative files to read (do not copy code; GPL and different product):**
+
+| Location (under `lupo-archive/legacy/wordpress-reference/`) | Pattern |
+|----------------------------------------|---------|
+| `wp-admin/includes/misc.php` | Rewrite / permalink and filesystem helpers |
+| `wp-includes/functions.php` | Path bootstrap and environment assumptions |
+| `wp-config-sample.php` | Template-to-live config flow |
+
+**Do not:** Paste WordPress into Lupopedia or assume 1:1 parity (CMS vs live-help semantic OS).
+
+**Do:** Infer **principles** (FTP-safe trees, generate server rules at install, document Nginx/IIS separately) and implement in **Lupopedia-native** PHP and docs. Canonical packaging write-up: **[SOFTACULOUS_PACKAGE_BUILD.md](lupo-docs/implementations/33_softaculous_certification_4_1_0_gate/SOFTACULOUS_PACKAGE_BUILD.md)**. Root **README** has a longer comparison table.
 
 ## Build, Test, and Run Commands
 

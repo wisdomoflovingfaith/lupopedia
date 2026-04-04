@@ -5,6 +5,11 @@ Implementation Folder Scaffolding Script
 Automatically creates the complete implementation folder structure for a new PRD.
 Constitutionally compliant - pure file system operations, no database dependencies.
 
+The created directory is lupo-docs/implementations/{prd_id}_{prd_slug}/ — that string
+MUST match the basename (without .md) of the canonical PRD under lupo-docs/prd/
+(e.g. PRD file 36_rose_multi_persona_synthetic_dialog.md -> folder 36_rose_multi_persona_synthetic_dialog/).
+See lupo-docs/prd/31_implementation_folder_guidelines.md and PRD 00 Section 5.8.
+
 Usage:
     python scaffold_implementation.py --prd 30 --title "channel_usage_patterns"
     python scaffold_implementation.py --prd 31 --title "implementation_folder_guidelines"
@@ -12,10 +17,10 @@ Usage:
 
 import argparse
 import os
+import re
 import sys
 import shutil
 from datetime import datetime, timezone
-from pathlib import Path
 
 def get_script_dir():
     """Get the directory where this script is located."""
@@ -39,14 +44,15 @@ def create_folder_structure(base_path, prd_id, prd_title, prd_slug):
     impl_path = os.path.join(base_path, impl_name)
     os.makedirs(impl_path, exist_ok=True)
     
-    # Create subfolders
+    # Create subfolders (PRD 31 + constitution §5.8)
     subfolders = [
         "questions/critical",
-        "questions/optimization", 
+        "questions/optimization",
         "questions/clarification",
         "answers",
         "decisions",
         "comments",
+        "status",
         "templates",
         "versions/v1.0.0",
         "tests"
@@ -184,6 +190,7 @@ This implementation addresses PRD {prd_id}: {prd_title}.
 ├── answers/                     # Human responses to questions
 ├── decisions/                   # Implementation decisions
 ├── comments/                    # Ongoing dialogue
+├── status/                      # STATUS.md + THREAD_INDEX (PRD 31)
 ├── templates/                   # Standardized templates
 ├── authors.md                   # Implementation contributors
 ├── edges.md                     # System-wide relational mapping
@@ -220,59 +227,127 @@ python lupo-scripts/validate_implementation_questions.py {prd_id}_{prd_slug}
     with open(readme_path, 'w', encoding='utf-8') as f:
         f.write(readme_content)
 
-def create_thread_indexes(impl_path):
-    """Create THREAD_INDEX.md files for all folders."""
-    
+def _substitute_thread_index_from_template(body, impl_name, timestamp):
+    """
+    Rewrite _template paths and metadata for a concrete implementation folder.
+    """
+    body = body.replace(
+        "lupo-docs/implementations/_template/",
+        "lupo-docs/implementations/{}/".format(impl_name)
+    )
+    body = body.replace(
+        "http://www.lupopedia.com/lupopedia/lupo-docs/implementations/_template/",
+        "http://www.lupopedia.com/lupopedia/lupo-docs/implementations/{}/".format(impl_name)
+    )
+    body = body.replace('parent_prd: "_template"', 'parent_prd: "{}"'.format(impl_name))
+    body = re.sub(
+        r'^(\s*when_updated:\s*)"[0-9]{14}"',
+        r'\1"{}"'.format(timestamp),
+        body,
+        count=1,
+        flags=re.MULTILINE
+    )
+    # Distinct thread_id per implementation (avoid collisions in metadata)
+    body = body.replace(
+        'thread_id: "implementation-questions-index"',
+        'thread_id: "{}-questions-index"'.format(impl_name)
+    )
+    body = body.replace(
+        'thread_id: "implementation-answers-index"',
+        'thread_id: "{}-answers-index"'.format(impl_name)
+    )
+    body = body.replace(
+        'thread_id: "implementation-comments-index"',
+        'thread_id: "{}-comments-index"'.format(impl_name)
+    )
+    return body
+
+
+def create_thread_indexes(impl_path, impl_name, template_dir):
+    """
+    Create THREAD_INDEX.md under questions/, answers/, comments/ from _template/ (PRD 31).
+    decisions/ gets a minimal index (no full template in _template).
+    status/ gets THREAD_INDEX.md + stub STATUS.md.
+    """
     timestamp = generate_timestamp()
-    
-    # Base thread index template
-    index_template = f"""---
+
+    for subfolder in ("questions", "answers", "comments"):
+        src = os.path.join(template_dir, subfolder, "THREAD_INDEX.md")
+        dst = os.path.join(impl_path, subfolder, "THREAD_INDEX.md")
+        if not os.path.isfile(src):
+            sys.stderr.write("WARNING: missing template: {}\n".format(src))
+            continue
+        with open(src, "r", encoding="utf-8") as f:
+            body = _substitute_thread_index_from_template(f.read(), impl_name, timestamp)
+        with open(dst, "w", encoding="utf-8") as f:
+            f.write(body)
+
+    # decisions/ — minimal table (matches common implementation mirrors)
+    decisions_dst = os.path.join(impl_path, "decisions", "THREAD_INDEX.md")
+    with open(decisions_dst, "w", encoding="utf-8") as f:
+        f.write("# THREAD_INDEX — {} / decisions\n\n".format(impl_name))
+        f.write("| Artifact | Summary |\n")
+        f.write("|----------|---------|\n")
+        f.write("| *(none yet)* | |\n")
+
+    # status/ (folder created in create_folder_structure)
+    status_body = """---
 lupopedia.headers:
   header_format_version: 2
-  lupopedia.schema: implementation
-  when_updated: "{timestamp}"
-  file_path_from_root: "lupo-docs/implementations/{{folder}}/THREAD_INDEX.md"
-  web_path: "http://www.lupopedia.com/lupopedia/lupo-docs/implementations/{{folder}}/THREAD_INDEX.md"
+  lupopedia.schema: documentation
+  when_updated: "{ts}"
+  file_path_from_root: "lupo-docs/implementations/{impl}/status/STATUS.md"
+  web_path: "http://www.lupopedia.com/lupopedia/lupo-docs/implementations/{impl}/status/STATUS.md"
+  last_modified_utc: "{ts}"
   federation_node_id: 0
   channel_id: 42
-  thread_id: "{{folder}}-index"
+  artifact_type: documentation
+  artifact_kind: implementation_status
+  purpose: "Implementation completion vs planned work for {impl}"
   actor_id: 102
   actor_name: "cursor"
   delegation_chain: "cursor:root"
-  artifact_type: "implementation"
-  artifact_kind: "thread_index"
-  purpose: "Index of all {{folder_type}} in this implementation"
-  tags:
-    - "implementation"
-    - "{{folder_type}}"
-    - "thread_index"
+lupopedia.footer:
+  last_verified: "{day}"
+  verified_by:
+    identity_type: actor
+    actor_id: 102
+  verified_via:
+    type: faucet
+    faucet_slug: cursor
 ---
 
-# {{Title}}
+# file: {impl} status — implementation mirror
 
-*No {{folder_type}} yet.*
+# Status: {impl}
 
-## Creating {{FolderType}}
+Scaffolded by **lupo-scripts/scaffold_implementation.py**. Replace this stub with a real **STATUS.md** per **PRD 31**.
 
-Use the appropriate script or template to create {{folder_type}} in this folder.
+## Completion (high level)
 
----
-*This index tracks all {{folder_type}} in the implementation.*
-"""
-    
-    # Create indexes for each folder
-    folders = [
-        ("questions", "questions", "Questions"),
-        ("answers", "answers", "Answers"),
-        ("decisions", "decisions", "Decisions"),
-        ("comments", "comments", "Comments")
-    ]
-    
-    for folder, folder_type, title in folders:
-        index_path = os.path.join(impl_path, folder, "THREAD_INDEX.md")
-        content = index_template.replace("{{folder}}", folder).replace("{{folder_type}}", folder_type).replace("{{FolderType}}", folder_type.title()).replace("{{Title}}", title)
-        with open(index_path, 'w', encoding='utf-8') as f:
-            f.write(content)
+| Area | State | Notes |
+|------|-------|-------|
+| Scaffold | **Done** | Folders, THREAD_INDEX files, templates copied |
+
+## What is next
+
+- Link the canonical PRD and record blockers under **decisions/** and **questions/**.
+
+This output complies with Lupopedia Constitutional Root Rules.
+""".format(
+        ts=timestamp,
+        impl=impl_name,
+        day=timestamp[:8],
+    )
+    with open(os.path.join(impl_path, "status", "STATUS.md"), "w", encoding="utf-8") as f:
+        f.write(status_body)
+
+    status_index = os.path.join(impl_path, "status", "THREAD_INDEX.md")
+    with open(status_index, "w", encoding="utf-8") as f:
+        f.write("# THREAD_INDEX — {} / status\n\n".format(impl_name))
+        f.write("| Artifact | Purpose |\n")
+        f.write("|----------|---------|\n")
+        f.write("| [STATUS.md](STATUS.md) | Current completion and next steps |\n")
 
 def create_supporting_files(impl_path, prd_id, prd_slug):
     """Create supporting files like changelog.md and todo.md."""
@@ -376,36 +451,26 @@ lupopedia.headers:
     with open(os.path.join(impl_path, "todo.md"), 'w', encoding='utf-8') as f:
         f.write(todo_content)
 
-def update_implementations_index(base_path, impl_name, prd_id, prd_title):
-    """Update the main implementations README.md index."""
-    
+def update_implementations_index(base_path, impl_name, prd_id):
+    """
+    Append a row to lupo-docs/implementations/README.md if missing.
+    Table shape: | Folder | PRD | Notes |
+    """
     index_path = os.path.join(base_path, "README.md")
-    
-    if not os.path.exists(index_path):
+    if not os.path.isfile(index_path):
         return
-    
-    with open(index_path, 'r') as f:
+    with open(index_path, "r", encoding="utf-8") as f:
         content = f.read()
-    
-    # Find the table and add new entry
-    table_start = content.find("| PRD | Implementation Folder")
-    if table_start == -1:
+    if impl_name in content:
         return
-    
-    # Find the end of the table
-    table_end = content.find("\n##", table_start)
-    if table_end == -1:
-        table_end = len(content)
-    
-    # Add new entry before the table ends
-    new_entry = f"| [{prd_id}_{prd_title}.md](../prd/{prd_id}_{prd_title}.md) | [{impl_name}/](./{impl_name}/) | 🟡 Planning | {datetime.now(timezone.utc).strftime('%Y-%m-%d')} |\n"
-    
-    # Find the last row in the table
-    last_row = content.rfind("|", table_start, table_end)
-    if last_row != -1:
-        content = content[:last_row] + new_entry + content[last_row:]
-    
-    with open(index_path, 'w', encoding='utf-8') as f:
+    marker = "\n## Template\n"
+    if marker not in content:
+        return
+    new_row = "| **{impl}** | [PRD {pid}](../prd/{impl}.md) | Scaffolded — edit Notes |\n".format(
+        impl=impl_name, pid=prd_id
+    )
+    content = content.replace(marker, "\n" + new_row + marker, 1)
+    with open(index_path, "w", encoding="utf-8") as f:
         f.write(content)
 
 def main():
@@ -440,22 +505,24 @@ def main():
     
     # Create main files
     create_readme(impl_path, args.prd, args.title, prd_slug)
-    create_thread_indexes(impl_path)
+    create_thread_indexes(impl_path, impl_name, template_dir)
     create_supporting_files(impl_path, args.prd, prd_slug)
     
     # Update index
-    update_implementations_index(base_path, impl_name, args.prd, args.title)
+    update_implementations_index(base_path, impl_name, args.prd)
     
     print("OK Implementation folder scaffolded successfully:")
     print(f"   Path: {impl_path}")
     print(f"   PRD: {args.prd}")
     print(f"   Title: {args.title}")
     print(f"   Slug: {prd_slug}")
+    print("\nCreated THREAD_INDEX.md under: questions/, answers/, comments/, decisions/, status/")
+    print("Copied question/answer templates into templates/ when _template/ provides them.")
     print("\nNext steps:")
-    print(f"1. Review the scaffolded structure")
-    print(f"2. Update README.md with specific details")
-    print(f"3. Begin implementation work")
-    print(f"4. Use create_implementation_question.py for questions")
+    print("1. Review the scaffolded structure and STATUS.md stub")
+    print("2. Update README.md and implementations/README.md row with specific details")
+    print("3. Run python lupo-bin/tick.py before editing LUPOPEDIA header timestamps")
+    print("4. Use create_implementation_question.py for questions (if present)")
 
 if __name__ == "__main__":
     main()

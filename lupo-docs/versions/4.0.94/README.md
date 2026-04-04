@@ -3,10 +3,10 @@ lupopedia.headers:
   header_format_version: 2
   lupopedia.schema: documentation
   version_when_written: "4.0.94"
-  when_updated: "20260403140552"
+  when_updated: "20260404161001"
   file_path_from_root: "lupo-docs/versions/4.0.94/README.md"
   web_path: "http://www.lupopedia.com/lupopedia/lupo-docs/versions/4.0.94/README.md"
-  last_modified_utc: "20260403140552"
+  last_modified_utc: "20260404161001"
   federation_node_id: 0
   channel_id: 42
   thread_id: "version-4.0.94-readme"
@@ -75,8 +75,12 @@ lupopedia.edges:
       type: references
       weight: 0.95
       reason: "Next-session prioritized backlog"
+    - to: "lupo-docs/versions/4.0.94/decisions/20260404_161001_DECISION_APPROVED_service_agent_architecture_and_softaculous_auto_installer_docs.md"
+      type: references
+      weight: 1.0
+      reason: "APPROVED receipt — service agents + PRD 00 §5 + Softaculous auto-installer docs"
 lupopedia.footer:
-  last_verified: "20260403140552"
+  last_verified: "20260404161001"
   verified_by:
     identity_type: "actor"
     actor_id: 102
@@ -123,6 +127,8 @@ Same structure as 4.0.93: `PLAN.md`, `TODO.md`, `CHANGELOG.md`, `edges.md`, `dec
 **Thread outcome (2026-04-03 UTC, Cursor, later pass):** **PRD 31** — **LILITH** final audit merged into canonical **`lupo-docs/prd/31_implementation_folder_guidelines.md`** (header stamps **`20260403024822`**); **`CHANGELOG.md`** (new top entry), **`PLAN.md`** Phase C row **C-FW-4**, **`TODO.md`** (handoff + completed sync line), **`edges.md`**, **`WHAT_TO_WORK_ON_NEXT_SESSION.md`**, **`decisions/20260403_025155_DECISION_APPROVED_prd31_lilith_final_audit_version_sync.md`** (+ Q/A/C **`025156`–`025158`**).
 
 **Thread outcome (2026-04-03 UTC, Cursor + LILITH framing):** Doctrine PRD-lineage audit (**189** files, **0** missing — `audit_doctrine_prd_edges.py`); version-ghost report (**34** critical files — `version_ghosts_report.json`); mobile/workflow doctrines and related PRD/AGENTS/LESSONS updates; **`CHANGELOG.md`** (entry **`20260403140552`** batch), **`PLAN.md`** Phase **G**, **`TODO.md`**, **`edges.md`**, **`decisions/20260403_140552_DECISION_APPROVED_doctrine_audit_mobile_separation_docs.md`**, Q/A **`140553`–`140554`**, comment **`140555`**.
+
+**Thread outcome (2026-04-04 UTC, Cursor):** **Service agents** + **PRD 00 §5** (KAIROS, THOTH, roster **IRIS/ANUBIS/ROSE/THOTH/KAIROS**, runtime-loop contrast) + **`SERVICE_AGENT_ARCHITECTURE.md`** + **`implementations/service_agents/`** + **LUPOPEDIA_HEADERS** THOTH grounding + **Softaculous** auto-installer spec/sample config/packager excludes/bootstrap **`mkdir`**; **`CHANGELOG.md`** (new top entry), **`PLAN.md`** Phase **J**, **`TODO.md`** completed-documentation rows, **`edges.md`**, **`decisions/20260404_161001_…`**, comment **`161001`**, Q/A **`161004`–`161005`**.
 
 ## Thread filename TYPE tokens
 

@@ -1,3 +1,92 @@
+# [2026-04-04] WordPress study tree path — lupo-archive/legacy/wordpress-reference; .gitignore note; packager exclude lupo-archive/ (Cursor)
+
+- **WHO / WHERE / WHEN:** Cursor (`actor_id` **102**); `README.md`, `AGENTS.md`, `lupo-docs/prd/00_root_constitutional_system_requirements.md` §15 table + prose, `lupo-docs/prd/33_softaculous_certification_4_1_0_gate.md`, `lupo-docs/doctrine/LEARNED_FROM_WORDPRESS.md`, `lupo-docs/implementations/33_softaculous_certification_4_1_0_gate/SOFTACULOUS_PACKAGE_BUILD.md`, Q/A/status threads under implementation 33, `lupo-scripts/build_softaculous_package.sh`, `.gitignore` comment; UTC **`20260404165054`** (`python lupo-bin/tick.py` this batch).
+- **WHAT:** Canonical path **`lupo-archive/legacy/wordpress-reference/`** (replacing repo-root **`wordpress-reference/`**); documented **`.gitignore`** on **`lupo-archive/`**; **`rsync`** **`--exclude='lupo-archive/'`** (retains exclude of legacy root **`wordpress-reference/`**).
+- **WHY:** Keep the GPL study tree out of the committed tree and distribution zip; align docs and file citations.
+
+This output complies with Lupopedia Constitutional Root Rules.
+
+---
+
+# [2026-04-04] scaffold_implementation.py — THREAD_INDEX from _template, status/, fix f-string bug, README index row (Cursor)
+
+- **WHO / WHERE / WHEN:** Cursor (`actor_id` **102**); `lupo-scripts/scaffold_implementation.py`, `lupo-docs/prd/31_implementation_folder_guidelines.md` (scaffold behavior paragraph), `lupo-docs/implementations/README.md` (scaffold note); UTC **`20260404164842`** (`python lupo-bin/tick.py` for PRD 31 headers).
+- **WHAT:** **`create_thread_indexes`** now copies **`_template/{questions,answers,comments}/THREAD_INDEX.md`** with path/`parent_prd`/`when_updated`/`thread_id` substitution; writes minimal **`decisions/THREAD_INDEX.md`**; adds **`status/`** with **`STATUS.md`** stub + **`THREAD_INDEX`**; removes broken **`{{folder}}`** f-string replace; **`update_implementations_index`** matches current **`| Folder | PRD | Notes |`** table and uses **`prd_file_stem`** for PRD link.
+- **WHY:** WOLFIE/CAPTAIN question: agents need **THREAD_INDEX** without hand-rolling; prior script called **`create_thread_indexes`** but placeholders never substituted.
+- **WHAT NOT claimed:** No new **`_template/decisions/THREAD_INDEX.md`** (minimal generated table instead).
+
+This output complies with Lupopedia Constitutional Root Rules.
+
+---
+
+# [2026-04-04] Implementation mirror naming — PRD 31 + §5.8 + AGENTS + implementations README + PRD 29 + scaffold docstring (Cursor)
+
+- **WHO / WHERE / WHEN:** Cursor (`actor_id` **102**); `lupo-docs/prd/00_root_constitutional_system_requirements.md` **§5.8**, `lupo-docs/prd/31_implementation_folder_guidelines.md`, `lupo-docs/implementations/README.md`, `IMPLEMENTATION_QUESTIONS_GUIDE.md`, `lupo-docs/prd/29_project_structure.md`, `AGENTS.md`, `SERVICE_AGENT_ARCHITECTURE.md` §7, `lupo-scripts/scaffold_implementation.py`, `implementations/service_agents/README.md`, `implementations/36_rose_multi_persona_synthetic_dialog/README.md`; UTC **`20260404163615`** (`python lupo-bin/tick.py` this batch).
+- **WHAT:** Documented **`prd_file_stem`** rule (implementation folder name = canonical PRD **`lupo-docs/prd/{stem}.md`** basename without **`.md`**); forbidden examples; scaffold **`--title`** alignment; cross-links among **PRD 31**, **§5.8**, index, **AGENTS** mandatory literacy + behavior **5**, **PRD 29** table cleanup.
+- **WHY:** Prevent misnamed **`lupo-docs/implementations/`** directories and make **decisions/questions/answers** location obvious for IDE agents.
+
+This output complies with Lupopedia Constitutional Root Rules.
+
+---
+
+# [2026-04-04] PRD 36 implementation folder rename — `36_rose_multi_persona_synthetic_dialog/` (Cursor)
+
+- **WHO / WHERE / WHEN:** Cursor (`actor_id` **102**); renamed **`lupo-docs/implementations/prd_36_rose/`** → **`lupo-docs/implementations/36_rose_multi_persona_synthetic_dialog/`**; edges and prose in PRD 00, PRD 36, `SERVICE_AGENT_ARCHITECTURE.md`, `implementations/service_agents/README.md`; UTC **`20260404163220`** (`python lupo-bin/tick.py` this batch).
+- **WHAT:** Canonical implementation mirror path now matches PRD filename slug; old folder removed.
+- **WHAT NOT claimed:** No product rule changes beyond path references.
+
+This output complies with Lupopedia Constitutional Root Rules.
+
+---
+
+# [2026-04-04] ROSE synthetic choir — constitution §5.10.3, PRD 36, SERVICE_AGENT_ARCHITECTURE, `lupo-agents/rose`, implementation `36_rose_multi_persona_synthetic_dialog/` (Cursor)
+
+- **WHO / WHERE / WHEN:** Cursor (`actor_id` **102**); `lupo-docs/prd/00_root_constitutional_system_requirements.md` **§5.10** table + **§5.10.3**, `lupo-docs/prd/36_rose_multi_persona_synthetic_dialog.md`, `lupo-docs/doctrine/SERVICE_AGENT_ARCHITECTURE.md`, `lupo-docs/implementations/service_agents/README.md`, `lupo-docs/implementations/36_rose_multi_persona_synthetic_dialog/` (README, `status/`, `decisions/20260404_162844_DECISION_rose_batch_every_10_messages.md`), `lupo-agents/rose/agent.json` + `versions/v1.0.0/agent.json`; UTC **`20260404162844`** (`python lupo-bin/tick.py` first batch); folder path corrected **`20260404163220`** (see entry above).
+- **WHAT (thread-verified only):**
+  - **ROSE as Director of the synthetic choir:** PHP-first default **every 10 organic messages** (overridable), operator-selected persona voicing, **`metadata_json`** including **`rose_visibility`** (`actor_only` / `visitor_visible`), **≤ 2000** characters per synthetic line, inserts **`lupo_dialog_messages`** with **`from_actor_id` = voiced persona**; **KAIROS** handoff via **`KairosConsolidationService::recordObservation`** (normative in PRD 36 §7).
+  - **Planned service class name:** **`app/Services/Rose/RoseDialogService.php`** (documentation-only until Phase B).
+  - **Agent pack:** **`role`** string updated; **`is_internal_only: true`** and **`layer: coordination`** unchanged (verified).
+- **WHY:** Align constitution, PRD, doctrine, and implementation mirror with the PHP-first service-agent model for multi-persona synthetic dialog.
+- **HOW:** Markdown + YAML headers (`tick.py` UTC); no install SQL or runtime PHP for ROSE orchestration in this batch.
+- **WHAT NOT claimed:** No **`RoseDialogService.php`** implementation, no channel API or PRD 18 UI changes in this thread.
+
+This output complies with Lupopedia Constitutional Root Rules.
+
+---
+
+# [2026-04-04] Service agent architecture + PRD 00 §5 (KAIROS / THOTH / roster) + Softaculous auto-installer package docs + runtime mkdir + config sample (Cursor)
+
+- **WHO / WHERE / WHEN:** Cursor (`actor_id` **102**); `lupo-docs/prd/00_root_constitutional_system_requirements.md` §5.1–§5.10, `lupo-docs/doctrine/SERVICE_AGENT_ARCHITECTURE.md`, `lupo-docs/doctrine/LUPOPEDIA_HEADERS/README.md` (THOTH grounding), `lupo-docs/implementations/service_agents/`, `lupo-docs/implementations/33_softaculous_certification_4_1_0_gate/SOFTACULOUS_PACKAGE_BUILD.md`, repo root `lupopedia-config-sample.php` + `README.txt`, `lupo-includes/bootstrap.php`, `install.php`, `index.php`, `lupo-scripts/build_softaculous_package.sh`; version-folder receipt `decisions/20260404_161001_DECISION_APPROVED_service_agent_architecture_and_softaculous_auto_installer_docs.md`, `comments/20260404_161001_COMMENT_cursor_service_agents_softaculous_version_doc_sync.md`; UTC **`20260404161001`** (`python lupo-bin/tick.py` this batch).
+- **WHAT (thread-verified only):**
+  - **Constitution PRD 00 — Section 5:** Expanded **§5.1–5.2** (agents as blueprint, actors as hybrid instances); **§5.7** KAIROS memory consolidation (invocation, `lupo_actor_memory`, `lupo_edges`); **§5.8** implementation mirroring under `lupo-docs/implementations/<prd_slug>/`; **§5.9** THOTH stale-artifact audit epoch; **§5.10** service agents — **explicit roster** **IRIS**, **ANUBIS**, **ROSE**, **THOTH**, **KAIROS**, table vs **`RuntimeActorLoopService`** / **`runtime_actors.yaml`** conversational path; YAML edges to `SERVICE_AGENT_ARCHITECTURE.md`, `implementations/service_agents/README.md`, KAIROS PHP, `iris.php`, PRD 36/37.
+  - **Doctrine:** **`SERVICE_AGENT_ARCHITECTURE.md`** — PHP-first LLM-second, “not default chat targets,” KAIROS flow (PHP trigger → memory → edges), THOTH authority from repo JSON + table docs.
+  - **LUPOPEDIA_HEADERS README:** **THOTH** — binding **grounding rule** (evidence from `lupo-database/lupopedia/json/*.json` + `lupo-docs/database/lupopedia/tables/active/`; not unchecked model parametric knowledge); cross-refs to constitution §5.9/5.10 and service agent doctrine.
+  - **Implementation mirror:** `lupo-docs/implementations/service_agents/` — README, `status/`, `decisions/` (incl. `20260404_160645_DECISION_php_first_service_agents.md`), Q/A/C THREAD_INDEX stubs.
+  - **Softaculous / auto-installer:** **`SOFTACULOUS_PACKAGE_BUILD.md`** — §1b silent install contract, §1c `lupopedia-config-sample.php`, bootstrap self-heal note, summary table (`lupopedia-config-sample`, exclude live `lupopedia-config.php`, `license.txt` / `README.md` / `README.txt`), §10 subdirectory JS; **`lupopedia-config-sample.php`** (`[[softdb*]]`, `define()`-style); **`README.txt`**; **`bootstrap.php`** — `mkdir` for `lupo-cache`, `lupo-logs`, `lupo-uploads`, `lupo-tmp`; **`install.php`** — `LUPO_INSTALLING`; **`index.php`** — comment that config present ⇒ no redirect to wizard; **`build_softaculous_package.sh`** — exclude `lupopedia-config.php` / backup from zip.
+- **WHY:** Institutional clarity (service vs conversational agents); hoster-grade packaging (no credential leak, empty FTP dirs, auto-installer config template); THOTH reviews grounded in schema exports.
+- **HOW:** Markdown + YAML headers (`tick.py` UTC); PHP `mkdir` + constants sample; shell `rsync` excludes; version **`CHANGELOG` / `PLAN` Phase J / `TODO` / `edges.md`** sync this batch.
+- **WHAT NOT claimed:** No **PRD 16** / **PRD 26** / **PRD 30** / **PRD 31** rewrites, no **`validate_implementation.py`** / universal header validator edits, no **COUNTERMEASURE** review of those PRDs, no **install SQL** schema changes **in this thread** — those belong to their own evidenced commits.
+
+This output complies with Lupopedia Constitutional Root Rules.
+
+---
+
+# [2026-04-04] Softaculous / WordPress patterns — root §15, doctrines, installer htaccess + packager excludes; semantic + chat JS policy (Cursor)
+
+- **WHO / WHERE / WHEN:** Cursor (`actor_id` **102**); `lupo-docs/prd/00_root_constitutional_system_requirements.md` §15, `lupo-docs/doctrine/LEARNED_FROM_WORDPRESS.md`, `SEMANTIC_MONITORING_DOCTRINE.md`, `CHAT_UI_JAVASCRIPT_SHARED_STATE_DOCTRINE.md`, `lupo-docs/prd/33_*` / `28_*` / `18_*` edges, `lupo-install/InstallWizardHtaccessWriter.php`, `lupo-scripts/build_softaculous_package.sh`, `lupo-docs/implementations/33_softaculous_certification_4_1_0_gate/`; UTC **`20260404074421`** (`python lupo-bin/tick.py` this batch).
+- **WHAT (thread-verified only):**
+  - **Constitution / doctrine:** **PRD 00** §15 WordPress multi-environment patterns; **`LEARNED_FROM_WORDPRESS.md`** distillate; **`SEMANTIC_MONITORING_DOCTRINE.md`** (Eye vs `livehelp_js`, real routes such as **`nav/semantic-navbar-js`**, no invented REST); **`CHAT_UI_JAVASCRIPT_SHARED_STATE_DOCTRINE.md`** (prefer shared namespace / default **non-IIFE** for admin chat); **PRD 28** / **PRD 18** cross-links updated where recorded in those files.
+  - **Installer / packager:** **`InstallWizardHtaccessWriter`** — `# BEGIN LUPOPEDIA` / `LUPOPEDIA_DB` marker merge, `insertWithMarkers`, Apache environment gate (`SERVER_SOFTWARE`), legacy unmarked body upgrade path; **`build_softaculous_package.sh`** — explicit **rsync** excludes for `.htaccess` / `.htpasswd` (sanitize already strips dotfiles).
+  - **Implementation 33:** WordPress study + packager flow **Q/A** (e.g. **`20260404_065622_*`**), **`wordpress_pattern_implementation_tasks_20260404.md`**, **THREAD_INDEX** rows under **`questions/`** / **`answers/`** as committed in-repo.
+  - **Informal Crafty reference:** **IIFE** grep — **2** inline snippets in **`admin_users_refresh.php`** (audio `play()`), **0** in standalone **`.js`** under **`craftysyntax-reference/`** (not a formal validator run).
+- **WHY:** Hoster-grade `.htaccess` behavior, honest embed/monitoring semantics for IDE agents, and chat JS that does not hide shared state behind **IIFE**s.
+- **HOW:** Markdown with **`lupopedia.headers`**; PHP marker merge + gating; shell **rsync** excludes; version-folder receipt **`comments/20260404_074421_COMMENT_cursor_session_end_softaculous_wordpress_semantic_chat.md`**; **`WHAT_TO_WORK_ON_NEXT_SESSION.md`** / **`PLAN.md`** Phase **I** / **`TODO.md`** / **`edges.md`** updated this batch.
+- **WHAT NOT claimed:** No **PRD 16/26/30/31** rewrites, no **`validate_implementation.py`** / universal header validator edits, no **install SQL** schema changes in this thread.
+
+This output complies with Lupopedia Constitutional Root Rules.
+
+---
+
 # [2026-04-03] Department-first actor model — APPROVED decision + synthesis ANSWER; federation navigation QUESTION (Cursor + LILITH)
 
 - **WHO / WHERE / WHEN:** Cursor (`actor_id` **102**), LILITH audit (`actor_id` **2**); `lupo-docs/versions/4.0.94/decisions/`, `questions/`, `answers/`; UTC **`20260403222041`** (`python lupo-bin/tick.py` this batch).

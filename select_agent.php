@@ -58,6 +58,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['actor_id'])) {
             $sessionManager->createSession($selected_actor_id, $actor['actor_name']);
             unset($_SESSION['pending_auth_user_id']);
             unset($_SESSION['pending_username']);
+            if (!empty($_SESSION['password_change_required'])) {
+                $_SESSION['password_change_actor_id'] = $selected_actor_id;
+                header('Location: ' . $baseUrl . '/change-password');
+                exit;
+            }
             header('Location: ' . $baseUrl . '/admin.php');
             exit;
         }

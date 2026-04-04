@@ -2,7 +2,7 @@
 lupopedia.headers:
   header_format_version: 2
   lupopedia.schema: implementation
-  when_updated: "20260402000000"
+  when_updated: "20260404163615"
   file_path_from_root: "lupo-docs/implementations/IMPLEMENTATION_QUESTIONS_GUIDE.md"
   web_path: "http://www.lupopedia.com/lupopedia/lupo-docs/implementations/IMPLEMENTATION_QUESTIONS_GUIDE.md"
   federation_node_id: 0
@@ -26,6 +26,10 @@ lupopedia.headers:
 ## Overview
 
 The Implementation Questions Framework allows agents to ask structured questions during implementation while maintaining constitutional compliance. This prevents agents from making assumptions while ensuring proper audit trails and workflow control.
+
+## Where artifacts live (PRD-scoped)
+
+Structured **questions**, **answers**, and **decisions** for a feature **belong under** **`lupo-docs/implementations/{prd_file_stem}/`**, where **`prd_file_stem`** matches the canonical PRD **`lupo-docs/prd/{prd_file_stem}.md`**. **Normative layout and lifecycle:** **[PRD 31 — Implementation folder guidelines](../prd/31_implementation_folder_guidelines.md)**. **Constitutional summary:** **[PRD 00 — Section 5.8](../prd/00_root_constitutional_system_requirements.md)** (IDE mirroring rule). **Index:** **[implementations/README.md](README.md)**.
 
 ## Constitutional Compliance
 

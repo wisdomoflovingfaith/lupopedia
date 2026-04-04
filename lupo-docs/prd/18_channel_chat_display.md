@@ -2,10 +2,10 @@
 lupopedia.headers:
   header_format_version: 2
   lupopedia.schema: prd
-  when_updated: "20260403221024"
+  when_updated: "20260404073004"
   file_path_from_root: "lupo-docs/prd/18_channel_chat_display.md"
   web_path: "http://www.lupopedia.com/lupopedia/lupo-docs/prd/18_channel_chat_display.md"
-  last_modified_utc: "20260403221024"
+  last_modified_utc: "20260404073004"
   federation_node_id: 0
   channel_id: 42
   thread_id: "prd-chat-display"
@@ -60,8 +60,12 @@ lupopedia.edges:
       type: references
       weight: 1.0
       reason: "Canonical approved: attribution and join model"
+    - to: "lupo-docs/doctrine/CHAT_UI_JAVASCRIPT_SHARED_STATE_DOCTRINE.md"
+      type: references
+      weight: 1.0
+      reason: "No IIFE isolation for chat UI — shared state across scripts (ChatDisplay pattern)"
 lupopedia.footer:
-  last_verified: "20260403221024"
+  last_verified: "20260404073004"
   verified_by:
     identity_type: "agent"
     actor_id: 2

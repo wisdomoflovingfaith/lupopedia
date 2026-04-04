@@ -1,11 +1,11 @@
 ---
 lupopedia.headers:
   header_format_version: 2
-  when_updated: '20260403202903'
+  when_updated: '20260404165054'
   lupopedia.schema: documentation
   file_path_from_root: README.md
   web_path: http://www.lupopedia.com/lupopedia/README.md
-  last_modified_utc: '20260403202903'
+  last_modified_utc: '20260404165054'
   channel_id: 42
   thread_id: readme-4-0-94
   actor_id: 102
@@ -113,6 +113,10 @@ lupopedia.edges:
       type: references
       weight: 1.0
       reason: 4.1.0 release gate; no Lupopedia→Lupopedia migrations during 4.0.x
+    - to: lupo-docs/implementations/33_softaculous_certification_4_1_0_gate/SOFTACULOUS_PACKAGE_BUILD.md
+      type: references
+      weight: 0.95
+      reason: FTP-safe zip; WordPress-style no dotfiles; installer writes .htaccess
     - to: lupo-docs/prd/27_installer_requirements.md
       type: references
       weight: 1.0
@@ -122,7 +126,7 @@ lupopedia.edges:
       weight: 1.0
       reason: Canonical versioning and upgrade-path doctrine
 lupopedia.footer:
-  last_verified: '20260403202903'
+  last_verified: '20260404061014'
   verified_by:
     identity_type: actor
     actor_id: 102
@@ -448,6 +452,37 @@ Lupopedia ships as a sequence of **4.0.x** patch releases until hosting distribu
 - **4.0.x:** Fresh install from **`install_new_lupopedia.sql`** + seed (**`install/seed_lupopedia_4_1_0.sql`** if present, else **`mysql/seed/seed_4.1.0.sql`** — **one** seed pipeline for the whole 4.0.x line); optional **Crafty 3.7.5 → Lupopedia** via **`import_from_old_crafty_syntax.sql`**. No Lupopedia→Lupopedia migrations.
 - **4.1.0 gate:** Auto‑installer readiness, certification-style evidence, and the product/installer requirements in **PRD 33** / **PRD 27**—not a routine version bump.
 - All planning and PRDs must keep these distinctions explicit so implementers do not design migration chains for 4.0.x.
+
+## WordPress reference (distribution package design)
+
+**Location:** **`lupo-archive/legacy/wordpress-reference/`** — local **WordPress** tree for study only (**GPL**). The **`lupo-archive/`** directory is listed in **`.gitignore`** (not committed); unpack or clone WordPress there when you need line-level study. **Not** shipped in Softaculous zips (**`build_softaculous_package.sh`** excludes **`lupo-archive/`**).
+
+**Purpose:** WordPress is the most widely distributed PHP application through auto-installers (Softaculous-class). Lupopedia’s **4.1.0 / hosting** story should **learn patterns**, not reinvent them: multi-environment behavior (Apache, Nginx, IIS), cross-platform paths, PHP version floors, **no dotfiles in the distribution archive**, **dynamic `.htaccess` generation** after extract, and **installer-created** writable directories instead of `.gitkeep`.
+
+**What to learn (principles, not copy-paste):**
+
+| Pattern | WordPress approach | Lupopedia application |
+|--------|--------------------|------------------------|
+| **`.htaccess`** | Generated when needed (not relied upon in the zip) | **`InstallWizardHtaccessWriter`** after successful install config; see **`lupo-install/InstallWizardHtaccessWriter.php`** |
+| **Dotfiles** | None in the consumer package | **`lupo-scripts/build_softaculous_package.sh`** strips all `.*` paths; see **[SOFTACULOUS_PACKAGE_BUILD.md](lupo-docs/implementations/33_softaculous_certification_4_1_0_gate/SOFTACULOUS_PACKAGE_BUILD.md)** |
+| **Empty dirs** | Created by installer | Wizard creates **`lupo-cache/`**, **`lupo-logs/`**, **`lupo-uploads/`**, **`lupo-tmp/`** |
+| **Paths** | `ABSPATH`, `WP_CONTENT_DIR` | **`LUPOPEDIA_PATH`**, **`LUPOPEDIA_PUBLIC_PATH`** |
+| **PHP** | Minimum version + capability checks | **PHP 5.6+** in core paths; extension probing in installer preflight |
+| **Config** | `wp-config-sample.php` → `wp-config.php` | Install wizard writes **`lupopedia-config.php`** from validated form input |
+
+**How to use (read-only study):**
+
+```bash
+ls lupo-archive/legacy/wordpress-reference/
+# Examples — paths vary by WordPress version:
+# wp-admin/includes/misc.php  (permalink / rewrite helpers)
+# wp-includes/functions.php   (path and bootstrap patterns)
+# wp-config-sample.php      (template → live config)
+```
+
+**Do not:** Copy WordPress source **verbatim** into Lupopedia (GPL and scope: WordPress is a CMS; Lupopedia is a live-help / semantic OS). **Do:** Extract **why** they chose a pattern (FTP and hidden files, IIS/Nginx differences), then implement **native** Lupopedia code and docs.
+
+**Canonical Lupopedia packaging doc:** [SOFTACULOUS_PACKAGE_BUILD.md](lupo-docs/implementations/33_softaculous_certification_4_1_0_gate/SOFTACULOUS_PACKAGE_BUILD.md).
 
 ## Current focus
 

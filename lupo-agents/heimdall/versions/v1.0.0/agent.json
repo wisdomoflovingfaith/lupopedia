@@ -3,6 +3,7 @@
     "agent_id": 108,
     "version": "1.0.0",
     "is_kernel": false,
+    "is_internal_only": true,
     "layer": "application",
     "name": "HEIMDALL",
     "slug": "heimdall",

@@ -4,8 +4,8 @@ lupopedia.headers:
   lupopedia.schema: documentation
   file_path_from_root: "lupo-docs/versions/4.0.94/WHAT_TO_WORK_ON_NEXT_SESSION.md"
   web_path: "http://www.lupopedia.com/lupopedia/lupo-docs/versions/4.0.94/WHAT_TO_WORK_ON_NEXT_SESSION.md"
-  when_updated: "20260403222041"
-  last_modified_utc: "20260403222041"
+  when_updated: "20260404074421"
+  last_modified_utc: "20260404074421"
   federation_node_id: 0
   channel_id: 42
   thread_id: "version-4-0-94-handoff"
@@ -17,7 +17,7 @@ lupopedia.headers:
   delegation_chain: "cursor:root"
   artifact_type: documentation
   artifact_kind: session_handoff
-  purpose: "Handoff after department-first approval — 34 ghosts, runtime visitor/chat audit, federation QUESTION open, Two-UI / find_edges, product backlog"
+  purpose: "Handoff — visitor web login/configure, PHP monitoring embed, admin chat (non-IIFE default); Softaculous doc+installer partial done; 34 ghosts + federation Q remain"
   status: active
   tags:
     - "4.0.94"
@@ -78,8 +78,20 @@ lupopedia.edges:
       type: references
       weight: 1.0
       reason: "Canonical auth_user + department + actor joins"
+    - to: "lupo-docs/doctrine/SEMANTIC_MONITORING_DOCTRINE.md"
+      type: references
+      weight: 1.0
+      reason: "Eye vs livehelp_js; real nav routes for monitoring embed"
+    - to: "lupo-docs/doctrine/CHAT_UI_JAVASCRIPT_SHARED_STATE_DOCTRINE.md"
+      type: references
+      weight: 1.0
+      reason: "Admin chat JS — default non-IIFE, shared namespace"
+    - to: "lupo-docs/versions/4.0.94/comments/20260404_074421_COMMENT_cursor_session_end_softaculous_wordpress_semantic_chat.md"
+      type: references
+      weight: 1.0
+      reason: "Session end 5W1H receipt (2026-04-04)"
 lupopedia.footer:
-  last_verified: "20260403222041"
+  last_verified: "20260404074421"
   verified_by:
     identity_type: actor
     actor_id: 102
@@ -90,7 +102,21 @@ lupopedia.footer:
 
 # WHAT TO WORK ON NEXT SESSION
 
-**Recorded (UTC):** `20260403222041` (real UTC from `python lupo-bin/tick.py` this edit batch.)
+**Recorded (UTC):** `20260404074421` (real UTC from `python lupo-bin/tick.py` this edit batch.)
+
+## Priority 0 — Next session (2026-04-04 handoff — WOLFIE)
+
+| Area | Intent | Doctrine / PRD |
+|------|--------|----------------|
+| **Visitor web** | **Login** and **configure** flows for end users (post-install operator/visitor expectations); simple mobile web acceptable per **Two-UI** | **`MOBILE_SEPARATION_DOCTRINE.md`**, **`WOLFIE_WORKFLOW_DOCTRINE.md`** |
+| **Monitoring embed** | PHP emits JS on **monitored** pages; align **`lupopedia_js.php`** story with **existing** routes (e.g. **`nav/semantic-navbar-js`**) — do not document fake endpoints | **`SEMANTIC_MONITORING_DOCTRINE.md`**, **PRD 28** |
+| **Admin chat** | Wire **admin** chat UI / **`channels-controller`** / **`chat-display`** patterns | **PRD 18**, **`CHAT_UI_JAVASCRIPT_SHARED_STATE_DOCTRINE.md`** |
+| **JS style** | **Default non-IIFE** in admin paths; IIFE only for small isolation cases (Crafty reference: inline audio in **`admin_users_refresh.php`**) | **`CHAT_UI_JAVASCRIPT_SHARED_STATE_DOCTRINE.md`** |
+| **Optional unify** | Product spike: fold **`livehelp_js.php`** needs into **`lupopedia_js.php`** so one script owns shared visitor + monitor state | Decision + **PRD 18** / **28** if adopted |
+
+**Still parallel (not replaced):** **34** critical version ghosts (manual); **`find_edges.py`** debug when time allows; runtime visitor/chat **`actor_id`** audit (**PLAN** Phase **H**); open federation navigation **QUESTION** `20260403_222042_…`; remainder of **PRD 33** §7–§10 execution (**TODO.md** tables).
+
+---
 
 ## Session summary (2026-04-03) — department-first approval batch
 

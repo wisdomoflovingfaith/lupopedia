@@ -2,10 +2,10 @@
 lupopedia.headers:
   header_format_version: 2
   lupopedia.schema: documentation
-  when_updated: "20260403222041"
+  when_updated: "20260404161001"
   file_path_from_root: "lupo-docs/versions/4.0.94/edges.md"
   web_path: "http://www.lupopedia.com/lupopedia/lupo-docs/versions/4.0.94/edges.md"
-  last_modified_utc: "20260403222041"
+  last_modified_utc: "20260404161001"
   federation_node_id: 0
   channel_id: 42
   thread_id: "version-4.0.94-edges"
@@ -122,8 +122,76 @@ lupopedia.edges:
       type: references
       weight: 1.0
       reason: "Canonical auth_user + department + actor joins"
+    - to: "lupo-docs/doctrine/LEARNED_FROM_WORDPRESS.md"
+      type: references
+      weight: 1.0
+      reason: "WordPress pattern distillate (PRD 00 §15 companion)"
+    - to: "lupo-docs/doctrine/SEMANTIC_MONITORING_DOCTRINE.md"
+      type: references
+      weight: 1.0
+      reason: "Eye vs livehelp_js; honest monitoring routes"
+    - to: "lupo-docs/doctrine/CHAT_UI_JAVASCRIPT_SHARED_STATE_DOCTRINE.md"
+      type: references
+      weight: 1.0
+      reason: "Admin chat JS — non-IIFE default, shared state"
+    - to: "lupo-docs/versions/4.0.94/comments/20260404_074421_COMMENT_cursor_session_end_softaculous_wordpress_semantic_chat.md"
+      type: references
+      weight: 1.0
+      reason: "Session end receipt — Softaculous / WordPress / semantic chat thread"
+    - to: "lupo-install/InstallWizardHtaccessWriter.php"
+      type: references
+      weight: 1.0
+      reason: "Marker-based .htaccess merge (installer)"
+    - to: "lupo-scripts/build_softaculous_package.sh"
+      type: references
+      weight: 0.95
+      reason: "Softaculous packager — rsync excludes for htaccess; excludes live lupopedia-config.php"
+    - to: "lupo-docs/doctrine/SERVICE_AGENT_ARCHITECTURE.md"
+      type: references
+      weight: 1.0
+      reason: "PHP-first service agents — companion to PRD 00 §5.10"
+    - to: "lupo-docs/implementations/service_agents/README.md"
+      type: references
+      weight: 1.0
+      reason: "Implementation mirror for service agent doctrine"
+    - to: "lupo-docs/doctrine/LUPOPEDIA_HEADERS/README.md"
+      type: references
+      weight: 1.0
+      reason: "THOTH grounding — JSON + table docs"
+    - to: "lupo-docs/implementations/33_softaculous_certification_4_1_0_gate/SOFTACULOUS_PACKAGE_BUILD.md"
+      type: references
+      weight: 1.0
+      reason: "Silent install + sample config + summary table (auto-installer)"
+    - to: "lupo-docs/versions/4.0.94/decisions/20260404_161001_DECISION_APPROVED_service_agent_architecture_and_softaculous_auto_installer_docs.md"
+      type: references
+      weight: 1.0
+      reason: "APPROVED receipt — service agents + Softaculous thread"
+    - to: "lupo-docs/versions/4.0.94/comments/20260404_161001_COMMENT_cursor_service_agents_softaculous_version_doc_sync.md"
+      type: references
+      weight: 0.95
+      reason: "Version-folder sync comment"
+    - to: "lupo-docs/versions/4.0.94/questions/20260404_161004_QUESTION_version_doc_thread_scope_service_agents_softaculous.md"
+      type: references
+      weight: 0.9
+      reason: "Scope Q — do not merge unrelated PRD/validator threads"
+    - to: "lupo-docs/versions/4.0.94/answers/20260404_161005_ANSWER_version_doc_thread_scope_service_agents_softaculous.md"
+      type: references
+      weight: 0.9
+      reason: "Scope A — thread-verified only"
+    - to: "app/Services/Kairos/KairosConsolidationService.php"
+      type: references
+      weight: 0.95
+      reason: "KAIROS consolidation — PRD 00 §5.7"
+    - to: "lupo-includes/modules/api/kairos-api.php"
+      type: references
+      weight: 0.95
+      reason: "KAIROS POST tick"
+    - to: "lupo-includes/bootstrap.php"
+      type: references
+      weight: 0.95
+      reason: "Runtime dir mkdir — Softaculous / FTP gap"
 lupopedia.footer:
-  last_verified: "20260403222041"
+  last_verified: "20260404161001"
   verified_by:
     identity_type: "actor"
     actor_id: 102
@@ -134,6 +202,14 @@ lupopedia.footer:
 
 ## Documentation edges
 
+- **Decision (this version):** [decisions/20260404_161001_DECISION_APPROVED_service_agent_architecture_and_softaculous_auto_installer_docs.md](decisions/20260404_161001_DECISION_APPROVED_service_agent_architecture_and_softaculous_auto_installer_docs.md) — APPROVED receipt — PRD 00 §5 service agents + KAIROS + THOTH + Softaculous auto-installer docs/code (**WHAT NOT** lists PRD 16/26/30/31 / validators if not evidenced).
+- **Comment:** [comments/20260404_161001_COMMENT_cursor_service_agents_softaculous_version_doc_sync.md](comments/20260404_161001_COMMENT_cursor_service_agents_softaculous_version_doc_sync.md) — `CHANGELOG` / `PLAN` Phase J / `TODO` / `edges` sync.
+- **Question / Answer:** [questions/20260404_161004_QUESTION_version_doc_thread_scope_service_agents_softaculous.md](questions/20260404_161004_QUESTION_version_doc_thread_scope_service_agents_softaculous.md) → [answers/20260404_161005_ANSWER_version_doc_thread_scope_service_agents_softaculous.md](answers/20260404_161005_ANSWER_version_doc_thread_scope_service_agents_softaculous.md) — merge directive ≠ one thread; evidence-only `CHANGELOG`.
+- **Doctrine:** [lupo-docs/doctrine/SERVICE_AGENT_ARCHITECTURE.md](../../doctrine/SERVICE_AGENT_ARCHITECTURE.md) — PHP-first service agents; KAIROS flow; THOTH pointer.
+- **Implementation:** [lupo-docs/implementations/service_agents/README.md](../../implementations/service_agents/README.md) — service agent transition mirror.
+- **Doctrine:** [lupo-docs/doctrine/LUPOPEDIA_HEADERS/README.md](../../doctrine/LUPOPEDIA_HEADERS/README.md) — THOTH semantic check grounded in JSON + table docs.
+- **Spec:** [lupo-docs/implementations/33_softaculous_certification_4_1_0_gate/SOFTACULOUS_PACKAGE_BUILD.md](../../implementations/33_softaculous_certification_4_1_0_gate/SOFTACULOUS_PACKAGE_BUILD.md) — silent install, sample config, packager notes.
+- **PRD:** [lupo-docs/prd/00_root_constitutional_system_requirements.md](../../prd/00_root_constitutional_system_requirements.md) — §5.7–§5.10 (KAIROS, mirroring, THOTH, service roster).
 - **Decision (this version):** [decisions/20260403_140552_DECISION_APPROVED_doctrine_audit_mobile_separation_docs.md](decisions/20260403_140552_DECISION_APPROVED_doctrine_audit_mobile_separation_docs.md) — APPROVED doctrine audit + mobile/workflow docs (5W1H).
 - **Question / Answer:** [questions/20260403_140553_QUESTION_version_ghost_cleanup_policy.md](questions/20260403_140553_QUESTION_version_ghost_cleanup_policy.md) → [answers/20260403_140554_ANSWER_version_ghost_cleanup_manual_review.md](answers/20260403_140554_ANSWER_version_ghost_cleanup_manual_review.md) — ghost cleanup policy (manual per file).
 - **Comment:** [comments/20260403_140555_COMMENT_cursor_doctrine_audit_version_sync.md](comments/20260403_140555_COMMENT_cursor_doctrine_audit_version_sync.md) — receipt for this version-folder sync pass.
@@ -169,6 +245,13 @@ lupopedia.footer:
 - **Comment:** [comments/20260402_235141_COMMENT_lilith_lineage_audit_question_234552.md](comments/20260402_235141_COMMENT_lilith_lineage_audit_question_234552.md) — LILITH audit: QUESTION→ANSWER `has_answer` / `answers` lineage restored.
 - **PRD:** [lupo-docs/prd/33_softaculous_certification_4_1_0_gate.md](../../prd/33_softaculous_certification_4_1_0_gate.md) — Softaculous / **4.1.0** release gate (**`status: approved`**).
 - **Implementation:** [lupo-docs/implementations/33_softaculous_certification_4_1_0_gate/README.md](../../implementations/33_softaculous_certification_4_1_0_gate/README.md) — PRD 33 workspace ( **`status/`**, typed threads).
+- **PRD:** [lupo-docs/prd/00_root_constitutional_system_requirements.md](../../prd/00_root_constitutional_system_requirements.md) — §15 WordPress multi-environment patterns (thread: Softaculous / hoster resilience).
+- **Doctrine:** [lupo-docs/doctrine/LEARNED_FROM_WORDPRESS.md](../../doctrine/LEARNED_FROM_WORDPRESS.md) — pattern distillate with line refs into research tree.
+- **Doctrine:** [lupo-docs/doctrine/SEMANTIC_MONITORING_DOCTRINE.md](../../doctrine/SEMANTIC_MONITORING_DOCTRINE.md) — semantic monitoring vs **`livehelp_js`**; real routes only.
+- **Doctrine:** [lupo-docs/doctrine/CHAT_UI_JAVASCRIPT_SHARED_STATE_DOCTRINE.md](../../doctrine/CHAT_UI_JAVASCRIPT_SHARED_STATE_DOCTRINE.md) — chat UI JS shared state; default **non-IIFE**.
+- **PRD:** [lupo-docs/prd/28_semantic_monitoring_widget.md](../../prd/28_semantic_monitoring_widget.md) — Eye / monitoring widget (edges to semantic doctrine).
+- **Question / Answer (implementation 33):** [../../implementations/33_softaculous_certification_4_1_0_gate/questions/20260404_065622_QUESTION_softaculous_packager_distribution_flow.md](../../implementations/33_softaculous_certification_4_1_0_gate/questions/20260404_065622_QUESTION_softaculous_packager_distribution_flow.md) → [../../implementations/33_softaculous_certification_4_1_0_gate/answers/20260404_065622_ANSWER_softaculous_packager_distribution_flow_lilith.md](../../implementations/33_softaculous_certification_4_1_0_gate/answers/20260404_065622_ANSWER_softaculous_packager_distribution_flow_lilith.md) — packager output vs dev tree (LILITH).
+- **Comment:** [comments/20260404_074421_COMMENT_cursor_session_end_softaculous_wordpress_semantic_chat.md](comments/20260404_074421_COMMENT_cursor_session_end_softaculous_wordpress_semantic_chat.md) — session end **5W1H** receipt (**2026-04-04**).
 - **Decision (this version):** [decisions/20260403_022543_DECISION_APPROVED_prd33_softaculous_gate_documentation.md](decisions/20260403_022543_DECISION_APPROVED_prd33_softaculous_gate_documentation.md) — APPROVED gate documentation + version sync.
 - **Question / Answer:** [questions/20260403_022544_QUESTION_prd33_traceability_location.md](questions/20260403_022544_QUESTION_prd33_traceability_location.md) → [answers/20260403_022545_ANSWER_prd33_traceability_location.md](answers/20260403_022545_ANSWER_prd33_traceability_location.md) — §12 traceability: **`TODO.md`** + implementation hub.
 - **Comment:** [comments/20260403_022546_COMMENT_cursor_prd33_version_doc_sync.md](comments/20260403_022546_COMMENT_cursor_prd33_version_doc_sync.md) — receipt for PRD 33 approval pass.
@@ -191,6 +274,12 @@ lupopedia.footer:
 - **ANCHOR:** [lupo-bin/echo_anchor_utc.py](../../../lupo-bin/echo_anchor_utc.py) — prints `current_utc` for reuse in same batch.
 - **PROPAGATION:** [lupo-scripts/propagate_agent_rules.php](../../../lupo-scripts/propagate_agent_rules.php) — `--target=vscode` writes `.vscode/lupopedia/` (among other targets).
 - **TOOLING:** [lupo-scripts/validate_actor_identity.py](../../../lupo-scripts/validate_actor_identity.py) — `IDE_FAUCETS` slug set for facet confusion checks.
+- **INSTALLER:** [lupo-install/InstallWizardHtaccessWriter.php](../../../lupo-install/InstallWizardHtaccessWriter.php) — Apache **`.htaccess`** marker merge (`# BEGIN LUPOPEDIA` / `LUPOPEDIA_DB`).
+- **PACKAGER:** [lupo-scripts/build_softaculous_package.sh](../../../lupo-scripts/build_softaculous_package.sh) — **Softaculous** tarball build; **rsync** excludes for sensitive dotfiles and **live** `lupopedia-config.php`.
+- **CONFIG SAMPLE (root):** [lupopedia-config-sample.php](../../../lupopedia-config-sample.php) — Softaculous `[[softdb*]]` placeholders; not shipped as live config.
+- **BOOTSTRAP:** [lupo-includes/bootstrap.php](../../../lupo-includes/bootstrap.php) — runtime writable dirs `mkdir` after config load.
+- **KAIROS API:** [lupo-includes/modules/api/kairos-api.php](../../../lupo-includes/modules/api/kairos-api.php) — `POST` tick → consolidation.
+- **KAIROS SERVICE:** [app/Services/Kairos/KairosConsolidationService.php](../../../app/Services/Kairos/KairosConsolidationService.php) — `lupo_actor_memory` + `lupo_edges`.
 
 ## External edges
 
@@ -221,5 +310,11 @@ lupopedia.footer:
 | `questions/20260403_025156_…` | `answers/20260403_025157_…` | PRD 31 CHANGELOG scope Q&A |
 | `decisions/20260403_140552_…` | `MOBILE_SEPARATION_DOCTRINE.md`, `WOLFIE_WORKFLOW_DOCTRINE.md`, PRD 35, PRD 33 (where linked) | Doctrine audit + mobile/workflow APPROVED |
 | `questions/20260403_140553_…` | `answers/20260403_140554_…`, `version_ghosts_report.json` | Ghost cleanup policy Q&A |
+| `CHANGELOG` [2026-04-04] top entry | PRD 00 §15, `LEARNED_FROM_WORDPRESS.md`, semantic + chat JS doctrines, `InstallWizardHtaccessWriter.php`, `build_softaculous_package.sh`, `implementations/33_…` | Softaculous / WordPress thread (Cursor) |
+| `comments/20260404_074421_…` | `WHAT_TO_WORK_ON_NEXT_SESSION.md`, `PLAN.md` Phase I, `SEMANTIC_MONITORING_DOCTRINE.md`, `CHAT_UI_JAVASCRIPT_SHARED_STATE_DOCTRINE.md` | Session end receipt |
+| `implementations/33_…/questions/20260404_065622_…` | `answers/20260404_065622_…` (LILITH) | Packager distribution flow Q&A |
+| `decisions/20260404_161001_…` | PRD 00 §5, `SERVICE_AGENT_ARCHITECTURE.md`, `implementations/service_agents/`, `LUPOPEDIA_HEADERS/README`, Softaculous spec + sample config + packager + bootstrap | Service agents + auto-installer doc receipt |
+| `questions/20260404_161004_…` | `answers/20260404_161005_…` | Version doc scope — no bundled PRD16/26/30/31 without evidence |
+| `CHANGELOG` [2026-04-04] (service agents entry) | Same as `161001` decision | Thread-verified only |
 
 Update this file whenever a new thread file or PRD section creates a durable cross-link.

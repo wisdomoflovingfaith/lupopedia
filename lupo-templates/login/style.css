@@ -1,0 +1,67 @@
+/* ... keep body and input styles from before ... */
+
+/* The Wolf Header - Explicit 60x220 */
+.login-header {
+    position: absolute;
+    width: 220px;
+    height: 60px; /* Locked height */
+    left: 50%;
+    margin-left: -110px; /* Half of 220 */
+    z-index: 1;
+    top: 260px; /* Hidden behind the 200px box top at start */
+    pointer-events: none;
+}
+
+.login-logo {
+    width: 220px;
+    height: 60px;
+    display: block;
+    border: none;
+}
+
+/* The Login Box */
+.login-container {
+    position: absolute;
+    width: 360px;
+    background-color: #ffffff;
+    padding: 40px;
+    
+    /* 3px Solid Black Border & Heavy Shadow */
+    border: 3px solid #000000;
+    border-radius: 30px; 
+    box-shadow: 15px 15px 40px rgba(0, 0, 0, 0.6);
+    
+    left: 50%;
+    top: 200px; /* Fixed position */
+    margin-left: -180px;
+    z-index: 2;
+}
+
+/* Restored Input Styling */
+.input-group label {
+    display: block;
+    font-size: 13px;
+    font-weight: bold;
+    margin-bottom: 8px;
+    color: #333;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 12px 15px;
+    border: 2px solid #ddd;
+    border-radius: 12px;
+    font-size: 16px;
+    box-sizing: border-box;
+}
+
+.login-btn {
+    width: 100%;
+    padding: 14px;
+    background-color: #000;
+    color: #fff;
+    border: none;
+    border-radius: 12px;
+    font-weight: bold;
+    cursor: pointer;
+}

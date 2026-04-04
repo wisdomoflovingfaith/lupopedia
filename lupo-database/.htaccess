@@ -1,4 +1,5 @@
 # Protect database configuration, schema, seeds, and derived files
+# Keep in sync with lupo-install/InstallWizardHtaccessWriter::getDatabaseDirHtaccessBody()
 # Prevents direct download of sensitive files over the web
 # Local PHP execution via require/include/fopen is unaffected.
 

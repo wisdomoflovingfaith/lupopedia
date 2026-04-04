@@ -113,7 +113,8 @@ logs/
 /runtime/*
 
 # ---------------------------------------------------------
-# Lupopedia archive (stale documentation)
+# Lupopedia archive (stale documentation, legacy study trees — not shipped)
+# Includes e.g. lupo-archive/legacy/wordpress-reference/ (GPL WordPress study copy).
 # ---------------------------------------------------------
 lupo-archive/
 lupo-archive/*

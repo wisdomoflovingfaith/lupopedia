@@ -25,6 +25,8 @@ function lupoTrim(s) {
  * @param {string} [config.csrfToken]
  * @param {number} [config.pollingInterval]
  * @param {boolean} [config.autoScroll]
+ * @param {number} [config.kairosTickIntervalMs] POST /api/lupo-kairos/tick on this interval (0 = off)
+ * @param {number} [config.kairosDepartmentId] optional department filter for consolidation
  */
 var ChatDisplay = function (config) {
     this.container = config.container;
@@ -35,8 +37,11 @@ var ChatDisplay = function (config) {
     this.csrfToken = config.csrfToken || '';
     this.pollingInterval = config.pollingInterval || 2000;
     this.autoScroll = config.autoScroll !== false;
+    this.kairosTickIntervalMs = parseInt(config.kairosTickIntervalMs, 10) || 0;
+    this.kairosDepartmentId = parseInt(config.kairosDepartmentId, 10) || 0;
     this.lastSinceStr = '';
     this.pollTimer = null;
+    this.kairosTimer = null;
     this.useMethod = null;
 };
 
@@ -265,6 +270,77 @@ ChatDisplay.prototype.startPolling = function () {
     }, this.pollingInterval);
 };
 
+ChatDisplay.prototype.kairosTickUrl = function () {
+    var base = lupoTrim(this.publicPath);
+    if (base.length > 0 && base.charAt(base.length - 1) === '/') {
+        base = base.substring(0, base.length - 1);
+    }
+    return base + '/api/lupo-kairos/tick';
+};
+
+ChatDisplay.prototype.postJson = function (url, bodyObj, callback) {
+    var xhr = this.createXhr();
+    var self = this;
+    if (!xhr) {
+        if (callback) {
+            callback(null);
+        }
+        return;
+    }
+    var body = '{}';
+    if (typeof JSON !== 'undefined' && JSON.stringify) {
+        body = JSON.stringify(bodyObj || {});
+    }
+    xhr.open('POST', url, true);
+    xhr.setRequestHeader('Content-Type', 'application/json');
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState !== 4) {
+            return;
+        }
+        if (xhr.status === 200) {
+            if (callback) {
+                callback(self.parsePayload(xhr.responseText || ''));
+            }
+        } else if (callback) {
+            callback(null);
+        }
+    };
+    try {
+        xhr.send(body);
+    } catch (eSend) {
+        if (callback) {
+            callback(null);
+        }
+    }
+};
+
+/**
+ * Background KAIROS consolidation (same session as chat). Interval 0 disables.
+ */
+ChatDisplay.prototype.startKairosBackground = function () {
+    var self = this;
+    var ms = parseInt(this.kairosTickIntervalMs, 10) || 0;
+    if (ms <= 0) {
+        return;
+    }
+    if (this.kairosTimer) {
+        window.clearInterval(this.kairosTimer);
+    }
+    function runTick() {
+        var payload = {};
+        if (self.kairosDepartmentId > 0) {
+            payload.department_id = self.kairosDepartmentId;
+        }
+        self.postJson(self.kairosTickUrl(), payload, function (data) {
+            if (data && window.console && console.log) {
+                console.log('[KAIROS tick]', data);
+            }
+        });
+    }
+    window.setTimeout(runTick, 8000);
+    this.kairosTimer = window.setInterval(runTick, ms);
+};
+
 ChatDisplay.prototype.appendMessages = function (messages) {
     if (!this.container || !messages || messages.length === 0) {
         return;
@@ -438,6 +514,7 @@ ChatDisplay.prototype.init = function () {
     this.detectCapabilities();
     this.loadInitialMessages();
     this.startPolling();
+    this.startKairosBackground();
     this.setupEventListeners();
 };
 

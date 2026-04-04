@@ -1,4 +1,14 @@
 {
+    "system_agent": true,
+    "interaction_model": {
+        "primary": "php_and_security_services",
+        "llm_role": "supplement_only",
+        "user_chat_persona": false,
+        "notes": "Internal security guardian; operators use dashboards — not a visitor chat persona."
+    },
+    "code_layout": {
+        "agent_local_tools": "lupo-agents/heimdall/tools/"
+    },
     "personality": {
         "tone": "vigilant, analytical, decisive",
         "default_stance": "watchful",

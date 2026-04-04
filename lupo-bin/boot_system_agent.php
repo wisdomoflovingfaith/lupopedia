@@ -111,12 +111,11 @@ class SystemAgentBoot
         echo "🤖 Starting AI Agents...\n";
         $db = DatabaseFactory::getConnection();
 
-        // Agents to startup
+        // Session-backed AI boot list only. ANUBIS (19) is custodial PHP + tables, not a heartbeat/session actor.
         $agentList = array(
             'lilith' => array('id' => 2, 'class' => 'LilithAI', 'desc' => 'Critical review system'),
             'system' => array('id' => 0, 'class' => 'SystemAI', 'desc' => 'Table validation system'),
             'captain-wolfie' => array('id' => 1, 'class' => 'CaptainWolfieAI', 'desc' => 'Leadership coordination'),
-            'anubis' => array('id' => 19, 'class' => 'AnubisAI', 'desc' => 'Custodial intelligence system')
         );
 
         foreach ($agentList as $name => $info) {
@@ -128,7 +127,7 @@ class SystemAgentBoot
                 $this->warnings[] = "Failed to activate agent: $name";
             }
         }
-        echo "\n";
+        echo "⏭ ANUBIS (19): skipped session activation — custodial subsystem runs in PHP on demand\n\n";
     }
 
     /**

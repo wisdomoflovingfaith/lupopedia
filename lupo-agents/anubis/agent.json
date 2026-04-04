@@ -1,10 +1,12 @@
 {
     "code": "ANUBIS",
     "name": "ANUBIS",
+    "agent_key": "anubis",
+    "is_internal_only": true,
     "layer": "kernel",
     "is_required": true,
     "is_kernel": true,
-    "recommended_slot": 59,
+    "slug": "anubis",
     "version": "1.0.0",
     "agent_id": 19
 }

@@ -2,7 +2,7 @@
 lupopedia.headers:
   header_format_version: 2
   lupopedia.schema: implementation
-  when_updated: "20260403022300"
+  when_updated: "20260404055811"
   file_path_from_root: "lupo-docs/implementations/33_softaculous_certification_4_1_0_gate/README.md"
   web_path: "http://www.lupopedia.com/lupopedia/lupo-docs/implementations/33_softaculous_certification_4_1_0_gate/README.md"
   federation_node_id: 0
@@ -30,6 +30,10 @@ lupopedia.edges:
       type: references
       weight: 0.9
       reason: "Backlog traceability per PRD 33 Section 12"
+    - to: "lupo-docs/implementations/33_softaculous_certification_4_1_0_gate/SOFTACULOUS_PACKAGE_BUILD.md"
+      type: references
+      weight: 1.0
+      reason: "Softaculous / FTP distribution package spec and build script pointer"
 ---
 
 # Implementation: PRD 33 — Softaculous certification and 4.1.0 gate
@@ -56,12 +60,14 @@ This folder tracks **implementation work**, **questions**, **decisions**, and **
 | **`answers/`** | Human answers to questions |
 | **`comments/`** | Dialogue and notes |
 | **`changelog.md`** | Changes to this implementation tree |
+| **`SOFTACULOUS_PACKAGE_BUILD.md`** | **FTP-safe zip/tar spec**, dotfile rules, validation checklist, **`lupo-scripts/build_softaculous_package.sh`** |
 | **`todo.md`** | Pointer to backlog + local stubs |
 | **`authors.md`** | Contributors |
 | **`edges.md`** | Cross-links |
 
 ## Related
 
+- **Distribution / Softaculous package:** [SOFTACULOUS_PACKAGE_BUILD.md](SOFTACULOUS_PACKAGE_BUILD.md)
 - **PRD 33:** [33_softaculous_certification_4_1_0_gate.md](../../prd/33_softaculous_certification_4_1_0_gate.md)
 - **Backlog:** [lupo-docs/versions/4.0.94/TODO.md](../../versions/4.0.94/TODO.md)
 - **Crafty reference:** `craftysyntax-reference/` (repository root)

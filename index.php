@@ -88,6 +88,9 @@ define( 'LUPOPEDIA_PUBLIC_PATH', '/' . basename(__DIR__) );
  * INSTALL REDIRECT DOCTRINE (4.0.6+): If lupopedia-config.php does NOT exist, ALWAYS redirect
  * to install.php. config.php MUST NOT block or override this redirect. A white page must never occur.
  *
+ * Auto-installers (Softaculous, Installatron): they create lupopedia-config.php without running install.php.
+ * When this file finds a config at any search path below, it loads it and continues — no redirect to install.php.
+ *
  * Config search order for lupopedia-config.php:
  * 1. One directory ABOVE DOCUMENT_ROOT (most secure, preferred)
  * 2. One directory above DOCUMENT_ROOT + Lupopedia public path

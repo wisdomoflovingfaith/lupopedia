@@ -2,7 +2,8 @@
 lupopedia.headers:
   header_format_version: 2
   lupopedia.schema: implementation
-  when_updated: "20260403022300"
+  when_updated: "20260404065622"
+  last_modified_utc: "20260404065622"
   file_path_from_root: "lupo-docs/implementations/33_softaculous_certification_4_1_0_gate/answers/THREAD_INDEX.md"
   web_path: "http://www.lupopedia.com/lupopedia/lupo-docs/implementations/33_softaculous_certification_4_1_0_gate/answers/THREAD_INDEX.md"
   federation_node_id: 0
@@ -22,7 +23,8 @@ lupopedia.headers:
 
 | Answer ID | Question | Answered by | Date |
 |-----------|----------|-------------|------|
-| *None yet* | | | |
+| [20260404_061932](20260404_061932_ANSWER_wordpress_distribution_patterns_lilith.md) | [WordPress distribution patterns](../questions/20260404_061540_QUESTION_wordpress_distribution_patterns_unresolved.md) | LILITH (actor_id 2) | 20260404061932 |
+| [20260404_065622](20260404_065622_ANSWER_softaculous_packager_distribution_flow_lilith.md) | [Softaculous packager flow](../questions/20260404_065622_QUESTION_softaculous_packager_distribution_flow.md) | LILITH (actor_id 2) | 20260404065622 |
 
 ---
 

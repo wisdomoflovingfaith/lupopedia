@@ -1,0 +1,17 @@
+{
+    "agent_key": "kairos",
+    "agent_id": 115,
+    "version": "1.0.0",
+    "is_kernel": false,
+    "is_internal_only": true,
+    "layer": "application",
+    "name": "KAIROS",
+    "slug": "kairos",
+    "role": "Memory Consolidation & Fact Verification",
+    "is_required": false,
+    "aliases": ["kairos", "memory", "consolidator", "fact-verifier"],
+    "when_updated_utc": "20260404051638",
+    "last_verified_utc": "20260404051638",
+    "last_verified_by": "cursor",
+    "last_verified_by_actor_id": 102
+}

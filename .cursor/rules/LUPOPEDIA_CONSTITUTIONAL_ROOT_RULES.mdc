@@ -327,6 +327,11 @@ Every decision must have:
 - No Lupopedia → Lupopedia upgrades  
 - Single local instance only
 
+### 9.9 UI layer & animation (RULE 93.UI_LAYERS)
+- **Canonical:** `lupo-includes/js/lupo-layers.js` (`LupoLayer`) for new DHTML-style slides, z-index, and absolute positioning on **shipped** UI (see **`lupo-docs/prd/00_root_constitutional_system_requirements.md` §16**).  
+- **Forbidden:** `eval()`, `new Function(string)`, string-based `setTimeout`/`setInterval` for animation; npm/Webpack/Vite/Babel as a **runtime** requirement for public/`lupo-includes` UI; new jQuery or external animation-library dependencies for those surfaces.  
+- **Heritage:** Legacy `dynapi/js/dynlayer.js` remains for proven paths per proven-code rules; do not extend its eval patterns for new features.
+
 ---
 
 ## 🔧 Enforcement

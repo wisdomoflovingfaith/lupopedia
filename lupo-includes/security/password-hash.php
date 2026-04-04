@@ -131,10 +131,10 @@ function lupo_verify_password($password, $hash) {
         return (crypt($password, $hash) === $hash);
     }
     
-    // Fallback to MD5 (legacy)
+    // Fallback to MD5 (legacy Crafty Syntax imports; stored value may be upper or lower case hex)
     if (lupo_is_md5_hash($hash)) {
         $md5_hash = md5($password);
-        return ($md5_hash === $hash);
+        return hash_equals(strtolower($hash), $md5_hash);
     }
     
     // Unknown hash format

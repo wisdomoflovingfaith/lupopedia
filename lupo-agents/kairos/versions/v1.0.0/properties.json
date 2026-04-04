@@ -1,0 +1,23 @@
+{
+    "system_agent": true,
+    "layer": "application/knowledge",
+    "interaction_model": {
+        "primary": "php_services",
+        "llm_role": "supplement_only_for_non_deterministic_or_unspecified_logic",
+        "user_chat_persona": false,
+        "notes": "KAIROS consolidates memory via PHP (KairosConsolidationService); LLM is not the runtime orchestrator."
+    },
+    "code_layout": {
+        "agent_local_tools": "lupo-agents/kairos/tools/",
+        "core_service": "app/Services/Kairos/KairosConsolidationService.php"
+    },
+    "runtime": {
+        "primary_storage": "lupo_actor_memory",
+        "relationship_storage": "lupo_edges",
+        "tick_endpoint": "POST {LUPOPEDIA_PUBLIC_PATH}/api/lupo-kairos/tick"
+    },
+    "constraints": {
+        "must_follow_constitutional_rules": true,
+        "no_schema_guessing": true
+    }
+}

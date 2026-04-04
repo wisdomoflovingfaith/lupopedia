@@ -35,6 +35,15 @@ if (!function_exists('lupo_get_csrf_token')) {
 // Load AuthSessionManager for actor management
 require_once LUPOPEDIA_PATH . '/lupo-includes/classes/AuthSessionManager.php';
 
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+if (!empty($_SESSION['password_change_required'])) {
+    $cp = defined('LUPOPEDIA_PUBLIC_PATH') ? rtrim(LUPOPEDIA_PUBLIC_PATH, '/') . '/change-password' : '/change-password';
+    header('Location: ' . $cp);
+    exit;
+}
+
 // Require login only; if not admin, show graceful error inside layout (nav still visible)
 $authService = isset($GLOBALS['lupo_auth_service']) ? $GLOBALS['lupo_auth_service'] : null;
 if ($authService) {
@@ -49,6 +58,14 @@ if ($authService) {
 $user = $authService ? $authService->getCurrentUser() : (function_exists('current_user') ? current_user() : array());
 $isUserLoggedIn = ($user !== false && !empty($user));
 $isAdmin = $isUserLoggedIn && !empty($user['is_admin']);
+
+// Temporal pulse: keep lupo-bin/temporal_anchor.json aligned with real UTC when staff use admin (PRD 00 §3.5a)
+if ($isUserLoggedIn && is_file(LUPOPEDIA_PATH . '/lupo-includes/functions/time.php')) {
+    require_once LUPOPEDIA_PATH . '/lupo-includes/functions/time.php';
+    if (function_exists('lupo_pulse_temporal_anchor')) {
+        lupo_pulse_temporal_anchor(60);
+    }
+}
 
 // Admin diagnostics (4.0.20): session introspection, permission check — local-only, dev-only
 if (file_exists(LUPOPEDIA_PATH . '/lupo-includes/functions/admin_diagnostics.php')) {

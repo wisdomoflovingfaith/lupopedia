@@ -639,6 +639,16 @@ function lupo_route_slug($slug)
         }
     }
 
+    // ── REST API: KAIROS (memory consolidation tick) ───────────────────────────
+    if (preg_match('#^api/lupo-kairos/tick/?$#', $slug)) {
+        $app_root = defined('LUPOPEDIA_PATH') ? LUPOPEDIA_PATH : LUPOPEDIA_ABSPATH;
+        $kairos_api_path = rtrim($app_root, '/\\') . DIRECTORY_SEPARATOR . 'lupo-includes' . DIRECTORY_SEPARATOR . 'modules' . DIRECTORY_SEPARATOR . 'api' . DIRECTORY_SEPARATOR . 'kairos-api.php';
+        if (file_exists($kairos_api_path)) {
+            require_once $kairos_api_path;
+            exit;
+        }
+    }
+
     // ── REST API: Context Graph ────────────────────────────────────────────────
     if (preg_match('#^api/context-graph/(context|edges|edge|channel-map)$#', $slug, $api_m)) {
         $context_graph_api_action = $api_m[1];

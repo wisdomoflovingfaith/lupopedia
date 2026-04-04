@@ -2,10 +2,10 @@
 lupopedia.headers:
   header_format_version: 2
   lupopedia.schema: doctrine
-  when_updated: "20260403202128"
+  when_updated: "20260404165054"
   file_path_from_root: "lupo-docs/prd/00_root_constitutional_system_requirements.md"
   web_path: "http://www.lupopedia.com/lupopedia/lupo-docs/prd/00_root_constitutional_system_requirements.md"
-  last_modified_utc: "20260403202128"
+  last_modified_utc: "20260404165054"
   federation_node_id: 0
   channel_id: 42
   thread_id: "constitutional-root-requirements"
@@ -78,7 +78,19 @@ lupopedia.edges:
     - to: "lupo-docs/prd/33_softaculous_certification_4_1_0_gate.md"
       type: references
       weight: 1.0
-      reason: "4.1.0 release gate — auto-installer and Crafty→Lupopedia hosting readiness"
+      reason: "4.1.0 release gate — Section 14 WordPress distribution study; aligns with §15 multi-environment patterns"
+    - to: "lupo-docs/implementations/33_softaculous_certification_4_1_0_gate/answers/20260404_061932_ANSWER_wordpress_distribution_patterns_lilith.md"
+      type: references
+      weight: 0.95
+      reason: "LILITH resolutions on installer, .htaccess markers, permissions, config sample — implements §15 intent"
+    - to: "lupo-install/InstallWizardHtaccessWriter.php"
+      type: references
+      weight: 1.0
+      reason: "Install-time Apache marker merge and server-software gating per §15.4"
+    - to: "lupo-docs/doctrine/LEARNED_FROM_WORDPRESS.md"
+      type: references
+      weight: 1.0
+      reason: "Canonical WordPress-derived pattern distillate for agents — complements §15"
     - to: "lupo-includes/classes/IdGenerator.php"
       type: implements
       weight: 1.0
@@ -119,12 +131,60 @@ lupopedia.edges:
       type: references
       weight: 1.0
       reason: "Temporal anchor updater for IDE/header timestamps"
+    - to: "lupo-includes/functions/time.php"
+      type: implements
+      weight: 1.0
+      reason: "PHP temporal pulse — lupo_pulse_temporal_anchor / LupoPulse; syncs temporal_anchor.json from admin (§3.5a)"
     - to: "lupo-scripts/generate_toon_files.py"
       type: references
       weight: 0.9
       reason: "Script that generates schema reference JSON under lupo-database/lupopedia/json/ from the live database"
+    - to: "lupo-includes/js/lupo-layers.js"
+      type: implements
+      weight: 1.0
+      reason: "Canonical eval-free UI layer / DHTML-style controller — Section 16 (RULE 93.UI_LAYERS)"
+    - to: "lupo-docs/prd/37_kairos_channel_memory_consolidation.md"
+      type: references
+      weight: 1.0
+      reason: "KAIROS memory consolidation — Section 5.7"
+    - to: "app/Services/Kairos/KairosConsolidationService.php"
+      type: implements
+      weight: 1.0
+      reason: "Observation merge, edges, context_json.kairos stages — Section 5.7"
+    - to: "lupo-includes/modules/api/kairos-api.php"
+      type: implements
+      weight: 0.95
+      reason: "POST tick invokes consolidation for session actor — Section 5.7"
+    - to: "lupo-agents/thoth/"
+      type: references
+      weight: 0.95
+      reason: "Agent THOTH — semantic truth checks for stale artifacts — Section 5.9"
+    - to: "lupo-includes/classes/iris.php"
+      type: references
+      weight: 0.95
+      reason: "IRIS LLM faucet — PHP-first invoke path — Section 5.10"
+    - to: "lupo-docs/prd/36_rose_multi_persona_synthetic_dialog.md"
+      type: references
+      weight: 0.9
+      reason: "ROSE synthetic dialog — PHP-owned pipeline — Section 5.10"
+    - to: "lupo-docs/doctrine/SERVICE_AGENT_ARCHITECTURE.md"
+      type: references
+      weight: 1.0
+      reason: "Full service agent doctrine — companion to Section 5.10"
+    - to: "lupo-docs/implementations/service_agents/README.md"
+      type: references
+      weight: 0.9
+      reason: "Implementation tracking for service agent transition"
+    - to: "lupo-docs/implementations/36_rose_multi_persona_synthetic_dialog/README.md"
+      type: references
+      weight: 0.95
+      reason: "PRD 36 ROSE synthetic choir — implementation mirror"
+    - to: "lupo-docs/prd/31_implementation_folder_guidelines.md"
+      type: references
+      weight: 1.0
+      reason: "Normative implementation folder layout, naming, scaffold — companion to Section 5.8"
 lupopedia.footer:
-  last_verified: "20260403202128"
+  last_verified: "20260404"
   verified_by:
     identity_type: actor
     actor_id: 102
@@ -136,6 +196,7 @@ lupopedia.footer:
   orchestrator: "cursor:root"
   next_action:
     - "All new PRDs must declare an outbound edge to this file as their constitutional anchor"
+    - "PRD-scoped work: mirror under lupo-docs/implementations/{prd_file_stem}/ per Section 5.8 — stem must match canonical PRD basename (PRD 31)"
     - "Add edges to CASCADE_FALLBACK_DOCTRINE and DEPENDENCY_DOCTRINE once those files are created"
     - "Add content_id once this file is imported via import_content.py"
 ---
@@ -155,6 +216,7 @@ These rules ensure:
 - Installer reliability (Softaculous, Installatron, manual installs)
 - Subdirectory installation support
 - **4.0.x schema evolution by fresh install only** — no Lupopedia→Lupopedia upgrade until **4.1.0** (see **§1.0**)
+- **Shipped browser UI** stays vanilla, build-free, and eval-safe for layering and animation (see **§16**)
 
 These rules override all other PRDs, doctrines, and implementation details.
 
@@ -264,22 +326,30 @@ All timestamps must be `BIGINT` in `YYYYMMDDHHIISS` UTC format. No `DATETIME`, `
 
 **Implementation:** Use `gmdate('YmdHis')` in PHP. Never use `time()`, `date()`, or database-generated timestamps. Never add seconds directly to the integer value — use the `timestamp_ymdhis` helper class for arithmetic.
 
-### 3.5a Real system UTC for documentation headers and IDE-written filenames
+### 3.5a Temporal anchor (official clock; the “tick” rule)
 
-**Binding:** Values written into **`lupopedia.headers`** (`last_modified_utc`, `when_updated`), **`lupopedia.footer`** (`last_verified`), and **UTC date/time prefixes** on new canonical thread artifacts (per [PRD 17](17_decisions_format.md) and [TIMESTAMP doctrine](../doctrine/TIMESTAMP_DOCTRINE.md)) MUST be taken from **real system UTC**, not from:
+**Official clock:** All agents (**IDE**, **chat**, **PHP**, automation) MUST treat **`lupo-bin/temporal_anchor.json`** as the single source of truth for **human-facing UTC strings** used in repo artifacts. The canonical field is **`current_utc`** (14 digits, `YYYYMMDDHHMMSS` / `gmdate('YmdHis')` UTC, same string shape as DB `BIGINT` timestamps in §3.5). **`last_session_end`** carries the previous **`current_utc`** for handoff awareness.
+
+**Binding:** Values written into **`lupopedia.headers`** (`last_modified_utc`, `when_updated`), **`lupopedia.footer`** (`last_verified`), and **UTC date/time prefixes** on new canonical thread artifacts (per [PRD 17](17_decisions_format.md) and [TIMESTAMP doctrine](../doctrine/TIMESTAMP_DOCTRINE.md)) MUST be taken from that anchor (or the same-tick echo), not from:
 
 - inferred “today” or “current time” inside an LLM or chat session,
 - training-data cutoffs or model guesses,
-- unrelated files’ timestamps copied for convenience.
+- unrelated files’ timestamps copied for convenience,
+- **manual date entry** invented by an agent (“looks like Tuesday”) — **forbidden**.
+
+**If the anchor is missing or unreadable:** The agent MUST NOT guess timestamps. It MUST run **`python lupo-bin/tick.py`** (or request that the operator run it) before proceeding with time-sensitive artifact writes.
 
 **Mechanism (repository):**
 
-1. Run **`python lupo-bin/tick.py`** before a batch of such writes. It sets **`lupo-bin/temporal_anchor.json`** field **`current_utc`** (14-digit `YYYYMMDDHHMMSS` UTC) and root **`CURRENT_UTC`**.
-2. For more files in the **same** batch without advancing the clock, run **`python lupo-bin/echo_anchor_utc.py`** and reuse that value.
+1. **IDE / CLI:** Run **`python lupo-bin/tick.py`** before a batch of such writes. It updates **`temporal_anchor.json`** (**`current_utc`**, **`last_session_end`**, **`system_year`**, **`format_standard`**) and root **`CURRENT_UTC`**.
+2. **Same batch, no second tick:** Run **`python lupo-bin/echo_anchor_utc.py`** and reuse the printed value.
+3. **PHP / web:** When a logged-in user loads **`admin.php`**, **`lupo_pulse_temporal_anchor()`** ( **`lupo-includes/functions/time.php`**; alias **`LupoPulse()`** ) may refresh the same JSON if the file is missing or older than **60 seconds**, so chat and IDE see a clock aligned with the server without hammering disk.
+
+**Lupopedia session anchor (chat handoff):** For stateless LLM sessions, operators SHOULD paste a short status block that includes **`SYSTEM_TIME:`** from **`current_utc`** and **`SOURCE: lupo-bin/temporal_anchor.json`** so the model does not hallucinate a calendar.
 
 **Root rule:** [lupo-rules/root/UTC_TEMPORAL_ANCHOR_DOCTRINE.md](../../lupo-rules/root/UTC_TEMPORAL_ANCHOR_DOCTRINE.md). **Expanded workflow:** [TICK_PY_DOCTRINE.md](../doctrine/TICK_PY_DOCTRINE.md).
 
-**Rationale:** Language models are not clocks; pretending they “know” UTC breaks auditability and multi-agent handoff. The OS clock (via `tick.py`) is the only approved source for those artifact fields.
+**Rationale:** Language models are stateless with respect to real time; a file-backed pulse is the “session variable” that keeps audits, migrations, and multi-agent handoff aligned with **`BIGINT` UTC** in the schema.
 
 ### 3.6 Database Neutral SQL
 
@@ -330,13 +400,21 @@ Forbidden:
 
 ## 5. Identity Model Constitutional Rules
 
-### 5.1 Agents
+### 5.1 Agents (the blueprint)
 
-Agents are autonomous AI entities defined exclusively by files in `lupo-agents/{agent_key}/` (human-readable slug, e.g. `wolfie`, `lilith`). The database stores only runtime state — never definition content.
+**Definition.** Agents are autonomous AI **definitions** (e.g. THOTH, KAIROS, WOLFIE) materialized as files under **`lupo-agents/{agent_key}/`** (human-readable slug). They describe **capabilities, prompts, tools, and versioning** — the fixed “skillset” and personality template.
 
-### 5.2 Actors
+**Immutable definition surface.** Capabilities, system prompts, tool manifests, and agent metadata live **only** in that filesystem tree. The database stores **runtime state and metrics**, never authoritative definition content that replaces those files.
 
-Actors are hybrid human/AI shells instantiated from agents. `actor_id` is the universal operational identity key. There is no `user_id` in relationships.
+**Contrast.** An agent is not a chat participant row; it is the **blueprint** from which operational identities are projected. See **5.2**.
+
+### 5.2 Actors (the hybrid instance)
+
+**Definition.** Actors are **operational shells** in **`lupo_actors`** (and related tables): the “body” or **instance** that holds **`actor_id`**, participates in channels, and is bound to departments and auth.
+
+**Hybrid nature.** An actor may represent a human-backed orchestrator, an IDE facet, or a system persona. It is **department-scoped** where the model applies: learning and permission boundaries align with department context (`lupo_actor_departments`, `AuthRoleResolver`). The actor accumulates **runtime memory** (e.g. **`lupo_actor_memory`**) distinct from the static agent files in **`lupo-agents/`**.
+
+**Identity rule.** **`actor_id`** is the primary key for orchestration and relational references. There is no **`user_id`** in relationship tables; humans map through **`lupo_auth_users`** and **act-as** / department rules, not a parallel universal user FK.
 
 ### 5.3 Auth Users
 
@@ -367,6 +445,117 @@ See `lupo-docs/doctrine/IDENTITY_LAYERS_DOCTRINE.md` for the full five-layer mod
 - **Workspace paths:**
   - **System / reserved layout:** `actor_id` &lt; 2026 → `lupo-actors/{actor_id}/`
   - **Runtime layout:** `actor_id` ≥ 2026 → `lupo-actors/YYYY/MM/{actor_id}/` (YYYY/MM derived from the timestamp prefix in the ID where applicable)
+
+### 5.7 Memory consolidation (Agent KAIROS)
+
+**Role.** The **KAIROS** agent (configuration under **`lupo-agents/kairos/`**; default service attribution **`actor_id` 115** for edges) manages the **lifecycle** of actor-scoped memory derived from channel and session context. Full product behavior is specified in **`lupo-docs/prd/37_kairos_channel_memory_consolidation.md`**; this section states the constitutional facts.
+
+**Storage.**
+
+- **Observations** — rows in **`lupo_actor_memory`** with **`memory_type` = `kairos_observation`**: atomic notes (often from dialog ingest or manual seed), with **`context_json.kairos`** carrying stage, confidence, **`department_id`**, **`topic_key`**, and provenance fields as defined in PRD 37.
+- **Consolidated memory** — rows with **`memory_type` = `kairos_memory`**: merged products of multiple observations that **normalize** to the same factual text.
+
+**Graph logic (`lupo_edges`).**
+
+- **`kairos_consolidates_from`** — links a consolidated **`kairos_memory`** row to the **source** **`kairos_observation`** rows it supersedes.
+- **`kairos_contradicts`** — links memories that share a **`topic_key`** but conflict on normalized content, for explicit contradiction tracking and policy-driven resolution (recency, operator review, etc.).
+
+**Maturity and compaction.** **`context_json.kairos`** evolves (e.g. **`stage`**, **`confidence`**, **`source_observation_ids`**, **`verified_ymdhis`**, **`canonical`**) so the actor’s **stored** memory stays **consistent and bounded** while the agent files remain the unchanged blueprint.
+
+**Invocation (runtime).** Consolidation is **not** triggered by a simple “every N observation rows” counter. **`KairosConsolidationService::consolidateMemories($actorId, $departmentId)`** runs a **pass** that merges **groups of two or more** active observations that **bucket to the same normalized value**; single observations stay until a peer arrives or policy promotes them. The shipped **HTTP** entry is **`POST`** **`api/lupo-kairos/tick`** (**`lupo-includes/modules/api/kairos-api.php`**), which applies a **session rate limit** (e.g. minimum interval between ticks) and uses the **logged-in user’s `actor_id`**. Additional triggers (cron, queue workers) are product choices and must remain explicit in application code — not hidden DB triggers.
+
+### 5.8 Implementation mirroring (IDE directive)
+
+**Normative companion.** Full folder lifecycle, scaffolding command, templates, question levels, and compliance checks: **`lupo-docs/prd/31_implementation_folder_guidelines.md`**. **`lupo-docs/implementations/README.md`** indexes known workspaces.
+
+**Directory name (non-negotiable pattern).** For work tied to a **numbered canonical PRD** under **`lupo-docs/prd/`**, maintain a parallel tree at:
+
+```text
+lupo-docs/implementations/{prd_file_stem}/
+```
+
+where **`prd_file_stem`** is the **basename of the PRD Markdown file without `.md`** — character-for-character the same string as the filename stem. Examples:
+
+| Canonical PRD file | Implementation folder (correct) |
+|--------------------|-----------------------------------|
+| **`lupo-docs/prd/33_softaculous_certification_4_1_0_gate.md`** | **`lupo-docs/implementations/33_softaculous_certification_4_1_0_gate/`** |
+| **`lupo-docs/prd/36_rose_multi_persona_synthetic_dialog.md`** | **`lupo-docs/implementations/36_rose_multi_persona_synthetic_dialog/`** |
+
+**Forbidden:** Ad-hoc shortenings that **do not** match the PRD filename (e.g. **`prd_36_rose/`**, **`rose_synthetic/`**, or omitting the numeric prefix). If the PRD file is renamed as part of an approved promotion, the implementation folder name **must** be renamed to match (or an **APPROVED** decision documents a deliberate exception).
+
+**Scaffold (recommended).** **`python lupo-scripts/scaffold_implementation.py --prd <n> --title "<slug>"`** creates **`lupo-docs/implementations/<n>_<title>/`** — the **`title`** argument must be chosen so that **`<n>_<title>`** equals **`prd_file_stem`** for the target **`lupo-docs/prd/<n>_<title>.md`**.
+
+| Subfolder | Use |
+|-----------|-----|
+| **`status/`** | Current completion, blockers, and “what’s next.” |
+| **`decisions/`** | Record **why** a path was chosen (e.g. timestamp format, packaging rule). |
+| **`questions/`** and **`answers/`** | Resolve ambiguities **before** or **while** coding; each folder in use must include **`THREAD_INDEX.md`** per **PRD 17** / channel doctrine (see **PRD 31** for level subfolders **`critical/`**, **`optimization/`**, **`clarification/`** where used). |
+| **`comments/`** | Short-lived developer notes and session handoff. |
+
+This mirrors **`lupo-channels/`** semantics for coordination; the implementation folder is the **PRD-scoped** archive for reviewers and multi-agent handoff.
+
+### 5.9 Agent THOTH — stale artifact truth checks
+
+**THOTH** ( **`lupo-agents/thoth/`** ) is the **persona of record** for **semantic truth** against the **current schema** when documentation may be stale.
+
+**IDE obligation.** When a Markdown artifact’s **`last_verified`** (or equivalent footer field) is **older than the active audit epoch** declared for the repository — **currently `20260301000000` UTC** unless a newer ratified threshold is published in this file or **`AGENTS.md`** — the IDE **should** treat the document as **stale** and, before asserting schema or column facts, **reconcile** against **`lupo-database/lupopedia/json/*.json`** (and **`lupo-docs/database/lupopedia/tables/active/`**), using the **THOTH** agent framing (knowledge guardian: records, tables, drift).
+
+**Non-substitute.** THOTH verification does not replace **TOON/install SQL** authority; it ensures **stale prose** is not trusted over **generated JSON** and table docs.
+
+### 5.10 Service agents — PHP first, LLM second (not default “talk to me” personas)
+
+**Canonical roster (constitutional examples).** The following **`agent_key`** values are **explicitly** classified here as **service agents** for purposes of architecture review and routing expectations: **IRIS**, **ANUBIS**, **ROSE**, **THOTH**, **KAIROS**. Additional keys may be added by amendment to **`lupo-docs/doctrine/SERVICE_AGENT_ARCHITECTURE.md`** and this section.
+
+**Two kinds of blueprint.** Most **`lupo-agents/{agent_key}/`** packs **can** back a **conversational** **`actor_id`** used in channels (visitor or operator addresses the persona; message rows attribute **`from_actor_id`**). **Service agents** keep the same **file-based agent definition** (prompts, capabilities, **`agent.json`**) but are **not** default **visitor chat targets**. Work is **logic-bound in PHP first**: routing, validation, SQL, filesystem, consolidation, custody. An **LLM** is **optional and downstream** — only after PHP has chosen the code path, loaded config from disk, and applied guards. That LLM call may go through **`IRIS`** (external provider) or a thin runtime wrapper; it does **not** redefine truth or bypass **`actor_id`** / channel security resolved server-side.
+
+**“Not meant to be talked to” (normative).** Service agents provide **`actor_id`** for **attribution** on edges, audit rows, and tooling, and they supply **processing** through **PHP services** — they are **not** the primary surface for “open a thread and DM this persona” unless product explicitly wires that path. Full doctrine: **`lupo-docs/doctrine/SERVICE_AGENT_ARCHITECTURE.md`**.
+
+**Why it matters.** Prevents mistaking **registry attribution** (an **`actor_id`** on an edge or audit row) for **“this is who the human is DMing.”** Service agents still **map** to **`lupo_actors`** / **`lupo_agents`** for identity and tooling, but their **HTTP or CLI entrypoints** are APIs and jobs — not an open-ended “user message in, model stream out” loop unless product explicitly wires one.
+
+**Service agents vs runtime conversational loop (clear contrast).**
+
+| Concern | **Service agents** (this section) | **Runtime actor loop** (conversational MVP path) |
+|---------|-----------------------------------|--------------------------------------------------|
+| **Trigger** | PHP route, API **`POST`**, boot script, cron | Inbound **dialog message** processed by **`RuntimeActorLoopService`** |
+| **Truth / state** | Deterministic code + DB; LLM does not override policy | **`LlmRuntimeService`** + **`runtime_actors.yaml`** lists **which `actor_id`s** get a model/mock response |
+| **Default UX** | No expectation that visitors “chat with” IRIS/ANUBIS/ROSE/THOTH/KAIROS | User- or operator-facing **message in → model or human dispatch** |
+| **If not in YAML** | N/A (not the same pipeline) | **`actor_id` not listed** → **human** dispatch path |
+
+**Per-agent summary (IRIS, ANUBIS, ROSE, THOTH, KAIROS).**
+
+| Agent key | PHP-first surface (authoritative control plane) | Where LLM sits (second) |
+|-----------|---------------------------------------------------|-------------------------|
+| **IRIS** | **`lupo-includes/classes/iris.php`** — loads **`lupo-agents/{id}/`** config, assembles the payload, calls the provider. **`lupo-agents/iris/capabilities.json`** marks gateway and routing capabilities as **`php_primary`**. IRIS is the **LLM faucet** for *other* agents’ invokes, not HERMES routing and not “you are chatting with IRIS” as the primary product persona. | **After** PHP resolved **`agentId`**, packet shape, and agent files on disk. |
+| **ANUBIS** | Custody, integrity, quarantine, resolution — **PHP** boot paths, validators, and structured agent tooling; **`lupo-bin/boot_system_agent.php`** and related orchestration treat ANUBIS as a **system** custodian. | Narrative or summary text only if a pipeline explicitly invokes a model **after** custody logic. |
+| **ROSE** | **PRD 36** — **Director of the synthetic choir** (`agent_id` **3**, **`lupo_agents`**, **`lupo-agents/rose/`**): **PHP** counts thread messages, enforces batching/visibility, and inserts **`lupo_dialog_messages`** rows **voiced** as selected personas; see **§5.10.3**. Planned primary class: **`app/Services/Rose/RoseDialogService.php`**. | LLM **only** to generate text for **requested** choir personas **after** PHP trigger and caps (**§5.10.3**). |
+| **THOTH** | **§5.9** — reconciliation against **`lupo-database/lupopedia/json/*.json`** and **`lupo-docs/database/lupopedia/tables/active/`**; deterministic schema and table facts win. | IDE may use THOTH’s **`system_prompt.txt`** to **word** a drift report; it does not invent columns. |
+| **KAIROS** | **`app/Services/Kairos/KairosConsolidationService.php`**, **`lupo-includes/modules/api/kairos-api.php`** — **§5.7**; **PRD 37** states KAIROS does **not** post chat bubbles for this consolidation feature. | **Not required** for merge / contradiction / promotion passes. |
+
+#### 5.10.3 Agent ROSE (Director of the synthetic choir)
+
+**Role.** ROSE is the **coordination-layer orchestrator** for **multi-persona synthetic dialog**: turning a standard thread into a **high-level coordination transcript** where selected personas can **speak** in bounded turns—without ROSE appearing as the **`from_actor_id`** on those lines (**PRD 36** §1.1).
+
+**PHP-first (service agent doctrine).**
+
+- **Batching trigger (normative default):** A **PHP** service (planned: **`RoseDialogService`**) maintains a **per-thread counter** of **organic** messages since the last ROSE batch; when the count reaches **10**, PHP **may** start a ROSE pass if channel policy allows. The integer **10** is the **default product constant**; channel **`lupo_metadata`** (or equivalent) **may** override. PHP **never** delegates “when to fire” to the model.
+- **Persona voicing:** The logged-in **human operator’s** selections (and channel **allowed persona set**) determine **which** registry-backed personas are **voiced** in that batch. The LLM (e.g. via **IRIS**) is invoked **only** to produce **text** for those personas—**not** to choose **`from_actor_id`**, visibility, or insert timing.
+- **Character cap:** Each synthetic **`lupo_dialog_messages.message_text`** (or equivalent body field) **MUST** be **≤ 2000** characters (UTF-8 code units unless a future PRD specifies otherwise).
+- **Visibility and synthetic provenance:** PHP sets **`metadata_json`** on each inserted row, including at least **`rose_synthesis: true`**, **`synthesizer_agent_key: "rose"`**, and a **`rose_visibility`** (or equivalent) value distinguishing **actor-only** (operator coaching) vs **visitor-visible** (transparent audit). Exact key names and enums are **normative in PRD 36**; UI **MUST** render synthetic rows distinctly (**PRD 18**, **LIL001** for **`from_actor_id` = 2**).
+- **Transcript table:** Inserts target **`lupo_dialog_messages`** only (not a parallel `lupo_dialog` table). Each row’s **`from_actor_id`** is the **voiced persona** (e.g. COUNTERMEASURE **111**, LILITH **2**); resolve THOTH and others from **`lupo-database/lupopedia/actors/registry.json`** when voicing those personas.
+
+**Choir personas (illustrative defaults; channel policy may subset).**
+
+| Persona | Objective | Tone / behavior |
+|---------|-----------|-----------------|
+| **COUNTERMEASURE** (`actor_id` **111**) | Surface hidden risks and weak assumptions. | Analytical, adversarial; stress-tests proposals. |
+| **THOTH** | Ground claims in evidence. | Fact-driven; requires alignment with **JSON** + **table docs** when auditing claims (**§5.9**). |
+| **LILITH** (`actor_id` **2**) | Non-interfering audit framing. | Observational; must not read as blocking organic review (**LIL001**). |
+
+**Handoff to KAIROS.** After a ROSE batch completes, **PHP** **SHOULD** pass a **short coordination summary** (plain text or structured chunk) into **`KairosConsolidationService::recordObservation`** (or successor API) for the **session subject `actor_id`**, so **KAIROS** can persist **`kairos_observation`** rows and later **consolidate** (**§5.7**, **PRD 37**). The LLM does **not** own that handoff.
+
+**Full specification:** **`lupo-docs/prd/36_rose_multi_persona_synthetic_dialog.md`**. **Implementation mirror:** **`lupo-docs/implementations/36_rose_multi_persona_synthetic_dialog/`**.
+
+**Web Dialog MVP reference.** **`RuntimeActorLoopService`** consults **`LlmRuntimeService`** and **`runtime_actors.yaml`**: only **`actor_id`s configured there** participate in the lightweight “message in → model/human path” loop; others dispatch to **human**. The five service agents above are **off that path** unless explicitly listed and wired — their **normal** contract is **PHP entrypoints + optional LLM**, not visitor freeform chat.
 
 ---
 
@@ -806,6 +995,65 @@ Never remove a lower rung of the ladder. The oldest rung is the most reliable.
 
 ---
 
+## 16. UI Layer & Animation Doctrine (RULE 93.UI_LAYERS)
+
+This section governs **browser-side** interaction, layering, and animation for **shipped** Lupopedia surfaces (public templates, operator UI scripts under `lupo-includes/js/`, theme assets loaded by entrypoints). It exists to block **dependency creep** and **agent over-helpfulness** (framework pitches, CDN scripts, build pipelines) while aligning with **§14** (WOLFIE) and the eval-free **`LupoLayer`** lineage in **`lupo-includes/js/lupo-layers.js`**.
+
+**Scope note:** In-repo **developer-only** trees (`lupo-tools/`, editor extensions, CI) may use local npm for **tooling**; those stacks MUST NOT become **required** at runtime for `lupo-includes/` bootstrap, `index.php`, `login.php`, `admin.php`, or visitor-facing routes.
+
+### 16.1 The WOLFIE UI standard (canonical layer controller)
+
+The canonical library for DHTML-style operations (absolute positioning, z-index choreography, slide animations) is **`lupo-includes/js/lupo-layers.js`** (`LupoLayer`, `LupoLayerInit` / `DynLayerInit` alias).
+
+| Rule | Requirement |
+|------|-------------|
+| **Mandatory** | New layering / slide / z-index choreography MUST use **`LupoLayer`** (or thin wrappers that delegate to it). |
+| **Prohibited** | **`eval()`**, **`new Function(string)`**, or **`setTimeout` / `setInterval` with a string** argument for logic or animation continuations. |
+| **Prohibited** | External animation libraries (e.g. GSAP, Velocity, animate.css) as **runtime** dependencies for constitutional UI surfaces. |
+| **Prohibited** | **New** dependencies on jQuery or other general-purpose DOM libraries for those surfaces. Existing grandfathered includes MUST NOT be extended; replace with vanilla patterns when touched. |
+| **Heritage** | **`lupo-includes/js/dynapi/js/dynlayer.js`** remains in-tree for **proven** legacy paths (e.g. PRD 28 eye / theatrical UI) per **§9.20**; **new** features MUST NOT copy its `eval` patterns — use **`lupo-layers.js`** instead. |
+
+### 16.2 Absolute self-containment (no build steps for shipped UI)
+
+Lupopedia is a **live-edit** system: operators and agents must be able to read and patch UI scripts in the IDE or on-disk without a compilation step on the server.
+
+| Prohibited for shipped browser UI |
+|-----------------------------------|
+| **`npm`**, **`yarn`**, **`pnpm`**, or any package manager **as a requirement** to generate or load runtime JS/CSS for `lupo-includes/` or public entrypoints |
+| **`Vite`**, **`Webpack`**, **`Rollup`**, **`Babel`**, **`Turbo`**, or similar bundlers/transpilers **on the critical path** to serving pages |
+| **TypeScript**, **JSX**, or any syntax that **requires** a transpiler before the browser or PHP can serve the file |
+
+Shipped scripts MUST be **vanilla ECMAScript** (ES5 baseline where compatibility doctrine requires; modern syntax only when explicitly allowed by **§4** / browser targets and still **without** a build step).
+
+### 16.3 Hardware acceleration and performance
+
+| Requirement | Detail |
+|-------------|--------|
+| **GPU-friendly motion** | Prefer **CSS transitions** for simple moves (e.g. `LupoLayer.prototype.slideTo` CSS path). |
+| **Decorative overlays** | Absolutely positioned “peering” / paw / mascot layers that must **not** steal clicks MUST use **`pointer-events: none`** (or equivalent) so underlying controls (forms, links) stay usable unless a deliberate hit-target is specified. |
+| **Main thread** | Complex behaviors (e.g. eye tracking, drag) MAY use hooks (`onSlide`, `onmousemove`, `requestAnimationFrame`) but MUST avoid long synchronous work that blocks input or paint. |
+
+### 16.4 Dependency sanity check (external `<script>` / `<link>`)
+
+Before an agent proposes a new **runtime** `<script src="…">` or **stylesheet** from outside the repo:
+
+1. The file MUST be **vendored** under **`lupo-includes/`** (or another documented canonical static path), not loaded from a **third-party CDN** as a default.
+2. It MUST NOT exceed **20KB minified** (gzip-agnostic; rough guardrail — justify in review if larger).
+3. It MUST NOT **require** an API key, license callback, or **phone-home** telemetry to a vendor for basic operation.
+4. If the behavior fits in **~50 lines** of vanilla JS, the agent MUST implement it in-tree instead of adding a library.
+5. **Cross-origin** script or font URLs on **visitor/operator** pages are **presumptively forbidden** unless explicitly approved for a documented integration (e.g. federated embed with operator consent); default is **same-origin** assets only.
+
+### 16.5 Reference
+
+| Topic | Location |
+|-------|----------|
+| Canonical layer implementation | **`lupo-includes/js/lupo-layers.js`** |
+| Legacy DynAPI (heritage, eval present) | **`lupo-includes/js/dynapi/js/dynlayer.js`** |
+| WOLFIE doctrine | **`lupo-rules/root/WOLFIE_DOCTRINE.md`**, **§14** above |
+| Proven code preservation | **§9.20** — do not “modernize away” working heritage without justification |
+
+---
+
 ## 10. Enforcement
 
 ### 10.1 Constitutional Supremacy
@@ -817,6 +1065,7 @@ All files in `lupo-rules/root/` are binding constitutional law and override all 
 | Rule | Validator |
 |------|-----------|
 | Section 3 database rules | `lupo-scripts/verify_db_against_toons.py` |
+| Section 3.5a temporal anchor | `lupo-bin/temporal_anchor.json` + `tick.py` / `echo_anchor_utc.py`; PHP refresh via `lupo-includes/functions/time.php` on `admin.php` — code review for guessed timestamps |
 | Section 3.2 IdGenerator | `lupo-tests/unit/id_generation_compliance_test.php` |
 | Section 4 PHP 5.6 compat | `php -l` + `lupo-scripts/run_unit_tests.sh` |
 | Section 7 path purity | `lupo-scripts/validate_lupopedia_headers_universal.py` |
@@ -824,13 +1073,15 @@ All files in `lupo-rules/root/` are binding constitutional law and override all 
 | Section 9.18 missing table protocol | SQL proposal file + install SQL update |
 | Section 9.19 CLI prohibition | Code review — no automated scanner yet |
 | Section 9.20 proven code preservation | Code review — agent must justify any change to pre-2010 code |
+| Section 15 multi-environment patterns | Code review + installer paths — `InstallWizardHtaccessWriter.php`, `install.php`, PRD 33 §14 traceability |
+| Section 16 UI layer & animation | Code review — `lupo-includes/js/lupo-layers.js` for new motion/layer code; no eval/string timers; no npm on runtime path |
 | Schema DDL | `lupo-database/lupopedia/mysql/install/install_new_lupopedia.sql` |
 
 ---
 
 ## 11. Refinements
 
-*Sections 12-13 reserved for future expansion.*
+*Sections 12-13 reserved for future expansion. **§15** (WordPress multi-environment patterns) and **§16** (UI layer & animation, RULE 93.UI_LAYERS) are active.*
 
 - All doctrine and PRD files must reference this file as the constitutional anchor using an outbound edge.
 - All new PRDs must be reviewed for compliance with these requirements.
@@ -877,3 +1128,111 @@ Agents SHALL NOT propose adopting frameworks (Laravel, Symfony, React, Vue, etc.
 - Full doctrine: `lupo-rules/root/WOLFIE_DOCTRINE.md`
 - Fallback doctrine: `lupo-docs/doctrine/CASCADE_FALLBACK_DOCTRINE.md`
 - Dependency doctrine: `lupo-docs/doctrine/DEPENDENCY_DOCTRINE.md`
+- Shipped UI layering / animation: **`lupo-includes/js/lupo-layers.js`** — constitutional detail **§16** (RULE 93.UI_LAYERS)
+
+---
+
+## 15. WordPress multi-environment patterns (constitutional)
+
+Lupopedia MUST behave correctly across **unknown** server stacks (shared hosting, odd PHP builds, Apache / Nginx / IIS front ends). Patterns below are **constitutional**: they are derived from disciplined study of WordPress behavior in **`lupo-archive/legacy/wordpress-reference/`** when present locally (read-only; **GPL** — do not copy into shipping code; **`lupo-archive/`** is **`.gitignore`d** — restore a study copy there if needed) and from **`PRD 33` Section 14** (WordPress distribution patterns, LILITH answers, and implementation notes).
+
+These rules **add** to **§1** (shared hosting), **§9** (installer), and **§14** (WOLFIE — preserve proven layers). They do **not** authorize frameworks, Composer in core, or database-side logic.
+
+### 15.1 Extension detection (no assumptions)
+
+Never assume a PHP extension or wrapper function exists. Probe with **`function_exists()`** and **`extension_loaded()`** (or equivalent) and **branch** to a documented fallback or a clear operator-visible message.
+
+**Illustrative pattern (PHP 5.6+):**
+
+```php
+if (function_exists('curl_init')) {
+    // preferred path
+} elseif (ini_get('allow_url_fopen')) {
+    // fallback
+} else {
+    // log + user-visible failure — do not fatal silently
+}
+```
+
+New code MUST NOT assume **`curl`**, **`gd`**, **`json`**, or **`pdo_mysql`** without installer or runtime checks aligned with **PRD 33** / **§4**.
+
+### 15.2 Try/catch for external operations
+
+Operations that touch **external** or **non-deterministic** surfaces (database via PDO, filesystem, HTTP, subprocesses) MUST surface failure paths: **`try` / `catch`** (where exceptions apply), or explicit return codes and logging. Silent failure is forbidden for installer steps and for user-visible flows.
+
+**Database:** use **`PDO_DB`** / **`DatabaseFactory::getConnection()`** only — no raw **`PDO`** in new core paths.
+
+```php
+try {
+    $row = $db->fetch($sql, array('id' => $id));
+} catch (PDOException $e) {
+    error_log('Database error: ' . $e->getMessage());
+    // user-safe message; no credential leakage
+}
+```
+
+### 15.3 Permission detection (no auto-fix)
+
+When **`mkdir`**, writes, or renames fail, **detect** and **warn** with paths and, where available, parent **mode** information. Do **not** automatically **`chmod`** or change ownership to “repair” the host — that can widen exposure and violates operator authority.
+
+**Illustrative pattern:**
+
+```php
+if (!@mkdir($dir, 0755, true)) {
+    $parent = dirname($dir);
+    $permHint = '';
+    if (is_dir($parent)) {
+        $permHint = decoct(fileperms($parent) & 0777);
+    }
+    // log + wizard message naming $dir and optional $permHint
+}
+```
+
+This aligns with **LILITH** resolutions in **`lupo-docs/implementations/33_softaculous_certification_4_1_0_gate/answers/20260404_061932_ANSWER_wordpress_distribution_patterns_lilith.md`**.
+
+### 15.4 Server software detection (`.htaccess` and friends)
+
+**`.htaccess`** is **Apache / LiteSpeed–oriented**. Before writing or rewriting **`.htaccess`**, the installer (or tool) MUST classify **`$_SERVER['SERVER_SOFTWARE']`** conservatively: write marker-based rules only when the stack is **Apache-compatible**; for **Nginx**, **IIS**, and similar, **skip** blind **`.htaccess`** writes and point operators at **documentation** (and optional example snippets such as **`web.config.example`** — reference only, not auto-installed unless product explicitly approves).
+
+**Canonical implementation surface:** **`lupo-install/InstallWizardHtaccessWriter.php`** (`isApacheHtaccessEnvironment()`, **`# BEGIN LUPOPEDIA` / `# END LUPOPEDIA`** marker merge).
+
+### 15.5 Configuration file writable check (WordPress-style)
+
+Before assuming the wizard can create **`lupopedia-config.php`**, check writability of the target directory (see **§9.13** sandbox discipline). If writes are blocked, the product MUST offer a **manual** path: copy from a shipped **sample** file (e.g. **`lupo-config/lupopedia-config-sample.php`** when present), edit constants, upload — mirroring **`wp-config-sample.php`** workflow. Do not assume FTP or panel allows web-user creation of secrets in docroot.
+
+### 15.6 Path normalization (Windows vs Linux)
+
+Use **`DIRECTORY_SEPARATOR`** and **`LUPOPEDIA_PATH` / `LUPOPEDIA_ABSPATH`** (and related constants) for filesystem joins. When **comparing** paths, normalize line endings and slash direction in **PHP only** for that comparison — do not invent ad hoc path APIs that bypass existing bootstrap constants.
+
+### 15.7 Subdirectory URL construction
+
+All browser-facing URLs MUST be built from **`LUPOPEDIA_PUBLIC_PATH`** (and doctrine equivalents), never hardcoded **`/lupopedia/`** or root **`/`** assumptions.
+
+**Illustrative pattern:**
+
+```php
+$base = rtrim(LUPOPEDIA_PUBLIC_PATH, '/');
+$path = ltrim($relative, '/');
+$url = $base . '/' . $path;
+```
+
+### 15.8 Reference
+
+| Topic | Location |
+|-------|----------|
+| WordPress study table and action items | **`lupo-docs/prd/33_softaculous_certification_4_1_0_gate.md`** — **Section 14** |
+| LILITH Q&A (markers, immediate `.htaccess`, sample config, permissions, **`.gitkeep`**) | **`lupo-docs/implementations/33_softaculous_certification_4_1_0_gate/answers/20260404_061932_ANSWER_wordpress_distribution_patterns_lilith.md`** |
+| Implementation backlog | **`lupo-docs/implementations/33_softaculous_certification_4_1_0_gate/status/wordpress_pattern_implementation_tasks_20260404.md`** |
+| Install wizard entry | **`install.php`** — shared classes **`install_wizard_classes.php`** |
+| Apache marker merge + runtime dirs | **`lupo-install/InstallWizardHtaccessWriter.php`** |
+| Educational WordPress tree | **`lupo-archive/legacy/wordpress-reference/`** (local study copy; **`.gitignore`d**; not shipped; GPL) |
+| Pattern distillate (read before re-scanning WP) | **`lupo-docs/doctrine/LEARNED_FROM_WORDPRESS.md`** |
+
+### 15.9 LILITH audit (integration record)
+
+| Field | Value |
+|-------|--------|
+| **Verdict** | **APPROVED with additions** — §15 codifies WordPress-derived multi-environment resilience |
+| **Accuracy (reported)** | 98/100 |
+| **Constitutional violations** | None reported |
+| **Reviewer** | LILITH (**actor_id 2**), non-interfering reviewer per **LIL001** |

@@ -2,10 +2,10 @@
 lupopedia.headers:
   header_format_version: 2
   lupopedia.schema: prd
-  when_updated: "20260403222833"
+  when_updated: "20260404165054"
   file_path_from_root: "lupo-docs/prd/33_softaculous_certification_4_1_0_gate.md"
   web_path: "http://www.lupopedia.com/lupopedia/lupo-docs/prd/33_softaculous_certification_4_1_0_gate.md"
-  last_modified_utc: "20260403222833"
+  last_modified_utc: "20260404165054"
   federation_node_id: 0
   channel_id: 42
   thread_id: "prd-softaculous-4-1-0-gate"
@@ -162,6 +162,38 @@ lupopedia.edges:
       type: references
       weight: 0.95
       reason: "Implementation workspace — questions/decisions/status vs PRD §12"
+    - to: "lupo-docs/implementations/33_softaculous_certification_4_1_0_gate/SOFTACULOUS_PACKAGE_BUILD.md"
+      type: references
+      weight: 1.0
+      reason: "FTP-safe distribution zip/tar — no dotdirs except .htaccess; build_softaculous_package.sh"
+    - to: "lupo-scripts/build_softaculous_package.sh"
+      type: references
+      weight: 0.95
+      reason: "Canonical packager (run from checkout; excluded from distribution archive)"
+    - to: "lupo-install/InstallWizardHtaccessWriter.php"
+      type: references
+      weight: 0.95
+      reason: "Install-time .htaccess generation (WordPress-style; no dotfiles in zip)"
+    - to: "lupo-docs/implementations/33_softaculous_certification_4_1_0_gate/status/wordpress_study_20260404.md"
+      type: references
+      weight: 0.9
+      reason: "WordPress reference study report (Section 14)"
+    - to: "lupo-docs/implementations/33_softaculous_certification_4_1_0_gate/questions/20260404_061540_QUESTION_wordpress_distribution_patterns_unresolved.md"
+      type: references
+      weight: 0.9
+      reason: "WordPress distribution study question thread (resolved)"
+    - to: "lupo-docs/implementations/33_softaculous_certification_4_1_0_gate/answers/20260404_061932_ANSWER_wordpress_distribution_patterns_lilith.md"
+      type: references
+      weight: 1.0
+      reason: "LILITH answers to Section 14 questions (UTC 20260404061932)"
+    - to: "lupo-docs/implementations/33_softaculous_certification_4_1_0_gate/status/wordpress_pattern_implementation_tasks_20260404.md"
+      type: references
+      weight: 1.0
+      reason: "Implementation backlog from LILITH resolutions"
+    - to: "lupo-docs/doctrine/LEARNED_FROM_WORDPRESS.md"
+      type: references
+      weight: 1.0
+      reason: "Canonical WordPress-derived pattern distillate — read before re-scanning lupo-archive/legacy/wordpress-reference/"
     - to: "lupo-docs/doctrine/MOBILE_SEPARATION_DOCTRINE.md"
       type: references
       weight: 1.0
@@ -171,7 +203,7 @@ lupopedia.edges:
       weight: 1.0
       reason: "Mobile native app and separation; mobile visitor checklist §7.4"
 lupopedia.footer:
-  last_verified: "20260403222833"
+  last_verified: "20260404064548"
   verified_by:
     identity_type: "actor"
     actor_id: 102
@@ -180,6 +212,9 @@ lupopedia.footer:
     - "PRD header status approved — gate text is authoritative; execute §7.4–§7.9 + §10 via lupo-docs/versions/4.0.94/TODO.md (§12)"
     - "LILITH (actor_id 2) final audit §13 — APPROVED for code (100/100); §7.4 = Crafty parity roadmap; §10 = 4.1.0 gate; §12 traceability in TODO.md"
     - "Implementers: pick §7.4 rows (e.g. mobile client chat, real visitor list, typing preview) after TODO.md rows exist; 34 doctrine ghosts are not blocking this track"
+    - "Before Softaculous submit: run build_softaculous_package.sh; zip must contain zero dotfiles; install wizard writes .htaccess (WordPress pattern per SOFTACULOUS_PACKAGE_BUILD.md)"
+    - "Section 14 WordPress study: LILITH answered all six questions (answers/20260404_061932_*); execute status/wordpress_pattern_implementation_tasks_20260404.md; trace in versions/*/TODO.md per §12"
+    - "WordPress patterns: read lupo-docs/doctrine/LEARNED_FROM_WORDPRESS.md (§14.5) before scanning lupo-archive/legacy/wordpress-reference/"
 ---
 
 # PRD 33: Softaculous certification and 4.1.0 release gate
@@ -690,6 +725,75 @@ Exact Softaculous XML/checklists evolve by vendor; **completion** for this PRD m
 - **Before coding:** ensure **`lupo-docs/versions/4.0.94/TODO.md`** lists one traceable row per **§7.4** / **§7.5** / **§7.6** / **§7.7** / **§7.8** / **§7.9** item and each **§10** criterion, each with **PRD 33** reference, **§** pointer, **owner `actor_id`**, **`planned` / `in_progress` / `complete` / `blocked`**, and **evidence** (path + BIGINT UTC) on closure.
 
 **Prior §13 table (~98/100)** remains historical context for the first structured audit pass; **§13.1** records the **final** “ready for code” disposition after **§7.4** mobile item and **TODO.md** mapping discipline were confirmed.
+
+---
+
+## 14. WordPress distribution patterns (study findings)
+
+**Study session UTC:** `20260404061540`  
+**Reference tree:** `lupo-archive/legacy/wordpress-reference/` (WordPress **6.9.4** per `wp-includes/version.php` in this checkout)  
+**Scope:** Read-only pattern extraction for **Softaculous / FTP / multi-environment** alignment. **Do not** copy WordPress source into Lupopedia (GPL; different product).
+
+### 14.1 Evidence from reference code (summarized)
+
+| Area | WordPress behavior (this tree) | Lupopedia alignment |
+|------|-------------------------------|---------------------|
+| **`.htaccess`** | Not part of the **core** tree as a default root file; **`save_mod_rewrite_rules()`** in `wp-admin/includes/misc.php` writes **`get_home_path() . '.htaccess'`** when **`got_mod_rewrite()`** and permalinks need rules, using **`insert_with_markers()`** (`# BEGIN WordPress` … `# END WordPress`), **`flock`**, create-if-missing via **`touch`**. Parallel path: **`iis7_save_url_rewrite_rules()`** writes **`web.config`** on IIS. | **Shipped:** `InstallWizardHtaccessWriter` writes full docroot + `lupo-database/.htaccess` after config; **Softaculous zip** strips dotfiles (**`build_softaculous_package.sh`**). **§14.4 (LILITH):** adopt **`# BEGIN LUPOPEDIA` … `# END LUPOPEDIA`** marker merge; keep **immediate** install-time write (chat/API rewrites required). |
+| **Config** | `wp-admin/setup-config.php` loads **`wp-config-sample.php`** lines, substitutes keys, writes **`wp-config.php`**; errors if **`ABSPATH`** not writable. | **Done:** install wizard writes **`lupopedia-config.php`** from form + DB session. **§14.4 (LILITH):** add **`lupo-config/lupopedia-config-sample.php`** and wizard UX when config path is not writable. |
+| **Empty dirs / perms** | **`wp_mkdir_p()`** in `wp-includes/functions.php`: **`mkdir( $target, $dir_perms, true )`** where **`$dir_perms`** inherits parent **`stat()['mode'] & 0007777`** or defaults **0777**, then **`chmod`** loop if **umask** altered effective perms. **`wp_upload_dir()`** can create uploads path via **`wp_mkdir_p`**. | **Done:** installer **`mkdir(..., 0755, true)`** for `lupo-cache`, `lupo-logs`, `lupo-uploads`, `lupo-tmp`. **§14.4 (LILITH):** on failure, **detect and warn** with parent path/mode; **no** auto-**`chmod`**. |
+| **Paths / server quirks** | **`wp_fix_server_vars()`** normalizes **`REQUEST_URI`** for IIS / CGI; **`load.php`** loads version + extension requirements early. | **Done:** **`LUPOPEDIA_PATH`**, **`LUPOPEDIA_PUBLIC_PATH`**, subdirectory install doctrine. **Open:** IIS **`REQUEST_URI`** parity audit vs Crafty/live help. |
+| **PHP / extensions** | **`$required_php_version`** = **7.2.24**; **`$required_php_extensions`** = **`json`**, **`hash`**; **`wp_check_php_mysql_versions()`** emits **HTTP 500** + plain message if version or extension missing; separate **`mysqli`** / **`db.php`** drop-in path. | **Done:** install preflight **PHP 5.3+** / **pdo_mysql** / **json** (raise floor per constitutional **5.6+** in core). **Open:** explicit **hash** (if needed), **GD** / upload policy per **§5.1** gate rows. |
+| **Package / dotfiles** | Upstream distribution excludes VCS; consumer tarball historically has **no** `.git`. This repo’s **`lupo-archive/legacy/wordpress-reference/`** has no root **`.gitignore`** in checkout; plugin may ship **`.htaccess`** (e.g. Akismet). | **Done:** **`SOFTACULOUS_PACKAGE_BUILD.md`** + packager exclude **`lupo-archive/`** (contains **`legacy/wordpress-reference/`** study tree), strip **`.?*`** files and dirs. |
+
+### 14.2 Action items (from study, merged with current repo state)
+
+| Item | Status | Notes |
+|------|--------|--------|
+| Omit **`.htaccess`** from distribution zip; generate at install | **Done** | **`InstallWizardHtaccessWriter`**, **`build_softaculous_package.sh`** |
+| Omit all other dotfiles / IDE dirs from zip | **Done** | Sanitize step + rsync excludes |
+| Installer-created runtime directories (no **`.gitkeep`** in zip) | **Done** | **`ensureRuntimeDirectories`** |
+| Document packaging | **Done** | **`SOFTACULOUS_PACKAGE_BUILD.md`**, README **WordPress reference** section |
+| **`.gitkeep`** removal from **git** tree (not only zip) | **Approved — implement** | **LILITH §14.4 Q6** — remove tracked **`.gitkeep`**; stop generating in maint scripts; see **`wordpress_pattern_implementation_tasks_20260404.md`** |
+| Marker-based **`.htaccess`** merge (**`insert_with_markers`**-style) for hand-edited servers | **Approved — implement** | **LILITH §14.4 Q1** — **`# BEGIN LUPOPEDIA` / `# END LUPOPEDIA`** |
+| Install-time **`.htaccess`** (not lazy) | **Done + keep** | **LILITH §14.4 Q2** — immediate write required for API/chat rewrites |
+| **`web.config` / Nginx** snippet generation or verified doc | **Approved — docs** | **LILITH §14.4 Q3** — hosting documentation; optional **`web.config.example`** reference only, not auto-installed |
+| **`lupopedia-config-sample.php`** | **Approved — implement** | **LILITH §14.4 Q4** — WordPress-style manual install path |
+| **`mkdir`** failures / strict parent perms | **Approved — implement** | **LILITH §14.4 Q5** — detect and warn; no auto-**`chmod`** |
+| Extend preflight extension matrix (**GD**, etc.) | **Open** | Map to **PRD 33** checklist rows (unchanged by WordPress study) |
+
+### 14.3 Primary files read (for future deep dives)
+
+| File | Relevance |
+|------|-----------|
+| `lupo-archive/legacy/wordpress-reference/wp-admin/includes/misc.php` | **`insert_with_markers`**, **`save_mod_rewrite_rules`**, IIS **`web.config`** saver |
+| `lupo-archive/legacy/wordpress-reference/wp-includes/load.php` | **`wp_check_php_mysql_versions`**, early bootstrap, **`wp_fix_server_vars`** |
+| `lupo-archive/legacy/wordpress-reference/wp-includes/version.php` | **`$required_php_version`**, **`$required_php_extensions`**, **`$wp_version`** |
+| `lupo-archive/legacy/wordpress-reference/wp-includes/functions.php` | **`wp_mkdir_p`**, **`wp_upload_dir`** |
+| `lupo-archive/legacy/wordpress-reference/wp-admin/setup-config.php` | **Sample → live config** workflow, writability checks |
+| `lupo-archive/legacy/wordpress-reference/wp-admin/install.php` | Installer steps / UX (loads **upgrade.php**, translation install) |
+| `lupo-archive/legacy/wordpress-reference/wp-admin/includes/class-wp-debug-data.php` | **`SERVER_SOFTWARE`**, **`extension_loaded`**, **`.htaccess`** marker strip, **`wp_is_writable`**-style reporting |
+| `lupo-archive/legacy/wordpress-reference/wp-includes/PHPMailer/SMTP.php` | **`stream_socket_client`** vs **`fsockopen`**, scoped **`set_error_handler`** |
+
+### 14.4 LILITH resolutions (WordPress study questions)
+
+**Resolution UTC:** `20260404061932`  
+**Auditor:** LILITH (**actor_id 2**). **Canonical answer artifact:** `lupo-docs/implementations/33_softaculous_certification_4_1_0_gate/answers/20260404_061932_ANSWER_wordpress_distribution_patterns_lilith.md`.  
+**Implementation backlog:** `lupo-docs/implementations/33_softaculous_certification_4_1_0_gate/status/wordpress_pattern_implementation_tasks_20260404.md`.
+
+| Q | Decision |
+|---|----------|
+| **Q1** Marker-based **`.htaccess`** | **YES** — only replace content between **`# BEGIN LUPOPEDIA`** and **`# END LUPOPEDIA`**. |
+| **Q2** Lazy vs immediate **`.htaccess`** | **IMMEDIATE** at install — chat/API routes require rewrites; do not defer to a later admin action. |
+| **Q3** IIS **`web.config`** | **Documentation only** in the shipped product; optional **`web.config.example`** as reference, not auto-installed. |
+| **Q4** Config sample | **YES** — add **`lupo-config/lupopedia-config-sample.php`**; wizard guides manual copy when writes are blocked. |
+| **Q5** Permissions | **Detect and warn** on **`mkdir`** / parent mode issues; **no** automatic permission “repair.” |
+| **Q6** **`.gitkeep`** | **YES** — remove from the **git** repository; installer continues to create **`lupo-cache/`**, **`lupo-logs/`**, **`lupo-uploads/`**, **`lupo-tmp/`**. |
+
+**Question thread** (historical filename): `lupo-docs/implementations/33_softaculous_certification_4_1_0_gate/questions/20260404_061540_QUESTION_wordpress_distribution_patterns_unresolved.md` — **status:** resolved (edges point to the answer artifact). **Study report:** `status/wordpress_study_20260404.md`.
+
+### 14.5 Canonical pattern distillate (Lupopedia doctrine)
+
+**`lupo-docs/doctrine/LEARNED_FROM_WORDPRESS.md`** is the **single** Lupopedia doctrine file for WordPress-derived, multi-environment patterns. It cites **`lupo-archive/legacy/wordpress-reference/`** paths and **line ranges** (WordPress **6.9.4** tree in this checkout) and maps them to Lupopedia surfaces (e.g. **`InstallWizardHtaccessWriter.php`**, installer preflight). **IDE agents should read it first** instead of re-scanning the full WordPress tree. Constitutional pairing: **`lupo-docs/prd/00_root_constitutional_system_requirements.md`** **§15**.
 
 ---
 

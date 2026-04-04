@@ -1,5 +1,12 @@
 <?php
 /**
+ * Installer entry: set so optional checks can detect wizard context (auto-installers ship config without running this file).
+ */
+if (!defined('LUPO_INSTALLING')) {
+    define('LUPO_INSTALLING', true);
+}
+
+/**
  * @wolfie.headers {
  *   file_path_from_root: "install.php",
  *   system_version: "4.0.85",
@@ -705,40 +712,37 @@ if ($step === 'run') {
             // 4.0.93+: single-seed runtime doctrine.
             // ANUBIS schema/tables are canonical in install_new_lupopedia.sql.
 
-            // Activations Block
+            // Activations Block — session-backed "running" for personas that use heartbeat/session semantics.
+            // ANUBIS (actor_id 19) is a custodial PHP + queue-table subsystem, not a session-backed chat actor;
+            // seed may still define lupo_actors row 19 for attribution in logs — we do not fabricate a session here.
+            // IRIS and similar integration agents are likewise not activated via ensureActorActive.
             require_once LUPOPEDIA_PATH . '/lupo-includes/functions/ai_activation.php';
-            $core_actors = array(0, 1, 2, 19, 111); // SYSTEM, CAPTAIN (wolfie), LILITH, ANUBIS, COUNTERMEASURE
-            $log[] = InstallWizardLogger::logEntry('ok', '--- Activating CORE AI Agents ---');
+            $core_actors = array(0, 1, 2, 111); // SYSTEM, CAPTAIN (wolfie), LILITH, COUNTERMEASURE
+            $log[] = InstallWizardLogger::logEntry('ok', '--- Activating CORE AI Agents (session-backed where applicable) ---');
             foreach ($core_actors as $actor_id) {
                 $actor_db = new PDO_DB($pdo); // Wrap PDO for our helper
                 if (ensureActorActive($actor_id, $actor_db, 'initial_install_activation')) {
                     $log[] = InstallWizardLogger::logEntry('ok', "Activated Actor ID: $actor_id");
-
-                    // For ANUBIS, verify queue tables exist
-                    if ($actor_id === 19) {
-                        $required_tables = array(
-                            'anubis_queue',
-                            'anubis_processing_log',
-                            'anubis_recovery_attempts',
-                            'anubis_quarantine'
-                        );
-                        foreach ($required_tables as $table) {
-                            $full_table = $table_prefix . $table;
-                            $res = $pdo->query("SHOW TABLES LIKE '$full_table'")->fetch();
-                            if (!$res) {
-                                throw new RuntimeException("ANUBIS table $full_table missing - cannot proceed");
-                            }
-                        }
-                        $log[] = InstallWizardLogger::logEntry('ok', "ANUBIS queue tables verified.");
-                    }
                 } else {
-                    // ANUBIS is critical for orphan processing
-                    if ($actor_id === 19) {
-                        throw new RuntimeException("CRITICAL: Failed to activate ANUBIS (19). Installation halted.");
-                    }
                     $log[] = InstallWizardLogger::logEntry('skip', "Warning: Could not activate Actor ID: $actor_id (non-critical)");
                 }
             }
+
+            // ANUBIS schema health: queue tables must exist; no synthetic actor session required.
+            $required_anubis_tables = array(
+                'anubis_queue',
+                'anubis_processing_log',
+                'anubis_recovery_attempts',
+                'anubis_quarantine',
+            );
+            foreach ($required_anubis_tables as $table) {
+                $full_table = $table_prefix . $table;
+                $res = $pdo->query("SHOW TABLES LIKE '$full_table'")->fetch();
+                if (!$res) {
+                    throw new RuntimeException("ANUBIS table $full_table missing - cannot proceed");
+                }
+            }
+            $log[] = InstallWizardLogger::logEntry('ok', 'ANUBIS queue tables verified (custodial subsystem; no actor session activation).');
 
             $log[] = InstallWizardLogger::logEntry('ok', 'Run complete.');
             $_SESSION['lupo_run_log'] = $log;
@@ -878,6 +882,9 @@ if ($step === 'config') {
                     $configPath = InstallWizardConfigWriter::writeConfig($db_vars, $writeLog, $options);
                 }
                 if (empty($config_errors) && isset($configPath) && $configPath !== null) {
+                    require_once LUPOPEDIA_PATH . DIRECTORY_SEPARATOR . 'lupo-install' . DIRECTORY_SEPARATOR . 'InstallWizardHtaccessWriter.php';
+                    InstallWizardHtaccessWriter::ensureRuntimeDirectories(LUPOPEDIA_PATH, $writeLog);
+                    InstallWizardHtaccessWriter::writeDistributionHtaccess(LUPOPEDIA_PATH, $writeLog);
                     $_SESSION['lupo_config_log'] = $writeLog;
                     unset($_SESSION['lupo_install_db_vars'], $_SESSION['lupo_install_type'], $_SESSION['lupo_install_mode_choice'], $_SESSION['lupo_install_mode_warning'], $_SESSION['lupo_install_livehelp_tables'], $_SESSION['lupo_normalize_applied'], $_SESSION['lupo_operator_channel_map'], $_SESSION['lupo_bootstrap_log'], $_SESSION['lupo_run_done']);
                     header('Location: ' . (dirname(isset($_SERVER['SCRIPT_NAME']) ? $_SERVER['SCRIPT_NAME'] : '') ?: '.') . '/install.php?step=complete');
@@ -1688,6 +1695,7 @@ if ($baseUrl === '') {
         <div class="wizard-card">
             <h2>Site configuration</h2>
             <p>Set site options. These will be written to <code>lupopedia-config.php</code> in the project root.</p>
+            <p class="slug-tip">When you submit this step, the wizard also creates runtime directories (<code>lupo-cache/</code>, <code>lupo-logs/</code>, <code>lupo-uploads/</code>, <code>lupo-tmp/</code>) and, on Apache with a writable docroot, writes <code>.htaccess</code> rewrite rules (Softaculous packages omit hidden files so FTP does not skip them).</p>
             <?php foreach ($config_errors as $e): ?>
                 <p class="err"><?php echo htmlspecialchars($e); ?></p>
             <?php endforeach; ?>
@@ -1738,6 +1746,9 @@ if ($baseUrl === '') {
             <h2>Installation complete</h2>
             <p>Lupopedia has been installed successfully. <code>lupopedia-config.php</code> has been written to the project
                 root.</p>
+            <p class="slug-tip">On <strong>Apache</strong>, the wizard also writes <code>.htaccess</code> (document root) and
+                <code>lupo-database/.htaccess</code> when the filesystem allows. Softaculous-style zip packages omit these hidden files so FTP uploads do not skip them.
+                On <strong>Nginx</strong> or <strong>IIS</strong>, map the same intent in <code>nginx.conf</code> or <code>web.config</code> (rewrite to <code>index.php</code>, deny direct access to <code>lupo-includes</code> PHP, block web reads of <code>lupo-database/</code>); use your hoster&rsquo;s documentation or a working Apache tree as reference.</p>
             <div class="log-section">
                 <h4>Summary</h4>
                 <ul style="list-style:none; padding:0;">

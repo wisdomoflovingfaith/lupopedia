@@ -8,6 +8,19 @@
 
 // updated 20011228 by Bob Clary <bc@bclary.com>
 // to support Gecko
+//
+// --- Lupopedia (Eric Gerdes / Lupopedia LLC) ---
+// DEPRECATED for new work: this DynAPI dynlayer.js uses eval()-based init and timers.
+// Replacement (canonical, eval-free, DynLayer-compatible API): lupo-includes/js/lupo-layers.js
+//   (LupoLayer, LupoLayerInit / DynLayerInit). Constitutional: PRD 00 §16 — RULE 93.UI_LAYERS.
+// This file remains in-tree only for proven heritage surfaces (e.g. PRD 28 eye / theatrical UI,
+// §9.20 proven-code preservation). New layering, slides, and z-index choreography MUST use
+// lupo-layers.js — do not extend eval/setTimeout(string) patterns here.
+//
+// lupopedia.edges (documentation, file-relative from repo root):
+//   - to: "lupo-includes/js/lupo-layers.js"
+//     type: superseded_by
+//     reason: "New UI layer controller; dynapi dynlayer.js deprecated except heritage paths"
 
 function DynLayer(id,nestref,frame) {
 	//bc:maybe? if (!is.ns5 && !DynLayer.set && !frame) DynLayerInit()

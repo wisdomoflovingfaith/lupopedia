@@ -184,6 +184,15 @@
       "type": "human",
       "slug": "root",
       "dir": "lupo-actors/1000"
+    },
+    "kairos": {
+      "actor_name": "kairos",
+      "actor_id": 115,
+      "display_name": "KAIROS",
+      "type": "agent",
+      "slug": "kairos",
+      "dir": "lupo-actors/115",
+      "purpose": "memory_consolidation_and_fact_verification"
     }
   }
 }

@@ -944,7 +944,7 @@ CREATE TABLE {{prefix}}anubis_redirects (
   PRIMARY KEY (anubis_redirect_id)
 );
 
--- ANUBIS queue tables (required by install Activations Block for actor_id 19; previously in migrations/anubis_queue_tables_4.0.86.sql).
+-- ANUBIS queue tables (custodial PHP subsystem; install verifies presence — no session-backed actor activation; previously in migrations/anubis_queue_tables_4.0.86.sql).
 CREATE TABLE {{prefix}}anubis_queue (
   queue_id bigint NOT NULL ,
   file_path varchar(512) NOT NULL,

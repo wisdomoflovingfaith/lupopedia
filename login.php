@@ -11,8 +11,12 @@ if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 
-// If already logged in, redirect to admin
+// If already logged in, send MD5-migration users to password change first
 if (isset($_SESSION['actor_id'])) {
+    if (!empty($_SESSION['password_change_required'])) {
+        header('Location: ' . LUPOPEDIA_PUBLIC_PATH . '/change-password');
+        exit;
+    }
     header('Location: ' . LUPOPEDIA_PUBLIC_PATH . '/admin.php');
     exit;
 }
@@ -26,9 +30,9 @@ $success = '';
 
 // Handle form submission
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $username = $_POST['username'] ?? '';
-    $password = $_POST['password'] ?? '';
-    $redirect = $_GET['redirect'] ?? null;
+    $username = isset($_POST['username']) ? $_POST['username'] : '';
+    $password = isset($_POST['password']) ? $_POST['password'] : '';
+    $redirect = isset($_GET['redirect']) ? $_GET['redirect'] : null;
     // If referer contains 'install', always redirect to admin.php after login
     $forceAdminRedirect = false;
     if (!empty($_SERVER['HTTP_REFERER']) && stripos($_SERVER['HTTP_REFERER'], 'install') !== false) {
@@ -41,6 +45,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $result = $authService->handleLogin($username, $password, $redirect);
         if (isset($result['error'])) {
             $error = $result['error'];
+        } elseif (!empty($result['needs_password_change'])) {
+            if ($redirect !== null && $redirect !== '') {
+                $_SESSION['login_redirect'] = $redirect;
+            }
+            header('Location: ' . LUPOPEDIA_PUBLIC_PATH . '/change-password');
+            exit;
         } elseif (isset($result['needs_agent_selection'])) {
             // Redirect to agent selection page
             header('Location: ' . LUPOPEDIA_PUBLIC_PATH . '/select_agent.php');
@@ -56,6 +66,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 
+$pub = LUPOPEDIA_PUBLIC_PATH;
+$postedUsername = isset($_POST['username']) ? $_POST['username'] : '';
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -63,280 +76,239 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login - Lupopedia</title>
+    <script src="<?php echo htmlspecialchars($pub); ?>/lupo-includes/js/lupo-layers.js"></script>
     <style>
-        * {
+        body {
+            background-color: #1a1a1a;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+            min-height: 100vh;
+            overflow-x: hidden;
         }
 
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+        .login-header {
+            position: absolute;
+            width: 200px;
+            height: auto;
+            left: 50%;
+            margin-left: -100px;
+            z-index: 1;
+            top: 300px;
+        }
+
+        .login-logo {
+            width: 100%;
+            display: block;
         }
 
         .login-container {
-            background: white;
-            border-radius: 12px;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-            overflow: hidden;
-            width: 100%;
-            max-width: 900px;
-            min-height: 500px;
-            display: flex;
+            position: absolute;
+            width: 380px;
+            max-width: calc(100vw - 32px);
+            background-color: #ffffff;
+            padding: 40px;
+            border-radius: 25px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+            left: 50%;
+            top: 200px;
+            margin-left: -190px;
+            z-index: 2;
+            box-sizing: border-box;
         }
 
-        .login-form-section {
-            flex: 1;
-            padding: 40px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
+        @media (max-width: 420px) {
+            .login-container {
+                left: 50%;
+                margin-left: 0;
+                transform: translateX(-50%);
+                width: calc(100vw - 24px);
+                padding: 28px 20px;
+            }
         }
 
-        .brand-section {
-            flex: 1;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 40px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
+        .login-form h2 {
             text-align: center;
-        }
-
-        .brand-logo {
-            font-size: 3em;
-            font-weight: bold;
-            margin-bottom: 20px;
-        }
-
-        .brand-text {
-            font-size: 1.1em;
-            line-height: 1.6;
-            opacity: 0.9;
-        }
-
-        .form-title {
-            font-size: 2em;
+            margin-bottom: 8px;
             color: #333;
-            margin-bottom: 10px;
         }
 
-        .form-subtitle {
+        .login-form .form-subtitle {
+            text-align: center;
             color: #666;
-            margin-bottom: 30px;
-        }
-
-        .form-group {
+            font-size: 0.9em;
             margin-bottom: 20px;
         }
 
-        .form-label {
+        .input-group {
+            margin-bottom: 20px;
+        }
+
+        .input-group label {
             display: block;
-            margin-bottom: 5px;
-            color: #333;
-            font-weight: 500;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #555;
         }
 
-        .form-input {
+        .input-group input {
             width: 100%;
-            padding: 12px 15px;
-            border: 2px solid #e1e5e9;
-            border-radius: 6px;
+            padding: 12px;
+            border: 2px solid #eee;
+            border-radius: 12px;
+            box-sizing: border-box;
             font-size: 16px;
-            transition: all 0.3s ease;
         }
 
-        .form-input:focus {
+        .input-group input:focus {
             outline: none;
-            border-color: #667eea;
-            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+            border-color: #333;
         }
 
-        .login-button {
+        .login-btn {
             width: 100%;
-            padding: 14px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
+            padding: 15px;
+            background-color: #333;
+            color: #fff;
             border: none;
-            border-radius: 6px;
-            font-size: 16px;
-            font-weight: 600;
+            border-radius: 12px;
+            font-weight: bold;
             cursor: pointer;
-            transition: all 0.2s ease;
+            font-size: 16px;
         }
 
-        .login-button:hover:not(:disabled) {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(102, 126, 234, 0.3);
+        .login-btn:hover:not(:disabled) {
+            background-color: #222;
         }
 
-        .login-button:disabled {
+        .login-btn:disabled {
             opacity: 0.6;
             cursor: not-allowed;
-        }
-
-        .forgot-password {
-            text-align: center;
-            margin-top: 20px;
-        }
-
-        .forgot-password a {
-            color: #667eea;
-            text-decoration: none;
-            font-size: 14px;
-            transition: color 0.2s ease;
-        }
-
-        .forgot-password a:hover {
-            color: #764ba2;
-            text-decoration: underline;
         }
 
         .error-message {
             background: #f8d7da;
             color: #721c24;
             padding: 12px 16px;
-            border-radius: 6px;
-            margin-bottom: 20px;
+            border-radius: 12px;
+            margin-bottom: 16px;
             border: 1px solid #f5c6cb;
+            font-size: 0.9em;
         }
 
         .success-message {
             background: #d4edda;
             color: #155724;
             padding: 12px 16px;
-            border-radius: 6px;
-            margin-bottom: 20px;
+            border-radius: 12px;
+            margin-bottom: 16px;
             border: 1px solid #c3e6cb;
-        }
-
-        .system-info {
-            background: #f8f9fa;
-            padding: 15px;
-            border-radius: 6px;
-            margin-bottom: 20px;
-            border-left: 4px solid #667eea;
-        }
-
-        .system-info-title {
-            font-weight: 600;
-            color: #333;
-            margin-bottom: 5px;
-        }
-
-        .system-info-text {
-            color: #666;
             font-size: 0.9em;
         }
 
-        @media (max-width: 768px) {
-            .login-container {
-                flex-direction: column;
-                max-width: 400px;
-                margin: 20px;
-            }
+        .forgot-password {
+            text-align: center;
+            margin-top: 18px;
+        }
 
-            .brand-section {
-                padding: 30px 20px;
-            }
+        .forgot-password a {
+            color: #555;
+            text-decoration: none;
+            font-size: 14px;
+        }
 
-            .login-form-section {
-                padding: 30px 20px;
-            }
+        .forgot-password a:hover {
+            color: #333;
+            text-decoration: underline;
         }
     </style>
 </head>
-<body>
-    <div class="login-container">
-        <div class="brand-section">
-            <div class="brand-logo">
-                <img src="<?= LUPOPEDIA_PUBLIC_PATH ?>/lupo-images/logo.png" alt="LUPOPEDIA" style="width: 400px; height: 400px; object-fit: contain;">
-            </div>
-            <div class="brand-text">
-                Multi-Agent Coordination System<br>
-                Authenticated User to Actor Mapping
-            </div>
-        </div>
+<body onload="initApp()">
 
-        <div class="login-form-section">
-            <h1 class="form-title">Welcome Back</h1>
-            <p class="form-subtitle">Sign in to access your account</p>
+    <div id="headerDiv" class="login-header">
+        <img src="<?php echo htmlspecialchars($pub); ?>/lupo-images/logo.png" alt="Lupopedia" class="login-logo">
+    </div>
 
-            <?php if ($error): ?>
+    <div id="loginDiv" class="login-container">
+        <form class="login-form" method="POST" action="">
+            <h2>Sign In</h2>
+            <p class="form-subtitle">Lupopedia</p>
+
+            <?php if ($error !== ''): ?>
                 <div class="error-message">
                     <?php echo htmlspecialchars($error); ?>
                 </div>
             <?php endif; ?>
 
-            <?php if ($success): ?>
+            <?php if ($success !== ''): ?>
                 <div class="success-message">
                     <?php echo htmlspecialchars($success); ?>
                 </div>
             <?php endif; ?>
 
-            <div class="system-info">
-                <div class="system-info-title">Authentication System</div>
-                <div class="system-info-text">
-                    After login, you'll be prompted to select an agent identity if this is your first time.
-                </div>
+            <div class="input-group">
+                <label for="username">Username</label>
+                <input
+                    type="text"
+                    id="username"
+                    name="username"
+                    placeholder="Enter username"
+                    required
+                    autofocus
+                    value="<?php echo htmlspecialchars($postedUsername); ?>"
+                >
             </div>
+            <div class="input-group">
+                <label for="password">Password</label>
+                <input
+                    type="password"
+                    id="password"
+                    name="password"
+                    placeholder="Enter password"
+                    required
+                >
+            </div>
+            <button type="submit" class="login-btn">Login</button>
 
-            <form method="POST" action="">
-                <div class="form-group">
-                    <label for="username" class="form-label">Username</label>
-                    <input 
-                        type="text" 
-                        id="username" 
-                        name="username" 
-                        class="form-input" 
-                        placeholder="Enter your username"
-                        required
-                        autofocus
-                        value="<?php echo htmlspecialchars($_POST['username'] ?? ''); ?>"
-                    >
-                </div>
-
-                <div class="form-group">
-                    <label for="password" class="form-label">Password</label>
-                    <input 
-                        type="password" 
-                        id="password" 
-                        name="password" 
-                        class="form-input" 
-                        placeholder="Enter your password"
-                        required
-                    >
-                </div>
-
-                <button type="submit" class="login-button">
-                    Sign In
-                </button>
-                
-                <div class="forgot-password">
-                    <a href="<?= LUPOPEDIA_PUBLIC_PATH ?>/forgot-password.php">Forgot your password?</a>
-                </div>
-            </form>
-        </div>
+            <div class="forgot-password">
+                <a href="<?php echo htmlspecialchars($pub); ?>/forgot-password.php">Forgot your password?</a>
+            </div>
+        </form>
     </div>
 
     <script>
-        // Auto-focus on username field
-        document.addEventListener('DOMContentLoaded', function() {
-            document.getElementById('username').focus();
-        });
+        function initApp() {
+            if (typeof LupoLayer === 'undefined') {
+                return;
+            }
+            var wolf = new LupoLayer('headerDiv');
+            var loginBox = new LupoLayer('loginDiv');
+            if (!wolf.elm) {
+                return;
+            }
+            wolf.onSlideEnd = function () {
+                wolf.setZ(10);
+                if (loginBox.elm) {
+                    loginBox.setZ(5);
+                }
+            };
+            var screenWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+            var centerX = (screenWidth / 2) - 100;
+            var peeringY = 150;
+            wolf.slideTo(centerX, peeringY, 600);
+        }
 
-        // Handle form submission with loading state
-        document.querySelector('form').addEventListener('submit', function(e) {
-            const submitButton = document.querySelector('.login-button');
-            submitButton.textContent = 'Signing In...';
-            submitButton.disabled = true;
+        document.addEventListener('DOMContentLoaded', function() {
+            var form = document.querySelector('.login-form');
+            if (!form) {
+                return;
+            }
+            form.addEventListener('submit', function() {
+                var submitButton = document.querySelector('.login-btn');
+                if (submitButton) {
+                    submitButton.textContent = 'Signing In...';
+                    submitButton.disabled = true;
+                }
+            });
         });
     </script>
 </body>

@@ -1,0 +1,28 @@
+{
+    "capabilities": [
+        {
+            "name": "consolidate_memories",
+            "description": "Consolidate multiple observations into one kairos_memory row (lupo_actor_memory)",
+            "input": "actor_id, department_id optional",
+            "output": "stats object"
+        },
+        {
+            "name": "merge_observations",
+            "description": "Merge duplicate observations with identical normalized text for the same actor",
+            "input": "implicit from kairos_observation rows",
+            "output": "kairos_memory memory_id"
+        },
+        {
+            "name": "detect_contradictions",
+            "description": "When topic_key matches across kairos_memory rows but text differs, add lupo_edges kairos_contradicts",
+            "input": "actor_id",
+            "output": "edge count"
+        },
+        {
+            "name": "promote_to_fact",
+            "description": "Mark consolidated rows verified in context_json when confidence >= 0.8",
+            "input": "actor_id",
+            "output": "promoted count"
+        }
+    ]
+}

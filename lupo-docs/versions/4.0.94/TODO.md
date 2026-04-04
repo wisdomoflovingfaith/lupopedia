@@ -4,14 +4,14 @@ lupopedia.headers:
   version_when_written: "4.0.94"
   file_path_from_root: "lupo-docs/versions/4.0.94/TODO.md"
   web_path: "http://www.lupopedia.com/lupopedia/lupo-docs/versions/4.0.94/TODO.md"
-  when_updated: "20260403222833"
+  when_updated: "20260404161001"
   channel_id: 42
   thread_id: "todo-backlog-4.0.94"
   actor_id: 102
   delegation_chain: "cursor:root"
   artifact_type: "todo"
   artifact_kind: "master_backlog"
-  purpose: "Master backlog for Lupopedia 4.0.94 (includes merge from 4.0.93/TODO.md cleanup 2026-04-03)"
+  purpose: "Master backlog for Lupopedia 4.0.94; LILITH-prioritized critical path (install/import → admin UI → Crafty parity §7.4+; Softaculous gate §9–§10 separate track)"
 lupopedia.edges:
   outbound_edges:
     - to: "lupo-docs/versions/4.0.94/PLAN.md"
@@ -27,7 +27,7 @@ lupopedia.edges:
       weight: 0.9
       reason: "Frozen 4.0.93 completed record"
 lupopedia.footer:
-  last_verified: "20260403222833"
+  last_verified: "20260404161001"
   verified_by:
     actor_id: 102
   orchestrator: "cursor:root"
@@ -39,16 +39,43 @@ lupopedia.footer:
 
 Merged from **`lupo-docs/versions/4.0.93/TODO.md`** on 2026-04-03 (deduplicated). Single active backlog for this version.
 
-## High priority — department model runtime (after documentation approval)
+## Completed (documentation — service agents + Softaculous auto-installer narrative — UTC `20260404161001`)
 
-- [ ] **Visitor/chat POST audit** — all paths resolve **`actor_id`** server-side per **PRD 05** / **PRD 18** and match **`channels-api`** posture (see **`answers/20260403_222043_ANSWER_department_model_visitor_chat_docs_synthesis.md`**).
+- [x] **Service agent doctrine** — `SERVICE_AGENT_ARCHITECTURE.md` + PRD 00 §5.7–§5.10 + `implementations/service_agents/`; evidence: `decisions/20260404_161001_DECISION_APPROVED_service_agent_architecture_and_softaculous_auto_installer_docs.md`, `CHANGELOG.md` top entry **[2026-04-04] Service agent architecture…**.
+- [x] **Softaculous package spec + sample config + packager credential exclude + bootstrap runtime dirs** — thread-verified file list in same **CHANGELOG** entry; does **not** satisfy PRD 33 §10.6–§10.7 (evidence rows still open below).
+
+## Critical path — LILITH prioritization (UTC `20260404075034`)
+
+**Verdict:** Backlog is complete; **do not conflate** daily product work with hoster certification. **Get the code working, then certify.**
+
+| Step | Track | What | PRD 33 (indicative) | Owner |
+|------|--------|------|---------------------|--------|
+| **1** | Foundation | **Fresh install + Crafty Syntax 3.7.5 import** — reproducible baseline | §**10.1** + §**6** | WOLFIE |
+| **2** | Foundation | **Verify operator shell** — **`admin.php`** / **`live.php`** after install | §**10.4** + §**7.3** | WOLFIE |
+| **3** | **A — Crafty parity** | **One §7.4 row at a time** (suggested first: **real visitor list**); then §**7.5** GC/rollups, §**7.6** auto-invite + visitor questions | §**7.4**–§**7.6** | WOLFIE / HEPHAESTUS |
+| **4** | **B — Softaculous gate** | Evidence, packager acceptance, §**10** bar + §**9** — **after** product loop is credible | §**9**, §**10** (e.g. §**10.6**–§**10.7**) | WOLFIE |
+
+**Track A (Crafty parity + web/admin):** visitor-facing features, operator chat parity, embed contracts — tables **§7.4**–§**7.9** and §**10** rows tied to product behavior.
+
+**Track B (Softaculous / 4.1.0 gate):** vendor evidence, constitutional audit on RC scope, hoster checklist closure — **not** a substitute for **Step 1–3**.
+
+**Deferred (non-blocking):** **34** version ghosts (documentation confusion only); **federation navigation compiler** — **`questions/20260403_222042_…`** until **WOLFIE** product decision; **PLAN** Phase **C** — **PRD 30** / **31** working-copy rewrites (docs hygiene).
+
+Detail and monitoring/chat embed notes: **`WHAT_TO_WORK_ON_NEXT_SESSION.md`**.
+
+## High priority — department model runtime (code must match APPROVED docs)
+
+- [ ] **Visitor/chat POST audit** — all paths resolve **`actor_id`** server-side per **PRD 05** / **PRD 18** and match **`channels-api`** posture (see **`answers/20260403_222043_ANSWER_department_model_visitor_chat_docs_synthesis.md`**). **LILITH:** high priority — runtime must match approved documentation.
 - [ ] **`EffectiveActorResolver` / act-as callers** — verify department-first consistency after POST audit (no reintroduction of edge-only act-as for web selector).
-- [ ] **Federation navigation compiler** — OPEN **`lupo-docs/versions/4.0.94/questions/20260403_222042_QUESTION_federation_navigation_compiler.md`** until **WOLFIE** product decision.
 
-## High priority — version ghosts (manual)
+## Deferred — federation navigation compiler (product pending)
+
+- [ ] **Federation navigation compiler** — OPEN **`lupo-docs/versions/4.0.94/questions/20260403_222042_QUESTION_federation_navigation_compiler.md`** until **WOLFIE** product decision. **LILITH:** defer behind install / admin / Crafty parity.
+
+## Deferred — version ghosts (manual; documentation hygiene only)
 
 - [ ] Review **34** files with **critical** findings in **`lupo-docs/implementations/29_project_structure/status/version_ghosts_report.json`** (policy: **`answers/20260403_140554_ANSWER_version_ghost_cleanup_manual_review.md`**).
-- [ ] Fix phantom legacy paths and ambiguous **3.0.x** prose **per file** (no repo-wide blind rewrite).
+- [ ] Fix phantom legacy paths and ambiguous **3.0.x** prose **per file** (no repo-wide blind rewrite). **LILITH:** low execution priority — confusion only, not blocking install or parity work.
 
 ## Completed (department-first documentation batch — UTC `20260403222041`)
 
@@ -63,17 +90,21 @@ Merged from **`lupo-docs/versions/4.0.93/TODO.md`** on 2026-04-03 (deduplicated)
 - [x] **Mobile / workflow docs** — `MOBILE_SEPARATION_DOCTRINE.md`, `WOLFIE_WORKFLOW_DOCTRINE.md`, **PRD 35** draft, **PRD 33** mobile checklist (where edited), **AGENTS.md** / **LESSONS** updates.
 - [x] **Version folder sync** — `CHANGELOG` / `PLAN` Phase **G** / `TODO` / `edges` / `README` / decision **20260403_140552** / Q **140553** / A **140554**.
 
-## Next session (handoff)
+## Next session (handoff — aligned to LILITH critical path)
 
-Prioritized intent for the next working session (detail: **`WHAT_TO_WORK_ON_NEXT_SESSION.md`** — refresh stamp when that file next changes):
+Order for the next working session (expanded: **`WHAT_TO_WORK_ON_NEXT_SESSION.md`**):
 
-- [ ] **Admin web interface** — operator flows after reproducible install.
-- [ ] **Fresh install + Crafty Syntax 3.7.5 import** — baseline before Crafty parity and **Eye** work.
-- [ ] **Crafty feature parity** — checklist from live comparison (dependency order).
-- [ ] **Semantic “The Eye”** — align with **PLAN** Phase D + semantic / Mood RGB doctrine as applicable.
-- [ ] **`scaffold_implementation.py`** — align copied templates with **PRD 31** LUPOPEDIA HEADER placeholders (**PRD 31** `next_action`).
+- [ ] **Fresh install + Crafty Syntax 3.7.5 import** — **first**; foundation for everything (**PRD 33** §**10.1** + §**6**).
+- [ ] **Verify `admin.php` / `live.php`** — operator shell usable after install (**PRD 33** §**10.4** + §**7.3**).
+- [ ] **Crafty parity — pick one §7.4 item** — e.g. **real visitor list** (smallest visible win); then continue §**7.4**, then §**7.5**, §**7.6**.
+- [ ] **Visitor web / configure + monitoring embed + admin chat** — **`SEMANTIC_MONITORING_DOCTRINE.md`**, **`CHAT_UI_JAVASCRIPT_SHARED_STATE_DOCTRINE.md`**; optional **`livehelp_js` → `lupopedia_js`** spike (see section below).
+- [ ] **Semantic “The Eye”** — after embed contracts honest; **PLAN** Phase D.
+- [ ] **Softaculous gate / §9 evidence** — **Track B**; after product loop is credible.
+- [ ] **`scaffold_implementation.py`** — align templates with **PRD 31** when touching scaffolds (docs/tooling; not install blocker).
 
-## PLAN Phase C traceability (`PLAN.md`)
+## PLAN Phase C traceability (`PLAN.md`) — deferred behind product loop
+
+**LILITH:** PRD **30** / **31** working-copy rewrites are documentation improvement, not blockers for install, admin, or Crafty parity.
 
 Open rewrite/promotion work maps to **PLAN** rows **C-1**, **C-2**, **C-3**. **Done** framework rows **C-FW-1..3** are closed with evidence recorded in `PLAN.md` and `CHANGELOG.md` (UTC **20260402210000** per [2026-04-02] channel/docs framework entry — deterministic anchor, not a “day” bucket).
 
@@ -123,6 +154,13 @@ Open rewrite/promotion work maps to **PLAN** rows **C-1**, **C-2**, **C-3**. **D
 - [ ] Continue **PRD improvement pass** for remaining files under `lupo-docs/prd/` as needed.
 
 ## Installer / Softaculous / “Brain” product
+
+### PRD 33 — two execution tracks (do not merge mentally)
+
+| Track | Meaning | Primary TODO tables |
+|-------|---------|---------------------|
+| **A — Crafty parity + operator product** | Features operators and visitors need; comparison to **Crafty Syntax 3.7.5** | §**7.4**–§**7.9**; §**10** rows **10.1**–**10.5** where they describe product behavior |
+| **B — Softaculous / 4.1.0 gate** | Hoster certification, evidence, vendor narrative | §**9**; §**10.6**–§**10.7**; **`implementations/33_softaculous_certification_4_1_0_gate/`** |
 
 ### PRD 33 / Softaculous / 4.1.0 gate (traceability per PRD §12)
 
@@ -226,7 +264,16 @@ Open rewrite/promotion work maps to **PLAN** rows **C-1**, **C-2**, **C-3**. **D
 - [ ] **Proactive invite** from contextual edges (high-weight Truth pages).
 - [ ] **Contextual installation:** seed context registry / semantic edges for “Brain” where product requires.
 - [ ] **Subdirectory installation** hardening (not web root) — verify end-to-end beyond PRD text.
-- [ ] **Softaculous certification execution (umbrella)** — Track completion via **§10** + **§7.4–§7.9** tables above; **not** closed by documentation approval alone. Hub: **`lupo-docs/implementations/33_softaculous_certification_4_1_0_gate/`**. **PRD:** [lupo-docs/prd/33_softaculous_certification_4_1_0_gate.md](../../prd/33_softaculous_certification_4_1_0_gate.md).
+- [ ] **Softaculous certification execution (umbrella — Track B)** — Close via **§9** + **§10** gate rows and evidence artifacts; **§7.4–§7.9** tables are **Track A** (product). **Not** closed by documentation approval alone. Hub: **`lupo-docs/implementations/33_softaculous_certification_4_1_0_gate/`**. **PRD:** [lupo-docs/prd/33_softaculous_certification_4_1_0_gate.md](../../prd/33_softaculous_certification_4_1_0_gate.md).
+
+## Visitor web + monitoring embed + admin chat (after install + admin baseline)
+
+**Order:** Runs **after** critical path **Step 1–2** (install/import + **`admin.php`** / **`live.php`** smoke). Supports **Track A** (Crafty parity + operator UX).
+
+- [ ] **Visitor-facing web:** login, account/session flows, and **configure** surfaces (settings that operators expect post-install) — align with **Two-UI** / **WOLFIE_WORKFLOW_DOCTRINE** (consumer mobile-first where applicable).
+- [ ] **Monitoring / silent-harvest embed:** PHP-generated JS placed on **monitored** host pages; reconcile **`lupopedia_js.php`** naming/contract with routes that exist today (e.g. **`nav/semantic-navbar-js`**) per **`SEMANTIC_MONITORING_DOCTRINE.md`** — no invented API paths.
+- [ ] **Admin chat interface:** operator/visitor chat chrome and **`channels-controller`** / **`chat-display`** wiring; follow **`CHAT_UI_JAVASCRIPT_SHARED_STATE_DOCTRINE.md`** — **default non-IIFE**; admin code does not need IIFE except rare cases (e.g. legacy audio `play()` isolation).
+- [ ] **Optional product simplification:** spike merging needed symbols from **`livehelp_js.php`** into **`lupopedia_js.php`** so one embed owns shared visitor/monitor state (decision + PRD 18/28 update if adopted).
 
 ## Real-time chat / Glass UI
 
@@ -258,6 +305,7 @@ Open rewrite/promotion work maps to **PLAN** rows **C-1**, **C-2**, **C-3**. **D
 
 - [x] **PRD 31 LILITH final audit + 4.0.94 version sync (Cursor thread, UTC `20260403025155`):** **`CHANGELOG.md`** top entry; **`WHAT_TO_WORK_ON_NEXT_SESSION.md`**; **`decisions/20260403_025155_DECISION_APPROVED_prd31_lilith_final_audit_version_sync.md`** + Q/A/C **`025156`–`025158`**; canonical **`lupo-docs/prd/31_implementation_folder_guidelines.md`** LILITH block (**`20260403024822`**).
 - [x] **LILITH directive (2026-04-04 UTC):** Refresh **`lupo-docs/versions/4.0.94/`** — `decisions/`, `questions/`, `answers/`, `comments/`, **`THREAD_INDEX`**, **`PLAN.md`**, **`TODO.md`**, **`CHANGELOG.md`**, **`edges.md`**; **`when_updated`** / **`last_verified`** stamps; scope = verified documentation/channel/Mood RGB work (see **`decisions/20260404_200000_DECISION_APPROVED_documentation_coordination_channel_semantic_mood_rgb.md`**).
+- [x] **Cursor session end (UTC `20260404074421`):** WordPress / Softaculous **docs + partial code** — **PRD 00** §15, **`LEARNED_FROM_WORDPRESS.md`**, **`SEMANTIC_MONITORING_DOCTRINE.md`**, **`CHAT_UI_JAVASCRIPT_SHARED_STATE_DOCTRINE.md`**, **PRD 33** §14 / implementation **33** Q&A + tasks, **`InstallWizardHtaccessWriter`** marker merge, **`build_softaculous_package.sh`** excludes; version-folder **`CHANGELOG`** / **`PLAN`** Phase **I** / **`TODO`** / **`edges`** / **`WHAT_TO_WORK_ON_NEXT_SESSION`** / **`comments/20260404_074421_…`** (see **`CHANGELOG.md`** top entry **[2026-04-04]**).
 - [ ] Transition remaining **“Unfinished Business”** items from 4.0.87 into documented contexts.
 - [ ] **Enhance channel coordination automation** and thread indexing.
 - [ ] **Improve context linking** and multi-agent workflows.

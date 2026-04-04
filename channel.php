@@ -158,7 +158,9 @@ lupoChatDisplayDomReady(function () {
         publicPath: window.CHAT_PAGE.publicPath,
         csrfToken: window.CHAT_PAGE.csrfToken,
         pollingInterval: 2000,
-        autoScroll: true
+        autoScroll: true,
+        kairosTickIntervalMs: 300000,
+        kairosDepartmentId: 0
     });
     c.init();
 });

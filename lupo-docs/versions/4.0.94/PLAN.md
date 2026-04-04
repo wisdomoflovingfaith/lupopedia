@@ -4,7 +4,7 @@ lupopedia.headers:
   version_when_written: "4.0.94"
   file_path_from_root: "lupo-docs/versions/4.0.94/PLAN.md"
   web_path: "http://www.lupopedia.com/lupopedia/lupo-docs/versions/4.0.94/PLAN.md"
-  when_updated: "20260403222041"
+  when_updated: "20260404161001"
   channel_id: 42
   actor_id: 102
   actor_name: "CURSOR"
@@ -123,6 +123,31 @@ Same table as [`README.md`](README.md) — **CANONICAL** under `lupo-docs/prd/` 
 - [ ] **Federation navigation compiler** — product TBD; gated on **WOLFIE** decision (see open QUESTION `20260403_222042_…`).
 
 **Completion criteria:** Runtime audit either closed with evidence paths in `CHANGELOG` or explicitly queued with owning artifact; federation compiler remains OPEN until a separate APPROVED decision exists.
+
+### Phase I — Softaculous / WordPress documentation + partial installer alignment (UTC `20260404074421`)
+
+**Evidence:** `CHANGELOG.md` entry **[2026-04-04] Softaculous / WordPress patterns**; `comments/20260404_074421_COMMENT_cursor_session_end_softaculous_wordpress_semantic_chat.md`.
+
+- [x] **PRD 00 §15** — WordPress multi-environment patterns; edges to implementation answers / `InstallWizardHtaccessWriter` / `LEARNED_FROM_WORDPRESS.md` (per committed PRD body).
+- [x] **`LEARNED_FROM_WORDPRESS.md`**, **`SEMANTIC_MONITORING_DOCTRINE.md`**, **`CHAT_UI_JAVASCRIPT_SHARED_STATE_DOCTRINE.md`** — doctrine files + PRD 28 / 18 / 33 cross-links as committed in-repo.
+- [x] **Installer / packager code** — `lupo-install/InstallWizardHtaccessWriter.php` marker merge + Apache environment gate; `lupo-scripts/build_softaculous_package.sh` explicit **rsync** excludes for `.htaccess` / `.htpasswd`.
+- [x] **Implementation 33** — WordPress study + packager flow **Q/A** and task list updates under `lupo-docs/implementations/33_softaculous_certification_4_1_0_gate/` (as committed).
+- [ ] **Softaculous certification execution** — remainder of PRD **§7–§10** checklist, optional packaging samples, permissions narrative; track in **`TODO.md`** (documentation approval does **not** close certification).
+- [ ] **Next product slice (WOLFIE priority)** — visitor-facing web **login + configure**; **PHP-generated monitoring JS** on monitored pages (align **`lupopedia_js.php`** contract with current **`nav/semantic-navbar-js`** reality per **`SEMANTIC_MONITORING_DOCTRINE.md`**); **admin chat** interface; **default non-IIFE** for admin/chat per **`CHAT_UI_JAVASCRIPT_SHARED_STATE_DOCTRINE.md`**; optional spike — consolidate **`livehelp_js.php`** into **`lupopedia_js.php`** (requires explicit product decision + PRD touch).
+
+**Completion criteria:** Thread outcomes recorded in **`CHANGELOG.md`** + session **COMMENT**; remaining work owned in **`WHAT_TO_WORK_ON_NEXT_SESSION.md`** and **`TODO.md`** without claiming full hoster certification complete.
+
+### Phase J — Service agent doctrine + Softaculous auto-installer documentation + packaging hygiene (UTC `20260404161001`)
+
+**Evidence:** `CHANGELOG.md` entry **[2026-04-04] Service agent architecture + PRD 00 §5 …**; `decisions/20260404_161001_DECISION_APPROVED_service_agent_architecture_and_softaculous_auto_installer_docs.md`; `comments/20260404_161001_COMMENT_cursor_service_agents_softaculous_version_doc_sync.md`.
+
+- [x] **PRD 00 §5** — Agents/actors, KAIROS §5.7, implementation mirroring §5.8, THOTH §5.9, service agents §5.10 with roster **IRIS / ANUBIS / ROSE / THOTH / KAIROS** and **RuntimeActorLoopService** contrast.
+- [x] **`SERVICE_AGENT_ARCHITECTURE.md`** + **`implementations/service_agents/`** (status, decisions, Q/A/C indexes).
+- [x] **`LUPOPEDIA_HEADERS/README.md`** — THOTH grounding (JSON + table docs; forbid model-only schema claims).
+- [x] **Softaculous spec + runtime** — `SOFTACULOUS_PACKAGE_BUILD.md` §1b–§1c + summary table; `lupopedia-config-sample.php`; `README.txt`; `bootstrap.php` runtime dirs; `install.php` `LUPO_INSTALLING`; `index.php` silent-install comment; `build_softaculous_package.sh` excludes live `lupopedia-config.php`.
+- [ ] **Hoster certification execution** — still **`TODO.md`** / PRD 33 §10; documentation **does not** close §10.6–§10.7.
+
+**Completion criteria:** Phase I + J **documented** outcomes in **`CHANGELOG`**; no false claim that Softaculous vendor acceptance is complete.
 
 ## References
 

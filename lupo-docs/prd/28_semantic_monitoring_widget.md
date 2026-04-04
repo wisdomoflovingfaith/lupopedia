@@ -2,9 +2,10 @@
 lupopedia.headers:
   header_format_version: 2
   lupopedia.schema: doctrine
-  when_updated: "20260401000000"
-  file_path_from_root: "/lupo-docs/prd/28_semantic_monitoring_widget.md"
+  when_updated: "20260404075645"
+  file_path_from_root: "lupo-docs/prd/28_semantic_monitoring_widget.md"
   web_path: "http://www.lupopedia.com/lupopedia/lupo-docs/prd/28_semantic_monitoring_widget.md"
+  last_modified_utc: "20260404075645"
   federation_node_id: 0
   channel_id: 42
   thread_id: "prd-semantic-monitoring-widget"
@@ -152,13 +153,17 @@ lupopedia.edges:
       type: references
       weight: 1.0
       reason: "Previous/next page aggregated flows — entercontentid, exitcontentid, count_num"
-    - to: "lupo-database/lupopedia/mysql/migrations/add_semantic_navbar_tables_20260401.sql"
+    - to: "lupo-database/lupopedia/mysql/install/install_new_lupopedia.sql"
       type: references
       weight: 1.0
-      reason: "SQL proposal to add lupo_paths and semantic navbar tables to install_new_lupopedia.sql"
+      reason: "Canonical DDL — paths, references, reference_links, hashtags, hashtag_map, folders, folder_map (merged from former migration proposal)"
+    - to: "lupo-docs/doctrine/SEMANTIC_MONITORING_DOCTRINE.md"
+      type: references
+      weight: 1.0
+      reason: "Architecture doctrine — Eye vs livehelp_js, routing truth, IDE must-not-guess UI"
 
 lupopedia.footer:
-  last_verified: "20260401"
+  last_verified: "20260404075645"
   verified_by:
     identity_type: actor
     actor_id: 102
@@ -184,23 +189,23 @@ Provides comprehensive semantic monitoring, page tracking, and user interaction 
 
 ---
 
-## Missing Tables — Action Required
+## Schema — canonical install (present)
 
-The following tables are needed by this widget, exist in the live database (confirmed via TOON JSONs), but are **absent from `install_new_lupopedia.sql`**. They must be added before implementation begins.
+**Status:** Required tables are **present** in **`lupo-database/lupopedia/mysql/install/install_new_lupopedia.sql`** (single canonical schema for 4.0.x). Runtime names use `LUPO_TABLE_PREFIX` (typically `lupo_`); install DDL uses the `{{prefix}}` placeholder.
 
-| Table | Status | Fix |
-|-------|--------|-----|
-| `lupo_paths` | In live DB + TOON JSON, missing from install SQL | See migration file below |
-| `lupo_references` | In live DB + TOON JSON, missing from install SQL | See migration file below |
-| `lupo_reference_links` | In live DB + TOON JSON, missing from install SQL | See migration file below |
-| `lupo_hashtags` | In live DB + TOON JSON, missing from install SQL | See migration file below |
-| `lupo_hashtag_map` | In live DB + TOON JSON, missing from install SQL | See migration file below |
-| `lupo_folders` | In live DB, no TOON JSON, missing from install SQL | See migration file below |
-| `lupo_folder_map` | In live DB + TOON JSON, missing from install SQL | See migration file below |
+| Widget / PRD name | `CREATE TABLE` in install SQL |
+|-------------------|------------------------------|
+| `lupo_paths` | `{{prefix}}paths` |
+| `lupo_references` | `{{prefix}}references` |
+| `lupo_reference_links` | `{{prefix}}reference_links` |
+| `lupo_hashtags` | `{{prefix}}hashtags` |
+| `lupo_hashtag_map` | `{{prefix}}hashtag_map` |
+| `lupo_folders` | `{{prefix}}folders` |
+| `lupo_folder_map` | `{{prefix}}folder_map` |
 
-**SQL proposal:** `lupo-database/lupopedia/mysql/migrations/add_semantic_navbar_tables_20260401.sql`
+**Historical note:** `lupo-database/lupopedia/mysql/migrations/add_semantic_navbar_tables_20260401.sql` was a **proposal**; its shapes were **consolidated into** `install_new_lupopedia.sql`. Fresh installs do **not** run that migration separately.
 
-**Action:** Review the SQL file, then apply each `CREATE TABLE` block to `install_new_lupopedia.sql` in the semantic navbar section. After applying, regenerate TOON files:
+After any future DDL edit to install SQL, regenerate TOONs when your workflow requires it:
 
 ```bash
 python lupo-scripts/generate_toon_files.py
@@ -582,8 +587,8 @@ All endpoints receive `page_id` (content_id) as a query parameter. All PHP handl
 
 Before writing any PHP for this widget:
 
-- [ ] Apply `add_semantic_navbar_tables_20260401.sql` to `install_new_lupopedia.sql`
-- [ ] Regenerate TOON files: `python lupo-scripts/generate_toon_files.py`
+- [x] Confirm semantic navbar / path tables exist in `install_new_lupopedia.sql` (see **Schema — canonical install** above).
+- [ ] Regenerate TOON files after **new** DDL changes: `python lupo-scripts/generate_toon_files.py`
 - [ ] Read table doc for every table before writing any query
 - [ ] Confirm `lupo_truth_questions` column names from `lupo-docs/database/lupopedia/tables/lupo_truth_questions.md`
 - [ ] Use `DatabaseFactory::getConnection()` — never `new PDO()` or `mysqli_*`

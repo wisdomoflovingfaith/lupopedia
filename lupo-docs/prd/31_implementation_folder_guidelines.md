@@ -2,10 +2,10 @@
 lupopedia.headers:
   header_format_version: 2
   lupopedia.schema: prd
-  when_updated: "20260403024822"
+  when_updated: "20260404164842"
   file_path_from_root: "lupo-docs/prd/31_implementation_folder_guidelines.md"
   web_path: "http://www.lupopedia.com/lupopedia/lupo-docs/prd/31_implementation_folder_guidelines.md"
-  last_modified_utc: "20260403024822"
+  last_modified_utc: "20260404164842"
   federation_node_id: 0
   channel_id: 42
   thread_id: "prd-implementation-guidelines"
@@ -34,7 +34,7 @@ lupopedia.edges:
     - to: "lupo-docs/prd/00_root_constitutional_system_requirements.md"
       type: references
       weight: 1.0
-      reason: "Constitutional anchor"
+      reason: "Constitutional anchor; Section 5.8 implementation mirroring (prd_file_stem)"
     - to: "lupo-docs/prd/16_lupopedia_headers.md"
       type: references
       weight: 1.0
@@ -59,8 +59,12 @@ lupopedia.edges:
       type: references
       weight: 0.9
       reason: "Implementation questions framework"
+    - to: "lupo-docs/implementations/README.md"
+      type: references
+      weight: 0.95
+      reason: "Implementations index; naming must match PRD file stem"
 lupopedia.footer:
-  last_verified: "20260403024822"
+  last_verified: "20260404164842"
   verified_by:
     type: "actor"
     id: 2
@@ -72,7 +76,7 @@ lupopedia.footer:
   orchestrator: "lilith:audit"
   next_action:
     - "Keep question/answer/decision filenames immutable; state in YAML only"
-    - "Align scaffold_implementation.py copies with template header requirements"
+    - "Keep scaffold_implementation.py in sync when _template THREAD_INDEX.md bodies change"
     - "New implementation folders created after 2026-04-03 MUST follow this PRD; existing implementations: 90-day alignment window per PRD 26 transition policy"
 ---
 
@@ -102,11 +106,42 @@ PRD Approval → Folder Scaffolding → Questions → Decisions → Implementati
 
 ## Folder Scaffolding
 
+### Canonical directory name (must match the PRD file)
+
+**Rule.** The implementation workspace directory **MUST** be:
+
+```text
+lupo-docs/implementations/{prd_file_stem}/
+```
+
+where **`prd_file_stem`** is exactly the **basename** of the canonical PRD under **`lupo-docs/prd/`**, **without** the **`.md`** extension.
+
+**Examples (correct):**
+
+| PRD path | Implementation path |
+|----------|----------------------|
+| `lupo-docs/prd/36_rose_multi_persona_synthetic_dialog.md` | `lupo-docs/implementations/36_rose_multi_persona_synthetic_dialog/` |
+| `lupo-docs/prd/33_softaculous_certification_4_1_0_gate.md` | `lupo-docs/implementations/33_softaculous_certification_4_1_0_gate/` |
+
+**Wrong:** Folder names that **diverge** from the PRD filename stem — e.g. **`prd_36_rose/`**, **`rose/`**, or any alias that would force readers to guess which PRD is canonical.
+
+**Constitutional summary:** **`lupo-docs/prd/00_root_constitutional_system_requirements.md`** **§5.8** restates this rule for IDE agents; **this PRD** is the **full** specification (lifecycle, templates, validators).
+
+**Scaffold alignment.** The script below builds **`{prd_id}_{prd_slug}`**. Pass **`--title`** such that **`{prd_id}_{prd_slug}`** equals **`prd_file_stem`** for your target **`lupo-docs/prd/{prd_file_stem}.md`**.
+
 ### Automated Scaffolding Script
 
 ```bash
 python lupo-scripts/scaffold_implementation.py --prd 31 --title "implementation_folder_guidelines"
 ```
+
+**What the scaffold script does (shipped behavior).**
+
+- Creates **`status/`** (with stub **`STATUS.md`** and **`THREAD_INDEX.md`**) plus the other required directories.
+- Writes **`THREAD_INDEX.md`** under **`questions/`**, **`answers/`**, and **`comments/`** by copying **`lupo-docs/implementations/_template/<subfolder>/THREAD_INDEX.md`** and substituting **`_template` → `{prd_file_stem}`**, **`parent_prd`**, **`when_updated`**, and distinct **`thread_id`** values.
+- Writes a minimal **`decisions/THREAD_INDEX.md`** (no full template file exists under **`_template/decisions/`** for that name).
+- Copies leveled question templates and **`README`** fragments into **`templates/`** per existing **`copy_templates()`** logic.
+- Appends a row to **`lupo-docs/implementations/README.md`** before **`## Template`** when the implementation name is not already listed.
 
 ### Required Folder Structure
 
@@ -488,6 +523,7 @@ lupo-docs/implementations/_template/
 
 ## Related Artifacts
 
+- [PRD 00 — Root constitutional system requirements](00_root_constitutional_system_requirements.md) — **§5.8** implementation mirroring (IDE directive; **`prd_file_stem`** rule)
 - [PRD 02 — Channels, Threads, and Discussions](02_channels_discussions.md)
 - [PRD 16 — Lupopedia File Headers](16_lupopedia_headers.md)
 - [PRD 17 — Decisions Format](17_decisions_format.md)

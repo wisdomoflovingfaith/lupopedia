@@ -14,6 +14,8 @@ if (version_compare(PHP_VERSION, '7.0.0', '<')) {
     require_once __DIR__ . '/../functions/php56_polyfills.php';
 }
 
+require_once __DIR__ . '/../security/password-hash.php';
+
 class AuthSessionManager
 {
     private $db;
@@ -106,9 +108,13 @@ class AuthSessionManager
      */
     public function getAvailableAgents()
     {
+        // Templates for "create new actor from agent" (select-actor.php): exclude system-only rows.
+        // lupo_agents.is_internal_only = 1 means tooling / PHP-first system agents — not an end-user persona template.
+        // Fresh installs: seed_4.1.0.sql sets is_internal_only for ROSE, HERMES, IRIS, ANUBIS, HEIMDALL, KAIROS (registry agent_id map).
         $sql = "SELECT a.agent_id, a.agent_key, a.agent_name, a.description
                 FROM {$this->table_prefix}agents a
                 WHERE a.is_deleted = 0
+                AND a.is_internal_only = 0
                 ORDER BY a.agent_name ASC";
         return $this->db->fetchAll($sql, array());
     }
@@ -125,10 +131,10 @@ class AuthSessionManager
             $department_id = $this->getUserDepartment($auth_user_id);
         }
         
-        // Get agent details
+        // Get agent details (reject internal/system agents — not for human actor creation)
         $sql = "SELECT agent_name, description FROM {$this->table_prefix}agents 
-                WHERE agent_id = :agent_id AND is_deleted = 0";
-        $agent = $this->db->fetchRow($sql, ['agent_id' => $agent_id]);
+                WHERE agent_id = :agent_id AND is_deleted = 0 AND is_internal_only = 0";
+        $agent = $this->db->fetchRow($sql, array('agent_id' => $agent_id));
         
         if (!$agent) {
             return false;
@@ -383,7 +389,7 @@ class AuthSessionManager
         
         $user = $this->db->fetchRow($sql, ['username' => $username]);
         
-        if (!$user || !password_verify($password, $user['password_hash'])) {
+        if (!$user || !lupo_verify_password($password, $user['password_hash'])) {
             return false;
         }
         

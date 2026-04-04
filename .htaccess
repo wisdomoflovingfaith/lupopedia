@@ -1,5 +1,6 @@
 # Lupopedia .htaccess
 # Clean URLs without hardcoding the installation directory
+# Keep in sync with lupo-install/InstallWizardHtaccessWriter.php (Softaculous zips omit .htaccess; installer writes this body).
 
 <IfModule mod_rewrite.c>
 RewriteEngine On

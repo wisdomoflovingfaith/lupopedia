@@ -3,10 +3,10 @@ lupopedia.headers:
   header_format_version: 2
   lupopedia.schema: documentation
   version_when_written: "4.0.94"
-  when_updated: "20260403140552"
+  when_updated: "20260404161001"
   file_path_from_root: "lupo-docs/versions/4.0.94/comments/THREAD_INDEX.md"
   web_path: "http://www.lupopedia.com/lupopedia/lupo-docs/versions/4.0.94/comments/THREAD_INDEX.md"
-  last_modified_utc: "20260403140552"
+  last_modified_utc: "20260404161001"
   federation_node_id: 0
   channel_id: 42
   thread_id: "version-4.0.94-comments"
@@ -22,7 +22,7 @@ lupopedia.headers:
   - "comments"
   - "4.0.94"
 lupopedia.footer:
-  last_verified: "20260403022546"
+  last_verified: "20260404161001"
   verified_by:
     identity_type: "actor"
     actor_id: 102
@@ -35,6 +35,8 @@ lupopedia.footer:
 
 | Posted (UTC) | File | Summary |
 |--------------|------|---------|
+| 20260404_161001 | [20260404_161001_COMMENT_cursor_service_agents_softaculous_version_doc_sync.md](20260404_161001_COMMENT_cursor_service_agents_softaculous_version_doc_sync.md) | Cursor: `4.0.94` tree sync — service agents + PRD 00 §5 + Softaculous auto-installer + THOTH grounding; `CHANGELOG` / `PLAN` J / `TODO` / `edges`; decision `161001`. |
+| 20260404_074421 | [20260404_074421_COMMENT_cursor_session_end_softaculous_wordpress_semantic_chat.md](20260404_074421_COMMENT_cursor_session_end_softaculous_wordpress_semantic_chat.md) | Cursor: session end — PRD 00 §15, WordPress + semantic + chat JS doctrines, installer htaccess + packager script; next = visitor UI + monitoring embed + admin chat (non-IIFE default). |
 | 20260403_140555 | [20260403_140555_COMMENT_cursor_doctrine_audit_version_sync.md](20260403_140555_COMMENT_cursor_doctrine_audit_version_sync.md) | Cursor: 4.0.94 tree sync for doctrine audit + mobile/workflow thread; no unverified batch counts in version docs. |
 | 20260403_025158 | [20260403_025158_COMMENT_cursor_session_end_prd31_next_session.md](20260403_025158_COMMENT_cursor_session_end_prd31_next_session.md) | Cursor: session end — PRD 31 sync receipt; observations (scaffold, install, Eye, schema WARN); `WHAT_TO_WORK_ON_NEXT_SESSION.md`. |
 | 20260403_022546 | [20260403_022546_COMMENT_cursor_prd33_version_doc_sync.md](20260403_022546_COMMENT_cursor_prd33_version_doc_sync.md) | Cursor: PRD 33 `approved` + 4.0.94 CHANGELOG/PLAN/TODO/edges + thread artifacts `022543`–`022546`. |

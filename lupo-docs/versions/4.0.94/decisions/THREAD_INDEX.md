@@ -3,10 +3,10 @@ lupopedia.headers:
   header_format_version: 2
   lupopedia.schema: documentation
   version_when_written: "4.0.94"
-  when_updated: "20260403222041"
+  when_updated: "20260404161001"
   file_path_from_root: "lupo-docs/versions/4.0.94/decisions/THREAD_INDEX.md"
   web_path: "http://www.lupopedia.com/lupopedia/lupo-docs/versions/4.0.94/decisions/THREAD_INDEX.md"
-  last_modified_utc: "20260403222041"
+  last_modified_utc: "20260404161001"
   federation_node_id: 0
   channel_id: 42
   thread_id: "version-4.0.94-decisions"
@@ -32,7 +32,7 @@ lupopedia.edges:
       weight: 1.0
       reason: "Format specification"
 lupopedia.footer:
-  last_verified: "20260403222041"
+  last_verified: "20260404161001"
   verified_by:
     identity_type: "actor"
     actor_id: 102
@@ -45,6 +45,7 @@ lupopedia.footer:
 
 | ID | Type | Title | Status | Date | Link |
 |----|------|-------|--------|------|------|
+| 20260404_161001 | DECISION | APPROVED: service agent architecture + Softaculous auto-installer docs (thread receipt) | APPROVED | 2026-04-04 | [20260404_161001_DECISION_APPROVED_service_agent_architecture_and_softaculous_auto_installer_docs.md](20260404_161001_DECISION_APPROVED_service_agent_architecture_and_softaculous_auto_installer_docs.md) |
 | 20260403_222041 | DECISION | APPROVED: department-first actor model + PRD alignment + doctrine | APPROVED | 2026-04-03 | [20260403_222041_DECISION_APPROVED_department_first_actor_model_prd_alignment.md](20260403_222041_DECISION_APPROVED_department_first_actor_model_prd_alignment.md) |
 | 20260403_140552 | DECISION | APPROVED: doctrine audit + mobile/workflow documentation (5W1H) | APPROVED | 2026-04-03 | [20260403_140552_DECISION_APPROVED_doctrine_audit_mobile_separation_docs.md](20260403_140552_DECISION_APPROVED_doctrine_audit_mobile_separation_docs.md) |
 | 20260403_025155 | DECISION | APPROVED: PRD 31 LILITH final audit + 4.0.94 version sync | APPROVED | 2026-04-03 | [20260403_025155_DECISION_APPROVED_prd31_lilith_final_audit_version_sync.md](20260403_025155_DECISION_APPROVED_prd31_lilith_final_audit_version_sync.md) |

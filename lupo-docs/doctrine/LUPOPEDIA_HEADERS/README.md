@@ -8,7 +8,7 @@ lupopedia.headers:
   delegation_chain: cursor:root
   federation_node_id: 0
   file_path_from_root: lupo-docs/doctrine/LUPOPEDIA_HEADERS/README.md
-  last_modified_utc: '20260328163401'
+  last_modified_utc: '20260404160851'
   lupopedia.schema: doctrine
   purpose: Canonical doctrine index for LUPOPEDIA HEADERS and footer verification
     model
@@ -20,7 +20,7 @@ lupopedia.headers:
   - utc
   thread_id: headers-readme-index
   web_path: http://www.lupopedia.com/lupopedia/lupo-docs/doctrine/LUPOPEDIA_HEADERS/README.md
-  when_updated: '20260328240000'
+  when_updated: '20260404160851'
   title: Lupo docs doctrine lupopediaheaders readme
   content_id: 6398844981624656451
 lupopedia.edges:
@@ -29,9 +29,17 @@ lupopedia.edges:
       type: implements
       weight: 1.0
       reason: "Doctrine PRD lineage; constitutional audit 20260403"
+    - to: "lupo-docs/doctrine/SERVICE_AGENT_ARCHITECTURE.md"
+      type: references
+      weight: 1.0
+      reason: "THOTH as service agent; grounding vs model-only knowledge"
+    - to: "lupo-docs/prd/00_root_constitutional_system_requirements.md"
+      type: references
+      weight: 1.0
+      reason: "Constitutional Sections 5.9 (THOTH) and 5.10 (service agents)"
 
 lupopedia.footer:
-  last_verified: 20260328
+  last_verified: 20260404
   next_action:
   - Continue migration from version_when_written to when_updated
   - Enforce stale footer revalidation policy for artifacts below 20260301000000
@@ -132,6 +140,10 @@ lupopedia.headers:
 
 THOTH is the canonical knowledge and records persona. Verification of stale artifacts is a knowledge integrity function, not an execution or audit function.
 
+**Grounding rule (binding).** THOTH’s **conclusions** about schema, tables, columns, and edge types **must** be **evidence-backed** from repository files: at minimum **`lupo-database/lupopedia/json/*.json`** and **`lupo-docs/database/lupopedia/tables/active/*.md`**, plus install SQL / root rules as listed below. **General AI parametric knowledge** (model weights, uncited recall) is **not** authoritative and **must not** be treated as proof of current schema. An LLM may **rephrase** or **summarize** only **after** those sources are loaded into the working context (IDE buffer, PHP-fed prompt, or human paste).
+
+**Cross-references:** **`lupo-docs/prd/00_root_constitutional_system_requirements.md`** — **§5.9** (THOTH), **§5.10** (service agents, PHP-first). Full architecture: **`lupo-docs/doctrine/SERVICE_AGENT_ARCHITECTURE.md`** — **§6**.
+
 ### THOTH's Verification Skillset
 
 THOTH must reference the following sources when performing semantic truth checks:
@@ -206,6 +218,7 @@ Files under `lupo-docs/database/lupopedia/tables/active/*.md` are a mapping surf
 - `VERIFICATION_GUIDE.md`
 - `LUPOPEDIA_HEADERS_MIGRATION.md`
 - `EDGE_MODEL_DOCTRINE.md`
+- `lupo-docs/doctrine/SERVICE_AGENT_ARCHITECTURE.md` (THOTH grounding; service agents)
 - `lupo-docs/doctrine/RELEASE_ARTIFACT_APPROVAL_GOVERNANCE_DOCTRINE.md`
 - `lupo-rules/root/`
 

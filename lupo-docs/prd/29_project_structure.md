@@ -2,10 +2,10 @@
 lupopedia.headers:
   header_format_version: 2
   lupopedia.schema: documentation
-  when_updated: "20260403193000"
+  when_updated: "20260404163615"
   file_path_from_root: "lupo-docs/prd/29_project_structure.md"
   web_path: "http://www.lupopedia.com/lupopedia/lupo-docs/prd/29_project_structure.md"
-  last_modified_utc: "20260403193000"
+  last_modified_utc: "20260404163615"
   federation_node_id: 0
   channel_id: 42
   thread_id: "prd-project-structure"
@@ -42,6 +42,14 @@ lupopedia.edges:
       type: references
       weight: 0.9
       reason: "Live coordination thread for PRD 29 project organization"
+    - to: "lupo-docs/prd/31_implementation_folder_guidelines.md"
+      type: references
+      weight: 1.0
+      reason: "lupo-docs/implementations/{prd_file_stem}/ layout and naming"
+    - to: "lupo-docs/implementations/README.md"
+      type: references
+      weight: 0.95
+      reason: "Implementations index"
 ---
 
 # Project Structure
@@ -184,14 +192,11 @@ The following sub‑folders are critical for understanding project organization 
 | `lupo-docs/doctrine/` | Formal doctrines, rules, and policies governing system behavior. |
 | `lupo-docs/knowledge/` | Knowledge‑base items and research artifacts referenced by agents. |
 | `lupo-docs/channels/` | Detailed documentation on specific channel rules, histories, and conventions. |
-| `lupo-docs/implementations/` | Directory | Technical documentation and execution notes for specific feature implementations. Each PRD has a corresponding implementation folder with the same number. |
-| `lupo-docs/implementations/README.md` | File | Index of all implementations with status tracking |
-| `lupo-docs/implementations/{number}_name/` | Directory | Implementation folder matching PRD number (e.g., `25_departments_systems/`) |
-| `lupo-docs/implementations/{number}_name/README.md` | File | Overview and status of the implementation |
-| `lupo-docs/implementations/{number}_name/changelog.md` | File | Changes to the implementation over time |
-| `lupo-docs/implementations/{number}_name/discussions.md` | File | Design discussions and decisions |
-| `lupo-docs/implementations/{number}_name/todo.md` | File | Remaining tasks and TODO items |
-| `lupo-docs/implementations/{number}_name/{feature}.md` | File | Specific implementation documentation (lowercase_with_underscores) |
+| `lupo-docs/implementations/` | PRD-scoped implementation workspaces. **Folder name = `prd_file_stem`:** same basename as `lupo-docs/prd/{prd_file_stem}.md` (e.g. `36_rose_multi_persona_synthetic_dialog/`). **Constitution §5.8**; full layout **PRD 31**. |
+| `lupo-docs/implementations/README.md` | Index; naming rules and table of known folders. |
+| `lupo-docs/implementations/{prd_file_stem}/` | Per-PRD tree: typically **`status/`**, **`decisions/`**, **`questions/`** (often **`critical/`** / **`optimization/`** / **`clarification/`**), **`answers/`**, **`comments/`**, **`templates/`**, **`authors.md`**, **`edges.md`**, **`todo.md`**, **`changelog.md`** — see **PRD 31**. |
+| `lupo-docs/implementations/{prd_file_stem}/README.md` | Implementation overview for that PRD. |
+| `lupo-docs/implementations/_template/` | Canonical scaffold source copied by **`lupo-scripts/scaffold_implementation.py`**. |
 | `lupo-docs/api/` | Authoritative API specs and endpoint documentation for integrations. |
 | `lupo-rules/root/` | Contains the highest-authority, non-negotiable constitutional rules and doctrines governing the codebase. |
 | `lupo-research/federation_nodes/` | Formal ingestion structure for external federation research, guarded by strict RAG (read-only) boundaries. |
