@@ -2,10 +2,10 @@
 lupopedia.headers:
   header_format_version: 2
   lupopedia.schema: documentation
-  when_updated: "20260404163615"
+  when_updated: "20260404172442"
   file_path_from_root: "lupo-docs/implementations/36_rose_multi_persona_synthetic_dialog/README.md"
   web_path: "http://www.lupopedia.com/lupopedia/lupo-docs/implementations/36_rose_multi_persona_synthetic_dialog/README.md"
-  last_modified_utc: "20260404163615"
+  last_modified_utc: "20260404172442"
   federation_node_id: 0
   channel_id: 42
   artifact_type: documentation
@@ -26,6 +26,10 @@ lupopedia.edges:
     - to: "lupo-docs/doctrine/SERVICE_AGENT_ARCHITECTURE.md"
       type: references
       weight: 1.0
+    - to: "lupo-docs/doctrine/AGAPE_DOCTRINE.md"
+      type: references
+      weight: 1.0
+      reason: "ROSE synthetic metadata — agape_cooperation_metric (PRD 00 §14.6)"
 lupopedia.footer:
   last_verified: "20260404"
   verified_by:
@@ -43,7 +47,8 @@ lupopedia.footer:
 
 **Product PRD:** **`lupo-docs/prd/36_rose_multi_persona_synthetic_dialog.md`**  
 **Constitution:** **`lupo-docs/prd/00_root_constitutional_system_requirements.md`** — **§5.10.3**  
-**Planned PHP service:** **`app/Services/Rose/RoseDialogService.php`**
+**Planned PHP service:** **`app/Services/Rose/RoseDialogService.php`**  
+**AGAPE (cooperation metric, not sentiment):** **`lupo-docs/doctrine/AGAPE_DOCTRINE.md`** — optional **`metadata_json`** keys per **PRD 36** §4 and **PRD 00** §14.6.
 
 ## Folder layout
 

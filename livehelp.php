@@ -33,9 +33,9 @@ if (!defined('LUPOPEDIA_PATH')) {
     define('LUPOPEDIA_PATH', __DIR__);
 }
 
-// Load config file
-$config_file = LUPOPEDIA_PATH . '/lupopedia-config.php';
-if (file_exists($config_file)) {
+require_once LUPOPEDIA_PATH . DIRECTORY_SEPARATOR . 'lupo-includes' . DIRECTORY_SEPARATOR . 'classes' . DIRECTORY_SEPARATOR . 'LupopediaConfigResolver.php';
+$config_file = LupopediaConfigResolver::resolve(LUPOPEDIA_PATH, LUPOPEDIA_PUBLIC_PATH);
+if ($config_file !== null && is_file($config_file)) {
     require_once $config_file;
 }
 

@@ -2,10 +2,10 @@
 lupopedia.headers:
   header_format_version: 2
   lupopedia.schema: prd
-  when_updated: "20260404073004"
+  when_updated: "20260404174956"
   file_path_from_root: "lupo-docs/prd/18_channel_chat_display.md"
   web_path: "http://www.lupopedia.com/lupopedia/lupo-docs/prd/18_channel_chat_display.md"
-  last_modified_utc: "20260404073004"
+  last_modified_utc: "20260404174956"
   federation_node_id: 0
   channel_id: 42
   thread_id: "prd-chat-display"
@@ -64,8 +64,12 @@ lupopedia.edges:
       type: references
       weight: 1.0
       reason: "No IIFE isolation for chat UI — shared state across scripts (ChatDisplay pattern)"
+    - to: "lupo-docs/prd/36_rose_multi_persona_synthetic_dialog.md"
+      type: references
+      weight: 1.0
+      reason: "ROSE switchboard + synthetic cue; routing field semantics align with § Multi-Actor Routing"
 lupopedia.footer:
-  last_verified: "20260404073004"
+  last_verified: "20260404174956"
   verified_by:
     identity_type: "agent"
     actor_id: 2
@@ -112,6 +116,47 @@ lupopedia.footer:
 - **`auth_user` is not the bubble label:** The UI shows the **actor** the session is acting as. **`auth_user`** is login, accountability, and (for visitor-facing chat) **human fallback** in the chain defined in **[PRD 05](05_auth_user_actor_agent_transformation.md)** — not a substitute for **`actor_id`** in display or storage.
 - **Department-scoped shared persona:** **Multiple** **`auth_users`** who share a department may **act as the same `actor_id`**. The strip shows **one** actor identity (same colors / name) for that persona; it does **not** imply one human “owns” the actor — see **[PRD 15](15_actors.md)** and **[PRD 25](25_departments_system.md)**.
 - **Crafty parity:** Legacy **`saidfrom`** / operator ids map to **Lupopedia actors** on import; runtime remains **actor-first** — **[PRD 13](13_crafty_integration.md)**.
+
+### Multi-actor routing (simple pattern)
+
+**Canonical column (DDL):** **`lupo_dialog_messages.to_actor_id`** — see **`lupo-database/lupopedia/toon/lupo_dialog_messages.toon`**. Some directives use the prose synonym **“said-to actor”** / **`said_to_actor_id`**; **semantics are the same** (routing addressee only).
+
+#### Core principle
+
+> **Channel + thread = complete context.** Any actor who **may read the channel** may read **every message** in the same **`channel_id`** + **`dialog_thread_id`** scope. **`to_actor_id` does not hide rows** from other channel members.
+
+- **`to_actor_id` = routing only** (who is **expected to respond** or who the line is **addressed to** in UI). It is **not** a visibility ACL inside the channel.
+- **`to_actor_id` NULL** = **broadcast** — no specific responder expected; still visible to all channel readers.
+- **Visibility** is enforced by **channel membership** (and **server-side** read APIs), **not** by filtering on **`to_actor_id`**.
+
+#### Message shapes (product)
+
+| Shape | **`to_actor_id`** | Behavior |
+|--------|-------------------|----------|
+| **Direct / addressed** | Specific **`actor_id`** | **Routed** to that actor (highlight, notification, “expected responder” UX). **All** channel members **still read** the same row. |
+| **Broadcast** | **NULL** | General channel traffic; no specific addressee. |
+
+#### Display rules
+
+- **Addressed** lines **SHOULD** show the addressee in chrome (e.g. **LILITH** → **THOTH**: …) using **`from_actor_id`** + **`to_actor_id`** joins to **`lupo_actors`**.
+- **Broadcasts** show as normal channel lines (**from_actor_id** only or neutral “to channel” label).
+- **No “secret” channel DMs:** do **not** treat **`to_actor_id`** as “only sender + recipient can see this” within the same channel.
+
+#### ROSE orchestration (switchboard)
+
+When **`to_actor_id`** matches a **service persona** the product wires for auto-assist (e.g. **LILITH `actor_id` 2**; **THOTH**, **MAAT**, others — **resolve all ids from `lupo-database/lupopedia/actors/registry.json`**), **ROSE** (or the PHP router behind it) **MAY**:
+
+1. Detect the addressed line per server policy.  
+2. Invoke the appropriate **skillset / pipeline**.  
+3. Post a response through the **normal** channel insert path (same visibility rules).
+
+**Context:** ROSE and **THOTH** (and similar agents) **SHALL** load **the full thread** (**all messages** in scope) when generating or auditing content — not only lines where **`to_actor_id`** matches themselves.
+
+#### KAIROS memory
+
+**KAIROS** **SHALL** ingest from **all messages** in the channel thread regardless of **`to_actor_id`**. It **SHALL** use **`to_actor_id`** to interpret **who was speaking to whom** (flow, expected responses), **not** to drop rows from consolidation. See **PRD 37** §10.6.
+
+**Complexity out of scope:** **No** separate **`mention_actor_ids` JSON column** for routing; **no** client-side visibility filtering keyed on **`to_actor_id`**.
 
 ---
 

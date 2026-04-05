@@ -1,0 +1,64 @@
+Lupopedia — installation (distribution package)
+================================================
+
+This file ships at the package root next to README.txt and QUICKSTART.md.
+Full developer documentation lives only in a git checkout (lupo-docs/ is not
+included in Softaculous / FTP distribution zips).
+
+Requirements
+------------
+- PHP 5.6 or newer (8.x supported).
+- MySQL 8.0+ or MariaDB 10.5+ or PostgreSQL (see project docs for your tag).
+- Web server with PHP (Apache with mod_rewrite recommended for pretty URLs).
+
+Lupopedia usually runs under a subdirectory URL. During the wizard you will
+be asked for a base URL (must end with a trailing slash); that value is
+written into lupopedia-config.php for you.
+
+Fresh install (manual / FTP)
+----------------------------
+1. Upload the extracted lupopedia/ folder to your host (e.g. public_html/support/lupopedia/).
+2. Create an empty database and a database user with full rights on that database.
+   Note host, database name, username, and password — the wizard will ask for them.
+3. Open install.php in your browser (use the same URL prefix you will use for the site,
+   e.g. https://example.com/support/lupopedia/install.php).
+4. Follow the install wizard:
+   - Connect using your database credentials.
+   - Choose new install vs upgrade from Crafty Syntax 3.7.5 when offered.
+   - Let the wizard apply schema, seed, and optional Crafty import for upgrades.
+   - Complete the site configuration step: the wizard writes lupopedia-config.php
+     in the project root, including randomly generated AUTH_* and *_SALT keys and
+     your base URL / site options. The docroot must be writable where the wizard
+     needs to create that file.
+
+You normally do not copy or hand-edit lupopedia-config.php before the first
+successful run. lupopedia-config-sample.php is mainly for auto-installers and
+hosts that generate config from a template; those paths may already have a valid
+lupopedia-config.php before you open the site.
+
+Auto-installers (e.g. Softaculous)
+----------------------------------
+The host may create lupopedia-config.php from the sample (or equivalent) using
+placeholders. Then open the site URL (index.php). If configuration is already
+valid and the database is installed, you may not need install.php.
+
+Apache and rewrites
+-------------------
+The distribution zip intentionally contains no .htaccess files (FTP-safe).
+After a successful wizard run on Apache with a writable document root, the
+installer can write .htaccess at the app root and under lupo-database/.
+On Nginx or IIS, configure URL rewriting using your host's documentation
+(chat and API routes expect working rewrites).
+
+Runtime directories
+-------------------
+The installer or bootstrap creates writable directories as needed, including:
+lupo-cache/, lupo-logs/, lupo-uploads/, lupo-tmp/
+
+Where to read more
+------------------
+- README.txt — short overview and license pointer.
+- QUICKSTART.md — condensed steps (markdown).
+- README.md — longer overview when shipped in the package (may reference
+  paths that exist only in a full git tree).
+- license.txt — GNU General Public License v2 or later.

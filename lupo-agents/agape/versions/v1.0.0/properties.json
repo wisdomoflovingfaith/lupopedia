@@ -1,3 +1,7 @@
 {
-  "properties": {}
+  "properties": {
+    "agape_lens": "technical",
+    "constitutional_anchor": "lupo-docs/prd/00_root_constitutional_system_requirements.md (Section 14.6)",
+    "doctrine_expansion": "lupo-docs/doctrine/AGAPE_DOCTRINE.md"
+  }
 }

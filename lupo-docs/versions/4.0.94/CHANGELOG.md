@@ -1,3 +1,55 @@
+# [2026-04-05] Admin scroll nav — logout clears intro sessionStorage; logo slot; actor strip trim (Cursor)
+
+- **WHO / WHERE / WHEN:** Cursor (`actor_id` **102**); **`logout.php`**; **`lupo-includes/themes/default/layouts/admin_layout.php`**; **`lupo-includes/css/admin-intro-scroll.css`**; **`lupo-includes/js/admin-intro-scroll.js`** (comment); version folder **`lupo-docs/versions/4.0.94/`** — `decisions/20260405001004_DECISION_APPROVED_admin_nav_logout_intro_cursor_thread.md`, `comments/20260405001004_COMMENT_cursor_session_end_admin_nav_logout_handoff.md`, `CHANGELOG`, `PLAN` Phase **L**, `TODO`, `edges`, `WHAT_TO_WORK_ON_NEXT_SESSION`, `THREAD_INDEX` files; UTC **`20260405001004`** (`python lupo-bin/tick.py` this batch).
+- **WHAT:** **`sessionStorage` key `lupo_admin_scroll_intro_v1`** survived logout in the **same tab**, so the admin scroll intro skipped on second login — **fix:** logout returns minimal HTML that **`removeItem`** then redirects to **`login.php`**. **Left nav:** **90×60** logo link (defaults **`lupo-images/logoface.png`** → **`index.php`**; overridable **`$admin_nav_logo_*`**). **Right nav:** removed **`ACTOR:`** prefix; display name **15** chars + **`..`** when longer (**`mb_*`** when present); full name in **`title`**. CSS: **`max-width: 12em`** on actor text.
+- **WHY:** Match operator expectation (intro replays per login session in-tab); tighter top bar.
+- **WHAT NOT:** Does **not** document PRD **16/26/30/31** validator or **COUNTERMEASURE** work from unrelated templates — **no** evidence in **this** thread. Other logout paths besides **`logout.php`** not audited for the same **`sessionStorage`** clear.
+
+This output complies with Lupopedia Constitutional Root Rules.
+
+---
+
+# [2026-04-04] Version 4.0.94 folder sync — AGAPE / KAIROS temporal / multi-actor routing thread (Cursor)
+
+- **WHO / WHERE / WHEN:** Cursor (`actor_id` **102**); **`lupo-docs/versions/4.0.94/`** — `decisions/THREAD_INDEX.md`, `comments/THREAD_INDEX.md`, `edges.md`, `PLAN.md` Phase **K**, `TODO.md` (completed + open follow-ups), `WHAT_TO_WORK_ON_NEXT_SESSION.md`; UTC **`20260404175352`** (`python lupo-bin/tick.py` this batch).
+- **WHAT:** Indexed **DECISION** [`decisions/20260404175216_DECISION_APPROVED_agape_kairos_temporal_multi_actor_routing_docs.md`](decisions/20260404175216_DECISION_APPROVED_agape_kairos_temporal_multi_actor_routing_docs.md) (**5W1H** APPROVED receipt); **COMMENT** [`comments/20260404175216_COMMENT_cursor_session_end_agape_kairos_routing_version_sync.md`](comments/20260404175216_COMMENT_cursor_session_end_agape_kairos_routing_version_sync.md); linked **edges** to `AGAPE_DOCTRINE.md`, **PRD 37**, **PRD 18**, `scaffold_implementation.py`; **PLAN** Phase **K** documents doc-only completion and lists runtime gaps (**`to_actor_id`**, KAIROS §10.6, optional §14.6 scanner).
+- **WHY:** Preserve **WHO/WHAT/WHERE/WHEN/WHY/HOW** traceability for the same thread as the three substantive **CHANGELOG** entries immediately below (AGAPE, PRD 37/`add-status`, multi-actor routing) — **no** bundled claims for unrelated PRD 16/26/30/31 validator work without evidence.
+- **WHAT NOT:** Does not assert **`channels-api`** or chat UI already implement **`to_actor_id`**; does not assert KAIROS code fully matches §10.6.
+
+This output complies with Lupopedia Constitutional Root Rules.
+
+---
+
+# [2026-04-04] Multi-actor channel routing — `to_actor_id` simple pattern (PRD 18, 36, 37, 31, 05) (Cursor)
+
+- **WHO / WHERE / WHEN:** Cursor (`actor_id` **102**); **`lupo-docs/prd/18_channel_chat_display.md`** (*Multi-actor routing*), **`36_rose_multi_persona_synthetic_dialog.md`** §1.3 switchboard, **`37_kairos_channel_memory_consolidation.md`** §10.6 chat context, **`31_implementation_folder_guidelines.md`** cross-reference table, **`05_auth_user_actor_agent_transformation.md`** channel communication model; UTC **`20260404174956`** (`python lupo-bin/tick.py` this batch).
+- **WHAT:** **Channel + thread = complete context**; **`to_actor_id`** (directive synonym *said-to* / `said_to_actor_id`) = **routing only**, **not** in-channel visibility; **NULL** = broadcast; **no** `mention_actor_ids` column; ROSE / THOTH / KAIROS read **full threads**; **`parent_dialog_message_id`** documented as **not** in current TOON until DDL.
+- **WHY:** LILITH directive — Option 1 simplicity; schema truth aligned to **`lupo_dialog_messages`** TOON.
+
+This output complies with Lupopedia Constitutional Root Rules.
+
+---
+
+# [2026-04-04] PRD 37 temporal discipline + `add-status` + AGAPE cross-ref + PRD 31 (Cursor)
+
+- **WHO / WHERE / WHEN:** Cursor (`actor_id` **102**); **`lupo-docs/prd/37_kairos_channel_memory_consolidation.md`** new **§10** (Temporal discipline / anti-backwards reads), renumber open questions / references; **`lupo-docs/doctrine/AGAPE_DOCTRINE.md`** §1.3 Temporal awareness; **`lupo-scripts/scaffold_implementation.py`** **`add-status`** subcommand (backward-compatible legacy CLI); **`lupo-docs/prd/31_implementation_folder_guidelines.md`** usage block; UTC **`20260404173921`** (`python lupo-bin/tick.py` this batch).
+- **WHAT:** Normative **index-first** reading, freshness hierarchy (filename UTC → `when_updated` → `last_modified_utc`), **`supersedes`** vs **`references`** for status lineage, KAIROS documentation contract; tooling creates **`YYYYMMDD_HHIISS_STATUS_{slug}.md`**, optional edge to prior artifact, updates **`status/THREAD_INDEX.md`**; **`--impl`** accepts full **`prd_file_stem`** or numeric PRD id when unambiguous.
+- **WHY:** LILITH audit — doctrine before tooling; prevents backwards filesystem reads from masquerading as truth.
+
+This output complies with Lupopedia Constitutional Root Rules.
+
+---
+
+# [2026-04-04] AGAPE technical doctrine — constitution §14.6, AGAPE_DOCTRINE.md, LILITH/ROSE/validators, agent packs (Cursor)
+
+- **WHO / WHERE / WHEN:** Cursor (`actor_id` **102**); `lupo-docs/prd/00_root_constitutional_system_requirements.md` **§14.6** + edge, new **`lupo-docs/doctrine/AGAPE_DOCTRINE.md`**, `lupo-rules/root/lilith-noninterference-doctrine.md`, `.cursor/rules/lilith-noninterference-doctrine.mdc`, `lupo-docs/doctrine/LUPOPEDIA_HEADERS/VALIDATORS_AND_TOOLING.md`, `lupo-docs/prd/07_agents_faucets.md`, `lupo-docs/prd/36_rose_multi_persona_synthetic_dialog.md`, `lupo-agents/agape/*`, `lupo-agents/rose/system_prompt.txt` (+ v1.0.0), scrub **`SEMANTIC_SECURITY_CHECKLIST_4_0_30.md`**, **`WHAT_LUPOPEDIA_IS.md`**, **`VERSION_PLANS_3.0.82_3.0.88.md`**; UTC **`20260404172442`** (`python lupo-bin/tick.py` this batch).
+- **WHAT:** **AGAPE** redefined as **Agentic Guidance And Practical Empathy** — **technical** resilience and inter-actor cooperation (not sentiment). **LILITH** review prompts = environment + fallbacks. **ROSE** synthetic = **cooperation metric** in **`metadata_json`** (optional **`agape_cooperation_metric`** / **`agape_cooperation_rationale`**). Validators MUST flag **“made with love,”** **“supportive tone,”** **“emotional validation”** as criteria violations (**§14.6**).
+- **WHY:** Codify environmental awareness, KAIROS-class self-archival, and shared-host survival as a named constitutional heuristic.
+
+This output complies with Lupopedia Constitutional Root Rules.
+
+---
+
 # [2026-04-04] WordPress study tree path — lupo-archive/legacy/wordpress-reference; .gitignore note; packager exclude lupo-archive/ (Cursor)
 
 - **WHO / WHERE / WHEN:** Cursor (`actor_id` **102**); `README.md`, `AGENTS.md`, `lupo-docs/prd/00_root_constitutional_system_requirements.md` §15 table + prose, `lupo-docs/prd/33_softaculous_certification_4_1_0_gate.md`, `lupo-docs/doctrine/LEARNED_FROM_WORDPRESS.md`, `lupo-docs/implementations/33_softaculous_certification_4_1_0_gate/SOFTACULOUS_PACKAGE_BUILD.md`, Q/A/status threads under implementation 33, `lupo-scripts/build_softaculous_package.sh`, `.gitignore` comment; UTC **`20260404165054`** (`python lupo-bin/tick.py` this batch).

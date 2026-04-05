@@ -2,10 +2,10 @@
 lupopedia.headers:
   header_format_version: 2
   lupopedia.schema: doctrine
-  when_updated: "20260404165054"
+  when_updated: "20260404220006"
   file_path_from_root: "lupo-docs/prd/00_root_constitutional_system_requirements.md"
   web_path: "http://www.lupopedia.com/lupopedia/lupo-docs/prd/00_root_constitutional_system_requirements.md"
-  last_modified_utc: "20260404165054"
+  last_modified_utc: "20260404220006"
   federation_node_id: 0
   channel_id: 42
   thread_id: "constitutional-root-requirements"
@@ -91,6 +91,10 @@ lupopedia.edges:
       type: references
       weight: 1.0
       reason: "Canonical WordPress-derived pattern distillate for agents — complements §15"
+    - to: "lupo-docs/doctrine/AGAPE_DOCTRINE.md"
+      type: references
+      weight: 1.0
+      reason: "Constitutional §14.6 AGAPE — technical resilience, LILITH/ROSE alignment, validator phrase bans"
     - to: "lupo-includes/classes/IdGenerator.php"
       type: implements
       weight: 1.0
@@ -183,8 +187,12 @@ lupopedia.edges:
       type: references
       weight: 1.0
       reason: "Normative implementation folder layout, naming, scaffold — companion to Section 5.8"
+    - to: "lupo-docs/implementations/security_audit_cursor_ide/README.md"
+      type: references
+      weight: 1.0
+      reason: "Cursor IDE shared-hosting security audit checklist — operational companion to Section 17 (RULE 93.SECURITY)"
 lupopedia.footer:
-  last_verified: "20260404"
+  last_verified: "20260404220006"
   verified_by:
     identity_type: actor
     actor_id: 102
@@ -217,6 +225,7 @@ These rules ensure:
 - Subdirectory installation support
 - **4.0.x schema evolution by fresh install only** — no Lupopedia→Lupopedia upgrade until **4.1.0** (see **§1.0**)
 - **Shipped browser UI** stays vanilla, build-free, and eval-safe for layering and animation (see **§16**)
+- **Security invariants** for hostile shared hosting: path anchoring, SQL discipline, AGAPE fallbacks, direct-access hygiene (see **§17**)
 
 These rules override all other PRDs, doctrines, and implementation details.
 
@@ -1075,13 +1084,14 @@ All files in `lupo-rules/root/` are binding constitutional law and override all 
 | Section 9.20 proven code preservation | Code review — agent must justify any change to pre-2010 code |
 | Section 15 multi-environment patterns | Code review + installer paths — `InstallWizardHtaccessWriter.php`, `install.php`, PRD 33 §14 traceability |
 | Section 16 UI layer & animation | Code review — `lupo-includes/js/lupo-layers.js` for new motion/layer code; no eval/string timers; no npm on runtime path |
+| Section 17 security invariants (RULE 93.SECURITY) | Code review + **`lupo-docs/implementations/security_audit_cursor_ide/README.md`** — LILITH cognitive tax; THOTH schema/doc truth |
 | Schema DDL | `lupo-database/lupopedia/mysql/install/install_new_lupopedia.sql` |
 
 ---
 
 ## 11. Refinements
 
-*Sections 12-13 reserved for future expansion. **§15** (WordPress multi-environment patterns) and **§16** (UI layer & animation, RULE 93.UI_LAYERS) are active.*
+*Sections 12-13 reserved for future expansion. **§15** (WordPress multi-environment patterns), **§16** (UI layer & animation, RULE 93.UI_LAYERS), and **§17** (security invariants, RULE 93.SECURITY) are active.*
 
 - All doctrine and PRD files must reference this file as the constitutional anchor using an outbound edge.
 - All new PRDs must be reviewed for compliance with these requirements.
@@ -1130,13 +1140,27 @@ Agents SHALL NOT propose adopting frameworks (Laravel, Symfony, React, Vue, etc.
 - Dependency doctrine: `lupo-docs/doctrine/DEPENDENCY_DOCTRINE.md`
 - Shipped UI layering / animation: **`lupo-includes/js/lupo-layers.js`** — constitutional detail **§16** (RULE 93.UI_LAYERS)
 
+### 14.6 AGAPE (Agentic Guidance And Practical Empathy)
+
+**Definition.** **AGAPE** is a **non-sentimental technical philosophy** governing **system resilience** and **inter-actor cooperation**. It is **not** therapeutic language, emotional validation, or marketing tone. It names **measurable** platform behavior (fallback ladders, environment probes, explicit archival of new truth).
+
+**Agentic Guidance.** The system’s ability to **autonomously identify** logic gaps, outdated doctrine, or technical debt and to surface **actionable** paths so the **runtime** or **human operator** can improve the codebase and documentation. This is the same **behavior class** as **KAIROS** memory consolidation: the platform notices that **new** operational truth exists and **records** it for the operator’s benefit (**§5.7**, **PRD 37**, **`KairosConsolidationService`**).
+
+**Practical Empathy.** **Deterministic** understanding of **environmental constraints** (shared hosting, OS quirks, PHP version bands, missing extensions) and the **contextual state** of other actors (membership, visibility, offline fallbacks). It is **expressed** through **graceful degradation** and **fallback ladders** (**§15**, **WOLFIE Doctrine**, **`CASCADE_FALLBACK_DOCTRINE`**). Illustration: use **`function_exists()`** / **`extension_loaded()`** and branch rather than fatal — survival on a **minimal host** is **AGAPE-compliant** engineering.
+
+**Validator rule (binding).** The phrases **“made with love,”** **“supportive tone,”** and **“emotional validation”** MUST **NOT** appear as **product requirements**, **acceptance criteria**, or **validator pass/fail** semantics for Lupopedia artifacts. Where found, validators and reviewers MUST **flag** them as **constitutional violations** (sentimental framing of **technical** quality). Canonical expansion: **`lupo-docs/doctrine/AGAPE_DOCTRINE.md`**.
+
+**LILITH alignment.** Under **AGAPE**, review asks: **Does this code understand the environment it runs in? Does it provide unconditional fallbacks so the system survives on constrained hosts?** — not “does this feel caring?”
+
+**ROSE / synthetic dialogue.** **AGAPE** is a **cooperation metric** in **`metadata_json`** for synthetic lines (**PRD 36**): it measures how well the voiced persona reflects the **human operator’s state and dependencies** to produce **useful guidance**, not **agreeable** filler. See **`AGAPE_DOCTRINE.md`** §3.
+
 ---
 
 ## 15. WordPress multi-environment patterns (constitutional)
 
 Lupopedia MUST behave correctly across **unknown** server stacks (shared hosting, odd PHP builds, Apache / Nginx / IIS front ends). Patterns below are **constitutional**: they are derived from disciplined study of WordPress behavior in **`lupo-archive/legacy/wordpress-reference/`** when present locally (read-only; **GPL** — do not copy into shipping code; **`lupo-archive/`** is **`.gitignore`d** — restore a study copy there if needed) and from **`PRD 33` Section 14** (WordPress distribution patterns, LILITH answers, and implementation notes).
 
-These rules **add** to **§1** (shared hosting), **§9** (installer), and **§14** (WOLFIE — preserve proven layers). They do **not** authorize frameworks, Composer in core, or database-side logic.
+These rules **add** to **§1** (shared hosting), **§9** (installer), **§14** (WOLFIE — preserve proven layers), and **§14.6** (**AGAPE** — Practical Empathy as environment-aware degradation). They do **not** authorize frameworks, Composer in core, or database-side logic.
 
 ### 15.1 Extension detection (no assumptions)
 
@@ -1236,3 +1260,49 @@ $url = $base . '/' . $path;
 | **Accuracy (reported)** | 98/100 |
 | **Constitutional violations** | None reported |
 | **Reviewer** | LILITH (**actor_id 2**), non-interfering reviewer per **LIL001** |
+
+### 15.10 IDE security audit protocol (operational)
+
+When **writing** or **reviewing** PHP and installer paths, IDE agents MUST apply the shared-hosting checklist in **`lupo-docs/implementations/security_audit_cursor_ide/README.md`** (path anchoring, stream rejection, **`PDO_DB`**, AGAPE probes, direct-access hygiene). **Constitutional** requirements are codified in **§17** (**RULE 93.SECURITY**). **LILITH** uses the checklist for **cognitive tax** on simplified defenses; **THOTH** cross-checks claims against **TOON** / **install SQL** / **table docs**.
+
+---
+
+## 17. Security Invariants (RULE 93.SECURITY)
+
+Lupopedia assumes a **hostile wilderness**: minimal PHP builds, misconfigured Apache, absent extensions, and unsophisticated operators on **$5 shared hosting**. Automated “safety nets” (WAFs, container hardening, service meshes) are **not** architectural assumptions. **Logic is the firewall.**
+
+This section **binds** IDE agents and human contributors when writing or reviewing code. It **extends** **§3.6** (database-neutral SQL + application-layer discipline), **§15** (extension and permission probing, no auto-**chmod**), and **§14.6** (**AGAPE** — graceful failure). Operational checklist: **`lupo-docs/implementations/security_audit_cursor_ide/README.md`**.
+
+### 17.1 The Gunslinger principle
+
+**No external package manager** (**npm**, **Composer**, **pip** in core paths) may implement **core security logic** (auth decisions, path resolution for includes, SQL assembly, CSRF token semantics). Study upstream code off-tree (**`lupo-research/`**, local clones); **ship** native PHP under **`app/`** / **`lupo-includes/`** per dependency and reverse-engineering doctrine. Test-only and CI tooling remain out of scope of this prohibition.
+
+### 17.2 Path anchoring and inclusion integrity (RFI / LFI)
+
+| Rule | Requirement |
+|------|-------------|
+| **Anchor** | File execution and `require` / `include` graphs MUST be anchored on **`LUPOPEDIA_PATH`**, **`ABSPATH`**, **`__DIR__`**, or other **bootstrap-defined** constants — not on raw user input. |
+| **Stream block** | Any path used to load PHP or secrets MUST reject **stream wrappers** and remote forms: resolver MUST reject **`://`** and **NUL** bytes (see **`LupopediaConfigResolver::isSafeLocalConfigPath()`**). |
+| **Traversal** | When user-influenced path segments exist, use **`realpath()`** and/or **normalized** comparisons under a **known root**; never `include` from a string built only from `$_GET` / `$_POST` / uploads. |
+| **Config order** | **`LUPOPEDIA_CONFIG_LOADED`** and **`ABSPATH`** MUST be validated before **`lupo-includes/bootstrap.php`** continues; **`LUPOPEDIA_PATH`** MUST agree with **`ABSPATH`** when both resolve (**`lupo-includes/bootstrap.php`**). |
+
+**Critical violation:** Dynamic inclusion of **user-supplied** strings as code paths, even after “sanitization,” without a fixed allowlist under a known root.
+
+### 17.3 Database integrity (application layer)
+
+**Constitutional database rules** (**§3**) stand: no foreign keys, triggers, procedures, DB-generated timestamps for lineage, no **`AUTO_INCREMENT`** for reserved-ID tables. **All** referential discipline and value sanitization for queries MUST live in **PHP** using **`DatabaseFactory::getConnection()`** / **`PDO_DB`** with **named placeholders** — no string-concatenated values in SQL. **`INSERT`** MUST **list every column** explicitly (**constitutional root rules**). Cast scalars to **`(int)`** / **`(float)`** when binding IDs and numeric limits where appropriate.
+
+### 17.4 AGAPE fallbacks (security-sensitive operations)
+
+Every **security-sensitive** operation (file write, network connect, DB query, optional extension use) MUST have a **documented** fallback or **graceful** failure: operator-visible message, log line, or offline filesystem path per **database offline fallback** doctrine — not a silent white screen. Probe with **`extension_loaded()`** / **`function_exists()`**; test **`is_writable()`** before writes; **do not** **`chmod`** to “fix” the host (**§15.3**).
+
+### 17.5 Direct access and information leakage
+
+Sensitive trees (**`lupo-database/`**, **`lupo-logs/`**, config-adjacent paths) MUST use **Apache marker** deny rules where **`InstallWizardHtaccessWriter`** applies them, and **index silence** (**blank `index.php` / `index.html`**) where the product ships them — see **PRD 33** / **§15.4** and installer behavior. Do not rely on “nobody guesses the URL.”
+
+### 17.6 Reviewer roles (LILITH and THOTH)
+
+| Actor | Role |
+|-------|------|
+| **LILITH** (**actor_id 2**) | Applies the **IDE security audit checklist** as **cognitive tax** on new/changed code: if an agent “simplifies away” path checks, stream blocks, or fallbacks, that is a **failure** — **LIL001** non-interference still applies (review attribution, no permission override). |
+| **THOTH** | Confirms that claimed defenses and “hardening” match **TOON** / **install SQL** / **table docs** — no protection against imaginary threats while real schema or API gaps remain. |

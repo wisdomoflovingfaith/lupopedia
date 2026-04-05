@@ -209,6 +209,7 @@ function lupo_hash_equals($a, $b)
 }
 
 require_once LUPOPEDIA_PATH . DIRECTORY_SEPARATOR . 'install_wizard_classes.php';
+require_once LUPOPEDIA_PATH . DIRECTORY_SEPARATOR . 'lupo-includes' . DIRECTORY_SEPARATOR . 'classes' . DIRECTORY_SEPARATOR . 'LupopediaConfigResolver.php';
 require_once LUPOPEDIA_PATH . DIRECTORY_SEPARATOR . 'lupo-install' . DIRECTORY_SEPARATOR . 'InstallWizardMdImporter.php';
 require_once LUPOPEDIA_PATH . DIRECTORY_SEPARATOR . 'lupo-includes' . DIRECTORY_SEPARATOR . 'classes/pdo_db.php';
 
@@ -255,16 +256,10 @@ if (!empty($preflight_blocking)) {
 
 session_start();
 
-// Only treat as installed if lupopedia-config.php exists and defines LUPOPEDIA_CONFIG_LOADED.
+// Only treat as installed if lupopedia-config.php exists (WordPress-style multi-path resolve) and defines LUPOPEDIA_CONFIG_LOADED.
 // Do NOT treat config.php or other files as installed; do not redirect during install.
-$configInRoot = LUPOPEDIA_PATH . DIRECTORY_SEPARATOR . 'lupopedia-config.php';
-if (is_file($configInRoot)) {
-    $configPath = $configInRoot;
-} else {
-    $docRoot = isset($_SERVER['DOCUMENT_ROOT']) ? $_SERVER['DOCUMENT_ROOT'] : '';
-    $configAbove = $docRoot !== '' ? dirname($docRoot) . DIRECTORY_SEPARATOR . 'lupopedia-config.php' : null;
-    $configPath = ($configAbove !== null && is_file($configAbove)) ? $configAbove : null;
-}
+$lupoWizardPublicPath = '/' . basename(LUPOPEDIA_PATH);
+$configPath = LupopediaConfigResolver::resolve(LUPOPEDIA_PATH, $lupoWizardPublicPath);
 $forceReinstall = isset($_GET['force_reinstall']) && $_GET['force_reinstall'] === '1';
 if ($configPath !== null && is_file($configPath) && !$forceReinstall) {
     require_once $configPath;
@@ -910,7 +905,7 @@ if ($step === 'complete') {
     foreach (array('lupo_install_db_vars', 'lupo_install_type', 'lupo_install_mode_choice', 'lupo_install_mode_warning', 'lupo_install_livehelp_tables', 'lupo_normalize_applied', 'lupo_normalize_count', 'lupo_operator_channel_map', 'lupo_run_done', 'lupo_config_site_name', 'lupo_config_base_url', 'lupo_config_admin_email', 'lupo_config_timezone', 'lupo_config_default_language') as $k) {
         unset($_SESSION[$k]);
     }
-    if (empty($complete_log) && is_file(LUPOPEDIA_PATH . DIRECTORY_SEPARATOR . 'lupopedia-config.php')) {
+    if (empty($complete_log) && LupopediaConfigResolver::resolve(LUPOPEDIA_PATH, $lupoWizardPublicPath) !== null) {
         $complete_log = array(array('ok', 'Installation completed.'));
     }
     $complete_config_log = isset($_SESSION['lupo_config_log']) ? $_SESSION['lupo_config_log'] : array();
@@ -1694,7 +1689,7 @@ if ($baseUrl === '') {
     <?php elseif ($step === 'config'): ?>
         <div class="wizard-card">
             <h2>Site configuration</h2>
-            <p>Set site options. These will be written to <code>lupopedia-config.php</code> in the project root.</p>
+            <p>Set site options. The wizard writes <code>lupopedia-config.php</code> next to <code>lupopedia-config-sample.php</code> when the sample is in the install directory (WordPress-style), or one directory above when only the parent has the sample (develop layout).</p>
             <p class="slug-tip">When you submit this step, the wizard also creates runtime directories (<code>lupo-cache/</code>, <code>lupo-logs/</code>, <code>lupo-uploads/</code>, <code>lupo-tmp/</code>) and, on Apache with a writable docroot, writes <code>.htaccess</code> rewrite rules (Softaculous packages omit hidden files so FTP does not skip them).</p>
             <?php foreach ($config_errors as $e): ?>
                 <p class="err"><?php echo htmlspecialchars($e); ?></p>
@@ -1744,8 +1739,7 @@ if ($baseUrl === '') {
     <?php elseif ($step === 'complete'): ?>
         <div class="wizard-card step success">
             <h2>Installation complete</h2>
-            <p>Lupopedia has been installed successfully. <code>lupopedia-config.php</code> has been written to the project
-                root.</p>
+            <p>Lupopedia has been installed successfully. <code>lupopedia-config.php</code> was written to the path logged in the config step (usually the install directory).</p>
             <p class="slug-tip">On <strong>Apache</strong>, the wizard also writes <code>.htaccess</code> (document root) and
                 <code>lupo-database/.htaccess</code> when the filesystem allows. Softaculous-style zip packages omit these hidden files so FTP uploads do not skip them.
                 On <strong>Nginx</strong> or <strong>IIS</strong>, map the same intent in <code>nginx.conf</code> or <code>web.config</code> (rewrite to <code>index.php</code>, deny direct access to <code>lupo-includes</code> PHP, block web reads of <code>lupo-database/</code>); use your hoster&rsquo;s documentation or a working Apache tree as reference.</p>

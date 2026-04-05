@@ -11,14 +11,8 @@
 define('LUPOPEDIA_PATH', __DIR__);
 define('LUPOPEDIA_PUBLIC_PATH', '/' . basename(__DIR__));
 
-$lupopediaConfigPath = null;
-if (file_exists(dirname($_SERVER['DOCUMENT_ROOT']) . '/lupopedia-config.php')) {
-    $lupopediaConfigPath = dirname($_SERVER['DOCUMENT_ROOT']) . '/lupopedia-config.php';
-} elseif (file_exists(dirname($_SERVER['DOCUMENT_ROOT']) . LUPOPEDIA_PUBLIC_PATH . '/lupopedia-config.php')) {
-    $lupopediaConfigPath = dirname($_SERVER['DOCUMENT_ROOT']) . LUPOPEDIA_PUBLIC_PATH . '/lupopedia-config.php';
-} elseif (@file_exists(LUPOPEDIA_PATH . '/lupopedia-config.php')) {
-    $lupopediaConfigPath = LUPOPEDIA_PATH . '/lupopedia-config.php';
-}
+require_once LUPOPEDIA_PATH . DIRECTORY_SEPARATOR . 'lupo-includes' . DIRECTORY_SEPARATOR . 'classes' . DIRECTORY_SEPARATOR . 'LupopediaConfigResolver.php';
+$lupopediaConfigPath = LupopediaConfigResolver::resolve(LUPOPEDIA_PATH, LUPOPEDIA_PUBLIC_PATH);
 
 if ($lupopediaConfigPath === null || !is_file($lupopediaConfigPath)) {
     header('HTTP/1.1 503 Service Unavailable');

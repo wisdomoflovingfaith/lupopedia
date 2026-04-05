@@ -235,7 +235,7 @@ This document outlines the planned development cycle from version 3.0.82 through
   - Add emotional state validation to header processing
   - Create emotional geometry validation scripts
   - Integrate emotional checks into file processing
-  - Document emotional validation procedures
+  - Document deterministic persona-state validation procedures (AGAPE-aligned; PRD 00 §14.6 — not sentimental pass/fail)
 
 - **Collapse Logic Enhancement**
   - Integrate emotional geometry into version alignment logic
@@ -246,7 +246,7 @@ This document outlines the planned development cycle from version 3.0.82 through
 ### Success Criteria
 - Emotional geometry integrated into header doctrine
 - All persona baselines documented
-- Emotional validation operational
+- Persona-state validation operational (technical / AGAPE)
 - Collapse logic enhanced with emotional awareness
 
 ## 3.0.87 — Version Reconciliation & Implementation Sync
@@ -367,7 +367,7 @@ This document outlines the planned development cycle from version 3.0.82 through
 ### Version 3.0.86 Success
 - Emotional geometry integrated
 - Persona baselines documented
-- Emotional validation operational
+- Persona-state validation operational (technical / AGAPE)
 
 ### Version 3.0.87 Success
 - Implementation-documentation parity

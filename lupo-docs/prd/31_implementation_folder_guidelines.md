@@ -2,10 +2,10 @@
 lupopedia.headers:
   header_format_version: 2
   lupopedia.schema: prd
-  when_updated: "20260404164842"
+  when_updated: "20260404174956"
   file_path_from_root: "lupo-docs/prd/31_implementation_folder_guidelines.md"
   web_path: "http://www.lupopedia.com/lupopedia/lupo-docs/prd/31_implementation_folder_guidelines.md"
-  last_modified_utc: "20260404164842"
+  last_modified_utc: "20260404174956"
   federation_node_id: 0
   channel_id: 42
   thread_id: "prd-implementation-guidelines"
@@ -135,6 +135,13 @@ where **`prd_file_stem`** is exactly the **basename** of the canonical PRD under
 python lupo-scripts/scaffold_implementation.py --prd 31 --title "implementation_folder_guidelines"
 ```
 
+**Dated status files (`add-status` subcommand).** After the tree exists, create a timestamped **`status/YYYYMMDD_HHIISS_STATUS_{slug}.md`**, optional **`references`** / **`supersedes`** edge to the **prior** status artifact (sorted per **PRD 37** §10), and append **`status/THREAD_INDEX.md`**:
+
+```bash
+python lupo-scripts/scaffold_implementation.py add-status --impl 37_kairos_channel_memory_consolidation --title "ingest_pipeline_ready"
+python lupo-scripts/scaffold_implementation.py add-status --impl 37 --title "milestone" --edge-type references --non-interactive
+```
+
 **What the scaffold script does (shipped behavior).**
 
 - Creates **`status/`** (with stub **`STATUS.md`** and **`THREAD_INDEX.md`**) plus the other required directories.
@@ -142,6 +149,27 @@ python lupo-scripts/scaffold_implementation.py --prd 31 --title "implementation_
 - Writes a minimal **`decisions/THREAD_INDEX.md`** (no full template file exists under **`_template/decisions/`** for that name).
 - Copies leveled question templates and **`README`** fragments into **`templates/`** per existing **`copy_templates()`** logic.
 - Appends a row to **`lupo-docs/implementations/README.md`** before **`## Template`** when the implementation name is not already listed.
+
+### Channel orchestration (multi-actor dialog) — product cross-reference
+
+Implementation work that touches **channel chat** SHOULD align with the **simple routing pattern** (no **`mention_actor_ids`** JSON column; routing-only addressee field):
+
+| Topic | Canonical PRD |
+|--------|----------------|
+| UI + transcript semantics | **PRD 18** — *Multi-actor routing (simple pattern)* |
+| ROSE switchboard + synthetic rows | **PRD 36** §1.3 |
+| KAIROS full-thread ingest | **PRD 37** §10.6 |
+| Auth / actor mental model | **PRD 05** — *Channel communication model* |
+
+**`lupo_dialog_messages` (current TOON / install SQL):**
+
+| Column | Role |
+|--------|------|
+| **`to_actor_id`** | **Routing recipient**; **NULL** = broadcast. *Directive synonym: **said-to** / **`said_to_actor_id`** — same meaning.* |
+| **`dialog_thread_id`**, **`created_ymdhis`** | **Ordering** and coarse threading (canonical today). |
+| **`parent_dialog_message_id`** | **Not** in current install TOON — **planned** only if a future schema change adds it; until then use thread + timestamps (and allowed **`metadata_json`** provenance subkeys). |
+
+**Visibility:** **Channel membership** controls who may **read** the channel — **not** **`to_actor_id`**. **ROSE** / **THOTH** / **KAIROS** read **full threads** when building context (**PRD 18**, **PRD 36**, **PRD 37**).
 
 ### Required Folder Structure
 

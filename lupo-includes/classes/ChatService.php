@@ -401,6 +401,7 @@ class ChatService
      */
     private function _buildTranscriptHTML($messages, $metadata)
     {
+        require_once __DIR__ . '/LupoEmojiPath.php';
         $html = '<div class="chat-transcript">';
         $html .= '<header class="transcript-header">';
         $html .= '<h3>Chat Transcript</h3>';
@@ -413,7 +414,8 @@ class ChatService
             $html .= '<div class="message message-' . htmlspecialchars($msg['message_type']) . '">';
             $html .= '<span class="timestamp">[' . $msg['created_ymdhis'] . ']</span> ';
             $html .= '<span class="actor">Actor ' . $msg['actor_id'] . ':</span> ';
-            $html .= '<span class="text">' . nl2br(htmlspecialchars($msg['message_body'])) . '</span>';
+            $body = isset($msg['message_body']) ? $msg['message_body'] : '';
+            $html .= '<span class="text">' . LupoEmojiPath::replaceImgTokensInHtmlContext($body) . '</span>';
             $html .= '</div>';
         }
         

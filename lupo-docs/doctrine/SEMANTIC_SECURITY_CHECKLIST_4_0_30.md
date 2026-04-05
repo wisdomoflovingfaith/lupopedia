@@ -250,7 +250,7 @@ This checklist provides comprehensive validation procedures for the semantic sec
 ### **Unit Testing**
 - [x] Security engine unit tests passing
 - [x] Pattern detection tests passing
-- [x] Emotional validation tests passing
+- [x] AGAPE-aligned state-and-dependency boundary tests passing (see PRD 00 §14.6; not “emotional validation” as a criterion)
 - [x] Decision framework tests passing
 
 ### **Integration Testing**

@@ -54,7 +54,7 @@
  *
  * DETAILS:
  * - Defines LUPOPEDIA_PATH, LUPOPEDIA_PUBLIC_PATH, LUPOPEDIA_CONFIG_PATH.
- * - Config search order: above DOCUMENT_ROOT, above DOCUMENT_ROOT + public path, then inside install.
+ * - Config search: LupopediaConfigResolver — above DOCUMENT_ROOT, legacy above-root+segment, install dir, guarded parent.
  * - No schema changes, no DB access in this file.
  *
  * @package Lupopedia
@@ -91,29 +91,15 @@ define( 'LUPOPEDIA_PUBLIC_PATH', '/' . basename(__DIR__) );
  * Auto-installers (Softaculous, Installatron): they create lupopedia-config.php without running install.php.
  * When this file finds a config at any search path below, it loads it and continues — no redirect to install.php.
  *
- * Config search order for lupopedia-config.php:
- * 1. One directory ABOVE DOCUMENT_ROOT (most secure, preferred)
- * 2. One directory above DOCUMENT_ROOT + Lupopedia public path
- * 3. Inside the Lupopedia directory itself (fallback)
+ * Config search uses LupopediaConfigResolver (subdirectory install: above DOCUMENT_ROOT first, then install directory).
  *
  * @var string
  */
 
-$lupopediaConfigPath = null;
-// Path 1: One directory ABOVE DOCUMENT_ROOT (most secure, preferred)
-if (file_exists(dirname($_SERVER['DOCUMENT_ROOT']) . '/lupopedia-config.php')) {
-    $lupopediaConfigPath = dirname($_SERVER['DOCUMENT_ROOT']) . '/lupopedia-config.php';
-}
-// Path 2: One directory above DOCUMENT_ROOT + Lupopedia public path
-elseif (file_exists(dirname($_SERVER['DOCUMENT_ROOT']) . LUPOPEDIA_PUBLIC_PATH . '/lupopedia-config.php')) {
-    $lupopediaConfigPath = dirname($_SERVER['DOCUMENT_ROOT']) . LUPOPEDIA_PUBLIC_PATH . '/lupopedia-config.php';
-}
-// Path 3: Inside the Lupopedia directory itself (fallback)
-elseif (@file_exists(LUPOPEDIA_PATH . '/lupopedia-config.php')) {
-    $lupopediaConfigPath = LUPOPEDIA_PATH . '/lupopedia-config.php';
-}
+require_once LUPOPEDIA_PATH . DIRECTORY_SEPARATOR . 'lupo-includes' . DIRECTORY_SEPARATOR . 'classes' . DIRECTORY_SEPARATOR . 'LupopediaConfigResolver.php';
+$lupopediaConfigPath = LupopediaConfigResolver::resolve(LUPOPEDIA_PATH, LUPOPEDIA_PUBLIC_PATH);
 
-if ($lupopediaConfigPath !== null) {
+if ($lupopediaConfigPath !== null && LupopediaConfigResolver::isSafeLocalConfigPath($lupopediaConfigPath)) {
     define('LUPOPEDIA_CONFIG_PATH', $lupopediaConfigPath);
 } else {
     // lupopedia-config.php does NOT exist: ALWAYS redirect to install.php (INSTALL REDIRECT DOCTRINE).
@@ -126,7 +112,15 @@ if ($lupopediaConfigPath !== null) {
     exit;
 }
 
+if (!defined('LUPOPEDIA_CONFIG_PATH') || !LupopediaConfigResolver::isSafeLocalConfigPath(LUPOPEDIA_CONFIG_PATH)) {
+    header('HTTP/1.1 500 Internal Server Error');
+    exit;
+}
 require_once LUPOPEDIA_CONFIG_PATH;
+if (!defined('LUPOPEDIA_CONFIG_LOADED') || !LUPOPEDIA_CONFIG_LOADED) {
+    header('HTTP/1.1 500 Internal Server Error');
+    exit;
+}
 
 /**
  * Extract slug from URL

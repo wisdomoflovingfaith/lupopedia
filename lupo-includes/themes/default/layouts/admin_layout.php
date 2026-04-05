@@ -3,8 +3,8 @@
  * wolfie.header.identity: admin-layout
  * wolfie.header.placement: /lupo-includes/themes/default/layouts/admin_layout.php
  *
- * Admin page: basic template (top graphic + top nav) plus left sidebar of admin options
- * and main content area. Used by admin.php. Expects: $admin_page_title, $admin_menu_items, $admin_main_content.
+ * Admin page: scroll chrome + 7-square intro (vanilla JS), optional legacy header/nav (hidden after intro).
+ * Expects: $admin_page_title, $admin_menu_items, $admin_main_content. Optional: $admin_disable_scroll_intro.
  */
 
 if (!defined('LUPOPEDIA_CONFIG_LOADED')) {
@@ -36,6 +36,62 @@ if (!defined('LUPO_UI_PATH')) {
     define('LUPO_UI_PATH', LUPOPEDIA_PATH . '/lupo-includes/themes/default');
 }
 $base = defined('LUPOPEDIA_PUBLIC_PATH') ? rtrim(LUPOPEDIA_PUBLIC_PATH, '/') : '';
+
+/* Top nav squares (fixed set; Documentation labeled Q/A; includes Channels + Data) */
+$admin_intro_nav_links = array(
+    array('label' => 'Dashboard', 'href' => $base . '/admin.php'),
+    array('label' => 'Q/A', 'href' => $base . '/admin.php?section=documentation'),
+    array('label' => 'Data', 'href' => $base . '/admin.php?section=database'),
+    array('label' => 'Channels', 'href' => $base . '/channels'),
+    array('label' => 'Artifacts', 'href' => $base . '/admin.php?section=artifacts'),
+    array('label' => 'Settings', 'href' => $base . '/admin.php?section=settings'),
+    array('label' => 'Help', 'href' => $base . '/admin.php?section=help'),
+);
+
+$admin_nav_actor_label = '';
+if ($isUserLoggedIn) {
+    if ($admin_active_actor_display !== '') {
+        $admin_nav_actor_label = $admin_active_actor_display;
+    } else {
+        foreach ($admin_actor_list as $a) {
+            if ((int) $a['actor_id'] === $admin_active_actor_id) {
+                $admin_nav_actor_label = (isset($a['name']) && $a['name'] !== '')
+                    ? $a['name']
+                    : (isset($a['actor_name']) ? $a['actor_name'] : '');
+                break;
+            }
+        }
+    }
+    if ($admin_nav_actor_label === '') {
+        $admin_nav_actor_label = 'Unknown';
+    }
+}
+$admin_nav_actor_display = $admin_nav_actor_label;
+if ($admin_nav_actor_label !== '') {
+    if (function_exists('mb_strlen') && function_exists('mb_substr')) {
+        if (mb_strlen($admin_nav_actor_label, 'UTF-8') > 15) {
+            $admin_nav_actor_display = mb_substr($admin_nav_actor_label, 0, 15, 'UTF-8') . '..';
+        }
+    } else {
+        if (strlen($admin_nav_actor_label) > 15) {
+            $admin_nav_actor_display = substr($admin_nav_actor_label, 0, 15) . '..';
+        }
+    }
+}
+$admin_select_actor_redirect = isset($_SERVER['REQUEST_URI']) ? $_SERVER['REQUEST_URI'] : ($base . '/admin.php');
+$admin_select_actor_href = LUPOPEDIA_PUBLIC_PATH . '/select-actor.php?redirect=' . rawurlencode($admin_select_actor_redirect);
+
+if (!isset($admin_disable_scroll_intro)) {
+    $admin_disable_scroll_intro = false;
+}
+$admin_disable_scroll_intro = (bool) $admin_disable_scroll_intro;
+if (!isset($admin_nav_logo_src) || $admin_nav_logo_src === '') {
+    $admin_nav_logo_src = LUPOPEDIA_PUBLIC_PATH . '/lupo-images/logoface.png';
+}
+if (!isset($admin_nav_logo_href) || $admin_nav_logo_href === '') {
+    $admin_nav_logo_href = LUPOPEDIA_PUBLIC_PATH . '/index.php';
+}
+$admin_nav_logo_alt = isset($admin_nav_logo_alt) ? $admin_nav_logo_alt : 'Lupopedia';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -46,6 +102,7 @@ $base = defined('LUPOPEDIA_PUBLIC_PATH') ? rtrim(LUPOPEDIA_PUBLIC_PATH, '/') : '
     <link rel="icon" type="image/x-icon" href="<?= LUPOPEDIA_PUBLIC_PATH ?>/favicon.ico">
     <link rel="shortcut icon" href="<?= LUPOPEDIA_PUBLIC_PATH ?>/favicon.ico">
     <link rel="stylesheet" href="<?= LUPOPEDIA_PUBLIC_PATH ?>/lupo-includes/css/main.css">
+    <link rel="stylesheet" href="<?= LUPOPEDIA_PUBLIC_PATH ?>/lupo-includes/css/admin-intro-scroll.css">
     <style>
         .admin-wrap { min-height: 100vh; display: flex; flex-direction: column; }
         .basic-header-graphic {
@@ -169,55 +226,47 @@ $base = defined('LUPOPEDIA_PUBLIC_PATH') ? rtrim(LUPOPEDIA_PUBLIC_PATH, '/') : '
         .basic-footer a { color: #e2e8f0; text-decoration: none; }
     </style>
 </head>
-<body class="admin-wrap">
-    <header class="basic-header-graphic" role="banner">
-        <a href="<?= LUPOPEDIA_PUBLIC_PATH ?>/index.php" title="Lupopedia Home">
-            <img src="<?= LUPOPEDIA_PUBLIC_PATH ?>/lupo-images/logoface.png" alt="" width="64" height="64">
-            <span class="site-name">LUPOPEDIA</span>
-        </a>
-    </header>
+<body>
+<div id="lupo-admin-app" class="admin-wrap lupo-admin-app" data-admin-intro="<?= $admin_disable_scroll_intro ? '0' : '1' ?>">
 
-    <nav class="basic-nav" role="navigation" aria-label="Main">
-        <div class="nav-inner">
-            <a class="nav-link" href="<?= LUPOPEDIA_PUBLIC_PATH ?>/index.php">Home</a>
-            <a class="nav-link" href="<?= LUPOPEDIA_PUBLIC_PATH ?>/qa/">Q/A</a>
-            <a class="nav-link" href="<?= LUPOPEDIA_PUBLIC_PATH ?>/search.php">Content</a>
-            <a class="nav-link active" href="<?= LUPOPEDIA_PUBLIC_PATH ?>/admin.php">Admin</a>
-            <?php if ($isUserLoggedIn && !empty($admin_actor_list)): ?>
+    <div id="lupo-admin-scroll-shell">
+        <nav class="lupo-admin-nav-row" id="lupo-admin-nav-row" role="navigation" aria-label="Admin quick nav">
+            <div class="lupo-admin-nav-lead">
+                <a class="lupo-admin-nav-logo" href="<?= htmlspecialchars($admin_nav_logo_href, ENT_QUOTES, 'UTF-8') ?>" title="<?= htmlspecialchars($admin_nav_logo_alt, ENT_QUOTES, 'UTF-8') ?>">
+                    <img src="<?= htmlspecialchars($admin_nav_logo_src, ENT_QUOTES, 'UTF-8') ?>" alt="<?= htmlspecialchars($admin_nav_logo_alt, ENT_QUOTES, 'UTF-8') ?>">
+                </a>
+            </div>
+            <div class="lupo-admin-nav-squares">
+            <?php foreach ($admin_intro_nav_links as $idx => $navItem): ?>
                 <?php
-                // Find current actor info
-                $current_actor = null;
-                foreach ($admin_actor_list as $a) {
-                    if ((int) $a['actor_id'] === $admin_active_actor_id) {
-                        $current_actor = $a;
-                        break;
-                    }
-                }
-                $acting_as_label = 'Unknown';
-                if ($current_actor) {
-                    $acting_as_label = (isset($current_actor['name']) && $current_actor['name'] !== '')
-                        ? $current_actor['name']
-                        : (isset($current_actor['actor_name']) ? $current_actor['actor_name'] : 'Unknown');
-                } elseif ($admin_active_actor_display !== '') {
-                    $acting_as_label = $admin_active_actor_display;
-                }
+                $ph = !empty($navItem['placeholder']);
+                $nh = $ph ? '#' : htmlspecialchars($navItem['href']);
+                $nl = $ph ? '·' : htmlspecialchars($navItem['label']);
                 ?>
-                <div style="display: inline-flex; align-items: center; margin: 0 0 0 1rem; color: #a0aec0; font-size: 0.875rem;">
-                    <span>Acting as: <strong><?= htmlspecialchars($acting_as_label) ?></strong></span>
+            <a class="lupo-admin-nav-sq<?= $ph ? ' is-placeholder' : '' ?>" href="<?= $nh ?>"<?= $ph ? ' onclick="return false;" aria-hidden="true"' : '' ?>><span><?= $nl ?></span></a>
+            <?php endforeach; ?>
+            </div>
+            <div class="lupo-admin-nav-tail">
+                <?php if ($isUserLoggedIn): ?>
+                <div class="lupo-admin-nav-actor" id="lupo-admin-nav-actor">
+                    <span class="lupo-admin-nav-actor-text" title="<?= htmlspecialchars($admin_nav_actor_label, ENT_QUOTES, 'UTF-8') ?>"><strong><?= htmlspecialchars($admin_nav_actor_display) ?></strong></span>
                     <?php if (count($admin_actor_list) > 1): ?>
-                        <a href="<?= LUPOPEDIA_PUBLIC_PATH ?>/select-actor.php?redirect=<?= urlencode(isset($_SERVER['REQUEST_URI']) ? $_SERVER['REQUEST_URI'] : $base . '/admin.php') ?>" style="margin-left: 8px; color: #4299e1; text-decoration: none; font-size: 0.8rem;">change</a>
+                    <a class="lupo-admin-nav-actor-link" href="<?= htmlspecialchars($admin_select_actor_href, ENT_QUOTES, 'UTF-8') ?>">Change</a>
                     <?php endif; ?>
+                    <a class="lupo-admin-nav-actor-link" href="<?= LUPOPEDIA_PUBLIC_PATH ?>/logout.php">Log out</a>
                 </div>
-            <?php endif; ?>
-            <?php if ($isUserLoggedIn): ?>
-                <a class="nav-link" href="<?= LUPOPEDIA_PUBLIC_PATH ?>/my-profile" style="margin-left: auto;">My Profile</a>
-                <a class="nav-link" href="<?= LUPOPEDIA_PUBLIC_PATH ?>/logout.php">Sign Out</a>
-            <?php else: ?>
-                <a class="nav-link" href="<?= LUPOPEDIA_PUBLIC_PATH ?>/login" style="margin-left: auto;">Sign In</a>
-            <?php endif; ?>
-        </div>
-    </nav>
-
+                <?php endif; ?>
+            </div>
+        </nav>
+        <div class="lupo-admin-scroll-frame">
+            <div class="lupo-admin-scroll-row lupo-admin-scroll-row--top" aria-hidden="true">
+                <div class="lupo-admin-scroll-cap lupo-admin-scroll-cap--l"></div>
+                <div class="lupo-admin-scroll-center"></div>
+                <div class="lupo-admin-scroll-cap lupo-admin-scroll-cap--r"></div>
+            </div>
+            <div class="lupo-admin-scroll-row lupo-admin-scroll-row--mid">
+                <div class="lupo-admin-scroll-cap lupo-admin-scroll-cap--l"></div>
+                <div class="lupo-admin-scroll-center">
     <div class="admin-body">
         <aside class="admin-sidebar" role="navigation" aria-label="Admin options">
             <?php
@@ -264,11 +313,82 @@ $base = defined('LUPOPEDIA_PUBLIC_PATH') ? rtrim(LUPOPEDIA_PUBLIC_PATH, '/') : '
             </div>
         </main>
     </div>
+                </div>
+                <div class="lupo-admin-scroll-cap lupo-admin-scroll-cap--r"></div>
+            </div>
+            <div class="lupo-admin-scroll-row lupo-admin-scroll-row--bottom" aria-hidden="true">
+                <div class="lupo-admin-scroll-cap lupo-admin-scroll-cap--l"></div>
+                <div class="lupo-admin-scroll-center"></div>
+                <div class="lupo-admin-scroll-cap lupo-admin-scroll-cap--r"></div>
+            </div>
+        </div>
+    </div>
+
+    <header class="basic-header-graphic" role="banner">
+        <a href="<?= LUPOPEDIA_PUBLIC_PATH ?>/index.php" title="Lupopedia Home">
+            <img src="<?= LUPOPEDIA_PUBLIC_PATH ?>/lupo-images/logoface.png" alt="" width="64" height="64">
+            <span class="site-name">LUPOPEDIA</span>
+        </a>
+    </header>
+
+    <nav class="basic-nav" role="navigation" aria-label="Main">
+        <div class="nav-inner">
+            <a class="nav-link" href="<?= LUPOPEDIA_PUBLIC_PATH ?>/index.php">Home</a>
+            <a class="nav-link" href="<?= LUPOPEDIA_PUBLIC_PATH ?>/qa/">Q/A</a>
+            <a class="nav-link" href="<?= LUPOPEDIA_PUBLIC_PATH ?>/search.php">Content</a>
+            <a class="nav-link active" href="<?= LUPOPEDIA_PUBLIC_PATH ?>/admin.php">Admin</a>
+            <?php if ($isUserLoggedIn && !empty($admin_actor_list)): ?>
+                <?php
+                $current_actor = null;
+                foreach ($admin_actor_list as $a) {
+                    if ((int) $a['actor_id'] === $admin_active_actor_id) {
+                        $current_actor = $a;
+                        break;
+                    }
+                }
+                $acting_as_label = 'Unknown';
+                if ($current_actor) {
+                    $acting_as_label = (isset($current_actor['name']) && $current_actor['name'] !== '')
+                        ? $current_actor['name']
+                        : (isset($current_actor['actor_name']) ? $current_actor['actor_name'] : 'Unknown');
+                } elseif ($admin_active_actor_display !== '') {
+                    $acting_as_label = $admin_active_actor_display;
+                }
+                ?>
+                <div style="display: inline-flex; align-items: center; margin: 0 0 0 1rem; color: #a0aec0; font-size: 0.875rem;">
+                    <span>Acting as: <strong><?= htmlspecialchars($acting_as_label) ?></strong></span>
+                    <?php if (count($admin_actor_list) > 1): ?>
+                        <a href="<?= LUPOPEDIA_PUBLIC_PATH ?>/select-actor.php?redirect=<?= urlencode(isset($_SERVER['REQUEST_URI']) ? $_SERVER['REQUEST_URI'] : $base . '/admin.php') ?>" style="margin-left: 8px; color: #4299e1; text-decoration: none; font-size: 0.8rem;">change</a>
+                    <?php endif; ?>
+                </div>
+            <?php endif; ?>
+            <?php if ($isUserLoggedIn): ?>
+                <a class="nav-link" href="<?= LUPOPEDIA_PUBLIC_PATH ?>/my-profile" style="margin-left: auto;">My Profile</a>
+                <a class="nav-link" href="<?= LUPOPEDIA_PUBLIC_PATH ?>/logout.php">Sign Out</a>
+            <?php else: ?>
+                <a class="nav-link" href="<?= LUPOPEDIA_PUBLIC_PATH ?>/login" style="margin-left: auto;">Sign In</a>
+            <?php endif; ?>
+        </div>
+    </nav>
 
     <footer class="basic-footer">
         <a href="<?= LUPOPEDIA_PUBLIC_PATH ?>/index.php">Lupopedia</a>
         &middot; Admin
     </footer>
+
+    <div id="lupo-admin-intro-overlay" aria-hidden="true">
+        <?php foreach ($admin_intro_nav_links as $navItem): ?>
+            <?php
+            $ph = !empty($navItem['placeholder']);
+            $oh = $ph ? '#' : htmlspecialchars($navItem['href']);
+            $ol = $ph ? '·' : htmlspecialchars($navItem['label']);
+            ?>
+        <a class="lupo-admin-intro-sq<?= $ph ? ' is-placeholder' : '' ?>" href="<?= $oh ?>"<?= $ph ? ' onclick="return false;" tabindex="-1"' : '' ?>><span><?= $ol ?></span></a>
+        <?php endforeach; ?>
+    </div>
+
+    <script src="<?= LUPOPEDIA_PUBLIC_PATH ?>/lupo-includes/js/admin-intro-scroll.js"></script>
     <script src="<?= LUPOPEDIA_PUBLIC_PATH ?>/lupo-includes/js/lupopedia.js"></script>
+</div>
 </body>
 </html>

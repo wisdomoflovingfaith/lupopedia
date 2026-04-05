@@ -3,10 +3,10 @@ lupopedia.headers:
   header_format_version: 2
   lupopedia.schema: prd
   version_when_written: "4.0.94"
-  when_updated: "20260404163220"
+  when_updated: "20260404174956"
   file_path_from_root: "lupo-docs/prd/36_rose_multi_persona_synthetic_dialog.md"
   web_path: "http://www.lupopedia.com/lupopedia/lupo-docs/prd/36_rose_multi_persona_synthetic_dialog.md"
-  last_modified_utc: "20260404163220"
+  last_modified_utc: "20260404174956"
   federation_node_id: 0
   channel_id: 42
   thread_id: "prd-rose-synthetic-dialog"
@@ -73,8 +73,12 @@ lupopedia.edges:
       type: references
       weight: 0.95
       reason: "Implementation mirror (status, decisions)"
+    - to: "lupo-docs/doctrine/AGAPE_DOCTRINE.md"
+      type: references
+      weight: 1.0
+      reason: "AGAPE cooperation metric in metadata_json — PRD 00 §14.6"
 lupopedia.footer:
-  last_verified: "20260404163220"
+  last_verified: "20260404174956"
   verified_by:
     identity_type: "agent"
     actor_id: 102
@@ -125,6 +129,35 @@ Channel policy may **subset** this list. **`from_actor_id`** for each voiced lin
 | **THOTH** | Resolve from registry / seed when THOTH exists as **`lupo_actors`** row | Ground claims in evidence. | Fact-driven; aligns with **§5.9** / **THOTH** doctrine — unsourced claims flagged against **JSON exports** and **table docs**. |
 | **LILITH** | **2** | Non-interfering audit framing. | Observational; synthetic lines **must** be UI-distinct from organic LILITH review (**LIL001**). |
 
+### 1.3 ROSE as switchboard operator (simple routing pattern)
+
+**Canonical routing column:** **`lupo_dialog_messages.to_actor_id`** (NULL = broadcast). Same semantics as **“said-to”** / **`said_to_actor_id`** in routing-only doctrine (**PRD 18**).
+
+#### Message routing
+
+ROSE (or the **PHP** router feeding it) monitors **`to_actor_id`** to decide **whether** to auto-invoke a skillset — **not** who may **read** the thread:
+
+| **`to_actor_id`** | ROSE / router action (product defaults) |
+|-------------------|----------------------------------------|
+| **NULL** | **Broadcast** — no specific auto-responder; general channel traffic. |
+| **LILITH (`actor_id` 2)** | **MAY** trigger LILITH-facing pipeline when policy enables it. |
+| **THOTH, MAAT, other service actors** | **MAY** trigger the mapped skillset — **resolve every `actor_id` from `lupo-database/lupopedia/actors/registry.json`** (do not hardcode stale ids in client bundles). |
+| **Human / operator actor** | **No** implied auto-reply; human responds manually unless a separate rule applies. |
+
+#### Context reading
+
+ROSE **SHALL** read the **full channel thread** — all messages for the same **`channel_id`** + **`dialog_thread_id`** (per product scope) — **regardless of `to_actor_id`**, before emitting synthetic lines. This preserves **complete conversation history** for grounded multi-persona output.
+
+#### Synthetic row fields (routing + attribution)
+
+For each **ROSE-synthesized** insert (**§4**):
+
+- **`from_actor_id`** = the **voiced persona** (e.g. COUNTERMEASURE **111**).
+- **`to_actor_id`** **MAY** point to the **`from_actor_id`** of the **organic message that triggered** the batch (or another explicit addressee) so the UI can show **who is being answered** — or **NULL** for broadcast-style synthesis. **Visibility rules unchanged:** channel members still see the row (**PRD 18**).
+- **`metadata_json.rose_synthesis`**: **true** (mandatory provenance; **PRD 18** synthetic cue).
+
+**No** **`mention_actor_ids`** JSON column; **no** hiding rows from channel members based on **`to_actor_id`**.
+
 This output complies with Lupopedia Constitutional Root Rules.
 
 ---
@@ -162,6 +195,7 @@ This output complies with Lupopedia Constitutional Root Rules.
      - **`synthesizer_agent_key`**: `"rose"`  
      - **`rose_visibility`**: **`actor_only`** (operator / internal coaching) or **`visitor_visible`** (transparent audit on visitor-facing surfaces) — **PHP** sets this; the model does not.
      - Optional: **`voiced_persona_slug`**, **`mood_framework`**, **`trigger_reason`**
+     - Optional (**AGAPE cooperation metric**, **PRD 00 §14.6**): **`agape_cooperation_metric`** (object) and/or **`agape_cooperation_rationale`** (string) — measures whether the voiced line reflects the **operator’s state and dependencies** for **actionable** guidance vs **agreeable noise**; not sentiment scoring. Field shapes: **`lupo-docs/doctrine/AGAPE_DOCTRINE.md`** §3.
 5. **Length cap.** Each synthetic **`message_text`** (or canonical body field) **MUST** be **≤ 2000** characters (UTF-8 code units unless a later PRD narrows encoding).
 6. **Rendering (mandatory).** **PRD 18** chat UI **MUST** show a **secondary cue** (badge, icon, or sub-label such as “synthetic” / “rose-generated”) on every row where **`metadata_json.rose_synthesis`** is true. **Primary** strip still uses the **voiced** **`actor_id`** (name, colors) so readers know **which persona** the line reflects. **Organic** posts by the **same** `actor_id` (no `rose_synthesis`) **MUST NOT** show that badge—so **LILITH organic review** and **LILITH synthetic insight** are **never** visually identical (**LIL001**). Rows with **`rose_visibility: actor_only`** **MUST NOT** be shown to visitors (enforced server-side on read APIs and in UI).
 

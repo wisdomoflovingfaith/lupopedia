@@ -5,7 +5,7 @@ lupopedia.headers:
   version_when_written: "4.0.93"
   file_path_from_root: "lupo-docs/prd/07_agents_faucets.md"
   web_path: "http://www.lupopedia.com/lupopedia/lupo-docs/prd/07_agents_faucets.md"
-  last_modified_utc: "20260403221200"
+  last_modified_utc: "20260404172442"
   channel_id: 42
   thread_id: "prd-grouped"
   actor_id: 2
@@ -238,7 +238,7 @@ lupo-agents/hermes/assets/
 | ERIS | eris | 4 | chaos_generation, disruption, creative_destruction |
 | METIS | metis | 5 | emotional_wisdom, intuitive_counsel, feeling_analysis |
 | APOLLO | apollo | 704 | creativity, arts, aesthetics |
-| AGAPE | agape | 705 | universal_love, compassion, empathy |
+| AGAPE | agape | 705 | agentic_guidance, environment_awareness, fallback_ladders, doctrine_gap_surfacing |
 | DIONYSUS | dionysus | 706 | ecstasy, inspiration, creative_flow |
 | SOPHIA | sophia | 707 | emotional_translation, wisdom_integration |
 | THALIA | thalia | 708 | comedy, joy, humor |

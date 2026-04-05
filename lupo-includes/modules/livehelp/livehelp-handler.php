@@ -89,6 +89,13 @@ function handle_send_message()
     $chat_collection_id = (int) $input['chat_collection_id'];
     $message_body = trim($input['message_body']);
     $message_type = isset($input['message_type']) ? $input['message_type'] : 'chat';
+
+    require_once LUPOPEDIA_PATH . '/lupo-includes/classes/LupoEmojiPath.php';
+    $imgTokenErr = LupoEmojiPath::validateAllImgTokensInBody($message_body);
+    if ($imgTokenErr !== null) {
+        http_response_code(400);
+        exit(json_encode(array('error' => $imgTokenErr)));
+    }
     
     // Validate message not empty
     if (empty($message_body)) {

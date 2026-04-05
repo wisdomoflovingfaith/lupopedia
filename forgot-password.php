@@ -3,8 +3,16 @@
  * Forgot Password Page - Allows users to request password reset
  */
 
-// Load config
-require_once __DIR__ . '/lupopedia-config.php';
+$lupoRoot = __DIR__;
+$lupoPub = '/' . basename($lupoRoot);
+require_once $lupoRoot . '/lupo-includes/classes/LupopediaConfigResolver.php';
+$lupoCfgPath = LupopediaConfigResolver::resolve($lupoRoot, $lupoPub);
+if ($lupoCfgPath === null) {
+    $lupoBase = rtrim(dirname(isset($_SERVER['SCRIPT_NAME']) ? $_SERVER['SCRIPT_NAME'] : ''), '/');
+    header('Location: ' . ($lupoBase === '' ? '/install.php' : $lupoBase . '/install.php'));
+    exit;
+}
+require_once $lupoCfgPath;
 
 // Start session
 if (session_status() === PHP_SESSION_NONE) {

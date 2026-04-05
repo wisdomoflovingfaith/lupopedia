@@ -4,7 +4,7 @@ lupopedia.headers:
   version_when_written: "4.0.94"
   file_path_from_root: "lupo-docs/versions/4.0.94/PLAN.md"
   web_path: "http://www.lupopedia.com/lupopedia/lupo-docs/versions/4.0.94/PLAN.md"
-  when_updated: "20260404161001"
+  when_updated: "20260405001004"
   channel_id: 42
   actor_id: 102
   actor_name: "CURSOR"
@@ -148,6 +148,31 @@ Same table as [`README.md`](README.md) — **CANONICAL** under `lupo-docs/prd/` 
 - [ ] **Hoster certification execution** — still **`TODO.md`** / PRD 33 §10; documentation **does not** close §10.6–§10.7.
 
 **Completion criteria:** Phase I + J **documented** outcomes in **`CHANGELOG`**; no false claim that Softaculous vendor acceptance is complete.
+
+### Phase K — AGAPE + PRD 37 temporal discipline + multi-actor `to_actor_id` routing docs + scaffold `add-status` (UTC `20260404175352`)
+
+**Evidence:** `CHANGELOG.md` top entries **[2026-04-04]** — AGAPE technical doctrine; PRD 37 temporal + `add-status`; multi-actor routing (`to_actor_id`); `decisions/20260404175216_DECISION_APPROVED_agape_kairos_temporal_multi_actor_routing_docs.md`; `comments/20260404175216_COMMENT_cursor_session_end_agape_kairos_routing_version_sync.md`.
+
+- [x] **AGAPE** — PRD 00 §14.6; `AGAPE_DOCTRINE.md`; LILITH / validator policy; ROSE synthetic optional keys; `lupo-agents/agape/*` and ROSE pack alignment (thread-verified in **CHANGELOG**).
+- [x] **KAIROS temporal** — PRD 37 §10.x (index-first, freshness hierarchy, `supersedes` vs `references`); §10.6 chat-context ingest rules; `AGAPE_DOCTRINE` §1.3 cross-ref; `scaffold_implementation.py` **`add-status`**; PRD 31 usage + orchestration notes.
+- [x] **Multi-actor routing (docs)** — PRDs **18**, **36** §1.3, **37** §10.6, **31**, **05** aligned to **`lupo_dialog_messages.to_actor_id`** (routing-only; channel + thread = read context; no `mention_actor_ids`; `parent_dialog_message_id` future-only in prose).
+- [ ] **Runtime wiring** — **`channels-api`** + chat UI accept/persist **`to_actor_id`** per **PRD 18** (docs complete; product open).
+- [ ] **KAIROS code vs §10.6** — compare **`KairosConsolidationService`** (and API tick path) to PRD 37 §10.6 full-thread contract; gap list or code change in a later session.
+- [ ] **Optional validator** — automated scan for PRD 00 §14.6 banned acceptance strings in headers (policy text shipped; code not required in this thread).
+
+**Completion criteria:** Version-folder **THREAD_INDEX**, **edges**, **PLAN** K, **TODO**, **CHANGELOG** sync entry, and **WHAT_TO_WORK_ON_NEXT_SESSION** reference the same thread without claiming runtime chat routing or KAIROS ingest are closed.
+
+### Phase L — Admin scroll top nav chrome + logout / intro replay (code — UTC `20260405001004`)
+
+**Evidence:** `CHANGELOG.md` entry **[2026-04-05] Admin scroll nav**; `decisions/20260405001004_DECISION_APPROVED_admin_nav_logout_intro_cursor_thread.md`; `comments/20260405001004_COMMENT_cursor_session_end_admin_nav_logout_handoff.md`.
+
+- [x] **`logout.php`** — clear **`sessionStorage`** key **`lupo_admin_scroll_intro_v1`** before redirect (HTML interstitial + **`location.replace`** + meta refresh fallback).
+- [x] **`admin_layout.php`** — **90×60** left logo slot (**`$admin_nav_logo_*`** overrides); actor name **15** + **`..`**, no **`ACTOR:`** prefix, **`title`** = full name.
+- [x] **`admin-intro-scroll.css`** — **`.lupo-admin-nav-logo`**, **`.lupo-admin-nav-lead`**, actor text **`max-width: 12em`**.
+- [x] **`admin-intro-scroll.js`** — comment aligned with logout clear behavior.
+- [ ] **Other sign-out paths** — if any bypass **`logout.php`**, mirror **`sessionStorage.removeItem`** or document exception (open if discovered).
+
+**Completion criteria:** Thread outcomes in **`CHANGELOG`**; **WHAT NOT** in decision excludes unrelated PRD/validator threads; **TODO** / **WHAT_TO_WORK_ON_NEXT_SESSION** carry **Crafty parity checklist** handoff for next orchestrator session.
 
 ## References
 

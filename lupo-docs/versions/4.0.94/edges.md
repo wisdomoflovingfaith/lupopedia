@@ -2,10 +2,10 @@
 lupopedia.headers:
   header_format_version: 2
   lupopedia.schema: documentation
-  when_updated: "20260404161001"
+  when_updated: "20260405001004"
   file_path_from_root: "lupo-docs/versions/4.0.94/edges.md"
   web_path: "http://www.lupopedia.com/lupopedia/lupo-docs/versions/4.0.94/edges.md"
-  last_modified_utc: "20260404161001"
+  last_modified_utc: "20260405001004"
   federation_node_id: 0
   channel_id: 42
   thread_id: "version-4.0.94-edges"
@@ -190,8 +190,32 @@ lupopedia.edges:
       type: references
       weight: 0.95
       reason: "Runtime dir mkdir — Softaculous / FTP gap"
+    - to: "lupo-docs/versions/4.0.94/decisions/20260404175216_DECISION_APPROVED_agape_kairos_temporal_multi_actor_routing_docs.md"
+      type: references
+      weight: 1.0
+      reason: "APPROVED receipt — AGAPE + PRD 37 temporal/add-status + multi-actor to_actor_id docs (Cursor thread)"
+    - to: "lupo-docs/versions/4.0.94/comments/20260404175216_COMMENT_cursor_session_end_agape_kairos_routing_version_sync.md"
+      type: references
+      weight: 0.95
+      reason: "Session end comment — version-folder sync for same thread"
+    - to: "lupo-docs/doctrine/AGAPE_DOCTRINE.md"
+      type: references
+      weight: 1.0
+      reason: "AGAPE technical doctrine (constitutional §14.6 companion)"
+    - to: "lupo-docs/prd/37_kairos_channel_memory_consolidation.md"
+      type: references
+      weight: 1.0
+      reason: "KAIROS PRD — §10 temporal discipline + §10.6 chat context"
+    - to: "lupo-docs/prd/18_channel_chat_display.md"
+      type: references
+      weight: 1.0
+      reason: "Multi-actor routing — to_actor_id (PRD cluster)"
+    - to: "lupo-scripts/scaffold_implementation.py"
+      type: references
+      weight: 1.0
+      reason: "add-status subcommand (implementation status artifacts)"
 lupopedia.footer:
-  last_verified: "20260404161001"
+  last_verified: "20260404175352"
   verified_by:
     identity_type: "actor"
     actor_id: 102
@@ -202,6 +226,12 @@ lupopedia.footer:
 
 ## Documentation edges
 
+- **Decision (this version):** [decisions/20260405001004_DECISION_APPROVED_admin_nav_logout_intro_cursor_thread.md](decisions/20260405001004_DECISION_APPROVED_admin_nav_logout_intro_cursor_thread.md) — APPROVED **5W1H** receipt — **`logout.php`** + admin scroll nav (**logo**, **actor** truncation, **`sessionStorage`** intro key); **WHAT NOT** excludes unrelated PRD **16/26/30/31** template claims.
+- **Comment:** [comments/20260405001004_COMMENT_cursor_session_end_admin_nav_logout_handoff.md](comments/20260405001004_COMMENT_cursor_session_end_admin_nav_logout_handoff.md) — session end — **`PLAN`** Phase **L**, **`TODO`**, **`CHANGELOG`**, **Crafty** checklist handoff.
+- **Decision (this version):** [decisions/20260404175216_DECISION_APPROVED_agape_kairos_temporal_multi_actor_routing_docs.md](decisions/20260404175216_DECISION_APPROVED_agape_kairos_temporal_multi_actor_routing_docs.md) — APPROVED **5W1H** receipt — **AGAPE** §14.6 cluster, **PRD 37** temporal + **`scaffold_implementation.py add-status`**, multi-actor **`to_actor_id`** routing across **PRD 18 / 36 / 37 / 31 / 05** (evidence: top **`CHANGELOG.md`** entries **[2026-04-04]** AGAPE / PRD 37 / routing).
+- **Comment:** [comments/20260404175216_COMMENT_cursor_session_end_agape_kairos_routing_version_sync.md](comments/20260404175216_COMMENT_cursor_session_end_agape_kairos_routing_version_sync.md) — session end — **`PLAN`** Phase **K**, **`TODO`** completed + open follow-ups, **`WHAT_TO_WORK_ON_NEXT_SESSION`** handoff.
+- **Doctrine:** [lupo-docs/doctrine/AGAPE_DOCTRINE.md](../../doctrine/AGAPE_DOCTRINE.md) — technical AGAPE; temporal cross-ref §1.3.
+- **PRD:** [lupo-docs/prd/37_kairos_channel_memory_consolidation.md](../../prd/37_kairos_channel_memory_consolidation.md) — §10 index-first / freshness; §10.6 full-thread chat ingest contract.
 - **Decision (this version):** [decisions/20260404_161001_DECISION_APPROVED_service_agent_architecture_and_softaculous_auto_installer_docs.md](decisions/20260404_161001_DECISION_APPROVED_service_agent_architecture_and_softaculous_auto_installer_docs.md) — APPROVED receipt — PRD 00 §5 service agents + KAIROS + THOTH + Softaculous auto-installer docs/code (**WHAT NOT** lists PRD 16/26/30/31 / validators if not evidenced).
 - **Comment:** [comments/20260404_161001_COMMENT_cursor_service_agents_softaculous_version_doc_sync.md](comments/20260404_161001_COMMENT_cursor_service_agents_softaculous_version_doc_sync.md) — `CHANGELOG` / `PLAN` Phase J / `TODO` / `edges` sync.
 - **Question / Answer:** [questions/20260404_161004_QUESTION_version_doc_thread_scope_service_agents_softaculous.md](questions/20260404_161004_QUESTION_version_doc_thread_scope_service_agents_softaculous.md) → [answers/20260404_161005_ANSWER_version_doc_thread_scope_service_agents_softaculous.md](answers/20260404_161005_ANSWER_version_doc_thread_scope_service_agents_softaculous.md) — merge directive ≠ one thread; evidence-only `CHANGELOG`.
@@ -267,7 +297,7 @@ lupopedia.footer:
 
 - **VALIDATOR:** [lupo-scripts/validate_lupopedia_headers_universal.py](../../../lupo-scripts/validate_lupopedia_headers_universal.py) — thread headers (`thread_id`, `author`, tags).
 - **VALIDATOR:** [lupo-scripts/validate_implementation.py](../../../lupo-scripts/validate_implementation.py) — implementation threads (when run against those paths).
-- **SCAFFOLD:** [lupo-scripts/scaffold_implementation.py](../../../lupo-scripts/scaffold_implementation.py) — automated implementation folder creation (NEW).
+- **SCAFFOLD:** [lupo-scripts/scaffold_implementation.py](../../../lupo-scripts/scaffold_implementation.py) — implementation folder creation + **`add-status`** (status artifacts + `status/THREAD_INDEX.md`).
 - **VALIDATOR:** [lupo-scripts/validate_framework_compliance.py](../../../lupo-scripts/validate_framework_compliance.py) — framework compliance checking (NEW).
 - **QUESTION:** [lupo-scripts/create_implementation_question.py](../../../lupo-scripts/create_implementation_question.py) — implementation question creation (enhanced).
 - **ANCHOR:** [lupo-bin/tick.py](../../../lupo-bin/tick.py) — updates `temporal_anchor.json` / `CURRENT_UTC` from real system UTC.
@@ -280,6 +310,10 @@ lupopedia.footer:
 - **BOOTSTRAP:** [lupo-includes/bootstrap.php](../../../lupo-includes/bootstrap.php) — runtime writable dirs `mkdir` after config load.
 - **KAIROS API:** [lupo-includes/modules/api/kairos-api.php](../../../lupo-includes/modules/api/kairos-api.php) — `POST` tick → consolidation.
 - **KAIROS SERVICE:** [app/Services/Kairos/KairosConsolidationService.php](../../../app/Services/Kairos/KairosConsolidationService.php) — `lupo_actor_memory` + `lupo_edges`.
+- **LOGOUT:** [logout.php](../../../logout.php) — clears `lupo_admin_scroll_intro_v1` in browser before redirect to `login.php`.
+- **ADMIN LAYOUT:** [lupo-includes/themes/default/layouts/admin_layout.php](../../../lupo-includes/themes/default/layouts/admin_layout.php) — scroll nav row: logo lead, actor strip.
+- **ADMIN SCROLL CSS:** [lupo-includes/css/admin-intro-scroll.css](../../../lupo-includes/css/admin-intro-scroll.css) — `.lupo-admin-nav-logo` (90×60), actor text width.
+- **ADMIN SCROLL JS:** [lupo-includes/js/admin-intro-scroll.js](../../../lupo-includes/js/admin-intro-scroll.js) — intro overlay; `sessionStorage` key `lupo_admin_scroll_intro_v1`.
 
 ## External edges
 
@@ -316,5 +350,11 @@ lupopedia.footer:
 | `decisions/20260404_161001_…` | PRD 00 §5, `SERVICE_AGENT_ARCHITECTURE.md`, `implementations/service_agents/`, `LUPOPEDIA_HEADERS/README`, Softaculous spec + sample config + packager + bootstrap | Service agents + auto-installer doc receipt |
 | `questions/20260404_161004_…` | `answers/20260404_161005_…` | Version doc scope — no bundled PRD16/26/30/31 without evidence |
 | `CHANGELOG` [2026-04-04] (service agents entry) | Same as `161001` decision | Thread-verified only |
+| `decisions/20260404175216_…` | PRD 00 §14.6, `AGAPE_DOCTRINE.md`, PRDs 18/36/37/31/05, `scaffold_implementation.py` | AGAPE + temporal + routing doc receipt |
+| `comments/20260404175216_…` | `PLAN` Phase K, `TODO`, `WHAT_TO_WORK_ON_NEXT_SESSION`, `edges` | Session end version-folder sync |
+| `CHANGELOG` [2026-04-04] (version-folder sync entry) | `175216` decision + comment + indexes | Evidence UTC `20260404175352` |
+| `decisions/20260405001004_…` | `logout.php`, `admin_layout.php`, `admin-intro-scroll.css`, `admin-intro-scroll.js` | Admin nav + logout intro thread |
+| `comments/20260405001004_…` | `PLAN` L, `TODO`, `WHAT_TO_WORK_ON_NEXT_SESSION` | Session end + Crafty handoff |
+| `CHANGELOG` [2026-04-05] | `501004` decision + comment | Evidence UTC `20260405001004` |
 
 Update this file whenever a new thread file or PRD section creates a durable cross-link.

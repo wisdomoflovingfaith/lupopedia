@@ -2,10 +2,10 @@
 lupopedia.headers:
   header_format_version: 2
   lupopedia.schema: implementation
-  when_updated: "20260404165054"
+  when_updated: "20260404211443"
   file_path_from_root: "lupo-docs/implementations/33_softaculous_certification_4_1_0_gate/SOFTACULOUS_PACKAGE_BUILD.md"
   web_path: "http://www.lupopedia.com/lupopedia/lupo-docs/implementations/33_softaculous_certification_4_1_0_gate/SOFTACULOUS_PACKAGE_BUILD.md"
-  last_modified_utc: "20260404165054"
+  last_modified_utc: "20260404211443"
   federation_node_id: 0
   channel_id: 42
   thread_id: "33-softaculous-package"
@@ -32,12 +32,20 @@ lupopedia.edges:
       type: references
       weight: 1.0
       reason: "Canonical packager (run from git checkout; script is excluded from zip)"
+    - to: "INSTALL.txt"
+      type: references
+      weight: 0.95
+      reason: "Package-root plaintext install steps (ships inside zip)"
+    - to: "QUICKSTART.md"
+      type: references
+      weight: 0.95
+      reason: "Package-root markdown quick start (ships inside zip)"
     - to: "lupo-install/InstallWizardHtaccessWriter.php"
       type: references
       weight: 1.0
       reason: "Writes .htaccess after successful config (Apache); aligns with repo root rules"
 lupopedia.footer:
-  last_verified: "20260404154659"
+  last_verified: "20260404211443"
   verified_by:
     identity_type: "agent"
     actor_id: 102
@@ -117,7 +125,7 @@ Not every path exists in every tag; the **packager includes whatever is present*
 
 - `index.php`, `admin.php`, `install.php`, `livehelp_js.php`, `lupopedia_js.php` as applicable for the release
 - **`lupopedia-config-sample.php`** (template for hosts / auto-installers; **not** a live `lupopedia-config.php` in the zip)
-- **`license.txt`**, **`README.md`**, **`README.txt`** at package root (reviewer-friendly; not dotfiles)
+- **`license.txt`**, **`README.md`**, **`README.txt`**, **`INSTALL.txt`**, **`QUICKSTART.md`** at package root (reviewer-friendly; not dotfiles)
 - `lupo-includes/`, `app/`, `lupo-ui/`, `lupo-emoji/`, `config/`, `lupo-install/` (contains **`InstallWizardHtaccessWriter.php`**), `lupo-database/lupopedia/mysql/install/`, `lupo-database/lupopedia/mysql/import/`
 - **No** `.htaccess` anywhere (FTP-safe)
 
@@ -235,7 +243,7 @@ Run from the **extracted** `lupopedia/` root **before** running the installer:
 | `lupo-install/InstallWizardHtaccessWriter.php` | **Yes** | Post-install `.htaccess` + wizard dirs |
 | **`lupopedia-config-sample.php`** | **Yes** | Auto-installer / host template (`[[softdb*]]` placeholders) |
 | **`lupopedia-config.php`** (live) | **No** | Packager **excludes** — avoid leaking credentials; use sample |
-| **`license.txt`**, **`README.md`**, **`README.txt`** | **Yes** | Certification / user clarity at zip root |
+| **`license.txt`**, **`README.md`**, **`README.txt`**, **`INSTALL.txt`**, **`QUICKSTART.md`** | **Yes** | Install clarity at zip root |
 | Rest of PHP / JS / CSS / SQL needed to run | Yes | Runtime tree |
 
 ---

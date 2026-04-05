@@ -2,9 +2,10 @@
 lupopedia.headers:
   header_format_version: 2
   lupopedia.schema: prd
+  when_updated: "20260404174956"
   file_path_from_root: "lupo-docs/prd/05_auth_user_actor_agent_transformation.md"
   web_path: "http://www.lupopedia.com/lupopedia/lupo-docs/prd/05_auth_user_actor_agent_transformation.md"
-  last_modified_utc: "20260403221024"
+  last_modified_utc: "20260404174956"
   channel_id: 42
   thread_id: "auth-user-actor-transformation"
   actor_id: 102
@@ -62,7 +63,7 @@ lupopedia.edges:
       weight: 0.95
       reason: "LILITH-approved UI: from_actor_id transcript; auth_user not bubble label"
 lupopedia.footer:
-  last_verified: '20260403221024'
+  last_verified: '20260404174956'
   verified_by:
     actor_id: 102
     agent_name_identity: Cursor IDE Agent
@@ -86,6 +87,19 @@ lupopedia.footer:
 **Design Q&A:** [`lupo-docs/implementations/13_crafty_integration/questions/THREAD_INDEX.md`](../implementations/13_crafty_integration/questions/THREAD_INDEX.md) (PRD alignment complete per Q3).
 
 **Canonical mental model (approved):** [`ACTOR_DEPARTMENT_AUTH_USER_DOCTRINE.md`](../doctrine/ACTOR_DEPARTMENT_AUTH_USER_DOCTRINE.md) — single source for **`auth_user` / `department` / `actor`** joins, eligibility (**department intersection** first; **`lupo_actor_auth_users`** supplementary), visitor attribution, and Crafty contrast. This PRD stays normative for **visitor chain steps** and **PHP resolution paths**; do not contradict the doctrine.
+
+### Channel communication model (multi-actor routing)
+
+**Canonical DDL field:** **`lupo_dialog_messages.to_actor_id`** (**NULL** = broadcast). Directive text may say **“said-to”** / **`said_to_actor_id`** — **same semantics**.
+
+- **Direct / addressed line:** **`to_actor_id`** = specific **`actor_id`** → product **routes** UX (expected responder, highlight). **Does not** make the row **private** to that actor — **channel members** who can read the channel **read all messages** in the thread (**PRD 18**).
+- **Broadcast:** **`to_actor_id` NULL** → general channel traffic.
+
+**Service auto-response:** When **`to_actor_id`** matches a **service persona** the deployment wires for automation (**LILITH**, **THOTH**, **MAAT**, etc. — **resolve `actor_id` from `lupo-database/lupopedia/actors/registry.json`**), the system **MAY** auto-respond via **ROSE** / PHP orchestration. **Human** addressees are **not** auto-replied by default.
+
+**Thread context:** Agents and services **SHALL** process **all** messages in the **`channel_id` + `dialog_thread_id`** scope when building context — **not only** lines where **`to_actor_id`** points at them (**PRD 18**, **PRD 36**, **PRD 37** §10.6).
+
+**Out of scope:** **No** **`mention_actor_ids`** JSON column; **no** per-row visibility filter keyed on **`to_actor_id`** inside the same channel.
 
 ## Core Doctrine
 

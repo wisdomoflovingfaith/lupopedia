@@ -8,7 +8,7 @@ lupopedia.headers:
   delegation_chain: cursor:root
   federation_node_id: 0
   file_path_from_root: lupo-docs/doctrine/LUPOPEDIA_HEADERS/VALIDATORS_AND_TOOLING.md
-  last_modified_utc: '20260328163401'
+  last_modified_utc: '20260404172442'
   lupopedia.schema: doctrine
   purpose: Validator policy, scripts in scope, required-field alignment with binding
     doctrine
@@ -18,7 +18,7 @@ lupopedia.headers:
   - tooling
   thread_id: headers-validators-tooling
   web_path: http://www.lupopedia.com/lupopedia/lupo-docs/doctrine/LUPOPEDIA_HEADERS/VALIDATORS_AND_TOOLING.md
-  when_updated: '20260328240000'
+  when_updated: '20260404172442'
   title: Lupo docs doctrine lupopediaheaders validatorsandtooling
   content_id: 1082067641908298713
 lupopedia.edges:
@@ -27,6 +27,10 @@ lupopedia.edges:
       type: implements
       weight: 1.0
       reason: "Doctrine PRD lineage; constitutional audit 20260403"
+    - to: "lupo-docs/doctrine/AGAPE_DOCTRINE.md"
+      type: references
+      weight: 1.0
+      reason: "PRD 00 §14.6 — flag sentimental product phrases in criteria text"
 
 lupopedia.footer:
   last_verified: 20260328240000
@@ -64,6 +68,16 @@ lupopedia.footer:
 - Treat legacy flat verifier name/id fields as deprecated compatibility data, not canonical validator targets.
 - Flag stale footer verification when `last_verified < 20260301000000` UTC.
 - Require semantic truth review before accepting refreshed footer verification on stale artifacts.
+
+## AGAPE and sentimental product rhetoric (constitutional)
+
+When validators (or companion scanners) inspect **acceptance criteria**, **definition of done**, **IDE rule packs**, or **canonical doctrine** for **pass/fail** language, they MUST **flag** the following as **violations of PRD 00 §14.6** when those strings are used to **define** product or documentation quality (not when quoted as forbidden examples):
+
+- **`made with love`** (case-insensitive)
+- **`supportive tone`**
+- **`emotional validation`**
+
+**AGAPE** is **technical** — resilience, environment awareness, fallback ladders — per **`lupo-docs/doctrine/AGAPE_DOCTRINE.md`**. Replace such criteria with **observable** checks (schema, tests, probe/branch patterns, header compliance).
 
 ## Backward Compatibility (4.0.88)
 

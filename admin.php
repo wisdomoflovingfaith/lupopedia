@@ -8,13 +8,10 @@
 define('LUPOPEDIA_PATH', __DIR__);
 define('LUPOPEDIA_PUBLIC_PATH', '/' . basename(__DIR__));
 
-// Config path: lupopedia-config.php first; config.php only if lupopedia-config does not exist (legacy)
-if (file_exists(dirname($_SERVER['DOCUMENT_ROOT']) . '/lupopedia-config.php')) {
-    define('LUPOPEDIA_CONFIG_PATH', dirname($_SERVER['DOCUMENT_ROOT']) . '/lupopedia-config.php');
-} elseif (file_exists(dirname($_SERVER['DOCUMENT_ROOT']) . LUPOPEDIA_PUBLIC_PATH . '/lupopedia-config.php')) {
-    define('LUPOPEDIA_CONFIG_PATH', dirname($_SERVER['DOCUMENT_ROOT']) . LUPOPEDIA_PUBLIC_PATH . '/lupopedia-config.php');
-} elseif (@file_exists(LUPOPEDIA_PATH . '/lupopedia-config.php')) {
-    define('LUPOPEDIA_CONFIG_PATH', LUPOPEDIA_PATH . '/lupopedia-config.php');
+require_once LUPOPEDIA_PATH . DIRECTORY_SEPARATOR . 'lupo-includes' . DIRECTORY_SEPARATOR . 'classes' . DIRECTORY_SEPARATOR . 'LupopediaConfigResolver.php';
+$lupoResolvedCfg = LupopediaConfigResolver::resolve(LUPOPEDIA_PATH, LUPOPEDIA_PUBLIC_PATH);
+if ($lupoResolvedCfg !== null) {
+    define('LUPOPEDIA_CONFIG_PATH', $lupoResolvedCfg);
 } elseif (file_exists(dirname($_SERVER['DOCUMENT_ROOT']) . '/config.php')) {
     define('LUPOPEDIA_CONFIG_PATH', dirname($_SERVER['DOCUMENT_ROOT']) . '/config.php');
 } elseif (file_exists(dirname($_SERVER['DOCUMENT_ROOT']) . LUPOPEDIA_PUBLIC_PATH . '/config.php')) {
@@ -162,7 +159,7 @@ $admin_menu_sections = array(
         'title' => 'General',
         'items' => array(
             'Artifacts' => 'admin.php?section=artifacts',
-            'Documentation' => 'admin.php?section=documentation',
+            'Q/A' => 'admin.php?section=documentation',
             'Master Settings' => 'admin.php?section=settings',
             'Help' => 'admin.php?section=help',
             'Support' => 'admin.php?section=support',
@@ -403,7 +400,7 @@ if ($isAdmin && isset($_GET['section']) && is_string($_GET['section'])) {
     // Section title and active menu key (must match menu item label)
     $section_titles = array(
         'artifacts' => array('Artifacts', 'Artifacts'),
-        'documentation' => array('Documentation', 'Documentation'),
+        'documentation' => array('Q/A', 'Q/A'),
         'settings' => array('Master Settings', 'Master Settings'),
         'help' => array('Help', 'Help'),
         'support' => array('Support', 'Support'),

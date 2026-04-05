@@ -18,29 +18,10 @@ define('LUPOPEDIA_PATH', __DIR__);
  */
 define('LUPOPEDIA_PUBLIC_PATH', '/' . basename(__DIR__));
 
-/**
- * The full path to config file, preferably in a private directory outside of public root.
- */
-$lupopediaConfigPath = null;
+require_once LUPOPEDIA_PATH . DIRECTORY_SEPARATOR . 'lupo-includes' . DIRECTORY_SEPARATOR . 'classes' . DIRECTORY_SEPARATOR . 'LupopediaConfigResolver.php';
+$lupopediaConfigPath = LupopediaConfigResolver::resolve(LUPOPEDIA_PATH, LUPOPEDIA_PUBLIC_PATH);
 
-// INSTALL REDIRECT DOCTRINE (4.0.6+): If lupopedia-config.php does NOT exist, ALWAYS redirect to install.php
-// Config search order for lupopedia-config.php:
-// 1. One directory ABOVE DOCUMENT_ROOT (most secure, preferred)
-// 2. One directory above DOCUMENT_ROOT + Lupopedia public path
-// 3. Inside the Lupopedia directory itself (fallback)
-
-// Path 1: One directory ABOVE DOCUMENT_ROOT (most secure, preferred)
-if (file_exists(dirname($_SERVER['DOCUMENT_ROOT']) . '/lupopedia-config.php')) {
-    $lupopediaConfigPath = dirname($_SERVER['DOCUMENT_ROOT']) . '/lupopedia-config.php';
-}
-// Path 2: One directory above DOCUMENT_ROOT + Lupopedia public path
-elseif (file_exists(dirname($_SERVER['DOCUMENT_ROOT']) . LUPOPEDIA_PUBLIC_PATH . '/lupopedia-config.php')) {
-    $lupopediaConfigPath = dirname($_SERVER['DOCUMENT_ROOT']) . LUPOPEDIA_PUBLIC_PATH . '/lupopedia-config.php';
-}
-// Path 3: Inside the Lupopedia directory itself (fallback)
-elseif (file_exists(LUPOPEDIA_PATH . '/lupopedia-config.php')) {
-    $lupopediaConfigPath = LUPOPEDIA_PATH . '/lupopedia-config.php';
-}
+// INSTALL REDIRECT DOCTRINE (4.0.6+): If lupopedia-config.php does NOT exist, respond with error (AJAX cannot redirect to install.php usefully).
 
 if (!$lupopediaConfigPath) {
     header('Content-Type: application/json');
@@ -320,7 +301,8 @@ $rate_limits = [
  * Verify CSRF token
  */
 function verify_csrf_token($token) {
-    return isset($_SESSION['csrf_token']) && hash_equals($_SESSION['csrf_token'], $token ?? '');
+    $t = isset($token) ? $token : '';
+    return isset($_SESSION['csrf_token']) && hash_equals($_SESSION['csrf_token'], $t);
 }
 
 /**
@@ -507,15 +489,37 @@ switch ($action) {
             $input = [];
         }
         
-        $page_url = filter_var($input['page_url'] ?? $_SERVER['HTTP_REFERER'] ?? '', FILTER_SANITIZE_URL);
-        $actor_id = isset($input['actor_id']) ? intval($input['actor_id']) : null;
-        $referrer = filter_var($input['referrer'] ?? '', FILTER_SANITIZE_URL);
+        $page_url_raw = isset($input['page_url']) ? $input['page_url'] : '';
+        if ($page_url_raw === '' && isset($_SERVER['HTTP_REFERER'])) {
+            $page_url_raw = $_SERVER['HTTP_REFERER'];
+        }
+        $page_url = filter_var($page_url_raw, FILTER_SANITIZE_URL);
+        if ($page_url === false) {
+            $page_url = '';
+        }
+        $actor_id_int = isset($input['actor_id']) ? intval($input['actor_id']) : 0;
+        /* 0 = anonymous visitor (mysqli bind_param has no clean NULL for this all-string binder) */
+        $actor_id = ($actor_id_int > 0) ? $actor_id_int : 0;
+        $referrer_raw = isset($input['referrer']) ? $input['referrer'] : '';
+        $referrer = filter_var($referrer_raw, FILTER_SANITIZE_URL);
+        if ($referrer === false) {
+            $referrer = '';
+        }
+        $meta = array();
+        if ($referrer !== '') {
+            $meta['referrer'] = $referrer;
+        }
+        if (!empty($input['campaign']) && is_string($input['campaign'])) {
+            $meta['campaign'] = substr(preg_replace('/[^a-zA-Z0-9_\-\.]/', '', $input['campaign']), 0, 128);
+        }
+        $transition_metadata = empty($meta) ? '' : json_encode($meta);
+        $transition_type = 'page_view';
         
-        // Store in lupo_visits
+        // Store in lupo_visits (canonical columns per install_new_lupopedia.sql — no referer column)
         $visit_id = IdGenerator::generate();
-        $sql = replace_prefix("INSERT INTO {{prefix}}visits (visit_id, session_id, actor_id, path_url, referer, created_ymdhis) VALUES (?, ?, ?, ?, ?, ?)");
+        $sql = replace_prefix("INSERT INTO {{prefix}}visits (visit_id, session_id, actor_id, path_url, transition_type, transition_metadata, created_ymdhis, is_processed, is_deleted) VALUES (?, ?, ?, ?, ?, ?, ?, 0, 0)");
         
-        if (!execute($sql, [$visit_id, $session_id, $actor_id, $page_url, $referrer, get_current_utc()])) {
+        if (!execute($sql, [$visit_id, $session_id, $actor_id, $page_url, $transition_type, $transition_metadata, get_current_utc()])) {
             http_response_code(500);
             echo json_encode(['error' => 'Failed to track visit']);
             exit;

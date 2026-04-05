@@ -49,6 +49,9 @@ define('LUPO_TABLE_PREFIX', $table_prefix);
 if (!defined('LUPOPEDIA_ABSPATH')) {
     define('LUPOPEDIA_ABSPATH', ABSPATH);
 }
+if (!defined('LUPOPEDIA_PATH')) {
+    define('LUPOPEDIA_PATH', rtrim(ABSPATH, '/\\'));
+}
 if (!defined('LUPOPEDIA_PUBLIC_PATH')) {
     define('LUPOPEDIA_PUBLIC_PATH', '/' . basename(dirname(__FILE__)));
 }

@@ -2,8 +2,8 @@
 lupopedia.headers:
   header_format_version: 2
   lupopedia.schema: documentation
-  when_updated: "20260404164927"
-  last_modified_utc: "20260404164927"
+  when_updated: "20260404220006"
+  last_modified_utc: "20260404220006"
   file_path_from_root: "lupo-docs/implementations/README.md"
   web_path: "http://www.lupopedia.com/lupopedia/lupo-docs/implementations/README.md"
   federation_node_id: 0
@@ -23,6 +23,12 @@ lupopedia.headers:
 
 Workspaces for **PRD-driven** implementation tracking.
 
+## Cross-cutting agent reference (not PRD-scoped)
+
+| Folder | Purpose |
+|--------|---------|
+| **security_audit_cursor_ide** | [IDE security audit checklist](security_audit_cursor_ide/README.md) — shared hosting, **PRD 00 §17** (**RULE 93.SECURITY**); LILITH / THOTH review hooks |
+
 ## Directory naming (read first)
 
 Each folder under **`lupo-docs/implementations/`** that tracks a numbered PRD **must** be named **`{prd_file_stem}`** — the **same string** as the canonical PRD filename under **`lupo-docs/prd/`** **without** **`.md`** (e.g. **`36_rose_multi_persona_synthetic_dialog`** for **`36_rose_multi_persona_synthetic_dialog.md`**). **Do not** invent shorthand paths (e.g. **`prd_36_rose/`**). **Constitution:** **`lupo-docs/prd/00_root_constitutional_system_requirements.md`** **§5.8**. **Full spec:** **[PRD 31 — Implementation folder guidelines](../prd/31_implementation_folder_guidelines.md)** (layout, **`decisions/`** / **`questions/`** / **`answers/`** / **`comments/`**, scaffold).
@@ -39,6 +45,7 @@ Each folder under **`lupo-docs/implementations/`** that tracks a numbered PRD **
 | 25_departments_systems | PRD 25 | |
 | 26_five_layer_documentation_architecture | PRD 26 | |
 | 29_project_structure | PRD 29 | |
+| security_audit_cursor_ide | (PRD 00 §17 companion) | IDE security checklist — not a numbered PRD stem |
 
 ## Template
 

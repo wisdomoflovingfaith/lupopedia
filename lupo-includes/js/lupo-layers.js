@@ -43,7 +43,8 @@
  * - Content:         write(html) — innerHTML on modern browsers.
  * - Z-index:         setZ(z) — extension; DynLayer used css() / style for z-index.
  * - Init:            LupoLayerInit([root]) — scans div ids ending in "Div", sets window[prefix]=new LupoLayer(id); no eval.
- * - Alias:           DynLayerInit === LupoLayerInit (do not load with legacy dynlayer.js).
+ * - Alias:           DynLayerInit === LupoLayerInit; DynLayer === LupoLayer (heritage `new DynLayer(id)`).
+ *                    Do not load this file together with dynapi/js/dynlayer.js (duplicate globals).
  *
  * Not ported:        NS4 layers, document.write CSS helpers (css/writeCSS), frame/nestref targeting, eval-based globals from old constructor.
  */
@@ -449,4 +450,5 @@
     window.LupoLayer = LupoLayer;
     window.LupoLayerInit = LupoLayerInit;
     window.DynLayerInit = LupoLayerInit;
+    window.DynLayer = LupoLayer;
 }(typeof window !== 'undefined' ? window : this));

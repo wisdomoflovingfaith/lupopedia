@@ -1,3 +1,9 @@
 {
-  "capabilities": []
+  "capabilities": [
+    "agentic_guidance",
+    "environment_awareness",
+    "fallback_ladder_design",
+    "doctrine_gap_surfacing",
+    "technical_debt_signal"
+  ]
 }

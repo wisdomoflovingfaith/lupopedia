@@ -540,9 +540,14 @@ class InstallWizardConfigWriter
             }
             $keyValues[$k] = addslashes($keyValues[$k]);
         }
-        $configDir = LUPOPEDIA_PATH;
-        $configPath = $configDir . DIRECTORY_SEPARATOR . 'lupopedia-config.php';
-        $abspath = rtrim($configDir, DIRECTORY_SEPARATOR) . DIRECTORY_SEPARATOR;
+        require_once LUPOPEDIA_PATH . DIRECTORY_SEPARATOR . 'lupo-includes' . DIRECTORY_SEPARATOR . 'classes' . DIRECTORY_SEPARATOR . 'LupopediaConfigResolver.php';
+        $writeTargets = LupopediaConfigResolver::defaultWriteTargets(LUPOPEDIA_PATH);
+        $configDir = $writeTargets[0];
+        $configPath = $writeTargets[1];
+        $installRoot = rtrim(str_replace('\\', DIRECTORY_SEPARATOR, LUPOPEDIA_PATH), DIRECTORY_SEPARATOR);
+        $abspath = $installRoot . DIRECTORY_SEPARATOR;
+        $publicPathForDefine = '/' . basename($installRoot);
+        $publicPathForDefineEsc = addslashes($publicPathForDefine);
 
         $content = '<?php
 /**
@@ -585,7 +590,7 @@ $table_prefix = \'' . (isset($options['table_prefix']) && preg_match('/^[a-z0-9_
 if (!preg_match(\'/^[a-z0-9_]+$/\', $table_prefix)) { die("Invalid table prefix"); }
 define(\'LUPO_TABLE_PREFIX\', $table_prefix);
 if (!defined(\'LUPOPEDIA_ABSPATH\')) { define(\'LUPOPEDIA_ABSPATH\', ABSPATH); }
-if (!defined(\'LUPOPEDIA_PUBLIC_PATH\')) { define(\'LUPOPEDIA_PUBLIC_PATH\', \'/\' . basename(dirname(__FILE__))); }
+' . "if (!defined('LUPOPEDIA_PATH')) { define('LUPOPEDIA_PATH', rtrim(ABSPATH, '/\\'));\n" . 'if (!defined(\'LUPOPEDIA_PUBLIC_PATH\')) { define(\'LUPOPEDIA_PUBLIC_PATH\', \'' . $publicPathForDefineEsc . '\'); }
 if (!defined(\'LUPOPEDIA_URL\')) { define(\'LUPOPEDIA_URL\', LUPOPEDIA_PUBLIC_PATH); }
 define(\'LUPOPEDIA_CONFIG_LOADED\', true);
 ' . (isset($options['site_name']) ? "define('LUPOPEDIA_SITE_NAME', '" . addslashes($options['site_name']) . "');\n" : '')
@@ -609,17 +614,17 @@ require_once ABSPATH . LUPO_INCLUDES_DIR . \'/bootstrap.php\';
             return null;
         }
         @chmod($configPath, 0644);
-        $log[] = InstallWizardLogger::logEntry('ok', 'Wrote lupopedia-config.php');
+        $log[] = InstallWizardLogger::logEntry('ok', 'Wrote lupopedia-config.php to ' . $configPath);
 
-        self::ensureActorZeroDirs($configDir, $log);
-        self::ensureChannelsDir($configDir, $log);
+        self::ensureActorZeroDirs($installRoot, $log);
+        self::ensureChannelsDir($installRoot, $log);
 
         // Enqueue background command for channel/artifact import (Doctrine #8: System Commands Queue)
         self::enqueueBackgroundCommand($db_vars, $log, isset($options['table_prefix']) ? $options['table_prefix'] : 'lupo_');
 
         // Crafty config.php is only used during upgrade (for credentials). After successful upgrade we remove it
         // so only lupopedia-config.php remains and users are not confused by two configs.
-        $craftyConfig = $configDir . DIRECTORY_SEPARATOR . 'config.php';
+        $craftyConfig = $installRoot . DIRECTORY_SEPARATOR . 'config.php';
         if (is_file($craftyConfig)) {
             $safeToDelete = (is_file($configPath) && is_readable($configPath));
             if ($safeToDelete) {

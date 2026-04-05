@@ -3,26 +3,39 @@
  * Logout handler
  */
 
-// Load config - try multiple paths
-$configPaths = [
-    __DIR__ . '/lupopedia-config.php',
-    __DIR__ . '/../lupopedia-config.php',
-    dirname(__DIR__) . '/lupopedia-config.php',
-    __DIR__ . '/config.php',  // fallback
-    __DIR__ . '/../config.php'  // fallback
-];
+if (!defined('LUPOPEDIA_PATH')) {
+    define('LUPOPEDIA_PATH', __DIR__);
+}
+if (!defined('LUPOPEDIA_PUBLIC_PATH')) {
+    define('LUPOPEDIA_PUBLIC_PATH', '/' . basename(__DIR__));
+}
 
+require_once LUPOPEDIA_PATH . DIRECTORY_SEPARATOR . 'lupo-includes' . DIRECTORY_SEPARATOR . 'classes' . DIRECTORY_SEPARATOR . 'LupopediaConfigResolver.php';
+$configPath = LupopediaConfigResolver::resolve(LUPOPEDIA_PATH, LUPOPEDIA_PUBLIC_PATH);
 $configLoaded = false;
-foreach ($configPaths as $configPath) {
-    if (file_exists($configPath)) {
-        require_once $configPath;
-        $configLoaded = true;
-        break;
+if ($configPath !== null && is_file($configPath)) {
+    require_once $configPath;
+    $configLoaded = true;
+}
+if (!$configLoaded) {
+    $legacy = array(
+        __DIR__ . '/lupopedia-config.php',
+        __DIR__ . '/../lupopedia-config.php',
+        dirname(__DIR__) . '/lupopedia-config.php',
+        __DIR__ . '/config.php',
+        __DIR__ . '/../config.php',
+    );
+    foreach ($legacy as $p) {
+        if (file_exists($p)) {
+            require_once $p;
+            $configLoaded = true;
+            break;
+        }
     }
 }
 
 if (!$configLoaded) {
-    die("Configuration file not found. Please ensure lupo-config.php exists.");
+    die('Configuration file not found. Please ensure lupopedia-config.php exists.');
 }
 
 // Start session
@@ -49,6 +62,17 @@ if (!isset($_SESSION['auth_user_id']) && isset($_SESSION['actor_id'])) {
 $authService = new AuthService();
 $authService->logout();
 
-// Redirect to login page
-header('Location: /lupopedia/login.php');
+$lupoLogin = (defined('LUPOPEDIA_PUBLIC_PATH') ? rtrim(LUPOPEDIA_PUBLIC_PATH, '/') : '') . '/login.php';
+$loginUrlEsc = htmlspecialchars($lupoLogin, ENT_QUOTES, 'UTF-8');
+$loginUrlJs = json_encode($lupoLogin);
+
+// Clear admin intro sessionStorage (same tab survives PHP logout; intro would otherwise skip).
+header('Content-Type: text/html; charset=UTF-8');
+echo '<!DOCTYPE html><html><head><meta charset="UTF-8"><title>Logging out</title>';
+echo '<meta http-equiv="refresh" content="0;url=' . $loginUrlEsc . '">';
+echo '</head><body>';
+echo '<script>try{sessionStorage.removeItem("lupo_admin_scroll_intro_v1");}catch(e){}';
+echo 'window.location.replace(' . $loginUrlJs . ');</script>';
+echo '<p><a href="' . $loginUrlEsc . '">Continue to login</a></p>';
+echo '</body></html>';
 exit;

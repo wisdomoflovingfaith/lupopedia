@@ -4,7 +4,7 @@ lupopedia.headers:
   version_when_written: "4.0.94"
   file_path_from_root: "lupo-docs/versions/4.0.94/TODO.md"
   web_path: "http://www.lupopedia.com/lupopedia/lupo-docs/versions/4.0.94/TODO.md"
-  when_updated: "20260404161001"
+  when_updated: "20260405001004"
   channel_id: 42
   thread_id: "todo-backlog-4.0.94"
   actor_id: 102
@@ -27,7 +27,7 @@ lupopedia.edges:
       weight: 0.9
       reason: "Frozen 4.0.93 completed record"
 lupopedia.footer:
-  last_verified: "20260404161001"
+  last_verified: "20260405001004"
   verified_by:
     actor_id: 102
   orchestrator: "cursor:root"
@@ -38,6 +38,20 @@ lupopedia.footer:
 # 4.0.94 TODO
 
 Merged from **`lupo-docs/versions/4.0.93/TODO.md`** on 2026-04-03 (deduplicated). Single active backlog for this version.
+
+## Completed (code + version receipt — admin nav + logout intro — UTC `20260405001004`)
+
+- [x] **`logout.php` clears `lupo_admin_scroll_intro_v1`** — replay admin scroll intro after re-login in same tab; evidence: **`CHANGELOG.md`** **[2026-04-05] Admin scroll nav**; decision **`decisions/20260405001004_DECISION_APPROVED_admin_nav_logout_intro_cursor_thread.md`**.
+- [x] **Admin top nav logo slot (90×60)** + optional **`$admin_nav_logo_*`** — **`admin_layout.php`** + **`admin-intro-scroll.css`**.
+- [x] **Actor strip:** no **`ACTOR:`** label; **15**-char display + **`..`**; **`title`** full name — **`admin_layout.php`**; CSS **`max-width: 12em`**.
+- [x] **Version-folder sync** — **`comments/20260405001004_COMMENT_cursor_session_end_admin_nav_logout_handoff.md`**, **`PLAN`** Phase **L**, **`edges`**, **`WHAT_TO_WORK_ON_NEXT_SESSION`** Crafty handoff note, **`THREAD_INDEX`** rows (batch **`20260405001004`**).
+
+## Completed (documentation — AGAPE + KAIROS temporal + multi-actor routing — UTC `20260404175352`)
+
+- [x] **AGAPE constitutional + doctrine + packs** — PRD 00 §14.6, `AGAPE_DOCTRINE.md`, LILITH/validator/ROSE alignment; evidence: **`CHANGELOG.md`** **[2026-04-04] AGAPE** entry; UTC stamps **`20260404172442`** / batch **`20260404175216`**.
+- [x] **PRD 37 temporal + `add-status`** — §10 / §10.6, `scaffold_implementation.py`, PRD 31 cross-links; evidence: **`CHANGELOG.md`** **[2026-04-04] PRD 37 temporal**; UTC **`20260404173921`**.
+- [x] **Multi-actor `to_actor_id` PRD cluster** — PRDs **18, 36, 37, 31, 05**; evidence: **`CHANGELOG.md`** **[2026-04-04] Multi-actor channel routing**; UTC **`20260404174956`**.
+- [x] **Version-folder receipt** — `decisions/20260404175216_DECISION_APPROVED_agape_kairos_temporal_multi_actor_routing_docs.md`, `comments/20260404175216_COMMENT_cursor_session_end_agape_kairos_routing_version_sync.md`, `decisions/THREAD_INDEX.md`, `comments/THREAD_INDEX.md`, `edges.md`, `PLAN.md` Phase **K**, this **`TODO`** block, **`CHANGELOG`** sync line, **`WHAT_TO_WORK_ON_NEXT_SESSION.md`** (batch **`20260404175352`**, `tick.py`).
 
 ## Completed (documentation — service agents + Softaculous auto-installer narrative — UTC `20260404161001`)
 
@@ -94,6 +108,7 @@ Detail and monitoring/chat embed notes: **`WHAT_TO_WORK_ON_NEXT_SESSION.md`**.
 
 Order for the next working session (expanded: **`WHAT_TO_WORK_ON_NEXT_SESSION.md`**):
 
+- [ ] **Crafty Syntax 3.7.5 feature parity — ordered pass** — use **PRD 33** §**7.4**–§**7.9** (and any in-repo Crafty feature matrix) as checklist; **start with easy wins**, then harder rows (**WOLFIE** — orchestrator note **UTC `20260405001004`**, break after admin nav thread).
 - [ ] **Fresh install + Crafty Syntax 3.7.5 import** — **first**; foundation for everything (**PRD 33** §**10.1** + §**6**).
 - [ ] **Verify `admin.php` / `live.php`** — operator shell usable after install (**PRD 33** §**10.4** + §**7.3**).
 - [ ] **Crafty parity — pick one §7.4 item** — e.g. **real visitor list** (smallest visible win); then continue §**7.4**, then §**7.5**, §**7.6**.
@@ -266,6 +281,14 @@ Open rewrite/promotion work maps to **PLAN** rows **C-1**, **C-2**, **C-3**. **D
 - [ ] **Subdirectory installation** hardening (not web root) — verify end-to-end beyond PRD text.
 - [ ] **Softaculous certification execution (umbrella — Track B)** — Close via **§9** + **§10** gate rows and evidence artifacts; **§7.4–§7.9** tables are **Track A** (product). **Not** closed by documentation approval alone. Hub: **`lupo-docs/implementations/33_softaculous_certification_4_1_0_gate/`**. **PRD:** [lupo-docs/prd/33_softaculous_certification_4_1_0_gate.md](../../prd/33_softaculous_certification_4_1_0_gate.md).
 
+## Open — direct-address chat routing + KAIROS ingest (post–Phase K docs)
+
+**Context:** PRD cluster for **`lupo_dialog_messages.to_actor_id`** is **documented**; runtime may still treat messages as broadcast-only until API/UI work lands.
+
+- [ ] **`channels-api` + `chat-display.js` (and related)** — accept, validate, and persist **`to_actor_id`** per **PRD 18** / **PRD 05**; server resolves posting **`actor_id`** from session only (existing posture); routing column is additive.
+- [ ] **`KairosConsolidationService` + `kairos-api.php`** — reconcile behavior with **PRD 37** §10.6 (full-thread / index-first reads); document gaps or implement in a dedicated pass.
+- [ ] **Optional** — add **§14.6** banned phrase detection to **`validate_lupopedia_headers_universal.py`** (policy already in PRD 00 / validator doctrine text).
+
 ## Visitor web + monitoring embed + admin chat (after install + admin baseline)
 
 **Order:** Runs **after** critical path **Step 1–2** (install/import + **`admin.php`** / **`live.php`** smoke). Supports **Track A** (Crafty parity + operator UX).
@@ -306,6 +329,7 @@ Open rewrite/promotion work maps to **PLAN** rows **C-1**, **C-2**, **C-3**. **D
 - [x] **PRD 31 LILITH final audit + 4.0.94 version sync (Cursor thread, UTC `20260403025155`):** **`CHANGELOG.md`** top entry; **`WHAT_TO_WORK_ON_NEXT_SESSION.md`**; **`decisions/20260403_025155_DECISION_APPROVED_prd31_lilith_final_audit_version_sync.md`** + Q/A/C **`025156`–`025158`**; canonical **`lupo-docs/prd/31_implementation_folder_guidelines.md`** LILITH block (**`20260403024822`**).
 - [x] **LILITH directive (2026-04-04 UTC):** Refresh **`lupo-docs/versions/4.0.94/`** — `decisions/`, `questions/`, `answers/`, `comments/`, **`THREAD_INDEX`**, **`PLAN.md`**, **`TODO.md`**, **`CHANGELOG.md`**, **`edges.md`**; **`when_updated`** / **`last_verified`** stamps; scope = verified documentation/channel/Mood RGB work (see **`decisions/20260404_200000_DECISION_APPROVED_documentation_coordination_channel_semantic_mood_rgb.md`**).
 - [x] **Cursor session end (UTC `20260404074421`):** WordPress / Softaculous **docs + partial code** — **PRD 00** §15, **`LEARNED_FROM_WORDPRESS.md`**, **`SEMANTIC_MONITORING_DOCTRINE.md`**, **`CHAT_UI_JAVASCRIPT_SHARED_STATE_DOCTRINE.md`**, **PRD 33** §14 / implementation **33** Q&A + tasks, **`InstallWizardHtaccessWriter`** marker merge, **`build_softaculous_package.sh`** excludes; version-folder **`CHANGELOG`** / **`PLAN`** Phase **I** / **`TODO`** / **`edges`** / **`WHAT_TO_WORK_ON_NEXT_SESSION`** / **`comments/20260404_074421_…`** (see **`CHANGELOG.md`** top entry **[2026-04-04]**).
+- [x] **Cursor session end (UTC `20260404175216` decision + `20260404175352` index sync):** AGAPE + PRD 37 temporal/`add-status` + multi-actor **`to_actor_id`** docs — **`decisions/20260404175216_…multi_actor_routing_docs.md`**, **`comments/20260404175216_…`**, **`PLAN`** Phase **K**, **`edges`**, **`THREAD_INDEX`** rows, **`WHAT_TO_WORK_ON_NEXT_SESSION`** handoff; evidence **`CHANGELOG.md`** three **[2026-04-04]** entries + version-folder sync line below.
 - [ ] Transition remaining **“Unfinished Business”** items from 4.0.87 into documented contexts.
 - [ ] **Enhance channel coordination automation** and thread indexing.
 - [ ] **Improve context linking** and multi-agent workflows.

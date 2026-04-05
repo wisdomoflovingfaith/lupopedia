@@ -227,7 +227,7 @@ EOS interprets 25 years of real human behavior across:
 - 25+ independent emotional domains
 - Multi-domain activation (critical dissent + relational love simultaneously)
 - Shadow polarity (opposite poles within same domain)
-- Cultural faucets (AGAPE/METIS/ERIS + UBUNTU + MUDITA + WU_WEI + others)
+- Interpretive lenses (**AGAPE** = constitutional **§14.6** technical resilience metric — not sentiment; **METIS**/**ERIS** + UBUNTU + MUDITA + WU_WEI + others)
 
 This is emotional AI grounded in real human topology, not synthetic training data.
 

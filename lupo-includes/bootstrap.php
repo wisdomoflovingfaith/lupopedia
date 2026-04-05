@@ -10,6 +10,25 @@ if (!defined('LUPOPEDIA_CONFIG_LOADED')) {
     exit;
 }
 
+if (!defined('ABSPATH') || ABSPATH === '') {
+    print "Invalid configuration: ABSPATH is missing.";
+    exit;
+}
+
+// LUPOPEDIA_PATH must match the install root in config (ABSPATH); prevents a mismatched or hijacked config from pointing elsewhere.
+$lupo_abs_norm = rtrim(str_replace('\\', DIRECTORY_SEPARATOR, ABSPATH), DIRECTORY_SEPARATOR);
+if (defined('LUPOPEDIA_PATH')) {
+    $lupo_lp_norm = rtrim(str_replace('\\', DIRECTORY_SEPARATOR, LUPOPEDIA_PATH), DIRECTORY_SEPARATOR);
+    $lupo_ra = @realpath($lupo_abs_norm);
+    $lupo_rl = @realpath($lupo_lp_norm);
+    if ($lupo_ra !== false && $lupo_rl !== false && $lupo_ra !== $lupo_rl) {
+        print "Invalid configuration: LUPOPEDIA_PATH does not match ABSPATH.";
+        exit;
+    }
+} else {
+    define('LUPOPEDIA_PATH', $lupo_abs_norm);
+}
+
 // Writable runtime dirs (FTP / auto-installer: empty folders may be missing; mirrors InstallWizardHtaccessWriter::ensureRuntimeDirectories)
 if (defined('LUPOPEDIA_ABSPATH') && LUPOPEDIA_ABSPATH !== '') {
     $lupo_runtime_dirs = array('lupo-cache', 'lupo-logs', 'lupo-uploads', 'lupo-tmp');

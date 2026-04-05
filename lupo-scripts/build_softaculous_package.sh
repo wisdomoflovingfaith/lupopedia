@@ -36,7 +36,7 @@ mkdir -p "${STAGE}" "${DIST_DIR}"
 # Copy runtime tree; exclude dev / docs / IDE / VCS. Do NOT exclude lupo-database/lupopedia/content/
 # (LUPO_APP_DIR — required at runtime).
 # Never ship a developer's lupopedia-config.php (credentials). Sample ships as lupopedia-config-sample.php.
-# Root license.txt, README.md, README.txt, lupopedia-config-sample.php are not excluded.
+# Root license.txt, README.md, README.txt, INSTALL.txt, QUICKSTART.md, lupopedia-config-sample.php are not excluded.
 rsync -a \
   --delete \
   --exclude='lupopedia-config.php' \

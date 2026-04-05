@@ -265,6 +265,13 @@ if ($method === 'POST') {
     }
 
     $body = trim($input['body']);
+    require_once __DIR__ . '/../../classes/LupoEmojiPath.php';
+    $imgTokenErr = LupoEmojiPath::validateAllImgTokensInBody($body);
+    if ($imgTokenErr !== null) {
+        http_response_code(400);
+        echo json_encode(array('success' => false, 'error' => array('code' => 'INVALID_IMG_TOKEN', 'message' => $imgTokenErr)));
+        exit;
+    }
     $message_type = isset($input['message_type']) ? trim($input['message_type']) : 'text';
     $meta = isset($input['meta']) ? json_encode($input['meta']) : null;
     $routing_type = isset($input['routing_type']) ? trim($input['routing_type']) : 'broadcast';

@@ -4,8 +4,8 @@ lupopedia.headers:
   lupopedia.schema: documentation
   file_path_from_root: "lupo-docs/versions/4.0.94/WHAT_TO_WORK_ON_NEXT_SESSION.md"
   web_path: "http://www.lupopedia.com/lupopedia/lupo-docs/versions/4.0.94/WHAT_TO_WORK_ON_NEXT_SESSION.md"
-  when_updated: "20260404074421"
-  last_modified_utc: "20260404074421"
+  when_updated: "20260405001004"
+  last_modified_utc: "20260405001004"
   federation_node_id: 0
   channel_id: 42
   thread_id: "version-4-0-94-handoff"
@@ -17,7 +17,7 @@ lupopedia.headers:
   delegation_chain: "cursor:root"
   artifact_type: documentation
   artifact_kind: session_handoff
-  purpose: "Handoff — visitor web login/configure, PHP monitoring embed, admin chat (non-IIFE default); Softaculous doc+installer partial done; 34 ghosts + federation Q remain"
+  purpose: "Handoff — Crafty 3.7.5 feature parity pass (easy→hard); prior to_actor_id + KAIROS §10.6; visitor/monitoring/admin chat + 34 ghosts + federation Q"
   status: active
   tags:
     - "4.0.94"
@@ -90,8 +90,32 @@ lupopedia.edges:
       type: references
       weight: 1.0
       reason: "Session end 5W1H receipt (2026-04-04)"
+    - to: "lupo-docs/versions/4.0.94/decisions/20260404175216_DECISION_APPROVED_agape_kairos_temporal_multi_actor_routing_docs.md"
+      type: references
+      weight: 1.0
+      reason: "APPROVED receipt — AGAPE + PRD 37 temporal + to_actor_id routing docs"
+    - to: "lupo-docs/versions/4.0.94/comments/20260404175216_COMMENT_cursor_session_end_agape_kairos_routing_version_sync.md"
+      type: references
+      weight: 1.0
+      reason: "Session end — version-folder sync for same thread"
+    - to: "lupo-docs/prd/37_kairos_channel_memory_consolidation.md"
+      type: references
+      weight: 1.0
+      reason: "§10.6 chat ingest contract — compare to KairosConsolidationService"
+    - to: "lupo-docs/doctrine/AGAPE_DOCTRINE.md"
+      type: references
+      weight: 0.95
+      reason: "AGAPE technical doctrine — optional validator follow-up"
+    - to: "lupo-docs/versions/4.0.94/decisions/20260405001004_DECISION_APPROVED_admin_nav_logout_intro_cursor_thread.md"
+      type: references
+      weight: 1.0
+      reason: "APPROVED receipt — admin nav + logout sessionStorage (2026-04-05 thread)"
+    - to: "lupo-docs/versions/4.0.94/comments/20260405001004_COMMENT_cursor_session_end_admin_nav_logout_handoff.md"
+      type: references
+      weight: 0.95
+      reason: "Session end — PLAN L sync + Crafty handoff"
 lupopedia.footer:
-  last_verified: "20260404074421"
+  last_verified: "20260405001004"
   verified_by:
     identity_type: actor
     actor_id: 102
@@ -102,12 +126,16 @@ lupopedia.footer:
 
 # WHAT TO WORK ON NEXT SESSION
 
-**Recorded (UTC):** `20260404074421` (real UTC from `python lupo-bin/tick.py` this edit batch.)
+**Recorded (UTC):** `20260405001004` (real UTC from `python lupo-bin/tick.py` this edit batch.)
 
-## Priority 0 — Next session (2026-04-04 handoff — WOLFIE)
+## Priority 0 — Next session (2026-04-05 handoff — WOLFIE)
 
 | Area | Intent | Doctrine / PRD |
 |------|--------|----------------|
+| **Crafty Syntax 3.7.5 parity (ordered)** | Walk the **feature / parity checklist** — **start with easy rows**, then harder ones; align with **PRD 33** §**7.4**–§**7.9** and in-repo Crafty reference as needed | **PRD 33**; **`lupo-legacy/craftysyntax/`** read-only reference; **`TODO.md`** first bullet under *Next session* |
+| **Direct-address routing** | Wire **`to_actor_id`** in **`channels-api`** + **`chat-display.js`** (and related) so UI/API match **PRD 18** / **PRD 05**; **NULL** = broadcast | **PRD 18**, **PRD 05**, **`decisions/20260404175216_…multi_actor_routing_docs.md`** |
+| **KAIROS ingest** | Compare **`KairosConsolidationService`** + **`kairos-api.php`** to **PRD 37** §10.6 (full-thread / index-first); document gaps or implement | **PRD 37**, `app/Services/Kairos/KairosConsolidationService.php` |
+| **Optional AGAPE scan** | Implement PRD 00 §14.6 banned acceptance strings in **`validate_lupopedia_headers_universal.py`** if you want machine enforcement (policy text already shipped) | **PRD 00** §14.6, **`AGAPE_DOCTRINE.md`** |
 | **Visitor web** | **Login** and **configure** flows for end users (post-install operator/visitor expectations); simple mobile web acceptable per **Two-UI** | **`MOBILE_SEPARATION_DOCTRINE.md`**, **`WOLFIE_WORKFLOW_DOCTRINE.md`** |
 | **Monitoring embed** | PHP emits JS on **monitored** pages; align **`lupopedia_js.php`** story with **existing** routes (e.g. **`nav/semantic-navbar-js`**) — do not document fake endpoints | **`SEMANTIC_MONITORING_DOCTRINE.md`**, **PRD 28** |
 | **Admin chat** | Wire **admin** chat UI / **`channels-controller`** / **`chat-display`** patterns | **PRD 18**, **`CHAT_UI_JAVASCRIPT_SHARED_STATE_DOCTRINE.md`** |
@@ -115,6 +143,36 @@ lupopedia.footer:
 | **Optional unify** | Product spike: fold **`livehelp_js.php`** needs into **`lupopedia_js.php`** so one script owns shared visitor + monitor state | Decision + **PRD 18** / **28** if adopted |
 
 **Still parallel (not replaced):** **34** critical version ghosts (manual); **`find_edges.py`** debug when time allows; runtime visitor/chat **`actor_id`** audit (**PLAN** Phase **H**); open federation navigation **QUESTION** `20260403_222042_…`; remainder of **PRD 33** §7–§10 execution (**TODO.md** tables).
+
+---
+
+## Session summary (2026-04-05) — admin scroll nav chrome + logout intro replay (code thread)
+
+| Field | Value |
+|-------|-------|
+| **WHO** | Cursor (`actor_id` **102**), `cursor:root` |
+| **WHAT** | **`logout.php`** clears **`sessionStorage`** key **`lupo_admin_scroll_intro_v1`** before **`login.php`** redirect; **`admin_layout.php`** **90×60** logo (**`$admin_nav_logo_*`**); actor name **15** + **`..`**, no **`ACTOR:`**, **`title`** full; **`admin-intro-scroll.css`** / JS comment |
+| **WHERE** | Decision **`decisions/20260405001004_DECISION_APPROVED_admin_nav_logout_intro_cursor_thread.md`**; comment **`comments/20260405001004_COMMENT_cursor_session_end_admin_nav_logout_handoff.md`**; **`CHANGELOG`** **[2026-04-05]**; **`PLAN`** Phase **L** |
+| **WHEN** | UTC **`20260405001004`** |
+| **WHY** | Same-tab re-login skipped intro because **`sessionStorage`** outlived PHP session; top bar polish |
+| **HOW** | HTML interstitial on logout; layout/CSS/PHP truncation (**`mb_*`** when available) |
+
+**Human handoff:** Orchestrator break — next block = **Crafty Syntax feature list**, easy items first (**Priority 0** table above).
+
+---
+
+## Session summary (2026-04-04) — AGAPE, KAIROS temporal, multi-actor routing (documentation thread)
+
+| Field | Value |
+|-------|-------|
+| **WHO** | Cursor (`actor_id` **102**), `cursor:root` |
+| **WHAT** | **AGAPE** as technical constitutional metric (PRD 00 §14.6 + `AGAPE_DOCTRINE.md` + LILITH/validator/ROSE/agents); **PRD 37** §10 temporal discipline + **`scaffold_implementation.py add-status`** + PRD 31 cross-links; **multi-actor** docs — **`to_actor_id`** on **`lupo_dialog_messages`** across **PRD 18 / 36 / 37 / 31 / 05** |
+| **WHERE** | Canonical paths listed in **`decisions/20260404175216_DECISION_APPROVED_agape_kairos_temporal_multi_actor_routing_docs.md`** |
+| **WHEN** | PRD/doctrine edit stamps **`20260404172442`**, **`20260404173921`**, **`20260404174956`**; version receipt **`20260404175216`**; folder index sync **`20260404175352`** |
+| **WHY** | Measurable cooperation vs sentimental QA strings; stop filesystem order posing as truth; LILITH **Option 1** routing simplicity |
+| **HOW** | Markdown + YAML headers; **no** new **`parent_dialog_message_id`** in install SQL this thread; **no** runtime chat routing closure claimed |
+
+**Version-folder artifacts:** **`CHANGELOG.md`** (four top entries including sync line), **`PLAN.md`** Phase **K**, **`TODO.md`** (completed + **Open — direct-address…**), **`edges.md`**, **`THREAD_INDEX`** files, this file, **`comments/20260404175216_…`**.
 
 ---
 
@@ -305,6 +363,6 @@ Rest is allowed. The repo keeps state.
 
 ---
 
-**Next read:** [`TODO.md`](TODO.md), [`PLAN.md`](PLAN.md) Phase **H**, [`CHANGELOG.md`](CHANGELOG.md) (top entry), [`decisions/20260403_222041_DECISION_APPROVED_department_first_actor_model_prd_alignment.md`](decisions/20260403_222041_DECISION_APPROVED_department_first_actor_model_prd_alignment.md), [`version_ghosts_report.json`](../../implementations/29_project_structure/status/version_ghosts_report.json).
+**Next read:** [`TODO.md`](TODO.md) (**Open — direct-address chat routing**), [`PLAN.md`](PLAN.md) Phase **K** + **H**, [`CHANGELOG.md`](CHANGELOG.md) (top entries), [`decisions/20260404175216_DECISION_APPROVED_agape_kairos_temporal_multi_actor_routing_docs.md`](decisions/20260404175216_DECISION_APPROVED_agape_kairos_temporal_multi_actor_routing_docs.md), [`decisions/20260403_222041_DECISION_APPROVED_department_first_actor_model_prd_alignment.md`](decisions/20260403_222041_DECISION_APPROVED_department_first_actor_model_prd_alignment.md), [`version_ghosts_report.json`](../../implementations/29_project_structure/status/version_ghosts_report.json).
 
 This output complies with Lupopedia Constitutional Root Rules.

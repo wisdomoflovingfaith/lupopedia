@@ -3,10 +3,10 @@ lupopedia.headers:
   header_format_version: 2
   lupopedia.schema: prd
   version_when_written: "4.0.94"
-  when_updated: "20260404054717"
+  when_updated: "20260404174956"
   file_path_from_root: "lupo-docs/prd/37_kairos_channel_memory_consolidation.md"
   web_path: "http://www.lupopedia.com/lupopedia/lupo-docs/prd/37_kairos_channel_memory_consolidation.md"
-  last_modified_utc: "20260404054717"
+  last_modified_utc: "20260404174956"
   federation_node_id: 0
   channel_id: 42
   thread_id: "prd-kairos-memory"
@@ -33,6 +33,14 @@ lupopedia.edges:
       type: references
       weight: 1.0
       reason: "Channel and thread scope"
+    - to: "lupo-docs/prd/17_decisions_format.md"
+      type: references
+      weight: 1.0
+      reason: "THREAD_INDEX and thread artifact naming — §10 temporal discipline"
+    - to: "lupo-docs/prd/31_implementation_folder_guidelines.md"
+      type: references
+      weight: 1.0
+      reason: "Implementation status/ — add-status tooling; index-first reading"
     - to: "lupo-docs/prd/04_tags_metadata.md"
       type: references
       weight: 0.95
@@ -66,7 +74,7 @@ lupopedia.edges:
       weight: 1.0
       reason: "Current PHP consolidation implementation"
 lupopedia.footer:
-  last_verified: "20260404054717"
+  last_verified: "20260404174956"
   verified_by:
     identity_type: "agent"
     actor_id: 102
@@ -207,7 +215,79 @@ Observations derived from messages with **`metadata_json.rose_synthesis: true`**
 
 ---
 
-## 10. Open questions
+## 10. Temporal discipline / anti-backwards reads
+
+### 10.1 The problem
+
+A **file system** is ordered by name or modification time. **Conversation and implementation truth** are not necessarily linear. An agent that reads **`status/`** (or **`decisions/`**, **`answers/`**) in **directory listing order** may see the **end** of a thread before the **why**, and treat stale text as current.
+
+### 10.2 Index-first reading (normative for agents and tooling)
+
+1. **Parse `THREAD_INDEX.md` first** in each typed subfolder (**`status/`**, **`decisions/`**, **`questions/`**, **`answers/`**, **`comments/`**) before relying on individual dated artifacts (**PRD 17**, **PRD 31**).
+2. **Use the index** to determine **authoritative reading order** and **what exists** — not raw filesystem sort.
+3. **Follow `lupopedia.edges`** for **lineage** between artifacts — not filename patterns alone.
+
+### 10.3 Freshness sorting hierarchy (fallback when index is missing or incomplete)
+
+When **`THREAD_INDEX.md`** does not establish order, use this **deterministic** hierarchy:
+
+| Priority | Source | Format | Example |
+|----------|--------|--------|---------|
+| 1 | UTC in filename | `YYYYMMDD_HHIISS` prefix | `20260404_120000_STATUS_....md` |
+| 2 | Header `when_updated` | 14-digit `YYYYMMDDHHIISS` | `when_updated: "20260404120000"` |
+| 3 | Header `last_modified_utc` | 14-digit `YYYYMMDDHHIISS` | `last_modified_utc: "20260404120000"` |
+
+**KAIROS** and other consolidators **SHALL** sort ingest candidates by this hierarchy before merging or choosing canonical rows. **SHALL NOT** use filesystem **mtime** as primary ordering.
+
+### 10.4 Edge semantics for implementation / status lineage
+
+| Edge type | Meaning | Use when |
+|-----------|---------|----------|
+| **`supersedes`** | New artifact **replaces** prior truth | Prior text is **invalid** or **obsolete** (e.g. retracted status, replaced schema decision) |
+| **`references`** | New artifact **continues** prior thread | Prior remains **valid**; this **adds** context (typical **incremental status**) |
+| **`has_answer` / `has_question`** | Q&A thread linkage | Per **PRD 17** sibling artifacts |
+
+**Guidance:** **`supersedes`** is **not** friction — it signals **replacement**. **`references`** signals **extension**. Agents **MUST** distinguish them when writing headers.
+
+### 10.5 Required behavior for KAIROS (documentation contract)
+
+- **SHALL** treat **`THREAD_INDEX.md`** and header **`when_updated`** / **`lupopedia.edges`** as **stronger** ordering signals than directory order when ingesting **file-backed** provenance into **`lupo_actor_memory`** (where applicable).
+- **SHALL** respect **`supersedes`** edges: **do not** treat superseded file content as **current** truth when a successor exists in the same lineage.
+- **SHALL** use **`references`** edges to **walk** conversation or implementation threads.
+- **SHALL NOT** rely on **filesystem modification time** as the **primary** sort key for truth.
+
+**Tooling:** **`python lupo-scripts/scaffold_implementation.py add-status`** creates a dated **`status/`** file, optional **`references`** / **`supersedes`** edge to the **prior** status artifact, and appends **`status/THREAD_INDEX.md`**.
+
+### 10.6 Channel chat context reading (multi-actor simple pattern)
+
+**Applies when** KAIROS (or tooling) consumes **`lupo_dialog_messages`** rows for consolidation — alongside §10.1–10.5 for **file-backed** artifacts.
+
+#### Full thread context
+
+KAIROS **SHALL** read **all** messages in the relevant **`channel_id`** + **`dialog_thread_id`** scope **regardless of `to_actor_id`**. **Rationale:** “who said what to whom” requires the **entire** transcript, not only lines addressed to the consolidator.
+
+**Canonical routing column:** **`to_actor_id`** (NULL = broadcast). **Synonym in doctrine:** **said-to** / **`said_to_actor_id`** — **routing only**, **not** visibility (**PRD 18**, **PRD 36** §1.3).
+
+#### Lineage within chat rows
+
+- **Today:** Ordering and threading **primarily** use **`dialog_thread_id`**, **`created_ymdhis`**, and (where populated) **`message_id`** / UI reply metadata — see TOON.  
+- **Future (optional DDL):** A first-class **`parent_dialog_message_id`** on **`lupo_dialog_messages`** **may** be added in **install SQL** when ratified; until then **do not** assume that column exists in TOON. KAIROS **MAY** still use **`metadata_json`** subkeys for **provenance** when the product defines them, without introducing a **`mention_actor_ids`** column.
+
+#### Use of **`to_actor_id`** in consolidation
+
+KAIROS **SHALL** use **`to_actor_id`** to:
+
+1. Interpret **conversation flow** (addressed vs broadcast).  
+2. Inform **relationship / expectation** signals (who was expected to answer).  
+3. **Not** to **exclude** messages from memory merge when the reader is a channel member.
+
+#### File-backed temporal discipline (unchanged)
+
+For **implementation-folder** markdown, KAIROS **SHALL** still apply **§10.2–10.5** (**`THREAD_INDEX.md` first**, **`supersedes` / `references`**, freshness hierarchy). **SHALL NOT** use filesystem **mtime** as primary order (**§10.3**).
+
+---
+
+## 11. Open questions
 
 1. Should **channel memory** rows live under a **dedicated system `actor_id`** (e.g. **115** only) vs **per human actor** memory partitions?
 2. **Retention:** cap observations per channel / TTL?
@@ -215,7 +295,7 @@ Observations derived from messages with **`metadata_json.rose_synthesis: true`**
 
 ---
 
-## 11. References (summary)
+## 12. References (summary)
 
 - **Implementation:** `app/Services/Kairos/KairosConsolidationService.php`, `lupo-includes/modules/api/kairos-api.php`, `lupo-ui/js/chat-display.js`  
 - **Agents:** `lupo-agents/kairos/agent.json`, **PRD 07**  

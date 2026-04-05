@@ -38,16 +38,17 @@ if (!function_exists('lupo_random_bytes')) {
     }
 }
 
-// Config path: lupopedia-config.php first; config.php only if lupopedia-config does not exist (legacy)
+// Config path: LupopediaConfigResolver (WordPress-style + legacy DOCUMENT_ROOT paths); then Crafty config.php (legacy)
+if (!defined('LUPOPEDIA_CONFIG_PATH')) {
+    require_once LUPOPEDIA_PATH . DIRECTORY_SEPARATOR . 'lupo-includes' . DIRECTORY_SEPARATOR . 'classes' . DIRECTORY_SEPARATOR . 'LupopediaConfigResolver.php';
+    $lupoCfgResolved = LupopediaConfigResolver::resolve(LUPOPEDIA_PATH, LUPOPEDIA_PUBLIC_PATH);
+    if ($lupoCfgResolved !== null) {
+        define('LUPOPEDIA_CONFIG_PATH', $lupoCfgResolved);
+    }
+}
 if (!defined('LUPOPEDIA_CONFIG_PATH')) {
     $docRoot = isset($_SERVER['DOCUMENT_ROOT']) ? $_SERVER['DOCUMENT_ROOT'] : '';
-    if (file_exists(dirname($docRoot) . '/lupopedia-config.php')) {
-        define('LUPOPEDIA_CONFIG_PATH', dirname($docRoot) . '/lupopedia-config.php');
-    } elseif (file_exists(dirname($docRoot) . LUPOPEDIA_PUBLIC_PATH . '/lupopedia-config.php')) {
-        define('LUPOPEDIA_CONFIG_PATH', dirname($docRoot) . LUPOPEDIA_PUBLIC_PATH . '/lupopedia-config.php');
-    } elseif (@file_exists(LUPOPEDIA_PATH . '/lupopedia-config.php')) {
-        define('LUPOPEDIA_CONFIG_PATH', LUPOPEDIA_PATH . '/lupopedia-config.php');
-    } elseif (file_exists(dirname($docRoot) . '/config.php')) {
+    if (file_exists(dirname($docRoot) . '/config.php')) {
         define('LUPOPEDIA_CONFIG_PATH', dirname($docRoot) . '/config.php');
     } elseif (file_exists(dirname($docRoot) . LUPOPEDIA_PUBLIC_PATH . '/config.php')) {
         define('LUPOPEDIA_CONFIG_PATH', dirname($docRoot) . LUPOPEDIA_PUBLIC_PATH . '/config.php');

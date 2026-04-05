@@ -4,8 +4,8 @@ lupopedia.headers:
   lupopedia.schema: doctrine
   file_path_from_root: "lupo-docs/doctrine/CONFIGURATION_DOCTRINE.md"
   web_path: "http://www.lupopedia.com/lupopedia/lupo-docs/doctrine/CONFIGURATION_DOCTRINE.md"
-  last_modified_utc: "20260403113047"
-  when_updated: "20260403113047"
+  last_modified_utc: "20260404212949"
+  when_updated: "20260404212949"
   federation_node_id: 0
   channel_id: 42
   thread_id: "doctrine-header-repair"
@@ -25,9 +25,13 @@ lupopedia.edges:
       type: implements
       weight: 1.0
       reason: "Doctrine PRD lineage; constitutional audit 20260403"
+    - to: "lupo-includes/classes/LupopediaConfigResolver.php"
+      type: references
+      weight: 1.0
+      reason: "Canonical config discovery and wizard write target (WordPress wp-load / setup-config semantics)"
 
 lupopedia.footer:
-  last_verified: "20260403113047"
+  last_verified: "20260404212949"
   verified_by:
     identity_type: actor
     actor_id: 2
@@ -49,49 +53,38 @@ Define the configuration file search algorithm and security requirements for Lup
 
 ## Search Algorithm
 
-The Lupopedia bootstrap (`lupo-includes/bootstrap.php`) searches for `lupopedia-config.php` using this algorithm:
+**Canonical implementation:** `lupo-includes/classes/LupopediaConfigResolver.php` — used by `index.php`, `admin.php`, `install.php`, `channel.php`, `lupo-ajax.php`, `livehelp_js.php`, `image.php`, `login.php`, and related entrypoints **before** loading `lupopedia-config.php`.
 
-```php
-// Search order:
-$search_paths = [
-    dirname($_SERVER['DOCUMENT_ROOT']),           // 1. Above web root
-    dirname(dirname(__FILE__)),                    // 2. Above installation
-    dirname(__FILE__)                              // 3. In installation
-];
+`lupo-includes/bootstrap.php` does **not** search; it runs only **after** the config file has been loaded and defined `LUPOPEDIA_CONFIG_LOADED`.
 
-foreach ($search_paths as $path) {
-    $config_file = $path . '/lupopedia-config.php';
-    if (file_exists($config_file)) {
-        require_once $config_file;
-        break;
-    }
-}
-```
+Lupopedia is **always** installed under a subdirectory URL (e.g. `example.com/lupopedia/`). Discovery therefore **prefers** config **outside** the web document root, then the install folder, then a guarded parent path.
 
-## Configuration File Search Order
+Order in `LupopediaConfigResolver::resolve()` (first existing file wins):
 
-The application MUST search for `lupopedia-config.php` in this exact order:
+1. `dirname($_SERVER['DOCUMENT_ROOT'])/lupopedia-config.php` — one level **above** the web root (shared-hosting default).
+2. `dirname(DOCUMENT_ROOT)` + public path segment + `/lupopedia-config.php` — legacy layout (e.g. config under a folder named like the URL segment next to `public_html`).
+3. `LUPOPEDIA_PATH/lupopedia-config.php` — install directory (wizard default, dev convenience).
+4. `dirname(LUPOPEDIA_PATH)/lupopedia-config.php` only if that parent does **not** contain `lupo-includes/bootstrap.php` (not another Lupopedia tree; mirrors WordPress skipping parent `wp-config` when the parent is another install).
 
-```
-1. One level above web document root
-   Example: /home/user/lupopedia-config.php
-   (when web root is /home/user/public_html/)
+If `DOCUMENT_ROOT` is unset (e.g. some CLI), steps **1–2** are skipped; resolution uses **3**, then **4**.
 
-2. One level above the Lupopedia installation directory
-   Example: /home/user/lupopedia-config.php
-   (when Lupopedia is at /home/user/public_html/lupopedia/)
+### Why above DOCUMENT_ROOT first
 
-3. In the Lupopedia installation directory itself
-   Example: /home/user/public_html/lupopedia/lupopedia-config.php
-```
+| Step | Purpose |
+|------|---------|
+| **Above web root** | Config is not inside `DOCUMENT_ROOT`; aligns with subdirectory installs and hoster guidance. |
+| **Legacy above-root + segment** | Older documented layout still supported. |
+| **Install directory** | Default wizard write location and local dev. |
+| **Parent of install (guarded)** | Develop-style or manual placement beside the app folder. |
 
-### Why This Order
+## Wizard write destination (WordPress `setup-config.php`)
 
-| Level | Purpose | Security |
-|-------|---------|-----------|
-| **Above web root** | Most secure — config not accessible via web | ✅ Highest |
-| **Above installation** | Common auto-installer pattern | ✅ High |
-| **In installation** | Fallback for manual installs or testing | ⚠️ Lower |
+`InstallWizardConfigWriter::writeConfig` uses `LupopediaConfigResolver::defaultWriteTargets()`:
+
+- If `lupopedia-config-sample.php` exists in **LUPOPEDIA_PATH**, write `lupopedia-config.php` there.
+- Else if the sample exists only in **dirname(LUPOPEDIA_PATH)** and that parent is not another Lupopedia install, write there (mirrors WordPress choosing `dirname(ABSPATH)/wp-config.php` when the sample is one level up).
+
+Generated `ABSPATH` in the config file always points at the **install root** (Lupopedia application directory), not necessarily the directory that holds the config file. `LUPOPEDIA_PUBLIC_PATH` in generated config is derived from the install folder basename so it stays correct when the config file is outside the install directory.
 
 ## Security Implications
 

@@ -3,10 +3,10 @@ lupopedia.headers:
   header_format_version: 2
   lupopedia.schema: documentation
   version_when_written: "4.0.94"
-  when_updated: "20260404161001"
+  when_updated: "20260405001004"
   file_path_from_root: "lupo-docs/versions/4.0.94/comments/THREAD_INDEX.md"
   web_path: "http://www.lupopedia.com/lupopedia/lupo-docs/versions/4.0.94/comments/THREAD_INDEX.md"
-  last_modified_utc: "20260404161001"
+  last_modified_utc: "20260405001004"
   federation_node_id: 0
   channel_id: 42
   thread_id: "version-4.0.94-comments"
@@ -22,7 +22,7 @@ lupopedia.headers:
   - "comments"
   - "4.0.94"
 lupopedia.footer:
-  last_verified: "20260404161001"
+  last_verified: "20260405001004"
   verified_by:
     identity_type: "actor"
     actor_id: 102
@@ -35,6 +35,8 @@ lupopedia.footer:
 
 | Posted (UTC) | File | Summary |
 |--------------|------|---------|
+| 20260405_001004 | [20260405001004_COMMENT_cursor_session_end_admin_nav_logout_handoff.md](20260405001004_COMMENT_cursor_session_end_admin_nav_logout_handoff.md) | Cursor: session end — `logout.php` clears intro `sessionStorage`; admin nav logo + actor truncation; `PLAN` L / `TODO` / `edges` / `CHANGELOG`; Crafty parity checklist handoff for next session; decision `501004`. |
+| 20260404_175216 | [20260404175216_COMMENT_cursor_session_end_agape_kairos_routing_version_sync.md](20260404175216_COMMENT_cursor_session_end_agape_kairos_routing_version_sync.md) | Cursor: session end — AGAPE §14.6 + PRD 37 temporal/`add-status` + multi-actor `to_actor_id` PRD cluster; version-folder `CHANGELOG`/`PLAN` K/`TODO`/`edges`/`WHAT_TO_WORK_ON_NEXT_SESSION`; decision `175216`. |
 | 20260404_161001 | [20260404_161001_COMMENT_cursor_service_agents_softaculous_version_doc_sync.md](20260404_161001_COMMENT_cursor_service_agents_softaculous_version_doc_sync.md) | Cursor: `4.0.94` tree sync — service agents + PRD 00 §5 + Softaculous auto-installer + THOTH grounding; `CHANGELOG` / `PLAN` J / `TODO` / `edges`; decision `161001`. |
 | 20260404_074421 | [20260404_074421_COMMENT_cursor_session_end_softaculous_wordpress_semantic_chat.md](20260404_074421_COMMENT_cursor_session_end_softaculous_wordpress_semantic_chat.md) | Cursor: session end — PRD 00 §15, WordPress + semantic + chat JS doctrines, installer htaccess + packager script; next = visitor UI + monitoring embed + admin chat (non-IIFE default). |
 | 20260403_140555 | [20260403_140555_COMMENT_cursor_doctrine_audit_version_sync.md](20260403_140555_COMMENT_cursor_doctrine_audit_version_sync.md) | Cursor: 4.0.94 tree sync for doctrine audit + mobile/workflow thread; no unverified batch counts in version docs. |
