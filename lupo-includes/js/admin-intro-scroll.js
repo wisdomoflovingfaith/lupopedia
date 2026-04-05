@@ -1,5 +1,6 @@
 /**
- * Admin intro: 7 squares center → radius bloom + rotate → top nav row → scroll mid expands.
+ * Admin intro: 7 chips (80×60) center → radius bloom + rotate → flush top row (gap 0) → scroll mid expands.
+ * Chip layout must match CSS --lupo-admin-nav-chip-w / --lupo-admin-nav-chip-h and GAP (0 = no seam).
  * Vanilla JS (no GSAP). Runs once per tab until cleared (logout.php removes the key so the next login replays).
  */
 /* global window, document */
@@ -8,8 +9,8 @@
 
     var STORAGE_KEY = 'lupo_admin_scroll_intro_v1';
     var RADIUS = 200;
-    var SQ = 60;
-    var GAP = 5;
+    var CHIP_W = 80;
+    var GAP = 0;
     var DURATION_BLOOM_MS = 1400;
     var DURATION_ROW_MS = 1000;
     var PAUSE_BEFORE_SCROLL_MS = 400;
@@ -27,9 +28,9 @@
 
     function navSlotLeft(i, ww, n) {
         var count = n > 0 ? n : 7;
-        var total = count * SQ + (count - 1) * GAP;
+        var total = count * CHIP_W + (count - 1) * GAP;
         var start = (ww - total) / 2;
-        return start + i * (SQ + GAP);
+        return start + i * (CHIP_W + GAP);
     }
 
     function runBloom(squares) {

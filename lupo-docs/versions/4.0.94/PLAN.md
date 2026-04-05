@@ -4,7 +4,7 @@ lupopedia.headers:
   version_when_written: "4.0.94"
   file_path_from_root: "lupo-docs/versions/4.0.94/PLAN.md"
   web_path: "http://www.lupopedia.com/lupopedia/lupo-docs/versions/4.0.94/PLAN.md"
-  when_updated: "20260405001004"
+  when_updated: "20260405104405"
   channel_id: 42
   actor_id: 102
   actor_name: "CURSOR"
@@ -173,6 +173,20 @@ Same table as [`README.md`](README.md) — **CANONICAL** under `lupo-docs/prd/` 
 - [ ] **Other sign-out paths** — if any bypass **`logout.php`**, mirror **`sessionStorage.removeItem`** or document exception (open if discovered).
 
 **Completion criteria:** Thread outcomes in **`CHANGELOG`**; **WHAT NOT** in decision excludes unrelated PRD/validator threads; **TODO** / **WHAT_TO_WORK_ON_NEXT_SESSION** carry **Crafty parity checklist** handoff for next orchestrator session.
+
+### Phase M — Semantic navbar external embed + Admin provisioning + PRD 21 (code + docs — UTC `20260405104405`)
+
+**Evidence:** `CHANGELOG.md` entry **[2026-04-05] Semantic navbar external embed**; `decisions/20260405104405_DECISION_APPROVED_semantic_navbar_embed_admin_prd21_cursor_thread.md`; `comments/20260405104405_COMMENT_cursor_session_end_semantic_navbar_crafty_handoff.md`.
+
+- [x] **`SemanticNavbarEmbedContext`** — origin normalization, federation node + **`semantic_widget`** trust gate, **`federation_discovery`** touch on **`unknown_node`** / **`no_trust`**, CORS emission.
+- [x] **`semantic-navbar-api.php`** — **403** payload; operator message → **Admin → Semantic widget** (not SQL runbook).
+- [x] **`AdminSemanticWidgetHandler`** — POST forms (register **`lupo_federation_nodes`**, grant **`lupo_federated_trust`**), CSRF, explicit PK allocation; UI order: slug controls → **relative** snippet → **absolute** snippet → federation section.
+- [x] **`lupo-en.php`** — semantic admin strings (web-first wording); flash keys.
+- [x] **`admin.php`** — semantic-widget section description.
+- [x] **`lupo-docs/prd/21_semantic_navbar.md`** — external embed **5.x** narrative, admin obligation, slug contract, edges (PRD **11**, **34**, **SILENT_HARVEST**, **SEMANTIC_MONITORING**, **`AdminSemanticWidgetHandler`**).
+- [ ] **Optional:** dedicated Admin flow to create **`lupo_contents`** scoped to a chosen **`federation_node_id`** (deferred — content via artifacts/headers until APPROVED).
+
+**Completion criteria:** **`CHANGELOG`** + version **`decisions`/`comments`** + **`edges`** + **`TODO`** + **`WHAT_TO_WORK_ON_NEXT_SESSION`** reference this thread; **no** false claim that step-3 content creation is fully form-driven in Admin unless a later decision says so.
 
 ## References
 

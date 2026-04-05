@@ -2,10 +2,10 @@
 lupopedia.headers:
   header_format_version: 2
   lupopedia.schema: documentation
-  when_updated: "20260405001004"
+  when_updated: "20260405104405"
   file_path_from_root: "lupo-docs/versions/4.0.94/edges.md"
   web_path: "http://www.lupopedia.com/lupopedia/lupo-docs/versions/4.0.94/edges.md"
-  last_modified_utc: "20260405001004"
+  last_modified_utc: "20260405104405"
   federation_node_id: 0
   channel_id: 42
   thread_id: "version-4.0.94-edges"
@@ -214,8 +214,32 @@ lupopedia.edges:
       type: references
       weight: 1.0
       reason: "add-status subcommand (implementation status artifacts)"
+    - to: "lupo-docs/versions/4.0.94/decisions/20260405104405_DECISION_APPROVED_semantic_navbar_embed_admin_prd21_cursor_thread.md"
+      type: references
+      weight: 1.0
+      reason: "APPROVED receipt — semantic navbar embed + Admin + PRD 21 (Cursor thread)"
+    - to: "lupo-docs/versions/4.0.94/comments/20260405104405_COMMENT_cursor_session_end_semantic_navbar_crafty_handoff.md"
+      type: references
+      weight: 0.95
+      reason: "Session end — version sync + Crafty parity handoff"
+    - to: "lupo-docs/prd/21_semantic_navbar.md"
+      type: references
+      weight: 1.0
+      reason: "Semantic navbar — external embed, admin obligation, slug contract"
+    - to: "lupo-includes/classes/SemanticNavbarEmbedContext.php"
+      type: references
+      weight: 1.0
+      reason: "Cross-origin embed gate; federation_discovery"
+    - to: "lupo-includes/classes/AdminSemanticWidgetHandler.php"
+      type: references
+      weight: 1.0
+      reason: "Admin semantic widget — nodes, trust, snippets"
+    - to: "lupo-includes/modules/api/semantic-navbar-api.php"
+      type: references
+      weight: 1.0
+      reason: "Navbar JSON API; embed_not_trusted"
 lupopedia.footer:
-  last_verified: "20260404175352"
+  last_verified: "20260405104405"
   verified_by:
     identity_type: "actor"
     actor_id: 102
@@ -226,6 +250,9 @@ lupopedia.footer:
 
 ## Documentation edges
 
+- **Decision (this version):** [decisions/20260405104405_DECISION_APPROVED_semantic_navbar_embed_admin_prd21_cursor_thread.md](decisions/20260405104405_DECISION_APPROVED_semantic_navbar_embed_admin_prd21_cursor_thread.md) — APPROVED **5W1H** receipt — **`SemanticNavbarEmbedContext`**, **`semantic-navbar-api`** **403** copy, **`AdminSemanticWidgetHandler`** forms + page order, **PRD 21** external embed + slug contract + edges (**11**, **34**, **SILENT_HARVEST**, **SEMANTIC_MONITORING**); **WHAT NOT** excludes unrelated PRD **16/26/30/31** template claims and optional embedder-content wizard.
+- **Comment:** [comments/20260405104405_COMMENT_cursor_session_end_semantic_navbar_crafty_handoff.md](comments/20260405104405_COMMENT_cursor_session_end_semantic_navbar_crafty_handoff.md) — session end — **`PLAN`** Phase **M**, **`TODO`**, **`CHANGELOG`**, **`edges`**, **Crafty** feature-parity handoff (human: easy→hard when rested).
+- **PRD:** [lupo-docs/prd/21_semantic_navbar.md](../../prd/21_semantic_navbar.md) — semantic floating navbar; external allowlist; discovery; admin web provisioning.
 - **Decision (this version):** [decisions/20260405001004_DECISION_APPROVED_admin_nav_logout_intro_cursor_thread.md](decisions/20260405001004_DECISION_APPROVED_admin_nav_logout_intro_cursor_thread.md) — APPROVED **5W1H** receipt — **`logout.php`** + admin scroll nav (**logo**, **actor** truncation, **`sessionStorage`** intro key); **WHAT NOT** excludes unrelated PRD **16/26/30/31** template claims.
 - **Comment:** [comments/20260405001004_COMMENT_cursor_session_end_admin_nav_logout_handoff.md](comments/20260405001004_COMMENT_cursor_session_end_admin_nav_logout_handoff.md) — session end — **`PLAN`** Phase **L**, **`TODO`**, **`CHANGELOG`**, **Crafty** checklist handoff.
 - **Decision (this version):** [decisions/20260404175216_DECISION_APPROVED_agape_kairos_temporal_multi_actor_routing_docs.md](decisions/20260404175216_DECISION_APPROVED_agape_kairos_temporal_multi_actor_routing_docs.md) — APPROVED **5W1H** receipt — **AGAPE** §14.6 cluster, **PRD 37** temporal + **`scaffold_implementation.py add-status`**, multi-actor **`to_actor_id`** routing across **PRD 18 / 36 / 37 / 31 / 05** (evidence: top **`CHANGELOG.md`** entries **[2026-04-04]** AGAPE / PRD 37 / routing).
@@ -314,6 +341,9 @@ lupopedia.footer:
 - **ADMIN LAYOUT:** [lupo-includes/themes/default/layouts/admin_layout.php](../../../lupo-includes/themes/default/layouts/admin_layout.php) — scroll nav row: logo lead, actor strip.
 - **ADMIN SCROLL CSS:** [lupo-includes/css/admin-intro-scroll.css](../../../lupo-includes/css/admin-intro-scroll.css) — `.lupo-admin-nav-logo` (90×60), actor text width.
 - **ADMIN SCROLL JS:** [lupo-includes/js/admin-intro-scroll.js](../../../lupo-includes/js/admin-intro-scroll.js) — intro overlay; `sessionStorage` key `lupo_admin_scroll_intro_v1`.
+- **SEMANTIC EMBED GATE:** [lupo-includes/classes/SemanticNavbarEmbedContext.php](../../../lupo-includes/classes/SemanticNavbarEmbedContext.php) — cross-origin federation + trust; `federation_discovery` on deny.
+- **SEMANTIC NAVBAR API:** [lupo-includes/modules/api/semantic-navbar-api.php](../../../lupo-includes/modules/api/semantic-navbar-api.php) — JSON sections per slug; `embed_not_trusted`.
+- **ADMIN SEMANTIC WIDGET:** [lupo-includes/classes/AdminSemanticWidgetHandler.php](../../../lupo-includes/classes/AdminSemanticWidgetHandler.php) — register `lupo_federation_nodes`, grant `lupo_federated_trust`, snippets.
 
 ## External edges
 
@@ -356,5 +386,8 @@ lupopedia.footer:
 | `decisions/20260405001004_…` | `logout.php`, `admin_layout.php`, `admin-intro-scroll.css`, `admin-intro-scroll.js` | Admin nav + logout intro thread |
 | `comments/20260405001004_…` | `PLAN` L, `TODO`, `WHAT_TO_WORK_ON_NEXT_SESSION` | Session end + Crafty handoff |
 | `CHANGELOG` [2026-04-05] | `501004` decision + comment | Evidence UTC `20260405001004` |
+| `decisions/20260405104405_…` | `SemanticNavbarEmbedContext.php`, `semantic-navbar-api.php`, `AdminSemanticWidgetHandler.php`, PRD 21, `lupo-en.php` semantic keys | Semantic navbar embed + Admin + PRD 21 thread |
+| `comments/20260405104405_…` | `PLAN` M, `TODO`, `WHAT_TO_WORK_ON_NEXT_SESSION`, Crafty handoff | Session end UTC `20260405104405` |
+| `CHANGELOG` [2026-04-05] (semantic navbar entry) | `104405` decision + comment + indexes | Evidence UTC `20260405104405` |
 
 Update this file whenever a new thread file or PRD section creates a durable cross-link.

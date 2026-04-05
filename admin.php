@@ -35,6 +35,10 @@ require_once LUPOPEDIA_PATH . '/lupo-includes/classes/AuthSessionManager.php';
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
+require_once LUPOPEDIA_PATH . '/lupo-includes/classes/LupoLocale.php';
+LupoLocale::bootstrap(LUPOPEDIA_PATH);
+require_once LUPOPEDIA_PATH . '/lupo-includes/lupo-i18n.php';
+
 if (!empty($_SESSION['password_change_required'])) {
     $cp = defined('LUPOPEDIA_PUBLIC_PATH') ? rtrim(LUPOPEDIA_PUBLIC_PATH, '/') . '/change-password' : '/change-password';
     header('Location: ' . $cp);
@@ -158,8 +162,9 @@ $admin_menu_sections = array(
     array(
         'title' => 'General',
         'items' => array(
-            'Artifacts' => 'admin.php?section=artifacts',
+            'Content' => 'admin.php?section=artifacts',
             'Q/A' => 'admin.php?section=documentation',
+            'Semantic widget' => 'admin.php?section=semantic-widget',
             'Master Settings' => 'admin.php?section=settings',
             'Help' => 'admin.php?section=help',
             'Support' => 'admin.php?section=support',
@@ -219,6 +224,7 @@ $admin_menu_sections = array(
     array(
         'title' => 'Data',
         'items' => array(
+            'Overview' => 'admin.php?section=database',
             'CSV Data Export' => 'admin.php?section=csv-export',
             'Visits' => 'admin.php?section=data-visits',
             'Messages' => 'admin.php?section=data-messages',
@@ -264,6 +270,7 @@ foreach ($admin_menu_sections as $group) {
 $admin_section_info = array(
     'artifacts' => array('description' => 'Manage system artifacts and chunks. Replaces the legacy document system for RAG and semantic mapping.', 'links' => array('Artifacts API' => 'lupo-api/v1/artifact.php')),
     'documentation' => array('description' => 'Links to Lupopedia documentation and doctrine. Use the Q/A and Content areas from the main nav for browsing.', 'links' => array('Doctrine' => 'doctrine/', 'Q/A' => 'qa/', 'Docs' => 'lupo-docs/')),
+    'semantic-widget' => array('description' => 'Semantic floating navbar: register embedder sites (federation node + trust), copy-paste script (nav/semantic-navbar-js). PRD 21.', 'links' => array('Content' => 'admin.php?section=artifacts')),
     'settings' => array('description' => 'Master settings for the installation (e.g. site name, timezone, feature flags). Configuration is stored in config and database; this panel will be expanded to edit key settings.', 'links' => array()),
     'help' => array('description' => 'In-app help and usage guides. Content can be added here or linked to doctrine/docs.', 'links' => array()),
     'support' => array('description' => 'Support contacts and resources for administrators.', 'links' => array()),
@@ -285,6 +292,7 @@ $admin_section_info = array(
     'my-account' => array('description' => 'Edit your own operator account (profile, password). Use My Profile from the main nav for profile; admin-specific options can be added here.', 'links' => array('My Profile' => 'my-profile')),
     'operators' => array('description' => 'Create, edit, and delete operators. User management is in the Data → Users section.', 'links' => array('Users' => 'admin.php?section=users')),
     'departments-html' => array('description' => 'HTML code snippets for department-specific widgets or embed codes.', 'links' => array('Departments' => 'admin.php?section=departments')),
+    'database' => array('description' => 'Tabbed overview: recent visits, path rollups, and daily referrer counts (lupo_visits, lupo_paths, lupo_referers_daily).', 'links' => array('Visits' => 'admin.php?section=data-visits', 'Paths' => 'admin.php?section=data-paths', 'Referrers' => 'admin.php?section=data-referrers')),
     'data-visits' => array('description' => 'Visit analytics (lupo_visits, lupo_analytics_visits). List and filter visits.', 'links' => array()),
     'data-messages' => array('description' => 'Message database (lupo_dialog_messages). Browse and search messages.', 'links' => array()),
     'data-referrers' => array('description' => 'Referrer analytics (lupo_referers).', 'links' => array()),
@@ -350,31 +358,27 @@ if (!$isAdmin) {
         $stale_count  = count($stale_rows);
         $no_lv_count  = ($no_lv_row && isset($no_lv_row['cnt'])) ? (int) $no_lv_row['cnt'] : 0;
 
-        $panel = '<div class="admin-staleness-panel" style="margin-top:1.5em;padding:1em;border:1px solid #daa;background:#fff8f8;border-radius:4px;">';
-        $panel .= '<h3 style="margin-top:0;">Metadata Staleness <small style="font-weight:normal;font-size:.85em;">(read-only &mdash; threshold: 2026-03-01)</small></h3>';
+        $panel = '<div class="admin-metadata-staleness">';
+        $panel .= '<h3>Metadata Staleness <small>(read-only &mdash; threshold: 2026-03-01)</small></h3>';
 
         if ($stale_count === 0 && $no_lv_count === 0) {
-            $panel .= '<p style="color:#080;">&#10003; All metadata records have current <code>last_verified</code> timestamps.</p>';
+            $panel .= '<p class="admin-staleness-ok">&#10003; All metadata records have current <code>last_verified</code> timestamps.</p>';
         } else {
-            $panel .= '<p style="color:#a00;">&#9888; Stale <code>last_verified</code>: <strong>' . $stale_count . '</strong> &nbsp;|&nbsp; '
+            $panel .= '<p class="admin-staleness-warn">&#9888; Stale <code>last_verified</code>: <strong>' . $stale_count . '</strong> &nbsp;|&nbsp; '
                 . 'Missing <code>last_verified</code> (entity): <strong>' . $no_lv_count . '</strong></p>';
 
             if ($stale_count > 0) {
-                $panel .= '<table style="width:100%;border-collapse:collapse;font-size:.9em;">'
-                    . '<thead><tr style="background:#f0e0e0;">'
-                    . '<th style="padding:4px 8px;text-align:left;">entity_type</th>'
-                    . '<th style="padding:4px 8px;text-align:left;">entity_id</th>'
-                    . '<th style="padding:4px 8px;text-align:left;">last_verified</th>'
-                    . '<th style="padding:4px 8px;text-align:left;">class_name</th>'
+                $panel .= '<table class="admin-staleness-table"><thead><tr>'
+                    . '<th>entity_type</th><th>entity_id</th><th>last_verified</th><th>class_name</th>'
                     . '</tr></thead><tbody>';
                 foreach ($stale_rows as $sr) {
                     $lv_val = isset($sr['last_verified']) ? (string) $sr['last_verified'] : '';
                     $lv_display = ($lv_val !== '') ? htmlspecialchars($lv_val) : '<em>NULL</em>';
-                    $panel .= '<tr style="border-top:1px solid #ecc;">'
-                        . '<td style="padding:3px 8px;">' . htmlspecialchars((string) $sr['entity_type']) . '</td>'
-                        . '<td style="padding:3px 8px;">' . htmlspecialchars((string) $sr['entity_id']) . '</td>'
-                        . '<td style="padding:3px 8px;color:#900;">' . $lv_display . '</td>'
-                        . '<td style="padding:3px 8px;">' . htmlspecialchars((string) $sr['class_name']) . '</td>'
+                    $panel .= '<tr>'
+                        . '<td>' . htmlspecialchars((string) $sr['entity_type']) . '</td>'
+                        . '<td>' . htmlspecialchars((string) $sr['entity_id']) . '</td>'
+                        . '<td class="admin-staleness-bad">' . $lv_display . '</td>'
+                        . '<td>' . htmlspecialchars((string) $sr['class_name']) . '</td>'
                         . '</tr>';
                 }
                 $panel .= '</tbody></table>';
@@ -399,8 +403,9 @@ if ($isAdmin && isset($_GET['section']) && is_string($_GET['section'])) {
 
     // Section title and active menu key (must match menu item label)
     $section_titles = array(
-        'artifacts' => array('Artifacts', 'Artifacts'),
+        'artifacts' => array('Content', 'Content'),
         'documentation' => array('Q/A', 'Q/A'),
+        'semantic-widget' => array('Semantic widget', 'Semantic widget'),
         'settings' => array('Master Settings', 'Master Settings'),
         'help' => array('Help', 'Help'),
         'support' => array('Support', 'Support'),
@@ -435,6 +440,7 @@ if ($isAdmin && isset($_GET['section']) && is_string($_GET['section'])) {
         'data-paths' => array('Paths', 'Paths'),
         'data-keywords' => array('Keywords', 'Keywords'),
         'csv-export' => array('CSV Data Export', 'CSV Data Export'),
+        'database' => array('Data', 'Overview'),
         'module-qa' => array('Questions & Answers', 'Questions & Answers'),
         'channel66-qa' => array('Channel 66 Q&A', 'Channel 66 Q&A'),
         'directory' => array('View Directory', 'View Directory'),
@@ -462,6 +468,20 @@ if ($isAdmin && isset($_GET['section']) && is_string($_GET['section'])) {
             require_once LUPOPEDIA_PATH . '/lupo-includes/classes/AdminCsvExportHandler.php';
             $admin_main_content = AdminCsvExportHandler::render($db, $prefix, $base);
         }
+    } elseif ($section === 'database') {
+        $admin_page_title = function_exists('lupo_t') ? lupo_t('admin.page.data', 'Data') : 'Data';
+        $admin_active_key = 'Overview';
+        if (!$db) {
+            $admin_main_content = '<p class="admin-empty">Database not available.</p>';
+        } else {
+            require_once LUPOPEDIA_PATH . '/lupo-includes/classes/AdminDataHubHandler.php';
+            $admin_main_content = AdminDataHubHandler::render($db, $prefix, $base);
+        }
+    } elseif ($section === 'semantic-widget') {
+        $admin_page_title = function_exists('lupo_t') ? lupo_t('admin.page.semantic_widget', 'Semantic widget') : 'Semantic widget';
+        $admin_active_key = 'Semantic widget';
+        require_once LUPOPEDIA_PATH . '/lupo-includes/classes/AdminSemanticWidgetHandler.php';
+        $admin_main_content = AdminSemanticWidgetHandler::render($db, $prefix, $base);
     } elseif ($section === 'channels' && $db) {
         $admin_page_title = 'Channels';
         $admin_active_key = 'Channels';

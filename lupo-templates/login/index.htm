@@ -2,40 +2,49 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Wolf Peer Login</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wolf Peer Login (static preview)</title>
     <!--
         Standalone reference template (path: lupo-templates/login/).
 
-        JS: ../../lupo-includes/js/lupo-layers.js — DynLayer-style API (moveTo, slideTo, clip*, write,
-        show/hide, LupoLayerInit / DynLayerInit) without eval. See file header in lupo-layers.js.
+        Production: root login.php — same CSS/JS paths via LUPOPEDIA_PUBLIC_PATH, lupo_t() strings,
+        POST login, language select (lupo_locale), forgot-password link.
 
-        Production entry (PHP): root login.php loads the same script via LUPOPEDIA_PUBLIC_PATH.
-
-        Optional init: call LupoLayerInit() then use globals header + login from ids headerDiv / loginDiv
-        (same naming as legacy DynLayerInit). This file uses explicit new LupoLayer('…') in script.js.
+        JS: ../../lupo-includes/js/lupo-layers.js + script.js (initApp + submit pending label via window.lupoLoginSigningText in PHP).
     -->
     <link rel="stylesheet" href="style.css">
     <script src="../../lupo-includes/js/lupo-layers.js"></script>
+    <script>window.lupoLoginSigningText = 'Signing In…';</script>
     <script src="script.js"></script>
 </head>
 <body onload="initApp()">
 
     <div id="headerDiv" class="login-header">
-        <img src="../../lupo-images/logo.png" alt="Wolf Logo" class="login-logo">
+        <img src="../../lupo-images/wolfoverlogin.png" alt="Wolf Logo" class="login-logo">
     </div>
 
     <div id="loginDiv" class="login-container">
-        <form class="login-form">
+        <form class="login-form" action="#" method="get">
             <h2>Sign In</h2>
+            <p class="form-subtitle">Lupopedia</p>
             <div class="input-group">
-                <label>Username</label>
-                <input type="text" placeholder="Enter username">
+                <label for="lupo_locale">Language</label>
+                <select class="lupo-locale-select" id="lupo_locale" name="lupo_locale">
+                    <option value="en" selected>English</option>
+                </select>
             </div>
             <div class="input-group">
-                <label>Password</label>
-                <input type="password" placeholder="Enter password">
+                <label for="username">Username</label>
+                <input type="text" id="username" name="username" placeholder="Enter username">
+            </div>
+            <div class="input-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" placeholder="Enter password">
             </div>
             <button type="submit" class="login-btn">Login</button>
+            <div class="forgot-password">
+                <a href="#">Forgot your password?</a>
+            </div>
         </form>
     </div>
 

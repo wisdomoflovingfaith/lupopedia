@@ -2,10 +2,10 @@
 lupopedia.headers:
   header_format_version: 2
   lupopedia.schema: doctrine
-  when_updated: "20260404220006"
+  when_updated: "20260405003854"
   file_path_from_root: "lupo-docs/prd/00_root_constitutional_system_requirements.md"
   web_path: "http://www.lupopedia.com/lupopedia/lupo-docs/prd/00_root_constitutional_system_requirements.md"
-  last_modified_utc: "20260404220006"
+  last_modified_utc: "20260405003854"
   federation_node_id: 0
   channel_id: 42
   thread_id: "constitutional-root-requirements"
@@ -147,6 +147,18 @@ lupopedia.edges:
       type: implements
       weight: 1.0
       reason: "Canonical eval-free UI layer / DHTML-style controller — Section 16 (RULE 93.UI_LAYERS)"
+    - to: "lupo-includes/classes/LupoLocale.php"
+      type: implements
+      weight: 1.0
+      reason: "Session locale + catalog load — Section 16.6 (RULE 93.UI_STRINGS_LOCALE)"
+    - to: "lupo-includes/lupo-i18n.php"
+      type: implements
+      weight: 1.0
+      reason: "lupo_t() accessor for shipped UI strings — Section 16.6"
+    - to: "lupo-includes/lang/"
+      type: references
+      weight: 1.0
+      reason: "Per-locale PHP return-array catalogs (lupo-en.php, …) — Section 16.6"
     - to: "lupo-docs/prd/37_kairos_channel_memory_consolidation.md"
       type: references
       weight: 1.0
@@ -225,6 +237,7 @@ These rules ensure:
 - Subdirectory installation support
 - **4.0.x schema evolution by fresh install only** — no Lupopedia→Lupopedia upgrade until **4.1.0** (see **§1.0**)
 - **Shipped browser UI** stays vanilla, build-free, and eval-safe for layering and animation (see **§16**)
+- **User-visible UI copy** is locale-ready: **`lupo_t()`** + **`lupo-includes/lang/lupo-*.php`** (see **§16.6**)
 - **Security invariants** for hostile shared hosting: path anchoring, SQL discipline, AGAPE fallbacks, direct-access hygiene (see **§17**)
 
 These rules override all other PRDs, doctrines, and implementation details.
@@ -1060,6 +1073,22 @@ Before an agent proposes a new **runtime** `<script src="…">` or **stylesheet*
 | Legacy DynAPI (heritage, eval present) | **`lupo-includes/js/dynapi/js/dynlayer.js`** |
 | WOLFIE doctrine | **`lupo-rules/root/WOLFIE_DOCTRINE.md`**, **§14** above |
 | Proven code preservation | **§9.20** — do not “modernize away” working heritage without justification |
+| UI strings / locale | **§16.6** — **`LupoLocale`**, **`lupo_t()`**, **`lupo-includes/lang/lupo-*.php`** |
+
+### 16.6 User-visible strings and locale (RULE 93.UI_STRINGS_LOCALE)
+
+Lupopedia is **multi-locale capable**: operator and login surfaces MUST NOT assume English-only forever. New **shipped** UI text in PHP templates (e.g. **`login.php`**, **`admin.php`**, **`lupo-includes/themes/`**, handler-rendered HTML) MUST go through the **sanctioned string API** so IDE agents and human authors add keys to locale catalogs instead of hardcoding literals.
+
+| Rule | Requirement |
+|------|-------------|
+| **Mandatory** | After **`LupoLocale::bootstrap($appRoot)`** (and **`require_once`** **`lupo-includes/lupo-i18n.php`** where applicable), user-visible strings MUST use **`lupo_t('semantic.key', 'Fallback English')`**. Semantic keys use dotted namespaces (e.g. **`login.sign_in`**, **`admin.layout.log_out`**, **`admin.itm.{slug}`** for sidebar items derived from stable English labels). |
+| **Mandatory** | Locale data lives in **`lupo-includes/lang/lupo-{locale}.php`**, each file **`return`ing** one associative array (Crafty-style **per-language file**, but **no** global **`$lang['txtNN']`** — use readable keys). **English** is **`lupo-en.php`**. |
+| **Mandatory** | Allowed locale codes are **whitelisted** in **`LupoLocale::allowedLocales()`**. Adding a language requires: **(1)** new **`lupo-{code}.php`** with the **same keys** as English (values translated), **(2)** register **`code`** in **`allowedLocales()`**, **(3)** expose **`code`** in login / admin language controls. |
+| **Mandatory** | Session key **`lupo_locale`** stores the active choice; **`GET` / `POST`** **`lupo_locale`** may update it when whitelisted (see **`LupoLocale::bootstrap()`**). |
+| **Forbidden** | Introducing a second parallel i18n system (gettext-only, JSON-only without PHP catalogs, or ad-hoc globals) for the same surfaces without an APPROVED decision superseding this section. |
+| **JS note** | Client-visible strings SHOULD be supplied from PHP (**`json_encode(lupo_t(...))`**, **`data-*`**, or inline in small scripts) so one catalog owns copy; duplicated English in JS is **discouraged** for new features. |
+
+**Reference (IDE agents):** **`AGENTS.md`** — *UI strings (locale / i18n)*; craft reference only: **`craftysyntax-reference/lang/`** (legacy **`txtN`** pattern — do not copy numbering; use semantic keys).
 
 ---
 
@@ -1084,6 +1113,7 @@ All files in `lupo-rules/root/` are binding constitutional law and override all 
 | Section 9.20 proven code preservation | Code review — agent must justify any change to pre-2010 code |
 | Section 15 multi-environment patterns | Code review + installer paths — `InstallWizardHtaccessWriter.php`, `install.php`, PRD 33 §14 traceability |
 | Section 16 UI layer & animation | Code review — `lupo-includes/js/lupo-layers.js` for new motion/layer code; no eval/string timers; no npm on runtime path |
+| Section 16.6 UI strings / locale | Code review — new ship-facing HTML uses `lupo_t()` + keys in `lupo-includes/lang/`; new locales update `LupoLocale::allowedLocales()` |
 | Section 17 security invariants (RULE 93.SECURITY) | Code review + **`lupo-docs/implementations/security_audit_cursor_ide/README.md`** — LILITH cognitive tax; THOTH schema/doc truth |
 | Schema DDL | `lupo-database/lupopedia/mysql/install/install_new_lupopedia.sql` |
 
@@ -1091,7 +1121,7 @@ All files in `lupo-rules/root/` are binding constitutional law and override all 
 
 ## 11. Refinements
 
-*Sections 12-13 reserved for future expansion. **§15** (WordPress multi-environment patterns), **§16** (UI layer & animation, RULE 93.UI_LAYERS), and **§17** (security invariants, RULE 93.SECURITY) are active.*
+*Sections 12-13 reserved for future expansion. **§15** (WordPress multi-environment patterns), **§16** (UI layer & animation, RULE 93.UI_LAYERS; **§16.6** UI strings / locale, RULE 93.UI_STRINGS_LOCALE), and **§17** (security invariants, RULE 93.SECURITY) are active.*
 
 - All doctrine and PRD files must reference this file as the constitutional anchor using an outbound edge.
 - All new PRDs must be reviewed for compliance with these requirements.

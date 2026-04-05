@@ -3,6 +3,10 @@
  * Semantic Navbar JS Generator (4.0.71)
  *
  * Outputs JavaScript to render a premium floating semantic navbar.
+ * Cross-origin: when the script is loaded from Lupopedia but the page is another origin,
+ * API calls append embed_origin, embed_page, embed_vid (localStorage). The server requires
+ * lupo_federation_nodes + lupo_federated_trust (trust_type semantic_widget); otherwise 403
+ * and lupo_federation_discovery is updated for the host.
  */
 
 if (!defined('LUPOPEDIA_CONFIG_LOADED')) {
@@ -18,6 +22,70 @@ header('Cache-Control: no-cache, must-revalidate');
 (function() {
     const WEBPATH = "<?= addslashes(rtrim($base, '/')) ?>";
     const CURRENT_SLUG = "<?= addslashes($slug) ?>";
+
+    function lupoPageOrigin() {
+        try {
+            return window.location.origin || '';
+        } catch (e) {
+            return '';
+        }
+    }
+
+    function lupoScriptOrigin() {
+        try {
+            var el = document.currentScript;
+            if (!el || !el.src) {
+                return '';
+            }
+            return new URL(el.src, document.baseURI || undefined).origin;
+        } catch (e2) {
+            return '';
+        }
+    }
+
+    var LUPO_SCRIPT_ORIGIN = lupoScriptOrigin();
+    var LUPO_PAGE_ORIGIN = lupoPageOrigin();
+    var LUPO_CROSS_ORIGIN = !!(LUPO_SCRIPT_ORIGIN && LUPO_PAGE_ORIGIN && LUPO_SCRIPT_ORIGIN !== LUPO_PAGE_ORIGIN);
+
+    function lupoEnsureEmbedVid() {
+        var k = 'lupo_semantic_embed_vid';
+        try {
+            var v = localStorage.getItem(k);
+            if (v && v.length >= 8) {
+                return v;
+            }
+            v = '';
+            var i;
+            for (i = 0; i < 32; i++) {
+                v += Math.floor(Math.random() * 16).toString(16);
+            }
+            localStorage.setItem(k, v);
+            return v;
+        } catch (e) {
+            return '';
+        }
+    }
+
+    function lupoEmbedQueryString() {
+        if (!LUPO_CROSS_ORIGIN) {
+            return '';
+        }
+        var q = [];
+        q.push('embed_origin=' + encodeURIComponent(LUPO_PAGE_ORIGIN));
+        try {
+            var href = window.location.href.split('#')[0];
+            if (href.length > 500) {
+                href = href.substring(0, 500);
+            }
+            q.push('embed_page=' + encodeURIComponent(href));
+        } catch (e3) {
+        }
+        var vid = lupoEnsureEmbedVid();
+        if (vid) {
+            q.push('embed_vid=' + encodeURIComponent(vid));
+        }
+        return '?' + q.join('&');
+    }
 
     const styles = `
         .lupo-navbar {
@@ -171,9 +239,22 @@ header('Cache-Control: no-cache, must-revalidate');
         if (container.dataset.loaded === 'true') return;
         
         try {
-            const response = await fetch(`${WEBPATH}/${type}/${CURRENT_SLUG}`);
+            var pathSlug = encodeURIComponent(CURRENT_SLUG);
+            var url = WEBPATH + '/' + type + '/' + pathSlug + lupoEmbedQueryString();
+            var fetchOpts = { credentials: LUPO_CROSS_ORIGIN ? 'omit' : 'same-origin' };
+            const response = await fetch(url, fetchOpts);
             const result = await response.json();
-            
+
+            if (!result.success) {
+                var denyMsg = (result.message) ? String(result.message) : 'Embed not allowed.';
+                container.innerHTML = '';
+                var errDiv = document.createElement('div');
+                errDiv.style.cssText = 'padding:10px;color:#ff8a80;font-size:12px;line-height:1.4;';
+                errDiv.textContent = denyMsg;
+                container.appendChild(errDiv);
+                return;
+            }
+
             if (result.success && result.data.length > 0) {
                 container.innerHTML = '';
                 result.data.forEach(item => {

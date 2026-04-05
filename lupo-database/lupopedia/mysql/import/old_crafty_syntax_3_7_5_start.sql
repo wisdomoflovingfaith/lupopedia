@@ -4609,7 +4609,7 @@ CREATE TABLE `livehelp_visit_track` (
   `title` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
   `whendone` bigint NOT NULL DEFAULT '0',
   `referrer` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT ''
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='DEPRECATED: Ephemeral session tracking. Not imported into lupo_visits. Safe to delete after migration.';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='DEPRECATED: Imported into lupo_visits via import_from_old_crafty_syntax.sql. Safe to delete after migration.';
 
 --
 -- Dumping data for table `livehelp_visit_track`

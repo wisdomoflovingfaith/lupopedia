@@ -1149,7 +1149,10 @@ FROM livehelp_referers_monthly r;
 -- ======================================================================
 -- livehelp_visit_track / livehelp_visits_daily / livehelp_visits_monthly  → {{prefix}}visits (4.0.68 raw-events schema)
 -- livehelp_paths_firsts / livehelp_paths_monthly                         → {{prefix}}paths (4.0.68 aggregated flows)
--- {{prefix}}visits: session_id, actor_id, path_url, entercontentid, created_ymdhis, is_processed. Legacy daily/monthly imported as synthetic rows (is_processed=1).
+-- {{prefix}}visits:
+--   - visit_track: real rows (location → path_url, whendone → created_ymdhis, CRC32(sessionid) → session_id) for path drill-down.
+--   - visits_daily: synthetic per URL/day (is_processed=1); used for daily rollups / graphs; do not use for Top URLs (see admin Data hub).
+--   - visits_monthly: synthetic per URL/month (is_processed=1); legacy_directvisits in transition_metadata = Crafty "directvisits" for Top URLs.
 -- {{prefix}}paths: entercontentid, exitcontentid, year_num, month_num, day_num, count_num, transition_type.
 -- ======================================================================
 
@@ -1157,7 +1160,7 @@ ALTER TABLE livehelp_visit_track
     ENGINE=InnoDB,
     CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 ALTER TABLE livehelp_visit_track
-  COMMENT = 'DEPRECATED: Ephemeral session tracking. Not imported into {{prefix}}visits. Safe to delete after migration.';
+  COMMENT = 'DEPRECATED: Imported into {{prefix}}visits (raw hits). Safe to delete after migration.';
 
 ALTER TABLE livehelp_visits_daily
     ENGINE=InnoDB,
@@ -1173,6 +1176,50 @@ ALTER TABLE livehelp_visits_monthly
 
 TRUNCATE {{prefix}}visits;
 SET @lupo_import_visit_id := 0;
+
+-- Raw session hits (Crafty livehelp_visit_track): enables Paths tab session logic.
+-- session_id = CRC32(sessionid) (MySQL) so same Crafty session groups; path_url = location; time = whendone (14-digit BIGINT UTC).
+INSERT INTO {{prefix}}visits (
+    visit_id,
+    session_id,
+    actor_id,
+    instance_id,
+    path_url,
+    entercontentid,
+    enter_table,
+    transition_type,
+    transition_metadata,
+    created_ymdhis,
+    is_processed,
+    is_deleted,
+    deleted_ymdhis
+)
+SELECT
+    (@lupo_import_visit_id := @lupo_import_visit_id + 1) AS visit_id,
+    CRC32(t.sessionid) AS session_id,
+    COALESCE(t.livehelp_id, 0) AS actor_id,
+    0 AS instance_id,
+    SUBSTRING(COALESCE(t.location, ''), 1, 2048) AS path_url,
+    0 AS entercontentid,
+    'content' AS enter_table,
+    'pageview' AS transition_type,
+    CAST(JSON_OBJECT(
+        'source', 'livehelp_visit_track',
+        'legacy_recno', t.recno,
+        'legacy_referrer', t.referrer,
+        'legacy_page', t.page,
+        'legacy_title', t.title
+    ) AS CHAR) AS transition_metadata,
+    CASE
+        WHEN t.whendone >= 10000000000000 AND t.whendone <= 99999999999999 THEN t.whendone
+        WHEN t.whendone >= 1000000000000 AND t.whendone <= 9999999999999 THEN CAST(CONCAT(CAST(t.whendone AS CHAR), '0') AS UNSIGNED)
+        WHEN t.whendone >= 10000000 AND t.whendone <= 99999999 THEN CAST(CONCAT(CAST(t.whendone AS CHAR), '120000') AS UNSIGNED)
+        ELSE CAST(CONCAT(LPAD(CAST(t.whendone AS CHAR), 14, '0')) AS UNSIGNED)
+    END AS created_ymdhis,
+    0 AS is_processed,
+    0 AS is_deleted,
+    0 AS deleted_ymdhis
+FROM livehelp_visit_track t;
 
 -- Synthetic visits from daily: one row per (livehelp_id, dateof), path_url=pageurl, entercontentid=livehelp_id, created_ymdhis=dateof+noon, is_processed=1.
 INSERT INTO {{prefix}}visits (

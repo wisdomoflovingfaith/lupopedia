@@ -5,7 +5,7 @@ lupopedia.headers:
   version_when_written: "4.0.93"
   file_path_from_root: "lupo-docs/prd/11_analytics_tracking.md"
   web_path: "http://www.lupopedia.com/lupopedia/lupo-docs/prd/11_analytics_tracking.md"
-  last_modified_utc: "20260403010357"
+  last_modified_utc: "20260405100604"
   channel_id: 42
   thread_id: "prd-grouped"
   actor_id: 102
@@ -45,8 +45,20 @@ lupopedia.edges:
       type: references
       weight: 1.0
       reason: "Reference Crafty tree — data.php, data_paths.php, image.php, functions.php, gc.php"
+    - to: "lupo-docs/prd/28_semantic_monitoring_widget.md"
+      type: references
+      weight: 0.95
+      reason: "The Eye / semantic monitoring embed — visit and path obligations; SEMANTIC_MONITORING_DOCTRINE"
+    - to: "lupo-docs/prd/37_kairos_channel_memory_consolidation.md"
+      type: references
+      weight: 0.9
+      reason: "KAIROS memory consolidation may consume analytics aggregates and path semantics"
+    - to: "lupo-docs/doctrine/MOBILE_SEPARATION_DOCTRINE.md"
+      type: references
+      weight: 0.95
+      reason: "Two-UI strategy — mobile web vs desktop; touch vs mouse; same DB when events are mapped explicitly"
 lupopedia.footer:
-  last_verified: "20260403010357"
+  last_verified: "20260405100604"
   verified_by:
     actor_id: 102
     agent_name_identity: Cursor IDE Agent
@@ -98,6 +110,36 @@ In-repo reference PHP (repository root **`craftysyntax-reference/`**) defines th
 - **`get_ipaddress()`** — Proxy/CDN header chain, public-IP preference, comma-separated **X-Forwarded-For** handling.
 - **`detectID()`** — Session id from untrusted input, GET, POST, cookie; optional class-C **`matchip`** check; optional **cookieless** lookup `WHERE identity=… AND cookied='N'`.
 - **`get_identitystring()`** — Class-C IP + session **cookie name**; not the unique token. **Two browsers on one machine** → **two SESSIONIDs** (separate cookies or explicit ids); **IDENTITY** alone may collide.
+
+### Visitor embed fingerprint — Lupopedia implementation options (design; not required to be live in 4.0.x)
+
+**Why:** On **third-party origins**, browsers often block **cross-site cookies**. A script loaded from Lupopedia cannot assume a stable first-party **`lupo_sessions`** cookie on the **embedder’s** domain. Crafty mitigated this with **`identity`**, class-C **`matchip`**, **`image.php`**-driven hits, and optional cookieless rows — see **PRD 33** §3.3 and **`craftysyntax-reference/functions.php`**. The semantic navbar / monitoring embed path (**PRD 21**, **PRD 28**, **`SEMANTIC_MONITORING_DOCTRINE.md`**) needs an explicit **product decision** before code assumes continuity.
+
+**Building blocks (straightforward to implement in application code; schema may use existing columns first):**
+
+1. **Real client IP** — Reuse the same **ordered proxy/CDN header walk** and public-IP preference as Crafty **`get_ipaddress()`** and Lupopedia **`CloudflareRequestHandler`** / **`lupo-ajax.php`** client-IP logic (do not trust raw **`REMOTE_ADDR`** behind proxies).
+2. **Class-C (IPv4)** — Take the **first three octets** of the resolved public IPv4 (e.g. `203.0.113.*` → `203.0.113`). **IPv6:** class-C has no direct analog; options include: store a **hashed /64 prefix**, full-address **hash only**, or **skip** class-C for v6 and rely on other factors (must be documented per chosen policy).
+3. **User-Agent** — Append or hash a **normalized** `User-Agent` (length-capped). Prefer **HMAC or truncate+hash** for storage/display parity with privacy posture; **`lupo_sessions.ua_hash`** already exists for a similar purpose.
+4. **Third factor (choose one or combine)** — Examples: normalized **`Accept-Language`**; **`Sec-CH-UA`** / **`Sec-CH-UA-Platform`** when available; **embedder-supplied** stable id (query param from the page template); **client-generated** id in **`localStorage`** passed back on each beacon (renewable, not third-party-cookie); **content slug / `content_id`** from the embed context (ties bar to page, not to human).
+
+**Where to persist (options — no new column required for a spike):**
+
+- **`lupo_sessions`**: use **`ip_hash`**, **`ua_hash`**, and **`metadata` JSON** (e.g. `embed_identity_signature`, `client_fingerprint_version`) until a dedicated column is justified in **`install_new_lupopedia.sql`**.
+- **`lupo_visits`**: **`transition_metadata`** JSON can carry `fingerprint_generation` / `source` for audit; avoid duplicating raw PII in clear text.
+
+**Limitations (must be documented to operators):**
+
+- **Collisions:** Many users can share one **class-C** (carrier NAT, corporate egress). **Class-C + UA** is a **coarse** key, not a unique human identifier.
+- **VPN / mobile:** IP class changes session-to-session; “same visitor” becomes probabilistic.
+- **Ethics / consent:** Fingerprinting for analytics touches **SILENT_HARVEST** and operator-facing disclosure; align with **PRD 11** / **PRD 34** narrative before enabling on arbitrary external sites.
+
+**Related:** **PRD 33** §3.2–3.3 (Crafty **`image.php`** / **`SESSIONID`**), **PRD 28** (monitoring widget), **PRD 21** (semantic navbar API + embed).
+
+### KAIROS, mobile surfaces, and semantic monitoring (cross-links)
+
+- **PRD 37 (KAIROS)** — Channel memory consolidation may **read** visit/path aggregates and related signals; changes to **`lupo_visits`**, **`lupo_paths`**, or ingest contracts should be reviewed for downstream KAIROS consumers.
+- **`MOBILE_SEPARATION_DOCTRINE.md`** — Consumer **mobile web** and **desktop** differ in DOM and input (touch vs mouse). Ingestion and dashboards must not assume desktop-only events; use **explicit** event mapping into the same canonical tables where semantics align, or document divergent fields.
+- **PRD 28** — Floating / Eye-class monitoring and **PRD 21** semantic navbar embeds share **silent-harvest** and path obligations with this PRD; routing truth in **`SEMANTIC_MONITORING_DOCTRINE.md`**.
 
 **Import mapping:** Crafty **`livehelp_*`** tables align to **`lupo_*`** per **`lupo-docs/doctrine/migrations/livehelp_migrations_readme.md`** and per-table files under **`lupo-docs/database/lupopedia/tables/migrations/`** (names differ; semantics above must hold post-import).
 

@@ -6,16 +6,16 @@ lupopedia.init:
 lupopedia.headers:
   lupopedia.version: "4.0.73"
   lupopedia.schema: "documentation"
-  file_path_from_root: "lupo-docs/frontend/semantic_navbar.md"
-  web_path: "http://www.lupopedia.com/frontend/semantic_navbar"
+  file_path_from_root: "lupo-docs/prd/21_semantic_navbar.md"
+  web_path: "http://www.lupopedia.com/lupopedia/lupo-docs/prd/21_semantic_navbar.md"
   system_version: "4.0.71"
-  last_modified_utc: "20260312"
+  last_modified_utc: "20260405103800"
   channel_id: 42
-  actor_id: 1003
+  actor_id: 102
   artifact_type: "documentation"
   artifact_kind: "frontend"
-  purpose: "JS semantic floating navbar: API endpoints, SQL usage, data flow, icon→table mapping, external-site behavior."
-  tags: ["semantic_navbar", "frontend", "api", "4.0.71"]
+  purpose: "JS semantic floating navbar: API endpoints, SQL usage, data flow, icon→table mapping, external-site allowlist (federation + trust), admin web UI for embedder setup, discovery of unapproved origins."
+  tags: ["semantic_navbar", "frontend", "api", "4.0.71", "federation", "embed"]
 
 lupopedia.edges:
   outbound_edges:
@@ -23,13 +23,37 @@ lupopedia.edges:
       type: references
       weight: 1.0
       reason: "Constitutional anchor"
+    - to: "lupo-docs/prd/11_analytics_tracking.md"
+      type: references
+      weight: 0.95
+      reason: "Cross-origin identity continuity; visitor embed fingerprint (embed_vid, sessions metadata)"
+    - to: "lupo-docs/prd/34_federation_node_semantic_network.md"
+      type: references
+      weight: 0.95
+      reason: "Federation nodes, trust, semantic network scope; complements embed allowlist and discovery"
+    - to: "lupo-docs/doctrine/SILENT_HARVEST_DOCTRINE.md"
+      type: references
+      weight: 0.9
+      reason: "Ethics and disclosure for path/visit analytics and operator-facing discovery queue copy"
+    - to: "lupo-docs/doctrine/SEMANTIC_MONITORING_DOCTRINE.md"
+      type: references
+      weight: 1.0
+      reason: "Routing truth for semantic-navbar-js and monitoring surfaces"
+    - to: "lupo-includes/classes/SemanticNavbarEmbedContext.php"
+      type: references
+      weight: 1.0
+      reason: "Cross-origin gate: federation_nodes, federated_trust, federation_discovery"
+    - to: "lupo-includes/classes/AdminSemanticWidgetHandler.php"
+      type: references
+      weight: 1.0
+      reason: "Admin UI: register embedder federation node, grant semantic_widget trust, embed snippet"
 
 lupopedia.footer:
   version: "4.0.71"
-  last_verified: "20260312"
+  last_verified: "20260405103800"
   last_verified_by: "cursor"
 ---
-# file: Semantic Navbar (frontend) — web_path: http://www.lupopedia.com/frontend/semantic_navbar
+# file: Semantic Navbar (PRD 21) — web_path: see lupopedia.headers.web_path
 
 # Semantic Floating Navigation Bar — Frontend & API
 
@@ -132,30 +156,96 @@ All queries MUST filter `is_deleted = 0` where the table has that column. Timest
 
 ---
 
-## 5. External Sites (e.g. mywebsite.com/page.htm)
+## 5. External Sites (e.g. https://whatever.com/page.htm)
 
-When the navbar JS is embedded on an **external site** (different origin):
+When the navbar script is loaded from **Lupopedia** but the **page** is another **origin**, the browser performs **cross-origin** `fetch()` calls. Third-party **Lupopedia cookies are not available** on the embedder site; identity continuity is handled separately (see **PRD 11** — visitor embed fingerprint, `lupo_sessions` metadata). The product **does not** allow arbitrary sites to consume the widget: access is **gated** on federation data.
 
-- The JS cannot know the current page’s Lupopedia content_id unless the embedding page provides it (e.g. data attribute or config).
-- **Required:** The external page (or a server-side include) must pass a **Lupopedia entity identifier** to the navbar (e.g. `content_id` or a stable `slug` that Lupopedia’s API can resolve). Options:
-  - Embedder sets `data-nav-content-id="123"` or `data-nav-slug="my-page"` on the script container or a root element.
-  - Or the embedder calls a Lupopedia endpoint that maps external URL → content_id (e.g. via lupo_contents.federation_source_url or a mapping table), then passes that content_id to the navbar.
-- **CORS:** The Lupopedia API must allow the external origin in CORS headers if the browser calls the API from the external domain.
-- **Communication:** Same as internal — JS sends GET to Lupopedia API with the resolved or provided content_id/slug; API returns the same JSON; JS renders the bar.
+### 5.1 How an external site is **allowed** (approved embedder)
+
+**Operators do not provision embedders by writing SQL.** Routine setup is **authenticated Admin** only: register the origin, grant trust, then publish content. The tables below are the **data model** the runtime enforces; the **web UI** is canonical for steps 1–2.
+
+All of the following must be true before the slug-routed navbar API returns data for that origin:
+
+| Step | Table / artifact | Rule |
+|------|-------------------|------|
+| 1 | **`lupo_federation_nodes`** | A row exists with **`is_deleted = 0`**, **`node_base_url`** equal to the embedder **origin** only: `scheme://host` and, if non-default, **`:port`** (e.g. `https://whatever.com`, or `http://localhost:8080`). Must match **`HTTP_ORIGIN`** when the browser sends it (preferred), else the `embed_origin` query param after server-side normalization. |
+| 2 | **`lupo_federated_trust`** | **Skip** if the resolved embedder **`federation_node_id`** equals the **hub** id (origin registered as the hub node itself). Otherwise: a row exists with **`source_node_id`** = **hub** (default **`1`**, or **`LUPO_HUB_FEDERATION_NODE_ID`**), **`target_node_id`** = the embedder’s node id, **`trust_type`** = **`semantic_widget`**, **`is_deleted` = 0**. |
+| 3 | **`lupo_contents`** | Navbar data is resolved for **`(federation_node_id, slug)`** where **`federation_node_id`** is the **resolved** embed context from the gate: the **trusted embedder’s** node id, or the **hub** id when the origin maps to the hub node or the request is treated as non–cross-origin (see **`SemanticNavbarEmbedContext::resolveEmbedFederationContext()`**). Must match the install unique key **`(federation_node_id, slug)`**. |
+
+**Admin (web):** **`admin.php?section=semantic-widget`** — **`AdminSemanticWidgetHandler`**: form to **register** an embedder origin (creates or reactivates a **`lupo_federation_nodes`** row with normalized **`node_base_url`**), form to **grant** hub → target **`semantic_widget`** trust (**`lupo_federated_trust`**), summary table of nodes vs trust, and copy-paste **`nav/semantic-navbar-js`** snippet. Uses CSRF on POST; explicit **`federation_node_id`** / **`trust_id`** allocation (no auto-increment reliance).
+
+**Content (step 3):** Publish **`lupo_contents`** for that **`federation_node_id`** and slug through the **normal content / artifact / header workflow** (e.g. LUPOPEDIA HEADERS **`federation_node_id`**, **`admin.php?section=artifacts`** and related tools)—not ad hoc SQL.
+
+**Optional taxonomy:** Operators may group embedder nodes using **`lupo_federation_categories`** and **`lupo_federation_category_map`** (organizational only; the gate does not require a category). Prefer a future admin screen for categories; until then, advanced operators only beyond the semantic-widget page.
+
+**Runtime gate:** **`lupo-includes/classes/SemanticNavbarEmbedContext.php`** — `resolveEmbedFederationContext()`, constant **`TRUST_TYPE_SEMANTIC_WIDGET`**.
+
+### 5.2 Tracking **allowed** embed traffic
+
+- **HTTP / server logs:** Web server and PHP stacks record URL, status (**200** vs **403**), and **`Origin`** / query string as configured by the host — useful for volume and abuse review.
+- **Cross-origin attribution params:** **`embed_origin`**, **`embed_page`**, **`embed_vid`** (see **5.4**) let operators correlate traffic with a specific embedder page and a stable first-party visitor id on the embedder (not a Lupopedia cookie). **`embed_vid`** is written only in the embedder origin’s **`localStorage`**; pairing with **`lupo_sessions`** on the Lupopedia side is covered in **PRD 11** (visitor embed fingerprint).
+
+### 5.3 How **unapproved** origins are **discovered** (not allowed)
+
+If the request is treated as **cross-origin** (valid normalized origin present) and either:
+
+- **no** **`lupo_federation_nodes`** row matches that **`node_base_url`**, or  
+- a node exists but **no** qualifying **`lupo_federated_trust`** row exists for **hub → target** with **`trust_type = semantic_widget`**,
+
+then:
+
+| Outcome | Behavior |
+|---------|----------|
+| **HTTP response** | **403** with JSON **`success: false`**, **`error`: `embed_not_trusted`**, **`reason`**: `unknown_node` or `no_trust`. |
+| **Discovery** | **`lupo_federation_discovery`** is **upserted** by **registrable host** (lowercased host from the origin): insert or update **`last_seen_ymdhis`**, **`updated_ymdhis`**, **`install_url`**, **`description`** text noting `semantic_widget embed: unknown_node` or `semantic_widget embed: no_trust`. |
+
+This gives operators a **review queue** of hosts that attempted the widget without being fully provisioned, without auto-creating **`lupo_federation_nodes`** for attackers.
+
+**Ethics / disclosure:** Align operator-facing copy with **SILENT_HARVEST** and **PRD 11** when describing what is logged and why.
+
+### 5.4 Client request shape (**`nav/semantic-navbar-js`**)
+
+Shipped generator: **`{LUPOPEDIA_PUBLIC_PATH}/nav/semantic-navbar-js?slug=...`**.
+
+- When **script origin ≠ page origin**, the IIFE appends query params on each **`edges|contexts|…/{slug}`** request: **`embed_origin`**, **`embed_page`** (full URL truncated), **`embed_vid`** (random id stored in **embedder** `localStorage`, first-party to the external site — not a Lupopedia cookie).
+- **`fetch`** uses **`credentials: 'omit'`** for cross-origin calls so third-party cookie semantics do not apply to Lupopedia.
+- **CORS:** API responses emit **`Access-Control-Allow-Origin`** (reflect **`Origin`** when present). **`OPTIONS`** returns **204** for preflight.
+
+Server prefers **`HTTP_ORIGIN`** over **`embed_origin`** when resolving the embedder origin (browser-originated requests).
+
+### 5.5 Why the API needs a **Lupopedia slug** (not “just the page path”)
+
+The browser knows the embedder page URL (e.g. `https://shop.example/products/red-widget`). **Lupopedia does not treat that path as the primary key** for `lupo_contents`. The widget must receive an explicit **Lupopedia** identifier — today the **`slug`** in **`?slug=`** on `nav/semantic-navbar-js`, which flows into **`GET …/{type}/{slug}`** — resolved together with **`federation_node_id`** from the trust gate.
+
+**Why path lookup is not automatic**
+
+1. **Different namespace.** The path belongs to the **foreign site’s** router (WordPress, static files, SPA hash routes, etc.). Lupopedia’s **`slug`** is defined **inside Lupopedia** under **`(federation_node_id, slug)`**. There is no guarantee that `/blog/my-post` on the partner site is the same string as, or maps 1:1 to, a row in your DB — often it is not.
+
+2. **Ambiguity and collisions.** Many sites reuse common paths (`/about`, `/contact`, locale prefixes `/en/...` vs `/fr/...`, trailing slashes, redirects). Using “whatever path the user hit” as a lookup key would either fail randomly or match the **wrong** content when two nodes or two pages collide.
+
+3. **Intent and safety.** Cross-origin embed is **untrusted input** until federation + trust are proven. **Guessing** content from path would let a page author (or attacker) vary the path and probe or mis-associate navbar data. Requiring a **declared** slug makes the binding **explicit**: the publisher says which Lupopedia entity this embed represents.
+
+4. **What you can do instead.** If the operator **wants** path-driven behavior, they implement it **on their side** or in **maintained data**: e.g. server-side template sets **`data-nav-slug`** / script **`?slug=`** from their CMS; or Lupopedia stores an explicit external URL on the row (**`federation_source_url`**) or a **mapping table** and a **server-side** resolver returns the slug. Those are **deliberate** joins — not “strip the path and hope it equals `lupo_contents.slug`.”
+
+**Summary:** The path of the website is **not** a reliable or authoritative key into Lupopedia. The **slug** (or a future explicit `content_id` parameter) is the supported contract so resolution is deterministic under the correct **`federation_node_id`**.
 
 ---
 
 ## 6. How the JS Block Communicates with Lupopedia
 
 - **No direct DB access:** The navbar JS runs in the browser and never touches the database.
-- **HTTP only:** All data is fetched via `GET {LUPOPEDIA_PUBLIC_PATH}/api/semantic_navbar?content_id=...` (or slug/entity params).
-- **Single request:** One request returns all sections (previous, references, contexts, edges, hashtags, folders, qa, next) to minimize round-trips.
-- **Auth:** If the API requires auth (e.g. session cookie or token), the embedding page must be served in a context where that cookie/token is sent (same-origin or CORS with credentials). Public content may allow anonymous GET.
-- **Caching:** Client or CDN may cache the response per content_id according to cache headers returned by the API.
+- **HTTP only (shipped 4.0.x):** Per-section **`GET {LUPOPEDIA_PUBLIC_PATH}/{type}/{slug}`** where **`type`** is one of **`edges`**, **`contexts`**, **`hashtags`**, **`folders`**, **`qa`**, **`references`**, **`namespaces`**, **`next`**, **`previous`** — routed by **`lupo-includes/modules/module-loader.php`** to **`semantic-navbar-api.php`**. A consolidated **`api/semantic_navbar`** single-response shape remains a possible future optimization; do not assume it exists without checking routing.
+- **Cross-origin:** See **section 5** — federation + trust required; **`credentials: 'omit'`** on embedder fetches.
+- **Auth:** Public navbar JSON is intended for **anonymous GET** when trust + content exist; session cookies are not relied on for third-party embeds.
+- **Caching:** Client or CDN may cache per **`(origin, type, slug)`** subject to **403** when trust is missing.
 
 ---
 
 ## 7. Related Documentation
 
+- **Admin embedder setup (forms, snippet):** `lupo-includes/classes/AdminSemanticWidgetHandler.php`
+- **Federation / semantic network (peers, navigation compiler direction):** `lupo-docs/prd/34_federation_node_semantic_network.md`
+- **Cross-origin visitor identity and embed fingerprint:** `lupo-docs/prd/11_analytics_tracking.md`
+- **Ethics and disclosure (analytics, operator copy for discovery):** `lupo-docs/doctrine/SILENT_HARVEST_DOCTRINE.md`
 - **Table audit and overview:** `lupo-docs/database/lupopedia/tables/semantic_navbar/SEMANTIC_NAVBAR_OVERVIEW.md`, `SEMANTIC_NAVBAR_TABLE_AUDIT_REPORT.md`
 - **Per-table docs:** Same directory for lupo_references, lupo_reference_links, lupo_hashtags, lupo_hashtag_map, lupo_folders, lupo_folder_map; `lupo-docs/database/lupopedia/tables/active/` for lupo_paths, lupo_edges, lupo_collections, etc.

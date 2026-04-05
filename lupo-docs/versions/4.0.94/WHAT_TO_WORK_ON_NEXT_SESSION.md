@@ -4,8 +4,8 @@ lupopedia.headers:
   lupopedia.schema: documentation
   file_path_from_root: "lupo-docs/versions/4.0.94/WHAT_TO_WORK_ON_NEXT_SESSION.md"
   web_path: "http://www.lupopedia.com/lupopedia/lupo-docs/versions/4.0.94/WHAT_TO_WORK_ON_NEXT_SESSION.md"
-  when_updated: "20260405001004"
-  last_modified_utc: "20260405001004"
+  when_updated: "20260405104405"
+  last_modified_utc: "20260405104405"
   federation_node_id: 0
   channel_id: 42
   thread_id: "version-4-0-94-handoff"
@@ -114,8 +114,16 @@ lupopedia.edges:
       type: references
       weight: 0.95
       reason: "Session end — PLAN L sync + Crafty handoff"
+    - to: "lupo-docs/versions/4.0.94/decisions/20260405104405_DECISION_APPROVED_semantic_navbar_embed_admin_prd21_cursor_thread.md"
+      type: references
+      weight: 1.0
+      reason: "APPROVED receipt — semantic navbar embed + Admin + PRD 21"
+    - to: "lupo-docs/versions/4.0.94/comments/20260405104405_COMMENT_cursor_session_end_semantic_navbar_crafty_handoff.md"
+      type: references
+      weight: 0.95
+      reason: "Session end — PLAN M + Crafty feature list handoff (human break)"
 lupopedia.footer:
-  last_verified: "20260405001004"
+  last_verified: "20260405104405"
   verified_by:
     identity_type: actor
     actor_id: 102
@@ -126,7 +134,9 @@ lupopedia.footer:
 
 # WHAT TO WORK ON NEXT SESSION
 
-**Recorded (UTC):** `20260405001004` (real UTC from `python lupo-bin/tick.py` this edit batch.)
+**Recorded (UTC):** `20260405104405` (real UTC from `python lupo-bin/tick.py` this edit batch.)
+
+**Human note (orchestrator break):** When you are rested, **go through the list of Crafty Syntax features** Lupopedia still needs — **start with the easy ones** and work upward. No rush; this handoff is intentional after the semantic-navbar / admin embed session.
 
 ## Priority 0 — Next session (2026-04-05 handoff — WOLFIE)
 

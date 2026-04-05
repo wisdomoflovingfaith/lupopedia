@@ -4,7 +4,7 @@ lupopedia.headers:
   version_when_written: "4.0.94"
   file_path_from_root: "lupo-docs/versions/4.0.94/TODO.md"
   web_path: "http://www.lupopedia.com/lupopedia/lupo-docs/versions/4.0.94/TODO.md"
-  when_updated: "20260405001004"
+  when_updated: "20260405104405"
   channel_id: 42
   thread_id: "todo-backlog-4.0.94"
   actor_id: 102
@@ -27,7 +27,7 @@ lupopedia.edges:
       weight: 0.9
       reason: "Frozen 4.0.93 completed record"
 lupopedia.footer:
-  last_verified: "20260405001004"
+  last_verified: "20260405104405"
   verified_by:
     actor_id: 102
   orchestrator: "cursor:root"
@@ -38,6 +38,13 @@ lupopedia.footer:
 # 4.0.94 TODO
 
 Merged from **`lupo-docs/versions/4.0.93/TODO.md`** on 2026-04-03 (deduplicated). Single active backlog for this version.
+
+## Completed (code + version receipt — semantic navbar embed + PRD 21 Admin — UTC `20260405104405`)
+
+- [x] **`SemanticNavbarEmbedContext`** + **`semantic-navbar-api`** embed gate + **403** copy — evidence: **`CHANGELOG.md`** **[2026-04-05] Semantic navbar external embed**; decision **`decisions/20260405104405_DECISION_APPROVED_semantic_navbar_embed_admin_prd21_cursor_thread.md`**.
+- [x] **`AdminSemanticWidgetHandler`** — register **`lupo_federation_nodes`**, grant **`lupo_federated_trust`** (**`semantic_widget`**), CSRF, relative-before-absolute page order — same decision body.
+- [x] **`lupo-docs/prd/21_semantic_navbar.md`** — sections **5.x**, admin vs SQL, slug vs path, edges — same **CHANGELOG** entry.
+- [x] **Version-folder sync** — **`comments/20260405104405_COMMENT_cursor_session_end_semantic_navbar_crafty_handoff.md`**, **`PLAN`** Phase **M**, **`edges`**, this **`TODO`** block, **`THREAD_INDEX`** rows (batch **`20260405104405`**).
 
 ## Completed (code + version receipt — admin nav + logout intro — UTC `20260405001004`)
 
@@ -76,6 +83,10 @@ Merged from **`lupo-docs/versions/4.0.93/TODO.md`** on 2026-04-03 (deduplicated)
 **Deferred (non-blocking):** **34** version ghosts (documentation confusion only); **federation navigation compiler** — **`questions/20260403_222042_…`** until **WOLFIE** product decision; **PLAN** Phase **C** — **PRD 30** / **31** working-copy rewrites (docs hygiene).
 
 Detail and monitoring/chat embed notes: **`WHAT_TO_WORK_ON_NEXT_SESSION.md`**.
+
+## Deferred — semantic widget content under embedder `federation_node_id` (optional product)
+
+- [ ] **Admin “new content for node X”** — if operators need a form-driven **`lupo_contents`** row for a non-hub **`federation_node_id`**, spec + APPROVED decision; until then use **artifacts / LUPOPEDIA HEADERS** / existing content tools (see PRD **21** §5.1).
 
 ## High priority — department model runtime (code must match APPROVED docs)
 

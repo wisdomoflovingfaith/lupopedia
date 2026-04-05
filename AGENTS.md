@@ -3,7 +3,7 @@ lupopedia.headers:
   lupopedia.schema: documentation
   file_path_from_root: AGENTS.md
   web_path: http://www.lupopedia.com/lupopedia/AGENTS.md
-  last_modified_utc: '20260404165054'
+  last_modified_utc: '20260405003854'
   channel_id: 42
   actor_id: 102
   actor_name: cursor
@@ -29,7 +29,7 @@ lupopedia.headers:
   - multi_agent
   agent_name_identity: Cursor IDE Agent (Lead Orchestration)
   lupo_agent: cursor
-  when_updated: '20260404165054'
+  when_updated: '20260405003854'
 lupopedia.edges:
   outbound_edges:
   - to: lupo-docs/doctrine/IDENTITY_MODEL_QUICKSTART_4.0.88.md
@@ -65,6 +65,10 @@ lupopedia.edges:
     type: references
     weight: 1.0
     reason: Run tick.py before header timestamps; never guess UTC
+  - to: lupo-docs/prd/00_root_constitutional_system_requirements.md
+    type: references
+    weight: 1.0
+    reason: PRD 00 §16.6 UI strings / locale — lupo_t() and lupo-includes/lang/
   - to: lupo-docs/status/LILITH_FLAME_FAUCET_REPORT.md
     type: references
     weight: 0.8
@@ -149,7 +153,7 @@ lupopedia.see:
   - - AGENTS.md
     - http://www.lupopedia.com/lupopedia/AGENTS.md
 lupopedia.footer:
-  last_verified: '20260404165054'
+  last_verified: '20260405003854'
   verified_by:
     identity_type: actor
     actor_id: 102
@@ -627,6 +631,13 @@ See [LUPOPEDIA HEADERS doctrine](lupo-docs/doctrine/LUPOPEDIA_HEADERS/README.md)
 - No `mbstring` dependency for slug generation — use ASCII fallbacks.
 - All new code must be in classes (`app/Services/`, `lupo-includes/classes/`). No new global helper functions. No new files under `lupo-includes/functions/`.
 - Existing helpers are migrated incrementally: old helper becomes a thin wrapper calling the new class method.
+
+### UI strings (locale / i18n)
+- **Constitutional:** [PRD 00 §16.6](lupo-docs/prd/00_root_constitutional_system_requirements.md) (RULE 93.UI_STRINGS_LOCALE). Lupopedia is **multi-locale capable**; do not hardcode English as if it were the only language.
+- **When adding or editing ship-facing HTML** in `login.php`, `admin.php`, `lupo-includes/themes/`, or handler-rendered markup: use **`lupo_t('semantic.key', 'Fallback English')`** after **`LupoLocale::bootstrap()`** / **`lupo-includes/lupo-i18n.php`** (see existing **`admin_layout.php`** / **`login.php`**).
+- **Catalogs:** one file per locale under **`lupo-includes/lang/`** (e.g. **`lupo-en.php`** returns an array). New keys go in **English first**; other locales mirror keys with translated values. Whitelist new locale codes in **`LupoLocale::allowedLocales()`** and add language **`<option>`**s where the UI offers a switch.
+- **`lupo_t()`** is the sanctioned thin helper for UI copy (exception to “avoid new globals” for this purpose only). Prefer passing strings into JS via **`json_encode(lupo_t(...))`** or **`data-*`** attributes rather than duplicating English in client scripts.
+- **Legacy reference only:** Crafty **`craftysyntax-reference/lang/`** (`txtN` keys) — do not copy numeric key style; use dotted semantic keys.
 
 ### LUPOPEDIA HEADERS
 - Every file should have a **LUPOPEDIA HEADERS** block (YAML between `---` delimiters) with at minimum `file_path_from_root`, `file.last_modified_system_version`, and `file.last_modified_utc`. These are the file's identity — infer everything from the header, never hallucinate missing fields. Headers are stored in the **`lupo_metadata`** table and can also be **written to the file** as YAML. See [lupo-docs/doctrine/LUPOPEDIA_HEADERS/](lupo-docs/doctrine/LUPOPEDIA_HEADERS/README.md) for format, database behavior, and validators/tooling.

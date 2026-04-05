@@ -25,9 +25,26 @@ function initApp() {
     };
 
     var screenWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
-    var centerX = (screenWidth / 2) - 100;
-    var peeringY = 150;
+    var centerX = (screenWidth / 2) - 130;
+    var peeringY = 75;
 
     /* CSS transition ~600ms — or stepped: wolf.slideTo(centerX, peeringY, 5, 30); */
     wolf.slideTo(centerX, peeringY, 600);
 }
+
+/* login.php sets window.lupoLoginSigningText before this file loads */
+document.addEventListener('DOMContentLoaded', function () {
+    var form = document.querySelector('.login-form');
+    if (!form) {
+        return;
+    }
+    form.addEventListener('submit', function () {
+        var submitButton = document.querySelector('.login-btn');
+        if (!submitButton) {
+            return;
+        }
+        var pending = (typeof window.lupoLoginSigningText === 'string') ? window.lupoLoginSigningText : '…';
+        submitButton.textContent = pending;
+        submitButton.disabled = true;
+    });
+});
