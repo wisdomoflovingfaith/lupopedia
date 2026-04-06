@@ -5,6 +5,7 @@ lupopedia.headers:
   file_path_from_root: "lupo-docs/doctrine/MESSAGE_ATTRIBUTION.md"
   file_hash: "61f5deefdba59b8592ca92eee9bf71d8049f667cd8639a9a813f73edc0ba4694"
   last_updated_utc: "20260228155738"
+  when_updated_utc: "20260406142956"
   system_version: "4.0.51"
   channel_id: 1
   actor_id: 1002
@@ -28,7 +29,7 @@ lupopedia.edges:
       reason: "Doctrine PRD lineage; constitutional audit 20260403"
 
 lupopedia.footer:
-  last_verified: "20260228155738"
+  last_verified: "20260406142956"
   last_verified_by: "windsurf"
 ---
 
@@ -350,7 +351,7 @@ function renderMessageAttribution(message) {
 ### PHP 5.3 Compatibility
 - No short arrays (`array()` instead of `[]`)
 - No null coalescing operator (`??`)
-- Proper parameter binding for PDO
+- Proper parameter binding for **`PDO_DB`** (named placeholders; **installer exception:** **`lupo-docs/doctrine/DATABASE_DOCTRINE.md`** — **Runtime database access (PDO_DB) and installer exception**)
 
 ### Table Ceiling Doctrine
 - No new tables created

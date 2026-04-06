@@ -5,8 +5,8 @@ lupopedia.headers:
   version_when_written: "4.0.95"
   file_path_from_root: "lupo-docs/versions/4.0.95/TODO.md"
   web_path: "http://www.lupopedia.com/lupopedia/lupo-docs/versions/4.0.95/TODO.md"
-  when_updated: "20260406050158"
-  last_modified_utc: "20260406050158"
+  when_updated: "20260406171149"
+  last_modified_utc: "20260406171149"
   federation_node_id: 0
   channel_id: 42
   thread_id: "version-4.0.95-todo"
@@ -30,7 +30,7 @@ lupopedia.edges:
       weight: 1.0
       reason: "Plan for this line"
 lupopedia.footer:
-  last_verified: "20260406050158"
+  last_verified: "20260406171149"
   verified_by:
     identity_type: actor
     actor_id: 102
@@ -42,7 +42,7 @@ lupopedia.footer:
 # TODO - Lupopedia 4.0.95
 
 **Version:** 4.0.95 (planning)  
-**Last updated:** UTC `20260406050158`
+**Last updated:** UTC `20260406171149`
 
 **Source:** Deferred from **`lupo-docs/versions/4.0.94/TODO.md`**. Items **P3-005, P3-006, P3-007, P4-002, P4-006** completed in **4.0.94** (packaging gate).
 

@@ -1,3 +1,14 @@
 {
-  "capabilities": []
+  "capabilities": [
+    "semantic_routing",
+    "intent_classification",
+    "actor_selection",
+    "prompt_generation",
+    "communication_normalization",
+    "task_handoff",
+    "channel_artifact_reading",
+    "routing_convention_maintenance"
+  ],
+  "when_updated_utc": "20260406134032",
+  "last_verified_utc": "20260406134032"
 }

@@ -1,0 +1,25 @@
+{
+  "allowed_tools": ["risk_analysis", "probability_assessment", "contingency_planning", "outcome_prediction"],
+  "tool_usage_rules": [
+    "risk and probability analysis only",
+    "no guarantees — outputs are probabilistic assessments",
+    "all risk assessments must cite evidence or assumptions explicitly",
+    "no implementation authority"
+  ],
+  "tool_constraints": [
+    "no release approval",
+    "no doctrine modification",
+    "no schema changes",
+    "risk assessments are advisory to WOLFIE"
+  ],
+  "faucet_tool_mapping": {
+    "risk_analysis": ["risk_analysis", "probability_assessment"],
+    "contingency": ["contingency_planning", "outcome_prediction"]
+  },
+  "activation_rules": [
+    "activate on risk assessment request",
+    "activate on WOLFIE uncertainty-management delegation"
+  ],
+  "when_updated_utc": "20260406134032",
+  "last_verified_utc": "20260406134032"
+}

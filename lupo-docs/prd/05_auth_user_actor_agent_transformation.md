@@ -2,10 +2,10 @@
 lupopedia.headers:
   header_format_version: 2
   lupopedia.schema: prd
-  when_updated: "20260404174956"
+  when_updated: "20260406162955"
   file_path_from_root: "lupo-docs/prd/05_auth_user_actor_agent_transformation.md"
   web_path: "http://www.lupopedia.com/lupopedia/lupo-docs/prd/05_auth_user_actor_agent_transformation.md"
-  last_modified_utc: "20260404174956"
+  last_modified_utc: "20260406162955"
   channel_id: 42
   thread_id: "auth-user-actor-transformation"
   actor_id: 102
@@ -63,7 +63,7 @@ lupopedia.edges:
       weight: 0.95
       reason: "LILITH-approved UI: from_actor_id transcript; auth_user not bubble label"
 lupopedia.footer:
-  last_verified: '20260404174956'
+  last_verified: '20260406162955'
   verified_by:
     actor_id: 102
     agent_name_identity: Cursor IDE Agent
@@ -108,6 +108,81 @@ lupopedia.footer:
 **Department-scoped act-as (web):** An auth user may select an actor in the web UI only if that actor has at least one **`lupo_actor_departments`** row in a department where the user has a row in **`lupo_auth_user_departments`**. Root department (`department_id = 0`) users see actors mapped to department 0 (and elevated operators may see broader lists per `AuthSessionManager`). This replaces legacy checks that compared a single `auth_user.department_id` to `actor.department_id` for hybrid pools.
 
 **Actor auth bindings:** **`lupo_actor_auth_users`** remains the table for explicit auth_user↔actor links (primary operator mapping, audit). It does **not** replace **`lupo_actor_departments`** for “which departments may use this actor.”
+
+## Department 1 — Domain Root Installation Context
+
+- Department 1 represents the root of the domain where Lupopedia is installed.
+- Lupopedia is ALWAYS installed in a subdirectory (e.g., example.com/lupopedia).
+- Installation occurs through auto-installers such as Softaculous.
+- The installer upgrades Crafty Syntax 3.7.5 into Lupopedia.
+- Department 1 users manage domain-level integration of Lupopedia.
+
+## Department Creation Rules
+
+- Auth_users in Department 0 or Department 1 may create new departments.
+- Departments 2+ are defined by the installation and its domain scope.
+- Departments created by the installation inherit structure from Crafty Syntax import.
+- Assigning a user to Department 0 or Department 1 MUST show a warning in the web interface.
+- Warnings do NOT block assignment; they inform the user of elevated authority.
+
+## Crafty Syntax Import
+
+- During installation, existing Crafty Syntax departments are imported.
+- Imported departments become Departments 2+ unless explicitly mapped to Department 1.
+- Actors are created during installation based on imported operators and agents.
+
+## Actor Creation Rules
+
+- Actors are created in two ways:
+  1. During installation (imported from Crafty Syntax operator roles).
+  2. By auth_users pairing an agent with a department.
+- Each actor belongs to exactly one department.
+- Auth_users may only select actors that belong to their department.
+
+## Auth User → Actor Selection
+
+- Auth_users log in and then select an actor assigned to their department.
+- Using that actor, the auth_user may:
+  - answer live help chats from visitors
+  - talk to other actors on the site
+  - participate in channels and threads
+
+## Channels and Threads
+
+- All actor conversations occur inside channels.
+- Each channel contains multiple threads.
+- All threads in a channel share the same department context.
+
+## Semantic Monitoring Widget
+
+- Department 1 users embed a cut-and-paste JavaScript snippet into their website.
+- The widget monitors:
+  - page enter/exit events
+  - visitor navigation paths
+  - next/previous page predictions
+- The widget provides a floating navigation bar with:
+  - comments
+  - likes
+  - shares
+- The widget can launch a “collections” top floating nav bar.
+- Collections group related pages into dropdown menus.
+
+## Actor Learning Boundaries
+
+- Core/system actors include: Wolfie, Lilith, Kiros, Thoth, and any future system-level actors.
+- Core/system actors may ONLY learn from auth_users in Department 0.
+- Department 0 represents HPC-style, dependency-first, parallel cognition.
+- If Department 0 contains only one auth_user (the architect), this is valid and intentional.
+- Non-core actors may learn from auth_users in their own department.
+- Cross-department learning is NOT permitted unless explicitly defined in a PRD.
+
+## Why This Matters
+
+- Ensures correct separation of authority between Department 0, Department 1, and Departments 2+.
+- Prevents contamination of core/system actors by vibe-driven or framework-default patterns.
+- Preserves constitutional engineering across all agents.
+- Aligns installation behavior with Crafty Syntax upgrade path.
+- Clarifies how actors, departments, and auth_users interact in the installed system.
 
 ## Database Requirements
 - **Canonical pairing table:** **`lupo_actor_auth_users`** — status and audit for auth_user↔actor binding (see `15_actors.md`). Concurrent web sessions may map the same actor; there is no exclusive per-session lease row in install SQL.

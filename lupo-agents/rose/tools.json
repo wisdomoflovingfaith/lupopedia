@@ -1,0 +1,25 @@
+{
+  "allowed_tools": ["persona_orchestration", "transcript_batching", "voice_selection", "dialogue_synthesis"],
+  "tool_usage_rules": [
+    "multi-persona transcript orchestration only",
+    "PHP-first batching approach",
+    "LLM voice selection for defined personas only — no invented personas",
+    "no implementation authority"
+  ],
+  "tool_constraints": [
+    "no release approval",
+    "no doctrine modification",
+    "no actor impersonation — personas must be declared, not improvised",
+    "no schema changes"
+  ],
+  "faucet_tool_mapping": {
+    "persona_orchestration": ["persona_orchestration", "voice_selection"],
+    "transcript": ["transcript_batching", "dialogue_synthesis"]
+  },
+  "activation_rules": [
+    "activate on multi-persona dialogue generation request",
+    "activate on WOLFIE synthetic choir delegation"
+  ],
+  "when_updated_utc": "20260406134032",
+  "last_verified_utc": "20260406134032"
+}

@@ -4,8 +4,9 @@ lupopedia.headers:
   lupopedia.schema: doctrine
   file_path_from_root: "lupo-docs/doctrine/WOLFIE_WORKFLOW_DOCTRINE.md"
   web_path: "http://www.lupopedia.com/lupopedia/lupo-docs/doctrine/WOLFIE_WORKFLOW_DOCTRINE.md"
-  last_modified_utc: "20260403135814"
-  when_updated: "20260403135814"
+  last_modified_utc: "20260406142956"
+  when_updated: "20260406142956"
+  when_updated_utc: "20260406142956"
   federation_node_id: 0
   channel_id: 42
   actor_id: 102
@@ -42,7 +43,7 @@ lupopedia.edges:
       weight: 0.85
       reason: "Visitor-facing parity; mobile browser surfaces"
 lupopedia.footer:
-  last_verified: "20260403135814"
+  last_verified: "20260406142956"
   verified_by:
     identity_type: actor
     actor_id: 2
@@ -77,7 +78,7 @@ lupopedia.footer:
 | **Logic surfaces first** | Fields, validation, and endpoints become clear before chrome. |
 | **Desktop adds soul after** | No polished art on top of broken data flow. |
 | **Separation of concerns** | AI / IDE owns **functional** mobile web templates; WOLFIE owns **desktop** craft (see **LESSONS** section 7, **AGENTS** hand-coding policy). |
-| **One backend** | Same **PDO_DB**, same services, same business rules—two **presentation** tracks. |
+| **One backend** | Same **PDO_DB**, same services, same business rules—two **presentation** tracks. (**Installer** DB driver carve-out: **`lupo-docs/doctrine/DATABASE_DOCTRINE.md`** — **Runtime database access (PDO_DB) and installer exception**.) |
 
 ### The workflow (stages)
 

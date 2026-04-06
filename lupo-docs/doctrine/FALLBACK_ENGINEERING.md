@@ -4,7 +4,8 @@ lupopedia.headers:
   lupopedia.schema: "doctrine"
   file_path_from_root: "lupo-docs/doctrine/FALLBACK_ENGINEERING.md"
   web_path: "http://www.lupopedia.com/doctrine/FALLBACK_ENGINEERING"
-  last_modified_utc: "20260319"
+  last_modified_utc: "20260406142956"
+  when_updated_utc: "20260406142956"
   system_version: "4.0.81"
   channel_id: 42
   actor_id: 10
@@ -36,7 +37,7 @@ lupopedia.edges:
       reason: "Doctrine PRD lineage; constitutional audit 20260403"
 
 lupopedia.footer:
-  last_verified: "20260403113047"
+  last_verified: "20260406142956"
   verified_by:
     identity_type: actor
     actor_id: 2
@@ -131,6 +132,8 @@ try {
     }
 }
 ```
+
+**Constitutional note (installer exception):** Shipped **runtime** code **must** use **`PDO_DB`** and **named placeholders**; **no mysqli** in runtime. The snippet illustrates **host-level** extension/driver availability, not an application-layer “fall back from PDO to mysqli” pattern. **`install.php`** / wizard **`mysqli`** use is **only** as in **`lupo-docs/doctrine/DATABASE_DOCTRINE.md`** — **Runtime database access (PDO_DB) and installer exception**.
 
 ### 4.2 Communication Layer
 

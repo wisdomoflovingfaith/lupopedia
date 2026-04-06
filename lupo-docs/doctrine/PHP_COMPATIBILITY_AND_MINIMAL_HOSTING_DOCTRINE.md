@@ -5,6 +5,7 @@ lupopedia.headers:
   file_path_from_root: "lupo-docs/doctrine/PHP_COMPATIBILITY_AND_MINIMAL_HOSTING_DOCTRINE.md"
   file_hash: "336e9a958c59463835d518bb609d9f772cfb87974448b1da4e7de46cd3a4799e"
   last_updated_utc: "20260228155738"
+  when_updated_utc: "20260406142956"
   system_version: "4.0.88"
   channel_id: 1
   actor_id: 102
@@ -28,7 +29,7 @@ lupopedia.edges:
       reason: "Doctrine PRD lineage; constitutional audit 20260403"
 
 lupopedia.footer:
-  last_verified: "20260228155738"
+  last_verified: "20260406142956"
   last_verified_by: "cursor"
 ---
 
@@ -129,7 +130,7 @@ Lupopedia 3.0.0 must run on **PHP 5.3 → PHP 8.1+**. This is the full compatibi
 
 ### Runtime and API usage (mandatory)
 
-- **PDO only.** All database access must use PDO. No mysqli, no mysql_*, no other drivers.
+- **PDO only.** All database access must use PDO. No mysqli, no mysql_*, no other drivers. **Installer exception (constitutional carve-out):** **`lupo-docs/doctrine/DATABASE_DOCTRINE.md`** — **Runtime database access (PDO_DB) and installer exception** — **`install.php`** / wizard **may** use **`mysqli`** only for the narrow listed installer purposes; **runtime** uses **`PDO_DB`** only and **named placeholders**.
 - **Use `preg_replace_callback()`** for replacement patterns that need logic. Do not use the deprecated `/e` modifier in `preg_replace()`; use `preg_replace_callback()` instead.
 - **Guard `count()`.** Before calling `count($x)`, ensure `$x` is countable: `if (is_array($x) || $x instanceof Countable)` then call `count($x)`. Do not call `count()` on null or non-countable values (PHP 7.2+ warnings, PHP 8 TypeErrors).
 - **JSON wrapper.** Use compatibility wrappers **`safe_json_encode()`** / **`safe_json_decode()`** (or equivalent): PHP 5.3 can silently return `false`; PHP 7 may emit warnings; PHP 8 may throw. Check result or catch; on failure return safe default (e.g. `'[]'`, `'{}'`, or empty array). Do not expose raw encode/decode failure.
@@ -226,7 +227,7 @@ From this doctrine onward, all generated code must:
 - **Avoid mbstring dependencies**; use ASCII-safe fallbacks
 - Use **ASCII-safe** string operations for slugs and identifiers
 - **Avoid** modern PHP 7/8 features (strict typing, return types, scalar hints, etc.)
-- Use **PDO only** for database access
+- Use **PDO only** for database access (runtime: **`PDO_DB`**; installer exception per **`DATABASE_DOCTRINE.md`** — **Runtime database access (PDO_DB) and installer exception**)
 - Use **preg_replace_callback()** (not the deprecated `/e` modifier) for replacement-with-logic
 - **Guard count()**: use `is_array($x) || $x instanceof Countable` before calling `count($x)`
 - **Wrap json_encode()** in a safe fallback; never expose raw encode failure

@@ -2,8 +2,8 @@
 lupopedia.headers:
   header_format_version: 2
   lupopedia.schema: pseudocode
-  when_updated: "20260405220110"
-  last_modified_utc: "20260405220110"
+  when_updated: "20260406150859"
+  last_modified_utc: "20260406150859"
   file_path_from_root: "lupo-docs/implementations/00_root_constitutional_system_requirements/decisions/pseudocode/lupopedia_quickstart.pseudo.md"
   web_path: "http://www.lupopedia.com/lupopedia/lupo-docs/implementations/00_root_constitutional_system_requirements/decisions/pseudocode/lupopedia_quickstart.pseudo.md"
   channel_id: 42
@@ -25,16 +25,16 @@ lupopedia.edges:
       type: references
       weight: 1.0
       reason: "Full constitution digest"
-    - to: "lupo-docs/decisions/pseudocode/00_dodo_bird_corrections.pseudo.md"
+    - to: "lupo-docs/decisions/pseudocode/00_NON_NEGOTIABLES_IMPORTANT_OVERWRITES.pseudo.md"
       type: references
       weight: 0.9
       reason: "Anti-pattern digest — wrong AI defaults vs PRD 00"
-    - to: "lupo-docs/decisions/pseudocode/00_NON_NEGOTIABLES_IMPORTANT_OVERWRITES.pseudo.md"
+    - to: "lupo-docs/decisions/pseudocode/00_NON_NEGOTIABLES_IMPORTANT_OVERWRITES_SHORTHAND.pseudo.md"
       type: references
       weight: 0.92
       reason: "Short overrides table vs training defaults"
 lupopedia.footer:
-  last_verified: "20260405220110"
+  last_verified: "20260406150859"
   verified_by:
     actor_id: 102
 ---
@@ -56,7 +56,7 @@ lupopedia.footer:
 | 7 | [28_semantic_monitoring_widget_constitution.pseudo.md](./28_semantic_monitoring_widget_constitution.pseudo.md) | [PRD 28](../../../../prd/28_semantic_monitoring_widget.md) |
 | 8 | [33_softaculous_certification_4_1_0_gate_constitution.pseudo.md](./33_softaculous_certification_4_1_0_gate_constitution.pseudo.md) | [PRD 33](../../../../prd/33_softaculous_certification_4_1_0_gate.md) |
 
-**Cross-cutting (not PRD mirrors):** [00_NON_NEGOTIABLES_IMPORTANT_OVERWRITES.pseudo.md](../../../../decisions/pseudocode/00_NON_NEGOTIABLES_IMPORTANT_OVERWRITES.pseudo.md) — **overrides vs training defaults** (read first). Then [00_dodo_bird_corrections.pseudo.md](../../../../decisions/pseudocode/00_dodo_bird_corrections.pseudo.md) — expanded examples. **Digests only; PRD 00 wins**.
+**Cross-cutting (not PRD mirrors):** [00_NON_NEGOTIABLES_IMPORTANT_OVERWRITES_SHORTHAND.pseudo.md](../../../../decisions/pseudocode/00_NON_NEGOTIABLES_IMPORTANT_OVERWRITES_SHORTHAND.pseudo.md) — **overrides vs training defaults** (read first). Then [00_NON_NEGOTIABLES_IMPORTANT_OVERWRITES.pseudo.md](../../../../decisions/pseudocode/00_NON_NEGOTIABLES_IMPORTANT_OVERWRITES.pseudo.md) — expanded examples. **Digests only; PRD 00 wins**.
 
 ## What Lupopedia is (one paragraph)
 

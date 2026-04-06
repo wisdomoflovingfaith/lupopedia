@@ -4,8 +4,9 @@ lupopedia.headers:
   lupopedia.schema: doctrine
   file_path_from_root: "lupo-docs/doctrine/LEARNED_FROM_WORDPRESS.md"
   web_path: "http://www.lupopedia.com/lupopedia/lupo-docs/doctrine/LEARNED_FROM_WORDPRESS.md"
-  last_modified_utc: "20260404165054"
-  when_updated: "20260404165054"
+  last_modified_utc: "20260406142956"
+  when_updated: "20260406142956"
+  when_updated_utc: "20260406142956"
   federation_node_id: 0
   channel_id: 42
   thread_id: "learned-from-wordpress"
@@ -42,7 +43,7 @@ lupopedia.edges:
       weight: 0.95
       reason: "LILITH product resolutions aligned with these patterns"
 lupopedia.footer:
-  last_verified: "20260404154003"
+  last_verified: "20260406142956"
   verified_by:
     identity_type: actor
     actor_id: 2
@@ -400,6 +401,7 @@ function lupo_normalize_fs_path($path) {
 
 - **Mandatory:** **`DatabaseFactory::getConnection()`** / **`PDO_DB`** with **named** parameters — no raw value interpolation in SQL strings.
 - **`wpdb::prepare`** is the WordPress **analogy** only; Lupopedia does not ship **`$wpdb`**.
+- **Installer exception (constitutional carve-out):** **`install.php`** / wizard **may** use **`mysqli`** only as in **`lupo-docs/doctrine/DATABASE_DOCTRINE.md`** — **Runtime database access (PDO_DB) and installer exception**; runtime **must not** use **`mysqli`**.
 
 ---
 

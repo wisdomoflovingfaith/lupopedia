@@ -1,11 +1,11 @@
 ---
 lupopedia.headers:
   header_format_version: 2
-  when_updated: '20260406062838'
+  when_updated: '20260406163802'
   lupopedia.schema: documentation
   file_path_from_root: README.md
   web_path: http://www.lupopedia.com/lupopedia/README.md
-  last_modified_utc: '20260406062838'
+  last_modified_utc: '20260406163802'
   channel_id: 42
   thread_id: readme-4-0-95
   actor_id: 102
@@ -134,7 +134,7 @@ lupopedia.edges:
       weight: 1.0
       reason: Canonical versioning and upgrade-path doctrine
 lupopedia.footer:
-  last_verified: '20260406023123'
+  last_verified: '20260406163802'
   verified_by:
     identity_type: actor
     actor_id: 102
@@ -196,6 +196,39 @@ If you are an AI agent and you think “this is how everyone does it” — **st
 | Composer, npm, frameworks in core | In-tree libraries only; no Laravel / Symfony / shipped React-Vite stack for public PHP paths |
 | Hardcoded English in ship-facing UI | Use **`lupo_t()`** + `lupo-includes/lang/` |
 | “`SELECT *` is always wrong” | Not a constitutional sin; still prefer explicit columns when maintaining |
+
+---
+
+## Why Lupopedia Is Built Differently
+
+Lupopedia is a constitutional, doctrine-driven system. It is intentionally built *against* many modern defaults (frameworks, ORMs, magic abstractions, vibe-driven patterns). This is not a limitation — it is a design choice rooted in HPC-style dependency-first thinking, deterministic engineering, explicit schemas, fallback logic, timestamp discipline, multi-agent orchestration, actor/agent separation, and department-scoped learning. Lupopedia inherits its lineage from Crafty Syntax Live Help (pre-AJAX era), which required explicit, deterministic engineering. The system must remain stable for auto-installers (e.g., Softaculous) and must upgrade Crafty Syntax 3.7.5 installations without breaking existing sites. The architecture is designed to be teachable, auditable, and safe for multi-agent AI environments.
+
+## What Lupopedia Does NOT Do (By Design)
+
+- **No frameworks (Laravel, React, etc.)** — This avoids hidden logic and nondeterministic behavior.
+- **No ORM magic** — This preserves explicit SQL and schema control.
+- **No Composer/npm runtime dependencies** — This ensures installer stability and long-term compatibility.
+- **No vibe-driven defaults** — All behavior must follow doctrine, not trends.
+- **No timeline-based planning** — The system uses dependency-first reasoning.
+- **No schema churn** — Schema changes must follow safe migration doctrine.
+- **No Unix epoch timestamps** — Lupopedia uses packed timestamps per doctrine.
+- **No auto-chmod or unsafe file operations** — Installer safety is mandatory.
+
+## Where These Rules Come From
+
+These constraints are defined and expanded in the project’s doctrine and PRD files; the README points there instead of restating them. Start with:
+
+- [PRD 00 — Root Constitutional Requirements](lupo-docs/prd/00_root_constitutional_system_requirements.md)
+- [PRD 05 — Auth User / Actor / Agent Transformation](lupo-docs/prd/05_auth_user_actor_agent_transformation.md)
+- [PRD 15 — Departments and Actors](lupo-docs/prd/15_actors.md)
+- [PRD 17 — Pseudocode Format Rules](lupo-docs/prd/17_decisions_format.md)
+- [PRD 28 — Semantic Monitoring Widget](lupo-docs/prd/28_semantic_monitoring_widget.md)
+- [PRD 33 — Softaculous Installation Gate](lupo-docs/prd/33_softaculous_certification_4_1_0_gate.md)
+- [00_user_captain_WOLFIE_identity_constitution.pseudo.md](lupo-docs/decisions/pseudocode/00_user_captain_WOLFIE_identity_constitution.pseudo.md)
+
+## Why This Matters
+
+Lupopedia must remain deterministic, auditable, and safe for multi-agent AI systems. The doctrine protects the system from accidental modernization or framework contamination. Contributors and AI agents must understand the philosophy before making changes. This README exists to prevent confusion when developers expect modern frameworks or patterns that Lupopedia intentionally avoids.
 
 ---
 
@@ -391,5 +424,5 @@ GNU General Public License v3.0 — see **[LICENSE](LICENSE)**.
 - **4.0.x** — **No** Lupopedia→Lupopedia upgrades until **4.1.0**; DDL/seed/import stay aligned — see **[PRD 33](lupo-docs/prd/33_softaculous_certification_4_1_0_gate.md)**  
 - **JSON under `lupo-database/lupopedia/json/`** — read-only schema mirrors; canonical DDL is **`lupo-database/lupopedia/mysql/install/install_new_lupopedia.sql`**
 
-**Last updated (header UTC):** 20260406062838  
+**Last updated (header UTC):** 20260406163802  
 **Constitutional authority:** [PRD 00](lupo-docs/prd/00_root_constitutional_system_requirements.md)

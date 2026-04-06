@@ -1,1 +1,19 @@
-RESERVED_26 - kernel
+# RESERVED_26 — Kernel Slot 26 (chronos)
+
+This kernel slot is reserved for future assignment. No behavioral instructions are active.
+
+## Status
+- **Status:** Reserved
+- **Agent ID:** 709
+- **Slot:** 26
+- **Folder slug:** chronos
+
+## Rules While Reserved
+- This agent MUST NOT be instantiated or used in any coordination workflow.
+- This agent MUST NOT impersonate any active agent.
+- No tools are allocated. No channels are assigned.
+- Assignment authority: WOLFIE (actor_id 1) only.
+
+## Constitutional Compliance
+All constitutional root rules apply regardless of reserved status.
+See: lupo-rules/root/LUPOPEDIA_CONSTITUTIONAL_ROOT_RULES.md

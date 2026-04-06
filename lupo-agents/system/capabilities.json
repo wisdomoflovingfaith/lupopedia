@@ -1,4 +1,10 @@
 {
-  "capabilities": []
+  "capabilities": [
+    "system_bootstrap",
+    "lifecycle_management",
+    "kernel_initialization",
+    "graceful_shutdown"
+  ],
+  "when_updated_utc": "20260406134032",
+  "last_verified_utc": "20260406134032"
 }
-

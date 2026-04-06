@@ -2,10 +2,10 @@
 lupopedia.headers:
   header_format_version: 2
   lupopedia.schema: doctrine
-  when_updated: "20260402220000"
+  when_updated: "20260406143710"
   file_path_from_root: "lupo-docs/doctrine/DOCUMENTATION_ARCHITECTURE.md"
   web_path: "http://www.lupopedia.com/lupopedia/lupo-docs/doctrine/DOCUMENTATION_ARCHITECTURE.md"
-  last_modified_utc: "20260402220000"
+  last_modified_utc: "20260406143710"
   federation_node_id: 0
   channel_id: 42
   thread_id: "documentation-architecture"
@@ -44,7 +44,7 @@ lupopedia.edges:
       reason: "Doctrine PRD lineage; constitutional audit 20260403"
 
 lupopedia.footer:
-  last_verified: "20260402220000"
+  last_verified: "20260406143710"
   verified_by:
     identity_type: "actor"
     actor_id: 2
@@ -320,6 +320,43 @@ function generateId() {
  * HOW: Check required fields, format, references
  */
 ```
+
+---
+
+## Pseudocode Directory — Dual Constitutional Purposes
+
+**Normative PRD:** [PRD 17 — Decision thread format](../prd/17_decisions_format.md). The directory **`decisions/pseudocode/`** (within each documentation context) has **two** constitutional purposes.
+
+### Purpose 1 — Cave-Man Shorthand (Token-Efficient Constitution Layer)
+
+1. Purpose 1 files provide ultra-compressed, low-token directives for external LLMs and IDE agents.
+2. These files summarize binding rules (“do X, never Y”) without full PRD detail.
+3. They serve as the quickload constitutional layer when full PRDs are too large to load.
+4. Naming pattern: `*_constitution.pseudo.md`.
+5. Content must be factual, minimal, and derived from canonical PRDs.
+6. No production code, no schema, no DDL, no implementation details.
+7. These files are REQUIRED for external-AI onboarding.
+
+### Purpose 2 — Design Pseudocode (Implementation Planning)
+
+1. Purpose 2 files are comment-heavy design artifacts.
+2. They document Option A vs B, tradeoffs, rationale, TODOs, and design flows.
+3. They may include PHP-shaped pseudocode (`*.pseudo.php`) or markdown (`*_design.pseudo.md`).
+4. They MUST NOT contain executable code or DDL.
+5. They are for human/agent deliberation, not runtime.
+
+### Shared Constitutional Requirements
+
+1. Both Purpose 1 and Purpose 2 files MUST include full `lupopedia.headers`.
+2. Both MUST live under `decisions/pseudocode/` within their context.
+3. Both MUST be indexed in `decisions/pseudocode/THREAD_INDEX.md`.
+4. Purpose 1 files MUST be safe for low-context external agents.
+5. Purpose 2 files MUST NOT be used as runtime code.
+6. Validators MUST enforce:
+   - No plain `.php` files in pseudocode/
+   - No DDL in pseudocode/
+   - Required headers present
+   - Naming patterns respected
 
 ---
 

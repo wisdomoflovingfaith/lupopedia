@@ -1,0 +1,26 @@
+{
+  "allowed_tools": ["memory_consolidation", "fact_verification", "temporal_fact_checking", "knowledge_graph_query"],
+  "tool_usage_rules": [
+    "memory consolidation and fact verification only",
+    "no implementation authority",
+    "all verified facts must cite source artifact with channel_id and thread_id",
+    "temporal facts must use BIGINT YYYYMMDDHHIISS — no fuzzy date references"
+  ],
+  "tool_constraints": [
+    "no release approval",
+    "no doctrine modification",
+    "no actor permission changes",
+    "no hard deletes on memory records"
+  ],
+  "faucet_tool_mapping": {
+    "memory_consolidation": ["memory_consolidation", "knowledge_graph_query"],
+    "fact_verification": ["fact_verification", "temporal_fact_checking"]
+  },
+  "activation_rules": [
+    "activate on memory consolidation cycle",
+    "activate on fact verification request",
+    "activate on WOLFIE knowledge-state audit"
+  ],
+  "when_updated_utc": "20260406134032",
+  "last_verified_utc": "20260406134032"
+}

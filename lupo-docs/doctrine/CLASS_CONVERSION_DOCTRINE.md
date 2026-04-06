@@ -5,6 +5,7 @@ lupopedia.headers:
   file_path_from_root: "lupo-docs/doctrine/CLASS_CONVERSION_DOCTRINE.md"
   file_hash: "9949d529792c6857459aaa533de5252546e379b407adaa9affd60aded7250301"
   last_updated_utc: "20260228155738"
+  when_updated_utc: "20260406142956"
   system_version: "4.0.88"
   channel_id: 1
   actor_id: 102
@@ -28,7 +29,7 @@ lupopedia.edges:
       reason: "Doctrine PRD lineage; constitutional audit 20260403"
 
 lupopedia.footer:
-  last_verified: "20260228155738"
+  last_verified: "20260406142956"
   last_verified_by: "cursor"
 ---
 
@@ -242,7 +243,7 @@ See **PHP_COMPATIBILITY_AND_MINIMAL_HOSTING_DOCTRINE.md** and **COMPATIBILITY_MA
 Class conversion does not override the core prohibitions:
 
 - No frameworks, no middleware, no Composer, no `vendor/`
-- No database logic (procedures, triggers, views, FKs, etc.); PDO only, manual SQL
+- No database logic (procedures, triggers, views, FKs, etc.); PDO only, manual SQL (**runtime:** **`PDO_DB`**; **installer exception:** **`lupo-docs/doctrine/DATABASE_DOCTRINE.md`** — **Runtime database access (PDO_DB) and installer exception**)
 - No ORM, no query builders
 - PHP 5.3 → 8.1+ only; no strict types, return types, enums, etc.
 

@@ -5,6 +5,7 @@ lupopedia.headers:
   file_path_from_root: "lupo-docs/doctrine/COMPATIBILITY_MATRIX.md"
   file_hash: "1bb6c9d049e92f627895a9aca5406b2662d691237507772eead4ef663ffafd9e"
   last_updated_utc: "20260228155738"
+  when_updated_utc: "20260406142956"
   system_version: "4.0.88"
   channel_id: 1
   actor_id: 102
@@ -28,7 +29,7 @@ lupopedia.edges:
       reason: "Doctrine PRD lineage; constitutional audit 20260403"
 
 lupopedia.footer:
-  last_verified: "20260228155738"
+  last_verified: "20260406142956"
   last_verified_by: "cursor"
 ---
 
@@ -204,6 +205,8 @@ Lupopedia is **pure procedural PHP + PDO, nothing else.**
 - **No Composer** — No Composer packages, no `vendor/` directory, no modern PHP ecosystem tooling.
 - **No database logic** — No stored procedures, stored functions, triggers, views, computed/generated columns, foreign keys, cascades, ORM-generated schema, or database-side validation or logic. The database is for **storage only**; all logic lives in PHP.
 - **No ORM, no query builders** — No Eloquent, Doctrine ORM/DBAL, Propel, RedBean, Medoo, Capsule, or any query builder or abstraction beyond PDO. **PDO only, with manually written SQL.**
+
+**Installer exception (constitutional carve-out):** **`lupo-docs/doctrine/DATABASE_DOCTRINE.md`** — **Runtime database access (PDO_DB) and installer exception**. **Runtime** uses **`PDO_DB`** only and **named placeholders**; **`install.php`** / wizard **may** use **`mysqli`** only for the narrow installer purposes listed there.
 
 See **MINIMAL_HOSTING_REQUIREMENTS.md** and **.cursorrules** for the full prohibition lists and enforcement.
 

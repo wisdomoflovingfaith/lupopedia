@@ -4,7 +4,8 @@ lupopedia.headers:
   lupopedia.schema: "doctrine"
   file_path_from_root: "lupo-docs/doctrine/TIMESTAMP_DOCTRINE.md"
   web_path: "http://www.lupopedia.com/doctrine/TIMESTAMP_DOCTRINE"
-  last_modified_utc: "20260319"
+  when_updated_utc: "20260406142956"
+  last_modified_utc: "20260406142956"
   system_version: "4.0.81"
   channel_id: 42
   actor_id: 10
@@ -36,7 +37,7 @@ lupopedia.edges:
       reason: "Doctrine PRD lineage; constitutional audit 20260403"
 
 lupopedia.footer:
-  last_verified: "20260403113047"
+  last_verified: "20260406142956"
   verified_by:
     identity_type: actor
     actor_id: 2
@@ -107,6 +108,10 @@ $stmt->execute([$event_id, $now]);
 $one_day_ago = $now - 1000000; // 24 hours in YmdHis terms
 // (Note: proper date arithmetic uses dedicated functions, not raw subtraction)
 ```
+
+### 4.5 Installer exception (database access layer; same constitutional carve-out)
+
+Timestamp *encoding* (§4.1–4.3) applies to **runtime** application code and schema. **Separately**, the **installer exception** for **how** the database is accessed during install is defined in **`lupo-docs/doctrine/DATABASE_DOCTRINE.md`** — **Runtime database access (PDO_DB) and installer exception**. In short: **runtime** MUST use **`PDO_DB`** only and **named placeholders**; **no mysqli** in runtime; **`install.php`** / wizard **may** use **mysqli** only for the narrow purposes listed there (buffered multi-statement execution, prefix migration testing, schema import, fallback validation) and **must not** move mysqli into runtime. This is a **controlled, constitutional carve-out**; see DATABASE_DOCTRINE for the numbered rule.
 
 ## 5. Comparison: Modern Frameworks vs Lupopedia
 

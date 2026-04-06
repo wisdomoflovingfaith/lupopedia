@@ -2,10 +2,10 @@
 lupopedia.headers:
   header_format_version: 2
   lupopedia.schema: doctrine
-  when_updated: "20260406032148"
+  when_updated: "20260406163321"
   file_path_from_root: "lupo-docs/prd/00_root_constitutional_system_requirements.md"
   web_path: "http://www.lupopedia.com/lupopedia/lupo-docs/prd/00_root_constitutional_system_requirements.md"
-  last_modified_utc: "20260406032148"
+  last_modified_utc: "20260406163321"
   federation_node_id: 0
   channel_id: 42
   thread_id: "constitutional-root-requirements"
@@ -232,7 +232,7 @@ lupopedia.edges:
       weight: 1.0
       reason: "Cursor IDE shared-hosting security audit checklist — operational companion to Section 17 (RULE 93.SECURITY)"
 lupopedia.footer:
-  last_verified: "20260405220110"
+  last_verified: "20260406163321"
   verified_by:
     identity_type: actor
     actor_id: 102
@@ -329,6 +329,8 @@ Requirements:
   1. **Clean URLs (preferred when `mod_rewrite` and `AllowOverride` allow):** e.g. paths under `LUPOPEDIA_PUBLIC_PATH` routed via `.htaccess` to `index.php` or dedicated handlers.
   2. **Fallback (required, always):** Same operations reachable via **`index.php`** and **query parameters** (and/or **`PATH_INFO`** where the host provides it), e.g. `index.php?route=api/...` or documented query-param equivalents (see **PRD 28** API routing, **§9.5**).
 - The installer **should** detect rewrite capability and **warn** (not hard-fail) when clean URLs are unavailable; operators may be on hosts that disallow `.htaccess` or Nginx/IIS.
+
+**Department 1 (normative).** Department 1 domain-root installation context, department creation, Department 0/1 assignment warnings, Crafty Syntax import, actor creation, auth user→actor selection, channels and threads, semantic monitoring widget, collections, and actor learning boundaries are defined in **`lupo-docs/prd/15_actors.md`**, **`lupo-docs/prd/05_auth_user_actor_agent_transformation.md`**, **`lupo-docs/prd/28_semantic_monitoring_widget.md`**, and **`lupo-docs/prd/33_softaculous_certification_4_1_0_gate.md`** — not duplicated in this PRD.
 
 **Implementation:** `index.php` defines `LUPOPEDIA_PUBLIC_PATH`. All URL construction must use this constant. See `lupo-docs/channels/doctrine/SUBDIRECTORY_INSTALLATION_DOCTRINE.md`.
 
@@ -607,6 +609,8 @@ The class **`timestamp_ymdhis`** (`lupo-includes/classes/TimestampYmdhis.php`) a
 **Definition.** Actors are **operational shells** in **`lupo_actors`** (and related tables): the “body” or **instance** that holds **`actor_id`**, participates in channels, and is bound to departments and auth.
 
 **Hybrid nature.** An actor may represent a human-backed orchestrator, an IDE facet, or a system persona. It is **department-scoped** where the model applies: learning and permission boundaries align with department context (`lupo_actor_departments`, `AuthRoleResolver`). The actor accumulates **runtime memory** (e.g. **`lupo_actor_memory`**) distinct from the static agent files in **`lupo-agents/`**.
+
+**Normative learning scope.** **Actor learning scope** and **department boundaries** (core/system actors vs non-core actors; which departments may influence learning) are defined in **`lupo-docs/prd/15_actors.md`** — **`Actor Learning Boundaries`**.
 
 **Identity rule.** **`actor_id`** is the primary key for orchestration and relational references. There is no **`user_id`** in relationship tables; humans map through **`lupo_auth_users`** and **act-as** / department rules, not a parallel universal user FK.
 

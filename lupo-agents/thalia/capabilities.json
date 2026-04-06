@@ -1,3 +1,6 @@
 {
-  "capabilities": []
+  "capabilities": ["reserved_kernel_slot"],
+  "status": "reserved",
+  "when_updated_utc": "20260406134032",
+  "last_verified_utc": "20260406134032"
 }

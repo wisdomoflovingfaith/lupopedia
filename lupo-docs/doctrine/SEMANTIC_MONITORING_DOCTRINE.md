@@ -4,8 +4,9 @@ lupopedia.headers:
   lupopedia.schema: doctrine
   file_path_from_root: "lupo-docs/doctrine/SEMANTIC_MONITORING_DOCTRINE.md"
   web_path: "http://www.lupopedia.com/lupopedia/lupo-docs/doctrine/SEMANTIC_MONITORING_DOCTRINE.md"
-  last_modified_utc: "20260404073004"
-  when_updated: "20260404073004"
+  last_modified_utc: "20260406142956"
+  when_updated: "20260406142956"
+  when_updated_utc: "20260406142956"
   federation_node_id: 0
   channel_id: 42
   thread_id: "semantic-monitoring-doctrine"
@@ -79,7 +80,7 @@ lupopedia.edges:
       weight: 0.85
       reason: "Chat UI must not use IIFE isolation — differs from optional one-shot Eye embeds"
 lupopedia.footer:
-  last_verified: "20260404073004"
+  last_verified: "20260406142956"
   verified_by:
     identity_type: actor
     actor_id: 2
@@ -131,7 +132,7 @@ This doctrine names **two** JavaScript-related monitoring **roles** and ties the
 
 **Repo anchors:**
 
-- **Root generator:** **`livehelp_js.php`** (bootstraps config, emits JS; PDO / **`lupo_`** tables only)
+- **Root generator:** **`livehelp_js.php`** (bootstraps config, emits JS; **`PDO_DB`** / **`lupo_`** tables only — **installer exception** for DB driver rules: **`lupo-docs/doctrine/DATABASE_DOCTRINE.md`** — **Runtime database access (PDO_DB) and installer exception**)
 - **Slug-routed module:** **`lupo-includes/modules/crafty_syntax/livehelp-js.php`** when the request is normalized to **`livehelp_js`** / **`livehelp-js`** (**`module-loader.php`**)
 - **Legacy image / state channel:** root **`image.php`** and **`lupo-includes/modules/crafty_syntax/visitor-image.php`** (for **`what=`** patterns routed as **`image`**)
 - **Chat pages / stream:** **`livehelp`**, **`chat`**, **`visitor-chat-stream`**, etc. — **`module-loader.php`**

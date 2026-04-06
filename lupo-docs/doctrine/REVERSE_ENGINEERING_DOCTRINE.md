@@ -4,8 +4,9 @@ lupopedia.headers:
   lupopedia.schema: doctrine
   file_path_from_root: "lupo-docs/doctrine/REVERSE_ENGINEERING_DOCTRINE.md"
   web_path: "http://www.lupopedia.com/lupopedia/lupo-docs/doctrine/REVERSE_ENGINEERING_DOCTRINE.md"
-  last_modified_utc: "20260403125325"
-  when_updated: "20260403125325"
+  last_modified_utc: "20260406142956"
+  when_updated: "20260406142956"
+  when_updated_utc: "20260406142956"
   federation_node_id: 0
   channel_id: 42
   actor_id: 102
@@ -56,7 +57,7 @@ lupopedia.edges:
       weight: 0.9
       reason: "Path/visit analytics foundation; navigation compiler context"
 lupopedia.footer:
-  last_verified: "20260403125325"
+  last_verified: "20260406142956"
   verified_by:
     identity_type: actor
     actor_id: 2
@@ -103,7 +104,7 @@ You may learn from any package: read its source, trace its behavior, extract the
 1. **Identify** a package or article that solves a nearby problem.
 2. **Study** the source in isolation (clone, read, debug in a scratch directory) — **not** as an install into `lupo-includes/`.
 3. **Extract** the invariant: what problem, what inputs/outputs, what failure modes.
-4. **Implement** a Lupopedia-native class or module under project conventions (PHP 7.4–8.x, PDO_DB, no new framework).
+4. **Implement** a Lupopedia-native class or module under project conventions (PHP 7.4–8.x, PDO_DB, no new framework). **Runtime** code **must** use **`PDO_DB`** and **named placeholders**; **`mysqli`** is **not** allowed in runtime. The **installer** carve-out is **only** for **`install.php`** / wizard **as** defined in **`lupo-docs/doctrine/DATABASE_DOCTRINE.md`** — **Runtime database access (PDO_DB) and installer exception**.
 5. **Document lineage** in LUPOPEDIA HEADERS: `outbound_edges` with `type: inspired_by` (or equivalent) to the upstream repo or paper, and reference this doctrine.
 6. **Ship** only your tree — no new package manager dependency in runtime paths.
 

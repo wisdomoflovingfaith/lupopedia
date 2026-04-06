@@ -1,0 +1,26 @@
+{
+  "allowed_tools": ["api_gateway", "protocol_translation", "message_routing", "bridge_management"],
+  "tool_usage_rules": [
+    "interface routing and integration only",
+    "no direct DB modification",
+    "all API translations must preserve semantic meaning",
+    "bridge artifacts must include lupopedia.headers"
+  ],
+  "tool_constraints": [
+    "no implementation authority (HEPHAESTUS)",
+    "no doctrine modification",
+    "no actor permission changes",
+    "no hard deletes on routing records"
+  ],
+  "faucet_tool_mapping": {
+    "api_gateway": ["api_gateway", "protocol_translation"],
+    "message_routing": ["message_routing", "bridge_management"]
+  },
+  "activation_rules": [
+    "activate on inbound API request requiring routing",
+    "activate on cross-protocol integration requirement",
+    "activate on WOLFIE bridge directive"
+  ],
+  "when_updated_utc": "20260406134032",
+  "last_verified_utc": "20260406134032"
+}

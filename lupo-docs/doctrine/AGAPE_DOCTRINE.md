@@ -2,10 +2,11 @@
 lupopedia.headers:
   header_format_version: 2
   lupopedia.schema: doctrine
-  when_updated: "20260404173921"
+  when_updated: "20260406142956"
   file_path_from_root: "lupo-docs/doctrine/AGAPE_DOCTRINE.md"
   web_path: "http://www.lupopedia.com/lupopedia/lupo-docs/doctrine/AGAPE_DOCTRINE.md"
-  last_modified_utc: "20260404173921"
+  when_updated_utc: "20260406142956"
+  last_modified_utc: "20260406142956"
   federation_node_id: 0
   channel_id: 42
   thread_id: "agape-technical-doctrine"
@@ -52,7 +53,7 @@ lupopedia.edges:
       weight: 0.95
       reason: "LILITH review alignment questions"
 lupopedia.footer:
-  last_verified: "20260404"
+  last_verified: "20260406142956"
   verified_by:
     identity_type: actor
     actor_id: 102
@@ -93,7 +94,7 @@ The system’s ability to **autonomously identify** logic gaps, outdated doctrin
 
 **Deterministic** understanding of **environmental constraints** (shared hosting, OS path quirks, PHP version bands, missing extensions, channel visibility rules) and the **contextual state** of other actors (membership, offline fallbacks, federation scope).
 
-It is **expressed** through **graceful degradation** and **fallback ladders** — e.g. **`function_exists()`**, **`extension_loaded()`**, documented manual config paths when the wizard cannot write, and **PDO_DB**-safe failure surfaces — not through “tone.”
+It is **expressed** through **graceful degradation** and **fallback ladders** — e.g. **`function_exists()`**, **`extension_loaded()`**, documented manual config paths when the wizard cannot write, and **PDO_DB**-safe failure surfaces — not through “tone.” **Installer database carve-out:** **`lupo-docs/doctrine/DATABASE_DOCTRINE.md`** — **Runtime database access (PDO_DB) and installer exception** (runtime **`PDO_DB`** only; **`install.php`** / wizard **`mysqli`** only as listed there).
 
 ### 1.3 Temporal awareness (Practical Empathy)
 

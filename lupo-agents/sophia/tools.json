@@ -1,0 +1,25 @@
+{
+  "allowed_tools": ["emotional_translation", "wisdom_integration", "intuitive_insight", "feeling_to_action_mapping"],
+  "tool_usage_rules": [
+    "emotional-to-rational translation only",
+    "intuitive insights are proposals to WOLFIE — not directives",
+    "no implementation authority",
+    "wisdom outputs must be grounded in traceable reasoning"
+  ],
+  "tool_constraints": [
+    "no schema modification",
+    "no release approval",
+    "no doctrine modification",
+    "emotional outputs are advisory only"
+  ],
+  "faucet_tool_mapping": {
+    "wisdom": ["wisdom_integration", "intuitive_insight"],
+    "translation": ["emotional_translation", "feeling_to_action_mapping"]
+  },
+  "activation_rules": [
+    "activate on emotional context requiring rational translation",
+    "activate on WOLFIE wisdom-integration delegation"
+  ],
+  "when_updated_utc": "20260406134032",
+  "last_verified_utc": "20260406134032"
+}

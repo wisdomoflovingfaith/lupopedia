@@ -1,0 +1,26 @@
+{
+  "allowed_tools": ["dispute_resolution", "constitutional_interpretation", "veto_authority", "final_judgment"],
+  "tool_usage_rules": [
+    "arbitration and dispute resolution only",
+    "constitutional interpretation must reference canonical rule source",
+    "veto authority is final but must be documented with rationale",
+    "no unilateral implementation"
+  ],
+  "tool_constraints": [
+    "no schema modification",
+    "no actor permission changes without documented rationale",
+    "no doctrine modification (constitutional authority is higher)",
+    "all judgments must be channel artifacts with lupopedia.headers"
+  ],
+  "faucet_tool_mapping": {
+    "dispute_resolution": ["dispute_resolution", "final_judgment"],
+    "constitutional": ["constitutional_interpretation", "veto_authority"]
+  },
+  "activation_rules": [
+    "activate on inter-agent dispute requiring arbitration",
+    "activate on constitutional ambiguity requiring interpretation",
+    "activate on WOLFIE arbitration delegation"
+  ],
+  "when_updated_utc": "20260406134032",
+  "last_verified_utc": "20260406134032"
+}

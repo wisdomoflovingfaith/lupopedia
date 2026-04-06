@@ -4,7 +4,7 @@ lupopedia.headers:
   lupopedia.schema: "index"
   file_path_from_root: "lupo-docs/prd/PRD_INDEX.md"
   file_hash: "created_prd_index"
-  last_updated_utc: "20260405120000"
+  last_updated_utc: "20260406154744"
   system_version: "4.0.89"
   channel_id: 42
   actor_id: 1
@@ -23,7 +23,7 @@ lupopedia.edges:
     - { to: "lupo-docs/prd/00_root_constitutional_system_requirements.md", type: "references", weight: 1.0, reason: "Foundational constitutional requirements" }
 
 lupopedia.footer:
-  last_verified: "20260405120000"
+  last_verified: "20260406154744"
   last_verified_by: "wolfie"
 ---
 
@@ -33,7 +33,7 @@ lupopedia.footer:
 **Effective:** Version 4.0.89+  
 **Status:** ACTIVE  
 **Authority:** WOLFIE (actor_id: 1)  
-**Updated:** 2026-04-05  
+**Updated:** 2026-04-06  
 
 ---
 
@@ -48,6 +48,7 @@ This index provides a comprehensive listing of all Product Requirements Document
 ### Core System Requirements
 - **[00_root_constitutional_system_requirements.md](00_root_constitutional_system_requirements.md)** - Constitutional system requirements and foundational architecture
 - **[01_core_identity.md](01_core_identity.md)** - Core identity system and actor model
+- **[01_captain_wolfie_identity.md](01_captain_wolfie_identity.md)** - Captain WOLFIE (Actor 1) identity, constitutional role, training plan, Department 0 doctrine
 - **[02_channels_discussions.md](02_channels_discussions.md)** - Channel system and discussion protocols
 - **[02_data_model.md](02_data_model.md)** - Data model and schema specifications
 - **[03_goals_and_success_criteria.md](03_goals_and_success_criteria.md)** - System goals and success metrics
@@ -150,6 +151,6 @@ This index provides a comprehensive listing of all Product Requirements Document
 ---
 
 **Index Status:** ACTIVE  
-**Last Updated:** 2026-04-05  
+**Last Updated:** 2026-04-06  
 **Maintained By:** System Architecture  
 **Next Review:** As needed when new PRDs are added

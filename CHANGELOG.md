@@ -1,8 +1,8 @@
 ---
 lupopedia.headers:
   file_path_from_root: "CHANGELOG.md"
-  last_modified_utc: "20260328120000"
-  when_updated: "20260328120000"
+  last_modified_utc: "20260406171149"
+  when_updated: "20260406171149"
   channel_id: 42
   thread_id: 1047
   actor_id: 1
@@ -14,7 +14,7 @@ lupopedia.headers:
   web_path: "http://www.lupopedia.com/lupopedia/CHANGELOG.md"
 lupopedia.footer:
   version: "4.0.89"
-  last_verified: "20260328120000"
+  last_verified: "20260406171149"
   last_verified_by: "wolfie"
   last_verified_by_actor_id: 1
   orchestrator: "wolfie:root"
@@ -45,7 +45,7 @@ All changes prior to version **4.0.85** are archived in:
 
 ### 📖 How to Read This Document
 
-1. **For the latest changes** → Check `lupo-docs/versions/4.0.95/CHANGELOG.md` (current development version)
+1. **For the latest changes** → Check `lupo-docs/versions/4.0.95/CHANGELOG.md` (current development version). **2026-04-06:** doctrine/PRD alignment, root README, `lupo-docs/reference/architect_background.md`, `FOR_CLAUDE_CODE_2026_04_06.md` — see that file’s **[CHANGELOG](lupo-docs/versions/4.0.95/CHANGELOG.md)** section *Doctrine, PRD alignment, and documentation (2026-04-06)*.
 2. **For historical context** → Consult `CHANGELOG_ARCHIVE.md` (all versions before 4.0.85)
 3. **For complete version details** → Browse the version-specific directory containing: PLAN.md, TODO.md, TASK_REGISTRY.md, CONTRADICTIONS.md, DOCTRINE.md
 

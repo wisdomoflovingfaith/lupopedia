@@ -5,6 +5,7 @@ lupopedia.headers:
   file_path_from_root: "lupo-docs/doctrine/DEVELOPMENT_WORKFLOW_DOCTRINE.md"
   file_hash: "963e20a875cde4e24b4fc5246d8cd44ff2927bf4881185cd82c6952b04ebadc9"
   last_updated_utc: "20260228155738"
+  when_updated_utc: "20260406142956"
   system_version: "4.0.88"
   channel_id: 1
   actor_id: 102
@@ -28,7 +29,7 @@ lupopedia.edges:
       reason: "Doctrine PRD lineage; constitutional audit 20260403"
 
 lupopedia.footer:
-  last_verified: "20260228155738"
+  last_verified: "20260406142956"
   last_verified_by: "cursor"
 ---
 
@@ -126,7 +127,7 @@ Treat this file as:
 
 ## 3. Absolute prohibitions (enforced)
 
-Lupopedia uses **no frameworks, no middleware, no Composer, no DB logic, no ORM**. Pure procedural PHP + PDO only. No stored procedures, triggers, views, foreign keys, cascades, query builders, or vendor packages. All logic lives in PHP; the database is for storage only. These rules apply to all code generated for the wizard, importer, and application.
+Lupopedia uses **no frameworks, no middleware, no Composer, no DB logic, no ORM**. Pure procedural PHP + PDO only. No stored procedures, triggers, views, foreign keys, cascades, query builders, or vendor packages. All logic lives in PHP; the database is for storage only. These rules apply to all code generated for the wizard, importer, and application. **Installer exception (constitutional carve-out):** **`lupo-docs/doctrine/DATABASE_DOCTRINE.md`** — **Runtime database access (PDO_DB) and installer exception** — **`install.php`** / wizard **may** use **`mysqli`** only for the narrow listed installer purposes; **runtime** uses **`PDO_DB`** only and **named placeholders**.
 
 **Organizational scope:** The sole organizational and permission-bearing unit is the **department**. Tables `lupo_groups` and `lupo_actor_group_membership` are **removed**; do not create or reference them. Use `lupo_departments` and `lupo_actor_departments`. Schema alignment and TOON regeneration after the unification migration reflect department_id on permissions, collections, collection_tabs, contents, and analytics tables.
 

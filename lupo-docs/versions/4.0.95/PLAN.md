@@ -2,10 +2,10 @@
 lupopedia.headers:
   header_format_version: 2
   lupopedia.schema: plan
-  when_updated: "20260406043326"
+  when_updated: "20260406171149"
   file_path_from_root: "lupo-docs/versions/4.0.95/PLAN.md"
   web_path: "http://www.lupopedia.com/lupopedia/lupo-docs/versions/4.0.95/PLAN.md"
-  last_modified_utc: "20260406043326"
+  last_modified_utc: "20260406171149"
   federation_node_id: 0
   channel_id: 42
   thread_id: "version-4.0.95-plan"
@@ -29,7 +29,7 @@ lupopedia.edges:
       weight: 1.0
       reason: "Backlog for this line"
 lupopedia.footer:
-  last_verified: "20260406043326"
+  last_verified: "20260406171149"
   verified_by:
     identity_type: actor
     actor_id: 102
@@ -49,6 +49,7 @@ lupopedia.footer:
 
 ## Phase 1: Constitutional alignment
 
+- [x] Doctrine / PRD alignment batch (2026-04-06) — departments, actors, learning boundaries, installation narrative; **PRD 00, 01, 05, 15, 28, 33**; root **README**; see **`CHANGELOG.md`**
 - [ ] Close PRD 30 rewrite (writing guide)
 - [ ] Migrate remaining root rules to `author` block (where applicable)
 
@@ -84,8 +85,8 @@ lupopedia.footer:
 
 ## Phase 6: Documentation
 
-- [ ] Update **`CHANGELOG.md`** as work lands
-- [ ] Keep **`edges.md`** aligned with new threads
+- [x] Update **`CHANGELOG.md`** as work lands (2026-04-06 batch recorded)
+- [x] Keep **`edges.md`** aligned with new threads (2026-04-06)
 
 ---
 
@@ -102,12 +103,12 @@ lupopedia.footer:
 
 | Phase | Status |
 |-------|--------|
-| Phase 1 — Constitutional alignment | PENDING |
+| Phase 1 — Constitutional alignment | IN PROGRESS (doctrine batch landed 2026-04-06) |
 | Phase 2 — Session hardening | PENDING |
 | Phase 3 — `$UNTRUSTED` sweep | PENDING |
 | Phase 4 — DB / time | PENDING |
 | Phase 5 — Locale / UI | PENDING |
-| Phase 6 — Documentation | PENDING |
+| Phase 6 — Documentation | IN PROGRESS (changelog/edges updated 2026-04-06) |
 | Phase 7 — Packaging and testing | PENDING |
 
 ---

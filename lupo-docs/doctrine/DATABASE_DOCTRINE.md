@@ -3,7 +3,8 @@ lupopedia.headers:
   lupopedia.version: "4.0.75"
   lupopedia.schema: "documentation"
   file_path_from_root: "lupo-docs/doctrine/DATABASE_DOCTRINE.md"
-  last_modified_utc: "20260315"
+  when_updated_utc: "20260406142956"
+  last_modified_utc: "20260406142956"
   system_version: "4.0.75"
   channel_id: 42
   actor_id: 102
@@ -29,11 +30,29 @@ lupopedia.edges:
       reason: "Doctrine PRD lineage; constitutional audit 20260403"
 
 lupopedia.footer:
-  last_verified: "20260315"
+  last_verified: "20260406142956"
   last_verified_by: "cursor"
 ---
 
 # Database Doctrine
+
+## Runtime database access (PDO_DB) and installer exception
+
+**Installer exception rule (constitutional carve-out).** This block is the authoritative statement of the exception; other doctrine and PRD references point here.
+
+1. **All runtime agents** MUST use **`PDO_DB`** only (via **`DatabaseFactory::getConnection()`** / the project PDO wrapper). No raw **`PDO`**, **`mysqli`**, **`mysql_*`**, or alternate drivers in shipped runtime paths.
+2. **All runtime agents** MUST use **named placeholders** and bound parameters in SQL — no string-interpolated values in query text.
+3. **No runtime agent** may use **`mysqli`** for application or post-bootstrap database access.
+4. The **installer** (**`install.php`** and the **install wizard** stack, including shared wizard classes) is **exempt** from the PDO-only rule **for the installer process only**.
+5. The installer **MAY** use **`mysqli`** only for:
+   - buffered multi-statement execution;
+   - prefix migration testing;
+   - schema import operations;
+   - fallback logic validation.
+6. The installer **MUST NOT** introduce **`mysqli`** usage into **runtime** code (bootstrap, **`lupo-includes/`**, **`app/`**, themes, APIs, or any code path that serves normal requests after install).
+7. This exception is a **controlled, constitutional carve-out**: narrow, documented, and not a precedent for bypassing **`PDO_DB`** in runtime.
+
+**Cross-reference:** Timestamp *value* rules for stored clocks are unchanged for runtime code; see **`lupo-docs/doctrine/TIMESTAMP_DOCTRINE.md`** §4.5.
 
 ## Index and schema conventions
 

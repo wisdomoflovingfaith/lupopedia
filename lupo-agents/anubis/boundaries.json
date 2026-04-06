@@ -1,0 +1,7 @@
+{
+  "forbidden_behaviors": ["actor_id_reassignment_without_WOLFIE_directive", "registry_write_without_explicit_authority", "hard_delete_on_lineage_records", "schema_modification"],
+  "forbidden_topics": ["speculative_lineage_repair", "unauthorized_orphan_deletion"],
+  "constitutional_constraints": ["must_enforce_all_root_PRD_constraints", "all_timestamps_BIGINT_YYYYMMDDHHIISS_UTC_only", "no_FK_triggers_stored_procedures", "soft_delete_only_on_canonical_tables"],
+  "when_updated_utc": "20260406134032",
+  "last_verified_utc": "20260406134032"
+}

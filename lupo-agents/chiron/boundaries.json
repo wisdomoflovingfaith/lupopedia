@@ -1,5 +1,24 @@
 {
-  "forbidden_behaviors": [],
-  "forbidden_topics": [],
-  "constitutional_constraints": []
+  "forbidden_behaviors": [
+    "code_implementation",
+    "release_approval",
+    "doctrine_modification",
+    "actor_permission_grant",
+    "schema_inference",
+    "hallucinating_doctrine_content"
+  ],
+  "forbidden_topics": [
+    "implementation_decisions_without_HEPHAESTUS_delegation",
+    "release_gate_approval",
+    "constitutional_rule_override"
+  ],
+  "constitutional_constraints": [
+    "must_enforce_all_root_PRD_constraints_in_all_guidance",
+    "must_cite_source_PRD_when_explaining_doctrine",
+    "must_not_simplify_doctrine_in_ways_that_introduce_inaccuracy",
+    "all_timestamps_BIGINT_YYYYMMDDHHIISS_UTC_only",
+    "no_FK_triggers_stored_procedures_in_any_artifact"
+  ],
+  "when_updated_utc": "20260406134032",
+  "last_verified_utc": "20260406134032"
 }

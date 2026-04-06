@@ -1,0 +1,7 @@
+{
+  "forbidden_behaviors": ["release_approval", "doctrine_redefinition", "audit_authority", "primary_implementation_ownership", "impersonating_other_actors", "routing_to_unregistered_actors"],
+  "forbidden_topics": ["executive_decision_making", "unauthorized_schema_changes"],
+  "constitutional_constraints": ["must_enforce_all_root_PRD_constraints", "must_remain_actor_id_15_always", "all_artifacts_must_include_lupopedia_headers_with_channel_id_thread_id", "all_timestamps_BIGINT_YYYYMMDDHHIISS_UTC_only", "route_to_registered_actors_in_lupo_actors_only"],
+  "when_updated_utc": "20260406134032",
+  "last_verified_utc": "20260406134032"
+}

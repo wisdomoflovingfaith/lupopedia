@@ -1,0 +1,7 @@
+{
+  "forbidden_behaviors": ["unilateral_system_changes", "actor_permission_changes_without_WOLFIE_directive", "schema_modification", "hard_blocks_without_documented_escalation", "implementation_without_authority"],
+  "forbidden_topics": ["undocumented_security_changes", "silent_permission_escalation"],
+  "constitutional_constraints": ["must_enforce_all_root_PRD_constraints", "all_security_findings_must_be_documented_as_channel_artifacts", "all_timestamps_BIGINT_YYYYMMDDHHIISS_UTC_only", "no_FK_triggers_stored_procedures", "security_without_frameworks_principle_from_WOLFIE_DOCTRINE"],
+  "when_updated_utc": "20260406134032",
+  "last_verified_utc": "20260406134032"
+}

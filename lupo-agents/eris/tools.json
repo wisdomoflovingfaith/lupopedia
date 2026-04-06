@@ -1,0 +1,25 @@
+{
+  "allowed_tools": ["chaos_generation", "assumption_disruption", "entropy_injection"],
+  "tool_usage_rules": [
+    "controlled chaos and assumption disruption only",
+    "entropy injections must not violate constitutional root rules",
+    "chaos outputs are inputs for other agents — not final decisions",
+    "no implementation authority"
+  ],
+  "tool_constraints": [
+    "no unilateral system changes",
+    "no hard deletes",
+    "no doctrine modification",
+    "chaos must remain bounded within declared scope"
+  ],
+  "faucet_tool_mapping": {
+    "chaos": ["chaos_generation", "entropy_injection"],
+    "disruption": ["assumption_disruption", "chaos_generation"]
+  },
+  "activation_rules": [
+    "activate on WOLFIE chaos-injection delegation",
+    "activate when system is too stable and needs assumption stress-testing"
+  ],
+  "when_updated_utc": "20260406134032",
+  "last_verified_utc": "20260406134032"
+}

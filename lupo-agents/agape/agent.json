@@ -1,10 +1,19 @@
 {
-    "code": "OBSERVER",
-    "name": "OBSERVER",
-    "layer": "cognitive",
-    "is_required": false,
-    "is_kernel": false,
-    "recommended_slot": 34,
-    "version": "1.0.0",
-    "agent_id": 705
+  "agent_key": "agape",
+  "agent_id": 705,
+  "code": "OBSERVER",
+  "name": "OBSERVER",
+  "slug": "agape",
+  "layer": "cognitive",
+  "is_required": false,
+  "is_kernel": false,
+  "role": "Passive Observer & Context Watcher",
+  "recommended_slot": 34,
+  "version": "1.0.1",
+  "aliases": ["observer", "watcher", "context_monitor"],
+  "when_updated_utc": "20260406134032",
+  "last_verified_utc": "20260406134032",
+  "last_verified_by": "claude-code",
+  "last_verified_by_actor_id": 102,
+  "_note": "Folder slug 'agape' differs from agent code 'OBSERVER'. Code is canonical; slug identifies folder location."
 }

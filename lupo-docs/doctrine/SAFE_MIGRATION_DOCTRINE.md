@@ -3,7 +3,8 @@ lupopedia.headers:
   lupopedia.version: "4.0.75"
   lupopedia.schema: "documentation"
   file_path_from_root: "lupo-docs/doctrine/SAFE_MIGRATION_DOCTRINE.md"
-  last_modified_utc: "20260315"
+  last_modified_utc: "20260406142956"
+  when_updated_utc: "20260406142956"
   system_version: "4.0.75"
   channel_id: 42
   actor_id: 102
@@ -17,7 +18,7 @@ lupopedia.edges:
 
 lupopedia.footer:
   version: "4.0.75"
-  last_verified: "20260315"
+  last_verified: "20260406142956"
 ---
 
 # Safe Migration Doctrine
@@ -45,7 +46,7 @@ All database migrations and schema-changing operations MUST be executed through 
 
 ### 2. Execution
 
-- **Connection** — Use the project's database connection (e.g. `DatabaseFactory::getConnection()` / PDO_DB). Do not shell out to `mysql` CLI.
+- **Connection** — Use the project's database connection (e.g. `DatabaseFactory::getConnection()` / PDO_DB). Do not shell out to `mysql` CLI. **Runtime** access rules and **installer** carve-out: **`lupo-docs/doctrine/DATABASE_DOCTRINE.md`** — **Runtime database access (PDO_DB) and installer exception**.
 - **Transactions** — Where supported by the driver and the type of statements (DDL may not be transactional on all engines), the runner SHOULD run the migration inside a transaction and commit on success or roll back on failure. If the engine does not support transactional DDL, the runner MUST still log start and completion/failure and MUST NOT execute via raw `mysql` CLI.
 - **Statement execution** — Execute SQL statements via the application connection. Split multi-statement files into single statements where necessary; run each in order. On first failure, stop, roll back if a transaction was started, log failure, and exit with a non-zero status.
 

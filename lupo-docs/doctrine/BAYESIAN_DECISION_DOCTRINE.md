@@ -5,7 +5,8 @@ lupopedia.headers:
   system_version: "4.0.87"
   file_path_from_root: "lupo-docs/doctrine/BAYESIAN_DECISION_DOCTRINE.md"
   web_path: "[web_path](http://www.lupopedia.com/doctrine/BAYESIAN_DECISION_DOCTRINE)"
-  last_modified_utc: "20260325"
+  last_modified_utc: "20260406142956"
+  when_updated_utc: "20260406142956"
   channel_id: 42
   actor_id: 102
   actor_name: "cursor"
@@ -27,7 +28,7 @@ lupopedia.edges:
 
 lupopedia.footer:
   version: "4.0.87"
-  last_verified: "20260325"
+  last_verified: "20260406142956"
   last_verified_by: "cursor"
   orchestrator: "cursor"
   next_action:
@@ -134,7 +135,7 @@ The canonical metadata store remains **`lupo_metadata`**. Decision tracking **re
   - Tables + TOONs + doctrine (this file).
   - Engine classes, session integration, dialog/task hooks, CLI/API endpoints are **future work**.
 - When engine code is added:
-  - Writes MUST go through the PDO_DB wrapper (no raw PDO).
+  - Writes MUST go through the PDO_DB wrapper (no raw PDO). **Installer exception (constitutional carve-out):** **`lupo-docs/doctrine/DATABASE_DOCTRINE.md`** — **Runtime database access (PDO_DB) and installer exception**.
   - Decision creation SHOULD precede dialog/task writes when the decision describes that action.
   - Any `current_decision_id`‑style field in `lupo_sessions` MUST be added only if it is fully aligned with existing session doctrine and TOONs.
 

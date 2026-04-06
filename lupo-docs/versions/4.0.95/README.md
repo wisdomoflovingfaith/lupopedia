@@ -2,10 +2,10 @@
 lupopedia.headers:
   header_format_version: 2
   lupopedia.schema: version_readme
-  when_updated: "20260406062838"
+  when_updated: "20260406171149"
   file_path_from_root: "lupo-docs/versions/4.0.95/README.md"
   web_path: "http://www.lupopedia.com/lupopedia/lupo-docs/versions/4.0.95/README.md"
-  last_modified_utc: "20260406062838"
+  last_modified_utc: "20260406171149"
   federation_node_id: 0
   channel_id: 42
   author:
@@ -27,12 +27,16 @@ lupopedia.edges:
       type: references
       weight: 1.0
       reason: "What shipped in 4.0.94 scope"
+    - to: "FOR_CLAUDE_CODE_2026_04_06.md"
+      type: references
+      weight: 0.95
+      reason: "2026-04-06 agent sync summary"
     - to: "lupo-docs/versions/4.0.95/TODO.md"
       type: references
       weight: 1.0
       reason: "Deferred backlog for this line"
 lupopedia.footer:
-  last_verified: "20260406062838"
+  last_verified: "20260406171149"
   verified_by:
     identity_type: actor
     actor_id: 102
@@ -45,13 +49,24 @@ lupopedia.footer:
 
 **Status:** Active (working line)  
 **Parent documentation line:** 4.0.94  
-**Runtime:** **`GLOBAL_CURRENT_LUPOPEDIA_VERSION`** is **4.0.95** as of UTC **`20260406062838`**.
+**Runtime:** **`GLOBAL_CURRENT_LUPOPEDIA_VERSION`** is **4.0.95** as of UTC **`20260406171149`**.
 
 ---
 
 ## Overview
 
 **4.0.95** carries **deferred** work from **4.0.94**, autoinstaller / packaging feedback, and follow-on improvements. **4.0.94** documentation remains the packaging-readiness snapshot; product development continues on this line.
+
+---
+
+## Documentation batch (2026-04-06)
+
+Canonical detail: **[CHANGELOG.md](CHANGELOG.md)** for this date.
+
+- **Doctrine / PRD alignment** — Department 0/1, Crafty import, actor learning boundaries, installation and widget/collections narrative aligned across **PRD 00, 01, 05, 15, 28, 33** (plus cross-references).
+- **Root README** — “Why Lupopedia Is Built Differently” and related sections; links to PRDs and pseudocode.
+- **Reference** — **`lupo-docs/reference/architect_background.md`** (factual architect timeline).
+- **Agent sync** — **`FOR_CLAUDE_CODE_2026_04_06.md`** (repo root) summarizes the batch for AI tools (e.g. Claude Code) and lists review targets (**PRD 00, 01, 05, 15, 17, 28, 33**, README, `architect_background.md`).
 
 ---
 

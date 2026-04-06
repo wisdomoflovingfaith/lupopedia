@@ -5,6 +5,7 @@ lupopedia.headers:
   file_path_from_root: "lupo-docs/doctrine/AGENT_BOUNDARIES_COMPACT.md"
   file_hash: "063855eeed00d34b4b26bdb418965c8f0d8f62beab8db105dbd91a72ebaff3c8"
   last_updated_utc: "20260228155738"
+  when_updated_utc: "20260406142956"
   system_version: "4.0.88"
   channel_id: 1
   actor_id: 102
@@ -28,7 +29,7 @@ lupopedia.edges:
       reason: "Doctrine PRD lineage; constitutional audit 20260403"
 
 lupopedia.footer:
-  last_verified: "20260228155738"
+  last_verified: "20260406142956"
   last_verified_by: "cursor"
 ---
 
@@ -214,7 +215,7 @@ lupopedia/uploads/
 **Terminal agents will:**
 - Run in PHP runtime
 - Use website runtime environment
-- Interact with DB through PHP PDO
+- Interact with DB through **`PDO_DB`** (named placeholders; **no mysqli** in runtime — **installer exception:** **`lupo-docs/doctrine/DATABASE_DOCTRINE.md`** — **Runtime database access (PDO_DB) and installer exception**)
 - Follow PHP runtime rules
 
 **Terminal agents must NOT:**

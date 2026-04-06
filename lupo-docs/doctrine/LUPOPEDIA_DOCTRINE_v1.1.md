@@ -5,6 +5,7 @@ lupopedia.headers:
   file_path_from_root: "lupo-docs/doctrine/LUPOPEDIA_DOCTRINE_v1.1.md"
   file_hash: "42e12596144841e749ee84bfe5977c462e5a0eb0ef86e170636bf88fd0b8363a"
   last_updated_utc: "20260228155738"
+  when_updated_utc: "20260406142956"
   system_version: "4.0.88"
   channel_id: 1
   actor_id: 102
@@ -28,7 +29,7 @@ lupopedia.edges:
       reason: "Doctrine PRD lineage; constitutional audit 20260403"
 
 lupopedia.footer:
-  last_verified: "20260228155738"
+  last_verified: "20260406142956"
   last_verified_by: "cursor"
 ---
 
@@ -180,6 +181,8 @@ Applies to all languages and all agents.
 All DB access must use the Lupopedia PDO wrapper.
 
 **Forbidden:** Direct PDO, mysqli, pg_connect, raw SQL outside repositories, DB-specific features, hardcoded DSNs.
+
+**Installer exception (constitutional carve-out):** **`lupo-docs/doctrine/DATABASE_DOCTRINE.md`** — **Runtime database access (PDO_DB) and installer exception** — **`install.php`** / wizard **may** use **`mysqli`** only for the narrow listed installer purposes; **runtime** uses **`PDO_DB`** only and **named placeholders**.
 
 **Allowed:** Repository classes, prepared statements via wrapper, DB-agnostic SQL.
 

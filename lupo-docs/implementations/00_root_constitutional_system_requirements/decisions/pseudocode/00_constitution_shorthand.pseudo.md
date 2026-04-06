@@ -2,8 +2,8 @@
 lupopedia.headers:
   header_format_version: 2
   lupopedia.schema: pseudocode
-  when_updated: "20260405223937"
-  last_modified_utc: "20260405223937"
+  when_updated: "20260406152800"
+  last_modified_utc: "20260406152800"
   file_path_from_root: "lupo-docs/implementations/00_root_constitutional_system_requirements/decisions/pseudocode/00_constitution_shorthand.pseudo.md"
   web_path: "http://www.lupopedia.com/lupopedia/lupo-docs/implementations/00_root_constitutional_system_requirements/decisions/pseudocode/00_constitution_shorthand.pseudo.md"
   channel_id: 42
@@ -31,23 +31,23 @@ lupopedia.edges:
       type: references
       weight: 0.95
       reason: "One-page map to all Priority 1–3 PRD shorthands"
-    - to: "lupo-docs/decisions/pseudocode/00_dodo_bird_corrections.pseudo.md"
+    - to: "lupo-docs/decisions/pseudocode/00_NON_NEGOTIABLES_IMPORTANT_OVERWRITES.pseudo.md"
       type: references
       weight: 0.9
       reason: "Anti-pattern digest — epoch/FK/ORM/build-chain corrections vs common AI suggestions"
-    - to: "lupo-docs/decisions/pseudocode/00_NON_NEGOTIABLES_IMPORTANT_OVERWRITES.pseudo.md"
+    - to: "lupo-docs/decisions/pseudocode/00_NON_NEGOTIABLES_IMPORTANT_OVERWRITES_SHORTHAND.pseudo.md"
       type: references
       weight: 0.92
       reason: "Short overrides table vs training defaults — read before dodo/shorthand depth"
 lupopedia.footer:
-  last_verified: "20260405224232"
+  last_verified: "20260406152800"
   verified_by:
     actor_id: 102
 ---
 
 # Lupopedia constitution (shorthand for AI agents)
 
-**Read [PRD 00](../../../../prd/00_root_constitutional_system_requirements.md)** — this file is a **compact checklist**. If a rule is unclear or this digest disagrees with PRD 00, **PRD 00 wins**. **Timestamps:** **§3.5** (including **§3.5.4** Y2038) + **§19**. **Training overwrites (short):** [00_NON_NEGOTIABLES_IMPORTANT_OVERWRITES.pseudo.md](../../../../decisions/pseudocode/00_NON_NEGOTIABLES_IMPORTANT_OVERWRITES.pseudo.md). **Wrong-default examples:** [00_dodo_bird_corrections.pseudo.md](../../../../decisions/pseudocode/00_dodo_bird_corrections.pseudo.md) (digests — **PRD 00** still wins).
+**Read [PRD 00](../../../../prd/00_root_constitutional_system_requirements.md)** — this file is a **compact checklist**. If a rule is unclear or this digest disagrees with PRD 00, **PRD 00 wins**. **Timestamps:** **§3.5** (including **§3.5.4** Y2038) + **§19**. **Training overwrites (short):** [00_NON_NEGOTIABLES_IMPORTANT_OVERWRITES_SHORTHAND.pseudo.md](../../../../decisions/pseudocode/00_NON_NEGOTIABLES_IMPORTANT_OVERWRITES_SHORTHAND.pseudo.md). **Wrong-default examples:** [00_NON_NEGOTIABLES_IMPORTANT_OVERWRITES.pseudo.md](../../../../decisions/pseudocode/00_NON_NEGOTIABLES_IMPORTANT_OVERWRITES.pseudo.md) (digests — **PRD 00** still wins).
 
 ## Timestamp rules (read this first)
 
@@ -87,36 +87,19 @@ lupopedia.footer:
 | Frameworks | Laravel, middleware stacks, ORM magic | Plain PHP, **`PDO_DB`**, **`DatabaseFactory::getConnection()`** |
 | SQL assembly | Concatenated values in SQL | **Named placeholders** + bound params |
 | Planning prose | “Two weeks”, calendar phasing | Dependency-ordered phases ([TASK_PLANNING_DOCTRINE](../../../../doctrine/TASK_PLANNING_DOCTRINE.md)) |
-| Schema churn (4.0.x) | `ALTER TABLE` chains as upgrade path | **Fresh install** from **`install_new_lupopedia.sql`** until **4.1.0** gate |
+| Schema churn (4.0.x) | Chained one-off schema patch files as upgrade path | **Fresh install** from **`install_new_lupopedia.sql`** until **4.1.0** gate |
 
 ## Agent and identity (summary)
 
-| Rule | Description |
-|------|-------------|
-| **Agents** | File-based config under **`lupo-agents/{agent_key}/`** — not the same as **`lupo_actors`**. |
-| **Actors** | Runtime orchestration identity; **`actor_id`** is canonical. |
-| **Auth users** | Login surface; map to actors per identity doctrine — no conflation. |
-| **Departments** | Scope for operations; align with **PRD 25** / **`lupo_actor_departments`**. |
-| **IDE facets** | Registered **`actor_id`** (e.g. Cursor **102**) — not the eleven primary personas. |
+(Condensed for Purpose‑1 quickload; see PRD 00 for agents vs `lupo_actors`, auth users, departments, IDE facet `actor_id`.)
 
 ## Installer and hosting
 
-| Rule | Description |
-|------|-------------|
-| **`.htaccess`** | **Optional** — core routes must work **without** `mod_rewrite` (**PRD 00 §2, §9.5**). |
-| **Config** | Resolve **`lupopedia-config.php`** per bootstrap doctrine (above docroot preferred). |
-| **Permissions** | Detect and **warn** — **no** auto-**`chmod`** to “fix” hosts. |
-| **Extensions** | Probe with **`extension_loaded()`** / **`function_exists()`**; degrade visibly. |
-| **Failures** | Security-sensitive operations need **AGAPE-style** fallbacks (**PRD 00 §17**). |
+(Condensed for Purpose‑1 quickload; see PRD 00 §2, §9.5 for `.htaccess`, config bootstrap, permissions, extensions, AGAPE-style fallbacks.)
 
 ## UI layer (shipped surfaces)
 
-| Rule | Description |
-|------|-------------|
-| **Layers / animation** | **`lupo-includes/js/lupo-layers.js`** for new DHTML-style UI — **no** **`eval()`**, **`new Function(string)`**, or string **`setTimeout` / `setInterval`** (**§16**); PHP **§17.7** mirrors the same intent server-side. |
-| **Build chain** | **No** npm/webpack/vite as **runtime** requirement for public **`lupo-includes`** UI. |
-| **CDN** | Prefer in-tree assets under **`lupo-includes/`**. |
-| **Strings** | **`lupo_t('semantic.key', 'Fallback')`** + **`lupo-includes/lang/lupo-*.php`** for ship-facing copy. |
+(Condensed for Purpose‑1 quickload; see PRD 00 §16 — `lupo-layers.js`, no `eval` / `new Function(string)` / string timers; vanilla JS; `lupo_t()`; in-tree assets.)
 
 ## Security (summary)
 
@@ -132,28 +115,20 @@ lupopedia.footer:
 
 ## Search indexing
 
-| Rule | Description |
-|------|-------------|
-| **Assumption** | Lupopedia is **not** modeled as a public SEO site (**PRD 00 §18**). |
-| **`robots.txt`** | **SHOULD** disallow crawling the app tree where writable. |
-| **Meta** | Admin / operator shells **SHOULD** emit **`noindex, nofollow`** (or headers). |
+(Condensed for Purpose‑1 quickload; see PRD 00 §18 for indexing posture.)
 
 ## Quick reference (one-liners)
 
-```yaml
-database: "No FKs; BIGINT packed UTC YYYYMMDDHHIISS (not Unix epoch — see §3.5.4 Y2038); 64-bit PHP prod; no SQL date functions; no epoch in schema; no AUTO_INCREMENT on registry tables; explicit PK names; soft deletes; logic in PHP"
-php: "PHP 5.6+ in core paths; PDO_DB only; no Laravel; no Composer in runtime"
-installer: ".htaccess optional; fallback routing; detect extensions; warn don't chmod"
-security: "Path anchor; stream/NUL block; named placeholders; explicit INSERT columns (no positional VALUES); SELECT * allowed on reads per §17.3; no eval/unserialize-trust; lupo_sessions authority; decode/re-encode uploads per PRD 33 §5.1 / §17.7; $UNTRUSTED boundary + validate (§17.8); prompt injection §17.9 (IDE no authority impersonation; ROSE PRD 36 dialog-only writes)"
-ui: "Vanilla JS in shipped UI; LupoLayer; lupo_t() for strings"
-identity: "actor_id canonical; agents are files; facets have registry actor_id"
-```
+(Condensed for Purpose‑1 quickload; see full PRDs for detailed rationale.)
+
+- **Database:** No FKs; BIGINT packed UTC `YYYYMMDDHHIISS` (not Unix epoch — see §3.5.4 Y2038); 64-bit PHP prod; no SQL date functions; no epoch in schema; no `AUTO_INCREMENT` on registry tables; explicit PK names; soft deletes; logic in PHP.
+- **PHP:** PHP 5.6+ in core paths; PDO_DB only; no Laravel; no Composer in runtime.
+- **Installer:** `.htaccess` optional; fallback routing; detect extensions; warn don't chmod.
+- **Security:** Path anchor; stream/NUL block; named placeholders; explicit INSERT columns (no positional VALUES); SELECT * allowed on reads per §17.3; no eval/unserialize-trust; `lupo_sessions` authority; decode/re-encode uploads per PRD 33 §5.1 / §17.7; `$UNTRUSTED` boundary + validate (§17.8); prompt injection §17.9 (IDE no authority impersonation; ROSE PRD 36 dialog-only writes).
+- **UI:** Vanilla JS in shipped UI; LupoLayer; `lupo_t()` for strings.
+- **Identity:** `actor_id` canonical; agents are files; facets have registry `actor_id`.
 
 ## How external AI should use this
 
 1. Load this file **first** for a fast guardrail pass.
 2. For nuance, open the cited **PRD 00** section (and TOON / install SQL for schema facts).
-3. **Never** propose forbidden patterns above for production paths.
-4. When uncertain, ask: **Is there a documented fallback?** (AGAPE / offline / degraded mode)
-
-Reviewer posture: **LILITH** (**`actor_id` 2**) may reject changes that violate these constraints.

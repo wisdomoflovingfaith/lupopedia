@@ -4,8 +4,9 @@ lupopedia.headers:
   lupopedia.schema: doctrine
   file_path_from_root: "lupo-docs/doctrine/MOBILE_SEPARATION_DOCTRINE.md"
   web_path: "http://www.lupopedia.com/lupopedia/lupo-docs/doctrine/MOBILE_SEPARATION_DOCTRINE.md"
-  last_modified_utc: "20260403140117"
-  when_updated: "20260403140117"
+  last_modified_utc: "20260406142956"
+  when_updated: "20260406142956"
+  when_updated_utc: "20260406142956"
   federation_node_id: 0
   channel_id: 42
   actor_id: 102
@@ -67,7 +68,7 @@ lupopedia.edges:
       weight: 1.0
       reason: "Mobile-first build for logic, desktop-second for art; complements runtime rules here"
 lupopedia.footer:
-  last_verified: "20260403140117"
+  last_verified: "20260406142956"
   verified_by:
     identity_type: actor
     actor_id: 2
@@ -180,7 +181,7 @@ Paths must use **filesystem** constants (e.g. **`LUPOPEDIA_ABSPATH`**, **`LUPOPE
 | Explicit over implicit | Routes choose **which** template family—not `@media` as sole strategy. |
 | Ownership | WOLFIE **owns** desktop UI; mobile web is **AI-assisted** but **merged under WOLFIE’s** repo rules. |
 
-**Note:** “AI-generated mobile” does **not** relax **PDO_DB**, **auth**, or **security** doctrine—only the **presentation** layer may be generated; **server** logic stays in PHP under project rules.
+**Note:** “AI-generated mobile” does **not** relax **PDO_DB**, **auth**, or **security** doctrine—only the **presentation** layer may be generated; **server** logic stays in PHP under project rules. **Installer exception (constitutional carve-out):** runtime **must** use **`PDO_DB`** and **named placeholders**; **`install.php`** / wizard **may** use **`mysqli`** only as in **`lupo-docs/doctrine/DATABASE_DOCTRINE.md`** — **Runtime database access (PDO_DB) and installer exception**.
 
 ### Voice (WOLFIE)
 

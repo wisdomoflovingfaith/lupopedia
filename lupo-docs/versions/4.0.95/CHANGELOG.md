@@ -2,10 +2,10 @@
 lupopedia.headers:
   header_format_version: 2
   lupopedia.schema: changelog
-  when_updated: "20260406064800"
+  when_updated: "20260406171149"
   file_path_from_root: "lupo-docs/versions/4.0.95/CHANGELOG.md"
   web_path: "http://www.lupopedia.com/lupopedia/lupo-docs/versions/4.0.95/CHANGELOG.md"
-  last_modified_utc: "20260406064800"
+  last_modified_utc: "20260406171149"
   federation_node_id: 0
   channel_id: 42
   thread_id: "version-4.0.95-changelog"
@@ -19,7 +19,7 @@ lupopedia.headers:
   purpose: "Changelog for Lupopedia 4.0.95 — routing without mod_rewrite, query-string URLs, login.php surface"
   tags: ["changelog", "version", "4.0.95", "cursor"]
 lupopedia.footer:
-  last_verified: "20260406064800"
+  last_verified: "20260406171149"
   verified_by:
     identity_type: actor
     actor_id: 102
@@ -89,5 +89,13 @@ lupopedia.footer:
 ### Other
 
 - **`index.php`** — Debug copy when slug is empty points to **`?slug=`** / **`?resolved_uri=`** instead of “check .htaccess rewrite”.
+
+### Doctrine, PRD alignment, and documentation (2026-04-06)
+
+- **Scope** — Cursor updated approximately **97 files** during doctrine expansion and PRD alignment (departments, actors, learning boundaries, installation behavior, README).
+- **PRDs** — Shared normative sections added or updated across **PRD 00** (cross-references), **PRD 01** (`01_captain_wolfie_identity.md`), **PRD 05**, **PRD 15**, **PRD 28**, **PRD 33**: Department 0/1, department creation, Crafty Syntax import, actor creation and auth_user→actor selection, channels/threads, semantic monitoring widget and collections, actor learning boundaries, “Why this matters.”
+- **Root `README.md`** — New sections: **Why Lupopedia Is Built Differently**, **What Lupopedia Does NOT Do (By Design)**, **Where These Rules Come From**, **Why This Matters**; links to PRDs and pseudocode reference; header timestamps **20260406163802**.
+- **`lupo-docs/reference/architect_background.md`** — New factual timeline reference (education, HPC internships, professional work, Crafty Syntax, 2014 hiatus and Sales Syntax fork, return to Lupopedia).
+- **`FOR_CLAUDE_CODE_2026_04_06.md`** (repo root) — Agent sync summary for inactive tools (Claude Code): overview of the same batch, department/actor/installation points, pointer to `architect_background.md`, and **review PRDs 00, 01, 05, 15, 17, 28, 33** plus README and alignment checklist.
 
 This output complies with Lupopedia Constitutional Root Rules.

@@ -1,10 +1,18 @@
 {
-    "code": "RESERVED_26",
-    "name": "RESERVED_26",
-    "layer": "kernel",
-    "is_required": false,
-    "is_kernel": true,
-    "recommended_slot": 26,
-    "version": "1.0.0",
-    "agent_id": 709
+  "agent_key": "chronos",
+  "agent_id": 709,
+  "code": "RESERVED_26",
+  "name": "RESERVED_26",
+  "slug": "chronos",
+  "layer": "kernel",
+  "is_required": false,
+  "is_kernel": true,
+  "role": "Reserved Kernel Slot 26 — Unassigned",
+  "recommended_slot": 26,
+  "status": "reserved",
+  "version": "1.0.1",
+  "when_updated_utc": "20260406134032",
+  "last_verified_utc": "20260406134032",
+  "last_verified_by": "claude-code",
+  "last_verified_by_actor_id": 102
 }

@@ -2,10 +2,10 @@
 lupopedia.headers:
   header_format_version: 2
   lupopedia.schema: changelog
-  when_updated: "20260406050158"
+  when_updated: "20260406150859"
   file_path_from_root: "lupo-docs/versions/4.0.94/CHANGELOG.md"
   web_path: "http://www.lupopedia.com/lupopedia/lupo-docs/versions/4.0.94/CHANGELOG.md"
-  last_modified_utc: "20260406050158"
+  last_modified_utc: "20260406150859"
   federation_node_id: 0
   channel_id: 42
   thread_id: "version-4.0.94-changelog"
@@ -19,7 +19,7 @@ lupopedia.headers:
   purpose: "Record of significant changes for Lupopedia 4.0.94"
   tags: ["changelog", "version", "4.0.94", "cursor"]
 lupopedia.footer:
-  last_verified: "20260406050158"
+  last_verified: "20260406150859"
   verified_by:
     identity_type: actor
     actor_id: 102
@@ -255,7 +255,7 @@ Frozen baseline: see **`lupo-docs/versions/4.0.93/README.md`** and **`lupo-docs/
 
 # [2026-04-05] PRD 00 §17.9 — ROSE sandbox (PRD 36) + dialog-only write surface (Cursor)
 
-- **WHO / WHERE / WHEN:** Cursor (`actor_id` **102**); **`lupo-docs/prd/00_root_constitutional_system_requirements.md`** — **§17.9** clarified: **ROSE** exception for **sandboxed** multi-persona **dialog** per **PRD 36**; **write surface** = **`lupo_dialog_messages`** (+ **PRD 36**-scoped dialog metadata), **no** content / **lupo_metadata** (non-dialog) / config / actors / channels / auth updates from ROSE pipeline; compliance test split **IDE vs ROSE**; **`00_NON_NEGOTIABLES_IMPORTANT_OVERWRITES.pseudo.md`** + **`00_constitution_shorthand.pseudo.md`**; UTC **`20260405224232`** (`python lupo-bin/tick.py` this batch).
+- **WHO / WHERE / WHEN:** Cursor (`actor_id` **102**); **`lupo-docs/prd/00_root_constitutional_system_requirements.md`** — **§17.9** clarified: **ROSE** exception for **sandboxed** multi-persona **dialog** per **PRD 36**; **write surface** = **`lupo_dialog_messages`** (+ **PRD 36**-scoped dialog metadata), **no** content / **lupo_metadata** (non-dialog) / config / actors / channels / auth updates from ROSE pipeline; compliance test split **IDE vs ROSE**; **`00_NON_NEGOTIABLES_IMPORTANT_OVERWRITES_SHORTHAND.pseudo.md`** + **`00_constitution_shorthand.pseudo.md`**; UTC **`20260405224232`** (`python lupo-bin/tick.py` this batch).
 - **WHAT:** Aligns constitution with **ROSE**’s intended **dialog-only** role vs **IDE** impersonation ban.
 - **WHY:** Operator clarification — synthetic choir ≠ tooling impersonation; narrow DB authority.
 
@@ -265,7 +265,7 @@ This output complies with Lupopedia Constitutional Root Rules.
 
 # [2026-04-05] PRD 00 §17.9 — RULE 93.NO_PROMPT_INJECTION + shared IDE prompt (Cursor)
 
-- **WHO / WHERE / WHEN:** Cursor (`actor_id` **102**); **`lupo-docs/prd/00_root_constitutional_system_requirements.md`** — **§17.9** (impersonation, instruction override, secrets, automation boundaries, service vs dialogue personas; optional filters note); **edge** to **`ADVERSARIAL_TEST_IDENTITY_DOCTRINE.md`**; **`lupo-agents/_shared/ide_facet_base_system_prompt.txt`** (prompt-injection block); **`00_NON_NEGOTIABLES_IMPORTANT_OVERWRITES.pseudo.md`** + **`00_constitution_shorthand.pseudo.md`**; **§10.2** row **§17.7–§17.9**; UTC **`20260405223937`** (`python lupo-bin/tick.py` this batch).
+- **WHO / WHERE / WHEN:** Cursor (`actor_id` **102**); **`lupo-docs/prd/00_root_constitutional_system_requirements.md`** — **§17.9** (impersonation, instruction override, secrets, automation boundaries, service vs dialogue personas; optional filters note); **edge** to **`ADVERSARIAL_TEST_IDENTITY_DOCTRINE.md`**; **`lupo-agents/_shared/ide_facet_base_system_prompt.txt`** (prompt-injection block); **`00_NON_NEGOTIABLES_IMPORTANT_OVERWRITES_SHORTHAND.pseudo.md`** + **`00_constitution_shorthand.pseudo.md`**; **§10.2** row **§17.7–§17.9**; UTC **`20260405223937`** (`python lupo-bin/tick.py` this batch).
 - **WHAT:** Constitutional **prompt injection** rules for IDE/LLM surfaces; **does not** revive banned test-persona nicknames (see adversarial identity doctrine).
 - **WHY:** Red-team precedent is real; product agents touch channels/DB/edges — untrusted text must not become authority.
 
@@ -275,7 +275,7 @@ This output complies with Lupopedia Constitutional Root Rules.
 
 # [2026-04-05] PRD 00 §17.8 — RULE 93.UNTRUSTED_INPUT (`$UNTRUSTED` discipline) (LILITH audit) (Cursor)
 
-- **WHO / WHERE / WHEN:** Cursor (`actor_id` **102**); **`lupo-docs/prd/00_root_constitutional_system_requirements.md`** — **§17.8** (explicit untrusted boundary, **`$UNTRUSTED`** pattern per legacy **`image.php` / `livehelp_js.php`**, validation + no mass assignment, **`$_REQUEST`** warning, superglobal clearing **not** globally mandated); **§10.2** tooling row notes **§17.7–§17.8**; **`00_NON_NEGOTIABLES_IMPORTANT_OVERWRITES.pseudo.md`** + **`00_constitution_shorthand.pseudo.md`**; UTC **`20260405223144`** (`python lupo-bin/tick.py` this batch).
+- **WHO / WHERE / WHEN:** Cursor (`actor_id` **102**); **`lupo-docs/prd/00_root_constitutional_system_requirements.md`** — **§17.8** (explicit untrusted boundary, **`$UNTRUSTED`** pattern per legacy **`image.php` / `livehelp_js.php`**, validation + no mass assignment, **`$_REQUEST`** warning, superglobal clearing **not** globally mandated); **§10.2** tooling row notes **§17.7–§17.8**; **`00_NON_NEGOTIABLES_IMPORTANT_OVERWRITES_SHORTHAND.pseudo.md`** + **`00_constitution_shorthand.pseudo.md`**; UTC **`20260405223144`** (`python lupo-bin/tick.py` this batch).
 - **WHAT:** Codifies Crafty-era input discipline as constitutional **RULE 93.UNTRUSTED_INPUT** without requiring unsafe blanket **`$_COOKIE`** wipes at bootstrap.
 - **WHY:** LILITH audit — industry complacency vs explicit validation boundary.
 
@@ -285,7 +285,7 @@ This output complies with Lupopedia Constitutional Root Rules.
 
 # [2026-04-05] PRD 00 §17.7 — eval, unserialize, session authority, uploads + digest rows (Cursor)
 
-- **WHO / WHERE / WHEN:** Cursor (`actor_id` **102**); **`lupo-docs/prd/00_root_constitutional_system_requirements.md`** — new **§17.7** (PHP execution hygiene, JS cross-ref **§16**, **`unserialize`** ban on untrusted data, **`lupo_sessions` / `App\Auth\Session`** vs **`$_SESSION`**, **PRD 33 §5.1** decode/re-encode uploads); **`00_NON_NEGOTIABLES_IMPORTANT_OVERWRITES.pseudo.md`** + **`00_constitution_shorthand.pseudo.md`** table rows; UTC **`20260405222700`** (`python lupo-bin/tick.py` this batch).
+- **WHO / WHERE / WHEN:** Cursor (`actor_id` **102**); **`lupo-docs/prd/00_root_constitutional_system_requirements.md`** — new **§17.7** (PHP execution hygiene, JS cross-ref **§16**, **`unserialize`** ban on untrusted data, **`lupo_sessions` / `App\Auth\Session`** vs **`$_SESSION`**, **PRD 33 §5.1** decode/re-encode uploads); **`00_NON_NEGOTIABLES_IMPORTANT_OVERWRITES_SHORTHAND.pseudo.md`** + **`00_constitution_shorthand.pseudo.md`** table rows; UTC **`20260405222700`** (`python lupo-bin/tick.py` this batch).
 - **WHAT:** Makes constitutional security explicit where common tutorials default to **`eval`**, **`unserialize`**, session superglobals, and raw uploads.
 - **WHY:** Operator recommendations — align law, shorthand, and overrides with **RULE 93.SECURITY** and **PRD 33** gate language.
 
@@ -303,9 +303,9 @@ This output complies with Lupopedia Constitutional Root Rules.
 
 ---
 
-# [2026-04-05] `00_NON_NEGOTIABLES_IMPORTANT_OVERWRITES.pseudo.md` — IDE overrides router (LILITH naming) (Cursor)
+# [2026-04-05] `00_NON_NEGOTIABLES_IMPORTANT_OVERWRITES_SHORTHAND.pseudo.md` — IDE overrides router (LILITH naming) (Cursor)
 
-- **WHO / WHERE / WHEN:** Cursor (`actor_id` **102**); new **`lupo-docs/decisions/pseudocode/00_NON_NEGOTIABLES_IMPORTANT_OVERWRITES.pseudo.md`** (Purpose 1 router + overrides table); **`THREAD_INDEX.md`** (both trees); **`00_constitution_shorthand`**, **`lupopedia_quickstart`**, **`00_dodo_bird_corrections`**, **PRD 00** edges/intro; UTC **`20260405220110`** (`python lupo-bin/tick.py` this batch).
+- **WHO / WHERE / WHEN:** Cursor (`actor_id` **102**); new **`lupo-docs/decisions/pseudocode/00_NON_NEGOTIABLES_IMPORTANT_OVERWRITES_SHORTHAND.pseudo.md`** (Purpose 1 router + overrides table); **`THREAD_INDEX.md`** (both trees); **`00_constitution_shorthand`**, **`lupopedia_quickstart`**, **`00_NON_NEGOTIABLES_IMPORTANT_OVERWRITES.pseudo.md`** (expanded digest), **PRD 00** edges/intro; UTC **`20260405220110`** (`python lupo-bin/tick.py` this batch).
 - **WHAT:** `00_` sort prefix + **`.pseudo.md`** per PRD 17; searchable name for “non-negotiable / overwrite training” intent.
 - **WHY:** LILITH audit — filename clarity + convention alignment.
 
@@ -315,7 +315,7 @@ This output complies with Lupopedia Constitutional Root Rules.
 
 # [2026-04-05] PRD 00 §17.3 + digests — `SELECT *` allowed; positional `INSERT` forbidden (LILITH) (Cursor)
 
-- **WHO / WHERE / WHEN:** Cursor (`actor_id` **102**); **`lupo-docs/prd/00_root_constitutional_system_requirements.md`** (**§17.3** — explicit **`INSERT`** columns; positional **`INSERT`** hazard; **`SELECT *`** reads not forbidden); **`lupo-docs/decisions/pseudocode/00_dodo_bird_corrections.pseudo.md`** (reorder: **§1 INSERT**; drop **`SELECT *`** as dodo item; summary note); **`00_constitution_shorthand.pseudo.md`** (database **INSERT**/**SELECT** rows; security blurb); **`THREAD_INDEX.md`**; UTC **`20260405215402`** (`python lupo-bin/tick.py` this batch).
+- **WHO / WHERE / WHEN:** Cursor (`actor_id` **102**); **`lupo-docs/prd/00_root_constitutional_system_requirements.md`** (**§17.3** — explicit **`INSERT`** columns; positional **`INSERT`** hazard; **`SELECT *`** reads not forbidden); **`lupo-docs/decisions/pseudocode/00_NON_NEGOTIABLES_IMPORTANT_OVERWRITES.pseudo.md`** (reorder: **§1 INSERT**; drop **`SELECT *`** as dodo item; summary note); **`00_constitution_shorthand.pseudo.md`** (database **INSERT**/**SELECT** rows; security blurb); **`THREAD_INDEX.md`**; UTC **`20260405215402`** (`python lupo-bin/tick.py` this batch).
 - **WHAT:** Removes unnecessary friction on **`SELECT *`**; keeps **hard** rule on **`INSERT`** column lists.
 - **WHY:** LILITH correction — villain is **`INSERT`**, not **`SELECT`**.
 
@@ -323,9 +323,9 @@ This output complies with Lupopedia Constitutional Root Rules.
 
 ---
 
-# [2026-04-05] `00_dodo_bird_corrections` — INSERT vs SELECT * distinction (LILITH) (Cursor)
+# [2026-04-05] `00_NON_NEGOTIABLES_IMPORTANT_OVERWRITES.pseudo.md` — INSERT vs SELECT * distinction (LILITH) (Cursor)
 
-- **WHO / WHERE / WHEN:** Cursor (`actor_id` **102**); **`lupo-docs/decisions/pseudocode/00_dodo_bird_corrections.pseudo.md`** — reorder (**`INSERT`** without column list = **critical**; **`SELECT *`** = wasteful/low); expanded §2; summary danger column; golden rule; **`00_constitution_shorthand.pseudo.md`** security row (**INSERT** vs **SELECT**); UTC **`20260405214944`** (`python lupo-bin/tick.py` this batch).
+- **WHO / WHERE / WHEN:** Cursor (`actor_id` **102**); **`lupo-docs/decisions/pseudocode/00_NON_NEGOTIABLES_IMPORTANT_OVERWRITES.pseudo.md`** — reorder (**`INSERT`** without column list = **critical**; **`SELECT *`** = wasteful/low); expanded §2; summary danger column; golden rule; **`00_constitution_shorthand.pseudo.md`** security row (**INSERT** vs **SELECT**); UTC **`20260405214944`** (`python lupo-bin/tick.py` this batch).
 - **WHAT:** Stops conflating positional **`INSERT`** (silent corruption) with **`SELECT *`** (bandwidth/implicit shape).
 - **WHY:** LILITH correction — different failure modes.
 
@@ -333,9 +333,9 @@ This output complies with Lupopedia Constitutional Root Rules.
 
 ---
 
-# [2026-04-05] PRD 00 §3.5.4 Y2038 + `00_dodo_bird_corrections` digest + shorthand/quickstart links (Cursor)
+# [2026-04-05] PRD 00 §3.5.4 Y2038 + `00_NON_NEGOTIABLES_IMPORTANT_OVERWRITES.pseudo.md` digest + shorthand/quickstart links (Cursor)
 
-- **WHO / WHERE / WHEN:** Cursor (`actor_id` **102**); **`lupo-docs/prd/00_root_constitutional_system_requirements.md`** — new **§3.5.4** (Y2038 compliance, forbidden/required patterns, industry context); **§19** checklist item + normative link to dodo digest; **`lupo-docs/decisions/pseudocode/00_dodo_bird_corrections.pseudo.md`** (new) + **`THREAD_INDEX.md`**; **`00_constitution_shorthand.pseudo.md`** (timestamp-first table + edge); **`lupopedia_quickstart.pseudo.md`** (link row); UTC **`20260405214736`** (`python lupo-bin/tick.py` this batch).
+- **WHO / WHERE / WHEN:** Cursor (`actor_id` **102**); **`lupo-docs/prd/00_root_constitutional_system_requirements.md`** — new **§3.5.4** (Y2038 compliance, forbidden/required patterns, industry context); **§19** checklist item + normative link to dodo digest; **`lupo-docs/decisions/pseudocode/00_NON_NEGOTIABLES_IMPORTANT_OVERWRITES.pseudo.md`** (new) + **`THREAD_INDEX.md`**; **`00_constitution_shorthand.pseudo.md`** (timestamp-first table + edge); **`lupopedia_quickstart.pseudo.md`** (link row); UTC **`20260405214736`** (`python lupo-bin/tick.py` this batch).
 - **WHAT:** Documents Y2038 stance next to packed-clock doctrine; gives IDE agents a single “wrong defaults” correction file without changing application code.
 - **WHY:** LILITH directive — reduce repeated AI assumptions (epoch, FKs, ORM, build chains).
 
