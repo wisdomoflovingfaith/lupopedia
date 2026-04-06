@@ -1,0 +1,12 @@
+# Block direct HTTP access to PHP files under lupo-includes (loaded only via require from bootstrap).
+# Replaces RewriteRule-based blocking when root .htaccess has no mod_rewrite.
+
+<FilesMatch "\.php$">
+    <IfModule mod_authz_core.c>
+        Require all denied
+    </IfModule>
+    <IfModule !mod_authz_core.c>
+        Order allow,deny
+        Deny from all
+    </IfModule>
+</FilesMatch>

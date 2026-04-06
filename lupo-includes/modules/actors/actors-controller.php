@@ -414,7 +414,8 @@ function actors_handle_my_profile()
 
     $actor_id = actors_profile_resolve_actor_id();
     if (!$actor_id) {
-        $login_url = $base . '/login?redirect=' . urlencode($base . '/my-profile');
+        $after = function_exists('lupo_index_slug_url') ? lupo_index_slug_url('my-profile') : (rtrim($base, '/') . '/index.php?' . http_build_query(array('slug' => 'my-profile')));
+        $login_url = function_exists('lupo_login_url') ? lupo_login_url($after) : (rtrim($base, '/') . '/login.php?redirect=' . urlencode($after));
         $msg = function_exists('lupo_t') ? lupo_t('actors.profile.sign_in_redirect', 'Please sign in to view your profile.') : 'Please sign in to view your profile.';
         if (function_exists('lupo_safe_redirect')) {
             lupo_safe_redirect($login_url, 0, $msg);
@@ -587,13 +588,14 @@ function actors_handle_my_profile_save()
 
     $actor_id = actors_profile_resolve_actor_id();
     if (!$actor_id) {
-        header('Location: ' . $base . '/login?redirect=' . urlencode($base . '/my-profile'));
+        $after = function_exists('lupo_index_slug_url') ? lupo_index_slug_url('my-profile') : (rtrim($base, '/') . '/index.php?' . http_build_query(array('slug' => 'my-profile')));
+        header('Location: ' . (function_exists('lupo_login_url') ? lupo_login_url($after) : (rtrim($base, '/') . '/login.php?redirect=' . urlencode($after))));
         exit;
     }
 
     $db = actors_profile_get_db();
     if (!$db) {
-        header('Location: ' . $base . '/my-profile');
+        header('Location: ' . (function_exists('lupo_index_slug_url') ? lupo_index_slug_url('my-profile') : (rtrim($base, '/') . '/index.php?' . http_build_query(array('slug' => 'my-profile')))));
         exit;
     }
 
@@ -615,14 +617,14 @@ function actors_handle_my_profile_save()
                 $_SESSION['profile_error'] = function_exists('lupo_t')
                     ? lupo_t('actors.profile.2fa_no_email', 'No valid email on file for this account.')
                     : 'No valid email on file for this account.';
-                header('Location: ' . $base . '/my-profile');
+                header('Location: ' . (function_exists('lupo_index_slug_url') ? lupo_index_slug_url('my-profile') : (rtrim($base, '/') . '/index.php?' . http_build_query(array('slug' => 'my-profile')))));
                 exit;
             }
             if (!actors_profile_mail_may_attempt()) {
                 $_SESSION['profile_error'] = function_exists('lupo_t')
                     ? lupo_t('actors.profile.mail_not_configured', 'Mail is not configured. Set LUPO_SMTP_HOST or enable PHP mail().')
                     : 'Mail is not configured.';
-                header('Location: ' . $base . '/my-profile');
+                header('Location: ' . (function_exists('lupo_index_slug_url') ? lupo_index_slug_url('my-profile') : (rtrim($base, '/') . '/index.php?' . http_build_query(array('slug' => 'my-profile')))));
                 exit;
             }
             $code = actors_profile_random_otp_digits();
@@ -642,7 +644,7 @@ function actors_handle_my_profile_save()
                     ? lupo_t('actors.profile.2fa_sent', 'Verification code sent to your email.')
                     : 'Verification code sent to your email.';
             }
-            header('Location: ' . $base . '/my-profile');
+            header('Location: ' . (function_exists('lupo_index_slug_url') ? lupo_index_slug_url('my-profile') : (rtrim($base, '/') . '/index.php?' . http_build_query(array('slug' => 'my-profile')))));
             exit;
         }
         if ($action === 'verify') {
@@ -651,14 +653,14 @@ function actors_handle_my_profile_save()
                 $_SESSION['profile_error'] = function_exists('lupo_t')
                     ? lupo_t('actors.profile.2fa_invalid_format', 'Enter the 6-digit code.')
                     : 'Invalid or expired code.';
-                header('Location: ' . $base . '/my-profile');
+                header('Location: ' . (function_exists('lupo_index_slug_url') ? lupo_index_slug_url('my-profile') : (rtrim($base, '/') . '/index.php?' . http_build_query(array('slug' => 'my-profile')))));
                 exit;
             }
             if ($auth_user_id <= 0) {
                 $_SESSION['profile_error'] = function_exists('lupo_t')
                     ? lupo_t('actors.profile.2fa_invalid', 'Invalid or expired code.')
                     : 'Invalid or expired code.';
-                header('Location: ' . $base . '/my-profile');
+                header('Location: ' . (function_exists('lupo_index_slug_url') ? lupo_index_slug_url('my-profile') : (rtrim($base, '/') . '/index.php?' . http_build_query(array('slug' => 'my-profile')))));
                 exit;
             }
             $otpRow = $db->fetchRow(
@@ -673,7 +675,7 @@ function actors_handle_my_profile_save()
                 $_SESSION['profile_error'] = function_exists('lupo_t')
                     ? lupo_t('actors.profile.2fa_invalid', 'Invalid or expired code.')
                     : 'Invalid or expired code.';
-                header('Location: ' . $base . '/my-profile');
+                header('Location: ' . (function_exists('lupo_index_slug_url') ? lupo_index_slug_url('my-profile') : (rtrim($base, '/') . '/index.php?' . http_build_query(array('slug' => 'my-profile')))));
                 exit;
             }
             actors_profile_require_timestamp_class();
@@ -687,7 +689,7 @@ function actors_handle_my_profile_save()
                 $_SESSION['profile_error'] = function_exists('lupo_t')
                     ? lupo_t('actors.profile.2fa_invalid', 'Invalid or expired code.')
                     : 'Invalid or expired code.';
-                header('Location: ' . $base . '/my-profile');
+                header('Location: ' . (function_exists('lupo_index_slug_url') ? lupo_index_slug_url('my-profile') : (rtrim($base, '/') . '/index.php?' . http_build_query(array('slug' => 'my-profile')))));
                 exit;
             }
             $expectedHash = actors_profile_hash_email_otp($input_code, $auth_user_id);
@@ -725,7 +727,7 @@ function actors_handle_my_profile_save()
                     ? lupo_t('actors.profile.2fa_invalid', 'Invalid or expired code.')
                     : 'Invalid or expired code.';
             }
-            header('Location: ' . $base . '/my-profile');
+            header('Location: ' . (function_exists('lupo_index_slug_url') ? lupo_index_slug_url('my-profile') : (rtrim($base, '/') . '/index.php?' . http_build_query(array('slug' => 'my-profile')))));
             exit;
         }
         if ($action === 'disable') {
@@ -746,7 +748,7 @@ function actors_handle_my_profile_save()
             $_SESSION['profile_error'] = function_exists('lupo_t')
                 ? lupo_t('actors.profile.2fa_disabled', 'Two-factor authentication disabled.')
                 : 'Two-factor authentication disabled.';
-            header('Location: ' . $base . '/my-profile');
+            header('Location: ' . (function_exists('lupo_index_slug_url') ? lupo_index_slug_url('my-profile') : (rtrim($base, '/') . '/index.php?' . http_build_query(array('slug' => 'my-profile')))));
             exit;
         }
     }
@@ -763,7 +765,7 @@ function actors_handle_my_profile_save()
             $_SESSION['profile_error'] = function_exists('lupo_t')
                 ? lupo_t('actors.profile.email_invalid', 'Invalid email format.')
                 : 'Invalid email format.';
-            header('Location: ' . $base . '/my-profile');
+            header('Location: ' . (function_exists('lupo_index_slug_url') ? lupo_index_slug_url('my-profile') : (rtrim($base, '/') . '/index.php?' . http_build_query(array('slug' => 'my-profile')))));
             exit;
         }
         $auth_users_table = $table_prefix . 'auth_users';
@@ -783,7 +785,7 @@ function actors_handle_my_profile_save()
                 $_SESSION['profile_error'] = function_exists('lupo_t')
                     ? lupo_t('actors.profile.email_in_use', 'Email address is already in use by another user.')
                     : 'Email address is already in use.';
-                header('Location: ' . $base . '/my-profile');
+                header('Location: ' . (function_exists('lupo_index_slug_url') ? lupo_index_slug_url('my-profile') : (rtrim($base, '/') . '/index.php?' . http_build_query(array('slug' => 'my-profile')))));
                 exit;
             }
             $db->update(
@@ -796,7 +798,7 @@ function actors_handle_my_profile_save()
             $_SESSION['profile_error'] = function_exists('lupo_t')
                 ? lupo_t('actors.profile.email_validate_failed', 'Unable to validate email uniqueness. Please try again.')
                 : 'Unable to validate email.';
-            header('Location: ' . $base . '/my-profile');
+            header('Location: ' . (function_exists('lupo_index_slug_url') ? lupo_index_slug_url('my-profile') : (rtrim($base, '/') . '/index.php?' . http_build_query(array('slug' => 'my-profile')))));
             exit;
         }
     }
@@ -926,6 +928,6 @@ function actors_handle_my_profile_save()
         }
     }
 
-    header('Location: ' . $base . '/my-profile');
+    header('Location: ' . (function_exists('lupo_index_slug_url') ? lupo_index_slug_url('my-profile') : (rtrim($base, '/') . '/index.php?' . http_build_query(array('slug' => 'my-profile')))));
     exit;
 }

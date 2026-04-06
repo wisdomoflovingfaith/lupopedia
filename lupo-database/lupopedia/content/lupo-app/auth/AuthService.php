@@ -292,7 +292,7 @@ class AuthService
             $redirectUrl = isset($_SERVER['REQUEST_URI']) ? $_SERVER['REQUEST_URI'] : '/';
             $this->session->start();
             $_SESSION['login_redirect'] = $redirectUrl;
-            $loginUrl = (defined('LUPOPEDIA_PUBLIC_PATH') ? LUPOPEDIA_PUBLIC_PATH : '') . '/login?redirect=' . urlencode($redirectUrl);
+            $loginUrl = function_exists('lupo_login_url') ? lupo_login_url($redirectUrl) : ((defined('LUPOPEDIA_PUBLIC_PATH') ? rtrim(LUPOPEDIA_PUBLIC_PATH, '/') : '') . '/login.php?redirect=' . urlencode($redirectUrl));
             if (function_exists('lupo_safe_redirect')) {
                 lupo_safe_redirect($loginUrl, 2, 'Please log in to continue.');
             } else {
@@ -302,7 +302,7 @@ class AuthService
         }
         $this->session->start();
         if (!empty($_SESSION['password_change_required'])) {
-            $changeUrl = (defined('LUPOPEDIA_PUBLIC_PATH') ? LUPOPEDIA_PUBLIC_PATH : '') . '/change-password';
+            $changeUrl = function_exists('lupo_change_password_url') ? lupo_change_password_url() : ((defined('LUPOPEDIA_PUBLIC_PATH') ? rtrim(LUPOPEDIA_PUBLIC_PATH, '/') : '') . '/index.php?' . http_build_query(array('slug' => 'change-password')));
             if (function_exists('lupo_safe_redirect')) {
                 lupo_safe_redirect($changeUrl, 2, 'Password change required. Redirecting...');
             } else {

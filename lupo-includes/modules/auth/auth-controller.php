@@ -169,12 +169,16 @@ function auth_handle_slug($slug)
     $U = lupo_auth_controller_untrusted();
     $rm = isset($U['server']['REQUEST_METHOD']) ? $U['server']['REQUEST_METHOD'] : '';
 
+    // No mod_rewrite: canonical login is login.php — redirect legacy slug=login to login.php
     if ($slug === 'login') {
-        if ($rm === 'POST') {
-            return login_handle_post();
+        $r = isset($U['get']['redirect']) ? $U['get']['redirect'] : '';
+        $target = function_exists('lupo_login_url') ? lupo_login_url($r !== '' ? $r : null) : ((defined('LUPOPEDIA_PUBLIC_PATH') ? rtrim(LUPOPEDIA_PUBLIC_PATH, '/') : '') . '/login.php' . ($r !== '' ? '?' . http_build_query(array('redirect' => $r)) : ''));
+        if (!headers_sent()) {
+            header('Location: ' . $target, true, 302);
         }
-        return login_handle_view();
+        exit;
     }
+
     if ($slug === 'logout') {
         return logout_handle();
     }
@@ -257,7 +261,7 @@ function login_handle_post()
         $redirect = LUPOPEDIA_PUBLIC_PATH . $redirect;
     }
 
-    $login_url = defined('LUPOPEDIA_PUBLIC_PATH') ? LUPOPEDIA_PUBLIC_PATH . '/login' : '/login';
+    $login_url = lupo_login_url();
 
     if (empty($email) || $password === '') {
         lupo_auth_controller_set_login_error(lupo_t('auth_controller.login_error_required', 'Email and password are required.'));
@@ -431,7 +435,7 @@ function login_handle_post()
             if ($redirect !== $default_redirect) {
                 App\Auth\Session::mergeSessionMetadata($db, $session_id, array('login_redirect' => $redirect));
             }
-            $change_password_url = defined('LUPOPEDIA_PUBLIC_PATH') ? LUPOPEDIA_PUBLIC_PATH . '/change-password' : '/change-password';
+            $change_password_url = lupo_change_password_url();
             lupo_safe_redirect($change_password_url, 2, 'Password change required. Redirecting...');
         }
 
@@ -453,7 +457,7 @@ function login_handle_post()
         if (defined('LUPOPEDIA_DEBUG') && LUPOPEDIA_DEBUG) {
             error_log('AUTH ERROR: Exception during login — ' . $e->getMessage());
         }
-        $login_url_ex = defined('LUPOPEDIA_PUBLIC_PATH') ? LUPOPEDIA_PUBLIC_PATH . '/login' : '/login';
+        $login_url_ex = lupo_login_url();
         lupo_auth_controller_set_login_error(lupo_t('auth_controller.login_error_generic', 'An error occurred. Please try again later.'));
         header('Location: ' . $login_url_ex . '?redirect=' . urlencode($redirect));
         exit;
@@ -489,7 +493,7 @@ function change_password_handle_view()
         session_start();
     }
     if (!lupo_auth_controller_password_change_required()) {
-        $login_url = defined('LUPOPEDIA_PUBLIC_PATH') ? LUPOPEDIA_PUBLIC_PATH . '/login' : '/login';
+        $login_url = lupo_login_url();
         header('Location: ' . $login_url);
         exit;
     }
@@ -497,7 +501,7 @@ function change_password_handle_view()
     $authService = isset($GLOBALS['lupo_auth_service']) ? $GLOBALS['lupo_auth_service'] : null;
     $user = $authService ? $authService->getCurrentUser() : current_user();
     if (!$user) {
-        $login_url = defined('LUPOPEDIA_PUBLIC_PATH') ? LUPOPEDIA_PUBLIC_PATH . '/login' : '/login';
+        $login_url = lupo_login_url();
         header('Location: ' . $login_url);
         exit;
     }
@@ -532,7 +536,7 @@ function change_password_handle_post()
         session_start();
     }
     if (!lupo_auth_controller_password_change_required()) {
-        $login_url = defined('LUPOPEDIA_PUBLIC_PATH') ? LUPOPEDIA_PUBLIC_PATH . '/login' : '/login';
+        $login_url = lupo_login_url();
         header('Location: ' . $login_url);
         exit;
     }
@@ -540,7 +544,7 @@ function change_password_handle_post()
     $authService = isset($GLOBALS['lupo_auth_service']) ? $GLOBALS['lupo_auth_service'] : null;
     $user = $authService ? $authService->getCurrentUser() : current_user();
     if (!$user) {
-        $login_url = defined('LUPOPEDIA_PUBLIC_PATH') ? LUPOPEDIA_PUBLIC_PATH . '/login' : '/login';
+        $login_url = lupo_login_url();
         header('Location: ' . $login_url);
         exit;
     }
@@ -552,21 +556,21 @@ function change_password_handle_post()
 
     if ($new_password === '' || $confirm_password === '') {
         lupo_auth_controller_set_password_change_error(lupo_t('auth_controller.pw_change_both_required', 'Both password fields are required.'));
-        $change_password_url = defined('LUPOPEDIA_PUBLIC_PATH') ? LUPOPEDIA_PUBLIC_PATH . '/change-password' : '/change-password';
+        $change_password_url = lupo_change_password_url();
         header('Location: ' . $change_password_url);
         exit;
     }
 
     if ($new_password !== $confirm_password) {
         lupo_auth_controller_set_password_change_error(lupo_t('auth_controller.pw_change_mismatch', 'Passwords do not match.'));
-        $change_password_url = defined('LUPOPEDIA_PUBLIC_PATH') ? LUPOPEDIA_PUBLIC_PATH . '/change-password' : '/change-password';
+        $change_password_url = lupo_change_password_url();
         header('Location: ' . $change_password_url);
         exit;
     }
 
     if (strlen($new_password) < 8) {
         lupo_auth_controller_set_password_change_error(lupo_t('auth_controller.pw_change_short', 'Password must be at least 8 characters long.'));
-        $change_password_url = defined('LUPOPEDIA_PUBLIC_PATH') ? LUPOPEDIA_PUBLIC_PATH . '/change-password' : '/change-password';
+        $change_password_url = lupo_change_password_url();
         header('Location: ' . $change_password_url);
         exit;
     }
@@ -574,7 +578,7 @@ function change_password_handle_post()
     $db = lupo_auth_controller_get_db();
     if (!$db) {
         lupo_auth_controller_set_password_change_error(lupo_t('auth_controller.pw_change_db', 'Database connection error. Please try again later.'));
-        $change_password_url = defined('LUPOPEDIA_PUBLIC_PATH') ? LUPOPEDIA_PUBLIC_PATH . '/change-password' : '/change-password';
+        $change_password_url = lupo_change_password_url();
         header('Location: ' . $change_password_url);
         exit;
     }
@@ -583,7 +587,7 @@ function change_password_handle_post()
         $new_hash = lupo_hash_password($new_password);
         if (!$new_hash) {
             lupo_auth_controller_set_password_change_error(lupo_t('auth_controller.pw_change_hash', 'Error hashing password. Please try again.'));
-            $change_password_url = defined('LUPOPEDIA_PUBLIC_PATH') ? LUPOPEDIA_PUBLIC_PATH . '/change-password' : '/change-password';
+            $change_password_url = lupo_change_password_url();
             lupo_safe_redirect($change_password_url, 2, 'Password change required. Redirecting...');
         }
 
@@ -637,7 +641,7 @@ function change_password_handle_post()
             error_log('AUTH ERROR: Exception during password change — ' . $e->getMessage());
         }
         lupo_auth_controller_set_password_change_error(lupo_t('auth_controller.pw_change_generic', 'An error occurred. Please try again later.'));
-        $change_password_url = defined('LUPOPEDIA_PUBLIC_PATH') ? LUPOPEDIA_PUBLIC_PATH . '/change-password' : '/change-password';
+        $change_password_url = lupo_change_password_url();
         header('Location: ' . $change_password_url);
         exit;
     }
@@ -658,7 +662,7 @@ function admin_handle_view($slug)
         session_start();
     }
     if (lupo_auth_controller_password_change_required()) {
-        $change_password_url = defined('LUPOPEDIA_PUBLIC_PATH') ? LUPOPEDIA_PUBLIC_PATH . '/change-password' : '/change-password';
+        $change_password_url = lupo_change_password_url();
         header('Location: ' . $change_password_url);
         exit;
     }

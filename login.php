@@ -60,7 +60,10 @@ $dbMeta = DatabaseFactory::getConnection();
 $sessionMeta = lupo_session_metadata_current($dbMeta);
 if ($authGate->isLoggedIn()) {
     if (!empty($sessionMeta['password_change_required'])) {
-        header('Location: ' . LUPOPEDIA_PUBLIC_PATH . '/change-password');
+        $cpw_url = function_exists('lupo_change_password_url')
+            ? lupo_change_password_url()
+            : (rtrim(LUPOPEDIA_PUBLIC_PATH, '/') . '/index.php?' . http_build_query(array('slug' => 'change-password')));
+        header('Location: ' . $cpw_url);
         exit;
     }
     header('Location: ' . LUPOPEDIA_PUBLIC_PATH . '/admin.php');
@@ -86,7 +89,10 @@ if (isset($UNTRUSTED['server']['REQUEST_METHOD']) && $UNTRUSTED['server']['REQUE
         if (isset($result['error'])) {
             $error = $result['error'];
         } elseif (!empty($result['needs_password_change'])) {
-            header('Location: ' . LUPOPEDIA_PUBLIC_PATH . '/change-password');
+            $cpw_url = function_exists('lupo_change_password_url')
+                ? lupo_change_password_url()
+                : (rtrim(LUPOPEDIA_PUBLIC_PATH, '/') . '/index.php?' . http_build_query(array('slug' => 'change-password')));
+            header('Location: ' . $cpw_url);
             exit;
         } elseif (isset($result['needs_agent_selection'])) {
             // Redirect to agent selection page

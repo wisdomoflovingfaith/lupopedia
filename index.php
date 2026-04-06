@@ -197,7 +197,7 @@ if (!empty($slug) && function_exists('lupo_route_slug')) {
     // No slug - show debug info
     if (defined('LUPOPEDIA_DEBUG') && LUPOPEDIA_DEBUG) {
         echo "<h1>Debug: No Slug Extracted</h1>";
-        echo "<p>Slug is empty. Check .htaccess rewrite rules.</p>";
+        echo "<p>Slug is empty. Open a route via <code>index.php?slug=…</code> or <code>index.php?resolved_uri=…</code>.</p>";
         echo "<pre>REQUEST_URI: " . htmlspecialchars(isset($_SERVER['REQUEST_URI']) ? $_SERVER['REQUEST_URI'] : 'not set') . "</pre>";
         echo "<pre>PATH_INFO: " . htmlspecialchars(isset($_SERVER['PATH_INFO']) ? $_SERVER['PATH_INFO'] : 'not set') . "</pre>";
         echo "<pre>GET params: " . print_r($_GET, true) . "</pre>";

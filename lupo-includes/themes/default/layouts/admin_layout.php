@@ -666,7 +666,7 @@ if ($admin_untrusted_section === 'artifacts') {
                 <a class="nav-link" href="<?= LUPOPEDIA_PUBLIC_PATH ?>/my-profile" style="margin-left: auto;"><?= htmlspecialchars(lupo_t('admin.layout.my_profile', 'My Profile')) ?></a>
                 <a class="nav-link" href="<?= LUPOPEDIA_PUBLIC_PATH ?>/logout.php"><?= htmlspecialchars(lupo_t('admin.layout.sign_out', 'Sign Out')) ?></a>
             <?php else: ?>
-                <a class="nav-link" href="<?= LUPOPEDIA_PUBLIC_PATH ?>/login" style="margin-left: auto;"><?= htmlspecialchars(lupo_t('admin.layout.sign_in', 'Sign In')) ?></a>
+                <a class="nav-link" href="<?= htmlspecialchars(function_exists('lupo_login_url') ? lupo_login_url() : (rtrim(LUPOPEDIA_PUBLIC_PATH, '/') . '/login.php')) ?>" style="margin-left: auto;"><?= htmlspecialchars(lupo_t('admin.layout.sign_in', 'Sign In')) ?></a>
             <?php endif; ?>
         </div>
     </nav>

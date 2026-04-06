@@ -3,7 +3,7 @@
  * Standalone minimalist channel chat page (full fallback-friendly JS).
  * Does not replace the main /channels/{id}/ layout (index.php + channels-controller).
  *
- * URL: channel.php?channel_id=N[&thread_id=M] or pretty /channel-chat/N/ (see .htaccess).
+ * URL: channel.php?channel_id=N[&thread_id=M] (query string; no mod_rewrite).
  *
  * @package Lupopedia
  */
@@ -21,6 +21,11 @@ if ($lupopediaConfigPath === null || !is_file($lupopediaConfigPath)) {
 }
 
 require_once $lupopediaConfigPath;
+
+$ah = __DIR__ . '/lupo-includes/functions/auth-helpers.php';
+if (is_file($ah)) {
+    require_once $ah;
+}
 
 $channel_id = isset($_GET['channel_id']) ? (int) $_GET['channel_id'] : 0;
 $thread_id = isset($_GET['thread_id']) ? (int) $_GET['thread_id'] : 0;
@@ -67,7 +72,7 @@ if ($actor_id <= 0) {
     if ($thread_id > 0) {
         $here .= '&thread_id=' . $thread_id;
     }
-    $login_url = $pub . '/login?redirect=' . rawurlencode($here);
+    $login_url = function_exists('lupo_login_url') ? lupo_login_url($here) : ($pub . '/login.php?redirect=' . rawurlencode($here));
     if (function_exists('lupo_safe_redirect')) {
         lupo_safe_redirect($login_url, 0, 'Please sign in to view this channel.');
     } else {

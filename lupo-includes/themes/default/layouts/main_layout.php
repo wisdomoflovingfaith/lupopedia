@@ -49,6 +49,9 @@ if (!isset($UNTRUSTED) || !is_array($UNTRUSTED)) {
 if (!isset($UNTRUSTED['server']) || !is_array($UNTRUSTED['server'])) {
     $UNTRUSTED['server'] = (isset($_SERVER) && is_array($_SERVER)) ? $_SERVER : array();
 }
+if (!isset($UNTRUSTED['get']) || !is_array($UNTRUSTED['get'])) {
+    $UNTRUSTED['get'] = (isset($_GET) && is_array($_GET)) ? $_GET : array();
+}
 $UNTRUSTED_SERVER = $UNTRUSTED['server'];
 
 /**
@@ -297,7 +300,14 @@ if (file_exists(LUPO_UI_PATH . '/components/topbar.php')) {
 
 // Determine if semantic nav bar should be hidden (channel staff interface)
 $hide_semantic_nav = false;
-if (isset($UNTRUSTED_SERVER['REQUEST_URI']) && strpos($UNTRUSTED_SERVER['REQUEST_URI'], '/channels/') !== false) {
+$req_uri_ch = isset($UNTRUSTED_SERVER['REQUEST_URI']) ? $UNTRUSTED_SERVER['REQUEST_URI'] : '';
+$slug_get = '';
+if (isset($UNTRUSTED['get']['slug']) && is_string($UNTRUSTED['get']['slug'])) {
+    $slug_get = $UNTRUSTED['get']['slug'];
+} elseif (isset($_GET['slug']) && is_string($_GET['slug'])) {
+    $slug_get = $_GET['slug'];
+}
+if (strpos($req_uri_ch, '/channels/') !== false || strpos($slug_get, 'channels/') === 0) {
     $hide_semantic_nav = true;
 }
 ?>

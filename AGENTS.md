@@ -636,7 +636,7 @@ Use **`actor_id: 103`** when the tool surface is **Antigravity IDE** (`antigravi
 See [LUPOPEDIA HEADERS doctrine](lupo-docs/doctrine/LUPOPEDIA_HEADERS/README.md) and AGENT_IDENTITY_REGISTRY for complete documentation. Headers are stored in `lupo_metadata` and can also be written to the file as YAML.
 
 ### Path Handling
-- Lupopedia is always in a subdirectory. All URLs must use `LUPOPEDIA_PUBLIC_PATH` (e.g., `LUPOPEDIA_PUBLIC_PATH . '/login'`). Hardcoded root paths like `/login` are forbidden.
+- Lupopedia is always in a subdirectory. All URLs must use `LUPOPEDIA_PUBLIC_PATH` (e.g., `LUPOPEDIA_PUBLIC_PATH . '/login.php'` or `lupo_login_url()`). Hardcoded root paths like `/login` are forbidden.
 - Filesystem paths use `LUPOPEDIA_PATH` or `LUPOPEDIA_ABSPATH`.
 
 ### PHP Constraints

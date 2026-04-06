@@ -4,6 +4,12 @@
  * Expects: $my_channels (array of channel_id, channel_name, role_type), $channel_public_path (string).
  */
 $base = isset($channel_public_path) ? $channel_public_path : (defined('LUPOPEDIA_PUBLIC_PATH') ? LUPOPEDIA_PUBLIC_PATH : '');
+if (!function_exists('lupo_index_slug_url')) {
+    $ah = dirname(dirname(dirname(__DIR__))) . '/functions/auth-helpers.php';
+    if (is_file($ah)) {
+        require_once $ah;
+    }
+}
 $channels = isset($my_channels) ? $my_channels : array();
 ?>
 <div class="my-channels-page">
@@ -20,7 +26,7 @@ $channels = isset($my_channels) ? $my_channels : array();
                 $role = isset($c['role_type']) ? htmlspecialchars($c['role_type']) : '';
                 ?>
                 <li class="my-channels-item">
-                    <a href="<?= $base ?>/channels/<?= $cid ?>" class="my-channels-link"><?= $name ?></a>
+                    <a href="<?= htmlspecialchars(function_exists('lupo_index_slug_url') ? lupo_index_slug_url('channels/' . $cid) : ($base . '/index.php?' . http_build_query(array('slug' => 'channels/' . $cid)))) ?>" class="my-channels-link"><?= $name ?></a>
                     <?php if ($role !== ''): ?>
                         <span class="my-channels-role"><?= $role ?></span>
                     <?php endif; ?>

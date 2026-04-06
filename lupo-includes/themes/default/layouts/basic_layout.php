@@ -154,7 +154,7 @@ if (!defined('LUPO_UI_PATH')) {
                         <a href="<?= LUPOPEDIA_PUBLIC_PATH ?>/my-profile" role="menuitem">My Profile</a>
                         <a href="<?= LUPOPEDIA_PUBLIC_PATH ?>/logout.php" role="menuitem">Sign Out</a>
                     <?php else: ?>
-                        <a href="<?= LUPOPEDIA_PUBLIC_PATH ?>/login" role="menuitem">Sign In</a>
+                        <a href="<?= htmlspecialchars(function_exists('lupo_login_url') ? lupo_login_url() : (rtrim(LUPOPEDIA_PUBLIC_PATH, '/') . '/login.php')) ?>" role="menuitem">Sign In</a>
                     <?php endif; ?>
                 </div>
             </div>

@@ -36,7 +36,7 @@ function oauth_login_initiate($provider)
 {
     if (!class_exists('App\\Services\\OAuthService')) {
         $_SESSION['login_error'] = 'OAuth is not available.';
-        header('Location: ' . (defined('LUPOPEDIA_PUBLIC_PATH') ? LUPOPEDIA_PUBLIC_PATH : '') . '/login');
+        header('Location: ' . (defined('LUPOPEDIA_PUBLIC_PATH') ? rtrim(LUPOPEDIA_PUBLIC_PATH, '/') : '') . '/login.php');
         exit;
     }
     $db = lupo_get_db();
@@ -45,7 +45,7 @@ function oauth_login_initiate($provider)
     // Validate provider
     if (!$oauthService->isProviderConfigured($provider)) {
         $_SESSION['login_error'] = 'OAuth provider not configured: ' . htmlspecialchars($provider);
-        header('Location: ' . LUPOPEDIA_PUBLIC_PATH . '/login');
+        header('Location: ' . rtrim(LUPOPEDIA_PUBLIC_PATH, '/') . '/login.php');
         exit;
     }
 
@@ -62,14 +62,16 @@ function oauth_login_initiate($provider)
     // Build callback URL
     $protocol = isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? 'https' : 'http';
     $host = $_SERVER['HTTP_HOST'];
-    $redirectUri = $protocol . '://' . $host . LUPOPEDIA_PUBLIC_PATH . '/oauth/callback/' . $provider;
+    $pub = defined('LUPOPEDIA_PUBLIC_PATH') ? rtrim(LUPOPEDIA_PUBLIC_PATH, '/') : '';
+    $callback_path = function_exists('lupo_index_slug_url') ? lupo_index_slug_url('oauth/callback/' . $provider) : ($pub . '/index.php?' . http_build_query(array('slug' => 'oauth/callback/' . $provider)));
+    $redirectUri = $protocol . '://' . $host . $callback_path;
 
     // Get authorization URL
     $authUrl = $oauthService->getAuthorizationUrl($provider, $redirectUri, $state);
 
     if (!$authUrl) {
         $_SESSION['login_error'] = 'Failed to generate OAuth URL';
-        header('Location: ' . LUPOPEDIA_PUBLIC_PATH . '/login');
+        header('Location: ' . rtrim(LUPOPEDIA_PUBLIC_PATH, '/') . '/login.php');
         exit;
     }
 
@@ -88,7 +90,7 @@ function oauth_callback_handle($provider)
 {
     if (!class_exists('App\\Services\\OAuthService')) {
         $_SESSION['login_error'] = 'OAuth is not available.';
-        header('Location: ' . (defined('LUPOPEDIA_PUBLIC_PATH') ? LUPOPEDIA_PUBLIC_PATH : '') . '/login');
+        header('Location: ' . (defined('LUPOPEDIA_PUBLIC_PATH') ? rtrim(LUPOPEDIA_PUBLIC_PATH, '/') : '') . '/login.php');
         exit;
     }
     $db = lupo_get_db();
@@ -97,14 +99,14 @@ function oauth_callback_handle($provider)
     // Verify state token (CSRF protection)
     if (!isset($_GET['state']) || !isset($_SESSION['oauth_state']) || $_GET['state'] !== $_SESSION['oauth_state']) {
         $_SESSION['login_error'] = 'Invalid OAuth state token';
-        header('Location: ' . LUPOPEDIA_PUBLIC_PATH . '/login');
+        header('Location: ' . rtrim(LUPOPEDIA_PUBLIC_PATH, '/') . '/login.php');
         exit;
     }
 
     // Verify provider matches
     if (!isset($_SESSION['oauth_provider']) || $_SESSION['oauth_provider'] !== $provider) {
         $_SESSION['login_error'] = 'OAuth provider mismatch';
-        header('Location: ' . LUPOPEDIA_PUBLIC_PATH . '/login');
+        header('Location: ' . rtrim(LUPOPEDIA_PUBLIC_PATH, '/') . '/login.php');
         exit;
     }
 
@@ -112,14 +114,14 @@ function oauth_callback_handle($provider)
     if (isset($_GET['error'])) {
         $errorDesc = isset($_GET['error_description']) ? $_GET['error_description'] : $_GET['error'];
         $_SESSION['login_error'] = 'OAuth error: ' . htmlspecialchars($errorDesc);
-        header('Location: ' . LUPOPEDIA_PUBLIC_PATH . '/login');
+        header('Location: ' . rtrim(LUPOPEDIA_PUBLIC_PATH, '/') . '/login.php');
         exit;
     }
 
     // Get authorization code
     if (!isset($_GET['code'])) {
         $_SESSION['login_error'] = 'No authorization code received';
-        header('Location: ' . LUPOPEDIA_PUBLIC_PATH . '/login');
+        header('Location: ' . rtrim(LUPOPEDIA_PUBLIC_PATH, '/') . '/login.php');
         exit;
     }
 
@@ -128,14 +130,16 @@ function oauth_callback_handle($provider)
     // Build callback URL
     $protocol = isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? 'https' : 'http';
     $host = $_SERVER['HTTP_HOST'];
-    $redirectUri = $protocol . '://' . $host . LUPOPEDIA_PUBLIC_PATH . '/oauth/callback/' . $provider;
+    $pub = defined('LUPOPEDIA_PUBLIC_PATH') ? rtrim(LUPOPEDIA_PUBLIC_PATH, '/') : '';
+    $callback_path = function_exists('lupo_index_slug_url') ? lupo_index_slug_url('oauth/callback/' . $provider) : ($pub . '/index.php?' . http_build_query(array('slug' => 'oauth/callback/' . $provider)));
+    $redirectUri = $protocol . '://' . $host . $callback_path;
 
     // Exchange code for token
     $tokenData = $oauthService->exchangeCodeForToken($provider, $code, $redirectUri);
 
     if (!$tokenData || !isset($tokenData['access_token'])) {
         $_SESSION['login_error'] = 'Failed to exchange authorization code';
-        header('Location: ' . LUPOPEDIA_PUBLIC_PATH . '/login');
+        header('Location: ' . rtrim(LUPOPEDIA_PUBLIC_PATH, '/') . '/login.php');
         exit;
     }
 
@@ -144,7 +148,7 @@ function oauth_callback_handle($provider)
 
     if (!$userData || empty($userData['provider_id'])) {
         $_SESSION['login_error'] = 'Failed to retrieve user information';
-        header('Location: ' . LUPOPEDIA_PUBLIC_PATH . '/login');
+        header('Location: ' . rtrim(LUPOPEDIA_PUBLIC_PATH, '/') . '/login.php');
         exit;
     }
 
@@ -153,14 +157,14 @@ function oauth_callback_handle($provider)
 
     if (!$user) {
         $_SESSION['login_error'] = 'Failed to create user account';
-        header('Location: ' . LUPOPEDIA_PUBLIC_PATH . '/login');
+        header('Location: ' . rtrim(LUPOPEDIA_PUBLIC_PATH, '/') . '/login.php');
         exit;
     }
 
     // Check if user is active
     if (!$user['is_active']) {
         $_SESSION['login_error'] = 'Account is inactive';
-        header('Location: ' . LUPOPEDIA_PUBLIC_PATH . '/login');
+        header('Location: ' . rtrim(LUPOPEDIA_PUBLIC_PATH, '/') . '/login.php');
         exit;
     }
 
@@ -175,7 +179,7 @@ function oauth_callback_handle($provider)
     unset($_SESSION['oauth_provider']);
 
     // Determine redirect URL
-    $redirectUrl = LUPOPEDIA_PUBLIC_PATH . '/admin';
+    $redirectUrl = rtrim(LUPOPEDIA_PUBLIC_PATH, '/') . '/admin.php';
 
     if (isset($_SESSION['oauth_redirect'])) {
         $redirectUrl = $_SESSION['oauth_redirect'];

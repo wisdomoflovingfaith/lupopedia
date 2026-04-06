@@ -28,8 +28,9 @@ function channel_admin_require_actor() {
     }
 
     if (!$actor_id) {
-        $public_path = defined('LUPOPEDIA_PUBLIC_PATH') ? LUPOPEDIA_PUBLIC_PATH : '';
-        $redirect = $public_path . '/login?redirect=' . urlencode($public_path . '/channels/1/');
+        $public_path = defined('LUPOPEDIA_PUBLIC_PATH') ? rtrim(LUPOPEDIA_PUBLIC_PATH, '/') : '';
+        $after = function_exists('lupo_index_slug_url') ? lupo_index_slug_url('channels/1') : ($public_path . '/index.php?' . http_build_query(array('slug' => 'channels/1')));
+        $redirect = function_exists('lupo_login_url') ? lupo_login_url($after) : ($public_path . '/login.php?redirect=' . urlencode($after));
         header('Location: ' . $redirect);
         exit;
     }

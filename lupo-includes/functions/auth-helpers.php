@@ -171,7 +171,7 @@ function require_login() {
             lupo_session_metadata_merge_current($db, array('login_redirect' => $redirect_url));
         }
 
-        $login_url = (defined('LUPOPEDIA_PUBLIC_PATH') ? LUPOPEDIA_PUBLIC_PATH : '') . '/login?redirect=' . urlencode($redirect_url);
+        $login_url = function_exists('lupo_login_url') ? lupo_login_url($redirect_url) : ((defined('LUPOPEDIA_PUBLIC_PATH') ? LUPOPEDIA_PUBLIC_PATH : '') . '/login.php?redirect=' . urlencode($redirect_url));
         lupo_safe_redirect($login_url, 2, 'Please log in to continue.');
     }
 }
@@ -245,6 +245,65 @@ function lupo_session_metadata_merge_current($db, array $patch)
         return false;
     }
     return App\Auth\Session::mergeSessionMetadata($db, $sid, $patch);
+}
+
+/**
+ * Front-controller URL without mod_rewrite: index.php?slug=…
+ *
+ * @param string $slug Route slug (e.g. channels/5, channels/5/log, doctrine/foo)
+ * @param array|null $extra_query Optional extra query keys (e.g. array('thread' => 3, 'clear' => 'now'))
+ * @return string
+ */
+function lupo_index_slug_url($slug, $extra_query = null)
+{
+    $base = defined('LUPOPEDIA_PUBLIC_PATH') ? rtrim(LUPOPEDIA_PUBLIC_PATH, '/') : '';
+    $slug = trim((string) $slug, '/');
+    $q = array('slug' => $slug);
+    if (is_array($extra_query) && !empty($extra_query)) {
+        foreach ($extra_query as $k => $v) {
+            $q[$k] = $v;
+        }
+    }
+    return $base . '/index.php?' . http_build_query($q);
+}
+
+/**
+ * resolved_uri URL for doctrine/qa/docs/flp paths (index.php?resolved_uri=…)
+ *
+ * @param string $uri Full resolved path without leading slash (e.g. doctrine/foo)
+ * @return string
+ */
+function lupo_index_resolved_uri_url($uri)
+{
+    $base = defined('LUPOPEDIA_PUBLIC_PATH') ? rtrim(LUPOPEDIA_PUBLIC_PATH, '/') : '';
+    $uri = trim((string) $uri, '/');
+    return $base . '/index.php?' . http_build_query(array('resolved_uri' => $uri));
+}
+
+/**
+ * Login page URL (login.php). Optional redirect target after login.
+ *
+ * @param string|null $redirect_uri Absolute path under public site (e.g. /lupopedia/index.php?slug=channels%2F5) or full path
+ * @return string
+ */
+function lupo_login_url($redirect_uri = null)
+{
+    $base = defined('LUPOPEDIA_PUBLIC_PATH') ? rtrim(LUPOPEDIA_PUBLIC_PATH, '/') : '';
+    $url = $base . '/login.php';
+    if ($redirect_uri !== null && $redirect_uri !== '') {
+        $url .= '?' . http_build_query(array('redirect' => $redirect_uri));
+    }
+    return $url;
+}
+
+/**
+ * Change-password route (slug routed via index.php).
+ *
+ * @return string
+ */
+function lupo_change_password_url()
+{
+    return lupo_index_slug_url('change-password');
 }
 
 ?>

@@ -167,8 +167,8 @@ function login_form($error_message = null, $redirect_url = '/admin') {
         <div class="error-message">' . htmlspecialchars($error_message) . '</div>';
     }
     
-    // Build login URL with public path
-    $login_action = defined('LUPOPEDIA_PUBLIC_PATH') ? LUPOPEDIA_PUBLIC_PATH . '/login' : '/login';
+    // Build login URL (login.php — no mod_rewrite /login)
+    $login_action = function_exists('lupo_login_url') ? lupo_login_url() : (defined('LUPOPEDIA_PUBLIC_PATH') ? rtrim(LUPOPEDIA_PUBLIC_PATH, '/') . '/login.php' : '/login.php');
     
     $html .= '
         <form method="POST" action="' . htmlspecialchars($login_action) . '">

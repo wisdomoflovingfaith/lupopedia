@@ -42,7 +42,8 @@ function channels_handle_show($channel_id, $initial_thread_id = null) {
         $actor_id = $s->validateSession();
     }
     if (!$actor_id) {
-        $login_url = (defined('LUPOPEDIA_PUBLIC_PATH') ? LUPOPEDIA_PUBLIC_PATH : '') . '/login?redirect=' . urlencode((defined('LUPOPEDIA_PUBLIC_PATH') ? LUPOPEDIA_PUBLIC_PATH : '') . '/channels/' . $channel_id . '/');
+        $after = function_exists('lupo_index_slug_url') ? lupo_index_slug_url('channels/' . $channel_id) : ((defined('LUPOPEDIA_PUBLIC_PATH') ? rtrim(LUPOPEDIA_PUBLIC_PATH, '/') : '') . '/index.php?' . http_build_query(array('slug' => 'channels/' . $channel_id)));
+        $login_url = function_exists('lupo_login_url') ? lupo_login_url($after) : ((defined('LUPOPEDIA_PUBLIC_PATH') ? rtrim(LUPOPEDIA_PUBLIC_PATH, '/') : '') . '/login.php?' . http_build_query(array('redirect' => $after)));
         if (function_exists('lupo_safe_redirect')) {
             lupo_safe_redirect($login_url, 0, 'Please sign in to use the channel.');
         } else {
@@ -520,7 +521,8 @@ function channels_handle_log_show($channel_id) {
         $actor_id = $s->validateSession();
     }
     if (!$actor_id) {
-        $login_url = (defined('LUPOPEDIA_PUBLIC_PATH') ? LUPOPEDIA_PUBLIC_PATH : '') . '/login?redirect=' . urlencode((defined('LUPOPEDIA_PUBLIC_PATH') ? LUPOPEDIA_PUBLIC_PATH : '') . '/channels/' . $channel_id . '/log');
+        $after = function_exists('lupo_index_slug_url') ? lupo_index_slug_url('channels/' . $channel_id . '/log') : ((defined('LUPOPEDIA_PUBLIC_PATH') ? rtrim(LUPOPEDIA_PUBLIC_PATH, '/') : '') . '/index.php?' . http_build_query(array('slug' => 'channels/' . $channel_id . '/log')));
+        $login_url = function_exists('lupo_login_url') ? lupo_login_url($after) : ((defined('LUPOPEDIA_PUBLIC_PATH') ? rtrim(LUPOPEDIA_PUBLIC_PATH, '/') : '') . '/login.php?' . http_build_query(array('redirect' => $after)));
         if (function_exists('lupo_safe_redirect')) {
             lupo_safe_redirect($login_url, 0, 'Please sign in to view the channel log.');
         } else {
@@ -688,15 +690,16 @@ function channels_handle_log_create($channel_id) {
         $actor_id = $s->validateSession();
     }
     if (!$actor_id) {
-        $base = defined('LUPOPEDIA_PUBLIC_PATH') ? LUPOPEDIA_PUBLIC_PATH : '';
-        header('Location: ' . $base . '/login?redirect=' . urlencode($base . '/channels/' . $channel_id . '/log'));
+        $base = defined('LUPOPEDIA_PUBLIC_PATH') ? rtrim(LUPOPEDIA_PUBLIC_PATH, '/') : '';
+        $after = function_exists('lupo_index_slug_url') ? lupo_index_slug_url('channels/' . $channel_id . '/log') : ($base . '/index.php?' . http_build_query(array('slug' => 'channels/' . $channel_id . '/log')));
+        header('Location: ' . (function_exists('lupo_login_url') ? lupo_login_url($after) : ($base . '/login.php?' . http_build_query(array('redirect' => $after)))));
         exit;
     }
 
     $db = $GLOBALS['mydatabase'] ?? null;
     if (!$db) {
-        $base = defined('LUPOPEDIA_PUBLIC_PATH') ? LUPOPEDIA_PUBLIC_PATH : '';
-        header('Location: ' . $base . '/channels/' . $channel_id . '/log');
+        $base = defined('LUPOPEDIA_PUBLIC_PATH') ? rtrim(LUPOPEDIA_PUBLIC_PATH, '/') : '';
+        header('Location: ' . (function_exists('lupo_index_slug_url') ? lupo_index_slug_url('channels/' . $channel_id . '/log') : ($base . '/index.php?' . http_build_query(array('slug' => 'channels/' . $channel_id . '/log')))));
         exit;
     }
 
@@ -707,8 +710,8 @@ function channels_handle_log_create($channel_id) {
         $role_row = array('actor_channel_role_id' => 0, 'role_type' => 'captain');
     }
     if (!$role_row) {
-        $base = defined('LUPOPEDIA_PUBLIC_PATH') ? LUPOPEDIA_PUBLIC_PATH : '';
-        header('Location: ' . $base . '/channels/' . $channel_id . '/log');
+        $base = defined('LUPOPEDIA_PUBLIC_PATH') ? rtrim(LUPOPEDIA_PUBLIC_PATH, '/') : '';
+        header('Location: ' . (function_exists('lupo_index_slug_url') ? lupo_index_slug_url('channels/' . $channel_id . '/log') : ($base . '/index.php?' . http_build_query(array('slug' => 'channels/' . $channel_id . '/log')))));
         exit;
     }
 
@@ -721,8 +724,8 @@ function channels_handle_log_create($channel_id) {
     }
 
     if ($log_type_id <= 0 || $log_text === '') {
-        $base = defined('LUPOPEDIA_PUBLIC_PATH') ? LUPOPEDIA_PUBLIC_PATH : '';
-        header('Location: ' . $base . '/channels/' . $channel_id . '/log');
+        $base = defined('LUPOPEDIA_PUBLIC_PATH') ? rtrim(LUPOPEDIA_PUBLIC_PATH, '/') : '';
+        header('Location: ' . (function_exists('lupo_index_slug_url') ? lupo_index_slug_url('channels/' . $channel_id . '/log') : ($base . '/index.php?' . http_build_query(array('slug' => 'channels/' . $channel_id . '/log')))));
         exit;
     }
 
@@ -744,8 +747,8 @@ function channels_handle_log_create($channel_id) {
         ':updated_ymdhis' => $now,
     ));
 
-    $base = defined('LUPOPEDIA_PUBLIC_PATH') ? LUPOPEDIA_PUBLIC_PATH : '';
-    header('Location: ' . $base . '/channels/' . $channel_id . '/log');
+    $base = defined('LUPOPEDIA_PUBLIC_PATH') ? rtrim(LUPOPEDIA_PUBLIC_PATH, '/') : '';
+    header('Location: ' . (function_exists('lupo_index_slug_url') ? lupo_index_slug_url('channels/' . $channel_id . '/log') : ($base . '/index.php?' . http_build_query(array('slug' => 'channels/' . $channel_id . '/log')))));
     exit;
 }
 
@@ -776,7 +779,8 @@ function channels_handle_my_channels() {
         $actor_id = $s->validateSession();
     }
     if (!$actor_id) {
-        $login_url = (defined('LUPOPEDIA_PUBLIC_PATH') ? LUPOPEDIA_PUBLIC_PATH : '') . '/login?redirect=' . urlencode((defined('LUPOPEDIA_PUBLIC_PATH') ? LUPOPEDIA_PUBLIC_PATH : '') . '/channels/my-channels');
+        $after = function_exists('lupo_index_slug_url') ? lupo_index_slug_url('channels/my-channels') : ((defined('LUPOPEDIA_PUBLIC_PATH') ? rtrim(LUPOPEDIA_PUBLIC_PATH, '/') : '') . '/index.php?' . http_build_query(array('slug' => 'channels/my-channels')));
+        $login_url = function_exists('lupo_login_url') ? lupo_login_url($after) : ((defined('LUPOPEDIA_PUBLIC_PATH') ? rtrim(LUPOPEDIA_PUBLIC_PATH, '/') : '') . '/login.php?' . http_build_query(array('redirect' => $after)));
         if (function_exists('lupo_safe_redirect')) {
             lupo_safe_redirect($login_url, 0, 'Please sign in to view your channels.');
         } else {
@@ -862,7 +866,7 @@ function channels_handle_edit_channel($channel_id) {
     $channel_id = (int) $channel_id;
     $app_root = defined('LUPOPEDIA_PATH') ? LUPOPEDIA_PATH : LUPOPEDIA_ABSPATH;
     $table_prefix = defined('LUPO_TABLE_PREFIX') ? LUPO_TABLE_PREFIX : 'lupo_';
-    $base = defined('LUPOPEDIA_PUBLIC_PATH') ? LUPOPEDIA_PUBLIC_PATH : '';
+    $base = defined('LUPOPEDIA_PUBLIC_PATH') ? rtrim(LUPOPEDIA_PUBLIC_PATH, '/') : '';
 
     $actor_id = null;
     $authService = $GLOBALS['lupo_auth_service'] ?? null;
@@ -881,20 +885,21 @@ function channels_handle_edit_channel($channel_id) {
         $actor_id = $s->validateSession();
     }
     if (!$actor_id) {
-        header('Location: ' . $base . '/login?redirect=' . urlencode($base . '/channels/' . $channel_id . '/edit'));
+        $after = function_exists('lupo_index_slug_url') ? lupo_index_slug_url('channels/' . $channel_id . '/edit') : ($base . '/index.php?' . http_build_query(array('slug' => 'channels/' . $channel_id . '/edit')));
+        header('Location: ' . (function_exists('lupo_login_url') ? lupo_login_url($after) : ($base . '/login.php?' . http_build_query(array('redirect' => $after)))));
         exit;
     }
 
     $db = $GLOBALS['mydatabase'] ?? null;
     if (!$db) {
-        header('Location: ' . $base . '/channels/' . $channel_id . '/');
+        header('Location: ' . (function_exists('lupo_index_slug_url') ? lupo_index_slug_url('channels/' . $channel_id) : ($base . '/index.php?' . http_build_query(array('slug' => 'channels/' . $channel_id)))));
         exit;
     }
 
     $stmt = $db->prepare("SELECT 1 FROM {$table_prefix}actor_channel_roles WHERE channel_id = :channel_id AND actor_id = :actor_id AND is_deleted = 0 LIMIT 1");
     $stmt->execute(array(':channel_id' => $channel_id, ':actor_id' => $actor_id));
     if ($stmt->fetch() === false) {
-        header('Location: ' . $base . '/channels/' . $channel_id . '/');
+        header('Location: ' . (function_exists('lupo_index_slug_url') ? lupo_index_slug_url('channels/' . $channel_id) : ($base . '/index.php?' . http_build_query(array('slug' => 'channels/' . $channel_id)))));
         exit;
     }
 
@@ -902,7 +907,7 @@ function channels_handle_edit_channel($channel_id) {
     $stmt->execute(array(':channel_id' => $channel_id));
     $channel = $stmt->fetch(PDO::FETCH_ASSOC);
     if (!$channel) {
-        header('Location: ' . $base . '/channels/' . $channel_id . '/');
+        header('Location: ' . (function_exists('lupo_index_slug_url') ? lupo_index_slug_url('channels/' . $channel_id) : ($base . '/index.php?' . http_build_query(array('slug' => 'channels/' . $channel_id)))));
         exit;
     }
 
@@ -981,7 +986,7 @@ function channels_handle_edit_channel($channel_id) {
 function channels_handle_edit_channel_save($channel_id) {
     $channel_id = (int) $channel_id;
     $table_prefix = defined('LUPO_TABLE_PREFIX') ? LUPO_TABLE_PREFIX : 'lupo_';
-    $base = defined('LUPOPEDIA_PUBLIC_PATH') ? LUPOPEDIA_PUBLIC_PATH : '';
+    $base = defined('LUPOPEDIA_PUBLIC_PATH') ? rtrim(LUPOPEDIA_PUBLIC_PATH, '/') : '';
 
     $actor_id = null;
     $authService = $GLOBALS['lupo_auth_service'] ?? null;
@@ -1000,20 +1005,21 @@ function channels_handle_edit_channel_save($channel_id) {
         $actor_id = $s->validateSession();
     }
     if (!$actor_id) {
-        header('Location: ' . $base . '/login?redirect=' . urlencode($base . '/channels/' . $channel_id . '/edit'));
+        $after = function_exists('lupo_index_slug_url') ? lupo_index_slug_url('channels/' . $channel_id . '/edit') : ($base . '/index.php?' . http_build_query(array('slug' => 'channels/' . $channel_id . '/edit')));
+        header('Location: ' . (function_exists('lupo_login_url') ? lupo_login_url($after) : ($base . '/login.php?' . http_build_query(array('redirect' => $after)))));
         exit;
     }
 
     $db = $GLOBALS['mydatabase'] ?? null;
     if (!$db) {
-        header('Location: ' . $base . '/channels/' . $channel_id . '/edit');
+        header('Location: ' . (function_exists('lupo_index_slug_url') ? lupo_index_slug_url('channels/' . $channel_id . '/edit') : ($base . '/index.php?' . http_build_query(array('slug' => 'channels/' . $channel_id . '/edit')))));
         exit;
     }
 
     $stmt = $db->prepare("SELECT 1 FROM {$table_prefix}actor_channel_roles WHERE channel_id = :channel_id AND actor_id = :actor_id AND is_deleted = 0 LIMIT 1");
     $stmt->execute(array(':channel_id' => $channel_id, ':actor_id' => $actor_id));
     if ($stmt->fetch() === false) {
-        header('Location: ' . $base . '/channels/' . $channel_id . '/');
+        header('Location: ' . (function_exists('lupo_index_slug_url') ? lupo_index_slug_url('channels/' . $channel_id) : ($base . '/index.php?' . http_build_query(array('slug' => 'channels/' . $channel_id)))));
         exit;
     }
 
@@ -1112,7 +1118,7 @@ function channels_handle_edit_channel_save($channel_id) {
         }
     }
 
-    header('Location: ' . $base . '/channels/' . $channel_id . '/edit');
+    header('Location: ' . (function_exists('lupo_index_slug_url') ? lupo_index_slug_url('channels/' . $channel_id . '/edit') : ($base . '/index.php?' . http_build_query(array('slug' => 'channels/' . $channel_id . '/edit')))));
     exit;
 }
 

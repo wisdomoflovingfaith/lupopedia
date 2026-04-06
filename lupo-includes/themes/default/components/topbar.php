@@ -305,7 +305,10 @@ if (isset($UNTRUSTED['server']['REQUEST_URI']) && is_string($UNTRUSTED['server']
             </div>
             <?php else: ?>
             <div class="nav-user">
-                <?php $login_url = $base . '/login?redirect=' . rawurlencode($request_uri !== '' ? $request_uri : '/'); ?>
+                <?php
+                $redir = $request_uri !== '' ? $request_uri : '/';
+                $login_url = function_exists('lupo_login_url') ? lupo_login_url($redir) : ($base . '/login.php?redirect=' . rawurlencode($redir));
+                ?>
                 <a href="<?= htmlspecialchars($login_url) ?>" class="nav-link">
                     <?= htmlspecialchars(function_exists('lupo_t') ? lupo_t('nav.sign_in', 'Sign In') : 'Sign In') ?>
                 </a>

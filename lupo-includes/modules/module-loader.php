@@ -849,6 +849,64 @@ function lupo_route_slug($slug)
         }
     }
 
+    // CHANNELS POST: slug=channels/{id}/edit/save (no mod_rewrite — index.php?slug=…)
+    if (preg_match('#^channels/(\d+)/edit/save/?$#', $slug, $matches)) {
+        $ch_method = isset($UNTRUSTED['server']['REQUEST_METHOD']) ? $UNTRUSTED['server']['REQUEST_METHOD'] : '';
+        if ($ch_method === 'POST') {
+            $channel_id = (int) $matches[1];
+            $app_root = defined('LUPOPEDIA_PATH') ? LUPOPEDIA_PATH : LUPOPEDIA_ABSPATH;
+            $channels_controller_path = rtrim($app_root, '/\\') . DIRECTORY_SEPARATOR . 'lupo-includes' . DIRECTORY_SEPARATOR . 'modules' . DIRECTORY_SEPARATOR . 'channels' . DIRECTORY_SEPARATOR . 'channels-controller.php';
+            if (file_exists($channels_controller_path)) {
+                require_once $channels_controller_path;
+                if (function_exists('channels_handle_edit_channel_save')) {
+                    channels_handle_edit_channel_save($channel_id);
+                }
+            }
+        }
+    }
+
+    // CHANNELS POST: slug=channels/{id}/log/create
+    if (preg_match('#^channels/(\d+)/log/create/?$#', $slug, $matches)) {
+        $ch_method = isset($UNTRUSTED['server']['REQUEST_METHOD']) ? $UNTRUSTED['server']['REQUEST_METHOD'] : '';
+        if ($ch_method === 'POST') {
+            $channel_id = (int) $matches[1];
+            $app_root = defined('LUPOPEDIA_PATH') ? LUPOPEDIA_PATH : LUPOPEDIA_ABSPATH;
+            $channels_controller_path = rtrim($app_root, '/\\') . DIRECTORY_SEPARATOR . 'lupo-includes' . DIRECTORY_SEPARATOR . 'modules' . DIRECTORY_SEPARATOR . 'channels' . DIRECTORY_SEPARATOR . 'channels-controller.php';
+            if (file_exists($channels_controller_path)) {
+                require_once $channels_controller_path;
+                if (function_exists('channels_handle_log_create')) {
+                    channels_handle_log_create($channel_id);
+                }
+            }
+        }
+    }
+
+    // CHANNELS GET: slug=channels/{id}/log
+    if (preg_match('#^channels/(\d+)/log/?$#', $slug, $matches)) {
+        $channel_id = (int) $matches[1];
+        $app_root = defined('LUPOPEDIA_PATH') ? LUPOPEDIA_PATH : LUPOPEDIA_ABSPATH;
+        $channels_controller_path = rtrim($app_root, '/\\') . DIRECTORY_SEPARATOR . 'lupo-includes' . DIRECTORY_SEPARATOR . 'modules' . DIRECTORY_SEPARATOR . 'channels' . DIRECTORY_SEPARATOR . 'channels-controller.php';
+        if (file_exists($channels_controller_path)) {
+            require_once $channels_controller_path;
+            if (function_exists('channels_handle_log_show')) {
+                return channels_handle_log_show($channel_id);
+            }
+        }
+    }
+
+    // CHANNELS GET: slug=channels/{id}/edit
+    if (preg_match('#^channels/(\d+)/edit/?$#', $slug, $matches)) {
+        $channel_id = (int) $matches[1];
+        $app_root = defined('LUPOPEDIA_PATH') ? LUPOPEDIA_PATH : LUPOPEDIA_ABSPATH;
+        $channels_controller_path = rtrim($app_root, '/\\') . DIRECTORY_SEPARATOR . 'lupo-includes' . DIRECTORY_SEPARATOR . 'modules' . DIRECTORY_SEPARATOR . 'channels' . DIRECTORY_SEPARATOR . 'channels-controller.php';
+        if (file_exists($channels_controller_path)) {
+            require_once $channels_controller_path;
+            if (function_exists('channels_handle_edit_channel')) {
+                return channels_handle_edit_channel($channel_id);
+            }
+        }
+    }
+
     // CHANNELS ROUTE: /lupo-channels/{channel_id}/ or /lupo-channels/{channel_id}
     if (preg_match('#^channels/(\d+)/?$#', $slug, $matches)) {
         $channel_id = (int) $matches[1];

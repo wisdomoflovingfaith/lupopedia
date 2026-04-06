@@ -312,7 +312,11 @@ class OAuthController {
      * Get OAuth redirect URI for provider
      */
     private function getRedirectUri($provider) {
-        return LUPOPEDIA_PUBLIC_PATH . "/oauth/callback/{$provider}";
+        if (function_exists('lupo_index_slug_url')) {
+            return lupo_index_slug_url('oauth/callback/' . $provider);
+        }
+        $pub = defined('LUPOPEDIA_PUBLIC_PATH') ? rtrim(LUPOPEDIA_PUBLIC_PATH, '/') : '';
+        return $pub . '/index.php?' . http_build_query(array('slug' => 'oauth/callback/' . $provider));
     }
     
     /**

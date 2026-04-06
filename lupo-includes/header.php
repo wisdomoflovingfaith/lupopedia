@@ -714,7 +714,7 @@ $lupoHdrJs = array(
                             $hdr_is_operator
                         );
                     } else {
-                        $login_url = defined('LUPOPEDIA_PUBLIC_PATH') ? rtrim(LUPOPEDIA_PUBLIC_PATH, '/') . '/login' : '/login';
+                        $login_url = function_exists('lupo_login_url') ? lupo_login_url() : (defined('LUPOPEDIA_PUBLIC_PATH') ? rtrim(LUPOPEDIA_PUBLIC_PATH, '/') . '/login.php' : '/login.php');
                         $signIn = function_exists('lupo_t') ? lupo_t('nav.sign_in', 'Sign In') : 'Sign In';
                         echo '<a href="' . htmlspecialchars($login_url) . '" class="nav-link">' . htmlspecialchars($signIn, ENT_QUOTES, 'UTF-8') . '</a>';
                     }

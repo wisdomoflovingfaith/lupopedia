@@ -16,7 +16,7 @@
 // Get credentials from: https://console.cloud.google.com/apis/credentials
 // 
 // 1. Create a new OAuth 2.0 Client ID
-// 2. Set authorized redirect URI to: https://yourdomain.com/your-lupopedia-path/oauth/callback/google
+// 2. Set authorized redirect URI to (no mod_rewrite): https://yourdomain.com/your-lupopedia-path/index.php?slug=oauth%2Fcallback%2Fgoogle
 // 3. Copy Client ID and Client Secret below
 
 define('OAUTH_GOOGLE_CLIENT_ID', '');
@@ -28,7 +28,7 @@ define('OAUTH_GOOGLE_CLIENT_SECRET', '');
 // Get credentials from: https://github.com/settings/developers
 // 
 // 1. Register a new OAuth application
-// 2. Set authorization callback URL to: https://yourdomain.com/your-lupopedia-path/oauth/callback/github
+// 2. Set authorization callback URL to: https://yourdomain.com/your-lupopedia-path/index.php?slug=oauth%2Fcallback%2Fgithub
 // 3. Copy Client ID and Client Secret below
 
 define('OAUTH_GITHUB_CLIENT_ID', '');

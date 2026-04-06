@@ -157,7 +157,8 @@ function lupo_render_login_status($user = null, $is_operator = false)
         return $html;
     }
 
-    $login_url = $base . '/login?redirect=' . rawurlencode($request_uri !== '' ? $request_uri : '/');
+    $redir = $request_uri !== '' ? $request_uri : '/';
+    $login_url = function_exists('lupo_login_url') ? lupo_login_url($redir) : ($base . '/login.php?redirect=' . rawurlencode($redir));
     $html = '<div class="nav-user">';
     $html .= '<a href="' . htmlspecialchars($login_url) . '" class="nav-link">';
     $html .= htmlspecialchars(function_exists('lupo_t') ? lupo_t('auth.sign_in', 'Sign In') : 'Sign In');

@@ -5,6 +5,12 @@
  * Selecting a tab changes only the composer target; stream stays unified. All paths use LUPOPEDIA_PUBLIC_PATH.
  */
 $base = defined('LUPOPEDIA_PUBLIC_PATH') ? LUPOPEDIA_PUBLIC_PATH : '';
+if (!function_exists('lupo_index_slug_url')) {
+    $ah = dirname(dirname(dirname(__DIR__))) . '/functions/auth-helpers.php';
+    if (is_file($ah)) {
+        require_once $ah;
+    }
+}
 $channel_name = isset($channel['channel_name']) ? htmlspecialchars($channel['channel_name']) : 'Channel';
 $channel_id = isset($channel_id) ? (int) $channel_id : 0;
 $selected_thread_id = isset($selected_thread_id) ? (int) $selected_thread_id : 0;
@@ -28,24 +34,23 @@ $actor_has_channel_role = isset($actor_has_channel_role) ? $actor_has_channel_ro
     <header class="channel-interface-header channel-rooms-bar">
         <h1 class="channel-interface-title"><?= htmlspecialchars($channel['channel_name'] ?? 'Channel') ?></h1>
         <div class="channel-rooms-actions">
-            <a href="<?= $base ?>/channels/my-channels" class="channel-interface-mylink">My Channels</a>
+            <a href="<?= htmlspecialchars(function_exists('lupo_index_slug_url') ? lupo_index_slug_url('channels/my-channels') : ($base . '/index.php?' . http_build_query(array('slug' => 'channels/my-channels')))) ?>" class="channel-interface-mylink">My Channels</a>
             <span class="channel-presence-dot" aria-hidden="true"></span>
             <span class="channel-presence-label">Online</span>
             <?php if (!empty($actor_has_channel_role)): ?>
-            <a href="<?= $base ?>/channels/<?= $channel_id ?>/edit" class="channel-btn channel-header-button" id="channel-edit">Edit Channel</a>
+            <a href="<?= htmlspecialchars(function_exists('lupo_index_slug_url') ? lupo_index_slug_url('channels/' . $channel_id . '/edit') : ($base . '/index.php?' . http_build_query(array('slug' => 'channels/' . $channel_id . '/edit')))) ?>" class="channel-btn channel-header-button" id="channel-edit">Edit Channel</a>
             <?php endif; ?>
-            <a href="<?= $base ?>/channels/<?= $channel_id ?>/log" class="channel-btn channel-header-button" id="channel-view-log">View Log</a>
-            <a href="<?= $base ?>/channels/<?= $channel_id ?>/?clear=now" class="channel-btn channel-btn-clear" id="channel-clear-now">Clear to now</a>
-            <a href="<?= $base ?>/channels/<?= $channel_id ?>/" class="channel-btn channel-btn-refresh" id="channel-force-refresh">Refresh</a>
+            <a href="<?= htmlspecialchars(function_exists('lupo_index_slug_url') ? lupo_index_slug_url('channels/' . $channel_id . '/log') : ($base . '/index.php?' . http_build_query(array('slug' => 'channels/' . $channel_id . '/log')))) ?>" class="channel-btn channel-header-button" id="channel-view-log">View Log</a>
+            <a href="<?= htmlspecialchars(function_exists('lupo_index_slug_url') ? lupo_index_slug_url('channels/' . $channel_id, array('clear' => 'now')) : ($base . '/index.php?' . http_build_query(array('slug' => 'channels/' . $channel_id, 'clear' => 'now')))) ?>" class="channel-btn channel-btn-clear" id="channel-clear-now">Clear to now</a>
+            <a href="<?= htmlspecialchars(function_exists('lupo_index_slug_url') ? lupo_index_slug_url('channels/' . $channel_id) : ($base . '/index.php?' . http_build_query(array('slug' => 'channels/' . $channel_id)))) ?>" class="channel-btn channel-btn-refresh" id="channel-force-refresh">Refresh</a>
         </div>
     </header>
     <div class="channel-interface-body">
         <!-- Panel 1: Message stream in iframe (legacy livehelp pattern — fixed height, does not extend past viewport) -->
         <?php
-        $stream_src = $base . '/channels/' . $channel_id . '/stream';
-        if (!empty($_GET['clear'])) {
-            $stream_src .= '?clear=' . rawurlencode((string) $_GET['clear']);
-        }
+        $stream_src = function_exists('lupo_index_slug_url')
+            ? lupo_index_slug_url('channels/' . $channel_id . '/stream', !empty($_GET['clear']) ? array('clear' => (string) $_GET['clear']) : null)
+            : ($base . '/index.php?' . http_build_query(array_merge(array('slug' => 'channels/' . $channel_id . '/stream'), !empty($_GET['clear']) ? array('clear' => (string) $_GET['clear']) : array())));
         ?>
         <iframe id="channel-stream-iframe" class="channel-stream-iframe" src="<?= htmlspecialchars($stream_src) ?>" title="Channel messages"></iframe>
         <!-- Panel 2: Channel roles + visitors (legacy admin_users) -->
@@ -70,7 +75,9 @@ $actor_has_channel_role = isset($actor_has_channel_role) ? $actor_has_channel_ro
             $label = htmlspecialchars($t['task_name'] ?? $t['summary_text'] ?? 'Thread #' . $tid);
             $bg = isset($thread_colors[$tid]) && preg_match('/^[0-9A-Fa-f]{6}$/', $thread_colors[$tid] ?? '') ? $thread_colors[$tid] : 'FFFACD';
             $active = ($tid === $selected_thread_id);
-            $href = $base . '/channels/' . $channel_id . '/?thread=' . $tid;
+            $href = function_exists('lupo_index_slug_url')
+                ? lupo_index_slug_url('channels/' . $channel_id, array('thread' => $tid))
+                : ($base . '/index.php?' . http_build_query(array('slug' => 'channels/' . $channel_id, 'thread' => $tid)));
         ?>
         <a href="<?= $href ?>" class="channel-tab <?= $active ? 'channel-tab-active' : '' ?>" role="tab" data-thread-id="<?= $tid ?>" style="background-color:#<?= $bg ?>;"><?= $label ?></a>
         <?php endforeach; ?>
