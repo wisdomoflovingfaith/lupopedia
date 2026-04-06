@@ -6,7 +6,7 @@ lupopedia.headers:
   lupopedia.version: "4.0.79"
   lupopedia.schema: "lilith_rule"
   file_path_from_root: ".lilith/rules/task-planning-doctrine.md"
-  last_modified_utc: "20260402"
+  last_modified_utc: "20260406"
   system_version: "4.0.79"
   source_path: "lupo-rules/root/task-planning-doctrine.md"
   artifact_type: "rule"

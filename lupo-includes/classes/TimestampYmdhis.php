@@ -4,22 +4,101 @@
  * timestamp_ymdhis — Unified Doctrine-Aligned Timestamp Utility
  *
  * PURPOSE:
- *   Provide MySQL-like timestamp/datetime functions for BIGINT(14)
- *   UTC timestamps in the format YYYYMMDDHHIISS.
+ *   Calendar UTC helpers for packed decimal timestamps stored as BIGINT
+ *   in the format YYYYMMDDHHIISS (fourteen digits, zero-padded).
  *
  * DOCTRINE:
- *   - No DATETIME
- *   - No TIMESTAMP
- *   - No epoch storage
+ *   - No DATETIME / TIMESTAMP columns for these clocks
+ *   - No Unix epoch (or milliseconds) as the canonical *persisted* clock
  *   - Always UTC
- *   - Always BIGINT(14)
+ *
+ * YEAR 2038:
+ *   The *database* value is not Unix time — it is a calendar label (e.g.
+ *   20401231235959 sorts and compares correctly as an integer through year 9999
+ *   in a BIGINT column. There is no Y2038 in *storage*.
+ *
+ *   PHP arithmetic here uses UTC DateTime + modify() / diff(), not gmmktime(),
+ *   so conversion does not depend on a 32-bit time_t bridge. Tiered doctrine
+ *   (PRD 00 §4 Option 4): production MUST use 64-bit PHP 7.4+; legacy 32-bit /
+ *   PHP 5.6 hosts are transitional — see runtimePackedUtcIntSafe().
+ *
+ * PUBLIC API (all static; packed int = YYYYMMDDHHIISS UTC unless noted):
+ *
+ *   Core
+ *     now()                      Current UTC as packed int.
+ *     explode(int $ts)           Packed int → array year, month, day, hour, minute, second.
+ *     implode(array $c)          Component array → packed int.
+ *
+ *   Arithmetic
+ *     addSeconds($ts, $seconds)  Add/subtract seconds (calendar-correct).
+ *     subtractSeconds($ts, $n)   addSeconds($ts, -$n).
+ *     addMinutes($ts, $n)        addSeconds($ts, $n * 60).
+ *     addHours($ts, $n)          addSeconds($ts, $n * 3600).
+ *     diffInSeconds($a, $b)      Signed seconds (a − b): time at a minus time at b.
+ *
+ *   Comparison
+ *     isBefore($a, $b)           $a < $b.
+ *     isAfter($a, $b)            $a > $b.
+ *     isBetween($ts, $start, $end)  $start <= $ts <= $end.
+ *
+ *   Formatting / parse
+ *     toHuman($ts)               "YYYY-MM-DD HH:MM:SS UTC".
+ *     fromHuman(string $str)     Parse string as UTC DateTime → packed; invalid → 0.
+ *     convert_bigint_to_iso8601($ts)   Packed → YYYY-MM-DDTHH:MM:SSZ.
+ *     convert_iso8601_to_bigint($iso)  ISO8601 UTC string → packed; invalid → 0.
+ *
+ *   Intervals (arrays: ['start' => packed, 'end' => packed])
+ *     interval($start, $end)     Build interval array.
+ *     overlaps($a, $b)           Ranges overlap.
+ *     intersection($a, $b)       Overlap range or null.
+ *     shift($interval, $seconds) Move both ends by seconds.
+ *     expand($interval, $seconds) Grow symmetrically (start earlier, end later).
+ *
+ *   Internal
+ *     dateTimeFromPacked($ts)    private — UTC DateTime from packed, or false.
  */
 
 class timestamp_ymdhis
 {
+    /**
+     * Build a UTC DateTime from a packed YmdHis value, or false if invalid.
+     *
+     * @param int $ts
+     * @return \DateTime|false
+     */
+    private static function dateTimeFromPacked($ts)
+    {
+        $c = self::explode((int) $ts);
+
+        return \DateTime::createFromFormat(
+            '!Y-m-d H:i:s',
+            sprintf(
+                '%04d-%02d-%02d %02d:%02d:%02d',
+                $c['year'],
+                $c['month'],
+                $c['day'],
+                $c['hour'],
+                $c['minute'],
+                $c['second']
+            ),
+            new \DateTimeZone('UTC')
+        );
+    }
+
     /* ============================================================
      * CORE
      * ============================================================ */
+
+    /**
+     * True when PHP can hold fourteen-digit packed UTC in a signed integer (64-bit).
+     * On 32-bit PHP, packed "now" exceeds PHP_INT_MAX even in the 2020s — use 64-bit PHP 7.4+ for production (PRD 00 §4).
+     *
+     * @return bool
+     */
+    public static function runtimePackedUtcIntSafe()
+    {
+        return defined('PHP_INT_SIZE') && (int) PHP_INT_SIZE >= 8;
+    }
 
     public static function now(): int
     {
@@ -55,14 +134,19 @@ class timestamp_ymdhis
 
     public static function addSeconds(int $ts, int $seconds): int
     {
-        $c = self::explode($ts);
+        $dt = self::dateTimeFromPacked($ts);
+        if ($dt === false) {
+            return (int) $ts;
+        }
 
-        $epoch = gmmktime(
-            $c['hour'], $c['minute'], $c['second'],
-            $c['month'], $c['day'], $c['year']
-        );
+        $delta = (int) $seconds;
+        if ($delta >= 0) {
+            $dt->modify('+' . $delta . ' seconds');
+        } else {
+            $dt->modify((string) $delta . ' seconds');
+        }
 
-        return (int) gmdate('YmdHis', $epoch + $seconds);
+        return (int) $dt->format('YmdHis');
     }
 
     public static function subtractSeconds(int $ts, int $seconds): int
@@ -82,20 +166,22 @@ class timestamp_ymdhis
 
     public static function diffInSeconds(int $a, int $b): int
     {
-        $ca = self::explode($a);
-        $cb = self::explode($b);
+        $da = self::dateTimeFromPacked($a);
+        $db = self::dateTimeFromPacked($b);
+        if ($da === false || $db === false) {
+            return 0;
+        }
 
-        $ea = gmmktime(
-            $ca['hour'], $ca['minute'], $ca['second'],
-            $ca['month'], $ca['day'], $ca['year']
-        );
+        // Order matches legacy gmmktime(a) - gmmktime(b): seconds from $b to $a.
+        $iv = $db->diff($da);
+        $days = $iv->days;
+        if ($days === false) {
+            return (int) $da->getTimestamp() - (int) $db->getTimestamp();
+        }
 
-        $eb = gmmktime(
-            $cb['hour'], $cb['minute'], $cb['second'],
-            $cb['month'], $cb['day'], $cb['year']
-        );
+        $sec = ($days * 86400) + ($iv->h * 3600) + ($iv->i * 60) + $iv->s;
 
-        return $ea - $eb;
+        return $iv->invert ? -$sec : $sec;
     }
 
     /* ============================================================
@@ -134,7 +220,13 @@ class timestamp_ymdhis
 
     public static function fromHuman(string $str): int
     {
-        return (int) gmdate('YmdHis', strtotime($str . ' UTC'));
+        try {
+            $dt = new \DateTime(trim($str), new \DateTimeZone('UTC'));
+        } catch (\Exception $e) {
+            return 0;
+        }
+
+        return (int) $dt->format('YmdHis');
     }
 
     /**
@@ -155,8 +247,13 @@ class timestamp_ymdhis
      */
     public static function convert_iso8601_to_bigint(string $iso): int
     {
-        $epoch = strtotime($iso);
-        return (int) gmdate('YmdHis', $epoch);
+        try {
+            $dt = new \DateTime($iso, new \DateTimeZone('UTC'));
+        } catch (\Exception $e) {
+            return 0;
+        }
+
+        return (int) $dt->format('YmdHis');
     }
 
     /* ============================================================

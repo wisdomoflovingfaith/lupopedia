@@ -557,7 +557,10 @@ function openWantsToChat_<?php echo (int) $UNTRUSTED['department']; ?>(){
 <?php
 if (!isset($UNTRUSTED['what'])) { $UNTRUSTED['what'] = ''; }
 $noonehome = true;
-$cutoff_ymdhis = (string) gmdate('YmdHis', time() - 20 * 60);
+if (!class_exists('timestamp_ymdhis', false)) {
+    require_once LUPOPEDIA_PATH . '/lupo-includes/classes/TimestampYmdhis.php';
+}
+$cutoff_ymdhis = (string) timestamp_ymdhis::subtractSeconds(timestamp_ymdhis::now(), 20 * 60);
 if ((int) $UNTRUSTED['department'] !== 0) {
     $onlineRow = $mydatabase->fetchRow(
         "SELECT 1 FROM {$prefix}sessions s INNER JOIN {$prefix}actor_channel_roles r ON r.actor_id = s.actor_id AND r.is_deleted = 0 INNER JOIN {$prefix}channels c ON c.channel_id = r.channel_id AND c.is_deleted = 0 WHERE s.is_active = 1 AND s.is_expired = 0 AND s.last_seen_ymdhis >= :cutoff AND r.role_key IN ('captain','monitor','administrator') AND c.department_id = :dept LIMIT 1",

@@ -50,7 +50,7 @@ id: 25
 slug: departments_system
 title: "Departments System"
 status: "draft|review|approved|implemented|deprecated"
-parent_edges_ref: "lupo-docs/implementations/25_departments_systems/edges.md"
+parent_edges_ref: "lupo-docs/implementations/25_departments_system/edges.md"
 ---
 ```
 

@@ -1,0 +1,53 @@
+{
+  "table_name": "lupo_doctrine_evolution_audit",
+  "fields": [
+    "`doctrine_evolution_audit_id` bigint NOT NULL",
+    "`refinement_id` bigint NOT NULL",
+    "`evolution_step` tinyint NOT NULL",
+    "`step_description` varchar(255) NOT NULL",
+    "`step_status` varchar(64) DEFAULT 'pending'",
+    "`step_metadata_json` json",
+    "`started_ymdhis` bigint",
+    "`completed_ymdhis` bigint",
+    "`audit_version` varchar(20) DEFAULT '3.0.0'"
+  ],
+  "data": [],
+  "indexes": [
+    {
+      "index_name": "lupo_doctrine_evolution_audit_idx_refinement_step",
+      "columns": [
+        "refinement_id",
+        "evolution_step"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_doctrine_evolution_audit_idx_step_status",
+      "columns": [
+        "step_status"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_doctrine_evolution_audit_idx_completion_time",
+      "columns": [
+        "completed_ymdhis"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    }
+  ],
+  "relationships": [],
+  "primary_key": {
+    "column_name": "doctrine_evolution_audit_id",
+    "expected_name": "doctrine_evolution_audit_id",
+    "is_correct": true,
+    "needs_rename": false
+  },
+  "doctrine_metadata": {
+    "no_foreign_keys": true,
+    "no_triggers": true
+  }
+}

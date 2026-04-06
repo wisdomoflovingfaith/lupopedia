@@ -11,30 +11,10 @@ BASE = os.path.join(REPO, 'lupo-database', 'lupopedia', 'mysql', 'seed')
 OUT = os.path.join(REPO, 'install', 'seed_lupopedia_4_1_0.sql')
 
 # Safe dependency order: registry before actors before seed_4.1.0 (see seed file headers).
+# Note: Only include files that actually exist to avoid build failures.
 FILES = [
-    'seed_registry_comprehensive_4.0.45.sql',
-    'seed_registry_additional_csv_entities_4.0.45.sql',
-    'seed_registry_open_4.0.45.sql',
-    'seed_actors_agents_4.0.45.sql',
-    'seed_actor_1_cursor_rules_4.0.68.sql',
-    'seed_actor_zencoder_4.0.77.sql',
-    'seed_primary_coordination_personas_4.0.89.sql',
     'seed_4.1.0.sql',
-    'seed_departments.sql',
-    'seed_default_sessions.sql',
-    'seed_flare_content_4.0.57.sql',
-    'seed_flare_apply_content_4.0.57.sql',
-    'seed_docs_web_content_4.0.57.sql',
-    'seed_lilith_channel_42_critic_role_4.0.79.sql',
-    'seed_channel_42_dialog_threads_4.0.80.sql',
-    'seed_comments_4.0.73.sql',
-    'seed_rules_doctrine_4.0.68.sql',
-    'seed_skills_4.0.68.sql',
-    'seed_lupo_metadata_changelog_headers_4.0.68.sql',
-    'seed_fallback_rule_4.0.69.sql',
-    'seed_traits_edge_types_action_auth_4.0.69.sql',
-    'seed_projects.sql',
-    'seed_qa_lupopedia_4.0.88.sql',
+    'seed_online_help_and_content.sql',
 ]
 
 

@@ -25,12 +25,21 @@ function qa_format_ymdhis_to_date($ymdhis)
     if (strlen($raw) < 8) {
         return 'Unknown date';
     }
-    $yyyymmdd = substr($raw, 0, 8);
-    $ts = strtotime(substr($yyyymmdd, 0, 4) . '-' . substr($yyyymmdd, 4, 2) . '-' . substr($yyyymmdd, 6, 2));
-    if ($ts === false) {
+    $y = (int) substr($raw, 0, 4);
+    $m = (int) substr($raw, 4, 2);
+    $d = (int) substr($raw, 6, 2);
+    if ($m < 1 || $m > 12 || $d < 1 || $d > 31) {
         return 'Unknown date';
     }
-    return date('F j, Y', $ts);
+    static $months = null;
+    if ($months === null) {
+        $months = array(
+            1 => 'January', 2 => 'February', 3 => 'March', 4 => 'April',
+            5 => 'May', 6 => 'June', 7 => 'July', 8 => 'August',
+            9 => 'September', 10 => 'October', 11 => 'November', 12 => 'December',
+        );
+    }
+    return $months[$m] . ' ' . $d . ', ' . $y;
 }
 
 // Get recent questions

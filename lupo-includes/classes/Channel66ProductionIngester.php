@@ -135,23 +135,22 @@ class Channel66ProductionIngester
     {
         $channelPath = $this->config->getScopeRoot() . '/lupo-channels/66';
         
-        if ($threadId !== null) {
-            // Process all threads
+        if ($threadId === null) {
+            // All threads under Channel 66
             $threadsPath = $channelPath . '/threads';
             if (!is_dir($threadsPath)) {
                 throw new Exception("Channel 66 threads directory not found: {$threadsPath}");
             }
-            
+
             $files = array();
             $threadDirs = glob($threadsPath . '/*', GLOB_ONLYDIR);
-            
+
             foreach ($threadDirs as $threadDir) {
                 $threadFiles = $this->discoverThreadFiles($threadDir);
                 $files = array_merge($files, $threadFiles);
             }
-            
         } else {
-            // Process specific thread (backward compatibility)
+            // Single thread
             $threadPath = $channelPath . '/threads/' . $threadId;
             $files = $this->discoverThreadFiles($threadPath);
         }

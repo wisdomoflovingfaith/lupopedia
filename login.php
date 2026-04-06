@@ -1,7 +1,36 @@
 <?php
+/*
+---
+lupopedia.headers:
+  header_format_version: 2
+  lupopedia.schema: page
+  when_updated: "20260406034550"
+  file_path_from_root: "login.php"
+  web_path: "http://www.lupopedia.com/lupopedia/login.php"
+  last_modified_utc: "20260406034550"
+  federation_node_id: 0
+  channel_id: 42
+  author:
+    type: "actor"
+    id: 102
+    name: "CURSOR"
+  delegation_chain: "cursor:root"
+  artifact_type: "page"
+  artifact_kind: "auth"
+  purpose: "Login page; Model A session via bootstrap App\\Auth\\Session (lupo_sessions); $UNTRUSTED boundary for request input"
+  tags: ["auth", "login", "session", "model_a", "untrusted"]
+---
+*/
+
 /**
- * Login Page - Simple implementation for auth_user to actor mapping
+ * Login Page — auth_user to actor mapping; session authority from bootstrap (not session_start here).
  */
+
+$UNTRUSTED = array(
+    'server' => (isset($_SERVER) && is_array($_SERVER)) ? $_SERVER : array(),
+    'get' => (isset($_GET) && is_array($_GET)) ? $_GET : array(),
+    'post' => (isset($_POST) && is_array($_POST)) ? $_POST : array(),
+);
 
 // Load config (WordPress-style paths: install dir, parent, legacy DOCUMENT_ROOT — see LupopediaConfigResolver)
 $lupoRoot = __DIR__;
@@ -9,24 +38,28 @@ $lupoPub = '/' . basename($lupoRoot);
 require_once $lupoRoot . '/lupo-includes/classes/LupopediaConfigResolver.php';
 $lupoCfgPath = LupopediaConfigResolver::resolve($lupoRoot, $lupoPub);
 if ($lupoCfgPath === null) {
-    $lupoBase = rtrim(dirname(isset($_SERVER['SCRIPT_NAME']) ? $_SERVER['SCRIPT_NAME'] : ''), '/');
+    $scriptName = isset($UNTRUSTED['server']['SCRIPT_NAME']) ? $UNTRUSTED['server']['SCRIPT_NAME'] : '';
+    $lupoBase = rtrim(dirname($scriptName), '/');
     header('Location: ' . ($lupoBase === '' ? '/install.php' : $lupoBase . '/install.php'));
     exit;
 }
 require_once $lupoCfgPath;
 
-// Start session
-if (session_status() === PHP_SESSION_NONE) {
-    session_start();
-}
-
 require_once $lupoRoot . '/lupo-includes/classes/LupoLocale.php';
 LupoLocale::bootstrap($lupoRoot);
 require_once $lupoRoot . '/lupo-includes/lupo-i18n.php';
 
-// If already logged in, send MD5-migration users to password change first
-if (isset($_SESSION['actor_id'])) {
-    if (!empty($_SESSION['password_change_required'])) {
+// Load required classes (before “already logged in” — actor authority from lupo_sessions via AuthService)
+require_once __DIR__ . '/lupo-includes/classes/DatabaseFactory.php';
+require_once __DIR__ . '/lupo-includes/functions/auth-helpers.php';
+require_once __DIR__ . '/lupo-includes/classes/AuthService.php';
+
+// If already logged in, send MD5-migration users to password change first (flag in lupo_sessions.metadata)
+$authGate = new AuthService();
+$dbMeta = DatabaseFactory::getConnection();
+$sessionMeta = lupo_session_metadata_current($dbMeta);
+if ($authGate->isLoggedIn()) {
+    if (!empty($sessionMeta['password_change_required'])) {
         header('Location: ' . LUPOPEDIA_PUBLIC_PATH . '/change-password');
         exit;
     }
@@ -34,23 +67,17 @@ if (isset($_SESSION['actor_id'])) {
     exit;
 }
 
-// Load required classes
-require_once __DIR__ . '/lupo-includes/classes/DatabaseFactory.php';
-require_once __DIR__ . '/lupo-includes/classes/AuthService.php';
-
 $error = '';
 $success = '';
 
-// Handle form submission
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $username = isset($_POST['username']) ? $_POST['username'] : '';
-    $password = isset($_POST['password']) ? $_POST['password'] : '';
-    $redirect = isset($_GET['redirect']) ? $_GET['redirect'] : null;
+// Handle form submission (all request input via $UNTRUSTED — PRD 00 §17.8)
+if (isset($UNTRUSTED['server']['REQUEST_METHOD']) && $UNTRUSTED['server']['REQUEST_METHOD'] === 'POST') {
+    $username = isset($UNTRUSTED['post']['username']) ? $UNTRUSTED['post']['username'] : '';
+    $password = isset($UNTRUSTED['post']['password']) ? $UNTRUSTED['post']['password'] : '';
+    $redirect = isset($UNTRUSTED['get']['redirect']) ? $UNTRUSTED['get']['redirect'] : null;
     // If referer contains 'install', always redirect to admin.php after login
-    $forceAdminRedirect = false;
-    if (!empty($_SERVER['HTTP_REFERER']) && stripos($_SERVER['HTTP_REFERER'], 'install') !== false) {
-        $forceAdminRedirect = true;
-    }
+    $referer = isset($UNTRUSTED['server']['HTTP_REFERER']) ? $UNTRUSTED['server']['HTTP_REFERER'] : '';
+    $forceAdminRedirect = ($referer !== '' && stripos($referer, 'install') !== false);
     if (empty($username) || empty($password)) {
         $error = lupo_t('login.error_both_required', 'Please enter both username and password.');
     } else {
@@ -59,9 +86,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if (isset($result['error'])) {
             $error = $result['error'];
         } elseif (!empty($result['needs_password_change'])) {
-            if ($redirect !== null && $redirect !== '') {
-                $_SESSION['login_redirect'] = $redirect;
-            }
             header('Location: ' . LUPOPEDIA_PUBLIC_PATH . '/change-password');
             exit;
         } elseif (isset($result['needs_agent_selection'])) {
@@ -80,7 +104,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 
 $pub = LUPOPEDIA_PUBLIC_PATH;
-$postedUsername = isset($_POST['username']) ? $_POST['username'] : '';
+$postedUsername = isset($UNTRUSTED['post']['username']) ? $UNTRUSTED['post']['username'] : '';
 $lupoCurrentLocale = LupoLocale::getLocale();
 
 ?>

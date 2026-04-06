@@ -1,19 +1,55 @@
 <?php
-/**
- * wolfie.header.identity: main-layout
- * wolfie.header.placement: /lupo-includes/themes/default/layouts/main_layout.php
- * wolfie.header.version: lupopedia_current_version
- * wolfie.header.dialog:
- *   speaker: CURSOR
- *   target: main-layout
- *   message: "Updated main layout to match template structure: decorative border frame, collections dropdown, AJAX-loaded tabs, bottom action bar. Maintains all PHP logic while updating UI structure."
- * wolfie.header.mood.label: focused
- * wolfie.header.mood.rgb: "336699"
- */
+/*
+---
+lupopedia.headers:
+  header_format_version: 2
+  lupopedia.schema: layout
+  when_updated: "20260406044907"
+  file_path_from_root: "lupo-includes/themes/default/layouts/main_layout.php"
+  web_path: "http://www.lupopedia.com/lupopedia/lupo-includes/themes/default/layouts/main_layout.php"
+  last_modified_utc: "20260406044907"
+  federation_node_id: 0
+  channel_id: 42
+  author:
+    type: "actor"
+    id: 102
+    name: "CURSOR"
+  delegation_chain: "cursor:root"
+  artifact_type: "layout"
+  artifact_kind: "main"
+  purpose: "Main Lupopedia UI layout; collections chrome, modals, shortcut/contents dropdowns, bottom bar; lupo_t and LUPO_HDR.strings for JS."
+  tags: ["layout", "ui", "collections", "tabs", "locale"]
+---
+*/
 
 if (!defined('LUPOPEDIA_CONFIG_LOADED')) {
     die("Config not loaded. main_layout.php cannot be called directly.");
 }
+
+$root = defined('LUPOPEDIA_PATH') ? LUPOPEDIA_PATH : '';
+if ($root !== '' && !class_exists('LupoLocale', false)) {
+    $lp = $root . '/lupo-includes/classes/LupoLocale.php';
+    if (is_file($lp)) {
+        require_once $lp;
+    }
+}
+if ($root !== '' && class_exists('LupoLocale', false) && method_exists('LupoLocale', 'bootstrap')) {
+    LupoLocale::bootstrap($root);
+}
+if (!function_exists('lupo_t')) {
+    $i18n = ($root !== '' ? $root . '/lupo-includes/lupo-i18n.php' : '');
+    if ($i18n !== '' && is_file($i18n)) {
+        require_once $i18n;
+    }
+}
+
+if (!isset($UNTRUSTED) || !is_array($UNTRUSTED)) {
+    $UNTRUSTED = array();
+}
+if (!isset($UNTRUSTED['server']) || !is_array($UNTRUSTED['server'])) {
+    $UNTRUSTED['server'] = (isset($_SERVER) && is_array($_SERVER)) ? $_SERVER : array();
+}
+$UNTRUSTED_SERVER = $UNTRUSTED['server'];
 
 /**
  * ---------------------------------------------------------
@@ -64,21 +100,19 @@ if (!isset($collectionsData)) {
     }
 }
 
-// Default session collection_id to 0 so saved-collections-container always has an active collection
-if (function_exists('session_status') && session_status() === PHP_SESSION_ACTIVE && !isset($_SESSION['collection_id'])) {
-    $_SESSION['collection_id'] = 0;
+// Default UI collection context ($GLOBALS — not $_SESSION; §17.7 session authority is lupo_sessions only).
+if (!isset($GLOBALS['collection_id']) || $GLOBALS['collection_id'] === '' || $GLOBALS['collection_id'] === null) {
+    $GLOBALS['collection_id'] = 0;
 }
-// Ensure required variables exist for collection tabs; use session when context has no collection_id
+// Ensure required variables exist for collection tabs; use $GLOBALS when context has no collection_id
 if (!isset($current_collection) || $current_collection === null) {
-    $current_collection = 'System Collection';
+    $current_collection = function_exists('lupo_t') ? lupo_t('layout.main_layout.system_collection', 'System Collection') : 'System Collection';
 }
 if (!isset($tabs_data) || !is_array($tabs_data)) {
     $tabs_data = array();
 }
 if (!isset($collection_id) || $collection_id === null) {
-    $collection_id = (function_exists('session_status') && session_status() === PHP_SESSION_ACTIVE && isset($_SESSION['collection_id']))
-        ? (int) $_SESSION['collection_id']
-        : 0;
+    $collection_id = (int) $GLOBALS['collection_id'];
 }
 
 // Initialize content sections for contents dropdown
@@ -86,13 +120,73 @@ if (!isset($contentSections)) {
     $contentSections = isset($content['content_sections']) ? $content['content_sections'] : array();
 }
 
+$lupoPublicBase = (defined('LUPOPEDIA_PUBLIC_PATH') ? rtrim(LUPOPEDIA_PUBLIC_PATH, '/') : '');
+$lupoHdrJs = array(
+    'base' => $lupoPublicBase,
+    'strings' => array(
+        'collections_save_login' => function_exists('lupo_t') ? lupo_t('header.collections.alert_save_login', 'Please log in to save collections.') : 'Please log in to save collections.',
+        'collections_load_login' => function_exists('lupo_t') ? lupo_t('header.collections.alert_load_login', 'Please log in to load collections.') : 'Please log in to load collections.',
+        'collections_edit_login' => function_exists('lupo_t') ? lupo_t('header.collections.alert_edit_login', 'Please log in to edit collections.') : 'Please log in to edit collections.',
+        'collections_edit_save_first' => function_exists('lupo_t') ? lupo_t('header.collections.edit_save_first', 'Please save this collection first, then you can edit it!') : 'Please save this collection first, then you can edit it!',
+        'collections_edit_open_save' => function_exists('lupo_t') ? lupo_t('header.collections.edit_open_save', 'Click OK to open the Save dialog.') : 'Click OK to open the Save dialog.',
+        'collections_name_required' => function_exists('lupo_t') ? lupo_t('header.collections.name_required', 'Please enter a name for this collection') : 'Please enter a name for this collection',
+        'collections_saved_ok' => function_exists('lupo_t') ? lupo_t('header.collections.saved_ok', 'Collection saved successfully!') : 'Collection saved successfully!',
+        'collections_error_prefix' => function_exists('lupo_t') ? lupo_t('header.collections.error_prefix', 'Error: ') : 'Error: ',
+        'collections_save_failed' => function_exists('lupo_t') ? lupo_t('header.collections.save_failed', 'Failed to save collection') : 'Failed to save collection',
+        'collections_save_try_again' => function_exists('lupo_t') ? lupo_t('header.collections.save_try_again', 'Error saving collection. Please try again.') : 'Error saving collection. Please try again.',
+        'collections_loading_short' => function_exists('lupo_t') ? lupo_t('header.collections.loading_short', 'Loading...') : 'Loading...',
+        'collections_loading_list' => function_exists('lupo_t') ? lupo_t('header.collections.loading_list', 'Loading your collections...') : 'Loading your collections...',
+        'collections_no_description' => function_exists('lupo_t') ? lupo_t('header.collections.no_description', 'No description') : 'No description',
+        'collections_saved_items' => function_exists('lupo_t') ? lupo_t('header.collections.saved_items', 'saved items') : 'saved items',
+        'collections_created' => function_exists('lupo_t') ? lupo_t('header.collections.created', 'Created:') : 'Created:',
+        'collections_load_btn' => function_exists('lupo_t') ? lupo_t('header.collections.load_btn', 'Load') : 'Load',
+        'collections_delete_btn' => function_exists('lupo_t') ? lupo_t('header.collections.delete_btn', 'Delete') : 'Delete',
+        'collections_active_prefix' => function_exists('lupo_t') ? lupo_t('header.collections.active_prefix', '[Active] ') : '[Active] ',
+        'collections_empty' => function_exists('lupo_t') ? lupo_t('header.collections.empty', 'No saved collections yet.') : 'No saved collections yet.',
+        'collections_empty_hint' => function_exists('lupo_t') ? lupo_t('header.collections.empty_hint', 'Click Save to save your first collection!') : 'Click Save to save your first collection!',
+        'collections_list_error' => function_exists('lupo_t') ? lupo_t('header.collections.list_error', 'Error loading collections') : 'Error loading collections',
+        'collections_confirm_load' => function_exists('lupo_t') ? lupo_t('header.collections.confirm_load', 'Load collection "%s"? This will replace your current recently viewed items.') : 'Load collection "%s"? This will replace your current recently viewed items.',
+        'collections_loaded_ok' => function_exists('lupo_t') ? lupo_t('header.collections.loaded_ok', 'Collection loaded! Refreshing page...') : 'Collection loaded! Refreshing page...',
+        'collections_load_failed' => function_exists('lupo_t') ? lupo_t('header.collections.load_failed', 'Failed to load collection') : 'Failed to load collection',
+        'collections_load_try_again' => function_exists('lupo_t') ? lupo_t('header.collections.load_try_again', 'Error loading collection. Please try again.') : 'Error loading collection. Please try again.',
+        'collections_delete_confirm' => function_exists('lupo_t') ? lupo_t('header.collections.delete_confirm', 'Delete this collection? This cannot be undone.') : 'Delete this collection? This cannot be undone.',
+        'collections_delete_failed' => function_exists('lupo_t') ? lupo_t('header.collections.delete_failed', 'Failed to delete collection') : 'Failed to delete collection',
+        'collections_delete_try_again' => function_exists('lupo_t') ? lupo_t('header.collections.delete_try_again', 'Error deleting collection. Please try again.') : 'Error deleting collection. Please try again.',
+        'prompt_main_tab' => function_exists('lupo_t') ? lupo_t('header.shortcut.prompt_main_tab', 'Enter name for new Main Tab:') : 'Enter name for new Main Tab:',
+        'prompt_sub_tab' => function_exists('lupo_t') ? lupo_t('header.shortcut.prompt_sub_tab', 'Enter new Sub-Tab name for "%s":') : 'Enter new Sub-Tab name for "%s":',
+        'add_success' => function_exists('lupo_t') ? lupo_t('header.shortcut.add_success', 'Successfully added "%s" to your collection!') : 'Successfully added "%s" to your collection!',
+    ),
+);
+
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="<?php echo class_exists('LupoLocale', false) ? LupoLocale::htmlLang() : 'en'; ?>">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?= htmlspecialchars($page_title) ?> - LUPOPEDIA</title>
+    <title><?php
+        $titleSuffix = function_exists('lupo_t') ? lupo_t('layout.main_layout.title_suffix', 'LUPOPEDIA') : 'LUPOPEDIA';
+        echo htmlspecialchars($page_title, ENT_QUOTES, 'UTF-8') . ' - ' . htmlspecialchars($titleSuffix, ENT_QUOTES, 'UTF-8');
+    ?></title>
+    <script>
+    (function() {
+        var incoming = <?php echo json_encode($lupoHdrJs); ?>;
+        window.LUPO_HDR = window.LUPO_HDR || { base: '', strings: {} };
+        if (incoming && incoming.base) {
+            if (!window.LUPO_HDR.base) {
+                window.LUPO_HDR.base = incoming.base;
+            }
+        }
+        if (incoming && incoming.strings) {
+            var s = window.LUPO_HDR.strings;
+            for (var k in incoming.strings) {
+                if (incoming.strings.hasOwnProperty(k) && typeof s[k] === 'undefined') {
+                    s[k] = incoming.strings[k];
+                }
+            }
+        }
+    })();
+    </script>
     <link rel="icon" type="image/x-icon" href="<?= LUPOPEDIA_PUBLIC_PATH ?>/favicon.ico">
     <link rel="shortcut icon" href="<?= LUPOPEDIA_PUBLIC_PATH ?>/favicon.ico">
     
@@ -120,211 +214,9 @@ if (!isset($contentSections)) {
         <meta name="keywords" content="<?= htmlspecialchars($page_keywords) ?>">
     <?php endif; ?>
     
-    <!-- Saved Collections Navigation Styles -->
+    <link rel="stylesheet" href="<?= LUPOPEDIA_PUBLIC_PATH ?>/lupo-includes/css/main-layout.css">
     <style>
-    /* Saved Collections Navigation - Q/A Tag Based */
-    .saved-collections-nav {
-        background: #E8F5E9;
-        padding: 10px 20px;
-        border-bottom: 2px solid #4CAF50;
-        margin-bottom: 0;
-        position: fixed;
-        top: 58px;
-        left: 0;
-        right: 0;
-        width: 100%;
-        z-index: 1000;
-        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        height: 49px;
-        display: flex;
-        align-items: center;
-    }
-    
-    .saved-collections-container {
-        max-width: 1200px;
-        margin: 0 auto;
-        display: flex;
-        align-items: center;
-        gap: 10px;
-        flex-wrap: wrap;
-        width: 100%;
-        height: 48px;
-    }
-    
-    .saved-collections-dropdown {
-        position: relative;
-        display: inline-block;
-    }
-    
-    .saved-collections-button {
-        background: #4CAF50;
-        color: white;
-        border: none;
-        padding: 6px 12px;
-        border-radius: 4px;
-        cursor: pointer;
-        font-size: 13px;
-        font-weight: bold;
-        transition: background-color 0.2s;
-        display: flex;
-        align-items: center;
-        gap: 6px;
-    }
-    
-    /* collections tab uses blue color instead of green */
-    .saved-collections-button[data-qa-type="collections"],
-    .saved-collections-dropdown[data-qa-type="collections"] .saved-collections-button {
-        background: #2973e4;
-    }
-    
-    .saved-collections-dropdown[data-qa-type="collections"] .saved-collections-button:hover {
-        background: #1f5bb8;
-    }
-    
-    .saved-collections-button:hover {
-        background: #45a049;
-    }
-    
-    .saved-collections-button .count {
-        background: rgba(255,255,255,0.3);
-        color: white;
-        border-radius: 10px;
-        padding: 2px 6px;
-        font-size: 11px;
-        font-weight: 600;
-    }
-    
-    .saved-collections-dropdown-content {
-        display: none;
-        position: absolute;
-        top: 100%;
-        left: 0;
-        background: white;
-        min-width: 220px;
-        max-width: 300px;
-        box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
-        border: 1px solid #ddd;
-        border-radius: 4px;
-        z-index: 10000;
-        max-height: 500px;
-        overflow-y: auto;
-        margin-top: 2px;
-        padding: 4px 0;
-    }
-    
-    .saved-collections-dropdown.active .saved-collections-dropdown-content {
-        display: block;
-    }
-    
-    .saved-collections-submenu {
-        position: relative;
-    }
-    
-    .saved-collections-submenu-trigger {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 8px 12px;
-        color: #333;
-        text-decoration: none;
-        cursor: pointer;
-        border-bottom: 1px solid #eee;
-        transition: background-color 0.2s;
-        white-space: nowrap;
-    }
-    
-    .saved-collections-submenu-trigger:hover {
-        background: #f5f5f5;
-    }
-    
-    .saved-collections-submenu-trigger::after {
-        content: '▶';
-        margin-left: 8px;
-        font-size: 10px;
-        color: #999;
-        transition: transform 0.2s;
-    }
-    
-    .saved-collections-submenu.active .saved-collections-submenu-trigger::after {
-        transform: rotate(90deg);
-    }
-    
-    .saved-collections-submenu-trigger .count {
-        background: #4CAF50;
-        color: white;
-        border-radius: 10px;
-        padding: 2px 6px;
-        font-size: 11px;
-        font-weight: 600;
-        margin-left: auto;
-        margin-right: 8px;
-    }
-    
-    .saved-collections-submenu-content {
-        display: none;
-        position: absolute;
-        background: white;
-        min-width: 280px;
-        max-width: 400px;
-        box-shadow: 4px 4px 12px rgba(0,0,0,0.25);
-        border: 1px solid #ccc;
-        border-radius: 4px;
-        z-index: 10001;
-        max-height: 500px;
-        overflow-y: auto;
-        padding: 4px 0;
-    }
-    
-    .saved-collections-submenu-content.active {
-        display: block;
-    }
-    
-    .saved-collections-item {
-        display: block;
-        padding: 8px 12px;
-        color: #333;
-        text-decoration: none;
-        border-bottom: 1px solid #eee;
-        transition: background-color 0.2s;
-        font-size: 13px;
-    }
-    
-    .saved-collections-item:hover {
-        background: #f0f7ff;
-        color: #0066cc;
-    }
-    
-    .saved-collections-item:last-child {
-        border-bottom: none;
-    }
-    
-    .saved-collections-item.selected {
-        background: #e3f2fd;
-        font-weight: 600;
-    }
-
-    #firstHeading { 
-        font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif; 
-        font-size: 32px;
-        line-height: 42px;
-        font-weight: 600;
-        margin: 0;
-        padding: 0;
-        overflow: hidden;
-        white-space: nowrap;
-    }
-
-    /* Content Container with Decorative Borders */
-    .content-list-container {
-        display: flex;
-        flex-wrap: wrap;
-        width: 100vw;
-        height: calc(100vh - 107px);
-        position: fixed;
-        top: 107px;
-        left: 0;
-    }
-
+    /* Decorative border tile backgrounds need LUPOPEDIA_PUBLIC_PATH (subdirectory installs). */
     /* Row 1: Top Border */
     .resources-top-left {
         width: 54px;
@@ -391,323 +283,9 @@ if (!isset($contentSections)) {
         background: url('<?= LUPOPEDIA_PUBLIC_PATH ?>/lupo-images/s9b.png');
     }
 
-    /* Dropdown Styles */
-    .dropdown {
-        position: relative;
-        display: inline-block;
-    }
-
-    .dropdown-content {
-        display: none;
-        position: absolute;
-        background-color: #f9f9f9;
-        min-width: 450px;
-        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-        z-index: 1;
-        border-radius: 4px;
-    }
-
-    .dropdown-content a {
-        color: black;
-        padding: 2px 6px;
-        text-decoration: none;
-        display: block;
-    }
-
-    .dropdown-content a:hover {
-        background-color: #f1f1f1;
-    }
-
-    .dropdown-content.show {
-        display: block;
-    }
-
-    #contentsDropdown {
-        max-height: 400px;
-        overflow-y: auto;
-    }
-
-    #shortcutDropdown {
-        min-width: 450px;
-        padding: 10px;
-        background: #fff;
-        box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
-    }
-
-    .add-action {
-        color: #28a745 !important;
-        font-size: 0.85em;
-        font-style: italic;
-        padding-left: 25px !important;
-    }
-
-    .add-action:hover {
-        background-color: #e8f5e9 !important;
-        text-decoration: underline;
-    }
-
-    .add-action.global {
-        font-weight: bold;
-        font-style: normal;
-        background-color: #f0fdf4;
-    }
-
-    .main-tab { font-weight: bold; }
-    .sub-tab { padding-left: 20px !important; color: #555; }
     </style>
-    
-    <script>
-        function toggleSavedCollectionsDropdown(button) {
-            const dropdown = button.closest('.saved-collections-dropdown');
-            const isActive = dropdown.classList.contains('active');
-            
-            // Close all other dropdowns and their submenus
-            document.querySelectorAll('.saved-collections-dropdown').forEach(d => {
-                if (d !== dropdown) {
-                    d.classList.remove('active');
-                    d.querySelectorAll('.saved-collections-submenu').forEach(s => {
-                        s.classList.remove('active');
-                        const content = s.querySelector('.saved-collections-submenu-content');
-                        if (content && content.parentNode === document.body) {
-                            content.remove();
-                        } else if (content) {
-                            content.style.display = 'none';
-                        }
-                        content.classList.remove('active');
-                    });
-                }
-            });
-            
-            // Toggle this dropdown
-            const newState = !isActive;
-            dropdown.classList.toggle('active', newState);
-            button.setAttribute('aria-expanded', newState.toString());
-        }
-        
-        let openSubmenuContent = null;
-        
-        function toggleSubmenu(trigger, event) {
-            if (event) {
-                event.preventDefault();
-                event.stopPropagation();
-            }
-            
-            const submenu = trigger.closest('.saved-collections-submenu');
-            if (!submenu) return;
-            
-            const isActive = submenu.classList.contains('active');
-            const submenuContent = submenu.querySelector('.saved-collections-submenu-content');
-            if (!submenuContent) return;
-            
-            const isOpening = !isActive;
-            const container = submenu.parentElement;
-            
-            let mouseX = null;
-            let mouseY = null;
-            if (event && event.clientX && event.clientY) {
-                mouseX = event.clientX;
-                mouseY = event.clientY;
-            }
-            
-            if (container) {
-                container.querySelectorAll(':scope > .saved-collections-submenu').forEach(s => {
-                    if (s !== submenu) {
-                        s.classList.remove('active');
-                        const content = s.querySelector('.saved-collections-submenu-content');
-                        if (content && content.classList.contains('active') && content.parentNode === document.body) {
-                            content.remove();
-                        } else if (content) {
-                            content.style.display = 'none';
-                        }
-                        if (content) {
-                            content.classList.remove('active');
-                        }
-                        s.querySelectorAll('.saved-collections-submenu').forEach(nested => {
-                            nested.classList.remove('active');
-                            const nestedContent = nested.querySelector('.saved-collections-submenu-content');
-                            if (nestedContent && nestedContent.parentNode === document.body) {
-                                nestedContent.remove();
-                            } else if (nestedContent) {
-                                nestedContent.style.display = 'none';
-                            }
-                            if (nestedContent) {
-                                nestedContent.classList.remove('active');
-                            }
-                        });
-                    }
-                });
-            }
-            
-            if (openSubmenuContent && openSubmenuContent.parentNode === document.body && 
-                !openSubmenuContent.contains(submenu) && openSubmenuContent.id !== submenuContent.id) {
-                openSubmenuContent.remove();
-            }
-            
-            if (isOpening) {
-                submenu.classList.add('active');
-                const triggerRect = trigger.getBoundingClientRect();
-                let positionedSubmenu = submenuContent;
-                
-                if (submenuContent.parentNode !== document.body || !submenuContent.classList.contains('active')) {
-                    positionedSubmenu = submenuContent.cloneNode(true);
-                    if (submenuContent.id) {
-                        positionedSubmenu.setAttribute('data-source-id', submenuContent.id);
-                    }
-                    positionedSubmenu.querySelectorAll('.saved-collections-submenu-content').forEach(c => {
-                        c.style.display = 'none';
-                        c.classList.remove('active');
-                    });
-                    document.body.appendChild(positionedSubmenu);
-                    openSubmenuContent = positionedSubmenu;
-                } else {
-                    positionedSubmenu = openSubmenuContent;
-                }
-                
-                positionedSubmenu.classList.add('active');
-                positionedSubmenu.style.position = 'absolute';
-                positionedSubmenu.style.display = 'block';
-                
-                let leftPos = triggerRect.right + 4;
-                let topPos = triggerRect.top;
-                
-                if (!triggerRect || triggerRect.width === 0 || triggerRect.height === 0 || 
-                    isNaN(leftPos) || leftPos <= 0 || isNaN(topPos) || topPos <= 0) {
-                    const parentRect = trigger.parentElement?.getBoundingClientRect();
-                    if (parentRect && parentRect.width > 0 && parentRect.height > 0) {
-                        leftPos = parentRect.right + 4;
-                        topPos = parentRect.top;
-                    } else if (mouseX !== null && mouseY !== null) {
-                        leftPos = mouseX + 4;
-                        topPos = mouseY;
-                    } else {
-                        leftPos = 200;
-                        topPos = 200;
-                    }
-                }
-                
-                const viewportWidth = window.innerWidth;
-                const submenuWidth = positionedSubmenu.offsetWidth || 280;
-                if (leftPos + submenuWidth > viewportWidth) {
-                    leftPos = triggerRect.left - submenuWidth - 4;
-                    if (leftPos < 0) {
-                        leftPos = Math.max(4, (viewportWidth - submenuWidth) / 2);
-                    }
-                }
-                
-                const viewportHeight = window.innerHeight;
-                const submenuHeight = positionedSubmenu.offsetHeight;
-                if (topPos + submenuHeight > viewportHeight) {
-                    topPos = Math.max(4, viewportHeight - submenuHeight - 10);
-                }
-                
-                positionedSubmenu.style.left = Math.max(0, leftPos) + 'px';
-                positionedSubmenu.style.top = Math.max(0, topPos) + 'px';
-                positionedSubmenu.style.zIndex = '10001';
-            } else {
-                submenu.classList.remove('active');
-                let positionedSubmenu = null;
-                if (submenuContent.id) {
-                    positionedSubmenu = document.body.querySelector(`#${submenuContent.id}.active`) || 
-                                       document.body.querySelector(`[data-source-id="${submenuContent.id}"].active`);
-                }
-                if (positionedSubmenu) {
-                    positionedSubmenu.remove();
-                }
-                submenuContent.classList.remove('active');
-                submenuContent.style.display = 'none';
-                openSubmenuContent = null;
-            }
-        }
-        
-        let resizeTimeout;
-        function handleResizeOrScroll() {
-            clearTimeout(resizeTimeout);
-            resizeTimeout = setTimeout(() => {
-                const activeSubmenu = document.querySelector('.saved-collections-submenu.active');
-                if (activeSubmenu) {
-                    const trigger = activeSubmenu.querySelector('.saved-collections-submenu-trigger');
-                    if (trigger) {
-                        toggleSubmenu(trigger, null);
-                        toggleSubmenu(trigger, null);
-                    }
-                }
-            }, 100);
-        }
-        
-        window.addEventListener('scroll', handleResizeOrScroll, true);
-        window.addEventListener('resize', handleResizeOrScroll);
-        
-        document.addEventListener('click', function(event) {
-            if (!event.target.closest('.saved-collections-dropdown') && 
-                !event.target.closest('.saved-collections-submenu-content')) {
-                document.querySelectorAll('.saved-collections-dropdown').forEach(d => {
-                    d.classList.remove('active');
-                });
-                document.querySelectorAll('.saved-collections-submenu').forEach(s => {
-                    s.classList.remove('active');
-                });
-                document.querySelectorAll('.saved-collections-submenu-content').forEach(content => {
-                    if (content.parentNode === document.body) {
-                        content.remove();
-                    }
-                    content.classList.remove('active');
-                    content.style.display = 'none';
-                });
-                openSubmenuContent = null;
-            }
-        });
-        
-        document.addEventListener('keydown', function(event) {
-            if (event.key === 'Escape') {
-                document.querySelectorAll('.saved-collections-dropdown').forEach(d => {
-                    d.classList.remove('active');
-                });
-                document.querySelectorAll('.saved-collections-submenu').forEach(s => {
-                    s.classList.remove('active');
-                });
-                document.querySelectorAll('.saved-collections-submenu-content').forEach(content => {
-                    if (content.parentNode === document.body) {
-                        content.remove();
-                    }
-                    content.classList.remove('active');
-                    content.style.display = 'none';
-                });
-                openSubmenuContent = null;
-            }
-        });
 
-        function toggleMenu(menuId) {
-            var dropdowns = document.getElementsByClassName("dropdown-content");
-            for (var i = 0; i < dropdowns.length; i++) {
-                var openDropdown = dropdowns[i];
-                if (openDropdown.id !== menuId) {
-                    openDropdown.classList.remove('show');
-                }
-            }
-            document.getElementById(menuId).classList.toggle("show");
-        }
-
-        window.onclick = function(event) {
-            if (!event.target.matches('img')) {
-                var dropdowns = document.getElementsByClassName("dropdown-content");
-                for (var i = 0; i < dropdowns.length; i++) {
-                    dropdowns[i].classList.remove('show');
-                }
-            }
-        }
-
-        function addNewItem(type, parentName = '') {
-            if (event) event.stopPropagation();
-            let message = (type === 'main') 
-                ? "Enter name for new Main Tab:" 
-                : `Enter new Sub-Tab name for "${parentName}":`;
-            let userInput = prompt(message);
-            if (userInput !== null && userInput.trim() !== "") {
-                console.log(`Action: Create ${type}, Name: ${userInput}, Parent: ${parentName}`);
-                alert(`Successfully added "${userInput}" to your collection!`);
-            }
-        }
-    </script>
+    <script src="<?= LUPOPEDIA_PUBLIC_PATH ?>/lupo-includes/js/main-layout.js"></script>
 </head>
 <body>
 
@@ -719,7 +297,7 @@ if (file_exists(LUPO_UI_PATH . '/components/topbar.php')) {
 
 // Determine if semantic nav bar should be hidden (channel staff interface)
 $hide_semantic_nav = false;
-if (isset($_SERVER['REQUEST_URI']) && strpos($_SERVER['REQUEST_URI'], '/channels/') !== false) {
+if (isset($UNTRUSTED_SERVER['REQUEST_URI']) && strpos($UNTRUSTED_SERVER['REQUEST_URI'], '/channels/') !== false) {
     $hide_semantic_nav = true;
 }
 ?>
@@ -802,22 +380,22 @@ if (isset($_SERVER['REQUEST_URI']) && strpos($_SERVER['REQUEST_URI'], '/channels
 <!-- Save Collection Modal -->
 <div id="saveCollectionModal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 10000; align-items: center; justify-content: center;">
     <div style="background: white; padding: 30px; border-radius: 12px; max-width: 500px; width: 90%;">
-        <h3 style="margin-top: 0; color: #2c3e50;">💾 Save Recently Viewed Collection</h3>
-        <p style="color: #6c757d; margin-bottom: 20px;">Give this collection a name to save your current browsing session.</p>
+        <h3 style="margin-top: 0; color: #2c3e50;"><?php echo htmlspecialchars(function_exists('lupo_t') ? lupo_t('header.collections.save_modal_title', 'Save recently viewed collection') : 'Save recently viewed collection', ENT_QUOTES, 'UTF-8'); ?></h3>
+        <p style="color: #6c757d; margin-bottom: 20px;"><?php echo htmlspecialchars(function_exists('lupo_t') ? lupo_t('header.collections.save_modal_intro', 'Give this collection a name to save your current browsing session.') : 'Give this collection a name to save your current browsing session.', ENT_QUOTES, 'UTF-8'); ?></p>
         
         <div id="updateExistingNotice" style="display: none; background: #fff3cd; border: 1px solid #ffc107; padding: 12px; border-radius: 6px; margin-bottom: 15px;">
-            <strong>⚠️ Update Existing:</strong> You're currently viewing collection "<span id="currentCollectionName"></span>". Save to update it, or enter a new name to create a copy.
+            <strong><?php echo htmlspecialchars(function_exists('lupo_t') ? lupo_t('header.collections.update_label', 'Update existing:') : 'Update existing:', ENT_QUOTES, 'UTF-8'); ?></strong> <?php echo htmlspecialchars(function_exists('lupo_t') ? lupo_t('header.collections.update_body_before_name', 'You are currently viewing collection') : 'You are currently viewing collection', ENT_QUOTES, 'UTF-8'); ?> "<span id="currentCollectionName"></span>"<?php echo htmlspecialchars(function_exists('lupo_t') ? lupo_t('header.collections.update_body_after_name', '. Save to update it, or enter a new name to create a copy.') : '. Save to update it, or enter a new name to create a copy.', ENT_QUOTES, 'UTF-8'); ?>
         </div>
         
-        <label for="collectionName" style="display: block; margin-bottom: 8px; font-weight: 600; color: #2c3e50;">Collection Name:</label>
-        <input type="text" id="collectionName" placeholder="e.g., Bible Study Session, Research Project" style="width: 100%; padding: 12px; border: 2px solid #D4AF37; border-radius: 6px; font-size: 1rem; margin-bottom: 10px;">
+        <label for="collectionName" style="display: block; margin-bottom: 8px; font-weight: 600; color: #2c3e50;"><?php echo htmlspecialchars(function_exists('lupo_t') ? lupo_t('header.collections.name_label', 'Collection name:') : 'Collection name:', ENT_QUOTES, 'UTF-8'); ?></label>
+        <input type="text" id="collectionName" placeholder="<?php echo htmlspecialchars(function_exists('lupo_t') ? lupo_t('header.collections.name_placeholder', 'e.g., Bible study session, research project') : 'e.g., Bible study session, research project', ENT_QUOTES, 'UTF-8'); ?>" style="width: 100%; padding: 12px; border: 2px solid #D4AF37; border-radius: 6px; font-size: 1rem; margin-bottom: 10px;">
         
-        <label for="collectionDescription" style="display: block; margin-bottom: 8px; margin-top: 15px; font-weight: 600; color: #2c3e50;">Description (optional):</label>
-        <textarea id="collectionDescription" placeholder="What is this collection for?" style="width: 100%; padding: 12px; border: 2px solid #D4AF37; border-radius: 6px; font-size: 1rem; margin-bottom: 20px; min-height: 80px;"></textarea>
+        <label for="collectionDescription" style="display: block; margin-bottom: 8px; margin-top: 15px; font-weight: 600; color: #2c3e50;"><?php echo htmlspecialchars(function_exists('lupo_t') ? lupo_t('header.collections.desc_label', 'Description (optional):') : 'Description (optional):', ENT_QUOTES, 'UTF-8'); ?></label>
+        <textarea id="collectionDescription" placeholder="<?php echo htmlspecialchars(function_exists('lupo_t') ? lupo_t('header.collections.desc_placeholder', 'What is this collection for?') : 'What is this collection for?', ENT_QUOTES, 'UTF-8'); ?>" style="width: 100%; padding: 12px; border: 2px solid #D4AF37; border-radius: 6px; font-size: 1rem; margin-bottom: 20px; min-height: 80px;"></textarea>
         
         <div style="display: flex; gap: 10px; justify-content: flex-end;">
-            <button onclick="closeSaveCollectionModal()" style="padding: 10px 20px; background: #6c757d; color: white; border: none; border-radius: 6px; cursor: pointer; font-weight: 600;">Cancel</button>
-            <button onclick="saveCollection()" style="padding: 10px 20px; background: #28a745; color: white; border: none; border-radius: 6px; cursor: pointer; font-weight: 600;">💾 Save Collection</button>
+            <button onclick="closeSaveCollectionModal()" style="padding: 10px 20px; background: #6c757d; color: white; border: none; border-radius: 6px; cursor: pointer; font-weight: 600;"><?php echo htmlspecialchars(function_exists('lupo_t') ? lupo_t('header.collections.cancel', 'Cancel') : 'Cancel', ENT_QUOTES, 'UTF-8'); ?></button>
+            <button onclick="saveCollection()" style="padding: 10px 20px; background: #28a745; color: white; border: none; border-radius: 6px; cursor: pointer; font-weight: 600;"><?php echo htmlspecialchars(function_exists('lupo_t') ? lupo_t('header.collections.save_submit', 'Save collection') : 'Save collection', ENT_QUOTES, 'UTF-8'); ?></button>
         </div>
     </div>
 </div>
@@ -825,309 +403,30 @@ if (isset($_SERVER['REQUEST_URI']) && strpos($_SERVER['REQUEST_URI'], '/channels
 <!-- Load Collection Modal -->
 <div id="loadCollectionModal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 10000; align-items: center; justify-content: center;">
     <div style="background: white; padding: 30px; border-radius: 12px; max-width: 600px; width: 90%; max-height: 80vh; overflow-y: auto;">
-        <h3 style="margin-top: 0; color: #2c3e50;">📂 Load Saved Collection</h3>
-        <p style="color: #6c757d; margin-bottom: 20px;">Select a saved collection to restore your browsing session.</p>
+        <h3 style="margin-top: 0; color: #2c3e50;"><?php echo htmlspecialchars(function_exists('lupo_t') ? lupo_t('header.collections.load_modal_title', 'Load saved collection') : 'Load saved collection', ENT_QUOTES, 'UTF-8'); ?></h3>
+        <p style="color: #6c757d; margin-bottom: 20px;"><?php echo htmlspecialchars(function_exists('lupo_t') ? lupo_t('header.collections.load_modal_intro', 'Select a saved collection to restore your browsing session.') : 'Select a saved collection to restore your browsing session.', ENT_QUOTES, 'UTF-8'); ?></p>
         
         <div id="collectionsList" style="margin-bottom: 20px;">
             <div style="text-align: center; padding: 40px; color: #6c757d;">
-                Loading your collections...
+                <?php echo htmlspecialchars(function_exists('lupo_t') ? lupo_t('header.collections.loading_list', 'Loading your collections...') : 'Loading your collections...', ENT_QUOTES, 'UTF-8'); ?>
             </div>
         </div>
         
         <div style="display: flex; gap: 10px; justify-content: flex-end;">
-            <button onclick="closeLoadCollectionModal()" style="padding: 10px 20px; background: #6c757d; color: white; border: none; border-radius: 6px; cursor: pointer; font-weight: 600;">Close</button>
+            <button onclick="closeLoadCollectionModal()" style="padding: 10px 20px; background: #6c757d; color: white; border: none; border-radius: 6px; cursor: pointer; font-weight: 600;"><?php echo htmlspecialchars(function_exists('lupo_t') ? lupo_t('header.collections.close', 'Close') : 'Close', ENT_QUOTES, 'UTF-8'); ?></button>
         </div>
     </div>
 </div>
 
-<!-- JavaScript for Collection Management -->
+<!-- JavaScript for Collection Management: PHP supplies paths; logic in main-layout-collections.js -->
 <script>
-let currentLoadedCollectionId = <?php echo $collection_id !== null ? (int) $collection_id : '0'; ?>;
-let currentLoadedCollectionName = <?php echo $current_collection !== null ? json_encode($current_collection) : 'null'; ?>;
-
-function editCurrentCollection() {
-    if (currentLoadedCollectionId) {
-        window.location.href = '<?= LUPOPEDIA_PUBLIC_PATH ?>/edit_collection.php?id=' + currentLoadedCollectionId;
-    } else {
-        alert('💡 Please save this collection first, then you can edit it!\n\nClick OK to open the Save dialog.');
-        showSaveCollectionModal();
-    }
-}
-
-function showSaveCollectionModal() {
-    const modal = document.getElementById('saveCollectionModal');
-    const nameInput = document.getElementById('collectionName');
-    const updateNotice = document.getElementById('updateExistingNotice');
-    
-    if (currentLoadedCollectionId) {
-        updateNotice.style.display = 'block';
-        document.getElementById('currentCollectionName').textContent = currentLoadedCollectionName;
-        nameInput.value = currentLoadedCollectionName;
-} else {
-        updateNotice.style.display = 'none';
-        nameInput.value = '';
-    }
-    
-    document.getElementById('collectionDescription').value = '';
-    modal.style.display = 'flex';
-    nameInput.focus();
-}
-
-function closeSaveCollectionModal() {
-    document.getElementById('saveCollectionModal').style.display = 'none';
-}
-
-function showLoadCollectionModal() {
-    const modal = document.getElementById('loadCollectionModal');
-    modal.style.display = 'flex';
-    loadCollectionsList();
-}
-
-function closeLoadCollectionModal() {
-    document.getElementById('loadCollectionModal').style.display = 'none';
-}
-
-function saveCollection() {
-    const name = document.getElementById('collectionName').value.trim();
-    const description = document.getElementById('collectionDescription').value.trim();
-    
-    if (!name) {
-        alert('Please enter a name for this collection');
-        return;
-    }
-    
-    const isUpdate = currentLoadedCollectionId && name === currentLoadedCollectionName;
-    
-    fetch('<?= LUPOPEDIA_PUBLIC_PATH ?>/lupo-api/save_collection.php', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-            collection_name: name,
-            description: description,
-            update_existing: isUpdate,
-            existing_collection_id: isUpdate ? currentLoadedCollectionId : null
-        })
-    })
-    .then(response => response.json())
-    .then(data => {
-        if (data.success) {
-            alert('✅ Collection saved successfully!');
-            currentLoadedCollectionId = data.collection_id;
-            currentLoadedCollectionName = name;
-            closeSaveCollectionModal();
-        } else {
-            alert('Error: ' + (data.error || 'Failed to save collection'));
-        }
-    })
-    .catch(error => {
-        console.error('Error:', error);
-        alert('Error saving collection. Please try again.');
-    });
-}
-
-function loadCollectionsList() {
-    const container = document.getElementById('collectionsList');
-    container.innerHTML = '<div style="text-align: center; padding: 40px; color: #6c757d;">Loading...</div>';
-    
-    fetch('<?= LUPOPEDIA_PUBLIC_PATH ?>/lupo-api/list_collections.php')
-    .then(response => response.json())
-    .then(data => {
-        if (data.success && data.collections.length > 0) {
-            let html = '';
-            data.collections.forEach(collection => {
-                const isCurrentlyLoaded = (collection.id == currentLoadedCollectionId);
-                html += `
-                    <div style="border: 2px solid ${isCurrentlyLoaded ? '#28a745' : '#D4AF37'}; padding: 15px; border-radius: 8px; margin-bottom: 10px; ${isCurrentlyLoaded ? 'background: #d4edda;' : 'background: #f8f9fa;'}">
-                        <div style="display: flex; justify-content: space-between; align-items: start;">
-                            <div style="flex: 1;">
-                                <h4 style="margin: 0 0 8px 0; color: #2c3e50;">
-                                    ${isCurrentlyLoaded ? '[Active] ' : ''}${htmlEscape(collection.collection_name)}
-                                </h4>
-                                <p style="margin: 0 0 8px 0; color: #6c757d; font-size: 0.9rem;">${htmlEscape(collection.description || 'No description')}</p>
-                                <p style="margin: 0; color: #6c757d; font-size: 0.85rem;">
-                                    ${collection.saved_collections_count || collection.item_count || 0} saved items
-                                    <br><small>Created: ${new Date(collection.created_at).toLocaleString()}</small>
-                                </p>
-                            </div>
-                            <div style="display: flex; gap: 8px;">
-                                <button onclick="loadCollectionById(${collection.id}, '${htmlEscape(collection.collection_name)}')" 
-                                        style="padding: 8px 16px; background: #17a2b8; color: white; border: none; border-radius: 6px; cursor: pointer; font-weight: 600; white-space: nowrap;">
-                                    Load
-                                </button>
-                                <button onclick="deleteCollection(${collection.id})" 
-                                        style="padding: 8px 16px; background: #dc3545; color: white; border: none; border-radius: 6px; cursor: pointer; font-weight: 600;">
-                                    Delete
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                `;
-            });
-            container.innerHTML = html;
-        } else {
-            container.innerHTML = `
-                <div style="text-align: center; padding: 40px; color: #6c757d;">
-                    <p>No saved collections yet.</p>
-                    <p style="font-size: 0.9rem;">Click "💾 Save" to save your first collection!</p>
-                </div>
-            `;
-        }
-    })
-    .catch(error => {
-        console.error('Error:', error);
-        container.innerHTML = '<div style="text-align: center; padding: 40px; color: #dc3545;">Error loading collections</div>';
-    });
-}
-
-function loadCollectionById(collectionId, collectionName) {
-    if (!confirm(`Load collection "${collectionName}"? This will replace your current recently viewed items.`)) {
-        return;
-    }
-    
-    fetch('<?= LUPOPEDIA_PUBLIC_PATH ?>/lupo-api/load_collection.php', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-            collection_id: collectionId
-        })
-    })
-    .then(response => response.json())
-    .then(data => {
-        if (data.success) {
-            currentLoadedCollectionId = collectionId;
-            currentLoadedCollectionName = collectionName;
-            alert('✅ Collection loaded! Refreshing page...');
-            location.reload();
-        } else {
-            alert('Error: ' + (data.error || 'Failed to load collection'));
-        }
-    })
-    .catch(error => {
-        console.error('Error:', error);
-        alert('Error loading collection. Please try again.');
-    });
-}
-
-function deleteCollection(collectionId) {
-    if (!confirm('Delete this collection? This cannot be undone.')) {
-        return;
-    }
-    
-    fetch('<?= LUPOPEDIA_PUBLIC_PATH ?>/lupo-api/delete_collection.php', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-            collection_id: collectionId
-        })
-    })
-    .then(response => response.json())
-    .then(data => {
-        if (data.success) {
-            if (collectionId == currentLoadedCollectionId) {
-                currentLoadedCollectionId = null;
-                currentLoadedCollectionName = null;
-            }
-            loadCollectionsList();
-        } else {
-            alert('Error: ' + (data.error || 'Failed to delete collection'));
-        }
-    })
-    .catch(error => {
-        console.error('Error:', error);
-        alert('Error deleting collection. Please try again.');
-    });
-}
-
-function htmlEscape(str) {
-    return String(str).replace(/[&<>"']/g, function(match) {
-        const escape = {
-            '&': '&amp;',
-            '<': '&lt;',
-            '>': '&gt;',
-            '"': '&quot;',
-            "'": '&#39;'
-        };
-        return escape[match];
-    });
-}
-
-// Global function to load tabs when collection is selected
-window.loadCollectionTabs = function(collectionId, collectionName) {
-    currentLoadedCollectionId = collectionId;
-    currentLoadedCollectionName = collectionName;
-    
-    // Load tabs via AJAX
-    fetch('<?= LUPOPEDIA_PUBLIC_PATH ?>/lupo-api/load_collection_tabs.php?collection_id=' + collectionId)
-        .then(response => response.json())
-        .then(data => {
-            if (data.success && data.tabs_data && Object.keys(data.tabs_data).length > 0) {
-                // Render tabs in the container
-                const container = document.getElementById('collection-tabs-container');
-                if (container) {
-                    let html = '';
-                    for (let mainTab in data.tabs_data) {
-                        const subTabs = data.tabs_data[mainTab];
-                        const tabSlug = (subTabs && subTabs._slug) ? subTabs._slug : mainTab.toLowerCase().replace(/\s+/g, '-');
-                        const dropdownId = 'dropdown-' + mainTab.toLowerCase().replace(/\s+/g, '-');
-                        const tabType = mainTab.toLowerCase().replace(/\s+/g, '-');
-                        
-                        html += '<div class="saved-collections-dropdown" data-qa-type="' + htmlEscape(tabType) + '">';
-                        // Count child tabs (excluding _slug metadata)
-                        let actualSubTabCount = 0;
-                        if (isArray(subTabs)) {
-                            for (let key in subTabs) {
-                                if (key !== '_slug') {
-                                    actualSubTabCount++;
-                                }
-                            }
-                        }
-                        
-                        html += '<button class="saved-collections-button" onclick="toggleSavedCollectionsDropdown(this)" aria-expanded="false" aria-haspopup="true" aria-controls="' + htmlEscape(dropdownId) + '" data-qa-type="' + htmlEscape(tabType) + '">';
-                        html += htmlEscape(mainTab.toUpperCase()) + ' <span class="count">' + actualSubTabCount + '</span>';
-                        html += '</button>';
-                        html += '<div class="saved-collections-dropdown-content" id="' + htmlEscape(dropdownId) + '" role="menu">';
-                        
-                        if (isArray(subTabs)) {
-                            for (let key in subTabs) {
-                                if (key !== '_slug') {
-                                    const subTabName = subTabs[key];
-                                    const subTabSlug = subTabName.toLowerCase().replace(/\s+/g, '-');
-                                    const subTabUrl = '<?= LUPOPEDIA_PUBLIC_PATH ?>/collection/' + collectionId + '/tab/' + subTabSlug;
-                                    html += '<a href="' + htmlEscape(subTabUrl) + '" class="saved-collections-item" role="menuitem" tabindex="0">';
-                                    html += htmlEscape(subTabName);
-                                    html += '</a>';
-                                }
-                            }
-                        }
-                        
-                        html += '</div></div>';
-                    }
-                    container.innerHTML = html;
-                }
-            }
-        })
-        .catch(error => {
-            console.error('Error loading collection tabs:', error);
-        });
-};
-
-function isArray(obj) {
-    return Object.prototype.toString.call(obj) === '[object Array]' || (obj && typeof obj === 'object' && obj.constructor === Object);
-}
-
-document.addEventListener('keydown', function(e) {
-    if (e.key === 'Escape') {
-        closeSaveCollectionModal();
-        closeLoadCollectionModal();
-    }
-});
+window.LUPO_MAIN_LAYOUT = <?php echo json_encode(array(
+    'publicPath' => LUPOPEDIA_PUBLIC_PATH,
+    'collectionId' => $collection_id !== null ? (int) $collection_id : 0,
+    'currentCollectionName' => $current_collection,
+)); ?>;
 </script>
+<script src="<?= LUPOPEDIA_PUBLIC_PATH ?>/lupo-includes/js/main-layout-collections.js"></script>
 
 <?php if (!$hide_semantic_nav): ?>
 <!-- Content Container with Decorative Borders -->
@@ -1137,11 +436,11 @@ document.addEventListener('keydown', function(e) {
     <div class="resources-top-center">
         <!-- Shortcut Dropdown -->
         <div class="dropdown">
-            <img src="<?= LUPOPEDIA_PUBLIC_PATH ?>/lupo-images/addshortcut.png" width="42" height="42" onclick="toggleMenu('shortcutDropdown')" style="cursor:pointer;"> 
+            <img src="<?= LUPOPEDIA_PUBLIC_PATH ?>/lupo-images/addshortcut.png" width="42" height="42" onclick="toggleMenu('shortcutDropdown')" style="cursor:pointer;" alt="<?php echo htmlspecialchars(function_exists('lupo_t') ? lupo_t('layout.main_layout.shortcut_trigger_alt', 'Add shortcut') : 'Add shortcut', ENT_QUOTES, 'UTF-8'); ?>" title="<?php echo htmlspecialchars(function_exists('lupo_t') ? lupo_t('layout.main_layout.shortcut_trigger_alt', 'Add shortcut') : 'Add shortcut', ENT_QUOTES, 'UTF-8'); ?>"> 
             <div id="shortcutDropdown" class="dropdown-content">
                 <div style="padding: 10px; border-bottom: 1px solid #ddd; background: #f9f9f9;">
-                    <b>Current Collection:</b> <span id="current-collection-display"><?= htmlspecialchars($current_collection) ?></span><br>
-                    Click on the name of the tab or subtab you would like to add this shortcut to. Use the blue collections tab to select a different collection.
+                    <b><?php echo htmlspecialchars(function_exists('lupo_t') ? lupo_t('header.shortcut.current_label', 'Current collection:') : 'Current collection:', ENT_QUOTES, 'UTF-8'); ?></b> <span id="current-collection-display"><?= htmlspecialchars($current_collection) ?></span><br>
+                    <?php echo htmlspecialchars(function_exists('lupo_t') ? lupo_t('header.shortcut.instructions', 'Click the tab or sub-tab name to add this shortcut; use the blue collections control to pick a different collection.') : 'Click the tab or sub-tab name to add this shortcut; use the blue collections control to pick a different collection.', ENT_QUOTES, 'UTF-8'); ?>
                 </div>
                 <div id="shortcut-tabs-list">
                     <?php if (!empty($tabs_data) && is_array($tabs_data)): ?>
@@ -1166,19 +465,19 @@ document.addEventListener('keydown', function(e) {
                                         <a href="<?= htmlspecialchars($sub_tab_url) ?>" class="sub-tab">|— <?= htmlspecialchars($value) ?></a>
                                     <?php endif; ?>
                                 <?php endforeach; ?>
-                                <a href="javascript:void(0)" class="add-action" onclick="addNewItem('sub', '<?= htmlspecialchars($main_tab) ?>')">+ New Sub-Tab for <?= htmlspecialchars($main_tab) ?></a>
+                                <a href="javascript:void(0)" class="add-action" onclick="addNewItem('sub', <?php echo json_encode($main_tab); ?>)"><?php echo htmlspecialchars(sprintf(function_exists('lupo_t') ? lupo_t('layout.main_layout.new_sub_tab', '+ New Sub-Tab for %s') : '+ New Sub-Tab for %s', $main_tab), ENT_QUOTES, 'UTF-8'); ?></a>
                             <?php endif; ?>
                         <?php endforeach; ?>
                     <?php endif; ?>
                     <hr>
-                    <a href="javascript:void(0)" class="add-action global" onclick="addNewItem('main')">+ Create New Main Tab</a>
+                    <a href="javascript:void(0)" class="add-action global" onclick="addNewItem('main')"><?php echo htmlspecialchars(function_exists('lupo_t') ? lupo_t('header.shortcut.create_main', '+ Create new main tab') : '+ Create new main tab', ENT_QUOTES, 'UTF-8'); ?></a>
                 </div>
             </div>
         </div>
 
         <!-- Contents Dropdown -->
         <div class="dropdown">
-            <img src="<?= LUPOPEDIA_PUBLIC_PATH ?>/lupo-images/contents.png" width="42" height="42" onclick="toggleMenu('contentsDropdown')" style="cursor:pointer;">
+            <img src="<?= LUPOPEDIA_PUBLIC_PATH ?>/lupo-images/contents.png" width="42" height="42" onclick="toggleMenu('contentsDropdown')" style="cursor:pointer;" alt="<?php echo htmlspecialchars(function_exists('lupo_t') ? lupo_t('layout.main_layout.contents_trigger_alt', 'Page contents') : 'Page contents', ENT_QUOTES, 'UTF-8'); ?>" title="<?php echo htmlspecialchars(function_exists('lupo_t') ? lupo_t('layout.main_layout.contents_trigger_alt', 'Page contents') : 'Page contents', ENT_QUOTES, 'UTF-8'); ?>">
             <div id="contentsDropdown" class="dropdown-content">
                 <?php if (!empty($contentSections) && is_array($contentSections)): ?>
                     <?php foreach ($contentSections as $section): ?>
@@ -1191,7 +490,7 @@ document.addEventListener('keydown', function(e) {
                         <?php endif; ?>
                     <?php endforeach; ?>
                 <?php else: ?>
-                    <a href="#" style="color: #999; font-style: italic;">No sections available</a>
+                    <a href="#" style="color: #999; font-style: italic;"><?php echo htmlspecialchars(function_exists('lupo_t') ? lupo_t('layout.main_layout.no_sections', 'No sections available') : 'No sections available', ENT_QUOTES, 'UTF-8'); ?></a>
                 <?php endif; ?>
             </div>
         </div>
@@ -1202,8 +501,8 @@ document.addEventListener('keydown', function(e) {
         </h1>
         &nbsp;
         <div style="display: flex; align-items: right; margin-left: auto;">
-            <img src="<?= LUPOPEDIA_PUBLIC_PATH ?>/lupo-images/edges.png" width="194" height="42" style="cursor:pointer; margin-left: auto;">
-            <img src="<?= LUPOPEDIA_PUBLIC_PATH ?>/lupo-images/help.png" width="44" height="42">
+            <img src="<?= LUPOPEDIA_PUBLIC_PATH ?>/lupo-images/edges.png" width="194" height="42" style="cursor:pointer; margin-left: auto;" alt="<?php echo htmlspecialchars(function_exists('lupo_t') ? lupo_t('layout.main_layout.edges_alt', 'Edges') : 'Edges', ENT_QUOTES, 'UTF-8'); ?>" title="<?php echo htmlspecialchars(function_exists('lupo_t') ? lupo_t('layout.main_layout.edges_alt', 'Edges') : 'Edges', ENT_QUOTES, 'UTF-8'); ?>">
+            <img src="<?= LUPOPEDIA_PUBLIC_PATH ?>/lupo-images/help.png" width="44" height="42" alt="<?php echo htmlspecialchars(function_exists('lupo_t') ? lupo_t('layout.main_layout.help_alt', 'Help') : 'Help', ENT_QUOTES, 'UTF-8'); ?>" title="<?php echo htmlspecialchars(function_exists('lupo_t') ? lupo_t('layout.main_layout.help_alt', 'Help') : 'Help', ENT_QUOTES, 'UTF-8'); ?>">
         </div>
     </div>
     <div class="resources-top-right"></div>
@@ -1219,17 +518,17 @@ document.addEventListener('keydown', function(e) {
     <!-- Row 3: Bottom Border -->
     <div class="resources-bottom-left"></div>
     <div class="resources-bottom-center">
-        <img src="<?= LUPOPEDIA_PUBLIC_PATH ?>/lupo-images/prevpage.png" width="32" height="32" <?php if ($prevContent): ?>onclick="window.location.href='<?= htmlspecialchars($prevContent['url'] ?? '#') ?>'" style="cursor:pointer;"<?php endif; ?>>
-        <img src="<?= LUPOPEDIA_PUBLIC_PATH ?>/lupo-images/references.png" width="32" height="32" style="cursor:pointer;" title="References">
-        <img src="<?= LUPOPEDIA_PUBLIC_PATH ?>/lupo-images/context.png" width="32" height="32" style="cursor:pointer;" title="Context">
-        <img src="<?= LUPOPEDIA_PUBLIC_PATH ?>/lupo-images/hashtag.png" width="32" height="32" style="cursor:pointer;" title="Tags">
-        <img src="<?= LUPOPEDIA_PUBLIC_PATH ?>/lupo-images/share.png" width="32" height="32" style="cursor:pointer;" title="Share">
-        <img src="<?= LUPOPEDIA_PUBLIC_PATH ?>/lupo-images/like.png" width="32" height="32" style="cursor:pointer;" title="Like">
-        <img src="<?= LUPOPEDIA_PUBLIC_PATH ?>/lupo-images/comment.png" width="32" height="32" style="cursor:pointer;" title="Comment">
-        <img src="<?= LUPOPEDIA_PUBLIC_PATH ?>/lupo-images/links.png" width="32" height="32" style="cursor:pointer;" title="Links">
-        <img src="<?= LUPOPEDIA_PUBLIC_PATH ?>/lupo-images/folder.png" width="32" height="32" style="cursor:pointer;" title="Folder">
-        <img src="<?= LUPOPEDIA_PUBLIC_PATH ?>/lupo-images/atoms.png" width="32" height="32" style="cursor:pointer;" title="Atoms">
-        <img src="<?= LUPOPEDIA_PUBLIC_PATH ?>/lupo-images/nextpage.png" width="32" height="32" <?php if ($nextContent): ?>onclick="window.location.href='<?= htmlspecialchars($nextContent['url'] ?? '#') ?>'" style="cursor:pointer;"<?php endif; ?>>
+        <img src="<?= LUPOPEDIA_PUBLIC_PATH ?>/lupo-images/prevpage.png" width="32" height="32" alt="<?php echo htmlspecialchars(function_exists('lupo_t') ? lupo_t('layout.main_layout.icon_prev', 'Previous page') : 'Previous page', ENT_QUOTES, 'UTF-8'); ?>" title="<?php echo htmlspecialchars(function_exists('lupo_t') ? lupo_t('layout.main_layout.icon_prev', 'Previous page') : 'Previous page', ENT_QUOTES, 'UTF-8'); ?>" <?php if ($prevContent): ?>onclick="window.location.href='<?= htmlspecialchars($prevContent['url'] ?? '#') ?>'" style="cursor:pointer;"<?php endif; ?>>
+        <img src="<?= LUPOPEDIA_PUBLIC_PATH ?>/lupo-images/references.png" width="32" height="32" style="cursor:pointer;" alt="<?php echo htmlspecialchars(function_exists('lupo_t') ? lupo_t('layout.main_layout.icon_references', 'References') : 'References', ENT_QUOTES, 'UTF-8'); ?>" title="<?php echo htmlspecialchars(function_exists('lupo_t') ? lupo_t('layout.main_layout.icon_references', 'References') : 'References', ENT_QUOTES, 'UTF-8'); ?>">
+        <img src="<?= LUPOPEDIA_PUBLIC_PATH ?>/lupo-images/context.png" width="32" height="32" style="cursor:pointer;" alt="<?php echo htmlspecialchars(function_exists('lupo_t') ? lupo_t('layout.main_layout.icon_context', 'Context') : 'Context', ENT_QUOTES, 'UTF-8'); ?>" title="<?php echo htmlspecialchars(function_exists('lupo_t') ? lupo_t('layout.main_layout.icon_context', 'Context') : 'Context', ENT_QUOTES, 'UTF-8'); ?>">
+        <img src="<?= LUPOPEDIA_PUBLIC_PATH ?>/lupo-images/hashtag.png" width="32" height="32" style="cursor:pointer;" alt="<?php echo htmlspecialchars(function_exists('lupo_t') ? lupo_t('layout.main_layout.icon_tags', 'Tags') : 'Tags', ENT_QUOTES, 'UTF-8'); ?>" title="<?php echo htmlspecialchars(function_exists('lupo_t') ? lupo_t('layout.main_layout.icon_tags', 'Tags') : 'Tags', ENT_QUOTES, 'UTF-8'); ?>">
+        <img src="<?= LUPOPEDIA_PUBLIC_PATH ?>/lupo-images/share.png" width="32" height="32" style="cursor:pointer;" alt="<?php echo htmlspecialchars(function_exists('lupo_t') ? lupo_t('layout.main_layout.icon_share', 'Share') : 'Share', ENT_QUOTES, 'UTF-8'); ?>" title="<?php echo htmlspecialchars(function_exists('lupo_t') ? lupo_t('layout.main_layout.icon_share', 'Share') : 'Share', ENT_QUOTES, 'UTF-8'); ?>">
+        <img src="<?= LUPOPEDIA_PUBLIC_PATH ?>/lupo-images/like.png" width="32" height="32" style="cursor:pointer;" alt="<?php echo htmlspecialchars(function_exists('lupo_t') ? lupo_t('layout.main_layout.icon_like', 'Like') : 'Like', ENT_QUOTES, 'UTF-8'); ?>" title="<?php echo htmlspecialchars(function_exists('lupo_t') ? lupo_t('layout.main_layout.icon_like', 'Like') : 'Like', ENT_QUOTES, 'UTF-8'); ?>">
+        <img src="<?= LUPOPEDIA_PUBLIC_PATH ?>/lupo-images/comment.png" width="32" height="32" style="cursor:pointer;" alt="<?php echo htmlspecialchars(function_exists('lupo_t') ? lupo_t('layout.main_layout.icon_comment', 'Comment') : 'Comment', ENT_QUOTES, 'UTF-8'); ?>" title="<?php echo htmlspecialchars(function_exists('lupo_t') ? lupo_t('layout.main_layout.icon_comment', 'Comment') : 'Comment', ENT_QUOTES, 'UTF-8'); ?>">
+        <img src="<?= LUPOPEDIA_PUBLIC_PATH ?>/lupo-images/links.png" width="32" height="32" style="cursor:pointer;" alt="<?php echo htmlspecialchars(function_exists('lupo_t') ? lupo_t('layout.main_layout.icon_links', 'Links') : 'Links', ENT_QUOTES, 'UTF-8'); ?>" title="<?php echo htmlspecialchars(function_exists('lupo_t') ? lupo_t('layout.main_layout.icon_links', 'Links') : 'Links', ENT_QUOTES, 'UTF-8'); ?>">
+        <img src="<?= LUPOPEDIA_PUBLIC_PATH ?>/lupo-images/folder.png" width="32" height="32" style="cursor:pointer;" alt="<?php echo htmlspecialchars(function_exists('lupo_t') ? lupo_t('layout.main_layout.icon_folder', 'Folder') : 'Folder', ENT_QUOTES, 'UTF-8'); ?>" title="<?php echo htmlspecialchars(function_exists('lupo_t') ? lupo_t('layout.main_layout.icon_folder', 'Folder') : 'Folder', ENT_QUOTES, 'UTF-8'); ?>">
+        <img src="<?= LUPOPEDIA_PUBLIC_PATH ?>/lupo-images/atoms.png" width="32" height="32" style="cursor:pointer;" alt="<?php echo htmlspecialchars(function_exists('lupo_t') ? lupo_t('layout.main_layout.icon_atoms', 'Atoms') : 'Atoms', ENT_QUOTES, 'UTF-8'); ?>" title="<?php echo htmlspecialchars(function_exists('lupo_t') ? lupo_t('layout.main_layout.icon_atoms', 'Atoms') : 'Atoms', ENT_QUOTES, 'UTF-8'); ?>">
+        <img src="<?= LUPOPEDIA_PUBLIC_PATH ?>/lupo-images/nextpage.png" width="32" height="32" alt="<?php echo htmlspecialchars(function_exists('lupo_t') ? lupo_t('layout.main_layout.icon_next', 'Next page') : 'Next page', ENT_QUOTES, 'UTF-8'); ?>" title="<?php echo htmlspecialchars(function_exists('lupo_t') ? lupo_t('layout.main_layout.icon_next', 'Next page') : 'Next page', ENT_QUOTES, 'UTF-8'); ?>" <?php if ($nextContent): ?>onclick="window.location.href='<?= htmlspecialchars($nextContent['url'] ?? '#') ?>'" style="cursor:pointer;"<?php endif; ?>>
     </div>
     <div class="resources-bottom-right"></div>
 </div>
@@ -1256,7 +555,7 @@ document.addEventListener('DOMContentLoaded', function() {
     var tabsEmpty = !tabsData || (typeof tabsData === 'object' && Object.keys(tabsData).length === 0);
 
     if (tabsEmpty && typeof window.loadCollectionTabs === 'function') {
-        window.loadCollectionTabs(collectionId, <?php echo json_encode($current_collection ?: 'System Collection'); ?>);
+        window.loadCollectionTabs(collectionId, <?php echo json_encode($current_collection !== null && $current_collection !== '' ? $current_collection : (function_exists('lupo_t') ? lupo_t('layout.main_layout.system_collection', 'System Collection') : 'System Collection')); ?>);
     }
 });
 </script>

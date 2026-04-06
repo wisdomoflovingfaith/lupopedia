@@ -1,29 +1,40 @@
 ---
 lupopedia.headers:
+  header_format_version: 2
   lupopedia.schema: prd
-  file_path_from_root: "lupo-docs/versions/4.0.93/prd/00_root_constitutional_system_requirements.md"
-  web_path: "http://www.lupopedia.com/lupopedia/lupo-docs/versions/4.0.93/prd/00_root_constitutional_system_requirements.md"
-  last_modified_utc: "20260330"
+  when_updated: "20260405221000"
+  last_modified_utc: "20260405221000"
+  file_path_from_root: "lupo-docs/versions/4.0.93/prd/archive/00_root_constitutional_system_requirements.md"
+  web_path: "http://www.lupopedia.com/lupopedia/lupo-docs/versions/4.0.93/prd/archive/00_root_constitutional_system_requirements.md"
   channel_id: 42
   actor_id: 102
-  agent_name_identity: "Cursor IDE Agent"
-  delegation_chain: "hephaestus:root"
-  artifact_type: "prd"
-  artifact_kind: "constitutional"
+  delegation_chain: "cursor:root"
+  artifact_type: prd
+  artifact_kind: constitutional
   purpose: "Defines the non-negotiable system-wide constitutional rules required for Lupopedia to operate on shared hosting environments and maintain long-term stability."
-  tags: ["root", "constitutional", "doctrine", "system_requirements"]
+  tags:
+    - root
+    - constitutional
+    - doctrine
+    - system_requirements
 lupopedia.edges:
   outbound_edges:
-    - { to: "lupo-rules/root/", type: "references", weight: 1.0 }
-    - { to: "lupo-docs/doctrine/DATABASE_NEUTRAL_SQL_DOCTRINE.md", type: "references", weight: 1.0 }
-    - { to: "lupo-docs/doctrine/SUBDIRECTORY_INSTALLATION_DOCTRINE.md", type: "references", weight: 1.0 }
+    - to: "lupo-docs/prd/00_root_constitutional_system_requirements.md"
+      type: references
+      weight: 1.0
+      reason: "Single source of constitutional truth — this file is a router, not a substitute"
+    - to: "lupo-docs/implementations/00_root_constitutional_system_requirements/decisions/pseudocode/00_constitution_shorthand.pseudo.md"
+      type: references
+      weight: 0.95
+      reason: "Full constitution shorthand checklist"
+    - to: "lupo-includes/classes/TimestampYmdhis.php"
+      type: references
+      weight: 0.85
+      reason: "Packed UTC clock utility (class timestamp_ymdhis)"
 lupopedia.footer:
-  last_verified: "20260330"
+  last_verified: "20260405221000"
   verified_by:
-    identity_type: actor
     actor_id: 102
-    agent_name_identity: "Cursor IDE Agent"
-  orchestrator: "hephaestus:root"
 ---
 
 # Root Constitutional System Requirements (4.0.93+)
@@ -148,7 +159,7 @@ Forbidden:
 
 Lupopedia must run on:
 
-- PHP 5.6 minimum
+- PHP 7.4 minimum (archive; current canon: `php-7-4-compatibility.md`)
 - PHP 8.3 maximum
 
 Forbidden:

@@ -1,40 +1,74 @@
 <?php
+/*
+---
+lupopedia.headers:
+  header_format_version: 2
+  lupopedia.schema: page
+  when_updated: "20260406035358"
+  file_path_from_root: "select_agent.php"
+  web_path: "http://www.lupopedia.com/lupopedia/select_agent.php"
+  last_modified_utc: "20260406035358"
+  federation_node_id: 0
+  channel_id: 42
+  author:
+    type: "actor"
+    id: 102
+    name: "CURSOR"
+  delegation_chain: "cursor:root"
+  artifact_type: "page"
+  artifact_kind: "agent_selection"
+  purpose: "Agent selection after login; pending state from lupo_sessions metadata via lupo_session_metadata_current; bootstrap Session authority (no session_start here); $UNTRUSTED for request input"
+  tags: ["auth", "agents", "selection", "session", "model_a", "untrusted"]
+---
+*/
+
 /**
- * Agent Selection Page
- * Allows user to choose which agent to act as
+ * Agent selection page — session authority from bootstrap App\Auth\Session (lupo_sessions), not raw $_SESSION for identity.
  */
+
+$UNTRUSTED = array(
+    'server' => (isset($_SERVER) && is_array($_SERVER)) ? $_SERVER : array(),
+    'post' => (isset($_POST) && is_array($_POST)) ? $_POST : array(),
+);
 
 $lupoRoot = __DIR__;
 $lupoPub = '/' . basename($lupoRoot);
 require_once $lupoRoot . '/lupo-includes/classes/LupopediaConfigResolver.php';
 $lupoCfgPath = LupopediaConfigResolver::resolve($lupoRoot, $lupoPub);
 if ($lupoCfgPath === null) {
-    $lupoBase = rtrim(dirname(isset($_SERVER['SCRIPT_NAME']) ? $_SERVER['SCRIPT_NAME'] : ''), '/');
+    $scriptName = isset($UNTRUSTED['server']['SCRIPT_NAME']) ? $UNTRUSTED['server']['SCRIPT_NAME'] : '';
+    $lupoBase = rtrim(dirname($scriptName), '/');
     header('Location: ' . ($lupoBase === '' ? '/install.php' : $lupoBase . '/install.php'));
     exit;
 }
 require_once $lupoCfgPath;
 
-// Start session
-if (session_status() === PHP_SESSION_NONE) {
-    session_start();
-}
+require_once $lupoRoot . '/lupo-includes/classes/LupoLocale.php';
+LupoLocale::bootstrap($lupoRoot);
+require_once $lupoRoot . '/lupo-includes/lupo-i18n.php';
 
-// Check if user is pending agent selection
-$baseUrl = defined('LUPOPEDIA_PUBLIC_PATH') ? LUPOPEDIA_PUBLIC_PATH : '';
-if (!isset($_SESSION['pending_auth_user_id'])) {
-    header('Location: ' . $baseUrl . '/login.php');
-    exit;
-}
-
-// Load required classes
 require_once __DIR__ . '/lupo-includes/classes/DatabaseFactory.php';
+require_once __DIR__ . '/lupo-includes/functions/auth-helpers.php';
+require_once __DIR__ . '/app/auth/Session.php';
 require_once __DIR__ . '/lupo-includes/classes/AuthSessionManager.php';
 
 $db = DatabaseFactory::getConnection();
 $table_prefix = defined('LUPO_TABLE_PREFIX') ? LUPO_TABLE_PREFIX : 'lupo_';
+$baseUrl = defined('LUPOPEDIA_PUBLIC_PATH') ? LUPOPEDIA_PUBLIC_PATH : '';
+
+$pendingMeta = lupo_session_metadata_current($db);
+if (empty($pendingMeta['pending_auth_user_id'])) {
+    header('Location: ' . $baseUrl . '/login.php');
+    exit;
+}
+
+$pending_username = '';
+if (isset($pendingMeta['pending_username']) && $pendingMeta['pending_username'] !== '') {
+    $pending_username = (string) $pendingMeta['pending_username'];
+}
+
 $sessionManager = new AuthSessionManager();
-$auth_user_id = (int) $_SESSION['pending_auth_user_id'];
+$auth_user_id = (int) $pendingMeta['pending_auth_user_id'];
 
 $permRow = $db->fetchRow(
     "SELECT 1 AS ok FROM {$table_prefix}permissions WHERE user_id = :uid AND permission = 'owner' AND target_type = 'module' AND (is_deleted = 0 OR is_deleted IS NULL) LIMIT 1",
@@ -44,9 +78,9 @@ $isAdminForAgentList = !empty($permRow);
 
 $agents = $sessionManager->getActorsUserCanActAs($auth_user_id, $isAdminForAgentList);
 
-// Handle form submission: pick an existing agent actor (seed personas), not lupo_agents.agent_id
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['actor_id'])) {
-    $selected_actor_id = (int) $_POST['actor_id'];
+$requestMethod = isset($UNTRUSTED['server']['REQUEST_METHOD']) ? $UNTRUSTED['server']['REQUEST_METHOD'] : '';
+if ($requestMethod === 'POST' && isset($UNTRUSTED['post']['actor_id'])) {
+    $selected_actor_id = (int) $UNTRUSTED['post']['actor_id'];
     $allowed = $sessionManager->getActorsUserCanActAs($auth_user_id, $isAdminForAgentList);
     $allowed_ids = array();
     foreach ($allowed as $row) {
@@ -56,35 +90,52 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['actor_id'])) {
     }
 
     if (!in_array($selected_actor_id, $allowed_ids, true)) {
-        $error = 'That identity is not available. Please choose another.';
+        $error = lupo_t('select_agent.error_not_available', 'That identity is not available. Please choose another.');
     } else {
         $actor = $db->fetchRow(
             "SELECT actor_name FROM {$table_prefix}actors WHERE actor_id = :actor_id AND is_deleted = 0 AND is_active = 1 LIMIT 1",
             array('actor_id' => $selected_actor_id)
         );
         if ($actor && isset($actor['actor_name'])) {
-            $sessionManager->createSession($selected_actor_id, $actor['actor_name']);
-            unset($_SESSION['pending_auth_user_id']);
-            unset($_SESSION['pending_username']);
-            if (!empty($_SESSION['password_change_required'])) {
-                $_SESSION['password_change_actor_id'] = $selected_actor_id;
-                header('Location: ' . $baseUrl . '/change-password');
+            $oldSid = session_id();
+            $prevMeta = $oldSid ? App\Auth\Session::getDecodedMetadata($db, $oldSid) : $pendingMeta;
+            $sidOk = $sessionManager->createSession($selected_actor_id, $actor['actor_name']);
+            if ($sidOk === false) {
+                $error = lupo_t('select_agent.error_session_failed', 'Failed to start session for the selected identity. Please try again.');
+            } else {
+                $newSid = is_string($sidOk) ? $sidOk : session_id();
+                $clearPending = array(
+                    'pending_auth_user_id' => null,
+                    'pending_username' => null,
+                );
+                App\Auth\Session::mergeSessionMetadata($db, $newSid, $clearPending);
+                if (!empty($prevMeta['password_change_required'])) {
+                    App\Auth\Session::mergeSessionMetadata($db, $newSid, array(
+                        'password_change_required' => true,
+                        'password_change_user_id' => isset($prevMeta['password_change_user_id']) ? (int) $prevMeta['password_change_user_id'] : $auth_user_id,
+                        'password_change_actor_id' => (int) $selected_actor_id,
+                    ));
+                    header('Location: ' . $baseUrl . '/change-password');
+                    exit;
+                }
+                header('Location: ' . $baseUrl . '/admin.php');
                 exit;
             }
-            header('Location: ' . $baseUrl . '/admin.php');
-            exit;
+        } else {
+            $error = lupo_t('select_agent.error_session_failed', 'Failed to start session for the selected identity. Please try again.');
         }
-        $error = 'Failed to start session for the selected identity. Please try again.';
     }
 }
 
+$pub = $baseUrl;
+
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="<?= LupoLocale::htmlLang() ?>">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Select Your Agent - Lupopedia</title>
+    <title><?php echo htmlspecialchars(lupo_t('select_agent.page_title', 'Select Your Agent - Lupopedia')); ?></title>
     <style>
         body { 
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; 
@@ -185,11 +236,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['actor_id'])) {
     <div class="container">
         <div class="form-header">
             <div>
-                <h1>Select Your Agent Identity</h1>
-                <p class="subtitle">Choose which agent you want to act as in Lupopedia</p>
+                <h1><?php echo htmlspecialchars(lupo_t('select_agent.title', 'Select Your Agent Identity')); ?></h1>
+                <p class="subtitle"><?php echo htmlspecialchars(lupo_t('select_agent.subtitle', 'Choose which agent you want to act as in Lupopedia')); ?></p>
             </div>
             <div class="user-info">
-                Logged in as: <?php echo htmlspecialchars($_SESSION['pending_username'] ?? ''); ?>
+                <?php echo htmlspecialchars(lupo_t('select_agent.logged_in_as', 'Logged in as:')); ?> <?php echo htmlspecialchars($pending_username); ?>
             </div>
         </div>
         
@@ -199,7 +250,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['actor_id'])) {
         
         <?php if (empty($agents)): ?>
             <div class="error">
-                No agents are currently available. All agents may be in use. Please try again later.
+                <?php echo htmlspecialchars(lupo_t('select_agent.no_agents', 'No agents are currently available. All agents may be in use. Please try again later.')); ?>
             </div>
         <?php else: ?>
             <form method="POST" id="agent-form">
@@ -214,25 +265,25 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['actor_id'])) {
                 ?>
                 <div class="agent-card" data-actor-id="<?php echo $aid; ?>" onclick="selectAgent(<?php echo $aid; ?>)">
                     <div class="agent-name"><?php echo htmlspecialchars($disp); ?></div>
-                    <div class="agent-description"><?php echo htmlspecialchars($sub !== '' ? $sub : 'Agent identity'); ?></div>
+                    <div class="agent-description"><?php echo htmlspecialchars($sub !== '' ? $sub : lupo_t('select_agent.card_fallback', 'Agent identity')); ?></div>
                 </div>
                 <?php endforeach; ?>
                 
-                <button type="submit" id="submit-btn" disabled>Continue as Selected Agent</button>
+                <button type="submit" id="submit-btn" disabled><?php echo htmlspecialchars(lupo_t('select_agent.continue_btn', 'Continue as Selected Agent')); ?></button>
             </form>
         <?php endif; ?>
     </div>
     
     <script>
         let selectedId = null;
+        const alertSelectText = <?php echo json_encode(lupo_t('select_agent.alert_select', 'Please select an agent')); ?>;
         
         function selectAgent(actorId) {
             selectedId = actorId;
             document.getElementById('selected_actor_id').value = actorId;
             document.getElementById('submit-btn').disabled = false;
             
-            // Highlight selected card
-            document.querySelectorAll('.agent-card').forEach(card => {
+            document.querySelectorAll('.agent-card').forEach(function(card) {
                 card.classList.remove('selected');
                 if (parseInt(card.dataset.actorId, 10) == actorId) {
                     card.classList.add('selected');
@@ -240,14 +291,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['actor_id'])) {
             });
         }
         
-        document.getElementById('agent-form').addEventListener('submit', function(e) {
-            if (!selectedId) {
-                e.preventDefault();
-                alert('Please select an agent');
-            }
-        });
+        var agentForm = document.getElementById('agent-form');
+        if (agentForm) {
+            agentForm.addEventListener('submit', function(e) {
+                if (!selectedId) {
+                    e.preventDefault();
+                    alert(alertSelectText);
+                }
+            });
+        }
         
-        // Keyboard navigation
         document.addEventListener('keydown', function(e) {
             const cards = Array.from(document.querySelectorAll('.agent-card'));
             const selected = document.querySelector('.agent-card.selected');
@@ -261,7 +314,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['actor_id'])) {
                 selectAgent(parseInt(cards[currentIndex - 1].dataset.actorId, 10));
             } else if (e.key === 'Enter' && selectedId) {
                 e.preventDefault();
-                document.getElementById('agent-form').submit();
+                var af = document.getElementById('agent-form');
+                if (af) {
+                    af.submit();
+                }
             }
         });
     </script>

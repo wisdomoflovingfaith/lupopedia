@@ -1,14 +1,26 @@
 <?php
-/**
- * wolfie.header.identity: auth-helpers
- * wolfie.header.placement: /lupo-includes/functions/auth-helpers.php
- * wolfie.header.version: 3.0.9
- * wolfie.header.dialog:
- *   speaker: CURSOR
- *   target: @everyone
- *   message: "Updated actor slug generation to use email instead of username for version 3.0.9. Actor slugs are now derived from the email address (local part before @) to align with email-only login. Example: lupopedia@gmail.com -> slug 'lupopedia'. This ensures consistency since email is the canonical login identifier."
- *   mood: "00FF00"
- */
+/*
+---
+lupopedia.headers:
+  header_format_version: 2
+  lupopedia.schema: functions
+  when_updated: "20260406030925"
+  file_path_from_root: "lupo-includes/functions/auth-helpers.php"
+  web_path: "http://www.lupopedia.com/lupopedia/lupo-includes/functions/auth-helpers.php"
+  last_modified_utc: "20260406030925"
+  federation_node_id: 0
+  channel_id: 42
+  author:
+    type: "actor"
+    id: 102
+    name: "CURSOR"
+  delegation_chain: "cursor:root"
+  artifact_type: "functions"
+  artifact_kind: "auth_helpers"
+  purpose: "Authentication helpers; thin wrappers around AuthService/ActorService; login redirect via lupo_sessions metadata (not PHP session superglobal)."
+  tags: ["auth", "helpers", "session", "compatibility"]
+---
+*/
 
 if (!defined('LUPOPEDIA_CONFIG_LOADED')) {
     die("Config not loaded. auth-helpers.php cannot be called directly.");
@@ -138,11 +150,27 @@ function require_login() {
     }
     $user = current_user();
     if (!$user) {
-        $redirect_url = isset($_SERVER['REQUEST_URI']) ? $_SERVER['REQUEST_URI'] : '/';
-        if (session_status() === PHP_SESSION_NONE) {
-            session_start();
+        global $UNTRUSTED;
+        if (!isset($UNTRUSTED) || !is_array($UNTRUSTED)) {
+            $UNTRUSTED = array();
         }
-        $_SESSION['login_redirect'] = $redirect_url;
+        if (!isset($UNTRUSTED['server']) || !is_array($UNTRUSTED['server'])) {
+            $UNTRUSTED['server'] = (isset($_SERVER) && is_array($_SERVER)) ? $_SERVER : array();
+        }
+        $redirect_url = isset($UNTRUSTED['server']['REQUEST_URI']) ? $UNTRUSTED['server']['REQUEST_URI'] : '/';
+
+        $db = null;
+        if (class_exists('DatabaseFactory', false)) {
+            try {
+                $db = DatabaseFactory::getConnection();
+            } catch (Exception $e) {
+                $db = null;
+            }
+        }
+        if ($db && function_exists('lupo_session_metadata_merge_current')) {
+            lupo_session_metadata_merge_current($db, array('login_redirect' => $redirect_url));
+        }
+
         $login_url = (defined('LUPOPEDIA_PUBLIC_PATH') ? LUPOPEDIA_PUBLIC_PATH : '') . '/login?redirect=' . urlencode($redirect_url);
         lupo_safe_redirect($login_url, 2, 'Please log in to continue.');
     }
@@ -166,6 +194,57 @@ function require_admin() {
         echo '<h1>403 Forbidden</h1><p>You do not have permission to access this page.</p>';
         exit;
     }
+}
+
+/**
+ * Model A: decoded lupo_sessions.metadata for the current PHP session id (transient flags only).
+ *
+ * @param mixed $db PDO_DB
+ * @return array
+ */
+function lupo_session_metadata_current($db)
+{
+    if (!$db) {
+        return array();
+    }
+    if (!class_exists('App\\Auth\\Session', false) && defined('LUPOPEDIA_PATH')) {
+        require_once LUPOPEDIA_PATH . DIRECTORY_SEPARATOR . 'app' . DIRECTORY_SEPARATOR . 'auth' . DIRECTORY_SEPARATOR . 'Session.php';
+    }
+    if (!class_exists('App\\Auth\\Session', false)) {
+        return array();
+    }
+    $app = new App\Auth\Session($db);
+    $sid = $app->getSessionId();
+    if (!$sid) {
+        return array();
+    }
+    return App\Auth\Session::getDecodedMetadata($db, $sid);
+}
+
+/**
+ * Merge patch into lupo_sessions.metadata for current PHP session (null values remove keys).
+ *
+ * @param mixed $db PDO_DB
+ * @param array $patch
+ * @return bool
+ */
+function lupo_session_metadata_merge_current($db, array $patch)
+{
+    if (!$db) {
+        return false;
+    }
+    if (!class_exists('App\\Auth\\Session', false) && defined('LUPOPEDIA_PATH')) {
+        require_once LUPOPEDIA_PATH . DIRECTORY_SEPARATOR . 'app' . DIRECTORY_SEPARATOR . 'auth' . DIRECTORY_SEPARATOR . 'Session.php';
+    }
+    if (!class_exists('App\\Auth\\Session', false)) {
+        return false;
+    }
+    $app = new App\Auth\Session($db);
+    $sid = $app->getSessionId();
+    if (!$sid) {
+        return false;
+    }
+    return App\Auth\Session::mergeSessionMetadata($db, $sid, $patch);
 }
 
 ?>

@@ -4,7 +4,7 @@
  *
  * Validates that .kiro/lupopedia_rules.json and .kiro/rules/*.md exist,
  * are parseable, have no duplicate rule IDs, and that each rule has a
- * corresponding .md file. Standalone PHP 5.6 compatible; no test framework.
+ * corresponding .md file. Standalone PHP 7.4 compatible; no test framework.
  *
  * Usage: php lupo-tests/unit/kiro_rules_enforcement.php
  * Exit: 0 on pass, 1 on failure.

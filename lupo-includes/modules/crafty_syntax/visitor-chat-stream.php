@@ -344,7 +344,12 @@ header('Content-Type: text/html; charset=utf-8');
 
     function clearTypingOnSend() {
         var url = base + 'lupo-api/channel/typing';
-        var body = JSON.stringify({ channel_id: channelId, dialog_thread_id: dialogThreadId, actor_id: 0, preview_text: '' });
+        var body = JSON.stringify({
+            channel_id: channelId,
+            dialog_thread_id: dialogThreadId,
+            preview_text: '',
+            cslhVISITOR: cslhVISITOR
+        });
         var xhr = new XMLHttpRequest();
         xhr.open('POST', url);
         xhr.setRequestHeader('Content-Type', 'application/json');

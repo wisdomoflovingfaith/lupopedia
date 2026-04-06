@@ -1,102 +1,152 @@
 <?php
-// lupopedia_ajax.php - Modern API endpoint for The Eye
-// LILITH AUDIT COMPLIANT - Production Ready Implementation
+/*
+---
+lupopedia.headers:
+  header_format_version: 2
+  lupopedia.schema: api
+  when_updated: "20260406012335"
+  file_path_from_root: "lupo-ajax.php"
+  web_path: "http://www.lupopedia.com/lupopedia/lupo-ajax.php"
+  last_modified_utc: "20260406012335"
+  federation_node_id: 0
+  channel_id: 42
+  author:
+    type: "actor"
+    id: 102
+    name: "CURSOR"
+  delegation_chain: "cursor:root"
+  artifact_type: "api"
+  artifact_kind: "ajax_endpoint"
+  purpose: "Eye API — PDO_DB, UNTRUSTED, Model A CSRF from lupo_sessions; no MySQLi."
+  tags: ["api", "eye", "tracking", "ajax", "pdo_db"]
+---
+*/
 
-error_reporting(E_ALL);
-ini_set('display_errors', '1');
-ini_set('display_startup_errors', '1');
-ini_set('log_errors', '0');
-ini_set('html_errors', '1');
-
-/**
- * The path to Lupopedia directory (full filesystem path, since this file is inside it).
- */
 define('LUPOPEDIA_PATH', __DIR__);
-
-/**
- * The path to Lupopedia directory relative to the public directory (dynamically detected).
- */
 define('LUPOPEDIA_PUBLIC_PATH', '/' . basename(__DIR__));
+
+$UNTRUSTED = array(
+    'get' => (isset($_GET) && is_array($_GET)) ? $_GET : array(),
+    'post' => (isset($_POST) && is_array($_POST)) ? $_POST : array(),
+    'server' => (isset($_SERVER) && is_array($_SERVER)) ? $_SERVER : array(),
+    'cookie' => (isset($_COOKIE) && is_array($_COOKIE)) ? $_COOKIE : array(),
+);
+
+$lupoRawInput = @file_get_contents('php://input');
+if ($lupoRawInput === false) {
+    $lupoRawInput = '';
+}
+$UNTRUSTED['input_json'] = array();
+if ($lupoRawInput !== '') {
+    $lupoDecoded = json_decode($lupoRawInput, true);
+    $UNTRUSTED['input_json'] = is_array($lupoDecoded) ? $lupoDecoded : array();
+}
 
 require_once LUPOPEDIA_PATH . DIRECTORY_SEPARATOR . 'lupo-includes' . DIRECTORY_SEPARATOR . 'classes' . DIRECTORY_SEPARATOR . 'LupopediaConfigResolver.php';
 $lupopediaConfigPath = LupopediaConfigResolver::resolve(LUPOPEDIA_PATH, LUPOPEDIA_PUBLIC_PATH);
 
-// INSTALL REDIRECT DOCTRINE (4.0.6+): If lupopedia-config.php does NOT exist, respond with error (AJAX cannot redirect to install.php usefully).
-
 if (!$lupopediaConfigPath) {
     header('Content-Type: application/json');
-    echo json_encode(['error' => 'Configuration file not found']);
+    echo json_encode(array('error' => 'Configuration file not found'));
     exit;
 }
 
-require_once($lupopediaConfigPath);
+require_once $lupopediaConfigPath;
 
-/**
- * Determine subdirectory from script path and define LUPOPEDIA_SUBDIRECTORY
- * This must be AFTER config loading to use config values if available
- */
+if (function_exists('error_reporting')) {
+    if (defined('LUPOPEDIA_DEBUG') && LUPOPEDIA_DEBUG) {
+        error_reporting(E_ALL);
+        ini_set('display_errors', '1');
+        ini_set('display_startup_errors', '1');
+        ini_set('log_errors', '0');
+        ini_set('html_errors', '1');
+    } else {
+        error_reporting(E_ALL & ~E_DEPRECATED);
+        ini_set('display_errors', '0');
+        ini_set('display_startup_errors', '0');
+        ini_set('log_errors', '1');
+        ini_set('html_errors', '0');
+    }
+}
+
 if (!defined('LUPOPEDIA_SUBDIRECTORY')) {
-    // Try to detect from script path first
-    if (isset($_SERVER['SCRIPT_NAME'])) {
-        $script_path = $_SERVER['SCRIPT_NAME'];
+    if (isset($UNTRUSTED['server']['SCRIPT_NAME'])) {
+        $script_path = $UNTRUSTED['server']['SCRIPT_NAME'];
         $subdir = dirname($script_path);
         if ($subdir === '/' || $subdir === '\\') {
             $subdir = '';
         }
         define('LUPOPEDIA_SUBDIRECTORY', rtrim($subdir, '/') . '/');
     } else {
-        // Fallback to public path
         define('LUPOPEDIA_SUBDIRECTORY', LUPOPEDIA_PUBLIC_PATH);
     }
 }
 
-// Define Eye widget configuration constants
 define('EYE_WIDGET_ENABLED', true);
-define('EYE_TRACKING_LEVEL', 'full'); // full, minimal, disabled
-define('LUPO_GOLD_CONTEXT_WEIGHT_MIN', 0.8);      // Minimum weight_score for GOLD contexts
-define('LUPO_GOLD_EDGE_WEIGHT_MIN', 0.5);         // Minimum semantic_weight for GOLD edges
-define('EYE_MAX_GRAPH_NODES', 200);               // Maximum nodes in visualization
-define('EYE_MAX_GRAPH_EDGES', 500);               // Maximum edges in visualization
+define('EYE_TRACKING_LEVEL', 'full');
+define('LUPO_GOLD_CONTEXT_WEIGHT_MIN', 0.8);
+define('LUPO_GOLD_EDGE_WEIGHT_MIN', 0.5);
+define('EYE_MAX_GRAPH_NODES', 200);
+define('EYE_MAX_GRAPH_EDGES', 500);
 
-// Define table prefix (from config or default)
-define('LUPO_TABLE_PREFIX', defined('DB_PREFIX') ? DB_PREFIX : 'lupo_');
+if (!defined('LUPO_TABLE_PREFIX')) {
+    define('LUPO_TABLE_PREFIX', defined('DB_PREFIX') ? DB_PREFIX : 'lupo_');
+}
 
-// Set JSON response header
 header('Content-Type: application/json');
 
-// CORS for cross-domain widget embedding (with allowed origins)
-$allowed_origins = [
-    'https://' . $_SERVER['HTTP_HOST'],
-    'http://' . $_SERVER['HTTP_HOST'],
-];
-if (isset($_SERVER['HTTP_ORIGIN']) && in_array($_SERVER['HTTP_ORIGIN'], $allowed_origins)) {
-    header('Access-Control-Allow-Origin: ' . $_SERVER['HTTP_ORIGIN']);
+$httpHost = isset($UNTRUSTED['server']['HTTP_HOST']) ? $UNTRUSTED['server']['HTTP_HOST'] : '';
+$allowed_origins = array(
+    'https://' . $httpHost,
+    'http://' . $httpHost,
+);
+if (isset($UNTRUSTED['server']['HTTP_ORIGIN']) && in_array($UNTRUSTED['server']['HTTP_ORIGIN'], $allowed_origins, true)) {
+    header('Access-Control-Allow-Origin: ' . $UNTRUSTED['server']['HTTP_ORIGIN']);
     header('Access-Control-Allow-Credentials: true');
 }
 
-// Start session for CSRF and rate limiting
-if (session_status() === PHP_SESSION_NONE) {
-    session_start();
-}
-
-// Load required classes
-require_once(LUPOPEDIA_PATH . '/lupo-includes/classes/DatabaseFactory.php');
-require_once(LUPOPEDIA_PATH . '/lupo-includes/classes/AuthService.php');
-require_once(LUPOPEDIA_PATH . '/lupo-includes/classes/SessionService.php');
-require_once(LUPOPEDIA_PATH . '/lupo-includes/classes/IdGenerator.php');
+require_once LUPOPEDIA_PATH . '/lupo-includes/classes/DatabaseFactory.php';
+require_once LUPOPEDIA_PATH . '/lupo-includes/classes/IdGenerator.php';
 
 /**
- * Get client IP address with comprehensive 2026 CDN/cloud provider handling
+ * PDO_DB connection (Doctrine: DatabaseFactory only).
+ *
+ * @return PDO_DB|null
  */
-function get_client_ip() {
-    // Trusted proxies - configure based on your infrastructure
-    $trusted_proxies = [
+function lupo_ajax_get_db()
+{
+    static $db = null;
+    static $failed = false;
+    if ($failed) {
+        return null;
+    }
+    if ($db !== null) {
+        return $db;
+    }
+    try {
+        $db = DatabaseFactory::getConnection();
+    } catch (Exception $e) {
+        $failed = true;
+        error_log('lupo-ajax.php DB: ' . $e->getMessage());
+        return null;
+    }
+    return $db;
+}
+
+/**
+ * @param array $server  $UNTRUSTED['server']
+ */
+function get_client_ip($server)
+{
+    if (!is_array($server)) {
+        $server = array();
+    }
+    $trusted_proxies = array(
         '127.0.0.1',
         '::1',
         '10.0.0.0/8',
         '172.16.0.0/12',
         '192.168.0.0/16',
-        // CloudFlare IP ranges (2026)
         '173.245.48.0/20',
         '103.21.244.0/22',
         '103.22.200.0/22',
@@ -112,7 +162,6 @@ function get_client_ip() {
         '104.24.0.0/14',
         '172.64.0.0/13',
         '131.0.72.0/22',
-        // Fastly IP ranges (2026)
         '23.235.32.0/20',
         '43.249.72.0/22',
         '103.244.50.0/24',
@@ -127,7 +176,6 @@ function get_client_ip() {
         '185.31.16.0/22',
         '199.27.72.0/21',
         '199.232.0.0/16',
-        // AWS CloudFront IP ranges (2026 - partial list)
         '13.32.0.0/15',
         '13.224.0.0/14',
         '13.248.0.0/14',
@@ -147,43 +195,22 @@ function get_client_ip() {
         '205.251.240.0/20',
         '205.251.249.0/24',
         '216.137.32.0/19',
-        // Akamai IP ranges (2026 - partial list)
         '2.16.0.0/13',
         '2.20.0.0/14',
         '23.0.0.0/12',
-    ];
-    
-    // Comprehensive 2026 header list (priority: most specific first)
-    $headers = [
-        // CloudFlare (most common CDN)
+    );
+
+    $headers = array(
         'HTTP_CF_CONNECTING_IP',
         'HTTP_TRUE_CLIENT_IP',
-        
-        // Fastly
         'HTTP_FASTLY_CLIENT_IP',
-        
-        // Fly.io (popular platform)
         'HTTP_FLY_CLIENT_IP',
-        
-        // Vercel
         'HTTP_X_VERCEL_FORWARDED_FOR',
-        
-        // CDN77
         'HTTP_CDN_CONNECTING_IP',
-        
-        // BunnyCDN
         'HTTP_BUNNY_CDN_CONNECTING_IP',
-        
-        // AWS CloudFront
         'HTTP_CLOUDFRONT_VIEWER_ADDRESS',
-        
-        // Google Cloud
         'HTTP_X_GOOG_REAL_IP',
-        
-        // Azure
         'HTTP_X_AZURE_CLIENTIP',
-        
-        // Standard/RFC headers (most common)
         'HTTP_X_FORWARDED_FOR',
         'HTTP_X_FORWARDED',
         'HTTP_X_REAL_IP',
@@ -191,70 +218,54 @@ function get_client_ip() {
         'HTTP_FORWARDED_FOR',
         'HTTP_FORWARDED',
         'HTTP_CLIENT_IP',
-        
-        // Ultimate fallback
-        'REMOTE_ADDR'
-    ];
-    
-    $remote_addr = $_SERVER['REMOTE_ADDR'] ?? '';
+        'REMOTE_ADDR',
+    );
+
+    $remote_addr = isset($server['REMOTE_ADDR']) ? $server['REMOTE_ADDR'] : '';
     $is_trusted = is_ip_in_trusted_ranges($remote_addr, $trusted_proxies);
     $fallback = '';
-    
+
     foreach ($headers as $header) {
-        if (empty($_SERVER[$header])) {
+        if (empty($server[$header])) {
             continue;
         }
-        
-        $raw = $_SERVER[$header];
-        
-        // Only trust forwarded headers if from a trusted proxy
+        $raw = $server[$header];
+
         if (!$is_trusted && $header !== 'REMOTE_ADDR') {
             continue;
         }
-        
-        // Handle special cases
+
         if ($header === 'HTTP_CLOUDFRONT_VIEWER_ADDRESS') {
-            // CloudFront format: IP:port
             $parts = explode(':', $raw, 2);
-            $candidates = [trim($parts[0])];
+            $candidates = array(trim($parts[0]));
         } elseif ($header === 'HTTP_X_FORWARDED_FOR' || $header === 'HTTP_FORWARDED_FOR') {
             $candidates = array_map('trim', explode(',', $raw));
         } elseif ($header === 'HTTP_FORWARDED') {
-            // RFC 7239 format: for=192.0.2.43, for="[2001:db8:cafe::17]"
             $candidates = extract_forwarded_ips($raw);
         } else {
-            $candidates = [trim($raw)];
+            $candidates = array(trim($raw));
         }
-        
+
         foreach ($candidates as $candidate) {
-            if (empty($candidate)) {
+            if ($candidate === '') {
                 continue;
             }
-            
-            // Remove brackets from IPv6 addresses
             $candidate = trim($candidate, '[]');
-            
-            // Prefer public IPs (not private/reserved)
             if (filter_var($candidate, FILTER_VALIDATE_IP, FILTER_FLAG_NO_PRIV_RANGE | FILTER_FLAG_NO_RES_RANGE)) {
                 return $candidate;
             }
-            
-            // Fallback to any valid IP
             if ($fallback === '' && filter_var($candidate, FILTER_VALIDATE_IP)) {
                 $fallback = $candidate;
             }
         }
     }
-    
-    return $fallback ?: $remote_addr;
+
+    return $fallback !== '' ? $fallback : $remote_addr;
 }
 
-/**
- * Extract IPs from RFC 7239 Forwarded header
- */
-function extract_forwarded_ips($forwarded_header) {
-    // RFC 7239: Forwarded: for=192.0.2.43, for="[2001:db8:cafe::17]"
-    $ips = [];
+function extract_forwarded_ips($forwarded_header)
+{
+    $ips = array();
     preg_match_all('/for\s*=\s*"?([^",\s]+)"?/', $forwarded_header, $matches);
     foreach ($matches[1] as $match) {
         $ips[] = trim($match, '"');
@@ -262,23 +273,27 @@ function extract_forwarded_ips($forwarded_header) {
     return $ips;
 }
 
-/**
- * Check if IP is in trusted CIDR ranges
- */
-function is_ip_in_trusted_ranges($ip, $ranges) {
-    if (empty($ip)) return false;
-    
+function is_ip_in_trusted_ranges($ip, $ranges)
+{
+    if ($ip === '') {
+        return false;
+    }
     foreach ($ranges as $range) {
         if (strpos($range, '/') === false) {
-            if ($ip === $range) return true;
+            if ($ip === $range) {
+                return true;
+            }
             continue;
         }
-        
-        list($subnet, $mask) = explode('/', $range);
+        $parts = explode('/', $range);
+        $subnet = $parts[0];
+        $mask = isset($parts[1]) ? (int) $parts[1] : 32;
         $ip_long = ip2long($ip);
         $subnet_long = ip2long($subnet);
-        $mask_long = ~((1 << (32 - (int)$mask)) - 1);
-        
+        if ($ip_long === false || $subnet_long === false) {
+            continue;
+        }
+        $mask_long = ~((1 << (32 - $mask)) - 1);
         if (($ip_long & $mask_long) == ($subnet_long & $mask_long)) {
             return true;
         }
@@ -286,220 +301,186 @@ function is_ip_in_trusted_ranges($ip, $ranges) {
     return false;
 }
 
-// CSRF protection for state-changing endpoints
-$csrf_protected_actions = ['track', 'consent', 'config'];
-
-// Rate limiting configuration
-$rate_limits = [
-    'track' => ['limit' => 100, 'window' => 60],      // 100 req/min per session
-    'consent' => ['limit' => 10, 'window' => 300],    // 10 req/min per IP
-    'config' => ['limit' => 5, 'window' => 300],      // 5 req/min per IP
-    'heartbeat' => ['limit' => 10, 'window' => 60]     // 10 req/min per session
-];
+$rate_limits = array(
+    'track' => array('limit' => 100, 'window' => 60),
+    'consent' => array('limit' => 10, 'window' => 300),
+    'config' => array('limit' => 5, 'window' => 300),
+    'heartbeat' => array('limit' => 10, 'window' => 60),
+);
 
 /**
- * Verify CSRF token
+ * CSRF from lupo_sessions (Model A). Bootstrap must have started PHP session cookie.
+ *
+ * @param string $token
+ * @return bool
  */
-function verify_csrf_token($token) {
-    $t = isset($token) ? $token : '';
-    return isset($_SESSION['csrf_token']) && hash_equals($_SESSION['csrf_token'], $t);
+function lupo_ajax_verify_csrf_token($token)
+{
+    $db = lupo_ajax_get_db();
+    if (!$db) {
+        return false;
+    }
+    $t = is_string($token) ? $token : '';
+    if ($t === '') {
+        return false;
+    }
+    if (!isset($GLOBALS['lupo_session']) || !is_object($GLOBALS['lupo_session'])) {
+        return false;
+    }
+    $sid = $GLOBALS['lupo_session']->getSessionId();
+    if ($sid === '' || $sid === false) {
+        return false;
+    }
+    $loaded = \App\Auth\Session::loadById($db, $sid);
+    return $loaded && isset($loaded->csrf_token) && is_string($loaded->csrf_token)
+        && hash_equals($loaded->csrf_token, $t);
 }
 
 /**
- * Check rate limiting with persistent storage
+ * Rate buckets in $_SESSION (bootstrap-owned PHP session only; not identity authority).
+ *
+ * @param string $ip
+ * @param string $action
+ * @param array  $rate_limits
+ * @param int|null $limit
+ * @param int|null $window
+ * @return bool
  */
-function check_rate_limit($ip, $action, $limit = null, $window = 60) {
+function check_rate_limit($ip, $action, $rate_limits, $limit = null, $window = null)
+{
     if ($limit === null) {
-        $config = $rate_limits[$action] ?? ['limit' => 100, 'window' => 60];
-        $limit = $config['limit'];
-        $window = $config['window'];
+        $config = isset($rate_limits[$action]) ? $rate_limits[$action] : array('limit' => 100, 'window' => 60);
+        $limit = isset($config['limit']) ? $config['limit'] : 100;
+        $window = isset($config['window']) ? $config['window'] : 60;
     }
-    
-    $key = "rate_limit_{$ip}_{$action}";
-    
-    // Initialize if not set
-    if (!isset($_SESSION[$key])) {
-        $_SESSION[$key] = ['count' => 0, 'start' => time(), 'blocked' => false];
+
+    if (!class_exists('timestamp_ymdhis', false)) {
+        require_once LUPOPEDIA_PATH . '/lupo-includes/classes/TimestampYmdhis.php';
     }
-    
+
+    $key = 'eye_rate_' . md5($ip . '_' . $action);
+
+    if (!isset($_SESSION) || !is_array($_SESSION)) {
+        return true;
+    }
+
+    if (!isset($_SESSION[$key]) || !isset($_SESSION[$key]['start_ymdhis']) || isset($_SESSION[$key]['start'])) {
+        $blocked = (isset($_SESSION[$key]['blocked']) && $_SESSION[$key]['blocked']);
+        $_SESSION[$key] = array('count' => 0, 'start_ymdhis' => timestamp_ymdhis::now(), 'blocked' => $blocked);
+    }
+
     $current = $_SESSION[$key];
-    
-    // Reset window if expired
-    if (time() - $current['start'] > $window) {
-        $_SESSION[$key] = ['count' => 0, 'start' => time(), 'blocked' => $current['blocked']];
+
+    if (timestamp_ymdhis::diffInSeconds(timestamp_ymdhis::now(), (int) $current['start_ymdhis']) > $window) {
+        $blocked = isset($current['blocked']) ? $current['blocked'] : false;
+        $_SESSION[$key] = array('count' => 0, 'start_ymdhis' => timestamp_ymdhis::now(), 'blocked' => $blocked);
+        $current = $_SESSION[$key];
     }
-    
-    // Check if currently blocked
-    if ($current['blocked']) {
+
+    if (!empty($current['blocked'])) {
         return false;
     }
-    
-    // Check limit
+
     if ($current['count'] >= $limit) {
         return false;
     }
-    
+
     $_SESSION[$key]['count']++;
     return true;
 }
 
-/**
- * Get database connection with proper error handling
- */
-function get_db_connection() {
-    static $conn = null;
-    if ($conn === null) {
-        try {
-            $conn = DatabaseFactory::getConnection();
-        } catch (Exception $e) {
-            error_log("Database connection failed: " . $e->getMessage());
-            return null;
-        }
-    }
-    return $conn;
-}
-
-/**
- * Execute SQL with proper error handling
- */
-function execute($sql, $params = []) {
-    $conn = get_db_connection();
-    if (!$conn) {
-        return false;
-    }
-    
-    try {
-        $stmt = $conn->prepare($sql);
-        if (!$stmt) {
-            error_log("SQL prepare failed: " . $conn->error);
-            return false;
-        }
-        
-        if (!empty($params)) {
-            $types = str_repeat('s', count($params));
-            $stmt->bind_param($types, ...$params);
-        }
-        
-        if (!$stmt->execute()) {
-            error_log("SQL execute failed: " . $stmt->error);
-            return false;
-        }
-        
-        return true;
-    } catch (Exception $e) {
-        error_log("SQL execution error: " . $e->getMessage());
-        return false;
-    }
-}
-
-/**
- * Query database with proper error handling
- */
-function query($sql, $params = []) {
-    $conn = get_db_connection();
-    if (!$conn) {
-        return [];
-    }
-    
-    try {
-        $stmt = $conn->prepare($sql);
-        if (!$stmt) {
-            error_log("SQL prepare failed: " . $conn->error);
-            return [];
-        }
-        
-        if (!empty($params)) {
-            $types = str_repeat('s', count($params));
-            $stmt->bind_param($types, ...$params);
-        }
-        
-        if (!$stmt->execute()) {
-            error_log("SQL execute failed: " . $stmt->error);
-            return [];
-        }
-        
-        $result = $stmt->get_result();
-        return $result->fetch_all(MYSQLI_ASSOC);
-    } catch (Exception $e) {
-        error_log("SQL query error: " . $e->getMessage());
-        return [];
-    }
-}
-
-/**
- * Get current UTC timestamp in YYYYMMDDHHIISS format
- */
-function get_current_utc() {
+function get_current_utc()
+{
     return gmdate('YmdHis');
 }
 
-/**
- * Replace table prefix in SQL
- */
-function replace_prefix($sql) {
+function replace_prefix($sql)
+{
     return str_replace('{{prefix}}', LUPO_TABLE_PREFIX, $sql);
 }
 
-// Get and validate action
-$action = $_GET['action'] ?? '';
+$action = isset($UNTRUSTED['get']['action']) ? $UNTRUSTED['get']['action'] : '';
 
 switch ($action) {
     case 'csrf_token':
-        // Generate CSRF token for JavaScript
-        if (!isset($_SESSION['csrf_token'])) {
-            $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
+        $db = lupo_ajax_get_db();
+        if (!$db) {
+            http_response_code(500);
+            echo json_encode(array('error' => 'Database unavailable'));
+            break;
         }
-        echo json_encode(['csrf_token' => $_SESSION['csrf_token']]);
-        break;
-        
-    case 'track':
-        // CSRF protection
-        if (in_array($action, $csrf_protected_actions)) {
-            $csrf_token = $_POST['csrf_token'] ?? $_SERVER['HTTP_X_CSRF_TOKEN'] ?? '';
-            if (!verify_csrf_token($csrf_token)) {
-                http_response_code(403);
-                echo json_encode(['error' => 'Invalid CSRF token']);
-                exit;
+        $token = null;
+        if (isset($GLOBALS['lupo_session']) && is_object($GLOBALS['lupo_session'])) {
+            $token = $GLOBALS['lupo_session']->getCsrfToken();
+            if (($token === null || $token === '') && $GLOBALS['lupo_session']->getSessionId()) {
+                $loaded = \App\Auth\Session::loadById($db, $GLOBALS['lupo_session']->getSessionId());
+                if ($loaded && !empty($loaded->csrf_token)) {
+                    $token = $loaded->csrf_token;
+                }
             }
         }
-        
-        // Rate limiting
-        if (!check_rate_limit(get_client_ip(), $action)) {
-            http_response_code(429);
-            echo json_encode(['error' => 'Rate limit exceeded', 'retry_after' => $rate_limits[$action]['window'] ?? 60]);
+        if ($token === null || $token === '') {
+            http_response_code(500);
+            echo json_encode(array('error' => 'Could not issue CSRF token'));
+            break;
+        }
+        echo json_encode(array('csrf_token' => $token));
+        break;
+
+    case 'track':
+        $csrf_token = '';
+        if (isset($UNTRUSTED['post']['csrf_token'])) {
+            $csrf_token = (string) $UNTRUSTED['post']['csrf_token'];
+        }
+        if ($csrf_token === '' && isset($UNTRUSTED['server']['HTTP_X_CSRF_TOKEN'])) {
+            $csrf_token = (string) $UNTRUSTED['server']['HTTP_X_CSRF_TOKEN'];
+        }
+        if (!lupo_ajax_verify_csrf_token($csrf_token)) {
+            http_response_code(403);
+            echo json_encode(array('error' => 'Invalid CSRF token'));
             exit;
         }
-        
-        // Get or create session
-        $session_id = $_COOKIE['lupo_session'] ?? null;
-        if (!$session_id) {
-            require_once(LUPOPEDIA_PATH . '/lupo-includes/classes/SessionService.php');
-            $session_id = SessionService::createSession();
-            setcookie('lupo_session', $session_id, [
-                'expires' => time() + 86400 * 30, // 30 days
-                'path' => LUPOPEDIA_SUBDIRECTORY,
-                'httponly' => true,
-                'samesite' => 'Lax'
-            ]);
+
+        if (!check_rate_limit(get_client_ip($UNTRUSTED['server']), $action, $rate_limits)) {
+            http_response_code(429);
+            $w = isset($rate_limits[$action]['window']) ? $rate_limits[$action]['window'] : 60;
+            echo json_encode(array('error' => 'Rate limit exceeded', 'retry_after' => $w));
+            exit;
         }
-        
-        // Validate and sanitize input
-        $input = json_decode(file_get_contents('php://input'), true);
-        if (!$input) {
-            $input = [];
+
+        $db = lupo_ajax_get_db();
+        if (!$db) {
+            http_response_code(500);
+            echo json_encode(array('error' => 'Database unavailable'));
+            exit;
         }
-        
+
+        $session_token = isset($UNTRUSTED['cookie']['lupo_session']) ? (string) $UNTRUSTED['cookie']['lupo_session'] : '';
+        if ($session_token === '') {
+            $created = \App\Auth\Session::createEmbedSession($db, 0);
+            if (!$created) {
+                http_response_code(500);
+                echo json_encode(array('error' => 'Could not create visitor session'));
+                exit;
+            }
+            $session_token = $created->session_id;
+            $cookiePath = LUPOPEDIA_SUBDIRECTORY;
+            $secure = isset($UNTRUSTED['server']['HTTPS']) && $UNTRUSTED['server']['HTTPS'] !== ''
+                && strtolower((string) $UNTRUSTED['server']['HTTPS']) !== 'off';
+            setcookie('lupo_session', $session_token, time() + 86400 * 30, $cookiePath, '', $secure, true);
+        }
+
+        $input = $UNTRUSTED['input_json'];
         $page_url_raw = isset($input['page_url']) ? $input['page_url'] : '';
-        if ($page_url_raw === '' && isset($_SERVER['HTTP_REFERER'])) {
-            $page_url_raw = $_SERVER['HTTP_REFERER'];
+        if ($page_url_raw === '' && isset($UNTRUSTED['server']['HTTP_REFERER'])) {
+            $page_url_raw = $UNTRUSTED['server']['HTTP_REFERER'];
         }
         $page_url = filter_var($page_url_raw, FILTER_SANITIZE_URL);
         if ($page_url === false) {
             $page_url = '';
         }
-        $actor_id_int = isset($input['actor_id']) ? intval($input['actor_id']) : 0;
-        /* 0 = anonymous visitor (mysqli bind_param has no clean NULL for this all-string binder) */
-        $actor_id = ($actor_id_int > 0) ? $actor_id_int : 0;
+        $actor_id_int = isset($input['actor_id']) ? (int) $input['actor_id'] : 0;
+        $actor_id = ($actor_id_int > 0) ? $actor_id_int : null;
         $referrer_raw = isset($input['referrer']) ? $input['referrer'] : '';
         $referrer = filter_var($referrer_raw, FILTER_SANITIZE_URL);
         if ($referrer === false) {
@@ -514,92 +495,127 @@ switch ($action) {
         }
         $transition_metadata = empty($meta) ? '' : json_encode($meta);
         $transition_type = 'page_view';
-        
-        // Store in lupo_visits (canonical columns per install_new_lupopedia.sql — no referer column)
+
         $visit_id = IdGenerator::generate();
-        $sql = replace_prefix("INSERT INTO {{prefix}}visits (visit_id, session_id, actor_id, path_url, transition_type, transition_metadata, created_ymdhis, is_processed, is_deleted) VALUES (?, ?, ?, ?, ?, ?, ?, 0, 0)");
-        
-        if (!execute($sql, [$visit_id, $session_id, $actor_id, $page_url, $transition_type, $transition_metadata, get_current_utc()])) {
+        $prefix = LUPO_TABLE_PREFIX;
+        $now = (int) get_current_utc();
+
+        try {
+            $db->query(
+                "INSERT INTO {$prefix}visits (visit_id, session_id, actor_id, path_url, transition_type, transition_metadata, created_ymdhis, is_processed, is_deleted) 
+                 VALUES (:visit_id, :session_id, :actor_id, :path_url, :transition_type, :transition_metadata, :created_ymdhis, 0, 0)",
+                array(
+                    'visit_id' => $visit_id,
+                    'session_id' => null,
+                    'actor_id' => $actor_id,
+                    'path_url' => $page_url,
+                    'transition_type' => $transition_type,
+                    'transition_metadata' => $transition_metadata,
+                    'created_ymdhis' => $now,
+                )
+            );
+        } catch (Exception $e) {
+            if (defined('LUPOPEDIA_DEBUG') && LUPOPEDIA_DEBUG) {
+                error_log('lupo-ajax track: ' . $e->getMessage());
+            }
             http_response_code(500);
-            echo json_encode(['error' => 'Failed to track visit']);
+            echo json_encode(array('error' => 'Failed to track visit'));
             exit;
         }
-        
-        echo json_encode(['success' => true, 'tracked' => 1, 'visit_id' => $visit_id]);
+
+        echo json_encode(array('success' => true, 'tracked' => 1, 'visit_id' => $visit_id));
         break;
-        
+
     case 'context':
-        // Input validation
-        $page_id = isset($_GET['page_id']) ? intval($_GET['page_id']) : null;
-        if (!$page_id || $page_id <= 0) {
+        $page_id = isset($UNTRUSTED['get']['page_id']) ? (int) $UNTRUSTED['get']['page_id'] : 0;
+        if ($page_id <= 0) {
             http_response_code(400);
-            echo json_encode(['error' => 'page_id required']);
+            echo json_encode(array('error' => 'page_id required'));
             break;
         }
-        
-        // Fetch from lupo_edges
+
+        $db = lupo_ajax_get_db();
+        if (!$db) {
+            http_response_code(500);
+            echo json_encode(array('error' => 'Database unavailable'));
+            break;
+        }
+
+        $lim = defined('EYE_MAX_GRAPH_EDGES') ? (int) EYE_MAX_GRAPH_EDGES : 200;
+        if ($lim < 1) {
+            $lim = 1;
+        }
+        if ($lim > 10000) {
+            $lim = 10000;
+        }
+        $prefix = LUPO_TABLE_PREFIX;
         $sql = "SELECT left_object_id, right_object_id, edge_type, semantic_weight 
-                FROM {{prefix}}edges 
-                WHERE left_object_type = 'content' AND left_object_id = ? 
+                FROM {$prefix}edges 
+                WHERE left_object_type = 'content' AND left_object_id = :pid 
                 AND is_deleted = 0 
                 ORDER BY semantic_weight DESC 
-                LIMIT " . (EYE_MAX_GRAPH_EDGES ?? 200);
-        $edges = query($sql, [$page_id]);
-        
-        echo json_encode([
+                LIMIT " . $lim;
+        $edges = $db->fetchAll($sql, array('pid' => $page_id));
+
+        echo json_encode(array(
             'success' => true,
             'edges' => $edges,
-            'count' => count($edges)
-        ]);
+            'count' => count($edges),
+        ));
         break;
-        
+
     case 'gold':
-        // Get GOLD contexts (weight >= threshold)
+        $db = lupo_ajax_get_db();
+        if (!$db) {
+            http_response_code(500);
+            echo json_encode(array('error' => 'Database unavailable'));
+            break;
+        }
         $threshold = defined('LUPO_GOLD_CONTEXT_WEIGHT_MIN') ? LUPO_GOLD_CONTEXT_WEIGHT_MIN : 0.8;
-        
+        $prefix = LUPO_TABLE_PREFIX;
         $sql = "SELECT context_id, context_name, weight_score 
-                FROM {{prefix}}contexts 
-                WHERE weight_score >= ? AND is_deleted = 0 
+                FROM {$prefix}contexts 
+                WHERE weight_score >= :th AND is_deleted = 0 
                 ORDER BY weight_score DESC 
                 LIMIT 50";
-        $contexts = query($sql, [$threshold]);
-        
-        echo json_encode([
+        $contexts = $db->fetchAll($sql, array('th' => $threshold));
+
+        echo json_encode(array(
             'success' => true,
             'contexts' => $contexts,
-            'threshold' => $threshold
-        ]);
+            'threshold' => $threshold,
+        ));
         break;
-        
+
     case 'consent':
-        $action = $_POST['consent_action'] ?? '';
-        if ($action === 'grant') {
-            setcookie('lupo_consent', '1', [
-                'expires' => time() + 365 * 86400,
-                'path' => LUPOPEDIA_SUBDIRECTORY,
-                'httponly' => false,
-                'samesite' => 'Lax'
-            ]);
-            echo json_encode(['success' => true, 'consent' => 'granted']);
-        } elseif ($action === 'revoke') {
-            setcookie('lupo_consent', '', ['expires' => 1, 'path' => LUPOPEDIA_SUBDIRECTORY]);
-            echo json_encode(['success' => true, 'consent' => 'revoked']);
+        $consent_action = isset($UNTRUSTED['post']['consent_action']) ? (string) $UNTRUSTED['post']['consent_action'] : '';
+        $cookiePath = LUPOPEDIA_SUBDIRECTORY;
+        if ($consent_action === 'grant') {
+            setcookie('lupo_consent', '1', time() + 365 * 86400, $cookiePath, '', false, false);
+            echo json_encode(array('success' => true, 'consent' => 'granted'));
+        } elseif ($consent_action === 'revoke') {
+            setcookie('lupo_consent', '', time() - 3600, $cookiePath, '', false, false);
+            echo json_encode(array('success' => true, 'consent' => 'revoked'));
         } else {
-            echo json_encode(['consent' => isset($_COOKIE['lupo_consent'])]);
+            echo json_encode(array('consent' => !empty($UNTRUSTED['cookie']['lupo_consent'])));
         }
         break;
-        
+
     case 'heartbeat':
-        $session_id = $_COOKIE['lupo_session'] ?? null;
-        if ($session_id) {
-            SessionService::updateHeartbeat($session_id);
-            echo json_encode(['success' => true, 'session_valid' => true]);
-        } else {
-            echo json_encode(['success' => false, 'session_valid' => false]);
+        $hb_sid = isset($UNTRUSTED['cookie']['lupo_session']) ? (string) $UNTRUSTED['cookie']['lupo_session'] : '';
+        $db = lupo_ajax_get_db();
+        if ($hb_sid !== '' && $db) {
+            $loaded = \App\Auth\Session::loadById($db, $hb_sid);
+            if ($loaded) {
+                $loaded->touch();
+                echo json_encode(array('success' => true, 'session_valid' => true));
+                break;
+            }
         }
+        echo json_encode(array('success' => false, 'session_valid' => false));
         break;
-        
+
     default:
         http_response_code(400);
-        echo json_encode(['error' => 'Unknown action: ' . htmlspecialchars($action)]);
+        echo json_encode(array('error' => 'Unknown action: ' . htmlspecialchars($action)));
 }

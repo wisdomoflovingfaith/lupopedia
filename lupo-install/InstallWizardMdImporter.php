@@ -312,7 +312,7 @@ class InstallWizardMdImporter
                 ':updated' => $now
             ));
 
-        } catch (PDOException $e) {
+        } catch (Exception $e) {
             $log[] = InstallWizardLogger::logEntry('error', 'Failed to insert message: ' . $e->getMessage());
             return false;
         }
@@ -342,7 +342,7 @@ class InstallWizardMdImporter
                     $log[] = InstallWizardLogger::logEntry('ok', 'Marked ' . $markedCount . ' messages as read by IDE agent ' . $actorId);
                 }
 
-            } catch (PDOException $e) {
+            } catch (Exception $e) {
                 $log[] = InstallWizardLogger::logEntry('warn', 'Could not mark messages as read for IDE agent ' . $actorId . ': ' . $e->getMessage());
             }
         }

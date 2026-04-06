@@ -13,6 +13,8 @@ if (!defined('LUPOPEDIA_PATH')) {
     return;
 }
 
+require_once LUPOPEDIA_PATH . DIRECTORY_SEPARATOR . 'lupo-includes' . DIRECTORY_SEPARATOR . 'classes' . DIRECTORY_SEPARATOR . 'InstallWizardMysqliLink.php';
+
 class InstallWizardSteps
 {
 
@@ -184,8 +186,9 @@ class InstallWizardCredentials
             );
 
             foreach ($required_tables as $table) {
-                $result = $pdo->query("SHOW TABLES LIKE '$table'");
-                if ($result && $result->fetchColumn() === 0) {
+                $t = preg_replace('/[^a-zA-Z0-9_]/', '', $table);
+                $result = $pdo->query("SHOW TABLES LIKE '" . $t . "'");
+                if (!$result || $result->rowCount() < 1) {
                     $validation_results[] = array(
                         'test' => 'crafty_tables_exist',
                         'status' => 'FAIL',
@@ -203,7 +206,7 @@ class InstallWizardCredentials
                 WHERE a.actor_id IS NULL
             ");
 
-            $orphaned_count = $result->fetchColumn();
+            $orphaned_count = $result ? (int) $result->fetchColumn() : 0;
             if ($orphaned_count > 0) {
                 $validation_results[] = array(
                     'test' => 'crafty_data_integrity',
@@ -285,13 +288,38 @@ class InstallWizardCredentials
 class InstallWizardDb
 {
 
+    /**
+     * Install wizard DB connection (mysqli, WordPress-style — avoids PDO MySQL 2014 unbuffered conflicts).
+     *
+     * @param array $vars host, port, name, user, password, charset
+     * @return InstallWizardMysqliLink
+     */
     public static function connectPdo($vars)
     {
+        return new InstallWizardMysqliLink($vars);
+    }
+
+    /**
+     * Real PDO with buffered queries for code paths that require PDO_DB (e.g. ai_activation during install).
+     *
+     * @param array $vars
+     * @return PDO
+     */
+    public static function connectPdoBuffered($vars)
+    {
+        if (!extension_loaded('pdo_mysql')) {
+            throw new Exception('pdo_mysql extension is required for PDO_DB during install.');
+        }
         $dsn = "mysql:host={$vars['host']};port={$vars['port']};dbname={$vars['name']};charset={$vars['charset']}";
-        return new PDO($dsn, $vars['user'], $vars['password'], array(
+        $opts = array(
             PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
             PDO::ATTR_TIMEOUT => 30,
-        ));
+        );
+        if (defined('PDO::MYSQL_ATTR_USE_BUFFERED_QUERY')) {
+            $opts[PDO::MYSQL_ATTR_USE_BUFFERED_QUERY] = true;
+        }
+        $pdo = new PDO($dsn, $vars['user'], $vars['password'], $opts);
+        return $pdo;
     }
 
     public static function detectLivehelpTables($pdo)
@@ -492,7 +520,7 @@ class InstallWizardSqlRunner
             try {
                 $pdo->exec($stmt);
                 $log[] = InstallWizardLogger::logEntry('ok', 'Statement executed: ' . $basename);
-            } catch (PDOException $e) {
+            } catch (Exception $e) {
                 $msg = $e->getMessage();
                 if (stripos($msg, 'already exists') !== false || stripos($msg, 'Duplicate') !== false) {
                     $log[] = InstallWizardLogger::logEntry('skip', 'Statement skipped (already exists): ' . $basename);
@@ -517,7 +545,7 @@ class InstallWizardSqlRunner
             try {
                 $pdo->exec("DROP TABLE IF EXISTS `" . str_replace('`', '``', $table) . "`");
                 $log[] = InstallWizardLogger::logEntry('ok', 'Dropped ' . $table);
-            } catch (PDOException $e) {
+            } catch (Exception $e) {
                 $log[] = InstallWizardLogger::logEntry('error', 'Failed to drop table (see server log).');
                 error_log('Lupopedia drop table ' . $table . ': ' . $e->getMessage());
             }
@@ -590,7 +618,7 @@ $table_prefix = \'' . (isset($options['table_prefix']) && preg_match('/^[a-z0-9_
 if (!preg_match(\'/^[a-z0-9_]+$/\', $table_prefix)) { die("Invalid table prefix"); }
 define(\'LUPO_TABLE_PREFIX\', $table_prefix);
 if (!defined(\'LUPOPEDIA_ABSPATH\')) { define(\'LUPOPEDIA_ABSPATH\', ABSPATH); }
-' . "if (!defined('LUPOPEDIA_PATH')) { define('LUPOPEDIA_PATH', rtrim(ABSPATH, '/\\'));\n" . 'if (!defined(\'LUPOPEDIA_PUBLIC_PATH\')) { define(\'LUPOPEDIA_PUBLIC_PATH\', \'' . $publicPathForDefineEsc . '\'); }
+' . "if (!defined('LUPOPEDIA_PATH')) { define('LUPOPEDIA_PATH', rtrim(ABSPATH, '/\\')); }\n" . 'if (!defined(\'LUPOPEDIA_PUBLIC_PATH\')) { define(\'LUPOPEDIA_PUBLIC_PATH\', \'' . $publicPathForDefineEsc . '\'); }
 if (!defined(\'LUPOPEDIA_URL\')) { define(\'LUPOPEDIA_URL\', LUPOPEDIA_PUBLIC_PATH); }
 define(\'LUPOPEDIA_CONFIG_LOADED\', true);
 ' . (isset($options['site_name']) ? "define('LUPOPEDIA_SITE_NAME', '" . addslashes($options['site_name']) . "');\n" : '')
@@ -703,12 +731,7 @@ require_once ABSPATH . LUPO_INCLUDES_DIR . \'/bootstrap.php\';
     private static function enqueueBackgroundCommand($db_vars, &$log, $table_prefix)
     {
         try {
-            $pdo = new PDO(
-                $db_vars['type'] . ':host=' . $db_vars['host'] . ';port=' . $db_vars['port'] . ';dbname=' . $db_vars['name'] . ';charset=' . $db_vars['charset'],
-                $db_vars['user'],
-                $db_vars['password'],
-                array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION)
-            );
+            $pdo = new InstallWizardMysqliLink($db_vars);
 
             $commands_table = $table_prefix . 'system_commands';
             $now = (int) gmdate('YmdHis');
@@ -720,7 +743,7 @@ require_once ABSPATH . LUPO_INCLUDES_DIR . \'/bootstrap.php\';
                 $rowMax = $stmtMax ? $stmtMax->fetch(PDO::FETCH_ASSOC) : null;
                 $maxId = $rowMax && isset($rowMax['mx']) ? (int) $rowMax['mx'] : 0;
                 $command_id = $maxId + 1;
-            } catch (PDOException $e) {
+            } catch (Exception $e) {
                 // If the table is missing or unreadable, skip enqueue silently.
                 $log[] = InstallWizardLogger::logEntry('skip', 'Could not inspect system_commands for next command_id; skipping background enqueue.');
                 return;
@@ -784,7 +807,7 @@ require_once ABSPATH . LUPO_INCLUDES_DIR . \'/bootstrap.php\';
 
             $log[] = InstallWizardLogger::logEntry('ok', 'Enqueued background command (ID: ' . $command_id . ')');
 
-        } catch (PDOException $e) {
+        } catch (Exception $e) {
             $log[] = InstallWizardLogger::logEntry('skip', 'Could not enqueue background command: ' . $e->getMessage());
         }
     }
@@ -978,7 +1001,7 @@ class InstallWizardMainAdmin
             }
 
             return true;
-        } catch (PDOException $e) {
+        } catch (Exception $e) {
             $log[] = InstallWizardLogger::logEntry('error', 'Main admin creation failed: ' . $e->getMessage());
             error_log('Lupopedia InstallWizardMainAdmin: ' . $e->getMessage());
             return false;
@@ -1186,7 +1209,7 @@ class InstallWizardDepartments
             try {
                 $ins->execute(array($now, $now));
                 $log[] = InstallWizardLogger::logEntry('ok', 'Created system department (department_id = 0).');
-            } catch (PDOException $e) {
+            } catch (Exception $e) {
                 $log[] = InstallWizardLogger::logEntry('error', 'Failed to create system department (see server log).');
                 error_log('Lupopedia ensureSystemDepartment: ' . $e->getMessage());
             }
@@ -1212,7 +1235,7 @@ class InstallWizardDepartments
         try {
             $ins->execute(array($now, $now));
             $log[] = InstallWizardLogger::logEntry('ok', 'Created default department (department_id = 1).');
-        } catch (PDOException $e) {
+        } catch (Exception $e) {
             $log[] = InstallWizardLogger::logEntry('error', 'Failed to create default department (see server log).');
             error_log('Lupopedia ensureDefaultDepartment: ' . $e->getMessage());
         }
@@ -1288,7 +1311,7 @@ class InstallWizardChannels
                     $log[] = InstallWizardLogger::logEntry('ok', 'Assigned system actor (0) as captain for channel ' . $channelId . '.');
                     $nextAcrId++;
                 }
-            } catch (PDOException $e) {
+            } catch (Exception $e) {
                 $msg = $e->getMessage();
                 $log[] = InstallWizardLogger::logEntry('error', 'Reserved channel ' . $channelId . ' (' . $def['key'] . ') failed: ' . $msg);
                 error_log('Lupopedia reserved channel ' . $channelId . ': ' . $msg);
@@ -1387,7 +1410,7 @@ class InstallWizardChannels
                 $insAcr->execute(array($nextAcrId, $actorId, $nextChannelId, $now, $now));
                 $map[$actorId] = $nextChannelId;
                 $log[] = InstallWizardLogger::logEntry('ok', 'Created personal channel ' . $channelKey . ' (id ' . $nextChannelId . ') and assigned captain.');
-            } catch (PDOException $e) {
+            } catch (Exception $e) {
                 $log[] = InstallWizardLogger::logEntry('error', 'Personal channel creation failed (see server log).');
                 error_log('Lupopedia createOperatorChannels ' . $slug . ': ' . $e->getMessage());
             }
@@ -1401,7 +1424,7 @@ class InstallWizardChannels
         try {
             $checkTbl = $pdo->query("SHOW TABLES LIKE 'livehelp_users'");
             $livehelpUsersExists = ($checkTbl && $checkTbl->rowCount() > 0);
-        } catch (PDOException $e) {
+        } catch (Exception $e) {
             // ignore
         }
         if ($livehelpUsersExists) {
@@ -1464,7 +1487,7 @@ class InstallWizardChannels
                     }
                 }
             }
-        } catch (PDOException $e) {
+        } catch (Exception $e) {
             $log[] = InstallWizardLogger::logEntry('error', 'Admin channel captain assignment failed (see server log).');
             error_log('Lupopedia createOperatorChannels admin channel: ' . $e->getMessage());
         }
@@ -1496,7 +1519,7 @@ class InstallWizardChannels
                     $log[] = InstallWizardLogger::logEntry('ok', 'Reserved channels created: ' . implode(', ', $missing));
                 }
             }
-        } catch (PDOException $e) {
+        } catch (Exception $e) {
             $log[] = InstallWizardLogger::logEntry('error', 'Could not verify reserved channels.');
             error_log('Lupopedia ensure_reserved_channels: ' . $e->getMessage());
         }
@@ -1568,14 +1591,14 @@ class InstallWizardChannels
                     $insChannel->execute(array($nextChannelId, $federationNodeId, $actorId, $defaultActorId, $departmentId, $channelKey, $channelKey, $channelName, $description, $now, $now));
                     $insAcr->execute(array($nextAcrId, $actorId, $nextChannelId, $now, $now));
                     $log[] = InstallWizardLogger::logEntry('ok', 'Created missing personal channel ' . $channelKey . ' (id ' . $nextChannelId . ').');
-                } catch (PDOException $e) {
+                } catch (Exception $e) {
                     $log[] = InstallWizardLogger::logEntry('error', 'Failed to create missing personal channel (see server log).');
                     error_log('Lupopedia ensureOperatorChannels ' . $slug . ': ' . $e->getMessage());
                 }
                 $nextChannelId++;
                 $nextAcrId++;
             }
-        } catch (PDOException $e) {
+        } catch (Exception $e) {
             $log[] = InstallWizardLogger::logEntry('error', 'Could not ensure personal channels.');
             error_log('Lupopedia ensureOperatorChannels: ' . $e->getMessage());
         }
@@ -1656,7 +1679,7 @@ class InstallWizardBannedIdentities
                 $pdo->exec("INSERT INTO " . $banned_t . " (banned_actor_id, actor_id, ip_address, reason, banned_ymdhis, banned_by_actor_id, created_ymdhis, updated_ymdhis, is_deleted, deleted_ymdhis) VALUES (" . $nextBanId . ", " . $nextActorId . ", NULL, 'banned_test_identity_human', " . $now . ", 1000, " . $now . ", " . $now . ", 0, NULL)");
                 $log[] = InstallWizardLogger::logEntry('ok', 'Stoned Wolfie (human) banned identity inserted (actor_id ' . $nextActorId . ').');
             }
-        } catch (PDOException $e) {
+        } catch (Exception $e) {
             $log[] = InstallWizardLogger::logEntry('error', 'Stoned Wolfie banned identities: ' . $e->getMessage());
             error_log('Lupopedia ensureStonedWolfieBannedIdentities: ' . $e->getMessage());
         }

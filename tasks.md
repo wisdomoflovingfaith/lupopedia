@@ -155,7 +155,7 @@ Phase 1 aligned with Windsurf handoff: [lupo-docs/status/WINDSURF_TO_CURSOR_PROJ
 **Subtasks:**
 - [x] Implement createProject(), getProjectById(), getProjectByKey(), getProjectBySlug()
 - [x] Implement updateProject(), archiveProject(), freezeProject(), listProjects()
-- [x] PHP 5.6+ compatible; PDO_DB only; BIGINT timestamps
+- [x] PHP 7.4+ compatible; PDO_DB only; BIGINT timestamps
 - [x] Registered in bootstrap as $GLOBALS['lupo_project_service']
 
 **Acceptance Criteria:** Met.

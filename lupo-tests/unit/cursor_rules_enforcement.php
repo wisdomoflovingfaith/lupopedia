@@ -4,7 +4,7 @@
  *
  * Validates that .cursor/lupopedia_rules.json and .cursor/rules/*.mdc exist,
  * are parseable, have no duplicate rule IDs, and that each rule has a
- * corresponding .mdc file. Standalone PHP 5.6 compatible; no test framework.
+ * corresponding .mdc file. Standalone PHP 7.4 compatible; no test framework.
  *
  * Usage: php lupo-tests/unit/cursor_rules_enforcement.php
  * Exit: 0 on pass, 1 on failure.

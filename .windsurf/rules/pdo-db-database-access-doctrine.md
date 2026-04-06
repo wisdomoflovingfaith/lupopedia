@@ -15,7 +15,7 @@ lupopedia.headers:
   lupopedia.version: "4.0.76"
   lupopedia.schema: "windsurf_rule"
   file_path_from_root: ".windsurf/rules/pdo-db-database-access-doctrine.md"
-  last_modified_utc: "20260402"
+  last_modified_utc: "20260406"
   system_version: "4.0.76"
   source_path: "lupo-rules/root/pdo-db-database-access-doctrine.md"
   artifact_type: "rule"
@@ -34,14 +34,14 @@ lupopedia.rules:
   overrides: []
   provenance:
     authored_by: "wolfie"
-    authored_date: "20260402"
+    authored_date: "20260406"
     last_reviewed_by: "windsurf"
-    last_reviewed_date: "20260402"
+    last_reviewed_date: "20260406"
     version: "1.0"
     status: "active"
 lupopedia.footer:
   version: "4.0.76"
-  last_verified: "20260402"
+  last_verified: "20260406"
   last_verified_by: "windsurf"
   orchestrator: "windsurf"
   next_action:

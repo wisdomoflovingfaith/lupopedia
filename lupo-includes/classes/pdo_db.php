@@ -140,10 +140,23 @@ class PDO_DB
         $dsn = $this->getDsn($host, $dbname, $type);
 
         try {
-            $this->pdo = new PDO($dsn, $user, $pass, $this->options);
+            $opts = $this->options;
+            if ($type === 'mysql' && extension_loaded('pdo_mysql')) {
+                $opts[PDO::MYSQL_ATTR_USE_BUFFERED_QUERY] = true;
+            }
+            $this->pdo = new PDO($dsn, $user, $pass, $opts);
+            if ($type === 'mysql' && extension_loaded('pdo_mysql')) {
+                try {
+                    $this->pdo->setAttribute(PDO::MYSQL_ATTR_USE_BUFFERED_QUERY, true);
+                } catch (Exception $e) {
+                    // Rare unsupported build; constructor option still preferred.
+                }
+            }
             // Must match DSN charset=utf8mb4 and utf8mb4_* table collations (avoid utf8mb3 vs utf8mb4 mix).
-            $this->pdo->exec("SET NAMES 'utf8mb4'");
-            $this->pdo->exec("SET CHARACTER SET 'utf8mb4'");
+            if ($type === 'mysql') {
+                $this->pdo->exec("SET NAMES 'utf8mb4'");
+                $this->pdo->exec("SET CHARACTER SET 'utf8mb4'");
+            }
         } catch (PDOException $e) {
             $this->lastError = $e->getMessage();
             throw $e;
@@ -193,7 +206,11 @@ class PDO_DB
     public function fetchAll($sql, $params = array())
     {
         $stmt = $this->query($sql, $params);
-        return $stmt->fetchAll();
+        try {
+            return $stmt->fetchAll();
+        } finally {
+            $stmt->closeCursor();
+        }
     }
 
     /**
@@ -205,8 +222,12 @@ class PDO_DB
     public function fetchRow($sql, $params = array())
     {
         $stmt = $this->query($sql, $params);
-        $result = $stmt->fetch();
-        return $result ?: null;
+        try {
+            $result = $stmt->fetch();
+            return ($result === false) ? null : $result;
+        } finally {
+            $stmt->closeCursor();
+        }
     }
 
     /**
@@ -218,7 +239,11 @@ class PDO_DB
     public function fetchOne($sql, $params = array())
     {
         $stmt = $this->query($sql, $params);
-        return $stmt->fetchColumn(0);
+        try {
+            return $stmt->fetchColumn(0);
+        } finally {
+            $stmt->closeCursor();
+        }
     }
 
     /**
@@ -241,12 +266,17 @@ class PDO_DB
             implode(', ', $placeholders)
         );
 
+        $stmt = null;
         try {
-            $this->query($sql, $data);
+            $stmt = $this->query($sql, $data);
             return $this->pdo->lastInsertId();
         } catch (PDOException $e) {
             $this->lastError = $e->getMessage();
             return false;
+        } finally {
+            if ($stmt !== null) {
+                $stmt->closeCursor();
+            }
         }
     }
 
@@ -274,12 +304,17 @@ class PDO_DB
 
         $params = array_merge($data, $whereParams);
 
+        $stmt = null;
         try {
             $stmt = $this->query($sql, $params);
             return $stmt->rowCount();
         } catch (PDOException $e) {
             $this->lastError = $e->getMessage();
             return 0;
+        } finally {
+            if ($stmt !== null) {
+                $stmt->closeCursor();
+            }
         }
     }
 
@@ -298,12 +333,17 @@ class PDO_DB
             $where
         );
 
+        $stmt = null;
         try {
             $stmt = $this->query($sql, $params);
             return $stmt->rowCount();
         } catch (PDOException $e) {
             $this->lastError = $e->getMessage();
             return 0;
+        } finally {
+            if ($stmt !== null) {
+                $stmt->closeCursor();
+            }
         }
     }
 

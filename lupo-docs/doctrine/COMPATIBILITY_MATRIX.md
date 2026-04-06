@@ -83,48 +83,37 @@ X-Lupo-Actor-Identity: "Lupopedia Audit Tool (Auto-Fixed)"
 X-Lupo-File-Path: lupo-docs/doctrine/COMPATIBILITY_MATRIX.md
 ---
 
-# PHP Compatibility Matrix (5.3 → 8.1+)
+# PHP Compatibility Matrix (7.4 → 8.x)
 
-**Status:** Canonical  
-**Applies to:** Lupopedia 3.0.0 — all generated PHP code  
-**Overrides:** Any previous assumptions about PHP version requirements.
+**Status:** Canonical summary; syntax detail: **`lupo-rules/root/php-7-4-compatibility.md`**  
+**Applies to:** Lupopedia 4.0.x — core PHP code (`lupo-includes/`, entrypoints, themes)  
+**Overrides:** Older “PHP 5.3 / 5.6 matrix” language elsewhere in this file’s history.
 
 ---
 
 ## 1. Compatibility range (permanent rule)
 
-Lupopedia 3.0.0 must run on **PHP 5.3 → PHP 8.1+**. This is the full compatibility matrix.
+Lupopedia **core** must run on **PHP 7.4+** through **supported PHP 8.x**.
 
 All generated code must:
 
-- Run **without syntax errors** on PHP 5.3
-- **Avoid** deprecated/removed functions that break on PHP 7/8
-- **Avoid** modern PHP features that do not exist in PHP 5.3
+- Run **without syntax errors** on PHP 7.4
+- **Avoid** deprecated/removed functions that break on PHP 8
+- **Avoid** PHP **8.0+ only** language features in **shared** core paths unless a file is explicitly scoped modern-only (see **`php-7-4-compatibility.md`**)
 - **Gracefully handle** behavior changes across versions (e.g. JSON, count, errors)
 
 ---
 
-## 2. Forbidden PHP features (never use)
+## 2. Forbidden PHP features (shared core paths)
 
-These features do not exist in PHP 5.3 or are incompatible across the matrix and must **never** appear in generated code:
+Do **not** use these in **`lupo-includes/`**, **`admin.php`**, **`index.php`**, and theme layouts unless the file is explicitly modern-only:
 
-- `declare(strict_types=1);` (strict types)
-- Return type declarations (e.g. `: int`, `: string`, `: void`)
-- Scalar type hints in parameters (e.g. `function foo(int $x)`)
-- Nullable types (`?string`, `string|null`)
-- Union types (`string|int`)
-- Attributes (`#[...]`)
-- Arrow functions (`fn() =>`)
-- Anonymous classes (`new class { ... }`)
-- Match expressions (PHP 8)
-- Named arguments (PHP 8)
-- Spread operator in arrays (`...$arr`) (PHP 5.6+; avoid in shared paths if targeting 5.3)
-- PHP 8.1+ language-level enums
-- Typed properties (PHP 7.4+)
-- Generators (`yield`; avoid in shared code paths targeting 5.3 compatibility unless needed)
-- Traits (avoid unless explicitly instructed; prefer plain classes for 5.3 clarity)
+- Union types (`string|int`), **`match`**, **named arguments**, **enums**, **attributes**, **`readonly`** properties (PHP 8.0+)
+- `declare(strict_types=1)` in core unless explicitly allowed for that file
 
-**Note:** **MySQL ENUM columns** are allowed. Only PHP language enums are forbidden.
+**Allowed on PHP 7.4:** null coalescing (`??`, `??=`), short arrays (`[]`), arrow functions (`fn`), typed properties, scalar parameter/return types, `session_set_cookie_params` array form.
+
+**Note:** **MySQL ENUM columns** are allowed. Only PHP language enums are forbidden in shared core paths.
 
 ---
 

@@ -1,13 +1,20 @@
 <?php
+
 /**
- * wolfie.headers: {
- *   file_path_from_root: "lupo-includes/classes/ConsensusService.php",
- *   system_version: "4.0.66",
- *   channel_id: 42,
- *   actor_id: 1006,
- *   purpose: "Orchestrates multi-agent task consensus and ethical alignment checks.",
- *   last_modified_utc: "20260308"
- * }
+ * LUPOPEDIA HEADERS (class — YAML excerpt; canonical: lupo-docs/doctrine/LUPOPEDIA_HEADERS/)
+ *
+ * lupopedia.headers:
+ *   lupopedia.schema: class
+ *   file_path_from_root: lupo-includes/classes/ConsensusService.php
+ *   last_modified_utc: "20260405233750"
+ *   when_updated: "20260405233750"
+ *   channel_id: 42
+ *   actor_id: 102
+ *   delegation_chain: cursor:root
+ *   artifact_type: class
+ *   artifact_kind: service
+ *   purpose: Multi-agent consensus tasks via TaskService and ChannelService; THEMIS audit hook.
+ *   tags: [consensus, channels, tasks, service]
  */
 
 class ConsensusService
@@ -25,6 +32,9 @@ class ConsensusService
         require_once dirname(__FILE__) . '/TaskService.php';
         require_once dirname(__FILE__) . '/ChannelService.php';
         require_once dirname(__FILE__) . '/ActorRequirementsValidator.php';
+        if (!class_exists('IdGenerator', false)) {
+            require_once dirname(__FILE__) . '/IdGenerator.php';
+        }
         $this->taskService = new TaskService($db, $prefix);
         $this->channelService = new ChannelService($db, $prefix);
         $this->requirementsValidator = new ActorRequirementsValidator($db, $prefix);
@@ -36,7 +46,7 @@ class ConsensusService
     public function initiateConsensusTask($channelId, $actorId, $title, $description)
     {
         // 1. Create Pending Task
-        $taskKey = 'consensus_' . time();
+        $taskKey = 'consensus_' . IdGenerator::generate();
         $this->taskService->createTask($channelId, $taskKey, $actorId, $title, $description, 1); // WOLFIE as parent
 
         // 2. Notify Channel via post

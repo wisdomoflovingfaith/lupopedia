@@ -9,6 +9,8 @@ _SCRIPTS_DIR = os.path.dirname(os.path.abspath(__file__))
 if _SCRIPTS_DIR not in sys.path:
     sys.path.insert(0, _SCRIPTS_DIR)
 
+from lib.header_validation import inject_legacy_actor_from_author
+
 try:
     import yaml
 except ImportError:
@@ -293,7 +295,9 @@ def validate_required_header_fields(hdr, file_path):
     if not isinstance(hdr, dict):
         print("[ERROR] %s: lupopedia.headers must be a mapping" % (file_path,))
         return False
-    
+
+    inject_legacy_actor_from_author(hdr)
+
     # Validate author fields (new or legacy format)
     if not validate_author_fields(hdr, file_path):
         return False
@@ -494,11 +498,18 @@ def _find_lupopedia_repo_root(start_file):
     return os.path.dirname(os.path.abspath(start_file))
 
 
-def validate_edge_targets(file_path, edges):
+def _is_external_edge_target(tp: str) -> bool:
+    t = str(tp).strip()
+    return t.startswith("http://") or t.startswith("https://")
+
+
+def validate_edge_targets(file_path, edges, strict=False):
     """
     Validate edge file targets on disk.
     ``edges`` may be the parsed ``lupopedia.edges`` dict (preferred) or a raw YAML
     fragment string (legacy) under ``lupopedia.edges``.
+    If strict=True (--check-links), missing repo-relative targets fail validation.
+    External http(s) ``to:`` values are skipped (not checked as local paths).
     """
     if not edges:
         return True
@@ -523,9 +534,10 @@ def validate_edge_targets(file_path, edges):
                         outbound = ob
     except Exception as e:
         print("[WARN] %s: Could not parse edges: %s" % (file_path, e))
-        return True
+        return False if strict else True
 
     repo_root = _find_lupopedia_repo_root(file_path)
+    missing = []
     for edge in outbound:
         if not isinstance(edge, dict):
             continue
@@ -533,11 +545,56 @@ def validate_edge_targets(file_path, edges):
         if not target_path:
             continue
         tp = str(target_path).strip().replace("\\", "/")
+        if _is_external_edge_target(tp):
+            continue
         full_path = os.path.normpath(os.path.join(repo_root, tp))
         if not os.path.exists(full_path):
-            print("[WARN] %s: Edge target not found: %s" % (file_path, tp))
-            print("   Expected at: %s" % (full_path,))
+            if strict:
+                print("[ERROR] %s: Broken edge — target not found: %s" % (file_path, tp))
+                print("   Expected at: %s" % (full_path,))
+                missing.append(tp)
+            else:
+                print("[WARN] %s: Edge target not found: %s" % (file_path, tp))
+                print("   Expected at: %s" % (full_path,))
 
+    if strict and missing:
+        return False
+    return True
+
+
+def _ymdhis_compare_int(val):
+    """Normalize header/footer UTC to 14-digit int for comparison; None if not comparable."""
+    if val is None:
+        return None
+    s = str(val).strip().strip('"').strip("'")
+    if not s.isdigit():
+        return None
+    if len(s) == 8:
+        s = s + "000000"
+    if len(s) != 14:
+        return None
+    return int(s)
+
+
+def validate_when_updated_ge_last_verified(parsed, file_path):
+    """
+    Logical check: lupopedia.headers.when_updated must not be older than lupopedia.footer.last_verified
+    (same-timestamp batch updates allowed).
+    """
+    hdr = parsed.get("lupopedia.headers")
+    ftr = parsed.get("lupopedia.footer")
+    if not isinstance(hdr, dict) or not isinstance(ftr, dict):
+        return True
+    wu = _ymdhis_compare_int(hdr.get("when_updated"))
+    lv = _ymdhis_compare_int(ftr.get("last_verified"))
+    if wu is None or lv is None:
+        return True
+    if wu < lv:
+        print(
+            "[ERROR] %s: when_updated (%s) < last_verified (%s) — impossible ordering"
+            % (file_path, hdr.get("when_updated"), ftr.get("last_verified"))
+        )
+        return False
     return True
 
 def validate_history(history_block, file_path):
@@ -678,7 +735,7 @@ def validate_web_path(web_path, fed_node, file_path):
     # For internal nodes (0, 1), web_path can be relative or absolute
     return True, "Valid web_path"
 
-def validate_yaml_file(file_path, content):
+def validate_yaml_file(file_path, content, strict_edge_links=False):
     """
     Validate YAML front matter for LUPOPEDIA HEADERS.
 
@@ -816,12 +873,15 @@ def validate_yaml_file(file_path, content):
         if not isinstance(eb, dict):
             print("[ERROR] %s: lupopedia.edges must be a mapping" % (file_path,))
             return False, None
-        if not validate_edge_targets(file_path, eb):
+        if not validate_edge_targets(file_path, eb, strict=strict_edge_links):
             return False, None
 
     if "lupopedia.history" in parsed:
         if not validate_history(parsed, file_path):
             return False, None
+
+    if not validate_when_updated_ge_last_verified(parsed, file_path):
+        return False, None
 
     return True, parsed
 
@@ -835,6 +895,11 @@ if __name__ == "__main__":
         "--check-db",
         action="store_true",
         help="After validation, warn if outbound_edges/history disagree with MySQL for content_id",
+    )
+    parser.add_argument(
+        "--check-links",
+        action="store_true",
+        help="Fail if any outbound edge 'to:' repo-relative path does not exist on disk (http/https skipped)",
     )
     args = parser.parse_args()
     file_path = args.file_path
@@ -852,7 +917,7 @@ if __name__ == "__main__":
 
     content = content.replace("\r\n", "\n")
 
-    ok, parsed = validate_yaml_file(file_path, content)
+    ok, parsed = validate_yaml_file(file_path, content, strict_edge_links=args.check_links)
     if ok and args.check_db and parsed is not None:
         check_db_sync_universal(file_path, parsed, check_db_flag=True)
 

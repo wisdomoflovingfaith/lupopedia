@@ -2,10 +2,10 @@
 lupopedia.headers:
   header_format_version: 2
   lupopedia.schema: prd
-  when_updated: "20260404165054"
+  when_updated: "20260405205506"
   file_path_from_root: "lupo-docs/prd/33_softaculous_certification_4_1_0_gate.md"
   web_path: "http://www.lupopedia.com/lupopedia/lupo-docs/prd/33_softaculous_certification_4_1_0_gate.md"
-  last_modified_utc: "20260404165054"
+  last_modified_utc: "20260405205506"
   federation_node_id: 0
   channel_id: 42
   thread_id: "prd-softaculous-4-1-0-gate"
@@ -49,7 +49,7 @@ lupopedia.edges:
     - to: "lupo-docs/prd/00_root_constitutional_system_requirements.md"
       type: references
       weight: 1.0
-      reason: "Constitutional anchor — PHP 5.6+, no banned stack patterns, subdirectory install"
+      reason: "Constitutional anchor — PHP 7.4+, no banned stack patterns, subdirectory install"
     - to: "lupo-docs/prd/13_crafty_integration.md"
       type: references
       weight: 1.0
@@ -203,7 +203,7 @@ lupopedia.edges:
       weight: 1.0
       reason: "Mobile native app and separation; mobile visitor checklist §7.4"
 lupopedia.footer:
-  last_verified: "20260404064548"
+  last_verified: "20260405205506"
   verified_by:
     identity_type: "actor"
     actor_id: 102
@@ -212,7 +212,7 @@ lupopedia.footer:
     - "PRD header status approved — gate text is authoritative; execute §7.4–§7.9 + §10 via lupo-docs/versions/4.0.94/TODO.md (§12)"
     - "LILITH (actor_id 2) final audit §13 — APPROVED for code (100/100); §7.4 = Crafty parity roadmap; §10 = 4.1.0 gate; §12 traceability in TODO.md"
     - "Implementers: pick §7.4 rows (e.g. mobile client chat, real visitor list, typing preview) after TODO.md rows exist; 34 doctrine ghosts are not blocking this track"
-    - "Before Softaculous submit: run build_softaculous_package.sh; zip must contain zero dotfiles; install wizard writes .htaccess (WordPress pattern per SOFTACULOUS_PACKAGE_BUILD.md)"
+    - "Before Softaculous submit: run build_softaculous_package.sh; zip must contain zero dotfiles; install wizard attempts .htaccess when host allows (WordPress pattern per SOFTACULOUS_PACKAGE_BUILD.md); must not fail install if absent — PRD 00 §2, §9.5, §18"
     - "Section 14 WordPress study: LILITH answered all six questions (answers/20260404_061932_*); execute status/wordpress_pattern_implementation_tasks_20260404.md; trace in versions/*/TODO.md per §12"
     - "WordPress patterns: read lupo-docs/doctrine/LEARNED_FROM_WORDPRESS.md (§14.5) before scanning lupo-archive/legacy/wordpress-reference/"
 ---
@@ -466,7 +466,7 @@ In **`craftysyntax-reference`**, many toggles are **CHAR** comparisons (e.g. **`
 
 All features in scope must respect root rules, including:
 
-- **PHP 5.6+** through supported 8.x in shared core paths (no PHP 8-only syntax in those paths).
+- **PHP 7.4+** through supported 8.x in shared core paths (avoid PHP 8.0+ only syntax in those paths per `php-7-4-compatibility.md`).
 - **No new external dependencies** beyond what is already vendored in-tree (e.g. **Composer is not** introduced for this work).
 - **Shared hosting:** no reliance on root-only server features; subdirectory install (`LUPOPEDIA_PUBLIC_PATH`) must remain valid.
 - **PDO_DB / application logic:** no DB triggers, FKs, stored procedures; **BIGINT UTC** timestamps; explicit column lists on INSERT where applicable.
@@ -481,10 +481,11 @@ One-click / auto-installers deploy the **entire** project under a **subdirectory
 | Unknown | Requirement |
 |---------|-------------|
 | **Host OS** | Code and paths must work on **Windows** and **Linux** hosting. Use **`LUPOPEDIA_PATH`**, **`LUPOPEDIA_PUBLIC_PATH`**, **`LUPO_TABLE_PREFIX`**, and doctrine-resolved paths—**no** hardcoded drive letters, **no** assuming `/` vs `\` without `DIRECTORY_SEPARATOR` or PHP’s portable APIs. |
-| **Exact PHP version** | Product floor is **PHP 5.6+** through supported **8.x** on shared core paths (constitutional rule). **Do not** assume a specific minor; optional features must **probe** at runtime (`PHP_VERSION`, `extension_loaded`, `function_exists`) and degrade gracefully. |
+| **Exact PHP version** | Product floor is **PHP 7.4+** through supported **8.x** on shared core paths (constitutional rule). **Do not** assume a specific minor; optional features must **probe** at runtime (`PHP_VERSION`, `extension_loaded`, `function_exists`) and degrade gracefully. |
 | **PHP build / extensions** | Shared hosts omit or compile out extensions. **Never** assume **GD**, **Imagick**, **mbstring**, **fileinfo**, **OpenSSL**, etc. **Probe** with `extension_loaded` / `function_exists`; use **`try` / `catch`** where APIs can throw. **Image uploads (4.1.0 gate):** **Storing user uploads “as-is” without decode/re-encode is a known high-risk pattern** (polyglots, misleading types). **When GD** (or a **product-approved** equivalent image library) **is present:** **decode and re-encode** to a narrow output format and store only that artifact. **When GD is missing:** user image uploads **MUST be disabled entirely** with a **clear** operator-facing message that **GD** (or equivalent) is **required** before uploads can be enabled. **No** “magic-byte only” validation **without** decode/re-encode is permitted for **4.1.0** visitor/operator uploads. **No** silent acceptance of raw user binaries as “safe images.” Hosters **must** enable **GD** (or equivalent) before user image uploads are permitted. **Always** show **§5.2** admin **security warnings** aligned with this rule. Non-image fallbacks (e.g. skip thumbnails only for **trusted** system assets) are product-defined and must not weaken visitor-upload rules. |
 | **Dependencies** | **No Composer**, **no Laravel**, **no npm/webpack-required** runtime for certification scope. Use only libraries **already in-tree** under **`lupo-includes/`** (and documented exceptions such as **PHPMailer** in **§8**). **No** pulling framework stacks into the tree for this work. |
 | **PHP namespaces** | **`namespace`** is used for **first-party** Lupopedia code (e.g. under **`app/`**, namespaced modules) per project conventions. **Do not** introduce namespaced **third-party** libraries via Composer; there is **no** parallel “vendor PSR-4 tree” for external packages. |
+| **`mod_rewrite` / `.htaccess`** | **Optional for correctness.** When **`AllowOverride`** and Apache-style rewrites work, the installer **may** write marker-based **`.htaccess`** for clean URLs. When they do **not**, **all** routes (including chat/API surfaces scoped to this PRD and **PRD 28**) **must** remain reachable via **`index.php`** and **query-parameter** (or **`PATH_INFO`**) fallbacks (**PRD 00 §2**, **§9.5**). Installer **must not** fail solely because **`.htaccess`** cannot be written or applied; **warn** and document fallback URLs. **Search indexing** is **not** a product assumption (**PRD 00 §18**). |
 
 **Preflight / installer UX:** The wizard should **report** PHP version and extension status; missing **security-relevant** extensions must be called out as **warnings** (not buried footnotes). See **§5.2** for ongoing admin visibility.
 
@@ -665,7 +666,7 @@ Do not add npm/webpack requirements for certification scope.
 Exact Softaculous XML/checklists evolve by vendor; **completion** for this PRD means:
 
 1. **Packaging:** Single payload that installs on **subdirectory** docroot with documented **`lupopedia-config.php`** (or successor) placement.
-2. **Preflight:** PHP version check (5.6+ floor), **extension** capability check with **§5.1** / **§5.2** **security warnings** for missing **GD** (etc.), writable paths documented; subdirectory / `LUPOPEDIA_PUBLIC_PATH` behavior explicit.
+2. **Preflight:** PHP version check (7.4+ floor), **extension** capability check with **§5.1** / **§5.2** **security warnings** for missing **GD** (etc.), writable paths documented; subdirectory / `LUPOPEDIA_PUBLIC_PATH` behavior explicit.
 3. **Post-install:** Link to operator login, **livehelp_js.php** test page snippet, and **`lupopedia_js.php`** test snippet.
 4. **Uninstall / reset:** Documented behavior (even if “manual DB drop” in 4.1.0—must be explicit).
 5. **Evidence:** Stored decision or `lupo-docs/status/` artifact with hoster name, date, and PASS/FAIL matrix.
@@ -678,7 +679,7 @@ Exact Softaculous XML/checklists evolve by vendor; **completion** for this PRD m
 2. §7.1 operator unified chat meets **functional** parity with Crafty reference (colors/panels, multi-session).
 3. §7.4 checklist is **all checked** or each gap has an **APPROVED** decision recording deferral; **§7.5** (GC / rollups), **§7.6** (autoinvite / visitor questions), **§7.7** (modernization + **§5.1** / **§5.2** unknown-host + admin extension warnings), **§7.8** (emoji / **`lupo-emoji`** tokens), and **§7.9** (multilingual UI + locale decision) are **all checked** or deferrals **APPROVED**.
 4. §7.3 **`admin.php`** redesign meets **demo-ready** operator workflow (multi-chat, core Crafty-parity screens)—or an **APPROVED** decision documents intentional deferral with evidence.
-5. §5 constraints verified by static/runtime smoke on **PHP 5.6** (or documented minimum aligned with root PRD) and a current 8.x.
+5. §5 constraints verified by static/runtime smoke on **PHP 7.4** (or documented minimum aligned with root PRD) and a current 8.x.
 6. §9 evidence artifact exists (Softaculous or equivalent hoster certification), and **§2.1** vendor acceptance is documented where one-click listing is claimed.
 7. **Constitutional compliance verification:** A **documented audit** for the release candidate (recommended: **LILITH**, **actor_id 2**) confirms, for **new** schema and **new** application code in scope for **4.1.0**, at least: **no** foreign keys, triggers, or stored procedures; stored times use **BIGINT UTC** `YYYYMMDDHHIISS` (no DB `DATETIME`/`TIMESTAMP` automation); **no** `AUTO_INCREMENT` / `SERIAL` on registry-style or doctrine-forbidden tables; **INSERT** lists columns explicitly where doctrine applies; **no** hard deletes on canonical tables (**soft delete** fields per root rules); **no** ORM magic or lazy loading in new paths; agent/tooling outputs that affect certification remain **deterministic** where doctrine requires it.
 
@@ -738,11 +739,11 @@ Exact Softaculous XML/checklists evolve by vendor; **completion** for this PRD m
 
 | Area | WordPress behavior (this tree) | Lupopedia alignment |
 |------|-------------------------------|---------------------|
-| **`.htaccess`** | Not part of the **core** tree as a default root file; **`save_mod_rewrite_rules()`** in `wp-admin/includes/misc.php` writes **`get_home_path() . '.htaccess'`** when **`got_mod_rewrite()`** and permalinks need rules, using **`insert_with_markers()`** (`# BEGIN WordPress` … `# END WordPress`), **`flock`**, create-if-missing via **`touch`**. Parallel path: **`iis7_save_url_rewrite_rules()`** writes **`web.config`** on IIS. | **Shipped:** `InstallWizardHtaccessWriter` writes full docroot + `lupo-database/.htaccess` after config; **Softaculous zip** strips dotfiles (**`build_softaculous_package.sh`**). **§14.4 (LILITH):** adopt **`# BEGIN LUPOPEDIA` … `# END LUPOPEDIA`** marker merge; keep **immediate** install-time write (chat/API rewrites required). |
+| **`.htaccess`** | Not part of the **core** tree as a default root file; **`save_mod_rewrite_rules()`** in `wp-admin/includes/misc.php` writes **`get_home_path() . '.htaccess'`** when **`got_mod_rewrite()`** and permalinks need rules, using **`insert_with_markers()`** (`# BEGIN WordPress` … `# END WordPress`), **`flock`**, create-if-missing via **`touch`**. Parallel path: **`iis7_save_url_rewrite_rules()`** writes **`web.config`** on IIS. | **Shipped:** `InstallWizardHtaccessWriter` writes full docroot + `lupo-database/.htaccess` after config when the environment allows; **Softaculous zip** strips dotfiles (**`build_softaculous_package.sh`**). **§14.4 (LILITH):** adopt **`# BEGIN LUPOPEDIA` … `# END LUPOPEDIA`** marker merge; **§14.6:** **attempt** install-time write when Apache-compatible and writable — **runtime** chat/API **must** still work **without** rewrites (**PRD 00 §2**, **§9.5**). |
 | **Config** | `wp-admin/setup-config.php` loads **`wp-config-sample.php`** lines, substitutes keys, writes **`wp-config.php`**; errors if **`ABSPATH`** not writable. | **Done:** install wizard writes **`lupopedia-config.php`** from form + DB session. **§14.4 (LILITH):** add **`lupo-config/lupopedia-config-sample.php`** and wizard UX when config path is not writable. |
 | **Empty dirs / perms** | **`wp_mkdir_p()`** in `wp-includes/functions.php`: **`mkdir( $target, $dir_perms, true )`** where **`$dir_perms`** inherits parent **`stat()['mode'] & 0007777`** or defaults **0777**, then **`chmod`** loop if **umask** altered effective perms. **`wp_upload_dir()`** can create uploads path via **`wp_mkdir_p`**. | **Done:** installer **`mkdir(..., 0755, true)`** for `lupo-cache`, `lupo-logs`, `lupo-uploads`, `lupo-tmp`. **§14.4 (LILITH):** on failure, **detect and warn** with parent path/mode; **no** auto-**`chmod`**. |
 | **Paths / server quirks** | **`wp_fix_server_vars()`** normalizes **`REQUEST_URI`** for IIS / CGI; **`load.php`** loads version + extension requirements early. | **Done:** **`LUPOPEDIA_PATH`**, **`LUPOPEDIA_PUBLIC_PATH`**, subdirectory install doctrine. **Open:** IIS **`REQUEST_URI`** parity audit vs Crafty/live help. |
-| **PHP / extensions** | **`$required_php_version`** = **7.2.24**; **`$required_php_extensions`** = **`json`**, **`hash`**; **`wp_check_php_mysql_versions()`** emits **HTTP 500** + plain message if version or extension missing; separate **`mysqli`** / **`db.php`** drop-in path. | **Done:** install preflight **PHP 5.3+** / **pdo_mysql** / **json** (raise floor per constitutional **5.6+** in core). **Open:** explicit **hash** (if needed), **GD** / upload policy per **§5.1** gate rows. |
+| **PHP / extensions** | **`$required_php_version`** = **7.2.24**; **`$required_php_extensions`** = **`json`**, **`hash`**; **`wp_check_php_mysql_versions()`** emits **HTTP 500** + plain message if version or extension missing; separate **`mysqli`** / **`db.php`** drop-in path. | **Done:** install preflight **PHP 7.4+** / **pdo_mysql** / **json** (constitutional **7.4+** floor). **Open:** explicit **hash** (if needed), **GD** / upload policy per **§5.1** gate rows. |
 | **Package / dotfiles** | Upstream distribution excludes VCS; consumer tarball historically has **no** `.git`. This repo’s **`lupo-archive/legacy/wordpress-reference/`** has no root **`.gitignore`** in checkout; plugin may ship **`.htaccess`** (e.g. Akismet). | **Done:** **`SOFTACULOUS_PACKAGE_BUILD.md`** + packager exclude **`lupo-archive/`** (contains **`legacy/wordpress-reference/`** study tree), strip **`.?*`** files and dirs. |
 
 ### 14.2 Action items (from study, merged with current repo state)
@@ -755,7 +756,7 @@ Exact Softaculous XML/checklists evolve by vendor; **completion** for this PRD m
 | Document packaging | **Done** | **`SOFTACULOUS_PACKAGE_BUILD.md`**, README **WordPress reference** section |
 | **`.gitkeep`** removal from **git** tree (not only zip) | **Approved — implement** | **LILITH §14.4 Q6** — remove tracked **`.gitkeep`**; stop generating in maint scripts; see **`wordpress_pattern_implementation_tasks_20260404.md`** |
 | Marker-based **`.htaccess`** merge (**`insert_with_markers`**-style) for hand-edited servers | **Approved — implement** | **LILITH §14.4 Q1** — **`# BEGIN LUPOPEDIA` / `# END LUPOPEDIA`** |
-| Install-time **`.htaccess`** (not lazy) | **Done + keep** | **LILITH §14.4 Q2** — immediate write required for API/chat rewrites |
+| Install-time **`.htaccess`** (not lazy) | **Done + keep** | **LILITH §14.4 Q2** — **attempt** immediate write when host allows; **§14.6** clarifies **no** hard dependency on rewrites for API/chat (**PRD 00 §2**, **§9.5**) |
 | **`web.config` / Nginx** snippet generation or verified doc | **Approved — docs** | **LILITH §14.4 Q3** — hosting documentation; optional **`web.config.example`** reference only, not auto-installed |
 | **`lupopedia-config-sample.php`** | **Approved — implement** | **LILITH §14.4 Q4** — WordPress-style manual install path |
 | **`mkdir`** failures / strict parent perms | **Approved — implement** | **LILITH §14.4 Q5** — detect and warn; no auto-**`chmod`** |
@@ -783,7 +784,7 @@ Exact Softaculous XML/checklists evolve by vendor; **completion** for this PRD m
 | Q | Decision |
 |---|----------|
 | **Q1** Marker-based **`.htaccess`** | **YES** — only replace content between **`# BEGIN LUPOPEDIA`** and **`# END LUPOPEDIA`**. |
-| **Q2** Lazy vs immediate **`.htaccess`** | **IMMEDIATE** at install — chat/API routes require rewrites; do not defer to a later admin action. |
+| **Q2** Lazy vs immediate **`.htaccess`** | **IMMEDIATE attempt** at install (when Apache-compatible path is writable) — do not defer to a “later optional” admin step for the **try**. **Clarified §14.6:** chat/API **must** work **without** `mod_rewrite` via **`index.php`** + query (or **`PATH_INFO`**) fallbacks; installer **must not** fail if **`.htaccess`** is absent or ignored. |
 | **Q3** IIS **`web.config`** | **Documentation only** in the shipped product; optional **`web.config.example`** as reference, not auto-installed. |
 | **Q4** Config sample | **YES** — add **`lupo-config/lupopedia-config-sample.php`**; wizard guides manual copy when writes are blocked. |
 | **Q5** Permissions | **Detect and warn** on **`mkdir`** / parent mode issues; **no** automatic permission “repair.” |
@@ -793,7 +794,15 @@ Exact Softaculous XML/checklists evolve by vendor; **completion** for this PRD m
 
 ### 14.5 Canonical pattern distillate (Lupopedia doctrine)
 
-**`lupo-docs/doctrine/LEARNED_FROM_WORDPRESS.md`** is the **single** Lupopedia doctrine file for WordPress-derived, multi-environment patterns. It cites **`lupo-archive/legacy/wordpress-reference/`** paths and **line ranges** (WordPress **6.9.4** tree in this checkout) and maps them to Lupopedia surfaces (e.g. **`InstallWizardHtaccessWriter.php`**, installer preflight). **IDE agents should read it first** instead of re-scanning the full WordPress tree. Constitutional pairing: **`lupo-docs/prd/00_root_constitutional_system_requirements.md`** **§15**.
+**`lupo-docs/doctrine/LEARNED_FROM_WORDPRESS.md`** is the **single** Lupopedia doctrine file for WordPress-derived, multi-environment patterns. It cites **`lupo-archive/legacy/wordpress-reference/`** paths and **line ranges** (WordPress **6.9.4** tree in this checkout) and maps them to Lupopedia surfaces (e.g. **`InstallWizardHtaccessWriter.php`**, installer preflight). **IDE agents should read it first** instead of re-scanning the full WordPress tree. Constitutional pairing: **`lupo-docs/prd/00_root_constitutional_system_requirements.md`** **§15** (multi-environment), **§18** (no search-index assumption), **§2** / **§9.5** (routing without rewrites).
+
+### 14.6 Constitutional clarification — `.htaccess`, rewrites, and search indexing
+
+**UTC:** `20260405205506`. **Does not invalidate** LILITH §14.4 decisions; **binds implementers** to root PRD routing and exposure rules.
+
+- **`.htaccess` / `mod_rewrite`:** **Best-effort** for clean URLs. **Core behavior** (installer success, operator surfaces, **PRD 28**-class APIs consumed by widgets/embeds) **must** function when rewrites are **unavailable** — **`index.php`** + **query parameters** (and/or **`PATH_INFO`**), per **PRD 00 §2** and **§9.5**.
+- **§14.4 Q2 “IMMEDIATE”:** Interpret as **“attempt at end of install when environment matches,”** not **“installation blocked until rewrite-protected pretty URLs exist.”**
+- **Search engines:** Lupopedia is **not** modeled as a public SEO site; **`robots.txt` / `noindex`** are **SHOULD** per **PRD 00 §18** — orthogonal to `.htaccess`.
 
 ---
 

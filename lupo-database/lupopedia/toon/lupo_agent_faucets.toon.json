@@ -1,0 +1,83 @@
+{
+  "table_name": "lupo_agent_faucets",
+  "fields": [
+    "`agent_faucet_id` bigint NOT NULL",
+    "`actor_id` bigint NOT NULL",
+    "`name` varchar(100) NOT NULL",
+    "`alias_name` varchar(100)",
+    "`slug` varchar(100) NOT NULL",
+    "`faucet_class` varchar(32)",
+    "`description` text",
+    "`style_preset` varchar(100)",
+    "`model_name` varchar(100)",
+    "`provider` varchar(50)",
+    "`temperature` float",
+    "`top_p` float",
+    "`max_tokens` int",
+    "`presence_penalty` float",
+    "`frequency_penalty` float",
+    "`system_prompt` text",
+    "`safety_json` json",
+    "`response_format` varchar(50)",
+    "`capabilities_json` text",
+    "`is_default` tinyint NOT NULL DEFAULT '0'",
+    "`domain_id` bigint NOT NULL DEFAULT '1'",
+    "`created_ymdhis` bigint NOT NULL DEFAULT 0",
+    "`updated_ymdhis` bigint NOT NULL",
+    "`deleted_ymdhis` bigint"
+  ],
+  "data": [],
+  "indexes": [
+    {
+      "index_name": "lupo_agent_faucets_idx_agent",
+      "columns": [
+        "actor_id"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_agent_faucets_idx_slug",
+      "columns": [
+        "slug"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_agent_faucets_idx_faucet_class",
+      "columns": [
+        "faucet_class"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_agent_faucets_idx_domain",
+      "columns": [
+        "domain_id"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_agent_faucets_idx_default",
+      "columns": [
+        "is_default"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    }
+  ],
+  "relationships": [],
+  "primary_key": {
+    "column_name": "agent_faucet_id",
+    "expected_name": "agent_faucet_id",
+    "is_correct": true,
+    "needs_rename": false
+  },
+  "doctrine_metadata": {
+    "no_foreign_keys": true,
+    "no_triggers": true
+  }
+}

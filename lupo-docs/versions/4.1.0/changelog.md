@@ -40,9 +40,9 @@ lupopedia.footer:
 - **logout.php** - Created logout handler
 - **test_auth_workflow.php** - Created test script for workflow verification
 
-### PHP 5.6+ Compatibility & Doctrine Enforcement
+### PHP 7.4+ Compatibility & Doctrine Enforcement
 
-- **PHP Version Compatibility Doctrine** - Created comprehensive PHP 5.6+ compatibility rules
+- **PHP Version Compatibility Doctrine** - Created comprehensive PHP 7.4+ compatibility rules
 - **No Composer Doctrine** - Updated to clarify relationship with external libraries
 - **No Framework Doctrine** - Created doctrine forbidding Laravel/Symfony frameworks
 - **Shared Hosting Doctrine** - Created shared hosting compatibility requirements
@@ -52,13 +52,13 @@ lupopedia.footer:
 
 - **PHPMailer Compliance Report** - Verified PHPMailer as self-contained and compliant
 - **EmailService Wrapper** - Created production-ready email service using PHPMailer
-- **PHP 5.6 Polyfills** - Created polyfills for `random_bytes()`, `random_int()`, etc.
+- **PHP polyfills (legacy)** - Historical polyfills for older PHP; runtime floor is now 7.4+
 
 ### Laravel/Composer Violation Audit & Remediation
 
 - **Violation Detection** - Found 2 Laravel Blade template files requiring conversion
 - **Violation Report** - Created comprehensive report of all violations found
-- **Doctrine Updates** - Updated all root doctrines to enforce PHP 5.6+ compatibility
+- **Doctrine Updates** - Updated all root doctrines to enforce PHP 7.4+ compatibility
 - **Template Conversion Plan** - Established plan to convert Blade templates to pure PHP
 
 ### Root Rules Documentation Overhaul

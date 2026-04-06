@@ -21,6 +21,16 @@
             "slug": "LUPOPEDIA_CONSTITUTIONAL_ROOT_RULES"
         },
         {
+            "id": "ARC006",
+            "text": "Shared core SHALL avoid PHP 7+\u2013only syntax where PHP 5.6 reach is required; production clock safety remains PHP 7.4+ 64-bit (ARC003). Y2038-safe packed UTC as a PHP int is not guaranteed on 32-bit \u2014 document and upgrade.",
+            "enforcement": "error",
+            "scope": [
+                "all_agents"
+            ],
+            "source_path": "lupo-rules/root/PHP_VERSION_COMPATIBILITY.md",
+            "slug": "PHP_VERSION_COMPATIBILITY"
+        },
+        {
             "id": "TIME001",
             "text": "Artifact timestamps and filename timestamps must be generated from real UTC system time only.",
             "enforcement": "error",
@@ -122,13 +132,13 @@
         },
         {
             "id": "ARC003",
-            "text": "All Lupopedia core code must run on PHP 5.6 minimum through 8.x; no deprecated PHP 8+ syntax",
+            "text": "Production: PHP 7.4+ 64-bit. Shared core: PHP 5.6-parsable syntax; no PHP 8-only features unless file is modern-only.",
             "enforcement": "error",
             "scope": [
                 "all_agents"
             ],
-            "source_path": "lupo-rules/root/php-5-6-compatibility.md",
-            "slug": "php-5-6-compatibility"
+            "source_path": "lupo-rules/root/php-7-4-compatibility.md",
+            "slug": "php-7-4-compatibility"
         },
         {
             "id": "DB004",

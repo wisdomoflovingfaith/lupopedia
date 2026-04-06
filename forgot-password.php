@@ -1,93 +1,148 @@
 <?php
-/**
- * Forgot Password Page - Allows users to request password reset
- */
+/*
+---
+lupopedia.headers:
+  header_format_version: 2
+  lupopedia.schema: page
+  when_updated: "20260406011853"
+  file_path_from_root: "forgot-password.php"
+  web_path: "http://www.lupopedia.com/lupopedia/forgot-password.php"
+  last_modified_utc: "20260406011853"
+  federation_node_id: 0
+  channel_id: 42
+  author:
+    type: "actor"
+    id: 102
+    name: "CURSOR"
+  delegation_chain: "cursor:root"
+  artifact_type: "page"
+  artifact_kind: "auth"
+  purpose: "Password reset request; portable SQL; UNTRUSTED post/server; no session; lupo_t + LupoLocale."
+  tags: ["auth", "password", "reset", "email", "locale"]
+---
+*/
+
+$UNTRUSTED = array(
+    'post' => (isset($_POST) && is_array($_POST)) ? $_POST : array(),
+    'server' => (isset($_SERVER) && is_array($_SERVER)) ? $_SERVER : array(),
+);
 
 $lupoRoot = __DIR__;
 $lupoPub = '/' . basename($lupoRoot);
 require_once $lupoRoot . '/lupo-includes/classes/LupopediaConfigResolver.php';
 $lupoCfgPath = LupopediaConfigResolver::resolve($lupoRoot, $lupoPub);
 if ($lupoCfgPath === null) {
-    $lupoBase = rtrim(dirname(isset($_SERVER['SCRIPT_NAME']) ? $_SERVER['SCRIPT_NAME'] : ''), '/');
-    header('Location: ' . ($lupoBase === '' ? '/install.php' : $lupoBase . '/install.php'));
+    $lupoScript = isset($UNTRUSTED['server']['SCRIPT_NAME']) ? $UNTRUSTED['server']['SCRIPT_NAME'] : '';
+    $lupoBase = rtrim(dirname($lupoScript), '/');
+    header('Location: ' . ($lupoBase === '' || $lupoBase === '.' ? '/install.php' : $lupoBase . '/install.php'));
     exit;
 }
 require_once $lupoCfgPath;
 
-// Start session
-if (session_status() === PHP_SESSION_NONE) {
-    session_start();
-}
+require_once $lupoRoot . '/lupo-includes/classes/LupoLocale.php';
+LupoLocale::bootstrap($lupoRoot);
+require_once $lupoRoot . '/lupo-includes/lupo-i18n.php';
 
 $error = '';
 $success = '';
 
-// Handle form submission
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $email = trim($_POST['email'] ?? '');
-    
-    if (empty($email)) {
-        $error = 'Please enter your email address.';
+$request_method = isset($UNTRUSTED['server']['REQUEST_METHOD']) ? $UNTRUSTED['server']['REQUEST_METHOD'] : '';
+
+if ($request_method === 'POST') {
+    $email = isset($UNTRUSTED['post']['email']) ? trim((string) $UNTRUSTED['post']['email']) : '';
+
+    if ($email === '') {
+        $error = lupo_t('forgot.error.email_required', 'Please enter your email address.');
     } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-        $error = 'Please enter a valid email address.';
+        $error = lupo_t('forgot.error.email_invalid', 'Please enter a valid email address.');
     } else {
-        // Load required classes
         require_once LUPOPEDIA_PATH . '/lupo-includes/classes/DatabaseFactory.php';
-        
+
         $db = DatabaseFactory::getConnection();
         $prefix = defined('LUPO_TABLE_PREFIX') ? LUPO_TABLE_PREFIX : 'lupo_';
-        
-        // Find user by email
+
         $user = $db->fetchRow(
             "SELECT auth_user_id, username, display_name FROM {$prefix}auth_users 
              WHERE email = :email AND is_active = 1 AND is_deleted = 0",
-            ['email' => $email]
+            array('email' => $email)
         );
-        
+
         if (!$user) {
-            // Don't reveal if email exists or not for security
-            $success = 'If an account with that email exists, a password reset link has been sent.';
+            $success = lupo_t('forgot.success_sent', 'If an account with that email exists, a password reset link has been sent.');
         } else {
-            // Generate reset token
             $token = bin2hex(random_bytes(32));
-            $expiry = gmdate('YmdHis', strtotime('+1 hour'));
-            
-            // Store reset token
-            $db->execute(
-                "INSERT INTO {$prefix}password_resets (auth_user_id, token, expiry_ymdhis, created_ymdhis) 
-                 VALUES (:auth_user_id, :token, :expiry, :now)
-                 ON DUPLICATE KEY UPDATE token = :token, expiry_ymdhis = :expiry, created_ymdhis = :now",
-                [
-                    'auth_user_id' => $user['auth_user_id'],
-                    'token' => $token,
-                    'expiry' => $expiry,
-                    'now' => gmdate('YmdHis')
-                ]
+            if (!class_exists('timestamp_ymdhis', false)) {
+                require_once $lupoRoot . '/lupo-includes/classes/TimestampYmdhis.php';
+            }
+            $nowPacked = timestamp_ymdhis::now();
+            $expiry = (int) timestamp_ymdhis::addHours((int) $nowPacked, 1);
+
+            $existing = $db->fetchRow(
+                "SELECT password_reset_id FROM {$prefix}password_resets 
+                 WHERE auth_user_id = :auth_user_id AND is_deleted = 0 
+                 ORDER BY created_ymdhis DESC LIMIT 1",
+                array('auth_user_id' => $user['auth_user_id'])
             );
-            
-            // Send reset email
-            $resetLink = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? 'https' : 'http') . 
-                       '://' . $_SERVER['HTTP_HOST'] . LUPOPEDIA_PUBLIC_PATH . "/reset-password.php?token=" . $token;
-            
-            $subject = 'LUPOPEDIA Password Reset Request';
-            $message = "Hello {$user['display_name']},\n\n";
-            $message .= "You requested a password reset for your LUPOPEDIA account.\n\n";
-            $message .= "Click the following link to reset your password:\n";
+
+            if ($existing && isset($existing['password_reset_id'])) {
+                $db->query(
+                    "UPDATE {$prefix}password_resets SET token = :token, expiry_ymdhis = :expiry, created_ymdhis = :now, updated_ymdhis = :now2 
+                     WHERE password_reset_id = :prid",
+                    array(
+                        'token' => $token,
+                        'expiry' => $expiry,
+                        'now' => (int) $nowPacked,
+                        'now2' => (int) $nowPacked,
+                        'prid' => $existing['password_reset_id'],
+                    )
+                );
+            } else {
+                $nextRow = $db->fetchRow(
+                    "SELECT COALESCE(MAX(password_reset_id), 0) AS m FROM {$prefix}password_resets"
+                );
+                $nextId = ($nextRow && isset($nextRow['m'])) ? ((int) $nextRow['m'] + 1) : 1;
+                $db->query(
+                    "INSERT INTO {$prefix}password_resets (password_reset_id, auth_user_id, token, expiry_ymdhis, created_ymdhis, updated_ymdhis, is_deleted) 
+                     VALUES (:password_reset_id, :auth_user_id, :token, :expiry_ymdhis, :created_ymdhis, :updated_ymdhis, :is_deleted)",
+                    array(
+                        'password_reset_id' => $nextId,
+                        'auth_user_id' => $user['auth_user_id'],
+                        'token' => $token,
+                        'expiry_ymdhis' => $expiry,
+                        'created_ymdhis' => (int) $nowPacked,
+                        'updated_ymdhis' => null,
+                        'is_deleted' => 0,
+                    )
+                );
+            }
+
+            $httpsOn = isset($UNTRUSTED['server']['HTTPS']) && $UNTRUSTED['server']['HTTPS'] !== '' && $UNTRUSTED['server']['HTTPS'] !== 'off';
+            $scheme = $httpsOn ? 'https' : 'http';
+            $host = isset($UNTRUSTED['server']['HTTP_HOST']) ? (string) $UNTRUSTED['server']['HTTP_HOST'] : '';
+            $resetLink = $scheme . '://' . $host . LUPOPEDIA_PUBLIC_PATH . '/reset-password.php?token=' . rawurlencode($token);
+
+            $displayName = isset($user['display_name']) ? (string) $user['display_name'] : '';
+            $subject = lupo_t('forgot.mail_subject', 'Lupopedia password reset request');
+
+            $greeting = sprintf(lupo_t('forgot.mail_greeting', 'Hello %s,'), $displayName);
+            $message = $greeting . "\n\n";
+            $message .= lupo_t('forgot.mail_intro', 'You requested a password reset for your Lupopedia account.') . "\n\n";
+            $message .= lupo_t('forgot.mail_click', 'Click the following link to reset your password:') . "\n";
             $message .= $resetLink . "\n\n";
-            $message .= "This link will expire in 1 hour.\n\n";
-            $message .= "If you didn't request this reset, please ignore this email.\n\n";
-            $message .= "Best regards,\nLUPOPEDIA Team";
-            
-            // Try to send email using PHPMailer
+            $message .= lupo_t('forgot.mail_expiry', 'This link will expire in 1 hour.') . "\n\n";
+            $message .= lupo_t('forgot.mail_ignore', 'If you did not request this reset, please ignore this email.') . "\n\n";
+            $message .= lupo_t('forgot.mail_signature', 'Best regards,') . "\n";
+            $message .= lupo_t('forgot.mail_team', 'Lupopedia');
+
+            $fromLabel = lupo_t('forgot.mail_from_label', 'Lupopedia');
+
             try {
-                // Load PHPMailer
                 require_once LUPOPEDIA_PATH . '/lupo-includes/PHPMailer/src/PHPMailer.php';
                 require_once LUPOPEDIA_PATH . '/lupo-includes/PHPMailer/src/SMTP.php';
                 require_once LUPOPEDIA_PATH . '/lupo-includes/PHPMailer/src/Exception.php';
-                
+
                 $mail = new PHPMailer\PHPMailer\PHPMailer();
-                
-                // Configure mailer
+
                 $mail->isSMTP();
                 $mail->Host = defined('SMTP_HOST') ? SMTP_HOST : 'localhost';
                 $mail->SMTPAuth = defined('SMTP_AUTH') && SMTP_AUTH;
@@ -95,26 +150,25 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $mail->Password = defined('SMTP_PASSWORD') ? SMTP_PASSWORD : '';
                 $mail->SMTPSecure = defined('SMTP_SECURE') ? SMTP_SECURE : '';
                 $mail->Port = defined('SMTP_PORT') ? SMTP_PORT : 587;
-                
-                $mail->setFrom(defined('SMTP_FROM') ? SMTP_FROM : 'noreply@lupopedia.com', 'LUPOPEDIA');
-                $mail->addAddress($email, $user['display_name']);
-                
+
+                $mail->setFrom(defined('SMTP_FROM') ? SMTP_FROM : 'noreply@lupopedia.com', $fromLabel);
+                $mail->addAddress($email, $displayName);
+
                 $mail->Subject = $subject;
                 $mail->Body = $message;
                 $mail->AltBody = strip_tags($message);
-                
+
                 if ($mail->send()) {
-                    $success = 'If an account with that email exists, a password reset link has been sent.';
+                    $success = lupo_t('forgot.success_sent', 'If an account with that email exists, a password reset link has been sent.');
                 } else {
-                    $error = 'Failed to send reset email. Please try again later.';
+                    $error = lupo_t('forgot.error_mail_failed', 'Failed to send reset email. Please try again later.');
                 }
-                
             } catch (Exception $e) {
-                // Fallback to mail() function
-                if (mail($email, $subject, $message, "From: LUPOPEDIA <noreply@lupopedia.com>")) {
-                    $success = 'If an account with that email exists, a password reset link has been sent.';
+                $mailHeaders = 'From: ' . $fromLabel . ' <noreply@lupopedia.com>';
+                if (mail($email, $subject, $message, $mailHeaders)) {
+                    $success = lupo_t('forgot.success_sent', 'If an account with that email exists, a password reset link has been sent.');
                 } else {
-                    $error = 'Failed to send reset email. Please try again later.';
+                    $error = lupo_t('forgot.error_mail_failed', 'Failed to send reset email. Please try again later.');
                 }
             }
         }
@@ -122,15 +176,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 
 $base = defined('LUPOPEDIA_PUBLIC_PATH') ? rtrim(LUPOPEDIA_PUBLIC_PATH, '/') : '';
+$form_email = isset($UNTRUSTED['post']['email']) ? (string) $UNTRUSTED['post']['email'] : '';
+$js_sending = json_encode(lupo_t('forgot.button_sending', 'Sending...'));
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="<?php echo LupoLocale::htmlLang(); ?>">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Forgot Password - LUPOPEDIA</title>
-    <link rel="icon" type="image/x-icon" href="<?= LUPOPEDIA_PUBLIC_PATH ?>/favicon.ico">
-    <link rel="stylesheet" href="<?= LUPOPEDIA_PUBLIC_PATH ?>/lupo-includes/css/main.css">
+    <title><?php echo htmlspecialchars(lupo_t('forgot.title', 'Forgot Password - Lupopedia')); ?></title>
+    <link rel="icon" type="image/x-icon" href="<?php echo htmlspecialchars(LUPOPEDIA_PUBLIC_PATH); ?>/favicon.ico">
+    <link rel="stylesheet" href="<?php echo htmlspecialchars(LUPOPEDIA_PUBLIC_PATH); ?>/lupo-includes/css/main.css">
     <style>
         body {
             margin: 0;
@@ -281,7 +337,7 @@ $base = defined('LUPOPEDIA_PUBLIC_PATH') ? rtrim(LUPOPEDIA_PUBLIC_PATH, '/') : '
             .forgot-password-container {
                 margin: 10px;
             }
-            
+
             .brand-section, .form-section {
                 padding: 30px 20px;
             }
@@ -292,68 +348,74 @@ $base = defined('LUPOPEDIA_PUBLIC_PATH') ? rtrim(LUPOPEDIA_PUBLIC_PATH, '/') : '
     <div class="forgot-password-container">
         <div class="brand-section">
             <div class="brand-logo">
-                <img src="<?= LUPOPEDIA_PUBLIC_PATH ?>/lupo-images/logo.png" alt="LUPOPEDIA">
+                <img src="<?php echo htmlspecialchars(LUPOPEDIA_PUBLIC_PATH); ?>/lupo-images/logo.png" alt="<?php echo htmlspecialchars(lupo_t('forgot.logo_alt', 'Lupopedia')); ?>">
             </div>
             <div class="brand-text">
-                Multi-Agent Coordination System<br>
-                Password Recovery
+                <?php echo htmlspecialchars(lupo_t('forgot.brand_tagline', 'Multi-Agent Coordination System')); ?><br>
+                <?php echo htmlspecialchars(lupo_t('forgot.brand_recovery', 'Password Recovery')); ?>
             </div>
         </div>
 
         <div class="form-section">
-            <h1 class="form-title">Forgot Password</h1>
-            <p class="form-subtitle">Enter your email to receive a password reset link</p>
+            <h1 class="form-title"><?php echo htmlspecialchars(lupo_t('forgot.form_title', 'Forgot Password')); ?></h1>
+            <p class="form-subtitle"><?php echo htmlspecialchars(lupo_t('forgot.form_subtitle', 'Enter your email to receive a password reset link')); ?></p>
 
-            <?php if ($error): ?>
+            <?php if ($error !== ''): ?>
                 <div class="error-message">
-                    <?= htmlspecialchars($error) ?>
+                    <?php echo htmlspecialchars($error); ?>
                 </div>
             <?php endif; ?>
 
-            <?php if ($success): ?>
+            <?php if ($success !== ''): ?>
                 <div class="success-message">
-                    <?= htmlspecialchars($success) ?>
+                    <?php echo htmlspecialchars($success); ?>
                 </div>
             <?php endif; ?>
 
             <form method="POST" action="">
                 <div class="form-group">
-                    <label for="email" class="form-label">Email Address</label>
-                    <input 
-                        type="email" 
-                        id="email" 
-                        name="email" 
-                        class="form-input" 
-                        placeholder="Enter your email address"
+                    <label for="email" class="form-label"><?php echo htmlspecialchars(lupo_t('forgot.email_label', 'Email Address')); ?></label>
+                    <input
+                        type="email"
+                        id="email"
+                        name="email"
+                        class="form-input"
+                        placeholder="<?php echo htmlspecialchars(lupo_t('forgot.email_placeholder', 'Enter your email address')); ?>"
                         required
                         autofocus
-                        value="<?= htmlspecialchars($_POST['email'] ?? '') ?>"
+                        value="<?php echo htmlspecialchars($form_email); ?>"
                     >
                 </div>
 
                 <button type="submit" class="submit-button">
-                    Send Reset Link
+                    <?php echo htmlspecialchars(lupo_t('forgot.button_send', 'Send Reset Link')); ?>
                 </button>
             </form>
 
             <div class="back-link">
-                <a href="<?= $base ?>/login.php">← Back to Login</a>
+                <a href="<?php echo htmlspecialchars($base . '/login.php'); ?>">&larr; <?php echo htmlspecialchars(lupo_t('forgot.back_to_login', 'Back to Login')); ?></a>
             </div>
         </div>
     </div>
 
     <script>
-        // Auto-focus on email field
         document.addEventListener('DOMContentLoaded', function() {
-            document.getElementById('email').focus();
+            var el = document.getElementById('email');
+            if (el) {
+                el.focus();
+            }
         });
 
-        // Handle form submission with loading state
-        document.querySelector('form').addEventListener('submit', function(e) {
-            const submitButton = document.querySelector('.submit-button');
-            submitButton.textContent = 'Sending...';
-            submitButton.disabled = true;
-        });
+        var form = document.querySelector('form');
+        if (form) {
+            form.addEventListener('submit', function() {
+                var submitButton = document.querySelector('.submit-button');
+                if (submitButton) {
+                    submitButton.textContent = <?php echo $js_sending; ?>;
+                    submitButton.disabled = true;
+                }
+            });
+        }
     </script>
 </body>
 </html>

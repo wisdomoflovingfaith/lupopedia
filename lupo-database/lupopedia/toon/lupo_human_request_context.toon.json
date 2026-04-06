@@ -1,0 +1,28 @@
+{
+  "table_name": "lupo_human_request_context",
+  "fields": [
+    "`context_id` BIGINT NOT NULL",
+    "`request_id` BIGINT NOT NULL",
+    "`context_type` VARCHAR(64) NOT NULL",
+    "`content` TEXT NOT NULL",
+    "`source_artifact_path` VARCHAR(512)",
+    "`source_line_range` VARCHAR(64)",
+    "`created_ymdhis` BIGINT NOT NULL"
+  ],
+  "data": [],
+  "indexes": [
+    {
+      "index_name": "idx_request_context",
+      "columns": [
+        "request_id"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    }
+  ],
+  "relationships": [],
+  "doctrine_metadata": {
+    "no_foreign_keys": true,
+    "no_triggers": true
+  }
+}

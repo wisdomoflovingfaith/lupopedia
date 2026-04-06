@@ -152,6 +152,31 @@ def extract_lupopedia_headers(parsed_yaml: Dict[str, Any]) -> Optional[Dict[str,
     return None
 
 
+def inject_legacy_actor_from_author(header: Dict[str, Any]) -> None:
+    """
+    If lupopedia.headers has structured author but omits legacy actor_id/actor_name,
+    mirror author.id / author.name so import validation and DB columns stay consistent.
+    Does not overwrite non-empty legacy fields (warn elsewhere if they disagree).
+    """
+    if not isinstance(header, dict):
+        return
+    author = header.get("author")
+    if not isinstance(author, dict):
+        return
+    aid = author.get("id")
+    if aid is None or _is_empty_string(aid):
+        return
+    aname = author.get("name")
+    legacy_name = str(aname).strip() if aname is not None else ""
+    if not legacy_name:
+        legacy_name = str(aid).strip()
+
+    if "actor_id" not in header or header.get("actor_id") is None or _is_empty_string(header.get("actor_id")):
+        header["actor_id"] = aid
+    if "actor_name" not in header or _is_empty_string(header.get("actor_name")):
+        header["actor_name"] = legacy_name
+
+
 def validate_header(
     header: Dict[str, Any],
     actor_lookup: Optional[Dict[int, str]] = None,
@@ -161,6 +186,8 @@ def validate_header(
 
     if not isinstance(header, dict) or not header:
         return {"valid": False, "errors": ["Malformed header: expected non-empty mapping."], "warnings": []}
+
+    inject_legacy_actor_from_author(header)
 
     for field in REQUIRED_FIELDS:
         if field not in header:

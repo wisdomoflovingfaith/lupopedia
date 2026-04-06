@@ -2,15 +2,23 @@
 
 /**
  * Temporal Truth Monitor
- * 
+ *
  * Monitors temporal drift and suggests RS-UTC-2026 casting when needed.
- * Maintains continuous awareness of temporal alignment status.
- * 
+ * All persisted / compared clocks use packed UTC BIGINT (YYYYMMDDHHIISS) via
+ * {@see timestamp_ymdhis} — no Unix epoch in drift math (PRD 00 §3.5).
+ *
  * @package Lupopedia
- * @version 2026.01.18
+ * @version 2026.04.05
  * @author Captain Wolfie
  * @spell RS-UTC-2026
  */
+
+if (!class_exists('timestamp_ymdhis')) {
+    $tsPath = __DIR__ . DIRECTORY_SEPARATOR . 'TimestampYmdhis.php';
+    if (is_file($tsPath)) {
+        require_once $tsPath;
+    }
+}
 
 class TemporalTruthMonitor
 {
@@ -25,7 +33,9 @@ class TemporalTruthMonitor
     public function __construct($database_connection)
     {
         $this->db = $database_connection;
-        $this->current_timestamp = date('YmdHis');
+        $this->current_timestamp = class_exists('timestamp_ymdhis')
+            ? (string) timestamp_ymdhis::now()
+            : gmdate('YmdHis');
     }
     
     /**
@@ -60,7 +70,7 @@ class TemporalTruthMonitor
     }
     
     /**
-     * Get timestamp of last RS-UTC-2026 sync
+     * Packed UTC instant of last RS-UTC-2026 sync (utc_timestamp column = YYYYMMDDHHIISS, not Unix epoch).
      */
     private function getLastSyncTimestamp()
     {
@@ -81,7 +91,7 @@ class TemporalTruthMonitor
             $result = $stmt->get_result();
             
             if ($row = $result->fetch_assoc()) {
-                return $row['utc_timestamp'];
+                return (int) $row['utc_timestamp'];
             }
             
         } catch (Exception $e) {
@@ -92,31 +102,26 @@ class TemporalTruthMonitor
     }
     
     /**
-     * Calculate drift in seconds from last sync
+     * Drift in seconds: now (packed) minus last sync (packed), via timestamp_ymdhis.
+     * No time(), no strtotime(), no Unix persistence.
+     *
+     * @param int|string $last_sync_timestamp Packed UTC from utc_timestamp column
+     * @return int Signed seconds appropriate for threshold checks (non-negative for normal drift)
      */
     private function calculateDrift($last_sync_timestamp)
     {
-        $current_unix = strtotime(date('Y-m-d H:i:s'));
-        $last_sync_unix = strtotime($this->convertYMDHISToDateTime($last_sync_timestamp));
-        
-        return $current_unix - $last_sync_unix;
+        if (!class_exists('timestamp_ymdhis')) {
+            return 0;
+        }
+        $last = (int) $last_sync_timestamp;
+        if ($last <= 0) {
+            return 0;
+        }
+        $now = timestamp_ymdhis::now();
+
+        return timestamp_ymdhis::diffInSeconds($now, $last);
     }
-    
-    /**
-     * Convert YYYYMMDDHHMMSS to datetime string
-     */
-    private function convertYMDHISToDateTime($ymdhis)
-    {
-        $year = substr($ymdhis, 0, 4);
-        $month = substr($ymdhis, 2, 2);
-        $day = substr($ymdhis, 4, 2);
-        $hour = substr($ymdhis, 6, 2);
-        $minute = substr($ymdhis, 8, 2);
-        $second = substr($ymdhis, 10, 2);
-        
-        return "{$year}-{$month}-{$day} {$hour}:{$minute}:{$second}";
-    }
-    
+
     /**
      * Get drift status based on thresholds
      */
@@ -210,8 +215,19 @@ class TemporalTruthMonitor
             $result = $stmt->get_result();
             $stats['total_castings'] = $result->fetch_assoc()['total'];
             
-            // Last 24 hours
-            $day_ago = date('YmdHis', strtotime('-24 hours'));
+            // Last 24 hours / week — packed UTC via timestamp_ymdhis (PRD 00 §3.5.3)
+            if (class_exists('timestamp_ymdhis')) {
+                $nowPacked = timestamp_ymdhis::now();
+                $day_ago = (string) timestamp_ymdhis::subtractSeconds($nowPacked, 86400);
+                $week_ago = (string) timestamp_ymdhis::subtractSeconds($nowPacked, 7 * 86400);
+            } else {
+                $dtDay = new DateTime('now', new DateTimeZone('UTC'));
+                $dtDay->modify('-24 hours');
+                $day_ago = $dtDay->format('YmdHis');
+                $dtWeek = new DateTime('now', new DateTimeZone('UTC'));
+                $dtWeek->modify('-7 days');
+                $week_ago = $dtWeek->format('YmdHis');
+            }
             $stmt = $this->db->prepare("SELECT COUNT(*) as count FROM lupo_reverse_shaka_syncs WHERE created_ymdhis >= ?");
             $stmt->bind_param('s', $day_ago);
             $stmt->execute();
@@ -219,7 +235,6 @@ class TemporalTruthMonitor
             $stats['last_24_hours'] = $result->fetch_assoc()['count'];
             
             // Last week
-            $week_ago = date('YmdHis', strtotime('-7 days'));
             $stmt = $this->db->prepare("SELECT COUNT(*) as count FROM lupo_reverse_shaka_syncs WHERE created_ymdhis >= ?");
             $stmt->bind_param('s', $week_ago);
             $stmt->execute();

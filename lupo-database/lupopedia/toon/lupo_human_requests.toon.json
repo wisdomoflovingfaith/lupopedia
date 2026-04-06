@@ -1,0 +1,83 @@
+{
+  "table_name": "lupo_human_requests",
+  "fields": [
+    "`request_id` BIGINT NOT NULL",
+    "`thread_id` BIGINT NOT NULL",
+    "`channel_id` BIGINT NOT NULL",
+    "`project_id` BIGINT NOT NULL DEFAULT 0",
+    "`initiator_actor_id` BIGINT NOT NULL",
+    "`target_auth_user_id` BIGINT NOT NULL",
+    "`request_type` VARCHAR(64) NOT NULL",
+    "`request_title` VARCHAR(255) NOT NULL",
+    "`request_description` TEXT NOT NULL",
+    "`subject_type` VARCHAR(64)",
+    "`subject_reference` VARCHAR(255)",
+    "`priority` VARCHAR(64) DEFAULT 'normal'",
+    "`request_mode` VARCHAR(64) DEFAULT 'single_human'",
+    "`status` VARCHAR(64) NOT NULL DEFAULT 'pending'",
+    "`response_text` TEXT",
+    "`response_auth_user_id` BIGINT",
+    "`response_actor_id` BIGINT",
+    "`created_ymdhis` BIGINT NOT NULL",
+    "`updated_ymdhis` BIGINT NOT NULL",
+    "`answered_ymdhis` BIGINT",
+    "`resolved_ymdhis` BIGINT DEFAULT 0",
+    "`expires_ymdhis` BIGINT DEFAULT 0",
+    "`is_deleted` TINYINT DEFAULT 0",
+    "`deleted_ymdhis` BIGINT DEFAULT 0"
+  ],
+  "data": [],
+  "indexes": [
+    {
+      "index_name": "idx_target_user_status",
+      "columns": [
+        "target_auth_user_id",
+        "status"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_thread_requests",
+      "columns": [
+        "thread_id",
+        "created_ymdhis"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_initiator_actor",
+      "columns": [
+        "initiator_actor_id",
+        "created_ymdhis"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_priority_status",
+      "columns": [
+        "priority",
+        "status",
+        "created_ymdhis"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "idx_status_expires",
+      "columns": [
+        "status",
+        "expires_ymdhis"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    }
+  ],
+  "relationships": [],
+  "doctrine_metadata": {
+    "no_foreign_keys": true,
+    "no_triggers": true
+  }
+}

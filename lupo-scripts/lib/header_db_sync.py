@@ -20,7 +20,10 @@ from typing import Any, Dict, List, Optional, Tuple
 
 HDR_PREFIX = "hdr."
 FTR_PREFIX = "ftr."
-BLOCK_PREFIX = "block."
+# Custom lupopedia.* blocks (non-headers/footer/edges/history) — written with ext. prefix (PRD 16 / GEMINI namespacing).
+EXT_PREFIX = "ext."
+# Legacy rows may still use block.; readers accept both.
+BLOCK_PREFIX_LEGACY = "block."
 SYNC_CLASS = "lupopedia_header_sync"
 EDGE_CATEGORY = "lupopedia_header"
 REF_OBJECT_TYPE = "file_path_ref"
@@ -226,10 +229,17 @@ def sync_header_artifact_to_db(
     yaml_data: Dict[str, Any],
     content_id: int,
     now_ymdhis: int,
+    append_history: bool = False,
 ) -> None:
     """
     After lupo_contents row exists, persist headers/footer/optional blocks, edges, history.
     cursor: pymysql connection cursor (DictCursor recommended).
+
+    Caller should run inside a single DB transaction (commit/rollback): import_content.py
+    already wraps upsert + this sync in one transaction so partial failure rolls back.
+
+    append_history: if True and file has lupopedia.history (list), append to existing
+    revision_history list in DB instead of replacing (default: file replaces when key present).
     """
     headers = extract_lupopedia_headers_block(yaml_data)
 
@@ -253,7 +263,7 @@ def sync_header_artifact_to_db(
         blk = yaml_data.get(block_key)
         if blk is None:
             continue
-        pk = BLOCK_PREFIX + str(block_key)
+        pk = EXT_PREFIX + str(block_key)
         _insert_metadata_row(cursor, table_prefix, content_id, pk, _serialize_value(blk), now_ymdhis)
 
     edges_block = yaml_data.get("lupopedia.edges")
@@ -337,7 +347,32 @@ def sync_header_artifact_to_db(
         hist = yaml_data.get("lupopedia.history")
         rev_json: Optional[str] = None
         if hist is not None:
-            rev_json = json.dumps(hist, sort_keys=True, ensure_ascii=False)
+            if append_history and isinstance(hist, list):
+                cursor.execute(
+                    "SELECT revision_history FROM `" + c + "` WHERE content_id=%s AND is_deleted=0 LIMIT 1",
+                    (int(content_id),),
+                )
+                prow = cursor.fetchone()
+                prev_raw = None
+                if prow:
+                    prev_raw = prow.get("revision_history") if isinstance(prow, dict) else prow[0]
+                prev_list: List[Any] = []
+                if prev_raw:
+                    try:
+                        if isinstance(prev_raw, (bytes, str)):
+                            parsed = json.loads(prev_raw) if isinstance(prev_raw, str) else json.loads(prev_raw.decode("utf-8"))
+                        else:
+                            parsed = prev_raw
+                        if isinstance(parsed, list):
+                            prev_list = parsed
+                        elif isinstance(parsed, dict):
+                            prev_list = [parsed]
+                    except Exception:
+                        prev_list = []
+                merged = prev_list + hist
+                rev_json = json.dumps(merged, sort_keys=True, ensure_ascii=False)
+            else:
+                rev_json = json.dumps(hist, sort_keys=True, ensure_ascii=False)
         cursor.execute(
             "UPDATE `" + c + "` SET revision_history=%s, updated_ymdhis=%s WHERE content_id=%s",
             (rev_json, now_ymdhis, int(content_id)),
@@ -460,8 +495,10 @@ def build_yaml_data_from_db(
             headers[pk[len(HDR_PREFIX) :]] = _deserialize_value(str(pv))
         elif isinstance(pk, str) and pk.startswith(FTR_PREFIX):
             footer[pk[len(FTR_PREFIX) :]] = _deserialize_value(str(pv))
-        elif isinstance(pk, str) and pk.startswith(BLOCK_PREFIX):
-            extra_blocks[pk[len(BLOCK_PREFIX) :]] = _deserialize_value(str(pv))
+        elif isinstance(pk, str) and pk.startswith(EXT_PREFIX):
+            extra_blocks[pk[len(EXT_PREFIX) :]] = _deserialize_value(str(pv))
+        elif isinstance(pk, str) and pk.startswith(BLOCK_PREFIX_LEGACY):
+            extra_blocks[pk[len(BLOCK_PREFIX_LEGACY) :]] = _deserialize_value(str(pv))
 
     if not headers.get("file_path_from_root") and content_row.get("file_path_from_root"):
         headers["file_path_from_root"] = content_row["file_path_from_root"]

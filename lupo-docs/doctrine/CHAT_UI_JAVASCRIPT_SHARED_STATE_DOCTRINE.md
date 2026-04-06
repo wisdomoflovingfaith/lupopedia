@@ -119,7 +119,7 @@ function lupopedia_chat_startPolling() { ... }
 |---------|--------|
 | `(function () { ... })();` wrapping chat state | Hides bindings from other scripts |
 | `(() => { ... })();` | Same; also violates ES3 tier for core chat |
-| **Arrow functions** in **`chat-display.js`**-class paths | PHP 5.6-era **ES3-compatible** policy for those files |
+| **Arrow functions** in **`chat-display.js`**-class paths | **ES3-compatible** policy for those files (browser JS, not PHP) |
 
 ## Exceptions (IIFE allowed)
 

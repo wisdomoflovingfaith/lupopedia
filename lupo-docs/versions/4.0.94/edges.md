@@ -2,10 +2,10 @@
 lupopedia.headers:
   header_format_version: 2
   lupopedia.schema: documentation
-  when_updated: "20260405104405"
+  when_updated: "20260406043326"
   file_path_from_root: "lupo-docs/versions/4.0.94/edges.md"
   web_path: "http://www.lupopedia.com/lupopedia/lupo-docs/versions/4.0.94/edges.md"
-  last_modified_utc: "20260405104405"
+  last_modified_utc: "20260406043326"
   federation_node_id: 0
   channel_id: 42
   thread_id: "version-4.0.94-edges"
@@ -234,12 +234,64 @@ lupopedia.edges:
       type: references
       weight: 1.0
       reason: "Admin semantic widget — nodes, trust, snippets"
+    - to: "lupo-docs/versions/4.0.94/decisions/20260405172914_DECISION_APPROVED_help_content_organization_channel_key_structure.md"
+      type: references
+      weight: 1.0
+      reason: "APPROVED help content organization with channel_key structure"
+    - to: "lupo-docs/prd/30_channel_usage_patterns.md"
+      type: references
+      weight: 1.0
+      reason: "Updated with help_documentation channel definition"
+    - to: "lupo-docs/prd/16_lupopedia_headers.md"
+      type: references
+      weight: 1.0
+      reason: "Updated file_path_from_root documentation for channel_key"
+    - to: "lupo-content/0/help_documentation/"
+      type: references
+      weight: 1.0
+      reason: "New channel_key-based help content structure"
+    - to: "lupo-database/lupopedia/mysql/seed/seed_online_help_and_content.sql"
+      type: references
+      weight: 1.0
+      reason: "Help content seed with channel_key paths"
+    - to: "install/seed_lupopedia_4_1_0.sql"
+      type: references
+      weight: 1.0
+      reason: "Consolidated seed including help content"
     - to: "lupo-includes/modules/api/semantic-navbar-api.php"
       type: references
       weight: 1.0
       reason: "Navbar JSON API; embed_not_trusted"
+    - to: "lupo-docs/versions/4.0.94/decisions/20260406_042624_DECISION_session_authority_migration.md"
+      type: references
+      weight: 1.0
+      reason: "Session authority Model A — DB lupo_sessions + metadata"
+    - to: "app/auth/Session.php"
+      type: references
+      weight: 1.0
+      reason: "Canonical App\\Auth\\Session implementation"
+    - to: "lupo-docs/doctrine/SESSION_MODEL.md"
+      type: references
+      weight: 0.95
+      reason: "Session doctrine companion to PRD 00 section 17.7"
+    - to: "lupo-tests/integration/channel66_production_extended_test.php"
+      type: references
+      weight: 0.85
+      reason: "Channel 66 production integration suite (refactored 2026-04-06)"
+    - to: "lupo-includes/classes/Channel66ProductionIngester.php"
+      type: references
+      weight: 0.85
+      reason: "discoverChannelFiles thread_id null = all threads fix"
+    - to: "lupo-docs/versions/4.0.94/VERSION_SUMMARY.md"
+      type: references
+      weight: 1.0
+      reason: "4.0.94 completion summary — packaging handoff"
+    - to: "lupo-docs/versions/4.0.95/README.md"
+      type: references
+      weight: 1.0
+      reason: "Next planning version (4.0.95)"
 lupopedia.footer:
-  last_verified: "20260405104405"
+  last_verified: "20260406043326"
   verified_by:
     identity_type: "actor"
     actor_id: 102
@@ -250,13 +302,25 @@ lupopedia.footer:
 
 ## Documentation edges
 
-- **Decision (this version):** [decisions/20260405104405_DECISION_APPROVED_semantic_navbar_embed_admin_prd21_cursor_thread.md](decisions/20260405104405_DECISION_APPROVED_semantic_navbar_embed_admin_prd21_cursor_thread.md) — APPROVED **5W1H** receipt — **`SemanticNavbarEmbedContext`**, **`semantic-navbar-api`** **403** copy, **`AdminSemanticWidgetHandler`** forms + page order, **PRD 21** external embed + slug contract + edges (**11**, **34**, **SILENT_HARVEST**, **SEMANTIC_MONITORING**); **WHAT NOT** excludes unrelated PRD **16/26/30/31** template claims and optional embedder-content wizard.
+- **Summary:** [VERSION_SUMMARY.md](VERSION_SUMMARY.md) — 4.0.94 completion rollup; **Softaculous** packaging handoff pointer.
+- **Next version (planning):** [../4.0.95/README.md](../4.0.95/README.md) — deferred tasks and follow-on backlog.
+- **Decision (this version):** [decisions/20260406_042624_DECISION_session_authority_migration.md](decisions/20260406_042624_DECISION_session_authority_migration.md) — IMPLEMENTED — session authority Model A (`lupo_sessions` + JSON `metadata`; no `$_SESSION` authority for actor/pending flags).
+- **Code:** [app/auth/Session.php](../../../app/auth/Session.php) — `mergeSessionMetadata`, `getDecodedMetadata`, `createEmbedSession`.
+- **Test:** [lupo-tests/integration/channel66_production_extended_test.php](../../../lupo-tests/integration/channel66_production_extended_test.php) — Channel 66 extended integration (headers, `DatabaseFactory`, fixture paths).
+- **Comment:** [comments/20260405172914_COMMENT_cursor_session_end_help_content_organization.md](comments/20260405172914_COMMENT_cursor_session_end_help_content_organization.md) — session end — help content organization complete, channel_key structure implemented, installation integrated.
+- **Decision (this version):** [decisions/20260405172914_DECISION_APPROVED_help_content_organization_channel_key_structure.md](decisions/20260405172914_DECISION_APPROVED_help_content_organization_channel_key_structure.md) — APPROVED channel_key-based help content organization, PRD updates, database integration.
+- **Question / Answer:** [questions/20260405172914_QUESTION_what_is_correct_help_content_structure.md](questions/20260405172914_QUESTION_what_is_correct_help_content_structure.md) → [answers/20260405172914_ANSWER_channel_key_based_organization.md](answers/20260405172914_ANSWER_channel_key_based_organization.md) — help content structure clarification and implementation.
+- **PRD:** [lupo-docs/prd/30_channel_usage_patterns.md](../../prd/30_channel_usage_patterns.md) — added help_documentation channel definition and usage patterns.
+- **PRD:** [lupo-docs/prd/16_lupopedia_headers.md](../../prd/16_lupopedia_headers.md) — updated file_path_from_root documentation for channel_key structure.
+- **Content Structure:** [lupo-content/0/help_documentation/](../../../lupo-content/0/help_documentation/) — new channel_key-based help content organization with 5 guides, 8 questions, 8 answers, 34 edges.
+- **Database Seed:** [lupo-database/lupopedia/mysql/seed/seed_online_help_and_content.sql](../../../lupo-database/lupopedia/mysql/seed/seed_online_help_and_content.sql) — help content seed with channel_key paths.
+- **Installation:** [install/seed_lupopedia_4_1_0.sql](../../../install/seed_lupopedia_4_1_0.sql) — consolidated seed including help content (27,607 bytes).
 - **Comment:** [comments/20260405104405_COMMENT_cursor_session_end_semantic_navbar_crafty_handoff.md](comments/20260405104405_COMMENT_cursor_session_end_semantic_navbar_crafty_handoff.md) — session end — **`PLAN`** Phase **M**, **`TODO`**, **`CHANGELOG`**, **`edges`**, **Crafty** feature-parity handoff (human: easy→hard when rested).
 - **PRD:** [lupo-docs/prd/21_semantic_navbar.md](../../prd/21_semantic_navbar.md) — semantic floating navbar; external allowlist; discovery; admin web provisioning.
 - **Decision (this version):** [decisions/20260405001004_DECISION_APPROVED_admin_nav_logout_intro_cursor_thread.md](decisions/20260405001004_DECISION_APPROVED_admin_nav_logout_intro_cursor_thread.md) — APPROVED **5W1H** receipt — **`logout.php`** + admin scroll nav (**logo**, **actor** truncation, **`sessionStorage`** intro key); **WHAT NOT** excludes unrelated PRD **16/26/30/31** template claims.
 - **Comment:** [comments/20260405001004_COMMENT_cursor_session_end_admin_nav_logout_handoff.md](comments/20260405001004_COMMENT_cursor_session_end_admin_nav_logout_handoff.md) — session end — **`PLAN`** Phase **L**, **`TODO`**, **`CHANGELOG`**, **Crafty** checklist handoff.
 - **Decision (this version):** [decisions/20260404175216_DECISION_APPROVED_agape_kairos_temporal_multi_actor_routing_docs.md](decisions/20260404175216_DECISION_APPROVED_agape_kairos_temporal_multi_actor_routing_docs.md) — APPROVED **5W1H** receipt — **AGAPE** §14.6 cluster, **PRD 37** temporal + **`scaffold_implementation.py add-status`**, multi-actor **`to_actor_id`** routing across **PRD 18 / 36 / 37 / 31 / 05** (evidence: top **`CHANGELOG.md`** entries **[2026-04-04]** AGAPE / PRD 37 / routing).
-- **Comment:** [comments/20260404175216_COMMENT_cursor_session_end_agape_kairos_routing_version_sync.md](comments/20260404175216_COMMENT_cursor_session_end_agape_kairos_routing_version_sync.md) — session end — **`PLAN`** Phase **K**, **`TODO`** completed + open follow-ups, **`WHAT_TO_WORK_ON_NEXT_SESSION`** handoff.
+- **Comment:** [comments/20260404175216_COMMENT_cursor_session_end_agape_kairos_routing_version_sync.md](comments/20260404175216_COMMENT_cursor_session_end_agape_kairos_routing_version_sync.md) — session end comment — version-folder sync for same thread.
 - **Doctrine:** [lupo-docs/doctrine/AGAPE_DOCTRINE.md](../../doctrine/AGAPE_DOCTRINE.md) — technical AGAPE; temporal cross-ref §1.3.
 - **PRD:** [lupo-docs/prd/37_kairos_channel_memory_consolidation.md](../../prd/37_kairos_channel_memory_consolidation.md) — §10 index-first / freshness; §10.6 full-thread chat ingest contract.
 - **Decision (this version):** [decisions/20260404_161001_DECISION_APPROVED_service_agent_architecture_and_softaculous_auto_installer_docs.md](decisions/20260404_161001_DECISION_APPROVED_service_agent_architecture_and_softaculous_auto_installer_docs.md) — APPROVED receipt — PRD 00 §5 service agents + KAIROS + THOTH + Softaculous auto-installer docs/code (**WHAT NOT** lists PRD 16/26/30/31 / validators if not evidenced).

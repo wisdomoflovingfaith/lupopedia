@@ -104,7 +104,7 @@ This framework is constitutionally compliant because:
 
 ```bash
 python lupo-scripts/create_implementation_question.py \
-  --implementation 25_departments_systems \
+  --implementation 25_departments_system \
   --level critical \
   --title "authentication_approach"
 ```
@@ -145,7 +145,7 @@ All question files must include:
 ```yaml
 lupopedia.headers:
   question_id: 2026040212000001  # Deterministic BIGINT
-  implementation_id: "25_departments_systems"
+  implementation_id: "25_departments_system"
   level: "critical"              # critical|optimization|clarification
   status: "open"                 # open|answered|deferred
   # ... other standard fields
@@ -168,7 +168,7 @@ Use the validation script to ensure compliance:
 
 ```bash
 # Validate specific implementation
-python lupo-scripts/validate_implementation_questions.py 25_departments_systems
+python lupo-scripts/validate_implementation_questions.py 25_departments_system
 
 # Validate all implementations
 python lupo-scripts/validate_implementation_questions.py --all

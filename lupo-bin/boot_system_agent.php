@@ -109,7 +109,6 @@ class SystemAgentBoot
     private function startupAIAgents($lifecycleId)
     {
         echo "🤖 Starting AI Agents...\n";
-        $db = DatabaseFactory::getConnection();
 
         // Session-backed AI boot list only. ANUBIS (19) is custodial PHP + tables, not a heartbeat/session actor.
         $agentList = array(
@@ -119,7 +118,7 @@ class SystemAgentBoot
         );
 
         foreach ($agentList as $name => $info) {
-            $active = ensureActorActive($info['id'], $db, 'system_boot');
+            $active = ensureActorActive($info['id'], 'system_boot');
             if ($active) {
                 echo "✅ " . strtoupper($name) . " AI (" . $info['id'] . "): Initialized - " . $info['desc'] . "\n";
             } else {

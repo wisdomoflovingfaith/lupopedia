@@ -6,7 +6,7 @@ lupopedia.headers:
   lupopedia.version: "4.0.76"
   lupopedia.schema: "vscode_guide"
   file_path_from_root: ".vscode/lupopedia/README.md"
-  last_modified_utc: "20260402"
+  last_modified_utc: "20260406"
   system_version: "4.0.76"
   artifact_type: "guide"
   artifact_kind: "documentation"

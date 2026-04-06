@@ -6,7 +6,7 @@ Helps agents create properly formatted implementation questions with determinist
 Constitutionally compliant - no database dependencies, pure file system operations.
 
 Usage:
-    python create_implementation_question.py --implementation 25_departments_systems --level critical --title "authentication_approach"
+    python create_implementation_question.py --implementation 25_departments_system --level critical --title "authentication_approach"
 """
 
 import argparse
@@ -148,7 +148,7 @@ def update_thread_index(questions_dir, level, question_id, title, author, date):
 
 def main():
     parser = argparse.ArgumentParser(description="Create implementation question")
-    parser.add_argument("--implementation", required=True, help="Implementation ID (e.g., 25_departments_systems)")
+    parser.add_argument("--implementation", required=True, help="Implementation ID (e.g., 25_departments_system)")
     parser.add_argument("--level", required=True, choices=["critical", "optimization", "clarification"], 
                        help="Question level")
     parser.add_argument("--title", required=True, help="Question title (use quotes for multi-word)")

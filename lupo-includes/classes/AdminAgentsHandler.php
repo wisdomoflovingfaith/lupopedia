@@ -8,6 +8,10 @@ if (!defined('LUPOPEDIA_PATH')) {
     return;
 }
 
+if (!class_exists('timestamp_ymdhis', false)) {
+    require_once LUPOPEDIA_PATH . '/lupo-includes/classes/TimestampYmdhis.php';
+}
+
 class AdminAgentsHandler
 {
 
@@ -16,7 +20,7 @@ class AdminAgentsHandler
      */
     public static function render($db, $prefix, $base)
     {
-        $one_day_ago = date('YmdHis', time() - 86400);
+        $one_day_ago = (string) timestamp_ymdhis::subtractSeconds(timestamp_ymdhis::now(), 86400);
 
         $t_actors = $db->quoteIdentifier($prefix . 'actors');
         $t_registry = $db->quoteIdentifier($prefix . 'registry');
@@ -94,8 +98,7 @@ class AdminAgentsHandler
         $dialogTable = $db->quoteIdentifier($prefix . 'dialog_messages');
         $ticketMessagesTable = $db->quoteIdentifier($prefix . 'ticket_messages');
 
-        // Calculate 24h ago timestamp
-        $twentyFourHoursAgo = gmdate('YmdHis', time() - 86400);
+        $twentyFourHoursAgo = (string) timestamp_ymdhis::subtractSeconds(timestamp_ymdhis::now(), 86400);
 
         $sql = "
             SELECT 
@@ -151,7 +154,7 @@ class AdminAgentsHandler
     {
         $dialogTable = $db->quoteIdentifier($prefix . 'dialog_messages');
         $ticketMessagesTable = $db->quoteIdentifier($prefix . 'ticket_messages');
-        $twentyFourHoursAgo = gmdate('YmdHis', time() - 86400);
+        $twentyFourHoursAgo = (string) timestamp_ymdhis::subtractSeconds(timestamp_ymdhis::now(), 86400);
 
         $sql = "
             SELECT 
@@ -222,21 +225,20 @@ class AdminAgentsHandler
             return 'archived';
         }
 
-        $now = time();
-        $lastActiveTime = strtotime($lastActive . ' UTC');
-
-        if ($lastActiveTime === false) {
+        $packedStr = str_pad((string) (int) $lastActive, 14, '0', STR_PAD_LEFT);
+        $dtCheck = DateTime::createFromFormat('YmdHis', $packedStr, new DateTimeZone('UTC'));
+        if (!$dtCheck instanceof DateTime) {
             return 'archived';
         }
 
-        $hoursSinceActive = ($now - $lastActiveTime) / 3600;
-
-        if ($hoursSinceActive <= 24) {
+        $lastPacked = (int) $lastActive;
+        $seconds = timestamp_ymdhis::diffInSeconds(timestamp_ymdhis::now(), $lastPacked);
+        if ($seconds <= 86400) {
             return 'active';
-        } elseif ($hoursSinceActive <= 168) { // 7 days
-            return 'dormant';
-        } else {
-            return 'archived';
         }
+        if ($seconds <= 604800) {
+            return 'dormant';
+        }
+        return 'archived';
     }
 }

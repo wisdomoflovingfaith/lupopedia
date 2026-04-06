@@ -5,14 +5,16 @@ lupopedia.headers:
   system_version: "4.0.82"
   file_path_from_root: "lupo-rules/root/FILE_BOUNDARY_VALIDATION_RULE.md"
   web_path: "http://www.lupopedia.com/lupo-rules/root/FILE_BOUNDARY_VALIDATION_RULE"
-  last_modified_utc: "20260319"
+  last_modified_utc: "20260406044907"
   project_id: 0
   project_slug: "lupopedia-core"
   channel_id: 51
   thread_id: 1037
   task_id: "task_file_boundary_validation_001"
-  actor_id: 1
-  actor_name: "wolfie"
+  author:
+    type: "actor"
+    id: 1
+    name: "wolfie"
   delegation_chain: "wolfie:root"
   artifact_type: "rule"
   artifact_kind: "validation"

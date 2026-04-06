@@ -4,10 +4,12 @@ lupopedia.headers:
   lupopedia.schema: "doctrine"
   file_path_from_root: "lupo-rules/root/TIMESTAMP_DOCTRINE.md"
   web_path: "http://www.lupopedia.com/lupo-rules/root/TIMESTAMP_DOCTRINE.md"
-  last_modified_utc: "20260321"
+  last_modified_utc: "20260406044907"
   channel_id: 42
-  actor_id: 1
-  actor_name: "wolfie"
+  author:
+    type: "actor"
+    id: 1
+    name: "wolfie"
   delegation_chain: "wolfie:root"
   artifact_type: "doctrine"
   artifact_kind: "root_rule"

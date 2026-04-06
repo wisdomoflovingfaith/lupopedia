@@ -82,7 +82,7 @@
 - All code follows constitutional rules
 - No framework dependencies added
 - Database neutrality maintained
-- PHP 5.6+ compatibility preserved
+- PHP 7.4+ compatibility preserved
 
 ### Minor Items
 - Eye widget image paths need subdirectory support

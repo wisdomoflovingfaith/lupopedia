@@ -213,8 +213,8 @@ LILITH must enforce all constitutional rules. Here are the key constitutional ma
 - No migration scripts for version upgrades
 - Clean database state required
 
-**3. PHP 5.6 COMPATIBILITY MANDATE**
-- All code must work on PHP 5.6 minimum
+**3. PHP 7.4 COMPATIBILITY MANDATE**
+- All code must work on PHP 7.4 minimum
 - No PHP 8+ specific syntax (no named arguments, union types, match, enums)
 - No typed properties, attributes, arrow functions
 - No strict types or return type declarations
@@ -301,7 +301,7 @@ LILITH must enforce all constitutional rules. Here are the key constitutional ma
 - Enforced for all documentation and internal links
 
 ### **Technical Expertise**
-- PHP 5.6-8.3 compatibility requirements
+- PHP 7.4–8.3 compatibility requirements
 - MySQL/PostgreSQL neutral SQL patterns
 - DatabaseFactory and IdGenerator patterns
 - 63-bit signed-safe integer requirements

@@ -15,13 +15,15 @@ if ($selected_thread_id <= 0) {
 }
 $current_actor_id = isset($current_actor_id) ? (int) $current_actor_id : 0;
 $actor_name = isset($current_actor_name) ? $current_actor_name : (isset($actor_names[$current_actor_id]) ? $actor_names[$current_actor_id] : 'Operator');
+$channel_typing_csrf = isset($channel_typing_csrf) ? (string) $channel_typing_csrf : '';
 ?>
 <form class="channel-composer-form" id="channel-composer-form" action="<?= $base ?>/lupo-api/channel/send" method="post"
       data-channel-id="<?= $channel_id ?>"
       data-typing-url="<?= htmlspecialchars($base . '/api/channel/typing') ?>"
       data-send-url="<?= htmlspecialchars($base . '/api/channel/send') ?>"
       data-actor-id="<?= $current_actor_id ?>"
-      data-actor-name="<?= htmlspecialchars($actor_name) ?>">
+      data-actor-name="<?= htmlspecialchars($actor_name) ?>"
+      data-csrf-token="<?= htmlspecialchars($channel_typing_csrf) ?>">
     <input type="hidden" name="channel_id" value="<?= $channel_id ?>">
     <label for="channel-composer-thread" class="channel-composer-label">Send to:</label>
     <select id="channel-composer-thread" name="dialog_thread_id" class="channel-composer-select" aria-label="Select thread to reply to">
@@ -50,17 +52,26 @@ $actor_name = isset($current_actor_name) ? $current_actor_name : (isset($actor_n
     var channelId = form.getAttribute('data-channel-id') || '';
     var actorId = form.getAttribute('data-actor-id') || '';
     var actorName = form.getAttribute('data-actor-name') || 'Operator';
+    var csrfToken = form.getAttribute('data-csrf-token') || '';
     var typingInterval = 5000;
     var lastTypingValue = '';
 
     function postTyping(previewText) {
         var threadId = threadSelect ? (threadSelect.value || '') : '';
         if (!threadId) return;
-        var body = 'channel_id=' + encodeURIComponent(channelId) + '&dialog_thread_id=' + encodeURIComponent(threadId) + '&actor_id=' + encodeURIComponent(actorId) + '&actor_name=' + encodeURIComponent(actorName) + '&preview_text=' + encodeURIComponent(previewText);
+        var body = 'channel_id=' + encodeURIComponent(channelId) + '&dialog_thread_id=' + encodeURIComponent(threadId) + '&preview_text=' + encodeURIComponent(previewText);
+        if (csrfToken) {
+            body += '&csrf_token=' + encodeURIComponent(csrfToken);
+        }
         var xhr = new XMLHttpRequest();
         xhr.open('POST', typingUrl, true);
         xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
         xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
+        if (csrfToken) {
+            try {
+                xhr.setRequestHeader('X-CSRF-Token', csrfToken);
+            } catch (eC) {}
+        }
         xhr.send(body);
     }
 

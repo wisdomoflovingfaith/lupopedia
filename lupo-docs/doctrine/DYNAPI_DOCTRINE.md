@@ -4,8 +4,8 @@ lupopedia.headers:
   lupopedia.schema: doctrine
   file_path_from_root: "lupo-docs/doctrine/DYNAPI_DOCTRINE.md"
   web_path: "http://www.lupopedia.com/lupopedia/lupo-docs/doctrine/DYNAPI_DOCTRINE.md"
-  last_modified_utc: "20260403031423"
-  when_updated: "20260403031423"
+  last_modified_utc: "20260406034823"
+  when_updated: "20260406034823"
   federation_node_id: 0
   channel_id: 42
   thread_id: "dynapi-doctrine"
@@ -16,57 +16,71 @@ lupopedia.headers:
   delegation_chain: "wolfie:root"
   artifact_type: "doctrine"
   artifact_kind: "reference"
-  purpose: "Defines DynAPI library as approved in-tree dependency. It was written in 1999. It still works. The IDE has no training data on it. That is not a bug."
-  status: "active"
+  purpose: "Heritage narrative and context for DynAPI lineage; normative shipped UI layers are LupoLayer (see LUPO_LAYERS_DOCTRINE.md, PRD 00 section 16.1)."
+  status: "deprecated"
+  deprecated_by: "lupo-docs/doctrine/LUPO_LAYERS_DOCTRINE.md"
+  deprecation_reason: "Canonical DHTML layer controller is lupo-layers.js (LupoLayer). DynAPI dynlayer.js remains in-tree for proven legacy paths per PRD 00 section 9.20, not as the default for new work."
   tags:
     - "doctrine"
     - "dynapi"
     - "dhtml"
     - "legacy"
-    - "approved"
+    - "deprecated"
+    - "heritage"
     - "no-npm"
-    - "works"
 lupopedia.edges:
   outbound_edges:
+    - to: "lupo-docs/doctrine/LUPO_LAYERS_DOCTRINE.md"
+      type: references
+      weight: 1.0
+      reason: "Superseding active doctrine for shipped UI layers (LupoLayer / lupo-layers.js)"
+    - to: "lupo-docs/prd/00_root_constitutional_system_requirements.md"
+      type: references
+      weight: 1.0
+      reason: "PRD 00 section 16.1 UI layers; section 9.20 proven code preservation"
     - to: "lupo-docs/prd/33_softaculous_certification_4_1_0_gate.md"
       type: references
-      weight: 1.0
-      reason: "Approved in-tree library per PRD 33 §8"
+      weight: 0.85
+      reason: "In-tree library policy context"
     - to: "lupo-docs/prd/28_semantic_monitoring_widget.md"
-      type: implements
-      weight: 1.0
-      reason: "WOLFIE Eyes / semantic monitoring widget PRD; DynAPI for DHTML layer animation"
+      type: references
+      weight: 0.9
+      reason: "WOLFIE Eyes / semantic monitoring widget PRD"
     - to: "lupo-includes/js/crafty_syntax_eyes.js"
       type: references
-      weight: 1.0
-      reason: "WOLFIE Eyes reference implementation (DynLayer usage)"
-    - to: "lupo-includes/js/dynlayer.js"
+      weight: 0.9
+      reason: "Heritage eye implementation references"
+    - to: "lupo-includes/js/dynapi/js/dynlayer.js"
       type: references
       weight: 1.0
-      reason: "Canonical library location (enqueued from ui-loader)"
+      reason: "Heritage DynLayer source (proven paths; do not extend eval patterns)"
+    - to: "lupo-includes/js/dynlayer.js"
+      type: references
+      weight: 0.5
+      reason: "Additional in-tree dynlayer path if present; prefer dynapi/js/dynlayer.js for lineage"
 lupopedia.footer:
-  last_verified: "20260402"
+  last_verified: "20260406034823"
   verified_by:
-    type: "actor"
-    id: 2
-    name: "LILITH"
+    identity_type: actor
+    actor_id: 102
+    agent_name_identity: "Cursor IDE Agent"
     department_id_delta: 0
   verified_via:
-    type: "direct"
-    faucet_slug: "none"
-  orchestrator: "lilith:audit"
+    type: faucet
+    faucet_slug: cursor
+  orchestrator: "cursor:root"
   next_action:
-    - "Stop asking what DynAPI is. Read this document."
-    - "Do not suggest replacing it with React, Vue, Angular, or any npm package."
-    - "Do not ask 'but have you considered Three.js?' No. We have not."
-    - "Accept that code written in 1999 can still work in 2026. Deal with it."
+    - "Do not cite this file as the active layer standard; use LUPO_LAYERS_DOCTRINE.md"
+    - "Keep heritage body below for historical context; new features use lupo-layers.js"
 ---
 
-# file: DYNAPI_DOCTRINE — delegation: wolfie:root — web_path: [http://www.lupopedia.com/lupopedia/lupo-docs/doctrine/DYNAPI_DOCTRINE.md](http://www.lupopedia.com/lupopedia/lupo-docs/doctrine/DYNAPI_DOCTRINE.md)
+# file: DYNAPI_DOCTRINE (deprecated) — delegation: wolfie:root — web_path: [http://www.lupopedia.com/lupopedia/lupo-docs/doctrine/DYNAPI_DOCTRINE.md](http://www.lupopedia.com/lupopedia/lupo-docs/doctrine/DYNAPI_DOCTRINE.md)
+
+**DEPRECATED — historical reference only.** Normative rules for shipped UI layering and animation are **[LUPO_LAYERS_DOCTRINE.md](LUPO_LAYERS_DOCTRINE.md)** and **[PRD 00](00_root_constitutional_system_requirements.md) section 16.1**. New code **MUST** use **`lupo-includes/js/lupo-layers.js`** (`LupoLayer`). Heritage **`dynlayer.js`** stays in-tree under **PRD 00 section 9.20**; do not copy **`eval()`**-style patterns into new code.
 
 ## LILITH's Directive: DynAPI Doctrine - READ THIS, IDE
 
-# DYNAPI DOCTRINE
+# DYNAPI DOCTRINE (heritage body)
 
 ## 1. What Is DynAPI?
 
@@ -89,7 +103,7 @@ It provides:
 | **It works** | WOLFIE's eye animation has run for ~20 years without a single bug report |
 | **No dependencies** | One file. No npm. No webpack. No build step. |
 | **Constitutionally compliant** | PRD 33 §8 explicitly allows in-tree libraries |
-| **Shared hosting compatible** | Works on PHP 5.6+ hosts with zero configuration |
+| **Shared hosting compatible** | Works on PHP 7.4+ hosts with zero configuration |
 | **It's 250 lines of vanilla JS** | Not 2,000 lines of framework boilerplate |
 | **The AI doesn't know it** | That's an AI problem, not a DynAPI problem |
 

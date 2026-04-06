@@ -1,0 +1,22 @@
+{
+  "table_name": "lupo_auth_rate_limits",
+  "fields": [
+    "`auth_rate_limit_id` bigint NOT NULL",
+    "`identifier` varchar(255) NOT NULL",
+    "`attempt_type` varchar(50)",
+    "`attempted_ymdhis` bigint NOT NULL"
+  ],
+  "data": [],
+  "indexes": [],
+  "relationships": [],
+  "primary_key": {
+    "column_name": "auth_rate_limit_id",
+    "expected_name": "auth_rate_limit_id",
+    "is_correct": true,
+    "needs_rename": false
+  },
+  "doctrine_metadata": {
+    "no_foreign_keys": true,
+    "no_triggers": true
+  }
+}

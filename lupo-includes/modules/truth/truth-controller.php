@@ -669,7 +669,7 @@ function truth_handle_assert($slug) {
                 'assertion' => $assertionText,
                 'source' => $sourceSlug,
                 'summary' => $evidenceSummary,
-                'timestamp' => time()
+                'timestamp' => (int) gmdate('YmdHis')
             ];
             
             // Pass to receiver (logging only, no DB writes)
@@ -846,7 +846,7 @@ function truth_handle_evidence($slug) {
                     'type' => $evidenceType,
                     'source' => $evidenceSource,
                     'summary' => $evidenceSummary,
-                    'timestamp' => time()
+                    'timestamp' => (int) gmdate('YmdHis')
                 ];
                 
                 // Pass to receiver (logging only, no DB writes)

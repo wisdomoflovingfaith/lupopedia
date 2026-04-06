@@ -44,10 +44,10 @@ $metadataTable = $tablePrefix . 'metadata';
 $fixtureDir = $repoRoot . DIRECTORY_SEPARATOR . 'lupo-tests' . DIRECTORY_SEPARATOR . 'fixtures'
     . DIRECTORY_SEPARATOR . 'channel66_ingestion' . DIRECTORY_SEPARATOR . 'thread1001';
 
-$toonCanonicalDir = $repoRoot . DIRECTORY_SEPARATOR . 'lupo-database' . DIRECTORY_SEPARATOR . 'lupopedia' . DIRECTORY_SEPARATOR . 'toon';
-$toonCanonicalFile = $toonCanonicalDir . DIRECTORY_SEPARATOR . 'lupo_metadata.toon';
-if (!is_file($toonCanonicalFile)) {
-    echo "SKIP: Canonical lupo_metadata.toon not found.\n";
+$jsonCanonicalFile = $repoRoot . DIRECTORY_SEPARATOR . 'lupo-database' . DIRECTORY_SEPARATOR . 'lupopedia'
+    . DIRECTORY_SEPARATOR . 'json' . DIRECTORY_SEPARATOR . 'lupo_metadata.json';
+if (!is_file($jsonCanonicalFile)) {
+    echo "SKIP: Canonical lupo_metadata.json schema reference not found.\n";
     exit(0);
 }
 
@@ -149,25 +149,25 @@ function buildScopeRootWithFixture($fixtureDir, $fixtureFileName)
     return array($tempRoot, $dst);
 }
 
-function buildToonDirVariant($toonCanonicalFile, $variant)
+function buildToonDirVariant($jsonCanonicalFile, $variant)
 {
     $tempRoot = mkTempDir();
-    $toonDir = $tempRoot . DIRECTORY_SEPARATOR . 'toon';
-    @mkdir($toonDir, 0777, true);
-    $toonPath = $toonDir . DIRECTORY_SEPARATOR . 'lupo_metadata.toon';
-    $raw = file_get_contents($toonCanonicalFile);
+    $schemaDir = $tempRoot . DIRECTORY_SEPARATOR . 'schema_ref';
+    @mkdir($schemaDir, 0777, true);
+    $jsonPath = $schemaDir . DIRECTORY_SEPARATOR . 'lupo_metadata.json';
+    $raw = file_get_contents($jsonCanonicalFile);
     if ($raw === false) {
-        throw new Exception('Failed reading canonical toon');
+        throw new Exception('Failed reading canonical schema reference JSON');
     }
     if ($variant === 'missing_schema_ref') {
-        // Deterministically remove the exact schema_ref field entry line from fields:.
-        $raw = str_replace("- '`schema_ref` varchar(64)'\r\n", "", $raw);
-        $raw = str_replace("- '`schema_ref` varchar(64)'\n", "", $raw);
-        $raw = str_replace("- '`schema_ref` varchar(64)'", "", $raw);
+        // Deterministically remove the schema_ref field entry from the JSON "fields" array.
+        $raw = str_replace("    \"`schema_ref` varchar(64)\"\r\n", "", $raw);
+        $raw = str_replace("    \"`schema_ref` varchar(64)\"\n", "", $raw);
+        $raw = str_replace("    \"`schema_ref` varchar(64)\"", "", $raw);
     }
-    file_put_contents($toonPath, $raw);
-    @touch($toonPath, time() - 10);
-    return $toonDir;
+    file_put_contents($jsonPath, $raw);
+    @touch($jsonPath, time() - 10);
+    return $schemaDir;
 }
 
 function runIngestOnSingleFixture($db, $toonDir, $scopeRoot, $concurrencyHookCallable = null)
@@ -192,7 +192,7 @@ echo "Running Channel 66 Thread 1001 bounded-authority ingestion P0 tests...\n";
 
 // 1) Valid ingest
 list($scopeRoot, $dst) = buildScopeRootWithFixture($fixtureDir, 'valid_ingest_thread1001.md');
-$toonDirOk = buildToonDirVariant($toonCanonicalFile, 'ok');
+$toonDirOk = buildToonDirVariant($jsonCanonicalFile, 'ok');
 $summary = runIngestOnSingleFixture($db, $toonDirOk, $scopeRoot);
 $eid = computeEntityIdForTest(filePathFromRootForFixture('valid_ingest_thread1001.md'));
 $rootId = findRootMetadataId($db, $metadataTable, $eid);
@@ -242,7 +242,7 @@ test_assert(is_array($warningArr) && count($warningArr) === 1 && $warningArr[0] 
 test_assert(blockExists($db, $metadataTable, $eid, $rootId, 'lupopedia.headers'), 'deprecated version warn: headers block present');
 
 // 6) TOON conflict reject (missing schema_ref column)
-$toonDirMissing = buildToonDirVariant($toonCanonicalFile, 'missing_schema_ref');
+$toonDirMissing = buildToonDirVariant($jsonCanonicalFile, 'missing_schema_ref');
 list($scopeRoot, $dst) = buildScopeRootWithFixture($fixtureDir, 'toon_missing_column_thread1001.md');
 $summary = runIngestOnSingleFixture($db, $toonDirMissing, $scopeRoot);
 $eid = computeEntityIdForTest(filePathFromRootForFixture('toon_missing_column_thread1001.md'));
@@ -307,7 +307,7 @@ test_assert(is_array($tagsArr) && count($tagsArr) === 2 && $tagsArr[0] === 'a' &
 test_assert(fetchPropertyValue($db, $metadataTable, $eid, '__private_note') === null, 'field preservation: __private_note never-projected omitted');
 
 // 10) Cache invalidation: ToonSchemaCache reload when mtime changes
-$toonDirForCache = buildToonDirVariant($toonCanonicalFile, 'ok');
+$toonDirForCache = buildToonDirVariant($jsonCanonicalFile, 'ok');
 list($scopeRoot, $dst) = buildScopeRootWithFixture($fixtureDir, 'cache_invalidation_thread1001.md');
 $eid = computeEntityIdForTest(filePathFromRootForFixture('cache_invalidation_thread1001.md'));
 
@@ -326,15 +326,14 @@ $ingester->ingest(array(
 $rootId = findRootMetadataId($db, $metadataTable, $eid);
 test_assert(blockExists($db, $metadataTable, $eid, $rootId, 'lupopedia.headers'), 'cache invalidation: first run headers block present');
 
-// Modify toon file in place to remove schema_ref line and update mtime.
-$toonPath = $toonDirForCache . DIRECTORY_SEPARATOR . 'lupo_metadata.toon';
-$raw = file_get_contents($toonPath);
-// Deterministically remove the exact schema_ref field entry line.
-$raw = str_replace("- '`schema_ref` varchar(64)'\r\n", "", $raw);
-$raw = str_replace("- '`schema_ref` varchar(64)'\n", "", $raw);
-$raw = str_replace("- '`schema_ref` varchar(64)'", "", $raw);
-file_put_contents($toonPath, $raw);
-@touch($toonPath, time() + 5);
+// Modify schema reference JSON in place to remove schema_ref field line and update mtime.
+$jsonPath = $toonDirForCache . DIRECTORY_SEPARATOR . 'lupo_metadata.json';
+$raw = file_get_contents($jsonPath);
+$raw = str_replace("    \"`schema_ref` varchar(64)\"\r\n", "", $raw);
+$raw = str_replace("    \"`schema_ref` varchar(64)\"\n", "", $raw);
+$raw = str_replace("    \"`schema_ref` varchar(64)\"", "", $raw);
+file_put_contents($jsonPath, $raw);
+@touch($jsonPath, time() + 5);
 
 // Second run: should reject toon_conflict.
 $ingester->ingest(array(

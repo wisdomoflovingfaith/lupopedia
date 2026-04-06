@@ -3,7 +3,7 @@
  * Windsurf Rules Enforcement Test
  *
  * Validates .windsurf rule artifacts against canonical root rules.
- * PHP 5.6 compatible, framework-free.
+ * PHP 7.4 compatible, framework-free.
  *
  * Usage:
  *   php lupo-tests/unit/windsurf_rules_enforcement.php

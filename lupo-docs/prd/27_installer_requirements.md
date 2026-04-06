@@ -174,7 +174,7 @@ SELECT * FROM pg_catalog.pg_tables;
 **Rationale**: The installer only needs access to the single database it is installing into. Any attempt to access system tables or other databases violates the least privilege doctrine and will fail on shared hosting.
 
 ## 4. PHP Compatibility
-- Installer must run on PHP 5.6 through 8.6 (latest).
+- Installer must run on PHP 7.4 through 8.6 (latest).
 - Namespaces are allowed (PHP 5.3+).
 - No frameworks (Laravel, Symfony, etc.), no Composer, no Docker.
 - All required libraries must be bundled in the codebase (e.g., lupo-includes/), not installed via Composer or external package managers.
@@ -201,7 +201,7 @@ SELECT * FROM pg_catalog.pg_tables;
 | Database-neutral SQL | ✅ MySQL/PostgreSQL compatible |
 | {{prefix}} placeholder system | ✅ Documented |
 | Consolidated seed file | ✅ Documented with build script |
-| PHP 5.6-8.6 compatibility | ✅ Correct range |
+| PHP 7.4–8.6 compatibility | ✅ Correct range |
 | No frameworks, Composer, Docker | ✅ Enforced |
 
 ### LILITH Findings

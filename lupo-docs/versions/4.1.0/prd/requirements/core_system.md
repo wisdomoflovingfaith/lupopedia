@@ -30,7 +30,7 @@ lupopedia.footer:
 # Core System Requirements
 
 1. The system MUST install cleanly into a subdirectory deployment path.
-2. The system MUST run on PHP 5.6+ without unsupported language features.
+2. The system MUST run on PHP 7.4+ without unsupported language features (see `php-7-4-compatibility.md`).
 3. The system MUST preserve core Crafty Syntax behaviors required for migration continuity.
 4. The system MUST keep routing, session, and auth paths deterministic and testable.
 5. The system MUST avoid environment-coupled assumptions.
@@ -70,7 +70,7 @@ Any unresolved contradiction across these layers is release-blocking for 4.1.0.
 | Requirement | Verification Check | Evidence Source | Status |
 |-------------|--------------------|-----------------|--------|
 | Clean subdirectory install path | Path bootstrap and install redirect resolve under detected public path | `index.php` dynamic `LUPOPEDIA_PUBLIC_PATH` resolution and install redirect logic | pass |
-| PHP 5.6+ compatibility baseline | Core doctrine and runtime constraints remain php5.6-compatible | `AGENTS.md` runtime doctrine and no framework/package-manager dependency in release docs | pass |
+| PHP 7.4+ compatibility baseline | Core doctrine and runtime constraints remain php7.4-compatible | `AGENTS.md` runtime doctrine and no framework/package-manager dependency in release docs | pass |
 | Crafty Syntax migration continuity | Upgrade path remains explicit as release gate | `prd/README.md` Softaculous-first upgrade path and checklists | pass |
 | Deterministic routing/session/auth paths | Core routing/bootstrap surfaces remain deterministic and testable | `index.php` slug extraction and `module-loader.php` routing order | pass |
 | Environment portability | Core path constants and subdirectory handling present in entry surfaces | `index.php`, `module-loader.php` path constants and no root-only requirement in release model | pass |

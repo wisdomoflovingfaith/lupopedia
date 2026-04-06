@@ -1,36 +1,33 @@
 <?php
-/**
+/*
+---
 lupopedia.headers:
-  when_updated: "20260324175911"
+  header_format_version: 2
+  lupopedia.schema: tooling
+  when_updated: "20260406035358"
   file_path_from_root: "lupo-scripts/check_repo_limits.php"
-  last_modified_utc: "20260324175911"
+  web_path: "http://www.lupopedia.com/lupopedia/lupo-scripts/check_repo_limits.php"
+  last_modified_utc: "20260406035358"
+  federation_node_id: 0
   channel_id: 42
-  actor_id: 102
-  actor_name: "cursor"
+  author:
+    type: "actor"
+    id: 102
+    name: "CURSOR"
   delegation_chain: "cursor:root"
   artifact_type: "tooling"
   artifact_kind: "script"
+  purpose: "Repository file limit checker (SYSTEM_LIMITS Doctrine); counts files recursively and fails if over cap."
+  tags: ["tooling", "limits", "script", "system_limits"]
 lupopedia.footer:
-  last_verified: "20260324175911"
-  last_verified_by: "cursor"
-  last_verified_by_actor_id: 102
+  last_verified: "20260406035358"
+  verified_by:
+    identity_type: actor
+    actor_id: 102
+    agent_name_identity: "Cursor IDE Agent"
+---
 */
-/**
-lupopedia.headers:
-  when_updated: "20260324175617"
-  file_path_from_root: "lupo-scripts/check_repo_limits.php"
-  last_modified_utc: "20260324175617"
-  channel_id: 42
-  actor_id: 102
-  actor_name: "cursor"
-  delegation_chain: "cursor:root"
-  artifact_type: "tooling"
-  artifact_kind: "script"
-lupopedia.footer:
-  last_verified: "20260324175617"
-  last_verified_by: "cursor"
-  last_verified_by_actor_id: 102
-*/
+
 /**
  * Repository file limit checker (SYSTEM_LIMITS Doctrine).
  *
@@ -43,7 +40,7 @@ lupopedia.footer:
  *   php lupo-scripts/check_repo_limits.php --root="."
  */
 
-// PHP 5.6+ compatible (no typed properties, no modern syntax).
+// PHP 7.4+ compatible per project rules (see php-7-4-compatibility.md).
 
 $root = null;
 $max_files = 10000;

@@ -9,14 +9,16 @@ lupopedia.metadata:
   comment: "Snapshot of metadata for this file or entity at artifact creation."
 
 lupopedia.headers:
-  actor_id: 1
-  actor_name: "wolfie"
+  author:
+    type: "actor"
+    id: 1
+    name: "wolfie"
   delegation_chain: "wolfie:root"
   lupopedia.version: "4.0.74"
   lupopedia.schema: "cursor_rule"
   file_path_from_root: "lupo-rules/root/pk-reference-naming-doctrine.md"
   web_path: "http://www.lupopedia.com/rules/root/pk-reference-naming-doctrine"
-  last_modified_utc: "20260313"
+  last_modified_utc: "20260406044907"
   system_version: "4.0.74"
   rule_name: "Primary Key & Reference Naming Doctrine"
   rule_type: "constraint"

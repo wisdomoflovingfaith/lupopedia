@@ -215,15 +215,17 @@ class BoundedHeaderAuthorityValidator
     }
 
     /**
-     * Validate TOON safety for lupo_metadata projection.
+     * Validate schema reference JSON safety for lupo_metadata projection (PRD 00 section 6).
+     * Reads canonical-shaped schema from lupo-database/lupopedia/json/lupo_metadata.json
+     * (or directory passed as ingest "toon_dir" for tests / overrides).
      *
-     * @param string $toonDir
+     * @param string $schemaDirHint Directory hint from ingest config (legacy name toon_dir).
      * @return array outcome/reject fields
      */
-    private function validateToonSafety($toonDir)
+    private function validateToonSafety($schemaDirHint)
     {
-        $toon = $this->toonCache->loadToonTable($toonDir, 'lupo_metadata');
-        if ($toon === null) {
+        $schema = $this->toonCache->loadToonTable($schemaDirHint, 'lupo_metadata');
+        if ($schema === null) {
             return array(
                 'outcome' => 'reject',
                 'reject_type' => 'toon_conflict',
@@ -231,7 +233,7 @@ class BoundedHeaderAuthorityValidator
             );
         }
 
-        $fieldNames = $this->toonCache->extractFieldNames($toon);
+        $fieldNames = $this->toonCache->extractFieldNames($schema);
         $fieldSet = array();
         foreach ($fieldNames as $f) {
             $fieldSet[(string)$f] = true;

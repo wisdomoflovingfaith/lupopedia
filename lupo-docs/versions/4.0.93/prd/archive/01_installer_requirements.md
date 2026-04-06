@@ -63,7 +63,7 @@ This PRD defines the installer requirements for Lupopedia, ensuring compliance w
 - **Detail:** See `/lupo-docs/versions/4.0.93/WHAT_TO_DO_NEXT.md` §14 for read-only verification notes and edge cases.
 
 ## 4. PHP Compatibility
-- Installer must run on PHP 5.6 through 8.6 (latest).
+- Installer must run on PHP 7.4 through 8.6 (latest). (Archive; align with current PRD 27.)
 - Namespaces are allowed (PHP 5.3+).
 - No frameworks (Laravel, Symfony, etc.), no Composer, no Docker.
 - All required libraries must be bundled in the codebase (e.g., lupo-includes/), not installed via Composer or external package managers.

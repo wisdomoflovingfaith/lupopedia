@@ -35,11 +35,10 @@ function lupo_resolve_web_path($request_path) {
     if ($repo_root === '') {
         return null;
     }
-    $db = isset($GLOBALS['mydatabase']) ? $GLOBALS['mydatabase'] : null;
     $prefix = defined('LUPO_TABLE_PREFIX') ? LUPO_TABLE_PREFIX : 'lupo_';
     $alias_redirect = true;
     $log_fallback = true;
-    $resolver = new UrlResolver($db, $prefix, $repo_root, $alias_redirect, $log_fallback);
+    $resolver = new UrlResolver($prefix, $repo_root, $alias_redirect, $log_fallback);
     return $resolver->resolve($request_path);
 }
 
@@ -56,9 +55,8 @@ function lupo_get_url_resolver() {
     if ($repo_root === '') {
         return null;
     }
-    $db = isset($GLOBALS['mydatabase']) ? $GLOBALS['mydatabase'] : null;
     $prefix = defined('LUPO_TABLE_PREFIX') ? LUPO_TABLE_PREFIX : 'lupo_';
-    return new UrlResolver($db, $prefix, $repo_root, true, true);
+    return new UrlResolver($prefix, $repo_root, true, true);
 }
 
 /**

@@ -1,4 +1,4 @@
-﻿---
+---
 lupopedia.headers:
   lupopedia.schema: documentation
   file_path_from_root: lupo-docs/database/lupopedia/tables/planning/table_lupo_documentation_frameworks.toon.md
@@ -79,7 +79,7 @@ documentation_framework_id bigint NOT NULL,
   role_key varchar(64) DEFAULT NULL,
   task_scope varchar(255) DEFAULT NULL,
   database_table varchar(255) DEFAULT NULL,
-  runtime_min_php varchar(20) DEFAULT '5.6',
+  runtime_min_php varchar(20) DEFAULT '7.4',
   created_ymdhis bigint NOT NULL DEFAULT 0,
   updated_ymdhis bigint NOT NULL DEFAULT 0,
   is_deleted tinyint NOT NULL DEFAULT 0,
@@ -108,7 +108,7 @@ Explain the intended function of the table based on its structure and naming.
 | role_key | varchar(64) | YES |  | NULL | |
 | task_scope | varchar(255) | YES |  | NULL | |
 | database_table | varchar(255) | YES |  | NULL | |
-| runtime_min_php | varchar(20) | YES |  | 5.6 | |
+| runtime_min_php | varchar(20) | YES |  | 7.4 | |
 | created_ymdhis | bigint | NO |  | 0 | |
 | updated_ymdhis | bigint | NO |  | 0 | |
 | is_deleted | tinyint | NO |  | 0 | |

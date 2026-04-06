@@ -8,6 +8,44 @@ class GarbageCollector {
     private $max_per_run;
     
     const DEFAULT_MAX_PER_RUN = 10000;
+
+    /**
+     * Packed UTC instant $days calendar-days before now (for created_ymdhis cutoffs).
+     */
+    private function cutoffPackedDaysAgo($days) {
+        if (!class_exists('timestamp_ymdhis', false)) {
+            require_once LUPOPEDIA_PATH . '/lupo-includes/classes/TimestampYmdhis.php';
+        }
+        return (string) timestamp_ymdhis::subtractSeconds(timestamp_ymdhis::now(), (int) $days * 86400);
+    }
+
+    /**
+     * Packed UTC instant $hours before now.
+     */
+    private function cutoffPackedHoursAgo($hours) {
+        if (!class_exists('timestamp_ymdhis', false)) {
+            require_once LUPOPEDIA_PATH . '/lupo-includes/classes/TimestampYmdhis.php';
+        }
+        return (string) timestamp_ymdhis::subtractSeconds(timestamp_ymdhis::now(), (int) $hours * 3600);
+    }
+
+    /**
+     * YYYYMMDD for date_ymd columns (integer/string eight digits).
+     */
+    private function cutoffYmdDaysAgo($days) {
+        $packed = (int) $this->cutoffPackedDaysAgo($days);
+        $s = str_pad((string) $packed, 14, '0', STR_PAD_LEFT);
+        return substr($s, 0, 8);
+    }
+
+    /**
+     * YYYY-MM-DD for visit_date style columns.
+     */
+    private function cutoffSqlDateDaysAgo($days) {
+        $packed = (int) $this->cutoffPackedDaysAgo($days);
+        $s = str_pad((string) $packed, 14, '0', STR_PAD_LEFT);
+        return substr($s, 0, 4) . '-' . substr($s, 4, 2) . '-' . substr($s, 6, 2);
+    }
     
     public function __construct() {
         $this->db = DatabaseFactory::getConnection();
@@ -206,7 +244,7 @@ class GarbageCollector {
         if ($this->deleted >= $this->max_per_run) return;
         
         $retention = $this->config['gc_path_retention_days'] ?? 90;
-        $cutoff = gmdate('YmdHis', strtotime("-$retention days"));
+        $cutoff = $this->cutoffPackedDaysAgo($retention);
         
         $this->prune('lupo_paths', 'created_ymdhis < ?', [$cutoff]);
     }
@@ -218,8 +256,7 @@ class GarbageCollector {
         if ($this->deleted >= $this->max_per_run) return;
         
         $retention = $this->config['gc_referrer_retention_days'] ?? 365;
-        $cutoff = strtotime("-$retention days");
-        $cutoff_ymd = date('Ymd', $cutoff);
+        $cutoff_ymd = $this->cutoffYmdDaysAgo($retention);
         
         $this->prune('lupo_referers', 'date_ymd < ?', [$cutoff_ymd]);
     }
@@ -231,7 +268,7 @@ class GarbageCollector {
         if ($this->deleted >= $this->max_per_run) return;
         
         $retention = $this->config['gc_visits_retention_days'] ?? 30;
-        $cutoff = gmdate('YmdHis', strtotime("-$retention days"));
+        $cutoff = $this->cutoffPackedDaysAgo($retention);
         
         $this->prune('lupo_visits', 'created_ymdhis < ? AND is_processed = 1', [$cutoff]);
     }
@@ -243,7 +280,7 @@ class GarbageCollector {
         if ($this->deleted >= $this->max_per_run) return;
         
         $retention = $this->config['gc_daily_visits_retention_days'] ?? 365;
-        $cutoff = date('Y-m-d', strtotime("-$retention days"));
+        $cutoff = $this->cutoffSqlDateDaysAgo($retention);
         
         $this->prune('lupo_visits_daily', 'visit_date < ?', [$cutoff]);
     }
@@ -255,7 +292,7 @@ class GarbageCollector {
         if ($this->deleted >= $this->max_per_run) return;
         
         $retention = $this->config['gc_campaign_retention_days'] ?? 365;
-        $cutoff = gmdate('YmdHis', strtotime("-$retention days"));
+        $cutoff = $this->cutoffPackedDaysAgo($retention);
         
         $this->prune('lupo_analytics_campaign_vars', 'created_ymdhis < ?', [$cutoff]);
     }
@@ -267,7 +304,7 @@ class GarbageCollector {
         if ($this->deleted >= $this->max_per_run) return;
         
         $retention = $this->config['gc_session_retention_hours'] ?? 24;
-        $cutoff = gmdate('YmdHis', strtotime("-$retention hours"));
+        $cutoff = $this->cutoffPackedHoursAgo($retention);
         
         $this->prune('lupo_sessions', 'expires_ymdhis < ?', [$cutoff]);
     }
@@ -279,7 +316,7 @@ class GarbageCollector {
         if ($this->deleted >= $this->max_per_run) return;
         
         $retention = $this->config['gc_memory_retention_days'] ?? 30;
-        $cutoff = gmdate('YmdHis', strtotime("-$retention days"));
+        $cutoff = $this->cutoffPackedDaysAgo($retention);
         
         $this->prune('lupo_actor_memory', 'expires_ymdhis IS NOT NULL AND expires_ymdhis < ?', [$cutoff]);
     }
@@ -320,9 +357,16 @@ class GarbageCollector {
         $campaigns = $this->db->query($sql);
         
         foreach ($campaigns as $camp) {
-            $date_ymd = strtotime($camp['date_ymd']);
-            $yearmonth = date('Ym', $date_ymd);
-            $year = date('Y', $date_ymd);
+            $d = (string) $camp['date_ymd'];
+            if (strlen($d) >= 10 && $d[4] === '-' && $d[7] === '-') {
+                $year = substr($d, 0, 4);
+                $yearmonth = substr($d, 0, 4) . substr($d, 5, 2);
+            } elseif (strlen($d) >= 8 && ctype_digit(substr($d, 0, 8))) {
+                $year = substr($d, 0, 4);
+                $yearmonth = substr($d, 0, 6);
+            } else {
+                continue;
+            }
             
             $sql = "INSERT INTO lupo_analytics_campaign_vars 
                     (period, date_ymd, yearmonth, year, campaign_key, campaign_value, 

@@ -9,12 +9,14 @@ lupopedia.metadata:
   comment: "Snapshot of metadata for this file or entity at artifact creation."
 
 lupopedia.headers:
-  actor_id: 102
-  actor_name: "cursor"
+  author:
+    type: "actor"
+    id: 102
+    name: "cursor"
   lupopedia.version: "4.0.75"
   lupopedia.schema: "cursor_rule"
   file_path_from_root: "lupo-rules/root/safe-database-operations-doctrine.md"
-  last_modified_utc: "20260315"
+  last_modified_utc: "20260406044907"
   system_version: "4.0.75"
   rule_name: "Safe Database Operations"
   rule_type: "constraint"

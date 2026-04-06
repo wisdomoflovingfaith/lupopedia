@@ -1295,6 +1295,9 @@ CREATE TABLE {{prefix}}auth_users (
     two_factor_secret varchar(255) DEFAULT NULL,
     two_factor_enabled tinyint NOT NULL DEFAULT 0,
     two_factor_backup_codes text DEFAULT NULL,
+    otp_code_hash varchar(255) NOT NULL DEFAULT '',
+    otp_issued_ymdhis bigint NOT NULL DEFAULT 0,
+    otp_attempts tinyint NOT NULL DEFAULT 0,
     timezone_offset decimal(4,2) DEFAULT '0.00',
     timezone_name varchar(100) DEFAULT 'UTC',
   PRIMARY KEY (auth_user_id)
@@ -2061,6 +2064,24 @@ CREATE INDEX {{prefix}}dialog_messages_idx_read_by_actor ON {{prefix}}dialog_mes
 CREATE INDEX {{prefix}}dialog_messages_idx_read_utc ON {{prefix}}dialog_messages (read_by_actor_utc);
 CREATE INDEX {{prefix}}dialog_messages_idx_faucet ON {{prefix}}dialog_messages (source_faucet_slug, source_faucet_instance_id);
 
+-- Ephemeral operator-visible typing drafts (not dialog_messages until send). One row per (channel_id, dialog_thread_id).
+CREATE TABLE {{prefix}}channel_typing_previews (
+  channel_typing_preview_id bigint NOT NULL,
+  channel_id bigint NOT NULL,
+  dialog_thread_id bigint NOT NULL,
+  from_actor_id bigint NOT NULL DEFAULT 0,
+  actor_name varchar(255) NOT NULL DEFAULT '',
+  preview_text varchar(1000) NOT NULL DEFAULT '',
+  created_ymdhis bigint NOT NULL DEFAULT 0,
+  updated_ymdhis bigint NOT NULL,
+  is_deleted tinyint NOT NULL DEFAULT 0,
+  deleted_ymdhis bigint NOT NULL DEFAULT 0,
+  PRIMARY KEY (channel_typing_preview_id)
+);
+CREATE UNIQUE INDEX {{prefix}}channel_typing_uq_channel_thread ON {{prefix}}channel_typing_previews (channel_id, dialog_thread_id);
+CREATE INDEX {{prefix}}channel_typing_idx_channel_updated ON {{prefix}}channel_typing_previews (channel_id, updated_ymdhis);
+CREATE INDEX {{prefix}}channel_typing_idx_deleted ON {{prefix}}channel_typing_previews (is_deleted);
+
 CREATE TABLE {{prefix}}dialog_threads (
   dialog_thread_id bigint NOT NULL,
   title varchar(255) NOT NULL,
@@ -2474,7 +2495,7 @@ CREATE TABLE {{prefix}}documentation_frameworks (
   role_key varchar(64) DEFAULT NULL,
   task_scope varchar(255) DEFAULT NULL,
   database_table varchar(255) DEFAULT NULL,
-  runtime_min_php varchar(20) DEFAULT '5.6',
+  runtime_min_php varchar(20) DEFAULT '7.4',
   created_ymdhis bigint NOT NULL DEFAULT 0,
   updated_ymdhis bigint NOT NULL DEFAULT 0,
   is_deleted tinyint NOT NULL DEFAULT 0,

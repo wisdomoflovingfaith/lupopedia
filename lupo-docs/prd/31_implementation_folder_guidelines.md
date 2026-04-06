@@ -2,10 +2,10 @@
 lupopedia.headers:
   header_format_version: 2
   lupopedia.schema: prd
-  when_updated: "20260404174956"
+  when_updated: "20260405205804"
   file_path_from_root: "lupo-docs/prd/31_implementation_folder_guidelines.md"
   web_path: "http://www.lupopedia.com/lupopedia/lupo-docs/prd/31_implementation_folder_guidelines.md"
-  last_modified_utc: "20260404174956"
+  last_modified_utc: "20260405205804"
   federation_node_id: 0
   channel_id: 42
   thread_id: "prd-implementation-guidelines"
@@ -64,7 +64,7 @@ lupopedia.edges:
       weight: 0.95
       reason: "Implementations index; naming must match PRD file stem"
 lupopedia.footer:
-  last_verified: "20260404164842"
+  last_verified: "20260405205804"
   verified_by:
     type: "actor"
     id: 2
@@ -116,14 +116,17 @@ lupo-docs/implementations/{prd_file_stem}/
 
 where **`prd_file_stem`** is exactly the **basename** of the canonical PRD under **`lupo-docs/prd/`**, **without** the **`.md`** extension.
 
+**Non-negotiable:** The folder name must match the PRD filename **character-for-character** after removing **`.md`** only. No pluralization, abbreviations, or alternate stems (e.g. do **not** create **`25_departments_systems/`** when the PRD file is **`25_departments_system.md`**).
+
 **Examples (correct):**
 
 | PRD path | Implementation path |
 |----------|----------------------|
 | `lupo-docs/prd/36_rose_multi_persona_synthetic_dialog.md` | `lupo-docs/implementations/36_rose_multi_persona_synthetic_dialog/` |
 | `lupo-docs/prd/33_softaculous_certification_4_1_0_gate.md` | `lupo-docs/implementations/33_softaculous_certification_4_1_0_gate/` |
+| `lupo-docs/prd/25_departments_system.md` | `lupo-docs/implementations/25_departments_system/` |
 
-**Wrong:** Folder names that **diverge** from the PRD filename stem — e.g. **`prd_36_rose/`**, **`rose/`**, or any alias that would force readers to guess which PRD is canonical.
+**Wrong:** Folder names that **diverge** from the PRD filename stem — e.g. **`prd_36_rose/`**, **`rose/`**, **`25_departments_systems/`** (extra **`s`**) when the PRD is **`25_departments_system.md`**, or any alias that would force readers to guess which PRD is canonical.
 
 **Constitutional summary:** **`lupo-docs/prd/00_root_constitutional_system_requirements.md`** **§5.8** restates this rule for IDE agents; **this PRD** is the **full** specification (lifecycle, templates, validators).
 

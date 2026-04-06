@@ -2,7 +2,7 @@
 lupopedia.headers:
   header_format_version: 2
   lupopedia.schema: prd
-  when_updated: "20260403221511"
+  when_updated: "20260405205804"
   file_path_from_root: "lupo-docs/prd/25_departments_system.md"
   web_path: "http://www.lupopedia.com/lupopedia/lupo-docs/prd/25_departments_system.md"
   federation_node_id: 0
@@ -25,17 +25,13 @@ lupopedia.headers:
   slug: departments_system
   title: "Departments System"
   status: "approved"
-  parent_edges_ref: "lupo-docs/implementations/25_departments_systems/edges.md"
+  parent_edges_ref: "lupo-docs/implementations/25_departments_system/edges.md"
 lupopedia.edges:
   outbound_edges:
     - to: "lupo-docs/implementations/25_departments_system/"
       type: implements
       weight: 1.0
-      reason: "Implementation workspace (questions, root hybrid seeding notes)"
-    - to: "lupo-docs/implementations/25_departments_systems/"
-      type: implements
-      weight: 0.85
-      reason: "Legacy implementation path name (plural); prefer 25_departments_system"
+      reason: "Implementation workspace (questions, decisions, schema/access docs, root hybrid seeding notes)"
     - to: "lupo-docs/prd/00_root_constitutional_system_requirements.md"
       type: references
       weight: 1.0
@@ -252,9 +248,9 @@ Existing actors without department assignments:
 
 ## Implementation References
 
-- **Database Schema**: See `lupo-docs/implementations/25_departments_systems/mapping_tables.md`
-- **Access Control**: See `lupo-docs/implementations/25_departments_systems/access_control.md`
-- **IDE Protection**: See `lupo-docs/implementations/25_departments_systems/ide_protection_plan.md`
+- **Database Schema**: See `lupo-docs/implementations/25_departments_system/mapping_tables.md`
+- **Access Control**: See `lupo-docs/implementations/25_departments_system/access_control.md`
+- **IDE Protection**: See `lupo-docs/implementations/25_departments_system/ide_protection_plan.md`
 
 ---
 

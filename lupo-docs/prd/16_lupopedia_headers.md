@@ -2,10 +2,10 @@
 lupopedia.headers:
   header_format_version: 2
   lupopedia.schema: prd
-  when_updated: "20260403023656"
+  when_updated: "20260405204205"
   file_path_from_root: "lupo-docs/prd/16_lupopedia_headers.md"
   web_path: "http://www.lupopedia.com/lupopedia/lupo-docs/prd/16_lupopedia_headers.md"
-  last_modified_utc: "20260403023656"
+  last_modified_utc: "20260405204205"
   federation_node_id: 0
   channel_id: 42
   thread_id: "prd-lupopedia-headers"
@@ -66,8 +66,12 @@ lupopedia.edges:
       type: implements
       weight: 1.0
       reason: "Persists headers to lupo_metadata and lupo_edges"
+    - to: "lupo-docs/prd/17_decisions_format.md"
+      type: references
+      weight: 0.95
+      reason: "decisions/pseudocode/ layout; LUPOPEDIA HEADERS required on *.pseudo.* for agent handoff"
 lupopedia.footer:
-  last_verified: "20260403023341"
+  last_verified: "20260405204205"
   verified_by:
     type: "actor"
     id: 2
@@ -79,7 +83,7 @@ lupopedia.footer:
   orchestrator: "lilith:audit"
   next_action:
     - "Keep aligned with import_content.py and header_db_sync behavior"
-    - "Ensure verification authority (THOTH) is documented"
+    - "Align validator path globs with Header applicability and scope (required extensions)"
     - "Update stale artifacts with correct header format"
 ---
 
@@ -87,7 +91,50 @@ lupopedia.footer:
 
 ## Overview
 
-This PRD defines the canonical requirements, structure, and verification process for Lupopedia file headers. All files in the Lupopedia system must include a YAML-formatted `lupopedia.headers` block, which encodes file identity, version, schema, and verification metadata. Verification may be attributed to **actors** or **agents**; **`lupopedia.footer.verified_by`** records who performed verification (see Author vs Verifier and verification sections below).
+This PRD defines the canonical requirements, structure, and verification process for Lupopedia file headers on **in-scope authored** files. Those files **must** include a YAML-formatted `lupopedia.headers` block (or the comment-embedded equivalent for non-Markdown types), which encodes file identity, schema, and verification metadata. **Headers are not required on every path in the repository** — see **[Header applicability and scope](#header-applicability-and-scope)** (binaries, generated exports, third-party trees, and similar are out of scope). Verification may be attributed to **actors** or **agents**; **`lupopedia.footer.verified_by`** records who performed verification (see Author vs Verifier and verification sections below).
+
+## Header applicability and scope
+
+**Principle:** LUPOPEDIA HEADERS track **Lupopedia-owned authorship and traceability** for documentation and source that agents, importers, and validators are expected to treat as canonical. **Generated data, vendor code, and binary assets** are not required to carry headers; their lineage comes from generators, upstream packages, or build output — not hand-maintained YAML in every byte stream.
+
+### Required (must have `lupopedia.headers` when the file is project-authored and in a tracked code/docs path)
+
+| Extension | Role | Typical placement |
+|-----------|------|-------------------|
+| **`.md`** | Documentation, PRDs, doctrines, threads | YAML front matter; line 1 must be `---` (see [LUPOPEDIA_HEADERS_FORMAT.md](../doctrine/LUPOPEDIA_HEADERS/LUPOPEDIA_HEADERS_FORMAT.md)) |
+| **`.php`** | Application and include PHP | Block comment immediately after `<?php` |
+| **`.js`** | Shipped / maintained JavaScript (non-minified source) | Block comment at top of file |
+| **`.py`** | Scripts under `lupo-scripts/` and other maintained Python | Comment lines at top (`#` YAML lines) |
+| **`.sql`** | Install, seed, import SQL | Block comment at top of file |
+| **`.html`**, **`.htm`** | Templates and static HTML | Block comment at top of file |
+| **`.txt`** | Hand-authored text (prefer **`.md`** for new narrative docs) | Leading `#` comment lines or equivalent convention for the file |
+| **`*.pseudo.md`**, **`*.pseudo.php`**, **`*.pseudo.txt`** under **`**/decisions/pseudocode/`** | Design / handoff artifacts (PRD 17) | Same as sibling type: **Markdown** → YAML front matter line 1 `---`; **PHP** → block comment immediately after `<?php` ([PRD 17 pseudocode](17_decisions_format.md#pseudocode-directory-decisionspseudocode)) |
+
+**IDE / agent rule:** When creating or editing any **in-scope** file above, **add or preserve** headers with correct **`file_path_from_root`** (repo-relative, no leading `/`). If a file **should** have headers but lacks them, that is a **specification gap** to fix when the file is touched — not proof the file is “invisible”; tooling may still locate it by path.
+
+**External AI / paste handoff:** Pseudocode under **`decisions/pseudocode/`** is often copied to **external** agents. **`file_path_from_root`** (and ideally **`web_path`**) **must** be present so the recipient can anchor the file in the repo without guessing.
+
+### Optional (may include headers; validators typically do not enforce)
+
+| Extension | Notes |
+|-----------|--------|
+| **`.json`**, **`.yaml`**, **`.yml`**, **`.xml`** | Often generated or machine-owned; add headers only when the file is **hand-authored** and you want traceability |
+| **`.css`** | Recommended for maintained stylesheets; not universally enforced |
+| **`.sh`** | Shell scripts — headers allowed; enforcement optional |
+
+### Not applicable (do **not** require LUPOPEDIA HEADERS)
+
+- **Binary assets:** images (e.g. `.png`, `.jpg`, `.gif`, `.ico`), fonts (e.g. `.woff`, `.woff2`, `.ttf`), other non-text media
+- **Generated or compiled artifacts:** e.g. **`.toon.json`**, **`.map`**, **`.min.js`**, **`.min.css`**, **`.pyc`**, build/cache outputs, **`.log`**
+- **Data exports / dumps:** e.g. **`.csv`**, JSON exports from DB or tooling where the row/file is output, not hand-authored spec
+- **Third-party / vendor trees:** e.g. **`node_modules/`**, bundled libraries not maintained as Lupopedia source
+- **Lock files:** e.g. **`package-lock.json`**, **`composer.lock`**
+
+### Validator scope (normative intent)
+
+Validators **should** enforce headers on **in-scope** paths for: **`.md`**, **`.php`**, **`.js`**, **`.py`**, **`.sql`**, **`.html`**, **`.htm`**, hand-authored **`.txt`**, and **`**/decisions/pseudocode/*.pseudo.md`**, **`*.pseudo.php`**, **`*.pseudo.txt`** (exact directory globs are implementation-defined in each script — align them with this table over time). Validators **should not** fail the tree solely because a **`.png`** or **`.toon.json`** lacks YAML.
+
+Full format and comment-embedding patterns: **[LUPOPEDIA_HEADERS_FORMAT.md](../doctrine/LUPOPEDIA_HEADERS/LUPOPEDIA_HEADERS_FORMAT.md)**, **[VALIDATORS_AND_TOOLING.md](../doctrine/LUPOPEDIA_HEADERS/VALIDATORS_AND_TOOLING.md)**.
 
 ## Constitutional Compliance
 
@@ -96,7 +143,7 @@ All header metadata and verification processes must comply with Lupopedia consti
 - **Verification authority**: Both actors and agents may perform verification
 - **Primary authority**: THOTH (actor_id 26) is canonical for stale artifacts (`last_verified < 20260301000000`)
 - **Identity tracking**: **`verified_by.type`** (preferred) or legacy **`verified_by.identity_type`** distinguishes actor vs agent
-- Header blocks must be present in all canonical files
+- Header blocks must be present on all **in-scope** authored files (see [Header applicability and scope](#header-applicability-and-scope))
 - Header fields must match format requirements in LUPOPEDIA_HEADERS_DOCTRINE
 - All verification actions are logged and auditable via `lupo_actor_actions`
 - Timestamps use BIGINT UTC format YYYYMMDDHHIISS (headers) or YYYYMMDD (footer)
@@ -193,7 +240,7 @@ actor_name: "CURSOR"
 | `header_format_version` | integer | Yes | Current version of header schema (2) |
 | `lupopedia.schema` | string | Yes | PRD, documentation, code, etc. |
 | `when_updated` | string (quoted) | Yes | UTC YYYYMMDDHHIISS - logical content update time |
-| `file_path_from_root` | string | Yes | **Repo-relative** path from repository root — **no** leading `/` (matches `import_content._norm_path_repo` and `lib/header_validation._is_valid_relative_path`) |
+| `file_path_from_root` | string | Yes | **Repo-relative** path from repository root — **no** leading `/` (matches `import_content._norm_path_repo` and `lib/header_validation._is_valid_relative_path`). For content: use `lupo-content/{federation_node_id}/{channel_key}/{content_id}_{slug}.md` format. |
 | `web_path` | string | Yes | Canonical public URL; must include the `/lupopedia/` subdirectory for this install (see [LUPOPEDIA_HEADERS_FORMAT.md](../doctrine/LUPOPEDIA_HEADERS/LUPOPEDIA_HEADERS_FORMAT.md)); host is conventionally `www.lupopedia.com` in examples |
 | `last_modified_utc` | string (quoted) | Yes | UTC YYYYMMDDHHIISS - file write time |
 | `federation_node_id` | integer | Yes | 0=core, 1=current install, 2+=external |

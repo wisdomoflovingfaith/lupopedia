@@ -17,7 +17,7 @@
     "migration-doctrine.md",
     "no-laravel-no-middleware.md",
     "pdo-db-database-access-doctrine.md",
-    "php-5-6-compatibility.md",
+    "php-7-4-compatibility.md",
     "pk-reference-naming-doctrine.md",
     "required-tables-future-features-doctrine.md",
     "reserved-id-doctrine.md",

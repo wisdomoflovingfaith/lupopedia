@@ -199,6 +199,10 @@ class SystemHealthService
                 );
             }
 
+            if (!isset($GLOBALS['mydatabase']) || $GLOBALS['mydatabase'] === null) {
+                $GLOBALS['mydatabase'] = $this->db;
+            }
+
             $agents = array(
                 0 => 'SYSTEM',
                 1 => 'CAPTAIN WOLFIE',
@@ -211,7 +215,7 @@ class SystemHealthService
             $runningCount = 0;
 
             foreach ($agents as $id => $name) {
-                $running = isActorAIRunning($id, $this->db);
+                $running = isActorAIRunning($id);
                 $results[$id] = array(
                     'name' => $name,
                     'status' => $running ? 'running' : 'offline'

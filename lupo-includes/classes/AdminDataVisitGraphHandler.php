@@ -30,7 +30,15 @@ class AdminDataVisitGraphHandler
         }
 
         $visits_t = $prefix . 'visits';
-        $dim = (int) gmdate('t', gmmktime(0, 0, 0, $month, 1, $year));
+        if (function_exists('cal_days_in_month')) {
+            $dim = (int) cal_days_in_month(CAL_GREGORIAN, (int) $month, (int) $year);
+        } else {
+            $dims = array(31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31);
+            $dim = $dims[(int) $month - 1];
+            if ((int) $month === 2 && (($year % 4 === 0 && $year % 100 !== 0) || ($year % 400 === 0))) {
+                $dim = 29;
+            }
+        }
 
         if ($month === 12) {
             $ny = $year + 1;

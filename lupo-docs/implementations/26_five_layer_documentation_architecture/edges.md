@@ -60,7 +60,7 @@ lupopedia.headers:
 - **Related PRDs**: 25_departments_system.md - Example implementation
 
 ### Implementation Links
-- **Related Implementations**: 25_departments_systems/ - First compliant implementation
+- **Related Implementations**: 25_departments_system/ - First compliant implementation
 - **Shared Components**: lupo-scripts/validate_implementation.py - Validation script
 - **Templates**: _template/ - Implementation templates
 

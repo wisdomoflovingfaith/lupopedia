@@ -78,7 +78,7 @@ Before starting, ensure you have:
 3. **Development environment ready**:
    - ServBay stack running on Windows
    - Database access (MySQL/MariaDB/PostgreSQL)
-   - PHP 5.6+ compatibility
+   - PHP 7.4+ compatibility
    - Git workflow configured
 
 ---
@@ -215,7 +215,7 @@ Ensure quality through:
 
 ### Implementation Mistakes
 - **Don't** modify database without updating schema
-- **Don't** break existing PHP compatibility (5.6+)
+- **Don't** break existing PHP compatibility (7.4+)
 - **Don't** ignore channel coordination patterns
 - **Don't** create features without table documentation
 

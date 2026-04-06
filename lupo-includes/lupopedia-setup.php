@@ -282,10 +282,14 @@ PHP;
 function lupopedia_test_db_connection($db_vars) {
     try {
         $dsn = "mysql:host={$db_vars['host']};port={$db_vars['port']};dbname={$db_vars['name']};charset={$db_vars['charset']}";
-        $pdo = new PDO($dsn, $db_vars['user'], $db_vars['password'], [
+        $pdo_opts = array(
             PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
             PDO::ATTR_TIMEOUT => 5
-        ]);
+        );
+        if (extension_loaded('pdo_mysql')) {
+            $pdo_opts[PDO::MYSQL_ATTR_USE_BUFFERED_QUERY] = true;
+        }
+        $pdo = new PDO($dsn, $db_vars['user'], $db_vars['password'], $pdo_opts);
         return true;
     } catch (PDOException $e) {
         return false;
@@ -315,6 +319,9 @@ function lupopedia_detect_livehelp_tables($pdo) {
         $stmt = $pdo->query("SHOW TABLES LIKE 'livehelp_%'");
         while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
             $tables[] = $row[0];
+        }
+        if ($stmt) {
+            $stmt->closeCursor();
         }
     } catch (PDOException $e) {
         // Return empty array on error
@@ -494,10 +501,14 @@ function lupopedia_run_setup() {
         // Connect to database
         try {
             $dsn = "mysql:host={$db_vars['host']};port={$db_vars['port']};dbname={$db_vars['name']};charset={$db_vars['charset']}";
-            $pdo = new PDO($dsn, $db_vars['user'], $db_vars['password'], [
+            $pdo_opts = array(
                 PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
                 PDO::ATTR_TIMEOUT => 30
-            ]);
+            );
+            if (extension_loaded('pdo_mysql')) {
+                $pdo_opts[PDO::MYSQL_ATTR_USE_BUFFERED_QUERY] = true;
+            }
+            $pdo = new PDO($dsn, $db_vars['user'], $db_vars['password'], $pdo_opts);
         } catch (PDOException $e) {
             die('ERROR: Could not connect to database: ' . htmlspecialchars($e->getMessage()));
         }

@@ -91,7 +91,7 @@ Psr\
 - ❌ **No typed properties**
 - ❌ **No attributes**
 - ❌ **No enums**
-- ✅ **PHP 5.6 compatible only**
+- ✅ **PHP 7.4+ compatible only**
 
 ### 6. Forbidden Framework Patterns
 - ❌ **Namespaces for routing**
@@ -118,7 +118,7 @@ This is not exaggeration — IDEs will drift into:
 2. **Enforce `Lupopedia\` prefix** in all code reviews
 3. **Map namespaces to `/lupo-includes/` directories only**
 4. **Remove all Composer dependencies** (if any)
-5. **Validate PHP 5.6 compatibility** for all namespaced code
+5. **Validate PHP 7.4+ compatibility** for all namespaced code
 6. **Audit for forbidden framework patterns**
 
 ## ✅ **COMPLIANCE STATUS**

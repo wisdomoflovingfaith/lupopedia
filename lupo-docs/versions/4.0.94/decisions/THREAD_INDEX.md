@@ -3,10 +3,10 @@ lupopedia.headers:
   header_format_version: 2
   lupopedia.schema: documentation
   version_when_written: "4.0.94"
-  when_updated: "20260405104405"
+  when_updated: "20260406042624"
   file_path_from_root: "lupo-docs/versions/4.0.94/decisions/THREAD_INDEX.md"
   web_path: "http://www.lupopedia.com/lupopedia/lupo-docs/versions/4.0.94/decisions/THREAD_INDEX.md"
-  last_modified_utc: "20260405104405"
+  last_modified_utc: "20260406042624"
   federation_node_id: 0
   channel_id: 42
   thread_id: "version-4.0.94-decisions"
@@ -32,7 +32,7 @@ lupopedia.edges:
       weight: 1.0
       reason: "Format specification"
 lupopedia.footer:
-  last_verified: "20260405104405"
+  last_verified: "20260406042624"
   verified_by:
     identity_type: "actor"
     actor_id: 102
@@ -45,6 +45,7 @@ lupopedia.footer:
 
 | ID | Type | Title | Status | Date | Link |
 |----|------|-------|--------|------|------|
+| 20260406_042624 | DECISION | IMPLEMENTED: session authority migration (Model A — `lupo_sessions` + metadata) | IMPLEMENTED | 2026-04-06 | [20260406_042624_DECISION_session_authority_migration.md](20260406_042624_DECISION_session_authority_migration.md) |
 | 20260405_104405 | DECISION | APPROVED: semantic navbar external embed + Admin provisioning + PRD 21 (Cursor thread receipt) | APPROVED | 2026-04-05 | [20260405104405_DECISION_APPROVED_semantic_navbar_embed_admin_prd21_cursor_thread.md](20260405104405_DECISION_APPROVED_semantic_navbar_embed_admin_prd21_cursor_thread.md) |
 | 20260405_001004 | DECISION | APPROVED: admin nav chrome + logout clears intro sessionStorage (Cursor thread receipt) | APPROVED | 2026-04-05 | [20260405001004_DECISION_APPROVED_admin_nav_logout_intro_cursor_thread.md](20260405001004_DECISION_APPROVED_admin_nav_logout_intro_cursor_thread.md) |
 | 20260404_175216 | DECISION | APPROVED: AGAPE + KAIROS temporal + multi-actor `to_actor_id` routing docs (Cursor thread receipt) | APPROVED | 2026-04-04 | [20260404175216_DECISION_APPROVED_agape_kairos_temporal_multi_actor_routing_docs.md](20260404175216_DECISION_APPROVED_agape_kairos_temporal_multi_actor_routing_docs.md) |

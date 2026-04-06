@@ -12,3 +12,19 @@
     Order allow,deny
     Deny from all
 </IfModule>
+
+# BEGIN LUPOPEDIA_DB
+# Protect database configuration, schema, seeds, and derived files
+# Prevents direct download of sensitive files over the web
+# Local PHP execution via require/include/fopen is unaffected.
+
+<IfModule mod_authz_core.c>
+    # Apache 2.4+
+    Require all denied
+</IfModule>
+<IfModule !mod_authz_core.c>
+    # Apache 2.2
+    Order allow,deny
+    Deny from all
+</IfModule>
+# END LUPOPEDIA_DB

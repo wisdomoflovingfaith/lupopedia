@@ -80,8 +80,9 @@ function render_tab_item($tab, $prefix, $db = null) {
                         ], $nestedPrefix);
                     } elseif ($child['item_type'] === 'content') {
                         // Render content link
-                        $url = '/content.php?id=' . (isset($child['content_id']) ? $child['content_id'] : $child['item_id']);
-                        $title = isset($child['title']) ? $child['title'] : 'Content';
+                        $pub = defined('LUPOPEDIA_PUBLIC_PATH') ? rtrim(LUPOPEDIA_PUBLIC_PATH, '/') : '';
+                        $url = ($pub !== '' ? $pub : '') . '/content.php?id=' . (isset($child['content_id']) ? $child['content_id'] : $child['item_id']);
+                        $title = isset($child['title']) ? $child['title'] : (function_exists('lupo_t') ? lupo_t('header.content_link_default', 'Content') : 'Content');
                         ?>
                         <a href="<?php echo htmlspecialchars($url); ?>" 
                            class="saved-collections-item"
@@ -93,7 +94,7 @@ function render_tab_item($tab, $prefix, $db = null) {
                     } elseif ($child['item_type'] === 'link') {
                         // Render external link
                         $url = isset($child['url']) ? $child['url'] : '#';
-                        $label = isset($child['label']) ? $child['label'] : 'Link';
+                        $label = isset($child['label']) ? $child['label'] : (function_exists('lupo_t') ? lupo_t('header.link_default', 'Link') : 'Link');
                         ?>
                         <a href="<?php echo htmlspecialchars($url); ?>" 
                            class="saved-collections-item"
@@ -153,21 +154,26 @@ var isUserLoggedIn = <?php echo $isUserLoggedIn ? 'true' : 'false'; ?>;
         
         <div style="margin-left: auto; display: flex; gap: 8px;">
             <button class="recently-viewed-button" onclick="checkLoginAndSave()" style="background: #28a745; border-color: #28a745; color: #fff;">
-                Save
+                <?php echo htmlspecialchars(function_exists('lupo_t') ? lupo_t('header.collections.btn_save', 'Save') : 'Save', ENT_QUOTES, 'UTF-8'); ?>
             </button>
             <button class="recently-viewed-button" onclick="checkLoginAndLoad()" style="background: #17a2b8; border-color: #17a2b8; color: #fff;">
-                Load
+                <?php echo htmlspecialchars(function_exists('lupo_t') ? lupo_t('header.collections.btn_load', 'Load') : 'Load', ENT_QUOTES, 'UTF-8'); ?>
             </button>
             <button class="recently-viewed-button" id="editCollectionBtn" onclick="checkLoginAndEdit()" style="background: #ffc107; border-color: #ffc107; color: #000;">
-                Edit
+                <?php echo htmlspecialchars(function_exists('lupo_t') ? lupo_t('header.collections.btn_edit', 'Edit') : 'Edit', ENT_QUOTES, 'UTF-8'); ?>
             </button>
         </div>
         
         <script>
-        // Check login before allowing save/load/edit actions
+        function lupoHdrStrNav(key, fallback) {
+            if (window.LUPO_HDR && window.LUPO_HDR.strings && window.LUPO_HDR.strings[key]) {
+                return window.LUPO_HDR.strings[key];
+            }
+            return fallback;
+        }
         function checkLoginAndSave() {
             if (!isUserLoggedIn) {
-                alert('Please log in to save collections.');
+                alert(lupoHdrStrNav('collections_save_login', 'Please log in to save collections.'));
                 return false;
             }
             showSaveCollectionModal();
@@ -175,7 +181,7 @@ var isUserLoggedIn = <?php echo $isUserLoggedIn ? 'true' : 'false'; ?>;
         
         function checkLoginAndLoad() {
             if (!isUserLoggedIn) {
-                alert('Please log in to load collections.');
+                alert(lupoHdrStrNav('collections_load_login', 'Please log in to load collections.'));
                 return false;
             }
             showLoadCollectionModal();
@@ -183,7 +189,7 @@ var isUserLoggedIn = <?php echo $isUserLoggedIn ? 'true' : 'false'; ?>;
         
         function checkLoginAndEdit() {
             if (!isUserLoggedIn) {
-                alert('Please log in to edit collections.');
+                alert(lupoHdrStrNav('collections_edit_login', 'Please log in to edit collections.'));
                 return false;
             }
             editCurrentCollection();

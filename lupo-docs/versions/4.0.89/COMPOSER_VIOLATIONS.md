@@ -23,7 +23,7 @@
 
 ## Executive Summary
 
-**CRITICAL VIOLATIONS DETECTED:** Laravel Blade templates and framework references found in codebase. These violate the absolute requirement for PHP 5.6+ shared hosting compatibility with no external dependencies.
+**CRITICAL VIOLATIONS DETECTED:** Laravel Blade templates and framework references found in codebase. These violate the absolute requirement for PHP 7.4+ shared hosting compatibility with no external dependencies.
 
 **Impact:** HIGH - These files prevent deployment on shared hosting and violate core Lupopedia constraints.
 
@@ -189,7 +189,7 @@ These violations occurred because:
 
 Created the following doctrine files to prevent future violations:
 
-1. **PHP_VERSION_COMPATIBILITY.md** - Enforces PHP 5.6+ compatibility
+1. **PHP_VERSION_COMPATIBILITY.md** / **php-7-4-compatibility.md** - Enforces PHP 7.4+ compatibility
 2. **NO_COMPOSER_DOCTRINE.md** - Forbids Composer and external dependencies
 3. **NO_FRAMEWORK_DOCTRINE.md** - Forbids Laravel and other frameworks
 4. **SHARED_HOSTING_DOCTRINE.md** - Ensures shared hosting compatibility

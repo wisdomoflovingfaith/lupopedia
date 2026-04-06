@@ -1,18 +1,44 @@
 <?php
+/*
+---
+lupopedia.headers:
+  header_format_version: 2
+  lupopedia.schema: class
+  when_updated: "20260406023848"
+  file_path_from_root: "lupo-includes/classes/AuthService.php"
+  web_path: "http://www.lupopedia.com/lupopedia/lupo-includes/classes/AuthService.php"
+  last_modified_utc: "20260406023848"
+  federation_node_id: 0
+  channel_id: 42
+  author:
+    type: "actor"
+    id: 102
+    name: "CURSOR"
+  delegation_chain: "cursor:root"
+  artifact_type: "class"
+  artifact_kind: "auth"
+  purpose: "Authentication service; Model A session via App\\Auth\\Session (no $_SESSION authority flags); transient login flags in lupo_sessions.metadata."
+  tags: ["auth", "session", "login", "logout", "model_a"]
+---
+*/
+
 /**
- * Auth Service - Compatible with existing App\Auth\AuthService
- * Handles authentication and actor resolution
+ * Auth Service — login, logout, current user from lupo_sessions (Model A).
+ *
+ * PHP session cookie holds only session_id; actor authority and transient flags (password change, pending agent)
+ * live in the database row (metadata JSON), not $_SESSION.
  */
 
 if (!defined('LUPOPEDIA_CONFIG_LOADED')) {
     die("Config not loaded. AuthService.php cannot be called directly.");
 }
 
-// Legacy MD5 (Crafty import) + bcrypt verification and upgrade flags
 require_once __DIR__ . '/../security/password-hash.php';
-
-// Include AuthSessionManager
 require_once __DIR__ . '/AuthSessionManager.php';
+
+if (!class_exists('App\\Auth\\Session', false) && defined('LUPOPEDIA_PATH')) {
+    require_once LUPOPEDIA_PATH . DIRECTORY_SEPARATOR . 'app' . DIRECTORY_SEPARATOR . 'auth' . DIRECTORY_SEPARATOR . 'Session.php';
+}
 
 class AuthService
 {
@@ -26,6 +52,25 @@ class AuthService
     }
 
     /**
+     * @return \App\Auth\Session
+     */
+    private function appSession()
+    {
+        return new \App\Auth\Session($this->db);
+    }
+
+    private function packedNowUtc()
+    {
+        if (!class_exists('timestamp_ymdhis', false) && defined('LUPOPEDIA_PATH')) {
+            require_once LUPOPEDIA_PATH . '/lupo-includes/classes/TimestampYmdhis.php';
+        }
+        if (class_exists('timestamp_ymdhis', false)) {
+            return (string) timestamp_ymdhis::now();
+        }
+        return gmdate('YmdHis');
+    }
+
+    /**
      * Authenticate user with username and password
      */
     public function authenticate($username, $password)
@@ -36,19 +81,18 @@ class AuthService
                 AND is_active = 1 
                 AND is_deleted = 0
                 LIMIT 1";
-        
-        $user = $this->db->fetchRow($sql, ['username' => $username]);
+
+        $user = $this->db->fetchRow($sql, array('username' => $username));
 
         if (!$user || !lupo_verify_password($password, $user['password_hash'])) {
             return false;
         }
 
-        // Update last login
         $this->db->update(
             "{$this->table_prefix}auth_users",
-            ['last_login_ymdhis' => gmdate('YmdHis')],
+            array('last_login_ymdhis' => $this->packedNowUtc()),
             'auth_user_id = :auth_user_id',
-            ['auth_user_id' => $user['auth_user_id']]
+            array('auth_user_id' => $user['auth_user_id'])
         );
 
         return $user;
@@ -59,9 +103,8 @@ class AuthService
      */
     public function handleLogin($username, $password, $redirect = null)
     {
-        if (session_status() === PHP_SESSION_NONE) {
-            session_start();
-        }
+        $appSession = $this->appSession();
+        $appSession->getSessionId();
 
         $auth_user = $this->authenticate($username, $password);
 
@@ -72,78 +115,110 @@ class AuthService
         $stored_hash = isset($auth_user['password_hash']) ? $auth_user['password_hash'] : '';
         $needs_password_change = lupo_password_needs_upgrade($stored_hash);
         unset($auth_user['password_hash']);
-        if ($needs_password_change) {
-            $_SESSION['password_change_required'] = true;
-            $_SESSION['password_change_user_id'] = $auth_user['auth_user_id'];
-        }
 
         $sessionManager = new AuthSessionManager();
 
-        // Check if user has an existing actor
         $existing_actor = $sessionManager->getActorForAuthUser($auth_user['auth_user_id']);
 
         if ($existing_actor) {
-            $sessionManager->createSession($existing_actor['actor_id'], $existing_actor['actor_name']);
+            $started = $sessionManager->createSession($existing_actor['actor_id'], $existing_actor['actor_name']);
+            if ($started === false) {
+                return array('error' => 'Could not start session');
+            }
+            $sid = is_string($started) ? $started : session_id();
             if ($needs_password_change) {
-                $_SESSION['password_change_actor_id'] = $existing_actor['actor_id'];
+                \App\Auth\Session::mergeSessionMetadata($this->db, $sid, array(
+                    'password_change_required' => true,
+                    'password_change_user_id' => (int) $auth_user['auth_user_id'],
+                    'password_change_actor_id' => (int) $existing_actor['actor_id'],
+                ));
+                if ($redirect !== null && $redirect !== '') {
+                    \App\Auth\Session::mergeSessionMetadata($this->db, $sid, array(
+                        'login_redirect' => (string) $redirect,
+                    ));
+                }
                 return array('success' => true, 'needs_password_change' => true);
             }
             $default_admin = (defined('LUPOPEDIA_PUBLIC_PATH') ? rtrim(LUPOPEDIA_PUBLIC_PATH, '/') . '/admin.php' : '/admin.php');
             return array('success' => true, 'redirect' => $redirect ? $redirect : $default_admin);
         }
 
-        // No actor found — need agent selection (password change after actor picked in select_agent.php)
         $agents = $sessionManager->getAvailableAgents();
 
-        $_SESSION['pending_auth_user_id'] = $auth_user['auth_user_id'];
-        $_SESSION['pending_username'] = $username;
+        $pendingSession = \App\Auth\Session::create($this->db, 0);
+        if (!$pendingSession) {
+            return array('error' => 'Could not start session');
+        }
+
+        $metaPatch = array(
+            'pending_auth_user_id' => (int) $auth_user['auth_user_id'],
+            'pending_username' => (string) $username,
+        );
+        if ($needs_password_change) {
+            $metaPatch['password_change_required'] = true;
+            $metaPatch['password_change_user_id'] = (int) $auth_user['auth_user_id'];
+        }
+        if ($redirect !== null && $redirect !== '') {
+            $metaPatch['login_redirect'] = (string) $redirect;
+        }
+        \App\Auth\Session::mergeSessionMetadata($this->db, $pendingSession->session_id, $metaPatch);
+
+        $base = defined('LUPOPEDIA_PUBLIC_PATH') ? rtrim(LUPOPEDIA_PUBLIC_PATH, '/') : '';
 
         return array(
             'success' => true,
             'needs_agent_selection' => true,
             'agents' => $agents,
-            'redirect' => '/lupopedia/select_agent.php'
+            'redirect' => $base . '/select_agent.php',
         );
     }
 
     /**
-     * Get current user from session
+     * Get current user from session (lupo_sessions + actors join)
      */
     public function getCurrentUser()
     {
-        if (session_status() === PHP_SESSION_NONE) {
-            session_start();
-        }
-        
-        if (!isset($_SESSION['actor_id'])) {
+        $sid = $this->appSession()->getSessionId();
+        if ($sid === '' || $sid === false) {
             return false;
         }
-        
-        $actor_id = $_SESSION['actor_id'];
-        
+
+        $valid = $this->db->fetchRow(
+            "SELECT actor_id FROM {$this->table_prefix}sessions WHERE session_id = :sid AND is_active = 1 AND is_expired = 0 AND is_revoked = 0 AND is_deleted = 0 LIMIT 1",
+            array('sid' => $sid)
+        );
+        if (!$valid || !isset($valid['actor_id'])) {
+            return false;
+        }
+
+        $actor_id = (int) $valid['actor_id'];
+        if ($actor_id === 0) {
+            return false;
+        }
+
         $sql = "SELECT a.actor_id, a.actor_name, a.actor_source_id as auth_user_id, 
                        au.username, au.display_name, au.email
                 FROM {$this->table_prefix}actors a
                 INNER JOIN {$this->table_prefix}auth_users au ON a.actor_source_id = au.auth_user_id
                 WHERE a.actor_id = :actor_id 
-                AND a.actor_source_type = 'user'
-                AND a.is_deleted = 0 
-                AND au.is_deleted = 0
+                AND (a.actor_source_type = 'user' OR a.actor_source_type = 'lupo_auth_users')
+                AND (a.is_deleted = 0 OR a.is_deleted IS NULL)
+                AND (au.is_deleted = 0 OR au.is_deleted IS NULL)
                 LIMIT 1";
-        
-        $user = $this->db->fetchRow($sql, ['actor_id' => $actor_id]);
-        
+
+        $user = $this->db->fetchRow($sql, array('actor_id' => $actor_id));
+
         if (!$user) {
             return false;
         }
-        
-        return [
+
+        return array(
             'actor_id' => (int) $user['actor_id'],
             'auth_user_id' => (int) $user['auth_user_id'],
             'username' => $user['username'],
             'display_name' => $user['display_name'],
             'email' => $user['email'],
-        ];
+        );
     }
 
     /**
@@ -155,26 +230,31 @@ class AuthService
     }
 
     /**
-     * Logout user
+     * Logout user — mark session expired in DB; clear PHP session cookie (no authority in $_SESSION).
      */
     public function logout()
     {
-        if (session_status() === PHP_SESSION_NONE) {
-            session_start();
-        }
-        // Mark session as expired in database
-        if (isset($_SESSION['actor_id'])) {
+        $sid = $this->appSession()->getSessionId();
+        if ($sid !== '' && $sid !== false) {
             $this->db->update(
                 "{$this->table_prefix}sessions",
-                [
+                array(
                     'is_expired' => 1,
-                    'updated_ymdhis' => gmdate('YmdHis')
-                ],
+                    'updated_ymdhis' => $this->packedNowUtc(),
+                ),
                 'session_id = :session_id',
-                ['session_id' => session_id()]
+                array('session_id' => $sid)
             );
         }
-        session_destroy();
+        if (function_exists('session_status') && session_status() === PHP_SESSION_ACTIVE) {
+            $_SESSION = array();
+            $sn = session_name();
+            $cookies = (isset($_COOKIE) && is_array($_COOKIE)) ? $_COOKIE : array();
+            if (isset($cookies[$sn])) {
+                setcookie($sn, '', time() - 3600, '/');
+            }
+            session_destroy();
+        }
         return true;
     }
 }

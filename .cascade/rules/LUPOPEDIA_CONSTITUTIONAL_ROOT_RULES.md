@@ -15,7 +15,7 @@ lupopedia.headers:
   lupopedia.version: "4.0.76"
   lupopedia.schema: "cascade_rule"
   file_path_from_root: ".cascade/rules/LUPOPEDIA_CONSTITUTIONAL_ROOT_RULES.md"
-  last_modified_utc: "20260402"
+  last_modified_utc: "20260406"
   system_version: "4.0.76"
   source_path: "lupo-rules/root/LUPOPEDIA_CONSTITUTIONAL_ROOT_RULES.md"
   artifact_type: "rule"
@@ -34,14 +34,14 @@ lupopedia.rules:
   overrides: []
   provenance:
     authored_by: "wolfie"
-    authored_date: "20260402"
+    authored_date: "20260406"
     last_reviewed_by: "cascade"
-    last_reviewed_date: "20260402"
+    last_reviewed_date: "20260406"
     version: "1.0"
     status: "active"
 lupopedia.footer:
   version: "4.0.76"
-  last_verified: "20260402"
+  last_verified: "20260406"
   last_verified_by: "cascade"
   orchestrator: "cascade"
   next_action:
@@ -164,6 +164,10 @@ Always use prepared statements with named placeholders.
 - No local timezone math.
 - No offset arithmetic.
 - No guessed or synthetic timestamps.
+
+### 2.4a Markdown headers and IDE-written UTC fields (temporal anchor)
+- **`lupopedia.headers`** (`last_modified_utc`, `when_updated`) and **`lupopedia.footer`** (`last_verified`), and new canonical thread filename UTC prefixes, MUST use **real system UTC** via **`python lupo-bin/tick.py`** (and **`python lupo-bin/echo_anchor_utc.py`** to reuse the same batch value)—not LLM-inferred “current time” or copied unrelated timestamps.
+- **Binding:** [UTC_TEMPORAL_ANCHOR_DOCTRINE.md](UTC_TEMPORAL_ANCHOR_DOCTRINE.md), [PRD 00 §3.5a](../../lupo-docs/prd/00_root_constitutional_system_requirements.md), [TICK_PY_DOCTRINE.md](../../lupo-docs/doctrine/TICK_PY_DOCTRINE.md).
 
 ### 2.5 No human-friendly time parsing by agents
 - Agents must not interpret "yesterday", "next week", "3 months ago".  
@@ -357,11 +361,12 @@ Every decision must have:
 - UPSERT must be explicit and intentional.  
 - No blanket conflict resolution.
 
-### 9.6 PHP 5.6+ Compatibility
-- All code must compile on PHP 5.6 minimum  
-- No Composer/outside frameworks not in lupo-includes  
-- No deprecated PHP 8+ syntax  
-- No named arguments, union types, match, enums, typed properties, attributes, arrow functions, strict types, or return type declarations in core paths
+### 9.6 PHP 7.4+ Compatibility
+- All code must compile on **PHP 7.4** minimum through supported **PHP 8.x**  
+- No Composer/outside frameworks not in lupo-includes in the runtime request path  
+- No deprecated PHP 8+ syntax that breaks on supported 8.x  
+- **Do not** use PHP **8.0+ only** syntax in shared core paths: named arguments, `match`, enums, attributes, `readonly` properties, union types — unless a file is explicitly scoped as modern-only  
+- **`??`, `[]`, arrow functions, typed properties, parameter/return types** are allowed where consistent with the file
 
 ### 9.7 No Laravel or Middleware Patterns
 - No Laravel framework dependencies  

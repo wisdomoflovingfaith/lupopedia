@@ -1,0 +1,59 @@
+{
+  "table_name": "lupo_world_registry",
+  "fields": [
+    "`world_id` bigint NOT NULL",
+    "`world_key` varchar(255) NOT NULL",
+    "`world_type` varchar(64) NOT NULL",
+    "`world_label` varchar(255) NOT NULL",
+    "`world_metadata` json",
+    "`created_ymdhis` bigint NOT NULL DEFAULT 0",
+    "`updated_ymdhis` bigint NOT NULL",
+    "`is_active` tinyint NOT NULL DEFAULT '1'"
+  ],
+  "data": [],
+  "indexes": [
+    {
+      "index_name": "lupo_world_registry_unique_world_key",
+      "columns": [
+        "world_key"
+      ],
+      "is_unique": true,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_world_registry_idx_world_type",
+      "columns": [
+        "world_type"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_world_registry_idx_created_ymdhis",
+      "columns": [
+        "created_ymdhis"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_world_registry_idx_is_active",
+      "columns": [
+        "is_active"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    }
+  ],
+  "relationships": [],
+  "primary_key": {
+    "column_name": "world_id",
+    "expected_name": "world_id",
+    "is_correct": true,
+    "needs_rename": false
+  },
+  "doctrine_metadata": {
+    "no_foreign_keys": true,
+    "no_triggers": true
+  }
+}

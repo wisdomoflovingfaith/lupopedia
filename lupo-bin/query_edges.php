@@ -1,7 +1,7 @@
 <?php
 /**
  * Query live edges from lupo_edges by namespace (Synthesized Documentation Framework).
- * PHP 5.3 compatible. Uses PDO_DB via DatabaseFactory. Min runtime PHP 5.6.
+ * Uses PDO_DB via DatabaseFactory. Min runtime PHP 7.4.
  *
  * Usage: php lupo-bin/query_edges.php [namespace]
  *   php lupo-bin/query_edges.php lupopedia.code.logic

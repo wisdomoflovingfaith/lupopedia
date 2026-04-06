@@ -6,7 +6,7 @@
  * version-related constants and helper functions.
  * 
  * @package Lupopedia
- * @version 4.0.94
+ * @version 4.0.95
  * 
  * @note VERSION DOCTRINE: This file now loads version from GLOBAL_CURRENT_LUPOPEDIA_VERSION
  *       atom in config/global_atoms.yaml (Phase 2 implementation). Constants are defined
@@ -203,13 +203,17 @@ function lupopedia_is_dev_version()
  */
 function lupopedia_get_version_info()
 {
+    $vd = substr((string) LUPOPEDIA_VERSION_DATE, 0, 8);
+    $release_date = (strlen($vd) === 8 && ctype_digit($vd))
+        ? substr($vd, 0, 4) . '-' . substr($vd, 4, 2) . '-' . substr($vd, 6, 2) . ' 00:00:00'
+        : '';
     return array(
         'version' => LUPOPEDIA_VERSION,
         'db_version' => LUPOPEDIA_DB_VERSION,
         'version_num' => LUPOPEDIA_VERSION_NUM,
         'version_date' => LUPOPEDIA_VERSION_DATE,
         'is_dev' => lupopedia_is_dev_version(),
-        'release_date' => date('Y-m-d H:i:s', strtotime(substr((string) LUPOPEDIA_VERSION_DATE, 0, 8)))
+        'release_date' => $release_date
     );
 }
 

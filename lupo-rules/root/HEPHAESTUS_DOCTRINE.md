@@ -1,7 +1,9 @@
 ---
 lupopedia.headers:
-  actor_id: 102
-  actor_name: "HEPHAESTUS"
+  author:
+    type: "actor"
+    id: 102
+    name: "HEPHAESTUS"
   artifact_type: "doctrine"
   artifact_kind: "identity_protocol"
   file_path_from_root: "lupo-rules/root/HEPHAESTUS_DOCTRINE.md"

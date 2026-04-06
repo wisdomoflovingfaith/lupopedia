@@ -6,7 +6,7 @@ lupopedia.headers:
   lupopedia.version: "4.0.76"
   lupopedia.schema: "vscode_rule"
   file_path_from_root: ".vscode/lupopedia/rules/LUPOPEDIA_CONSTITUTIONAL_ROOT_RULES.md"
-  last_modified_utc: "20260402"
+  last_modified_utc: "20260406"
   system_version: "4.0.76"
   source_path: "lupo-rules/root/LUPOPEDIA_CONSTITUTIONAL_ROOT_RULES.md"
   artifact_type: "rule"
@@ -325,11 +325,12 @@ Every decision must have:
 - UPSERT must be explicit and intentional.  
 - No blanket conflict resolution.
 
-### 9.6 PHP 5.6+ Compatibility
-- All code must compile on PHP 5.6 minimum  
-- No Composer/outside frameworks not in lupo-includes  
-- No deprecated PHP 8+ syntax  
-- No named arguments, union types, match, enums, typed properties, attributes, arrow functions, strict types, or return type declarations in core paths
+### 9.6 PHP 7.4+ Compatibility
+- All code must compile on **PHP 7.4** minimum through supported **PHP 8.x**  
+- No Composer/outside frameworks not in lupo-includes in the runtime request path  
+- No deprecated PHP 8+ syntax that breaks on supported 8.x  
+- **Do not** use PHP **8.0+ only** syntax in shared core paths: named arguments, `match`, enums, attributes, `readonly` properties, union types — unless a file is explicitly scoped as modern-only  
+- **`??`, `[]`, arrow functions, typed properties, parameter/return types** are allowed where consistent with the file
 
 ### 9.7 No Laravel or Middleware Patterns
 - No Laravel framework dependencies  

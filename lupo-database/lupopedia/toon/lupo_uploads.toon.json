@@ -1,0 +1,65 @@
+{
+  "table_name": "lupo_uploads",
+  "fields": [
+    "`upload_id` bigint NOT NULL",
+    "`actor_id` bigint NOT NULL",
+    "`channel_id` bigint",
+    "`original_filename` varchar(255) NOT NULL",
+    "`stored_filename` varchar(255) NOT NULL",
+    "`file_extension` varchar(16) NOT NULL",
+    "`mime_type` varchar(128) NOT NULL",
+    "`file_size_bytes` bigint NOT NULL",
+    "`storage_path` varchar(512) NOT NULL",
+    "`metadata_json` json",
+    "`created_ymdhis` bigint NOT NULL DEFAULT 0",
+    "`updated_ymdhis` bigint NOT NULL",
+    "`is_deleted` tinyint NOT NULL DEFAULT '0'",
+    "`deleted_ymdhis` bigint"
+  ],
+  "data": [],
+  "indexes": [
+    {
+      "index_name": "lupo_uploads_idx_actor_id",
+      "columns": [
+        "actor_id"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_uploads_idx_channel_id",
+      "columns": [
+        "channel_id"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_uploads_idx_file_extension",
+      "columns": [
+        "file_extension"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_uploads_idx_created_ymdhis",
+      "columns": [
+        "created_ymdhis"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    }
+  ],
+  "relationships": [],
+  "primary_key": {
+    "column_name": "upload_id",
+    "expected_name": "upload_id",
+    "is_correct": true,
+    "needs_rename": false
+  },
+  "doctrine_metadata": {
+    "no_foreign_keys": true,
+    "no_triggers": true
+  }
+}

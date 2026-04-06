@@ -118,4 +118,4 @@ All timestamps are BIGINT UTC; no TIMESTAMP/DATETIME. No `session_data`, no seri
 ## References
 
 - `lupo-docs/database/lupopedia/tables/active/lupo_sessions.md` — Table documentation.
-- `lupo-database/lupopedia/content/lupo-app/auth/Session.php` — Session class implementation.
+- `app/auth/Session.php` — canonical `App\Auth\Session` implementation (`lupo-includes/bootstrap.php` loads this before `LUPO_APP_DIR/auth/`).

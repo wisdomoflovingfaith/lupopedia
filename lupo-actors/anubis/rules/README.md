@@ -47,7 +47,7 @@ The following fragmented rule files are preserved for reference but are supersed
 
 | Slug | Rule .md | Source .mdc | Status |
 |------|----------|-------------|--------|
-| php-5-6-compatibility | [php-5-6-compatibility.md](php-5-6-compatibility.md) | .cursor/rules/php-5-6-compatibility.mdc | ❌ Superseded |
+| php-7-4-compatibility | [php-7-4-compatibility.md](php-7-4-compatibility.md) | .cursor/rules/php-7-4-compatibility.mdc | ✅ Active (ARC003) |
 | no-laravel-no-middleware | [no-laravel-no-middleware.md](no-laravel-no-middleware.md) | .cursor/rules/no-laravel-no-middleware.mdc | ❌ Superseded |
 | pdo-db-database-access-doctrine | [pdo-db-database-access-doctrine.md](pdo-db-database-access-doctrine.md) | .cursor/rules/pdo-db-database-access-doctrine.mdc | ❌ Superseded |
 | migration-doctrine | [migration-doctrine.md](migration-doctrine.md) | .cursor/rules/migration-doctrine.mdc | ❌ Superseded |

@@ -30,8 +30,14 @@ if (session_status() === PHP_SESSION_NONE) {
 }
 
 $minInterval = 90;
-$lastUnix = isset($_SESSION['kairos_tick_last_unix']) ? (int) $_SESSION['kairos_tick_last_unix'] : 0;
-if ($lastUnix > 0 && (time() - $lastUnix) < $minInterval) {
+if (!class_exists('timestamp_ymdhis', false)) {
+    $krRoot = defined('LUPOPEDIA_PATH') ? LUPOPEDIA_PATH : (defined('LUPOPEDIA_ABSPATH') ? LUPOPEDIA_ABSPATH : '');
+    if ($krRoot !== '') {
+        require_once rtrim($krRoot, '/\\') . DIRECTORY_SEPARATOR . 'lupo-includes' . DIRECTORY_SEPARATOR . 'classes' . DIRECTORY_SEPARATOR . 'TimestampYmdhis.php';
+    }
+}
+$lastPacked = isset($_SESSION['kairos_tick_last_ymdhis']) ? (int) $_SESSION['kairos_tick_last_ymdhis'] : 0;
+if ($lastPacked > 0 && class_exists('timestamp_ymdhis', false) && timestamp_ymdhis::diffInSeconds(timestamp_ymdhis::now(), $lastPacked) < $minInterval) {
     echo json_encode(
         array(
             'success' => true,
@@ -74,7 +80,7 @@ require_once $appRoot . DIRECTORY_SEPARATOR . 'app' . DIRECTORY_SEPARATOR . 'Ser
 $svc = new KairosConsolidationService($db, null, 115);
 $stats = $svc->consolidateMemories($actorId, $departmentId);
 
-$_SESSION['kairos_tick_last_unix'] = time();
+$_SESSION['kairos_tick_last_ymdhis'] = class_exists('timestamp_ymdhis', false) ? timestamp_ymdhis::now() : (int) gmdate('YmdHis');
 
 echo json_encode(
     array(

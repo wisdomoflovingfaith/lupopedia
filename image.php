@@ -144,7 +144,10 @@ function send_image($filepath, $mime = 'image/gif') {
  * Anyone online in this department (or any) = session with recent last_seen + actor_channel_role (captain/monitor/administrator).
  */
 function is_anyone_online($db, $prefix, $department_id) {
-    $cutoff = (string) gmdate('YmdHis', time() - 20 * 60);
+    if (!class_exists('timestamp_ymdhis', false)) {
+        require_once (defined('LUPOPEDIA_PATH') ? LUPOPEDIA_PATH : __DIR__) . '/lupo-includes/classes/TimestampYmdhis.php';
+    }
+    $cutoff = (string) timestamp_ymdhis::subtractSeconds(timestamp_ymdhis::now(), 20 * 60);
     if ($department_id !== 0) {
         $row = $db->fetchRow(
             "SELECT 1 FROM {$prefix}sessions s " .

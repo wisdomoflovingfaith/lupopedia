@@ -346,10 +346,15 @@ class ChatService
      */
     private function _calculateDurationSeconds($start_ymdhis, $end_ymdhis)
     {
-        $start_ts = strtotime($start_ymdhis);
-        $end_ts = strtotime($end_ymdhis);
-        
-        return max(0, $end_ts - $start_ts);
+        if (!class_exists('timestamp_ymdhis', false)) {
+            require_once (defined('LUPOPEDIA_PATH') ? LUPOPEDIA_PATH . '/lupo-includes/classes/TimestampYmdhis.php' : __DIR__ . '/TimestampYmdhis.php');
+        }
+        $a = (int) $start_ymdhis;
+        $b = (int) $end_ymdhis;
+        if ($a <= 0 || $b <= 0) {
+            return 0;
+        }
+        return max(0, timestamp_ymdhis::diffInSeconds($b, $a));
     }
     
     /**

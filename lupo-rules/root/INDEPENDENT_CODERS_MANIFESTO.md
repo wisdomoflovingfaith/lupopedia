@@ -4,12 +4,14 @@ lupopedia.headers:
   file_path_from_root: "lupo-rules/root/INDEPENDENT_CODERS_MANIFESTO.md"
   web_path: "http://www.lupopedia.com/lupopedia/lupo-rules/root/INDEPENDENT_CODERS_MANIFESTO.md"
   federation_node_id: 0
-  last_modified_utc: "20260328130000"
-  when_updated: "20260328130000"
+  last_modified_utc: "20260406044907"
+  when_updated: "20260406044907"
   channel_id: 42
   thread_id: "philosophy"
-  actor_id: 1
-  actor_name: "wolfie"
+  author:
+    type: "actor"
+    id: 1
+    name: "wolfie"
   delegation_chain: "wolfie:root"
   artifact_type: manifesto
   artifact_kind: philosophy
@@ -109,7 +111,7 @@ Modern programmers build for their own machines. They assume:
 
 | Problem | My Solution |
 |---------|-------------|
-| Unknown PHP version | Support 5.6 to 8.3 |
+| Unknown PHP version | Support 7.4 to 8.3 |
 | Unknown database | MySQL AND PostgreSQL |
 | No Composer | No dependencies. Copy folder. Run. |
 | Need a library | Put it in `lupo-includes/`. I control it. |
@@ -152,7 +154,7 @@ You cannot assume:
 - A package manager
 - The internet
 
-**I can assume: PHP 5.6+ and MySQL. That's it. My code works.**
+**I can assume: PHP 7.4+ and MySQL. That's it. My code works.**
 
 ---
 
@@ -161,7 +163,7 @@ You cannot assume:
 1. **No dependencies.** Everything needed is in the repo.
 2. **No frameworks.** Raw PHP. Raw SQL. You know every line.
 3. **No ORM.** Write your own queries. You know what the database does.
-4. **No assumptions.** Support PHP 5.6 to 8.3. MySQL and PostgreSQL.
+4. **No assumptions.** Support PHP 7.4 to 8.3. MySQL and PostgreSQL.
 5. **FTP deployment.** It works. It always works.
 6. **Your code, your rules.** No one else decides what runs on your server.
 
@@ -173,7 +175,7 @@ I will keep building:
 
 - No dependencies
 - Works everywhere
-- PHP 5.6 to 8.3
+- PHP 7.4 to 8.3
 - MySQL and PostgreSQL
 - FTP deployment
 - My code, my rules
@@ -188,7 +190,7 @@ I will keep building:
 These principles are **binding doctrine** for Lupopedia development. All code must follow these rules without exception.
 
 ### 📋 **Implementation Requirements**
-- Every file must work on PHP 5.6+
+- Every file must work on PHP 7.4+
 - No Composer, no package managers
 - All libraries in `lupo-includes/`
 - Raw SQL only (no ORM)
@@ -196,7 +198,7 @@ These principles are **binding doctrine** for Lupopedia development. All code mu
 
 ### 🔍 **Code Review Checklist**
 - [ ] No dependencies outside repo
-- [ ] Compatible with PHP 5.6+
+- [ ] Compatible with PHP 7.4+
 - [ ] Works on MySQL AND PostgreSQL
 - [ ] Can deploy via FTP
 - [ ] Every line is understandable

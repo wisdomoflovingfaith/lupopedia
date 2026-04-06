@@ -314,6 +314,12 @@ function channels_handle_show($channel_id, $initial_thread_id = null) {
         $current_actor_name = $ar['name'];
     }
 
+    $channel_typing_csrf = '';
+    if (isset($GLOBALS['lupo_session']) && is_object($GLOBALS['lupo_session'])) {
+        $tok = $GLOBALS['lupo_session']->getCsrfToken();
+        $channel_typing_csrf = ($tok !== null && $tok !== false) ? (string) $tok : '';
+    }
+
     ob_start();
     extract(array(
         'channel_id'             => $channel_id,
@@ -332,6 +338,7 @@ function channels_handle_show($channel_id, $initial_thread_id = null) {
         'initial_after_ymdhis'   => $initial_after_ymdhis,
         'selected_thread_id'     => $selected_thread_id,
         'actor_has_channel_role' => $actor_has_channel_role,
+        'channel_typing_csrf'    => $channel_typing_csrf,
     ), EXTR_SKIP);
     include $view_path;
     $page_body = ob_get_clean();

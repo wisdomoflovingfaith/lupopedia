@@ -3,10 +3,10 @@ lupopedia.headers:
   header_format_version: 2
   lupopedia.schema: documentation
   version_when_written: "4.0.94"
-  when_updated: "20260404161001"
+  when_updated: "20260406043326"
   file_path_from_root: "lupo-docs/versions/4.0.94/README.md"
   web_path: "http://www.lupopedia.com/lupopedia/lupo-docs/versions/4.0.94/README.md"
-  last_modified_utc: "20260404161001"
+  last_modified_utc: "20260406043326"
   federation_node_id: 0
   channel_id: 42
   thread_id: "version-4.0.94-readme"
@@ -17,7 +17,7 @@ lupopedia.headers:
   delegation_chain: "cursor:root"
   artifact_type: "documentation"
   artifact_kind: "version_readme"
-  purpose: "Working version folder for Lupopedia 4.0.94 development"
+  purpose: "Version folder for Lupopedia 4.0.94 — feature complete for scoped refactor; packaging testing in Phase 7"
   tags:
   - "version"
   - "4.0.94"
@@ -80,7 +80,7 @@ lupopedia.edges:
       weight: 1.0
       reason: "APPROVED receipt — service agents + PRD 00 §5 + Softaculous auto-installer docs"
 lupopedia.footer:
-  last_verified: "20260404161001"
+  last_verified: "20260406043326"
   verified_by:
     identity_type: "actor"
     actor_id: 102
@@ -91,7 +91,21 @@ lupopedia.footer:
 
 # Lupopedia 4.0.94 (working)
 
-This is the **active** version documentation directory. Release **4.0.93** is frozen under `lupo-docs/versions/4.0.93/`.
+This directory documents **4.0.94**. Release **4.0.93** is frozen under `lupo-docs/versions/4.0.93/`. The **next planning** folder is **`lupo-docs/versions/4.0.95/`** (deferred tasks and follow-on work); it does not by itself bump runtime version.
+
+## Status
+
+**Version 4.0.94 is ready for Softaculous packaging** (documentation and scoped refactor complete).
+
+Completed for this line:
+
+- Session authority migrated to Model A (`lupo_sessions` + `metadata`; see **`decisions/20260406_042624_DECISION_session_authority_migration.md`**)
+- `$UNTRUSTED` boundaries on targeted entry points (install, login, select_agent, admin, auth paths, layouts, UrlResolver)
+- Database portability: `information_schema` instead of MySQL-only `SHOW TABLES LIKE` where refactored
+- Locale: `lupo_t()` on targeted UI surfaces + `lupo-en.php` keys
+- PHP tiered compatibility documented (7.4+ 64-bit production, 5.6+ legacy path)
+
+**Next:** Build package per **`SOFTACULOUS_PACKAGE_BUILD.md`**, test on Linux shared-host-class environment, close **Phase 7** items in **`PLAN.md`**. See **`VERSION_SUMMARY.md`** for a short rollup.
 
 ## Version lineage (documentation)
 
@@ -99,8 +113,8 @@ This is the **active** version documentation directory. Release **4.0.93** is fr
 |--------|--------|
 | `current_version` | 4.0.94 |
 | `parent_version` | 4.0.93 |
-| `child_version` | *(none yet)* |
-| `superseded_by` | *(null until 4.0.95 or next line exists)* |
+| `child_version` | 4.0.95 (planning folder) |
+| `superseded_by` | *(null until this line is frozen and replaced)* |
 | `is_deleted` | 0 |
 
 When a new working version folder is created, update `child_version` on 4.0.93/4.0.94 as appropriate and set `superseded_by` on the older **working** tree. Frozen version folders are not rewritten; lineage is forward-only.

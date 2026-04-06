@@ -25,7 +25,7 @@ This feature extends the existing `lupo-scripts/propagate_agent_rules.php` scrip
 - `.kiro/lupopedia_rules.json` — machine-readable rule index (fully overwritten on each run)
 - `.kiro/README.md` — import summary and rule inventory
 
-An enforcement test at `lupo-tests/unit/kiro_rules_enforcement.php` validates the output. All code is PHP 5.6 compatible, uses no frameworks, and follows AGENTS.md constraints.
+An enforcement test at `lupo-tests/unit/kiro_rules_enforcement.php` validates the output. All code is PHP 7.4 compatible, uses no frameworks, and follows AGENTS.md constraints.
 
 The design decision to extend the existing script (rather than create a new one) keeps the propagation logic in a single place and avoids duplication. The `--target` flag makes the script's scope explicit and prevents cross-IDE contamination.
 
@@ -131,7 +131,7 @@ Fully overwritten on each run. `json_encode` with `JSON_PRETTY_PRINT | JSON_UNES
 
 ### 4. `lupo-tests/unit/kiro_rules_enforcement.php` — Enforcement Test
 
-Standalone PHP 5.6 script. No test framework. Checks:
+Standalone PHP 7.4 script. No test framework. Checks:
 
 1. `.kiro/lupopedia_rules.json` is loadable and `rules` array is non-empty
 2. Each entry has `id`, `text`, `enforcement`, `scope`

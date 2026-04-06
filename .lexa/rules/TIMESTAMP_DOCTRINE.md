@@ -15,7 +15,7 @@ lupopedia.headers:
   lupopedia.version: "4.0.76"
   lupopedia.schema: "lexa_rule"
   file_path_from_root: ".lexa/rules/TIMESTAMP_DOCTRINE.md"
-  last_modified_utc: "20260402"
+  last_modified_utc: "20260406"
   system_version: "4.0.76"
   source_path: "lupo-rules/root/TIMESTAMP_DOCTRINE.md"
   artifact_type: "rule"
@@ -34,14 +34,14 @@ lupopedia.rules:
   overrides: []
   provenance:
     authored_by: "wolfie"
-    authored_date: "20260402"
+    authored_date: "20260406"
     last_reviewed_by: "lexa"
-    last_reviewed_date: "20260402"
+    last_reviewed_date: "20260406"
     version: "1.0"
     status: "active"
 lupopedia.footer:
   version: "4.0.76"
-  last_verified: "20260402"
+  last_verified: "20260406"
   last_verified_by: "lexa"
   orchestrator: "lexa"
   next_action:

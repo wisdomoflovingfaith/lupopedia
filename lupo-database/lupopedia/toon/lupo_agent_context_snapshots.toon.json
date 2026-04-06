@@ -1,0 +1,101 @@
+{
+  "table_name": "lupo_agent_context_snapshots",
+  "fields": [
+    "`agent_context_snapshot_id` bigint NOT NULL",
+    "`session_id` varchar(100) NOT NULL",
+    "`actor_id` bigint NOT NULL",
+    "`parent_snapshot_id` bigint",
+    "`snapshot_type` varchar(64) NOT NULL DEFAULT 'full'",
+    "`snapshot_purpose` varchar(50)",
+    "`context_data` text NOT NULL",
+    "`context_summary` text",
+    "`context_metadata` json",
+    "`token_count` int",
+    "`character_count` int",
+    "`compressed_size` int",
+    "`compression_ratio` float",
+    "`compression_method` varchar(64) DEFAULT 'gzip'",
+    "`serialization_time_ms` int",
+    "`compression_time_ms` int",
+    "`related_tool_call_id` bigint",
+    "`conversation_turn` int",
+    "`created_ymdhis` bigint NOT NULL DEFAULT 0",
+    "`expires_ymdhis` bigint",
+    "`is_corrupt` tinyint DEFAULT '0'",
+    "`retention_policy` varchar(64) DEFAULT 'temporary'"
+  ],
+  "data": [],
+  "indexes": [
+    {
+      "index_name": "lupo_agent_context_snapshots_idx_session_agent",
+      "columns": [
+        "session_id",
+        "actor_id"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_agent_context_snapshots_idx_created",
+      "columns": [
+        "created_ymdhis"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_agent_context_snapshots_idx_type_purpose",
+      "columns": [
+        "snapshot_type",
+        "snapshot_purpose"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_agent_context_snapshots_idx_retention",
+      "columns": [
+        "retention_policy",
+        "expires_ymdhis"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_agent_context_snapshots_idx_turn",
+      "columns": [
+        "session_id",
+        "conversation_turn"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_agent_context_snapshots_idx_related_tool",
+      "columns": [
+        "related_tool_call_id"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_agent_context_snapshots_idx_parent",
+      "columns": [
+        "parent_snapshot_id"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    }
+  ],
+  "relationships": [],
+  "primary_key": {
+    "column_name": "agent_context_snapshot_id",
+    "expected_name": "agent_context_snapshot_id",
+    "is_correct": true,
+    "needs_rename": false
+  },
+  "doctrine_metadata": {
+    "no_foreign_keys": true,
+    "no_triggers": true
+  }
+}

@@ -8,6 +8,12 @@
  * @version 4.0.53
  */
 
+if (!class_exists('timestamp_ymdhis', false)) {
+    require_once defined('LUPOPEDIA_PATH')
+        ? LUPOPEDIA_PATH . '/lupo-includes/classes/TimestampYmdhis.php'
+        : dirname(__DIR__) . '/TimestampYmdhis.php';
+}
+
 class ANUBIS_QueueProcessor
 {
     private $db;
@@ -293,7 +299,7 @@ class ANUBIS_QueueProcessor
 
         // Record in quarantine table
         $now = gmdate('YmdHis');
-        $expires = gmdate('YmdHis', strtotime('+30 days'));
+        $expires = (string) timestamp_ymdhis::addSeconds((int) $now, 30 * 86400);
 
         $this->db->insert(
             $this->quarantine_table,

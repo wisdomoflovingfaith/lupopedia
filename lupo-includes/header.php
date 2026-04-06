@@ -1,30 +1,117 @@
+<?php
+/*
+---
+lupopedia.headers:
+  header_format_version: 2
+  lupopedia.schema: include
+  when_updated: "20260406015355"
+  file_path_from_root: "lupo-includes/header.php"
+  web_path: "http://www.lupopedia.com/lupopedia/lupo-includes/header.php"
+  last_modified_utc: "20260406015355"
+  federation_node_id: 0
+  channel_id: 42
+  author:
+    type: "actor"
+    id: 102
+    name: "CURSOR"
+  delegation_chain: "cursor:root"
+  artifact_type: "include"
+  artifact_kind: "site_header"
+  purpose: "Shared HTML head, main nav, saved collections chrome, modals; lupo_t and LUPOPEDIA_PUBLIC_PATH."
+  tags: ["ui", "header", "locale", "navigation"]
+---
+*/
+
+$root = defined('LUPOPEDIA_PATH') ? LUPOPEDIA_PATH : '';
+if ($root !== '' && !class_exists('LupoLocale', false)) {
+    $lp = $root . '/lupo-includes/classes/LupoLocale.php';
+    if (is_file($lp)) {
+        require_once $lp;
+    }
+}
+if ($root !== '' && class_exists('LupoLocale', false) && method_exists('LupoLocale', 'bootstrap')) {
+    LupoLocale::bootstrap($root);
+}
+if (!function_exists('lupo_t')) {
+    $i18n = ($root !== '' ? $root . '/lupo-includes/lupo-i18n.php' : '');
+    if ($i18n !== '' && is_file($i18n)) {
+        require_once $i18n;
+    }
+}
+
+$lupoPublicBase = (defined('LUPOPEDIA_PUBLIC_PATH') ? rtrim(LUPOPEDIA_PUBLIC_PATH, '/') : '');
+$lupoPubSlash = (defined('LUPOPEDIA_PUBLIC_PATH') ? LUPOPEDIA_PUBLIC_PATH : '');
+$lupoOgUrl = ($lupoPublicBase !== '' ? htmlspecialchars($lupoPublicBase . '/questions.php', ENT_QUOTES, 'UTF-8') : '');
+
+$lupoHdrJs = array(
+    'base' => $lupoPublicBase,
+    'strings' => array(
+        'collections_save_login' => function_exists('lupo_t') ? lupo_t('header.collections.alert_save_login', 'Please log in to save collections.') : 'Please log in to save collections.',
+        'collections_load_login' => function_exists('lupo_t') ? lupo_t('header.collections.alert_load_login', 'Please log in to load collections.') : 'Please log in to load collections.',
+        'collections_edit_login' => function_exists('lupo_t') ? lupo_t('header.collections.alert_edit_login', 'Please log in to edit collections.') : 'Please log in to edit collections.',
+        'collections_edit_save_first' => function_exists('lupo_t') ? lupo_t('header.collections.edit_save_first', 'Please save this collection first, then you can edit it!') : 'Please save this collection first, then you can edit it!',
+        'collections_edit_open_save' => function_exists('lupo_t') ? lupo_t('header.collections.edit_open_save', 'Click OK to open the Save dialog.') : 'Click OK to open the Save dialog.',
+        'collections_name_required' => function_exists('lupo_t') ? lupo_t('header.collections.name_required', 'Please enter a name for this collection') : 'Please enter a name for this collection',
+        'collections_saved_ok' => function_exists('lupo_t') ? lupo_t('header.collections.saved_ok', 'Collection saved successfully!') : 'Collection saved successfully!',
+        'collections_error_prefix' => function_exists('lupo_t') ? lupo_t('header.collections.error_prefix', 'Error: ') : 'Error: ',
+        'collections_save_failed' => function_exists('lupo_t') ? lupo_t('header.collections.save_failed', 'Failed to save collection') : 'Failed to save collection',
+        'collections_save_try_again' => function_exists('lupo_t') ? lupo_t('header.collections.save_try_again', 'Error saving collection. Please try again.') : 'Error saving collection. Please try again.',
+        'collections_loading_short' => function_exists('lupo_t') ? lupo_t('header.collections.loading_short', 'Loading...') : 'Loading...',
+        'collections_no_description' => function_exists('lupo_t') ? lupo_t('header.collections.no_description', 'No description') : 'No description',
+        'collections_saved_items' => function_exists('lupo_t') ? lupo_t('header.collections.saved_items', 'saved items') : 'saved items',
+        'collections_created' => function_exists('lupo_t') ? lupo_t('header.collections.created', 'Created:') : 'Created:',
+        'collections_load_btn' => function_exists('lupo_t') ? lupo_t('header.collections.load_btn', 'Load') : 'Load',
+        'collections_delete_btn' => function_exists('lupo_t') ? lupo_t('header.collections.delete_btn', 'Delete') : 'Delete',
+        'collections_active_prefix' => function_exists('lupo_t') ? lupo_t('header.collections.active_prefix', '[Active] ') : '[Active] ',
+        'collections_empty' => function_exists('lupo_t') ? lupo_t('header.collections.empty', 'No saved collections yet.') : 'No saved collections yet.',
+        'collections_empty_hint' => function_exists('lupo_t') ? lupo_t('header.collections.empty_hint', 'Click Save to save your first collection!') : 'Click Save to save your first collection!',
+        'collections_list_error' => function_exists('lupo_t') ? lupo_t('header.collections.list_error', 'Error loading collections') : 'Error loading collections',
+        'collections_confirm_load' => function_exists('lupo_t') ? lupo_t('header.collections.confirm_load', 'Load collection "%s"? This will replace your current recently viewed items.') : 'Load collection "%s"? This will replace your current recently viewed items.',
+        'collections_loaded_ok' => function_exists('lupo_t') ? lupo_t('header.collections.loaded_ok', 'Collection loaded! Refreshing page...') : 'Collection loaded! Refreshing page...',
+        'collections_load_failed' => function_exists('lupo_t') ? lupo_t('header.collections.load_failed', 'Failed to load collection') : 'Failed to load collection',
+        'collections_load_try_again' => function_exists('lupo_t') ? lupo_t('header.collections.load_try_again', 'Error loading collection. Please try again.') : 'Error loading collection. Please try again.',
+        'collections_delete_confirm' => function_exists('lupo_t') ? lupo_t('header.collections.delete_confirm', 'Delete this collection? This cannot be undone.') : 'Delete this collection? This cannot be undone.',
+        'collections_delete_failed' => function_exists('lupo_t') ? lupo_t('header.collections.delete_failed', 'Failed to delete collection') : 'Failed to delete collection',
+        'collections_delete_try_again' => function_exists('lupo_t') ? lupo_t('header.collections.delete_try_again', 'Error deleting collection. Please try again.') : 'Error deleting collection. Please try again.',
+        'prompt_main_tab' => function_exists('lupo_t') ? lupo_t('header.shortcut.prompt_main_tab', 'Enter name for new Main Tab:') : 'Enter name for new Main Tab:',
+        'prompt_sub_tab' => function_exists('lupo_t') ? lupo_t('header.shortcut.prompt_sub_tab', 'Enter new Sub-Tab name for "%s":') : 'Enter new Sub-Tab name for "%s":',
+        'add_success' => function_exists('lupo_t') ? lupo_t('header.shortcut.add_success', 'Successfully added "%s" to your collection!') : 'Successfully added "%s" to your collection!',
+    ),
+);
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> LUPOPEDIA - Ontology Knowledge Platform</title>
-    <link rel="icon" type="image/x-icon" href="favicon.ico">
-    <link rel="shortcut icon" href="favicon.ico">
+    <title><?php echo htmlspecialchars(function_exists('lupo_t') ? lupo_t('header.html_title', 'Lupopedia — Ontology knowledge platform') : 'Lupopedia — Ontology knowledge platform', ENT_QUOTES, 'UTF-8'); ?></title>
+    <link rel="icon" type="image/x-icon" href="<?php echo htmlspecialchars($lupoPubSlash !== '' ? $lupoPubSlash . '/favicon.ico' : 'favicon.ico', ENT_QUOTES, 'UTF-8'); ?>">
+    <link rel="shortcut icon" href="<?php echo htmlspecialchars($lupoPubSlash !== '' ? $lupoPubSlash . '/favicon.ico' : 'favicon.ico', ENT_QUOTES, 'UTF-8'); ?>">
     
     <!-- CSS -->
-    <link rel="stylesheet" href="<?php echo LUPOPEDIA_PUBLIC_PATH; ?>/css/main.css">
-    <link rel="stylesheet" href="<?php echo LUPOPEDIA_PUBLIC_PATH; ?>/css/components.css">
+    <link rel="stylesheet" href="<?php echo htmlspecialchars($lupoPubSlash !== '' ? $lupoPubSlash . '/css/main.css' : '/css/main.css', ENT_QUOTES, 'UTF-8'); ?>">
+    <link rel="stylesheet" href="<?php echo htmlspecialchars($lupoPubSlash !== '' ? $lupoPubSlash . '/css/components.css' : '/css/components.css', ENT_QUOTES, 'UTF-8'); ?>">
  
     <!-- Favicon -->
-    <link rel="icon" type="image/png" href="<?php echo LUPOPEDIA_PUBLIC_PATH; ?>/lupo-images/logoface.png">
+    <link rel="icon" type="image/png" href="<?php echo htmlspecialchars($lupoPubSlash !== '' ? $lupoPubSlash . '/lupo-images/logoface.png' : 'lupo-images/logoface.png', ENT_QUOTES, 'UTF-8'); ?>">
     
     <!-- Meta collections -->
-    <meta name="description" content="Browse Q/A content from source of truth database">
-    <meta name="keywords" content="spirituality, religion, faith, wisdom, sacred texts, prayers, songs, AI, guidance">
-    <meta name="author" content="Captain WOLFIE (Eric Robin Gerdes)">
+    <meta name="description" content="<?php echo htmlspecialchars(function_exists('lupo_t') ? lupo_t('header.meta_description', 'Browse Q/A content from source of truth database') : 'Browse Q/A content from source of truth database', ENT_QUOTES, 'UTF-8'); ?>">
+    <meta name="keywords" content="<?php echo htmlspecialchars(function_exists('lupo_t') ? lupo_t('header.meta_keywords', 'spirituality, religion, faith, wisdom, sacred texts, prayers, songs, AI, guidance') : 'spirituality, religion, faith, wisdom, sacred texts, prayers, songs, AI, guidance', ENT_QUOTES, 'UTF-8'); ?>">
+    <meta name="author" content="<?php echo htmlspecialchars(function_exists('lupo_t') ? lupo_t('header.meta_author', 'Captain WOLFIE (Eric Robin Gerdes)') : 'Captain WOLFIE (Eric Robin Gerdes)', ENT_QUOTES, 'UTF-8'); ?>">
     
     <!-- Open Graph -->
-    <meta property="og:title" content="Questions & Answers">
-    <meta property="og:description" content="Browse Q/A content from source of truth database">
+    <meta property="og:title" content="<?php echo htmlspecialchars(function_exists('lupo_t') ? lupo_t('header.og_title', 'Questions & Answers') : 'Questions & Answers', ENT_QUOTES, 'UTF-8'); ?>">
+    <meta property="og:description" content="<?php echo htmlspecialchars(function_exists('lupo_t') ? lupo_t('header.og_description', 'Browse Q/A content from source of truth database') : 'Browse Q/A content from source of truth database', ENT_QUOTES, 'UTF-8'); ?>">
     <meta property="og:type" content="website">
-    <meta property="og:url" content="http://lupopedia.com/questions.php">
-    <meta property="og:image" content="<?php echo htmlspecialchars((defined('LUPOPEDIA_PUBLIC_PATH') ? LUPOPEDIA_PUBLIC_PATH : '') . '/lupo-images/s1.png'); ?>">
+    <?php if ($lupoOgUrl !== ''): ?>
+    <meta property="og:url" content="<?php echo $lupoOgUrl; ?>">
+    <?php endif; ?>
+    <meta property="og:image" content="<?php echo htmlspecialchars(($lupoPublicBase !== '' ? $lupoPublicBase : '') . '/lupo-images/s1.png', ENT_QUOTES, 'UTF-8'); ?>">
+
+    <script>
+    window.LUPO_HDR = <?php echo json_encode($lupoHdrJs); ?>;
+    </script>
     
         
         
@@ -269,7 +356,7 @@
     margin: 0; 
     padding: 0; 
     overflow: hidden; /* Prevents spillover if text gets tall */ 
-    white-space: nowrap; /* Keeps it on one line */ 
+    word-break: break-word;
 }
 
 
@@ -575,8 +662,8 @@
     <header class="main-header">
     <div class="nav-logo-container" style="position: absolute; top: 20px; left: 0; z-index: 2000;">
  
-<a href="/index.php" class="nav-logo" onclick="scrollToTop()" title="WOLFIE - Home">
-     <img src="lupo-images/logoface.png?1766754946" alt="WOLFIE" width="50" height="50" border="0" style="border-radius: 50%;" />
+<a href="<?php echo htmlspecialchars($lupoPublicBase !== '' ? $lupoPublicBase . '/index.php' : '/index.php', ENT_QUOTES, 'UTF-8'); ?>" class="nav-logo" onclick="scrollToTop()" title="<?php echo htmlspecialchars(function_exists('lupo_t') ? lupo_t('nav.logo_title', 'Lupopedia home') : 'Lupopedia home', ENT_QUOTES, 'UTF-8'); ?>">
+     <img src="<?php echo htmlspecialchars($lupoPublicBase !== '' ? $lupoPublicBase . '/lupo-images/logoface.png' : 'lupo-images/logoface.png', ENT_QUOTES, 'UTF-8'); ?>?1766754946" alt="<?php echo htmlspecialchars(function_exists('lupo_t') ? lupo_t('nav.logo_alt', 'Lupopedia') : 'Lupopedia', ENT_QUOTES, 'UTF-8'); ?>" width="50" height="50" border="0" style="border-radius: 50%;" />
  </a>
  </div>
         <nav class="main-nav">
@@ -584,12 +671,12 @@
 
                 <!-- Main Navigation Links -->
                 <div class="nav-links">
-                    <a href="/" class="nav-link active">Home</a>
-                    <a href="/questions.php" class="nav-link active">Q/A</a>
-                    <a href="/search.php" class="nav-link ">Content</a>
-                    <a href="/collections.php" class="nav-link ">Collections</a>
-                    <a href="/users.php" class="nav-link ">Users</a>
-                    <a href="/agents.php" class="nav-link ">Agents</a>
+                    <a href="<?php echo htmlspecialchars($lupoPublicBase !== '' ? $lupoPublicBase . '/' : '/', ENT_QUOTES, 'UTF-8'); ?>" class="nav-link active"><?php echo htmlspecialchars(function_exists('lupo_t') ? lupo_t('nav.home', 'Home') : 'Home', ENT_QUOTES, 'UTF-8'); ?></a>
+                    <a href="<?php echo htmlspecialchars($lupoPublicBase !== '' ? $lupoPublicBase . '/qa/' : '/qa/', ENT_QUOTES, 'UTF-8'); ?>" class="nav-link active"><?php echo htmlspecialchars(function_exists('lupo_t') ? lupo_t('nav.qa', 'Q/A') : 'Q/A', ENT_QUOTES, 'UTF-8'); ?></a>
+                    <a href="<?php echo htmlspecialchars($lupoPublicBase !== '' ? $lupoPublicBase . '/search.php' : '/search.php', ENT_QUOTES, 'UTF-8'); ?>" class="nav-link "><?php echo htmlspecialchars(function_exists('lupo_t') ? lupo_t('nav.content', 'Content') : 'Content', ENT_QUOTES, 'UTF-8'); ?></a>
+                    <a href="<?php echo htmlspecialchars($lupoPublicBase !== '' ? $lupoPublicBase . '/collections.php' : '/collections.php', ENT_QUOTES, 'UTF-8'); ?>" class="nav-link "><?php echo htmlspecialchars(function_exists('lupo_t') ? lupo_t('nav.collections', 'Collections') : 'Collections', ENT_QUOTES, 'UTF-8'); ?></a>
+                    <a href="<?php echo htmlspecialchars($lupoPublicBase !== '' ? $lupoPublicBase . '/users.php' : '/users.php', ENT_QUOTES, 'UTF-8'); ?>" class="nav-link "><?php echo htmlspecialchars(function_exists('lupo_t') ? lupo_t('nav.users', 'Users') : 'Users', ENT_QUOTES, 'UTF-8'); ?></a>
+                    <a href="<?php echo htmlspecialchars($lupoPublicBase !== '' ? $lupoPublicBase . '/agents.php' : '/agents.php', ENT_QUOTES, 'UTF-8'); ?>" class="nav-link "><?php echo htmlspecialchars(function_exists('lupo_t') ? lupo_t('nav.agents', 'Agents') : 'Agents', ENT_QUOTES, 'UTF-8'); ?></a>
                 </div>
                 
                 <!-- User Profile Section -->
@@ -606,13 +693,30 @@
                         }
                     }
                     
-                    // Render login status (with profile avatar if logged in)
+                    // Render login status — user row and operator flag resolved here (Session/AuthService); helper does not read globals for render.
                     if (function_exists('lupo_render_login_status')) {
-                        echo lupo_render_login_status();
+                        $hdr_auth_user = null;
+                        $hdr_is_operator = false;
+                        $hdr_auth = isset($GLOBALS['lupo_auth_service']) ? $GLOBALS['lupo_auth_service'] : null;
+                        if ($hdr_auth) {
+                            $hdr_auth_user = $hdr_auth->getCurrentUser();
+                            if ($hdr_auth_user && is_array($hdr_auth_user) && isset($hdr_auth_user['actor_id']) && (int) $hdr_auth_user['actor_id'] > 0) {
+                                $hdr_is_operator = $hdr_auth->hasAnyChannelRole((int) $hdr_auth_user['actor_id']);
+                            }
+                        } elseif (function_exists('current_user')) {
+                            $cu = current_user();
+                            if ($cu && is_array($cu)) {
+                                $hdr_auth_user = $cu;
+                            }
+                        }
+                        echo lupo_render_login_status(
+                            ($hdr_auth_user && is_array($hdr_auth_user)) ? $hdr_auth_user : null,
+                            $hdr_is_operator
+                        );
                     } else {
-                        // Fallback: show login link if auth helpers not loaded
-                        $login_url = defined('LUPOPEDIA_PUBLIC_PATH') ? LUPOPEDIA_PUBLIC_PATH . '/login' : '/login';
-                        echo '<a href="' . htmlspecialchars($login_url) . '" class="nav-link">Sign In</a>';
+                        $login_url = defined('LUPOPEDIA_PUBLIC_PATH') ? rtrim(LUPOPEDIA_PUBLIC_PATH, '/') . '/login' : '/login';
+                        $signIn = function_exists('lupo_t') ? lupo_t('nav.sign_in', 'Sign In') : 'Sign In';
+                        echo '<a href="' . htmlspecialchars($login_url) . '" class="nav-link">' . htmlspecialchars($signIn, ENT_QUOTES, 'UTF-8') . '</a>';
                     }
                     ?>
                 </div>
@@ -623,6 +727,11 @@
     
     <!-- Saved Collections Navigation (all pages including index.php) -->
     <?php
+    $isUserLoggedIn = false;
+    $collectionsData = array();
+    if (!defined('LUPO_INCLUDES_DIR')) {
+        // Bootstrap incomplete; skip collections chrome.
+    } else {
     // Load renderer function
     require_once(LUPO_INCLUDES_DIR . '/functions/render-saved-collections.php');
     
@@ -632,444 +741,15 @@
         $aid = $GLOBALS['lupo_session']->getActorId();
         $currentUserId = $aid !== null ? (int) $aid : 0;
     }
-    if ($currentUserId === 0 && defined('CURRENT_USER_ID')) {
-        $currentUserId = (int) CURRENT_USER_ID;
-    }
     $isUserLoggedIn = ($currentUserId > 0);
     
     // Render saved collections data (always render for viewing, permissions apply to editing only)
     $collectionsData = render_saved_collections($currentUserId);
     
     // Include the component template
-    include(LUPO_INCLUDES_DIR . '/ui/components/saved-collections-nav.php');
+    include(LUPO_INCLUDES_DIR . '/themes/default/components/saved-collections-nav.php');
+    }
     ?>
-    
-    <!-- Save Collection Modal --> 
-                    
-                    <div class="saved-collections-dropdown-content" 
-                         id="dropdown-collections"
-                         role="menu">
-                            <div class="saved-collections-submenu">
-                                    <span class="saved-collections-submenu-trigger" 
-                                          onclick="toggleSubmenu(this, event)"
-                                          role="menuitem"
-                                          aria-expanded="false"
-                                          aria-haspopup="true"
-                                          data-submenu-id="submenu-collections-books"
-                                          tabindex="0"
-                                          onkeydown="if(event.key==='Enter'||event.key===' '){toggleSubmenu(this,event);}">
-                                        <span>Books</span>
-                                    </span>
-                                    <div class="saved-collections-submenu-content" 
-                                         id="submenu-collections-books"
-                                         role="menu">
-                                                                                                                                <div class="saved-collections-submenu">
-                                                <span class="saved-collections-submenu-trigger" 
-                                                      onclick="toggleSubmenu(this, event)"
-                                                      role="menuitem"
-                                                      aria-expanded="false"
-                                                      aria-haspopup="true"
-                                                      data-submenu-id="submenu-collections-books-bible-books"
-                                                      tabindex="0"
-                                                      onkeydown="if(event.key==='Enter'||event.key===' '){toggleSubmenu(this,event);}">
-                                                    <span>Bible-books</span>
-                                                    <span class="count">1</span>
-                                                </span>
-                                                <div class="saved-collections-submenu-content" 
-                                                     id="submenu-collections-books-bible-books"
-                                                     role="menu">
-                                                    <a href="/content.php?id=7" 
-                                                           class="saved-collections-item"
-                                                           role="menuitem"
-                                                           tabindex="0">
-                                                            1 Corinthians - Complete Book                                                        </a>
-                                                                                                    </div>
-                                            </div>
-                                                                                                                        </div>
-                                </div>
-                                                                        </div>
-                </div>
-                            <div class="saved-collections-dropdown" data-qa-type="who">
-                    <button class="saved-collections-button" 
-                            onclick="toggleSavedCollectionsDropdown(this)"
-                            aria-expanded="false"
-                            aria-haspopup="true"
-                            aria-controls="dropdown-who"
-                            data-qa-type="who">
-                        WHO <span class="count">2</span>
-                    </button>
-                    <div class="saved-collections-dropdown-content" 
-                         id="dropdown-who"
-                         role="menu">
-                                                                                                                <div class="saved-collections-submenu">
-                                    <span class="saved-collections-submenu-trigger" 
-                                          onclick="toggleSubmenu(this, event)"
-                                          role="menuitem"
-                                          aria-expanded="false"
-                                          aria-haspopup="true"
-                                          data-submenu-id="submenu-who-captain_wolfie"
-                                          tabindex="0"
-                                          onkeydown="if(event.key==='Enter'||event.key===' '){toggleSubmenu(this,event);}">
-                                        <span>Captain_wolfie</span>
-                                        <span class="count">1</span>
-                                    </span>
-                                    <div class="saved-collections-submenu-content" 
-                                         id="submenu-who-captain_wolfie"
-                                         role="menu">
-                                                                                    <a href="content.php?id=2" 
-                                               class="saved-collections-item"
-                                               role="menuitem"
-                                               tabindex="0">
-                                                Welcome to WOLFIE Platform                                            </a>
-                                                                            </div>
-                                </div>
-                                                            <div class="saved-collections-submenu">
-                                    <span class="saved-collections-submenu-trigger" 
-                                          onclick="toggleSubmenu(this, event)"
-                                          role="menuitem"
-                                          aria-expanded="false"
-                                          aria-haspopup="true"
-                                          data-submenu-id="submenu-who-apostle_paul"
-                                          tabindex="0"
-                                          onkeydown="if(event.key==='Enter'||event.key===' '){toggleSubmenu(this,event);}">
-                                        <span>Apostle_paul</span>
-                                        <span class="count">1</span>
-                                    </span>
-                                    <div class="saved-collections-submenu-content" 
-                                         id="submenu-who-apostle_paul"
-                                         role="menu">
-                                                                                    <a href="content.php?id=3" 
-                                               class="saved-collections-item"
-                                               role="menuitem"
-                                               tabindex="0">
-                                                Christianity - The Way of Love and Grace                                            </a>
-                                                                            </div>
-                                </div>
-                                                                        </div>
-                </div>
-                            <div class="saved-collections-dropdown" data-qa-type="what">
-                    <button class="saved-collections-button" 
-                            onclick="toggleSavedCollectionsDropdown(this)"
-                            aria-expanded="false"
-                            aria-haspopup="true"
-                            aria-controls="dropdown-what"
-                            data-qa-type="what">
-                        WHAT <span class="count">2</span>
-                    </button>
-                    <div class="saved-collections-dropdown-content" 
-                         id="dropdown-what"
-                         role="menu">
-                                     <div class="saved-collections-submenu">
-                                    <span class="saved-collections-submenu-trigger" 
-                                          onclick="toggleSubmenu(this, event)"
-                                          role="menuitem"
-                                          aria-expanded="false"
-                                          aria-haspopup="true"
-                                          data-submenu-id="submenu-what-denomination"
-                                          tabindex="0"
-                                          onkeydown="if(event.key==='Enter'||event.key===' '){toggleSubmenu(this,event);}">
-                                        <span>Denomination</span>
-                                        <span class="count">1</span>
-                                    </span>
-                                    <div class="saved-collections-submenu-content" 
-                                         id="submenu-what-denomination"
-                                         role="menu">
-                                                <a href="/content.php?id=3" 
-                                               class="saved-collections-item"
-                                               role="menuitem"
-                                               tabindex="0">
-                                                Christianity - The Way of Love and Grace   </a>
-                                                                            </div>
-                                </div>
-                                                            <div class="saved-collections-submenu">
-                                    <span class="saved-collections-submenu-trigger" 
-                                          onclick="toggleSubmenu(this, event)"
-                                          role="menuitem"
-                                          aria-expanded="false"
-                                          aria-haspopup="true"
-                                          data-submenu-id="submenu-what-qa_system"
-                                          tabindex="0"
-                                          onkeydown="if(event.key==='Enter'||event.key===' '){toggleSubmenu(this,event);}">
-                                        <span>Qa_system</span>
-                                        <span class="count">1</span>
-                                    </span>
-                                    <div class="saved-collections-submenu-content" 
-                                         id="submenu-what-qa_system"
-                                         role="menu">
-                                                                                    <a href="content.php?id=24" 
-                                               class="saved-collections-item"
-                                               role="menuitem"
-                                               tabindex="0">
-                                                Q/A Tagging System Guide                                            </a>
-                                                                            </div>
-                                </div>
-                                                                        </div>
-                </div>
-                            <div class="saved-collections-dropdown" data-qa-type="where">
-                    <button class="saved-collections-button" 
-                            onclick="toggleSavedCollectionsDropdown(this)"
-                            aria-expanded="false"
-                            aria-haspopup="true"
-                            aria-controls="dropdown-where"
-                            data-qa-type="where">
-                        WHERE <span class="count">2</span>
-                    </button>
-                    <div class="saved-collections-dropdown-content" 
-                         id="dropdown-where"
-                         role="menu">
-                                                                                                                <div class="saved-collections-submenu">
-                                    <span class="saved-collections-submenu-trigger" 
-                                          onclick="toggleSubmenu(this, event)"
-                                          role="menuitem"
-                                          aria-expanded="false"
-                                          aria-haspopup="true"
-                                          data-submenu-id="submenu-where-platform_root"
-                                          tabindex="0"
-                                          onkeydown="if(event.key==='Enter'||event.key===' '){toggleSubmenu(this,event);}">
-                                        <span>Platform_root</span>
-                                        <span class="count">1</span>
-                                    </span>
-                                    <div class="saved-collections-submenu-content" 
-                                         id="submenu-where-platform_root"
-                                         role="menu">
-                                                                                    <a href="content.php?id=2" 
-                                               class="saved-collections-item"
-                                               role="menuitem"
-                                               tabindex="0">
-                                                Welcome to WOLFIE Platform                                            </a>
-                                                                            </div>
-                                </div>
-                                                            <div class="saved-collections-submenu">
-                                    <span class="saved-collections-submenu-trigger" 
-                                          onclick="toggleSubmenu(this, event)"
-                                          role="menuitem"
-                                          aria-expanded="false"
-                                          aria-haspopup="true"
-                                          data-submenu-id="submenu-where-qa_page"
-                                          tabindex="0"
-                                          onkeydown="if(event.key==='Enter'||event.key===' '){toggleSubmenu(this,event);}">
-                                        <span>Qa_page</span>
-                                        <span class="count">1</span>
-                                    </span>
-                                    <div class="saved-collections-submenu-content" 
-                                         id="submenu-where-qa_page"
-                                         role="menu">
-                                                                                    <a href="content.php?id=24" 
-                                               class="saved-collections-item"
-                                               role="menuitem"
-                                               tabindex="0">
-                                                Q/A Tagging System Guide                                            </a>
-                                                                            </div>
-                                </div>
-                                                                        </div>
-                </div>
-                            <div class="saved-collections-dropdown" data-qa-type="when">
-                    <button class="saved-collections-button" 
-                            onclick="toggleSavedCollectionsDropdown(this)"
-                            aria-expanded="false"
-                            aria-haspopup="true"
-                            aria-controls="dropdown-when"
-                            data-qa-type="when">
-                        WHEN <span class="count">1</span>
-                    </button>
-                    <div class="saved-collections-dropdown-content" 
-                         id="dropdown-when"
-                         role="menu">
-                                                                                                                <div class="saved-collections-submenu">
-                                    <span class="saved-collections-submenu-trigger" 
-                                          onclick="toggleSubmenu(this, event)"
-                                          role="menuitem"
-                                          aria-expanded="false"
-                                          aria-haspopup="true"
-                                          data-submenu-id="submenu-when-qa_system_intro"
-                                          tabindex="0"
-                                          onkeydown="if(event.key==='Enter'||event.key===' '){toggleSubmenu(this,event);}">
-                                        <span>Qa_system_intro</span>
-                                        <span class="count">1</span>
-                                    </span>
-                                    <div class="saved-collections-submenu-content" 
-                                         id="submenu-when-qa_system_intro"
-                                         role="menu">
-                                                                                    <a href="content.php?id=24" 
-                                               class="saved-collections-item"
-                                               role="menuitem"
-                                               tabindex="0">
-                                                Q/A Tagging System Guide                                            </a>
-                                                                            </div>
-                                </div>
-                                                                        </div>
-                </div>
-                            <div class="saved-collections-dropdown" data-qa-type="why">
-                    <button class="saved-collections-button" 
-                            onclick="toggleSavedCollectionsDropdown(this)"
-                            aria-expanded="false"
-                            aria-haspopup="true"
-                            aria-controls="dropdown-why"
-                            data-qa-type="why">
-                        WHY <span class="count">1</span>
-                    </button>
-                    <div class="saved-collections-dropdown-content" 
-                         id="dropdown-why"
-                         role="menu">
-                                                                                                                <div class="saved-collections-submenu">
-                                    <span class="saved-collections-submenu-trigger" 
-                                          onclick="toggleSubmenu(this, event)"
-                                          role="menuitem"
-                                          aria-expanded="false"
-                                          aria-haspopup="true"
-                                          data-submenu-id="submenu-why-qa_design"
-                                          tabindex="0"
-                                          onkeydown="if(event.key==='Enter'||event.key===' '){toggleSubmenu(this,event);}">
-                                        <span>Qa_design</span>
-                                        <span class="count">1</span>
-                                    </span>
-                                    <div class="saved-collections-submenu-content" 
-                                         id="submenu-why-qa_design"
-                                         role="menu">
-                                                                                    <a href="content.php?id=24" 
-                                               class="saved-collections-item"
-                                               role="menuitem"
-                                               tabindex="0">
-                                                Q/A Tagging System Guide                                            </a>
-                                                                            </div>
-                                </div>
-                                                                        </div>
-                </div>
-                            <div class="saved-collections-dropdown" data-qa-type="how">
-                    <button class="saved-collections-button" 
-                            onclick="toggleSavedCollectionsDropdown(this)"
-                            aria-expanded="false"
-                            aria-haspopup="true"
-                            aria-controls="dropdown-how"
-                            data-qa-type="how">
-                        HOW <span class="count">1</span>
-                    </button>
-                    <div class="saved-collections-dropdown-content" 
-                         id="dropdown-how"
-                         role="menu">
-                                                                                                                <div class="saved-collections-submenu">
-                                    <span class="saved-collections-submenu-trigger" 
-                                          onclick="toggleSubmenu(this, event)"
-                                          role="menuitem"
-                                          aria-expanded="false"
-                                          aria-haspopup="true"
-                                          data-submenu-id="submenu-how-add_qa_tag"
-                                          tabindex="0"
-                                          onkeydown="if(event.key==='Enter'||event.key===' '){toggleSubmenu(this,event);}">
-                                        <span>Add_qa_tag</span>
-                                        <span class="count">1</span>
-                                    </span>
-                                    <div class="saved-collections-submenu-content" 
-                                         id="submenu-how-add_qa_tag"
-                                         role="menu">
-                                                                                    <a href="content.php?id=24" 
-                                               class="saved-collections-item"
-                                               role="menuitem"
-                                               tabindex="0">
-                                                Q/A Tagging System Guide                                            </a>
-                                                                            </div>
-                                </div>
-                                                                        </div>
-                </div>
-                            <div class="saved-collections-dropdown" data-qa-type="do">
-                    <button class="saved-collections-button" 
-                            onclick="toggleSavedCollectionsDropdown(this)"
-                            aria-expanded="false"
-                            aria-haspopup="true"
-                            aria-controls="dropdown-do"
-                            data-qa-type="do">
-                        DO <span class="count">2</span>
-                    </button>
-                    <div class="saved-collections-dropdown-content" 
-                         id="dropdown-do"
-                         role="menu">
-                                                                                                                <div class="saved-collections-submenu">
-                                    <span class="saved-collections-submenu-trigger" 
-                                          onclick="toggleSubmenu(this, event)"
-                                          role="menuitem"
-                                          aria-expanded="false"
-                                          aria-haspopup="true"
-                                          data-submenu-id="submenu-do-organize_content"
-                                          tabindex="0"
-                                          onkeydown="if(event.key==='Enter'||event.key===' '){toggleSubmenu(this,event);}">
-                                        <span>Organize_content</span>
-                                        <span class="count">1</span>
-                                    </span>
-                                    <div class="saved-collections-submenu-content" 
-                                         id="submenu-do-organize_content"
-                                         role="menu">
-                                                                                    <a href="content.php?id=24" 
-                                               class="saved-collections-item"
-                                               role="menuitem"
-                                               tabindex="0">
-                                                Q/A Tagging System Guide                                            </a>
-                                                                            </div>
-                                </div>
-                                                            <div class="saved-collections-submenu">
-                                    <span class="saved-collections-submenu-trigger" 
-                                          onclick="toggleSubmenu(this, event)"
-                                          role="menuitem"
-                                          aria-expanded="false"
-                                          aria-haspopup="true"
-                                          data-submenu-id="submenu-do-explore_content"
-                                          tabindex="0"
-                                          onkeydown="if(event.key==='Enter'||event.key===' '){toggleSubmenu(this,event);}">
-                                        <span>Explore_content</span>
-                                        <span class="count">1</span>
-                                    </span>
-                                    <div class="saved-collections-submenu-content" 
-                                         id="submenu-do-explore_content"
-                                         role="menu">
-                                                                                    <a href="content.php?id=2" 
-                                               class="saved-collections-item"
-                                               role="menuitem"
-                                               tabindex="0">
-                                                Welcome to WOLFIE Platform                                            </a>
-                                                                            </div>
-                                </div>
-                                                                        </div>
-                </div>
-                        <div style="margin-left: auto; display: flex; gap: 8px;">
-                <button class="recently-viewed-button" onclick="checkLoginAndSave()" style="background: #28a745; border-color: #28a745; color: #fff;">
-                    Save
-                </button>
-                <button class="recently-viewed-button" onclick="checkLoginAndLoad()" style="background: #17a2b8; border-color: #17a2b8; color: #fff;">
-                    Load
-                </button>
-                <button class="recently-viewed-button" id="editCollectionBtn" onclick="checkLoginAndEdit()" style="background: #ffc107; border-color: #ffc107; color: #000;">
-                    Edit
-                </button>
-            </div>
-            
-            <script>
-            // Check login before allowing save/load/edit actions
-            function checkLoginAndSave() {
-                if (!isUserLoggedIn) {
-                    alert('Please log in to save collections.');
-                    return false;
-                }
-                showSaveCollectionModal();
-            }
-            
-            function checkLoginAndLoad() {
-                if (!isUserLoggedIn) {
-                    alert('Please log in to load collections.');
-                    return false;
-                }
-                showLoadCollectionModal();
-            }
-            
-            function checkLoginAndEdit() {
-                if (!isUserLoggedIn) {
-                    alert('Please log in to edit collections.');
-                    return false;
-                }
-                editCurrentCollection();
-            }
-            </script>
-        </div>
-    </nav>
-    -->
     
     <!-- Recently Viewed Navigation removed (replaced by Saved Collections Nav) -->
     <!-- Nav removed -->
@@ -1077,22 +757,22 @@
     <!-- Save Collection Modal -->
     <div id="saveCollectionModal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 10000; align-items: center; justify-content: center;">
         <div style="background: white; padding: 30px; border-radius: 12px; max-width: 500px; width: 90%;">
-            <h3 style="margin-top: 0; color: #2c3e50;">💾 Save Recently Viewed Collection</h3>
-            <p style="color: #6c757d; margin-bottom: 20px;">Give this collection a name to save your current browsing session.</p>
+            <h3 style="margin-top: 0; color: #2c3e50;"><?php echo htmlspecialchars(function_exists('lupo_t') ? lupo_t('header.collections.save_modal_title', 'Save recently viewed collection') : 'Save recently viewed collection', ENT_QUOTES, 'UTF-8'); ?></h3>
+            <p style="color: #6c757d; margin-bottom: 20px;"><?php echo htmlspecialchars(function_exists('lupo_t') ? lupo_t('header.collections.save_modal_intro', 'Give this collection a name to save your current browsing session.') : 'Give this collection a name to save your current browsing session.', ENT_QUOTES, 'UTF-8'); ?></p>
             
             <div id="updateExistingNotice" style="display: none; background: #fff3cd; border: 1px solid #ffc107; padding: 12px; border-radius: 6px; margin-bottom: 15px;">
-                <strong>⚠️ Update Existing:</strong> You're currently viewing collection "<span id="currentCollectionName"></span>". Save to update it, or enter a new name to create a copy.
+                <strong><?php echo htmlspecialchars(function_exists('lupo_t') ? lupo_t('header.collections.update_label', 'Update existing:') : 'Update existing:', ENT_QUOTES, 'UTF-8'); ?></strong> <?php echo htmlspecialchars(function_exists('lupo_t') ? lupo_t('header.collections.update_body_before_name', 'You are currently viewing collection') : 'You are currently viewing collection', ENT_QUOTES, 'UTF-8'); ?> "<span id="currentCollectionName"></span>"<?php echo htmlspecialchars(function_exists('lupo_t') ? lupo_t('header.collections.update_body_after_name', '. Save to update it, or enter a new name to create a copy.') : '. Save to update it, or enter a new name to create a copy.', ENT_QUOTES, 'UTF-8'); ?>
             </div>
             
-            <label for="collectionName" style="display: block; margin-bottom: 8px; font-weight: 600; color: #2c3e50;">Collection Name:</label>
-            <input type="text" id="collectionName" placeholder="e.g., Bible Study Session, Research Project" style="width: 100%; padding: 12px; border: 2px solid #D4AF37; border-radius: 6px; font-size: 1rem; margin-bottom: 10px;">
+            <label for="collectionName" style="display: block; margin-bottom: 8px; font-weight: 600; color: #2c3e50;"><?php echo htmlspecialchars(function_exists('lupo_t') ? lupo_t('header.collections.name_label', 'Collection name:') : 'Collection name:', ENT_QUOTES, 'UTF-8'); ?></label>
+            <input type="text" id="collectionName" placeholder="<?php echo htmlspecialchars(function_exists('lupo_t') ? lupo_t('header.collections.name_placeholder', 'e.g., Bible study session, research project') : 'e.g., Bible study session, research project', ENT_QUOTES, 'UTF-8'); ?>" style="width: 100%; padding: 12px; border: 2px solid #D4AF37; border-radius: 6px; font-size: 1rem; margin-bottom: 10px;">
             
-            <label for="collectionDescription" style="display: block; margin-bottom: 8px; margin-top: 15px; font-weight: 600; color: #2c3e50;">Description (optional):</label>
-            <textarea id="collectionDescription" placeholder="What is this collection for?" style="width: 100%; padding: 12px; border: 2px solid #D4AF37; border-radius: 6px; font-size: 1rem; margin-bottom: 20px; min-height: 80px;"></textarea>
+            <label for="collectionDescription" style="display: block; margin-bottom: 8px; margin-top: 15px; font-weight: 600; color: #2c3e50;"><?php echo htmlspecialchars(function_exists('lupo_t') ? lupo_t('header.collections.desc_label', 'Description (optional):') : 'Description (optional):', ENT_QUOTES, 'UTF-8'); ?></label>
+            <textarea id="collectionDescription" placeholder="<?php echo htmlspecialchars(function_exists('lupo_t') ? lupo_t('header.collections.desc_placeholder', 'What is this collection for?') : 'What is this collection for?', ENT_QUOTES, 'UTF-8'); ?>" style="width: 100%; padding: 12px; border: 2px solid #D4AF37; border-radius: 6px; font-size: 1rem; margin-bottom: 20px; min-height: 80px;"></textarea>
             
             <div style="display: flex; gap: 10px; justify-content: flex-end;">
-                <button onclick="closeSaveCollectionModal()" style="padding: 10px 20px; background: #6c757d; color: white; border: none; border-radius: 6px; cursor: pointer; font-weight: 600;">Cancel</button>
-                <button onclick="saveCollection()" style="padding: 10px 20px; background: #28a745; color: white; border: none; border-radius: 6px; cursor: pointer; font-weight: 600;">💾 Save Collection</button>
+                <button onclick="closeSaveCollectionModal()" style="padding: 10px 20px; background: #6c757d; color: white; border: none; border-radius: 6px; cursor: pointer; font-weight: 600;"><?php echo htmlspecialchars(function_exists('lupo_t') ? lupo_t('header.collections.cancel', 'Cancel') : 'Cancel', ENT_QUOTES, 'UTF-8'); ?></button>
+                <button onclick="saveCollection()" style="padding: 10px 20px; background: #28a745; color: white; border: none; border-radius: 6px; cursor: pointer; font-weight: 600;"><?php echo htmlspecialchars(function_exists('lupo_t') ? lupo_t('header.collections.save_submit', 'Save collection') : 'Save collection', ENT_QUOTES, 'UTF-8'); ?></button>
             </div>
         </div>
     </div>
@@ -1100,45 +780,56 @@
     <!-- Load Collection Modal -->
     <div id="loadCollectionModal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 10000; align-items: center; justify-content: center;">
         <div style="background: white; padding: 30px; border-radius: 12px; max-width: 600px; width: 90%; max-height: 80vh; overflow-y: auto;">
-            <h3 style="margin-top: 0; color: #2c3e50;">📂 Load Saved Collection</h3>
-            <p style="color: #6c757d; margin-bottom: 20px;">Select a saved collection to restore your browsing session.</p>
+            <h3 style="margin-top: 0; color: #2c3e50;"><?php echo htmlspecialchars(function_exists('lupo_t') ? lupo_t('header.collections.load_modal_title', 'Load saved collection') : 'Load saved collection', ENT_QUOTES, 'UTF-8'); ?></h3>
+            <p style="color: #6c757d; margin-bottom: 20px;"><?php echo htmlspecialchars(function_exists('lupo_t') ? lupo_t('header.collections.load_modal_intro', 'Select a saved collection to restore your browsing session.') : 'Select a saved collection to restore your browsing session.', ENT_QUOTES, 'UTF-8'); ?></p>
             
             <div id="collectionsList" style="margin-bottom: 20px;">
                 <div style="text-align: center; padding: 40px; color: #6c757d;">
-                    Loading your collections...
+                    <?php echo htmlspecialchars(function_exists('lupo_t') ? lupo_t('header.collections.loading_list', 'Loading your collections...') : 'Loading your collections...', ENT_QUOTES, 'UTF-8'); ?>
                 </div>
             </div>
             
             <div style="display: flex; gap: 10px; justify-content: flex-end;">
-                <button onclick="closeLoadCollectionModal()" style="padding: 10px 20px; background: #6c757d; color: white; border: none; border-radius: 6px; cursor: pointer; font-weight: 600;">Close</button>
+                <button onclick="closeLoadCollectionModal()" style="padding: 10px 20px; background: #6c757d; color: white; border: none; border-radius: 6px; cursor: pointer; font-weight: 600;"><?php echo htmlspecialchars(function_exists('lupo_t') ? lupo_t('header.collections.close', 'Close') : 'Close', ENT_QUOTES, 'UTF-8'); ?></button>
             </div>
         </div>
     </div>
     
     <!-- JavaScript for Collection Management -->
     <script>
+    function lupoHdrStr(key, fallback) {
+        if (window.LUPO_HDR && window.LUPO_HDR.strings && window.LUPO_HDR.strings[key]) {
+            return window.LUPO_HDR.strings[key];
+        }
+        return fallback;
+    }
+    function lupoPubUrl(path) {
+        var base = (window.LUPO_HDR && window.LUPO_HDR.base) ? window.LUPO_HDR.base : '';
+        path = String(path).replace(/^\//, '');
+        return base ? (base + '/' + path) : path;
+    }
+    function hdrFmtOne(msg, a) {
+        return String(msg).replace('%s', String(a));
+    }
     // Track currently loaded collection (if any)
-    let currentLoadedCollectionId = 10;
-    let currentLoadedCollectionName = "Demo Collection - All Q\/A Types";
+    var currentLoadedCollectionId = null;
+    var currentLoadedCollectionName = '';
     
-    // Edit current collection (or save first if unsaved)
     function editCurrentCollection() {
         if (currentLoadedCollectionId) {
-            // Collection is saved, go to edit page
-            window.location.href = 'edit_collection.php?id=' + currentLoadedCollectionId;
+            window.location.href = lupoPubUrl('edit_collection.php?id=' + currentLoadedCollectionId);
         } else {
-            // No saved collection, prompt to save first
-            alert('💡 Please save this collection first, then you can edit it!\n\nClick OK to open the Save dialog.');
+            var m1 = lupoHdrStr('collections_edit_save_first', 'Please save this collection first, then you can edit it!');
+            var m2 = lupoHdrStr('collections_edit_open_save', 'Click OK to open the Save dialog.');
+            alert(m1 + '\n\n' + m2);
             showSaveCollectionModal();
         }
     }
     
     function showSaveCollectionModal() {
-        const modal = document.getElementById('saveCollectionModal');
-        const nameInput = document.getElementById('collectionName');
-        const updateNotice = document.getElementById('updateExistingNotice');
-        
-        // If a collection is currently loaded, show update notice and pre-fill name
+        var modal = document.getElementById('saveCollectionModal');
+        var nameInput = document.getElementById('collectionName');
+        var updateNotice = document.getElementById('updateExistingNotice');
         if (currentLoadedCollectionId) {
             updateNotice.style.display = 'block';
             document.getElementById('currentCollectionName').textContent = currentLoadedCollectionName;
@@ -1147,7 +838,6 @@
             updateNotice.style.display = 'none';
             nameInput.value = '';
         }
-        
         document.getElementById('collectionDescription').value = '';
         modal.style.display = 'flex';
         nameInput.focus();
@@ -1158,7 +848,7 @@
     }
     
     function showLoadCollectionModal() {
-        const modal = document.getElementById('loadCollectionModal');
+        var modal = document.getElementById('loadCollectionModal');
         modal.style.display = 'flex';
         loadCollectionsList();
     }
@@ -1168,18 +858,14 @@
     }
     
     function saveCollection() {
-        const name = document.getElementById('collectionName').value.trim();
-        const description = document.getElementById('collectionDescription').value.trim();
-        
+        var name = document.getElementById('collectionName').value.trim();
+        var description = document.getElementById('collectionDescription').value.trim();
         if (!name) {
-            alert('Please enter a name for this collection');
+            alert(lupoHdrStr('collections_name_required', 'Please enter a name for this collection'));
             return;
         }
-        
-        // Determine if this is an update or new save
-        const isUpdate = currentLoadedCollectionId && name === currentLoadedCollectionName;
-        
-        fetch('lupo-api/save_collection.php', {
+        var isUpdate = currentLoadedCollectionId && name === currentLoadedCollectionName;
+        fetch(lupoPubUrl('lupo-api/save_collection.php'), {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -1191,83 +877,80 @@
                 existing_collection_id: isUpdate ? currentLoadedCollectionId : null
             })
         })
-        .then(response => response.json())
-        .then(data => {
+        .then(function(response) { return response.json(); })
+        .then(function(data) {
             if (data.success) {
-                alert('✅ Collection saved successfully!');
+                alert(lupoHdrStr('collections_saved_ok', 'Collection saved successfully!'));
                 currentLoadedCollectionId = data.collection_id;
                 currentLoadedCollectionName = name;
                 closeSaveCollectionModal();
             } else {
-                alert('Error: ' + (data.error || 'Failed to save collection'));
+                alert(lupoHdrStr('collections_error_prefix', 'Error: ') + (data.error || lupoHdrStr('collections_save_failed', 'Failed to save collection')));
             }
         })
-        .catch(error => {
+        .catch(function(error) {
             console.error('Error:', error);
-            alert('Error saving collection. Please try again.');
+            alert(lupoHdrStr('collections_save_try_again', 'Error saving collection. Please try again.'));
         });
     }
     
     function loadCollectionsList() {
-        const container = document.getElementById('collectionsList');
-        container.innerHTML = '<div style="text-align: center; padding: 40px; color: #6c757d;">Loading...</div>';
-        
-        fetch('lupo-api/list_collections.php')
-        .then(response => response.json())
-        .then(data => {
+        var container = document.getElementById('collectionsList');
+        var loading = lupoHdrStr('collections_loading_short', 'Loading...');
+        container.innerHTML = '<div style="text-align: center; padding: 40px; color: #6c757d;">' + htmlEscape(loading) + '</div>';
+        fetch(lupoPubUrl('lupo-api/list_collections.php'))
+        .then(function(response) { return response.json(); })
+        .then(function(data) {
             if (data.success && data.collections.length > 0) {
-                let html = '';
-                data.collections.forEach(collection => {
-                    const isCurrentlyLoaded = (collection.id == currentLoadedCollectionId);
-                    html += `
-                        <div style="border: 2px solid ${isCurrentlyLoaded ? '#28a745' : '#D4AF37'}; padding: 15px; border-radius: 8px; margin-bottom: 10px; ${isCurrentlyLoaded ? 'background: #d4edda;' : 'background: #f8f9fa;'}">
-                            <div style="display: flex; justify-content: space-between; align-items: start;">
-                                <div style="flex: 1;">
-                                    <h4 style="margin: 0 0 8px 0; color: #2c3e50;">
-                                        ${isCurrentlyLoaded ? '[Active] ' : ''}${htmlEscape(collection.collection_name)}
-                                    </h4>
-                                    <p style="margin: 0 0 8px 0; color: #6c757d; font-size: 0.9rem;">${htmlEscape(collection.description || 'No description')}</p>
-                                    <p style="margin: 0; color: #6c757d; font-size: 0.85rem;">
-                                        ${collection.saved_collections_count || collection.item_count || 0} saved items
-                                        <br><small>Created: ${new Date(collection.created_at).toLocaleString()}</small>
-                                    </p>
-                                </div>
-                                <div style="display: flex; gap: 8px;">
-                                    <button onclick="loadCollectionById(${collection.id}, '${htmlEscape(collection.collection_name)}')" 
-                                            style="padding: 8px 16px; background: #17a2b8; color: white; border: none; border-radius: 6px; cursor: pointer; font-weight: 600; white-space: nowrap;">
-                                        Load
-                                    </button>
-                                    <button onclick="deleteCollection(${collection.id})" 
-                                            style="padding: 8px 16px; background: #dc3545; color: white; border: none; border-radius: 6px; cursor: pointer; font-weight: 600;">
-                                        Delete
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    `;
+                var html = '';
+                var S = window.LUPO_HDR && window.LUPO_HDR.strings ? window.LUPO_HDR.strings : {};
+                data.collections.forEach(function(collection) {
+                    var isCurrentlyLoaded = (collection.id == currentLoadedCollectionId);
+                    var desc = collection.description || lupoHdrStr('collections_no_description', 'No description');
+                    var activeP = lupoHdrStr('collections_active_prefix', '[Active] ');
+                    var nItems = collection.saved_collections_count || collection.item_count || 0;
+                    var itemsLbl = lupoHdrStr('collections_saved_items', 'saved items');
+                    var createdLbl = lupoHdrStr('collections_created', 'Created:');
+                    var loadLbl = lupoHdrStr('collections_load_btn', 'Load');
+                    var delLbl = lupoHdrStr('collections_delete_btn', 'Delete');
+                    html += '<div style="border: 2px solid ' + (isCurrentlyLoaded ? '#28a745' : '#D4AF37') + '; padding: 15px; border-radius: 8px; margin-bottom: 10px; ' + (isCurrentlyLoaded ? 'background: #d4edda;' : 'background: #f8f9fa;') + '">' +
+                        '<div style="display: flex; justify-content: space-between; align-items: start;">' +
+                        '<div style="flex: 1;">' +
+                        '<h4 style="margin: 0 0 8px 0; color: #2c3e50;">' +
+                        (isCurrentlyLoaded ? htmlEscape(activeP) : '') + htmlEscape(collection.collection_name) +
+                        '</h4>' +
+                        '<p style="margin: 0 0 8px 0; color: #6c757d; font-size: 0.9rem;">' + htmlEscape(desc) + '</p>' +
+                        '<p style="margin: 0; color: #6c757d; font-size: 0.85rem;">' +
+                        nItems + ' ' + htmlEscape(itemsLbl) +
+                        '<br><small>' + htmlEscape(createdLbl) + ' ' + new Date(collection.created_at).toLocaleString() + '</small>' +
+                        '</p></div>' +
+                        '<div style="display: flex; gap: 8px;">' +
+                        '<button onclick="loadCollectionById(' + collection.id + ', ' + JSON.stringify(collection.collection_name) + ')" style="padding: 8px 16px; background: #17a2b8; color: white; border: none; border-radius: 6px; cursor: pointer; font-weight: 600; white-space: nowrap;">' +
+                        htmlEscape(loadLbl) + '</button>' +
+                        '<button onclick="deleteCollection(' + collection.id + ')" style="padding: 8px 16px; background: #dc3545; color: white; border: none; border-radius: 6px; cursor: pointer; font-weight: 600;">' +
+                        htmlEscape(delLbl) + '</button>' +
+                        '</div></div></div>';
                 });
                 container.innerHTML = html;
             } else {
-                container.innerHTML = `
-                    <div style="text-align: center; padding: 40px; color: #6c757d;">
-                        <p>No saved collections yet.</p>
-                        <p style="font-size: 0.9rem;">Click "💾 Save" to save your first collection!</p>
-                    </div>
-                `;
+                var empty = lupoHdrStr('collections_empty', 'No saved collections yet.');
+                var hint = lupoHdrStr('collections_empty_hint', 'Click Save to save your first collection!');
+                container.innerHTML = '<div style="text-align: center; padding: 40px; color: #6c757d;"><p>' + htmlEscape(empty) + '</p><p style="font-size: 0.9rem;">' + htmlEscape(hint) + '</p></div>';
             }
         })
-        .catch(error => {
+        .catch(function(error) {
             console.error('Error:', error);
-            container.innerHTML = '<div style="text-align: center; padding: 40px; color: #dc3545;">Error loading collections</div>';
+            var err = lupoHdrStr('collections_list_error', 'Error loading collections');
+            container.innerHTML = '<div style="text-align: center; padding: 40px; color: #dc3545;">' + htmlEscape(err) + '</div>';
         });
     }
     
     function loadCollectionById(collectionId, collectionName) {
-        if (!confirm(`Load collection "${collectionName}"? This will replace your current recently viewed items.`)) {
+        var tmpl = lupoHdrStr('collections_confirm_load', 'Load collection "%s"? This will replace your current recently viewed items.');
+        if (!confirm(hdrFmtOne(tmpl, collectionName))) {
             return;
         }
-        
-        fetch('lupo-api/load_collection.php', {
+        fetch(lupoPubUrl('lupo-api/load_collection.php'), {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -1276,29 +959,28 @@
                 collection_id: collectionId
             })
         })
-        .then(response => response.json())
-        .then(data => {
+        .then(function(response) { return response.json(); })
+        .then(function(data) {
             if (data.success) {
                 currentLoadedCollectionId = collectionId;
                 currentLoadedCollectionName = collectionName;
-                alert('✅ Collection loaded! Refreshing page...');
+                alert(lupoHdrStr('collections_loaded_ok', 'Collection loaded! Refreshing page...'));
                 location.reload();
             } else {
-                alert('Error: ' + (data.error || 'Failed to load collection'));
+                alert(lupoHdrStr('collections_error_prefix', 'Error: ') + (data.error || lupoHdrStr('collections_load_failed', 'Failed to load collection')));
             }
         })
-        .catch(error => {
+        .catch(function(error) {
             console.error('Error:', error);
-            alert('Error loading collection. Please try again.');
+            alert(lupoHdrStr('collections_load_try_again', 'Error loading collection. Please try again.'));
         });
     }
     
     function deleteCollection(collectionId) {
-        if (!confirm('Delete this collection? This cannot be undone.')) {
+        if (!confirm(lupoHdrStr('collections_delete_confirm', 'Delete this collection? This cannot be undone.'))) {
             return;
         }
-        
-        fetch('lupo-api/delete_collection.php', {
+        fetch(lupoPubUrl('lupo-api/delete_collection.php'), {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -1307,27 +989,27 @@
                 collection_id: collectionId
             })
         })
-        .then(response => response.json())
-        .then(data => {
+        .then(function(response) { return response.json(); })
+        .then(function(data) {
             if (data.success) {
                 if (collectionId == currentLoadedCollectionId) {
                     currentLoadedCollectionId = null;
                     currentLoadedCollectionName = null;
                 }
-                loadCollectionsList(); // Refresh list
+                loadCollectionsList();
             } else {
-                alert('Error: ' + (data.error || 'Failed to delete collection'));
+                alert(lupoHdrStr('collections_error_prefix', 'Error: ') + (data.error || lupoHdrStr('collections_delete_failed', 'Failed to delete collection')));
             }
         })
-        .catch(error => {
+        .catch(function(error) {
             console.error('Error:', error);
-            alert('Error deleting collection. Please try again.');
+            alert(lupoHdrStr('collections_delete_try_again', 'Error deleting collection. Please try again.'));
         });
     }
     
     function htmlEscape(str) {
         return String(str).replace(/[&<>"']/g, function(match) {
-            const escape = {
+            var escape = {
                 '&': '&amp;',
                 '<': '&lt;',
                 '>': '&gt;',
@@ -1338,7 +1020,6 @@
         });
     }
     
-    // Close modals on Escape key
     document.addEventListener('keydown', function(e) {
         if (e.key === 'Escape') {
             closeSaveCollectionModal();
@@ -1662,24 +1343,22 @@ window.onclick = function(event) {
   }
 }
 
-function addNewItem(type, parentName = '') {
-    // Stop the click from bubbling up to window.onclick
-    if (event) event.stopPropagation();
-
-    let message = (type === 'main') 
-        ? "Enter name for new Main Tab:" 
-        : `Enter new Sub-Tab name for "${parentName}":`;
-
-    let userInput = prompt(message);
-
-    if (userInput !== null && userInput.trim() !== "") {
-        // Logic to save to your database/backend goes here
-        console.log(`Action: Create ${type}, Name: ${userInput}, Parent: ${parentName}`);
-        
-        alert(`Successfully added "${userInput}" to your collection!`);
-        
-        // Optional: Refresh the page or update UI dynamically
-        // location.reload(); 
+function addNewItem(type, parentName) {
+    parentName = parentName || '';
+    if (typeof event !== 'undefined' && event) {
+        event.stopPropagation();
+    }
+    var mainPrompt = (window.LUPO_HDR && window.LUPO_HDR.strings && window.LUPO_HDR.strings.prompt_main_tab)
+        ? window.LUPO_HDR.strings.prompt_main_tab : 'Enter name for new Main Tab:';
+    var subTmpl = (window.LUPO_HDR && window.LUPO_HDR.strings && window.LUPO_HDR.strings.prompt_sub_tab)
+        ? window.LUPO_HDR.strings.prompt_sub_tab : 'Enter new Sub-Tab name for "%s":';
+    var message = (type === 'main') ? mainPrompt : subTmpl.replace('%s', parentName);
+    var userInput = prompt(message);
+    if (userInput !== null && userInput.trim() !== '') {
+        console.log('Action: Create ' + type + ', Name: ' + userInput + ', Parent: ' + parentName);
+        var okTmpl = (window.LUPO_HDR && window.LUPO_HDR.strings && window.LUPO_HDR.strings.add_success)
+            ? window.LUPO_HDR.strings.add_success : 'Successfully added "%s" to your collection!';
+        alert(okTmpl.replace('%s', userInput));
     }
 }
 
@@ -1691,55 +1370,55 @@ function addNewItem(type, parentName = '') {
    <div class="resources-top-center">
     
    <div class="dropdown">
-    <img src="lupo-images/addshortcut.png" width="42" height="42" onclick="toggleMenu('shortcutDropdown')" style="cursor:pointer;"> 
+    <img src="<?php echo htmlspecialchars($lupoPublicBase !== '' ? $lupoPublicBase . '/lupo-images/addshortcut.png' : 'lupo-images/addshortcut.png', ENT_QUOTES, 'UTF-8'); ?>" width="42" height="42" onclick="toggleMenu('shortcutDropdown')" style="cursor:pointer;"> 
     <div id="shortcutDropdown" class="dropdown-content">
      <div style="padding: 10px; border-bottom: 1px solid #ddd; background: #f9f9f9;">
-        <b>Current Collection:</b> DESKTOP<br>
-        click on the name of the tab or subtab you would like to add this shortcut to to change the collection that this is in use the blue collections tab to select a different collection. 
+        <b><?php echo htmlspecialchars(function_exists('lupo_t') ? lupo_t('header.shortcut.current_label', 'Current collection:') : 'Current collection:', ENT_QUOTES, 'UTF-8'); ?></b> <?php echo htmlspecialchars(function_exists('lupo_t') ? lupo_t('header.shortcut.current_desktop', 'DESKTOP') : 'DESKTOP', ENT_QUOTES, 'UTF-8'); ?><br>
+        <?php echo htmlspecialchars(function_exists('lupo_t') ? lupo_t('header.shortcut.instructions', 'Click the tab or sub-tab name to add this shortcut; use the blue collections control to pick a different collection.') : 'Click the tab or sub-tab name to add this shortcut; use the blue collections control to pick a different collection.', ENT_QUOTES, 'UTF-8'); ?>
      </div>
 
-     <a href="#who" class="main-tab">| WHO</a>
-     <a href="#wolfie" class="sub-tab">|— WOLFIE</a>
-     <a href="javascript:void(0)" class="add-action" onclick="addNewItem('sub', 'WHO')">+ New Sub-Tab for WHO</a> 
-     <a href="#what" class="main-tab">| WHAT</a>
-     <a href="#software" class="sub-tab">|— SOFTWARE</a>
-     <a href="javascript:void(0)" class="add-action" onclick="addNewItem('sub', 'WHAT')">+ New Sub-Tab for WHAT</a>
+     <a href="#who" class="main-tab">| <?php echo htmlspecialchars(function_exists('lupo_t') ? lupo_t('header.shortcut.who_main', 'WHO') : 'WHO', ENT_QUOTES, 'UTF-8'); ?></a>
+     <a href="#wolfie" class="sub-tab">|— <?php echo htmlspecialchars(function_exists('lupo_t') ? lupo_t('header.shortcut.wolfie_sub', 'WOLFIE') : 'WOLFIE', ENT_QUOTES, 'UTF-8'); ?></a>
+     <a href="javascript:void(0)" class="add-action" onclick="addNewItem('sub', 'WHO')"><?php echo htmlspecialchars(function_exists('lupo_t') ? lupo_t('header.shortcut.new_sub_who', '+ New sub-tab for WHO') : '+ New sub-tab for WHO', ENT_QUOTES, 'UTF-8'); ?></a> 
+     <a href="#what" class="main-tab">| <?php echo htmlspecialchars(function_exists('lupo_t') ? lupo_t('header.shortcut.what_main', 'WHAT') : 'WHAT', ENT_QUOTES, 'UTF-8'); ?></a>
+     <a href="#software" class="sub-tab">|— <?php echo htmlspecialchars(function_exists('lupo_t') ? lupo_t('header.shortcut.software_sub', 'SOFTWARE') : 'SOFTWARE', ENT_QUOTES, 'UTF-8'); ?></a>
+     <a href="javascript:void(0)" class="add-action" onclick="addNewItem('sub', 'WHAT')"><?php echo htmlspecialchars(function_exists('lupo_t') ? lupo_t('header.shortcut.new_sub_what', '+ New sub-tab for WHAT') : '+ New sub-tab for WHAT', ENT_QUOTES, 'UTF-8'); ?></a>
      <hr>
-     <a href="javascript:void(0)" class="add-action global" onclick="addNewItem('main')">+ Create New Main Tab</a>
+     <a href="javascript:void(0)" class="add-action global" onclick="addNewItem('main')"><?php echo htmlspecialchars(function_exists('lupo_t') ? lupo_t('header.shortcut.create_main', '+ Create new main tab') : '+ Create new main tab', ENT_QUOTES, 'UTF-8'); ?></a>
     </div>
    </div>
  
  
   <div class="dropdown">
-    <img src="lupo-images/contents.png" width="42" height="42" onclick="toggleMenu('contentsDropdown')" style="cursor:pointer;">
+    <img src="<?php echo htmlspecialchars($lupoPublicBase !== '' ? $lupoPublicBase . '/lupo-images/contents.png' : 'lupo-images/contents.png', ENT_QUOTES, 'UTF-8'); ?>" width="42" height="42" onclick="toggleMenu('contentsDropdown')" style="cursor:pointer;">
  
      
     <div id="contentsDropdown" class="dropdown-content">
   
-       <a href="#news">News and Updates</a> 
-        <a href="#download">Download Crafty Syntax 3.7.5</a> 
-        <a href="#howto">How do I use Crafty Syntax right now?</a>
-        <a href="#legacy">Historical Overview (Where We Came From)</a> 
-        <a href="#whycraftysyntax">Why the Crafty Syntax Name Returns in 3.7.5</a> 
-        <a href="planfor_next_version_craftysyntax.php">Crafty Syntax 3.8.0 Modernization Plan</a> 
-        <a href="#future-roadmap">Roadmap Highlights</a> 
-        <a href="#download">How do I use Crafty Syntax right now?</a> 
-        <a href="lupopedia.php">What is LUPOPEDIA version 4.2.x?</a> 
-        <a href="#challenge">Real-Time Chat Problem</a> 
-        <a href="#fallback">Fallback Engineering</a> 
-        <a href="#fingerprinting">Session Fingerprinting</a> 
-        <a href="#security">Security Hardening</a> 
-        <a href="#documentation">Documentation Discipline</a> 
-        <a href="#timestamps">Timestamp Discipline</a> 
-        <a href="#innovations">Technical Innovations</a> 
-        <a href="#timeline">Complete Timeline</a> 
-        <a href="#features">Key Features</a>
-        <a href="#distribution">Distribution &amp; Auto-Installers</a> 
-        <a href="#license">GPL License Notes</a> 
-        <a href="#video-demo">Demo Video</a> 
-        <a href="#continuity">Crafty Syntax → WOLFIE</a> 
-        <a href="#next-steps">Next Steps</a> 
-        <a href="#references">References</a> 
+       <a href="#news"><?php echo htmlspecialchars(function_exists('lupo_t') ? lupo_t('header.contents.news', 'News and Updates') : 'News and Updates', ENT_QUOTES, 'UTF-8'); ?></a> 
+        <a href="#download"><?php echo htmlspecialchars(function_exists('lupo_t') ? lupo_t('header.contents.download_cs', 'Download Crafty Syntax 3.7.5') : 'Download Crafty Syntax 3.7.5', ENT_QUOTES, 'UTF-8'); ?></a> 
+        <a href="#howto"><?php echo htmlspecialchars(function_exists('lupo_t') ? lupo_t('header.contents.howto', 'How do I use Crafty Syntax right now?') : 'How do I use Crafty Syntax right now?', ENT_QUOTES, 'UTF-8'); ?></a>
+        <a href="#legacy"><?php echo htmlspecialchars(function_exists('lupo_t') ? lupo_t('header.contents.legacy', 'Historical overview (where we came from)') : 'Historical overview (where we came from)', ENT_QUOTES, 'UTF-8'); ?></a> 
+        <a href="#whycraftysyntax"><?php echo htmlspecialchars(function_exists('lupo_t') ? lupo_t('header.contents.why_name', 'Why the Crafty Syntax name returns in 3.7.5') : 'Why the Crafty Syntax name returns in 3.7.5', ENT_QUOTES, 'UTF-8'); ?></a> 
+        <a href="<?php echo htmlspecialchars($lupoPublicBase !== '' ? $lupoPublicBase . '/planfor_next_version_craftysyntax.php' : 'planfor_next_version_craftysyntax.php', ENT_QUOTES, 'UTF-8'); ?>"><?php echo htmlspecialchars(function_exists('lupo_t') ? lupo_t('header.contents.plan_38', 'Crafty Syntax 3.8.0 modernization plan') : 'Crafty Syntax 3.8.0 modernization plan', ENT_QUOTES, 'UTF-8'); ?></a> 
+        <a href="#future-roadmap"><?php echo htmlspecialchars(function_exists('lupo_t') ? lupo_t('header.contents.roadmap', 'Roadmap highlights') : 'Roadmap highlights', ENT_QUOTES, 'UTF-8'); ?></a> 
+        <a href="#download"><?php echo htmlspecialchars(function_exists('lupo_t') ? lupo_t('header.contents.howto_dup', 'How do I use Crafty Syntax right now?') : 'How do I use Crafty Syntax right now?', ENT_QUOTES, 'UTF-8'); ?></a> 
+        <a href="<?php echo htmlspecialchars($lupoPublicBase !== '' ? $lupoPublicBase . '/lupopedia.php' : 'lupopedia.php', ENT_QUOTES, 'UTF-8'); ?>"><?php echo htmlspecialchars(function_exists('lupo_t') ? lupo_t('header.contents.what_lupopedia', 'What is Lupopedia version 4.2.x?') : 'What is Lupopedia version 4.2.x?', ENT_QUOTES, 'UTF-8'); ?></a> 
+        <a href="#challenge"><?php echo htmlspecialchars(function_exists('lupo_t') ? lupo_t('header.contents.chat_problem', 'Real-time chat problem') : 'Real-time chat problem', ENT_QUOTES, 'UTF-8'); ?></a> 
+        <a href="#fallback"><?php echo htmlspecialchars(function_exists('lupo_t') ? lupo_t('header.contents.fallback', 'Fallback engineering') : 'Fallback engineering', ENT_QUOTES, 'UTF-8'); ?></a> 
+        <a href="#fingerprinting"><?php echo htmlspecialchars(function_exists('lupo_t') ? lupo_t('header.contents.fingerprinting', 'Session fingerprinting') : 'Session fingerprinting', ENT_QUOTES, 'UTF-8'); ?></a> 
+        <a href="#security"><?php echo htmlspecialchars(function_exists('lupo_t') ? lupo_t('header.contents.security', 'Security hardening') : 'Security hardening', ENT_QUOTES, 'UTF-8'); ?></a> 
+        <a href="#documentation"><?php echo htmlspecialchars(function_exists('lupo_t') ? lupo_t('header.contents.documentation', 'Documentation discipline') : 'Documentation discipline', ENT_QUOTES, 'UTF-8'); ?></a> 
+        <a href="#timestamps"><?php echo htmlspecialchars(function_exists('lupo_t') ? lupo_t('header.contents.timestamps', 'Timestamp discipline') : 'Timestamp discipline', ENT_QUOTES, 'UTF-8'); ?></a> 
+        <a href="#innovations"><?php echo htmlspecialchars(function_exists('lupo_t') ? lupo_t('header.contents.innovations', 'Technical innovations') : 'Technical innovations', ENT_QUOTES, 'UTF-8'); ?></a> 
+        <a href="#timeline"><?php echo htmlspecialchars(function_exists('lupo_t') ? lupo_t('header.contents.timeline', 'Complete timeline') : 'Complete timeline', ENT_QUOTES, 'UTF-8'); ?></a> 
+        <a href="#features"><?php echo htmlspecialchars(function_exists('lupo_t') ? lupo_t('header.contents.features', 'Key features') : 'Key features', ENT_QUOTES, 'UTF-8'); ?></a>
+        <a href="#distribution"><?php echo htmlspecialchars(function_exists('lupo_t') ? lupo_t('header.contents.distribution', 'Distribution and auto-installers') : 'Distribution and auto-installers', ENT_QUOTES, 'UTF-8'); ?></a> 
+        <a href="#license"><?php echo htmlspecialchars(function_exists('lupo_t') ? lupo_t('header.contents.license', 'GPL license notes') : 'GPL license notes', ENT_QUOTES, 'UTF-8'); ?></a> 
+        <a href="#video-demo"><?php echo htmlspecialchars(function_exists('lupo_t') ? lupo_t('header.contents.demo_video', 'Demo video') : 'Demo video', ENT_QUOTES, 'UTF-8'); ?></a> 
+        <a href="#continuity"><?php echo htmlspecialchars(function_exists('lupo_t') ? lupo_t('header.contents.continuity', 'Crafty Syntax to WOLFIE') : 'Crafty Syntax to WOLFIE', ENT_QUOTES, 'UTF-8'); ?></a> 
+        <a href="#next-steps"><?php echo htmlspecialchars(function_exists('lupo_t') ? lupo_t('header.contents.next_steps', 'Next steps') : 'Next steps', ENT_QUOTES, 'UTF-8'); ?></a> 
+        <a href="#references"><?php echo htmlspecialchars(function_exists('lupo_t') ? lupo_t('header.contents.references', 'References') : 'References', ENT_QUOTES, 'UTF-8'); ?></a> 
 
 
     </div>
@@ -1747,10 +1426,10 @@ function addNewItem(type, parentName = '') {
 
  
   <h1 id="firstHeading" class="firstHeading mw-first-heading">
-    <span class="mw-page-title-main">Crafty Syntax Live Help</span>
+    <span class="mw-page-title-main"><?php echo htmlspecialchars(function_exists('lupo_t') ? lupo_t('header.page_title_main', 'Crafty Syntax Live Help') : 'Crafty Syntax Live Help', ENT_QUOTES, 'UTF-8'); ?></span>
   </h1>
  &nbsp;
-  <img src="lupo-images/edges.png" width="77" height="42"   style="cursor:pointer; ">
+  <img src="<?php echo htmlspecialchars($lupoPublicBase !== '' ? $lupoPublicBase . '/lupo-images/edges.png' : 'lupo-images/edges.png', ENT_QUOTES, 'UTF-8'); ?>" width="77" height="42"   style="cursor:pointer; ">
 
  
 

@@ -1,11 +1,11 @@
 ---
 lupopedia.headers:
-  when_updated: "20260328240000"
+  when_updated: "20260405204205"
   lupopedia.schema: doctrine
   file_path_from_root: "lupo-docs/doctrine/LUPOPEDIA_HEADERS/LUPOPEDIA_HEADERS_FORMAT.md"
   web_path: "http://www.lupopedia.com/lupopedia/lupo-docs/doctrine/LUPOPEDIA_HEADERS/LUPOPEDIA_HEADERS_FORMAT.md"
   federation_node_id: 0
-  last_modified_utc: "20260328240000"
+  last_modified_utc: "20260405204205"
   channel_id: 42
   thread_id: "headers-format-spec"
   actor_id: 1
@@ -44,7 +44,7 @@ lupopedia.edges:
       reason: "Doctrine PRD lineage; constitutional audit 20260403"
 
 lupopedia.footer:
-  last_verified: "20260328240000"
+  last_verified: "20260405204205"
   verified_by:
     identity_type: actor
     actor_id: 1
@@ -63,7 +63,7 @@ lupopedia.footer:
 
 ## Overview
 
-LUPOPEDIA HEADERS are YAML front matter blocks that provide semantic context, versioning, actor attribution, channel/thread linkage, and system traceability for all artifacts in the Lupopedia ecosystem.
+LUPOPEDIA HEADERS are YAML front matter blocks (or comment-embedded YAML in source files) that provide semantic context, versioning, actor attribution, channel/thread linkage, and system traceability for **in-scope authored** documentation and code. **Which paths and extensions must carry headers** is defined in [PRD 16 — Header applicability and scope](../../prd/16_lupopedia_headers.md#header-applicability-and-scope) (not every file in the repository — e.g. binaries, generated TOON/CSV exports, and vendor trees are out of scope). That includes **`**/decisions/pseudocode/*.pseudo.*`** (PRD 17): headers are **required** there so **`file_path_from_root`** survives copy/paste to external AI tools.
 
 ## File vs database (resolves PLAN vs FORMAT tension)
 

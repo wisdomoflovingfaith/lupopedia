@@ -32,7 +32,8 @@ class Channel66ProductionConfig
     }
     
     /**
-     * Get TOON directory
+     * Schema reference JSON directory (config key remains toon_dir for backward compatibility).
+     * Canonical: lupo-database/lupopedia/json/
      */
     public function getToonDir()
     {
@@ -71,7 +72,7 @@ class Channel66ProductionConfig
         // Default configuration
         $this->config = array(
             'scope_root' => defined('ABSPATH') ? ABSPATH : getcwd(),
-            'toon_dir' => defined('ABSPATH') ? ABSPATH . 'lupo-database/lupopedia/toon/' : 'lupo-database/lupopedia/toon/',
+            'toon_dir' => defined('ABSPATH') ? ABSPATH . 'lupo-database/lupopedia/json/' : 'lupo-database/lupopedia/json/',
             'batch_size' => 100,
             'memory_limit' => '256M',
             'thread_id' => null,
@@ -113,9 +114,9 @@ class Channel66ProductionConfig
             $errors[] = 'Scope root directory does not exist: ' . $this->scopeRoot;
         }
         
-        // Validate TOON directory
+        // Validate schema reference JSON directory (config key: toon_dir)
         if (!is_dir($this->toonDir)) {
-            $errors[] = 'TOON directory does not exist: ' . $this->toonDir;
+            $errors[] = 'Schema JSON directory does not exist: ' . $this->toonDir;
         }
         
         // Validate batch size
@@ -193,68 +194,6 @@ class Channel66ProductionConfig
             default:
                 return $value;
         }
-    }
-    
-    /**
-     * Validate configuration including Thread 1002 authority constraints
-     */
-    public function validateConfiguration()
-    {
-        $errors = array();
-        
-        // Validate scope root
-        if (!is_dir($this->scopeRoot)) {
-            $errors[] = 'Scope root directory does not exist: ' . $this->scopeRoot;
-        }
-        
-        // Validate TOON directory
-        if (!is_dir($this->toonDir)) {
-            $errors[] = 'TOON directory does not exist: ' . $this->toonDir;
-        }
-        
-        // Validate batch size
-        if (!is_int($this->batchSize) || $this->batchSize <= 0) {
-            $errors[] = 'Batch size must be positive integer: ' . $this->batchSize;
-        }
-        
-        // Validate memory limit
-        $memoryLimit = $this->parseMemoryLimit($this->memoryLimit);
-        if ($memoryLimit <= 0) {
-            $errors[] = 'Invalid memory limit: ' . $this->memoryLimit;
-        }
-        
-        // Validate Thread 1002 authority constraints
-        $thread1002Violations = $this->validateThread1002Authority();
-        if (!empty($thread1002Violations)) {
-            $errors = array_merge($errors, $thread1002Violations);
-        }
-        
-        return empty($errors) ? true : false;
-    }
-    
-    /**
-     * Validate configuration against Thread 1002 authority constraints
-     */
-    private function validateThread1002Authority()
-    {
-        $violations = array();
-        
-        // Check if configuration allows P0 rejection override
-        if (isset($this->config['allow_p0_retry']) && $this->config['allow_p0_retry']) {
-            $violations[] = 'P0 retry override not allowed - violates Thread 1002 authority';
-        }
-        
-        // Check if configuration allows non-deterministic behavior
-        if (isset($this->config['allow_non_deterministic']) && $this->config['allow_non_deterministic']) {
-            $violations[] = 'Non-deterministic behavior not allowed - violates Thread 1002 authority';
-        }
-        
-        // Check if configuration allows concurrent processing without locking
-        if (isset($this->config['allow_concurrent_without_lock']) && $this->config['allow_concurrent_without_lock']) {
-            $violations[] = 'Concurrent processing without locking not allowed - violates Thread 1002 authority';
-        }
-        
-        return $violations;
     }
     
     /**

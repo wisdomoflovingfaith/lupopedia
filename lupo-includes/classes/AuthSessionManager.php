@@ -1,9 +1,26 @@
 <?php
-/**
- * Auth Session Manager
- * Handles auth_user to actor mapping and session creation
- * Corrected implementation for actual database schema
- */
+/*
+---
+lupopedia.headers:
+  header_format_version: 2
+  lupopedia.schema: class
+  when_updated: "20260406044907"
+  file_path_from_root: "lupo-includes/classes/AuthSessionManager.php"
+  web_path: "http://www.lupopedia.com/lupopedia/lupo-includes/classes/AuthSessionManager.php"
+  last_modified_utc: "20260406044907"
+  federation_node_id: 0
+  channel_id: 42
+  author:
+    type: "actor"
+    id: 102
+    name: "CURSOR"
+  delegation_chain: "cursor:root"
+  artifact_type: "class"
+  artifact_kind: "service"
+  purpose: "[DEPRECATED] Auth user↔actor mapping and act-as lists; session rows via App\\Auth\\Session only. Do not use $_SESSION for actor authority."
+  tags: ["auth", "session", "deprecated", "legacy", "actors"]
+---
+*/
 
 if (!defined('LUPOPEDIA_CONFIG_LOADED')) {
     die("Config not loaded. AuthSessionManager.php cannot be called directly.");
@@ -16,6 +33,18 @@ if (version_compare(PHP_VERSION, '7.0.0', '<')) {
 
 require_once __DIR__ . '/../security/password-hash.php';
 
+if (!class_exists('timestamp_ymdhis', false) && defined('LUPOPEDIA_PATH')) {
+    require_once LUPOPEDIA_PATH . '/lupo-includes/classes/TimestampYmdhis.php';
+}
+if (!class_exists('IdGenerator', false) && defined('LUPOPEDIA_PATH')) {
+    require_once LUPOPEDIA_PATH . '/lupo-includes/classes/IdGenerator.php';
+}
+
+/**
+ * @deprecated Use App\Auth\Session (app/auth/Session.php) for session authority and lupo_sessions rows.
+ *             Actor mapping helpers (getActorForAuthUser, getActorsUserCanActAs, createActorFromAgent, …) remain here
+ *             until moved to a dedicated service (e.g. ActorMappingService). Scheduled for removal in 4.1.0.
+ */
 class AuthSessionManager
 {
     private $db;
@@ -23,8 +52,33 @@ class AuthSessionManager
 
     public function __construct()
     {
+        if (defined('LUPOPEDIA_DEBUG') && LUPOPEDIA_DEBUG) {
+            $backtrace = debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS, 1);
+            $caller = isset($backtrace[0]['file']) ? basename($backtrace[0]['file']) : 'unknown';
+            error_log('DEPRECATED: AuthSessionManager used in ' . $caller . ' – migrate to App\\Auth\\Session for session authority. Actor mapping methods remain but class will be renamed in 4.1.0.');
+        }
         $this->db = DatabaseFactory::getConnection();
         $this->table_prefix = defined('LUPO_TABLE_PREFIX') ? LUPO_TABLE_PREFIX : 'lupo_';
+    }
+
+    /**
+     * Current UTC as packed YYYYMMDDHHIISS string for BIGINT columns.
+     *
+     * @return string
+     */
+    private function packedNowUtc()
+    {
+        return (string) timestamp_ymdhis::now();
+    }
+
+    /**
+     * New primary key for lupo_actor_departments / lupo_actor_auth_users mapping rows (IdGenerator; no MAX+1).
+     *
+     * @return string
+     */
+    private function allocateMappingPrimaryKey()
+    {
+        return IdGenerator::generate();
     }
 
     /**
@@ -90,13 +144,7 @@ class AuthSessionManager
                 ['actor_id' => $actor['actor_id']]
             );
             
-            // Update the actor name in session
-            if (session_status() === PHP_SESSION_NONE) {
-                session_start();
-            }
-            $_SESSION['actor_name'] = $clean_name;
-            
-            // Update the actor in the result
+            // Actor display name is authoritative in lupo_actors; resolve via Session::loadById on each request.
             $actor['actor_name'] = $clean_name;
         }
         
@@ -124,7 +172,7 @@ class AuthSessionManager
      */
     public function createActorFromAgent($auth_user_id, $agent_id, $username, $department_id = null)
     {
-        $now = gmdate('YmdHis');
+        $now = $this->packedNowUtc();
         
         // If no department specified, get user's primary department
         if ($department_id === null) {
@@ -221,8 +269,8 @@ class AuthSessionManager
      */
     private function createActorDepartmentMapping($actor_id, $department_id)
     {
-        $now = gmdate('YmdHis');
-        $mapping_id = $this->getNextMappingId();
+        $now = $this->packedNowUtc();
+        $mapping_id = $this->allocateMappingPrimaryKey();
         
         // Insert the mapping using PDO_DB insert method
         $this->db->insert(
@@ -245,8 +293,8 @@ class AuthSessionManager
      */
     private function createActorAuthUserMapping($actor_id, $auth_user_id)
     {
-        $now = gmdate('YmdHis');
-        $mapping_id = $this->getNextMappingId();
+        $now = $this->packedNowUtc();
+        $mapping_id = $this->allocateMappingPrimaryKey();
         
         // Insert the mapping using PDO_DB insert method
         $this->db->insert(
@@ -267,43 +315,49 @@ class AuthSessionManager
     }
 
     /**
-     * Create session for actor
+     * Create browser session for actor (cryptographic session_id via App\Auth\Session::create).
+     *
+     * @param int    $actor_id
+     * @param string $actor_name
+     * @return string|false session_id on success
      */
     public function createSession($actor_id, $actor_name)
     {
-        $session_id = session_id() ?: bin2hex(random_bytes(32));
-        $now = gmdate('YmdHis');
-        $expires = gmdate('YmdHis', strtotime('+8 hours'));
-        
-        // Insert the session using PDO_DB insert method
-        $this->db->insert(
+        if (!class_exists('App\\Auth\\Session', false) && defined('LUPOPEDIA_PATH')) {
+            require_once LUPOPEDIA_PATH . '/app/auth/Session.php';
+        }
+        if (!class_exists('App\\Auth\\Session', false)) {
+            return false;
+        }
+
+        $session = App\Auth\Session::create($this->db, (int) $actor_id);
+        if (!$session) {
+            return false;
+        }
+
+        $now = $this->packedNowUtc();
+        $expires = (string) timestamp_ymdhis::addHours((int) $now, 8);
+
+        $this->db->update(
             "{$this->table_prefix}sessions",
-            [
-                'session_id' => $session_id,
-                'actor_id' => $actor_id,
+            array(
                 'actor_name' => $actor_name,
-                'created_ymdhis' => $now,
                 'updated_ymdhis' => $now,
                 'last_activity_ymdhis' => $now,
+                'last_seen_ymdhis' => $now,
                 'is_active' => 1,
                 'is_expired' => 0,
                 'is_revoked' => 0,
                 'is_deleted' => 0,
                 'expires_ymdhis' => $expires,
                 'security_level' => 'standard',
-                'status' => 'active'
-            ]
+                'status' => 'active',
+            ),
+            'session_id = :sid',
+            array('sid' => $session->session_id)
         );
-        
-        // Set PHP session
-        if (session_status() === PHP_SESSION_NONE) {
-            session_start();
-        }
-        $_SESSION['actor_id'] = $actor_id;
-        $_SESSION['actor_name'] = $actor_name;
-        $_SESSION['auth_user_id'] = $this->getAuthUserId($actor_id);
-        
-        return $session_id;
+
+        return $session->session_id;
     }
 
     /**
@@ -321,11 +375,7 @@ class AuthSessionManager
         $attempt = 0;
 
         while ($attempt < $max_attempts) {
-            if (class_exists('IdGenerator')) {
-                $candidate = IdGenerator::generate();
-            } else {
-                $candidate = gmdate('YmdHis') . str_pad((string) mt_rand(0, 9999), 4, '0', STR_PAD_LEFT);
-            }
+            $candidate = IdGenerator::generate();
 
             if (!is_string($candidate) || !preg_match('/^[0-9]{18}$/', $candidate)) {
                 $attempt++;
@@ -355,24 +405,20 @@ class AuthSessionManager
     }
 
     /**
-     * Get next mapping_id
+     * Resolve auth_user_id from a human-linked actor row (actor_source_type user / lupo_auth_users).
+     *
+     * @param int $actor_id
+     * @return int|null
      */
-    private function getNextMappingId()
-    {
-        $sql = "SELECT MAX(actor_auth_user_id) as max_id FROM {$this->table_prefix}actor_auth_users";
-        $result = $this->db->fetchRow($sql, []);
-        return ($result['max_id'] ?? 0) + 1;
-    }
-
-    /**
-     * Get auth_user_id from actor
-     */
-    private function getAuthUserId($actor_id)
+    public function getAuthUserId($actor_id)
     {
         $sql = "SELECT actor_source_id FROM {$this->table_prefix}actors 
-                WHERE actor_id = :actor_id AND actor_source_type = 'user'";
-        $result = $this->db->fetchRow($sql, ['actor_id' => $actor_id]);
-        return $result['actor_source_id'] ?? null;
+                WHERE actor_id = :actor_id AND (actor_source_type = 'user' OR actor_source_type = 'lupo_auth_users')";
+        $result = $this->db->fetchRow($sql, array('actor_id' => $actor_id));
+        if (!$result || !isset($result['actor_source_id'])) {
+            return null;
+        }
+        return (int) $result['actor_source_id'];
     }
 
     /**
@@ -396,35 +442,63 @@ class AuthSessionManager
         // Update last login using PDO_DB update method
         $this->db->update(
             "{$this->table_prefix}auth_users",
-            ['last_login_ymdhis' => gmdate('YmdHis')],
+            array('last_login_ymdhis' => $this->packedNowUtc()),
             'auth_user_id = :auth_user_id',
-            ['auth_user_id' => $user['auth_user_id']]
+            array('auth_user_id' => $user['auth_user_id'])
         );
         
         return $user;
     }
     
     /**
-     * Get current active actor ID from session
+     * Current actor_id from lupo_sessions for the active PHP session id (not $_SESSION).
      */
     public function getActiveActorId()
     {
         if (session_status() === PHP_SESSION_NONE) {
             session_start();
         }
-        return isset($_SESSION['actor_id']) ? (int) $_SESSION['actor_id'] : 0;
+        $sid = session_id();
+        if ($sid === '' || $sid === false) {
+            return 0;
+        }
+        if (!class_exists('App\\Auth\\Session', false) && defined('LUPOPEDIA_PATH')) {
+            require_once LUPOPEDIA_PATH . '/app/auth/Session.php';
+        }
+        if (!class_exists('App\\Auth\\Session', false)) {
+            return 0;
+        }
+        $row = $this->db->fetchRow(
+            "SELECT actor_id FROM {$this->table_prefix}sessions WHERE session_id = :sid AND is_active = 1 AND is_expired = 0 AND is_revoked = 0 AND is_deleted = 0 LIMIT 1",
+            array('sid' => $sid)
+        );
+        if (!$row || !isset($row['actor_id'])) {
+            return 0;
+        }
+        return (int) $row['actor_id'];
     }
     
     /**
-     * Update active actor in session (only if user is allowed to act as that actor).
+     * Switch active actor for the current browser session: updates lupo_sessions only (no $_SESSION actor keys).
      */
     public function updateActiveActor($actor_id)
     {
         if (session_status() === PHP_SESSION_NONE) {
             session_start();
         }
+        $session_id = session_id();
+        if ($session_id === '' || $session_id === false) {
+            return false;
+        }
 
-        $auth_user_id = isset($_SESSION['auth_user_id']) ? (int) $_SESSION['auth_user_id'] : 0;
+        $auth_user_id = 0;
+        $cur = $this->db->fetchRow(
+            "SELECT actor_id FROM {$this->table_prefix}sessions WHERE session_id = :sid AND is_active = 1 AND is_expired = 0 AND is_revoked = 0 AND is_deleted = 0 LIMIT 1",
+            array('sid' => $session_id)
+        );
+        if ($cur && isset($cur['actor_id'])) {
+            $auth_user_id = (int) $this->getAuthUserId((int) $cur['actor_id']);
+        }
         if ($auth_user_id <= 0 && isset($GLOBALS['lupo_auth_service']) && is_object($GLOBALS['lupo_auth_service'])) {
             $cu = $GLOBALS['lupo_auth_service']->getCurrentUser();
             if (is_array($cu) && isset($cu['auth_user_id'])) {
@@ -460,18 +534,16 @@ class AuthSessionManager
         $actor = $this->db->fetchRow($sql, array('actor_id' => $actor_id));
 
         if ($actor) {
-            $_SESSION['actor_id'] = $actor_id;
-            $_SESSION['actor_name'] = $actor['actor_name'];
-            $_SESSION['actor_type'] = $actor['actor_type'];
-
-            $session_id = session_id();
-            $now = gmdate('YmdHis');
+            $now = $this->packedNowUtc();
 
             $this->db->update(
                 "{$this->table_prefix}sessions",
                 array(
                     'actor_id' => $actor_id,
-                    'updated_ymdhis' => $now
+                    'actor_name' => isset($actor['actor_name']) ? $actor['actor_name'] : '',
+                    'updated_ymdhis' => $now,
+                    'last_activity_ymdhis' => $now,
+                    'last_seen_ymdhis' => $now,
                 ),
                 'session_id = :session_id',
                 array('session_id' => $session_id)

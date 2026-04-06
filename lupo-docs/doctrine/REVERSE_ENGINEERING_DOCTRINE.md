@@ -103,7 +103,7 @@ You may learn from any package: read its source, trace its behavior, extract the
 1. **Identify** a package or article that solves a nearby problem.
 2. **Study** the source in isolation (clone, read, debug in a scratch directory) — **not** as an install into `lupo-includes/`.
 3. **Extract** the invariant: what problem, what inputs/outputs, what failure modes.
-4. **Implement** a Lupopedia-native class or module under project conventions (PHP 5.6–8.x, PDO_DB, no new framework).
+4. **Implement** a Lupopedia-native class or module under project conventions (PHP 7.4–8.x, PDO_DB, no new framework).
 5. **Document lineage** in LUPOPEDIA HEADERS: `outbound_edges` with `type: inspired_by` (or equivalent) to the upstream repo or paper, and reference this doctrine.
 6. **Ship** only your tree — no new package manager dependency in runtime paths.
 

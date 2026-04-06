@@ -2,10 +2,10 @@
 lupopedia.headers:
   header_format_version: 2
   lupopedia.schema: prd
-  when_updated: "20260403180000"
+  when_updated: "20260405222024"
   file_path_from_root: "lupo-docs/prd/17_decisions_format.md"
   web_path: "http://www.lupopedia.com/lupopedia/lupo-docs/prd/17_decisions_format.md"
-  last_modified_utc: "20260403180000"
+  last_modified_utc: "20260405222024"
   federation_node_id: 0
   channel_id: 42
   thread_id: "prd-decisions-format"
@@ -15,11 +15,12 @@ lupopedia.headers:
   delegation_chain: "lilith:audit"
   artifact_type: "prd"
   artifact_kind: "specification"
-  purpose: "Canonical format specification for decision thread files in decisions/ folders"
+  purpose: "Canonical format for decision threads, decisions/ layout, and decisions/pseudocode/ — dual purpose: constitution shorthand + design notes (LUPOPEDIA HEADERS required on *.pseudo.*)"
   status: "approved"
   tags:
   - "prd"
   - "decisions"
+  - "decisions_system"
   - "format"
   - "adr"
   - "governance"
@@ -41,8 +42,16 @@ lupopedia.edges:
       type: references
       weight: 1.0
       reason: "Header format with channel_id/thread_id/context_id"
+    - to: "lupo-docs/prd/31_implementation_folder_guidelines.md"
+      type: references
+      weight: 0.95
+      reason: "Implementation folder rules; pseudocode/ is explicitly out of scope for full PRD 31 enforcement"
+    - to: "lupo-docs/implementations/00_root_constitutional_system_requirements/decisions/pseudocode/lupopedia_quickstart.pseudo.md"
+      type: references
+      weight: 0.95
+      reason: "Shipped external-AI bundle index (Priority 1–3 PRD shorthands)"
 lupopedia.footer:
-  last_verified: "20260403180000"
+  last_verified: "20260405222024"
   verified_by:
     identity_type: "agent"
     actor_id: 2
@@ -53,7 +62,8 @@ lupopedia.footer:
     faucet_slug: "none"
   orchestrator: "lilith:audit"
   next_action:
-    - "Update LUPOPEDIA_HEADERS documentation with context_id"
+    - "Ensure validators require lupopedia.headers (incl. file_path_from_root) on decisions/pseudocode/*.pseudo.* and flag plain .php without .pseudo. in basename"
+    - "Optional: run lupo-scripts/validate_pseudocode_discipline.py on Purpose 2 design pseudocode before merge"
     - "Ensure all decision thread files follow this format"
 ---
 
@@ -128,13 +138,8 @@ lupopedia.edges:
     - to: "../answers/20260402_130000_ANSWER_header_format.md"
       type: "has_answer"
       weight: 1.0
-      reason: "This question was answered by LILITH"
-```
-
 - In the answer file, add an outbound edge back to the question:
 
-```yaml
-lupopedia.edges:
   outbound_edges:
     - to: "../questions/20260402_120000_QUESTION_header_format.md"
       type: "answers"
@@ -144,10 +149,6 @@ lupopedia.edges:
 
 ### Canonical Edge Types for Q&A
 | Edge Type | Direction | Meaning |
-|-----------|-----------|---------|
-| `has_answer` | Question → Answer | This question has this answer |
-| `answers` | Answer → Question | This answers that question |
-| `related_question` | Question → Question | Related/similar question |
 | `clarifies` | Answer → Answer | This answer clarifies another |
 | `supersedes` | Answer → Answer | This answer replaces an older one |
 
@@ -172,6 +173,9 @@ For any context (version, implementation, channel, agent), the following subfold
 <context>/
 ├── decisions/
 │   ├── THREAD_INDEX.md
+│   ├── pseudocode/                    # optional — see [Pseudocode Directory](#pseudocode-directory-decisionspseudocode)
+│   │   ├── THREAD_INDEX.md
+│   │   └── *.pseudo.php / *.pseudo.md / *.pseudo.txt
 │   └── YYYYMMDD_HHIISS_TYPE_STATUS_TITLE.md
 ├── questions/
 │   ├── THREAD_INDEX.md
@@ -225,6 +229,7 @@ lupo-docs/versions/
 └── <version>/
   └── decisions/
     ├── THREAD_INDEX.md     # Required: index of all decision threads
+    ├── pseudocode/       # Optional: design artifacts — see Pseudocode Directory section
     └── YYYYMMDD_HHIISS_TYPE_STATUS_TITLE.md  # Individual thread files
 ```
 
@@ -276,7 +281,6 @@ is deprecated and must not be used for new work. Only the folder-based system is
 - **Format**: See **[Thread filename pattern (authoritative)](#thread-filename-pattern-authoritative)** (`decisions/` uses `TYPE_STATUS_TITLE`; other folders use `TYPE_TITLE` only).
 - **Example (decisions/)**: `20260402_120000_DECISION_APPROVED_header_validator_update.md`
 - **Used for**: IDE agent development, local documentation work
-- **Location**: `lupo-docs/versions/<version>/decisions/` (and parallel folders under channels, implementations, etc.)
 
 #### Database Threads (Web Application)
 - **Format**: Numeric auto-increment ID (e.g., 1038)
@@ -306,9 +310,6 @@ Every decision thread file MUST include a LUPOPEDIA HEADERS block with:
 | `file_path_from_root` | Yes | Full path from repo root |
 | `web_path` | Yes | Full web path with /lupopedia/ prefix |
 | `last_modified_utc` | Yes | UTC YYYYMMDDHHIISS |
-| `federation_node_id` | Yes | 0 (core) |
-| `channel_id` | Yes | Channel where decisions were discussed (e.g., 42) |
-| `thread_id` | Yes | Thread where discussions occurred |
 | `context_id` | Optional | ID of context in lupo-contexts/ if finalized |
 | `actor_id` | Yes | Primary author/maintainer |
 | `actor_name` | Yes | Human-readable name |
@@ -350,6 +351,8 @@ lupopedia.headers:
 
 Each folder (`decisions/`, `questions/`, `answers/`, `comments/`) MUST contain a `THREAD_INDEX.md` file listing all thread files, their status, author, and relevant metadata. This replaces the old summary table from monolithic files.
 
+If `decisions/pseudocode/` is present, it MUST contain its own `THREAD_INDEX.md` (see [Pseudocode Directory](#pseudocode-directory-decisionspseudocode)).
+
 Example:
 
 ```markdown
@@ -359,6 +362,342 @@ Example:
 |----------|-------|--------|--------|------|
 | 20260402_120000_DECISION_header_format.md | Header Format Decision | LILITH | completed | 2026-04-02 |
 ```
+
+## Pseudocode Directory (`decisions/pseudocode/`)
+
+### Dual purpose (LILITH audit — approved)
+
+The same **`decisions/pseudocode/`** directory serves **two** distinct intents. Use **file naming** to signal which intent applies.
+
+#### Purpose 1 — Shorthand constitution (external AI)
+
+- **Goal:** A **short** extract of binding rules (typically distilled from [PRD 00](00_root_constitutional_system_requirements.md)) so external LLMs / IDE agents can load a compact checklist instead of the full constitutional PRD.
+- **Naming pattern:** **`*_constitution.pseudo.md`** (example: **`00_constitution_shorthand.pseudo.md`**).
+- **Content:** Forbidden vs required tables, one-liner quick reference, pointers to PRD sections for depth. **Not** a replacement for PRD 00 in disputes — **canonical** text remains **`lupo-docs/prd/00_root_constitutional_system_requirements.md`**.
+- **Shipped example:** **`lupo-docs/implementations/00_root_constitutional_system_requirements/decisions/pseudocode/00_constitution_shorthand.pseudo.md`**.
+
+#### Purpose 2 — Implementation planning (design notes)
+
+- **Goal:** Bridge **decisions → code**: sketch signatures, document **Option A vs Option B**, trade-offs, open questions (`TODO:` / `QUESTION:`), and task-level drivers before production code exists.
+- **Naming pattern:** **`*_design.pseudo.md`** and/or **`*.pseudo.php`** (same extension rules as below).
+- **Content:** Comment-heavy pseudocode, mermaid or prose flows, links to sibling **`../`** decision files.
+
+### Naming conventions (summary)
+
+| Pattern | Typical intent |
+|---------|----------------|
+| **`*_constitution.pseudo.md`** | Purpose 1 — shorthand rules for external AI |
+| **`*_design.pseudo.md`** | Purpose 2 — markdown design notes |
+| **`*.pseudo.php`** | Purpose 2 — PHP-shaped class/method sketches |
+
+### Location
+
+```
+<context>/decisions/
+├── THREAD_INDEX.md
+├── YYYYMMDD_HHIISS_DECISION_STATUS_TITLE.md
+└── pseudocode/
+    ├── THREAD_INDEX.md           # Index of pseudocode files
+    ├── 00_constitution_shorthand.pseudo.md   # Example: Purpose 1 (constitution shorthand)
+    ├── feature_design.pseudo.md              # Example: Purpose 2 (markdown)
+    ├── ClassName.pseudo.php                  # Example: Purpose 2 (PHP-shaped)
+    ├── driver_task_1.pseudo.php              # Task-level driver
+    └── ...
+```
+
+### Use cases (primarily Purpose 2)
+
+| Use case | Example |
+|----------|---------|
+| **Implementation planning** | Function signatures before coding |
+| **Design choices** | Comment blocks explaining why approach A over B |
+| **Related function grouping** | Pseudo-class files grouping related methods |
+| **Driver files for tasks** | Task-specific design documents |
+| **Incomplete code** | Intent that is not ship-ready |
+| **Algorithm exploration** | Alternate approaches in comments |
+| **Constitution shorthand** | Purpose 1 — send `*_constitution.pseudo.md` to external agents (still requires headers below) |
+
+### Rules (limited)
+
+| Rule | Description |
+|------|-------------|
+| **No production code** | Pseudocode files are **never** loaded by the application |
+| **No schema migrations** | Do not put DDL here (`CREATE TABLE`, `ALTER TABLE`, etc.) |
+| **File extension** | `.pseudo.php`, `.pseudo.md`, or `.pseudo.txt` — **not** plain `.php`, `.js`, or other runtime extensions |
+| **Comment-heavy** | Prefer blocks that explain **why**, not only **what** |
+| **LUPOPEDIA HEADERS required** | Every **`*.pseudo.md`**, **`*.pseudo.php`**, and **`*.pseudo.txt`** **must** include **`lupopedia.headers`** with at least **`file_path_from_root`** (repo-relative), **`when_updated`**, **`last_modified_utc`**, author/delegation, **`artifact_type`**, **`artifact_kind`**, **`purpose`**, **`tags`** — same expectations as [PRD 16 — Header applicability and scope](16_lupopedia_headers.md#header-applicability-and-scope). **Markdown:** YAML front matter, line 1 `---`. **PHP:** YAML inside a block comment immediately after `<?php`. **Why:** external AI and IDE handoff; without **`file_path_from_root`**, recipients cannot anchor the file in the tree. Optional **`lupopedia.edges`** / **`lupopedia.footer`** encouraged when useful. |
+| **Can reference decisions** | Link back with relative paths to sibling decision files |
+| **No strict schema** | Free-form body layout; organize as the author prefers |
+
+### Example: `pseudocode/KairosConsolidationService.pseudo.php`
+
+```php
+<?php
+/*
+---
+lupopedia.headers:
+  header_format_version: 2
+  lupopedia.schema: documentation
+  file_path_from_root: "lupo-channels/0/example/decisions/pseudocode/KairosConsolidationService.pseudo.php"
+  web_path: "http://www.lupopedia.com/lupopedia/lupo-channels/0/example/decisions/pseudocode/KairosConsolidationService.pseudo.php"
+  when_updated: "20260403120000"
+  last_modified_utc: "20260403120000"
+  federation_node_id: 0
+  channel_id: 42
+  thread_id: "example-pseudocode-kairos"
+  author:
+    type: "actor"
+    id: 102
+    name: "CURSOR"
+  actor_id: 102
+  actor_name: "CURSOR"
+  delegation_chain: "cursor:root"
+  artifact_type: "documentation"
+  artifact_kind: "guide"
+  purpose: "Pseudocode — KAIROS consolidation design (not runtime)"
+  tags:
+    - "pseudocode"
+    - "kairos"
+---
+*/
+/**
+ * KAIROS Memory Consolidation - Design Exploration
+ *
+ * Decision reference: ../20260403_120000_DECISION_APPROVED_kairos_consolidation.md
+ *
+ * This is PSEUDOCODE. Not loaded by the application.
+ *
+ * Design choices documented in comments below.
+ */
+
+/**
+ * Class: KairosConsolidationService
+ *
+ * Design choice: Use batch processing rather than real-time
+ * Reasoning: Real-time would block chat operations on large threads
+ * Alternative considered: Queue-based (rejected due to complexity)
+ */
+class KairosConsolidationService {
+
+    /**
+     * Consolidate observations for a thread
+     *
+     * @param int $thread_id
+     * @return array
+     *
+     * Implementation note: Use THREAD_INDEX.md for ordering
+     * instead of filesystem timestamps (per Temporal Discipline)
+     */
+    public function consolidateThread($thread_id) {
+        // TODO: Read THREAD_INDEX.md first
+        // TODO: Follow supersedes edges
+        // TODO: Group by semantic similarity
+
+        // Pseudo-implementation:
+        // 1. Get all messages in thread
+        // 2. Group by parent_dialog_message_id
+        // 3. Detect contradictions
+        // 4. Merge observations
+        // 5. Store in lupo_actor_memory
+
+        return array('consolidated' => true);
+    }
+}
+```
+
+### Example: `pseudocode/decision_flow.pseudo.md`
+
+````markdown
+# Decision Flow: Department-First Actor Model
+
+## Decision Reference
+[20260403_222041_DECISION_APPROVED_department_first_actor_model_prd_alignment.md](../20260403_222041_DECISION_APPROVED_department_first_actor_model_prd_alignment.md)
+
+## Design Flow
+
+```mermaid
+graph TD
+    A[User Logs In] --> B{Check user departments}
+    B --> C[Find actors in those departments]
+    C --> D[Apply web_restrict_act_as_creator_or_root]
+    D --> E[Return eligible actors]
+```
+
+## Implementation Choices
+
+### Choice 1: Department join vs direct binding
+
+**Option A (selected):** Department intersection (sketch only; not executable SQL).
+
+**Option B (rejected):** Edge-based act-as — rejection reason: harder to maintain, less performant.
+
+### Choice 2: Session storage for active actor
+
+Store in `lupo_sessions.metadata` JSON, not a separate table. Reason: actor switching is per-session, not per-user.
+
+## Driver Files
+
+| Task | Driver File | Status |
+|------|-------------|--------|
+| AuthSessionManager update | `AuthSessionManager.pseudo.php` | Draft |
+| ActorService delegation | `ActorService.pseudo.php` | Draft |
+````
+
+### `THREAD_INDEX.md` for pseudocode
+
+```markdown
+# Pseudocode Index
+
+| File | Purpose | Type | Related |
+|------|---------|------|---------|
+| `00_constitution_shorthand.pseudo.md` | Shorthand rules for external AI | Constitution | [PRD 00](00_root_constitutional_system_requirements.md) |
+| `KairosConsolidationService.pseudo.php` | Memory consolidation design | Implementation | 20260403_120000_DECISION_... |
+| `decision_flow.pseudo.md` | Department-first actor flow | Implementation | 20260403_222041_DECISION_... |
+| `AuthSessionManager.pseudo.php` | Auth session design | Implementation | 20260403_222041_DECISION_... |
+```
+
+### Integration with PRD 31
+
+The `pseudocode/` directory is **not** subject to the full [PRD 31 — Implementation folder guidelines](31_implementation_folder_guidelines.md) rules:
+
+- No required `README.md`, `authors.md`, or `edges.md` for pseudocode alone
+- **Optional** tooling: **`lupo-scripts/validate_pseudocode_discipline.py`** (warnings for Purpose 2 design files) — see [Pseudocode reasoning discipline](#pseudocode-reasoning-discipline-for-ide-agents-lilith-approved). **Mandatory** checks remain [minimal pseudocode checks](#validation-rules-minimal) below.
+- No `questions/` or `answers/` subdirectories under `pseudocode/` — use the parent context’s `questions/` and `answers/`
+
+**Rationale:** Pseudocode is design artifact, not an implementation deliverable tree.
+
+### Why two purposes in one directory?
+
+| Purpose | Audience | When |
+|---------|----------|------|
+| **Shorthand constitution** | External LLMs, quick IDE context | Before coding; when full PRD 00 is too heavy to paste |
+| **Implementation planning** | Implementers, reviewers, LILITH | While exploring options and recording **A vs B** |
+
+**One directory (`decisions/pseudocode/`), two naming patterns** — see [Naming conventions (summary)](#naming-conventions-summary).
+
+### Shipped bundle — “send to new AI” (Priority 1–3 PRDs)
+
+**Location (canonical):** **`lupo-docs/implementations/00_root_constitutional_system_requirements/decisions/pseudocode/`**
+
+| File | Role |
+|------|------|
+| **`lupopedia_quickstart.pseudo.md`** | One-page map + links to all shorthands below — **start here** for external agents. |
+| **`00_constitution_shorthand.pseudo.md`** | PRD 00 digest (database, PHP, installer, security, UI, indexing). |
+| **`05_auth_user_actor_agent_transformation_constitution.pseudo.md`** | PRD 05 — identity / visitor chat / department act-as. |
+| **`15_actors_constitution.pseudo.md`** | PRD 15 — actors ↔ departments. |
+| **`16_lupopedia_headers_constitution.pseudo.md`** | PRD 16 — headers, import, validators. |
+| **`26_five_layer_documentation_architecture_constitution.pseudo.md`** | PRD 26 — Tier 1 vs Tier 2, five layers. |
+| **`31_implementation_folder_guidelines_constitution.pseudo.md`** | PRD 31 — **`implementations/{prd_file_stem}/`**, scaffold, threads. |
+| **`28_semantic_monitoring_widget_constitution.pseudo.md`** | PRD 28 — Eye / Tier 2 / API dual routing. |
+| **`33_softaculous_certification_4_1_0_gate_constitution.pseudo.md`** | PRD 33 — hosting / 4.1.0 gate / Crafty parity. |
+
+**Index:** **`THREAD_INDEX.md`** in that folder. **Optional (Priority 4):** PRD **36** (ROSE), **37** (KAIROS) — read full PRDs when needed; no shipped shorthand required in this bundle.
+
+**Rule:** Shorthands are **Purpose 1** pseudocode; they **must** still carry **`lupopedia.headers`** (**`file_path_from_root`**, etc.). **Canonical** meaning remains each **`lupo-docs/prd/*.md`**.
+
+### Edge types for pseudocode
+
+| Edge type | Direction | Meaning |
+|-----------|-----------|---------|
+| `has_pseudocode` | Decision → Pseudocode | This decision has pseudocode exploration |
+| `implements_pseudocode` | Implementation → Pseudocode | Implementation follows this pseudocode |
+| `refines` | Pseudocode → Pseudocode | This pseudocode refines another |
+
+### Validation rules (minimal)
+
+Validators **should** consider:
+
+1. **No plain `.php` (or other runtime extension) without `.pseudo.` in the basename** under `decisions/pseudocode/` — reduces risk of accidental inclusion or confusion with shipped code.
+2. **`lupopedia.headers` required** on every **`*.pseudo.md`**, **`*.pseudo.php`**, **`*.pseudo.txt`** under `decisions/pseudocode/`, including **`file_path_from_root`** (and placement per [PRD 16](16_lupopedia_headers.md#header-applicability-and-scope)).
+3. **No migration DDL** — flag `CREATE TABLE`, `ALTER TABLE`, and similar in pseudocode content when policy calls for it.
+4. **Purpose 2 discipline (optional automation)** — run **`python lupo-scripts/validate_pseudocode_discipline.py`** on changed paths; it emits **warnings** for missing decision anchors and thin rationale (see [Pseudocode reasoning discipline](#pseudocode-reasoning-discipline-for-ide-agents-lilith-approved)).
+
+### Pseudocode reasoning discipline for IDE agents (LILITH approved)
+
+**Problem:** IDE/LLM tools are tuned for **fast completion**, not **slow deliberation**. In **`decisions/pseudocode/`**, that mismatch causes agents to **guess** schema, **fill in** stubs, and **skip** documented options — the opposite of this directory’s intent for **Purpose 2**.
+
+**Intent:** For **Purpose 2** ([Implementation planning](#purpose-2--implementation-planning-design-notes)), pseudocode is a **design deliberation space** — document **why** and **which options**, not ship **what**. For **Purpose 1** ([Shorthand constitution](#purpose-1--shorthand-constitution-external-ai)), files are **digests** (tables, pointers); they are **exempt** from the “deliberation shape” rules below except **zero-guessing** when **extending** a digest with new factual claims (must cite PRD / TOON / install SQL).
+
+**Scope summary**
+
+| Artifact kind | Zero-guessing (schema, API facts) | Option blocks / decision anchor | Comment-heavy / rationale density |
+|-------------|-----------------------------------|--------------------------------|-----------------------------------|
+| Purpose 1 `*_constitution.pseudo.md`, shipped `00_*` digests in bundle | **Yes** — no invented columns or tables | **Anchor** via **`lupopedia.edges`** + PRD link in body (no single sibling decision file required) | **Not required** — tables and one-liners are normal |
+| Cross-cutting `lupo-docs/decisions/pseudocode/00_*.pseudo.md` (routers, anti-patterns) | **Yes** | **Edges** to PRD 00 + related digests | **Not required** |
+| Purpose 2 `*_design.pseudo.md`, other exploratory `*.pseudo.md` in `pseudocode/` | **Yes** | **Required** — see **Decision reference** below | **SHOULD** — target **high** comment-to-rationale ratio (see **Rationale density**) |
+| Purpose 2 `*.pseudo.php` | **Yes** | **Required** — comment or docblock **Decision reference** near top | **SHOULD** — skeleton code only; **TODO** / **QUESTION** for unknowns |
+
+#### Zero-guessing doctrine (required)
+
+Agents **must not invent** as facts:
+
+- table or column names not in **TOON** / **install SQL** / table docs  
+- function/class/method names as **final** API without a decision or PRD pointer  
+- executable **SQL** as “the” schema when DDL is forbidden here  
+- control flow or return contracts **presented as decided** when options are still open  
+
+If a fact is **not** anchored in a cited artifact, the agent **must** stop and record an explicit block (markdown or comment):
+
+```markdown
+# ASSUMPTION REQUIRED
+# Option A: …
+# Option B: …
+# Open question: …
+```
+
+**No implementation code** in production trees may be written **as if** the assumption were decided until the thread records resolution.
+
+#### Deliberate reasoning (required behavior)
+
+When authoring or editing **Purpose 2** pseudocode, agents **must**:
+
+- treat the file as **thinking space**, not a **stub to complete**  
+- avoid **collapsing** unresolved forks into one path without recording **why**  
+- avoid **skipping** “Option A / Option B” when the PRD or thread still has competing approaches  
+
+This PRD does **not** bind external model “temperature” APIs; it binds **repository behavior**: **document forks and unknowns** instead of **silent completion**.
+
+#### Mandatory option blocks (required when forks exist)
+
+When more than one approach is plausible, **Purpose 2** markdown **must** include labeled options and an explicit pending marker, for example:
+
+```markdown
+# OPTION A — … (pros / cons)
+# OPTION B — … (pros / cons)
+# DECISION PENDING — do not treat either as final in production code
+```
+
+If the agent introduces the word **OPTION** or **Alternative** for a real fork, **`DECISION PENDING`** (or a link to a **resolved** `DECISION_` file) **must** appear in the same section.
+
+#### Executable-looking content (Purpose 2)
+
+- **`*.pseudo.php`:** Skeletal PHP is **allowed** (signatures, stub bodies, **TODO**). It **must** remain **non-runtime** (`.pseudo.` in basename; not loaded by the app). If the file starts to read like **copy-paste production**, add a banner comment: **`// PSEUDOCODE ONLY — not ship-ready`** and **stop** until design is recorded.  
+- **Markdown pseudocode:** Prefer **fenced blocks** labeled as sketch (e.g. `pseudo`, `text`), not blocks that look like **drop-in** `php` production. Short **illustrative** snippets that contradict a forbidden pattern (e.g. “wrong” SQL in a dodo-bird doc) are **allowed** when labeled as **anti-example**.
+
+#### Rationale density (Purpose 2 SHOULD)
+
+For **`*_design.pseudo.md`**, aim for **high** rationale in comments and prose — approximately **60%** of non-empty lines carrying **`#` comments**, blockquotes, or explanatory prose is a **target**, not a hard gate. If the file is mostly code-shaped lines, add:
+
+```markdown
+# COMMENT EXPANSION REQUIRED — insufficient rationale density for Purpose 2
+```
+
+#### No forward inference (required)
+
+Do not infer **live** schema, PK names, or layer boundaries from “typical PHP projects.” **Sources:** PRD, decision file, **TOON**, **install SQL**, **table docs** — per [TOON / schema doctrine](00_root_constitutional_system_requirements.md) and workspace rules.
+
+#### Decision reference (required for Purpose 2)
+
+Every **Purpose 2** pseudocode file **must** anchor to the thread, for example:
+
+- **Markdown:** a **`## Decision Reference`** (or `# DECISION REFERENCE:`) section with a relative link to **`../YYYYMMDD_HHIISS_DECISION_*.md`** or to the relevant **`questions/`** / **`answers/`** artifact.  
+- **PHP:** a **docblock** or leading comment with the same path (see [example `KairosConsolidationService.pseudo.php`](#example-pseudocodekairosconsolidationservicepseudophp)).
+
+**Purpose 1** files **must** include **`lupopedia.edges`** to the canonical PRD(s); a prose “**Canonical:** …” line in the body satisfies the **anchor** expectation when no single decision file exists.
+
+#### Reviewer posture
+
+**LILITH** and human reviewers **may reject** Purpose 2 pseudocode that **guesses** schema, **omits** decision anchors, or **pretends** unresolved options are decided. **Purpose 1** digests are judged on **fidelity to PRD 00**, not on comment ratio.
 
 ## Entry Types
 
@@ -547,6 +886,7 @@ Validators MUST enforce:
 6. **Thread linkage** - thread_id matches discussion thread
 7. **Context linkage** - If context_id present, context file must exist
 8. **Edge validation** - All Q&A and related links use `lupopedia.edges` (see PRD 16 for canonical edge format)
+9. **Pseudocode** - When `decisions/pseudocode/` exists, validators **should** apply the [minimal checks](#validation-rules-minimal) in the Pseudocode Directory section (naming, **required** `lupopedia.headers` on `*.pseudo.*`, no DDL)
 
 
 ## Example Implementation
@@ -558,4 +898,4 @@ See [PRD 16](16_lupopedia_headers.md) for canonical `lupopedia.edges` usage and 
 
 **Status**: ACTIVE
 **Constitutional Adherence**: FULL
-**Version**: 1.0
+**Version**: 1.1

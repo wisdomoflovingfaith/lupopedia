@@ -70,7 +70,7 @@ This document records **specific, actionable patterns** observed in **WordPress*
 
 - Not a complete map of WordPress.
 - Not a license to copy WordPress source into shipping code.
-- Patterns **must** be adapted to **PDO_DB**, **PHP 5.6+** core compatibility, and Lupopedia installers.
+- Patterns **must** be adapted to **PDO_DB**, **PHP 7.4+** core compatibility, and Lupopedia installers.
 
 **Primary WordPress files cited in this revision**
 
@@ -102,7 +102,7 @@ This document records **specific, actionable patterns** observed in **WordPress*
 
 **Shipped:** **`lupo-install/InstallWizardHtaccessWriter.php`** — **`isApacheHtaccessEnvironment()`** (Apache / LiteSpeed vs Nginx / IIS / Caddy; empty **`SERVER_SOFTWARE`** still attempts **`.htaccess`** write for dev/odd stacks).
 
-**Illustrative probe (PHP 5.6+; use isset, not null coalesce):**
+**Illustrative probe (PHP 7.4+; use isset, not null coalesce):**
 
 ```php
 $software = '';
@@ -165,7 +165,7 @@ if (extension_loaded('imagick')) {
 - **In-tree PHPMailer** (if used for mail) should keep the same **spirit** of fallbacks; do not rip out **`fsockopen`** paths on shared hosts.
 - Any new socket client in Lupopedia should follow the same **ladder** discipline (probe → primary → fallback → log).
 
-**Illustrative shape (PHP 5.6+):**
+**Illustrative shape (PHP 7.4+):**
 
 ```php
 static $streamOk = null;
@@ -224,7 +224,7 @@ $hasCustomOutside = ($filtered !== '');
 
 ### Lupopedia implementation
 
-- Lupopedia floor remains **PHP 5.6+** per root PRD (**not** WordPress 7.x); map **required** extensions to **`install.php`** / docs (**`pdo_mysql`**, **`json`**, etc.).
+- Lupopedia floor remains **PHP 7.4+** per root PRD (**not** WordPress 7.x); map **required** extensions to **`install.php`** / docs (**`pdo_mysql`**, **`json`**, etc.).
 - Optional: report **64-bit** capability the same way as WordPress for support diagnostics (**`PHP_INT_SIZE * 8`**).
 
 ---
@@ -248,7 +248,7 @@ $hasCustomOutside = ($filtered !== '');
 - Use sparingly in **new** code; prefer **`try`/`catch`** where **`PDOException`** or custom exceptions apply.
 - When wrapping legacy **`fsockopen`** / **`stream_socket_client`**, this pattern is **valid** if handlers are always restored.
 
-**Illustrative (PHP 5.6+; use `array()` for callbacks):**
+**Illustrative (PHP 7.4+; use `array()` for callbacks):**
 
 ```php
 set_error_handler(array($this, 'captureError'));
@@ -304,7 +304,7 @@ try {
 - Apply when emitting **fully qualified** or scheme-relative URLs for scripts, styles, or APIs — not inside **`LupoLayer`** itself (layers are DOM; scheme is a **URL builder** concern).
 - Align with **root PRD §15** (multi-environment, no assumptions).
 
-**Illustrative probe (PHP 5.6+; `isset` only):**
+**Illustrative probe (PHP 7.4+; `isset` only):**
 
 ```php
 function lupo_request_is_https() {
@@ -348,7 +348,7 @@ function lupo_request_is_https() {
 - Mandatory discipline for **LUPOPEDIA HEADERS** **`file_path_from_root`** and any cross-platform path equality checks in installers and validators.
 - Do not invent a second incompatible normalizer per module; one helper or shared convention is enough.
 
-**Illustrative (PHP 5.6+):**
+**Illustrative (PHP 7.4+):**
 
 ```php
 function lupo_normalize_fs_path($path) {
@@ -411,7 +411,7 @@ function lupo_normalize_fs_path($path) {
 | 2 | **`extension_loaded` / `function_exists`** | `class-wp-debug-data.php` ~457, 466–471, 705–706 | `install.php` preflight + PRD 33 / §4 |
 | 3 | Stream vs **`fsockopen`** ladder | `SMTP.php` ~412–439 | In-tree mail / future sockets — same ladder spirit |
 | 4 | `.htaccess` marker strip | `class-wp-debug-data.php` ~483–503 | `insertWithMarkers()` + `LUPOPEDIA` / `LUPOPEDIA_DB` |
-| 5 | Required PHP + extensions | `version.php` 40–50 | Installer + docs (5.6+ floor, not WP 7.x) |
+| 5 | Required PHP + extensions | `version.php` 40–50 | Installer + docs (7.4+ floor, not WP 7.x) |
 | 6 | **`set_error_handler`** scope | `SMTP.php` ~419–503, 1532+ | Legacy I/O only; always restore |
 | 7 | Per-path writability | `class-wp-debug-data.php` ~1698–1749 | Installer logs; no auto-chmod |
 | 8 | HTTPS / proxy proto | `load.php` ~1659–1672 + **Lupopedia** `X-Forwarded-Proto` | Absolute URLs, mixed-content avoidance; **§15** |

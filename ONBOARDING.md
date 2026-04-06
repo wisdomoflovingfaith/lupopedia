@@ -210,7 +210,7 @@ Your actor exists in the registry but your IDE is not yet supported in rule prop
 All development must comply with the **[Complete Root Rules](lupo-rules/root/README.md)**. Key constraints:
 
 #### PHP & Environment
-- **PHP 5.6+ Required** - No PHP 7+ features (`??`, `<=>`, type hints, anonymous classes)
+- **PHP 7.4+ Required** - Minimum runtime per `lupo-rules/root/php-7-4-compatibility.md`; avoid PHP 8.0+ only syntax (union types, `match`, enums, named arguments, attributes, `readonly`) in shared core paths unless a file is explicitly modern-only
 - **No Composer** - Cannot use `composer.json` or `vendor/` directory
 - **External Libraries** - Self-contained libraries in `lupo-includes/` allowed per EXTERNAL_LIBRARIES_DOCTRINE
 - **No Frameworks** - No Laravel, Symfony, or Blade templates

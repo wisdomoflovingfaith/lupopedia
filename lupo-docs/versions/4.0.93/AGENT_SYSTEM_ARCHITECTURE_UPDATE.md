@@ -107,7 +107,7 @@ lupo-agents/{agent_id}/
 - **Must begin with `Lupopedia\`**
 - **Must map to `/lupo-includes/` directories**
 - **No PSR-4, Composer, or external autoloaders**
-- **PHP 5.6 compatibility required**
+- **PHP 7.4+ compatibility required**
 
 ### File-First Principle
 1. Agent identity comes from files

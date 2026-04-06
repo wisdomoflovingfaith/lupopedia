@@ -12,7 +12,7 @@
  * All new PHP-side writes that should respect policy should use this class; do not bypass with raw file_put_contents
  * in agent-facing code paths.
  *
- * PHP 5.6+ compatible.
+ * PHP 7.4+ compatible.
  *
  * @package Lupopedia
  */

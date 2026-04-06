@@ -24,14 +24,25 @@ class IdGenerator
      */
     public static function generate()
     {
-        // UTC timestamp in Lupopedia doctrine format
-        $timestamp = gmdate('YmdHis');
+        if (!class_exists('timestamp_ymdhis', false)) {
+            require_once __DIR__ . '/TimestampYmdhis.php';
+        }
+        // UTC packed clock via doctrine API (arithmetic elsewhere uses DateTime, not epoch)
+        $timestamp = (string) timestamp_ymdhis::now();
 
-        // 4-digit random suffix (0000–9999)
-        $suffix = mt_rand(0, 9999);
-        $suffix = str_pad($suffix, 4, '0', STR_PAD_LEFT);
+        // 4-digit suffix (0000–9999): prefer CSPRNG bytes; last resort mt_rand if OpenSSL unavailable
+        $suffixNum = null;
+        if (function_exists('openssl_random_pseudo_bytes')) {
+            $raw = openssl_random_pseudo_bytes(2);
+            if ($raw !== false && strlen($raw) === 2) {
+                $suffixNum = ((ord($raw[0]) << 8) | ord($raw[1])) % 10000;
+            }
+        }
+        if ($suffixNum === null) {
+            $suffixNum = mt_rand(0, 9999);
+        }
+        $suffix = str_pad((string) $suffixNum, 4, '0', STR_PAD_LEFT);
 
-        // Concatenate into final ID
         return $timestamp . $suffix;
     }
 

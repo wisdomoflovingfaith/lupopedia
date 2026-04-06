@@ -47,18 +47,6 @@ if (session_status() === PHP_SESSION_NONE) {
 require_once __DIR__ . '/lupo-includes/classes/DatabaseFactory.php';
 require_once __DIR__ . '/lupo-includes/classes/AuthService.php';
 
-
-// Ensure auth_user_id is in session (if not, try to resolve from actor_id)
-if (!isset($_SESSION['auth_user_id']) && isset($_SESSION['actor_id'])) {
-    require_once __DIR__ . '/lupo-includes/classes/AuthSessionManager.php';
-    $leaseManager = new AuthSessionManager();
-    $actor_id = $_SESSION['actor_id'];
-    $auth_user_id = $leaseManager->getAuthUserId($actor_id);
-    if ($auth_user_id) {
-        $_SESSION['auth_user_id'] = $auth_user_id;
-    }
-}
-
 $authService = new AuthService();
 $authService->logout();
 

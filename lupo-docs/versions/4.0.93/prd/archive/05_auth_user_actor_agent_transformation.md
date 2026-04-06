@@ -77,7 +77,7 @@ If none of these conditions are met, the actor is not leasable by that user.
 - **lupo_actor_lease_sessions**: Must include `auth_user_id`, `actor_id`, and `department_id` (copied from actor at lease time).
 - All IDs via IdGenerator::generate(), all timestamps BIGINT YYYYMMDDHHIISS, no AUTO_INCREMENT, no FOREIGN KEYS, no UNSIGNED.
 
-## Leasing Logic (PHP 5.6+)
+## Leasing Logic (PHP 7.4+)
 ```php
 function canUserLeaseActor($authUser, $actor) {
     if ($authUser->auth_user_id == $actor->created_by_auth_user_id) return true;

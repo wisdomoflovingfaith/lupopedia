@@ -2,9 +2,13 @@
 /**
  * Admin Agents section view. Expects: $agents (array), $base.
  * Displays complete agent listing with IDE detection, metrics, and action links.
+ * Status drift uses packed UTC via timestamp_ymdhis (no getTimestamp / Unix in this view).
  */
 if (!defined('LUPOPEDIA_CONFIG_LOADED')) {
     return;
+}
+if (!class_exists('timestamp_ymdhis', false)) {
+    require_once LUPOPEDIA_PATH . '/lupo-includes/classes/TimestampYmdhis.php';
 }
 $agents = isset($agents) && is_array($agents) ? $agents : array();
 $base = isset($base) ? $base : (defined('LUPOPEDIA_PUBLIC_PATH') ? LUPOPEDIA_PUBLIC_PATH : '');
@@ -33,21 +37,19 @@ $base = isset($base) ? $base : (defined('LUPOPEDIA_PUBLIC_PATH') ? LUPOPEDIA_PUB
         </thead>
         <tbody>
             <?php foreach ($agents as $row): ?>
-            <?php 
-                // Determine agent status
+            <?php
+                // created_ymdhis / last_active_ymdhis are packed BIGINT UTC — do not strtotime(); drift via timestamp_ymdhis::diffInSeconds (not getTimestamp).
                 $status = 'unknown';
-                if (isset($row['last_active_ymdhis']) && $row['last_active_ymdhis'] > 0) {
-                    $now = time();
-                    $lastActiveTime = strtotime($row['last_active_ymdhis'] . ' UTC');
-                    if ($lastActiveTime !== false) {
-                        $hoursSinceActive = ($now - $lastActiveTime) / 3600;
-                        if ($hoursSinceActive <= 24) {
-                            $status = 'active';
-                        } elseif ($hoursSinceActive <= 168) { // 7 days
-                            $status = 'dormant';
-                        } else {
-                            $status = 'archived';
-                        }
+                if (isset($row['last_active_ymdhis']) && (int) $row['last_active_ymdhis'] > 0) {
+                    $last_active_packed = (int) $row['last_active_ymdhis'];
+                    $now_packed = timestamp_ymdhis::now();
+                    $seconds_since_active = timestamp_ymdhis::diffInSeconds($now_packed, $last_active_packed);
+                    if ($seconds_since_active <= 86400) {
+                        $status = 'active';
+                    } elseif ($seconds_since_active <= 604800) {
+                        $status = 'dormant';
+                    } else {
+                        $status = 'archived';
                     }
                 } else {
                     $status = 'archived';
@@ -77,8 +79,26 @@ $base = isset($base) ? $base : (defined('LUPOPEDIA_PUBLIC_PATH') ? LUPOPEDIA_PUB
                 <td>
                     <span class="status-badge <?= $statusClass ?>"><?= htmlspecialchars($status) ?></span>
                 </td>
-                <td><?= isset($row['created_ymdhis']) && $row['created_ymdhis'] > 0 ? date('Y-m-d H:i', strtotime($row['created_ymdhis'] . ' UTC')) : 'Unknown' ?></td>
-                <td><?= isset($row['last_active_ymdhis']) && $row['last_active_ymdhis'] > 0 ? date('Y-m-d H:i', strtotime($row['last_active_ymdhis'] . ' UTC')) : 'Never' ?></td>
+                <td><?php
+                    if (isset($row['created_ymdhis']) && (int) $row['created_ymdhis'] > 0) {
+                        $s = str_pad((string) (int) $row['created_ymdhis'], 14, '0', STR_PAD_LEFT);
+                        echo strlen($s) >= 14
+                            ? htmlspecialchars(substr($s, 0, 4) . '-' . substr($s, 4, 2) . '-' . substr($s, 6, 2) . ' ' . substr($s, 8, 2) . ':' . substr($s, 10, 2) . ' UTC')
+                            : 'Unknown';
+                    } else {
+                        echo 'Unknown';
+                    }
+                ?></td>
+                <td><?php
+                    if (isset($row['last_active_ymdhis']) && (int) $row['last_active_ymdhis'] > 0) {
+                        $s = str_pad((string) (int) $row['last_active_ymdhis'], 14, '0', STR_PAD_LEFT);
+                        echo strlen($s) >= 14
+                            ? htmlspecialchars(substr($s, 0, 4) . '-' . substr($s, 4, 2) . '-' . substr($s, 6, 2) . ' ' . substr($s, 8, 2) . ':' . substr($s, 10, 2) . ' UTC')
+                            : 'Never';
+                    } else {
+                        echo 'Never';
+                    }
+                ?></td>
                 <td><?= isset($row['actions_24h']) ? (int) $row['actions_24h'] : 0 ?></td>
                 <td><?= isset($row['thread_count']) ? (int) $row['thread_count'] : 0 ?></td>
                 <td><?= isset($row['ticket_count']) ? (int) $row['ticket_count'] : 0 ?></td>

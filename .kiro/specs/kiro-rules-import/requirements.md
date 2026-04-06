@@ -21,7 +21,7 @@ lupopedia.headers:
 
 Antigravity has completed the canonical Lupopedia Rules System as part of v4.0.75. The root rules live in `lupo-rules/root/` (15 rule files covering database, architecture, actor, context, governance, and security doctrines). A propagation script exists at `lupo-scripts/propagate_agent_rules.php` that reads those root rules and writes IDE-specific outputs.
 
-This feature covers the full import pipeline for Kiro (actor_id 100, slug `kiro`, role "Schema Coordinator"): reviewing all root rules, running the propagation pipeline targeting Kiro, validating the output in `.kiro/rules/`, testing enforcement, and documenting results in `.kiro/README.md`. All work must comply with AGENTS.md constraints (PHP 5.6+, BIGINT timestamps, actor model, LUPOPEDIA HEADERS on files, no FKs).
+This feature covers the full import pipeline for Kiro (actor_id 100, slug `kiro`, role "Schema Coordinator"): reviewing all root rules, running the propagation pipeline targeting Kiro, validating the output in `.kiro/rules/`, testing enforcement, and documenting results in `.kiro/README.md`. All work must comply with AGENTS.md constraints (PHP 7.4+, BIGINT timestamps, actor model, LUPOPEDIA HEADERS on files, no FKs).
 
 ## Glossary
 
@@ -48,7 +48,7 @@ This feature covers the full import pipeline for Kiro (actor_id 100, slug `kiro`
 1. THE Propagation_Pipeline SHALL read all `.md` files in `lupo-rules/root/` except `README.md`.
 2. WHEN a root rule file is missing a `lupopedia.rules` block, THEN THE Propagation_Pipeline SHALL log a warning identifying the file and skip it without halting.
 3. WHEN a root rule file is missing a `rule_id` field inside its `lupopedia.rules.declares` block, THEN THE Propagation_Pipeline SHALL log a warning and assign the placeholder ID `UNKNOWN` for that rule.
-4. THE Propagation_Pipeline SHALL process all 15 rule files: `database-logic-prohibition-doctrine.md` (DB001), `migration-doctrine.md` (DB002), `pdo-db-database-access-doctrine.md` (DB003), `pk-reference-naming-doctrine.md` (DB004), `required-tables-future-features-doctrine.md` (DB005), `reserved-id-doctrine.md` (DB006), `toon-source-of-truth.md` (DB007), `database-offline-fallback-import-doctrine.md` (DB008), `flip-doctrine.md` (ARC001), `no-laravel-no-middleware.md` (ARC002), `php-5-6-compatibility.md` (ARC003), `single-install-no-4.0-upgrade-doctrine.md` (ARC004), `versioning-doctrine-single-source.md` (ARC005), `ide-agent-identity-actor-pairing-doctrine.md` (ACT001), `channels-federation-offline-session-doctrine.md` (CTX001).
+4. THE Propagation_Pipeline SHALL process all 15 rule files: `database-logic-prohibition-doctrine.md` (DB001), `migration-doctrine.md` (DB002), `pdo-db-database-access-doctrine.md` (DB003), `pk-reference-naming-doctrine.md` (DB004), `required-tables-future-features-doctrine.md` (DB005), `reserved-id-doctrine.md` (DB006), `toon-source-of-truth.md` (DB007), `database-offline-fallback-import-doctrine.md` (DB008), `flip-doctrine.md` (ARC001), `no-laravel-no-middleware.md` (ARC002), `php-7-4-compatibility.md` (ARC003), `single-install-no-4.0-upgrade-doctrine.md` (ARC004), `versioning-doctrine-single-source.md` (ARC005), `ide-agent-identity-actor-pairing-doctrine.md` (ACT001), `channels-federation-offline-session-doctrine.md` (CTX001).
 5. WHEN the review completes, THE Propagation_Pipeline SHALL output a count of rules processed and a count of warnings encountered.
 
 ---
@@ -114,7 +114,7 @@ This feature covers the full import pipeline for Kiro (actor_id 100, slug `kiro`
 5. THE Enforcement_Test SHALL verify that a corresponding Rule_File exists in `.kiro/rules/` for each rule `id` in the Rules_JSON.
 6. WHEN all checks pass, THE Enforcement_Test SHALL output a pass summary with the count of rules validated.
 7. WHEN any check fails, THE Enforcement_Test SHALL output a failure message identifying the specific rule `id` and the check that failed, and SHALL exit with a non-zero code.
-8. THE Enforcement_Test SHALL be a standalone PHP script compatible with PHP 5.6 and executable via `php lupo-tests/unit/kiro_rules_enforcement.php`.
+8. THE Enforcement_Test SHALL be a standalone PHP script compatible with PHP 7.4 and executable via `php lupo-tests/unit/kiro_rules_enforcement.php`.
 
 ---
 

@@ -6,7 +6,7 @@ lupopedia.headers:
   lupopedia.version: "4.0.76"
   lupopedia.schema: "vscode_rule"
   file_path_from_root: ".vscode/lupopedia/rules/flip-doctrine.md"
-  last_modified_utc: "20260402"
+  last_modified_utc: "20260406"
   system_version: "4.0.76"
   source_path: "lupo-rules/root/flip-doctrine.md"
   artifact_type: "rule"

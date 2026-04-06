@@ -9,14 +9,17 @@ lupopedia.metadata:
   comment: "Comprehensive index of all root rules and doctrines for Lupopedia development"
 
 lupopedia.headers:
-  actor_id: 1
-  actor_name: "wolfie"
+  author:
+    type: "actor"
+    id: 1
+    name: "wolfie"
   delegation_chain: "wolfie:root"
   lupopedia.schema: index
   file_path_from_root: "lupo-rules/root/README.md"
   web_path: "http://www.lupopedia.com/lupopedia/lupo-rules/root/README.md"
   federation_node_id: 0
-  last_modified_utc: "20260402224949"
+  when_updated: "20260406044907"
+  last_modified_utc: "20260406044907"
   artifact_type: "rules_index"
   artifact_kind: "root_rules"
   purpose: "Complete index and explanation of all root rules, doctrines, and development constraints for Lupopedia"
@@ -49,7 +52,7 @@ lupopedia.footer:
 - **No dependencies** - Everything needed is in the repo
 - **No frameworks** - Raw PHP, raw SQL, you know every line
 - **Universal deployment** - FTP works everywhere
-- **PHP 5.6+ compatibility** - Works on any server
+- **PHP 7.4+ compatibility** - Works on any supported server
 - **Your code, your rules** - No vendor lock-in
 
 **This manifesto explains WHY these rules exist. Read it first.**
@@ -114,10 +117,9 @@ The code you're looking at outran its author for 11 years. That's not luck - tha
 
 ## 🚫 Development Constraints (Critical)
 
-### **[PHP_VERSION_COMPATIBILITY.md](PHP_VERSION_COMPATIBILITY.md)**
-**Purpose:** Ensure PHP 5.6+ compatibility for shared hosting  
-**Forbidden:** PHP 7+ features (`??`, `<=>`, type hints, anonymous classes)  
-**Required:** Polyfills for `random_bytes()`, `random_int()`
+### **[PHP_VERSION_COMPATIBILITY.md](PHP_VERSION_COMPATIBILITY.md)** / **[php-7-4-compatibility.md](php-7-4-compatibility.md)**
+**Purpose:** **PHP 7.4+** floor through supported **8.x** on shared core paths  
+**Detail:** Allowed/forbidden syntax is defined in **`php-7-4-compatibility.md`** (propagated to IDE `.mdc` files). **`PHP_VERSION_COMPATIBILITY.md`** is the short runtime summary.
 
 ### **[NO_COMPOSER_DOCTRINE.md](NO_COMPOSER_DOCTRINE.md)**
 **Forbidden:** Composer, `vendor/` directory, `composer.json`  
@@ -347,7 +349,7 @@ The code you're looking at outran its author for 11 years. That's not luck - tha
 
 ### **[VALIDATION_RULES/](validation_rules/)**
 **Rules:** Input validation, output validation, boundary checks  
-**Implementation:** PHP 5.6+ compatible validation functions  
+**Implementation:** PHP 7.4+ compatible validation functions  
 **Security:** XSS prevention, SQL injection prevention
 
 ---
@@ -394,7 +396,7 @@ The code you're looking at outran its author for 11 years. That's not luck - tha
 ## 📋 Quick Reference Checklist
 
 ### Before Writing Code:
-- [ ] PHP 5.6+ compatible (no PHP 7+ features)
+- [ ] PHP 7.4+ compatible (see `php-7-4-compatibility.md`)
 - [ ] No Composer dependencies
 - [ ] No framework code (Laravel, Symfony)
 - [ ] Use `lupo-includes/` for external libraries
@@ -418,7 +420,7 @@ The code you're looking at outran its author for 11 years. That's not luck - tha
 - [ ] Place in `lupo-includes/{library-name}/`
 - [ ] No Composer files
 - [ ] Manual inclusion only
-- [ ] PHP 5.6+ compatible
+- [ ] PHP 7.4+ compatible
 
 ---
 

@@ -2,7 +2,7 @@
 /**
  * Phase 4: Antigravity governance — monitor and reject non-compliant headers.
  * Scans Markdown under lupo-docs/ for canonical Synthesized Documentation headers;
- * reports missing or invalid headers. PHP 5.6 compatible. Uses LUPOPEDIA_PATH.
+ * reports missing or invalid headers. PHP 7.4+ compatible. Uses LUPOPEDIA_PATH.
  *
  * Usage: php lupo-bin/antigravity_governance.php [path]
  *   php lupo-bin/antigravity_governance.php

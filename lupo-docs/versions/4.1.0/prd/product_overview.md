@@ -57,7 +57,7 @@ Before 4.1.0 becomes active release execution scope, all of the following must b
 - A post-approval milestone, not the immediate next patch after 4.0.88
 - Installable at `example.com/lupopedia/`
 - Shared-hosting compatible
-- PHP 5.6+ compatible
+- PHP 7.4+ compatible
 - Deterministic and schema-stable
 - Feature-parity focused for core Crafty Syntax 3.7.5 behaviors
 - Operationally boring and predictable

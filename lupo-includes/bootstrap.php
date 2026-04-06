@@ -1,8 +1,26 @@
 <?php
-/**
- * Bootstrap file for loading the lupopedia . sets the constants and connection to the database 
- */
-
+/*
+---
+lupopedia.headers:
+  header_format_version: 2
+  lupopedia.schema: bootstrap
+  when_updated: "20260406014546"
+  file_path_from_root: "lupo-includes/bootstrap.php"
+  web_path: "http://www.lupopedia.com/lupopedia/lupo-includes/bootstrap.php"
+  last_modified_utc: "20260406014546"
+  federation_node_id: 0
+  channel_id: 42
+  author:
+    type: "actor"
+    id: 102
+    name: "CURSOR"
+  delegation_chain: "cursor:root"
+  artifact_type: "bootstrap"
+  artifact_kind: "initialization"
+  purpose: "Lupopedia bootstrap — constants, DatabaseFactory connection, PHP session cookie params, App\\Auth\\Session + idle tick, service registration."
+  tags: ["bootstrap", "session", "database", "services"]
+---
+*/
 
 // is config loaded
 if (!defined('LUPOPEDIA_CONFIG_LOADED')) {
@@ -85,6 +103,7 @@ require_once(__DIR__ . DIRECTORY_SEPARATOR . 'classes' . DIRECTORY_SEPARATOR . '
 
 try {
     $mydatabase = DatabaseFactory::getConnection();
+    // Legacy compatibility: prefer DatabaseFactory::getConnection() or lupo_get_db() in new code.
     $GLOBALS['mydatabase'] = $mydatabase;
     $mydatabase->fetchRow('SELECT 1');
 } catch (Exception $e) {
@@ -107,6 +126,11 @@ try {
         }
         die(nl2br(htmlspecialchars($errorMsg)));
     }
+}
+
+// Request-scoped UI collection context (not session authority — §17.7). Default 0 = system collection.
+if (!isset($GLOBALS['collection_id'])) {
+    $GLOBALS['collection_id'] = 0;
 }
 
 // Security Headers
@@ -145,6 +169,8 @@ if (function_exists('date_default_timezone_set')) {
  * Session class replaces procedural session helpers. One instance per request.
  */
 if (!defined('LUPO_APP_DIR')) {
+    // Shipped services (ActorService, SavedCollectionsService, …) live under this content tree path in this repo.
+    // Canonical auth Session class loads from ABSPATH/app/auth when present (see $canonical_session below).
     define('LUPO_APP_DIR', 'lupo-database' . DIRECTORY_SEPARATOR . 'lupopedia' . DIRECTORY_SEPARATOR . 'content' . DIRECTORY_SEPARATOR . 'lupo-app');
 }
 if (!defined('LUPO_ACTORS_DIR')) {
@@ -157,11 +183,14 @@ if (!defined('LUPO_PROMPTS_SUBDIR')) {
     define('LUPO_PROMPTS_SUBDIR', 'prompts');
 }
 $app_auth = LUPOPEDIA_ABSPATH . LUPO_APP_DIR . DIRECTORY_SEPARATOR . 'auth';
+$canonical_session = LUPOPEDIA_ABSPATH . 'app' . DIRECTORY_SEPARATOR . 'auth' . DIRECTORY_SEPARATOR . 'Session.php';
+if (file_exists($canonical_session)) {
+    require_once $canonical_session;
+} elseif (file_exists($app_auth . DIRECTORY_SEPARATOR . 'Session.php')) {
+    require_once $app_auth . DIRECTORY_SEPARATOR . 'Session.php';
+}
 if (file_exists($app_auth . DIRECTORY_SEPARATOR . 'SessionHandler.php')) {
     require_once $app_auth . DIRECTORY_SEPARATOR . 'SessionHandler.php';
-}
-if (file_exists($app_auth . DIRECTORY_SEPARATOR . 'Session.php')) {
-    require_once $app_auth . DIRECTORY_SEPARATOR . 'Session.php';
 }
 if (file_exists($app_auth . DIRECTORY_SEPARATOR . 'AuthRoleResolver.php')) {
     require_once $app_auth . DIRECTORY_SEPARATOR . 'AuthRoleResolver.php';
@@ -208,15 +237,12 @@ if (class_exists('App\Auth\Session') && isset($GLOBALS['mydatabase'])) {
 // Start session and run idle check then validate
 if ($lupo_session !== null) {
     $lupo_session->start();
-    // Default collection_id to 0 so saved-collections-container has an active collection on first load (flash only; identity from DB).
-    if (!isset($_SESSION['collection_id']) || $_SESSION['collection_id'] === '') {
-        $_SESSION['collection_id'] = 0;
-    }
-    // Model A: identity from DB; do not store actor_id in $_SESSION.
+    // Model A: identity from lupo_sessions; do not store actor_id in $_SESSION. UI collection context: $GLOBALS['collection_id'] (set above).
     if (defined('LUPOPEDIA_DEBUG') && LUPOPEDIA_DEBUG) {
         error_log("SESSION: Session started - ID: " . substr($lupo_session->getSessionId(), 0, 8) . "...");
     }
     try {
+        // SessionManager: idle timeout / touch only (lupo_sessions); not an alternate identity authority — complements App\Auth\Session.
         $sessionManager = new SessionManager($lupo_session);
         $sessionManager->tick();
         $actor_id = $lupo_session->validateSession();

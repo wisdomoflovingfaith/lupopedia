@@ -1,0 +1,118 @@
+{
+  "table_name": "lupo_agent_tool_calls",
+  "fields": [
+    "`agent_tool_call_id` bigint NOT NULL",
+    "`agent_id` bigint NOT NULL",
+    "`faucet_id` bigint",
+    "`domain_id` bigint NOT NULL",
+    "`tool_name` varchar(150) NOT NULL",
+    "`action_type` varchar(100)",
+    "`input_json` text",
+    "`output_json` text",
+    "`provider` varchar(50)",
+    "`model_name` varchar(150)",
+    "`tokens_prompt` int DEFAULT '0'",
+    "`tokens_completion` int DEFAULT '0'",
+    "`tokens_total` int DEFAULT '0'",
+    "`cost_usd` decimal(10,6) DEFAULT '0.000000'",
+    "`latency_ms` int DEFAULT '0'",
+    "`status` varchar(50) DEFAULT 'success'",
+    "`error_message` text",
+    "`parent_call_id` bigint",
+    "`thread_id` bigint",
+    "`message_id` bigint",
+    "`created_ymdhis` bigint NOT NULL DEFAULT 0",
+    "`updated_ymdhis` bigint NOT NULL DEFAULT 0",
+    "`is_deleted` tinyint NOT NULL DEFAULT '0'",
+    "`deleted_ymdhis` bigint",
+    "`archived_ymdhis` bigint DEFAULT 0",
+    "`completed_ymdhis` bigint"
+  ],
+  "data": [],
+  "indexes": [
+    {
+      "index_name": "lupo_agent_tool_calls_idx_agent_created",
+      "columns": [
+        "agent_id",
+        "created_ymdhis"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_agent_tool_calls_idx_agent",
+      "columns": [
+        "agent_id"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_agent_tool_calls_idx_faucet",
+      "columns": [
+        "faucet_id"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_agent_tool_calls_idx_domain",
+      "columns": [
+        "domain_id"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_agent_tool_calls_idx_model",
+      "columns": [
+        "model_name"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_agent_tool_calls_idx_provider",
+      "columns": [
+        "provider"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_agent_tool_calls_idx_parent",
+      "columns": [
+        "parent_call_id"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_agent_tool_calls_idx_thread",
+      "columns": [
+        "thread_id"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_agent_tool_calls_idx_message",
+      "columns": [
+        "message_id"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    }
+  ],
+  "relationships": [],
+  "primary_key": {
+    "column_name": "agent_tool_call_id",
+    "expected_name": "agent_tool_call_id",
+    "is_correct": true,
+    "needs_rename": false
+  },
+  "doctrine_metadata": {
+    "no_foreign_keys": true,
+    "no_triggers": true
+  }
+}

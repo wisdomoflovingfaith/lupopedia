@@ -223,6 +223,9 @@ if (!version_compare($php_ver, '5.3.0', '>=')) {
 if (!extension_loaded('pdo_mysql')) {
     $preflight_blocking[] = 'The pdo_mysql extension is required.';
 }
+if (!extension_loaded('mysqli')) {
+    $preflight_blocking[] = 'The mysqli extension is required for the install wizard (WordPress-style DB driver).';
+}
 if (!extension_loaded('json')) {
     $preflight_blocking[] = 'The json extension is required.';
 }
@@ -250,7 +253,7 @@ if (!empty($preflight_blocking)) {
     foreach ($preflight_blocking as $msg) {
         echo '<li>' . htmlspecialchars($msg) . '</li>';
     }
-    echo '</ul><p>Please fix the above and reload this page. Lupopedia requires PHP 5.3+, pdo_mysql, json, and a writable project root.</p></body></html>';
+    echo '</ul><p>Please fix the above and reload this page. Lupopedia requires PHP 5.3+, pdo_mysql, mysqli, json, and a writable project root.</p></body></html>';
     exit;
 }
 
@@ -420,7 +423,7 @@ if ($step === 'credentials') {
                 $errors[] = InstallWizardLogger::safeErrorMessage('validation');
             }
             error_log('Lupopedia install credentials validation: ' . $e->getMessage());
-        } catch (PDOException $e) {
+        } catch (Exception $e) {
             $errors[] = 'Database connection failed. Check host, database name, user, and password.';
             error_log('Lupopedia install credentials: ' . $e->getMessage());
         }
@@ -473,7 +476,7 @@ if ($step === 'normalize') {
     }
     try {
         $pdo = InstallWizardDb::connectPdo($db_vars);
-    } catch (PDOException $e) {
+    } catch (Exception $e) {
         $errors[] = 'Database connection failed. Check your credentials.';
         error_log('Lupopedia install normalize: ' . $e->getMessage());
         $step = 'credentials';
@@ -565,7 +568,7 @@ if ($step === 'run') {
     if (!$run_is_get_with_result) {
         try {
             $pdo = InstallWizardDb::connectPdo($db_vars);
-        } catch (PDOException $e) {
+        } catch (Exception $e) {
             $errors[] = 'Database connection failed. Check your credentials.';
             error_log('Lupopedia install run step: ' . $e->getMessage());
             $step = 'confirm';
@@ -594,7 +597,7 @@ if ($step === 'run') {
                 try {
                     $st = $pdo->query("SHOW TABLES LIKE " . $pdo->quote($dept_table));
                     $schema_ok = $st && $st->fetch() !== false;
-                } catch (PDOException $e) {
+                } catch (Exception $e) {
                     $schema_ok = false;
                 }
                 if (!$schema_ok) {
@@ -660,7 +663,7 @@ if ($step === 'run') {
                         $nextId = $max >= 10000 ? $max + 1 : 10000;
                         $pdo->exec("ALTER TABLE " . $actors_quoted . " AUTO_INCREMENT = " . (int) $nextId);
                         $log[] = InstallWizardLogger::logEntry('ok', 'Set lupo_actors AUTO_INCREMENT to ' . $nextId . ' (human actors from 10000).');
-                    } catch (PDOException $e) {
+                    } catch (Exception $e) {
                         $log[] = InstallWizardLogger::logEntry('error', 'Could not set actor_id minimum (see server log).');
                         error_log('Lupopedia wizard AUTO_INCREMENT: ' . $e->getMessage());
                     }
@@ -714,8 +717,9 @@ if ($step === 'run') {
             require_once LUPOPEDIA_PATH . '/lupo-includes/functions/ai_activation.php';
             $core_actors = array(0, 1, 2, 111); // SYSTEM, CAPTAIN (wolfie), LILITH, COUNTERMEASURE
             $log[] = InstallWizardLogger::logEntry('ok', '--- Activating CORE AI Agents (session-backed where applicable) ---');
+            $pdo_actor = InstallWizardDb::connectPdoBuffered($db_vars);
+            $actor_db = new PDO_DB($pdo_actor);
             foreach ($core_actors as $actor_id) {
-                $actor_db = new PDO_DB($pdo); // Wrap PDO for our helper
                 if (ensureActorActive($actor_id, $actor_db, 'initial_install_activation')) {
                     $log[] = InstallWizardLogger::logEntry('ok', "Activated Actor ID: $actor_id");
                 } else {
@@ -833,7 +837,7 @@ if ($step === 'config') {
                     if ($stmt && $stmt->execute(array($config_values['admin_email'])) && $stmt->fetch()) {
                         $config_errors[] = 'Admin email is already used by a migrated user. Choose a different email.';
                     }
-                } catch (PDOException $e) {
+                } catch (Exception $e) {
                     // table may not exist on new install; skip collision check
                 }
             }
@@ -851,7 +855,7 @@ if ($step === 'config') {
                         if (!InstallWizardMainAdmin::createMainAdmin($pdoConfig, $table_prefix, $config_values['admin_email'], $admin_password_for_create, $writeLog)) {
                             $config_errors[] = 'Could not create main admin user. Check the log.';
                         }
-                    } catch (PDOException $e) {
+                    } catch (Exception $e) {
                         $config_errors[] = 'Database connection failed when creating main admin: ' . $e->getMessage();
                         $writeLog[] = InstallWizardLogger::logEntry('error', $e->getMessage());
                     }
@@ -1245,13 +1249,14 @@ if ($baseUrl === '') {
                 /lupopedia/). The project folder itself is the web-accessible directory. All URLs and paths will be relative
                 to this subdirectory using LUPOPEDIA_PUBLIC_PATH.</p>
             <p><strong>Correct URL examples:</strong> https://example.com/lupopedia/ or https://localhost/lupopedia/</p>
-            <p><strong>Requirements:</strong> PHP 5.3+, PDO MySQL, JSON extension, writable project root, and a
+            <p><strong>Requirements:</strong> PHP 5.3+, PDO MySQL, mysqli, JSON extension, writable project root, and a
                 MySQL/MariaDB database. For upgrade: existing Crafty Syntax 3.7.5 data.</p>
             <div class="log-section">
                 <h4>System diagnostics</h4>
                 <ul class="diagnostics-list" style="list-style:none; padding:0; margin:0.5rem 0;">
                     <li class="diag-ok">&#10003; PHP <?php echo htmlspecialchars(phpversion()); ?> (5.3+ required)</li>
                     <li class="diag-ok">&#10003; pdo_mysql</li>
+                    <li class="diag-ok">&#10003; mysqli</li>
                     <li class="diag-ok">&#10003; json</li>
                     <li class="diag-ok">&#10003; Project root writable</li>
                     <?php foreach ($preflight_warnings as $w): ?>

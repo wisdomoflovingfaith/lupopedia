@@ -5,8 +5,10 @@ lupopedia.headers:
   system_version: "4.0.80"
   file_path_from_root: "lupo-rules/root/MULTI_AGENT_COORDINATION_DOCTRINE.md"
   channel_id: 42
-  actor_id: 1
-  actor_name: "wolfie"
+  author:
+    type: "actor"
+    id: 1
+    name: "wolfie"
   artifact_type: "doctrine"
   artifact_kind: "multi_agent_coordination"
   purpose: "Defines deterministic coordination rules for multi-agent execution in Lupopedia using context-based orchestration with rules, skills, and personas"

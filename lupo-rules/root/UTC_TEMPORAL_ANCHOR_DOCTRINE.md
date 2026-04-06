@@ -6,8 +6,10 @@ lupopedia.headers:
   web_path: http://www.lupopedia.com/lupopedia/lupo-rules/root/UTC_TEMPORAL_ANCHOR_DOCTRINE.md
   last_modified_utc: '20260402224949'
   channel_id: 42
-  actor_id: 102
-  actor_name: cursor
+  author:
+    type: "actor"
+    id: 102
+    name: "cursor"
   delegation_chain: cursor:root
   artifact_type: doctrine
   artifact_kind: root_rule

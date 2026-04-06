@@ -51,7 +51,7 @@ LUPOPEDIA_CONFIG_PATH   // Path to config file
 ### URL Generation
 
 ```php
-// Function for generating URLs (PHP 5.6 compatible)
+// Function for generating URLs (PHP 7.4+ compatible)
 function lupo_url($path) {
     $base = rtrim(LUPOPEDIA_PUBLIC_PATH, '/');
     $path = ltrim($path, '/');
@@ -208,7 +208,7 @@ mail($to, $subject, $message, $headers);
 
 ### Minimum Requirements
 
-- PHP 5.6.0 or higher
+- PHP 7.4.0 or higher
 - MySQL 5.5+ or MariaDB 10.0+
 - 64MB PHP memory limit
 - 100MB disk space

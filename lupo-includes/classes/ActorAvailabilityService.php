@@ -323,8 +323,10 @@ class ActorAvailabilityService
      */
     private function _subtractMinutes($ymdhis, $minutes)
     {
-        $timestamp = strtotime($ymdhis);
-        $new_timestamp = $timestamp - ($minutes * 60);
-        return gmdate('YmdHis', $new_timestamp);
+        if (!class_exists('timestamp_ymdhis', false)) {
+            require_once defined('LUPOPEDIA_PATH') ? LUPOPEDIA_PATH . '/lupo-includes/classes/TimestampYmdhis.php' : __DIR__ . '/TimestampYmdhis.php';
+        }
+        $packed = (int) preg_replace('/\D/', '', (string) $ymdhis);
+        return (string) timestamp_ymdhis::subtractSeconds($packed, (int) $minutes * 60);
     }
 }

@@ -6,7 +6,7 @@ lupopedia.headers:
   lupopedia.version: "4.0.79"
   lupopedia.schema: "lilith_rule"
   file_path_from_root: ".lilith/rules/required-tables-future-features-doctrine.md"
-  last_modified_utc: "20260402"
+  last_modified_utc: "20260406"
   system_version: "4.0.79"
   source_path: "lupo-rules/root/required-tables-future-features-doctrine.md"
   artifact_type: "rule"

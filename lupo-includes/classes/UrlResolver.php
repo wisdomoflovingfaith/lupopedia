@@ -1,4 +1,27 @@
 <?php
+/*
+---
+lupopedia.headers:
+  header_format_version: 2
+  lupopedia.schema: class
+  when_updated: "20260406001643"
+  file_path_from_root: "lupo-includes/classes/UrlResolver.php"
+  web_path: "http://www.lupopedia.com/lupopedia/lupo-includes/classes/UrlResolver.php"
+  last_modified_utc: "20260406001643"
+  federation_node_id: 0
+  channel_id: 42
+  author:
+    type: "actor"
+    id: 102
+    name: "CURSOR"
+  delegation_chain: "cursor:root"
+  artifact_type: "class"
+  artifact_kind: "routing"
+  purpose: "Web path resolution (DB lupo_contents, flip_headers.csv, docs/*.md); path-anchored FS reads; PDO_DB via DatabaseFactory only."
+  tags: ["routing", "url", "security", "timestamp_ymdhis", "pdo_db"]
+---
+*/
+
 /**
  * UrlResolver — Runtime web path resolution (4.0.18).
  *
@@ -8,7 +31,8 @@
  * canonical vs alias; redirect vs serve from config.
  *
  * PHP 5.3 compatible: array() only, no ??, no typed properties/return types.
- * Uses PDO_DB only; table prefix from LUPO_TABLE_PREFIX.
+ * DB tier uses DatabaseFactory::getConnection() only (PDO_DB). Filesystem tier
+ * anchors reads under repo root (realpath). Request paths use $UNTRUSTED boundary.
  * Doctrine: docs/channels/doctrine/WEB_ROUTING_DOCTRINE_4_0_18.md §2.1, §4.2.
  *
  * @package Lupopedia
@@ -20,12 +44,12 @@ if (!defined('LUPOPEDIA_PATH')) {
 
 class UrlResolver {
 
-    /** @var object PDO_DB */
-    private $db;
     /** @var string Table prefix (e.g. lupo_) */
     private $prefix;
     /** @var string Repo root path (LUPOPEDIA_PATH or LUPOPEDIA_ABSPATH) */
     private $repo_root;
+    /** @var string|false Normalized realpath of repo root, or false if unavailable */
+    private $repo_root_real;
     /** @var string Path to exports/flip_headers.csv */
     private $csv_path;
     /** @var array|null Cached path map from CSV (normalized_path => row); null until loaded */
@@ -40,22 +64,66 @@ class UrlResolver {
     private $cache_dir;
 
     /**
-     * @param object $db PDO_DB instance (may be null; then tier 1 skipped)
      * @param string $prefix Table prefix (e.g. lupo_)
      * @param string $repo_root Full path to repo root
      * @param bool $alias_redirect If true, caller should redirect alias to canonical
      * @param bool $log_fallback If true, error_log when using CSV or .md fallback
      */
-    public function __construct($db, $prefix, $repo_root, $alias_redirect = true, $log_fallback = true) {
-        $this->db = $db;
+    public function __construct($prefix, $repo_root, $alias_redirect = true, $log_fallback = true) {
         $this->prefix = $prefix;
         $this->repo_root = rtrim(str_replace('\\', '/', $repo_root), '/');
+        $repoOs = str_replace('/', DIRECTORY_SEPARATOR, $this->repo_root);
+        $rp = realpath($repoOs);
+        $this->repo_root_real = ($rp !== false) ? rtrim(str_replace('\\', '/', $rp), '/') : false;
         $this->csv_path = $this->repo_root . '/exports/flip_headers.csv';
         $this->csv_map = null;
         $this->log_fallback = $log_fallback;
         $this->alias_redirect = $alias_redirect;
         $this->cache_ttl = 3600;
         $this->cache_dir = $this->repo_root . '/cache/resolved';
+    }
+
+    /**
+     * Reject traversal / null-byte / encoded-dot patterns on raw HTTP-derived input.
+     *
+     * @param string $raw
+     * @return bool
+     */
+    private function isSafeRequestPath($raw) {
+        $s = (string) $raw;
+        if ($s === '') {
+            return false;
+        }
+        if (strpos($s, "\0") !== false) {
+            return false;
+        }
+        if (preg_match('/%2e%2e|%2E%2E/i', $s)) {
+            return false;
+        }
+        $dec = rawurldecode($s);
+        if (strpos($dec, '..') !== false) {
+            return false;
+        }
+        return true;
+    }
+
+    /**
+     * True if normalized absolute file path (forward slashes) is inside repo root.
+     *
+     * @param string $pathRealNormalized
+     * @return bool
+     */
+    private function pathIsUnderRepo($pathRealNormalized) {
+        if ($this->repo_root_real === false || $this->repo_root_real === '') {
+            return false;
+        }
+        $base = rtrim((string) $this->repo_root_real, '/');
+        $path = rtrim(str_replace('\\', '/', $pathRealNormalized), '/');
+        if ($path === $base) {
+            return true;
+        }
+        $need = $base . '/';
+        return (strlen($path) > strlen($base) && strpos($path, $need) === 0);
     }
 
     /**
@@ -103,9 +171,22 @@ class UrlResolver {
      * @return array|null Associative array: content_id, file_path, canonical, is_alias, source, slug_encoding; or null if not found
      */
     public function resolve($request_path, $is_authenticated = null) {
-        $path = self::normalizePath($request_path);
+        $UNTRUSTED = array('path' => $request_path);
+        if (!$this->isSafeRequestPath($UNTRUSTED['path'])) {
+            return null;
+        }
+        $path = self::normalizePath($UNTRUSTED['path']);
         if ($path === '') {
             return null;
+        }
+        if (strpos($path, '..') !== false) {
+            return null;
+        }
+        $segments = explode('/', $path);
+        foreach ($segments as $seg) {
+            if ($seg === '..') {
+                return null;
+            }
         }
 
         if ($is_authenticated === null) {
@@ -174,10 +255,18 @@ class UrlResolver {
             return null;
         }
         $data = @json_decode($raw, true);
-        if (!is_array($data) || !isset($data['expires']) || !isset($data['value'])) {
+        if (!is_array($data) || !isset($data['value'])) {
             return null;
         }
-        if (time() > (int) $data['expires']) {
+        if (!isset($data['expires_ymdhis'])) {
+            @unlink($file);
+            return null;
+        }
+        if (!class_exists('timestamp_ymdhis', false)) {
+            require_once LUPOPEDIA_PATH . '/lupo-includes/classes/TimestampYmdhis.php';
+        }
+        $expired = ((int) $data['expires_ymdhis'] < timestamp_ymdhis::now());
+        if ($expired) {
             @unlink($file);
             return null;
         }
@@ -213,8 +302,11 @@ class UrlResolver {
             return;
         }
         $file = $dir . '/' . $key;
-        $expires = time() + (int) $ttl;
-        $data = array('expires' => $expires, 'value' => $value);
+        if (!class_exists('timestamp_ymdhis', false)) {
+            require_once LUPOPEDIA_PATH . '/lupo-includes/classes/TimestampYmdhis.php';
+        }
+        $expiresPacked = timestamp_ymdhis::addSeconds(timestamp_ymdhis::now(), (int) $ttl);
+        $data = array('expires_ymdhis' => $expiresPacked, 'value' => $value);
         @file_put_contents($file, json_encode($data), LOCK_EX);
     }
 
@@ -255,18 +347,38 @@ class UrlResolver {
      * @return array|null Result or null
      */
     private function resolveFromDb($path) {
-        if ($this->db === null) {
+        if (!defined('LUPOPEDIA_CONFIG_LOADED')) {
+            return null;
+        }
+        if (!class_exists('DatabaseFactory', false)) {
+            $df = LUPOPEDIA_PATH . '/lupo-includes/classes/DatabaseFactory.php';
+            if (is_file($df)) {
+                require_once $df;
+            }
+        }
+        if (!class_exists('DatabaseFactory', false)) {
             return null;
         }
         try {
-            $table = $this->db->quoteIdentifier($this->prefix . 'contents');
+            $db = DatabaseFactory::getConnection();
+        } catch (Exception $e) {
+            if ($this->log_fallback) {
+                error_log('UrlResolver: DB tier skipped (no connection): ' . $e->getMessage());
+            }
+            return null;
+        }
+        if (!($db instanceof PDO_DB)) {
+            return null;
+        }
+        try {
+            $table = $db->quoteIdentifier($this->prefix . 'contents');
             $fp_docs = 'docs/' . $path . '.md';
             $fp_raw = $path . '.md';
             $sql = "SELECT content_id, file_path_from_root FROM " . $table
                 . " WHERE (file_path_from_root = :fp_docs OR file_path_from_root = :fp_raw OR custom_path = :path)"
                 . " AND (is_deleted = 0 OR is_deleted IS NULL) AND (is_active = 1 OR is_active IS NULL) LIMIT 1";
             $params = array('fp_docs' => $fp_docs, 'fp_raw' => $fp_raw, 'path' => $path);
-            $row = $this->db->fetchRow($sql, $params);
+            $row = $db->fetchRow($sql, $params);
             if ($row && isset($row['content_id']) && isset($row['file_path_from_root'])) {
                 $canonical = '/' . str_replace('.md', '', $row['file_path_from_root']);
                 if (strpos($canonical, '/docs/') === 0) {
@@ -468,16 +580,31 @@ class UrlResolver {
      * @return array|null Result or null
      */
     private function resolveFromFilesystem($path) {
+        if ($this->repo_root_real === false) {
+            return null;
+        }
         $candidates = array(
             'docs/' . $path . '.md',
             $path . '.md',
         );
         foreach ($candidates as $rel) {
-            $full = $this->repo_root . '/' . str_replace('/', DIRECTORY_SEPARATOR, $rel);
-            if (!is_file($full) || !is_readable($full)) {
+            if (strpos($rel, '..') !== false) {
                 continue;
             }
-            $content = @file_get_contents($full, false, null, 0, 8192);
+            $rel = str_replace('\\', '/', $rel);
+            $full = str_replace('/', DIRECTORY_SEPARATOR, $this->repo_root . '/' . $rel);
+            $realFull = realpath($full);
+            if ($realFull === false) {
+                continue;
+            }
+            $realNorm = str_replace('\\', '/', $realFull);
+            if (!$this->pathIsUnderRepo($realNorm)) {
+                continue;
+            }
+            if (!is_file($realFull) || !is_readable($realFull)) {
+                continue;
+            }
+            $content = file_get_contents($realFull, false, null, 0, 8192);
             if ($content === false) {
                 continue;
             }

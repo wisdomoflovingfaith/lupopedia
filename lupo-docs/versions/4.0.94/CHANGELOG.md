@@ -1,3 +1,489 @@
+---
+lupopedia.headers:
+  header_format_version: 2
+  lupopedia.schema: changelog
+  when_updated: "20260406050158"
+  file_path_from_root: "lupo-docs/versions/4.0.94/CHANGELOG.md"
+  web_path: "http://www.lupopedia.com/lupopedia/lupo-docs/versions/4.0.94/CHANGELOG.md"
+  last_modified_utc: "20260406050158"
+  federation_node_id: 0
+  channel_id: 42
+  thread_id: "version-4.0.94-changelog"
+  author:
+    type: "actor"
+    id: 102
+    name: "CURSOR"
+  delegation_chain: "cursor:root"
+  artifact_type: "changelog"
+  artifact_kind: "version"
+  purpose: "Record of significant changes for Lupopedia 4.0.94"
+  tags: ["changelog", "version", "4.0.94", "cursor"]
+lupopedia.footer:
+  last_verified: "20260406050158"
+  verified_by:
+    identity_type: actor
+    actor_id: 102
+    agent_name_identity: "Cursor IDE Agent"
+  orchestrator: "cursor:root"
+---
+
+# file: lupo-docs/versions/4.0.94/CHANGELOG.md — delegation: cursor:root — web_path: http://www.lupopedia.com/lupopedia/lupo-docs/versions/4.0.94/CHANGELOG.md
+
+# Changelog - Lupopedia 4.0.94
+
+## [4.0.94] - 2026-04-06
+
+### Packaging gate (pre-Softaculous)
+
+- **`AuthSessionManager`**: When `LUPOPEDIA_DEBUG` is true, `__construct` logs a deprecation reminder to migrate session authority to `App\Auth\Session` (mapping helpers remain until 4.1.0).
+- **`ToonSchemaCache`**: When `LUPOPEDIA_DEBUG` is true, `__construct` logs deprecation in favor of canonical JSON under `lupo-database/lupopedia/json/` (removal targeted 4.1.0).
+- **`main_layout.php`**: Bulk layout CSS moved to `lupo-includes/css/main-layout.css`; decorative border tile `background` rules stay in a small inline `<style>` block because URLs require `LUPOPEDIA_PUBLIC_PATH`.
+- **`main_layout.php`**: Nav/collections JavaScript moved to `lupo-includes/js/main-layout.js` and `main-layout-collections.js`; inline script sets `window.LUPO_MAIN_LAYOUT` (public path + collection context) for API `fetch` targets.
+- **`lupo-rules/root/`**: Front matter migrated from flat `actor_id` / `actor_name` to structured `author` block (`type`, `id`, `name`) where those keys appeared at header indent; body examples unchanged.
+
+### Added
+
+#### Constitutional Rules
+
+- **PK Naming Rule (Rule 93.PK_NAMING)** – Added to `00_root_constitutional_system_requirements.md`:
+  - Primary keys MUST be named `<singular_table_name>_id` (e.g., `actor_id`, not `id`)
+  - Reference keys MUST use the exact same column name as the primary key they reference
+  - Applies to both database tables AND file-based identifiers (PRDs, implementations)
+
+- **Absolute-Root Pathing (Rule 93.PATH_PURITY)** – Added to constitutional requirements:
+  - All documentation links must start with `/` and never use `../`, `~/`, or relative paths
+  - LUPOPEDIA HEADERS `web_path` must always include the `/lupopedia/` subdirectory prefix
+
+- **PHP Tiered Compatibility (Option 4)** – Updated section 4 with tiered approach:
+  - Production: PHP 7.4+ 64-bit required for Y2038 safety
+  - Legacy: PHP 5.6+ allowed with installer flags (`LUPOPEDIA_LEGACY_INSTALL`, `lupo-install-legacy-php.flag`)
+  - 32-bit override: `LUPOPEDIA_ALLOW_32BIT=1` or `lupo-install-allow-32bit.flag` (not recommended)
+  - Honest Y2038 warning for 32-bit PHP
+
+#### Documentation
+
+- **PRD 16 (LUPOPEDIA HEADERS)** – Created and approved:
+  - Author/verifier distinction in headers
+  - `author` structured block (type, id, name) – deprecated flat `actor_id`/`actor_name`
+  - Conditional field requirements based on artifact type
+  - Header applicability scope
+
+- **PRD 26 (Five-Layer Documentation Architecture)** – Created and approved:
+  - Tier 1 (Authored Documentation) vs Tier 2 (Runtime Content)
+  - Channel-based thread coordination
+  - Implementation mirroring for PRD-scoped work
+  - Decision/questions/answers/comments folder structure
+
+- **PRD 30 (PRD Development Guide)** – Created, rejected by COUNTERMEASURE:
+  - Needs rewrite as writing guide (not metadata spec)
+  - Will be replaced with PRD 30 (Writing Guide) in future iteration
+
+- **PRD 31 (Implementation Folder Guidelines)** – Created, rejected by COUNTERMEASURE:
+  - Determined that implementation mirroring belongs in PRD 26 (already covered)
+
+- **COUNTERMEASURE Agent Integration** – Added critical feedback loop:
+  - Agent 111 (COUNTERMEASURE) provides adversarial review for PRDs
+  - Identified scope creep and structural issues in PRDs 26, 30, 31
+  - Established pattern for PRD review before approval
+
+#### Code Changes
+
+- **Session Class (`app/auth/Session.php`)** – Refactored to constitutional standards:
+  - Added `createEmbedSession()` for Eye cookie without PHP session rotation
+  - Added `getDecodedMetadata()` and `mergeSessionMetadata()` for transient flags
+  - Uses `$UNTRUSTED` fingerprinting for IP/UA hashing
+  - Documented session token exception (cryptographic, not IdGenerator)
+
+- **AuthSessionManager** – Deprecated, session authority moved to `App\Auth\Session`:
+  - `createSession()` now uses `App\Auth\Session::create()`
+  - `getActiveActorId()` reads from `lupo_sessions` table
+  - `updateActiveActor()` updates only DB, not `$_SESSION`
+  - `@deprecated` annotation with migration path
+
+- **AuthService** – Refactored to use `lupo_sessions.metadata`:
+  - Transient flags (password change, pending agent, login redirect) stored in session metadata
+  - No `$_SESSION` authority
+  - Uses `App\Auth\Session::mergeSessionMetadata()`
+
+- **login.php** – Refactored to constitutional standards:
+  - Added LUPOPEDIA HEADER
+  - `$UNTRUSTED` boundary for `$_SERVER`, `$_GET`, `$_POST`
+  - No `session_start()` – relies on bootstrap
+  - Reads password change flag from `lupo_sessions.metadata`
+
+- **select_agent.php** – Refactored to constitutional standards:
+  - Added LUPOPEDIA HEADER
+  - `$UNTRUSTED` boundary for `$_SERVER`, `$_POST`
+  - Reads pending state from `lupo_sessions.metadata` (not `$_SESSION`)
+  - `lupo_t()` for all UI strings
+
+- **admin.php** – Refactored to constitutional standards:
+  - `$UNTRUSTED` boundary for `$_GET`, `$_SERVER`
+  - Uses `DatabaseFactory::getConnection()` (no `$GLOBALS['mydatabase']`)
+  - Reads password change flag from `lupo_sessions.metadata`
+
+- **install.php & install_wizard_classes.php** – Refactored for portability:
+  - Replaced `SHOW TABLES LIKE` with `information_schema.tables` queries
+  - `$UNTRUSTED` boundary for all request input
+  - `getDbCredentials()` and `validateCsrf()` accept snapshot parameters
+  - Complete screen uses `timestamp_ymdhis::now()` (packed UTC)
+
+- **UrlResolver** – Added path anchoring and `$UNTRUSTED` compliance:
+  - `$UNTRUSTED` boundary for `$_SERVER['REQUEST_URI']`
+  - `pathIsUnderRepo()` realpath validation
+  - Cache uses `expires_ymdhis` (no Unix epoch fallback)
+
+- **ToonSchemaCache** – Deprecated, now reads from JSON schema files:
+  - Reads from `lupo-database/lupopedia/json/<table_name>.json` (canonical)
+  - Removed YAML dependency (`yaml_parse()`)
+  - `@deprecated` annotation with migration path
+
+- **DYNAPI_DOCTRINE.md** – Deprecated:
+  - `status: deprecated`
+  - `deprecated_by: lupo-docs/doctrine/LUPO_LAYERS_DOCTRINE.md`
+  - Heritage content retained for context
+
+- **LUPO_LAYERS_DOCTRINE.md** – Created as active doctrine:
+  - `status: active`
+  - Documents `lupo-layers.js` (LupoLayer) as canonical UI layer controller
+  - Supersedes DYNAPI_DOCTRINE.md
+
+- **auth-helpers.php** – Refactored for `$UNTRUSTED` compliance:
+  - `require_login()` uses `$UNTRUSTED['server']['REQUEST_URI']`
+  - Stores redirect in `lupo_sessions.metadata` (not `$_SESSION`)
+  - No `session_start()` in fallback path
+
+- **auth-ui-helpers.php** – Refactored to accept `$user` parameter:
+  - No internal auth service reads
+  - `$UNTRUSTED` boundary for `$_SERVER['REQUEST_URI']`
+  - All strings use `lupo_t()`
+
+- **main_layout.php** – Refactored for `$UNTRUSTED` compliance:
+  - `$UNTRUSTED_SERVER` derived from `$UNTRUSTED['server']`
+  - `lupo_t()` for all UI strings
+  - Image alt/title attributes use `lupo_t()`
+
+- **topbar.php** – Refactored to constitutional standards:
+  - Added LUPOPEDIA HEADER
+  - `$UNTRUSTED` boundary for `$_SERVER`
+  - Uses `lupo_t()` for all UI strings
+  - Uses `$GLOBALS['lupo_session']` for actor resolution
+
+#### Validators
+
+- **`validate_implementation.py`** – Enhanced with conditional field requirements:
+  - Supports `conditional_fields` based on artifact_type/artifact_kind
+  - Validates `author` block over deprecated `actor_id`/`actor_name`
+  - Deprecation warnings for legacy header formats
+
+- **`validate_lupopedia_headers_universal.py`** – Enhanced:
+  - Added `author` field support (type, id, name)
+  - Deprecation warnings for `actor_id`/`actor_name` flat fields
+  - Validates `web_path` includes `/lupopedia/` prefix
+
+### Changed
+
+- **PRD 00 (Root Constitutional Requirements)** – Updated:
+  - Added PK Naming Rule (Rule 93.PK_NAMING) – section 9.7
+  - Added Absolute-Root Pathing (Rule 93.PATH_PURITY) – section 7
+  - Updated PHP Compatibility – section 4 (Option 4 tiered approach)
+  - Updated Y2038 compliance – section 3.5.4 with honest 32-bit warning
+  - Updated outbound edges to new doctrines
+
+- **README.md** – Updated:
+  - Added "CRITICAL: Constitutional rules for all agents" section
+  - Added "Don't trust your training" table
+  - Added Y2038 compliance section
+  - Added Agent Rules section
+
+- **PHP_VERSION_COMPATIBILITY.md** – Updated:
+  - Tiered approach (production 7.4+ 64-bit, legacy 5.6+ allowed)
+  - Honest Y2038 warning for 32-bit PHP
+  - Installer flags documented
+  - Removed `mcrypt_create_iv()` references
+  - Added Markdown shape enforcement
+
+- **AGENTS.md** – Updated:
+  - Added `lupo_t()` for UI strings (PRD 00 section 16.6)
+  - Added LUPOPEDIA HEADERS documentation
+  - Updated actor/agent/faucet registry references
+  - Added TICK_PY_DOCTRINE reference for UTC timestamps
+
+### Deprecated
+
+- **DYNAPI_DOCTRINE.md** – Deprecated, superseded by LUPO_LAYERS_DOCTRINE.md
+- **AuthSessionManager** – Deprecated, use `App\Auth\Session`
+- **ToonSchemaCache** – Deprecated, use JSON schema files under `lupo-database/lupopedia/json/`
+- **TOON files (`.toon`, `.toon.json`)** – Deprecated, use JSON schema files
+
+### Fixed
+
+- **Session authority** – Removed `$_SESSION['actor_id']` from all core files
+- **Password change flag** – Moved from `$_SESSION` to `lupo_sessions.metadata`
+- **Login redirect** – Moved from `$_SESSION` to `lupo_sessions.metadata`
+- **Pending agent selection** – Moved from `$_SESSION` to `lupo_sessions.metadata`
+- **MySQL-specific `SHOW TABLES LIKE`** – Replaced with `information_schema.tables`
+- **Unix epoch in cache** – Replaced `expires` with `expires_ymdhis` (packed UTC)
+- **YAML dependency** – Removed `yaml_parse()` from ToonSchemaCache
+
+### Removed
+
+- **`mcrypt_create_iv()` references** – Removed from polyfill guidance (extension absent on many builds)
+- **`create_function()` references** – Removed from alternative suggestions
+
+#### Integration / tooling (this session)
+
+- **Channel 66 production extended integration test** – `lupo-tests/integration/channel66_production_extended_test.php`: LUPOPEDIA HEADER, `DatabaseFactory::getConnection()`, ingester fixture paths under `lupo-channels/66/threads/1001/`, merged monitoring validation, removed stub/shell paths; **Channel66ProductionIngester::discoverChannelFiles** – `thread_id === null` processes all threads (branch fix).
+
+#### Version documentation and packaging boundary (UTC `20260406043326`)
+
+- **`VERSION_SUMMARY.md`** — rollup of completed 4.0.94 work for packaging handoff.
+- **`lupo-docs/versions/4.0.95/`** — planning scaffold created; open and deferred tasks moved to **`4.0.95/TODO.md`** (P3-005+, P4-*, D-001–D-005, Phase 7 test matrix continuation).
+- **Phase 7 (4.0.94 `PLAN.md`)** — reframed as **Packaging and testing**: Softaculous packaging test on Linux next; regression / legacy PHP checks remain open in 4.0.94 plan until executed.
+
+---
+
+## [4.0.93] - 2026-03-XX
+
+Frozen baseline: see **`lupo-docs/versions/4.0.93/README.md`** and **`lupo-docs/versions/4.0.93/CHANGELOG.md`** (prior release notes).
+
+---
+
+## Detailed session log (chronological)
+
+# CHANGELOG.md - Lupopedia Version 4.0.94
+
+# [2026-04-05] PRD 00 §17.9 — ROSE sandbox (PRD 36) + dialog-only write surface (Cursor)
+
+- **WHO / WHERE / WHEN:** Cursor (`actor_id` **102**); **`lupo-docs/prd/00_root_constitutional_system_requirements.md`** — **§17.9** clarified: **ROSE** exception for **sandboxed** multi-persona **dialog** per **PRD 36**; **write surface** = **`lupo_dialog_messages`** (+ **PRD 36**-scoped dialog metadata), **no** content / **lupo_metadata** (non-dialog) / config / actors / channels / auth updates from ROSE pipeline; compliance test split **IDE vs ROSE**; **`00_NON_NEGOTIABLES_IMPORTANT_OVERWRITES.pseudo.md`** + **`00_constitution_shorthand.pseudo.md`**; UTC **`20260405224232`** (`python lupo-bin/tick.py` this batch).
+- **WHAT:** Aligns constitution with **ROSE**’s intended **dialog-only** role vs **IDE** impersonation ban.
+- **WHY:** Operator clarification — synthetic choir ≠ tooling impersonation; narrow DB authority.
+
+This output complies with Lupopedia Constitutional Root Rules.
+
+---
+
+# [2026-04-05] PRD 00 §17.9 — RULE 93.NO_PROMPT_INJECTION + shared IDE prompt (Cursor)
+
+- **WHO / WHERE / WHEN:** Cursor (`actor_id` **102**); **`lupo-docs/prd/00_root_constitutional_system_requirements.md`** — **§17.9** (impersonation, instruction override, secrets, automation boundaries, service vs dialogue personas; optional filters note); **edge** to **`ADVERSARIAL_TEST_IDENTITY_DOCTRINE.md`**; **`lupo-agents/_shared/ide_facet_base_system_prompt.txt`** (prompt-injection block); **`00_NON_NEGOTIABLES_IMPORTANT_OVERWRITES.pseudo.md`** + **`00_constitution_shorthand.pseudo.md`**; **§10.2** row **§17.7–§17.9**; UTC **`20260405223937`** (`python lupo-bin/tick.py` this batch).
+- **WHAT:** Constitutional **prompt injection** rules for IDE/LLM surfaces; **does not** revive banned test-persona nicknames (see adversarial identity doctrine).
+- **WHY:** Red-team precedent is real; product agents touch channels/DB/edges — untrusted text must not become authority.
+
+This output complies with Lupopedia Constitutional Root Rules.
+
+---
+
+# [2026-04-05] PRD 00 §17.8 — RULE 93.UNTRUSTED_INPUT (`$UNTRUSTED` discipline) (LILITH audit) (Cursor)
+
+- **WHO / WHERE / WHEN:** Cursor (`actor_id` **102**); **`lupo-docs/prd/00_root_constitutional_system_requirements.md`** — **§17.8** (explicit untrusted boundary, **`$UNTRUSTED`** pattern per legacy **`image.php` / `livehelp_js.php`**, validation + no mass assignment, **`$_REQUEST`** warning, superglobal clearing **not** globally mandated); **§10.2** tooling row notes **§17.7–§17.8**; **`00_NON_NEGOTIABLES_IMPORTANT_OVERWRITES.pseudo.md`** + **`00_constitution_shorthand.pseudo.md`**; UTC **`20260405223144`** (`python lupo-bin/tick.py` this batch).
+- **WHAT:** Codifies Crafty-era input discipline as constitutional **RULE 93.UNTRUSTED_INPUT** without requiring unsafe blanket **`$_COOKIE`** wipes at bootstrap.
+- **WHY:** LILITH audit — industry complacency vs explicit validation boundary.
+
+This output complies with Lupopedia Constitutional Root Rules.
+
+---
+
+# [2026-04-05] PRD 00 §17.7 — eval, unserialize, session authority, uploads + digest rows (Cursor)
+
+- **WHO / WHERE / WHEN:** Cursor (`actor_id` **102**); **`lupo-docs/prd/00_root_constitutional_system_requirements.md`** — new **§17.7** (PHP execution hygiene, JS cross-ref **§16**, **`unserialize`** ban on untrusted data, **`lupo_sessions` / `App\Auth\Session`** vs **`$_SESSION`**, **PRD 33 §5.1** decode/re-encode uploads); **`00_NON_NEGOTIABLES_IMPORTANT_OVERWRITES.pseudo.md`** + **`00_constitution_shorthand.pseudo.md`** table rows; UTC **`20260405222700`** (`python lupo-bin/tick.py` this batch).
+- **WHAT:** Makes constitutional security explicit where common tutorials default to **`eval`**, **`unserialize`**, session superglobals, and raw uploads.
+- **WHY:** Operator recommendations — align law, shorthand, and overrides with **RULE 93.SECURITY** and **PRD 33** gate language.
+
+This output complies with Lupopedia Constitutional Root Rules.
+
+---
+
+# [2026-04-05] PRD 17 — pseudocode reasoning discipline + optional validator (Cursor)
+
+- **WHO / WHERE / WHEN:** Cursor (`actor_id` **102**); **`lupo-docs/prd/17_decisions_format.md`** (new subsection: zero-guessing, Purpose 1 vs Purpose 2 scope, anchors, option forks); **`lupo-scripts/validate_pseudocode_discipline.py`** (optional warnings for Purpose 2 files under `decisions/pseudocode/`); **`AGENTS.md`** (IDE summary + edge); UTC **`20260405222024`** (`python lupo-bin/tick.py` this batch).
+- **WHAT:** Binds IDE/LLM behavior for pseudocode as **thinking space** (Purpose 2), not predictive completion; documents exemptions for constitution digests and `00_*` cross-cutting files.
+- **WHY:** LILITH-approved alignment — deliberate design artifacts vs code-stub completion.
+
+This output complies with Lupopedia Constitutional Root Rules.
+
+---
+
+# [2026-04-05] `00_NON_NEGOTIABLES_IMPORTANT_OVERWRITES.pseudo.md` — IDE overrides router (LILITH naming) (Cursor)
+
+- **WHO / WHERE / WHEN:** Cursor (`actor_id` **102**); new **`lupo-docs/decisions/pseudocode/00_NON_NEGOTIABLES_IMPORTANT_OVERWRITES.pseudo.md`** (Purpose 1 router + overrides table); **`THREAD_INDEX.md`** (both trees); **`00_constitution_shorthand`**, **`lupopedia_quickstart`**, **`00_dodo_bird_corrections`**, **PRD 00** edges/intro; UTC **`20260405220110`** (`python lupo-bin/tick.py` this batch).
+- **WHAT:** `00_` sort prefix + **`.pseudo.md`** per PRD 17; searchable name for “non-negotiable / overwrite training” intent.
+- **WHY:** LILITH audit — filename clarity + convention alignment.
+
+This output complies with Lupopedia Constitutional Root Rules.
+
+---
+
+# [2026-04-05] PRD 00 §17.3 + digests — `SELECT *` allowed; positional `INSERT` forbidden (LILITH) (Cursor)
+
+- **WHO / WHERE / WHEN:** Cursor (`actor_id` **102**); **`lupo-docs/prd/00_root_constitutional_system_requirements.md`** (**§17.3** — explicit **`INSERT`** columns; positional **`INSERT`** hazard; **`SELECT *`** reads not forbidden); **`lupo-docs/decisions/pseudocode/00_dodo_bird_corrections.pseudo.md`** (reorder: **§1 INSERT**; drop **`SELECT *`** as dodo item; summary note); **`00_constitution_shorthand.pseudo.md`** (database **INSERT**/**SELECT** rows; security blurb); **`THREAD_INDEX.md`**; UTC **`20260405215402`** (`python lupo-bin/tick.py` this batch).
+- **WHAT:** Removes unnecessary friction on **`SELECT *`**; keeps **hard** rule on **`INSERT`** column lists.
+- **WHY:** LILITH correction — villain is **`INSERT`**, not **`SELECT`**.
+
+This output complies with Lupopedia Constitutional Root Rules.
+
+---
+
+# [2026-04-05] `00_dodo_bird_corrections` — INSERT vs SELECT * distinction (LILITH) (Cursor)
+
+- **WHO / WHERE / WHEN:** Cursor (`actor_id` **102**); **`lupo-docs/decisions/pseudocode/00_dodo_bird_corrections.pseudo.md`** — reorder (**`INSERT`** without column list = **critical**; **`SELECT *`** = wasteful/low); expanded §2; summary danger column; golden rule; **`00_constitution_shorthand.pseudo.md`** security row (**INSERT** vs **SELECT**); UTC **`20260405214944`** (`python lupo-bin/tick.py` this batch).
+- **WHAT:** Stops conflating positional **`INSERT`** (silent corruption) with **`SELECT *`** (bandwidth/implicit shape).
+- **WHY:** LILITH correction — different failure modes.
+
+This output complies with Lupopedia Constitutional Root Rules.
+
+---
+
+# [2026-04-05] PRD 00 §3.5.4 Y2038 + `00_dodo_bird_corrections` digest + shorthand/quickstart links (Cursor)
+
+- **WHO / WHERE / WHEN:** Cursor (`actor_id` **102**); **`lupo-docs/prd/00_root_constitutional_system_requirements.md`** — new **§3.5.4** (Y2038 compliance, forbidden/required patterns, industry context); **§19** checklist item + normative link to dodo digest; **`lupo-docs/decisions/pseudocode/00_dodo_bird_corrections.pseudo.md`** (new) + **`THREAD_INDEX.md`**; **`00_constitution_shorthand.pseudo.md`** (timestamp-first table + edge); **`lupopedia_quickstart.pseudo.md`** (link row); UTC **`20260405214736`** (`python lupo-bin/tick.py` this batch).
+- **WHAT:** Documents Y2038 stance next to packed-clock doctrine; gives IDE agents a single “wrong defaults” correction file without changing application code.
+- **WHY:** LILITH directive — reduce repeated AI assumptions (epoch, FKs, ORM, build chains).
+
+This output complies with Lupopedia Constitutional Root Rules.
+
+---
+
+# [2026-04-05] PRD 00 — timestamp reinforcement (§3.5.1–3.5.3, §19 IDE directive) + README digest (Cursor)
+
+- **WHO / WHERE / WHEN:** Cursor (`actor_id` **102**); **`lupo-docs/prd/00_root_constitutional_system_requirements.md`** — **§3.5.1** explicit “`BIGINT` ≠ epoch”; **§3.5.2** storage UTC vs display timezone; **§3.5.3** **`timestamp_ymdhis`** canonical utility (with **`gmdate('YmdHis')`** allowed as equivalent “now”); new **§19** binding IDE/LLM checklist; **`README.md`** (timestamp subsection under mandatory reading); **`00_constitution_shorthand.pseudo.md`** pointer; UTC **`20260405213749`** (`python lupo-bin/tick.py` this batch).
+- **WHAT:** Removes ambiguity that led agents to propose Unix epoch in **`BIGINT`** clock columns; restates display vs persistence without inventing schema columns.
+- **WHY:** LILITH directive — constitutional clarity for external AI.
+
+This output complies with Lupopedia Constitutional Root Rules.
+
+---
+
+# [2026-04-05] `timestamp_ymdhis` — UTC DateTime arithmetic + PRD 00 Y2038 / 64-bit PHP note (Cursor)
+
+- **WHO / WHERE / WHEN:** Cursor (`actor_id` **102**); **`lupo-includes/classes/TimestampYmdhis.php`** (`addSeconds` / `diffInSeconds` / `fromHuman` / `convert_iso8601_to_bigint` — **`DateTime` UTC** instead of **`gmmktime`/`strtotime`** bridge; **`diffInSeconds`** sign preserved via **`$db->diff($da)`**); **`lupo-docs/prd/00_root_constitutional_system_requirements.md`** (**§3.5** — explicit **Y2038**: packed storage ≠ Unix epoch; **64-bit PHP** required); **`00_constitution_shorthand.pseudo.md`** digest row; UTC **`20260405212338`** (`python lupo-bin/tick.py` this batch).
+- **WHAT:** Makes the implementation match the story “we are not storing Unix time,” and documents why **2038** does not apply to the **BIGINT** encoding while **32-bit PHP** remains out of scope.
+- **WHY:** Operator frustration / audit clarity — agents conflated packed clocks with epoch and assumed Y2038 applied to the schema.
+
+This output complies with Lupopedia Constitutional Root Rules.
+
+---
+
+# [2026-04-05] PRD 00 §3.5 — packed decimal `BIGINT` clocks; forbid SQL date/time functions (LILITH / Wolfie clarification) (Cursor)
+
+- **WHO / WHERE / WHEN:** Cursor (`actor_id` **102**); **`lupo-docs/prd/00_root_constitutional_system_requirements.md`** (expanded **§3.5** — storage semantics, forbidden SQL patterns, PHP/`timestamp_ymdhis` pattern, bound parameters); **§3.6** bullet cross-ref; **`lupo-docs/implementations/00_root_constitutional_system_requirements/decisions/pseudocode/00_constitution_shorthand.pseudo.md`** (digest row + one-liner); UTC **`20260405212034`** (`python lupo-bin/tick.py` this batch).
+- **WHAT:** Documents that timestamps are **packed decimal `BIGINT` UTC** (`YYYYMMDDHHIISS`), **lexically sortable**, **no database date functions** — all temporal logic in **PHP**; schema does **not** store Unix epoch as the canonical clock.
+- **WHY:** Close the “Unix epoch / SQL `NOW()`” confusion for external agents; align constitution text with long-standing Crafty/Lupopedia practice.
+
+This output complies with Lupopedia Constitutional Root Rules.
+
+---
+
+# [2026-04-05] External AI bundle — 8 PRD constitution shorthands + lupopedia_quickstart (LILITH Priority 1–3) (Cursor)
+
+- **WHO / WHERE / WHEN:** Cursor (`actor_id` **102**); **`lupo-docs/implementations/00_root_constitutional_system_requirements/decisions/pseudocode/`** — new **`*_constitution.pseudo.md`** for **PRD 05, 15, 16, 26, 31, 28, 33** plus **`lupopedia_quickstart.pseudo.md`**; refreshed **`THREAD_INDEX.md`**; **`README.md`** (00 mirror); **`lupo-docs/prd/17_decisions_format.md`** (shipped bundle table + edge to quickstart); **`implementations/README.md`** cross-cutting row; UTC **`20260405211127`** (`python lupo-bin/tick.py` this batch).
+- **WHAT:** Digest-only files (Purpose 1); canonical text remains each **`lupo-docs/prd/*.md`**. Injected: department act-as, **`to_actor_id`** routing, Tier 1/2 split, **`prd_file_stem`**, API dual routing, PRD 33 gate / `.htaccess` optional. **Priority 4** (PRD 36/37) listed as optional in quickstart only.
+- **WHY:** LILITH directive — top 8 identity/architecture PRDs for “send to new AI.”
+
+This output complies with Lupopedia Constitutional Root Rules.
+
+---
+
+# [2026-04-05] PRD 17 + PRD 00 mirror — pseudocode dual purpose + constitution shorthand (LILITH audit) (Cursor)
+
+- **WHO / WHERE / WHEN:** Cursor (`actor_id` **102**); **`lupo-docs/prd/17_decisions_format.md`** (Pseudocode Directory: Purpose 1 constitution shorthand vs Purpose 2 design notes; naming table; **`THREAD_INDEX`** example; “why two purposes”); new **`lupo-docs/implementations/00_root_constitutional_system_requirements/`** (**`README.md`**, **`decisions/THREAD_INDEX.md`**, **`decisions/pseudocode/00_constitution_shorthand.pseudo.md`**, **`decisions/pseudocode/THREAD_INDEX.md`**); **`lupo-docs/implementations/README.md`** (cross-cutting + index rows); UTC **`20260405210708`** (`python lupo-bin/tick.py` this batch).
+- **WHAT:** Shorthand digest for external AI (**not** a replacement for **PRD 00**); repo-aligned tables (PDO_DB, soft delete, §18 indexing, optional `.htaccess`).
+- **WHY:** LILITH-approved split: same **`decisions/pseudocode/`**, distinct file patterns.
+
+This output complies with Lupopedia Constitutional Root Rules.
+
+---
+
+# [2026-04-05] Implementations — merge `25_departments_systems` into `25_departments_system`; PRD 31 exact stem rule (Cursor)
+
+- **WHO / WHERE / WHEN:** Cursor (`actor_id` **102**); merged **`lupo-docs/implementations/25_departments_systems/`** into **`lupo-docs/implementations/25_departments_system/`** (canonical PRD **`25_departments_system.md`**); updated cross-links (**PRD 25**, **30**, root **README**, **IMPLEMENTATION_QUESTIONS_GUIDE**, **create_implementation_question.py**, templates, **validation_report.json**, **26** edges/spec); **PRD 31** + **implementations/README.md** — non-negotiable **character-for-character** match to PRD basename; **PRD 30** example path → existing question file; removed duplicate **PRD 25** outbound edge; UTC **`20260405205804`** (`python lupo-bin/tick.py` this batch).
+- **WHAT:** One implementation folder per PRD stem; typo **`systems`** eliminated.
+- **WHY:** Duplicate folder names broke **PRD 31** / **§5.8** mirroring.
+
+This output complies with Lupopedia Constitutional Root Rules.
+
+---
+
+# [2026-04-05] Constitutional PRD — no SEO assumption, optional `.htaccess`, dual API routing (LILITH audit follow-up) (Cursor)
+
+- **WHO / WHERE / WHEN:** Cursor (`actor_id` **102**); **`lupo-docs/prd/00_root_constitutional_system_requirements.md`** (**§2** subdirectory routing with/without `mod_rewrite`; **§9.5** `.htaccess` optional; new **§18** `RULE 93.NO_SEARCH_INDEX_ASSUMPTION`; **§17.5** cross-ref when `.htaccess` absent); **`lupo-docs/prd/28_semantic_monitoring_widget.md`** (API Endpoints — clean URL vs query-parameter fallbacks); **`lupo-docs/prd/33_softaculous_certification_4_1_0_gate.md`** (**§5.1** table row; **§14.1** / **§14.2** / **§14.4 Q2** aligned with fallbacks; new **§14.6** clarification; footer `next_action`); UTC **`20260405205506`** (`python lupo-bin/tick.py` this batch).
+- **WHAT:** Documents that Lupopedia does **not** assume search indexing or SEO; **`robots.txt` / noindex** are **SHOULD**; installer must **not** fail solely for missing `.htaccess`; APIs must accept query-param (and optional path) forms.
+- **WHY:** LILITH audit — distinguish Lupopedia from “normal public web” projects; shared-hosting rewrite limits.
+
+This output complies with Lupopedia Constitutional Root Rules.
+
+---
+
+# [2026-04-05] Header validators + DB sync — GEMINI/LILITH audit (inject legacy actor, --check-links, history append, ext.*, tick --copy) (Cursor)
+
+- **WHO / WHERE / WHEN:** Cursor (`actor_id` **102**); **`lupo-scripts/lib/header_validation.py`** (`inject_legacy_actor_from_author`, called from **`validate_header`**); **`validate_lupopedia_headers_universal.py`** (`--check-links`, **`when_updated` ≥ `last_verified`**, inject before author checks); **`lib/header_db_sync.py`** (**`ext.`** metadata writes, legacy **`block.`** read-back, **`append_history`** on **`sync_header_artifact_to_db`**, transaction note in docstring); **`import_content.py`** (`--append-history`); **`lupo-bin/tick.py`** (`--copy` via optional **`pyperclip`**); **`prd16_headers_lifecycle.pseudo.md`** (sections 1.4, 2.1, 3.2, 4.2, 5.2, diagram, cheat sheet); UTC **`20260405204851`** (`python lupo-bin/tick.py` this batch).
+- **WHAT:** Auto-fill **`actor_id`/`actor_name`** from **`author`** for import/universal validation; strict filesystem check for edge **`to:`** paths; footer/header timestamp ordering; revision_history **overwrite / preserve / append**; custom blocks stored as **`ext.lupopedia.*`** (read **`block.`** too); **`import_content`** already transactional — documented.
+- **WHY:** LILITH audit accepted GEMINI suggestions (reduce mirroring debt, broken links, history ambiguity, namespacing, clipboard UX).
+
+This output complies with Lupopedia Constitutional Root Rules.
+
+---
+
+# [2026-04-05] PRD 16/17 — LUPOPEDIA HEADERS required on decisions/pseudocode/*.pseudo.* (external AI handoff) (Cursor)
+
+- **WHO / WHERE / WHEN:** Cursor (`actor_id` **102**); **`lupo-docs/prd/16_lupopedia_headers.md`** (pseudocode row in applicability table; removed optional exception; validator scope + handoff note); **`lupo-docs/prd/17_decisions_format.md`** (rules, validation, example `.pseudo.php`, main validation §9); **`LUPOPEDIA_HEADERS_FORMAT.md`** (Overview); **`AGENTS.md`**; **`sync_header_artifact_to_db.pseudo.php`** (embedded YAML header block); **`prd16_headers_lifecycle.pseudo.md`** + **`pseudocode/THREAD_INDEX.md`**; UTC **`20260405204205`** (`python lupo-bin/tick.py` this batch).
+- **WHAT:** Pseudocode files **must** carry **`lupopedia.headers`** with **`file_path_from_root`** (Markdown front matter; PHP `/* --- ... --- */` after `<?php`) so external agents can locate files; PRD 17 no longer treats pseudocode headers as optional.
+- **WHY:** User handoff to external AI failed without path identity.
+
+This output complies with Lupopedia Constitutional Root Rules.
+
+---
+
+# [2026-04-05] PRD 16 pseudocode — LUPOPEDIA HEADERS on prd16_headers_lifecycle.pseudo.md (Cursor)
+
+- **WHO / WHERE / WHEN:** Cursor (`actor_id` **102**); **`lupo-docs/implementations/16_lupopedia_headers/decisions/pseudocode/prd16_headers_lifecycle.pseudo.md`** (full front matter + edges + footer); **`decisions/pseudocode/THREAD_INDEX.md`** (index note); UTC **`20260405203933`** (`python lupo-bin/tick.py` this batch).
+- **WHAT:** PRD 17 allows omitting headers on **`*.pseudo.*`**; this file now **includes** headers for traceability and so §1.1 matches a live example; §0 explains optional vs chosen.
+- **WHY:** Operator question — “why missing”; resolve contradiction with “line 1 must be ---”.
+
+This output complies with Lupopedia Constitutional Root Rules.
+
+---
+
+# [2026-04-05] PRD 16 — Header applicability scope (not every repo file) + PRD 17 carve-out cross-link (Cursor)
+
+- **WHO / WHERE / WHEN:** Cursor (`actor_id` **102**); **`lupo-docs/prd/16_lupopedia_headers.md`** (new **Header applicability and scope**: required extensions vs optional vs not applicable; PRD 17 pseudocode exception; overview + constitutional bullet fixes); **`lupo-docs/prd/17_decisions_format.md`** (pseudocode “no headers” row tied explicitly to PRD 16); **`lupo-docs/doctrine/LUPOPEDIA_HEADERS/LUPOPEDIA_HEADERS_FORMAT.md`** (Overview alignment); **`lupo-rules/root/LUPOPEDIA_HEADERS_DOCTRINE.md`** (enforcement rationale wording); **`AGENTS.md`** (LUPOPEDIA HEADERS bullet scoped to PRD 16); **`implementations/16_lupopedia_headers/.../prd16_headers_lifecycle.pseudo.md`** (§0 scope); UTC **`20260405203735`** (`python lupo-bin/tick.py` this batch).
+- **WHAT:** Replaces over-broad “every file in the repository” with **authored source/docs** list; excludes binaries, generated exports (TOON, CSV, minified), vendor/lockfiles; validators’ **intent** documented.
+- **WHY:** LILITH correction — headers track **our** traceability, not every byte in the tree.
+
+This output complies with Lupopedia Constitutional Root Rules.
+
+---
+
+# [2026-04-05] PRD 16 implementation — pseudocode for headers lifecycle (Cursor)
+
+- **WHO / WHERE / WHEN:** Cursor (`actor_id` **102**); **`lupo-docs/implementations/16_lupopedia_headers/decisions/`** — `THREAD_INDEX.md`; **`decisions/pseudocode/`** — `THREAD_INDEX.md`, `prd16_headers_lifecycle.pseudo.md`, `sync_header_artifact_to_db.pseudo.php`; UTC **`20260405202839`** (`python lupo-bin/tick.py` this batch).
+- **WHAT:** Design notes for authoring LUPOPEDIA HEADERS (blocks, timestamps, author vs legacy `actor_id`), verification commands (`validate_lupopedia_headers_universal.py`, `--check-db`), outbound edges → **`lupo_edges`**, **`lupopedia.history`** → **`revision_history`**, footer → metadata **`ftr.*`**, import + **`sync_header_artifact_to_db`** flow diagram.
+- **WHY:** Operator-facing bridge from PRD 16 to actual scripts (`import_content.py`, `header_db_sync.py`).
+
+This output complies with Lupopedia Constitutional Root Rules.
+
+---
+
+# [2026-04-05] PRD 17 — `decisions/pseudocode/` directory spec (LILITH audit approved) (Cursor)
+
+- **WHO / WHERE / WHEN:** Cursor (`actor_id` **102**); **`lupo-docs/prd/17_decisions_format.md`** (new Pseudocode Directory section, canonical folder tree + version `decisions/` tree, THREAD_INDEX rule, validation item 9, PRD 31 cross-ref edge, doc version **1.1**); UTC **`20260405202458`** (`python lupo-bin/tick.py` this batch).
+- **WHAT:** Documents optional **`decisions/pseudocode/`** for design artifacts between decisions and implementation: naming (`.pseudo.php` / `.pseudo.md` / `.pseudo.txt`), `THREAD_INDEX.md`, limited rules (no production load, no DDL), optional headers, suggested edge types, minimal validator guidance; explicit carve-out from full PRD 31 implementation-folder requirements.
+- **WHY:** LILITH audit verdict — bridge decision and code without PRD 31 weight.
+
+This output complies with Lupopedia Constitutional Root Rules.
+
+---
+
+# [2026-04-05] Help content organization — Channel key structure + PRD updates + installation integration (Cursor)
+
+- **WHO / WHERE / WHEN:** Cursor (`actor_id` **102**); **`lupo-docs/prd/30_channel_usage_patterns.md`** (added help_documentation channel); **`lupo-docs/prd/16_lupopedia_headers.md`** (updated file_path_from_root docs); **`lupo-content/0/help_documentation/`** (new structure with 5 guides, 8 questions, 8 answers, 34 edges); **`lupo-database/lupopedia/mysql/seed/seed_online_help_and_content.sql`** (updated with channel_key paths); **`lupo-scripts/build_consolidated_seed_4_1_0.py`** (added help seed); **`install/seed_lupopedia_4_1_0.sql`** (generated consolidated seed); version folder **`lupo-docs/versions/4.0.94/`** — `decisions/20260405172914_DECISION_APPROVED_help_content_organization_channel_key_structure.md`, `questions/20260405172914_QUESTION_what_is_correct_help_content_structure.md`, `answers/20260405172914_ANSWER_channel_key_based_organization.md`, `comments/20260405172914_COMMENT_cursor_session_end_help_content_organization.md`, `CHANGELOG` (this entry), `PLAN`, `TODO`, `edges`, `THREAD_INDEX` files; UTC **`20260405172914`** (`python lupo-bin/tick.py` this batch).
+- **WHAT:** Replaced numeric `lupo-content/0/0/` structure with semantic `lupo-content/0/help_documentation/` using **channel_key** instead of **channel_id**. **PRD 30:** Added help_documentation channel definition with purpose, content types, and organization guidelines. **PRD 16:** Updated file_path_from_root documentation to specify `lupo-content/{federation_node_id}/{channel_key}/{content_id}_{slug}.md` format. **Content created:** 5 help guides (getting started, actors, channels, content, edges), 8 common questions, 8 answers, 34 relationship edges. **Database integration:** Updated seed SQL with correct file_path_from_root values, added channel_key field to headers. **Installation:** Updated build script, generated consolidated seed (27,607 bytes), integrated with installer workflow. **Removed:** Old `lupo-content/0/0/` structure.
+- **WHY:** User identified that numeric channel_id structure was unclear and development-oriented (channel 42). Need for semantic organization using channel_key for better navigation, maintainability, and separation of user-facing vs development content.
+- **Co-commit note:** This work establishes the canonical pattern for channel_key-based content organization, scalable to additional content types beyond help documentation.
+
+This output complies with Lupopedia Constitutional Root Rules.
+
+---
+
 # [2026-04-05] Semantic navbar external embed — Admin provisioning + PRD 21 + gate API message (Cursor)
 
 - **WHO / WHERE / WHEN:** Cursor (`actor_id` **102**); **`lupo-includes/classes/SemanticNavbarEmbedContext.php`**; **`lupo-includes/modules/api/semantic-navbar-api.php`**; **`lupo-includes/classes/AdminSemanticWidgetHandler.php`**; **`lupo-includes/lang/lupo-en.php`** (semantic widget strings); **`admin.php`** (semantic-widget section blurb); **`lupo-docs/prd/21_semantic_navbar.md`**; version folder **`lupo-docs/versions/4.0.94/`** — `decisions/20260405104405_DECISION_APPROVED_semantic_navbar_embed_admin_prd21_cursor_thread.md`, `comments/20260405104405_COMMENT_cursor_session_end_semantic_navbar_crafty_handoff.md`, `CHANGELOG` (this entry), `PLAN` Phase **M**, `TODO`, `edges`, `WHAT_TO_WORK_ON_NEXT_SESSION`, `THREAD_INDEX` files; UTC **`20260405104405`** (`python lupo-bin/tick.py` this batch).

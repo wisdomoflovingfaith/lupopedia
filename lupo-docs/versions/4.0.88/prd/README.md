@@ -168,7 +168,7 @@ Scope note:
 
 ## Constraints
 
-- **PHP 5.6 compatibility** — no Composer, no frameworks
+- **PHP 7.4+ compatibility** — no Composer, no frameworks
 - **No foreign keys** — referential integrity in application code only
 - **BIGINT UTC timestamps** — `YYYYMMDDHHIISS` format, set in PHP
 - **Subfolder install doctrine** — all URLs via `LUPOPEDIA_PUBLIC_PATH`

@@ -2,15 +2,17 @@
 lupopedia.headers:
   header_format_version: 2
   lupopedia.schema: rule
-  when_updated: "20260401000000"
+  when_updated: "20260406044907"
   file_path_from_root: "lupo-rules/root/WOLFIE_DOCTRINE.md"
   web_path: "http://www.lupopedia.com/lupopedia/lupo-rules/root/WOLFIE_DOCTRINE.md"
-  last_modified_utc: "20260401000000"
+  last_modified_utc: "20260406044907"
   federation_node_id: 0
   channel_id: 42
   thread_id: "wolfie-doctrine"
-  actor_id: 1
-  actor_name: "WOLFIE"
+  author:
+    type: "actor"
+    id: 1
+    name: "WOLFIE"
   delegation_chain: "wolfie:root"
   artifact_type: "rule"
   artifact_kind: "doctrine"

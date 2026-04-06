@@ -1,490 +1,222 @@
 ---
 lupopedia.headers:
-  lupopedia.version: "4.0.73"
-  lupopedia.schema: "documentation"
-  file_path_from_root: "lupo-docs/doctrine/X_LUPO_FORWARDED_HEADER_DOCTRINE.md"
-  file_hash: "d5910c6e81ce653535c587e92029bc19fd511987849bf2c2c1e055157e0ca09a"
-  last_updated_utc: "20260228155738"
-  system_version: "4.0.51"
-  channel_id: 1
-  actor_id: 1002
-  delegation_chain: "1002:10000"
-  artifact_type: "documentation"
+  lupopedia.version: "4.0.89"
+  lupopedia.schema: "doctrine"
+  file_path_from_root: "lupo-docs/doctrine/MESSAGE_FORWARDING_HEADER_DOCTRINE.md"
+  file_hash: "updated_for_current_headers"
+  last_updated_utc: "20260405120000"
+  system_version: "4.0.89"
+  channel_id: 42
+  actor_id: 1
+  delegation_chain: "1:102"
+  artifact_type: "doctrine"
   artifact_kind: "documentation"
-  purpose: "Documentation file with LUPOPEDIA HEADERS applied"
-  mood_rgb: "4169E1"
-  traits: ["flare", "indexed", "v4.0.51"]
-  tags: ["documentation", "flare_applied"]
-  lupo_agent: "windsurf"
+  purpose: "Message forwarding and attribution header doctrine"
+  mood_rgb: "0066FF"
+  traits: ["canonical", "updated", "v4.0.89"]
+  tags: ["doctrine", "headers", "message_attribution", "forwarding"]
+  lupo_agent: "wolfie"
 
 lupopedia.edges:
   outbound_edges:
-    - { to: "CHANGELOG.md", type: "references", weight: 1.0 }
-    - { to: "lupo-docs/doctrine/", type: "references", weight: 1.0 }
-
-    - to: "lupo-docs/prd/16_lupopedia_headers.md"
-      type: implements
-      weight: 1.0
-      reason: "Doctrine PRD lineage; constitutional audit 20260403"
+    - { to: "lupo-docs/doctrine/MESSAGE_ATTRIBUTION.md", type: "references", weight: 1.0, reason: "Current message attribution documentation" }
+    - { to: "lupo-includes/classes/ANUBIS_Resolver.php", type: "implemented_by", weight: 1.0, reason: "Header implementation in resolver" }
+    - { to: "lupo-includes/classes/DialogMessageVerifier.php", type: "implemented_by", weight: 1.0, reason: "Header verification implementation" }
+    - { to: "lupo-tools/vsx-extension/src/lupopedia/headers.ts", type: "implemented_by", weight: 1.0, reason: "VSX extension header mapping" }
 
 lupopedia.footer:
-  last_verified: "20260228155738"
-  last_verified_by: "windsurf"
+  last_verified: "20260405120000"
+  last_verified_by: "wolfie"
 ---
 
-# LUPOPEDIA HEADERS (replaces FLARE)
+# Message Forwarding and Attribution Header Doctrine
 
----
-lupopedia.headers:
-  lupopedia.version: "4.0.73"
-  lupopedia.schema: "documentation"
-  
-
-lupopedia.edges: []
-  file_path_from_root: "lupo-docs\doctrine\X_LUPO_FORWARDED_HEADER_DOCTRINE.md"
-  file_hash: "d90555d30284d38c39e7118cdd21fe8af7e38cb5ba1d65df202c44c5094d1603"
-  file_path_from_root: "lupo-docs\doctrine\X_LUPO_FORWARDED_HEADER_DOCTRINE.md"
-  file_hash: "3df634e2547080e7edd2c442af4009f65e96648596674af2db41bbcecf6ab58a"
-  last_updated_utc: "20260228"
-  system_version: "4.0.50"
-  channel_id: 1
-  actor_id: 1002
-  delegation_chain: null
-  artifact_type: "guide"
-  artifact_kind: "documentation"
-  purpose: "Documentation for X_LUPO_FORWARDED_HEADER_DOCTRINE.md"
-  mood_rgb: "4169E1"
-  traits: ["flare", "indexed", "v4.0.50"]
-  tags: ["docs", "doctrine", "x_lupo_forwarded_header_doctrinemd"]
-  lupo_agent: "windsurf"
-
-  needs_review: ["delegation_chain"]
-  system_version: "4.0.50"
-  last_updated_utc: "20260228"
-lupopedia.footer:
-  last_verified: "20260228"
-  last_verified_by: "windsurf"
-    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use lupopedia.headers"]
----
-
----
-lupopedia.headers:
-  file_path_from_root: "lupo-docs/doctrine/X_LUPO_FORWARDED_HEADER_DOCTRINE.md"
-  system_version: "4.0.31"
-  channel_id: 42
-  mood_rgb: "0066FF"
-  purpose: "X-Lupo-Forwarded header requirement doctrine"
-  last_modified_utc: "20260223120000"
-  x_lupo_forwarded: "1001:10000"
-
-flip.footer:
-  referenced_by_files:
-    - "CHANGELOG.md"
-    - "lupo-docs/doctrine/WOLFIE_HEADER_DOCTRINE.md"
-    - "lupo-docs/doctrine/FLIP_FOOTER_DOCTRINE.md"
-  referenced_by_channels:
-    - 42
-  referenced_by_actors:
-    - 1001
-    - 10000
-  inbound_edges:
-    - "header_requirements"
-    - "actor_tracking"
-    - "file_attribution"
-  footnotes:
-    - "Mandatory for all files starting version 4.0.32"
-    - "Tracks computer agent and supporting human actor"
-    - "Required even when file is not forwarded"
----
-
-# X-LUPO-FORWARDED HEADER DOCTRINE
-
-**Version:** 4.0.31  
-**Effective:** Version 4.0.32+  
-**Status:** MANDATORY  
-**Authority:** Captain Wolfie  
+**Version:** 4.0.89  
+**Effective:** Version 4.0.89+  
+**Status:** ACTIVE  
+**Authority:** WOLFIE (actor_id: 1)  
+**Updated:** 2026-04-05  
 
 ---
 
 ## Overview
 
-All files created or modified in Lupopedia version 4.0.32 and later MUST include the `x_lupo_forwarded` header field. This header tracks the computer agent (IDE) and supporting human actor responsible for the file, regardless of whether the file was actually forwarded between systems.
+This doctrine documents the current message forwarding and attribution headers used in Lupopedia. The original `X-LUPO-FORWARDED` header has been deprecated and replaced with more specific headers for better tracking of message attribution and forwarding chains.
 
 ---
 
-## Purpose
+## Current Header Format
 
-### Why This Header is Required
+### Active Headers
 
-**1. Actor Attribution**
-- Track which IDE agent created/modified the file
-- Track which human operator was supporting the work
-- Maintain complete audit trail of file authorship
+**1. X-Lupo-Forwarded-For**
+- Purpose: Tracks the original client IP when forwarded
+- Format: IP address string
+- Used in: ANUBIS_Resolver.php, DialogMessageVerifier.php
 
-**2. Multi-Agent Coordination**
-- Identify which agent is responsible for file maintenance
-- Enable proper handoff between IDE agents
-- Support collaborative development tracking
+**2. X-Lupo-Forward-Chain**
+- Purpose: Tracks the chain of actor IDs involved in forwarding
+- Format: "actor_id -> actor_id -> actor_id"
+- Used in: ANUBIS_Resolver.php, VSX extension
 
-**3. Security and Accountability**
-- Prevent anonymous file modifications
-- Enable security analysis of file origins
-- Support forensic investigation if needed
+**3. X-Lupo-Forwarded-By-Actor-ID**
+- Purpose: Actor ID of the forwarding agent
+- Format: Numeric actor ID
+- Documented in: MESSAGE_ATTRIBUTION.md
 
-**4. Semantic Graph Enhancement**
-- Link files to actors in semantic graph
-- Enable actor-based file queries
-- Support relationship analysis
+**4. X-Lupo-Original-Sender-Actor-ID**
+- Purpose: Original sender actor ID before forwarding
+- Format: Numeric actor ID
+- Documented in: MESSAGE_ATTRIBUTION.md
 
 ---
 
-## Header Format
+## Implementation Status
 
-### YAML Files (Markdown, Config, etc.)
+### Deprecated Header
 
-```yaml
-lupopedia.headers:
-  x_lupo_forwarded: "computer_agent_id:supporting_human_id"
-```
+**X-LUPO-FORWARDED** (deprecated)
+- Original format: "computer_agent_id:supporting_human_id"
+- Status: **DEPRECATED** - No longer used in active code
+- Replaced by: More specific headers above
+- Reason: Ambiguous naming, limited functionality
 
-### PHP Files
+### Current Implementation
+
+**Files using current headers:**
+1. **ANUBIS_Resolver.php** - Implements X-Lupo-Forwarded-For and X-Lupo-Forward-Chain
+2. **DialogMessageVerifier.php** - Verifies X-Lupo-Forwarded-For headers
+3. **VSX Extension (headers.ts)** - Maps headers for IDE integration
+4. **MESSAGE_ATTRIBUTION.md** - Documents complete attribution system
+
+---
+
+## Header Usage Examples
+
+### ANUBIS_Resolver.php Implementation
 
 ```php
-/**
- * @x_lupo_forwarded computer_agent_id:supporting_human_id
- */
-```
-
-### SQL Files
-
-```sql
--- X-Lupo-Forwarded: computer_agent_id:supporting_human_id
-```
-
-### JavaScript/CSS Files
-
-```javascript
-/**
- * @x_lupo_forwarded computer_agent_id:supporting_human_id
- */
-```
-
----
-
-## Actor ID Assignments
-
-### Computer Agents (IDE Agents)
-
-**KIRO IDE:**
-- Actor ID: 1001 (placeholder - awaiting registry confirmation)
-- Type: AI Agent / IDE
-- Status: Active (primary)
-
-**Warp IDE:**
-- Actor ID: TBD (awaiting registry confirmation)
-- Type: AI Agent / IDE
-- Status: Offline
-
-**Cursor IDE:**
-- Actor ID: TBD (awaiting registry confirmation)
-- Type: AI Agent / IDE
-- Status: Offline
-
-**Windsurf IDE:**
-- Actor ID: TBD (awaiting registry confirmation)
-- Type: AI Agent / IDE
-- Status: Unknown
-
-**JetBrains IDE:**
-- Actor ID: TBD (awaiting registry confirmation)
-- Type: AI Agent / IDE
-- Status: Unknown
-
-### Supporting Human Actors
-
-**Primary Human Operator:**
-- Actor ID: 10000
-- Type: Human
-- Status: Active
-
-**Additional Human Operators:**
-- Actor ID: 10001+ (as assigned)
-- Type: Human
-- Status: As registered
-
----
-
-## Requirements
-
-### Mandatory Fields
-
-**computer_agent_id:**
-- REQUIRED on all files
-- Must be valid actor_id from `lupo_actors` table
-- Must be AI agent type (actor_id 0-9999)
-- Must be the IDE agent that created/modified the file
-
-**supporting_human_id:**
-- REQUIRED on all files
-- Must be valid actor_id from `lupo_actors` table
-- Must be human type (actor_id >= 10000)
-- Must be the human operator supporting the work
-
-### Format Rules
-
-**Separator:** Colon (`:`)  
-**Example:** `1001:10000`  
-**Invalid:** `1001-10000`, `1001/10000`, `1001 10000`  
-
-**No Spaces:** `1001:10000` ✅ | `1001: 10000` ❌  
-**No Quotes in Value:** `x_lupo_forwarded: "1001:10000"` ✅ | `x_lupo_forwarded: "1001":"10000"` ❌  
-
----
-
-## Implementation
-
-### Version 4.0.31 (Current)
-
-**Status:** OPTIONAL  
-**Recommendation:** Add to all new files  
-**Existing Files:** Update as modified  
-
-### Version 4.0.32 (Next Patch)
-
-**Status:** MANDATORY  
-**Enforcement:** All new files MUST include header  
-**Validation:** Pre-commit hooks will check for header  
-**Existing Files:** Must be updated before 4.0.32 release  
-
-### Version 4.0.33+ (Future)
-
-**Status:** MANDATORY  
-**Enforcement:** Automated validation  
-**Violations:** Build will fail without header  
-
----
-
-## Examples
-
-### Markdown File
-
-```yaml
----
-lupopedia.headers:
-  file_path_from_root: "lupo-docs/example.md"
-  system_version: "4.0.32"
-  x_lupo_forwarded: "1001:10000"
----
-
-# Example Document
-```
-
-### PHP File
-
-```php
-<?php
-/**
- * Example PHP File
- * 
- * @package Lupopedia
- * @version 4.0.32
- * @x_lupo_forwarded 1001:10000
- */
-
-class ExampleClass {
+$headers = array(
+    'X-LUPO-FORWARDED-FOR' => $originalActorId,
+    'X-LUPO-FORWARD-CHAIN' => $originalActorId . ' -> ' . $adopterActorId,
     // ...
-}
-```
-
-### SQL File
-
-```sql
--- Example SQL Migration
--- Version: 4.0.32
--- X-Lupo-Forwarded: 1001:10000
-
-CREATE TABLE example (
-    id BIGINT NOT NULL PRIMARY KEY
 );
 ```
 
-### JavaScript File
+### DialogMessageVerifier.php Usage
 
-```javascript
-/**
- * Example JavaScript File
- * 
- * @version 4.0.32
- * @x_lupo_forwarded 1001:10000
- */
-
-function example() {
-    // ...
+```php
+if (isset($data['forward_headers']['X-Lupo-Forwarded-For'])) {
+    return $data['forward_headers']['X-Lupo-Forwarded-For'];
 }
+```
+
+### VSX Extension Mapping
+
+```typescript
+'x-lupo-forwarded-for': 'lupo_forwarded_for',
+'x-lupo-forward-chain': 'lupo_forward_chain',
 ```
 
 ---
 
-## Validation
+## Migration from Deprecated Header
 
-### Pre-Commit Checks
+### What Changed
 
-**Script:** `lupo-scripts/validate_headers.py`
+- **Old:** `X-LUPO-FORWARDED: computer_agent_id:supporting_human_id`
+- **New:** Specific headers for different attribution needs
+- **Benefit:** Clearer semantics, better tracking capabilities
 
-```python
-def validate_x_lupo_forwarded(file_path):
-    """Check if file has x_lupo_forwarded header"""
-    # Read file
-    # Check for header
-    # Validate format
-    # Return True/False
-```
+### Migration Steps
+
+1. **✅ Completed:** Updated ANUBIS_Resolver.php to use new headers
+2. **✅ Completed:** Updated DialogMessageVerifier.php for new format
+3. **✅ Completed:** Updated VSX extension header mapping
+4. **✅ Completed:** Documented new system in MESSAGE_ATTRIBUTION.md
+5. **📋 This Update:** Mark old doctrine as deprecated
+
+---
+
+## Current Actor ID Assignments
+
+### IDE Agents (Computer Agents)
+
+Based on current registry:
+- **Cursor IDE:** actor_id 102
+- **Windsurf IDE:** actor_id 103
+- **KIRO IDE:** actor_id 100
+- **Warp IDE:** actor_id 101
+- **Cascade IDE:** actor_id 104
+- **Zencoder IDE:** actor_id 105
+- **Antigravity IDE:** actor_id 106
+
+### Human Operators
+
+- **Root User:** actor_id 10000
+- **Additional Humans:** actor_id 10001+
+
+---
+
+## Validation and Verification
+
+### Current Validation
+
+**DialogMessageVerifier.php** includes:
+- Validation of X-Lupo-Forwarded-For headers
+- Reporting of messages with forwarding headers
+- Verification of header format and content
 
 ### Manual Validation
 
 ```bash
-# Check all files for header
-grep -r "x_lupo_forwarded" . --include="*.php" --include="*.md"
+# Check for current header usage
+grep -r "X-Lupo-Forwarded-For" . --include="*.php"
+grep -r "X-Lupo-Forward-Chain" . --include="*.php"
 
-# Find files missing header
-find . -type f \( -name "*.php" -o -name "*.md" \) -exec grep -L "x_lupo_forwarded" {} \;
+# Check for deprecated header usage
+grep -r "X-LUPO-FORWARDED" . --include="*.php"
 ```
-
----
-
-## Migration Plan
-
-### Phase 1: Version 4.0.31 (Current)
-
-- ✅ Add header to all new files created by KIRO
-- ✅ Document requirement in doctrine
-- ✅ Update CHANGELOG.md
-- ⏳ Confirm actor_id assignments
-
-### Phase 2: Version 4.0.32 (Next Patch)
-
-- 📋 Update all existing files with header
-- 📋 Implement validation scripts
-- 📋 Add pre-commit hooks
-- 📋 Make header mandatory
-
-### Phase 3: Version 4.0.33+ (Future)
-
-- 📋 Automated enforcement
-- 📋 Build failure on missing header
-- 📋 Registry integration
-- 📋 Semantic graph updates
-
----
-
-## Actor Registry Integration
-
-### Database Schema
-
-**lupo_actors table:**
-```sql
-SELECT actor_id, name, actor_type
-FROM lupo_actors
-WHERE actor_id IN (1001, 10000);
-```
-
-**Expected Results:**
-```
-actor_id | name              | actor_type
----------|-------------------|------------
-1001     | KIRO IDE          | ai_agent
-10000    | Human Operator    | human
-```
-
-### Registry Updates Required
-
-**Action Items:**
-1. Confirm KIRO IDE actor_id (currently using 1001 as placeholder)
-2. Confirm Warp IDE actor_id
-3. Confirm Cursor IDE actor_id
-4. Confirm other IDE agent actor_ids
-5. Confirm human operator actor_id (currently using 10000)
-
----
-
-## Exceptions
-
-### Files Exempt from Requirement
-
-**None.** All files must include the header starting version 4.0.32.
-
-### Legacy Files
-
-**Pre-4.0.32 files:**
-- Not required to have header immediately
-- Should be updated as they are modified
-- Must be updated before 4.0.33 release
-
----
-
-## Enforcement
-
-### Version 4.0.32
-
-**Pre-Commit Hook:**
-```bash
-#!/bin/bash
-# Check for x_lupo_forwarded header
-if ! grep -q "x_lupo_forwarded" "$file"; then
-    echo "ERROR: Missing x_lupo_forwarded header in $file"
-    exit 1
-fi
-```
-
-### Version 4.0.33+
-
-**Build Validation:**
-```python
-def validate_all_files():
-    for file in get_all_source_files():
-        if not has_x_lupo_forwarded_header(file):
-            raise ValidationError(f"Missing header: {file}")
-```
-
----
-
-## Benefits
-
-### Immediate Benefits
-
-1. **Clear Attribution** - Know who created/modified each file
-2. **Audit Trail** - Complete history of file authorship
-3. **Agent Coordination** - Better handoff between IDE agents
-4. **Security** - Prevent anonymous modifications
-
-### Long-Term Benefits
-
-1. **Semantic Graph** - Link files to actors
-2. **Analytics** - Track agent productivity and patterns
-3. **Collaboration** - Support multi-agent development
-4. **Forensics** - Enable security investigation
 
 ---
 
 ## Related Documentation
 
-- `lupo-docs/doctrine/WOLFIE_HEADER_DOCTRINE.md` - Complete header specification
-- `lupo-docs/doctrine/FLIP_FOOTER_DOCTRINE.md` - Footer requirements
-- `lupo-docs/actor_model.md` - Actor system documentation
-- `CHANGELOG.md` - Version history
+**Current (Active):**
+- `lupo-docs/doctrine/MESSAGE_ATTRIBUTION.md` - Complete attribution system
+- `lupo-includes/classes/ANUBIS_Resolver.php` - Implementation
+- `lupo-includes/classes/DialogMessageVerifier.php` - Verification
+- `lupo-tools/vsx-extension/src/lupopedia/headers.ts` - IDE integration
+
+**Historical (Deprecated):**
+- This document (original X-LUPO-FORWARDED doctrine)
+- Original actor ID assignments (updated in current registry)
 
 ---
 
 ## Conclusion
 
-The `x_lupo_forwarded` header is MANDATORY starting version 4.0.32. All files must include the computer agent ID and supporting human actor ID in the format `computer_agent_id:supporting_human_id`.
+The message forwarding and attribution system has evolved from the single `X-LUPO-FORWARDED` header to a more sophisticated set of headers that provide better tracking and attribution capabilities.
 
-This requirement enhances attribution, security, and semantic graph capabilities while supporting multi-agent development coordination.
+**Key Points:**
+1. `X-LUPO-FORWARDED` is **DEPRECATED** and no longer used
+2. Current headers provide specific attribution and forwarding tracking
+3. Implementation is spread across ANUBIS_Resolver, DialogMessageVerifier, and VSX extension
+4. MESSAGE_ATTRIBUTION.md is the authoritative documentation for the current system
+5. Actor IDs are now managed through the comprehensive actor registry
 
 ---
 
-**Doctrine Status:** ACTIVE  
-**Effective Version:** 4.0.32  
-**Authority:** Captain Wolfie  
-**Maintained By:** KIRO IDE  
-**Last Updated:** 2026-02-23  
+**Doctrine Status:** UPDATED (deprecated old format, documented current)  
+**Effective Version:** 4.0.89  
+**Authority:** WOLFIE (actor_id: 1)  
+**Maintained By:** System Architecture  
+**Last Updated:** 2026-04-05  
+
+---
+
+## Migration Notice
+
+This document has been updated to reflect the current header system. The original `X-LUPO-FORWARDED` header doctrine is preserved here for historical reference, but the headers described in the "Current Header Format" section should be used for all new implementations.
+
+For current implementations, refer to `lupo-docs/doctrine/MESSAGE_ATTRIBUTION.md` as the authoritative source.

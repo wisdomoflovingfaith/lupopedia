@@ -14,12 +14,12 @@ file.channel: schema
 # - Cursor MUST preserve symbolic references exactly as written when modifying
 # - Cursor MUST NOT generate or modify this file unless explicitly instructed
 
-version: "4.0.94"
-last_updated: "20260402"
-# VERSION 4.0.94 (development continues after tag v4.0.93)
+version: "4.0.95"
+last_updated: "20260406"
+# VERSION 4.0.95 (working line; 4.0.94 scope closed for packaging handoff)
 
 # Global Version Atoms
-GLOBAL_CURRENT_LUPOPEDIA_VERSION: "4.0.94"
+GLOBAL_CURRENT_LUPOPEDIA_VERSION: "4.0.95"
 GLOBAL_FLIP_SCHEMA_VERSION: "2.0"
 
 # System Configuration Atoms

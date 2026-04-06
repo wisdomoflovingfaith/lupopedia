@@ -6,7 +6,7 @@ lupopedia.headers:
   lupopedia.version: "4.0.76"
   lupopedia.schema: "kiro_rule"
   file_path_from_root: ".kiro/rules/single-install-no-4.0-upgrade-doctrine.md"
-  last_modified_utc: "20260402"
+  last_modified_utc: "20260406"
   system_version: "4.0.76"
   source_path: "lupo-rules/root/single-install-no-4.0-upgrade-doctrine.md"
   artifact_type: "rule"

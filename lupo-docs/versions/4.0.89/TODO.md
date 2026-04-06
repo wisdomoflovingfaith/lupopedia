@@ -295,7 +295,7 @@ Both must print the **same** `content_id`.
 
 ### H8.9 — Dependencies (PHP path)
 
-- PHP **5.6+** through 8.x (project core); **php-yaml** (`yaml_parse`), **bcmath** or **gmp**, **PDO** MySQL via `lupopedia-config.php` / `DatabaseFactory`
+- PHP **7.4+** through 8.x (project core); **php-yaml** (`yaml_parse`), **bcmath** or **gmp**, **PDO** MySQL via `lupopedia-config.php` / `DatabaseFactory`
 - MySQL 8 / MariaDB 10.5+ (per project doctrine); JSON column for `revision_history`
 
 ---

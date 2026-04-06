@@ -106,6 +106,7 @@ Use that thread’s `decisions/`, `questions/`, `answers/`, and `comments/` fold
 | `lupo-database/` | Directory | Schema definitions, migrations, seed data, and TOON JSON backups. |
 | `lupo-docs/` | Directory | Project documentation, PRDs, doctrines, and reference guides. |
 | `lupo-emoji/` | Directory | Emoji assets used throughout the UI. |
+| `lupo-hooks/` | Directory | Git hooks and validation scripts for development workflow. |
 | `lupo-images/` | Directory | Image assets (logos, UI graphics). |
 | `lupo-includes/` | Directory | Core runtime files, bootstrap, module loader, legacy helpers, CSS/JS assets, UI components, and the semantic engine. |
 | `lupo-install/` | Directory | Installation scripts and wizard resources. |
@@ -198,6 +199,7 @@ The following sub‑folders are critical for understanding project organization 
 | `lupo-docs/implementations/{prd_file_stem}/README.md` | Implementation overview for that PRD. |
 | `lupo-docs/implementations/_template/` | Canonical scaffold source copied by **`lupo-scripts/scaffold_implementation.py`**. |
 | `lupo-docs/api/` | Authoritative API specs and endpoint documentation for integrations. |
+| `lupo-hooks/` | Git hooks and validation scripts for development workflow. Contains pre-commit hooks, installation scripts, and validation runners that ensure code quality and compliance before commits. |
 | `lupo-rules/root/` | Contains the highest-authority, non-negotiable constitutional rules and doctrines governing the codebase. |
 | `lupo-research/federation_nodes/` | Formal ingestion structure for external federation research, guarded by strict RAG (read-only) boundaries. |
 | `lupo-skills/lupopedia-headers/` | Contains the agent skills logic required to parse, update, and write LUPOPEDIA headers. |

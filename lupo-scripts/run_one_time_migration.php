@@ -76,7 +76,11 @@ if (!is_file($fullPath) || !is_readable($fullPath)) {
 
 $table_prefix = defined('LUPO_TABLE_PREFIX') ? LUPO_TABLE_PREFIX : 'lupo_';
 $dsn = (defined('DB_TYPE') ? DB_TYPE : 'mysql') . ":host=" . (defined('DB_HOST') ? DB_HOST : 'localhost') . ";dbname=" . (defined('DB_NAME') ? DB_NAME : '') . ";charset=utf8mb4";
-$pdo = new PDO($dsn, defined('DB_USER') ? DB_USER : '', defined('DB_PASSWORD') ? DB_PASSWORD : '', array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
+$migrate_opts = array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION);
+if (extension_loaded('pdo_mysql')) {
+    $migrate_opts[PDO::MYSQL_ATTR_USE_BUFFERED_QUERY] = true;
+}
+$pdo = new PDO($dsn, defined('DB_USER') ? DB_USER : '', defined('DB_PASSWORD') ? DB_PASSWORD : '', $migrate_opts);
 $db = new PDO_DB($pdo);
 
 if (function_exists('lupo_schema_migration_applied') && lupo_schema_migration_applied($db, $version, $table_prefix)) {

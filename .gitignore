@@ -103,6 +103,12 @@ docs/toons/
 docs/toons/*
 
 # ---------------------------------------------------------
+# Installer legacy / 32-bit override flags (operator-local; never commit)
+# ---------------------------------------------------------
+lupo-install-legacy-php.flag
+lupo-install-allow-32bit.flag
+
+# ---------------------------------------------------------
 # Lupopedia-specific exclusions
 # ---------------------------------------------------------
 /logs/
@@ -118,6 +124,9 @@ logs/
 # ---------------------------------------------------------
 lupo-archive/
 lupo-archive/*
+
+# GPL WordPress study copy — keep under lupo-archive/legacy/wordpress-reference per AGENTS.md; never commit a root tree
+wordpress-reference/
 /runtime/cache/*
 /runtime/sessions/*
 /runtime/logs/*

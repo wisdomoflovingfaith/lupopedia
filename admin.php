@@ -1,48 +1,109 @@
 <?php
-/**
- * Admin interface — Lupopedia. Requires login and admin role.
- * Renders basic template with left navigation of admin options and main content area.
- * Linked from user dropdown (Database Admin) in topbar.
- */
+/*
+---
+lupopedia.headers:
+  header_format_version: 2
+  lupopedia.schema: admin
+  when_updated: "20260406011322"
+  file_path_from_root: "admin.php"
+  web_path: "http://www.lupopedia.com/lupopedia/admin.php"
+  last_modified_utc: "20260406011322"
+  federation_node_id: 0
+  channel_id: 42
+  author:
+    type: "actor"
+    id: 102
+    name: "CURSOR"
+  delegation_chain: "cursor:root"
+  artifact_type: "admin"
+  artifact_kind: "entrypoint"
+  purpose: "Admin entry; DatabaseFactory; UNTRUSTED; Model A session from bootstrap; ActorService for act-as list."
+  tags: ["admin", "entrypoint", "pdo_db", "actors", "locale"]
+---
+*/
 
 define('LUPOPEDIA_PATH', __DIR__);
 define('LUPOPEDIA_PUBLIC_PATH', '/' . basename(__DIR__));
+$UNTRUSTED = array(
+    'get' => (isset($_GET) && is_array($_GET)) ? $_GET : array(),
+    'server' => (isset($_SERVER) && is_array($_SERVER)) ? $_SERVER : array(),
+);
+
+$lupo_doc_root = isset($UNTRUSTED['server']['DOCUMENT_ROOT']) ? $UNTRUSTED['server']['DOCUMENT_ROOT'] : '';
+$lupo_script_name = isset($UNTRUSTED['server']['SCRIPT_NAME']) ? $UNTRUSTED['server']['SCRIPT_NAME'] : '';
 
 require_once LUPOPEDIA_PATH . DIRECTORY_SEPARATOR . 'lupo-includes' . DIRECTORY_SEPARATOR . 'classes' . DIRECTORY_SEPARATOR . 'LupopediaConfigResolver.php';
 $lupoResolvedCfg = LupopediaConfigResolver::resolve(LUPOPEDIA_PATH, LUPOPEDIA_PUBLIC_PATH);
 if ($lupoResolvedCfg !== null) {
     define('LUPOPEDIA_CONFIG_PATH', $lupoResolvedCfg);
-} elseif (file_exists(dirname($_SERVER['DOCUMENT_ROOT']) . '/config.php')) {
-    define('LUPOPEDIA_CONFIG_PATH', dirname($_SERVER['DOCUMENT_ROOT']) . '/config.php');
-} elseif (file_exists(dirname($_SERVER['DOCUMENT_ROOT']) . LUPOPEDIA_PUBLIC_PATH . '/config.php')) {
-    define('LUPOPEDIA_CONFIG_PATH', dirname($_SERVER['DOCUMENT_ROOT']) . LUPOPEDIA_PUBLIC_PATH . '/config.php');
+} elseif ($lupo_doc_root !== '' && file_exists(dirname($lupo_doc_root) . '/config.php')) {
+    define('LUPOPEDIA_CONFIG_PATH', dirname($lupo_doc_root) . '/config.php');
+} elseif ($lupo_doc_root !== '' && file_exists(dirname($lupo_doc_root) . LUPOPEDIA_PUBLIC_PATH . '/config.php')) {
+    define('LUPOPEDIA_CONFIG_PATH', dirname($lupo_doc_root) . LUPOPEDIA_PUBLIC_PATH . '/config.php');
 } elseif (@file_exists(LUPOPEDIA_PATH . '/config.php')) {
     define('LUPOPEDIA_CONFIG_PATH', LUPOPEDIA_PATH . '/config.php');
 } else {
-    header('Location: ' . (rtrim(dirname(isset($_SERVER['SCRIPT_NAME']) ? $_SERVER['SCRIPT_NAME'] : ''), '/') ?: '') . '/install.php');
+    $install_base = rtrim(dirname($lupo_script_name), '/');
+    if ($install_base === '' || $install_base === '.') {
+        $install_base = '';
+    }
+    header('Location: ' . $install_base . '/install.php');
     exit;
 }
 
 require_once LUPOPEDIA_CONFIG_PATH;
 
+if (!class_exists('DatabaseFactory', false)) {
+    require_once LUPOPEDIA_PATH . '/lupo-includes/classes/DatabaseFactory.php';
+}
+
+/**
+ * Canonical PDO_DB for this request (Doctrine: DatabaseFactory / lupo_get_db).
+ *
+ * @return PDO_DB|null
+ */
+function lupo_admin_get_db()
+{
+    static $cached = null;
+    static $resolved = false;
+    if ($resolved) {
+        return $cached;
+    }
+    $resolved = true;
+    if (!class_exists('DatabaseFactory', false)) {
+        return $cached;
+    }
+    try {
+        $cached = DatabaseFactory::getConnection();
+    } catch (Exception $e) {
+        $cached = null;
+    }
+    return $cached;
+}
+
 if (!function_exists('lupo_get_csrf_token')) {
     require_once LUPOPEDIA_PATH . '/lupo-includes/functions/security.php';
 }
 
-// Load AuthSessionManager for actor management
-require_once LUPOPEDIA_PATH . '/lupo-includes/classes/AuthSessionManager.php';
-
-if (session_status() === PHP_SESSION_NONE) {
-    session_start();
+if (!function_exists('lupo_session_metadata_current')) {
+    require_once LUPOPEDIA_PATH . '/lupo-includes/functions/auth-helpers.php';
 }
+
+// PHP session cookie is started in bootstrap; Model A identity is lupo_sessions via $GLOBALS['lupo_session'].
+
 require_once LUPOPEDIA_PATH . '/lupo-includes/classes/LupoLocale.php';
 LupoLocale::bootstrap(LUPOPEDIA_PATH);
 require_once LUPOPEDIA_PATH . '/lupo-includes/lupo-i18n.php';
 
-if (!empty($_SESSION['password_change_required'])) {
-    $cp = defined('LUPOPEDIA_PUBLIC_PATH') ? rtrim(LUPOPEDIA_PUBLIC_PATH, '/') . '/change-password' : '/change-password';
-    header('Location: ' . $cp);
-    exit;
+// Password-must-change flag in lupo_sessions.metadata (not $_SESSION authority).
+$lupoAdminDbPw = lupo_admin_get_db();
+if ($lupoAdminDbPw && function_exists('lupo_session_metadata_current')) {
+    $lupoPwMeta = lupo_session_metadata_current($lupoAdminDbPw);
+    if (!empty($lupoPwMeta['password_change_required'])) {
+        $cp = defined('LUPOPEDIA_PUBLIC_PATH') ? rtrim(LUPOPEDIA_PUBLIC_PATH, '/') . '/change-password' : '/change-password';
+        header('Location: ' . $cp);
+        exit;
+    }
 }
 
 // Require login only; if not admin, show graceful error inside layout (nav still visible)
@@ -73,26 +134,26 @@ if (file_exists(LUPOPEDIA_PATH . '/lupo-includes/functions/admin_diagnostics.php
     require_once LUPOPEDIA_PATH . '/lupo-includes/functions/admin_diagnostics.php';
     $diag_actor_id = ($isUserLoggedIn && isset($user['actor_id'])) ? (int) $user['actor_id'] : 0;
     $diag_session_age = 0;
-    if ($diag_actor_id && isset($GLOBALS['mydatabase']) && function_exists('session_id')) {
+    $diag_db = lupo_admin_get_db();
+    if ($diag_actor_id && $diag_db && function_exists('session_id')) {
         $sid = session_id();
         if ($sid !== '' && $sid !== false) {
-            $db = $GLOBALS['mydatabase'];
+            $db = $diag_db;
             $prefix = defined('LUPO_TABLE_PREFIX') ? LUPO_TABLE_PREFIX : 'lupo_';
             $t = $db->quoteIdentifier($prefix . 'sessions');
             $row = $db->fetchRow("SELECT created_ymdhis FROM {$t} WHERE session_id = :sid AND (is_deleted = 0 OR is_deleted IS NULL) LIMIT 1", array('sid' => $sid));
             if ($row && isset($row['created_ymdhis'])) {
-                $s = (string) $row['created_ymdhis'];
-                if (strlen($s) >= 14) {
-                    $str = substr($s, 0, 4) . '-' . substr($s, 4, 2) . '-' . substr($s, 6, 2) . ' ' . substr($s, 8, 2) . ':' . substr($s, 10, 2) . ':' . substr($s, 12, 2) . ' UTC';
-                    $ts = strtotime($str);
-                    if ($ts !== false) {
-                        $diag_session_age = max(0, time() - $ts);
-                    }
+                if (!class_exists('timestamp_ymdhis', false)) {
+                    require_once LUPOPEDIA_PATH . '/lupo-includes/classes/TimestampYmdhis.php';
+                }
+                $createdPacked = (int) preg_replace('/\D/', '', (string) $row['created_ymdhis']);
+                if ($createdPacked > 0) {
+                    $diag_session_age = max(0, timestamp_ymdhis::diffInSeconds(timestamp_ymdhis::now(), $createdPacked));
                 }
             }
         }
     }
-    $diag_ip = isset($_SERVER['REMOTE_ADDR']) ? (string) $_SERVER['REMOTE_ADDR'] : '';
+    $diag_ip = isset($UNTRUSTED['server']['REMOTE_ADDR']) ? (string) $UNTRUSTED['server']['REMOTE_ADDR'] : '';
     if (function_exists('lupo_diag_session')) {
         lupo_diag_session($diag_actor_id, $diag_session_age, $diag_ip);
     }
@@ -110,10 +171,16 @@ $admin_active_key = 'Dashboard';
 $admin_actor_list = array();
 $admin_active_actor_id = 0;
 if ($isUserLoggedIn) {
-    // Use AuthSessionManager for actor management
-    $sessionManager = new AuthSessionManager();
-    $admin_actor_list = $sessionManager->getActorsUserCanActAs($user['auth_user_id'], $isAdmin);
-    $admin_active_actor_id = $sessionManager->getActiveActorId();
+    $auth_uid = isset($user['auth_user_id']) ? (int) $user['auth_user_id'] : 0;
+    if (isset($GLOBALS['lupo_actor_service']) && is_object($GLOBALS['lupo_actor_service'])) {
+        $admin_actor_list = $GLOBALS['lupo_actor_service']->getActorsUserCanActAs($auth_uid, $isAdmin);
+    } else {
+        $admin_actor_list = array();
+    }
+    $admin_active_actor_id = 0;
+    if (isset($GLOBALS['lupo_session']) && is_object($GLOBALS['lupo_session'])) {
+        $admin_active_actor_id = (int) $GLOBALS['lupo_session']->getActorId();
+    }
     if ($admin_active_actor_id <= 0 && !empty($user['actor_id'])) {
         $admin_active_actor_id = (int) $user['actor_id'];
     }
@@ -133,18 +200,19 @@ if ($isUserLoggedIn && $admin_active_actor_id > 0) {
         }
     }
     if ($admin_active_actor_display === '') {
-        require_once LUPOPEDIA_PATH . '/lupo-includes/classes/DatabaseFactory.php';
-        $db_ad = DatabaseFactory::getConnection();
-        $tp = defined('LUPO_TABLE_PREFIX') ? LUPO_TABLE_PREFIX : 'lupo_';
-        $arow = $db_ad->fetchRow(
-            "SELECT name, actor_name FROM {$tp}actors WHERE actor_id = :aid AND (is_deleted = 0 OR is_deleted IS NULL) LIMIT 1",
-            array('aid' => $admin_active_actor_id)
-        );
-        if ($arow) {
-            if (isset($arow['name']) && $arow['name'] !== '') {
-                $admin_active_actor_display = $arow['name'];
-            } elseif (isset($arow['actor_name'])) {
-                $admin_active_actor_display = $arow['actor_name'];
+        $db_ad = lupo_admin_get_db();
+        if ($db_ad) {
+            $tp = defined('LUPO_TABLE_PREFIX') ? LUPO_TABLE_PREFIX : 'lupo_';
+            $arow = $db_ad->fetchRow(
+                "SELECT name, actor_name FROM {$tp}actors WHERE actor_id = :aid AND (is_deleted = 0 OR is_deleted IS NULL) LIMIT 1",
+                array('aid' => $admin_active_actor_id)
+            );
+            if ($arow) {
+                if (isset($arow['name']) && $arow['name'] !== '') {
+                    $admin_active_actor_display = $arow['name'];
+                } elseif (isset($arow['actor_name'])) {
+                    $admin_active_actor_display = $arow['actor_name'];
+                }
             }
         }
     }
@@ -308,25 +376,25 @@ $admin_section_info = array(
 
 if (!$isAdmin) {
     $admin_main_content = '<div class="admin-error-box">'
-        . '<h2>Access denied</h2>'
-        . '<p>Your account does not have permission to access the admin area. If you believe this is an error, ask an administrator to grant you a channel role (e.g. captain or administrator on channel 1) or owner permission on the admin module.</p>'
-        . '<p><a href="' . (defined('LUPOPEDIA_PUBLIC_PATH') ? LUPOPEDIA_PUBLIC_PATH : '') . '/index.php">Return to home</a></p>'
+        . '<h2>' . htmlspecialchars(lupo_t('admin.access_denied.title', 'Access denied')) . '</h2>'
+        . '<p>' . htmlspecialchars(lupo_t('admin.access_denied.body', 'Your account does not have permission to access the admin area.')) . '</p>'
+        . '<p><a href="' . htmlspecialchars((defined('LUPOPEDIA_PUBLIC_PATH') ? LUPOPEDIA_PUBLIC_PATH : '') . '/index.php') . '">' . htmlspecialchars(lupo_t('admin.access_denied.home', 'Return to home')) . '</a></p>'
         . '</div>';
 } else {
-    $admin_main_content = '<p class="admin-section-description">Welcome to the admin area. Use the sidebar to open a section.</p>'
+    $admin_main_content = '<p class="admin-section-description">' . htmlspecialchars(lupo_t('admin.dashboard.welcome', 'Welcome to the admin area. Use the sidebar to open a section.')) . '</p>'
         . '<ul class="admin-dashboard-links">'
-        . '<li><a href="' . htmlspecialchars($base . '/admin.php?section=users') . '" class="admin-link">Users</a> — Manage auth users and their primary actor pairing for admin actions</li>'
-        . '<li><a href="' . htmlspecialchars($base . '/channels') . '" class="admin-link">Channels</a> — Open the MVP dialog channel list</li>'
-        . '<li><a href="' . htmlspecialchars($base . '/admin.php?section=agents') . '" class="admin-link">Agents</a> — List actor identities that carry agent behavior</li>'
-        . '<li><a href="' . htmlspecialchars($base . '/admin.php?section=departments') . '" class="admin-link">Departments</a> — List actor-scoped departments and defaults</li>'
-        . '<li><a href="' . htmlspecialchars($base . '/admin.php?section=leads') . '" class="admin-link">Leads</a> — CRM leads database</li>'
-        . '<li><a href="' . htmlspecialchars($base . '/admin.php?section=settings') . '" class="admin-link">Master Settings</a> — Configuration</li>'
+        . '<li><a href="' . htmlspecialchars($base . '/admin.php?section=users') . '" class="admin-link">' . htmlspecialchars(lupo_t('admin.dashboard.link_users', 'Users')) . '</a> — ' . htmlspecialchars(lupo_t('admin.dashboard.link_users_desc', 'Manage auth users and their primary actor pairing for admin actions')) . '</li>'
+        . '<li><a href="' . htmlspecialchars($base . '/channels') . '" class="admin-link">' . htmlspecialchars(lupo_t('admin.dashboard.link_channels', 'Channels')) . '</a> — ' . htmlspecialchars(lupo_t('admin.dashboard.link_channels_desc', 'Open the MVP dialog channel list')) . '</li>'
+        . '<li><a href="' . htmlspecialchars($base . '/admin.php?section=agents') . '" class="admin-link">' . htmlspecialchars(lupo_t('admin.dashboard.link_agents', 'Agents')) . '</a> — ' . htmlspecialchars(lupo_t('admin.dashboard.link_agents_desc', 'List actor identities that carry agent behavior')) . '</li>'
+        . '<li><a href="' . htmlspecialchars($base . '/admin.php?section=departments') . '" class="admin-link">' . htmlspecialchars(lupo_t('admin.dashboard.link_departments', 'Departments')) . '</a> — ' . htmlspecialchars(lupo_t('admin.dashboard.link_departments_desc', 'List actor-scoped departments and defaults')) . '</li>'
+        . '<li><a href="' . htmlspecialchars($base . '/admin.php?section=leads') . '" class="admin-link">' . htmlspecialchars(lupo_t('admin.dashboard.link_leads', 'Leads')) . '</a> — ' . htmlspecialchars(lupo_t('admin.dashboard.link_leads_desc', 'CRM leads database')) . '</li>'
+        . '<li><a href="' . htmlspecialchars($base . '/admin.php?section=settings') . '" class="admin-link">' . htmlspecialchars(lupo_t('admin.dashboard.link_settings', 'Master Settings')) . '</a> — ' . htmlspecialchars(lupo_t('admin.dashboard.link_settings_desc', 'Configuration')) . '</li>'
         . '</ul>';
 
     // Q4 (4.0.87): Read-only metadata staleness panel — no UI mutations, admin-only.
     // Shows lupo_metadata rows where last_verified is NULL or < 20260301000000 (2026-03-01).
-    if (isset($GLOBALS['mydatabase'])) {
-        $meta_db     = $GLOBALS['mydatabase'];
+    $meta_db = lupo_admin_get_db();
+    if ($meta_db) {
         $meta_prefix = defined('LUPO_TABLE_PREFIX') ? LUPO_TABLE_PREFIX : 'lupo_';
         $stale_cutoff = 20260301000000;
 
@@ -359,21 +427,24 @@ if (!$isAdmin) {
         $no_lv_count  = ($no_lv_row && isset($no_lv_row['cnt'])) ? (int) $no_lv_row['cnt'] : 0;
 
         $panel = '<div class="admin-metadata-staleness">';
-        $panel .= '<h3>Metadata Staleness <small>(read-only &mdash; threshold: 2026-03-01)</small></h3>';
+        $panel .= '<h3>' . htmlspecialchars(lupo_t('admin.metadata_staleness.title', 'Metadata Staleness')) . ' <small>' . htmlspecialchars(lupo_t('admin.metadata_staleness.threshold_note', '(read-only — threshold: 2026-03-01)')) . '</small></h3>';
 
         if ($stale_count === 0 && $no_lv_count === 0) {
-            $panel .= '<p class="admin-staleness-ok">&#10003; All metadata records have current <code>last_verified</code> timestamps.</p>';
+            $panel .= '<p class="admin-staleness-ok">&#10003; ' . htmlspecialchars(lupo_t('admin.metadata_staleness.all_current', 'All metadata records have current last_verified timestamps.')) . '</p>';
         } else {
-            $panel .= '<p class="admin-staleness-warn">&#9888; Stale <code>last_verified</code>: <strong>' . $stale_count . '</strong> &nbsp;|&nbsp; '
-                . 'Missing <code>last_verified</code> (entity): <strong>' . $no_lv_count . '</strong></p>';
+            $panel .= '<p class="admin-staleness-warn">&#9888; ' . htmlspecialchars(lupo_t('admin.metadata_staleness.warn_prefix', 'Stale last_verified:')) . ' <strong>' . $stale_count . '</strong> &nbsp;|&nbsp; '
+                . htmlspecialchars(lupo_t('admin.metadata_staleness.missing_prefix', 'Missing last_verified (entity):')) . ' <strong>' . $no_lv_count . '</strong></p>';
 
             if ($stale_count > 0) {
                 $panel .= '<table class="admin-staleness-table"><thead><tr>'
-                    . '<th>entity_type</th><th>entity_id</th><th>last_verified</th><th>class_name</th>'
+                    . '<th>' . htmlspecialchars(lupo_t('admin.metadata_staleness.th_entity_type', 'entity_type')) . '</th>'
+                    . '<th>' . htmlspecialchars(lupo_t('admin.metadata_staleness.th_entity_id', 'entity_id')) . '</th>'
+                    . '<th>' . htmlspecialchars(lupo_t('admin.metadata_staleness.th_last_verified', 'last_verified')) . '</th>'
+                    . '<th>' . htmlspecialchars(lupo_t('admin.metadata_staleness.th_class_name', 'class_name')) . '</th>'
                     . '</tr></thead><tbody>';
                 foreach ($stale_rows as $sr) {
                     $lv_val = isset($sr['last_verified']) ? (string) $sr['last_verified'] : '';
-                    $lv_display = ($lv_val !== '') ? htmlspecialchars($lv_val) : '<em>NULL</em>';
+                    $lv_display = ($lv_val !== '') ? htmlspecialchars($lv_val) : '<em>' . htmlspecialchars(lupo_t('admin.metadata_staleness.null', 'NULL')) . '</em>';
                     $panel .= '<tr>'
                         . '<td>' . htmlspecialchars((string) $sr['entity_type']) . '</td>'
                         . '<td>' . htmlspecialchars((string) $sr['entity_id']) . '</td>'
@@ -390,15 +461,15 @@ if (!$isAdmin) {
     }
 }
 
-if ($isAdmin && isset($_GET['section']) && is_string($_GET['section'])) {
-    $section = trim($_GET['section']);
+if ($isAdmin && isset($UNTRUSTED['get']['section']) && is_string($UNTRUSTED['get']['section'])) {
+    $section = trim($UNTRUSTED['get']['section']);
 
     if (($section === 'channels' || $section === 'channel_view') && !headers_sent()) {
         header('Location: ' . $base . '/channels', true, 302);
         exit;
     }
 
-    $db = isset($GLOBALS['mydatabase']) ? $GLOBALS['mydatabase'] : null;
+    $db = lupo_admin_get_db();
     $prefix = defined('LUPO_TABLE_PREFIX') ? LUPO_TABLE_PREFIX : 'lupo_';
 
     // Section title and active menu key (must match menu item label)
@@ -454,7 +525,7 @@ if ($isAdmin && isset($_GET['section']) && is_string($_GET['section'])) {
         $admin_page_title = 'Users';
         $admin_active_key = 'Users';
         if (!$db) {
-            $admin_main_content = '<p class="admin-empty">Database not available.</p>';
+            $admin_main_content = '<p class="admin-empty">' . htmlspecialchars(lupo_t('admin.db_unavailable', 'Database not available.')) . '</p>';
         } else {
             require_once LUPOPEDIA_PATH . '/lupo-includes/classes/AdminUsersHandler.php';
             $admin_main_content = AdminUsersHandler::render($db, $prefix, $base);
@@ -463,7 +534,7 @@ if ($isAdmin && isset($_GET['section']) && is_string($_GET['section'])) {
         $admin_page_title = 'CSV Data Export';
         $admin_active_key = 'CSV Data Export';
         if (!$db) {
-            $admin_main_content = '<p class="admin-empty">Database not available.</p>';
+            $admin_main_content = '<p class="admin-empty">' . htmlspecialchars(lupo_t('admin.db_unavailable', 'Database not available.')) . '</p>';
         } else {
             require_once LUPOPEDIA_PATH . '/lupo-includes/classes/AdminCsvExportHandler.php';
             $admin_main_content = AdminCsvExportHandler::render($db, $prefix, $base);
@@ -472,7 +543,7 @@ if ($isAdmin && isset($_GET['section']) && is_string($_GET['section'])) {
         $admin_page_title = function_exists('lupo_t') ? lupo_t('admin.page.data', 'Data') : 'Data';
         $admin_active_key = 'Overview';
         if (!$db) {
-            $admin_main_content = '<p class="admin-empty">Database not available.</p>';
+            $admin_main_content = '<p class="admin-empty">' . htmlspecialchars(lupo_t('admin.db_unavailable', 'Database not available.')) . '</p>';
         } else {
             require_once LUPOPEDIA_PATH . '/lupo-includes/classes/AdminDataHubHandler.php';
             $admin_main_content = AdminDataHubHandler::render($db, $prefix, $base);
@@ -492,7 +563,7 @@ if ($isAdmin && isset($_GET['section']) && is_string($_GET['section'])) {
         $admin_active_key = 'Channels';
         require_once LUPOPEDIA_PATH . '/lupo-includes/modules/channels/ChannelsController.php';
         $controller = new ChannelsController($db);
-        $controller->admin_view(isset($_GET['id']) ? (int) $_GET['id'] : 0);
+        $controller->admin_view(isset($UNTRUSTED['get']['id']) ? (int) $UNTRUSTED['get']['id'] : 0);
     } elseif ($section === 'agents' && $db) {
         $admin_page_title = 'Agents';
         $admin_active_key = 'Agents';
@@ -551,7 +622,7 @@ if ($isAdmin && isset($_GET['section']) && is_string($_GET['section'])) {
         $admin_page_title = $section_titles[$section][0];
         $admin_active_key = $section_titles[$section][1];
         if ($section === 'channels' || $section === 'agents' || $section === 'actors' || $section === 'departments' || $section === 'leads' || $section === 'registry' || $section === 'channel-chat') {
-            $admin_main_content = '<p class="admin-empty">Database not available.</p>';
+            $admin_main_content = '<p class="admin-empty">' . htmlspecialchars(lupo_t('admin.db_unavailable', 'Database not available.')) . '</p>';
         } elseif (isset($admin_section_info[$section])) {
             $info = $admin_section_info[$section];
             $admin_section_title = $admin_page_title;

@@ -11,7 +11,7 @@ if (!defined('LUPOPEDIA_PATH')) {
 require_once $repo_root . '/lupo-includes/classes/UrlResolver.php';
 
 $fail = 0;
-$resolver = new UrlResolver(null, 'lupo_', $repo_root, true, false);
+$resolver = new UrlResolver('lupo_', $repo_root, true, false);
 
 // Null result: path that does not exist in CSV or filesystem
 $out = $resolver->resolve('doctrine/NONEXISTENT_SLUG_XYZ');

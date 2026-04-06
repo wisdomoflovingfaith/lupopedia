@@ -9,14 +9,16 @@ lupopedia.metadata:
   comment: "Snapshot of metadata for this file or entity at artifact creation."
 
 lupopedia.headers:
-  actor_id: 1
-  actor_name: "wolfie"
+  author:
+    type: "actor"
+    id: 1
+    name: "wolfie"
   delegation_chain: "wolfie:root"
   lupopedia.version: "4.0.74"
   lupopedia.schema: "cursor_rule"
   file_path_from_root: "lupo-rules/root/versioning-doctrine-single-source.md"
   web_path: "http://www.lupopedia.com/rules/root/versioning-doctrine-single-source"
-  last_modified_utc: "20260313"
+  last_modified_utc: "20260406044907"
   system_version: "4.0.74"
   rule_name: "Versioning Doctrine — Single Source of Truth"
   rule_type: "constraint"

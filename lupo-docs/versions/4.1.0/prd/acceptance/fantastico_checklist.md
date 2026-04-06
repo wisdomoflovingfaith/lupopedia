@@ -48,7 +48,7 @@ This checklist is split into two stages:
 
 ## Compatibility
 
-- [ ] PHP 5.6+ compatibility validated.
+- [ ] PHP 7.4+ compatibility validated.
 - [ ] Crafty Syntax 3.7.5 migration path remains supported.
 
 ## Release Decision

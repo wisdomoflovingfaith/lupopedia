@@ -1,14 +1,16 @@
 ---
 lupopedia.headers:
-  actor_id: 1
-  actor_name: wolfie
+  author:
+    type: "actor"
+    id: 1
+    name: "wolfie"
   artifact_kind: documentation
   artifact_type: doctrine
   channel_id: 42
   delegation_chain: wolfie:root
   federation_node_id: 0
   file_path_from_root: lupo-rules/root/LUPOPEDIA_HEADERS_DOCTRINE.md
-  last_modified_utc: '20260328163400'
+  last_modified_utc: '20260406044907'
   lupopedia.schema: doctrine
   purpose: LUPOPEDIA header field taxonomy, validation rules, and database mapping
     (lupo_contents, metadata, edges, revision_history)
@@ -22,7 +24,7 @@ lupopedia.headers:
   - validation
   thread_id: headers-doctrine
   web_path: http://www.lupopedia.com/lupopedia/lupo-rules/root/LUPOPEDIA_HEADERS_DOCTRINE.md
-  when_updated: '20260329003000'
+  when_updated: '20260406044907'
   title: Lupo rules root lupopediaheadersdoctrine
   content_id: 5629208585196930598
 lupopedia.edges:
@@ -103,7 +105,10 @@ lupopedia.edges:
 lupopedia.history:
 - reason: Implementation exists in import/sync; almost no markdown files used the
     block in practice
-  actor_id: 102
+  author:
+    type: "actor"
+    id: 102
+    name: "CURSOR"
   event_id: 1
   actor_name: cursor
   event_date: '20260329002000'
@@ -112,7 +117,10 @@ lupopedia.history:
     adoption gap
   faucet_slug: cursor
 - reason: Finalize header doctrine for DB + markdown audit trail
-  actor_id: 102
+  author:
+    type: "actor"
+    id: 102
+    name: "CURSOR"
   event_id: 2
   actor_name: cursor
   event_date: '20260329003000'
@@ -688,7 +696,7 @@ For artifacts that exist in **`lupo_contents`**, prefer regenerating YAML **from
 - **Commit hook:** Will reject commits with stale files after 4.0.89 release (per project policy)
 
 ### Why
-- Ensures all files comply with current doctrine
+- Ensures all **in-scope** authored files comply with current doctrine (see [PRD 16 — Header applicability and scope](../../lupo-docs/prd/16_lupopedia_headers.md#header-applicability-and-scope); excludes binaries, generated exports, vendor trees)
 - Prevents manual edits that miss required fields
 - Gradual update as files are touched during normal work
 

@@ -39,7 +39,7 @@
 | No vendor directory | ✅ PASS | No `vendor/` directory |
 | Self-contained | ✅ PASS | All required files present |
 | Manual inclusion ready | ✅ PASS | Can be included with `require_once` |
-| PHP 5.6+ compatible | ✅ PASS | Code uses PHP 5.6 compatible syntax |
+| PHP 7.4+ compatible | ✅ PASS | Code uses PHP 7.4 compatible syntax |
 
 ---
 
@@ -265,7 +265,7 @@ When updating PHPMailer:
 ✅ Properly located in `lupo-includes/PHPMailer/`  
 ✅ No Composer dependencies  
 ✅ Self-contained implementation  
-✅ PHP 5.6+ compatible  
+✅ PHP 7.4+ compatible  
 ✅ Manual inclusion pattern ready  
 
 **Recommendation:** Continue using PHPMailer as the primary email solution for Lupopedia. It provides robust email functionality while maintaining compliance with shared hosting requirements.

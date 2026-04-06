@@ -1,13 +1,20 @@
 <?php
+
 /**
- * wolfie.headers: {
- *   file_path_from_root: "lupo-includes/classes/TaskService.php",
- *   system_version: "4.0.66",
- *   channel_id: 42,
- *   actor_id: 1006,
- *   purpose: "Manages status-driven workflows and hierarchical task approvals.",
- *   last_modified_utc: "20260308"
- * }
+ * LUPOPEDIA HEADERS (class — YAML excerpt; canonical: lupo-docs/doctrine/LUPOPEDIA_HEADERS/)
+ *
+ * lupopedia.headers:
+ *   lupopedia.schema: class
+ *   file_path_from_root: lupo-includes/classes/TaskService.php
+ *   last_modified_utc: "20260405233750"
+ *   when_updated: "20260405233750"
+ *   channel_id: 42
+ *   actor_id: 102
+ *   delegation_chain: cursor:root
+ *   artifact_type: class
+ *   artifact_kind: service
+ *   purpose: Status-driven channel tasks (filesystem JSON under lupo-channels) and task paths.
+ *   tags: [tasks, channels, filesystem, service]
  */
 
 class TaskService
@@ -21,6 +28,20 @@ class TaskService
         $this->db = $db;
         $this->prefix = $prefix;
         $this->basePath = ABSPATH . LUPO_CHANNELS_DIR;
+        if (!class_exists('timestamp_ymdhis', false)) {
+            require_once dirname(__FILE__) . '/TimestampYmdhis.php';
+        }
+        if (!class_exists('IdGenerator', false)) {
+            require_once dirname(__FILE__) . '/IdGenerator.php';
+        }
+    }
+
+    /**
+     * @return string
+     */
+    private function packedNowUtcString()
+    {
+        return (string) timestamp_ymdhis::now();
     }
 
     /**
@@ -36,8 +57,8 @@ class TaskService
      */
     public function createTask($channelId, $taskKey, $ownerActorId, $title, $description, $parentAgentId = null)
     {
-        $now = gmdate('YmdHis');
-        $taskId = time() . mt_rand(10, 99);
+        $now = $this->packedNowUtcString();
+        $taskId = IdGenerator::generate();
 
         $taskData = array(
             'task_id' => $taskId,
@@ -137,7 +158,7 @@ class TaskService
 
         $data = json_decode(file_get_contents($path), true);
         $data['pending_approval_from'] = $approverId;
-        $data['updated_ymdhis'] = gmdate('YmdHis');
+        $data['updated_ymdhis'] = $this->packedNowUtcString();
 
         file_put_contents($path, json_encode($data, JSON_PRETTY_PRINT));
 
@@ -241,7 +262,7 @@ class TaskService
         foreach ($meta as $k => $v) {
             $data[$k] = $v;
         }
-        $data['updated_ymdhis'] = gmdate('YmdHis');
+        $data['updated_ymdhis'] = $this->packedNowUtcString();
 
         $statuses = array('pending', 'active', 'completed');
         foreach ($statuses as $s) {

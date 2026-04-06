@@ -3,7 +3,7 @@ lupopedia.headers:
   lupopedia.schema: documentation
   file_path_from_root: AGENTS.md
   web_path: http://www.lupopedia.com/lupopedia/AGENTS.md
-  last_modified_utc: '20260405003854'
+  last_modified_utc: '20260406032615'
   channel_id: 42
   actor_id: 102
   actor_name: cursor
@@ -29,7 +29,7 @@ lupopedia.headers:
   - multi_agent
   agent_name_identity: Cursor IDE Agent (Lead Orchestration)
   lupo_agent: cursor
-  when_updated: '20260405003854'
+  when_updated: '20260406032615'
 lupopedia.edges:
   outbound_edges:
   - to: lupo-docs/doctrine/IDENTITY_MODEL_QUICKSTART_4.0.88.md
@@ -93,6 +93,10 @@ lupopedia.edges:
     type: references
     weight: 1.0
     reason: Thread filename patterns and multi-folder layout
+  - to: lupo-scripts/validate_pseudocode_discipline.py
+    type: references
+    weight: 0.85
+    reason: Optional Purpose 2 pseudocode discipline warnings (PRD 17)
   - to: lupo-docs/prd/21_thread_graduation_doctrine.md
     type: references
     weight: 0.95
@@ -153,7 +157,7 @@ lupopedia.see:
   - - AGENTS.md
     - http://www.lupopedia.com/lupopedia/AGENTS.md
 lupopedia.footer:
-  last_verified: '20260405003854'
+  last_verified: '20260406032615'
   verified_by:
     identity_type: actor
     actor_id: 102
@@ -298,6 +302,17 @@ This file provides guidance for **IDE faucet agents** and contributors. **Canoni
 
 **New IDE or web terminal agent?** Register via the **[Actor Registration Checklist](lupo-docs/ACTOR_REGISTRATION_CHECKLIST.md)**. Do not contribute as an anonymous or unregistered agent.
 
+## Pseudocode reasoning discipline (`decisions/pseudocode/`)
+
+**Canonical:** [PRD 17 — Decisions format](lupo-docs/prd/17_decisions_format.md), section **Pseudocode reasoning discipline for IDE agents (LILITH approved)**.
+
+- **Purpose 2** (`*_design.pseudo.md`, exploratory `*.pseudo.md`, `*.pseudo.php`): treat as **deliberation** — surface options, anchor to a **Decision Reference** (or edges), avoid silent completion into “final” API or schema. Do **not** invent TOON/install-SQL facts.
+- **Purpose 1** (`*_constitution.pseudo.md`, `lupo-docs/decisions/pseudocode/00_*.pseudo.md`): **digest / router** artifacts — high comment ratio is **not** required; still **no invented** columns or tables when extending.
+
+**Optional validator** (warnings; use `--strict` to fail on warnings):
+
+`python lupo-scripts/validate_pseudocode_discipline.py <files-or-dirs>`
+
 ## Mandatory Channel Literacy (All Actors and Agents)
 
 All actors and agents must operate with channel-first context and thread-scoped execution.
@@ -418,7 +433,7 @@ Lupopedia is the continuation of Crafty Syntax Live Help 3.7.5 — a PHP live-ch
 
 ## Development Environment
 
-- **Runtime:** PHP 5.6 through 8.3+ (all code must compile on PHP 5.6 minimum — no Composer/outside frameworks not in lupo-includes; no deprecated PHP 8+ syntax; no named arguments, union types, match, enums, typed properties, attributes, arrow functions, strict types, or return type declarations in core paths)
+- **Runtime (PRD 00 §4 Option 4):** **Production** — PHP **7.4+** and **64-bit** (Y2038-safe packed UTC as `int`). **Legacy / transitional** — PHP **5.6+** may still run (e.g. old Crafty hosts); **32-bit** is not Y2038-safe. **Source** — shared core **SHOULD** stay **PHP 5.6-parsable** where policy applies (**`lupo-rules/root/PHP_VERSION_COMPATIBILITY.md`**); avoid PHP 8-only syntax in shared paths (union types, `match`, enums, attributes, readonly, `strict_types` unless file is modern-only). No Composer **`vendor/`** in core runtime.
 - **Database:** MySQL 8.0+ / MariaDB 10.5+ / PostgreSQL (all SQL must work on all three)
 - **Web server:** Apache or Nginx with mod_rewrite, always installed in a subdirectory (never at web root)
 - **Local stack:** ServBay on Windows 11, PowerShell
@@ -640,7 +655,7 @@ See [LUPOPEDIA HEADERS doctrine](lupo-docs/doctrine/LUPOPEDIA_HEADERS/README.md)
 - **Legacy reference only:** Crafty **`craftysyntax-reference/lang/`** (`txtN` keys) — do not copy numeric key style; use dotted semantic keys.
 
 ### LUPOPEDIA HEADERS
-- Every file should have a **LUPOPEDIA HEADERS** block (YAML between `---` delimiters) with at minimum `file_path_from_root`, `file.last_modified_system_version`, and `file.last_modified_utc`. These are the file's identity — infer everything from the header, never hallucinate missing fields. Headers are stored in the **`lupo_metadata`** table and can also be **written to the file** as YAML. See [lupo-docs/doctrine/LUPOPEDIA_HEADERS/](lupo-docs/doctrine/LUPOPEDIA_HEADERS/README.md) for format, database behavior, and validators/tooling.
+- **In-scope** authored files (see [PRD 16 — Header applicability and scope](lupo-docs/prd/16_lupopedia_headers.md#header-applicability-and-scope)) **should** have a **LUPOPEDIA HEADERS** block: Markdown uses YAML between `---` delimiters; PHP/JS/Python/SQL/HTML use comment-embedded YAML per FORMAT. **`decisions/pseudocode/*.pseudo.md`** and **`*.pseudo.php`** (and **`*.pseudo.txt`**) **must** include headers with **`file_path_from_root`** so external AI and paste handoff can anchor paths ([PRD 17](lupo-docs/prd/17_decisions_format.md) pseudocode rules). Include at minimum the fields required for that artifact type (always **`file_path_from_root`** for identity). Do **not** require headers on binaries, generated exports (TOON, CSV dumps, minified bundles), vendor trees, or lockfiles. Headers are stored in **`lupo_metadata`** when imported and can be **written to the file**. See [lupo-docs/doctrine/LUPOPEDIA_HEADERS/](lupo-docs/doctrine/LUPOPEDIA_HEADERS/README.md) and PRD 16.
 
 ### File Naming
 - Lowercase a–z, digits 0–9, underscore only. No uppercase, hyphens, spaces, or Unicode in new filenames.

@@ -2,10 +2,10 @@
 lupopedia.headers:
   header_format_version: 2
   lupopedia.schema: doctrine
-  when_updated: "20260404075645"
+  when_updated: "20260405205506"
   file_path_from_root: "lupo-docs/prd/28_semantic_monitoring_widget.md"
   web_path: "http://www.lupopedia.com/lupopedia/lupo-docs/prd/28_semantic_monitoring_widget.md"
-  last_modified_utc: "20260404075645"
+  last_modified_utc: "20260405205506"
   federation_node_id: 0
   channel_id: 42
   thread_id: "prd-semantic-monitoring-widget"
@@ -163,7 +163,7 @@ lupopedia.edges:
       reason: "Architecture doctrine — Eye vs livehelp_js, routing truth, IDE must-not-guess UI"
 
 lupopedia.footer:
-  last_verified: "20260404075645"
+  last_verified: "20260405205506"
   verified_by:
     identity_type: actor
     actor_id: 102
@@ -559,7 +559,23 @@ User preference stored in `lupo_actor_traits` (`actor_id`, `trait_key='eye_visua
 | 🔗 | `GET /api/page/edges` | `lupo_edges` |
 | 👁️ | `GET /api/chat/status` | chat system |
 
-All endpoints receive `page_id` (content_id) as a query parameter. All PHP handlers use `DatabaseFactory::getConnection()` and `LUPO_TABLE_PREFIX`.
+### API routing: clean URLs vs query parameters (constitutional)
+
+**PRD 00 §2** and **§9.5** require that **no core API depends on `mod_rewrite`.** Handlers **must** accept identifiers via **query parameters** (and may also accept **PATH_INFO** or path segments when rewrites are present).
+
+| Mode | When it applies | Example (under `LUPOPEDIA_PUBLIC_PATH`) |
+|------|-----------------|----------------------------------------|
+| **Clean URL** | `mod_rewrite` + `.htaccess` (or stack equivalent) | `GET .../api/page/tags/123` (path segment = `content_id`) |
+| **Fallback (required)** | Always — shared hosting without `AllowOverride`, Nginx, IIS, etc. | `GET .../api/page/tags?page_id=123` (or `index.php?route=...` + documented params) |
+
+**Server behavior (normative for implementers):**
+
+1. Resolve **`content_id` / `page_id`** from **`PATH_INFO`**, rewrite-captured path segments, or **query string** — in a **fixed precedence** documented per endpoint (typically prefer path when present, else query).
+2. **Do not** require pretty URLs for correctness; **do not** fail closed when only the fallback form is available.
+
+**Table note:** The “Endpoint” column above uses **slash notation** for readability; **query-parameter equivalents** for the same operations are **mandatory** unless an explicit exception is **APPROVED** in a decision artifact.
+
+All PHP handlers use `DatabaseFactory::getConnection()` and `LUPO_TABLE_PREFIX`.
 
 ---
 

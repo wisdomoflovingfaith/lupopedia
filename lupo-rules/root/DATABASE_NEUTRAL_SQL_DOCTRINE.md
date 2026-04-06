@@ -1,13 +1,15 @@
 ---
 lupopedia.headers:
-  when_updated: "20260328130000"
+  when_updated: "20260406044907"
   lupopedia.schema: "doctrine"
   file_path_from_root: "lupo-rules/root/DATABASE_NEUTRAL_SQL_DOCTRINE.md"
   web_path: "http://www.lupopedia.com/lupopedia/lupo-rules/root/DATABASE_NEUTRAL_SQL_DOCTRINE.md"
-  last_modified_utc: "20260328130000"
+  last_modified_utc: "20260406044907"
   channel_id: 42
-  actor_id: 1
-  actor_name: "wolfie"
+  author:
+    type: "actor"
+    id: 1
+    name: "wolfie"
   delegation_chain: "wolfie:root"
   artifact_type: "doctrine"
   artifact_kind: "rule"

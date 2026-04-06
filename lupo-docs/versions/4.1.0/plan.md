@@ -33,7 +33,7 @@ lupopedia.footer:
     - "Keep 4.1.0 positioned as post-approval milestone"
     - "Use approved 4.0.x outputs as the foundation entry gate"
     - "Do not execute 4.1.0 scope before preconditions are met"
-    - "Carry forward PHP 5.6+ compatibility and external libraries doctrine from 4.0.89+"
+    - "Carry forward PHP 7.4+ compatibility and external libraries doctrine from 4.0.89+"
 ---
 
 # 4.1.0 Plan
@@ -51,7 +51,7 @@ The foundation established across 4.0.x iterations is expected to include:
 3. Federation model, including node 0 transitional incompleteness and node-local-first behavior.
 4. JavaScript tracking and navigation system definition for `lupopedia_js.php`.
 5. Approval footer and approval index model for version governance.
-6. **PHP 5.6+ compatibility doctrine** - Comprehensive compatibility rules enforced.
+6. **PHP 7.4+ compatibility doctrine** - Comprehensive compatibility rules enforced.
 7. **External libraries doctrine** - Self-contained library usage patterns established.
 8. **Auth user to actor mapping** - Session management and actor selection workflow.
 
@@ -70,7 +70,7 @@ Carryover rule:
 2. The system is stable enough to implement without re-litigating core structure.
 3. Structure, migration boundaries, and release-critical documentation are validated.
 4. **All Laravel/Composer violations remediated** - No framework dependencies remain.
-5. **PHP 5.6+ compatibility verified** - All code works on shared hosting.
+5. **PHP 7.4+ compatibility verified** - All code works on shared hosting.
 
 ## Execution Scope for 4.1.0
 

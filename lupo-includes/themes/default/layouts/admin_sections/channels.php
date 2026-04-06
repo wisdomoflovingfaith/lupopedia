@@ -33,7 +33,17 @@ $base = isset($base) ? $base : (defined('LUPOPEDIA_PUBLIC_PATH') ? LUPOPEDIA_PUB
             <tbody>
                 <?php foreach ($channels as $row): ?>
                     <?php
-                    $lastActivity = $row['last_activity'] > 0 ? date('Y-m-d H:i:s', strtotime($row['last_activity'])) : 'Never';
+                    // last_activity is MAX(created_ymdhis) — packed BIGINT UTC YYYYMMDDHHIISS, not Unix epoch
+                    $lastActivity = 'Never';
+                    if (isset($row['last_activity']) && (int) $row['last_activity'] > 0) {
+                        $s = str_pad((string) (int) $row['last_activity'], 14, '0', STR_PAD_LEFT);
+                        if (strlen($s) >= 14) {
+                            $lastActivity = substr($s, 0, 4) . '-' . substr($s, 4, 2) . '-' . substr($s, 6, 2)
+                                . ' ' . substr($s, 8, 2) . ':' . substr($s, 10, 2) . ':' . substr($s, 12, 2) . ' UTC';
+                        } else {
+                            $lastActivity = (string) $row['last_activity'];
+                        }
+                    }
                     $isSystem = (isset($row['department_id']) && $row['department_id'] == 0);
                     ?>
                     <tr class="<?= $isSystem ? 'system-row' : '' ?>">

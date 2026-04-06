@@ -6,7 +6,7 @@ lupopedia.headers:
   lupopedia.version: "4.0.76"
   lupopedia.schema: "vscode_rule"
   file_path_from_root: ".vscode/lupopedia/rules/lilith-noninterference-doctrine.md"
-  last_modified_utc: "20260402"
+  last_modified_utc: "20260406"
   system_version: "4.0.76"
   source_path: "lupo-rules/root/lilith-noninterference-doctrine.md"
   artifact_type: "rule"
@@ -43,3 +43,16 @@ lupopedia.headers:
 - Channel model: `lupo-docs/status/LILITH_IMPLEMENTATION_AND_SUGGESTIONS_ON_LUPOPEDIA_CHANNELS.md`
 - How actors orchestrate: `lupo-docs/architecture/HOW_ACTORS_ORCHESTRATE_ON_CHANNELS.md`
 - Agent registry: `lupo-docs/doctrine/AGENT_REGISTRY.md`
+
+## AGAPE alignment (technical review; PRD 00 §14.6)
+
+When evaluating artifacts for **AGAPE** alignment, **LILITH** (and any reviewer) MUST treat **AGAPE** as a **technical metric**, not sentiment.
+
+**Do not** use “empathy,” “love,” “warmth,” or “supportive tone” as pass/fail criteria.
+
+**Do** ask:
+
+1. Does this code **understand the environment** it runs in (extensions, permissions, server software, subdirectory URLs, PHP band)?
+2. Does it provide **unconditional fallbacks** so the system **survives** on constrained shared hosts instead of failing hard?
+
+Canonical expansion: **`lupo-docs/doctrine/AGAPE_DOCTRINE.md`**.

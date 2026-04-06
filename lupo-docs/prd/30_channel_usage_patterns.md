@@ -151,7 +151,7 @@ WOLFIE to review and decide on schema approach by EOD
 
 ## Related Implementation
 - lupo-docs/implementations/18_channel_chat_display/
-- lupo-docs/implementations/25_departments_systems/
+- lupo-docs/implementations/25_departments_system/
 ```
 
 ## Channel-Docs Synchronization
@@ -176,7 +176,7 @@ lupopedia.edges:
       reason: "Critical question also posted in development channel"
 
 # In channel message:
-Related Implementation: lupo-docs/implementations/25_departments_systems/questions/critical/20260402_161500_QUESTION_db_schema.md
+Related Implementation: lupo-docs/implementations/25_departments_system/questions/20260403210005_QUESTION_root_hybrids_followups.md
 ```
 
 ## Channel Usage Guidelines
@@ -230,6 +230,12 @@ Related Implementation: lupo-docs/implementations/25_departments_systems/questio
 - **Purpose**: Semantic and knowledge systems
 - **Expected Content**: Knowledge graph updates, semantic engine status
 - **Frequency**: As semantic system changes occur
+
+### Help Documentation Channel (channel_key: help_documentation)
+- **Purpose**: User-facing help content and documentation
+- **Expected Content**: Help guides, FAQs, tutorials, user documentation
+- **Frequency**: As help content is created or updated
+- **Content Organization**: Stored in `lupo-content/0/help_documentation/` with channel_key-based folder structure
 
 ## Enforcement
 

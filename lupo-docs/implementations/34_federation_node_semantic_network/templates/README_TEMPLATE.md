@@ -108,7 +108,7 @@ Include a `tests/` directory with:
 
 ## Naming Convention
 
-- Folder name: `{number}_{name}` (e.g., `25_departments_systems`)
+- Folder name: `{prd_file_stem}` — exact PRD basename without `.md` (e.g., `25_departments_system` for `25_departments_system.md`)
 - Files: `lowercase_with_underscores` (e.g., `access_control.md`)
 - No spaces or camelCase
 
@@ -127,15 +127,15 @@ lupopedia.headers:
   header_format_version: 2
   lupopedia.schema: implementation
   when_updated: "20260402000000"
-  file_path_from_root: "lupo-docs/implementations/25_departments_systems/feature.md"
-  web_path: "http://www.lupopedia.com/lupopedia/lupo-docs/implementations/25_departments_systems/feature.md"
+  file_path_from_root: "lupo-docs/implementations/25_departments_system/feature.md"
+  web_path: "http://www.lupopedia.com/lupopedia/lupo-docs/implementations/25_departments_system/feature.md"
   federation_node_id: 0
   channel_id: 42
   thread_id: "25-departments-implementation"
   actor_id: 102
   actor_name: "cursor"
   delegation_chain: "cursor:root"
-  parent_prd: "25_departments_systems"
+  parent_prd: "25_departments_system"
   artifact_type: "implementation"
   artifact_kind: "question"
   purpose: "Critical question about authentication approach"
@@ -146,7 +146,7 @@ lupopedia.headers:
     - "authentication"
 lupopedia.edges:
   outbound_edges:
-    - to: "lupo-docs/prd/25_departments_systems.md"
+    - to: "lupo-docs/prd/25_departments_system.md"
       type: questions
       weight: 1.0
       reason: "PRD this implementation questions"
@@ -155,7 +155,7 @@ lupopedia.edges:
 
 ## Usage
 
-1. Copy this folder to `lupo-docs/implementations/{number}_{name}/`
+1. Copy this folder to `lupo-docs/implementations/{prd_file_stem}/` (see **PRD 31**)
 2. Update all headers with correct paths and parent PRD
 3. Add implementation files as needed
 4. Update `lupo-docs/implementations/README.md` index

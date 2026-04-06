@@ -1,0 +1,28 @@
+{
+  "table_name": "lupo_votes",
+  "fields": [
+    "`vote_id` bigint NOT NULL",
+    "`object_type` varchar(64) NOT NULL",
+    "`object_id` bigint NOT NULL",
+    "`actor_id` bigint NOT NULL",
+    "`vote_value` tinyint NOT NULL",
+    "`vote_weight` float DEFAULT 1.0",
+    "`created_ymdhis` bigint NOT NULL",
+    "`updated_ymdhis` bigint NOT NULL",
+    "`is_deleted` tinyint NOT NULL DEFAULT 0",
+    "`deleted_ymdhis` bigint"
+  ],
+  "data": [],
+  "indexes": [],
+  "relationships": [],
+  "primary_key": {
+    "column_name": "vote_id",
+    "expected_name": "vote_id",
+    "is_correct": true,
+    "needs_rename": false
+  },
+  "doctrine_metadata": {
+    "no_foreign_keys": true,
+    "no_triggers": true
+  }
+}

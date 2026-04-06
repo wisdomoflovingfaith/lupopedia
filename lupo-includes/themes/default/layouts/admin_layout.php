@@ -1,15 +1,34 @@
 <?php
-/**
- * wolfie.header.identity: admin-layout
- * wolfie.header.placement: /lupo-includes/themes/default/layouts/admin_layout.php
- *
- * Admin page: scroll chrome + 7-square intro (vanilla JS), optional legacy header/nav (hidden after intro).
- * Expects: $admin_page_title, $admin_menu_items, $admin_main_content. Optional: $admin_disable_scroll_intro.
- */
+/*
+---
+lupopedia.headers:
+  header_format_version: 2
+  lupopedia.schema: layout
+  when_updated: "20260406003830"
+  file_path_from_root: "lupo-includes/themes/default/layouts/admin_layout.php"
+  web_path: "http://www.lupopedia.com/lupopedia/lupo-includes/themes/default/layouts/admin_layout.php"
+  last_modified_utc: "20260406003830"
+  federation_node_id: 0
+  channel_id: 42
+  author:
+    type: "actor"
+    id: 102
+    name: "CURSOR"
+  delegation_chain: "cursor:root"
+  artifact_type: "layout"
+  artifact_kind: "admin"
+  purpose: "Admin page layout with scroll chrome, 7-square intro, user dropdown, actor switcher; UNTRUSTED GET boundary for section."
+  tags: ["admin", "layout", "ui", "locale"]
+---
+*/
 
 if (!defined('LUPOPEDIA_CONFIG_LOADED')) {
     die("Config not loaded. admin_layout.php cannot be called directly.");
 }
+
+$UNTRUSTED = array(
+    'get' => (isset($_GET) && is_array($_GET)) ? $_GET : array(),
+);
 
 if (!class_exists('LupoLocale', false)) {
     require_once LUPOPEDIA_PATH . '/lupo-includes/classes/LupoLocale.php';
@@ -125,13 +144,20 @@ if ($admin_nav_auth_user_id > 0) {
     $admin_nav_avatar_disk = LUPOPEDIA_PATH . '/lupo-uploads/avatars/' . $admin_nav_auth_user_id . '_avatar.jpg';
     if (file_exists($admin_nav_avatar_disk)) {
         $admin_nav_user_avatar = LUPOPEDIA_PUBLIC_PATH . '/lupo-uploads/avatars/' . $admin_nav_auth_user_id . '_avatar.jpg';
-        $admin_nav_avatar_ts = '?' . time();
+        $admin_nav_avatar_ts = '?' . gmdate('YmdHis');
     }
 }
 
 /* Parchment scroll tiles: s1a–s9a default; s1b–s9b when Content (section=artifacts) is open */
 $admin_scroll_skin = 'a';
-if (isset($_GET['section']) && is_string($_GET['section']) && trim($_GET['section']) === 'artifacts') {
+$admin_untrusted_section = '';
+if (isset($UNTRUSTED['get']['section'])) {
+    $us = $UNTRUSTED['get']['section'];
+    if (is_string($us)) {
+        $admin_untrusted_section = trim($us);
+    }
+}
+if ($admin_untrusted_section === 'artifacts') {
     $admin_scroll_skin = 'b';
 }
 ?>

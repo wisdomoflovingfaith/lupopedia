@@ -81,7 +81,7 @@ This specification defines the lupopedia_js.php tracking system, a critical comp
 
 #### 1. Client-Side JavaScript (lupopedia_js.php)
 **Purpose**: Frontend tracking and data collection  
-**Technology**: Vanilla JavaScript (compatible with PHP 5.6+)  
+**Technology**: Vanilla JavaScript (compatible with PHP 7.4+)  
 **Dependencies**: None (self-contained)  
 
 **Core Functions**:
@@ -127,7 +127,7 @@ lupopedia.trackEvent(eventName, eventData);
 
 #### 3. Backend Processing (lupo_js_handler.php)
 **Purpose**: Data processing and storage  
-**Technology**: PHP 5.6+ compatible  
+**Technology**: PHP 7.4+ compatible  
 **Database**: lupo_paths, lupo_visits, lupo_events  
 
 **Processing Steps**:

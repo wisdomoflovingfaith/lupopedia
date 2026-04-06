@@ -2,7 +2,7 @@
 /**
  * Channel send message API — POST only.
  * Legacy: admin_chat_bot.php whattodo=send. Insert dialog_message, clear all typing (writediv), timestamp uniqueness.
- * Schema: lupo_dialog_messages, file-based typing cache. All paths use LUPOPEDIA_PUBLIC_PATH.
+ * Schema: lupo_dialog_messages; clears lupo_channel_typing_previews on send. All paths use LUPOPEDIA_PUBLIC_PATH.
  */
 
 if (!defined('LUPOPEDIA_CONFIG_LOADED')) {
@@ -220,14 +220,24 @@ $stmt_ins->execute(array(
     ':original_sender_actor_id' => $original_sender_actor_id,
 ));
 
-// Legacy: on send, clear typing for the channel (skip when pending/channel_id=0)
+// On send, clear typing previews for the channel (DB; skip when pending/channel_id=0)
 if ($channel_id > 0) {
     $app_root = defined('LUPOPEDIA_PATH') ? LUPOPEDIA_PATH : (defined('LUPOPEDIA_ABSPATH') ? LUPOPEDIA_ABSPATH : '');
-    $cache_dir = rtrim($app_root, '/\\') . DIRECTORY_SEPARATOR . 'lupo-includes' . DIRECTORY_SEPARATOR . 'modules' . DIRECTORY_SEPARATOR . 'channels' . DIRECTORY_SEPARATOR . 'cache';
-    $typing_file = $cache_dir . DIRECTORY_SEPARATOR . 'typing_' . $channel_id . '.json';
-    if (is_file($typing_file)) {
-        @file_put_contents($typing_file, '{}', LOCK_EX);
+    if (!class_exists('timestamp_ymdhis', false) && $app_root !== '') {
+        require_once rtrim($app_root, '/\\') . DIRECTORY_SEPARATOR . 'lupo-includes' . DIRECTORY_SEPARATOR . 'classes' . DIRECTORY_SEPARATOR . 'TimestampYmdhis.php';
     }
+    $nowClr = class_exists('timestamp_ymdhis', false) ? (string) timestamp_ymdhis::now() : gmdate('YmdHis');
+    $db->update(
+        $table_prefix . 'channel_typing_previews',
+        array(
+            'preview_text'   => '',
+            'updated_ymdhis' => $nowClr,
+            'is_deleted'     => 1,
+            'deleted_ymdhis' => $nowClr,
+        ),
+        'channel_id = :cid AND is_deleted = 0',
+        array('cid' => $channel_id)
+    );
 }
 
 header('Content-Type: application/json; charset=utf-8');

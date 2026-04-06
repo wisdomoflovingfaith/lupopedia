@@ -265,8 +265,8 @@ class SystemAgentInitialize
             throw new Exception("Database connection required for AI agent initialization");
         }
 
-        // Use the integrated AI agent initialization function
-        $result = initializeCoreAIAgents($db, $lifecycleId);
+        // initializeCoreAIAgents uses DatabaseFactory / mydatabase internally
+        $result = initializeCoreAIAgents($lifecycleId);
         
         if ($result['errors'] > 0) {
             $this->warnings[] = "AI agent initialization failed for {$result['errors']} agents";

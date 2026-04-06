@@ -79,7 +79,7 @@ lupopedia.edges:
       type: comments_on
       weight: 1.0
       reason: "Additional rationale for authentication decision"
-    - to: "../../prd/25_departments_systems.md"
+    - to: "../../prd/25_departments_system.md"
       type: implements_detail
       weight: 0.8
       reason: "Specific implementation note for PRD requirement"

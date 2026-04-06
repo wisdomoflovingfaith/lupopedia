@@ -1,0 +1,24 @@
+{
+  "table_name": "lupo_crafty_syntax_chat_mod_departments",
+  "fields": [
+    "`crafty_syntax_chat_mod_department_id` bigint NOT NULL",
+    "`department_id` bigint NOT NULL DEFAULT 0",
+    "`module_id` bigint NOT NULL DEFAULT 0",
+    "`sort_order` int NOT NULL DEFAULT 0",
+    "`is_active` tinyint NOT NULL DEFAULT 1",
+    "`is_default` tinyint NOT NULL DEFAULT 0"
+  ],
+  "data": [],
+  "indexes": [],
+  "relationships": [],
+  "primary_key": {
+    "column_name": "crafty_syntax_chat_mod_department_id",
+    "expected_name": "crafty_syntax_chat_mod_department_id",
+    "is_correct": true,
+    "needs_rename": false
+  },
+  "doctrine_metadata": {
+    "no_foreign_keys": true,
+    "no_triggers": true
+  }
+}

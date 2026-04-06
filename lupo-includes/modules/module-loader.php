@@ -1,18 +1,42 @@
 <?php
-/**
- * wolfie.header.identity: module-loader
- * wolfie.header.placement: /lupo-includes/modules/module-loader.php
- * wolfie.header.version: 3.1.1
- * wolfie.header.dialog:
- *   speaker: CURSOR
- *   target: @everyone
- *   message: "Version 3.1.1: Added HELP and LIST module routes. HELP handles /help documentation system. LIST handles /list entity introspection. Both routes have priority before TRUTH and CONTENT."
- * wolfie.header.mood.label: focused
- * wolfie.header.mood.rgb: "00FF00"
- */
+/*
+---
+lupopedia.headers:
+  header_format_version: 2
+  lupopedia.schema: module
+  when_updated: "20260406030121"
+  file_path_from_root: "lupo-includes/modules/module-loader.php"
+  web_path: "http://www.lupopedia.com/lupopedia/lupo-includes/modules/module-loader.php"
+  last_modified_utc: "20260406030121"
+  federation_node_id: 0
+  channel_id: 42
+  author:
+    type: "actor"
+    id: 102
+    name: "CURSOR"
+  delegation_chain: "cursor:root"
+  artifact_type: "module"
+  artifact_kind: "loader"
+  purpose: "Routing priority loader; AUTH, content, truth, channels, QA, HELP, LIST, CONTENT; $UNTRUSTED superglobals; PDO_DB via DatabaseFactory."
+  tags: ["routing", "modules", "loader", "priority"]
+---
+*/
 
 if (!defined('LUPOPEDIA_CONFIG_LOADED')) {
     die("Config not loaded. module-loader.php cannot be called directly.");
+}
+
+if (!isset($UNTRUSTED) || !is_array($UNTRUSTED)) {
+    $UNTRUSTED = array();
+}
+if (!isset($UNTRUSTED['server']) || !is_array($UNTRUSTED['server'])) {
+    $UNTRUSTED['server'] = (isset($_SERVER) && is_array($_SERVER)) ? $_SERVER : array();
+}
+if (!isset($UNTRUSTED['get']) || !is_array($UNTRUSTED['get'])) {
+    $UNTRUSTED['get'] = (isset($_GET) && is_array($_GET)) ? $_GET : array();
+}
+if (!isset($UNTRUSTED['post']) || !is_array($UNTRUSTED['post'])) {
+    $UNTRUSTED['post'] = (isset($_POST) && is_array($_POST)) ? $_POST : array();
 }
 
 // Define essential constants BEFORE loading modules
@@ -29,11 +53,16 @@ if (!defined('LUPO_INCLUDES_DIR')) {
 }
 
 if (!defined('LUPOPEDIA_PUBLIC_PATH')) {
-    // Calculate public path for web access
-    $script_name = basename($_SERVER['SCRIPT_NAME'], '.php');
-    $script_dir = dirname($_SERVER['SCRIPT_NAME']);
-
-    $web_path_to_config = str_replace('\\', '/', str_replace(dirname($_SERVER['SCRIPT_FILENAME']), '', $script_dir));
+    // Calculate public path for web access ($UNTRUSTED server snapshot only).
+    $us = $UNTRUSTED['server'];
+    $script_name_key = isset($us['SCRIPT_NAME']) ? $us['SCRIPT_NAME'] : '';
+    $script_filename_key = isset($us['SCRIPT_FILENAME']) ? $us['SCRIPT_FILENAME'] : '';
+    $script_dir = dirname($script_name_key);
+    if ($script_filename_key !== '') {
+        $web_path_to_config = str_replace('\\', '/', str_replace(dirname($script_filename_key), '', $script_dir));
+    } else {
+        $web_path_to_config = str_replace('\\', '/', $script_dir);
+    }
 
     // Remove common subdirectory patterns
     $patterns = array('/lupo-includes/', '/lupo-tests/', '/lupo-admin/', '/lupo-database/', '/lupo-docs/', '/lupo-scripts/', '/lupo-tools/', '/legacy/', '/lupo-channels/', '/lupo-uploads/');
@@ -46,6 +75,30 @@ if (!defined('LUPOPEDIA_PUBLIC_PATH')) {
     }
 
     define('LUPOPEDIA_PUBLIC_PATH', '/' . trim($clean_path, '/') . '/');
+}
+
+/**
+ * PDO_DB connection for this loader (DatabaseFactory only; no raw $GLOBALS['mydatabase']).
+ *
+ * @return PDO_DB|null
+ */
+function lupo_module_loader_get_db()
+{
+    if (!class_exists('DatabaseFactory', false)) {
+        $base = defined('LUPOPEDIA_PATH') ? LUPOPEDIA_PATH : '';
+        $p = ($base !== '') ? rtrim(str_replace('\\', '/', $base), '/') . '/lupo-includes/classes/DatabaseFactory.php' : '';
+        if ($p !== '' && is_file($p)) {
+            require_once $p;
+        }
+    }
+    if (class_exists('DatabaseFactory', false)) {
+        try {
+            return DatabaseFactory::getConnection();
+        } catch (Exception $e) {
+            return null;
+        }
+    }
+    return null;
 }
 
 /**
@@ -169,6 +222,14 @@ if (file_exists($leads_module)) {
  */
 function lupo_route_slug($slug)
 {
+    global $UNTRUSTED;
+    if (!isset($UNTRUSTED) || !is_array($UNTRUSTED)) {
+        $UNTRUSTED = array(
+            'server' => (isset($_SERVER) && is_array($_SERVER)) ? $_SERVER : array(),
+            'get' => (isset($_GET) && is_array($_GET)) ? $_GET : array(),
+            'post' => (isset($_POST) && is_array($_POST)) ? $_POST : array(),
+        );
+    }
     $slug = ltrim(trim($slug), '/');
     if ($slug === '') {
         return '';
@@ -339,7 +400,8 @@ function lupo_route_slug($slug)
     }
 
     // GET /my-profile — actor profile page (standalone UI, no content system)
-    if ($normalized_slug === 'my-profile' && (isset($_SERVER['REQUEST_METHOD']) ? $_SERVER['REQUEST_METHOD'] : '') !== 'POST') {
+    $request_method = isset($UNTRUSTED['server']['REQUEST_METHOD']) ? $UNTRUSTED['server']['REQUEST_METHOD'] : '';
+    if ($normalized_slug === 'my-profile' && $request_method !== 'POST') {
         $app_root = defined('LUPOPEDIA_PATH') ? LUPOPEDIA_PATH : LUPOPEDIA_ABSPATH;
         $actors_controller_path = rtrim($app_root, '/\\') . DIRECTORY_SEPARATOR . 'lupo-includes' . DIRECTORY_SEPARATOR . 'modules' . DIRECTORY_SEPARATOR . 'actors' . DIRECTORY_SEPARATOR . 'actors-controller.php';
         if (file_exists($actors_controller_path)) {
@@ -351,7 +413,7 @@ function lupo_route_slug($slug)
     }
 
     // POST /my-profile/save — save profile form
-    if ($slug === 'my-profile/save' && (isset($_SERVER['REQUEST_METHOD']) ? $_SERVER['REQUEST_METHOD'] : '') === 'POST') {
+    if ($slug === 'my-profile/save' && $request_method === 'POST') {
         $app_root = defined('LUPOPEDIA_PATH') ? LUPOPEDIA_PATH : LUPOPEDIA_ABSPATH;
         $actors_controller_path = rtrim($app_root, '/\\') . DIRECTORY_SEPARATOR . 'lupo-includes' . DIRECTORY_SEPARATOR . 'modules' . DIRECTORY_SEPARATOR . 'actors' . DIRECTORY_SEPARATOR . 'actors-controller.php';
         if (file_exists($actors_controller_path)) {
@@ -398,7 +460,8 @@ function lupo_route_slug($slug)
     }
 
     // Crafty Syntax visitor: image.php (getstate, getcredit, userstat)
-    if ($normalized_slug === 'image' && (empty($_GET['what']) || in_array((string) $_GET['what'], ['getstate', 'getcredit', 'userstat'], true))) {
+    $visitor_image_what = isset($UNTRUSTED['get']['what']) ? $UNTRUSTED['get']['what'] : '';
+    if ($normalized_slug === 'image' && ($visitor_image_what === '' || $visitor_image_what === null || in_array((string) $visitor_image_what, array('getstate', 'getcredit', 'userstat'), true))) {
         $app_root = defined('LUPOPEDIA_PATH') ? LUPOPEDIA_PATH : LUPOPEDIA_ABSPATH;
         $visitor_image_path = rtrim($app_root, '/\\') . DIRECTORY_SEPARATOR . 'lupo-includes' . DIRECTORY_SEPARATOR . 'modules' . DIRECTORY_SEPARATOR . 'crafty_syntax' . DIRECTORY_SEPARATOR . 'visitor-image.php';
         if (file_exists($visitor_image_path)) {
@@ -469,10 +532,11 @@ function lupo_route_slug($slug)
         }
 
         // Handle POST request (channel selection)
-        if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['channel_id'])) {
-            $channel_id = (int) $_POST['channel_id'];
+        $op_req_method = isset($UNTRUSTED['server']['REQUEST_METHOD']) ? $UNTRUSTED['server']['REQUEST_METHOD'] : '';
+        if ($op_req_method === 'POST' && isset($UNTRUSTED['post']['channel_id'])) {
+            $channel_id = (int) $UNTRUSTED['post']['channel_id'];
 
-            $db = isset($GLOBALS['mydatabase']) ? $GLOBALS['mydatabase'] : null;
+            $db = lupo_module_loader_get_db();
             if ($db && $channel_id > 0) {
                 if (!function_exists('current_user')) {
                     require_once LUPOPEDIA_ABSPATH . '/lupo-includes/functions/auth-helpers.php';
@@ -482,13 +546,17 @@ function lupo_route_slug($slug)
                 $actor_id = $current_user ? (isset($current_user['actor_id']) ? $current_user['actor_id'] : null) : null;
                 if ($actor_id) {
                     $table_prefix = defined('LUPO_TABLE_PREFIX') ? LUPO_TABLE_PREFIX : 'lupo_';
-                    $stmt = $db->prepare("SELECT 1 FROM {$table_prefix}actor_channel_roles WHERE channel_id = :channel_id AND actor_id = :actor_id AND (is_deleted = 0 OR is_deleted IS NULL) LIMIT 1");
-                    $stmt->execute(array(':channel_id' => $channel_id, ':actor_id' => $actor_id));
-                    if ($stmt->fetch()) {
+                    $role_row = $db->fetchRow(
+                        "SELECT 1 AS ok FROM {$table_prefix}actor_channel_roles WHERE channel_id = :channel_id AND actor_id = :actor_id AND (is_deleted = 0 OR is_deleted IS NULL) LIMIT 1",
+                        array('channel_id' => $channel_id, 'actor_id' => $actor_id)
+                    );
+                    if ($role_row) {
                         $channel_url = defined('LUPOPEDIA_PUBLIC_PATH') ? LUPOPEDIA_PUBLIC_PATH : '';
                         $channel_url .= '/lupo-channels/' . $channel_id;
-                        header('Location: ' . $channel_url);
-                        exit;
+                        if (!headers_sent()) {
+                            header('Location: ' . $channel_url);
+                            exit;
+                        }
                     }
                 }
             }
@@ -505,17 +573,19 @@ function lupo_route_slug($slug)
         if ($current_user) {
             $actor_id = isset($current_user['actor_id']) ? $current_user['actor_id'] : null;
             if ($actor_id) {
-                $db = isset($GLOBALS['mydatabase']) ? $GLOBALS['mydatabase'] : null;
+                $db = lupo_module_loader_get_db();
                 if ($db) {
                     $table_prefix = defined('LUPO_TABLE_PREFIX') ? LUPO_TABLE_PREFIX : 'lupo_';
-                    $stmt = $db->prepare(
+                    $channels = $db->fetchAll(
                         "SELECT r.channel_id, r.role_key AS role_type, c.channel_name, c.department_id " .
                         "FROM {$table_prefix}actor_channel_roles r " .
                         "INNER JOIN {$table_prefix}channels c ON c.channel_id = r.channel_id AND c.is_deleted = 0 " .
-                        "WHERE r.actor_id = :actor_id AND (r.is_deleted = 0 OR r.is_deleted IS NULL)"
+                        "WHERE r.actor_id = :actor_id AND (r.is_deleted = 0 OR r.is_deleted IS NULL)",
+                        array('actor_id' => $actor_id)
                     );
-                    $stmt->execute(array(':actor_id' => $actor_id));
-                    $channels = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                    if (!is_array($channels)) {
+                        $channels = array();
+                    }
                 }
             }
         }
@@ -862,7 +932,7 @@ function lupo_route_slug($slug)
             $qa_question_view = LUPOPEDIA_ABSPATH . '/lupo-includes/modules/qa/views/question.php';
 
             // Look up question by slug
-            $db = isset($GLOBALS['mydatabase']) ? $GLOBALS['mydatabase'] : null;
+            $db = lupo_module_loader_get_db();
             if (!$db) {
                 $page_body = '<h1>Error</h1><p>Database not available</p>';
                 $context = array(
@@ -873,9 +943,10 @@ function lupo_route_slug($slug)
             }
 
             $table_prefix = defined('LUPO_TABLE_PREFIX') ? LUPO_TABLE_PREFIX : 'lupo_';
-            $stmt = $db->prepare("SELECT * FROM {$table_prefix}questions WHERE slug = :slug AND is_deleted = 0 LIMIT 1");
-            $stmt->execute(array(':slug' => $qa_slug));
-            $question = $stmt->fetch(PDO::FETCH_ASSOC);
+            $question = $db->fetchRow(
+                "SELECT * FROM {$table_prefix}questions WHERE slug = :slug AND is_deleted = 0 LIMIT 1",
+                array('slug' => $qa_slug)
+            );
 
             if (!$question) {
                 $page_body = '<h1>404 Not Found</h1><p>Question not found: ' . htmlspecialchars($qa_slug) . '</p>';
@@ -886,18 +957,22 @@ function lupo_route_slug($slug)
                 return render_main_layout($context);
             }
 
-            // Determine collection context
-            if (isset($_SESSION['collection_id'])) {
-                $collection_id = $_SESSION['collection_id'];
+            // Collection context: explicit UI selection only when $GLOBALS['collection_id'] > 0; else question default (§17.7 — not $_SESSION).
+            $gc = isset($GLOBALS['collection_id']) ? (int) $GLOBALS['collection_id'] : 0;
+            if ($gc > 0) {
+                $collection_id = $gc;
             } else {
                 $collection_id = isset($question['default_collection_id']) ? $question['default_collection_id'] : null;
             }
 
             // Load answers for this question (newest first)
-            $answers = array();
-            $answer_stmt = $db->prepare("SELECT * FROM {$table_prefix}answers WHERE question_id = :question_id AND is_deleted = 0 ORDER BY created_ymdhis DESC, answer_id DESC");
-            $answer_stmt->execute(array(':question_id' => $question['question_id']));
-            $answers = $answer_stmt->fetchAll(PDO::FETCH_ASSOC);
+            $answers = $db->fetchAll(
+                "SELECT * FROM {$table_prefix}answers WHERE question_id = :question_id AND is_deleted = 0 ORDER BY created_ymdhis DESC, answer_id DESC",
+                array('question_id' => $question['question_id'])
+            );
+            if (!is_array($answers)) {
+                $answers = array();
+            }
 
             // Set variables for view
             $slug = $qa_slug;
@@ -925,16 +1000,20 @@ function lupo_route_slug($slug)
     // TRUTH LOOKUP ROUTE: /truth/<who|what|where|when|why|how>/<slug>
     // Redirect old Truth routes to /qa/
     if (preg_match('#^truth/(who|what|where|when|why|how)/(.+)$#', $slug, $matches)) {
-        header('HTTP/1.1 301 Moved Permanently');
-        header('Location: ' . LUPOPEDIA_PUBLIC_PATH . '/qa/');
-        exit;
+        if (!headers_sent()) {
+            header('HTTP/1.1 301 Moved Permanently');
+            header('Location: ' . LUPOPEDIA_PUBLIC_PATH . '/qa/');
+            exit;
+        }
     }
 
     // Redirect standalone /truth to /qa/
     if ($slug === 'truth') {
-        header('HTTP/1.1 301 Moved Permanently');
-        header('Location: ' . LUPOPEDIA_PUBLIC_PATH . '/qa/');
-        exit;
+        if (!headers_sent()) {
+            header('HTTP/1.1 301 Moved Permanently');
+            header('Location: ' . LUPOPEDIA_PUBLIC_PATH . '/qa/');
+            exit;
+        }
     }
 
     // EDGE TRAVERSAL ROUTE: /edge/<slug> or /edge/id/<content_id>
@@ -974,9 +1053,11 @@ function lupo_route_slug($slug)
         }
 
         // Perform 301 redirect
-        header('HTTP/1.1 301 Moved Permanently');
-        header('Location: ' . $canonical_url);
-        exit;
+        if (!headers_sent()) {
+            header('HTTP/1.1 301 Moved Permanently');
+            header('Location: ' . $canonical_url);
+            exit;
+        }
     }
 
     // Check for HELP routes
@@ -1023,9 +1104,12 @@ function lupo_route_slug($slug)
     // Redirect old question prefix routes to /qa/
     foreach ($question_prefixes as $prefix) {
         if (strpos($slug, $prefix) === 0) {
-            header('HTTP/1.1 301 Moved Permanently');
-            header('Location: ' . LUPOPEDIA_PUBLIC_PATH . '/qa/');
-            exit;
+            if (!headers_sent()) {
+                header('HTTP/1.1 301 Moved Permanently');
+                header('Location: ' . LUPOPEDIA_PUBLIC_PATH . '/qa/');
+                exit;
+            }
+            break;
         }
     }
 

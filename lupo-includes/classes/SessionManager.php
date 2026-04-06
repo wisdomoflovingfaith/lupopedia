@@ -1,13 +1,37 @@
 <?php
+/*
+---
+lupopedia.headers:
+  header_format_version: 2
+  lupopedia.schema: class
+  when_updated: "20260406000223"
+  file_path_from_root: "lupo-includes/classes/SessionManager.php"
+  web_path: "http://www.lupopedia.com/lupopedia/lupo-includes/classes/SessionManager.php"
+  last_modified_utc: "20260406000223"
+  federation_node_id: 0
+  channel_id: 42
+  author:
+    type: "actor"
+    id: 102
+    name: "CURSOR"
+  delegation_chain: "cursor:root"
+  artifact_type: "class"
+  artifact_kind: "service"
+  purpose: "Session idle timeout via lupo_sessions; compares packed UTC now to last-seen (see Session::getLastSeenYmdhis)."
+  tags: ["session", "idle", "timeout", "timestamp_ymdhis", "lupo_sessions"]
+---
+*/
+
 /**
  * SessionManager — Session lifecycle and idle timeout
  *
  * When loaded/run, checks the current PHP session against lupo_sessions:
- * - If a session row exists and (now - last_seen_ymdhis) <= idle threshold: update last_seen_ymdhis.
- * - If a session row exists and (now - last_seen_ymdhis) > idle threshold: set is_active = 0, is_expired = 1.
- * - If no session row exists: nothing to do.
+ * - Loads last activity reference via App\\Auth\\Session::getLastSeenYmdhis() (prefers last_seen_ymdhis, else last_activity_ymdhis).
+ * - If (now - reference) <= idle threshold: updateActivity() (touch).
+ * - If over threshold: markExpired() (revokes row per Session::destroyInternal).
+ * - If no session row: no-op.
  *
- * Uses App\Auth\Session when provided (OOP). No procedural helpers.
+ * Packed UTC "now" uses timestamp_ymdhis::now() (not Unix epoch).
  *
  * @package Lupopedia
  */
@@ -64,7 +88,10 @@ class SessionManager
             return false;
         }
 
-        $now = $this->session->utcTimestamp();
+        if (!class_exists('timestamp_ymdhis', false)) {
+            require_once __DIR__ . '/TimestampYmdhis.php';
+        }
+        $now = timestamp_ymdhis::now();
         $diffSeconds = $this->diffSeconds($now, $lastSeen);
 
         if ($diffSeconds > $this->idleTimeoutSeconds) {
@@ -84,27 +111,9 @@ class SessionManager
      */
     private function diffSeconds($toYmdhis, $fromYmdhis)
     {
-        if (class_exists('timestamp_ymdhis')) {
-            return timestamp_ymdhis::diffInSeconds($toYmdhis, $fromYmdhis);
+        if (!class_exists('timestamp_ymdhis', false)) {
+            require_once __DIR__ . '/TimestampYmdhis.php';
         }
-        $s = str_pad((string) $fromYmdhis, 14, '0', STR_PAD_LEFT);
-        $e = str_pad((string) $toYmdhis, 14, '0', STR_PAD_LEFT);
-        $eEpoch = gmmktime(
-            (int) substr($e, 8, 2),
-            (int) substr($e, 10, 2),
-            (int) substr($e, 12, 2),
-            (int) substr($e, 4, 2),
-            (int) substr($e, 6, 2),
-            (int) substr($e, 0, 4)
-        );
-        $sEpoch = gmmktime(
-            (int) substr($s, 8, 2),
-            (int) substr($s, 10, 2),
-            (int) substr($s, 12, 2),
-            (int) substr($s, 4, 2),
-            (int) substr($s, 6, 2),
-            (int) substr($s, 0, 4)
-        );
-        return $eEpoch - $sEpoch;
+        return timestamp_ymdhis::diffInSeconds((int) $toYmdhis, (int) $fromYmdhis);
     }
 }

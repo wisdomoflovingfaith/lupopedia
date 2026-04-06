@@ -33,7 +33,7 @@ lupopedia.footer:
 
 - Subdirectory deployment (`/lupopedia/`)
 - Shared hosting compatibility
-- PHP 5.6+ compatibility
+- PHP 7.4+ compatibility
 
 ## Constraints
 

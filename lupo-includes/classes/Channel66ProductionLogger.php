@@ -152,7 +152,7 @@ class Channel66ProductionLogger
             'error' => $error
         );
         
-        $this->writeLog($INFO', $logEntry);
+        $this->writeLog('INFO', $logEntry);
     }
     
     /**

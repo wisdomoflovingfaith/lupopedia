@@ -112,7 +112,7 @@ CREATE TABLE IF NOT EXISTS lupo_documentation_frameworks (
   role_key varchar(64) DEFAULT NULL,
   task_scope varchar(255) DEFAULT NULL,
   database_table varchar(255) DEFAULT NULL,
-  runtime_min_php varchar(20) DEFAULT '5.6',
+  runtime_min_php varchar(20) DEFAULT '7.4',
   created_ymdhis bigint NOT NULL DEFAULT 0,
   updated_ymdhis bigint NOT NULL DEFAULT 0,
   is_deleted tinyint NOT NULL DEFAULT 0,

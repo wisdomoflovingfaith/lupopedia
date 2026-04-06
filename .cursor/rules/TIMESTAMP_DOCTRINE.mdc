@@ -40,16 +40,6 @@ from datetime import datetime
 artifact_filename_timestamp = datetime.utcnow().strftime('%Y%m%d_%H%M%S')
 ```
 
-### IDE / Markdown headers (YAML `lupopedia.headers`)
-
-Do **not** guess 14-digit `last_modified_utc`, `when_updated`, or `last_verified` from chat context or “today’s date.”
-
-1. Run `python lupo-bin/tick.py` (updates `lupo-bin/temporal_anchor.json` from real system UTC).
-2. Use the printed `current_utc` for every header/footer field you change in that batch.
-3. Same batch, no second tick: `python lupo-bin/echo_anchor_utc.py`.
-
-Canonical: `lupo-docs/doctrine/TICK_PY_DOCTRINE.md`.
-
 ## Non-Negotiable Constraints
 
 - UTC only.

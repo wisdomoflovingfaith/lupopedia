@@ -7,7 +7,7 @@ included in Softaculous / FTP distribution zips).
 
 Requirements
 ------------
-- PHP 5.6 or newer (8.x supported).
+- PHP 7.4 or newer (8.x supported).
 - MySQL 8.0+ or MariaDB 10.5+ or PostgreSQL (see project docs for your tag).
 - Web server with PHP (Apache with mod_rewrite recommended for pretty URLs).
 

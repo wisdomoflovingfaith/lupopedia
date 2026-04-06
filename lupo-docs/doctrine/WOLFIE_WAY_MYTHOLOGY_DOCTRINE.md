@@ -272,7 +272,7 @@ Every dependency is a promise from someone you don't know, who may not care abou
 ### Before You Write Code
 
 1. **What is the simplest thing that works?**
-2. **Does it work on PHP 5.6?**
+2. **Does it work on PHP 7.4?**
 3. **Does it work on shared hosting?**
 4. **Does it have zero dependencies?**
 5. **Will it still work in 10 years?**
@@ -489,7 +489,7 @@ foreach ($rows as $row) {
 ### 2. The Independent System
 
 **Current Lupopedia:**
-- Works on any PHP 5.6+ server
+- Works on any PHP 7.4+ server
 - No Composer required
 - No framework lock-in
 - Deployable by FTP

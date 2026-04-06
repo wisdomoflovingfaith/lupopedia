@@ -63,7 +63,7 @@ This doctrine forbids Composer and package managers. The **EXTERNAL_LIBRARIES_DO
 
 ## Permitted Autoloading
 
-### Custom Autoloader (PHP 5.6 compatible)
+### Custom Autoloader (PHP 7.4+ compatible)
 
 ```php
 // In lupo-includes/autoload.php

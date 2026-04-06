@@ -1,14 +1,24 @@
 <?php
+
 /**
- * wolfie.headers: {
- *   file_path_from_root: "lupo-includes/classes/ChannelService.php",
- *   system_version: "4.0.66",
- *   channel_id: 42,
- *   actor_id: 1006,
- *   purpose: "Manages hierarchical multi-agent coordination within the lupo-channels structure.",
- *   last_modified_utc: "20260308"
- * }
+ * LUPOPEDIA HEADERS (class file — YAML excerpt; canonical format: lupo-docs/doctrine/LUPOPEDIA_HEADERS/)
+ *
+ * lupopedia.headers:
+ *   lupopedia.schema: class
+ *   file_path_from_root: lupo-includes/classes/ChannelService.php
+ *   last_modified_utc: "20260405230727"
+ *   when_updated: "20260405230727"
+ *   channel_id: 42
+ *   actor_id: 102
+ *   delegation_chain: cursor:root
+ *   artifact_type: class
+ *   artifact_kind: service
+ *   purpose: Channel thread JSON mirror under lupo-channels and inserts into lupo_dialog_messages.
+ *   tags: [channels, dialog_messages, service, IdGenerator]
  */
+
+require_once __DIR__ . '/IdGenerator.php';
+require_once __DIR__ . '/TimestampYmdhis.php';
 
 class ChannelService
 {
@@ -41,6 +51,48 @@ class ChannelService
     }
 
     /**
+     * Validate postMessage inputs (no path separators / traversal in thread key).
+     *
+     * @param int    $channelId
+     * @param string $threadKey
+     * @param int    $actorId
+     * @param string $content
+     * @param string $version
+     * @return bool
+     */
+    private function postMessageInputsValid($channelId, $threadKey, $actorId, $content, $version)
+    {
+        if (!is_numeric($channelId) || (int) $channelId <= 0) {
+            return false;
+        }
+        if (!is_string($threadKey) || $threadKey === '') {
+            return false;
+        }
+        if (strlen($threadKey) > 200 || strpos($threadKey, '..') !== false) {
+            return false;
+        }
+        if (!preg_match('/^[a-zA-Z0-9_.-]+$/', $threadKey)) {
+            return false;
+        }
+        if (!is_numeric($actorId) || (int) $actorId < 0) {
+            return false;
+        }
+        if (!is_string($content) || trim($content) === '') {
+            return false;
+        }
+        if (strlen($content) > 65536) {
+            return false;
+        }
+        if (!is_string($version) || $version === '' || strlen($version) > 64) {
+            return false;
+        }
+        if (!preg_match('/^[a-zA-Z0-9_.-]+$/', $version)) {
+            return false;
+        }
+        return true;
+    }
+
+    /**
      * Post a message to a channel thread
      *
      * @param int    $channelId
@@ -52,28 +104,54 @@ class ChannelService
      */
     public function postMessage($channelId, $threadKey, $actorId, $content, $version = '4.0.x')
     {
-        // 1. Prepare Message Data
-        $now = gmdate('YmdHis');
-        $messageId = time() . mt_rand(100, 999); // Registry-based ID would be better in prod
+        if (!$this->postMessageInputsValid($channelId, $threadKey, $actorId, $content, $version)) {
+            if (function_exists('error_log')) {
+                error_log('ChannelService::postMessage invalid arguments');
+            }
+            return false;
+        }
 
+        $channelId = (int) $channelId;
+        $actorId = (int) $actorId;
+
+        $now = (string) timestamp_ymdhis::now();
+        $dialogMessageId = IdGenerator::generate();
+        if (!IdGenerator::validateFormat($dialogMessageId)) {
+            if (function_exists('error_log')) {
+                error_log('ChannelService::postMessage IdGenerator returned invalid id');
+            }
+            return false;
+        }
+
+        $msgTable = $this->prefix . 'dialog_messages';
         $message = array(
-            'message_id' => $messageId,
+            'message_id' => $dialogMessageId,
             'actor_id' => $actorId,
             'content' => $content,
             'timestamp_ymdhis' => $now,
             'consensus_status' => 'active'
         );
 
-        // 2. Persist to Filesystem
         $threadFile = $this->getThreadPath($channelId, $version) . DIRECTORY_SEPARATOR . $threadKey . '.json';
-        if (!is_dir(dirname($threadFile))) {
-            mkdir(dirname($threadFile), 0755, true);
+        $threadDir = dirname($threadFile);
+        if (!is_dir($threadDir)) {
+            if (!@mkdir($threadDir, 0755, true) && !is_dir($threadDir)) {
+                if (function_exists('error_log')) {
+                    error_log('ChannelService::postMessage mkdir failed: ' . $threadDir);
+                }
+                return false;
+            }
         }
 
         $data = array();
         if (is_file($threadFile)) {
-            $raw = file_get_contents($threadFile);
-            $data = json_decode($raw, true);
+            $raw = @file_get_contents($threadFile);
+            if ($raw !== false && $raw !== '') {
+                $decoded = json_decode($raw, true);
+                if (is_array($decoded)) {
+                    $data = $decoded;
+                }
+            }
         }
 
         if (!isset($data['messages'])) {
@@ -83,18 +161,18 @@ class ChannelService
         }
 
         $data['messages'][] = $message;
-        file_put_contents($threadFile, json_encode($data, JSON_PRETTY_PRINT));
+        $written = @file_put_contents($threadFile, json_encode($data, JSON_PRETTY_PRINT), LOCK_EX);
+        if ($written === false) {
+            if (function_exists('error_log')) {
+                error_log('ChannelService::postMessage file_put_contents failed: ' . $threadFile);
+            }
+            return false;
+        }
 
-        // 3. Persist to DB: canonical table lupo_dialog_messages (not lupo_messages)
-        $msgTable = $this->prefix . 'dialog_messages';
-        $nextIdRow = $this->db->fetchRow(
-            "SELECT COALESCE(MAX(dialog_message_id), 0) + 1 AS next_id FROM " . $msgTable
-        );
-        $dialogMessageId = isset($nextIdRow['next_id']) ? (int) $nextIdRow['next_id'] : (int) $messageId;
         $messageText = strlen($content) > 1000 ? substr($content, 0, 997) . '...' : $content;
         $insertData = array(
             'dialog_message_id' => $dialogMessageId,
-            'message_id' => (int) $messageId,
+            'message_id' => $dialogMessageId,
             'dialog_thread_id' => null,
             'channel_id' => $channelId,
             'from_actor_id' => $actorId,
@@ -107,7 +185,15 @@ class ChannelService
             'updated_ymdhis' => $now,
             'is_deleted' => 0
         );
-        $this->db->insert($msgTable, $insertData);
+
+        try {
+            $this->db->insert($msgTable, $insertData);
+        } catch (Exception $e) {
+            if (function_exists('error_log')) {
+                error_log('ChannelService::postMessage DB insert failed: ' . $e->getMessage());
+            }
+            return false;
+        }
 
         return true;
     }
@@ -118,11 +204,15 @@ class ChannelService
     public function listThreads($channelId, $version = '4.0.x')
     {
         $path = $this->getThreadPath($channelId, $version);
-        if (!is_dir($path))
+        if (!is_dir($path)) {
             return array();
+        }
 
         $threads = array();
         $files = scandir($path);
+        if ($files === false) {
+            return array();
+        }
         foreach ($files as $file) {
             if (substr($file, -5) === '.json') {
                 $threads[] = substr($file, 0, -5);

@@ -7,8 +7,10 @@ lupopedia.headers:
   last_modified_utc: 20260327220000
   system_version: 4.0.89
   channel_id: 42
-  actor_id: 1
-  actor_name: wolfie
+  author:
+    type: "actor"
+    id: 1
+    name: "wolfie"
   delegation_chain: wolfie:root
   artifact_type: rule
   artifact_kind: version_management

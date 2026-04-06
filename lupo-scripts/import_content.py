@@ -30,6 +30,7 @@ Behavior:
       lupo_edges (edge_category=lupopedia_header, from lupopedia.edges.outbound_edges),
       lupo_contents.revision_history when lupopedia.history is present
   - Optional --write-back: writes lupopedia.headers.content_id into the file (default: DB only, like import_content.php)
+  - Optional --append-history: when lupopedia.history is a list, append to existing revision_history instead of replacing
 
 Legacy slug / stale PK: if no row exists for the deterministic content_id but a row matches
 file_path_from_root or slug, remaps content_id on that row (plus metadata/edges entity_id) then syncs headers.
@@ -696,6 +697,11 @@ def main() -> int:
         action="store_true",
         help="After a successful DB import, write lupopedia.headers.content_id into the markdown file (one-time migration / header sync)",
     )
+    parser.add_argument(
+        "--append-history",
+        action="store_true",
+        help="If lupopedia.history is a YAML list, append events to existing lupo_contents.revision_history instead of overwriting",
+    )
     args = parser.parse_args()
 
     md_path = Path(args.path)
@@ -852,7 +858,12 @@ def main() -> int:
                     cursor.execute(insert_sql, params)
 
             sync_header_artifact_to_db(
-                cursor, table_prefix, yaml_data, int(content_id), _now_ymdhis()
+                cursor,
+                table_prefix,
+                yaml_data,
+                int(content_id),
+                _now_ymdhis(),
+                append_history=bool(args.append_history),
             )
 
         conn.commit()

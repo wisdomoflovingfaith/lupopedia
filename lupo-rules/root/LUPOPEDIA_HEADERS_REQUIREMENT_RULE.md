@@ -1,14 +1,16 @@
 ---
 lupopedia.headers:
-  when_updated: "20260328120000"
+  when_updated: "20260406044907"
   lupopedia.schema: rule
   file_path_from_root: lupo-rules/root/LUPOPEDIA_HEADERS_REQUIREMENT_RULE.md
   web_path: http://www.lupopedia.com/lupo-rules/root/LUPOPEDIA_HEADERS_REQUIREMENT_RULE.md
-  last_modified_utc: "20260328120000"
+  last_modified_utc: "20260406044907"
   system_version: 4.0.89
   channel_id: 42
-  actor_id: 1
-  actor_name: wolfie
+  author:
+    type: "actor"
+    id: 1
+    name: "wolfie"
   delegation_chain: wolfie:root
   artifact_type: rule
   artifact_kind: header_requirement

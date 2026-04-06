@@ -4,12 +4,14 @@ lupopedia.headers:
   file_path_from_root: "lupo-rules/root/DATABASE_DOCTRINE.md"
   web_path: "http://www.lupopedia.com/lupopedia/lupo-rules/root/DATABASE_DOCTRINE.md"
   federation_node_id: 0
-  last_modified_utc: "20260328130000"
-  when_updated: "20260328130000"
+  last_modified_utc: "20260406044907"
+  when_updated: "20260406044907"
   channel_id: 42
   thread_id: "database-doctrine"
-  actor_id: 1
-  actor_name: "wolfie"
+  author:
+    type: "actor"
+    id: 1
+    name: "wolfie"
   delegation_chain: "wolfie:root"
   artifact_type: doctrine
   artifact_kind: database

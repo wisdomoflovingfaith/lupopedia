@@ -1,13 +1,26 @@
 <?php
-/**
- * AI Activation Helpers
- * 
- * Handles checking and activating AI agents (actor_id 0-9999).
- * PHP 5.3+ compatible.
- *
- * @package Lupopedia
- * @version 4.0.53
- */
+/*
+---
+lupopedia.headers:
+  header_format_version: 2
+  lupopedia.schema: functions
+  when_updated: "20260406013447"
+  file_path_from_root: "lupo-includes/functions/ai_activation.php"
+  web_path: "http://www.lupopedia.com/lupopedia/lupo-includes/functions/ai_activation.php"
+  last_modified_utc: "20260406013447"
+  federation_node_id: 0
+  channel_id: 42
+  author:
+    type: "actor"
+    id: 102
+    name: "CURSOR"
+  delegation_chain: "cursor:root"
+  artifact_type: "functions"
+  artifact_kind: "ai_activation"
+  purpose: "Thin entry — lupo_random_bytes for installers/CLI; canonical isActorAIRunning/ensureActorActive live in ai_agent_integration.php"
+  tags: ["ai", "activation", "functions", "delegation"]
+---
+*/
 
 /**
  * PHP 5.3-safe random bytes.
@@ -37,77 +50,4 @@ if (!function_exists('lupo_random_bytes_fallback')) {
     }
 }
 
-/**
- * Check if an Actor AI is currently running based on session heartbeats.
- * 
- * @param int $actor_id
- * @param object $db PDO_DB instance
- * @param int $heartbeat_seconds Heartbeat threshold (default 300s / 5m)
- * @return bool
- */
-function isActorAIRunning($actor_id, $db, $heartbeat_seconds = 300)
-{
-    if (!$db || $actor_id === null)
-        return false;
-
-    $prefix = defined('LUPO_TABLE_PREFIX') ? LUPO_TABLE_PREFIX : 'lupo_';
-    $threshold = gmdate('YmdHis', strtotime("-{$heartbeat_seconds} seconds"));
-
-    $sql = "SELECT COUNT(*) FROM {$prefix}sessions 
-            WHERE actor_id = :actor_id 
-            AND is_active = 1 
-            AND is_expired = 0 
-            AND is_revoked = 0 
-            AND is_deleted = 0 
-            AND last_seen_ymdhis >= :threshold";
-
-    $count = $db->fetchOne($sql, array('actor_id' => $actor_id, 'threshold' => $threshold));
-    return (int) $count > 0;
-}
-
-/**
- * Ensure an Actor AI is active. If not running, attempt to "activate" it
- * by creating a system session or logging an activation request.
- * 
- * @param int $actor_id
- * @param object $db PDO_DB instance
- * @param string $reason Why it's being activated
- * @return bool True if active or successfully activated
- */
-function ensureActorActive($actor_id, $db, $reason = 'system_request')
-{
-    if (isActorAIRunning($actor_id, $db)) {
-        return true;
-    }
-
-    // Attempt activation logic
-    $now = gmdate('YmdHis');
-    $prefix = defined('LUPO_TABLE_PREFIX') ? LUPO_TABLE_PREFIX : 'lupo_';
-
-    // 1. Verify actor exists and is an active AI agent
-    $actor = $db->fetchRow("SELECT * FROM {$prefix}actors WHERE actor_id = :id AND is_active = 1 AND is_deleted = 0", array('id' => $actor_id));
-    if (!$actor) {
-        return false;
-    }
-
-    // 2. Create a system session to represent the "running" state
-    // Use the L<actor_id> prefix as per Windsurf's instruction
-    $session_id = 'L' . $actor_id . '_' . bin2hex(lupo_random_bytes(8));
-    $expires = gmdate('YmdHis', strtotime("+1 hour"));
-
-    $db->insert($prefix . 'sessions', array(
-        'session_id' => $session_id,
-        'actor_id' => $actor_id,
-        'federation_node_id' => 0, // System Node
-        'is_active' => 1,
-        'security_level' => 'high',
-        'system_context' => 'ai_activation',
-        'metadata' => json_encode(array('reason' => $reason, 'activated_at' => $now)),
-        'created_ymdhis' => $now,
-        'updated_ymdhis' => $now,
-        'last_seen_ymdhis' => $now,
-        'expires_ymdhis' => $expires
-    ));
-
-    return true;
-}
+require_once __DIR__ . '/ai_agent_integration.php';

@@ -2,7 +2,7 @@
 /**
  * Email Service - Wrapper for PHPMailer
  * Provides email functionality using PHPMailer library
- * PHP 5.6+ compatible, self-contained implementation
+ * PHP 7.4+ compatible, self-contained implementation
  */
 
 if (!defined('LUPOPEDIA_CONFIG_LOADED')) {

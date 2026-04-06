@@ -19,17 +19,24 @@ if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 
-if (!isset($_SESSION['auth_user_id'])) {
-    header('Location: ' . rtrim(LUPOPEDIA_PUBLIC_PATH, '/') . '/login.php');
-    exit;
-}
-
 require_once LUPOPEDIA_PATH . '/lupo-includes/classes/DatabaseFactory.php';
 require_once LUPOPEDIA_PATH . '/lupo-includes/classes/AuthSessionManager.php';
 
 $sessionManager = new AuthSessionManager();
-$auth_user_id = (int) $_SESSION['auth_user_id'];
 $db = DatabaseFactory::getConnection();
+
+$active_actor_id = $sessionManager->getActiveActorId();
+$auth_user_id = 0;
+if ($active_actor_id > 0) {
+    $resolved = $sessionManager->getAuthUserId($active_actor_id);
+    if ($resolved !== null) {
+        $auth_user_id = (int) $resolved;
+    }
+}
+if ($auth_user_id <= 0) {
+    header('Location: ' . rtrim(LUPOPEDIA_PUBLIC_PATH, '/') . '/login.php');
+    exit;
+}
 $prefix = defined('LUPO_TABLE_PREFIX') ? LUPO_TABLE_PREFIX : 'lupo_';
 
 $permRow = $db->fetchRow(

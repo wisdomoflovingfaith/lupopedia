@@ -1,0 +1,72 @@
+{
+  "table_name": "lupo_api_webhooks",
+  "fields": [
+    "`api_webhook_id` bigint NOT NULL",
+    "`domain_id` bigint NOT NULL DEFAULT '1'",
+    "`actor_id` bigint NOT NULL DEFAULT '0'",
+    "`module_id` bigint NOT NULL DEFAULT '0'",
+    "`endpoint_url` varchar(500) NOT NULL",
+    "`secret_key` varchar(255) NOT NULL",
+    "`event_types` text NOT NULL",
+    "`is_active` tinyint NOT NULL DEFAULT '1'",
+    "`max_retries` int NOT NULL DEFAULT '5'",
+    "`created_ymdhis` bigint NOT NULL DEFAULT 0",
+    "`updated_ymdhis` bigint NOT NULL",
+    "`expires_ymdhis` bigint",
+    "`notes` text"
+  ],
+  "data": [],
+  "indexes": [
+    {
+      "index_name": "lupo_api_webhooks_idx_domain",
+      "columns": [
+        "domain_id"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_api_webhooks_idx_actor",
+      "columns": [
+        "actor_id"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_api_webhooks_idx_module",
+      "columns": [
+        "module_id"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_api_webhooks_idx_active",
+      "columns": [
+        "is_active"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_api_webhooks_idx_expires",
+      "columns": [
+        "expires_ymdhis"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    }
+  ],
+  "relationships": [],
+  "primary_key": {
+    "column_name": "api_webhook_id",
+    "expected_name": "api_webhook_id",
+    "is_correct": true,
+    "needs_rename": false
+  },
+  "doctrine_metadata": {
+    "no_foreign_keys": true,
+    "no_triggers": true
+  }
+}

@@ -15,7 +15,7 @@ lupopedia.headers:
   lupopedia.version: "4.0.76"
   lupopedia.schema: "cascade_rule"
   file_path_from_root: ".cascade/rules/toon-source-of-truth.md"
-  last_modified_utc: "20260402"
+  last_modified_utc: "20260406"
   system_version: "4.0.76"
   source_path: "lupo-rules/root/toon-source-of-truth.md"
   artifact_type: "rule"
@@ -34,14 +34,14 @@ lupopedia.rules:
   overrides: []
   provenance:
     authored_by: "wolfie"
-    authored_date: "20260402"
+    authored_date: "20260406"
     last_reviewed_by: "cascade"
-    last_reviewed_date: "20260402"
+    last_reviewed_date: "20260406"
     version: "1.0"
     status: "active"
 lupopedia.footer:
   version: "4.0.76"
-  last_verified: "20260402"
+  last_verified: "20260406"
   last_verified_by: "cascade"
   orchestrator: "cascade"
   next_action:

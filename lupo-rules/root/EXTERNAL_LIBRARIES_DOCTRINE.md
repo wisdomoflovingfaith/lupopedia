@@ -35,7 +35,7 @@ lupo-includes/
 1. **No Composer**: The library must be self-contained and not require `composer install`.
 2. **Manual Inclusion**: Use `require_once` or `include_once` with explicit paths.
 3. **No Autoloader Magic**: No reliance on `spl_autoload_register()` from external code unless that code is included in the library itself.
-4. **PHP 5.6+ Compatibility**: The library must work on PHP 5.6+.
+4. **PHP 7.4+ Compatibility**: The library must work on PHP 7.4+.
 5. **No Framework Dependencies**: The library must not require Laravel, Symfony, or other frameworks.
 
 ## Example: Including PHPMailer
@@ -80,7 +80,7 @@ Before adding any external code, verify:
 - [ ] Code is placed in `lupo-includes/{library-name}/` 
 - [ ] No `composer.json` or `composer.lock` files
 - [ ] No `vendor/` directory references
-- [ ] Works with PHP 5.6+
+- [ ] Works with PHP 7.4+
 - [ ] Includes are manual (`require_once` with explicit paths)
 - [ ] Does not rely on external network requests (CDN, APIs) for core functionality
 
@@ -92,7 +92,7 @@ Before adding any external code, verify:
 |---------|---------|-------|
 | **Self-contained libraries in `lupo-includes/`** | `lupo-includes/PHPMailer/` | Must be included manually, no Composer |
 | **Manual includes** | `require_once __DIR__ . '/PHPMailer/PHPMailer.php';` | Direct file inclusion |
-| **Pure PHP libraries** | Any library that works without autoloader magic | Must run on PHP 5.6+ |
+| **Pure PHP libraries** | Any library that works without autoloader magic | Must run on PHP 7.4+ |
 | **WordPress-style bundling** | All dependencies in the project directory | Traditional open-source approach |
 
 ### Forbidden (Bad)
@@ -183,7 +183,7 @@ find lupo-includes -maxdepth 1 -type d | grep -v "^\.$"
 - All external code must be in `lupo-includes/`
 - No Composer references anywhere
 - Manual includes only
-- PHP 5.6 compatibility verified
+- PHP 7.4 compatibility verified
 
 ---
 
