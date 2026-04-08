@@ -1,0 +1,64 @@
+{
+  "_comment": "THIS FILE IS AUTO-GENERATED. DO NOT EDIT MANUALLY.",
+  "_purpose": "Schema reference only — column names, types, indexes. Contains NO data.",
+  "_source": "Generated from live database by generate_toon_files.py",
+  "_read_only": true,
+  "table_name": "lupo_actor_runtime_state",
+  "fields": [
+    "`actor_runtime_state_id` bigint NOT NULL",
+    "`actor_id` bigint NOT NULL",
+    "`current_session_id` varchar(100)",
+    "`current_channel_id` bigint",
+    "`current_task_id` bigint",
+    "`last_tool_call_id` bigint",
+    "`state_key` varchar(64) NOT NULL DEFAULT 'active'",
+    "`state_metadata_json` json",
+    "`state_entered_ymdhis` bigint NOT NULL DEFAULT 0",
+    "`updated_ymdhis` bigint NOT NULL DEFAULT 0"
+  ],
+  "indexes": [
+    {
+      "index_name": "lupo_actor_runtime_state_idx_session",
+      "columns": [
+        "current_session_id"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_actor_runtime_state_idx_state",
+      "columns": [
+        "state_key"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_actor_runtime_state_idx_updated",
+      "columns": [
+        "updated_ymdhis"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_actor_runtime_state_unq_actor",
+      "columns": [
+        "actor_id"
+      ],
+      "is_unique": true,
+      "index_type": "BTREE"
+    }
+  ],
+  "primary_key": {
+    "column_name": "actor_runtime_state_id",
+    "expected_name": "actor_runtime_state_id",
+    "is_correct": true,
+    "needs_rename": false
+  },
+  "doctrine_metadata": {
+    "no_foreign_keys": true,
+    "no_triggers": true
+  },
+  "relationships": []
+}

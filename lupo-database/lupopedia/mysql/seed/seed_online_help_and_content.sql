@@ -2,15 +2,19 @@
 -- Lupopedia Online Help and Content System Seed Data
 -- =============================================================================
 -- Purpose: Seed user-facing help content, questions, answers, and edges
--- Version: 4.0.89
--- Created: 2026-04-05
--- 
+-- Version: 4.0.96
+-- Updated: 2026-04-07
+--
 -- This seed populates:
 -- 1. lupo_contents - Help articles and documentation
--- 2. lupo_questions - User questions
--- 3. lupo_answers - Answers to questions  
+-- 2. lupo_truth_questions - User questions (canonical table per PRD 42)
+-- 3. lupo_truth_answers - Answers to questions (canonical table per PRD 42)
 -- 4. lupo_edges - Relationships between content, questions, answers
--- 
+--
+-- NOTE: lupo_questions and lupo_answers do NOT exist in the install schema.
+--       The canonical tables are lupo_truth_questions and lupo_truth_answers.
+--       This file was corrected in 4.0.96 (previously referenced non-existent tables).
+--
 -- All content is also mirrored in lupo-content/federation_node_id/0/
 -- =============================================================================
 
@@ -23,14 +27,14 @@ SET time_zone = '+00:00';
 
 -- Getting Started Guide
 INSERT INTO lupo_contents (
-    content_id, federation_node_id, channel_id, actor_id, title, slug, 
+    content_id, federation_node_id, channel_id, actor_id, title, slug,
     description, body, content_type, format, status, visibility,
     created_ymdhis, updated_ymdhis, utc_cycle, tags, hashtags,
     file_path_from_root
-) VALUES 
+) VALUES
 (
-    1000001, 0, 0, 10000, 
-    'Getting Started with Lupopedia', 
+    1000001, 0, 0, 10000,
+    'Getting Started with Lupopedia',
     'getting-started-guide',
     'Complete guide for new users to understand Lupopedia basics',
     '# Getting Started with Lupopedia
@@ -64,11 +68,11 @@ Lupopedia is a multi-agent coordination system with comprehensive documentation 
 
 -- Understanding Actors and Agents
 INSERT INTO lupo_contents (
-    content_id, federation_node_id, channel_id, actor_id, title, slug, 
+    content_id, federation_node_id, channel_id, actor_id, title, slug,
     description, body, content_type, format, status, visibility,
     created_ymdhis, updated_ymdhis, utc_cycle, tags, hashtags,
     file_path_from_root
-) VALUES 
+) VALUES
 (
     1000002, 0, 0, 10000,
     'Understanding Actors and Agents',
@@ -116,11 +120,11 @@ Each agent has specific capabilities defined in their configuration:
 
 -- Channels and Discussions
 INSERT INTO lupo_contents (
-    content_id, federation_node_id, channel_id, actor_id, title, slug, 
+    content_id, federation_node_id, channel_id, actor_id, title, slug,
     description, body, content_type, format, status, visibility,
     created_ymdhis, updated_ymdhis, utc_cycle, tags, hashtags,
     file_path_from_root
-) VALUES 
+) VALUES
 (
     1000003, 0, 0, 10000,
     'Channels and Discussions',
@@ -218,7 +222,7 @@ Edges are relationships between items in Lupopedia:
 
 ## Edge Types
 - **has_answer**: Question → Answer
-- **answers**: Answer → Question  
+- **answers**: Answer → Question
 - **references**: Content → Content
 - **depends_on**: Decision → Decision
 - **related_to**: General relationships
@@ -249,104 +253,151 @@ Edges are relationships between items in Lupopedia:
 
 -- =============================================================================
 -- QUESTIONS: Common User Questions
+-- Canonical table: lupo_truth_questions (PRD 42 §3)
+-- NOT NULL columns supplied: truth_question_id, target_object_type,
+--   target_object_id, question_text, asked_by_actor_id,
+--   created_ymdhis, updated_ymdhis
 -- =============================================================================
 
-INSERT INTO lupo_questions (
-    question_id, slug, question_text, actor_id, 
-    created_ymdhis, updated_ymdhis
-) VALUES 
+INSERT INTO lupo_truth_questions (
+    truth_question_id,
+    target_object_type,
+    target_object_id,
+    question_text,
+    asked_by_actor_id,
+    question_status,
+    is_answered,
+    is_deleted,
+    created_ymdhis,
+    updated_ymdhis
+) VALUES
 (
-    2000001, 'what-is-lupopedia',
+    2000001,
+    'system', 0,
     'What is Lupopedia and how does it work?',
-    10000, 20260405120000, 20260405120000
+    10000, 'open', 0, 0,
+    20260405120000, 20260405120000
 ),
 (
-    2000002, 'how-to-create-actor',
+    2000002,
+    'system', 0,
     'How do I create my actor profile?',
-    10000, 20260405120000, 20260405120000
+    10000, 'open', 0, 0,
+    20260405120000, 20260405120000
 ),
 (
-    2000003, 'which-agent-to-use',
+    2000003,
+    'system', 0,
     'Which agent should I use for my task?',
-    10000, 20260405120000, 20260405120000
+    10000, 'open', 0, 0,
+    20260405120000, 20260405120000
 ),
 (
-    2000004, 'how-to-find-content',
+    2000004,
+    'system', 0,
     'How do I find specific content or documentation?',
-    10000, 20260405120000, 20260405120000
+    10000, 'open', 0, 0,
+    20260405120000, 20260405120000
 ),
 (
-    2000005, 'what-are-edges',
+    2000005,
+    'system', 0,
     'What are edges and how do I use them?',
-    10000, 20260405120000, 20260405120000
+    10000, 'open', 0, 0,
+    20260405120000, 20260405120000
 ),
 (
-    2000006, 'how-to-ask-questions',
+    2000006,
+    'system', 0,
     'What is the best way to ask questions in channels?',
-    10000, 20260405120000, 20260405120000
+    10000, 'open', 0, 0,
+    20260405120000, 20260405120000
 ),
 (
-    2000007, 'decision-making-process',
+    2000007,
+    'system', 0,
     'How are decisions made and documented?',
-    10000, 20260405120000, 20260405120000
+    10000, 'open', 0, 0,
+    20260405120000, 20260405120000
 ),
 (
-    2000008, 'agent-capabilities',
+    2000008,
+    'system', 0,
     'What can agents do and what are their limitations?',
-    10000, 20260405120000, 20260405120000
+    10000, 'open', 0, 0,
+    20260405120000, 20260405120000
 );
 
 -- =============================================================================
 -- ANSWERS: Responses to Questions
+-- Canonical table: lupo_truth_answers (PRD 42 §3)
+-- NOT NULL columns supplied: truth_answer_id, truth_question_id,
+--   answer_text, answered_by_actor_id, created_ymdhis, updated_ymdhis
 -- =============================================================================
 
-INSERT INTO lupo_answers (
-    answer_id, question_id, answer_text, actor_id,
-    created_ymdhis, updated_ymdhis
-) VALUES 
+INSERT INTO lupo_truth_answers (
+    truth_answer_id,
+    truth_question_id,
+    answer_text,
+    answered_by_actor_id,
+    is_accepted,
+    is_deleted,
+    created_ymdhis,
+    updated_ymdhis
+) VALUES
 (
     3000001, 2000001,
     'Lupopedia is a multi-agent coordination system that combines human intelligence with AI agents to manage documentation, make decisions, and organize knowledge. It uses channels for discussions, tracks decisions with formal processes, and connects everything through a relationship system called edges.',
-    10000, 20260405120000, 20260405120000
+    10000, 1, 0,
+    20260405120000, 20260405120000
 ),
 (
     3000002, 2000002,
     'Your actor profile is created automatically when you first access the system. You can customize it by adding your preferences, skills, and areas of interest. Your actor ID uniquely identifies you in all system activities.',
-    10000, 20260405120000, 20260405120000
+    10000, 1, 0,
+    20260405120000, 20260405120000
 ),
 (
     3000003, 2000003,
     'Choose agents based on their specialties: Use Cursor for code development, Windsurf for writing, Kiro for data analysis, Lilith for auditing, and Anubis for data recovery. Each agent has specific capabilities and works within defined boundaries.',
-    10000, 20260405120000, 20260405120000
+    10000, 1, 0,
+    20260405120000, 20260405120000
 ),
 (
     3000004, 2000004,
     'Use the search function with keywords, browse by categories, follow hashtag links, or explore edges from related content. The system also suggests relevant content based on your current context and relationships.',
-    10000, 20260405120000, 20260405120000
+    10000, 1, 0,
+    20260405120000, 20260405120000
 ),
 (
     3000005, 2000005,
     'Edges are relationships that connect content, questions, answers, and decisions. They help you navigate between related items, discover relevant information, and understand how different pieces of knowledge connect.',
-    10000, 20260405120000, 20260405120000
+    10000, 1, 0,
+    20260405120000, 20260405120000
 ),
 (
     3000006, 2000006,
     'Ask clear, specific questions in relevant channels. Use descriptive titles, provide context, and include relevant hashtags. The system will help route your question to the right people and agents.',
-    10000, 20260405120000, 20260405120000
+    10000, 1, 0,
+    20260405120000, 20260405120000
 ),
 (
     3000007, 2000007,
     'Decisions are made through a structured process: questions are raised, discussed, answered, and then formalized as decisions with specific statuses (APPROVED, PENDING, etc.). All decisions are documented and linked to related content.',
-    10000, 20260405120000, 20260405120000
+    10000, 1, 0,
+    20260405120000, 20260405120000
 ),
 (
     3000008, 2000008,
     'Agents can perform tasks within their defined capabilities: write code, create documentation, analyze data, audit systems, and more. They follow system rules, cannot access unauthorized areas, and always work within their assigned boundaries.',
-    10000, 20260405120000, 20260405120000
+    10000, 1, 0,
+    20260405120000, 20260405120000
 );
 
 -- =============================================================================
 -- EDGES: Relationships Between Content, Questions, and Answers
+-- object_type values use canonical table short names: 'content',
+--   'truth_question', 'truth_answer' (corrected from 'question'/'answer' in 4.0.96)
 -- =============================================================================
 
 INSERT INTO lupo_edges (
@@ -354,7 +405,7 @@ INSERT INTO lupo_edges (
     edge_type, edge_category, edge_description, actor_id,
     created_ymdhis, updated_ymdhis, weight_score, semantic_weight,
     flare_weight, flare_reason, flare_auto_generated
-) VALUES 
+) VALUES
 -- Content to Content Relationships
 (
     4000001, 'content', 1000001, 'content', 1000002,
@@ -389,49 +440,49 @@ INSERT INTO lupo_edges (
 
 -- Question to Answer Relationships
 (
-    4000011, 'question', 2000001, 'answer', 3000001,
+    4000011, 'truth_question', 2000001, 'truth_answer', 3000001,
     'has_answer', 'qa', 'What is Lupopedia answered',
     10000, 20260405120000, 20260405120000, 100, 1.00,
     0.95, 'Direct question-answer pair', 1
 ),
 (
-    4000012, 'question', 2000002, 'answer', 3000002,
+    4000012, 'truth_question', 2000002, 'truth_answer', 3000002,
     'has_answer', 'qa', 'Actor creation question answered',
     10000, 20260405120000, 20260405120000, 100, 1.00,
     0.95, 'Direct question-answer pair', 1
 ),
 (
-    4000013, 'question', 2000003, 'answer', 3000003,
+    4000013, 'truth_question', 2000003, 'truth_answer', 3000003,
     'has_answer', 'qa', 'Agent selection question answered',
     10000, 20260405120000, 20260405120000, 100, 1.00,
     0.95, 'Direct question-answer pair', 1
 ),
 (
-    4000014, 'question', 2000004, 'answer', 3000004,
+    4000014, 'truth_question', 2000004, 'truth_answer', 3000004,
     'has_answer', 'qa', 'Content search question answered',
     10000, 20260405120000, 20260405120000, 100, 1.00,
     0.95, 'Direct question-answer pair', 1
 ),
 (
-    4000015, 'question', 2000005, 'answer', 3000005,
+    4000015, 'truth_question', 2000005, 'truth_answer', 3000005,
     'has_answer', 'qa', 'Edges explanation question answered',
     10000, 20260405120000, 20260405120000, 100, 1.00,
     0.95, 'Direct question-answer pair', 1
 ),
 (
-    4000016, 'question', 2000006, 'answer', 3000006,
+    4000016, 'truth_question', 2000006, 'truth_answer', 3000006,
     'has_answer', 'qa', 'Question asking best practices answered',
     10000, 20260405120000, 20260405120000, 100, 1.00,
     0.95, 'Direct question-answer pair', 1
 ),
 (
-    4000017, 'question', 2000007, 'answer', 3000007,
+    4000017, 'truth_question', 2000007, 'truth_answer', 3000007,
     'has_answer', 'qa', 'Decision process question answered',
     10000, 20260405120000, 20260405120000, 100, 1.00,
     0.95, 'Direct question-answer pair', 1
 ),
 (
-    4000018, 'question', 2000008, 'answer', 3000008,
+    4000018, 'truth_question', 2000008, 'truth_answer', 3000008,
     'has_answer', 'qa', 'Agent capabilities question answered',
     10000, 20260405120000, 20260405120000, 100, 1.00,
     0.95, 'Direct question-answer pair', 1
@@ -439,19 +490,19 @@ INSERT INTO lupo_edges (
 
 -- Answer to Question Relationships (bidirectional)
 (
-    4000021, 'answer', 3000001, 'question', 2000001,
+    4000021, 'truth_answer', 3000001, 'truth_question', 2000001,
     'answers', 'qa', 'Answer about Lupopedia',
     10000, 20260405120000, 20260405120000, 100, 1.00,
     0.95, 'Answer to question link', 1
 ),
 (
-    4000022, 'answer', 3000002, 'question', 2000002,
+    4000022, 'truth_answer', 3000002, 'truth_question', 2000002,
     'answers', 'qa', 'Answer about actor creation',
     10000, 20260405120000, 20260405120000, 100, 1.00,
     0.95, 'Answer to question link', 1
 ),
 (
-    4000023, 'answer', 3000003, 'question', 2000003,
+    4000023, 'truth_answer', 3000003, 'truth_question', 2000003,
     'answers', 'qa', 'Answer about agent selection',
     10000, 20260405120000, 20260405120000, 100, 1.00,
     0.95, 'Answer to question link', 1
@@ -459,25 +510,25 @@ INSERT INTO lupo_edges (
 
 -- Content to Question Relationships
 (
-    4000031, 'content', 1000001, 'question', 2000001,
+    4000031, 'content', 1000001, 'truth_question', 2000001,
     'related_to', 'help_content', 'Getting started relates to basic Lupopedia question',
     10000, 20260405120000, 20260405120000, 60, 0.70,
     0.65, 'Content-question relationship', 1
 ),
 (
-    4000032, 'content', 1000002, 'question', 2000003,
+    4000032, 'content', 1000002, 'truth_question', 2000003,
     'related_to', 'help_content', 'Actors guide relates to agent selection question',
     10000, 20260405120000, 20260405120000, 70, 0.75,
     0.70, 'Content-question relationship', 1
 ),
 (
-    4000033, 'content', 1000004, 'question', 2000004,
+    4000033, 'content', 1000004, 'truth_question', 2000004,
     'related_to', 'help_content', 'Content guide relates to search question',
     10000, 20260405120000, 20260405120000, 80, 0.85,
     0.75, 'Content-question relationship', 1
 ),
 (
-    4000034, 'content', 1000005, 'question', 2000005,
+    4000034, 'content', 1000005, 'truth_question', 2000005,
     'related_to', 'help_content', 'Edges guide directly relates to edges question',
     10000, 20260405120000, 20260405120000, 95, 0.95,
     0.88, 'Direct content-question match', 1
@@ -501,10 +552,10 @@ SELECT 'Online Help and Content System seeded successfully' AS status,
        COUNT(*) AS content_items FROM lupo_contents WHERE content_id BETWEEN 1000001 AND 1000005
 UNION ALL
 SELECT 'Questions seeded successfully' AS status,
-       COUNT(*) AS content_items FROM lupo_questions WHERE question_id BETWEEN 2000001 AND 2000008
+       COUNT(*) AS content_items FROM lupo_truth_questions WHERE truth_question_id BETWEEN 2000001 AND 2000008
 UNION ALL
 SELECT 'Answers seeded successfully' AS status,
-       COUNT(*) AS content_items FROM lupo_answers WHERE answer_id BETWEEN 3000001 AND 3000008
+       COUNT(*) AS content_items FROM lupo_truth_answers WHERE truth_answer_id BETWEEN 3000001 AND 3000008
 UNION ALL
 SELECT 'Edges seeded successfully' AS status,
        COUNT(*) AS content_items FROM lupo_edges WHERE edge_id BETWEEN 4000001 AND 4000034;

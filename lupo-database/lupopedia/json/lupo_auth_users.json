@@ -22,6 +22,9 @@
     "`two_factor_secret` varchar(255)",
     "`two_factor_enabled` tinyint NOT NULL DEFAULT 0",
     "`two_factor_backup_codes` text",
+    "`otp_code_hash` varchar(255) NOT NULL DEFAULT ''",
+    "`otp_issued_ymdhis` bigint NOT NULL DEFAULT 0",
+    "`otp_attempts` tinyint NOT NULL DEFAULT 0",
     "`timezone_offset` decimal(4,2) DEFAULT 0.00",
     "`timezone_name` varchar(100) DEFAULT 'UTC'"
   ],

@@ -171,3 +171,6 @@ lupo-config/*.local.php
 lupo-tmp/
 lupo-cache/
 lupo-sessions/
+
+# Runtime logs (local admin / audit lines — do not commit)
+lupo-logs/

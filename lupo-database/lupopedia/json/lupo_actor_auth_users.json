@@ -14,52 +14,22 @@
     "`status` varchar(32) NOT NULL DEFAULT 'active'",
     "`metadata_json` json",
     "`created_ymdhis` bigint NOT NULL DEFAULT 0",
-    "`updated_ymdhis` bigint NOT NULL",
+    "`updated_ymdhis` bigint NOT NULL DEFAULT 0",
     "`is_deleted` tinyint NOT NULL DEFAULT 0",
-    "`deleted_ymdhis` bigint DEFAULT 0"
+    "`deleted_ymdhis` bigint"
   ],
   "indexes": [
     {
-      "index_name": "lupo_actor_auth_users_idx_actor_role_primary_lookup",
+      "index_name": "lupo_actor_auth_users_idx_actor_status",
       "columns": [
         "actor_id",
-        "relationship_role",
-        "status",
-        "is_deleted",
-        "is_primary",
-        "routing_priority",
-        "auth_user_id"
+        "status"
       ],
       "is_unique": false,
       "index_type": "BTREE"
     },
     {
-      "index_name": "lupo_actor_auth_users_idx_actor_routing",
-      "columns": [
-        "actor_id",
-        "status",
-        "is_deleted",
-        "relationship_role",
-        "is_primary",
-        "routing_priority",
-        "auth_user_id"
-      ],
-      "is_unique": false,
-      "index_type": "BTREE"
-    },
-    {
-      "index_name": "lupo_actor_auth_users_idx_actor_status_primary_priority",
-      "columns": [
-        "actor_id",
-        "status",
-        "is_primary",
-        "routing_priority"
-      ],
-      "is_unique": false,
-      "index_type": "BTREE"
-    },
-    {
-      "index_name": "lupo_actor_auth_users_idx_auth_user_status",
+      "index_name": "lupo_actor_auth_users_idx_auth_user",
       "columns": [
         "auth_user_id",
         "status"
@@ -68,15 +38,33 @@
       "index_type": "BTREE"
     },
     {
-      "index_name": "lupo_actor_auth_users_idx_status",
+      "index_name": "lupo_actor_auth_users_idx_deleted",
       "columns": [
-        "status"
+        "is_deleted"
       ],
       "is_unique": false,
       "index_type": "BTREE"
     },
     {
-      "index_name": "lupo_actor_auth_users_unq_actor_user_role",
+      "index_name": "lupo_actor_auth_users_idx_primary",
+      "columns": [
+        "actor_id",
+        "is_primary"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_actor_auth_users_idx_routing",
+      "columns": [
+        "actor_id",
+        "routing_priority"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_actor_auth_users_unq",
       "columns": [
         "actor_id",
         "auth_user_id",

@@ -88,7 +88,7 @@
     {
       "index_name": "lupo_contents_idx_file_path_from_root",
       "columns": [
-        "file_path_from_root"
+        "file_path_from_root(768)"
       ],
       "is_unique": false,
       "index_type": "BTREE"

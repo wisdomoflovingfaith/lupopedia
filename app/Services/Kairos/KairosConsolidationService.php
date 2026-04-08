@@ -49,16 +49,16 @@ class KairosConsolidationService
      * Install doctrine: created_ymdhis SHOULD match the first 14 digits of memory_node_id (packed UTC clock).
      *
      * @param int|string $memoryNodeId
-     * @return int|string BIGINT-safe (string on 32-bit PHP for large values)
+     * @return string 14-digit packed UTC as decimal string (never (int) — 14 digits overflow 32-bit)
      */
     private function packedUtcFromMemoryNodeId($memoryNodeId)
     {
         $s = (string) $memoryNodeId;
         if (strlen($s) >= 14) {
-            return (int) substr($s, 0, 14);
+            return substr($s, 0, 14);
         }
 
-        return 0;
+        return '0';
     }
 
     /**
@@ -267,34 +267,48 @@ class KairosConsolidationService
         $t = $this->memoryNodesTable();
         $memVal = $content;
 
-        $this->db->insert(
-            $t,
-            array(
-                'memory_node_id' => $memoryId,
-                'created_ymdhis' => $this->packedUtcFromMemoryNodeId($memoryId),
-                'owner_actor_id' => $actorId,
-                'owner_type' => 'actor',
-                'memory_type' => self::MEMORY_CONSOLIDATED,
-                'memory_key' => $memKey,
-                'memory_value' => $memVal,
-                'context' => 'experiential',
-                'status' => 'unsupported',
-                'review_reason' => null,
-                'content_hash' => $this->contentHash($memKey, $memVal),
-                'context_json' => json_encode($ctxOut),
-                'updated_ymdhis' => $now,
-                'expires_ymdhis' => 0,
-                'is_deleted' => 0,
-                'deleted_ymdhis' => 0,
-            )
-        );
-
-        $edgeCount = 0;
-        foreach ($group as $r) {
-            $this->markObservationSuperseded($r, $memoryId, $now);
-            if ($this->insertConsolidationEdge((string) $memoryId, (string) $r['memory_node_id'], $now)) {
-                $edgeCount++;
+        $this->db->beginTransaction();
+        try {
+            $ins = $this->db->insert(
+                $t,
+                array(
+                    'memory_node_id' => $memoryId,
+                    'created_ymdhis' => $this->packedUtcFromMemoryNodeId($memoryId),
+                    'owner_actor_id' => $actorId,
+                    'owner_type' => 'actor',
+                    'memory_type' => self::MEMORY_CONSOLIDATED,
+                    'memory_key' => $memKey,
+                    'memory_value' => $memVal,
+                    'context' => 'experiential',
+                    'status' => 'unsupported',
+                    'review_reason' => null,
+                    'content_hash' => $this->contentHash($memKey, $memVal),
+                    'context_json' => json_encode($ctxOut),
+                    'updated_ymdhis' => $now,
+                    'expires_ymdhis' => 0,
+                    'is_deleted' => 0,
+                    'deleted_ymdhis' => 0,
+                )
+            );
+            if ($ins === false) {
+                $this->db->rollBack();
+                throw new RuntimeException(
+                    'Kairos: consolidated memory insert failed: ' . $this->db->getLastError()
+                );
             }
+
+            $edgeCount = 0;
+            foreach ($group as $r) {
+                $this->markObservationSuperseded($r, $memoryId, $now);
+                if ($this->insertConsolidationEdge((string) $memoryId, (string) $r['memory_node_id'], $now)) {
+                    $edgeCount++;
+                }
+            }
+
+            $this->db->commit();
+        } catch (Exception $e) {
+            $this->db->rollBack();
+            throw $e;
         }
 
         return array('memory_id' => $memoryId, 'edges' => $edgeCount);
@@ -422,32 +436,39 @@ class KairosConsolidationService
         }
 
         $added = 0;
-        foreach ($byTopic as $list) {
-            if (count($list) < 2) {
-                continue;
-            }
-            $norms = array();
-            foreach ($list as $r) {
-                $mid = (string) $r['memory_node_id'];
-                $norms[$mid] = $this->normalizeText(isset($r['memory_value']) ? $r['memory_value'] : '');
-            }
-            $unique = array_unique(array_values($norms));
-            if (count($unique) < 2) {
-                continue;
-            }
+        $this->db->beginTransaction();
+        try {
+            foreach ($byTopic as $list) {
+                if (count($list) < 2) {
+                    continue;
+                }
+                $norms = array();
+                foreach ($list as $r) {
+                    $mid = (string) $r['memory_node_id'];
+                    $norms[$mid] = $this->normalizeText(isset($r['memory_value']) ? $r['memory_value'] : '');
+                }
+                $unique = array_unique(array_values($norms));
+                if (count($unique) < 2) {
+                    continue;
+                }
 
-            $pair = $this->pickTwoDistinctIds($list, $norms);
-            if (!$pair) {
-                continue;
-            }
+                $pair = $this->pickTwoDistinctIds($list, $norms);
+                if (!$pair) {
+                    continue;
+                }
 
-            $a = $pair['a'];
-            $b = $pair['b'];
-            $ab = $this->orderMemoryNodeIdsForEdge($a, $b);
+                $a = $pair['a'];
+                $b = $pair['b'];
+                $ab = $this->orderMemoryNodeIdsForEdge($a, $b);
 
-            if ($this->insertContradictionEdge($ab['left'], $ab['right'], $now)) {
-                $added++;
+                if ($this->insertContradictionEdge($ab['left'], $ab['right'], $now)) {
+                    $added++;
+                }
             }
+            $this->db->commit();
+        } catch (Exception $e) {
+            $this->db->rollBack();
+            throw $e;
         }
 
         return $added;
@@ -540,6 +561,7 @@ class KairosConsolidationService
                 'updated_ymdhis' => $now,
                 'semantic_weight' => 0,
                 'relationship_type' => 'semantic',
+                'direction' => 'bi',
                 'bidirectional' => 1,
                 'context_scope' => null,
                 'properties' => null,
@@ -572,7 +594,8 @@ class KairosConsolidationService
             if ($conf < 0.8) {
                 continue;
             }
-            if ($verified !== null && $verified !== '' && (int) $verified > 0) {
+            $verifiedStr = trim((string) $verified);
+            if ($verifiedStr !== '' && $verifiedStr !== '0') {
                 continue;
             }
 
@@ -580,7 +603,7 @@ class KairosConsolidationService
                 $ctx['kairos'] = array();
             }
             $ctx['kairos']['stage'] = 'verified';
-            $ctx['kairos']['verified_ymdhis'] = (int) $now;
+            $ctx['kairos']['verified_ymdhis'] = (string) $now;
 
             $this->db->update(
                 $t,

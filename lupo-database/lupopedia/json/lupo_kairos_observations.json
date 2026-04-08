@@ -1,0 +1,87 @@
+{
+  "_comment": "THIS FILE IS AUTO-GENERATED. DO NOT EDIT MANUALLY.",
+  "_purpose": "Schema reference only — column names, types, indexes. Contains NO data.",
+  "_source": "Generated from live database by generate_toon_files.py",
+  "_read_only": true,
+  "table_name": "lupo_kairos_observations",
+  "fields": [
+    "`kairos_observation_id` bigint NOT NULL",
+    "`actor_id` bigint NOT NULL",
+    "`channel_id` bigint",
+    "`session_id` varchar(100)",
+    "`observation_type` varchar(64) NOT NULL DEFAULT 'event'",
+    "`subject_entity_type` varchar(64)",
+    "`subject_entity_id` bigint",
+    "`observation_text` text NOT NULL",
+    "`confidence_score` decimal(3,2) DEFAULT 1.00",
+    "`source_actor_id` bigint",
+    "`observed_ymdhis` bigint NOT NULL",
+    "`created_ymdhis` bigint NOT NULL DEFAULT 0",
+    "`is_consolidated` tinyint NOT NULL DEFAULT 0",
+    "`consolidated_ymdhis` bigint",
+    "`is_deleted` tinyint NOT NULL DEFAULT 0",
+    "`deleted_ymdhis` bigint"
+  ],
+  "indexes": [
+    {
+      "index_name": "lupo_kairos_observations_idx_actor",
+      "columns": [
+        "actor_id"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_kairos_observations_idx_consolidated",
+      "columns": [
+        "is_consolidated"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_kairos_observations_idx_deleted",
+      "columns": [
+        "is_deleted"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_kairos_observations_idx_observed",
+      "columns": [
+        "observed_ymdhis"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_kairos_observations_idx_subject",
+      "columns": [
+        "subject_entity_type",
+        "subject_entity_id"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_kairos_observations_idx_type",
+      "columns": [
+        "observation_type"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    }
+  ],
+  "primary_key": {
+    "column_name": "kairos_observation_id",
+    "expected_name": "kairos_observation_id",
+    "is_correct": true,
+    "needs_rename": false
+  },
+  "doctrine_metadata": {
+    "no_foreign_keys": true,
+    "no_triggers": true
+  },
+  "relationships": []
+}

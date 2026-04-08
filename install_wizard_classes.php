@@ -165,13 +165,22 @@ class InstallWizardCredentials
     /**
      * Validate pre-migration state for Crafty upgrade.
      * Checks if required Crafty tables exist and are accessible.
+     *
+     * @param object $pdo
+     * @param string|null $table_prefix LUPO_TABLE_PREFIX (e.g. lupo_); used only for actors join
      * @return array Validation result
      */
-    public static function validateCraftyPreMigration($pdo)
+    public static function validateCraftyPreMigration($pdo, $table_prefix = null)
     {
         $validation_results = array();
 
         try {
+            $tp = ($table_prefix !== null && $table_prefix !== '')
+                ? $table_prefix
+                : (defined('LUPO_TABLE_PREFIX') ? LUPO_TABLE_PREFIX : 'lupo_');
+            $actors_table = preg_replace('/[^a-zA-Z0-9_]/', '', $tp . 'actors');
+            $actors_ident = '`' . str_replace('`', '``', $actors_table) . '`';
+
             // Check key Crafty tables that must exist for migration
             $required_tables = array(
                 'livehelp_users',
@@ -187,8 +196,7 @@ class InstallWizardCredentials
 
             foreach ($required_tables as $table) {
                 $t = preg_replace('/[^a-zA-Z0-9_]/', '', $table);
-                $result = $pdo->query("SHOW TABLES LIKE '" . $t . "'");
-                if (!$result || $result->rowCount() < 1) {
+                if (!InstallWizardDb::tableExists($pdo, $t)) {
                     $validation_results[] = array(
                         'test' => 'crafty_tables_exist',
                         'status' => 'FAIL',
@@ -202,7 +210,7 @@ class InstallWizardCredentials
             $result = $pdo->query("
                 SELECT COUNT(*) as orphaned_count 
                 FROM livehelp_users lu 
-                LEFT JOIN lupo_actors a ON lu.username = a.slug 
+                LEFT JOIN " . $actors_ident . " a ON lu.username = a.slug 
                 WHERE a.actor_id IS NULL
             ");
 
@@ -314,6 +322,8 @@ class InstallWizardDb
         $opts = array(
             PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
             PDO::ATTR_TIMEOUT => 30,
+            PDO::ATTR_STRINGIFY_FETCHES => true,
+            PDO::ATTR_EMULATE_PREPARES => false,
         );
         if (defined('PDO::MYSQL_ATTR_USE_BUFFERED_QUERY')) {
             $opts[PDO::MYSQL_ATTR_USE_BUFFERED_QUERY] = true;
@@ -322,10 +332,41 @@ class InstallWizardDb
         return $pdo;
     }
 
+    /**
+     * Escape a literal for MySQL LIKE (default escape \). Does not use information_schema (shared-host safe).
+     *
+     * @param string $literal
+     * @return string
+     */
+    public static function escapeMysqlLikePattern($literal)
+    {
+        return str_replace(array('\\', '%', '_'), array('\\\\', '\\%', '\\_'), (string) $literal);
+    }
+
+    /**
+     * Whether a table exists (SHOW TABLES LIKE with escaped _/% — no information_schema).
+     *
+     * @param object $pdo InstallWizardMysqliLink or PDO with query() and quote()
+     * @param string $tableName Full physical name (e.g. myprefix_departments)
+     * @return bool
+     */
+    public static function tableExists($pdo, $tableName)
+    {
+        $t = preg_replace('/[^a-zA-Z0-9_]/', '', (string) $tableName);
+        if ($t === '') {
+            return false;
+        }
+        $pat = self::escapeMysqlLikePattern($t);
+        $stmt = $pdo->query('SHOW TABLES LIKE ' . $pdo->quote($pat));
+
+        return $stmt && $stmt->rowCount() > 0;
+    }
+
     public static function detectLivehelpTables($pdo)
     {
         $tables = array();
-        $stmt = $pdo->query("SHOW TABLES LIKE 'livehelp_%'");
+        // Literal prefix livehelp_ then any suffix: escape the underscore so LIKE _ is not a wildcard.
+        $stmt = $pdo->query("SHOW TABLES LIKE 'livehelp\\_%'");
         while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
             $tables[] = $row[0];
         }
@@ -398,7 +439,8 @@ class InstallWizardSqlRunner
 {
 
     /**
-     * Apply table prefix to SQL: {{prefix}} is always replaced (default lupo_); if prefix is not lupo_, also replace literal lupo_.
+     * Apply table prefix to SQL: {{prefix}} is always replaced (default lupo_); if prefix is not lupo_, also replace
+     * literal lupo_ only outside single-quoted string literals (avoids corrupting text inside VALUES (...)).
      *
      * @param string $sql
      * @param string|null $table_prefix
@@ -408,10 +450,52 @@ class InstallWizardSqlRunner
     {
         $tp = ($table_prefix !== null && $table_prefix !== '') ? $table_prefix : 'lupo_';
         $sql = str_replace('{{prefix}}', $tp, $sql);
-        if ($tp !== 'lupo_') {
-            $sql = str_replace('lupo_', $tp, $sql);
+        if ($tp === 'lupo_') {
+            return $sql;
         }
-        return $sql;
+        $from = 'lupo_';
+        $to = $tp;
+        $fromLen = strlen($from);
+        $len = strlen($sql);
+        $out = '';
+        $inSingle = false;
+        $i = 0;
+        while ($i < $len) {
+            $c = $sql[$i];
+            if ($inSingle) {
+                if ($c === '\\' && $i + 1 < $len) {
+                    $out .= $c . $sql[$i + 1];
+                    $i += 2;
+                    continue;
+                }
+                if ($c === "'" && $i + 1 < $len && $sql[$i + 1] === "'") {
+                    $out .= "''";
+                    $i += 2;
+                    continue;
+                }
+                if ($c === "'") {
+                    $inSingle = false;
+                }
+                $out .= $c;
+                $i++;
+            } else {
+                if ($c === "'") {
+                    $inSingle = true;
+                    $out .= $c;
+                    $i++;
+                    continue;
+                }
+                if ($i + $fromLen <= $len && substr($sql, $i, $fromLen) === $from) {
+                    $out .= $to;
+                    $i += $fromLen;
+                    continue;
+                }
+                $out .= $c;
+                $i++;
+            }
+        }
+
+        return $out;
     }
 
     /**
@@ -539,6 +623,45 @@ class InstallWizardSqlRunner
         return $ok;
     }
 
+    /**
+     * Last SQL failure message(s) from runSqlFile log for user-visible exceptions (pairs error line + statement preview).
+     *
+     * @param array $log
+     * @return string
+     */
+    public static function formatLastSqlFailureForException($log)
+    {
+        if (!is_array($log) || empty($log)) {
+            return '';
+        }
+        // Find the last "SQL failed [...]" line (log may have trailing "ok" entries after a mid-file failure).
+        $lastFailIdx = -1;
+        $n = count($log);
+        for ($i = $n - 1; $i >= 0; $i--) {
+            $entry = $log[$i];
+            if (!is_array($entry) || !isset($entry[1])) {
+                continue;
+            }
+            if (strpos($entry[1], 'SQL failed [') !== false) {
+                $lastFailIdx = $i;
+                break;
+            }
+        }
+        if ($lastFailIdx < 0) {
+            return '';
+        }
+        $out = array($log[$lastFailIdx][1]);
+        if ($lastFailIdx + 1 < $n && isset($log[$lastFailIdx + 1][1])
+            && strpos($log[$lastFailIdx + 1][1], 'Failed statement preview') !== false) {
+            $out[] = $log[$lastFailIdx + 1][1];
+        }
+        $summary = implode(' ', $out);
+        if (strlen($summary) > 600) {
+            $summary = substr($summary, 0, 597) . '...';
+        }
+        return $summary;
+    }
+
     public static function dropLivehelpTables($pdo, $tables, &$log)
     {
         foreach ($tables as $table) {
@@ -618,7 +741,7 @@ $table_prefix = \'' . (isset($options['table_prefix']) && preg_match('/^[a-z0-9_
 if (!preg_match(\'/^[a-z0-9_]+$/\', $table_prefix)) { die("Invalid table prefix"); }
 define(\'LUPO_TABLE_PREFIX\', $table_prefix);
 if (!defined(\'LUPOPEDIA_ABSPATH\')) { define(\'LUPOPEDIA_ABSPATH\', ABSPATH); }
-' . "if (!defined('LUPOPEDIA_PATH')) { define('LUPOPEDIA_PATH', rtrim(ABSPATH, '/\\')); }\n" . 'if (!defined(\'LUPOPEDIA_PUBLIC_PATH\')) { define(\'LUPOPEDIA_PUBLIC_PATH\', \'' . $publicPathForDefineEsc . '\'); }
+' . "if (!defined('LUPOPEDIA_PATH')) { define('LUPOPEDIA_PATH', rtrim(ABSPATH, '/')); }\n" . 'if (!defined(\'LUPOPEDIA_PUBLIC_PATH\')) { define(\'LUPOPEDIA_PUBLIC_PATH\', \'' . $publicPathForDefineEsc . '\'); }
 if (!defined(\'LUPOPEDIA_URL\')) { define(\'LUPOPEDIA_URL\', LUPOPEDIA_PUBLIC_PATH); }
 define(\'LUPOPEDIA_CONFIG_LOADED\', true);
 ' . (isset($options['site_name']) ? "define('LUPOPEDIA_SITE_NAME', '" . addslashes($options['site_name']) . "');\n" : '')
@@ -641,7 +764,7 @@ require_once ABSPATH . LUPO_INCLUDES_DIR . \'/bootstrap.php\';
             $log[] = InstallWizardLogger::logEntry('error', 'Could not write config file.');
             return null;
         }
-        @chmod($configPath, 0644);
+        @chmod($configPath, 0600);
         $log[] = InstallWizardLogger::logEntry('ok', 'Wrote lupopedia-config.php to ' . $configPath);
 
         self::ensureActorZeroDirs($installRoot, $log);
@@ -1422,8 +1545,7 @@ class InstallWizardChannels
         // Only run when upgrading: livehelp_users exists. New install has no livehelp_* tables.
         $livehelpUsersExists = false;
         try {
-            $checkTbl = $pdo->query("SHOW TABLES LIKE 'livehelp_users'");
-            $livehelpUsersExists = ($checkTbl && $checkTbl->rowCount() > 0);
+            $livehelpUsersExists = InstallWizardDb::tableExists($pdo, 'livehelp_users');
         } catch (Exception $e) {
             // ignore
         }

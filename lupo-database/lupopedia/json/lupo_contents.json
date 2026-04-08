@@ -39,7 +39,8 @@
     "`deleted_ymdhis` bigint",
     "`content_sections` json",
     "`version_number` int NOT NULL DEFAULT 1",
-    "`file_path_from_root` varchar(500) COMMENT 'FLIP Header: path from repo root (4.0.86)'",
+    "`storage_type` varchar(16) NOT NULL DEFAULT 'database'",
+    "`file_path_from_root` varchar(1024) COMMENT 'Canonical path from repo root. Set when storage_type=file_backed.'",
     "`file_last_modified_system_version` varchar(20) COMMENT 'FLIP: system version at last file edit'",
     "`file_last_modified_utc` bigint COMMENT 'FLIP: UTC last modified YYYYMMDDHHIISS'",
     "`tags` json",
@@ -173,6 +174,15 @@
         "is_deleted"
       ],
       "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_contents_idx_slug_deleted",
+      "columns": [
+        "slug",
+        "is_deleted"
+      ],
+      "is_unique": true,
       "index_type": "BTREE"
     },
     {

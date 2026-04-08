@@ -5,49 +5,49 @@
   "_read_only": true,
   "table_name": "lupo_governance_overrides",
   "fields": [
-    "`governance_overrid_id` bigint NOT NULL",
-    "`agent_id` bigint",
-    "`applied_by_agent` bigint",
-    "`override_type` varchar(100) NOT NULL",
-    "`target_key` varchar(150)",
-    "`old_value` text",
-    "`new_value` text",
-    "`reason_text` text",
+    "`governance_override_id` bigint NOT NULL",
+    "`actor_id` bigint NOT NULL",
+    "`override_type` varchar(64) NOT NULL",
+    "`override_scope` varchar(64)",
+    "`override_reason` text",
+    "`granted_by_actor_id` bigint",
+    "`expires_ymdhis` bigint",
+    "`is_active` tinyint NOT NULL DEFAULT 1",
     "`metadata_json` json",
     "`created_ymdhis` bigint NOT NULL DEFAULT 0",
-    "`expires_ymdhis` bigint",
+    "`updated_ymdhis` bigint NOT NULL DEFAULT 0",
     "`is_deleted` tinyint NOT NULL DEFAULT 0",
     "`deleted_ymdhis` bigint"
   ],
   "indexes": [
     {
-      "index_name": "lupo_governance_overrides_idx_agent",
+      "index_name": "lupo_governance_overrides_idx_active",
       "columns": [
-        "agent_id"
+        "is_active"
       ],
       "is_unique": false,
       "index_type": "BTREE"
     },
     {
-      "index_name": "lupo_governance_overrides_idx_applied_by",
+      "index_name": "lupo_governance_overrides_idx_actor",
       "columns": [
-        "applied_by_agent"
+        "actor_id"
       ],
       "is_unique": false,
       "index_type": "BTREE"
     },
     {
-      "index_name": "lupo_governance_overrides_idx_created",
+      "index_name": "lupo_governance_overrides_idx_deleted",
       "columns": [
-        "created_ymdhis"
+        "is_deleted"
       ],
       "is_unique": false,
       "index_type": "BTREE"
     },
     {
-      "index_name": "lupo_governance_overrides_idx_target",
+      "index_name": "lupo_governance_overrides_idx_expires",
       "columns": [
-        "target_key"
+        "expires_ymdhis"
       ],
       "is_unique": false,
       "index_type": "BTREE"
@@ -62,8 +62,8 @@
     }
   ],
   "primary_key": {
-    "column_name": "governance_overrid_id",
-    "expected_name": "governance_overrid_id",
+    "column_name": "governance_override_id",
+    "expected_name": "governance_override_id",
     "is_correct": true,
     "needs_rename": false
   },

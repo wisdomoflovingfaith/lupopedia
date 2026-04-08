@@ -1,0 +1,48 @@
+{
+  "_comment": "THIS FILE IS AUTO-GENERATED. DO NOT EDIT MANUALLY.",
+  "_purpose": "Schema reference only — column names, types, indexes. Contains NO data.",
+  "_source": "Generated from live database by generate_toon_files.py",
+  "_read_only": true,
+  "table_name": "lupo_agent_memory_config",
+  "fields": [
+    "`agent_memory_config_id` bigint NOT NULL",
+    "`agent_id` bigint NOT NULL",
+    "`memory_enabled` tinyint NOT NULL DEFAULT 1",
+    "`rollup_strategy` varchar(64) NOT NULL DEFAULT 'session'",
+    "`rollup_threshold` int",
+    "`retention_days` int",
+    "`consolidation_agent_key` varchar(100) DEFAULT 'kairos'",
+    "`config_json` json",
+    "`created_ymdhis` bigint NOT NULL DEFAULT 0",
+    "`updated_ymdhis` bigint NOT NULL DEFAULT 0"
+  ],
+  "indexes": [
+    {
+      "index_name": "lupo_agent_memory_config_idx_strategy",
+      "columns": [
+        "rollup_strategy"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_agent_memory_config_unq",
+      "columns": [
+        "agent_id"
+      ],
+      "is_unique": true,
+      "index_type": "BTREE"
+    }
+  ],
+  "primary_key": {
+    "column_name": "agent_memory_config_id",
+    "expected_name": "agent_memory_config_id",
+    "is_correct": true,
+    "needs_rename": false
+  },
+  "doctrine_metadata": {
+    "no_foreign_keys": true,
+    "no_triggers": true
+  },
+  "relationships": []
+}

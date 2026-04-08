@@ -268,7 +268,7 @@ PHP;
     }
     
     // Set secure permissions (644)
-    @chmod($config_path, 0644);
+    @chmod($config_path, 0600);
     
     return $config_path;
 }
@@ -316,7 +316,7 @@ function lupopedia_backup_old_config($old_config_path) {
 function lupopedia_detect_livehelp_tables($pdo) {
     $tables = [];
     try {
-        $stmt = $pdo->query("SHOW TABLES LIKE 'livehelp_%'");
+        $stmt = $pdo->query("SHOW TABLES LIKE 'livehelp\\_%'");
         while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
             $tables[] = $row[0];
         }

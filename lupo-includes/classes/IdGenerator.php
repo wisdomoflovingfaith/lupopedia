@@ -9,7 +9,7 @@
  * No AUTO_INCREMENT, sequences, or database-side ID generation.
  *
  * @package Lupopedia
- * @version 4.0.94
+ * @version 4.0.96
  */
 
 class IdGenerator
@@ -246,9 +246,13 @@ class IdGenerator
      *
      * Does not replace validateFormat() — that remains for raw IdGenerator::generate() output (2000–2099 clock).
      *
+     * Seed band acceptance is not yet registry-gated (RegistryService §9.1). Callers on full-ladder tables
+     * MUST NOT pass short seed ids through this method for canonical ladder writes; use explicit
+     * seedActorToCanonicalId or install paths only.
+     *
      * @param int|string $id
      * @param string|null $context
-     * @param bool $throw If true, throws InvalidArgumentException on failure
+     * @param bool $throw If true, throws InvalidArgumentException on failure; also logs seed-band deferral when true
      * @return bool
      */
     public static function validateTrustLadderPk($id, $context = null, $throw = false)
@@ -257,7 +261,15 @@ class IdGenerator
         $len = strlen($idStr);
 
         // Seed band: short ids, numeric < 2026 — compare as padded digit strings (avoid (int) overflow on 32-bit)
+        // TODO: RegistryService::isAuthorizedSeed() per CHRONOLOGICAL_TRUST_LADDER §9.1
         if ($len < 18 && $len > 0 && ctype_digit($idStr) && self::numericStringLessThan($idStr, '2026')) {
+            if ($throw) {
+                error_log(
+                    'TrustLadder: Seed ID ' . $idStr
+                    . ' accepted without registry check (deferred to RegistryService §9.1)'
+                    . ($context !== null && $context !== '' ? '; context=' . $context : '')
+                );
+            }
             return true;
         }
 

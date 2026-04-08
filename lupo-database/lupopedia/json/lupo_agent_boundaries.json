@@ -1,0 +1,72 @@
+{
+  "_comment": "THIS FILE IS AUTO-GENERATED. DO NOT EDIT MANUALLY.",
+  "_purpose": "Schema reference only — column names, types, indexes. Contains NO data.",
+  "_source": "Generated from live database by generate_toon_files.py",
+  "_read_only": true,
+  "table_name": "lupo_agent_boundaries",
+  "fields": [
+    "`agent_boundary_id` bigint NOT NULL",
+    "`agent_id` bigint NOT NULL",
+    "`boundary_type` varchar(64) NOT NULL",
+    "`domain_key` varchar(100) NOT NULL",
+    "`owner_agent_key` varchar(100)",
+    "`boundary_description` text",
+    "`created_ymdhis` bigint NOT NULL DEFAULT 0",
+    "`updated_ymdhis` bigint NOT NULL DEFAULT 0"
+  ],
+  "indexes": [
+    {
+      "index_name": "lupo_agent_boundaries_idx_agent",
+      "columns": [
+        "agent_id"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_agent_boundaries_idx_domain",
+      "columns": [
+        "domain_key"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_agent_boundaries_idx_owner",
+      "columns": [
+        "owner_agent_key"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_agent_boundaries_idx_type",
+      "columns": [
+        "boundary_type"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_agent_boundaries_unq",
+      "columns": [
+        "agent_id",
+        "boundary_type",
+        "domain_key"
+      ],
+      "is_unique": true,
+      "index_type": "BTREE"
+    }
+  ],
+  "primary_key": {
+    "column_name": "agent_boundary_id",
+    "expected_name": "agent_boundary_id",
+    "is_correct": true,
+    "needs_rename": false
+  },
+  "doctrine_metadata": {
+    "no_foreign_keys": true,
+    "no_triggers": true
+  },
+  "relationships": []
+}

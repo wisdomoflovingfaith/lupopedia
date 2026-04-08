@@ -1,0 +1,75 @@
+{
+  "_comment": "THIS FILE IS AUTO-GENERATED. DO NOT EDIT MANUALLY.",
+  "_purpose": "Schema reference only — column names, types, indexes. Contains NO data.",
+  "_source": "Generated from live database by generate_toon_files.py",
+  "_read_only": true,
+  "table_name": "lupo_actor_pairing",
+  "fields": [
+    "`actor_pairing_id` bigint NOT NULL",
+    "`actor_id` bigint NOT NULL",
+    "`paired_actor_id` bigint NOT NULL",
+    "`pairing_role` varchar(64) NOT NULL DEFAULT 'peer'",
+    "`pairing_type` varchar(64) NOT NULL DEFAULT 'operational'",
+    "`is_primary` tinyint NOT NULL DEFAULT 1",
+    "`notes` text",
+    "`created_ymdhis` bigint NOT NULL DEFAULT 0",
+    "`updated_ymdhis` bigint NOT NULL DEFAULT 0",
+    "`is_deleted` tinyint NOT NULL DEFAULT 0",
+    "`deleted_ymdhis` bigint"
+  ],
+  "indexes": [
+    {
+      "index_name": "lupo_actor_pairing_idx_actor",
+      "columns": [
+        "actor_id"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_actor_pairing_idx_deleted",
+      "columns": [
+        "is_deleted"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_actor_pairing_idx_paired",
+      "columns": [
+        "paired_actor_id"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_actor_pairing_idx_type",
+      "columns": [
+        "pairing_type"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_actor_pairing_unq_pair",
+      "columns": [
+        "actor_id",
+        "paired_actor_id",
+        "pairing_role"
+      ],
+      "is_unique": true,
+      "index_type": "BTREE"
+    }
+  ],
+  "primary_key": {
+    "column_name": "actor_pairing_id",
+    "expected_name": "actor_pairing_id",
+    "is_correct": true,
+    "needs_rename": false
+  },
+  "doctrine_metadata": {
+    "no_foreign_keys": true,
+    "no_triggers": true
+  },
+  "relationships": []
+}

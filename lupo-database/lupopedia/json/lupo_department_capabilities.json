@@ -1,0 +1,66 @@
+{
+  "_comment": "THIS FILE IS AUTO-GENERATED. DO NOT EDIT MANUALLY.",
+  "_purpose": "Schema reference only — column names, types, indexes. Contains NO data.",
+  "_source": "Generated from live database by generate_toon_files.py",
+  "_read_only": true,
+  "table_name": "lupo_department_capabilities",
+  "fields": [
+    "`dept_capability_id` bigint NOT NULL",
+    "`department_id` bigint NOT NULL",
+    "`capability_key` varchar(100) NOT NULL",
+    "`capability_description` text",
+    "`domain_id` bigint",
+    "`scope_limitation` varchar(50) NOT NULL DEFAULT 'unrestricted'",
+    "`granted_by_actor_id` bigint",
+    "`created_ymdhis` bigint NOT NULL DEFAULT 0",
+    "`updated_ymdhis` bigint NOT NULL DEFAULT 0",
+    "`is_deleted` tinyint NOT NULL DEFAULT 0",
+    "`deleted_ymdhis` bigint"
+  ],
+  "indexes": [
+    {
+      "index_name": "lupo_dept_capabilities_idx_deleted",
+      "columns": [
+        "is_deleted"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_dept_capabilities_idx_dept",
+      "columns": [
+        "department_id"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_dept_capabilities_idx_key",
+      "columns": [
+        "capability_key"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_dept_capabilities_unq",
+      "columns": [
+        "department_id",
+        "capability_key"
+      ],
+      "is_unique": true,
+      "index_type": "BTREE"
+    }
+  ],
+  "primary_key": {
+    "column_name": "dept_capability_id",
+    "expected_name": "dept_capability_id",
+    "is_correct": true,
+    "needs_rename": false
+  },
+  "doctrine_metadata": {
+    "no_foreign_keys": true,
+    "no_triggers": true
+  },
+  "relationships": []
+}

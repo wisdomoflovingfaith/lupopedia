@@ -157,13 +157,13 @@ class AuthSessionManager
     public function getAvailableAgents()
     {
         // Templates for "create new actor from agent" (select-actor.php): exclude system-only rows.
-        // lupo_agents.is_internal_only = 1 means tooling / PHP-first system agents — not an end-user persona template.
-        // Fresh installs: seed_4.1.0.sql sets is_internal_only for ROSE, HERMES, IRIS, ANUBIS, HEIMDALL, KAIROS (registry agent_id map).
-        $sql = "SELECT a.agent_id, a.agent_key, a.agent_name, a.description
-                FROM {$this->table_prefix}agents a
+        // lupo_agent_definitions.is_required = 1 means PHP-first / coordination agents — not an end-user persona template.
+        // Fresh installs: consolidated seed sets is_required for ROSE, HERMES, IRIS, ANUBIS, HEIMDALL, KAIROS (registry agent_id map).
+        $sql = "SELECT a.agent_id, a.agent_key, a.name AS agent_name, a.description
+                FROM {$this->table_prefix}agent_definitions a
                 WHERE a.is_deleted = 0
-                AND a.is_internal_only = 0
-                ORDER BY a.agent_name ASC";
+                AND a.is_required = 0
+                ORDER BY a.name ASC";
         return $this->db->fetchAll($sql, array());
     }
 
@@ -180,8 +180,8 @@ class AuthSessionManager
         }
         
         // Get agent details (reject internal/system agents — not for human actor creation)
-        $sql = "SELECT agent_name, description FROM {$this->table_prefix}agents 
-                WHERE agent_id = :agent_id AND is_deleted = 0 AND is_internal_only = 0";
+        $sql = "SELECT name AS agent_name, description FROM {$this->table_prefix}agent_definitions 
+                WHERE agent_id = :agent_id AND is_deleted = 0 AND is_required = 0";
         $agent = $this->db->fetchRow($sql, array('agent_id' => $agent_id));
         
         if (!$agent) {
@@ -572,7 +572,8 @@ class AuthSessionManager
         $auth_user_id = (int) $auth_user_id;
         // Elevated operator convention (PRD 01 / seed): full active actor list without department join.
         if ($auth_user_id === 10000) {
-            $actorCols = "a.actor_id, a.actor_name, a.name, a.actor_type, a.department_id, a.web_restrict_act_as_creator_or_root, a.actor_source_id, a.actor_source_type";
+            // NV3: lupo_actors has no department_id; scope is lupo_actor_departments. Elevated list: full actor set, no dept column.
+            $actorCols = "a.actor_id, a.actor_name, a.name, a.actor_type, NULL AS department_id, a.web_restrict_act_as_creator_or_root, a.actor_source_id, a.actor_source_type";
             $sql = "SELECT DISTINCT {$actorCols}
                 FROM {$this->table_prefix}actors a
                 WHERE a.is_active = 1
@@ -604,7 +605,7 @@ class AuthSessionManager
 
         $bypass_creator_restrict = $in_root_department || $isAdmin || $this->authUserHasModuleOwnerPermission($auth_user_id);
 
-        $actorCols = "a.actor_id, a.actor_name, a.name, a.actor_type, a.department_id, a.web_restrict_act_as_creator_or_root, a.actor_source_id, a.actor_source_type";
+        $actorCols = "a.actor_id, a.actor_name, a.name, a.actor_type, ad.department_id, a.web_restrict_act_as_creator_or_root, a.actor_source_id, a.actor_source_type";
 
         $filter_dept = null;
         if ($department_id_filter !== null && $department_id_filter !== '') {

@@ -6,6 +6,7 @@
   "table_name": "lupo_agent_tool_calls",
   "fields": [
     "`agent_tool_call_id` bigint NOT NULL",
+    "`actor_id` bigint NOT NULL",
     "`agent_id` bigint NOT NULL",
     "`faucet_id` bigint",
     "`domain_id` bigint NOT NULL",
@@ -34,6 +35,23 @@
   ],
   "indexes": [
     {
+      "index_name": "lupo_agent_tool_calls_idx_actor",
+      "columns": [
+        "actor_id"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_agent_tool_calls_idx_actor_created",
+      "columns": [
+        "actor_id",
+        "created_ymdhis"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
       "index_name": "lupo_agent_tool_calls_idx_agent",
       "columns": [
         "agent_id"
@@ -42,10 +60,9 @@
       "index_type": "BTREE"
     },
     {
-      "index_name": "lupo_agent_tool_calls_idx_agent_created",
+      "index_name": "lupo_agent_tool_calls_idx_deleted",
       "columns": [
-        "agent_id",
-        "created_ymdhis"
+        "is_deleted"
       ],
       "is_unique": false,
       "index_type": "BTREE"

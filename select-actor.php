@@ -320,7 +320,7 @@ $base = rtrim(LUPOPEDIA_PUBLIC_PATH, '/');
 
         <?php if (!empty($available_agents)): ?>
             <h2>Create new actor from agent</h2>
-            <p class="actor-type">Uses your Lupopedia agent templates (<code>lupo_agents</code>). New actors are linked to your account and department<?php echo $filter_department_id !== null ? ' (current filter)' : ''; ?>.</p>
+            <p class="actor-type">Uses your Lupopedia agent templates (<code>lupo_agent_definitions</code>). New actors are linked to your account and department<?php echo $filter_department_id !== null ? ' (current filter)' : ''; ?>.</p>
             <div class="actor-grid">
                 <?php foreach ($available_agents as $agent): ?>
                     <form method="post">

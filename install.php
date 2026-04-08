@@ -113,14 +113,18 @@ if (!defined('LUPO_MYSQL_DIR')) {
 if (!is_dir(LUPO_MYSQL_DIR)) {
     die('MySQL installer directory not found at LUPO_MYSQL_DIR: ' . LUPO_MYSQL_DIR);
 }
-// Consolidated seed: prefer merged file from lupo-scripts/build_consolidated_seed_4_1_0.py when present;
-// otherwise use tracked mysql/seed/seed_4.1.0.sql (subset — run the builder for full registry + seed stack).
+// Consolidated seed: prefer install/seed_lupopedia_4_1_0.sql (merged; {{prefix}}). Fallback seed may hardcode lupo_.
 if (!defined('LUPO_CONSOLIDATED_SEED_FILE')) {
     $lupo_merged_seed = LUPOPEDIA_PATH . DIRECTORY_SEPARATOR . 'install' . DIRECTORY_SEPARATOR . 'seed_lupopedia_4_1_0.sql';
     $lupo_seed_410 = LUPO_MYSQL_DIR . DIRECTORY_SEPARATOR . 'seed' . DIRECTORY_SEPARATOR . 'seed_4.1.0.sql';
     $lupo_consolidated = (is_file($lupo_merged_seed) && is_readable($lupo_merged_seed))
         ? $lupo_merged_seed
         : $lupo_seed_410;
+    if ($lupo_consolidated === $lupo_seed_410 && is_file($lupo_seed_410) && is_readable($lupo_seed_410)) {
+        error_log(
+            'Lupopedia installer: using fallback mysql/seed/seed_4.1.0.sql; ship install/seed_lupopedia_4_1_0.sql in releases for custom table prefix.'
+        );
+    }
     define('LUPO_CONSOLIDATED_SEED_FILE', $lupo_consolidated);
 }
 
@@ -393,14 +397,16 @@ if ($step === 'credentials') {
                 try {
                     $install_ok = InstallWizardSqlRunner::runSqlFile($pdo, $mysqlDir . DIRECTORY_SEPARATOR . 'install' . DIRECTORY_SEPARATOR . 'install_new_lupopedia.sql', $bootstrapLog, $table_prefix);
                     if (!$install_ok) {
-                        throw new RuntimeException('Critical schema install failed (install_new_lupopedia.sql). Stop and fix SQL errors before continuing.');
+                        $sqlDetail = InstallWizardSqlRunner::formatLastSqlFailureForException($bootstrapLog);
+                        throw new RuntimeException('Critical schema install failed (install_new_lupopedia.sql). Stop and fix SQL errors before continuing.' . ($sqlDetail !== '' ? ' ' . $sqlDetail : ''));
                     }
                     if (!is_file(LUPO_CONSOLIDATED_SEED_FILE)) {
                         throw new RuntimeException('Consolidated seed not found: ' . LUPO_CONSOLIDATED_SEED_FILE);
                     }
                     $seed_ok = InstallWizardSqlRunner::runSqlFile($pdo, LUPO_CONSOLIDATED_SEED_FILE, $bootstrapLog, $table_prefix);
                     if (!$seed_ok) {
-                        throw new RuntimeException('Critical seed failed (seed_4.1.0.sql). Stop and fix SQL errors before continuing.');
+                        $sqlDetail = InstallWizardSqlRunner::formatLastSqlFailureForException($bootstrapLog);
+                        throw new RuntimeException('Critical seed failed (seed_4.1.0.sql). Stop and fix SQL errors before continuing.' . ($sqlDetail !== '' ? ' ' . $sqlDetail : ''));
                     }
                     InstallWizardChannels::createReservedSystemChannels($pdo, $bootstrapLog);
                     $_SESSION['lupo_bootstrap_log'] = $bootstrapLog;
@@ -595,8 +601,7 @@ if ($step === 'run') {
                 $dept_table = $table_prefix . 'departments';
                 $schema_ok = false;
                 try {
-                    $st = $pdo->query("SHOW TABLES LIKE " . $pdo->quote($dept_table));
-                    $schema_ok = $st && $st->fetch() !== false;
+                    $schema_ok = InstallWizardDb::tableExists($pdo, $dept_table);
                 } catch (Exception $e) {
                     $schema_ok = false;
                 }
@@ -604,14 +609,16 @@ if ($step === 'run') {
                     $log[] = InstallWizardLogger::logEntry('ok', 'Schema missing (e.g. tables dropped); running install and consolidated seed first.');
                     $install_ok = InstallWizardSqlRunner::runSqlFile($pdo, $mysqlDir . DIRECTORY_SEPARATOR . 'install' . DIRECTORY_SEPARATOR . 'install_new_lupopedia.sql', $log, $table_prefix);
                     if (!$install_ok) {
-                        throw new RuntimeException('Critical schema install failed (install_new_lupopedia.sql). Stop and fix SQL errors before continuing.');
+                        $sqlDetail = InstallWizardSqlRunner::formatLastSqlFailureForException($log);
+                        throw new RuntimeException('Critical schema install failed (install_new_lupopedia.sql). Stop and fix SQL errors before continuing.' . ($sqlDetail !== '' ? ' ' . $sqlDetail : ''));
                     }
                     if (!is_file(LUPO_CONSOLIDATED_SEED_FILE)) {
                         throw new RuntimeException('Consolidated seed not found: ' . LUPO_CONSOLIDATED_SEED_FILE);
                     }
                     $seed_ok = InstallWizardSqlRunner::runSqlFile($pdo, LUPO_CONSOLIDATED_SEED_FILE, $log, $table_prefix);
                     if (!$seed_ok) {
-                        throw new RuntimeException('Critical seed failed (seed_4.1.0.sql). Stop and fix SQL errors before continuing.');
+                        $sqlDetail = InstallWizardSqlRunner::formatLastSqlFailureForException($log);
+                        throw new RuntimeException('Critical seed failed (seed_4.1.0.sql). Stop and fix SQL errors before continuing.' . ($sqlDetail !== '' ? ' ' . $sqlDetail : ''));
                     }
                     InstallWizardChannels::createReservedSystemChannels($pdo, $log);
                 } elseif (!empty($_SESSION['lupo_bootstrap_log'])) {
@@ -625,14 +632,16 @@ if ($step === 'run') {
             if ($install_type === 'new') {
                 $install_ok = InstallWizardSqlRunner::runSqlFile($pdo, $mysqlDir . DIRECTORY_SEPARATOR . 'install' . DIRECTORY_SEPARATOR . 'install_new_lupopedia.sql', $log, $table_prefix);
                 if (!$install_ok) {
-                    throw new RuntimeException('Critical schema install failed (install_new_lupopedia.sql). Stop and fix SQL errors before continuing.');
+                    $sqlDetail = InstallWizardSqlRunner::formatLastSqlFailureForException($log);
+                    throw new RuntimeException('Critical schema install failed (install_new_lupopedia.sql). Stop and fix SQL errors before continuing.' . ($sqlDetail !== '' ? ' ' . $sqlDetail : ''));
                 }
                 if (!is_file(LUPO_CONSOLIDATED_SEED_FILE)) {
                     throw new RuntimeException('Consolidated seed not found: ' . LUPO_CONSOLIDATED_SEED_FILE);
                 }
                 $seed_ok = InstallWizardSqlRunner::runSqlFile($pdo, LUPO_CONSOLIDATED_SEED_FILE, $log, $table_prefix);
                 if (!$seed_ok) {
-                    throw new RuntimeException('Critical seed failed (seed_4.1.0.sql). Stop and fix SQL errors before continuing.');
+                    $sqlDetail = InstallWizardSqlRunner::formatLastSqlFailureForException($log);
+                    throw new RuntimeException('Critical seed failed (seed_4.1.0.sql). Stop and fix SQL errors before continuing.' . ($sqlDetail !== '' ? ' ' . $sqlDetail : ''));
                 }
                 InstallWizardDepartments::ensureSystemDepartment($pdo, $log);
                 InstallWizardChannels::createReservedSystemChannels($pdo, $log);
@@ -736,8 +745,7 @@ if ($step === 'run') {
             );
             foreach ($required_anubis_tables as $table) {
                 $full_table = $table_prefix . $table;
-                $res = $pdo->query("SHOW TABLES LIKE '$full_table'")->fetch();
-                if (!$res) {
+                if (!InstallWizardDb::tableExists($pdo, $full_table)) {
                     throw new RuntimeException("ANUBIS table $full_table missing - cannot proceed");
                 }
             }

@@ -2,10 +2,10 @@
 lupopedia.headers:
   header_format_version: 2
   lupopedia.schema: doctrine
-  when_updated: "20260408021859"
+  when_updated: "20260408041140"
   file_path_from_root: "lupo-docs/doctrine/TRUST_LADDER_REGISTRY.md"
   web_path: "http://www.lupopedia.com/lupopedia/lupo-docs/doctrine/TRUST_LADDER_REGISTRY.md"
-  last_modified_utc: "20260408021859"
+  last_modified_utc: "20260408041140"
   federation_node_id: 0
   channel_id: 42
   thread_id: "trust-ladder-registry"
@@ -39,7 +39,7 @@ lupopedia.edges:
       weight: 1.0
       reason: "Staging retention"
 lupopedia.footer:
-  last_verified: "20260408021859"
+  last_verified: "20260408041140"
   verified_by:
     identity_type: actor
     actor_id: 1
@@ -73,7 +73,7 @@ Numeric seed bands below are **documentation pointers** — **PRD 41**, **PRD 00
 |-------|-----------|----------|--------------|-------|
 | `lupo_dialog_messages` | `dialog_message_id` | 18-digit timestamp | **generator_staging** | Chat; validate **`validateFormat`** / **`validateTrustLadderPk`** per insert path |
 | `lupo_edges` | `edge_id` | 18-digit timestamp | **generator_staging** | Trust follows endpoint objects |
-| `lupo_actor_memory` | `actor_memory_id` | 18-digit timestamp | **generator_staging** | KAIROS; **`validateTrustLadderPk`** on insert today |
+| `lupo_actor_memory` | `actor_memory_id` | 18-digit timestamp | **deprecated** | Superseded by **`lupo_memory_nodes`** in 4.0.96; KAIROS migrated. Table retained for legacy data only. |
 
 ## Seed-only (exempt short / low PK band; not 18-digit ladder shape)
 

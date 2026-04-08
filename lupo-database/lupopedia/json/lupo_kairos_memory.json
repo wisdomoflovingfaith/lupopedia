@@ -1,0 +1,92 @@
+{
+  "_comment": "THIS FILE IS AUTO-GENERATED. DO NOT EDIT MANUALLY.",
+  "_purpose": "Schema reference only — column names, types, indexes. Contains NO data.",
+  "_source": "Generated from live database by generate_toon_files.py",
+  "_read_only": true,
+  "table_name": "lupo_kairos_memory",
+  "fields": [
+    "`kairos_memory_id` bigint NOT NULL",
+    "`actor_id` bigint NOT NULL",
+    "`memory_type` varchar(64) NOT NULL DEFAULT 'fact'",
+    "`memory_key` varchar(255)",
+    "`memory_text` text NOT NULL",
+    "`confidence_score` decimal(3,2) DEFAULT 1.00",
+    "`source_observation_ids` json",
+    "`valid_from_ymdhis` bigint NOT NULL DEFAULT 0",
+    "`valid_until_ymdhis` bigint",
+    "`superseded_by_id` bigint",
+    "`created_ymdhis` bigint NOT NULL DEFAULT 0",
+    "`updated_ymdhis` bigint NOT NULL DEFAULT 0",
+    "`is_deleted` tinyint NOT NULL DEFAULT 0",
+    "`deleted_ymdhis` bigint"
+  ],
+  "indexes": [
+    {
+      "index_name": "lupo_kairos_memory_idx_actor",
+      "columns": [
+        "actor_id"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_kairos_memory_idx_deleted",
+      "columns": [
+        "is_deleted"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_kairos_memory_idx_key",
+      "columns": [
+        "memory_key"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_kairos_memory_idx_superseded",
+      "columns": [
+        "superseded_by_id"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_kairos_memory_idx_type",
+      "columns": [
+        "memory_type"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_kairos_memory_idx_valid_from",
+      "columns": [
+        "valid_from_ymdhis"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    },
+    {
+      "index_name": "lupo_kairos_memory_idx_valid_until",
+      "columns": [
+        "valid_until_ymdhis"
+      ],
+      "is_unique": false,
+      "index_type": "BTREE"
+    }
+  ],
+  "primary_key": {
+    "column_name": "kairos_memory_id",
+    "expected_name": "kairos_memory_id",
+    "is_correct": true,
+    "needs_rename": false
+  },
+  "doctrine_metadata": {
+    "no_foreign_keys": true,
+    "no_triggers": true
+  },
+  "relationships": []
+}

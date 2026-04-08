@@ -2,10 +2,10 @@
 lupopedia.headers:
   header_format_version: 2
   lupopedia.schema: doctrine
-  when_updated: "20260408012727"
+  when_updated: "20260408042840"
   file_path_from_root: "lupo-docs/prd/00_root_constitutional_system_requirements.md"
   web_path: "http://www.lupopedia.com/lupopedia/lupo-docs/prd/00_root_constitutional_system_requirements.md"
-  last_modified_utc: "20260408012727"
+  last_modified_utc: "20260408042840"
   federation_node_id: 0
   channel_id: 42
   thread_id: "constitutional-root-requirements"
@@ -131,6 +131,10 @@ lupopedia.edges:
       type: implements
       weight: 1.0
       reason: "Enforces section 3 — all DB access must go through DatabaseFactory::getConnection()"
+    - to: "lupo-includes/classes/ToonValidator.php"
+      type: references
+      weight: 1.0
+      reason: "SHOW TABLES / SHOW CREATE TABLE schema checks — aligns with §1 RULE 93.NO_INFORMATION_SCHEMA (no information_schema on shared hosts)"
     - to: "lupo-agents/"
       type: references
       weight: 1.0
@@ -236,7 +240,7 @@ lupopedia.edges:
       weight: 1.0
       reason: "Cursor IDE shared-hosting security audit checklist — operational companion to Section 17 (RULE 93.SECURITY)"
 lupopedia.footer:
-  last_verified: "20260408012727"
+  last_verified: "20260408042840"
   verified_by:
     identity_type: actor
     actor_id: 102
@@ -303,9 +307,11 @@ Lupopedia must run on shared hosting where:
 - No custom extensions
 - No guaranteed MySQL version beyond 8.0+
 - No guaranteed PostgreSQL version beyond 15+
+- **`information_schema` is not a reliable API** — many shared hosts **deny** or **restrict** reads of **`information_schema`** (and similar catalog views) for the application database user, so code that “discovers” tables or columns via those views **fails silently or hard** in production
 
 Therefore:
 
+- **RULE 93.NO_INFORMATION_SCHEMA (mandatory):** **Shipped** Lupopedia PHP (runtime, **installer**, CLI tools that ship with the product) **MUST NOT** query **`information_schema`** (MySQL/MariaDB) or other **host-restricted catalog** views for routine schema or table existence checks. Use **`SHOW TABLES`**, **`SHOW CREATE TABLE`**, **`DESCRIBE`** / **`SHOW COLUMNS`**, canonical **`install_new_lupopedia.sql`**, schema reference JSON under **`lupo-database/lupopedia/json/`**, and table docs under **`lupo-docs/database/lupopedia/tables/`** instead. Where **`SHOW TABLES … LIKE`** is used, **escape** SQL **`LIKE`** metacharacters (**`_`**, **`%`**, **`\`**) so table names match literally (see **`InstallWizardDb::escapeMysqlLikePattern()`** in **`install_wizard_classes.php`**). **Developer-only** or **CI-only** scripts that are not part of the deployed tree may differ only if documented as non-shipped.
 - All logic must be implemented in PHP
 - No database-level logic is allowed
 - No server-level dependencies
@@ -573,6 +579,8 @@ Forbidden SQL patterns:
 - `AUTO_INCREMENT`
 - `ENGINE=` or `COLLATE=` clauses
 - **SQL date/time functions and DB-side clocks** — `NOW()`, `CURRENT_TIMESTAMP`, `DATE_ADD`, `INTERVAL`, `FROM_UNIXTIME`, `UNIX_TIMESTAMP`, `DEFAULT CURRENT_TIMESTAMP`, etc. (**full rule:** **§3.5**)
+
+**Clarification (portable SQL vs shipped PHP introspection):** The **`SHOW TABLES`** prohibition applies to **SQL text** that is claimed **database-neutral** (one string for both MySQL and PostgreSQL). It does **not** allow **`information_schema`** in **shipped PHP** — **§1 RULE 93.NO_INFORMATION_SCHEMA** forbids that on shared hosts. **MySQL-only** paths (installer, mysqli wizard, Crafty-era import) **MAY** use **`SHOW TABLES`**, **`SHOW CREATE TABLE`**, and **`DESCRIBE` / `SHOW COLUMNS`** from PHP when escaping **`LIKE`** metacharacters for literal table names.
 
 **Implementation:** See `lupo-rules/root/DATABASE_NEUTRAL_SQL_DOCTRINE.md`.
 

@@ -941,6 +941,12 @@ CREATE INDEX {{prefix}}versions_idx_released ON {{prefix}}versions (released_ymd
 
 -- Merged from schema_corrected_missing.sql (20260406): new doctrine tables
 
+-- DEPRECATED (4.0.96): {{prefix}}kairos_observations and {{prefix}}kairos_memory
+-- are legacy KAIROS storage tables. As of 4.0.96, KairosConsolidationService
+-- writes canonical memory to {{prefix}}memory_nodes and links via {{prefix}}memory_edges.
+-- These tables are retained for legacy data and migration tooling only.
+-- Do NOT write new KAIROS observations/memory to these tables in application code.
+-- See: lupo-docs/doctrine/CHRONOLOGICAL_TRUST_LADDER.md, PRD 37, CHANGELOG 4.0.96.
 CREATE TABLE {{prefix}}kairos_observations (
   kairos_observation_id  bigint       NOT NULL,
   actor_id               bigint       NOT NULL,
@@ -970,6 +976,7 @@ CREATE INDEX {{prefix}}kairos_observations_idx_consolidated ON {{prefix}}kairos_
 CREATE INDEX {{prefix}}kairos_observations_idx_deleted ON {{prefix}}kairos_observations (is_deleted);
 
 -- Consolidated KAIROS memory entries (output of consolidation)
+-- DEPRECATED (4.0.96): see note on {{prefix}}kairos_observations above.
 CREATE TABLE {{prefix}}kairos_memory (
   kairos_memory_id       bigint       NOT NULL,
   actor_id               bigint       NOT NULL,
@@ -2090,7 +2097,8 @@ CREATE TABLE {{prefix}}contents (
 CREATE UNIQUE INDEX {{prefix}}contents_unique_content_slug_domain ON {{prefix}}contents (federation_node_id, slug);
 CREATE UNIQUE INDEX {{prefix}}contents_idx_slug_deleted ON {{prefix}}contents (slug, is_deleted);
 CREATE UNIQUE INDEX {{prefix}}contents_idx_custom_path ON {{prefix}}contents (custom_path);
-CREATE INDEX {{prefix}}contents_idx_file_path_from_root ON {{prefix}}contents (file_path_from_root);
+-- Prefix index: full varchar(1024) under utf8mb4 exceeds InnoDB 3072-byte index limit
+CREATE INDEX {{prefix}}contents_idx_file_path_from_root ON {{prefix}}contents (file_path_from_root(768));
 CREATE INDEX {{prefix}}contents_idx_content_parent ON {{prefix}}contents (content_parent_id);
 CREATE INDEX {{prefix}}contents_idx_content_type ON {{prefix}}contents (content_type);
 CREATE INDEX {{prefix}}contents_idx_status ON {{prefix}}contents (status);
@@ -3800,19 +3808,19 @@ CREATE INDEX {{prefix}}world_registry_idx_is_active ON {{prefix}}world_registry 
 -- Registry entries for all IDE & AI actors
 
 
--- Actor records for all IDE & AI actors
-INSERT IGNORE INTO {{prefix}}actors (actor_id, actor_type, slug, name, created_ymdhis, updated_ymdhis, is_active, is_deleted, deleted_ymdhis, actor_source_id, actor_source_type, metadata, adversarial_role, adversarial_oversight_actor_id, avatar_hash) 
+-- Actor records for all IDE & AI actors (NV2 metadata_json, NV5 pairing via lupo_actor_pairing, NV6 no adversarial columns on lupo_actors)
+INSERT INTO {{prefix}}actors (actor_id, actor_name, slug, name, actor_type, created_ymdhis, updated_ymdhis, is_active, is_deleted, deleted_ymdhis, actor_source_id, actor_source_type, metadata_json, avatar_hash)
 VALUES 
-(102, 'work_agent', 'hephaestus', 'HEPHAESTUS (The Smith)', @now, @now, 1, 0, NULL, 102, 'work_agent', '{"purpose":"Work Agent","archetype":"Hephaestus","faucet_context":"Cursor/VSCode/Windsurf","note":"Manifestation of the Smith; all IDE faucets are tools of Hephaestus."}', 'none', NULL, NULL),
-(211, 'system_tool', 'cursor-ide', 'Cursor IDE', @now, @now, 1, 0, NULL, 211, 'system_tool', '{"purpose":"IDE_integration","capabilities":["code_generation","file_editing","project_management","git_integration"],"version":"1.0.0","client_id":"cursor","provider":"cursor","integration_ready":true}', 'none', NULL, NULL),
-(212, 'system_tool', 'kiro-ide', 'Kiro IDE', @now, @now, 1, 0, NULL, 212, 'system_tool', '{"purpose":"IDE_integration","capabilities":["code_generation","file_editing","project_management","git_integration"],"version":"1.0.0","client_id":"kiro","provider":"kiro","integration_ready":true}', 'none', NULL, NULL),
-(213, 'system_tool', 'zed-ide', 'Zed IDE', @now, @now, 1, 0, NULL, 213, 'system_tool', '{"purpose":"IDE_integration","capabilities":["code_generation","file_editing","project_management","git_integration"],"version":"1.0.0","client_id":"zed","provider":"zed","integration_ready":true}', 'none', NULL, NULL),
-(214, 'system_tool', 'vscode-ide', 'VS Code IDE', @now, @now, 1, 0, NULL, 214, 'system_tool', '{"purpose":"IDE_integration","capabilities":["code_generation","file_editing","project_management","git_integration"],"version":"1.0.0","client_id":"vscode","provider":"microsoft","integration_ready":true}', 'none', NULL, NULL),
-(215, 'system_tool', 'antigravity-ide', 'Antigravity IDE', @now, @now, 1, 0, NULL, 215, 'system_tool', '{"purpose":"VSX_extension_development","capabilities":["project_management","file_editing","semantic_navigation","open_vsx_integration"],"version":"1.0.0","client_id":"antigravity","integration_ready":true}', 'none', NULL, NULL),
-(216, 'external_ai', 'microsoft-copilot', 'Microsoft Copilot', @now, @now, 1, 0, NULL, 216, 'external_ai', '{"purpose":"AI_assistant","capabilities":["code_generation","debugging","documentation","file_editing","git_integration"],"version":"1.0.0","client_id":"copilot","provider":"microsoft","integration_ready":true}', 'none', NULL, NULL),
-(217, 'external_ai', 'deepseek-lexa', 'DeepSeek LEXA', @now, @now, 1, 0, NULL, 217, 'external_ai', '{"purpose":"AI_assistant","capabilities":["code_generation","debugging","documentation","file_editing","git_integration"],"version":"1.0.0","client_id":"deepseek_lexa","provider":"deepseek","integration_ready":true}', 'none', NULL, NULL),
-(218, 'external_ai', 'deepseek-lilith', 'DeepSeek LILITH', @now, @now, 1, 0, NULL, 218, 'external_ai', '{"purpose":"AI_assistant","capabilities":["code_generation","debugging","documentation","file_editing","git_integration"],"version":"1.0.0","client_id":"deepseek_lilith","provider":"deepseek","integration_ready":true}', 'none', NULL, NULL)
-ON DUPLICATE KEY UPDATE name = VALUES(name), metadata = VALUES(metadata), updated_ymdhis = @now, is_active = 1, is_deleted = 0;
+(102, 'hephaestus', 'hephaestus', 'HEPHAESTUS (The Smith)', 'work_agent', @now, @now, 1, 0, NULL, 102, 'work_agent', '{"purpose":"Work Agent","archetype":"Hephaestus","faucet_context":"Cursor/VSCode/Windsurf","note":"Manifestation of the Smith; all IDE faucets are tools of Hephaestus."}', NULL),
+(211, 'cursor-ide', 'cursor-ide', 'Cursor IDE', 'system_tool', @now, @now, 1, 0, NULL, 211, 'system_tool', '{"purpose":"IDE_integration","capabilities":["code_generation","file_editing","project_management","git_integration"],"version":"1.0.0","client_id":"cursor","provider":"cursor","integration_ready":true}', NULL),
+(212, 'kiro-ide', 'kiro-ide', 'Kiro IDE', 'system_tool', @now, @now, 1, 0, NULL, 212, 'system_tool', '{"purpose":"IDE_integration","capabilities":["code_generation","file_editing","project_management","git_integration"],"version":"1.0.0","client_id":"kiro","provider":"kiro","integration_ready":true}', NULL),
+(213, 'zed-ide', 'zed-ide', 'Zed IDE', 'system_tool', @now, @now, 1, 0, NULL, 213, 'system_tool', '{"purpose":"IDE_integration","capabilities":["code_generation","file_editing","project_management","git_integration"],"version":"1.0.0","client_id":"zed","provider":"zed","integration_ready":true}', NULL),
+(214, 'vscode-ide', 'vscode-ide', 'VS Code IDE', 'system_tool', @now, @now, 1, 0, NULL, 214, 'system_tool', '{"purpose":"IDE_integration","capabilities":["code_generation","file_editing","project_management","git_integration"],"version":"1.0.0","client_id":"vscode","provider":"microsoft","integration_ready":true}', NULL),
+(215, 'antigravity-ide', 'antigravity-ide', 'Antigravity IDE', 'system_tool', @now, @now, 1, 0, NULL, 215, 'system_tool', '{"purpose":"VSX_extension_development","capabilities":["project_management","file_editing","semantic_navigation","open_vsx_integration"],"version":"1.0.0","client_id":"antigravity","integration_ready":true}', NULL),
+(216, 'microsoft-copilot', 'microsoft-copilot', 'Microsoft Copilot', 'external_ai', @now, @now, 1, 0, NULL, 216, 'external_ai', '{"purpose":"AI_assistant","capabilities":["code_generation","debugging","documentation","file_editing","git_integration"],"version":"1.0.0","client_id":"copilot","provider":"microsoft","integration_ready":true}', NULL),
+(217, 'deepseek-lexa', 'deepseek-lexa', 'DeepSeek LEXA', 'external_ai', @now, @now, 1, 0, NULL, 217, 'external_ai', '{"purpose":"AI_assistant","capabilities":["code_generation","debugging","documentation","file_editing","git_integration"],"version":"1.0.0","client_id":"deepseek_lexa","provider":"deepseek","integration_ready":true}', NULL),
+(218, 'deepseek-lilith', 'deepseek-lilith', 'DeepSeek LILITH', 'external_ai', @now, @now, 1, 0, NULL, 218, 'external_ai', '{"purpose":"AI_assistant","capabilities":["code_generation","debugging","documentation","file_editing","git_integration"],"version":"1.0.0","client_id":"deepseek_lilith","provider":"deepseek","integration_ready":true}', NULL)
+ON DUPLICATE KEY UPDATE name = VALUES(name), metadata_json = VALUES(metadata_json), updated_ymdhis = @now, is_active = 1, is_deleted = 0;
 
 -- Channel 42: Lupopedia Development (system channel)
 INSERT INTO {{prefix}}channels (
@@ -3877,10 +3885,10 @@ ON DUPLICATE KEY UPDATE role_key = VALUES(role_key), updated_ymdhis = @now, is_d
 -- Registry tables were over-engineered and violated database neutrality doctrine
 -- Use timestamp-based IDs: YYYYMMDDHHIISS + 4-digit sequence (0000-9999)
 
--- Actor record for Warp IDE (with paired_actor_id)
-INSERT IGNORE INTO {{prefix}}actors (actor_id, actor_type, slug, name, created_ymdhis, updated_ymdhis, is_active, is_deleted, deleted_ymdhis, actor_source_id, actor_source_type, metadata, adversarial_role, adversarial_oversight_actor_id, avatar_hash, paired_actor_id)
-VALUES (219, 'system_tool', 'warp-ide', 'Warp IDE', @now, @now, 1, 0, NULL, 219, 'system_tool', '{"purpose":"IDE_integration","capabilities":["code_generation","file_editing","project_management","git_integration","terminal_integration"],"version":"1.0.0","client_id":"warp","provider":"warp","integration_ready":true,"paired_actor_id":10000}', 'none', NULL, NULL, 10000)
-ON DUPLICATE KEY UPDATE name = VALUES(name), metadata = VALUES(metadata), paired_actor_id = VALUES(paired_actor_id), updated_ymdhis = @now, is_active = 1, is_deleted = 0;
+-- Actor record for Warp IDE; human pairing is in lupo_actor_pairing (NV5)
+INSERT INTO {{prefix}}actors (actor_id, actor_name, slug, name, actor_type, created_ymdhis, updated_ymdhis, is_active, is_deleted, deleted_ymdhis, actor_source_id, actor_source_type, metadata_json, avatar_hash)
+VALUES (219, 'warp-ide', 'warp-ide', 'Warp IDE', 'system_tool', @now, @now, 1, 0, NULL, 219, 'system_tool', '{"purpose":"IDE_integration","capabilities":["code_generation","file_editing","project_management","git_integration","terminal_integration"],"version":"1.0.0","client_id":"warp","provider":"warp","integration_ready":true,"paired_actor_id":10000}', NULL)
+ON DUPLICATE KEY UPDATE name = VALUES(name), metadata_json = VALUES(metadata_json), updated_ymdhis = @now, is_active = 1, is_deleted = 0;
 
 -- Channel 42 membership for Warp IDE
 INSERT INTO {{prefix}}actor_channels (actor_channel_id, actor_id, channel_id, created_by_actor_id, status, start_date, channel_color, last_read_ymdhis, muted_until_ymdhis, preferences_json, dialog_output_file, created_ymdhis, updated_ymdhis, is_deleted, deleted_ymdhis)
@@ -3904,10 +3912,10 @@ ON DUPLICATE KEY UPDATE role_key = VALUES(role_key), updated_ymdhis = @now, is_d
 -- Registry tables were over-engineered and violated database neutrality doctrine
 -- Use timestamp-based IDs: YYYYMMDDHHIISS + 4-digit sequence (0000-9999)
 
--- Actor record for Windsurf IDE (with paired_actor_id)
-INSERT IGNORE INTO {{prefix}}actors (actor_id, actor_type, slug, name, created_ymdhis, updated_ymdhis, is_active, is_deleted, deleted_ymdhis, actor_source_id, actor_source_type, metadata, adversarial_role, adversarial_oversight_actor_id, avatar_hash, paired_actor_id)
-VALUES (220, 'system_tool', 'windsurf-ide', 'Windsurf IDE', @now, @now, 1, 0, NULL, 220, 'system_tool', '{"purpose":"IDE_integration","capabilities":["code_generation","file_editing","project_management","git_integration","vsx_extension_development"],"version":"1.0.0","client_id":"windsurf","provider":"windsurf","integration_ready":true,"paired_actor_id":10000,"note":"Reassigned from actor_id 2 to avoid CAPTAIN conflict"}', 'none', NULL, NULL, 10000)
-ON DUPLICATE KEY UPDATE name = VALUES(name), metadata = VALUES(metadata), paired_actor_id = VALUES(paired_actor_id), updated_ymdhis = @now, is_active = 1, is_deleted = 0;
+-- Actor record for Windsurf IDE; human pairing is in lupo_actor_pairing (NV5)
+INSERT INTO {{prefix}}actors (actor_id, actor_name, slug, name, actor_type, created_ymdhis, updated_ymdhis, is_active, is_deleted, deleted_ymdhis, actor_source_id, actor_source_type, metadata_json, avatar_hash)
+VALUES (220, 'windsurf-ide', 'windsurf-ide', 'Windsurf IDE', 'system_tool', @now, @now, 1, 0, NULL, 220, 'system_tool', '{"purpose":"IDE_integration","capabilities":["code_generation","file_editing","project_management","git_integration","vsx_extension_development"],"version":"1.0.0","client_id":"windsurf","provider":"windsurf","integration_ready":true,"paired_actor_id":10000,"note":"Reassigned from actor_id 2 to avoid CAPTAIN conflict"}', NULL)
+ON DUPLICATE KEY UPDATE name = VALUES(name), metadata_json = VALUES(metadata_json), updated_ymdhis = @now, is_active = 1, is_deleted = 0;
 
 -- Channel 42 membership for Windsurf IDE
 INSERT INTO {{prefix}}actor_channels (actor_channel_id, actor_id, channel_id, created_by_actor_id, status, start_date, channel_color, last_read_ymdhis, muted_until_ymdhis, preferences_json, dialog_output_file, created_ymdhis, updated_ymdhis, is_deleted, deleted_ymdhis)
@@ -3922,14 +3930,15 @@ ON DUPLICATE KEY UPDATE role_key = VALUES(role_key), updated_ymdhis = @now, is_d
 -- ============================================================
 -- PAIRED ACTOR + FEDERATION NODE FIXES (Lupopedia 4.0.86)
 -- ============================================================
--- Fix paired_actor_id for Copilot (216) and LILITH (218)
--- Fix federation_node_id: Copilot/LILITH = 1 (remote), others local = 0
+-- NV5: pairing lives in lupo_actor_pairing, not lupo_actors.paired_actor_id.
+-- Warp (219) / Windsurf (220): default human operator pairing actor_id 10000.
 -- ============================================================
 
--- paired_actor_id: Copilot â†’ 0 (human operator)
-UPDATE {{prefix}}actors SET paired_actor_id = 0, updated_ymdhis = COALESCE(@now, updated_ymdhis) WHERE actor_id = 216;
--- paired_actor_id: LILITH â†’ 0 (human operator)
-UPDATE {{prefix}}actors SET paired_actor_id = 0, updated_ymdhis = COALESCE(@now, updated_ymdhis) WHERE actor_id = 218;
+INSERT INTO {{prefix}}actor_pairing (actor_pairing_id, actor_id, paired_actor_id, pairing_role, pairing_type, is_primary, notes, created_ymdhis, updated_ymdhis, is_deleted, deleted_ymdhis)
+VALUES
+(13001, 219, 10000, 'peer', 'operational', 1, 'Install seed: Warp IDE default human operator', @now, @now, 0, NULL),
+(13002, 220, 10000, 'peer', 'operational', 1, 'Install seed: Windsurf IDE default human operator', @now, @now, 0, NULL)
+ON DUPLICATE KEY UPDATE paired_actor_id = VALUES(paired_actor_id), updated_ymdhis = @now, is_deleted = 0, deleted_ymdhis = NULL;
 
 -- ============================================================
 -- FLIP v2: use {{prefix}}artifacts with entity_type = 'flip_artifact'
