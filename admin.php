@@ -260,6 +260,7 @@ $admin_menu_sections = array(
             'Channels' => $base . '/channels',
             'Tasks' => 'admin.php?section=tasks',
             'Registry' => 'admin.php?section=registry',
+            'Trust Ladder' => 'admin.php?section=trust-ladder',
         ),
     ),
     array(
@@ -492,6 +493,7 @@ if ($isAdmin && isset($UNTRUSTED['get']['section']) && is_string($UNTRUSTED['get
         'actors' => array('Actors', 'Actors'),
         'channels' => array('Channels', 'Channels'),
         'registry' => array('Registry', 'Registry'),
+        'trust-ladder' => array('Trust Ladder', 'Trust Ladder'),
         'live' => array('Live', 'Live'),
         'channel-chat' => array('Channel Chat', 'Channel Chat'),
         'quick-replies' => array('Quick replies', 'Quick replies'),
@@ -618,6 +620,11 @@ if ($isAdmin && isset($UNTRUSTED['get']['section']) && is_string($UNTRUSTED['get
         $admin_active_key = 'Channel Chat';
         require_once LUPOPEDIA_PATH . '/lupo-includes/classes/AdminChannelChatHandler.php';
         $admin_main_content = AdminChannelChatHandler::render($db, $prefix, $base);
+    } elseif ($section === 'trust-ladder' && $db) {
+        $admin_page_title = 'Trust Ladder';
+        $admin_active_key = 'Trust Ladder';
+        require_once LUPOPEDIA_PATH . '/lupo-includes/classes/AdminTrustLadderHandler.php';
+        $admin_main_content = AdminTrustLadderHandler::render($db, $prefix, $base);
     } elseif (isset($section_titles[$section])) {
         $admin_page_title = $section_titles[$section][0];
         $admin_active_key = $section_titles[$section][1];

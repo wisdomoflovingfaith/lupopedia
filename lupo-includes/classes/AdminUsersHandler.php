@@ -108,32 +108,33 @@ class AdminUsersHandler {
         // GET: edit permissions
         if (isset($_GET['edit_permissions'])) {
             $actor_id = (int) $_GET['edit_permissions'];
-                        $user_row = $db->fetchRow(
-                                "SELECT u.auth_user_id, u.username, u.display_name, u.email, :aid AS actor_id
-                                 FROM {$au} u
-                                 WHERE u.auth_user_id = COALESCE(
-                                         (
-                                                 SELECT aau.auth_user_id
-                                                 FROM {$aau} aau
-                                                 WHERE aau.actor_id = :aid
-                                                     AND aau.status = 'active'
-                                                     AND (aau.is_deleted = 0 OR aau.is_deleted IS NULL)
-                                                 ORDER BY aau.is_primary DESC, aau.routing_priority ASC, aau.actor_auth_user_id ASC
-                                                 LIMIT 1
-                                         ),
-                                         (
-                                                 SELECT a.actor_source_id
-                                                 FROM {$ac} a
-                                                 WHERE a.actor_id = :aid
-                                                     AND (a.actor_source_type = 'user' OR a.actor_source_type = '{$prefix}auth_users')
-                                                     AND (a.is_deleted = 0 OR a.is_deleted IS NULL)
-                                                 LIMIT 1
-                                         )
-                                 )
-                                     AND (u.is_deleted = 0 OR u.is_deleted IS NULL)
-                                 LIMIT 1",
-                                array(':aid' => $actor_id)
-                        );
+            // Distinct placeholders (:aid1/:aid2): PDO does not allow reusing one named marker in multiple positions.
+            $user_row = $db->fetchRow(
+                "SELECT u.auth_user_id, u.username, u.display_name, u.email, " . $actor_id . " AS actor_id
+                 FROM {$au} u
+                 WHERE u.auth_user_id = COALESCE(
+                         (
+                                 SELECT aau.auth_user_id
+                                 FROM {$aau} aau
+                                 WHERE aau.actor_id = :aid1
+                                     AND aau.status = 'active'
+                                     AND (aau.is_deleted = 0 OR aau.is_deleted IS NULL)
+                                 ORDER BY aau.is_primary DESC, aau.routing_priority ASC, aau.actor_auth_user_id ASC
+                                 LIMIT 1
+                         ),
+                         (
+                                 SELECT a.actor_source_id
+                                 FROM {$ac} a
+                                 WHERE a.actor_id = :aid2
+                                     AND (a.actor_source_type = 'user' OR a.actor_source_type = '{$prefix}auth_users')
+                                     AND (a.is_deleted = 0 OR a.is_deleted IS NULL)
+                                 LIMIT 1
+                         )
+                 )
+                     AND (u.is_deleted = 0 OR u.is_deleted IS NULL)
+                 LIMIT 1",
+                array(':aid1' => $actor_id, ':aid2' => $actor_id)
+            );
             if ($user_row) {
                 $role_row = $db->fetchRow("SELECT role_key FROM {$cr} WHERE actor_id = :aid AND channel_id = 1 AND (is_deleted = 0 OR is_deleted IS NULL) LIMIT 1", array(':aid' => $actor_id));
                 $channel1_role = $role_row ? (string) $role_row['role_key'] : '';

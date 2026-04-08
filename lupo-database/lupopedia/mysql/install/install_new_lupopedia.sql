@@ -3187,6 +3187,7 @@ CREATE TABLE {{prefix}}sessions (
   federation_node_id bigint NOT NULL DEFAULT 0,
   ip_hash varchar(128) DEFAULT NULL,
   ua_hash varchar(255) DEFAULT NULL,
+  session_identity_hash varchar(128) DEFAULT NULL,
   csrf_token varchar(128) DEFAULT NULL,
   last_activity_ymdhis bigint NOT NULL,
   created_ymdhis bigint NOT NULL,
@@ -3211,6 +3212,8 @@ CREATE INDEX {{prefix}}sessions_idx_last_activity ON {{prefix}}sessions (last_ac
 CREATE INDEX {{prefix}}sessions_idx_federation ON {{prefix}}sessions (federation_node_id);
 CREATE INDEX {{prefix}}sessions_idx_is_active ON {{prefix}}sessions (is_active);
 CREATE INDEX {{prefix}}sessions_idx_last_seen ON {{prefix}}sessions (last_seen_ymdhis);
+CREATE INDEX {{prefix}}sessions_idx_identity_hash ON {{prefix}}sessions (session_identity_hash);
+CREATE INDEX {{prefix}}sessions_idx_gc_named_activity ON {{prefix}}sessions (is_named, last_activity_ymdhis);
 
 -- Old session events table removed in v4.0.86 - consolidated into {{prefix}}unified_log
 
@@ -4557,8 +4560,243 @@ CREATE INDEX {{prefix}}agent_tool_calls_idx_deleted ON {{prefix}}agent_tool_call
 --   4. Added missing table definitions (evidence, followers, context_map)
 -- All changes aligned with 01_core_identity.md PRD requirements
 
+-- ============================================================================
+-- SECTION TRUST-LADDER: TRUST LADDER REGISTRY (runtime archetype metadata)
+-- Added: 4.0.96 — Claude Code (actor_id 116) — 20260408133230
+-- PRD: CHRONOLOGICAL_TRUST_LADDER §9.1, note_on_seed_range.md
+--
+-- This table is its own first-class trust-ladder participant (archetype: system,
+-- participates: seed_only). The bootstrap sequence is:
+--   Phase 1: CREATE TABLE (DDL only — no registry lookup needed)
+--   Phase 2: INSERT seed row for the registry table itself (registry_id = 1)
+--   Phase 3: INSERT seed rows for all other known ladder tables
+--   Phase 4: Runtime cache loads from this table
+--
+-- PK policy: registry_id is a small seed integer (0–999,999 band, per PRD 41).
+--   Never use IdGenerator here — these are install-time seed rows.
+-- Timestamp policy: created_ymdhis and updated_ymdhis are packed UTC BIGINT
+--   (YYYYMMDDHHIISS format, timestamp_ymdhis::now() at generation time).
+--   @now is set at the top of this file for the install run.
+--
+-- TODO(LEGACY-GAP): Table prefix portability. Rows store full names (lupo_*).
+--   If LUPO_TABLE_PREFIX differs from 'lupo_', update table_name values
+--   after install via sync_trust_ladder_registry_to_db.py --force.
+-- ============================================================================
 
+CREATE TABLE {{prefix}}trust_ladder_registry (
+  registry_id              bigint        NOT NULL,
+  table_name               varchar(128)  NOT NULL,
+  archetype                varchar(16)   NOT NULL DEFAULT 'child',
+  participates             varchar(32)   NOT NULL DEFAULT 'not_ladder',
+  seed_required            tinyint       NOT NULL DEFAULT 0,
+  canonical_lineage_edge   varchar(64)   DEFAULT NULL,
+  promotion_target         varchar(32)   DEFAULT NULL,
+  is_active                tinyint       NOT NULL DEFAULT 1,
+  created_ymdhis           bigint        NOT NULL DEFAULT 0,
+  updated_ymdhis           bigint        NOT NULL DEFAULT 0,
+  is_deleted               tinyint       NOT NULL DEFAULT 0,
+  deleted_ymdhis           bigint        NOT NULL DEFAULT 0,
+  canonical_id             bigint        DEFAULT NULL,
+  seed_range_override      varchar(32)   DEFAULT NULL,
+  reference_target         varchar(16)   NOT NULL DEFAULT 'canonical',
+  sequential_id            bigint        DEFAULT NULL,
+  notes                    text          DEFAULT NULL,
+  PRIMARY KEY (registry_id)
+);
 
+-- Unique constraint on table_name (each table has exactly one archetype).
+CREATE UNIQUE INDEX {{prefix}}trust_ladder_registry_unq_table ON {{prefix}}trust_ladder_registry (table_name);
+CREATE INDEX {{prefix}}trust_ladder_registry_idx_archetype   ON {{prefix}}trust_ladder_registry (archetype);
+CREATE INDEX {{prefix}}trust_ladder_registry_idx_participates ON {{prefix}}trust_ladder_registry (participates);
+CREATE INDEX {{prefix}}trust_ladder_registry_idx_is_active    ON {{prefix}}trust_ladder_registry (is_active);
+CREATE INDEX {{prefix}}trust_ladder_registry_idx_is_deleted   ON {{prefix}}trust_ladder_registry (is_deleted);
+
+-- ────────────────────────────────────────────────────────────────────────────
+-- Phase 2: Self-referential bootstrap seed row (registry_id = 1).
+-- This row is the only registry row that exists before the cache can load.
+-- The TrustLadderRegistry::getSelfMetadata() PHP method returns this same
+-- data as a hard-coded fallback for early-bootstrap safety.
+-- ────────────────────────────────────────────────────────────────────────────
+
+INSERT INTO {{prefix}}trust_ladder_registry
+  (registry_id, table_name, archetype, participates, seed_required,
+   canonical_lineage_edge, promotion_target, is_active,
+   created_ymdhis, updated_ymdhis, is_deleted, deleted_ymdhis,
+   canonical_id, reference_target, notes)
+VALUES
+  (1, 'lupo_trust_ladder_registry', 'system', 'seed_only', 1,
+   NULL, NULL, 1,
+   @now, @now, 0, 0,
+   NULL, 'seed',
+   'Bootstrap: registry table follows its own rules. Seed-only archetype. TODO(LEGACY-GAP): table prefix portability.');
+
+-- ────────────────────────────────────────────────────────────────────────────
+-- Phase 3: Seed rows for all known ladder-participating tables.
+-- registry_id values: 2–13 (seed range 0–999,999, per PRD 41 §2.1).
+-- Source of truth for archetype/participates: TRUST_LADDER_REGISTRY.md.
+-- After any doctrine change, re-run: python lupo-scripts/sync_trust_ladder_registry_to_db.py
+-- ────────────────────────────────────────────────────────────────────────────
+
+-- lupo_memory_nodes: full ladder, parent archetype (PRD 38, CTL §2)
+INSERT INTO {{prefix}}trust_ladder_registry
+  (registry_id, table_name, archetype, participates, seed_required,
+   canonical_lineage_edge, promotion_target, is_active,
+   created_ymdhis, updated_ymdhis, is_deleted, deleted_ymdhis,
+   canonical_id, reference_target, notes)
+VALUES
+  (2, 'lupo_memory_nodes', 'parent', 'full', 1,
+   'canonical_instance_of', 'canonical', 1,
+   @now, @now, 0, 0,
+   NULL, 'seed',
+   'Parent-anchor lineage required for seed-linked rows. Full ladder: staging + canonical promotion.');
+
+-- lupo_memory_edges: full ladder, system archetype (typed edge layer)
+INSERT INTO {{prefix}}trust_ladder_registry
+  (registry_id, table_name, archetype, participates, seed_required,
+   canonical_lineage_edge, promotion_target, is_active,
+   created_ymdhis, updated_ymdhis, is_deleted, deleted_ymdhis,
+   canonical_id, reference_target, notes)
+VALUES
+  (3, 'lupo_memory_edges', 'system', 'full', 1,
+   NULL, NULL, 1,
+   @now, @now, 0, 0,
+   NULL, 'seed',
+   'Typed edge layer supporting both parent and child memory records. TODO(LEGACY-GAP): GC must not delete lineage edge types.');
+
+-- lupo_dialog_messages: generator_staging, child archetype (chat events)
+INSERT INTO {{prefix}}trust_ladder_registry
+  (registry_id, table_name, archetype, participates, seed_required,
+   canonical_lineage_edge, promotion_target, is_active,
+   created_ymdhis, updated_ymdhis, is_deleted, deleted_ymdhis,
+   canonical_id, reference_target, notes)
+VALUES
+  (4, 'lupo_dialog_messages', 'child', 'generator_staging', 0,
+   NULL, NULL, 1,
+   @now, @now, 0, 0,
+   NULL, 'canonical',
+   'Chat events. Validate validateFormat()/validateTrustLadderPk() per insert path.');
+
+-- lupo_edges: generator_staging, system archetype (trust follows endpoint objects)
+INSERT INTO {{prefix}}trust_ladder_registry
+  (registry_id, table_name, archetype, participates, seed_required,
+   canonical_lineage_edge, promotion_target, is_active,
+   created_ymdhis, updated_ymdhis, is_deleted, deleted_ymdhis,
+   canonical_id, reference_target, notes)
+VALUES
+  (5, 'lupo_edges', 'system', 'generator_staging', 1,
+   NULL, NULL, 1,
+   @now, @now, 0, 0,
+   NULL, 'seed',
+   'Trust tier follows endpoint objects. TODO(LEGACY-GAP): verify 4D edge columns align with archetype.');
+
+-- lupo_actor_memory: deprecated (superseded by lupo_memory_nodes in 4.0.96)
+INSERT INTO {{prefix}}trust_ladder_registry
+  (registry_id, table_name, archetype, participates, seed_required,
+   canonical_lineage_edge, promotion_target, is_active,
+   created_ymdhis, updated_ymdhis, is_deleted, deleted_ymdhis,
+   canonical_id, reference_target, notes)
+VALUES
+  (6, 'lupo_actor_memory', 'child', 'not_ladder', 0,
+   NULL, NULL, 0,
+   @now, @now, 0, 0,
+   NULL, 'canonical',
+   'DEPRECATED: superseded by lupo_memory_nodes in 4.0.96. Retained for legacy data only. is_active=0.');
+
+-- lupo_actors: seed_only, parent archetype (seedActorToCanonicalId for canonical rows)
+INSERT INTO {{prefix}}trust_ladder_registry
+  (registry_id, table_name, archetype, participates, seed_required,
+   canonical_lineage_edge, promotion_target, is_active,
+   created_ymdhis, updated_ymdhis, is_deleted, deleted_ymdhis,
+   canonical_id, reference_target, notes)
+VALUES
+  (7, 'lupo_actors', 'parent', 'seed_only', 1,
+   NULL, NULL, 1,
+   @now, @now, 0, 0,
+   NULL, 'seed',
+   'seedActorToCanonicalId() for deterministic canonical actor rows (PRD 15, PRD 41 §2.3).');
+
+-- lupo_agent_definitions: seed_only, system archetype
+INSERT INTO {{prefix}}trust_ladder_registry
+  (registry_id, table_name, archetype, participates, seed_required,
+   canonical_lineage_edge, promotion_target, is_active,
+   created_ymdhis, updated_ymdhis, is_deleted, deleted_ymdhis,
+   canonical_id, reference_target, notes)
+VALUES
+  (8, 'lupo_agent_definitions', 'system', 'seed_only', 1,
+   NULL, NULL, 1,
+   @now, @now, 0, 0,
+   NULL, 'seed',
+   'Replaces legacy monolithic agents table (install SQL §3).');
+
+-- lupo_departments: seed_only, parent archetype
+INSERT INTO {{prefix}}trust_ladder_registry
+  (registry_id, table_name, archetype, participates, seed_required,
+   canonical_lineage_edge, promotion_target, is_active,
+   created_ymdhis, updated_ymdhis, is_deleted, deleted_ymdhis,
+   canonical_id, reference_target, notes)
+VALUES
+  (9, 'lupo_departments', 'parent', 'seed_only', 1,
+   NULL, NULL, 1,
+   @now, @now, 0, 0,
+   NULL, 'seed',
+   'Department id 0 = Root. Seed range per registry.json.');
+
+-- lupo_channels: seed_only, parent archetype
+INSERT INTO {{prefix}}trust_ladder_registry
+  (registry_id, table_name, archetype, participates, seed_required,
+   canonical_lineage_edge, promotion_target, is_active,
+   created_ymdhis, updated_ymdhis, is_deleted, deleted_ymdhis,
+   canonical_id, reference_target, notes)
+VALUES
+  (10, 'lupo_channels', 'parent', 'seed_only', 1,
+   NULL, NULL, 1,
+   @now, @now, 0, 0,
+   NULL, 'seed',
+   'Channel id 42 = Lupopedia main. Per channel registry.');
+
+-- lupo_auth_users: seed_only, parent archetype
+INSERT INTO {{prefix}}trust_ladder_registry
+  (registry_id, table_name, archetype, participates, seed_required,
+   canonical_lineage_edge, promotion_target, is_active,
+   created_ymdhis, updated_ymdhis, is_deleted, deleted_ymdhis,
+   canonical_id, reference_target, notes)
+VALUES
+  (11, 'lupo_auth_users', 'parent', 'seed_only', 1,
+   NULL, NULL, 1,
+   @now, @now, 0, 0,
+   NULL, 'seed',
+   'Root auth_user_id = 1 (WOLFIE). Root id doctrine in PRD 01.');
+
+-- lupo_permissions: seed_only, system archetype
+INSERT INTO {{prefix}}trust_ladder_registry
+  (registry_id, table_name, archetype, participates, seed_required,
+   canonical_lineage_edge, promotion_target, is_active,
+   created_ymdhis, updated_ymdhis, is_deleted, deleted_ymdhis,
+   canonical_id, reference_target, notes)
+VALUES
+  (12, 'lupo_permissions', 'system', 'seed_only', 1,
+   NULL, NULL, 1,
+   @now, @now, 0, 0,
+   NULL, 'seed',
+   'Permission definitions installed at seed time.');
+
+-- lupo_rules: seed_only, system archetype
+INSERT INTO {{prefix}}trust_ladder_registry
+  (registry_id, table_name, archetype, participates, seed_required,
+   canonical_lineage_edge, promotion_target, is_active,
+   created_ymdhis, updated_ymdhis, is_deleted, deleted_ymdhis,
+   canonical_id, reference_target, notes)
+VALUES
+  (13, 'lupo_rules', 'system', 'seed_only', 1,
+   NULL, NULL, 1,
+   @now, @now, 0, 0,
+   NULL, 'seed',
+   'Rule definitions installed at seed time.');
+
+-- ────────────────────────────────────────────────────────────────────────────
+-- End of trust_ladder_registry seed rows.
+-- After any doctrine change: python lupo-scripts/sync_trust_ladder_registry_to_db.py --force
+-- ────────────────────────────────────────────────────────────────────────────
 
 
 

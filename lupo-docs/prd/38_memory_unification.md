@@ -2,10 +2,10 @@
 lupopedia.headers:
   header_format_version: 2
   lupopedia.schema: prd
-  when_updated: "20260408012727"
+  when_updated: "20260408111331"
   file_path_from_root: "lupo-docs/prd/38_memory_unification.md"
   web_path: "http://www.lupopedia.com/lupopedia/lupo-docs/prd/38_memory_unification.md"
-  last_modified_utc: "20260408012727"
+  last_modified_utc: "20260408111331"
   federation_node_id: 0
   channel_id: 42
   thread_id: "prd-38-memory-unification"
@@ -51,7 +51,7 @@ lupopedia.edges:
       weight: 1.0
       reason: "KAIROS writes to DB; export service mirrors to filesystem"
 lupopedia.footer:
-  last_verified: "20260408012727"
+  last_verified: "20260408111331"
   verified_by:
     identity_type: actor
     actor_id: 102
@@ -517,7 +517,164 @@ Use **string** concatenation for ids on the wire if any environment risks **floa
 
 ---
 
-## 9. IDE/Claude Read Flow (Unchanged)
+## 9. Parent-Child Entity Distinction
+
+The memory graph (`lupo_memory_nodes`, `lupo_memory_edges`) supports two entity archetypes with different trust ladder behaviors.
+
+### 9.1 Definitions
+
+| Archetype | Definition | Examples |
+|-----------|------------|----------|
+| **Parent** | Long-lived entities needing permanent anchor; receive ongoing updates | Housing projects, organizational units, master records, actors, channels |
+| **Child** | Ephemeral entities; no permanent anchor needed; high volume | Memory observations, dialog messages, work orders, transactions |
+
+### 9.2 Parent Entity Rules (Three-Layer)
+
+Parent entities use all three trust tiers:
+
+```text
+Seed (Tier 0, ID < 1,000,000)
+    │
+    │ edge: 'canonical_instance_of' (active_until = 0)
+    ▼
+Living Canonical (Tier 1, ID 1,000,000,000,000,000,000 - 1,999,999,999,999,999,999)
+    ▲
+    │ edge: 'consolidated_into' (multiple staging → one canonical)
+    │
+Staging (Tier 2, ID 2,000,000,000,000,000,000 - 2,999,999,999,999,999,999)
+```
+
+**Rules:**
+- One seed : one active canonical (1:1 via `canonical_instance_of` edge with `active_until = 0`)
+- When canonical is archived, create a new edge from the same seed to the new canonical
+- Close old edge by setting `active_until = now()`
+- Seeds are immutable (never updated after install)
+
+### 9.3 Child Entity Rules (Two-Layer)
+
+Child entities skip the seed tier entirely:
+
+```text
+Living Canonical (Tier 1)
+    ▲
+    │ edge: 'promoted_to'
+    │
+Staging (Tier 2)
+```
+
+**Rules:**
+- No seed tier (IDs never < 1,000,000)
+- Staging → canonical promotion via `toCanonicalIdSafe()`
+- If entity type will exceed 1 million rows, classify as Child
+
+### 9.4 Edge Types Summary
+
+| Edge Type | Direction | Archetype | Cardinality |
+|-----------|-----------|-----------|-------------|
+| `canonical_instance_of` | Seed → Canonical | Parent | 1:1 active |
+| `consolidated_into` | Staging → Canonical | Parent | Many:1 |
+| `promoted_to` | Staging → Canonical | Child | 1:1 |
+
+### 9.5 Query Patterns
+
+**Get active canonical for a parent seed:**
+```sql
+SELECT canonical.*
+FROM lupo_memory_nodes seed
+JOIN lupo_memory_edges e ON e.from_memory_node_id = seed.memory_node_id
+JOIN lupo_memory_nodes canonical ON canonical.memory_node_id = e.to_memory_node_id
+WHERE seed.memory_node_id = :seed_id
+  AND e.edge_type = 'canonical_instance_of'
+  AND e.active_until = 0;
+```
+
+**Get all staging for a parent canonical:**
+```sql
+SELECT staging.*
+FROM lupo_memory_nodes staging
+JOIN lupo_memory_edges e ON e.from_memory_node_id = staging.memory_node_id
+WHERE e.to_memory_node_id = :canonical_id
+  AND e.edge_type = 'consolidated_into'
+  AND staging.is_deleted = 0;
+```
+
+**Cross-reference:** Seed-to-canonical edge lifecycle rules are normative in **PRD 41 §5**.
+
+### 9.6 Explicit archetype declaration (single source of truth)
+
+Every ladder-participating table must declare archetype metadata in:
+
+1. `lupo-docs/doctrine/TRUST_LADDER_REGISTRY.md` (documentation source), and
+2. runtime registry/config cache consumed by application code.
+
+Example declaration format:
+
+```markdown
+### Table: lupo_memory_nodes
+archetype: parent
+seed_required: true
+canonical_lineage_edge: canonical_instance_of
+promotion_target: canonical
+```
+
+Runtime contract example:
+
+```php
+// Never derive this from table name or ID shape alone
+$tableArchetype = TrustLadderRegistry::getArchetype('lupo_memory_nodes');
+// returns 'parent' | 'child' | 'system'
+```
+
+### 9.7 Defensive archetype and id checks at every entry point
+
+Archetype is constitutional metadata, not a heuristic. Every write path must validate table archetype and id expectations before mutation.
+
+```php
+public function validateTableArchetypeAndId($table, $id)
+{
+    $archetype = TrustLadderRegistry::getArchetype($table);
+
+    if ($archetype === 'parent') {
+        if (!IdGenerator::isReservedSpace($id)) {
+            throw new TrustLadderException(
+                "Parent table {$table} received non-seed ID {$id}. Seed anchor is mandatory."
+            );
+        }
+        if (!SeedRegistry::isValidSeed($id, $table)) {
+            throw new TrustLadderException("Parent seed {$id} not registered for {$table}");
+        }
+    } elseif ($archetype === 'child') {
+        if (IdGenerator::isReservedSpace($id)) {
+            throw new TrustLadderException(
+                "Child table {$table} received seed ID {$id}. Children must start as staging/canonical."
+            );
+        }
+        IdGenerator::validateTrustLadderPk($id, $table);
+    }
+}
+```
+
+Minimum call sites:
+
+- all INSERT paths,
+- canonical promotion (`toCanonicalIdSafe`) flows,
+- batch ingest preflight,
+- edge creation for lineage edges.
+
+### 9.8 Archetype-aware best-current query priority
+
+Best-current logic must respect archetype:
+
+```php
+$priorityOrder = ($archetype === 'parent')
+    ? array('canonical', 'staging', 'seed')
+    : (($archetype === 'child') ? array('canonical', 'staging') : array('seed'));
+```
+
+For `child`, seed is illegal.  
+For `system`, seed-only retrieval is expected.
+
+## 10. IDE/Claude Read Flow (Unchanged)
 
 Claude Code can still read memory files the same way:
 
@@ -536,7 +693,7 @@ grep -r "login_errors" lupo-memory/
 
 ---
 
-## 10. Migration Path
+## 11. Migration Path
 
 ### 10.1 Migration Script: `lupo-scripts/migrate_memory_to_unified_graph.php`
 
@@ -594,7 +751,7 @@ class MemoryMigration38 {
 
 ---
 
-## 11. Amendments to Existing PRDs
+## 12. Amendments to Existing PRDs
 
 ### 11.1 Amendment to PRD 00 section 5.7
 
@@ -626,7 +783,7 @@ class MemoryMigration38 {
 
 ---
 
-## 12. Success Criteria
+## 13. Success Criteria
 
 | Criterion | Validation |
 |-----------|------------|
@@ -640,7 +797,7 @@ class MemoryMigration38 {
 
 ---
 
-## 13. Summary
+## 14. Summary
 
 | Concern | Resolution |
 |---------|------------|
@@ -665,7 +822,7 @@ class MemoryMigration38 {
 
 ---
 
-## 14. IDE prompt fragment (timestamp consistency)
+## 15. IDE prompt fragment (timestamp consistency)
 
 Use when auditing inserts/updates across the codebase:
 

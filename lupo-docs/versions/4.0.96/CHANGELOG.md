@@ -2,10 +2,10 @@
 lupopedia.headers:
   header_format_version: 2
   lupopedia.schema: changelog
-  when_updated: "20260408031925"
+  when_updated: "20260408161022"
   file_path_from_root: "lupo-docs/versions/4.0.96/CHANGELOG.md"
   web_path: "http://www.lupopedia.com/lupopedia/lupo-docs/versions/4.0.96/CHANGELOG.md"
-  last_modified_utc: "20260408031925"
+  last_modified_utc: "20260408161022"
   federation_node_id: 0
   channel_id: 42
   thread_id: "version-4.0.96-changelog"
@@ -19,16 +19,429 @@ lupopedia.headers:
   purpose: "Changelog for Lupopedia 4.0.96 — 4D edge model, doctrine expansion, memory.json deprecation, file-backed content"
   tags: ["changelog", "version", "4.0.96", "cursor"]
 lupopedia.footer:
-  last_verified: "20260408031925"
+  last_verified: "20260408161022"
   verified_by:
     identity_type: actor
     actor_id: 102
+    agent_name_identity: "Cursor IDE Agent"
   orchestrator: "cursor:root"
 ---
 
 # file: lupo-docs/versions/4.0.96/CHANGELOG.md — delegation: cursor:root
 
 # Changelog - Lupopedia 4.0.96
+
+## [2026-04-08 16:10 UTC] — Session identity hardening, privacy fingerprints, probabilistic `lupo_sessions` GC, `SessionManager` slim-down
+
+**WHO:** **Cursor IDE Agent** (actor_id **102**), orchestrator-directed implementation session. Prior research and recommendations in `lupo-docs/versions/4.0.96/status/SESSIONS_RESEARCH.md` are attributed to **Claude Code** (actor_id **116**); this entry documents **code and schema changes applied in-repo** by Cursor in this session.
+
+### WHAT
+
+- **`App\Auth\Session` (Model A)** — Session fingerprinting and identity signals aligned with privacy + doctrine:
+  - **`LUPO_SESSION_SALT`** — per-install salt for hashed columns; **`generate_session_salt.php`** helper for operators/installers.
+  - **`hashFingerprint()`** — salted SHA-256 over **network prefix** (IPv4 Class C / IPv6 first 64 bits) + salted UA hash (not raw full IP).
+  - **`session_identity_hash`** — composite hash (prefix + normalized UA + salt); column on `lupo_sessions` + index **`sessions_idx_identity_hash`**.
+  - **`normalizeUserAgent()`** — truncate to 200 chars, collapse whitespace (reduces DoS/churn from raw `HTTP_USER_AGENT`).
+  - **`resolvedClientIp()`** — proxy/CDN-aware resolution ( **`LUPO_CLIENT_IP`** first, then ordered headers); no dependency on legacy `get_ipaddress()` (reference-only under `craftysyntax-reference/`).
+  - **`ensureTimestampClass()`** — single load path for **`timestamp_ymdhis`**.
+  - **D-003 / persistence clocks** — `createEmbedSession`, `createOrUpdateForUnified`, `touch`, `mergeSessionMetadata`, etc. use **`timestamp_ymdhis::now()`** via **`nowYmdhis()`** where applicable.
+  - **`LUPO_SESSION_VALIDATE_UA`** — optional UA hash check on **`validateSession()`** load path.
+  - **`maxIdleSecondsForIsNamed()`**, **`isExpired()`**, **`validateSession()`** — idle expiry by **`is_named`** band (anonymous vs named visitor UX) before touch; expired rows **`destroyInternal()`**.
+- **Probabilistic GC** — **`Session::maybeProbabilisticGarbageCollect()`**: low probability per web request, **lock file** under **`sys_get_temp_dir()`** (fallback `lupo-tmp`), **`DELETE`** by `is_named` + **`last_activity_ymdhis`** cutoffs using **`timestamp_ymdhis::subtractSeconds()`** (not invalid packed-integer subtraction).
+- **`SessionManager`** — **`tick()`** now **only** invokes **`maybeProbabilisticGarbageCollect($db)`**; idle/expiry duplicated logic removed ( **`validateSession()`** is authoritative).
+- **`bootstrap.php`** — single GC path: **`SessionManager::tick()`** before **`validateSession()`**; removed duplicate end-of-block GC call.
+- **Install SQL** — **`session_identity_hash`**, indexes **`sessions_idx_identity_hash`**, **`sessions_idx_gc_named_activity`** `(is_named, last_activity_ymdhis)`.
+- **Config** — **`lupopedia-config.php`**: **`LUPO_SESSION_SALT`**, **`LUPO_SESSION_VALIDATE_UA`**, **`LUPO_SESSION_*_IDLE_MINUTES`**, **`LUPO_SESSION_GC_*`**.
+
+### WHERE (files touched)
+
+| Area | Path |
+|------|------|
+| Session runtime | `app/auth/Session.php` |
+| GC hook | `lupo-includes/classes/SessionManager.php` |
+| Request bootstrap | `lupo-includes/bootstrap.php` |
+| Local install config | `lupopedia-config.php` |
+| Canonical schema | `lupo-database/lupopedia/mysql/install/install_new_lupopedia.sql` |
+| Salt helper (new) | `lupo-scripts/generate_session_salt.php` |
+| Version docs | `lupo-docs/versions/4.0.96/CHANGELOG.md`, `PLAN.md`, `TODO.md` |
+| Status handoff (new) | `lupo-docs/versions/4.0.96/status/STATUS_SESSION_IDENTITY_AND_GC_20260408161022.md` |
+
+### WHEN
+
+**`20260408161022` UTC** — **2026-04-08, 16:10 UTC** (canonical **`python lupo-bin/tick.py`** anchor for this documentation batch).
+
+### WHY
+
+1. **`SESSIONS_RESEARCH.md`** documented gaps: unsalted/full-IP hashes, **`REMOTE_ADDR`** vs Cloudflare, **D-003** (`gmdate` in persistence paths), and optional composite **`session_identity_hash`**.
+2. **Privacy** — full IPv4 in a hash is enumerable; Class C + salt reduces reversibility while keeping coarse network correlation for audit.
+3. **Shared hosting** — no cron: probabilistic GC + lock avoids thundering herd; separate TTL bands for anonymous vs named sessions improve UX.
+4. **Doctrine** — packed UTC must use **`timestamp_ymdhis`** for “N minutes ago” cutoffs, not arithmetic on **`YmdHis`** integers.
+5. **Architecture** — one place for idle validation (**`validateSession()`**), one hook for sweep probability (**`SessionManager::tick()`**), no redundant **`loadById`** in **`SessionManager`**.
+
+### HOW (implementation summary)
+
+- **Cutoffs:** `$cutoff = timestamp_ymdhis::subtractSeconds(timestamp_ymdhis::now(), $seconds)`; compare **`last_activity_ymdhis`** (and **`isExpired()`** uses max of **`last_seen`** / **`last_activity`** for reference time).
+- **GC probability:** `roll` in `1..LUPO_SESSION_GC_DIVISOR`; run if `roll <= LUPO_SESSION_GC_PROBABILITY` (default 3/100); **`random_int`** with **`mt_rand`** fallback.
+- **Lock:** `rtrim(sys_get_temp_dir(), '/\\') . '/lupopedia_session_gc.lock'`; skip if lock younger than **`LUPO_SESSION_GC_LOCK_SECONDS`**.
+- **Backward compatibility:** **`session_id`** token unchanged; existing rows keep old hash values; new rows get new formulas; optional **`LUPO_SESSION_VALIDATE_UA`** defaults false.
+
+### Verification (spot checks performed during implementation)
+
+- `php -l app/auth/Session.php`
+- `php -l lupo-includes/classes/SessionManager.php`
+- `php -l lupo-includes/bootstrap.php`
+
+---
+
+## [2026-04-08 13:32 UTC] — TrustLadderRegistry: PHP class, sync script, SQL DDL, unit tests, IdGenerator integration
+
+**WHO:** Claude Code (actor_id 116)
+
+### WHAT
+
+Implemented the `TrustLadderRegistry` system end-to-end across all five phases
+specified in `note_on_seed_range.md` and the mission brief:
+
+**Phase 1 — Database**
+- Added `lupo_trust_ladder_registry` table DDL to `install_new_lupopedia.sql`
+- 13 bootstrap seed rows covering all known ladder-participating tables
+- Self-referential seed row (registry_id=1) for bootstrap safety
+
+**Phase 2 — PHP Registry Class**
+- Created `TrustLadderRegistry.php` — final class with static cache
+- `getTableMeta()`, `isParent()`, `isChild()`, `requiresSeed()`, `getReferenceTarget()`,
+  `getParticipates()`, `getCanonicalLineageEdge()`, `getPromotionTarget()`
+- `validatePkForTable()` with per-participation-mode PK validation
+- `assertInvariants()` for archetype-consistency enforcement
+- `getSelfMetadata()` bootstrap-safe hard-coded fallback
+- `injectTestCache()` for unit-test isolation (no DB required)
+- `clearCache()` for post-sync invalidation
+- `TrustLadderException` class (extends RuntimeException)
+- Dev mode (LUPOPEDIA_ENV=development): E_USER_WARNING + permissive fallback
+- Prod mode (default): TrustLadderException on unregistered/deactivated table
+
+**Phase 3 — Sync Script**
+- Created `sync_trust_ladder_registry_to_db.py`
+- Parses `TRUST_LADDER_REGISTRY.md` (backtick table names)
+- Validates archetype invariants before any DB write (exit code 3 on failure)
+- Detects doctrine-vs-DB drift field by field
+- `--dry-run`, `--force`, `--strict` (CI gate), `--verbose` options
+- Exit 0 = no drift; 1 = drift; 2 = config/connect error; 3 = invariant failure
+- Portable: pymysql (MySQL/MariaDB), psycopg2 (PostgreSQL), sqlite3 (SQLite)
+- `--help` parses cleanly; `py_compile` passes
+
+**Phase 4 — Runtime Integration**
+- Added registry archetype check to `IdGenerator::toCanonicalIdSafe()`:
+  queries `TrustLadderRegistry::getParticipates()` before promotion
+  and throws `RuntimeException` if the table is not `full` participation
+  (guard is opt-in: skipped when TrustLadderRegistry class is not loaded)
+
+**Phase 5 — Testing**
+- Created `trust_ladder_registry_test.php` — 47 assertions in 7 sections:
+  - A: `getSelfMetadata()` bootstrap fallback (7 assertions)
+  - B: `injectTestCache()` + `getTableMeta()` (9 assertions)
+  - C: Type helpers — isParent, isChild, requiresSeed, etc. (12 assertions)
+  - D: `validatePkForTable()` for seed_only / full / generator_staging (9 assertions)
+  - E: `assertInvariants()` pass and fail cases (3 assertions)
+  - F: Dev mode vs Prod mode behavior (4 assertions)
+  - G: `clearCache()` + `injectTestCache()` idempotency (3 assertions)
+- **All 47/47 tests pass**
+
+**Legacy Gap Documentation**
+- Created `lupo-docs/versions/4.0.96/LEGACY_GAP_ANSWERS.md` — all 11 legacy-gap
+  questions answered with implementation decisions and follow-up issue references
+
+### WHERE (files changed)
+
+- `lupo-includes/classes/TrustLadderRegistry.php` (**new**)
+- `lupo-scripts/sync_trust_ladder_registry_to_db.py` (**new**)
+- `lupo-tests/unit/trust_ladder_registry_test.php` (**new**)
+- `lupo-docs/versions/4.0.96/LEGACY_GAP_ANSWERS.md` (**new**)
+- `lupo-docs/versions/4.0.96/status/STATUS_TRUST_LADDER_REGISTRY_20260408.md` (**new**)
+- `lupo-database/lupopedia/mysql/install/install_new_lupopedia.sql` (appended: table DDL + 13 seed rows)
+- `lupo-includes/classes/IdGenerator.php` (modified: registry check in `toCanonicalIdSafe()`)
+- `lupo-docs/versions/4.0.96/CHANGELOG.md` (this entry)
+- `lupo-docs/versions/4.0.96/PLAN.md` (updated: TrustLadderRegistry phase marked done)
+- `lupo-docs/versions/4.0.96/TODO.md` (updated: trust ladder registry items checked off)
+
+### WHEN
+
+`20260408133230` UTC — 2026-04-08, **13:32** UTC
+
+### WHY
+
+1. `note_on_seed_range.md` (Cursor handoff, `20260408114106`) explicitly assigned
+   Claude Code the task of implementing the `TrustLadderRegistry` system.
+2. Without a runtime registry, all archetype decisions were either hard-coded or
+   derived from table-name patterns — both patterns violate the Archetype Enforcement
+   Principle ("Never derive archetype from table name, ID shape, or developer intuition").
+3. `AdminTrustLadderHandler` (Panel A) already did a PHP-port of the Python validator to
+   check table participation; this duplicated logic that should live in a single class.
+4. The `toCanonicalIdSafe()` promotion path had no archetype check — any table could
+   be promoted regardless of its ladder participation mode.
+5. `TRUST_LADDER_REGISTRY.md` was doctrine-only; no runtime enforcement existed.
+
+### HOW (implementation details)
+
+**Bootstrap sequence** (three-phase as specified in `note_on_seed_range.md`):
+- Phase 1: DDL creates the table (no registry lookup needed)
+- Phase 2: Seed row `registry_id=1` for the registry table itself
+- Phase 3: Seed rows `registry_id=2–13` for all known ladder tables
+- PHP `getSelfMetadata()` provides a hard-coded fallback so Phase 1→2 bootstrap
+  never needs to query a table that doesn't yet exist
+
+**Fail-closed design:**
+- `TrustLadderException` is thrown in production on any unregistered or deactivated table
+- Dev mode emits `E_USER_WARNING` with a permissive `not_ladder` fallback
+- `validatePkForTable()` dispatches on `participates` value (seed_only → `isReservedSpace()`,
+  full/generator_staging → `validateTrustLadderPk()`)
+
+**Sync script invariants validated before any write:**
+```python
+parent  → seed_required=1, reference_target='seed'
+child   → seed_required=0, reference_target='canonical'
+system  → seed_required=1
+```
+Exit code 3 on invariant failure (distinct from drift=1 and connect error=2).
+
+**IdGenerator integration:** optional — guard with `class_exists('TrustLadderRegistry', false)`
+so existing tests that don't load the registry class are unaffected.
+
+**TODO(LEGACY-GAP) density:** 14 explicit `TODO(LEGACY-GAP)` markers across all new files,
+covering cache invalidation for long-running workers, table-prefix portability, lineage
+edge GC exclusion, `SELECT ... FOR UPDATE` locking, and Markdown parsing fragility.
+
+### Verification
+
+```
+php -l lupo-includes/classes/TrustLadderRegistry.php   → No syntax errors
+php -l lupo-tests/unit/trust_ladder_registry_test.php  → No syntax errors
+php -l lupo-includes/classes/IdGenerator.php           → No syntax errors
+python -m py_compile lupo-scripts/sync_trust_ladder_registry_to_db.py → pass
+php lupo-tests/unit/trust_ladder_registry_test.php     → 47 passed, 0 failed
+python lupo-scripts/sync_trust_ladder_registry_to_db.py --help → parses correctly
+```
+
+---
+
+## [2026-04-08 12:06 UTC] — PRD 17 validator implementation + trust-ladder doctrine/session-note hardening
+
+**WHO:** Cursor IDE Agent (actor_id 102)
+
+### WHAT
+
+- Implemented PRD 17 validator coverage across pseudocode headers, thread structure, and Q/A edge-link consistency.
+- Added two new validator scripts and upgraded one existing validator to enforce required pseudocode headers.
+- Wired validator execution into `lupo-scripts/run_tests.sh` (version-scope run for 4.0.96).
+- Updated trust-ladder session documentation and doctrine text to lock timestamp persistence guidance and legacy-gap terminology consistency.
+
+### WHERE (files changed)
+
+- `lupo-scripts/validate_pseudocode_discipline.py`
+- `lupo-scripts/validate_thread_structure.py` (new)
+- `lupo-scripts/validate_edge_linking.py` (new)
+- `lupo-scripts/run_tests.sh`
+- `lupo-docs/versions/4.0.96/note_on_seed_range.md`
+- `lupo-docs/doctrine/CHRONOLOGICAL_TRUST_LADDER.md`
+- `lupo-docs/versions/4.0.96/CHANGELOG.md` (this entry)
+
+### WHEN
+
+`20260408120642` UTC — 2026-04-08, **12:06** UTC (temporal anchor from `python lupo-bin/tick.py`).
+
+### WHY
+
+- PRD 17 requires enforceable validation for thread artifacts and pseudocode discipline, including required `lupopedia.headers` fields on `*.pseudo.*` files under `decisions/pseudocode/`.
+- Q/A relationships should be validated as explicit edges (`has_answer`, `answers`) with real file targets to reduce drift and broken links.
+- Session docs needed consistency cleanup and stronger implementation guidance for the trust-ladder registry bootstrap and dev/prod behavior.
+- Timestamp persistence doctrine needed explicit reinforcement: packed UTC (`timestamp_ymdhis::now()`), never `UNIX_TIMESTAMP()` in persistence paths.
+
+### HOW (implementation details)
+
+1. **Task 1 — Pseudocode Header Validator**
+   - Upgraded `validate_pseudocode_discipline.py` to enforce for `*.pseudo.md`, `*.pseudo.php`, and `*.pseudo.txt` under `decisions/pseudocode/`:
+     - `lupopedia.headers` block present
+     - `file_path_from_root` present
+     - `when_updated` present
+     - `last_modified_utc` present
+   - Missing required fields now produce clear errors and non-zero exit.
+   - Existing Purpose 2 warnings behavior retained (`--strict` escalates warnings).
+
+2. **Task 2 — Thread Structure Validator**
+   - Added `validate_thread_structure.py` to validate `decisions/`, `questions/`, `answers/`, `comments/` folders:
+     - `THREAD_INDEX.md` required
+     - PRD 17 filename timestamp/type/title format
+     - `decisions/` requires `_STATUS_` segment
+     - `questions/answers/comments` must not include `_STATUS_`
+
+3. **Task 3 — Edge Linking Validator (optional, completed)**
+   - Added `validate_edge_linking.py`:
+     - `has_answer` edges must resolve to existing files in `answers/`
+     - `answers` edges must resolve to existing files in `questions/`
+
+4. **Pipeline wiring / CI path**
+   - Added a `PRD 17 validators` section in `run_tests.sh`.
+   - Current scope is `lupo-docs/versions/4.0.96` to satisfy 4.0.96 success criteria while avoiding legacy historical folder failures.
+
+5. **Session documentation hardening**
+   - Updated `note_on_seed_range.md` with:
+     - standardized `LEGACY-GAP` terminology
+     - registry bootstrap sequence refinements
+     - explicit `loadCacheIfNeeded()` dev/prod behavior guidance
+     - bootstrap SQL note: use `timestamp_ymdhis::now()` at generation time
+   - Updated `CHRONOLOGICAL_TRUST_LADDER.md` with a normative timestamp convention section:
+     - persisted timestamps are packed UTC `YYYYMMDDHHIISS`
+     - canonical API is `timestamp_ymdhis::now()`
+     - forbidden for persistence: `UNIX_TIMESTAMP()`, `time()`, `DateTime::getTimestamp()`
+
+### Verification outcome (this session)
+
+- `validate_pseudocode_discipline.py` on `lupo-docs/versions/4.0.96`: pass
+- `validate_thread_structure.py` on `lupo-docs/versions/4.0.96`: pass
+- `validate_edge_linking.py` on `lupo-docs/versions/4.0.96`: pass
+- `python -m py_compile` on all three validator scripts: pass
+- `ReadLints` on touched scripts: no linter errors
+
+---
+
+## [2026-04-08 09:51 UTC] — CTL enforcement infrastructure: audit script, §13 test suite, staging GC, admin web UI; IdGenerator::isReservedSpace bug fix
+
+**WHO:** Claude Code (actor_id 116)
+
+---
+
+### WHAT — Files Created
+
+#### `lupo-scripts/audit_edge_integrity.py` (new)
+Python audit script implementing **CHRONOLOGICAL_TRUST_LADDER.md §9.2** normative edge-integrity auditor. Three checks executed in sequence:
+1. **Dangling `memory_node` references in `lupo_edges`**: any non-deleted edge where `left_object_type = 'memory_node'` or `right_object_type = 'memory_node'` must resolve to a live row in `lupo_memory_nodes`.
+2. **Dangling endpoint references in `lupo_memory_edges`**: `from_memory_node_id` and `to_memory_node_id` must both exist in `lupo_memory_nodes` (non-deleted).
+3. **Forbidden tier direction**: a living-canonical endpoint (year 1000–1999) must NOT appear as the source of a "truth" edge pointing to a staging endpoint (year 2000–2099) unless the edge type is a documented consolidation direction (`consolidated_into`, `merged_into`, `promoted_to`, `kairos_consolidates_from`, `archived_to`, `restored_from`, `canonical_instance_of`, `reverted_to`).
+
+Output format: `INVALID EDGE [table] edge_id=<id> reason=<tag> [field=value ...]`. Exit 0 = clean; 1 = violations found; 2 = config/connect error. Strictly read-only — **MUST NOT** auto-repair rows (doctrine §9.2 mandate). Style follows `validate_trust_ladder_registry.py` exactly (shebang, `PROJECT_ROOT`, `argparse`, `main() → int`, `sys.exit(main())`). DB credentials via `lib.db_connection.get_connection_params()` with `db_config.py` fallback.
+
+---
+
+#### `lupo-tests/unit/trust_ladder_pk_validation_test.php` (new)
+Plain-PHP unit test (no PHPUnit) for `IdGenerator::validateTrustLadderPk()` and `IdGenerator::validateFormat()` per **§13**. 25 assertions in 6 sections:
+- **A**: Valid 18-digit IDs — canonical year 1026, staging year 2026, boundary years 1000 and 9999, suffix all-zeros and all-nines.
+- **B**: Invalid shapes — 17 digits, 19 digits, non-digit characters, embedded year 0999 (below 1000 band), empty string, leading space.
+- **C**: Seed / reserved-space IDs — seed `42` rejected for non-actor context; seeds `1` (WOLFIE) and `116` (Claude Code) accepted with `actors.actor_id` context via live `registry.json` lookup (skipped gracefully when file absent); unregistered seed `7` rejected.
+- **D**: Exception throwing — `throw=true` on invalid id raises `InvalidArgumentException`; `throw=true` on valid canonical does not throw.
+- **E**: `validateFormat()` — fresh `generate()` output passes; canonical id fails (outside 2000–2099 clock band); staging 2026 passes; year 3000 fails.
+- **F**: Return type — `validateTrustLadderPk()` returns `bool`; `generate()` returns `string`.
+
+#### `lupo-tests/unit/trust_ladder_canonical_id_test.php` (new)
+Plain-PHP unit test for `toCanonicalId()`, `toCanonicalIdSafe()` (fully mocked DB — no live connection), `seedActorToCanonicalId()`, and 32-bit string-safety. 24 assertions in 4 sections:
+- **A**: `toCanonicalId()` — year 2026 → 1026; already-canonical unchanged; short seeds (`42`, `116`) returned verbatim; boundary years 2000 → 1000 and 1999 unchanged.
+- **B**: String safety — return is `string`; 4-digit year extraction via `substr`/`int` is safe; staging→canonical string-concat demonstration (mirrors §2.2.1 "Correct PHP"); `seedActorToCanonicalId(116)` = `'100000000000000116'` (18 digits); `seedActorToCanonicalId(1)` = `'100000000000000001'`.
+- **C**: `toCanonicalIdSafe()` with `MockDb` stub — happy path (no collision); one-collision suffix bump (`1234 → 1235`); two-collision suffix bump; suffix wrap-around (`9999 → 0000`); `maxRetries` exhaustion raises `RuntimeException`.
+- **D**: `seedActorToCanonicalId()` edge cases — negative seed throws `InvalidArgumentException`; non-numeric string throws; zero seed maps to base `'100000000000000000'`.
+
+The `MockDb` stub is defined before `require_once IdGenerator.php` so `class_exists('DatabaseFactory', false)` is satisfied and no real DB class is loaded. This makes the file self-contained for CI.
+
+#### `lupo-tests/integration/trust_ladder_pdo_stringify_test.php` (new)
+Integration test for PDO `ATTR_STRINGIFY_FETCHES` behavior on `lupo_memory_nodes` per **§13**. Requires a live DB; skips gracefully with `[SKIP]` lines if config or table absent. Inserts a staging-tier test row (via `IdGenerator::generate()`), fetches it with both `ATTR_STRINGIFY_FETCHES = false` and `= true`, asserts:
+- Default mode: fetched value is numeric (int or string depending on driver/platform) — documents observed PHP type for operator awareness.
+- Stringify mode: fetched value is `string`; equals original PK string; passes `validateTrustLadderPk()` directly without a cast.
+- Both modes: `toCanonicalId()` produces identical 18-digit strings regardless of fetch mode.
+Cleans up by soft-deleting the test row (`is_deleted = 1`).
+
+#### `app/Services/Kairos/StagingGcService.php` (new)
+PHP service implementing **RETENTION_POLICY.md** staging purge for `lupo_memory_nodes` and `lupo_memory_edges`. Public API:
+- **`purge(int $retentionDays = 90, int $batchSize = 1000): array`** — selects soft-deleted staging rows where `deleted_ymdhis <= cutoff` (90-day window), validates each PK against `isStagingBand()` (year 2000–2099 check in PHP — no canonical or seed rows are ever touched), physically DELETEs via named PDO params, logs to `lupo_unified_log` (`log_type = 'gc'`, `log_level = 'info'`). Returns `{memory_nodes_purged, memory_edges_purged, errors[]}`.
+- **`dryRun(int $retentionDays = 90): array`** — counts eligible rows without deleting. Returns `{memory_nodes_eligible, memory_edges_eligible, cutoff_ymdhis, retention_days}`.
+
+Cutoff computed via `timestamp_ymdhis::subtractSeconds(now, days * 86400)` — no raw date math. Uses `DatabaseFactory::getConnection()` / `LUPO_TABLE_PREFIX` / `quoteIdentifier()` — no triggers, no FKs. Per-row errors are collected and returned rather than aborting the run.
+
+#### `lupo-bin/cli/staging_gc.php` (new)
+CLI entry file for the staging-gc command. Accepts `--days=N`, `--batch=N`, `--dry-run`, `--actor=N`. Bootstraps from `lupopedia-config.php`, instantiates `StagingGcService`, runs `purge()` or `dryRun()`, prints structured output to stdout and errors to stderr. Exits 0 on clean run; 1 if `$result['errors']` is non-empty.
+
+#### `lupo-includes/classes/AdminTrustLadderHandler.php` (new)
+Static admin section handler for `admin.php?section=trust-ladder`. Four read panels + one write action:
+- **Panel A — Registry vs Install SQL validation**: PHP port of `validate_trust_ladder_registry.py` — reads `TRUST_LADDER_REGISTRY.md` (backtick `lupo_*` names) and `install_new_lupopedia.sql` (`CREATE TABLE {{prefix}}` and `CREATE TABLE lupo_` patterns), checks required seed-range doctrine markers, renders pass/fail table per registry entry.
+- **Panel B — Live tier counts**: fetches all PKs from `lupo_memory_nodes` and `lupo_memory_edges` (up to 50,000 rows), classifies each in PHP via `pkBand()` (mirrors §2.2.1: `strlen < 18` = seed, year 1000–1999 = canonical, year 2000–2099 = staging), shows counts for live seed / canonical / staging / soft-deleted / GC-eligible (staging soft-deleted ≥ 90 days).
+- **Panel C — Recent log entries**: last 25 rows from `lupo_unified_log` where `log_type IN ('trust_ladder', 'gc')`; columns `created_ymdhis`, `log_level`, `log_type`, `log_message`, truncated `log_context` JSON.
+- **Panel D — Seed actor registry**: reads `lupo-database/lupopedia/actors/registry.json`, validates each actor's `actor_id` via `IdGenerator::validateTrustLadderPk($id, 'actors.actor_id')`, shows 18-digit canonical form from `seedActorToCanonicalId()`.
+- **POST — Run Staging GC**: CSRF-protected form button; invokes `StagingGcService::purge(90, 1000)` inline; logs admin action to `lupo_unified_log` (`log_type = 'trust_ladder'`); flash message with purge counts or error summary.
+
+---
+
+### WHAT — Files Modified
+
+#### `lupo-includes/classes/IdGenerator.php`
+**Bug fix — `isReservedSpace()` incorrect boundary.**
+
+Prior implementation: `return self::numericStringLessThan($idStr, '1000000000000000000')` — comparing against a 19-digit boundary (1 quintillion = 10^18). Because ALL 18-digit integers are numerically less than 10^18, this caused every canonical (year 1000–1999) and staging (year 2000–2099) 18-digit ladder ID to be misclassified as "reserved space", then rejected by `validateTrustLadderPk()` unless registered as a seed. In effect the function made the entire trust ladder inoperable for runtime IDs.
+
+Fixed implementation: `return strlen($idStr) < 18` — an 18-digit string is a ladder ID candidate and is never in the reserved/seed space. Strings shorter than 18 digits are seed/reserved. This aligns with the observable intent of the doctrine (seed IDs are short like `1`, `42`, `116`; ladder IDs are exactly 18 digits), resolves all 7 failing unit tests, and does not change the behaviour of short-seed validation which was already correct.
+
+#### `lupo-bin/lupo.php`
+Added `case 'staging-gc':` branch to the switch dispatch: requires `lupo-bin/cli/staging_gc.php` if it exists, exits 1 with an error message if not. Added `staging-gc` to the `help` output with options summary.
+
+#### `admin.php`
+Three additions:
+1. `'Trust Ladder' => 'admin.php?section=trust-ladder'` added to the **Agents & Channels** nav group in `$admin_menu_sections`.
+2. `'trust-ladder' => array('Trust Ladder', 'Trust Ladder')` added to `$section_titles`.
+3. `elseif ($section === 'trust-ladder' && $db)` dispatch block added immediately before the generic `isset($section_titles[$section])` fallback, loading `AdminTrustLadderHandler` and calling `::render($db, $prefix, $base)`.
+
+---
+
+### WHERE — PRD Applicability
+
+| File changed | PRD(s) | Clause |
+|---|---|---|
+| `audit_edge_integrity.py` | CHRONOLOGICAL_TRUST_LADDER §9.2 | Normative auditor — "SHOULD exist; when present it MUST list invalid edges and exit non-zero" |
+| Unit test files | CHRONOLOGICAL_TRUST_LADDER §13 | Test suite requirements — unit `validateTrustLadderPk`, `toCanonicalIdSafe`, integration PDO/32-bit |
+| `StagingGcService.php` | RETENTION_POLICY §Staging-tier rows; PRD 19 (GC) | "Purge soft-deleted staging-tier rows no earlier than 90 days after `deleted_ymdhis`" |
+| `staging_gc.php` (CLI) | PRD 24 §3.2.1 (CLI interface); PRD 19 | GC command surface |
+| `lupo.php` | PRD 24 CLI routing doctrine | Canonical CLI dispatch pattern |
+| `AdminTrustLadderHandler.php` | FOR_CLAUDE_CODE_ON_PK_IDS §Future Work; CHRONOLOGICAL_TRUST_LADDER §9.1 (registry enforcement); TRUST_LADDER_REGISTRY | "Plain PHP admin surface for install/seed record review and updates; no Laravel" |
+| `admin.php` | PRD 27 (installer/admin architecture) | Section dispatch and navigation |
+| `IdGenerator::isReservedSpace()` fix | CHRONOLOGICAL_TRUST_LADDER §2.2.1, §2.2.2 Rule 1 | Corrects PK boundary classification; unblocks all 18-digit ladder validation paths |
+
+---
+
+### WHEN
+
+`20260408095121` UTC — 2026-04-08, **09:51** UTC.
+
+Temporal anchor updated via `python lupo-bin/tick.py` at session close.
+
+---
+
+### WHY
+
+Four open obligations were identified in the prior Cursor session (`FOR_CLAUDE_CODE_ON_PK_IDS.md`, CHRONOLOGICAL_TRUST_LADDER §9.2, §9.3, §13, FOR_CLAUDE_CODE_ON_PK_IDS §Future Work) and confirmed in the Claude Code status report produced at the start of this session:
+
+1. **`audit_edge_integrity.py`** — §9.2 states "SHOULD exist; when present it MUST list invalid edges and exit non-zero if any are found." Without it, edge integrity guardrails existed only in documentation; no CI-runnable enforcement existed.
+2. **§13 test suite** — The doctrine mandated unit and integration tests for `validateTrustLadderPk`, `toCanonicalIdSafe`, 32-bit string paths, and PDO fetch mode. Without tests, the ladder implementation had no automated regression coverage.
+3. **Staging GC** — RETENTION_POLICY.md defined a 90-day purge window for soft-deleted staging rows, but PRD 19 GC implementation had no ladder-aware purge path. The existing `GarbageCollector.php` handles visits/sessions/analytics only and uses a different DB API.
+4. **Admin web UI** — `FOR_CLAUDE_CODE_ON_PK_IDS.md §Future Work` explicitly assigned Claude Code (actor_id 116) the task of building a "plain PHP admin surface for install/seed record review."
+
+The `isReservedSpace()` bug was discovered while writing and running the §13 test suite — the tests correctly asserted that canonical and staging 18-digit IDs should pass `validateTrustLadderPk()`, revealing that the production implementation had silently been failing all such IDs since the function was authored.
+
+---
+
+### HOW
+
+**`audit_edge_integrity.py`**: Python 3; `pymysql` for DB; `argparse` CLI; pure SQL reads on `lupo_edges` and `lupo_memory_edges`; trust-band classification mirrors PHP §2.2.1 as Python string logic (`str(pk)[0:4]` year extraction). No writes. Follows style of `validate_trust_ladder_registry.py` exactly.
+
+**Test suite**: Plain PHP (no PHPUnit), matching the project's existing test pattern (`$passed`/`$failed` globals, `[PASS]`/`[FAIL]` stdout lines, `exit(1)` on failure). `MockDb` / `DatabaseFactory` stub defined before `require_once IdGenerator.php` to prevent real DB loading. Tests run standalone: `php lupo-tests/unit/<file>.php`.
+
+**`StagingGcService`**: Constructor matches `KairosConsolidationService` pattern (`$db`, `$tablePrefix`, `$actorId`). PHP-layer `isStagingBand()` validates each PK's year band (string-only, no int cast of 18-digit value) before every `DELETE`. Cutoff computed via `timestamp_ymdhis::subtractSeconds()`. All DB calls use named PDO params via `PDO_DB`. Logging via `lupo_unified_log` is best-effort (silently skips if table absent).
+
+**`AdminTrustLadderHandler`**: Static render pattern (`::render($db, $prefix, $base)`) identical to `AdminUsersHandler`, `AdminAgentsHandler`, etc. Panel A ports the Python validator's two `CREATE TABLE` regexes and marker list to PHP `preg_match_all`. Panel B uses PHP-layer classification (avoids `GENERATED ALWAYS AS` columns, forbidden by Database Logic Prohibition Doctrine). Panel D calls `IdGenerator::validateTrustLadderPk()` and `seedActorToCanonicalId()` per-row. Write path is CSRF-protected via `lupo_require_valid_csrf_token()`.
+
+**`IdGenerator::isReservedSpace()` fix**: Single-line change — `numericStringLessThan($idStr, '1000000000000000000')` → `strlen($idStr) < 18`. Accompanied by an explanatory docblock documenting why numeric comparison against 1 quintillion (a 19-digit number) incorrectly classifies all 18-digit ladder IDs as reserved space.
+
+All 49 unit tests (25 + 24) pass. PHP syntax clean on all new files (`php -l`). Python `--help` parses correctly.
+
+---
+
+**Status files produced this session:** None — work is complete and self-contained. Forward action: run `python lupo-scripts/audit_edge_integrity.py` against a seeded DB; run `php lupo-bin/lupo.php staging-gc --dry-run` to confirm GC counts; browse `admin.php?section=trust-ladder`.
+
+---
 
 ## [2026-04-08 03:19 UTC] — Trust Ladder normative completion; IdGenerator + KAIROS code; registry validator; Captain's Log; version handoff doc
 

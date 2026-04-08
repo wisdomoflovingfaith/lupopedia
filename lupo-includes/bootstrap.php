@@ -4,10 +4,10 @@
 lupopedia.headers:
   header_format_version: 2
   lupopedia.schema: bootstrap
-  when_updated: "20260406014546"
+  when_updated: "20260408160633"
   file_path_from_root: "lupo-includes/bootstrap.php"
   web_path: "http://www.lupopedia.com/lupopedia/lupo-includes/bootstrap.php"
-  last_modified_utc: "20260406014546"
+  last_modified_utc: "20260408160633"
   federation_node_id: 0
   channel_id: 42
   author:
@@ -17,7 +17,7 @@ lupopedia.headers:
   delegation_chain: "cursor:root"
   artifact_type: "bootstrap"
   artifact_kind: "initialization"
-  purpose: "Lupopedia bootstrap — constants, DatabaseFactory connection, PHP session cookie params, App\\Auth\\Session + idle tick, service registration."
+  purpose: "Lupopedia bootstrap — constants, DatabaseFactory connection, PHP session cookie params, App\\Auth\\Session + SessionManager probabilistic GC tick then validateSession, service registration."
   tags: ["bootstrap", "session", "database", "services"]
 ---
 */
@@ -242,7 +242,7 @@ if ($lupo_session !== null) {
         error_log("SESSION: Session started - ID: " . substr($lupo_session->getSessionId(), 0, 8) . "...");
     }
     try {
-        // SessionManager: idle timeout / touch only (lupo_sessions); not an alternate identity authority — complements App\Auth\Session.
+        // SessionManager::tick — probabilistic lupo_sessions row GC only; idle expiry + touch in App\Auth\Session::validateSession().
         $sessionManager = new SessionManager($lupo_session);
         $sessionManager->tick();
         $actor_id = $lupo_session->validateSession();

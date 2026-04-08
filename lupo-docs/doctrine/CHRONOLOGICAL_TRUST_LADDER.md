@@ -2,10 +2,10 @@
 lupopedia.headers:
   header_format_version: 2
   lupopedia.schema: doctrine
-  when_updated: "20260408025502"
+  when_updated: "20260408113851"
   file_path_from_root: "lupo-docs/doctrine/CHRONOLOGICAL_TRUST_LADDER.md"
   web_path: "http://www.lupopedia.com/lupopedia/lupo-docs/doctrine/CHRONOLOGICAL_TRUST_LADDER.md"
-  last_modified_utc: "20260408025502"
+  last_modified_utc: "20260408113851"
   federation_node_id: 0
   channel_id: 42
   thread_id: "chronological-trust-ladder"
@@ -44,7 +44,7 @@ lupopedia.edges:
       weight: 1.0
       reason: "Staging retention and GC alignment"
 lupopedia.footer:
-  last_verified: "20260408025502"
+  last_verified: "20260408113851"
   verified_by:
     identity_type: actor
     actor_id: 1
@@ -154,6 +154,25 @@ $newId = $id - 10000000000000000;          // WRONG — integer math on full 18-
 
 **Database query (safe):** drivers compare bound parameters to **`BIGINT`** correctly; bind the id as **string** or **integer** per PDO rules — **prepared statements with named parameters** only.
 
+#### 2.2.1a Timestamp convention (normative)
+
+All persisted ladder-adjacent timestamps (`created_ymdhis`, `updated_ymdhis`, `deleted_ymdhis`, `active_until`, etc.) use packed UTC integers in `YYYYMMDDHHIISS` format.
+
+**Canonical implementation:** `timestamp_ymdhis::now()` (see `lupo-includes/classes/TimestampYmdhis.php`).
+
+**Never use for persistence:**
+- `UNIX_TIMESTAMP()` in SQL
+- `time()` in PHP (except ephemeral runtime calculations not persisted)
+- `DateTime::getTimestamp()` for persisted ymdhis fields
+
+**Always use:**
+
+```php
+$now = timestamp_ymdhis::now(); // Example: 20260408113851
+```
+
+**Why:** packed UTC integers remain human-readable, sort correctly as integers, and align with Lupopedia's doctrine for persisted timestamps.
+
 #### 2.2.2 `IdGenerator::validateTrustLadderPk()` — specification
 
 **PHP binding (normative):**
@@ -170,10 +189,19 @@ public static function validateTrustLadderPk($id, $context = null, $throw = fals
 
 **Validation rules (normative):**
 
-1. **Seed-exempt band (short numeric ids — never left-padded to 18 digits):** If the id is **all digits**, **`strlen((string)$id) < 18`**, and **`(int)$id < 2026`** (where **2026** is the **current calendar year at doctrine ratification**; future amendments may adjust this bound):
-   - The id **MUST** be explicitly registered in **`TRUST_LADDER_REGISTRY.md`** as a **seed id** for its table (including linked registries cited there, e.g. **`lupo-database/lupopedia/actors/registry.json`**). Example: **`lupo_actors.actor_id = 1`** (WOLFIE) is a registered seed.
-   - If the **table + column + ID** combination is **not** listed as an authorized seed in **`TRUST_LADDER_REGISTRY.md`** (and linked sources) → **invalid** for ladder participation.
-   - If registered → **valid** (install-seed exempt band with registry check).
+1. **Seed-exempt band (0–999,999):**
+
+   Any id where `0 <= (int)$id <= 999999` is the **seed/reserved space**.
+
+   **Validation rules:**
+   - Must be explicitly registered in `TRUST_LADDER_REGISTRY.md` (or linked seed registries)
+   - If registered → valid seed
+   - If NOT registered → invalid for ladder participation
+   - Length has no restriction as long as value <= 999,999
+
+   **Allowed examples:** `0`, `42`, `999999`
+
+   **Disallowed:** `1000000` (must be 18-digit canonical or staging format)
 2. Else if length **≠ 18** → **invalid**.
 3. Else if the full 18 characters are not all digits → **invalid**.
 4. Else let **`$year = (int) substr($id, 0, 4)`**. If **`$year < 1000`** or **`$year > 9999`** → **invalid**.
@@ -181,6 +209,80 @@ public static function validateTrustLadderPk($id, $context = null, $throw = fals
 6. Else → **valid** (covers embedded years **1000–9999**, including staging **2000–2099** and living canonical **1000–1999**).
 
 **Implementation note:** Callers **SHOULD** pass **table/column context** into validation (or a dedicated seed-registry lookup) so rule **1** can be enforced; a bare **`$id`** without context cannot prove registry authorization.
+
+**Reference implementation for expanded reserved-space validation:**
+
+```php
+/**
+ * Check if an ID is in the seed/reserved space
+ */
+public static function isReservedSpace($id)
+{
+    $idInt = (int) $id;
+    return $idInt >= 0 && $idInt <= 999999;
+}
+
+/**
+ * Expanded validation with range checking
+ */
+public static function validateTrustLadderPk($id, $context = null, $throw = false)
+{
+    $idStr = (string) $id;
+    $idInt = (int) $idStr;  // Will be accurate for values < PHP_INT_MAX
+
+    // RULE 1: Seed/reserved space (0–999,999)
+    if ($idInt >= 0 && $idInt <= 999999) {
+        // Must be registered as seed OR explicitly allowed
+        if (self::isRegisteredSeed($idStr, $context)) {
+            return true;  // Valid seed
+        }
+
+        // Not registered - invalid for ladder participation
+        if ($throw) {
+            throw new InvalidArgumentException(
+                "ID {$idStr} in seed range (0–999,999) but not registered in TRUST_LADDER_REGISTRY.md"
+            );
+        }
+        return false;
+    }
+
+    // RULE 2: 18-digit format required for canonical/staging
+    if (strlen($idStr) !== 18) {
+        if ($throw) {
+            throw new InvalidArgumentException("ID must be 18 digits for ladder tiers");
+        }
+        return false;
+    }
+
+    // RULE 3: All digits
+    if (!ctype_digit($idStr)) {
+        if ($throw) {
+            throw new InvalidArgumentException("ID must contain only digits");
+        }
+        return false;
+    }
+
+    // RULE 4: Year band validation
+    $year = (int) substr($idStr, 0, 4);
+    if ($year < 1000 || $year > 9999) {
+        if ($throw) {
+            throw new InvalidArgumentException("Invalid year band");
+        }
+        return false;
+    }
+
+    // RULE 5: Remaining 14 digits numeric
+    $rest = substr($idStr, 4);
+    if (!ctype_digit($rest) || strlen($rest) !== 14) {
+        if ($throw) {
+            throw new InvalidArgumentException("Invalid suffix format");
+        }
+        return false;
+    }
+
+    return true;  // Valid canonical or staging ID
+}
+```
 
 **MUST** be invoked before INSERT/UPDATE of ladder PKs on tables listed as participating in **TRUST_LADDER_REGISTRY.md**.
 
@@ -294,21 +396,28 @@ $pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
 **Illustrative SQL only** (not normative):
 
 ```sql
--- ILLUSTRATIVE ONLY — prefer application-layer year extraction
--- Seeds are low reserved values per registry (typically < 2026); short ids, never padded to 18 digits
--- Do not assume all IDs < 2026 are seeds without checking TRUST_LADDER_REGISTRY.md
+-- UPDATED QUERY PRIORITY (seed band 0-999,999)
 SELECT * FROM lupo_memory_nodes
 WHERE owner_actor_id = ? AND memory_key = ?
 ORDER BY
     CASE
-        WHEN memory_node_id BETWEEN 1 AND 2025 THEN 3
+        -- Seed tier: 0 to 999,999 (lowest priority)
+        WHEN memory_node_id BETWEEN 0 AND 999999 THEN 3
+
+        -- Living canonical: 1,000,000,000,000,000,000 to 1,999,999,999,999,999,999
         WHEN memory_node_id >= 1000000000000000000
              AND memory_node_id < 2000000000000000000 THEN 1
+
+        -- Staging: 2,000,000,000,000,000,000 and above
         ELSE 2
     END,
     created_ymdhis DESC
 LIMIT 1;
 ```
+
+**Important:** The SQL `CASE` treats IDs in `0-999,999` as lowest-priority seed candidates.
+Application code MUST validate via `validateTrustLadderPk()` that such IDs are actually
+registered seeds; non-registered IDs in this range should not participate in ladder queries.
 
 **Query optimization recommendation:**
 
@@ -387,6 +496,8 @@ function assertTableInTrustLadderRegistry($shortTableName, $participation) {
 
 **Binding:** Until a **`RegistryService`** exists, teams **MUST** keep the markdown registry accurate and run **`python lupo-scripts/validate_trust_ladder_registry.py`** in CI; code reviews **MUST** block new ladder paths for unlisted tables.
 
+**Archetype invariant:** Every ladder-participating table must have exactly one declared archetype (`parent`, `child`, `system`) in both doctrine registry and runtime registry cache. Do not infer archetype from id shape or table naming.
+
 ### 9.2 Edge integrity rules
 
 An edge is **invalid** if:
@@ -398,6 +509,9 @@ An edge is **invalid** if:
    - **Seed → canonical** for lineage / template: **ALLOWED** (e.g. `canonical_instance_of`).
    - **Canonical → seed** for audit / reversion: **ALLOWED** only where doctrine allows (`reverted_to`).
 3. **Ladder semantics on a table** not registered for ladder participation when the operation assumes tier logic.
+4. **Archetype mismatch:**
+   - `parent` tables must have exactly one active `canonical_instance_of` edge for each required seed anchor.
+   - `child` tables must have zero `canonical_instance_of` edges.
 
 **Auditor:** **`lupo-scripts/audit_edge_integrity.py`** **SHOULD** exist; when present it **MUST** list invalid edges and exit non-zero if any are found. **MUST NOT** auto-repair rows (log / report only).
 
@@ -428,6 +542,8 @@ Any migration touching ladder PKs **MUST**:
 2. Re-run **`python lupo-scripts/validate_trust_ladder_registry.py`**.
 3. Include in migration metadata: **`trust_ladder_impacting: true`** when the change affects PK bands or ladder tables.
 4. Be reviewed under constitutional enforcement (WOLFIE / LILITH) when policy changes.
+5. When assigning new seed IDs, keep them in `0-999,999`, update the appropriate seed registry JSON file, and run `python lupo-scripts/validate_seed_registry.py`.
+6. For any archetype reclassification, run a migration-impact validator and require two-person sign-off.
 
 ---
 
@@ -437,7 +553,13 @@ Any migration touching ladder PKs **MUST**:
 python lupo-scripts/validate_trust_ladder_registry.py
 ```
 
-Optional when added: `python lupo-scripts/audit_edge_integrity.py`
+Recommended:
+
+```bash
+python lupo-scripts/audit_edge_integrity.py
+python lupo-scripts/validate_parent_child_consistency.py
+python lupo-scripts/validate_parent_child_reclassification.py --table=<table> --new-archetype=<parent|child|system>
+```
 
 ---
 
@@ -503,6 +625,36 @@ AI assistants and reviewers often propose UUIDs, **`AUTO_INCREMENT`**, Unix epoc
 - **Embedded trust tier** via the four-digit year band (e.g. **1000–1999** canonical, **2000–2099** staging) as defined in this doctrine.
 - **Application-controlled allocation** — no **`AUTO_INCREMENT`**; tier rules and **`IdGenerator`** are explicit; suffix breaks same-second ambiguity.
 - **Portable** across MySQL 8.0+ and PostgreSQL (numeric **`BIGINT`** comparisons).
+
+---
+
+## Appendix B: Lessons from Honolulu (2000-2005)
+
+### B.1 Parent vs Child operational distinction
+
+Production consolidation behavior separated entities into two practical archetypes:
+
+- **Parent entities**: long-lived records that need stable lineage anchors and seed-to-canonical continuity.
+- **Child entities**: high-volume, short-lived rows where staging-to-canonical flow is sufficient.
+
+This doctrine aligns with that pattern through:
+- seed band rules (`0-999,999`) for immutable anchors,
+- canonical/staging year-band rules for 18-digit ladder IDs,
+- explicit edge semantics (`canonical_instance_of`, `consolidated_into`, `promoted_to`).
+
+### B.2 Batch import guardrails
+
+Large single-transaction writes on ladder tables showed contention in historical operations. The practical mitigation that proved stable was:
+
+- **chunk size**: 5000 rows or fewer per insert/delete cycle,
+- **random backoff**: jittered sleep between chunks (for example 0.0-2.0 seconds),
+- **avoid fixed delay**: fixed sleeps synchronize concurrent workers and increase repeated collisions.
+
+### B.3 GC and import application
+
+Any trust-ladder batch path (imports, consolidations, or large GC loops) should use bounded chunking plus random backoff to reduce lock amplification and synchronized retry storms.
+
+Cross-reference: **PRD 19 §7** for implementation pattern and operational defaults.
 
 ---
 

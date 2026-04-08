@@ -61,6 +61,22 @@ else
 fi
 
 echo ""
+echo "=== PRD 17 validators ==="
+if [ -f "lupo-scripts/validate_pseudocode_discipline.py" ] && [ -f "lupo-scripts/validate_thread_structure.py" ] && [ -f "lupo-scripts/validate_edge_linking.py" ]; then
+    PRD17_SCOPE="$REPO_ROOT/lupo-docs/versions/4.0.96"
+    if python lupo-scripts/validate_pseudocode_discipline.py "$PRD17_SCOPE" && \
+       python lupo-scripts/validate_thread_structure.py "$PRD17_SCOPE" && \
+       python lupo-scripts/validate_edge_linking.py "$PRD17_SCOPE"; then
+        echo "PRD 17 validators: PASS"
+    else
+        echo "PRD 17 validators: FAIL"
+        OVERALL=1
+    fi
+else
+    echo "PRD 17 validators: skip (validator script(s) missing)"
+fi
+
+echo ""
 if [ $OVERALL -eq 0 ]; then
     echo "All test suites completed (unit, regression required; integration/adversarial may be partial)."
 else

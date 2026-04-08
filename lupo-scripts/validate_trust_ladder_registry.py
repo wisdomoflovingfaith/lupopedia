@@ -52,6 +52,11 @@ CREATE_TABLE_LITERAL_RE = re.compile(
 # Backtick-wrapped lupo_* identifiers in the registry doc
 BACKTICK_TABLE_RE = re.compile(r"`(lupo_[a-z0-9_]+)`")
 
+REQUIRED_SEED_SECTION_MARKERS = [
+    "## Seed ID Ranges by Category",
+    "0-999,999",
+]
+
 
 def _full_table_name_from_short(short):
     """Normalize short table name to lupo_* full name, lowercased."""
@@ -80,6 +85,16 @@ def tables_from_registry_doc(registry_path):
         return set()
     text = registry_path.read_text(encoding="utf-8", errors="replace")
     return set(n.lower() for n in BACKTICK_TABLE_RE.findall(text))
+
+
+def validate_seed_range_section(registry_path):
+    """Ensure expanded seed-range doctrine markers exist in registry doc."""
+    text = registry_path.read_text(encoding="utf-8", errors="replace")
+    missing = []
+    for marker in REQUIRED_SEED_SECTION_MARKERS:
+        if marker not in text:
+            missing.append(marker)
+    return missing
 
 
 def main():
@@ -113,6 +128,7 @@ def main():
 
     sql_tables = tables_from_install_sql(install_sql)
     reg_tables = tables_from_registry_doc(registry)
+    missing_markers = validate_seed_range_section(registry)
 
     print("Install SQL tables (lupo_*): %s" % len(sql_tables))
     print("Registry backtick table refs: %s" % len(reg_tables))
@@ -123,6 +139,12 @@ def main():
 
     if not sql_tables:
         print("ERROR: No CREATE TABLE statements parsed from install SQL — check file format.")
+        return 1
+
+    if missing_markers:
+        print("ERROR: TRUST_LADDER_REGISTRY.md is missing required seed-range doctrine markers:")
+        for marker in missing_markers:
+            print("  - %s" % marker)
         return 1
 
     missing = sorted(reg_tables - sql_tables)

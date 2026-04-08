@@ -2,10 +2,10 @@
 lupopedia.headers:
   header_format_version: 2
   lupopedia.schema: prd
-  when_updated: "20260401000000"
+  when_updated: "20260408111331"
   file_path_from_root: "lupo-docs/prd/19_garbage_collection_system.md"
   web_path: "http://www.lupopedia.com/lupopedia/lupo-docs/prd/19_garbage_collection_system.md"
-  last_modified_utc: "20260401000000"
+  last_modified_utc: "20260408111331"
   federation_node_id: 0
   channel_id: 42
   thread_id: "prd-garbage-collection"
@@ -46,7 +46,7 @@ lupopedia.edges:
       weight: 1.0
       reason: "Referrers daily table schema reference (unified)"
 lupopedia.footer:
-  last_verified: "20260401000000"
+  last_verified: "20260408111331"
   verified_by:
     identity_type: "actor"
     actor_id: 1
@@ -584,6 +584,81 @@ lupo_visits (raw, 30-day retention)
                 │
                 └── (future: monthly aggregates via SQL queries)
 ```
+
+---
+
+## 7. Batch Import Guardrails (Honolulu Production Experience)
+
+### 7.1 The 9000-Row Threshold
+
+**Source:** City and County of Honolulu production experience (2000-2005).
+
+Large single-transaction inserts on trust-ladder tables showed contention beyond 9000 rows, including delayed id allocation and timeout risk.
+
+**Rule:** Any bulk insert operation on a trust-ladder table MUST chunk batches into **5000 rows or fewer** and apply random backoff between chunks.
+
+### 7.2 Required Backoff Algorithm
+
+```php
+/**
+ * Bulk insert with random backoff.
+ *
+ * @param array $rows
+ * @param int $batchSize
+ * @param float $minSleep
+ * @param float $maxSleep
+ */
+function bulkInsertWithBackoff($rows, $batchSize = 5000, $minSleep = 0.0, $maxSleep = 2.0)
+{
+    $chunks = array_chunk($rows, $batchSize);
+    $totalChunks = count($chunks);
+
+    foreach ($chunks as $index => $chunk) {
+        // Generate IDs preserving chronological order within each chunk.
+        $ids = array();
+        foreach ($chunk as $unused) {
+            $ids[] = IdGenerator::generate();
+        }
+
+        // Execute bulk INSERT with project PDO_DB patterns.
+        executeBatchInsert($chunk, $ids);
+
+        // Random backoff for all chunks except first.
+        // Fixed delays synchronize workers; random jitter de-correlates retries.
+        if ($index > 0 && $totalChunks > 1) {
+            $sleepSeconds = $minSleep + (mt_rand() / mt_getrandmax()) * ($maxSleep - $minSleep);
+            usleep((int) ($sleepSeconds * 1000000));
+        }
+    }
+}
+```
+
+### 7.3 Why Random, Not Fixed
+
+| Approach | Result in Production |
+|----------|----------------------|
+| Fixed delay (1 sec) | Workers wake together and collide again |
+| Random delay (0-2 sec) | Wake times spread; repeated collisions reduced |
+
+**Decision:** Random backoff is mandatory for batch imports larger than 9000 rows on ladder tables.
+
+### 7.4 GC Application
+
+`StagingGcService` and `GarbageCollector` SHOULD apply random backoff when deleting in large batches (for example, loops of 5000+ rows per cycle) to avoid synchronized lock contention.
+
+### 7.5 Documentation Reference
+
+See **`lupo-docs/doctrine/CHRONOLOGICAL_TRUST_LADDER.md`** Appendix B for Honolulu lessons summary and rationale.
+
+### 7.6 Archetype preflight for batch jobs
+
+Before running batch insert/promotion/delete jobs on trust-ladder tables:
+
+1. resolve table archetype from runtime trust-ladder registry cache,
+2. enforce parent/child/system-specific ID rules before writing,
+3. fail fast if archetype metadata is missing or ambiguous.
+
+This prevents child tables from accepting seed IDs and prevents parent tables from running without required seed-anchor lineage assumptions.
 
 ---
 

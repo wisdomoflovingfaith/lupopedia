@@ -2,10 +2,10 @@
 lupopedia.headers:
   header_format_version: 2
   lupopedia.schema: prd
-  when_updated: "20260408014411"
+  when_updated: "20260408113000"
   file_path_from_root: "lupo-docs/prd/15_actors.md"
   web_path: "http://www.lupopedia.com/lupopedia/lupo-docs/prd/15_actors.md"
-  last_modified_utc: "20260408014411"
+  last_modified_utc: "20260408113000"
   channel_id: 42
   thread_id: "prd-actors"
   actor_id: 2

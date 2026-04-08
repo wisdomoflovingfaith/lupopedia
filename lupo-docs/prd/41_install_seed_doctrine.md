@@ -2,10 +2,10 @@
 lupopedia.headers:
   header_format_version: 2
   lupopedia.schema: doctrine
-  when_updated: "20260408014411"
+  when_updated: "20260408111331"
   file_path_from_root: "lupo-docs/prd/41_install_seed_doctrine.md"
   web_path: "http://www.lupopedia.com/lupopedia/lupo-docs/prd/41_install_seed_doctrine.md"
-  last_modified_utc: "20260408014411"
+  last_modified_utc: "20260408111331"
   federation_node_id: 0
   channel_id: 42
   thread_id: "install-seed-doctrine"
@@ -46,7 +46,7 @@ lupopedia.edges:
       weight: 1.0
       reason: "Actor install seeds (1-2025) are immutable reference rows"
 lupopedia.footer:
-  last_verified: "20260408014411"
+  last_verified: "20260408111331"
   verified_by:
     identity_type: actor
     actor_id: 1
@@ -203,7 +203,109 @@ After the graph points at **living canonical** ids, **install seed `1`** may hav
 
 ---
 
-## 5. The Doctrine Rules
+## 5. Seed-to-Canonical Edge Requirements
+
+### 5.1 When Seeds Need Canonical Links
+
+A seed row (ID `0-999,999`) that represents a **parent entity** (see **PRD 38 §9**) MUST have an outgoing `canonical_instance_of` edge pointing to its active living canonical row.
+
+**Seed-only entities** (system config, registry entries) do not require this edge.
+
+### 5.2 Edge Schema for Seed-to-Canonical
+
+Required edge fields (on `lupo_memory_edges` or the entity-specific edge table):
+
+- `edge_type` (`VARCHAR(64) NOT NULL`)
+- `active_until` (`BIGINT NOT NULL DEFAULT 0`)
+
+**`active_until` semantics:**
+- `0` = currently active edge
+- Non-zero packed UTC = edge was closed at that time (canonical superseded)
+
+### 5.3 Seed Immutability with Canonical Indirection
+
+**Rule:** Application code MUST NEVER directly update a seed row's business data.
+
+**Correct pattern:**
+1. Seed row exists (immutable anchor, ID `< 1,000,000`)
+2. Active canonical row exists (mutable, ID starts with embedded year `1xxx`)
+3. Updates go to canonical row
+4. Seed → canonical edge tracks lineage
+
+**When canonical becomes stale:**
+1. Archive old canonical (soft-delete or mark inactive)
+2. Create new canonical from best staging data
+3. Insert new `canonical_instance_of` edge (seed → new canonical)
+4. Close old edge (`active_until = now()`)
+
+### 5.4 Validation Rule
+
+In `IdGenerator::validateTrustLadderPk()`:
+
+```php
+// For seed IDs (0-999,999) on parent-entity tables
+if ($id <= 999999 && $tableIsParent($table)) {
+    if (!$this->hasActiveCanonicalEdge($id)) {
+        throw new ValidationException(
+            "Seed ID {$id} in parent table {$table} has no active canonical_instance_of edge"
+        );
+    }
+}
+```
+
+### 5.5 Seed Range Lock
+
+**CONSTITUTIONAL:** The seed ID range is permanently locked to **`0-999,999`** (inclusive).
+
+- IDs `1,000,000` and above are NOT seeds
+- IDs `1,000,000,000,000,000,000+` are canonical or staging
+- This range is immutable and requires constitutional amendment to change
+
+**Cross-reference:** Parent/child definitions are normative in **PRD 38 §9**.
+
+### 5.6 Lineage edge enforcement (parent-only)
+
+Only `parent` archetype tables may maintain `canonical_instance_of` seed->canonical lineage.
+
+```php
+if ($archetype === 'parent') {
+    EdgeWriter::createOrUpdate(
+        $seedId,
+        $canonicalId,
+        'canonical_instance_of',
+        0
+    );
+} else {
+    if ($edgeType === 'canonical_instance_of') {
+        throw new TrustLadderException("Child/system tables may not use canonical_instance_of");
+    }
+}
+```
+
+Child archetype uses `promoted_to` instead.  
+System archetype remains seed-only unless PRD amendment explicitly allows otherwise.
+
+### 5.7 Archetype-aware validation hooks
+
+Validation is required at:
+
+1. pre-insert id validation,
+2. promotion (`toCanonicalIdSafe`) entry,
+3. batch ingest preflight,
+4. lineage edge creation.
+
+`validateTrustLadderPk` should receive table context so parent/child/system rules are enforceable by registry metadata.
+
+### 5.8 Reclassification guardrail
+
+Changing archetype (`child -> parent` or `parent -> child`) is high risk and requires:
+
+1. PRD update (`PRD 38`, `PRD 41`, CTL, registry),
+2. impact simulation script run (row/edge effect report),
+3. `TODO(HONOLULU-GAP)` note documenting risk assumptions,
+4. human + second-reviewer approval before merge.
+
+## 6. The Doctrine Rules
 
 ### Rule 1: Install seeds are immutable reference rows
 
@@ -270,7 +372,7 @@ When querying **active** memory (example), **exclude** low install **`memory_nod
 
 ---
 
-## 6. What This Means for Consolidation
+## 7. What This Means for Consolidation
 
 ### The correct consolidation flow
 
@@ -301,7 +403,7 @@ Result:
 
 ---
 
-## 7. Actor ID transition
+## 8. Actor ID transition
 
 Normative walkthrough: **§3 The Wolfie lifecycle**. Summary:
 
@@ -314,7 +416,7 @@ Normative walkthrough: **§3 The Wolfie lifecycle**. Summary:
 
 ---
 
-## 8. Why this resolves the install-seed orphan problem
+## 9. Why this resolves the install-seed orphan problem
 
 | Problem | Without Doctrine | With Doctrine |
 |---------|------------------|---------------|
@@ -327,7 +429,7 @@ Normative walkthrough: **§3 The Wolfie lifecycle**. Summary:
 
 ---
 
-## 9. Affected PRDs
+## 10. Affected PRDs
 
 | PRD | Change |
 |-----|--------|
@@ -341,7 +443,7 @@ Normative walkthrough: **§3 The Wolfie lifecycle**. Summary:
 
 ---
 
-## 10. Summary table
+## 11. Summary table
 
 | Aspect | Install seed (low fixed id) | Living canonical (18-digit) | Extended canonical (18-digit) | Staging-shaped (18-digit) |
 |--------|------------------------------|------------------------------|--------------------------------|---------------------------|
@@ -355,7 +457,7 @@ Normative walkthrough: **§3 The Wolfie lifecycle**. Summary:
 
 ---
 
-## 11. The core doctrine statement
+## 12. The core doctrine statement
 
 > **Install-seed rows (low fixed PKs from SQL/registry) are immutable reference truth. `IdGenerator::generate()` always produces a staging-shaped id; living canonical rows for IdGenerator-backed PKs use `toCanonicalId(IdGenerator::generate())` before insert unless a draft staging row is intentional. Install seeds may be used to revert or audit living canonical rows but must never be active parents in the runtime graph. Orphaned install seeds after consolidation are correct and intentional.**
 

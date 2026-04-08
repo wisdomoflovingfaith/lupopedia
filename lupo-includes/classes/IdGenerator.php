@@ -131,12 +131,60 @@ class IdGenerator
             require_once __DIR__ . '/DatabaseFactory.php';
         }
         $db = DatabaseFactory::getConnection();
-        $tablePrefix = defined('LUPO_TABLE_PREFIX') ? LUPO_TABLE_PREFIX : 'lupo_';
-        $fullTable = $tablePrefix . $table;
+
+        // Registry archetype check: ensure the target table participates in the
+        // full trust ladder before promotion. Skip if TrustLadderRegistry is not
+        // loaded (graceful degradation for callers that pre-date the registry).
+        // TODO(LEGACY-GAP): Once TrustLadderRegistry is universally deployed,
+        //   make this a hard check (remove the class_exists guard).
+        if (class_exists('TrustLadderRegistry', false)) {
+            $tablePrefix = defined('LUPO_TABLE_PREFIX') ? LUPO_TABLE_PREFIX : 'lupo_';
+            $fullTable   = $tablePrefix . $table;
+            try {
+                $participates = TrustLadderRegistry::getParticipates($fullTable);
+                if ($participates !== 'full') {
+                    throw new RuntimeException(
+                        "toCanonicalIdSafe: table '{$fullTable}' has participates='{$participates}'. "
+                        . "Only 'full' ladder tables support canonical promotion via toCanonicalIdSafe(). "
+                        . 'TODO(LEGACY-GAP): Verify archetype in TRUST_LADDER_REGISTRY.md.'
+                    );
+                }
+            } catch (TrustLadderException $e) {
+                // Registry lookup failed (table not registered). Fail closed in production.
+                throw new RuntimeException(
+                    "toCanonicalIdSafe: cannot promote — registry check failed for '{$fullTable}': "
+                    . $e->getMessage()
+                );
+            }
+        }
+        // $tablePrefix / $fullTable may already be set by the registry block above; avoid recomputing.
+        if (!isset($tablePrefix)) {
+            $tablePrefix = defined('LUPO_TABLE_PREFIX') ? LUPO_TABLE_PREFIX : 'lupo_';
+        }
+        if (!isset($fullTable)) {
+            $fullTable = $tablePrefix . $table;
+        }
 
         $currentId = self::toCanonicalId($stagingId);
 
+        // Backoff constants (per LEGACY_GAP_ANSWERS.md Q1):
+        //   BASE  = 50 ms  → grows exponentially with each collision
+        //   CAP   = 5000 ms → ceiling prevents indefinite stall under saturation
+        //   JITTER = 0–100 ms → randomised per-attempt to spread concurrent retriers
+        // Delay formula: min(BASE_US * 2^(attempt-1), CAP_US) + rand(0, JITTER_US)
+        // Applied only on retry (attempt > 0); first attempt is always immediate.
+        $backoffBaseUs   = 50000;    // 50 ms in microseconds
+        $backoffCapUs    = 5000000;  // 5000 ms ceiling
+        $backoffJitterUs = 100000;   // 100 ms jitter ceiling
+
         for ($attempt = 0; $attempt < $maxRetries; $attempt++) {
+            if ($attempt > 0) {
+                // Exponential delay: 50ms, 100ms, 200ms, 400ms … capped at 5000ms.
+                $expUs    = (int) min($backoffBaseUs * (2 ** ($attempt - 1)), $backoffCapUs);
+                $jitterUs = mt_rand(0, $backoffJitterUs);
+                usleep($expUs + $jitterUs);
+            }
+
             $sql = 'SELECT 1 AS x FROM ' . $db->quoteIdentifier($fullTable)
                 . ' WHERE ' . $db->quoteIdentifier($pkColumn) . ' = :id LIMIT 1';
             $row = $db->fetchRow($sql, array('id' => $currentId));
@@ -150,16 +198,82 @@ class IdGenerator
             if (strlen($idStr) !== 18) {
                 break;
             }
-            $prefix14 = substr($idStr, 0, 14);
-            $suffix = (int) substr($idStr, 14, 4);
-            $suffix = ($suffix + 1) % 10000;
+            $prefix14  = substr($idStr, 0, 14);
+            $suffix    = ((int) substr($idStr, 14, 4) + 1) % 10000;
             $currentId = $prefix14 . str_pad((string) $suffix, 4, '0', STR_PAD_LEFT);
         }
+
+        // Log suffix exhaustion before throwing (per LEGACY_GAP_ANSWERS.md Q2).
+        // Best-effort: a logging failure must never suppress the original exception.
+        self::logSuffixExhaustion($db, $stagingId, $fullTable, $pkColumn, $maxRetries);
 
         throw new RuntimeException(
             'Unable to generate unique canonical ID after ' . (int) $maxRetries
             . ' attempts for staging ID ' . (string) $stagingId . ' in table ' . $fullTable
         );
+    }
+
+    /**
+     * Log a suffix-exhaustion event to lupo_unified_log (critical trust-ladder alert).
+     * Falls back to error_log() if the DB table is absent or the write fails.
+     * Never throws — caller must not be interrupted by a logging failure.
+     *
+     * @param object     $db        PDO_DB connection (already open)
+     * @param int|string $stagingId Original staging ID passed to toCanonicalIdSafe()
+     * @param string     $fullTable Fully-prefixed table name
+     * @param string     $pkColumn  PK column name
+     * @param int        $maxRetries Number of attempts that were exhausted
+     */
+    private static function logSuffixExhaustion($db, $stagingId, $fullTable, $pkColumn, $maxRetries)
+    {
+        $stagingStr     = (string) $stagingId;
+        $timestampPrefix = strlen($stagingStr) >= 14 ? substr($stagingStr, 0, 14) : $stagingStr;
+
+        $actorId = 0;
+        if (isset($_SESSION['actor_id']) && is_numeric($_SESSION['actor_id'])) {
+            $actorId = (int) $_SESSION['actor_id'];
+        }
+
+        $context = json_encode(array(
+            'staging_id'       => $stagingStr,
+            'table'            => $fullTable,
+            'pk_column'        => $pkColumn,
+            'timestamp_prefix' => $timestampPrefix,
+            'max_retries'      => (int) $maxRetries,
+        ));
+
+        $message = 'Canonical ID suffix exhaustion: all ' . (int) $maxRetries
+            . ' suffix slots tried for prefix ' . $timestampPrefix
+            . ' in ' . $fullTable . '.' . $pkColumn;
+
+        if (!class_exists('timestamp_ymdhis', false)) {
+            $tsFile = __DIR__ . '/TimestampYmdhis.php';
+            if (is_file($tsFile)) {
+                require_once $tsFile;
+            }
+        }
+        $now = class_exists('timestamp_ymdhis', false)
+            ? (int) timestamp_ymdhis::now()
+            : (int) gmdate('YmdHis');
+
+        try {
+            $tablePrefix = defined('LUPO_TABLE_PREFIX') ? LUPO_TABLE_PREFIX : 'lupo_';
+            $logTable    = $db->quoteIdentifier($tablePrefix . 'unified_log');
+            $sql = 'INSERT INTO ' . $logTable
+                . ' (actor_id, log_type, log_level, log_message, log_context, created_ymdhis)'
+                . ' VALUES (:actor_id, :log_type, :log_level, :log_message, :log_context, :created_ymdhis)';
+            $db->execute($sql, array(
+                'actor_id'       => $actorId,
+                'log_type'       => 'trust_ladder',
+                'log_level'      => 'critical',
+                'log_message'    => 'Canonical ID suffix exhaustion',
+                'log_context'    => $context,
+                'created_ymdhis' => $now,
+            ));
+        } catch (\Throwable $e) {
+            // Table absent, method missing, or write failed — fall back to PHP error_log().
+            error_log('[LUPOPEDIA trust_ladder critical] ' . $message . ' | context=' . $context);
+        }
     }
 
     /**
@@ -225,10 +339,10 @@ class IdGenerator
     }
 
     /**
-     * True if $digitStr compares less than $boundStr as non-negative integers (no (int) cast of long ids).
+     * True if $digitStr compares less than $boundStr as non-negative integers.
      *
      * @param string $digitStr
-     * @param string $boundStr e.g. '2026'
+     * @param string $boundStr
      * @return bool
      */
     private static function numericStringLessThan($digitStr, $boundStr)
@@ -241,18 +355,83 @@ class IdGenerator
     }
 
     /**
-     * Validate PK shape for Chronological Trust Ladder: install-seed exempt band, or 18-digit
-     * ids whose first four digits are a calendar year in 1000–9999 and remainder is numeric.
+     * Check if id is in seed/reserved space (0–999,999 inclusive).
+     *
+     * @param int|string $id
+     * @return bool
+     */
+    public static function isReservedSpace($id)
+    {
+        $idStr = trim((string) $id);
+        if ($idStr === '' || !ctype_digit($idStr)) {
+            return false;
+        }
+        if (!self::numericStringLessThan($idStr, '1000000')) {
+            return false;
+        }
+
+        return true;
+    }
+
+    /**
+     * Check if id/context pair is an authorized seed entry.
+     *
+     * Current sources:
+     * - lupo-database/lupopedia/actors/registry.json for actor_id seeds
+     * - lupo-docs/doctrine/TRUST_LADDER_REGISTRY.md (literal mention fallback)
+     *
+     * @param string $idStr
+     * @param string|null $context
+     * @return bool
+     */
+    private static function isRegisteredSeed($idStr, $context)
+    {
+        $ctx = strtolower((string) $context);
+
+        // Actor seeds are registry-backed and deterministic.
+        if ($ctx !== '' && (strpos($ctx, 'actors.actor_id') !== false || strpos($ctx, 'lupo_actors.actor_id') !== false)) {
+            $registryPath = dirname(__DIR__, 2) . '/lupo-database/lupopedia/actors/registry.json';
+            if (is_file($registryPath)) {
+                $json = @file_get_contents($registryPath);
+                if ($json !== false) {
+                    $data = json_decode($json, true);
+                    if (is_array($data) && isset($data['actors']) && is_array($data['actors'])) {
+                        foreach ($data['actors'] as $actor) {
+                            if (is_array($actor) && isset($actor['actor_id']) && (string) $actor['actor_id'] === $idStr) {
+                                return true;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        // Fallback: literal registration mention in trust ladder registry doctrine.
+        $docPath = dirname(__DIR__, 2) . '/lupo-docs/doctrine/TRUST_LADDER_REGISTRY.md';
+        if (is_file($docPath)) {
+            $doc = @file_get_contents($docPath);
+            if ($doc !== false) {
+                if ($ctx !== '' && strpos($doc, $ctx) !== false && strpos($doc, $idStr) !== false) {
+                    return true;
+                }
+                if (strpos($doc, '|' . $idStr . '|') !== false || strpos($doc, '`' . $idStr . '`') !== false) {
+                    return true;
+                }
+            }
+        }
+
+        return false;
+    }
+
+    /**
+     * Validate PK shape for Chronological Trust Ladder: reserved-space seed gating, or
+     * 18-digit ids whose first four digits are a calendar year in 1000–9999 and remainder is numeric.
      *
      * Does not replace validateFormat() — that remains for raw IdGenerator::generate() output (2000–2099 clock).
      *
-     * Seed band acceptance is not yet registry-gated (RegistryService §9.1). Callers on full-ladder tables
-     * MUST NOT pass short seed ids through this method for canonical ladder writes; use explicit
-     * seedActorToCanonicalId or install paths only.
-     *
      * @param int|string $id
      * @param string|null $context
-     * @param bool $throw If true, throws InvalidArgumentException on failure; also logs seed-band deferral when true
+     * @param bool $throw If true, throws InvalidArgumentException on failure
      * @return bool
      */
     public static function validateTrustLadderPk($id, $context = null, $throw = false)
@@ -260,17 +439,19 @@ class IdGenerator
         $idStr = (string) $id;
         $len = strlen($idStr);
 
-        // Seed band: short ids, numeric < 2026 — compare as padded digit strings (avoid (int) overflow on 32-bit)
-        // TODO: RegistryService::isAuthorizedSeed() per CHRONOLOGICAL_TRUST_LADDER §9.1
-        if ($len < 18 && $len > 0 && ctype_digit($idStr) && self::numericStringLessThan($idStr, '2026')) {
+        // RULE 1: Seed/reserved space (0-999,999) requires explicit registry authorization.
+        if (self::isReservedSpace($idStr)) {
+            if (self::isRegisteredSeed($idStr, $context)) {
+                return true;
+            }
+
             if ($throw) {
-                error_log(
-                    'TrustLadder: Seed ID ' . $idStr
-                    . ' accepted without registry check (deferred to RegistryService §9.1)'
-                    . ($context !== null && $context !== '' ? '; context=' . $context : '')
+                throw new InvalidArgumentException(
+                    'ID ' . $idStr . ' is in seed range (0-999,999) but not registered in TRUST_LADDER_REGISTRY.md'
+                    . ($context !== null && $context !== '' ? ' for ' . $context : '')
                 );
             }
-            return true;
+            return false;
         }
 
         if ($len !== 18) {

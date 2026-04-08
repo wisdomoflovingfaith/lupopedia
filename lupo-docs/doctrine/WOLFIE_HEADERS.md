@@ -34,55 +34,6 @@ lupopedia.footer:
 
 # LUPOPEDIA HEADERS (replaces FLARE)
 
----
-lupopedia.headers:
-  lupopedia.version: "4.0.73"
-  lupopedia.schema: "documentation"
-  
-
-lupopedia.edges: []
-  file_path_from_root: "lupo-docs\doctrine\WOLFIE_HEADERS.md"
-  file_hash: "01cb34a428493f0d07f9367cb3ace1ef28fe31e0428cab89766087c2b7a1f106"
-  file_path_from_root: "lupo-docs\doctrine\WOLFIE_HEADERS.md"
-  file_hash: "25cab989494df7a668bf2ef4e1a720771def938f6263ccb1020e18c6695732bd"
-  last_updated_utc: "20260228"
-  system_version: "4.0.88"
-  channel_id: 1
-  actor_id: 102
-  delegation_chain: null
-  artifact_type: "guide"
-  artifact_kind: "documentation"
-  purpose: "Documentation for WOLFIE_HEADERS.md"
-  mood_rgb: "4169E1"
-  traits: ["flare", "indexed", "v4.0.50"]
-  tags: ["docs", "doctrine", "wolfie_headersmd"]
-  lupo_agent: "windsurf"
-
-  needs_review: ["delegation_chain"]
-  system_version: "4.0.88"
-  last_updated_utc: "20260228"
-lupopedia.footer:
-  last_verified: "20260228"
-  last_verified_by: "cursor"
-    deprecation_notes: ["Legacy Wolfie/FLIP block preserved; migrate tools to use lupopedia.headers"]
----
-
----
-# FLIP Header (alias: Wolfie Header, CROP Header, FLIPPING Header)
-lupopedia.headers: explicit architecture with structured clarity for every file.
-file_path_from_root: lupo-docs/doctrine/WOLFIE_HEADERS.md
-file.last_modified_system_version: "4.0.88"
-file.last_modified_utc: "20260218000000"
-channel_id: 42   # ANUBIS adoption channel
-tags: ["lost", "orphan", "doctrine"]
-mood_rgb: "FFDAB9"
-atoms:
-  recovery_event: true
-X-Lupo-Actor-ID: 2035
-X-Lupo-Actor-Identity: "Lupopedia Audit Tool (Auto-Fixed)"
-X-Lupo-File-Path: lupo-docs/doctrine/WOLFIE_HEADERS.md
----
-
 # WOLFIE HEADER DOCTRINE v4.2
 ### Read-Only • Database-Generated • Projection-Only
 

@@ -34,41 +34,6 @@ lupopedia.footer:
 
 # LUPOPEDIA HEADERS (replaces FLARE) see http://www.lupopedia.com/lupopedia/content/FLARE and see http://www.lupopedia.com/lupopedia/qa/FLARE
 
----
-lupopedia.headers:
-  file_path_from_root: "lupo-docs/doctrine/VERSION_POLICY_DOCTRINE.md"
-  file_hash: "dec956e3bc5a07c3caeda08ffc19f4e2f420be62ed639b396183221adedb12dc"
-  system_version: "4.0.50"
-  channel_id: 51
-  actor_id: 1007
-  last_modified_utc: "20260227"
-  delegation_chain: "1007:10000"
-  artifact_type: "doctrine"
-  purpose: "Critical version policy and release management doctrine for Lupopedia development"
-  dialog_message: "This doctrine establishes the mandatory version policy that 4.0.x series cannot advance to 4.1.0 until auto-installers accept Lupopedia 4.0.x as a Crafty Syntax 3.7.5 replacement."
-  mood_rgb: "FF0000"
-  artifact_kind: "doctrine"
-  traits: ["canonical", "critical", "mandatory", "blocking"]
-  tags: ["version_policy", "release_management", "auto_installers", "blocking", "doctrine"]
-  lupo_agent: "codex-ide"
-
-lupopedia.edges:
-  file_path_from_root: "lupo-docs\doctrine\VERSION_POLICY_DOCTRINE.md"
-  outbound_edges:
-    - { to: "CHANGELOG.md", type: "governs", weight: 1.0, reason: "Version release policy" }
-    - { to: "config/global_atoms.yaml", type: "references", weight: 0.9, reason: "Version configuration" }
-    - { to: "lupo-docs/doctrine/DEVELOPMENT_CYCLE_DOCTRINE.md", type: "supersedes", weight: 0.8, reason: "Development cycle governance" }
-    - { to: "README.md", type: "informs", weight: 0.7, reason: "Project documentation" }
-  semantic_tags: ["version_policy", "release_management", "auto_installers", "blocking", "doctrine"]
-
-  last_updated_utc: "20260228"
-  system_version: "4.0.50"
-  last_updated_utc: "20260228"
-lupopedia.footer:
-  last_verified: "20260227"
-  last_verified_by: "lupopedia"
----
-
 # 🚨 VERSION POLICY DOCTRINE - CRITICAL BLOCKER
 
 **Doctrine Status**: **MANDATORY** - **NON-NEGOTIABLE**  

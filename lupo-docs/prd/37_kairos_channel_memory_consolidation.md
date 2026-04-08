@@ -2,10 +2,10 @@
 lupopedia.headers:
   header_format_version: 2
   lupopedia.schema: prd
-  when_updated: "20260408012727"
+  when_updated: "20260408113000"
   file_path_from_root: "lupo-docs/prd/37_kairos_channel_memory_consolidation.md"
   web_path: "http://www.lupopedia.com/lupopedia/lupo-docs/prd/37_kairos_channel_memory_consolidation.md"
-  last_modified_utc: "20260408012727"
+  last_modified_utc: "20260408113000"
   federation_node_id: 0
   channel_id: 42
   thread_id: "prd-kairos-memory"

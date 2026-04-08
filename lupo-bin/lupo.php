@@ -31,13 +31,24 @@ switch ($command) {
         require_once $doctor_path;
         break;
         
+    case 'staging-gc':
+        $gc_path = LUPOPEDIA_PATH . '/lupo-bin/cli/staging_gc.php';
+        if (!file_exists($gc_path)) {
+            fwrite(STDERR, "[ERROR] staging-gc CLI not found: $gc_path\n");
+            exit(1);
+        }
+        require_once $gc_path;
+        break;
+
     case 'help':
     default:
         echo "Lupopedia CLI Tool\n";
         echo "Usage: php lupo-bin/lupo.php <command>\n\n";
         echo "Commands:\n";
-        echo "  doctor   - Run system health check (ASCLEPIUS)\n";
-        echo "  health   - Alias for doctor\n";
-        echo "  check    - Alias for doctor\n";
+        echo "  doctor      - Run system health check (ASCLEPIUS)\n";
+        echo "  health      - Alias for doctor\n";
+        echo "  check       - Alias for doctor\n";
+        echo "  staging-gc  - Purge soft-deleted staging-tier rows (90-day retention)\n";
+        echo "                Options: --days=N  --batch=N  --dry-run  --actor=N\n";
         break;
 }

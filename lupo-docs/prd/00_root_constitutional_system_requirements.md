@@ -2,10 +2,10 @@
 lupopedia.headers:
   header_format_version: 2
   lupopedia.schema: doctrine
-  when_updated: "20260408042840"
+  when_updated: "20260408110149"
   file_path_from_root: "lupo-docs/prd/00_root_constitutional_system_requirements.md"
   web_path: "http://www.lupopedia.com/lupopedia/lupo-docs/prd/00_root_constitutional_system_requirements.md"
-  last_modified_utc: "20260408042840"
+  last_modified_utc: "20260408110149"
   federation_node_id: 0
   channel_id: 42
   thread_id: "constitutional-root-requirements"
@@ -737,7 +737,24 @@ See `lupo-docs/doctrine/IDENTITY_LAYERS_DOCTRINE.md` for the full five-layer mod
 
 **Unified memory graph (PRD 38, companion to KAIROS storage above).** **`lupo_memory_nodes`** / **`lupo_memory_edges`** hold the constitutional **memory graph** mirror export under **`lupo-memory/`**. **Runtime** rows: **`memory_node_id`** from **`IdGenerator::generate()`**; **`created_ymdhis`** = the same **14-digit** prefix as the PK at insert. **Seed / pre-existing** rows: **`memory_node_id`** MAY be a **low reserved id**; **`created_ymdhis`** MAY be **`0`** (“before temporal tracking”) or the **install** packed UTC — independent of PK shape. **`MemoryExportService`** maps **`created_ymdhis`** of **`0`** (or too short to form YYYYMM) to path **`lupo-memory/1970/01/`** so pre-history mirrors stay grouped. **Chronological Trust Ladder** (**staging** embedded year **2000–2099** vs **living canonical** **1000–1999**): **§3.7**; full spec **`lupo-docs/doctrine/CHRONOLOGICAL_TRUST_LADDER.md`** and **`lupo-docs/prd/38_memory_unification.md`** §4.2.
 
-### 5.8 Implementation mirroring (IDE directive)
+### 5.8 Parent-Child Entity Classification
+
+All entity types in Lupopedia MUST be classified as **Parent**, **Child**, or **System** according to PRD-level doctrine (currently PRD 38 / PRD 41; future dedicated PRD allowed).
+
+| Question | If YES -> | If NO -> |
+|----------|-----------|----------|
+| Does this entity need a permanent, immutable reference (bookmarkable and lineage-stable)? | Parent | Child |
+| Will this entity be referenced for more than 5 years? | Parent | Child |
+| Will this entity exceed 1 million rows? | Child | Parent or System |
+| Is this entity configuration or registry data? | System | Continue classification |
+
+**Consequences of misclassification:**
+- Parent classified as Child -> no seed anchor and weakened lineage continuity
+- Child classified as Parent -> unnecessary seed overhead and index bloat
+
+**Amendment rule:** Any change to an entity classification requires PRD amendment plus constitutional review (LILITH lane).
+
+### 5.9 Implementation mirroring (IDE directive)
 
 **Normative companion.** Full folder lifecycle, scaffolding command, templates, question levels, and compliance checks: **`lupo-docs/prd/31_implementation_folder_guidelines.md`**. **`lupo-docs/implementations/README.md`** indexes known workspaces.
 
@@ -767,7 +784,7 @@ where **`prd_file_stem`** is the **basename of the PRD Markdown file without `.m
 
 This mirrors **`lupo-channels/`** semantics for coordination; the implementation folder is the **PRD-scoped** archive for reviewers and multi-agent handoff.
 
-### 5.9 Agent THOTH — stale artifact truth checks
+### 5.10 Agent THOTH — stale artifact truth checks
 
 **THOTH** ( **`lupo-agents/thoth/`** ) is the **persona of record** for **semantic truth** against the **current schema** when documentation may be stale.
 
@@ -775,7 +792,7 @@ This mirrors **`lupo-channels/`** semantics for coordination; the implementation
 
 **Non-substitute.** THOTH verification does not replace **TOON/install SQL** authority; it ensures **stale prose** is not trusted over **generated JSON** and table docs.
 
-### 5.10 Service agents — PHP first, LLM second (not default “talk to me” personas)
+### 5.11 Service agents — PHP first, LLM second (not default “talk to me” personas)
 
 **Canonical roster (constitutional examples).** The following **`agent_key`** values are **explicitly** classified here as **service agents** for purposes of architecture review and routing expectations: **IRIS**, **ANUBIS**, **ROSE**, **THOTH**, **KAIROS**. Additional keys may be added by amendment to **`lupo-docs/doctrine/SERVICE_AGENT_ARCHITECTURE.md`** and this section.
 

@@ -1,17 +1,21 @@
 #!/usr/bin/env python3
 """
-Optional warnings for Purpose 2 pseudocode under decisions/pseudocode/.
+PRD 17 pseudocode validator for decisions/pseudocode/.
 
 Canonical rules: lupo-docs/prd/17_decisions_format.md
 (Pseudocode reasoning discipline for IDE agents.)
 
-- Skips Purpose 1 digests: 00_*.pseudo.md, *_constitution.pseudo.md,
-  and all of lupo-docs/decisions/pseudocode/ (cross-cutting routers).
-- Targets *_design.pseudo.md, other *.pseudo.md (except allowlisted),
-  and *.pseudo.php under .../decisions/pseudocode/.
+- Enforces required headers for every *.pseudo.md, *.pseudo.php, *.pseudo.txt
+  under decisions/pseudocode/:
+  - lupopedia.headers
+  - file_path_from_root
+  - when_updated
+  - last_modified_utc
+- Keeps Purpose 2 discipline warnings for *_design.pseudo.md, other *.pseudo.md
+  (except allowlisted Purpose 1), and *.pseudo.php.
 
 Exit 0: no violations (or only warnings without --strict).
-Exit 1: --strict and at least one warning, or unreadable path.
+Exit 1: any required-header violation, unreadable path, or (with --strict) warnings.
 
 This output complies with Lupopedia Constitutional Root Rules.
 """
@@ -51,6 +55,9 @@ def classify(path):
     if name.endswith(".pseudo.php"):
         return "purpose2"
 
+    if name.endswith(".pseudo.txt"):
+        return "purpose2"
+
     if not name.endswith(".pseudo.md"):
         return "skip"
 
@@ -62,6 +69,21 @@ def classify(path):
         return "purpose1"
 
     return "purpose2"
+
+
+def _required_header_violations(path, text):
+    issues = []
+    if "lupopedia.headers:" not in text:
+        issues.append("missing lupopedia.headers block")
+    if not re.search(r"(?m)^\s*file_path_from_root:\s*['\"]?[^'\"\n]+", text):
+        issues.append("missing file_path_from_root in lupopedia.headers")
+    if not re.search(r"(?m)^\s*when_updated:\s*['\"]?[0-9]{8,14}", text):
+        issues.append("missing when_updated in lupopedia.headers")
+    if not re.search(r"(?m)^\s*last_modified_utc:\s*['\"]?[0-9]{8,14}", text):
+        issues.append("missing last_modified_utc in lupopedia.headers")
+    if issues:
+        return ["%s: %s" % (_norm(path), item) for item in issues]
+    return []
 
 
 def has_decision_anchor(text):
@@ -113,15 +135,28 @@ def php_has_decision_hook(text):
     return False
 
 
-def validate_file(path, warnings_out):
-    kind = classify(path)
-    if kind != "purpose2":
+def validate_file(path, warnings_out, violations_out):
+    if not _is_under_decisions_pseudocode(path):
+        return
+
+    lname = Path(path).name.lower()
+    if not (
+        lname.endswith(".pseudo.md")
+        or lname.endswith(".pseudo.php")
+        or lname.endswith(".pseudo.txt")
+    ):
         return
 
     try:
         raw = Path(path).read_text(encoding="utf-8", errors="replace")
     except EnvironmentError as e:
-        warnings_out.append("%s: unreadable (%s)" % (_norm(path), e))
+        violations_out.append("%s: unreadable (%s)" % (_norm(path), e))
+        return
+
+    violations_out.extend(_required_header_violations(path, raw))
+
+    kind = classify(path)
+    if kind != "purpose2":
         return
 
     name = Path(path).name.lower()
@@ -162,7 +197,9 @@ def collect_paths(roots):
         elif p.is_dir():
             for f in p.rglob("*"):
                 if f.is_file() and (
-                    f.name.endswith(".pseudo.md") or f.name.endswith(".pseudo.php")
+                    f.name.endswith(".pseudo.md")
+                    or f.name.endswith(".pseudo.php")
+                    or f.name.endswith(".pseudo.txt")
                 ):
                     out.append(f)
         else:
@@ -201,6 +238,7 @@ def main():
 
     all_files = collect_paths(args.paths)
     warnings = []
+    violations = []
     skipped_verbose = []
 
     for f in all_files:
@@ -213,10 +251,16 @@ def main():
             if args.verbose:
                 skipped_verbose.append("purpose1 %s" % _norm(f))
             continue
-        validate_file(f, warnings)
+        validate_file(f, warnings, violations)
 
     for line in skipped_verbose:
         print(line)
+
+    if violations:
+        print("Pseudocode header violations (%d):" % len(violations))
+        for v in violations:
+            print("  ", v)
+        return 1
 
     if warnings:
         print("Pseudocode discipline warnings (%d):" % len(warnings))

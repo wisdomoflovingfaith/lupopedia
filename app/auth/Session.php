@@ -4,10 +4,10 @@
 lupopedia.headers:
   header_format_version: 2
   lupopedia.schema: class
-  when_updated: "20260406012647"
+  when_updated: "20260408160633"
   file_path_from_root: "app/auth/Session.php"
   web_path: "http://www.lupopedia.com/lupopedia/app/auth/Session.php"
-  last_modified_utc: "20260406012647"
+  last_modified_utc: "20260408160633"
   federation_node_id: 0
   channel_id: 42
   author:
@@ -39,6 +39,9 @@ namespace App\Auth;
  * Cookie expiry: setcookie() uses Unix time per HTTP/browser API only; stored session times remain packed UTC BIGINT.
  *
  * $_SESSION clearing here is revocation cleanup only; authority remains lupo_sessions rows, not superglobal payload.
+ *
+ * Idle expiry + validateSession() + touch(); probabilistic row cleanup: maybeProbabilisticGarbageCollect().
+ * Install index {{prefix}}sessions_idx_gc_named_activity (is_named, last_activity_ymdhis) supports GC DELETE predicates.
  */
 
 if (!defined('LUPOPEDIA_CONFIG_LOADED')) {
@@ -94,6 +97,9 @@ class Session
     public $ua_hash;
 
     /** @var string|null */
+    public $session_identity_hash;
+
+    /** @var string|null */
     public $csrf_token;
 
     /** @var int */
@@ -140,10 +146,263 @@ class Session
     private static function untrustedFingerprintSources()
     {
         $srv = self::untrustedServerArray();
+        $client_ip = self::resolvedClientIp($srv);
+        $raw_user_agent = isset($srv['HTTP_USER_AGENT']) ? (string) $srv['HTTP_USER_AGENT'] : '';
         return array(
-            'ip' => isset($srv['REMOTE_ADDR']) ? (string) $srv['REMOTE_ADDR'] : '',
-            'user_agent' => isset($srv['HTTP_USER_AGENT']) ? (string) $srv['HTTP_USER_AGENT'] : '',
+            'ip' => $client_ip,
+            'user_agent' => self::normalizeUserAgent($raw_user_agent),
         );
+    }
+
+    /**
+     * Resolve client IP with proxy/CDN header awareness.
+     * Crafty Syntax reference defines get_ipaddress() only under craftysyntax-reference/;
+     * it is not loaded in normal Lupopedia bootstrap. This method implements the same
+     * ordered header walk (plus LUPO_CLIENT_IP when CloudflareRequestHandler set it).
+     *
+     * @param array $srv Typically $_SERVER
+     * @return string
+     */
+    private static function resolvedClientIp(array $srv)
+    {
+        if (defined('LUPO_CLIENT_IP') && LUPO_CLIENT_IP !== '') {
+            return (string) LUPO_CLIENT_IP;
+        }
+        $headers = array(
+            'HTTP_CF_CONNECTING_IP',
+            'HTTP_TRUE_CLIENT_IP',
+            'HTTP_CLIENT_IP',
+            'HTTP_X_FORWARDED_FOR',
+            'HTTP_X_FORWARDED',
+            'HTTP_X_CLUSTER_CLIENT_IP',
+            'HTTP_FORWARDED_FOR',
+            'HTTP_FORWARDED',
+            'HTTP_X_REAL_IP',
+            'REMOTE_ADDR',
+        );
+        $fallback = '';
+        foreach ($headers as $header) {
+            if (!isset($srv[$header]) || $srv[$header] === '') {
+                continue;
+            }
+            $raw = (string) $srv[$header];
+            $candidates = ($header === 'HTTP_X_FORWARDED_FOR' || $header === 'HTTP_FORWARDED_FOR')
+                ? explode(',', $raw)
+                : array($raw);
+            foreach ($candidates as $candidate) {
+                $candidate = trim((string) $candidate);
+                if ($candidate === '') {
+                    continue;
+                }
+                if (function_exists('filter_var')) {
+                    if (filter_var($candidate, FILTER_VALIDATE_IP, FILTER_FLAG_NO_PRIV_RANGE | FILTER_FLAG_NO_RES_RANGE)) {
+                        return $candidate;
+                    }
+                    if ($fallback === '' && filter_var($candidate, FILTER_VALIDATE_IP)) {
+                        $fallback = $candidate;
+                    }
+                } else {
+                    if ($fallback === '' && preg_match('/^(\d{1,3}\.){3}\d{1,3}$/', $candidate)) {
+                        $fallback = $candidate;
+                    }
+                }
+            }
+        }
+        return $fallback !== '' ? $fallback : '';
+    }
+
+    /**
+     * Normalize user agent for stable, bounded hashing input.
+     * - Truncate to 200 chars to cap attacker-controlled input size.
+     * - Collapse repeated whitespace to reduce noisy hash churn.
+     *
+     * @param string $ua
+     * @return string
+     */
+    private static function normalizeUserAgent($ua)
+    {
+        $ua = substr((string) $ua, 0, 200);
+        $ua = preg_replace('/\s+/', ' ', $ua);
+        return trim((string) $ua);
+    }
+
+    /**
+     * Extract network prefix used for privacy-preserving session fingerprinting.
+     * IPv4 keeps first 3 octets (Class C), IPv6 keeps first 64 bits (first 4 hextets).
+     *
+     * @param string $ip
+     * @return string
+     */
+    private static function ipNetworkPrefix($ip)
+    {
+        $ip = trim((string) $ip);
+        if ($ip === '') {
+            return '';
+        }
+        if (strpos($ip, ':') !== false) {
+            $packed = @inet_pton($ip);
+            if ($packed !== false && strlen($packed) === 16) {
+                $prefix_bin = substr($packed, 0, 8);
+                $parts = unpack('n4', $prefix_bin);
+                if (is_array($parts) && count($parts) === 4) {
+                    return dechex($parts[1]) . ':' . dechex($parts[2]) . ':' . dechex($parts[3]) . ':' . dechex($parts[4]);
+                }
+            }
+            $groups = explode(':', $ip);
+            $groups = array_slice($groups, 0, 4);
+            return implode(':', $groups);
+        }
+        $parts = explode('.', $ip);
+        if (count($parts) >= 3) {
+            return $parts[0] . '.' . $parts[1] . '.' . $parts[2];
+        }
+        return $ip;
+    }
+
+    /**
+     * @return string
+     */
+    private static function sessionSalt()
+    {
+        if (defined('LUPO_SESSION_SALT') && LUPO_SESSION_SALT !== '') {
+            return (string) LUPO_SESSION_SALT;
+        }
+        if (defined('AUTH_SALT') && AUTH_SALT !== '') {
+            return (string) AUTH_SALT;
+        }
+        return 'lupopedia_session_salt_not_configured';
+    }
+
+    /**
+     * Load TimestampYmdhis once for packed UTC helpers.
+     *
+     * @return void
+     */
+    private static function ensureTimestampClass()
+    {
+        if (class_exists('\\timestamp_ymdhis', false)) {
+            return;
+        }
+        if (defined('LUPOPEDIA_PATH')) {
+            $path = LUPOPEDIA_PATH . DIRECTORY_SEPARATOR . 'lupo-includes' . DIRECTORY_SEPARATOR . 'classes' . DIRECTORY_SEPARATOR . 'TimestampYmdhis.php';
+            if (is_file($path)) {
+                require_once $path;
+            }
+        }
+    }
+
+    /**
+     * @return int
+     */
+    private static function nowYmdhis()
+    {
+        self::ensureTimestampClass();
+        return class_exists('\\timestamp_ymdhis', false) ? (int) \timestamp_ymdhis::now() : (int) gmdate('YmdHis');
+    }
+
+    /**
+     * Max idle duration (seconds) before a session is treated as expired.
+     * Anonymous = visitor rows with is_named = 0; "named" = is_named = 1 (visitor name / UX band).
+     *
+     * @param int $is_named 0 or 1
+     * @return int
+     */
+    public static function maxIdleSecondsForIsNamed($is_named)
+    {
+        $anonMin = 45;
+        $namedMin = 1440;
+        if (defined('LUPO_SESSION_ANONYMOUS_IDLE_MINUTES')) {
+            $anonMin = (int) LUPO_SESSION_ANONYMOUS_IDLE_MINUTES;
+        } elseif (defined('LUPO_SESSION_IDLE_TIMEOUT_SECONDS')) {
+            $anonMin = max(1, (int) ceil((int) LUPO_SESSION_IDLE_TIMEOUT_SECONDS / 60));
+        }
+        if (defined('LUPO_SESSION_NAMED_IDLE_MINUTES')) {
+            $namedMin = (int) LUPO_SESSION_NAMED_IDLE_MINUTES;
+        }
+        $anonMin = max(1, $anonMin);
+        $namedMin = max(1, $namedMin);
+        return ((int) $is_named === 1) ? $namedMin * 60 : $anonMin * 60;
+    }
+
+    /**
+     * Probabilistic DB sweep for stale lupo_sessions rows (shared hosting: no cron).
+     * Uses packed UTC cutoffs via timestamp_ymdhis (not integer subtraction on YmdHis).
+     * Predicate-friendly index on fresh installs: {{prefix}}sessions_idx_gc_named_activity (is_named, last_activity_ymdhis).
+     * Lock file: sys_get_temp_dir() (writable on typical shared hosts; falls back to lupo-tmp under docroot if needed).
+     *
+     * @param \PDO_DB|null $db
+     * @return void
+     */
+    public static function maybeProbabilisticGarbageCollect($db)
+    {
+        if (!$db || !($db instanceof \PDO_DB)) {
+            return;
+        }
+        if (php_sapi_name() === 'cli') {
+            return;
+        }
+        if (!defined('LUPO_SESSION_GC_ENABLED') || !LUPO_SESSION_GC_ENABLED) {
+            return;
+        }
+        $prob = defined('LUPO_SESSION_GC_PROBABILITY') ? (int) LUPO_SESSION_GC_PROBABILITY : 3;
+        $div = defined('LUPO_SESSION_GC_DIVISOR') ? (int) LUPO_SESSION_GC_DIVISOR : 100;
+        if ($prob <= 0 || $div < 1) {
+            return;
+        }
+        if (function_exists('random_int')) {
+            $roll = random_int(1, $div);
+        } else {
+            $roll = mt_rand(1, $div);
+        }
+        if ($roll > $prob) {
+            return;
+        }
+        $lockSec = defined('LUPO_SESSION_GC_LOCK_SECONDS') ? (int) LUPO_SESSION_GC_LOCK_SECONDS : 30;
+        $tmp = '';
+        if (function_exists('sys_get_temp_dir')) {
+            $tmp = sys_get_temp_dir();
+        }
+        if ($tmp === '' || $tmp === false) {
+            $tmp = defined('LUPOPEDIA_ABSPATH') ? rtrim(LUPOPEDIA_ABSPATH, "/\\") . DIRECTORY_SEPARATOR . 'lupo-tmp' : '';
+        }
+        if ($tmp === '') {
+            return;
+        }
+        $lockFile = rtrim((string) $tmp, "/\\") . DIRECTORY_SEPARATOR . 'lupopedia_session_gc.lock';
+        if (file_exists($lockFile) && (time() - (int) @filemtime($lockFile) < $lockSec)) {
+            return;
+        }
+        @touch($lockFile);
+        self::ensureTimestampClass();
+        if (!class_exists('\\timestamp_ymdhis', false)) {
+            return;
+        }
+        $now = (int) \timestamp_ymdhis::now();
+        $anonMin = defined('LUPO_SESSION_ANONYMOUS_IDLE_MINUTES') ? (int) LUPO_SESSION_ANONYMOUS_IDLE_MINUTES : 45;
+        $namedMin = defined('LUPO_SESSION_NAMED_IDLE_MINUTES') ? (int) LUPO_SESSION_NAMED_IDLE_MINUTES : 1440;
+        $anonSec = max(60, $anonMin * 60);
+        $namedSec = max(60, $namedMin * 60);
+        $cutoffAnon = \timestamp_ymdhis::subtractSeconds($now, $anonSec);
+        $cutoffNamed = \timestamp_ymdhis::subtractSeconds($now, $namedSec);
+        $table_prefix = defined('LUPO_TABLE_PREFIX') ? LUPO_TABLE_PREFIX : 'lupo_';
+        $table = $table_prefix . 'sessions';
+        $db->delete($table, '`last_activity_ymdhis` < :cutoff AND `is_named` = 0', array('cutoff' => $cutoffAnon));
+        $db->delete($table, '`last_activity_ymdhis` < :cutoff AND `is_named` = 1', array('cutoff' => $cutoffNamed));
+        if (defined('LUPOPEDIA_DEBUG') && LUPOPEDIA_DEBUG) {
+            error_log('Session::maybeProbabilisticGarbageCollect ran (cutoffs anon=' . $cutoffAnon . ' named=' . $cutoffNamed . ')');
+        }
+    }
+
+    /**
+     * @param string $ip
+     * @param string $user_agent
+     * @return string
+     */
+    public static function computeIdentityHash($ip, $user_agent)
+    {
+        $network_prefix = self::ipNetworkPrefix($ip);
+        $salt = self::sessionSalt();
+        return hash('sha256', $network_prefix . '|' . (string) $user_agent . '|' . $salt);
     }
 
     /**
@@ -153,15 +412,11 @@ class Session
      */
     private static function hashFingerprint($ip, $user_agent)
     {
-        if (function_exists('hash') && function_exists('hash_algos') && in_array('sha256', hash_algos())) {
-            return array(
-                'ip_hash' => hash('sha256', $ip),
-                'ua_hash' => hash('sha256', $user_agent),
-            );
-        }
+        $network_prefix = self::ipNetworkPrefix($ip);
+        $salt = self::sessionSalt();
         return array(
-            'ip_hash' => md5($ip),
-            'ua_hash' => md5($user_agent),
+            'ip_hash' => hash('sha256', $network_prefix . '|' . $salt),
+            'ua_hash' => hash('sha256', (string) $user_agent . '|' . $salt),
         );
     }
 
@@ -189,7 +444,7 @@ class Session
         $table = $table_prefix . 'sessions';
         $t = $db->quoteIdentifier($table);
         $row = $db->fetchRow(
-            "SELECT session_id, actor_id, federation_node_id, ip_hash, ua_hash, csrf_token, last_activity_ymdhis, last_seen_ymdhis, created_ymdhis, updated_ymdhis, name_key, is_named, metadata FROM $t WHERE session_id = :sid LIMIT 1",
+            "SELECT session_id, actor_id, federation_node_id, ip_hash, ua_hash, session_identity_hash, csrf_token, last_activity_ymdhis, last_seen_ymdhis, created_ymdhis, updated_ymdhis, name_key, is_named, metadata FROM $t WHERE session_id = :sid LIMIT 1",
             array('sid' => $session_id)
         );
         if (!$row) {
@@ -201,6 +456,7 @@ class Session
         $s->federation_node_id = (int) (isset($row['federation_node_id']) ? $row['federation_node_id'] : 0);
         $s->ip_hash = isset($row['ip_hash']) ? $row['ip_hash'] : null;
         $s->ua_hash = isset($row['ua_hash']) ? $row['ua_hash'] : null;
+        $s->session_identity_hash = isset($row['session_identity_hash']) ? $row['session_identity_hash'] : null;
         $s->csrf_token = isset($row['csrf_token']) ? $row['csrf_token'] : null;
         $s->last_activity_ymdhis = (int) $row['last_activity_ymdhis'];
         $s->last_seen_ymdhis = (isset($row['last_seen_ymdhis']) && $row['last_seen_ymdhis'] !== null && $row['last_seen_ymdhis'] !== '')
@@ -258,10 +514,8 @@ class Session
         if (!$session_id || !($db instanceof \PDO_DB)) {
             return false;
         }
-        if (!class_exists('\\timestamp_ymdhis', false) && defined('LUPOPEDIA_PATH')) {
-            require_once LUPOPEDIA_PATH . DIRECTORY_SEPARATOR . 'lupo-includes' . DIRECTORY_SEPARATOR . 'classes' . DIRECTORY_SEPARATOR . 'TimestampYmdhis.php';
-        }
-        $now = class_exists('\\timestamp_ymdhis', false) ? (int) \timestamp_ymdhis::now() : (int) gmdate('YmdHis');
+        self::ensureTimestampClass();
+        $now = self::nowYmdhis();
         $meta = self::getDecodedMetadata($db, $session_id);
         foreach ($patch as $k => $v) {
             if ($v === null) {
@@ -298,7 +552,7 @@ class Session
         }
         $table_prefix = defined('LUPO_TABLE_PREFIX') ? LUPO_TABLE_PREFIX : 'lupo_';
         $table = $table_prefix . 'sessions';
-        $now = (int) gmdate('YmdHis');
+        $now = self::nowYmdhis();
         $session_id = bin2hex(random_bytes(32));
         if (strlen($session_id) > 128) {
             $session_id = substr($session_id, 0, 128);
@@ -307,6 +561,7 @@ class Session
         $hashes = self::hashFingerprint($fp['ip'], $fp['user_agent']);
         $ip_hash = $hashes['ip_hash'];
         $ua_hash = $hashes['ua_hash'];
+        $session_identity_hash = self::computeIdentityHash($fp['ip'], $fp['user_agent']);
         $csrf_token = bin2hex(random_bytes(32));
         if (strlen($csrf_token) > 128) {
             $csrf_token = substr($csrf_token, 0, 128);
@@ -318,6 +573,7 @@ class Session
             'federation_node_id' => $node_id,
             'ip_hash' => $ip_hash,
             'ua_hash' => $ua_hash,
+            'session_identity_hash' => $session_identity_hash,
             'csrf_token' => $csrf_token,
             'last_activity_ymdhis' => $now,
             'last_seen_ymdhis' => $now,
@@ -340,6 +596,7 @@ class Session
         $s->federation_node_id = $node_id;
         $s->ip_hash = $ip_hash;
         $s->ua_hash = $ua_hash;
+        $s->session_identity_hash = $session_identity_hash;
         $s->csrf_token = $csrf_token;
         $s->last_activity_ymdhis = $now;
         $s->last_seen_ymdhis = $now;
@@ -379,10 +636,7 @@ class Session
         if (!$this->db || !($this->db instanceof \PDO_DB)) {
             return false;
         }
-        if (!class_exists('\\timestamp_ymdhis', false) && defined('LUPOPEDIA_PATH')) {
-            require_once LUPOPEDIA_PATH . DIRECTORY_SEPARATOR . 'lupo-includes' . DIRECTORY_SEPARATOR . 'classes' . DIRECTORY_SEPARATOR . 'TimestampYmdhis.php';
-        }
-        $now = class_exists('\\timestamp_ymdhis', false) ? \timestamp_ymdhis::now() : (int) gmdate('YmdHis');
+        $now = self::nowYmdhis();
         $this->db->update(
             $this->table,
             array(
@@ -443,6 +697,7 @@ class Session
 
     public function utcTimestamp()
     {
+        self::ensureTimestampClass();
         if (class_exists('\\timestamp_ymdhis', false)) {
             return \timestamp_ymdhis::now();
         }
@@ -485,6 +740,33 @@ class Session
     }
 
     /**
+     * True when last activity (and optional last_seen heartbeat) is older than the TTL for this is_named band.
+     *
+     * @return bool
+     */
+    public function isExpired()
+    {
+        $ref = (int) $this->last_activity_ymdhis;
+        if ($this->last_seen_ymdhis !== null && $this->last_seen_ymdhis !== '') {
+            $ls = (int) $this->last_seen_ymdhis;
+            if ($ls > $ref) {
+                $ref = $ls;
+            }
+        }
+        if ($ref <= 0) {
+            return true;
+        }
+        self::ensureTimestampClass();
+        if (!class_exists('\\timestamp_ymdhis', false)) {
+            return false;
+        }
+        $now = (int) \timestamp_ymdhis::now();
+        $maxSec = self::maxIdleSecondsForIsNamed($this->is_named);
+        $cutoff = \timestamp_ymdhis::subtractSeconds($now, $maxSec);
+        return $ref < $cutoff;
+    }
+
+    /**
      * Validate current PHP session: load from DB, touch, return actor_id or false.
      *
      * @param string|null $sessionId
@@ -501,6 +783,17 @@ class Session
         $loaded = self::loadById($this->db, $sessionId);
         if (!$loaded) {
             return false;
+        }
+        if ($loaded->isExpired()) {
+            $loaded->destroyInternal();
+            return false;
+        }
+        if (defined('LUPO_SESSION_VALIDATE_UA') && LUPO_SESSION_VALIDATE_UA) {
+            $fp = self::untrustedFingerprintSources();
+            $expected_ua_hash = hash('sha256', (string) $fp['user_agent'] . '|' . self::sessionSalt());
+            if (!empty($loaded->ua_hash) && !hash_equals($loaded->ua_hash, $expected_ua_hash)) {
+                return false;
+            }
         }
         $loaded->touch();
         $this->current = $loaded;
@@ -616,7 +909,7 @@ class Session
             return false;
         }
         $nameKey = substr($nameKey, 0, 100);
-        $now = (int) gmdate('YmdHis');
+        $now = self::nowYmdhis();
         $this->db->update(
             $this->table,
             array('name_key' => $nameKey, 'is_named' => 1, 'updated_ymdhis' => $now),
@@ -674,11 +967,12 @@ class Session
             $loaded->touch();
             return $sessionId;
         }
-        $now = (int) gmdate('YmdHis');
+        $now = self::nowYmdhis();
         $fp = self::untrustedFingerprintSources();
         $hashes = self::hashFingerprint($fp['ip'], $fp['user_agent']);
         $ip_hash = $hashes['ip_hash'];
         $ua_hash = $hashes['ua_hash'];
+        $session_identity_hash = self::computeIdentityHash($fp['ip'], $fp['user_agent']);
         $csrf_token = bin2hex(random_bytes(32));
         if (strlen($csrf_token) > 128) {
             $csrf_token = substr($csrf_token, 0, 128);
@@ -691,6 +985,7 @@ class Session
             'federation_node_id' => $node_id,
             'ip_hash' => $ip_hash,
             'ua_hash' => $ua_hash,
+            'session_identity_hash' => $session_identity_hash,
             'csrf_token' => $csrf_token,
             'last_activity_ymdhis' => $now,
             'last_seen_ymdhis' => $now,
